@@ -1,6 +1,6 @@
 ---
-title: 'Esercitazione: DevOps con hello portale di Azure | Documenti Microsoft'
-description: Informazioni su hello vari flussi di lavoro di DevOps in hello portale di Azure.
+title: 'Esercitazione: DevOps con il portale di Azure | Documentazione Microsoft'
+description: Informazioni sui diversi flussi di lavoro di DevOps nel portale di Azure.
 services: azure-portal
 documentationcenter: 
 author: mlearned
@@ -14,14 +14,14 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 06/05/2016
 ms.author: mlearned
-ms.openlocfilehash: 4c32dbbd4e4b1c3809ef4b01e1496e350183ebde
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: b590fb06a3dba8aec66a380217269e1ca39bb5e7
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="tutorial-devops-with-hello-azure-portal"></a>Esercitazione: DevOps con hello portale di Azure
-piattaforma Azure Hello è piena di flussi di lavoro DevOps flessibile. In questa esercitazione illustrato come funzionalità hello tooleverage di hello Azure Portal toodevelop, testare, distribuire, risolvere i problemi, monitorare e gestire applicazioni in esecuzione. In questa esercitazione è incentrata sulla seguente hello:
+# <a name="tutorial-devops-with-the-azure-portal"></a>Esercitazione: DevOps con il portale di Azure
+La piattaforma Azure include diversi flussi di lavoro flessibili di DevOps. Questa esercitazione illustra come sfruttare le funzionalità del portale di Azure per sviluppare, testare, distribuire, risolvere i problemi, monitorare e gestire le applicazioni in esecuzione. L'esercitazione si incentra sugli argomenti seguenti:
 
 1. Creazione di un'app Web e abilitazione della distribuzione continua
 2. Sviluppare e testare un'app
@@ -29,119 +29,119 @@ piattaforma Azure Hello è piena di flussi di lavoro DevOps flessibile. In quest
 4. Attività di gestione di applicazioni generali
 
 ## <a name="creating-a-web-app-and-enabling-continuous-deployment"></a>Creazione di un'app Web e abilitazione della distribuzione continua
-Creare un'app Web con [Azure App Service](https://azure.microsoft.com/services/app-service/), che verranno usati nel resto di hello dell'esercitazione. All'inizio si abiliterà la distribuzione continua dal repository di codice sorgente all'ambiente di Azure in esecuzione.
+Creare un'app Web con il [servizio app di Azure](https://azure.microsoft.com/services/app-service/), che verrà usato nel resto di questa esercitazione. All'inizio si abiliterà la distribuzione continua dal repository di codice sorgente all'ambiente di Azure in esecuzione.
 
-1. Accedere al portale di Azure hello
-2. Scegliere **servizi App** &gt; **sull'icona Aggiungi** e immettere un nome, scegliere la sottoscrizione e creare un nuovo tooserve gruppo di risorse come contenitore hello per servizio hello.
+1. Accedere al portale di Azure.
+2. Scegliere **Servizi app** &gt; **icona di aggiunta** e immettere un nome, scegliere una sottoscrizione e creare un nuovo gruppo di risorse che funga come contenitore per il servizio.
    
-   Gruppi di risorse consentono di toomanage vari aspetti della soluzione di hello, ad esempio fatturazione, distribuzioni e il monitoraggio come un singolo gruppo tramite [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md).
+   I gruppi di risorse consentono di gestire diversi aspetti della soluzione, ad esempio, fatturazione, distribuzioni e monitoraggio, come un unico gruppo tramite [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md).
    
    ![Immagine1][image1]
-3. Dopo pochi secondi, verrà creato il servizio app. Richiedere hello di tooexplore pochi minuti diverse opzioni di menu per il servizio hello nel portale di hello.
+3. Dopo pochi secondi, verrà creato il servizio app. Dedicare qualche minuto all'esplorazione delle diverse opzioni di menu per il servizio nel portale.
    
    ![Immagine2][image2]    
-4. Fare clic su URL hello. Si noti diversi hello scelte disponibili per gli strumenti e repository. È inoltre possibile utilizzare linguaggi hello e altri framework di propria scelta, tra cui .NET, Java e Ruby.
+4. Fare clic sull'URL. Si noti la varietà di scelte disponibili per gli strumenti e i repository. È anche possibile usare i linguaggi e i framework preferiti, inclusi .NET, Java e Ruby.
    
    ![Immagine3][image3]    
-5. Hello portale di Azure effettua la distribuzione continua di un processo semplice che include solo pochi semplici passaggi. Nel portale di Azure hello, scegliere impostazioni dall'icona hello per il servizio app di hello che appena creato.
+5. Con il portale di Azure la distribuzione continua è un processo facile che richiede solo pochi semplici passaggi. Nel portale di Azure scegliere le impostazioni dall'icona del servizio app appena creato.
    
    ![Immagine4][image4]
    
-   Dal pannello hello che verrà visualizzato a destra di hello, scorrere toohello la pubblicazione di sezione.
+   Nel pannello che si apre a destra scorrere fino alla sezione Pubblicazione.
    
    ![Immagine5][image5]
-6. A questo punto, configurare alcune impostazioni tooenable la distribuzione continua per app hello. Fare clic su Origine distribuzione e quindi su Scegliere l'origine. Si noti diversi hello opzioni che disponibili per le origini dei repository.
+6. Configurare poi alcune impostazioni per abilitare la distribuzione continua per l'app. Fare clic su Origine distribuzione e quindi su Scegliere l'origine. Si noti la varietà di opzioni disponibili per le origini del repository.
    
    ![Immagine6][image6]
-7. Per questo esempio scegliere GitHub. Facoltativamente, scegliere repository hello scelto dall'utente e credenziali di autorizzazione hello del programma di installazione.
+7. Per questo esempio scegliere GitHub. In alternativa, è possibile scegliere il repository preferito e configurare le credenziali di autorizzazione.
    
    ![Immagine7][image7]
-8. Dopo aver repository tooyour di autorizzazione, è possibile scegliere un progetto e il ramo desiderato toodeploy. Sotto sono elencati diversi esempi fittizi.
+8. Dopo l'autorizzazione per il repository, è possibile scegliere un progetto e il ramo che si vuole distribuire. Sotto sono elencati diversi esempi fittizi.
    
    ![Immagine8][image8]
-9. Dopo avere scelto il progetto e il ramo, fare clic su OK. È consigliabile iniziare toosee notifiche di una distribuzione.
+9. Dopo avere scelto il progetto e il ramo, fare clic su OK. Verranno visualizzate le notifiche di una distribuzione.
    
    ![Immagine9][image9]
-10. Spostarsi indietro tooGitHub toosee hello webhook che è stato creato un repository di controllo origine hello toointegrate con Azure. Hello portale di Azure consente l'integrazione con GitHub con solo pochi semplici passaggi.
+10. Tornare a GitHub per visualizzare il webhook creato per integrare il repository del controllo del codice sorgente con Azure. Il portale di Azure abilita l'integrazione con GitHub con pochi semplici passaggi.
     
     ![Immagine10][image10]
-11. toodemonstrate la distribuzione continua, si aggiungere rapidamente alcuni repository toohello contenuto. Per un esempio semplice, aggiungere un repository GitHub di tooa file di testo di esempio. Si è gratuita toouse .NET, Ruby, Python o un altro tipo di applicazione con il servizio App. Ritiene tooadd disponibile un file di testo, repository di toohello applicazione MVC ASP.NET, Java o Ruby di propria scelta.
+11. Per eseguire una dimostrazione della distribuzione continua, si aggiunge rapidamente contenuto al repository. Per un semplice esempio, aggiungere un file di testo di esempio a un repository GitHub. È possibile usare .NET, Ruby, Python o un altro tipo di applicazione con il servizio app. È possibile aggiungere un file di testo, un'applicazione ASP.NET MVC, Java o Ruby al repository scelto.
     
     ![Immagine11][image11]
-12. Dopo il commit del repository tooyour modifiche, viene visualizzato un nuovo avviare la distribuzione nell'area di notifica del portale hello. Se non visualizzare rapidamente le modifiche apportate dopo il commit tooyour repository, fare clic su Sincronizza.
+12. Dopo avere eseguito il commit delle modifiche nel repository, nell'area delle notifiche del portale verrà indicato l'avvio di una nuova distribuzione. Fare clic su Sincronizza se dopo il commit nel repository le modifiche non vengono visualizzate rapidamente.
     
     ![Immagine12][image12]
-13. A questo punto, se si tenta di carica la pagina hello per il servizio app di hello, si potrebbe ricevere un errore 403. In questo esempio, è perché non prevede alcuna installazione documento predefinita tipica per la pagina di hello, ad esempio un file htm o default. È possibile risolvere questo problema rapidamente con gli strumenti nel portale di Azure hello hello.  Nel portale di Azure hello scegliere impostazioni &gt; le impostazioni dell'applicazione.
+13. A questo punto, se si prova a caricare la pagina del servizio app, è possibile che venga visualizzato un errore 403. In questo esempio si verifica perché non è stato configurato un documento predefinito tipico per la pagina, ad esempio un file index.htm o default.html. È possibile risolvere rapidamente il problema con gli strumenti del portale di Azure.  Nel portale di Azure scegliere Impostazioni &gt; Impostazioni applicazione.
     
      ![Immagine13][image13]
-14. Viene aperto un pannello per le impostazioni dell'applicazione. Immettere il nome di hello della pagina di hello "SamplePage.html" e fare clic su Salva. Richiedere altre impostazioni di hello di tooexplore pochi minuti.
+14. Viene aperto un pannello per le impostazioni dell'applicazione. Immettere il nome della pagina "SamplePage.html" e fare clic su Salva. Dedicare qualche minuto all'esplorazione delle altre impostazioni.
     
     ![Immagine14][image14]
-15. Facoltativamente, aggiornare il tooensure URL browser vedrai modifiche hello previsto. In questo caso, è ora la compilazione di pagina hello testo semplice. Ogni repository toohello ulteriore modifica comporta una nuova distribuzione automatica.
+15. È possibile aggiornare l'URL del browser per assicurarsi di visualizzare le modifiche previste. In questo caso, un semplice testo popolerà la pagina. Ogni altra modifica al repository comporterà una nuova distribuzione automatica.
     
     ![Immagine15][image15]
     
-    Consente la distribuzione continua con hello portale di Azure è un'esperienza semplice. È anche possibile compilare pipeline di rilascio più complesse e utilizzare numerose altre tecniche di controllo del codice sorgente esistente e tooAzure toodeploy sistemi di integrazione continua, come l'uso di compilazione automatizzato e i sistemi di gestione di versione.
+    Abilitare la distribuzione continua con il portale di Azure è un'esperienza semplice. È anche possibile creare pipeline di rilascio più complesse e usare diverse altre tecniche con il controllo del codice sorgente esistente e sistemi di integrazione continua per la distribuzione in Azure, ad esempio sfruttando sistemi automatizzati di gestione della compilazione e del rilascio.
 
 ## <a name="develop-and-test-an-app"></a>Sviluppare e testare un'app
-Successivamente, rendere il codice toohello alcune modifiche di base e distribuire rapidamente le modifiche. Installerà anche backup di alcuni test delle prestazioni per app Web hello.
+Apportare ora alcune modifiche alla base codici e distribuirle rapidamente. Si configurerà anche un test delle prestazioni per l'app Web.
 
-1. Nel portale di Azure hello scegliere Servizi App dal riquadro di spostamento hello e individuare il servizio App.
+1. Nel portale di Azure scegliere Servizi app nel riquadro di spostamento e trovare il servizio app.
    
    ![Immagine16][image16]
 2. Fare clic su Strumenti.
    
    ![Immagine17][image17]
-3. Si noti hello categoria in strumenti di sviluppo. Sono disponibili diversi strumenti utili qui che consentono di toowork con App senza uscire hello portale di Azure. Fare clic su Console.
+3. Si noti la categoria Sviluppo sotto Strumenti, in cui sono disponibili diversi utili strumenti che consentono di usare le app senza uscire dal portale di Azure. Fare clic su Console.
    
    ![Immagine18][image18]
-4. Nella finestra di console hello, è possibile eseguire comandi in tempo reale per l'app. Tipo hello dir comando e premere INVIO. Si noti che i comandi che richiedono privilegi elevati non funzionano.
+4. Nella finestra Console è possibile eseguire comandi attivi per l'app. Digitare il comando dir e premere INVIO. Si noti che i comandi che richiedono privilegi elevati non funzionano.
    
    ![Immagine19][image19]
-5. Spostare nuovamente toohello sviluppare categoria e scegliere Visual Studio Online. Nota: Visual Studio Online si chiama ora Visual Studio Team Services.
+5. Tornare alla categoria Sviluppo e scegliere Visual Studio Online. Nota: Visual Studio Online si chiama ora Visual Studio Team Services.
    
    ![Immagine20][image20]
-6. Attivare l'esperienza di modifica nel browser hello per l'App.
+6. Attivare l'esperienza di modifica nel browser per l'app.
    
    ![Immagine21][image21]
-7. Viene installata un'estensione Web per l'app. Estensioni di aggiungono rapidamente e facilmente funzionalità tooapps in Azure. Si noti alcuni hello altri tipi di estensione disponibili nella schermata di hello riportata di seguito.
+7. Viene installata un'estensione Web per l'app. Le estensioni aggiungono funzionalità alle app in Azure velocemente e facilmente. Nello screenshot seguente sono visibili alcuni degli altri tipi di estensione disponibili.
    
    ![Immagine22][image22]
-8. Una volta installato hello estensione Visual Studio Online, fare clic su Vai.
+8. Una volta installata l'estensione Visual Studio Online, fare clic su Vai.
    
    ![Immagine23][image23]
-9. Verrà visualizzata la in cui si vedere sviluppo IDE direttamente nel browser hello di scheda di un browser. Esperienza di hello avviso riportato di seguito è in Chrome.
+9. Si apre una scheda del browser in cui viene direttamente visualizzato un IDE di sviluppo. Si noti che nell'immagine seguente viene usato Chrome.
    
    ![Immagine24][image24]
-10. È possibile eseguire diverse attività, ad esempio i file di modifica, aggiungere file e cartelle e scaricare contenuto dal sito in tempo reale di hello. Apporta una modifica rapida toohello SamplePage.html al file.
+10. È possibile eseguire diverse attività, ad esempio modificare file, aggiungere file e cartelle e scaricare contenuto dal sito attivo. Apportare una rapida modifica al file SamplePage.html.
     
     ![Immagine25][image25]
-11. Tra qualche minuto, hello modifiche vengono salvate automaticamente. Se si passa indietro toohello pagina, è possibile visualizzare le modifiche di hello. Tenere presente che modifiche di questo tipo non sono per lo più adatte agli ambienti di produzione. Tuttavia, gli strumenti di hello rendono toomake molto facilmente modifiche rapide per lo sviluppo e ambienti di test.
+11. Dopo alcuni istanti, le modifiche vengono automaticamente salvate. Se si torna alla pagina, è possibile visualizzarle. Tenere presente che modifiche di questo tipo non sono per lo più adatte agli ambienti di produzione. Gli strumenti consentono tuttavia di apportare molto facilmente modifiche rapide agli ambienti di sviluppo e di test.
     
     ![Immagine26][image26]
     
     ![Immagine27][image27]
-12. Spostare nuovamente pannello Strumenti toohello e nella categoria di sviluppare hello, fare clic sul Test delle prestazioni.
+12. Tornare al pannello Strumenti e nella categoria Sviluppo fare clic su Test delle prestazioni.
     
     ![Immagine28][image28]
-13. È necessario un account di team services tooset. Per altri dettagli, vedere [Create a Team Services Account](https://www.visualstudio.com/docs/setup-admin/team-services/sign-up-for-visual-studio-team-services)
-14. Fare clic su Nuovo toocreate un test delle prestazioni.
+13. È necessario impostare un account di Team Services. Per altri dettagli, vedere [Create a Team Services Account](https://www.visualstudio.com/docs/setup-admin/team-services/sign-up-for-visual-studio-team-services)
+14. Fare clic su Nuovo per creare un test delle prestazioni.
     
     ![Immagine29][image29]
     
-    Configurare hello diversi valori e fare clic su Esegui Test nella parte inferiore di hello della finestra di dialogo di hello tooinitiate un test delle prestazioni.
+    Configurare i diversi valori e fare clic su Esegui test nella parte inferiore della finestra di dialogo per avviare un test delle prestazioni.
     
     ![Immagine30][image30]
     
     ![Immagine31][image31]
-15. Una volta test hello viene avviata l'esecuzione, è possibile monitorare lo stato di hello.
+15. Una volta avviata l'esecuzione del test, è possibile monitorare lo stato.
     
     ![Immagine32][image32]
     
-    Al termine del test di hello, facendo clic sul risultato di hello Mostra ulteriori dettagli.
+    Una volta terminato il test, fare clic sul risultati per visualizzare altri dettagli.
     
     ![Immagine33][image33]
-16. In questo esempio è stato creato un piccolo esecuzione dei test, pertanto è tooanalyze limitata dei dati, ma è possibile vedere diverse metriche, nonché eseguire nuovamente il test da questa visualizzazione. Hello portale di Azure semplifica la creazione, l'esecuzione e l'analisi di un processo semplice test delle prestazioni web. Hello schermate riportate di seguito visualizza i dati sulle prestazioni hello.
+16. In questo esempio è stata creata una rapida esecuzione dei test, quindi i dati da analizzare sono limitati, ma è possibile notare diverse metriche, oltre a eseguire di nuovo il test da questa visualizzazione. Il portale di Azure facilita la creazione, l'esecuzione e l'analisi dei test prestazioni Web. Gli screenshot seguenti visualizzano i dati sulle prestazioni.
     
     ![Immagine34][image34]
     
@@ -152,13 +152,13 @@ Successivamente, rendere il codice toohello alcune modifiche di base e distribui
 ## <a name="monitoring-and-troubleshooting-an-app"></a>Monitoraggio e risoluzione dei problemi di un'app
 Azure offre diverse funzionalità per il monitoraggio e la risoluzione dei problemi delle applicazioni in esecuzione.
 
-1. Scegliere gli strumenti di hello portale di Azure per l'app Web.
+1. Nel portale di Azure per l'app Web scegliere Strumenti.
    
    ![Immagine37][image37]
-2. Nella categoria di risoluzione dei problemi di hello, si noti hello varie opzioni per l'utilizzo di potenziali problemi di strumenti tootroubleshoot con un'app in esecuzione. È possibile, ad esempio, monitorare il traffico HTTP in tempo reale, abilitare la riparazione automatica, visualizzare log e altro ancora.
+2. Nella categoria Risoluzione dei problemi sono disponibili diverse scelte per l'uso di strumenti per risolvere potenziali problemi con un'app in esecuzione. È possibile, ad esempio, monitorare il traffico HTTP in tempo reale, abilitare la riparazione automatica, visualizzare log e altro ancora.
    
    ![Immagine38][image38]
-3. Scegliere le metriche del sito tooquickly get di una visualizzazione di alcuni codici HTTP.
+3. Scegliere Metriche del sito per ottenere velocemente una visualizzazione di alcuni codici HTTP.
    
    ![Immagine39][image39]
 4. Scegliere Diagnostica distribuita come servizio. Scegliere il tipo di applicazione, quindi scegliere Esegui.
@@ -168,102 +168,102 @@ Azure offre diverse funzionalità per il monitoraggio e la risoluzione dei probl
    Inizia una raccolta.
    
    ![Immagine41][image41]
-5. È possibile scegliere i potenziali problemi di hello log appropriato toodiagnose. È necessario tooenable registrazione toosee tutti i dati disponibili hello opzioni, ad esempio log HTTP.
+5. È possibile scegliere il log appropriato per diagnosticare i potenziali problemi. È necessario abilitare la registrazione per visualizzare tutte le opzioni dei dati disponibili, ad esempio HTTP Logs (Log HTTP).
    
    ![Immagine42][image42]
    
-   Facendo clic sul file di Dump di memoria hello è possibile scaricare e analizzare un DebugDiag toohelp report di analisi trovare problemi potenziali.
+   Facendo clic sul file di immagine della memoria, è possibile scaricare e analizzare un report analisi DebugDiag per trovare i potenziali problemi.
    
    ![Immagine43][image43]
-6. tooview più dati, è necessario tooenable ulteriori opzioni di registrazione. Nel portale di Azure hello, passare toohello Web app e scegliere le impostazioni.
+6. Per visualizzare altri dati, è necessario abilitare altre opzioni di registrazione. Nel portale di Azure andare all'app Web e scegliere Impostazioni.
    
    ![Immagine44][image44]
-7. Scorrere verso il basso categoria funzionalità toohello e scegliere i log di diagnostica.
+7. Scorrere verso il basso fino alla categoria Funzionalità e scegliere Log di diagnostica.
    
       ![Immagine45][image45]
-8. Si noti hello varie opzioni per la registrazione. Attivare Registrazione server Web e fare clic su Salva.
+8. Si notino le diverse opzioni per la registrazione. Attivare Registrazione server Web e fare clic su Salva.
    
    ![Immagine46][image46]
-9. Spostare nuovamente toohello area di strumenti per app hello e scegliere diagnostica come servizio e fare clic su Esegui toorerun hello raccolta dei dati.
+9. Tornare all'area degli strumenti per l'app, scegliere Diagnostica distribuita come servizio e fare clic su Esegui per eseguire di nuovo la raccolta dati.
    
    ![Immagine47][image47]
-10. Impostazione registrazione hello HTTP è abilitata, è ora possibile visualizzare i dati raccolti per i log di HTTP.
+10. Con l'impostazione per la registrazione HTTP abilitata, vengono visualizzati i dati raccolti per HTTP Logs (Log HTTP).
     
     ![Immagine48][image48]
-11. Facendo clic sul file di log hello HTML, si produce un report di basate su browser completo per un'analisi più approfondita.
+11. Fare clic sul log del file HTML, per generare un report avanzato basato sul browser per altre indagini.
     
     ![Immagine49][image49]
-12. Consente di tornare sezione Strumenti toohello hello portale di Azure per app hello. Scorrere sezione Strumenti toohello e scegliere Process Explorer.
+12. Tornare alla sezione Strumenti nel portale di Azure per l'app. Scorrere fino alla sezione Strumenti e scegliere Esplora processi.
     
     ![Immagine50][image50]
-13. Scegliendo Esplora processi, è possibile visualizzare i dettagli sui processi in esecuzione. Di seguito è possibile analizza i processi e anche terminare i processi di tutti gli elementi dal portale di Azure hello.
+13. Scegliendo Esplora processi, è possibile visualizzare i dettagli sui processi in esecuzione. Come si può notare dalle immagini seguenti, dal portale di Azure è anche possibile eseguire il drill-down dei processi e terminarli.
     
     ![Immagine51][image51]
     
     ![Immagine52][image52]
-14. Spostarsi all'indietro pannello impostazioni toohello di hello sinistra. Fare clic su Nuova richiesta di supporto.
+14. Tornare al pannello Impostazioni a sinistra. Fare clic su Nuova richiesta di supporto.
     
     ![Immagine53][image53]
-15. Dal pannello hello in hello destra, può inserire le informazioni sui problemi di hello, immettere le informazioni di contatto e caricare anche dati di diagnostica. Hello portale di Azure consente l'utilizzo di un'esperienza di supporto tecnico Microsoft.
+15. Nel pannello a destra è possibile compilare i dettagli sui problemi, immettere le informazioni sul contatto e anche caricare i dati di diagnostica. Il portale di Azure consente di collaborare con il supporto Microsoft in modo molto facile.
     
     ![Immagine54][image54]
     
     ![Immagine55][image55]
     
-    Hello portale di Azure consente di fornire potente e familiare tooling esperienze toohelp monitoraggio e risoluzione dei problemi delle applicazioni in esecuzione. Sono anche tootake in grado di azione rapidamente mediante l'esecuzione di attività, ad esempio riciclo dei processi, l'abilitazione e disabilitazione di varie raccolte di dati e anche l'integrazione con supporto tecnico Microsoft.
+    Il portale di Azure consente di offrire esperienze avanzate e familiari di uso degli strumenti per monitorare e risolvere i problemi delle applicazioni in esecuzione. È anche possibile agire rapidamente eseguendo attività come il riciclo dei processi, l'abilitazione e la disabilitazione di diverse raccolte dati e l'interazione con il supporto dei professionisti Microsoft.
 
 ## <a name="general-application-management"></a>Gestione di applicazioni generale
-Quando la gestione delle applicazioni, è spesso necessario tooperform una vasta gamma di attività quali la configurazione di strategie di backup, l'implementazione e gestione dei provider di identità e la configurazione di controllo di accesso basato sui ruoli. Come con hello altre esperienze DevOps, hello piattaforma Azure integra queste operazioni direttamente nel portale hello.
+Quando si gestiscono applicazioni, spesso è necessario eseguire un'ampia gamma di attività, ad esempio configurare strategie di backup, implementare e gestire provider di identità e configurare il controllo degli accessi in base al ruolo. Come con le altre esperienze DevOps, la piattaforma Azure integra queste attività direttamente nel portale.
 
-1. viene sincronizzato tooensure hello App Web protetta da perdita di dati è necessario tooconfigure backup. Passare toohello area di impostazioni per l'app Web.
+1. Per assicurarsi di proteggere l'app Web dalla perdita dei dati, è necessario configurare i backup. Andare all'area Impostazioni per l'app Web.
    
    ![Immagine56][image56]
-2. Nel Pannello di hello in hello destro, scorrere verso il basso toohello categoria di funzionalità.
+2. Nel pannello a destra scorrere verso il basso fino alla categoria Funzionalità.
    
     ![Immagine57][image57]
-3. Scegliere di backup. a destra hello verrà visualizzato un pannello.
+3. Scegliere Backup. Si apre un pannello a destra.
    
    ![Immagine58][image58]
-4. Fare clic su Configura, scegliere un account di archiviazione dal pannello hello in hello destra.
+4. Fare clic su Configura, scegliere un account di archiviazione dal pannello a destra.
    
    ![Immagine59][image59]
-5. A questo punto, creare e scegliere un toohold contenitore di archiviazione dei backup. Fare clic su Crea nella parte inferiore di hello del pannello hello. Selezionare quindi il contenitore di hello.
+5. Ora creare e scegliere un contenitore di archiviazione in cui salvare i backup. Fare clic su Crea nella parte inferiore del pannello, quindi selezionare il contenitore.
    
    ![Immagine60][image60]
-6. Una volta scelto il contenitore di hello, è possibile configurare le pianificazioni, nonché i backup di programma di installazione per i database. Per questo scenario, fare clic su hello Salva icona.
+6. Una volta scelto il contenitore, è possibile configurare le pianificazioni, oltre ai backup per i database. Per questo scenario, fare clic sull'icona Salva.
    
     ![Immagine61][image61]
-7. Dopo il salvataggio, scorrere indietro toohello pannello a sinistra di hello per i backup. Fare clic su Esegui Backup ora un'applicazione hello tooback.
+7. Dopo avere salvato, scorrere di nuovo fino al pannello a sinistra per Backup. Fare clic su Esegui backup ora per eseguire il backup dell'applicazione.
    
     ![Immagine62][image62]
-8. Dopo alcuni istanti, viene creato un backup. Hello avviso Ripristina ora opzione hello cattura di schermata seguente.
+8. Dopo alcuni istanti, viene creato un backup. Si noti l'opzione Ripristina ora nello screenshot seguente.
    
     ![Immagine63][image63]
-9. Fare clic su Ripristina ora ed esaminare pannello toohello opzioni di hello in hello destra. È possibile scegliere che un backup appropriati e facilmente tooan ripristino precedente lo stato in base alle esigenze. portale di Azure Hello ci ha consentito di abilitare facilmente una strategia di ripristino di emergenza semplice per l'applicazione hello.
+9. Fare clic su Ripristina ora ed esaminare le opzioni nel pannello a destra. È possibile scegliere un backup appropriato e ripristinare facilmente uno stato precedente, se necessario. Il portale di Azure ha consentito di abilitare facilmente una semplice strategia di ripristino di emergenza per l'app.
    
     ![Immagine64][image64]
-10. Spostare nuovamente pannello impostazioni toohello a sinistra di hello e in funzioni e scegliere l'autenticazione/autorizzazione.
+10. Tornare al pannello Impostazioni a sinistra e in Funzionalità scegliere Autenticazione/Autorizzazione.
     
      ![Immagine65][image65]
-11. Nel pannello hello in hello destra scegliere l'autenticazione del servizio App. Si noti diverse hello opzioni che è possibile configurare con i provider più diffusi.
+11. Nel pannello a destra scegliere Autenticazione servizio app. Si noti la varietà di opzioni che è possibile configurare con noti provider.
     
      ![Immagine66][image66]
-12. Scegliere provider hello di propria scelta e notare le opzioni di hello per ambito hello. È possibile fornire un ID dell'App e il segreto dell'applicazione e abilitare rapidamente autenticazione Facebook per l'applicazione hello. Portale di Azure Hello Abilita l'autenticazione come una soluzione completa per le app.
+12. Scegliere il provider preferito e notare le opzioni per l'ambito. È possibile specificare un ID app e una chiave privata app e abilitare rapidamente l'autenticazione Facebook per l'app. Il portale di Azure consente l'autenticazione come soluzione chiavi in mano per le app.
     
      ![Immagine67][image67]
-13. Spostare nuovamente pannello impostazioni toohello e selezionare gli utenti nella categoria Gestione delle risorse hello.
+13. Tornare al pannello Impostazioni e scegliere Utenti nella categoria Gestione risorse.
     
      ![Immagine68][image68]
-14. Nel pannello hello in hello destro esaminare hello varie opzioni per l'aggiunta di ruoli e utenti. Hello portale di Azure consente di controllare facilmente RBAC (controllo di accesso basato sui ruoli) per un'applicazione hello.
+14. Nel pannello a destra esaminare le diverse opzioni per l'aggiunta di ruoli e utenti. Il portale di Azure consente di controllare facilmente il controllo degli accessi in base al ruolo per l'applicazione.
     
      ![Immagine69][image69]
 
 ## <a name="summary"></a>Riepilogo
-In questa esercitazione illustrati alcuni dei power hello con hello piattaforma Azure rapidamente consente la distribuzione continua per un'app web, l'esecuzione vari di sviluppo e le attività di test, il monitoraggio e risoluzione dei problemi di un'applicazione in tempo reale e infine Gestione chiave strategie, ad esempio il ripristino di emergenza, l'identità e controllo di accesso basato sui ruoli. Hello piattaforma Azure consente un'esperienza integrata per i flussi di lavoro di DevOps e possono lavorare in modo efficiente, rimanendo nel contesto per l'attività hello in questione.
+Questa esercitazione ha illustrato alcune potenzialità della piattaforma Azure abilitando rapidamente la distribuzione continua per un'app Web, eseguendo diverse attività di sviluppo e test, monitorando e risolvendo i problemi di un'app attiva e infine gestendo strategie chiave, ad esempio il ripristino di emergenza, l'identità e il controllo degli accessi in base al ruolo. La piattaforma Azure consente un'esperienza integrata per questi flussi di lavoro di DevOps ed è possibile lavorare in modo efficiente rimanendo nell'ambito dell'attività in questione.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Gestione risorse di Azure è importante per l'abilitazione di DevOps su hello piattaforma Azure.  visitare più toolearn [Panoramica di gestione risorse di Azure](../azure-resource-manager/resource-group-overview.md).
-* informazioni sulla distribuzione di servizio App di Azure, visitare toolearn [distribuire il servizio App di tooAzure app](../app-service-web/web-sites-deploy.md)
+* Azure Resource Manager è importante per l'abilitazione di DevOps nella piattaforma Azure.  Per altre informazioni, vedere [Panoramica di Azure Resource Manager](../azure-resource-manager/resource-group-overview.md).
+* Per altre informazioni sulla distribuzione del servizio app di Azure, vedere [Distribuire l'app nel servizio app di Azure](../app-service/app-service-deploy-local-git.md)
 
 [image1]: ./media/tutorial-azureportal-devops/image1.png
 [image2]: ./media/tutorial-azureportal-devops/image2.png

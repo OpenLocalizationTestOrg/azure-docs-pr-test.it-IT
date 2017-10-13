@@ -1,6 +1,6 @@
 ---
-title: locale aaaScale U-SQL eseguire e testare con Azure Data Lake U-SQL SDK | Documenti Microsoft
-description: Informazioni su come eseguire e i test con riga di comando e le interfacce di programmazione nella workstation locale toouse processi tooscale U-SQL di Azure Data Lake U-SQL SDK locali.
+title: Ridimensionare esecuzione e test locali di U-SQL con l'SDK U-SQL di Azure Data Lake | Microsoft Docs
+description: Informazioni su come usare l'SDK U-SQL di Azure Data Lake per ridimensionare l'esecuzione e il test locali di processi U-SQL con le interfacce di programmazione e della riga di comando nella workstation locale.
 services: data-lake-analytics
 documentationcenter: 
 author: 
@@ -14,49 +14,49 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 03/01/2017
 ms.author: yanacai
-ms.openlocfilehash: 2b0a16229789268e333f723ff6fc2c3efdc29905
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 55242bcf644ca0e7f30cfe7eada2130451c36e64
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="scale-u-sql-local-run-and-test-with-azure-data-lake-u-sql-sdk"></a>Ridimensionare esecuzione e test locali di U-SQL con l'SDK U-SQL di Azure Data Lake
 
-Quando si sviluppano script U-SQL, è toorun comuni e script di test U-SQL localmente inviare prima toocloud. Per questo scenario, Azure Data Lake offre un pacchetto NuGet, denominato SDK U-SQL di Azure Data Lake, tramite cui è possibile ridimensionare facilmente l'esecuzione e il test locali di U-SQL. È inoltre possibile toointegrate questo U-SQL di test con l'elemento di configurazione (integrazione continua) sistema tooautomate hello compilazione e test.
+Durante lo sviluppo di script U-SQL, è comune eseguire e testare a livello locale gli script U-SQL prima di inviarli al cloud. Per questo scenario, Azure Data Lake offre un pacchetto NuGet, denominato SDK U-SQL di Azure Data Lake, tramite cui è possibile ridimensionare facilmente l'esecuzione e il test locali di U-SQL. È inoltre possibile integrare questo test di U-SQL con il sistema CI (Continuous Integration, integrazione continua) per automatizzare la compilazione e il test.
 
-Se si è interessati come toomanually locale esecuzione e il debug di script U-SQL con strumenti di grafica, è possibile utilizzare Azure Data Lake Tools per Visual Studio per tale. Altre informazioni sono disponibili [qui](data-lake-analytics-data-lake-tools-local-run.md).
+Per capire come eseguire in locale manualmente ed eseguire il debug di uno script U-SQL con gli strumenti della GUI, è possibile usare gli Strumenti Azure Data Lake per Visual Studio. Altre informazioni sono disponibili [qui](data-lake-analytics-data-lake-tools-local-run.md).
 
 ## <a name="install-azure-data-lake-u-sql-sdk"></a>Installare l'SDK U-SQL di Azure Data Lake
 
-È possibile ottenere hello Azure Data Lake U-SQL SDK [qui](https://www.nuget.org/packages/Microsoft.Azure.DataLake.USQL.SDK/) in Nuget.org. E prima di utilizzarlo, è necessario toomake che si dispone di dipendenze, come indicato di seguito.
+È possibile ottenere l'SDK U-SQL di Azure Data Lake [qui](https://www.nuget.org/packages/Microsoft.Azure.DataLake.USQL.SDK/) su Nuget.org. Prima di usarlo, è necessario assicurarsi di avere le dipendenze indicate di seguito.
 
 ### <a name="dependencies"></a>Dipendenze
 
-Hello SDK Data Lake U-SQL, è necessario hello seguenti dipendenze:
+L'SDK U-SQL di Data Lake richiede le dipendenze seguenti:
 
 - [Microsoft .NET Framework 4.6 o versione successiva](https://www.microsoft.com/download/details.aspx?id=17851).
-- Microsoft Visual C++ 14 e Windows SDK 10.0.10240.0 o versione successiva (CppSDK in questo articolo). Esistono due modi tooget CppSDK:
+- Microsoft Visual C++ 14 e Windows SDK 10.0.10240.0 o versione successiva (CppSDK in questo articolo). Esistono due modi per ottenerlo:
 
-    - Installare [Visual Studio Community Edition](https://developer.microsoft.com/downloads/vs-thankyou). È una cartella \Windows Kits\10 nella cartella programmi hello - ad esempio C:\Program Files (x86) \Windows Kits\10\. Versione di Windows 10 SDK hello in \Windows Kits\10\Lib sono anche disponibili. Se non viene visualizzato, le cartelle, reinstallare Visual Studio e che tooselect hello Windows 10 SDK durante l'installazione di hello. Se si dispone di questo installato con Visual Studio, del compilatore locale di hello U-SQL troverà automaticamente.
+    - Installare [Visual Studio Community Edition](https://developer.microsoft.com/downloads/vs-thankyou). Sarà presente la cartella \Windows Kits\10 sotto la cartella Programmi, ad esempio C:\Programmi (x86)\Windows Kits\10. Sarà disponibile anche la versione Windows 10 SDK in \Windows Kits\10\Lib. Se queste cartelle non sono presenti, reinstallare Visual Studio e selezionare Windows 10 SDK durante l'installazione. Se è installato con Visual Studio, verrà trovato automaticamente dal compilatore locale U-SQL.
 
     ![Windows 10 SDK ad esecuzione locale degli strumenti di Data Lake per Visual Studio](./media/data-lake-analytics-data-lake-tools-local-run/data-lake-tools-for-visual-studio-local-run-windows-10-sdk.png)
 
-    - Installare [Strumenti Data Lake per Visual Studio](http://aka.ms/adltoolsvs). È possibile trovare hello commercializzato solo se preconfezionato C:\Program Files (x86) \Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\ADL Tools\X.X.XXXX.X\CppSDK file Visual C++ e Windows SDK. In questo caso, compilatore locale di hello U-SQL non è possibile trovare dipendenze hello automaticamente. Percorso di CppSDK toospecify hello è necessario per tale. È possibile copiare tooanother percorso dei file di hello o utilizzarla lasciandola invariata.
+    - Installare [Strumenti Data Lake per Visual Studio](http://aka.ms/adltoolsvs). I file di Windows SDK e Visual C++ preassemblati sono disponibili in C:\Programmi (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\ADL Tools\X.X.XXXX.X\CppSDK. In questo caso il compilazione locale di U-SQL non è in grado di trovare le dipendenze automaticamente. È necessario specificare il relativo percorso CppSDK. È possibile copiare i file in un altro percorso o usarli così come sono.
 
 ## <a name="understand-basic-concepts"></a>Comprendere i concetti di base
 
 ### <a name="data-root"></a>Radice dei dati
 
-cartella dati radice Hello è "archivio locale" per l'account di calcolo locale hello. Account archivio Azure Data Lake toohello equivalente di un account Data Lake Analitica è. Cartella radice di dati diverso cambio tooa è analoga a commutazione tooa archivio diverso account. Se si desidera tooaccess comunemente condiviso dati con le cartelle radice di dati diverso, è necessario utilizzare i percorsi assoluti negli script. In alternativa, creare collegamenti simbolici di file system (ad esempio, **mklink** in NTFS) in hello dati radice cartella toopoint toohello di dati condivisi.
+La cartella data-root è un "archivio locale" per l'account di calcolo locale, equivalente all'account di Azure Data Lake Store di un account Data Lake Analytics. Il passaggio a un'altra cartella data-root è identico al passaggio a un account archivio differente. Se si vuole accedere a dati comunemente condivisi con cartelle data-root diverse, è necessario usare percorsi assoluti negli script. In alternativa è possibile creare collegamenti simbolici del file system (ad esempio **mklink** in un sistema NTFS) nella cartella data-root che puntino ai dati condivisi.
 
-cartella dati radice Hello viene utilizzato per:
+La cartella data-root viene usata per:
 
 - Archiviare i metadati locali, inclusi database, tabelle, funzioni con valori di tabella e assembly.
-- Cercare hello di input e i percorsi di output che sono definiti come percorsi relativi nel U-SQL. Utilizzando i percorsi relativi rende più semplice toodeploy il tooAzure progetti U-SQL.
+- Cercare i percorsi di input e output che sono definiti come percorsi relativi in U-SQL. L'uso di percorsi relativi semplifica la distribuzione dei progetti di U-SQL in Azure.
 
 ### <a name="file-path-in-u-sql"></a>Percorso dei file in U-SQL
 
-Negli script U-SQL è possibile usare sia un percorso relativo sia un percorso assoluto locale. percorso relativo di Hello è toohello relativo percorso della cartella radice di dati specificato. È consigliabile che si utilizza "/" come script compatibili con lato server hello hello toomake separatore di percorso. Di seguito sono riportati alcuni esempi di percorsi relativi e dei loro percorsi assoluti equivalenti. In questi esempi, C:\LocalRunDataRoot è cartella dati radice hello.
+Negli script U-SQL è possibile usare sia un percorso relativo sia un percorso assoluto locale. Il percorso relativo è relativo al percorso della cartella data-root specificato. È consigliabile usare "/" come separatore del percorso per rendere gli script compatibili con il lato server. Di seguito sono riportati alcuni esempi di percorsi relativi e dei loro percorsi assoluti equivalenti. In questi esempi la cartella data-root è C:\LocalRunDataRoot.
 
 |Percorso relativo|Percorso assoluto|
 |-------------|-------------|
@@ -66,7 +66,7 @@ Negli script U-SQL è possibile usare sia un percorso relativo sia un percorso a
 
 ### <a name="working-directory"></a>Directory di lavoro
 
-Quando si esegue uno script U-SQL hello in locale, una directory di lavoro viene creata durante la compilazione in directory di esecuzione corrente. Inoltre toohello compilazione restituisce, hello necessari file di runtime per l'esecuzione locale sarà directory di lavoro toothis copia shadow. Hello cartella radice di directory di lavoro viene chiamato "ScopeWorkDir" e il file hello in hello directory di lavoro sono i seguenti:
+Quando si esegue lo script U-SQL localmente, durante la compilazione viene creata una directory di lavoro nella directory di lavoro corrente. Oltre agli output di compilazione, nella directory di lavoro verrà creata una copia shadow dei file di runtime necessari per l'esecuzione locale. La cartella radice della directory di lavoro è denominata "ScopeWorkDir" e i file nella directory di lavoro sono i seguenti:
 
 |Directory/File|Directory/File|Directory/File|Definizione|Descrizione|
 |--------------|--------------|--------------|----------|-----------|
@@ -80,20 +80,20 @@ Quando si esegue uno script U-SQL hello in locale, una directory di lavoro viene
 | | |xxxxxxxx.xxx[1..n]\_\*.*|Log di esecuzione|Log dei passaggi di esecuzione|
 
 
-## <a name="use-hello-sdk-from-hello-command-line"></a>Utilizzare hello SDK dalla riga di comando hello
+## <a name="use-the-sdk-from-the-command-line"></a>Usare l'SDK dalla riga di comando
 
-### <a name="command-line-interface-of-hello-helper-application"></a>Interfaccia della riga di comando di un'applicazione hello helper
+### <a name="command-line-interface-of-the-helper-application"></a>Interfaccia della riga di comando dell'applicazione helper
 
-In SDK directory\build\runtime, LocalRunHelper.exe è un'applicazione hello helper della riga di comando che fornisce interfacce funzioni toomost di hello usata esecuzione locale. Si noti che entrambi hello comandi e opzioni dell'argomento hello tra maiuscole e minuscole. tooinvoke è:
+In SDK directory\build\runtime, LocalRunHelper.exe è l'applicazione helper della riga di comando che offre interfacce alla maggior parte delle funzioni di esecuzione locale di uso comune. Entrambe le opzioni di comandi e argomenti fanno distinzione tra maiuscole e minuscole. Per richiamarle:
 
     LocalRunHelper.exe <command> <Required-Command-Arguments> [Optional-Command-Arguments]
 
-Eseguire LocalRunHelper.exe senza argomenti oppure con hello **Guida** passare le informazioni della Guida di hello tooshow:
+Eseguire LocalRunHelper.exe senza argomenti o con l'interruttore **Guida** per mostrare le informazioni della Guida:
 
     > LocalRunHelper.exe help
 
         Command 'help' :  Show usage information
-        Command 'compile' :  Compile hello script
+        Command 'compile' :  Compile the script
         Required Arguments :
             -Script param
                     Script File Path
@@ -101,61 +101,61 @@ Eseguire LocalRunHelper.exe senza argomenti oppure con hello **Guida** passare l
             -Shallow [default value 'False']
                     Shallow compile
 
-Informazioni sul supporto in hello:
+Nelle informazioni di aiuto:
 
--  **Comando** offre hello il nome del comando.  
+-  **Comando** indica il nome del comando.  
 -  **Argomento richiesto** elenca gli argomenti che devono essere forniti.  
--  **Argomento facoltativo** elenca gli argomenti facoltativi con i valori predefiniti.  Gli argomenti booleani facoltativi non dispongono di parametri e i relativi aspetti significa valore predefinito di tootheir negativo.
+-  **Argomento facoltativo** elenca gli argomenti facoltativi con i valori predefiniti.  Gli argomenti Boolean facoltativi non hanno parametri e la loro comparsa ha un significato negativo per il loro valore predefinito.
 
 ### <a name="return-value-and-logging"></a>Valore restituito e registrazione
 
-Restituisce un'applicazione Hello helper **0** per l'esito positivo e **-1** per errore. Per impostazione predefinita, il supporto di hello invia la console corrente tutti i messaggi toohello. Tuttavia, la maggior parte dei comandi di hello supportano hello **- MessageOut percorso_file_registro** argomento facoltativo che reindirizza hello genera file di log tooa.
+L'applicazione helper restituisce **0** in caso di successo e **-1** in caso di errore. Per impostazione predefinita, l'helper invia tutti i messaggi alla console corrente. Tuttavia, la maggior parte dei comandi supporta l'argomento facoltativo**-MessageOut path_to_log_file** che reindirizza gli output in un file di log.
 
 ### <a name="environment-variable-configuring"></a>Configurazione della variabile di ambiente
 
-Per l'esecuzione locale di U-SQL è necessaria una radice di dati specificata come account di archiviazione locale, oltre a un percorso CppSDK specificato per le dipendenze. È possibile sia argomento hello impostato nella variabile di ambiente della riga di comando o è impostata per loro.
+Per l'esecuzione locale di U-SQL è necessaria una radice di dati specificata come account di archiviazione locale, oltre a un percorso CppSDK specificato per le dipendenze. È possibile impostare l'argomento nella riga di comando o impostare la variabile dell'ambiente.
 
-- Set hello **SCOPE_CPP_SDK** variabile di ambiente.
+- Impostare la variabile di ambiente **SCOPE_CPP_SDK**.
 
-    Se si ottengono con Microsoft Visual C++ e SDK di Windows hello installando Data Lake Tools per Visual Studio, verificare di aver hello seguente cartella:
+    Se si ottiene Microsoft Visual C++ e Windows SDK dall'installazione di Strumenti di Data Lake per Visual Studio, verificare di avere la cartella seguente:
 
         C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\Microsoft Azure Data Lake Tools for Visual Studio 2015\X.X.XXXX.X\CppSDK
 
-    Definire una nuova variabile di ambiente denominata **SCOPE_CPP_SDK** toopoint toothis directory. O copiare hello cartella toohello altro percorso e specificare **SCOPE_CPP_SDK** come che.
+    Definire una nuova variabile di ambiente denominata **SCOPE_CPP_SDK** che punti a questa directory. In alternativa copiare la cartella in un'altra posizione e specificare **SCOPE_CPP_SDK**.
 
-    Nella variabile di ambiente hello toosetting aggiunta, è possibile specificare hello **- CppSDK** argomento quando si utilizza la riga di comando hello. Questo argomento sovrascrive la variabile di ambiente CppSDK predefinita.
+    Oltre a impostare la variabile di ambiente, è possibile specificare l'argomento **-CppSDK** quando si usa la riga di comando. Questo argomento sovrascrive la variabile di ambiente CppSDK predefinita.
 
-- Set hello **LOCALRUN_DATAROOT** variabile di ambiente.
+- Impostare la variabile di ambiente **LOCALRUN_DATAROOT**.
 
-    Definire una nuova variabile di ambiente denominata **LOCALRUN_DATAROOT** che punta toohello radice dei dati.
+    Definire una nuova variabile di ambiente denominata **LOCALRUN_DATAROOT** che punta alla cartella data-root.
 
-    Nella variabile di ambiente hello toosetting aggiunta, è possibile specificare hello **- DataRoot** argomento con il percorso dati radice hello quando si utilizza una riga di comando. Questo argomento sovrascrive la variabile di ambiente data-root predefinita. È necessario tooadd questa riga di comando tooevery argomento, che si esegue in modo che è possibile sovrascrivere una variabile di ambiente hello predefinita dati radice per tutte le operazioni.
+    Oltre a impostare la variabile di ambiente, è possibile specificare l'argomento **-DataRoot** con il percorso di data-root quando si usa la riga di comando. Questo argomento sovrascrive la variabile di ambiente data-root predefinita. È necessario aggiungere questo argomento a ogni riga di comando eseguita, così da poter sovrascrivere la variabile di ambiente data-root predefinita per tutte le operazioni.
 
 ### <a name="sdk-command-line-usage-samples"></a>Esempi di uso della riga di comando SDK
 
 #### <a name="compile-and-run"></a>Compila ed esegui
 
-Hello **eseguire** comando viene utilizzato toocompile hello script ed eseguire quindi i risultati compilati. Gli argomenti della riga di comando sono una combinazione degli argomenti di **compile** ed **execute**.
+Il comando **run** viene usato per compilare lo script ed eseguire i risultati compilati. Gli argomenti della riga di comando sono una combinazione degli argomenti di **compile** ed **execute**.
 
     LocalRunHelper run -Script path_to_usql_script.usql [optional_arguments]
 
-di seguito Hello sono argomenti facoltativi per **eseguire**:
+Di seguito sono indicati gli argomenti facoltativi per **run**:
 
 
 |Argomento|Valore predefinito|Descrizione|
 |--------|-------------|-----------|
-|-CodeBehind|False|script Hello è CS code-behind|
+|-CodeBehind|False|Lo script ha code-behind con estensione cs|
 |-CppSDK| |Directory CppSDK|
-|-DataRoot| Variabile di ambiente DataRoot|DataRoot per l'esecuzione locale, predefinito troppo variabile di ambiente 'LOCALRUN_DATAROOT'|
-|-MessageOut| |Messaggi di dump nel file di console tooa|
-|-Parallel|1|Eseguire hello piano con hello specificato parallelism|
-|-References| |Elenco di assembly di riferimento per i percorsi tooextra o file di dati di code-behind, separato da ';'|
+|-DataRoot| Variabile di ambiente DataRoot|DataRoot per l'esecuzione locale, impostazione predefinita su variabile di ambiente 'LOCALRUN_DATAROOT'|
+|-MessageOut| |Messaggi dump sulla console a un file|
+|-Parallel|1|Esegue il piano con il parallelismo specificato|
+|-References| |Elenco di percorsi agli assembly di riferimento aggiuntivi o a file di dati code-behind, separati da ";"|
 |-UdoRedirect|False|Genera la configurazione di reindirizzamento di assembly Udo|
-|-UseDatabase|master|Database toouse per code-behind di registrazione assembly temporaneo|
+|-UseDatabase|master|Database da usare per la registrazione di assembly temporanei code-behind|
 |-Verbose|False|Mostrare gli output dettagliati dal runtime|
 |-WorkDir|Directory corrente|Directory per l'uso del compilatore e gli output|
-|-RunScopeCEP|0|ScopeCEP modalità toouse|
-|-ScopeCEPTempPath|temp|Toouse percorso temporaneo per il flusso di dati|
+|-RunScopeCEP|0|Modalità ScopeCEP da usare|
+|-ScopeCEPTempPath|temp|Percorso temporaneo da usare per lo streaming di dati|
 |-OptFlags| |Elenco delimitato da virgole con i flag di ottimizzazione|
 
 
@@ -163,30 +163,30 @@ Ad esempio:
 
     LocalRunHelper run -Script d:\test\test1.usql -WorkDir d:\test\bin -CodeBehind -References "d:\asm\ref1.dll;d:\asm\ref2.dll" -UseDatabase testDB –Parallel 5 -Verbose
 
-Oltre a combinazione **compilare** e **eseguire**, è possibile compilare ed eseguire file eseguibili compilato hello separatamente.
+Oltre a combinare i comandi **compile** ed **execute**, è possibile compilare ed eseguire separatamente i file eseguibili compilati.
 
 #### <a name="compile-a-u-sql-script"></a>Compilare uno script U-SQL
 
-Hello **compilare** comando è tooexecutables script utilizzati toocompile U-SQL.
+Il comando **compile** viene usato per compilare uno script di U-SQL in file eseguibili.
 
     LocalRunHelper compile -Script path_to_usql_script.usql [optional_arguments]
 
-di seguito Hello sono argomenti facoltativi per **compilare**:
+Di seguito sono indicati gli argomenti facoltativi per il comando **compile**:
 
 
 |Argomento|Descrizione|
 |--------|-----------|
-| -CodeBehind [valore predefinito 'False']|script Hello è CS code-behind|
+| -CodeBehind [valore predefinito 'False']|Lo script ha code-behind con estensione cs|
 | -CppSDK [valore predefinito '']|Directory CppSDK|
-| -DataRoot [valore predefinito 'DataRoot environment variable']|DataRoot per l'esecuzione locale, predefinito troppo variabile di ambiente 'LOCALRUN_DATAROOT'|
-| -MessageOut [valore predefinito '']|Messaggi di dump nel file di console tooa|
-| -References [valore predefinito '']|Elenco di assembly di riferimento per i percorsi tooextra o file di dati di code-behind, separato da ';'|
+| -DataRoot [valore predefinito 'DataRoot environment variable']|DataRoot per l'esecuzione locale, impostazione predefinita su variabile di ambiente 'LOCALRUN_DATAROOT'|
+| -MessageOut [valore predefinito '']|Messaggi dump sulla console a un file|
+| -References [valore predefinito '']|Elenco di percorsi agli assembly di riferimento aggiuntivi o a file di dati code-behind, separati da ";"|
 | -Shallow [valore predefinito 'False']|Compilazione superficiale|
 | -UdoRedirect [valore predefinito 'False']|Genera la configurazione di reindirizzamento di assembly Udo|
-| -UseDatabase [valore predefinito 'master']|Database toouse per code-behind di registrazione assembly temporaneo|
+| -UseDatabase [valore predefinito 'master']|Database da usare per la registrazione di assembly temporanei code-behind|
 | -WorkDir [valore predefinito 'Current Directory']|Directory per l'uso del compilatore e gli output|
-| -RunScopeCEP [valore predefinito '0']|ScopeCEP modalità toouse|
-| -ScopeCEPTempPath [valore predefinito 'temp']|Toouse percorso temporaneo per il flusso di dati|
+| -RunScopeCEP [valore predefinito '0']|Modalità ScopeCEP da usare|
+| -ScopeCEPTempPath [valore predefinito 'temp']|Percorso temporaneo da usare per lo streaming di dati|
 | -OptFlags [valore predefinito '']|Elenco delimitato da virgole con i flag di ottimizzazione|
 
 
@@ -196,7 +196,7 @@ Compilare uno script U-SQL:
 
     LocalRunHelper compile -Script d:\test\test1.usql
 
-Compilare uno script U-SQL e impostare come cartella di dati radice hello. Si noti che ciò comporterà la sovrascrittura hello set variabile di ambiente.
+Compilare uno script U-SQL e impostare la cartella data-root. Si noti la variabile di ambiente impostata verrà sovrascritta.
 
     LocalRunHelper compile -Script d:\test\test1.usql –DataRoot c:\DataRoot
 
@@ -206,48 +206,48 @@ Compilare uno script U-SQL e impostare la directory di lavoro, un assembly di ri
 
 #### <a name="execute-compiled-results"></a>Eseguire i risultati compilati
 
-Hello **eseguire** comando viene utilizzato tooexecute compilati risultati.   
+Il comando **execute** viene usato per eseguire i risultati compilati.   
 
     LocalRunHelper execute -Algebra path_to_compiled_algebra_file [optional_arguments]
 
-di seguito Hello sono argomenti facoltativi per **eseguire**:
+Di seguito sono indicati gli argomenti facoltativi per il comando **execute**:
 
 |Argomento|Descrizione|
 |--------|-----------|
-|-DataRoot [valore predefinito '']|Radice dei dati per l'esecuzione dei metadati. Il valore predefinito è toohello **LOCALRUN_DATAROOT** variabile di ambiente.|
-|-MessageOut [valore predefinito '']|I messaggi nel file di tooa console hello di dump.|
-|-Parallel [valore predefinito '1']|Indicatore toorun hello generato esecuzione locale con hello specificato il livello di parallelismo.|
-|-Verbose [valore predefinito 'False']|Indicatore tooshow dettagliato restituisce dal runtime.|
+|-DataRoot [valore predefinito '']|Radice dei dati per l'esecuzione dei metadati. Il valore predefinito è la variabile di ambiente **LOCALRUN_DATAROOT**.|
+|-MessageOut [valore predefinito '']|Esecuzione del dump dei messaggi della console in un file.|
+|-Parallel [valore predefinito '1']|Indica di eseguire i passaggi di esecuzione locale generati con il livello di parallelismo specificato.|
+|-Verbose [valore predefinito 'False']|Indica di visualizzare output dettagliati dal runtime.|
 
 Ecco un esempio d'uso:
 
     LocalRunHelper execute -Algebra d:\test\workdir\C6A101DDCB470506\Script_66AE4909AA0ED06C\__script__.abr –DataRoot c:\DataRoot –Parallel 5
 
 
-## <a name="use-hello-sdk-with-programming-interfaces"></a>Utilizzare hello SDK con interfacce di programmazione
+## <a name="use-the-sdk-with-programming-interfaces"></a>Uso dell'SDK con interfacce di programmazione
 
-interfacce di programmazione Hello si trovano in hello LocalRunHelper.exe. È possibile utilizzare le funzionalità di hello toointegrate di hello SDK U-SQL e hello tooscale framework di test c# test locale script U-SQL. In questo articolo, si utilizzerà hello standard c# unit test progetto tooshow come toouse queste interfacce tootest script U-SQL.
+Le interfacce di programmazione si trovano tutte in LocalRunHelper.exe. È possibile usarle per integrare le funzionalità dell'SDK U-SQL e il framework di test di C# per scalare il test locale dello script U-SQL. In questo articolo verrà usato il progetto di unit test C# standard per mostrare come usare queste interfacce per testare lo script U-SQL.
 
 ### <a name="step-1-create-c-unit-test-project-and-configuration"></a>Passaggio 1: Creare configurazione e progetto per unit test C#
 
 - Creare un progetto per unit test C# tramite File > Nuovo > Progetto > Visual C# > Test > Progetto unit test.
-- Aggiungere LocalRunHelper.exe come riferimento per il progetto hello. Hello LocalRunHelper.exe si trova in \build\runtime\LocalRunHelper.exe nel pacchetto Nuget.
+- Aggiungere LocalRunHelper.exe come riferimento per il progetto. LocalRunHelper.exe si trova in \build\runtime\LocalRunHelper.exe nel pacchetto NuGet.
 
     ![Riferimento aggiunta dell'SDK U-SQL di Azure Data Lake](./media/data-lake-analytics-u-sql-sdk/data-lake-analytics-u-sql-sdk-add-reference.png)
 
-- U-SQL SDK **solo** ambiente supporto x64, assicurarsi che tooset compilazione destinazione della piattaforma come x64. È possibile farlo da Proprietà progetto > Build > Piattaforma di destinazione.
+- L'SDK U-SQL supporta **solo** l'ambiente x64, quindi è necessario assicurarsi di impostare la piattaforma di destinazione della compilazione come x64. È possibile farlo da Proprietà progetto > Build > Piattaforma di destinazione.
 
     ![Progetto configurazione x64 SDK U-SQL di Azure Data Lake](./media/data-lake-analytics-u-sql-sdk/data-lake-analytics-u-sql-sdk-configure-x64.png)
 
-- Verificare che tooset l'ambiente di test come x64. In Visual Studio è possibile impostarlo tramite Test > Impostazioni test > Architettura processore predefinita > x64.
+- Assicurarsi di impostare l'ambiente di testing come x64. In Visual Studio è possibile impostarlo tramite Test > Impostazioni test > Architettura processore predefinita > x64.
 
     ![Ambiente di testing configurazione x64 SDK U-SQL di Azure Data Lake](./media/data-lake-analytics-u-sql-sdk/data-lake-analytics-u-sql-sdk-configure-test-x64.png)
 
-- Verificare che toocopy tutti i file nella directory di lavoro tooproject NugetPackage\build\runtime\ che è in genere in ProjectFolder\bin\x64\Debug dipendenza.
+- Assicurarsi di copiare tutti i file di dipendenza in NugetPackage\build\runtime\ nella directory di lavoro del progetto che generalmente si trova in ProjectFolder\bin\x64\Debug.
 
 ### <a name="step-2-create-u-sql-script-test-case"></a>Passaggio 2: Creare test case per lo script U-SQL
 
-Di seguito è riportato il codice di esempio hello per test di script U-SQL. Per i test, è necessario tooprepare script, file di input e output previsto.
+Di seguito è riportato il codice di esempio per il test dello script U-SQL. Per i test, è necessario preparare script, file di input e file di output previsti.
 
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -264,12 +264,12 @@ Di seguito è riportato il codice di esempio hello per test di script U-SQL. Per
             [TestMethod]
             public void TestUSQLScript()
             {
-                //Specify hello local run message output path
+                //Specify the local run message output path
                 StreamWriter MessageOutput = new StreamWriter("../../../log.txt");
 
                 LocalRunHelper localrun = new LocalRunHelper(MessageOutput);
 
-                //Configure hello DateRoot path, Script Path and CPPSDK path
+                //Configure the DateRoot path, Script Path and CPPSDK path
                 localrun.DataRoot = "../../../";
                 localrun.ScriptPath = "../../../Script/Script.usql";
                 localrun.CppSdkDir = "../../../CppSDK";
@@ -285,7 +285,7 @@ Di seguito è riportato il codice di esempio hello per test di script U-SQL. Per
 
                 Test.Helpers.FileAssert.AreEqual(Result, ExpectedResult);
 
-                //Don't forget tooclose MessageOutput tooget logs into file
+                //Don't forget to close MessageOutput to get logs into file
                 MessageOutput.Close();
             }
         }
@@ -331,7 +331,7 @@ Di seguito è riportato il codice di esempio hello per test di script U-SQL. Per
 
 ### <a name="programming-interfaces-in-localrunhelperexe"></a>Interfacce di programmazione in LocalRunHelper.exe
 
-LocalRunHelper.exe fornisce interfacce di programmazione per compilazione locale U-SQL, eseguire hello, interfacce hello e così via sono elencate di seguito.
+LocalRunHelper.exe offre le interfacce di programmazione per la compilazione e l'esecuzione locale di U-SQL e così via. Le interfacce sono elencate come di seguito.
 
 **Costruttore**
 
@@ -339,31 +339,31 @@ public LocalRunHelper([System.IO.TextWriter messageOutput = null])
 
 |.|Tipo|Descrizione|
 |---------|----|-----------|
-|messageOutput|System.IO.TextWriter|per i messaggi di output, impostare toonull toouse Console|
+|messageOutput|System.IO.TextWriter|per i messaggi di output, impostato su null per usare Console|
 
 **Proprietà**
 
 |Proprietà|Tipo|Descrizione|
 |--------|----|-----------|
-|AlgebraPath|string|file di Hello percorso tooalgebra (file algebra è uno dei risultati della compilazione hello)|
-|CodeBehindReferences|string|Se script hello dispone di ulteriori code-behind riferimenti, specificare i percorsi di hello separati da ';'|
+|AlgebraPath|string|Il percorso al file algebra (il file algebra è uno dei risultati della compilazione)|
+|CodeBehindReferences|string|Se lo script contiene riferimenti code-behind aggiuntivi, specificare i percorsi separati da ';'|
 |CppSdkDir|string|Directory CppSDK|
 |CurrentDir|string|La directory corrente|
 |DataRoot|string|Il percorso della radice dei dati|
-|DebuggerMailPath|string|Hello percorso toodebugger mailslot|
-|GenerateUdoRedirect|bool|Se lo si desidera il caricamento degli assembly toogenerate reindirizzamento esegue l'override di configurazione|
-|HasCodeBehind|bool|Se lo script hello è code-behind|
+|DebuggerMailPath|string|Il percorso alla porta di inserimento/espulsione del debugger|
+|GenerateUdoRedirect|bool|Se si vuole generare il reindirizzamento di caricamento dell'assembly eseguire l'override della configurazione|
+|HasCodeBehind|bool|Indica se lo script ha code-behind|
 |InputDir|string|La directory per i dati di input|
 |MessagePath|string|Il percorso del file dump del messaggio|
 |OutputDir|string|La directory per i dati di output|
-|Parallelismo|int|Algebra hello toorun di parallelismo|
-|ParentPid|int|PID del padre hello in cui hello servizio controlla tooexit, set too0 o tooignore negativo|
+|Parallelismo|int|Il parallelismo per eseguire l'algebra|
+|ParentPid|int|Il PID dell'entità principale in cui il servizio esegue il monitoraggio per uscire, impostato su 0 o su un numero negativo se va ignorato|
 |ResultPath|string|Il percorso del file dump del risultato|
 |RuntimeDir|string|La directory di runtime|
-|ScriptPath|string|Dove toofind hello script|
+|ScriptPath|string|Indica dove trovare lo script|
 |Shallow|bool|Indica se la compilazione è superficiale o no|
 |TempDir|string|Directory Temp|
-|UseDataBase|string|Specificare hello database toouse per code-behind di registrazione di assembly temporaneo, master per impostazione predefinita|
+|UseDataBase|string|Specifica il database da usare per la registrazione di assembly temporanei code-behind; master per impostazione predefinita|
 |WorkDir|string|La directory di lavoro preferita|
 
 
@@ -371,27 +371,27 @@ public LocalRunHelper([System.IO.TextWriter messageOutput = null])
 
 |Metodo|Descrizione|Return|.|
 |------|-----------|------|---------|
-|public bool DoCompile()|Compilare script di hello U-SQL|Se l'esito è positivo, restituisce il valore true| |
-|public bool DoExec()|Esecuzione del risultato hello compilato|Se l'esito è positivo, restituisce il valore true| |
-|public bool DoRun()|Eseguire script hello U-SQL (compilazione + Execute)|Se l'esito è positivo, restituisce il valore true| |
-|public bool IsValidRuntimeDir(string path)|Verificare se un determinato percorso hello è il percorso di runtime valido|Se è valido, restituisce il valore true|percorso di Hello della directory di runtime|
+|public bool DoCompile()|Consente di compilare lo script U-SQL|Se l'esito è positivo, restituisce il valore true| |
+|public bool DoExec()|Esegue il risultato compilato|Se l'esito è positivo, restituisce il valore true| |
+|public bool DoRun()|Esegue lo script U-SQL (compile + execute)|Se l'esito è positivo, restituisce il valore true| |
+|public bool IsValidRuntimeDir(string path)|Controlla se il percorso specificato è un percorso di runtime valido|Se è valido, restituisce il valore true|Il percorso della directory di runtime|
 
 
 ## <a name="faq-about-common-issue"></a>Domande frequenti sui problemi comuni
 
 ### <a name="error-1"></a>Errore 1:
-E_CSC_SYSTEM_INTERNAL: Internal error! Could not load file or assembly 'ScopeEngineManaged.dll' or one of its dependencies. modulo specificato Hello non trovato.
+E_CSC_SYSTEM_INTERNAL: Internal error! Could not load file or assembly 'ScopeEngineManaged.dll' or one of its dependencies. The specified module could not be found. (E_CSC_SYSTEM_INTERNAL: errore interno. Impossibile caricare il file o l'assembly 'ScopeEngineManaged.dll' o una delle sue dipendenze. Impossibile trovare il modulo specificato.)
 
-Verificare i seguenti hello:
+Verificare quanto segue:
 
-- Assicurarsi di avere un ambiente x64. piattaforma di destinazione di compilazione Hello e ambiente di test hello deve essere x64, fare riferimento troppo**passaggio 1: c# creare unit test del progetto e la configurazione** sopra.
-- Assicurarsi di che aver copiato tutti i file nella directory di lavoro tooproject NugetPackage\build\runtime\ dipendenza.
+- Assicurarsi di avere un ambiente x64. La piattaforma di destinazione di compilazione e l'ambiente di testing devono essere x64; fare riferimento alla sezione **Passaggio 1: Creare configurazione e progetto per unit test C#** sopra.
+- Assicurarsi di aver copiato nella directory di lavoro tutti i file di dipendenza presenti in NugetPackage\build\runtime\.
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* toolearn U-SQL, vedere [Guida introduttiva di Azure Data Lake Analitica U-SQL language](data-lake-analytics-u-sql-get-started.md).
-* informazioni di diagnostica toolog, vedere [accesso ai log di diagnostica per Azure Data Lake Analitica](data-lake-analytics-diagnostic-logs.md).
-* toosee una query più complessa, vedere [analizzare i log di sito Web usando Azure Data Lake Analitica](data-lake-analytics-analyze-weblogs.md).
-* vedere i dettagli dei processi, tooview [Browser di processo di utilizzo e visualizzazione dei processi per i processi di Azure Data Lake Analitica](data-lake-analytics-data-lake-tools-view-jobs.md).
-* visualizzazione di esecuzione vertice hello toouse, vedere [hello utilizzare Visualizzazione esecuzione vertice in Data Lake Tools per Visual Studio](data-lake-analytics-data-lake-tools-use-vertex-execution-view.md).
+* Per informazioni su U-SQL, vedere [Introduzione al linguaggio U-SQL di Azure Data Lake Analytics](data-lake-analytics-u-sql-get-started.md).
+* Per registrare informazioni di diagnostica, vedere [Accesso ai log di diagnostica per Azure Data Lake Analytics](data-lake-analytics-diagnostic-logs.md).
+* Per visualizzare una query più complessa, vedere [Analizzare i log dei siti Web con Analisi Azure Data Lake](data-lake-analytics-analyze-weblogs.md).
+* Per visualizzare i dettagli del processo, vedere [Usare Job Browser e Job View (Visualizzazione processo) per i processi di Azure Data Lake Analytics](data-lake-analytics-data-lake-tools-view-jobs.md).
+* Per usare la visualizzazione esecuzioni vertici, vedere [Usare la visualizzazione esecuzioni vertici in Azure Data Lake Tools per Visual Studio](data-lake-analytics-data-lake-tools-use-vertex-execution-view.md).

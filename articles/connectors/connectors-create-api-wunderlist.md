@@ -1,6 +1,6 @@
 ---
-title: connettore aaaWunderlist si App per la logica di Azure n | Documenti Microsoft
-description: Creare tooWunderlist una connessione e utilizzare il flusso di lavoro di toobuild questa connessione in App per la logica.
+title: Connettore Wunderlist nelle app per la logica di Azure | Microsoft Docs
+description: Creare una connessione a Wunderlist e usarla per creare il flusso di lavoro nelle app per la logica.
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: MandiOhlinger
@@ -15,32 +15,32 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 08/18/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: 8b960a0bd8a16d51933dfc75e7291c8a0ae0f923
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 899110992cc52ca5edf1706320fd5570473de784
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="get-started-with-hello-wunderlist-connector"></a>Iniziare con connettore Wunderlist hello
-Wunderlist forniscono un elenco di attività e gli utenti di toohelp Gestione attività ottengono tutto eseguita.  Se si condivide un elenco con uno cari, creazione di un progetto o la pianificazione di una vacanza, Wunderlist semplifica toocapture, condividere e completare il to¬dos. Wunderlist esegue immediatamente la sincronizzazione tra il telefono, il tablet e il computer, per consentire l'accesso a tutte le attività da qualsiasi posizione.
+# <a name="get-started-with-the-wunderlist-connector"></a>Introduzione al connettore Wunderlist
+Wunderlist fornisce un elenco di attività e uno strumento di gestione attività per aiutare le persone a portare a termine ciò che devono fare.  Che si tratti di condividere una lista della spesa con un familiare, lavorare a un progetto o pianificare una vacanza, Wunderlist consente di acquisire, condividere e completare le attività da svolgere in modo semplice. Wunderlist esegue immediatamente la sincronizzazione tra il telefono, il tablet e il computer, per consentire l'accesso a tutte le attività da qualsiasi posizione.
 
 Creare prima di tutto un'app per la logica. Vedere [Creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="create-a-connection-toowunderlist"></a>Creare una connessione tooWunderlist
-app di logica toocreate con Wunderlist, è necessario creare innanzitutto un **connessione** quindi fornire i dettagli di hello per hello le proprietà seguenti:
+## <a name="create-a-connection-to-wunderlist"></a>Creare una connessione a Wunderlist
+Per creare app per la logica con Wunderlist, è prima necessario creare una **connessione** e quindi fornire i dettagli per le proprietà seguenti:
 
 | Proprietà | Obbligatorio | Descrizione |
 | --- | --- | --- |
 | Token |Sì |Fornisce le credenziali di Wunderlist |
 
-Dopo aver creato una connessione di hello, è possibile utilizzare azioni hello tooexecute e restare in attesa per i trigger di hello.
+Dopo aver creato la connessione, è possibile usarla per eseguire le azioni e restare in ascolto dei trigger.
 
-> [!INCLUDE [Steps toocreate a connection tooWunderlist](../../includes/connectors-create-api-wunderlist.md)]
+> [!INCLUDE [Steps to create a connection to Wunderlist](../../includes/connectors-create-api-wunderlist.md)]
 > 
 
 ## <a name="connector-specific-details"></a>Dettagli specifici del connettore
 
-Visualizzare tutti i trigger e azioni definite in swagger hello e anche eventuali limiti di hello [dettagli connettore](/connectors/wunderlist/).
+Per visualizzare eventuali azioni e trigger definiti in Swagger ed eventuali limiti, vedere i [dettagli del connettore](/connectors/wunderlist/).
 
 ## <a name="more-connectors"></a>Altri connettori
-Tornare indietro toohello [elenco API](apis-list.md).
+Tornare all' [elenco di API](apis-list.md).

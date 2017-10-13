@@ -1,6 +1,6 @@
 ---
-title: Batch di Azure - i nodi di calcolo aaaRun Linux nella macchina virtuale | Documenti Microsoft
-description: Informazioni su come tooprocess il parallelo calcolare carichi di lavoro nel pool di macchine virtuali Linux in Azure Batch.
+title: Eseguire Linux nei nodi di calcolo della macchina virtuale | Documentazione Microsoft
+description: Informazioni su come elaborare i carichi di lavoro di calcolo paralleli nei pool di macchine virtuali Linux in Azure Batch.
 services: batch
 documentationcenter: python
 author: tamram
@@ -15,32 +15,32 @@ ms.workload: na
 ms.date: 05/22/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 3daabd5c577baaafd0544f9f7913cb7b116d74d3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9b2257917e2368478beb75957677de23d4157865
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="provision-linux-compute-nodes-in-batch-pools"></a>Eseguire il provisioning di nodi di calcolo Linux nei pool di Batch
 
-È possibile utilizzare i carichi di lavoro di Azure Batch toorun calcolo parallelo nelle macchine virtuali Linux e Windows. In questo articolo illustra in dettaglio come pool toocreate di Linux nodi di calcolo nel servizio Batch hello utilizzando entrambi hello [Python Batch] [ py_batch_package] e [.NET per Batch] [ api_net] librerie client.
+È possibile usare Azure Batch per eseguire carichi di lavoro di calcolo paralleli in macchine virtuali Linux e Windows. Questo articolo illustra in dettaglio come creare pool di nodi di calcolo Linux nel servizio Batch usando le librerie client [Batch Python][py_batch_package] e [Batch .NET][api_net].
 
 > [!NOTE]
-> I pacchetti dell'applicazione sono supportati in tutti i pool di Batch creati dopo il 5 luglio 2017. Sono supportate nei pool di Batch creato tra 10 marzo 2016 e 5 luglio 2017 solo se il pool di hello è stato creato utilizzando una configurazione del servizio Cloud. Pool di batch creati too10 precedente marzo 2016 non supportano pacchetti di applicazioni. Per ulteriori informazioni sull'utilizzo dell'applicazione pacchetti toodeploy i nodi di Batch tooyour applicazioni, vedere [distribuire applicazioni toocompute nodi con i pacchetti di applicazione di Batch](batch-application-packages.md).
+> I pacchetti dell'applicazione sono supportati in tutti i pool di Batch creati dopo il 5 luglio 2017. Sono supportati nei pool di Batch creati tra il 10 marzo 2016 e il 5 luglio 2017 solo se il pool è stato creato usando una configurazione del servizio cloud. I pool di Batch creati prima del 10 marzo 2016 non supportano i pacchetti dell'applicazione. Per altre informazioni sull'uso di pacchetti dell'applicazione per distribuire applicazioni ai nodi Batch, vedere [Distribuire le applicazioni nei nodi di calcolo con i pacchetti dell'applicazione Batch](batch-application-packages.md).
 >
 >
 
 ## <a name="virtual-machine-configuration"></a>Configurazione della macchina virtuale
-Quando si crea un pool di nodi di calcolo in Batch, sono disponibili due opzioni da cui tooselect dimensione del nodo hello e sistema operativo: configurazione della macchina virtuale e la configurazione di servizi Cloud.
+Quando si crea un pool di nodi di calcolo in Batch, sono disponibili due opzioni per la selezione delle dimensioni e del sistema operativo del nodo, ovvero la configurazione di servizi cloud e la configurazione della macchina virtuale.
 
-**Cloud Services Configuration** (Configurazione servizi cloud) fornisce *solo*nodi di calcolo Windows. Dimensioni di nodo di calcolo disponibili sono elencate [dimensioni per i servizi Cloud](../cloud-services/cloud-services-sizes-specs.md), e i sistemi operativi disponibili sono elencati in hello [versioni del sistema operativo Guest Azure e matrice di compatibilità SDK](../cloud-services/cloud-services-guestos-update-matrix.md). Quando si crea un pool che contiene i nodi di servizi Cloud di Azure, è possibile specificare dimensioni di nodo hello e hello famiglia del sistema operativo, che sono descritte nel hello indicato in precedenza gli articoli. Quando si creano pool di nodi di calcolo Windows, viene in genere usata l'opzione Servizi cloud.
+La **configurazione dei servizi cloud** fornisce *solo*nodi di calcolo Windows. Le dimensioni disponibili per i nodi di calcolo sono elencate in [Dimensioni dei servizi cloud](../cloud-services/cloud-services-sizes-specs.md) e i sistemi operativi disponibili sono elencati in [Rilasci del sistema operativo guest Azure e matrice di compatibilità dell'SDK](../cloud-services/cloud-services-guestos-update-matrix.md). Quando si crea un pool che contiene nodi di Servizi cloud di Azure, è necessario specificare le dimensioni del nodo e la rispettiva famiglia del sistema operativo, descritti negli articoli menzionati in precedenza. Quando si creano pool di nodi di calcolo Windows, viene in genere usata l'opzione Servizi cloud.
 
-La **configurazione della macchina virtuale** fornisce immagini Linux e Windows per i nodi di calcolo. Le dimensioni disponibili per i nodi di calcolo sono elencate in [Dimensioni delle macchine virtuali in Azure](../virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) (Linux) e [Dimensioni delle macchine virtuali in Azure](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (Windows). Quando si crea un pool che contiene i nodi di configurazione della macchina virtuale, è necessario specificare dimensioni di hello di nodi di hello, riferimento all'immagine di macchina virtuale hello e toobe SKU hello Batch nodo agente installato nei nodi hello.
+La **configurazione della macchina virtuale** fornisce immagini Linux e Windows per i nodi di calcolo. Le dimensioni disponibili per i nodi di calcolo sono elencate in [Dimensioni delle macchine virtuali in Azure](../virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) (Linux) e [Dimensioni delle macchine virtuali in Azure](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (Windows). Quando si crea un pool contenente nodi con configurazione della macchina virtuale, è necessario specificare le dimensioni dei nodi, il riferimento a un'immagine della macchina virtuale e lo SKU dell'agente del nodo Batch da installare nei nodi.
 
 ### <a name="virtual-machine-image-reference"></a>Riferimento all'immagine della macchina virtuale
-Hello servizio Batch Usa [set di scalabilità di macchine virtuali](../virtual-machine-scale-sets/virtual-machine-scale-sets-overview.md) tooprovide Linux nodi di calcolo. È possibile specificare un'immagine da hello [Azure Marketplace][vm_marketplace], o fornire un'immagine personalizzata che è stato preparato. Per informazioni dettagliate sulle immagini personalizzate, vedere [Sviluppare soluzioni di calcolo parallele su larga scala con Batch](batch-api-basics.md#pool).
+Il servizio Batch usa [set di scalabilità di macchine virtuali](../virtual-machine-scale-sets/virtual-machine-scale-sets-overview.md) per fornire nodi di calcolo Linux. È possibile specificare un'immagine di [Microsoft Azure Marketplace][vm_marketplace] o fornire un'immagine personalizzata precedentemente preparata. Per informazioni dettagliate sulle immagini personalizzate, vedere [Sviluppare soluzioni di calcolo parallele su larga scala con Batch](batch-api-basics.md#pool).
 
-Quando si configura un riferimento all'immagine di macchina virtuale, specificare le proprietà di hello dell'immagine di macchina virtuale hello. Hello le proprietà seguenti è necessario quando si crea un riferimento all'immagine di macchina virtuale:
+Quando si configura un riferimento all'immagine di macchina virtuale, si specificano le proprietà di un'immagine di macchina virtuale. Le proprietà seguenti sono necessarie quando si crea un riferimento all'immagine di macchina virtuale:
 
 | **Proprietà del riferimento all'immagine** | **Esempio** |
 | --- | --- |
@@ -50,29 +50,29 @@ Quando si configura un riferimento all'immagine di macchina virtuale, specificar
 | Versione |più recenti |
 
 > [!TIP]
-> Maggiori informazioni su queste proprietà e come toolist Marketplace immagini in [Naviga e selezionare le immagini di macchina virtuale di Linux in Azure con CLI o PowerShell](../virtual-machines/linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Si noti che non tutte le immagini del Marketplace sono attualmente compatibili con Batch. Per altre informazioni, vedere [SKU dell'agente del nodo](#node-agent-sku).
+> Per altre informazioni su queste proprietà e su come elencare le immagini del Marketplace, vedere [Selezionare immagini di VM Linux con l'interfaccia della riga di comando di Azure](../virtual-machines/linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Si noti che non tutte le immagini del Marketplace sono attualmente compatibili con Batch. Per altre informazioni, vedere [SKU dell'agente del nodo](#node-agent-sku).
 >
 >
 
 ### <a name="node-agent-sku"></a>SKU dell'agente del nodo
-agente di Hello Batch nodo è un programma che viene eseguito in ogni nodo nel pool di hello e fornisce l'interfaccia di comando e controllo hello tra nodo hello e il servizio Batch hello. Esistono diverse implementazioni dell'agente del nodo hello, noto come SKU, per sistemi operativi diversi. In pratica, quando si crea una configurazione della macchina virtuale, è innanzitutto necessario specificare riferimento all'immagine di macchina virtuale hello e quindi si specificare hello nodo agente tooinstall sull'immagine di hello. Ogni SKU dell'agente del nodo è in genere compatibile con più immagini di macchina virtuale. Ecco alcuni esempi di SKU dell'agente del nodo:
+L'agente del nodo Batch è un programma in esecuzione in ogni nodo del pool e fornisce l'interfaccia di comando e controllo tra il nodo e il servizio Batch. Sono disponibili diverse implementazioni dell'agente del nodo, definite SKU, per sistemi operativi diversi. Quando si crea una configurazione della macchina virtuale, è essenzialmente necessario specificare prima di tutto il riferimento all'immagine della macchina virtuale e quindi l'agente del nodo da installare nell'immagine. Ogni SKU dell'agente del nodo è in genere compatibile con più immagini di macchina virtuale. Ecco alcuni esempi di SKU dell'agente del nodo:
 
 * batch.node.ubuntu 14.04
 * batch.node.centos 7
 * batch.node.windows amd64
 
 > [!IMPORTANT]
-> Non tutte le immagini di macchina virtuale sono disponibili in Marketplace hello sono compatibili con gli agenti nodo Batch attualmente disponibili hello. Usare l'agente di nodo disponibile hello toolist Batch SDK hello SKU e hello immagini di macchina virtuale a cui sono compatibili. Vedere hello [immagini di elenco di macchine virtuali](#list-of-virtual-machine-images) più avanti in questo articolo per ulteriori informazioni ed esempi di come tooretrieve un elenco di immagini valide in fase di esecuzione.
+> Non tutte le immagini di macchina virtuale disponibili nel Marketplace sono compatibili con gli agenti del nodo Batch attualmente disponibili. È necessario usare SDK di Batch per elencare gli SKU dell'agente del nodo disponibili e le immagini di macchina virtuale con cui sono compatibili. Vedere [Elenco di immagini di macchine virtuali](#list-of-virtual-machine-images) più avanti in questo articolo per altre informazioni ed esempi su come recuperare un elenco di immagini valide in fase di esecuzione.
 >
 >
 
 ## <a name="create-a-linux-pool-batch-python"></a>Creare un pool Linux: Batch Python
-Hello frammento di codice seguente viene illustrato un esempio di hello toouse [libreria Client di Microsoft Azure Batch per Python] [ py_batch_package] toocreate un pool di Ubuntu Server nodi di calcolo. Fare riferimento alla documentazione per il modulo di Python Batch è reperibile in hello [azure.batch pacchetto] [ py_batch_docs] in lettura hello documenti.
+Il frammento di codice seguente illustra un esempio di come usare la [libreria client di Microsoft Azure Batch per Python][py_batch_package] per creare un pool di nodi di calcolo Ubuntu Server. La documentazione di riferimento per il modulo Python di Batch è reperibile in [azure.batch package ][py_batch_docs] in Documentazione.
 
-Questo frammento di codice crea in modo esplicito un metodo [ImageReference][py_imagereference], specificando tutte le rispettive proprietà, ovvero editore, offerta, SKU, versione. Nel codice di produzione, tuttavia, è consigliabile utilizzare hello [list_node_agent_skus] [ py_list_skus] toodetermine (metodo) e scegliere tra hello immagine e il nodo agente SKU combinazioni disponibili in fase di esecuzione.
+Questo frammento di codice crea in modo esplicito un metodo [ImageReference][py_imagereference], specificando tutte le rispettive proprietà, ovvero editore, offerta, SKU, versione. Nel codice di produzione è tuttavia consigliabile usare il metodo [list_node_agent_skus][py_list_skus] per determinare e selezionare una delle combinazioni di immagine e SKU dell'agente del nodo disponibili in fase di esecuzione.
 
 ```python
-# Import hello required modules from the
+# Import the required modules from the
 # Azure Batch Client Library for Python
 import azure.batch.batch_service_client as batch
 import azure.batch.batch_auth as batchauth
@@ -88,66 +88,66 @@ pool_id = "LinuxNodesSamplePoolPython"
 vm_size = "STANDARD_A1"
 node_count = 1
 
-# Initialize hello Batch client
+# Initialize the Batch client
 creds = batchauth.SharedKeyCredentials(account, key)
 config = batch.BatchServiceClientConfiguration(creds, base_url = batch_url)
 client = batch.BatchServiceClient(config)
 
-# Create hello unbound pool
+# Create the unbound pool
 new_pool = batchmodels.PoolAddParameter(id = pool_id, vm_size = vm_size)
 new_pool.target_dedicated = node_count
 
-# Configure hello start task for hello pool
+# Configure the start task for the pool
 start_task = batchmodels.StartTask()
 start_task.run_elevated = True
 start_task.command_line = "printenv AZ_BATCH_NODE_STARTUP_DIR"
 new_pool.start_task = start_task
 
-# Create an ImageReference which specifies hello Marketplace
-# virtual machine image tooinstall on hello nodes.
+# Create an ImageReference which specifies the Marketplace
+# virtual machine image to install on the nodes.
 ir = batchmodels.ImageReference(
     publisher = "Canonical",
     offer = "UbuntuServer",
     sku = "14.04.2-LTS",
     version = "latest")
 
-# Create hello VirtualMachineConfiguration, specifying
-# hello VM image reference and hello Batch node agent to
-# be installed on hello node.
+# Create the VirtualMachineConfiguration, specifying
+# the VM image reference and the Batch node agent to
+# be installed on the node.
 vmc = batchmodels.VirtualMachineConfiguration(
     image_reference = ir,
     node_agent_sku_id = "batch.node.ubuntu 14.04")
 
-# Assign hello virtual machine configuration toohello pool
+# Assign the virtual machine configuration to the pool
 new_pool.virtual_machine_configuration = vmc
 
-# Create pool in hello Batch service
+# Create pool in the Batch service
 client.pool.add(new_pool)
 ```
 
-Come accennato in precedenza, si consiglia invece di creare hello [ImageReference] [ py_imagereference] in modo esplicito, utilizzare hello [list_node_agent_skus] [ py_list_skus] metodo toodynamically scegliere hello è attualmente supportato combinazioni immagine agente/Marketplace di nodo. Hello seguente mostra Python come toouse questo metodo.
+Come indicato in precedenza, invece di creare [ImageReference][py_imagereference] in modo esplicito, è consigliabile usare il metodo [list_node_agent_skus][py_list_skus] per selezionare in modo dinamico una combinazione di agente del nodo e immagine del Marketplace attualmente supportate. Il frammento di codice Python seguente illustra come usare questo metodo.
 
 ```python
-# Get hello list of node agents from hello Batch service
+# Get the list of node agents from the Batch service
 nodeagents = client.account.list_node_agent_skus()
 
-# Obtain hello desired node agent
+# Obtain the desired node agent
 ubuntu1404agent = next(agent for agent in nodeagents if "ubuntu 14.04" in agent.id)
 
-# Pick hello first image reference from hello list of verified references
+# Pick the first image reference from the list of verified references
 ir = ubuntu1404agent.verified_image_references[0]
 
-# Create hello VirtualMachineConfiguration, specifying hello VM image
-# reference and hello Batch node agent toobe installed on hello node.
+# Create the VirtualMachineConfiguration, specifying the VM image
+# reference and the Batch node agent to be installed on the node.
 vmc = batchmodels.VirtualMachineConfiguration(
     image_reference = ir,
     node_agent_sku_id = ubuntu1404agent.id)
 ```
 
 ## <a name="create-a-linux-pool-batch-net"></a>Creare un pool Linux: Batch .NET
-Hello frammento di codice seguente viene illustrato un esempio di hello toouse [.NET per Batch] [ nuget_batch_net] toocreate libreria client un pool di Ubuntu Server nodi di calcolo. È possibile trovare hello [la documentazione di riferimento di .NET per Batch] [ api_net] su MSDN.
+Il frammento di codice seguente illustra un esempio di come usare la libreria client [Batch .NET][nuget_batch_net] per creare un pool di nodi di calcolo Ubuntu Server. La [documentazione di riferimento di Batch .NET][api_net] è disponibile su MSDN.
 
-frammento di codice seguente Hello utilizza hello [PoolOperations][net_pool_ops].[ ListNodeAgentSkus] [ net_list_skus] tooselect metodo dall'elenco di hello di attualmente Marketplace immagine e il nodo agente SKU combinazioni supportate. Questa tecnica è utile perché elenco hello di combinazioni supportate potrebbe cambiare da tootime ora. in genere a causa dell'aggiunta di altre combinazioni supportate.
+Il frammento di codice seguente usa il metodo [PoolOperations][net_pool_ops].[ListNodeAgentSkus][net_list_skus] per selezionare una combinazione di immagine del Marketplace e SKU dell'agente del nodo attualmente supportate. Questa tecnica è consigliabile perché l'elenco di combinazioni supportate può cambiare nel tempo, in genere a causa dell'aggiunta di altre combinazioni supportate.
 
 ```csharp
 // Pool settings
@@ -156,19 +156,19 @@ const string vmSize = "STANDARD_A1";
 const int nodeCount = 1;
 
 // Obtain a collection of all available node agent SKUs.
-// This allows us tooselect from a list of supported
+// This allows us to select from a list of supported
 // VM image/node agent combinations.
 List<NodeAgentSku> nodeAgentSkus =
     batchClient.PoolOperations.ListNodeAgentSkus().ToList();
 
-// Define a delegate specifying properties of hello VM image
-// that we wish toouse.
+// Define a delegate specifying properties of the VM image
+// that we wish to use.
 Func<ImageReference, bool> isUbuntu1404 = imageRef =>
     imageRef.Publisher == "Canonical" &&
     imageRef.Offer == "UbuntuServer" &&
     imageRef.Sku.Contains("14.04");
 
-// Obtain hello first node agent SKU in hello collection that matches
+// Obtain the first node agent SKU in the collection that matches
 // Ubuntu Server 14.04. Note that there are one or more image
 // references associated with this node agent SKU.
 NodeAgentSku ubuntuAgentSku = nodeAgentSkus.First(sku =>
@@ -178,12 +178,12 @@ NodeAgentSku ubuntuAgentSku = nodeAgentSkus.First(sku =>
 ImageReference imageReference =
     ubuntuAgentSku.VerifiedImageReferences.First(isUbuntu1404);
 
-// Create hello VirtualMachineConfiguration for use when actually
-// creating hello pool
+// Create the VirtualMachineConfiguration for use when actually
+// creating the pool
 VirtualMachineConfiguration virtualMachineConfiguration =
     new VirtualMachineConfiguration(imageReference, ubuntuAgentSku.Id);
 
-// Create hello unbound pool object using hello VirtualMachineConfiguration
+// Create the unbound pool object using the VirtualMachineConfiguration
 // created above
 CloudPool pool = batchClient.PoolOperations.CreatePool(
     poolId: poolId,
@@ -191,11 +191,11 @@ CloudPool pool = batchClient.PoolOperations.CreatePool(
     virtualMachineConfiguration: virtualMachineConfiguration,
     targetDedicatedComputeNodes: nodeCount);
 
-// Commit hello pool toohello Batch service
+// Commit the pool to the Batch service
 await pool.CommitAsync();
 ```
 
-Sebbene frammento precedente hello utilizza hello [PoolOperations][net_pool_ops].[ ListNodeAgentSkus] [ net_list_skus] metodo toodynamically elenco e selezionare da supportata immagine e il nodo combinazioni di SKU dell'agente (scelta consigliate), è inoltre possibile configurare un [ImageReference] [ net_imagereference] in modo esplicito:
+Anche se il frammento di codice precedente usa il metodo [PoolOperations][net_pool_ops].[ListNodeAgentSkus][net_list_skus] per elencare in modo dinamico e selezionare una combinazione di immagine e SKU dell'agente del nodo supportate, è anche possibile configurare un metodo [ImageReference][net_imagereference] in modo esplicito:
 
 ```csharp
 ImageReference imageReference = new ImageReference(
@@ -206,10 +206,10 @@ ImageReference imageReference = new ImageReference(
 ```
 
 ## <a name="list-of-virtual-machine-images"></a>Elenco di immagini di macchine virtuali
-Hello nella tabella seguente elenca le immagini di macchina virtuale Marketplace hello che sono compatibili con gli agenti nodo Batch disponibili hello dell'ultimo aggiornamento di questo articolo. È importante toonote che questo elenco non è definitivo poiché le immagini e gli agenti di nodo è possibile aggiungere o rimuovere in qualsiasi momento. È consigliabile che le applicazioni di Batch e i servizi utilizzino sempre [list_node_agent_skus] [ py_list_skus] (Python) e [ListNodeAgentSkus] [ net_list_skus] Toodetermine (batch .NET) e scegliere tra hello SKU attualmente disponibili.
+La tabella seguente elenca le immagini di macchina virtuale del Marketplace compatibili con gli agenti del nodo Batch disponibili al momento dell'ultimo aggiornamento di questo articolo. È importante notare che questo elenco non è definitivo, perché è possibile che immagini e agenti del nodo vengano aggiunti o rimossi in qualsiasi momento. È consigliabile che le applicazioni e i servizi Batch usino sempre [list_node_agent_skus][py_list_skus] (Python) e [ListNodeAgentSkus][net_list_skus] (Batch .NET) per determinare e selezionare gli SKU attualmente disponibili.
 
 > [!WARNING]
-> Hello segue l'elenco può cambiare in qualsiasi momento. Utilizzare sempre hello **agente nodo elenco SKU** metodi disponibili in toolist API Batch hello hello compatibile macchina virtuale e l'agente di nodo SKU quando si eseguono i processi Batch.
+> L'elenco seguente può essere modificato in qualsiasi momento. Usare sempre i metodi di tipo **list node agent SKU** disponibili nelle API Batch per elencare le combinazioni compatibili di macchina virtuale e SKU dell'agente del nodo quando si eseguono i processi Batch.
 >
 >
 
@@ -236,10 +236,10 @@ Hello nella tabella seguente elenca le immagini di macchina virtuale Marketplace
 | MicrosoftWindowsServer | WindowsServer | 2016-Datacenter | più recenti | batch.node.windows amd64 |
 | MicrosoftWindowsServer | WindowsServer | 2016-Datacenter-with-Containers | più recenti | batch.node.windows amd64 |
 
-## <a name="connect-toolinux-nodes-using-ssh"></a>La connessione dei nodi tooLinux tramite SSH
-Durante lo sviluppo o durante la risoluzione dei problemi, potrebbe essere necessario toosign nei nodi toohello del pool. A differenza dei nodi di calcolo di Windows, è possibile utilizzare i nodi tooLinux tooconnect Remote Desktop Protocol (RDP). In alternativa, hello servizio Batch consente l'accesso SSH in ogni nodo per la connessione remota.
+## <a name="connect-to-linux-nodes-using-ssh"></a>Connettersi a nodi Linux tramite SSH
+Durante lo sviluppo o la risoluzione dei problemi potrebbe essere necessario accedere ai nodi del pool. A differenza dei nodi di calcolo Windows, non è possibile usare il protocollo RDP (Remote Desktop Protocol) per connettersi ai nodi Linux. Il servizio Batch consente invece l'accesso SSH in ogni nodo per la connessione remota.
 
-Hello seguente frammento di codice Python crea un utente in ogni nodo in un pool, che è necessario per la connessione remota. Stampa quindi le informazioni sulla connessione per ogni nodo hello sicura shell (SSH).
+Il frammento di codice Python seguente crea un utente in ogni nodo in un pool, necessario per la connessione remota, quindi stampa le informazioni di connessione Secure Shell (SSH) per ogni nodo.
 
 ```python
 import datetime
@@ -253,11 +253,11 @@ batch_account_name = ''
 batch_account_key = ''
 batch_account_url = ''
 
-# Specify hello ID of an existing pool containing Linux nodes
-# currently in hello 'idle' state
+# Specify the ID of an existing pool containing Linux nodes
+# currently in the 'idle' state
 pool_id = ''
 
-# Specify hello username and prompt for a password
+# Specify the username and prompt for a password
 username = 'linuxuser'
 password = getpass.getpass()
 
@@ -271,34 +271,34 @@ batch_client = batch.BatchServiceClient(
         base_url=batch_account_url
 )
 
-# Create hello user that will be added tooeach node in hello pool
+# Create the user that will be added to each node in the pool
 user = batchmodels.ComputeNodeUser(username)
 user.password = password
 user.is_admin = True
 user.expiry_time = \
     (datetime.datetime.today() + datetime.timedelta(days=30)).isoformat()
 
-# Get hello list of nodes in hello pool
+# Get the list of nodes in the pool
 nodes = batch_client.compute_node.list(pool_id)
 
-# Add hello user tooeach node in hello pool and print
-# hello connection information for hello node
+# Add the user to each node in the pool and print
+# the connection information for the node
 for node in nodes:
-    # Add hello user toohello node
+    # Add the user to the node
     batch_client.compute_node.add_user(pool_id, node.id, user)
 
-    # Obtain SSH login information for hello node
+    # Obtain SSH login information for the node
     login = batch_client.compute_node.get_remote_login_settings(pool_id,
                                                                 node.id)
 
-    # Print hello connection info for hello node
+    # Print the connection info for the node
     print("{0} | {1} | {2} | {3}".format(node.id,
                                          node.state,
                                          login.remote_login_ip_address,
                                          login.remote_login_port))
 ```
 
-Di seguito è riportato un output per il codice precedente hello per un pool che contiene quattro nodi di Linux:
+Ecco l'output di esempio per il codice precedente per un pool contenente quattro nodi Linux:
 
 ```
 Password:
@@ -308,22 +308,22 @@ tvm-1219235766_3-20160414t192511z | ComputeNodeState.idle | 13.91.7.57 | 50002
 tvm-1219235766_4-20160414t192511z | ComputeNodeState.idle | 13.91.7.57 | 50001
 ```
 
-Invece di una password, è possibile specificare una chiave pubblica SSH durante la creazione di un utente in un nodo. In hello Python SDK, usare hello **ssh_public_key** parametro [ComputeNodeUser][py_computenodeuser]. In .NET, usare hello [ComputeNodeUser][net_computenodeuser].[ Parametri SshPublicKey] [ net_ssh_key] proprietà.
+Invece di una password, è possibile specificare una chiave pubblica SSH durante la creazione di un utente in un nodo. In Python SDK usare il parametro **ssh_public_key** in [ComputeNodeUser][py_computenodeuser]. In .NET usare la proprietà [ComputeNodeUser][net_computenodeuser].[SshPublicKey][net_ssh_key].
 
 ## <a name="pricing"></a>Prezzi
-Azure Batch è basato sulla tecnologia di Servizi cloud di Azure e di Macchine virtuali di Azure. il servizio Batch stesso Hello è offerto gratuitamente, vengono addebitati solo i hello indica le risorse che utilizzano le soluzioni di Batch di calcolo. Quando si sceglie **configurazione di servizi Cloud**, vengono addebitati in base a hello [prezzi servizi Cloud] [ cloud_services_pricing] struttura. Quando si sceglie **configurazione della macchina virtuale**, vengono addebitati in base a hello [prezzi-macchine virtuali] [ vm_pricing] struttura. 
+Azure Batch è basato sulla tecnologia di Servizi cloud di Azure e di Macchine virtuali di Azure. Il servizio Batch stesso è gratuito, ovvero vengono addebitate solo le risorse di calcolo utilizzate dalle soluzioni Batch. Quando si sceglie la **configurazione dei servizi cloud**, gli addebiti sono basati sulla struttura dei [prezzi di Servizi cloud][cloud_services_pricing]. Quando si sceglie la **configurazione della macchina virtuale**, gli addebiti sono basati sulla struttura di [prezzi di Macchine virtuali][vm_pricing]. 
 
-Se si distribuiscono applicazioni tooyour Batch nodi [pacchetti di applicazioni](batch-application-packages.md), verranno inoltre addebitati il costo per le risorse di archiviazione di Azure hello che utilizzano i pacchetti di applicazioni. In generale, i costi di archiviazione di Azure hello sono minimi. 
+Se si distribuiscono applicazioni ai nodi Batch tramite [pacchetti dell'applicazione](batch-application-packages.md), vengono inoltre addebitati i costi per le risorse di Archiviazione di Azure utilizzate dai pacchetti dell'applicazione. In generale, i costi di Archiviazione di Azure sono minimi. 
 
 ## <a name="next-steps"></a>Passaggi successivi
 ### <a name="batch-python-tutorial"></a>Esercitazione su Python per Batch
-Per un'esercitazione più dettagliata su come toowork con Batch usando Python, estrazione [introduzione client Python di Azure Batch hello](batch-python-tutorial.md). Esso correlato [nell'esempio di codice] [ github_samples_pyclient] include una funzione di supporto, `get_vm_config_for_distro`, un'altra tecnica tooobtain che mostra una configurazione della macchina virtuale.
+Per un'esercitazione più dettagliata sull'uso di Batch con Python, vedere [Introduzione al client Python di Azure Batch](batch-python-tutorial.md). L'[code sample][github_samples_pyclient] complementare include una funzione di supporto, `get_vm_config_for_distro`, che illustra un'altra tecnica per ottenere una configurazione della macchina virtuale.
 
 ### <a name="batch-python-code-samples"></a>Esempi di codice Batch Python
-Hello [esempi di codice Python] [ github_samples_py] in hello [esempi di azure batch] [ github_samples] il repository in GitHub contiene script che mostrano come tooperform operazioni di Batch comuni, ad esempio pool di processi e creazione di attività. Hello [Leggimi] [ github_py_readme] che vengono forniti esempi di Python hello contiene informazioni dettagliate su come tooinstall hello necessari pacchetti.
+Gli [esempi di codice Python][github_samples_py] nel repository [azure-batch-samples][github_samples] in GitHub contengono script che illustrano come eseguire operazioni Batch comuni, ad esempio la creazione di pool, processi e attività. Il file [README][github_py_readme] associato agli esempi di Python include dettagli sull'installazione dei pacchetti necessari.
 
 ### <a name="batch-forum"></a>Forum di Batch
-Hello [Forum di Azure Batch] [ forum] su MSDN è un ottimo posizionare toodiscuss Batch e porre domande sul servizio hello. Leggere i post aggiunti e inviare domande durante le procedure di compilazione di soluzioni Batch.
+Il [forum di Azure Batch][forum] su MSDN consente di seguire discussioni su Batch e inviare domande sul servizio. Leggere i post aggiunti e inviare domande durante le procedure di compilazione di soluzioni Batch.
 
 [api_net]: http://msdn.microsoft.com/library/azure/mt348682.aspx
 [api_net_mgmt]: https://msdn.microsoft.com/library/azure/mt463120.aspx

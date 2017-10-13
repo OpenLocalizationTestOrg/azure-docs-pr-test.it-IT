@@ -1,6 +1,6 @@
 ---
-title: Azure Data Lake Analitica con Azure SDK per Node.js aaaManage | Documenti Microsoft
-description: Informazioni su come account Data Lake Analitica toomanage, origini dati, processi e gli utenti che usano Azure SDK per Node.js
+title: Gestire Azure Data Lake Analytics con Azure SDK per Node.js | Documentazione Microsoft
+description: Informazioni su come gestire gli account, le origini dati, i processi e gli utenti di Data Lake Analytics tramite Azure SDK per Node.js
 services: data-lake-analytics
 documentationcenter: 
 author: edmacauley
@@ -14,16 +14,16 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 12/05/2016
 ms.author: edmaca
-ms.openlocfilehash: 07acd058bf252af2fc98c4cfe87a135e0b79900f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 769cf9b09eecd204c8b5b944065dad57a6d73231
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="manage-azure-data-lake-analytics-using-azure-sdk-for-nodejs"></a>Gestire Azure Data Lake Analytics tramite Azure SDK per Node.js
 [!INCLUDE [manage-selector](../../includes/data-lake-analytics-selector-manage.md)]
 
-Hello Azure SDK per Node.js può essere utilizzato per la gestione di account di Azure Data Lake Analitica, processi e i cataloghi. argomento relativo alla gestione toosee con altri strumenti, scegliere hello scheda precedente.
+Azure SDK per Node. js può essere usato per gestire account, processi e cataloghi di Analisi Azure Data Lake. Per visualizzare l'argomento relativo alla gestione tramite altri strumenti, fare clic sul selettore di scheda riportato sopra.
 
 Attualmente supporta:
 
@@ -37,7 +37,7 @@ Attualmente supporta:
 * Gestione dei processi: inviare, ottenere, elencare, annullare.
 * Gestione del catalogo: ottenere ed elencare.
 
-## <a name="how-tooinstall"></a>Come tooInstall
+## <a name="how-to-install"></a>Come eseguire l'installazione
 ```bash
 npm install azure-arm-datalake-analytics
 ```
@@ -51,7 +51,7 @@ npm install azure-arm-datalake-analytics
  var credentials = new msRestAzure.ApplicationTokenCredentials('your-client-id', 'your-domain', 'your-secret');
  ```
 
-## <a name="create-hello-data-lake-analytics-client"></a>Creare il client di Data Lake Analitica hello
+## <a name="create-the-data-lake-analytics-client"></a>Creare il client di Analisi Data Lake
 ```javascript
 var adlaManagement = require("azure-arm-datalake-analytics");
 var acccountClient = new adlaManagement.DataLakeAnalyticsAccountClient(credentials, 'your-subscription-id');
@@ -66,12 +66,12 @@ var resourceGroupName = 'testrg';
 var accountName = 'testadlaacct';
 var location = 'eastus2';
 
-// A Data Lake Store account must already have been created toocreate
-// a Data Lake Analytics account. See hello Data Lake Store readme for
+// A Data Lake Store account must already have been created to create
+// a Data Lake Analytics account. See the Data Lake Store readme for
 // information on doing so. For now, we assume one exists already.
 var datalakeStoreAccountName = 'existingadlsaccount';
 
-// account object toocreate
+// account object to create
 var accountToCreate = {
   tags: {
     testtag1: 'testvalue1',
@@ -92,14 +92,14 @@ var accountToCreate = {
 client.account.create(resourceGroupName, accountName, accountToCreate, function (err, result, request, response) {
   if (err) {
     console.log(err);
-    /*err has reference toohello actual request and response, so you can see what was sent and received on hello wire.
-      hello structure of err looks like this:
+    /*err has reference to the actual request and response, so you can see what was sent and received on the wire.
+      The structure of err looks like this:
       err: {
         code: 'Error Code',
         message: 'Error Message',
-        body: 'hello response body if any',
-        request: reference tooa stripped version of http request
-        response: reference tooa stripped version of hello response
+        body: 'The response body if any',
+        request: reference to a stripped version of http request
+        response: reference to a stripped version of the response
       }
     */
   } else {
@@ -121,7 +121,7 @@ jobClient.job.list(accountName, function (err, result, request, response) {
 });
 ```
 
-## <a name="get-a-list-of-databases-in-hello-data-lake-analytics-catalog"></a>Ottenere un elenco di database in Data Lake Analitica Catalog hello
+## <a name="get-a-list-of-databases-in-the-data-lake-analytics-catalog"></a>Ottenere un elenco di database nel catalogo di Analisi Data Lake
 ```javascript
 var util = require('util');
 var accountName = 'testadlaacct';

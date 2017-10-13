@@ -1,6 +1,6 @@
 ---
-title: Descrizione del Cluster di gestione risorse aaaCluster | Documenti Microsoft
-description: "Che descrive un cluster di Service Fabric specificando i domini di errore, domini di aggiornamento, le proprietà del nodo e le capacità dei nodi di hello gestione delle risorse Cluster."
+title: Descrizione del cluster di Cluster Resource Manager | Microsoft Docs
+description: "Descrizione di un cluster di Service Fabric specificando i domini di errore, i domini di aggiornamento, le proprietà del nodo e le capacità del nodo per Cluster Resource Manager."
 services: service-fabric
 documentationcenter: .net
 author: masnider
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/18/2017
 ms.author: masnider
-ms.openlocfilehash: f2822075976bd54402af5ad56991b5b360dfb1d8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e517eda4d3ff7ad81998003688c3cca78f76e179
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="describing-a-service-fabric-cluster"></a>Descrizione di un cluster di Service Fabric
-Hello servizio di gestione delle risorse Cluster dell'infrastruttura offre diversi meccanismi per la descrizione di un cluster. Durante la fase di esecuzione, hello gestione delle risorse Cluster utilizza questa informazioni tooensure un'elevata disponibilità dei servizi di hello in esecuzione nel cluster hello. Durante l'applicazione di queste regole importanti, tenta anche l'utilizzo delle risorse hello toooptimize all'interno di cluster hello.
+Cluster Resource Manager di Service Fabric fornisce alcuni meccanismi per descrivere un cluster. Durante la fase di esecuzione, Cluster Resource Manager usa queste informazioni per assicurare la disponibilità elevata dei servizi in esecuzione sul cluster. Applicando queste regole importanti, tenta anche di ottimizzare il consumo di risorse all'interno del cluster.
 
 ## <a name="key-concepts"></a>Concetti chiave
-Hello gestione delle risorse Cluster supporta numerose funzioni che descrivono un cluster:
+Cluster Resource Manager supporta diverse funzionalità che descrivono un cluster:
 
 * Domini di errore
 * Domini di aggiornamento
@@ -32,70 +32,70 @@ Hello gestione delle risorse Cluster supporta numerose funzioni che descrivono u
 * Capacità del nodo
 
 ## <a name="fault-domains"></a>Domini di errore
-Un dominio di errore è un'area di errore coordinato. Un singolo computer è un dominio di errore (dal momento che può avere esito negativo nel proprio per vari motivi, dal firmware NIC power alimentatore errori toodrive errori toobad). Connesso toohello stesso commutatore Ethernet presenti hello stesso dominio di errore, come i computer sono macchine la condivisione di una singola origine di energia elettrica o in un'unica posizione. Poiché è naturale che toooverlap errori hardware, i domini di errore sono intrinsecamente gerarchici e sono rappresentati come URI di Service Fabric.
+Un dominio di errore è un'area di errore coordinato. Un singolo computer è un dominio di errore, in quanto il computer si può arrestare da solo per vari motivi, da interruzioni dell'alimentazione a errori delle unità o firmware NIC non valido. I computer connessi allo stesso commutatore Ethernet si trovano nello stesso dominio di errore, analogamente ai computer che condividono una singola fonte di alimentazione o si trovano nella stessa posizione. Poiché è naturale che gli errori hardware si sovrappongano, i domini di errore sono intrinsecamente gerarchici e sono rappresentati come URI in Service Fabric.
 
-È importante che i domini di errore siano impostati correttamente poiché Service Fabric utilizza servizi di posizione toosafely questa informazioni. Service Fabric non desidera tooplace services tale perdita hello di un dominio di errore (a causa di errore hello di qualche componente) fa sì che un servizio toogo verso il basso. In ambiente Azure Service Fabric utilizza informazioni di dominio di errore hello fornite da hello ambiente toocorrectly hello configurare nodi hello hello cluster per conto dell'utente. Per il servizio Fabric autonomo, i domini di errore vengono definite in fase di hello tale cluster hello è impostato 
+È importante che i domini di errore siano impostati correttamente poiché Service Fabric usa queste informazioni per posizionare in modo sicuro i servizi. Service Fabric non posiziona i servizi in modo che la perdita di un dominio di errore (a causa dell'errore di qualche componente) causi l'interruzione di un servizio. Service Fabric, nell'ambiente di Azure, usa le informazioni del dominio di errore fornite dall'ambiente per configurare in modo corretto i nodi nel cluster per conto dell'utente. Nella versione autonoma di Service Fabric, i domini di errore vengono definiti al momento della configurazione del cluster 
 
 > [!WARNING]
-> È importante che le informazioni di dominio di errore hello fornito tooService dell'infrastruttura sia corrette. Si supponga, ad esempio, che i nodi del cluster di Service Fabric siano in esecuzione all'interno di dieci macchine virtuali, a loro volta in esecuzione su cinque host fisici. In questo caso, anche se sono presenti dieci macchine virtuali, sono presenti solo cinque domini di errore diversi (livello superiore). Condivisione hello nello stesso host fisico fa sì che le macchine virtuali tooshare hello stesso dominio di errore di radice, poiché le macchine virtuali esperienza hello coordinato errore se ha esito negativo dell'host fisico.  
+> È importante che le informazioni sul dominio di errore fornite a Service Fabric siano accurate. Si supponga, ad esempio, che i nodi del cluster di Service Fabric siano in esecuzione all'interno di dieci macchine virtuali, a loro volta in esecuzione su cinque host fisici. In questo caso, anche se sono presenti dieci macchine virtuali, sono presenti solo cinque domini di errore diversi (livello superiore). La condivisione dello stesso host fisico comporta per le macchine virtuali anche la condivisione dello stesso dominio di errore radice, poiché sulle macchine virtuali si verifica un errore coordinato se sul relativo host fisico si verifica un errore,  
 >
-> Poiché Service Fabric prevede che il dominio di errore di un nodo non toochange hello. Altri meccanismi di garantire la disponibilità elevata di hello macchine virtuali, ad esempio [macchine virtuali a disponibilità elevata](https://technet.microsoft.com/en-us/library/cc967323.aspx), utilizzare transparent migrazione di macchine virtuali da un host tooanother. Questi meccanismi non riconfigurare o notificare hello in esecuzione di codice all'interno di hello macchina virtuale. Di conseguenza, **non sono supportati** come ambienti per l'esecuzione dei cluster di Service Fabric. Service Fabric deve essere utilizzata la tecnologia hello solo a disponibilità elevata. Non sono necessari meccanismi quali la migrazione in tempo reale della macchina virtuale, SAN, o altri. Se usati insieme a Service Fabric, questi meccanismi _riducono_ la disponibilità e l'affidabilità dell'applicazione, poiché introducono complessità aggiuntive, aggiungono origini centralizzate di errore e usano strategie di disponibilità e affidabilità che possono entrare in conflitto con quelle presenti in Service Fabric. 
+> poiché Service Fabric non prevede il cambiamento del dominio di errore di un nodo. Altri meccanismi per garantire una disponibilità elevata delle macchine virtuali, come illustrato nell'articolo relativo alle [Macchine virtuali a disponibilità elevata](https://technet.microsoft.com/en-us/library/cc967323.aspx), adottano la migrazione trasparente delle macchine virtuali da un host a un altro. Questi meccanismi non riconfigurano né notificano il codice in esecuzione all'interno della macchina virtuale. Di conseguenza, **non sono supportati** come ambienti per l'esecuzione dei cluster di Service Fabric. Service Fabric deve essere l'unica tecnologia di disponibilità elevata in uso. Non sono necessari meccanismi quali la migrazione in tempo reale della macchina virtuale, SAN, o altri. Se usati insieme a Service Fabric, questi meccanismi _riducono_ la disponibilità e l'affidabilità dell'applicazione, poiché introducono complessità aggiuntive, aggiungono origini centralizzate di errore e usano strategie di disponibilità e affidabilità che possono entrare in conflitto con quelle presenti in Service Fabric. 
 >
 >
 
-Nella figura seguente hello è di colore tutte le entità hello che contribuiscono a domini tooFault ed elenco che tutti hello diversi domini di errore risultanti. In questo esempio sono presenti data center ("DC"), rack ("R") e pannelli ("B"). Ovviamente, ogni pannello contiene più di una macchina virtuale, potrebbe verificarsi un altro livello nella gerarchia di dominio di errore hello.
+Nella figura seguente tutte le entità che contribuiscono ai domini di errore sono colorate e sono elencati tutti i diversi domini di errore risultanti. In questo esempio sono presenti data center ("DC"), rack ("R") e pannelli ("B"). Se ogni pannello include più macchine virtuali, è possibile che la gerarchia del dominio di errore includa un altro livello.
 
 <center>
 ![Nodi organizzati tramite domini di errore][Image1]
 </center>
 
-Durante la fase di esecuzione, hello gestione delle risorse Cluster dell'infrastruttura del servizio prende in considerazione i domini di errore hello cluster hello e piani di layout. Hello repliche con state o istanze senza informazioni sullo stato per un determinato servizio vengono distribuite in modo che siano in domini di errore. Distribuzione del servizio hello tra domini di errore assicura la disponibilità di hello del servizio di hello non vengano compromessi quando si verifica un errore di un dominio di errore a qualsiasi livello della gerarchia di hello.
+Durante la fase di esecuzione, Cluster Resource Manager di Service Fabric prende in considerazione i domini di errore del cluster e pianifica i layout. Vengono distribuite le repliche con stato o le istanze senza stato per un determinato servizio in modo che si trovino in domini di errore diversi. La distribuzione del servizio tra domini di errore assicura che la disponibilità del servizio non sia compromessa se si verifica un errore in un dominio di errore a qualsiasi livello della gerarchia.
 
-Gestione delle risorse dell'infrastruttura servizio Cluster non è rilevante il numero dei livelli nella gerarchia di dominio di errore hello non esistono. Tuttavia, viene effettuato tooensure che perdita hello di qualsiasi parte di una gerarchia hello di non avere alcun impatto servizi in esecuzione. 
+Cluster Resource Manager di Service Fabric non si cura del numero di livelli presenti nella gerarchia del dominio di errore. Tenta invece di garantire che la perdita di una parte della gerarchia non incida sui servizi che vi vengono eseguiti. 
 
-È consigliabile se sono presenti hello stesso numero di nodi a ogni livello di profondità in hello gerarchia di dominio di errore. Se hello "struttura" di domini di errore è sbilanciato del cluster, rende più difficile per hello toofigure di gestione delle risorse Cluster out allocazione migliore di hello dei servizi. Layout di domini di errore sbilanciato significa tale perdita hello di alcuni domini disponibilità hello impatto dei servizi a più di altri domini. Di conseguenza, viene eliminata in hello gestione delle risorse Cluster tra i due obiettivi: desidera macchine hello toouse nel dominio "elevato" inserendo i servizi su di essi, e si desidera tooplace servizi negli altri domini in modo che la perdita di hello di un dominio non causa problemi. 
+È preferibile che sia presente lo stesso numero di nodi a ogni livello di profondità della gerarchia del dominio di errore. Se l'albero dei domini di errore nel cluster è sbilanciato, è più difficile per Cluster Resource Manager determinare la migliore allocazione dei servizi. Layout sbilanciati dei domini di errore comportano che la perdita di alcuni domini possa incidere maggiormente sulla disponibilità del cluster rispetto ad altri. Di conseguenza Cluster Resource Manager si trova a dover scegliere fra due obiettivi: usare i computer del dominio più dotato posizionando i servizi in essi o posizionare i servizi in altri domini, così che la perdita di un dominio non causi problemi. 
 
-Come appaiono i domini sbilanciati? Nel seguente diagramma hello vengono illustrati due layout diversi cluster. Nel primo esempio hello, nodi hello vengono distribuiti uniformemente tra hello domini di errore. Nel secondo esempio hello, un dominio di errore ha molte più nodi rispetto hello altri domini di errore. 
+Come appaiono i domini sbilanciati? La figura seguente illustra due diversi layout per un cluster. Nel primo esempio i nodi sono distribuiti uniformemente tra i domini di errore. Nel secondo esempio, un dominio di errore presenta molti più nodi degli altri. 
 
 <center>
 ![Due layout diversi per i cluster][Image2]
 </center>
 
-In Azure, scelta hello del quale dominio di errore contiene un nodo viene gestita. Tuttavia, in base al numero di hello di nodi che si esegue il provisioning è comunque possibile avere con domini di errore con più nodi in essi contenuti rispetto ad altri utenti. Ad esempio, si dispone di cinque domini di errore in cluster hello ma eseguire il provisioning di sette nodi per un determinato tipo di nodo. In questo caso, hello innanzitutto due domini di errore finire con più nodi. Se si continua toodeploy ulteriori NodeTypes con solo due istanze, problema hello Ottiene peggiore. Per questo motivo, è consigliabile che hello numero di nodi in ogni tipo di nodo è un multiplo del numero di hello di domini di errore.
+In Azure la scelta di quale dominio di errore deve contenere un nodo viene gestita automaticamente. Tuttavia, a seconda del numero di nodi di cui si esegue il provisioning, si possono comunque ottenere domini di errore con più nodi di altri. Si immagini ad esempio di avere cinque domini di errore nel cluster e di eseguire il provisioning di sette nodi per un determinato NodeType. In questo caso i primi due domini di errore avranno più nodi. Se si continua a distribuire altri NodeType con solo un paio di istanze, il problema peggiora. Per questo motivo è consigliabile che il numero di nodi in ogni NodeType sia multiplo del numero di domini di errore.
 
 ## <a name="upgrade-domains"></a>Domini di aggiornamento
-Domini di aggiornamento sono un'altra caratteristica che consente di hello servizio di gestione delle risorse Cluster dell'infrastruttura comprendere il layout di hello del cluster di hello. Domini di aggiornamento definiscono set di nodi che vengono aggiornati in hello contemporaneamente. Guida hello, gestione delle risorse Cluster comprendere e orchestrare le operazioni di gestione come gli aggiornamenti di domini di aggiornamento.
+I domini di aggiornamento sono un'altra funzionalità che aiuta Cluster Resource Manager di Service Fabric a comprendere il layout del cluster. I domini di aggiornamento definiscono set di nodi che vengono aggiornati contemporaneamente. I domini di aggiornamento aiutano Cluster Resource Manager a comprendere e orchestrare le operazioni di gestione come gli aggiornamenti.
 
-I domini di aggiornamento sono molto simili ai domini di errore, ma con un paio di differenze essenziali. Innanzitutto, i domini di errore vengono definiti da aree di errori hardware coordinati. Domini di aggiornamento, in hello invece, vengono definiti dai criteri. Viene visualizzato il numero desiderato, invece, la dettatura dall'ambiente hello toodecide. È possibile disporre dello stesso numero di domini di aggiornamento e di nodi. Un'altra differenza tra i domini di errore e i domini di aggiornamento è che questi ultimi non sono gerarchici. Sono invece più simili a un semplice tag. 
+I domini di aggiornamento sono molto simili ai domini di errore, ma con un paio di differenze essenziali. Innanzitutto, i domini di errore vengono definiti da aree di errori hardware coordinati. I domini di aggiornamento invece vengono definiti dai criteri. È possibile deciderne il numero desiderato, in quanto la decisione non viene presa dall'ambiente. È possibile disporre dello stesso numero di domini di aggiornamento e di nodi. Un'altra differenza tra i domini di errore e i domini di aggiornamento è che questi ultimi non sono gerarchici. Sono invece più simili a un semplice tag. 
 
-Hello diagramma seguente mostra tre che domini di aggiornamento sono suddivisi in tre domini di errore. Illustra anche una sola posizione possibile per tre repliche diverse di un servizio con stato, dove ciascuna finisce in diversi domini di errore e di aggiornamento. Questa posizione consente perdita hello di un dominio di errore in intermedio hello di un aggiornamento del servizio e ancora una copia di codice hello e i dati.  
+Il diagramma seguente mostra tre domini di aggiornamento distribuiti su tre domini di errore. Illustra anche una sola posizione possibile per tre repliche diverse di un servizio con stato, dove ciascuna finisce in diversi domini di errore e di aggiornamento. Questo posizionamento consente la perdita di un dominio di errore mentre è in corso un aggiornamento del servizio, mantenendo comunque una copia del codice e dei dati.  
 
 <center>
 ![Posizionamento con domini di errore e di aggiornamento][Image3]
 </center>
 
-Esistono vantaggi e svantaggi toohaving un numero elevato di domini di aggiornamento. Più domini di aggiornamento significa che ogni passaggio dell'aggiornamento hello più granulare e pertanto influisce su un numero minore di nodi o servizi. Di conseguenza, i servizi meno hanno toomove contemporaneamente, introduzione meno varianza nel sistema hello. Questa impostazione tende tooimprove affidabilità, poiché è minore del servizio hello è interessato da qualsiasi problema introdotto durante l'aggiornamento di hello. Più domini di aggiornamento significa anche che è necessario meno buffer disponibile sull'impatto di hello toohandle altri nodi di hello eseguire l'aggiornamento. Ad esempio, se si dispone di cinque domini di aggiornamento, i nodi di hello in ogni gestisce circa 20% del traffico. Se è necessario tootake verso il basso tale dominio di aggiornamento per un aggiornamento, il carico deve in genere toogo in un punto. Poiché si dispone di quattro domini di aggiornamento rimanenti, ogni deve disporre di spazio per circa il 5% di traffico totale hello. Più domini di aggiornamento, che sono necessari meno buffer su nodi hello hello cluster. Si consideri, ad esempio, di disporre invece di dieci domini di aggiornamento. In tal caso, ogni UD verrebbe solo gestito circa il 10% del traffico totale hello. Quando un aggiornamento esaminato cluster hello, ogni dominio sufficiente spazio toohave per circa 1.1% del traffico totale hello. Più domini di aggiornamento consentono in genere toorun i nodi con un utilizzo superiore, poiché è necessaria una capacità riservata minore. Hello stesso vale per i domini di errore.  
+L'uso di un numero elevato di domini di aggiornamento presenta vantaggi e svantaggi. Se si hanno numerosi domini di aggiornamento, ogni passaggio dell'aggiornamento è più dettagliato e quindi influisce su un numero minore di nodi o servizi. Questo si traduce nella necessità di spostare meno servizi contemporaneamente nonché in una minore varianza del sistema. Anche l'affidabilità tende a migliorare, poiché una parte minore del servizio è interessata da eventuali problemi introdotti durante l'aggiornamento. La presenza di più domini di aggiornamento significa anche che è richiesto meno buffer disponibile negli altri nodi per gestire l'impatto dell'aggiornamento. Ad esempio, se si dispone di cinque domini di aggiornamento, i nodi di ciascuno gestiscono circa il 20% del traffico. Se è necessario bloccare il dominio di aggiornamento per un aggiornamento, il suo carico deve essere in genere trasferito altrove. Poiché sono presenti quattro domini di aggiornamento rimanenti, ognuno deve disporre di spazio per circa il 5% del traffico totale. Più domini di aggiornamento implicano la necessità di meno buffer nei nodi del cluster. Si consideri, ad esempio, di disporre invece di dieci domini di aggiornamento. In questo caso ogni dominio di aggiornamento dovrebbe gestire solo circa il 10% del traffico totale. Quando un aggiornamento passa per il cluster, ogni dominio deve avere spazio solo per circa l'1,1% del traffico totale. Un maggior numero di domini di aggiornamento in genere consente un maggiore uso dei nodi, poiché è necessaria una capacità di riserva minore. Lo stesso vale per i domini di errore.  
 
-svantaggio Hello di disporre di molti domini di aggiornamento è che gli aggiornamenti tendono tootake più lungo. Service Fabric attende un breve periodo di tempo dopo un aggiornamento del dominio viene completato ed esegue i controlli prima di avviare tooupgrade hello successivo. I ritardi consentono di rilevare i problemi introdotti dall'aggiornamento hello prima di avviare l'aggiornamento di hello. compromesso di Hello è accettabile in quanto impedisce le modifiche non valide di che interessano una quantità eccessiva servizio hello alla volta.
+Lo svantaggio di avere molti domini di aggiornamento è che gli aggiornamenti tendono a richiedere più tempo. Service Fabric attende per un breve periodo dopo il completamento di un aggiornamento ed esegue i controlli prima di avviare l'aggiornamento successivo. Questi ritardi consentono di rilevare i problemi introdotti in seguito all'aggiornamento prima che l'aggiornamento continui. Questo compromesso è accettabile perché evita che modifiche non valide abbiano un impatto eccessivo sul servizio in un determinato momento.
 
-Anche l'uso di un numero troppo ridotto di domini di aggiornamento ha effetti collaterali negativi: mentre ogni singolo dominio di aggiornamento è inattivo e in fase di aggiornamento, una parte elevata della capacità complessiva non risulta disponibile. Ad esempio, se sono presenti solo tre domini di aggiornamento, 1/3 circa della capacità complessiva del servizio o del cluster non sarà disponibile in un determinato momento. Disporre moltissime operazioni del servizio verso il basso in una sola volta non è auspicabile poiché sono presenti toohave una capacità sufficiente rest hello cluster toohandle hello del carico di lavoro. Gestire quel buffer significa che durante il normale funzionamento i nodi avranno minor carico di quanto dovuto. In questo modo si aumenta il costo di hello dell'esecuzione del servizio.
+Anche l'uso di un numero troppo ridotto di domini di aggiornamento ha effetti collaterali negativi: mentre ogni singolo dominio di aggiornamento è inattivo e in fase di aggiornamento, una parte elevata della capacità complessiva non risulta disponibile. Ad esempio, se sono presenti solo tre domini di aggiornamento, 1/3 circa della capacità complessiva del servizio o del cluster non sarà disponibile in un determinato momento. Avere una parte così grande del servizio inattiva contemporaneamente non è auspicabile poiché è necessario disporre di capacità sufficiente nel resto del cluster per gestire il carico di lavoro. Gestire quel buffer significa che durante il normale funzionamento i nodi avranno minor carico di quanto dovuto. Questo approccio implica un aumento del costo di esecuzione del servizio.
 
-Non vi è alcun limite effettivo toohello numero totale di domini di aggiornamento o di errore in un ambiente o i vincoli in modo che si sovrappongano. Ciò premesso, sono disponibili vari modelli comuni:
+Non è previsto alcun limite effettivo per il numero totale di domini di errore o di aggiornamento in un ambiente e non sono previsti vincoli per le relative sovrapposizioni. Ciò premesso, sono disponibili vari modelli comuni:
 
 - Corrispondenza 1:1 fra domini di errore e domini di aggiornamento
 - Un dominio di aggiornamento per nodo (istanza del sistema operativo fisico o virtuale)
-- Un modello "striping" o "matrice" in domini di errore hello e domini di aggiornamento formano una matrice con computer che eseguono in genere verso il basso diagonali hello
+- Un modello con "striping" o a "matrice" in cui i domini di errore e i domini di aggiornamento formano una matrice e i computer sono disposti lungo le diagonali
 
 <center>
 ![Layout dei domini di errore e di aggiornamento][Image4]
 </center>
 
-Non esiste che alcun meglio non risposta toochoose quali layout, ognuno presenta vantaggi e svantaggi. Ad esempio modello 1FD:1UD hello è tooset semplice. Hello dominio di aggiornamento 1 per ogni modello di nodo è più simile a quella vengono utilizzate per le persone. Durante l'aggiornamento, ogni nodo viene aggiornato in modo indipendente. Questa operazione è simile toohow piccoli set di computer sono stati aggiornati manualmente in hello precedente. 
+Non esiste un layout ottimale, ogni layout presenta vantaggi e svantaggi. Ad esempio, il modello di tipo 1FD:1UD è semplice da configurare. Il modello con un dominio di aggiornamento per nodo è probabilmente quello più noto. Durante l'aggiornamento, ogni nodo viene aggiornato in modo indipendente. È simile alla modalità con la quale un piccolo gruppo di computer veniva aggiornato manualmente in passato. 
 
-modello più comune di Hello è una matrice di FD/UD hello, in cui hello domini di errore e domini di aggiornamento formano una tabella e i nodi vengono inseriti a partire lungo hello diagonale. Questo è il modello di hello utilizzato per impostazione predefinita nei cluster di Service Fabric in Azure. Per i cluster con molti nodi di tutti gli elementi finisce simile al modello di matrice di tipo dense hello precedente.
+Il modello più comune è basato sulla matrice FD/UD, in cui i domini di errore e i domini di aggiornamento formano una tabella e i nodi vengono posizionati a partire dalla diagonale. È il modello usato per impostazione predefinita nei cluster di Service Fabric in Azure. Per i cluster con molti nodi, il risultato è simile al complesso modello di matrice precedente.
 
 ## <a name="fault-and-upgrade-domain-constraints-and-resulting-behavior"></a>Vincoli del dominio di errore e di aggiornamento e comportamento risultante
-Gestione delle risorse Cluster Hello considera desiderio hello tookeep un servizio bilanciato tra domini di errore e l'aggiornamento come vincolo. È possibile trovare altre informazioni sui vincoli [in questo articolo](service-fabric-cluster-resource-manager-management-integration.md). Hello stato vincoli al dominio di aggiornamento e di errore: "per una partizione del servizio specificato non deve mai essere presente una differenza *maggiore di uno* numero hello degli oggetti servizio (istanze del servizio senza stato o le repliche di servizio con stato) tra due domini." Ciò impedisce determinati spostamenti o disposizioni che violano il vincolo.
+Cluster Resource Manager considera come un vincolo il desiderio di mantenere un servizio bilanciato tra domini di errore e di aggiornamento. È possibile trovare altre informazioni sui vincoli [in questo articolo](service-fabric-cluster-resource-manager-management-integration.md). I vincoli di dominio di errore e di aggiornamento stabiliscono: "Per una data partizione di servizio non deve esistere una differenza *maggiore di uno* nel numero di oggetti servizio (istanze di servizio senza stato o repliche con stato) tra due domini". Ciò impedisce determinati spostamenti o disposizioni che violano il vincolo.
 
 Esaminiamo un esempio. Si supponga di avere un cluster con sei nodi, configurato con cinque domini di errore e cinque domini di aggiornamento.
 
@@ -107,9 +107,9 @@ Esaminiamo un esempio. Si supponga di avere un cluster con sei nodi, configurato
 | **UD3** | | | |N4 | |
 | **UD4** | | | | |N5 |
 
-Si supponga ora di creare un servizio con TargetReplicaSetSize (oppure, per un servizio senza stato InstanceCount) pari a cinque. repliche Hello visualizzata N1 N5. N6 non verrà mai usato indipendentemente dal numero di servizi simili creati. Ma perché? Diamo un'occhiata differenza hello layout corrente hello e che cosa accadrebbe se si sceglie N6.
+Si supponga ora di creare un servizio con TargetReplicaSetSize (oppure, per un servizio senza stato InstanceCount) pari a cinque. Le repliche avvengono in N1 N5. N6 non verrà mai usato indipendentemente dal numero di servizi simili creati. Ma perché? Esaminiamo la differenza tra il layout corrente e ciò che accadrebbe se si scegliesse N6.
 
-Ecco layout hello è ottenuto e hello numero massimo di repliche per ogni errore e dominio di aggiornamento:
+Ecco il layout ottenuto e il numero totale di repliche per ogni dominio di errore e di aggiornamento:
 
 |  | FD0 | FD1 | FD2 | FD3 | FD4 | UDTotal |
 | --- |:---:|:---:|:---:|:---:|:---:|:---:|
@@ -120,9 +120,9 @@ Ecco layout hello è ottenuto e hello numero massimo di repliche per ogni errore
 | **UD4** | | | | |R5 |1 |
 | **FDTotal** |1 |1 |1 |1 |1 |- |
 
-Questo layout è equilibrato in termini di nodi per dominio di errore e dominio di aggiornamento. Inoltre viene bilanciato in termini di numero hello di repliche per ogni errore e di aggiornamento del dominio. Ogni dominio ha hello stesso numero di nodi e hello stesso numero di repliche.
+Questo layout è equilibrato in termini di nodi per dominio di errore e dominio di aggiornamento. È anche bilanciato in termini di numero di repliche per dominio di errore e dominio di aggiornamento. Ogni dominio ha lo stesso numero di nodi e lo stesso numero di repliche.
 
-A questo punto vediamo cosa accadrebbe se usassimo N6 invece di N2. Come repliche hello vengono distribuite quindi?
+A questo punto vediamo cosa accadrebbe se usassimo N6 invece di N2. Come sarebbero state distribuite le repliche?
 
 |  | FD0 | FD1 | FD2 | FD3 | FD4 | UDTotal |
 | --- |:---:|:---:|:---:|:---:|:---:|:---:|
@@ -133,7 +133,7 @@ A questo punto vediamo cosa accadrebbe se usassimo N6 invece di N2. Come replich
 | **UD4** | | | | |R4 |1 |
 | **FDTotal** |2 |0 |1 |1 |1 |- |
 
-Questo layout viola la definizione per hello vincolo di dominio di errore. FD0 include due repliche, mentre FD1 include zero, la differenza di hello tra FD0 e FD1 un totale di due. Hello gestione delle risorse Cluster non consente tale disposizione. Allo stesso modo, se si scegliesse N2 e N6 (anziché N1 e N2) si otterrebbe:
+Questo layout viola la definizione del vincolo di dominio di errore. FD0 ha due repliche, mentre FD1 ne ha zero, perciò la differenza tra FD0 e FD1 è due. Cluster Resource Manager non consente questa disposizione. Allo stesso modo, se si scegliesse N2 e N6 (anziché N1 e N2) si otterrebbe:
 
 |  | FD0 | FD1 | FD2 | FD3 | FD4 | UDTotal |
 | --- |:---:|:---:|:---:|:---:|:---:|:---:|
@@ -144,12 +144,12 @@ Questo layout viola la definizione per hello vincolo di dominio di errore. FD0 i
 | **UD4** | | | | |R4 |1 |
 | **FDTotal** |1 |1 |1 |1 |1 |- |
 
-Questo layout è bilanciato in termini di domini di errore. Tuttavia, ora è violano il vincolo di aggiornamento del dominio hello. Ciò avviene perché UD0 ha zero repliche mentre UD1 ne ha due. Pertanto, questo layout inoltre non è valido e non verranno utilizzato dal gestore delle risorse Cluster hello. 
+Questo layout è bilanciato in termini di domini di errore. Viola tuttavia il vincolo del dominio di aggiornamento. Ciò avviene perché UD0 ha zero repliche mentre UD1 ne ha due. Questo layout inoltre non è valido e non verrà scelto da Cluster Resource Manager. 
 
 ## <a name="configuring-fault-and-upgrade-domains"></a>Configurazione dei domini di errore e di aggiornamento
-La definizione dei domini di errore e dei domini di aggiornamento viene eseguita automaticamente nelle distribuzioni di Service Fabric ospitate in Azure. Service Fabric preleva e utilizza le informazioni sull'ambiente hello da Azure.
+La definizione dei domini di errore e dei domini di aggiornamento viene eseguita automaticamente nelle distribuzioni di Service Fabric ospitate in Azure. Service Fabric recupera semplicemente le informazioni sull'ambiente da Azure e le usa.
 
-Se si sta creando un cluster personale (o toorun una topologia in fase di sviluppo), è possibile fornire informazioni di dominio di errore e dominio di aggiornamento hello. In questo esempio definiamo un cluster di sviluppo locale con nove nodi che si estende su tre "data center" (ognuno con tre rack). Il cluster ha anche tre domini di aggiornamento distribuiti sui tre data center. Di seguito viene riportato un esempio di configurazione hello: 
+Se si sta creando il proprio cluster o si desidera seguire una particolare topologia, è possibile specificare manualmente le informazioni sul dominio di errore e sul dominio di aggiornamento. In questo esempio definiamo un cluster di sviluppo locale con nove nodi che si estende su tre "data center" (ognuno con tre rack). Il cluster ha anche tre domini di aggiornamento distribuiti sui tre data center. Di seguito viene riportato un esempio di configurazione: 
 
 ClusterManifest.xml
 
@@ -243,31 +243,31 @@ mediante ClusterConfig.json per le distribuzioni autonome
 ```
 
 > [!NOTE]
-> Quando si definiscono i cluster con Azure Resource Manager, Azure assegna i domini di errore e i domini di aggiornamento. Pertanto, la definizione di hello di set di scalabilità di macchine virtuali e i tipi di nodo di nel modello di gestione risorse di Azure include informazioni di aggiornamento del dominio o dominio di errore.
+> Quando si definiscono i cluster con Azure Resource Manager, Azure assegna i domini di errore e i domini di aggiornamento. Pertanto, la definizione dei tipi di nodo e dei set di scalabilità delle macchine virtuali nel modello di Azure Resource Manager non include informazioni sul dominio di aggiornamento o sul dominio di errore.
 >
 
 ## <a name="node-properties-and-placement-constraints"></a>Proprietà dei nodi e vincoli di posizionamento
-In alcuni casi (in effetti, la maggior parte del tempo di hello) sarà tooensure toowant alcuni carichi di lavoro eseguiti solo in determinati tipi di nodi nel cluster hello. Ad esempio, è possibile che alcuni carichi di lavoro richiedano GPU o SSD, mentre altri no. Un ottimo esempio di destinazione i carichi di lavoro di hardware tooparticular è quasi ogni architettura a più livelli disponibili. Alcune macchine fungono hello front-end o l'API del lato dell'applicazione hello e sono esposte toohello client o hello internet. Computer diversi, spesso con risorse hardware diverso, gestire il lavoro hello dei livelli di archiviazione o di calcolo hello. Si tratta in genere _non_ esposto direttamente tooclients o hello internet. Service Fabric è previsto che vi sono casi in cui i carichi di lavoro specifici necessario toorun sulle configurazioni hardware specifico. ad esempio:
+Nella maggior parte dei casi, si vuole assicurare che determinati carichi di lavoro vengano eseguiti solo su determinati tipi di nodi nel cluster. Ad esempio, è possibile che alcuni carichi di lavoro richiedano GPU o SSD, mentre altri no. Un ottimo esempio di uso dell'hardware per carichi di lavoro specifici è dato da quasi tutte le architettura a più livelli. Alcuni computer fungono da lato front-end o API dell'applicazione e pertanto sono probabilmente esposti al client o a Internet. Altri computer, spesso con risorse hardware diverse, gestiscono il lavoro dei livelli di calcolo o archiviazione. In genere _non_ sono esposti direttamente a Internet o ai client. Service Fabric prevede alcune situazioni in cui determinati carichi di lavoro dovranno essere eseguiti in configurazioni hardware specifiche, ad esempio:
 
 * Un'applicazione esistente con n livelli è stata "elevata e spostata" in un ambiente Service Fabric.
-* un carico di lavoro vuole toorun su hardware specifico per le prestazioni, scalabilità o motivi di isolamento di sicurezza
+* Un carico di lavoro deve essere eseguito su hardware specifico per finalità di prestazioni, scalabilità o isolamento di sicurezza.
 * Un carico di lavoro deve essere isolato da altri carichi di lavoro per motivi relativi ai criteri o all'uso delle risorse
 
-toosupport questi tipi di configurazioni, Service Fabric è una nozione di tag che possono essere applicati toonodes prima classe. Questi tag vengono chiamati **proprietà del nodo**. **Vincoli di posizionamento** sono istruzioni hello associati servizi tooindividual selezionato per uno o più proprietà del nodo. Definiscono la posizione in cui i servizi devono essere eseguiti. Hello set di vincoli è estendibile, può utilizzare qualsiasi coppia chiave/valore. 
+Per supportare questi tipi di configurazione, Service Fabric dispone di tag estremamente efficienti applicabili ai nodi. Questi tag vengono chiamati **proprietà del nodo**. I **vincoli di posizionamento** sono le istruzioni collegate ai singoli servizi che selezionano una o più proprietà del nodo. Definiscono la posizione in cui i servizi devono essere eseguiti. Il set di vincoli è estendibile: si può usare qualsiasi coppia chiave/valore. 
 
 <center>
 ![Layout di cluster con carichi di lavoro diversi][Image5]
 </center>
 
 ### <a name="built-in-node-properties"></a>Proprietà predefinite del nodo
-Service Fabric definisce alcune proprietà di nodo predefinito che può essere utilizzato automaticamente senza utente hello toodefine con essi. le proprietà predefinite di Hello definite in ogni nodo sono hello **NodeType** hello e **NodeName**. Ad esempio è possibile scrivere un vincolo di posizionamento come `"(NodeType == NodeType03)"`. In genere sono stati rilevati NodeType toobe una delle proprietà hello comunemente utilizzato. È utile poiché ha una corrispondenza di 1:1 con un tipo di computer. Ogni tipo di computer corrisponde tooa tipo di carico di lavoro in un'applicazione a più livelli tradizionale.
+Service Fabric definisce alcune proprietà predefinite dei nodi che possono essere successivamente usate automaticamente, senza alcun intervento da parte dell'utente. Le proprietà predefinite specificate a livello di ogni nodo sono **NodeType** e **NodeName**. Ad esempio è possibile scrivere un vincolo di posizionamento come `"(NodeType == NodeType03)"`. NodeType è una delle proprietà più usate. È utile poiché ha una corrispondenza di 1:1 con un tipo di computer. Ogni tipo di computer corrisponde a un tipo di carico di lavoro in un'applicazione tradizionale a più livelli.
 
 <center>
 ![Vincoli di posizionamento e proprietà dei nodi][Image6]
 </center>
 
 ## <a name="placement-constraint-and-node-property-syntax"></a>Vincoli di posizionamento e sintassi delle proprietà dei nodi 
-il valore di Hello specificato nelle proprietà dei nodi hello può essere una stringa, bool, o una firma lunga. istruzione Hello servizio hello viene chiamato un posizionamento *vincolo* poiché vincola in cui è possibile eseguire il servizio di hello cluster hello. vincolo Hello può essere qualsiasi istruzione booleana che opera sulle proprietà di nodo diverso hello cluster hello. i selettori valido Hello in queste istruzioni booleane sono:
+Il valore specificato nella proprietà del nodo può essere una stringa, un valore booleano o un valore lungo firmato. L'istruzione a livello di servizio è chiamata *vincolo* di posizionamento in quanto vincola la posizione in cui il servizio può essere eseguito nel cluster. Il vincolo può essere qualsiasi istruzione booleana che opera sulle diverse proprietà dei nodi nel cluster. I selettori validi in queste istruzioni booleane sono:
 
 1) controlli condizionali per la creazione di istruzioni specifiche
 
@@ -295,9 +295,9 @@ Di seguito sono riportati alcuni esempi di semplici istruzioni di vincolo.
   * `"NodeColor != green"`
   * `"((OneProperty < 100) || ((AnotherProperty == false) && (OneProperty >= 100)))"`
 
-Solo i nodi in cui hello complessiva posizionamento vincolo istruzione restituisce troppo "True" possono avere servizio hello posizionato su di esso. I nodi per i quali sono state definite proprietà non corrispondono ad alcun vincolo di posizionamento che contiene proprietà.
+È possibile posizionare il servizio solo sui nodi in cui l'istruzione del vincolo di posizionamento generale restituisce "True". I nodi per i quali sono state definite proprietà non corrispondono ad alcun vincolo di posizionamento che contiene proprietà.
 
-Si supponga che hello successivo nodo proprietà sono state definite per un tipo di nodo specificato:
+Si supponga che siano state definite le proprietà seguenti per un tipo di nodo specifico:
 
 ClusterManifest.xml
 
@@ -314,7 +314,7 @@ ClusterManifest.xml
 mediante ClusterConfig.json per le distribuzioni autonome o Template.json per cluster ospitati in Azure. 
 
 > [!NOTE]
-> Nel nodo hello Azure Resource Manager modello tipo è in genere con parametri. e più simile a "[parameters('vmNodeType1Name')]" che non a "NodeType01".
+> Nel modello di Azure Resource Manager il tipo di nodo è in genere con parametri, e più simile a "[parameters('vmNodeType1Name')]" che non a "NodeType01".
 >
 
 ```json
@@ -349,9 +349,9 @@ Powershell:
 New-ServiceFabricService -ApplicationName $applicationName -ServiceName $serviceName -ServiceTypeName $serviceType -Stateful -MinReplicaSetSize 3 -TargetReplicaSetSize 3 -PartitionSchemeSingleton -PlacementConstraint "HasSSD == true && SomeProperty >= 4"
 ```
 
-Se tutti i nodi di NodeType01 sono validi, è possibile anche selezionare un tipo di nodo con il vincolo hello "(NodeType == NodeType01)".
+Se tutti i nodi NodeType01 sono validi, è anche possibile selezionare un tipo di nodo con vincolo "(NodeType == NodeType01)".
 
-Una delle operazioni più interessanti hello sui vincoli di posizionamento di un servizio è che possono essere aggiornate in modo dinamico in fase di esecuzione. Pertanto se si desidera, è possibile spostarsi di un servizio cluster hello, aggiungere e rimuovere requisiti e così via. Si occupa Service Fabric per garantire che servizio hello rimane attivo e disponibili anche quando questi tipi di modifiche vengono apportati.
+Uno dei vantaggi dei vincoli di posizionamento di un servizio consiste nel fatto che possono essere aggiornati in modo dinamico durante la fase di esecuzione. Se necessario, è quindi possibile spostare un servizio nel cluster, aggiungere e rimuovere requisiti e così via. Service Fabric assicura che il servizio sia sempre attivo e disponibile, anche durante l'applicazione di questi tipi di modifiche.
 
 C#:
 
@@ -367,23 +367,23 @@ Powershell:
 Update-ServiceFabricService -Stateful -ServiceName $serviceName -PlacementConstraints "NodeType == NodeType01"
 ```
 
-I vincoli di posizionamento vengono specificati per ogni istanza del servizio denominata in modo differente. Eseguire gli aggiornamenti sempre hello di (sovrascrittura) quanto specificato in precedenza.
+I vincoli di posizionamento vengono specificati per ogni istanza del servizio denominata in modo differente. Gli aggiornamenti sostituiscono (sovrascrivono) sempre quanto specificato in precedenza.
 
-definizione di cluster Hello definisce le proprietà di hello in un nodo. Per modificare le proprietà di un nodo è necessario un aggiornamento della configurazione del cluster. L'aggiornamento di proprietà di un nodo richiede ogni tooreport toorestart nodo interessato le nuove proprietà. Questi aggiornamenti in sequenza sono gestiti da Service Fabric.
+La definizione del cluster definisce le proprietà in un nodo. Per modificare le proprietà di un nodo è necessario un aggiornamento della configurazione del cluster. L'aggiornamento delle proprietà di un nodo richiede che ogni nodo in questione venga riavviato per segnalare le nuove proprietà. Questi aggiornamenti in sequenza sono gestiti da Service Fabric.
 
 ## <a name="describing-and-managing-cluster-resources"></a>Descrizione e gestione delle risorse del cluster
-Uno dei più importanti dei processi di qualsiasi orchestrator è toohelp hello gestire il consumo di risorse cluster hello. Gestione delle risorse del cluster può avere significati diversi. Innanzitutto, è necessario verificare che i computer non siano sovraccarichi, ovvero che non eseguano più servizi di quanti ne possano gestire. In secondo luogo, è bilanciamento del carico e ottimizzazione che è critico toorunning servizi in modo efficiente. Costo effettivo o prestazioni offerte di servizio riservati non possono consentire a caldo toobe alcuni nodi mentre altri sono freddi. I nodi a caldo provocare contesa tooresource riduzioni delle prestazioni e nodi freddo rappresentano sprecato e risorse aumento dei costi. 
+Uno dei processi più importanti di un agente di orchestrazione consiste nel semplificare la gestione dell'utilizzo delle risorse del cluster. Gestione delle risorse del cluster può avere significati diversi. Innanzitutto, è necessario verificare che i computer non siano sovraccarichi, ovvero che non eseguano più servizi di quanti ne possano gestire. In secondo luogo, il bilanciamento e l'ottimizzazione sono di fondamentale importanza per l'esecuzione efficiente dei servizi. Un'offerta di servizi conveniente o esigente in termini di prestazioni non può permettere un eccessivo sbilanciamento di utilizzo dei nodi. I nodi più usati si contendono le risorse offrendo prestazioni scarse mentre i nodi poco usati sono uno spreco di risorse e costi. 
 
-Service Fabric rappresenta le risorse come `Metrics`. Le metriche sono qualsiasi risorsa fisica o logica che si desidera toodescribe tooService dell'infrastruttura. ad esempio "WorkQueueDepth" o "MemoryInMb". Per informazioni sulle risorse fisiche hello che può essere regolato a Service Fabric in nodi, vedere [governance delle risorse](service-fabric-resource-governance.md). Per informazioni sulla configurazione di metriche personalizzate e sul loro utilizzo, vedere [questo articolo](service-fabric-cluster-resource-manager-metrics.md)
+Service Fabric rappresenta le risorse come `Metrics`. Per metrica si intende qualsiasi risorsa logica o fisica che deve essere descritta per Service Fabric, ad esempio "WorkQueueDepth" o "MemoryInMb". Per informazioni sulle risorse fisiche che Service Fabric può gestire sui nodi, vedere [governance delle risorse](service-fabric-resource-governance.md). Per informazioni sulla configurazione di metriche personalizzate e sul loro utilizzo, vedere [questo articolo](service-fabric-cluster-resource-manager-metrics.md)
 
-Le metriche sono diverse dai vincoli di posizionamento e dalle proprietà del nodo. Proprietà dei nodi sono statici descrittori degli stessi nodi di hello. Le metriche descrivono le risorse di cui dispongono i nodi e che vengono consumate dai servizi quando vengono eseguiti in un nodo. Proprietà di un nodo può essere "HasSSD" ed è stato possibile impostare tootrue o false. quantità di Hello di spazio disponibile su tale unità SSD e la quantità è utilizzato da servizi sarebbe una metrica, ad esempio "DriveSpaceInMb". 
+Le metriche sono diverse dai vincoli di posizionamento e dalle proprietà del nodo. Le proprietà dei nodi sono descrittori statici dei nodi stessi. Le metriche descrivono le risorse di cui dispongono i nodi e che vengono consumate dai servizi quando vengono eseguiti in un nodo. Una proprietà del nodo potrebbe essere "HasSSD" e potrebbe essere impostata su true o false. La quantità di spazio disponibile su tale unità SSD (e la quantità usata dai servizi) può essere una metrica come "DriveSpaceInMb". 
 
-È importante toonote che esattamente come per i vincoli di posizione e le proprietà di nodo, hello gestione delle risorse Cluster dell'infrastruttura del servizio non ha capito quali nomi hello hello metriche medio. I nomi delle metriche sono semplicemente stringhe. È un'unità toodeclare buona norma come parte di nomi di metrica hello creati quando potrebbe essere ambigua.
+È importante notare che, come per i vincoli di posizionamento e le proprietà del nodo, Cluster Resource Manager di Service Fabric non sa cosa significano i nomi delle metriche. I nomi delle metriche sono semplicemente stringhe. È consigliabile dichiarare l'unità come parte del nome della metrica creato quando potrebbe essere ambigua.
 
 ## <a name="capacity"></a>Capacity
-Se si disattiva completamente il *bilanciamento*di tutte le risorse, Cluster Resource Manager di Service Fabric tenta comunque di assicurare che nessun nodo superi la propria capacità consentita. I sovraccarichi di capacità di gestione è possibile, a meno che non cluster hello è piena o il carico di lavoro di hello è maggiore di qualsiasi nodo. Capacità è un altro *vincolo* tale gestore delle risorse Cluster hello utilizza toounderstand la quantità di una risorsa di un nodo è. La capacità residua viene registrata anche per i cluster di hello nel suo complesso. Sia la capacità di hello e utilizzo di hello a livello di servizio hello sono espressi in termini di metriche. Ad esempio, la metrica hello potrebbe essere "ClientConnections" e un determinato nodo potrebbe avere una capacità per "ClientConnections" di 32768. Gli altri nodi possono avere altri limiti di un servizio in esecuzione nel nodo possono ad esempio attualmente richiedere 32256 della metrica hello "ClientConnections".
+Se si disattiva completamente il *bilanciamento*di tutte le risorse, Cluster Resource Manager di Service Fabric tenta comunque di assicurare che nessun nodo superi la propria capacità consentita. Gestire i sovraccarichi di capacità è possibile, a meno che il cluster non sia pieno o il carico di lavoro sia maggiore rispetto a qualsiasi altro nodo. La capacità è un altro *vincolo* usato da Cluster Resource Manager per conoscere la quantità di una risorsa posseduta da un nodo. La capacità rimanente verrà registrata anche per il cluster nel suo complesso. Sia la capacità che l'utilizzo a livello di servizio sono espressi in termini di metriche. Ad esempio la metrica potrebbe essere "ClientConnections" e un determinato nodo potrebbe avere una capacità "ClientConnections" di 32768. Gli altri nodi possono avere altri limiti. Alcuni servizi in esecuzione nel nodo possono dichiarare che esso consumi al momento 32256 della metrica "ClientConnections".
 
-Durante la fase di esecuzione, hello gestione delle risorse Cluster tiene traccia delle relative capacità rimanenti nel cluster hello e sui nodi. In ordine tootrack hello capacità gestione delle risorse Cluster sottrae sull'utilizzo di ciascun servizio dalla capacità del nodo in cui viene eseguito il servizio di hello. Con queste informazioni, hello servizio di gestione delle risorse Cluster dell'infrastruttura può stabilire dove tooplace o spostare le repliche in modo che i nodi non superare la capacità.
+In fase di esecuzione, Cluster Resource Manager tiene traccia delle capacità rimanenti nel cluster e nei nodi. A tal fine, sottrae quanto usato da ciascun servizio dalla capacità del nodo in cui esso viene eseguito. Queste informazioni consentono a Cluster Resource Manager di Service Fabric di individuare la posizione ottimale per l'inserimento o lo spostamento di repliche, in modo che i nodi non superino le rispettive capacità.
 
 <center>
 ![Nodi e capacità del cluster][Image7]
@@ -408,7 +408,7 @@ Powershell:
 New-ServiceFabricService -ApplicationName $applicationName -ServiceName $serviceName -ServiceTypeName $serviceTypeName –Stateful -MinReplicaSetSize 3 -TargetReplicaSetSize 3 -PartitionSchemeSingleton –Metric @("ClientConnections,High,1024,0)
 ```
 
-È possibile visualizzare i valori riferiti alla capacità definita nel manifesto del cluster hello:
+È possibile vedere le capacità definite nel manifesto del cluster:
 
 ClusterManifest.xml
 
@@ -433,19 +433,19 @@ mediante ClusterConfig.json per le distribuzioni autonome o Template.json per cl
 ],
 ```
 
-In genere il carico di un servizio cambia in modo dinamico. Si supponga che il caricamento di una replica di "ClientConnections" è stato modificato da 1024 too2048, ma nodo hello è in esecuzione su quindi disponesse di 512 capacità rimanente per tale metrica. Ora il posizionamento della replica o dell'istanza non è valido, poiché in quel nodo non c'è spazio sufficiente. Gestione delle risorse Cluster Hello può tookick in e ottenere nodo hello capacità minore. Riduce il carico sul nodo hello capacità di failover mediante lo spostamento di uno o più repliche hello o istanze da tale tooother dei nodi. Quando si spostano le repliche, hello gestione delle risorse Cluster tenta costo hello toominimize di tali spostamenti di tipo. Viene descritto il costo dello spostamento in [questo articolo](service-fabric-cluster-resource-manager-movement-cost.md) più su hello gestione delle risorse Cluster di ribilanciamento strategie e le regole è descritto [qui](service-fabric-cluster-resource-manager-metrics.md).
+In genere il carico di un servizio cambia in modo dinamico. Si supponga che il carico di una replica di "ClientConnections" sia stato modificato da 1024 a 2048, ma il nodo in cui era in esecuzione in quel momento avesse solo una disponibilità residua della metrica pari a 512. Ora il posizionamento della replica o dell'istanza non è valido, poiché in quel nodo non c'è spazio sufficiente. Cluster Resource Manager deve intervenire e riportare il nodo sotto il valore di capacità massimo. A tal fine, deve spostare una o più repliche o istanze da quel nodo ad altri nodi. Quando sposta le repliche, Cluster Resource Manager tenta di ridurre al minimo il costo di tali spostamenti. I costi degli spostamenti vengono approfonditi in [questo articolo](service-fabric-cluster-resource-manager-movement-cost.md). Altre informazioni sulle strategie e le regole di ribilanciamento di Cluster Resource Manager sono disponibili [qui](service-fabric-cluster-resource-manager-metrics.md).
 
 ## <a name="cluster-capacity"></a>Capacità del cluster
-In che modo hello gestione delle risorse Cluster di Service Fabric keep hello complessivo del cluster da troppo piena? Con il carico dinamico non è possibile intervenire in modo netto. I servizi possono avere i picchi di carico indipendentemente dalle azioni eseguite da gestore delle risorse Cluster hello. Di conseguenza un cluster che dispone di molta capacità oggi può non essere abbastanza potente domani se l'utilizzo aumenta. Ciò premesso, esistono alcuni controlli sono ricorrere alla tooprevent problemi. innanzitutto Hello che possiamo è impedire hello creazione di nuovi carichi di lavoro che provocherebbero hello cluster toobecome completo.
+In che modo Cluster Resource Manager di Service Fabric impedisce il caricamento eccessivo del cluster nel suo complesso? Con il carico dinamico non è possibile intervenire in modo netto. I servizi possono subire picchi di carico indipendentemente dalle azioni eseguite da Cluster Resource Manager. Di conseguenza un cluster che dispone di molta capacità oggi può non essere abbastanza potente domani se l'utilizzo aumenta. Detto ciò, sono stati integrati alcuni controlli per evitare problemi. È prima di tutto possibile impedire la creazione di nuovi carichi di lavoro che riempirebbero il cluster.
 
-Si supponga di creare un servizio senza stato al quale è associato un carico. Si supponga che il servizio hello interessare la metrica "DiskSpaceInMb" hello. Si supponga inoltre che sia continua tooconsume cinque unità del "DiskSpaceInMb" per ogni istanza del servizio hello. Si desidera toocreate tre istanze del servizio hello. L'installazione è riuscita. In modo che significa che è necessario 15 unità del toobe "DiskSpaceInMb" presenti nel cluster hello in ordine per noi tooeven essere in grado di toocreate queste istanze del servizio. Gestione delle risorse Cluster Hello calcola continuamente capacità hello e l'utilizzo di ogni metrica pertanto può determinare residua hello cluster hello. Se non vi è spazio sufficiente, gestione delle risorse Cluster Rifiuta hello hello creare chiamata del servizio.
+Si supponga di creare un servizio senza stato al quale è associato un carico. Si immagini che il servizio monitori la metrica "DiskSpaceInMb". Si supponga anche che consumerà cinque unità di "DiskSpaceInMb" per ogni istanza del servizio. Si vogliono creare tre istanze del servizio. L'installazione è riuscita. È quindi necessario che 15 unità di "DiskSpaceInMb" siano presenti nel cluster per consentire la mera creazione di queste istanze del servizio. Cluster Resource Manager calcola continuamente la capacità e il consumo di ogni metrica e può pertanto determinare la capacità residua nel cluster. Se non c'è spazio sufficiente, Cluster Resource Manager rifiuta la chiamata di creazione del servizio.
 
-Poiché il requisito di hello è solo che vi siano 15 unità disponibile, questo stato possibile allocare spazio molti modi diversi. Ad esempio potrebbe esserci un'unità di capacità rimanente in 15 nodi diversi oppure tre unità di capacità rimanenti in cinque nodi diversi. Se hello Gestione risorse di Cluster possibile ridisporre operazioni in modo è 5 unità disponibile in tre nodi, viene inserito il servizio di hello. La ridisposizione cluster hello è generalmente possibile, a meno che non cluster hello è quasi pieno o servizi esistenti hello non possono essere consolidati per qualche motivo.
+Poiché l'unico requisito è che ci siano 15 unità disponibili, questo spazio può essere allocato in molti modi diversi. Ad esempio potrebbe esserci un'unità di capacità rimanente in 15 nodi diversi oppure tre unità di capacità rimanenti in cinque nodi diversi. Se Cluster Resource Manager è in grado di sistemare le cose in modo che ci siano cinque unità disponibili in tre nodi, alla fine posizionerà il servizio. In genere la riorganizzazione del cluster è possibile, a meno che il cluster non sia quasi pieno o che, per qualsiasi motivo, non sia possibile consolidare i servizi esistenti.
 
 ## <a name="buffered-capacity"></a>Capacità in buffering
-Capacità di memorizzazione nel buffer è un'altra funzionalità di gestione delle risorse Cluster hello. Consente di prenotazione di alcune parti del hello capacità del nodo Generale. Questo buffer di capacità è servizi tooplace utilizzato solo durante gli aggiornamenti e gli errori di nodo. La capacità in buffering è specificata a livello globale per ogni metrica e per tutti i nodi. il valore di Hello selezionato per la capacità riservata hello è una funzione del numero di hello di domini di errore e l'aggiornamento disporre nel cluster hello. Quando è presente un numero maggiore di domini di errore e di aggiornamento è possibile scegliere un valore inferiore per il buffer di capacità. Se si hanno più domini, è possibile prevedere più piccole quantità di toobe il cluster non disponibile durante gli aggiornamenti e gli errori. Specifica di capacità del buffer ha senso solo se si dispone anche di capacità del nodo hello specificato per una metrica.
+La capacità in buffering è un'altra funzionalità di Cluster Resource Manager, che consente di riservare parti della capacità complessiva del nodo. Questo buffer di capacità viene usato solo per posizionare i servizi durante gli aggiornamenti e gli errori del nodo. La capacità in buffering è specificata a livello globale per ogni metrica e per tutti i nodi. Il valore scelto per la capacità di riserva è una funzione del numero di domini di errore e di aggiornamento presenti nel cluster. Quando è presente un numero maggiore di domini di errore e di aggiornamento è possibile scegliere un valore inferiore per il buffer di capacità. Se si dispone di molti domini, ci si può aspettare la mancata disponibilità di porzioni inferiori del cluster durante gli aggiornamenti e gli errori. Specificare capacità in buffering risulta utile solo se è stata specificata anche la capacità del nodo per una metrica.
 
-Di seguito è riportato un esempio di come toospecify memorizzato nel buffer di capacità:
+Di seguito è riportato un esempio di come specificare la capacità di memorizzazione nel buffer:
 
 ClusterManifest.xml
 
@@ -476,15 +476,15 @@ mediante ClusterConfig.json per le distribuzioni autonome o Template.json per i 
 ]
 ```
 
-creazione di Hello dei nuovi servizi non riesce quando cluster hello ha esaurito la capacità di memorizzazione nel buffer per una metrica. Impedire la creazione di hello di nuovo buffer di hello toopreserve services garantisce che gli errori e gli aggiornamenti non comportano nodi toogo capacità di failover. Il buffer di capacità è un'opzione facoltativa ma consigliata per tutti i cluster che definiscono una capacità per una metrica.
+La creazione di nuovi servizi non riesce quando il cluster esaurisce il buffer di capacità per una metrica. Impedire la creazione di nuovi servizi per conservare il buffer garantisce che gli errori e gli aggiornamenti non causino il superamento della capacità dei nodi. Il buffer di capacità è un'opzione facoltativa ma consigliata per tutti i cluster che definiscono una capacità per una metrica.
 
-Gestione delle risorse Cluster Hello espone queste informazioni di carico. Per ogni metrica, le informazioni includono: 
-  - Hello memorizzato nel buffer delle impostazioni di capacità
-  - capacità totale Hello
-  - utilizzo corrente di Hello
+Cluster Resource Manager espone le informazioni sul carico seguenti. Per ogni metrica, le informazioni includono: 
+  - impostazioni della capacità di buffering
+  - capacità totale
+  - consumo corrente
   - se ogni metrica può essere considerata bilanciata oppure no
-  - statistiche relative a deviazione standard hello
-  - nodi di Hello che hanno hello carico minimo e la maggior parte delle  
+  - statistiche relative alla deviazione standard
+  - nodi con più e meno carico  
   
 Di seguito un esempio dell'output:
 
@@ -515,10 +515,10 @@ LoadMetricInformation     :
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per informazioni sul flusso hello di architettura e le informazioni all'interno di gestione delle risorse Cluster hello, estrarre [in questo articolo](service-fabric-cluster-resource-manager-architecture.md)
-* La definizione di metriche di deframmentazione in linea è tooconsolidate unidirezionale carico sui nodi anziché distribuirlo. toolearn come tooconfigure deframmentazione, fare riferimento troppo[in questo articolo](service-fabric-cluster-resource-manager-defragmentation-metrics.md)
-* Iniziare dall'inizio hello e [ottenere un servizio di gestione delle risorse Cluster dell'infrastruttura di toohello introduzione](service-fabric-cluster-resource-manager-introduction.md)
-* toofind out sulla modalità di gestione delle risorse Cluster hello gestisce e bilancia il carico nel cluster hello, controllare l'articolo hello [bilanciamento del carico](service-fabric-cluster-resource-manager-balancing.md)
+* Per informazioni sull'architettura e sul flusso di informazioni in Cluster Resource Manager, vedere [questo articolo](service-fabric-cluster-resource-manager-architecture.md)
+* Definire la metrica di deframmentazione rappresenta un modo per consolidare il carico sui nodi anziché distribuirlo. Per informazioni su come configurare la deframmentazione, vedere [questo articolo](service-fabric-cluster-resource-manager-defragmentation-metrics.md)
+* Partire dall'inizio e vedere l' [introduzione a Cluster Resource Manager di Service Fabric](service-fabric-cluster-resource-manager-introduction.md)
+* Per informazioni sul modo in cui Cluster Resource Manager gestisce e bilancia il carico nel cluster, vedere l'articolo relativo al [bilanciamento del carico](service-fabric-cluster-resource-manager-balancing.md)
 
 [Image1]:./media/service-fabric-cluster-resource-manager-cluster-description/cluster-fault-domains.png
 [Image2]:./media/service-fabric-cluster-resource-manager-cluster-description/cluster-uneven-fault-domain-layout.png

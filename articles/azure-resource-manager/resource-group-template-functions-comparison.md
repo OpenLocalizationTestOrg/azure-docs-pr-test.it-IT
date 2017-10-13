@@ -1,6 +1,6 @@
 ---
-title: funzioni di modello di gestione risorse aaaAzure - confronto | Documenti Microsoft
-description: Viene descritto toouse funzioni hello un valori toocompare modello di gestione risorse di Azure.
+title: Funzioni di confronto del modello di Azure Resource Manager | Microsoft Docs
+description: "Informazioni sulle funzioni che è possibile usare in un modello di Azure Resource Manager per confrontare valori."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 08/01/2017
+ms.date: 09/05/2017
 ms.author: tomfitz
-ms.openlocfilehash: ebcfc9ed6c93f8b540ec4c066e9457c621800b7b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3291d545bc7a66ffa9b4845acd890a714cf84ef8
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="comparison-functions-for-azure-resource-manager-templates"></a>Funzioni di confronto per i modelli di Azure Resource Manager
 
@@ -39,16 +39,16 @@ Controlla se due valori sono uguali tra loro.
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| arg1 |Sì |int, stringa, matrice o oggetto |Hello primo valore toocheck per verificarne l'uguaglianza. |
-| arg2 |Sì |int, stringa, matrice o oggetto |Hello secondo valore toocheck per verificarne l'uguaglianza. |
+| arg1 |Sì |int, stringa, matrice o oggetto |Il primo valore per verificare l'uguaglianza. |
+| arg2 |Sì |int, stringa, matrice o oggetto |Il secondo valore per verificare l'uguaglianza. |
 
 ### <a name="return-value"></a>Valore restituito
 
-Restituisce **True** se hello valori sono uguali; in caso contrario, **False**.
+Restituisce **True** se i valori sono uguali; in caso contrario, restituisce **False**.
 
 ### <a name="remarks"></a>Osservazioni
 
-Hello funzione equals viene spesso usato con hello `condition` tootest elemento che viene implementata una risorsa.
+La funzione uguale a viene spesso usata con l'elemento `condition` per verificare se la risorsa viene distribuita.
 
 ```json
 {
@@ -67,7 +67,7 @@ Hello funzione equals viene spesso usato con hello `condition` tootest elemento 
 
 ### <a name="example"></a>Esempio
 
-modello di esempio Hello controlla i tipi diversi di valori per verificarne l'uguaglianza. Tutti i valori predefiniti di hello restituiscono True.
+Il [modello di esempio](https://github.com/Azure/azure-docs-json-samples/blob/master/azure-resource-manager/functions/equals.json) seguente controlla tipi diversi di valori per verificarne l'uguaglianza. Tutti i valori predefiniti restituiscono True.
 
 ```json
 {
@@ -130,7 +130,7 @@ modello di esempio Hello controlla i tipi diversi di valori per verificarne l'ug
 }
 ```
 
-Hello output di hello precedente esempio con i valori predefiniti di hello è:
+L'output dell'esempio precedente con i valori predefiniti è il seguente:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
@@ -139,8 +139,19 @@ Hello output di hello precedente esempio con i valori predefiniti di hello è:
 | checkArrays | Booleano | True  |
 | checkObjects | Booleano | True  |
 
+Per distribuire questo modello di esempio con l'interfaccia della riga di comando di Azure, usare:
 
-Hello seguente utilizza [non](resource-group-template-functions-logical.md#not) con **è uguale a**.
+```azurecli-interactive
+az group deployment create -g functionexamplegroup --template-uri https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/azure-resource-manager/functions/equals.json
+```
+
+Per distribuire questo modello di esempio con PowerShell, usare:
+
+```powershell
+New-AzureRmResourceGroupDeployment -ResourceGroupName functionexamplegroup -TemplateUri https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/azure-resource-manager/functions/equals.json 
+```
+
+Il [modello di esempio](https://github.com/Azure/azure-docs-json-samples/blob/master/azure-resource-manager/functions/not-equals.json) seguente usa [not](resource-group-template-functions-logical.md#not) con **equals**.
 
 ```json
 {
@@ -154,34 +165,46 @@ Hello seguente utilizza [non](resource-group-template-functions-logical.md#not) 
             "value": "[not(equals(1, 2))]"
         }
     }
+}
 ```
 
-output di Hello hello sopra riportato è:
+L'output dell'esempio precedente è:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
 | checkNotEquals | Booleano | True  |
 
+Per distribuire questo modello di esempio con l'interfaccia della riga di comando di Azure, usare:
+
+```azurecli-interactive
+az group deployment create -g functionexamplegroup --template-uri https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/azure-resource-manager/functions/not-equals.json
+```
+
+Per distribuire questo modello di esempio con PowerShell, usare:
+
+```powershell
+New-AzureRmResourceGroupDeployment -ResourceGroupName functionexamplegroup -TemplateUri https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/azure-resource-manager/functions/not-equals.json 
+```
 
 ## <a name="greater"></a>greater
 `greater(arg1, arg2)`
 
-Controlla se il primo valore di hello è maggiore del secondo valore hello.
+Controlla se il primo valore è maggiore del secondo.
 
-### <a name="parameters"></a>parameters
+### <a name="parameters"></a>Parametri
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| arg1 |Sì |int o stringa |primo valore Hello per confronto maggiore di hello. |
-| arg2 |Sì |int o stringa |secondo valore Hello per confronto maggiore di hello. |
+| arg1 |Sì |int o stringa |Il primo valore per il confronto del maggiore. |
+| arg2 |Sì |int o stringa |Il secondo valore per il confronto del maggiore. |
 
 ### <a name="return-value"></a>Valore restituito
 
-Restituisce **True** se hello primo valore è maggiore del secondo valore hello; in caso contrario, **False**.
+Restituisce **True** se il primo valore è maggiore del secondo; in caso contrario, restituisce **False**.
 
 ### <a name="example"></a>Esempio
 
-modello di esempio Hello controlla se un valore di hello è maggiore di hello altri.
+Il [modello di esempio](https://github.com/Azure/azure-docs-json-samples/blob/master/azure-resource-manager/functions/greater.json) segiente controlla se un valore è maggiore dell'altro.
 
 ```json
 {
@@ -220,33 +243,44 @@ modello di esempio Hello controlla se un valore di hello è maggiore di hello al
 }
 ```
 
-Hello output di hello precedente esempio con i valori predefiniti di hello è:
+L'output dell'esempio precedente con i valori predefiniti è il seguente:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
 | checkInts | Booleano | False |
 | checkStrings | Booleano | True  |
 
+Per distribuire questo modello di esempio con l'interfaccia della riga di comando di Azure, usare:
+
+```azurecli-interactive
+az group deployment create -g functionexamplegroup --template-uri https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/azure-resource-manager/functions/greater.json
+```
+
+Per distribuire questo modello di esempio con PowerShell, usare:
+
+```powershell
+New-AzureRmResourceGroupDeployment -ResourceGroupName functionexamplegroup -TemplateUri https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/azure-resource-manager/functions/greater.json 
+```
 
 ## <a name="greaterorequals"></a>greaterOrEquals
 `greaterOrEquals(arg1, arg2)`
 
-Controlla se hello primo valore è maggiore o uguale toohello secondo valore.
+Controlla se il primo valore è maggiore o uguale al secondo valore.
 
-### <a name="parameters"></a>parameters
+### <a name="parameters"></a>Parametri
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| arg1 |Sì |int o stringa |primo valore Hello per il confronto maggiore o uguale di hello. |
-| arg2 |Sì |int o stringa |secondo valore Hello per il confronto maggiore o uguale di hello. |
+| arg1 |Sì |int o stringa |Il primo valore per il confronto del maggiore e dell'uguaglianza. |
+| arg2 |Sì |int o stringa |Il secondo valore per il confronto del maggiore e dell'uguaglianza. |
 
 ### <a name="return-value"></a>Valore restituito
 
-Restituisce **True** se hello primo valore è maggiore o uguale toohello secondo; in caso contrario, **False**.
+Restituisce **True** se il primo valore è maggiore o uguale al secondo; in caso contrario, restituisce **False**.
 
 ### <a name="example"></a>Esempio
 
-modello di esempio Hello controlla se un valore di hello è maggiore o uguale toohello altri.
+Il [modello di esempio](https://github.com/Azure/azure-docs-json-samples/blob/master/azure-resource-manager/functions/greaterorequals.json) seguente controlla se un valore è maggiore o uguale all'altro.
 
 ```json
 {
@@ -285,34 +319,44 @@ modello di esempio Hello controlla se un valore di hello è maggiore o uguale to
 }
 ```
 
-Hello output di hello precedente esempio con i valori predefiniti di hello è:
+L'output dell'esempio precedente con i valori predefiniti è il seguente:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
 | checkInts | Booleano | False |
 | checkStrings | Booleano | True  |
 
+Per distribuire questo modello di esempio con l'interfaccia della riga di comando di Azure, usare:
 
+```azurecli-interactive
+az group deployment create -g functionexamplegroup --template-uri https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/azure-resource-manager/functions/greaterorequals.json
+```
+
+Per distribuire questo modello di esempio con PowerShell, usare:
+
+```powershell
+New-AzureRmResourceGroupDeployment -ResourceGroupName functionexamplegroup -TemplateUri https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/azure-resource-manager/functions/greaterorequals.json 
+```
 
 ## <a name="less"></a>less
 `less(arg1, arg2)`
 
-Controlla se hello primo valore è minore di hello secondo valore.
+Controlla se il primo valore è minore del secondo.
 
-### <a name="parameters"></a>parameters
+### <a name="parameters"></a>Parametri
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| arg1 |Sì |int o stringa |primo valore Hello per hello meno confronto. |
-| arg2 |Sì |int o stringa |secondo valore Hello per hello meno confronto. |
+| arg1 |Sì |int o stringa |Il primo valore per il confronto del minore. |
+| arg2 |Sì |int o stringa |Il secondo valore per il confronto del minore. |
 
 ### <a name="return-value"></a>Valore restituito
 
-Restituisce **True** se hello primo valore è minore di hello secondo valore; in caso contrario, **False**.
+Restituisce **True** se il primo valore è inferiore al secondo; in caso contrario, restituisce **False**.
 
 ### <a name="example"></a>Esempio
 
-modello di esempio Hello controlla se un valore di hello è minore di hello altri.
+Il [modello di esempio](https://github.com/Azure/azure-docs-json-samples/blob/master/azure-resource-manager/functions/less.json) seguente controlla se un valore è minore dell'altro.
 
 ```json
 {
@@ -351,33 +395,44 @@ modello di esempio Hello controlla se un valore di hello è minore di hello altr
 }
 ```
 
-Hello output di hello precedente esempio con i valori predefiniti di hello è:
+L'output dell'esempio precedente con i valori predefiniti è il seguente:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
 | checkInts | Booleano | True  |
 | checkStrings | Booleano | False |
 
+Per distribuire questo modello di esempio con l'interfaccia della riga di comando di Azure, usare:
+
+```azurecli-interactive
+az group deployment create -g functionexamplegroup --template-uri https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/azure-resource-manager/functions/less.json
+```
+
+Per distribuire questo modello di esempio con PowerShell, usare:
+
+```powershell
+New-AzureRmResourceGroupDeployment -ResourceGroupName functionexamplegroup -TemplateUri https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/azure-resource-manager/functions/less.json 
+```
 
 ## <a name="lessorequals"></a>lessOrEquals
 `lessOrEquals(arg1, arg2)`
 
-Controlla se il primo valore di hello è minore o uguale toohello secondo valore.
+Controlla se il primo valore è minore o uguale al secondo valore.
 
-### <a name="parameters"></a>parameters
+### <a name="parameters"></a>Parametri
 
 | Parametro | Obbligatorio | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
-| arg1 |Sì |int o stringa |Hello primo valore per hello minore o uguale a confronto. |
-| arg2 |Sì |int o stringa |secondo valore di Hello per hello minore o uguale a confronto. |
+| arg1 |Sì |int o stringa |Il primo valore per il confronto del minore o dell'uguaglianza. |
+| arg2 |Sì |int o stringa |Il secondo valore per il confronto del minore o dell'uguaglianza. |
 
 ### <a name="return-value"></a>Valore restituito
 
-Restituisce **True** se hello primo valore è minore o uguale toohello secondo valore; in caso contrario, **False**.
+Restituisce **True** se il primo valore è minore o uguale al secondo; in caso contrario, restituisce **False**.
 
 ### <a name="example"></a>Esempio
 
-Hello modello di esempio controlla se un valore di hello è minore o uguale toohello altri.
+Il [modello di esempio](https://github.com/Azure/azure-docs-json-samples/blob/master/azure-resource-manager/functions/lessorequals.json) seguente controlla se un valore è minore o uguale all'altro.
 
 ```json
 {
@@ -416,18 +471,28 @@ Hello modello di esempio controlla se un valore di hello è minore o uguale tooh
 }
 ```
 
-Hello output di hello precedente esempio con i valori predefiniti di hello è:
+L'output dell'esempio precedente con i valori predefiniti è il seguente:
 
 | Nome | Tipo | Valore |
 | ---- | ---- | ----- |
 | checkInts | Booleano | True  |
 | checkStrings | Booleano | False |
 
+Per distribuire questo modello di esempio con l'interfaccia della riga di comando di Azure, usare:
 
+```azurecli-interactive
+az group deployment create -g functionexamplegroup --template-uri https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/azure-resource-manager/functions/lessorequals.json
+```
+
+Per distribuire questo modello di esempio con PowerShell, usare:
+
+```powershell
+New-AzureRmResourceGroupDeployment -ResourceGroupName functionexamplegroup -TemplateUri https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/azure-resource-manager/functions/lessorequals.json 
+```
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per una descrizione delle sezioni hello in un modello di gestione risorse di Azure, vedere [modelli Authoring Azure Resource Manager](resource-group-authoring-templates.md).
-* toomerge più modelli, vedere [con modelli collegati con Azure Resource Manager](resource-group-linked-templates.md).
-* tooiterate un numero specificato di volte durante la creazione di un tipo di risorsa, vedere [creare più istanze delle risorse in Azure Resource Manager](resource-group-create-multiple.md).
-* toosee come modello hello toodeploy è stato creato, vedere [distribuire un'applicazione con il modello di gestione risorse di Azure](resource-group-template-deploy.md).
+* Per una descrizione delle sezioni in un modello di Azure Resource Manager, vedere [Creazione di modelli di Azure Resource Manager](resource-group-authoring-templates.md).
+* Per unire più modelli, vedere [Uso di modelli collegati con Azure Resource Manager](resource-group-linked-templates.md).
+* Per eseguire un'iterazione di un numero di volte specificato durante la creazione di un tipo di risorsa, vedere [Creare più istanze di risorse in Gestione risorse di Azure](resource-group-create-multiple.md).
+* Per informazioni su come distribuire il modello che è stato creato, vedere [Distribuire un'applicazione con un modello di Azure Resource Manager](resource-group-template-deploy.md).
 

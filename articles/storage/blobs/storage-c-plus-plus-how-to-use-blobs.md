@@ -1,6 +1,6 @@
 ---
-title: aaaHow toouse blob archiviazione (oggetto) da C++ | Documenti Microsoft
-description: Archiviare dati non strutturati nel cloud hello con archiviazione Blob di Azure (archiviazione di oggetti).
+title: Come usare l'archiviazione BLOB (archiviazione di oggetti) da C++ | Microsoft Docs
+description: Archiviare i dati non strutturati nel cloud con l'archivio BLOB (archivio di oggetti) di Azure.
 services: storage
 documentationcenter: .net
 author: michaelhauss
@@ -14,24 +14,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: michaelhauss
-ms.openlocfilehash: e63df4683e5c10c9f8fbe4106c655df61be0e1a6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: daf480b7be78dc001712010eac6386d4744c3c1d
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="how-toouse-blob-storage-from-c"></a>Come toouse archiviazione Blob da C++
+# <a name="how-to-use-blob-storage-from-c"></a>Come usare l'archiviazione BLOB da C++
 [!INCLUDE [storage-selector-blob-include](../../../includes/storage-selector-blob-include.md)]
 
 [!INCLUDE [storage-try-azure-tools-blobs](../../../includes/storage-try-azure-tools-blobs.md)]
 
 ## <a name="overview"></a>Panoramica
-Archiviazione Blob di Azure è un servizio che archivia i dati non strutturati nel cloud hello come oggetti/BLOB. Archivio BLOB può archiviare qualsiasi tipo di dati di testo o binari, ad esempio un documento, un file multimediale o un programma di installazione di un'applicazione. Archiviazione BLOB è anche archiviazione di oggetti di cui viene fatto riferimento tooas.
+L'archiviazione BLOB di Azure è un servizio che archivia dati non strutturati nel cloud come oggetti/BLOB. Archivio BLOB può archiviare qualsiasi tipo di dati di testo o binari, ad esempio un documento, un file multimediale o un programma di installazione di un'applicazione. L'archivio BLOB è anche denominato archivio di oggetti.
 
-Questa guida illustra come gli scenari comuni di tooperform utilizzando hello servizio di archiviazione Blob di Azure. esempi di Hello sono scritti in C++ e utilizzare hello [libreria Client di archiviazione di Azure per C++](http://github.com/Azure/azure-storage-cpp/blob/master/README.md). Hello scenari trattati includono **caricamento**, **elenco**, **download**, e **eliminazione** BLOB.  
+In questa guida verranno illustrati diversi scenari comuni di utilizzo del servizio di archiviazione BLOB di Azure. Gli esempi sono scritti in C++ e utilizzano la [libreria client di Archiviazione di Azure per C++](http://github.com/Azure/azure-storage-cpp/blob/master/README.md). Gli scenari illustrati includono **caricamento**, **visualizzazione in elenchi**, **download** e **eliminazione** di BLOB.  
 
 > [!NOTE]
-> Le destinazioni di questa guida hello Azure Storage Client Library per la versione 1.0.0 di C++ e versioni successive. Hello consiglia versione libreria di Client di archiviazione 2.2.0, disponibile tramite [NuGet](http://www.nuget.org/packages/wastorage) o [GitHub](https://github.com/Azure/azure-storage-cpp).
+> Questa guida fa riferimento alla libreria client di Archiviazione di Azure per C++ versione 1.0.0 e successive. La versione consigliata per la libreria client di archiviazione è la 2.2.0, disponibile tramite [NuGet](http://www.nuget.org/packages/wastorage) o [GitHub](https://github.com/Azure/azure-storage-cpp).
 > 
 > 
 
@@ -42,17 +42,17 @@ Questa guida illustra come gli scenari comuni di tooperform utilizzando hello se
 ## <a name="create-a-c-application"></a>Creazione di un’applicazione C++
 In questa guida verranno utilizzate le funzionalità di archiviazione che è possibile eseguire all’interno di un’applicazione C++.  
 
-toodo in tal caso, sarà necessario tooinstall hello Azure Storage Client Library per C++ e creare un account di archiviazione di Azure nella sottoscrizione di Azure.   
+A tal fine, sarà necessario installare la libreria client di Archiviazione di Azure per C++ e creare un account di archiviazione Azure nella propria sottoscrizione Azure.   
 
-tooinstall hello Azure Storage Client Library per C++, è possibile utilizzare hello dei seguenti metodi:
+Per installare la libreria client di Archiviazione di Azure per C++, è possibile utilizzare i metodi seguenti:
 
-* **Linux:** seguire istruzioni hello hello [Azure Storage Client Library per il file README C++](https://github.com/Azure/azure-storage-cpp/blob/master/README.md) pagina.  
-* **Windows:** in Visual Studio, fare clic su **Strumenti &gt; Gestione pacchetti NuGet &gt; console di Gestione pacchetti**. Comando che segue di tipo hello in hello [console di gestione pacchetti NuGet](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) e premere **invio**.  
+* **Linux:** seguire le istruzioni fornite nella pagina [README della libreria client di Archiviazione di Azure per C++](https://github.com/Azure/azure-storage-cpp/blob/master/README.md) .  
+* **Windows:** in Visual Studio, fare clic su **Strumenti > Gestione pacchetti NuGet > console di Gestione pacchetti**. Digitare il seguente comando nella [console Gestione pacchetti NuGet](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) e premere **INVIO**.  
   
      Install-Package knockoutjs
 
-## <a name="configure-your-application-tooaccess-blob-storage"></a>Configurare l'archiviazione Blob di tooaccess applicazione
-Aggiungere i seguenti hello includono i file di C++ hello in cui si desidera toouse hello archiviazione di Azure API tooaccess BLOB cima toohello istruzioni:  
+## <a name="configure-your-application-to-access-blob-storage"></a>Configurazione dell'applicazione per l'accesso all'archiviazione BLOB
+Aggiungere le istruzioni include seguenti all'inizio del file C++ in cui si desidera utilizzare le API di archiviazione di Azure per accedere ai BLOB:  
 
 ```cpp
 #include <was/storage_account.h>
@@ -60,43 +60,43 @@ Aggiungere i seguenti hello includono i file di C++ hello in cui si desidera too
 ```
 
 ## <a name="setup-an-azure-storage-connection-string"></a>Configurare una stringa di connessione di archiviazione di Azure
-Un client di archiviazione di Azure Usa un endpoint di toostore stringa di connessione archiviazione e le credenziali per l'accesso a servizi di gestione dati. Quando si esegue un'applicazione client, è necessario fornire stringa di connessione di archiviazione hello in hello seguente formato, utilizzando il nome di hello dell'archiviazione hello e account di archiviazione chiave di accesso di account di archiviazione hello elencato nella hello [il portale di Azure](https://portal.azure.com)per hello *AccountName* e *AccountKey* valori. Per informazioni sugli account di archiviazione e sulle chiavi di accesso, vedere [Informazioni sugli account di archiviazione di Azure](../common/storage-create-storage-account.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json). In questo esempio viene illustrato come dichiarare una stringa di connessione di un campo statico toohold hello:  
+I client di archiviazione di Azure usano le stringhe di connessione di archiviazione per archiviare endpoint e credenziali per l'accesso ai servizi di gestione dati. Quando si esegue un'applicazione client, è necessario specificare la stringa di connessione di archiviazione nel formato seguente, usando il nome dell'account di archiviazione e la chiave di accesso alle risorse di archiviazione per l'account di archiviazione elencato nel [portale di Azure](https://portal.azure.com) per i valori di *AccountName* e *AccountKey*. Per informazioni sugli account di archiviazione e sulle chiavi di accesso, vedere [Informazioni sugli account di archiviazione di Azure](../common/storage-create-storage-account.md?toc=%2fazure%2fstorage%2fblobs%2ftoc.json). In questo esempio viene illustrato come dichiarare un campo statico per memorizzare la stringa di connessione:  
 
 ```cpp
-// Define hello connection-string with your values.
+// Define the connection-string with your values.
 const utility::string_t storage_connection_string(U("DefaultEndpointsProtocol=https;AccountName=your_storage_account;AccountKey=your_storage_account_key"));
 ```
 
-tootest l'applicazione nel computer locale di Windows, è possibile utilizzare Microsoft Azure hello [emulatore di archiviazione](../storage-use-emulator.md) che viene installato con hello [Azure SDK](https://azure.microsoft.com/downloads/). emulatore di archiviazione Hello è un'utilità che simula hello Blob, coda e tabella servizi disponibili in Azure nel computer di sviluppo locale. Hello esempio seguente viene illustrato come è possibile dichiarare un emulatore di archiviazione locale di un campo statico toohold hello connessione stringa tooyour:
+Per eseguire il test dell'applicazione nel computer Windows locale, è possibile usare l'[emulatore di archiviazione](../storage-use-emulator.md) di Microsoft Azure installato con [Azure SDK](https://azure.microsoft.com/downloads/). L'emulatore di archiviazione è un'utilità che simula i servizi BLOB, tabelle e di accodamento, disponibile in Azure nel computer di sviluppo locale. Nell’esempio seguente viene illustrato come dichiarare un campo statico per memorizzare la stringa di connessione all’emulatore di archiviazione locale:
 
 ```cpp
-// Define hello connection-string with Azure Storage Emulator.
+// Define the connection-string with Azure Storage Emulator.
 const utility::string_t storage_connection_string(U("UseDevelopmentStorage=true;"));  
 ```
 
-toostart hello emulatore di archiviazione Azure, seleziona hello **avviare** hello o preme **Windows** chiave. Iniziare a digitare **emulatore di archiviazione Azure**e selezionare **emulatore di archiviazione di Microsoft Azure** elenco hello di applicazioni.  
+Per avviare l'emulatore di archiviazione di Azure, selezionare il pulsante **Start** o premere **WINDOWS** sulla tastiera. Digitare **Emulatore di archiviazione di Azure** e selezionare **Emulatore di archiviazione di Microsoft Azure** nell'elenco delle applicazioni.  
 
-Hello negli esempi seguenti si presuppongono che si usa uno di questi due metodi tooget hello stringa di connessione.  
+Gli esempi seguenti presumono che sia stato usato uno di questi due metodi per ottenere la stringa di connessione di archiviazione.  
 
 ## <a name="retrieve-your-connection-string"></a>Recuperare la stringa di connessione
-È possibile utilizzare hello **cloud_storage_account** classe toorepresent le informazioni sull'Account di archiviazione. tooretrieve informazioni dalla stringa di connessione di archiviazione hello dell'account di archiviazione, è possibile usare hello **analizzare** metodo.  
+Per visualizzare le informazioni dell'account di archiviazione, è possibile usare la classe **cloud_storage_account**. Per recuperare le informazioni sull'account di archiviazione dalla stringa di connessione alla risorsa di archiviazione, è possibile utilizzare il metodo **parse** .  
 
 ```cpp
 // Retrieve storage account from connection string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 ```
 
-Quindi, ottenere un riferimento tooa **cloud_blob_client** classe in quanto consente tooretrieve oggetti che rappresentano i contenitori e BLOB archiviati all'interno di hello servizio di archiviazione Blob. Hello codice seguente viene creata una **cloud_blob_client** oggetto utilizzando l'oggetto account di archiviazione hello è recuperato in precedenza:  
+Ottenere successivamente un riferimento alla classe **cloud_blob_client**, perché consente di recuperare oggetti che rappresentano contenitori e BLOB archiviati nel servizio di archiviazione BLOB. Il codice seguente crea un oggetto **cloud_blob_client** usando l'oggetto account di archiviazione recuperato in precedenza:  
 
 ```cpp
-// Create hello blob client.
+// Create the blob client.
 azure::storage::cloud_blob_client blob_client = storage_account.create_cloud_blob_client();  
 ```
 
 ## <a name="how-to-create-a-container"></a>Procedura: creare un contenitore
 [!INCLUDE [storage-container-naming-rules-include](../../../includes/storage-container-naming-rules-include.md)]
 
-Questo esempio viene illustrato come toocreate un contenitore, se non esiste già:  
+In questo esempio viene creato un contenitore, nel caso in cui non esista già:  
 
 ```cpp
 try
@@ -104,13 +104,13 @@ try
     // Retrieve storage account from connection string.
     azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-    // Create hello blob client.
+    // Create the blob client.
     azure::storage::cloud_blob_client blob_client = storage_account.create_cloud_blob_client();
 
-    // Retrieve a reference tooa container.
+    // Retrieve a reference to a container.
     azure::storage::cloud_blob_container container = blob_client.get_container_reference(U("my-sample-container"));
 
-    // Create hello container if it doesn't already exist.
+    // Create the container if it doesn't already exist.
     container.create_if_not_exists();
 }
 catch (const std::exception& e)
@@ -119,63 +119,63 @@ catch (const std::exception& e)
 }  
 ```
 
-Per impostazione predefinita, il nuovo contenitore di hello è privata ed è necessario specificare i BLOB toodownload chiave di accesso di archiviazione da questo contenitore. Se si desidera che il file di hello toomake (BLOB) all'interno di hello contenitore disponibili tooeveryone, è possibile impostare hello contenitore toobe pubblico utilizzando hello seguente codice:  
+Per impostazione predefinita, il nuovo contenitore è privato ed è necessario specificare la chiave di accesso alle risorse di archiviazione per scaricare BLOB da questo contenitore. Se si desidera rendere i file all'interno del contenitore disponibili per tutti, è possibile impostare il contenitore come pubblico utilizzando il codice seguente:  
 
 ```cpp
-// Make hello blob container publicly accessible.
+// Make the blob container publicly accessible.
 azure::storage::blob_container_permissions permissions;
 permissions.set_public_access(azure::storage::blob_container_public_access_type::blob);
 container.upload_permissions(permissions);  
 ```
 
-Chiunque sia connesso a Internet hello possa vedere i BLOB in un contenitore pubblico, ma è possibile modificarli o eliminarli solo se si dispone di hello chiave di accesso appropriati.  
+I BLOB in un contenitore pubblico sono visibili a tutti gli utenti di Internet, tuttavia è possibile modificarli o eliminarli solo se si dispone della chiave di accesso appropriata.  
 
 ## <a name="how-to-upload-a-blob-into-a-container"></a>Procedura: caricare un BLOB in un contenitore
-In Archiviazione BLOB di Azure sono supportati BLOB in blocchi e BLOB di pagine. Nella maggior parte delle hello blob in blocchi è consigliata toouse tipo hello.  
+In Archiviazione BLOB di Azure sono supportati BLOB in blocchi e BLOB di pagine. Nella maggior parte dei casi è consigliabile utilizzare il tipo di BLOB in blocchi.  
 
-tooupload un blob in blocchi file tooa, ottenere un riferimento a un contenitore e usarlo tooget un riferimento di blob di blocco. Dopo aver creato un riferimento di blob, è possibile caricare qualsiasi flusso di dati tooit dal chiamante hello **upload_from_stream** metodo. Questa operazione consente di creare blob hello se non è stata precedentemente esiste, o sovrascrivere il file se esiste. Hello seguente esempio viene illustrato come tooupload un blob in un contenitore e si presuppone che il contenitore hello è già stato creato.  
+Per caricare un file in un BLOB in blocchi, ottenere un riferimento a un contenitore e utilizzarlo per ottenere un riferimento a un BLOB in blocchi. Dopo aver ottenuto un riferimento al BLOB, è possibile caricarvi qualsiasi flusso di dati chiamando il metodo **upload_from_stream**. Questa operazione consentirà di creare il BLOB se non già esistente o di sovrascriverlo se già esistente. Nell'esempio seguente viene illustrato come caricare un BLOB in un contenitore e si presuppone che il contenitore sia già stato creato.  
 
 ```cpp
 // Retrieve storage account from connection string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create hello blob client.
+// Create the blob client.
 azure::storage::cloud_blob_client blob_client = storage_account.create_cloud_blob_client();
 
-// Retrieve a reference tooa previously created container.
+// Retrieve a reference to a previously created container.
 azure::storage::cloud_blob_container container = blob_client.get_container_reference(U("my-sample-container"));
 
-// Retrieve reference tooa blob named "my-blob-1".
+// Retrieve reference to a blob named "my-blob-1".
 azure::storage::cloud_block_blob blockBlob = container.get_block_blob_reference(U("my-blob-1"));
 
-// Create or overwrite hello "my-blob-1" blob with contents from a local file.
+// Create or overwrite the "my-blob-1" blob with contents from a local file.
 concurrency::streams::istream input_stream = concurrency::streams::file_stream<uint8_t>::open_istream(U("DataFile.txt")).get();
 blockBlob.upload_from_stream(input_stream);
 input_stream.close().wait();
 
-// Create or overwrite hello "my-blob-2" and "my-blob-3" blobs with contents from text.
-// Retrieve a reference tooa blob named "my-blob-2".
+// Create or overwrite the "my-blob-2" and "my-blob-3" blobs with contents from text.
+// Retrieve a reference to a blob named "my-blob-2".
 azure::storage::cloud_block_blob blob2 = container.get_block_blob_reference(U("my-blob-2"));
 blob2.upload_text(U("more text"));
 
-// Retrieve a reference tooa blob named "my-blob-3".
+// Retrieve a reference to a blob named "my-blob-3".
 azure::storage::cloud_block_blob blob3 = container.get_block_blob_reference(U("my-directory/my-sub-directory/my-blob-3"));
 blob3.upload_text(U("other text"));  
 ```
 
-In alternativa, è possibile utilizzare hello **upload_from_file** tooupload metodo un blob in blocchi tooa file.
+In alternativa, è possibile usare il metodo **upload_from_file** per caricare un file in un BLOB in blocchi.
 
-## <a name="how-to-list-hello-blobs-in-a-container"></a>Procedura: elencare i BLOB hello in un contenitore
-BLOB di hello toolist in un contenitore, prima di ottenere un riferimento di contenitore. È quindi possibile utilizzare del contenitore hello **list_blobs** BLOB hello tooretrieve di metodo e/o directory all'interno di esso. set completo di proprietà e metodi per un tipo restituito di hello tooaccess **list_blob_item**, è necessario chiamare hello **list_blob_item.as_blob** tooget metodo un **cloud_blob** oggetto, hello o **list_blob.as_directory** tooget metodo un oggetto cloud_blob_directory. Hello codice seguente viene illustrato come tooretrieve e output di hello URI di ogni elemento nel hello **risorse del contenitore di esempio** contenitore:
+## <a name="how-to-list-the-blobs-in-a-container"></a>Procedura: elencare i BLOB in un contenitore
+Per elencare i BLOB in un contenitore, ottenere prima un riferimento al contenitore. Sarà successivamente possibile usare il metodo **list_blobs** del contenitore per recuperare i BLOB e/o le directory in esso contenuti. Per accedere al set completo di proprietà e metodi per un **list_blob_item** restituito, è necessario chiamare il metodo **list_blob_item.as_blob** per ottenere un oggetto **cloud_blob** oppure il metodo **list_blob.as_directory** per ottenere un oggetto cloud_blob_directory. Nel codice seguente viene illustrato come recuperare e visualizzare l'URI di ciascun elemento del contenitore **my-sample-container** :
 
 ```cpp
 // Retrieve storage account from connection string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create hello blob client.
+// Create the blob client.
 azure::storage::cloud_blob_client blob_client = storage_account.create_cloud_blob_client();
 
-// Retrieve a reference tooa previously created container.
+// Retrieve a reference to a previously created container.
 azure::storage::cloud_blob_container container = blob_client.get_container_reference(U("my-sample-container"));
 
 // Output URI of each item.
@@ -196,22 +196,22 @@ for (auto it = container.list_blobs(); it != end_of_results; ++it)
 Per ulteriori informazioni sull'elenco di operazioni, vedere [elenco risorse di archiviazione Azure in C++](../storage-c-plus-plus-enumeration.md).
 
 ## <a name="how-to-download-blobs"></a>Procedura: scaricare i BLOB
-BLOB toodownload, recuperare innanzitutto un riferimento di blob e quindi chiamare hello **download_to_stream** metodo. esempio Hello utilizza hello **download_to_stream** metodo tootransfer hello blob contenuto tooa oggetto flusso che può quindi rendere persistente tooa file locale.  
+Per scaricare BLOB, recuperare prima un riferimento al BLOB e chiamare il metodo **download_to_stream**. Nell'esempio seguente viene usato il metodo **download_to_stream** per trasferire il contenuto del BLOB in un oggetto stream per poterlo mentenere in un file locale.  
 
 ```cpp
 // Retrieve storage account from connection string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create hello blob client.
+// Create the blob client.
 azure::storage::cloud_blob_client blob_client = storage_account.create_cloud_blob_client();
 
-// Retrieve a reference tooa previously created container.
+// Retrieve a reference to a previously created container.
 azure::storage::cloud_blob_container container = blob_client.get_container_reference(U("my-sample-container"));
 
-// Retrieve reference tooa blob named "my-blob-1".
+// Retrieve reference to a blob named "my-blob-1".
 azure::storage::cloud_block_blob blockBlob = container.get_block_blob_reference(U("my-blob-1"));
 
-// Save blob contents tooa file.
+// Save blob contents to a file.
 concurrency::streams::container_buffer<std::vector<uint8_t>> buffer;
 concurrency::streams::ostream output_stream(buffer);
 blockBlob.download_to_stream(output_stream);
@@ -223,53 +223,53 @@ outfile.write((char *)&data[0], buffer.size());
 outfile.close();  
 ```
 
-In alternativa, è possibile utilizzare hello **download_to_file** contenuto hello toodownload di metodo di un file tooa blob.
-Inoltre, è possibile utilizzare anche hello **download_text** contenuto hello toodownload di metodo di un blob come una stringa di testo.  
+In alternativa, è possibile usare il metodo **download_to_file** per scaricare il contenuto di un BLOB in un file.
+È anche possibile usare il metodo **download_text** per scaricare il contenuto di un BLOB come stringa di testo.  
 
 ```cpp
 // Retrieve storage account from connection string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create hello blob client.
+// Create the blob client.
 azure::storage::cloud_blob_client blob_client = storage_account.create_cloud_blob_client();
 
-// Retrieve a reference tooa previously created container.
+// Retrieve a reference to a previously created container.
 azure::storage::cloud_blob_container container = blob_client.get_container_reference(U("my-sample-container"));
 
-// Retrieve reference tooa blob named "my-blob-2".
+// Retrieve reference to a blob named "my-blob-2".
 azure::storage::cloud_block_blob text_blob = container.get_block_blob_reference(U("my-blob-2"));
 
-// Download hello contents of a blog as a text string.
+// Download the contents of a blog as a text string.
 utility::string_t text = text_blob.download_text();
 ```
 
 ## <a name="how-to-delete-blobs"></a>Procedura: eliminare i BLOB
-un blob, toodelete innanzitutto ottenere un riferimento di blob e quindi chiamare hello **delete_blob** metodo su di esso.  
+Per eliminare un BLOB, ottenere prima un riferimento al BLOB e chiamare il metodo **delete_blob** sul riferimento.  
 
 ```cpp
 // Retrieve storage account from connection string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create hello blob client.
+// Create the blob client.
 azure::storage::cloud_blob_client blob_client = storage_account.create_cloud_blob_client();
 
-// Retrieve a reference tooa previously created container.
+// Retrieve a reference to a previously created container.
 azure::storage::cloud_blob_container container = blob_client.get_container_reference(U("my-sample-container"));
 
-// Retrieve reference tooa blob named "my-blob-1".
+// Retrieve reference to a blob named "my-blob-1".
 azure::storage::cloud_block_blob blockBlob = container.get_block_blob_reference(U("my-blob-1"));
 
-// Delete hello blob.
+// Delete the blob.
 blockBlob.delete_blob();
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-Ora che si è appreso i concetti di base di hello dell'archiviazione blob, seguire questi toolearn collegamenti ulteriori informazioni sull'archiviazione di Azure.  
+A questo punto, dopo aver appreso le nozioni di base dell'archiviazione BLOB, visitare i collegamenti seguenti per ulteriori informazioni su Archiviazione di Azure.  
 
-* [Come toouse l'archiviazione delle code da C++](../storage-c-plus-plus-how-to-use-queues.md)
-* [Come toouse archiviazione tabelle da C++](../../cosmos-db/table-storage-how-to-use-c-plus.md)
+* [Come usare l’archiviazione delle code da C++](../storage-c-plus-plus-how-to-use-queues.md)
+* [Come usare l’archiviazione tabelle da C++](../../cosmos-db/table-storage-how-to-use-c-plus.md)
 * [Elenco delle risorse di archiviazione di Azure in C++](../storage-c-plus-plus-enumeration.md)
 * [Informazioni di riferimento sulla libreria client di archiviazione per C++](http://azure.github.io/azure-storage-cpp)
 * [Documentazione di Archiviazione di Azure](https://azure.microsoft.com/documentation/services/storage/)
-* [Trasferimento dati con hello utilità della riga di comando AzCopy](../storage-use-azcopy.md)
+* [Trasferire dati con l'utilità della riga di comando AzCopy](../storage-use-azcopy.md)
 

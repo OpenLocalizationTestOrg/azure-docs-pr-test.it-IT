@@ -1,30 +1,30 @@
-Dopo avere propagato record hello del nome di dominio, è necessario essere in grado di toouse il tooverify browser che può essere il nome di dominio personalizzato da tooaccess usato l'app web in Azure App Service.
+Dopo la propagazione dei record per il nome di dominio, sarà possibile usare il browser per verificare che il nome di dominio personalizzato possa essere usato per accedere all'app Web nel Servizio app di Azure.
 
 > [!NOTE]
-> Può richiedere del tempo per il toopropagate CNAME tramite hello sistema DNS. È possibile utilizzare un servizio, ad esempio <a href="http://www.digwebinterface.com/">http://www.digwebinterface.com/</a> tooverify che hello CNAME è disponibile.
+> La propagazione del record CNAME in tutto il sistema DNS può richiedere tempo. È possibile usare un servizio come <a href="http://www.digwebinterface.com/">http://www.digwebinterface.com/</a> per verificare se il record CNAME è disponibile.
 > 
 > 
 
-Se l'app web non è ancora stata aggiunta come un endpoint di gestione traffico, è necessario farlo prima di eseguire la risoluzione dei nomi, come nome di dominio personalizzato hello, tooTraffic route Manager. Gestione traffico indirizza tooyour web app. Utilizzare le informazioni di hello in [aggiungere o eliminare endpoint](../articles/traffic-manager/traffic-manager-endpoints.md) tooadd l'app web con un endpoint nel profilo di Traffic Manager.
+Se non si è già aggiunta l'app Web come endpoint di Gestione traffico, è necessario eseguire questa operazione per consentire il funzionamento della risoluzione dei nomi, perché il nome di dominio personalizzato viene instradato a Gestione traffico. Gestione traffico viene quindi instradato all'app Web. Usare le informazioni della sezione [Aggiungere o eliminare endpoint](../articles/traffic-manager/traffic-manager-endpoints.md) per aggiungere l'app Web come endpoint nel profilo di Gestione traffico.
 
 > [!NOTE]
-> Se l'app Web non è elencata quando si aggiunge un endpoint, verificare che sia configurata per la modalità di piano di servizio app **Standard** . È necessario utilizzare **Standard** modalità per l'app web in ordine toowork con gestione traffico.
+> Se l'app Web non è elencata quando si aggiunge un endpoint, verificare che sia configurata per la modalità di piano di servizio app **Standard** . Per usare Gestione traffico, è necessario che l'app Web sia impostata sulla modalità **Standard** .
 > 
 > 
 
-1. Nel browser aprire hello [portale Azure](https://portal.azure.com).
-2. In hello **App Web** scheda, fare clic sul nome dell'app web, selezionare hello **impostazioni**, quindi selezionare **i domini personalizzati**
+1. Accedere al [portale di Azure](https://portal.azure.com)dal browser.
+2. Nella scheda **App Web** fare clic sul nome dell'app Web, selezionare **Impostazioni** e quindi **Domini personalizzati**
    
     ![](./media/custom-dns-web-site/dncmntask-cname-6.png)
-3. In hello **i domini personalizzati** pannello, fare clic su **aggiungere hostname**.
-4. Hello utilizzare **Hostname** testo caselle tooenter hello Traffic Manager dominio nome tooassociate con questa app web.
+3. Nel pannello **Domini personalizzati** fare clic su **Aggiungi il nome host**.
+4. Usare le caselle di testo **Nome host** per immettere il nome di dominio di Gestione traffico per l'associazione con questa app Web.
    
     ![](./media/custom-dns-web-site/dncmntask-cname-8.png)
-5. Fare clic su **convalida** configurazione del nome dominio toosave hello.
-6. Dopo la selezione di **Convalida**, Azure avvierà il flusso di lavoro di verifica del dominio, Verranno controllati per proprietario del dominio, nonché di esito positivo di disponibilità e i report di nome host o di errore dettagliato con protegere ricchi di indicazioni su come toofix hello errore.    
-7. Dopo la convalida **aggiungere hostname** pulsante diventa attivo e sarà in grado di toohello assegnare hostname. Passare ora tooyour nome di dominio personalizzato in un browser. Sarà visibile l'app in esecuzione con il nome di dominio personalizzato. 
+5. Fare clic su **Convalida** per salvare la configurazione del nome di dominio.
+6. Dopo la selezione di **Convalida**, Azure avvierà il flusso di lavoro di verifica del dominio, che controllerà la proprietà del dominio oltre alla disponibilità del nome host e segnalerà la riuscita o un errore dettagliato con le linee guida consigliate per correggere l'errore.    
+7. Se la convalida avrà esito positivo, il pulsante **Aggiungi il nome host** diventerà attivo e sarà possibile assegnare il nome host. Ora passare al nome di dominio personalizzato in un browser. Sarà visibile l'app in esecuzione con il nome di dominio personalizzato. 
    
-   Dopo aver completato la configurazione, il nome di dominio personalizzato hello sarà elencato nel hello **i nomi di dominio** sezione dell'app web.
+   Al termine della configurazione, il nome di dominio personalizzato sarà elencato nella sezione **nomi di dominio** dell'app Web.
 
-A questo punto, si deve essere in grado di tooenter hello nome nome di dominio nel browser e vedere correttamente necessario tooyour web app.
+A questo punto sarà possibile immettere il nome di dominio di Gestione traffico nel browser e verificare che il reindirizzamento all'app Web avvenga correttamente.
 

@@ -1,6 +1,6 @@
 ---
 title: 'Azure Cosmos DB: risorse, SDK e API Java di DocumentDB | Microsoft Docs'
-description: Altre informazioni sui hello Java API e SDK tra date di rilascio, date di ritiro e le modifiche apportate tra ogni versione di hello Azure SDK per Java DocumentDB DB Cosmos.
+description: Informazioni complete sull'SDK e sull'API Java, incluse le date di rilascio e di ritiro e le modifiche apportate tra le singole versioni di Azure Cosmos DB DocumentDB Java SDK.
 services: cosmos-db
 documentationcenter: java
 author: rnagpal
@@ -15,11 +15,11 @@ ms.topic: article
 ms.date: 07/11/2017
 ms.author: khdang
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 8ef43ebeb7ae1bfc55512c4a7489c1b7930122d6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 15e3f7ef3bfd6b1f61fe6081a378bdb29e0a1aa2
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-cosmos-db-documentdb-java-sdk-release-notes-and-resources"></a>Azure Cosmos DB: risorse e note sulla versione di DocumentDB Java SDK
 > [!div class="op_single_selector"]
@@ -41,9 +41,9 @@ ms.lasthandoff: 10/06/2017
 
 <tr><td>**Documentazione sull'API**</td><td>[Documentazione di riferimento API Java](/java/api/com.microsoft.azure.documentdb)</td></tr>
 
-<tr><td>**Contribuiscono tooSDK**</td><td>[GitHub](https://github.com/Azure/azure-documentdb-java/)</td></tr>
+<tr><td>**Contribuire all'SDK**</td><td>[GitHub](https://github.com/Azure/azure-documentdb-java/)</td></tr>
 
-<tr><td>**Introduzione**</td><td>[Introduzione a hello SDK per Java](documentdb-java-get-started.md)</td></tr>
+<tr><td>**Introduzione**</td><td>[Introduzione a SDK Java](documentdb-java-get-started.md)</td></tr>
 
 <tr><td>**Esercitazione sull'app Web**</td><td>[Sviluppo di applicazioni Web con Azure Cosmos DB](documentdb-java-application.md)</td></tr>
 
@@ -53,8 +53,8 @@ ms.lasthandoff: 10/06/2017
 ## <a name="release-notes"></a>Note sulla versione
 
 ### <a name="a-name11201120"></a><a name="1.12.0"/>1.12.0
-* Correzioni di bug importanti toorequest elaborazione durante partizione divide.
-* Risolto un problema con hello sicuro e BoundedStaleness livelli di coerenza.
+* Correzioni di bug importanti per richiedere l'elaborazione durante le suddivisioni delle partizioni.
+* Risolto un problema relativo ai livelli di coerenza Strong e BoundedStaleness.
 
 ### <a name="a-name11101110"></a><a name="1.11.0"/>1.11.0
 * Aggiunta del supporto per un nuovo livello di coerenza denominato ConsistentPrefix.
@@ -62,11 +62,11 @@ ms.lasthandoff: 10/06/2017
 
 ### <a name="a-name11001100"></a><a name="1.10.0"/>1.10.0
 * Supporto abilitato per la raccolta partizionata con valore ridotto di 2.500 UR/s e riduzione con incrementi di 100 UR/s.
-* Correzione di un bug in assembly nativo hello in alcune query possono essere NullRef eccezione.
+* Correzione di un bug nell'assembly nativo che può causare l'eccezione NullRef in alcune query.
 
 ### <a name="a-name196196"></a><a name="1.9.6"/>1.9.6
-* Correzione di un bug nella configurazione del motore di query hello che può generare eccezioni per le query in modalità di Gateway.
-* Corretti alcuni bug nel contenitore di sessione hello che possono generare un'eccezione "Resource proprietario non trovato" per le richieste immediatamente dopo la creazione della raccolta.
+* Correzione di un bug nella configurazione del motore di query che può generare eccezioni per le query in modalità Gateway.
+* Correzione di alcuni bug nel contenitore della sessione che possono generare un'eccezione "Risorsa proprietario non trovata" per le richieste immediatamente dopo la creazione della raccolta.
 
 ### <a name="a-name195195"></a><a name="1.9.5"/>1.9.5
 * Aggiunta del supporto per le query di aggregazione (COUNT, MIN, MAX, SUM e AVG). Vedere [Supporto dell'aggregazione](documentdb-sql-query.md#Aggregates).
@@ -80,72 +80,72 @@ ms.lasthandoff: 10/06/2017
 
 ### <a name="a-name194194"></a><a name="1.9.4"/>1.9.4
 * Aggiunta del supporto del proxy basato su istanza di client semplice con l'API ConnectionPolicy.setProxy().
-* Aggiunta API DocumentClient.close() tooproperly arresto DocumentClient dell'istanza.
-* Prestazioni migliorate di query in modalità di connettività diretta mediante derivazione hello piano di query da un assembly nativo hello anziché hello Gateway.
-* Impostare FAIL_ON_UNKNOWN_PROPERTIES = false, in modo che gli utenti non devono toodefine JsonIgnoreProperties nella loro POJO.
-* Sottoposta a refactoring registrazione toouse SLF4J.
+* Aggiunta dell'API DocumentClient.close() per arrestare correttamente l'istanza di DocumentClient.
+* Miglioramento delle prestazioni delle query nella modalità di connettività diretta, tramite derivazione del piano di query dall'assembly nativo invece che dal gateway.
+* Impostare FAIL_ON_UNKNOWN_PROPERTIES = false in modo che gli utenti non debbano definire JsonIgnoreProperties in POJO.
+* Refactoring della registrazione per usare SLF4J.
 * Risoluzione di altri bug nel lettore di coerenza.
 
 ### <a name="a-name193193"></a><a name="1.9.3"/>1.9.3
-* Correzione di un bug in hello connessione gestione tooprevent perdite di connessione in modalità di connettività diretta.
-* Correzione di un bug nella query TOP hello in cui è possibile eccezione NullReferenece.
-* Miglioramento delle prestazioni, riducendo il numero di hello di chiamata di rete per la cache interna di hello.
+* Risoluzione di un bug nella gestione della connessione per impedire perdite di connessione nella modalità di connettività diretta.
+* Risoluzione di un bug nella query TOP in cui è possibile che venga generata un'eccezione NullReferenece.
+* Miglioramento delle prestazioni tramite la riduzione del numero di chiamate di rete per le cache interne.
 * Aggiunta del codice di stato, di ActivityID e dell'URI della richiesta in DocumentClientException per una migliore risoluzione dei problemi.
 
 ### <a name="a-name192192"></a><a name="1.9.2"/>1.9.2
-* Risolto un problema nella gestione connessione hello per la stabilità.
+* Risoluzione di un problema nella gestione della connessione per una migliore stabilità.
 
 ### <a name="a-name191191"></a><a name="1.9.1"/>1.9.1
 * Aggiunta del supporto per il livello di coerenza BoundedStaleness.
 * Aggiunta del supporto per la connettività diretta per le operazioni CRUD delle raccolte partizionate.
 * Risoluzione di un bug in una query di un database con SQL.
-* Correzione di un bug nella cache di hello sessione in cui i token di sessione può essere impostato in modo non corretto.
+* Risoluzione di un bug nella cache della sessione in cui i token di sessione possono essere impostati in modo non corretto.
 
 ### <a name="a-name190190"></a><a name="1.9.0"/>1.9.0
 * Aggiunta del supporto per le query in parallelo nelle raccolte partizionate.
 * Aggiunta del supporto per le query TOP/ORDER BY nelle raccolte partizionate.
 * Aggiunta del supporto per la coerenza assoluta.
 * Aggiunta del supporto per le richieste basate su nomi quando si utilizza la connettività diretta.
-* Toomake fisso ActivityId rimangono coerenti tra tutti i tentativi di richiesta.
-* Correzione di un bug relativi toohello cache della sessione durante la ricreazione di una raccolta con hello stesso nome.
+* Correzione rendere ActivityId coerente tra tutti i tentativi di richiesta.
+* Correzione del bug correlato alla cache di sessione quando si ricrea una raccolta con lo stesso nome.
 * Aggiunta Polygon e LineString DataTypes quando si specifica il criterio di indicizzazione per la raccolta criteri per le query spaziali di geo-fencing.
 * Risoluzione dei problemi con Java Doc per Java 1.8.
 
 ### <a name="a-name181181"></a><a name="1.8.1"/>1.8.1
-* Correzione di un bug in PartitionKeyDefinitionMap toocache raccolte con partizione singola e non crea aggiuntivo recuperare partizione richieste di chiavi.
-* Correzione di un nuovo tentativo toonot bug quando viene fornito un valore di chiave di partizione corretto.
+* Risolto un bug in PartitionKeyDefinitionMap per memorizzare nella cache le raccolte a partizione singola ed evitare richieste aggiuntive di chiavi di partizione da recuperare.
+* Risolto un bug per non eseguire un nuovo tentativo se viene fornito un valore di chiave di partizione errato.
 
 ### <a name="a-name180180"></a><a name="1.8.0"/>1.8.0
-* Supporto aggiunto hello per gli account di database con più aree.
-* Aggiunta del supporto per la ripetizione automatica per le richieste limitate con hello toocustomize opzioni max tentativi e ripetere max tempo di attesa.  Vedere RetryOptions e ConnectionPolicy.getRetryOptions().
+* Aggiunta del supporto per gli account di database con più aree.
+* Aggiunta del supporto per la ripetizione automatica delle richieste limitate con la possibilità di personalizzare il numero massimo di tentativi e il relativo tempo di attesa massimo.  Vedere RetryOptions e ConnectionPolicy.getRetryOptions().
 * IPartitionResolver basato su codice di partizionamento personalizzato è stato deprecato. Usare le raccolte partizionate per un'archiviazione e una velocità effettiva superiori.
 
 ### <a name="a-name171171"></a><a name="1.7.1"/>1.7.1
 * Aggiunta del supporto per il criterio di ripetizione per la limitazione.  
 
 ### <a name="a-name170170"></a><a name="1.7.0"/>1.7.0
-* Aggiunto il supporto di (durata TTL) toolive di tempo per i documenti.
+* Aggiunta del supporto per la durata (TTL) relativa ai documenti.
 
 ### <a name="a-name160160"></a><a name="1.6.0"/>1.6.0
 * Implementazione delle [raccolte partizionate](partition-data.md) e dei [livelli di prestazioni definiti dall'utente](performance-levels.md).
 
 ### <a name="a-name151151"></a><a name="1.5.1"/>1.5.1
-* Correzione di un bug in valori di hash toogenerate HashPartitionResolver in toobe little-endian coerente con altri SDK.
+* Risolto un bug in HashPartitionResolver per generare valori hash in little endian per coerenza con altri SDK.
 
 ### <a name="a-name150150"></a><a name="1.5.0"/>1.5.0
-* Aggiungi intervallo & Hash tooassist resolver partizione con le applicazioni di partizionamento orizzontale tra più partizioni.
+* Aggiungi resolver per partizioni hash e a intervalli come supporto per applicazioni di partizionamento orizzontale in più partizioni.
 
 ### <a name="a-name140140"></a><a name="1.4.0"/>1.4.0
-* Implementazione di Upsert. Aggiunta di nuovi metodi di upsertXXX toosupport Upsert funzionalità.
+* Implementazione di Upsert. Nuovi metodi upsertXXX aggiunti per supportare la funzionalità Upsert.
 * Implementazione del routing basato su ID. Nessuna modifica API pubblica, tutte modifiche interne.
 
 ### <a name="a-name130130"></a><a name="1.3.0"/>1.3.0
-* Versione ignorato il numero di versione toobring in allineamento con altri SDK
+* Versione ignorata per riportare il numero di versione in allineamento con altri SDK
 
 ### <a name="a-name120120"></a><a name="1.2.0"/>1.2.0
 * Supporta l'indice geospaziale
 * Convalida la proprietà id per tutte le risorse. Gli ID per le risorse non possono contenere i caratteri ?, /, #, \, o terminare con uno spazio.
-* Aggiunge una nuova intestazione "indice trasformazione lo stato di avanzamento" tooResourceResponse.
+* Aggiunge la nuova intestazione "stato di trasformazione dell'indice" a ResourceResponse.
 
 ### <a name="a-name110110"></a><a name="1.1.0"/>1.1.0
 * Implementa criteri di indicizzazione V2
@@ -154,14 +154,14 @@ ms.lasthandoff: 10/06/2017
 * SDK con disponibilità generale
 
 ## <a name="release--retirement-dates"></a>Date di rilascio e di ritiro
-Microsoft invierà una notifica almeno **12 mesi** prima di ritirare un SDK in ordine toosmooth hello transizione tooa più recente/supportata versione.
+Microsoft invierà una notifica almeno **12 mesi** prima del ritiro di un SDK per agevolare la transizione a una versione più recente o supportata.
 
-Nuove caratteristiche e funzionalità e le ottimizzazioni vengono aggiunti solo toohello corrente SDK, pertanto è consigliabile che è sempre aggiornamento toohello SDK più recente non appena possibile.
+Le nuove caratteristiche e funzionalità e le ottimizzazioni vengono aggiunte solo all'SDK corrente, è quindi consigliabile eseguire sempre l'aggiornamento alla versione più recente dell'SDK quanto prima.
 
-Qualsiasi tooCosmos richiesta database usando un SDK ritirato verranno rifiutati dal servizio hello.
+Qualsiasi richiesta inviata a Cosmos DB con un SDK ritirato verrà rifiutata dal servizio.
 
 > [!WARNING]
-> Tutte le versioni di hello DocumentDB SDK per Java precedente tooversion **1.0.0** verrà ritirato **29 febbraio 2016**.
+> Tutte le versioni dell'SDK DocumentDB per Java precedenti alla versione **1.0.0** verranno ritirate il **29 febbraio 2016**.
 > 
 > 
 
@@ -203,5 +203,5 @@ Qualsiasi tooCosmos richiesta database usando un SDK ritirato verranno rifiutati
 [!INCLUDE [cosmos-db-sdk-faq](../../includes/cosmos-db-sdk-faq.md)]
 
 ## <a name="see-also"></a>Vedere anche
-toolearn ulteriori informazioni su Cosmos DB, vedere [DB di Microsoft Azure Cosmos](https://azure.microsoft.com/services/cosmos-db/) pagina del servizio.
+Per altre informazioni su Cosmos DB, vedere la pagina del servizio [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/).
 

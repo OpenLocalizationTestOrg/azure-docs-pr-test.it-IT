@@ -1,5 +1,5 @@
 ---
-title: aaaService Bus con .NET e AMQP 1.0 | Documenti Microsoft
+title: Bus di servizio con .NET e AMQP 1.0 | Microsoft Docs
 description: Uso del bus di servizio di Azure da .NET con AMQP
 services: service-bus-messaging
 documentationcenter: na
@@ -12,29 +12,29 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 04/19/2017
+ms.date: 08/28/2017
 ms.author: sethm
-ms.openlocfilehash: d8b40f92ba29058951556fa3db1adcf9383ee69f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 58a37c0dd24d54996f517961f3a7f1ec36639cfe
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="using-service-bus-from-net-with-amqp-10"></a>Uso del bus di servizio da .NET con AMQP 1.0
 
-## <a name="downloading-hello-service-bus-sdk"></a>Download hello Service Bus SDK
+## <a name="downloading-the-service-bus-sdk"></a>Download di Service Bus SDK
 
-Supporto di AMQP 1.0 è disponibile in hello Service Bus SDK versione 2.1 o successiva. È possibile assicurarsi di avere la versione più recente di hello scaricando i bit del Bus di servizio hello [NuGet][NuGet].
+Il supporto per AMQP 1.0 è disponibile in Service Bus SDK versione 2.1 o successiva. Scaricare la versione più recente del bus di servizio da [NuGet][NuGet] per essere certi di disporre della versione corretta.
 
-## <a name="configuring-net-applications-toouse-amqp-10"></a>Configurazione .NET applicazioni toouse AMQP 1.0
+## <a name="configuring-net-applications-to-use-amqp-10"></a>Configurazione delle applicazioni .NET per l'uso di AMQP 1.0
 
-Per impostazione predefinita, libreria client .NET di Service Bus di hello comunica con il servizio Bus di servizio utilizzando un protocollo dedicato basato su SOAP hello. toouse AMQP 1.0 anziché protocollo predefinito hello è necessaria una configurazione esplicita nella stringa di connessione del Bus di servizio hello, come descritto nella sezione successiva hello. A parte questa modifica, il codice dell'applicazione rimane invariato quando si usa AMQP 1.0.
+Per impostazione predefinita, la libreria client .NET del bus di servizio comunica con il bus di servizio tramite un protocollo dedicato basato su SOAP. Per usare AMQP 1.0 anziché il protocollo predefinito, è necessaria una configurazione esplicita nella stringa di connessione del bus di servizio, come illustrato nella sezione successiva. A parte questa modifica, il codice dell'applicazione rimane invariato quando si usa AMQP 1.0.
 
-Nella versione corrente di hello, esistono alcune funzionalità dell'API che non sono supportate quando si usa AMQP. Queste funzionalità non supportate sono elencate più avanti nella sezione hello [non supportato di funzionalità, restrizioni e differenze di comportamento](#unsupported-features-restrictions-and-behavioral-differences). Inoltre, alcune delle impostazioni di configurazione avanzata hello hanno un significato diverso quando si usa AMQP.
+Nella versione corrente alcune funzionalità API non sono supportate se si usa AMQP. Queste funzionalità non supportate sono elencate più avanti nella sezione [Funzionalità non supportate, restrizioni e differenze di comportamento](#unsupported-features-restrictions-and-behavioral-differences). Anche alcune impostazioni di configurazione avanzate assumono un significato differente quando si utilizza AMQP.
 
 ### <a name="configuration-using-appconfig"></a>Configurazione mediante App.config
 
-È buona norma applicazioni toouse hello app. config file toostore le impostazioni di configurazione. Per le applicazioni di Service Bus, è possibile utilizzare una stringa di connessione di App. config toostore hello Bus di servizio. Ecco un file App.config di esempio:
+È consigliabile usare il file di configurazione App.config per l'archiviazione delle impostazioni delle applicazioni. Per le applicazioni del bus di servizio, è possibile usare App.config per archiviare la stringa di connessione del bus di servizio. Ecco un file App.config di esempio:
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -46,21 +46,21 @@ Nella versione corrente di hello, esistono alcune funzionalità dell'API che non
 </configuration>
 ```
 
-valore di hello Hello `Microsoft.ServiceBus.ConnectionString` impostazione è una stringa di connessione hello Bus di servizio che viene utilizzato tooconfigure hello connessione tooService Bus. formato hello è come segue:
+Il valore dell'impostazione `Microsoft.ServiceBus.ConnectionString` corrisponde alla stringa di connessione del bus di servizio, usata per configurare la connessione con il bus di servizio. Il formato è il seguente:
 
 `Endpoint=sb://[namespace].servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=[SAS key];TransportType=Amqp`
 
-Dove `[namespace]` e `SharedAccessKey` vengono ottenuti dal hello [portale di Azure] [ Azure portal] quando si crea uno spazio dei nomi del Bus di servizio. Per ulteriori informazioni, vedere [creare uno spazio dei nomi del Bus di servizio utilizzando il portale di Azure hello][Create a Service Bus namespace using hello Azure portal].
+Dove `namespace` e `SAS key` si ottengono dal [portale di Azure][Azure portal] quando si crea uno spazio dei nomi del bus di servizio. Per altre informazioni, vedere [Creare uno spazio dei nomi del bus di servizio usando il portale di Azure][Create a Service Bus namespace using the Azure portal].
 
-Quando si usa AMQP, aggiungere la stringa di connessione hello con `;TransportType=Amqp`. Questa notazione indica hello client libreria toomake relativo tooService connessione Bus mediante AMQP 1.0.
+Quando si usa AMQP, aggiungere `;TransportType=Amqp` alla fine della stringa di connessione. Questa notazione indica alla libreria client di effettuare la connessione al bus di servizio tramite AMQP 1.0.
 
 ## <a name="message-serialization"></a>Serializzazione dei messaggi
 
-Quando si utilizza il protocollo di predefinito hello, comportamento di serializzazione predefinito hello della libreria client .NET di hello è hello toouse [DataContractSerializer] [ DataContractSerializer] digitare tooserialize un [BrokeredMessage ] [ BrokeredMessage] istanza per il trasporto tra la libreria client di hello e hello servizio service Bus. Quando si utilizza la modalità di trasporto AMQP hello, libreria di hello client utilizza il sistema di tipi AMQP hello per la serializzazione di hello [messaggio negoziato] [ BrokeredMessage] in un messaggio AMQP. Questa serializzazione permette hello messaggio toobe ricevuto e interpretato da un'applicazione ricevente potenzialmente in esecuzione su una piattaforma diversa, ad esempio, un'applicazione Java che utilizza hello API JMS tooaccess Bus di servizio.
+Quando si usa il protocollo predefinito, il comportamento di serializzazione predefinito della libreria client .NET consiste nell'usare il tipo [DataContractSerializer][DataContractSerializer] per serializzare un'istanza di [BrokeredMessage][BrokeredMessage] per il trasporto tra la libreria client e il servizio del bus di servizio. Quando si usa la modalità di trasporto AMQP, la libreria client usa il sistema di tipi AMQP per la serializzazione del [messaggio negoziato][BrokeredMessage] in un messaggio AMQP. Questa serializzazione consente la ricezione e l'interpretazione dei messaggi da parte di un'applicazione ricevente che è potenzialmente in esecuzione in una piattaforma diversa, ad esempio un'applicazione Java che usa l'API JMS per accedere al bus di servizio.
 
-Quando si creano un [BrokeredMessage] [ BrokeredMessage] istanza, è possibile fornire un oggetto .NET come tooserve di costruttore toohello un parametro come corpo hello del messaggio hello. Per gli oggetti che possono essere tipi primitivi tooAMQP mappato, corpo hello viene serializzato in tipi di dati AMQP. Se l'oggetto hello non può essere mappato direttamente in un tipo primitivo AMQP. ovvero, un tipo personalizzato definito dall'applicazione hello e oggetto hello viene serializzato utilizzando hello [DataContractSerializer][DataContractSerializer], e hello serializzato byte vengono inviati in un messaggio data AMQP.
+Quando si crea un'istanza di [BrokeredMessage][BrokeredMessage], è possibile specificare al costruttore un oggetto .NET come parametro da usare come corpo del messaggio. Per gli oggetti che possono essere mappati a tipi primitivi AMQP, il corpo viene serializzato in tipi di dati AMQP. Se non è possibile eseguire direttamente il mapping dell'oggetto a un tipo primitivo AMQP, ovvero un tipo personalizzato definito dall'applicazione, l'oggetto viene serializzato tramite [DataContractSerializer][DataContractSerializer] e i byte serializzati vengono inviati in un messaggio di dati AMQP.
 
-toofacilitate interoperabilità con client non .NET, usare solo i tipi .NET che possono essere serializzati direttamente in tipi AMQP per il corpo del messaggio hello hello. Hello nella tabella seguente illustra in dettaglio i tipi e hello corrispondente mapping toohello sistema di tipi AMQP.
+Per semplificare l'interoperabilità con client non .NET, usare solo tipi .NET che possono essere serializzati direttamente in tipi AMQP per il corpo del messaggio. La tabella seguente descrive in modo dettagliato questi tipi e il mapping corrispondente al sistema di tipi AMQP.
 
 | Tipo di oggetto del corpo .NET | Tipo AMQP mappato | Tipo di sezione del corpo AMQP |
 | --- | --- | --- |
@@ -81,16 +81,16 @@ toofacilitate interoperabilità con client non .NET, usare solo i tipi .NET che 
 | Guid |uuid |Valore AMQP |
 | byte[] |binary |Valore AMQP |
 | string |stringa |Valore AMQP |
-| System.Collections.IList |list |Valore AMQP: gli elementi contenuti nella raccolta hello possono essere solo quelli definiti in questa tabella. |
-| System.Array |array |Valore AMQP: gli elementi contenuti nella raccolta hello possono essere solo quelli definiti in questa tabella. |
-| System.Collections.IDictionary |map |Valore AMQP: gli elementi contenuti nella raccolta hello possono essere solo quelli definiti in questa tabella. Nota: sono supportate solo le chiavi di stringa. |
-| Uri |Stringa descritto (vedere hello nella tabella seguente) |Valore AMQP |
-| Datetimeoffset |Tipo long descritto (vedere hello nella tabella seguente) |Valore AMQP |
-| TimeSpan |Tipo long descritto (vedere l'esempio hello) |Valore AMQP |
-| Flusso |binary |Dati AMQP (possono essere multipli). sezioni di dati Hello contengono hello byte non elaborati dall'oggetto flusso hello. |
-| Altro oggetto |binary |Dati AMQP (possono essere multipli). Contiene file binario hello serializzata dell'oggetto hello che usa DataContractSerializer hello o un serializzatore fornito dall'applicazione hello. |
+| System.Collections.IList |list |Valore AMQP: la raccolta può includere solo gli elementi definiti in questa tabella. |
+| System.Array |array |Valore AMQP: la raccolta può includere solo gli elementi definiti in questa tabella. |
+| System.Collections.IDictionary |map |Valore AMQP: la raccolta può includere solo gli elementi definiti in questa tabella. Nota: sono supportate solo chiavi di tipo String. |
+| Uri |Stringa descritta (vedere la tabella seguente) |Valore AMQP |
+| DateTimeOffset |Elemento Long descritto (vedere la tabella seguente) |Valore AMQP |
+| TimeSpan |Elemento Long descritto (vedere la tabella seguente) |Valore AMQP |
+| Flusso |binary |Dati AMQP (possono essere multipli). Le sezioni Data contengono i byte non elaborati dall'oggetto Stream. |
+| Altro oggetto |binary |Dati AMQP (possono essere multipli). Contiene i dati binari serializzati dell'oggetto che usa DataContractSerializer o un serializzatore fornito dall'applicazione. |
 
-| Tipo di .NET | Tipo descritto AMQP mappato | Note |
+| Tipo .NET | Tipo descritto AMQP mappato | Note |
 | --- | --- | --- |
 | Uri |`<type name=”uri” class=restricted source=”string”> <descriptor name=”com.microsoft:uri” /></type>` |Uri.AbsoluteUri |
 | Datetimeoffset |`<type name=”datetime-offset” class=restricted source=”long”> <descriptor name=”com.microsoft:datetime-offset” /></type>` |DateTimeOffset.UtcTicks |
@@ -98,35 +98,35 @@ toofacilitate interoperabilità con client non .NET, usare solo i tipi .NET che 
 
 ## <a name="unsupported-features-restrictions-and-behavioral-differences"></a>Funzionalità non supportate, restrizioni e differenze di comportamento
 
-Hello seguenti caratteristiche di hello API .NET del Bus di servizio non è attualmente supportata quando si usa AMQP:
+Le seguenti funzionalità dell'API .NET del bus di servizio non sono al momento supportate con AMQP:
 
 * Transazioni
 * Invio tramite destinazione del trasferimento
 
-Esistono inoltre alcune piccole differenze di comportamento hello di hello API .NET del Bus di servizio quando si usa AMQP, protocollo predefinito toohello confrontati:
+Esistono anche alcune piccole differenze di comportamento dell'API .NET del bus di servizio durante l'uso di AMQP, rispetto al protocollo predefinito:
 
-* Hello [OperationTimeout] [ OperationTimeout] proprietà viene ignorata.
+* La proprietà [OperationTimeout][OperationTimeout] viene ignorata.
 * `MessageReceiver.Receive(TimeSpan.Zero)` viene implementato come `MessageReceiver.Receive(TimeSpan.FromSeconds(10))`.
-* Completamento di messaggi tramite il token di blocco solo scopo dei destinatari dei messaggi hello che inizialmente ha ricevuto messaggi hello.
+* Il completamento di messaggi tramite token di blocco può essere eseguito solo dai destinatari che hanno ricevuto i messaggi all'inizio.
 
 ## <a name="controlling-amqp-protocol-settings"></a>Controllo delle impostazioni del protocollo AMQP
 
-Hello [API .NET](/dotnet/api/) esporre diverse impostazioni toocontrol hello il comportamento di hello protocollo AMQP:
+Le [API .NET](/dotnet/api/) espongono diverse impostazioni per controllare il comportamento del protocollo AMQP:
 
-* **[MessageReceiver.PrefetchCount](/dotnet/api/microsoft.servicebus.messaging.messagereceiver.prefetchcount?view=azureservicebus-4.0.0#Microsoft_ServiceBus_Messaging_MessageReceiver_PrefetchCount)**: controlli hello collegamento tooa credito iniziale applicato. valore predefinito di Hello è 0.
-* **[MessagingFactorySettings.AmqpTransportSettings.MaxFrameSize](/dotnet/api/microsoft.servicebus.messaging.amqp.amqptransportsettings.maxframesize?view=azureservicebus-4.0.0#Microsoft_ServiceBus_Messaging_Amqp_AmqpTransportSettings_MaxFrameSize)**: dimensioni del fotogramma di controlli hello massima AMQP offerti durante la negoziazione di hello al momento dell'apertura di connessione. valore predefinito di Hello è 65.536 byte.
-* **[MessagingFactorySettings.AmqpTransportSettings.BatchFlushInterval](/dotnet/api/microsoft.servicebus.messaging.amqp.amqptransportsettings.batchflushinterval?view=azureservicebus-4.0.0#Microsoft_ServiceBus_Messaging_Amqp_AmqpTransportSettings_BatchFlushInterval)**: se i trasferimenti batchable, questo valore determina il ritardo massimo di hello per le disposizioni di invio. Per impostazione predefinita, il valore viene ereditato dai mittenti/destinatari. Singolo mittente/destinatario può eseguire l'override predefinito hello, ovvero 20 millisecondi.
-* **[MessagingFactorySettings.AmqpTransportSettings.UseSslStreamSecurity](/dotnet/api/microsoft.servicebus.messaging.amqp.amqptransportsettings.usesslstreamsecurity?view=azureservicebus-4.0.0#Microsoft_ServiceBus_Messaging_Amqp_AmqpTransportSettings_UseSslStreamSecurity)**: controlla se le connessioni AMQP vengono stabilite su una connessione SSL. valore predefinito di Hello è **true**.
+* **[MessageReceiver.PrefetchCount](/dotnet/api/microsoft.servicebus.messaging.messagereceiver.prefetchcount?view=azureservicebus-4.0.0#Microsoft_ServiceBus_Messaging_MessageReceiver_PrefetchCount)**: controlla il credito iniziale applicato a un collegamento. Il valore predefinito è 0.
+* **[MessagingFactorySettings.AmqpTransportSettings.MaxFrameSize](/dotnet/api/microsoft.servicebus.messaging.amqp.amqptransportsettings.maxframesize?view=azureservicebus-4.0.0#Microsoft_ServiceBus_Messaging_Amqp_AmqpTransportSettings_MaxFrameSize)**: controlla la dimensione massima del frame AMQP offerta durante la negoziazione in fase di apertura della connessione. Il valore predefinito è 65.536 byte.
+* **[MessagingFactorySettings.AmqpTransportSettings.BatchFlushInterval](/dotnet/api/microsoft.servicebus.messaging.amqp.amqptransportsettings.batchflushinterval?view=azureservicebus-4.0.0#Microsoft_ServiceBus_Messaging_Amqp_AmqpTransportSettings_BatchFlushInterval)**: se i trasferimenti possono essere eseguiti in batch, questo valore determina il ritardo massimo per l'invio di disposizioni. Per impostazione predefinita, il valore viene ereditato dai mittenti/destinatari. Un singolo mittente/destinatario può sostituire il valore predefinito di 20 millisecondi.
+* **[MessagingFactorySettings.AmqpTransportSettings.UseSslStreamSecurity](/dotnet/api/microsoft.servicebus.messaging.amqp.amqptransportsettings.usesslstreamsecurity?view=azureservicebus-4.0.0#Microsoft_ServiceBus_Messaging_Amqp_AmqpTransportSettings_UseSslStreamSecurity)**: controlla se le connessioni AMQP vengono stabilite su una connessione SSL. Il valore predefinito è **true**.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Pronto più toolearn? Visitare hello seguenti collegamenti:
+Per altre informazioni, vedere i collegamenti seguenti:
 
 * [Panoramica di AMQP per il bus di servizio]
-* [Supporto di AMQP 1.0 per code e argomenti partizionati del bus di servizio]
+* [Guida al protocollo AMQP 1.0]
 * [AMQP nel bus di servizio per Windows Server]
 
-[Create a Service Bus namespace using hello Azure portal]: service-bus-create-namespace-portal.md
+[Create a Service Bus namespace using the Azure portal]: service-bus-create-namespace-portal.md
 [DataContractSerializer]: https://msdn.microsoft.com/library/system.runtime.serialization.datacontractserializer.aspx
 [BrokeredMessage]: /dotnet/api/microsoft.servicebus.messaging.brokeredmessage?view=azureservicebus-4.0.0
 [Microsoft.ServiceBus.Messaging.MessagingFactory.AcceptMessageSession]: /dotnet/api/microsoft.servicebus.messaging.messagingfactory.acceptmessagesession?view=azureservicebus-4.0.0#Microsoft_ServiceBus_Messaging_MessagingFactory_AcceptMessageSession
@@ -134,5 +134,5 @@ Pronto più toolearn? Visitare hello seguenti collegamenti:
 [NuGet]: http://nuget.org/packages/WindowsAzure.ServiceBus/
 [Azure portal]: https://portal.azure.com
 [Panoramica di AMQP per il bus di servizio]: service-bus-amqp-overview.md
-[Supporto di AMQP 1.0 per code e argomenti partizionati del bus di servizio]: service-bus-partitioned-queues-and-topics-amqp-overview.md
+[Guida al protocollo AMQP 1.0]: service-bus-amqp-protocol-guide.md
 [AMQP nel bus di servizio per Windows Server]: https://msdn.microsoft.com/library/dn574799.aspx

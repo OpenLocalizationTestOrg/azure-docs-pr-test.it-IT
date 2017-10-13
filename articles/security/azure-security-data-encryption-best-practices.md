@@ -1,5 +1,5 @@
 ---
-title: aaaData sicurezza e le procedure consigliate di crittografia | Documenti Microsoft
+title: Procedure consigliate per la sicurezza dei dati e la crittografia | Documentazione Microsoft
 description: "Questo articolo presenta una serie di procedure consigliate per la sicurezza dei dati e la crittografia usando le funzionalità integrate di Azure."
 services: security
 documentationcenter: na
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/09/2017
 ms.author: yurid
-ms.openlocfilehash: 5057c85ed3107921462a40045e716675ea41e4bb
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 81136e53756adfdba2f07c103b042499fe2967db
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-data-security-and-encryption-best-practices"></a>Procedure consigliate per la sicurezza dei dati e la crittografia in Azure
-Uno dei hello chiavi toodata di protezione nel cloud hello è tenendo conto dei possibili stati di hello in cui i dati possono verificarsi e i controlli sono disponibili per tale stato. A scopo di hello di dati di Azure sicurezza crittografia le procedure consigliate e indicazioni di hello saranno intorno hello seguenti stati di dati:
+Uno degli aspetti fondamentali della protezione dei dati nel cloud consiste nel tenere conto dei possibili stati in cui possono trovarsi i dati e dei controlli disponibili per tale stato. Per quanto concerne le procedure consigliate per la sicurezza dei dati e la crittografia in Azure, le raccomandazioni riguarderanno gli stati dei dati seguenti:
 
 * Inattivi: sono inclusi tutti gli oggetti, i contenitori e i tipi di archiviazione di informazioni esistenti in forma statica nei supporti fisici, siano essi dischi magnetici o dischi ottici.
-* In transito: Quando vengono trasferiti dati tra i componenti, posizioni o i programmi, ad esempio tramite rete hello, su un bus di servizio (da on-premise toocloud e viceversa, incluse le connessioni ibride, ad esempio ExpressRoute) o durante un input/output processo, viene considerata come in movimento.
+* In transito: quando i dati vengono trasferiti dati tra componenti, posizioni o programmi, ad esempio sulla rete, attraverso un bus di servizio (da locale a cloud e viceversa, incluse le connessioni ibride come ExpressRoute) oppure durante un processo di input/output, sono considerati in movimento.
 
-In questo articolo verrà illustrato un insieme di procedure consigliate per la crittografia e la sicurezza dei dati di Azure, Crittografia e hello esperienze di clienti come se stessi e queste procedure consigliate derivano dall'esperienza acquisita con la protezione dei dati di Azure.
+In questo articolo verrà illustrato un insieme di procedure consigliate per la crittografia e la sicurezza dei dati di Azure, derivate dalla nostra esperienza con la sicurezza dei dati e la crittografia in Azure e dalle esperienze di altri clienti.
 
 Per ogni procedura consigliata verrà illustrato:
 
-* Quali consigliabile hello
-* Motivo per cui si desidera tooenable consigliata
-* Se non è consigliata di hello tooenable, quale potrebbe essere il risultato di hello
-* Procedura consigliata toohello alternative possibili
-* Informazioni come procedura consigliata hello tooenable
+* Qual è la procedura consigliata
+* Il motivo per cui si vuole abilitare tale procedura consigliata
+* Quale potrebbe essere il risultato se non fosse possibile abilitare la procedura consigliata
+* Alternative possibili alla procedura consigliata
+* Come imparare ad abilitare la procedura consigliata
 
-Questo articolo di protezione dei dati di Azure e le procedure consigliate di crittografia si basa su un parere di consenso e funzionalità della piattaforma Azure e set di funzionalità, in cui si trovano in fase di hello in questo articolo è stato scritto. Opinioni e le tecnologie cambiano nel tempo e questo articolo verrà aggiornato in un tooreflect regolarmente le modifiche.
+Il presente articolo sulle procedure consigliate per la sicurezza dei dati e la crittografia in Azure si basa su un parere condiviso, nonché sulle capacità e sui set di funzionalità della piattaforma Azure esistenti al momento della scrittura. Le opinioni e le tecnologie cambiano nel tempo e questo articolo verrà aggiornato regolarmente per riflettere tali modifiche.
 
 Le procedure consigliate per la sicurezza dei dati e la crittografia in Azure illustrate in questo articolo includono:
 
@@ -50,110 +50,110 @@ Le procedure consigliate per la sicurezza dei dati e la crittografia in Azure il
 * Applicare la crittografia dei dati a livello di file
 
 ## <a name="enforce-multi-factor-authentication"></a>Applicare l'autenticazione a più fattori
-Hello innanzitutto l'accesso ai dati e il controllo in Microsoft Azure è utente di hello tooauthenticate. [Azure Multi-Factor Authentication (MFA)](../multi-factor-authentication/multi-factor-authentication.md) è un metodo per verificare l'identità dell'utente in modo diverso rispetto alla semplice combinazione di nome utente e password. Questo metodo di autenticazione consente di salvaguardare accesso toodata e applicazioni rispettando richiesta dell'utente per un semplice processo.
+Il primo passo per accedere ai dati e controllarli in Microsoft Azure consiste nell'autenticare l'utente. [Azure Multi-Factor Authentication (MFA)](../multi-factor-authentication/multi-factor-authentication.md) è un metodo per verificare l'identità dell'utente in modo diverso rispetto alla semplice combinazione di nome utente e password. Questo metodo di autenticazione contribuisce a salvaguardare l'accesso a dati e applicazioni rispondendo alla richiesta degli utenti di poter usare un processo di accesso semplice.
 
-Abilitando l'autenticazione a più fattori di Azure per gli utenti, si aggiunge un secondo livello di sicurezza toouser accessi e le transazioni. In questo caso, una transazione potrebbe accedere a un documento che si trova in un file server o in SharePoint Online. Azure MFA consente inoltre di probabilità di hello tooreduce IT che una credenziale compromessa avranno i dati del tooorganization di accesso.
+Quando si abilita Azure MFA per gli utenti, si aggiunge un secondo livello di sicurezza agli accessi e alle transazioni degli utenti. In questo caso, una transazione potrebbe accedere a un documento che si trova in un file server o in SharePoint Online. Grazie a Azure MFA, i reparti IT possono anche ridurre la probabilità di accesso ai dati dell'organizzazione usando credenziali compromesse.
 
-Ad esempio: se si attiva Azure MFA per gli utenti e configurarlo toouse una telefonata o un SMS come verifica, se credenziali dell'utente hello sono compromesso, l'autore dell'attacco hello non essere in grado di tooaccess qualsiasi risorsa poiché non sarà possibile phone dell'accesso toouser. Le organizzazioni che non si aggiungono questo livello aggiuntivo di protezione dell'identità sono più vulnerabile agli attacchi di furto delle credenziali, con conseguente rischio di compromissione toodata.
+Ad esempio, se Azure MFA viene applicato per gli utenti e configurato per l'uso di una telefonata o di un messaggio di testo come verifica, qualora le credenziali dell'utente fossero compromesse un autore di attacchi non riuscirebbe ad accedere alle risorse, non avendo accesso al telefono dell'utente. Le organizzazioni che non aggiungono questo livello supplementare di protezione dell'identità sono più vulnerabili agli attacchi con furto di credenziali, con conseguente rischio di compromissione dei dati.
 
-Un'alternativa per le organizzazioni che vogliono controllo di autenticazione hello tookeep locale non è toouse [Server Azure multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication-get-started-server.md), detta anche autenticazione a più fattori locale. Tramite questo metodo sarà comunque in grado di tooenforce autenticazione a più fattori, mantenendo hello MFA server locale.
+In alternativa, le organizzazioni che vogliono mantenere il controllo di autenticazione in locale possono usare il [server Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication-get-started-server.md), denominato anche MFA locale. Questo metodo consentirà comunque di applicare l'autenticazione a più fattori, mantenendo il server MFA in locale.
 
-Per ulteriori informazioni sull'autenticazione a più fattori di Azure, leggere l'articolo hello [Introduzione ad Azure multi-Factor Authentication nel cloud hello](../multi-factor-authentication/multi-factor-authentication-get-started-cloud.md).
+Per altre informazioni su Azure MFA, vedere l'articolo [Introduzione ad Azure Multi-Factor Authentication nel cloud](../multi-factor-authentication/multi-factor-authentication-get-started-cloud.md).
 
 ## <a name="use-role-based-access-control-rbac"></a>Usare il controllo degli accessi in base al ruolo
-Limitare l'accesso in base a hello [necessario tooknow](https://en.wikipedia.org/wiki/Need_to_know) e [privilegio](https://en.wikipedia.org/wiki/Principle_of_least_privilege) principi di sicurezza. Ciò è fondamentale per le organizzazioni che vogliono tooenforce criteri di sicurezza per l'accesso ai dati. Azure Role-Based Access controllo (RBAC) può essere utilizzato tooassign autorizzazioni toousers, gruppi e applicazioni in un determinato ambito. ambito Hello un'assegnazione di ruolo può essere una sottoscrizione, un gruppo di risorse o una singola risorsa.
+Limitare l'accesso in base al principio [solo quando necessario](https://en.wikipedia.org/wiki/Need_to_know) e al [principio dei privilegi minimi](https://en.wikipedia.org/wiki/Principle_of_least_privilege) in materia di sicurezza. Questo è fondamentale per le organizzazioni che intendono applicare criteri di sicurezza per l'accesso ai dati. Il controllo degli accessi in base al ruolo di Azure consente di assegnare autorizzazioni a utenti, gruppi e applicazioni in un determinato ambito. L'ambito di un'assegnazione di ruolo può essere una sottoscrizione, un gruppo di risorse o una singola risorsa.
 
-È possibile sfruttare [ruoli RBAC incorporati](../active-directory/role-based-access-built-in-roles.md) in Azure tooassign privilegi toousers. È consigliabile utilizzare *collaboratore di Account di archiviazione* per gli operatori di cloud che necessitano di account di archiviazione toomanage e *collaboratore di Account di archiviazione classico* gli account di archiviazione classico toomanage di ruolo. Per gli operatori di cloud che necessita di macchine virtuali toomanage e account di archiviazione, è consigliabile aggiungerli troppo*collaboratore alla macchina virtuale* ruolo.
+Per assegnare privilegi agli utenti, è possibile sfruttare i [ruoli predefiniti del controllo degli accessi in base al ruolo](../active-directory/role-based-access-built-in-roles.md) disponibili in Azure. Si consiglia di usare *Collaboratore Account di archiviazione* per gli operatori cloud che devono gestire gli account di archiviazione e il ruolo *Collaboratore Account di archiviazione classico* per gestire gli account di archiviazione classici. Per quanto riguarda gli operatori di cloud che hanno necessità di gestire le macchine virtuali e l'account di archiviazione, è consigliabile aggiungerli al ruolo *Collaboratore Macchina virtuale*.
 
-Le organizzazioni che non applicano il controllo di accesso ai dati con funzionalità come Controllo degli accessi in base al ruolo potrebbero concedere più privilegi del necessario ai propri utenti. Questo può causare la compromissione toodata con alcuni utenti con accesso toodata che sono non deve in primo luogo hello.
+Le organizzazioni che non applicano il controllo di accesso ai dati con funzionalità come Controllo degli accessi in base al ruolo potrebbero concedere più privilegi del necessario ai propri utenti. Questo può comportare la compromissione dei dati perché ad alcuni utenti potrebbe essere concesso un accesso ai dati di cui non dovrebbero disporre.
 
-Maggiori informazioni su Azure RBAC leggendo l'articolo hello [gestire il controllo di accesso](../active-directory/role-based-access-control-configure.md).
+Per altre informazioni sul controllo degli accessi in base al ruolo di Azure, vedere l'articolo [Controllo degli accessi in base al ruolo di Azure](../active-directory/role-based-access-control-configure.md).
 
 ## <a name="encrypt-azure-virtual-machines"></a>Crittografare le macchine virtuali di Azure
-Per molte organizzazioni, la [crittografia dei dati inattivi](https://blogs.microsoft.com/cybertrust/2015/09/10/cloud-security-controls-series-encrypting-data-at-rest/) è un passaggio obbligatorio per assicurare la privacy, la conformità e la sovranità dei dati. Crittografia disco Azure consente tooencrypt gli amministratori IT Windows e i dischi di macchina virtuale IaaS Linux (VM). Crittografia disco Azure sfrutta hello settore caratteristica standard di BitLocker di Windows e funzionalità di data mining Crypt hello Linux tooprovide della crittografia del volume per hello del sistema operativo e i dischi dati hello.
+Per molte organizzazioni, la [crittografia dei dati inattivi](https://blogs.microsoft.com/cybertrust/2015/09/10/cloud-security-controls-series-encrypting-data-at-rest/) è un passaggio obbligatorio per assicurare la privacy, la conformità e la sovranità dei dati. Crittografia dischi di Azure consente agli amministratori IT di crittografare i dischi delle macchine virtuali IaaS Windows e Linux. Crittografia dischi di Azure si basa sulla funzionalità BitLocker standard di settore disponibile in Windows e sulla funzionalità DM-Crypt di Linux per offrire la crittografia del volume per i dischi dei dati e del sistema operativo.
 
-È possibile sfruttare la crittografia del disco di Azure toohelp proteggere e salvaguardare toomeet i dati ai requisiti di sicurezza e conformità organizzativi. Le organizzazioni dovrebbero usare anche la crittografia toohelp attenuare i rischi correlati toounauthorized l'accesso ai dati. È inoltre consigliabile crittografare unità toowriting precedenti dati sensibili toothem.
+Crittografia dischi di Azure contribuisce alla protezione dei dati e al rispetto degli impegni dell'organizzazione a livello di sicurezza e conformità. La crittografia permette anche alle organizzazioni di ridurre i rischi correlati all'accesso non autorizzato ai dati. È anche consigliabile crittografare le unità prima di scrivervi dati sensibili.
 
-Apportare tooencrypt che i volumi di dati della macchina virtuale e il volume di avvio ordine tooprotect dati inattivi nell'account di archiviazione di Azure. Proteggere i segreti e tutte le chiavi di crittografia hello sfruttando [insieme credenziali chiavi Azure](../key-vault/key-vault-whatis.md).
+Assicurarsi di crittografare il volume di avvio e i volumi dei dati della macchina virtuale per proteggere i dati inattivi nell'account di archiviazione di Azure. Proteggere le chiavi di crittografia e i segreti grazie a [Insieme di credenziali delle chiavi di Azure](../key-vault/key-vault-whatis.md).
 
-Per i server di Windows locale, prendere in considerazione hello crittografia procedure consigliate seguenti:
+Per le istanze di Windows Server locali, prendere in considerazione le seguenti procedure consigliate per la crittografia:
 
 * Usare [BitLocker](https://technet.microsoft.com/library/dn306081.aspx) per la crittografia dei dati
 * Archiviare le informazioni di ripristino in Servizi di dominio Active Directory.
-* Se è presente qualsiasi problema che le chiavi BitLocker sono stati compromessi, è consigliabile che è formattare hello unità tooremove tutte le istanze di metadati di BitLocker hello unità hello o decrittografare e crittografare nuovamente l'intera unità hello.
+* Se si teme che le chiavi di BitLocker siano state compromesse, è consigliabile formattare l'unità per rimuovere tutte le istanze dei metadati di BitLocker dall'unità oppure decrittografare e crittografare nuovamente l'intera unità.
 
-Le organizzazioni che non impongono la crittografia dei dati sono probabilmente toodata toobe esposti i problemi di integrità, ad esempio gli utenti non autorizzati o malintenzionati rubare i dati e compromesso account ottenga l'accesso non autorizzato toodata in formato non crittografato. Oltre a tali rischi, aziende che dispongono di toocomply con dei regolamenti del settore, devono dimostrare che sono accurati e utilizza la sicurezza dei dati tooenhance controlli sicurezza corrette hello.
+Le organizzazioni che non applicano la crittografia dei dati hanno maggiori probabilità di esposizione a problemi di integrità dei dati, ad esempio il furto di dati da parte di utenti non autorizzati o malintenzionati e l'accesso non autorizzato a dati non crittografati con account compromessi. Oltre a questi rischi, le aziende che sono tenute a rispettare normative di settore devono dimostrare di operare in modo conforme e di implementare i controlli di sicurezza appropriati per aumentare la sicurezza dei dati.
 
-Sono disponibili ulteriori informazioni sulla crittografia del disco di Azure leggendo l'articolo hello [Azure crittografia disco per Windows e le macchine virtuali IaaS Linux](azure-security-disk-encryption.md).
+Per altre informazioni su Crittografia dischi di Azure, leggere l'articolo [Crittografia dischi di Azure per le macchine virtuali IaaS Windows e Linux](azure-security-disk-encryption.md).
 
 ## <a name="use-hardware-security-modules"></a>Usare i moduli di protezione hardware
-Soluzioni di crittografia utilizzano dati tooencrypt chiavi private. È quindi fondamentale che queste chiavi vengano archiviate in modo sicuro. Gestione delle chiavi diventa parte integrante di protezione dei dati, dal momento che verrà toostore sfruttate le chiavi segrete che vengono utilizzati tooencrypt dati.
+Le soluzioni di crittografia di settore usano le chiavi private per crittografare i dati. È quindi fondamentale che queste chiavi vengano archiviate in modo sicuro. La gestione delle chiavi diventa parte integrante della protezione dei dati perché verrà impiegata per archiviare le chiavi private usate per crittografare i dati.
 
-La crittografia del disco di Azure Usa [insieme credenziali chiavi Azure](https://azure.microsoft.com/services/key-vault/) toohelp controllare e gestire chiavi di crittografia del disco e i segreti nella sottoscrizione di insieme di credenziali delle chiavi, assicurando che tutti i dati nei dischi di macchina virtuale hello vengono crittografati a riposo in di Azure spazio di archiviazione. È consigliabile utilizzare chiavi tooaudit insieme credenziali chiavi Azure e utilizzo dei criteri.
+Crittografia dischi di Azure usa [Insieme di credenziali delle chiavi di Azure](https://azure.microsoft.com/services/key-vault/) per facilitare il controllo e la gestione delle chiavi di crittografia dei dischi e dei segreti nella sottoscrizione dell'insieme di credenziali delle chiavi, assicurando al tempo stesso che tutti i dati nei dischi delle macchine virtuali siano crittografati quando sono inattivi in Archiviazione di Azure. È opportuno usare l'insieme di credenziali delle chiavi di Azure per controllare le chiavi e l'utilizzo di criteri.
 
-Esistono molti toonot correlati di rischi intrinseci che i controlli di sicurezza appropriato in luogo tooprotect hello le chiavi segrete che sono stati utilizzati tooencrypt i dati. Se gli utenti malintenzionati hanno accesso le chiavi segrete toohello, verranno toodecrypt in grado di hello dati e avere accesso tooconfidential informazioni.
+Esistono molti rischi correlati alla mancanza di controlli di sicurezza appropriati per proteggere le chiavi private usate per crittografare i dati. Se utenti malintenzionati hanno accesso alle chiavi private possono decrittografare i dati e potrebbero accedere a informazioni riservate.
 
-Maggiori informazioni su indicazioni generali per la gestione dei certificati in Azure, leggere l'articolo hello [gestione dei certificati in Azure: operazioni consigliate e sconsigliate](https://blogs.msdn.microsoft.com/azuresecurity/2015/07/13/certificate-management-in-azure-dos-and-donts/).
+Per altre informazioni sulle indicazioni generali per la gestione dei certificati in Azure, leggere l'articolo relativo alle [procedure consigliate e sconsigliate per la gestione dei certificati in Azure](https://blogs.msdn.microsoft.com/azuresecurity/2015/07/13/certificate-management-in-azure-dos-and-donts/).
 
 Per altre informazioni su Insieme di credenziali delle chiavi di Azure, vedere [Introduzione all'insieme di credenziali delle chiavi di Azure](../key-vault/key-vault-get-started.md).
 
 ## <a name="manage-with-secure-workstations"></a>Gestire con workstation sicure
-Poiché hello maggior parte dell'utente finale di hello attacchi destinazione hello, hello diventa uno dei punti di primario hello di attacco. Se un utente malintenzionato compromette endpoint hello, egli può sfruttare i dati del tooorganization di hello utente credenziali toogain accesso. La maggior parte degli attacchi di endpoint sono tootake in grado di sfruttare il fatto di hello che gli utenti finali sono gli amministratori di workstation locale.
+La maggior parte degli attacchi prende di mira l'utente finale, per cui l'endpoint diventa uno dei principali punti di attacco. Se un utente malintenzionato compromette l'endpoint, può usare le credenziali dell'utente per accedere ai dati dell'organizzazione. Nella maggior parte dei casi, gli attacchi agli endpoint sfruttano il fatto che gli utenti finali sono amministratori delle workstation locali.
 
-È possibile ridurre questi rischi usando una workstation di gestione sicura. È consigliabile utilizzare un [workstation di accesso con privilegi (PAW)](https://technet.microsoft.com/library/mt634654.aspx) tooreduce superficie di attacco hello nella workstation. Queste workstation di gestione sicure consentono di limitare alcuni di questi attacchi e contribuiscono a proteggere i dati. Verificare che toouse PAW tooharden e blocco verso il basso la workstation. Si tratta di garanzie di sicurezza elevata tooprovide un passaggio importante per gli account sensibili, attività e la protezione dei dati.
+È possibile ridurre questi rischi usando una workstation di gestione sicura. È consigliabile usare una [workstation con accesso con privilegi](https://technet.microsoft.com/library/mt634654.aspx) per ridurre la superficie di attacco nelle workstation. Queste workstation di gestione sicure consentono di limitare alcuni di questi attacchi e contribuiscono a proteggere i dati. Assicurarsi di usare il sistema PAW per proteggere e bloccare la workstation. Si tratta di un passaggio importante per applicare garanzie di sicurezza di alto livello per la protezione di account, attività e dati sensibili.
 
-Mancanza di endpoint protection potrebbe mettere a rischio i dati, assicurarsi che tooenforce criteri di sicurezza in tutti i dispositivi che vengono utilizzati tooconsume dati, indipendentemente dalla posizione di dati hello (cloud o locale).
+L'assenza di protezione degli endpoint potrebbe mettere a rischio i dati, quindi è importante applicare criteri di sicurezza in tutti i dispositivi che consentono di utilizzare i dati, indipendentemente dal fatto che i dati si trovino nel cloud o in locale.
 
-È possibile ottenere informazioni workstation altri sui privilegi di accesso, leggere l'articolo hello [Securing Privileged Access](https://technet.microsoft.com/library/mt631194.aspx).
+Per altre informazioni sulle workstation con accesso con privilegi, leggere l'articolo [Protezione dell'accesso con privilegi](https://technet.microsoft.com/library/mt631194.aspx).
 
 ## <a name="enable-sql-data-encryption"></a>Abilitare la crittografia dei dati SQL
-[Crittografia trasparente dei dati di Database SQL Azure](https://msdn.microsoft.com/library/dn948096.aspx) (TDE) contribuisce alla protezione dalle minacce di hello di attività dannose eseguendo la crittografia in tempo reale e la decrittografia di hello database, i backup associati, e i file di log delle transazioni a riposo senza richiesta di modifiche toohello applicazione.  Transparent Data Encryption crittografa l'archivio di hello di un intero database utilizzando una chiave di crittografia simmetrica hello chiamata chiave database.
+La funzionalità [Transparent Data Encryption del database SQL di Azure](https://msdn.microsoft.com/library/dn948096.aspx) (TDE) consente di proteggere il sistema da attività dannose eseguendo in tempo reale la crittografia e la decrittografia dei database, dei backup associati e dei file di log delle transazioni inattivi, senza apportare modifiche all'applicazione.  TDE esegue la crittografia dell'archiviazione di un intero database usando una chiave simmetrica detta "chiave di crittografia del database".
 
-Anche se archiviazione intera hello è crittografato, è molto importante tooalso crittografare il database stesso. Questa è un'implementazione di difesa hello approccio per la protezione dati. Se si utilizza [Database SQL di Azure](https://msdn.microsoft.com/library/0bf7e8ff-1416-4923-9c4c-49341e208c62.aspx) e tooprotect i dati sensibili, ad esempio carta di credito o numeri di previdenza sociale, è possibile crittografare i database con FIPS 140-2 convalidato a 256 bit della crittografia AES che soddisfi i requisiti di hello di molte standard del settore (ad esempio HIPAA, PCI).
+Anche quando l'intera risorsa di archiviazione è crittografata, è molto importante crittografare anche il database stesso. Si tratta di un'implementazione della strategia di difesa approfondita per la protezione dati. Se si usa il [database SQL di Azure](https://msdn.microsoft.com/library/0bf7e8ff-1416-4923-9c4c-49341e208c62.aspx) e si desidera proteggere dati riservati, ad esempio il numero della carta di credito o il codice fiscale, è possibile crittografare i database con la crittografia AES a 256 bit con convalida FIPS 140-2, che soddisfa i requisiti di molti standard di settore, quali HIPAA e PCI.
 
-È importante toounderstand che i file correlati troppo[estensione del pool di buffer](https://msdn.microsoft.com/library/dn133176.aspx) (BPE) non vengono crittografati quando un database viene crittografato con TDE. È necessario utilizzare strumenti di crittografia a livello di file system come BitLocker o hello [Encrypting File System](https://technet.microsoft.com/library/cc700811.aspx) (EFS) per tali file correlati.
+È importante comprendere che i file correlati all'[estensione del pool di buffer](https://msdn.microsoft.com/library/dn133176.aspx) non vengono crittografati quando un database è crittografato con la funzionalità TDE. È necessario usare gli strumenti di crittografia a livello di file system come BitLocker o [Encrypting File System](https://technet.microsoft.com/library/cc700811.aspx) (EFS) per i file correlati all'estensione del pool di buffer.
 
-Poiché un utente autorizzato, ad esempio un amministratore della sicurezza o un amministratore del database può accedere ai dati hello anche se il database di hello è crittografato con TDE, è necessario seguire anche indicazioni hello riportate di seguito:
+Dato che un utente autorizzato, ad esempio un amministratore della sicurezza o un amministratore di database, può accedere ai dati anche se il database è crittografato con TDE, è consigliabile seguire anche le raccomandazioni seguenti:
 
-* Autenticazione di SQL a livello di database hello
+* Autenticazione di SQL a livello di database
 * Autenticazione di Azure AD con i ruoli di Controllo degli accessi in base al ruolo
-* Gli utenti e applicazioni devono usare tooauthenticate account distinti. In questo modo è possibile limitare le autorizzazioni di hello concesso toousers e le applicazioni e ridurre i rischi di hello di attività dannose
-* Sicurezza a livello di database implementano tramite i ruoli predefiniti del database (ad esempio db_datareader o db_datawriter) oppure è possibile creare ruoli personalizzati per l'applicazione di toogrant gli oggetti di database di autorizzazioni esplicite tooselected
+* Gli utenti e le applicazioni dovrebbero usare account separati per l'autenticazione. In questo modo è possibile limitare le autorizzazioni concesse a utenti e applicazioni e ridurre i rischi di attività dannose
+* Implementare la sicurezza a livello di database usando i ruoli predefiniti del database, ad esempio db_datareader o db_datawriter, oppure creare ruoli personalizzati per l'applicazione per concedere autorizzazioni esplicite su determinati oggetti di database
 
 Le organizzazioni che non usano la crittografia a livello di database potrebbero essere più esposte ad attacchi che potrebbero compromettere i dati presenti nel database SQL.
 
-Sono disponibili ulteriori informazioni sulla crittografia TDE SQL leggendo l'articolo hello [Transparent Data Encryption con il Database di SQL Azure](https://msdn.microsoft.com/library/0bf7e8ff-1416-4923-9c4c-49341e208c62.aspx).
+Per altre informazioni sulla crittografia TDE di SQL, leggere l'articolo [Transparent Data Encryption con il database SQL di Azure](https://msdn.microsoft.com/library/0bf7e8ff-1416-4923-9c4c-49341e208c62.aspx).
 
 ## <a name="protect-data-in-transit"></a>Proteggere i dati in transito
-La protezione dei dati in transito deve essere una parte essenziale della strategia di protezione dati. Poiché i dati verranno spostate avanti e indietro da molte posizioni, hello generale si consiglia di utilizzare sempre dati tooexchange di protocolli SSL/TLS in posizioni diverse. In alcuni casi, è opportuno canale di comunicazione intera hello tooisolate tra le sedi locali e cloud dell'infrastruttura tramite una rete privata virtuale (VPN).
+La protezione dei dati in transito deve essere una parte essenziale della strategia di protezione dati. Visto che i dati transiteranno in modo bidirezionale tra molte posizioni, in generale si raccomanda di usare sempre i protocolli SSL/TLS per lo scambio di dati tra posizioni diverse. In alcuni casi è consigliabile isolare l'intero canale di comunicazione tra l'infrastruttura locale e cloud con una rete privata virtuale (VPN).
 
 Per lo spostamento dei dati tra l'infrastruttura locale e Azure, è opportuno considerare le misure di protezione appropriate, ad esempio HTTPS o VPN.
 
-Per le organizzazioni che richiedono l'accesso toosecure da più workstation in locale tooAzure, [Azure VPN site-to-site](../vpn-gateway/vpn-gateway-site-to-site-create.md).
+Per le organizzazioni che devono proteggere l'accesso ad Azure da più workstation locali, usare una [VPN da sito a sito di Azure](../vpn-gateway/vpn-gateway-site-to-site-create.md).
 
-Per le organizzazioni che richiedono l'accesso toosecure da una workstation trova tooAzure locale, utilizzare [Point-to-Site VPN](../vpn-gateway/vpn-gateway-point-to-site-create.md).
+Per le organizzazioni che hanno bisogno di proteggere l'accesso ad Azure da una workstation locale, usare una [VPN da punto a sito](../vpn-gateway/vpn-gateway-point-to-site-create.md).
 
-Set di dati più grandi possono essere spostati su un collegamento WAN ad alta velocità dedicato, ad esempio [ExpressRoute](https://azure.microsoft.com/services/expressroute/). Se si sceglie toouse ExpressRoute, è anche possibile crittografare i dati hello hello a livello di applicazione utilizzando [SSL/TLS](https://support.microsoft.com/kb/257591) o altri protocolli per una maggiore protezione.
+Set di dati più grandi possono essere spostati su un collegamento WAN ad alta velocità dedicato, ad esempio [ExpressRoute](https://azure.microsoft.com/services/expressroute/). Se si decide di usare ExpressRoute, è possibile anche crittografare i dati a livello di applicazione usando [SSL/TLS](https://support.microsoft.com/kb/257591) o altri protocolli per una maggiore protezione.
 
-Se si interagisce con l'archiviazione di Azure tramite il portale di Azure hello, tutte le transazioni si verificano tramite HTTPS. [API REST di archiviazione](https://msdn.microsoft.com/library/azure/dd179355.aspx) tramite HTTPS può anche essere utilizzati toointeract con [di archiviazione di Azure](https://azure.microsoft.com/services/storage/) e [Database SQL di Azure](https://azure.microsoft.com/services/sql-database/).
+Se si interagisce con Archiviazione di Azure tramite il portale di Azure, tutte le transazioni hanno luogo tramite HTTPS. È possibile usare anche l'[API REST di archiviazione](https://msdn.microsoft.com/library/azure/dd179355.aspx) su HTTPS per interagire con [Archiviazione di Azure](https://azure.microsoft.com/services/storage/) e il [database SQL di Azure](https://azure.microsoft.com/services/sql-database/).
 
-Le organizzazioni che non soddisfano tooprotect dati in transito sono più sensibili per [attacchi man-in-the-middle](https://technet.microsoft.com/library/gg195821.aspx), [intercettazione](https://technet.microsoft.com/library/gg195641.aspx) e Hijack della sessione. Questi attacchi possono essere hello innanzitutto ottenere l'accesso ai dati tooconfidential.
+Le organizzazioni che non riescono a proteggere i dati in transito sono più vulnerabili agli [attacchi man-in-the-middle](https://technet.microsoft.com/library/gg195821.aspx), [eavesdropping](https://technet.microsoft.com/library/gg195641.aspx) e hijack della sessione. Questi attacchi possono essere il primo passo per ottenere l'accesso ai dati riservati.
 
-Maggiori informazioni sull'opzione VPN di Azure leggendo l'articolo hello [pianificazione e progettazione per il Gateway VPN](../vpn-gateway/vpn-gateway-plan-design.md).
+Per altre informazioni sull'opzione VPN di Azure, vedere l'articolo [Pianificazione e progettazione per il gateway VPN](../vpn-gateway/vpn-gateway-plan-design.md).
 
 ## <a name="enforce-file-level-data-encryption"></a>Applicare la crittografia dei dati a livello di file
-Un altro livello di protezione che consente di aumentare il livello di hello di sicurezza per i dati che sta crittografando file hello stesso, indipendentemente dal percorso del file hello.
+Un altro livello di protezione che può incrementare la sicurezza per i dati consiste nel crittografare il file stesso, indipendentemente da dove si trova.
 
-[Azure RMS](https://technet.microsoft.com/library/jj585026.aspx) toohelp di criteri di crittografia, identità e autorizzazione utilizza proteggere file e posta elettronica. Azure RMS opera su più dispositivi, tra cui telefoni, tablet e PC, applicando una protezione all'interno e all'esterno dell'organizzazione. Questa funzionalità è possibile poiché Azure RMS aggiunge un livello di protezione che rimane con dati hello, anche quando fuoriescono dai confini fisici dell'organizzazione.
+[Azure RMS](https://technet.microsoft.com/library/jj585026.aspx) usa criteri di crittografia, identità e autorizzazione per proteggere i file e la posta elettronica. Azure RMS opera su più dispositivi, tra cui telefoni, tablet e PC, applicando una protezione all'interno e all'esterno dell'organizzazione. Questa funzionalità è resa possibile dal fatto che Azure RMS aggiunge un livello di protezione che rimane insieme ai dati, anche quando fuoriescono dai confini dell'organizzazione.
 
-Quando si usano Azure RMS tooprotect i file, si utilizza la crittografia standard del settore con il supporto completo di [FIPS 140-2](http://csrc.nist.gov/groups/STM/cmvp/standards.html). Quando si utilizzano Azure RMS per la protezione dati, occorre garanzia hello che hello rimane associata file hello, anche se è copiato toostorage che non è incluso nel controllo hello del reparto IT, ad esempio un servizio di archiviazione cloud. Hello stesso comportamento si verifica per i file condivisi tramite posta elettronica, file hello viene protetto come un messaggio di posta elettronica tooan allegato, con istruzioni come tooopen hello protetto allegato.
+Quando si usa Azure RMS per proteggere i file, viene sfruttata una crittografia standard di settore con pieno supporto di [FIPS 140-2](http://csrc.nist.gov/groups/STM/cmvp/standards.html). Quando si usa Azure RMS per proteggere i dati, la protezione rimane associata al file anche se questo viene copiato in una risorsa di archiviazione che non è sotto il controllo dell'IT, ad esempio un servizio di archiviazione cloud. Lo stesso accade per i file condivisi tramite posta elettronica: il file viene protetto come allegato di un messaggio di posta elettronica, con istruzioni su come aprire l'allegato protetto.
 
-Durante la pianificazione per l'adozione di Azure RMS è consigliabile hello segue:
+Quando si pianifica l'adozione di Azure RMS, si consiglia quanto segue:
 
-* Installare hello [app RMS sharing](https://technet.microsoft.com/library/dn339006.aspx). Questa app si integra con le applicazioni Office installando un componente aggiuntivo di Office che offre agli utenti un modo semplice per proteggere direttamente i file.
-* Configurare le applicazioni e servizi toosupport Azure RMS
+* Installare l'[app RMS sharing](https://technet.microsoft.com/library/dn339006.aspx). Questa app si integra con le applicazioni Office installando un componente aggiuntivo di Office che offre agli utenti un modo semplice per proteggere direttamente i file.
+* Configurare le applicazioni e i servizi per supportare Azure RMS
 * Creare [modelli personalizzati](https://technet.microsoft.com/library/dn642472.aspx) che rispecchiano i requisiti aziendali, ad esempio un modello per i dati riservati da applicare in tutti i messaggi di posta elettronica correlati a informazioni riservate.
 
-Le organizzazioni che sono vulnerabili in [classificazione dei dati](http://download.microsoft.com/download/0/A/3/0A3BE969-85C5-4DD2-83B6-366AA71D1FE3/Data-Classification-for-Cloud-Readiness.pdf) e la protezione dei file potrebbe essere più vulnerabile toodata perdita. Senza protezione file appropriate, le organizzazioni non tooobtain in grado di ottenere informazioni aziendali accurate, monitoraggio per evitare eventuali abusi e impedire accessi non autorizzati toofiles.
+Le organizzazioni che sono carenti a livello di [classificazione dei dati](http://download.microsoft.com/download/0/A/3/0A3BE969-85C5-4DD2-83B6-366AA71D1FE3/Data-Classification-for-Cloud-Readiness.pdf) e protezione dei file potrebbero essere più soggette alla perdita di dati. In assenza di un'adeguata protezione per i file, le organizzazioni non riusciranno a ottenere informazioni di business dettagliate, monitorare i possibili abusi e impedire l'accesso non autorizzato ai file.
 
-Maggiori informazioni su Azure RMS, leggere l'articolo hello [Introduzione a Azure Rights Management](https://technet.microsoft.com/library/jj585016.aspx).
+Per altre informazioni su Azure RMS, leggere l'articolo [Introduzione a Azure Rights Management](https://technet.microsoft.com/library/jj585016.aspx).

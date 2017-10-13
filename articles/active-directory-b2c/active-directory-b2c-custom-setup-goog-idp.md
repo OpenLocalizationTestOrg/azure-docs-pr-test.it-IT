@@ -14,41 +14,41 @@ ms.topic: article
 ms.devlang: na
 ms.date: 08/04/2017
 ms.author: yoelh
-ms.openlocfilehash: 4feff21979c9c3b3b12c7a1cae4db0121d1bd79b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e0aaf710d230f7667fff32b50ddb64104509d740
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-active-directory-b2c-add-google-as-an-oauth2-identity-provider-using-custom-policies"></a>Azure Active Directory B2C: Aggiungere Google+ come provider di identità OAuth2 tramite criteri personalizzati
 
 [!INCLUDE [active-directory-b2c-advanced-audience-warning](../../includes/active-directory-b2c-advanced-audience-warning.md)]
 
-Questa guida viene spiegato come tooenable Accedi per gli utenti da Google + account tramite l'utilizzo di hello di [criteri personalizzati](active-directory-b2c-overview-custom.md).
+Questa guida illustra come consentire agli utenti di accedere da un account Google+ tramite l'utilizzo di [criteri personalizzati](active-directory-b2c-overview-custom.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Hello completato i passaggi in hello [Guida introduttiva a criteri personalizzati](active-directory-b2c-get-started-custom.md) articolo.
+Completare la procedura descritta nell'articolo [Introduzione ai criteri personalizzati](active-directory-b2c-get-started-custom.md).
 
 La procedura include i passaggi seguenti:
 
 1.  Creazione di un'applicazione di account Google+.
-2.  Aggiunta di hello Google + account applicazione chiave tooAzure AD B2C
-3.  Aggiunta di criteri tooa provider di attestazioni
-4.  Registrazione hello Google + account attestazioni provider tooa utente viaggio
-5.  Caricamento tooan criteri hello Azure Active Directory B2C tenant ed eseguirne il test
+2.  Aggiunta della chiave dell'applicazione di account Google+ in Azure AD B2C
+3.  Aggiunta di un provider di attestazioni nei criteri
+4.  Registrazione del provider di attestazioni dell'account Google+ in un percorso utente
+5.  Caricamento dei criteri in un tenant di Azure AD B2C e test dei criteri
 
 ## <a name="create-a-google-account-application"></a>Creare un'applicazione di account Google+
-toouse Google + come provider di identità in Azure Active Directory (Azure AD) B2C, è necessario toocreate un'applicazione Google + e fornirlo con i parametri corretti hello. È possibile registrare un'applicazione Google+ qui: [https://accounts.google.com/SignUp](https://accounts.google.com/SignUp)
+Per usare Google+ come provider di identità in Azure Active Directory (Azure AD) B2C, è necessario creare un'applicazione Google+ e inserire i parametri corretti. È possibile registrare un'applicazione Google+ qui: [https://accounts.google.com/SignUp](https://accounts.google.com/SignUp)
 
-1.  Passare toohello [Google Developers Console](https://console.developers.google.com/) e accedere con le credenziali dell'account Google +.
+1.  Visitare [Google Developers Console](https://console.developers.google.com/) e accedere con le credenziali dell'account Google+.
 2.  Fare clic su **Crea progetto**, immettere un nome in **Nome progetto**e fare clic su **Crea**.
 
-3.  Fare clic su hello **menu progetti**.
+3.  Fare clic sul **menu Progetti**.
 
     ![Account Google+ - Selezionare il progetto](media/active-directory-b2c-custom-setup-goog-idp/goog-add-new-app1.png)
 
-4.  Fare clic su hello  **+**  pulsante.
+4.  Fare clic sul pulsante **+**.
 
     ![Account Google+ - Creare un nuovo progetto](media/active-directory-b2c-custom-setup-goog-idp//goog-add-new-app2.png)
 
@@ -56,16 +56,16 @@ toouse Google + come provider di identità in Azure Active Directory (Azure AD) 
 
     ![Account Google+ - Nuovo progetto](media/active-directory-b2c-custom-setup-goog-idp//goog-app-name.png)
 
-6.  Attendere che il progetto hello è pronto e fare clic su hello **menu progetti**.
+6.  Attendere che il progetto sia pronto e fare clic sul **menu Progetti**.
 
-    ![Account di Google + - attendere il nuovo progetto toouse pronto](media/active-directory-b2c-custom-setup-goog-idp//goog-select-app1.png)
+    ![Account Google+ - Attendere che il nuovo progetto sia pronto per l'utilizzo](media/active-directory-b2c-custom-setup-goog-idp//goog-select-app1.png)
 
 7.  Fare clic sul nome del progetto.
 
-    ![Account di Google + - nuovo progetto selezionare hello](media/active-directory-b2c-custom-setup-goog-idp//goog-select-app2.png)
+    ![Account Google+ - Selezionare il nuovo progetto](media/active-directory-b2c-custom-setup-goog-idp//goog-select-app2.png)
 
-8.  Fare clic su **API Manager** e quindi fare clic su **credenziali** nel riquadro di spostamento sinistro hello.
-9.  Fare clic su hello **schermata consenso OAuth** scheda nella parte superiore di hello.
+8.  Fare clic su **Gestione API** e su **Credenziali** nel riquadro di spostamento sinistro.
+9.  Fare clic sulla scheda **Schermata consenso OAuth** nella parte superiore.
 
     ![Account Google+ - Impostare la schermata del consenso OAuth](media/active-directory-b2c-custom-setup-goog-idp/goog-add-cred.png)
 
@@ -81,37 +81,37 @@ toouse Google + come provider di identità in Azure Active Directory (Azure AD) 
 
     ![Google+ - Selezionare il tipo di applicazione](media/active-directory-b2c-custom-setup-goog-idp/goog-web-app.png)
 
-13.  Fornire un **nome** per l'applicazione, immettere `https://login.microsoftonline.com` in hello **autorizzato JavaScript origins** , campo e `https://login.microsoftonline.com/te/{tenant}/oauth2/authresp` in hello **Authorized redirect URI**campo. Sostituire **{tenant}** con il nome del tenant, ad esempio contosob2c.onmicrosoft.com. Hello **{tenant}** valore è tra maiuscole e minuscole. Fare clic su **Crea**.
+13.  Fornire un **Nome** per l'applicazione, immettere `https://login.microsoftonline.com` nel campo **Origini JavaScript Autorizzate** e `https://login.microsoftonline.com/te/{tenant}/oauth2/authresp` nel campo **URI di reindirizzamento autorizzati**. Sostituire **{tenant}** con il nome del tenant, ad esempio contosob2c.onmicrosoft.com. Il valore **{tenant}** distingue tra maiuscole e minuscole. Fare clic su **Crea**.
 
     ![Google+ - Specificare le origini JavaScript autorizzate e gli URI di reindirizzamento](media/active-directory-b2c-custom-setup-goog-idp/goog-create-client-id.png)
 
-14.  Copiare i valori hello di **Id Client** e **segreto Client**. È necessario Google + entrambi tooconfigure come provider di identità nel tenant. **Segreto client** è una credenziale di sicurezza importante.
+14.  Copiare i valori **ID client** e **Segreto client**. Sono entrambi necessari per configurare Google+ come provider di identità nel tenant. **Segreto client** è una credenziale di sicurezza importante.
 
-    ![Google + - valori hello copia della chiave privata Client e l'Id client](media/active-directory-b2c-custom-setup-goog-idp/goog-client-secret.png)
+    ![Google+ - Copiare i valori di ID client e Segreto client](media/active-directory-b2c-custom-setup-goog-idp/goog-client-secret.png)
 
-## <a name="add-hello-google-account-application-key-tooazure-ad-b2c"></a>Aggiungere hello Google + account applicazione chiave tooAzure AD B2C
-La federazione con Google + account richiede un segreto client per Google + account tootrust Azure Active Directory B2C per conto di un'applicazione hello. È necessario toostore il segreto dell'applicazione Google + nel tenant di Azure Active Directory B2C:  
+## <a name="add-the-google-account-application-key-to-azure-ad-b2c"></a>Aggiungere la chiave dell'applicazione di account Google+ in Azure AD B2C
+La federazione con account Google+ richiede un segreto client per consentire all'account Google+ di considerare attendibile Azure AD B2C per conto dell'applicazione. È necessario archiviare il segreto dell'applicazione Google+ nel tenant di Azure AD B2C:  
 
-1.  Tenant di Azure Active Directory B2C tooyour scegliere **impostazioni B2C** > **Framework esperienza di identità**
-2.  Selezionare **chiavi dei criteri** chiavi hello tooview disponibili nel tenant.
+1.  Passare al tenant di Azure AD B2C e selezionare **B2C Settings** (Impostazioni B2C) > **Framework dell'esperienza di gestione delle identità**
+2.  Selezionare **Chiavi dei criteri** per visualizzare le chiavi disponibili nel tenant.
 3.  Fare clic su **+Aggiungi**.
 4.  Per **Opzioni** usare **Manuale**.
 5.  Per **Nome** usare `GoogleSecret`.  
-    prefisso Hello `B2C_1A_` potrebbero essere aggiunti automaticamente.
-6.  In hello **Secret** , immettere il segreto dell'applicazione Microsoft da https://apps.dev.microsoft.com
+    È possibile che il prefisso `B2C_1A_` venga aggiunto automaticamente.
+6.  Nella casella **Segreto** immettere il segreto dell'applicazione Microsoft da https://apps.dev.microsoft.com
 7.  Per **Uso chiave** usare **Firma**.
 8.  Fare clic su **Crea**
-9.  Verificare di aver creato la chiave hello `B2C_1A_GoogleSecret`.
+9.  Confermare di avere creato la chiave `B2C_1A_GoogleSecret`.
 
 ## <a name="add-a-claims-provider-in-your-extension-policy"></a>Aggiungere un provider di attestazioni nei criteri di estensione
 
-Se si desidera toosign gli utenti utilizzando account di Google +, è necessario toodefine Google + account come un provider di attestazioni. In altre parole, è necessario toospecify un endpoint di Azure Active Directory B2C con cui comunica. endpoint Hello fornisce un set di attestazioni che vengono utilizzati da Azure AD B2C tooverify che ha autenticato un utente specifico.
+Per consentire agli utenti di accedere con un account Google+, è necessario definire l'account Google+ come provider di attestazioni. In altre parole, è necessario specificare un endpoint con cui comunichi Azure AD B2C. L'endpoint offre un set di attestazioni che vengono usate da Azure AD B2C per verificare se un utente specifico è stato autenticato.
 
 Definire l'account Google+ come provider di attestazioni aggiungendo il nodo `<ClaimsProvider>` nel file dei criteri di estensione:
 
-1.  Aprire i file dei criteri estensione hello (TrustFrameworkExtensions.xml) dalla directory di lavoro. Se occorre un editor XML, provare [Visual Studio Code](https://code.visualstudio.com/download), un editor multipiattaforma leggero.
-2.  Trovare hello `<ClaimsProviders>` sezione
-3.  Aggiungere hello seguente frammento di codice XML in hello `ClaimsProviders` elemento e sostituire `client_id` valore con Google + ID account personale dell'applicazione client prima di salvare il file hello.  
+1.  Aprire il file dei criteri di estensione (TrustFrameworkExtensions.xml) dalla directory di lavoro. Se occorre un editor XML, provare [Visual Studio Code](https://code.visualstudio.com/download), un editor multipiattaforma leggero.
+2.  Trovare la sezione `<ClaimsProviders>`
+3.  Aggiungere il seguente frammento XML nell'elemento `ClaimsProviders` e sostituire il valore `client_id` con l'ID client dell'applicazione di account Google+ prima di salvare il file.  
 
 ```xml
 <ClaimsProvider>
@@ -155,7 +155,7 @@ Definire l'account Google+ come provider di attestazioni aggiungendo il nodo `<C
             <ErrorResponseFormat>json</ErrorResponseFormat>
             <ResponseMatch>$[?(@@.error == 'invalid_grant')]</ResponseMatch>
             <Action>Reauthenticate</Action>
-            <!--In case of authorization code used error, we don't want hello user tooselect his account again.-->
+            <!--In case of authorization code used error, we don't want the user to select his account again.-->
             <!--AdditionalRequestParameters Key="prompt">select_account</AdditionalRequestParameters-->
         </ErrorHandler>
         </ErrorHandlers>
@@ -164,34 +164,34 @@ Definire l'account Google+ come provider di attestazioni aggiungendo il nodo `<C
 </ClaimsProvider>
 ```
 
-## <a name="register-hello-google-account-claims-provider-toosign-up-or-sign-in-user-journey"></a>Registrare hello Google + account attestazioni provider tooSign backup o accedere al proprio processo utente
+## <a name="register-the-google-account-claims-provider-to-sign-up-or-sign-in-user-journey"></a>Registrare il provider di attestazioni dell'account Google+ in un percorso utente di registrazione o di accesso
 
-configurare il provider di identità Hello.  Non è tuttavia disponibile in una qualsiasi delle schermate di sign-configurazione/Accedi hello. Aggiungere hello Google + account identità tooyour utente del provider `SignUpOrSignIn` viaggio utente. toomake disponibili, si crea un duplicato di un proprio processo utente di modello esistente.  È quindi possibile aggiungere hello Google + account provider di identità:
+Il provider di identità è stato configurato,  ma non è disponibile in nessuna delle schermate di registrazione o di accesso. Aggiungere il provider di identità dell'account Google+ al percorso utente `SignUpOrSignIn` dell'utente. Per renderlo disponibile, si crea un duplicato di un modello di processo utente esistente  e si aggiunge il provider di identità dell'account Google+:
 
 >[!NOTE]
 >
->Se è stato copiato hello `<UserJourneys>` elemento dal file di base del file di estensione di criteri toohello (TrustFrameworkExtensions.xml), è possibile ignorare la sezione toothis.
+>Se l'elemento `<UserJourneys>` è stato copiato dal file di base dei criteri al file di estensione (TrustFrameworkExtensions.xml), è possibile ignorare questa sezione.
 
-1.  Aprire il file di base hello dei criteri (ad esempio, TrustFrameworkBase.xml).
-2.  Trovare hello `<UserJourneys>` elemento e copia hello intero contenuto di `<UserJourneys>` nodo.
-3.  Aprire il file di estensione hello (ad esempio, TrustFrameworkExtensions.xml) e individuare hello `<UserJourneys>` elemento. Se non esiste l'elemento hello, aggiungerne uno.
-4.  Incollare l'intero contenuto di hello di `<UserJournesy>` nodo copiato come figlio di hello `<UserJourneys>` elemento.
+1.  Aprire il file di base dei criteri, ad esempio TrustFrameworkBase.xml.
+2.  Trovare l'elemento `<UserJourneys>` e copiare l'intero contenuto del nodo `<UserJourneys>`.
+3.  Aprire il file di estensione, ad esempio TrustFrameworkExtensions.xml, e trovare l'elemento `<UserJourneys>`. Se l'elemento non esiste, aggiungerne uno.
+4.  Incollare l'intero contenuto del nodo `<UserJournesy>` copiato come figlio dell'elemento `<UserJourneys>`.
 
-### <a name="display-hello-button"></a>Pulsante di visualizzazione hello
-Hello `<ClaimsProviderSelections>` elemento definisce l'elenco di hello di opzioni di selezione del provider di attestazioni e il relativo ordine.  `<ClaimsProviderSelection>`elemento è di tipo pulsante di provider di identità di tooan analoghi in una pagina sign-configurazione/Accedi. Se si aggiunge un `<ClaimsProviderSelection>` elemento per account di Google +, un nuovo pulsante viene visualizzato quando un utente inserita nella pagina hello. tooadd questo elemento:
+### <a name="display-the-button"></a>Visualizzare il pulsante
+L'elemento `<ClaimsProviderSelections>` definisce l'elenco delle opzioni di selezione del provider di attestazioni e il relativo ordine.  L'elemento `<ClaimsProviderSelection>` è analogo a un pulsante del provider di identità in una pagina di registrazione/accesso. Se si aggiunge un elemento `<ClaimsProviderSelection>` per l'account Google+, viene visualizzato un nuovo pulsante quando un utente apre la pagina. Per aggiungere questo elemento:
 
-1.  Trovare hello `<UserJourney>` nodo che include `Id="SignUpOrSignIn"` in viaggio utente hello copiato.
-2.  Individuare hello `<OrchestrationStep>` nodo che include`Order="1"`
+1.  Trovare il nodo `<UserJourney>` che include `Id="SignUpOrSignIn"` nel percorso utente appena copiato.
+2.  Passare al nodo `<OrchestrationStep>` che include `Order="1"`
 3.  Aggiungere il frammento XML seguente nel nodo `<ClaimsProviderSelections>`:
 
 ```xml
 <ClaimsProviderSelection TargetClaimsExchangeId="GoogleExchange" />
 ```
 
-### <a name="link-hello-button-tooan-action"></a>Azione di collegamento hello pulsante tooan
-Ora che si dispone di un pulsante, è necessario toolink è tooan azione. azione di Hello, in questo caso, è per Azure Active Directory B2C toocommunicate con Google + account tooreceive un token.
+### <a name="link-the-button-to-an-action"></a>Collegare il pulsante a un'azione
+Ora che il pulsante è stato posizionato, è necessario collegarlo a un'azione. L'azione, in questo caso, consiste nel far comunicare Azure AD B2C con l'account Google+ per ricevere un token.
 
-1.  Trovare hello `<OrchestrationStep>` che include `Order="2"` in hello `<UserJourney>` nodo.
+1.  Trovare l'oggetto `<OrchestrationStep>` che include `Order="2"` nel nodo `<UserJourney>`.
 2.  Aggiungere il frammento XML seguente nel nodo `<ClaimsExchanges>`:
 
 ```xml
@@ -200,55 +200,55 @@ Ora che si dispone di un pulsante, è necessario toolink è tooan azione. azione
 
 >[!NOTE]
 >
-> * Assicurarsi di hello `Id` ha lo stesso valore di hello `TargetClaimsExchangeId` nella precedente sezione hello
-> * Verificare `TechnicalProfileReferenceId` impostare l'ID del profilo di tecniche toohello precedenti (Google OAUTH) è stato creato.
+> * Verificare che `Id` sia impostato sullo stesso valore di `TargetClaimsExchangeId` riportato nella sezione precedente
+> * Verificare che l'ID `TechnicalProfileReferenceId` sia impostato sul profilo tecnico creato in precedenza (Google-OAUTH).
 
-## <a name="upload-hello-policy-tooyour-tenant"></a>Caricare tenant tooyour di hello criteri
-1.  In hello [portale di Azure](https://portal.azure.com), passare in hello [contesto del tenant di Azure Active Directory B2C](active-directory-b2c-navigate-to-b2c-context.md), aprire hello e **Azure Active Directory B2C** blade.
+## <a name="upload-the-policy-to-your-tenant"></a>Caricare i criteri nel tenant
+1.  Nel [portale di Azure](https://portal.azure.com) passare al [contesto del tenant di Azure AD B2C](active-directory-b2c-navigate-to-b2c-context.md) e aprire il pannello **Azure AD B2C**.
 2.  Fare clic su **Framework dell'esperienza di gestione delle identità**.
-3.  Aprire hello **tutti i criteri** blade.
+3.  Aprire il pannello **Tutti i criteri**.
 4.  Selezionare **Carica criteri**.
-5.  Controllare **sovrascrivere i criteri di hello eventuale** casella.
-6.  **Caricare** TrustFrameworkExtensions.xml e assicurarsi che non riuscire convalida hello
+5.  Selezionare la casella **Sovrascrivi il criterio se esistente**.
+6.  **Caricare** TrustFrameworkExtensions.xml e assicurarsi che non presenti errori di convalida
 
-## <a name="test-hello-custom-policy-by-using-run-now"></a>Test dei criteri personalizzati di hello tramite Esegui
-1.  Aprire **le impostazioni di Azure Active Directory B2C** e andare troppo**identità esperienza Framework**.
+## <a name="test-the-custom-policy-by-using-run-now"></a>Testare i criteri personalizzati tramite Esegui adesso
+1.  Aprire **Impostazioni di Azure AD B2C** e passare a **Framework dell'esperienza di gestione delle identità**.
 
     >[!NOTE]
     >
-    >    **Esegui ora** richiede almeno un'applicazione toobe preregistrate tenant hello. 
-    >    toolearn tooregister applicazioni, vedere hello Azure Active Directory B2C [iniziare](active-directory-b2c-get-started.md) articolo o hello [registrazione dell'applicazione](active-directory-b2c-app-registration.md) articolo.
+    >    Il comando **Esegui adesso** richiede che nel tenant sia preregistrata almeno un'applicazione. 
+    >    Per informazioni su come registrare le applicazioni, vedere l'articolo di [introduzione](active-directory-b2c-get-started.md) ad Azure AD B2C o l'articolo relativo alla [registrazione delle applicazioni](active-directory-b2c-app-registration.md).
 
 
-2.  Aprire **B2C_1A_signup_signin**, hello criteri personalizzati di relying party (RP) che è stata caricata. Selezionare **Esegui adesso**.
-3.  È necessario essere in grado di toosign con Google + account.
+2.  Aprire **B2C_1A_signup_signin**, i criteri personalizzati dalla relying party caricati in precedenza. Selezionare **Esegui adesso**.
+3.  Dovrebbe essere possibile accedere usando un account Google+.
 
-## <a name="optional-register-hello-google-account-claims-provider-tooprofile-edit-user-journey"></a>[Facoltativo] Registrare hello Google + account attestazioni provider tooProfile modifica utente viaggio
-È consigliabile tooadd hello Google + account provider di identità anche tooyour utente `ProfileEdit` viaggio utente. toomake è disponibile, si ripete hello ultimi due passaggi:
+## <a name="optional-register-the-google-account-claims-provider-to-profile-edit-user-journey"></a>[Facoltativo] Registrare il provider di attestazioni dell'account Google+ nel percorso utente Profile-Edit
+È possibile aggiungere il provider di identità dell'account Google+ anche al percorso utente `ProfileEdit` dell'utente. Per renderlo disponibile, ripetere gli ultimi due passaggi:
 
-### <a name="display-hello-button"></a>Pulsante di visualizzazione hello
-1.  Aprire il file di estensione hello dei criteri (ad esempio, TrustFrameworkExtensions.xml).
-2.  Trovare hello `<UserJourney>` nodo che include `Id="ProfileEdit"` in viaggio utente hello copiato.
-3.  Individuare hello `<OrchestrationStep>` nodo che include`Order="1"`
+### <a name="display-the-button"></a>Visualizzare il pulsante
+1.  Aprire il file di estensione dei criteri, ad esempio TrustFrameworkExtensions.xml.
+2.  Trovare il nodo `<UserJourney>` che include `Id="ProfileEdit"` nel percorso utente appena copiato.
+3.  Passare al nodo `<OrchestrationStep>` che include `Order="1"`
 4.  Aggiungere il frammento XML seguente nel nodo `<ClaimsProviderSelections>`:
 
 ```xml
 <ClaimsProviderSelection TargetClaimsExchangeId="GoogleExchange" />
 ```
 
-### <a name="link-hello-button-tooan-action"></a>Azione di collegamento hello pulsante tooan
-1.  Trovare hello `<OrchestrationStep>` che include `Order="2"` in hello `<UserJourney>` nodo.
+### <a name="link-the-button-to-an-action"></a>Collegare il pulsante a un'azione
+1.  Trovare l'oggetto `<OrchestrationStep>` che include `Order="2"` nel nodo `<UserJourney>`.
 2.  Aggiungere il frammento XML seguente nel nodo `<ClaimsExchanges>`:
 
 ```xml
 <ClaimsExchange Id="GoogleExchange" TechnicalProfileReferenceId="Google-OAUTH" />
 ```
 
-### <a name="test-hello-custom-profile-edit-policy-by-using-run-now"></a>Testare il criterio Modifica profilo personalizzato di hello utilizzando Esegui
+### <a name="test-the-custom-profile-edit-policy-by-using-run-now"></a>Testare i criteri Profile-Edit personalizzati tramite Esegui adesso
 
-1.  Aprire **le impostazioni di Azure Active Directory B2C** e andare troppo**identità esperienza Framework**.
-2.  Aprire **B2C_1A_ProfileEdit**, hello criteri personalizzati di relying party (RP) che è stata caricata. Selezionare **Esegui adesso**.
-3.  È necessario essere in grado di toosign con Google + account.
+1.  Aprire **Impostazioni di Azure AD B2C** e passare a **Framework dell'esperienza di gestione delle identità**.
+2.  Aprire **B2C_1A_ProfileEdit**, i criteri personalizzati dalla relying party caricati in precedenza. Selezionare **Esegui adesso**.
+3.  Dovrebbe essere possibile accedere usando un account Google+.
 
-## <a name="download-hello-complete-policy-files"></a>Scaricare i file di criteri completa hello
-Facoltativo: È consigliabile che compilare lo scenario utilizzando i file di criteri personalizzata dopo aver completato hello Introduzione a criteri personalizzati analizzerà anziché utilizzare questi file di esempio.  [File dei criteri di esempio di riferimento](https://github.com/Azure-Samples/active-directory-b2c-custom-policy-starterpack/tree/master/scenarios/aadb2c-ief-setup-goog-app)
+## <a name="download-the-complete-policy-files"></a>Scaricare i file dei criteri completi
+Facoltativo: anziché usare i file di esempio, per creare lo scenario è consigliabile usare file di criteri personalizzati dopo aver completato la procedura Introduzione ai criteri personalizzati.  [File dei criteri di esempio di riferimento](https://github.com/Azure-Samples/active-directory-b2c-custom-policy-starterpack/tree/master/scenarios/aadb2c-ief-setup-goog-app)

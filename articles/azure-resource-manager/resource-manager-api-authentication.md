@@ -1,6 +1,6 @@
 ---
-title: aaaAzure Active Directory l'autenticazione e Gestione risorse | Documenti Microsoft
-description: Tooauthentication manuale dello sviluppatore con hello API di gestione risorse di Azure e Azure Active Directory per l'integrazione di un'app con altre sottoscrizioni di Azure.
+title: Autenticazione di Azure Active Directory e Resource Manager | Microsoft Docs
+description: Guida per gli sviluppatori all'autenticazione con l'API di Azure Resource Manager e Azure Active Directory per l'integrazione di un'app con altre sottoscrizioni di Azure.
 services: azure-resource-manager,active-directory
 documentationcenter: na
 author: dushyantgill
@@ -14,42 +14,42 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 12/27/2016
 ms.author: dugill;tomfitz
-ms.openlocfilehash: 757e45fdb28488b45de70647746461888bf35a56
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7830dc4774652f4d108e98660dce3bcea7b32d05
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="use-resource-manager-authentication-api-tooaccess-subscriptions"></a>Utilizzare le sottoscrizioni tooaccess autenticazione API di gestione risorse
+# <a name="use-resource-manager-authentication-api-to-access-subscriptions"></a>Usare l'API di autenticazione di Resource Manager per accedere alle sottoscrizioni
 ## <a name="introduction"></a>Introduzione
-Se si è uno sviluppatore di software che deve toocreate un'app che gestisce le risorse di Azure del cliente, in questo argomento Mostra come tooauthenticate con hello le API di gestione risorse di Azure e ottenere l'accesso tooresources in altre sottoscrizioni.
+Questo argomento illustra agli sviluppatori software, che devono creare un'app per gestire le risorse di Azure di un cliente, come eseguire l'autenticazione con le API di Azure Resource Manager e ottenere l'accesso alle risorse in altre sottoscrizioni.
 
-L'app possa accedere hello API di gestione risorse in due modi:
+L'app può accedere alle API di Resource Manager in due modi:
 
 1. **Accesso utente + app**: per le app che accedono alle risorse per conto di un utente connesso. Questo approccio funziona per le app, ad esempio le app Web e gli strumenti da riga di comando, che trattano solo la "gestione interattiva" delle risorse di Azure.
-2. **Accesso solo app**: per le app che eseguono servizi daemon e processi pianificati. identità dell'applicazione Hello viene concesso l'accesso diretto alle risorse di toohello. Questo approccio funziona per le app che servono a lungo termine tooAzure headless accesso (esecuzione automatica).
+2. **Accesso solo app**: per le app che eseguono servizi daemon e processi pianificati. All'identità dell'app viene concesso l'accesso diretto alle risorse. Questo approccio funziona per le app che richiedono l'accesso headless (automatico) a lungo termine ad Azure.
 
-Questo argomento vengono fornite istruzioni dettagliate toocreate un'applicazione che utilizza entrambi i metodi di autorizzazione. Viene illustrato come tooperform ogni passaggio con l'API REST o c#. un'applicazione ASP.NET MVC Hello completezza è disponibile all'indirizzo [https://github.com/dushyantgill/VipSwapper/tree/master/CloudSense](https://github.com/dushyantgill/VipSwapper/tree/master/CloudSense).
+Questo argomento include istruzioni dettagliate per la creazione di un'app che usa entrambi i metodi di autorizzazione. Illustra come eseguire ogni passaggio con l'API REST o C#. L'applicazione ASP.NET MVC completa è disponibile all'indirizzo [https://github.com/dushyantgill/VipSwapper/tree/master/CloudSense](https://github.com/dushyantgill/VipSwapper/tree/master/CloudSense).
 
-## <a name="what-hello-web-app-does"></a>Le app web hello non
-app web Hello:
+## <a name="what-the-web-app-does"></a>Operazioni eseguite dall'app Web
+L'app Web:
 
 1. Esegue l'accesso per un utente di Azure.
-2. Chiede utente toogrant hello web app accesso tooResource Manager.
+2. Chiede all'utente di concedere a Resource Manager l'accesso all'app Web.
 3. Ottiene il token di accesso app + utente per l'accesso a Resource Manager.
-4. Usa token (dal passaggio 3) toocall Gestione risorse e ruolo tooa principale di servizio dell'applicazione hello assegnare nella sottoscrizione hello, che fornisce una sottoscrizione di toohello di hello app a lungo termine accesso.
+4. Usa il token (ottenuto nel passaggio 3) per chiamare Resource Manager e assegnare l'entità servizio dell'app a un ruolo nella sottoscrizione, che consente l'accesso a lungo termine dell'app alla sottoscrizione.
 5. Ottiene il token di accesso solo app.
-6. Usa token (dal passaggio 5) toomanage risorse nella sottoscrizione hello tramite Gestione risorse.
+6. Usa il token (ottenuto nel passaggio 5) per gestire le risorse nella sottoscrizione tramite Resource Manager.
 
-Ecco il flusso di hello end-to-end dell'applicazione web hello.
+Ecco il flusso end-to-end dell'applicazione Web.
 
 ![Flusso di autenticazione di Resource Manager](./media/resource-manager-api-authentication/Auth-Swim-Lane.png)
 
-Come un utente, fornire l'id di sottoscrizione hello per sottoscrizione hello desiderato toouse:
+L'utente fornisce l'ID sottoscrizione per la sottoscrizione che vuole usare:
 
 ![Fornire l'ID sottoscrizione](./media/resource-manager-api-authentication/sample-ux-1.png)
 
-Selezionare hello toouse di account per l'accesso.
+Selezionare l'account da usare per l'accesso.
 
 ![Selezionare un account](./media/resource-manager-api-authentication/sample-ux-2.png)
 
@@ -57,7 +57,7 @@ Fornire le credenziali.
 
 ![Fornire le credenziali](./media/resource-manager-api-authentication/sample-ux-3.png)
 
-Concedere hello app accesso tooyour le sottoscrizioni di Azure:
+Concedere all'app l'accesso alle sottoscrizioni di Azure:
 
 ![Concedere l'accesso](./media/resource-manager-api-authentication/sample-ux-4.png)
 
@@ -66,79 +66,79 @@ Gestire le sottoscrizioni connesse:
 ![Connettere la sottoscrizione](./media/resource-manager-api-authentication/sample-ux-7.png)
 
 ## <a name="register-application"></a>Registrare l'applicazione
-Prima di iniziare a scrivere codice, registrare l'app Web in Azure Active Directory (AD). registrazione app Hello crea un'identità centrale per l'app in Azure AD. Contiene informazioni di base sull'applicazione quali ID Client OAuth, gli URL di risposta e le credenziali che l'applicazione usa tooauthenticate e le API di gestione risorse di Azure di accesso. registrazione app Hello registra inoltre hello vari delegate le autorizzazioni necessarie all'applicazione quando si accede a Microsoft APIs per conto di utente hello.
+Prima di iniziare a scrivere codice, registrare l'app Web in Azure Active Directory (AD). La registrazione dell'app crea un'identità centrale per l'app in Azure AD, che contiene le informazioni di base sull'applicazione, ad esempio l'ID client OAuth, gli URL di risposta e le credenziali che l'applicazione usa per l'autenticazione e l'accesso alle API di Azure Resource Manager. Con la registrazione dell'app vengono registrate anche le diverse autorizzazioni delegate richieste dall'applicazione quando accede alle API Microsoft per conto dell'utente.
 
-Poiché l'applicazione accede ad altre sottoscrizioni, è necessario configurarla come un'applicazione multi-tenant. convalida toopass, fornire un dominio associato con Azure Active Directory. domini di hello toosee associati di Azure Active Directory, accedi toohello [portale classico](https://manage.windowsazure.com). Selezionare l'istanza di Azure Active Directory e quindi selezionare **Domini**.
+Poiché l'applicazione accede ad altre sottoscrizioni, è necessario configurarla come un'applicazione multi-tenant. Per superare la convalida, fornire un dominio associato ad Azure Active Directory. Per visualizzare i domini associati ad Azure Active Directory, accedere al [portale classico](https://manage.windowsazure.com). Selezionare l'istanza di Azure Active Directory e quindi selezionare **Domini**.
 
-Hello di esempio seguente viene illustrato come tooregister hello app usando Azure PowerShell. È necessario disporre di hello versione più recente (agosto 2016) di Azure PowerShell per toowork questo comando.
+L'esempio seguente mostra come registrare l'app usando Azure PowerShell. Per il funzionamento di questo comando, è necessaria la versione più recente (agosto 2016) di Azure PowerShell.
 
     $app = New-AzureRmADApplication -DisplayName "{app name}" -HomePage "https://{your domain}/{app name}" -IdentifierUris "https://{your domain}/{app name}" -Password "{your password}" -AvailableToOtherTenants $true
 
-toolog in come hello applicazione Active Directory, è necessario che la password e l'id dell'applicazione hello. id applicazione hello toosee restituito dal comando precedente hello, utilizzare:
+Per accedere come applicazione Active Directory, sono necessari l'ID applicazione e la password. Per visualizzare l'ID applicazione restituito dal comando precedente, usare:
 
     $app.ApplicationId
 
-Hello di esempio seguente viene illustrato come tooregister hello app usando l'interfaccia CLI di Azure.
+L'esempio seguente mostra come registrare l'app usando l'interfaccia della riga di comando di Azure.
 
     azure ad app create --name {app name} --home-page https://{your domain}/{app name} --identifier-uris https://{your domain}/{app name} --password {your password} --available true
 
-i risultati di Hello includono hello AppId, è necessario per l'autenticazione come applicazione hello.
+I risultati includono l'AppId necessario per autenticarsi come applicazione.
 
 ### <a name="optional-configuration---certificate-credential"></a>Configurazione facoltativa: credenziali del certificato
-Azure AD supporta anche le credenziali del certificato per le applicazioni: creare un certificato autofirmato, mantenere la chiave privata di hello e aggiungere una registrazione dell'applicazione hello tooyour chiave pubblica Azure AD. Per l'autenticazione, l'applicazione invia un tooAzure piccoli payload AD firmato con la chiave privata e Azure AD convalida firma hello con la chiave pubblica hello registrato.
+Azure AD supporta anche le credenziali certificato per le applicazioni: creare un certificato autofirmato, mantenere la chiave privata e aggiungere la chiave pubblica alla registrazione dell'applicazione Azure AD. Per l'autenticazione, l'applicazione invia un piccolo payload ad Azure AD firmato usando la chiave privata e Azure AD convalida la firma usando la chiave pubblica registrata.
 
-Per informazioni sulla creazione di un'app di Active Directory con un certificato, vedere [toocreate usare Azure PowerShell un'entità servizio tooaccess risorse](resource-group-authenticate-service-principal.md#create-service-principal-with-certificate-from-certificate-authority) o [toocreate CLI di Azure di utilizzare un'entità servizio tooaccess risorse](resource-group-authenticate-service-principal-cli.md#create-service-principal-with-certificate).
+Per informazioni sulla creazione di un'app Active Directory con un certificato, vedere [Use Azure PowerShell to create a service principal to access resources](resource-group-authenticate-service-principal.md#create-service-principal-with-certificate-from-certificate-authority) (Usare Azure PowerShell per creare un'entità servizio per accedere alle risorse) o [Use Azure CLI to create a service principal to access resources](resource-group-authenticate-service-principal-cli.md#create-service-principal-with-certificate) (Usare l'interfaccia della riga di comando di Azure per creare un'entità servizio per accedere alle risorse).
 
 ## <a name="get-tenant-id-from-subscription-id"></a>Ottenere l'ID tenant dall'ID sottoscrizione
-toorequest un token che può essere utilizzati toocall Gestione risorse, l'applicazione deve tooknow hello tenant ID del tenant di Azure AD hello che ospita hello sottoscrizione di Azure. Molto probabilmente gli utenti conoscono i relativi ID sottoscrizione, ma potrebbero non conoscere gli ID tenant per Azure Active Directory. tooget hello id tenant dell'utente, chiedere utente hello per l'id sottoscrizione hello. Quando si invia una richiesta di informazioni sulla sottoscrizione hello, fornire tale id sottoscrizione:
+Per richiedere un token da usare per chiamare Resource Manager, l'applicazione deve conoscere l'ID tenant del tenant di Azure AD che ospita la sottoscrizione di Azure. Molto probabilmente gli utenti conoscono i relativi ID sottoscrizione, ma potrebbero non conoscere gli ID tenant per Azure Active Directory. Per ottenere l'ID tenant dell'utente, chiedere all'utente l'ID sottoscrizione. Fornire questo ID sottoscrizione quando si invia una richiesta relativa alla sottoscrizione:
 
     https://management.azure.com/subscriptions/{subscription-id}?api-version=2015-01-01
 
-richiesta di Hello non riesce perché l'utente hello ha non ancora connessi, ma è possibile recuperare l'id tenant hello dalla risposta hello. Tale eccezione, recuperare l'id tenant hello dal valore di intestazione di risposta hello per **WWW-Authenticate**. Vedrai questa implementazione di hello [GetDirectoryForSubscription](https://github.com/dushyantgill/VipSwapper/blob/master/CloudSense/CloudSense/AzureResourceManagerUtil.cs#L20) metodo.
+La richiesta non riesce perché l'utente non è ancora connesso, ma è possibile recuperare l'ID tenant dalla risposta. Nel caso di eccezione, recuperare l'ID tenant dal valore dell'intestazione della risposta per **WWW-Authenticate**. Questa implementazione è visibile nel metodo [GetDirectoryForSubscription](https://github.com/dushyantgill/VipSwapper/blob/master/CloudSense/CloudSense/AzureResourceManagerUtil.cs#L20) .
 
 ## <a name="get-user--app-access-token"></a>Ottenere il token di accesso utente + app
-L'applicazione reindirizza hello utente tooAzure Active Directory con un OAuth 2.0 autorizzare richiedere - tooauthenticate hello credenziali dell'utente e ottenere un codice di autorizzazione. L'applicazione utilizza tooget codice di autorizzazione hello un token di accesso per Gestione risorse. Hello [ConnectSubscription](https://github.com/dushyantgill/VipSwapper/blob/master/CloudSense/CloudSense/Controllers/HomeController.cs#L42) metodo crea una richiesta di autorizzazione hello.
+L'applicazione reindirizza l'utente ad Azure AD con una richiesta di autorizzazione OAuth 2.0 per autenticare le credenziali dell'utente e ricevere un codice di autorizzazione. L'applicazione usa il codice di autorizzazione per ottenere un token di accesso per Resource Manager. Il metodo [ConnectSubscription](https://github.com/dushyantgill/VipSwapper/blob/master/CloudSense/CloudSense/Controllers/HomeController.cs#L42) consente di creare la richiesta di autorizzazione.
 
-Questo argomento viene illustrato l'utente di hello tooauthenticate di richieste di hello API REST. Inoltre, è possibile utilizzare l'autenticazione di helper librerie tooperform nel codice. Per altre informazioni su queste librerie, vedere [Azure Active Directory Authentication Library](../active-directory/active-directory-authentication-libraries.md) (Libreria di autenticazione di Azure Active Directory). Per informazioni aggiuntive su come integrare la gestione delle identità in un'applicazione, vedere [Guida per gli sviluppatori di Azure Active Directory](../active-directory/active-directory-developers-guide.md).
+Questo argomento descrive le richieste dell'API REST per autenticare l'utente. È anche possibile usare librerie helper per eseguire l'autenticazione nel codice. Per altre informazioni su queste librerie, vedere [Azure Active Directory Authentication Library](../active-directory/active-directory-authentication-libraries.md) (Libreria di autenticazione di Azure Active Directory). Per informazioni aggiuntive su come integrare la gestione delle identità in un'applicazione, vedere [Guida per gli sviluppatori di Azure Active Directory](../active-directory/active-directory-developers-guide.md).
 
 ### <a name="auth-request-oauth-20"></a>Richiesta di autorizzazione (OAuth 2.0)
-Eseguire un endpoint di Authorize toohello Azure AD aprire Connect/OAuth 2.0 autorizzare richieste di ID:
+Rilasciare una richiesta di autorizzazione Open ID Connect/OAuth2.0 all'endpoint di autorizzazione di Azure AD:
 
     https://login.microsoftonline.com/{tenant-id}/OAuth2/Authorize
 
-parametri di stringa di query Hello sono disponibili per la richiesta sono descritti in hello [richiedere un codice di autorizzazione](../active-directory/develop/active-directory-protocols-oauth-code.md#request-an-authorization-code) argomento.
+I parametri della stringa di query disponibili per questa richiesta sono descritti nell'articolo su come [richiedere un codice di autorizzazione](../active-directory/develop/active-directory-protocols-oauth-code.md#request-an-authorization-code) .
 
-Hello seguente esempio viene illustrato come toorequest autorizzazione OAuth 2.0:
+L'esempio seguente illustra come richiedere l'autorizzazione OAuth 2.0:
 
     https://login.microsoftonline.com/{tenant-id}/OAuth2/Authorize?client_id=a0448380-c346-4f9f-b897-c18733de9394&response_mode=query&response_type=code&redirect_uri=http%3a%2f%2fwww.vipswapper.com%2fcloudsense%2fAccount%2fSignIn&resource=https%3a%2f%2fgraph.windows.net%2f&domain_hint=live.com
 
-Azure AD autentica l'utente hello e, se necessario, chiede hello utente toogrant autorizzazione toohello app. Restituisce toohello codice di autorizzazione hello URL di risposta dell'applicazione. A seconda di hello richiesto response_mode, Azure AD entrambi invia nuovamente hello dati nella stringa di query o come dati post.
+Azure AD autentica l'utente e, se necessario, chiede all'utente di concedere l'autorizzazione all'app. Restituisce il codice di autorizzazione all'URL di risposta dell'applicazione. A seconda della response_mode richiesta, Azure AD invia i dati nella stringa di query o come dati di post.
 
     code=AAABAAAAiL****FDMZBUwZ8eCAA&session_state=2d16bbce-d5d1-443f-acdf-75f6b0ce8850
 
 ### <a name="auth-request-open-id-connect"></a>Richiesta di autorizzazione (Open ID Connect)
-Anche se non si solo tooaccess Gestione risorse di Azure per conto di utente hello, consentono inoltre di hello utente toosign tooyour applicazione usando il proprio account Azure AD, emettere un Open ID autorizzare richiesta di connessione. Con Connect Open ID, l'applicazione riceve un id_token da Azure AD che l'app è possibile utilizzare toosign utente hello.
+Se non si vuole solo accedere ad Azure Resource Manager per conto dell'utente, ma anche consentire all'utente di accedere all'applicazione usando l'account Azure AD, inviare una richiesta di autorizzazione OpenID Connect. Con OpenID Connect l'applicazione riceve anche un id_token da Azure AD, che può essere usato dall'app per consentire l'accesso dell'utente.
 
-parametri di stringa di query Hello sono disponibili per la richiesta sono descritti in hello [richiesta di accesso hello trasmissione](../active-directory/develop/active-directory-protocols-openid-connect-code.md#send-the-sign-in-request) argomento.
+I parametri della stringa di query disponibili per questa richiesta sono descritti nell'articolo su come [inviare la richiesta di accesso](../active-directory/develop/active-directory-protocols-openid-connect-code.md#send-the-sign-in-request).
 
 Una richiesta Open ID Connect di esempio è:
 
      https://login.microsoftonline.com/{tenant-id}/OAuth2/Authorize?client_id=a0448380-c346-4f9f-b897-c18733de9394&response_mode=form_post&response_type=code+id_token&redirect_uri=http%3a%2f%2fwww.vipswapper.com%2fcloudsense%2fAccount%2fSignIn&resource=https%3a%2f%2fgraph.windows.net%2f&scope=openid+profile&nonce=63567Dc4MDAw&domain_hint=live.com&state=M_12tMyKaM8
 
-Azure AD autentica l'utente hello e, se necessario, chiede hello utente toogrant autorizzazione toohello app. Restituisce toohello codice di autorizzazione hello URL di risposta dell'applicazione. A seconda di hello richiesto response_mode, Azure AD entrambi invia nuovamente hello dati nella stringa di query o come dati post.
+Azure AD autentica l'utente e, se necessario, chiede all'utente di concedere l'autorizzazione all'app. Restituisce il codice di autorizzazione all'URL di risposta dell'applicazione. A seconda della response_mode richiesta, Azure AD invia i dati nella stringa di query o come dati di post.
 
 Una risposta Open ID Connect di esempio è:
 
     code=AAABAAAAiL*****I4rDWd7zXsH6WUjlkIEQxIAA&id_token=eyJ0eXAiOiJKV1Q*****T3GrzzSFxg&state=M_12tMyKaM8&session_state=2d16bbce-d5d1-443f-acdf-75f6b0ce8850
 
 ### <a name="token-request-oauth20-code-grant-flow"></a>Richiesta di token (flusso di concessione del codice OAuth 2.0)
-Ora che l'applicazione ha ricevuto il codice di autorizzazione hello da Azure AD, è possibile token di accesso ora tooget hello per Gestione risorse di Azure.  Registrare un endpoint Token di Azure AD toohello richiesta Token di OAuth 2.0 codice Grant:
+Ora che l'applicazione ha ricevuto il codice di autorizzazione da Azure AD, è possibile ottenere il token di accesso per Azure Resource Manager.  Inserire una richiesta di token di concessione del codice OAuth2.0 nell'endpoint del token di Azure AD:
 
     https://login.microsoftonline.com/{tenant-id}/OAuth2/Token
 
-parametri di stringa di query Hello sono disponibili per la richiesta sono descritti in hello [utilizzare il codice di autorizzazione hello](../active-directory/develop/active-directory-protocols-oauth-code.md#use-the-authorization-code-to-request-an-access-token) argomento.
+I parametri della stringa di query disponibili per questa richiesta sono descritti nell'articolo su come [usare il codice di autorizzazione](../active-directory/develop/active-directory-protocols-oauth-code.md#use-the-authorization-code-to-request-an-access-token).
 
-Hello di esempio seguente mostra una richiesta di token di concessione di codice con le credenziali di password:
+L'esempio seguente illustra una richiesta per un token di concessione del codice con la credenziale password:
 
     POST https://login.microsoftonline.com/7fe877e6-a150-4992-bbfe-f517e304dfa0/oauth2/token HTTP/1.1
 
@@ -147,11 +147,11 @@ Hello di esempio seguente mostra una richiesta di token di concessione di codice
 
     grant_type=authorization_code&code=AAABAAAAiL9Kn2Z*****L1nVMH3Z5ESiAA&redirect_uri=http%3A%2F%2Flocalhost%3A62080%2FAccount%2FSignIn&client_id=a0448380-c346-4f9f-b897-c18733de9394&client_secret=olna84E8*****goScOg%3D
 
-Quando si utilizzano le credenziali del certificato, è possibile creare un JSON Web Token (JWT) e accedere (RSA SHA256) utilizzando hello chiave privata della credenziale di certificato dell'applicazione. Hello tipi di attestazione per il token hello vengono visualizzati [le attestazioni nei token JWT](../active-directory/develop/active-directory-protocols-oauth-code.md#jwt-token-claims). Per riferimento, vedere hello [codice Active Directory Authentication Library (.NET)](https://github.com/AzureAD/azure-activedirectory-library-for-dotnet/blob/dev/src/ADAL.PCL.Desktop/CryptographyHelper.cs) toosign i token JWT asserzione Client.
+Quando si usano le credenziali certificato, creare un token Web JSON (JWT) e una firma (RSA SHA256) usando la chiave privata della credenziale certificato dell'applicazione. I tipi di attestazione per il token sono illustrati nell'argomento sulle [attestazioni nei token JWT](../active-directory/develop/active-directory-protocols-oauth-code.md#jwt-token-claims). Come riferimento, vedere [Active Directory Auth Library (.NET) code](https://github.com/AzureAD/azure-activedirectory-library-for-dotnet/blob/dev/src/ADAL.PCL.Desktop/CryptographyHelper.cs) (Codice di Active Directory Authentication Library - .NET) per firmare i token JWT per l'asserzione client.
 
-Vedere hello [aprire ID connettersi spec](http://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication) per ulteriori informazioni sull'autenticazione client.
+Per dettagli sull'autenticazione client, vedere la [specifica di OpenID Connect](http://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication) .
 
-Hello di esempio seguente mostra una richiesta di token di concessione di codice con le credenziali di certificato:
+L'esempio seguente illustra una richiesta per un token di concessione del codice con la credenziale certificato:
 
     POST https://login.microsoftonline.com/7fe877e6-a150-4992-bbfe-f517e304dfa0/oauth2/token HTTP/1.1
 
@@ -167,13 +167,13 @@ Risposta di esempio per il token di concessione del codice:
     {"token_type":"Bearer","expires_in":"3599","expires_on":"1432039858","not_before":"1432035958","resource":"https://management.core.windows.net/","access_token":"eyJ0eXAiOiJKV1Q****M7Cw6JWtfY2lGc5A","refresh_token":"AAABAAAAiL9Kn2Z****55j-sjnyYgAA","scope":"user_impersonation","id_token":"eyJ0eXAiOiJKV*****-drP1J3P-HnHi9Rr46kGZnukEBH4dsg"}
 
 #### <a name="handle-code-grant-token-response"></a>Gestire la risposta del token di concessione del codice
-Una risposta corretta token contiene i token di accesso hello (utente + app) per Gestione risorse di Azure. L'applicazione usa questo accesso token tooaccess Gestione risorse per conto di utente hello. durata Hello dei token di accesso rilasciato da Azure AD è un'ora. È improbabile che l'applicazione web necessita di token di accesso toorenew hello (utente + app). Se è richiesto il token di accesso di toorenew hello, usare i token di aggiornamento hello che l'applicazione riceve in risposta token hello. Registrare un endpoint Token di Azure AD toohello richiedere Token OAuth 2.0:
+Una risposta del token riuscita contiene il token di accesso (utente + app) per Azure Resource Manager. L'applicazione usa questo token di accesso per accedere a Resource Manager per conto dell'utente. La durata dei token di accesso rilasciati da Azure AD è di un'ora. È improbabile che l'applicazione Web debba rinnovare il token di accesso (utente + app). Se è necessario rinnovare il token di accesso, usare il token di aggiornamento ricevuto dall'applicazione nella risposta del token. Inserire una richiesta di token OAuth2.0 nell'endpoint del token di Azure AD:
 
     https://login.microsoftonline.com/{tenant-id}/OAuth2/Token
 
-Hello toouse parametri con richiesta di aggiornamento hello sono descritti in [aggiornati i token di accesso hello](../active-directory/develop/active-directory-protocols-oauth-code.md#refreshing-the-access-tokens).
+I parametri da usare con la richiesta di aggiornamento sono descritti nell'articolo su come [aggiornare i token di accesso](../active-directory/develop/active-directory-protocols-oauth-code.md#refreshing-the-access-tokens).
 
-Hello esempio seguente viene illustrato come token di aggiornamento toouse hello:
+L'esempio seguente mostra come usare il token di aggiornamento:
 
     POST https://login.microsoftonline.com/7fe877e6-a150-4992-bbfe-f517e304dfa0/oauth2/token HTTP/1.1
 
@@ -182,53 +182,53 @@ Hello esempio seguente viene illustrato come token di aggiornamento toouse hello
 
     grant_type=refresh_token&refresh_token=AAABAAAAiL9Kn2Z****55j-sjnyYgAA&client_id=a0448380-c346-4f9f-b897-c18733de9394&client_secret=olna84E8*****goScOg%3D
 
-Anche se i token di aggiornamento possono essere utilizzato tooget nuova i token di accesso per Gestione risorse di Azure, non sono adatti per l'accesso offline dall'applicazione. durata token di aggiornamento Hello è limitata e token di aggiornamento sono associati toohello utente. Se l'utente hello lascia l'organizzazione hello, applicazione hello utilizzando il token di aggiornamento hello perde l'accesso. Questo approccio non è adatto per le applicazioni che vengono utilizzati dal team toomanage le risorse di Azure.
+Anche se i token di aggiornamento possono essere usati per ottenere nuovi token di accesso per Azure Resource Manager, non sono adatti per l'accesso offline dell'applicazione. La durata dei token di aggiornamento è limitata e i token di aggiornamento sono associati all'utente. Se l'utente lascia l'organizzazione, l'applicazione che usa il token di aggiornamento perde l'accesso. Questo approccio non è adatto per le applicazioni usate dai team per gestire le risorse di Azure.
 
-## <a name="check-if-user-can-assign-access-toosubscription"></a>Controllare se l'utente può assegnare toosubscription accesso
-A questo punto l'applicazione ha un token tooaccess Gestione risorse di Azure per conto di utente hello. passaggio successivo Hello è tooconnect sottoscrizione toohello app. Dopo la connessione, l'app può gestire le sottoscrizioni anche quando l'utente hello non è presenti (accesso offline a lungo termine).
+## <a name="check-if-user-can-assign-access-to-subscription"></a>Verificare se l'utente può assegnare l'accesso alla sottoscrizione
+L'applicazione ora ha un token per accedere ad Azure Resource Manager per conto dell'utente. Nel passaggio successivo si connette l'app alla sottoscrizione. Dopo la connessione, l'app può gestire le sottoscrizioni anche quando l'utente non è presente (accesso offline a lungo termine).
 
-Per ogni sottoscrizione tooconnect, chiamare hello [autorizzazioni relative agli elenchi di gestione risorse](https://docs.microsoft.com/rest/api/authorization/permissions) toodetermine API utente hello se dispone di diritti di gestione di accesso per la sottoscrizione di hello.
+Per ogni sottoscrizione da connettere, chiamare l'API di [Resource Manager per elencare le autorizzazioni](https://docs.microsoft.com/rest/api/authorization/permissions) per determinare se all'utente sono concessi i diritti di gestione degli accessi per la sottoscrizione.
 
-Hello [UserCanManagerAccessForSubscription](https://github.com/dushyantgill/VipSwapper/blob/master/CloudSense/CloudSense/AzureResourceManagerUtil.cs#L44) metodo hello app di esempio ASP.NET MVC implementa questa chiamata.
+Il metodo [UserCanManagerAccessForSubscription](https://github.com/dushyantgill/VipSwapper/blob/master/CloudSense/CloudSense/AzureResourceManagerUtil.cs#L44) dell'app di esempio ASP.NET MVC implementa questa chiamata.
 
-Hello seguente esempio viene illustrato come toorequest le autorizzazioni dell'utente per una sottoscrizione. 83cfe939-2402-4581-b761-4f59b0a041e4 è l'id di hello di hello sottoscrizione.
+L'esempio seguente illustra come richiedere le autorizzazioni di un utente per una sottoscrizione. 83cfe939-2402-4581-b761-4f59b0a041e4 è l'ID della sottoscrizione.
 
     GET https://management.azure.com/subscriptions/83cfe939-2402-4581-b761-4f59b0a041e4/providers/microsoft.authorization/permissions?api-version=2015-07-01 HTTP/1.1
 
     Authorization: Bearer eyJ0eXAiOiJKV1QiLC***lwO1mM7Cw6JWtfY2lGc5A
 
-È un esempio di autorizzazioni dell'utente di hello risposta tooget nella sottoscrizione.
+Ecco un esempio della risposta per ottenere le autorizzazioni di un utente per la sottoscrizione:
 
     HTTP/1.1 200 OK
 
     {"value":[{"actions":["*"],"notActions":["Microsoft.Authorization/*/Write","Microsoft.Authorization/*/Delete"]},{"actions":["*/read"],"notActions":[]}]}
 
-le autorizzazioni di Hello API restituisce più autorizzazioni. Ogni autorizzazione è costituita dalle azioni consentite (actions) e dalle azioni non consentite (notactions). Se è presente nell'elenco di azioni di un'autorizzazione consentito hello un'azione e non è presente nell'elenco notactions hello di tale autorizzazione, hello utente è consentito tooperform tale azione. **Microsoft.Authorization/roleassignments/Write** azione hello che rights management che concede l'accesso. L'applicazione è necessario analizzare hello autorizzazioni risultato toolook per trovare una corrispondenza di espressione regolare in questa stringa di azione in azioni di hello e notactions di ciascuna autorizzazione.
+L'API per le autorizzazioni restituisce più autorizzazioni. Ogni autorizzazione è costituita dalle azioni consentite (actions) e dalle azioni non consentite (notactions). Se un'azione è presente nell'elenco di azioni consentite di un'autorizzazione e non è presente nell'elenco notactions di tale autorizzazione, all'utente è consentito eseguire tale azione. **microsoft.authorization/roleassignments/write** è l'azione che concede i diritti di gestione degli accessi. L'applicazione deve analizzare il risultato delle autorizzazioni per cercare una corrispondenza regex nella stringa di questa azione negli elenchi actions e notactions di ogni autorizzazione.
 
 ## <a name="get-app-only-access-token"></a>Ottenere il token di accesso solo app
-A questo punto, si conosce se hello utente può assegnare a toohello accesso sottoscrizione di Azure. passaggi successivi Hello sono:
+A questo punto, si sa se l'utente può assegnare l'accesso alla sottoscrizione di Azure. Ecco i passaggi successivi:
 
-1. Assegnare hello appropriato RBAC ruolo tooyour identità dell'applicazione per la sottoscrizione hello.
-2. Convalidare l'assegnazione di accesso di hello eseguendo una query per l'autorizzazione dell'applicazione hello sottoscrizione hello o l'accesso alla gestione di risorse utilizzando il token solo per app.
-3. Connessione hello record nella struttura di dati applicazioni "sottoscrizioni connessi" - id hello della sottoscrizione di hello di persistenza.
+1. Assegnare il ruolo Controllo degli accessi in base al ruolo appropriato all'identità dell'applicazione nella sottoscrizione.
+2. Convalidare l'assegnazione dell'accesso eseguendo una query per l'autorizzazione dell'applicazione nella sottoscrizione o accedendo a Resource Manager con il token solo app.
+3. Registrare la connessione nella struttura dei dati delle "sottoscrizioni connesse" dell'applicazione, rendendo persistente l'ID della sottoscrizione.
 
-Verrà ora esaminato il primo passaggio hello più da vicino. tooassign hello appropriato RBAC ruolo toohello identità dell'applicazione, è necessario determinare:
+Ora verrà esaminato più dettagliatamente il primo passaggio. Per assegnare il ruolo Controllo degli accessi in base al ruolo appropriato all'identità dell'applicazione, è necessario determinare:
 
-* id di oggetto Hello dell'identità dell'applicazione Azure Active Directory dell'utente hello
-* Identificatore del ruolo RBAC hello che l'applicazione richiede sottoscrizione hello Hello
+* L'ID oggetto dell'identità dell'applicazione nella directory Azure Active Directory dell'utente
+* L'identificatore del ruolo Controllo degli accessi in base al ruolo che l'applicazione richiede nella sottoscrizione
 
-Quando l'applicazione autentica un utente da un'istanza di Azure AD, crea un oggetto entità servizio per l'applicazione in tale istanza di Azure AD. Azure consente RBAC ruoli toobe assegnato entità tooservice applicazioni di toocorresponding toogrant accesso diretto alle risorse di Azure. Questa azione è esattamente ciò che si desidera toodo. Query hello Azure AD Graph API toodetermine hello identificatore dell'entità servizio hello dell'applicazione dell'utente connesso di hello's Azure AD.
+Quando l'applicazione autentica un utente da un'istanza di Azure AD, crea un oggetto entità servizio per l'applicazione in tale istanza di Azure AD. Azure consente di assegnare alle entità servizio i ruoli Controllo degli accessi in base al ruolo, per concedere l'accesso diretto alle applicazioni corrispondenti nelle risorse di Azure. Questa azione è esattamente ciò che si vuole eseguire. Eseguire una query sull'API Graph di Azure AD per determinare l'identificatore dell'entità servizio dell'applicazione nell'istanza di Azure AD dell'utente connesso.
 
-È necessario un token di accesso per Gestione risorse di Azure, è necessario un nuovo hello di toocall token di accesso API Azure AD Graph. Ogni applicazione in Azure AD ha autorizzazione tooquery il proprio oggetto entità servizio, pertanto è sufficiente un token di accesso solo app.
+Si ha un solo token di accesso per Azure Resource Manager ed è necessario un nuovo token di accesso per chiamare l'API Graph di Azure AD. Ogni applicazione in Azure AD ha le autorizzazioni per eseguire query sul proprio oggetto entità servizio, quindi un token di accesso solo app sarà sufficiente.
 
 <a id="app-azure-ad-graph" />
 
 ### <a name="get-app-only-access-token-for-azure-ad-graph-api"></a>Ottenere il token di accesso solo app per l'API Graph di Azure AD
-tooauthenticate l'app e ottenere un token tooAzure AD Graph API, emettere un endpoint token OAuth 2.0 concessione di credenziali Client del flusso richiesta di token tooAzure AD (**https://login.microsoftonline.com/ {directory_domain_name} / OAuth2/Token**).
+Per autenticare l'app e ottenere un token per l'API Graph di Azure AD, rilasciare una richiesta del token di flusso OAuth2.0 per la concessione delle credenziali client per l'endpoint del token di Azure AD (**http://login.microsoftonline.com/{directory_domain_name}/OAuth2/Token**).
 
-Hello [GetObjectIdOfServicePrincipalInOrganization](https://github.com/dushyantgill/VipSwapper/blob/master/CloudSense/CloudSense/AzureADGraphAPIUtil.cs) metodo dell'applicazione di esempio ASP.net MVC Ottiene un accesso solo app token per l'utilizzo di API Graph hello hello Active Directory Authentication Library per .NET.
+Il metodo [GetObjectIdOfServicePrincipalInOrganization](https://github.com/dushyantgill/VipSwapper/blob/master/CloudSense/CloudSense/AzureADGraphAPIUtil.cs) dell'applicazione di esempio ASP.NET MVC ottiene un token di accesso solo app per l'API Graph usando Active Directory Authentication Library per .NET.
 
-parametri di stringa di query Hello sono disponibili per la richiesta sono descritti in hello [richiedere un Token di accesso](../active-directory/develop/active-directory-protocols-oauth-service-to-service.md#request-an-access-token) argomento.
+I parametri della stringa di query disponibili per questa richiesta sono descritti nell'articolo su come [richiedere un token di accesso](../active-directory/develop/active-directory-protocols-oauth-service-to-service.md#request-an-access-token).
 
 Richiesta di esempio del token di concessione delle credenziali client:
 
@@ -244,55 +244,55 @@ Risposta di esempio del token di concessione delle credenziali client:
     {"token_type":"Bearer","expires_in":"3599","expires_on":"1432039862","not_before":"1432035962","resource":"https://graph.windows.net/","access_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik1uQ19WWmNBVGZNNXBPWWlKSE1iYTlnb0VLWSIsImtpZCI6Ik1uQ19WWmNBVGZNNXBPWWlKSE1iYTlnb0VLWSJ9.eyJhdWQiOiJodHRwczovL2dyYXBoLndpbmRv****G5gUTV-kKorR-pg"}
 
 ### <a name="get-objectid-of-application-service-principal-in-user-azure-ad"></a>Ottenere l'ObjectId dell'entità servizio dell'applicazione nella directory Azure AD dell'utente
-A questo punto, usare hello tooquery token di accesso solo per app hello [le entità servizio di Azure AD Graph](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#serviceprincipal-entity) hello toodetermine API Id oggetto dell'entità servizio dell'applicazione hello nella directory hello.
+Ora usare il token di accesso solo app per eseguire una query sull'API dell' [entità servizio Azure AD Graph](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#serviceprincipal-entity) per determinare l'ID oggetto dell'entità servizio dell'applicazione nella directory.
 
-Hello [GetObjectIdOfServicePrincipalInOrganization](https://github.com/dushyantgill/VipSwapper/blob/master/CloudSense/CloudSense/AzureADGraphAPIUtil.cs#) metodo hello applicazione di esempio ASP.net MVC implementa questa chiamata.
+Il metodo [GetObjectIdOfServicePrincipalInOrganization](https://github.com/dushyantgill/VipSwapper/blob/master/CloudSense/CloudSense/AzureADGraphAPIUtil.cs#) dell'applicazione di esempio ASP.NET MVC implementa questa chiamata.
 
-Hello seguente esempio viene illustrato come toorequest principale di un'applicazione del servizio. a0448380-c346-4f9f-b897-c18733de9394 è l'id client hello di un'applicazione hello.
+L'esempio seguente illustra come richiedere l'entità servizio di un'applicazione. a0448380-c346-4f9f-b897-c18733de9394 è l'ID client dell'applicazione.
 
     GET https://graph.windows.net/62e173e9-301e-423e-bcd4-29121ec1aa24/servicePrincipals?api-version=1.5&$filter=appId%20eq%20'a0448380-c346-4f9f-b897-c18733de9394' HTTP/1.1
 
     Authorization: Bearer eyJ0eXAiOiJK*****-kKorR-pg
 
-Hello esempio seguente viene illustrata una risposta toohello richiesta per il servizio di un'applicazione principale
+L'esempio seguente illustra una risposta alla richiesta per l'entità servizio di un'applicazione
 
     HTTP/1.1 200 OK
 
-    {"odata.metadata":"https://graph.windows.net/62e173e9-301e-423e-bcd4-29121ec1aa24/$metadata#directoryObjects/Microsoft.DirectoryServices.ServicePrincipal","value":[{"odata.type":"Microsoft.DirectoryServices.ServicePrincipal","objectType":"ServicePrincipal","objectId":"9b5018d4-6951-42ed-8a92-f11ec283ccec","deletionTimestamp":null,"accountEnabled":true,"appDisplayName":"CloudSense","appId":"a0448380-c346-4f9f-b897-c18733de9394","appOwnerTenantId":"62e173e9-301e-423e-bcd4-29121ec1aa24","appRoleAssignmentRequired":false,"appRoles":[],"displayName":"CloudSense","errorUrl":null,"homepage":"http://www.vipswapper.com/cloudsense","keyCredentials":[],"logoutUrl":null,"oauth2Permissions":[{"adminConsentDescription":"Allow hello application tooaccess CloudSense on behalf of hello signed-in user.","adminConsentDisplayName":"Access CloudSense","id":"b7b7338e-683a-4796-b95e-60c10380de1c","isEnabled":true,"type":"User","userConsentDescription":"Allow hello application tooaccess CloudSense on your behalf.","userConsentDisplayName":"Access CloudSense","value":"user_impersonation"}],"passwordCredentials":[],"preferredTokenSigningKeyThumbprint":null,"publisherName":"vipswapper"quot;,"replyUrls":["http://www.vipswapper.com/cloudsense","http://www.vipswapper.com","http://vipswapper.com","http://vipswapper.azurewebsites.net","http://localhost:62080"],"samlMetadataUrl":null,"servicePrincipalNames":["http://www.vipswapper.com/cloudsense","a0448380-c346-4f9f-b897-c18733de9394"],"tags":["WindowsAzureActiveDirectoryIntegratedApp"]}]}
+    {"odata.metadata":"https://graph.windows.net/62e173e9-301e-423e-bcd4-29121ec1aa24/$metadata#directoryObjects/Microsoft.DirectoryServices.ServicePrincipal","value":[{"odata.type":"Microsoft.DirectoryServices.ServicePrincipal","objectType":"ServicePrincipal","objectId":"9b5018d4-6951-42ed-8a92-f11ec283ccec","deletionTimestamp":null,"accountEnabled":true,"appDisplayName":"CloudSense","appId":"a0448380-c346-4f9f-b897-c18733de9394","appOwnerTenantId":"62e173e9-301e-423e-bcd4-29121ec1aa24","appRoleAssignmentRequired":false,"appRoles":[],"displayName":"CloudSense","errorUrl":null,"homepage":"http://www.vipswapper.com/cloudsense","keyCredentials":[],"logoutUrl":null,"oauth2Permissions":[{"adminConsentDescription":"Allow the application to access CloudSense on behalf of the signed-in user.","adminConsentDisplayName":"Access CloudSense","id":"b7b7338e-683a-4796-b95e-60c10380de1c","isEnabled":true,"type":"User","userConsentDescription":"Allow the application to access CloudSense on your behalf.","userConsentDisplayName":"Access CloudSense","value":"user_impersonation"}],"passwordCredentials":[],"preferredTokenSigningKeyThumbprint":null,"publisherName":"vipswapper"quot;,"replyUrls":["http://www.vipswapper.com/cloudsense","http://www.vipswapper.com","http://vipswapper.com","http://vipswapper.azurewebsites.net","http://localhost:62080"],"samlMetadataUrl":null,"servicePrincipalNames":["http://www.vipswapper.com/cloudsense","a0448380-c346-4f9f-b897-c18733de9394"],"tags":["WindowsAzureActiveDirectoryIntegratedApp"]}]}
 
 ### <a name="get-azure-rbac-role-identifier"></a>Ottenere l'identificatore del ruolo Controllo degli accessi in base al ruolo di Azure
-tooassign hello appropriato RBAC ruolo tooyour entità servizio, è necessario determinare l'identificatore hello del ruolo di Azure RBAC hello.
+Per assegnare il ruolo Controllo degli accessi in base al ruolo appropriato all'entità servizio, è necessario determinare l'identificatore di questo ruolo di Azure.
 
-Hello RBAC ruolo più appropriato per l'applicazione:
+Il ruolo Controllo degli accessi in base al ruolo appropriato per l'applicazione:
 
-* Se l'applicazione esegue solo il monitoraggio sottoscrizione hello, senza apportare alcuna modifica, richiede solo le autorizzazioni di lettura sottoscrizione hello. Assegnare hello **lettore** ruolo.
-* Se l'applicazione gestisce la sottoscrizione di Azure hello, creazione/modifica/eliminazione di entità, viene richiesta una delle autorizzazioni di collaboratore hello.
-  * toomanage un particolare tipo di risorsa, assegnare ruoli di collaboratore specifici delle risorse hello (collaboratore alla macchina virtuale, collaboratore di rete virtuale, collaboratore di Account di archiviazione e così via)
-  * toomanage qualsiasi tipo di risorsa, assegnare hello **collaboratore** ruolo.
+* Se l'applicazione monitora solo la sottoscrizione, senza apportare modifiche, richiede solo le autorizzazioni di lettura per la sottoscrizione. Assegnare il ruolo **Lettore** .
+* Se l'applicazione gestisce la sottoscrizione di Azure, creando/modificando/eliminando le entità, richiede una delle autorizzazioni di collaborazione.
+  * Per gestire un particolare tipo di risorsa, assegnare i ruoli di collaboratore specifici della risorsa (Collaboratore Macchina virtuale, Collaboratore Rete virtuale, Collaboratore Account di archiviazione e così via).
+  * Per gestire un tipo di risorsa qualsiasi, assegnare il ruolo **Collaboratore** .
 
-assegnazione di ruolo Hello per l'applicazione è visibile toousers, quindi selezionare hello con privilegi minimi richiesti.
+L'assegnazione del ruolo per l'applicazione è visibile agli utenti, quindi selezionare il privilegio meno necessario.
 
-Chiamare hello [definizione del ruolo Gestione risorse API](https://docs.microsoft.com/rest/api/authorization/roledefinitions) toolist tutti i ruoli di Azure RBAC e ricerca quindi scorrere hello toofind di hello risultato desiderato di definizione del ruolo in base al nome.
+Chiamare l' [API per la definizione del ruolo di Resource Manager](https://docs.microsoft.com/rest/api/authorization/roledefinitions) per elencare tutti i ruoli di Controllo degli accessi in base al ruolo di Azure e quindi scorrere il risultato per trovare la definizione di ruolo desiderata in base al nome.
 
-Hello [GetRoleId](https://github.com/dushyantgill/VipSwapper/blob/master/CloudSense/CloudSense/AzureResourceManagerUtil.cs#L246) metodo hello app di esempio ASP.net MVC implementa questa chiamata.
+Il metodo [GetRoleId](https://github.com/dushyantgill/VipSwapper/blob/master/CloudSense/CloudSense/AzureResourceManagerUtil.cs#L246) dell'app di esempio ASP.NET MVC implementa questa chiamata.
 
-esempio Hello richiesta di esempio viene illustrato come identificatore del ruolo Azure RBAC tooget. 09cbd307-aa71-4aca-b346-5f253e6e3ebb è l'id di hello di hello sottoscrizione.
+L'esempio di richiesta seguente illustra come ottenere l'identificatore del ruolo Controllo degli accessi in base al ruolo di Azure. 09cbd307-aa71-4aca-b346-5f253e6e3ebb è l'ID della sottoscrizione.
 
     GET https://management.azure.com/subscriptions/09cbd307-aa71-4aca-b346-5f253e6e3ebb/providers/Microsoft.Authorization/roleDefinitions?api-version=2015-07-01 HTTP/1.1
 
     Authorization: Bearer eyJ0eXAiOiJKV*****fY2lGc5
 
-risposta Hello è nel seguente formato hello:
+La risposta è nel formato seguente:
 
     HTTP/1.1 200 OK
 
-    {"value":[{"properties":{"roleName":"API Management Service Contributor","type":"BuiltInRole","description":"Lets you manage API Management services, but not access toothem.","scope":"/","permissions":[{"actions":["Microsoft.ApiManagement/Services/*","Microsoft.Authorization/*/read","Microsoft.Resources/subscriptions/resources/read","Microsoft.Resources/subscriptions/resourceGroups/read","Microsoft.Resources/subscriptions/resourceGroups/resources/read","Microsoft.Resources/subscriptions/resourceGroups/deployments/*","Microsoft.Insights/alertRules/*","Microsoft.Support/*"],"notActions":[]}]},"id":"/subscriptions/09cbd307-aa71-4aca-b346-5f253e6e3ebb/providers/Microsoft.Authorization/roleDefinitions/312a565d-c81f-4fd8-895a-4e21e48d571c","type":"Microsoft.Authorization/roleDefinitions","name":"312a565d-c81f-4fd8-895a-4e21e48d571c"},{"properties":{"roleName":"Application Insights Component Contributor","type":"BuiltInRole","description":"Lets you manage Application Insights components, but not access toothem.","scope":"/","permissions":[{"actions":["Microsoft.Insights/components/*","Microsoft.Insights/webtests/*","Microsoft.Authorization/*/read","Microsoft.Resources/subscriptions/resources/read","Microsoft.Resources/subscriptions/resourceGroups/read","Microsoft.Resources/subscriptions/resourceGroups/resources/read","Microsoft.Resources/subscriptions/resourceGroups/deployments/*","Microsoft.Insights/alertRules/*","Microsoft.Support/*"],"notActions":[]}]},"id":"/subscriptions/09cbd307-aa71-4aca-b346-5f253e6e3ebb/providers/Microsoft.Authorization/roleDefinitions/ae349356-3a1b-4a5e-921d-050484c6347e","type":"Microsoft.Authorization/roleDefinitions","name":"ae349356-3a1b-4a5e-921d-050484c6347e"}]}
+    {"value":[{"properties":{"roleName":"API Management Service Contributor","type":"BuiltInRole","description":"Lets you manage API Management services, but not access to them.","scope":"/","permissions":[{"actions":["Microsoft.ApiManagement/Services/*","Microsoft.Authorization/*/read","Microsoft.Resources/subscriptions/resources/read","Microsoft.Resources/subscriptions/resourceGroups/read","Microsoft.Resources/subscriptions/resourceGroups/resources/read","Microsoft.Resources/subscriptions/resourceGroups/deployments/*","Microsoft.Insights/alertRules/*","Microsoft.Support/*"],"notActions":[]}]},"id":"/subscriptions/09cbd307-aa71-4aca-b346-5f253e6e3ebb/providers/Microsoft.Authorization/roleDefinitions/312a565d-c81f-4fd8-895a-4e21e48d571c","type":"Microsoft.Authorization/roleDefinitions","name":"312a565d-c81f-4fd8-895a-4e21e48d571c"},{"properties":{"roleName":"Application Insights Component Contributor","type":"BuiltInRole","description":"Lets you manage Application Insights components, but not access to them.","scope":"/","permissions":[{"actions":["Microsoft.Insights/components/*","Microsoft.Insights/webtests/*","Microsoft.Authorization/*/read","Microsoft.Resources/subscriptions/resources/read","Microsoft.Resources/subscriptions/resourceGroups/read","Microsoft.Resources/subscriptions/resourceGroups/resources/read","Microsoft.Resources/subscriptions/resourceGroups/deployments/*","Microsoft.Insights/alertRules/*","Microsoft.Support/*"],"notActions":[]}]},"id":"/subscriptions/09cbd307-aa71-4aca-b346-5f253e6e3ebb/providers/Microsoft.Authorization/roleDefinitions/ae349356-3a1b-4a5e-921d-050484c6347e","type":"Microsoft.Authorization/roleDefinitions","name":"ae349356-3a1b-4a5e-921d-050484c6347e"}]}
 
-Non è necessario toocall questa API in maniera continuativa. Dopo aver stabilito hello GUID conosciuto hello definizione del ruolo, è possibile creare id di definizione di ruolo hello come:
+Si noti che non è necessario chiamare l'API regolarmente. Una volta determinato il GUID conosciuto della definizione del ruolo, è possibile costruire l'ID definizione del ruolo come segue:
 
     /subscriptions/{subscription_id}/providers/Microsoft.Authorization/roleDefinitions/{well-known-role-guid}
 
-Di seguito sono hello GUID noto dei ruoli predefiniti comunemente utilizzati:
+Ecco i GUID conosciuti dei ruoli predefiniti usati comunemente:
 
 | Ruolo | Guid |
 | --- | --- |
@@ -306,12 +306,12 @@ Di seguito sono hello GUID noto dei ruoli predefiniti comunemente utilizzati:
 | Collaboratore SQL Server |6d8ee4ec-f05a-4a1d-8b00-a9b17e38b437 |
 | Collaboratore database SQL |9b7fa17d-e63e-47b0-bb0a-15c516ac86ec |
 
-### <a name="assign-rbac-role-tooapplication"></a>Assegnare RBAC ruolo tooapplication
-È tutto ciò che occorre tooassign hello appropriato RBAC ruolo tooyour dell'entità servizio utilizzando hello [Gestione risorse di creare l'assegnazione di ruolo](https://docs.microsoft.com/rest/api/authorization/roleassignments) API.
+### <a name="assign-rbac-role-to-application"></a>Assegnare il ruolo Controllo degli accessi in base al ruolo all'applicazione
+A questo punto è disponibile tutto quanto è necessario per assegnare il ruolo Controllo degli accessi in base al ruolo appropriato all'entità servizio usando l'API di [Resource Manager per creare un'assegnazione di ruolo](https://docs.microsoft.com/rest/api/authorization/roleassignments) .
 
-Hello [GrantRoleToServicePrincipalOnSubscription](https://github.com/dushyantgill/VipSwapper/blob/master/CloudSense/CloudSense/AzureResourceManagerUtil.cs#L170) metodo hello app di esempio ASP.net MVC implementa questa chiamata.
+Il metodo [GrantRoleToServicePrincipalOnSubscription](https://github.com/dushyantgill/VipSwapper/blob/master/CloudSense/CloudSense/AzureResourceManagerUtil.cs#L170) dell'app di esempio ASP.NET MVC implementa questa chiamata.
 
-Un esempio richiesta tooassign RBAC ruolo tooapplication:
+Richiesta di esempio per assegnare il ruolo Controllo degli accessi in base al ruolo all'applicazione:
 
     PUT https://management.azure.com/subscriptions/09cbd307-aa71-4aca-b346-5f253e6e3ebb/providers/microsoft.authorization/roleassignments/4f87261d-2816-465d-8311-70a27558df4c?api-version=2015-07-01 HTTP/1.1
 
@@ -321,43 +321,43 @@ Un esempio richiesta tooassign RBAC ruolo tooapplication:
 
     {"properties": {"roleDefinitionId":"/subscriptions/09cbd307-aa71-4aca-b346-5f253e6e3ebb/providers/Microsoft.Authorization/roleDefinitions/acdd72a7-3385-48ef-bd42-f606fba81ae7","principalId":"c3097b31-7309-4c59-b4e3-770f8406bad2"}}
 
-Nella richiesta di hello, viene utilizzato hello seguenti valori:
+Nella richiesta vengono usati i valori seguenti:
 
 | Guid | Descrizione |
 | --- | --- |
-| 09cbd307-aa71-4aca-b346-5f253e6e3ebb |id di Hello di hello sottoscrizione |
-| c3097b31-7309-4c59-b4e3-770f8406bad2 |id di oggetto Hello dell'entità servizio hello di un'applicazione hello |
-| acdd72a7-3385-48ef-bd42-f606fba81ae7 |id di Hello del ruolo di lettore hello |
-| 4f87261d-2816-465d-8311-70a27558df4c |un nuovo guid creato per la nuova assegnazione di ruolo hello |
+| 09cbd307-aa71-4aca-b346-5f253e6e3ebb |ID della sottoscrizione |
+| c3097b31-7309-4c59-b4e3-770f8406bad2 |ID oggetto dell'entità servizio dell'applicazione |
+| acdd72a7-3385-48ef-bd42-f606fba81ae7 |ID del ruolo Lettore |
+| 4f87261d-2816-465d-8311-70a27558df4c |Nuovo GUID creato per la nuova assegnazione di ruolo |
 
-risposta Hello è nel seguente formato hello:
+La risposta è nel formato seguente:
 
     HTTP/1.1 201 Created
 
     {"properties":{"roleDefinitionId":"/subscriptions/09cbd307-aa71-4aca-b346-5f253e6e3ebb/providers/Microsoft.Authorization/roleDefinitions/acdd72a7-3385-48ef-bd42-f606fba81ae7","principalId":"c3097b31-7309-4c59-b4e3-770f8406bad2","scope":"/subscriptions/09cbd307-aa71-4aca-b346-5f253e6e3ebb"},"id":"/subscriptions/09cbd307-aa71-4aca-b346-5f253e6e3ebb/providers/Microsoft.Authorization/roleAssignments/4f87261d-2816-465d-8311-70a27558df4c","type":"Microsoft.Authorization/roleAssignments","name":"4f87261d-2816-465d-8311-70a27558df4c"}
 
 ### <a name="get-app-only-access-token-for-azure-resource-manager"></a>Ottenere il token di accesso solo app per Azure Resource Manager
-toovalidate app ha accesso hello desiderato nella sottoscrizione hello, eseguire un'attività di test su sottoscrizione hello tramite un token di autorizzazione solo app.
+Per verificare che l'app abbia l'accesso desiderato alla sottoscrizione, eseguire un'attività di test nella sottoscrizione usando un token solo app.
 
-tooget un token di accesso solo app, seguire le istruzioni nella sezione [ottenere token di accesso solo app per l'API di Azure AD Graph](#app-azure-ad-graph), con un valore diverso per il parametro risorsa hello:
+Per ottenere un token di accesso solo app, seguire le istruzioni nella sezione [Ottenere il token di accesso solo app per l'API Graph di Azure AD](#app-azure-ad-graph)con un valore diverso per il parametro della risorsa:
 
     https://management.core.windows.net/
 
-Hello [ServicePrincipalHasReadAccessToSubscription](https://github.com/dushyantgill/VipSwapper/blob/master/CloudSense/CloudSense/AzureResourceManagerUtil.cs#L110) metodo dell'applicazione di esempio ASP.NET MVC Ottiene un accesso solo app token per l'utilizzo di Azure Resource Manager hello hello Active Directory Authentication Library per .net.
+Il metodo [ServicePrincipalHasReadAccessToSubscription](https://github.com/dushyantgill/VipSwapper/blob/master/CloudSense/CloudSense/AzureResourceManagerUtil.cs#L110) dell'applicazione di esempio ASP.NET MVC ottiene un token di accesso solo app per Azure Resource Manager usando Active Directory Authentication Library per .NET.
 
 #### <a name="get-applications-permissions-on-subscription"></a>Ottenere le autorizzazioni dell'applicazione per la sottoscrizione
-accesso in una sottoscrizione di Azure di toocheck che l'applicazione ha hello desiderato, è inoltre possibile chiamare hello [le autorizzazioni di gestione risorse](https://docs.microsoft.com/rest/api/authorization/permissions) API. Questo approccio è simile toohow determinare se l'utente hello dispone dei diritti di gestione dell'accesso per la sottoscrizione di hello. Tuttavia, questa volta, chiamare l'API di autorizzazioni di hello con token di accesso solo per app hello ottenuto nel passaggio precedente hello.
+Per verificare che l'applicazione abbia l'accesso desiderato in una sottoscrizione di Azure, è anche possibile chiamare l'API di [Resource Manager per elencare le autorizzazioni](https://docs.microsoft.com/rest/api/authorization/permissions) . Questo approccio è simile a quello usato per determinare se all'utente sono concessi i diritti di gestione degli accessi per la sottoscrizione. Questa volta occorre però chiamare l'API per le autorizzazioni con il token di accesso solo app ottenuto nel passaggio precedente.
 
-Hello [ServicePrincipalHasReadAccessToSubscription](https://github.com/dushyantgill/VipSwapper/blob/master/CloudSense/CloudSense/AzureResourceManagerUtil.cs#L110) metodo hello app di esempio ASP.NET MVC implementa questa chiamata.
+Il metodo [ServicePrincipalHasReadAccessToSubscription](https://github.com/dushyantgill/VipSwapper/blob/master/CloudSense/CloudSense/AzureResourceManagerUtil.cs#L110) dell'app di esempio ASP.NET MVC implementa questa chiamata.
 
 ## <a name="manage-connected-subscriptions"></a>Gestire le sottoscrizioni connesse
-Quando ruolo RBAC appropriato hello viene assegnata l'entità servizio dell'applicazione tooyour sottoscrizione hello, l'applicazione può mantenere il monitoraggio/gestione tramite i token di accesso solo app per Gestione risorse di Azure.
+Quando il ruolo Controllo degli accessi in base al ruolo appropriato viene assegnato all'entità servizio dell'applicazione nella sottoscrizione, l'applicazione può continuare a monitorarla/gestirla usando i token di accesso solo app per Azure Resource Manager.
 
-Se un proprietario della sottoscrizione Rimuove l'assegnazione di ruolo dell'applicazione utilizzando portale classico hello o strumenti da riga di comando, l'applicazione è tooaccess non è più in grado di sottoscrizione. In tal caso, si deve notificare utente hello che connessione hello sottoscrizione hello è stata interrotta da un'applicazione hello esterno e associarvi un'opzione troppo "Ripristina" connessione hello. "Ripristina" sarebbe semplicemente creare nuovamente l'assegnazione di ruolo hello che è stato eliminato non in linea.
+Se il proprietario di una sottoscrizione rimuove l'assegnazione del ruolo dell'applicazione usando il portale classico o gli strumenti da riga di comando, l'applicazione non potrà più accedere a tale sottoscrizione. In tal caso, è consigliabile informare l'utente che la connessione con la sottoscrizione è stata interrotta dall'esterno dell'applicazione e offrirgli la possibilità di "ripristinare" la connessione. Il "ripristino" si limiterà a creare di nuovo l'assegnazione del ruolo eliminata offline.
 
-Esattamente come un'applicazione hello utente tooconnect sottoscrizioni tooyour è stato abilitato, è necessario consentire le sottoscrizioni di hello utente toodisconnect troppo. Da un punto di vista della gestione di accesso, disconnessione significa rimuovere l'assegnazione di ruolo hello contenente entità servizio dell'applicazione hello nella sottoscrizione hello. Facoltativamente, dello stato in un'applicazione hello per sottoscrizione hello potrebbe essere rimossi troppo.
-Solo gli utenti con autorizzazione di accesso gestione per la sottoscrizione hello sono in grado di toodisconnect sottoscrizione di hello.
+Come si è consentito all'utente di connettere le sottoscrizioni all'applicazione, è necessario consentirgli anche di disconnetterle. Dal punto di vista della gestione degli accessi, disconnettere significa rimuovere l'assegnazione del ruolo che l'entità servizio dell'applicazione ha nella sottoscrizione. Facoltativamente, è possibile rimuovere anche qualsiasi stato dell'applicazione per la sottoscrizione.
+Solo gli utenti con l'autorizzazione per la gestione degli accessi possono disconnettere la sottoscrizione.
 
-Hello [RevokeRoleFromServicePrincipalOnSubscription metodo](https://github.com/dushyantgill/VipSwapper/blob/master/CloudSense/CloudSense/AzureResourceManagerUtil.cs#L200) di ASP.net MVC hello app di esempio implementa questa chiamata.
+Il metodo [RevokeRoleFromServicePrincipalOnSubscription](https://github.com/dushyantgill/VipSwapper/blob/master/CloudSense/CloudSense/AzureResourceManagerUtil.cs#L200) dell'app di esempio ASP.NET MVC implementa questa chiamata.
 
 Gli utenti ora possono connettere e gestire facilmente le sottoscrizioni di Azure con l'applicazione.

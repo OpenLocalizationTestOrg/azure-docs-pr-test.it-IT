@@ -1,6 +1,6 @@
 ---
-title: dimensioni aaaAzure VM Linux - GPU | Documenti Microsoft
-description: Elenca hello GPU con ottimizzazione per la dimensioni disponibili diverse per le macchine virtuali Linux in Azure.
+title: Dimensioni delle macchine virtuali Linux in Azure -GPU | Microsoft Docs
+description: Elenca le diverse dimensioni ottimizzate per GPU per le macchine virtuali Linux disponibili in Azure.
 services: virtual-machines-linux
 documentationcenter: 
 author: jonbeck7
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 07/28/2017
 ms.author: jonbeck
-ms.openlocfilehash: e98f720499be37df4048aeb513aa4f6b187b7335
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5c9bf89feba519147b07f2810fe4da882664e89e
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="gpu-linux-vm-sizes"></a>Dimensioni delle macchine virtuali Linux GPU
 
@@ -34,7 +34,7 @@ Per le procedure di installazione e verifica dei driver, vedere [Installare i dr
 
 [!INCLUDE [virtual-machines-n-series-considerations](../../../includes/virtual-machines-n-series-considerations.md)]
 
-* Non è consigliabile l'installazione di server o altri sistemi che utilizzano il driver di nouveau hello in macchine virtuali NC Ubuntu. Prima di installare i driver GPU NVIDIA, è necessario toodisable hello nouveau driver  
+* Non è consigliabile installare X Server o altri sistemi che usano il driver nouveau in VM NC Ubuntu. Prima di installare i driver NVIDIA GPU, è necessario disabilitare il driver nouveau.  
 
 ## <a name="other-sizes"></a>Altre dimensioni
 - [Utilizzo generico](sizes-general.md)

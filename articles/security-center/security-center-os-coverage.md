@@ -1,5 +1,5 @@
 ---
-title: piattaforme aaaSupported nel Centro protezione di Azure | Documenti Microsoft
+title: Piattaforme supportate nel Centro sicurezza di Azure | Microsoft Docs
 description: Questo documento offre un elenco di sistemi operativi Windows e Linux supportati nel Centro sicurezza di Azure.
 services: security-center
 documentationcenter: na
@@ -12,19 +12,19 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 06/16/2017
+ms.date: 09/20/2017
 ms.author: terrylan
-ms.openlocfilehash: f73e04970749271fc9d75836f4f468b0a4953f9e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: c80e78b39b3fba4dcd9523e1e679822758822805
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="supported-platforms-in-azure-security-center"></a>Piattaforme supportate nel Centro sicurezza di Azure
-Monitoraggio dello stato di sicurezza e le indicazioni sono disponibili per le macchine virtuali (VM) create utilizzando hello classic sia modelli di distribuzione di gestione risorse.
+Il monitoraggio dello stato della sicurezza e le indicazioni in merito sono disponibili per le macchine virtuali create usando i modelli di distribuzione classica e Resource Manager.
 
 > [!NOTE]
-> Altre informazioni su hello [classica e modelli di distribuzione di gestione risorse](../azure-classic-rm.md) per le risorse di Azure.
+> È consigliabile leggere altre informazioni sui [modelli di distribuzione Azure Resource Manager e classica](../azure-classic-rm.md) per le risorse di Azure.
 >
 >
 
@@ -37,12 +37,6 @@ Sistemi operativi Windows supportati:
 * Windows Server 2012 R2
 * Windows Server 2016
 
-> [!NOTE]
->
-* Le valutazioni delle vulnerabilità del sistema operativo non sono ancora disponibili per Windows Server 2016.
-* Il rilevamento dell'analisi di arresto anomalo è supportato solo per Windows Server 2012 e Windows Server 2012 R2.
->
->
 
 ## <a name="supported-platforms-for-linux-vms"></a>Piattaforme supportate per le macchine virtuali Linux
 Sistemi operativi Linux supportati:
@@ -60,11 +54,11 @@ Sistemi operativi Linux supportati:
 >
 
 ## <a name="vms-and-cloud-services"></a>Macchine virtuali e servizi cloud
-Sono supportate anche macchine virtuali in esecuzione in un servizio cloud. Vengono monitorati solo i ruoli Web e di lavoro dei servizi cloud in esecuzione negli slot di produzione. toolearn più sul servizio cloud, vedere [Cenni preliminari sui servizi Cloud](../cloud-services/cloud-services-choose-me.md).
+Sono supportate anche macchine virtuali in esecuzione in un servizio cloud. Vengono monitorati solo i ruoli Web e di lavoro dei servizi cloud in esecuzione negli slot di produzione. Per altre informazioni sul servizio cloud, vedere [Perché scegliere Servizi cloud](../cloud-services/cloud-services-choose-me.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- [Centro sicurezza di Azure Guida alla pianificazione e le operazioni](security-center-planning-and-operations-guide.md) , informazioni come tooplan e comprendere considerazioni sulla progettazione hello tooadopt Centro sicurezza di Azure
+- [Guida alla pianificazione e alla gestione del Centro sicurezza di Azure](security-center-planning-and-operations-guide.md): informazioni sulla pianificazione e considerazioni di progettazione per l'adozione del Centro sicurezza di Azure
 - [Avvisi di sicurezza per tipo nel Centro sicurezza di Azure](https://docs.microsoft.com/en-us/azure/security-center/security-center-alerts-type.md#virtual-machine-behavioral-analysis): altre informazioni sull'analisi comportamentale della macchina virtuale e sull'analisi della memoria dump di arresto anomalo del sistema nel Centro sicurezza
-- [Domande frequenti su Centro sicurezza di Azure](security-center-faq.md) : domande frequenti sull'utilizzo di hello servizio di ricerca
+- [Domande frequenti sul Centro sicurezza di Azure](security-center-faq.md) : domande frequenti sull'uso del servizio
 - [Blog sulla sicurezza di Azure](http://blogs.msdn.com/b/azuresecurity/): post di blog sulla sicurezza e sulla conformità di Azure

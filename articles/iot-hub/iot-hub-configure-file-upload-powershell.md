@@ -1,6 +1,6 @@
 ---
-title: caricamento del file tooconfigure aaaUse hello Azure PowerShell | Documenti Microsoft
-description: Come toouse hello Azure PowerShell cmdlet tooconfigure caricamenti di file di tooenable hub IoT da dispositivi connessi. Include informazioni sulla configurazione di account di archiviazione di Azure di destinazione hello.
+title: Usare Azure PowerShell per configurare il caricamento dei file | Microsoft Docs
+description: Come usare i cmdlet di Azure PowerShell per configurare l'hub IoT per abilitare i caricamenti di file da dispositivi connessi. Include informazioni sulla configurazione dell'account di archiviazione di Azure di destinazione.
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -14,42 +14,42 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/08/2017
 ms.author: dobett
-ms.openlocfilehash: 9dcdc41693c09cece411921b30c91d7b3db47395
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a72bda794b2da3e044c46249559610d06b1f1843
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="configure-iot-hub-file-uploads-using-powershell"></a>Configurare i caricamenti dei file nell'hub IoT con PowerShell
 
 [!INCLUDE [iot-hub-file-upload-selector](../../includes/iot-hub-file-upload-selector.md)]
 
-hello toouse [funzionalità di caricamento del file nell'IoT Hub][lnk-upload], è innanzitutto necessario associare un account di archiviazione di Azure con l'hub IoT. È possibile usare un account di archiviazione esistente o crearne uno nuovo.
+Per usare la [funzionalità di caricamento di file nell'hub IoT][lnk-upload], è prima di tutto necessario associare un account di archiviazione di Azure all'hub IoT. È possibile usare un account di archiviazione esistente o crearne uno nuovo.
 
-toocomplete questa esercitazione, è necessario hello seguenti:
+Per completare l'esercitazione, sono necessari gli elementi seguenti:
 
 * Un account Azure attivo. Se non si ha un account, è possibile crearne uno [gratuito][lnk-free-trial] in pochi minuti.
 * [Cmdlet di Azure PowerShell][lnk-powershell-install].
-* Un hub IoT di Azure. Se non si dispone di un hub IoT, è possibile utilizzare hello [cmdlet New-AzureRmIoTHub] [ lnk-powershell-iothub] toocreate uno oppure utilizzare hello portale troppo[creare un hub IoT] [ lnk-portal-hub].
-* Un account di archiviazione di Azure. Se non si dispone di un account di archiviazione di Azure, è possibile utilizzare hello [cmdlet di archiviazione di Azure PowerShell] [ lnk-powershell-storage] toocreate uno oppure utilizzare hello portale troppo[creare un account di archiviazione] [ lnk-portal-storage].
+* Un hub IoT di Azure. Se non si dispone di un hub IoT, è possibile usare il [cmdlet New-AzureRmIoTHub][lnk-powershell-iothub] o il portale per crearne uno: vedi [Creare un hub IoT][lnk-portal-hub].
+* Un account di archiviazione di Azure. Se non si dispone di un account di Archiviazione di Azure, è possibile usare i [cmdlet PowerShell di Archiviazione di Azure][lnk-powershell-storage] per crearne uno o usare il portale per [creare un account di archiviazione][lnk-portal-storage].
 
 ## <a name="sign-in-and-set-your-azure-account"></a>Accedere all'account Azure e impostarlo
 
-Accedi tooyour account Azure e selezionare la sottoscrizione.
+Accedere al proprio account Azure e selezionare la sottoscrizione.
 
-1. Al prompt dei comandi PowerShell hello, eseguire hello **accesso AzureRmAccount** cmdlet:
+1. Nel prompt di PowerShell, usare il cmdlet **Login-AzureRmAccount**:
 
     ```powershell
     Login-AzureRmAccount
     ```
 
-1. Se si dispone di più sottoscrizioni di Azure, consente l'accesso tooall accesso tooAzure hello le sottoscrizioni di Azure associate con le credenziali. Utilizzare hello toolist hello Azure sottoscrizioni disponibili per l'utente toouse comando seguente:
+1. Se si usano più sottoscrizioni Azure e si esegue l'accesso ad Azure, è possibile accedere a tutte le sottoscrizioni di Azure associate alle credenziali. Usare il comando seguente per elencare gli account Azure che è possibile usare:
 
     ```powershell
     Get-AzureRMSubscription
     ```
 
-    Utilizzare hello seguente sottoscrizione tooselect comando che si desidera toouse toorun hello comandi toomanage l'hub IoT. È possibile utilizzare il nome di sottoscrizione hello o ID dall'output di hello del comando precedente hello:
+    Usare il comando seguente per selezionare la sottoscrizione che si vuole usare per eseguire i comandi per gestire l'hub IoT. È possibile usare il nome o l'ID della sottoscrizione dall'output del comando precedente:
 
     ```powershell
     Select-AzureRMSubscription `
@@ -58,9 +58,9 @@ Accedi tooyour account Azure e selezionare la sottoscrizione.
 
 ## <a name="retrieve-your-storage-account-details"></a>Recuperare i dettagli dell'account di archiviazione
 
-Hello passaggi seguenti si presuppone che la creazione dell'account di archiviazione utilizzando hello **Gestione risorse** modello di distribuzione e non hello **classico** modello di distribuzione.
+I passaggi seguenti presuppongono che l'account di archiviazione sia stato creato tramite il modello di distribuzione di **Resource Manager** e non tramite quello **Classico**.
 
-Consente di caricare file tooconfigure dai dispositivi, è necessario stringa di connessione hello per un account di archiviazione di Azure. account di archiviazione Hello deve trovarsi in hello stessa sottoscrizione dell'hub IoT. È inoltre necessario nome hello di un contenitore blob nell'account di archiviazione hello. Utilizzare hello comando che segue tooretrieve le chiavi di account di archiviazione:
+Per configurare i caricamenti dei file dai propri dispositivi, è necessario disporre della stringa di connessione di un account di Archiviazione di Azure. L'account di archiviazione deve trovarsi nella stessa sottoscrizione dell'hub IoT. È inoltre necessario il nome del contenitore BLOB nell'account di archiviazione. Usare il comando seguente per recuperare le chiavi dell'account di archiviazione:
 
 ```powershell
 Get-AzureRmStorageAccountKey `
@@ -68,11 +68,11 @@ Get-AzureRmStorageAccountKey `
   -ResourceGroupName {your storage account resource group}
 ```
 
-Prendere nota di hello **key1** valore di chiave di account di archiviazione. Non è presente hello alla procedura seguente.
+Prendere nota del valore della chiave dell'account di archiviazione **key1**. sarà necessario nei passaggi successivi.
 
 Per i caricamenti dei file, è possibile usare un contenitore BLOB esistente oppure crearne uno nuovo:
 
-* toolist hello blob i contenitori esistenti nell'account di archiviazione, usare hello seguenti comandi:
+* Per elencare i contenitori BLOB esistente nell'account di archiviazione, usare i comandi seguenti:
 
     ```powershell
     $ctx = New-AzureStorageContext `
@@ -81,7 +81,7 @@ Per i caricamenti dei file, è possibile usare un contenitore BLOB esistente opp
     Get-AzureStorageContainer -Context $ctx
     ```
 
-* toocreate un contenitore blob nell'account di archiviazione, hello di utilizzare i comandi seguenti:
+* Per creare un contenitore BLOB nell'account di archiviazione, usare i comandi seguenti:
 
     ```powershell
     $ctx = New-AzureStorageContext `
@@ -95,21 +95,21 @@ Per i caricamenti dei file, è possibile usare un contenitore BLOB esistente opp
 
 ## <a name="configure-your-iot-hub"></a>Configurare l'hub IoT
 
-È ora possibile configurare il tooenable hub IoT [funzionalità di caricamento del file] [ lnk-upload] utilizzando i dettagli dell'account di archiviazione.
+È ora possibile configurare l'hub IoT per abilitare la [funzionalità di caricamento dei file][lnk-upload] usando i dettagli dell'account di archiviazione.
 
-configurazione di Hello richiede hello seguenti valori:
+La configurazione richiede i valori seguenti:
 
-**Contenitore di archiviazione**: un contenitore blob in un account di archiviazione di Azure nel tooassociate sottoscrizione Azure corrente con l'hub IoT. Informazioni sull'account di archiviazione necessario hello nella precedente sezione hello recuperati. IoT Hub genera automaticamente gli URI di firma di accesso condiviso con le autorizzazioni scrittura di toothis il contenitore blob per i dispositivi toouse durante il caricamento del file.
+**Contenitore di archiviazione**: un contenitore BLOB in un account di archiviazione di Azure nella sottoscrizione corrente da associare all'hub IoT. Le informazioni necessarie sull'account di archiviazione sono state recuperate nella sezione precedente. L'hub IoT genera automaticamente URI di firma di accesso condiviso con autorizzazioni di scrittura per questo contenitore BLOB che possono essere usati dai dispositivi durante il caricamento di file.
 
 **Receive notifications for uploaded files** (Ricezione di notifiche per i file caricati): abilitare o disabilitare le notifiche di caricamento del file.
 
-**TTL SAS**: questa impostazione è hello time-to-live di hello SAS URI restituito toohello dispositivo dall'IoT Hub. Tooone ora per impostazione predefinita.
+**SAS TTL**(TTL di firma di accesso condiviso): questa impostazione indica la durata degli URI di firma di accesso condiviso restituiti dal dispositivo tramite l’hub IoT. Il valore è un'ora per impostazione predefinita.
 
-**Notifica di impostazioni predefinite di durata (TTL) del file**: hello time-to-live di una notifica di caricamento file prima di scadere. Tooone giorno per impostazione predefinita.
+**File notification settings default TTL**(TTL predefinito per le impostazioni di notifica dei file): durata di una notifica di caricamento del file. Il valore è un giorno per impostazione predefinita.
 
-**Conteggio distribuzione massimo notifica file**: hello numero di volte in cui l'IoT Hub tentativi toodeliver una notifica di caricamento file hello. Too10 per impostazione predefinita.
+**File notification maximum delivery count**(Numero massimo di recapiti per le notifiche dei file): numero di tentativi che verranno eseguiti dall'hub IoT per distribuire una notifica di caricamento del file. Il valore è 10 per impostazione predefinita.
 
-Usare l'hub IoT seguendo le impostazioni di caricamento file hello tooconfigure cmdlet PowerShell hello:
+Usare il cmdlet PowerShell seguente per configurare le impostazioni di caricamento dei file nell'hub IoT:
 
 ```powershell
 Set-AzureRmIotHub `
@@ -125,19 +125,19 @@ Set-AzureRmIotHub `
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per ulteriori informazioni sulle funzionalità di caricamento file hello dell'IoT Hub, vedere [caricare i file da un dispositivo][lnk-upload].
+Per altre informazioni sulle funzionalità di caricamento dei file dell'hub IoT, vedere [Caricare file da un dispositivo][lnk-upload].
 
-Seguire questi toolearn collegamenti ulteriori informazioni sulla gestione di Azure IoT Hub:
+Per ulteriori informazioni sulla gestione dell'hub IoT di Azure, consultare questi collegamenti:
 
 * [Gestire in blocco i dispositivi IoT][lnk-bulk]
 * [Metriche di Hub IoT][lnk-metrics]
 * [Monitoraggio delle operazioni][lnk-monitor]
 
-toofurther esplorare le funzionalità di hello di IoT Hub, vedere:
+Per altre informazioni sulle funzionalità dell'hub IoT, vedere:
 
 * [Guida per gli sviluppatori dell'hub IoT][lnk-devguide]
 * [Simulazione di un dispositivo con IoT Edge][lnk-iotedge]
-* [Soluzione IoT da hello la messa a terra sicura][lnk-securing]
+* [Proteggere la soluzione IoT sin dall'inizio][lnk-securing]
 
 [lnk-upload]: iot-hub-devguide-file-upload.md
 

@@ -1,6 +1,6 @@
 ---
-title: le route definite aaaUser e l'inoltro IP in Azure | Documenti Microsoft
-description: Informazioni su come le route definite dall'utente tooconfigure (UDR) e l'inoltro IP tooforward traffico toonetwork Appliance virtuali in Azure.
+title: Route definite dall'utente e inoltro IP in Azure | Microsoft Docs
+description: Informazioni su come configurare route definite dall'utente e l'inoltro IP per inoltrare il traffico a dispositivi virtuali di rete in Azure.
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,50 +15,50 @@ ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: f1f1d46166d5a7c776f472b7ade1354d943ece10
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6274e0101f6fb0864c8d1efaef7fcde78b8760c3
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="user-defined-routes-and-ip-forwarding"></a>Route definite dall'utente e inoltro IP
 
-Quando si aggiunta macchine virtuali (VM) tooa rete virtuale (VNet) in Azure, si noterà che le macchine virtuali hello siano in grado di toocommunicate tra loro attraverso la rete hello, automaticamente. Non è necessario un gateway, toospecify anche se hello macchine virtuali presenti in subnet diverse. Hello lo stesso vale per la comunicazione da hello macchine virtuali toohello rete Internet pubblica e rete locale di tooyour anche quando una connessione ibrida da Azure tooyour proprietario Data Center è presente.
+Quando si aggiungono macchine virtuali (VM) a una rete virtuale (VNet) in Azure, si noterà che le macchine virtuali sono in grado di comunicare con altri in rete, automaticamente. Non è necessario specificare un gateway, anche se le macchine virtuali si trovano in subnet diverse. Lo stesso vale per la comunicazione tra macchine virtuali e rete Internet pubblica e anche rete locale se è presente una connessione ibrida tra Azure e il proprio Data Center.
 
-Questo flusso di comunicazione è possibile poiché Azure Usa una serie di sistema route toodefine come flussi di traffico IP. Route di sistema di controllare il flusso di hello di comunicazione in hello seguenti scenari:
+Questo flusso di comunicazione è possibile perché Azure utilizza una serie di route di sistema per definire il flusso di traffico IP. I route di sistema controllano il flusso delle comunicazioni negli scenari seguenti:
 
-* Dall'interno hello stessa subnet.
-* Da un tooanother subnet all'interno di una rete virtuale.
-* Da macchine virtuali toohello Internet.
-* Da una rete virtuale tooanother rete virtuale tramite un gateway VPN.
-* Da una rete virtuale tooanother rete virtuale tramite il Peering di reti virtuali (concatenamento di servizio).
-* Da una rete virtuale tooyour rete locale tramite un gateway VPN.
+* All'interno della stessa subnet.
+* Da una subnet a altra all'interno di una rete virtuale.
+* Da macchine virtuali a Internet.
+* Da una rete virtuale a un'altra rete virtuale tramite un gateway VPN.
+* Da una rete virtuale a un'altra tramite il peering di rete virtuale (concatenamento dei servizi).
+* Da una rete virtuale alla rete locale tramite un gateway VPN.
 
-Hello riportato di seguito è illustrata un'installazione semplice con una rete virtuale, due subnet e alcune macchine virtuali, insieme a hello route di sistema che consentono di tooflow traffico IP.
+Nella figura seguente viene illustrato un semplice programma di installazione con una rete virtuale, due subnet e alcune macchine virtuali, con le route di sistema che consentono il flusso del traffico IP.
 
 ![Route di sistema in Azure](./media/virtual-networks-udr-overview/Figure1.png)
 
-Sebbene l'utilizzo di hello delle route di sistema facilita traffico automaticamente per la distribuzione, vi sono casi in cui si desidera toocontrol hello routing dei pacchetti tramite un dispositivo virtuale. È possibile pertanto mediante la creazione di route definite dall'utente che specificare dell'hop successivo per i pacchetti di propagazione appliance virtuale tooyour toogo subnet specifica tooa invece hello, e attivazione di indirizzi IP per l'inoltro hello macchina virtuale in esecuzione come appliance virtuale hello.
+Sebbene l'utilizzo di route del sistema faciliti il traffico automaticamente per la distribuzione, esistono casi in cui si desidera controllare il routing dei pacchetti tramite un dispositivo virtuale. Questo è possibile tramite la creazione di route definite dall'utente che specifichino l'hop successivo per i pacchetti che passano a una subnet specifica per accedere all'applicazione virtuale e tramite l’attivazione dell'inoltro IP per la macchina virtuale in esecuzione come dispositivo virtuale.
 
-Hello figura seguente mostra un esempio di route definite dall'utente e inoltro tooforce pacchetti IP inviati tooone subnet da un altro toogo tramite un dispositivo virtuale su una subnet terzo.
+Nella figura seguente viene illustrato un esempio di route definite dall'utente e di inoltro IP per imporre i pacchetti inviati a una subnet da un altro per passare attraverso un dispositivo virtuale su una terza subnet.
 
 ![Route di sistema in Azure](./media/virtual-networks-udr-overview/Figure2.png)
 
 > [!IMPORTANT]
-> Le route definite dall'utente vengono applicati tootraffic lasciando una subnet provenienti da qualunque risorsa (ad esempio le interfacce di rete collegati tooVMs) in subnet hello. Non è possibile creare route toospecify come il traffico passa una subnet da hello Internet, per l'istanza. dispositivo di Hello che si desidera inoltrare il traffico toocannot trovarsi in hello stessa subnet in cui ha origine il traffico di hello. Creare sempre una subnet separata per i dispositivi. 
+> Le route definite dall'utente vengono applicate al traffico che lascia una subnet da qualsiasi risorsa (ad esempio le interfacce di rete collegate alle VM) della subnet. Non è possibile creare una route per specificare come il traffico entra in una subnet da Internet, ad esempio. Il dispositivo in cui si vuole inoltrare il traffico non può essere nella stessa subnet da cui ha origine il traffico. Creare sempre una subnet separata per i dispositivi. 
 > 
 > 
 
 ## <a name="route-resource"></a>Risorsa di route
-I pacchetti vengono instradati in una rete TCP/IP in base a una tabella di route definita in ogni nodo nella rete fisica hello. Una tabella di routing è che un insieme di route singoli utilizzato toodecide in pacchetti tooforward basato su destinazione hello indirizzo IP. Una route è costituita dai seguenti hello:
+I pacchetti vengono inoltrati attraverso una rete TCP/IP basata su una tabella di route definita in ogni nodo nella rete fisica. Una tabella di route è un insieme di route singoli utilizzata per decidere dove inoltrare pacchetti in base a indirizzo IP di destinazione. Una route è costituita dai seguenti elementi:
 
 | Proprietà | Descrizione | Vincoli | Considerazioni |
 | --- | --- | --- | --- |
-| Prefisso indirizzo |si applica la route hello Hello destinazione CIDR toowhich, ad esempio 10.1.0.0/16. |Deve essere un intervallo CIDR valido che rappresenta gli indirizzi di hello rete Internet pubblica, rete virtuale di Azure o Data Center locale. |Verificare che hello **prefisso dell'indirizzo** non contiene alcun indirizzo hello hello **indirizzo hop successivo**, in caso contrario i pacchetti verranno immesso in un ciclo dal hop successivo di hello origine toohello senza mai raggiungere destinazione Hello. |
-| Tipo hop successivo |tipo di Hello del pacchetto di hello hop di Azure deve essere inviato. |Deve essere uno dei seguenti valori hello: <br/> **Rete virtuale**. Rappresenta una rete virtuale locale hello. Ad esempio, se si dispone di due subnet, 10.1.0.0/16 e 10.2.0.0/16 nella stessa rete virtuale di hello, route hello per ogni subnet nella tabella di route hello avrà un valore hop successivo di *rete virtuale*. <br/> **Gateway di rete virtuale**. Rappresenta un Gateway VPN S2S Azure. <br/> **Internet**. Rappresenta il gateway Internet hello predefinito fornito dall'infrastruttura di Azure hello. <br/> **Dispositivo virtuale**. Rappresenta un accessorio virtuale di cui è stato aggiunto tooyour rete virtuale di Azure. <br/> **Nessuno**. Rappresenta un black hole. I pacchetti inoltrati buco nero tooa non verranno inoltrati affatto. |È consigliabile utilizzare **Appliance virtuale** toodirect tooa macchina virtuale o il bilanciamento del carico di Azure indirizzo IP interno del traffico.  Questo tipo consente di specificare di hello di un indirizzo IP come descritto di seguito. È consigliabile utilizzare un **Nessuno** digitare pacchetti toostop dalla propagazione tooa dato di destinazione. |
-| Indirizzo hop successivo |indirizzo dell'hop successivo Hello contiene l'indirizzo IP hello devono inoltrare i pacchetti. I valori hop successivi sono consentiti solo in route in cui è di tipo dell'hop successivo hello *Appliance virtuale*. |Deve essere un indirizzo IP raggiungibile all'interno di hello rete virtuale in cui viene applicata hello Route definita dall'utente, senza passare attraverso un **Virtual Network Gateway**. indirizzo IP Hello è toobe hello in caso di applicazione di rete virtuale stessa, o in una rete virtuale peered. |Se l'indirizzo IP hello rappresenta una macchina virtuale, assicurarsi di abilitare [inoltro IP](#IP-forwarding) in Azure per hello macchina virtuale. Se hello rappresenta hello interno indirizzo IP di bilanciamento del carico di Azure, assicurarsi di disporre della regola per ogni porta di bilanciamento del carico corrispondente si desidera bilanciare tooload.|
+| Prefisso indirizzo |CIDR di destinazione a cui viene applicata la route, ad esempio 10.1.0.0/16. |Deve essere un intervallo CIDR valido che rappresenta gli indirizzi sulla rete Internet pubblica, la rete virtuale di Azure o un data center locale. |Assicurarsi che **Prefisso indirizzo** non contenga il valore di **Indirizzo hop successivo**, in caso contrario i pacchetti entreranno in un ciclo tra l'origine e l'hop successivo, senza mai raggiungere la destinazione. |
+| Tipo hop successivo |Il tipo di hop Azure il pacchetto deve essere inviato. |Deve essere uno dei valori seguenti:  <br/> **Rete virtuale**. Rappresenta la rete virtuale locale. Se ad esempio sono presenti due subnet, 10.1.0.0/16 e 10.2.0.0/16 nella stessa rete virtuale, la route per ogni subnet nella tabella route avrà un valore di hop successivo di *Rete virtuale*. <br/> **Gateway di rete virtuale**. Rappresenta un Gateway VPN S2S Azure. <br/> **Internet**. Rappresenta il gateway Internet predefinito fornito dall'infrastruttura di Azure. <br/> **Dispositivo virtuale**. Rappresenta un dispositivo virtuale che aggiunto alla rete virtuale Azure. <br/> **Nessuno**. Rappresenta un black hole. I pacchetti inoltrati a un black hole non verranno inoltrati affatto. |Si consiglia di usare **appliance virtuale**  per indirizzare il traffico a una macchina virtuale o a un indirizzo IP interno di Azure Load Balancer.  Questo tipo consente di specificare un indirizzo IP come descritto di seguito. È consigliabile usare un tipo **Nessuno** per arrestare il flusso dei pacchetti verso una data destinazione. |
+| Indirizzo hop successivo |L'indirizzo hop successivo contiene l'indirizzo IP per inoltrare i pacchetti. I valori di hop successivo sono consentiti solo nelle route dove il tipo di hop successivo è *dispositivo virtuale*. |Deve essere un indirizzo IP raggiungibile nella rete virtuale in cui viene applicata la route definita dall'utente, senza passare per un **gateway di rete virtuale**. L'indirizzo IP deve trovarsi nella stessa rete virtuale in cui viene applicato o in una rete virtuale con peering. |Se l'indirizzo IP rappresenta una macchina virtuale, assicurarsi di abilitare [Inoltro IP](#IP-forwarding) in Azure per la macchina virtuale. Se l'indirizzo IP rappresenta l'indirizzo IP interno di Azure Load Balancer, assicurarsi che ci sia una regola di bilanciamento del carico corrispondente per ogni porta per cui si desidera bilanciare il carico.|
 
-In Azure PowerShell alcuni dei valori di "NextHopType" hello hanno nomi diversi:
+In Azure PowerShell, alcuni dei valori di "NextHopType" hanno nomi diversi:
 
 * Rete virtuale è VnetLocal
 * Gateway di rete virtuale è VirtualNetworkGateway
@@ -67,47 +67,47 @@ In Azure PowerShell alcuni dei valori di "NextHopType" hello hanno nomi diversi:
 * Nessuno è None
 
 ### <a name="system-routes"></a>Route di sistema
-Ogni subnet creata in una rete virtuale viene associata automaticamente a una tabella di routing contenente hello segue le regole di sistema route:
+Ogni subnet creata in una rete virtuale viene associata automaticamente a una tabella di route che contiene le seguenti regole di route di sistema:
 
-* **Regola di rete virtuale locale**: questa regola viene creata automaticamente per ogni subnet in una rete virtuale. Specifica che è presente un collegamento diretto tra le macchine virtuali hello nella rete virtuale hello e non vi è alcun intermedia hop successivo.
-* **Regola locale**: questa regola si applica a intervallo di indirizzi locali toohello tooall il traffico destinato e Usa il gateway VPN come destinazione dell'hop successivo hello.
-* **Regola Internet**: questa regola gestisce tutto il traffico destinato toohello Internet pubblico (indirizzo prefisso 0.0.0.0/0) e gateway internet di infrastruttura utilizza hello come hello hop successivo per tutto il traffico destinato toohello Internet.
+* **Regola di rete virtuale locale**: questa regola viene creata automaticamente per ogni subnet in una rete virtuale. Specifica che vi è un collegamento diretto tra le macchine virtuali nella rete virtuale e che non esiste alcun  hop successivo intermediario.
+* **Regola Locale**: questa regola si applica a tutto il traffico destinato ad un intervallo di indirizzi locali e utilizza il gateway VPN come destinazione hop successiva.
+* **Regola Internet**: questa regola gestisce tutto il traffico destinato alla rete Internet pubblica (prefisso indirizzo 0.0.0.0/0) e usa il gateway Internet dell'infrastruttura come hop successivo per tutto il traffico destinato a Internet.
 
 ### <a name="user-defined-routes"></a>Route definite dall'utente
-Per la maggior parte degli ambienti è necessario solo delle route sistema hello già definite da Azure. Tuttavia, è possibile necessario toocreate una tabella di routing e aggiungere una o più route in casi specifici, ad esempio:
+Per la maggior parte degli ambienti saranno necessarie solo le route di sistema già definite da Azure. Tuttavia, è necessario creare una tabella di route e aggiungere una o più route in casi specifici, ad esempio:
 
-* Il tunneling forzato toohello Internet tramite la rete locale.
+* Il tunneling forzato a Internet tramite la rete locale.
 * Utilizzo di dispositivi virtuali nell'ambiente Azure.
 
-Negli scenari di hello precedenti, verrà dispone di una tabella di route toocreate e aggiungere tooit route definite dall'utente. È possibile avere più tabelle di route e hello stessa tabella di route può essere associati tooone o altre subnet. E ogni subnet può essere solo tabella singola route tooa associato. Tutte le macchine virtuali e servizi cloud in una subnet usare hello route tabella associata toothat subnet.
+Negli scenari precedenti, è necessario creare una tabella di route e aggiungervi route definite dall'utente. È possibile avere più tabelle di routing e la stessa tabella di route può essere associata a una o più subnet. E ogni subnet può essere associato a una tabella singola route. Tutte le macchine virtuali e servizi cloud in uso una subnet la tabella di route associato a tale subnet.
 
-Subnet si basano sulle route di sistema fino a una tabella di routing associata toohello subnet. Una volta che esiste un’associazione,il routing viene eseguito in base alla corrispondenza più lunga del prefisso (LPM) tra le route definite dall'utente e le route predefinite. Se è presente più di una route con hello LPM stesso corrisponde una route è selezionata in base origine hello seguente ordine:
+Le subnet si basano su route predefinite fino a quando una tabella di route viene associata alla subnet. Una volta che esiste un’associazione,il routing viene eseguito in base alla corrispondenza più lunga del prefisso (LPM) tra le route definite dall'utente e le route predefinite. Se è presente più di una route con la stessa corrispondenza LPM una route viene selezionata in base alla sua origine nell'ordine seguente:
 
 1. Route definita utente
 2. Route BGP (quando viene utilizzato ExpressRoute)
 3. La route di sistema
 
-toolearn toocreate utente definizione route, vedere [come tooCreate instrada e attivare l'inoltro IP in Azure](virtual-network-create-udr-arm-template.md).
+Per informazioni su come creare route definite dall'utente, vedere [come creare route e abilitare l'inoltro dell'IP in Azure](virtual-network-create-udr-arm-template.md).
 
 > [!IMPORTANT]
-> Route definite dall'utente vengono applicati tooAzure solo le macchine virtuali e i servizi cloud. Ad esempio, se si desidera tooadd appliance virtuale firewall tra la rete locale e Azure, sarà necessario toocreate una route definita dall'utente per le tabelle di Azure di route per l'inoltro di tutto il traffico verso toohello locale indirizzo spazio toohello virtuale dispositivo. È inoltre possibile aggiungere che un utente definito route (UDR) toohello GatewaySubnet tooforward tutto il traffico da sedi tooAzure tramite appliance virtuale hello. Si tratta di un'aggiunta recente.
+> Route definite dall'utente vengono applicate solo a servizi cloud e macchine virtuali di Azure. Ad esempio, se si vuole aggiungere un dispositivo virtuale firewall tra la rete locale e Azure, è necessario creare una route definita dall'utente per le tabelle di route di Azure per inoltrare tutto il traffico indirizzato allo spazio degli indirizzi locale al dispositivo virtuale. È anche possibile aggiungere una route definita dall'utente a GatewaySubnet per inoltrare tutto il traffico da locale ad Azure tramite l'appliance virtuale. Si tratta di un'aggiunta recente.
 > 
 > 
 
 ### <a name="bgp-routes"></a>Route BGP
-Se si dispone di una connessione ExpressRoute tra la rete locale e Azure, è possibile abilitare le route toopropagate BGP dal tooAzure di rete locale. Vengono utilizzate queste route BGP in hello esattamente come le route di sistema e utente definito route in ogni subnet di Azure. Per altre informazioni, vedere [Panoramica tecnica relativa a ExpressRoute](../expressroute/expressroute-introduction.md).
+Se si dispone di una connessione ExpressRoute tra la rete locale e Azure, è possibile abilitare BGP propagare route dalla rete locale in Azure. Queste route BGP vengono utilizzate nello stesso modo delle route predefinite e delle route definite dall'utente in ogni subnet di Azure. Per altre informazioni, vedere [Panoramica tecnica relativa a ExpressRoute](../expressroute/expressroute-introduction.md).
 
 > [!IMPORTANT]
-> È possibile configurare la forza di toouse ambiente Azure tunneling forzato attraverso la rete locale tramite la creazione di una route definita dall'utente per 0.0.0.0/0 subnet che usa il gateway VPN hello come hop successivo hello. Tuttavia, funziona solo se si utilizza un gateway VPN, non ExpressRoute. Per ExpressRoute, il tunneling forzato viene configurato tramite BGP.
+> È possibile configurare l'ambiente Azure per utilizzare il tunneling forzato attraverso la rete locale tramite la creazione di una route definita utente per 0.0.0.0/0 subnet che utilizza il gateway VPN come hop successivo. Tuttavia, funziona solo se si utilizza un gateway VPN, non ExpressRoute. Per ExpressRoute, il tunneling forzato viene configurato tramite BGP.
 > 
 > 
 
 ## <a name="ip-forwarding"></a>Inoltro IP
-Come descritto in precedenza, uno dei hello motivi principali toocreate una route definita dall'utente è dell'appliance virtuale tooforward traffico tooa. Un dispositivo virtuale è semplicemente una macchina virtuale che esegue un'applicazione che consente il traffico di rete toohandle in qualche modo, ad esempio un firewall o un dispositivo NAT.
+Come descritto sopra, uno dei motivi principali per creare una route definita dall’utente consiste nell’inoltrare il traffico a un dispositivo virtuale. Un dispositivo virtuale non è altro che una macchina virtuale che esegue un'applicazione utilizzata per gestire il traffico di rete in qualche modo, ad esempio un firewall o un dispositivo NAT.
 
-Questo dispositivo virtuale che VM deve essere in grado di tooreceive il traffico in ingresso che viene risolto non tooitself. tooallow un traffico tooreceive VM inoltrate tooother destinazioni, è necessario abilitare l'inoltro IP per hello macchina virtuale. Si tratta di un'impostazione, non è un'impostazione hello del sistema operativo guest di Azure.
+Questo dispositivo virtuale macchina virtuale deve essere in grado di ricevere traffico in ingresso non viene indirizzato a se stesso. Per consentire a una macchina virtuale di ricevere il traffico indirizzato ad altre destinazioni, è necessario abilitare l'inoltro IP per la macchina virtuale. Si tratta di un'impostazione di Azure e non del sistema operativo guest.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Informazioni su come troppo[creare route nel modello di distribuzione di gestione risorse di hello](virtual-network-create-udr-arm-template.md) e associarli toosubnets. 
-* Informazioni su come troppo[creare route nel modello di distribuzione classica hello](virtual-network-create-udr-classic-ps.md) e associarli toosubnets.
+* Informazioni su come [Creare route definite dall'utente in Resource Manager usando un modello](virtual-network-create-udr-arm-template.md) e associarle alle subnet. 
+* Informazioni su come [creare route nel modello di distribuzione classica](virtual-network-create-udr-classic-ps.md) e associarle a subnet.
 

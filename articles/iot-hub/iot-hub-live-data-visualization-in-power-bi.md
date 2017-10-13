@@ -1,6 +1,6 @@
 ---
-title: 'visualizzazione dei dati di sensore provenienti dall''IoT Hub di Azure: Power BI aaaReal ora | Documenti Microsoft'
-description: "Utilizzare Power BI toovisualize temperatura e umidità i dati raccolti dal sensore hello e inviati tooyour Azure IoT hub."
+title: Visualizzazione in tempo reale dei dati del sensore dall'hub IoT di Azure - Power BI | Microsoft Docs
+description: "Usare Power BI per visualizzare i dati di temperatura e umidità raccolti dal sensore e inviati all'hub IoT di Azure."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: xshi
-ms.openlocfilehash: d79ce757a9f2ab7a4744e8a0c523106e0f72cecd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: b190fea06ffc2406d781c7edad091f097cca9c2d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="visualize-real-time-sensor-data-from-azure-iot-hub-using-power-bi"></a>Visualizzare i dati del sensore in tempo reale da IoT Hub di Azure tramite Power BI
 
@@ -30,20 +30,20 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="what-you-learn"></a>Contenuto dell'esercitazione
 
-Si apprenderà come toovisualize in tempo reale dati del sensore che riceve l'hub IoT di Azure da Power BI. Se si desidera visualizzare i dati hello tootry nell'hub IoT con le app Web, vedere [App Web di Azure usare toovisualize sensore in tempo reale dati IoT Hub Azure](iot-hub-live-data-visualization-in-web-apps.md).
+Informazioni su come visualizzare i dati del sensore in tempo reale che l'hub IoT di Azure riceve da Power BI. Se si desidera provare a visualizzare i dati nell'hub IoT con le app Web, consultare [Usare App Web di Azure per visualizzare i dati del sensore in tempo reale da Azure IoT Hub](iot-hub-live-data-visualization-in-web-apps.md).
 
 ## <a name="what-you-do"></a>Operazioni da fare
 
 - Preparare l'hub IoT per l'accesso dei dati mediante l'aggiunta di un gruppo di consumer.
-- Creare, configurare e di eseguire un processo di flusso Analitica per il trasferimento dei dati dal tooyour hub IoT account Power BI.
-- Creare e pubblicare i dati del hello toovisualize report Power BI.
+- Creare, configurare ed eseguire un processo di analisi di flusso per il trasferimento dei dati dall'hub IoT all'account Power BI.
+- Creare e pubblicare un report di Power BI per visualizzare i dati.
 
 ## <a name="what-you-need"></a>Elementi necessari
 
-- Esercitazione [configurare il dispositivo](iot-hub-raspberry-pi-kit-node-get-started.md) completato che copre hello seguenti requisiti:
+- Completare l'esercitazione [Configurare il dispositivo](iot-hub-raspberry-pi-kit-node-get-started.md) che prevede i requisiti seguenti:
   - Una sottoscrizione di Azure attiva.
   - Un hub IoT di Azure nella sottoscrizione.
-  - Un'applicazione client che invia l'hub IoT di Azure tooyour messaggi.
+  - Un'applicazione client che invia messaggi all'hub IoT di Azure.
 - Un account di Power BI. ([Provare gratuitamente Power BI](https://powerbi.microsoft.com/))
 
 [!INCLUDE [iot-hub-get-started-create-consumer-group](../../includes/iot-hub-get-started-create-consumer-group.md)]
@@ -52,46 +52,46 @@ Si apprenderà come toovisualize in tempo reale dati del sensore che riceve l'hu
 
 ### <a name="create-a-stream-analytics-job"></a>Creare un processo di Analisi di flusso.
 
-1. In hello portale di Azure, fare clic su Nuovo > Internet of Things > processo di flusso Analitica.
-1. Immettere le seguenti informazioni per il processo di hello hello.
+1. Nel portale di Azure, fare clic su Nuovo > Internet delle cose > Processo di Analisi di flusso.
+1. Immettere le seguenti informazioni per il processo.
 
-   **Nome del processo**: nome hello del processo di hello. nome Hello deve essere globalmente univoco.
+   **Nome processo**: il nome del processo. Il nome deve essere univoco a livello globale.
 
-   **Gruppo di risorse**: utilizzare hello stesso gruppo di risorse che usa l'hub IoT.
+   **Gruppo di risorse**: usare lo stesso gruppo di risorse usato da hub IoT.
 
-   **Percorso**: utilizzare hello stesso percorso per il gruppo di risorse.
+   **Percorso**: utilizzare lo stesso percorso del gruppo di risorse.
 
-   **PIN toodashboard**: selezionare questa opzione per l'hub IoT tooyour di facile accesso dal dashboard hello.
+   **Aggiungi al dashboard**: selezionare questa opzione per semplificare l'accesso all'hub IoT dal dashboard.
 
    ![Creare un processo di analisi di flusso in Azure](media/iot-hub-live-data-visualization-in-power-bi/2_create-stream-analytics-job-azure.png)
 
 1. Fare clic su **Crea**.
 
-### <a name="add-an-input-toohello-stream-analytics-job"></a>Aggiungere un processo di flusso Analitica toohello input
+### <a name="add-an-input-to-the-stream-analytics-job"></a>Aggiungere un input al processo di analisi di flusso
 
-1. Processo di flusso Analitica hello aperto.
+1. Aprire il processo di analisi di flusso.
 1. In **Topologia processo** fare clic su **Input**.
-1. In hello **input** riquadro, fare clic su **Aggiungi**, quindi immettere hello le seguenti informazioni:
+1. Nel riquadro **Input** fare clic su **Aggiungi**, quindi immettere le informazioni seguenti:
 
-   **Alias di input**: alias univoco hello hello input.
+   **Alias di input**: l'alias univoco per l'input.
 
    **Origine**: selezionare **Hub IoT**.
 
-   **Gruppo di consumer**: gruppo di consumer hello selezionare appena creato.
+   **Gruppo di consumer**: selezionare il gruppo di consumer appena creato.
 1. Fare clic su **Crea**.
 
-   ![Aggiungere un processo di flusso Analitica tooa input in Azure](media/iot-hub-live-data-visualization-in-power-bi/3_add-input-to-stream-analytics-job-azure.png)
+   ![Aggiungere un input al processo di analisi di flusso in Azure](media/iot-hub-live-data-visualization-in-power-bi/3_add-input-to-stream-analytics-job-azure.png)
 
-### <a name="add-an-output-toohello-stream-analytics-job"></a>Aggiungere un processo di flusso Analitica toohello output
+### <a name="add-an-output-to-the-stream-analytics-job"></a>Aggiungere un output al processo di analisi di flusso
 
 1. In **Topologia processo** fare clic su **Output**.
-1. In hello **output** riquadro, fare clic su **Aggiungi**, quindi immettere hello le seguenti informazioni:
+1. Nel riquadro **Output** fare clic su **Aggiungi**, quindi immettere le informazioni seguenti:
 
-   **Alias di output**: alias univoco di hello per l'output di hello.
+   **Alias di output**: l'alias univoco per l'output.
 
    **Sink**: selezionare **Power BI**.
 1. Fare clic su **Autorizza** e quindi accedere all'account di Power BI.
-1. Una volta autorizzato, immettere hello le seguenti informazioni:
+1. Dopo aver concesso l'autorizzazione immettere le seguenti informazioni:
 
    **Area di lavoro del gruppo**: selezionare l'area di lavoro del gruppo di destinazione.
 
@@ -100,62 +100,62 @@ Si apprenderà come toovisualize in tempo reale dati del sensore che riceve l'hu
    **Nome tabella**: immettere un nome per la tabella.
 1. Fare clic su **Crea**.
 
-   ![Aggiungere un processo di flusso Analitica tooa output in Azure](media/iot-hub-live-data-visualization-in-power-bi/4_add-output-to-stream-analytics-job-azure.png)
+   ![Aggiungere un output al processo di analisi di flusso in Azure](media/iot-hub-live-data-visualization-in-power-bi/4_add-output-to-stream-analytics-job-azure.png)
 
-### <a name="configure-hello-query-of-hello-stream-analytics-job"></a>Configurare la query hello del processo di flusso Analitica hello
+### <a name="configure-the-query-of-the-stream-analytics-job"></a>Configurare la query del processo di analisi di flusso
 
 1. In **Topologia processo** fare clic su **Query**.
-1. Sostituire `[YourInputAlias]` con alias hello di input del processo di hello.
-1. Sostituire `[YourOutputAlias]` con alias di output di hello del processo di hello.
+1. Sostituire `[YourInputAlias]` con l'alias di input del processo.
+1. Sostituire `[YourOutputAlias]` con l'alias di output del processo.
 1. Fare clic su **Salva**.
 
-   ![Aggiungere un processo di flusso Analitica tooa query in Azure](media/iot-hub-live-data-visualization-in-power-bi/5_add-query-stream-analytics-job-azure.png)
+   ![Aggiungere una query al processo di analisi di flusso in Azure](media/iot-hub-live-data-visualization-in-power-bi/5_add-query-stream-analytics-job-azure.png)
 
-### <a name="run-hello-stream-analytics-job"></a>Eseguire il processo di flusso Analitica hello
+### <a name="run-the-stream-analytics-job"></a>Eseguire il processo di Analisi di flusso
 
-Nel processo di flusso Analitica hello, fare clic su **avviare** > **ora** > **avviare**. Quando si avvia il processo di hello, lo stato del processo hello cambia da **arrestato** troppo**esecuzione**.
+Nel processo di analisi di flusso, **Avvia** > **Ora** > **Avvia**. Dopo aver avviato correttamente il processo, lo stato del processo passa da **Interrotto** a **In esecuzione**.
 
 ![Eseguire un processo di analisi di flusso in Azure](media/iot-hub-live-data-visualization-in-power-bi/6_run-stream-analytics-job-azure.png)
 
-## <a name="create-and-publish-a-power-bi-report-toovisualize-hello-data"></a>Creare e pubblicare i dati del hello toovisualize report Power BI
+## <a name="create-and-publish-a-power-bi-report-to-visualize-the-data"></a>Creare e pubblicare un report di Power BI per visualizzare i dati
 
-1. Verificare che l'applicazione di esempio hello è in esecuzione sul dispositivo. Se non è possibile fare riferimento di esercitazioni toohello in [configurare il dispositivo](https://docs.microsoft.com/azure/iot-hub/iot-hub-raspberry-pi-kit-node-get-started).
-1. Accedi tooyour [Power BI](https://powerbi.microsoft.com/en-us/) account.
-1. Passare toohello gruppo dell'area di lavoro che durante la creazione di output di hello per il processo di flusso Analitica hello è impostata.
+1. Verificare che l'applicazione di esempio sia in esecuzione nel dispositivo. Se non lo fosse, è possibile fare riferimento alle esercitazioni descritte in [Configurare il dispositivo](https://docs.microsoft.com/azure/iot-hub/iot-hub-raspberry-pi-kit-node-get-started).
+1. Accedere all'account [Power BI](https://powerbi.microsoft.com/en-us/).
+1. Passare all'area di lavoro del gruppo impostata quando è stato creato l'output del processo di analisi di flusso.
 1. Fare clic su **Set di dati in streaming**.
 
-   Dovrebbe essere hello elencato set di dati specificato al momento della creazione di output per il processo di flusso Analitica hello hello.
-1. In **azioni**, fare clic su hello prima icona toocreate un report.
+   Dovrebbero essere elencati i set di dati specificati durante la creazione di output per il processo di analisi di flusso.
+1. In **AZIONI**, fare clic sulla prima icona per creare un report.
 
    ![Creare un report di Microsoft Power BI](media/iot-hub-live-data-visualization-in-power-bi/7_create-power-bi-report-microsoft.png)
 
-1. Creare una temperatura in tempo reale di grafico tooshow riga nel tempo.
-   1. Nella pagina di creazione report hello, aggiungere un grafico a linee.
-   1. In hello **campi** riquadro espandere tabella hello specificato al momento della creazione di output di hello per il processo di flusso Analitica hello.
-   1. Trascinare **EventEnqueuedUtcTime** troppo**asse** su hello **visualizzazioni** riquadro.
-   1. Trascinare **temperatura** troppo**valori**.
+1. Creare un grafico a linee per visualizzare la temperatura in tempo reale nel tempo.
+   1. Nella pagina di creazione del report, aggiungere un grafico a linee.
+   1. Nel riquadro **Campi** espandere la tabella specificata durante la creazione di output per il processo di analisi di flusso.
+   1. Trascinare **EventEnqueuedUtcTime** in **Asse** sul riquadro **Visualizzazioni**.
+   1. Trascinare la **temperatura** in **Valori**.
 
-      A questo punto viene creato un grafico a linee. Hello asse x Visualizza la data e ora nel fuso orario UTC di hello. asse y Hello Visualizza temperatura sensore hello.
+      A questo punto viene creato un grafico a linee. L'asse x mostra data e ora per il fuso orario UTC. L'asse y mostra la temperatura dal sensore.
 
-      ![Aggiungere un grafico a linee per temperatura tooa report di Microsoft Power BI](media/iot-hub-live-data-visualization-in-power-bi/8_add-line-chart-for-temperature-to-power-bi-report-microsoft.png)
+      ![Aggiungere un grafico a linee per la temperatura a un report di Microsoft Power BI](media/iot-hub-live-data-visualization-in-power-bi/8_add-line-chart-for-temperature-to-power-bi-report-microsoft.png)
 
-1. Creare un'altra riga grafico tooshow in tempo reale umidità nel tempo. toodo, attenersi alla stessa procedura sopra hello e inserire **EventEnqueuedUtcTime** sull'asse delle x hello e **umidità** sull'asse y hello.
+1. Creare un altro grafico a linee in modo da visualizzare in tempo reale l'umidità nel tempo. A tale scopo, attenersi alla stessa procedura precedente e inserire **EventEnqueuedUtcTime** sull'asse x e l'**umidità** sull'asse y.
 
-   ![Aggiungere un grafico a linee per umidità tooa report di Microsoft Power BI](media/iot-hub-live-data-visualization-in-power-bi/9_add-line-chart-for-humidity-to-power-bi-report-microsoft.png)
+   ![Aggiungere un grafico a linee per l'umidità a un report di Microsoft Power BI](media/iot-hub-live-data-visualization-in-power-bi/9_add-line-chart-for-humidity-to-power-bi-report-microsoft.png)
 
-1. Fare clic su **salvare** report hello toosave.
-1. Fare clic su **File** > **pubblicare tooweb**.
+1. Fare clic su **Salva** per salvare il report.
+1. Fare clic su **File** > **Pubblica sul Web**.
 1. Fare clic su **Crea codice di incorporamento**, quindi fare clic su **Pubblica**.
 
-Viene fornito collegamento al report hello che è possibile condividere con tutti gli utenti per l'accesso ai report e report di hello toointegrate di frammento di codice nel blog o nel sito Web.
+Viene indicato il collegamento al report che è possibile condividere con utenti che debbano accedere al report e un frammento di codice per integrare il report nel blog o nel sito Web.
 
 ![Pubblicare un report di Microsoft Power BI](media/iot-hub-live-data-visualization-in-power-bi/10_publish-power-bi-report-microsoft.png)
 
-Microsoft offre inoltre hello [App per dispositivi mobili di Power BI](https://powerbi.microsoft.com/en-us/documentation/powerbi-power-bi-apps-for-mobile-devices/) per visualizzare e interagire con i dashboard di Power BI e i report nel dispositivo mobile.
+Microsoft offre anche le [App per dispositivi mobili di Power BI](https://powerbi.microsoft.com/en-us/documentation/powerbi-power-bi-apps-for-mobile-devices/) per la visualizzazione e l'interazione con i dashboard di Power BI e i report sul tuo dispositivo mobile.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Utilizzati correttamente dati di Power BI toovisualize sensore in tempo reale dall'hub IoT di Azure.
-È un dati toovisualize alternativa provenienti dall'IoT Hub di Azure. Vedere [App Web di Azure usare toovisualize sensore in tempo reale dati IoT Hub Azure](iot-hub-live-data-visualization-in-web-apps.md).
+Si è utilizzato correttamente Power BI per visualizzare i dati del sensore in tempo reale dall'hub IoT di Azure.
+Esiste un modo alternativo per visualizzare i dati dall'hub IoT di Azure. Vedere [Usare App Web di Azure per visualizzare i dati del sensore in tempo reale dall'hub IoT di Azure](iot-hub-live-data-visualization-in-web-apps.md).
 
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]

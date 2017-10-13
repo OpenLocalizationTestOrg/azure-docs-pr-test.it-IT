@@ -1,6 +1,6 @@
 ---
-title: aaaDelegate il tooAzure di dominio DNS | Documenti Microsoft
-description: Comprendere come usare DNS di Azure e delega di dominio toochange denominati server tooprovide dominio ospita.
+title: Delegare il dominio a DNS di Azure | Documentazione Microsoft
+description: Informazioni su come modificare la delega di dominio e usare server dei nomi DNS di Azure per fornire hosting di dominio.
 services: dns
 documentationcenter: na
 author: georgewallace
@@ -13,62 +13,62 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/12/2017
 ms.author: gwallace
-ms.openlocfilehash: f780bdaa416150e5e3afe6c6845dc75ba54b6203
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 33b3ec24432ff1268860b9a2e9d5098600a8dedc
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="delegate-a-domain-tooazure-dns"></a>Delegato tooAzure un dominio DNS
+# <a name="delegate-a-domain-to-azure-dns"></a>Delegare un dominio al servizio DNS di Azure
 
-DNS di Azure consente una zona DNS toohost e gestire i record DNS hello per un dominio in Azure. Per le query DNS per tooreach un dominio DNS di Azure, il dominio hello deve toobe delegato tooAzure DNS del dominio padre hello. Tenere presente il DNS di Azure non è il registrar di dominio hello. Questo articolo viene illustrato come toodelegate il tooAzure di dominio DNS.
+DNS di Azure consente di ospitare una zona DNS e gestire i record DNS per un dominio in Azure. Per consentire l'esecuzione di query DNS in modo che un dominio raggiunga DNS di Azure, il dominio deve essere delegato a DNS di Azure dal dominio padre. Tenere presente che DNS di Azure non è il registrar. Questo articolo illustra come delegare il dominio al servizio DNS di Azure.
 
-Per i domini acquistati presso un registrar, registrar offre hello opzione tooset questi record NS. Non si dispone tooown toocreate un dominio una zona DNS con lo stesso nome di dominio in DNS di Azure. Tuttavia, è necessario tooown hello dominio tooset backup hello tooAzure di delega DNS presso il registrar hello.
+Per i domini acquistati da un registrar, il registrar offre la possibilità di configurare questi record NS. Non è necessario essere proprietari di un dominio per creare una zona DNS con questo nome di dominio in DNS di Azure, tuttavia è necessario esserlo per configurare la delega in DNS di Azure con il registrar.
 
-Si supponga, ad esempio, si acquista il dominio di hello 'contoso.net' e crea una zona con il nome di hello 'contoso.net' in DNS di Azure. Come proprietario del dominio hello hello registrar offre che Hello opzione tooconfigure hello indirizzi del server (ovvero, i record di hello NS) per il dominio. registrar Hello archivia questi record NS nel dominio padre hello, in questo caso ".net". I client in tutto il mondo hello possono quindi essere dominio diretto tooyour nella zona DNS di Azure durante il tentativo di record DNS tooresolve 'contoso.net'.
+Si supponga, ad esempio, di acquistare il dominio "contoso.net" e di creare una zona con il nome "contoso.net" nel servizio DNS di Azure. In qualità di proprietario del dominio, il registrar offre la possibilità di configurare gli indirizzi del server dei nomi (cioè i record NS) per il dominio. Il registrar archivia questi record NS nel dominio padre, in questo caso ".net". I clienti di tutto il mondo possono quindi essere reindirizzati al dominio nella zona DNS di Azure quando provano a risolvere i record DNS in "contoso.net".
 
 ## <a name="create-a-dns-zone"></a>Creare una zona DNS
 
-1. Accedi toohello portale di Azure
-1. Nel menu Hub hello, fare clic su e fare clic su **nuovo > rete >** e quindi fare clic su **zona DNS** blade di zona DNS creare hello tooopen.
+1. Accedere al portale di Azure
+1. Nel menu Hub fare clic su **Nuovo > Rete >** e quindi fare clic su **Zona DNS** per aprire il pannello per creare una zona DNS.
 
     ![Zona DNS](./media/dns-domain-delegation/dns.png)
 
-1. In hello **zona DNS creare** pannello immettere i seguenti valori hello, quindi fare clic su **crea**:
+1. Nel pannello **Crea zona DNS** immettere i valori seguenti, quindi fare clic su **Crea**:
 
    | **Impostazione** | **Valore** | **Dettagli** |
    |---|---|---|
-   |**Nome**|contoso.net|nome Hello della zona DNS hello|
-   |**Sottoscrizione**|[Sottoscrizione]|Selezionare un gateway applicazione di sottoscrizione toocreate hello in.|
-   |**Gruppo di risorse**|**Crea nuovo:** contosoRG|Creare un gruppo di risorse. nome del gruppo di risorse Hello deve essere univoco all'interno di sottoscrizione hello selezionata. ulteriori informazioni sui gruppi di risorse, leggere hello toolearn [Gestione risorse](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fdns%2ftoc.json#resource-groups) articolo introduttivo.|
+   |**Nome**|contoso.net|Nome della zona DNS|
+   |**Sottoscrizione**|[Sottoscrizione]|Selezionare una sottoscrizione in cui creare il gateway applicazione.|
+   |**Gruppo di risorse**|**Crea nuovo:** contosoRG|Creare un gruppo di risorse. Il nome del gruppo di risorse deve essere univoco all'interno della sottoscrizione selezionata. Per altre informazioni sui gruppi di risorse, vedere l'articolo [Panoramica di Resource Manager](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fdns%2ftoc.json#resource-groups).|
    |**Posizione**|Stati Uniti occidentali||
 
 > [!NOTE]
-> gruppo di risorse Hello fa riferimento il percorso toohello hello del gruppo di risorse e non influisce sulla zona DNS hello. percorso di zona DNS Hello sono sempre "globale" e non viene visualizzato.
+> Il gruppo di risorse indica la località del gruppo di risorse e non ha alcun impatto sulla zona DNS. La posizione della zona DNS è sempre "globale" e non viene visualizzata.
 
 ## <a name="retrieve-name-servers"></a>Recuperare i server dei nomi
 
-Per poter delegare il tooAzure di zona DNS di DNS, è necessario innanzitutto tooknow hello server nomi per la zona attiva. DNS Azure alloca i server dei nomi da un pool ogni volta che viene creata una zona.
+Prima di poter delegare la zona DNS a DNS Azure è necessario conoscere i nomi dei server dei nomi per la zona. DNS Azure alloca i server dei nomi da un pool ogni volta che viene creata una zona.
 
-1. Zona DNS hello creato, nel portale di Azure hello **Preferiti** riquadro, fare clic su **tutte le risorse**. Fare clic su hello **contoso.net** zona DNS in hello **tutte le risorse** blade. Sottoscrizione hello selezionati sono già dispone di numerose risorse in essa contenuti, è possibile immettere **contoso.net** in hello filtro in base al nome... gateway applicazione hello di accesso tooeasily di casella. 
+1. Dopo la creazione della zona DNS, nel riquadro **Preferiti** del portale di Azure fare clic su **Tutte le risorse**. Fare clic sulla zona DNS **contoso.net** nel pannello **Tutte le risorse**. Se nella sottoscrizione selezionata sono già presenti delle risorse, è possibile immettere **contoso.net** nella casella Filtra per nome per accedere con facilità al gateway applicazione. 
 
-1. Recuperare i server dei nomi hello dal pannello della zona DNS hello. In questo esempio è stato assegnato zona hello 'contoso.net', server dei nomi ' ns1-01.azure-dns.com', 'ns2-01.azure-dns .net', ' ns3-01.azure-dns.org', e ' ns4-01.azure-dns.info':
+1. Recuperare i server dei nomi dal pannello della zona DNS. In questo esempio, alla zona "contoso.net" sono stati assegnati i server dei nomi "ns1-01.azure-dns.com", "ns2-01.azure-dns.net", "ns3-01.azure-dns.org" e "ns4-01.azure-dns.info":
 
  ![Dns-nameserver](./media/dns-domain-delegation/viewzonens500.png)
 
-DNS di Azure crea automaticamente i record NS autorevoli nella zona contenente hello server dei nomi assegnato.  i nomi di server dei nomi hello toosee tramite Azure PowerShell o l'interfaccia CLI di Azure, è sufficiente tooretrieve questi record.
+DNS Azure crea automaticamente i record NS autorevoli nella zona con i server dei nomi assegnati.  Per visualizzare i nomi dei server dei nomi con Azure PowerShell o l'interfaccia della riga di comando di Azure è sufficiente recuperare questi record.
 
-Hello negli esempi seguenti vengono forniscono anche passaggi hello server dei nomi hello tooretrieve per una zona DNS di Azure con PowerShell e CLI di Azure.
+Gli esempi seguenti illustrano anche la procedura per recuperare i server dei nomi per una zona in DNS di Azure con PowerShell e con l'interfaccia della riga di comando di Azure.
 
 ### <a name="powershell"></a>PowerShell
 
 ```powershell
-# hello record name "@" is used toorefer toorecords at hello top of hello zone.
+# The record name "@" is used to refer to records at the top of the zone.
 $zone = Get-AzureRmDnsZone -Name contoso.net -ResourceGroupName contosoRG
 Get-AzureRmDnsRecordSet -Name "@" -RecordType NS -Zone $zone
 ```
 
-Hello di esempio seguente è riportata la risposta hello.
+L'esempio seguente corrisponde alla risposta.
 
 ```
 Name              : @
@@ -88,7 +88,7 @@ Metadata          :
 az network dns record-set show --resource-group contosoRG --zone-name contoso.net --type NS --name @
 ```
 
-Hello di esempio seguente è riportata la risposta hello.
+L'esempio seguente corrisponde alla risposta.
 
 ```json
 {
@@ -116,25 +116,25 @@ Hello di esempio seguente è riportata la risposta hello.
 }
 ```
 
-## <a name="delegate-hello-domain"></a>Dominio hello delegato
+## <a name="delegate-the-domain"></a>Delegare il dominio
 
-Ora che è creare la zona DNS hello e si dispone di server dei nomi hello, dominio padre hello deve toobe aggiornato con i server dei nomi DNS di Azure hello. Ogni registrar dispone di propri DNS management tools toochange hello record server dei nomi per un dominio. Nella pagina di gestione DNS del registrar hello, modificare i record NS hello e sostituire i record NS hello con hello quelli creati DNS di Azure.
+Dopo la creazione della zona DNS e il recupero dei server dei nomi, il dominio padre deve essere aggiornato con i server dei nomi di DNS di Azure. Ogni registrar prevede i propri strumenti di gestione DNS per modificare i record del server dei nomi per un dominio. Nella pagina di gestione DNS del registrar, modificare i record NS e sostituirli con quelli creati da DNS di Azure.
 
-Quando la delega tooAzure un dominio DNS, è necessario utilizzare nomi di server di nome hello forniti da DNS di Azure. È consigliabile toouse tutti i quattro nomi i nomi di server, indipendentemente dal nome hello del dominio. La delega di dominio non richiede hello Nome server name toouse hello nello stesso dominio del dominio principale.
+Quando si delega un dominio a DNS di Azure, è necessario usare i nomi dei server dei nomi forniti da DNS di Azure. È consigliabile usare sempre tutti e quattro i nomi di server dei nomi, indipendentemente dal nome del dominio. La delega del dominio non richiede il nome del server dei nomi per usare lo stesso dominio di primo livello del dominio locale.
 
-È necessario utilizzare 'glue record' toopoint toohello DNS di Azure nome indirizzi IP del server, non dopo questi indirizzi IP potrebbero cambiare nelle future. Le deleghe che usano nomi dei server dei nomi nella propria zona, definiti a volte "server dei nomi personali", non sono attualmente supportate in DNS di Azure.
+È consigliabile non usare "glue record" per puntare agli indirizzi IP del server dei nomi DNS di Azure, perché questi indirizzi IP possono cambiare in futuro. Le deleghe che usano nomi dei server dei nomi nella propria zona, definiti a volte "server dei nomi personali", non sono attualmente supportate in DNS di Azure.
 
 ## <a name="verify-name-resolution-is-working"></a>Verificare che la risoluzione dei nomi funzioni
 
-Dopo aver completato la delega di hello, è possibile verificare che la risoluzione dei nomi funziona tramite uno strumento, ad esempio "nslookup" tooquery hello record SOA per la zona (che viene creata automaticamente anche quando si crea la zona hello).
+Dopo aver completato la delega, è possibile verificare il corretto funzionamento della risoluzione dei nomi usando uno strumento come "nslookup" per eseguire una query sul record SOA per la zona, che viene creato automaticamente anche al momento della creazione della zona.
 
-È non dispone di server dei nomi DNS di Azure hello toospecify, se è stata impostata correttamente, hello normale DNS processo di risoluzione delega hello hello Nome server trovati automaticamente.
+Non è necessario specificare i server dei nomi DNS di Azure. Se la delega è stata configurata correttamente, il normale processo di risoluzione DNS trova i server dei nomi automaticamente.
 
 ```
 nslookup -type=SOA contoso.com
 ```
 
-di seguito Hello è una risposta di esempio da hello precedente comando:
+Di seguito è riportata una risposta di esempio dal comando precedente:
 
 ```
 Server: ns1-04.azure-dns.com
@@ -152,81 +152,81 @@ default TTL = 300 (5 mins)
 
 ## <a name="delegate-sub-domains-in-azure-dns"></a>Delegare sottodomini in DNS di Azure
 
-Se si desidera tooset di una zona figlio separata, è possibile delegare un sottodominio nel sistema DNS di Azure. Ad esempio, dopo aver creato una e delegato 'contoso.net' nel sistema DNS di Azure, si supponga che si desidera tooset di una zona figlio separata, 'partners.contoso.net'.
+Se si vuole configurare una zona figlio separata, è possibile delegare un sottodominio in DNS di Azure. Dopo aver configurato e delegato "contoso.net" in DNS di Azure, si supponga di voler configurare una zona figlio separata, "partners.contoso.net".
 
-1. Creare una zona figlio hello 'partners.contoso.net' nel sistema DNS di Azure.
-2. Cercare hello autorevole i record NS hello figlio zona tooobtain hello Nome server ospita una zona figlio hello in DNS di Azure.
-3. Delegare zona figlio hello configurando i record NS nella zona padre hello verso zona figlio toohello.
+1. Creare la zona figlio "partners.contoso.net" in DNS di Azure.
+2. Cercare i record NS autorevoli nella zona figlio per ottenere i server dei nomi che ospitano la zona figlio nel sistema DNS di Azure.
+3. Delegare la zona figlio configurando i record NS nella zona padre che punta alla zona figlio.
 
 ### <a name="create-a-dns-zone"></a>Creare una zona DNS
 
-1. Accedi toohello portale di Azure
-1. Nel menu Hub hello, fare clic su e fare clic su **nuovo > rete >** e quindi fare clic su **zona DNS** blade di zona DNS creare hello tooopen.
+1. Accedere al portale di Azure
+1. Nel menu Hub fare clic su **Nuovo > Rete >** e quindi fare clic su **Zona DNS** per aprire il pannello per creare una zona DNS.
 
     ![Zona DNS](./media/dns-domain-delegation/dns.png)
 
-1. In hello **zona DNS creare** pannello immettere i seguenti valori hello, quindi fare clic su **crea**:
+1. Nel pannello **Crea zona DNS** immettere i valori seguenti, quindi fare clic su **Crea**:
 
    | **Impostazione** | **Valore** | **Dettagli** |
    |---|---|---|
-   |**Nome**|partners.contoso.net|nome Hello della zona DNS hello|
-   |**Sottoscrizione**|[Sottoscrizione]|Selezionare un gateway applicazione di sottoscrizione toocreate hello in.|
-   |**Gruppo di risorse**|**Utilizza esistente:** contosoRG|Creare un gruppo di risorse. nome del gruppo di risorse Hello deve essere univoco all'interno di sottoscrizione hello selezionata. ulteriori informazioni sui gruppi di risorse, leggere hello toolearn [Gestione risorse](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fdns%2ftoc.json#resource-groups) articolo introduttivo.|
+   |**Nome**|partners.contoso.net|Nome della zona DNS|
+   |**Sottoscrizione**|[Sottoscrizione]|Selezionare una sottoscrizione in cui creare il gateway applicazione.|
+   |**Gruppo di risorse**|**Utilizza esistente:** contosoRG|Creare un gruppo di risorse. Il nome del gruppo di risorse deve essere univoco all'interno della sottoscrizione selezionata. Per altre informazioni sui gruppi di risorse, vedere l'articolo [Panoramica di Resource Manager](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fdns%2ftoc.json#resource-groups).|
    |**Posizione**|Stati Uniti occidentali||
 
 > [!NOTE]
-> gruppo di risorse Hello fa riferimento il percorso toohello hello del gruppo di risorse e non influisce sulla zona DNS hello. percorso di zona DNS Hello sono sempre "globale" e non viene visualizzato.
+> Il gruppo di risorse indica la località del gruppo di risorse e non ha alcun impatto sulla zona DNS. La posizione della zona DNS è sempre "globale" e non viene visualizzata.
 
 ### <a name="retrieve-name-servers"></a>Recuperare i server dei nomi
 
-1. Zona DNS hello creato, nel portale di Azure hello **Preferiti** riquadro, fare clic su **tutte le risorse**. Fare clic su hello **partners.contoso.net** zona DNS in hello **tutte le risorse** blade. Sottoscrizione hello selezionati sono già dispone di numerose risorse in essa contenuti, è possibile immettere **partners.contoso.net** in hello filtro in base al nome... zona DNS hello accesso tooeasily casella.
+1. Dopo la creazione della zona DNS, nel riquadro **Preferiti** del portale di Azure fare clic su **Tutte le risorse**. Fare clic sulla zona DNS **partners.contoso.net** nel pannello **Tutte le risorse**. Se nella sottoscrizione selezionata sono già presenti delle risorse, è possibile immettere **partners.contoso.net** nella casella Filtra per nome per accedere facilmente alla zona DNS.
 
-1. Recuperare i server dei nomi hello dal pannello della zona DNS hello. In questo esempio è stato assegnato zona hello 'contoso.net', server dei nomi ' ns1-01.azure-dns.com', 'ns2-01.azure-dns .net', ' ns3-01.azure-dns.org', e ' ns4-01.azure-dns.info':
+1. Recuperare i server dei nomi dal pannello della zona DNS. In questo esempio, alla zona "contoso.net" sono stati assegnati i server dei nomi "ns1-01.azure-dns.com", "ns2-01.azure-dns.net", "ns3-01.azure-dns.org" e "ns4-01.azure-dns.info":
 
  ![Dns-nameserver](./media/dns-domain-delegation/viewzonens500.png)
 
-DNS di Azure crea automaticamente i record NS autorevoli nella zona contenente hello server dei nomi assegnato.  i nomi di server dei nomi hello toosee tramite Azure PowerShell o l'interfaccia CLI di Azure, è sufficiente tooretrieve questi record.
+DNS Azure crea automaticamente i record NS autorevoli nella zona con i server dei nomi assegnati.  Per visualizzare i nomi dei server dei nomi con Azure PowerShell o l'interfaccia della riga di comando di Azure è sufficiente recuperare questi record.
 
 ### <a name="create-name-server-record-in-parent-zone"></a>Creare un record del server dei nomi in una zona padre
 
-1. Passare toohello **contoso.net** zona DNS in hello portale di Azure.
+1. Passare alla zona DNS **contoso.net** nel portale di Azure.
 1. Fare clic su **+ Set di record**.
-1. In hello **aggiungere set di record** pannello, immettere i seguenti valori hello, quindi fare clic su **OK**:
+1. Nel pannello **Aggiungi set di record** immettere i valori seguenti, quindi fare clic su **OK**:
 
    | **Impostazione** | **Valore** | **Dettagli** |
    |---|---|---|
-   |**Nome**|partners|nome di Hello della zona DNS di hello figlio|
+   |**Nome**|partners|Nome della zona DNS figlio|
    |**Tipo**|NS|Usare NS per i record del server dei nomi.|
-   |**TTL**|1|Ora toolive.|
-   |**Unità TTL**|Ore|Imposta toohours toolive unità di tempo|
-   |**SERVER DEI NOMI**|{server dei nomi dalla zona partners.contoso.net}|Immettere tutti i 4 hello server dei nomi da partners.contoso.net zona. |
+   |**TTL**|1|Durata (TTL).|
+   |**Unità TTL**|Ore|Imposta l'unità TTL in ore|
+   |**SERVER DEI NOMI**|{server dei nomi dalla zona partners.contoso.net}|Immettere tutti e quattro i server dei nomi dalla zona partners.contoso.net. |
 
    ![Dns-nameserver](./media/dns-domain-delegation/partnerzone.png)
 
 
 ### <a name="delegating-sub-domains-in-azure-dns-with-other-tools"></a>Delega di sottodomini in DNS di Azure con altri strumenti
 
-Hello seguito sono riportati alcuni passaggi hello toodelegate i sottodomini in DNS di Azure con PowerShell e CLI:
+Gli esempi seguenti illustrano la procedura per la delega di sottodomini in DNS di Azure con PowerShell e con l'interfaccia della riga di comando:
 
 #### <a name="powershell"></a>PowerShell
 
-Hello esempio PowerShell seguente viene illustrato il funzionamento. Hello stessi passaggi possono essere eseguiti tramite hello portale di Azure o tramite hello multipiattaforma CLI di Azure.
+L'esempio di PowerShell seguente dimostra il funzionamento. Gli stessi passaggi possono essere eseguiti con il portale di Azure o l'interfaccia della riga di comando multipiattaforma di Azure.
 
 ```powershell
-# Create hello parent and child zones. These can be in same resource group or different resource groups as Azure DNS is a global service.
+# Create the parent and child zones. These can be in same resource group or different resource groups as Azure DNS is a global service.
 $parent = New-AzureRmDnsZone -Name contoso.net -ResourceGroupName contosoRG
 $child = New-AzureRmDnsZone -Name partners.contoso.net -ResourceGroupName contosoRG
 
-# Retrieve hello authoritative NS records from hello child zone as shown in hello next example. This contains hello name servers assigned toohello child zone.
+# Retrieve the authoritative NS records from the child zone as shown in the next example. This contains the name servers assigned to the child zone.
 $child_ns_recordset = Get-AzureRmDnsRecordSet -Zone $child -Name "@" -RecordType NS
 
-# Create hello corresponding NS record set in hello parent zone toocomplete hello delegation. hello record set name in hello parent zone matches hello child zone name, in this case "partners".
+# Create the corresponding NS record set in the parent zone to complete the delegation. The record set name in the parent zone matches the child zone name, in this case "partners".
 $parent_ns_recordset = New-AzureRmDnsRecordSet -Zone $parent -Name "partners" -RecordType NS -Ttl 3600
 $parent_ns_recordset.Records = $child_ns_recordset.Records
 Set-AzureRmDnsRecordSet -RecordSet $parent_ns_recordset
 ```
 
-Utilizzare `nslookup` tooverify che tutto sia installato correttamente eseguendo la ricerca di record SOA di zona figlio hello hello.
+Usare `nslookup` per verificare che tutto sia configurato correttamente eseguendo la ricerca del record SOA della zona figlio.
 
 ```
 nslookup -type=SOA partners.contoso.com
@@ -251,12 +251,12 @@ partners.contoso.com
 ```azurecli
 #!/bin/bash
 
-# Create hello parent and child zones. These can be in same resource group or different resource groups as Azure DNS is a global service.
+# Create the parent and child zones. These can be in same resource group or different resource groups as Azure DNS is a global service.
 az network dns zone create -g contosoRG -n contoso.net
 az network dns zone create -g contosoRG -n partners.contoso.net
 ```
 
-Recuperare i server di nome hello per hello `partners.contoso.net` zona dall'output di hello.
+Recuperare i server dei nomi per la zona `partners.contoso.net` dall'output.
 
 ```
 {
@@ -278,12 +278,12 @@ Recuperare i server di nome hello per hello `partners.contoso.net` zona dall'out
 }
 ```
 
-Creare set di record hello e i record NS per ogni server dei nomi.
+Creare il set di record e i record NS per ogni server dei nomi.
 
 ```azurecli
 #!/bin/bash
 
-# Create hello record set
+# Create the record set
 az network dns record-set ns create --resource-group contosorg --zone-name contoso.net --name partners
 
 # Create a ns record for each name server.
@@ -295,11 +295,11 @@ az network dns record-set ns add-record --resource-group contosorg --zone-name c
 
 ## <a name="delete-all-resources"></a>Eliminare tutte le risorse
 
-toodelete tutte le risorse create in questo articolo, hello completo alla procedura seguente:
+Per eliminare tutte le risorse create nell'esecuzione dell'esercizio, seguire questa procedura:
 
-1. Nel portale di Azure hello **Preferiti** riquadro, fare clic su **tutte le risorse**. Fare clic su hello **contosorg** gruppo di risorse in hello tutti pannello risorse. Sottoscrizione hello selezionati sono già dispone di numerose risorse in essa contenuti, è possibile immettere **contosorg** in hello **filtrare in base al nome...** gruppo di risorse hello accesso tooeasily casella.
-1. In hello **contosorg** pannello, fare clic su hello **eliminare** pulsante.
-1. Hello portale richiede nome hello tootype di hello tooconfirm di gruppo di risorse che si desidera toodelete è. Tipo *contosorg* per nome gruppo di risorse hello, quindi fare clic su **eliminare**. Elimina un gruppo di risorse, tutte le risorse nel gruppo di risorse hello, pertanto sempre certi tooconfirm contenuto hello di un gruppo di risorse prima di eliminarlo. portale Hello Elimina tutte le risorse contenute nel gruppo di risorse hello, quindi Elimina gruppo di risorse hello stesso. Questo processo richiede alcuni minuti.
+1. Nel riquadro **Preferiti** del portale di Azure fare clic su **Tutte le risorse**. Fare clic sul gruppo di risorse **contosorg** nel pannello Tutte le risorse. Se nella sottoscrizione selezionata sono già presenti delle risorse, è possibile immettere **contosorg** nella casella **Filtra per nome** per accedere facilmente al gruppo di risorse.
+1. Nel pannello **contosorg** fare clic sul pulsante **Elimina**.
+1. Il portale richiede di digitare il nome del gruppo di risorse per confermare che si desidera effettivamente procedere all'eliminazione. Digitare *contosorg* come nome del gruppo di risorse e quindi fare clic su **Elimina**. L'eliminazione di un gruppo di risorse determina l'eliminazione di tutte le risorse in esso contenute. È quindi consigliabile verificare sempre il contenuto di un gruppo prima di eliminarlo. Il portale elimina tutte le risorse contenute nel gruppo di risorse e quindi elimina il gruppo. Questo processo richiede alcuni minuti.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

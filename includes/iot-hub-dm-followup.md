@@ -1,22 +1,22 @@
-## <a name="customize-and-extend-hello-device-management-actions"></a>Personalizzare ed estendere le azioni di gestione dispositivo hello
+## <a name="customize-and-extend-the-device-management-actions"></a>Personalizzare ed estendere le operazioni di gestione dei dispositivi
 
-Le soluzioni IoT possono espandere hello definito set di modelli di gestione di dispositivi o abilitare modelli personalizzati utilizzando un doppio dispositivo hello e primitive metodo cloud a dispositivo. Altri esempi di operazioni di gestione dei dispositivi includono il ripristino delle informazioni predefinite, l'aggiornamento del firmware, l'aggiornamento del software, il risparmio energia, la gestione di rete e connettività e la crittografia dei dati.
+Le soluzioni IoT possono espandere il set definito di modelli di gestione dei dispositivi o abilitare modelli personalizzati mediante l'uso di primitive di metodo da cloud a dispositivo e del dispositivo gemello. Altri esempi di operazioni di gestione dei dispositivi includono il ripristino delle informazioni predefinite, l'aggiornamento del firmware, l'aggiornamento del software, il risparmio energia, la gestione di rete e connettività e la crittografia dei dati.
 
 ## <a name="device-maintenance-windows"></a>Finestre di manutenzione del dispositivo
 
-In genere, configurare azioni tooperform dispositivi in una fase che riduce al minimo le interruzioni e tempi di inattività. Finestre di manutenzione di dispositivo sono un modello di uso comune toodefine hello quando un dispositivo deve aggiornare la configurazione. Le soluzioni di back-end possono utilizzare le proprietà di hello desiderato di hello dispositivo doppi toodefine e attivare un criterio del dispositivo che consente una finestra di manutenzione. Quando un dispositivo riceve i criteri di finestra di manutenzione hello, può utilizzare hello segnalati proprietà hello doppi tooreport hello dello stato dei dispositivi di criteri di hello. app di back-end Hello è quindi possibile utilizzare dispositivo doppi query tooattest toocompliance di dispositivi e tutti i criteri.
+Configurare i dispositivi in modo che eseguano le azioni in un momento che riduce al minimo le interruzioni e i tempi di inattività. Le finestre di manutenzione del dispositivo costituiscono un modello comunemente usato per definire il momento in cui un dispositivo deve eseguire l'aggiornamento della configurazione. Le soluzioni di back-end possono usare le proprietà desiderate del dispositivo gemello per definire e attivare un criterio sul dispositivo che attiva una finestra di manutenzione. Quando un dispositivo riceve il criterio della finestra di manutenzione, può usare la proprietà segnalata del dispositivo gemello per segnalare lo stato del criterio. L'applicazione back-end può quindi usare le query del dispositivo gemello per attestare la conformità dei dispositivi e di tutti i criteri.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-In questa esercitazione è stato utilizzato un tootrigger dirette del metodo, riavviare il computer remoto in un dispositivo. È utilizzato hello proprietà segnalati tooreport hello riavviare ultima volta da dispositivo hello e hello toodiscover gemelli di hello richiesto dispositivo riavviare ultima ora del dispositivo hello dal cloud hello.
+In questa esercitazione è stato usato un metodo diretto per attivare un riavvio remoto su un dispositivo. Sono state usate le proprietà segnalate per indicare l'ora dell'ultimo riavvio dal dispositivo ed è stata eseguita una query sul dispositivo gemello per ottenere l'ora dell'ultimo riavvio del dispositivo dal cloud.
 
-toocontinue introduzione IoT Hub e modelli di gestione di dispositivi, ad esempio remoto tramite l'aggiornamento del firmware di hello air, vedere:
+Per altre informazioni sull'hub IoT e sui modelli di gestione dei dispositivi, ad esempio in modalità remota tramite l'aggiornamento del firmware air, vedere:
 
-[Esercitazione: Come toodo un aggiornamento firmware][lnk-fwupdate]
+[Esercitazione: Come eseguire un aggiornamento del firmware][lnk-fwupdate]
 
-toolearn come tooextend il metodo di pianificazione e di soluzione IoT chiama su più dispositivi, vedere hello [pianificazione e i processi di broadcast] [ lnk-tutorial-jobs] esercitazione.
+Per informazioni su come estendere la soluzione IoT e pianificare le chiamate al metodo su più dispositivi, vedere l'esercitazione [Pianificare e trasmettere processi][lnk-tutorial-jobs].
 
-Introduzione a IoT Hub, toocontinue vedere [Guida introduttiva a bordo IoT][lnk-iot-edge].
+Per altre informazioni sulle attività iniziali con l'hub IoT, vedere [Getting started with IoT Edge][lnk-iot-edge] (Introduzione a IoT Edge).
 
 [lnk-fwupdate]: ../articles/iot-hub/iot-hub-node-node-firmware-update.md
 [lnk-tutorial-jobs]: ../articles/iot-hub/iot-hub-node-node-schedule-jobs.md

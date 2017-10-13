@@ -1,6 +1,6 @@
 ---
-title: plug-in Streaming per Open origine Media Framework hello aaaSmooth
-description: Informazioni su come toouse hello Azure Media Services Smooth Streaming di plug-in per hello Adobe Apri origine Media Framework.
+title: Plug-in Smooth Streaming per Open Source Media Framework
+description: Informazioni su come usare il plug-in Smooth Streaming di Servizi multimediali di Azure per Adobe Open Source Media Framework.
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,25 +14,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
-ms.openlocfilehash: 3cf8e4679279344cf79c3f0e5b28f63adf88179d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9c764f176ae75085320882de3fb26d8e7d52daaf
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toouse-hello-microsoft-smooth-streaming-plugin-for-hello-adobe-open-source-media-framework"></a>Come tooUse hello Microsoft Smooth Streaming plug-in per hello Adobe Apri origine Media Framework
+# <a name="how-to-use-the-microsoft-smooth-streaming-plugin-for-the-adobe-open-source-media-framework"></a>Come usare il plug-in Microsoft Smooth Streaming per Adobe Open Source Media Framework
 ## <a name="overview"></a>Panoramica
-Hello plug-in di Microsoft Smooth Streaming per Open Source Media Framework 2.0 (SS per OSMF) estende le funzionalità predefinite di hello di OSMF e aggiunge Microsoft Smooth Streaming toonew la riproduzione del contenuto e OSMF esistenti lettori. plug-in Hello aggiunge inoltre Smooth Streaming tooStrobe funzionalità riproduzione Media Playback (SMP).
+Il plug-in Microsoft Smooth Streaming per Open Source Media Framework 2.0 (SS per OSMF) estende le funzionalità predefinite di OSMF e aggiunge la funzionalità di riproduzione del contenuto Smooth Streaming ai lettori OSMF nuovi ed esistenti. Il plug-in aggiunge inoltre funzionalità di riproduzione Smooth Streaming a Strobe Media Playback (SMP).
 
 In Smooth Streaming per OSMF sono incluse due versioni di plug-in:
 
 * Plug-in Static Smooth Streaming per OSMF (con estensione swc)
 * Plug-in Dynamic Smooth Streaming per OSMF (con estensione swf)
 
-Questo documento si presuppone che il lettore di hello abbia una conoscenza generale di OSMF e OSMF plug-in. Per ulteriori informazioni su OSMF, vedere la documentazione di hello in hello [sito ufficiale di OSMF](http://osmf.org/).
+In questo documento si presuppone che il lettore disponga già di conoscenze tecniche generali relative a OSMF e ai plug-in per OSMF. Per altre informazioni su OSMF, consultare la documentazione sul [sito Web ufficiale di OSMF](http://osmf.org/).
 
 ### <a name="smooth-streaming-plugin-for-osmf-20"></a>Plug-in Smooth Streaming per OSMF 2.0
-plug-in Hello supporta il caricamento e la riproduzione del contenuto Smooth Streaming su richiesta con hello seguenti caratteristiche:
+Il plug-in supporta il caricamento e la riproduzione di contenuto Smooth Streaming su richiesta con le funzionalità seguenti:
 
 * Riproduzione Smooth Streaming su richiesta (riproduzione, pausa, ricerca, arresto)
 * Riproduzione Smooth Streaming in diretta (riproduzione)
@@ -46,18 +46,18 @@ plug-in Hello supporta il caricamento e la riproduzione del contenuto Smooth Str
 * In questa versione è supportato solo OSMF 2.0.
 
 ## <a name="supported-features-and-known-issues"></a>Funzionalità supportate e problemi noti
-Per un elenco completo delle funzionalità supportate e problemi noti e funzionalità non supportate, vedere troppo[questo documento](http://download.microsoft.com/download/3/1/B/31B63D97-574E-4A8D-BF8D-170744181724/Smooth_Streaming_Plugin_for_OSMF.pdf).
+Per un elenco completo di funzionalità supportate, funzionalità non supportate e problemi noti, fare riferimento a [questo documento](http://download.microsoft.com/download/3/1/B/31B63D97-574E-4A8D-BF8D-170744181724/Smooth_Streaming_Plugin_for_OSMF.pdf).
 
-## <a name="loading-hello-plugin"></a>Caricamento hello plug-in
-I plug-in OSMF possono essere caricati in modo statico (in fase di compilazione) o dinamico (in fase di esecuzione). Hello Smooth Streaming plug-in per il download OSMF include versioni statiche e dinamiche.
+## <a name="loading-the-plugin"></a>Caricamento del plug-in
+I plug-in OSMF possono essere caricati in modo statico (in fase di compilazione) o dinamico (in fase di esecuzione). Nel download del plug-in Smooth Streaming per OSMF sono incluse entrambe le versioni statica e dinamica.
 
-* Caricamento statico: tooload in modo statico, un file di libreria statica (SWC) è obbligatorio. I plug-in statico vengono aggiunti come riferimento toohello progetti e unione all'interno di output finale hello file in fase di compilazione hello.
-* Caricamento dinamico: tooload in modo dinamico, precompilato (SWF) è richiesto un file. I plug-in dinamico sono caricati in fase di esecuzione hello e non incluso nell'output di progetto hello. (Output compilato) I plug-in dinamici possono essere caricati tramite i protocolli HTTP e FILE.
+* Caricamento statico: per eseguire il caricamento in modo statico, è necessario un file di libreria statica (SWC). I plug-in statici vengono aggiunti come riferimento ai progetti e vengono uniti all'interno del file di output finale in fase di compilazione.
+* Caricamento dinamico: per eseguire il caricamento dinamico, è necessario un file precompilato (SWF). I plug-in dinamici vengono caricati in fase di esecuzione e non sono inclusi nell'output del progetto. (Output compilato) I plug-in dinamici possono essere caricati tramite i protocolli HTTP e FILE.
 
-Per ulteriori informazioni sul caricamento statico e dinamico, vedere ufficiale hello [pagina plug-in OSMF](http://osmf.org/dev/osmf/OtherPDFs/osmf_plugin_dev_guide.pdf).
+Per altre informazioni sul caricamento statico e dinamico, vedere la [pagina ufficiale del plug-in OSMF](http://osmf.org/dev/osmf/OtherPDFs/osmf_plugin_dev_guide.pdf).
 
 ### <a name="ss-for-osmf-static-loading"></a>Caricamento statico di Smooth Streaming per OSMF
-frammento di codice Hello seguente viene illustrato come tooload hello SS di plug-in per OSMF in modo statico e riproduce un video di base utilizzando la classe MediaFactory OSMF. Prima di includere hello SS per il codice OSMF, verificare che il riferimento di progetto hello include plug-in statico hello "MSAdaptiveStreamingPlugin-v1.0.3-osmf2.0.swc".
+Nel frammento di codice seguente viene illustrato come caricare il plug-in Smooth Streaming per OSMF in modo statico e riprodurre un video di base usando la classe MediaFactory di OSMF. Prima di includere il codice di Smooth Streaming per OSMF, verificare che nei riferimenti del progetto sia incluso il plug-in statico "MSAdaptiveStreamingPlugin-v1.0.3-osmf2.0.swc".
 
 ```
 package 
@@ -94,24 +94,24 @@ package
         private function initMediaPlayer():void
         {
 
-            // Create hello container (sprite) for managing display and layout
+            // Create the container (sprite) for managing display and layout
             _mediaPlayerSprite = new MediaPlayerSprite();    
             _mediaPlayerSprite.addEventListener(MediaErrorEvent.MEDIA_ERROR, onPlayerFailed);
             _mediaPlayerSprite.addEventListener(MediaPlayerStateChangeEvent.MEDIA_PLAYER_STATE_CHANGE, onPlayerStateChange);
             _mediaPlayerSprite.scaleMode = ScaleMode.NONE;
             _mediaPlayerSprite.width = stage.stageWidth;
             _mediaPlayerSprite.height = stage.stageHeight;
-            //Adds hello container toohello stage
+            //Adds the container to the stage
             addChild(_mediaPlayerSprite);
 
             // Create a mediafactory instance
             _mediaFactory = new DefaultMediaFactory();
 
-            // Add hello listeners for PLUGIN_LOADING
+            // Add the listeners for PLUGIN_LOADING
             _mediaFactory.addEventListener(MediaFactoryEvent.PLUGIN_LOAD,onPluginLoaded);
             _mediaFactory.addEventListener(MediaFactoryEvent.PLUGIN_LOAD_ERROR, onPluginLoadFailed );
 
-            // Load hello plugin class 
+            // Load the plugin class 
             loadAdaptiveStreamingPlugin( );  
 
         }
@@ -126,15 +126,15 @@ package
 
         private function onPluginLoaded( event:MediaFactoryEvent ):void
         {
-            // hello plugin is loaded successfully.
-            // Your web server needs toohost a valid crossdomain.xml file tooallow plugin toodownload Smooth Streaming files.
+            // The plugin is loaded successfully.
+            // Your web server needs to host a valid crossdomain.xml file to allow plugin to download Smooth Streaming files.
         loadMediaSource("http://devplatem.vo.msecnd.net/Sintel/Sintel_H264.ism/manifest")
 
         }
 
         private function onPluginLoadFailed( event:MediaFactoryEvent ):void
         {
-            // hello plugin is failed tooload ...
+            // The plugin is failed to load ...
         }
 
 
@@ -148,12 +148,12 @@ package
             {
                 case MediaPlayerState.LOADING: 
 
-                    // A new source is started tooload.
+                    // A new source is started to load.
 
                     break;
 
                 case  MediaPlayerState.READY :   
-                    // Add code toodeal with Player Ready when it is hit hello first load after a source is loaded. 
+                    // Add code to deal with Player Ready when it is hit the first load after a source is loaded. 
 
                     break;
 
@@ -174,7 +174,7 @@ package
 
         private function loadMediaSource(sourceURL : String):void 
         {
-            // Take an URL of SmoothStreamingSource's manifest and add it toohello page.
+            // Take an URL of SmoothStreamingSource's manifest and add it to the page.
 
             var resource:URLResource= new URLResource( sourceURL );
 
@@ -183,7 +183,7 @@ package
             _mediaPlayerSprite.width = stage.stageWidth;
             _mediaPlayerSprite.height = stage.stageHeight;
 
-            // Add hello media element
+            // Add the media element
             _mediaPlayerSprite.media = element;
         }     
 
@@ -193,7 +193,7 @@ package
 
 
 ### <a name="ss-for-osmf-dynamic-loading"></a>Caricamento dinamico di Smooth Streaming per OSMF
-frammento di codice Hello seguente viene illustrato come tooload hello SS di plug-in per OSMF in modo dinamico e riproduce un video di base utilizzando una classe OSMF MediaFactory hello. Prima di includere hello SS per il codice OSMF, copiare la cartella del progetto hello "MSAdaptiveStreamingPlugin-v1.0.3-osmf2.0.swf" plug-in dinamico toohello se si desidera tooload utilizzando il protocollo FILE oppure copiare in un server web per il carico HTTP. Non sussiste alcun tooinclude necessità "MSAdaptiveStreamingPlugin-v1.0.3-osmf2.0.swc" nei riferimenti al progetto hello.
+Nel frammento di codice seguente viene illustrato come caricare il plug-in Smooth Streaming per OSMF in modo dinamico e riprodurre un video di base usando la classe MediaFactory di OSMF. Prima di includere il codice di Smooth Streaming per OSMF, copiare il plug-in dinamico "MSAdaptiveStreamingPlugin-v1.0.3-osmf2.0.swf" nella cartella del progetto se si desidera eseguire il caricamento tramite il protocollo FILE o copiarlo in un server Web per il caricamento tramite HTTP. Non è necessario includere il file "MSAdaptiveStreamingPlugin-v1.0.3-osmf2.0.swc" nei riferimenti del progetto.
 
 pacchetto {
 
@@ -208,7 +208,7 @@ pacchetto {
     import flash.system.Capabilities;
 
 
-    //Sets hello size of hello SWF
+    //Sets the size of the SWF
 
     [SWF(width="1024", height="768", backgroundColor='#405050', frameRate="25")]
     public class TestPlayer extends Sprite
@@ -227,22 +227,22 @@ pacchetto {
         private function initMediaPlayer():void
         {
 
-            // Create hello container (sprite) for managing display and layout
+            // Create the container (sprite) for managing display and layout
             _mediaPlayerSprite = new MediaPlayerSprite();    
             _mediaPlayerSprite.addEventListener(MediaErrorEvent.MEDIA_ERROR, onPlayerFailed);
             _mediaPlayerSprite.addEventListener(MediaPlayerStateChangeEvent.MEDIA_PLAYER_STATE_CHANGE, onPlayerStateChange);
 
-            //Adds hello container toohello stage
+            //Adds the container to the stage
             addChild(_mediaPlayerSprite);
 
             // Create a mediafactory instance
             _mediaFactory = new DefaultMediaFactory();
 
-            // Add hello listeners for PLUGIN_LOADING
+            // Add the listeners for PLUGIN_LOADING
             _mediaFactory.addEventListener(MediaFactoryEvent.PLUGIN_LOAD,onPluginLoaded);
             _mediaFactory.addEventListener(MediaFactoryEvent.PLUGIN_LOAD_ERROR, onPluginLoadFailed );
 
-            // Load hello plugin class 
+            // Load the plugin class 
             loadAdaptiveStreamingPlugin( );  
 
         }
@@ -252,7 +252,7 @@ pacchetto {
             var pluginResource:MediaResourceBase;
             var adaptiveStreamingPluginUrl:String;
 
-            // Your dynamic plugin web server needs toohost a valid crossdomain.xml file tooallow loading plugins.
+            // Your dynamic plugin web server needs to host a valid crossdomain.xml file to allow loading plugins.
 
             adaptiveStreamingPluginUrl = "http://yourdomain/MSAdaptiveStreamingPlugin-v1.0.3-osmf2.0.swf";
             pluginResource = new URLResource(adaptiveStreamingPluginUrl);
@@ -262,16 +262,16 @@ pacchetto {
 
         private function onPluginLoaded( event:MediaFactoryEvent ):void
         {
-            // hello plugin is loaded successfully.
+            // The plugin is loaded successfully.
 
-            // Your web server needs toohost a valid crossdomain.xml file tooallow plugin toodownload Smooth Streaming files.
+            // Your web server needs to host a valid crossdomain.xml file to allow plugin to download Smooth Streaming files.
 
     loadMediaSource("http://devplatem.vo.msecnd.net/Sintel/Sintel_H264.ism/manifest")
         }
 
         private function onPluginLoadFailed( event:MediaFactoryEvent ):void
         {
-            // hello plugin is failed tooload ...
+            // The plugin is failed to load ...
         }
 
 
@@ -285,12 +285,12 @@ pacchetto {
             {
                 case MediaPlayerState.LOADING: 
 
-                    // A new source is started tooload.
+                    // A new source is started to load.
 
                     break;
 
                 case  MediaPlayerState.READY :   
-                    // Add code toodeal with Player Ready when it is hit hello first load after a source is loaded. 
+                    // Add code to deal with Player Ready when it is hit the first load after a source is loaded. 
 
                     break;
 
@@ -311,7 +311,7 @@ pacchetto {
 
         private function loadMediaSource(sourceURL : String):void 
         {
-            // Take an URL of SmoothStreamingSource's manifest and add it toohello page.
+            // Take an URL of SmoothStreamingSource's manifest and add it to the page.
 
             var resource:URLResource= new URLResource( sourceURL );
 
@@ -319,22 +319,22 @@ pacchetto {
             _mediaPlayerSprite.scaleMode = ScaleMode.LETTERBOX;
             _mediaPlayerSprite.width = stage.stageWidth;
             _mediaPlayerSprite.height = stage.stageHeight;
-            // Add hello media element
+            // Add the media element
             _mediaPlayerSprite.media = element;
         }     
 
     }
 }
 
-## <a name="strobe-media--playback-with-hello-ss-odmf-dynamic-plugin"></a>Strobe Media Playback con hello plug-in dinamico ODMF SS
-è compatibile con Hello Smooth Streaming per OSMF dinamica plugin [Strobe Media Playback (SMP)](http://osmf.org/strobe_mediaplayback.html). È possibile utilizzare hello SS per OSMF tooSMP la riproduzione del contenuto di Smooth Streaming tooadd di plug-in. toodo, questa copia "MSAdaptiveStreamingPlugin-v1.0.3-osmf2.0.swf" in un server web per il carico HTTP utilizzando hello seguendo i passaggi:
+## <a name="strobe-media--playback-with-the-ss-odmf-dynamic-plugin"></a>Strobe Media Playback con plug-in dinamico SS per OSMF
+Il plug-in dinamico Smooth Streaming per OSMF è compatibile con [Strobe Media Playback (SMP)](http://osmf.org/strobe_mediaplayback.html). È possibile utilizzare il plug-in SS per OSMF per aggiungere la riproduzione di contenuti Smooth Streaming a SMP. A questo scopo, copiare il plug-in "MSAdaptiveStreamingPlugin-v1.0.3-osmf2.0.swf" in un server Web per il caricamento tramite HTTP attenendosi alla procedura seguente:
 
-1. Sfoglia hello [pagina Installazione Strobe Media Playback](http://osmf.org/dev/2.0gm/setup.html). 
-2. Consente di impostare hello src tooa Smooth Streaming origine, (ad esempio http://devplatem.vo.msecnd.net/Sintel/Sintel_H264.ism/manifest) 
-3. Apportare modifiche alla configurazione di hello desiderato e fare clic su Anteprima e aggiornamento.
+1. Passare alla [pagina di installazione di Strobe Media Playback](http://osmf.org/dev/2.0gm/setup.html). 
+2. Impostare l'elemento src su un'origine Smooth Streaming, ad esempio http://devplatem.vo.msecnd.net/Sintel/Sintel_H264.ism/manifest. 
+3. Apportare le modifiche di configurazione desiderate e fare clic su Preview and Update.
    
    **Nota** Per il server Web del contenuto deve essere presente un file crossdomain.xml valido. 
-4. Copiare e incollare hello codice tooa semplice pagina HTML utilizzando un editor di testo, come nel seguente esempio hello:
+4. Copiare e incollare il codice in una pagina HTML semplice utilizzando l'editor di testo desiderato, come illustrato nell'esempio seguente:
 
         <html>
         <body>
@@ -359,7 +359,7 @@ pacchetto {
 
 
 
-1. Aggiungere toohello plug-in Smooth Streaming per OSMF codice di incorporamento e salvare.
+1. Aggiungere il plug-in Smooth Streaming per OSMF al codice incorporato e salvare.
    
         <html>
         <object width="920" height="640"> 
@@ -379,10 +379,10 @@ pacchetto {
         </embed>
         </object>
         </html>
-2. Salvare una pagina HTML e pubblicare tooa web server. Sfoglia toohello pubblicati pagina web mediante i Preferiti Flash&reg; Player abilitato browser Internet (Internet Explorer, Chrome, Firefox, così via).
+2. Salvare la pagina HTML e pubblicarla in un server Web. Passare alla pagina Web pubblicata usando un browser Internet compatibile con Flash&reg; Player, ad esempio Internet Explorer, Chrome, Firefox e così via.
 3. Riprodurre il contenuto Smooth Streaming in Adobe&reg; Flash&reg; Player.
 
-Per ulteriori informazioni sullo sviluppo di OSMF generale, vedere ufficiale hello [pagina sviluppo OSMF](http://osmf.org/resources.html).
+Per ulteriori informazioni sullo sviluppo generale per OSMF, consultare la [pagina ufficiale per lo sviluppo di OSMF](http://osmf.org/resources.html).
 
 ## <a name="media-services-learning-paths"></a>Percorsi di apprendimento di Servizi multimediali
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

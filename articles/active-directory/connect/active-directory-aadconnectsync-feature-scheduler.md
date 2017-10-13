@@ -1,6 +1,6 @@
 ---
 title: "Servizio di sincronizzazione Azure AD Connect: utilità di pianificazione | Documentazione Microsoft"
-description: "In questo argomento vengono descritte funzionalità hello predefinite dell'utilità di pianificazione di sincronizzazione di Azure AD Connect."
+description: "Questo argomento illustra la funzionalità utilità di pianificazione predefinita nel servizio di sincronizzazione Azure AD Connect."
 services: active-directory
 documentationcenter: 
 author: AndKjell
@@ -14,48 +14,48 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/12/2017
 ms.author: billmath
-ms.openlocfilehash: c587039cc68d305862a07beff364894b6f74cd2f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 63f69756b3933fecdec75cc677e1098447e5b94e
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="azure-ad-connect-sync-scheduler"></a>Servizio di sincronizzazione Azure AD Connect: utilità di pianificazione
-In questo argomento descrive hello predefinite dell'utilità di pianificazione della sincronizzazione di Azure AD Connect (anche noto come motore di sincronizzazione.
+Questo argomento illustra l'utilità di pianificazione predefinita nel servizio di sincronizzazione Azure AD Connect, anche detto motore di sincronizzazione.
 
 Questa funzionalità è stata introdotta nella build 1.1.105.0 rilasciata nel mese di febbraio 2016.
 
 ## <a name="overview"></a>Panoramica
-Il servizio di sincronizzazione Azure AD Connect sincronizza le modifiche rilevate nella directory locale usando un'utilità di pianificazione. Sono disponibili due processi dell'utilità di pianificazione, uno per la sincronizzazione delle password e uno per la sincronizzazione di oggetti/attributi e per le attività di manutenzione. Questo argomento illustra hello quest'ultimo.
+Il servizio di sincronizzazione Azure AD Connect sincronizza le modifiche rilevate nella directory locale usando un'utilità di pianificazione. Sono disponibili due processi dell'utilità di pianificazione, uno per la sincronizzazione delle password e uno per la sincronizzazione di oggetti/attributi e per le attività di manutenzione. Questo argomento illustra il secondo.
 
-Nelle versioni precedenti, utilità di pianificazione di hello per oggetti e gli attributi è il motore di sincronizzazione toohello esterno. Consente di utilità di pianificazione di Windows o un processo di sincronizzazione hello separato del tootrigger servizio Windows. utilità di pianificazione Hello è con hello motore di sincronizzazione predefinite toohello versioni 1.1 e consentire alcune personalizzazioni. frequenza di sincronizzazione Hello nuovo valore predefinito è 30 minuti.
+Nelle versioni precedenti l'utilità di pianificazione per oggetti e attributi è esterna al motore di sincronizzazione. Usa l'utilità di pianificazione di Windows o un servizio di Windows separato per attivare il processo di sincronizzazione. L'utilità di pianificazione è disponibile nelle versioni di tipo 1.1 incluse nel motore di sincronizzazione e consente una personalizzazione parziale. La nuova frequenza di sincronizzazione predefinita è pari a 30 minuti.
 
-utilità di pianificazione Hello è responsabile di due attività:
+L'utilità di pianificazione è responsabile di due attività:
 
-* **Ciclo di sincronizzazione**. Hello processo tooimport, sincronizzazione e le modifiche di esportazione.
-* **Attività di manutenzione**. rinnovo di chiavi e certificati per la reimpostazione delle password e per il servizio Registrazione dispositivo. Eliminare le voci precedenti nel log operazioni hello.
+* **Ciclo di sincronizzazione**. processo di importazione, sincronizzazione ed esportazione delle modifiche.
+* **Attività di manutenzione**. rinnovo di chiavi e certificati per la reimpostazione delle password e per il servizio Registrazione dispositivo. Consente di ripulire le voci obsolete nel log operazioni.
 
-utilità di pianificazione di Hello stesso è sempre in esecuzione, ma può essere configurato tooonly eseguire una o nessuna di queste attività. Ad esempio, se è necessario toohave proprio processo del ciclo di sincronizzazione, è possibile disabilitare questa attività nell'utilità di pianificazione hello ma l'attività di manutenzione hello ancora esecuzione.
+L'utilità di pianificazione stessa è sempre in esecuzione, ma può essere configurata per eseguire solo una o nessuna di queste attività. Ad esempio, se è necessario avere un processo di ciclo di sincronizzazione personalizzato, è possibile disabilitare questa attività nell'utilità di pianificazione, ma eseguire comunque l'attività di manutenzione.
 
 ## <a name="scheduler-configuration"></a>Configurazione dell'utilità di pianificazione
-toosee le impostazioni di configurazione correnti, passare tooPowerShell ed eseguire `Get-ADSyncScheduler`. Il risultato visualizzato è simile al seguente:
+Per visualizzare le impostazioni attuali della configurazione, passare a PowerShell ed eseguire il comando `Get-ADSyncScheduler`. Il risultato visualizzato è simile al seguente:
 
 ![GetSyncScheduler](./media/active-directory-aadconnectsync-feature-scheduler/getsynccyclesettings2016.png)
 
-Se viene visualizzato **comando Sincronizza hello o un cmdlet non è disponibile** quando si esegue questo cmdlet, quindi hello modulo di PowerShell non è caricato. Questo problema può verificarsi se si esegue Azure AD Connect in un controller di dominio o in un server con i livelli di restrizione di PowerShell più elevati rispetto a impostazioni predefinite di hello. Se viene visualizzato questo errore, quindi eseguire `Import-Module ADSync` toomake hello cmdlet disponibili.
+Se quando si esegue questo cmdlet viene visualizzato il messaggio **Non è disponibile il comando o il cmdlet di sincronizzazione** , il modulo PowerShell non viene caricato. Questo problema può verificarsi se si esegue Azure AD Connect in un controller di dominio o in un server con livelli di restrizione di PowerShell più elevati rispetto alle impostazioni predefinite. Se si visualizza questo errore, eseguire `Import-Module ADSync` per rendere disponibile il cmdlet.
 
-* **AllowedSyncCycleInterval**. Hello più breve intervallo di tempo tra i cicli di sincronizzazione consentito da Azure AD. La sincronizzazione con una frequenza superiore a quella di questa impostazione non è supportata.
-* **CurrentlyEffectiveSyncCycleInterval**. Hello pianificazione attualmente attivo. Ha lo stesso valore CustomizedSyncInterval hello (se impostato) se non è più frequente AllowedSyncInterval. Se si usa una build precedente alla 1.1.281 e si modifica il valore di CustomizedSyncCycleInterval, la modifica viene applicata dopo il ciclo di sincronizzazione successivo. Da compilazione 1.1.281 hello modifica ha effetto immediato.
-* **CustomizedSyncCycleInterval**. Se si desidera hello dell'utilità di pianificazione toorun a qualsiasi altra frequenza rispetto al valore predefinito di hello 30 minuti, si configura questa impostazione. Nella figura hello precedente, utilità di pianificazione hello è stata impostata toorun ogni ora invece. Se si imposta questo valore di impostazione tooa inferiore AllowedSyncInterval, hello quest'ultimo viene utilizzato.
-* **NextSyncCyclePolicyType**. differenziale o iniziale. Definisce se hello prossima esecuzione deve solo le modifiche delta di processo, o se hello prossima esecuzione deve eseguire una procedura completa di importare e sincronizzare. Hello quest'ultimo potrebbe inoltre rielaborare regole nuove o modificate.
-* **NextSyncCycleStartTimeInUTC**. Successivo avvio dell'utilità di pianificazione di hello hello successivo ciclo di sincronizzazione.
-* **PurgeRunHistoryInterval**. Hello operazione ora devono essere conservati i log. Questi registri possono essere esaminati in Gestione servizio di sincronizzazione hello. Hello predefinito è tookeep questi registri per 7 giorni.
-* **SyncCycleEnabled**. Indica se dell'utilità di pianificazione di hello è in esecuzione processi di esportazione, sincronizzazione e importazione hello come parte dell'operazione del.
-* **MaintenanceEnabled**. Indica se il processo di manutenzione hello è abilitato. Aggiorna i certificati o chiavi hello ed Elimina hello log operazioni.
-* **StagingModeEnabled**. Indica se la [modalità di gestione temporanea](active-directory-aadconnectsync-operations.md#staging-mode) è abilitata. Se questa impostazione è abilitata, esso Elimina esportazioni hello esecuzione ma comunque eseguire l'importazione e la sincronizzazione.
-* **SchedulerSuspended**. L'impostazione Connetti un'utilità di pianificazione aggiornamento tootemporarily hello blocco durante l'esecuzione.
+* **AllowedSyncCycleInterval**. L'intervallo di tempo più breve tra i cicli di sincronizzazione consentito da Azure AD. La sincronizzazione con una frequenza superiore a quella di questa impostazione non è supportata.
+* **CurrentlyEffectiveSyncCycleInterval**. pianificazione attualmente applicata. Ha lo stesso valore di CustomizedSyncInterval (se impostato), se non ha una frequenza superiore ad AllowedSyncInterval. Se si usa una build precedente alla 1.1.281 e si modifica il valore di CustomizedSyncCycleInterval, la modifica viene applicata dopo il ciclo di sincronizzazione successivo. Con la build 1.1.281 la modifica viene applicata immediatamente.
+* **CustomizedSyncCycleInterval**. Se si vuole che l'utilità di pianificazione sia eseguita con una frequenza diversa dal valore predefinito di 30 minuti, configurare questa impostazione. Nell'immagine precedente l'utilità di pianificazione è stata impostata per essere eseguita ogni ora. Se si configura questa impostazione su un valore inferiore a quello di AllowedSyncInterval, viene usato quest'ultimo valore.
+* **NextSyncCyclePolicyType**. differenziale o iniziale. Definisce se l'esecuzione successiva deve elaborare solo le modifiche differenziali o se deve eseguire un'importazione e una sincronizzazione complete, per poter rielaborare anche eventuali regole nuove o modificate.
+* **NextSyncCycleStartTimeInUTC**. Ora di inizio del prossimo ciclo di sincronizzazione da parte dell'utilità di pianificazione.
+* **PurgeRunHistoryInterval**. tempo di conservazione dei log operazioni. È possibile esaminare i log in Synchronization Service Manager. Per impostazione predefinita, i log vengono conservati per 7 giorni.
+* **SyncCycleEnabled**. indica se l'utilità di pianificazione esegue i processi di importazione, sincronizzazione ed esportazione come parte del funzionamento normale.
+* **MaintenanceEnabled**. indica se il processo di manutenzione è abilitato. Aggiorna i certificati o le chiavi e ripulisce i log operazioni.
+* **StagingModeEnabled**. Indica se la [modalità di gestione temporanea](active-directory-aadconnectsync-operations.md#staging-mode) è abilitata. Se questa impostazione è abilitata, impedisce la riesecuzione delle esportazioni, ma esegue ugualmente l'importazione e la sincronizzazione.
+* **SchedulerSuspended**. Impostato da Connect durante un aggiornamento per bloccare temporaneamente l'esecuzione dell'utilità di pianificazione.
 
-Alcune di queste impostazioni possono essere modificate con `Set-ADSyncScheduler`. è possibile modificare Hello seguenti parametri:
+Alcune di queste impostazioni possono essere modificate con `Set-ADSyncScheduler`. È possibile modificare i parametri seguenti:
 
 * CustomizedSyncCycleInterval
 * NextSyncCyclePolicyType
@@ -63,73 +63,73 @@ Alcune di queste impostazioni possono essere modificate con `Set-ADSyncScheduler
 * SyncCycleEnabled
 * MaintenanceEnabled
 
-Nelle versioni precedenti di Azure AD Connect, **isStagingModeEnabled** era esposto in Set-ADSyncScheduler. È **non supportato** tooset questa proprietà. proprietà Hello **SchedulerSuspended** deve essere modificata solo da Connect. È **non supportato** tooset con PowerShell direttamente.
+Nelle versioni precedenti di Azure AD Connect, **isStagingModeEnabled** era esposto in Set-ADSyncScheduler. L'impostazione di questa proprietà **non è supportata**. La proprietà **SchedulerSuspended** deve essere modificata solo da Connect. L'impostazione di questa proprietà direttamente con PowerShell **non è supportata**.
 
-configurazione dell'utilità di pianificazione di Hello viene archiviata in Azure AD. Se si dispone di un server di gestione temporanea, qualsiasi modifica nel server primario hello interesserà anche hello server (ad eccezione di IsStagingModeEnabled) di gestione temporanea.
+La configurazione dell'utilità di pianificazione viene archiviata in Azure AD. Se si ha un server di staging, qualsiasi modifica apportata nel server primario ha effetto anche nel server di staging (fatta eccezione per IsStagingModeEnabled).
 
 ### <a name="customizedsynccycleinterval"></a>CustomizedSyncCycleInterval
 Sintassi: `Set-ADSyncScheduler -CustomizedSyncCycleInterval d.HH:mm:ss`  
 d - giorni, HH - ore, mm - minuti, ss - secondi
 
 Esempio: `Set-ADSyncScheduler -CustomizedSyncCycleInterval 03:00:00`  
-Le modifiche hello toorun dell'utilità di pianificazione ogni 3 ore.
+Modifica l'utilità di pianificazione in modo che venga eseguita ogni 3 ore.
 
 Esempio: `Set-ADSyncScheduler -CustomizedSyncCycleInterval 1.0:0:0`  
-Le modifiche hello dell'utilità di pianificazione toorun ogni giorno.
+Modifica l'utilità di pianificazione in modo che venga eseguita ogni giorno.
 
-### <a name="disable-hello-scheduler"></a>Disabilitare l'utilità di pianificazione hello  
-Se è necessario toomake modifiche di configurazione, si desidera dell'utilità di pianificazione di toodisable hello. Ad esempio, quando si [configurare il filtro](active-directory-aadconnectsync-configure-filtering.md) o [apportare modifiche regole toosynchronization](active-directory-aadconnectsync-change-the-configuration.md).
+### <a name="disable-the-scheduler"></a>Disabilitare l'utilità di pianificazione  
+Se si devono apportare modifiche alla configurazione, sarà necessario disabilitare l'utilità di pianificazione, ad esempio quando si [configurano i filtri](active-directory-aadconnectsync-configure-filtering.md) o [si apportano modifiche alle regole di sincronizzazione](active-directory-aadconnectsync-change-the-configuration.md).
 
-toodisable hello dell'utilità di pianificazione, eseguire `Set-ADSyncScheduler -SyncCycleEnabled $false`.
+Per disabilitare l'utilità di pianificazione, eseguire `Set-ADSyncScheduler -SyncCycleEnabled $false`.
 
-![Disabilitare l'utilità di pianificazione hello](./media/active-directory-aadconnectsync-change-the-configuration/schedulerdisable.png)
+![Disabilitare l'utilità di pianificazione](./media/active-directory-aadconnectsync-change-the-configuration/schedulerdisable.png)
 
-Quando sono state apportate le modifiche, non dimenticare di utilità di pianificazione hello tooenable con `Set-ADSyncScheduler -SyncCycleEnabled $true`.
+Dopo avere apportato le modifiche, ricordare di abilitare di nuovo l'utilità di pianificazione con `Set-ADSyncScheduler -SyncCycleEnabled $true`.
 
-## <a name="start-hello-scheduler"></a>Avviare l'utilità di pianificazione hello
-utilità di pianificazione Hello è eseguiti ogni 30 minuti per impostazione predefinita. In alcuni casi, potrebbe essere toorun tra hello del ciclo di sincronizzazione pianificato cicli o se è necessario toorun un tipo diverso.
+## <a name="start-the-scheduler"></a>Avviare l'utilità di pianificazione
+Per impostazione predefinita, l'utilità di pianificazione viene eseguita ogni 30 minuti. In alcuni casi, è possibile che si voglia eseguire un ciclo di sincronizzazione tra i cicli pianificati o che sia necessario eseguirne un tipo diverso.
 
 **Ciclo di sincronizzazione differenziale**  
-Un ciclo di sincronizzazione delta include hello alla procedura seguente:
+Un ciclo di sincronizzazione differenziale include i passaggi seguenti:
 
 * Importazione differenziale su tutti i connettori
 * Sincronizzazione differenziale su tutti i connettori
 * Esportazione su tutti i connettori
 
-È possibile che si dispone di un urgente modifiche che deve essere sincronizzati immediatamente, è necessario toomanually eseguire un ciclo. Se è necessario toomanually eseguire un ciclo, quindi dall'esecuzione di PowerShell `Start-ADSyncSyncCycle -PolicyType Delta`.
+Potrebbe essere presente una modifica urgente da sincronizzare immediatamente e potrebbe essere quindi necessario eseguire manualmente un ciclo. Se occorre eseguire manualmente un ciclo, in PowerShell eseguire il comando `Start-ADSyncSyncCycle -PolicyType Delta`.
 
 **Ciclo di sincronizzazione completo**  
-Se sono state apportate a una delle seguenti modifiche di configurazione hello, è necessario (anche noto come toorun un ciclo di sincronizzazione completa Iniziale:
+Se è stata apportata una delle modifiche seguenti alla configurazione, è necessario eseguire un ciclo di sincronizzazione completo, anche detto Iniziale:
 
-* Aggiunta di ulteriori toobe di attributi o oggetti importati da una directory di origine
-* Modifiche delle regole di sincronizzazione toohello
+* Aggiunta di altri oggetti o attributi da importare da una directory di origine
+* Modifiche alle regole di sincronizzazione
 * Modifica dei [filtri](active-directory-aadconnectsync-configure-filtering.md) in modo che venga incluso un numero diverso di oggetti
 
-Se sono state apportate a una di queste modifiche, è necessario toorun una sincronizzazione completa del ciclo in modo spazi connettore di hello opportunità tooreconsolidate hello è il motore di sincronizzazione hello. Un ciclo di sincronizzazione completa include hello alla procedura seguente:
+Se è stata apportata una di queste modifiche, è necessario eseguire un ciclo di sincronizzazione completa, in modo che il motore di sincronizzazione possa riconsolidare gli spazi connettore. Un ciclo di sincronizzazione completa include i passaggi seguenti:
 
 * Importazione completa su tutti i connettori
 * Sincronizzazione completa su tutti i connettori
 * Esportazione su tutti i connettori
 
-tooinitiate un ciclo di sincronizzazione completa, eseguire `Start-ADSyncSyncCycle -PolicyType Initial` da un prompt dei comandi di PowerShell. Questo comando avvia un ciclo di sincronizzazione completo.
+Per avviare un ciclo di sincronizzazione completa, eseguire `Start-ADSyncSyncCycle -PolicyType Initial` a un prompt di PowerShell. Questo comando avvia un ciclo di sincronizzazione completo.
 
-## <a name="stop-hello-scheduler"></a>Arrestare il pianificatore di hello
-Utilità di pianificazione hello è attualmente in esecuzione un ciclo di sincronizzazione, potrebbe essere necessario toostop è. Se si avvia l'installazione guidata di hello e questo errore si verifica ad esempio:
+## <a name="stop-the-scheduler"></a>Arrestare l'utilità di pianificazione
+Se l'utilità di pianificazione sta eseguendo un ciclo di sincronizzazione, potrebbe essere necessario interromperlo. Ad esempio, se si avvia l'installazione guidata e viene visualizzato questo errore:
 
 ![SyncCycleRunningError](./media/active-directory-aadconnectsync-feature-scheduler/synccyclerunningerror.png)
 
-Quando un ciclo di sincronizzazione è in esecuzione, non è possibile modificare la configurazione. È possibile attendere che l'utilità di pianificazione hello ha completato il processo di hello, ma è anche possibile arrestare, pertanto è possibile apportare le modifiche immediatamente. Arresto hello ciclo corrente non è dannoso e vengono elaborate le modifiche in sospeso e quindi eseguire.
+Quando un ciclo di sincronizzazione è in esecuzione, non è possibile modificare la configurazione. Si può attendere il completamento del processo da parte dell'utilità di pianificazione oppure è possibile interromperlo, per potere apportare immediatamente le modifiche. L'arresto del ciclo corrente non è dannoso e le modifiche in sospeso vengono elaborate all'esecuzione successiva.
 
-1. Inizio indicando hello toostop di utilità di pianificazione corrente del ciclo con i cmdlet di PowerShell hello `Stop-ADSyncSyncCycle`.
-2. Se si usa una compilazione prima di 1.1.281, eseguire l'arresto dell'utilità di pianificazione di hello non arresta hello corrente connettore dalla relativa attività corrente. tooforce hello toostop connettore, richiedere hello seguenti azioni: ![StopAConnector](./media/active-directory-aadconnectsync-feature-scheduler/stopaconnector.png)
-   * Avviare **servizio di sincronizzazione** dal menu di avvio hello. Andare troppo**connettori**, evidenziare hello connettore con stato hello **esecuzione**e selezionare **arrestare** da hello azioni.
+1. Richiedere prima di tutto all'utilità di pianificazione di interrompere il ciclo corrente con il cmdlet `Stop-ADSyncSyncCycle`di PowerShell.
+2. Se si usa una build precedente alla 1.1.281, l'arresto dell'utilità di pianificazione non comporta l'interruzione dell'attività corrente del connettore attuale. Per imporre l'arresto del connettore, eseguire queste azioni: ![StopAConnector](./media/active-directory-aadconnectsync-feature-scheduler/stopaconnector.png)
+   * Avviare **Synchronization Service** (Servizio di sincronizzazione) dal menu Start. Passare a **Connettori**, evidenziare il connettore con stato **In esecuzione** e selezionare **Arresta** fra le azioni.
 
-utilità di pianificazione Hello è ancora attiva e avvia nuovamente nella successiva opportunità.
+L'utilità di pianificazione è ancora attiva e viene riavviata alla successiva opportunità.
 
 ## <a name="custom-scheduler"></a>Utilità di pianificazione personalizzata
-Hello cmdlet documentati in questa sezione sono disponibili solo nella build [1.1.130.0](active-directory-aadconnect-version-history.md#111300) e versioni successive.
+I cmdlet illustrati in questa sezione sono disponibili solo nella build [1.1.130.0](active-directory-aadconnect-version-history.md#111300) e successive.
 
-Se l'utilità di pianificazione integrata hello non soddisfa i requisiti, è possibile pianificare i connettori di hello con PowerShell.
+Se l'utilità di pianificazione predefinita non soddisfa i requisiti, è possibile pianificare i connettori con PowerShell.
 
 ### <a name="invoke-adsyncrunprofile"></a>Invoke-ADSyncRunProfile
 È possibile avviare un profilo per un connettore in questo modo:
@@ -138,37 +138,37 @@ Se l'utilità di pianificazione integrata hello non soddisfa i requisiti, è pos
 Invoke-ADSyncRunProfile -ConnectorName "name of connector" -RunProfileName "name of profile"
 ```
 
-Hello nomi toouse per [i nomi dei connettori](active-directory-aadconnectsync-service-manager-ui-connectors.md) e [i nomi dei profili di esecuzione](active-directory-aadconnectsync-service-manager-ui-connectors.md#configure-run-profiles) è reperibile in hello [UI Synchronization Service Manager](active-directory-aadconnectsync-service-manager-ui.md).
+I nomi da usare come [nomi di connettore](active-directory-aadconnectsync-service-manager-ui-connectors.md) e [nomi di profilo di esecuzione](active-directory-aadconnectsync-service-manager-ui-connectors.md#configure-run-profiles) sono indicati nell'[interfaccia utente di Synchronization Service Manager](active-directory-aadconnectsync-service-manager-ui.md).
 
 ![Richiamare il profilo di esecuzione](./media/active-directory-aadconnectsync-feature-scheduler/invokerunprofile.png)  
 
-Hello `Invoke-ADSyncRunProfile` cmdlet è sincrona, vale a dire non restituisce il controllo fino al completamento operazione hello, hello connettore correttamente o con un errore.
+Il cmdlet `Invoke-ADSyncRunProfile` è sincrono, ovvero non restituisce il controllo fino a quando il connettore non ha completato l'operazione correttamente o con un errore.
 
-Quando si pianificano i connettori, indicazione hello è tooschedule nel seguente ordine hello:
+Quando si pianificano i connettori, è consigliabile pianificarli nell'ordine seguente:
 
 1. (Completa/differenziale) Importazione da directory locali, ad esempio Active Directory
 2. (Completa/differenziale) Importazione da Azure AD
 3. (Completa/differenziale) Sincronizzazione da directory locali, ad esempio Active Directory
 4. (Completa/differenziale) Sincronizzazione da Azure AD
-5. Esportazione tooAzure AD
-6. Esportare directory tooon locali, ad esempio Active Directory
+5. Esportazione in Azure AD
+6. Esportazione in directory locali, ad esempio Active Directory
 
-Questo ordine è la modalità di esecuzione connettori hello in utilità di pianificazione integrata hello.
+Questo è l'ordine in cui l'utilità di pianificazione predefinita esegue i connettori.
 
 ### <a name="get-adsyncconnectorrunstatus"></a>Get-ADSyncConnectorRunStatus
-È inoltre possibile monitorare toosee motore di sincronizzazione hello se è inattivo o meno. Questo cmdlet restituisce un risultato vuoto se il motore di sincronizzazione hello è inattivo e non è in esecuzione un connettore. Se è in esecuzione un connettore, restituisce il nome di hello di hello connettore.
+È anche possibile monitorare il motore di sincronizzazione per verificare se è occupato o inattivo. Il cmdlet restituisce un risultato vuoto se il motore di sincronizzazione è inattivo e non è in esecuzione un connettore. Se un connettore è in esecuzione, restituisce il nome del connettore.
 
 ```
 Get-ADSyncConnectorRunStatus
 ```
 
 ![Stato di esecuzione del connettore](./media/active-directory-aadconnectsync-feature-scheduler/getconnectorrunstatus.png)  
-Immagine di hello precedente, hello prima riga è da uno stato in cui il motore di sincronizzazione hello è inattivo. seconda riga Hello da quando è in esecuzione hello Azure Active Directory Connector.
+Nella figura precedente, la prima riga proviene da uno stato in cui il motore di sincronizzazione è inattivo. La seconda riga proviene da uno stato in cui Azure AD Connector è in esecuzione.
 
 ## <a name="scheduler-and-installation-wizard"></a>Utilità di pianificazione e installazione guidata
-Se si avvia l'installazione guidata di hello, utilità di pianificazione hello è temporaneamente sospeso. Questo comportamento è perché vengono apportate modifiche alla configurazione e non è possibile applicare queste impostazioni se è in esecuzione il motore di sincronizzazione di hello. Per questo motivo, non lasciare installazione guidata di hello aperto poiché si arresta il motore di sincronizzazione hello da eseguire alcuna azione di sincronizzazione.
+Se si avvia l'installazione guidata, l'utilità di pianificazione viene sospesa temporaneamente. Si presuppone infatti che vengano apportate modifiche alla configurazione e queste impostazioni non possono essere applicate se il motore di sincronizzazione è attivamente in esecuzione. Non lasciare quindi aperta l'installazione guidata, perché impedisce al motore di sincronizzazione di eseguire azioni di sincronizzazione.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Altre informazioni su hello [sincronizzazione di Azure AD Connect](active-directory-aadconnectsync-whatis.md) configurazione.
+Ulteriori informazioni sulla configurazione della [sincronizzazione di Azure AD Connect](active-directory-aadconnectsync-whatis.md).
 
-Altre informazioni su [Integrazione delle identità locali con Azure Active Directory](active-directory-aadconnect.md).
+Ulteriori informazioni su [Integrazione delle identità locali con Azure Active Directory](active-directory-aadconnect.md).

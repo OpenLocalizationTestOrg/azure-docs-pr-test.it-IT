@@ -1,6 +1,6 @@
 ---
-title: eventi aaaReceive da hub eventi di Azure tramite .NET Framework di hello | Documenti Microsoft
-description: Seguire gli eventi di questa esercitazione tooreceive dall'hub di eventi di Azure utilizzando hello .NET Framework.
+title: Ricevere eventi da Hub eventi di Azure usando .NET Framework | Documentazione Microsoft
+description: Seguire questa esercitazione per ricevere eventi da Hub eventi di Azure usando .NET Framework.
 services: event-hubs
 documentationcenter: 
 author: sethmanheim
@@ -12,73 +12,73 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 06/12/2017
+ms.date: 10/10/2017
 ms.author: sethm
-ms.openlocfilehash: a88c3feeacfd3de9622dbb86e25222e861750204
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5d2f6f53af182a8ac0430de0ca3701a9a30e0bf4
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="receive-events-from-azure-event-hubs-using-hello-net-framework"></a>Ricevere eventi dall'hub di eventi di Azure utilizzando hello .NET Framework
+# <a name="receive-events-from-azure-event-hubs-using-the-net-framework"></a>Ricevere eventi da Hub eventi di Azure usando .NET Framework
 
 ## <a name="introduction"></a>Introduzione
 
-Hub eventi è un servizio che consente di elaborare grandi quantità di dati di telemetria sugli eventi da applicazioni e dispositivi connessi. Dopo aver raccolto i dati in hub eventi, è possibile archiviare i dati di hello utilizzando un cluster di archiviazione o trasformare tramite un provider analitica in tempo reale. Questa funzionalità di raccolta e l'elaborazione di eventi su larga scala è un componente fondamentale di architetture di applicazioni moderne inclusi hello Internet delle cose (IoT).
+Hub eventi è un servizio che consente di elaborare grandi quantità di dati di telemetria sugli eventi da applicazioni e dispositivi connessi. Dopo aver raccolto i dati in Hub eventi, è possibile archiviarli usando un cluster di archiviazione o trasformarli usando un provider di analisi in tempo reale. Questa funzionalità di elaborazione e raccolta di eventi su vasta scala rappresenta un componente chiave delle moderne architetture di applicazioni, tra cui Internet delle cose (IoT).
 
-Questa esercitazione viene illustrato come toowrite di .NET Framework console applicazione che riceve i messaggi da un hub di eventi utilizzando hello  **[Host processore di eventi][EventProcessorHost]**. gli eventi di toosend utilizzando hello .NET Framework, vedere hello [inviare eventi di hub di eventi tooAzure utilizzando .NET Framework hello](event-hubs-dotnet-framework-getstarted-send.md) articolo oppure fare clic sulla lingua invio hello appropriata nella tabella a sinistra di hello del contenuto.
+Questa esercitazione illustra come scrivere un'applicazione console .NET Framework che riceve messaggi da un hub eventi usando l'**[host processore di eventi][EventProcessorHost]**. Per inviare eventi usando .NET Framework, vedere [Inviare eventi a Hub eventi di Azure usando .NET Framework](event-hubs-dotnet-framework-getstarted-send.md) oppure fare clic sul linguaggio di invio appropriato nel sommario a sinistra.
 
-Hello [Host processore di eventi] [ EventProcessorHost] è una classe .NET che semplifica la gestione dei checkpoint permanente ricevere gli eventi dagli hub eventi e parallelo riceve da agli hub di eventi. Utilizzo di hello [Host processore di eventi][Event Processor Host], è possibile dividere gli eventi in più ricevitori, anche quando sono ospitati in nodi diversi. Questo esempio viene illustrato come hello toouse [Host processore di eventi] [ EventProcessorHost] per un singolo destinatario. Hello [scalabilità l'elaborazione di eventi] [ Scale out Event Processing with Event Hubs] esempio viene illustrata la modalità hello toouse [Host processore di eventi] [ EventProcessorHost] con più destinatari.
+L'[host processore di eventi][EventProcessorHost] è una classe .NET che semplifica la ricezione di eventi dagli hub eventi gestendo checkpoint persistenti e ricezioni parallele da tali hub. Usando l'[host processore di eventi][Event Processor Host] è possibile suddividere gli eventi su più ricevitori, anche se ospitati in nodi diversi. Questo esempio illustra come usare l'[host processore di eventi][EventProcessorHost] per un ricevitore singolo. L'esempio di [elaborazione di eventi con aumento del numero di istanze][Scale out Event Processing with Event Hubs] illustra come usare l'[host processore di eventi][EventProcessorHost] con più ricevitori.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-toocomplete questa esercitazione, è necessario hello seguenti prerequisiti:
+Per completare questa esercitazione è necessario soddisfare i prerequisiti seguenti:
 
-* [Microsoft Visual Studio 2015 o versione successiva](http://visualstudio.com). le schermate di Hello in questa esercitazione usare Visual Studio 2017.
+* [Microsoft Visual Studio 2015 o versione successiva](http://visualstudio.com). Gli screenshot in questa esercitazione illustrano Visual Studio 2017.
 * Un account Azure attivo. Se non si ha un account, è possibile crearne uno gratuito in pochi minuti. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/free/).
 
 ## <a name="create-an-event-hubs-namespace-and-an-event-hub"></a>Creare uno spazio dei nomi di Hub eventi e un hub eventi
 
-primo passaggio Hello è hello toouse [portale di Azure](https://portal.azure.com) toocreate spazio dei nomi di tipo hub eventi e ottenere hello le credenziali di gestione, l'applicazione deve toocommunicate con hub eventi hello. toocreate uno spazio dei nomi e hub eventi, attenersi alla procedura hello in [questo articolo](event-hubs-create.md), quindi procedere con hello seguendo i passaggi in questa esercitazione.
+Il primo passaggio consiste nell'usare il [portale di Azure](https://portal.azure.com) per creare uno spazio dei nomi di tipo Hub eventi e ottenere le credenziali di gestione necessarie all'applicazione per comunicare con l'hub eventi. Per creare uno spazio dei nomi e un hub eventi, seguire la procedura descritta in [questo articolo](event-hubs-create.md) e quindi procedere con i passaggi seguenti di questa esercitazione.
 
 ## <a name="create-an-azure-storage-account"></a>Creare un account di Archiviazione di Azure
 
-hello toouse [Host processore di eventi][EventProcessorHost], è necessario disporre di un [account di archiviazione Azure][Azure Storage account]:
+Per usare l'[host processore di eventi][EventProcessorHost] è necessario un [account di archiviazione di Azure][Azure Storage account]:
 
-1. Accesso toohello [portale di Azure][Azure portal], fare clic su **New** in hello in alto a sinistra della schermata di hello.
+1. Accedere al [portale di Azure][Azure portal] e fare clic su **Nuovo** nella parte superiore sinistra della schermata.
 2. Fare clic su **Archiviazione** e quindi su **Account di archiviazione**.
    
     ![](./media/event-hubs-dotnet-framework-getstarted-receive-eph/create-storage1.png)
-3. In hello **creare account di archiviazione** pannello, digitare un nome per l'account di archiviazione hello. Scegliere una sottoscrizione di Azure, un gruppo di risorse e una posizione nella quale risorsa hello toocreate. Fare quindi clic su **Crea**.
+3. Nel pannello **Crea account di archiviazione** digitare un nome per l'account di archiviazione. Scegliere una sottoscrizione, un gruppo di risorse e una località di Azure in cui creare la risorsa. Fare quindi clic su **Crea**.
    
     ![](./media/event-hubs-dotnet-framework-getstarted-receive-eph/create-storage2.png)
-4. Nell'elenco di hello di account di archiviazione, fare clic su hello account di archiviazione appena creato.
-5. Nel Pannello di account di archiviazione hello, fare clic su **le chiavi di accesso**. Copiare il valore di hello di **key1** toouse più avanti in questa esercitazione.
+4. Nell'elenco degli account di archiviazione fare clic su quello appena creato.
+5. Nel pannello Account di archiviazione fare clic su **Chiavi di accesso**. Copiare il valore di **key1** da usare più avanti in questa esercitazione.
    
     ![](./media/event-hubs-dotnet-framework-getstarted-receive-eph/create-storage3.png)
 
 ## <a name="create-a-receiver-console-application"></a>Creare un'applicazione console per il ricevitore
 
-1. In Visual Studio, creare un nuovo progetto di App Desktop Visual c# utilizzando hello **applicazione Console** modello di progetto. Progetto hello nome **ricevitore**.
+1. In Visual Studio creare un nuovo progetto di app desktop di Visual C# usando il modello di progetto **Applicazione console**. Assegnare al progetto il nome **Receiver**.
    
     ![](./media/event-hubs-dotnet-framework-getstarted-receive-eph/create-receiver-csharp1.png)
-2. In Esplora soluzioni fare doppio clic su hello **ricevitore** del progetto e quindi fare clic su **Gestisci pacchetti NuGet per la soluzione**.
-3. Fare clic su hello **Sfoglia** tab, quindi cercare `Microsoft Azure Service Bus Event Hub - EventProcessorHost`. Fare clic su **installare**e accettare le condizioni di hello d'uso.
+2. In Esplora soluzioni fare clic con il pulsante destro del mouse sul progetto **Receiver**, quindi scegliere **Gestisci pacchetti NuGet per la soluzione**.
+3. Fare clic sulla scheda **Sfoglia** e quindi cercare `Microsoft Azure Service Bus Event Hub - EventProcessorHost`. Fare clic su **Installa**e accettare le condizioni per l'utilizzo.
    
     ![](./media/event-hubs-dotnet-framework-getstarted-receive-eph/create-eph-csharp1.png)
    
-    Visual Studio Scarica, installa e aggiunge un riferimento toohello [Hub di eventi di Azure Service Bus - pacchetto EventProcessorHost NuGet](https://www.nuget.org/packages/Microsoft.Azure.ServiceBus.EventProcessorHost), con tutte le relative dipendenze.
-4. Pulsante destro del mouse hello **ricevitore** del progetto, fare clic su **Aggiungi**e quindi fare clic su **classe**. Nome nuova classe hello **SimpleEventProcessor**, quindi fare clic su **Aggiungi** classe hello toocreate.
+    Visual Studio scarica e installa il [pacchetto NuGet Azure Service Bus Event Hub - EventProcessorHost](https://www.nuget.org/packages/Microsoft.Azure.ServiceBus.EventProcessorHost)e aggiunge un riferimento al pacchetto con tutte le relative dipendenze.
+4. Fare clic con il pulsante destro del mouse sul progetto **Receiver**, scegliere **Aggiungi** e quindi **Classe**. Assegnare alla nuova classe il nome **SimpleEventProcessor** e quindi fare clic su **Aggiungi** per crearla.
    
     ![](./media/event-hubs-dotnet-framework-getstarted-receive-eph/create-receiver-csharp2.png)
-5. Aggiungere hello seguendo le istruzioni nella parte superiore di hello del file SimpleEventProcessor.cs hello:
+5. Aggiungere le istruzioni seguenti all'inizio del file SimpleEventProcessor.cs:
     
   ```csharp
   using Microsoft.ServiceBus.Messaging;
   using System.Diagnostics;
   ```
     
-  Quindi, sostituire hello seguente codice per il corpo della classe hello hello:
+  Sostituire quindi il corpo della classe con il codice seguente:
     
   ```csharp
   class SimpleEventProcessor : IEventProcessor
@@ -122,14 +122,14 @@ hello toouse [Host processore di eventi][EventProcessorHost], è necessario disp
   }
   ```
     
-  Questa classe viene chiamata da hello **EventProcessorHost** tooprocess eventi ricevuti dall'hub di eventi hello. Hello `SimpleEventProcessor` classe Usa un metodo di checkpoint stopwatch tooperiodically chiamata hello in hello **EventProcessorHost** contesto. Questa elaborazione garantisce che, se il ricevitore hello viene riavviato, perde non più di cinque minuti di lavoro di elaborazione.
-6. In hello **programma** classe, aggiungere il seguente hello `using` istruzione all'inizio di hello del file hello:
+  Questa classe è chiamata da **EventProcessorHost** per elaborare gli eventi ricevuti dall'hub eventi. La classe `SimpleEventProcessor` usa un cronometro per chiamare periodicamente il metodo checkpoint sul contesto di **EventProcessorHost**. Questa elaborazione assicura che, se il ricevitore viene riavviato, non perde più di cinque minuti di lavoro di elaborazione.
+6. Nella classe **Program** aggiungere l'istruzione `using` seguente all'inizio del file:
     
   ```csharp
   using Microsoft.ServiceBus.Messaging;
   ```
     
-  Sostituire quindi hello `Main` metodo hello `Program` classe con hello di codice seguente, sostituendo nome hub di eventi hello e connessioni a livello di spazio dei nomi hello stringa che è salvato in precedenza e hello account di archiviazione e la chiave che è stato copiato in hello Nelle sezioni precedenti. 
+  Sostituire quindi il metodo `Main` nella classe `Program` con il codice seguente, sostituendo il nome dell'hub eventi e la stringa di connessione a livello di spazio dei nomi salvata in precedenza, nonché l'account di archiviazione e la chiave copiata nelle sezioni precedenti. 
     
   ```csharp
   static void Main(string[] args)
@@ -147,25 +147,25 @@ hello toouse [Host processore di eventi][EventProcessorHost], è necessario disp
     options.ExceptionReceived += (sender, e) => { Console.WriteLine(e.Exception); };
     eventProcessorHost.RegisterEventProcessorAsync<SimpleEventProcessor>(options).Wait();
     
-    Console.WriteLine("Receiving. Press enter key toostop worker.");
+    Console.WriteLine("Receiving. Press enter key to stop worker.");
     Console.ReadLine();
     eventProcessorHost.UnregisterEventProcessorAsync().Wait();
   }
   ```
 
-7. Eseguire il programma hello e assicurarsi che non siano presenti errori.
+7. Eseguire il programma e assicurarsi che non siano presenti errori.
   
-Congratulazioni. Ora hanno ricevuto i messaggi da un hub di eventi utilizzando hello Host processore di eventi.
+Congratulazioni. Sono stati ricevuti messaggi da un hub eventi usando l'host processore di eventi.
 
 
 > [!NOTE]
-> Questa esercitazione usa una singola istanza di [EventProcessorHost][EventProcessorHost]. velocità effettiva tooincrease, si consiglia di eseguire più istanze di [EventProcessorHost][EventProcessorHost], come illustrato nell'hello [scala all'elaborazione di eventi] [scala all'elaborazione di eventi] esempio. In questi casi, hello varie istanze automaticamente coordinano tra loro gli eventi di tooload saldo hello ricevuto. Se si desidera più ricevitori tooeach processo *tutti* hello eventi, è necessario utilizzare hello **gruppo di consumer per** concetto. Quando si riceve eventi da computer diversi, potrebbe essere utile toospecify nomi per [EventProcessorHost] [ EventProcessorHost] istanze in base alle macchine hello (o ruoli) in cui vengono distribuiti. Per ulteriori informazioni su questi argomenti, vedere hello [Panoramica di hub eventi] [ Event Hubs overview] hello e [Guida alla programmazione di hub eventi] [ Event Hubs Programming Guide] argomenti.
+> Questa esercitazione usa una singola istanza di [EventProcessorHost][EventProcessorHost]. Per aumentare la velocità effettiva, è consigliabile eseguire più istanze di [EventProcessorHost][EventProcessorHost], come illustrato nell'esempio di [elaborazione di eventi con aumento del numero di istanze][elaborazione di eventi con aumento del numero di istanze]. In questi casi, le varie istanze si coordinano automaticamente tra loro per ottenere il bilanciamento del carico relativo agli eventi ricevuti. Se si vuole che ognuno dei vari ricevitori elabori *tutti* gli eventi, è necessario usare il concetto **ConsumerGroup** . Quando si ricevono eventi da più macchine, potrebbe risultare utile specificare nomi per le istanze di [EventProcessorHost][EventProcessorHost] in base alle macchine (o ai ruoli) in cui sono distribuite. Per altre informazioni su questi argomenti, vedere [Panoramica di Hub eventi][Event Hubs overview] e gli argomenti della [Guida alla programmazione di Hub eventi][Event Hubs Programming Guide].
 > 
 > 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Dopo aver creato un'applicazione funzionante che crea un hub eventi e invia e riceve i dati, per ulteriori informazioni, visitare hello seguenti collegamenti:
+Ora che è stata creata un'applicazione funzionante che crea un hub eventi e invia e riceve dati, è possibile ottenere altre informazioni visitando i collegamenti seguenti:
 
 * [Host processore di eventi][Event Processor Host]
 * [Panoramica di Hub eventi][Event Hubs overview]

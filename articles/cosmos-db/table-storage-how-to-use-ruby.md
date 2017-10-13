@@ -1,6 +1,6 @@
 ---
-title: aaaHow toouse archiviazione tabelle di Azure da Ruby | Documenti Microsoft
-description: Archiviare dati strutturati in un cloud di hello tramite l'archiviazione tabelle di Azure, un archivio dati NoSQL.
+title: Come usare l'archiviazione tabelle di Azure da Ruby | Microsoft Docs
+description: Archiviare dati non strutturati nel cloud con il servizio di archiviazione tabelle di Azure, ovvero un archivio dati NoSQL.
 services: cosmos-db
 documentationcenter: ruby
 author: mimig1
@@ -14,58 +14,58 @@ ms.devlang: ruby
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: mimig
-ms.openlocfilehash: 2f9eb5a9160b551d6d1d198869787070c402b1d4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 372bc89f75ad4730f0defbf9d6f9f041ae5ce1bf
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="how-toouse-azure-table-storage-from-ruby"></a>Come toouse archiviazione tabelle di Azure da Ruby
+# <a name="how-to-use-azure-table-storage-from-ruby"></a>Come usare l'archiviazione tabelle di Azure da Ruby
 [!INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)]
 [!INCLUDE [storage-table-cosmos-db-langsoon-tip-include](../../includes/storage-table-cosmos-db-langsoon-tip-include.md)]
 
 ## <a name="overview"></a>Panoramica
-Questa guida viene illustrato come gli scenari comuni di tooperform utilizzando hello del servizio tabelle di Azure. esempi di Hello vengono scritti utilizzando hello API Ruby. Hello scenari trattati includono **creazione e l'eliminazione di una tabella, inserimento e una query sulle entità in una tabella**.
+Questa guida illustra come eseguire scenari comuni con il servizio tabelle di Azure. Gli esempi sono scritti utilizzando l'API Ruby. Gli scenari presentati includono **creazione ed eliminazione di una tabella, inserimento di entità ed esecuzione di query sulle entità in una tabella**.
 
 [!INCLUDE [storage-table-concepts-include](../../includes/storage-table-concepts-include.md)]
 
 [!INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
 
 ## <a name="create-a-ruby-application"></a>Creare un'applicazione Ruby
-Per istruzioni toocreate un'applicazione Ruby, vedere [Ruby in un'applicazione Web di guide in una macchina virtuale Azure](../virtual-machines/linux/classic/virtual-machines-linux-classic-ruby-rails-web-app.md).
+Per istruzioni su come creare un'applicazione Ruby, vedere [Ruby on Rails Web application on an Azure VM](../virtual-machines/linux/classic/virtual-machines-linux-classic-ruby-rails-web-app.md) (Applicazione Web Ruby on Rails in una VM di Azure).
 
-## <a name="configure-your-application-tooaccess-storage"></a>Configurare l'archiviazione di tooaccess di applicazione
-toouse archiviazione di Azure, è necessario toodownload e utilizzare hello Ruby pacchetto azure che include un set di librerie di praticità che comunicano con servizi di archiviazione REST hello.
+## <a name="configure-your-application-to-access-storage"></a>Configurare l'applicazione per l'accesso all'archiviazione
+Per usare l'archiviazione di Azure, è necessario scaricare e usare il pacchetto Ruby Azure, che comprende un set di pratiche librerie che comunicano con i servizi di archiviazione REST.
 
-### <a name="use-rubygems-tooobtain-hello-package"></a>Utilizzare un pacchetto di hello tooobtain RubyGems
+### <a name="use-rubygems-to-obtain-the-package"></a>Utilizzare RubyGems per ottenere il pacchetto
 1. Usare un'interfaccia della riga di comando, ad esempio **PowerShell** (Windows), **Terminal** (Mac) o **Bash** (Unix).
-2. Tipo **azure installazione indicatore** indicatore di hello comando finestra tooinstall hello e delle dipendenze.
+2. Digitare **gem install azure** nella finestra di comando per installare la gemma e le dipendenze.
 
-### <a name="import-hello-package"></a>Importa pacchetto di hello
-Utilizzare un editor di testo, aggiungere hello toohello cima hello Ruby file in cui si intende toouse archiviazione seguente:
+### <a name="import-the-package"></a>Importare il pacchetto
+Usando l'editor di testo preferito aggiungere quanto segue alla parte superiore del file Ruby dove si intende usare l'archiviazione:
 
 ```ruby
 require "azure"
 ```
 
 ## <a name="set-up-an-azure-storage-connection"></a>Configurare una connessione di archiviazione di Azure
-Hello modulo azure verrà lette le variabili di ambiente hello **AZURE\_archiviazione\_ACCOUNT** e **AZURE\_archiviazione\_accesso\_chiave**per le informazioni necessarie tooconnect tooyour account di archiviazione Azure. Se non vengono impostate queste variabili di ambiente, è necessario specificare le informazioni sull'account hello prima di utilizzare **Azure::TableService** con hello seguente codice:
+Il modulo di Azure leggerà le variabili di ambiente **AZURE\_STORAGE\_ACCOUNT** e **AZURE\_STORAGE\_ACCESS\_KEY** per ottenere le informazioni necessarie per la connessione all'account di archiviazione di Azure. Se queste variabili di ambiente non sono impostate, sarà necessario specificare le informazioni relative all'account prima di utilizzare **Azure::TableService** con il codice seguente:
 
 ```ruby
 Azure.config.storage_account_name = "<your azure storage account>"
 Azure.config.storage_access_key = "<your azure storage access key>"
 ```
 
-tooobtain questi valori da un classico o Gestione risorse di archiviazione di account nel portale di Azure hello:
+Per ottenere questi valori da un account di archiviazione classico o di Resource Manager nel portale di Azure:
 
-1. Accedi toohello [portale di Azure](https://portal.azure.com).
-2. Passare l'account di archiviazione toohello da toouse.
-3. Nel pannello delle impostazioni hello in hello destra, fare clic su **chiavi di accesso**.
-4. Nel pannello chiavi accesso hello che viene visualizzato, si noterà la chiave di accesso hello 1 e 2 di chiave di accesso. È possibile usare una di queste indifferentemente.
-5. Fare clic su hello Copia icona toocopy hello toohello chiave Appunti.
+1. Accedere al [Portale di Azure](https://portal.azure.com).
+2. Passare all'account di archiviazione che si desidera utilizzare.
+3. Nel pannello Impostazioni a destra fare clic su **Chiavi di accesso**.
+4. Nel pannello Chiavi di accesso visualizzato notare la chiave di accesso 1 e la chiave di accesso 2. È possibile usare una di queste indifferentemente.
+5. Fare clic sull'icona Copia per copiare la chiave negli Appunti.
 
 ## <a name="create-a-table"></a>Creare una tabella
-Hello **Azure::TableService** oggetto consente di utilizzare tabelle ed entità. toocreate una tabella, utilizzare hello **creare\_table()** metodo. esempio Hello crea una tabella o stampa hello errore eventuale.
+L'oggetto **Azure::TableService** consente di utilizzare tabelle ed entità. Per creare una tabella, usare il metodo **create\_table()**. Nell'esempio seguente viene creata una tabella o stampato l'eventuale errore.
 
 ```ruby
 azure_table_service = Azure::TableService.new
@@ -76,8 +76,8 @@ rescue
 end
 ```
 
-## <a name="add-an-entity-tooa-table"></a>Aggiungere una tabella tooa entità
-tooadd un'entità, creare innanzitutto un oggetto hash che definisce le proprietà dell'entità. Si noti che per ogni entità è necessario specificare un oggetto **PartitionKey** e un oggetto **RowKey**. Questi sono identificatori univoci delle entità di hello e sono valori che è possono eseguire una query più velocemente rispetto alle altre proprietà. Archiviazione di Azure Usa **PartitionKey** tooautomatically distribuire entità della tabella hello su molti nodi di archiviazione. Le entità con hello stesso **PartitionKey** vengono archiviati in hello stesso nodo. Hello **RowKey** hello ID univoco dell'entità hello all'interno della partizione hello a cui appartiene.
+## <a name="add-an-entity-to-a-table"></a>Aggiungere un'entità a una tabella
+Per aggiungere un'entità, creare innanzitutto un oggetto hash che definisca le proprietà dell'entità. Si noti che per ogni entità è necessario specificare un oggetto **PartitionKey** e un oggetto **RowKey**. Si tratta di identificatori univoci dell'entità e sono valori che possono essere interrogati molto più velocemente di altre proprietà. Archiviazione Azure utilizza **PartitionKey** per distribuire automaticamente le entità della tabella su molti nodi di archiviazione. Le entità con lo stesso oggetto **PartitionKey** vengono archiviate nello stesso nodo. RowKey **è l'ID univoco dell'entità all'interno della partizione cui appartiene.**
 
 ```ruby
 entity = { "content" => "test entity",
@@ -86,14 +86,14 @@ azure_table_service.insert_entity("testtable", entity)
 ```
 
 ## <a name="update-an-entity"></a>Aggiornare un'entità
-Esistono più tooupdate disponibili di metodi un'entità esistente:
+Esistono vari metodi per aggiornare un'entità esistente:
 
 * **update\_entity():** aggiorna un'entità esistente sostituendola.
-* **unione\_entity():** aggiorna un'entità esistente unendo nuovi valori della proprietà di entità esistente hello.
+* **merge\_entity():** aggiorna un'entità esistente unendovi i nuovi valori delle proprietà.
 * **insert\_or\_merge\_entity():** aggiorna un'entità esistente sostituendola. Se non esiste alcuna entità, ne verrà inserita una nuova:
-* **Inserisci\_o\_sostituire\_entity():** aggiorna un'entità esistente unendo nuovi valori della proprietà di entità esistente hello. Se non esiste alcuna entità, ne verrà inserita una nuova.
+* **insert\_or\_replace\_entity():** aggiorna un'entità esistente unendovi i nuovi valori delle proprietà. Se non esiste alcuna entità, ne verrà inserita una nuova.
 
-Hello esempio seguente viene illustrato l'aggiornamento di un'entità mediante **aggiornare\_entity()**:
+Nell'esempio seguente viene dimostrato l'aggiornamento di un'entità mediante l'uso di **update\_entity()**:
 
 ```ruby
 entity = { "content" => "test entity with updated content",
@@ -101,10 +101,10 @@ entity = { "content" => "test entity with updated content",
 azure_table_service.update_entity("testtable", entity)
 ```
 
-Con **aggiornare\_entity()** e **unione\_entity()**, se non esiste entità hello che si sta aggiornando l'operazione di aggiornamento hello avrà esito negativo. Pertanto se si desidera toostore un'entità indipendentemente dal fatto se esiste già, è invece necessario utilizzare **inserire\_o\_sostituire\_entity()** o **inserire\_o \_unione\_entity()**.
+Con **update\_entity()** e **merge\_entity()**, se l'entità che si sta aggiornando non esiste, l'operazione di aggiornamento avrà esito negativo. Se pertanto si desidera archiviare un'entità indipendentemente dal fatto che esista o meno, è necessario usare **insert\_or\_replace\_entity()** oppure **insert\_or\_merge\_entity()**.
 
 ## <a name="work-with-groups-of-entities"></a>Usare i gruppi di entità
-A volte risulta più toosubmit senso più operazioni contemporaneamente in un batch tooensure atomica elaborazione dal server hello. tooaccomplish, creare innanzitutto un **Batch** oggetto, quindi utilizzare hello **eseguire\_batch()** metodo **TableService**. Hello esempio seguente viene illustrato l'invio di due entità con RowKey 2 e 3 in un batch. Si noti che solo funziona per le entità con hello PartitionKey stesso.
+È talvolta consigliabile inviare più operazioni in un batch per garantire l'elaborazione atomica da parte del server. A tale scopo, è necessario prima creare un oggetto **Batch** e quindi usare il metodo **execute\_batch()** su **TableService**. Nell'esempio seguente viene dimostrato l'invio di due entità con RowKey 2 e 3 in un batch: Si noti che funziona solo per le entità con lo stesso oggetto PartitionKey.
 
 ```ruby
 azure_table_service = Azure::TableService.new
@@ -117,7 +117,7 @@ results = azure_table_service.execute_batch(batch)
 ```
 
 ## <a name="query-for-an-entity"></a>Eseguire una query su un'entità
-un'entità in una tabella, utilizzare hello tooquery **ottenere\_entity()** (metodo), passando il nome di tabella hello **PartitionKey** e **RowKey**.
+Per eseguire una query su un'entità in una tabella, usare il metodo **get\_entity()** passando il nome tabella e i parametri **PartitionKey** e **RowKey**.
 
 ```ruby
 result = azure_table_service.get_entity("testtable", "test-partition-key",
@@ -125,7 +125,7 @@ result = azure_table_service.get_entity("testtable", "test-partition-key",
 ```
 
 ## <a name="query-a-set-of-entities"></a>Eseguire query su un set di entità
-tooquery un set di entità in una tabella, creare un oggetto hash di query e utilizzare hello **query\_entities()** metodo. Hello esempio seguente viene illustrato come ottenere tutte le entità di hello con hello stesso **PartitionKey**:
+Per eseguire query su un set di entità in una tabella, creare un oggetto hash di query e usare il metodo **query\_entities()**. Nell'esempio seguente viene dimostrato l'invio di tutte le entità con lo stesso oggetto **PartitionKey**:
 
 ```ruby
 query = { :filter => "PartitionKey eq 'test-partition-key'" }
@@ -133,12 +133,12 @@ result, token = azure_table_service.query_entities("testtable", query)
 ```
 
 > [!NOTE]
-> Se il set di risultati hello è troppo grande per tooreturn una singola query, un token di continuazione verrà restituito che è possibile utilizzare le pagine successive tooretrieve.
+> Se il risultato impostato è troppo grande affinché sia restituito da un'unica query, verrà restituito un token di continuazione per recuperare le pagine successive.
 >
 >
 
 ## <a name="query-a-subset-of-entity-properties"></a>Eseguire query su un subset di proprietà di entità
-Una tabella di tooa query è possibile recuperare solo alcune proprietà di un'entità. Questa tecnica, denominata "proiezione", consente di ridurre la larghezza di banda e di migliorare le prestazioni della query, in particolare per entità di grandi dimensioni. Clausola select hello di utilizzo e i nomi di hello passaggio di hello proprietà toobring su toohello client.
+Mediante una query su una tabella è possibile recuperare solo alcune proprietà da un'entità. Questa tecnica, denominata "proiezione", consente di ridurre la larghezza di banda e di migliorare le prestazioni della query, in particolare per entità di grandi dimensioni. Utilizzare la clausola select e passare i nomi delle proprietà da inoltrare al client.
 
 ```ruby
 query = { :filter => "PartitionKey eq 'test-partition-key'",
@@ -147,14 +147,14 @@ result, token = azure_table_service.query_entities("testtable", query)
 ```
 
 ## <a name="delete-an-entity"></a>Eliminare un'entità
-toodelete un'entità, utilizzare hello **eliminare\_entity()** metodo. È necessario toopass nel nome hello della tabella hello che contiene entità hello, hello PartitionKey e RowKey di hello entità.
+Per eliminare un'entità, usare il metodo **delete\_entity()**. È necessario passare il nome della tabella contenente l'entità e i parametri PartitionKey e RowKey dell'entità.
 
 ```ruby
 azure_table_service.delete_entity("testtable", "test-partition-key", "1")
 ```
 
 ## <a name="delete-a-table"></a>Eliminare una tabella
-toodelete una tabella, utilizzare hello **eliminare\_table()** (metodo) e passare il nome di hello di hello tabella desiderata toodelete.
+Per eliminare una tabella, usare il metodo **delete\_table()** e passare il nome della tabella che si desidera eliminare.
 
 ```ruby
 azure_table_service.delete_table("testtable")
@@ -162,6 +162,6 @@ azure_table_service.delete_table("testtable")
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md) è un'app autonoma, disponibile da Microsoft che consente di toowork visivamente i dati di archiviazione di Azure in Windows, macOS e Linux.
+* [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md) è un'app autonoma gratuita di Microsoft che consente di rappresentare facilmente dati di Archiviazione di Azure in Windows, macOS e Linux.
 * [Azure SDK per Ruby](http://github.com/WindowsAzure/azure-sdk-for-ruby) su GitHub
 

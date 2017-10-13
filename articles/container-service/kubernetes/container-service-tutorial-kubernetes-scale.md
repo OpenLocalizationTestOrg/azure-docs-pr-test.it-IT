@@ -1,5 +1,5 @@
 ---
-title: esercitazione per il servizio contenitore aaaAzure - applicazioni su larga scala | Documenti Microsoft
+title: Esercitazione per il servizio contenitore di Azure - Scalare un'applicazione | Microsoft Docs
 description: Esercitazione per il servizio contenitore di Azure - Scalare un'applicazione
 services: container-service
 documentationcenter: 
@@ -14,37 +14,37 @@ ms.devlang: aurecli
 ms.topic: tutorial
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 07/25/2017
+ms.date: 09/14/2017
 ms.author: danlep
 ms.custom: mvc
-ms.openlocfilehash: 29571eef0fd91bd6b40f00d8c018539f320179bf
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: bb528c424bc71f0309439e741c30e16d0d13c7d7
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="scale-kubernetes-pods-and-kubernetes-infrastructure"></a>Scalare i pod e l'infrastruttura Kubernetes
 
-Se ci ha seguito esercitazioni hello, si dispone di un lavoro Kubernetes cluster nel servizio contenitore di Azure e hello Azure voto app è stata distribuita. 
+Se sono state eseguite le esercitazioni, si ha un cluster Kubernetes in funzione nel servizio contenitore di Azure ed è stata distribuita l'app Azure Voting. 
 
-In questa esercitazione, parte 5, 7, scalabilità POD hello in app hello si cerca la scalabilità automatica pod. Verrà inoltre descritto come numero di hello tooscale di macchina virtuale di Azure agente nodi toochange hello capacità del cluster per ospitare i carichi di lavoro. Le attività completate comprendono:
+In questa esercitazione, la quinta di sette, si aumenterà il numero di istanze dei pod nell'app e si proverà la scalabilità automatica dei pod. Si apprenderà anche come ridimensionare il numero di nodi agente delle VM di Azure per modificare la capacità del cluster per l'hosting dei carichi di lavoro. Le attività completate comprendono:
 
 > [!div class="checklist"]
 > * Scalabilità manuale di pod Kubernetes
-> * Configurazione di scalabilità automatica POD esecuzione front-end di hello app
-> * Ridimensionare i nodi di hello Kubernetes agente di Azure
+> * Configurazione della scalabilità automatica di pod che eseguono il front-end dell'app
+> * Scalare i nodi agente Azure in Kubernetes
 
-Nelle esercitazioni successive, viene aggiornato l'applicazione Azure voto hello e Operations Management Suite sono configurati cluster di Kubernetes toomonitor hello.
+Nelle esercitazioni successive l'applicazione Azure Vote viene aggiornata e Operations Management Suite viene configurato per monitorare il cluster Kubernetes.
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
-Nelle esercitazioni precedenti, un'applicazione è stata distribuita in un'immagine contenitore, questa immagine caricata tooAzure contenitore del Registro di sistema e un cluster Kubernetes creato. un'applicazione Hello quindi è stata eseguita nel cluster Kubernetes hello. Se si è già questi passaggi e si desidera toofollow lungo, restituire toohello [esercitazione 1: creare le immagini contenitore](./container-service-tutorial-kubernetes-prepare-app.md). 
+Nelle esercitazioni precedenti è stato creato un pacchetto di un'applicazione in un'immagine del contenitore, caricata poi nel Registro contenitori di Azure, ed è stato creato un cluster Kubernetes. L'applicazione è stata quindi eseguita nel cluster Kubernetes. 
 
-Il requisito minimo per questa esercitazione è un cluster Kubernetes con un'applicazione in esecuzione.
+Se questi passaggi non sono stati ancora eseguiti e si vuole procedere, tornare a [Tutorial 1 – Create container images](./container-service-tutorial-kubernetes-prepare-app.md) (Esercitazione 1: Creare immagini del contenitore). 
 
 ## <a name="manually-scale-pods"></a>Scalare manualmente i pod
 
-Finora, hello Azure voto front-end e l'istanza di Redis sono stati distribuiti, ognuno con una singola replica. tooverify, eseguire hello [kubectl ottenere](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#get) comando.
+Fino a questo momento sono stati distribuiti il front-end di Azure Vote e l'istanza di Redis, ognuno con una replica singola. Per verificare, eseguire il comando [kubectl get](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#get).
 
 ```azurecli-interactive
 kubectl get pods
@@ -58,13 +58,13 @@ azure-vote-back-2549686872-4d2r5   1/1       Running   0          31m
 azure-vote-front-848767080-tf34m   1/1       Running   0          31m
 ```
 
-Modificare manualmente il numero di hello di POD in hello `azure-vote-front` distribuzione utilizzando hello [scala kubectl](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#scale) comando. Questo esempio si aumentano too5 numero hello.
+Modificare manualmente il numero di pod nella distribuzione `azure-vote-front` usando il comando [kubectl scale](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#scale). In questo esempio il numero aumenta a 5.
 
 ```azurecli-interactive
 kubectl scale --replicas=5 deployment/azure-vote-front
 ```
 
-Eseguire [kubectl ottenere POD](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#get) tooverify che Kubernetes crea POD hello. Dopo un minuto, eseguono POD aggiuntive hello:
+Eseguire [kubectl get pods](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#get) per verificare che Kubernetes stia creando i pod. Dopo circa un minuto i pod aggiuntivi sono in esecuzione:
 
 ```azurecli-interactive
 kubectl get pods
@@ -84,9 +84,9 @@ azure-vote-front-3309479140-qphz8   1/1       Running   0          3m
 
 ## <a name="autoscale-pods"></a>Scalare automaticamente i pod
 
-Supporta Kubernetes [il ridimensionamento orizzontale pod](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) POD in una distribuzione a seconda della CPU o altri numerosi hello tooadjust selezionare metriche. 
+Kubernetes supporta la [scalabilità automatica orizzontale dei pod](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) per modificare il numero dei pod in una distribuzione a seconda dell'utilizzo della CPU o delle altre metriche selezionate. 
 
-toouse hello autoscaler, l'unità deve avere le richieste di CPU e i limiti definiti. In hello `azure-vote-front` distribuzione, hello CPU richieste 0,25 contenitore front-end, con un limite pari a 0,5 della CPU. le impostazioni di Hello è simile:
+Per usare la scalabilità automatica, i pod devono avere richieste e limiti di CPU definiti. Nella distribuzione di `azure-vote-front` il contenitore front-end richiede un valore di 0,25 della CPU, con un limite pari a 0,5 della CPU. Le impostazioni sono simili:
 
 ```YAML
 resources:
@@ -96,14 +96,14 @@ resources:
      cpu: 500m
 ```
 
-esempio Hello utilizza hello [scalabilità automatica kubectl](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#autoscale) comando tooautoscale hello numero di unità in hello `azure-vote-front` distribuzione. In questo caso, se l'utilizzo della CPU superiore al 50%, hello autoscaler aumenta hello POD tooa massimo 10.
+L'esempio seguente usa il comando [kubectl autoscale](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#autoscale) per scalare automaticamente il numero di pod nella distribuzione `azure-vote-front`. In questo caso, se l'utilizzo della CPU supera il 50%, la scalabilità automatica aumenta il numero di pod fino al valore massimo di 10.
 
 
 ```azurecli-interactive
 kubectl autoscale deployment azure-vote-front --cpu-percent=50 --min=3 --max=10
 ```
 
-stato di hello toosee di autoscaler hello, eseguire hello comando seguente:
+Per visualizzare lo stato della scalabilità automatica, eseguire il comando seguente:
 
 ```azurecli-interactive
 kubectl get hpa
@@ -116,19 +116,19 @@ NAME               REFERENCE                     TARGETS    MINPODS   MAXPODS   
 azure-vote-front   Deployment/azure-vote-front   0% / 50%   3         10        3          2m
 ```
 
-Dopo alcuni minuti, con un carico minimo sull'app Azure voto hello, numero di hello di repliche pod riduce automaticamente too3.
+Dopo pochi minuti con un carico minimo sull'app Azure Vote, il numero di repliche di pod si riduce automaticamente a 3.
 
-## <a name="scale-hello-agents"></a>Agenti di hello scala
+## <a name="scale-the-agents"></a>Scalare gli agenti
 
-Se è stato creato il cluster Kubernetes utilizzando i comandi predefiniti nell'esercitazione precedente hello, dispone di tre nodi di agente. Se si prevede più o meno contenitore i carichi di lavoro nel cluster, è possibile modificare manualmente il numero di hello degli agenti. Hello utilizzare [az acs scalare](/cli/azure/acs#scale) comando e specificare il numero di hello di agenti con hello `--new-agent-count` parametro.
+Se è stato creato usando i comandi predefiniti nell'esercitazione precedente, il cluster Kubernetes dispone di tre nodi agente. Se si prevede un numero maggiore o minore di carichi di lavoro dei contenitori nel cluster, è possibile modificare manualmente il numero di agenti. Usare il comando [az acs scale](/cli/azure/acs#scale) e specificare il numero di agenti con il parametro `--new-agent-count`.
 
-esempio Hello aumenta il numero di hello di agente too4 di nodi nel cluster Kubernetes hello denominato *myK8sCluster*. comando Hello accetta un paio di minuti toocomplete.
+Nell'esempio seguente il numero di nodi agente viene aumentato a 4 nel cluster Kubernetes, denominato *myK8sCluster*. Il completamento del comando richiede alcuni minuti.
 
 ```azurecli-interactive
 az acs scale --resource-group=myResourceGroup --name=myK8SCluster --new-agent-count 4
 ```
 
-Hello output del comando Mostra il numero di hello dell'agente nodi valore hello `agentPoolProfiles:count`:
+L'output del comando mostra il numero di nodi agente nel valore di `agentPoolProfiles:count`:
 
 ```azurecli
 {
@@ -151,10 +151,10 @@ In questa esercitazione sono state usate diverse funzionalità di scalabilità n
 
 > [!div class="checklist"]
 > * Scalabilità manuale di pod Kubernetes
-> * Configurazione di scalabilità automatica POD esecuzione front-end di hello app
-> * Ridimensionare i nodi di hello Kubernetes agente di Azure
+> * Configurazione della scalabilità automatica di pod che eseguono il front-end dell'app
+> * Scalare i nodi agente Azure in Kubernetes
 
-Spostare toohello Avanti toolearn esercitazione sull'aggiornamento dell'applicazione in Kubernetes.
+Passare all'esercitazione successiva per apprendere come aggiornare l'applicazione in Kubernetes.
 
 > [!div class="nextstepaction"]
 > [Aggiornare un'applicazione in Kubernetes](./container-service-tutorial-kubernetes-app-update.md)

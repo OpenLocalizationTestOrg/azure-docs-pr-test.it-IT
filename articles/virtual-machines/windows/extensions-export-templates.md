@@ -1,5 +1,5 @@
 ---
-title: Gruppi di risorse di Azure che contiene le estensioni VM aaaExporting | Documenti Microsoft
+title: Esportazione di gruppi di risorse di Azure contenenti estensioni macchina virtuale | Microsoft Docs
 description: Esportare modelli di Resource Manager che includono estensioni macchina virtuale.
 services: virtual-machines-windows
 documentationcenter: 
@@ -15,23 +15,23 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 12/05/2016
 ms.author: nepeters
-ms.openlocfilehash: cdbc2030988a19fe68429e8733dc60536c264abf
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: cc3c705f1c9123de75ced016a5b39eb1a86b0f73
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="exporting-resource-groups-that-contain-vm-extensions"></a>Esportazione di gruppi di risorse contenenti estensioni macchina virtuale
 
-I gruppi di risorse di Azure possono essere esportati in un nuovo modello di Resource Manager ridistribuibile. Hello processo di esportazione interpreta le risorse esistenti e crea un modello di gestione risorse che, quando distribuito comporta un gruppo di risorse simili. Quando si utilizza l'opzione di esportazione hello gruppo di risorse rispetto a un gruppo di risorse contenente le estensioni di macchina virtuale, diversi elementi necessità toobe considerato, ad esempio compatibilità dell'estensione e protetti delle impostazioni.
+I gruppi di risorse di Azure possono essere esportati in un nuovo modello di Resource Manager ridistribuibile. Il processo di esportazione interpreta le risorse esistenti e crea un modello di Resource Manager che quando viene distribuito diventa un gruppo di risorse simile. Quando si utilizza l'opzione di esportazione del gruppo di risorse su un gruppo di risorse contenente le estensioni macchina virtuale, diversi elementi dovranno essere considerati come compatibilità dell'estensione e impostazioni protette.
 
-Questo documento illustra il funzionamento hello il processo di esportazione di gruppo di risorse relative estensioni di macchine virtuali, incluso un elenco di estensioni supportate e i dettagli sulla gestione di dati protetti.
+Questo documento illustra il funzionamento del processo di esportazione del gruppo di risorse relativo alle estensioni macchina virtuale, inclusi un elenco di estensioni supportate e i dettagli sulla gestione di dati protetti.
 
 ## <a name="supported-virtual-machine-extensions"></a>Estensioni macchina virtuale supportate
 
-Sono disponibili molte estensioni macchina virtuale. Non tutte le estensioni possono essere esportate in un modello di gestione risorse utilizzo funzionalità "Script di automazione" hello. Se un'estensione della macchina virtuale non è supportata, è necessario toobe manualmente inserito nel modello esportato hello.
+Sono disponibili molte estensioni macchina virtuale. Non tutte le estensioni possono essere esportate in un modello di Resource Manager mediante la funzione "Script di automazione". Se un'estensione macchina virtuale non è supportata, deve essere inserita manualmente nel modello esportato.
 
-Hello estensioni seguenti possono essere esportate con funzionalità di script di automazione hello.
+Le estensioni seguenti possono essere esportate con la funzionalità di script di automazione.
 
 | Estensione ||||
 |---|---|---|---|
@@ -46,26 +46,26 @@ Hello estensioni seguenti possono essere esportate con funzionalità di script d
 | Custom Script for Linux | Linux Chef Client | VM Access For Linux |
 | Datadog Linux Agent | Linux Diagnostic | VM Snapshot |
 
-## <a name="export-hello-resource-group"></a>Esportazione hello gruppo di risorse
+## <a name="export-the-resource-group"></a>Esportare il gruppo di risorse
 
-tooexport un gruppo di risorse in un modello riutilizzabile, hello completo alla procedura seguente:
+Per esportare un gruppo di risorse in un modello riutilizzabile, completare i passaggi seguenti:
 
-1. Accedi toohello portale di Azure
-2. Nel Menu Hub hello, fare clic su gruppi di risorse
-3. Selezionare il gruppo di risorse di hello destinazione dall'elenco di hello
-4. Nel Pannello di hello gruppo di risorse, fare clic su Script di automazione
+1. Accedere al portale di Azure
+2. Scegliere Gruppi di risorse dal menu Hub
+3. Selezionare il gruppo di risorse di destinazione dall'elenco
+4. Nel pannello Gruppo di risorse fare clic su Script di automazione
 
 ![Esportazione del modello](./media/extensions-export-templates/template-export.png)
 
-Hello script dall'automazione di Azure Resource Manager genera un modello di gestione delle risorse e un file di parametri diversi esempi di script di distribuzione, ad esempio PowerShell e CLI di Azure. A questo punto, può essere scaricato modello esportato hello mediante il pulsante download hello, aggiunto come una libreria di modelli toohello modello nuovo o ridistribuito utilizzando hello pulsante di distribuzione.
+Lo script di automazione di Azure Resource Manager genera un modello di Resource Manager, un file di parametri e diversi esempi di script di distribuzione, ad esempio l'interfaccia della riga di comando di Azure e PowerShell. A questo punto, il modello esportato può essere scaricato utilizzando il pulsante di download, aggiunto come nuovo modello alla libreria di modelli o ridistribuito utilizzando il pulsante di distribuzione.
 
 ## <a name="configure-protected-settings"></a>Configurare le impostazioni protette
 
-Molte estensioni macchina virtuale di Azure includono una configurazione di impostazioni protette, che crittografa i dati sensibili come credenziali e stringhe di configurazione. Impostazioni protette non vengono esportate con script di automazione hello. Se le impostazioni necessarie, protette necessario toobe reinserito hello esportata basati su modelli.
+Molte estensioni macchina virtuale di Azure includono una configurazione di impostazioni protette, che crittografa i dati sensibili come credenziali e stringhe di configurazione. Le impostazioni protette non vengono esportate con lo script di automazione. Se necessario, le impostazioni protette devono essere reinserite nel modello esportato.
 
 ### <a name="step-1---remove-template-parameter"></a>Passaggio 1 - Rimuovere il parametro del modello
 
-Creazione di hello al che gruppo di risorse viene esportato, un parametro singolo modello tooprovide toohello un valore esportato impostazioni protette. Questo parametro può essere rimosso. parametro hello tooremove, esaminare l'elenco di parametri hello ed eliminare il parametro hello che controlla l'esempio JSON toothis simile.
+Quando viene esportato il gruppo di risorse, viene creato un singolo parametro del modello per fornire un valore alle impostazioni protette esportate. Questo parametro può essere rimosso. Per rimuovere il parametro, esaminare l'elenco di parametri ed eliminare il parametro che è simile a questo esempio JSON.
 
 ```json
 "extensions_extensionname_protectedSettings": {
@@ -76,9 +76,9 @@ Creazione di hello al che gruppo di risorse viene esportato, un parametro singol
 
 ### <a name="step-2---get-protected-settings-properties"></a>Passaggio 2 - Proteggere le proprietà delle impostazioni
 
-Poiché ciascuna impostazione protetto ha un set di proprietà necessarie, un elenco di queste proprietà necessario toobe raccolte. È possibile trovare ogni parametro di configurazione delle impostazioni protette hello in hello [dello schema di gestione risorse di Azure su GitHub](https://raw.githubusercontent.com/Azure/azure-resource-manager-schemas/master/schemas/2015-08-01/Microsoft.Compute.json). Questo schema include solo il set di parametri hello per le estensioni di hello elencati nella sezione Panoramica hello di questo documento. 
+Poiché ogni impostazione protetta contiene un set di proprietà obbligatorie, è necessario raccogliere in un elenco tali proprietà. Ogni parametro della configurazione delle impostazioni protette è disponibile nello [schema di Azure Resource Manager su GitHub](https://raw.githubusercontent.com/Azure/azure-resource-manager-schemas/master/schemas/2015-08-01/Microsoft.Compute.json). Tale schema include solo il set di parametri per le estensioni elencate nella sezione panoramica di questo documento. 
 
-All'interno del repository di schema hello, cercare estensione hello desiderato, in questo esempio `IaaSDiagnostics`. Una volta hello estensioni `protectedSettings` oggetto è stato trovato, prendere nota di ogni parametro. Nell'esempio hello di hello `IaasDiagnostic` estensione, hello richiedono parametri sono `storageAccountName`, `storageAccountKey`, e `storageAccountEndPoint`.
+All'interno del repository dello schema, cercare l'estensione desiderata, per questo esempio `IaaSDiagnostics`. Dopo aver individuato le estensioni dell'oggetto `protectedSettings`, prendere nota di ogni parametro. Nell'esempio dell'estensione `IaasDiagnostic`, i parametri richiesti sono `storageAccountName`, `storageAccountKey` e `storageAccountEndPoint`.
 
 ```json
 "protectedSettings": {
@@ -102,11 +102,11 @@ All'interno del repository di schema hello, cercare estensione hello desiderato,
 }
 ```
 
-### <a name="step-3---re-create-hello-protected-configuration"></a>Passaggio 3: creare nuovamente configurazione hello protetto
+### <a name="step-3---re-create-the-protected-configuration"></a>Passaggio 3 - Ricreare la configurazione protetta
 
-Il modello esportato di hello, cercare `protectedSettings` e sostituire hello esportata protetto l'impostazione dell'oggetto con una nuova istanza che include i parametri di estensione hello necessarie e un valore per ciascuna di esse.
+Nel modello esportato, cercare `protectedSettings` e sostituire l'oggetto delle impostazioni protette esportate con uno nuovo che includa i parametri dell'estensione necessari e un valore per ognuno di essi.
 
-Nell'esempio hello di hello `IaasDiagnostic` estensione, nuova configurazione di impostazione protetto hello avrà un aspetto analogo hello di esempio seguente:
+Nell'esempio dell'estensione `IaasDiagnostic`, la nuova configurazione delle impostazioni protette dovrebbe essere simile all'esempio seguente:
 
 ```json
 "protectedSettings": {
@@ -116,7 +116,7 @@ Nell'esempio hello di hello `IaasDiagnostic` estensione, nuova configurazione di
 }
 ```
 
-risorse di estensione finale Hello sono simile toohello esempio JSON seguente:
+La risorsa dell'estensione finale è simile all'esempio JSON seguente:
 
 ```json
 {
@@ -148,9 +148,9 @@ risorse di estensione finale Hello sono simile toohello esempio JSON seguente:
 }
 ```
 
-Se si utilizza i valori delle proprietà tooprovide modello parametri, questi devono toobe creato. Durante la creazione di parametri di modello per protetto impostazione dei valori, assicurarsi che hello toouse `SecureString` tipo di parametro in modo che i valori sensibili vengono protetti. Per altre informazioni sull'utilizzo dei parametri, vedere [Creazione di modelli di Azure Resource Manager](../../resource-group-authoring-templates.md).
+Se si utilizzano parametri del modello per fornire i valori delle proprietà, questi devono essere creati. Durante la creazione di parametri del modello per i valori delle impostazioni protette, assicurarsi di utilizzare il tipo di parametro `SecureString`, in modo che i valori sensibili siano protetti. Per altre informazioni sull'utilizzo dei parametri, vedere [Creazione di modelli di Azure Resource Manager](../../resource-group-authoring-templates.md).
 
-Nell'esempio hello di hello `IaasDiagnostic` estensione, verrebbe creato nella sezione parametri hello del modello di gestione risorse di hello hello seguenti parametri.
+Nell'esempio dell'estensione `IaasDiagnostic`, i parametri seguenti devono essere creati nella sezione dei parametri del modello di Resource Manager.
 
 ```json
 "storageAccountName": {
@@ -163,4 +163,4 @@ Nell'esempio hello di hello `IaasDiagnostic` estensione, verrebbe creato nella s
 }
 ```
 
-A questo punto, il modello di hello può essere distribuito utilizzando qualsiasi metodo di distribuzione del modello.
+A questo punto, il modello può essere distribuito utilizzando qualsiasi metodo di distribuzione del modello.

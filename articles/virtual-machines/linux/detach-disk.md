@@ -1,6 +1,6 @@
 ---
-title: un disco dati da una VM Linux - Azure aaaDetach | Documenti Microsoft
-description: Informazioni toodetach un disco dati da una macchina virtuale in Azure utilizzando CLI 2.0 o hello portale di Azure.
+title: Scollegare un disco dati da una macchina virtuale Linux - Azure | Microsoft Docs
+description: Informazioni su come scollegare un disco dati da una macchina virtuale in Azure tramite l'interfaccia della riga di comando 2.0 o il portale di Azure.
 services: virtual-machines-linux
 documentationcenter: 
 author: cynthn
@@ -15,22 +15,22 @@ ms.devlang: azurecli
 ms.topic: article
 ms.date: 03/21/2017
 ms.author: cynthn
-ms.openlocfilehash: 1c6145fc97f13179457225e93e0fb7adc261a65b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3f29547e1da6028b1e4b91d9e29fd3bcdfe08d50
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="how-toodetach-a-data-disk-from-a-linux-virtual-machine"></a>Funzionamento dei dischi toodetach un tipo di dati da una macchina virtuale di Linux
+# <a name="how-to-detach-a-data-disk-from-a-linux-virtual-machine"></a>Come scollegare un disco dati da una macchina virtuale Linux
 
-Quando non è più necessario un disco dati è una macchina virtuale tooa collegato, è possibile scollegarlo facilmente. Rimuove il disco hello dalla macchina virtuale hello, ma non rimuove dall'archivio. 
+Quando un disco dati collegato a una macchina virtuale non è più necessario, è possibile scollegarlo con facilità. Il disco verrà rimosso dalla macchina virtuale, ma non dall'archivio. 
 
 > [!WARNING]
-> Se si scollega un disco, questo non viene automaticamente eliminato. Se è stato richiesto tooPremium archiviazione, si continuerà tooincur i costi di archiviazione per il disco di hello. Per ulteriori informazioni, vedere troppo[prezzi e fatturazione quando si utilizza l'archiviazione Premium](../../storage/common/storage-premium-storage.md#pricing-and-billing). 
+> Se si scollega un disco, questo non viene automaticamente eliminato. Se è stata eseguita la sottoscrizione all'archiviazione Premium, si continueranno a sostenere costi di archiviazione per il disco. Per altre informazioni fare riferimento a [Archiviazione Premium: archiviazione ad alte prestazioni per carichi di lavoro delle macchine virtuali di Azure](../../storage/common/storage-premium-storage.md#pricing-and-billing). 
 > 
 > 
 
-Se si desiderano nuovamente toouse hello esistente dati hello disco, è possibile ricollegarlo toohello stessa macchina virtuale o un altro.  
+Se si vogliono riusare i dati presenti nel disco, è possibile ricollegarlo alla stessa macchina virtuale o collegarlo a una nuova.  
 
 ## <a name="detach-a-data-disk-using-cli-20"></a>Scollegare un disco dati tramite l'interfaccia della riga di comando 2.0
 
@@ -38,19 +38,19 @@ Se si desiderano nuovamente toouse hello esistente dati hello disco, è possibil
 az vm disk detach -g myResourceGroup --vm-name myVm -n myDataDisk
 ```
 
-Hello disco rimane nel servizio di archiviazione, ma non è più macchine virtuali tooa associata.
+Il disco rimane nello spazio di archiviazione ma non è più collegato a una macchina virtuale.
 
 
-## <a name="detach-a-data-disk-using-hello-portal"></a>Scollegare un disco dati tramite il portale di hello
-1. Nell'hub portale hello, selezionare **macchine virtuali**.
-2. Selezionare macchina virtuale hello che ha il disco dati hello toodetach desiderato e fare clic su **arrestare** toodeallocate hello macchina virtuale.
-3. Nel pannello macchine virtuali di hello, selezionare **dischi**.
-4. Nella parte superiore di hello di hello **dischi** pannello seleziona **modifica**.
-5. In hello **dischi** pannello toohello a destra del disco dati hello che si desidera toodetach, fare clic su hello ![immagine del pulsante scollegamento](./media/detach-disk/detach.png) pulsante Disconnetti.
-5. Una volta rimosso il disco di hello, fare clic su Salva nella parte superiore di hello del pannello hello.
-6. Nel Pannello di hello macchina virtuale, fare clic su **Panoramica** e quindi fare clic su hello **avviare** pulsante nella parte superiore di hello di hello toorestart di hello pannello VM.
+## <a name="detach-a-data-disk-using-the-portal"></a>Scollegare un disco dati tramite il portale
+1. Nell'hub del portale selezionare **Macchine virtuali**.
+2. Selezionare la macchina virtuale con il disco dati che si vuole scollegare e fare clic su **Arresta** per deallocare la macchina virtuale.
+3. Nel pannello delle macchine virtuali selezionare **Dischi**.
+4. Nella parte superiore del pannello **Dischi** selezionare **Modifica**.
+5. Nel pannello **Dischi**, fare clic sul pulsante per scollegare il disco ![Immagine del pulsante per scollegare il disco](./media/detach-disk/detach.png) nella parte più a destra del disc dati.
+5. Dopo aver rimosso il disco, fare clic su Salva nella parte superiore del pannello.
+6. Nel pannello delle macchine virtuali fare clic su **Panoramica** e quindi fare clic su **Avvia** nella parte superiore del pannello per riavviare la macchina virtuale.
 
-Hello disco rimane nel servizio di archiviazione, ma non è più macchine virtuali tooa associata.
+Il disco rimane nello spazio di archiviazione ma non è più collegato a una macchina virtuale.
 
 
 
@@ -60,5 +60,5 @@ Hello disco rimane nel servizio di archiviazione, ma non è più macchine virtua
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Se si desidera disco dati di hello tooreuse, è sufficiente [collegarlo tooanother VM](add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+Se si intende usare nuovamente il disco dati, è sufficiente [collegarlo a un'altra macchina virtuale](add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 

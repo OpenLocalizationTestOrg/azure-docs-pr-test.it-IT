@@ -1,6 +1,6 @@
 ---
-title: database di Analysis Services aaaAzure di backup e ripristino | Documenti Microsoft
-description: Viene descritto come toobackup e ripristino di un Azure Analysis Services database.
+title: Backup e ripristino del database di Azure Analysis Services | Microsoft Docs
+description: Viene descritto come eseguire backup e ripristino di un database di Azure Analysis Services.
 services: analysis-services
 documentationcenter: 
 author: minewiskan
@@ -14,30 +14,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: owend
-ms.openlocfilehash: cf0a782d237a95fdfa5ef628f998bd053aac0d9f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: bffa481a498b130ef1f2388a5ba856da5d164ee0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="backup-and-restore"></a>Backup e ripristino
 
-Il backup dei database modello tabulare in Analysis Services di Azure è molto hello uguale a quello locale di Analysis Services. la differenza principale Hello è dove memorizzare i file di backup. I file di backup devono essere salvati tooa contenitore in un [account di archiviazione Azure](../storage/common/storage-create-storage-account.md). È possibile usare un account di archiviazione e un contenitore già esistenti, o è possibile crearne di nuovi durante la configurazione delle impostazioni di archiviazione per il server.
+Il backup dei database modello tabulare in Azure Analysis Services è molto simile a quello di Analysis Services in locale. La differenza principale è dove vengono archiviati i file di backup. I file di backup devono essere salvati in un contenitore in un [account di archiviazione di Azure](../storage/common/storage-create-storage-account.md). È possibile usare un account di archiviazione e un contenitore già esistenti, o è possibile crearne di nuovi durante la configurazione delle impostazioni di archiviazione per il server.
 
 > [!NOTE]
-> La creazione di un account di archiviazione può dare luogo a un nuovo servizio fatturabile. vedere, più toolearn [prezzi di archiviazione di Azure](https://azure.microsoft.com/pricing/details/storage/blobs/).
+> La creazione di un account di archiviazione può dare luogo a un nuovo servizio fatturabile. Per altre informazioni, vedere [Prezzi di Archiviazione di Azure](https://azure.microsoft.com/pricing/details/storage/blobs/).
 > 
 > 
 
-I backup vengono salvati con estensione abf. Per i modelli tabulari in memoria, vengono archiviati sia i dati del modello che i metadati. Per i modelli tabulari DirectQuery, vengono archiviati solo i metadati del modello. I backup possono essere compressi e crittografati, a seconda delle opzioni di hello che prescelto. 
+I backup vengono salvati con estensione abf. Per i modelli tabulari in memoria, vengono archiviati sia i dati del modello che i metadati. Per i modelli tabulari DirectQuery, vengono archiviati solo i metadati del modello. I backup possono essere compressi e crittografati, a seconda delle opzioni scelte. 
 
 
 
 ## <a name="configure-storage-settings"></a>Configurare le impostazioni di archiviazione
-Prima del backup, è necessario tooconfigure le impostazioni di archiviazione per il server.
+Prima di eseguire il backup, è necessario configurare le impostazioni di archiviazione per il server.
 
 
-### <a name="tooconfigure-storage-settings"></a>impostazioni di archiviazione tooconfigure
+### <a name="to-configure-storage-settings"></a>Per configurare le impostazioni di archiviazione
 1.  Nel portale di Azure > **Impostazioni**, fare clic su **Backup**.
 
     ![Backup in Impostazioni](./media/analysis-services-backup/aas-backup-backups.png)
@@ -58,49 +58,49 @@ Prima del backup, è necessario tooconfigure le impostazioni di archiviazione pe
 
 ## <a name="backup"></a>Backup
 
-### <a name="toobackup-by-using-ssms"></a>toobackup utilizzando SQL Server Management Studio
+### <a name="to-backup-by-using-ssms"></a>Per eseguire il backup tramite SSMS
 
 1. In SSMS fare clic con il pulsante destro del mouse su un database > **Backup**.
 
 2. In **Backup database** > **File di backup** fare clic su **Sfoglia**.
 
-3. In hello **Salva file con nome** finestra di dialogo, verificare il percorso di cartella hello e quindi digitare un nome per il file di backup hello. 
+3. Nella finestra di dialogo **Salva file con nome** verificare il percorso della cartella e quindi digitare un nome per il file di backup. 
 
-4. In hello **Backup Database** finestra di dialogo, selezionare le opzioni.
+4. Nella finestra di dialogo **Backup database** selezionare le opzioni.
 
-    **Consenti file sovrascrivere** -selezionare questa opzione toooverwrite i file di backup di hello stesso nome. Se questa opzione non è selezionata, il file hello da salvare non può avere hello stesso nome come un file già esistente in hello stesso percorso.
+    **Consenti sostituzione file**: selezionare questa opzione per sovrascrivere i file di backup con lo stesso nome. Se questa opzione non è selezionata, il file da salvare non può avere lo stesso nome di un file già esistente nello stesso percorso.
 
-    **Applicare la compressione** -selezionare l'opzione toocompress hello del file di backup. I file di backup compressi consentono di risparmiare spazio su disco, ma richiedono un utilizzo della CPU leggermente più elevato. 
+    **Applica compressione**: selezionare questa opzione per comprimere il file di backup. I file di backup compressi consentono di risparmiare spazio su disco, ma richiedono un utilizzo della CPU leggermente più elevato. 
 
-    **Crittografare i file di backup** -selezionare l'opzione tooencrypt hello del file di backup. Questa opzione richiede un file di backup hello toosecure password fornita dall'utente. password Hello impedisce la lettura dei dati di backup hello qualsiasi altro mezzo di un'operazione di ripristino. Se si sceglie tooencrypt backup, archiviare password hello in un luogo sicuro.
+    **Crittografa file di backup**: selezionare questa opzione per crittografare il file di backup. Questa opzione richiede una password specificata dall'utente per proteggere il file di backup. La password impedisce la lettura dei dati di backup con qualsiasi mezzo che non sia un'operazione di ripristino. Se si sceglie di crittografare i backup, archiviare la password in un luogo sicuro.
 
-5. Fare clic su **OK** toocreate e salvare i file di backup hello.
+5. Fare clic su **OK** per creare e salvare il file di backup.
 
 
 ### <a name="powershell"></a>PowerShell
 Usare il cmdlet [Backup-ASDatabase](https://docs.microsoft.com/sql/analysis-services/powershell/backup-asdatabase-cmdlet).
 
 ## <a name="restore"></a>Ripristino
-Durante il ripristino, il file di backup deve essere nell'account di archiviazione hello configurate per il server. Se è necessario un file di backup da un account di archiviazione locale percorso tooyour toomove, utilizzare [Microsoft Azure Storage Explorer](https://docs.microsoft.com/azure/vs-azure-tools-storage-manage-with-storage-explorer) o hello [AzCopy](../storage/common/storage-use-azcopy.md) utilità della riga di comando. 
+Durante il ripristino, il file di backup deve essere nell'account di archiviazione configurato per il server. Se è necessario spostare un file di backup da un percorso locale all'account di archiviazione, usare [Archiviazione di Microsoft Azure](https://docs.microsoft.com/azure/vs-azure-tools-storage-manage-with-storage-explorer) o l'utilità della riga di comando [AzCopy](../storage/common/storage-use-azcopy.md). 
 
 
 
 > [!NOTE]
-> Se si esegue il ripristino da un server locale, è necessario rimuovere tutti gli utenti di dominio di hello dai ruoli del modello hello e aggiungerli nuovamente ruoli toohello come utenti di Azure Active Directory.
+> Se si sta eseguendo il ripristino da un server locale, è necessario rimuovere tutti gli utenti di dominio dai ruoli del modello e aggiungerli nuovamente ai ruoli come utenti di Azure Active Directory.
 > 
 > 
 
-### <a name="toorestore-by-using-ssms"></a>toorestore utilizzando SQL Server Management Studio
+### <a name="to-restore-by-using-ssms"></a>Per eseguire il ripristino usando SSMS
 
 1. In SSMS fare clic con il pulsante destro del mouse su un database > **Ripristina**.
 
-2. In hello **Backup Database** finestra di dialogo, nella **file di Backup**, fare clic su **Sfoglia**.
+2. Nella finestra di dialogo **Backup database** in **File di backup** fare clic su **Sfoglia**.
 
-3. In hello **Individua file di Database** finestra di dialogo, selezionare hello desiderata toorestore.
+3. Nella finestra di dialogo **Trova file di database** selezionare il file da ripristinare.
 
-4. In **ripristinare il database**, selezionare il database di hello.
+4. In **Ripristina database** selezionare il database.
 
-5. Specificare le opzioni. Opzioni di sicurezza devono corrispondere le opzioni di backup hello che è utilizzato per eseguire il backup.
+5. Specificare le opzioni. Le opzioni di sicurezza devono corrispondere alle opzioni di backup usate per eseguire il backup.
 
 
 ### <a name="powershell"></a>PowerShell

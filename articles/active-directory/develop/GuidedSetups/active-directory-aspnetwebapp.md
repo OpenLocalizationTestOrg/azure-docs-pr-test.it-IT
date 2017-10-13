@@ -1,5 +1,5 @@
 ---
-title: server web ASP.NET v2 aaaAzure AD introduzione | Documenti Microsoft
+title: Introduzione al server Web ASP.NET per Azure AD v2 | Microsoft Docs
 description: Implementazione di accessi Microsoft in una soluzione ASP.NET con un'applicazione tradizionale basata su Web browser tramite lo standard OpenID Connect
 services: active-directory
 documentationcenter: dev-center-name
@@ -15,11 +15,11 @@ ms.workload: identity
 ms.date: 07/05/2017
 ms.author: andret
 ms.custom: aaddev
-ms.openlocfilehash: aae729b4e086d6770648af4708a58f840d2dbb9d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7a97cc9d1f13034de41f55399442061fbb4873c2
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 [!INCLUDE [1. Introduction](active-directory-serversidewebapp-aspnetwebappowin-introduction.md)]
 [!INCLUDE [2. Setup](active-directory-serversidewebapp-aspnetwebappowin-setup.md)]

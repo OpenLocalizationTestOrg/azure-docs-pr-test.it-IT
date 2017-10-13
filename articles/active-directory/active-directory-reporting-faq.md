@@ -1,5 +1,5 @@
 ---
-title: domande frequenti di Active Directory Reporting su aaaAzure | Documenti Microsoft
+title: Domande frequenti sulla creazione di report in Azure Active Directory | Documentazione Microsoft
 description: Domande frequenti sulla creazione di report in Azure Active Directory.
 services: active-directory
 documentationcenter: 
@@ -14,98 +14,98 @@ ms.topic: article
 ms.date: 08/22/2017
 ms.author: markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: be65a05574ea3b5b190cd02a96b211c571ba70bc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: accf292f70bf0eafdefc00c3feeaf8e346605401
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="azure-active-directory-reporting-faq"></a>Domande frequenti sulla creazione di report in Azure Active Directory
 
-In questo articolo vengono fornite le risposte toofrequently domande frequenti (FAQ) sulla creazione di report di Azure Active Directory.  
+Questo articolo include risposte alle domande frequenti sulla creazione di report in Azure Active Directory.  
 Per altre informazioni, vedere la pagina relativa alla [creazione di report in Azure Active Directory](active-directory-reporting-azure-portal.md) 
 
-**D: qual è la conservazione dei dati hello per i log di attività (controllo e accessi) nel portale di Azure hello?** 
+**D: Qual è la conservazione dei dati per i log attività (controllo e accessi) nel portale di Azure?** 
 
-**R:** forniamo 7 giorni di dati per i clienti gratuiti e passando tooan Azure AD Premium 1 o 2 Premium licenza, è possibile accedere a dati per i giorni too30. Per altri dettagli sulla conservazione, vedere la pagina relativa ai [criteri di conservazione dei report di Azure Active Directory](active-directory-reporting-retention.md).
+**R:** Offriamo 7 giorni di dati per i clienti con sottoscrizione gratuita. Passando a una licenza AD Premium 1 o Azure AD Premium 2 è possibile accedere ai dati fino a 30 giorni. Per altri dettagli sulla conservazione, vedere la pagina relativa ai [criteri di conservazione dei report di Azure Active Directory](active-directory-reporting-retention.md).
 
 --- 
 
-**D: come tempo fino a quando non vengono visualizzati i dati di attività hello dopo aver completato le attività?**
+**D: Quanto tempo occorre per la visualizzazione dei dati sull'attività dopo il completamento della stessa?**
 
-**R:** log attività di controllo con una latenza compresa tra 15 minuti tooan ora. Log attività di accesso con una latenza compreso tra 15 minuti per la maggior parte dei record e le ore too2 per alcuni record.
-
----
-
-**D: è necessario toobe che un'attività di amministratore globale toosee hello registra nel portale di Azure hello tooget dati o tramite API hello?**
-
-**R:** No. Può essere un **lettore sicurezza**, un **amministratore responsabile della sicurezza** o **amministratore globale** toosee segnalano i dati nel portale di Azure o accedendovi mediante hello API.
+**R:** I log dell'attività di controllo hanno una latenza compresa tra 15 minuti e un'ora. I log dell'attività di accesso hanno una latenza compresa tra 15 minuti per la maggior parte dei record e fino a 2 ore per altri record.
 
 ---
 
-**D: è possibile ottenere informazioni di log attività di Office 365 tramite il portale di Azure hello?**
+**Q: È necessario essere amministratore globale per visualizzare i log attività nel portale di Azure o per ottenere i dati tramite l'API?**
 
-**R:** anche attività di Office 365 e Azure AD attività registri condividere molte delle risorse della directory hello, se si desidera una visualizzazione completa di hello log attività di Office 365, è necessario passare informazioni del log attività di Office 365 tooget toohello il centro di amministrazione di Office 365.
+**R:** No. L'utente può avere un **ruolo con autorizzazioni di lettura per la sicurezza**, può essere un **amministratore della protezione** o un **amministratore globale** per visualizzare i dati dei report nel portale di Azure o accedendovi tramite l'API.
+
+---
+
+**D: È possibile ottenere informazioni sui log attività di Office 365 tramite il portale di Azure?**
+
+**R:** Sebbene l'attività di Office 365 e i log attività di Azure AD condividano numerose risorse della directory, se si desidera una visualizzazione completa dei log attività di Office 365, è necessario usare l'interfaccia di amministrazione di Office 365 per ottenere informazioni sui log attività di Office 365.
 
 ---
 
 
-**D: quali API utilizzare tooget informazioni sui log attività di Office 365?**
+**D: Quali API è necessario usare per ottenere informazioni sui log attività di Office 365?**
 
-**R:** hello tooaccess API di gestione di Office 365 di usare hello [log attività di Office 365 tramite un'API](https://msdn.microsoft.com/office-365/office-365-managment-apis-overview).
+**R:** Usare le API Gestione di Office 365 per accedere ai [log attività di Office 365 tramite un'API](https://msdn.microsoft.com/office-365/office-365-managment-apis-overview).
 
 ---
 
 **D: Quanti record è possibile scaricare dal portale di Azure?**
 
-**R:** è possibile scaricare i record too120K da hello portale di Azure. record Hello sono ordinati per *più recente* e per impostazione predefinita, si visualizza record hello K 120 più recente. 
+**R:** Dal portale di Azure è possibile scaricare fino a 120 KB di record. I record vengono ordinati in base ai *più recenti* e, per impostazione predefinita, vengono visualizzati 120 KB dei record più recenti. 
 
 ---
 
-**D: come numero di record è query tramite le attività di hello API?**
+**D: Su quanti record è possibile eseguire query tramite le API delle attività?**
 
-**R:** è possibile eseguire query dei milioni record too1 (se non si utilizza l'operatore top hello, che ordina i record di hello più recente). Se si utilizza l'operatore "top" hello, è possibile eseguire query dei record too500K. È possibile trovare esempi di query in modalità toouse hello API qui [qui](active-directory-reporting-api-getting-started.md).
+**R:** Le query possono essere eseguite su un numero massimo di 1 milione di record (se non si usa l'operatore TOP, che ordina i record in base al più recente). Se si usa l'operatore TOP, è possibile eseguire query su un massimo di 500 KB di record. [Qui](active-directory-reporting-api-getting-started.md) è possibile trovare le query di esempio su come usare l'API.
 
 ---
 
 **D: Come ottenere una licenza Premium?**
 
-**R:** vedere [Introduzione a Azure Active Directory Premium](active-directory-get-started-premium.md) per una domanda toothis di risposta.
+**R:** Per la risposta a questa domanda, vedere [Introduzione ad Azure Active Directory Premium](active-directory-get-started-premium.md).
 
 ---
 
 **D: In quanto tempo è possibile visualizzare le attività dopo aver acquistato una licenza Premium?**
 
-**R:** se si dispongono già dei dati di attività come una licenza gratuita, quindi è possibile visualizzare hello stessi dati. Se non si dispone di dati, saranno necessari uno o due giorni.
+**R:** Se si dispone già di dati sulle attività come licenza gratuita, è possibile visualizzare questi dati. Se non si dispone di dati, saranno necessari uno o due giorni.
 
 ---
 
 **D: È possibile visualizzare i dati del mese precedente dopo avere acquistato una licenza Azure AD Premium?**
 
-**R:** se di recente si è passati versione Premium tooa (inclusi una versione di valutazione), è possibile visualizzare inizialmente dati backup too7 giorni. Quando i dati vengono accumulati, verranno visualizzati i giorni too30.
+**R:**: Se di recente si è passati alla versione Premium (anche di valutazione), inizialmente è possibile visualizzare i dati fino a 7 giorni. Quando i dati si accumulano, verranno visualizzati fino a 30 giorni.
 
 ---
 
-**Q: è un evento di rischio di protezione dell'identità, ma vengono non visualizzati Accedi corrispondente in hello tutti gli accessi. È normale?**
+**D: Esiste un evento di rischio nella protezione dell'identità, ma non vengono visualizzati accessi corrispondenti in tutti gli accessi. È normale?**
 
-**R:** Sì, la protezione dell'identità valuta il rischio per tutti i flussi di autenticazione, sia interattivi che non interattivi. Tuttavia, tutti i report solo accessi Mostra solo hello accessi interattivi.
-
----
-
-**D: come è possibile scaricare report "Utenti contrassegno i rischi" hello nel portale di Azure?**
-
-**R:** toodownload opzione hello *utenti contrassegno i rischi* report verranno aggiunte presto.
+**R:** Sì, la protezione dell'identità valuta il rischio per tutti i flussi di autenticazione, sia interattivi che non interattivi. Tuttavia, tutti i report degli accessi mostrano solo gli accessi interattivi.
 
 ---
 
-**D: come si capisce perché un accesso o un utente è stato contrassegnato rischiose hello portale di Azure?**
+**D: Come è possibile scaricare il report "Utenti contrassegnati per il rischio" nel portale di Azure?**
 
-**R:** clienti edizione Premium per altre informazioni su hello sottostante gli eventi di rischio, fare clic sull'utente hello in "Utenti contrassegno i rischi" o facendo clic su "Rischiosi accessi" hello. I clienti di edizione Free e Basic ottenere toosee agli utenti di rischio hello e accessi senza hello sottostante informazioni sugli eventi di rischio.
+**R:**: L'opzione per scaricare il report *Utenti contrassegnati per il rischio* verrà aggiunta a breve.
 
 ---
 
-**D: come vengono calcolati gli indirizzi IP in accessi hello e report accessi rischiosa??**
+**D: Come sapere perché un accesso o un utente è stato contrassegnato come rischioso nel portale di Azure?**
 
-**R:** gli indirizzi IP vengono rilasciati in modo che non sia disponibile alcuna connessione definitivo tra un indirizzo IP e in cui si trova fisicamente computer hello con tale indirizzo. Questo è complicato da fattori quali i provider di dispositivi mobili e VPN con il rilascio di indirizzi IP da pool centrale spesso molto distanti da dove dispositivo client hello viene effettivamente utilizzato. Dato hello precedente, la conversione di posizione fisica tooa di indirizzo IP è un lavoro migliore in base alle tracce, i dati del Registro di sistema, ricerche inverse e altre informazioni. 
+**R:** I clienti dell'edizione Premium possono scoprire altre informazioni sugli eventi di rischio sottostanti facendo clic sull'utente in "Utenti contrassegnati per il rischio" o facendo clic su "Accessi a rischio". I clienti della versione Basic e Free riescono a visualizzare gli utenti e gli accessi a rischio senza le informazioni sull'evento di rischio sottostante.
+
+---
+
+**D: Come vengono calcolati gli indirizzi IP nel report degli accessi e degli accessi a rischio?**
+
+**R:** Gli indirizzi IP vengono rilasciati in modo che non esista una connessione certa tra un IP e la posizione in cui si trova fisicamente il computer con tale indirizzo. A ciò si aggiungono fattori come la possibilità che provider di telefonia mobile e VPN rilascino indirizzi IP da pool centrali spesso molto distanti dal luogo in cui viene effettivamente usato il dispositivo client. Per questi motivi, la conversione di un indirizzo IP in una posizione fisica è un'approssimazione basata su tracce, dati del Registro di sistema, ricerche inverse e altre informazioni. 
 
 ---

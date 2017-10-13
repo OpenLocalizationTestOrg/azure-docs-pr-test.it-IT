@@ -1,6 +1,6 @@
 ---
-title: portale di Azure Marketplace venditore Insights aaaHow toouse hello | Documenti Microsoft
-description: "In qualità di venditore in hello Azure Marketplace, comprendere come toouse hello portale di Azure Marketplace venditore Insights."
+title: Come usare il portale delle informazioni dettagliate del venditore di Azure Marketplace | Microsoft Docs
+description: Informazioni per i venditori di Azure Marketplace su come usare il portale delle informazioni dettagliate del venditore di Azure Marketplace.
 services: marketplace publishing
 documentationcenter: na
 author: DavidBosland
@@ -14,80 +14,80 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/16/2017
 ms.author: v-dabosl
-ms.openlocfilehash: 6a3c0438d26da7199a818a7927ca8e17c95b8ecc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: cd5db703ab0b89b8597c99c0d536bc07f883ebc6
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toouse-hello-azure-marketplace-seller-insights-portal"></a>Come toouse hello portale di Azure Marketplace venditore Insights
+# <a name="how-to-use-the-azure-marketplace-seller-insights-portal"></a>Come usare il portale delle informazioni dettagliate del venditore di Azure Marketplace
 
-Questo articolo viene illustrato come gli amministratori di accedere al portale Insights venditore hello, aggiungere o eliminano utenti e impostare le autorizzazioni per gli utenti.
+Questo articolo illustra il modo in cui gli amministratori accedono al portale delle informazioni dettagliate del venditore, aggiungono o eliminano utenti e impostano le autorizzazioni per gli utenti.
 
 ## <a name="onboard-users"></a>Caricare gli utenti
 
-Questa sezione illustra come gli amministratori di accedere a hello venditore Insights portal per hello prima volta. attività Hello in questa sezione sono riservate agli amministratori. 
+Questa sezione descrive il modo in cui gli amministratori accedono al portale delle informazioni dettagliate del venditore per la prima volta. Le attività indicate in questa sezione sono riservate agli amministratori. 
 
 
 ### <a name="overview-of-roles"></a>Panoramica dei ruoli
 
-amministratore del portale Hello venditore Insights consente di aggiungere utenti, consente agli utenti di modificare ed Elimina gli utenti.
+L'amministratore del portale delle informazioni dettagliate del venditore aggiunge, modifica ed elimina gli utenti.
 
-Un utente del portale venditore Insights è possibile visualizzare tutti i dati dell'organizzazione tooyour disponibili.
+Un utente del portale delle informazioni dettagliate del venditore può visualizzare tutti i dati disponibili per l'organizzazione.
 
-Gli amministratori e gli utenti sono tooauthenticate necessarie tramite un oggetto valido [account Microsoft](http://signup.live.com), o di organizzazioni account aziendale o dell'istituto di istruzione. Verificare che l'ID del nuovo account hello sia associata a una cassetta postale monitorata.
+Gli amministratori e gli utenti devono eseguire l'autenticazione con un [account Microsoft](http://signup.live.com) valido oppure con un account aziendale o dell'istituto di istruzione. Assicurarsi che il nuovo ID account sia associato a una cassetta postale monitorata.
 
 ![Tipo di account][5]
 
 
 
-### <a name="invitation-tooactivate-your-account"></a>Invito tooactivate account
+### <a name="invitation-to-activate-your-account"></a>Invito ad attivare l'account
 
-Prima della firma nel portale di Insights di venditore toohello, amministratore hello deve identificare gli account di hello dei singoli utenti hello che desiderano tooset backup come utenti. Configurare gli utenti con un account Microsoft o un account aziendale o dell'istituto di istruzione.
+Prima di accedere al portale delle informazioni dettagliate del venditore, l'amministratore deve identificare gli account delle persone da configurare come utenti. Configurare gli utenti con un account Microsoft o un account aziendale o dell'istituto di istruzione.
 
-tooactivate il servizio, un messaggio per l'amministratore deve passare toohello [indirizzo URL](https://reports.azure.com) che viene visualizzato nel messaggio di posta elettronica di invito hello.
+Per attivare il servizio, l'amministratore deve accedere all'[indirizzo URL](https://reports.azure.com) indicato nel messaggio di posta elettronica di invito.
 
 >[!NOTE]
->Se non è stato creato un account Microsoft associato l'indirizzo di posta elettronica di hello da cui si è ricevuto invito hello e-mail amministratore hello viene visualizzato come un account Microsoft, è necessario troppo[creare account hello](https://signup.live.com) prima Accedi.
+>Se l'indirizzo di posta elettronica dell'amministratore è indicato come account Microsoft e non è stato creato un account Microsoft associato all'indirizzo da cui è stato ricevuto l'invito, sarà necessario [crearne uno](https://signup.live.com) prima di poter effettuare l'accesso.
 
 
-### <a name="administrator-sign-in-toohello-seller-insights-portal"></a>Portale di Insights venditore toohello accesso amministratore
+### <a name="administrator-sign-in-to-the-seller-insights-portal"></a>Accesso dell'amministratore al portale delle informazioni dettagliate del venditore
 
-1. Accedi toohello portale venditore informazioni facendo clic su URL hello nel messaggio di posta elettronica hello inviato tooyou.
-2. Immettere una password e un indirizzo di posta elettronica amministratore hello.
-3. Fare clic su hello **Accedi** pulsante.
-4. Iniziare tooadminister l'account. Aggiungere gli utenti, impostare le autorizzazioni e modificare gli utenti.
-5. Verificare che gli utenti dispongono di hello URL per il portale di Insights venditore hello.
+1. Accedere al portale delle informazioni dettagliate del venditore facendo clic sull'URL contenuto nel messaggio di posta elettronica ricevuto.
+2. Immettere l'indirizzo di posta elettronica e la password dell'amministratore.
+3. Fare clic sul pulsante **Sign In** (Accedi).
+4. Iniziare ad amministrare l'account. Aggiungere gli utenti, impostare le autorizzazioni e modificare gli utenti.
+5. Assicurarsi che gli utenti abbiano l'URL per il portale delle informazioni dettagliate del venditore.
 
     ![Pagina di accesso][6]
 
-## <a name="user-sign-in-toohello-portal"></a>Portale per gli utenti accesso toohello
+## <a name="user-sign-in-to-the-portal"></a>Accesso dell'utente al portale
 
-L'amministratore deve ricevere una notifica tramite posta elettronica che l'account viene creato e condividere hello [indirizzo URL](https://reports.azure.com) per il portale di Insights venditore hello con l'utente.
+L'amministratore deve inviare all'utente un messaggio di posta elettronica per comunicare l'avvenuta creazione dell'account e indicare l'[indirizzo URL](https://reports.azure.com) del portale delle informazioni dettagliate del venditore.
 
 >[!NOTE]
->l'amministratore Hello è proprietario di hello dell'account hello che pubblica toohello soluzioni Azure Marketplace. proprietario Hello di questo account può fornire accesso tooothers.  Se si dispone di accesso portale di pubblicazione toohello come coamministratore, è possibile trovare l'indirizzo dell'amministratore hello attenendosi alla procedura seguente:
->1. Accedi toohello portale di pubblicazione.
->2. Fare clic su hello **editori** scheda.
->3. Aprire server di pubblicazione hello in questione (in genere è disponibile solo uno).
->4. Fare clic su **amministratori** nella parte inferiore sinistra hello.
->5. indirizzo di posta elettronica amministratore Hello che si sta cercando è denominato *proprietario*.
+>L'amministratore è il proprietario dell'account che pubblica soluzioni in Azure Marketplace. Il proprietario di questo account può concedere l'accesso ad altri utenti.  Se si ha accesso al portale di pubblicazione come co-amministratore, è possibile trovare l'indirizzo dell'amministratore seguendo questi passaggi:
+>1. Accedere al portale di pubblicazione.
+>2. Fare clic sulla scheda **Editori**.
+>3. Aprire il server di pubblicazione in questione (in genere ne è disponibile solo uno).
+>4. Fare clic su **Amministratori** in basso a sinistra.
+>5. L'indirizzo di posta elettronica dell'amministratore da trovare è indicato come *Proprietario*.
 
 
-È possibile firmare nel portale di Insights di venditore toohello utilizzando un account Microsoft personale oppure utilizzando un account aziendale o dell'istituto di istruzione. tipo di Hello dell'account dipende imposta l'amministratore di nel profilo. L'amministratore deve consigli sull'account hello che è utilizzare.
+È possibile accedere al portale delle informazioni dettagliate del venditore usando un account Microsoft personale o un account aziendale o dell'istituto di istruzione. Il tipo di account dipende dalla configurazione eseguita dall'amministratore nel profilo. L'amministratore deve comunicare all'utente il tipo di account da usare.
 
 ![Tipo di account][1]
 
 
 
-**Portale di Insights venditore toohello benvenuto!**
+**Portale delle informazioni dettagliate del venditore**
 
-1. Dopo aver effettuato l'accesso, verrà visualizzata hello **riepilogo** pagina.
-2. Richiedere alcuni minuti tooread hello informativa sulla Privacy.
-3. È possibile **Contattaci** in qualsiasi momento, tramite posta elettronica, con le domande è possibile che sono portale venditore Insights toohello correlati.
-4. È possibile spostarsi nel portale di Insights di venditore hello utilizzando le schede hello nella parte superiore di hello della pagina hello.  Attendi l'arrivo schede hello nella parte superiore di hello delle pagine di hello in orient di toohelp questa guida si nel portale di Insights di venditore hello.
-5. Fare clic sull'icona smile hello in commenti toosend ora che sono il portale di Insights venditore toohello correlati.
-6. toosign dal portale di Insights venditore hello, fare clic sul nome nell'angolo superiore destro di hello.
+1. Dopo aver effettuato l'accesso, viene visualizzata la pagina **Summary** (Riepilogo).
+2. Dedicare alcuni minuti alla lettura dell'informativa sulla privacy.
+3. Per qualsiasi problema è sempre possibile fare clic su **Contact Us** (Contatti) per inviare un messaggio di posta elettronica con eventuali domande relative al portale delle informazioni dettagliate del venditore.
+4. È possibile esplorare il portale delle informazioni dettagliate del venditore usando le schede disponibili nella parte superiore della pagina.  Osservando le schede nella parte superiore delle pagine illustrate in questa guida è possibile orientarsi meglio all'interno del portale delle informazioni dettagliate del venditore.
+5. Fare clic sull'emoticon in qualsiasi momento per inviare commenti e suggerimenti relativi al portale delle informazioni dettagliate del venditore.
+6. Fare clic sul proprio nome nell'angolo in alto a destra per disconnettersi dal portale delle informazioni dettagliate del venditore.
 
     ![Pagina di destinazione predefinita][2]
 
@@ -95,25 +95,25 @@ L'amministratore deve ricevere una notifica tramite posta elettronica che l'acco
 ## <a name="summary-view"></a>Visualizzazione riepilogo
 
 
-1. Seleziona hello **riepilogo** scheda.
-2. Immettere hello **data di inizio** di hello periodo di tempo si è interessati a e quindi fare clic su **applica**. Vengono visualizzati tre mesi di dati.
-3. Nuovo ordine tendenze dei dati per tre mesi hello periodo di tempo selezionato sono illustrate di seguito.
-4. Nuovi ordini per periodo di tempo selezionato hello riportati di seguito dal canale e offrono tipo.
+1. Selezionare la scheda **Summary** (Riepilogo).
+2. In **Start Date** (Data inizio) immettere la data di inizio del periodo di tempo desiderato e quindi fare clic su **Apply** (Applica). Vengono visualizzati tre mesi di dati.
+3. Qui vengono visualizzati i dati di tendenza dei nuovi ordini per il periodo di tre mesi selezionato.
+4. Qui vengono visualizzati i nuovi ordini per il periodo di tempo selezionato in base al canale o al tipo di offerta.
 5. Selezionare una visualizzazione in questo pannello. È possibile scegliere tra **Top 5 Market** (Primi 5 mercati), **Top 5 Performing Offers** (Prime 5 offerte per prestazioni) o **Top 5 Customers** (Primi 5 clienti).
-6. Tendenza di pagamento per periodo di tempo selezionato hello è illustrato di seguito per le offerte a pagamento. In caso di offerte solo BYOL o di proprietà, questo pannello non viene visualizzato.
+6. Qui vengono visualizzate le tendenze relative ai proventi per il periodo di tempo selezionato per le offerte a pagamento. In caso di offerte solo BYOL o di proprietà, questo pannello non viene visualizzato.
 
     ![Visualizzazione riepilogo][7]
 
 ## <a name="orders-and-usage"></a>Ordini e uso
 ### <a name="overview"></a>Panoramica
 
-In *pannello A*, è possibile selezionare hello **ordini e utilizzo** scheda.  Da qui è possibile selezionare **ordini** o **utilizzo** da **tipo Report**e quindi utilizzare hello cursori tooselect hello dati di interesse.
+Nel *pannello A* è possibile selezionare la scheda **Orders and Usage** (Ordini e uso).  Nella scheda è possibile selezionare **Orders** (Ordini) o **Usage** (Uso) in **Report Type** (Tipo di report) e quindi usare i dispositivi di scorrimento per selezionare i dati di interesse.
 
-Nel *pannello B* è possibile selezionare i dati mensili. Selezionare **ordini** o **utilizzo** a seconda della selezione in **tipo Report** nel Pannello di A.  dati Hello visualizzato riflettono date hello che immesso e filtri hello applicati tramite i cursori hello nel Pannello di A.
+Nel *pannello B* è possibile selezionare i dati mensili. Selezionare **Orders** (Ordini) o **Usage** (Uso) a seconda dell'opzione selezionata in **Report Type** (Tipo di report) nel pannello A. I dati visualizzati corrispondono alle date immesse e ai filtri applicati usando i dispositivi di scorrimento nel pannello A.
 
-Nel *pannello C* è possibile selezionare i dati sulle tendenze di tre mesi. Selezionare **ordini** o **utilizzo** a seconda della selezione in **tipo Report** nel Pannello di A.  dati Hello visualizzato riflettono date hello che immesso e hello i filtri applicati tramite i cursori hello nel Pannello di A.
+Nel *pannello C* è possibile selezionare i dati sulle tendenze di tre mesi. Selezionare **Orders** (Ordini) o **Usage** (Uso) a seconda dell'opzione selezionata in **Report Type** (Tipo di report) nel pannello A. I dati visualizzati corrispondono alle date immesse e ai filtri applicati usando i dispositivi di scorrimento nel pannello A.
 
-In *D pannello*, hello i dati di sottoscrizione per ogni utente sono elencati.  I dati possono essere scaricati da questo pannello in formato Excel o CSV.
+Nel *pannello D* sono elencati i dati di sottoscrizione per ogni utente.  I dati possono essere scaricati da questo pannello in formato Excel o CSV.
 
 ![Panoramica degli ordini][8]
 ![Mappa panoramica degli ordini][9]
@@ -124,10 +124,10 @@ In *D pannello*, hello i dati di sottoscrizione per ogni utente sono elencati.  
 
 ![Mappa del pannello A][10]
 
-  1. Seleziona hello **ordini e utilizzo** scheda da hello riga superiore tooaccess i dati di utilizzo e di ordini.
+  1. Selezionare la scheda **Orders and usage** (Ordini e uso) sulla riga superiore per accedere ai dati su ordini e utilizzo.
   2. Selezionare **Orders** (Ordini) in **Report Type** (Tipo di report).
-  3. Utilizzare hello filtro simbolo tooshow o nascondere le opzioni di filtro dei dati hello.  Utilizzare questi dati di hello toofilter di filtri dei dati che si desidera tooview da **il tipo di licenza di Azure**, **il tipo di licenza di Marketplace**, **mercato**, **offrono tipo**, e **anteprima** stato.  Vedere hello **Guida** scheda per le definizioni di questi termini.
-  4. Selezionare una data di inizio hello si è interessati e quindi fare clic su **passare**.
+  3. Usare l'icona di filtro per visualizzare o nascondere le opzioni del filtro dei dati.  Usare questi filtri dei dati per filtrare i dati da visualizzare per stato **Azure License Type** (Tipo di licenza di Azure), **Marketplace License Type** (Tipo di licenza Marketplace), **Market** (Mercato), **Offer Type** (Tipo di offerta) e stato **Preview** (Anteprima).  Per le definizioni di questi termini, vedere la scheda **Help** (Guida).
+  4. Selezionare la data di inizio desiderata e quindi fare clic su **Go** (Vai).
 
   ![Visualizzazione mensile degli ordini - Pannello A][14]
 
@@ -137,7 +137,7 @@ In *D pannello*, hello i dati di sottoscrizione per ogni utente sono elencati.  
 
   1. Selezionare **Monthly View** (Visualizzazione mensile).
   2. I dettagli di riepilogo degli ordini vengono visualizzati per canale: CSP, Enterprise diretto, Enterprise indiretto e accesso Web diretto.
-  3. Per hello **visualizzazione mensile**, hello **dettagli di riepilogo ordini** pannello fornisce hello visualizzazioni grafico seguente:
+  3. Per **Monthly View** (Visualizzazione mensile), il pannello **Orders Summary Details** (Dettagli di riepilogo ordini) offre le visualizzazioni grafico seguenti:
 
 * Orders By Market (Top 10) (Ordini per mercato (primi 10))
 * Orders By Offer Title (Top 10) (Ordini per titolo di offerta (primi 10))
@@ -152,16 +152,16 @@ In *D pannello*, hello i dati di sottoscrizione per ogni utente sono elencati.  
   ![Mappa del pannello C][12]
 
   1. Selezionare **Trend View** (Visualizzazione tendenze).
-  2. Selezionare elementi hello da tooview da hello **Area di interesse** elenco e quindi fare clic su **applica**. valore predefinito di Hello è **Seleziona tutto**.
+  2. Selezionare gli elementi da visualizzare nell'elenco **Subject Area** (Area di interesse) e quindi fare clic su **Apply** (Applica). L'impostazione predefinita è **Select All** (Seleziona tutto).
 
   ![Visualizzazione mensile degli ordini nel pannello C, elenco a discesa Subject Area (Area di interesse)][17]
 
-  3. Utilizzare hello filtro simbolo tooselect **tutti** dati o **primi 10** per tutte le selezioni. valore predefinito di Hello è **primi 10**.
+  3. Usare l'icona di filtro per selezionare **All** (Tutti) o **Top 10** (Primi 10) per tutte le selezioni. L'impostazione predefinita è **Top 10** (Primi 10).
 
   ![Visualizzazione mensile degli ordini - Pannello C, icona di filtro][18]
 
-  4. Grafici a barre punto tooeach in hello è selezionata hello tooreveal dati sottostanti.
-  5. Hello utilizzare  **+**  modalità tooa tooswitch di simboli in cui i dati di hello sotto i grafici di hello selezionata viene visualizzato.
+  4. Posizionare il puntatore del mouse su ogni barra nei grafici selezionati per visualizzare i dati sottostanti.
+  5. Usare il simbolo **+** per passare a una modalità in cui vengono visualizzati i dati sotto i grafici selezionati.
 
   ![Visualizzazione delle tendenze degli ordini - Pannello C][16]
 
@@ -171,13 +171,13 @@ In *D pannello*, hello i dati di sottoscrizione per ogni utente sono elencati.  
 
   ![Mappa del pannello D][13]
 
-  1. Hello **Order Detail** pannello sono disponibili dati dettagliati degli ordini.
-  2. Utilizzare i filtri di hello nella parte superiore di hello ogni dati della colonna toofilter hello utilizzando un intervallo di valori e i comandi.
+  1. Il pannello **Order Detail** (Dettagli ordine) mostra i dati dettagliati dell'ordine.
+  2. Usare i filtri nella parte superiore di ogni colonna per filtrare i dati tramite un'ampia gamma di comandi e valori.
 
   ![Visualizzazione mensile degli ordini - Filtri del pannello D][20]
 
-  3. Selezionare il numero di hello di elementi per pagina che si desidera tooview. È possibile visualizzare 10, 20 o 50 elementi per pagina.
-  4. Scaricare i dati in formato Excel o CSV per l'analisi offline hello.
+  3. Selezionare il numero di elementi per pagina da visualizzare. È possibile visualizzare 10, 20 o 50 elementi per pagina.
+  4. Scaricare i dati in formato Excel o CSV per l'analisi offline.
 
   ![Visualizzazione dettagliata degli ordini del pannello D][19]
 
@@ -188,10 +188,10 @@ In *D pannello*, hello i dati di sottoscrizione per ogni utente sono elencati.  
   ![Mappa del pannello A][10]
 
 
-  1. tooaccess gli ordini e i dati di utilizzo, seleziona hello **ordini e utilizzo** scheda.
+  1. Selezionare la scheda **Orders and usage** (Ordini e uso) per accedere ai dati su ordini e utilizzo.
   2. Selezionare **Usage** (Uso) in **Report Type** (Tipo di report).
-  3. Utilizzare hello filtro simbolo tooshow o nascondere le opzioni di filtro dei dati hello.  Utilizzare questi dati di hello toofilter di filtri dei dati che si desidera tooview da **il tipo di licenza di Azure**, **il tipo di licenza di Marketplace**, **mercato**, **offrono tipo**, **Anteprima** , stato e **tipo di utilizzo**.  Vedere hello **Guida** scheda per le definizioni di questi termini.
-  4. Selezionare una data di inizio hello si è interessati e quindi fare clic su **passare**.
+  3. Usare l'icona di filtro per visualizzare o nascondere le opzioni del filtro dei dati.  Usare questi filtri dei dati per filtrare i dati da visualizzare per **Azure License Type** (Tipo di licenza di Azure), **Marketplace License Type** (Tipo di licenza Marketplace), **Market** (Mercato), **Offer Type** (Tipo di offerta), stato **Preview** (Anteprima) e **Usage Type** (Tipo di uso).  Per le definizioni di questi termini, vedere la scheda **Help** (Guida).
+  4. Selezionare la data di inizio desiderata e quindi fare clic su **Go** (Vai).
 
   ![Visualizzazione dell'utilizzo mensile - Pannello A][21]
 
@@ -201,7 +201,7 @@ In *D pannello*, hello i dati di sottoscrizione per ogni utente sono elencati.  
 
   1. Selezionare **Monthly View** (Visualizzazione mensile).
   2. Vengono visualizzati i dettagli di riepilogo sull'utilizzo, espressi in ore.
-  3. Per hello **visualizzazione mensile**, hello **dettagli di riepilogo ordini** pannello fornisce hello visualizzazioni grafico seguente:
+  3. Per **Monthly View** (Visualizzazione mensile), il pannello **Orders Summary Details** (Dettagli di riepilogo ordini) offre le visualizzazioni grafico seguenti:
 
 * Orders By Market (Top 10) (Ordini per mercato (primi 10))
 * Orders By Offer Title (Top 10) (Ordini per titolo di offerta (primi 10))
@@ -210,7 +210,7 @@ In *D pannello*, hello i dati di sottoscrizione per ogni utente sono elencati.  
 
 
 >[!NOTE]
->i filtri dei dati Hello nel pannello sono utilizzati toofilter hello i dati visualizzati nel pannello b Ad esempio, grafici hello sono impostati per **utilizzo normalizzato**.
+>I filtri dei dati nel pannello A vengono usati per filtrare i dati visualizzati nel pannello B. Ad esempio, i grafici sono configurati per **Normalized Usage** (Uso normalizzato).
 
 ![Visualizzazione mensile dell'utilizzo - Pannello B][22]
 
@@ -219,17 +219,17 @@ In *D pannello*, hello i dati di sottoscrizione per ogni utente sono elencati.  
   ![Mappa del pannello C][12]
 
   1. Selezionare **Trend View** (Visualizzazione tendenze).
-  2. Selezionare gli elementi di hello che si desidera tooview da hello **Area di interesse** elenco e quindi fare clic su **applica**. valore predefinito di Hello è **Seleziona tutto**.
+  2. Selezionare gli elementi che si vuole visualizzare nell'elenco **Subject Area** (Area di interesse) e quindi fare clic su **Apply** (Applica). L'impostazione predefinita è **Select All** (Seleziona tutto).
 
 
   ![Visualizzazione mensile dell'utilizzo - Pannello C, elenco Subject Area (Area di interesse)][17]
 
-  3. Utilizzare hello filtro simbolo tooselect **tutti** dati o **primi 10** per tutte le selezioni. valore predefinito di Hello è **primi 10**.
+  3. Usare l'icona di filtro per selezionare **All** (Tutti) o **Top 10** (Primi 10) per tutte le selezioni. L'impostazione predefinita è **Top 10** (Primi 10).
 
   ![Visualizzazione mensile dell'utilizzo - Pannello C, icona di filtro][18]
 
-  4. Barra tooeach punto nei grafici hello che è stata selezionata hello tooreveal dati sottostanti.
-  5. Hello utilizzare  **+**  tooshow dati sotto i grafici di hello che è stata selezionata tooview dei simboli.
+  4. Posizionare il puntatore del mouse su ogni barra nei grafici selezionati per visualizzare i dati sottostanti.
+  5. Usare il simbolo **+** per mostrare i dati sotto ognuno dei grafici selezionati per la visualizzazione.
 
   ![Visualizzazione delle tendenze di utilizzo - Pannello C][23]
 
@@ -239,13 +239,13 @@ In *D pannello*, hello i dati di sottoscrizione per ogni utente sono elencati.  
 
   ![Mappa del pannello D][13]
 
-  1. Hello **dettaglio utilizzo** pannello sono disponibili dati dettagliati degli ordini.
-  2. Utilizzare i filtri di hello nella parte superiore di hello ogni dati della colonna toofilter hello utilizzando diversi comandi e i valori.
+  1. Il pannello **Usage Detail** (Dettagli uso) mostra i dati dettagliati dell'ordine.
+  2. Usare i filtri nella parte superiore di ogni colonna per filtrare i dati usando diversi comandi e valori.
 
   ![Visualizzazione mensile dell'utilizzo - Filtri del pannello D][20]
 
-  3. Selezionare il numero di hello di elementi per pagina che si desidera tooview. È possibile visualizzare 10, 20 o 50 elementi per pagina.
-  4. Scaricare i dati in formato Excel o CSV per l'analisi offline hello.
+  3. Selezionare il numero di elementi per pagina da visualizzare. È possibile visualizzare 10, 20 o 50 elementi per pagina.
+  4. Scaricare i dati in formato Excel o CSV per l'analisi offline.
 
 
   ![Visualizzazione mensile dell'utilizzo - Pannello D][24]
@@ -253,117 +253,117 @@ In *D pannello*, hello i dati di sottoscrizione per ogni utente sono elencati.  
 
 ### <a name="accessing-detailed-customer-data"></a>Accesso ai dati dettagliati dei clienti
 
-  1. Da hello **Order Detail** pannello, fare clic su ID di sottoscrizione di Azure hello che si è interessati.  È possibile scegliere solo hello non - BYOL Marketplace licenza di tipo ID. Gli ID sottoscrizione BYOL sono esclusi per motivi di sicurezza.
+  1. Nel pannello **Order Detail** (Dettagli ordine) fare clic sull'ID sottoscrizione di Azure desiderato.  È possibile fare clic solo sugli ID del tipo di licenza del Marketplace non BYOL. Gli ID sottoscrizione BYOL sono esclusi per motivi di sicurezza.
 
   ![Pannello dei dati del cliente su ordini e utilizzo][26]
 
-  2. Si è reindirizzato toohello **dati dettagliati clienti** pannello. dati Hello per cliente hello vengono recuperati.
-  3. È possibile scaricare i dati di hello in formato Excel o CSV.
+  2. Viene visualizzato il pannello **Customers Detailed Data** (Dati dettagliati clienti). Vengono recuperati i dati per il cliente.
+  3. È possibile scaricare i dati in formato Excel o CSV.
 
   ![Pannello dei dati del cliente su ordini e utilizzo][27]
 
 ### <a name="customer-data"></a>Dati del cliente
 
-  1. Seleziona hello **cliente** scheda.
-  2. Utilizzare hello sezionamenti toofilter hello dati che si desidera tooview da **il tipo di licenza di Azure** o **il tipo di licenza di Marketplace**.
-  3. Seleziona hello **data di inizio** e **data di fine** per hello periodo di tempo di interesse.
+  1. Selezionare la scheda **Customer** (Cliente).
+  2. Usare i filtri dei dati per filtrare i dati da visualizzare per **Azure License Type** (Tipo di licenza di Azure) e **Marketplace License Type** (Tipo di licenza Marketplace).
+  3. Selezionare le date di inizio e di fine per il periodo di tempo desiderato in **Start Date** (Data inizio) e **End Date** (Data fine).
   4. Verranno visualizzati i dettagli di riepilogo del cliente per **Marketplace License Type** (Tipo di licenza Marketplace).
-  5. Utilizzare i filtri di hello nella parte superiore di hello ogni dati della colonna toofilter hello utilizzando diversi comandi e i valori.
-  6. Scaricare i dati hello in formato Excel o CSV.
+  5. Usare i filtri nella parte superiore di ogni colonna per filtrare i dati usando diversi comandi e valori.
+  6. Scaricare i dati in formato Excel o CSV.
 
   ![Pannello dati del cliente][28]
 
 
 ## <a name="user-management"></a>Gestione utente
 
-attività Hello in questa sezione sono riservate agli amministratori. Utilizzare i seguenti utenti tooadd procedure hello, modificare le autorizzazioni o eliminare utenti dal portale di Insights venditore hello.
+Le attività indicate in questa sezione sono riservate agli amministratori. Seguire queste procedure per aggiungere utenti, modificare le autorizzazioni o eliminare utenti dal portale delle informazioni dettagliate del venditore.
 
 
 ### <a name="add-user"></a>Add user
 
-In questa sezione illustra come tooadd nuovi utenti o modificare le autorizzazioni nel portale di Insights di venditore hello.
+Questa sezione illustra come aggiungere nuovi utenti o modificare le autorizzazioni nel portale delle informazioni dettagliate del venditore.
 
 
-1. Seleziona hello **Gestione utenti** scheda.
-2. Selezionare un utente, tooadd **Aggiungi utente**.
-3. Immettere l'indirizzo di posta elettronica hello è associato il proprio account Microsoft o account aziendale o dell'istituto di istruzione. Fare quindi clic su **Continue** (Continua).
-4. Come amministratore, è possibile assegnare toousers di accesso ai report di sola lettura.
-5. Immettere i dettagli dell'utente, hello **nome**, **cognome**, e **posta elettronica**, quindi fare clic su **continua**.
-6. Selezionare le autorizzazioni di hello che desidera tooallocate toohello utente e quindi fare clic su **continua**.
-7. Verificare hello informazioni immesse siano corrette e quindi fare clic su **salvare** toocontinue.  L'utente è stato aggiunto correttamente.
+1. Selezionare la scheda **User Management** (Gestione utenti).
+2. Per aggiungere un utente, selezionare **Add User** (Aggiungi utente).
+3. Immettere l'indirizzo e-mail associato all'account Microsoft oppure all'account aziendale o dell'istituto di istruzione. Fare quindi clic su **Continue** (Continua).
+4. In qualità di amministratore, è possibile assegnare agli utenti l'accesso in sola lettura ai report.
+5. Immettere i dettagli dell'utente in **First Name** (Nome), **Last Name** (Cognome) e **Email** (Posta elettronica) e quindi fare clic su **Continue** (Continua).
+6. Selezionare le autorizzazioni da assegnare all'utente e quindi fare clic su **Continue** (Continua).
+7. Controllare che le informazioni immesse siano corrette e quindi fare clic su **Salva** per continuare.  L'utente è stato aggiunto correttamente.
 
   ![Pannello per l'aggiunta di un utente][29]
 
 
 ### <a name="edit-user"></a>Modificare l'utente
 
-1. Seleziona hello **Gestione utenti** scheda e quindi selezionare **Modifica utenti**.
-2. Trova utente hello le autorizzazioni di cui si desidera toomodify.  È anche possibile aggiungere nuovi utenti. Fare clic su **Aggiungi utenti**.
-3. Fare clic su autorizzazioni hello da tooremove per utente hello.  È anche possibile eliminare un utente. Fare clic su **Delete User** (Elimina utente).
-4. Fare clic su **salvare** toocontinue.  Hai modificato hello le autorizzazioni utente.
+1. Selezionare la scheda **User Management** (Gestione utenti) e quindi fare clic su **Edit Users** (Modifica utenti).
+2. Trovare l'utente di cui si vogliono modificare le autorizzazioni.  È anche possibile aggiungere nuovi utenti. Fare clic su **Aggiungi utenti**.
+3. Fare clic sulle autorizzazioni da rimuovere per l'utente.  È anche possibile eliminare un utente. Fare clic su **Delete User** (Elimina utente).
+4. Fare clic su **Save** (Salva) per continuare.  Le autorizzazioni dell'utente sono state modificate correttamente.
 
   ![Pannello per la modifica di un utente][30]
 
 ## <a name="help-support-requests"></a>Richieste di supporto
 
 
-### <a name="access-hello-support-request-format"></a>Formato della richiesta di accesso hello supporto
+### <a name="access-the-support-request-format"></a>Accedere al modulo di richiesta di supporto
 
-1. Seleziona hello **Guida** scheda.
+1. Selezionare la scheda **Help** (Guida).
 2. Selezionare **Support & Documentation** (Supporto e documentazione) e quindi **Start Request** (Avvia richiesta).
-3. È inoltre possibile inviare una richiesta di supporto da hello **Contattaci** collegamento. Questo collegamento viene visualizzato nella parte inferiore di hello di ogni pagina in un'applicazione hello.
+3. È anche possibile inviare una richiesta di supporto facendo clic sul collegamento **Contact Us** (Contatti). Il collegamento viene visualizzato nella parte inferiore di ogni pagina dell'applicazione.
 4. Viene visualizzata una nuova scheda in cui è possibile inviare una richiesta di supporto.
 
-  ![Modulo di supporto hello Access][31]
+  ![Accedere al modulo di supporto][31]
 
 ### <a name="review-helpful-information"></a>Esaminare le informazioni utili
 
-1. toosubmit una richiesta di supporto che è tooyour correlati di report, selezionare **report e approfondimenti** da **tipo di problema**.
-2. Selezionare una categoria.  opzioni di Hello sono **domande riguardo tooreports** e **altri**.
-3. Vengono visualizzati alcuni collegamenti utili, che può fornire un tooyour risposta alla query.  È necessario consultarli prima di inviare la richiesta di supporto.
-4. Se è ancora necessario toosubmit una richiesta di supporto, selezionare **richiesta avviare**.
+1. Per inviare una richiesta di supporto relativa ai report, selezionare **Reports and Insights** (Report e approfondimenti) in **Problem type** (Tipo di problema).
+2. Selezionare una categoria.  Le opzioni disponibili sono **Questions related to reports** (Domande relative ai report) e **Other** (Altro).
+3. Vengono visualizzati alcuni collegamenti utili che possono offrire una risposta alla domanda.  È necessario consultarli prima di inviare la richiesta di supporto.
+4. Se è comunque necessario inviare una richiesta di supporto, selezionare **Start Request** (Avvia richiesta).
 
   ![Pannello per la modifica di un utente][32]
 
 
-### <a name="enter-information-and-submit-hello-request"></a>Immettere le informazioni e inviare la richiesta di hello
+### <a name="enter-information-and-submit-the-request"></a>Immettere le informazioni e inviare la richiesta
 
 1. Immettere le informazioni di contatto, il fuso orario, l'area geografica e le preferenze relative alla lingua e quindi selezionare **Continue** (Continua).
 2. Assegnare un titolo all'evento imprevisto e specificare quante più informazioni possibili.  È anche possibile caricare file di supporto come uno screenshot e quindi selezionare **Submit** (Invia).
 3. Si riceverà un messaggio di conferma che indica che la richiesta di supporto è stata inviata correttamente.
-4. È possibile controllare lo stato di hello della richiesta di supporto in qualsiasi momento.
+4. È possibile verificare lo stato della richiesta di supporto in qualsiasi momento.
 
-  ![Modulo di supporto hello Access][33]
+  ![Accedere al modulo di supporto][33]
 
 
 ## <a name="reset-a-password"></a>Reimpostare una password
 
 **Convalida dell'account e della password**
 
-1. *Verificare che l'account hello in uso sia registrato e hello password non funziona.* Se si immette un account che viene registrato in Azure Active Directory, viene automaticamente richiesto toochoose come toosign account hello. Si usa un account aziendale o dell'istituto di istruzione oppure un account Microsoft personale.
-2. Andare troppo[https://reports.azure.com](https://reports.azure.com) ed effettuato la disconnessione di tutti gli account che è possibile eseguire l'accesso con. È possibile aprirlo anche all'interno di un tooensure finestra privata, che nessun altro account hanno eseguito l'accesso.
-3. Immettere l'indirizzo di posta elettronica del server di pubblicazione di hello, ma non di immettere una password. Se è registrata in Azure Active Directory, si verrà reindirizzati toostep 4.
+1. *Verificare che l'account in uso sia registrato e che la password funzioni.* Se si immette un account registrato in Azure Active Directory, viene automaticamente chiesto di scegliere l'account con cui accedere. Si usa un account aziendale o dell'istituto di istruzione oppure un account Microsoft personale.
+2. Passare a [https://reports.azure.com](https://reports.azure.com) e disconnettersi da qualsiasi account usato per effettuare l'accesso. È anche possibile aprire la pagina in una finestra privata per assicurarsi che non siano connessi altri account.
+3. Immettere l'indirizzo e-mail del server di pubblicazione senza specificare una password. Se è registrato in Azure Active Directory, si verrà reindirizzati al passaggio 4.
 
     >[!NOTE]
-    >Gli account amministratore sono registrati. Vengono registrati anche gli account aziendali o dell'istituto di istruzione impostati dall'account di amministratore hello.
+    >Gli account amministratore sono registrati. Anche gli account aziendali o dell'istituto di istruzione configurati dall'account amministratore sono registrati.
 
 4. Scegliere **Account aziendale o dell'istituto di istruzione**. Gli account aziendali o dell'istituto di istruzione vengono configurati da società registrate in Azure. 
 
     >[!NOTE]
-    >Un utente può configurare un account Microsoft usando il proprio indirizzo e-mail aziendale. In questo scenario, hello organizzazione successive onboards tooAzure e hello stesso indirizzo di posta elettronica viene registrato come un account aziendale o dell'istituto di istruzione. L'utente può avere un account Microsoft con hello stessa password utilizzati hello toocreate di lavoro o scuola account. nonché un account aziendale o dell'istituto di istruzione con una password separata usata dall'organizzazione.
+    >Un utente può configurare un account Microsoft usando il proprio indirizzo e-mail aziendale. In questo scenario, l'azienda esegue successivamente l'onboarding ad Azure e lo stesso indirizzo e-mail viene registrato come account aziendale o dell'istituto di istruzione. L'utente può avere un account Microsoft con la stessa password usata per creare l'account aziendale o dell'istituto di istruzione, nonché un account aziendale o dell'istituto di istruzione con una password separata usata dall'organizzazione.
 
-5. Per il portale di Insights venditore hello, quando si seleziona **di lavoro o scuola account**, assicurarsi di usare il proprio lavoro o la password dell'account dell'istituto di istruzione e non una password dell'account Microsoft.
-6. Un account aziendale o dell'istituto di istruzione, si viene reindirizzati toosign pagina toohello publisher in.
-7. Da qui, convalidare che la password per hello aziendale o dell'istituto di istruzione account works hello. Se non funziona, continuare toohello "Reimposta Password" sezione di questo articolo.
+5. Per il portale delle informazioni dettagliate del venditore, quando si seleziona **Account aziendale o dell'istituto di istruzione** accertarsi di usare la password dell'account aziendale o dell'istituto di istruzione e non la password di un account Microsoft.
+6. Un account aziendale o dell'istituto di istruzione reindirizza l'utente alla pagina del server di pubblicazione per l'accesso.
+7. Da questa pagina verificare il funzionamento della password per l'account aziendale o dell'istituto di istruzione. In caso contrario, passare alla sezione "Reimpostazione della password" di questo articolo.
 
 
 
 **Reimpostazione della password**
 
-Utilizzare hello seguito Microsoft e lavoro o scuola account tooreset la password.
+Usare questi account Microsoft aziendali o dell'istituto di istruzione per reimpostare la password.
 
 >[!NOTE]
->Per gli account aziendali o dell'istituto di istruzione impostati dall'account di amministratore hello, se attivata amministratore hello funzionalità hello consente di reimpostare la propria password, è possibile reimpostare la propria password. In caso contrario, hello reimpostazione della password consente di form hello toocontact opzione l'amministratore.
+>Per gli account aziendali o dell'istituto di istruzione configurati tramite l'account amministratore, se l'amministratore ha attivato la funzionalità che consente di reimpostare la password è possibile reimpostare personalmente la password. In caso contrario, è possibile contattare il proprio amministratore tramite il modulo di reimpostazione della password.
 
 * [Account Microsoft](https://account.live.com/ResetPassword.aspx)
 ![Reimpostazione password account Microsoft][3]
@@ -372,9 +372,9 @@ Utilizzare hello seguito Microsoft e lavoro o scuola account tooreset la passwor
 ![Reimpostazione password account aziendale o dell'istituto di istruzione][4]
 
 
-## <a name="send-feedback-tooimprove-hello-seller-insights-portal"></a>Inviare portale Insights venditore hello tooimprove di commenti e suggerimenti
+## <a name="send-feedback-to-improve-the-seller-insights-portal"></a>Inviare commenti e suggerimenti per migliorare il portale delle informazioni dettagliate del venditore
 
-  È possibile fare clic sull'icona smile hello il feedback tooprovide qualsiasi ora.
+  Per inviare commenti e suggerimenti, è possibile fare clic sull'emoticon in qualsiasi momento.
 
 
   ![Modulo di commenti e suggerimenti][34]

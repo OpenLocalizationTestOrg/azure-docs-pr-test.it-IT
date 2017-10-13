@@ -1,5 +1,5 @@
 ---
-title: in Azure SQL Data Warehouse aaaAuditing | Documenti Microsoft
+title: Servizio di controllo di Azure SQL Data Warehouse | Documentazione Microsoft
 description: Introduzione al servizio di controllo di Azure SQL Data Warehouse
 services: sql-data-warehouse
 documentationcenter: 
@@ -15,11 +15,11 @@ ms.topic: article
 ms.custom: security
 ms.date: 08/21/2017
 ms.author: rortloff;barbkess
-ms.openlocfilehash: 948de74fa052ef206cf1aa65c0d81f084b18cb00
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f851c82ebeaa647f663d499a4d327c3479e36121
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="auditing-in-azure-sql-data-warehouse"></a>Servizio di controllo di Azure SQL Data Warehouse
 > [!div class="op_single_selector"]
@@ -28,9 +28,9 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Il controllo di SQL Data Warehouse consente toorecord eventi nel Registro di controllo tooan database nell'account di archiviazione di Azure. Il controllo consente di agevolare la conformità alle normative, comprendere le attività del database e ottenere informazioni su eventuali discrepanze e anomalie che potrebbero indicare problemi aziendali o sospette violazioni della sicurezza. La funzionalità di controllo di SQL Data Warehouse si integra inoltre con Microsoft Power BI per l'esecuzione di analisi e report drill-down.
+La funzionalità di controllo di SQL Data Warehouse consente di registrare gli eventi nel database in un log di controllo nell'account di archiviazione di Azure. Il controllo consente di agevolare la conformità alle normative, comprendere le attività del database e ottenere informazioni su eventuali discrepanze e anomalie che potrebbero indicare problemi aziendali o sospette violazioni della sicurezza. La funzionalità di controllo di SQL Data Warehouse si integra inoltre con Microsoft Power BI per l'esecuzione di analisi e report drill-down.
 
-Gli strumenti di controllo abilitano e semplificare la conformità toocompliance standard, ma non garantiscono la conformità. Per ulteriori informazioni su Azure programmi tale conformità agli standard di supporto, vedere hello <a href="http://azure.microsoft.com/support/trust-center/compliance/" target="_blank">Azure Trust Center</a>.
+Gli strumenti di controllo abilitano e facilitano il rispetto degli standard di conformità, ma non garantiscono la conformità. Per altre informazioni sui programmi di Azure che supportano la conformità agli standard, vedere il <a href="http://azure.microsoft.com/support/trust-center/compliance/" target="_blank">Centro protezione Azure</a>.
 
 * [Nozioni di base sul controllo del database]
 * [Configurare il controllo per il database]
@@ -39,15 +39,15 @@ Gli strumenti di controllo abilitano e semplificare la conformità toocompliance
 ## <a id="subheading-1"></a>Nozioni di base sul controllo del database di SQL Data Warehouse
 Il controllo del database SQL Data Warehouse consente di:
 
-* **Conservare** un audit trail di eventi selezionati. È possibile definire le categorie di database azioni toobe controllato.
-* **Creare report** sulle attività del database. È possibile utilizzare i report preconfigurati e tooget un dashboard iniziare rapidamente con attività e la notifica degli eventi.
+* **Conservare** un audit trail di eventi selezionati. È possibile definire categorie di azioni di database da controllare.
+* **Creare report** sulle attività del database. È possibile usare i report preconfigurati e un dashboard per iniziare rapidamente a usare l’attività e la segnalazione di eventi.
 * **Analizzare** i report. È possibile individuare eventi sospetti, attività insolite e tendenze.
 
-È possibile configurare il controllo per hello seguenti categorie di eventi:
+È possibile configurare il controllo per le seguenti categorie di eventi:
 
-**Normale SQL** e **SQL con parametri** per cui hello i log di controllo raccolti sono classificati come  
+**SQL normale** e **SQL con parametri** per cui i log di controllo raccolti sono classificati come  
 
-* **Accesso toodata**
+* **Accesso ai dati**
 * **Modifiche dello schema (DDL)**
 * **Modifiche dei dati (DML)**
 * **Account, ruoli e autorizzazioni (DCL)**
@@ -55,51 +55,51 @@ Il controllo del database SQL Data Warehouse consente di:
 
 Per ogni categoria di eventi, il controllo delle operazioni **riuscite** e **non riuscite** viene configurato separatamente.
 
-Per ulteriori informazioni sulle attività di hello e gli eventi controllati, vedere hello <a href="http://go.microsoft.com/fwlink/?LinkId=506733" target="_blank">riferimento di formato di Log di controllo (download di file doc)</a>.
+Per altre informazioni sulle attività e sugli eventi controllati, vedere il <a href="http://go.microsoft.com/fwlink/?LinkId=506733" target="_blank">documento di riferimento sul formato dei log di controllo (download di file DOC)</a>.
 
 I log di controllo vengono archiviati nell'account di archiviazione di Azure. È possibile definire un periodo di conservazione del log di controllo.
 
-Un criterio di controllo può essere definito per un database specifico o come criterio server predefinito. Un criterio di controllo del server predefinito si applica tooall database in un server, che non dispongono di un override database controllo definiti criteri specifici.
+Un criterio di controllo può essere definito per un database specifico o come criterio server predefinito. I criteri di controllo del server predefiniti si applicano a tutti i database di un server per i quali non sono definiti specifici criteri di controllo del database che hanno la precedenza.
 
 Prima di impostare il controllo, verificare che si stia usando un [client di livello inferiore](sql-data-warehouse-auditing-downlevel-clients.md).
 
 ## <a id="subheading-2"></a>Configurare il controllo per il database
-1. Avviare hello <a href="https://portal.azure.com" target="_blank">portale di Azure</a>.
-2. Passare toohello **impostazioni** blade di hello desiderato tooaudit SQL Data Warehouse. In hello **impostazioni** pannello seleziona **rilevamento controllo & minaccia**.
+1. Avviare il <a href="https://portal.azure.com" target="_blank">portale di Azure</a>.
+2. Passare al pannello **Impostazioni** dell'istanza di SQL Data Warehouse che si vuole controllare. Nel pannello **Impostazioni** selezionare **Controllo e rilevamento minacce**.
    
     ![][1]
-3. Successivamente, abilitare il controllo, fare clic su hello **ON** pulsante.
+3. Successivamente, abilitare il controllo facendo clic sul pulsante **ON** .
    
     ![][3]
-4. Nel Pannello di configurazione di controllo di hello, selezionare **dettagli archiviazione** Pannello di controllo log archiviazione tooopen hello. Selezionare account di archiviazione di Azure in cui verranno salvati i log hello e hello periodo di memorizzazione. 
+4. Nel pannello di configurazione del controllo selezionare **DETTAGLI ARCHIVIAZIONE** per aprire il pannello Archiviazione dei log di controllo. Selezionare l'account di archiviazione di Azure in cui verranno salvati i log e il periodo di conservazione. 
 >[!TIP]
->Hello utilizzare stesso account di archiviazione per tutti i hello tooget database controllati meglio hello preconfigurato report modelli.
+>Per sfruttare al massimo i modelli di report preconfigurati, usare lo stesso account di archiviazione per tutti i database controllati.
    
     ![][4]
-5. Fare clic su hello **OK** configurazione di pulsante toosave hello archiviazione dei dettagli.
-6. In **registrazione dall'evento**, fare clic su **successo** e **errore** toolog tutti gli eventi, oppure scegliere singole categorie di eventi.
-7. Se si configura servizio di controllo per un database, potrebbe essere una stringa di connessione hello tooalter di tooensure il client controllo dei dati viene acquisito in modo corretto. Controllare hello [modificare nome FDQN di Server nella stringa di connessione hello](sql-data-warehouse-auditing-downlevel-clients.md) argomento per le connessioni client di livello inferiore.
+5. Fare clic sul pulsante **OK** per salvare la configurazione dei dettagli di archiviazione .
+6. In **REGISTRAZIONE PER EVENTO** fare clic su **OPERAZIONE RIUSCITA** e **OPERAZIONE NON RIUSCITA** per registrare tutti gli eventi oppure scegliere singole categorie di eventi.
+7. Se si sta configurando il controllo per un database, è necessario modificare la stringa di connessione del client per garantire che il controllo dei dati venga acquisito correttamente. Controllare l’argomento [Modificare il nome di dominio di Server completo nella stringa di connessione](sql-data-warehouse-auditing-downlevel-clients.md) per le connessioni di client di livello inferiore.
 8. Fare clic su **OK**.
 
 ## <a id="subheading-3"></a>Analizzare i log di controllo e i report
-I log di controllo vengono aggregati in una raccolta di tabelle di archivio con un **SQLDBAuditLogs** prefisso in hello account di archiviazione di Azure si è scelto durante l'installazione. È possibile visualizzare i file di log con uno strumento come <a href="http://azurestorageexplorer.codeplex.com/" target="_blank">Esplora archivi di Azure</a>.
+I log di controllo vengono aggregati in una raccolta di tabelle di archiviazione con il prefisso **SQLDBAuditLogs** nell'account di archiviazione di Azure scelto durante l'installazione. È possibile visualizzare i file di log con uno strumento come <a href="http://azurestorageexplorer.codeplex.com/" target="_blank">Esplora archivi di Azure</a>.
 
-Un modello di report preconfigurati dashboard è disponibile come una <a href="http://go.microsoft.com/fwlink/?LinkId=403540" target="_blank">scaricabile foglio di calcolo Excel</a> toohelp per analizzare rapidamente i dati di log. toouse hello modello sul seguente modello i log di controllo, è necessario in Excel 2013 o versioni successive e Power Query, che è possibile scaricare <a href="http://www.microsoft.com/download/details.aspx?id=39379">qui</a>.
+È possibile scaricare un modello di report dashboard preconfigurato in formato <a href="http://go.microsoft.com/fwlink/?LinkId=403540" target="_blank">foglio di calcolo di Excel</a>, che consente di analizzare rapidamente i dati di log. Per usare il modello nei log di controllo sono necessari Excel 2013 o versione successiva e Power Query, disponibile per il download <a href="http://www.microsoft.com/download/details.aspx?id=39379">qui</a>.
 
-modello Hello contiene dati di esempio fittizio ed è possibile impostare Power Query tooimport il log di controllo direttamente dall'account di archiviazione di Azure.
+Il modello contiene dati di esempio fittizi ed è possibile configurare Power Query per l'importazione diretta del log di controllo dall'account di archiviazione di Azure.
 
 ## <a id="subheading-4"></a>Rigenerazione delle chiavi di archiviazione
-Nell'ambiente di produzione, si è probabilmente toorefresh lo spazio di archiviazione chiavi periodicamente. Durante l'aggiornamento delle chiavi, è necessario criteri hello toosave. il processo di Hello è come segue:
+Durante la produzione è probabile che periodicamente vengano aggiornate le chiavi di archiviazione. Quando si aggiornano le chiavi, è necessario salvare i criteri. Il processo è il seguente:
 
-1. In hello controllo pannello configurazione (descritto in precedenza nel programma di installazione hello controllo sezione) passare hello **chiave di accesso di archiviazione** da *primario* troppo*secondario* e  **SALVARE**.
+1. Nel pannello di configurazione del controllo (descritto in precedenza nella sezione sulla configurazione del controllo) cambiare **Chiave di accesso alle risorse di archiviazione** da *Primaria* a *Secondaria* e fare clic su **SALVA**.
 
    ![][4]
-2. Pannello di configurazione di archiviazione di passare toohello e **rigenerare** hello *chiave di accesso primaria*.
-3. Tornare indietro toohello controllo pannello configurazione hello commutatore **chiave di accesso di archiviazione** da *secondario* troppo*primario* e premere **salvare**.
-4. Tornare indietro archiviazione toohello dell'interfaccia utente e **rigenerare** hello *chiave di accesso secondaria* (per la preparazione di hello chiavi successive ciclo di aggiornamento.
+2. Passare al pannello di configurazione di archiviazione e **rigenerare** la *Chiave di accesso primaria*.
+3. Tornare al pannello di configurazione del controllo, cambiare **Chiave di accesso alle risorse di archiviazione** da *Secondaria* a *Primaria* e fare clic su **SALVA**.
+4. Tornare all'interfaccia utente di archiviazione e **rigenerare** la *Chiave di accesso secondaria* (in preparazione al successivo ciclo di aggiornamento delle chiavi).
 
 ## <a id="subheading-5"></a>Automazione (API REST/PowerShell)
-È inoltre possibile configurare il controllo in Azure SQL Data Warehouse utilizzando i seguenti strumenti di automazione hello:
+È possibile configurare il controllo in Azure SQL Data Warehouse anche con gli strumenti di automazione seguenti:
 
 * **Cmdlet di PowerShell**:
 

@@ -1,6 +1,6 @@
 ---
-title: aaaView e gestire i processi di StorSimple | Documenti Microsoft
-description: "Descrive una pagina di processi del servizio StorSimple Manager hello e come toouse è tootrack recenti, corrente e pianificate i processi di backup."
+title: Consente di visualizzare e gestire i processi di StorSimple | Microsoft Docs
+description: Descrive la pagina relativa ai processi del servizio StorSimple Manager e come utilizzarlo per tenere traccia dei processi di backup recenti, correnti e pianificati.
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,64 +14,64 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 08/17/2016
 ms.author: alkohli
-ms.openlocfilehash: b7341270e37a9f2530a8da1fb7c54f6b699c699c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7d9377bb8f3cb8c587823c2d71d61dfb9b50f52f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-hello-storsimple-manager-service-tooview-and-manage-storsimple-jobs"></a>Utilizzare tooview servizio StorSimple Manager di hello e gestire i processi di StorSimple
+# <a name="use-the-storsimple-manager-service-to-view-and-manage-storsimple-jobs"></a>Utilizzare il servizio StorSimple Manager per visualizzare e gestire i processi di StorSimple.
 [!INCLUDE [storsimple-version-selector-manage-jobs](../../includes/storsimple-version-selector-manage-jobs.md)]
 
 ## <a name="overview"></a>Panoramica
-Hello **processi** pagina fornisce un unico portale centralizzato per la visualizzazione e gestione di processi avviati nei dispositivi connessi servizio StorSimple Manager tooyour. È possibile visualizzare i processi pianificati, in esecuzione, completati e non riusciti per più dispositivi. I risultati vengono presentati in un formato tabulare. 
+La pagina **processi** fornisce un unico portale centralizzato per la visualizzazione e la gestione di processi avviati sui dispositivi connessi al servizio StorSimple Manager. È possibile visualizzare i processi pianificati, in esecuzione, completati e non riusciti per più dispositivi. I risultati vengono presentati in un formato tabulare. 
 
 ![Pagina dei processi](./media/storsimple-manage-jobs/HCS_JobsPage.png)
 
-È possibile trovare rapidamente i processi di hello desiderati applicando filtri ai campi, ad esempio:
+È possibile trovare rapidamente i processi desiderati filtrando i campi, ad esempio:
 
 * **Stato** : i processi possono essere in esecuzione, pianificati, non riusciti, completati, in fase di annullamento o annullati.
 * **Tipo**: i processi possono essere creati come risultato di un backup su richiesta o pianificato (**Esegui backup**), di una clonazione, di un ripristino del dispositivo o di un'operazione di aggiornamento.
-* **Dispositivi** : i processi vengono avviati in un determinato servizio tooyour di dispositivo connesso.
-* **Da e a** : i processi possono essere intervallo di filtrato hello in base a data e ora.
+* **Dispositivi** : i processi vengono avviati in un determinato dispositivo connesso al servizio.
+* **Da e a** : i processi possono essere filtrati in base all'intervallo di data e ora.
 
-Hello processi filtrati possono quindi essere caratterizzati sulla base di hello della hello gli attributi seguenti:
+I processi filtrati vengono quindi elaborati in base ai seguenti attributi:
 
 * **Tipo** : backup, clonazione, ripristino, failover o aggiornamento.
 * **Stato** : in esecuzione, pianificato, non è riuscito, completato, in fase di annullamento o annullato.
-* **Entità** – processi hello possono essere associati a un volume, un criterio di backup o un dispositivo. Un processo di clonazione è associato a un volume, mentre un processo di backup pianificato è associato a un criterio di backup. Viene creato un processo di dispositivo a causa di un ripristino di emergenza (DR) o di un'operazione di ripristino.
-* **Dispositivo** : hello nome di dispositivo hello in cui hello processo è stato avviato.
-* **Avvio** : ora di hello inizio processo hello.
-* **Lo stato di avanzamento** : hello percentuale di completamento di un processo in esecuzione. Per un processo completato deve sempre essere 100%.
+* **Entità** : i processi possono essere associati a un volume, un criterio di backup o un dispositivo. Un processo di clonazione è associato a un volume, mentre un processo di backup pianificato è associato a un criterio di backup. Viene creato un processo di dispositivo a causa di un ripristino di emergenza (DR) o di un'operazione di ripristino.
+* **Dispositivo** : il nome del dispositivo su cui è stato avviato il processo.
+* **Avviato alle** : l'ora di inizio del processo.
+* **Stato di avanzamento** : la percentuale di completamento di un processo in esecuzione. Per un processo completato deve sempre essere 100%.
 
-elenco di Hello dei processi viene aggiornato ogni 30 secondi.
+L'elenco dei processi viene aggiornato ogni 30 secondi.
 
-È possibile eseguire hello seguenti le azioni correlate al processo in questa pagina:
+In questa pagina è possibile eseguire le seguenti azioni relative ai processi:
 
 * Visualizza i dettagli dei processi
 * Annullare un processo
 
 ## <a name="view-job-details"></a>Visualizza i dettagli dei processi
-Eseguire i seguenti passaggi tooview hello dettagli di qualsiasi processo hello.
+Eseguire la procedura seguente per visualizzare i dettagli di qualsiasi processo.
 
-#### <a name="tooview-job-details"></a>dettagli dei processi tooview
-1. In hello **processi** pagina, visualizzare i processi di hello desiderati eseguendo una query con filtri appropriati. È possibile cercare processi completati, in esecuzione o annullati.
+#### <a name="to-view-job-details"></a>Per visualizzare i dettagli dei processi
+1. Nella pagina **Processi** , visualizzare i processi desiderati eseguendo una query con filtri appropriati. È possibile cercare processi completati, in esecuzione o annullati.
 2. Selezionare un processo.
-3. Nella parte inferiore di hello della pagina hello, fare clic su **dettagli**.
-4. In hello **dettagli dei processi di Backup** nella finestra di dialogo è possibile visualizzare lo stato di hello, dettagli, le statistiche temporali e le statistiche sui dati.
+3. Nella parte inferiore della pagina, fare clic su **Dettagli**.
+4. Nella finestra di dialogo **Dettagli dei processi di Backup** è possibile visualizzare la stato, i dettagli, le statistiche temporali e le statistiche sui dati.
 
 ## <a name="cancel-a-job"></a>Annullare un processo
-Eseguire hello seguendo i passaggi toocancel un processo in esecuzione.
+Eseguire la procedura seguente per annullare un processo in esecuzione.
 
-### <a name="toocancel-a-job"></a>toocancel un processo
-1. In hello **processi** pagina, visualizzare i processi in esecuzione di hello che si desidera toocancel eseguendo una query con filtri appropriati.
-2. Selezionare il processo di hello.
-3. Nella parte inferiore di hello della pagina hello, fare clic su **Annulla**.
+### <a name="to-cancel-a-job"></a>Per annullare un processo
+1. Nella pagina **Processi** , visualizzare i processi in esecuzione che si desidera annullare eseguendo una query con filtri appropriati.
+2. Selezionare il processo.
+3. Nella parte inferiore della pagina fare clic su **Annulla**.
 4. Alla richiesta di conferma fare clic su **Sì**.
 
 Questo processo ora viene annullato.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Informazioni su come troppo[gestire i criteri di backup di StorSimple](storsimple-manage-backup-policies.md).
-* Informazioni su come troppo[utilizzare hello tooadminister servizio StorSimple Manager dispositivo StorSimple](storsimple-manager-service-administration.md).
+* Informazioni su come [gestire i criteri di backup di StorSimple](storsimple-manage-backup-policies.md).
+* Informazioni su come [utilizzare il servizio StorSimple Manager per amministrare il dispositivo StorSimple](storsimple-manager-service-administration.md).
 

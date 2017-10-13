@@ -1,6 +1,6 @@
 ---
-title: aaaDeployment operazioni con Azure Resource Manager | Documenti Microsoft
-description: Viene descritto come le operazioni di distribuzione Azure Resource Manager tooview con hello portale, PowerShell, CLI di Azure e API REST.
+title: Operazioni di distribuzione con Azure Resource Manager | Documentazione Microsoft
+description: Questo articolo descrive come visualizzare le operazioni di distribuzione di Azure Resource Manager tramite il portale, PowerShell, l'interfaccia della riga di comando di Azure e l'API REST.
 services: azure-resource-manager,virtual-machines
 documentationcenter: 
 tags: top-support-issue
@@ -15,65 +15,65 @@ ms.tgt_pltfrm: vm-multiple
 ms.workload: infrastructure
 ms.date: 01/13/2017
 ms.author: tomfitz
-ms.openlocfilehash: ba4823ca73caca83dfc07c99d736344ef8b7b54d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: fb6b3b357fd1f66184e480115a9c863ba31ac193
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="view-deployment-operations-with-azure-resource-manager"></a>Visualizzare le operazioni di distribuzione con Azure Resource Manager
 
 
-È possibile visualizzare le operazioni di hello per una distribuzione tramite il portale di Azure hello. Potrebbe essere più interessati a visualizzare operazioni hello quando si riceve un errore durante la distribuzione in modo da questo articolo è incentrato sulle operazioni che non sono stato di visualizzazione. portale Hello fornisce un'interfaccia che consente gli errori di tooeasily trova hello e determinare potenziali correzioni.
+È possibile visualizzare le operazioni per una distribuzione tramite il portale di Azure. È possibile che si sia più interessati a visualizzare le operazioni quando si riceve un errore durante la distribuzione, quindi questo articolo è incentrato sulla visualizzazione delle operazioni non riuscite. Il portale offre un'interfaccia che consente di individuare facilmente gli errori e determinare le potenziali correzioni.
 
 [!INCLUDE [resource-manager-troubleshoot-introduction](../../includes/resource-manager-troubleshoot-introduction.md)]
 
 ## <a name="portal"></a>di Microsoft Azure
-operazioni di distribuzione hello toosee, utilizzare hello alla procedura seguente:
+Per visualizzare le operazioni di distribuzione, attenersi alla procedura seguente:
 
-1. Per gruppo di risorse hello coinvolto nella distribuzione di hello, notare stato hello dell'ultima distribuzione hello. È possibile selezionare questo tooget stato ulteriori dettagli.
+1. Per il gruppo di risorse coinvolte nella distribuzione, si noti lo stato dell'ultima distribuzione. È possibile selezionare questo stato per ottenere altri dettagli.
    
     ![Stato della distribuzione](./media/resource-manager-deployment-operations/deployment-status.png)
-2. Vedrai cronologia distribuzione hello. Selezionare la distribuzione di hello che non è riuscita.
+2. Viene visualizzata la cronologia di distribuzione recente. Selezionare la distribuzione non riuscita.
    
     ![Stato della distribuzione](./media/resource-manager-deployment-operations/select-deployment.png)
-3. Selezionare toosee collegamento hello una descrizione del motivo hello distribuzione non riuscita. Nella seguente figura hello record DNS hello non è univoco.  
+3. Selezionare il collegamento per visualizzare una descrizione del motivo per cui la distribuzione non è riuscita. Nell'immagine seguente il record DNS non è univoco.  
    
     ![visualizzare la distribuzione non riuscita](./media/resource-manager-deployment-operations/view-error.png)
    
-    Questo messaggio di errore dovrebbe essere sufficiente per la risoluzione dei problemi toobegin. Tuttavia, se sono necessarie ulteriori informazioni sulle attività siano state completate, è possibile visualizzare le operazioni di hello come illustrato nell'hello alla procedura seguente.
-4. È possibile visualizzare tutte le operazioni di distribuzione hello in hello **distribuzione** blade. Selezionare qualsiasi toosee operazione ulteriori dettagli.
+    Questo messaggio di errore dovrebbe essere sufficiente per iniziare la risoluzione dei problemi. Tuttavia, se sono necessari altri dettagli sulle attività completate, è possibile visualizzare le operazioni, come illustrato nei passaggi seguenti.
+4. È possibile visualizzare tutte le operazioni di distribuzione nel pannello **Distribuzione** . Selezionare un'operazione per visualizzare altri dettagli.
    
     ![visualizzare operazioni](./media/resource-manager-deployment-operations/view-operations.png)
    
-    In questo caso, vedrai che hello account di archiviazione, rete virtuale e set di disponibilità sono stati creati. indirizzo IP pubblico Hello non è riuscita e non si è tentate di altre risorse.
-5. È possibile visualizzare gli eventi per la distribuzione di hello selezionando **eventi**.
+    In questo caso, si noterà che l'account di archiviazione, la rete virtuale e il set di disponibilità sono stati creati correttamente. L'indirizzo IP pubblico non è riuscito e non si sono state tentate altre risorse.
+5. È possibile visualizzare gli eventi relativi alla distribuzione selezionando **venti**.
    
     ![visualizzare eventi](./media/resource-manager-deployment-operations/view-events.png)
-6. Visualizzare tutti gli eventi di hello per la distribuzione di hello e selezionare uno per altri dettagli. Si noti troppo hello ID di correlazione. Questo valore può essere utile quando si lavora con il supporto tecnico tootroubleshoot una distribuzione.
+6. Visualizzare tutti gli eventi per la distribuzione e selezionarne una per altri dettagli. Si notino anche gli ID di correlazione. Questo valore può essere utile quando si interagisce con il supporto tecnico per risolvere i problemi relativi a una distribuzione.
    
     ![vedere eventi](./media/resource-manager-deployment-operations/see-all-events.png)
 
 ## <a name="powershell"></a>PowerShell
-1. tooget hello stato generale di una distribuzione, utilizzare hello **Get AzureRmResourceGroupDeployment** comando. 
+1. Per ottenere lo stato complessivo di una distribuzione, usare il comando **Get-AzureRmResourceGroupDeployment** . 
 
   ```powershell
   Get-AzureRmResourceGroupDeployment -ResourceGroupName ExampleGroup
   ```
 
-   In alternativa, è possibile filtrare i risultati hello solo le distribuzioni non riuscite.
+   In alternativa, è possibile filtrare i risultati per visualizzare solo le distribuzioni con esito negativo.
 
   ```powershell
   Get-AzureRmResourceGroupDeployment -ResourceGroupName ExampleGroup | Where-Object ProvisioningState -eq Failed
   ```
    
-2. Ogni distribuzione include più operazioni, Ogni operazione rappresenta un passaggio nel processo di distribuzione hello. toodiscover che cos'è verificato un errore con una distribuzione, è necessario in genere toosee dettagli sulle operazioni di distribuzione hello. È possibile visualizzare lo stato di hello delle operazioni di hello con **Get AzureRmResourceGroupDeploymentOperation**.
+2. Ogni distribuzione include più operazioni, ognuna delle quali rappresenta un passaggio del processo di distribuzione. Per individuare eventuali problemi, solitamente è necessario visualizzare i dettagli relativi alle operazioni di distribuzione. Per visualizzare lo stato delle operazioni, usare il comando **Get-AzureRmResourceGroupDeploymentOperation**.
 
   ```powershell 
   Get-AzureRmResourceGroupDeploymentOperation -ResourceGroupName ExampleGroup -DeploymentName vmDeployment
   ```
 
-    Che restituisce più operazioni con ciascuno di essi in hello seguente formato:
+    Che restituisce più operazioni, ognuna nel formato seguente:
 
   ```powershell
   Id             : /subscriptions/{guid}/resourceGroups/ExampleGroup/providers/Microsoft.Resources/deployments/Microsoft.Template/operations/A3EB2DA598E0A780
@@ -85,13 +85,13 @@ operazioni di distribuzione hello toosee, utilizzare hello alla procedura seguen
                    serviceRequestId:0196828d-8559-4bf6-b6b8-8b9057cb0e23...}
   ```
 
-3. tooget ulteriori dettagli sulle operazioni non riuscite, recuperare le proprietà di hello per le operazioni con **Failed** stato.
+3. Per ottenere altre informazioni sulle operazioni non riuscite, recuperare le proprietà per le operazioni con stato **Non riuscita** .
 
   ```powershell
   (Get-AzureRmResourceGroupDeploymentOperation -DeploymentName Microsoft.Template -ResourceGroupName ExampleGroup).Properties | Where-Object ProvisioningState -eq Failed
   ```
    
-    Restituisce che tutti hello operazioni non riuscite con ognuno di essi in hello seguente formato:
+    Vengono restituite tutte le operazioni non riuscite, ognuna nel formato seguente:
 
   ```powershell
   provisioningOperation : Create
@@ -107,8 +107,8 @@ operazioni di distribuzione hello toosee, utilizzare hello alla procedura seguen
                           resourceType=Microsoft.Network/publicIPAddresses; resourceName=myPublicIP}
   ```
 
-    Si noti serviceRequestId hello e hello ID traccia per l'operazione di hello. Hello serviceRequestId può essere utile quando si lavora con il supporto tecnico tootroubleshoot una distribuzione. Si utilizzerà l'ID traccia hello in hello toofocus passaggio al successivo in una particolare operazione.
-4. messaggio di stato tooget hello di una determinata operazione non riuscita, utilizzare hello comando seguente:
+    Si notino gli elementi serviceRequestId e trackingId per l'operazione. L'elemento serviceRequestId può essere utile quando si interagisce con il supporto tecnico per risolvere i problemi relativi a una distribuzione, mentre l'elemento trackingId viene usato nel passaggio successivo per concentrarsi su una particolare operazione.
+4. Per ottenere il messaggio di stato di un'operazione non riuscita particolare, usare il comando seguente:
 
   ```powershell
   ((Get-AzureRmResourceGroupDeploymentOperation -DeploymentName Microsoft.Template -ResourceGroupName ExampleGroup).Properties | Where-Object trackingId -eq f4ed72f8-4203-43dc-958a-15d041e8c233).StatusMessage.error
@@ -121,9 +121,9 @@ operazioni di distribuzione hello toosee, utilizzare hello alla procedura seguen
   ----           -------                                                                        -------
   DnsRecordInUse DNS record dns.westus.cloudapp.azure.com is already used by another public IP. {}
   ```
-4. Ogni operazione di distribuzione in Azure include il contenuto della richiesta e della risposta. contenuto della richiesta Hello è ciò che è stata inviata tooAzure durante la distribuzione (ad esempio, creare una macchina virtuale, disco del sistema operativo e altre risorse). contenuto della risposta Hello è ciò che Azure inviati nuovamente la richiesta di distribuzione. Durante la distribuzione, è possibile utilizzare **DeploymentDebugLogLevel** toospecify parametro che hello richiesta e/o risposta vengono mantenute nel registro hello. 
+4. Ogni operazione di distribuzione in Azure include il contenuto della richiesta e della risposta. Il contenuto della richiesta corrisponde a quanto è stato inviato a Azure durante la distribuzione, ad esempio la richiesta di creare una macchina virtuale, un disco del sistema operativo e altre risorse. Il contenuto della risposta è la risposta di Azure alla richiesta di distribuzione. Durante la distribuzione è possibile usare il parametro **DeploymentDebugLogLevel** per specificare che la richiesta e/o la risposta vengono mantenute nel log. 
 
-  Ottenere tali informazioni dal Registro di hello e salvarlo localmente utilizzando i seguenti comandi PowerShell hello:
+  Per ottenere tali informazioni dal log e salvarle in locale, usare i comandi PowerShell seguenti:
 
   ```powershell
   (Get-AzureRmResourceGroupDeploymentOperation -DeploymentName "TestDeployment" -ResourceGroupName "Test-RG").Properties.request | ConvertTo-Json |  Out-File -FilePath <PathToFile>
@@ -133,13 +133,13 @@ operazioni di distribuzione hello toosee, utilizzare hello alla procedura seguen
 
 ## <a name="azure-cli"></a>Interfaccia della riga di comando di Azure
 
-1. Ottenere hello stato generale di una distribuzione con hello **Mostra la distribuzione di azure gruppo** comando.
+1. Per ottenere lo stato complessivo di una distribuzione, è possibile usare il comando **azure group deployment show** .
 
   ```azurecli
   azure group deployment show --resource-group ExampleGroup --name ExampleDeployment --json
   ```
   
-  Uno dei valori restituito hello è hello **correlationId**. Questo valore viene utilizzato tootrack eventi correlati e può essere utile quando utilizzato con il supporto tecnico tootroubleshoot una distribuzione.
+  Uno dei calori restituiti è **correlationId**. Tale valore viene usato per tenere traccia degli eventi correlati e può essere utile quando si interagisce con il supporto tecnico per risolvere i problema relativi a una distribuzione.
 
   ```azurecli
   "properties": {
@@ -147,7 +147,7 @@ operazioni di distribuzione hello toosee, utilizzare hello alla procedura seguen
     "correlationId": "4002062a-a506-4b5e-aaba-4147036b771a",
   ```
 
-2. operazioni di hello toosee per una distribuzione, utilizzare:
+2. Per visualizzare le operazioni per una distribuzione, usare:
 
   ```azurecli
   azure group deployment operation list --resource-group ExampleGroup --name ExampleDeployment --json
@@ -155,13 +155,13 @@ operazioni di distribuzione hello toosee, utilizzare hello alla procedura seguen
 
 ## <a name="rest"></a>REST
 
-1. Ottenere informazioni su una distribuzione con hello [ottenere informazioni su una distribuzione modello](https://docs.microsoft.com/rest/api/resources/deployments#Deployments_Get) operazione.
+1. Ottenere informazioni su una distribuzione con l'operazione [Ottenere informazioni su una distribuzione modello](https://docs.microsoft.com/rest/api/resources/deployments#Deployments_Get).
 
   ```http
   GET https://management.azure.com/subscriptions/{subscription-id}/resourcegroups/{resource-group-name}/providers/microsoft.resources/deployments/{deployment-name}?api-version={api-version}
   ```
 
-    In risposta hello, notare in particolare hello **provisioningState**, **correlationId**, e **errore** elementi. Hello **correlationId** utilizzato tootrack eventi correlati e può essere utile quando utilizzato con il supporto tecnico tootroubleshoot una distribuzione.
+    Nella risposta si notino in particolare gli elementi **provisioningState**, **correlationId** ed **error**. Il valore **correlationId** viene usato per tenere traccia degli eventi correlati e può essere utile quando si interagisce con il supporto tecnico per risolvere i problemi relativi a una distribuzione.
 
   ```json
   { 
@@ -178,13 +178,13 @@ operazioni di distribuzione hello toosee, utilizzare hello alla procedura seguen
   }
   ```
 
-2. Ottenere informazioni sulle operazioni di distribuzione con hello [elencare tutte le operazioni di distribuzione modello](https://docs.microsoft.com/rest/api/resources/deployments#Deployments_List) operazione. 
+2. Ottenere informazioni sulle operazioni di distribuzione con l'operazione [Elencare tutte le operazioni di distribuzione modello](https://docs.microsoft.com/rest/api/resources/deployments#Deployments_List). 
 
   ```http
   GET https://management.azure.com/subscriptions/{subscription-id}/resourcegroups/{resource-group-name}/providers/microsoft.resources/deployments/{deployment-name}/operations?$skiptoken={skiptoken}&api-version={api-version}
   ```
    
-    risposta Hello include informazioni di richiesta e/o risposta in base a quanto specificato in hello **debugSetting** proprietà durante la distribuzione.
+    La risposta include la richiesta e/o le informazioni sulla risposta in base a quanto specificato nella proprietà **debugSetting** durante la distribuzione.
 
   ```json
   {
@@ -213,7 +213,7 @@ operazioni di distribuzione hello toosee, utilizzare hello alla procedura seguen
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per informazioni sulla risoluzione degli errori di distribuzione specifici, vedere [risolvere gli errori comuni durante la distribuzione di risorse tooAzure con Azure Resource Manager](resource-manager-common-deployment-errors.md).
-* toolearn sull'utilizzo di attività hello registri toomonitor altri tipi di azioni, vedere [Visualizza attività registra toomanage Azure risorse](resource-group-audit.md).
-* vedere la distribuzione prima dell'esecuzione, toovalidate [distribuire un gruppo di risorse con il modello di gestione risorse di Azure](resource-group-template-deploy.md).
+* Per informazioni sulla risoluzione di errori di distribuzione specifici vedere [Risolvere errori comuni durante la distribuzione di risorse in Azure con Azure Resource Manager](resource-manager-common-deployment-errors.md).
+* Per altre informazioni sull'uso dei log attività per monitorare altri tipi di azioni, vedere [Visualizzare i log attività per gestire le risorse di Azure](resource-group-audit.md).
+* Per convalidare la distribuzione prima di eseguirla, vedere [Distribuire le risorse con i modelli di Azure Resource Manager e Azure PowerShell](resource-group-template-deploy.md).
 

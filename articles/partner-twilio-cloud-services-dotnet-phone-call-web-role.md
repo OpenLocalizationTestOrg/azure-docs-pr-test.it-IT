@@ -1,6 +1,6 @@
 ---
-title: aaaHow toomake una telefonata da Twilio (.NET) | Documenti Microsoft
-description: Informazioni su come messaggio di toomake una telefonata e inviare un SMS con il servizio API di Twilio hello in Azure. Esempi di codice scritti in .NET.
+title: Come effettuare una chiamata telefonica da Twilio (.NET) | Microsoft Docs
+description: Informazioni su come effettuare una chiamata telefonica e inviare un SMS con il servizio API Twilio API in Azure. Esempi di codice scritti in .NET.
 services: 
 documentationcenter: .net
 author: devinrader
@@ -14,36 +14,36 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 05/04/2016
 ms.author: microsofthelp@twilio.com
-ms.openlocfilehash: 857d89961c563a51fef944f4a72828036af79b43
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 0899a49cbfda775017dab7fc6d8963bbeb86d74c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toomake-a-phone-call-using-twilio-in-a-web-role-on-azure"></a>Come toomake un telefono chiamata tramite Twilio in un ruolo web in Azure
-Questa guida illustra come toouse Twilio toomake una chiamata da una pagina web ospitato in Azure. un'applicazione Hello risultante richiede hello utente toomake di una chiamata con hello dato numero e il messaggio, come illustrato nella seguente schermata hello.
+# <a name="how-to-make-a-phone-call-using-twilio-in-a-web-role-on-azure"></a>Come effettuare una chiamata tramite Twilio in un ruolo Web in Azure
+In questa guida viene illustrato come usare Twilio per effettuare una chiamata da una pagina Web ospitata in Azure. L'applicazione risultante chiede all'utente di eseguire una chiamata con il numero e il messaggio specificati, come illustrato nella schermata seguente.
 
 ![Modulo di chiamata di Azure con Twilio e ASP.NET][twilio_dotnet_basic_form]
 
 ## <a name="twilio-prereqs"></a>Prerequisiti
-Sarà necessario seguente hello toodo codice hello toouse in questo argomento:
+Per usare il codice in questo argomento è necessario eseguire le operazioni seguenti:
 
-1. Acquisizione di un account di Twilio e l'autenticazione token da hello [Twilio Console][twilio_console]. tooget avviato con Twilio, sign in [https://www.twilio.com/try-twilio][try_twilio]. Per informazioni sui prezzi di Twilio, visitare la pagina [http://www.twilio.com/pricing][twilio_pricing]. Per informazioni sulle API fornita da Twilio hello, vedere [http://www.twilio.com/voice/api][twilio_api].
-2. Aggiungere hello *libreria .NET di Twilio* ruolo web tooyour. Vedere **tooadd hello Twilio librerie tooyour progetto del ruolo web**, più avanti in questo argomento.
+1. Ottenere un account Twilio e un token di autenticazione dalla [console di Twilio][twilio_console]. Per iniziare a usare Twilio, effettuare l'iscrizione alla pagina [https://www.twilio.com/try-twilio][try_twilio]. Per informazioni sui prezzi di Twilio, visitare la pagina [http://www.twilio.com/pricing][twilio_pricing]. Per informazioni sull'API fornita da Twilio, vedere [http://www.twilio.com/voice/api][twilio_api].
+2. Aggiungere la *libreria .NET di Twilio* al ruolo Web. Vedere **Per aggiungere le librerie Twilio al progetto di ruolo Web** più avanti in questo argomento.
 
 È necessario conoscere le modalità di creazione di un [ruolo Web di base in Azure][azure_webroles_get_started].
 
 ## <a name="howtocreateform"></a>Procedura: Creare un modulo Web per effettuare una chiamata
-<a id="use_nuget"></a>tooadd hello Twilio librerie tooyour progetto ruolo web:
+<a id="use_nuget"></a>Per aggiungere le librerie Twilio al progetto di ruolo Web:
 
 1. Aprire la soluzione in Visual Studio.
 2. Fare clic con il pulsante destro del mouse su **Riferimenti**.
 3. Scegliere **Manage NuGet Packages**.
 4. Fare clic su **Online**.
-5. Nella casella di ricerca hello online, digitare *twilio*.
-6. Fare clic su **installare** pacchetto Twilio hello.
+5. Nella casella di ricerca online digitare *twilio*.
+6. Fare clic su **Install** sul pacchetto Twilio.
 
-Hello seguente codice mostra come toocreate un web form dati utente tooretrieve per effettuare una chiamata. In questo esempio viene creato un ruolo Web ASP.NET denominato **TwilioCloud** .
+Nel codice seguente viene illustrato come creare un modulo Web per recuperare i dati utente per l'esecuzione di una chiamata. In questo esempio viene creato un ruolo Web ASP.NET denominato **TwilioCloud** .
 
 ```aspx
 <%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.master"
@@ -69,8 +69,8 @@ Hello seguente codice mostra come toocreate un web form dati utente tooretrieve 
 </asp:Content>
 ```
 
-## <a id="howtocreatecode"></a>Procedura: creare hello codice toomake hello chiamata
-Hello codice riportato di seguito, viene chiamato al termine del modulo hello utente hello, Crea messaggio hello e genera l'errore chiamata hello. In questo esempio, il codice di hello viene eseguito nel gestore dell'evento onclick hello del pulsante hello in form di hello. (Utilizzare l'account di Twilio e l'autenticazione del token anziché i valori segnaposto hello assegnati troppo`accountSID` e `authToken` codice hello riportato di seguito.)
+## <a id="howtocreatecode"></a>Procedura: Creare il codice per effettuare la chiamata
+Il codice seguente, chiamato quando l'utente completa il modulo, crea il messaggio di chiamata e genera la chiamata. In questo esempio, il codice viene eseguito sul gestore dell'evento onclick del pulsante del modulo. Nel codice seguente sostituire i valori segnaposto assegnati a `accountSID` e `authToken` con il proprio account e il token di autenticazione Twilio.
 
 ```csharp
 using System;
@@ -98,14 +98,14 @@ namespace WebRole1
             // Call porcessing happens here.
 
             // Use your account SID and authentication token instead of
-            // hello placeholders shown here.
+            // the placeholders shown here.
             var accountSID = "ACNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN";
             var authToken =  "NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN";
 
-            // Instantiate an instance of hello Twilio client.
+            // Instantiate an instance of the Twilio client.
             TwilioClient.Init(accountSID, authToken);
 
-            // Retrieve hello account, used later tooretrieve the
+            // Retrieve the account, used later to retrieve the
             var account = AccountResource.Fetch(accountSID);
 
             this.varDisplay.Items.Clear();
@@ -117,24 +117,24 @@ namespace WebRole1
             }
             else
             {
-                // Retrieve hello values entered by hello user.
-                var too= PhoneNumber(this.toNumber.Text);
+                // Retrieve the values entered by the user.
+                var to = PhoneNumber(this.toNumber.Text);
                 var from = new PhoneNumber("+14155992671");
                 var myMessage = this.message.Text;
 
-                // Create a URL using hello Twilio message and hello user-entered
-                // text. You must replace spaces in hello user's text with '%20'
-                // toomake hello text suitable for a URL.
+                // Create a URL using the Twilio message and the user-entered
+                // text. You must replace spaces in the user's text with '%20'
+                // to make the text suitable for a URL.
                 var url = $"http://twimlets.com/message?Message%5B0%5D={myMessage.Replace(" ", "%20")}";
                 var twimlUri = new Uri(url);
 
-                // Display hello endpoint, API version, and hello URL for hello message.
+                // Display the endpoint, API version, and the URL for the message.
                 this.varDisplay.Items.Add($"Using Twilio endpoint {
                 }");
                 this.varDisplay.Items.Add($"Twilioclient API Version is {apiVersion}");
-                this.varDisplay.Items.Add($"hello URL is {url}");
+                this.varDisplay.Items.Add($"The URL is {url}");
 
-                // Place hello call.
+                // Place the call.
                 var call = CallResource.create(to, from, url: twimlUri);
                 this.varDisplay.Items.Add("Call status: " + call.Status);
             }
@@ -143,22 +143,22 @@ namespace WebRole1
 }
 ```
 
-viene effettuata la chiamata Hello e vengono visualizzati lo stato della chiamata di hello endpoint Twilio hello e versione dell'API. Hello seguente schermata Mostra output da un esempio di esecuzione.
+La chiamata viene effettuata e vengono visualizzati l'endpoint Twilio, la versione dell'API e lo stato della chiamata. Nella schermata seguente viene illustrato l'output di un'esecuzione di esempio.
 
 ![Risposta a chiamata di Azure tramite Twilio e ASP.NET][twilio_dotnet_basic_form_output]
 
 Per altre informazioni su TwiML, vedere [http://www.twilio.com/docs/api/twiml][twiml]. Per altre informazioni su &lt;Say&gt; e altri verbi TwiML, vedere [http://www.twilio.com/docs/api/twiml/say][twilio_say].
 
 ## <a id="nextsteps"></a>Passaggi successivi
-Questo codice è stato fornito tooshow di funzionalità di base tramite Twilio in un ruolo web ASP.NET in Azure. Prima di distribuire tooAzure nell'ambiente di produzione, è consigliabile tooadd più la gestione degli errori o altre funzionalità. ad esempio:
+Questo codice ha lo scopo di illustrare le funzionalità di base dell'utilizzo di Twilio in un ruolo Web ASP.NET in Azure. Prima di eseguire la distribuzione in Azure in produzione, può essere necessario aggiungere ulteriori funzionalità per la gestione degli errori o per altri scopi. Ad esempio:
 
-* Anziché utilizzare un web form, è possibile utilizzare l'archiviazione Blob di Azure o un numeri di telefono toostore istanza Database SQL di Azure e chiamare testo. Per informazioni sull'utilizzo di BLOB in Azure, vedere [come toouse hello servizio di archiviazione Blob di Azure in .NET][howto_blob_storage_dotnet]. Per informazioni sull'utilizzo di Database SQL, vedere [come toouse Database SQL di Azure in applicazioni .NET][howto_sql_azure_dotnet].
-* È possibile utilizzare `RoleEnvironment.getConfigurationSettings` ID dell'account Twilio tooretrieve hello e l'autenticazione del token da impostazioni di configurazione della distribuzione, anziché a livello di codice i valori hello del modulo. Per informazioni su hello `RoleEnvironment` classe, vedere [Microsoft.WindowsAzure.ServiceRuntime Namespace][azure_runtime_ref_dotnet].
-* Leggere le istruzioni di sicurezza Twilio hello in [https://www.twilio.com/docs/security][twilio_docs_security].
+* Anziché usare un modulo Web, è possibile usare l'archivio BLOB di Azure o un'istanza di database SQL di Azure per l'archiviazione di numeri di telefono e testo delle chiamate. Per informazioni sull'uso dei BLOB in Azure, vedere [Come usare il servizio di archiviazione BLOB di Azure in .NET][howto_blob_storage_dotnet]. Per informazioni sull'uso del database SQL, vedere [Come usare il database SQL di Azure in applicazioni .NET][howto_sql_azure_dotnet].
+* È possibile usare `RoleEnvironment.getConfigurationSettings` per recuperare l'ID e il token di autenticazione dell'account Twilio dalle impostazioni di configurazione della distribuzione, anziché impostare i valori hardcoded nel modulo. Per informazioni sulla classe `RoleEnvironment`, vedere [Microsoft.WindowsAzure.ServiceRuntime Namespace][azure_runtime_ref_dotnet].
+* Leggere le linee guida sulla sicurezza di Twilio all'indirizzo [https://www.twilio.com/docs/security][twilio_docs_security].
 * Per altre informazioni su Twilio, visitare la pagina [https://www.twilio.com/docs][twilio_docs].
 
 ## <a name="seealso"></a>Vedere anche
-* [Come toouse Twilio per le funzionalità audio e SMS da Azure](twilio-dotnet-how-to-use-for-voice-sms.md)
+* [Come usare Twilio per le funzionalità voce ed SMS da Azure](twilio-dotnet-how-to-use-for-voice-sms.md)
 
 [twilio_console]: https://www.twilio.com/console
 [twilio_pricing]: http://www.twilio.com/pricing

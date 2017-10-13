@@ -1,6 +1,6 @@
 ---
-title: Introduzione al rilevamento minacce del Data Warehouse SQL aaaGet
-description: "La modalità di avvio tooget con funzionalità di rilevamento minacce"
+title: Introduzione al Rilevamento delle minacce in SQL Data Warehouse
+description: "Attività iniziali per il rilevamento delle minacce"
 services: sql-data-warehouse
 documentationcenter: 
 author: ronortloff
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: security
 ms.date: 10/31/2016
 ms.author: rortloff;barbkess
-ms.openlocfilehash: dec0b734849e7f52434e099db0b38fbf0bf6ad53
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f4a2376fe4fb710d031c35ca7fdbf4c7bb0f3caa
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-with-threat-detection"></a>Introduzione al rilevamento delle minacce
 > [!div class="op_single_selector"]
@@ -28,50 +28,50 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-## <a name="overview"></a>Panoramica
-Rilevamento minacce consente attività di database anomale che possono indicare potenziali database toohello rischi di sicurezza. Questa funzionalità è in anteprima ed è supportata per SQL Data Warehouse.
+## <a name="overview"></a>Overview
+La funzionalità di rilevamento delle minacce individua le attività di database che indicano la presenza di potenziali minacce alla sicurezza nel database. Questa funzionalità è in anteprima ed è supportata per SQL Data Warehouse.
 
-Rilevamento minacce fornisce un nuovo livello di sicurezza, che consente ai clienti toodetect e risposta toopotential minacce che si verificano fornendo gli avvisi di sicurezza sull'attività anomale. Agli utenti di esplorare gli eventi di hello sospette utilizzando [il controllo di Azure SQL Data Warehouse](sql-data-warehouse-auditing-overview.md) toodetermine se sono il risultato di un tentativo tooaccess, violazioni o sfruttare dati hello data warehouse.
-Rilevamento minacce rende semplice tooaddress potenziali minacce toohello data warehouse senza hello necessità toobe un esperto della sicurezza o gestione un monitoraggio dei sistemi di sicurezza avanzate.
+Il rilevamento delle minacce offre un nuovo livello di protezione, che consente ai clienti di rilevare e rispondere alle minacce potenziali non appena si verificano, fornendo avvisi di sicurezza sulle attività anomale. Gli utenti possono esaminare gli eventi sospetti usando il [servizio di controllo di Azure SQL Data Warehouse](sql-data-warehouse-auditing-overview.md) per determinare se sono il risultato di un tentativo di accesso, violazione o exploit dei dati nel data warehouse.
+Il rilevamento delle minacce rende più semplice affrontare le minacce potenziali al data warehouse, senza dover essere esperti della sicurezza o gestire sistemi di controllo di sicurezza avanzati.
 
-Ad esempio, la funzionalità di rilevamento delle minacce individua determinate attività anomale nel database che indicano potenziali tentativi di attacco SQL injection. Attacchi SQL injection è uno dei hello Web sicurezza problemi delle applicazioni su Internet, le applicazioni utilizzate tooattack basati sui dati hello. Gli utenti malintenzionati sfruttano applicazione vulnerabilità tooinject dannoso istruzioni SQL in campi di immissione di applicazione, per sugli o la modifica dei dati nel database di hello.
+Ad esempio, la funzionalità di rilevamento delle minacce individua determinate attività anomale nel database che indicano potenziali tentativi di attacco SQL injection. L'attacco SQL injection è uno dei problemi di sicurezza comuni delle applicazioni Web su Internet, che viene usato per attaccare le applicazioni guidate dai dati. Gli autori di attacchi sfruttano le vulnerabilità delle applicazioni per introdurre istruzioni SQL dannose nei campi di immissione dell'applicazione, per violare o modificare i dati nel database.
 
 ## <a name="set-up-threat-detection-for-your-database"></a>Configurare il rilevamento delle minacce per il database
-1. Avvio hello portale di Azure all'indirizzo [https://portal.azure.com](https://portal.azure.com).
-2. Passare a pannello di configurazione toohello di hello desiderato toomonitor SQL Data Warehouse. Nel pannello impostazioni hello, selezionare **controllo e rilevamento minacce**.
+1. Avviare il portale di Azure all'indirizzo [https://portal.azure.com](https://portal.azure.com).
+2. Passare al pannello di configurazione dell’SQL Data Warehouse che si vuole monitorare. Nel pannello Impostazioni selezionare **Controllo e rilevamento minacce**.
    
     ![Riquadro di spostamento][1]
-3. In hello **controllo e rilevamento minacce** configurazione pannello turn **ON** controllo, che visualizza le impostazioni di rilevamento minacce hello.
+3. Nel pannello di configurazione **Controllo e rilevamento minacce** selezionare **ON** per attivare il controllo, che mostrerà le impostazioni di rilevamento delle minacce.
    
     ![Riquadro di spostamento][2]
 4. Impostare il rilevamento delle minacce su **SÌ** .
-5. Configurare l'elenco di hello di messaggi di posta elettronica che riceveranno gli avvisi di sicurezza al rilevamento di attività warehouse dati anomali.
-6. Fare clic su **salvare** in hello **rilevamento controllo & minaccia** toosave pannello configurazione hello nuovi o aggiornati criteri di rilevamento di controllo e minacce.
+5. Configurare l'elenco di indirizzi di posta elettronica che riceveranno avvisi di sicurezza in caso di rilevamento di attività anomale di data warehouse.
+6. Fare clic su **Salva** nel pannello di configurazione **Controllo e rilevamento minacce** per salvare i criteri di controllo e rilevamento delle minacce nuovi o aggiornati.
    
     ![Riquadro di spostamento][3]
 
 ## <a name="explore-anomalous-data-warehouse-activities-upon-detection-of-a-suspicious-event"></a>Esaminare le attività anomale di data warehouse quando viene rilevato un evento sospetto
 1. Si riceverà una notifica tramite posta elettronica al rilevamento di attività di database anomale. <br/>
-   messaggio di posta elettronica Hello verrà fornite informazioni sull'evento sospetti hello inclusi natura hello di attività anomale hello, nome del database, l'ora dell'evento hello nome e il server. Inoltre, verranno fornite informazioni sulle possibili cause e consigliabile tooinvestigate azioni e ridurre database toohello minaccia potenziale di hello.<br/>
+   Il messaggio di posta elettronica fornirà informazioni sull'evento di sicurezza sospetto, inclusi la natura delle attività anomale, il nome del database, il nome del server e l'ora dell'evento. Verranno anche fornite informazioni sulle possibili cause e le azioni consigliate per analizzare e ridurre il rischio di una potenziale minaccia al database.<br/>
    
     ![Riquadro di spostamento][4]
-2. Nel messaggio di posta elettronica di hello, fare clic su hello **Log di controllo di SQL Azure** collegamento, che consente di avviare hello portale classico di Azure e visualizzare hello record di controllo pertinente alla ora hello di eventi sospetti hello.
+2. Nel messaggio di posta elettronica fare clic sul collegamento relativo al **log di controllo SQL di Azure** che avvierà il portale di Azure classico visualizzando i record di controllo pertinenti intorno all'ora dell'evento sospetto.
    
     ![Riquadro di spostamento][5]
-3. Fare clic su tooview record di controllo hello ulteriori informazioni sulle attività sospette database hello, ad esempio l'istruzione SQL, IP client e motivo di errore.
+3. Fare clic sui record di controllo per visualizzare altri dettagli sulle attività di database sospette, come l'istruzione SQL, il motivo dell'errore e l'indirizzo IP del client.
    
     ![Riquadro di spostamento][6]
-4. Nel Pannello di controllo Registra hello, fare clic su **Apri in Excel** tooopen preconfigurata che excel tooimport modello e eseguire un'analisi più approfondita del log di controllo hello alla ora hello di eventi sospetti hello.<br/>
-   **Nota:** In Excel 2010 o versioni successive Power Query e hello **combinazione rapida** impostazione è obbligatoria
+4. Nel pannello Auditing Records (Controllo record) fare clic su  **Apri in Excel** per aprire un modello Excel preconfigurato per importare ed eseguire un'analisi più approfondita del log di controllo sull'orario in cui si è verificato l'evento sospetto.<br/>
+   **Nota**: in Excel 2010 o versione successiva sono richiesti Power Query e l'impostazione **Combinazione rapida**.
    
     ![Riquadro di spostamento][7]
-5. hello tooconfigure **combinazione rapida** impostazione - hello **POWER QUERY** scheda della barra multifunzione selezionare **opzioni** finestra di dialogo Opzioni toodisplay hello. Selezionare hello Privacy sezione e scegliere l'opzione secondo hello - 'Ignora i livelli di Privacy hello e potenziale miglioramento delle prestazioni':
+5. Per configurare l'impostazione **Combinazione rapida**, nella scheda della barra multifunzione **POWER QUERY** selezionare **Opzioni** per visualizzare la finestra di dialogo Opzioni. Selezionare la sezione Privacy e scegliere la seconda opzione - "Ignora i livelli di privacy per un potenziale miglioramento delle prestazioni":
    
     ![Riquadro di spostamento][8]
-6. log di controllo SQL tooload, assicurarsi che i parametri di hello nella scheda Impostazioni hello siano impostati correttamente e quindi selezionare barra multifunzione 'Data' hello e fare clic sul pulsante 'Aggiorna tutto' hello.
+6. Per caricare i log di controllo SQL, assicurarsi che i parametri nella scheda Impostazioni siano configurati correttamente e quindi selezionare "Dati" sulla barra multifunzione e fare clic sul pulsante "Aggiorna tutto".
    
     ![Riquadro di spostamento][9]
-7. Hello risultati vengono visualizzati in hello **i log di controllo SQL** foglio che consente l'analisi più approfondita di toorun di attività anomale di hello che sono stati rilevati e ridurre l'impatto hello di eventi di protezione hello nell'applicazione.
+7. I risultati vengono visualizzati nel foglio dei **log di controllo SQL** che consente di eseguire un'analisi più approfondita delle attività anomale rilevate e di ridurre l'impatto dell'evento di sicurezza nell'applicazione.
 
 <!--Image references-->
 [1]: ./media/sql-data-warehouse-security-threat-detection/1_td_click_on_settings.png

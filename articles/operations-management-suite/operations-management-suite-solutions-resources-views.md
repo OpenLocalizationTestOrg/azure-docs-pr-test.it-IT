@@ -1,6 +1,6 @@
 ---
-title: aaaViews nelle soluzioni di gestione di Operations Management Suite (OMS) | Documenti Microsoft
-description: "Soluzioni di gestione in Operations Management Suite (OMS) in genere contiene uno o più dati toovisualize viste.  In questo articolo viene descritto come tooexport creata una vista da hello Visualizza finestra di progettazione e includerlo in una soluzione di gestione. "
+title: Viste nelle soluzioni di gestione di Operations Management Suite (OMS) | Microsoft Docs
+description: "Le soluzioni di gestione in Operations Management Suite (OMS) includono in genere una o più viste per visualizzare i dati.  Questo articolo descrive come esportare una vista creata da Progettazione viste e includerla in una soluzione di gestione. "
 services: operations-management-suite
 documentationcenter: 
 author: bwren
@@ -14,44 +14,44 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/11/2017
 ms.author: bwren
-ms.openlocfilehash: 303861465014a27289f831332b3d95925c0ae66d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 533b5564a805e0b41f2b1a4ad92e12b133220952
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="views-in-operations-management-suite-oms-management-solutions-preview"></a>Viste nelle soluzioni di gestione di Operations Management Suite (OMS) (anteprima)
 > [!NOTE]
-> Questa è una documentazione preliminare per la creazione di soluzioni di gestione in OMS attualmente disponibili in versione di anteprima. Qualsiasi schema descritto di seguito è soggetto toochange.    
+> Questa è una documentazione preliminare per la creazione di soluzioni di gestione in OMS attualmente disponibili in versione di anteprima. Qualsiasi schema descritto di seguito è soggetto a modifiche.    
 >
 >
 
-[Soluzioni di gestione in Operations Management Suite (OMS)](operations-management-suite-solutions.md) in genere contiene uno o più dati toovisualize viste.  In questo articolo viene descritto come tooexport una vista creata dal hello [Visualizza finestra di progettazione](../log-analytics/log-analytics-view-designer.md) e includerlo in una soluzione di gestione.  
+Le [soluzioni di gestione in Operations Management Suite (OMS)](operations-management-suite-solutions.md) includono in genere una o più viste per visualizzare i dati.  Questo articolo descrive come esportare una vista creata da [Progettazione viste](../log-analytics/log-analytics-view-designer.md) e includerla in una soluzione di gestione.  
 
 > [!NOTE]
-> Hello esempi in questo articolo utilizzano parametri e variabili che sono entrambe soluzioni toomanagement necessarie o comuni e descritte in [la creazione di soluzioni di gestione in Operations Management Suite (OMS)](operations-management-suite-solutions-creating.md)
+> Gli esempi in questo articolo usano parametri e variabili che sono richiesti o comuni nelle soluzioni di gestione e che sono descritti in [Creazione di soluzioni di gestione in Operations Management Suite (OMS)](operations-management-suite-solutions-creating.md)
 >
 >
 
 ## <a name="prerequisites"></a>Prerequisiti
-Questo articolo si presuppone che si ha già familiarità con come troppo[creare una soluzione di gestione](operations-management-suite-solutions-creating.md) e la struttura di hello di un file di soluzione.
+Questo articolo presuppone che si abbia già familiarità con le modalità di [creazione di una soluzione di gestione](operations-management-suite-solutions-creating.md) e la struttura di un file di soluzione.
 
 ## <a name="overview"></a>Panoramica
-tooinclude una vista in una soluzione di gestione, si crea un **risorse** nella hello [file di soluzione](operations-management-suite-solutions-creating.md).  Hello JSON che descrive la configurazione dettagliata della vista hello però in genere complessa e non un valore che è possibile che l'autore di una tipica soluzione deve essere in grado di toocreate manualmente.  metodo più comune Hello è toocreate hello vista utilizzando hello [Visualizza finestra di progettazione](../log-analytics/log-analytics-view-designer.md), esportarlo e quindi aggiungere la soluzione toohello dettagliato della configurazione.
+Per includere una vista in una soluzione di gestione, si crea una **risorsa** per la vista nel [file di soluzione](operations-management-suite-solutions-creating.md).  In genere, tuttavia, il codice JSON che descrive la configurazione dettagliata della vista è complesso e l'autore tipico di una soluzione probabilmente non è in grado di crearlo manualmente.  Il metodo più comune consiste nel creare la vista usando [Progettazione viste](../log-analytics/log-analytics-view-designer.md), esportarla e quindi aggiungere la sua configurazione dettagliata alla soluzione.
 
-di seguito sono riportati i passaggi di base di Hello tooadd una soluzione di tooa di visualizzazione.  Ogni passaggio è descritto in dettaglio nelle sezioni hello.
+I passaggi di base per aggiungere una vista a una soluzione sono i seguenti.  Ogni passaggio viene descritto in modo più dettagliato nelle sezioni successive.
 
-1. Esportare hello vista tooa file.
-2. Creare la risorsa di una visualizzazione hello nella soluzione di hello.
-3. Aggiungere hello vista Dettagli.
+1. Esportare la vista in un file.
+2. Creare la risorsa vista nella soluzione.
+3. Aggiungere i dettagli della vista.
 
-## <a name="export-hello-view-tooa-file"></a>Esportare hello vista tooa file
-Seguire le istruzioni di hello in [Log Analitica Visualizza finestra di progettazione](../log-analytics/log-analytics-view-designer.md) tooexport un file tooa di visualizzazione.  Hello file esportato verrà essere nel formato JSON con hello stesso [elementi come file di soluzione hello](operations-management-suite-solutions-solution-file.md).  
+## <a name="export-the-view-to-a-file"></a>Esportare la vista in un file
+Seguire le istruzioni in [Progettazione viste di Log Analytics](../log-analytics/log-analytics-view-designer.md) per esportare una vista in un file.  Il file esportato sarà nel formato JSON con gli stessi [elementi del file di soluzione](operations-management-suite-solutions-solution-file.md).  
 
-Hello **risorse** elemento del file di visualizzazione hello avrà una risorsa con un tipo di **Microsoft.OperationalInsights/workspaces** che rappresenta hello area di lavoro OMS.  Questo elemento avrà un sottoelemento con un tipo di **viste** che rappresenta la visualizzazione hello e contiene la configurazione dettagliata.  Copia dettagli hello di questo elemento verrà quindi copiarlo in una soluzione.
+L'elemento **resources** del file della vista avrà una risorsa di tipo **Microsoft.OperationalInsights/workspaces** che rappresenta l'area di lavoro OMS.  Questo elemento avrà un sottoelemento di tipo **views** che rappresenta la vista e contiene la configurazione dettagliata.  Sarà necessario copiare i dettagli di questo elemento e incollarli nella soluzione.
 
-## <a name="create-hello-view-resource-in-hello-solution"></a>Creare la risorsa di visualizzazione hello nella soluzione hello
-Aggiungere hello seguente Visualizza risorse toohello **risorse** elemento del file di soluzione.  Vengono usate le variabili descritte di seguito, che è necessario aggiungere.  Si noti che hello **Dashboard** e **OverviewTile** proprietà sono segnaposto che vengono sovrascritte con le proprietà corrispondenti di hello dal file di visualizzazione esportata hello.
+## <a name="create-the-view-resource-in-the-solution"></a>Creare la risorsa vista nella soluzione
+Aggiungere la risorsa vista seguente nell'elemento **resources** del file di soluzione.  Vengono usate le variabili descritte di seguito, che è necessario aggiungere.  Si noti che le proprietà **Dashboard** e **OverviewTile** sono segnaposto che verranno sovrascritti con le proprietà corrispondenti del file della vista esportato.
 
     {
         "apiVersion": "[variables('LogAnalyticsApiVersion')]",
@@ -73,28 +73,28 @@ Aggiungere hello seguente Visualizza risorse toohello **risorse** elemento del f
         }
     }
 
-Aggiungere hello successivo elemento di variabili toohello variabili hello del file di soluzione e sostituire hello toothose di valori per la soluzione.
+Aggiungere le variabili seguenti all'elemento variables del file di soluzione e sostituire i valori con quelli della soluzione.
 
     "LogAnalyticsApiVersion": "2015-11-01-preview",
     "ViewAuthor": "Your name."
-    "ViewDescription": "Optional description of hello view."
-    "ViewName": "Provide a name for hello view here."
+    "ViewDescription": "Optional description of the view."
+    "ViewName": "Provide a name for the view here."
 
 
-Si noti che è possibile copiare risorse intera vista hello dal file di visualizzazione esportata, ma è necessario hello toomake dopo le modifiche per tale toowork nella soluzione.  
+Si noti che è possibile copiare l'intera risorsa vista dal file della vista esportato, ma è necessario apportare le modifiche seguenti per consentirne il funzionamento nella soluzione.  
 
-* Hello **tipo** per Vista hello necessario toobe modificato dalla risorsa **viste** troppo**Microsoft.OperationalInsights/workspaces**.
-* Hello **nome** proprietà per la risorsa di visualizzazione hello deve nome area di lavoro di hello tooinclude toobe modificato.
-* dipendenza Hello nell'area di lavoro hello deve toobe rimossi dal risorse dell'area di lavoro hello non sono definita nella soluzione hello.
-* **DisplayName** proprietà esigenze toobe aggiunto toohello visualizzazione.  Hello **Id**, **nome**, e **DisplayName** deve corrispondere tutti.
-* I nomi dei parametri devono essere modificate toomatch hello necessari set di parametri.
-* Le variabili devono essere definite nella soluzione hello e utilizzate nelle proprietà di hello appropriato.
+* Il parametro **type** della risorsa vista deve essere modificato da **views** a **Microsoft.OperationalInsights/workspaces**.
+* La proprietà **name** della risorsa vista deve essere modificata per includere il nome dell'area di lavoro.
+* La dipendenza dall'area di lavoro deve essere rimossa perché la risorsa area di lavoro non è definita nella soluzione.
+* La proprietà **DisplayName** deve essere aggiunta alla vista.  I valori di **Id**, **Name** e **DisplayName** devono corrispondere.
+* I nomi dei parametri devono essere modificati in modo da corrispondere al set di parametri richiesto.
+* Le variabili devono essere definite nella soluzione e usate nelle proprietà appropriate.
 
-## <a name="add-hello-view-details"></a>Aggiungere hello visualizzazione dettagli
-risorsa visualizzazione Hello in hello esportata visualizzazione file conterrà due elementi hello **proprietà** elemento denominato **Dashboard** e **OverviewTile** contenenti hello configurazione dettagliata di visualizzazione hello.  Copiare questi due elementi e il relativo contenuto in hello **proprietà** elemento di risorsa vista hello nel file di soluzione.
+## <a name="add-the-view-details"></a>Aggiungere i dettagli della vista
+La risorsa vista nel file della vista esportato conterrà due elementi nell'elemento **properties** denominati **Dashboard** e **OverviewTile** che contengono la configurazione dettagliata della vista.  Copiare questi due elementi e il relativo contenuto nell'elemento **properties** della risorsa vista nel file di soluzione.
 
 ## <a name="example"></a>Esempio
-Ad esempio, hello seguente esempio viene illustrato un file di soluzione semplice con una visualizzazione.  Puntini di sospensione (...) vengono visualizzati per hello **Dashboard** e **OverviewTile** contenuto per motivi di spazio.
+L'esempio seguente mostra un file di soluzione semplice con una vista.  Al posto del contenuto di **Dashboard** e **OverviewTile** sono visualizzati i puntini di sospensione (...) per motivi di spazio.
 
     {
         "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",

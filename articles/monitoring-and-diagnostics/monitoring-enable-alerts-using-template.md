@@ -1,6 +1,6 @@
 ---
-title: un avviso di metrica con un modello di gestione risorse aaaCreate | Documenti Microsoft
-description: Informazioni su come toouse un toocreate modello di gestione risorse una metrica tooreceive le notifiche tramite posta elettronica o webhook.
+title: Creare un avviso di metrica con un modello di Resource Manager | Microsoft Docs
+description: Informazioni su come usare un modello di Resource Manager per creare un avviso metrica per ricevere notifiche tramite posta elettronica o webhook.
 author: johnkemnetz
 manager: orenr
 editor: 
@@ -14,24 +14,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 6/21/2017
 ms.author: johnkem
-ms.openlocfilehash: dcf92b189f56a8389fff007c82197527239b96b8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: ac12605636d21fd0b5c89512c454ef2d899ef6dc
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-a-metric-alert-with-a-resource-manager-template"></a>Creare un avviso metrica con un modello di Resource Manager
-Questo articolo viene illustrato come utilizzare un [modello di Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md) tooconfigure Azure metrici avvisi. In questo modo tooautomatically configurare avvisi per le risorse quando vengono create tooensure che tutte le risorse vengono monitorate in modo corretto.
+Questo articolo mostra come usare un [modello di Resource Manager di Azure](../azure-resource-manager/resource-group-authoring-templates.md) per configurare gli avvisi sulle metriche in Azure. Consente di configurare automaticamente gli avvisi relativi alle risorse al momento della loro creazione, per assicurarsi che tutte le risorse siano correttamente monitorate.
 
-come indicato di seguito sono riportati i passaggi di base Hello:
+I passaggi di base sono i seguenti:
 
-1. Creare un modello come un file JSON che descrive la modalità toocreate hello avviso.
-2. [Distribuire il modello di hello utilizzando qualsiasi metodo di distribuzione](../azure-resource-manager/resource-group-template-deploy.md).
+1. Creare un modello come file JSON che descrive come creare l'avviso.
+2. [Distribuire il modello con un metodo di distribuzione qualsiasi](../azure-resource-manager/resource-group-template-deploy.md).
 
-Di seguito viene descritto come toocreate un modello di gestione risorse per un avviso da solo, quindi per un avviso durante la creazione di un'altra risorsa hello.
+Di seguito viene descritto come creare un modello di Resource Manager prima per un avviso, quindi per un avviso durante la creazione di un'altra risorsa.
 
 ## <a name="resource-manager-template-for-a-metric-alert"></a>Modello di Resource Manager per un avviso metrica
-toocreate un avviso utilizzando un modello di gestione delle risorse, si crea una risorsa di tipo `Microsoft.Insights/alertRules` e inserire tutte le relative proprietà. Di seguito è riportato un modello che crea una regola di avviso.
+Per creare un avviso usando un modello di Resource Manager, creare una risorsa di tipo `Microsoft.Insights/alertRules` e completare tutte le proprietà correlate. Di seguito è riportato un modello che crea una regola di avviso.
 
 ```json
 {
@@ -62,14 +62,14 @@ toocreate un avviso utilizzando un modello di gestione delle risorse, si crea un
             "type": "string",
             "defaultValue": "",
             "metadata": {
-                "description": "Resource ID of hello resource emitting hello metric that will be used for hello comparison."
+                "description": "Resource ID of the resource emitting the metric that will be used for the comparison."
             }
         },
         "metricName": {
             "type": "string",
             "defaultValue": "",
             "metadata": {
-                "description": "Name of hello metric used in hello comparison tooactivate hello alert."
+                "description": "Name of the metric used in the comparison to activate the alert."
             }
         },
         "operator": {
@@ -82,14 +82,14 @@ toocreate un avviso utilizzando un modello di gestione delle risorse, si crea un
                 "LessThanOrEqual"
             ],
             "metadata": {
-                "description": "Operator comparing hello current value with hello threshold value."
+                "description": "Operator comparing the current value with the threshold value."
             }
         },
         "threshold": {
             "type": "string",
             "defaultValue": "",
             "metadata": {
-                "description": "hello threshold value at which hello alert is activated."
+                "description": "The threshold value at which the alert is activated."
             }
         },
         "aggregation": {
@@ -103,35 +103,35 @@ toocreate un avviso utilizzando un modello di gestione delle risorse, si crea un
                 "Total"
             ],
             "metadata": {
-                "description": "How hello data that is collected should be combined over time."
+                "description": "How the data that is collected should be combined over time."
             }
         },
         "windowSize": {
             "type": "string",
             "defaultValue": "PT5M",
             "metadata": {
-                "description": "Period of time used toomonitor alert activity based on hello threshold. Must be between five minutes and one day. ISO 8601 duration format."
+                "description": "Period of time used to monitor alert activity based on the threshold. Must be between five minutes and one day. ISO 8601 duration format."
             }
         },
         "sendToServiceOwners": {
             "type": "bool",
             "defaultValue": true,
             "metadata": {
-                "description": "Specifies whether alerts are sent tooservice owners"
+                "description": "Specifies whether alerts are sent to service owners"
             }
         },
         "customEmailAddresses": {
             "type": "string",
             "defaultValue": "",
             "metadata": {
-                "description": "Comma-delimited email addresses where hello alerts are also sent"
+                "description": "Comma-delimited email addresses where the alerts are also sent"
             }
         },
         "webhookUrl": {
             "type": "string",
             "defaultValue": "",
             "metadata": {
-                "description": "URL of a webhook that will receive an HTTP POST when hello alert activates."
+                "description": "URL of a webhook that will receive an HTTP POST when the alert activates."
             }
         }
     },
@@ -178,10 +178,10 @@ toocreate un avviso utilizzando un modello di gestione delle risorse, si crea un
 }
 ```
 
-Una spiegazione delle proprietà e schema hello per una regola di avviso [è disponibile qui](https://msdn.microsoft.com/library/azure/dn933805.aspx).
+Una spiegazione dello schema e delle proprietà per una regola di avviso [è disponibile qui](https://msdn.microsoft.com/library/azure/dn933805.aspx).
 
 ## <a name="resource-manager-template-for-a-resource-with-an-alert"></a>Modello di Resource Manager per una risorsa con un avviso
-In genere, un avviso in un modello di Resource Manager è più utile quando si crea un avviso durante la creazione di una risorsa. Ad esempio, è consigliabile tooensure che un "CPU > 80%" regola viene impostata ogni volta che si distribuisce una macchina virtuale. toodo, si aggiunge la regola di avviso hello come risorsa in una matrice di risorse hello per il modello di macchina virtuale e aggiunge una dipendenza utilizzando hello `dependsOn` ID risorsa di proprietà toohello macchina virtuale. Di seguito è riportato un esempio completo che consente di creare una macchina virtuale di Windows e aggiunge un avviso che notifica amministratori della sottoscrizione quando hello utilizzo della CPU supera l'80%.
+In genere, un avviso in un modello di Resource Manager è più utile quando si crea un avviso durante la creazione di una risorsa. Ad esempio, si deve verificare che la regola "CPU > 80%" venga impostata ogni volta che si distribuisce una macchina virtuale. A tale scopo, aggiungere la regola di avviso come risorsa nell'array della risorsa per il modello della VM e aggiungere una dipendenza usando la proprietà `dependsOn` all'ID risorsa della VM. L'esempio seguente crea una VM Windows e aggiunge un avviso che informa gli amministratori della sottoscrizione quando l'utilizzo della CPU supera l'80%.
 
 ```json
 {
@@ -191,25 +191,25 @@ In genere, un avviso in un modello di Resource Manager è più utile quando si c
         "newStorageAccountName": {
             "type": "string",
             "metadata": {
-                "Description": "hello name of hello storage account where hello VM disk is stored."
+                "Description": "The name of the storage account where the VM disk is stored."
             }
         },
         "adminUsername": {
             "type": "string",
             "metadata": {
-                "Description": "hello name of hello administrator account on hello VM."
+                "Description": "The name of the administrator account on the VM."
             }
         },
         "adminPassword": {
             "type": "securestring",
             "metadata": {
-                "Description": "hello administrator account password on hello VM."
+                "Description": "The administrator account password on the VM."
             }
         },
         "dnsNameForPublicIP": {
             "type": "string",
             "metadata": {
-                "Description": "hello name of hello public IP address used tooaccess hello VM."
+                "Description": "The name of the public IP address used to access the VM."
             }
         }
     },
@@ -402,5 +402,5 @@ In genere, un avviso in un modello di Resource Manager è più utile quando si c
 
 ## <a name="next-steps"></a>Passaggi successivi
 * [Altre informazioni sugli avvisi](insights-receive-alert-notifications.md)
-* [Aggiungere le impostazioni di diagnostica](monitoring-enable-diagnostic-logs-using-template.md) tooyour modello di gestione risorse
+* [Aggiungere impostazioni di diagnostica](monitoring-enable-diagnostic-logs-using-template.md) al modello di Resource Manager
 

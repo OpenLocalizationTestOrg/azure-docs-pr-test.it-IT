@@ -13,7 +13,7 @@
 | Timeout di inattività |4 ore |
 | Timeout di disconnessione |4 ore |
 
-numero di Hello di utenti è determinato dal numero di hello di macchine virtuali utilizzate per la raccolta:
+Il numero di utenti che è possibile supportare è determinato dal numero di VM usate per la raccolta:
 
 * Basic: 16 utenti per VM
 * Standard: 10 utenti per VM

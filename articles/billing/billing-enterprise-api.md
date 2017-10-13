@@ -1,9 +1,9 @@
 ---
-title: aaaAzure fatturazione Enterprise API | Documenti Microsoft
-description: Informazioni sulle API di creazione di report che consentono di dati relativi al consumo toopull clienti Azure Enterprise a livello di codice hello.
+title: API per clienti Enterprise per la fatturazione di Azure | Microsoft Docs
+description: Informazioni sulle API di creazione di report che consentono ai clienti Enterprise di Azure di estrarre i dati sull'uso a livello di codice.
 services: 
 documentationcenter: 
-author: aedwin
+author: anandedwin
 manager: aedwin
 editor: 
 tags: billing
@@ -15,36 +15,36 @@ ms.tgt_pltfrm: na
 ms.workload: billing
 ms.date: 04/25/2017
 ms.author: aedwin
-ms.openlocfilehash: 017cecc57ad6bdeb402b5d9d57fc95df9b033a42
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 62a69aeb7499a961f95739fb3836942b670c7320
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="overview-of-reporting-apis-for-enterprise-customers"></a>Panoramica delle API di creazione di report per i clienti Enterprise
-Hello Reporting API abilitare Azure Enterprise clienti tooprogrammatically pull consumo e dati di fatturazione in strumenti di analisi di dati preferito. 
+Le API di creazione di report consentono ai clienti Enterprise di Azure di estrarre i dati di fatturazione e sull'uso a livello di codice per inserirli negli strumenti di analisi preferiti. 
 
-## <a name="enabling-data-access-toohello-api"></a>L'abilitazione delle API toohello di accesso ai dati
-* **Generare o recuperare la chiave API hello** - Log in toohello Enterprise portal e seguire hello esercitazione nella Guida in linea - API di Reporting. Hello prima sezione in questo articolo illustra come toogenerate o recuperare chiave hello API hello specificato registrazione.
-* **Passando le chiavi API hello** -chiave hello API deve toobe passato per ogni chiamata per l'autenticazione e autorizzazione. le proprietà seguenti Hello deve intestazioni HTTP toohello toobe
+## <a name="enabling-data-access-to-the-api"></a>Abilitazione dell'API per l'accesso ai dati
+* **Generare o recuperare la chiave API**: accedere a Enterprise Portal e seguire l'esercitazione disponibile nella sezione della Guida relativa alle API di creazione di report. La prima sezione in tale articolo illustra come generare o recuperare la chiave API per la registrazione specificata.
+* **Passare le chiavi nell'API** - La chiave API deve essere passata per ogni chiamata per l'autenticazione e l'autorizzazione. La proprietà seguente deve essere passata alle intestazioni HTTP:
 
 |Chiave intestazione necessaria | Valore|
 |-|-|
-|Authorization| Specificare il valore di hello nel formato: **bearer {API_KEY}** <br/> Esempio: bearer eyr....09|
+|Authorization| Specificare il valore nel formato: **bearer {API_KEY}** <br/> Esempio: bearer eyr....09|
 
 ## <a name="consumption-apis"></a>API per l'uso
-È disponibile un endpoint Swagger [qui](https://consumption.azure.com/swagger/ui/index) per hello API descritte sotto delle quali deve abilitare introspezione semplice di hello API e SDK per applicazioni client toogenerate possibilità di hello utilizzando [AutoRest](https://github.com/Azure/AutoRest) o [ Swagger CodeGen](http://swagger.io/swagger-codegen/). I dati a partire dal 1° maggio 2014 sono disponibili tramite questa API. 
+Per le API descritte di seguito, [qui](https://consumption.azure.com/swagger/ui/index) è disponibile un endpoint Swagger che deve consentire una facile analisi dell'API e la possibilità di generare SDK client tramite [AutoRest](https://github.com/Azure/AutoRest) o [Swagger CodeGen](http://swagger.io/swagger-codegen/). I dati a partire dal 1° maggio 2014 sono disponibili tramite questa API. 
 
-* **Saldo e riepilogo** : hello [bilanciamento e API riepilogo](billing-enterprise-api-balance-summary.md) offre un riepilogo di informazioni sulle saldi, nuovi acquisti, spese di servizio di Azure Marketplace, regolazioni e spese eccedenza mensile.
+* **Saldi e riepilogo** - L'[API per saldi e riepilogo](https://docs.microsoft.com/rest/api/billing/enterprise/billing-enterprise-api-balance-summary) offre un riepilogo mensile delle informazioni su saldi, nuovi acquisti, addebiti per il servizio Azure Marketplace e spese per modifiche e da pagare in eccedenza.
 
-* **Dettagli utilizzo** : hello [API dettagli utilizzo](billing-enterprise-api-usage-detail.md) offre una suddivisione giornaliera delle quantità consumate e spese stimate da una registrazione. risultato Hello include anche informazioni sulle istanze, misuratori e reparti. Hello API può essere determinata in base al periodo di fatturazione o da un inizio specificato e la data di fine. 
+* **Dettagli sull'uso** - L'[API per dettagli sull'uso](https://docs.microsoft.com/rest/api/billing/enterprise/billing-enterprise-api-usage-detail) offre un'analisi giornaliera dettagliata delle quantità usate e delle spese stimate in relazione a una registrazione. Il risultato include anche informazioni su istanze, contatori e reparti. Le query sull'API possono essere eseguite in base al periodo di fatturazione oppure in base a un intervallo definito da date di inizio e di fine specificate. 
 
-* **Archivio Marketplace addebito** : hello [Marketplace archivio addebito API](billing-enterprise-api-marketplace-storecharge.md) restituisce suddivisione spese marketplace basata sull'utilizzo di hello al giorno per hello specificato il periodo di fatturazione o date di inizio e fine (non sono inclusi i costi di una volta) .
+* **Spese per Marketplace Store** - L'[API per spese per il Marketplace Store](https://docs.microsoft.com/rest/api/billing/enterprise/billing-enterprise-api-marketplace-storecharge) restituisce le spese giornaliere dettagliate in base all'uso correlate al Marketplace per il periodo di fatturazione specificato o per le date di inizio e fine indicate (le spese una tantum non sono incluse).
 
-* **Prezzi** : hello [prezzo foglio API](billing-enterprise-api-pricesheet.md) fornisce tasso hello per ogni misuratore di hello dato periodo di fatturazione e di registrazione. 
+* **Elenco prezzi** - L'[API elenco prezzi](https://docs.microsoft.com/rest/api/billing/enterprise/billing-enterprise-api-pricesheet) offre la tariffa applicabile per ogni contatore per la registrazione e il periodo di fatturazione specificati. 
 
 ## <a name="helper-apis"></a>API di supporto
- **Elenco di periodi di fatturazione** : hello [API periodi di fatturazione](billing-enterprise-api-billing-periods.md) restituisce un elenco di fatturazione periodi che dispongono di dati di utilizzo per hello specificato registrazione in ordine cronologico inverso. Ogni periodo contiene una proprietà che punta route API toohello per quattro set di dati - BalanceSummary, UsageDetails, Marketplace costi e prezzi di hello.
+ **Elenco periodi di fatturazione** - L'[API per periodi di fatturazione](https://docs.microsoft.com/rest/api/billing/enterprise/billing-enterprise-api-billing-periods) restituisce un elenco di periodi di fatturazione contenente i dati sull'uso per la registrazione specificata in ordine cronologico inverso. Ogni periodo contiene una proprietà che punta alla route API per i quattro set di dati, ovvero BalanceSummary, UsageDetails, MarketplaceCharges e PriceSheet.
 
 
 ## <a name="api-response-codes"></a>Codici di risposta dell'API  

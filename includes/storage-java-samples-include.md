@@ -1,6 +1,6 @@
 ## <a name="java-sample-code-repositories"></a>Repository di codice di esempio Java
 
-Di seguito è riportato un elenco di tutti i repository di esempio per la libreria client di hello Java di archiviazione di Azure.
+Di seguito è riportato un elenco di tutti i repository di codice di esempio per la libreria client Java di Archiviazione di Azure.
 
 * [Getting Started with Storage - Manage Storage Account in Java](https://azure.microsoft.com/resources/samples/storage-java-manage-storage-accounts/) (Introduzione all'archiviazione - Gestire account di archiviazione in Java)
 * [Getting Started with Azure Blob Service in Java](https://azure.microsoft.com/resources/samples/storage-blob-java-getting-started/) (Introduzione al servizio BLOB di Azure in Java)

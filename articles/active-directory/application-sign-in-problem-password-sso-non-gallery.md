@@ -1,6 +1,6 @@
 ---
-title: aaaProblems tooan applicazione raccolta di Azure AD configurata per la password l'accesso single sign-on | Documenti Microsoft
-description: Vengono illustrate le aree problematiche che forniscono indicazioni tootroubleshoot problemi correlati toosigning in tooAzure applicazioni raccolta AD configurate per la password single sign-on
+title: Problemi di accesso a un'applicazione della raccolta di Azure AD configurata per il Single Sign-On basato su password | Microsoft Docs
+description: Vengono descritte le aree problematiche e offerte linee guida per la risoluzione dei problemi relativi all'accesso alle applicazioni della raccolta di Azure AD configurate per il Single Sign-On basato su password
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,23 +13,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: f53ef4176db37dc6b1da2d61027155a6ba8f331e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: c90b61812affb7e7af05cf3e302d045958da59be
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="problems-signing-in-tooan-azure-ad-gallery-application-configured-for-password-single-sign-on"></a>Problemi durante l'accesso tooan applicazione raccolta di Azure AD configurata per la password single sign-on
+# <a name="problems-signing-in-to-an-azure-ad-gallery-application-configured-for-password-single-sign-on"></a>Problemi di accesso a un'applicazione della raccolta di Azure AD configurata per il Single Sign-On basato su password
 
-Hello Pannello di accesso è un portale basato sul web che consente un utente che ha un lavoro o scuola account in Azure Active Directory (Azure AD) tooview e avviare basato su cloud applicazioni che amministratore hello Azure AD ha concesso l'accesso a. Un utente con le edizioni di Azure AD consente inoltre di gruppi self-service e funzionalità di gestione di app tramite hello Pannello di accesso. Hello Pannello di accesso è separato dal portale di Azure hello e non richiede agli utenti toohave una sottoscrizione di Azure.
+Il pannello di accesso è un portale basato sul Web che permette a un utente che ha un account aziendale o dell'istituto di istruzione in Azure Active Directory (Azure AD) di visualizzare e avviare applicazioni basate sul cloud a cui l'amministratore di Azure AD ha concesso l'accesso. Un utente dotato di edizioni di Azure AD può anche usare le funzionalità di gestione self-service di gruppi e app tramite il pannello di accesso. Il pannello di accesso è separato dal portale di Azure e non richiede una sottoscrizione Azure.
 
-toouse basato su password single sign-on (SSO nel Pannello di accesso, hello estensione del Pannello di accesso hello) deve essere installato nel browser dell'utente hello. Questa estensione viene scaricata automaticamente quando un utente seleziona un'applicazione configurata per il servizio Single Sign-On basato su password.
+Per usare il servizio Single Sign-On (SSO) basato su password nel pannello di accesso, è necessario installare l'estensione del pannello di accesso nel browser dell'utente. Questa estensione viene scaricata automaticamente quando un utente seleziona un'applicazione configurata per il servizio Single Sign-On basato su password.
 
-## <a name="meeting-browser-requirements-for-hello-access-panel"></a>Requisiti del browser per hello Pannello di accesso
+## <a name="meeting-browser-requirements-for-the-access-panel"></a>Applicazione dei requisiti del browser per il pannello di accesso
 
-Pannello di accesso Hello richiede un browser che supporta JavaScript e CSS sono state abilitate. toouse basato su password single sign-on (SSO nel Pannello di accesso, hello estensione del Pannello di accesso hello) deve essere installato nel browser dell'utente hello. Questa estensione viene scaricata automaticamente quando un utente seleziona un'applicazione configurata per il servizio Single Sign-On basato su password.
+Per il pannello di accesso è necessario un browser che supporti JavaScript e in cui sia abilitato CSS. Per usare il servizio Single Sign-On (SSO) basato su password nel pannello di accesso, è necessario installare l'estensione del pannello di accesso nel browser dell'utente. Questa estensione viene scaricata automaticamente quando un utente seleziona un'applicazione configurata per il servizio Single Sign-On basato su password.
 
-Per SSO basato su password, browser dell'utente finale di hello può essere:
+Per l'accesso Single Sign-On basato su password il browser dell'utente finale può essere uno dei seguenti:
 
 -   Internet Explorer 8, 9, 10, 11 su Windows 7 o versioni successive
 
@@ -38,29 +38,29 @@ Per SSO basato su password, browser dell'utente finale di hello può essere:
 -   Firefox 26.0 o versione successiva in Windows XP SP2 o versione successiva e in Mac OS X 10.6 o versione successiva
 
 >[!NOTE]
->estensione SSO basato su password Hello diventano disponibili per Edge in Windows 10 quando diventano supportate le estensioni del browser per Edge.
+>L'estensione SSO basata su password sarà disponibile per Edge in Windows 10 quando le estensioni del browser saranno supportate per Edge.
 >
 >
 
-## <a name="how-tooinstall-hello-access-panel-browser-extension"></a>Come tooinstall hello estensione Browser Pannello di accesso
+## <a name="how-to-install-the-access-panel-browser-extension"></a>Come installare l'estensione del browser per il pannello di accesso
 
-hello tooinstall estensione Browser Pannello di accesso, le operazioni di hello seguenti:
+Per installare l'estensione del browser per il pannello di accesso, seguire questa procedura:
 
-1.  Aprire hello [Pannello di accesso](https://myapps.microsoft.com) in uno dei browser supportato hello e accedere come un **utente** in Azure AD.
+1.  Aprire il [pannello di accesso](https://myapps.microsoft.com) in uno dei browser supportati e accedere come **utente** ad Azure AD.
 
-2.  Fare clic su un **applicazione password SSO** in hello Pannello di accesso.
+2.  Fare clic su un'**applicazione con accesso SSO basato su password** nel pannello di accesso.
 
-3.  Hello prompt dei comandi in cui viene chiesto tooinstall hello selezionare software **installa**.
+3.  Quando viene richiesto di installare il software, selezionare **Installa ora**.
 
-4.  Basata sul browser è il collegamento di download toohello diretto. **Aggiungere** browser tooyour di estensione hello.
+4.  A seconda del browser in uso, si verrà indirizzati al collegamento per il download. **Aggiungere** l'estensione al browser.
 
-5.  Se il browser viene richiesto, selezionare tooeither **abilitare** o **Consenti** hello estensione.
+5.  Se richiesto dal browser, scegliere se **abilitare** o **consentire** l'uso dell'estensione.
 
 6.  Al termine dell'installazione, **riavviare** la sessione del browser.
 
-7.  Accedere in hello Pannello di accesso e di vedere se è possibile **avviare** applicazioni password SSO
+7.  Accedere al pannello di accesso e verificare se è possibile **avviare** le applicazioni con accesso SSO basato su password.
 
-È anche possibile scaricare l'estensione hello per Chrome e Firefox dai collegamenti diretti hello riportato di seguito:
+È anche possibile scaricare l'estensione per Chrome e Firefox dai collegamenti diretti seguenti:
 
 -   [Estensione Pannello di accesso per Chrome](https://chrome.google.com/webstore/detail/access-panel-extension/ggjhpefgjjfobnfoldnjipclpcfbgbhl)
 
@@ -68,119 +68,119 @@ hello tooinstall estensione Browser Pannello di accesso, le operazioni di hello 
 
 ## <a name="setting-up-a-group-policy-for-internet-explorer"></a>Impostazione dei Criteri di gruppo per Internet Explorer
 
-È possibile configurare criteri di gruppo che consentono di estensione del Pannello di accesso tooremotely installazione hello per Internet Explorer nei computer degli utenti.
+È possibile impostare Criteri di gruppo che consentono di installare l'estensione del pannello di accesso per Internet Explorer nei computer degli utenti in modalità remota.
 
-prerequisiti di Hello includono:
+I prerequisiti includono:
 
--   È stato impostato [servizi di dominio Active Directory](https://msdn.microsoft.com/library/aa362244%28v=vs.85%29.aspx), e sono stati aggiunti dominio tooyour di computer degli utenti.
+-   [Servizi di dominio Active Directory](https://msdn.microsoft.com/library/aa362244%28v=vs.85%29.aspx)è già stato configurato e i computer degli utenti sono stati aggiunti al dominio.
 
--   È necessario disporre di hello tooedit autorizzazione "Modifica impostazioni" hello oggetto Criteri di gruppo (GPO). Per impostazione predefinita, i membri di gruppi di sicurezza seguente hello dispongono di questa autorizzazione: Domain Administrators, Enterprise Administrators e Group Policy Creator Owners. [Altre informazioni](https://technet.microsoft.com/library/cc781991%28v=ws.10%29.aspx)
+-   Per modificare l'oggetto Criteri di gruppo è necessaria l'autorizzazione "Modifica impostazione". Questa autorizzazione è assegnata per impostazione predefinita ai membri dei gruppi di sicurezza seguenti: Domain Administrators, Enterprise Administrators e Group Policy Creator Owners. [Altre informazioni](https://technet.microsoft.com/library/cc781991%28v=ws.10%29.aspx).
 
-Seguire l'esercitazione hello [come tooDeploy hello estensione del Pannello di accesso per Internet Explorer utilizzando criteri di gruppo](https://docs.microsoft.com/azure/active-directory/active-directory-saas-ie-group-policy) per istruzioni dettagliate su come tooconfigure hello criteri di gruppo e distribuirlo toousers.
+Per istruzioni passo passo su come configurare i Criteri di gruppo e distribuirli agli utenti, seguire l'esercitazione [Come distribuire l'estensione Pannello di accesso per Internet Explorer con Criteri di gruppo](https://docs.microsoft.com/azure/active-directory/active-directory-saas-ie-group-policy).
 
-## <a name="troubleshoot-hello-access-panel-in-internet-explorer"></a>Risoluzione dei problemi hello Pannello di accesso in Internet Explorer
+## <a name="troubleshoot-the-access-panel-in-internet-explorer"></a>Risoluzione dei problemi del pannello di accesso in Internet Explorer
 
-Seguire hello [Troubleshoot hello estensione del Pannello di accesso per Internet Explorer](https://docs.microsoft.com/azure/active-directory/active-directory-saas-ie-Troubleshoot) della Guida per l'accesso in uno strumento di diagnostica e istruzioni dettagliate sulla configurazione di estensione hello per Internet Explorer.
+Per accedere a uno strumento diagnostico e per istruzioni passo passo sulla configurazione dell'estensione per IE, seguire la procedura nella sezione sulla [risoluzione dei problemi relativi all'estensione del pannello di accesso per Internet Explorer](https://docs.microsoft.com/azure/active-directory/active-directory-saas-ie-Troubleshoot).
 
-## <a name="how-tooconfigure-password-single-sign-on-for-a-non-gallery-application"></a>Come password tooconfigure single sign-on per un'applicazione non-raccolta
+## <a name="how-to-configure-password-single-sign-on-for-a-non-gallery-application"></a>Come configurare un accesso Single Sign-On basato su password per un'applicazione non inclusa nella raccolta
 
-un'applicazione dalla raccolta di Azure AD hello tooconfigure è necessario:
+Per configurare un'applicazione della raccolta di Azure AD è necessario:
 
 -   [Aggiungere un'applicazione non inclusa nella raccolta](#add-a-non-gallery-application)
 
--   [Configurare un'applicazione hello password single sign-on](#configure-the-application-for-password-single-sign-on)
+-   [Configurare l'applicazione per un accesso Single Sign-On basato su password](#configure-the-application-for-password-single-sign-on)
 
--   [Assegnare gli utenti dell'applicazione toohello](#assign-users-to-the-application)
+-   [Assegnare gli utenti all'applicazione](#assign-users-to-the-application)
 
 ### <a name="add-a-non-gallery-application"></a>Aggiungere un'applicazione non inclusa nella raccolta
 
-un'applicazione dalla raccolta di Azure AD, hello tooadd procedura hello riportata di seguito:
+Per aggiungere un'applicazione dalla raccolta di Azure AD, seguire questa procedura:
 
-1.  Aprire hello [portale Azure](https://portal.azure.com) e accedere come un **amministratore globale** o **Co-amministratore**
+1.  Aprire il [portale di Azure](https://portal.azure.com) e accedere come **Amministratore globale** o **Coamministratore**.
 
-2.  Aprire hello **estensione di Azure Active Directory** facendo **più servizi** nella parte inferiore di hello del menu di navigazione a sinistra principale hello.
+2.  Aprire l'**estensione Azure Active Directory** facendo clic su **Altri servizi** nella parte inferiore del menu di navigazione principale a sinistra.
 
-3.  Digitare **"Azure Active Directory**" nella casella di ricerca di filtro hello e seleziona hello **Azure Active Directory** elemento.
+3.  Digitare "**Azure Active Directory**" nella casella di ricerca filtro e selezionare l'elemento **Azure Active Directory**.
 
-4.  Fare clic su **applicazioni aziendali** dal menu di navigazione a sinistra di hello Azure Active Directory.
+4.  Fare clic su **Applicazioni aziendali** nel menu di navigazione a sinistra di Azure Active Directory.
 
-5.  Fare clic su hello **Aggiungi** pulsante nell'angolo superiore destro di hello in hello **applicazioni aziendali** pannello
+5.  Fare clic sul pulsante **Aggiungi** nell'angolo superiore destro del pannello **Applicazioni aziendali**.
 
 6.  Fare clic su**Applicazione non nella raccolta**.
 
-7.  Immettere il nome di hello dell'applicazione in hello **nome** casella di testo. Fare clic su **Aggiungi**.
+7.  Immettere il nome dell'applicazione nella casella di testo **Nome**. Fare clic su **Aggiungi**.
 
-Dopo un breve periodo, è il pannello di configurazione dell'applicazione in grado di toosee hello.
+Dopo un breve periodo di tempo, sarà possibile visualizzare il pannello di configurazione dell'applicazione.
 
-### <a name="configure-hello-application-for-password-single-sign-on"></a>Configurare un'applicazione hello password single sign-on
+### <a name="configure-the-application-for-password-single-sign-on"></a>Configurare l'applicazione per un accesso Single Sign-On basato su password
 
-tooconfigure single sign-on per un'applicazione, attenersi alla procedura hello riportata di seguito:
+Per configurare un accesso Single Sign-On per un'applicazione, seguire i passaggi seguenti:
 
-1.  Aprire hello [ **portale Azure** ](https://portal.azure.com/) e accedere come un **amministratore globale** o **Co-amministratore.**
+1.  Aprire il [**portale di Azure**](https://portal.azure.com/) e accedere come **Amministratore globale** o **Coamministratore**.
 
-2.  Aprire hello **estensione di Azure Active Directory** facendo **più servizi** nella parte inferiore di hello del menu di navigazione a sinistra principale hello.
+2.  Aprire l'**estensione Azure Active Directory** facendo clic su **Altri servizi** nella parte inferiore del menu di navigazione principale a sinistra.
 
-3.  Digitare **"Azure Active Directory**" nella casella di ricerca di filtro hello e seleziona hello **Azure Active Directory** elemento.
+3.  Digitare "**Azure Active Directory**" nella casella di ricerca filtro e selezionare l'elemento **Azure Active Directory**.
 
-4.  Fare clic su **applicazioni aziendali** dal menu di navigazione a sinistra di hello Azure Active Directory.
+4.  Fare clic su **Applicazioni aziendali** nel menu di navigazione a sinistra di Azure Active Directory.
 
-5.  Fare clic su **tutte le applicazioni** tooview un elenco di tutte le applicazioni.
+5.  Fare clic su **Tutte le applicazioni** per visualizzare un elenco di tutte le applicazioni.
 
-   * Se non viene visualizzata l'applicazione hello da visualizzare qui, utilizzare hello **filtro** controllo nella parte superiore di hello di hello **elenco di tutte le applicazioni** e set hello **Mostra** opzione troppo **Tutte le applicazioni.**
+   * Se l'applicazione non è inclusa nell'elenco, usare il controllo **Filtro** all'inizio dell'**elenco di tutte le applicazioni** e impostare l'opzione **Mostra** su **Tutte le applicazioni**.
 
-6.  Selezionare l'applicazione hello da tooconfigure single sign-on
+6.  Selezionare l'applicazione per cui si vuole configurare un accesso Single Sign-On
 
-7.  Una volta che un'applicazione hello caricato, fare clic su hello **Single sign-on** dal menu di navigazione a sinistra dell'applicazione hello.
+7.  Dopo il caricamento dell'applicazione, fare clic su **Single Sign-On** nel menu di navigazione a sinistra dell'applicazione.
 
-8.  Modalità di selezione hello **basato su Password Sign-on.**
+8.  Selezionare la modalità **Accesso basato su password**.
 
-9.  Immettere hello **Sign-on URL**. Si tratta hello URL in cui gli utenti immettono il nome utente e password toosign in a. Verificare i campi di accesso hello sono visibili nell'URL hello.
+9.  Immettere l'**URL di accesso**. Questo è l'URL in cui gli utenti immettono il nome utente e la password per accedere. Verificare che i campi di accesso siano visibili nell'URL.
 
-10. Assegnare gli utenti dell'applicazione toohello.
+10. Assegnare gli utenti all'applicazione.
 
-11. Inoltre, è anche possibile fornire credenziali per conto dell'utente hello selezionando le righe di hello di utenti hello e facendo clic su **credenziali di aggiornamento** e l'immissione di nome utente hello e una password per conto degli utenti hello. In caso contrario, gli utenti in tooenter richiesta hello credenziali stessi all'avvio.
+11. È anche possibile specificare le credenziali per conto dell'utente selezionando le righe degli utenti e facendo clic su **Aggiorna credenziali**, quindi immettendo il nome utente e la password per conto degli utenti. In caso contrario, verrà richiesto agli utenti di immettere le credenziali all'avvio.
 
-### <a name="assign-users-toohello-application"></a>Assegnare gli utenti dell'applicazione toohello
+### <a name="assign-users-to-the-application"></a>Assegnare gli utenti all'applicazione
 
-tooassign uno o più applicazioni tooan utenti direttamente, procedura hello riportata di seguito:
+Per assegnare uno o più utenti direttamente a un'applicazione, seguire questa procedura:
 
-1.  Aprire hello [ **portale Azure** ](https://portal.azure.com/) e accedere come un **amministratore globale.**
+1.  Aprire il [**portale di Azure**](https://portal.azure.com/) e accedere come **Amministratore globale**.
 
-2.  Aprire hello **estensione di Azure Active Directory** facendo **più servizi** nella parte inferiore di hello del menu di navigazione a sinistra principale hello.
+2.  Aprire l'**estensione Azure Active Directory** facendo clic su **Altri servizi** nella parte inferiore del menu di navigazione principale a sinistra.
 
-3.  Digitare **"Azure Active Directory**" nella casella di ricerca di filtro hello e seleziona hello **Azure Active Directory** elemento.
+3.  Digitare "**Azure Active Directory**" nella casella di ricerca filtro e selezionare l'elemento **Azure Active Directory**.
 
-4.  Fare clic su **applicazioni aziendali** dal menu di navigazione a sinistra di hello Azure Active Directory.
+4.  Fare clic su **Applicazioni aziendali** nel menu di navigazione a sinistra di Azure Active Directory.
 
-5.  Fare clic su **tutte le applicazioni** tooview un elenco di tutte le applicazioni.
+5.  Fare clic su **Tutte le applicazioni** per visualizzare un elenco di tutte le applicazioni.
 
-   * Se non viene visualizzata l'applicazione hello da visualizzare qui, utilizzare hello **filtro** controllo nella parte superiore di hello di hello **elenco di tutte le applicazioni** e set hello **Mostra** opzione troppo **Tutte le applicazioni.**
+   * Se l'applicazione non è inclusa nell'elenco, usare il controllo **Filtro** all'inizio dell'elenco **Tutte le applicazioni** e impostare l'opzione **Mostra** su **Tutte le applicazioni**.
 
-6.  Selezionare l'applicazione hello da un elenco di utenti toofrom hello tooassign.
+6.  Selezionare nell'elenco l'applicazione che si vuole assegnare a un utente.
 
-7.  Una volta che un'applicazione hello caricato, fare clic su **utenti e gruppi** dal menu di navigazione a sinistra dell'applicazione hello.
+7.  Dopo il caricamento dell'applicazione, fare clic su **Utenti e gruppi** nel menu di navigazione a sinistra dell'applicazione.
 
-8.  Fare clic su hello **Aggiungi** pulsante sopra hello **utenti e gruppi** hello tooopen elenco **Aggiungi** blade.
+8.  Fare clic sul pulsante **Aggiungi** nella parte superiore dell'elenco **Utenti e gruppi** per aprire il pannello **Aggiungi assegnazione**.
 
-9.  Fare clic su hello **utenti e gruppi** selettore di hello **Aggiungi** blade.
+9.  Fare clic sul selettore **Utenti e gruppi** nel pannello **Aggiungi assegnazione**.
 
-10. Tipo di hello **nome completo** o **indirizzo di posta elettronica** dell'utente hello si è interessati nell'assegnazione di hello **ricerca per nome o indirizzo di posta** casella di ricerca.
+10. Nella casella di ricerca **Cerca per nome o indirizzo di posta** digitare il **nome completo**  o l'**indirizzo di posta elettronica** dell'utente oggetto dell'assegnazione.
 
-11. Passare il mouse su hello **utente** in hello elenco tooreveal un **casella di controllo**. Fare clic su tooadd di foto o logo profilo hello casella di controllo successivo toohello dell'utente il toohello utente **selezionati** elenco.
+11. Passare il puntatore sull'**utente** nell'elenco per visualizzare una **casella di controllo**. Fare clic sulla casella di controllo accanto alla foto o al logo del profilo dell'utente per aggiungere l'utente all'elenco **Selezionato**.
 
-12. **Facoltativo:** se si desidera troppo**aggiungere più di un utente**, in un altro tipo di **nome completo** o **indirizzo di posta elettronica** in hello **Cerca per nome o l'indirizzo di posta elettronica** casella di ricerca e fare clic su questo toohello utente hello casella di controllo tooadd **selezionati** elenco.
+12. **Facoltativo:** se si vuole **aggiungere più di un utente**, digitare un altro **nome completo** o **indirizzo di posta elettronica** nella casella di ricerca **Cerca per nome o indirizzo di posta** e fare clic sulla casella di controllo per aggiungere l'utente all'elenco **selezionato**.
 
-13. Al termine della selezione utenti, fare clic su hello **selezionare** tooadd pulsante li toohello elenco di utenti e gruppi toobe assegnato toohello applicazione.
+13. Dopo avere selezionato gli utenti, fare clic sul pulsante **Seleziona** per aggiungerli all'elenco di utenti e gruppi da assegnare all'applicazione.
 
-14. **Facoltativo:** fare clic su hello **selezionare il ruolo** selettore di hello **Aggiungi** pannello tooselect un ruolo tooassign toohello utenti selezionati.
+14. **Facoltativo:** fare clic sul selettore **Seleziona ruolo** nel pannello **Aggiungi assegnazione** per scegliere un ruolo da assegnare agli utenti selezionati.
 
-15. Fare clic su hello **assegnare** pulsante tooassign hello applicazione toohello gli utenti selezionati.
+15. Fare clic sul pulsante **Assegna** per assegnare l'applicazione agli utenti selezionati.
 
-Dopo un breve periodo, gli utenti di hello selezionato toolaunch in grado di queste applicazioni in hello Pannello di accesso.
+Dopo un breve periodo di tempo, gli utenti selezionati saranno in grado di avviare queste applicazioni nel pannello di accesso.
 
-## <a name="if-these-troubleshooting-steps-do-not-hello-resolve-hello-issue"></a>Se questi passaggi di risoluzione dei problemi non hello di risolvere il problema di hello
+## <a name="if-these-troubleshooting-steps-do-not-the-resolve-the-issue"></a>Se questi passaggi di risoluzione dei problemi non risolvono il problema
 
-Aprire un ticket di supporto con hello se disponibili le seguenti informazioni:
+aprire un ticket di supporto con le informazioni seguenti, se disponibili:
 
 -   ID errore di correlazione
 
@@ -195,5 +195,5 @@ Aprire un ticket di supporto con hello se disponibili le seguenti informazioni:
 -   Tracce Fiddler
 
 ## <a name="next-steps"></a>Passaggi successivi
-[Fornire le applicazioni single sign-on tooyour con Proxy dell'applicazione](active-directory-application-proxy-sso-using-kcd.md)
+[Fornire l'accesso Single Sign-On alle app con il proxy di applicazione](active-directory-application-proxy-sso-using-kcd.md)
 

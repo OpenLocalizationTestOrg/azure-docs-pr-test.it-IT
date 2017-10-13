@@ -1,6 +1,6 @@
 ---
-title: aaaMigrate il tooSQL codice SQL Data Warehouse | Documenti Microsoft
-description: Suggerimenti per la migrazione del database SQL di codice tooAzure SQL Data Warehouse per lo sviluppo di soluzioni.
+title: Eseguire la migrazione del codice SQL in SQL Data Warehouse | Documentazione Microsoft
+description: Suggerimenti per la migrazione del codice SQL in Azure SQL Data Warehouse per lo sviluppo di soluzioni.
 services: sql-data-warehouse
 documentationcenter: NA
 author: sqlmojo
@@ -15,17 +15,17 @@ ms.workload: data-services
 ms.custom: migrate
 ms.date: 06/23/2017
 ms.author: joeyong;barbkess
-ms.openlocfilehash: 7a16d579d068e9df9aba3dc61e4a09bcaa551588
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c6e6b890f5e2d0e31b10bbb6803adad02bf60248
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="migrate-your-sql-code-toosql-data-warehouse"></a>Eseguire la migrazione del tooSQL codice SQL Data Warehouse
-Questo articolo illustra le modifiche al codice sarà probabilmente necessario toomake durante la migrazione del codice da un altro database tooSQL Data Warehouse. Alcune funzionalità di SQL Data Warehouse può migliorare significativamente le prestazioni come se fossero toowork progettato in modalità distribuita. Tuttavia, scalabilità e prestazioni di toomaintain, alcune funzionalità anche non sono disponibili.
+# <a name="migrate-your-sql-code-to-sql-data-warehouse"></a>Eseguire la migrazione del codice SQL in SQL Data Warehouse
+Questo articolo spiega le modifiche del codice che saranno molto probabilmente necessarie quando si esegue la migrazione del codice da un altro database in SQL Data Warehouse. Alcune funzionalità di SQL Data Warehouse possono migliorare in modo significativo le prestazioni perché sono progettate per funzionare direttamente in modalità distribuita. Per mantenere tuttavia le prestazioni e la scalabilità, alcune funzionalità non sono disponibili.
 
 ## <a name="common-t-sql-limitations"></a>Limitazioni comuni di T-SQL
-Hello seguente elenco di vengono riepilogate le funzionalità più comuni hello SQL Data Warehouse non è supportata. Hello collegamenti è possibile tooworkarounds per le funzionalità di hello non supportato:
+L'elenco seguente riepiloga le funzionalità più comuni non supportate in SQL Data Warehouse. I collegamenti consentono di accedere a soluzioni alternative per le funzionalità non supportate:
 
 * [Join ANSI sugli aggiornamenti][ANSI joins on updates]
 * [Join ANSI sulle eliminazioni][ANSI joins on deletes]
@@ -53,10 +53,10 @@ Hello seguente elenco di vengono riepilogate le funzionalità più comuni hello 
 * [Uso di select per l'assegnazione di variabili][use of select for variable assignment]
 * [Nessun tipo di dati MAX per stringhe SQL dinamiche][no MAX data type for dynamic SQL strings]
 
-Fortunatamente è possibile ovviare alla maggior parte di queste limitazioni. Negli articoli pertinenti sviluppo hello citati in precedenza, vengono fornite spiegazioni.
+Fortunatamente è possibile ovviare alla maggior parte di queste limitazioni. Le spiegazioni sono fornite dagli articoli pertinenti a cui viene fatto riferimento più indietro.
 
 ## <a name="supported-cte-features"></a>Funzionalità CTE supportate
-Le espressioni di tabella comune (CTE) sono parzialmente supportate in SQL Data Warehouse.  Hello seguenti caratteristiche CTE è attualmente supportata:
+Le espressioni di tabella comune (CTE) sono parzialmente supportate in SQL Data Warehouse.  Attualmente sono supportate le funzionalità CTE seguenti:
 
 * Un'espressione CTE può essere specificata in un'istruzione SELECT.
 * Un'espressione CTE può essere specificata in un'istruzione CREATE VIEW.
@@ -71,17 +71,17 @@ Le espressioni di tabella comune (CTE) sono parzialmente supportate in SQL Data 
 Le espressioni di tabella comune presentano alcune limitazioni in SQL Data Warehouse, tra cui:
 
 * Un'espressione CTE deve essere seguita da una singola istruzione SELECT. Le istruzioni INSERT, UPDATE, DELETE e MERGE non sono supportate.
-* Un'espressione di tabella comune che include riferimenti tooitself (ricorsiva espressione di tabella comune) non è supportata (vedere la sezione sottostante).
+* Un'espressione di tabella comune che include riferimenti a se stessa (un'espressione di tabella comune ricorsiva) non è supportata (vedere la sezione sotto).
 * Non è consentito specificare più di una clausola WITH in un'espressione CTE. Se, ad esempio, CTE_query_definition contiene una sottoquery, tale sottoquery non può contenere una clausola WITH annidata che definisce un'altra CTE.
-* Una clausola ORDER BY non possa essere utilizzata nel hello elementi CTE_query_definition, tranne quando viene specificata una clausola TOP.
-* Quando una CTE è utilizzata in un'istruzione che fa parte di un batch, l'istruzione di hello prima che deve essere seguita da un punto e virgola.
-* Quando utilizzata in istruzioni preparate da sp_prepare, CTE comporteranno hello esattamente come altre istruzioni SELECT in PDW. Se, tuttavia, le CTE vengono utilizzate come parte di CETAS preparato da sp_prepare, comportamento hello possibile rinviare da SQL Server e altre istruzioni PDW dovuta hello associazione viene implementata per sp_prepare. Se l'opzione Seleziona riferimenti CTE è utilizzata una colonna di tipo non corretta che non esiste nella CTE, hello sp_prepare passerà senza rilevare l'errore hello ma hello verrà generato un errore durante la sp_execute invece.
+* Una clausola ORDER BY non può essere usata in CTE_query_definition, tranne quando viene specificata una clausola TOP.
+* Quando un'espressione CTE viene usata in un'istruzione che fa parte di un batch, l'istruzione precedente deve essere seguita da un punto e virgola.
+* Quando vengono usate in istruzioni preparate da sp_prepare, le espressioni CTE si comporteranno esattamente come le altre istruzioni SELECT in PDW. Tuttavia, se le CTE vengono usate come parte di istruzioni CETAS preparate da sp_prepare, il comportamento può variare rispetto a SQL Server e altre istruzioni PDW per la modalità di implementazione del binding per sp_prepare. Se l'istruzione SELECT che fa riferimento alla CTE usa una colonna non corretta che non esiste nella CTE, sp_prepare passa senza rilevare l'errore, che invece viene generato durante sp_execute.
 
 ## <a name="recursive-ctes"></a>CTE ricorsive
-Le CTE ricorsive non sono supportate in SQL Data Warehouse.  la migrazione di Hello della CTE ricorsiva può essere complessa e la procedura ottimale di hello è toobreak in più passaggi. In genere, è possibile utilizzare un ciclo e popolare una tabella temporanea come è possibile scorrere le query provvisorio hello ricorsive. Una volta che viene popolata la tabella temporanea hello è quindi possibile restituire dati hello come un unico set di risultati. Un approccio simile è stato utilizzato toosolve `GROUP BY WITH CUBE` in hello [gruppo dalla clausola con rollup / cubo / imposta le opzioni di raggruppamento] [ group by clause with rollup / cube / grouping sets options] articolo.
+Le CTE ricorsive non sono supportate in SQL Data Warehouse.  La migrazione di CTE ricorsive può essere complessa e il processo ottimale consiste nel suddividere l'operazione in più passaggi. In genere è possibile usare un ciclo e popolare una tabella temporanea mentre si scorrono le query provvisorie ricorsive. Una volta che viene popolata la tabella temporanea, è quindi possibile restituire i dati come un unico set di risultati. Un approccio simile è stato usato per risolvere `GROUP BY WITH CUBE` nell'articolo relativo al [raggruppamento per clausola con opzioni di rollup/cubo/set di raggruppamento][group by clause with rollup / cube / grouping sets options].
 
 ## <a name="unsupported-system-functions"></a>Funzioni di sistema non supportate
-Anche alcune funzioni di sistema non sono supportate. Vengono elencate alcune delle hello principali dei quali che è possibile in genere utilizzato nel data warehouse
+Anche alcune funzioni di sistema non sono supportate. Alcune di queste funzioni principali che in genere vengono usate nel data warehousing sono:
 
 * NEWSEQUENTIALID()
 * @@NESTLEVEL()
@@ -93,7 +93,7 @@ Anche alcune funzioni di sistema non sono supportate. Vengono elencate alcune de
 Per alcuni di questi problemi esiste una soluzione alternativa.
 
 ## <a name="rowcount-workaround"></a>Soluzione alternativa @@ROWCOUNT
-toowork intorno mancanza di supporto per @@ROWCOUNT, creare una stored procedure che recupererà hello ultimo conteggio delle righe da sys.dm_pdw_request_steps e quindi eseguire `EXEC LastRowCount` dopo un'istruzione DML.
+Per risolvere la mancanza di supporto per @@ROWCOUNT, creare una stored procedure per recuperare l'ultimo conteggio delle righe da sys.dm_pdw_request_steps e quindi eseguire `EXEC LastRowCount` dopo un'istruzione DML.
 
 ```sql
 CREATE PROCEDURE LastRowCount AS

@@ -1,5 +1,5 @@
 ---
-title: le impostazioni di FabricTransport aaaChange in Azure microservizi | Documenti Microsoft
+title: Modificare le impostazioni di FabricTransport nei microservizi di Azure | Microsoft Docs
 description: Informazioni sulla configurazione delle impostazioni di comunicazione degli attori di Service Fabric di Azure.
 services: Service-Fabric
 documentationcenter: .net
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 04/20/2017
 ms.author: suchiagicha
-ms.openlocfilehash: e312b475407eb95a435b93d80c0f2e9618b9ea1f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 75bdd4644f4ccc583271b9169c50a375e2cd6629
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="configure-fabrictransport-settings-for-reliable-actors"></a>Configurare le impostazioni di FabricTransport per Reliable Actors
 
-Ecco le impostazioni di hello che è possibile configurare:
+Ecco le impostazioni che possono essere configurate:
 - C#: [FabricTransportRemotingSettings](
 https://docs.microsoft.com/en-us/java/api/microsoft.servicefabric.services.remoting.fabrictransport._fabric_transport_remoting_settings)
 - Java: [FabricTransportRemotingSettings](https://docs.microsoft.com/java/api/microsoft.servicefabric.services.remoting.fabrictransport._fabric_transport_remoting_settings)
 
-È possibile modificare una configurazione predefinita di hello di FabricTransport nei modi seguenti.
+È possibile modificare la configurazione predefinita di FabricTransport nei modi seguenti.
 
 ## <a name="assembly-attribute"></a>Attributo assembly
 
-Hello [FabricTransportActorRemotingProvider](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicefabric.actors.remoting.fabrictransport.fabrictransportactorremotingproviderattribute?redirectedfrom=MSDN#microsoft_servicefabric_actors_remoting_fabrictransport_fabrictransportactorremotingproviderattribute) attributo necessario toobe applicato in assembly del servizio client e l'attore hello attore.
+L'attributo [FabricTransportActorRemotingProvider](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicefabric.actors.remoting.fabrictransport.fabrictransportactorremotingproviderattribute?redirectedfrom=MSDN#microsoft_servicefabric_actors_remoting_fabrictransport_fabrictransportactorremotingproviderattribute) deve essere applicato negli assembly del client attore e del servizio attore.
 
-Hello di esempio seguente viene illustrato come toochange hello il valore predefinito delle impostazioni FabricTransport OperationTimeout:
+L'esempio seguente illustra come modificare il valore predefinito delle impostazioni OperationTimeout di FabricTransport:
 
   ```csharp
     using Microsoft.ServiceFabric.Actors.Remoting.FabricTransport;
@@ -49,11 +49,11 @@ Hello di esempio seguente viene illustrato come toochange hello il valore predef
 
 ## <a name="config-package"></a>Pacchetto di configurazione
 
-È possibile utilizzare un [pacchetto di configurazione](service-fabric-application-model.md) configurazione predefinita di toomodify hello.
+È possibile usare un [pacchetto di configurazione](service-fabric-application-model.md) per modificare la configurazione predefinita.
 
-### <a name="configure-fabrictransport-settings-for-hello-actor-service"></a>Configurare le impostazioni di FabricTransport per servizio actor hello
+### <a name="configure-fabrictransport-settings-for-the-actor-service"></a>Configurare le impostazioni di FabricTransport per il servizio attore
 
-Aggiungere una sezione TransportSettings nel file Settings hello.
+Aggiungere una sezione TransportSettings nel file settings.xml.
 
 Per impostazione predefinita, il codice attore cerca il nome sezione "&lt;ActorName&gt;TransportSettings". Se non viene trovato, cerca il SectionName "TransportSettings".
 
@@ -72,9 +72,9 @@ Per impostazione predefinita, il codice attore cerca il nome sezione "&lt;ActorN
    </Section>
   ```
 
-### <a name="configure-fabrictransport-settings-for-hello-actor-client-assembly"></a>Configurare le impostazioni di FabricTransport per assembly client di hello attore
+### <a name="configure-fabrictransport-settings-for-the-actor-client-assembly"></a>Configurare le impostazioni di FabricTransport per l'assembly del client attore
 
-Se il client di hello non è in esecuzione come parte di un servizio, è possibile creare un "&lt;Nome Exe Client&gt;. Settings" file in hello stesso percorso del file di .exe hello client. Aggiungere quindi una sezione TransportSettings in tale file. SectionName deve essere "TransportSettings".
+Se il client non è in esecuzione come parte di un servizio, è possibile creare un file XML "&lt;Nome EXE client&gt;.settings.xml" nello stesso percorso in cui si trova il file client .exe. Aggiungere quindi una sezione TransportSettings in tale file. SectionName deve essere "TransportSettings".
 
   ```xml
   <?xml version="1.0" encoding="utf-8"?>
@@ -96,7 +96,7 @@ Se il client di hello non è in esecuzione come parte di un servizio, è possibi
 
   * Configurazione delle impostazioni di FabricTransport per il client/servizio Actor protetto con certificato secondario.
   È possibile aggiungere informazioni sul certificato secondario aggiungendo il parametro CertificateFindValuebySecondary.
-  Di seguito è riportato hello per hello TransportSettings Listener.
+  L'esempio seguente riguarda TransportSettings del listener.
 
     ```xml
     <Section Name="TransportSettings">
@@ -110,7 +110,7 @@ Se il client di hello non è in esecuzione come parte di un servizio, è possibi
     <Parameter Name="CertificateProtectionLevel" Value="EncryptAndSign" />
     </Section>
      ```
-     Di seguito è riportato hello per hello Client TransportSettings.
+     L'esempio seguente riguarda TransportSettings del client.
 
     ```xml
    <Section Name="TransportSettings">
@@ -125,8 +125,8 @@ Se il client di hello non è in esecuzione come parte di un servizio, è possibi
     </Section>
      ```
     * Configurazione delle impostazioni di FabricTransport per il client/servizio Actor protetto usando il nome oggetto.
-    Utente esigenze tooprovide findType come FindBySubjectName, aggiungere i valori CertificateIssuerThumbprints e CertificateRemoteCommonNames.
-  Di seguito è riportato hello per hello TransportSettings Listener.
+    L'utente deve fornire findType come FindBySubjectName e aggiungere i valori di CertificateIssuerThumbprints e CertificateRemoteCommonNames.
+  L'esempio seguente riguarda TransportSettings del listener.
 
      ```xml
     <Section Name="TransportSettings">
@@ -140,7 +140,7 @@ Se il client di hello non è in esecuzione come parte di un servizio, è possibi
     <Parameter Name="CertificateProtectionLevel" Value="EncryptAndSign" />
     </Section>
     ```
-  Di seguito è riportato hello per hello Client TransportSettings.
+  L'esempio seguente riguarda TransportSettings del client.
 
     ```xml
      <Section Name="TransportSettings">

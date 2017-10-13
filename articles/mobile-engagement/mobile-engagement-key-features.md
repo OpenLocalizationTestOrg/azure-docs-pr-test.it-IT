@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Engagement Mobile - le funzionalità chiave"
-description: "Descrive le funzionalità principali di hello di Azure Mobile Engagement"
+title: "Funzionalità principali di Azure Mobile Engagement"
+description: "Descrive le funzionalità principali di Azure Mobile Engagement"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,46 +14,46 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 46906033046fc6dd915fb6943f5f89d4b4a27704
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 8270a223ca31c623c1b760a64c0e4d64fb85e080
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-mobile-engagement---key-features"></a>Funzionalità principali di Azure Mobile Engagement
-In questo articolo fornisce una panoramica di alto livello sulle funzionalità principali di hello della piattaforma Mobile Engagement hello. 
+L'articolo fornisce una panoramica generale sulle funzionalità principali della piattaforma Mobile Engagement. 
 
 ## <a name="general"></a>**Generale**
 * **SDK per tutte le principali piattaforme** SDK disponibili per tutte le principali piattaforme: iOS, Android, Universal Windows, Windows Phone Silverlight, Kindle, Cordova. 
-  Offriamo toointegrate facile SDK e documentazione utili tooget che è stato avviato in qualsiasi piattaforma di propria scelta. 
-* **Portale SaaS separato** consente un facile accesso toohello marketing team senza hello necessità toogo tramite il portale di gestione di Azure hello. 
-* **Disponibilità di API REST aprire** toointegrate e automatizzare con sistemi CRM/CMS/IT tramite le API di piattaforma aperta, aprire tooconsume API REST e .NET SDK, queste API che consentono tooeasily integrano offerte e automatizzare con Engagement Mobile. Vedere [qui](mobile-engagement-api-authentication.md) per informazioni dettagliate. 
-* **Connettore di Power BI disponibile** è possibile estrarre anche grafici chiave analitica hello in un dashboard di Power BI. Vedere questa [guida](https://powerbi.microsoft.com/en-us/documentation/powerbi-content-pack-azure-mobile/)
-* **Garanzia di sicurezza e Privacy** Azure Mobile Engagement facenti parte di hello Azure famiglia segue tutti hello standard migliori procedure consigliate relative alla sicurezza e privacy previsto per un servizio cloud.
+  Vengono forniti SDK facilmente integrabili e documentazione utile per iniziare a usare la piattaforma scelta. 
+* **Portale SaaS separato** Consente di contattare in modo semplice il team di marketing senza accedere dal portale di gestione di Azure. 
+* **Disponibilità di API REST aperte** Per integrare e automatizzare sistemi CRM/CMS/IT, sono disponibili API REST aperte e .NET SDK per il relativo utilizzo, consentendo una semplice integrazione e automatizzazione con Mobile Engagement. Vedere [qui](mobile-engagement-api-authentication.md) per informazioni dettagliate. 
+* **Disponibilità del connettore Power BI** È anche possibile estrarre i principali grafici analitici in un dashboard di Power BI. Vedere questa [guida](https://powerbi.microsoft.com/en-us/documentation/powerbi-content-pack-azure-mobile/)
+* **Garanzia di sicurezza e privacy** Azure Mobile Engagement fa parte della famiglia di prodotti Azure e segue tutte le procedure consigliate standard relative alla sicurezza e alla privacy previste per un servizio cloud.
 
 ## <a name="actionable-analytics"></a>**Analisi operativa**
-* **Monitorare i dati in tempo reale** È possibile tenere traccia delle analisi in tempo reale usando il modulo di monitoraggio che mostra dettagli tra cui sessioni, eventi, errori e arresti anomali del sistema in tempo reale. Dare un'occhiata [articolo](mobile-engagement-concepts.md) tooget conoscenza dei concetti di base hello. 
+* **Monitorare i dati in tempo reale** È possibile tenere traccia delle analisi in tempo reale usando il modulo di monitoraggio che mostra dettagli tra cui sessioni, eventi, errori e arresti anomali del sistema in tempo reale. Vedere questo [articolo](mobile-engagement-concepts.md) per comprendere i concetti di base. 
   
     ![][1]
   
     ![][2]        
-* **Visualizzare dati aggregati** anche una visualizzazione più completa dei dati aggregati analitica con il nostro modulo Analitica consentendo tooeasily filtro dei dati in base ai periodi di versione e l'ora l'app.
+* **Visualizzare i dati aggregati** È anche possibile ottenere una visualizzazione più completa dei dati analitici aggregati usando il modulo Analytics che consente di filtrarli facilmente sulla base della versione dell'app e dei periodi di tempo.
   
     ![][3]        
 * **Acquisire informazioni dettagliate sul modello di assorbimento e sugli utenti**
   
     ![][4]        
-* **Ottenere informazioni approfondite in cui gli utenti provenienti da e quanto tempo sono spesa nella schermata di hello**
+* **Acquisire informazioni dettagliate sulla provenienza degli utenti e sul tempo che trascorrono nella schermata**
   
     ![][5]        
   
     ![][6]        
-* **Verificare le schermate sono agli utenti di app visitare e come è possibile è ottimizzare percorso utente hello** ciò consente di toodiscover schermate e funzionalità che si desidera.
+* **Identificare le schermate visitate dagli utenti dell'applicazione e le modalità di ottimizzazione del percorso utente** Ciò consente di far individuare agli utenti schermate e funzionalità specifiche.
   
     ![][7]        
   
     ![][8]        
-* **Ottenere informazioni dettagliate in cui vengono hello eventi più frequenti nell'app e la comprensione del processo di business in base a questi eventi** 
+* **Acquisire informazioni dettagliate sugli eventi più frequenti nell'applicazione e sul processo aziendale basato su di essi** 
   
     ![][9]    
 * **Tenere traccia di arresti anomali ed errori comuni e acquisire informazioni per il team di sviluppo**
@@ -61,20 +61,20 @@ In questo articolo fornisce una panoramica di alto livello sulle funzionalità p
     ![][10]        
   
     ![][11]    
-* **Comprendere quali dispositivi e le reti sono l'utenti app l'accesso dell'app da, toooptimize hello app** 
+* **Acquisire informazioni sui dispositivi e sulle reti utilizzati per l'accesso all'applicazione dagli utenti, per ottimizzare l'applicazione** 
   
     ![][12]    
 
 ## <a name="targeted--personalized-push-notifications"></a>**Notifiche push mirate e personalizzate**
-* **Creazione di un segmento basato su uno dei dati raccolti hello** è possibile utilizzare uno qualsiasi dei dati di evento/sessione/attività/processo/arresto anomalo del sistema/Errore/tag hello per questo oggetto.
+* **Creare un segmento basato su uno qualsiasi dei dati raccolti** A tale scopo è possibile utilizzare uno dei dati di Evento/Sessione/Attività/Processo/Arresto anomalo/Errore/Tag .
   
     ![][13]
   
     ![][14]        
-* **Tenere traccia della cronologia hello della giornata segmenti creato sul giorno**
+* **Tenere traccia della cronologia dei segmenti creati giornalmente**
   
     ![][15]    
-* **Inviare notifiche destinazione** destinazione comunemente utilizzati come precedente/nuovi utenti e così via o segmento tooyour personalizzato creato
+* **Inviare notifiche mirate** destinate a un segmento di uso frequente, come vecchi/nuovi utenti e così via, o a un segmento personalizzato
   
     ![][16]    
 * **Inviare notifiche push in-app basate su HTML formattato e notifiche out-of-app/di sistema in base al proprio scenario**
@@ -82,33 +82,33 @@ In questo articolo fornisce una panoramica di alto livello sulle funzionalità p
     ![][17]    
   
     ![][18]    
-* **Come destinazione tooshow notifiche nell'applicazione di una specifica attività dello schermo / nell'applicazione hello**
+* **Impostare notifiche in-app mirate da visualizzare in una schermata/attività specifica nell'applicazione**
   
     ![][19]    
-* **Specificare una "azione" quando hello utente fa clic su una notifica** potrebbe essere semplice come l'apertura di una pagina Web o lo spostamento all'interno di schermata specifica hello app tooa al clic hello della notifica hello. 
+* **Specificare "un'azione" associata alla selezione di una notifica da parte dell'utente** Potrebbe trattarsi di un'azione semplice come l'apertura di una pagina Web o lo spostamento a una schermata specifica all'interno dell'applicazione. 
   
     ![][20]
-* **Inviare notifiche localizzate** in modo da utenti app toohello nel linguaggio hello più preferiscono in. 
+* **Inviare notifiche localizzate** per attirare l'interesse degli utenti dell'applicazione nella loro lingua d'uso. 
   
     ![][21]    
 * **Specificare un'ora di inizio e fine per le campagne** 
   
     ![][22]    
-* **Test con facilità le notifiche** registrando un dispositivo di test e l'invio di questo dispositivo hello test notifica tooonly.
+* **Testare facilmente le notifiche** registrando un dispositivo di test e inviando la notifica di prova solo a questo dispositivo.
   
     ![][23]    
-* **Facilmente impostare tooshow una notifica in-app come un sondaggio/sondaggio rapido**  
+* **Configurare facilmente una notifica in-app da visualizzare come rapido sondaggio**  
   
     ![][24]
-* **Ottenere statistiche della campagna push** per le notifiche toogive è un'idea efficacia sono state le notifiche.
+* **Ottenere statistiche della campagna push** delle notifiche per valutare la relativa riuscita
   
     ![][25]    
-* **Personalizzare facilmente e fornire notifiche tooyour carattere usando app-info/tag ed emojis** 
+* **Personalizzare facilmente e dare carattere alle notifiche tramite app-info/tag ed emoji** 
   
     ![][26]    
   
     ![][27]    
-* **Impostare i limiti Push tooprevent agli utenti di questi comportamenti** non desiderati toosend numerosi inserimenti tooyour app utenti e sarà spamming li. Si tratta in cui la funzionalità di limiti Push è utile che consente i limiti push tooconfigure granularità hello di un segmento. 
+* **Impostare limiti push per impedire lo spamming degli utenti** Evitare di inviare molti push agli utenti dell'applicazione, dando l'impressione di spamming. Questa funzione è particolarmente utile perché permette di configurare dei limiti alla granularità di un segmento. 
   
     ![][28]            
 

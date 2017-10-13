@@ -1,6 +1,6 @@
 ---
-title: aaaGet avviato con Azure notifica hub per App universali di Windows piattaforma | Documenti Microsoft
-description: "In questa esercitazione, è illustrato come toouse gli hub di notifica di Azure toopush notifiche tooa applicazione piattaforma universale di Windows."
+title: Introduzione a Hub di notifica di Azure per le app UWP | Microsoft Docs
+description: Questa esercitazione illustra come usare Hub di notifica di Azure per inviare notifiche push a un'applicazione della piattaforma UWP (Universal Windows Platform).
 services: notification-hubs
 documentationcenter: windows
 author: ysxu
@@ -14,103 +14,108 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 10/03/2016
 ms.author: yuaxu
-ms.openlocfilehash: 11056842d205522ed493dc61c76ecf78ebb5a363
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e18a810bcdbd97c79418f53c647df8723ecb6076
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="getting-started-with-notification-hubs-for-windows-universal-platform-apps"></a>Introduzione ad Hub di notifica per le app della piattaforma UWP (Universal Windows Platform)
+# <a name="get-started-with-notification-hubs-for-universal-windows-platform-apps"></a>Introduzione a Hub di notifica per le app UWP
+
 [!INCLUDE [notification-hubs-selector-get-started](../../includes/notification-hubs-selector-get-started.md)]
 
 ## <a name="overview"></a>Panoramica
-Questa esercitazione viene illustrato come toouse gli hub di notifica di Azure toosend push app Universal Windows Platform (UWP) tooa di notifiche.
+Questo articolo illustra come usare Hub di notifica di Azure per inviare notifiche push a un'app UWP (Universal Windows Platform).
 
-In questa esercitazione, si crea un'app di Windows Store vuota che riceve le notifiche push tramite servizio notifica Push Windows (WNS) hello. Al termine, sarà in grado di toouse il toobroadcast di hub di notifica push notifiche tooall hello che eseguono l'app.
+In questo articolo si crea un'app di Windows Store vuota che riceve notifiche push tramite Servizi notifica Push Windows (WNS). Al termine, sarà possibile usare l'hub di notifica per trasmettere notifiche push a tutti i dispositivi che eseguono l'app.
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 [!INCLUDE [notification-hubs-hero-slug](../../includes/notification-hubs-hero-slug.md)]
 
-codice Hello completata per questa esercitazione è disponibile su GitHub [qui](https://github.com/Azure/azure-notificationhubs-samples/tree/master/dotnet/GetStartedWindowsUniversal).
+Il codice completo per questa esercitazione è disponibile in [GitHub](https://github.com/Azure/azure-notificationhubs-samples/tree/master/dotnet/GetStartedWindowsUniversal).
 
 ## <a name="prerequisites"></a>Prerequisiti
-Questa esercitazione richiede il seguente hello:
+Per completare questa esercitazione, è necessario disporre di:
 
 * [Microsoft Visual Studio Community 2015](https://www.visualstudio.com/products/visual-studio-community-vs) o versione successiva
-* [Strumenti per lo sviluppo di app di Windows universale](https://msdn.microsoft.com/windows/uwp/get-started/get-set-up)
-* Account Azure attivo  <br/>Se non si dispone di un account Azure, è possibile creare un account di valutazione gratuito in pochi minuti. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fnotification-hubs-windows-store-dotnet-get-started%2F).
+* [Strumenti per lo sviluppo di app UWP installati](https://msdn.microsoft.com/windows/uwp/get-started/get-set-up)
+* Account Azure attivo   
+    Se non si dispone di un account, è possibile creare un account di valutazione gratuita in pochi minuti. Per altre informazioni, vedere [Versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fnotification-hubs-windows-store-dotnet-get-started%2F).
 * Account di Windows Store attivo
 
-Il completamento di questa esercitazione costituisce un prerequisito per tutte le altre esercitazioni di Hub di notifica relative ad app della piattaforma UWP (Universal Windows Platform).
+Il completamento di questa esercitazione è un prerequisito per tutte le altre esercitazioni relative a Hub di notifica per le app UWP.
 
-## <a name="register-your-app-for-hello-windows-store"></a>Registrare l'app per Windows Store hello
-toosend le app tooUWP le notifiche push, è necessario associare il toohello app Windows Store. È quindi necessario configurare il toointegrate di hub di notifica con WNS.
+## <a name="register-your-app-for-the-windows-store"></a>Registrare l'app di Windows Store
+Per inviare notifiche push ad app UWP, associare l'app a Windows Store. Configurare quindi l'hub di notifica per l'integrazione con WNS.
 
-1. Se non è già stato registrato l'app, passare toohello [Windows Dev Center](https://dev.windows.com/overview), accedere con l'account Microsoft e quindi fare clic su **crea una nuova app**.
+1. Se l'app non è ancora stata registrata, passare a [Windows Dev Center](https://dev.windows.com/overview), accedere con il proprio account Microsoft e quindi selezionare **Crea una nuova app**.
 
-2. Digitare un nome per l'app e fare clic su **Riserva nome dell'app**. Verrà creata una nuova registrazione a Windows Store per l'app.
+2. Digitare un nome per l'app e quindi selezionare **Riserva nome dell'app**. Verrà così creata una nuova registrazione a Windows Store per l'app.
 
-3. In Visual Studio, creare un nuovo progetto di Visual c# di App Store utilizzando universali di Windows hello **applicazione vuota** modello e fare clic su **OK**.
+3. In Visual Studio creare un nuovo progetto di app di Windows Store in Visual C# usando il modello **App vuota** per la piattaforma UWP e quindi selezionare **OK**.
 
-4. Accettare i valori predefiniti di hello per le versioni di piattaforma minimo e di destinazione di hello.
+4. Accettare le impostazioni predefinite per le versioni minima e di destinazione della piattaforma.
 
-5. In Esplora soluzioni, progetti di app Windows Store hello pulsante destro del mouse, fare clic su **archivio**, quindi fare clic su **Associa applicazione a Store hello...** . hello **associare un'App con Windows Store hello** procedura guidata viene visualizzata.
+5. In Esplora soluzioni fare clic con il pulsante destro del mouse sul progetto di app di Windows Store, scegliere **Store** e quindi selezionare **Associa applicazione a Store**.  
+    Viene visualizzata la procedura guidata **Associa l'applicazione con Windows Store** .
 
-6. Nella procedura guidata hello, accedere con l'account Microsoft.
+6. Nella procedura guidata accedere con il proprio account Microsoft.
 
-7. Fare clic su app hello registrato nel passaggio 2, fare clic su **Avanti**, quindi fare clic su **associare**. Consente di aggiungere il manifesto di applicazione toohello hello richiesto Windows Store registrazione informazioni.
+7. Selezionare l'app registrata nel passaggio 2, quindi **Avanti** e infine **Associa**. Le informazioni di registrazione a Windows Store necessarie verranno così aggiunte al manifesto dell'applicazione.
 
-8. In hello [Windows Dev Center](http://dev.windows.com/overview) pagina per la nuova app, fare clic su **servizi**, fare clic su **notifiche Push**, quindi fare clic su **WNS o MPNS**.
+8. Nella pagina di [Windows Dev Center](http://dev.windows.com/overview) per la nuova app selezionare **Servizi**, quindi **Notifiche push** e infine **WNS/MPNS**.
 
-9. Fare clic su **Nuova notifica**.
+9. Selezionare **Nuova notifica**.
 
-10. Fare clic sul modello **Blank (Toast)** (Vuoto - Avviso popup) e quindi fare clic su **OK**.
+10. Selezionare il modello **Blank (Toast)** (Vuoto - Avviso popup) e quindi **OK**.
 
-11. Immettere un **nome** per la notifica e un messaggio **contesto** visivo. Fare clic su **Salva come bozza**.
+11. Immettere un **nome** per la notifica e un messaggio di **contesto** visivo e quindi selezionare **Salva come bozza**.
 
-12. Passare toohello [portale di registrazione applicazione](http://apps.dev.microsoft.com) ed effettuare l'accesso.
+12. Passare al [portale di registrazione delle applicazioni](http://apps.dev.microsoft.com) ed eseguire l'accesso.
 
-13. Fare clic sul nome dell'applicazione. Prendere nota di hello **segreto dell'applicazione** password e hello **ID di pacchetto sicurezza (SID)** si trova in hello **Windows Store** impostazioni piattaforma.
+13. Selezionare il nome dell'applicazione. Nelle impostazioni della piattaforma **Windows Store** prendere nota della password di **Segreto dell'applicazione** e dell'**ID di sicurezza (SID) del pacchetto**.
 
-     > [AZURE.WARNING]
-    segreto dell'applicazione Hello e il SID pacchetto sono credenziali di sicurezza importanti. Non condividere questi valori con altri utenti né distribuirli con l'app.
+    >[!WARNING]
+    >Il segreto applicazione e il SID di pacchetto sono importanti credenziali di sicurezza. Non condividere questi valori con altri utenti né distribuirli con l'app.
 
 ## <a name="configure-your-notification-hub"></a>Configurare l'hub di notifica
 [!INCLUDE [notification-hubs-portal-create-new-hub](../../includes/notification-hubs-portal-create-new-hub.md)]
 
-<ol start="6">
-<li><p>Seleziona hello <b>Notification Services</b> opzione e hello <b>Windows (WNS)</b> opzione. Immettere quindi hello <b>segreto dell'applicazione</b> password in hello <b>chiave di sicurezza</b> campo. Immettere il <b>SID pacchetto</b> valore che è stato ottenuto da WNS nella sezione precedente hello e quindi fare clic su <b>salvare</b>.</p>
+<ol start="5">
+<li><p>Selezionare <b>Servizi di notifica</b> > <b>Windows (WNS)</b> e quindi immettere la password del segreto dell'applicazione nella casella <b>Chiave di sicurezza</b>. Nella casella <b>SID pacchetto</b> immettere il valore ottenuto da WNS nella sezione precedente e quindi selezionare <b>Salva</b>.</p>
 </li>
 </ol>
 
-&emsp;&emsp;![](./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-configure-wns.png)
+![Caselle SID pacchetto e Chiave di sicurezza](./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-configure-wns.png)
 
-Hub di notifica è ora configurato toowork con WNS e aver tooregister stringhe di connessione hello app e inviare notifiche.
+L'hub di notifica è ora configurato per l'uso di WNS. Sono disponibili le stringhe di connessione per la registrazione dell'app e l'invio di notifiche.
 
-## <a name="connect-your-app-toohello-notification-hub"></a>Connettere l'hub di notifica toohello app
-1. In Visual Studio, fare doppio clic hello soluzione e quindi fare clic su **Gestisci pacchetti NuGet**.
+## <a name="connect-your-app-to-the-notification-hub"></a>Connettere l'app all'hub di notifica
+1. In Visual Studio fare clic con il pulsante destro del mouse sulla soluzione e quindi scegliere **Gestisci pacchetti NuGet**.  
+    Verrà visualizzata la finestra **Gestisci pacchetti NuGet**.
+
+2. Nella casella di ricerca immettere **WindowsAzure.Messaging.Managed**, selezionare **Installa** e accettare le condizioni per l'utilizzo.
    
-    Consente di visualizzare hello **Gestisci pacchetti NuGet** la finestra di dialogo.
-2. Cercare `WindowsAzure.Messaging.Managed` e fare clic su **installare**e accettare le condizioni di hello d'uso.
+    ![Finestra Gestisci pacchetti NuGet][20]
    
-    ![][20]
-   
-    Questo download, si installa e si aggiunge una raccolta di informazioni di riferimento toohello messaggistica di Azure per Windows utilizzando hello <a href="http://nuget.org/packages/WindowsAzure.Messaging.Managed/">pacchetto WindowsAzure.Messaging.Managed NuGet</a>.
-3. Aprire il file di progetto App.xaml.cs hello e aggiungere il seguente hello `using` istruzioni. 
+    Questa azione esegue il download, l'installazione e l'aggiunta di un riferimento alla libreria di messaggistica di Azure per Windows con il [pacchetto NuGet WindowsAzure.Messaging.Managed](http://nuget.org/packages/WindowsAzure.Messaging).
+
+3. Aprire il file di progetto App.xaml.cs e aggiungere le istruzioni `using` seguenti: 
    
         using Windows.Networking.PushNotifications;
         using Microsoft.WindowsAzure.Messaging;
         using Windows.UI.Popups;
-4. Anche in App.xaml.cs, aggiungere il seguente hello **InitNotificationsAsync** toohello definizione di metodo **App** classe:
+
+4. In App.xaml.cs, aggiungere alla classe **App** la definizione del metodo **InitNotificationsAsync** seguente:
    
         private async void InitNotificationsAsync()
         {
             var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
    
-            var hub = new NotificationHub("< your hub name>", "<Your DefaultListenSharedAccessSignature connection string>");
+            var hub = new NotificationHub("<your hub name>", "<Your DefaultListenSharedAccessSignature connection string>");
             var result = await hub.RegisterNativeAsync(channel.Uri);
    
-            // Displays hello registration ID so you know it was successful
+            // Displays the registration ID so you know it was successful
             if (result.RegistrationId != null)
             {
                 var dialog = new MessageDialog("Registration successful: " + result.RegistrationId);
@@ -120,57 +125,67 @@ Hub di notifica è ora configurato toowork con WNS e aver tooregister stringhe d
    
         }
    
-    Questo codice recupera l'URI del canale hello per app hello da WNS e quindi tale URI del canale viene registrata con l'hub di notifica.
+    Questo codice recupera il valore di ChannelURI per l'app da Servizi notifica Push Windows e quindi lo registra con l'hub di notifica.
    
-   > [!NOTE]
-   > Verificare che tooreplace hello segnaposto "il nome hub" con il nome di hello dell'hub di notifica hello che viene visualizzato nel portale di Azure hello. Sostituire i segnaposto di stringa di connessione hello anche con hello **DefaultListenSharedAccessSignature** stringa di connessione che è stato ottenuto da hello **criteri di accesso** pagina dell'Hub di notifica in un sezione precedente.
+    >[!NOTE]
+    >* Sostituire il segnaposto **hub name** con il nome dell'hub di notifica visualizzato nel portale di Azure. 
+    >* Sostituire anche il segnaposto relativo alla stringa di connessione con la stringa di connessione **DefaultListenSharedAccessSignature** ottenuta nella pagina **Criteri di accesso** dell'hub di notifica in una sezione precedente.
    > 
    > 
-5. Nella parte superiore di hello di hello **OnLaunched** gestore dell'evento in App.xaml.cs, aggiungere hello seguente chiamata toohello nuova **InitNotificationsAsync** metodo:
+5. All'inizio del gestore dell'evento **OnLaunched** in App.xaml.cs, aggiungere la chiamata seguente al nuovo metodo **InitNotificationsAsync**:
    
         InitNotificationsAsync();
    
-    In questo modo si garantisce il canale hello che URI è registrato nell'hub di notifica che viene avviata un'applicazione hello ogni ora.
-6. Hello premere **F5** toorun chiave hello app. Viene visualizzata una finestra di dialogo popup che contiene la chiave di registrazione hello.
+    Questa azione garantisce la registrazione dell'URI di canale nell'hub di notifica a ogni avvio dell'applicazione.
 
-L'app è pronta tooreceive popup.
+6. Per eseguire l'app, premere **F5**. Verrà visualizzata una finestra di dialogo contenente la chiave di registrazione.
+
+L'app è ora pronta per ricevere notifiche di tipo avviso popup.
 
 ## <a name="send-notifications"></a>Inviare notifiche
-È possibile verificare rapidamente la ricezione di notifiche nell'app mediante l'invio di notifiche in hello [portale Azure](https://portal.azure.com/) utilizzando hello **invio di Test** pulsante hub di notifica hello, come illustrato nella schermata di hello riportata di seguito.
+È possibile testare rapidamente la ricezione di notifiche nell'app inviando notifiche nel [portale di Azure](https://portal.azure.com/). Usare il pulsante **Invio di prova** nell'hub di notifica, come illustrato nell'immagine seguente:
 
-![](./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-test-send-wns.png)
+![Riquadro Invio di prova](./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-test-send-wns.png)
 
-Le notifiche push vengono in genere inviate in un servizio back-end come Servizi mobili o ASP.NET usando una libreria compatibile. È inoltre possibile utilizzare hello API REST direttamente i messaggi di notifica toosend se una raccolta non è disponibile per il back-end. 
+Le notifiche push vengono in genere inviate in un servizio back-end come Servizi mobili o ASP.NET usando una libreria compatibile. Se non è disponibile una libreria per il back-end, è anche possibile inviare messaggi di notifica usando direttamente l'API REST. 
 
-In questa esercitazione verrà semplicità e illustrano solo test dell'app client per l'invio di notifiche tramite hello .NET SDK per gli hub di notifica in un'applicazione console anziché un servizio back-end. Si consiglia di hello [toousers le notifiche di utilizzare gli hub di notifica toopush] come passaggio successivo di hello per l'invio di notifiche da un back-end ASP.NET dell'esercitazione. Tuttavia, è possibile utilizzare hello approcci seguenti per l'invio di notifiche:
+Questa esercitazione illustra come testare l'app client inviando semplicemente notifiche che usano .NET SDK per gli hub di notifica in un'applicazione console, anziché in un servizio back-end. Come passaggio successivo per l'invio di notifiche da un back-end ASP.NET, è consigliabile vedere l'esercitazione relativa all'[uso di Hub di notifica per eseguire il push di notifiche agli utenti]. È comunque possibile inviare notifiche usando gli approcci seguenti.
 
-* **Interfaccia REST**: È possibile supportare la notifica su qualsiasi piattaforma back-end utilizzando hello [interfaccia REST](http://msdn.microsoft.com/library/windowsazure/dn223264.aspx).
-* **Microsoft Azure notifica hub .NET SDK**: In hello Gestione pacchetti Nuget per Visual Studio, eseguire [Microsoft.Azure.NotificationHubs Install-Package](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/).
-* **Node.js** : [come hub di notifica da Node.js toouse](notification-hubs-nodejs-push-notification-tutorial.md).
-* **App per dispositivi mobili Azure**: per un esempio di come le notifiche di toosend da un'App Mobile di Azure è integrato con hub di notifica, vedere [aggiungere notifiche push per App per dispositivi mobili](../app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push.md).
-* **Java o PHP**: per un esempio di come le notifiche toosend utilizzando hello API REST, vedere "come hub di notifica da Java o PHP toouse" ([Java](notification-hubs-java-push-notification-tutorial.md) | [PHP](notification-hubs-php-push-notification-tutorial.md)).
+* **Interfaccia REST**: è possibile supportare notifiche in qualsiasi piattaforma back-end usando l'[interfaccia REST](http://msdn.microsoft.com/library/windowsazure/dn223264.aspx).
+
+* **.NET SDK per Hub di notifica di Microsoft Azure**: in Gestione pacchetti NuGet per Visual Studio eseguire [Install-Package Microsoft.Azure.NotificationHubs](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/).
+
+* **Node.js**: vedere l'articolo su [come usare Hub di notifica da Node.js](notification-hubs-nodejs-push-notification-tutorial.md).
+* **App per dispositivi mobili di Azure**: per un esempio di come inviare notifiche da un'app per dispositivi mobili di Azure integrata con Hub di notifica, vedere l'articolo su come [aggiungere notifiche push per le app per dispositivi mobili](../app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push.md).
+
+* **Java o PHP**: per esempi di come inviare notifiche usando le API REST, vedere:
+    * [Java](notification-hubs-java-push-notification-tutorial.md)
+    * [PHP](notification-hubs-php-push-notification-tutorial.md)
 
 ## <a name="optional-send-notifications-from-a-console-app"></a>(Facoltativo) Inviare notifiche da un'app console
-le notifiche toosend tramite un'applicazione console .NET seguono questi passaggi. 
+Per inviare notifiche con un'applicazione console .NET, seguire questa procedura: 
 
-1. Soluzione di hello pulsante destro del mouse, selezionare **Aggiungi** e **nuovo progetto...** , quindi in **Visual c#**, fare clic su **Windows** e **applicazione Console**, fare clic su **OK**.
+1. Fare clic con il pulsante destro del mouse sulla soluzione e scegliere **Aggiungi** > **Nuovo progetto**, quindi in **Visual C#** selezionare **Windows** e **Applicazione console** e infine selezionare **OK**.
    
-    Aggiunge una nuovo Visual c# toohello soluzione di applicazione console. Questa operazione può essere eseguita anche in una soluzione separata.
+    Alla soluzione verrà aggiunta una nuova applicazione console Visual C#. È anche possibile aggiungere il progetto in una soluzione separata.
 
-2. In Visual Studio fare clic su **Strumenti**, selezionare **Gestione pacchetti NuGet** e quindi **Console di Gestione pacchetti**.
+2. In Visual Studio selezionare **Strumenti**, **Gestione pacchetti NuGet** e quindi **Console di Gestione pacchetti**.
    
-    Consente di visualizzare la Console di gestione pacchetti hello in Visual Studio.
-3. Nella finestra della Console di gestione pacchetti hello, impostare hello **progetto predefinito** tooyour nuovo progetto applicazione console e quindi nella finestra di console hello, eseguire hello comando seguente:
+    In Visual Studio verrà visualizzata la console di Gestione pacchetti.
+
+3. Nella finestra Console di Gestione pacchetti impostare **Progetto predefinito** sul nuovo progetto di applicazione console e quindi eseguire questo comando nella finestra della console:
    
         Install-Package Microsoft.Azure.NotificationHubs
    
-    Aggiunge un toohello riferimento SDK di hub di notifica di Azure utilizzando hello <a href="http://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/">pacchetto NuGet di hub Microsoft.Azure.Notification</a>.
+    Questa azione aggiunge un riferimento ad Azure Notification Hubs SDK usando il [pacchetto NuGet Microsoft.Azure.NotificationHubs](http://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/).
    
-    ![](./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-package-manager.png)
-4. Aprire il file Program.cs hello e aggiungere il seguente hello `using` istruzione:
+    ![Nome in "Progetto predefinito"](./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-package-manager.png)
+
+4. Aprire il file Program.cs e quindi aggiungere l'istruzione `using` seguente:
    
         using Microsoft.Azure.NotificationHubs;
-5. In hello **programma** classe, aggiungere al metodo hello:
+
+5. Nella classe **Program** aggiungere il metodo seguente:
    
         private static async void SendNotificationAsync()
         {
@@ -180,28 +195,29 @@ le notifiche toosend tramite un'applicazione console .NET seguono questi passagg
             await hub.SendWindowsNativeNotificationAsync(toast);
         }
    
-       Make sure tooreplace hello "hub name" placeholder with hello name of hello notification hub that as it appears in hello Azure Portal. Also, replace hello connection string placeholder with hello **DefaultFullSharedAccessSignature** connection string that you obtained from hello **Access Policies** page of your Notification Hub in hello section called "Configure your notification hub."
-   
-   > [!NOTE]
-   > Assicurarsi di utilizzare una stringa di connessione hello è **completo** non accedere **ascolto** accesso. stringa di accesso listen Hello è notifiche toosend autorizzazioni.
+    >[!NOTE]
+    >* Sostituire il segnaposto **hub name** con il nome dell'hub di notifica visualizzato nel portale di Azure. 
+    >* Sostituire il segnaposto relativo alla stringa di connessione con la stringa di connessione **DefaultFullSharedAccessSignature** ottenuta nella pagina **Criteri di accesso** dell'hub di notifica nella sezione "Configurare l'hub di notifica".
+    >* Usare la stringa di connessione con accesso *completo*, non *in ascolto*. La stringa con accesso di tipo Attesa non dispone infatti delle autorizzazioni per l'invio di notifiche.
    > 
    > 
-6. Aggiungere hello seguenti righe hello **Main** metodo:
+6. Nel metodo **Main** aggiungere le righe seguenti:
    
          SendNotificationAsync();
          Console.ReadLine();
-7. Fare clic sul progetto applicazione console hello in Visual Studio e fare clic su **imposta come progetto di avvio** tooset come progetto di avvio hello. Premere quindi hello **F5** applicazione hello toorun della chiave.
-   
-    Tutti i dispositivi registrati riceveranno una notifica di tipo avviso popup. Banner di tipo avviso popup facendo clic o toccando hello carica app hello.
 
-È possibile trovare tutti i payload hello è supportato in hello [catalogo toast], [riquadro catalogo], e [badge Panoramica] argomenti su MSDN.
+7. Fare clic con il pulsante destro del mouse sul progetto di applicazione console in Visual Studio e quindi scegliere **Imposta come progetto di avvio** per impostarlo come progetto di avvio. Premere quindi **F5** per eseguire l'applicazione.
+   
+    Tutti i dispositivi registrati riceveranno una notifica di tipo avviso popup. Selezionando o toccando il banner dell'avviso popup verrà caricata l'app.
+
+Per trovare tutti i payload supportati, è possibile consultare gli argomenti relativi al [catalogo degli avvisi popup], al [catalogo dei riquadri] e alla [panoramica delle notifiche] su MSDN.
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questo semplice esempio è stata inviata notifiche tooall i dispositivi Windows con il portale di hello o un'applicazione console. Si consiglia di hello [toousers le notifiche di utilizzare gli hub di notifica toopush] esercitazione come passaggio successivo hello. Verrà descritto come toosend notifiche da un back-end ASP.NET usando tag tootarget specifici utenti.
+In questo semplice esempio sono state inviate notifiche di trasmissione a tutti i dispositivi Windows usando il portale o un'app console. Per il passaggio successivo, è consigliabile vedere l'esercitazione relativa all'[uso di Hub di notifica per eseguire il push di notifiche agli utenti], che illustra come inviare notifiche da un back-end ASP.NET usando tag per specificare come destinazione utenti specifici.
 
-Se si desidera che gli utenti dai gruppi di interesse toosegment, vedere [toosend gli hub di notifica di utilizzare le ultime notizie]. 
+Se si desidera segmentare gli utenti per gruppi di interesse, vedere [Utilizzo di Hub di notifica per inviare le ultime notizie]. 
 
-toolearn informazioni generali sull'hub di notifica, vedere [materiale sussidiario per gli hub di notifica](notification-hubs-push-notification-overview.md).
+Per altre informazioni generali, vedere le [indicazioni su Hub di notifica](notification-hubs-push-notification-overview.md).
 
 <!-- Images. -->
 [13]: ./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-create-console-app.png
@@ -211,9 +227,10 @@ toolearn informazioni generali sull'hub di notifica, vedere [materiale sussidiar
 
 <!-- URLs. -->
 
-[toousers le notifiche di utilizzare gli hub di notifica toopush]: notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md
-[toosend gli hub di notifica di utilizzare le ultime notizie]: notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md
+[uso di Hub di notifica per eseguire il push di notifiche agli utenti]: notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md
+[Utilizzo di Hub di notifica per inviare le ultime notizie]: notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md
 
-[catalogo toast]: http://msdn.microsoft.com/library/windows/apps/hh761494.aspx
-[riquadro catalogo]: http://msdn.microsoft.com/library/windows/apps/hh761491.aspx
-[badge Panoramica]: http://msdn.microsoft.com/library/windows/apps/hh779719.aspx
+[catalogo degli avvisi popup]: http://msdn.microsoft.com/library/windows/apps/hh761494.aspx
+[catalogo dei riquadri]: http://msdn.microsoft.com/library/windows/apps/hh761491.aspx
+[panoramica delle notifiche]: http://msdn.microsoft.com/library/windows/apps/hh779719.aspx
+ 

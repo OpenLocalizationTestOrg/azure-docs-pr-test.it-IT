@@ -1,6 +1,6 @@
 ---
-title: aaaLinux macchine virtuali di calcolo in un cluster HPC Pack | Documenti Microsoft
-description: Informazioni su come toocreate e utilizzare un pacchetto di HPC cluster in Azure per Linux ad alte prestazioni (HPC) carichi di lavoro
+title: Macchine virtuali di calcolo Linux in un cluster HPC Pack | Microsoft Docs
+description: Informazioni su come creare e usare un cluster HPC Pack in Azure per carichi di lavoro HPC (High Performance Computing) Linux
 services: virtual-machines-linux
 documentationcenter: 
 author: dlepow
@@ -15,35 +15,35 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: big-compute
 ms.date: 10/12/2016
 ms.author: danlep
-ms.openlocfilehash: 9ed20d6cd69a6472a00666caf8965e9d022698a6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 809d3944311badf265117d353b65642e044d900c
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="get-started-with-linux-compute-nodes-in-an-hpc-pack-cluster-in-azure"></a>Introduzione all'uso di nodi di calcolo Linux in un cluster HPC Pack in Azure
-Configurare un cluster [Microsoft HPC Pack](https://technet.microsoft.com/library/cc514029.aspx) in Azure contenente un nodo head che esegue Windows Server e diversi nodi di calcolo che eseguono una distribuzione di Linux supportata. Esplorare i dati di opzioni toomove tra i nodi di Linux hello e nodo head di Windows hello del cluster di hello. Informazioni su come i processi di HPC Linux toosubmit toohello cluster.
+Configurare un cluster [Microsoft HPC Pack](https://technet.microsoft.com/library/cc514029.aspx) in Azure contenente un nodo head che esegue Windows Server e diversi nodi di calcolo che eseguono una distribuzione di Linux supportata. Sono disponibili varie opzioni per spostare dati tra i nodi Linux e il nodo head Windows del cluster. Leggere le informazioni su come inviare processi HPC Linux al cluster.
 
 [!INCLUDE [learn-about-deployment-models](../../../../includes/learn-about-deployment-models-both-include.md)]
 
-In generale, hello diagramma seguente mostra cluster HPC Pack hello è creare e utilizzare.
+Il diagramma seguente illustra a livello generale il cluster HPC Pack creato e usato.
 
 ![Cluster HPC Pack con nodi Linux][scenario]
 
-Per altre toorun opzioni HPC Linux carichi di lavoro in Azure, vedere [risorse tecniche per batch e high performance computing](../../../batch/big-compute-resources.md).
+Per altre opzioni relative all'esecuzione di carichi di lavoro HPC in Linux e in Azure, vedere [Risorse tecniche per batch e high performance computing](../../../batch/big-compute-resources.md).
 
 ## <a name="deploy-an-hpc-pack-cluster-with-linux-compute-nodes"></a>Distribuzione di un cluster HPC Pack con nodi di calcolo Linux
-Questo articolo illustra due opzioni toodeploy di un cluster HPC Pack in Azure con nodi di calcolo di Linux. Entrambi i metodi di utilizzano un'immagine del Marketplace di Windows Server con nodo head di HPC Pack toocreate hello. 
+Questo articolo illustra due opzioni per distribuire un cluster HPC Pack in Azure con nodi di calcolo Linux. Entrambi i metodi usano un'immagine del Marketplace di Windows Server con HPC Pack per creare il nodo head. 
 
-* **Modello di Azure Resource Manager** -utilizzare un modello da hello Azure Marketplace o un modello di avvio rapido dalla community di hello, creazione di tooautomate di hello cluster nel modello di distribuzione di gestione risorse di hello. Ad esempio, hello [cluster HPC Pack per i carichi di lavoro di Linux](https://azure.microsoft.com/marketplace/partners/microsofthpc/newclusterlinuxcn/) modello in hello Azure Marketplace consente di creare un'infrastruttura di cluster HPC Pack completa per HPC Linux carichi di lavoro.
-* **Script di PowerShell** -hello utilizzare [script di distribuzione IaaS di Microsoft HPC Pack](../../windows/classic/hpcpack-cluster-powershell-script.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) (**New-hpciaascluster.ps1**) tooautomate una distribuzione completa del cluster nel modello di distribuzione classica hello. Questo script di PowerShell Azure utilizza un'immagine di macchina virtuale di HPC Pack in hello Azure Marketplace per la distribuzione rapida e fornisce un set completo di toodeploy parametri di configurazione di nodi di calcolo di Linux.
+* **Modello di Azure Resource Manager** : usare un modello di Azure Marketplace o un modello di avvio rapido fornito dalla community per automatizzare la creazione del cluster nel modello di distribuzione Resource Manager. Ad esempio, il modello [Cluster HPC Pack per carichi di lavoro Linux](https://azure.microsoft.com/marketplace/partners/microsofthpc/newclusterlinuxcn/) in Azure Marketplace consente di creare un'infrastruttura di cluster HPC Pack per carichi di lavoro HPC Linux.
+* **Script PowerShell**: usare lo [script di distribuzione IaaS di Microsoft HPC Pack](../../windows/classic/hpcpack-cluster-powershell-script.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) (**New-HpcIaaSCluster.ps1**) per automatizzare la distribuzione completa di cluster nel modello di distribuzione classica. Questo script di Azure PowerShell usa un'immagine di macchina virtuale di HPC Pack in Azure Marketplace per accelerare la distribuzione e fornisce un set completo di parametri di configurazione per distribuire nodi di calcolo Linux.
 
-Per ulteriori informazioni sulle opzioni di distribuzione di cluster HPC Pack in Azure, vedere [opzioni toocreate e gestire un cluster ad alte prestazioni (HPC computing) in Azure con Microsoft HPC Pack](../hpcpack-cluster-options.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+Per altre informazioni sulle opzioni di distribuzione del cluster HPC Pack in Azure, vedere le [opzioni per creare e gestire un cluster HPC in Azure con Microsoft HPC Pack](../hpcpack-cluster-options.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
 ### <a name="prerequisites"></a>Prerequisiti
-* **Sottoscrizione di Azure** -è possibile utilizzare una sottoscrizione in un servizio Azure globale o Azure China hello. Se non si ha un account, è possibile creare un [account gratuito](https://azure.microsoft.com/pricing/free-trial/) in pochi minuti.
-* **Quota di core** -potrebbe essere necessario quota hello tooincrease di core, soprattutto se si sceglie toodeploy diversi nodi del cluster con dimensioni delle macchine Virtuali multicore. tooincrease una quota, aprire una richiesta di supporto clienti online senza alcun costo.
-* **Distribuzioni Linux** -attualmente HPC Pack supporta hello seguendo le distribuzioni di Linux per nodi di calcolo. È possibile usare le versioni del Marketplace di queste distribuzioni, se disponibili, oppure fornire le proprie.
+* **Sottoscrizione di Azure** : è possibile usare una sottoscrizione nel servizio Azure globale o Azure Cina. Se non si ha un account, è possibile creare un [account gratuito](https://azure.microsoft.com/pricing/free-trial/) in pochi minuti.
+* **Quota di core** : potrebbe essere necessario aumentare la quota di core, soprattutto se si sceglie di distribuire più nodi del cluster con dimensioni delle macchine virtuali multicore. Per aumentare una quota, aprire una richiesta di assistenza clienti online gratuitamente.
+* **Distribuzioni Linux:** attualmente HPC Pack supporta le seguenti distribuzioni Linux per i nodi di calcolo. È possibile usare le versioni del Marketplace di queste distribuzioni, se disponibili, oppure fornire le proprie.
   
   * **Basate su CentOS**: 6.5, 6.6, 6.7, 7.0, 7.1, 7.2, 6.5 HPC, 7.1 HPC
   * **Red Hat Enterprise Linux**: 6.7, 6.8, 7.2
@@ -51,49 +51,49 @@ Per ulteriori informazioni sulle opzioni di distribuzione di cluster HPC Pack in
   * **Ubuntu Server**: 14.04 LTS, 16.04 LTS
     
     > [!TIP]
-    > toouse hello rete RDMA di Azure con una delle dimensioni delle macchine Virtuali hello con supporto per RDMA, specificare un'immagine di SUSE Linux Enterprise Server 12 HPC o basato su CentOS HPC da hello Azure Marketplace. Per altre informazioni, vedere [Dimensioni delle VM High Performance Computing (HPC)](../sizes-hpc.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+    > Per usare una rete RDMA di Azure con una delle dimensioni di macchina virtuale con supporto per RDMA, specificare un'immagine HPC SUSE Linux Enterprise Server 12 o un'immagine HPC basata su CentOS da Azure Marketplace. Per altre informazioni, vedere [Dimensioni delle VM High Performance Computing (HPC)](../sizes-hpc.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
     > 
     > 
 
-Cluster di hello ulteriori prerequisiti toodeploy tramite script di distribuzione IaaS di HPC Pack hello:
+Prerequisiti aggiuntivi per distribuire il cluster usando lo script di distribuzione di HPC Pack IaaS:
 
-* **Computer client** -è necessario uno script di distribuzione basati su Windows client computer toorun hello cluster.
+* **Computer client** : è necessario un computer client basato su Windows per eseguire lo script di distribuzione del cluster.
 * **Azure PowerShell** - [installare e configurare Azure PowerShell](/powershell/azure/overview) (versione 0.8.10 o versione successiva) nel computer client.
-* **Script di distribuzione IaaS di HPC Pack** : scaricare e decomprimere hello versione dello script hello hello [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=44949). È possibile controllare la versione di hello dello script di hello eseguendo `.\New-HPCIaaSCluster.ps1 –Version`. In questo articolo si basa sulla versione 4.4.1 o successiva di script hello.
+* **Script di distribuzione di HPC Pack IaaS** : scaricare e decomprimere la versione più recente dello script dall' [Area download Microsoft](https://www.microsoft.com/download/details.aspx?id=44949). È possibile controllare la versione dello script eseguendo `.\New-HPCIaaSCluster.ps1 –Version`. Questo articolo si basa sulla versione dello script 4.4.1 o successiva.
 
 ### <a name="deployment-option-1-use-a-resource-manager-template"></a>Opzione di distribuzione 1. Usare il modello di Resource Manager
-1. Passare toohello [cluster HPC Pack per i carichi di lavoro di Linux](https://azure.microsoft.com/marketplace/partners/microsofthpc/newclusterlinuxcn/) modello hello Azure Marketplace e fare clic su **Distribuisci**.
-2. In hello portale di Azure, esaminare le informazioni di hello e quindi fare clic su **crea**.
+1. Andare al modello di [cluster HPC Pack per carichi di lavoro Linux](https://azure.microsoft.com/marketplace/partners/microsofthpc/newclusterlinuxcn/) in Azure Marketplace e fare clic su **Distribuzione**.
+2. Nel portale di Azure verificare le informazioni e quindi fare clic su **Crea**.
    
     ![Creazione nel portale][portal]
-3. In hello **nozioni di base** pannello, immettere un nome per il cluster hello, che anche i nomi di macchina virtuale del nodo head hello. È possibile scegliere un gruppo di risorse esistente o creare un gruppo per la distribuzione di hello in un percorso tooyou disponibili. Hello posizione influisce sulla disponibilità di hello di determinate dimensioni delle macchine Virtuali e altri servizi di Azure (vedere [i prodotti disponibili per area](https://azure.microsoft.com/regions/services/)).
-4. In hello **impostazioni del nodo Head** pannello per una distribuzione iniziale, in genere è possibile accettare le impostazioni predefinite di hello. 
+3. Nel pannello **Informazioni di base** immettere un nome per il cluster, che è anche il nome della macchina virtuale del nodo head. È possibile scegliere un gruppo di risorse esistente o creare un gruppo per la distribuzione in un percorso disponibile. La disponibilità delle dimensioni di alcune macchine virtuali e di altri servizi di Azure può variare a seconda dell'area. Vedere [Prodotti disponibili in base all'area](https://azure.microsoft.com/regions/services/).
+4. Nel pannello **Impostazioni modo head** , per una prima distribuzione, in genere è possibile accettare le impostazioni predefinite. 
    
    > [!NOTE]
-   > Hello **URL dello script di post-configurazione** è facoltativa impostazione toospecify uno script di Windows PowerShell disponibile pubblicamente che si desidera toorun nella macchina virtuale del nodo head hello dopo che è in esecuzione. 
+   > **URL script di post-configurazione** è un'impostazione facoltativa per specificare uno script di Windows PowerShell disponibile pubblicamente che si vuole eseguire nella VM del nodo head una volta che questa sia in esecuzione. 
    > 
    > 
-5. In hello **impostazioni dei nodi di calcolo** pannello selezionare un modello di denominazione per i nodi di hello, numero hello e dimensioni dei nodi hello e hello toodeploy distribuzione Linux.
-6. In hello **le impostazioni dell'infrastruttura** pannello, immettere un nome per la rete virtuale hello e Active Directory dominio, dominio e le credenziali di amministratore di macchina virtuale e un modello di denominazione per gli account di archiviazione hello.
+5. Nel pannello **Impostazioni nodo di calcolo** selezionare un pattern di nome per i nodi, il numero e le dimensioni dei nodi e la distribuzione Linux da distribuire.
+6. Nel pannello **Impostazioni infrastruttura** immettere i nomi per la rete virtuale e il dominio di Active Directory, le credenziali amministratore del dominio e della macchina virtuale e un pattern di nome per gli account di archiviazione.
    
    > [!NOTE]
-   > HPC Pack Usa hello Active Directory dominio tooauthenticate cluster users. 
+   > HPC Pack usa il dominio di Active Directory per autenticare gli utenti del cluster. 
    > 
    > 
-7. Dopo l'esecuzione dei test di convalida hello ed esaminare condizioni hello di utilizzo, fare clic su **acquisto**.
+7. Dopo l'esecuzione dei test di convalida e l'analisi delle condizioni per l'uso, fare clic su **Acquista**.
 
-### <a name="deployment-option-2-use-hello-iaas-deployment-script"></a>Opzione di distribuzione 2. Utilizzare script di distribuzione IaaS di hello
-Di seguito sono cluster hello di ulteriori prerequisiti toodeploy tramite script di distribuzione IaaS di HPC Pack hello:
+### <a name="deployment-option-2-use-the-iaas-deployment-script"></a>Opzione di distribuzione 2. Uso dello script di distribuzione IaaS
+Prerequisiti aggiuntivi per distribuire il cluster usando lo script di distribuzione IaaS di HPC Pack:
 
-* **Computer client** -è necessario uno script di distribuzione basati su Windows client computer toorun hello cluster.
+* **Computer client** : è necessario un computer client basato su Windows per eseguire lo script di distribuzione del cluster.
 * **Azure PowerShell** - [installare e configurare Azure PowerShell](/powershell/azure/overview) (versione 0.8.10 o versione successiva) nel computer client.
-* **Script di distribuzione IaaS di HPC Pack** : scaricare e decomprimere hello versione dello script hello hello [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=44949). È possibile controllare la versione di hello dello script di hello eseguendo `.\New-HPCIaaSCluster.ps1 –Version`. In questo articolo si basa sulla versione 4.4.1 o successiva di script hello.
+* **Script di distribuzione di HPC Pack IaaS** : scaricare e decomprimere la versione più recente dello script dall' [Area download Microsoft](https://www.microsoft.com/download/details.aspx?id=44949). È possibile controllare la versione dello script eseguendo `.\New-HPCIaaSCluster.ps1 –Version`. Questo articolo si basa sulla versione dello script 4.4.1 o successiva.
 
 **File di configurazione XML**
 
-Hello script di distribuzione IaaS di HPC Pack utilizza un file di configurazione XML come un cluster HPC hello toodescribe input. Hello file di configurazione di esempio seguente specifica un piccolo cluster costituito da un nodo head di HPC Pack e due nodi di calcolo di dimensione A7 CentOS 7.0 Linux. 
+Lo script di distribuzione IaaS di HPC Pack usa come input un file di configurazione XML per descrivere il cluster HPC. Il file di configurazione di esempio seguente definisce un cluster di dimensioni ridotte costituito da un nodo head di HPC Pack e due nodi di calcolo CentOS 7.0 di Linux di dimensioni A7. 
 
-Modificare il file hello in base alle esigenze per l'ambiente e la configurazione del cluster desiderato e salvarlo con un nome, ad esempio HPCDemoConfig.xml. Ad esempio, è necessario toosupply il nome della sottoscrizione e un nome di account di archiviazione univoci e il nome del servizio cloud. Inoltre, potrebbe essere toochoose un altro immagine Linux è supportata per i nodi di calcolo hello. Per ulteriori informazioni sugli elementi hello nel file di configurazione di hello, vedere il file Manual.rtf hello nella cartella script hello e [creare un cluster HPC con lo script di distribuzione IaaS di HPC Pack hello](../../windows/classic/hpcpack-cluster-powershell-script.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
+Modificare il file in base alle necessità dell'ambiente e della configurazione cluster desiderata e salvarlo con un nome come HPCDemoConfig.xml. Ad esempio, è necessario specificare il nome della sottoscrizione, un nome di account di archiviazione univoco e un nome del servizio cloud. È inoltre consigliabile scegliere una diversa immagine Linux supportata per i nodi di calcolo. Per altre informazioni sugli elementi del file di configurazione, vedere il file Manual.rtf nella cartella dello script e l'articolo [Creare un cluster HPC con lo script di distribuzione di HPC Pack IaaS](../../windows/classic/hpcpack-cluster-powershell-script.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
 
 ```
 <?xml version="1.0" encoding="utf-8" ?>
@@ -131,63 +131,63 @@ Modificare il file hello in base alle esigenze per l'ambiente e la configurazion
 </IaaSClusterConfig>
 ```
 
-**hello toorun script di distribuzione IaaS di HPC Pack**
+**Per eseguire lo script di distribuzione di HPC Pack IaaS**
 
-1. Aprire Windows PowerShell nel computer client hello come amministratore.
-2. Modifica cartella toohello directory in cui si script hello installato (E:\IaaSClusterScript in questo esempio).
+1. Aprire PowerShell nel computer client come amministratore.
+2. Sostituire la directory con la cartella in cui è installato lo script (E:\IaaSClusterScript in questo esempio).
    
     ```powershell
     cd E:\IaaSClusterScript
     ```
-3. Eseguire hello cluster HPC Pack hello toodeploy di comando seguente. In questo esempio si presuppone che si trova il file di configurazione hello in E:\HPCDemoConfig.xml
+3. Eseguire il comando seguente per distribuire il cluster HPC Pack. In questo esempio si presuppone che il file di configurazione si trovi in E:\HPCDemoConfig.xml
    
     ```powershell
     .\New-HpcIaaSCluster.ps1 –ConfigFile E:\HPCDemoConfig.xml –AdminUserName MyAdminName
     ```
    
-    a. Poiché hello **AdminPassword** non è specificato in hello precedente comando, è richiesta tooenter password hello utente *MyAdminName*.
+    a. Poiché **AdminPassword** non è specificata nel comando precedente, viene chiesto di immettere la password per l'utente *MyAdminName*.
    
-    b. script Hello avvia quindi i file di configurazione toovalidate hello. È possibile richiedere tooseveral minuti a seconda della connessione di rete hello.
+    b. Lo script avvia quindi la convalida del file di configurazione. Questa operazione richiede alcuni minuti a seconda della connessione di rete.
    
     ![Convalida][validate]
    
-    c. Dopo che hanno superato le convalide, script hello Elenca toocreate di risorse cluster hello. Immettere *Y* toocontinue.
+    c. Una volta superate le convalide, lo script elenca le risorse cluster da creare. Immettere *Y* per continuare.
    
     ![Risorse][resources]
    
-    d. script Hello toodeploy hello HPC Pack cluster sarà avviato e completato configurazione hello senza ulteriori passaggi manuali. script Hello è possibile eseguire per alcuni minuti.
+    d. Lo script inizia a distribuire il cluster HPC Pack e completa la configurazione senza ulteriori passaggi manuali. L'esecuzione dello script può richiedere diversi minuti.
    
-    ![Distribuire][deploy]
+    ![Distribuisci][deploy]
    
    > [!NOTE]
-   > In questo esempio hello script genera un file di log automaticamente dall'hello **- file di registro** parametro non è specificato. Hello registri non vengono scritti in tempo reale, ma vengono raccolti alla fine di hello di convalida hello e hello della distribuzione. Se il processo di PowerShell hello viene arrestato durante l'esecuzione di script hello, alcuni log andranno persi.
+   > In questo esempio lo script genera automaticamente un file di log in quanto il parametro **-LogFile** non è specificato. I log non vengono scritti in tempo reale, ma vengono raccolti alla fine della convalida e della distribuzione. Se il processo di PowerShell viene arrestato mentre lo script è in esecuzione, alcuni log vengono persi.
    > 
    > 
 
-## <a name="connect-toohello-head-node"></a>Nodo head toohello connettersi
-Dopo aver distribuito il cluster HPC Pack hello in Azure, [connessione Desktop remoto](../../windows/connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) toohello nodo head VM utilizzando le credenziali di dominio fornito al momento della distribuzione cluster hello di hello (ad esempio, *hpc\\ clusteradmin*). Gestire i cluster di hello dal nodo head hello.
+## <a name="connect-to-the-head-node"></a>Connettersi al nodo head
+Dopo aver distribuito il cluster HPC Pack in Azure, [connettersi con Desktop remoto](../../windows/connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) alla macchina virtuale del nodo head usando le credenziali del dominio specificate durante la distribuzione del cluster, ad esempio, *hpc\\clusteradmin*. Il cluster viene gestito dal nodo head.
 
-Nel nodo head hello, avviare HPC Cluster Manager toocheck lo stato di hello del cluster HPC Pack hello. È possibile gestire e monitorare i nodi di calcolo Linux hello allo stesso modo di utilizzare le finestre nodi di calcolo. Ad esempio, vengono mostrati i nodi di Linux hello elencati in **la gestione delle risorse** (questi nodi vengono distribuiti con hello **LinuxNode** modello).
+Nel nodo head avviare Gestione cluster HPC per controllare lo stato del cluster HPC Pack. È possibile gestire e monitorare i nodi di calcolo di Linux nello stesso modo dei nodi di calcolo di Windows. Ad esempio, vengono visualizzati i nodi Linux elencati in **Gestione risorse**. Questi nodi vengono distribuiti con il modello **LinuxNode**.
 
 ![Gestione dei nodi][management]
 
-È inoltre visualizzare i nodi di Linux hello hello **mappa termica** visualizzazione.
+I nodi Linux vengono visualizzati anche in **Mappa termica** .
 
 ![Mappa termica][heatmap]
 
-## <a name="how-toomove-data-in-a-cluster-with-linux-nodes"></a>Come toomove dati in un cluster con nodi di Linux
-Si dispone di più dati di toomove scelte tra nodi di Linux e nodo head di Windows hello del cluster di hello. Di seguito sono tre metodi comuni, descritti in dettaglio nelle sezioni che seguono hello:
+## <a name="how-to-move-data-in-a-cluster-with-linux-nodes"></a>Spostamento dei dati in un cluster con nodi Linux
+Sono disponibili varie opzioni per spostare dati tra i nodi Linux e il nodo head Windows del cluster. Nelle sezioni seguenti sono descritti nel dettaglio tre metodi comuni:
 
-* **File di Azure** -espone dati di toostore condivisione di file SMB gestiti i file nell'archiviazione di Azure. Nodi di Windows e Linux possono montare una condivisione di File di Azure come un'unità o cartella hello stesso tempo, anche se vengano distribuite in reti virtuali diverse.
-* **Nodo head SMB condividere** -Monta una cartella condivisa Windows standard del nodo head hello in nodi di Linux.
+* **File di Azure** : espone una condivisione file SMB gestita per archiviare i file di dati nella risorsa di archiviazione di Azure. I nodi di Windows e Linux possono montare contemporaneamente una condivisione di file Azure come un'unità o una cartella anche se vengono distribuiti in reti virtuali differenti.
+* **Condivisione SMB del nodo head** : monta una cartella condivisa Windows standard del nodo head in nodi Linux.
 * **Server NFS del nodo head**: offre una soluzione di condivisione file per un ambiente misto Windows e Linux.
 
 ### <a name="azure-file-storage"></a>Archiviazione file di Azure
-Hello [File di Azure](https://azure.microsoft.com/services/storage/files/) servizio espone condivisioni file usando il protocollo SMB 2.1 standard hello. Servizi cloud e macchine virtuali di Azure possono condividere i dati di file tra componenti delle applicazioni tramite condivisioni montate e applicazioni locali possono accedere dati in una condivisione di file tramite API di archiviazione di File hello. 
+Il servizio [File di Azure](https://azure.microsoft.com/services/storage/files/) espone condivisioni di file usando il protocollo SMB 2.1 standard. Le VM e i servizi cloud di Azure possono condividere i dati dei file tra componenti delle applicazioni tramite le condivisioni montate e le applicazioni locali possono accedere ai dati dei file in una condivisione tramite l'API della risorsa di archiviazione File. 
 
-Per i passaggi dettagliati toocreate condividere e montarlo nel nodo head hello di un File di Azure, vedere [Introduzione all'archiviazione di File di Azure in Windows](../../../storage/files/storage-how-to-use-files-windows.md). condivisione di File di Azure toomount hello in nodi di Linux hello, vedere [come archiviazione di File di Azure con Linux toouse](../../../storage/files/storage-how-to-use-files-linux.md). tooset le connessioni persistenti, vedere [tooMicrosoft connessioni Persisting Azure file](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/27/persisting-connections-to-microsoft-azure-files.aspx).
+Per la procedura dettagliata per creare una condivisione file di Azure e per montarla nel nodo head, vedere [Introduzione all'archivio file di Azure in Windows](../../../storage/files/storage-how-to-use-files-windows.md). Per montare la condivisione file di Azure nei nodi Linux, vedere [Come usare l'archiviazione file di Azure con Linux](../../../storage/files/storage-how-to-use-files-linux.md). Per configurare connessioni persistenti, vedere la pagina relativa alle [connessioni persistenti a file di Microsoft Azure](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/27/persisting-connections-to-microsoft-azure-files.aspx).
 
-Nell'esempio seguente di hello, creare una condivisione di File di Azure in un account di archiviazione. hello toomount condivisione nel nodo head hello, aprire un prompt dei comandi e immettere hello seguenti comandi:
+Nell'esempio seguente creare una condivisione file di Azure in un account di archiviazione. Per il montaggio della condivisione nel nodo head, aprire un prompt dei comandi e immettere i comandi seguenti:
 
 ```command
 cmdkey /add:allvhdsje.file.core.windows.net /user:allvhdsje /pass:<storageaccountkey>
@@ -195,11 +195,11 @@ cmdkey /add:allvhdsje.file.core.windows.net /user:allvhdsje /pass:<storageaccoun
 net use Z: \\allvhdje.file.core.windows.net\rdma /persistent:yes
 ```
 
-In questo esempio, allvhdsje è il nome di account di archiviazione, storageaccountkey è la chiave di account di archiviazione e rdma è hello nome della condivisione File di Azure. condivisione di File di Azure Hello viene montata come z nel nodo head hello.
+In questo esempio, allvhdsje è il nome dell'account di archiviazione, storageaccountkey è la chiave dell'account di archiviazione e rdma è il nome della condivisione file di Azure. La condivisione file di Azure viene montata come Z: nel nodo head.
 
-condivisione di File di Azure toomount hello in nodi di Linux, eseguire una **clusrun** comando nel nodo head hello. **[ClusRun](https://technet.microsoft.com/library/cc947685.aspx)**  è un utile toocarry strumento di HPC Pack operazioni amministrative su più nodi. Vedere anche [Clusrun per nodi Linux](#Clusrun-for-Linux-nodes) in questo articolo.
+Per il montaggio della condivisione di File di Azure in nodi Linux, eseguire un comando **clusrun** sul nodo head. **[Clusrun](https://technet.microsoft.com/library/cc947685.aspx)** è uno strumento di HPC Pack utile per eseguire attività amministrative su più nodi. Vedere anche [Clusrun per nodi Linux](#Clusrun-for-Linux-nodes) in questo articolo.
 
-Aprire una finestra di Windows PowerShell e immettere hello seguenti comandi:
+Aprire una finestra di Windows PowerShell e immettere i comandi seguenti:
 
 ```powershell
 clusrun /nodegroup:LinuxNodes mkdir -p /rdma
@@ -207,22 +207,22 @@ clusrun /nodegroup:LinuxNodes mkdir -p /rdma
 clusrun /nodegroup:LinuxNodes mount -t cifs //allvhdsje.file.core.windows.net/rdma /rdma -o vers=2.1`,username=allvhdsje`,password=<storageaccountkey>'`,dir_mode=0777`,file_mode=0777
 ```
 
-Hello primo comando crea una cartella denominata /rdma in tutti i nodi nel gruppo LinuxNodes hello. comando secondo Hello Monta hello Azure File condivisione allvhdsjw.file.core.windows.net/rdma nella cartella /rdma hello con dir e file too777 di set di bit di modalità. Nel secondo comando hello, allvhdsje è il nome di account di archiviazione e storageaccountkey è la chiave di account di archiviazione.
+Il primo comando crea una cartella denominata /rdma su tutti i nodi del gruppo LinuxNodes. Il secondo comando consente di montare la condivisione di File di Azure allvhdsjw.file.core.windows.net/rdma nella cartella /rdma con dir e bit di modalità file impostati su 777. Nel secondo comando, allvhdsje è il nome dell'account di archiviazione e storageaccountkey è la chiave dell'account di archiviazione.
 
 > [!NOTE]
-> Hello "\`" simbolo nel secondo comando hello è un simbolo di escape per PowerShell. "\`,"significa che hello"," (carattere virgola) è una parte del comando hello.
+> Il simbolo "\`" nel secondo comando è un simbolo di escape per PowerShell. "\`" significa che ",", ossia una virgola, è una parte del comando.
 > 
 > 
 
 ### <a name="head-node-share"></a>Condivisione del nodo head
-In alternativa, è possibile montare una cartella condivisa del nodo head hello in nodi di Linux. Una condivisione vengono forniti i file tooshare modo più semplici hello ma nodo head hello e tutti i nodi di Linux devono essere distribuiti in hello stessa rete virtuale. Ecco i passaggi di hello.
+In alternativa, montare una cartella condivisa del nodo head nei nodi Linux. Una condivisione rappresenta il modo più semplice per condividere file, ma il nodo head e tutti i nodi Linux devono essere distribuiti nella stessa rete virtuale. Di seguito sono riportati i passaggi necessari.
 
-1. Creare una cartella nel nodo head hello e condividerlo tooEveryone con autorizzazioni di lettura/scrittura. Ad esempio condividere D:\OpenFOAM nel nodo head di hello come \\CentOS7RDMA HN\OpenFOAM. Ecco hello nome host del nodo head hello CentOS7RDMA HN.
+1. Creare una cartella nel nodo head e condividerla per tutti gli utenti con autorizzazioni di lettura/scrittura. Ad esempio, condividere D:\OpenFOAM nel nodo head come \\CentOS7RDMA-HN\OpenFOAM. CentOS7RDMA-HN è il nome host del nodo head.
    
     ![Autorizzazioni di condivisione file][fileshareperms]
    
     ![Condivisione di file][filesharing]
-2. Aprire una finestra di Windows PowerShell ed eseguire hello seguenti comandi:
+2. Aprire una finestra di Windows PowerShell ed eseguire i comandi seguenti:
    
     ```powershell
     clusrun /nodegroup:LinuxNodes mkdir -p /openfoam
@@ -230,19 +230,19 @@ In alternativa, è possibile montare una cartella condivisa del nodo head hello 
     clusrun /nodegroup:LinuxNodes mount -t cifs //CentOS7RDMA-HN/OpenFOAM /openfoam -o vers=2.1`,username=<username>`,password='<password>'`,dir_mode=0777`,file_mode=0777
     ```
 
-Hello primo comando crea una cartella denominata /openfoam in tutti i nodi nel gruppo LinuxNodes hello. comando secondo Hello Monta //CentOS7RDMA-HN/OpenFOAM cartella hello condivise nella cartella hello con dir e file too777 di set di bit di modalità. Hello nome utente e password nel comando hello devono essere hello username e password di un utente del cluster nel nodo head hello. Vedere [Aggiungere o rimuovere utenti del cluster](https://technet.microsoft.com/library/ff919330.aspx).
+Il primo comando crea una cartella denominata /openfoam in tutti i nodi del gruppo LinuxNodes. Il secondo comando monta la cartella condivisa //CentOS7RDMA-HN/OpenFOAM nella cartella con dir e bit di modalità file impostati su 777. Il nome utente e la password nel comando devono corrispondere al nome utente e alla password di un utente del nodo head. Vedere [Aggiungere o rimuovere utenti del cluster](https://technet.microsoft.com/library/ff919330.aspx).
 
 > [!NOTE]
-> Hello "\`" simbolo nel secondo comando hello è un simbolo di escape per PowerShell. "\`,"significa che hello"," (carattere virgola) è una parte del comando hello.
+> Il simbolo "\`" nel secondo comando è un simbolo di escape per PowerShell. "\`" significa che ",", ossia una virgola, è una parte del comando.
 > 
 > 
 
 ### <a name="nfs-server"></a>Server NFS
-Hello servizio NFS consente tooshare ed eseguire la migrazione di file tra computer con sistema operativo Windows Server 2012 hello mediante protocollo SMB hello e i computer basati su Linux mediante protocollo NFS hello. Hello del server NFS e tutti gli altri nodi hanno distribuito in hello toobe stessa rete virtuale. Consente di migliorare la compatibilità con i nodi Linux rispetto a una condivisione SMB. Ad esempio, supporta il collegamento di file.
+Il servizio NFS consente di condividere e migrare i file tra computer che eseguono il sistema operativo Windows Server 2012 usando il protocollo SMB e i computer basati su Linux mediante il protocollo NFS. Il server NFS e tutti gli altri nodi devono essere distribuiti nella stessa rete virtuale. Consente di migliorare la compatibilità con i nodi Linux rispetto a una condivisione SMB. Ad esempio, supporta il collegamento di file.
 
-1. tooinstall e configurare un server NFS, seguire i passaggi hello [Server per il File System prima rete End-to-End](http://blogs.technet.com/b/filecab/archive/2012/10/08/server-for-network-file-system-first-share-end-to-end.aspx).
+1. Per installare e configurare un server NFS, seguire la procedura riportata in [Server per condivisione primo Network File System end-to-end](http://blogs.technet.com/b/filecab/archive/2012/10/08/server-for-network-file-system-first-share-end-to-end.aspx).
    
-    Ad esempio, creare una condivisione NFS denominata nfs con hello le proprietà seguenti:
+    Ad esempio, creare una condivisione NFS denominata nfs con le proprietà seguenti:
    
     ![Autorizzazione NFS][nfsauth]
    
@@ -251,7 +251,7 @@ Hello servizio NFS consente tooshare ed eseguire la migrazione di file tra compu
     ![Autorizzazioni NFS NTFS][nfsperm]
    
     ![Proprietà di gestione di NFS][nfsmanage]
-2. Aprire una finestra di Windows PowerShell ed eseguire hello seguenti comandi:
+2. Aprire una finestra di Windows PowerShell ed eseguire i comandi seguenti:
    
     ```powershell
     clusrun /nodegroup:LinuxNodes mkdir -p /nfsshare
@@ -259,47 +259,47 @@ Hello servizio NFS consente tooshare ed eseguire la migrazione di file tra compu
     clusrun /nodegroup:LinuxNodes mount CentOS7RDMA-HN:/nfs /nfsshared
     ```
    
-   Hello primo comando crea una cartella denominata /nfsshared in tutti i nodi nel gruppo LinuxNodes hello. secondo comando mount hello NFS Hello condividere CentOS7RDMA HN: / hello di nfs nella cartella. Qui CentOS7RDMA HN: nfs è percorso remoto di hello della condivisione NFS.
+   Il primo comando crea una cartella denominata /nfsshared su tutti i nodi del gruppo LinuxNodes. Il secondo comando consente di montare la condivisione CentOS7RDMA-HN:/nfs nella cartella. Qui CentOS7RDMA-HN:/nfs è il percorso remoto della condivisione NFS.
 
-## <a name="how-toosubmit-jobs"></a>Come i processi toosubmit
-Esistono diversi cluster con HPC Pack toohello modi toosubmit processi:
+## <a name="how-to-submit-jobs"></a>Invio di processi
+Esistono vari metodi per inviare i processi al cluster HPC Pack:
 
 * Gestione cluster HPC o interfaccia grafica della Gestione cluster HPC
 * Portale Web HPC
 * API REST
 
-Invio di processi toohello cluster in Azure tramite strumenti di HPC Pack GUI e portale web di HPC hello sono hello uguale a quello di nodi di calcolo di Windows. Vedere [il gestore di processi di HPC Pack](https://technet.microsoft.com/library/ff919691.aspx) e [come toosubmit processi da un computer client locale](../../windows/hpcpack-cluster-submit-jobs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+La procedura di invio di processi al cluster in Azure tramite gli strumenti dell'interfaccia utente grafica di HPC Pack e il portale Web HPC è uguale a quella usata per i nodi di calcolo di Windows. Vedere [HPC Pack Job Manager](https://technet.microsoft.com/library/ff919691.aspx) (Gestore dei processi HPC Pack) e la [procedura per inviare i processi da un computer client locale](../../windows/hpcpack-cluster-submit-jobs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
-processi toosubmit tramite hello API REST, vedere troppo[creazione e invio di processi tramite hello API REST di Microsoft HPC Pack](http://social.technet.microsoft.com/wiki/contents/articles/7737.creating-and-submitting-jobs-by-using-the-rest-api-in-microsoft-hpc-pack-windows-hpc-server.aspx). processi toosubmit da un client Linux, fare riferimento anche esempio Python toohello in hello [HPC Pack SDK](https://www.microsoft.com/download/details.aspx?id=47756).
+Per inviare processi tramite l'API REST, vedere l'articolo relativo a [creazione e invio di processi tramite uso dell'API REST in Microsoft HPC Pack](http://social.technet.microsoft.com/wiki/contents/articles/7737.creating-and-submitting-jobs-by-using-the-rest-api-in-microsoft-hpc-pack-windows-hpc-server.aspx). Per inviare processi a un client Linux, fare riferimento anche all'esempio Python in [HPC Pack SDK](https://www.microsoft.com/download/details.aspx?id=47756).
 
 ## <a name="clusrun-for-linux-nodes"></a>Clusrun per nodi Linux
-Hello HPC Pack [clusrun](https://technet.microsoft.com/library/cc947685.aspx) strumento può essere utilizzato tooexecute comandi nei nodi Linux tramite un prompt dei comandi o HPC Cluster Manager. Di seguito sono riportati alcuni esempi di base.
+Lo strumento [clusrun](https://technet.microsoft.com/library/cc947685.aspx) di HPC Pack può essere usato per eseguire comandi su nodi Linux tramite un prompt dei comandi o Gestione cluster HPC. Di seguito sono riportati alcuni esempi di base.
 
-* Mostra i nomi utente correnti in tutti i nodi del cluster di hello.
+* Visualizzare i nomi utente correnti di tutti i nodi nel cluster.
   
     ```command
     clusrun whoami
     ```
-* Installare hello **gdb** dello strumento debugger con **yum** in tutti i nodi hello linuxnodes gruppo e quindi riavviare i nodi di hello dopo 10 minuti.
+* Installare lo strumento di debugger **gdb** con **yum** su tutti i nodi nel gruppo linuxnodes e riavviare i nodi dopo 10 minuti.
   
     ```command
     clusrun /nodegroup:linuxnodes yum install gdb –y; shutdown –r 10
     ```
-* Creare uno script della shell visualizzazione ogni numero da 1 a 10 per un secondo in ogni nodo di Linux in cluster hello, eseguirlo e visualizzare immediatamente l'output dai nodi hello.
+* Creare uno script shell che visualizza tutti i numeri da 1 e 10 per un secondo in ogni nodo Linux del cluster, eseguirlo e visualizzare immediatamente l'output dei nodi.
   
     ```command
     clusrun /interleaved /nodegroup:linuxnodes echo \"for i in {1..10}; do echo \\\"\$i\\\"; sleep 1; done\" ^> script.sh; chmod +x script.sh; ./script.sh
     ```
 
 > [!NOTE]
-> Potrebbe essere necessario toouse alcuni caratteri di escape nei **clusrun** comandi. Come illustrato in questo esempio, utilizzare ^ in hello di tooescape un prompt dei comandi ">" simbolo.
+> Potrebbe essere necessario usare determinati caratteri di escape nei comandi **clusrun** . Come illustrato in questo esempio, usare ^ in un prompt dei comandi per eseguire l'escape del simbolo ">".
 > 
 > 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Provare la scalabilità verticale hello cluster tooa maggior numero di nodi oppure provare a eseguire un carico di lavoro di Linux nel cluster hello. Per un esempio, vedere [Eseguire NAMD con Microsoft HPC Pack su nodi di calcolo Linux in Azure](hpcpack-cluster-namd.md).
-* Provare a un cluster con [macchine virtuali che supportano RDMA, con uso intensivo](../../windows/sizes-hpc.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) toorun carichi di lavoro MPI. Per un esempio, vedere [Eseguire OpenFOAM con Microsoft HPC Pack in un cluster Linux RDMA in Azure](hpcpack-cluster-openfoam.md).
-* Se si desidera utilizzare con i nodi di Linux in un cluster HPC Pack locale, vedere hello [Guida TechNet](https://technet.microsoft.com/library/mt595803.aspx).
+* Provare ad aumentare il numero di nodi del cluster o a eseguire un carico di lavoro Linux nel cluster. Per un esempio, vedere [Eseguire NAMD con Microsoft HPC Pack su nodi di calcolo Linux in Azure](hpcpack-cluster-namd.md).
+* Provare un cluster con [macchine virtuali a elevato utilizzo di calcolo e con supporto di RDMA](../../windows/sizes-hpc.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) per eseguire carichi di lavoro MPI. Per un esempio, vedere [Eseguire OpenFOAM con Microsoft HPC Pack in un cluster Linux RDMA in Azure](hpcpack-cluster-openfoam.md).
+* Se si è interessati a usare i nodi Linux in un cluster di HPC Pack locale, vedere le [linee guida di TechNet](https://technet.microsoft.com/library/mt595803.aspx).
 
 <!--Image references-->
 [scenario]:media/hpcpack-cluster/scenario.png

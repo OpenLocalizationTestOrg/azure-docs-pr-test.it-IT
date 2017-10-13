@@ -1,6 +1,6 @@
 ---
-title: "una VM Linux di Azure con più schede di rete aaaCreate | Documenti Microsoft"
-description: "Informazioni su come toocreate una VM Linux con più schede di rete associata tooit modelli hello CLI di Azure o di gestione delle risorse."
+title: "Creare una VM Linux in Azure con più schede di interfaccia di rete | Documentazione Microsoft"
+description: "Informazioni su come creare una VM Linux con più schede di interfaccia di rete collegate utilizzando l'interfaccia della riga di comando di Azure o i modelli di Resource Manager."
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -14,42 +14,42 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/11/2017
 ms.author: iainfou
-ms.openlocfilehash: 457dab734ceeeefd35cddaf1ebb9ea0a82f4e207
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 814825cce61909167a1247a96c17a3ee9c5f2af4
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="create-a-linux-virtual-machine-with-multiple-nics-using-hello-azure-cli-10"></a>Creare una macchina virtuale Linux con più schede di rete utilizzando hello Azure CLI 1.0
-È possibile creare una macchina virtuale (VM) in Azure con più tooit interfacce (NIC) collegate di rete virtuale. Uno scenario comune è toohave subnet diverse per la connettività front-end e back-end, o una rete dedicata tooa monitoraggio o una soluzione di backup. Questo articolo fornisce comandi rapidi toocreate una macchina virtuale con più schede di rete associate tooit. Per informazioni dettagliate, incluso come toocreate più schede di rete all'interno del proprio Bash script, altre informazioni sui [la distribuzione di macchine virtuali multi-NIC](../../virtual-network/virtual-network-deploy-multinic-arm-cli.md). Le differenti [dimensioni della macchina virtuale](sizes.md) supportano un numero variabile di schede di rete, pertanto scegliere le dimensioni della macchina virtuale di conseguenza.
+# <a name="create-a-linux-virtual-machine-with-multiple-nics-using-the-azure-cli-10"></a>Creare una macchina virtuale Linux con più schede di interfaccia di rete usando l'interfaccia della riga di comando di Azure 1.0
+È possibile creare una macchina virtuale (VM) in Azure con più interfacce di rete virtuale (NIC) collegate. Uno scenario comune è quello di avere subnet diverse per la connettività front-end e back-end oppure una rete dedicata a una soluzione di monitoraggio o backup. In questo articolo vengono presentati i comandi rapidi per creare una macchina virtuale con più schede di rete collegate. Per informazioni dettagliate, incluse quelle sulla creazione di più schede di rete all'interno degli script di Bash, consultare la sezione dedicata alla [distribuzione di macchine virtuali con più schede di rete](../../virtual-network/virtual-network-deploy-multinic-arm-cli.md). Le differenti [dimensioni della macchina virtuale](sizes.md) supportano un numero variabile di schede di rete, pertanto scegliere le dimensioni della macchina virtuale di conseguenza.
 
 > [!WARNING]
-> Quando si crea una macchina virtuale: non è possibile aggiungere schede NIC tooan esistente VM con hello Azure CLI 1.0, è necessario collegare più schede di rete. È possibile [aggiungere NIC tooan esistente VM con hello Azure CLI 2.0](multiple-nics.md). È anche possibile [creare una macchina virtuale in base a dischi virtuali originale hello](copy-vm.md) e creare più schede di rete quando si distribuisce hello macchina virtuale.
+> È necessario collegare più schede di interfaccia di rete quando si crea una VM, perché non è possibile aggiungere le schede a una VM esistente con l'interfaccia della riga di comando di Azure 1.0. È possibile [aggiungere schede di interfaccia di rete a una VM esistente con l'interfaccia della riga di comando di Azure 2.0](multiple-nics.md). È anche possibile [creare una VM basata sui dischi virtuali originali](copy-vm.md) e creare più schede di interfaccia di rete quando si distribuisce la VM.
 
 
-## <a name="cli-versions-toocomplete-hello-task"></a>Attività hello toocomplete versioni CLI
-È possibile completare l'attività hello utilizzando una delle seguenti versioni CLI hello:
+## <a name="cli-versions-to-complete-the-task"></a>Versioni dell'interfaccia della riga di comando per completare l'attività
+È possibile completare l'attività usando una delle versioni seguenti dell'interfaccia della riga di comando:
 
-- [Azure CLI 1.0](#create-supporting-resources) : l'interfaccia CLI per hello classic risorse Gestione modelli di distribuzione e (in questo articolo)
-- [Azure CLI 2.0](multiple-nics.md) -la prossima generazione CLI per modello di distribuzione di gestione risorse hello
+- [Interfaccia della riga di comando di Azure 1.0](#create-supporting-resources): l'interfaccia della riga di comando per i modelli di distribuzione classica e di gestione delle risorse (questo articolo)
+- [Interfaccia della riga di comando di Azure 2.0](multiple-nics.md): interfaccia della riga di comando di prossima generazione per il modello di distribuzione di Gestione risorsa
 
 
 ## <a name="create-supporting-resources"></a>Creare risorse di supporto
-Assicurarsi di avere hello [CLI di Azure](../../cli-install-nodejs.md) effettuato l'accesso e utilizzo della modalità di gestione delle risorse:
+Controllare di aver effettuato l'accesso tramite l'[interfaccia della riga di comando di Azure](../../cli-install-nodejs.md) in modalità Resource Manager:
 
 ```azurecli
 azure config mode arm
 ```
 
-In hello negli esempi seguenti, sostituire i nomi dei parametri di esempio con i valori desiderati. I nomi dei parametri di esempio includono *myResourceGroup*, *mystorageaccount* e *myVM*.
+Nell'esempio seguente sostituire i nomi dei parametri di esempio con i valori desiderati. I nomi dei parametri di esempio includono *myResourceGroup*, *mystorageaccount* e *myVM*.
 
-Creare prima un gruppo di risorse. esempio Hello crea un gruppo di risorse denominato *myResourceGroup* in hello *eastus* percorso:
+Creare prima un gruppo di risorse. L'esempio seguente crea un gruppo di risorse denominato *myResourceGroup* nella posizione *eastus*:
 
 ```azurecli
 azure group create myResourceGroup --location eastus
 ```
 
-Creare un toohold di account di archiviazione delle macchine virtuali. esempio Hello crea un account di archiviazione denominato *mystorageaccount*:
+Creare un account di archiviazione in cui salvare le VM. L'esempio seguente crea un account di archiviazione denominato *mystorageaccount*:
 
 ```azurecli
 azure storage account create mystorageaccount \
@@ -59,7 +59,7 @@ azure storage account create mystorageaccount \
     --sku-name PLRS
 ```
 
-Creare una rete virtuale di tooconnect le macchine virtuali. esempio Hello crea una rete virtuale denominata *myVnet* con un prefisso dell'indirizzo *192.168.0.0/16*:
+Creare una rete virtuale alla quale connettere le VM. L'esempio seguente crea una rete virtuale denominata *myVnet* con prefisso dell'indirizzo *192.168.0.0/16*:
 
 ```azurecli
 azure network vnet create \
@@ -69,7 +69,7 @@ azure network vnet create \
     --address-prefixes 192.168.0.0/16
 ```
 
-Creare due subnet per la rete virtuale: una per il traffico front-end e l'altra per il traffico di back-end. esempio Hello crea due subnet, denominata *mySubnetFrontEnd* e *mySubnetBackEnd*:
+Creare due subnet per la rete virtuale: una per il traffico front-end e l'altra per il traffico di back-end. L'esempio seguente crea due subnet denominate *mySubnetFrontEnd* e *mySubnetBackEnd*:
 
 ```azurecli
 azure network vnet subnet create \
@@ -85,9 +85,9 @@ azure network vnet subnet create \
 ```
 
 ## <a name="create-and-configure-multiple-nics"></a>Creare e configurare più schede di interfaccia di rete
-È possibile leggere altre informazioni su [la distribuzione di più schede di rete mediante Azure CLI hello](../../virtual-network/virtual-network-deploy-multinic-arm-cli.md), inclusi gli script di processo hello scorrere in ciclo toocreate tutte le NIC hello.
+È possibile leggere ulteriori informazioni sulla [distribuzione di più schede di rete tramite l'interfaccia della riga di comando di Azure](../../virtual-network/virtual-network-deploy-multinic-arm-cli.md), incluso lo script del processo di ciclo per creare tutte le schede NIC.
 
-esempio Hello crea due schede di rete, denominati *myNic1* e *myNic2*, con una scheda di rete che connettono tooeach subnet:
+L'esempio seguente crea due schede di interfaccia di rete, denominate *myNic1* e *myNic2*, con una scheda che si connette a ogni subnet:
 
 ```azurecli
 azure network nic create \
@@ -104,7 +104,7 @@ azure network nic create \
     --subnet-name mySubnetBackEnd
 ```
 
-In genere si crea anche un [Network Security Group](../../virtual-network/virtual-networks-nsg.md) o [bilanciamento del carico](../../load-balancer/load-balancer-overview.md) toohelp gestire e distribuire il traffico tra le macchine virtuali. esempio Hello crea un gruppo di sicurezza di rete denominata *myNetworkSecurityGroup*:
+In genere è necessario creare anche un [gruppo di sicurezza di rete](../../virtual-network/virtual-networks-nsg.md) o un [servizio di bilanciamento del carico](../../load-balancer/load-balancer-overview.md) per gestire e distribuire il traffico tra le VM. L'esempio seguente crea un gruppo di sicurezza di rete denominato *myNetworkSecurityGroup*:
 
 ```azurecli
 azure network nsg create \
@@ -113,7 +113,7 @@ azure network nsg create \
     --name myNetworkSecurityGroup
 ```
 
-Associare il gruppo di sicurezza di rete toohello NIC utilizzando `azure network nic set`. Hello esempio associa *myNic1* e *myNic2* con *myNetworkSecurityGroup*:
+Associare le due schede di interfaccia di rete al gruppo di sicurezza di rete usando `azure network nic set`. L'esempio seguente associa *myNic1* e *myNic2* a *myNetworkSecurityGroup*:
 
 ```azurecli
 azure network nic set \
@@ -126,8 +126,8 @@ azure network nic set \
     --network-security-group-name myNetworkSecurityGroup
 ```
 
-## <a name="create-a-vm-and-attach-hello-nics"></a>Creare una macchina virtuale e collegare le schede NIC hello
-Quando si creano hello VM, è ora possibile specificare più schede di rete. Utilizzano invece `--nic-name` tooprovide una singola scheda di rete, usare invece la `--nic-names` e fornire un elenco delimitato da virgole di schede di rete. È necessario anche tootake attenzione quando si seleziona hello dimensioni della macchina virtuale. Vi sono limiti per il numero totale di schede di rete che è possibile aggiungere VM tooa hello. Ulteriori informazioni sulle [dimensioni delle macchine virtuali di Linux](sizes.md). Hello esempio seguente viene illustrato come toospecify più schede di rete e quindi una macchina virtuale di dimensione che supporta l'utilizzo di più schede di rete (*Standard_DS2_v2*):
+## <a name="create-a-vm-and-attach-the-nics"></a>Creare una macchina virtuale e collegare le schede di interfaccia di rete
+In fase di creazione della macchina virtuale, è ora possibile specificare più schede di rete. Anziché utilizzare `--nic-name` per fornire una singola scheda di rete, si utilizza `--nic-names` per fornire un elenco delimitato da virgole di schede di rete. L'utente deve anche fare attenzione quando seleziona la dimensione della macchina virtuale. Esistono dei limiti per quanto riguarda il numero totale di schede di rete che è possibile aggiungere. Ulteriori informazioni sulle [dimensioni delle macchine virtuali di Linux](sizes.md). L'esempio seguente mostra come specificare più schede di interfaccia di rete e quindi una dimensione di VM che supporta l'uso di più schede di interfaccia di rete (*Standard_DS2_v2*):
 
 ```azurecli
 azure vm create \
@@ -144,7 +144,7 @@ azure vm create \
 ```
 
 ## <a name="create-multiple-nics-using-resource-manager-templates"></a>Creare più schede di interfaccia di rete usando i modelli di Resource Manager
-Modelli di gestione risorse di Azure utilizzano dichiarativa JSON file toodefine l'ambiente. È possibile consultare una [panoramica di Azure Resource Manager](../../azure-resource-manager/resource-group-overview.md). Modelli di gestione risorse forniscono un modo toocreate più istanze di una risorsa durante la distribuzione, ad esempio la creazione di più schede di rete. Utilizzare *copia* numero hello toospecify di toocreate istanze:
+I modelli di Azure Resource Manager utilizzano i file JSON dichiarativi per definire l'ambiente. È possibile consultare una [panoramica di Azure Resource Manager](../../azure-resource-manager/resource-group-overview.md). I modelli di Resource Manager offrono un modo di creare più istanze di una risorsa durante la distribuzione, come ad esempio la creazione di più schede di rete. Utilizzare *Copia* per specificare il numero di istanze da creare:
 
 ```json
 "copy": {
@@ -155,7 +155,7 @@ Modelli di gestione risorse di Azure utilizzano dichiarativa JSON file toodefine
 
 Ulteriori informazioni sulla [creazione di più istanze utilizzando *Copia*](../../resource-group-create-multiple.md). 
 
-È inoltre possibile utilizzare un `copyIndex()` toothen aggiungere un nome di risorsa tooa numero, che consente di toocreate `myNic1`, `myNic2`, e così via hello seguito è riportato un esempio di aggiunta di valore di indice hello:
+È inoltre possibile utilizzare un `copyIndex()` per poi aggiungere un numero al nome di una risorsa, che consente di creare `myNic1`, `myNic2`, e così via. Di seguito viene riportato un esempio di aggiunta del valore di indice:
 
 ```json
 "name": "[concat('myNic', copyIndex())]", 
@@ -164,7 +164,7 @@ Ulteriori informazioni sulla [creazione di più istanze utilizzando *Copia*](../
 È possibile consultare un esempio completo di [creazione di più schede di rete utilizzando i modelli di Resource Manager](../../virtual-network/virtual-network-deploy-multinic-arm-template.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
-Verificare che tooreview [le dimensioni di VM Linux](sizes.md) durante il tentativo di toocreating una macchina virtuale con più schede di rete. Prestare attenzione toohello massimo NIC supporta ogni dimensione della macchina virtuale. 
+Assicurarsi di consultare [Dimensioni delle macchine virtuali di Linux](sizes.md) durante il tentativo di creazione di una macchina virtuale con più schede di rete. Prestare attenzione al numero massimo di schede di rete supportato per ogni dimensione della macchina virtuale. 
 
-Tenere presente che non è possibile aggiungere ulteriori tooan di schede di rete VM esistente, è necessario creare tutte le NIC hello quando si distribuisce hello macchina virtuale. Prestare attenzione quando si pianifica la toomake le distribuzioni di avere hello necessaria la connettività di rete sin hello.
+Tenere presente che non è possibile aggiungere altre schede di rete a una macchina virtuale esistente. È necessario creare tutte le schede di rete quando si distribuisce la macchina virtuale. Prestare attenzione quando si pianificano le distribuzioni per assicurarsi di avere la connettività di rete necessaria fin dall'inizio.
 

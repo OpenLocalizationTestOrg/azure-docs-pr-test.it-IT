@@ -1,8 +1,8 @@
 ---
-title: aaaAzure documentazione relativa a Analysis Services - esercitazioni, riferimenti alle API | Documenti Microsoft
-description: Informazioni su come tooset di modellazione dei dati con Analysis Services in hello cloud. Documentazione illustra come toocreate una soluzione di Business Intelligence aziendale utilizzando i dati tabulari.
+title: Documentazione di Azure Analysis Services - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
+description: Informazioni su come impostare la modellazione dei dati con Analysis Services nel cloud. Nella documentazione viene illustrato come creare una soluzione di Business Intelligence aziendale tramite dati tabulari.
 services: analysis-services
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 077b13f9eb6eea87b96833452382b8e019f09a6f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3f66f61651aab5f1cf0850cdbbd069b0a9a65543
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="analysis-services-documentation"></a>Documentazione su Analysis Services
 
-Informazioni su come tooset configurare e gestire dati di modellazione con Analysis Services. Altra documentazione ed esercitazioni illustrano come soluzione di toocreate un BI aziendale utilizzando i dati tabulari in locale o cloud hello.
+Informazioni su come impostare e gestire la modellazione dei dati con Analysis Services nel cloud. Esercitazioni e altri documenti in cui viene illustrato come creare una soluzione di Business Intelligence di grado aziendale usando dati tabulari nel cloud o in locale.
 
 <ul class="panelContent cardsFTitle">
     <li>

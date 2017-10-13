@@ -1,5 +1,5 @@
 ---
-title: "aaa \"eventi di avvio attività di Azure Batch | Documenti di Microsoft\""
+title: "Evento di avvio attività di Azure Batch | Microsoft Docs"
 description: "Riferimento per l'evento di avvio dell'attività batch."
 services: batch
 author: tamram
@@ -12,18 +12,18 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
 ms.date: 04/20/2017
 ms.author: tamram
-ms.openlocfilehash: 2cb066be1578741125e9081a84a2b7c74dc8356a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: c47ab36c99dddd46a14c15018a2a46bf7f873ffa
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="task-start-event"></a>Evento di avvio attività
 
- Questo evento viene generato quando un'attività è stata pianificata toostart su un nodo di calcolo dall'utilità di pianificazione hello. Si noti che se l'attività hello viene ritentata o reinserito nella coda questo evento viene emesso nuovamente per hello stessa attività, ma hello numero di tentativi e versione dell'attività del sistema verrà aggiornato di conseguenza.
+ Questo evento viene generato una volta che un'attività è stata pianificata per l'avvio su un nodo di calcolo dall'utilità di pianificazione. Se l'attività viene ritentata o reinserita nella coda, questo evento verrà generato nuovamente per la stessa attività, ma il numero di tentativi e la versione dell'attività di sistema verranno aggiornati di conseguenza.
 
 
- Hello esempio seguente viene illustrato hello corpo di un evento di inizio delle attività.
+ L'esempio seguente illustra il corpo di un evento di avvio attività.
 
 ```
 {
@@ -49,36 +49,36 @@ ms.lasthandoff: 10/06/2017
 
 |Nome dell'elemento|Tipo|Note|
 |------------------|----------|-----------|
-|jobId|String|id di Hello del processo di hello contenente attività hello.|
-|id|String|id di Hello dell'attività hello.|
-|taskType|String|tipo di Hello dell'attività hello. Il valore può essere "JobManager" per indicare che si tratta di un'attività del gestore di processi oppure 'User' per indicare che non si tratta di un'attività del gestore di processi.|
-|systemTaskVersion|Int32|Si tratta di contatore dei tentativi interni hello in un'attività. Servizio Batch hello internamente possibile riprovare a eseguire un tooaccount di attività per errori temporanei. Questi problemi possono includere interno pianificazione errori o tentativi toorecover da nodi di calcolo in uno stato non valido.|
-|[nodeInfo](#nodeInfo)|Tipo complesso|Contiene informazioni sul nodo di calcolo hello in cui hello attività è stata eseguita.|
-|[multiInstanceSettings](#multiInstanceSettings)|Tipo complesso|Specifica che l'attività hello è multi-istanza attività che richiedono più nodi di calcolo.  Per informazioni dettagliate, vedere [multiInstanceSettings](https://docs.microsoft.com/rest/api/batchservice/get-information-about-a-task).|
-|[constraints](#constraints)|Tipo complesso|vincoli di esecuzione Hello che si applicano toothis attività.|
-|[executionInfo](#executionInfo)|Tipo complesso|Contiene informazioni sull'esecuzione di hello dell'attività hello.|
+|jobId|String|ID del processo contenente l'attività.|
+|id|String|ID dell'attività.|
+|taskType|String|Tipo dell'attività. Il valore può essere "JobManager" per indicare che si tratta di un'attività del gestore di processi oppure 'User' per indicare che non si tratta di un'attività del gestore di processi.|
+|systemTaskVersion|Int32|Contatore dei tentativi interni di esecuzione di un'attività. Il servizio Batch può ritentare internamente l'esecuzione di un'attività in funzione di problemi transitori. Questi problemi possono includere errori interni di pianificazione o tentativi di ripristino a seguito di nodi di calcolo in uno stato non valido.|
+|[nodeInfo](#nodeInfo)|Tipo complesso|Contiene informazioni sul nodo di calcolo in cui è stata eseguita l'attività.|
+|[multiInstanceSettings](#multiInstanceSettings)|Tipo complesso|Specifica che l'attività è un'attività con istanze multiple che richiede più nodi di calcolo.  Per informazioni dettagliate, vedere [multiInstanceSettings](https://docs.microsoft.com/rest/api/batchservice/get-information-about-a-task).|
+|[constraints](#constraints)|Tipo complesso|Vincoli di esecuzione che si applicano a questa attività.|
+|[executionInfo](#executionInfo)|Tipo complesso|Contiene informazioni sull'esecuzione dell'attività.|
 
 ###  <a name="nodeInfo"></a> nodeInfo
 
 |Nome dell'elemento|Tipo|Note|
 |------------------|----------|-----------|
-|poolId|String|Hello l'id del pool di hello in cui hello attività è stata eseguita.|
-|nodeId|String|Hello l'id del nodo di hello in cui hello attività è stata eseguita.|
+|poolId|String|ID del pool in cui viene eseguita l'attività.|
+|nodeId|String|ID del nodo in cui viene eseguita l'attività.|
 
 ###  <a name="multiInstanceSettings"></a> multiInstanceSettings
 
 |Nome dell'elemento|Tipo|Note|
 |------------------|----------|-----------|
-|numberOfInstances|int|numero di Hello dei nodi di calcolo richiesto da attività hello.|
+|numberOfInstances|int|Numero di nodi di calcolo richiesti dall'attività.|
 
 ###  <a name="constraints"></a> constraints
 
 |Nome dell'elemento|Tipo|Note|
 |------------------|----------|-----------|
-|maxTaskRetryCount|Int32|numero massimo di tentativi di esecuzione attività hello può essere di Hello. servizio Batch Hello Riprova a eseguire un'attività se il codice di uscita è diverso da zero.<br /><br /> Si noti che questo valore controlla in particolare il numero di hello di tentativi. servizio Batch Hello tenterà attività hello una sola volta e può quindi ripetere di toothis limite. Ad esempio, se il numero massimo di tentativi di hello è 3, Batch tenta un'operazione di backup too4 volte (tentativo iniziale di uno e 3 tentativi).<br /><br /> Se il numero massimo di tentativi di hello è 0, hello servizio Batch non ripetere l'attività.<br /><br /> Se il numero massimo di tentativi di hello è -1, il servizio Batch hello tentativi attività senza limiti.<br /><br /> valore predefinito di Hello è 0 (nessun tentativo).|
+|maxTaskRetryCount|Int32|Numero massimo di tentativi consentiti per l'attività. Il servizio Batch ripete un'attività se il relativo codice di uscita è diverso da zero.<br /><br /> Si noti che questo valore controlla specificamente il numero di tentativi. Il servizio Batch eseguirà l'attività una volta e quindi ripeterà l'esecuzione fino al limite di tentativi specificato. Ad esempio, se il numero massimo di tentativi è 3, il servizio Batch eseguirà l'attività 4 volte, ovvero una iniziale e 3 ulteriori tentativi.<br /><br /> Se il numero massimo di tentativi è 0, il servizio Batch non eseguirà ulteriori tentativi.<br /><br /> Se il numero massimo di tentativi è -1, il servizio Batch continuerà a eseguire tentativi senza limiti.<br /><br /> Il valore predefinito è 0, ovvero nessun tentativo.|
 
 ###  <a name="executionInfo"></a> executionInfo
 
 |Nome dell'elemento|Tipo|Note|
 |------------------|----------|-----------|
-|retryCount|Int32|numero di volte in cui è stato ripetuto attività hello dal servizio Batch hello di Hello. attività di Hello viene ritentata se si conclude con un codice di uscita diverso da zero, backup toohello specificato MaxTaskRetryCount|
+|retryCount|Int32|Numero di tentativi di esecuzione dell'attività da parte del servizio Batch. L'attività viene ritentata se si conclude con un codice di uscita diverso da zero, fino al limite specificato in MaxTaskRetryCount.|

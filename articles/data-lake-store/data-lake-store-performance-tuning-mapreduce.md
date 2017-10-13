@@ -1,5 +1,5 @@
 ---
-title: aaaAzure Data Lake archivio MapReduce ottimizzazione linee guida | Documenti Microsoft
+title: Linee guida per l'ottimizzazione delle prestazioni di MapReduce in Azure Data Lake Store | Microsoft Docs
 description: Linee guida per l'ottimizzazione delle prestazioni di MapReduce in Azure Data Lake Store
 services: data-lake-store
 documentationcenter: 
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 12/19/2016
 ms.author: stewu
-ms.openlocfilehash: e21414a23530e65613c85156af0209c88ec54d2d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9528148792f083cb0e48d356e61cf61762ee954f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="performance-tuning-guidance-for-mapreduce-on-hdinsight-and-azure-data-lake-store"></a>Linee guida per l'ottimizzazione delle prestazioni di MapReduce in HDInsight e in Azure Data Lake Store
 
@@ -26,55 +26,55 @@ ms.lasthandoff: 10/06/2017
 ## <a name="prerequisites"></a>Prerequisiti
 
 * **Una sottoscrizione di Azure**. Vedere [Ottenere una versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/).
-* **Un account Azure Data Lake Store**. Per istruzioni su come toocreate uno, vedere [introduzione archivio Azure Data Lake](data-lake-store-get-started-portal.md)
-* **Cluster di Azure HDInsight** con accesso tooa account archivio Data Lake. Vedere [Creare un cluster HDInsight con Data Lake Store tramite il portale di Azure](data-lake-store-hdinsight-hadoop-use-portal.md). Assicurarsi di abilitare Desktop remoto per il cluster hello.
+* **Un account di Archivio Data Lake di Azure**. Per istruzioni su come crearne uno, vedere [Introduzione ad Archivio Data Lake di Azure](data-lake-store-get-started-portal.md)
+* **Cluster Azure HDInsight** con accesso a un account di Archivio Data Lake. Vedere [Creare un cluster HDInsight con Data Lake Store tramite il portale di Azure](data-lake-store-hdinsight-hadoop-use-portal.md). Assicurarsi di abilitare il Desktop remoto per il cluster.
 * **Uso di MapReduce in HDInsight**.  Per ulteriori informazioni, vedere [Usare MapReduce in Hadoop su HDInsight](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-use-mapreduce)  
 * **Linee guida per l'ottimizzazione delle prestazioni in ADLS**.  Per i concetti generali relativi alle prestazioni, vedere [Linee guida per l'ottimizzazione delle prestazioni in Data Lake Store](https://docs.microsoft.com/en-us/azure/data-lake-store/data-lake-store-performance-tuning-guidance)  
 
 ## <a name="parameters"></a>parameters
 
-Quando si eseguono i processi di MapReduce, ecco i parametri di hello più importanti che è possibile configurare performance tooincrease su ADLS:
+Vengono ora illustrati i parametri più importanti da configurare per aumentare le prestazioni in ADLS durante l'esecuzione di processi MapReduce:
 
-* **MapReduce.Map.Memory.MB** : quantità di hello di BizTalk mapper tooeach tooallocate di memoria
-* **MapReduce.job.Maps** : hello numero di attività di mappa per processo
-* **MapReduce** : quantità di hello di riduttore tooeach tooallocate di memoria
-* **MapReduce.job.reduces** : hello numero di attività di riduzione per processo
+* **Mapreduce.map.memory.mb**: la quantità di memoria da allocare a ciascun mapper
+* **Mapreduce.job.maps**: il numero di attività di mapping per processo
+* **Mapreduce.reduce.memory.mb**: la quantità di memoria da allocare a ciascun riduttore
+* **Mapreduce.job.reduces**: il numero di attività di riduzione per processo
 
-**MapReduce.Map.Memory / Mapreduce.reduce.memory** questo numero deve essere regolato in base alle quantità di memoria è necessaria per la mappa hello e/o ridurre l'attività.  i valori predefiniti di Hello di mapreduce.map.memory e mapreduce.reduce.memory possono essere visualizzati in Ambari mediante la configurazione di Yarn hello.  In Ambari, passare tooYARN e visualizzarle scheda configurazioni hello.  verrà visualizzato Hello memoria YARN.  
+**Mapreduce.map.memory / Mapreduce.reduce.memory**: numero da regolare in base alla quantità di memoria necessaria per le operazioni di mapping e/o riduzione.  È possibile visualizzare i valori predefiniti di mapreduce.map.memory e mapreduce.reduce.memory in Ambari tramite la configurazione Yarn.  In Ambari passare a YARN e visualizzare la scheda Configs (Configurazioni).  Viene visualizzata la memoria YARN.  
 
-**MapReduce.job.Maps / Mapreduce.job.reduces** per stabilire numero massimo di hello di BizTalk Mapper o riduttori toobe creato.  numero di Hello di divisioni determinerà il numero di BizTalk Mapper verrà creato per il processo MapReduce hello.  Pertanto, potrebbero essere meno BizTalk Mapper richiesto se sono presenti meno divisioni numero hello di BizTalk Mapper richiesto.       
+**Mapreduce.job.maps / Mapreduce.job.reduces** Ciò determinerà il numero massimo di mapper o riduttori da creare.  Il numero di suddivisioni determinerà la quantità di mapper creati per il processo MapReduce.  Pertanto, se ci sono meno suddivisioni rispetto ai mapper richiesti, si potrebbero ottenere meno mapper.       
 
 ## <a name="guidance"></a>Indicazioni
 
-**Passaggio 1: Determinare il numero di processi in esecuzione** -per impostazione predefinita, MapReduce verrà utilizzato l'intero cluster hello per il processo.  È possibile utilizzare meno del cluster hello utilizzando meno BizTalk Mapper di quanti sono i contenitori disponibili.  materiale sussidiario Hello in questo documento si presuppone che l'applicazione hello unica applicazione in esecuzione nel cluster.      
+**Passaggio 1: determinare il numero di processi in esecuzione.** Per impostazione predefinita, MapReduce userà l'intero cluster per il processo.  È possibile usare solo parte del cluster usando un numero di mapper inferiore a quello dei contenitori disponibili.  Le indicazioni fornite in questo documento presuppongono che l'applicazione sia l'unica in esecuzione nel cluster.      
 
-**Passaggio 2: Impostare mapreduce.map.memory/mapreduce.reduce.memory** : dimensioni della memoria hello per mappa di hello e ridurre le attività saranno dipende il processo specifico.  Se si desidera tooincrease concorrenza, è possibile ridurre la dimensione della memoria hello.  numero di Hello delle attività in esecuzione contemporaneamente dipende dal numero di hello di contenitori.  Riducendo la quantità hello di memoria per ogni mapping o riduttore, possono creare più contenitori, che consentono più toorun di BizTalk Mapper o riduttori contemporaneamente.  Decrescente hello memoria troppo elevato può comportare alcuni toorun processi memoria insufficiente.  Se si verifica un errore di heap durante l'esecuzione del processo, è necessario aumentare la memoria hello al mapper o riduttore.  Si noti che l'aggiunta di contenitori può comportare un carico extra per ciascuno di questi ultimi, con una potenziale diminuzione delle prestazioni.  Un'altra alternativa è tooget maggiore quantità di memoria utilizzando un cluster con una maggiore quantità di memoria o aumentare il numero di hello nodi del cluster.  Quantità di memoria consentirà toobe contenitori più utilizzato, il che significa maggiore concorrenza.  
+**Passaggio 2: impostare mapreduce.map.memory/mapreduce.reduce.memory**. Le dimensioni della memoria per le attività di mapping e riduzione dipenderanno dal processo specifico.  Se si desidera aumentare la concorrenza, è possibile ridurre le dimensioni della memoria.  Il numero di attività in esecuzione contemporaneamente dipende dal numero di contenitori.  Riducendo la quantità di memoria per ogni mapper o riduttore, verranno creati più contenitori, che permetteranno l'esecuzione simultanea di più mapper o riduttori.  Riducendo eccessivamente la quantità di memoria, potranno verificarsi degli errori di memoria insufficiente per alcuni procesis.  Se si verifica un errore di heap durante l'esecuzione del processo, è necessario aumentare la memoria per ogni mapper o riduttore.  Si noti che l'aggiunta di contenitori può comportare un carico extra per ciascuno di questi ultimi, con una potenziale diminuzione delle prestazioni.  In alternativa è possibile ottenere una maggiore quantità di memoria usando un cluster con maggiore memoria oppure aumentando il numero di nodi nel cluster.  Una maggiore quantità di memoria consentirà di usare più contenitori, ottenendo così più concorrenza.  
 
-**Passaggio 3: Determinare la memoria totale YARN** -mapreduce.job.maps/mapreduce.job.reduces tootune, è necessario considerare hello quantità totale di YARN memoria disponibile per l'utilizzo.  Le informazioni sono disponibili in Ambari.  Passare tooYARN e visualizzare scheda configurazioni hello.  memoria YARN Hello viene visualizzato in questa finestra.  Si deve moltiplicare hello YARN di memoria con il numero di hello di nodi nel cluster tooget hello totale YARN memoria.
+**Passaggio 3: determinare la memoria totale di YARN**. Per ottimizzare mapreduce.job.maps/mapreduce.job.reduces è necessario tenere presente la quantità di memoria totale di YARN disponibile all'uso.  Le informazioni sono disponibili in Ambari.  Passare a YARN e visualizzare la scheda Configs (Configurazioni).  La memoria YARN è visualizzata in questa finestra.  Per ottenere la memoria totale di YARN, moltiplicare la memoria di YARN per il numero di nodi nel cluster.
 
     Total YARN memory = nodes * YARN memory per node
-Se si utilizza un cluster vuoto, della memoria può essere hello YARN memoria per il cluster.  Se altre applicazioni utilizzano memoria, è possibile scegliere una parte della memoria del cluster utilizzare tooonly riducendo il numero di hello di BizTalk Mapper o riduttori numero toohello di contenitori desideri toouse.  
+Se si usa un cluster vuoto, la memoria può corrispondere alla memoria totale di YARN per il cluster.  Se altre applicazioni stanno usando memoria, è possibile scegliere di usare solo parte della memoria del cluster, riducendo e portando il numero dei mapper o riduttori al numero di contenitori da usare.  
 
-**Passaggio 4: Calcolare il numero di contenitori YARN** : contenitori YARN prevedono quantità hello di concorrenza per il processo di hello.  Prendere il valore della memoria totale di YARN e dividerlo per mapreduce.map.memory.  
+**Passaggio 4: calcolare il numero di contenitori YARN**. I contenitori YARN indicano la quantità di concorrenza disponibile per il processo.  Prendere il valore della memoria totale di YARN e dividerlo per mapreduce.map.memory.  
 
     # of YARN containers = total YARN memory / mapreduce.map.memory
 
-**Passaggio 5: Impostare mapreduce.job.maps/mapreduce.job.reduces** impostare mapreduce.job.maps/mapreduce.job.reduces tooat numero minimo di hello di contenitori disponibili.  È possibile provare a utilizzare ulteriore aumentando il numero di hello di BizTalk Mapper e riduttori toosee se ottenere prestazioni migliori.  Tenere presente comunque che l'aggiunta di mapper comporterà un carico extra. Un numero eccessivo di mapper potrà causare una diminuzione nelle prestazioni.  
+**Passaggio 5: configurare mapreduce.job.maps/mapreduce.job.reduces** Configurare mapreduce.job.maps/mapreduce.job.reduces come minimo in base al numero di contenitori disponibili.  È possibile sperimentare ulteriormente aumentando il numero di mapper e riduttori e verificare se così facendo si ottengono prestazioni migliori.  Tenere presente comunque che l'aggiunta di mapper comporterà un carico extra. Un numero eccessivo di mapper potrà causare una diminuzione nelle prestazioni.  
 
-Pianificazione della CPU e l'isolamento di CPU sono disattivate per impostazione predefinita, in modo hello numero di contenitori YARN è vincolato dalla memoria.
+La pianificazione e l'isolamento della CPU sono disattivate per impostazione predefinita, pertanto il numero di contenitori YARN è limitato dalla memoria.
 
 ## <a name="example-calculation"></a>Calcolo di esempio
 
-Si supponga che si dispone di un cluster costituito da 8 nodi D14 e si desidera toorun un processo con utilizzo intensivo dei / o.  Di seguito sono calcoli hello che è necessario eseguire:
+Si supponga di disporre di un cluster costituito da 8 nodi D14 e di voler eseguire un processo con attività di I/O intensive.  Di seguito sono riportati i calcoli che è necessario eseguire:
 
-**Passaggio 1: Determinare il numero di processi in esecuzione** -per questo esempio, si presuppone che il processo è hello unico in esecuzione.  
+**Passaggio 1: determinare il numero di processi in esecuzione**. Nell'esempio riportato si presuppone che il processo sia l'unico in esecuzione.  
 
 **Passaggio 2: configurare mapreduce.map.memory/mapreduce.reduce.memory**. Nell'esempio riportato si esegue un processo con attività di I/O intensive e si decide che sono sufficienti 3 GB di memoria per le attività di mapping.
 
     mapreduce.map.memory = 3GB
 **Passaggio 3: determinare la memoria totale di YARN**
 
-    total memory from hello cluster is 8 nodes * 96GB of YARN memory for a D14 = 768GB
+    total memory from the cluster is 8 nodes * 96GB of YARN memory for a D14 = 768GB
 **Passaggio 4: calcolare il numero dei contenitori YARN**
 
     # of YARN containers = 768GB of available memory / 3 GB of memory =   256
@@ -87,24 +87,24 @@ Si supponga che si dispone di un cluster costituito da 8 nodi D14 e si desidera 
 
 **Limitazione di Azure Data Lake Store**
 
-In quanto servizio multi-tenant, ADLS imposta dei limiti di larghezza di banda a livello di account.  Se si riscontra questi limiti, si inizierà toosee errori di attività. Ciò può essere constatato verificando la presenza di errori di limitazione nei log delle attività.  Se occorre ulteriore larghezza di banda per il processo, contattare Microsoft.   
+In quanto servizio multi-tenant, ADLS imposta dei limiti di larghezza di banda a livello di account.  Se si raggiungono tali limiti, si inizieranno a riscontrare esiti negativi nelle attività. Ciò può essere constatato verificando la presenza di errori di limitazione nei log delle attività.  Se occorre ulteriore larghezza di banda per il processo, contattare Microsoft.   
 
-toocheck se sono recupero limitate, è necessario il debug di hello tooenable registrazione sul lato client hello. Di seguito viene indicato come procedere:
+Per verificare la presenza di limitazioni, è necessario abilitare la registrazione di debug sul lato client. Di seguito viene indicato come procedere:
 
-1. PUT hello seguenti proprietà nelle proprietà log4j hello Ambari > YARN > Configurazione > avanzate yarn log4j: log4j.logger.com.microsoft.azure.datalake.store=DEBUG
+1. Inserire la seguente proprietà nelle proprietà log4j in Ambari > YARN > Config (Configurazione) > Advanced yarn log4j (YARN log4j avanzate): log4j.logger.com.microsoft.azure.datalake.store=DEBUG
 
-2. Riavviare tutti i nodi di hello/servizio per effetto di tootake configurazione hello.
+2. Riavviare tutti i nodi o servizi per rendere effettiva la nuova configurazione.
 
-3. Se sono recupero limitate, codice di errore HTTP 429 hello nel file di log YARN hello verrà visualizzato. file di log YARN Hello è /tmp/&lt;utente&gt;/yarn.log
+3. In caso di limitazioni, verrà visualizzato il codice di errore HTTP 429 nel file di log di YARN. Il file di log di YARN si trova nel percorso /tmp/&lt;user&gt;/yarn.log
 
-## <a name="examples-toorun"></a>Esempi tooRun
+## <a name="examples-to-run"></a>Esempi di esecuzione
 
-toodemonstrate come MapReduce viene eseguita in un archivio Azure Data Lake, di seguito è un codice di esempio che è stato eseguito in un cluster con hello seguenti impostazioni:
+Per illustrare la modalità di esecuzione di MapReduce su Azure Data Lake Store, di seguito viene riportato un codice di esempio eseguito in un cluster con le seguenti impostazioni:
 
 * D14v2 a 16 nodi
 * Cluster Hadoop con HDI 3.6 in esecuzione
 
-Per un punto di partenza, ecco alcuni toorun i comandi di esempio MapReduce Teragen Terasort e Teravalidate.  È possibile modificare questi comandi in base alle risorse.
+Per iniziare, ecco alcuni comandi di esempio per eseguire MapReduce Teragen, Terasort e Teravalidate.  È possibile modificare questi comandi in base alle risorse.
 
 **Teragen**
 

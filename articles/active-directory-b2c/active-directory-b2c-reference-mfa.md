@@ -1,6 +1,6 @@
 ---
 title: 'Azure Active Directory B2C: Multi-Factor Authentication | Documentazione Microsoft'
-description: Come tooenable multi-Factor Authentication in applicazioni per consumatori protetti da Azure Active Directory B2C
+description: Come abilitare la Multi-Factor Authentication in applicazioni consumatori protette da Azure Active Directory B2C
 services: active-directory-b2c
 documentationcenter: 
 author: swkrish
@@ -14,47 +14,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/06/2016
 ms.author: swkrish
-ms.openlocfilehash: 29beb1e6ab5d8ab5a65f9c5c068d9e71c60418dd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 62ec48ab067cf02bc8409aca6da704a5418ec270
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="azure-active-directory-b2c-enable-multi-factor-authentication-in-your-consumer-facing-applications"></a>Azure Active Directory B2C: abilitare Multi-Factor Authentication nelle applicazioni destinate agli utenti
-Azure Active Directory (Azure AD) B2C si integra direttamente con [Azure multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md) in modo che è possibile aggiungere un secondo livello di esperienze toosign-up e accesso di sicurezza nelle applicazioni per consumatori. Questo è possibile senza scrivere una singola riga di codice. Attualmente è supportata la verifica tramite chiamata telefonica e SMS. Se i criteri di iscrizione e accesso sono già stati creati, è ancora possibile abilitare Multi-Factor Authentication.
+Azure Active Directory (Azure AD) B2C si integra direttamente con [Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md) per consentire l'aggiunta di un secondo livello di protezione alle esperienze di iscrizione e di accesso nelle applicazioni rivolte ai consumatori. Questo è possibile senza scrivere una singola riga di codice. Attualmente è supportata la verifica tramite chiamata telefonica e SMS. Se i criteri di iscrizione e accesso sono già stati creati, è ancora possibile abilitare Multi-Factor Authentication.
 
 > [!NOTE]
 > È anche possibile abilitare Multi-Factor Authentication durante la creazione di criteri per l'iscrizione e l'accesso, non solo modificando i criteri esistenti.
 > 
 > 
 
-Questa funzionalità consente alle applicazioni di gestire scenari come la seguente hello:
+Questa funzionalità risulta utile per la gestione di scenari simili ai seguenti:
 
-* Non sono necessari un'applicazione di multi-Factor Authentication tooaccess, ma necessario tooaccess un altro. Ad esempio, consumer hello possono accedere a un'applicazione di assicurazione automatica con un account locale o di social networking, ma deve verificare il numero di telefono hello prima che l'accesso a un'applicazione hello home assicurazione registrato in hello stessa directory.
-* Non sono necessari tooaccess multi-Factor Authentication un'applicazione in generale, ma si richiedono le parti sensibili tooaccess hello in esso contenuti. Consumer hello, ad esempio, per poter accedere tooa applicazione con un account locale o di social networking e verifica il saldo del conto bancario, ma deve verificare il numero di telefono hello prima di tentare un trasferimento tramite rete.
+* Multi-Factor Authentication non viene richiesta per accedere a una sola applicazione, ma viene richiesta per accedere a un'ulteriore applicazione. Ad esempio, l’utente può accedere a una richiesta di assicurazione automatica con un account locale o di social, ma deve verificare il numero di telefono prima di accedere all'applicazione di assicurazione home registrata nella stessa directory.
+* Multi-Factor Authentication non viene richiesta per accedere a un'applicazione in generale, ma viene richiesta per l'accesso alle aree sensibili. Ad esempio, l’utente può accedere a un'applicazione bancaria con un account locale o di social e controllare il saldo del conto, ma deve verificare il numero di telefono prima di effettuare un bonifico.
 
-## <a name="modify-your-sign-up-policy-tooenable-multi-factor-authentication"></a>Modificare il tooenable criteri iscrizione multi-Factor Authentication
-1. [Seguire questi blade di passaggi toonavigate toohello B2C funzionalità nel portale di Azure hello](active-directory-b2c-app-registration.md#navigate-to-b2c-settings).
+## <a name="modify-your-sign-up-policy-to-enable-multi-factor-authentication"></a>Modificare i criteri di iscrizione per abilitare Multi-Factor Authentication
+1. [Seguire questa procedura per passare al pannello delle funzionalità B2C nel portale di Azure](active-directory-b2c-app-registration.md#navigate-to-b2c-settings).
 2. Fare clic su **Criteri di iscrizione**.
-3. Fare clic su tooopen i criteri di iscrizione (ad esempio, "B2C_1_SiUp") è.
-4. Fare clic su **multi-factor authentication** e attivare hello **stato** troppo**ON**. Fare clic su **OK**.
-5. Fare clic su **salvare** nella parte superiore di hello del pannello hello.
+3. Fare clic sul criterio di iscrizione (ad esempio, "B2C_1_SiUp") per aprirlo.
+4. Fare clic su **Autenticazione a più fattori** e impostare **Stato** su **ON**. Fare clic su **OK**.
+5. Fare clic su **Salva** nella parte superiore del pannello.
 
-È possibile utilizzare funzionalità "Esegui" hello sull'esperienza di hello criteri tooverify hello consumer. Verificare l'esempio hello:
+È possibile utilizzare la funzionalità "Esegui ora" nei criteri per verificare l'esperienza utente. Verificare quanto segue:
 
-Un account utente viene creato nella directory prima che si verifichi il passaggio di multi-Factor Authentication hello. Durante il passaggio di hello, consumer hello è richiesto tooprovide propria il numero di telefono e verificarlo. Se la verifica ha esito positivo, il numero di telefono hello è collegato toohello account utente per un uso successivo. Anche se il consumer hello Annulla o viene ritirata, che possono essere formulata tooverify un numero di telefono nuovamente durante hello Accedi successivo (con autenticazione a più fattori abilitata).
+Un account utente viene creato nella directory prima che venga eseguito il passaggio di Multi-Factor Authentication. Durante il passaggio, all’utente viene richiesto di fornire il proprio numero di telefono e di verificarlo. Se la verifica ha esito positivo, il numero di telefono viene associato all'account utente per un utilizzo successivo. Anche se l'utente annulla o esce, al successivo accesso può venire richiesto all'utente di verificare nuovamente un numero di telefono (con Multi-Factor Authentication abilitata).
 
-## <a name="modify-your-sign-in-policy-tooenable-multi-factor-authentication"></a>Modificare il tooenable di criteri di accesso multi-Factor Authentication
-1. [Seguire questi blade di passaggi toonavigate toohello B2C funzionalità nel portale di Azure hello](active-directory-b2c-app-registration.md#navigate-to-b2c-settings).
+## <a name="modify-your-sign-in-policy-to-enable-multi-factor-authentication"></a>Modificare i criteri di accesso per abilitare Multi-Factor Authentication
+1. [Seguire questa procedura per passare al pannello delle funzionalità B2C nel portale di Azure](active-directory-b2c-app-registration.md#navigate-to-b2c-settings).
 2. Fare clic su **Criteri di accesso**.
-3. Fare clic su tooopen i criteri di accesso (ad esempio, "B2C_1_SiIn") è. Fare clic su **modifica** nella parte superiore di hello del pannello hello.
-4. Fare clic su **multi-factor authentication** e attivare hello **stato** troppo**ON**. Fare clic su **OK**.
-5. Fare clic su **salvare** nella parte superiore di hello del pannello hello.
+3. Fare clic sul criterio di accesso (ad esempio, "B2C_1_SiIn") per aprirlo. Fare clic su **Modifica** nella parte superiore del pannello.
+4. Fare clic su **Autenticazione a più fattori** e impostare **Stato** su **ON**. Fare clic su **OK**.
+5. Fare clic su **Salva** nella parte superiore del pannello.
 
-È possibile utilizzare funzionalità "Esegui" hello sull'esperienza di hello criteri tooverify hello consumer. Verificare l'esempio hello:
+È possibile utilizzare la funzionalità "Esegui ora" nei criteri per verificare l'esperienza utente. Verificare quanto segue:
 
-Quando il consumer hello accede (utilizzando un account locale o di social networking), se è collegato un numero di telefono verificato account consumer toohello che viene richiesto tooverify è. Se non è collegato alcun numero di telefono, consumer hello viene chiesto tooprovide uno e la verifica. La verifica ha esito positivo, in è collegato il numero di telefono hello toohello account utente per un uso successivo.
+Quando l’utente si iscrive (utilizzando un account locale o social), se un numero di telefono verificato è collegato all'account utente, viene richiesto di verificarlo. Se non è associato alcun numero di telefono, all’utente viene richiesto di fornire un numero di telefono e di verificarlo. Se la verifica ha esito positivo, il numero di telefono viene associato all'account utente per un uso successivo.
 
 ## <a name="multi-factor-authentication-on-other-policies"></a>Multi-Factor Authentication per altri criteri
-Come descritto per l'iscrizione & Accedi criteri sopra indicati, è anche possibile tooenable multi-factor authentication per l'abbonamento o reimpostare i criteri password e i criteri di accesso. Questa opzione sarà presto disponibile tra i criteri di modifica del profilo.
+Come descritto in precedenza per i criteri di iscrizione e accesso, è possibile abilitare la Multi-Factor Authentication per i criteri di iscrizione e accesso e quelli di reimpostazione della password. Questa opzione sarà presto disponibile tra i criteri di modifica del profilo.
 

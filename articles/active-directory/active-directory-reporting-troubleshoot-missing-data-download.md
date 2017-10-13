@@ -1,6 +1,6 @@
 ---
-title: "Risoluzione dei problemi: I dati mancanti in hello scaricato log attività di Azure Active Directory | Documenti Microsoft"
-description: "Fornisce dati toomissing una risoluzione log attività di Azure Active Directory scaricato."
+title: "Risoluzione dei problemi: dati mancanti nei log attività scaricati di Azure Active Directory | Microsoft Docs"
+description: "Offre una soluzione per i dati mancanti nei log attività scaricati di Azure Active Directory."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,30 +15,30 @@ ms.workload: identity
 ms.date: 07/15/2017
 ms.author: markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: 027b70e6efc570f81d3c836f50ee52aaa89be71a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3d56f89035da4d1a0074256b165663f81fc2b01e
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="i-cant-find-any-data-in-hello-azure-active-directory-activity-logs-i-have-downloaded"></a>Non è possibile trovare tutti i dati nel log attività di Azure Active Directory hello che ho scaricato
+# <a name="i-cant-find-any-data-in-the-azure-active-directory-activity-logs-i-have-downloaded"></a>Non è possibile trovare dati nei log attività di Azure Active Directory scaricati
 
 
 ## <a name="symptoms"></a>Sintomi
 
-Scaricato log attività di hello (controllo o accessi) e non è possibile visualizzare tutti i record di hello per volta hello che ho scelto. Perché? 
+I log attività (controllo o accessi) sono stati scaricati ma non vengono visualizzati tutti i record per l'orario scelto. Perché? 
 
  ![Creazione di report](./media/active-directory-reporting-troubleshoot-missing-data-download/01.png)
  
 
 ## <a name="cause"></a>Causa
 
-Quando si scarica log di attività nel portale di Azure hello, limitiamo hello scala too120K record, ordinati in base più recente. 
+Quando si scaricano i log attività nel portale di Azure, viene applicata una limitazione a 120.000 record, ordinati a partire dal più recente. 
 
 ## <a name="resolution"></a>Risoluzione
 
-È possibile sfruttare [API di Reporting AD Azure](active-directory-reporting-api-getting-started.md) toofetch tooa milioni di record in un determinato momento. L'approccio consigliato è toorun uno script in base a una pianificazione che chiama hello reporting API toofetch registra in modo incrementale in un periodo di tempo (ad esempio, giornaliera o settimanale).
+È possibile sfruttare le [API di Creazione rapporti di Azure AD](active-directory-reporting-api-getting-started.md) per recuperare fino a un milione di record per un momento specifico. L'approccio consigliato consiste nell'eseguire uno script in base a una pianificazione per chiamare le API di Creazione rapporti per recuperare i record in modo incrementale in un periodo di tempo specifico, ad esempio ogni giorno oppure ogni settimana.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Vedere hello [reporting domande frequenti su Azure Active Directory](active-directory-reporting-faq.md).
+Vedere [Domande frequenti sulla creazione di report in Azure Active Directory](active-directory-reporting-faq.md).
 

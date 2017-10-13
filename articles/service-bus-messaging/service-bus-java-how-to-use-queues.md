@@ -1,6 +1,6 @@
 ---
-title: Accoda aaaHow toouse Service Bus di Azure con Java | Documenti Microsoft
-description: Informazioni su come code di toouse Bus di servizio in Azure. Gli esempi di codice sono scritti in Java.
+title: Come usare le code del bus di servizio di Azure con Java | Microsoft Docs
+description: Informazioni su come usare le code del bus di servizio in Azure. Gli esempi di codice sono scritti in Java.
 services: service-bus-messaging
 documentationcenter: java
 author: sethmanheim
@@ -13,30 +13,30 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: sethm
-ms.openlocfilehash: f68e941438134090c5eee53459e7667bda13ff3c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 170f431525ffdc93a01fc085e48e69c3a774968e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toouse-service-bus-queues-with-java"></a>La modalità di code toouse Bus di servizio con Java
+# <a name="how-to-use-service-bus-queues-with-java"></a>Come usare le code del bus di servizio con Java
 [!INCLUDE [service-bus-selector-queues](../../includes/service-bus-selector-queues.md)]
 
-Questo articolo viene descritto come toouse code del Bus di servizio. esempi di Hello sono scritti in Java e usano hello [Azure SDK per Java][Azure SDK for Java]. Hello scenari trattati includono **la creazione delle code**, **inviando e ricevendo messaggi**, e **l'eliminazione di code**.
+Questo articolo illustra come usare le code del bus di servizio. Gli esempi sono scritti in Java e usano [Azure SDK per Java][Azure SDK for Java]. Gli scenari presentati includono la **creazione di code**, l'**invio e la ricezione di messaggi** e l'**eliminazione di code**.
 
 [!INCLUDE [howto-service-bus-queues](../../includes/howto-service-bus-queues.md)]
 
 [!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
-## <a name="configure-your-application-toouse-service-bus"></a>Configurare il toouse applicazione Bus di servizio
-Verificare di avere installato hello [Azure SDK per Java] [ Azure SDK for Java] prima di compilare questo esempio. Se si usa Eclipse, è possibile installare hello [Azure Toolkit per Eclipse] [ Azure Toolkit for Eclipse] che include hello Azure SDK per Java. È quindi possibile aggiungere hello **Microsoft Azure Libraries for Java** tooyour progetto:
+## <a name="configure-your-application-to-use-service-bus"></a>Configurare l'applicazione per l'uso del bus di servizio
+Assicurarsi di aver installato [Azure SDK per Java][Azure SDK for Java] prima di compilare questo esempio. Se si usa Eclipse, è possibile installare [Azure Toolkit for Eclipse][Azure Toolkit for Eclipse] che include Azure SDK per Java. È quindi possibile aggiungere le **librerie di Microsoft Azure per Java** al progetto:
 
 ![](./media/service-bus-java-how-to-use-queues/eclipselibs.png)
 
-Aggiungere il seguente hello `import` file Java hello cima toohello istruzioni:
+Aggiungere le seguenti istruzioni `import` all'inizio del file Java:
 
 ```java
-// Include hello following imports toouse Service Bus APIs
+// Include the following imports to use Service Bus APIs
 import com.microsoft.windowsazure.services.servicebus.*;
 import com.microsoft.windowsazure.services.servicebus.models.*;
 import com.microsoft.windowsazure.core.*;
@@ -44,9 +44,9 @@ import javax.xml.datatype.*;
 ```
 
 ## <a name="create-a-queue"></a>Creare una coda
-Per eseguire operazioni di gestione per le code del bus di servizio, è possibile usare la classe **ServiceBusContract**. Oggetto **ServiceBusContract** oggetto viene costruito con una configurazione appropriata che incapsula il token di firma di accesso condiviso con le autorizzazioni toomanage e hello **ServiceBusContract** classe è il punto unico di hello la comunicazione con Azure.
+Per eseguire operazioni di gestione per le code del bus di servizio, è possibile usare la classe **ServiceBusContract**. Un oggetto **ServiceBusContract** è costruito con una configurazione appropriata che incapsula il token di firma di accesso condiviso con le autorizzazioni necessarie a gestirlo. La classe **ServiceBusContract** rappresenta l'unico punto di comunicazione con Azure.
 
-Hello **ServiceBusService** classe fornisce metodi toocreate, enumerare ed eliminare code. Hello di esempio seguente viene illustrato come un **ServiceBusService** oggetto può essere utilizzato toocreate una coda denominata `TestQueue`, con uno spazio dei nomi denominato `HowToSample`:
+La classe **ServiceBusService** definisce i metodi per creare, enumerare ed eliminare le code. L'esempio seguente illustra come usare un oggetto **ServiceBusService** per creare una coda denominata `TestQueue` con uno spazio dei nomi denominato `HowToSample`:
 
 ```java
 Configuration config =
@@ -71,7 +71,7 @@ catch (ServiceException e)
 }
 ```
 
-Sono disponibili metodi su `QueueInfo` che consentono di proprietà di hello coda toobe ottimizzati (ad esempio: tooset hello predefinito time-to-live (TTL) valore toobe applicato toomessages inviati toohello coda). Hello esempio seguente viene illustrato come toocreate una coda denominata `TestQueue` con una dimensione massima di 5 GB:
+In `QueueInfo` sono disponibili metodi che consentono di ottimizzare le proprietà della coda, ad esempio il valore TTL predefinito da applicare ai messaggi inviati alla coda. Il seguente esempio illustra come creare una coda denominata `TestQueue` con una dimensione massima pari a 5 GB:
 
 ````java
 long maxSizeInMegabytes = 5120;
@@ -80,10 +80,10 @@ queueInfo.setMaxSizeInMegabytes(maxSizeInMegabytes);
 CreateQueueResult result = service.createQueue(queueInfo);
 ````
 
-Si noti che è possibile utilizzare hello `listQueues` metodo **ServiceBusContract** oggetti toocheck se una coda con un nome specificato esiste già all'interno di uno spazio dei nomi del servizio.
+Si noti che è possibile usare il metodo `listQueues` su oggetti **ServiceBusContract** per verificare se in uno spazio dei nomi servizio esiste già una coda con il nome specificato.
 
-## <a name="send-messages-tooa-queue"></a>Messaggi tooa coda di invio
-l'applicazione di una coda di Service Bus di messaggi tooa toosend, otterrà un **ServiceBusContract** oggetto. Hello seguente codice mostra come un messaggio per hello toosend `TestQueue` coda creata in precedenza in hello `HowToSample` dello spazio dei nomi:
+## <a name="send-messages-to-a-queue"></a>Inviare messaggi a una coda
+Per inviare un messaggio a una coda del bus di servizio, l'applicazione ottiene un oggetto **ServiceBusContract**. Il seguente codice illustra come inviare un messaggio per la coda `TestQueue` creata in precedenza all'interno dello spazio dei nomi `HowToSample`.
 
 ```java
 try
@@ -99,33 +99,33 @@ catch (ServiceException e)
 }
 ```
 
-I messaggi inviati a e ricevuti dal Bus di servizio code sono istanze di hello [BrokeredMessage] [ BrokeredMessage] classe. [BrokeredMessage] [ BrokeredMessage] oggetti dispongono di un set di proprietà standard (ad esempio [etichetta](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage.label#Microsoft_ServiceBus_Messaging_BrokeredMessage_Label) e [TimeToLive](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage.timetolive#Microsoft_ServiceBus_Messaging_BrokeredMessage_TimeToLive)), un dizionario usato toohold personalizzato proprietà specifiche dell'applicazione e un corpo di dati applicazione arbitrari. Un'applicazione può impostare il corpo di hello del messaggio hello passando qualsiasi oggetto serializzabile al costruttore di hello di hello [BrokeredMessage][BrokeredMessage], e verrà quindi usata serializzatore appropriato hello oggetto hello tooserialize. In alternativa, è possibile specificare un oggetto **java.IO.InputStream**.
+I messaggi inviati e ricevuti dalle code del bus di servizio sono istanze della classe [BrokeredMessage][BrokeredMessage]. Gli oggetti [BrokeredMessage][BrokeredMessage] includono un insieme di proprietà standard (ad esempio [Label](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage.label#Microsoft_ServiceBus_Messaging_BrokeredMessage_Label) e [TimeToLive](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage.timetolive#Microsoft_ServiceBus_Messaging_BrokeredMessage_TimeToLive)), un dizionario usato per contenere le proprietà personalizzate specifiche dell'applicazione e un corpo di dati arbitrari dell'applicazione. Per impostare il corpo del messaggio, un'applicazione può passare qualsiasi oggetto serializzabile nel costruttore di [BrokeredMessage][BrokeredMessage]. Per serializzare l'oggetto, verrà usato il serializzatore appropriato. In alternativa, è possibile specificare un oggetto **java.IO.InputStream**.
 
-Hello esempio seguente viene illustrato come test toosend cinque messaggi toothe `TestQueue` **MessageSender** sono stati ottenuti nel frammento di codice precedente hello:
+L'esempio seguente illustra come inviare cinque messaggi di prova all'oggetto `TestQueue` **MessageSender** ottenuto nel frammento di codice precedente:
 
 ```java
 for (int i=0; i<5; i++)
 {
-     // Create message, passing a string message for hello body.
+     // Create message, passing a string message for the body.
      BrokeredMessage message = new BrokeredMessage("Test message " + i);
      // Set an additional app-specific property.
      message.setProperty("MyProperty", i);
-     // Send message toohello queue
+     // Send message to the queue
      service.sendQueueMessage("TestQueue", message);
 }
 ```
 
-Le code del Bus di servizio supportano una dimensione massima di 256 KB in hello [livello Standard](service-bus-premium-messaging.md) hello a 1 MB e [livello Premium](service-bus-premium-messaging.md). intestazione Hello, che include standard hello e le proprietà personalizzate dell'applicazione, può avere una dimensione massima di 64 KB. Non è previsto alcun limite per il numero di hello di messaggi contenuti in una coda, ma è un limite alla dimensione totale di hello di messaggi hello mantenuto da una coda. Questa dimensione della coda viene definita al momento della creazione, con un limite massimo di 5 GB.
+Le code del bus di servizio supportano messaggi di dimensioni fino a 256 KB nel [livello Standard](service-bus-premium-messaging.md) e fino a 1 MB nel [livello Premium](service-bus-premium-messaging.md). Le dimensioni massime dell'intestazione, che include le proprietà standard e personalizzate dell'applicazione, non possono superare 64 KB. Non esiste alcun limite al numero di messaggi mantenuti in una coda, mentre è prevista una limitazione alla dimensione totale dei messaggi di una coda. Questa dimensione della coda viene definita al momento della creazione, con un limite massimo di 5 GB.
 
 ## <a name="receive-messages-from-a-queue"></a>Ricevere messaggi da una coda
-Hello primario aspetto tooreceive dei messaggi da una coda è toouse un **ServiceBusContract** oggetto. I messaggi ricevuti possono essere usati in due modalità diverse: **ReceiveAndDelete** e **PeekLock**.
+Per ricevere i messaggi da una coda si usa principalmente un oggetto **ServiceBusContract**. I messaggi ricevuti possono essere usati in due modalità diverse: **ReceiveAndDelete** e **PeekLock**.
 
-Quando si utilizza hello **ReceiveAndDelete** , la modalità di ricezione è un'operazione singola cattura -, ovvero quando il Bus di servizio riceve una richiesta di lettura per un messaggio in una coda, contrassegna il messaggio hello come usato e lo restituisce toohello applicazione. **ReceiveAndDelete** modalità (modalità predefinita di hello) è il modello più semplice di hello ed è adatta per scenari in cui un'applicazione in grado di tollerare non elabora un messaggio di evento hello di un errore. toounderstand, si consideri uno scenario in cui problemi relativi ai consumer hello hello di ricezione richiesta e quindi si blocca prima dell'elaborazione.
-Poiché verrà contrassegnato messaggio come usato, quindi quando un'applicazione hello viene riavviata e inizia a usare nuovamente i messaggi hello del Bus di servizio, risulterà perso messaggio hello che è stato consumato toohello precedente arresto anomalo del sistema.
+Quando si usa la modalità **ReceiveAndDelete**, l'operazione di ricezione viene eseguita in un'unica fase. Quando infatti il bus di servizio riceve la richiesta di lettura relativa a un messaggio in una coda, lo contrassegna come usato e lo restituisce all'applicazione. La modalità **ReceiveAndDelete** predefinita costituisce il modello più semplice ed è adatta per scenari in cui un'applicazione può tollerare la mancata elaborazione di un messaggio in caso di errore. Per comprendere meglio questo meccanismo, si consideri uno scenario in cui il consumer invia la richiesta di ricezione e viene arrestato in modo anomalo prima dell'elaborazione.
+Poiché il bus di servizio contrassegna il messaggio come utilizzato, quando l'applicazione viene riavviata e inizia a utilizzare nuovamente i messaggi, il messaggio utilizzato prima dell'arresto anomalo risulterà perso.
 
-In **PeekLock** , la modalità di ricezione diventa un'operazione in due fasi, che rende possibile toosupport applicazioni che non sono in grado di tollerare messaggi mancanti. Quando il Bus di servizio riceve una richiesta, individua hello successivo messaggio toobe utilizzati Blocca tooprevent altri consumer di ricezione e lo restituisce quindi toohello applicazione. Dopo l'applicazione hello completa l'elaborazione messaggio hello o archiviarlo in modo affidabile per l'elaborazione futura, completa hello seconda fase di hello ricevere processo chiamando **eliminare** nel messaggio ricevuto. Quando il Bus di servizio rileva hello **eliminare** chiamata, verrà contrassegnare il messaggio hello come usato e rimuoverlo dalla coda hello.
+Nella modalità **PeekLock** l'operazione di ricezione viene suddivisa in due fasi, in modo da consentire il supporto di applicazioni che non possono tollerare messaggi mancanti. Quando il bus di servizio riceve una richiesta, individua il messaggio successivo da usare, lo blocca per impedirne la ricezione da parte di altri consumer e quindi lo restituisce all'applicazione. Dopo aver elaborato il messaggio o averlo archiviato in modo affidabile per successive elaborazioni, l'applicazione esegue la seconda fase del processo di ricezione chiamando **Delete** sul messaggio ricevuto. Quando il bus di servizio vede la chiamata **Delete**, contrassegna il messaggio come usato e lo rimuove dalla coda.
 
-Hello esempio seguente viene illustrato come è possibile ricevere messaggi e trasformati utilizzando **PeekLock** modalità (non hello predefinita). esegue un ciclo infinito Hello esempio riportato di seguito ed elabora i messaggi man mano che arrivano nel nostro `TestQueue`:
+Nell'esempio seguente viene illustrato come ricevere ed elaborare messaggi usando la modalità **PeekLock** non predefinita. L'esempio seguente crea un ciclo infinito ed elabora i messaggi man mano che arrivano in `TestQueue`:
 
 ```java
 try
@@ -140,7 +140,7 @@ try
         if (message != null && message.getMessageId() != null)
         {
             System.out.println("MessageID: " + message.getMessageId());
-            // Display hello queue message.
+            // Display the queue message.
             System.out.print("From queue: ");
             byte[] b = new byte[200];
             String s = null;
@@ -163,8 +163,8 @@ try
         {
             System.out.println("Finishing up - no more messages.");
             break;
-            // Added toohandle no more messages.
-            // Could instead wait for more messages toobe added.
+            // Added to handle no more messages.
+            // Could instead wait for more messages to be added.
         }
     }
 }
@@ -180,17 +180,17 @@ catch (Exception e) {
 }
 ```
 
-## <a name="how-toohandle-application-crashes-and-unreadable-messages"></a>Come si blocca toohandle applicazione e i messaggi illeggibili
-Bus di servizio offre funzionalità toohelp che normalmente possibile correggere gli errori nell'applicazione o problemi di elaborazione di un messaggio. Se un'applicazione ricevente è in grado di tooprocess hello messaggio per qualche motivo, quindi è possibile chiamare hello **unlockMessage** metodo sul messaggio ricevuto (anziché hello **deleteMessage** (metodo)). Questa condizione provoca hello toounlock Bus di servizio dei messaggi in coda hello e renderlo disponibile toobe nuovamente ricevuto sia da hello stesso consumo dell'applicazione o da un'altra applicazione consumer.
+## <a name="how-to-handle-application-crashes-and-unreadable-messages"></a>Come gestire arresti anomali e messaggi illeggibili dell'applicazione
+Il bus di servizio fornisce funzionalità per il ripristino gestito automaticamente in caso di errori nell'applicazione o di problemi di elaborazione di un messaggio. Se un'applicazione ricevitore non è in grado di elaborare il messaggio per un qualsiasi motivo, può chiamare il metodo **unlockMessage**, anziché **deleteMessage**, per il messaggio ricevuto. In questo modo, il bus di servizio sblocca il messaggio nella coda rendendolo nuovamente disponibile per la ricezione da parte della stessa o di un'altra applicazione consumer.
 
-È inoltre disponibile un timeout associato a un messaggio bloccato all'interno della coda, e se un'applicazione hello avrà esito negativo tooprocess hello messaggio prima della scadenza del timeout di blocco (ad esempio, se si blocca l'applicazione hello), quindi il Bus di servizio Sblocca messaggio hello automaticamente e rende disponibili toobe nuovamente ricevuto.
+Al messaggio bloccato nella coda è inoltre associato un timeout. Se l'applicazione non riesce a elaborare il messaggio prima della scadenza del timeout, ad esempio a causa di un arresto anomalo, il bus di servizio sbloccherà automaticamente il messaggio rendendolo nuovamente disponibile per la ricezione.
 
-In hello evento hello applicazione si blocca dopo l'elaborazione messaggio hello ma prima di hello **deleteMessage** richiesta viene eseguita, il messaggio hello è applicazione toohello consegnati nuovamente quando viene riavviata. Spesso si tratta di *almeno una volta elaborazione*; ovvero, ogni messaggio viene elaborato almeno una volta ma in hello determinate situazioni potrebbe essere recapitato nuovamente stesso messaggio. Se hello scenario non tollera la doppia elaborazione, gli sviluppatori di applicazioni devono aggiungere logica aggiuntiva tootheir applicazione toohandle duplicato il recapito dei messaggi. Questa operazione viene spesso eseguita utilizzando hello **getMessageId** (metodo) del messaggio hello, che rimane costante tra i tentativi di recapito.
+In caso di arresto anomalo dell'applicazione dopo l'elaborazione del messaggio ma prima dell'invio della richiesta **deleteMessage**, il messaggio viene nuovamente recapitato all'applicazione al riavvio. Questo processo di elaborazione viene spesso definito di tipo *At-Least-Once*, per indicare che ogni messaggio verrà elaborato almeno una volta ma che in determinate situazioni potrà essere recapitato una seconda volta. Se lo scenario non tollera la doppia elaborazione, gli sviluppatori dovranno aggiungere logica aggiuntiva all'applicazione per gestire il secondo recapito del messaggio. A tale scopo viene spesso usato il metodo **getMessageId** del messaggio, che rimane costante in tutti i tentativi di recapito.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Dopo aver appreso nozioni di base di hello di code del Bus di servizio, vedere [code, argomenti e sottoscrizioni] [ Queues, topics, and subscriptions] per ulteriori informazioni.
+A questo punto, dopo aver appreso le nozioni di base delle code del bus di servizio, vedere [Code, argomenti e sottoscrizioni del bus di servizio][Queues, topics, and subscriptions] per altre informazioni.
 
-Per ulteriori informazioni, vedere hello [Centro per sviluppatori Java](https://azure.microsoft.com/develop/java/).
+Per ulteriori informazioni, vedere il [Centro per sviluppatori di Java](https://azure.microsoft.com/develop/java/).
 
 [Azure SDK for Java]: http://azure.microsoft.com/develop/java/
 [Azure Toolkit for Eclipse]: https://msdn.microsoft.com/library/azure/hh694271.aspx

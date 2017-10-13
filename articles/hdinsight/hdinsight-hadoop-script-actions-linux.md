@@ -1,6 +1,6 @@
 ---
-title: lo sviluppo dell'azione aaaScript con HDInsight basati su Linux - Azure | Documenti Microsoft
-description: "Informazioni su come generare script per i cluster HDInsight basati su Linux toocustomize toouse Bash. Hello script azione di HDInsight consente toorun script durante o dopo la creazione del cluster. Gli script è possibile toochange utilizzate le impostazioni di configurazione del cluster o installare software aggiuntivo."
+title: Sviluppo di azioni script con HDInsight basato su Linux - Azure | Documentazione Microsoft
+description: "Informazioni su come usare script Bash per personalizzare cluster HDInsight basati su Linux. La funzionalità di azione script in HDInsight consente di eseguire script durante o dopo la creazione del cluster. Gli script possono essere usati per modificare le impostazioni di configurazione del cluster o per installare software aggiuntivo."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -15,26 +15,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/31/2017
 ms.author: larryfr
-ms.openlocfilehash: 1f504b00365df5f4cfb3ae19ad55ff7630342650
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7f1a0bd8c7e60770d376f10eaea136a55c632c5e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="script-action-development-with-hdinsight"></a>Sviluppo di azioni script con HDInsight
 
-Informazioni su come è il cluster HDInsight tramite Bash toocustomize script. Le azioni script sono toocustomize un modo HDInsight durante o dopo la creazione del cluster.
+Informazioni su come personalizzare il cluster HDInsight tramite script Bash. Le azioni script consentono di personalizzare HDInsight durante o dopo la creazione del cluster.
 
 > [!IMPORTANT]
-> passaggi di Hello in questo documento richiedono un cluster HDInsight che utilizza Linux. Linux è hello solo sistema operativo utilizzato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> I passaggi descritti in questo documento richiedono un cluster HDInsight che usa Linux. Linux è l'unico sistema operativo usato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 ## <a name="what-are-script-actions"></a>Definizione di azioni script
 
-Le azioni script sono gli script Bash Azure viene eseguito sulle modifiche di configurazione toomake nodi cluster hello o installare software. Un'azione di script viene eseguita come radice e fornisce i nodi del cluster toohello diritti di accesso completo.
+Le azioni script sono script Bash eseguiti da Azure sui nodi del cluster per apportare modifiche alla configurazione o installare software. Un'azione script viene eseguita come radice e fornisce diritti di accesso completo ai nodi del cluster.
 
-Le azioni script possono essere applicate tramite hello dei seguenti metodi:
+L'azione script può essere applicata usando i metodi seguenti:
 
-| Utilizzare questo tooapply metodo uno script... | Durante la creazione di un cluster... | In un cluster in esecuzione... |
+| Usare questo metodo per applicare uno script... | Durante la creazione di un cluster... | In un cluster in esecuzione... |
 | --- |:---:|:---:|
 | Portale di Azure |✓  |✓ |
 | Azure PowerShell |✓ |✓ |
@@ -42,37 +42,37 @@ Le azioni script possono essere applicate tramite hello dei seguenti metodi:
 | HDInsight .NET SDK |✓ |✓ |
 | Modello di Azure Resource Manager |✓ |&nbsp; |
 
-Per ulteriori informazioni sull'utilizzo di questi script azione tooapply metodi, vedere [HDInsight personalizzare cluster tramite le azioni script](hdinsight-hadoop-customize-cluster-linux.md).
+Per altre informazioni sull'uso di questi metodi per l'applicazione di azioni script, vedere [Personalizzare cluster HDInsight tramite azioni script](hdinsight-hadoop-customize-cluster-linux.md).
 
 ## <a name="bestPracticeScripting"></a>Procedure consigliate per lo sviluppo di script
 
-Quando si sviluppa uno script personalizzato per un cluster HDInsight, sono disponibili diverse procedure tookeep di procedure consigliate in considerazione:
+Quando si sviluppa uno script personalizzato per un cluster HDInsight, è opportuno seguire le procedure consigliate indicate di seguito:
 
-* [Versione di destinazione hello Hadoop](#bPS1)
-* [Hello versione del sistema operativo di destinazione](#bps10)
-* [Fornire stabile collega tooscript risorse](#bPS2)
+* [Usare la versione di Hadoop](#bPS1)
+* [Usare la versione del sistema operativo](#bps10)
+* [Fornire collegamenti stabili alle risorse di script](#bPS2)
 * [Usare risorse precompilate](#bPS4)
-* [Verificare che uno script di personalizzazione cluster hello è idempotente](#bPS3)
-* [Verificare la disponibilità elevata dell'architettura di cluster hello](#bPS5)
-* [Configurare l'archiviazione Blob di Azure toouse componenti personalizzati di hello](#bPS6)
-* [Scrivere informazioni tooSTDOUT e STDERR](#bPS7)
+* [Assicurarsi che lo script di personalizzazione del cluster sia idempotente](#bPS3)
+* [Verificare la disponibilità elevata dell'architettura del cluster](#bPS5)
+* [Configurare i componenti personalizzati per l'uso dell'archivio BLOB di Azure](#bPS6)
+* [Scrivere informazioni in STDOUT e STDERR](#bPS7)
 * [Salvare i file in formato ASCII con terminazioni di riga LF](#bps8)
-* [Utilizzare toorecover logica di tentativi di errori temporanei](#bps9)
+* [Usare la logica di ripetizione dei tentativi per il ripristino da errori temporanei](#bps9)
 
 > [!IMPORTANT]
-> Le azioni script devono essere completate entro 60 minuti o hello processo avrà esito negativo. Durante il provisioning del nodo, script di hello viene eseguito contemporaneamente ad altri processi di installazione e configurazione. Contesa per le risorse, ad esempio larghezza di banda della CPU ora o di rete potrebbe essere hello script tootake più toofinish rispetto a quello usato nell'ambiente di sviluppo.
+> Le azioni di script devono essere completate entro 60 minuti; in caso contrario il processo avrà esito negativo. Durante il provisioning dei nodi, lo script viene eseguito contemporaneamente ad altri processi di installazione e configurazione. In caso di concorrenza per risorse come il tempo di CPU o la larghezza di banda di rete, lo script può richiedere più tempo per completare l'operazione rispetto al tempo che impiegherebbe in un ambiente di sviluppo.
 
-### <a name="bPS1"></a>Versione di destinazione hello Hadoop
+### <a name="bPS1"></a>Usare la versione di Hadoop
 
-Nelle diverse versioni di HDInsight sono installate versioni diverse di servizi e componenti di Hadoop. Se lo script prevede una versione specifica di un servizio o componente, è necessario utilizzare solo script di hello con la versione di hello di HDInsight che include i componenti necessario di hello. È possibile trovare informazioni sulle versioni dei componenti inclusi in HDInsight usando hello [il controllo delle versioni di HDInsight componente](hdinsight-component-versioning.md) documento.
+Nelle diverse versioni di HDInsight sono installate versioni diverse di servizi e componenti di Hadoop. Se lo script prevede una versione specifica di un servizio o un componente, si dovrà usare lo script solo con la versione di HDInsight che include i componenti richiesti. Per trovare informazioni sulle versioni dei componenti incluse in HDInsight, usare il documento relativo al [controllo delle versioni dei componenti di HDInsight](hdinsight-component-versioning.md) .
 
-### <a name="bps10"></a>Versione di hello del sistema operativo di destinazione
+### <a name="bps10"></a> Usare la versione del sistema operativo
 
-HDInsight basati su Linux si basa su hello distribuzione Ubuntu Linux. Versioni diverse di HDInsight si basano su versioni differenti di Ubuntu e questo può influire sul comportamento dello script. HDInsight 3.4 e versioni precedenti si basano ad esempio su versioni di Ubuntu che usano Upstart. La versione 3.5 si basa su Ubuntu 16.04 che usa Systemd. Systemd e Upstart si basano sui diversi comandi, in modo che lo script deve essere scritto toowork con entrambi.
+HDInsight basato su Linux si basa sulla distribuzione di Ubuntu Linux. Versioni diverse di HDInsight si basano su versioni differenti di Ubuntu e questo può influire sul comportamento dello script. HDInsight 3.4 e versioni precedenti si basano ad esempio su versioni di Ubuntu che usano Upstart. La versione 3.5 si basa su Ubuntu 16.04 che usa Systemd. Systemd e Upstart si basano su comandi diversi, quindi lo script deve essere scritto in modo da funzionare con entrambi.
 
-Un'altra differenza importante tra 3.4 HDInsight e 3.5 è che `JAVA_HOME` punti ora tooJava 8.
+Un'altra differenza importante tra HDInsight 3.4 e 3.5 è che `JAVA_HOME` punta ora a Java 8.
 
-È possibile controllare la versione del sistema operativo hello utilizzando `lsb_release`. Hello codice seguente viene illustrato come toodetermine se hello script è in esecuzione in Ubuntu 14 o 16:
+È possibile verificare la versione del sistema operativo con `lsb_release`. Il codice seguente illustra come determinare se lo script è in esecuzione su Ubuntu 14 o 16:
 
 ```bash
 OS_VERSION=$(lsb_release -sr)
@@ -103,89 +103,89 @@ elif [[ $OS_VERSION == 16* ]]; then
 fi
 ```
 
-È possibile trovare uno script completo di hello contenente questi frammenti di codice in https://hdiconfigactions.blob.core.windows.net/linuxhueconfigactionv02/install-hue-uber-v02.sh.
+Lo script completo contenente questi frammenti è disponibile all'indirizzo https://hdiconfigactions.blob.core.windows.net/linuxhueconfigactionv02/install-hue-uber-v02.sh.
 
-La versione di hello di Ubuntu utilizzato da HDInsight, vedere hello [la versione del componente HDInsight](hdinsight-component-versioning.md) documento.
+Per la versione di Ubuntu usata da HDInsight, vedere il documento sulle [versioni dei componenti HDInsight](hdinsight-component-versioning.md).
 
-differenze di hello toounderstand tra Systemd e Upstart, vedere [Systemd per gli utenti Upstart](https://wiki.ubuntu.com/SystemdForUpstartUsers).
+Per comprendere le differenze tra Systemd e Upstart, vedere [Systemd per gli utenti di Upstart](https://wiki.ubuntu.com/SystemdForUpstartUsers).
 
-### <a name="bPS2"></a>Fornire stabile collega tooscript risorse
+### <a name="bPS2"></a>Fornire collegamenti stabili alle risorse di script
 
-Hello script e le risorse associate devono rimanere disponibile per tutta la durata di hello del cluster di hello. Queste risorse sono necessarie se vengono aggiunti nuovi nodi cluster toohello durante le operazioni di ridimensionamento.
+Lo script e le risorse associate devono rimanere disponibili per tutta la durata del cluster. Queste risorse sono necessarie se vengono aggiunti nuovi nodi al cluster durante operazioni di ridimensionamento.
 
-procedura consigliata Hello è toodownload e archiviare tutti gli elementi di un account di archiviazione di Azure nella sottoscrizione.
+È consigliabile scaricare e archiviare tutti gli elementi in un account di archiviazione di Azure nella propria sottoscrizione.
 
 > [!IMPORTANT]
-> account di archiviazione Hello usato deve essere l'account di archiviazione predefinito hello per cluster hello o un contenitore di sola lettura pubblico su qualsiasi altro account di archiviazione.
+> L'account di archiviazione usato deve essere quello predefinito per il cluster o un contenitore pubblico di sola lettura per qualsiasi altro account di archiviazione.
 
-Ad esempio, gli esempi di hello forniti da Microsoft vengono archiviati in hello [https://hdiconfigactions.blob.core.windows.net/](https://hdiconfigactions.blob.core.windows.net/) account di archiviazione. Si tratta di un contenitore di sola lettura pubblico gestito dal team di HDInsight hello.
+Gli esempi forniti da Microsoft, ad esempio, vengono archiviati nell'account di archiviazione [https://hdiconfigactions.blob.core.windows.net/](https://hdiconfigactions.blob.core.windows.net/). Si tratta di un contenitore pubblico e di sola lettura, gestito dal team di HDInsight.
 
 ### <a name="bPS4"></a>Usare risorse precompilate
 
-hello tooreduce tempo accetta toorun hello script, evitare operazioni di compilazione risorse dal codice sorgente. Ad esempio, la precompilazione risorse e archiviarli in un blob dell'account di archiviazione di Azure in hello stesso data center in HDInsight.
+Per ridurre il tempo necessario per eseguire lo script, evitare operazioni di compilazione delle risorse dal codice sorgente. Ad esempio, precompilare le risorse e archiviarle in un BLOB dell'account di archiviazione di Azure nello stesso data center di HDInsight.
 
-### <a name="bPS3"></a>Verificare che uno script di personalizzazione cluster hello è idempotente
+### <a name="bPS3"></a>Assicurarsi che lo script di personalizzazione del cluster sia idempotente
 
-Gli script devono essere idempotenti. Se viene eseguito più volte di script di hello, dovrebbe restituire hello toohello cluster stesso stato di ogni volta.
+Gli script devono essere idempotenti. Se lo script viene eseguito più volte, ogni volta deve riportare il cluster allo stato iniziale.
 
 Uno script che modifica i file di configurazione, ad esempio, non deve aggiungere voci duplicate se viene eseguito più volte.
 
-### <a name="bPS5"></a>Verificare la disponibilità elevata dell'architettura di cluster hello
+### <a name="bPS5"></a>Verificare la disponibilità elevata dell'architettura del cluster
 
-Cluster HDInsight basati su Linux forniscono due nodi head attivi all'interno di cluster hello e le azioni di script vengono eseguite in entrambi i nodi. Se si installa i componenti di hello prevedono un solo nodo head, non installare i componenti di hello in entrambi i nodi head.
+I cluster HDInsight basati su Linux forniscono due nodi head attivi all'interno del cluster e le azioni script vengono eseguite per entrambi i nodi. Se i componenti da installare prevedono un solo nodo head, non installare i componenti in entrambi i nodi head.
 
 > [!IMPORTANT]
-> Fornito come parte di HDInsight sono servizi toofail progettato tra due nodi head di hello in base alle esigenze. Questa funzionalità non viene estesa toocustom componenti installati tramite le azioni script. Se i componenti personalizzati richiedono una disponibilità elevata, è necessario implementare un meccanismo di failover personalizzato.
+> I servizi forniti nell'ambito di HDInsight sono progettati per supportare il failover tra i due nodi head, se necessario. Questa funzionalità non è estesa ai componenti personalizzati installati tramite azioni script. Se i componenti personalizzati richiedono una disponibilità elevata, è necessario implementare un meccanismo di failover personalizzato.
 
-### <a name="bPS6"></a>Configurare l'archiviazione Blob di Azure toouse componenti personalizzati di hello
+### <a name="bPS6"></a>Configurare i componenti personalizzati per l'uso dell'archivio BLOB di Azure
 
-I componenti da installare nel cluster hello potrebbero essere una configurazione predefinita che utilizza l'archiviazione di Hadoop Distributed File System (HDFS). HDInsight Usa archiviazione di Azure o archivio Data Lake come spazio di archiviazione predefinito hello. Forniscono entrambi un sistema compatibile file HDFS che mantiene i dati anche se hello cluster verrà eliminato. Potrebbe essere necessario tooconfigure componenti installati toouse WASB o ADL anziché HDFS.
+I componenti installati nel cluster possono avere una configurazione predefinita che usa l'archiviazione di Hadoop Distributed File System (HDFS). HDInsight usa l'archiviazione di Azure o Azure Data Lake Store come risorsa di archiviazione predefinita, poiché entrambi forniscono un file system compatibile con HDFS che rende permanenti i dati anche se il cluster viene eliminato. In alcuni casi, è possibile che sia necessario configurare i componenti installati in modo da usare WASB o ADL anziché HDFS.
 
-Per la maggior parte delle operazioni, non è necessario del sistema di file hello toospecify. Ad esempio, seguente hello copia file giraph examples.jar hello dalla hello archivio locale del sistema toocluster dei file:
+Per la maggior parte delle operazioni, tuttavia, non è necessario specificare il file system. Il codice seguente, ad esempio, copia il file giraph-examples.jar dal file system locale alla risorsa di archiviazione del cluster:
 
 ```bash
 hdfs dfs -put /usr/hdp/current/giraph/giraph-examples.jar /example/jars/
 ```
 
-In questo esempio hello `hdfs` comando utilizza in modo trasparente l'archiviazione del cluster predefinito hello. Per alcune operazioni, potrebbe essere necessario toospecify hello URI. ad esempio `adl:///example/jars` per Data Lake Store o `wasb:///example/jars` per l'archiviazione di Azure.
+In questo esempio, il comando `hdfs` usa in modo trasparente la risorsa di archiviazione del cluster predefinita. Per alcune operazioni, è necessario specificare l'URI, ad esempio `adl:///example/jars` per Data Lake Store o `wasb:///example/jars` per l'archiviazione di Azure.
 
-### <a name="bPS7"></a>Scrivere informazioni tooSTDOUT e STDERR
+### <a name="bPS7"></a>Scrivere informazioni in STDOUT e STDERR
 
-HDInsight registra l'output dello script che viene scritto tooSTDOUT e STDERR. È possibile visualizzare queste informazioni tramite interfaccia utente di hello Ambari web.
+HDInsight registra l'output dello script scritto in STDOUT e STDERR. È possibile visualizzare queste informazioni tramite l'interfaccia utente Web di Ambari.
 
 > [!NOTE]
-> Ambari è disponibile solo se il cluster hello è stato creato. Se si utilizza un'azione di script durante la creazione del cluster e non viene completata la creazione, vedere Risoluzione dei problemi di sezione hello [HDInsight personalizzare cluster utilizzando l'azione script](hdinsight-hadoop-customize-cluster-linux.md#troubleshooting) per altre modalità di accesso alle informazioni registrate.
+> Ambari è disponibile solo se il cluster viene creato correttamente. Se si usa un'azione script durante la creazione del cluster e la creazione ha esito negativo, vedere la sezione relativa alla risoluzione dei problemi nell'articolo [Personalizzare cluster HDInsight basati su Linux tramite Azione script](hdinsight-hadoop-customize-cluster-linux.md#troubleshooting) che illustra altri modi per accedere alle informazioni registrate.
 
-La maggior parte delle utilità e pacchetti di installazione già scrivono informazioni tooSTDOUT e STDERR, tuttavia è opportuno tooadd ulteriori opzioni di registrazione. toosend testo tooSTDOUT, utilizzare `echo`. ad esempio:
+Sebbene la maggior parte delle utilità e dei pacchetti di installazione scriva già le informazioni in STDOUT e STDERR, è possibile aggiungere altre opzioni di registrazione. Per inviare testo a STDOUT, usare `echo`. Ad esempio:
 
 ```bash
-echo "Getting ready tooinstall Foo"
+echo "Getting ready to install Foo"
 ```
 
-Per impostazione predefinita, `echo` invia hello tooSTDOUT stringa. toodirect è tooSTDERR, aggiungere `>&2` prima `echo`. ad esempio:
+Per impostazione predefinita, `echo` invia la stringa a STDOUT. Per indirizzarla a STDERR, aggiungere `>&2` prima di `echo`. Ad esempio:
 
 ```bash
 >&2 echo "An error occurred installing Foo"
 ```
 
-Consente di reindirizzare le informazioni scritte invece tooSTDOUT tooSTDERR (2). Per altre informazioni sul reindirizzamento I/O, vedere [http://www.tldp.org/LDP/abs/html/io-redirection.html](http://www.tldp.org/LDP/abs/html/io-redirection.html).
+Questo codice reindirizza a STDERR (2) le informazioni scritte in STDOUT. Per altre informazioni sul reindirizzamento I/O, vedere [http://www.tldp.org/LDP/abs/html/io-redirection.html](http://www.tldp.org/LDP/abs/html/io-redirection.html).
 
 Per altre informazioni sulla visualizzazione delle informazioni registrate tramite azioni script, vedere [Personalizzare cluster HDInsight basati su Linux tramite Azione script](hdinsight-hadoop-customize-cluster-linux.md#troubleshooting)
 
 ### <a name="bps8"></a> Salvare i file in formato ASCII con terminazioni di riga LF
 
-Gli script Bash devono essere archiviati nel formato ASCII con righe terminate da LF. I file vengono archiviati come UTF-8 o utilizzano CRLF come terminazione di riga hello potrebbero non riuscire con hello errore seguente:
+Gli script Bash devono essere archiviati nel formato ASCII con righe terminate da LF. Se i file vengono archiviati in formato UTF-8 o usano CRLF come terminazione di riga, è possibile che abbiano esito negativo con l'errore seguente:
 
 ```
 $'\r': command not found
 line 1: #!/usr/bin/env: No such file or directory
 ```
 
-### <a name="bps9"></a>Utilizzare toorecover logica di tentativi di errori temporanei
+### <a name="bps9"></a> Usare la logica di ripetizione dei tentativi per il ripristino da errori temporanei
 
-Quando si scaricano file, l'installazione dei pacchetti tramite apt get o altre azioni che trasmettono dati su internet hello, azione hello potrebbe non riuscire a causa di errori di rete tootransient. Ad esempio, si sta comunicando con la risorsa remota hello sia nel processo di hello del failover sul nodo backup tooa.
+Quando si scaricano file, l'installazione di pacchetti tramite apt-get o altre azioni che trasmettono dati su Internet, l'azione potrebbe non riuscire a causa di errori di rete temporanei. Ad esempio, è possibile che sia in corso il failover a un nodo di backup della risorsa remota con la quale si sta comunicando.
 
-toomake gli errori di tootransient resilienti script, è possibile implementare la logica di ripetizione. Hello che segue viene illustrato come la logica di riesecuzione tooimplement. Eseguire un nuovo tentativo operazione hello tre volte prima che si verifichi.
+Per rendere lo script resiliente agli errori temporanei, è possibile implementare la logica di ripetizione dei tentativi. La funzione seguente illustra come implementare la logica di ripetizione dei tentativi: prima che venga generato l'errore, ripete per tre volte il tentativo di eseguire l'operazione.
 
 ```bash
 #retry
@@ -211,7 +211,7 @@ retry() {
 }
 ```
 
-Hello esempi seguenti illustrano come toouse questa funzione.
+Gli esempi seguenti illustrano come usare questa funzione.
 
 ```bash
 retry ls -ltr foo
@@ -221,85 +221,85 @@ retry wget -O ./tmpfile.sh https://hdiconfigactions.blob.core.windows.net/linuxh
 
 ## <a name="helpermethods"></a>Metodi helper per gli script personalizzati
 
-I metodi helper dell'azione script sono utilità che è possibile usare durante la scrittura di script personalizzati. Questi metodi sono contenuti nello script [https://hdiconfigactions.blob.core.windows.net/linuxconfigactionmodulev01/HDInsightUtilities-v01.sh](https://hdiconfigactions.blob.core.windows.net/linuxconfigactionmodulev01/HDInsightUtilities-v01.sh). Utilizzare hello seguente toodownload e utilizzarle come parte dello script:
+I metodi helper dell'azione script sono utilità che è possibile usare durante la scrittura di script personalizzati. Questi metodi sono contenuti nello script [https://hdiconfigactions.blob.core.windows.net/linuxconfigactionmodulev01/HDInsightUtilities-v01.sh](https://hdiconfigactions.blob.core.windows.net/linuxconfigactionmodulev01/HDInsightUtilities-v01.sh). Usare il codice seguente per scaricarli e usarli nell'ambito dello script:
 
 ```bash
-# Import hello helper method module.
+# Import the helper method module.
 wget -O /tmp/HDInsightUtilities-v01.sh -q https://hdiconfigactions.blob.core.windows.net/linuxconfigactionmodulev01/HDInsightUtilities-v01.sh && source /tmp/HDInsightUtilities-v01.sh && rm -f /tmp/HDInsightUtilities-v01.sh
 ```
 
-Hello helper disponibili per l'utilizzo nello script seguente:
+In uno script personalizzato possono essere usati gli helper seguenti:
 
 | Utilizzo dell'helper | Descrizione |
 | --- | --- |
-| `download_file SOURCEURL DESTFILEPATH [OVERWRITE]` |Scarica un file dal percorso del file specificato toohello hello origine URI. Per impostazione predefinita, non sovrascrive un file esistente. |
-| `untar_file TARFILE DESTDIR` |Estrae un file con estensione tar (utilizzando `-xf`) toohello directory di destinazione. |
+| `download_file SOURCEURL DESTFILEPATH [OVERWRITE]` |Scarica un file dall'URI di origine al percorso file specificato. Per impostazione predefinita, non sovrascrive un file esistente. |
+| `untar_file TARFILE DESTDIR` |Estrae un file TAR (usando `-xf`) nella directory di destinazione. |
 | `test_is_headnode` |Se viene eseguito su un nodo head del cluster restituisce 1; in caso contrario, 0. |
-| `test_is_datanode` |Se il nodo corrente hello è un nodo di dati (lavoratore), restituisce 1; in caso contrario, 0. |
-| `test_is_first_datanode` |Se il nodo corrente di hello è hello innanzitutto i dati (lavoratore) nodo (denominata workernode0) restituisce 1; in caso contrario, 0. |
-| `get_headnodes` |Restituisce il nome di dominio completo hello di hello headnodes cluster hello. I nomi sono delimitati da virgole. In caso di errore, viene restituita una stringa vuota. |
-| `get_primary_headnode` |Ottiene il nome di dominio completo hello del nodo head primario hello. In caso di errore, viene restituita una stringa vuota. |
-| `get_secondary_headnode` |Ottiene il nome di dominio completo hello del nodo head secondario hello. In caso di errore, viene restituita una stringa vuota. |
-| `get_primary_headnode_number` |Ottiene hello suffisso numerico del nodo head primario hello. In caso di errore, viene restituita una stringa vuota. |
-| `get_secondary_headnode_number` |Ottiene hello suffisso numerico del nodo head secondario hello. In caso di errore, viene restituita una stringa vuota. |
+| `test_is_datanode` |Se il nodo corrente è un nodo dati (di lavoro) restituisce 1; in caso contrario, 0. |
+| `test_is_first_datanode` |Se il nodo corrente è il primo nodo dati (di lavoro), denominato workernode0, restituisce 1; in caso contrario, 0. |
+| `get_headnodes` |Restituisce il nome di dominio completo dei nodi head nel cluster. I nomi sono delimitati da virgole. In caso di errore, viene restituita una stringa vuota. |
+| `get_primary_headnode` |Ottiene il nome di dominio completo del nodo head primario. In caso di errore, viene restituita una stringa vuota. |
+| `get_secondary_headnode` |Ottiene il nome di dominio completo del nodo head secondario. In caso di errore, viene restituita una stringa vuota. |
+| `get_primary_headnode_number` |Ottiene il suffisso numerico del nodo head primario. In caso di errore, viene restituita una stringa vuota. |
+| `get_secondary_headnode_number` |Ottiene il suffisso numerico del nodo head secondario. In caso di errore, viene restituita una stringa vuota. |
 
 ## <a name="commonusage"></a>Modelli di utilizzo comuni
 
-Questa sezione vengono fornite informazioni aggiuntive sull'implementazione di alcuni dei modelli di utilizzo comuni hello che potrebbero essere generati durante la scrittura di script personalizzato.
+Questa sezione fornisce indicazioni sull'implementazione di alcuni dei modelli di utilizzo comuni che si potrebbero riscontrare durante la scrittura dello script personalizzato.
 
-### <a name="passing-parameters-tooa-script"></a>Passaggio di parametri script tooa
+### <a name="passing-parameters-to-a-script"></a>Passaggio di parametri a uno script
 
-In alcuni casi, lo script potrebbe richiedere l'uso di parametri. Ad esempio, potrebbe essere la password di amministratore di hello per cluster hello quando si utilizza l'API REST Ambari hello.
+In alcuni casi, lo script potrebbe richiedere l'uso di parametri. Quando si usa l'API REST di Ambari, ad esempio, è possibile che sia necessaria la password amministratore per il cluster.
 
-I parametri passati toohello script sono note come *parametri posizionali*e sono assegnati troppo`$1` per primo parametro hello, `$2` per hello secondo e pertanto-on. `$0`contiene il nome di hello dello script hello stesso.
+I parametri passati allo script sono noti come *parametri posizionali* e vengono assegnati a `$1` per il primo parametro, a `$2` per il secondo e così via. `$0` contiene il nome dello script stesso.
 
-Valori passati toohello script come parametri devono essere racchiusi tra virgolette singole ('). In modo da garantire che hello passato valore viene considerato come un valore letterale.
+I valori passati allo script come parametri devono essere racchiusi tra virgolette singole ('), in modo che vengano considerati come valori letterali.
 
 ### <a name="setting-environment-variables"></a>Impostazioni delle variabili di ambiente
 
-L'impostazione di una variabile di ambiente viene eseguita dall'istruzione hello:
+L'impostazione di una variabile di ambiente viene eseguita con l'istruzione seguente:
 
     VARIABLENAME=value
 
-Dove nomevariabile è il nome di hello della variabile hello. uso delle variabili, hello tooaccess `$VARIABLENAME`. Ad esempio, tooassign un valore fornito da un parametro posizionale come una variabile di ambiente denominata PASSWORD, si utilizzerebbe hello seguente istruzione:
+Dove VARIABLENAME è il nome della variabile. Per accedere alla variabile, usare `$VARIABLENAME`. Per assegnare un valore fornito da un parametro posizionale come variabile di ambiente denominata PASSWORD, ad esempio, usare l'istruzione seguente:
 
     PASSWORD=$1
 
-Quindi è possibile utilizzare le informazioni di accesso successivo toohello `$PASSWORD`.
+Per il successivo accesso alle informazioni, si potrà quindi usare `$PASSWORD`.
 
-Variabili di ambiente impostate all'interno dello script hello esistono solo nell'ambito di hello dello script hello. In alcuni casi, potrebbe essere variabili di ambiente a livello di sistema tooadd che rimarrà termine script hello. variabili di ambiente a livello di sistema tooadd, aggiungere la variabile hello troppo`/etc/environment`. Ad esempio, hello istruzione aggiunge `HADOOP_CONF_DIR`:
+Le variabili di ambiente impostate all'interno dello script sono disponibili solo nell'ambito dello script. In alcuni casi può essere necessario aggiungere variabili di ambiente a livello di sistema, che rimarranno persistenti dopo il completamento dello script. Per aggiungere variabili di ambiente a livello di sistema, aggiungere la variabile a `/etc/environment`. L'istruzione seguente, ad esempio, aggiunge `HADOOP_CONF_DIR`:
 
 ```bash
 echo "HADOOP_CONF_DIR=/etc/hadoop/conf" | sudo tee -a /etc/environment
 ```
 
-### <a name="access-toolocations-where-hello-custom-scripts-are-stored"></a>Accesso toolocations in cui sono archiviati gli script personalizzati hello
+### <a name="access-to-locations-where-the-custom-scripts-are-stored"></a>Accedere alle posizioni in cui sono archiviati gli script personalizzati
 
-Script utilizzati toocustomize un cluster deve toobe archiviati in una delle posizioni seguenti hello:
+Gli script usati per la personalizzazione di un cluster devono essere archiviati in una delle posizioni seguenti:
 
-* Un __account di archiviazione Azure__ associato al cluster hello.
+* __Account di archiviazione di Azure__ associato al cluster.
 
-* Un __account di archiviazione aggiuntivo__ associato hello cluster.
+* __Account di archiviazione aggiuntivo__ associato al cluster.
 
-* __URI leggibile pubblicamente__, Ad esempio, un URL toodata archiviato in OneDrive, Dropbox o altri file di servizio di hosting.
+* __URI leggibile pubblicamente__, ad esempio un URL per accedere ai dati archiviati in OneDrive, Dropbox o altri servizi di hosting di file.
 
-* Un __account archivio Azure Data Lake__ associato al cluster HDInsight hello. Per altre informazioni sull'uso di Azure Data Lake Store con HDInsight, vedere [Creare un cluster HDInsight con Data Lake Store](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md).
+* __Account Azure Data Lake Store__ associato al cluster HDInsight. Per altre informazioni sull'uso di Azure Data Lake Store con HDInsight, vedere [Creare un cluster HDInsight con Data Lake Store](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md).
 
     > [!NOTE]
-    > Hello servizio principale HDInsight utilizza tooaccess archivio Data Lake deve avere accesso in lettura toohello script.
+    > L'entità servizio usata da HDInsight per accedere a Data Lake Store deve avere accesso in lettura allo script.
 
-Le risorse utilizzate dallo script hello devono essere disponibile pubblicamente.
+Anche le risorse usate dallo script devono essere disponibili pubblicamente.
 
-Archiviazione dei file hello in un account di archiviazione di Azure o l'archivio Azure Data Lake fornisce accesso veloce, sia all'interno di hello rete di Azure.
+L'archiviazione dei file in un account di archiviazione di Azure o in Azure Data Lake Store ne consentirà l'accesso in tempi rapidi, poiché si trovano entrambi nella rete di Azure.
 
 > [!NOTE]
-> Hello URI formato utilizzato tooreference hello script varia a seconda del servizio hello in uso. Per gli account di archiviazione associati al cluster HDInsight hello, utilizzare `wasb://` o `wasbs://`. Per gli URI leggibili pubblicamente, usare `http://` o `https://`. Per Data Lake Store, usare `adl://`.
+> Il formato URI usato per fare riferimento allo script varia a seconda del servizio in uso. Per gli account di archiviazione associati al cluster HDInsight, usare `wasb://` o `wasbs://`. Per gli URI leggibili pubblicamente, usare `http://` o `https://`. Per Data Lake Store, usare `adl://`.
 
-### <a name="checking-hello-operating-system-version"></a>Controllo della versione del sistema operativo hello
+### <a name="checking-the-operating-system-version"></a>Verifica della versione del sistema operativo
 
-Le diverse versioni di HDInsight si basano su versioni specifiche di Ubuntu. Ci possono essere differenze tra le versioni del sistema operativo che è necessario verificare nello script. Ad esempio, potrebbe essere necessario un file binario che è toohello legati versione Ubuntu tooinstall.
+Le diverse versioni di HDInsight si basano su versioni specifiche di Ubuntu. Ci possono essere differenze tra le versioni del sistema operativo che è necessario verificare nello script. Può essere ad esempio necessario installare un file binario associato alla versione di Ubuntu.
 
-versione del sistema operativo hello toocheck, utilizzare `lsb_release`. Ad esempio, hello lo script seguente viene illustrato come tooreference un specifico tar file a seconda della versione del sistema operativo hello:
+Per verificare la versione del sistema operativo usare `lsb_release`. Lo script seguente, ad esempio, illustra come fare riferimento a uno specifico file tar, in base alla versione del sistema operativo:
 
 ```bash
 OS_VERSION=$(lsb_release -sr)
@@ -314,27 +314,27 @@ fi
 
 ## <a name="deployScript"></a>Elenco di controllo per la distribuzione di un'azione script
 
-Ecco i passaggi di hello effettuati durante la preparazione di questi script toodeploy:
+Di seguito sono indicati i passaggi effettuati durante la preparazione della distribuzione degli script:
 
-* Inserire i file hello che contengono gli script personalizzati hello in una posizione accessibile dai nodi di cluster hello durante la distribuzione. Ad esempio, hello archivio predefinito per il cluster hello. I file possono essere archiviati anche in servizi di hosting leggibili pubblicamente.
-* Verificare che sia impotent script hello. In questo modo possono hello script toobe eseguita più volte su hello stesso nodo.
-* Utilizzare hello di tookeep un file temporaneo directory /tmp scaricato i file utilizzati dagli script hello e quindi li elimina dopo aver eseguito gli script.
-* Se vengono modificati le impostazioni a livello del sistema operativo o i file di configurazione del servizio di Hadoop, è consigliabile toorestart HDInsight servizi.
+* Inserire i file che contengono gli script personalizzati in un percorso accessibile per i nodi del cluster durante la distribuzione, ad esempio la risorsa di archiviazione predefinita per il cluster. I file possono essere archiviati anche in servizi di hosting leggibili pubblicamente.
+* Verificare che lo script sia idempotente, in modo che possa essere eseguito più volte nello stesso nodo.
+* Usare una directory di file temporanei /tmp per conservare i file scaricati usati dagli script e quindi eliminarli dopo aver eseguito gli script.
+* Nel caso in cui vengano modificate le impostazioni a livello di sistema operativo o i file di configurazione del servizio Hadoop, può essere opportuno riavviare i servizi HDInsight.
 
-## <a name="runScriptAction"></a>Come toorun un'azione di script
+## <a name="runScriptAction"></a>Come eseguire un'azione script
 
-È possibile utilizzare script azioni toocustomize dei cluster HDInsight con hello dei seguenti metodi:
+È possibile usare azioni script per personalizzare i cluster HDInsight adottando uno dei metodi seguenti:
 
 * Portale di Azure
 * Azure PowerShell
 * Modelli di Gestione risorse di Azure
-* Hello HDInsight .NET SDK.
+* HDInsight .NET SDK
 
-Per ulteriori informazioni sull'utilizzo di ogni metodo, vedere [come toouse script azione](hdinsight-hadoop-customize-cluster-linux.md).
+Per altre informazioni sull'utilizzo di ogni metodo, vedere [Come usare azioni script](hdinsight-hadoop-customize-cluster-linux.md).
 
 ## <a name="sampleScripts"></a>Esempi di script personalizzati
 
-Microsoft fornisce gli script di esempio tooinstall componenti in un cluster HDInsight. Vedere i seguenti collegamenti per ulteriori azioni di script di esempio hello.
+Microsoft fornisce script di esempio per installare i componenti in un cluster HDInsight. Vedere i collegamenti seguenti per altre azioni di script di esempio.
 
 * [Installare e usare Hue nei cluster HDInsight.](hdinsight-hadoop-hue-linux.md)
 * [Installare e usare Solr nei cluster HDInsight](hdinsight-hadoop-solr-install-linux.md)
@@ -343,38 +343,38 @@ Microsoft fornisce gli script di esempio tooinstall componenti in un cluster HDI
 
 ## <a name="troubleshooting"></a>Risoluzione dei problemi
 
-di seguito Hello sono errori che possono verificarsi quando si usano script che è stato sviluppato.
+Di seguito sono elencati gli errori che potrebbero essere visualizzati quando si usano script personalizzati:
 
 **Errore**: `$'\r': command not found`. A volte seguito da `syntax error: unexpected end of file`.
 
-*Causa*: questo errore si verifica quando le righe di hello in uno script di terminano con CR/LF. Sistemi UNIX prevedono solo LF come terminazione di riga hello.
+*Causa*: questo errore si verifica quando le righe di uno script terminano con CRLF. I sistemi Unix prevedono unicamente LF come terminazione di riga.
 
-Questo problema più si verifica spesso quando è stato creato in un ambiente Windows script hello CRLF è una linea comune che termina per molti editor di testo in Windows.
+Questo problema si verifica più spesso quando lo script viene creato in un ambiente Windows, perché CRLF è una terminazione di riga comune per molti editor di testo in Windows.
 
-*Risoluzione*: se è un'opzione nell'editor di testo, selezionare il formato Unix o LF per terminazioni di riga hello. È inoltre possibile utilizzare i seguenti comandi in un tooan CRLF Unix system toochange hello LF hello:
+*Risoluzione*: se nell'editor di testo è disponibile come opzione, selezionare il formato Unix o LF come terminazione di riga. È anche possibile usare i comandi seguenti in un sistema Unix per cambiare CRLF in LF:
 
 > [!NOTE]
-> Hello comandi riportati di seguito sono quasi equivalenti che deve essere cambiata tooLF terminazioni riga CRLF di hello. Selezionare una basata sull'utilità hello disponibili nel sistema.
+> I comandi seguenti sono all'incirca equivalenti nel senso che cambiano le terminazioni di riga CRLF in LF. Selezionarne uno in base alle utilità disponibili nel proprio sistema.
 
 | Comando | Note |
 | --- | --- |
-| `unix2dos -b INFILE` |il file originale di Hello viene eseguito il backup con una. Estensione BAK |
+| `unix2dos -b INFILE` |Viene creata una copia di backup del file originale con estensione BAK |
 | `tr -d '\r' < INFILE > OUTFILE` |OUTFILE contiene una versione solo con le terminazioni LF |
-| `perl -pi -e 's/\r\n/\n/g' INFILE` | Modifica direttamente il file hello |
+| `perl -pi -e 's/\r\n/\n/g' INFILE` | Modifica direttamente il file |
 | ```sed 's/$'"/`echo \\\r`/" INFILE > OUTFILE``` |OUTFILE contiene una versione solo con le terminazioni LF. |
 
 **Errore**: `line 1: #!/usr/bin/env: No such file or directory`.
 
-*Causa*: questo errore si verifica quando hello script è stato salvato come UTF-8 con un provider di servizi Internet (BOM, Byte Order Mark).
+*Causa*: questo errore si verifica quando lo script è stato salvato in formato UTF-8 con un byte order mark (BOM).
 
-*Risoluzione*: Save hello file come ASCII, oppure come UTF-8 senza una distinta base. È inoltre possibile utilizzare hello comando seguente in un toocreate sistema un file senza hello DBA Linux o Unix:
+*Risoluzione*: salvare il file in formato ASCII o UTF-8 senza un carattere BOM. È anche possibile usare il comando seguente in un sistema Linux o Unix per creare un file senza il carattere BOM:
 
     awk 'NR==1{sub(/^\xef\xbb\xbf/,"")}{print}' INFILE > OUTFILE
 
-Sostituire `INFILE` con file hello contenente hello DBA. `OUTFILE`deve essere un nuovo nome di file, che contiene lo script hello senza hello DBA.
+Sostituire `INFILE` con il file contenente il carattere BOM. `OUTFILE` deve essere un nuovo nome di file, contenente lo script senza il carattere BOM.
 
 ## <a name="seeAlso"></a>Passaggi successivi
 
-* Informazioni su come troppo[personalizzare HDInsight cluster mediante l'azione di script](hdinsight-hadoop-customize-cluster-linux.md)
-* Hello utilizzare [riferimento HDInsight .NET SDK](https://msdn.microsoft.com/library/mt271028.aspx) toolearn ulteriori informazioni sulla creazione di applicazioni .NET che gestire HDInsight
-* Hello utilizzare [API REST di HDInsight](https://msdn.microsoft.com/library/azure/mt622197.aspx) toolearn come cluster di azioni di gestione di toouse REST tooperform in HDInsight.
+* Informazioni su come [Personalizzare cluster HDInsight basati su Linux tramite Azione script](hdinsight-hadoop-customize-cluster-linux.md)
+* Per informazioni sulla creazione di applicazioni .NET che gestiscono HDInsight, vedere [Riferimento .NET per HDInsight](https://msdn.microsoft.com/library/mt271028.aspx)
+* Per informazioni su come usare REST per eseguire azioni di gestione nei cluster HDInsight, vedere l' [API REST del provider di risorse HDInsight](https://msdn.microsoft.com/library/azure/mt622197.aspx) .

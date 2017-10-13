@@ -1,5 +1,5 @@
 ---
-title: aaaStored procedure in SQL Data Warehouse | Documenti Microsoft
+title: Stored procedure in SQL Data Warehouse | Documentazione Microsoft
 description: Suggerimenti per l'implementazione delle stored procedure in Azure SQL Data Warehouse per lo sviluppo di soluzioni.
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,37 +15,37 @@ ms.workload: data-services
 ms.custom: t-sql
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
-ms.openlocfilehash: 416252dd3dea95c66aa5e886860b933b22578002
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e42d80f0ca35f3fbb67389c66d072bc40d8a8d2c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="stored-procedures-in-sql-data-warehouse"></a>Stored procedure in SQL Data Warehouse
-SQL Data Warehouse supporta molte delle funzionalità di Transact-SQL hello disponibili in SQL Server. Non esistono ancora più importante funzionalità specifiche che vogliamo delle prestazioni di hello toomaximize tooleverage della soluzione di scalabilità.
+SQL Data Warehouse supporta molte delle funzionalità Transact-SQL disponibili in SQL Server. Ancora più importanti sono le funzionalità di scalabilità orizzontale specifiche, che si useranno per massimizzare le prestazioni della soluzione.
 
-Scala hello toomaintain e le prestazioni di SQL Data Warehouse sono sono tuttavia anche alcune caratteristiche e funzionalità con differenze di comportamento e ad altri utenti che non sono supportati.
+Tuttavia, per mantenere la scalabilità e le prestazioni di SQL Data Warehouse sono disponibili anche funzionalità e caratteristiche con differenze di comportamento e altra che non sono supportate.
 
-Questo articolo spiega come tooimplement stored procedure all'interno di SQL Data Warehouse.
+Questo articolo illustra come implementare stored procedure in SQL Data Warehouse.
 
 ## <a name="introducing-stored-procedures"></a>Introduzione alle stored procedure
-Stored procedure sono un ottimo modo per incapsulare il codice SQL; archiviazione dati tooyour Chiudi nel data warehouse di hello. Incapsulando codice hello in unità gestibili stored procedure consentono agli sviluppatori di modularizzare le relative soluzioni; semplificazione di maggiore riutilizzo del codice. Ogni stored procedure può anche accettare parametri toomake li ancora più flessibile.
+Le stored procedure sono un ottimo modo per incapsulare il codice SQL, archiviandolo vicino i dati nel data warehouse. Incapsulando il codice in unità gestibili, stored procedure consentono agli sviluppatori di modularizzare le soluzioni, rendendo possibile un maggiore riutilizzo del codice. Ogni stored procedure può anche accettare parametri per essere ancora più flessibile.
 
-SQL Data Warehouse fornisce un'implementazione semplificata e ottimizzata delle stored procedure. Hello più grande differenza rispetto tooSQL Server è che hello stored procedure non è codice precompilato. In data warehouse di Microsoft è in genere meno interessati alla fase di compilazione hello. È più importante che hello stored procedure codice è ottimizzato in modo corretto quando si lavora con grandi volumi di dati. obiettivo di Hello è toosave ore, minuti e secondi non millisecondi. È pertanto toothink più utili di stored procedure come contenitori per la logica di SQL.     
+SQL Data Warehouse fornisce un'implementazione semplificata e ottimizzata delle stored procedure. La differenza principale rispetto a SQL Server è che la stored procedure non è codice precompilato. Nei data warehouse si è in genere meno preoccupati del tempo di compilazione. È più importante che il codice della stored procedure sia ottimizzato nel modo corretto quando si lavora con grandi volumi di dati. L'obiettivo consiste nel risparmiare ore, minuti e secondi, non millisecondi. È quindi più utile pensare alle stored procedure come contenitori per la logica di SQL.     
 
-Quando viene eseguito SQL Data Warehouse istruzioni SQL hello stored procedure vengono analizzate, convertire e ottimizzate in fase di esecuzione. Durante questo processo, ogni istruzione viene convertita in query distribuite. il codice SQL che viene effettivamente eseguito su dati hello Hello è toohello diverse query inviata.
+Quando SQL Data Warehouse esegue la stored procedure, le istruzioni SQL vengono analizzate, convertite e ottimizzate in fase di esecuzione. Durante questo processo, ogni istruzione viene convertita in query distribuite. Il codice SQL effettivamente eseguito sui dati è diverso dalla query inviata.
 
 ## <a name="nesting-stored-procedures"></a>Annidamento di stored procedure
-Quando le stored procedure chiamano altre stored procedure o eseguono istruzioni sql dinamiche, quindi interna hello o la stored procedure chiamata di codice viene definita toobe annidati.
+Quando la stored procedure chiamano altre stored procedure o eseguono istruzioni SQL dinamiche, la stored procedure interna o la chiamata al codice è detta annidata.
 
-SQL Data Warehouse supporta un massimo di 8 livelli di annidamento. Si tratta di tooSQL leggermente diversi Server. livello di nidificazione Hello in SQL Server è 32.
+SQL Data Warehouse supporta un massimo di 8 livelli di annidamento. Questo comportamento è leggermente diverso rispetto a SQL Server. In SQL Server i livelli di annidamento sono 32.
 
-chiamata di livello superiore da stored procedure Hello equivale toonest livello 1
+La chiamata alla stored procedure di livello superiore equivale al livello di annidamento 1.
 
 ```sql
 EXEC prc_nesting
 ```
-Se hello stored procedure effettua inoltre EXEC un'altra chiamata, ciò comporta un aumento too2 livello di nidificazione hello
+Se la stored procedure effettua anche un'altra chiamata a EXEC, il livello di annidamento passerà a 2.
 
 ```sql
 CREATE PROCEDURE prc_nesting
@@ -54,7 +54,7 @@ EXEC prc_nesting_2  -- This call is nest level 2
 GO
 EXEC prc_nesting
 ```
-Se seconda procedura hello viene quindi eseguito alcune istruzioni sql dinamiche quindi aumenterà too3 livello di nidificazione hello
+Se la seconda procedura esegue quindi alcune istruzioni SQL dinamiche, il livello di annidamento passerà a 3.
 
 ```sql
 CREATE PROCEDURE prc_nesting_2
@@ -64,12 +64,12 @@ GO
 EXEC prc_nesting
 ```
 
-Tenere presente che SQL Data Warehouse attualmente non supporta @@NESTLEVEL. È necessario tookeep una traccia del livello di nidificazione manualmente. È improbabile che verrà raggiunto limite del livello di nidificazione hello 8, ma se non si sarà anche necessario toore lavoro il codice e "convertirla" in modo da adattarlo entro tale limite.
+Tenere presente che SQL Data Warehouse attualmente non supporta @@NESTLEVEL. Sarà necessario tenere traccia manualmente del livello di annidamento. È improbabile che venga raggiunto il limite del livello di annidamento 8, ma in questo caso sarà necessario usare di nuovo il codice e renderlo "flat" in modo che rientri in tale limite.
 
 ## <a name="insertexecute"></a>INSERT..EXECUTE
-SQL Data Warehouse non consentono di set di risultati hello tooconsume di una stored procedure con un'istruzione INSERT. Si può tuttavia un approccio alternativo.
+SQL Data Warehouse non consente di usare il set di risultati di una stored procedure con un'istruzione INSERT. Si può tuttavia un approccio alternativo.
 
-Vedere l'articolo seguente toohello [tabelle temporanee] per un esempio su come toodo questo.
+Per un esempio di come eseguire questa operazione, fare riferimento all'articolo seguente sulle [tabelle temporanee] .
 
 ## <a name="limitations"></a>Limitazioni
 Esistono alcuni aspetti delle stored procedure Transact-SQL che non sono implementate in SQL Data Warehouse.

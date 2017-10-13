@@ -1,6 +1,6 @@
 ---
-title: "Modelli di connettività di ExpressRoute: tooMicrosoft Azure tramite il provider di servizi di rete, gli scambi e provider Ethernet | Documenti Microsoft"
-description: "Questo articolo descrive modalità diverse di hello di connettività di rete del cliente hello e servizi Microsoft Azure, Office 365 e Dynamics 365. I clienti possono usare provider MPLS, Cloud Exchange ed Ethernet."
+title: "Modelli di connettività di ExpressRoute: connettersi a Microsoft Azure tramite provider di servizi di rete, scambi e provider Ethernet | Documentazione Microsoft"
+description: "Questo articolo illustra le diverse modalità di connessione tra la rete del cliente e i servizi di Microsoft Azure, Office 365 e Dynamics 365. I clienti possono usare provider MPLS, Cloud Exchange ed Ethernet."
 documentationcenter: na
 services: expressroute
 author: cherylmc
@@ -14,34 +14,34 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/09/2017
 ms.author: cherylmc
-ms.openlocfilehash: 2682e6e45b2892869068f132bedb4bb08e3f89a9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 00f97da2189491103c461b49ac82feb92d8f4b9b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="expressroute-connectivity-models"></a>Modelli di connettività di ExpressRoute
-È possibile creare una connessione tra la rete locale e cloud Microsoft hello in tre modi diversi, [CloudExchange condivisione percorso](#CloudExchange), [connessione Ethernet](#Ethernet)e [(IPVPN) any per qualsiasi connessione](#IPVPN). I provider di connettività possono fornire uno o più modelli di connettività. Per lavorare con il modello connettività provider toopick hello adatto per l'utente.
+È possibile creare una connessione tra la rete locale e Microsoft Cloud in tre modi diversi, ovvero [condivisione percorso di CloudExchange](#CloudExchange), [connessione Ethernet da punto a punto](#Ethernet) e [connessione (IPVPN) any-to-any](#IPVPN). I provider di connettività possono fornire uno o più modelli di connettività. È possibile interagire con il provider di connettività per scegliere il modello più appropriato.
 <br><br>
 
 ![Diagramma dei modelli di connettività di ExpressRoute](./media/expressroute-connectivity-models/expressroute-connectivity-models-diagram.png)
 
 ## <a name="CloudExchange"></a>Percorso condiviso in una struttura Cloud Exchange
-Se sono posizionati in una struttura con uno scambio di cloud, è possibile ordinare toohello connessioni incrociate virtuale Microsoft cloud tramite Ethernet exchange del provider di hello condivisione percorso. I provider di condivisione percorso offrono connessioni incrociate livello 2 o gestito Layer 3 connessioni incrociate tra l'infrastruttura nella funzionalità di condivisione percorso hello e cloud Microsoft hello.
+Nel caso di percorso condiviso in una struttura con scambio cloud, è possibile ordinare Cross Connection virtuali con il cloud Microsoft tramite lo scambio Ethernet del provider di condivisione del percorso. I provider di condivisione del percorso possono fornire Cross Connection di livello 2 oppure gestite di livello 3 tra l'infrastruttura nella struttura di condivisione percorso e il cloud Microsoft.
 
 ## <a name="Ethernet"></a>Connessioni Ethernet da punto a punto
-È possibile connettere il toohello Data Center o uffici locali Microsoft cloud tramite collegamenti Ethernet Point-to. Provider Ethernet Point to Point può offrire le connessioni di livello 2 o gestiti Layer 3 connessioni tra il sito e hello cloud Microsoft.
+È possibile connettere i data center o gli uffici locali al cloud Microsoft tramite collegamenti Ethernet punto a punto. I provider Ethernet punto a punto forniscono connessioni di livello 2 o connessioni gestite di livello 3 tra la sede dell'utente e il cloud Microsoft.
 
 ## <a name="IPVPN"></a>Reti (IPVPN) any-to-any
-È possibile integrare la rete WAN con hello cloud Microsoft. I provider IPVPN (in genere VPN MPLS) forniscono connettività any-to-any tra le succursali e i data center. Hello Microsoft cloud può essere toomake WAN a tooyour interconnessi Cerca solo come qualsiasi altra succursale. I provider WAN offrono in genere connettività gestita di livello 3. Caratteristiche e funzionalità di ExpressRoute sono tutti identici per tutti di hello sopra i modelli di connettività. 
+È possibile integrare una rete WAN con il cloud Microsoft. I provider IPVPN (in genere VPN MPLS) forniscono connettività any-to-any tra le succursali e i data center. Il cloud Microsoft può essere interconnesso a una rete WAN in modo che abbia l'aspetto di qualsiasi altra succursale. I provider WAN offrono in genere connettività gestita di livello 3. Le caratteristiche e le funzionalità di ExpressRoute sono identiche in tutti i modelli di connettività sopra descritti. 
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Informazioni sulle connessioni e i domini di routing ExpressRoute. Vedere [Circuiti e domini di routing ExpressRoute](expressroute-circuit-peerings.md).
-* Informazioni sulle funzionalità di ExpressRoute. Vedere hello [Panoramica tecnica su ExpressRoute](expressroute-introduction.md)
+* Informazioni sulle funzionalità di ExpressRoute. Vedere [Panoramica tecnica relativa a ExpressRoute](expressroute-introduction.md)
 * Trovare un provider di servizi. Vedere [Partner e località di peering per Azure ExpressRoute](expressroute-locations.md).
 * Verificare che vengano soddisfatti tutti i prerequisiti. Vedere [Prerequisiti per ExpressRoute](expressroute-prerequisites.md).
-* Consultare i requisiti di toohello per [Routing](expressroute-routing.md), [NAT](expressroute-nat.md), e [QoS](expressroute-qos.md).
+* Vedere i requisiti per [Routing](expressroute-routing.md), [NAT](expressroute-nat.md) e [QoS](expressroute-qos.md).
 * Configurare la connessione ExpressRoute.
   * [Creare un circuito ExpressRoute](expressroute-howto-circuit-portal-resource-manager.md)
   * [Configurare il routing](expressroute-howto-routing-portal-resource-manager.md)
-  * [Collegare un circuito ExpressRoute di tooan rete virtuale](expressroute-howto-linkvnet-portal-resource-manager.md)
+  * [Collegare una rete virtuale a un circuito ExpressRoute](expressroute-howto-linkvnet-portal-resource-manager.md)

@@ -1,6 +1,6 @@
 ---
-title: Active Directory aaaAzure ambiti v 2.0, autorizzazioni e consenso | Documenti Microsoft
-description: Descrizione dell'endpoint v 2.0 hello Azure AD, inclusi il consenso, autorizzazioni e ambiti di autorizzazione.
+title: Ambiti, autorizzazioni e consenso in Azure Active Directory v2.0 | Documentazione Microsoft
+description: Descrizione dell'autorizzazione nell'endpoint v2.0 di Azure AD, inclusi gli ambiti, le autorizzazioni e il consenso.
 services: active-directory
 documentationcenter: 
 author: dstrockis
@@ -15,64 +15,64 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: 5721d368c435868bfb4ae91cff7fbb9bc4a79b66
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 04869a7627ecb3e6a0d11733fae7da2ecb04ed51
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="scopes-permissions-and-consent-in-hello-azure-active-directory-v20-endpoint"></a>Consenso hello Azure v 2.0 endpoint di Active Directory, autorizzazioni e ambiti
-Le app che si integrano con Azure Active Directory (Azure AD) seguono un modello di autorizzazione che consente agli utenti di controllare la modalità di accesso ai dati da parte di un'app. implementazione v 2.0 Hello del modello di autorizzazione hello è stata aggiornata e viene modificato come un'app deve interagire con Azure AD. In questo articolo vengono illustrati i concetti di base di questo modello di autorizzazione, inclusi gli ambiti, autorizzazioni e consenso hello.
+# <a name="scopes-permissions-and-consent-in-the-azure-active-directory-v20-endpoint"></a>Ambiti, autorizzazioni e consenso nell'endpoint di Azure Active Directory v2.0
+Le app che si integrano con Azure Active Directory (Azure AD) seguono un modello di autorizzazione che consente agli utenti di controllare la modalità di accesso ai dati da parte di un'app. L'implementazione v2.0 di questo modello di autorizzazione è stata aggiornata, modificando la modalità di interazione di un'app con Azure AD. Questo articolo illustra i concetti di base di questo modello di autorizzazione, inclusi gli ambiti, le autorizzazioni e il consenso.
 
 > [!NOTE]
-> endpoint di Hello v 2.0 non supporta tutti gli scenari di Azure Active Directory e le funzionalità. toodetermine se è necessario utilizzare endpoint v 2.0 hello, conoscenza [limitazioni v 2.0](active-directory-v2-limitations.md).
+> Non tutti gli scenari e le funzionalità di Azure Active Directory sono supportati dall'endpoint v2.0. Per determinare se è necessario usare l'endpoint 2.0, vedere l'articolo relativo alle [limitazioni della versione 2.0](active-directory-v2-limitations.md).
 >
 >
 
 ## <a name="scopes-and-permissions"></a>Ambiti e autorizzazioni
-Azure AD implementa hello [OAuth 2.0](active-directory-v2-protocols.md) protocollo di autorizzazione. OAuth 2.0 è un metodo tramite cui un'applicazione di terze parti può accedere alle risorse ospitate sul Web per conto dell'utente. Qualsiasi risorsa ospitata sul Web che si integra con Azure AD dispoen di un identificatore di risorsa o di un *URI ID dell'applicazione*. Ad esempio, alcune delle risorse ospitate sul Web di Microsoft includono:
+Azure AD implementa il protocollo di autorizzazione [OAuth 2.0](active-directory-v2-protocols.md). OAuth 2.0 è un metodo tramite cui un'applicazione di terze parti può accedere alle risorse ospitate sul Web per conto dell'utente. Qualsiasi risorsa ospitata sul Web che si integra con Azure AD dispoen di un identificatore di risorsa o di un *URI ID dell'applicazione*. Ad esempio, alcune delle risorse ospitate sul Web di Microsoft includono:
 
-* Hello API di Office 365 unificata posta elettronica:`https://outlook.office.com`
-* Hello API Azure AD Graph:`https://graph.windows.net`
+* L'API di posta unificata di Office 365: `https://outlook.office.com`
+* L'API Graph di Azure AD: `https://graph.windows.net`
 * Microsoft Graph: `https://graph.microsoft.com`
 
-Hello che lo stesso vale per tutte le risorse di terze parti che sono integrate con Azure AD. Una di queste risorse inoltre possibile definire un set di autorizzazioni che possono essere utilizzati toodivide hello di funzionalità di tale risorsa in blocchi più piccoli. Ad esempio, [Microsoft Graph](https://graph.microsoft.io) definito hello toodo le autorizzazioni seguenti attività, tra gli altri:
+Anche le risorse di terze parti integrate con Azure AD devono disporre di tale identificatore. Tali risorse possono anche definire un set di autorizzazioni che può essere usato per suddividere le funzionalità di tale risorsa in blocchi più piccoli. Ad esempio, [Microsoft Graph](https://graph.microsoft.io) ha definito le autorizzazioni per eseguire le attività seguenti, tra le altre:
 
 * Lettura del calendario dell'utente
-* Calendario dell'utente di scrittura tooa
+* Scrittura nel calendario dell'utente
 * Invio di messaggi di posta elettronica come utente
 
-La definizione di questi tipi di autorizzazioni di risorsa hello è un controllo accurato dei dati e come dati hello esposti. Un'app di terze parti può richiedere tali autorizzazioni da un utente del'app. utente applicazione Hello necessario approvare autorizzazioni hello prima applicazione hello può agire per conto dell'utente hello. Da suddivisione in blocchi di funzionalità della risorsa hello in set di autorizzazioni più piccoli, App di terze parti possono essere toorequest compilato solo hello autorizzazioni specifiche necessarie tooperform le relative funzioni. Gli utenti di App possono sapere esattamente come un'app utilizzerà i propri dati e possono essere più sicuri che app hello non funziona con malintenzionati.
+Con la definizione di questi tipi di autorizzazioni, la risorsa può avere un controllo accurato dei dati e dell'esposizione degli stessi. Un'app di terze parti può richiedere tali autorizzazioni da un utente del'app. L'utente dell'app deve approvare le autorizzazioni prima che l'applicazione possa agire a suo nome. Suddividendo le funzionalità della risorsa in set di autorizzazioni più piccoli, è possibile creare le app di terze parti affinché richiedano solo le autorizzazioni specifiche necessarie per il relativo funzionamento. Gli utenti dell'app possono sapere esattamente come un'app userà i propri dati e possono essere più sicuri che l'app non agisca per fini dannosi.
 
-In Azure AD e OAuth queste autorizzazioni vengono definite *ambiti* o Sono anche tooas cui *oAuth2Permissions*. Un ambito è rappresentato in Azure AD come valore stringa. Riprendendo l'esempio di Microsoft Graph hello, hello valore ambito per ogni autorizzazione è:
+In Azure AD e OAuth queste autorizzazioni vengono definite *ambiti* o *oAuth2Permissions*. Un ambito è rappresentato in Azure AD come valore stringa. Nell'esempio relativo a Microsoft Graph il valore di ambito per ogni autorizzazione è:
 
 * Lettura del calendario dell'utente tramite `Calendar.Read`
-* Calendario dell'utente di scrittura tooa utilizzando`Mail.ReadWrite`
+* Scrittura del calendario dell'utente tramite `Mail.ReadWrite`
 * Invio di messaggi di posta elettronica come utente tramite `Mail.Send`
 
-Un'applicazione può richiedere tali autorizzazioni specificando gli ambiti di hello nell'endpoint di richieste toohello v 2.0.
+Un'app può richiedere tali autorizzazioni specificando gli ambiti nelle richieste all'endpoint 2.0.
 
 ## <a name="openid-connect-scopes"></a>Ambiti di OpenID Connect
-implementazione di v 2.0 Hello di OpenID Connect presenta alcuni ambiti ben definiti che si applicano risorsa specifica tooa: `openid`, `email`, `profile`, e `offline_access`.
+L'implementazione della versione 2.0 di OpenID Connect presenta alcuni ambiti ben definiti che non si applicano a una risorsa specifica: `openid`, `email`, `profile` e `offline_access`.
 
 ### <a name="openid"></a>openid
-Se un'applicazione esegue l'accesso tramite [OpenID Connect](active-directory-v2-protocols.md), deve richiedere hello `openid` ambito. Hello `openid` Mostra ambito account lavoro hello come autorizzazione "Accedi" hello, pagina di consenso e account Microsoft personale hello pagina di consenso come hello autorizzazione per "visualizzare il profilo e connettere tooapps e servizi con account Microsoft". Con questa autorizzazione, un'app può ricevere un identificatore univoco per l'utente hello in forma di hello di hello `sub` attestazione. Fornisce inoltre un endpoint UserInfo toohello di hello app l'accesso. Hello `openid` ambito può essere utilizzato in hello v 2.0 endpoint token tooacquire ID token, che può essere utilizzato toosecure HTTP chiamate tra i diversi componenti di un'app.
+Se un'app esegue l'accesso usando [OpenID Connect](active-directory-v2-protocols.md), deve richiedere l'ambito `openid`. L'ambito `openid` viene visualizzato nella pagina di consenso dell'account aziendale come autorizzazione di accesso e nella pagina di consenso dell'account personale Microsoft come autorizzazione per la visualizzazione del profilo e la connessione ad app e servizi tramite l'account Microsoft. Questa autorizzazione consente a un'app di ricevere un identificatore univoco per l'utente sotto forma di attestazione `sub` e concede all'app l'accesso all'endpoint delle informazioni utente. L'ambito `openid` può essere usato nell'endpoint del token 2.0 per acquisire token ID, che possono essere usati per proteggere le chiamate HTTP tra diversi componenti di un'app.
 
 ### <a name="email"></a>email
-Hello `email` ambito può essere utilizzato con hello `openid` ambito e tutte le altre. Fornisce l'indirizzo di posta elettronica principale dell'utente di hello app accesso toohello sotto forma di hello di hello `email` attestazione. Hello `email` attestazione è incluso in un token solo se un indirizzo di posta elettronica è associato l'account utente hello, che non rappresenta sempre vere hello. Se utilizza hello `email` ambito, l'applicazione deve essere preparato toohandle un caso in cui hello `email` attestazione non esiste nel token hello.
+L'ambito `email` può essere usato con l'ambito `openid` e con tutti gli altri. Consente all'applicazione di accedere all'indirizzo di posta elettronica primario dell'utente sotto forma di attestazione `email`. L'attestazione `email` è inclusa nei token solo quando un indirizzo di posta elettronica è associato all'account utente, condizione che non è sempre vera. Se si usa l'ambito `email`, l'applicazione deve essere pronta per gestire il caso in cui l'attestazione `email` non esiste nel token.
 
 ### <a name="profile"></a>Profilo
-Hello `profile` ambito può essere utilizzato con hello `openid` ambito e tutte le altre. Offre hello app accesso tooa notevole quantità di informazioni utente hello. può accedere a informazioni di Hello includono, ma non sono limitate a, hello nome dell'utente, cognome, nome utente preferito, ID di oggetto Per un elenco completo di attestazioni di hello profilo nel parametro id_tokens hello disponibili per un utente specifico, vedere hello [v 2.0 token riferimento](active-directory-v2-tokens.md).
+L'ambito `profile` può essere usato con l'ambito `openid` e con tutti gli altri. Consente all'applicazione di accedere a numerose informazioni sull'utente, tra cui il nome e il cognome dell'utente, il nome utente preferito, l'ID dell'oggetto e così via. Per un elenco completo delle attestazioni profilo disponibili nel parametro token ID per un determinato utente, vedere il [riferimento al token della versione 2.0](active-directory-v2-tokens.md).
 
 ### <a name="offlineaccess"></a>offline_access
-Hello [ `offline_access` ambito](http://openid.net/specs/openid-connect-core-1_0.html#OfflineAccess) fornisce il tooresources accesso app per conto di utente hello per un periodo di tempo prolungato. Nella pagina di consenso account lavoro hello, questo ambito viene visualizzato come "Accedere ai dati in qualsiasi momento" autorizzazione hello. Pagina hello personale Microsoft account consenso, venga visualizzato come "Accedere alle tue info in qualsiasi momento" autorizzazione hello. Quando un utente approva hello `offline_access` ambito, l'app può ricevere i token di aggiornamento dall'endpoint token di hello v 2.0. I token di aggiornamento sono di lunga durata. L'applicazione può ottenere nuovi token di accesso quando i vecchi scadono.
+L'ambito [`offline_access`](http://openid.net/specs/openid-connect-core-1_0.html#OfflineAccess) consente all'app di accedere alle risorse per conto dell'utente per un periodo di tempo prolungato. Nella pagina di consenso dell'account aziendale l'ambito viene visualizzato come autorizzazione per l'accesso ai dati in qualsiasi momento. Nella pagina di consenso dell'account personale Microsoft viene visualizzato come autorizzazione per l'accesso alle informazioni in qualsiasi momento. Quando un utente approva l'ambito `offline_access`, l'app è in grado di ricevere token di aggiornamento dall'endpoint del token 2.0. I token di aggiornamento sono di lunga durata. L'applicazione può ottenere nuovi token di accesso quando i vecchi scadono.
 
-Se l'app non viene richiesta hello `offline_access` ambito, non riceve i token di aggiornamento. Ciò significa che quando si Riscatta un codice di autorizzazione in hello [flusso di codice di autorizzazione OAuth 2.0](active-directory-v2-protocols.md), verrà visualizzato solo un token di accesso da hello `/token` endpoint. token di accesso Hello è valida per un breve periodo di tempo. token di accesso Hello scade in genere in un'ora. A questo punto, l'app deve tooredirect hello utente indietro toohello `/authorize` endpoint tooget un nuovo codice di autorizzazione. Durante questo reindirizzamento, a seconda dell'app, tipo di hello hello utente necessario tooenter nuovamente le proprie credenziali o toopermissions nuovamente di consenso.
+Se l'app non richiede l'ambito `offline_access`, non riceverà i token di aggiornamento. Pertanto, se si riscatta un codice di autorizzazione nel [flusso del codice di autorizzazione di OAuth 2.0](active-directory-v2-protocols.md), si riceve solo un token di accesso dall'endpoint `/token`. Il token di accesso è valido per un breve periodo. Il token di accesso ha in genere una durata di un'ora. A questo punto, l'app reindirizza l'utente all'endpoint `/authorize` per recuperare un nuovo codice di autorizzazione. Durante il reindirizzamento, a seconda del tipo di app, l'utente potrebbe dover immettere nuovamente le proprie credenziali o fornire il consenso per le autorizzazioni.
 
-Per ulteriori informazioni sulla modalità di tooget e utilizzare token di aggiornamento, vedere hello [riferimento al protocollo v 2.0](active-directory-v2-protocols.md).
+Per altre informazioni su come ottenere e usare i token di aggiornamento, vedere il [riferimento al protocollo della versione 2.0](active-directory-v2-protocols.md).
 
 ## <a name="requesting-individual-user-consent"></a>Richiesta di consenso per un singolo utente
-In un [OpenID Connect o OAuth 2.0](active-directory-v2-protocols.md) richiesta di autorizzazione, un'applicazione può richiedere le autorizzazioni di hello necessarie tramite hello `scope` parametro di query. Ad esempio, quando un utente accede tooan app, l'applicazione hello invia una richiesta come hello di esempio seguente (con interruzioni di riga aggiunte per migliorare la leggibilità):
+In una richiesta di autorizzazione [OpenID Connect o OAuth 2.0](active-directory-v2-protocols.md) un'app può richiedere le autorizzazioni necessarie usando il parametro di query `scope`. Ad esempio, quando un utente accede a un'app, questa può inviare una richiesta simile alla seguente (con interruzioni di riga aggiunte per leggibilità):
 
 ```
 GET https://login.microsoftonline.com/common/oauth2/v2.0/authorize?
@@ -86,47 +86,47 @@ https%3A%2F%2Fgraph.microsoft.com%2Fmail.send
 &state=12345
 ```
 
-Hello `scope` parametro è richiesto un elenco separato da spazi di ambiti che hello app. Ogni ambito è indicato aggiungendo hello ambito valore toohello identificatore risorsa (Buongiorno URI ID applicazione). Nell'esempio di richiesta hello, hello necessario app del calendario dell'utente di autorizzazione tooread hello e inviare un messaggio come utente hello.
+Il parametro `scope` è un elenco di ambiti separati da spazi richiesti dall'app. Ogni ambito è indicato dall'aggiunta del valore dell'ambito all'identificatore della risorsa (URI ID dell'app). Nella richiesta di esempio precedente, l'app richiede l'autorizzazione per la lettura del calendario dell'utente e l'invio di messaggi di posta elettronica come utente.
 
-Dopo che l'utente hello immette le credenziali, endpoint v 2.0 hello Cerca un record corrispondente di *il consenso dell'utente*. Se l'utente hello non ha accettato le condizioni tooany di hello richieste le autorizzazioni in versioni precedenti di hello endpoint v 2.0 hello chiede hello utente toogrant hello autorizzazioni richieste.
+Dopo che l'utente immette le proprie credenziali, l'endpoint 2.0 verifica la disponibilità di un record corrispondente di *consenso dell'utente*. Se l'utente non ha fornito in precedenza il consenso per nessuna delle autorizzazioni necessarie, l'endpoint 2.0 chiede all'utente di fornire il consenso per le autorizzazioni obbligatorie.
 
 ![Consenso dell'account aziendale](../../media/active-directory-v2-flows/work_account_consent.png)
 
-Quando l'utente hello Approva autorizzazione hello, consenso hello verrà registrato in modo che hello utente non dispone di tooconsent nuovamente per account successivi accessi.
+Quando l'utente approva l'autorizzazione, il consenso viene registrato in modo che non debba essere fornito nuovamente agli accessi successivi da parte degli account.
 
 ## <a name="requesting-consent-for-an-entire-tenant"></a>Richiesta di consenso per un intero tenant
-Spesso, quando un'organizzazione acquista una licenza o una sottoscrizione per un'applicazione, hello organizzazione vuole che un'applicazione hello toofully il provisioning per tutti i dipendenti. Come parte di questo processo, un amministratore può concedere il consenso per tooact applicazione hello per conto di qualsiasi dipendente. Se salve concede il consenso per tenant intera hello, i dipendenti dell'organizzazione hello non verranno visualizzata una pagina di consenso per un'applicazione hello.
+Quando un'organizzazione acquista una licenza o una sottoscrizione a un'applicazione, desidera fornire accesso completo ai dipendenti. Come parte di questo processo, un amministratore può concedere il consenso all'applicazione ad agire per conto di qualsiasi dipendente. Se l'amministratore concede il consenso per l'intero tenant, i dipendenti dell'organizzazione non visualizzeranno la pagina di consenso per l'applicazione.
 
-consenso toorequest per tutti gli utenti in un tenant, l'app è possibile utilizzare endpoint di autorizzazione Amministrazione hello.
+Per richiedere il consenso per tutti gli utenti in un tenant, è possibile usare l'applicazione dell'endpoint di consenso dell'amministratore.
 
 ## <a name="admin-restricted-scopes"></a>Ambiti riservati all'amministratore
-È possibile impostare alcune autorizzazioni con privilegi elevati nell'ecosistema Microsoft hello troppo*admin con restrizioni*. Esempi di questi tipi di ambiti hello queste autorizzazioni:
+Alcune autorizzazioni con privilegi elevati nell'ecosistema Microsoft possono essere impostati come *riservati all'amministratore*. Gli esempi di questi tipi di ambiti includono le autorizzazioni seguenti:
 
 * Lettura di dati in una directory aziendale tramite `Directory.Read`
-* Directory dell'organizzazione di scrittura dati tooan tramite`Directory.ReadWrite`
+* Scrittura di dati in una directory aziendale tramite `Directory.ReadWrite`
 * Lettura dei gruppi di sicurezza nella directory aziendale tramite `Groups.Read.All`
 
-Anche se un utente di consumer potrebbe consentire un toothis di accesso dell'applicazione di tipo di dati, gli utenti dell'organizzazione sono limitati dalla concessione di accesso toohello stesso set di dati sensibili della società. Se l'applicazione richiede accesso tooone di tali autorizzazioni da un utente aziendale, l'utente hello riceve un messaggio di errore indicante che non sono le autorizzazioni dell'app tooyour tooconsent autorizzati.
+Sebbene un utente consumer possa concedere a un'applicazione l'accesso a questi tipi di dati, gli utenti aziendali non possono concedere accesso allo stesso set di dati riservati dell'azienda. Se l'applicazione richiede l'accesso a una di queste autorizzazioni da un utente aziendale, l'utente riceve un messaggio di errore che indica che non è autorizzato a fornire il consenso alle autorizzazioni dell'applicazione.
 
-Se l'app richiede l'accesso con restrizioni tooadmin ambiti per le organizzazioni, è necessario richiedere li direttamente da un amministratore della società, anche tramite l'endpoint di autorizzazione Amministrazione hello, descritto di seguito.
+Se l'applicazione richiede accesso ad ambiti riservati all'amministratore delle organizzazioni, è necessario richiederle direttamente all'amministratore dell'azienda anche tramite l'endpoint di consenso dell'amministratore, come descritto di seguito.
 
-Quando un amministratore concede che queste autorizzazioni tramite salve consenso all'endpoint, viene fornito il consenso per tutti gli utenti nel tenant di hello.
+Quando un amministratore concede le autorizzazioni tramite l'endpoint di consenso dell'amministratore, il consenso viene concesso a tutti gli utenti del tenant.
 
-## <a name="using-hello-admin-consent-endpoint"></a>Hello endpoint consenso dell'amministratore
-Seguendo questa procedura, l'applicazione può ottenere le autorizzazioni per tutti gli utenti di un tenant, inclusi gli ambiti riservati all'amministratore. un esempio di codice che implementa i passaggi di hello, toosee vedere hello [esempio ambiti admin con restrizioni](https://github.com/Azure-Samples/active-directory-dotnet-admin-restricted-scopes-v2).
+## <a name="using-the-admin-consent-endpoint"></a>Uso dell'endpoint di consenso dell'amministratore
+Seguendo questa procedura, l'applicazione può ottenere le autorizzazioni per tutti gli utenti di un tenant, inclusi gli ambiti riservati all'amministratore. Per un esempio di codice che implementa la procedura, vedere l'[esempio sugli ambiti riservati all'amministratore](https://github.com/Azure-Samples/active-directory-dotnet-admin-restricted-scopes-v2).
 
-### <a name="request-hello-permissions-in-hello-app-registration-portal"></a>Richiedere le autorizzazioni di hello nel portale di registrazione applicazione hello
-1. Passare tooyour applicazione hello [portale di registrazione applicazione](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), o [creare un'app](active-directory-v2-app-registration.md) se hai già fatto.
-2. Individuare hello **Microsoft Graph autorizzazioni** sezione e quindi aggiungere le autorizzazioni di hello che richiede l'app.
-3. Assicurarsi di aver **salvare** hello registrazione dell'app.
+### <a name="request-the-permissions-in-the-app-registration-portal"></a>Richiedere le autorizzazioni nel portale di registrazione dell'app
+1. Passare all'applicazione nel [portale di registrazione delle applicazioni](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) o [creare un'app](active-directory-v2-app-registration.md), se non se ne possiede già una.
+2. Individuare la sezione **Autorizzazioni di Microsoft Graph**  e aggiungere le autorizzazioni richieste dall'applicazione.
+3. **Salvare** la registrazione dell'app.
 
-### <a name="recommended-sign-hello-user-in-tooyour-app"></a>Consigliato: Sign hello utente tooyour app
-In genere, quando si compila un'applicazione che utilizza l'endpoint di autorizzazione Amministrazione hello, hello app richiede una pagina o una vista in cui hello amministratore può approvare le autorizzazioni dell'applicazione hello. Questa pagina può essere parte del flusso di iscrizione dell'applicazione hello, parte di impostazioni dell'applicazione hello o può essere dedicato flusso "connect". In molti casi, è opportuno per hello app tooshow questo "connect" visualizzazione solo dopo che un utente ha eseguito l'accesso con un lavoro o scuola account Microsoft.
+### <a name="recommended-sign-the-user-in-to-your-app"></a>Consigliato: connettere l'utente dall'applicazione
+In genere, durante la compilazione di un'applicazione che usa l'endpoint di consenso dell'amministratore, l'app necessita di una pagina o vista che consenta all'amministratore di approvare le autorizzazioni dell'applicazione. Questa pagina può essere parte del flusso di iscrizione all'app, delle impostazioni dell'applicazione o di un flusso di "connessione" dedicato. In molti casi, è utile per l'applicazione visualizzare la pagina di "connessione" solo dopo che un utente ha eseguito l'accesso con un account di lavoro o dell'istituto di istruzione Microsoft.
 
-Quando si accede utente hello in tooyour app, è possibile identificare l'organizzazione hello salve toowhich appartiene prima che richiede le autorizzazioni necessarie tooapprove hello. Sebbene non sia strettamente necessario, questo consente di creare un'esperienza più intuitiva per gli utenti dell'organizzazione. toosign hello utente, seguire il nostro [esercitazioni protocollo v 2.0](active-directory-v2-protocols.md).
+L'accesso dell'utente nell'app consente di identificarne l'organizzazione di appartenenza dell'amministratore prima di richiedere l'approvazione delle autorizzazioni necessarie. Sebbene non sia strettamente necessario, questo consente di creare un'esperienza più intuitiva per gli utenti dell'organizzazione. Per l'accesso utente, seguire le [esercitazioni sui protocolli 2.0](active-directory-v2-protocols.md).
 
-### <a name="request-hello-permissions-from-a-directory-admin"></a>Richiedere le autorizzazioni di hello da un amministratore di directory
-Quando sarai pronto toorequest autorizzazioni da amministratore dell'organizzazione, è possibile reindirizzare hello utente toohello 2.0 *admin consenso endpoint*.
+### <a name="request-the-permissions-from-a-directory-admin"></a>Richiedere le autorizzazioni da un amministratore di directory
+Quando si è pronti per richiedere le autorizzazioni dall'amministratore dell'azienda, è possibile reindirizzare l'utente sull'*endpoint di consenso dell'amministratore* v2.0.
 
 ```
 // Line breaks are for legibility only.
@@ -138,51 +138,51 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 ```
 
 ```
-// Pro tip: Try pasting hello below request in a browser!
+// Pro tip: Try pasting the below request in a browser!
 ```
 
 ```
 https://login.microsoftonline.com/common/adminconsent?client_id=6731de76-14a6-49ae-97bc-6eba6914391e&state=12345&redirect_uri=http://localhost/myapp/permissions
 ```
 
-| . | Condizione | Descrizione |
+| Parametro | Condizione | Descrizione |
 | --- | --- | --- |
-| tenant |Obbligatorio |tenant di directory Hello che si desidera toorequest autorizzazioni. Può essere fornito nel formato di nome descrittivo o GUID. |
-| client_id |Obbligatorio |l'ID applicazione Hello che hello [portale di registrazione applicazione](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) assegnato tooyour app. |
-| redirect_uri |Obbligatorio |Hello URI in cui si desidera hello toobe di risposta inviato per l'app toohandle di reindirizzamento. Deve corrispondere esattamente uno di reindirizzamento hello URI a cui è stato registrato nel portale di registrazione applicazione hello. |
-| state |Consigliato |Un valore incluso nella richiesta di hello che verrà anche restituito nella risposta token hello. Può trattarsi di una stringa di qualsiasi contenuto. Utilizzare tooencode le informazioni sullo stato di hello sullo stato dell'utente hello in app hello prima dell'esecuzione della richiesta di autenticazione hello, ad esempio si trovassero nelle pagina hello o vista. |
+| tenant |Obbligatorio |Il tenant della directory da cui si desidera richiedere autorizzazioni. Può essere fornito nel formato di nome descrittivo o GUID. |
+| client_id |Obbligatorio |ID applicazione che il [portale di registrazione delle applicazioni](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) ha assegnato all'app. |
+| redirect_uri |Obbligatorio |URI di reindirizzamento in cui si desidera che venga inviata la risposta per la gestione da parte dell'app. Deve corrispondere esattamente a uno degli URI di reindirizzamento registrati nel portale di registrazione delle applicazioni. |
+| state |Consigliato |Valore incluso nella richiesta che verrà restituito anche nella risposta del token. Può trattarsi di una stringa di qualsiasi contenuto. Usare questo stato per codificare le informazioni sullo stato dell'utente nell'app prima dell'esecuzione della richiesta di autenticazione, ad esempio la pagina o la vista in cui si trovava. |
 
-A questo punto, Azure AD richiede un toosign amministratore tenant nella richiesta di hello toocomplete. messaggio per l'amministratore ha richiesto tooapprove che tutti hello autorizzazioni richieste per l'app nel portale di registrazione applicazione hello.
+A questo punto, Azure AD richiede che solo un amministratore tenant possa accedere per completare la richiesta. L'amministratore deve approvare tutte le autorizzazioni richieste per l'app nel portale di registrazione delle applicazioni.
 
 #### <a name="successful-response"></a>Risposta con esito positivo
-Se salve Approva autorizzazioni hello per l'app, la risposta corretta hello simile al seguente:
+Se l'amministratore approva le autorizzazioni per l'app, la risposta con esito positivo si presenta come segue:
 
 ```
 GET http://localhost/myapp/permissions?tenant=a8990e1f-ff32-408a-9f8e-78d3b9139b95&state=state=12345&admin_consent=True
 ```
 
-| . | Descrizione |
+| Parametro | Descrizione |
 | --- | --- | --- |
-| tenant |tenant di directory Hello concesse le autorizzazioni per l'applicazione hello richiesti, in formato GUID. |
-| state |Un valore incluso nella richiesta di hello che verrà anche restituito nella risposta token hello. Può trattarsi di una stringa di qualsiasi contenuto. lo stato di Hello è tooencode utilizzati informazioni sullo stato dell'utente hello in app hello prima dell'esecuzione della richiesta di autenticazione hello, ad esempio pagina hello o fossero nella vista. |
-| admin_consent |Verrà impostato troppo**true**. |
+| tenant |Tenant della directory che ha concesso all'applicazione le autorizzazioni richieste, in formato GUID. |
+| state |Valore incluso nella richiesta che verrà restituito anche nella risposta del token. Può trattarsi di una stringa di qualsiasi contenuto. Lo stato viene usato per codificare le informazioni sullo stato dell'utente nell'app prima dell'esecuzione della richiesta di autenticazione, ad esempio la pagina o la vista in cui si trovava. |
+| admin_consent |Verrà impostato su **true**. |
 
 #### <a name="error-response"></a>Risposta di errore
-Se salve non approvare le autorizzazioni di hello per le app, hello Impossibile risposta ha un aspetto simile al seguente:
+Se l'amministratore non approva le autorizzazioni per l'app, la risposta di errore si presenta come segue:
 
 ```
 GET http://localhost/myapp/permissions?error=permission_denied&error_description=The+admin+canceled+the+request
 ```
 
-| . | Descrizione |
+| Parametro | Descrizione |
 | --- | --- | --- |
-| error |Una stringa di codice di errore che può essere utilizzati tooclassify tipi di errori che si verificano e può essere utilizzati tooreact tooerrors. |
-| error_description |Un messaggio di errore specifico che consente a uno sviluppatore di identificare causa radice di hello di un errore. |
+| error |Stringa di codice di errore che può essere usata per classificare i tipi di errori che si verificano e correggerli. |
+| error_description |Messaggio di errore specifico che consente a uno sviluppatore di identificare la causa principale di un errore. |
 
-Dopo aver ricevuto una risposta corretta dall'endpoint di consenso dell'amministratore hello, l'app ha ottenuto le autorizzazioni di hello che quando richiesto. Successivamente, è possibile richiedere un token per la risorsa hello desiderato.
+Dopo aver ricevuto una risposta con esito positivo dall'endpoint di consenso dell'amministratore, l'applicazione ha ottenuto le autorizzazioni richieste. Successivamente, è possibile richiedere un token per la risorsa desiderata.
 
 ## <a name="using-permissions"></a>Uso delle autorizzazioni
-Dopo che l'utente hello acconsente toopermissions per l'app, l'app può acquisire i token di accesso che rappresentano tooaccess di autorizzazione dell'app una risorsa in alcune capacità. Un token di accesso può essere utilizzato solo per una singola risorsa, ma infatti codificato all'interno di token di accesso hello è ogni autorizzazione che l'app è stata concessa per tale risorsa. tooacquire un token di accesso, l'app può effettuare un richiesta toohello v 2.0 token endpoint simile al seguente:
+Dopo che l'utente fornisce il consenso alle autorizzazioni relative all'app, quest'ultima può acquisire token di accesso che rappresentano l'autorizzazione dell'app ad accedere a una risorsa. Un token di accesso può essere usato per una sola risorsa, ma al suo interno saranno codificate tutte le autorizzazioni della risorsa specifica per cui l'app ha ottenuto il consenso. Per ottenere un token di accesso, l'app può eseguire una richiesta all'endpoint del token 2.0 come quella seguente:
 
 ```
 POST common/oauth2/v2.0/token HTTP/1.1
@@ -199,6 +199,6 @@ Content-Type: application/json
 }
 ```
 
-È possibile utilizzare il token di accesso risultante hello nella risorsa di toohello le richieste HTTP. Indica in modo affidabile toohello risorse che l'app abbia hello delle autorizzazioni appropriate tooperform un'attività specifica.  
+È possibile usare il token di accesso risultante nelle richieste HTTP per la risorsa. Esso indica alla risorsa, in modo affidabile, che l'applicazione dispone delle autorizzazioni appropriate per eseguire un'attività specifica.  
 
-Per ulteriori informazioni su OAuth 2.0 hello del protocollo e tooget i token di accesso, vedere hello [riferimento protocollo dell'endpoint v 2.0](active-directory-v2-protocols.md).
+Per altre informazioni sul protocollo OAuth 2.0 e su come ottenere i token di accesso, vedere il [riferimento al protocollo dell'endpoint v2.0](active-directory-v2-protocols.md).

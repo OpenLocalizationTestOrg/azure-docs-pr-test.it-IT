@@ -1,6 +1,6 @@
 ---
-title: viste di sistema di Data Warehouse aaaSQL | Documenti Microsoft
-description: Collegamenti toosystem viste contenuto per SQL Data Warehouse.
+title: Viste di sistema di SQL Data Warehouse | Documentazione Microsoft
+description: Collegamenti al contenuto relativo alle viste di sistema per SQL Data Warehouse.
 services: sql-data-warehouse
 documentationcenter: NA
 author: kevinvngo
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: reference
 ms.date: 07/12/2017
 ms.author: kevin;barbkess
-ms.openlocfilehash: bd4d7184f6c95b37fe16b897c44c46000bbb2746
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a9327388f8789e548610a7d4f140c492afd88fef
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="system-views"></a>Viste di sistema
 ## <a name="sql-data-warehouse-catalog-views"></a>Viste del catalogo di SQL Data Warehouse
@@ -61,8 +61,8 @@ ms.lasthandoff: 10/06/2017
 * [sys.dm_pdw_wait_stats](http://msdn.microsoft.com/library/mt203909.aspx)
 * [sys.dm_pdw_waits](http://msdn.microsoft.com/library/mt203909.aspx)
 
-## <a name="sql-server-dmvs-applicable-toosql-data-warehouse"></a>Viste a gestione dinamica di SQL Server applicabile tooSQL Data Warehouse
-Hello DMV seguenti sono applicabili tooSQL Data Warehouse, ma deve essere eseguita tramite la connessione toohello **master** database.
+## <a name="sql-server-dmvs-applicable-to-sql-data-warehouse"></a>Viste a gestione dinamica (DMV) di SQL Server applicabili a SQL Data Warehouse
+Le DMV seguenti sono applicabili a SQL Data Warehouse, ma devono essere eseguite tramite la connessione al database **master** .
 
 * [sys.database_service_objectives](https://msdn.microsoft.com/library/mt712619.aspx)
 * [sys.dm_operation_status](https://msdn.microsoft.com/library/dn270022.aspx)
@@ -135,18 +135,18 @@ Hello DMV seguenti sono applicabili tooSQL Data Warehouse, ma deve essere esegui
 * [sys.views](http://msdn.microsoft.com/library/ms190334.aspx)
 
 ## <a name="sql-server-dmvs-available-in-sql-data-warehouse"></a>Viste a gestione dinamica (DMV) di SQL Server disponibili in SQL Data Warehouse
-SQL Data Warehouse espone molte delle viste a gestione dinamica hello SQL Server (DMV). Quando sottoposto a query in SQL Data Warehouse, queste visualizzazioni sono reporting stato hello del database SQL in esecuzione in distribuzioni di hello.
+SQL Data Warehouse espone molte delle viste a gestione dinamica (DMV) di SQL Server. Queste viste, se sottoposte a query in SQL Data Warehouse, segnalano lo stato dei database SQL in esecuzione nelle distribuzioni.
 
-Poiché SQL Data Warehouse è basato sulla tecnologia MPP di Microsoft, utilizzare Parallel Data Warehouse (PDW) sia SQL Data Warehouse e del sistema di piattaforma Analitica hello stesso viste di sistema.
+Poiché SQL Data Warehouse si basa sulla tecnologia MPP di Microsoft, sia SQL Data Warehouse che Parallel Data Warehouse (PDW) del sistema di piattaforma di analisi usano le stesse viste di sistema.
 
-Ecco perché ognuna di queste viste a gestione dinamica dispone di una colonna specifica denominata pdw_node_id. Si tratta del nodo di calcolo hello identificatore hello hello. In PDW del nodo di calcolo hello è un concetto più avanzato per l'architettura di hello. In SQL Data Warehouse, architettura hello si basa più su distribuzioni hello.
+Ecco perché ognuna di queste viste a gestione dinamica dispone di una colonna specifica denominata pdw_node_id. Questo è l'identificatore per il nodo di calcolo. In PDW il nodo di calcolo è un concetto più avanzato per l'architettura. In SQL Data Warehouse l'architettura si basa maggiormente sulle distribuzioni.
 
 > [!NOTE]
-> toouse questi visualizzare, inserire 'pdw_nodes_' nome hello, come illustrato nella seguente tabella hello.
+> Per usare queste viste, inserire 'pdw_nodes_' nel nome, come mostrato nella tabella seguente.
 > 
 > 
 
-| Nome DMV in SQL Data Warehouse | Argomento Transact-SQL Server tooSQL di collegamento su MSDN |
+| Nome DMV in SQL Data Warehouse | Collegamento all'argomento Transact-SQL di SQL Server su MSDN |
 |:--- |:--- |
 | sys.dm_pdw_nodes_db_column_store_row_group_physical_stats | [sys.dm_db_column_store_row_group_physical_stats](/sql/relational-databases/system-dynamic-management-views/sys-dm-db-column-store-row-group-physical-stats-transact-sql)| 
 | sys.dm_pdw_nodes_db_column_store_row_group_operational_stats | [sys.dm_db_column_store_row_group_operational_stats](/sql/relational-databases/system-dynamic-management-views/sys-dm-db-column-store-row-group-operational-stats-transact-sql)| 

@@ -1,6 +1,6 @@
 ---
-title: problemi di mapping aaaUsing toofix di gestione del ripristino di partizioni | Documenti Microsoft
-description: Utilizzare hello RecoveryManager classe toosolve problemi mappe partizioni
+title: Uso di Gestione ripristino per risolvere i problemi della mappe partizioni | Microsoft Docs
+description: Usare la classe RecoveryManager per risolvere i problemi relativi alle mappe partizioni.
 services: sql-database
 documentationcenter: 
 manager: jhubbard
@@ -14,40 +14,40 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/25/2016
 ms.author: ddove
-ms.openlocfilehash: 2218fb15122f1df466e65483480461e366317f2f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e60e2295484873ea15d52108b7d619319a57827f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="using-hello-recoverymanager-class-toofix-shard-map-problems"></a>Utilizzando i problemi di mappa partizioni toofix classe RecoveryManager hello
-Hello [RecoveryManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.recoverymanager.aspx) fornisce applicazioni ADO.Net hello possibilità tooeasily rilevare e correggere eventuali incoerenze tra mappa di partizioni globale hello (GSM) e mappa di partizioni locali di hello (LSM) in un ambiente di database partizionato. 
+# <a name="using-the-recoverymanager-class-to-fix-shard-map-problems"></a>Uso della classe RecoveryManager per correggere i problemi delle mappe partizioni
+La classe [RecoveryManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.recoverymanager.aspx) consente alle applicazioni ADO.NET di rilevare e correggere facilmente le eventuali incoerenze tra la mappa globale partizioni e la mappa locale partizioni in un ambiente di database partizionato. 
 
-Hello GSM e LSM traccia hello mapping di ogni database in un ambiente partizionato. In alcuni casi, si verifica un'interruzione tra hello GSM e hello LSM. In tal caso, utilizzare hello RecoveryManager classe toodetect e ripristinare interruzione hello.
+La mappa globale partizioni e la mappa locale partizioni tengono traccia del mapping di ogni database in un ambiente partizionato. Si verifica a volte un'interruzione tra la mappa globale partizioni e la mappa locale partizioni. In tal caso usare la classe RecoveryManager per rilevare e correggere l'interruzione.
 
-Hello RecoveryManager classe fa parte di hello [libreria client di Database elastico](sql-database-elastic-database-client-library.md). 
+La classe RecoveryManager fa parte della [Libreria client dei database elastici](sql-database-elastic-database-client-library.md). 
 
 ![Mappa partizioni][1]
 
-Per le definizioni dei termini, vedere il [glossario degli strumenti del database elastico](sql-database-elastic-scale-glossary.md). hello come toounderstand **ShardMapManager** toomanage utilizzati dati in una soluzione partizionata, vedere [gestione mappa partizioni](sql-database-elastic-scale-shard-map-management.md).
+Per le definizioni dei termini, vedere il [Glossario degli strumenti di database elastici](sql-database-elastic-scale-glossary.md). Per informazioni su come usare **ShardMapManager** per gestire dati in una soluzione partizionata, vedere [Gestione mappe partizioni](sql-database-elastic-scale-shard-map-management.md).
 
-## <a name="why-use-hello-recovery-manager"></a>Perché utilizzare Gestione del ripristino di hello?
-In un ambiente di database partizionato c'è un unico tenant per database e ci sono molti database per server. Può anche essere molti server nell'ambiente di hello. Ogni database viene eseguito il mapping nella mappa partizioni hello, pertanto possono essere chiamate di database e server corretto toohello indirizzato. I database vengono rilevati in base tooa **chiave di partizionamento orizzontale**, e ogni partizione viene assegnato un **intervallo di valori chiave**. Ad esempio, una chiave di partizionamento orizzontale può rappresentare i nomi dei clienti hello da "D" troppo "f" Hello mapping di tutte le partizioni (noto anche come database) e i relativi intervalli di mapping sono contenuti in hello **mappa partizioni globali (GSM)**. Ogni database contiene anche una mappa di intervalli di hello contenuti nella partizione hello noto come hello **mappa di partizioni locali (LSM)**. Quando un'applicazione si connette tooa partizioni, mapping hello viene memorizzato nella cache con hello app per il recupero rapido. Hello LSM è usato toovalidate memorizzati nella cache dei dati. 
+## <a name="why-use-the-recovery-manager"></a>Perché usare Gestione ripristino
+In un ambiente di database partizionato c'è un unico tenant per database e ci sono molti database per server. Nell'ambiente possono anche esserci molti server. Ogni database è mappato nella mappa partizioni, quindi le chiamate possono essere instradate correttamente al server e al database appropriati. I database vengono rilevati in base a una **chiave di partizionamento orizzontale** e a ogni partizione viene assegnato un **intervallo di valori di chiave**. Ad esempio, una chiave di partizionamento orizzontale può rappresentare i nomi dei clienti da "D" a "F." Il mapping di tutte le partizioni (ovvero i database) e i relativi intervalli di mapping sono inclusi nella **mappa globale partizioni**. Ogni database include anche una mappa degli intervalli presenti nella partizione, ovvero la **mappa locale partizioni**. Quando un'app si connette a una partizione, il mapping viene memorizzato nella cache insieme all'app per consentire un recupero rapido. La mappa locale partizioni si usa per convalidare i dati memorizzati nella cache. 
 
-Hello GSM e LSM potrebbe diventare non sincronizzata per hello seguenti motivi:
+La mappa globale e locale delle partizioni potrebbero perdere la sincronizzazione per i motivi seguenti:
 
-1. l'eliminazione di Hello di una partizione il cui intervallo sembrano toono più essere in uso o la ridenominazione di una partizione. Eliminazione dei risultati di una partizione in un **mapping di partizione orfana**. Analogamente, anche un database rinominato può causare un mapping di partizione orfana. A seconda della finalità hello Roc hello, partizioni hello potrebbe essere necessario toobe rimosso o percorso partizioni hello deve toobe aggiornato. toorecover un database eliminato, vedere [ripristinare un database eliminato](sql-database-recovery-using-backups.md).
-2. Si verifica un evento di failover geografico. toocontinue, uno necessario aggiornare il nome di server hello e nome del database di gestore mappe partizioni in un'applicazione hello e quindi dettagli sul mapping di aggiornamento hello partizione per tutte le partizioni in una mappa partizioni. Se si verifica un failover geografico, tale logica di ripristino deve essere automatizzata all'interno del flusso di lavoro di hello failover. L'automazione delle azioni di ripristino rende possibile la gestibilità senza problemi dei database abilitati per la replica geografica, evitando interventi manuali. toolearn sulle opzioni toorecover un database, se si verifica un'interruzione del centro dati, vedere [la continuità aziendale](sql-database-business-continuity.md) e [il ripristino di emergenza](sql-database-disaster-recovery.md).
-3. Database ShardMapManager hello o partizioni viene ripristinato tooan precedenti temporizzate. toolearn sul punto di recupero temporizzato tramite i backup, vedere [ripristino tramite backup](sql-database-recovery-using-backups.md).
+1. L'eliminazione di una partizione con un intervallo che si ritiene non più usato o la ridenominazione della partizione. Eliminazione dei risultati di una partizione in un **mapping di partizione orfana**. Analogamente, anche un database rinominato può causare un mapping di partizione orfana. A seconda della finalità della modifica, potrebbe essere necessario rimuovere la partizione o aggiornarne il percorso. Per ripristinare un database eliminato, vedere [Ripristinare un database SQL di Azure con il portale di Azure](sql-database-recovery-using-backups.md).
+2. Si verifica un evento di failover geografico. Per continuare, è necessario aggiornare il nome del server e il nome del database dello strumento di gestione della mappa partizioni all'interno dell'applicazione e quindi aggiornare i dettagli del mapping di partizione per tutte le partizioni nella mappa partizioni. In caso di failover geografico, è necessario che la logica di ripristino sia automatizzata nel flusso di lavoro di failover. L'automazione delle azioni di ripristino rende possibile la gestibilità senza problemi dei database abilitati per la replica geografica, evitando interventi manuali. Per informazioni sulle opzioni per ripristinare un database in caso di interruzione del data center, vedere [Continuità aziendale](sql-database-business-continuity.md) e [Ripristino di emergenza](sql-database-disaster-recovery.md).
+3. Una partizione o un database ShardMapManager viene ripristinato a una condizione precedente. Per informazioni sul recupero temporizzato tramite i backup, vedere l'articolo sul [ripristino mediante backup](sql-database-recovery-using-backups.md).
 
-Per ulteriori informazioni sugli strumenti di Database elastico del Database SQL di Azure, la replica geografica e ripristino, vedere l'esempio hello: 
+Per altre informazioni sugli strumenti di database elastici per i database SQL di Azure, la replica geografica e il ripristino, vedere: 
 
 * [Panoramica: Continuità aziendale del cloud e ripristino di emergenza del database con database SQL](sql-database-business-continuity.md) 
 * [Iniziare a utilizzare gli strumenti di database elastici](sql-database-elastic-scale-get-started.md)  
 * [Gestione di mappe partizioni](sql-database-elastic-scale-shard-map-management.md)
 
 ## <a name="retrieving-recoverymanager-from-a-shardmapmanager"></a>Ripristino di RecoveryManager da un oggetto ShardMapManager
-primo passaggio Hello è un'istanza di RecoveryManager toocreate. Hello [GetRecoveryManager metodo](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.getrecoverymanager.aspx) restituisce hello recovery manager per hello corrente [ShardMapManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.aspx) istanza. eseguire il mapping di eventuali incoerenze nella partizione hello tooaddress, è innanzitutto necessario recuperare hello RecoveryManager per mappa di partizioni particolare hello. 
+Il primo passaggio consiste nel creare un'istanza di RecoveryManager. Il [metodo GetRecoveryManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.getrecoverymanager.aspx) restituisce la funzionalità di Gestione ripristino per l'istanza corrente di [ShardMapManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.aspx). Per risolvere eventuali incoerenze in una mappa partizioni, è necessario ripristinare prima di tutto RecoveryManager per una mappa partizioni specifica. 
 
    ```
     ShardMapManager smm = ShardMapManagerFactory.GetSqlShardMapManager(smmConnnectionString,  
@@ -55,63 +55,63 @@ primo passaggio Hello è un'istanza di RecoveryManager toocreate. Hello [GetReco
              RecoveryManager rm = smm.GetRecoveryManager(); 
    ```
 
-In questo esempio hello RecoveryManager viene inizializzato dai hello ShardMapManager. Hello ShardMapManager contenente un ShardMap anche già inizializzato. 
+In questo esempio RecoveryManager viene inizializzato da ShardMapManager. Anche ShardMapManager che contiene un oggetto ShardMap è già inizializzato. 
 
-Poiché il codice dell'applicazione modifica mappa partizioni hello stesso, hello credenziali utilizzate nel metodo factory hello (nell'esempio sopra riportato, hello smmConnectionString) devono essere le credenziali che dispongono delle autorizzazioni di lettura e scrittura sul database GSM hello hello a cui fa riferimento stringa di connessione. Queste credenziali sono solitamente diverse da connessioni tooopen le credenziali utilizzate per il routing dipendente dai dati. Per ulteriori informazioni, vedere [utilizzando le credenziali nel client di database elastico hello](sql-database-elastic-scale-manage-credentials.md).
+Poiché questo codice dell'applicazione manipola la mappa partizioni stessa, le credenziali usate nel metodo factory, nell'esempio precedente smmConnectionString, devono essere credenziali con autorizzazioni di lettura/scrittura per il database GSM a cui si fa riferimento nella stringa di connessione. Queste credenziali sono in genere diverse da quelle usate per aprire connessioni per il routing dipendente dai dati. Per ulteriori informazioni, vedere [Gestione delle credenziali nella libreria client dei database elastici](sql-database-elastic-scale-manage-credentials.md).
 
-## <a name="removing-a-shard-from-hello-shardmap-after-a-shard-is-deleted"></a>Rimozione di una partizione da hello ShardMap dopo l'eliminazione di una partizione
-Hello [DetachShard metodo](https://msdn.microsoft.com/library/azure/dn842083.aspx) Scollega hello dato partizione dalla mappa partizioni hello ed elimina i mapping associati hello partizione.  
+## <a name="removing-a-shard-from-the-shardmap-after-a-shard-is-deleted"></a>Rimozione di una partizione da ShardMap dopo l'eliminazione di una partizione
+Il [metodo DetachShard](https://msdn.microsoft.com/library/azure/dn842083.aspx) scollega la partizione specificata dalla mappa partizioni ed elimina i mapping associati alla partizione.  
 
-* il parametro di percorso Hello è percorso partizioni hello, in particolare il nome di server e il nome database di partizione hello viene scollegato. 
-* parametro shardMapName Hello è nome mappa partizioni di hello. Questo è solo necessario quando più mappe partizioni sono gestite da hello stesso gestore di mappe partizioni. Facoltativo. 
+* Il parametro location corrisponde al percorso della partizione, cioè il nome del server e il nome del database, della partizione che viene scollegata. 
+* Il parametro shardMapName è il nome della mappa partizioni. È richiesto solo quando più mappe partizioni sono gestite dallo stesso gestore delle mappe partizioni. facoltativo. 
 
 
 > [!IMPORTANT]
-> Utilizzare questa tecnica solo se si è certi che l'intervallo di hello per il mapping di hello aggiornato è vuoto. dati per intervallo hello spostato non controllati da metodi Hello precedenti, è preferibile tooinclude verifica nel codice.
+> usare questa tecnica solo se si è certi che l'intervallo per il mapping aggiornato sia vuoto. Poiché i metodi descritti precedentemente non controllano i dati dell'intervallo da spostare, è consigliabile includere i controlli nel codice.
 >
 
-In questo esempio rimuove le partizioni dalla mappa partizioni hello. 
+Questo esempio rimuove le partizioni dalla mappa partizioni. 
 
    ```
    rm.DetachShard(s.Location, customerMap);
    ``` 
 
-mappa partizioni Hello riflette posizione partizioni hello hello GSM prima dell'eliminazione di hello della partizione hello. Poiché è stato eliminato partizioni hello, si presuppone questo era intenzionale e intervalli di chiavi di partizionamento orizzontale hello non sono più in uso. Se non è questo il caso, è possibile eseguire un ripristino temporizzato. partizione di hello toorecover da un precedente punto nel tempo. (In questo caso, esaminare hello seguendo le incoerenze di partizioni toodetect sezione). toorecover, vedere [recupero temporizzato](sql-database-recovery-using-backups.md).
+La mappa partizioni riflette il percorso della partizione nella mappa globale delle partizioni precedente l'eliminazione della partizione. Poiché la partizione è stata eliminata, si presuppone che questa operazione sia stata intenzionale che l'intervallo di chiavi di partizionamento orizzontale non venga più usato. Se non è questo il caso, è possibile eseguire un ripristino temporizzato. Per ripristinare le partizioni da un punto nel tempo precedente. In questo caso, vedere la sezione seguente per rilevare le incoerenze della partizione. Per eseguire il ripristino, vedere [Recupero temporizzato](sql-database-recovery-using-backups.md).
 
-Poiché si presuppone l'eliminazione del database hello era intenzionale, hello Azione pulizia amministrativi finale è toodelete hello voce toohello partizione gestore mappe partizioni di hello. Questo impedisce l'applicazione hello intervallo tooa informazioni che non si prevede di scrivere inavvertitamente.
+Presupponendo che l'eliminazione del database sia stata intenzionale, l'azione di pulizia amministrativa finale consiste nell'eliminare la voce relativa alla partizione nel gestore delle mappe partizioni. In questo modo si impedisce all'applicazione di scrivere inavvertitamente informazioni in un intervallo non previsto.
 
-## <a name="toodetect-mapping-differences"></a>differenze di mapping toodetect
-Hello [DetectMappingDifferences metodo](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.recoverymanager.detectmappingdifferences.aspx) Seleziona e restituisce una delle mappe di partizioni hello (locali o globali) come origine hello e riconcilia i mapping di entrambe le mappe partizioni (GSM e LSM).
+## <a name="to-detect-mapping-differences"></a>Per rilevare le differenze nei mapping
+Il [metodo DetectMappingDifferences](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.recoverymanager.detectmappingdifferences.aspx) seleziona e restituisce una della mappe partizioni, locale o globale, come origine di dati reali e riconcilia i mapping in entrambi i tipi di mappa partizioni, globale e locale.
 
    ```
    rm.DetectMappingDifferences(location, shardMapName);
    ```
 
-* Hello *percorso* specifica il nome di server hello e il nome del database. 
-* Hello *shardMapName* parametro è il nome della mappa partizioni hello. Questo è solo necessario se più mappe partizioni sono gestite da hello stesso gestore di mappe partizioni. Facoltativo. 
+* Il *percorso* specifica il nome del server e il nome del database. 
+* Il parametro *shardMapName* è il nome della mappa partizioni. È richiesto solo se più mappe partizioni sono gestite dallo stesso gestore delle mappe partizioni. Facoltativo. 
 
-## <a name="tooresolve-mapping-differences"></a>differenze di mapping tooresolve
-Hello [ResolveMappingDifferences metodo](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.recoverymanager.resolvemappingdifferences.aspx) seleziona una delle mappe di partizioni hello (locali o globali) come origine hello e riconcilia i mapping di entrambe le mappe partizioni (GSM e LSM).
+## <a name="to-resolve-mapping-differences"></a>Per risolvere le differenze nei mapping
+Il [metodo ResolveMappingDifferences](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.recoverymanager.resolvemappingdifferences.aspx) seleziona una delle mappe partizioni, locale o globale, come origine di dati reali e riconcilia i mapping in entrambi i tipi di mappa partizioni, globale e locale.
 
    ```
    ResolveMappingDifferences (RecoveryToken, MappingDifferenceResolution.KeepShardMapping);
    ```
 
-* Hello *RecoveryToken* parametro enumera hello differenze nei mapping hello hello GSM e hello LSM per partizioni specifiche di hello. 
-* Hello [MappingDifferenceResolution enumerazione](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.mappingdifferenceresolution.aspx) metodo hello tooindicate utilizzato per risolvere hello differenza tra i mapping delle partizioni hello. 
-* **MappingDifferenceResolution.KeepShardMapping** è consigliabile quando hello LSM contiene mapping accurato hello e pertanto mapping hello in partizioni hello devono essere utilizzate. Questo avviene in genere hello se si verifica un failover: partizioni hello si trovano ora in un nuovo server. Poiché la partizione hello deve essere rimossa prima dal hello GSM (RecoveryManager.DetachShard metodo hello), un mapping non esiste più sul hello GSM. Hello LSM deve pertanto essere utilizzato toore-stabilire il mapping di partizione hello.
+* Il parametro *RecoveryToken* enumera le differenze nei mapping tra la mappa globale di partizioni e la mappa locale di partizioni per la partizione specifica. 
+* L' [enumerazione MappingDifferenceResolution](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.mappingdifferenceresolution.aspx) viene usata per indicare il metodo per risolvere la differenza tra i mapping di partizione. 
+* È consigliabile usare **MappingDifferenceResolution.KeepShardMapping** qualora la mappa locale partizioni contenga il mapping corretto e quindi si dovrà usare il mapping presente nella partizione. Questo si verifica in genere nel caso di un failover, dove la partizione ora risiede in un nuovo server. Poiché la partizione deve essere prima rimossa dalla mappa globale partizioni, tramite il metodo RecoveryManager.DetachShard, non esiste più un mapping nella mappa globale partizioni. Per ristabilire il mapping della partizione è quindi necessario usare la mappa locale partizioni.
 
-## <a name="attach-a-shard-toohello-shardmap-after-a-shard-is-restored"></a>Collegare un toohello partizioni ShardMap dopo il ripristino di una partizione
-Hello [AttachShard metodo](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.recoverymanager.attachshard.aspx) collega hello mappa partizioni toohello di partizioni specificato. Quindi, rileva eventuali incoerenze mappa partizioni e degli aggiornamenti delle partizioni di hello mapping toomatch hello al punto di ripristino di partizioni hello di hello. Si presuppone che il database hello anche tooreflect rinominato hello nome del database originale (prima partizione hello è stata ripristinata), poiché ripristino temporizzata di hello predefinite tooa nuovo database aggiunto con un timestamp hello. 
+## <a name="attach-a-shard-to-the-shardmap-after-a-shard-is-restored"></a>Collegare una partizione a ShardMap dopo il ripristino di una partizione
+Il [metodo AttachShard](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.recoverymanager.attachshard.aspx) collega la partizione specificata alla mappa partizioni. Rileva quindi eventuali incoerenze nella mappa partizioni e aggiorna i mapping in modo che la partizione corrisponda al punto di ripristino della partizione. Si presuppone che venga rinominato anche il database per riflettere il nome del database originale, precedente al ripristino della partizione, perché per impostazione predefinita il ripristino temporizzato usa un nuovo database a cui aggiunge il timestamp. 
 
    ```
    rm.AttachShard(location, shardMapName)
    ``` 
 
-* Hello *percorso* parametro è il nome di server hello e nome del database, di partizioni hello da connettere. 
-* Hello *shardMapName* parametro è il nome della mappa partizioni hello. Questo è solo necessario quando più mappe partizioni sono gestite da hello stesso gestore di mappe partizioni. Facoltativo. 
+* Il parametro *location* corrisponde al nome del server e al nome del database della partizione che viene collegata. 
+* Il parametro *shardMapName* è il nome della mappa partizioni. È richiesto solo quando più mappe partizioni sono gestite dallo stesso gestore delle mappe partizioni. Facoltativo. 
 
-Questo esempio aggiunge una mappa partizioni toohello di partizioni che è stato recentemente ripristinata da un'ora di punto precedente. Poiché la partizione hello (vale a dire hello mapping per la partizione hello in hello LSM) è stata ripristinata, è potenzialmente non coerente con la voce di partizione hello in GSM hello. Di fuori di questo codice di esempio, partizioni hello è stato ripristinato e rinominato toohello nome originale del database hello. Dal momento che è stato ripristinato, si presuppone il mapping di hello in hello LSM mapping attendibile hello. 
+Questo esempio aggiunge una partizione alla mappa partizioni ripristinata di recente da una condizione precedente. Poiché la partizione, ovvero il mapping per la partizione nella mappa locale partizioni, è stata ripristinata, è potenzialmente incoerenze con la voce della partizione nella mappa globale partizioni. Esternamente a questo codice di esempio, la partizione è stata ripristinata e rinominata con il nome originale del database. Essendo stata ripristinata, si presuppone che il mapping nella mappa locale partizioni sia quello attendibile. 
 
    ```
    rm.AttachShard(s.Location, customerMap); 
@@ -122,24 +122,24 @@ Questo esempio aggiunge una mappa partizioni toohello di partizioni che è stato
        } 
    ```
 
-## <a name="updating-shard-locations-after-a-geo-failover-restore-of-hello-shards"></a>L'aggiornamento dei percorsi partizioni dopo un failover geografico (ripristino) di partizioni hello
-Se si verifica un failover geografico, database secondario hello verrà resi accessibili scrivere e diventa hello nuovo database primario. nome del server di hello e, potenzialmente, il database di hello (a seconda della configurazione) Hello, potrebbe essere diverso dalla replica primaria originale hello. Pertanto hello voci di mapping per la partizione hello in GSM hello e LSM devono essere corretti. Analogamente, se hello database è ripristinato tooa altro nome o percorso o tooan punto nel tempo precedente, ciò potrebbe causare incoerenze nelle mappe partizioni hello. Hello gestore mappe partizioni gestisce la distribuzione di hello di database corretto toohello di connessioni aperte. Distribuzione basata su dati hello nella mappa partizioni hello e il valore di hello della chiave di partizionamento orizzontale hello hello destinazione della richiesta di applicazioni hello. Dopo un failover geografico, è necessario aggiornare questo informazioni con il nome di server accurato hello, nome del database e il mapping delle partizioni del database ripristinato hello. 
+## <a name="updating-shard-locations-after-a-geo-failover-restore-of-the-shards"></a>Aggiornamento dei percorsi della partizioni dopo un failover geografico, o ripristino, delle partizioni
+Nel caso di failover geografico, il database secondario è reso accessibile in scrittura e diventa il database primario. Il nome del server, e potenzialmente il database a seconda della configurazione, può essere diverso da quello primario originale. È quindi necessario correggere le voci dei mapping per la partizione nella mappa globale partizioni e nella mappa locale partizioni. In modo analogo, se il database viene ripristinato con un nome e un percorso diversi, oppure a una condizione precedente, potrebbero verificarsi incoerenze nelle mappe partizioni. Il gestore delle mappe partizioni controlla la distribuzione delle connessioni aperte ai database corretti. La distribuzione si basa sui dati contenuti nella mappa partizioni e sul valore della chiave di partizionamento orizzontale di destinazione della richiesta dell'applicazione. Dopo un failover geografico queste informazioni devono essere aggiornate con il nome del server, il nome del database e il mapping di partizione corretti del database ripristinato. 
 
 ## <a name="best-practices"></a>Procedure consigliate
-Failover geo e il ripristino sono operazioni in genere gestiti da un amministratore del cloud di un'applicazione hello intenzionalmente utilizzando una delle funzionalità di continuità aziendale di database SQL di Azure. Pianificazione della continuità aziendale richiede i processi, procedure e misure tooensure che è possono continuare le operazioni aziendali senza interruzioni. Hello metodi disponibili come parte di hello RecoveryManager classe deve essere usato all'interno di questo hello tooensure del flusso di lavoro GSM e LSM vengono aggiornati in base a un'operazione di ripristino hello eseguita. Esistono cinque passaggi fondamentali tooproperly garantire hello GSM e LSM riflettono informazioni accurate di hello dopo un evento di failover. Hello tooexecute codice applicazione che questi passaggi possono essere integrati in flusso di lavoro e gli strumenti esistenti. 
+Il failover geografico e il ripristino sono operazioni che di solito sono gestite da un amministratore del cloud dell'applicazione usando intenzionalmente una delle funzionalità di continuità aziendale dei database SQL di Azure. La pianificazione della continuità aziendale richiede la definizione di processi, procedure e misure che garantiscano la continuità delle operazioni aziendali senza interruzioni. In questo flusso di lavoro è necessario usare i metodi disponibili come parte della classe RecoveryManager per assicurare che la mappa globale partizioni e la mappa locale partizioni siano mantenute aggiornate con l'azione di ripristino eseguita. Per assicurarsi che la mappa globale partizioni e la mappa locale partizioni riflettano le informazioni corrette dopo un evento di failover, occorre eseguire cinque passaggi. Il codice dell'applicazione per eseguire questi passaggi può essere integrato negli strumenti e nel flusso di lavoro esistenti. 
 
-1. Consente di recuperare hello RecoveryManager hello ShardMapManager. 
-2. Scollegare partizione precedente di hello dalla mappa partizioni hello.
-3. Collegare hello nuova partizione toohello mappa partizioni, compresa l'ubicazione di hello nuova partizione.
-4. Il mapping tra hello GSM e LSM hello vengono rilevate incoerenze. 
-5. Risolvere le differenze tra hello GSM e hello LSM, hello trusting LSM. 
+1. Recuperare Gestione ripristino da ShardMapManager. 
+2. Scollegare la partizione precedente dalla mappa partizioni.
+3. Collegare la nuova partizione alla mappa partizioni, includendo il percorso della nuova partizione.
+4. Rilevare le incoerenze nel mapping tra la mappa globale partizioni e la mappa locale partizioni. 
+5. Risolvere le differenze tra la mappa globale partizioni e la mappa locale partizioni, considerando attendibile la mappa locale partizioni. 
 
-In questo esempio esegue hello alla procedura seguente:
+L'esempio segue questa procedura:
 
-1. Rimuove le partizioni da hello mappa partizioni che riflettono i percorsi di partizione prima dell'evento di failover hello.
-2. Collega partizioni toohello mappa partizioni riflettente hello nuove partizioni posizioni (parametro hello "Configuration.SecondaryServer" è nuovo nome del server hello ma hello stesso nome del database).
-3. Recupera il token di ripristino hello rilevando le differenze di mapping tra hello GSM e hello LSM per ogni partizione. 
-4. Risolve le incoerenze hello mappando hello trusting da hello LSM di ogni partizione. 
+1. Rimuove le partizioni dalla mappa partizioni che riflette i percorsi precedenti all'evento di failover.
+2. Collega le partizioni alla mappa partizioni riflettendo i nuovi percorsi delle partizioni. Il parametro "Configuration.SecondaryServer" è il nuovo nome del server, ma lo stesso nome del database.
+3. Recupera i token di ripristino rilevando le differenze dei mapping tra la mappa globale partizioni e la mappa locale partizioni per ogni partizione. 
+4. Risolve le incoerenze considerando attendibile il mapping dalla mappa locale partizioni di ogni partizione. 
    
    ```
    var shards = smm.GetShards(); 

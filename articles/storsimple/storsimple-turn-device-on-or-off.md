@@ -1,6 +1,6 @@
 ---
-title: aaaTurn il dispositivo StorSimple serie 8000 o disattivare | Documenti Microsoft
-description: "Viene illustrato come attivare un dispositivo che è stato arrestato o un'interruzione dell'alimentazione, tooturn in un nuovo dispositivo di StorSimple e disattivare un dispositivo in esecuzione."
+title: Attivare o disattivare il dispositivo StorSimple serie 8000 | Microsoft Docs
+description: "Viene illustrato come attivare un nuovo dispositivo StorSimple, attivare un dispositivo che è stato arrestato o che ha subito un'interruzione dell'alimentazione e disattivare un dispositivo in esecuzione."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -15,160 +15,160 @@ ms.workload: TBD
 ms.date: 06/29/2017
 ms.author: alkohli
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 85434bde9377e330cd6ba4797fd5fd68bcee944d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0577c837e0c47ba37a4f586603b0f5b951f1b549
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="turn-on-or-turn-off-your-storsimple-8000-series-device"></a>Attivare o disattivare il dispositivo StorSimple serie 8000
 ## <a name="overview"></a>Panoramica
-L’arresto di un dispositivo Microsoft Azure StorSimple non è necessario nel normale funzionamento del sistema. Tuttavia, potrebbe essere necessario tooturn in un nuovo dispositivo o un dispositivo che è stato arrestato toobe. In genere, un arresto è necessario nei casi in cui bisogna sostituire l'hardware non riuscito, spostare fisicamente un'unità o mettere fuori servizio un dispositivo. In questa esercitazione descrive hello necessario per l'attivazione e l'arresto del dispositivo StorSimple in diversi scenari.
+L’arresto di un dispositivo Microsoft Azure StorSimple non è necessario nel normale funzionamento del sistema. Tuttavia, potrebbe esser necessario spegnere un dispositivo o accenderne uno nuovo. In genere, un arresto è necessario nei casi in cui bisogna sostituire l'hardware non riuscito, spostare fisicamente un'unità o mettere fuori servizio un dispositivo. In questa esercitazione viene descritta la procedura necessaria per l'attivazione e l'arresto del dispositivo StorSimple in scenari diversi.
 
 ## <a name="turn-on-a-new-device"></a>Attivare un nuovo dispositivo
-Hello passaggi per l'attivazione in un dispositivo StorSimple per hello prima volta variano a seconda se il dispositivo hello è un 8100 o un modello 8600. Hello 8100 ha una sola enclosure principale, mentre hello 8600 è un dispositivo di due enclosure con una enclosure principale e una EBOD. Hello passaggi dettagliati per entrambi i modelli vengono trattati in hello le sezioni seguenti.
+I passaggi per l'attivazione di un dispositivo StorSimple per la prima volta variano a seconda del modello del dispositivo (8100 o 8600). Il modello 8100 ha una sola enclosure principale, mentre il 8600 è un dispositivo con un’enclosure principale e un’enclosure EBOD. Nelle sezioni seguenti sono illustrati i passaggi dettagliati per entrambi i modelli.
 
 * [Nuovo dispositivo con soltanto un’enclosure principale](#new-device-with-primary-enclosure-only)
 * [Nuovo dispositivo con enclosure EBOD](#new-device-with-ebod-enclosure)
 
 ### <a name="new-device-with-primary-enclosure-only"></a>Nuovo dispositivo con soltanto un’enclosure principale
-modello di Hello StorSimple 8100 è un dispositivo a enclosure singola. Il dispositivo include moduli PCM (Power and Cooling Modules) Entrambi i PCM devono essere installati e connesso toodifferent power origini tooensure la disponibilità elevata.
+Il modello StorSimple 8100 è un dispositivo a enclosure singola. Il dispositivo include moduli PCM (Power and Cooling Modules) Entrambi i PCM devono essere installati e collegati a una fonte di alimentazione diversa per assicurare disponibilità elevata.
 
-Eseguire hello seguendo i passaggi toocable il dispositivo per l'alimentazione.
+Per cablare il dispositivo per l'alimentazione, attenersi alla seguente procedura.
 
 [!INCLUDE [storsimple-cable-8100-for-power](../../includes/storsimple-cable-8100-for-power.md)]
 
 > [!NOTE]
-> Per l'installazione completa del dispositivo e i cavi di istruzioni, visitare troppo[installare il dispositivo StorSimple 8100](storsimple-8100-hardware-installation.md). Assicurarsi di seguire le istruzioni di hello esattamente.
+> Per l’installazione completa del dispositivo e le istruzioni di cablaggio, vedere [Installare il dispositivo StorSimple 8100](storsimple-8100-hardware-installation.md). Assicurarsi di seguire esattamente le istruzioni.
 > 
 > 
 
 ### <a name="new-device-with-ebod-enclosure"></a>Nuovo dispositivo con enclosure EBOD
-modello Hello 8600 StorSimple include una enclosure principale e un'enclosure EBOD. Questa operazione richiede hello unità toobe cablate insieme per la connettività SAS Serial Attached SCSI () e l'alimentazione.
+Il dispositivo StorSimple 8600 è costituito da un'enclosure principale e un'enclosure EBOD. Questa operazione richiede che le unità siano cablate insieme per l'alimentazione e la connettività Serial Attached SCSI (SAS).
 
-Quando si imposta questo dispositivo per hello prima volta, eseguire hello del cablaggio SAS innanzitutto e passaggi hello quindi completo per il collegamento all'alimentazione.
+Quando si configura il dispositivo per la prima volta, eseguire prima i passaggi per il cablaggio SAS e poi completare i passaggi per il cablaggio di alimentazione.
 
 [!INCLUDE [storsimple-sas-cable-8600](../../includes/storsimple-sas-cable-8600.md)]
 
 [!INCLUDE [storsimple-cable-8600-for-power](../../includes/storsimple-cable-8600-for-power.md)]
 
 > [!NOTE]
-> Per l'installazione completa del dispositivo e i cavi di istruzioni, visitare troppo[installare del dispositivo 8600 StorSimple](storsimple-8600-hardware-installation.md). Assicurarsi di seguire le istruzioni di hello esattamente.
+> Per l’installazione completa del dispositivo e le istruzioni di cablaggio, vedere [Installare il dispositivo StorSimple 8600](storsimple-8600-hardware-installation.md). Assicurarsi di seguire esattamente le istruzioni.
 
 ## <a name="turn-on-a-device-after-shutdown"></a>Attivare un dispositivo dopo l'arresto
-Hello passaggi per l'attivazione di un dispositivo StorSimple dopo che è stato arrestato sono diversi a seconda se il dispositivo hello è un 8100 o un modello 8600. Hello 8100 ha una sola enclosure principale, mentre hello 8600 è un dispositivo di due enclosure con una enclosure principale e una EBOD.
+I passaggi per l'attivazione di un dispositivo StorSimple dopo un arresto variano a seconda del modello del dispositivo (8100 o 8600). Il modello 8100 ha una sola enclosure principale, mentre il 8600 è un dispositivo con un’enclosure principale e un’enclosure EBOD.
 
 * [Dispositivo con soltanto un’enclosure principale](#device-with-primary-enclosure-only)
 * [Dispositivo con enclosure EBOD](#device-with-ebod-enclosure)
 
 ### <a name="device-with-primary-enclosure-only"></a>Dispositivo con soltanto un’enclosure principale
-Dopo un arresto, utilizzare hello seguendo procedure tooturn in un dispositivo StorSimple con una enclosure principale e nessuna enclosure EBOD.
+Dopo un arresto, utilizzare la procedura seguente per attivare un dispositivo StorSimple con un’enclosure principale e nessuna enclosure EBOD.
 
-#### <a name="tooturn-on-a-device-with-a-primary-enclosure-only"></a>tooturn in un dispositivo con solo una enclosure principale
-1. Assicurarsi che sia Power interruttori di alimentazione di hello e moduli raffreddamento (PCM) siano in posizione OFF hello. Se hello opzioni non sono in posizione OFF hello, quindi invertite in posizione OFF toohello e attendere hello luci toogo off.
-2. Accendere il dispositivo hello girando hello interruttori di alimentazione su entrambi i PCM in posizione on toohello. dispositivo Hello dovrebbe accendersi.
-3. Controllo hello seguente tooverify che hello dispositivo sia acceso completamente:
+#### <a name="to-turn-on-a-device-with-a-primary-enclosure-only"></a>Per attivare un dispositivo con solo un’enclosure principale
+1. Assicurarsi che gli interruttori di alimentazione dei moduli PCM siano in posizione OFF. Se non sono in posizione OFF, posizionare gli interruttori su OFF e attendere che gli indicatori luminosi si spengano.
+2. Accendere il dispositivo girando l'interruttore di alimentazione di ciascun modulo PCM su ON. In tal modo il dispositivo viene acceso.
+3. Controllare le operazioni seguenti per verificare che il dispositivo sia completamente acceso:
    
-   1. Hello LED OK di entrambi i moduli PCM sono di colore verde.
-   2. LED di stato Hello in entrambi i controller sono di colore verde.
-   3. Hello LED blu su uno dei controller hello è lampeggiante, che indica che tale controller hello è attiva.
+   1. I LED OK su entrambi i moduli PCM sono verdi.
+   2. I LED di stato in entrambi i controller sono verdi.
+   3. Il LED blu su uno dei controller lampeggia, il che indica che il controller è attivo.
       
       Se una di queste condizioni non vengono soddisfatte, il dispositivo non è integro. [Contattare il supporto Microsoft](storsimple-8000-contact-microsoft-support.md).
 
 ### <a name="device-with-ebod-enclosure"></a>Dispositivo con enclosure EBOD
-Dopo un arresto, utilizzare hello seguendo procedure tooturn in un dispositivo StorSimple con una enclosure principale e una EBOD. Eseguire ogni passaggio esattamente come descritto nella sequenza. Errore toodo così potrebbe causare la perdita di dati.
+Dopo un arresto, utilizzare la procedura seguente per attivare un dispositivo StorSimple con un’enclosure principale e un’enclosure EBOD. Eseguire ogni passaggio esattamente come descritto nella sequenza. In caso contrario, si potrebbe causare la perdita di dati.
 
-#### <a name="tooturn-on-a-device-with-a-primary-and-an-ebod-enclosure"></a>tooturn in un dispositivo con un database primario e un'enclosure EBOD
-1. Verificare che tale enclosure EBOD hello è enclosure principale toohello connesso. Per ulteriori informazioni, vedere [Installare il dispositivo StorSimple 8600](storsimple-8600-hardware-installation.md).
-2. Verificare che tale hello Power Cooling Module (PCM) sia hello EBOD ed enclosure principale sono in posizione OFF hello. Se hello opzioni non sono in posizione OFF hello, quindi invertite in posizione OFF toohello e attendere hello luci toogo off.
-3. Attivare in hello enclosure EBOD girando hello interruttori di alimentazione su entrambi i PCM in posizione on toohello. LED PCM Hello deve essere di colore verde. Un controller di EBOD LED verde in questa unità indica che in enclosure EBOD hello.
-4. Accendere l'enclosure principale hello girando hello interruttori di alimentazione su entrambi i PCM in posizione on toohello. intero sistema Hello dovrebbe ora essere in.
-5. Verificare che hello LED SAS siano di colore verde, che assicura la connessione di hello tra hello enclosure EBOD e l'enclosure principale hello è valido.
+#### <a name="to-turn-on-a-device-with-a-primary-and-an-ebod-enclosure"></a>Per attivare un dispositivo con un’enclosure principale e un’enclosure EBOD
+1. Assicurarsi che l’enclosure EBOD sia connessa all’enclosure principale. Per ulteriori informazioni, vedere [Installare il dispositivo StorSimple 8600](storsimple-8600-hardware-installation.md).
+2. Assicurarsi che gli interruttori di alimentazione di tutti i moduli PCM sulle enclosure principale ed EBOD siano in posizione OFF. Se non sono in posizione OFF, posizionare gli interruttori su OFF e attendere che gli indicatori luminosi si spengano.
+3. Accendere prima l’enclosure EBOD girando gli interruttori di alimentazione di ciascun modulo PCM su ON. I LED PCM dovrebbero essere verdi. Un controller EBOD LED verde su questa unità indica che l’enclosure EBOD è attivata.
+4. Accendere l’enclosure principale girando l'interruttore di alimentazione di ciascun modulo PCM su ON. L'intero sistema dovrebbe ora essere acceso.
+5. Verificare che i LED SAS siano verdi, il che assicura che la connessione tra l'enclosure EBOD e l’enclosure principale è valida.
 
 ## <a name="turn-on-a-device-after-a-power-loss"></a>Attivare un dispositivo dopo un'interruzione dell'alimentazione
-Un guasto o un'interruzione dell'alimentazione può causare l'arresto di un dispositivo StorSimple. interruzione dell'alimentazione Hello possono essere eseguiti su uno degli alimentatori hello o entrambi gli alimentatori. passaggi di ripristino Hello sono diversi a seconda se il dispositivo hello è un 8100 o un modello 8600. Hello 8100 ha una sola enclosure principale, mentre hello 8600 è un dispositivo di due enclosure con una enclosure principale e una EBOD. Questa sezione descrive la procedura di ripristino hello per ogni scenario.
+Un guasto o un'interruzione dell'alimentazione può causare l'arresto di un dispositivo StorSimple. Può verificarsi un'interruzione dell'alimentazione su uno o entrambi gli alimentatori di alimentazione elettrica. Le procedure di ripristino sono diverse a seconda del modello del dispositivo (8100 o 8600). Il modello 8100 ha una sola enclosure principale, mentre il 8600 è un dispositivo con un’enclosure principale e un’enclosure EBOD. In questa sezione viene descritta la procedura di ripristino per ogni scenario.
 
 * [Dispositivo con soltanto un’enclosure principale](#8100)
 * [Dispositivo con enclosure EBOD](#8600)
 
 ### <a name="device-with-primary-enclosure-only-a-name8100"></a>Dispositivo con soltanto un’enclosure principale <a name="8100">
-sistema Hello possibile se continuare a funzionare normalmente power perdita tooone degli alimentatori. Tuttavia, la disponibilità elevata del dispositivo hello, ripristino power toohello tooensure alimentatore appena possibile.
+Se si verifica una perdita di alimentazione su uno degli alimentatori, il sistema può continuare il normale funzionamento. Tuttavia, per garantire la disponibilità elevata del dispositivo, ripristinare l’alimentazione nell'alimentatore guasto appena possibile.
 
-Se è presente un'interruzione dell'alimentazione o l'interruzione dell'alimentazione su entrambi gli alimentatori, il sistema hello verrà arrestato in modo ordinato e controllato. Quando power hello viene ripristinato, il sistema hello verrà attivata automaticamente.
+Se si verifica un guasto nell'alimentazione o un’interruzione dell'alimentazione su entrambi gli alimentatori, il sistema si arresta in modo ordinato e controllato. Quando l'alimentazione viene ripristinata, il sistema si accende automaticamente.
 
 ### <a name="device-with-ebod-enclosure-a-name8600"></a>Dispositivo con enclosure EBOD <a name="8600">
 #### <a name="power-loss-on-one-power-supply"></a>Interruzione dell'alimentazione su un solo alimentatore
-Se power perdita tooone degli alimentatori enclosure principale hello o enclosure EBOD hello sistema Hello possibile continuare il normale funzionamento. Tuttavia, tooensure un'elevata disponibilità dispositivo hello, ripristinare alimentatore toohello power appena possibile.
+Se si verifica una perdita di alimentazione su uno degli alimentatori sull’enclosure principale o EBOD, il sistema può continuare il normale funzionamento. Tuttavia, per garantire la disponibilità elevata del dispositivo, si prega di ripristinare l’alimentazione nell'alimentatore guasto appena possibile.
 
 #### <a name="power-loss-on-both-power-supplies-on-primary-and-ebod-enclosures"></a>Perdita di energia su entrambi gli alimentatori dell’enclosure principale e dell’enclosure EBOD
-Se è presente un'interruzione di alimentazione o di un'interruzione dell'alimentazione per entrambi gli alimentatori, hello enclosure EBOD verrà arrestata immediatamente e l'enclosure principale hello verrà arrestato in modo ordinato e controllato. Quando viene ripristinata l'alimentazione, accessorio hello verrà avviato automaticamente.
+Se si verifica un guasto nell'alimentazione o un’interruzione dell'alimentazione su entrambi gli alimentatori, l’enclosure EBOD si arresta immediatamente e l’enclosure principale si arresta in modo ordinato e controllato. Quando viene ripristinata l'alimentazione, il dispositivo si accende automaticamente.
 
-Se power hello è disattivato manualmente, quindi intraprendere hello sistema toohello power toorestore di passaggi seguenti.
+Se l’alimentazione è disattivata manualmente, effettuare i passaggi seguenti per ripristinare l'alimentazione del sistema.
 
-1. Accendere l'enclosure EBOD hello.
-2. Dopo hello enclosure EBOD, accendere l'enclosure principale hello.
+1. Accendere l'enclosure EBOD.
+2. Dopo l'accensione dell’enclosure EBOD, accendere l'enclosure principale.
 
 ### <a name="power-loss-on-both-power-supplies-on-ebod-enclosure"></a>Perdita di energia su entrambi gli alimentatori dell’enclosure EBOD
-Quando configurano i cavi, è necessario assicurarsi che hello EBOD non è mai connessi solo tooa separare PDU. Se hello EBOD e principale non riuscire in hello contemporaneamente, sistema di hello verrà ripristinato.
+Quando si configurano i cavi, è necessario assicurarsi che l'enclosure EBOD non sia mai collegata da sola a una PDU separata. Se l'enclosure EBOD e l’enclosure principale non hanno esito positivo contemporaneamente, il sistema viene ripristinato.
 
-Se solo hello enclosure EBOD non riesce per entrambi gli alimentatori, il sistema di hello non verrà ripristinato automaticamente. Accettano hello seguendo i passaggi tooturn sistema hello e ripristinarlo tooa integro:
+Se solo l’enclosure EBOD ha esito negativo su entrambi gli alimentatori, il sistema non viene ripristinato automaticamente. Per attivare il sistema e farlo tornare integro, procedere come segue:
 
-1. Se è attivata l'enclosure principale hello, spegnere entrambi Power and Cooling Module (PCM).
-2. Attendere alcuni minuti per hello sistema tooshut verso il basso.
-3. Accendere l'enclosure EBOD hello.
-4. Dopo hello enclosure EBOD, accendere l'enclosure principale hello.
+1. Se l'enclosure principale è accesa, disattivare entrambi i PCM.
+2. Attendere alcuni minuti per arrestare il sistema.
+3. Accendere l'enclosure EBOD.
+4. Dopo l'accensione dell’enclosure EBOD, accendere l'enclosure principale.
 
-## <a name="turn-on-a-device-after-hello-primary-and-ebod-enclosure-connection-is-lost"></a>Attivare un dispositivo dopo hello primario e il collegamento di enclosure EBOD viene interrotto
-Se hello connessione si interrompe tra i controller in standby hello e controller EBOD corrispondente hello, dispositivo hello continua toowork. Se la connessione hello tra controller di sistema attivo hello e il corrispondente controller EBOD di hello viene persa, failover dovrebbe verificarsi e dispositivo hello deve continuare toowork come di consueto.
+## <a name="turn-on-a-device-after-the-primary-and-ebod-enclosure-connection-is-lost"></a>Attivare un dispositivo dopo la perdita della connessione dell’enclosure principale e dell’enclosure EBOD 
+Se la connessione si interrompe tra il controller in standby e il controller EBOD corrispondente, il dispositivo continua a funzionare. Se la connessione tra il controller attivo del sistema e il controller EBOD corrispondente viene persa, dovrebbe verificarsi il failover e il dispositivo dovrebbe continuare a funzionare normalmente.
 
-Quando vengono rimossi entrambi i cavi SAS Serial Attached SCSI () o connessione hello tra hello enclosure EBOD ed enclosure principale hello viene interrotto, il dispositivo hello smetterà di funzionare. A questo punto, eseguire hello alla procedura seguente.
+Quando vengono rimossi entrambi i cavi Serial Attached SCSI (SAS) o viene interrotta la connessione tra l'enclosure EBOD e l'enclosure principale, il dispositivo smette di funzionare. A questo punto, eseguire la procedura seguente.
 
-### <a name="tooturn-on-hello-device-after-connection-is-lost"></a>tooturn sul dispositivo hello dopo la connessione viene persa
-1. Hello accesso parte posteriore dispositivo hello.
-2. Se hello cavo SAS tra hello EBOD hello enclosure principale ed è interrotto, tutti i terminali del cavo SAS LED sul hello enclosure EBOD saranno spenti.
-3. Arrestare entrambi Power and Cooling Module (PCM) sulle enclosure EBOD di hello e hello primario.
-4. Attendere che tutte le luci hello in hello parte posteriore di entrambe le enclosure hello disattivare.
-5. Reinserire i cavi SAS hello e verificare che sia presente un collegamento tra hello EBOD hello enclosure principale ed.
-6. Attivare hello enclosure EBOD prima girando entrambi PCM commutatori toohello in posizione.
-7. Verificare che l'enclosure EBOD hello sia su controllando che il LED verde hello è impostata su ON.
-8. Accendere l'enclosure principale hello.
-9. Verificare che l'enclosure principale hello sia su verificando che i LED verde del controller hello sia in.
-10. Verificare che hello connessione enclosure EBOD con enclosure principale hello buona controllando che hello SAS LED terminali del cavo (quattro per controller EBOD) si trovano tutti in.
+### <a name="to-turn-on-the-device-after-connection-is-lost"></a>Per attivare il dispositivo dopo la perdita della connessione
+1. Accesso posteriore del dispositivo.
+2. Se la connessione via cavo SAS tra l'enclosure EBOD e l’enclosure principale viene interrotta, tutti i LED SAS sull’enclosure EBOD sono spenti.
+3. Arrestare entrambi i Power and Cooling Module (PCM) sull'enclosure EBOD e sull’enclosure principale.
+4. Attendere che tutti gli indicatori sul retro di entrambe le enclosure si spengano.
+5. Reinserire i cavi SAS e assicurarsi che vi sia una buona connessione tra l'enclosure EBOD e l’enclosure principale.
+6. Accendere prima l’enclosure EBOD girando l'interruttore di alimentazione di entrambi i PCM su ON.
+7. Assicurarsi che l'enclosure EBOD sia attiva controllando che il LED verde sia acceso.
+8. Accendere l'enclosure principale.
+9. Assicurarsi che l'enclosure principale sia attiva controllando che il LED verde del controller sia acceso.
+10. Verificare che la connessione dell’enclosure EBOD con l’enclosure principale sia buona controllando che i LED SAS (quattro per controller EBOD) siano tutti accesi.
 
 > [!IMPORTANT]
-> Se i cavi SAS hello sono difettosi o connessione hello tra hello enclosure EBOD ed enclosure principale hello è non valida, quando si attiva il sistema di hello, passerà alla modalità di ripristino. Se ciò accade, [contattare il supporto tecnico Microsoft](storsimple-8000-contact-microsoft-support.md) .
+> Se i cavi SAS sono difettosi o la connessione tra l'enclosure EBOD e l’enclosure principale non è valida, quando si attiva il sistema, esso entra in modalità di ripristino. Se ciò accade, [contattare il supporto tecnico Microsoft](storsimple-8000-contact-microsoft-support.md) .
 
 
 ## <a name="turn-off-a-running-device"></a>Spegnere un dispositivo in esecuzione
-Un dispositivo StorSimple in esecuzione potrebbe essere necessario toobe arrestato se è stato spostato, messo fuori servizio, o è un componente non funzionante toobe sostituito. Hello passaggi sono diversi a seconda se il dispositivo StorSimple hello sia un 8100 o un modello 8600. Hello 8100 ha una sola enclosure principale, mentre hello 8600 è un dispositivo di due enclosure con una enclosure principale e una EBOD. In questa sezione illustra in dettaglio hello passaggi tooshut verso il basso un dispositivo in esecuzione.
+Potrebbe essere necessario arrestare un dispositivo StorSimple in esecuzione se deve essere spostato o messo fuori servizio oppure se ha un componente che non funziona correttamente e che deve essere sostituito. Le procedure sono diverse a seconda del modello del dispositivo StorSimple (8100 o 8600). Il modello 8100 ha una sola enclosure principale, mentre il 8600 è un dispositivo con un’enclosure principale e un’enclosure EBOD. In questa sezione vengono illustrati i passaggi per arrestare un dispositivo in esecuzione.
 
 * [Dispositivo con enclosure principale](#8100a)
 * [Dispositivo con enclosure EBOD](#8600a)
 
 ### <a name="device-with-primary-enclosure-a-name8100a"></a>Dispositivo con enclosure principale <a name="8100a">
-tooshut verso il basso il dispositivo hello in modo ordinato e controllato, è possibile farlo tramite hello portale di Azure classico o hello Windows PowerShell per StorSimple. 
+Per arrestare il dispositivo in modo ordinato e controllato, è possibile usare il portale di Azure classico oppure Windows PowerShell per StorSimple. 
 
 > [!IMPORTANT]
-> Non arrestare un dispositivo in esecuzione con il pulsante di alimentazione hello in hello parte posteriore dispositivo hello.
+> Non arrestare un dispositivo in esecuzione utilizzando il pulsante di alimentazione sul retro del dispositivo.
 > 
-> Prima di arrestare il dispositivo di hello, assicurarsi che tutti i componenti del dispositivo hello siano integri. Nel portale di Azure classico hello, passare troppo**dispositivi** > **manutenzione** > **stato Hardware**e verificare lo stato di tutti i hello i componenti sia di colore verde. Questo vale solo per un sistema integro. Se il sistema hello è l'arresto tooreplace un componente non funzionante, verrà visualizzato un errore (rosso) o danneggiato (giallo) dello stato per componente hello in hello **stato Hardware**.
+> Prima di spegnere il dispositivo, assicurarsi che tutti i componenti del dispositivo siano integri. Nel portale di Azure classico passare a **Dispositivi** > **Manutenzione** > **Stato hardware** e verificare che lo stato di tutti i componenti sia verde. Questo vale solo per un sistema integro. Se il dispositivo viene arrestato per la sostituzione di un componente che non funziona correttamente, verrà visualizzato lo stato di errore (rosso) o danneggiato (giallo) per i rispettivi componenti nello **Stato hardware**.
 > 
 > 
 
-Dopo l'accesso hello Windows PowerShell per StorSimple o hello portale di Azure classico, seguire i passaggi hello [arrestare un dispositivo StorSimple](storsimple-manage-device-controller.md#shut-down-a-storsimple-device). 
+Dopo aver effettuato l'accesso a Windows PowerShell per StorSimple o al portale di Azure classico, seguire i passaggi della procedura [Arrestare un dispositivo StorSimple](storsimple-manage-device-controller.md#shut-down-a-storsimple-device). 
 
 ### <a name="device-with-ebod-enclosure-a-name8600a"></a>Dispositivo con enclosure EBOD <a name="8600a">
 > [!IMPORTANT]
-> Prima di arrestare hello primario e hello EBOD, assicurarsi che tutti i componenti del dispositivo hello siano integri. Nel portale di Azure hello, passare troppo**dispositivi** > **monitoraggio** > **lo stato di Hardware**e verificare che tutti i componenti di hello siano integri.
+> Prima di arrestare l'enclosure principale ed EBOD, verificare che tutti i componenti del dispositivo siano integri. Nel portale di Azure passare a **Dispositivi** > **Monitoraggio** > **Integrità hardware** e verificare che tutti i componenti siano integri.
 
 
-#### <a name="tooshut-down-a-running-device-with-ebod-enclosure"></a>tooshut verso il basso un dispositivo con enclosure EBOD in esecuzione
-1. Eseguire tutti i passaggi di hello elencati in [arrestare un dispositivo StorSimple](storsimple-8000-manage-device-controller.md#shut-down-a-storsimple-device) per enclosure principale hello.
-2. Dopo aver hello enclosure principale è stato arrestato, arrestare hello EBOD girando disattivare Opzioni risparmio energia sia modulo di raffreddamento (PCM).
-3. arresto tooverify che hello EBOD, verificare che tutti diventa su hello parte posteriore dell'enclosure EBOD hello sono disattivate.
+#### <a name="to-shut-down-a-running-device-with-ebod-enclosure"></a>Per arrestare un dispositivo in esecuzione con enclosure EBOD
+1. Eseguire tutti i passaggi della procedura [Arrestare un dispositivo StorSimple](storsimple-8000-manage-device-controller.md#shut-down-a-storsimple-device) per l'enclosure principale.
+2. Dopo che l'enclosure principale è stata arrestata, arrestare l'enclosure EBOD girando entrambi gli interruttori del Power and Cooling Module (PCM).
+3. Per verificare che l'enclosure EBOD sia stata chiusa, controllare che tutte le luci nella parte posteriore dell’enclosure EBOD siano spente.
 
 > [!NOTE]
-> i cavi SAS Hello che vengono utilizzati tooconnect hello EBOD toohello enclosure principale enclosure non devono essere rimosso fino a dopo l'arresto del sistema hello.
+> I cavi SAS che consentono di collegare l'enclosure EBOD all'enclosure principale non devono essere rimossi fino a dopo l'arresto del sistema.
 
 ## <a name="next-steps"></a>Passaggi successivi
 [Contattare il supporto tecnico Microsoft](storsimple-8000-contact-microsoft-support.md) se si riscontrano problemi durante l'attivazione o l'arresto di un dispositivo StorSimple.

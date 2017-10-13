@@ -2,39 +2,39 @@
 
 
 
-A seconda di ambiente e le scelte, script di hello può creare tutta l'infrastruttura cluster hello, tra cui hello rete virtuale di Azure, gli account di archiviazione, servizi cloud, controller di dominio, i database SQL locali o remoti, il nodo head e cluster aggiuntivo nodi. In alternativa, utilizzare infrastruttura di Azure preesistente e creare solo nodi del cluster HPC hello script hello.
+A seconda dell'ambiente e delle scelte effettuate, lo script può creare tutta l'infrastruttura del cluster, inclusi la rete virtuale di Azure, gli account di archiviazione, i servizi cloud, il controller di dominio, i database SQL locali o remoti, il nodo head e altri nodi del cluster. In alternativa, lo script può usare l'infrastruttura di Azure esistente e creare solo i nodi del cluster HPC.
 
-Per informazioni generali sulla pianificazione di un cluster HPC Pack, vedere hello [valutazione del prodotto e alla pianificazione](https://technet.microsoft.com/library/jj899596.aspx) e [Introduzione](https://technet.microsoft.com/library/jj899590.aspx) contenuto nella libreria TechNet di HPC Pack 2012 R2 hello.
+Per informazioni generali sulla pianificazione di un cluster HPC Pack, vedere la [valutazione e pianificazione del prodotto](https://technet.microsoft.com/library/jj899596.aspx) e l'[introduzione](https://technet.microsoft.com/library/jj899590.aspx) nella libreria TechNet per HPC Pack 2012 R2.
 
 ## <a name="prerequisites"></a>Prerequisiti
-* **Sottoscrizione di Azure**: È possibile utilizzare una sottoscrizione in un servizio Azure globale o Azure China hello. Ai termini della sottoscrizione influiscono sul numero di hello e tipo dei nodi del cluster che è possibile distribuire. Per informazioni, vedere [Limiti, quote e vincoli delle sottoscrizioni e dei servizi di Microsoft Azure](../articles/azure-subscription-service-limits.md).
-* **Computer client Windows con Azure PowerShell 0.8.10 o versione successiva installato e configurato**: vedere [Guida introduttiva di Azure PowerShell](/powershell/azureps-cmdlets-docs) per installazione istruzioni e i passaggi tooconnect tooyour sottoscrizione di Azure.
-* **Script di distribuzione IaaS di HPC Pack**: scaricare e decomprimere hello versione dello script hello hello [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=44949). Controllare la versione di hello dello script di hello eseguendo `New-HPCIaaSCluster.ps1 –Version`. In questo articolo si basa sulla versione 4.5.2 dello script hello.
-* **File di configurazione script**: creare un file XML che script hello utilizza un cluster HPC tooconfigure hello. Per informazioni ed esempi, vedere le sezioni più avanti in questo articolo e hello file Manual.rtf che accompagna script di distribuzione hello.
+* **Sottoscrizione di Azure**: è possibile usare una sottoscrizione nel servizio Azure globale o Azure Cina. I limiti della sottoscrizione riguardano il numero e il tipo di nodi del cluster che è possibile distribuire. Per informazioni, vedere [Limiti, quote e vincoli delle sottoscrizioni e dei servizi di Microsoft Azure](../articles/azure-subscription-service-limits.md).
+* **Computer client Windows in cui è stato installato e configurato Azure PowerShell 0.8.10 o versioni successive**. Vedere [Introduzione ad Azure PowerShell](/powershell/azureps-cmdlets-docs) per le istruzioni di installazione e le operazioni per la connessione alla sottoscrizione di Azure.
+* **Script di distribuzione di HPC Pack IaaS**: scaricare e decomprimere la versione più recente dello script dall'[Area download Microsoft](https://www.microsoft.com/download/details.aspx?id=44949). Controllare la versione dello script eseguendolo `New-HPCIaaSCluster.ps1 –Version`. Questo articolo si basa sulla versione 4.5.2 dello script.
+* **File di configurazione script**: creare un file XML usato dallo script per configurare il cluster HPC. Per informazioni ed esempi, vedere le sezioni più avanti in questo articolo e il file Manual.rtf che accompagna lo script di distribuzione.
 
 ## <a name="syntax"></a>Sintassi
 ```PowerShell
 New-HPCIaaSCluster.ps1 [-ConfigFile] <String> [-AdminUserName]<String> [[-AdminPassword] <String>] [[-HPCImageName] <String>] [[-LogFile] <String>] [-Force] [-NoCleanOnFailure] [-PSSessionSkipCACheck] [<CommonParameters>]
 ```
 > [!NOTE]
-> Eseguire script hello come amministratore.
+> Eseguire lo script come amministratore.
 > 
 > 
 
 ### <a name="parameters"></a>parameters
-* **ConfigFile**: Specifica il percorso file hello hello configurazione toodescribe hello HPC del cluster di file. Vedere informazioni sui file di configurazione hello in questo argomento, o nel file hello Manual.rtf nella cartella hello contenente script hello.
-* **AdminUserName**: Specifica il nome utente hello. Se la foresta di domini hello creata dallo script hello, questa diventa nome utente dell'amministratore locale hello per tutte le macchine virtuali e il nome di amministratore di dominio hello. Se esiste già una foresta di domini hello, si specifica utente di dominio hello hello tooinstall di nome utente amministratore locale HPC Pack.
-* **AdminPassword**: specifica la password dell'amministratore di hello. Se non specificato nella riga di comando hello, script hello richiede password hello tooinput.
-* **HPCImageName** (facoltativo): specifica un cluster HPC hello toodeploy nome immagine di macchina virtuale di HPC Pack hello. Deve essere un'immagine fornita da Microsoft HPC Pack da hello Azure Marketplace. Se non viene specificato hello (consigliato in genere), script sceglie hello più recente pubblicata [HPC Pack 2012 R2 immagine](https://azure.microsoft.com/marketplace/partners/microsoft/hpcpack2012r2onwindowsserver2012r2/). immagine più recente di Hello è basata su Windows Server 2012 R2 Datacenter con HPC Pack 2012 R2 Update 3.
+* **ConfigFile**: specifica il percorso del file di configurazione che descrive il cluster HPC. Altre informazioni sul file di configurazione sono disponibili in questo argomento o nel file Manual.rtf, incluso nella cartella che contiene lo script.
+* **AdminUserName**: specifica il nome utente. Se la foresta di domini viene creata dallo script, si tratta del nome utente amministratore locale per tutte le macchine virtuali, nonché del nome dell'amministratore di dominio. Se la foresta di domini esiste già, specifica l'utente di dominio come nome utente amministratore locale per installare HPC Pack.
+* **AdminPassword**: specifica la password dell'amministratore. Se non è specificata nella riga di comando, lo script richiederà di immettere la password.
+* **HPCImageName** (facoltativo): specifica il nome immagine di macchina virtuale HPC Pack usato per distribuire il cluster HPC. Deve essere un'immagine HPC Pack fornita da Microsoft da Azure Marketplace. Se non è specificata (scelta generalmente consigliata), lo script sceglie l'ultima [immagine HPC Pack 2012 R2](https://azure.microsoft.com/marketplace/partners/microsoft/hpcpack2012r2onwindowsserver2012r2/) pubblicata. L'immagine corrente è basata su Windows Server 2012 R2 Datacenter con HPC Pack 2012 R2 Update 3 installato.
   
   > [!NOTE]
   > Se non si specifica un'immagine HPC Pack valida, la distribuzione avrà esito negativo.
   > 
   > 
-* **File di registro** (facoltativo): percorso del file di registro distribuzione hello specifica. Se non specificato, script hello crea un file di log nella directory temp di hello del hello che esegue script hello.
-* **Force** (facoltativo): Elimina tutte le richieste di conferma hello.
-* **NoCleanOnFailure** (facoltativo): Specifica che le macchine virtuali di Azure che non vengono distribuiti hello non vengono rimossi. Rimuovere manualmente queste macchine virtuali prima di eseguire nuovamente la distribuzione di hello script toocontinue hello o hello distribuzione potrebbe non riuscire.
-* **PSSessionSkipCACheck** (facoltativo): per ogni servizio cloud con macchine virtuali distribuite da questo script, un certificato autofirmato viene generato automaticamente da Azure e hello tutte le macchine virtuali nel servizio cloud hello Usa questo certificato, come impostazione predefinita Windows hello Certificato di gestione (WinRM) remoto. funzionalità di toodeploy HPC in queste macchine virtuali di Azure, per impostazione predefinita script hello installa temporaneamente questi certificati nel Computer locale hello\\archivio Autorità di certificazione radice attendibili di hello client computer toosuppress hello sicurezza "CA non attendibile" Errore durante l'esecuzione dello script. i certificati di Hello vengono rimossi al termine dello script hello. Se viene specificato questo parametro, i certificati di hello non sono installati nel computer client hello e hello sicurezza l'avviso.
+* **LogFile** (facoltativo): specifica il percorso del file di log della distribuzione. Se non è specificato, lo script creerà un file di log nella directory temporanea del computer che esegue lo script.
+* **Force** (facoltativo): elimina tutte le richieste di conferma.
+* **NoCleanOnFailure** (facoltativo): specifica che le macchine virtuali di Azure non distribuite correttamente non verranno rimosse. Rimuovere manualmente queste macchine virtuali prima di eseguire nuovamente lo script per continuare la distribuzione. In caso contrario, la distribuzione potrebbe non riuscire.
+* **PSSessionSkipCACheck** (facoltativo): per ogni servizio cloud con VM distribuite da questo script, viene automaticamente generato da Azure un certificato autofirmato che viene usato da tutte le VM nel servizio cloud come certificato di Gestione remota Windows (WinRM) predefinito. Per distribuire funzionalità HPC in queste macchine virtuali di Azure, per impostazione predefinita lo script installa temporaneamente questi certificati nell'archivio computer locale\\Autorità di certificazione radice disponibile nell'elenco locale del computer client, in modo da eliminare l'errore di sicurezza relativo all'autorità di certificazione non attendibile durante l'esecuzione dello script. I certificati vengono rimossi al termine dello script. Se questo parametro è specificato, i certificati non vengono installati nel computer client e l'avviso di sicurezza viene eliminato.
   
   > [!IMPORTANT]
   > Questo parametro non è consigliato per distribuzioni di produzione.
@@ -42,16 +42,16 @@ New-HPCIaaSCluster.ps1 [-ConfigFile] <String> [-AdminUserName]<String> [[-AdminP
   > 
 
 ### <a name="example"></a>Esempio
-esempio Hello crea un cluster HPC Pack utilizzando il file di configurazione *MyConfigFile.xml*e specifica le credenziali di amministratore per l'installazione cluster hello.
+L'esempio seguente crea un cluster HPC Pack usando il file di configurazione *MyConfigFile.xml* e specifica le credenziali amministrative per l'installazione del cluster.
 
 ```PowerShell
 .\New-HPCIaaSCluster.ps1 –ConfigFile MyConfigFile.xml -AdminUserName <username> –AdminPassword <password>
 ```
 
-### <a name="additional-considerations"></a>Considerazioni aggiuntive
-* script Hello possibile consentire l'invio di processi tramite portale web di HPC Pack hello o hello API REST di HPC Pack.
-* script Hello può facoltativamente eseguire script di pre e post-configurazione personalizzati nel nodo head hello se si desidera software aggiuntivo tooinstall o configurare altre impostazioni.
+### <a name="additional-considerations"></a>Considerazione aggiuntive
+* Lo script può facoltativamente consentire l'invio di processi tramite il portale Web di HPC Pack o l'API REST HPC Pack.
+* Se si vuole installare altro software o configurare altre impostazioni, lo script può facoltativamente eseguire script di preconfigurazione e post-configurazione personalizzati nel nodo head.
 
 ## <a name="configuration-file"></a>File di configurazione
-file di configurazione Hello per lo script di distribuzione hello è un file XML. file di schema Hello hpciaasclusterconfig.xsd si trova nella cartella script di distribuzione IaaS di HPC Pack hello. **IaaSClusterConfig** hello di elemento radice del file di configurazione hello, che contiene gli elementi figlio di hello descritti in dettaglio nel file hello Manual.rtf nella cartella script di distribuzione hello.
+Il file di configurazione per lo script di distribuzione è un file XML. Il file di schema HPCIaaSClusterConfig.xsd si trova nella cartella dello script di distribuzione IaaS di HPC Pack. **IaaSClusterConfig** è l'elemento radice del file di configurazione, che contiene gli elementi figlio descritti in dettaglio nel file Manual.rtf nella cartella dello script di distribuzione.
 

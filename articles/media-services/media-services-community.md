@@ -1,5 +1,5 @@
 ---
-title: Panoramica della Community di servizi multimediali aaaAzure | Documenti Microsoft
+title: Panoramica sulla community di Servizi multimediali di Azure | Microsoft Docs
 description: "La pagina della community di Servizi multimediali di Azure illustra i diversi modi in cui è possibile ottenere aggiornamenti su Servizi multimediali di Azure, visualizzare nuovi video e podcast, porre domande e inviare commenti e suggerimenti. "
 services: media-services
 documentationcenter: 
@@ -14,11 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: juliako
-ms.openlocfilehash: 97329ef099752506af6ec6947a88a00c35d141a3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ef77ed3a4efee7ebcdd716376be78db38ce46f8f
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="azure-media-services-community"></a>Community di Servizi multimediali di Azure
 La pagina della community di Servizi multimediali di Azure illustra i diversi modi in cui è possibile ottenere aggiornamenti su Servizi multimediali di Azure, visualizzare nuovi video e podcast, porre domande e inviare commenti e suggerimenti.   
@@ -37,10 +37,10 @@ La pagina della community di Servizi multimediali di Azure illustra i diversi mo
 
 ## <a name="discussion"></a>Discussione
 ### <a name="twitter"></a>Twitter
-Hello utilizzare [ @MSFTAzureMedia ](https://twitter.com/MSFTAzureMedia) twitter handle toofollow hello AMS novità e gli aggiornamenti su Twitter. È possibile utilizzare hello [ @AzureSupport ](https://twitter.com/azuresupport) twitter supporto toorequest handle su Twitter.  
+Usare il nome utente Twitter [@MSFTAzureMedia](https://twitter.com/MSFTAzureMedia) per ottenere informazioni sulle ultime novità e sugli aggiornamenti per Servizi multimediali di Azure su Twitter. È possibile usare il nome utente Twitter [@AzureSupport](https://twitter.com/azuresupport) per richiedere supporto su Twitter.  
 
 ### <a name="online-forums"></a>Forum online
-Hello seguenti forum può essere utilizzato per porre domande sulle funzionalità e i prodotti correnti.
+I forum seguenti possono essere usati per porre domande sui prodotti e sulle funzionalità correnti.
 
 MSDN è attualmente il forum primario su Servizi multimediali di Azure.
 
@@ -48,10 +48,10 @@ MSDN è attualmente il forum primario su Servizi multimediali di Azure.
 
 [![StackOverflow](./media/media-services-community/stack-overflow.png)](http://stackoverflow.com/questions/tagged/azure-media-services) 
 
-## <a name="contact-hello-team"></a>Team di hello contatto
+## <a name="contact-the-team"></a>Contattare il team
 L'indirizzo di posta elettronica principale per Servizi multimediali di Azure è: **mediaservices@microsoft.com**.
 
-Hello nella tabella seguente sono elencati i messaggio di posta elettronica dei team sub funzionalità:
+La tabella seguente elenca l'indirizzo di posta elettronica dei team secondari per ogni funzionalità:
 
 | Funzionalità | Email |
 | --- | --- |

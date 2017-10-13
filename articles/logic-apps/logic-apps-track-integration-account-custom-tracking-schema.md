@@ -1,6 +1,6 @@
 ---
-title: gli schemi di rilevamento per B2B aaaCustom monitoraggio - App Azure per la logica | Documenti Microsoft
-description: Creare gli schemi di rilevamento personalizzato messaggi B2B toomonitor dalle transazioni nell'Account di integrazione di Azure.
+title: Schemi di rilevamento personalizzati per il monitoraggio B2B - App per la logica di Azure | Documenti di Microsoft
+description: Creare schemi di rilevamento personalizzati per il monitoraggio dei messaggi B2B dalle transazioni nell'account di integrazione di Azure.
 author: padmavc
 manager: anneta
 editor: 
@@ -15,16 +15,16 @@ ms.topic: article
 ms.date: 01/27/2017
 ms.author: LADocs; padmavc
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 8cf26a43d89f0414a2a8c5ef59d804235afeb5d6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: b71a4938dde2a71f1ce29403af7aa9101358d64c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="enable-tracking-toomonitor-your-complete-workflow-end-to-end"></a>Abilitare il rilevamento toomonitor il flusso di lavoro completata, end-to-end
-È disponibile un rilevamento predefinito che è possibile abilitare per diverse parti del flusso di lavoro Business to Business, ad esempio il rilevamento dei messaggi AS2 o X12. Quando si creano flussi di lavoro che include una logica di applicazione, BizTalk Server, SQL Server o qualsiasi altro livello, è possibile abilitare il rilevamento personalizzato che registra gli eventi dalla fine di toohello hello inizio del flusso di lavoro. 
+# <a name="enable-tracking-to-monitor-your-complete-workflow-end-to-end"></a>Abilitare il rilevamento per monitorare il flusso di lavoro completo, end-to-end
+È disponibile un rilevamento predefinito che è possibile abilitare per diverse parti del flusso di lavoro Business to Business, ad esempio il rilevamento dei messaggi AS2 o X12. Quando si creano flussi di lavoro che includono app per la logica, BizTalk Server, SQL Server o qualsiasi altro livello, è possibile abilitare il rilevamento personalizzato che registra gli eventi dall'inizio alla fine del flusso di lavoro. 
 
-In questo argomento fornisce codice personalizzato che è possibile utilizzare nei livelli di hello all'esterno dell'app logica. 
+Questo argomento fornisce un codice personalizzato che è possibile usare nei livelli all'esterno di app per la logica. 
 
 ## <a name="custom-tracking-schema"></a>Schema di rilevamento personalizzato
 ````java
@@ -63,19 +63,19 @@ In questo argomento fornisce codice personalizzato che è possibile utilizzare n
 
 | Proprietà | Tipo | Descrizione |
 | --- | --- | --- |
-| sourceType |   | Tipo di origine eseguire hello. I valori consentiti sono **Microsoft.Logic/workflows** e **custom**. Obbligatoria |
-| Sorgente |   | Se il tipo di origine hello **Microsoft.Logic/workflows**, necessita di informazioni di origine hello toofollow questo schema. Se il tipo di origine hello **personalizzato**, lo schema di hello è un JToken. Obbligatoria |
+| sourceType |   | Tipo dell'origine dell'esecuzione. I valori consentiti sono **Microsoft.Logic/workflows** e **custom**. Obbligatoria |
+| Source |   | Se il tipo di origine è **Microsoft.Logic/workflows**, le informazioni dell'origine devono seguire questo schema. Se il tipo di origine è **custom**, lo schema è JToken. Obbligatoria |
 | systemId | String | ID di sistema dell'app per la logica. Obbligatoria |
 | runId | String | ID di esecuzione dell'app per la logica. Obbligatoria |
-| operationName | String | Nome dell'operazione di hello (ad esempio, azione o trigger). Obbligatoria |
-| repeatItemScopeName | String | Ripetere il nome dell'elemento se hello azione all'interno di un `foreach` / `until` ciclo. Obbligatoria |
-| repeatItemIndex | Integer | Se l'azione di hello è all'interno di un `foreach` / `until` ciclo. Indica l'indice dell'elemento ripetuto di hello. Obbligatoria |
-| trackingId | String | ID di traccia, messaggi hello toocorrelate. Facoltativa |
-| correlationId | String | ID di correlazione, messaggi hello toocorrelate. Facoltativa |
-| clientRequestId | String | Client popolarlo toocorrelate messaggi. Facoltativa |
-| eventLevel |   | Livello dell'evento hello. Obbligatoria |
-| eventTime |   | Ora dell'evento hello, in formato UTC AAAA-MM-DDTHH:MM:SS.00000Z. Obbligatoria |
-| recordType |   | Tipo di record di rilevamento hello. Il valore consentito è **custom**. Obbligatoria |
+| operationName | String | Nome dell'operazione, ad esempio azione o trigger. Obbligatoria |
+| repeatItemScopeName | String | Ripetere il nome dell'elemento se l'azione è all'interno di un loop `foreach` / `until`. Obbligatoria |
+| repeatItemIndex | Integer | Se l'azione è all'interno di un loop `foreach`/`until`. Indica l'indice dell'elemento ripetuto. Obbligatoria |
+| trackingId | String | Indica l'ID di rilevamento per la correlazione dei messaggi. Facoltativa |
+| correlationId | String | ID di correlazione, per la correlazione dei messaggi. Facoltativa |
+| clientRequestId | String | Il client può popolare questo valore per la correlazione dei messaggi. Facoltativa |
+| eventLevel |   | Livello dell'evento. Obbligatoria |
+| eventTime |   | Ora dell'evento in formato UTC, ovvero AAAA-MM-GGTHH:MM:SS.00000Z Obbligatoria |
+| recordType |   | Tipo di record di rilevamento. Il valore consentito è **custom**. Obbligatoria |
 | record |   | Tipo di record personalizzato. Il formato consentito è JToken. Obbligatoria |
 
 ## <a name="b2b-protocol-tracking-schemas"></a>Schemi di rilevamento per il protocollo B2B
@@ -85,5 +85,5 @@ Per informazioni sugli schemi di rilevamento per il protocollo B2B, vedere:
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Altre informazioni sul [monitoraggio dei messaggi B2B](logic-apps-monitor-b2b-message.md).   
-* Informazioni su [rilevamento dei messaggi B2B nel portale di Operations Management Suite hello](../logic-apps/logic-apps-track-b2b-messages-omsportal.md).
-* Altre informazioni su hello [Enterprise Integration Pack](../logic-apps/logic-apps-enterprise-integration-overview.md).
+* Altre informazioni sul [rilevamento dei messaggi B2B nel portale di Operations Management Suite](../logic-apps/logic-apps-track-b2b-messages-omsportal.md).
+* Altre informazioni su [Enterprise Integration Pack](../logic-apps/logic-apps-enterprise-integration-overview.md).

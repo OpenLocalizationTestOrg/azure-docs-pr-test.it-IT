@@ -1,6 +1,6 @@
 ---
-title: scenari di ripristino aaaDisaster per le macchine virtuali di Azure | Documenti Microsoft
-description: Informazioni su quali toodo nell'evento hello che un'interruzione del servizio Azure influisce sulle macchine virtuali di Azure.
+title: Scenari di ripristino di emergenza per macchine virtuali di Azure | Documentazione Microsoft
+description: Informazioni su cosa fare in caso di un'interruzione di servizio di Azure che influisce sulle macchine virtuali di Azure.
 services: virtual-machines
 documentationcenter: 
 author: kmouss
@@ -15,35 +15,35 @@ ms.topic: article
 ms.date: 05/31/2017
 ms.author: kmouss;aglick
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 839c6f9c51a7f35b48ef3636bc346eef332bb06d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: fb986a41e33501ee71c93a48457ac4114e33c671
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="what-toodo-in-hello-event-that-an-azure-service-disruption-impacts-azure-vms"></a>Quali toodo nell'evento hello che un'interruzione del servizio Azure influisce sulle macchine virtuali di Azure
-Microsoft, collaboriamo toomake disco che i servizi siano sempre disponibili tooyou quando necessario. Eventi imprevisti possono, tuttavia, causare interruzioni non pianificate dei servizi.
+# <a name="what-to-do-in-the-event-that-an-azure-service-disruption-impacts-azure-vms"></a>Cosa fare in caso di un'interruzione di servizio di Azure che influisce sulle macchine virtuali di Azure
+Microsoft si impegna costantemente per garantire agli utenti la disponibilità dei servizi in base alle esigenze. Eventi imprevisti possono, tuttavia, causare interruzioni non pianificate dei servizi.
 
-La connettività e la disponibilità dei servizi Microsoft sono garantite da un contratto di servizio. Hello contratto di servizio per i singoli servizi di Azure è reperibile in [contratti di servizio di Azure](https://azure.microsoft.com/support/legal/sla/).
+La connettività e la disponibilità dei servizi Microsoft sono garantite da un contratto di servizio. I contratti di servizio relativi ai singoli servizi di Azure sono disponibili alla pagina [Contratti di servizio](https://azure.microsoft.com/support/legal/sla/).
 
 Azure offre già diverse funzionalità della piattaforma predefinite che supportano applicazioni a disponibilità elevata. Per altre informazioni su questi servizi, vedere [Ripristino di emergenza e disponibilità elevata per le applicazioni basate su Microsoft Azure](../resiliency/resiliency-disaster-recovery-high-availability-azure-applications.md).
 
-Questo articolo descrive uno scenario di ripristino di emergenza true, quando un'intera area di cui si verifichi un'interruzione a causa di calamità naturale toomajor o interruzione del servizio di diffusione. Si tratta di occorrenze rare, ma è necessario preparare il possibilità hello che sia presente un'interruzione di un'intera area. Se un'intera regione di cui si verifichi un'interruzione del servizio, le copie con ridondanza locale hello dei dati sarebbe temporaneamente non disponibile. Se è stata abilitata la replica geografica, esistono altre tre copie dei BLOB e delle tabelle di Archiviazione di Azure memorizzate in un'area diversa. In caso di hello di una completa interruzione dell'alimentazione locale o di emergenza in cui hello area primaria non è recuperabile, Azure esegue nuovamente il mapping tutti Region hello DNS voci toohello replica geografica.
+Questo articolo illustra uno scenario reale di ripristino di emergenza, quando in un'intera area si verifica un'interruzione a causa di un grave disastro naturale o di un'interruzione diffusa del servizio. Si tratta di episodi rari, ma è necessario prepararsi alla possibilità che si verifichi un evento del genere. In caso di un'interruzione del servizio che interessa un'intera area, le copie ridondanti locali dei dati non saranno temporaneamente disponibili. Se è stata abilitata la replica geografica, esistono altre tre copie dei BLOB e delle tabelle di Archiviazione di Azure memorizzate in un'area diversa. Nel caso di un'interruzione a livello dell'intera area o di un'emergenza in cui l'area primaria non sia recuperabile, Azure esegue un nuovo mapping di tutte le voci DNS all'area con replica geografica.
 
-toohelp gestire queste occorrenze rare, forniamo hello seguenti linee guida per macchine virtuali di Azure nel caso di hello di un'interruzione del servizio di hello all'intera area in cui viene distribuita la macchina virtuale di Azure.
+Per semplificare la gestione di questi rari avvenimenti, di seguito vengono fornite indicazioni per le macchine virtuali di Azure in caso di interruzione del servizio nell'intera area in cui è distribuita la macchina virtuale di Azure.
 
 ## <a name="option-1-initiate-a-failover-by-using-azure-site-recovery"></a>Opzione 1: avviare un failover con Azure Site Recovery
-È possibile configurare Azure Site Recovery per le macchine virtuali in modo che sia possibile recuperare l'applicazione con un solo clic in pochi minuti. È possibile replicare tooAzure regione di propria scelta e aree toopaired senza restrizioni. Iniziare eseguendo [la replica delle macchine virtuali](https://aka.ms/a2a-getting-started). È possibile [creare un piano di ripristino](../site-recovery/site-recovery-create-recovery-plans.md) in modo che è possibile automatizzare hello intero processo di failover per l'applicazione. È possibile [il failover di test](../site-recovery/site-recovery-test-failover-to-azure.md) in anticipo senza conseguenze per la replica in corso di produzione dell'applicazione o hello. In caso di hello di un'interruzione di area primaria, appena [avviare un failover](../site-recovery/site-recovery-failover.md) e attivare l'applicazione nell'area di destinazione.
+È possibile configurare Azure Site Recovery per le macchine virtuali in modo che sia possibile recuperare l'applicazione con un solo clic in pochi minuti. È possibile eseguire la replica in un'area di Azure di propria scelta che non sia limitata alle aree associate. Iniziare eseguendo [la replica delle macchine virtuali](https://aka.ms/a2a-getting-started). È possibile [creare un piano di ripristino](../site-recovery/site-recovery-create-recovery-plans.md) in modo da poter automatizzare tutto il processo di failover per l'applicazione. È possibile prima fare il [test dei failover](../site-recovery/site-recovery-test-failover-to-azure.md) senza alcun impatto sull'applicazione di produzione o sulla replica in corso. In caso di interruzione di un'area primaria basta [avviare un failover](../site-recovery/site-recovery-failover.md) e portare l'applicazione nell'area di destinazione.
 
 
 ## <a name="option-2-wait-for-recovery"></a>Opzione 2: attendere il ripristino
-In tal caso, non è necessaria alcuna azione da parte dell'utente. Sapere che stiamo lavorando attentamente toorestore disponibilità del servizio. È possibile visualizzare lo stato del servizio corrente hello nel nostro [Dashboard di integrità del servizio di Azure](https://azure.microsoft.com/status/).
+In tal caso, non è necessaria alcuna azione da parte dell'utente. Si sta lavorando per ripristinare la disponibilità dei servizi. È possibile vedere lo stato corrente del servizio nel [dashboard per l'integrità dei servizi di Azure](https://azure.microsoft.com/status/).
 
-Questo è migliore hello se non è di Azure Site Recovery, l'archiviazione con ridondanza geografica e accesso in lettura o interruzioni di archiviazione con ridondanza geografica toohello precedente. Se è stato configurato l'archiviazione con ridondanza geografica o l'archiviazione con ridondanza geografica e accesso in lettura per account di archiviazione hello in cui sono archiviati i dischi rigidi virtuali (VHD) la macchina virtuale, è possibile esaminare toorecover hello immagine di base del disco rigido virtuale e provare tooprovision una nuova macchina virtuale da esso. Questa non è un'opzione consigliata perché non offre alcuna garanzia di sincronizzazione dei dati. Di conseguenza, questa opzione non è garantita toowork.
+Questa è l'opzione migliore se non sono stati configurati Azure Site Recovery, l'archiviazione con ridondanza geografica e accesso in lettura o l'archiviazione con ridondanza geografica precedente all'interruzione . Se è stata impostata l'archiviazione con ridondanza geografica o con ridondanza geografica e accesso in lettura per l'account di archiviazione in cui sono archiviati i dischi rigidi virtuali della VM, è possibile cercare di ripristinare il VHD immagine di base e usarlo per provare a effettuare il provisioning di una nuova VM. Questa non è un'opzione consigliata perché non offre alcuna garanzia di sincronizzazione dei dati. Di conseguenza, non è certo che questa opzione possa funzionare.
 
 
 > [!NOTE]
-> Tenere presente che non è possibile controllare questo processo e che verrà eseguito solo in caso di interruzioni del servizio a livello di area. Per questo motivo, è necessario affidarsi anche altre strategie di backup specifiche dell'applicazione tooachieve hello massimo livello di disponibilità. Per ulteriori informazioni, vedere la sezione hello in [strategie dei dati per il ripristino di emergenza](https://docs.microsoft.com/azure/architecture/resiliency/disaster-recovery-azure-applications#data-strategies-for-disaster-recovery).
+> Tenere presente che non è possibile controllare questo processo e che verrà eseguito solo in caso di interruzioni del servizio a livello di area. Per questo motivo, è necessario affidarsi anche ad altre strategie di backup specifiche dell'applicazione per ottenere il massimo livello di disponibilità. Per altre informazioni, vedere la sezione [Strategie dei dati per il ripristino di emergenza](https://docs.microsoft.com/azure/architecture/resiliency/disaster-recovery-azure-applications#data-strategies-for-disaster-recovery).
 >
 >
 
@@ -51,9 +51,9 @@ Questo è migliore hello se non è di Azure Site Recovery, l'archiviazione con r
 
 - Avviare [la protezione delle applicazioni in esecuzione sulle macchine virtuali di Azure](https://aka.ms/a2a-getting-started) usando Azure Site Recovery
 
-- ulteriori informazioni sulla modalità tooimplement un ripristino di emergenza e la strategia di disponibilità elevata, vedere toolearn [il ripristino di emergenza e disponibilità elevata per applicazioni Azure](../resiliency/resiliency-disaster-recovery-high-availability-azure-applications.md).
+- Per altre informazioni su come implementare una strategia di disponibilità elevata e ripristino di emergenza, vedere [Ripristino di emergenza e disponibilità elevata per le applicazioni basate su Microsoft Azure](../resiliency/resiliency-disaster-recovery-high-availability-azure-applications.md).
 
-- toodevelop una conoscenza tecnica dettagliata delle funzionalità della piattaforma cloud, vedere [informazioni tecniche sulla resilienza Azure](../resiliency/resiliency-technical-guidance.md).
+- Per sviluppare una conoscenza tecnica approfondita delle funzionalità della piattaforma cloud, vedere [Indicazioni tecniche sulla resilienza di Azure](../resiliency/resiliency-technical-guidance.md).
 
 
-- Se le istruzioni di hello non crittografate o se si desidera che le operazioni di hello toodo Microsoft per conto dell'utente, contattare [il supporto tecnico](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade).
+- Per chiarimenti sulle istruzioni o per chiedere a Microsoft di eseguire le operazioni per proprio conto, contattare il [supporto tecnico](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade).

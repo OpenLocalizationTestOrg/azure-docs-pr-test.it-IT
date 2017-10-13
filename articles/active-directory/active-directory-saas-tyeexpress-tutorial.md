@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con T&E Express| Microsoft Docs'
-description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e T & E Express.
+description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e T&E Express.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,111 +13,111 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/03/2017
 ms.author: jeedes
-ms.openlocfilehash: 9a568ace8dbc75fadbf37554996b1b597a813d56
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 869e5284c71904fcc817ceee0f39d94fab1bc6f3
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-te-express"></a>Esercitazione: Integrazione di Azure Active Directory con T&E Express
 
-In questa esercitazione, è illustrato come toointegrate T & E Express con Azure Active Directory (Azure AD).
+Questa esercitazione illustra come integrare T&E Express con Azure Active Directory (Azure AD).
 
-T & Express E l'integrazione con Azure AD fornisce hello seguenti vantaggi:
+L'integrazione di T&E Express con Azure AD offre i vantaggi seguenti:
 
-- È possibile controllare in Azure AD che ha tooT accesso & E Express
-- È possibile abilitare le get connesso tooT tooautomatically di utenti & E Express (Single Sign-On) con i propri account Azure AD
-- È possibile gestire gli account in un'unica posizione centrale - portale di gestione di Azure hello
+- È possibile controllare in Azure AD chi può accedere a T&E Express
+- È possibile abilitare gli utenti per l'accesso automatico a T&E Express (Single Sign-On) con i propri account Azure AD
+- È possibile gestire gli account da una posizione centrale: il portale di gestione di Azure
 
-Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-integrazione di Azure AD con T & E Express tooconfigure, è necessario hello seguenti elementi:
+Per configurare l'integrazione di Azure AD con T&E Express, sono necessari gli elementi seguenti:
 
 - Sottoscrizione di Azure AD.
 - Sottoscrizione di T&E Express abilitata per l'accesso Single Sign-On
 
 > [!NOTE]
-> hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.
+> Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.
 
-passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:
+A questo scopo, è consigliabile seguire le indicazioni seguenti:
 
 - Non usare l'ambiente di produzione, a meno che non sia necessario.
 - Se non è disponibile un ambiente di prova di Azure AD, è possibile ottenere una versione di prova di un mese [qui](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Descrizione dello scenario
-In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. scenario di Hello descritto in questa esercitazione è composto da due componenti principali:
+In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:
 
-1. Aggiunta di T & Express E dalla raccolta hello
+1. Aggiunta di T&E Express dalla raccolta
 2. Configurazione e test dell'accesso Single Sign-On di Azure AD
 
-## <a name="adding-te-express-from-hello-gallery"></a>Aggiunta di T & Express E dalla raccolta hello
-integrazione hello tooconfigure di T & E Express in Azure AD, è necessario tooadd T & E Express dall'elenco di tooyour hello raccolta di App SaaS gestite.
+## <a name="adding-te-express-from-the-gallery"></a>Aggiungere T&E Express dalla raccolta
+Per configurare l'integrazione di T&E Express in Azure AD, è necessario aggiungere T&E Express dalla raccolta al proprio elenco di app SaaS gestite.
 
-**tooadd T & E Express dalla raccolta di hello, eseguire hello alla procedura seguente:**
+**Per aggiungere T&E Express dalla raccolta, seguire questa procedura:**
 
-1. In hello  **[il portale di gestione di Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona. 
+1. Nel **[portale di gestione di Azure](https://portal.azure.com)** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro. 
 
     ![Active Directory][1]
 
-2. Passare troppo**applicazioni aziendali**. Quindi andare troppo**tutte le applicazioni**.
+2. Passare ad **Applicazioni aziendali**. Andare quindi a **Tutte le applicazioni**.
 
     ![Applicazioni][2]
     
-3. Fare clic su **Aggiungi** pulsante nella parte superiore di hello della finestra di dialogo hello.
+3. Fare clic sul pulsante **Aggiungi** nella parte superiore della finestra di dialogo.
 
     ![Applicazioni][3]
 
-4. Nella casella di ricerca hello, digitare **T & E Express**.
+4. Digitare **T&E Express** nella casella di ricerca.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-tyeexpress-tutorial/tutorial_tyeexpress_search.png)
 
-5. Nel riquadro dei risultati hello, selezionare **T & E Express**, quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.
+5. Nel pannello dei risultati selezionare **T&E Express** e quindi fare clic sul pulsante **Aggiungi** per aggiungere l'applicazione.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-tyeexpress-tutorial/tutorial_tyeexpress_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configurazione e test dell'accesso Single Sign-On di Azure AD
 In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con T&E Express usando un utente test di nome "Britta Simon".
 
-Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello in T & E Express è tooa utente in Azure AD. In altre parole, una relazione di collegamento tra un utente di Azure AD e l'utente correlato di hello in T & E Express toobe esigenze stabilita.
+Per il funzionamento dell'accesso Single Sign-On, Azure AD deve sapere qual è l'utente controparte di T&E Express che corrisponde a un utente di Azure AD. In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in T&E Express.
 
-Questa relazione di collegamento viene stabilita tramite l'assegnazione valore hello di hello **nome utente** in Azure AD come valore hello hello **Username** T & E Express.
+La relazione di collegamento viene stabilita assegnando il valore del **nome utente** di Azure AD come valore di **Username** (Nome utente) in T&E Express.
 
-tooconfigure e prova AD Azure single sign-on con T & E Express, è necessario hello toocomplete seguenti blocchi predefiniti:
+Per configurare e testare l'accesso Single Sign-On di Azure AD con T&E Express, è necessario completare i seguenti blocchi predefiniti:
 
-1. **[Configurazione di Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.
-2. **[Creazione di un utente prova AD Azure](#creating-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.
-3. **[Creazione di un utente di test T & E Express](#creating-a-te-express-test-user)**  -toohave un equivalente di Britta Simon T & E Express che è la rappresentazione toohello collegato Azure AD dell'utente.
-4. **[Assegnazione utente di prova hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.
-5. **[Test di Single Sign-On](#testing-single-sign-on)**  -tooverify hello se funzionamento della configurazione.
+1. **[Configurazione dell'accesso Single Sign-On di Azure AD](#configuring-azure-ad-single-sign-on)** : per abilitare gli utenti all'uso di questa funzionalità.
+2. **[Creazione di un utente test di Azure AD](#creating-an-azure-ad-test-user)** : per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.
+3. **[Creazione di un utente test di T&E Express](#creating-a-te-express-test-user)** : per avere una controparte di Britta Simon in T&E Express collegata alla relativa rappresentazione in Azure AD.
+4. **[Assegnazione dell'utente test di Azure AD](#assigning-the-azure-ad-test-user)** : per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** : per verificare se la configurazione funziona.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configurazione dell'accesso Single Sign-On di Azure AD
 
-In questa sezione, si abilita Azure AD single sign-on nel portale di gestione di Azure hello e configurare l'accesso single sign-on nell'applicazione T & E Express.
+In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di gestione di Azure e viene configurato l'accesso Single Sign-On nell'applicazione T&E Express.
 
-**tooconfigure AD Azure single sign-on con T & E Express, eseguire hello alla procedura seguente:**
+**Per configurare Single Sign-On di Azure AD con T&amp;E Express, seguire questa procedura:**
 
-1. Nel portale di gestione di Azure hello in hello **T & E Express** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.
+1. Nella pagina di integrazione dell'applicazione **T&E Express** del portale di gestione di Azure fare clic su **Single Sign-On**.
 
     ![Configura accesso Single Sign-On][4]
 
-2. In hello **Single sign-on** finestra di dialogo, come **modalità** selezionare **basato su SAML Sign-on** tooenable single sign-on.
+2. Nella finestra di dialogo **Single Sign-On** in **Modalità** selezionare **Accesso basato su SAML** per abilitare l'accesso Single Sign-On.
  
     ![Configura accesso Single Sign-On](./media/active-directory-saas-tyeexpress-tutorial/tutorial_tyeexpress_samlbase.png)
 
-3. In hello **T & E dominio di Express e URL** seguire hello alla procedura seguente:
+3. Nella sezione **URL e dominio T&E Express** seguire questa procedura:
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-tyeexpress-tutorial/tutorial_tyeexpress_url.png)
 
-    a. In hello **identificatore** casella di testo, tipo di valore hello di:`https://<domain>.tyeexpress.com`
+    a. Nella casella di testo **Identificatore** digitare il valore `https://<domain>.tyeexpress.com`
 
-    b. In hello **URL di risposta** casella di testo, digitare un URL utilizzando hello seguente modello:`https://<domain>.tyeexpress.com/authorize/samlConsume.aspx`
+    b. Nella casella di testo **URL di risposta** digitare l'URL usando il modello seguente: `https://<domain>.tyeexpress.com/authorize/samlConsume.aspx`
 
     > [!NOTE] 
-    > Si noti che queste non sono valori reali hello. È necessario tooupdate questi valori con URL di risposta e identificatore effettivo hello. In questo caso, è consigliabile si toouse hello valore univoco della stringa nell'identificatore hello. Contatto [T & Express E team di supporto](http://www.tyeexpress.com/contacto.aspx) tooget questi valori.
+    > Si noti che questi non sono i valori reali. È necessario aggiornare questi valori con l'identificatore e l'URL di risposta effettivi. In questo caso è consigliabile usare in Identificatore il valore univoco della stringa. Per ottenere questi valori, contattare il [team di supporto di T&E Express](http://www.tyeexpress.com/contacto.aspx).
 
-5. In hello **certificato di firma SAML** fare clic su **Metadata XML** e quindi salvare il file XML hello nel computer in uso.
+5. Nella sezione **Certificato di firma SAML** fare clic su **XML metadati** e quindi salvare il file XML nel computer.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-tyeexpress-tutorial/tutorial_tyeexpress_certificate.png) 
 
@@ -125,91 +125,91 @@ In questa sezione, si abilita Azure AD single sign-on nel portale di gestione di
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-tyeexpress-tutorial/tutorial_general_400.png)
 
-8. tooconfigure single sign-on sul **T & E Express** lato, account di accesso toohello T & applicazione rapido E senza SAML Single sign-on utilizzando le credenziali di amministratore.
+8. Per configurare l'accesso Single Sign-On sul lato **T&E Express**, accedere all'applicazione T&E Express senza SAML Single Sign-On usando le credenziali di amministratore.
 
-9. In hello **Admin** scheda, fare clic su **dominio SAML** pagina Impostazioni di SAML hello tooOpen.
+9. Nella scheda **Admin** fare clic su **SAML domain** (Dominio SAML) per aprire la pagina delle impostazioni di SAML.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-tyeexpress-tutorial/tye-SAML.png)
 
-10. Seleziona hello **Activar(Activate)** opzione **n** troppo**SI(Yes)**. In hello **i metadati del Provider di identità** casella di testo, XML cui si dispone di metadati di Incolla hello donwloaded dal portale di Azure.
+10. Spostare il selettore dell'opzione **Activar** (Attivare) da **NO** a **SI**. Nella casella di testo **Identity Provider Metadata** (Metadati provider di identità) incollare il file XML dei metadati scaricato in precedenza dal portale di Azure.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-tyeexpress-tutorial/tyeAdmin.png)
 
-11. Fare clic su hello **Guardar(Save)** pulsante Impostazioni hello toosave. 
+11. Fare clic sul pulsante **Guardar** (Salva) per salvare le impostazioni. 
 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Creazione di un utente test di Azure AD
-obiettivo di Hello di questa sezione è un utente di test nel portale di gestione di Azure hello chiamato Britta Simon toocreate.
+Questa sezione descrive come creare un utente test chiamato Britta Simon nel portale di gestione di Azure.
 
 ![Creare un utente di Azure AD][100]
 
-**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**
+**Per creare un utente test in Azure AD, eseguire la procedura seguente:**
 
-1. In hello **portale di gestione di Azure**via hello riquadro di spostamento a sinistra, fare clic su **Azure Active Directory** icona.
+1. Nel **portale di gestione di Azure** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-tyeexpress-tutorial/create_aaduser_01.png) 
 
-2. Andare troppo**utenti e gruppi** e fare clic su **tutti gli utenti** elenco hello toodisplay degli utenti.
+2. Andare a **Utenti e gruppi** e fare clic su **Tutti gli utenti** per visualizzare l'elenco di utenti.
     
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-tyeexpress-tutorial/create_aaduser_02.png) 
 
-3. Nella parte superiore di hello della finestra di dialogo hello fare clic su **Aggiungi** tooopen hello **utente** finestra di dialogo.
+3. Nella parte superiore della finestra di dialogo fare clic su **Aggiungi** per aprire la finestra di dialogo **Utente**.
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-tyeexpress-tutorial/create_aaduser_03.png) 
 
-4. In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:
+4. Nella pagina della finestra di dialogo **Utente** seguire questa procedura:
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-tyeexpress-tutorial/create_aaduser_04.png) 
 
-    a. In hello **nome** casella tipo **BrittaSimon**.
+    a. Nella casella di testo **Nome** digitare **BrittaSimon**.
 
-    b. In hello **nome utente** casella di testo, hello tipo **indirizzo di posta elettronica** di BrittaSimon.
+    b. Nella casella di testo **Nome utente** digitare l'**indirizzo di posta elettronica** di BrittaSimon.
 
-    c. Selezionare **Show Password** e annotare il valore di hello di hello **Password**.
+    c. Selezionare **Mostra password** e prendere nota del valore della **Password**.
 
     d. Fare clic su **Crea**.
  
 ### <a name="creating-a-te-express-test-user"></a>Creare un utente test di T&E Express
 
-In ordine tooenable Azure AD utenti toolog in T & E Express, è necessario essere il provisioning in T & E Express.  
+Per consentire agli utenti di Azure AD di accedere a T&E Express, è necessario eseguirne il provisioning in T&E Express.  
 Nel caso di T&E Express, il provisioning è un'attività manuale.
 
-**eseguire un account utente, tooprovision hello i passaggi seguenti:**
+**Per effettuare il provisioning di un account utente, seguire questa procedura:**
 
-1. Accedi tooyour T & E Express sito aziendale come amministratore.
+1. Accedere al sito aziendale di T&E Express come amministratore.
 
-2. Sotto il tag di amministrazione, fare clic su pagina master utenti hello tooopen gli utenti.
+2. Sotto il tag Admin fare clic su Users (Utenti) per aprire la pagina master degli utenti.
 
     ![Aggiungere un dipendente](./media/active-directory-saas-tyeexpress-tutorial/tye-adminusers.png)
 
-3. Nella home page di hello, fare clic su  **+**  utenti hello tooadd.
+3. Nella home page fare clic su **+** per aggiungere gli utenti.
 
     ![Aggiungere un dipendente](./media/active-directory-saas-tyeexpress-tutorial/tye-usershome.png)
 
-4. Immettere tutti i dettagli di obbligatorio hello come richiesto nel modulo hello e fare clic su hello Salva pulsante toosave hello dettagli.
+4. Immettere tutti i dettagli obbligatori richiesti nel modulo e fare clic sul pulsante di salvataggio per salvare i dettagli.
 
     ![Aggiungere un dipendente](./media/active-directory-saas-tyeexpress-tutorial/tye-usersadd.png)
 
     ![Aggiungere un dipendente](./media/active-directory-saas-tyeexpress-tutorial/tye-userssave.png)
 
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Assegnazione utente test hello Azure AD
+### <a name="assigning-the-azure-ad-test-user"></a>Assegnazione dell'utente test di Azure AD
 
-In questa sezione per abilitare Britta Simon toouse single sign-on Azure concessione proprio tooT accesso & E Express.
+In questa sezione viene concesso a Britta Simon l'accesso a T&E Express per consentirle di usare l'accesso Single Sign-On di Azure.
 
 ![Assegna utente][200] 
 
-**tooassign tooT Britta Simon & E Express, eseguire hello alla procedura seguente:**
+**Per assegnare Britta Simon a T&amp;E Express, seguire questa procedura:**
 
-1. Nel portale di gestione di Azure hello, aprire visualizzazione applicazioni hello, quindi selezionare la visualizzazione di directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.
+1. Nel portale di gestione di Azure aprire la visualizzazione con le applicazioni e quindi passare alla visualizzazione con le directory e andare ad **Applicazioni aziendali**, quindi fare clic su **Tutte le applicazioni**.
 
     ![Assegna utente][201] 
 
-2. Nell'elenco di applicazioni hello, selezionare **T & E Express**.
+2. Selezionare **T&E Express** dall'elenco delle applicazioni.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-tyeexpress-tutorial/tutorial_tyeexpress_app.png) 
 
-3. Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.
+3. Scegliere **Utenti e gruppi** dal menu a sinistra.
 
     ![Assegna utente][202] 
 
@@ -217,7 +217,7 @@ In questa sezione per abilitare Britta Simon toouse single sign-on Azure concess
 
     ![Assegna utente][203]
 
-5. In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.
+5. Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco Utenti.
 
 6. Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.
 
@@ -225,13 +225,13 @@ In questa sezione per abilitare Britta Simon toouse single sign-on Azure concess
     
 ### <a name="testing-single-sign-on"></a>Test dell'accesso Single Sign-On
 
-In questa sezione si test configurazione di Azure AD single sign-on utilizzando hello Pannello di accesso.
+In questa sezione viene testata la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.
 
-Quando si fa clic hello T & E Express porzione hello Pannello di accesso, è necessario ottenere automaticamente firmato in tooyour T & Express E applicazione.
+Quando si fa clic sul riquadro T&E Express nel pannello di accesso, si dovrebbe accedere automaticamente all'applicazione T&E Express.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md)
 
 

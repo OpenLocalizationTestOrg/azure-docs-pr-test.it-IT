@@ -1,6 +1,6 @@
 ---
-title: percorso della risorsa aaaAzure nel modello | Documenti Microsoft
-description: Viene illustrato come tooset un percorso per una risorsa in un modello di gestione risorse di Azure
+title: Posizione delle risorse di Azure nei modelli | Microsoft Docs
+description: Viene illustrato come impostare una posizione per una risorsa in un modello di Azure Resource Manager
 services: azure-resource-manager
 documentationcenter: 
 author: tfitzmac
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/03/2017
 ms.author: tomfitz
-ms.openlocfilehash: f2ad6ca6ac5f34484a2e5e57dd8d67c77dacc41a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 73e50a593c41e841dcaf184abb895406ff5001e9
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="set-resource-location-in-azure-resource-manager-templates"></a>Impostare la posizione delle risorse nei modelli di Azure Resource Manager
-Quando si distribuisce un modello, è necessario fornire la posizione per ogni risorsa. Questo argomento viene illustrato come percorsi di hello toodetermine sottoscrizione tooyour disponibili per ogni risorsa di tipo.
+Quando si distribuisce un modello, è necessario fornire la posizione per ogni risorsa. In questo argomento viene illustrato come determinare le posizioni disponibili per la sottoscrizione per ogni tipo di risorsa.
 
 ## <a name="determine-supported-locations"></a>Determinare le posizioni supportate
 
-Per un elenco completo delle posizioni supportate per ciascun tipo di risorsa, vedere [Prodotti disponibili in base all'area](https://azure.microsoft.com/regions/services/). Tuttavia, la sottoscrizione potrebbe non avere accesso tooall hello posizioni nell'elenco. toosee un elenco personalizzato di percorsi di sottoscrizione tooyour disponibili, usare Azure PowerShell o l'interfaccia CLI di Azure. 
+Per un elenco completo delle posizioni supportate per ciascun tipo di risorsa, vedere [Prodotti disponibili in base all'area](https://azure.microsoft.com/regions/services/). Tuttavia, la sottoscrizione potrebbe non avere accesso a tutte le posizioni indicate in tale elenco. Per visualizzare un elenco personalizzato delle posizioni disponibili per la sottoscrizione, usare Azure PowerShell o l'interfaccia della riga di comando di Azure. 
 
-Hello seguente utilizza percorsi di PowerShell tooget hello per hello `Microsoft.Web\sites` tipo di risorsa:
+Nell'esempio seguente viene usato PowerShell per ottenere la posizione per il tipo di risorsa `Microsoft.Web\sites`:
 
 ```powershell
 ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Web).ResourceTypes | Where-Object ResourceTypeName -eq sites).Locations
 ```
 
-Hello seguente utilizza percorsi di hello tooget CLI di Azure 2.0 per hello `Microsoft.Web\sites` tipo di risorsa:
+Nell'esempio seguente viene usata l'interfaccia della riga di comando di Azure 2.0 per ottenere la posizione per il tipo di risorsa `Microsoft.Web\sites`:
 
 ```azurecli
 az provider show -n Microsoft.Web --query "resourceTypes[?resourceType=='sites'].locations"
@@ -41,9 +41,9 @@ az provider show -n Microsoft.Web --query "resourceTypes[?resourceType=='sites']
 
 ## <a name="set-location-in-template"></a>Impostare la posizione nel modello
 
-Dopo aver determinato i percorsi di hello è supportato per le risorse, è necessario tooset tale posizione nel modello. Hello più semplice tooset modo questo valore è una risorsa gruppo in un percorso che supporta i tipi di risorse hello toocreate e impostare ogni posizione troppo`[resourceGroup().location]`. È possibile ridistribuire i gruppi di tooresource modello hello in posizioni diverse e non modificano i valori nel modello di hello o parametri. 
+Dopo aver determinato le posizioni supportate per le risorse, è necessario impostare la posizione del modello. Il modo più semplice per impostare questo valore consiste nel creare un gruppo di risorse in una posizione che supporti i tipi di risorsa e impostare ogni posizione su `[resourceGroup().location]`. È possibile ridistribuire il modello a gruppi di risorse in posizioni diverse senza modificare i valori o i parametri del modello. 
 
-Hello esempio seguente viene illustrato un account di archiviazione è distribuito toohello stesso percorso del gruppo di risorse hello:
+Nell'esempio seguente viene illustrato un account di archiviazione che viene distribuito nella stessa posizione del gruppo di risorse:
 
 ```json
 {
@@ -72,7 +72,7 @@ Hello esempio seguente viene illustrato un account di archiviazione è distribui
 }
 ```
 
-Se è necessario il percorso di hello toohardcode nel modello, specificare il nome di hello di una delle aree di hello è supportato. Hello di esempio seguente viene illustrato un account di archiviazione è sempre distribuito tooNorth centrale USA:
+Se è necessario impostare come hardcoded la posizione del modello, specificare il nome di una delle aree supportate. Nell'esempio seguente viene illustrato un account di archiviazione che viene sempre distribuito negli Stati Uniti centro-settentrionali:
 
 ```json
 {
@@ -99,5 +99,5 @@ Se è necessario il percorso di hello toohardcode nel modello, specificare il no
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per indicazioni su come toocreate modelli, vedere [procedure consigliate per la creazione di modelli di Azure Resource Manager](resource-manager-template-best-practices.md).
+* Per altri suggerimenti su come creare i modelli, vedere [Procedure consigliate per la creazione di modelli di Azure Resource Manager](resource-manager-template-best-practices.md).
 

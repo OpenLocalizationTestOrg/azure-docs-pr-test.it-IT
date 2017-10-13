@@ -1,6 +1,6 @@
 ---
-title: aaaUnderstanding Azure Marketplace basata sull'utilizzo di report e approfondimenti venditore reporting | Documenti Microsoft
-description: "In qualità di venditore in hello Azure Marketplace, comprendere report basata sull'utilizzo, noto anche come un report di informazioni dettagliate del venditore"
+title: Informazioni sui report basati sull'uso di Azure Marketplace e sui report sulle informazioni dettagliate del venditore | Documentazione Microsoft
+description: "In qualità di venditore in Azure Marketplace, comprendere i report basati sull'utilizzo, detti anche report sulle informazioni dettagliate del venditore"
 services: Azure Marketplace
 documentationcenter: na
 author: v-jeana
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/16/2017
 ms.author: v-jeana; hascipio; v-dabosl
-ms.openlocfilehash: a9aa09a84ddce94acd5b988155b8af98edec766f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e098e27e32f7b7ae2009580a430f262aa7225206
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="understand-your-seller-insights-report"></a>Descrizione del report sulle informazioni dettagliate del venditore
 **Quali sono le informazioni dettagliate del venditore?**
@@ -27,12 +27,12 @@ Tutti gli editori di servizi per gli sviluppatori di fatturazione basata sull'ut
 
 **Cosa si riceverà?**
 
-* **Messaggio di posta elettronica di benvenuto:** come un nuovo server di pubblicazione, si riceverà un messaggio di benvenuto di toonotify è che si inizieranno a ricevere i report mensili di hello venditore insights.
-* **Report mensili sulle vendite:** nel caso di utilizzo, si riceverà un secondo messaggio di posta elettronica che contiene i report e istruzioni su come tooaccess la password:
+* **Messaggio di benvenuto:** i nuovi editori ricevono un messaggio di benvenuto che comunica la cadenza mensile dei report sulle informazioni dettagliate del venditore.
+* **Report mensili sulle vendite:** se l'offerta genera utilizzo, si riceve un secondo messaggio di posta elettronica contenente i report e istruzioni su come accedere alla password:
 
-  * Se si dispone di una macchina virtuale o basata sull'utilizzo fatturazione servizi per sviluppatori SKU che è la generazione di utilizzo, il report mensile visualizzerà informazioni dettagliate sugli ordini di hello, utilizzo, mercati e i dettagli del cliente per le offerte.
-  * I report vengono bloccati con una password che solo con Microsoft sapere nell'ordine tooprotect dati dei clienti.
-  * Microsoft non verrà inviato un report se nessuna delle offerte hanno generato utilizzo durante il mese di hello.
+  * Se lo SKU di servizi per gli sviluppatori di soluzioni di fatturazione basata sull'uso o su macchina virtuale genera utilizzo, il report mensile conterrà informazioni dettagliate su ordini, utilizzo, mercati e clienti per le offerte.
+  * I report sono protetti da una password nota solo all'utente e a Microsoft, per salvaguardare i dati dei clienti.
+  * Se nessuna delle offerte ha generato utilizzo durante il mese, Microsoft non invia alcun report.
 
 ## <a name="understand-your-seller-insights-report"></a>Descrizione del report sulle informazioni dettagliate del venditore
 **Ordini per SKU e tipo di licenza: scheda Ordini Marketplace**
@@ -42,7 +42,7 @@ Tutti gli editori di servizi per gli sviluppatori di fatturazione basata sull'ut
 * I filtri dei dati permettono di filtrare il report in base a ogni elemento.
 * Un grafico mostra gli ordini mensili per tipo di licenza di Azure. Ogni barra indica gli ordini totali per quel mese, suddivisi per tipo di licenza di Azure.
 * Un grafico mostra gli ordini mensili per SKU. Ogni barra indica gli ordini mensili totali per tutti gli SKU, suddivisi per SKU.
-* Un grafico Mostra tendenza mensile di hello di ordini per il tipo di licenza di Azure e il tipo di licenza di Azure Marketplace.
+* Un grafico mostra la tendenza mensile degli ordini per tipo di licenza di Azure e tipo di licenza di Azure Marketplace.
 * I grafici a torta mostrano gli ordini per tipo di licenza di Azure e tipo di licenza Marketplace.
 * Una tabella mostra gli ordini mensili totali per tipo di licenza Marketplace, i totali mensili e i totali cumulativi per tutti i mesi.
 
@@ -54,13 +54,13 @@ Tutti gli editori di servizi per gli sviluppatori di fatturazione basata sull'ut
 * È necessario selezionare l’utilizzo della VM normalizzato o l'utilizzo non elaborato.
 * Un grafico mostra l'utilizzo mensile per tipo di licenza di Azure. Ogni barra indica l'utilizzo totale per quel mese, suddiviso per tipo di licenza di Azure.
 * Un grafico mostra l'utilizzo mensile per SKU. Ogni barra indica l'utilizzo mensile totale per tutti gli SKU, suddiviso per SKU.
-* Un grafico Mostra tendenza mensile di hello di utilizzo per il tipo di licenza di Azure e il tipo di licenza di Marketplace.
+* Un grafico mostra la tendenza mensile dell'utilizzo per tipo di licenza di Azure e tipo di licenza Marketplace.
 * I grafici a torta mostrano l'utilizzo per tipo di licenza di Azure e tipo di licenza Marketplace.
 * Una tabella mostra l'utilizzo mensile totale per tipo di licenza Marketplace, i totali mensili e i totali cumulativi per tutti i mesi.
 
 **Schede Dati dell'ordine e Dati di utilizzo**
 
-Queste schede consentono hello dettagliata report hello toogenerate utilizzati dati.
+Queste schede forniscono i dati dettagliati utilizzati per generare il rapporto.
 
 ![orderdata][4]
 
@@ -70,37 +70,38 @@ Queste schede consentono hello dettagliata report hello toogenerate utilizzati d
 
 ![customerstab][6]
 
-* Clausola di riservatezza hello nota.
+* Si noti la clausola di riservatezza.
 * Questa scheda contiene un elenco dei clienti per SKU, informazioni del profilo, data della transazione e consenso al contatto a fini promozionali.
-* report Hello include il numero di ordini, SKU e totali.
+* Il report include il numero di ordini per SKU e totali.
 
 **Dichiarazioni di non responsabilità legali**
 
 ![legal][1]
 
-Leggere attentamente dichiarazioni di non responsabilità legali hello. Se si hanno domande o commenti e suggerimenti, fare clic sul collegamento hello nella parte inferiore di hello di hello dichiarazioni di non responsabilità toobe indirizzato toohello pagina supporto Marketplace.
+Leggere attentamente le dichiarazioni di non responsabilità legali. In caso di domande o commenti e suggerimenti, fare clic sul collegamento nella parte inferiore delle dichiarazioni di non responsabilità per essere instradati alla pagina del supporto Marketplace.
 
 ## <a name="request-a-password-reminder"></a>Richiedere un promemoria della password
-Passare toohttps://publish.windowsazure.com/ e accedere con le credenziali dell'account Microsoft.
+Passare a https://publish.windowsazure.com/ e accedere con le credenziali dell'account Microsoft.
 ![passwordreminder][7]
 
-Seleziona hello **editori** scheda ![selectpublisherstab][8]
+Selezionare la scheda **Editori** .
+![selectpublisherstab][8]
 
-Trovare l'ID dell'editore hello nell'URL hello:
+Trovare l'ID editore nell'URL:
 
-* Utilizzare questo ID come hello password tooopen il file di Excel insights venditore.
+* Usare questo ID come password per aprire il file di Excel delle informazioni dettagliate del venditore.
   Questa password sarà valida fino a nuova comunicazione.
 * È consigliabile usare Microsoft Office 2013 con Windows per aprire la cartella di lavoro.  Sono stati segnalati problemi relativi all'uso di Microsoft Office per Mac.
 
 ![publisherid][9]
 
 ## <a name="next-steps"></a>Passaggi successivi
-Se si dispone di una domanda relativa tooreports e informazioni dettagliate, contattare il team di supporto:
+In caso di domande relative ai report e alle informazioni dettagliate, contattare il team di supporto.
 
-1. Spostarsi tra le pagine di supporto toohello in https://publish.windowsazure.com/.
-2. In hello **tipo di problema** , quindi selezionare **report e approfondimenti**.
-3. In hello **categoria** , quindi selezionare **domande riguardo tooreports**.
-4. Fare clic su **'Avvia richiesta'**.
+1. Passare alle pagine di supporto all'indirizzo https://publish.windowsazure.com/.
+2. Nella casella **Tipo di problema** selezionare **Report e informazioni dettagliate**.
+3. Nella casella **Categoria** selezionare **Domande relative ai report**.
+4. Fare clic su **Avvio richiesta**.
    ![sellerinsightsquestions][10]
 
 [1]: ./media/marketplace-publishing-report-seller-insights/legal.png

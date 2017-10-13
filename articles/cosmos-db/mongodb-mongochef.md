@@ -1,6 +1,6 @@
 ---
-title: aaaUse MongoChef per Azure Cosmos DB | Documenti Microsoft
-description: 'Informazioni su come toouse MongoChef con un database di Azure Cosmos: API per conto di MongoDB'
+title: Usare MongoChef per Azure Cosmos DB | Microsoft Docs
+description: 'Informazioni su come usare MongoChef con un account Azure Cosmos DB: API per MongoDB'
 keywords: MongoChef
 services: cosmos-db
 author: AndrewHoh
@@ -15,57 +15,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/23/2017
 ms.author: anhoh
-ms.openlocfilehash: 4b047797b231c34ccc6f2ed02416525c6228d596
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 54c9799bd646b827f602e2ea2f9a15a4fc853f00
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="use-mongochef-with-an-azure-cosmos-db-api-for-mongodb-account"></a>Usare MongoChef con un account Azure Cosmos DB: API per MongoDB
 
-tooconnect tooan DB Cosmos Azure: API per conto di MongoDB, è necessario:
+Per connettersi a un account dell'API Azure Cosmos DB: per MongoDB, seguire questa procedura:
 
 * Scaricare e installare [MongoChef](http://3t.io/mongochef)
 * Verificare che siano disponibili le informazioni sulla [stringa di connessione](connect-mongodb-account.md) dell'account Azure Cosmos DB: API per MongoDB
 
-## <a name="create-hello-connection-in-mongochef"></a>Crea connessione hello in MongoChef
-tooadd del database di Azure Cosmos: API per MongoDB account toohello MongoChef gestione connessione, eseguire hello alla procedura seguente.
+## <a name="create-the-connection-in-mongochef"></a>Creare la connessione in MongoChef
+Per aggiungere l'account Azure Cosmos DB: API per MongoDB allo strumento di gestione della connessione MongoChef, seguire questa procedura.
 
-1. Recuperare il database di Azure Cosmos: API delle informazioni di connessione di MongoDB mediante istruzioni hello [qui](connect-mongodb-account.md).
+1. Recuperare le informazioni sulla connessione di Azure Cosmos DB: API per MongoDB usando le istruzioni riportate [qui](connect-mongodb-account.md).
 
-    ![Cattura di schermata del pannello stringa di connessione hello](./media/mongodb-mongochef/ConnectionStringBlade.png)
-2. Fare clic su **Connetti** tooopen hello Connection Manager, quindi fare clic su **nuova connessione**
+    ![Screenshot del pannello Stringa di connessione](./media/mongodb-mongochef/ConnectionStringBlade.png)
+2. Fare clic su **Connect** (Connetti) per aprire la gestione connessioni, quindi fare clic su **New Connection** (Nuova connessione)
 
-    ![Cattura di schermata della gestione connessione di hello MongoChef](./media/mongodb-mongochef/ConnectionManager.png)
-3. In hello **nuova connessione** finestra hello **Server** , immettere hello HOST (FQDN) del database di Azure Cosmos hello: API per la porta di account e hello MongoDB.
+    ![Screenshot di gestione connessione di MongoChef](./media/mongodb-mongochef/ConnectionManager.png)
+3. Nella finestra **New Connection** (Nuova connessione), nella scheda **Server**, specificare l'host (nome di dominio completo) dell'account Azure Cosmos DB: API per MongoDB e la porta.
 
-    ![Cattura di schermata della scheda di server manager connection MongoChef hello](./media/mongodb-mongochef/ConnectionManagerServerTab.png)
-4. In hello **nuova connessione** finestra hello **autenticazione** scheda, scegliere la modalità di autenticazione **Standard (MONGODB CR o SCARM-SHA-1)** e immettere nome utente hello e PASSWORD.  Accettare i database di autenticazione predefiniti hello (amministrazione) o fornire un valore personalizzato.
+    ![Screenshot della scheda relativa al server di gestione connessione di MongoChef](./media/mongodb-mongochef/ConnectionManagerServerTab.png)
+4. Nella finestra **New Connection** (Nuova connessione) nella scheda **Authentication** (Autenticazione) scegliere la modalità di autenticazione **Standard (MONGODB-CR or SCARM-SHA-1)** (Standard - MONGODB-CR o SCARM-SHA-1) e immettere il nome utente e la password.  Accettare il database di autenticazione predefinito (admin) o specificare un valore personalizzato.
 
-    ![Cattura di schermata della scheda di autenticazione hello MongoChef connection manager](./media/mongodb-mongochef/ConnectionManagerAuthenticationTab.png)
-5. In hello **nuova connessione** finestra hello **SSL** scheda, controllare hello **Usa SSL protocollo tooconnect** casella di controllo e hello **accetta server autofirmato SSL i certificati** pulsante di opzione.
+    ![Screenshot della scheda relativa all'autenticazione di gestione connessione di MongoChef](./media/mongodb-mongochef/ConnectionManagerAuthenticationTab.png)
+5. Nella finestra **New Connection** (Nuova connessione) nella scheda **SSL** selezionare la casella di controllo **Use SSL protocol to connect** (Usa protocollo SSL per la connessione) e quindi selezionare il pulsante di opzione **Accept server self-signed SSL certificates** (Accetta certificati SSL autofirmati server).
 
-    ![Cattura di schermata della scheda di hello MongoChef connessione gestione SSL](./media/mongodb-mongochef/ConnectionManagerSSLTab.png)
-6. Fare clic su hello **Test connessione** fare clic su informazioni di connessione hello toovalidate **OK** tooreturn toohello finestra nuova connessione e quindi fare clic su **salvare**.
+    ![Screenshot della scheda relativa a SSL di gestione connessione di MongoChef](./media/mongodb-mongochef/ConnectionManagerSSLTab.png)
+6. Fare clic sul pulsante **Test Connection** (Test connessione) per convalidare le informazioni di connessione, quindi fare clic su **OK** per tornare alla finestra New Connection (Nuova connessione) e infine su **Save** (Salva).
 
-    ![Cattura di schermata della finestra di hello MongoChef test connessione](./media/mongodb-mongochef/TestConnectionResults.png)
+    ![Screenshot della scheda relativa al test della connessione di MongoChef](./media/mongodb-mongochef/TestConnectionResults.png)
 
-## <a name="use-mongochef-toocreate-a-database-collection-and-documents"></a>Utilizzare MongoChef toocreate un database e raccolta documenti
-toocreate un database, alla raccolta e documenti mediante MongoChef, eseguono hello alla procedura seguente.
+## <a name="use-mongochef-to-create-a-database-collection-and-documents"></a>Usare MongoChef per creare un database, una raccolta e documenti
+Per creare un database, una raccolta e documenti usando MongoChef, seguire questa procedura.
 
-1. In **Connection Manager**, evidenziare connessione hello e fare clic su **Connetti**.
+1. In **Connection Manager** (Gestione connessioni) evidenziare la connessione e fare clic su **Connect** (Connetti).
 
-    ![Cattura di schermata della gestione connessione di hello MongoChef](./media/mongodb-mongochef/ConnectToAccount.png)
-2. Fare clic con il pulsante destro host hello e scegliere **Aggiungi Database**.  Specificare un nome per il database e fare clic su **OK**.
+    ![Screenshot di gestione connessione di MongoChef](./media/mongodb-mongochef/ConnectToAccount.png)
+2. Fare clic con il pulsante destro del mouse sull'host, quindi scegliere **Add Database**(Aggiungi database).  Specificare un nome per il database e fare clic su **OK**.
 
-    ![Cattura di schermata dell'opzione di Database aggiungere MongoChef hello](./media/mongodb-mongochef/AddDatabase1.png)
-3. Fare clic con il pulsante destro del database hello e scegliere **Aggiungi raccolta**.  Specificare un nome per la raccolta, quindi fare clic su **Create**(Crea).
+    ![Screenshot dell'opzione di aggiunta database di MongoChef](./media/mongodb-mongochef/AddDatabase1.png)
+3. Fare clic con il pulsante destro del mouse sul database, quindi scegliere **Add Collection**(Aggiungi raccolta).  Specificare un nome per la raccolta, quindi fare clic su **Create**(Crea).
 
-    ![Cattura di schermata dell'opzione MongoChef Aggiungi raccolta hello](./media/mongodb-mongochef/AddCollection.png)
-4. Fare clic su hello **raccolta** menu item, quindi fare clic su **Aggiungi documento**.
+    ![Screenshot dell'opzione di aggiunta raccolta di MongoChef](./media/mongodb-mongochef/AddCollection.png)
+4. Selezionare la voce di menu **Collection** (Raccolta), quindi fare clic su **Add Document** (Aggiungi documento).
 
-    ![Cattura di schermata della voce di menu Aggiungi documento MongoChef hello](./media/mongodb-mongochef/AddDocument1.png)
-5. Nella finestra di dialogo Aggiungi documento hello, incollare l'esempio hello e quindi fare clic su **Aggiungi documento**.
+    ![Screenshot della voce di menu di aggiunta documento di MongoChef](./media/mongodb-mongochef/AddDocument1.png)
+5. Nella finestra di dialogo Add Document (Aggiungi documento) incollare quanto segue, quindi fare clic su **Add Document**(Aggiungi documento).
 
         {
         "_id": "AndersenFamily",
@@ -83,7 +83,7 @@ toocreate un database, alla raccolta e documenti mediante MongoChef, eseguono he
         "address": { "state": "WA", "county": "King", "city": "seattle" },
         "isRegistered": true
         }
-6. Aggiungere un altro documento, questa volta con hello dopo contenuto.
+6. Aggiungere un altro documento, questa volta con il contenuto seguente.
 
         {
         "_id": "WakefieldFamily",
@@ -110,7 +110,7 @@ toocreate un database, alla raccolta e documenti mediante MongoChef, eseguono he
         "address": { "state": "NY", "county": "Manhattan", "city": "NY" },
         "isRegistered": false
         }
-7. Eseguire una query di esempio. Ad esempio, si consiglia di cercare famiglie con cognome hello 'Andersen' e gli elementi padre hello restituito e i campi di stato.
+7. Eseguire una query di esempio. Cercare ad esempio famiglie con cognome 'Andersen' e restituire i campi relativi a genitori e stato.
 
     ![Screenshot dei risultati della query di MongoChef](./media/mongodb-mongochef/QueryDocument1.png)
 

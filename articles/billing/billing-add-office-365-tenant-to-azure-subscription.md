@@ -1,6 +1,6 @@
 ---
-title: tenant di Office 365 aaaUse con una sottoscrizione di Azure | Documenti Microsoft
-description: Informazioni su come Office 365 tooadd directory (tenant) tooan sottoscrizione di Azure.
+title: Usare un tenant di Office 365 con una sottoscrizione di Azure | Documentazione Microsoft
+description: Informazioni su come aggiungere una directory (tenant) di Office 365 a una sottoscrizione di Azure.
 services: 
 documentationcenter: 
 author: JiangChen79
@@ -12,114 +12,85 @@ ms.service: billing
 ms.workload: na
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
-ms.topic: article
-ms.date: 06/13/2017
+ms.topic: troubleshooting
+ms.date: 09/13/2017
 ms.author: cjiang
-ms.openlocfilehash: e560370417bd074a7e37ceb7c60da45dbbbcf775
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e6300932d044ec9a4f88eb5bd5977220ed11d513
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="associate-an-office-365-tenant-tooan-azure-subscription"></a>Associare un tooan tenant di Office 365 sottoscrizione di Azure
-Collegare le sottoscrizioni di Azure e Office 365 separate in modo che è possibile accedere a tenant di Office 365 hello dalla sottoscrizione di Azure. toolink delle sottoscrizioni, accedi tooAzure con hello account amministratore del servizio di Azure, aggiungere una directory e aggiungere il tenant di Azure Active Directory toohello account aziendali hello Office 365.
+# <a name="link-an-office-365-tenant-to-an-azure-subscription"></a>Collegare un tenant di Office 365 a una sottoscrizione di Azure
+Collegare le sottoscrizioni di Azure e Office 365 separate per accedere al tenant di Office 365 dalla sottoscrizione di Azure. Per collegare le sottoscrizioni, accedere ad Azure con l'account di amministratore del servizio di Azure, aggiungere una directory e quindi aggiungere l'account aziendale o dell'istituto di istruzione per Office 365 al tenant di Azure Active Directory.
 
-Se si desidera una sottoscrizione di Office 365 per gli utenti nell'istanza di Azure Active Directory o si dispone di un account Office 365 ma non di un account Azure, vedere [Sign up for Azure with Office 365 account](billing-use-existing-office-365-account-azure-subscription.md) (Iscriversi ad Azure con un account Office 365). 
+**Si vuole trasferire una sottoscrizione di Azure esistente a un account aziendale o dell'istituto di istruzione per Office 365?** Se si è eseguita l'iscrizione ad Azure usando un account Microsoft personale e si vuole usare tale account oppure accedere con il proprio account di Office 365, è fortemente consigliabile trasferire la sottoscrizione. Vedere [Trasferimento della proprietà di una sottoscrizione di Azure a un altro account](billing-subscription-transfer.md). 
+
+**Si vuole eseguire l'iscrizione ad Azure con Office 365?** Vedere [Iscriversi a una sottoscrizione di Azure con il proprio account di Office 365](billing-use-existing-office-365-account-azure-subscription.md). 
 
 ## <a name="before-you-begin"></a>Prima di iniziare
-* È necessario disporre delle credenziali hello dell'amministratore del servizio hello sottoscrizione di Azure. Account di coamministratore non può eseguire alcuni passaggi hello in questo articolo. toochange l'amministratore del servizio, vedere [come tooadd o modificare i ruoli di amministratore di Azure](billing-add-change-azure-subscription-administrator.md#change-service-administrator-for-a-subscription).
-* È necessario disporre di credenziali di hello di un amministratore globale del tenant di Office 365 hello.
-* indirizzo di posta elettronica Hello del messaggio per l'amministratore del servizio non deve essere nel tenant di Office 365 hello.
-* indirizzo di posta elettronica Hello del messaggio per l'amministratore del servizio deve corrisponde a quello di qualsiasi amministratore globale del tenant di Office 365 hello.
-* Se si utilizza un indirizzo di posta elettronica che è un account Microsoft sia un account aziendale, modificare temporaneamente amministratore del servizio hello di toouse la sottoscrizione di Azure un altro account Microsoft. È possibile creare un account Microsoft in hello [pagina account Microsoft](https://signup.live.com/).
+* Sono necessarie le credenziali dell'amministratore del servizio della sottoscrizione di Azure. Gli account coamministratore non possono eseguire alcuni passaggi di questo articolo. Per modificare l'amministratore dell'account, vedere [Come aggiungere o modificare i ruoli di amministratore di Azure](billing-add-change-azure-subscription-administrator.md#change-service-administrator-for-a-subscription).
+* Sono necessarie le credenziali di un amministratore globale del tenant di Office 365.
+* L'indirizzo di posta elettronica dell'amministratore del servizio deve essere incluso nel tenant di Office 365.
+* L'indirizzo di posta elettronica dell'amministratore del servizio deve essere diverso da quello di un amministratore globale del tenant di Office 365.
+* Se si usa un indirizzo di posta elettronica che corrisponde a un account Microsoft e a un account aziendale, modificare temporaneamente le impostazioni dell'amministratore del servizio della sottoscrizione di Azure in modo da usare un altro account Microsoft. È possibile creare un account Microsoft nella [pagina Crea account Microsoft](https://signup.live.com/).
 
-## <a name="link-office-365-tenant-tooazure-subscription"></a>Collegamento sottoscrizione tooAzure tenant di Office 365
-toohello tenant di Office 365 hello tooassociate sottoscrizione di Azure, seguire questi passaggi:
+## <a name="link-office-365-tenant-to-azure-subscription"></a>Collegare il tenant di Office 365 alla sottoscrizione di Azure
+Per associare il tenant di Office 365 alla sottoscrizione di Azure, seguire questa procedura:
 
-### <a name="step-1-add-office-365-tenant-tooyour-azure-subscription"></a>Passaggio 1: Aggiungere tooyour tenant di Office 365 sottoscrizione di Azure
+### <a name="step-1-add-office-365-tenant-to-your-azure-subscription"></a>Passaggio 1: Aggiungere il tenant di Office 365 alla sottoscrizione di Azure
 
-1. Accedi toohello [portale di Azure classico](https://manage.windowsazure.com/) con le credenziali di amministratore hello.
+1. Accedere al [portale di Azure classico](https://manage.windowsazure.com/) con le credenziali di amministratore del servizio.
 
     ![Screenshot dell'accesso ad Azure](./media/billing-add-office-365-tenant-to-azure-subscription/s313_azure-sign-in-service-admin.png)
-
-2. Nel riquadro sinistro hello selezionare **ACTIVE DIRECTORY**. Non deve vedrai tenant hello Office 365. Se è visibile, andare troppo[passaggio 2: impostare la directory hello associata a una sottoscrizione di Azure hello](#Step2).
+2. Nel riquadro sinistro selezionare **ACTIVE DIRECTORY**. Il tenant di Office 365 non dovrebbe essere visualizzato. Se viene visualizzato, procedere al [Passaggio 2: Cambiare la directory associata alla sottoscrizione di Azure](#Step2).
    
    ![Screenshot della voce di Active Directory](./media/billing-add-office-365-tenant-to-azure-subscription/s35-classic-portal-active-directory-entry.png)
-
 3. Selezionare **NUOVA** > **DIRECTORY** > **CREAZIONE PERSONALIZZATA**.
    
     ![Screenshot di Creazione personalizzata di Azure Active Directory](./media/billing-add-office-365-tenant-to-azure-subscription/s37-aad-custom-create.png)
-   
-4. In hello **Aggiungi directory** pagina **DIRECTORY**selezionare **utilizza directory esistente**. Selezionare quindi **sono pronti toobe uscire ora**e selezionare **completa** ![icona completare](./media/billing-add-office-365-tenant-to-azure-subscription/s38_complete-icon.png).
+4. Nella pagina **Aggiungi directory** in **DIRECTORY** selezionare **Utilizza directory esistente**. Selezionare quindi **È possibile uscire ora**, quindi **Completa** ![complete-icon](./media/billing-add-office-365-tenant-to-azure-subscription/s38_complete-icon.png).
    
     ![Screenshot di "Utilizza directory esistente"](./media/billing-add-office-365-tenant-to-azure-subscription/s39_add-directory-use-existing.png)
-   
-5. Dopo essere disconnessi, accedere con le credenziali dell'amministratore di hello globale del tenant Office 365.
+5. Dopo la disconnessione, accedere con le credenziali dell'amministratore globale del tenant di Office 365.
    
     ![Screenshot dell'accesso come amministratore globale di Office 365](./media/billing-add-office-365-tenant-to-azure-subscription/s310_sign-in-global-admin-office-365.png)
-   
 6. Selezionare **Continua**.
    
     ![Screenshot della verifica](./media/billing-add-office-365-tenant-to-azure-subscription/s311_use-contoso-directory-azure-verify.png)
-   
 7. Selezionare **Esci ora**.
    
     ![Screenshot della disconnessione](./media/billing-add-office-365-tenant-to-azure-subscription/s312_use-contoso-directory-azure-confirm-and-sign-out.png)
-   
-8. Accedi toohello [portale di Azure classico](https://manage.windowsazure.com/) con le credenziali di amministratore hello.
+8. Accedere al [portale di Azure classico](https://manage.windowsazure.com/) con le credenziali di amministratore del servizio.
    
     ![Screenshot dell'accesso ad Azure](./media/billing-add-office-365-tenant-to-azure-subscription/s313_azure-sign-in-service-admin.png)
-   
-9. Verrà visualizzato il tenant di Office 365 in dashboard hello.
+9. Nel dashboard è visualizzato il tenant di Office 365.
    
     ![Screenshot del dashboard](./media/billing-add-office-365-tenant-to-azure-subscription/s314_office-365-tenant-appear-in-azure.png)
 
-### <a name="Step2"></a>Passaggio 2: Impostare la directory hello associato hello sottoscrizione di Azure
+### <a name="Step2"></a>Passaggio 2: Cambiare la directory associata alla sottoscrizione di Azure
    
 1. Selezionare **Impostazioni**.
    
     ![Screenshot dell'icona delle impostazioni del portale classico di Azure](./media/billing-add-office-365-tenant-to-azure-subscription/s315_azure-classic-portal-settings-icon.png)
-   
 2. Selezionare la sottoscrizione di Azure e quindi **MODIFICA DIRECTORY**.
 
     ![Screenshot di Modifica directory per la sottoscrizione di Azure](./media/billing-add-office-365-tenant-to-azure-subscription/s316_azure-subscription-edit-directory.png)
-   
 3. Selezionare **Avanti** ![icona Avanti](./media/billing-add-office-365-tenant-to-azure-subscription/s317_next-icon.png).
    
-    ![Schermata di "Modifica hello associate nella directory"](./media/billing-add-office-365-tenant-to-azure-subscription/s318_azure-change-associated-directory.png)
-   
-4. Esaminare gli account hello interessata. Tutti i coamministratori e [controllo di accesso basato sui ruoli (RBAC)](../active-directory/role-based-access-control-configure.md) gli utenti con accesso assegnato in gruppi di risorse esistente hello vengono rimossi. avviso Hello ricevuto menziona solo la rimozione di hello dei coamministratori.
+    ![Screenshot di "Modifica directory associata"](./media/billing-add-office-365-tenant-to-azure-subscription/s318_azure-change-associated-directory.png)
+4. Esaminare gli account interessati. Verranno rimossi tutti gli account coamministratore e gli utenti con il ruolo [Controllo degli accessi in base al ruolo](../active-directory/role-based-access-control-configure.md) con l'accesso assegnato nei gruppi di risorse esistenti. Il messaggio di avviso visualizzato cita solo la rimozione di coamministratori.
       
-    ![Schermata che mostra hello account coamministratore toobe rimosso.](./media/billing-add-office-365-tenant-to-azure-subscription/s322_azure-confirm-directory-mapping.png)
+    ![Schermata che mostra gli account coamministratore da rimuovere.](./media/billing-add-office-365-tenant-to-azure-subscription/s322_azure-confirm-directory-mapping.png)
    
-    ![Schermata che mostra un toobe di account utente di esempio è stato rimosso.](./media/billing-add-office-365-tenant-to-azure-subscription/s325_assigned-users-removed-resource-groups.png)
-   
+    ![Schermata che mostra un account utente di esempio da rimuovere.](./media/billing-add-office-365-tenant-to-azure-subscription/s325_assigned-users-removed-resource-groups.png)
 5. Selezionare **Completa** ![complete-icon](./media/billing-add-office-365-tenant-to-azure-subscription/s38_complete-icon.png).
 
-### <a name="step-3-add-your-office-365-organizational-accounts-as-co-administrators-toohello-azure-active-directory-tenant"></a>Passaggio 3: Aggiungere gli account aziendali di Office 365 come tenant di Azure Active Directory toohello coamministratori
+### <a name="step-3-add-your-office-365-organizational-accounts-as-admins-to-the-azure-subscription"></a>Passaggio 3: Aggiungere gli account aziendali di Office 365 come amministratori della sottoscrizione di Azure
    
-1. Seleziona hello **amministratori** scheda e quindi selezionare **aggiungere**.
-   
-    ![Screenshot della scheda Amministratori relativa alle impostazioni nel portale di Azure classico](./media/billing-add-office-365-tenant-to-azure-subscription/s319_azure-classic-portal-settings-administrators.png)
-   
-2. Immettere un account aziendale di tenant di Office 365, selezionare hello sottoscrizione di Azure, quindi **completa** ![icona completare](./media/billing-add-office-365-tenant-to-azure-subscription/s38_complete-icon.png).
-   
-    ![Screenshot della finestra di dialogo Aggiungi coamministratore di Azure](./media/billing-add-office-365-tenant-to-azure-subscription/s320_azure-add-co-administrator.png)
-   
-3. Tornare indietro toohello **amministratori** scheda. Dovrebbe essere visualizzato come co-amministratore account aziendale di hello.
-   
-    ![Screenshot della scheda Amministratori](./media/billing-add-office-365-tenant-to-azure-subscription/s321_azure-co-administrator-added.png)
-4.  Test tooAzure di accesso con account di coamministratore hello.
-   
-    a. Uscire da hello portale di Azure classico.
-   
-    b. Aprire hello [portale di Azure](https://portal.azure.com/).
-   
-    c. Immettere le credenziali di hello di CO-amministratore hello e quindi selezionare **Accedi**.
-   
-    ![Screenshot della pagina di accesso di Azure](./media/billing-add-office-365-tenant-to-azure-subscription/s324_azure-sign-in-with-co-admin.png)
+Per aggiungere un amministratore alla sottoscrizione di Azure, vedere [Aggiungere o modificare i ruoli di amministratore di Azure che gestiscono la sottoscrizione o i servizi](billing-add-change-azure-subscription-administrator.md)
 
 ## <a name="need-help-contact-support"></a>Richiesta di assistenza Contattare il supporto tecnico.
-Se è ancora necessario della Guida, [contattare il supporto tecnico](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) tooget risolta il problema.
 
+Se si necessita ancora di assistenza, [contattare il supporto tecnico](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) per ottenere una rapida risoluzione del problema.
 

@@ -1,6 +1,6 @@
 ---
-title: aaaHow toolog eventi tooAzure hub eventi in Gestione API di Azure | Documenti Microsoft
-description: Informazioni su come toolog eventi tooAzure hub eventi in Gestione API di Azure.
+title: Come registrare gli eventi in Hub eventi di Azure in Gestione API di Azure | Microsoft Docs
+description: Informazioni su come registrare eventi nell'Hub eventi di Azure in Gestione API di Azure.
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,92 +14,92 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: 09ca65fc48a874467c6662858f7594e9b19fcdb9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a310236179677046ec49930b07cfdffdadc37974
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toolog-events-tooazure-event-hubs-in-azure-api-management"></a>Come toolog eventi tooAzure hub eventi in Gestione API di Azure
-Hub eventi di Azure è un servizio in ingresso dati altamente scalabili in grado di acquisire milioni di eventi al secondo in modo che sia possibile elaborare e analizzare hello enormi quantità di dati prodotti da applicazioni e dispositivi connessi. Hub eventi funge da hello "porta principale" per una pipeline di eventi e una volta in un hub eventi vengono raccolti i dati possono essere trasformato e archiviate utilizzando qualsiasi provider analitica in tempo reale o schede dell'invio in batch o dell'archiviazione. Hub eventi separa produzione hello di un flusso di eventi dal consumo hello di tali eventi, in modo che i consumer di eventi può accedere agli eventi di hello in una pianificazione personalizzata.
+# <a name="how-to-log-events-to-azure-event-hubs-in-azure-api-management"></a>Come registrare eventi nell'Hub eventi di Azure in Gestione API di Azure
+Hub di eventi di Azure è un servizio di ingresso dati altamente scalabile che può inserire milioni di eventi al secondo in modo che è possibile elaborare e analizzare enormi quantità di dati generati per i dispositivi connessi e le applicazioni. Gli hub di eventi fungono da "porta principale" per una pipeline di eventi e una volta che i dati vengono raccolti in un hub di eventi, possono essere trasformati e archiviati con qualsiasi provider di analisi in tempo reale o adattatori di invio in batch/archiviazione. Gli hub di eventi separano la produzione di un flusso di eventi dal consumo di questi eventi, in modo che i consumer di eventi può accedere agli eventi in base a una pianificazione.
 
-Questo articolo è una toohello complementare [integrare gestione API di Azure con hub eventi](https://azure.microsoft.com/documentation/videos/integrate-azure-api-management-with-event-hubs/) video e viene descritto come gli eventi di gestione API toolog tramite hub di eventi di Azure.
+Questo articolo è complementare al video su come [Integrare la Gestione API di Azure con gli Hub di eventi](https://azure.microsoft.com/documentation/videos/integrate-azure-api-management-with-event-hubs/) e descrive come registrare gli eventi di gestione API mediante gli hub di eventi di Azure.
 
 ## <a name="create-an-azure-event-hub"></a>Creare un Hub di eventi di Azure
-un nuovo Hub eventi, accedi toohello toocreate [portale di Azure classico](https://manage.windowsazure.com) e fare clic su **New**->**servizi App**->**Bus di servizio**  -> **Hub eventi**->**creazione rapida**. Immettere un nome e un'area per l'hub eventi, selezionare una sottoscrizione e quindi uno spazio dei nomi. Se in precedenza è ancora stato creato uno spazio dei nomi è possibile crearne uno digitando un nome in hello **Namespace** casella di testo. Dopo aver configurate tutte le proprietà, fare clic su **creare un nuovo Hub eventi** toocreate hello Hub eventi.
+Per creare un nuovo hub eventi, accedere al [portale di Azure classico](https://manage.windowsazure.com), quindi fare clic su **Nuovo**->**Servizi app**->**Bus di servizio**->**Hub eventi**->**Creazione rapida**. Immettere un nome e un'area per l'hub eventi, selezionare una sottoscrizione e quindi uno spazio dei nomi. Se non è ancora stato creato uno spazio dei nomi, è possibile crearne uno immettendo un nome nella casella di testo **Spazio dei nomi** . Al termine della configurazione di tutte le proprietà, fare clic su **Crea un nuovo hub eventi** per creare l'hub eventi.
 
 ![Creare un hub eventi][create-event-hub]
 
-Passare toohello **configura** scheda per il nuovo Hub eventi e creare due **criteri di accesso condiviso**. Nome hello come primo **invio** e assegnargli **inviare** autorizzazioni.
+Passare quindi alla scheda **Configura** per il nuovo hub eventi e creare due tipi di **criteri di accesso condiviso**. Denominare il primo tipo di criteri **Invio** e assegnare ad essi le autorizzazioni di **invio**.
 
 ![Criterio Invio][sending-policy]
 
-Nome hello secondo **ricezione**, assegnargli **ascolto** le autorizzazioni e fare clic su **salvare**.
+Denominare il secondo criterio **Ricezione**, assegnare al criterio le autorizzazioni **Listen**, quindi fare clic su **Salva**.
 
 ![Criterio Ricezione][receiving-policy]
 
-Tutti i criteri di accesso condiviso consente applicazioni toosend e ricevere eventi tooand da hello Hub eventi. stringhe di connessione di hello tooaccess per questi criteri, passare toohello **Dashboard** hello Hub eventi e fare clic su scheda **informazioni di connessione**.
+Ogni tipo di criteri di accesso condiviso consente alle applicazioni di inviare e ricevere eventi verso e dall'hub eventi. Per accedere alle stringhe di connessione relative a questi criteri, passare alla scheda **Dashboard** dell'hub eventi e fare clic su **Informazioni di connessione**.
 
 ![Stringa di connessione][event-hub-dashboard]
 
-Hello **invio** stringa di connessione viene utilizzata durante la registrazione eventi, hello e **ricezione** stringa di connessione viene utilizzata durante il download di eventi da hello Hub eventi.
+La stringa di connessione di **invio** viene usata durante la registrazione di eventi, mentre la stringa di connessione di **ricezione** viene usata durante il download di eventi dall'hub eventi.
 
 ![Stringa di connessione][event-hub-connection-string]
 
 ## <a name="create-an-api-management-logger"></a>Creare un logger di Gestione API
-Dopo aver creato un Hub eventi, passaggio successivo hello è tooconfigure un [Logger](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/azure-api-management-rest-api-logger-entity) l'API di gestione del servizio in modo da potere registrare eventi toohello Hub eventi.
+Dopo aver creato un hub eventi, è necessario configurare un [Logger](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/azure-api-management-rest-api-logger-entity) nel servizio Gestione API, in modo che possa registrare eventi nell'hub eventi.
 
-Logger di gestione API vengono configurati utilizzando hello [API REST gestione API](http://aka.ms/smapi). Prima di utilizzare hello API REST per hello prima volta, esaminare hello [prerequisiti](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/api-management-rest#Prerequisites) e assicurarsi di aver [abilitato toohello accesso API REST](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/api-management-rest#EnableRESTAPI).
+I logger di Gestione API vengono configurati mediante l' [API REST Gestione API](http://aka.ms/smapi). Prima di usare l'API REST per la prima volta, vedere i [prerequisiti](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/api-management-rest#Prerequisites) e assicurarsi di avere [abilitato l'accesso all'API REST](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/api-management-rest#EnableRESTAPI).
 
-toocreate un logger, effettuare una richiesta HTTP PUT con hello segue il modello di URL.
+Per creare un logger, effettuare una richiesta HTTP PUT usando il seguente modello URL.
 
 `https://{your service}.management.azure-api.net/loggers/{new logger name}?api-version=2014-02-14-preview`
 
-* Sostituire `{your service}` con nome hello dell'istanza del servizio Gestione API.
-* Sostituire `{new logger name}` con il nome desiderato per il nuovo logger hello. Si farà riferimento questo nome quando si configura hello [log-a-eventhub](https://msdn.microsoft.com/library/azure/dn894085.aspx#log-to-eventhub) criteri
+* Sostituire `{your service}` con il nome dell'istanza del servizio Gestione API.
+* Sostituire `{new logger name}` con il nome desiderato per il nuovo logger. Si farà riferimento a questo nome al momento di configurare i criteri [log-to-eventhub](https://msdn.microsoft.com/library/azure/dn894085.aspx#log-to-eventhub) .
 
-Aggiungere hello seguito intestazioni toohello richiesta.
+Aggiungere le intestazioni seguenti alla richiesta.
 
 * Content-Type: application/json
 * Authorization : SharedAccessSignature 58...
-  * Per istruzioni sulla generazione di hello `SharedAccessSignature` vedere [autenticazione di API REST di gestione di Azure API](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/azure-api-management-rest-api-authentication).
+  * Per istruzioni sulla generazione di `SharedAccessSignature` , vedere [Autenticazione dell'API REST Gestione API di Azure](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/azure-api-management-rest-api-authentication).
 
-Specificare il corpo di richiesta hello utilizzando hello seguente modello.
+Specificare il corpo della richiesta usando il modello seguente.
 
 ```json
 {
   "type" : "AzureEventHub",
   "description" : "Sample logger description",
   "credentials" : {
-    "name" : "Name of hello Event Hub from hello Azure Classic Portal",
+    "name" : "Name of the Event Hub from the Azure Classic Portal",
     "connectionString" : "Endpoint=Event Hub Sender connection string"
     }
 }
 ```
 
-* `type`deve essere impostato troppo`AzureEventHub`.
-* `description`fornisce una descrizione facoltativa del logger hello e può essere una stringa di lunghezza zero, se necessario.
-* `credentials`contiene hello `name` e `connectionString` di Hub di eventi di Azure.
+* `type` deve essere impostato su `AzureEventHub`.
+* `description` fornisce una descrizione facoltativa del logger e può essere una stringa di lunghezza zero, se lo si desidera.
+* `credentials` contiene i valori `name` e `connectionString` di Hub eventi di Azure.
 
-Quando si effettua la richiesta di hello, se il logger hello viene creato un codice di stato `201 Created` viene restituito.
+Quando si esegue la richiesta, se viene creato il logger, verrà visualizzato un codice di stato `201 Created` .
 
 > [!NOTE]
-> Per altri possibili codici restituiti e i relativi motivi, vedere [Creare un logger](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/azure-api-management-rest-api-logger-entity#PUT). toosee come eseguire altre operazioni come elenco, update e delete, vedere hello [Logger](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/azure-api-management-rest-api-logger-entity) documentazione di entità.
+> Per altri possibili codici restituiti e i relativi motivi, vedere [Creare un logger](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/azure-api-management-rest-api-logger-entity#PUT). Per informazioni su come eseguire altre operazioni, ad esempio elencare, aggiornare o eliminare, vedere la documentazione relativa all'entità [Logger](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/azure-api-management-rest-api-logger-entity) .
 >
 >
 
 ## <a name="configure-log-to-eventhubs-policies"></a>Configurare i criteri log-to-eventhubs
-Dopo aver configurato il logger in Gestione API, è possibile configurare gli eventi di log-a-eventhubs criteri toolog hello desiderato. Hello log-a-eventhubs criterio può essere utilizzato in entrambi hello sezione criteri in ingresso o in uscita criteri hello.
+Dopo la configurazione del logger in Gestione API, è possibile configurare i criteri log-to-eventhubs in modo da registrare gli eventi desiderati. I criteri log-to-eventhubs possono essere usati nella sezione relativa ai criteri in ingresso o in quella relativa ai criteri in uscita.
 
-criteri tooconfigure, accedi toohello [portale di Azure](https://portal.azure.com), passare il servizio di gestione API tooyour e fare clic su **portale di pubblicazione** tooaccess hello portale di pubblicazione.
+Per configurare i criteri, accedere al [portale di Azure](https://portal.azure.com), passare al servizio Gestione API e fare clic su **Portale di pubblicazione** per accedervi.
 
 ![Portale di pubblicazione][publisher-portal]
 
-Fare clic su **criteri** hello gestione API dal menu a sinistra di hello, selezionare prodotto desiderato hello e API e fare clic su **aggiungere criteri**. In questo esempio stiamo aggiungendo un criterio toohello **API Echo** in hello **Unlimited** prodotto.
+Scegliere **Criteri** dal menu di Gestione API a sinistra, selezionare il prodotto e l'API desiderati e quindi fare clic su **Aggiungi criteri**. In questo esempio si aggiungono dei criteri all'**API Echo** nel prodotto **Unlimited**.
 
 ![Aggiungi criteri][add-policy]
 
-Posizionare il cursore nel hello `inbound` criteri sezione e fare clic su hello **Log tooEventHub** hello tooinsert criteri `log-to-eventhub` modello di criteri di istruzione.
+Posizionare il cursore nella sezione dei criteri `inbound` e fare clic sui criteri **Accedi a Hub eventi** per inserire il modello di istruzione dei criteri `log-to-eventhub`.
 
 ![Policy editor][event-hub-policy]
 
@@ -109,11 +109,11 @@ Posizionare il cursore nel hello `inbound` criteri sezione e fare clic su hello 
 </log-to-eventhub>
 ```
 
-Sostituire `logger-id` con nome hello del logger di gestione API hello configurato nel passaggio precedente hello.
+Sostituire `logger-id` con il nome del logger di Gestione API configurato nel passaggio precedente.
 
-È possibile utilizzare qualsiasi espressione che restituisce una stringa come valore hello hello `log-to-eventhub` elemento. In questo esempio viene registrata una stringa contenente data hello e l'ora, nome del servizio, id richiesta, indirizzo ip di richiesta e il nome dell'operazione.
+È possibile usare qualsiasi espressione che restituisce una stringa come valore dell'elemento `log-to-eventhub` . In questo esempio viene registrata una stringa contenente data e ora, nome del servizio, ID richiesta, indirizzo IP della richiesta e nome dell'operazione.
 
-Fare clic su **salvare** toosave hello aggiornata la configurazione dei criteri. Non appena viene salvato criteri hello sono attivo e gli eventi sono registrato toohello designato Hub eventi.
+Fare clic su **Salva** per salvare la configurazione aggiornata dei criteri. Il criterio risulta attivo immediatamente dopo il salvataggio e gli eventi vengono registrati nell'hub eventi designato.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Altre informazioni sull'Hub eventi di Azure

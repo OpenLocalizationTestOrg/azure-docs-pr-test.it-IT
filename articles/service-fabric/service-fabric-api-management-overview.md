@@ -1,6 +1,6 @@
 ---
-title: aaaAzure Service Fabric con panoramica di gestione API | Documenti Microsoft
-description: "Questo articolo è un toousing introduzione gestione API di Azure come applicazioni di Service Fabric tooyour gateway."
+title: Panoramica di Azure Service Fabric con Gestione API | Microsoft Docs
+description: In questo articolo viene illustrata un'introduzione all'uso di Gestione API di Azure come gateway per le applicazioni Service Fabric.
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,101 +14,101 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/22/2017
 ms.author: vturecek
-ms.openlocfilehash: f01dc570a11e68cd4a2d878abbe6019e209e2f5b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a3eedacac5efb53f82e46a56285713dece56ffe8
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="service-fabric-with-azure-api-management-overview"></a>Panoramica di Service Fabric con Gestione API di Azure
 
-Le applicazioni cloud in genere necessitano tooprovide un gateway front-end un singolo punto di ingresso per gli utenti, dispositivi o altre applicazioni. In Service Fabric un gateway può essere qualsiasi servizio senza stato, ad esempio un'[applicazione ASP.NET Core](service-fabric-reliable-services-communication-aspnetcore.md), o un altro servizio progettati per l'ingresso del traffico, ad esempio [Hub eventi](https://docs.microsoft.com/azure/event-hubs/), [Hub IoT](https://docs.microsoft.com/azure/iot-hub/) o [Gestione API di Azure](https://docs.microsoft.com/azure/api-management/).
+Le applicazioni cloud necessitano in genere di un gateway front-end per garantire un singolo punto di ingresso per utenti, dispositivi o altre applicazioni. In Service Fabric un gateway può essere qualsiasi servizio senza stato, ad esempio un'[applicazione ASP.NET Core](service-fabric-reliable-services-communication-aspnetcore.md), o un altro servizio progettati per l'ingresso del traffico, ad esempio [Hub eventi](https://docs.microsoft.com/azure/event-hubs/), [Hub IoT](https://docs.microsoft.com/azure/iot-hub/) o [Gestione API di Azure](https://docs.microsoft.com/azure/api-management/).
 
-Questo articolo è un toousing introduzione gestione API di Azure come applicazioni di Service Fabric tooyour gateway. API di gestione si integra direttamente con Service Fabric, consentendo toopublish API con una vasta gamma di servizi di routing regole tooyour back-end dell'infrastruttura di servizio. 
+In questo articolo viene illustrata un'introduzione all'uso di Gestione API di Azure come gateway per le applicazioni Service Fabric. Gestione API si integra direttamente in Service Fabric, consentendo di pubblicare API con un ampio set di regole di routing nei servizi Service Fabric back-end. 
 
 ## <a name="architecture"></a>Architettura
-Un'architettura di Service Fabric comune utilizza un'applicazione di una pagina web che effettua chiamate HTTP servizi tooback-end che espongono APIs HTTP. Hello [applicazione di esempio della Guida introduttiva di Service Fabric](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started) Mostra un esempio di questa architettura.
+Un'architettura Service Fabric comune usa un'applicazione Web di una pagina che esegue chiamate HTTP ai servizi back-end che espongono API HTTP. L'[applicazione introduttive a Service Fabric di esempio](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started) mostra un esempio di questa architettura.
 
-In questo scenario, un servizio web senza stato funge da gateway hello in hello applicazione di Service Fabric. Questo approccio richiede si toowrite un servizio web che può essere proxy HTTP richiede servizi tooback-end, come illustrato nel seguente diagramma hello:
+In questo scenario, un servizio Web senza stato funge da gateway nell'applicazione Service Fabric. Questo approccio richiede la scrittura di un servizio Web che possa inoltrare richieste HTTP a servizi back-end, come illustrato nel diagramma seguente:
 
 ![Panoramica di Service Fabric con topologia di Gestione API di Azure][sf-web-app-stateless-gateway]
 
-Le applicazioni con l'aumentare della complessità, in modo hello gateway che deve presentare un'API davanti innumerevoli servizi back-end. Gestione API di Azure è progettato toohandle API complesse con regole di routing, controllo dell'accesso, la limitazione della velocità, monitoraggio, la registrazione degli eventi e la memorizzazione nella cache di risposta con il minimo da parte dell'utente. Gestione API di Azure supporta l'individuazione del servizio Service Fabric, la risoluzione della partizione, e route di replica selezione toointelligently richiede direttamente servizi tooback-end nell'infrastruttura del servizio, non vi è toowrite gateway API senza stato. 
+Man mano che le applicazioni aumentano in termini di complessità, lo stesso avviene per i gateway che devono presentare un'API a una miriade di servizi back-end. Gestione API di Azure è progettato per gestire API complesse con regole di routing, controllo di accesso, limitazione della velocità, monitoraggio, registrazione degli eventi e memorizzazione delle risposte nella cache con minimo intervento dell'utente. Gestione API di Azure supporta l'individuazione di servizi Service Fabric, la risoluzione delle partizioni e la selezione di repliche per indirizzare in modo intelligente le richieste direttamente ai servizi back-end in Service Fabric, senza richiedere all'utente di scrivere un gateway API senza stato personalizzato. 
 
-In questo scenario, hello web che dell'interfaccia utente anche tramite un servizio web, mentre le chiamate API HTTP vengono gestite e instradate tramite Gestione API di Azure, come illustrato nel seguente diagramma hello:
+In questo scenario, l'interfaccia utente Web viene comunque gestita tramite un servizio Web, mentre le chiamate API HTTP vengono gestite e instradate tramite Gestione API di Azure, come illustrato nel diagramma seguente:
 
 ![Panoramica di Service Fabric con topologia di Gestione API di Azure][sf-apim-web-app]
 
 ## <a name="application-scenarios"></a>Scenari applicativi
 
-I servizi in Service Fabric possono essere con stato o senza stato ed essere partizionati usando uno di tre schemi: singleton, Int64 range e named. La risoluzione degli endpoint di servizio richiede l'identificazione di una specifica partizione di una determinata istanza del servizio. Durante la risoluzione di un endpoint di un servizio, entrambi hello nome dell'istanza del servizio (ad esempio, `fabric:/myapp/myservice`), nonché specificare partizione specifica di hello del servizio di hello, tranne nel caso di hello di partizione singleton.
+I servizi in Service Fabric possono essere con stato o senza stato ed essere partizionati usando uno di tre schemi: singleton, Int64 range e named. La risoluzione degli endpoint di servizio richiede l'identificazione di una specifica partizione di una determinata istanza del servizio. Durante la risoluzione di un endpoint di un servizio, è necessario specificare il nome dell'istanza del servizio (ad esempio, `fabric:/myapp/myservice`) e la specifica partizione del servizio, tranne nel caso di una partizione singleton.
 
 Gestione API di Azure può essere usato con qualsiasi combinazione di servizi senza stato e con stato o qualsiasi schema di partizionamento.
 
-## <a name="send-traffic-tooa-stateless-service"></a>Servizio senza stato tooa del traffico di trasmissione
+## <a name="send-traffic-to-a-stateless-service"></a>Inviare traffico a un servizio senza stato
 
-Nel caso più semplice di hello, il traffico viene inoltrato l'istanza del servizio senza stato tooa. tooachieve, un'operazione di gestione API contiene un criterio dell'elaborazione in ingresso con un back-end di Service Fabric associato all'istanza di specifica del servizio senza stato tooa in hello Service Fabric back-end. Le richieste inviate toothat servizio vengono inviate tooa replica casuale dell'istanza di servizio senza stato hello.
+Nel caso più semplice, il traffico viene inoltrato a un'istanza del servizio senza stato. A tale scopo, un'operazione di Gestione API contiene criteri di elaborazione in ingresso con un back-end Service Fabric per l'esecuzione del mapping a una specifica istanza del servizio senza stato nel back-end Service Fabric. Le richieste inviate al servizio vengono inviate a una replica casuale dell'istanza del servizio senza stato.
 
 #### <a name="example"></a>Esempio
-Nel seguente scenario di hello, un'applicazione di Service Fabric contiene un servizio senza stato denominato `fabric:/app/fooservice`, che espone un'API HTTP interna. nome dell'istanza del servizio Hello è ben noto e possa essere hard-coded direttamente in hello criteri di gestione API di elaborazione in ingresso. 
+Nello scenario seguente un'applicazione Service Fabric contiene un servizio senza stato denominato `fabric:/app/fooservice`, che espone un'API HTTP interna. Il nome dell'istanza del servizio è noto e può essere specificato a livello di codice direttamente nei criteri di elaborazione in ingresso di Gestione API. 
 
 ![Panoramica di Service Fabric con topologia di Gestione API di Azure][sf-apim-static-stateless]
 
-## <a name="send-traffic-tooa-stateful-service"></a>Servizio con stato tooa di traffico di trasmissione
+## <a name="send-traffic-to-a-stateful-service"></a>Inviare traffico a un servizio con stato
 
-Scenario di servizio senza stato toohello simile, il traffico può essere inoltrato tooa istanza di servizio con stato. In questo caso, un'operazione di gestione API contiene un criterio dell'elaborazione in ingresso con un back-end di Service Fabric che esegue il mapping di una partizione specifica tooa di richiesta di uno specifico *stateful* istanza del servizio. Hello partizione toomap toois ogni richiesta calcolata mediante un metodo di espressione lambda con alcuni input hello richiesta in ingresso HTTP, ad esempio un valore in hello percorso URL. Hello criterio potrebbe essere configurato toosend richieste toohello replica primaria solo, o tooa casuale per le operazioni di lettura.
+Come per lo scenario del servizio senza stato, il traffico può essere inoltrato a un'istanza del servizio con stato. In questo caso, un'operazione di Gestione API contiene criteri di elaborazione in ingresso con un back-end Service Fabric per l'esecuzione del mapping di una richiesta a una specifica partizione di una specifica istanza del servizio *con stato*. La partizione a cui eseguire il mapping di ogni richiesta viene calcolata tramite un metodo lambda usando un input dalla richiesta HTTP in ingresso, ad esempio un valore nel percorso dell'URL. I criteri possono essere configurati per l'invio di richieste alla sola replica primaria o a una replica casuale per le operazioni di lettura.
 
 #### <a name="example"></a>Esempio
 
-In hello seguente scenario, un'applicazione di Service Fabric contiene un servizio con stato partizionato denominato `fabric:/app/userservice` che espone un'API HTTP interna. nome dell'istanza del servizio Hello è ben noto e possa essere hard-coded direttamente in hello criteri di gestione API di elaborazione in ingresso.  
+Nello scenario seguente un'applicazione Service Fabric contiene un servizio con stato partizionato denominato `fabric:/app/userservice`, che espone un'API HTTP interna. Il nome dell'istanza del servizio è noto e può essere specificato a livello di codice direttamente nei criteri di elaborazione in ingresso di Gestione API.  
 
-Hello servizio è partizionato usando lo schema di partizione hello Int64 con due partizioni e un intervallo di chiavi che si estende su `Int64.MinValue` troppo`Int64.MaxValue`. criteri di back-end Hello calcola una chiave di partizione all'interno dell'intervallo convertendo hello `id` valore fornito in hello URL richiesta percorso tooa integer a 64 bit, anche se qualsiasi algoritmo può essere una chiave di partizione hello toocompute qui utilizzato. 
+Il servizio viene partizionato usando lo schema di partizione Int64 con due partizioni e un intervallo di chiavi compreso tra `Int64.MinValue` e `Int64.MaxValue`. I criteri back-end calcolano una chiave di partizione entro l'intervallo specificato convertendo il valore `id` indicato nel percorso della richiesta URL in un intero a 64 bit, sebbene sia possibile usare qualsiasi algoritmo per calcolare la chiave di partizione. 
 
 ![Panoramica di Service Fabric con topologia di Gestione API di Azure][sf-apim-static-stateful]
 
-## <a name="send-traffic-toomultiple-stateless-services"></a>Invia il traffico di servizi senza stato toomultiple
+## <a name="send-traffic-to-multiple-stateless-services"></a>Inviare traffico a più servizi senza stato
 
-Negli scenari più avanzati, è possibile definire un'operazione di gestione API che esegue il mapping delle richieste toomore di istanza di un servizio. In questo caso, ogni operazione contiene un criterio che mappa le richieste istanza specifica del servizio tooa in base ai valori hello richiesta in ingresso HTTP, ad esempio di stringa di percorso o la query di URL hello e nel caso di hello di servizi con stato, una partizione nell'istanza di servizio hello . 
+Negli scenari più avanzati è possibile definire un'operazione di Gestione API che esegua il mapping delle richieste a più di un'istanza del servizio. In questo caso, ogni operazione contiene criteri che eseguono il mapping delle richieste a una specifica istanza del servizio in base ai valori della richiesta HTTP in ingresso, ad esempio la stringa di query o il percorso dell'URL, e nel caso di servizi con stato una partizione nell'istanza del servizio. 
 
-tooachieve questa gestione API di un'operazione contiene un criterio dell'elaborazione in ingresso con un back-end di Service Fabric associato all'istanza di servizio senza stato tooa in hello Service Fabric back-end in base ai valori recuperati da una richiesta HTTP in ingresso hello. Istanza del servizio tooa le richieste vengono inviate tooa replica casuale hello di istanze del servizio.
+A tale scopo, un'operazione di Gestione API contiene criteri di elaborazione in ingresso con un back-end Service Fabric per l'esecuzione del mapping a un'istanza del servizio senza stato nel back-end Service Fabric in base ai valori recuperati dalla richiesta HTTP in ingresso. Le richieste a un'istanza del servizio vengono inviate a una replica casuale dell'istanza.
 
 #### <a name="example"></a>Esempio
 
-In questo esempio, una nuova istanza di servizio senza stato è creata per ogni utente di un'applicazione con un nome generato dinamicamente utilizzando hello formula seguente:
+Questo esempio illustra come creare una nuova istanza del servizio senza stato per ogni utente di un'applicazione con un nome generato dinamicamente usando la formula seguente:
  
  - `fabric:/app/users/<username>`
 
- Ogni servizio dispone di un nome univoco, ma i nomi di hello non sono noti come iniziale perché hello servizi vengono creati nella risposta toouser o amministratore di input e pertanto non può essere codificato in Criteri di ruoli o le regole di routing. Al contrario, nome hello di hello servizio toowhich toosend una richiesta viene generato nella definizione di criteri di back-end hello da hello `name` valore fornito nel percorso di richiesta URL hello. ad esempio:
+ Ogni servizio dispone di un nome univoco, ma i nomi non sono noti in anticipo, poiché i servizi vengono creati in risposta all'input dell'utente o dell'amministratore e non possono quindi essere codificati in criteri APIM o regole di routing. Al contrario, il nome del servizio a cui inviare una richiesta viene generato nella definizione dei criteri back-end del valore `name` indicato nel percorso della richiesta dell'URL. ad esempio:
 
-  - Oggetto richiesta troppo`/api/users/foo` è indirizzato tooservice istanza`fabric:/app/users/foo`
-  - Oggetto richiesta troppo`/api/users/bar` è indirizzato tooservice istanza`fabric:/app/users/bar`
+  - Una richiesta a `/api/users/foo` viene instradata all'istanza del servizio `fabric:/app/users/foo`
+  - Una richiesta a `/api/users/bar` viene instradata all'istanza del servizio `fabric:/app/users/bar`
 
 ![Panoramica di Service Fabric con topologia di Gestione API di Azure][sf-apim-dynamic-stateless]
 
-## <a name="send-traffic-toomultiple-stateful-services"></a>Invia il traffico di servizi con stato toomultiple
+## <a name="send-traffic-to-multiple-stateful-services"></a>Inviare traffico a più servizi con stato
 
-Le richieste di gestione API di un'operazione possibile eseguire il mapping di esempio di servizio senza stato toohello simile, toomore rispetto a uno **stateful** istanza del servizio, nel qual caso è anche necessario tooperform risoluzione di partizione per ogni servizio con stato istanza.
+In modo analogo all'esempio del servizio senza stato, un'operazione di Gestione API può eseguire il mapping di richieste a più istanze del servizio **con stato**, nel qual caso potrebbe anche essere necessario eseguire la risoluzione delle partizioni per ogni istanza del servizio con stato.
 
-tooachieve questa gestione API di un'operazione contiene un criterio dell'elaborazione in ingresso con un back-end di Service Fabric associato all'istanza di servizio con stato tooa in hello Service Fabric back-end in base ai valori recuperati da una richiesta HTTP in ingresso hello. Inoltre i toomapping richiesta toospecific istanza del servizio richiesta hello può anche essere mappate tooa partizione specifica all'interno di istanza del servizio hello e, facoltativamente, replica primaria di hello tooeither o una replica secondaria casuale all'interno della partizione hello.
+A tale scopo, un'operazione di Gestione API contiene criteri di elaborazione in ingresso con un back-end Service Fabric per l'esecuzione del mapping a un'istanza del servizio con stato nel back-end Service Fabric in base ai valori recuperati dalla richiesta HTTP in ingresso. Oltre al mapping di una richiesta a una specifica istanza del servizio, è possibile eseguire il mapping di una richiesta a una specifica partizione all'interno dell'istanza del servizio e, facoltativamente, alla replica primaria o a una replica secondaria casuale all'interno della partizione.
 
 #### <a name="example"></a>Esempio
 
-In questo esempio, una nuova istanza di servizio con stato è creata per ogni utente dell'applicazione hello con un nome generato dinamicamente utilizzando hello formula seguente:
+Questo esempio illustra come creare una nuova istanza del servizio con stato per ogni utente di un'applicazione con un nome generato dinamicamente usando la formula seguente:
  
  - `fabric:/app/users/<username>`
 
- Ogni servizio dispone di un nome univoco, ma i nomi di hello non sono noti come iniziale perché hello servizi vengono creati nella risposta toouser o amministratore di input e pertanto non può essere codificato in Criteri di ruoli o le regole di routing. Al contrario, nome hello di hello servizio toowhich toosend una richiesta viene generato nella definizione di criteri di back-end hello da hello `name` percorso della richiesta URL hello valore fornito. ad esempio:
+ Ogni servizio dispone di un nome univoco, ma i nomi non sono noti in anticipo, poiché i servizi vengono creati in risposta all'input dell'utente o dell'amministratore e non possono quindi essere codificati in criteri APIM o regole di routing. Al contrario, il nome del servizio a cui inviare una richiesta viene generato nella definizione dei criteri back-end del valore `name` indicato nel percorso della richiesta dell'URL. ad esempio:
 
-  - Oggetto richiesta troppo`/api/users/foo` è indirizzato tooservice istanza`fabric:/app/users/foo`
-  - Oggetto richiesta troppo`/api/users/bar` è indirizzato tooservice istanza`fabric:/app/users/bar`
+  - Una richiesta a `/api/users/foo` viene instradata all'istanza del servizio `fabric:/app/users/foo`
+  - Una richiesta a `/api/users/bar` viene instradata all'istanza del servizio `fabric:/app/users/bar`
 
-Ogni istanza del servizio è partizionato anche utilizzando lo schema di partizione hello Int64 con due partizioni e un intervallo di chiavi che si estende su `Int64.MinValue` troppo`Int64.MaxValue`. criteri di back-end Hello calcola una chiave di partizione all'interno dell'intervallo convertendo hello `id` valore fornito in hello URL richiesta percorso tooa integer a 64 bit, anche se qualsiasi algoritmo può essere una chiave di partizione hello toocompute qui utilizzato. 
+Ogni istanza del servizio viene anche partizionata usando lo schema di partizione Int64 con due partizioni e un intervallo di chiavi compreso tra `Int64.MinValue` e `Int64.MaxValue`. I criteri back-end calcolano una chiave di partizione entro l'intervallo specificato convertendo il valore `id` indicato nel percorso della richiesta URL in un intero a 64 bit, sebbene sia possibile usare qualsiasi algoritmo per calcolare la chiave di partizione. 
 
 ![Panoramica di Service Fabric con topologia di Gestione API di Azure][sf-apim-dynamic-stateful]
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Seguire hello [Guida introduttiva](service-fabric-api-management-quick-start.md) tooset di infrastruttura del servizio prima del cluster con le richieste API di gestione e il flusso tramite servizi di gestione API tooyour.
+Consultare la [Guida introduttiva](service-fabric-api-management-quick-start.md) per impostare il primo cluster Service Fabric con Gestione API e trasferire le richieste nei servizi tramite Gestione API.
 
 <!-- links -->
 

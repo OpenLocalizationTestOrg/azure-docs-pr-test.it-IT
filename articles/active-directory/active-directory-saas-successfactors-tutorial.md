@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con SuccessFactors | Microsoft Docs'
-description: Informazioni su come toouse SuccessFactors con Azure Active Directory tooenable single sign-on, il provisioning automatizzato e molto altro!
+description: Informazioni su come usare SuccessFactors con Azure Active Directory per abilitare l'accesso Single Sign-On, il provisioning automatizzato e altro ancora.
 services: active-directory
 author: jeevansd
 documentationcenter: na
@@ -14,103 +14,103 @@ ms.workload: identity
 ms.date: 07/21/2017
 ms.author: jeedes
 ms.reviewer: jeedes
-ms.openlocfilehash: 3f7895d7d5e26fda27f555ae2f14a1645b50dcba
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e85a38ccbe25263ac42bc76351416b023fb77c87
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-successfactors"></a>Esercitazione: Integrazione di Azure Active Directory con SuccessFactors
-obiettivo di Hello di questa esercitazione è tooshow è come toointegrate SuccessFactors con Azure Active Directory (Azure AD).
+Questa esercitazione descrive l'integrazione di SuccessFactors con Azure Active Directory (Azure AD).
 
-Integrazione di SuccessFactors con Azure AD fornisce hello seguenti vantaggi:
+L'integrazione di SuccessFactors con Azure AD offre i vantaggi seguenti:
 
-* È possibile controllare in Azure AD che ha accesso tooSuccessFactors
-* È possibile abilitare l'utenti tooautomatically get connesso tooSuccessFactors (Single Sign-On) con i propri account Azure AD
-* È possibile gestire gli account in un'unica posizione centrale - hello portale di Azure classico
+* È possibile controllare in Azure AD chi può accedere a SuccessFactors
+* È possibile abilitare gli utenti per l'accesso automatico a SuccessFactors (Single Sign-On) con i propri account Azure AD
+* È possibile gestire gli account da una posizione centrale: il portale di Azure classico
 
-Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
-integrazione di Azure AD con SuccessFactors tooconfigure, è necessario hello seguenti elementi:
+Per configurare l'integrazione di Azure AD con SuccessFactors, sono necessari gli elementi seguenti:
 
 * Sottoscrizione di Azure valida
 * Un tenant in SuccessFactors
 
 > [!NOTE]
-> hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.
+> Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.
 > 
 > 
 
-passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:
+A questo scopo, è consigliabile seguire le indicazioni seguenti:
 
 * Non usare l'ambiente di produzione, a meno che non sia necessario.
 * Se non si dispone di un ambiente di prova di Azure AD, è possibile ottenere una versione di valutazione di un mese [qui](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Descrizione dello scenario
-obiettivo di Hello di questa esercitazione è tooenable si tootest AD Azure single sign-on in un ambiente di test.
+L'obiettivo di questa esercitazione è testare l'accesso Single Sign-On di Azure AD in un ambiente di test.
 
-scenario di Hello descritto in questa esercitazione è composto da due componenti principali:
+Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:
 
-1. Aggiunta di SuccessFactors dalla raccolta hello
+1. Aggiunta di SuccessFactors dalla raccolta
 2. Configurazione e test dell'accesso Single Sign-On di Azure AD
 
-## <a name="adding-successfactors-from-hello-gallery"></a>Aggiunta di SuccessFactors dalla raccolta hello
-integrazione hello tooconfigure di SuccessFactors in Azure AD, è necessario tooadd SuccessFactors dall'elenco di tooyour hello raccolta di App SaaS gestite.
+## <a name="adding-successfactors-from-the-gallery"></a>Aggiunta di SuccessFactors dalla raccolta
+Per configurare l'integrazione di SuccessFactors in Azure AD, è necessario aggiungerla dalla raccolta al proprio elenco di app SaaS gestite.
 
-**tooadd SuccessFactors dalla raccolta di hello, eseguire hello alla procedura seguente:**
+**Per aggiungere SuccessFactors dalla raccolta, seguire questa procedura:**
 
-1. Nel portale di Azure classico, nel riquadro di navigazione sinistro hello hello fare clic su **Active Directory**.
+1. Nel portale di Azure classico fare clic su **Active Directory**nel pannello di spostamento sinistro.
    
     ![Configurazione dell'accesso Single Sign-On][1]
-2. Da hello **Directory** elenco, directory hello selezionare per il quale si desidera l'integrazione di directory tooenable.
-3. visualizzazione di applicazioni hello tooopen, nella visualizzazione directory hello, fare clic su **applicazioni** nel menu superiore hello.
+2. Nell'elenco **Directory** selezionare la directory per la quale si desidera abilitare l'integrazione delle directory.
+3. Per aprire la visualizzazione applicazioni, nella visualizzazione directory fare clic su **Applications** nel menu superiore.
    
     ![Configurazione dell'accesso Single Sign-On][2]
-4. Fare clic su **Aggiungi** nella parte inferiore di hello della pagina hello.
+4. Fare clic su **Add** nella parte inferiore della pagina.
    
     ![Applicazioni][3]
-5. In hello **cosa si desidera toodo** finestra di dialogo, fare clic su **aggiungere un'applicazione dalla raccolta di hello**.
+5. Nella finestra di dialogo **Come procedere** fare clic su **Aggiungere un'applicazione dalla raccolta**.
    
     ![Configurazione dell'accesso Single Sign-On][4]
-6. In hello **casella di ricerca**, tipo **SuccessFactors**.
+6. Nella **casella di ricerca** digitare **SuccessFactors**.
    
     ![Configurazione dell'accesso Single Sign-On][5]
-7. Nel riquadro dei risultati hello, selezionare **SuccessFactors**, quindi fare clic su **completa** tooadd un'applicazione hello.
+7. Nel riquadro dei risultati selezionare **SuccessFactors**, quindi fare clic su **Completa** per aggiungere l'applicazione.
    
     ![Configurazione dell'accesso Single Sign-On][6]
 
 ## <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configurazione e test dell'accesso Single Sign-On di Azure AD
-obiettivo di Hello di questa sezione è tooshow come tooconfigure e prova AD Azure single sign-on con SuccessFactors basato su un utente di test denominato "Britta Simon".
+Questa sezione descrive come configurare e testare l'accesso Single Sign-On di Azure AD con SuccessFactors con un utente test di nome "Britta Simon".
 
-Per toowork di accesso singolo, Azure AD deve tooknow è quale utente controparte hello in SuccessFactors tooan utente in Azure AD. In altre parole, una relazione di collegamento tra un utente di Azure Active Directory e l'utente correlato di hello in SuccessFactors deve toobe stabilita.
+Per il funzionamento dell'accesso Single Sign-On, Azure AD deve conoscere qual è l'utente di SuccessFactors che corrisponde a un utente di Azure AD. In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in SuccessFactors.
 
-Questa relazione di collegamento viene stabilita tramite l'assegnazione valore hello di hello **nome utente** in Azure AD come valore hello hello **Username** in SuccessFactors.
+La relazione di collegamento viene stabilita assegnando al valore di **nome utente** in Azure AD lo stesso valore di **nome utente** in SuccessFactors.
 
-tooconfigure e prova AD Azure single sign-on con SuccessFactors, è necessario hello toocomplete seguenti blocchi predefiniti:
+Per configurare e testare l'accesso Single Sign-On di Azure AD con SuccessFactors, è necessario completare i blocchi predefiniti seguenti:
 
-1. **[Configurazione di Azure AD Single Sign-On](#configuring-azure-ad-single-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.
-2. **[Creazione di un utente prova AD Azure](#creating-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.
-3. **[Creazione di un utente test SuccessFactors](#creating-a-successfactors-test-user)**  -toohave un equivalente di Britta Simon in SuccessFactors toohello collegato AD Azure rappresentazione in seguito.
-4. **[Assegnazione utente di prova hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.
-5. **[Test di Single Sign-On](#testing-single-sign-on)**  -tooverify hello se funzionamento della configurazione.
+1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-single-sign-on)** : per abilitare gli utenti all'uso di questa funzionalità.
+2. **[Creazione di un utente test di Azure AD](#creating-an-azure-ad-test-user)** : per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.
+3. **[Creazione di un utente test SuccessFactors](#creating-a-successfactors-test-user)** : per avere una controparte di Britta Simon in SuccessFactors collegata alla relativa rappresentazione in Azure AD.
+4. **[Assegnazione dell'utente test di Azure AD](#assigning-the-azure-ad-test-user)** : per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** : per verificare se la configurazione funziona.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configurazione dell'accesso Single Sign-On di Azure AD
-In questa sezione, si abilita Azure AD single sign-on nel portale classico hello e configurare l'accesso single sign-on nell'applicazione SuccessFactors.
+In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di Azure classico e viene configurato l'accesso Single Sign-On nell'applicazione SuccessFactors.
 
-**Azure AD tooconfigure single sign-on con SuccessFactors, eseguire hello alla procedura seguente:**
+**Per configurare l'accesso Single Sign-On di Azure AD con SuccessFactors, seguire questa procedura:**
 
-1. Nel portale di Azure classico, in hello hello **SuccessFactors** pagina di integrazione dell'applicazione, fare clic su **configurare single sign-on** tooopen hello **configurare Single Sign-On** finestra di dialogo.
+1. Nella pagina di integrazione dell'applicazione **SuccessFactors** del portale di Azure classico fare clic su **Configura accesso Single Sign-On** per aprire la finestra di dialogo **Configura accesso Single Sign-On**.
    
     ![Configurazione dell'accesso Single Sign-On][7]
-2. In hello **come si sarebbe ad esempio utenti toosign su tooSuccessFactors** selezionare **Microsoft Azure AD Single Sign-On**e quindi fare clic su **Avanti**.
+2. Nella pagina **How would you like users to sign on to SuccessFactors** (Stabilire come si desidera che gli utenti accedano a SuccessFactors) selezionare **Single Sign-On di Microsoft Azure AD**, quindi fare clic su **Avanti**.
    
     ![Configurazione dell'accesso Single Sign-On][8]
-3. In hello **Configura URL App** pagina, eseguire hello alla procedura seguente e quindi fare clic su **Avanti**.
+3. Nella pagina **Configura URL app** seguire questa procedura e quindi fare clic su **Avanti**.
    
     ![Configurazione dell'accesso Single Sign-On][9]
    
-    a. In hello **URL di accesso** casella di testo, digitare un URL utilizzando uno dei hello seguenti motivi: 
+    a. Nella casella di testo **URL accesso** digitare un URL corrispondente al modello seguente: 
    
     |  |
     | --- |
@@ -119,7 +119,7 @@ In questa sezione, si abilita Azure AD single sign-on nel portale classico hello
     | `https://<company name>.successfactors.eu/<company name>` |
     | `https://<company name>.sapsf.eu` |
    
-    b. In hello **URL di risposta** casella di testo, digitare un URL utilizzando uno dei hello seguenti motivi: 
+    b. Nella casella di testo **URL di risposta** digitare un URL corrispondente al modello seguente: 
    
     |  |
     | --- |
@@ -132,32 +132,32 @@ In questa sezione, si abilita Azure AD single sign-on nel portale classico hello
     c. Fare clic su **Avanti**. 
 
     > [!NOTE]
-    > Si noti che queste non sono valori reali hello. È necessario tooupdate questi valori con hello URL di URL di accesso e di risposta effettivo. Questi valori, contattare il tooget [team di supporto di SuccessFactors](https://www.successfactors.com/en_us/support.html).
+    > Si noti che questi non sono i valori reali. È necessario aggiornare questi valori con l'URL di accesso, l'ID e l'URL di risposta effettivi. Per ottenere questi valori, contattare il [team di supporto di SuccessFactors](https://www.successfactors.com/en_us/support.html).
 
-1. In hello **Configura accesso single sign-on in SuccessFactors** pagina, fare clic su **Scarica certificato**e quindi salvare il file di certificato hello in locale nel computer.
+1. Nella pagina **Configure single sign-on at SuccessFactors** (Configura accesso Single Sign-On in SuccessFactors) fare clic su **Scarica certificato** e quindi salvare il file del certificato nel computer.
    
     ![Configurazione dell'accesso Single Sign-On][10]
 
 2. In un'altra finestra del Web browser accedere al **portale di amministrazione di SuccessFactors** come amministratore.
 
-3. Visitare **sicurezza delle applicazioni** e native troppo**funzione accesso singolo**. 
+3. Vedere **Sicurezza applicazione** e **Single Sign On Feature** (Funzionalità di accesso Single Sign-On). 
 
-4. Inserire un valore in hello **Reimposta Token** e fare clic su **salvare Token** tooenable SAML SSO.
+4. Inserire un valore qualsiasi in **Reset Token** (Reimposta token) e fare clic su **Save Token** (Salva token) per abilitare SSO SAML.
    
     ![Configurazione dell'accesso Single Sign-On sul lato app][11]
 
     > [!NOTE] 
-    > Questo valore viene utilizzato solo come hello opzione on/off. Se qualsiasi valore viene salvato, hello SAML SSO è impostata su ON. Se un valore vuoto viene salvato hello SAML SSO è impostata su OFF.
+    > Questo valore viene usato solo come opzione di attivazione o disattivazione. Se viene salvato un valore, SSO SAML è ON. Se viene salvato un valore vuoto, SSO SAML è OFF.
 
-1. Schermata di toobelow native ed eseguire hello seguenti azioni.
+1. Nella schermata sottostante eseguire le azioni seguenti.
    
     ![Configurazione dell'accesso Single Sign-On sul lato app][12]
    
-    a. Seleziona hello **SAML SSO v2** pulsante di opzione
+    a. Selezionare il pulsante di opzione **SAML v2 SSO** (SSO SAML v2)
    
-    b. Impostare hello SAML asserzione entità Name(e.g. SAml issuer + company name).
+    b. Impostare SAML Asserting Party Name (Nome dell'entità di asserzione SAML) ad esempio SAML Issuer + Company name ((Autorità di certificazione SAML) + Nome società).
    
-    c. In hello **autorità di certificazione SAML** casella di testo inserire il valore di hello di **URL autorità di certificazione** dalla configurazione guidata di Azure AD applicazione.
+    c. Nella casella di testo **SAML Issuer** (Autorità di certificazione SAML) inserire il valore di **URL autorità di certificazione** dalla configurazione guidata dell'applicazione di Azure AD.
    
     d. Selezionare **Response(Customer Generated/IdP/AP)** (Risposta - Generata da cliente/IdP/AP) per **Require Mandatory Signature** (Richiedi firma obbligatoria).
    
@@ -169,18 +169,18 @@ In questa sezione, si abilita Azure AD single sign-on nel portale classico hello
    
     h. Selezionare **No** per **Enforce Certificate Valid Period** (Applicare periodo di validità certificato).
    
-    i. Copiare il contenuto di hello hello scaricato del file di certificato e quindi incollarlo hello **certificato di verifica SAML** casella di testo.
+    i. Copiare il contenuto del file del certificato scaricato, copiarlo e incollarlo nella casella di testo **SAML Verifying Certificate** (Verifica certificato SAML).
 
     > [!NOTE] 
-    > contenuto del certificato Hello devono avere certificato e fine certificato i tag di inizio.
+    > Il contenuto del certificato deve avere i tag di inizio e fine certificato.
 
-1. Passare tooSAML V2 e quindi eseguire hello alla procedura seguente:
+1. Passare a SAML V2 e seguire questa procedura:
    
     ![Configurazione dell'accesso Single Sign-On sul lato app][13]
    
     a. Selezionare **Sì** per **Support SP-initiated Global Logout** (Supporto disconnessione globale avviata da SP).
    
-    b. In hello **globale Logout URL del servizio (destinazione LogoutRequest)** casella di testo inserire il valore di hello di **URL disconnessione remota** dalla configurazione guidata di Azure AD applicazione.
+    b. Nella casella di testo **Global Logout Service URL (LogoutRequest destination)** (URL del servizio disconnessione globale - Destinazione LogoutRequest) inserire il valore di **URL disconnessione remota** dalla configurazione guidata dell'applicazione di Azure AD.
    
     c. Selezionare **No** per **Require sp must encrypt all NameID element** (Richiesta a sp di crittografare tutti gli elementi NameID).
    
@@ -188,10 +188,10 @@ In questa sezione, si abilita Azure AD single sign-on nel portale classico hello
    
     e. Selezionare **Sì** per **Enable sp initiated login (AuthnRequest)** (Abilita accesso avviato da sp - AuthnRequest).
    
-    f. In hello **richiesta di invio da autorità di certificazione aziendale** casella di testo inserire il valore di hello di **URL accesso remoto** dalla configurazione guidata di Azure AD applicazione.
-2. Eseguire questi passaggi se si desidera che i nomi utente di accesso hello toomake maiuscole e minuscole.
+    f. Nella casella di testo **Send request as Company-Wide issuer** (Invia richiesta come autorità di certificazione a livello di azienda) inserire il valore di **URL accesso remoto** dalla configurazione guidata dell'applicazione di Azure AD.
+2. Eseguire questi passaggi se si vuole che i nomi utente di account di accesso utente non facciano distinzione tra maiuscole e minuscole.
    
-    a. Visitare **impostazioni società**(vicino alla parte inferiore di hello).
+    a. Vedere **Impostazioni società** in basso.
    
     b. Selezionare la casella di controllo accanto alla **Enable Non-Case-Sensitive Username**(Abilita nome utente senza distinzione maiuscole/minuscole).
    
@@ -200,99 +200,99 @@ In questa sezione, si abilita Azure AD single sign-on nel portale classico hello
     ![Configura accesso Single Sign-On][29]
 
     > [!NOTE] 
-    > Se si esegue questa tooenable, sistema di hello controlla se verrà creato automaticamente un nome di account di accesso SAML duplicato. Se, ad esempio hello cliente dispone di nomi utente User1 e user1. L'annullamento della distinzione maiuscole/minuscole crea questi duplicati. sistema di Hello verrà visualizzato un messaggio di errore e non viene abilitata la funzionalità di hello. Hello il cliente dovrà toochange uno dei nomi utente hello in modo sia stato digitato in realtà diversi. 
+    > Se si prova ad abilitare questa opzione, il sistema controlla se verrà creato un nome di account di accesso SAML duplicato. Ad esempio, se il cliente ha nomi utente Utente1 e utente1. L'annullamento della distinzione maiuscole/minuscole crea questi duplicati. Il sistema visualizza un messaggio di errore e non abilita la funzionalità. Il cliente dovrà modificare uno dei nomi utente in modo che sia effettivamente scritto diversamente. 
 
-1. Nel portale di Azure classico hello, selezionare hello conferma della configurazione di single sign-on e quindi fare clic su **completa** tooclose hello **configurare Single Sign-On** finestra di dialogo.
+1. Nel portale di Azure classico selezionare la conferma della configurazione dell'accesso Single Sign-On e quindi fare clic su **Complete** per chiudere la finestra di dialogo **Configura accesso Single Sign-On**.
    
     ![Applicazioni][14]
-2. In hello **Single sign-on conferma** pagina, fare clic su **completa**.
+2. Nella pagina **Conferma Single Sign-on** fare clic su **Completa**.
    
     ![Applicazioni][15]
 
 ### <a name="creating-an-azure-ad-test-user"></a>Creazione di un utente test di Azure AD
-obiettivo di Hello di questa sezione è toocreate un utente di test nel portale classico di hello chiamato Britta Simon.
+Questa sezione descrive come creare un utente di test chiamato Britta Simon nel portale classico.
 
 ![Creare un utente di Azure AD][16]
 
-**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**
+**Per creare un utente test in Azure AD, eseguire la procedura seguente:**
 
-1. In hello **portale di Azure classico**via hello riquadro di spostamento a sinistra, fare clic su **Active Directory**.
+1. Nel **portale di Azure classico** fare clic su **Active Directory** nel riquadro di spostamento sinistro.
    
     ![Creazione di un utente test di Azure AD][17]
-2. Da hello **Directory** elenco, directory hello selezionare per il quale si desidera l'integrazione di directory tooenable.
-3. Fare clic su elenco hello toodisplay di utenti, nel menu hello nella parte superiore di hello, **utenti**.
+2. Nell'elenco **Directory** selezionare la directory per la quale si desidera abilitare l'integrazione delle directory.
+3. Per visualizzare l'elenco di utenti, fare clic su **Utenti**nel menu in alto.
    
     ![Creazione di un utente test di Azure AD][18]
-4. hello tooopen **Aggiungi utente** finestra di dialogo, nella barra degli strumenti hello nella parte inferiore di hello, fare clic su **Aggiungi utente**.
+4. Per aprire la finestra di dialogo **Aggiungi utente**, fare clic su **Aggiungi utente** nella barra degli strumenti in basso.
    
     ![Creazione di un utente test di Azure AD][19]
-5. In hello **informazioni sull'utente** finestra di dialogo eseguire hello alla procedura seguente:
+5. Nella pagina **Informazioni sull'utente** seguire questa procedura:
    
     ![Creazione di un utente test di Azure AD][20]
    
     a. In Tipo di utente selezionare Nuovo utente nell'organizzazione.
    
-    b. In nome utente hello **textbox**, tipo **BrittaSimon**.
+    b. Nella casella di testo **Nome utente** digitare **BrittaSimon**.
    
     c. Fare clic su **Avanti**.
-6. In hello **profilo utente** finestra di dialogo eseguire hello alla procedura seguente:
+6. Nella pagina **Profilo utente** seguire questa procedura:
    
     ![Creazione di un utente test di Azure AD][21]
    
-    a. In hello **nome** casella tipo **Laura**.  
+    a. Nella casella di testo **Nome** digitare **Britta**.  
    
-    b. In hello **cognome** casella di testo, tipo, **Simon**.
+    b. Nella casella di testo **Cognome** digitare **Simon**.
    
-    c. In hello **nome visualizzato** casella tipo **Britta Simon**.
+    c. Nella casella di testo **Nome visualizzato** digitare **Britta Simon**.
    
-    d. In hello **ruolo** elenco, selezionare **utente**.
+    d. Nell'elenco **Ruolo** selezionare **Utente**.
    
     e. Fare clic su **Avanti**.
-7. In hello **Ottieni password temporanea** nella pagina, fare clic su **creare**.
+7. Nella pagina **Ottieni password temporanea** fare clic su **crea**.
    
     ![Creazione di un utente test di Azure AD][22]
-8. In hello **Ottieni password temporanea** finestra di dialogo eseguire hello alla procedura seguente:
+8. Nella pagina **Ottieni password temporanea** seguire questa procedura:
    
     ![Creazione di un utente test di Azure AD][23]
    
-    a. Annotare il valore di hello di hello **nuova Password**.
+    a. Prendere nota del valore visualizzato in **Nuova password**.
    
     b. Fare clic su **Completa**.  
 
 ### <a name="creating-a-successfactors-test-user"></a>Creazione di un utente test SuccessFactors
-In ordine tooenable Azure AD utenti toolog in SuccessFactors, è necessario eseguirne il provisioning in SuccessFactors.  
-Nel caso di hello di SuccessFactors, il provisioning è un'attività manuale.
+Per consentire agli utenti di Azure AD di accedere a SuccessFactors, è necessario eseguirne il provisioning in SuccessFactors.  
+Nel caso di SuccessFactors, il provisioning è un'attività manuale.
 
-tooget degli utenti creati in SuccessFactors, è necessario hello toocontact [team di supporto di SuccessFactors](https://www.successfactors.com/en_us/support.html).
+Per creare utenti in SuccessFactors, è necessario contattare il [team di supporto di SuccessFactors](https://www.successfactors.com/en_us/support.html).
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Assegnazione utente test hello Azure AD
-obiettivo di Hello di questa sezione è tooenabling toouse Britta Simon single sign-on Azure concedendo tooSuccessFactors proprio accesso.
+### <a name="assigning-the-azure-ad-test-user"></a>Assegnazione dell'utente test di Azure AD
+Questa sezione descrive come abilitare Britta Simon per l'uso dell'accesso Single Sign-On di Azure concedendole l'accesso a SuccessFactors.
 
 ![Assegna utente][24]
 
-**tooassign Britta Simon tooSuccessFactors, eseguire hello alla procedura seguente:**
+**Per assegnare Britta Simon a SuccessFactors, seguire questa procedura:**
 
-1. Nel portale classico hello, fare clic su visualizzazione di applicazioni hello tooopen, nella visualizzazione directory hello **applicazioni** nel menu superiore hello.
+1. Per aprire la visualizzazione delle applicazioni nel portale classico, nella visualizzazione directory fare clic su **Applicazioni** nel menu in alto.
    
     ![Assegna utente][25]
-2. Nell'elenco di applicazioni hello, selezionare **SuccessFactors**.
+2. Nell'elenco di applicazioni, selezionare **SuccessFactors**.
    
     ![Configura accesso Single Sign-On][26]
-3. Scegliere dal menu hello in primo piano hello **utenti**.
+3. Scegliere **Utenti**dal menu in alto.
    
     ![Assegna utente][27]
-4. Nell'elenco di utenti hello, selezionare **Britta Simon**.
-5. Nella barra degli strumenti di hello nella parte inferiore di hello, fare clic su **assegnare**.
+4. Nell'elenco di utenti selezionare **Britta Simon**.
+5. Fare clic su **Assegna**sulla barra degli strumenti in basso.
    
     ![Assegna utente][28]
 
 ### <a name="testing-single-sign-on"></a>Test dell'accesso Single Sign-On
-obiettivo di Hello di questa sezione è tootest la configurazione di single sign-on di Azure AD mediante hello Pannello di accesso.
+Questa sezione descrive come testare la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.
 
-Quando si fa clic hello SuccessFactors riquadro in hello Pannello di accesso, è necessario ottenere automaticamente firmato in tooyour applicazione SuccessFactors.
+Quando si fa clic sul riquadro SuccessFactors nel pannello di accesso, verrà eseguito automaticamente l'accesso all'applicazione SuccessFactors.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
-* [Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

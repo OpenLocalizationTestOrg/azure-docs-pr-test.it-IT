@@ -1,6 +1,6 @@
 ---
-title: una soluzione di gestione in OMS aaaBuild | Documenti Microsoft
-description: "Soluzioni di gestione estendono le funzionalità di hello di Operations Management Suite (OMS), fornendo gli scenari di gestione di pacchetti che è possibile aggiungere l'area di lavoro OMS tootheir.  Questo articolo fornisce informazioni dettagliate su come creare toobe di soluzioni di gestione utilizzato nel proprio ambiente o resi disponibili tooyour clienti."
+title: Creare una soluzione di gestione in OMS | Documentazione Microsoft
+description: "Le soluzioni di gestione estendono la funzionalità di Operations Management Suite (OMS) offrendo scenari di gestione in pacchetto che i clienti possono aggiungere all'area di lavoro OMS.  In questo articolo vengono fornite informazioni dettagliate su come creare soluzioni di gestione da usare nel proprio ambiente o da rendere disponibili per i propri clienti."
 services: operations-management-suite
 documentationcenter: 
 author: bwren
@@ -15,72 +15,72 @@ ms.workload: infrastructure-services
 ms.date: 03/20/2017
 ms.author: bwren
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: dea4c0d9e608d9fe4aa41088705958c9fe999372
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6ea959f1e95ea46c07eec3afa9d46bfeb72ca3e4
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="design-and-build-a-management-solution-in-operations-management-suite-oms-preview"></a>Progettare e creare una soluzione di gestione in Operations Management Suite (OMS) (anteprima)
 > [!NOTE]
-> Questa è una documentazione preliminare per la creazione di soluzioni di gestione in OMS attualmente disponibili in versione di anteprima. Qualsiasi schema descritto di seguito è soggetto toochange.
+> Questa è una documentazione preliminare per la creazione di soluzioni di gestione in OMS attualmente disponibili in versione di anteprima. Qualsiasi schema descritto di seguito è soggetto a modifiche.
 
-[Soluzioni di gestione](operations-management-suite-solutions.md) estendere le funzionalità di hello di Operations Management Suite (OMS), fornendo gli scenari di gestione di pacchetti che è possibile aggiungere l'area di lavoro OMS tootheir.  In questo articolo presenta toodesign un processo di base e compilare una soluzione di gestione che è adatta per i requisiti più comuni.  Se sei nuove soluzioni di gestione toobuilding è possibile utilizzare questo processo come punto di partenza e quindi sfruttare i concetti di hello per le soluzioni più complesse come l'evolversi delle esigenze.
+Le [soluzioni di gestione](operations-management-suite-solutions.md) estendono la funzionalità di Operations Management Suite (OMS) offrendo scenari di gestione in pacchetto che i clienti possono aggiungere all'area di lavoro OMS.  Questo articolo presenta un processo di base per progettare e compilare una soluzione di gestione adatta ai requisiti più comuni.  Se non si ha familiarità con la creazione di soluzioni di gestione, è possibile usare questo processo come punto di partenza e quindi usare i concetti per soluzioni più complesse come l'evolversi delle esigenze.
 
 ## <a name="what-is-a-management-solution"></a>Che cos'è una soluzione di gestione?
 
-Soluzioni di gestione contenuto OMS e risorse di Azure che interagiscono tra di loro tooachieve un particolare scenario di monitoraggio.  Sono implementati come [modelli di gestione delle risorse](../azure-resource-manager/resource-manager-template-walkthrough.md) che contengono informazioni dettagliate su come tooinstall e configurare le risorse contenute, quando si installa la soluzione hello.
+Le soluzioni di gestione contengono risorse OMS e Azure che interagiscono per raggiungere un determinato scenario di monitoraggio.  Vengono implementate come [modelli di gestione delle risorse](../azure-resource-manager/resource-manager-template-walkthrough.md) conteneneti informazioni dettagliate su come installare e configurare le risorse contenute quando si installa la soluzione.
 
-Hello strategia di base è la soluzione di gestione di toostart compilando i singoli componenti di hello nell'ambiente Azure.  Dopo aver creato la funzionalità di hello funziona correttamente, quindi iniziare a creare il pacchetto in un [file di soluzione di gestione](operations-management-suite-solutions-solution-file.md). 
+La strategia di base consiste nell'avviare la soluzione di gestione compilando i singoli componenti nell'ambiente Azure.  Dopo che la funzionalità opera correttamente, è possibile avviare la creazione del pacchetto in un [file di soluzione di gestione](operations-management-suite-solutions-solution-file.md). 
 
 
 ## <a name="design-your-solution"></a>Progettare la soluzione
-modello più comune di Hello per una soluzione di gestione viene illustrata nel seguente diagramma hello.  diversi componenti di Hello in questo modello sono descritti nella seguente hello.
+Nel diagramma seguente è illustrato il modello più comune per una soluzione di gestione.  I diversi componenti in questo modello vengono descritti di seguito.
 
 ![Panoramica della soluzione OMS](media/operations-management-suite-solutions/solution-overview.png)
 
 
 ### <a name="data-sources"></a>Origini dati
-primo passaggio di Hello nella progettazione di una soluzione consiste nel determinare dati hello necessari dal repository Log Analitica hello.  Questi dati possono essere raccolti da un [origine dati](../log-analytics/log-analytics-data-sources.md) o [un'altra soluzione](operations-management-suite-solutions.md), o la soluzione potrebbe essere necessario tooprovide hello processo toocollect è.
+Il primo passaggio nella progettazione di una soluzione consiste nel determinare i dati richiesti dall'archivio di Log Analytics.  Questi dati possono essere raccolti da un'[origine dati](../log-analytics/log-analytics-data-sources.md) o da [un'altra soluzione](operations-management-suite-solutions.md) oppure la soluzione potrebbe dover fornire il processo di raccolta.
 
-Sono presenti origini dati che possono essere raccolti nell'archivio di Log Analitica hello, come descritto in diversi modi [origini dati nel Log Analitica](../log-analytics/log-analytics-data-sources.md).  Ciò include gli eventi nel registro eventi di Windows hello o generati da Syslog inoltre tooperformance contatori per i client Windows e Linux.  È possibile anche raccogliere dati dalle risorse di Azure raccolte da Monitoraggio di Azure.  
+Esistono diversi modi per raccogliere le origini dati nel repository di Log Analytics, come descritto in [Origini dati in Log Analytics](../log-analytics/log-analytics-data-sources.md).  Alcuni esempi sono gli eventi nel registro eventi di Windows o generati da Syslog, oltre ai contatori delle prestazioni per client Windows e Linux.  È possibile anche raccogliere dati dalle risorse di Azure raccolte da Monitoraggio di Azure.  
 
-Se si richiedono dati che non sono accessibili tramite una delle origini dati disponibili hello, quindi è possibile utilizzare hello [API dell'agente di raccolta dati di HTTP](../log-analytics/log-analytics-data-collector-api.md) che consentono di toowrite repository Analitica Log toohello dei dati da qualsiasi client che è possibile chiamare un resto API.  Hello viene in genere di raccolta dati personalizzati in una soluzione di gestione toocreate un [runbook in automazione di Azure](../automation/automation-runbook-types.md) che raccoglie i dati di hello richiesto dalle risorse di Azure o esterne e Usa hello toowrite API dell'agente di raccolta dati toohello repository.  
+Se si richiedono dati non accessibili tramite una delle origini dati disponibili, è possibile usare l'[API dell'agente di raccolta dati HTTP](../log-analytics/log-analytics-data-collector-api.md) che consente di scrivere dati nell'archivio di Log Analytics da qualsiasi client in grado di chiamare un'API REST.  Il mezzo più comune di raccolta dati personalizzati in una soluzione di gestione è creare un [runbook in Automazione di Azure](../automation/automation-runbook-types.md) che raccoglie i dati richiesti dalle risorse di Azure o da origini esterne e usa l'API dell'agente di raccolta dati per scrivere nel repository.  
 
 ### <a name="log-searches"></a>Ricerche log
-[Log delle ricerche](../log-analytics/log-analytics-log-searches.md) vengono utilizzati tooextract e analizzare i dati nel repository di hello Analitica di Log.  Vengono utilizzati per le visualizzazioni e avvisi in aggiunta tooallowing hello utente tooperform analisi ad hoc dei dati nel repository di hello.  
+Le [ricerche nei log](../log-analytics/log-analytics-log-searches.md) vengono usate per estrarre e analizzare i dati nel repository di Log Analytics.  Vengono usate da visualizzazioni e avvisi, oltre a consentire all'utente di eseguire analisi ad hoc dei dati nel repository.  
 
-È necessario definire le query che si ritiene risulteranno utili toohello utente anche se non vengono usati da tutte le viste o avvisi.  Questi saranno disponibili toothem come ricerche salvate nel portale di hello ed è anche possibile includere in un [parte di visualizzazione elenco di query](../log-analytics/log-analytics-view-designer-parts.md#list-of-queries-part) nella propria visualizzazione personalizzata.
+È necessario definire le query che si ritiene risulteranno utili all'utente, anche se non vengono usate da tutte le visualizzazioni o gli avvisi.  Queste saranno disponibili come ricerche salvate nel portale ed è possibile anche includerle in una [parte della visualizzazione Elenco di query](../log-analytics/log-analytics-view-designer-parts.md#list-of-queries-part) nella visualizzazione personalizzata.
 
 ### <a name="alerts"></a>Avvisi
-[Gli avvisi nel registro Analitica](../log-analytics/log-analytics-alerts.md) identificare i problemi tramite [log ricerche](#log-searches) rispetto ai dati hello nel repository di hello.  Si notifica utente hello o eseguire automaticamente un'azione in risposta. Occorre identificare le diverse condizioni di avviso per l'applicazione e includere le regole di avviso corrispondenti nel file della soluzione.
+[Gli avvisi in Log Analytics](../log-analytics/log-analytics-alerts.md) identificano i problemi tramite le [ricerche nei log](#log-searches) a fronte dei dati nel repository.  Inviano una notifica all'utente o eseguono automaticamente un'azione in risposta. Occorre identificare le diverse condizioni di avviso per l'applicazione e includere le regole di avviso corrispondenti nel file della soluzione.
 
-Se il problema di hello possa potenzialmente essere risolto con un processo automatizzato, quindi in genere creerai un runbook in automazione di Azure tooperform questa correzione.  È possono gestire con servizi di Azure più [cmdlet](/powershell/azure/overview) quali runbook hello utilizzare tooperform tale funzionalità.
+Se il problema può essere risolto potenzialmente con un processo automatizzato, si creerà in genere un runbook in Automazione di Azure per eseguire la correzione.  La maggior parte dei servizi di Azure può essere gestita con [cmdlet](/powershell/azure/overview) che il runbook sfrutta per eseguire queste funzionalità.
 
-Se la soluzione richiede funzionalità esterne nell'avviso tooan risposta, quindi è possibile utilizzare un [webhook risposta](../log-analytics/log-analytics-alerts-actions.md).  In questo modo si toocall un servizio web esterno, l'invio di informazioni da avviso hello.
+Se la soluzione richiede funzionalità esterne in risposta a un avviso, è possibile usare una [risposta di webhook](../log-analytics/log-analytics-alerts-actions.md).  Ciò consente di chiamare un servizio Web esterno che invia informazioni dall'avviso.
 
 ### <a name="views"></a>Visualizzazioni
-Le visualizzazioni nel Log Analitica sono dati toovisualize utilizzati dall'archivio di Log Analitica hello.  Ogni soluzione conterrà in genere una singola visualizzazione con un [riquadro](../log-analytics/log-analytics-view-designer-tiles.md) visualizzato nel dashboard principale dell'utente hello.  visualizzazione di Hello può contenere un numero qualsiasi di [parti visualizzazione](../log-analytics/log-analytics-view-designer-parts.md) tooprovide visualizzazioni diverse dell'utente di toohello hello i dati raccolti.
+Le visualizzazioni in Log Analytics vengono usate per visualizzare i dati dal repository di Log Analytics.  Ogni soluzione conterrà in genere una singola visualizzazione con un [riquadro](../log-analytics/log-analytics-view-designer-tiles.md) che viene visualizzato nel dashboard principale dell'utente.  La visualizzazione può contenere un numero qualsiasi di [parti di visualizzazione](../log-analytics/log-analytics-view-designer-parts.md) per fornire visualizzazioni differenti dei dati raccolti per l'utente.
 
-Si [creare visualizzazioni personalizzate utilizzando Progettazione vista hello](../log-analytics/log-analytics-view-designer.md) che è possibile esportare in un secondo momento per l'inclusione nel file di soluzione.  
+[Creare visualizzazioni personalizzate usando Progettazione viste](../log-analytics/log-analytics-view-designer.md) che è possibile esportare in un secondo momento per l'inclusione nel file della soluzione.  
 
 
 ## <a name="create-solution-file"></a>Creare il file di soluzione
-Dopo aver configurato e testato i componenti di hello che faranno parte della soluzione, è possibile [creare il file di soluzione](operations-management-suite-solutions-solution-file.md).  Si implementerà i componenti della soluzione hello in un [modello di gestione risorse](../azure-resource-manager/resource-group-authoring-templates.md) che include un [risorse della soluzione](operations-management-suite-solutions-solution-file.md#solution-resource) con toohello relazioni tra le altre risorse hello file.  
+Dopo avere configurato e testato i componenti che faranno parte della soluzione, è possibile [creare il file di soluzione](operations-management-suite-solutions-solution-file.md).  Si implementeranno i componenti della soluzione in un [modello di Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md) che include le [risorse della soluzione](operations-management-suite-solutions-solution-file.md#solution-resource) con relazioni ad altre risorse nel file.  
 
 
 ## <a name="test-your-solution"></a>Testare la soluzione personalizzata
-Mentre si sviluppa la soluzione, sarà anche necessario tooinstall e testarlo nell'area di lavoro.  È possibile farlo usando uno dei metodi disponibili hello troppo[verificare e installare i modelli di gestione risorse](../azure-resource-manager/resource-group-template-deploy.md).
+Durante lo sviluppo della soluzione, è necessario installarla e testarla nell'area di lavoro.  È possibile farlo usando uno dei metodi disponibili per [testare e installare i modelli di Resource Manager](../azure-resource-manager/resource-group-template-deploy.md).
 
 ## <a name="publish-your-solution"></a>Pubblicare la soluzione
-Dopo aver completato e testare la soluzione, è possibile renderlo disponibile toocustomers tramite entrambe le seguenti origini di hello.
+Dopo avere completato e testato la soluzione, è possibile renderla disponibile ai clienti tramite le seguenti origini.
 
-- **Modelli di avvio rapido di Azure**.  [Modelli di avvio rapido di Azure](https://azure.microsoft.com/resources/templates/) è un set di modelli di gestione risorse fornito dalla community di hello tramite GitHub.  È possibile rendere disponibile la soluzione per le informazioni seguenti in hello [Guida alla collaborazione su](https://github.com/Azure/azure-quickstart-templates/tree/master/1-CONTRIBUTION-GUIDE).
-- **Azure Marketplace**.  Hello [Azure Marketplace](https://azuremarketplace.microsoft.com/marketplace/) consente toodistribute e vendere la soluzione tooother sviluppatori, fornitori di software indipendenti e i professionisti IT.  È possibile ottenere informazioni come toopublish il tooAzure Esplora Marketplace in [come toopublish e gestire un'offerta in hello Azure Marketplace](../marketplace-publishing/marketplace-publishing-getting-started.md).
+- **Modelli di avvio rapido di Azure**.  [Modelli di avvio rapido di Azure](https://azure.microsoft.com/resources/templates/) è un set di modelli di Resource Manager messi a disposizione dalla community tramite GitHub.  È possibile rendere disponibile la soluzione seguendo le informazioni nella [Contribution Guide](https://github.com/Azure/azure-quickstart-templates/tree/master/1-CONTRIBUTION-GUIDE).
+- **Azure Marketplace**.  [Azure Marketplace](https://azuremarketplace.microsoft.com/marketplace/) consente di distribuire e vendere la soluzione agli altri sviluppatori, agli ISV e ai professionisti IT.  Informazioni su come pubblicare la soluzione in Azure Marketplace sono disponibili in [Come pubblicare e gestire un'offerta in Azure Marketplace](../marketplace-publishing/marketplace-publishing-getting-started.md).
 
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Informazioni su come troppo[creare un file di soluzione](operations-management-suite-solutions-solution-file.md) per la soluzione di gestione.
-* Informazioni sul supporto di hello [modelli Authoring Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md).
+* Informazioni su come [creare un file di soluzione](operations-management-suite-solutions-solution-file.md) per la soluzione di gestione.
+* Informazioni dettagliate sulla [Creazione di modelli di Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md).
 * Cercare i [modelli di avvio rapido di Azure](https://azure.microsoft.com/documentation/templates) per esempi di modelli di Resource Manager.

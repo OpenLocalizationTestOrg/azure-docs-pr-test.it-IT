@@ -1,13 +1,13 @@
 ---
 layout: HubPage
 hide_bc: True
-title: aaaMicrosoft documentazione di Azure
-description: Informazioni su come toobuild e gestire potenti applicazioni utilizzando i servizi cloud di Microsoft Azure. Ottenere la documentazione, il codice di esempio, le esercitazioni e altro.
-ms.openlocfilehash: a844a7c29be3e0f61c50eb0e89b8677029ee97dc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+title: Documentazione di Microsoft Azure
+description: Informazioni su come compilare e gestire applicazioni avanzate usando i servizi cloud di Microsoft Azure. Ottenere la documentazione, il codice di esempio, le esercitazioni e altro.
+ms.openlocfilehash: aba00d7c90d173ecf58fedc1b8af5d1be418358c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 <div id="main" class="v2">
     <div class="container">
@@ -160,7 +160,7 @@ ms.lasthandoff: 10/06/2017
                                                 </ul>
                                                 <h4>NoSQL</h4>
                                                 <ul class="noBullet">
-                                                    <li><a class="barLink" href="/azure/cosmos-db/">Cosmos DB</a></li>
+                                                    <li><a class="barLink" href="/azure/cosmos-db/">Azure Cosmos DB</a></li>
                                                 </ul>
                                                 <h4>AI e servizi cognitivi</h4>
                                                 <ul class="noBullet">
@@ -298,7 +298,7 @@ ms.lasthandoff: 10/06/2017
                                         <li>
                                             <a href="/azure/cosmos-db/">
                                                 <img src="media/index/cosmosdb.svg" alt="" />
-                                                <p>Cosmos DB</p>
+                                                <p>Azure Cosmos DB</p>
                                             </a>
                                         </li>
                                         <li>
@@ -1081,7 +1081,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Set di scalabilità di macchine virtuali</h3>
-                                                    <p>Gestire e scalare 10s too1000s delle macchine virtuali Linux e Windows</p>
+                                                    <p>Gestire e ridimensionare da decine a migliaia di macchine virtuali Linux e Windows</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1218,7 +1218,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Panoramica delle reti</h3>
-                                                    <p>Una visualizzazione integrata di hello networking servizi in Azure</p>
+                                                    <p>Visualizzazione integrata dei servizi di rete in Azure</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1237,7 +1237,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Rete virtuale</h3>
-                                                    <p>Eseguire il provisioning di reti private, facoltativamente è possibile collegare i data center locale tooon</p>
+                                                    <p>Effettuare il provisioning di reti private, con connessione facoltativa a data center locali</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1256,7 +1256,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Bilanciamento del carico</h3>
-                                                    <p>Fornire prestazioni elevate, disponibilità e la rete tooyour applicazioni</p>
+                                                    <p>Garantire livelli elevati di disponibilità e prestazioni di rete per le applicazioni</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1332,7 +1332,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>RETE CDN</h3>
-                                                    <p>Garantire agli utenti tooend contenuti tramite una rete affidabile dei centri dati globali </p>
+                                                    <p>Distribuire contenuti agli utenti finali tramite una solida rete di data center globali </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1370,7 +1370,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>ExpressRoute</h3>
-                                                    <p>TooAzure le connessioni di rete privata dedicata fiber</p>
+                                                    <p>Connessioni ad Azure tramite fibra su rete privata dedicata</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1470,7 +1470,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Backup</h3>
-                                                    <p>Cloud toohello backup server semplice e affidabile</p>
+                                                    <p>Backup semplice e affidabile del server nel cloud</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1532,7 +1532,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>App per dispositivi mobili</h3>
-                                                    <p>Back-end hello compilare e ospitare qualsiasi App per dispositivi mobili</p>
+                                                    <p>Sviluppare e ospitare il back-end per qualsiasi app per dispositivi mobili</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1570,7 +1570,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>App per la logica</h3>
-                                                    <p>Automatizzare hello accesso e utilizzo dei dati cloud senza scrivere codice</p>
+                                                    <p>Automatizzare l'accesso e l'uso dei dati tra cloud senza scrivere codice</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1589,7 +1589,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>RETE CDN</h3>
-                                                    <p>Garantire agli utenti tooend contenuti tramite una rete affidabile dei centri dati globali </p>
+                                                    <p>Distribuire contenuti agli utenti finali tramite una solida rete di data center globali </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1827,7 +1827,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Estensione database di SQL Server</h3>
-                                                    <p>Estensione in modo dinamico tooAzure i database di SQL Server locale</p>
+                                                    <p>Estendere in modo dinamico i database di SQL Server locali in Azure</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1845,8 +1845,8 @@ ms.lasthandoff: 10/06/2017
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>Cosmos DB</h3>
-                                                    <p>Database documenti come servizio NoSQL gestito</p>
+                                                    <h3>Azure Cosmos DB</h3>
+                                                    <p>Database multimodello distribuito a livello globale a qualsiasi livello di scalabilità</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1903,7 +1903,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Cache Redis</h3>
-                                                    <p>Velocità effettiva elevata, applicazioni scalabili/fast toobuild di accesso ai dati a bassa latenza</p>
+                                                    <p>Accesso a dati con bassa latenza e velocità effettiva elevata per creare applicazioni scalabili/veloci</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1984,7 +1984,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Ricerca Web Bing</h3>
-                                                    <p>La connessione web potente ricerca tooyour App</p>
+                                                    <p>Connettere funzionalità di ricerca Web avanzate alle app</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2022,7 +2022,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Servizio visione personalizzata</h3>
-                                                    <p>Un servizio web personalizzabile che apprende toorecognize contenuto specifico in immagini</p>
+                                                    <p>Servizio Web personalizzabile che impara a riconoscere contenuti specifici nelle immagini</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2060,7 +2060,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>LUIS (Language Understanding Intelligent Service)</h3>
-                                                    <p>Ottimizzazione delle applicazioni tramite i comandi toounderstand agli utenti</p>
+                                                    <p>Insegnare alle app a riconoscere i comandi degli utenti</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2079,7 +2079,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Ricerca personalizzata Bing</h3>
-                                                    <p>I risultati di ricerca hello che si sta cercando di compilazione</p>
+                                                    <p>Compilare i risultati della ricerca desiderati</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2122,7 +2122,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Machine Learning</h3>
-                                                    <p>Potente analitica predittiva basato su cloud strumento Manutenzione predittiva tooenable</p>
+                                                    <p>Potenti strumenti di analisi predittiva basata sul cloud per la manutenzione predittiva</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2160,7 +2160,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Data Catalog</h3>
-                                                    <p>Abilita individuazione origine dati in modalità self-service enterprise hello</p>
+                                                    <p>Individuazione self-service di origini dati nell'intera organizzazione</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2255,7 +2255,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Analysis Services</h3>
-                                                    <p>Aziendale modellazione dei dati in cloud hello</p>
+                                                    <p>Modellazione di dati di livello aziendale sul cloud</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2336,7 +2336,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Azure IoT Suite</h3>
-                                                    <p>Acquisire e analizzare i dati non utilizzati tooimprove business risultati</p>
+                                                    <p>Acquisisci e analizza i dati non usati per migliorare i risultati aziendali</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2393,7 +2393,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Machine Learning</h3>
-                                                    <p>Potente analitica predittiva basato su cloud strumento Manutenzione predittiva tooenable</p>
+                                                    <p>Potenti strumenti di analisi predittiva basata sul cloud per la manutenzione predittiva</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2455,7 +2455,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>App per la logica</h3>
-                                                    <p>Automatizzare hello accesso e utilizzo dei dati cloud senza scrivere codice</p>
+                                                    <p>Automatizzare l'accesso e l'uso dei dati tra cloud senza scrivere codice</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2493,7 +2493,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Gestione API</h3>
-                                                    <p>Pubblicare API toodevelopers, partner e dipendenti in modo sicuro e scalabile</p>
+                                                    <p>Pubblicare API per sviluppatori, partner e dipendenti in modo sicuro e scalabile</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2531,7 +2531,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Estensione database di SQL Server</h3>
-                                                    <p>Estensione in modo dinamico tooAzure i database di SQL Server locale</p>
+                                                    <p>Estendere in modo dinamico i database di SQL Server locali in Azure</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2569,7 +2569,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Servizi BizTalk</h3>
-                                                    <p>Integrazione di enterprise hello e cloud hello</p>
+                                                    <p>Integrazione senza problemi di azienda e cloud</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2593,7 +2593,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Centro sicurezza</h3>
-                                                    <p>Impedire, rilevare e rispondere toothreats con l'aumento della visibilità</p>
+                                                    <p>Impedire e rilevare le minacce e rispondere con visibilità maggiore</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2612,7 +2612,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Insieme di credenziali delle chiavi</h3>
-                                                    <p>Informazioni su come toomanage i segreti e tutte le chiavi di crittografia</p>
+                                                    <p>Informazioni su come gestire segreti e chiavi crittografiche</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2650,7 +2650,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Azure Active Directory B2C</h3>
-                                                    <p>Gestione delle identità e accessi consumer nel cloud di hello</p>
+                                                    <p>Gestione di identità e accessi degli utenti nel cloud</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2669,7 +2669,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Active Directory Domain Services</h3>
-                                                    <p>Aggiunta a dominio tooa macchine virtuali di Azure senza controller di dominio</p>
+                                                    <p>Aggiungere macchine virtuali di Azure a un dominio senza controller di dominio</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2688,7 +2688,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Multi-Factor Authentication</h3>
-                                                    <p>Proteggere i dati tooyour accesso e le app con un ulteriore livello di autenticazione</p>
+                                                    <p>Protezione dell'accesso ai dati e alle app grazie a un livello aggiuntivo di autenticazione</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2707,7 +2707,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Informazioni sulla sicurezza</h3>
-                                                    <p>Informazioni su come Azure fornisce un'infrastruttura protetta soluzioni cloud toobuild</p>
+                                                    <p>Informazioni su come Azure fornisce un'infrastruttura sicura su cui creare soluzioni cloud</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2731,7 +2731,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Visual Studio Team Services</h3>
-                                                    <p>Servizi per il codice tooshare team, tenere traccia del lavoro e distribuire il software</p>
+                                                    <p>Servizi per i team per condividere codice, tenere traccia del lavoro e fornire software</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2788,7 +2788,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Gestione API</h3>
-                                                    <p>Pubblicare API toodevelopers, partner e dipendenti in modo sicuro e scalabile</p>
+                                                    <p>Pubblicare API per sviluppatori, partner e dipendenti in modo sicuro e scalabile</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2850,7 +2850,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Log Analytics</h3>
-                                                    <p>Informazioni su come tootransform computer i dati in intelligence operativa</p>
+                                                    <p>Informazioni su come trasformare dati dei computer in informazioni operative</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2888,7 +2888,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Backup</h3>
-                                                    <p>Cloud toohello backup server semplice e affidabile</p>
+                                                    <p>Backup semplice e affidabile del server nel cloud</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2964,7 +2964,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Fatturazione</h3>
-                                                    <p>Informazioni su come comprendere/tooread hello informazioni sull'utilizzo e i costi per la sottoscrizione di Azure</p>
+                                                    <p>Informazioni su come leggere/comprendere l'utilizzo e la fattura per la sottoscrizione di Azure</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2983,7 +2983,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Azure Advisor</h3>
-                                                    <p>Migliorare hello costo efficacia, prestazioni, disponibilità elevata e sicurezza delle risorse di Azure</p>
+                                                    <p>Migliorare l'efficacia in termini di costi, le prestazioni, la disponibilità elevata e la sicurezza delle risorse di Azure</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -3116,7 +3116,7 @@ ms.lasthandoff: 10/06/2017
                                             </div>
                                             <div class="cardText">
                                                 <h3>
-                                                    <a href="/dotnet/azure/dotnet-sdk-azure-install">Ottenere hello Azure libraries per .NET</a>
+                                                    <a href="/dotnet/azure/dotnet-sdk-azure-install">Ottenere le librerie di Azure per .NET</a>
                                                 </h3>
                                                 <p>
                                                     <a href="https://azure.microsoft.com/develop/net/">Introduzione</a>
@@ -3140,7 +3140,7 @@ ms.lasthandoff: 10/06/2017
                                             </div>
                                             <div class="cardText">
                                                 <h3>
-                                                    <a href="https://pypi.python.org/pypi/azure">Ottenere hello SDK Python</a>
+                                                    <a href="https://pypi.python.org/pypi/azure">Ottenere Python SDK</a>
                                                 </h3>
                                                 <p>
                                                     <a href="http://azure-sdk-for-python.readthedocs.io/en/latest/">Introduzione</a>
@@ -3170,7 +3170,7 @@ ms.lasthandoff: 10/06/2017
                                             </div>
                                             <div class="cardText">
                                                 <h3>
-                                                    <a href="https://www.npmjs.com/package/azure">Ottenere hello Node.js SDK</a>
+                                                    <a href="https://www.npmjs.com/package/azure">Ottenere Node.js SDK</a>
                                                 </h3>
                                                 <p>
                                                     <a href="http://azure.github.io/azure-sdk-for-node/">Introduzione</a>
@@ -3200,7 +3200,7 @@ ms.lasthandoff: 10/06/2017
                                             </div>
                                             <div class="cardText">
                                                 <h3>
-                                                    <a href="/java/azure/java-sdk-azure-install">Ottenere hello Azure libraries for Java</a>
+                                                    <a href="/java/azure/java-sdk-azure-install">Ottenere le librerie di Azure per Java</a>
                                                 </h3>
                                                 <p>
                                                     <a href="https://azure.microsoft.com/develop/java/">Introduzione</a>
@@ -3224,7 +3224,7 @@ ms.lasthandoff: 10/06/2017
                                             </div>
                                             <div class="cardText">
                                                 <h3>
-                                                    <a href="https://rubygems.org/gems/azure">Ottenere hello Ruby SDK</a>
+                                                    <a href="https://rubygems.org/gems/azure">Ottenere Ruby SDK</a>
                                                 </h3>
                                                 <p>
                                                     <a href="https://github.com/Azure/azure-sdk-for-ruby/blob/master/README.md">Introduzione</a>
@@ -3496,7 +3496,7 @@ ms.lasthandoff: 10/06/2017
                         <ul id="architecture1" class="cardsC">
                             <li>
                                 <div class="container intro">
-                                    <p>Set di architetture consigliate per le applicazioni cloud. Ogni architettura include le procedure consigliate, procedure e un componente di eseguibile che incorpora le indicazioni di hello.</p>
+                                    <p>Set di architetture consigliate per le applicazioni cloud. Ogni architettura include procedure consigliate, passaggi esaustivi e un componente eseguibile che incorpora i suggerimenti.</p>
                                 </div>
                             </li>
                             <li>
@@ -3511,7 +3511,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Concetti fondamentali sul cloud</h3>
-                                                    <p>Toobe knowledge base ha esito positivo nel cloud hello. Se si è nuovo cloud toohello o tooAzure nuovo, iniziare da qui.</p>
+                                                    <p>Informazioni fondamentali per un uso corretto del cloud. Se non si ha familiarità con il cloud o con Azure, iniziare da qui.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -3530,7 +3530,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Architetture di riferimento</h3>
-                                                    <p>Un set di architetture consigliate per il cloud hello. Ogni architettura include procedure consigliate, passaggi esaustivi e una soluzione distribuibile.</p>
+                                                    <p>Set di architetture consigliate per il cloud. Ogni architettura include procedure consigliate, passaggi esaustivi e una soluzione distribuibile.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -3549,7 +3549,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Modelli di progettazione cloud</h3>
-                                                    <p>Progettazione modelli per il cloud hello. Ogni modello descrive un problema, un modello che gli indirizzi hello problema e un esempio basato su Azure.</p>
+                                                    <p>Progettare modelli per il cloud. Ogni modello descrive un problema, un modello che risolve il problema e un esempio basato su Azure.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -3587,7 +3587,7 @@ ms.lasthandoff: 10/06/2017
                                                 </div>
                                                 <div class="cardText">
                                                     <h3>Scenario Guides</h3>
-                                                    <p>Guidance for various end-to-end application scenarios in hello cloud. Includes
+                                                    <p>Guidance for various end-to-end application scenarios in the cloud. Includes
                                                         written guidance and reference implementations.</p>
                                                 </div>
                                             </div>

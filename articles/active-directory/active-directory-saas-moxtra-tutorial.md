@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: integrazione di Azure Active Directory con Moxtra | Documentazione Microsoft'
-description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e Moxtra.
+description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e Moxtra.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,110 +13,110 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/29/2017
 ms.author: jeedes
-ms.openlocfilehash: 82e2fcc390ba508e86a3992ec1c81d0a0ffed96b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: db2f041a44b6771b0a4f734e58d899298ef0847b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-moxtra"></a>Esercitazione: integrazione di Azure Active Directory con Moxtra
 
-In questa esercitazione, è illustrato come toointegrate Moxtra con Azure Active Directory (Azure AD).
+Questa esercitazione descrive come integrare Moxtra con Azure Active Directory (Azure AD).
 
-Integrazione Moxtra con Azure AD fornisce hello seguenti vantaggi:
+L'integrazione di Moxtra con Azure AD offre i vantaggi seguenti:
 
-- È possibile controllare in Azure AD che ha accesso tooMoxtra
-- È possibile abilitare l'utenti tooautomatically get connesso tooMoxtra (Single Sign-On) con i propri account Azure AD
-- È possibile gestire gli account in un'unica posizione centrale - hello portale di Azure
+- È possibile controllare in Azure AD chi può accedere a Moxtra
+- È possibile abilitare gli utenti per l'accesso automatico a Moxtra (Single Sign-On) con i propri account Azure AD
+- È possibile gestire gli account in un'unica posizione centrale: il portale di Azure.
 
-Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-integrazione di Azure AD con Moxtra tooconfigure, è necessario hello seguenti elementi:
+Per configurare l'integrazione di Azure AD con Moxtra, sono necessari gli elementi seguenti:
 
 - Sottoscrizione di Azure AD.
 - Sottoscrizione di Moxtra abilitata per l'accesso Single Sign-On
 
 > [!NOTE]
-> hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.
+> Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.
 
-passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:
+A questo scopo, è consigliabile seguire le indicazioni seguenti:
 
 - Non usare l'ambiente di produzione a meno che non sia necessario.
 - Se non si dispone di un ambiente di prova di Azure AD, è possibile ottenere una versione di valutazione di un mese [qui](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Descrizione dello scenario
-In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. scenario di Hello descritto in questa esercitazione è composto da due componenti principali:
+In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:
 
-1. Aggiunta di Moxtra dalla raccolta hello
+1. Aggiunta di Moxtra dalla raccolta
 2. Configurazione e test dell'accesso Single Sign-On di Azure AD
 
-## <a name="adding-moxtra-from-hello-gallery"></a>Aggiunta di Moxtra dalla raccolta hello
-integrazione hello tooconfigure di Moxtra in Azure AD, è necessario tooadd Moxtra dall'elenco di tooyour hello raccolta di App SaaS gestite.
+## <a name="adding-moxtra-from-the-gallery"></a>Aggiunta di Moxtra dalla raccolta
+Per configurare l'integrazione di Moxtra in Azure AD, è necessario aggiungere Moxtra dalla raccolta al proprio elenco di app SaaS gestite.
 
-**tooadd Moxtra dalla raccolta di hello, eseguire hello alla procedura seguente:**
+**Per aggiungere Moxtra dalla raccolta, seguire questa procedura:**
 
-1. In hello  **[portale di Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona. 
+1. Nel **[portale di Azure](https://portal.azure.com)** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro. 
 
     ![Active Directory][1]
 
-2. Passare troppo**applicazioni aziendali**. Quindi andare troppo**tutte le applicazioni**.
+2. Passare ad **Applicazioni aziendali**. Andare quindi a **Tutte le applicazioni**.
 
     ![Applicazioni][2]
     
-3. tooadd nuova applicazione, fare clic su **nuova applicazione** pulsante nella parte superiore di hello della finestra di dialogo.
+3. Fare clic sul pulsante **Nuova applicazione** nella parte superiore della finestra di dialogo per aggiungere una nuova applicazione.
 
     ![Applicazioni][3]
 
-4. Nella casella di ricerca hello, digitare **Moxtra**.
+4. Nella casella di ricerca, digitare **Moxtra**.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-moxtra-tutorial/tutorial_moxtra_search.png)
 
-5. Nel riquadro dei risultati hello, selezionare **Moxtra**, quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.
+5. Nel pannello dei risultati selezionare **Moxtra** e quindi fare clic sul pulsante **Aggiungi** per aggiungere l'applicazione.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-moxtra-tutorial/tutorial_moxtra_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configurazione e test dell'accesso Single Sign-On di Azure AD
 In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con Moxtra usando un utente di test di nome "Britta Simon".
 
-Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello in Moxtra è tooa utente in Azure AD. In altre parole, una relazione di collegamento tra un utente di Azure Active Directory e l'utente correlato di hello in Moxtra deve toobe stabilita.
+Per il funzionamento dell'accesso Single Sign-On, Azure AD deve conoscere l'utente controparte di Moxtra corrispondente a un utente di Azure AD. In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in Moxtra.
 
-In Moxtra, assegnare il valore di hello di hello **nome utente** in Azure AD come valore hello hello **Username** tooestablish relazione di collegamento hello.
+Per stabilire la relazione di collegamento, in Moxtra assegnare il valore del **nome utente** in Azure AD come valore di **Username** (Nome utente).
 
-tooconfigure e prova AD Azure single sign-on con Moxtra, è necessario hello toocomplete seguenti blocchi predefiniti:
+Per configurare e testare l'accesso Single Sign-On di Azure AD con Moxtra, è necessario completare i blocchi predefiniti seguenti:
 
-1. **[Configurazione di Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.
-2. **[Creazione di un utente prova AD Azure](#creating-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.
-3. **[Creazione di un utente test Moxtra](#creating-a-moxtra-test-user)**  -toohave un equivalente di Britta Simon in Moxtra che è la rappresentazione toohello collegato Azure AD dell'utente.
-4. **[Assegnazione utente di prova hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.
-5. **[Test di Single Sign-On](#testing-single-sign-on)**  -tooverify hello se funzionamento della configurazione.
+1. **[Configurazione dell'accesso Single Sign-On di Azure AD](#configuring-azure-ad-single-sign-on)** : per abilitare gli utenti all'uso di questa funzionalità.
+2. **[Creazione di un utente test di Azure AD](#creating-an-azure-ad-test-user)** : per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.
+3. **[Creazione di un utente di test di Moxtra](#creating-a-moxtra-test-user)**: per avere una controparte di Britta Simon in Moxtra collegata alla rappresentazione dell'utente in Azure AD.
+4. **[Assegnazione dell'utente test di Azure AD](#assigning-the-azure-ad-test-user)** : per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** : per verificare se la configurazione funziona.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configurazione dell'accesso Single Sign-On di Azure AD
 
-In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure e configurare l'accesso single sign-on nell'applicazione Moxtra.
+In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di Azure e viene configurato l'accesso Single Sign-On nell'applicazione Moxtra.
 
-**Azure AD tooconfigure single sign-on con Moxtra, eseguire hello alla procedura seguente:**
+**Per configurare l'accesso Single Sign-On di Azure AD con Moxtra, seguire questa procedura:**
 
-1. Nel portale di Azure su hello hello **Moxtra** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.
+1. Nella pagina di integrazione dell'applicazione **Moxtra** del portale di Azure fare clic su **Single Sign-On**.
 
     ![Configura accesso Single Sign-On][4]
 
-2. In hello **Single sign-on** finestra di dialogo Seleziona **modalità** come **basato su SAML Sign-on** tooenable single sign-on.
+2. Nella finestra di dialogo **Single Sign-On** selezionare **Accesso basato su SAML** per **Modalità** per abilitare l'accesso Single Sign-On.
  
     ![Configura accesso Single Sign-On](./media/active-directory-saas-moxtra-tutorial/tutorial_moxtra_samlbase.png)
 
-3. In hello **Moxtra dominio e gli URL** seguire hello seguente passaggio:
+3. Nella sezione **URL e dominio Moxtra** seguire questa procedura:
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-moxtra-tutorial/tutorial_moxtra_url.png)
 
-    In hello **Sign-on URL** casella di testo, digitare un URL come:`https://www.moxtra.com/service/#login`
+    Nella casella di testo **URL di accesso** digitare l'URL come: `https://www.moxtra.com/service/#login`
 
-4. Applicazione di Moxtra prevede asserzioni SAML hello in un formato specifico. Configurare hello seguendo le attestazioni per questa applicazione. È possibile gestire i valori hello di questi attributi da hello "**gli attributi utente**" sezione nella pagina di integrazione dell'applicazione. Hello seguente schermata illustra un esempio di questa configurazione. 
+4. L'applicazione Moxtra prevede che le asserzioni SAML abbiano un formato specifico. Configurare le attestazioni seguenti per questa applicazione. È possibile gestire i valori di questi attributi dalla sezione "**Attributi utente**" nella pagina di integrazione dell'applicazione. Lo screenshot seguente illustra un esempio di questa configurazione. 
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-moxtra-tutorial/tutorial_moxtra_attributes.png)
     
-5. In hello **gli attributi utente** sezione hello **Single sign-on** finestra di dialogo, configurare attributi token SAML, come illustrato nella figura hello ed eseguire hello alla procedura seguente:
+5. Nella sezione **Attributi utente** della finestra di dialogo **Single Sign-On** configurare l'attributo del token SAML come illustrato nell'immagine e seguire questa procedura:
     
     | Nome attributo | Valore attributo |
     | ------------------- | -------------------- |    
@@ -125,21 +125,21 @@ In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure 
     | idpid    | < ID entità SAML > 
 
     > [!Note]
-    > valore di Hello **idpid** attributo non è di tipo real. È possibile ottenere il valore effettivo di hello da **riferimento rapido** sezione nel **Moxtra configurazione**.
+    > Il valore dell'attributo **idpid** non è reale. È possibile ottenere il valore effettivo dalla **sezione di riferimento rapido** in **Configurazione di Moxtra**.
     
-    a. Fare clic su **Aggiungi attributo** tooopen hello **Aggiungi attributo** finestra di dialogo.
+    a. Fare clic su **Aggiungi attributo** per aprire la finestra di dialogo **Aggiungi attributo**.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-moxtra-tutorial/tutorial_attribute_04.png)
 
-    b. In hello **nome** casella di testo, nome dell'attributo di tipo hello mostrato per la riga.
+    b. Nella casella di testo **Nome** digitare il nome dell'attributo indicato per la riga.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-moxtra-tutorial/tutorial_attribute_05.png)
 
-    c. Da hello **valore** elencare, valore dell'attributo di tipo hello mostrato per la riga.
+    c. Nell'elenco **Valore** digitare il valore dell'attributo indicato per la riga.
 
     d. Fare clic su **OK**.
     
-5. In hello **certificato di firma SAML** fare clic su **Certificate(Base64)** e quindi salvare il file di certificato hello nel computer in uso.
+5. Nella sezione **Certificato di firma SAML** fare clic su **Certificato (Base64)** e quindi salvare il file del certificato nel computer.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-moxtra-tutorial/tutorial_moxtra_certificate.png) 
 
@@ -147,118 +147,118 @@ In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure 
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-moxtra-tutorial/tutorial_general_400.png)
 
-7. In hello **Moxtra configurazione** fare clic su **configurare Moxtra** tooopen **Configura sign-on** finestra. Hello copia **ID entità SAML e SAML Single Sign-On Service URL** da hello **sezione di riferimento rapido.**
+7. Nella sezione **Configurazione di Moxtra** fare clic su **Configura Moxtra** per aprire la finestra **Configura accesso**. Copiare l'**ID di entità SAML e l'URL del servizio Single Sign-On SAML** dalla **sezione di riferimento rapido**.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-moxtra-tutorial/tutorial_moxtra_configure.png) 
 
-8. In un'altra finestra del browser, accedere come amministratore nel sito della società di tooyour Moxtra.
+8. In un'altra finestra del browser, accedere al sito aziendale di Moxtra come amministratore.
 
-9. Nella barra degli strumenti hello hello sinistra, fare clic su **Console di amministrazione > SAML Single Sign-on**, quindi fare clic su **New**.
+9. Nella barra degli strumenti a sinistra, fare clic su**Admin Console > SAML Single Sign-On** (Console di amministrazione > Single Sign-On SAML), quindi su **New** (Nuovo).
    
     ![Configura accesso Single Sign-On](./media/active-directory-saas-moxtra-tutorial/tutorial_moxtra_06.png) 
 
-10. In hello **SAML** eseguire hello alla procedura seguente:
+10. Nella pagina **SAML** , eseguire i passaggi seguenti:
    
     ![Configura accesso Single Sign-On](./media/active-directory-saas-moxtra-tutorial/tutorial_moxtra_08.png)   
  
-    a. In hello **nome** casella di testo, digitare un nome per la configurazione (ad esempio: *SAML*). 
+    a. Nella casella di testo **Nome** , digitare un nome per la configurazione (ad esempio *SAML*). 
   
-    b. In hello **IdP Entity ID** casella di testo, hello Incolla valore **ID entità SAML** che è stato copiato dal portale di Azure. 
+    b. Nella casella di testo **IdP Entity ID** (ID entità IdP) incollare il valore dell'**ID di entità SAML** copiato dal portale di Azure. 
  
-    c. In **URL di accesso** casella di testo, hello Incolla valore **SAML Single Sign-On Service URL** che è stato copiato dal portale di Azure. 
+    c. Nella casella di testo **Login URL** (URL di accesso) incollare il valore dell'**URL del servizio Single Sign-On SAML** copiato dal portale di Azure. 
  
-    d. In hello **AuthnContextClassRef** casella tipo **urn: oasis: nomi: tc: SAML:2.0:ac:classes:Password**. 
+    d. Nella casella di testo **AuthnContextClassRef** digitare **urn:oasis:names:tc:SAML:2.0:ac:classes:Password**. 
  
-    e. In hello **NameID Format** casella tipo **urn: oasis: nomi: tc: SAML: 1.1 NameID-formato: emailAddress**. 
+    e. Nella casella di testo **NameID Format** (Formato NameID) digitare **urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress**. 
  
-    f. Aprire il certificato scaricato dal portale di Azure nel blocco note, copiarne il contenuto di hello e quindi incollarlo hello **certificato** casella di testo.    
+    f. Aprire il certificato scaricato dal portale di Azure nel Blocco note, copiarne il contenuto e incollarlo nella casella di testo **Certificate** (Certificato).    
  
-    g. Nella casella dominio di posta elettronica SAML di hello, digitare il dominio di posta elettronica SAML.    
+    g. Nella casella di testo dominio email SAML, digitare il dominio email SAML.    
   
     >[!NOTE]
-    >dominio toosee hello passaggi tooverify hello fare clic su hello "**si**" di seguito.
+    >Per verificare il dominio, fare clic su “**i**” di seguito.
 
     h. Fare clic su **Update**.
 
 > [!TIP]
-> È ora possibile leggere una versione di queste istruzioni all'interno di hello concisa [portale di Azure](https://portal.azure.com), mentre si stanno impostando app hello!  Dopo l'aggiunta di questa app da hello **Active Directory > applicazioni aziendali** fare semplicemente clic su hello **Single Sign-On** scheda e l'accesso hello incorporato documentazione tramite hello  **Configurazione** sezione nella parte inferiore di hello. È possibile leggere altre informazioni sulla funzionalità di documentazione embedded hello qui: [AD Azure incorporato documentazione]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Un riepilogo delle istruzioni è disponibile all'interno del [portale di Azure](https://portal.azure.com) durante la configurazione dell'app.  Dopo aver aggiunto l'app dalla sezione **Active Directory > Applicazioni aziendali** è sufficiente fare clic sulla scheda **Single Sign-On** e accedere alla documentazione incorporata tramite la sezione **Configurazione** nella parte inferiore. Altre informazioni sulla funzione di documentazione incorporata sono disponibili in [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985) (Documentazione incorporata di Azure AD).
 
 ### <a name="creating-an-azure-ad-test-user"></a>Creazione di un utente test di Azure AD
-obiettivo di Hello di questa sezione è un utente di test nel portale di Azure chiamato Britta Simon hello toocreate.
+Questa sezione descrive come creare un utente test denominato Britta Simon nel portale di Azure.
 
 ![Creare un utente di Azure AD][100]
 
-**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**
+**Per creare un utente test in Azure AD, eseguire la procedura seguente:**
 
-1. In hello **portale di Azure**via hello riquadro di spostamento a sinistra, fare clic su **Azure Active Directory** icona.
+1. Nel **portale di Azure** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-moxtra-tutorial/create_aaduser_01.png) 
 
-2. elenco di hello toodisplay di utenti, andare troppo**utenti e gruppi** e fare clic su **tutti gli utenti**.
+2. Passare a **Utenti e gruppi** e fare clic su **Tutti gli utenti** per visualizzare l'elenco di utenti.
     
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-moxtra-tutorial/create_aaduser_02.png) 
 
-3. hello tooopen **utente** finestra di dialogo, fare clic su **Aggiungi** nella parte superiore di hello della finestra di dialogo hello.
+3. Nella parte superiore della finestra di dialogo fare clic su **Aggiungi** per aprire la finestra di dialogo **Utente**.
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-moxtra-tutorial/create_aaduser_03.png) 
 
-4. In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:
+4. Nella pagina della finestra di dialogo **Utente** seguire questa procedura:
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-moxtra-tutorial/create_aaduser_04.png) 
 
-    a. In hello **nome** casella tipo **BrittaSimon**.
+    a. Nella casella di testo **Nome** digitare **BrittaSimon**.
 
-    b. In hello **nome utente** casella di testo, hello tipo **indirizzo di posta elettronica** di BrittaSimon.
+    b. Nella casella di testo **Nome utente** digitare l'**indirizzo di posta elettronica** di BrittaSimon.
 
-    c. Selezionare **Show Password** e annotare il valore di hello di hello **Password**.
+    c. Selezionare **Mostra password** e prendere nota del valore della **Password**.
 
     d. Fare clic su **Crea**.
  
 ### <a name="creating-a-moxtra-test-user"></a>Creare un utente test Moxtra
 
-obiettivo di Hello di questa sezione è un utente denominato Britta Simon in Moxtra toocreate.
+Questa sezione descrive come creare un utente chiamato Britta Simon in Moxtra.
 
-**un utente denominato Britta Simon in Moxtra, toocreate eseguire hello alla procedura seguente:**
+**Per creare un utente denominato Britta Simon in Moxtra, seguire questa procedura:**
 
-1. Accesso tooyour sito della società Moxtra come amministratore.
+1. Accedere al sito aziendale di Moxtra come amministratore.
 
-2. Nella barra degli strumenti hello hello sinistra, fare clic su **Console di amministrazione > Gestione utente**e quindi **Aggiungi utente**.
+2. Nella barra degli strumenti a sinistra, fare clic su**Admin Console > Gestione utente** e quindi su **Aggiungi utente**.
    
     ![Configura accesso Single Sign-On](./media/active-directory-saas-moxtra-tutorial/tutorial_moxtra_10.png) 
 
-3. In hello **Aggiungi utente** finestra di dialogo, eseguire hello alla procedura seguente:
+3. Nella finestra di dialogo **Aggiungi utente** seguire questa procedura:
   
-    a. In hello **nome** casella tipo **Laura**.
+    a. Nella casella di testo **Nome** digitare **Britta**.
   
-    b. In hello **cognome** casella tipo **Simon**.
+    b. Nella casella di testo **Cognome** digitare **Simon**.
   
-    c. In hello **posta elettronica** casella Tipo di Laura indirizzo e-mail come portale di Azure.
+    c. Nella casella di testo **Email** (Posta elettronica) digitare l'indirizzo di posta elettronica di Britta come nel portale di Azure.
   
-    d. In hello **divisione** casella tipo **Dev**.
+    d. Nella casella di testo **Divisione**, digitare **Dev**.
   
-    e. In hello **reparto** casella tipo **IT**.
+    e. Nella casella di testo **Reparto**, digitare **IT**.
   
     f. Selezionare **Administrator**.
   
     g. Fare clic su **Aggiungi**.
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Assegnazione utente test hello Azure AD
+### <a name="assigning-the-azure-ad-test-user"></a>Assegnazione dell'utente test di Azure AD
 
-In questa sezione per abilitare Britta Simon toouse single sign-on Azure concessione dell'accesso tooMoxtra.
+In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sign-On di Azure concedendole l'accesso a Moxtra.
 
 ![Assegna utente][200] 
 
-**tooassign Britta Simon tooMoxtra, eseguire hello alla procedura seguente:**
+**Per assegnare Britta Simon a Moxtra, seguire questa procedura:**
 
-1. Nel portale di Azure hello, aprire la visualizzazione di applicazioni hello, quindi selezionare Visualizza directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.
+1. Nel portale di Azure aprire la visualizzazione delle applicazioni e quindi la visualizzazione delle directory e passare ad **Applicazioni aziendali**, quindi fare clic su **Tutte le applicazioni**.
 
     ![Assegna utente][201] 
 
-2. Nell'elenco di applicazioni hello, selezionare **Moxtra**.
+2. Nell'elenco di applicazioni, selezionare **Moxtra**.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-moxtra-tutorial/tutorial_moxtra_app.png) 
 
-3. Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.
+3. Scegliere **Utenti e gruppi** dal menu a sinistra.
 
     ![Assegna utente][202] 
 
@@ -266,7 +266,7 @@ In questa sezione per abilitare Britta Simon toouse single sign-on Azure concess
 
     ![Assegna utente][203]
 
-5. In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.
+5. Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco Utenti.
 
 6. Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.
 
@@ -274,14 +274,14 @@ In questa sezione per abilitare Britta Simon toouse single sign-on Azure concess
     
 ### <a name="testing-single-sign-on"></a>Test dell'accesso Single Sign-On
 
-In questa sezione si test configurazione di Azure AD single sign-on utilizzando hello Pannello di accesso.
+In questa sezione viene testata la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.
 
-Quando si fa clic su riquadro Moxtra hello in hello Pannello di accesso, è necessario ottenere automaticamente firmato in tooyour Moxtra applicazione.
-Per ulteriori informazioni su hello Pannello di accesso, vedere [introduzione toohello Pannello di accesso](active-directory-saas-access-panel-introduction.md).
+Quando si fa clic sul riquadro Moxtra nel pannello di accesso, si dovrebbe accedere automaticamente all'applicazione Moxtra.
+Per altre informazioni sul pannello di accesso, vedere [Introduzione al Pannello di accesso](active-directory-saas-access-panel-introduction.md).
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md)
 
 

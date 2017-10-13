@@ -1,6 +1,6 @@
 ---
-title: spazio dei nomi Service Bus aaaCreate utilizzando un modello di gestione risorse di Azure | Documenti Microsoft
-description: Utilizzare Gestione risorse di Azure modello toocreate uno spazio dei nomi del Bus di servizio
+title: Creare uno spazio dei nomi del bus di servizio di Azure tramite un modello di Resource Manager | Documentazione Microsoft
+description: Usare il modello di Azure Resource Manager per creare uno spazio dei nomi del bus di servizio
 services: service-bus-messaging
 documentationcenter: .net
 author: sethmanheim
@@ -14,91 +14,90 @@ ms.tgt_pltfrm: dotnet
 ms.workload: na
 ms.date: 08/07/2017
 ms.author: sethm;shvija
-ms.openlocfilehash: fddf370affe761a734991ae9b60c1e5825e54ef7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 0598ee93a38c07aa7b1102cdaf228c2a4b4dcf71
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-a-service-bus-namespace-using-an-azure-resource-manager-template"></a>Creare uno spazio dei nomi del bus di servizio tramite il modello di Azure Resource Manager
 
-In questo articolo descrive come toouse un modello di gestione risorse di Azure che crea uno spazio dei nomi Service Bus di tipo **messaggistica** con uno SKU Standard o Basic. articolo Hello definisce anche i parametri specificati per l'esecuzione della distribuzione hello hello hello. È possibile utilizzare questo modello per la propria distribuzioni o personalizzarlo toomeet esigenze.
+Questo articolo illustra come usare un modello di Azure Resource Manager per creare uno spazio dei nomi del bus di servizio di tipo **Messaggistica** con SKU Standard/Basic. L'articolo definisce anche i parametri specificati per eseguire la distribuzione. È possibile usare questo modello per le proprie distribuzioni o personalizzarlo in base alle esigenze.
 
 Per altre informazioni sulla creazione di modelli, vedere [Creazione di modelli di Azure Resource Manager][Authoring Azure Resource Manager templates].
 
-Per il modello di hello completo, vedere hello [modello dello spazio dei nomi Service Bus] [ Service Bus namespace template] su GitHub.
+Per il modello completo, vedere il [modello dello spazio dei nomi del bus di servizio][Service Bus namespace template] su GitHub.
 
 > [!NOTE]
-> Hello seguenti modelli di gestione risorse di Azure sono disponibile per il download e distribuzione. 
+> Questi modelli di Azure Resource Manager sono disponibili per il download e la distribuzione. 
 > 
 > * [Creare uno spazio dei nomi del bus di servizio con coda](service-bus-resource-manager-namespace-queue.md)
 > * [Creare uno spazio dei nomi del bus di servizio con argomento e sottoscrizione](service-bus-resource-manager-namespace-topic.md)
 > * [Creare uno spazio dei nomi del bus di servizio con coda e regola di autorizzazione](service-bus-resource-manager-namespace-auth-rule.md)
 > * [Creare uno spazio dei nomi del bus di servizio con argomento, sottoscrizione e regola](service-bus-resource-manager-namespace-topic-with-rule.md)
 > 
-> toocheck per i modelli più recenti di hello, visitare hello [modelli di avvio rapido di Azure] [ Azure Quickstart Templates] raccolta e la ricerca per il Bus di servizio.
+> Per verificare la disponibilità di nuovi modelli, visitare la raccolta [Modelli di avvio rapido di Azure][Azure Quickstart Templates] e cercare "service bus".
 > 
 > 
 
 ## <a name="what-will-you-deploy"></a>Distribuzione
-Questo modello consente di distribuire uno spazio dei nomi del bus di servizio con uno SKU [Basic, Standard o Premium](https://azure.microsoft.com/pricing/details/service-bus/).
+Questo modello consente di distribuire uno spazio dei nomi del bus di servizio con uno SKU [Standard o Premium](https://azure.microsoft.com/pricing/details/service-bus/).
 
-toorun hello automaticamente la distribuzione, fare clic su hello seguente pulsante:
+Per eseguire automaticamente la distribuzione, fare clic sul pulsante seguente:
 
-[![Distribuire tooAzure](./media/service-bus-resource-manager-namespace/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-servicebus-create-namespace%2Fazuredeploy.json)
+[![Distribuire in Azure](./media/service-bus-resource-manager-namespace/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-servicebus-create-namespace%2Fazuredeploy.json)
 
-## <a name="parameters"></a>parameters
-Con Gestione risorse di Azure, si definiscono i parametri per i valori si desidera toospecify quando viene distribuito il modello di hello. modello Hello include una sezione denominata `Parameters` che contiene tutti i valori di parametro hello. È necessario definire un parametro per i valori che variano in base progetto hello che si distribuisce o Hello che si distribuisce ambiente di hello. Non definire parametri per i valori che saranno sempre hello stesso. Ogni valore del parametro viene utilizzato in hello modello toodefine hello le risorse distribuite.
+## <a name="parameters"></a>Parametri
+Gestione risorse di Azure permette di definire i parametri per i valori da specificare durante la distribuzione del modello. Il modello include una sezione denominata `Parameters` che contiene tutti i valori dei parametri. È necessario definire un parametro per i valori che variano in base al progetto distribuito o all'ambiente in cui viene distribuito il progetto. Non definire i parametri per i valori che rimangono invariati. Ogni valore di parametro nel modello viene usato per definire le risorse distribuite.
 
-Questo modello definisce hello seguenti parametri.
+Questo modello definisce i parametri seguenti.
 
 ### <a name="servicebusnamespacename"></a>serviceBusNamespaceName
-nome Hello del toocreate di spazio dei nomi Service Bus hello.
+Nome dello spazio dei nomi del bus di servizio da creare.
 
 ```json
 "serviceBusNamespaceName": {
 "type": "string",
 "metadata": { 
-    "description": "Name of hello Service Bus namespace" 
+    "description": "Name of the Service Bus namespace" 
     }
 }
 ```
 
 ### <a name="servicebussku"></a>serviceBusSKU
-nome Hello del Bus di servizio hello [SKU](https://azure.microsoft.com/pricing/details/service-bus/) toocreate.
+Nome dello [SKU](https://azure.microsoft.com/pricing/details/service-bus/) del bus di servizio da creare.
 
 ```json
 "serviceBusSku": { 
     "type": "string", 
     "allowedValues": [ 
-        "Basic", 
         "Standard",
         "Premium" 
     ], 
     "defaultValue": "Standard", 
     "metadata": { 
-        "description": "hello messaging tier for service Bus namespace" 
+        "description": "The messaging tier for service Bus namespace" 
     } 
 
 ```
 
-modello di Hello definisce i valori hello consentiti per questo parametro (Basic, Standard o Premium) e assegna un valore predefinito (Standard), se viene specificato alcun valore.
+Il modello definisce i valori consentiti per il parametro, Standard o Premium, e assegna un valore predefinito, Standard, nel caso in cui non venga specificato alcun valore.
 
 Per altre informazioni sui prezzi del bus di servizio, vedere [Service Bus pricing and billing][Service Bus pricing and billing] (Prezzi e fatturazione del bus di servizio).
 
 ### <a name="servicebusapiversion"></a>serviceBusApiVersion
-versione di API di Service Bus Hello del modello di hello.
+Versione API del bus di servizio del modello.
 
 ```json
 "serviceBusApiVersion": { 
        "type": "string", 
        "defaultValue": "2015-08-01", 
        "metadata": { 
-           "description": "Service Bus ApiVersion used by hello template" 
+           "description": "Service Bus ApiVersion used by the template" 
        } 
 ```
 
-## <a name="resources-toodeploy"></a>Risorse toodeploy
+## <a name="resources-to-deploy"></a>Risorse da distribuire
 ### <a name="service-bus-namespace"></a>Spazio dei nomi del bus di servizio
 Crea uno spazio dei nomi del bus di servizio standard di tipo **Messaggistica**.
 
@@ -120,7 +119,7 @@ Crea uno spazio dei nomi del bus di servizio standard di tipo **Messaggistica**.
 ]
 ```
 
-## <a name="commands-toorun-deployment"></a>Comandi toorun distribuzione
+## <a name="commands-to-run-deployment"></a>Comandi per eseguire la distribuzione
 [!INCLUDE [app-service-deploy-commands](../../includes/app-service-deploy-commands.md)]
 
 ### <a name="powershell"></a>PowerShell
@@ -136,14 +135,14 @@ azure group deployment create <my-resource-group> <my-deployment-name> --templat
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-Dopo aver creato e distribuito risorse usando Gestione risorse di Azure, consultare come toomanage queste risorse, consultare questi articoli:
+Dopo aver creato e distribuito le risorse con Azure Resource Manager, imparare a gestire le risorse leggendo gli articoli seguenti:
 
 * [Gestire Bus di servizio con PowerShell](service-bus-manage-with-ps.md)
-* [Gestire le risorse di Service Bus con hello Service Bus Explorer](https://github.com/paolosalvatori/ServiceBusExplorer/releases)
+* [Gestire le risorse del bus di servizio con Service Bus Explorer](https://github.com/paolosalvatori/ServiceBusExplorer/releases)
 
 [Authoring Azure Resource Manager templates]: ../azure-resource-manager/resource-group-authoring-templates.md
 [Service Bus namespace template]: https://github.com/Azure/azure-quickstart-templates/blob/master/101-servicebus-create-namespace/
 [Azure Quickstart Templates]: https://azure.microsoft.com/documentation/templates/?term=service+bus
 [Service Bus pricing and billing]: service-bus-pricing-billing.md
 [Using Azure PowerShell with Azure Resource Manager]: ../azure-resource-manager/powershell-azure-resource-manager.md
-[Using hello Azure CLI for Mac, Linux, and Windows with Azure Resource Management]: ../azure-resource-manager/xplat-cli-azure-resource-manager.md
+[Using the Azure CLI for Mac, Linux, and Windows with Azure Resource Management]: ../azure-resource-manager/xplat-cli-azure-resource-manager.md

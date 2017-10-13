@@ -1,9 +1,9 @@
 ---
-title: aaaOverview di IPv6 di bilanciamento del carico di Azure | Documenti Microsoft
+title: Panoramica di IPv6 per Azure Load Balancer | Microsoft Docs
 description: Informazioni sul supporto IPv6 per Azure Load Balancer e le macchine virtuali con bilanciamento del carico.
 services: load-balancer
 documentationcenter: na
-author: kumudd
+author: KumudD
 manager: timlt
 editor: 
 keywords: ipv6, azure load balancer, dual stack, ip pubblico, ipv6 nativo, mobili, iot
@@ -13,71 +13,74 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 09/14/2016
+ms.date: 09/25/2017
 ms.author: kumud
-ms.openlocfilehash: 5b203f77d86cc1ad455f4ebb297097aef46b658d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 1902475c81c4f83f8ba69a05f9564bc65a5de833
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="overview-of-ipv6-for-azure-load-balancer"></a>Panoramica di IPv6 per Azure Load Balancer
 
-I servizi di bilanciamento del carico con connessione Internet possono essere distribuiti con un indirizzo IPv6. Inoltre la connettività tooIPv4, in questo modo hello seguenti funzionalità:
 
-* End-to-end la connettività IPv6 nativa tra client Internet pubblica e macchine virtuali di Azure (VM) tramite bilanciamento del carico hello.
+[!INCLUDE [load-balancer-basic-sku-include.md](../../includes/load-balancer-basic-sku-include.md)]
+
+I servizi di bilanciamento del carico con connessione Internet possono essere distribuiti con un indirizzo IPv6. Oltre alla connettività IPv4, sono abilitate le funzionalità seguenti:
+
+* Connettività IPv6 nativa end-to-end tra client Internet pubblici e macchine virtuali di Azure tramite il servizio di bilanciamento del carico.
 * Connettività IPv6 nativa end-to-end in uscita tra macchine virtuali e client Internet pubblici abilitati per IPv6.
 
-Hello seguente immagine illustra il funzionamento di IPv6 hello di bilanciamento del carico di Azure.
+L'immagine seguente illustra la funzionalità IPv6 per Azure Load Balancer.
 
 ![Azure Load Balancer con IPv6](./media/load-balancer-ipv6-overview/load-balancer-ipv6.png)
 
-Una volta distribuito, un client di IPv4 o IPv6 abilitato Internet può comunicare con hello pubblica indirizzi IPv4 o IPv6 o nomi host di hello bilanciamento del carico con connessione Internet di Azure. le route del servizio di bilanciamento carico di Hello hello IPv6 pacchetti toohello IPv6 indirizzi privati di macchine virtuali hello utilizzando il servizio NAT (Network address translation). client Internet IPv6 Hello non possono comunicare direttamente con hello indirizzo IPv6 di hello macchine virtuali.
+Dopo la distribuzione, un client Internet abilitato per IPv4 o IPv6 può comunicare con gli indirizzi (o nomi host) IPv4 o IPv6 pubblici dell'istanza di Azure Load Balancer con connessione Internet. Il servizio di bilanciamento del carico instrada i pacchetti IPv6 agli indirizzi IPv6 privati delle macchine virtuali tramite NAT (Network Address Translation). Il client Internet IPv6 non può comunicare direttamente con l'indirizzo IPv6 delle macchine virtuali.
 
 ## <a name="features"></a>Funzionalità
 
 Il supporto IPv6 nativo per le macchine virtuali distribuite tramite Azure Resource Manager offre:
 
-1. Servizi di IPv6 con bilanciamento del carico per i client hello Internet IPv6
+1. Servizi IPv6 con bilanciamento del carico per i client IPv6 in Internet
 2. Endpoint IPv6 e IPv4 nativi nelle macchine virtuali ("dual stack")
 3. Connessioni IPv6 native in ingresso e in uscita
 4. I protocolli supportati, ad esempio TCP, UDP e HTTP(S), consentono un'ampia gamma di architetture di servizi
 
 ## <a name="benefits"></a>Vantaggi
 
-Questa funzionalità consente hello seguenti vantaggi chiave:
+Questa funzionalità offre i vantaggi principali seguenti:
 
-* Soddisfare normative che richiedono che le nuove applicazioni sia accessibile ai client solo tooIPv6
-* Abilita mobile e Internet delle cose (IOT) agli sviluppatori toouse in pila dual macchine virtuali di Azure (IPv4 più IPv6) tooaddress hello mobile crescente & IOT mercati
+* Soddisfare le normative che dettano che le nuove applicazioni siano accessibili solo ai client IPv6
+* Consentire agli sviluppatori di app per dispositivi mobili e Internet delle cose (IOT) di usare macchine virtuali di Azure dual stack (IPv4+IPv6) per soddisfare le esigenze dei mercati mobile e IOT in espansione
 
 ## <a name="details-and-limitations"></a>Dettagli e limitazioni
 
 Dettagli
 
-* Hello servizio DNS di Azure contiene i record di nome sia IPv4 e IPv6 AAAA e risponde con entrambi i record di bilanciamento del carico hello. client Hello sceglie quale toocommunicate indirizzo (IPv4 o IPv6) con.
-* Quando una macchina virtuale viene avviata una connessione tooa pubblica Internet IPv6 connesso, l'indirizzo IPv6 di origine della macchina virtuale di hello è convertito di indirizzo di rete (NAT) toohello indirizzo IPv6 pubblico del servizio di bilanciamento del carico hello.
-* Macchine virtuali che eseguono Linux hello del sistema operativo devono essere tooreceive configurato un indirizzo IP IPv6 tramite DHCP. Molte delle immagini Linux hello hello raccolta Azure sono già configurate toosupport IPv6 senza alcuna modifica. Per altre informazioni, vedere [Configurazione di DHCPv6 per VM Linux](load-balancer-ipv6-for-linux.md)
-* Se si sceglie toouse probe di integrità di con il bilanciamento del carico, creare un probe IPv4 e usarlo con hello IPv4 e IPv6 endpoint. Se si arresta il servizio di hello nella VM, hello IPv4 sia IPv6 endpoint provengono dalla rotazione.
+* Il servizio DNS Azure contiene i record dei nomi AAAA sia per IPv4 che per IPv6 e risponde con entrambi i record per il servizio di bilanciamento del carico. Il client sceglie con quale indirizzo comunicare, IPv4 o IPv6.
+* Quando una VM avvia una connessione a un dispositivo IPv6 pubblico connesso a Internet, l'indirizzo IPv6 di origine della VM è l'indirizzo di rete convertito (con Network Address Translation, NAT) nell'indirizzo IPv6 pubblico del servizio di bilanciamento del carico.
+* Le macchine virtuali in esecuzione nel sistema operativo Linux devono essere configurate per ricevere un indirizzo IP IPv6 tramite DHCP. Molte delle immagini Linux nella raccolta di Azure sono già configurate per il supporto di IPv6 senza alcuna modifica. Per altre informazioni, vedere [Configurazione di DHCPv6 per VM Linux](load-balancer-ipv6-for-linux.md)
+* Se si sceglie di usare un probe di integrità con il servizio di bilanciamento del carico, creare un probe IPv4 e usarlo con gli endpoint IPv4 e IPv6. Se il servizio nella macchina virtuale si arresta, gli endpoint IPv4 e IPv6 vengono esclusi dalla rotazione.
 
 Limitazioni
 
-* È possibile aggiungere regole di bilanciamento del carico di IPv6 in hello portale di Azure. le regole di Hello possono essere create solo tramite il modello di hello, CLI, PowerShell.
-* Non è possibile aggiornare gli indirizzi IPv6 di toouse macchine virtuali esistenti. È necessario distribuire nuove macchine virtuali.
-* Può essere assegnato un solo indirizzo IPv6 tooa singola interfaccia di rete in ogni macchina virtuale.
-* Impossibile assegnare gli indirizzi IPv6 pubblici Hello tooa macchina virtuale. Possono solo essere assegnati tooa servizio di bilanciamento del carico.
-* È possibile configurare la ricerca DNS inversa hello per gli indirizzi IPv6 pubblici.
-* Hello macchine virtuali con indirizzi IPv6 hello non può essere membri di un servizio Cloud di Azure. Possono essere collegati tooan rete virtuale di Azure (VNet) e comunicare tra loro tramite gli indirizzi IPv4.
+* Non è possibile aggiungere regole di bilanciamento del carico IPv6 nel portale di Azure. Le regole possono essere create solo tramite il modello, l'interfaccia della riga di comando e PowerShell.
+* Non è possibile aggiornare le macchine virtuali esistenti per l'uso di indirizzi IPv6. È necessario distribuire nuove macchine virtuali.
+* Un singolo indirizzo IPv6 può essere assegnato a una singola interfaccia di rete in ogni macchina virtuale.
+* Gli indirizzi IPv6 pubblici non possono essere assegnati a una macchina virtuale. Possono essere assegnati solo a un servizio di bilanciamento del carico.
+* È possibile configurare la ricerca DNS inversa per gli indirizzi IPv6 indirizzi pubblici.
+* Le macchine virtuali con gli indirizzi IPv6 non possono essere membri di un servizio cloud di Azure. Possono essere connesse a una rete virtuale di Azure e comunicare tra loro tramite gli indirizzi IPv4.
 * Gli indirizzi IPv6 privati possono essere distribuiti nelle singole macchine virtuali di un gruppo di risorse, ma non possono essere distribuiti in un gruppo di risorse tramite set di scalabilità.
-* Macchine virtuali di Azure non è possibile connettersi tramite le macchine virtuali tooother IPv6, altri servizi di Azure o i dispositivi locali. Essi possono comunicare solo con bilanciamento del carico di Azure hello su IPv6. Possono tuttavia comunicare con queste altre risorse tramite IPv4.
-* La protezione del gruppo di sicurezza di rete (NSG) per IPv4 è supportata nelle distribuzioni dual stack (IPv4 + IPv6). NSGs toohello IPv6 endpoint non sono valide.
-* endpoint Hello IPv6 hello macchina virtuale non è esposta direttamente toohello internet. Si trova dietro un servizio di bilanciamento del carico. Solo le porte hello specificate nelle regole di bilanciamento del carico hello sono accessibili tramite IPv6.
-* Modifica hello parametro IdleTimeout per IPv6 è **attualmente non supportata**. valore predefinito di Hello è 4 minuti.
-* Modifica hello parametro loadDistributionMethod per IPv6 è **attualmente non supportata**.
+* Le macchine virtuali di Azure non possono connettersi tramite IPv6 ad altre macchine virtuali, altri servizi di Azure o dispositivi locali. Possono comunicare solo con Azure Load Balancer tramite IPv6. Possono tuttavia comunicare con queste altre risorse tramite IPv4.
+* La protezione del gruppo di sicurezza di rete (NSG) per IPv4 è supportata nelle distribuzioni dual stack (IPv4 + IPv6). I gruppi di sicurezza di rete non si applicano agli endpoint IPv6.
+* L'endpoint IPv6 nella macchina virtuale non viene esposto direttamente a Internet. Si trova dietro un servizio di bilanciamento del carico. Solo le porte specificate nelle regole del servizio di bilanciamento del carico sono accessibili tramite IPv6.
+* La modifica del parametro IdleTimeout per IPv6 **è attualmente non supportata**. Il valore predefinito è quattro minuti.
+* La modifica del parametro loadDistributionMethod per IPv6 **è attualmente non supportata**.
 * Gli indirizzi IP IPv6 riservati (dove IPAllocationMethod = statico) sono **attualmente non supportati**.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Informazioni su come toodeploy un bilanciamento del carico con IPv6.
+Informazioni su come distribuire un servizio di bilanciamento del carico con IPv6.
 
 * [Disponibilità di IPv6 per area](https://go.microsoft.com/fwlink/?linkid=828357)
 * [Distribuire un servizio di bilanciamento del carico con IPv6 usando un modello](load-balancer-ipv6-internet-template.md)

@@ -1,5 +1,5 @@
 ---
-title: "livello di compatibilità aaaData modello in Analysis Services di Azure | Documenti Microsoft"
+title: "Livello di compatibilità del modello di dati in Azure Analysis Services | Microsoft Docs"
 description: "Informazioni sul livello di compatibilità del modello di dati tabulari."
 services: analysis-services
 documentationcenter: 
@@ -15,43 +15,43 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 08/16/2017
 ms.author: owend
-ms.openlocfilehash: bfaf0c60666729d1e6e0baf082c046ea9faa4e86
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: b11ba54c2cdc2675ec535368e7076613a5290212
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="compatibility-level-for-analysis-services-tabular-models"></a>Livello di compatibilità per i modelli tabulari di Analysis Services
 
-*Livello di compatibilità* fa riferimento toorelease specifici comportamenti nel motore di Analysis Services hello. Livello di compatibilità toohello modifiche in genere coincide con le versioni principali di SQL Server. Queste modifiche vengono inoltre implementate in entrambe le piattaforme analogia toomaintain Azure Analysis Services. Le modifiche del livello di compatibilità influiscono anche sulle funzionalità disponibili nei modelli tabulari. Ad esempio, DirectQuery e i metadati degli oggetti tabulari sono implementazioni diverse in base al livello di compatibilità hello. 
+Il termine *livello di compatibilità* fa riferimento a comportamenti specifici di ogni versione nel motore di Analysis Services. Le modifiche del livello di compatibilità coincidono in genere con il rilascio di versioni principali di SQL Server. Queste modifiche vengono implementate anche in Azure Analysis Services per mantenere allineate entrambe le piattaforme. Le modifiche del livello di compatibilità influiscono anche sulle funzionalità disponibili nei modelli tabulari. Ad esempio, DirectQuery e i metadati degli oggetti tabulari hanno implementazioni diverse a seconda del livello di compatibilità. 
 
-Azure Analysis Services supporta modelli tabulari con livelli di compatibilità 1200 e 1400 di hello.
+Azure Analysis Services supporta i modelli tabulari ai livelli di compatibilità 1200 e 1400.
 
-livello di compatibilità più recente di Hello è 1400. Questo livello corrisponde a SQL Server 2017 Analysis Services. Le funzionalità principali nel livello di compatibilità 1400 hello includono:
+Il livello di compatibilità più recente è 1400. Questo livello corrisponde a SQL Server 2017 Analysis Services. Le funzionalità principali del livello di compatibilità 1400 includono:
 
 *  Nuova infrastruttura per la connettività dati e per l'importazione in modelli tabulari con il supporto delle API TOM e degli script TMSL. Questa nuova funzionalità consente il supporto per origini dati aggiuntive, ad esempio l'archiviazione BLOB di Azure.
 *  Funzionalità di trasformazione e mashup dei dati tramite Recupera dati ed espressioni M.
-*  Le misure supportano una proprietà Espressione di righe di dettaglio con un'espressione DAX. Questa proprietà consente di strumenti client quali Microsoft Excel toodrill toodetailed dati da un report aggregato. Ad esempio, quando gli utenti di visualizzare le vendite totali per una regione e un mese, è possibile visualizzare dettagli dell'ordine hello associata. 
-*  Sicurezza a livello di oggetto per la tabella e colonna i nomi di inoltre toohello dati all'interno di essi.
+*  Le misure supportano una proprietà Espressione di righe di dettaglio con un'espressione DAX. Questa proprietà consente a strumenti client quali Microsoft Excel di eseguire il drill-down per visualizzare dati dettagliati da un report aggregato. Ad esempio, quando gli utenti visualizzano le vendite totali per un'area geografica e un mese, possono visualizzare i dettagli degli ordini associati. 
+*  Sicurezza a livello di oggetto per i nomi di tabelle e colonne, oltre ai dati al loro interno.
 *  Supporto migliorato per le gerarchie incomplete.
 *  Miglioramenti per prestazioni e monitoraggio.
   
 ## <a name="set-compatibility-level"></a>Impostare il livello di compatibilità 
- Quando si crea un nuovo progetto di modello tabulare in SSDT, è possibile specificare il livello di compatibilità di hello in hello **progettazione di modelli tabulari** finestra di dialogo. 
+ Quando si crea un nuovo progetto di modello tabulare in SSDT, è possibile specificare il livello di compatibilità nella finestra di dialogo **Progettazione modelli tabulari**. 
   
  ![ssas_tabularproject_compat1200](./media/analysis-services-compat-level/aas-tabularproject-compat.png)  
   
- Se si seleziona hello **non visualizzare più questo messaggio** opzione, il livello di compatibilità hello specificato come valore predefinito di hello di utilizzare tutti i progetti successivi. È possibile modificare a livello di compatibilità predefinito hello in SSDT in **strumenti** > **opzioni**.  
+ Se si seleziona l'opzione **Non visualizzare più questo messaggio**, tutti i progetti successivi usano il livello di compatibilità specificato come predefinito. È possibile modificare il livello di compatibilità predefinito in SSDT in **Strumenti** > **Opzioni**.  
   
- un progetto di modello tabulare esistente in SSDT, hello set tooupgrade **livello di compatibilità** proprietà nel modello hello **proprietà** finestra. Tenere presente, l'aggiornamento a livello di compatibilità hello è irreversibile.
+ Per aggiornare un progetto di modello tabulare esistente in SSDT, impostare la proprietà **Livello di compatibilità** nella finestra **Proprietà** del modello. Tenere presente che l'aggiornamento del livello di compatibilità è irreversibile.
   
 ## <a name="check-compatibility-level-for-a-tabular-model-database-in-sql-server-management-studio"></a>Controllare il livello di compatibilità per un database con modello tabulare in SQL Server Management Studio 
- In SQL Server Management Studio, fare clic sul nome del database hello > **proprietà** > **livello di compatibilità**.  
+ In SQL Server Management Studio fare clic con il pulsante destro del mouse sul nome del database e scegliere **Proprietà** > **Livello di compatibilità**.  
   
 ## <a name="check-supported-compatibility-level-for-a-server-in-ssms"></a>Controllare il livello di compatibilità supportato per un server in SQL Server Management Studio  
- In SQL Server Management Studio, fare clic sul nome del server hello > **proprietà** > **livello di compatibilità supportato**.  
+ In SQL Server Management Studio fare clic con il pulsante destro del mouse sul nome del server e scegliere **Proprietà** > **Livello di compatibilità supportato**.  
   
- Questa proprietà specifica hello massimo livello di compatibilità di un database che verrà eseguiti nel server di hello (escluso preview). Impossibile modificare il livello di compatibilità di Hello è supportato.  
+ Questa proprietà specifica il livello di compatibilità più alto per un database eseguito nel server (escludendo l'anteprima). Il livello di compatibilità supportato non può essere modificato.  
 
 ## <a name="next-steps"></a>Passaggi successivi
   [Creare un modello nel portale di Azure](analysis-services-create-model-portal.md)   

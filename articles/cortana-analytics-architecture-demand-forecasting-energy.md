@@ -1,6 +1,6 @@
 ---
-title: architettura del modello di soluzione di Business Intelligence per la previsione della domanda di energia aaaCortana | Documenti Microsoft
-description: "Architettura del modello di Microsoft Cortana Intelligence soluzione che consente di prevedono richiesta per una società di energia utilità hello."
+title: Architettura del modello di soluzione di Cortana Intelligence per la previsione della domanda di energia | Documentazione Microsoft
+description: "Architettura del modello di soluzione di Microsoft Cortana Intelligence per prevedere la domanda di energia di una società di fornitura energetica."
 keywords: solution accelerator;cortana analytics;energy forecasting
 services: cortana-analytics
 documentationcenter: 
@@ -15,16 +15,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/19/2015
 ms.author: garye
-ms.openlocfilehash: c56fa5abac6240eb9bb9396205a1b882de77d610
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 87a27dbe9042973dcfa7e9a5a438773d1bbab4d3
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="cortana-intelligence-solution-template-architecture-for-demand-forecasting-of-energy"></a>Architettura del modello di soluzione di Cortana Intelligence per la previsione della domanda di energia
-diagramma di Hello riportato di seguito viene fornita una panoramica dell'architettura di hello [Cortana modello di soluzione di Business Intelligence per la previsione della domanda di energia](cortana-analytics-playbook-demand-forecasting-energy.md).
+Il diagramma seguente offre una panoramica dell'architettura del [modello di soluzione Cortana Intelligence per la previsione della domanda di energia](cortana-analytics-playbook-demand-forecasting-energy.md).
 
-È possibile scaricare una versione con le dimensioni originali del diagramma hello qui: [diagramma dell'architettura: modello di soluzione per la previsione della domanda di energia](http://download.microsoft.com/download/1/9/B/19B815F0-D1B0-4F67-AED3-A40544225FD1/ca-topologies-energy-forecasting.png).
+È possibile scaricare una versione ingrandita del diagramma di seguito: [Diagramma dell'architettura: modello di soluzione per la previsione della domanda di energia](http://download.microsoft.com/download/1/9/B/19B815F0-D1B0-4F67-AED3-A40544225FD1/ca-topologies-energy-forecasting.png).
 
 ![Diagramma dell'architettura del modello di soluzione di Microsoft Cortana Intelligence per la previsione della domanda di energia][image]
 

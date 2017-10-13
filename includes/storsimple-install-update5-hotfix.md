@@ -1,46 +1,46 @@
 <!--author=alkohli last changed: 08/21/17-->
 
-#### <a name="toodownload-hotfixes"></a>aggiornamenti rapidi toodownload
+#### <a name="to-download-hotfixes"></a>Scaricare gli hotfix
 
-Eseguire hello dopo l'aggiornamento software di passaggi toodownload hello da hello Microsoft Update Catalog.
+Eseguire i passaggi seguenti per scaricare l'aggiornamento del software da Microsoft Update Catalog.
 
-1. Avviare Internet Explorer e passare troppo[http://catalog.update.microsoft.com](http://catalog.update.microsoft.com).
-2. Se questa è la prima volta tramite Microsoft Update Catalog hello in questo computer, fare clic su **installare** quando richiesta tooinstall hello componente aggiuntivo di Microsoft Update Catalog.
+1. Avviare Internet Explorer e accedere al sito [http://catalog.update.microsoft.com](http://catalog.update.microsoft.com).
+2. Se si usa Microsoft Update Catalog nel computer per la prima volta, fare clic su **Installa** quando viene richiesto di installare il componente aggiuntivo Microsoft Update Catalog.
 
     ![Installare il catalogo](./media/storsimple-install-update2-hotfix/HCS_InstallCatalog-include.png)
 
-3. Nella casella di ricerca hello di hello Microsoft Update Catalog, immettere il numero di articolo della Knowledge Base (KB) hello di hotfix hello desiderato toodownload, ad esempio **4037264**, quindi fare clic su **ricerca**.
+3. Nella casella di ricerca di Microsoft Update Catalog immettere il numero della Knowledge Base (KB) relativo all'hotfix da scaricare, ad esempio **4037264**, e quindi fare clic su **Ricerca**.
    
-    Hello hotfix elenco viene visualizzato, ad esempio, **cumulativo Software Bundle di aggiornamento 5.0 per StorSimple 8000 Series**.
+    Verrà visualizzato l'elenco degli hotfix, ad esempio **Cumulative Software Bundle Update 5.0 for StorSimple 8000 Series** (Aggiornamento cumulativo del pacchetto software 5.0 per StorSimple serie 8000).
    
     ![Cercare nel catalogo](./media/storsimple-install-update5-hotfix/update-catalog-search.png)
 
-4. Fare clic su **Download**. Specificare o **Sfoglia** tooa percorso locale in cui si desidera hello Scarica tooappear. Fare clic su file hello toodownload toohello specificato posizione e la cartella. cartella Hello può essere copiati tooa condivisione di rete che sia raggiungibile dal dispositivo hello.
-5. Cercare gli aggiornamenti rapidi di aggiuntivi elencate nella tabella hello precedente (**4037266**), e i file nelle cartelle specifiche toohello download hello corrispondente come indicato nella tabella precedente hello.
+4. Fare clic su **Download**. Specificare o **sfogliare** il percorso locale in cui si desidera salvare il file scaricato. Fare clic sui file da scaricare nel percorso e nella cartella specificati. Inoltre, la cartella può essere copiata in una condivisione di rete raggiungibile dal dispositivo.
+5. Cercare gli eventuali hotfix aggiuntivi elencati nella tabella precedente (**4037266**) e scaricare i file corrispondenti nelle cartelle specifiche indicate in tale tabella.
 
 > [!NOTE]
-> Hello hotfix deve essere accessibile da entrambi i controller toodetect qualsiasi errore potenziale dei messaggi dal controller peer hello.
+> Gli aggiornamenti rapidi devono essere accessibili da entrambi i controller per rilevare eventuali messaggi di errore potenziali dal controller peer.
 >
-> gli aggiornamenti rapidi Hello devono essere copiati in cartelle separate 3. Ad esempio, l'aggiornamento dell'agente di elementi di configurazione/software/MDS hello dispositivo può essere copiato _FirstOrderUpdate_ cartella, tutti hello altri aggiornamenti non comportano interruzioni del servizio è stato possibile copiare in hello _SecondOrderUpdate_ cartella, e gli aggiornamenti in modalità manutenzione copiati _ThirdOrderUpdate_ cartella.
+> È necessario copiare gli hotfix in tre cartelle separate. Ad esempio, l'aggiornamento del software del dispositivo o dell'agente Cis/MDS può essere copiato nella cartella _FirstOrderUpdate_, tutti gli altri aggiornamenti che non comportano interruzioni del servizio possono essere copiati nella cartella _SecondOrderUpdate_ e gli aggiornamenti per la modalità di manutenzione possono essere copiati nella cartella _ThirdOrderUpdate_.
 
-#### <a name="tooinstall-and-verify-regular-mode-hotfixes"></a>tooinstall e verificare gli aggiornamenti rapidi alla modalità normale
+#### <a name="to-install-and-verify-regular-mode-hotfixes"></a>Per installare e verificare gli hotfix in modalità normale
 
-Eseguire i seguenti passaggi tooinstall hello e verificare gli aggiornamenti rapidi in modalità normale. Se è già stato installato utilizzando hello portale di Azure andare troppo[installare e verificare l'hotfix in modalità manutenzione](#to-install-and-verify-maintenance-mode-hotfixes).
+Per installare e verificare gli aggiornamenti rapidi in modalità normale, seguire questa procedura. Se sono già stati installati con il portale di Azure, passare direttamente a [installare e verificare gli aggiornamenti rapidi in modalità di manutenzione](#to-install-and-verify-maintenance-mode-hotfixes).
 
-1. tooinstall hello hotfixes interfaccia di Windows PowerShell di accesso hello nella console seriale del dispositivo StorSimple. Seguire hello dettagliate in [console seriale di usare PuTTy tooconnect toohello](../articles/storsimple/storsimple-8000-deployment-walkthrough-u2.md#use-putty-to-connect-to-the-device-serial-console). Al prompt dei comandi di hello, premere **invio**.
-2. Selezionare **opzione 1** toolog toohello dispositivo con accesso completo. È consigliabile installare hotfix hello sul controller passivo hello prima.
-3. hotfix hello tooinstall, al prompt dei comandi di hello, tipo:
+1. Per installare gli hotfix, accedere all'interfaccia di Windows PowerShell dalla console seriale del dispositivo StorSimple. Seguire le istruzioni riportate in [Usare PuTTY per connettersi alla console seriale](../articles/storsimple/storsimple-8000-deployment-walkthrough-u2.md#use-putty-to-connect-to-the-device-serial-console). Al prompt dei comandi, premere **Invio**.
+2. Selezionare l' **opzione 1** per eseguire l'accesso completo al dispositivo. È consigliabile installare innanzitutto l'hotfix sul controller passivo.
+3. Per installare l'hotfix, al prompt dei comandi, digitare:
    
-    `Start-HcsHotfix -Path <path tooupdate file> -Credential <credentials in domain\username format>`
+    `Start-HcsHotfix -Path <path to update file> -Credential <credentials in domain\username format>`
    
-    Utilizzare IP anziché DNS nel percorso di condivisione in hello in precedenza di comando. parametro credential Hello viene utilizzata solo se si accede a una condivisione autenticata.
+    Utilizzare l’IP anziché il DNS nel percorso condivisione nel comando precedente. Il parametro di credenziale viene utilizzato soltanto se si accede a una condivisione autenticata.
    
-    È consigliabile utilizzare condivisioni tooaccess parametro delle credenziali di hello. Anche le condivisioni che sono aperte troppo "everyone" è in genere non aprire toounauthenticated utenti.
+    È consigliabile utilizzare il parametro delle credenziali per accedere alle condivisioni. Anche le condivisioni aperte a "tutti" non sono in genere aperte agli utenti non autenticati.
    
-4. Specificare la password hello quando richiesto. Un esempio di output per l'installazione di aggiornamenti degli ordini prima hello è illustrato di seguito. Per l'aggiornamento dell'ordine prima di hello, è necessario toopoint toohello specifici file.
+4. Specificare la password quando richiesto. Di seguito è riportato un output di esempio per l'installazione degli aggiornamenti di primo livello. Per l'aggiornamento di primo livello, è necessario fare riferimento al file specifico.
 
     >[!NOTE] 
-    > È necessario installare hello _HcsSoftwareUpdate.exe_ prima. Al termine, installare quindi _CisMdsAgentUpdate.exe_.
+    > È consigliabile installare prima _HcsSoftwareUpdate.exe_. Al termine, installare quindi _CisMdsAgentUpdate.exe_.
    
         ````
         Controller0>Start-HcsHotfix -Path \\10.100.100.100\share
@@ -48,16 +48,16 @@ Eseguire i seguenti passaggi tooinstall hello e verificare gli aggiornamenti rap
    
         Confirm
    
-        This operation starts hello hotfix installation and could reboot one or
-        both of hello controllers. If hello device is serving I/Os, these will not
-        be disrupted. Are you sure you want toocontinue?
+        This operation starts the hotfix installation and could reboot one or
+        both of the controllers. If the device is serving I/Os, these will not
+        be disrupted. Are you sure you want to continue?
         [Y] Yes [N] No [?] Help (default is "Y"): Y
    
         ````
-5. Tipo **Y** quando richiesta tooconfirm hello installazione dell'hotfix.
-6. Monitorare l'aggiornamento di hello utilizzando hello `Get-HcsUpdateStatus` cmdlet. aggiornamento di Hello completerà innanzitutto nel controller passivo hello. Una volta che viene aggiornato il controller passivo hello, sarà presente un failover e aggiornamento hello verrà quindi applicata in hello altro controller. aggiornamento di Hello è completa quando entrambi i controller hello vengono aggiornati.
+5. Digitare **Y** quando viene richiesto di confermare l'installazione dell'hotfix.
+6. Monitorare l'aggiornamento utilizzando il cmdlet `Get-HcsUpdateStatus` . L'aggiornamento verrà innanzitutto completato sul controller passivo. Dopo aver aggiornato il controller passivo, si verificherà un failover e l'aggiornamento verrà quindi applicato all'altro controller. L'aggiornamento è completato quando entrambi i controller vengono aggiornati.
    
-    Hello output di esempio seguente viene illustrato hello aggiornamento in corso. Hello `RunInprogress` è `True` quando hello aggiornamento è in corso.
+    Il seguente output di esempio indica che l'aggiornamento è in corso. `RunInprogress` è `True` quando l'aggiornamento è in corso.
 
     ```
     Controller0>Get-HcsUpdateStatus
@@ -68,7 +68,7 @@ Eseguire i seguenti passaggi tooinstall hello e verificare gli aggiornamenti rap
     Controller1Events   :
     ```
    
-     Hello seguente esempio di output indica che gli aggiornamenti di hello sono terminato. Hello `RunInProgress` è `False` quando aggiornamento hello è stata completata.
+     Il seguente output di esempio indica che l'aggiornamento è stato completato. `RunInProgress` è `False` quando l'aggiornamento è completato.
    
     ```
     Controller0>Get-HcsUpdateStatus
@@ -80,50 +80,50 @@ Eseguire i seguenti passaggi tooinstall hello e verificare gli aggiornamenti rap
     ```
 
     > [!NOTE]
-    > In alcuni casi, hello cmdlet report `False` quando aggiornamento hello è ancora in corso. tooensure che hello hotfix è stata completata, attendere qualche minuto, eseguire nuovamente il comando e verificare che hello `RunInProgress` è `False`. Se si tratta, hotfix hello è stata completata.
+    > In alcuni casi, i cmdlet mostrano`False` quando l'aggiornamento è ancora in corso. Per assicurarsi che l'aggiornamento rapido è stato completato, attendere alcuni minuti, eseguire nuovamente il comando e verificare che `RunInProgress` sia `False`. In caso affermativo, l'aggiornamento rapido è stato completato.
 
-7. Al termine dell'aggiornamento software hello, verificare le versioni di software di hello del sistema. Digitare:
+7. Dopo aver installato gli aggiornamenti del software, verificare le versioni del software del sistema. Digitare:
    
     `Get-HcsSystem`
    
-    È necessario visualizzare hello seguenti versioni:
+    Dovrebbero essere visualizzate le seguenti versioni:
    
    * `FriendlySoftwareVersion: StorSimple 8000 Series Update 5.0`
    *  `HcsSoftwareVersion: 6.3.9600.17845`
    
-    Se il numero di versione di hello rimane invariato dopo l'applicazione hello aggiornamento, significa che tale hotfix hello tooapply non riuscita. In questo caso contattare il [Supporto tecnico Microsoft](../articles/storsimple/storsimple-8000-contact-microsoft-support.md) per assistenza.
+    Se il numero di versione non cambia dopo aver applicato l'aggiornamento, non è stato possibile applicare l'hotfix. In questo caso contattare il [Supporto tecnico Microsoft](../articles/storsimple/storsimple-8000-contact-microsoft-support.md) per assistenza.
      
     > [!IMPORTANT]
-    > È necessario riavviare il controller attivo di hello mediante hello `Restart-HcsController` cmdlet prima di applicare hello successivo aggiornamento.
+    > Prima di applicare l'aggiornamento successivo è necessario riavviare il controller attivo tramite il cmdlet `Restart-HcsController`.
      
-8. Ripetere i passaggi da 3 a 6 tooinstall hello _CisMDSAgentupdate.exe_ agente scaricato tooyour _FirstOrderUpdate_ cartella.
-8. Ripetere i passaggi da 3 a 6 tooinstall hello secondo aggiornamenti degli ordini. 
+8. Ripetere i passaggi da 3 a 6 per installare l'agente _CisMDSAgentupdate.exe_ scaricato nella cartella _FirstOrderUpdate_.
+8. Ripetere i passaggi da 3 a 6 per installare gli aggiornamenti di secondo livello. 
 
     > [!NOTE] 
-    > Per secondo aggiornamenti degli ordini, è possono installare più aggiornamenti eseguendo semplicemente hello `Start-HcsHotfix cmdlet` e scegliendo toohello cartella in cui si trovano secondo aggiornamenti degli ordini. cmdlet di Hello eseguirà tutti gli aggiornamenti di hello disponibili nella cartella hello. Se è già installato un aggiornamento, la logica di aggiornamento hello rileverà che e non applicare l'aggiornamento.
+    > Per gli aggiornamenti di secondo livello, è possibile installare più aggiornamenti eseguendo semplicemente `Start-HcsHotfix cmdlet` e puntando alla cartella in cui si trovano tali aggiornamenti. Il cmdlet eseguirà tutti gli aggiornamenti disponibili nella cartella. Se è già installato un aggiornamento, la logica di aggiornamento lo rileva e non applica l'aggiornamento.
 
-    Una volta installati tutti gli hotfix hello, utilizzare hello `Get-HcsSystem` cmdlet. versioni di Hello devono essere:
+    Dopo aver installato tutti gli hotfix, usare il cmdlet `Get-HcsSystem`. Le versioni devono essere:
     
     * `CisAgentVersion:  1.0.9724.0`
     * `MdsAgentVersion: 35.2.2.0`
     * `Lsisas2Version: 2.0.78.00`
 
 
-#### <a name="tooinstall-and-verify-maintenance-mode-hotfixes"></a>tooinstall e verificare l'hotfix in modalità manutenzione
+#### <a name="to-install-and-verify-maintenance-mode-hotfixes"></a>Per installare e verificare gli aggiornamenti rapidi in modalità di manutenzione
 
-Usare gli aggiornamenti del firmware di KB4037263 tooinstall disco. Questi aggiornamenti comportano interruzioni e e richiedere toocomplete circa 30 minuti. È possibile scegliere tooinstall in una finestra di manutenzione pianificata per la connessione console seriale del dispositivo toohello.
+Usare KB4037263 per installare gli aggiornamenti del firmware del disco. Si tratta di aggiornamenti problematici che richiedono circa 30 minuti per il completamento. È possibile scegliere di installare tali aggiornamenti in una finestra di manutenzione pianificata tramite la connessione alla console seriale del dispositivo.
 
 > [!NOTE] 
-> Se il firmware del disco è già stato aggiornato, non sarà necessario tooinstall questi aggiornamenti. Eseguire hello `Get-HcsUpdateAvailability` da hello dispositivo console seriale toocheck se sono disponibili aggiornamenti che indica se hello Aggiorna sono comportano interruzioni del servizio (modalità di manutenzione) o non comportano interruzioni del servizio (modalità normale) gli aggiornamenti.
+> Se il firmware del disco è già aggiornato, non è necessario installare questi aggiornamenti. Eseguire il cmdlet `Get-HcsUpdateAvailability` dalla console seriale del dispositivo per verificare se sono disponibili aggiornamenti e se questi comportano o meno interruzioni del servizio e vanno quindi installati, rispettivamente, in modalità di manutenzione o in modalità normale.
 
-aggiornamenti del firmware di tooinstall hello disco, seguire le istruzioni di hello riportato di seguito.
+Per installare gli aggiornamenti del firmware del disco, seguire le istruzioni riportate sotto.
 
-1. Dispositivo di hello sul posto in modalità manutenzione hello. 
+1. Attivare la modalità di manutenzione per il dispositivo. 
 
     > [!NOTE] 
-    > Usa la comunicazione remota di Windows PowerShell quando ci si connette il dispositivo tooa in modalità di manutenzione. In alternativa, eseguire questo cmdlet nel controller del dispositivo hello quando si è connessi tramite console seriale del dispositivo hello.
+    > Non usare la comunicazione remota di Windows PowerShell in caso di connessione a un dispositivo in modalità di manutenzione. Eseguire questo cmdlet nel controller del dispositivo quando si è connessi tramite console seriale del dispositivo.
 
-    controller hello tooplace in modalità manutenzione, digitare:
+    Per attivare la modalità di manutenzione per il controller, digitare:
    
     `Enter-HcsMaintenanceMode`
    
@@ -132,14 +132,14 @@ aggiornamenti del firmware di tooinstall hello disco, seguire le istruzioni di h
         Controller0>Enter-HcsMaintenanceMode
         Checking device state...
    
-        In maintenance mode, your device will not service IOs and will be disconnected from hello Microsoft Azure StorSimple Manager service. Entering maintenance mode will end hello current session and reboot both controllers, which takes a few minutes toocomplete. Are you sure you want tooenter maintenance mode?
+        In maintenance mode, your device will not service IOs and will be disconnected from the Microsoft Azure StorSimple Manager service. Entering maintenance mode will end the current session and reboot both controllers, which takes a few minutes to complete. Are you sure you want to enter maintenance mode?
         [Y] Yes [N] No (Default is "Y"): Y
    
         -----------------------MAINTENANCE MODE------------------------
         Microsoft Azure StorSimple Appliance Model 8600
         Name: Update4-8600-mystorsimple
         Copyright (C) 2014 Microsoft Corporation. All rights reserved.
-        You are connected tooController0 - Passive
+        You are connected to Controller0 - Passive
         ---------------------------------------------------------------
    
         Serial Console Menu
@@ -149,26 +149,26 @@ aggiornamenti del firmware di tooinstall hello disco, seguire le istruzioni di h
         [4] Change language
         Please enter your choice>
    
-    Riavviare entrambi i controller hello in modalità manutenzione.
-2. aggiornamento di firmware del disco con hello di tooinstall, tipo:
+    Entrambi i controller si riavviano in modalità manutenzione.
+2. Per installare l'aggiornamento firmware del disco, digitare:
    
-    `Start-HcsHotfix -Path <path tooupdate file> -Credential <credentials in domain\username format>`
+    `Start-HcsHotfix -Path <path to update file> -Credential <credentials in domain\username format>`
    
     Di seguito è riportato un output di esempio.
    
         Controller1>Start-HcsHotfix -Path \\10.100.100.100\share\ThirdOrderUpdates\ -Credential contoso\john
         Enter Password:
-        WARNING: In maintenance mode, hotfixes should be installed on each controller sequentially. After hello hotfix is installed on this controller, install it on hello peer controller.
+        WARNING: In maintenance mode, hotfixes should be installed on each controller sequentially. After the hotfix is installed on this controller, install it on the peer controller.
         Confirm
-        This operation starts a hotfix installation and could reboot one or both of hello controllers. By installing new updates you agree to, and accept any additional terms associated with, hello new functionality listed in hello release notes (https://go.microsoft.com/fwLink/?LinkID=613790). Are you sure you want toocontinue?
+        This operation starts a hotfix installation and could reboot one or both of the controllers. By installing new updates you agree to, and accept any additional terms associated with, the new functionality listed in the release notes (https://go.microsoft.com/fwLink/?LinkID=613790). Are you sure you want to continue?
         [Y] Yes [N] No (Default is "Y"): Y
-        WARNING: Installation is currently in progress. This operation can take several minutes toocomplete.
-3. Monitoraggio hello installa lo stato di avanzamento utilizzando `Get-HcsUpdateStatus` comando. Hello aggiornamento è stata completata quando hello `RunInProgress` cambia troppo`False`.
-4. Al termine dell'installazione di hello, hello del controller in cui hello è stato installato l'hotfix di modalità di manutenzione viene riavviato. Accedere all'opzione 1 con accesso completo e verificare la versione del firmware del disco hello. Digitare:
+        WARNING: Installation is currently in progress. This operation can take several minutes to complete.
+3. Monitorare l'avanzamento dell'installazione con il comando `Get-HcsUpdateStatus` . L'aggiornamento è completo quando `RunInProgress` diventa `False`.
+4. Al termine dell'installazione, il controller in cui è stato installato l'aggiornamento rapido in modalità di manutenzione viene riavviato. Accedere all'opzione 1 con accesso completo e verificare la versione del firmware del disco. Digitare:
    
    `Get-HcsFirmwareVersion`
    
-   Hello previsti sono le versioni del firmware del disco:
+   Le versioni del firmware del disco previste sono:
    
    `XMGJ, XGEG, KZ50, F6C2, VR08, N003, 0107`
    
@@ -179,7 +179,7 @@ aggiornamenti del firmware di tooinstall hello disco, seguire le istruzioni di h
        Name: Update4-8600-mystorsimple
        Software Version: 6.3.9600.17845
        Copyright (C) 2014 Microsoft Corporation. All rights reserved.
-       You are connected tooController1
+       You are connected to Controller1
        ---------------------------------------------------------------
    
        Controller1>Get-HcsFirmwareVersion
@@ -255,9 +255,9 @@ aggiornamenti del firmware di tooinstall hello disco, seguire le istruzioni di h
               WD:WD4001FYYG-01SL3:VR08
               WD:WD4001FYYG-01SL3:VR08
    
-    Eseguire hello `Get-HcsFirmwareVersion` comando hello secondo controller tooverify che hello versione del software è stato aggiornato. È quindi possibile uscire dalla modalità di manutenzione hello. toodo in tal caso, digitare hello comando per ogni controller del dispositivo seguente:
+    Eseguire il comando `Get-HcsFirmwareVersion` sul secondo controller per verificare che la versione del software sia stata aggiornata. È quindi possibile chiudere la modalità di manutenzione. A tale scopo, digitare il comando seguente per ogni controller del dispositivo:
    
    `Exit-HcsMaintenanceMode`
 
-5. controller Hello riavviare quando si esce dalla modalità di manutenzione. Dopo il firmware del disco hello gli aggiornamenti sono stati correttamente applicati e dispositivo hello è uscito dalla modalità di manutenzione, restituito toohello portale di Azure. Si noti che il portale di hello potrebbe non visualizzare installato gli aggiornamenti in modalità manutenzione hello per 24 ore.
+5. I controller si riavviano quando si esce dalla modalità di manutenzione. Al termine dell'applicazione degli aggiornamenti del firmware del disco, dopo che il dispositivo è uscito dalla modalità di manutenzione tornare al portale di Azure. Si noti che il portale potrebbe non mostrare che sono stati installati gli aggiornamenti per la modalità di manutenzione prima di 24 ore.
 

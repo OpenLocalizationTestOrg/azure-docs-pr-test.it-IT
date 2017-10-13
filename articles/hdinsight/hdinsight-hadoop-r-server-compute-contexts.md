@@ -1,6 +1,6 @@
 ---
-title: opzioni del contesto aaaCompute per Server di R in HDInsight - Azure | Documenti Microsoft
-description: Informazioni su hello calcolo differente contesto opzioni disponibile toousers con R Server in HDInsight
+title: Opzioni del contesto di calcolo per R Server in HDInsight - Azure | Documentazione Microsoft
+description: Informazioni sulle diverse opzioni del contesto di calcolo disponibili per gli utenti con R Server in HDInsight
 services: HDInsight
 documentationcenter: 
 author: bradsev
@@ -15,74 +15,74 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 06/19/2017
 ms.author: bradsev
-ms.openlocfilehash: b3b0d0cc3caa390797dcff8c73d66cd3ad78bcaa
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 47f4441612be4f363ba82cc22b09786a6f3bfdc3
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="compute-context-options-for-r-server-on-hdinsight"></a>Opzioni del contesto di calcolo per R Server su HDInsight (anteprima)
 
-Microsoft R Server in Azure HDInsight controlla l'esecuzione delle chiamate dal contesto di calcolo hello impostazione. Questo articolo vengono illustrati le opzioni di hello che siano disponibili toospecify se e come viene eseguito in parallelo esecuzione tra core del nodo del bordo hello o del cluster HDInsight.
+Microsoft R Server in Azure HDInsight controlla l'esecuzione delle chiamate, impostando il contesto di calcolo. In questo articolo vengono descritte le opzioni disponibili per specificare se e come l'esecuzione venga parallelizzata tra i core del nodo perimetrale o del cluster HDInsight.
 
-nodo di Hello del bordo di un cluster fornisce una posizione comoda tooconnect toohello cluster e toorun gli script R. Con un nodo del bordo, si dispone di funzioni di opzione di esecuzione hello parallelizzato distributed hello di ScaleR tra core hello del server di nodo perimetrale hello. È possibile anche eseguirli tra i nodi del cluster hello hello utilizzando del ScaleR Hadoop MapReduce o Spark contesti di calcolo.
+Il nodo perimetrale di un cluster offre una posizione pratica per connettersi al cluster ed eseguire gli script R. Con un nodo perimetrale è possibile eseguire le funzioni distribuite parallelizzate di ScaleR nei core del server del nodo perimetrale. È anche possibile eseguire tali funzioni tra i nodi del cluster usando contesti di calcolo Hadoop MapReduce o Spark di ScaleR.
 
 ## <a name="microsoft-r-server-on-azure-hdinsight"></a>Microsoft R Server in Azure HDInsight
-[Microsoft R Server in Azure HDInsight](hdinsight-hadoop-r-server-overview.md) fornisce funzionalità più recenti di hello per basato su R analitica. È possibile utilizzare i dati archiviati in un contenitore HDFS il [Blob di Azure](../storage/common/storage-introduction.md "archiviazione Blob di Azure") account di archiviazione, un archivio Data Lake o file system di hello locale Linux. Poiché R Server si basa su R open source, applicazioni basate su R hello che compili possono applicare uno qualsiasi dei pacchetti hello 8000 + R open source. È inoltre possibile utilizzare le routine di hello in [RevoScaleR](https://msdn.microsoft.com/microsoft-r/scaler/scaler), big data analitica pacchetto Microsoft incluso con R Server.  
+[Microsoft R Server in Azure HDInsight](hdinsight-hadoop-r-server-overview.md) fornisce le funzionalità più recenti per l'analisi basata su R. Può usare i dati archiviati in un contenitore HDFS nell'account di archiviazione [BLOB di Azure](../storage/common/storage-introduction.md "Archiviazione BLOB di Azure"), in un Data Lake Store o nel file system locale di Linux. Poiché R Server si basa su R open source, le applicazioni basate su R compilate dall'utente possono applicare gli oltre 8000 pacchetti R open source. Possono anche usare le routine di [RevoScaleR](https://msdn.microsoft.com/microsoft-r/scaler/scaler), il pacchetto di analisi dei Big Data di Microsoft incluso in R Server.  
 
 ## <a name="compute-contexts-for-an-edge-node"></a>Contesti di calcolo per un nodo perimetrale
-In generale, uno script R che viene eseguito nel Server R sul nodo del bordo hello viene eseguito all'interno di interprete R hello in tale nodo. eccezioni di Hello sono i passaggi che chiama una funzione di ridimensionamento. le chiamate ScaleR Hello eseguite in un ambiente di calcolo che è determinato dal contesto di calcolo ScaleR hello all'impostazione.  Quando si esegue lo script R da un nodo del bordo, i valori possibili di hello hello calcolano contesto sono:
+In generale, uno script R eseguito in R Server nel nodo perimetrale viene eseguito all'interno dell'interprete R in tale nodo. L'eccezione è costituita dai passaggi che chiamano una funzione ScaleR. Le chiamate ScaleR vengono eseguite in un ambiente di calcolo determinato dall'impostazione del contesto di calcolo di ScaleR.  Quando si esegue lo script R da un nodo perimetrale, i valori possibili del contesto di calcolo sono:
 
 - sequenziale locale (*"local"*)
 - parallelo locale (*"localpar"*)
 - MapReduce
 - Spark
 
-Hello *'local'* e *'localpar'* opzioni differiscono solo come **rxExec** chiamate vengono eseguite. Entrambi eseguono altre chiamate di funzione rx in modo parallelo tra core tutti disponibili se non specificato diversamente mediante l'utilizzo di hello ScaleR **numCoresToUse** opzione, ad esempio `rxOptions(numCoresToUse=6)`. Le opzioni di esecuzione parallela offrono prestazioni ottimali.
+Le opzioni *"local"* e *"localpar"* differiscono solo per la modalità di esecuzione delle chiamate **rxExec**. Entrambe eseguono chiamate ad altre funzioni di ricezione in modo parallelo tra le memorie centrali disponibili, se non diversamente specificato, mediante l'uso dell'opzione ScaleR **numCoresToUse**, ad esempio `rxOptions(numCoresToUse=6)`. Le opzioni di esecuzione parallela offrono prestazioni ottimali.
 
-Hello nella tabella seguente vengono riepilogate hello che vari tooset opzioni contesto esecuzione delle chiamate di calcolo:
+Nella tabella seguente vengono riepilogate le varie opzioni di contesto di calcolo per impostare l'esecuzione delle chiamate:
 
-| Contesto di calcolo  | Come tooset                      | Contesto di esecuzione                        |
+| Contesto di calcolo  | Come impostarlo                      | Contesto di esecuzione                        |
 | ---------------- | ------------------------------- | ---------------------------------------- |
-| Sequenziale locale | rxSetComputeContext('local')    | Parallelizzato esecuzione tra core hello di hello nodo server perimetrale tranne rxExec chiamate, che vengono eseguite in serie |
-| Parallelo locale   | rxSetComputeContext('localpar') | Parallelizzato esecuzione tra core hello del server di nodo perimetrale hello |
-| Spark            | RxSpark()                       | Parallelizzato esecuzione distribuita tramite Spark tra i nodi di hello del cluster HDI hello |
-| MapReduce       | RxHadoopMR()                    | Parallelizzato esecuzione distribuita tramite MapReduce tra i nodi di hello del cluster HDI hello |
+| Sequenziale locale | rxSetComputeContext('local')    | Esecuzione in parallelo attraverso i core del server del nodo perimetrale, ad eccezione delle chiamate rxExec che vengono eseguite in serie |
+| Parallelo locale   | rxSetComputeContext('localpar') | Esecuzione in parallelo tra i core del server del nodo perimetrale |
+| Spark            | RxSpark()                       | Esecuzione parallelizzata distribuita tramite Spark tra i nodi del cluster HDInsight |
+| MapReduce       | RxHadoopMR()                    | Esecuzione parallelizzata distribuita tramite MapReduce tra i nodi del cluster HDInsight |
 
 ## <a name="guidelines-for-deciding-on-a-compute-context"></a>Linee guida per la scelta di un contesto di calcolo
 
-Quali hello tre opzioni che consente l'esecuzione parallelizzato dipende dalla natura hello analitica, dimensioni hello ed eseguire il percorso di hello dei dati. Non sussiste alcuna formula semplice che indica quale toouse contesto di calcolo. Esistono tuttavia alcuni principi che consentono di effettuare la scelta giusta hello o, almeno, consentono di limitare le scelte effettuate prima di eseguire un benchmark. Ecco alcuni dei principi guida:
+Quale delle tre opzioni consenta l'esecuzione parallelizzata dipende dalla natura del proprio lavoro di analitica, dalle dimensioni e dalla posizione dei dati. Non esiste una formula fissa che indichi quale contesto di calcolo usare. Esistono tuttavia alcuni principi guida che consentono di effettuare la scelta appropriata, o almeno consentono di limitare le scelte prima di eseguire un benchmark. Ecco alcuni dei principi guida:
 
-- file system di Hello locale Linux è più veloce rispetto a HDFS.
-- Analisi ripetute sono più veloce se i dati di hello sono locali, e se è presente nel con estensione XDF.
-- È preferibile toostream piccole quantità di dati da un'origine dati di testo. Se è più grande quantità di hello di data, convertirla tooXDF prima dell'analisi.
-- sovraccarico Hello di copia o nodo di hello dati toohello del bordo per l'analisi di flusso diventa difficile da gestire per grandi quantità di dati.
+- Il file system locale di Linux è più veloce rispetto ad HDFS.
+- Le analisi ripetute risultano più veloci se i dati sono locali e in formato XDF.
+- È preferibile eseguire il flusso di piccole quantità di dati da un'origine dati di testo. Se la quantità di dati è più grande, è necessario convertirli con estensione XDF prima dell'analisi.
+- Il sovraccarico dovuto alla copia o allo streaming dei dati nel nodo perimetrale per l'analisi diventa ingestibile per quantità di dati molto grandi.
 - Spark è più veloce rispetto a Map Reduce per l'analisi in Hadoop.
 
-Questi principi di base, hello nelle sezioni seguenti offrono alcune regole generali per la selezione di un contesto di calcolo.
+Dati questi principi, la sezione seguente illustra alcune regole generali per la selezione di un contesto di calcolo.
 
 ### <a name="local"></a>Local
-* Se la quantità di hello di tooanalyze dati sono limitate e non richiede analisi ripetute, quindi il flusso direttamente in hello analisi routine tramite *'local'* o *'localpar'*.
-* Se quantità hello di tooanalyze dati è di piccole o medie dimensioni e richiede analisi ripetute, quindi copiarlo toohello file system locale, importarlo tooXDF e analizzarli tramite *'local'* o *'localpar'*.
+* Se la quantità di dati da analizzare è limitata e non sono richieste analisi ripetute, eseguirne il flusso direttamente in una routine di analisi usando *"local"* o *"localpar"*.
+* Se la quantità di dati da analizzare è limitata o media e richiede analisi ripetute, copiare i dati nel file system locale, importarli in XDF e analizzarli con *"local"* o *"localpar"*.
 
 ### <a name="hadoop-spark"></a>Hadoop Spark
-* Se è grande quantità di hello di tooanalyze di dati, quindi importarlo tooa frame di dati di Spark usando **RxHiveData** o **RxParquetData**, tooXDF in HDFS o (a meno che l'archiviazione è un problema) e analizzarlo hello Spark contesto di calcolo.
+* Se la quantità di dati da analizzare è grande, importare i dati in un DataFrame Spark usando **RxHiveData** o **RxParquetData** oppure in HDFS in formato XDF, a meno che lo spazio di archiviazione non sia un problema, e analizzarli usando il contesto di calcolo di Spark.
 
 ### <a name="hadoop-map-reduce"></a>Hadoop MapReduce
-* Utilizzare il contesto di calcolo MapReduce hello solo se si verifica un problema con il contesto di calcolo di hello Spark insormontabili perché è in genere più lento.  
+* Usare il contesto di calcolo MapReduce solo se si riscontra un problema insormontabile riguardo al contesto di calcolo Spark, poiché di norma risulta essere più lento.  
 
 ## <a name="inline-help-on-rxsetcomputecontext"></a>Guida in linea su rxSetComputeContext
-Per ulteriori informazioni ed esempi di ScaleR contesti di calcolo, vedere la Guida in R sul metodo rxSetComputeContext hello, ad esempio hello inline:
+Per altre informazioni ed esempi di contesti di calcolo di ScaleR, vedere la guida in linea di R sul metodo rxSetComputeContext, ad esempio:
 
     > ?rxSetComputeContext
 
-È anche possibile fare riferimento toohello "[ScaleR Distributed Computing Guide](https://msdn.microsoft.com/microsoft-r/scaler-distributed-computing)" disponibile all'hello [R Server MSDN](https://msdn.microsoft.com/library/mt674634.aspx "R Server su MSDN") libreria.
+È anche possibile vedere la "[Guida all'elaborazione distribuita di ScaleR](https://msdn.microsoft.com/microsoft-r/scaler-distributed-computing)" disponibile nella pagina relativa a [Server R MSDN](https://msdn.microsoft.com/library/mt674634.aspx "Server R in MSDN nella libreria MSDN").
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questo articolo è stato sulle opzioni hello toospecify disponibili se e come l'esecuzione viene parallelizzata tra core del nodo del bordo hello o del cluster HDInsight. toolearn ulteriori informazioni su come i cluster toouse R Server con HDInsight, vedere hello seguenti argomenti:
+In questo articolo sono state descritte le opzioni disponibili per specificare se e come l'esecuzione venga parallelizzata tra i core del nodo perimetrale o del cluster HDInsight. Per altre informazioni sull'uso di R Server con i cluster HDInsight, vedere gli argomenti seguenti:
 
 * [Panoramica: R Server su HDInsight (anteprima)](hdinsight-hadoop-r-server-overview.md)
 * [Introduzione all'uso di R Server su HDInsight (anteprima)](hdinsight-hadoop-r-server-get-started.md)
-* [Aggiungere RStudio Server tooHDInsight (se non è aggiunto durante la creazione del cluster)](hdinsight-hadoop-r-server-install-r-studio.md)
+* [Aggiungere RStudio Server a HDInsight (se non è stato aggiunto durante la creazione del cluster)](hdinsight-hadoop-r-server-install-r-studio.md)
 * [Opzioni di Archiviazione di Azure per R Server su HDInsight](hdinsight-hadoop-r-server-storage.md)
 

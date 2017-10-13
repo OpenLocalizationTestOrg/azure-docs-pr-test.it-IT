@@ -1,6 +1,6 @@
 ---
-title: prerequisiti di hello aaaReview per Hyper-V tooAzure la replica (con System Center VMM) usando Azure Site Recovery | Documenti Microsoft
-description: Vengono descritti i prerequisiti hello per la configurazione di replica, il failover e il ripristino delle macchine virtuali di Hyper-V locale nel tooAzure cloud VMM, con Azure Site Recovery
+title: Esaminare i prerequisiti per la replica Hyper-V in Azure (con System Center VMM) usando Azure Site Recovery | Microsoft Docs
+description: Questo articolo illustra i prerequisiti per la configurazione di replica, failover e ripristino di macchine virtuali Hyper-V locali in cloud VMM in Azure, usando Azure Site Recovery
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,30 +14,30 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/24/2017
 ms.author: raynew
-ms.openlocfilehash: de13a2d80b1a9a5d968a180d559f661ab11e70c7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 47c178c66ec98fe5d333edd725b64465026e73ed
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="step-2-review-hello-prerequisites-for-hyper-v-with-vmm-tooazure-replication"></a>Passaggio 2: Esaminare i prerequisiti di hello per la replica Hyper-V (con VMM) tooAzure
+# <a name="step-2-review-the-prerequisites-for-hyper-v-with-vmm-to-azure-replication"></a>Passaggio 2: Esaminare i prerequisiti per la replica Hyper-V (con VMM) in Azure
 
-Dopo che sta esaminato hello [architettura dello scenario](vmm-to-azure-walkthrough-architecture.md), leggere questo articolo di toomake è importante comprendere i prerequisiti di distribuzione hello. 
+Dopo aver esaminato l'[architettura dello scenario](vmm-to-azure-walkthrough-architecture.md), leggere questo articolo per comprendere i prerequisiti di distribuzione. 
 
 ## <a name="prerequisites-and-limitations"></a>Prerequisiti e limitazioni
 
 **Requisito** | **Dettagli**
 --- | ---
 **Account di Azure** | È necessario un account [Microsoft Azure](http://azure.microsoft.com/).
-**Archiviazione di Azure** | È necessario un toostore replicati dati dell'account di archiviazione di Azure.<br/><br/> account di archiviazione Hello deve trovarsi in hello stessa area hello insieme di credenziali di servizi di ripristino di Azure.<br/><br/>È possibile usare l'[archiviazione con ridondanza geografica](../storage/common/storage-redundancy.md#geo-redundant-storage) o locale. È consigliabile usare l'archiviazione con ridondanza geografica, Con l'archiviazione con ridondanza geografica, data è resiliente se si verifica un'interruzione dell'alimentazione locale o se non è possibile recuperare l'area primaria hello.<br/><br/> È possibile usare un account di archiviazione Standard di Azure oppure [Archiviazione Premium](../storage/common/storage-premium-storage.md) di Azure. Archiviazione Premium può ospitare carichi di lavoro con I/O elevato e viene in genere usata per le macchine virtuali che richiedono un livello di prestazioni di I/O costantemente elevato e bassa latenza. Se si usa l'archiviazione Premium per i dati replicati, è necessario anche un account di archiviazione standard. Un account di archiviazione standard archivia i log di replica che acquisiscono dati locali tooon le modifiche in corso.
-**Rete di Azure** | È necessario un [rete Azure](../virtual-network/virtual-network-get-started-vnet-subnet.md), toowhich macchine virtuali di Azure connettersi dopo il failover. Hello rete di Azure deve essere hello stessa area hello insieme di credenziali di servizi di ripristino.
-**Server VMM locali** | È necessario avere a disposizione uno o più server VMM che eseguono System Center 2012 R2 o versioni successive.<br/><br/> Ogni server VMM deve avere uno o più cloud privati. Ogni cloud deve avere uno o più gruppi host.<br/><br/> server VMM Hello è necessario l'accesso a internet.
-**Hyper-V locale** | I server host Hyper-V devono essere in esecuzione almeno Windows Server 2012 R2 con ruolo hello Hyper-V abilitato o Microsoft Hyper-V Server 2012 R2. è necessario installare gli aggiornamenti più recenti di Hello.<br/><br/> host Hyper-V Hello deve trovarsi in un gruppo host VMM (che si trova in un cloud VMM).<br/><br/> Un host deve disporre di uno o più macchine virtuali che si desidera tooreplicated.<br/><br/> Host Hyper-V deve essere connesso toohello internet per la replica tooAzure, direttamente o con un proxy. Server Hyper-V deve avere correzioni hello descritte nell'articolo [2961977](https://support.microsoft.com/kb/2961977).
-**VM Hyper-V locali** | Macchine virtuali che si desidera tooreplicate deve essere in esecuzione un [sistema operativo supportato](site-recovery-support-matrix-to-azure.md#support-for-replicated-machine-os-versions)e devono essere conformi con [Azure prerequisiti](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements). nome della macchina virtuale Hello può essere modificata dopo la replica è abilitata. 
+**Archiviazione di Azure** | Per archiviare i dati replicati è necessario un account di archiviazione di Azure.<br/><br/> L'account di archiviazione deve trovarsi nella stessa area dell'insieme di credenziali di Servizi di ripristino di Azure.<br/><br/>È possibile usare l'[archiviazione con ridondanza geografica](../storage/common/storage-redundancy.md#geo-redundant-storage) o locale. È consigliabile usare l'archiviazione con ridondanza geografica, che permette di garantire una maggiore resilienza dei dati in caso di interruzione del servizio a livello di area o se non è possibile ripristinare l'area primaria.<br/><br/> È possibile usare un account di archiviazione Standard di Azure oppure [Archiviazione Premium](../storage/common/storage-premium-storage.md) di Azure. Archiviazione Premium può ospitare carichi di lavoro con I/O elevato e viene in genere usata per le macchine virtuali che richiedono un livello di prestazioni di I/O costantemente elevato e bassa latenza. Se si usa Archiviazione Premium per i dati replicati, è necessario anche un account di archiviazione Standard. Quest'ultimo permette di archiviare i log di replica in cui vengono acquisite le modifiche in corso ai dati locali.
+**Rete di Azure** | È necessaria una [rete di Azure](../virtual-network/virtual-network-get-started-vnet-subnet.md) a cui le macchine virtuali di Azure possano connettersi dopo il failover. La rete di Azure deve trovarsi nella stessa area dell'insieme di credenziali di Servizi di ripristino.
+**Server VMM locali** | È necessario avere a disposizione uno o più server VMM che eseguono System Center 2012 R2 o versioni successive.<br/><br/> Ogni server VMM deve avere uno o più cloud privati. Ogni cloud deve avere uno o più gruppi host.<br/><br/> Il server VMM deve avere accesso a Internet.
+**Hyper-V locale** | I server host Hyper-V devono eseguire almeno Windows Server 2012 R2 con il ruolo Hyper-V abilitato o Microsoft Hyper-V Server 2012 R2, con gli ultimi aggiornamenti installati.<br/><br/> L'host Hyper-V deve trovarsi in un gruppo host VMM, in un cloud VMM.<br/><br/> Un host deve avere una o più macchine virtuali da replicare.<br/><br/> Gli host Hyper-V devono essere connessi a Internet per la replica in Azure, direttamente o con un proxy. I server Hyper-V devono avere le correzioni specificate nell'articolo [2961977](https://support.microsoft.com/kb/2961977).
+**VM Hyper-V locali** | Le VM da replicare devono eseguire un [sistema operativo supportato](site-recovery-support-matrix-to-azure.md#support-for-replicated-machine-os-versions) ed essere conformi ai [prerequisiti di Azure](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements). Dopo aver abilitato la replica è possibile modificare il nome della macchina virtuale. 
 
 
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Andare troppo[passaggio 3: pianificare la capacità](vmm-to-azure-walkthrough-capacity.md)
+Andare a [Passaggio 3: Pianificare la capacità](vmm-to-azure-walkthrough-capacity.md)

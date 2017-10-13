@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con NetSuite | Microsoft Docs'
-description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e Netsuite.
+description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e Netsuite.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,82 +13,82 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/19/2017
 ms.author: jeedes
-ms.openlocfilehash: 5bb2989c1296b9f2abc9e8c84855731adc484aab
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 277c393536615fc8bfe8af0bc6d487115f04776c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-configuring-netsuite-for-automatic-user-provisioning"></a>Esercitazione: Configurazione di Netsuite per il provisioning utenti automatico
 
-obiettivo di Hello di questa esercitazione è tooshow hello passaggi che è necessario tooperform in Netsuite e Azure AD tooautomatically il provisioning e il de-provisioning degli account utente da Azure AD tooNetsuite.
+Questa esercitazione descrive le procedure da eseguire in Netsuite e Azure AD per effettuare automaticamente il provisioning e il deprovisioning degli account utente da Azure AD a Netsuite.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-scenario Hello descritto in questa esercitazione si presuppone che si disponga già di hello seguenti elementi:
+Per lo scenario descritto in questa esercitazione si presuppone che l'utente disponga di quanto segue:
 
 *   Tenant di Azure Active Directory.
 *   Sottoscrizione di Netsuite abilitata per l'accesso Single Sign-On.
 *   Account utente in Netsuite con autorizzazioni di amministratore di team.
 
-## <a name="assigning-users-toonetsuite"></a>L'assegnazione di utenti tooNetsuite
+## <a name="assigning-users-to-netsuite"></a>Assegnazione di utenti a Netsuite
 
-Azure Active Directory Usa il concetto di "assegnazioni" toodetermine gli utenti che devono ricevere le app tooselected di accesso. Nel contesto di hello di provisioning dell'account utente automatico, vengono sincronizzati solo gli utenti di hello e i gruppi "assegnati" tooan applicazione in Azure AD.
+Per determinare gli utenti che dovranno ricevere l'accesso alle app selezionate, Azure Active Directory usa il concetto delle "assegnazioni". Nel contesto del provisioning automatico degli account utente, vengono sincronizzati solo gli utenti e i gruppi che sono stati "assegnati" a un'applicazione in Azure AD.
 
-Prima di configurare e abilitare hello provisioning del servizio, è necessario toodecide quali utenti e/o i gruppi in Azure AD rappresentano hello utenti devono accedere tooyour Netsuite app. Una volta deciso, è possibile assegnare queste app di Netsuite tooyour utenti seguendo le istruzioni di hello qui:
+Prima di configurare e abilitare il servizio di provisioning, è necessario stabilire quali utenti e/o gruppi in Azure AD rappresentano gli utenti che devono accedere all'app Netsuite. Dopo averlo stabilito, è possibile assegnare gli utenti all'app Netsuite seguendo le istruzioni riportate in:
 
-[Assegnare un'applicazione aziendale tooan utente o gruppo](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal)
+[Assegnare un utente o gruppo a un'app aziendale](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal)
 
-### <a name="important-tips-for-assigning-users-toonetsuite"></a>Suggerimenti importanti per l'assegnazione di utenti tooNetsuite
+### <a name="important-tips-for-assigning-users-to-netsuite"></a>Suggerimenti importanti per l'assegnazione di utenti a Netsuite
 
-*   È consigliabile che un singolo utente AD Azure viene assegnato hello tootest tooNetsuite configurazione provisioning. È possibile assegnare utenti e/o gruppi aggiuntivi in un secondo momento.
+*   È consigliabile assegnare un singolo utente di Azure AD a Netsuite per testare la configurazione del provisioning. È possibile assegnare utenti e/o gruppi aggiuntivi in un secondo momento.
 
-*   Quando si assegna un tooNetsuite utente, è necessario selezionare un ruolo utente valido. ruolo di "accesso predefinita" Hello non funziona per il provisioning.
+*   Quando si assegna un utente a Netsuite, è necessario selezionare un ruolo utente valido. Il ruolo "Default Access" (Accesso predefinito) non è applicabile per il provisioning.
 
 ## <a name="enable-user-provisioning"></a>Abilitare il provisioning utenti
 
-Questa sezione viene illustrato come tramite la connessione API di provisioning dell'account utente del tooNetsuite il Azure AD e configura il provisioning del servizio toocreate hello, aggiornare e disabilitare gli account utente assegnato in Netsuite in base all'assegnazione di utenti e gruppi in Azure AD.
+Questa sezione illustra la connessione di Azure AD all'API per il provisioning degli account utente di Netsuite e la configurazione del servizio di provisioning per la creazione, l'aggiornamento e la disabilitazione degli account utente assegnati in Netsuite in base all'assegnazione di utenti e gruppi in Azure AD.
 
 > [!TIP] 
-> È inoltre possibile scegliere tooenabled basato su SAML Single Sign-On per Netsuite, attenendosi alle istruzioni hello fornite [portale di Azure](https://portal.azure.com). L'accesso Single Sign-On può essere configurato indipendentemente dal provisioning automatico, nonostante queste due funzionalità siano complementari.
+> Si può anche scegliere di abilitare l'accesso Single Sign-On basato su SAML per Netsuite, seguendo le istruzioni disponibili nel [portale di Azure](https://portal.azure.com). L'accesso Single Sign-On può essere configurato indipendentemente dal provisioning automatico, nonostante queste due funzionalità siano complementari.
 
-### <a name="tooconfigure-user-account-provisioning"></a>tooconfigure provisioning dell'account utente:
+### <a name="to-configure-user-account-provisioning"></a>Per configurare il provisioning degli account utente:
 
-obiettivo di Hello di questa sezione è toooutline tooenable provisioning utente dell'utente di Active Directory come account di tooNetsuite.
+Questa sezione descrive come abilitare il provisioning degli account utente di Active Directory in Netsuite.
 
-1. In hello [portale di Azure](https://portal.azure.com), Sfoglia toohello **Azure Active Directory > App aziendali > tutte le applicazioni** sezione.
+1. Nel [portale di Azure](https://portal.azure.com) passare alla sezione **Azure Active Directory > App aziendali > Tutte le applicazioni**.
 
-2. Se è già stato configurato Netsuite per single sign-on, eseguire la ricerca per l'istanza di tramite il campo di ricerca hello Netsuite. In caso contrario, selezionare **Aggiungi** e cercare **Netsuite** nella raccolta di applicazione hello. Selezionare Netsuite dai risultati della ricerca hello e aggiungerlo tooyour elenco delle applicazioni.
+2. Se si è già configurato Netsuite per l'accesso Single Sign-On, cercare l'istanza di Netsuite usando il campo di ricerca. In caso contrario, selezionare **Aggiungi** e cercare **Netsuite** nella raccolta di applicazioni. Selezionare Netsuite nei risultati della ricerca e aggiungerlo all'elenco delle applicazioni.
 
-3. Selezionare l'istanza di Netsuite, quindi selezionare hello **Provisioning** scheda.
+3. Selezionare l'istanza di Netsuite e quindi la scheda **Provisioning**.
 
-4. Set hello **modalità di Provisioning** troppo**automatica**. 
+4. Impostare **Modalità di provisioning** su **Automatico**. 
 
     ![provisioning](./media/active-directory-saas-netsuite-provisioning-tutorial/provisioning.png)
 
-5. In hello **credenziali di amministratore** sezione, fornire hello le impostazioni di configurazione seguente:
+5. Nella sezione **Credenziali di amministratore** specificare le impostazioni di configurazione seguenti:
    
-    a. In hello **nome utente amministratore** casella di testo, digitare un Netsuite nome account cui ha hello **amministratore di sistema** profilo in Netsuite.com assegnato.
+    a. Nella casella di testo **Nome utente amministratore** digitare un nome di account Netsuite che abbia il profilo **Amministratore di sistema** assegnato in Netsuite.com.
    
-    b. In hello **Password amministratore** casella di testo, digitare la password hello per questo account.
+    b. Nella casella di testo **Password amministratore** digitare la password per questo account.
       
-6. Nel portale di Azure hello, fare clic su **Test connessione** tooensure Azure AD può connettersi tooyour Netsuite app.
+6. Nel portale di Azure fare clic su **Test connessione** per verificare che Azure AD possa connettersi all'app Netsuite.
 
-7. In hello **notifica tramite posta elettronica** immettere l'indirizzo di posta elettronica hello di una persona o il gruppo che deve ricevere le notifiche degli errori di provisioning e casella di controllo hello.
+7. Nel campo **Messaggio di posta elettronica di notifica** immettere l'indirizzo di posta elettronica di una persona o un gruppo che riceverà le notifiche di errore relative al provisioning e selezionare la casella di controllo.
 
 8. Fare clic su **Salva**.
 
-9. Nella sezione mapping hello, selezionare **tooNetsuite sincronizzare Active Directory gli utenti di Azure.**
+9. Nella sezione Mapping selezionare **Synchronize Azure Active Directory Users to Netsuite** (Sincronizza utenti di Azure Active Directory in Netsuite).
 
-10. In hello **mapping degli attributi** sezione, esaminare gli attributi utente hello che vengono sincronizzati da tooNetsuite di Azure AD. Si noti che gli attributi selezionati come hello **corrispondenza** proprietà sono utilizzate toomatch hello gli account utente in Netsuite per operazioni di aggiornamento. Selezionare hello Salva pulsante toocommit tutte le modifiche.
+10. Nella sezione **Mapping degli attributi** esaminare gli attributi utente che vengono sincronizzati da Azure AD a Netsuite. Si noti che gli attributi selezionati come proprietà **corrispondenti** vengono usati per trovare le corrispondenze con gli account utente in Netsuite per le operazioni di aggiornamento. Selezionare il pulsante Salva per eseguire il commit delle modifiche.
 
-11. tooenable hello servizio provisioning di Azure AD per Netsuite, hello modifica **lo stato di Provisioning** troppo**su** nella sezione Impostazioni hello
+11. Per abilitare il servizio di provisioning di Azure AD per Netsuite, impostare **Stato del provisioning** su **Sì** nella sezione Impostazioni
 
 12. Fare clic su **Salva**.
 
-Avvia la sincronizzazione iniziale di hello di eventuali utenti o gruppi assegnati tooNetsuite in hello gli utenti e gruppi. Si noti che la sincronizzazione iniziale hello accetta più tooperform di sincronizzazioni successive, che si verificano ogni 20 minuti circa, purché hello servizio è in esecuzione. È possibile utilizzare hello **i dettagli della sincronizzazione** sezione toomonitor lo stato di avanzamento e seguire i collegamenti tooprovisioning attività i report, che descrivono tutte le azioni eseguite dal servizio nella tua app Netsuite hello.
+Viene avviata la sincronizzazione iniziale di tutti gli utenti e/o i gruppi assegnati a Netsuite nella sezione Utenti e gruppi. Notare che la sincronizzazione iniziale richiede più tempo delle sincronizzazioni successive, che saranno eseguite circa ogni 20 minuti per tutto il tempo che il servizio è in esecuzione. È possibile usare la sezione **Dettagli sincronizzazione** per monitorare lo stato di avanzamento e selezionare i collegamenti ai report delle attività di provisioning, che descrivono tutte le azioni eseguite dal servizio di provisioning sull'app Netsuite.
 
-È ora possibile creare un account di test. Attendere che i minuti too20 tooverify che hello account è stato sincronizzato tooNetsuite.
+È ora possibile creare un account di test. Attendere 20 minuti per verificare che l'account sia stato sincronizzato con Netsuite.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 

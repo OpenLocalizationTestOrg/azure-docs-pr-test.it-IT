@@ -1,6 +1,6 @@
 ---
-title: aaaEncrypting i contenuti con crittografia di archiviazione tramite l'API REST AMS
-description: Informazioni su come tooencrypt i contenuti con crittografia di archiviazione usando le API REST AMS.
+title: Crittografare i contenuti con la crittografia di archiviazione tramite API REST di AMS
+description: Crittografare i contenuti con la crittografia di archiviazione tramite API REST di AMS.
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,58 +14,58 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: juliako
-ms.openlocfilehash: d5f8cb8dd1dcded76c9fededccc772d8102ccbad
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1979f5bf5e8cab88dab5fba49018afacf24504b3
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="encrypting-your-content-with-storage-encryption"></a>Crittografare il contenuto con la crittografia di archiviazione
 
-Si consiglia di tooencrypt il contenuto localmente con AES-256 bit crittografia e quindi caricarla tooAzure archiviazione in cui verrà archiviata in forma crittografata.
+È consigliabile crittografare i propri contenuti localmente usando la crittografia AES a 256 bit e quindi caricarli nel servizio Archiviazione di Azure, dove verranno archiviati in forma crittografata.
 
-In questo articolo viene fornita una panoramica di crittografia di archiviazione AMS e illustra la modalità di archiviazione hello tooupload crittografia contenuto:
+In questo articolo viene illustrata una panoramica della crittografia di archiviazione di AMS e viene specificato come caricare il contenuto crittografato per l'archiviazione:
 
 * Creare una chiave simmetrica.
-* Creare un asset. Impostare hello AssetCreationOption tooStorageEncryption durante la creazione di hello Asset.
+* Creare un asset. Durante la creazione dell'asset, impostare AssetCreationOption su StorageEncryption.
   
-     Gli asset crittografati sono toobe associata a chiavi simmetriche.
-* Asset toohello chiave contenuto hello di collegamento.  
-* Impostare i parametri per le entità AssetFile hello relative a crittografia di hello.
+     Gli asset crittografati devono essere associati a chiavi simmetriche.
+* Collegare la chiave simmetrica all'asset.  
+* Impostare i parametri relativi alla crittografia sulle entità AssetFile.
 
 ## <a name="considerations"></a>Considerazioni 
 
-Se si desidera toodeliver asset crittografato di archiviazione, è necessario configurare i criteri di distribuzione dell'asset hello. Prima dell'asset può essere trasmesso, hello streaming flussi e crittografia di archiviazione hello viene rimosso il server dei contenuti usando hello specificati criteri di distribuzione. Per altre informazioni, vedere l'articolo [Procedura: Configurare i criteri di distribuzione degli asset](media-services-rest-configure-asset-delivery-policy.md).
+Se si desidera distribuire un asset con memoria crittografata, è necessario configurare i criteri di distribuzione appropriati. Prima di trasmettere in streaming l'asset in base ai criteri specificati, il server rimuove la crittografia di archiviazione. Per altre informazioni, vedere l'articolo [Procedura: Configurare i criteri di distribuzione degli asset](media-services-rest-configure-asset-delivery-policy.md).
 
 Quando si accede alle entità in Servizi multimediali, è necessario impostare valori e campi di intestazione specifici nelle richieste HTTP. Per altre informazioni, vedere [Panoramica dell'API REST di Servizi multimediali](media-services-rest-how-to-use.md). 
 
-## <a name="connect-toomedia-services"></a>Connessione dei servizi tooMedia
+## <a name="connect-to-media-services"></a>Connettersi a Servizi multimediali
 
-Per informazioni su come tooconnect toohello AMS API, vedere [hello accesso API di servizi multimediali di Azure con autenticazione di Azure AD](media-services-use-aad-auth-to-access-ams-api.md). 
+Per informazioni su come connettersi all'API AMS, vedere [Accedere all'API di Servizi multimediali di Azure con l'autenticazione di Azure AD](media-services-use-aad-auth-to-access-ams-api.md). 
 
 >[!NOTE]
->Dopo avere stabilito la connessione toohttps://media.windows.net, si riceverà un reindirizzamento 301 specificando un altro URI di servizi multimediali. È necessario effettuare le chiamate successive toohello nuovo URI.
+>Dopo avere stabilito la connessione a https://media.windows.net, si riceverà un reindirizzamento 301 che indica un altro URI di Servizi multimediali. Le chiamate successive dovranno essere effettuate al nuovo URI.
 
 ## <a name="storage-encryption-overview"></a>Panoramica della crittografia di archiviazione.
-si applica la crittografia di archiviazione Hello AMS **AES CTR** intero file di modalità crittografia toohello.  La modalità CTR-AES è una crittografia a blocchi in grado di crittografare dati di lunghezza arbitraria senza bisogno di spaziatura interna. Eseguita mediante la crittografia di un blocco di contatore con l'algoritmo AES hello e quindi l'output di hello XOR ing di AES con tooencrypt dati hello o decrittografare.  blocco di contatore Hello utilizzato viene creato copiando il valore di hello di hello vettore di inizializzazione toobytes 0 too7 del valore del contatore hello e too15 di 8 byte del valore del contatore hello impostati toozero. Del blocco del contatore di 16 byte hello, too15 di 8 byte (ad esempio hello il byte meno significativi) vengono utilizzato come un intero senza segno a 64 bit semplice che viene incrementato di uno per ogni blocco successivo di elaborazione dati ed è mantenuta in ordine di byte di rete. Si noti che se questo numero intero raggiunga il valore massimo a hello (0xFFFFFFFFFFFFFFFF) quindi incrementarlo Reimposta hello blocco contatore toozero (8 byte too15) senza influire su altri hello 64 bit del contatore hello (vale a dire too7 byte 0).   In ordine toomaintain hello sicurezza della crittografia modalità hello AES CTR hello valore vettore di inizializzazione per un determinato identificatore di chiave per ogni chiave simmetrica deve essere univoco per ogni file e i file devono essere minore di 2 ^ 64 blocchi in lunghezza.  Si tratta di tooensure che un valore del contatore non viene mai riutilizzato con una chiave specificata. Per ulteriori informazioni sulla modalità di hello CTR, vedere [pagina wiki](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#CTR) (articolo wiki hello utilizza il termine hello "Nonce" anziché "Vettore di inizializzazione").
+La crittografia di archiviazione di AMS applica la crittografia in modalità **AES-CTR** all'intero file.  La modalità CTR-AES è una crittografia a blocchi in grado di crittografare dati di lunghezza arbitraria senza bisogno di spaziatura interna. Funziona mediante la crittografia di un blocco di contatori con l'algoritmo AES e l'applicazione di XOR sull'output di AES con i dati da crittografare o decrittografare.  Il blocco di contatori usato viene creato copiando il valore di InitializationVector nei byte da 0 a 7 del valore del contatore, mentre i byte da 8 a 15 del valore del contatore vengono impostati su zero. Nel blocco del contatore a 16 byte, i byte da 8 a 15, vale a dire i byte meno significativi, vengono usati come semplice numero intero a 64 bit senza firma che viene aumentato di uno per ogni blocco di dati elaborato successivo e viene mantenuto nell'ordine dei byte di rete. Si noti che quando il numero intero raggiunge il valore massimo 0xFFFFFFFFFFFFFFFF, un incremento azzera i byte da 8 a 15 del contatore del blocco, senza influenzare gli altri 64 bit del contatore, vale a dire i byte da 0 a 7.   Per mantenere la sicurezza della crittografia in modalità AES-CTR, il valore InitializationVector dell'identificatore chiave di ogni chiave simmetrica deve essere univoco per ogni file e i file devono essere di lunghezza inferiore a 2^64 blocchi.  Questo metodo serve a garantire che un valore del contatore non venga mai riutilizzato con una chiave specificata. Per altre informazioni sulla modalità CTR, vedere questa [pagina della wiki](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#CTR) tenendo presente che l'articolo della wiki usa il termine "Nonce" anziché "InitializationVector".
 
-Utilizzare **crittografia di archiviazione** tooencrypt il contenuto non crittografato localmente con AES-256 bit crittografia e quindi caricarla tooAzure archiviazione dove viene archiviato in forma crittografata. Gli asset protetti con crittografia di archiviazione vengono decrittografati automaticamente e inseriti in un file crittografato sistema precedente tooencoding e, facoltativamente, crittografare nuovamente toouploading precedente come nuovo asset di output. Hello primario per la crittografia di archiviazione viene usata quando si desidera toosecure file multimediali di input di alta qualità applicando una crittografia avanzata rest su disco.
+Usare la **crittografia di archiviazione** per crittografare il contenuto localmente tramite crittografia AES a 256 bit, quindi caricarlo nel servizio Archiviazione di Azure dove viene archiviato in forma crittografata. Gli asset protetti con la crittografia di archiviazione vengono decrittografati automaticamente e inseriti in un file system crittografato prima della codifica. Se necessario, inoltre, possono essere ricrittografati prima del successivo caricamento come nuovo asset di output. La crittografia di archiviazione viene usata principalmente per proteggere file multimediali di input di alta qualità archiviati su disco applicando una crittografia avanzata.
 
-In ordine toodeliver asset crittografato di archiviazione, è necessario configurare i criteri di distribuzione dell'asset hello in modo da servizi multimediali come toodeliver il contenuto. Prima che l'asset può essere trasmesso, hello streaming flussi e crittografia di archiviazione hello viene rimosso il server dei contenuti usando hello specificato criterio di recapito (ad esempio, AES, crittografia comune o Nessuna crittografia).
+Per poter trasmettere l'asset crittografato di archiviazione, è necessario configurare i criteri di distribuzione dell'asset in modo da informare Servizi multimediali della modalità di distribuzione del contenuto. Per potere permettere lo streaming dell'asset, il server di streaming rimuove la crittografia di archiviazione ed esegue lo streaming dei contenuti usando i criteri di recapito specificati (ad esempio, AES, crittografia comune o nessuna crittografia).
 
 ## <a name="create-contentkeys-used-for-encryption"></a>Creare chiavi simmetriche per la crittografia
-Gli asset crittografati sono toobe associato alla chiave di crittografia di archiviazione. È necessario creare hello contenuto toobe chiave utilizzata per la crittografia prima di creare file di asset di hello. Questa sezione viene descritto come toocreate una chiave simmetrica.
+Gli asset crittografati devono essere associati alle chiavi di crittografia di archiviazione. È necessario creare la chiave simmetrica da usare per la crittografia prima di creare i file di asset. Questa sezione descrive come creare una chiave simmetrica.
 
-Hello seguenti sono passaggi generali per la generazione di chiavi simmetriche che si assoceranno le risorse che si desidera toobe crittografati. 
+Di seguito sono descritti i passaggi generali per la generazione di chiavi simmetriche da associare agli asset che si desidera crittografare. 
 
 1. Per la crittografia di archiviazione, generare in modo casuale una chiave AES a 32 byte. 
    
-    Questo sarà una chiave simmetrica di hello dell'asset, ovvero tutti i file associati con asset sarà necessario toouse hello stessa chiave simmetrica durante la decrittografia. 
-2. Chiamare hello [GetProtectionKeyId](https://docs.microsoft.com/rest/api/media/operations/rest-api-functions#getprotectionkeyid) e [GetProtectionKey](https://msdn.microsoft.com/library/azure/jj683097.aspx#getprotectionkey) tooget metodi hello corretto certificato x. 509 che deve essere utilizzato tooencrypt la chiave simmetrica.
-3. Crittografare la chiave simmetrica con la chiave pubblica hello di hello certificato x. 509. 
+    Questa sarà la chiave simmetrica dell'asset. Ciò significa che tutti i file associati all'asset dovranno usare la stessa chiave simmetrica durante la decrittografia. 
+2. Chiamare i metodi [GetProtectionKeyId](https://docs.microsoft.com/rest/api/media/operations/rest-api-functions#getprotectionkeyid) e [GetProtectionKey](https://msdn.microsoft.com/library/azure/jj683097.aspx#getprotectionkey) per ottenere il certificato X.509 corretto da usare per crittografare la chiave simmetrica.
+3. Crittografare la chiave simmetrica con la chiave pubblica del certificato X.509. 
    
-   Quando si esegue la crittografia di hello, Media Services .NET SDK Usa RSA con OAEP.  È possibile visualizzare un esempio di .NET in hello [EncryptSymmetricKeyData funzione](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.FileEncryption/EncryptionUtils.cs).
-4. Creare un valore di checksum calcolato usando l'identificatore di chiave hello e chiave simmetrica. Hello .NET esempio seguente calcola il checksum di hello usando hello GUID parte dell'identificatore di chiave hello e hello deselezionare la chiave simmetrica.
+   L'SDK di Servizi multimediali per .NET usa RSA con OAEP durante l'esecuzione della crittografia.  È disponibile un esempio .NET nella [funzione EncryptSymmetricKeyData](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.FileEncryption/EncryptionUtils.cs).
+4. Creare un valore del checksum calcolato usando l'identificatore di chiave e la chiave simmetrica. Il seguente esempio .NET calcola il checksum usando la parte GUID dell'identificatore chiave e la chiave simmetrica non crittografata.
 
         public static string CalculateChecksum(byte[] contentKey, Guid keyId)
         {
@@ -74,8 +74,8 @@ Hello seguenti sono passaggi generali per la generazione di chiavi simmetriche c
 
             byte[] encryptedKeyId = null;
 
-            // Checksum is computed by AES-ECB encrypting hello KID
-            // with hello content key.
+            // Checksum is computed by AES-ECB encrypting the KID
+            // with the content key.
             using (AesCryptoServiceProvider rijndael = new AesCryptoServiceProvider())
             {
                 rijndael.Mode = CipherMode.ECB;
@@ -93,22 +93,22 @@ Hello seguenti sono passaggi generali per la generazione di chiavi simmetriche c
             return Convert.ToBase64String(retVal);
         }
 
-1. Creare la chiave simmetrica hello con hello **proprietà EncryptedContentKey** (convertito stringa codificata in formato toobase64), **ProtectionKeyId**, **ProtectionKeyType**,  **ContentKeyType**, e **Checksum** valori ricevuti nei passaggi precedenti.
+1. Creare la chiave simmetrica con i valori **EncryptedContentKey** (convertito in stringa con codifica Base64), **ProtectionKeyId**, **ProtectionKeyType**, **ContentKeyType** e **Checksum** ricevuti nei passaggi precedenti.
 
-    Per la crittografia di archiviazione, hello proprietà seguenti devono essere incluse nel corpo della richiesta hello.
+    Per la crittografia di archiviazione, nel corpo della richiesta devono essere incluse le proprietà seguenti.
 
     Proprietà del corpo della richiesta    | Descrizione
     ---|---
-    ID | Hello ContentKey Id che viene generato effettuata utilizzando hello seguente formato, "NB:<NEW GUID>".
-    ContentKeyType | Questo è il tipo di chiave simmetrica di hello come numero intero per questa chiave simmetrica. Passato valore hello 1 per la crittografia di archiviazione.
-    EncryptedContentKey | Viene creato un nuovo valore di chiave simmetrica che corrisponde a un valore a 256 bit (32 byte). crittografia della chiave Hello mediante hello certificato crittografia di archiviazione x. 509 che viene recuperato da servizi multimediali di Microsoft Azure tramite l'esecuzione di una richiesta HTTP GET per hello GetProtectionKeyId e GetProtectionKey metodi. Ad esempio, vedere hello seguente di codice .NET: hello **EncryptSymmetricKeyData** metodo definito [qui](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.FileEncryption/EncryptionUtils.cs).
-    ProtectionKeyId | Questo è hello id chiave di protezione per hello certificato crittografia di archiviazione x. 509 che è stato utilizzato tooencrypt la chiave simmetrica.
-    ProtectionKeyType | Questo è il tipo di crittografia per la chiave di protezione hello che è stato utilizzato tooencrypt chiave simmetrica di hello hello. Per l'esempio questo valore è StorageEncryption(1).
-    Checksum |checksum calcolato di Hello MD5 per la chiave simmetrica hello. Viene calcolato crittografando l'Id contenuto hello con chiave simmetrica hello. codice di esempio Hello viene illustrato come toocalculate hello checksum.
+    ID | ID della chiave simmetrica generato dall'utente con il formato seguente: "nb:kid:UUID:<NEW GUID>".
+    ContentKeyType | Tipo di chiave simmetrica, ovvero un numero intero per la chiave simmetrica. Per la crittografia di archiviazione viene passato il valore 1.
+    EncryptedContentKey | Viene creato un nuovo valore di chiave simmetrica che corrisponde a un valore a 256 bit (32 byte). La chiave viene crittografata mediante il certificato X.509 di crittografia di archiviazione recuperato da Servizi multimediali di Microsoft Azure eseguendo una richiesta HTTP GET per i metodi GetProtectionKeyId e GetProtectionKey. Per un esempio, vedere il codice .NET seguente: il metodo **EncryptSymmetricKeyData** definito [qui](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.FileEncryption/EncryptionUtils.cs).
+    ProtectionKeyId | ID della chiave di protezione per il certificato X.509 di crittografia di archiviazione usato per crittografare la chiave simmetrica.
+    ProtectionKeyType | Tipo di crittografia per la chiave di protezione usata per crittografare la chiave simmetrica. Per l'esempio questo valore è StorageEncryption(1).
+    Checksum |Checksum MD5 calcolato per la chiave simmetrica. Viene ricavato crittografando l'ID contenuto con la chiave simmetrica. Il codice di esempio mostra come calcolare il checksum.
 
 
-### <a name="retrieve-hello-protectionkeyid"></a>Recuperare ProtectionKeyId hello
-Hello di esempio seguente viene illustrato come tooretrieve hello ProtectionKeyId, un'identificazione personale del certificato, per il certificato di hello è necessario utilizzare per crittografare la chiave simmetrica. Eseguire questo passaggio toomake di avere già certificato appropriato hello nel computer.
+### <a name="retrieve-the-protectionkeyid"></a>Recuperare l'entità ProtectionKeyId
+Il seguente esempio mostra come recuperare l'entità ProtectionKeyId, un'identificazione personale del certificato da usare per la crittografia della chiave simmetrica. Eseguire questo passaggio per assicurarsi di avere già il certificato appropriato nel computer.
 
 Richiesta:
 
@@ -138,8 +138,8 @@ Risposta:
 
     {"odata.metadata":"https://wamsbayclus001rest-hs.cloudapp.net/api/$metadata#Edm.String","value":"7D9BB04D9D0A4A24800CADBFEF232689E048F69C"}
 
-### <a name="retrieve-hello-protectionkey-for-hello-protectionkeyid"></a>Recuperare ProtectionKey di hello per hello ProtectionKeyId
-Hello esempio seguente viene illustrato come tooretrieve hello x. 509 usando ProtectionKeyId hello ottenuto nel passaggio precedente hello.
+### <a name="retrieve-the-protectionkey-for-the-protectionkeyid"></a>Recuperare l'entità ProtectionKey per ProtectionKeyId
+Il seguente esempio mostra come recuperare il certificato X.509 usando l'entità ProtectionKeyId ricevuta nel passaggio precedente.
 
 Richiesta:
 
@@ -172,12 +172,12 @@ Risposta:
     {"odata.metadata":"https://wamsbayclus001rest-hs.cloudapp.net/api/$metadata#Edm.String",
     "value":"MIIDSTCCAjGgAwIBAgIQqf92wku/HLJGCbMAU8GEnDANBgkqhkiG9w0BAQQFADAuMSwwKgYDVQQDEyN3YW1zYmx1cmVnMDAxZW5jcnlwdGFsbHNlY3JldHMtY2VydDAeFw0xMjA1MjkwNzAwMDBaFw0zMjA1MjkwNzAwMDBaMC4xLDAqBgNVBAMTI3dhbXNibHVyZWcwMDFlbmNyeXB0YWxsc2VjcmV0cy1jZXJ0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzR0SEbXefvUjb9wCUfkEiKtGQ5Gc328qFPrhMjSo+YHe0AVviZ9YaxPPb0m1AaaRV4dqWpST2+JtDhLOmGpWmmA60tbATJDdmRzKi2eYAyhhE76MgJgL3myCQLP42jDusWXWSMabui3/tMDQs+zfi1sJ4Ch/lm5EvksYsu6o8sCv29VRwxfDLJPBy2NlbV4GbWz5Qxp2tAmHoROnfaRhwp6WIbquk69tEtu2U50CpPN2goLAqx2PpXAqA+prxCZYGTHqfmFJEKtZHhizVBTFPGS3ncfnQC9QIEwFbPw6E5PO5yNaB68radWsp5uvDg33G1i8IT39GstMW6zaaG7cNQIDAQABo2MwYTBfBgNVHQEEWDBWgBCOGT2hPhsvQioZimw8M+jOoTAwLjEsMCoGA1UEAxMjd2Ftc2JsdXJlZzAwMWVuY3J5cHRhbGxzZWNyZXRzLWNlcnSCEKn/dsJLvxyyRgmzAFPBhJwwDQYJKoZIhvcNAQEEBQADggEBABcrQPma2ekNS3Wc5wGXL/aHyQaQRwFGymnUJ+VR8jVUZaC/U/f6lR98eTlwycjVwRL7D15BfClGEHw66QdHejaViJCjbEIJJ3p2c9fzBKhjLhzB3VVNiLIaH6RSI1bMPd2eddSCqhDIn3VBN605GcYXMzhYp+YA6g9+YMNeS1b+LxX3fqixMQIxSHOLFZ1G/H2xfNawv0VikH3djNui3EKT1w/8aRkUv/AAV0b3rYkP/jA1I0CPn0XFk7STYoiJ3gJoKq9EMXhit+Iwfz0sMkfhWG12/XO+TAWqsK1ZxEjuC9OzrY7pFnNxs4Mu4S8iinehduSpY+9mDd3dHynNwT4="}
 
-### <a name="create-hello-content-key"></a>Creare una chiave simmetrica hello
-Dopo aver recuperato certificato x. 509 hello e utilizzato relativo tooencrypt chiave pubblica della chiave simmetrica, creare un **ContentKey** entità e set di conseguenza i valori delle relative proprietà.
+### <a name="create-the-content-key"></a>Creare la chiave simmetrica
+Dopo aver recuperato il certificato X.509 e usato la chiave pubblica per crittografare la chiave simmetrica, creare un'entità **ContentKey** e impostare i valori delle proprietà di conseguenza.
 
-Uno dei valori hello che è necessario impostare quando creare hello contenuto chiave è di tipo hello. In caso di crittografia di archiviazione hello, hello è '1'. 
+Uno dei valori che è necessario impostare quando si crea la chiave simmetrica è quello relativo al tipo. In caso di crittografia di archiviazione, il valore è '1'. 
 
-Hello seguente esempio viene illustrato come toocreate un **ContentKey** con un **ContentKeyType** impostato per la crittografia di archiviazione ("1") e hello **ProtectionKeyType** impostare troppo "0" tooindicate che hello Id chiave di protezione è l'identificazione personale del certificato x. 509 di hello.  
+L'esempio seguente mostra come creare un'entità **ContentKey** con l'entità **ContentKeyType** impostata per la crittografia di archiviazione ("1") e l'entità **ProtectionKeyType** impostata su "0" per indicare che l'ID della chiave di protezione è l'identificazione personale del certificato X.509.  
 
 Richiesta
 
@@ -227,7 +227,7 @@ Risposta:
     "Checksum":"calculated checksum"}
 
 ## <a name="create-an-asset"></a>Creare un asset
-Hello seguente esempio viene illustrato come toocreate un asset.
+Il seguente esempio mostra come creare un asset.
 
 **Richiesta HTTP**
 
@@ -245,7 +245,7 @@ Hello seguente esempio viene illustrato come toocreate un asset.
 
 **Risposta HTTP**
 
-Se ha esito positivo, viene restituito l'esempio hello:
+Se l'esito è positivo, viene restituita la seguente risposta:
 
     HTP/1.1 201 Created
     Cache-Control: no-cache
@@ -273,8 +273,8 @@ Se ha esito positivo, viene restituito l'esempio hello:
        "StorageAccountName":"storagetestaccount001"
     }
 
-## <a name="associate-hello-contentkey-with-an-asset"></a>Associare hello ContentKey a un Asset
-Dopo la creazione di hello ContentKey, associarlo all'Asset usando l'operazione di hello $links, come illustrato nell'esempio seguente hello:
+## <a name="associate-the-contentkey-with-an-asset"></a>Associare l'entità ContentKey a un asset
+Dopo aver creato l'entità ContentKey, associarla all'asset mediante l'operazione $links, come mostrato nel seguente esempio:
 
 Richiesta:
 
@@ -295,11 +295,11 @@ Risposta:
     HTTP/1.1 204 No Content 
 
 ## <a name="create-an-assetfile"></a>Creare un'entità AssetFile
-Hello [AssetFile](https://docs.microsoft.com/rest/api/media/operations/assetfile) entità rappresenta un file video o audio che viene archiviato in un contenitore blob. Un file di asset è sempre associato a un asset e un asset può contenere uno o più file. attività di Media Services Encoder Hello non riesce se un oggetto di file di asset non è associato a un file digitale in un contenitore blob.
+L'entità [AssetFile](https://docs.microsoft.com/rest/api/media/operations/assetfile) rappresenta un file video o audio archiviato in un contenitore BLOB. Un file di asset è sempre associato a un asset e un asset può contenere uno o più file. Se un oggetto di file di asset non è associato a un file digitale in un contenitore BLOB, l'attività del codificatore di Servizi multimediali restituisce un errore.
 
-Si noti che hello **AssetFile** istanza e hello effettivo file multimediale sono due oggetti distinti. istanza di AssetFile Hello contiene i metadati relativi a file di supporto hello, mentre i file di supporto hello contiene hello effettivo contenuto multimediale.
+Si noti che l'istanza di **AssetFile** e l'effettivo file multimediale sono due oggetti distinti. L'istanza di AssetFile contiene metadati relativi al file multimediale, mentre quest'ultimo contiene l'effettivo contenuto multimediale.
 
-Dopo aver caricato il file multimediale digitale in un contenitore blob, si utilizzerà hello **MERGE** hello tooupdate HTTP richiesta AssetFile con le informazioni nel file multimediale (non illustrato in questo argomento). 
+Dopo avere caricato il file multimediale digitale in un contenitore BLOB, è necessario usare la richiesta HTTP **MERGE** per aggiornare l'istanza AssetFile con le informazioni relative al file multimediale. La procedura non è illustrata in questo argomento. 
 
 **Richiesta HTTP**
 

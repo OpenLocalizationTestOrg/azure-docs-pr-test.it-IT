@@ -1,6 +1,6 @@
 ---
-title: aaaDebug microservizi Azure Windows | Documenti Microsoft
-description: Informazioni su come toomonitor e diagnosticare i servizi scritti con Microsoft Azure Service Fabric in un computer di sviluppo locale.
+title: Eseguire il debug di microservizi di Azure in Windows | Documentazione Microsoft
+description: Informazioni su come eseguire il monitoraggio e la diagnosi dei servizi scritti usando Microsoft Azure Service Fabric in un computer di sviluppo locale.
 services: service-fabric
 documentationcenter: .net
 author: dkkapur
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 04/24/2017
 ms.author: dekapur
-ms.openlocfilehash: 24868aa194b8a28fa3e6de95c1de5506d912a544
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 08998340afb2f242b9a268331607b0d1ddb9b0c6
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="monitor-and-diagnose-services-in-a-local-machine-development-setup"></a>Monitorare e diagnosticare servizi in una configurazione di sviluppo con computer locale
 > [!div class="op_single_selector"]
@@ -27,43 +27,43 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Il monitoraggio, il rilevamento, la diagnosi e risoluzione dei problemi consentono di servizi toocontinue l'esperienza utente toohello un'interruzione minima. Anche se il monitoraggio e diagnostica è critica in un ambiente di produzione distribuito effettivo, l'efficienza di hello varia in base all'adozione di un modello simile durante lo sviluppo di servizi tooensure che funzionano quando si sposta il programma di installazione di tooa del mondo reale. Service Fabric rende più semplice per la diagnostica tooimplement agli sviluppatori di servizio che può funzionare senza problemi tra le impostazioni di sviluppo locale solo computer e le installazioni cluster di produzione reali.
+Le operazioni di monitoraggio, rilevamento, diagnosi e risoluzione dei problemi consentono ai servizi di continuare a funzionare con un'interruzione minima dell'esperienza utente. L'efficienza delle operazioni di monitoraggio e diagnostica, essenziali in un ambiente di produzione distribuito reale, dipenderà tuttavia dall'adozione nella fase di sviluppo dei servizi di un modello analogo che ne assicuri il funzionamento anche nel mondo reale. Service Fabric consente agli sviluppatori di servizi di implementare facilmente un sistema di diagnostica in grado di operare senza problemi sia in ambienti di sviluppo costituiti da un unico computer locale sia in configurazioni con cluster di produzione veri e propri.
 
 ## <a name="event-tracing-for-windows"></a>Event Tracing for Windows
-[Traccia eventi per Windows](https://msdn.microsoft.com/library/windows/desktop/bb968803.aspx) (ETW) è hello consigliato di tecnologia per i messaggi di traccia nell'infrastruttura del servizio. Alcuni dei vantaggi di ETW sono i seguenti:
+[Event Tracing for Windows](https://msdn.microsoft.com/library/windows/desktop/bb968803.aspx) (ETW) è la tecnologia consigliata per il tracciamento dei messaggi in Service Fabric. Alcuni dei vantaggi di ETW sono i seguenti:
 
 * **ETW è veloce.** È stata sviluppata come tecnologia di tracciamento con un impatto minimo sui tempi di esecuzione del codice.
-* **ETW funziona perfettamente non solo in ambienti di sviluppo locali, ma anche in configurazioni cluster reali.** Ciò significa che non è l'analisi del codice quando si è pronti toodeploy toorewrite cluster tooa codice reali.
-* **Anche il codice di sistema di Service Fabric usa ETW per il tracciamento interno.** In questo modo tooview interleaved le tracce dell'applicazione con le tracce di sistema di Service Fabric. È inoltre utile è toomore comprensione delle sequenze di hello e interrelazioni tra il codice dell'applicazione e gli eventi di sistema sottostante di hello.
-* **È il supporto incorporato di Service Fabric Visual Studio tools eventi ETW tooview.** Eventi ETW vengono visualizzati nella vista di eventi di diagnostica di Visual Studio hello dopo Visual Studio sia configurata correttamente con Service Fabric. 
+* **ETW funziona perfettamente non solo in ambienti di sviluppo locali, ma anche in configurazioni cluster reali.** Questo significa che non è necessario riscrivere il codice di tracciamento quando si è pronti per distribuire il codice in un vero cluster.
+* **Anche il codice di sistema di Service Fabric usa ETW per il tracciamento interno.** In questo modo, è possibile visualizzare le tracce dell'applicazione interfoliate con le tracce di sistema di Service Fabric ed è più semplice comprendere le sequenze e le correlazioni tra il codice dell'applicazione e gli eventi nel sistema sottostante.
+* **Negli strumenti di Visual Studio per Service Fabric è incorporato il supporto per la visualizzazione degli eventi ETW.** Gli eventi ETW possono essere visualizzati nella visualizzazione Eventi di diagnostica di Visual Studio dopo aver configurato correttamente Visual Studio con Service Fabric. 
 
 ## <a name="view-service-fabric-system-events-in-visual-studio"></a>Visualizzare gli eventi di sistema di Service Fabric in Visual Studio
-Service Fabric genera gli eventi ETW, gli sviluppatori di applicazioni toohelp comprendano ciò che avviene nella piattaforma hello. Se non già stato fatto, vado avanti e seguire i passaggi di hello in [creazione di un'applicazione in Visual Studio](service-fabric-create-your-first-application-in-visual-studio.md). Tali informazioni consentiranno diventare un'applicazione in esecuzione con hello Visualizzatore di eventi di diagnostica che mostra hello i messaggi di traccia.
+Service Fabric emette eventi ETW per aiutare gli sviluppatori di applicazioni a capire cosa sta accadendo nella piattaforma. Se necessario, andare avanti e seguire la procedura descritta in [Creare la prima applicazione in Visual Studio](service-fabric-create-your-first-application-in-visual-studio.md). per creare ed eseguire un'applicazione in cui il visualizzatore degli eventi di diagnostica mostra i messaggi di traccia.
 
-1. Se la diagnostica hello finestra degli eventi non viene visualizzata automaticamente, toohello **vista** scheda in Visual Studio, scegliere **altre finestre** e quindi **Visualizzatore eventi di diagnostica**.
-2. Informazioni sui metadati standard che indicano l'evento di hello nodo, l'applicazione e servizio hello proviene da ogni evento. È inoltre possibile filtrare l'elenco di hello di eventi tramite hello **filtrare gli eventi** casella nella parte superiore di hello della finestra eventi hello. Ad esempio, è possibile filtrare in base al **nome del nodo** o al **nome del servizio**. E quando si osservano i dettagli degli eventi, è anche possibile sospendere utilizzando hello **sospendere** pulsante nella parte superiore di hello della finestra eventi hello e di riprendere successivamente senza alcuna perdita di eventi.
+1. Se la finestra degli eventi di diagnostica non viene visualizzata automaticamente, passare alla scheda **Visualizza** in Visual Studio, scegliere **Altre finestre** e quindi **Visualizzatore eventi di diagnostica**.
+2. Per ogni evento sono disponibili informazioni di metadati standard che indicano il nodo, l'applicazione e il servizio da cui proviene l'evento. È anche possibile filtrare l'elenco degli eventi usando la casella **Filtra eventi** nella parte superiore della finestra. Ad esempio, è possibile filtrare in base al **nome del nodo** o al **nome del servizio**. Se si cercano informazioni dettagliate su un evento, è anche possibile sospendere la sessione tramite il pulsante **Pausa** nella parte superiore della finestra degli eventi e riprendere in un secondo momento senza alcuna perdita di eventi.
    
    ![Visualizzatore eventi di diagnostica di Visual Studio](./media/service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally/DiagEventsExamples2.png)
 
-## <a name="add-your-own-custom-traces-toohello-application-code"></a>Aggiungere il codice di applicazione toohello le tracce personalizzate
-modelli di progetto di Visual Studio di Service Fabric Hello contengono codice di esempio. codice Hello Mostra il codice dell'applicazione personalizzata tooadd ETW tracce che mostrano backup nel Visualizzatore di Visual Studio ETW hello insieme alle tracce di sistema di Service Fabric. Hello vantaggio di questo metodo è che vengono automaticamente aggiunti tootraces metadati e hello Visualizzatore eventi di diagnostica di Visual Studio è già configurato toodisplay li.
+## <a name="add-your-own-custom-traces-to-the-application-code"></a>Aggiungere tracce personalizzate al codice dell'applicazione
+I modelli di progetto di Visual Studio per Service Fabric contengono codice di esempio. Il codice mostra come aggiungere tracce ETW personalizzate al codice dell'applicazione, visibili nel visualizzatore ETW di Visual Studio insieme alle tracce di sistema di Service Fabric. Adottando questo metodo, i metadati vengono automaticamente aggiunti alle tracce e il visualizzatore degli eventi di diagnostica di Visual Studio è già configurato per visualizzarli.
 
-Per i progetti creati da hello **i modelli di servizio** (con o senza informazioni stateful) solo cercare hello `RunAsync` implementazione:
+Per i progetti creati a partire da **modelli di servizio** (con o senza stato), è sufficiente cercare l'implementazione `RunAsync`:
 
-1. Hello chiamata troppo`ServiceEventSource.Current.ServiceMessage` in hello `RunAsync` metodo mostra un esempio di una traccia ETW personalizzata dal codice dell'applicazione hello.
-2. In hello **ServiceEventSource.cs** file, si noterà un overload per hello `ServiceEventSource.ServiceMessage` metodo che deve essere utilizzato per gli eventi ad alta frequenza a causa di motivi tooperformance.
+1. La chiamata a `ServiceEventSource.Current.ServiceMessage` in the `RunAsync` mostra un esempio di una traccia ETW personalizzata del codice dell'applicazione.
+2. Nel file **ServiceEventSource.cs** si noterà un overload per il metodo `ServiceEventSource.ServiceMessage`, che è opportuno usare per eventi ad alta frequenza dovuti a motivi di prestazioni.
 
-Per i progetti creati da hello **modelli attore** (con stato o senza informazioni):
+Per i progetti creati da **modelli di attore** (con o senza stato):
 
-1. Aprire hello **. cs "ProjectName"** dove *ProjectName* hello nome scelto per il progetto di Visual Studio.  
-2. Trovare codice hello `ActorEventSource.Current.ActorMessage(this, "Doing Work");` in hello *DoWorkAsync* metodo.  Questo è un esempio di una traccia ETW personalizzata scritta dal codice dell'applicazione.  
-3. Nel file **ActorEventSource.cs**, si noterà un overload per hello `ActorEventSource.ActorMessage` metodo che deve essere utilizzato per gli eventi ad alta frequenza a causa di motivi tooperformance.
+1. Aprire il file **"NomeProgetto".cs** , dove *NomeProgetto* è il nome scelto per il progetto di Visual Studio.  
+2. Trovare il codice `ActorEventSource.Current.ActorMessage(this, "Doing Work");` nel metodo *DoWorkAsync* .  Questo è un esempio di una traccia ETW personalizzata scritta dal codice dell'applicazione.  
+3. Nel file **ActorEventSource.cs** si noterà un overload per il metodo `ActorEventSource.ActorMessage`, che è opportuno usare per eventi ad alta frequenza dovuti a motivi di prestazioni.
 
-Dopo l'aggiunta di ETW personalizzato traccia tooyour codice del servizio, è possibile compilare, distribuire ed eseguire un'applicazione hello toosee nuovamente l'evento nel Visualizzatore eventi di diagnostica hello. Se si esegue il debug di un'applicazione hello con **F5**, hello Visualizzatore eventi di diagnostica verrà aperto automaticamente.
+Dopo aver aggiunto il tracciamento ETW personalizzato al codice del servizio, sarà possibile compilare, distribuire ed eseguire nuovamente l'applicazione in modo che gli eventi risultino visibili nel visualizzatore degli eventi di diagnostica. Se si esegue il debug dell'applicazione con **F5**, il visualizzatore verrà aperto automaticamente.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Hello stesso codice di traccia che è stato aggiunto tooyour applicazione sopra per la diagnostica locale funzionerà con gli strumenti che è possibile utilizzare tooview questi eventi quando si esegue l'applicazione in un cluster di Azure. Consultare questi articoli illustrano hello opzioni diverse per gli strumenti di hello e una descrivono di come è possibile impostare.
+Lo stesso codice di traccia aggiunto all'applicazione precedente per la diagnostica locale potrà essere usato con gli stessi strumenti di cui è possibile avvalersi per visualizzare gli eventi quando si esegue l'applicazione in un cluster di Azure. Leggere questi articoli che illustrano le diverse opzioni per gli strumenti e descrivono come configurarle.
 
-* [Modalità di registrazione toocollect con diagnostica di Azure](service-fabric-diagnostics-how-to-setup-wad.md)
+* [Come raccogliere log con Diagnostica di Azure](service-fabric-diagnostics-how-to-setup-wad.md)
 * [Aggregazione e raccolta di eventi con EventFlow](service-fabric-diagnostics-event-aggregation-eventflow.md)
 

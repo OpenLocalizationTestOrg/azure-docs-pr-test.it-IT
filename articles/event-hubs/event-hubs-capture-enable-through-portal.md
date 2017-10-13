@@ -1,6 +1,6 @@
 ---
-title: abilitare aaaAzure acquisire gli hub di eventi tramite il portale | Documenti Microsoft
-description: "Abilitare funzionalità hello acquisire gli hub di eventi utilizzando hello portale di Azure."
+title: Abilitazione di Acquisizione di Hub eventi di Azure tramite il portale | Microsoft Docs
+description: "Abilitare la funzionalità Acquisizione di Hub eventi usando il portale di Azure."
 services: event-hubs
 documentationcenter: 
 author: sethmanheim
@@ -14,60 +14,48 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/28/2017
 ms.author: sethm
-ms.openlocfilehash: 27c7528552c497a4d98873a22bd56a991c66247c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4a4ab1ee022b6b33d35217df916d01f32e04d3a4
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="enable-event-hubs-capture-using-hello-azure-portal"></a>Abilitare gli hub di eventi Capture utilizzando hello portale di Azure
+# <a name="enable-event-hubs-capture-using-the-azure-portal"></a>Abilitare Acquisizione di Hub eventi usando il portale di Azure
 
-È possibile configurare l'acquisizione al momento della creazione di hello evento hub utilizzando hello [portale di Azure](https://portal.azure.com). È possibile entrambi tooan di dati di acquisizione hello Azure [nell'archiviazione Blob](https://azure.microsoft.com/services/storage/blobs/) contenitore o tooan [archivio Azure Data Lake](https://azure.microsoft.com/services/data-lake-store/) account.
+La [funzionalità di acquisizione di Hub eventi][capture-overview] di Azure consente di distribuire automaticamente i dati di streaming di Hub eventi all'[archivio BLOB di Azure](https://azure.microsoft.com/services/storage/blobs/) o all'account [Azure Data Lake Store](https://azure.microsoft.com/services/data-lake-store/) desiderato.
 
-## <a name="capture-data-tooan-azure-storage-account"></a>Account di archiviazione di Azure tooan dati di acquisizione  
+È possibile configurare Acquisizione al momento della creazione dell'hub eventi usando il [portale di Azure](https://portal.azure.com). È possibile acquisire i dati in un contenitore di [archiviazione BLOB](https://azure.microsoft.com/services/storage/blobs/) di Azure o in un account [Azure Data Lake Store](https://azure.microsoft.com/services/data-lake-store/).
 
-Quando si crea un hub eventi, è possibile abilitare l'acquisizione facendo hello **su** pulsante hello **creare Hub eventi** portale pannello. Specificare quindi un Account di archiviazione e un contenitore, fare clic su **di archiviazione di Azure** in hello **acquisire Provider** casella. Poiché gli hub di eventi acquisire utilizza l'autenticazione di service to service con l'archiviazione, non è necessario toospecify una stringa di connessione di archiviazione. selezione della risorsa Hello URI della risorsa hello dell'account di archiviazione viene selezionato automaticamente. Se si usa Azure Resource Manager, è necessario specificare questo URI in modo esplicito come stringa.
+Per altre informazioni, vedere la [panoramica della funzionalità di acquisizione di Hub eventi][capture-overview].
 
-intervallo di tempo predefinito Hello è 5 minuti. valore minimo di Hello è 1, hello massimo 15. Hello **dimensioni** finestra dispone di un intervallo di 10-500 MB.
+## <a name="capture-data-to-an-azure-storage-account"></a>Acquisire i dati in un account di archiviazione di Azure  
+
+Quando si crea un hub eventi, è possibile abilitare l'acquisizione facendo clic sul pulsante **Sì** nella schermata del portale **Crea hub eventi**. È quindi possibile specificare un account e un contenitore di archiviazione facendo clic su **Archiviazione di Azure** nella casella **Provider di acquisizione**. Poiché Acquisizione di Hub eventi usa l'autenticazione da servizio a servizio con la risorsa di archiviazione, non è necessario specificare una stringa di connessione di archiviazione. Il selettore risorse seleziona automaticamente l'URI della risorsa per l'account di archiviazione. Se si usa Azure Resource Manager, è necessario specificare questo URI in modo esplicito come stringa.
+
+L'intervallo di tempo predefinito è di 5 minuti. Il valore minimo è 1, quello massimo 15. La finestra **Dimensione** ha un intervallo compreso tra 10 e 500 MB.
 
 ![][1]
 
-## <a name="capture-data-tooan-azure-data-lake-store-account"></a>Account archivio Azure Data Lake tooan di dati di acquisizione
+## <a name="capture-data-to-an-azure-data-lake-store-account"></a>Acquisire i dati un account Azure Data Lake Store
 
-toocapture dati tooAzure archivio Data Lake, creare un account archivio Data Lake e un hub eventi:
+Per acquisire i dati in Azure Data Lake Store, si creano un account Data Lake Store e un hub eventi.
 
 ### <a name="create-an-azure-data-lake-store-account-and-folders"></a>Creare un account Azure Data Lake Store e le cartelle
 
-1. Creare un account archivio Data Lake, attenendosi alle istruzioni hello in [introduzione archivio Azure Data Lake tramite il portale di Azure hello](../data-lake-store/data-lake-store-get-started-portal.md). 
-2. Creare una cartella con questo account, attenendosi alle istruzioni hello in hello [creare cartelle nell'account archivio Azure Data Lake](../data-lake-store/data-lake-store-get-started-portal.md#createfolder) sezione.
-3. Nel Pannello di account archivio Data Lake hello, fare clic su **Esplora dati**.
-4. Fare clic su **Accesso**.
-5. Fare clic su **Aggiungi**.
-6. In hello **ricerca per nome o indirizzo email** digitare **Microsoft.EventHubs** e quindi selezionare questa opzione. 
-7. Hello **autorizzazioni** verrà visualizzata la scheda. Impostare le autorizzazioni di hello, come illustrato nella seguente illustrazione hello:
-
-    ![][6]
-
-8. Fare clic su **OK**.
-9. A questo punto, è possibile creare una cartella nella cartella radice hello visualizzando la cartella di destinazione toohello e facendo clic sul nome della cartella hello.
-10. Fare clic su **Accesso**.
-11. Fare clic su **Aggiungi**.
-12. In hello **ricerca per nome o indirizzo email** digitare **Microsoft.EventHubs** e quindi selezionare questa opzione.
-13. Hello **autorizzazioni** verrà nuovamente visualizzata la scheda. Impostare le autorizzazioni di hello, come illustrato nella seguente illustrazione hello:
-
-    ![][5]
+1. Creare un account Data Lake Store seguendo le istruzioni riportate in [Introduzione ad Azure Data Lake Store con il portale di Azure](../data-lake-store/data-lake-store-get-started-portal.md).
+2. Seguire le istruzioni della sezione [Assegnare autorizzazioni a Hub eventi](../data-lake-store/data-lake-store-archive-eventhub-capture.md#assign-permissions-to-event-hubs) per creare una cartella nell'account Data Lake Store in cui acquisire i dati da Hub eventi e assegnare a Hub eventi le autorizzazioni per scrivere i dati nell'account Data Lake Store.  
 
 ### <a name="create-an-event-hub"></a>Creare un hub eventi
 
-1. Hub eventi hello deve essere in hello stessa sottoscrizione Azure hello archivio Azure Data Lake appena creato. Hub di eventi hello create, fare clic su hello **su** pulsante sotto **acquisire** in hello **creare Hub eventi** portale pannello. 
-2. In hello **creare Hub eventi** portale pannello seleziona **archivio Azure Data Lake** da hello **acquisire Provider** casella.
-3. In **archivio Data Lake di selezionare**, specificare l'account archivio Data Lake è stato creato in precedenza e hello hello **Data Lake percorso** immettere hello toohello dati cartella creata.
+1. Si noti che l'hub eventi deve trovarsi nella stessa sottoscrizione di Azure dell'account Azure Data Lake Store appena creato. Creare l'hub eventi facendo clic sul pulsante **Sì** sotto **Acquisisci** nella pagina del portale **Crea hub eventi**. 
+2. Nella pagina del portale **Crea hub eventi** selezionare **Azure Data Lake Store** nella casella **Provider di acquisizione**.
+3. In **Seleziona Data Lake Store** specificare l'account Data Lake Store creato in precedenza e nel campo **Percorso Data Lake** immettere il percorso della cartella dati creata.
 
     ![][3]
 
 ## <a name="add-or-configure-capture-on-an-existing-event-hub"></a>Aggiungere o configurare l'acquisizione in un hub eventi esistente
 
-È possibile configurare l'acquisizione in hub eventi esistenti che si trovano in spazi dei nomi di Hub eventi. tooenable acquisire in un hub eventi, o esistente toochange le impostazioni di acquisizione, fare clic su hello tooload dello spazio dei nomi di hello **Essentials** pannello, quindi fare clic su hub di eventi hello per cui si desidera tooenable o modifica l'impostazione di acquisizione hello. Infine, fare clic su hello **proprietà** sezione di hello aprire Pannello e quindi modificare le impostazioni di acquisizione hello, come mostrato nel seguente figure hello:
+È possibile configurare l'acquisizione in hub eventi esistenti che si trovano in spazi dei nomi di Hub eventi. Per abilitare l'acquisizione in un hub eventi esistente o per modificarne le impostazioni, fare clic sullo spazio dei nomi per caricare la schermata **Informazioni di base** e quindi sull'hub eventi per cui si vuole abilitare l'acquisizione o modificarne l'impostazione. Infine fare clic sulla sezione **Proprietà** della pagina aperta e quindi modificare le impostazioni di acquisizione come illustrato nelle figure seguenti:
 
 ### <a name="azure-blob-storage"></a>Archiviazione BLOB di Azure
 
@@ -81,9 +69,11 @@ toocapture dati tooAzure archivio Data Lake, creare un account archivio Data Lak
 [2]: ./media/event-hubs-capture-enable-through-portal/event-hubs-capture2.png
 [3]: ./media/event-hubs-capture-enable-through-portal/event-hubs-capture3.png
 [4]: ./media/event-hubs-capture-enable-through-portal/event-hubs-capture4.png
-[5]: ./media/event-hubs-capture-enable-through-portal/event-hubs-capture5.png
-[6]: ./media/event-hubs-capture-enable-through-portal/event-hubs-capture6.png
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-È anche possibile configurare Acquisizione di Hub eventi usando i modelli di Azure Resource Manager. Per altre informazioni, vedere [Enable Capture using an Azure Resource Manager template](event-hubs-resource-manager-namespace-event-hub-enable-capture.md) (Abilitare Acquisizione usando un modello di Azure Resource Manager).
+- Per altre informazioni sull'acquisizione, vedere la [panoramica della funzionalità di acquisizione di Hub eventi][capture-overview].
+- È anche possibile configurare Acquisizione di Hub eventi usando i modelli di Azure Resource Manager. Per altre informazioni, vedere [Enable Capture using an Azure Resource Manager template](event-hubs-resource-manager-namespace-event-hub-enable-capture.md) (Abilitare Acquisizione usando un modello di Azure Resource Manager).
+- [Introduzione ad Azure Data Lake Store con il portale di Azure](../data-lake-store/data-lake-store-get-started-portal.md)
+
+[capture-overview]: event-hubs-capture-overview.md

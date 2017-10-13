@@ -1,9 +1,9 @@
 ---
-title: gateway VPN aaaMonitor con la risoluzione dei problemi di controllo di rete di Azure | Documenti Microsoft
+title: Monitorare i gateway VPN con la risoluzione dei problemi di Azure Network Watcher | Microsoft Docs
 description: "Questo articolo illustra come diagnosticare la connettività locale con Automazione di Azure e Network Watcher"
 services: network-watcher
 documentationcenter: na
-author: georgewallace
+author: jimdial
 manager: timlt
 editor: 
 ms.service: network-watcher
@@ -12,82 +12,82 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
-ms.author: gwallace
-ms.openlocfilehash: a607d0c862ea1be63c687717f0c5dc137db58a43
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.author: jdial
+ms.openlocfilehash: 935431783b08919049c5c24b56285647bc7b35ba
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="monitor-vpn-gateways-with-network-watcher-troubleshooting"></a>Monitorare i gateway VPN con la risoluzione dei problemi di Network Watcher
 
-Ottenere informazioni complete sulle prestazioni di rete è toocustomers servizi affidabili tooprovide critici. È pertanto critico toodetect condizioni di interruzione della rete rapidamente e richiedere una condizione di interruzione di un'azione correttiva toomitigate hello. Automazione di Azure consente tooimplement ed esegue un'attività in modo a livello di codice i runbook. Con Automazione di Azure è possibile mettere in atto una soluzione continua e attiva di monitoraggio e avviso relativa alla rete.
+Ottenere informazioni approfondite sulle prestazioni di rete è fondamentale per offrire servizi affidabili ai clienti. È quindi essenziale rilevare rapidamente le interruzioni di rete e adottare misure correttive per mitigare la condizione di interruzione. Automazione di Azure consente di implementare ed eseguire un'attività a livello di codice attraverso i runbook. Con Automazione di Azure è possibile mettere in atto una soluzione continua e attiva di monitoraggio e avviso relativa alla rete.
 
 ## <a name="scenario"></a>Scenario
 
-uno scenario Hello hello seguente immagine è un'applicazione a più livelli, con connettività locale stabilita utilizzando un Gateway VPN e tunnel. Assicurando hello che gateway VPN sia attivo e in esecuzione è delle prestazioni di applicazioni critiche toohello.
+Lo scenario nell'immagine seguente è un'applicazione a più livelli, con connettività locale stabilita tramite un gateway VPN e un tunnel. Per prestazioni ottimali delle applicazioni è importante assicurarsi che il Gateway VPN sia in funzione.
 
-Un runbook viene creato con un toocheck di script per lo stato di connessione del tunnel VPN hello, utilizzando hello API di risoluzione dei problemi di risorse toocheck tunnel lo stato della connessione. Se lo stato di hello non è integro, un trigger di posta elettronica viene inviato tooadministrators.
+Viene creato un runbook con uno script per il controllo dello stato della connessione del tunnel VPN, usando l'API di risoluzione dei problemi delle risorse per verificare lo stato della connessione del tunnel. Se lo stato non è integro, viene inviato un trigger di posta elettronica agli amministratori.
 
 ![Esempio dello scenario][scenario]
 
 Questo scenario illustrerà come:
 
-- Creare un hello chiamata runbook `Start-AzureRmNetworkWatcherResourceTroubleshooting` cmdlet tootroubleshoot lo stato di connessione
-- Collega un runbook toohello pianificazione
+- Creare un runbook chiamando il cmdlet `Start-AzureRmNetworkWatcherResourceTroubleshooting` per risolvere lo stato di connessione.
+- Collegare una pianificazione al runbook.
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
-Prima di iniziare questo scenario, è necessario disporre di hello seguenti prerequisiti:
+Prima di iniziare questo scenario, sono necessari i prerequisiti seguenti:
 
-- Un account di automazione di Azure in Azure. Verificare che l'account di automazione hello sono moduli più recenti di hello e dispone anche di modulo AzureRM.Network hello. modulo AzureRM.Network Hello è disponibile nella raccolta di moduli hello se è necessario tooadd è tooyour account di automazione.
+- Un account di automazione di Azure in Azure. Assicurarsi che l'account di automazione abbia i moduli più recenti e anche il modulo AzureRM.Network. Il modulo AzureRM.Network è disponibile nella raccolta di moduli, se è necessario aggiungerlo all'account di automazione.
 - Un set di credenziali configurato in Automazione di Azure. Per altre informazioni, vedere l'articolo relativo alla [sicurezza in Automazione di Azure](../automation/automation-security-overview.md).
 - Un server SMTP valido, che sia di Office 365, della posta elettronica in locale o altro, e credenziali definite in Automazione di Azure.
 - Un gateway di rete virtuale configurato in Azure.
-- Un account di archiviazione esistente con un esistente hello toostore contenitore l'accesso.
+- Un account di archiviazione esistente con un contenitore esistente in cui archiviare i log.
 
 > [!NOTE]
-> infrastruttura Hello illustrato nell'immagine precedente hello è a scopo illustrativo e non vengono creati con i passaggi di hello contenuti in questo articolo.
+> L'infrastruttura mostrata nell'immagine precedente è a scopo illustrativo e non è stata creata con la procedura descritta in questo articolo.
 
-### <a name="create-hello-runbook"></a>Creare runbook hello
+### <a name="create-the-runbook"></a>Creare il runbook
 
-esempio hello tooconfiguring Hello primo passaggio è toocreate hello runbook. Questo esempio usa un account RunAs. toolearn sugli account RunAs, visitare [runbook l'autenticazione con account RunAs di Azure](../automation/automation-sec-configure-azure-runas-account.md)
+Il primo passaggio per la configurazione dell'esempio consiste nel creare il runbook. Questo esempio usa un account RunAs. Per altre informazioni sugli account RunAs, vedere [Autenticare runbook con account RunAs di Azure](../automation/automation-sec-configure-azure-runas-account.md).
 
 ### <a name="step-1"></a>Passaggio 1
 
-Passare tooAzure automazione in hello [portale di Azure](https://portal.azure.com) e fare clic su **runbook**
+Passare ad Automazione di Azure nel [portale di Azure](https://portal.azure.com) e fare clic su **Runbook**.
 
 ![Panoramica dell'account di Automazione][1]
 
 ### <a name="step-2"></a>Passaggio 2
 
-Fare clic su **aggiungere un runbook** toostart processo di creazione hello di hello runbook.
+Fare clic su **Aggiungi runbook** per avviare il processo di creazione del runbook.
 
 ![Pannello Runbook][2]
 
 ### <a name="step-3"></a>Passaggio 3
 
-In **creazione rapida**, fare clic su **creare un nuovo runbook** toocreate hello runbook.
+In **Creazione rapida** fare clic su **Crea un nuovo runbook** per creare il runbook.
 
 ![Pannello Aggiungi runbook][3]
 
 ### <a name="step-4"></a>Passaggio 4
 
-In questo passaggio è dare hello runbook un nome, nell'esempio hello viene chiamato **Get VPNGatewayStatus**. È importante toogive hello runbook un nome descrittivo e consiglia di assegnargli un nome che segue gli standard di denominazione standard di PowerShell. tipo di runbook Hello per questo esempio è **PowerShell**, hello sono altre opzioni di grafici, flusso di lavoro PowerShell e PowerShell con interfaccia grafica del flusso di lavoro.
+In questo passaggio si attribuisce un nome al runbook, che nell'esempio è denominato **Get-VPNGatewayStatus**. È importante attribuire al runbook un nome descrittivo che segua gli standard di denominazione di PowerShell. Il tipo di runbook per questo esempio è **PowerShell**, le altre opzioni disponibili sono Grafico, Flusso di lavoro PowerShell e Flusso di lavoro PowerShell grafico.
 
 ![Pannello Runbook][4]
 
 ### <a name="step-5"></a>Passaggio 5
 
-In questo passaggio hello runbook viene creato, hello esempio di codice seguente fornisce che tutti hello codice necessario per l'esempio hello. elementi di codice hello contenenti Hello \<valore\> necessario toobe sostituiti con i valori hello dalla sottoscrizione.
+In questo passaggio viene creato il runbook. L'esempio di codice seguente contiene tutto il codice necessario per l'esempio. Sostituire gli elementi nel codice che contengono \<value\> con i valori della sottoscrizione usata.
 
-Esempio di codice seguente di hello utilizzare come fare clic su **salvare**
+Usare il codice seguente e fare clic su **Salva**.
 
 ```PowerShell
-# Set these variables toohello proper values for your environment
+# Set these variables to the proper values for your environment
 $o365AutomationCredential = "<Office 365 account>"
 $fromEmail = "<from email address>"
-$toEmail = "<tooemail address>"
+$toEmail = "<to email address>"
 $smtpServer = "<smtp.office365.com>"
 $smtpPort = 587
 $runAsConnectionName = "<AzureRunAsConnection>"
@@ -102,16 +102,16 @@ $storageAccountContainer = "<container name>"
 # Get credentials for Office 365 account
 $cred = Get-AutomationPSCredential -Name $o365AutomationCredential
 
-# Get hello connection "AzureRunAsConnection "
+# Get the connection "AzureRunAsConnection "
 $servicePrincipalConnection=Get-AutomationConnection -Name $runAsConnectionName
 
-"Logging in tooAzure..."
+"Logging in to Azure..."
 Add-AzureRmAccount `
     -ServicePrincipal `
     -TenantId $servicePrincipalConnection.TenantId `
     -ApplicationId $servicePrincipalConnection.ApplicationId `
     -CertificateThumbprint $servicePrincipalConnection.CertificateThumbprint
-"Setting context tooa specific subscription"
+"Setting context to a specific subscription"
 Set-AzureRmContext -SubscriptionId $subscriptionId
 
 $nw = Get-AzurermResource | Where {$_.ResourceType -eq "Microsoft.Network/networkWatchers" -and $_.Location -eq $region }
@@ -123,11 +123,11 @@ $result = Start-AzureRmNetworkWatcherResourceTroubleshooting -NetworkWatcher $ne
 
 if($result.code -ne "Healthy")
     {
-        $body = "Connection for $($connection.name) is: $($result.code) `n$($result.results[0].summary) `nView hello logs at $($storagePath) toolearn more."
+        $body = "Connection for $($connection.name) is: $($result.code) `n$($result.results[0].summary) `nView the logs at $($storagePath) to learn more."
         Write-Output $body
         $subject = "$($connection.name) Status"
         Send-MailMessage `
-        -too$toEmail `
+        -To $toEmail `
         -Subject $subject `
         -Body $body `
         -UseSsl `
@@ -145,47 +145,47 @@ else
 
 ### <a name="step-6"></a>Passaggio 6
 
-Dopo aver salvato, hello runbook una pianificazione deve essere collegato tooit tooautomate hello inizio hello runbook. processo di hello toostart, fare clic su **pianificazione**.
+Dopo aver salvato il runbook, è necessario collegarlo a una pianificazione per automatizzare l'avvio del runbook. Per avviare il processo, fare clic su **Pianificazione**.
 
 ![Passaggio 6][6]
 
-## <a name="link-a-schedule-toohello-runbook"></a>Collega un runbook toohello pianificazione
+## <a name="link-a-schedule-to-the-runbook"></a>Collegare una pianificazione al runbook.
 
-È necessario creare una nuova pianificazione. Fare clic su **collega un runbook tooyour pianificazione**.
+È necessario creare una nuova pianificazione. Fare clic su **Collegare una pianificazione al runbook**.
 
 ![Passaggio 7][7]
 
 ### <a name="step-1"></a>Passaggio 1
 
-In hello **pianificazione** pannello, fare clic su **creare una nuova pianificazione**
+Nel pannello **Pianificazione** fare clic su **Crea una nuova pianificazione**.
 
 ![Passaggio 8][8]
 
 ### <a name="step-2"></a>Passaggio 2
 
-In hello **nuova pianificazione** compilazione pannello delle informazioni sulla pianificazione di hello. i valori di Hello che è possibile impostare sono in hello seguente elenco:
+Nel pannello **Nuova pianificazione** immettere le informazioni sulla pianificazione. Di seguito sono elencati i valori che è possibile impostare.
 
-- **Nome** -nome descrittivo di hello della pianificazione di hello.
-- **Descrizione** -una descrizione della pianificazione hello.
-- **Avvia** -questo valore è una combinazione di data, ora e fuso orario che costituiscono i trigger di pianificazione di hello ora hello.
-- **Ricorrenza** -questo valore determina la ripetizione di pianificazioni hello.  I valori validi sono **Una sola volta** o **Ricorrente**.
-- **Ricorre ogni** -intervallo di ricorrenza hello di pianificazione di hello in ore, giorni, settimane o mesi.
-- **Impostare la scadenza** -valore hello determina se la pianificazione hello deve scadere o non. È possibile impostare troppo**Sì** o **n**. Una data valida e un'ora sono toobe fornito se si sceglie Sì.
+- **Nome**: nome descrittivo della pianificazione.
+- **Descrizione**: descrizione della pianificazione.
+- **Inizia**: questo valore è una combinazione di data, ora e fuso orario che costituiscono l'orario di attivazione della pianificazione.
+- **Ricorrenza**: questo valore determina la ripetizione della pianificazione.  I valori validi sono **Una sola volta** o **Ricorrente**.
+- **Ricorre ogni**: intervallo di ricorrenza della pianificazione espresso in ore, giorni, settimane o mesi.
+- **Imposta scadenza**: questo valore determina se la pianificazione debba scadere o meno. I valori validi sono **Sì** o **No**. Sì è necessario specificare data e ora valide.
 
 > [!NOTE]
-> Se è necessario toohave un runbook eseguito più spesso di ogni ora, è necessario creare più pianificazioni a intervalli diversi (vale a dire, 15, 30, 45 minuti dopo ora hello)
+> Se un runbook specifico deve essere eseguito con una frequenza superiore a un'ora, è necessario creare più pianificazioni a intervalli diversi, vale a dire a 15, 30, 45 minuti dopo l'ora.
 
 ![Passaggio 9:][9]
 
 ### <a name="step-3"></a>Passaggio 3
 
-Fare clic su Salva toosave hello pianificazione toohello runbook.
+Fare clic su Salva per salvare la pianificazione del runbook.
 
 ![Passaggio 10][10]
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Ora che è necessario comprendere la risoluzione dei problemi Watcher di rete toointegrate con automazione di Azure, informazioni su come acquisizioni di pacchetti tootrigger avvisi VM visitando [creare un'acquisizione di pacchetti generati avvisi con il Watcher di rete di Azure](network-watcher-alert-triggered-packet-capture.md).
+Dopo aver appreso come integrare la risoluzione dei problemi di Network Watcher con Automazione di Azure, è possibile apprendere come attivare le acquisizioni pacchetti per gli avvisi di macchina virtuale. Vedere in proposito l'articolo relativo alla [creazione di un'acquisizione pacchetti attivata da un avviso mediante Azure Network Watcher](network-watcher-alert-triggered-packet-capture.md).
 
 <!-- images -->
 [scenario]: ./media/network-watcher-monitor-with-azure-automation/scenario.png

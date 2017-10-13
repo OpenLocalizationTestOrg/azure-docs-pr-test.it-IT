@@ -1,6 +1,6 @@
 ---
-title: aaaBack backup e ripristinare un Database Oracle 12C database in una macchina virtuale Linux di Azure | Documenti Microsoft
-description: Informazioni su database tooback backup e ripristinare un Database Oracle 12C nell'ambiente Azure.
+title: Eseguire backup e ripristino di un database Oracle Database 12c in una macchina virtuale Linux di Azure | Microsoft Docs
+description: Informazioni su come eseguire rapidamente backup e ripristino di un database Oracle Database 12c nell'ambiente Azure.
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: v-shiuma
@@ -15,40 +15,40 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 5/17/2017
 ms.author: rclaus
-ms.openlocfilehash: 68846f4efce5eabdb71cd71772e003838154e93b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9a2293f13b90e9a4cb11b4169fad969dd622a9a6
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="back-up-and-recover-an-oracle-database-12c-database-on-an-azure-linux-virtual-machine"></a>Eseguire backup e ripristino di un database Oracle Database 12c in una macchina virtuale Linux di Azure
 
-Si può utilizzare toocreate CLI di Azure e gestire risorse di Azure a un prompt dei comandi o utilizzare gli script. In questo articolo, si usa Azure CLI script toodeploy un database di Oracle Database 12C da un'immagine della raccolta di Azure Marketplace.
+È possibile usare l'interfaccia della riga di comando di Azure per creare e gestire risorse di Azure a un prompt dei comandi o per creare script. In questo articolo vengono usati script dell'interfaccia della riga di comando di Azure per distribuire un database Oracle Database 12c da un'immagine della raccolta di Azure Marketplace.
 
-Prima di iniziare, assicurarsi che l'interfaccia della riga di comando di Azure sia installata. Per ulteriori informazioni, vedere hello [Guida all'installazione di Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli).
+Prima di iniziare, assicurarsi che l'interfaccia della riga di comando di Azure sia installata. Per altre informazioni, consultare la [guida all'installazione dell'interfaccia della riga di comando di Azure](https://docs.microsoft.com/cli/azure/install-azure-cli).
 
-## <a name="prepare-hello-environment"></a>Preparare l'ambiente hello
+## <a name="prepare-the-environment"></a>Preparare l'ambiente
 
 ### <a name="step-1-prerequisites"></a>Passaggio 1: Prerequisiti
 
-*   processo di backup e ripristino di hello tooperform, è innanzitutto necessario creare una VM Linux con un'istanza installata di Oracle Database 12C. immagine del Marketplace Hello è utilizzare hello toocreate VM è denominato *Oracle: Oracle-Database-Ee:12.1.0.2:latest*.
+*   Per eseguire il processo di backup e ripristino, è necessario innanzitutto creare una macchina virtuale Linux con un'istanza installata di Oracle Database 12c. L'immagine di Marketplace usata per creare la macchina virtuale viene denominata *Oracle:Oracle-Database-Ee:12.1.0.2:latest*.
 
-    toolearn toocreate un database Oracle, vedere hello [Oracle creare avvio rapido database](https://docs.microsoft.com/azure/virtual-machines/workloads/oracle/oracle-database-quick-create).
+    Per informazioni su come creare un database Oracle, vedere [Creare un database Oracle Database](https://docs.microsoft.com/azure/virtual-machines/workloads/oracle/oracle-database-quick-create).
 
 
-### <a name="step-2-connect-toohello-vm"></a>Passaggio 2: Connettere toohello VM
+### <a name="step-2-connect-to-the-vm"></a>Passaggio 2: Eseguire la connessione alla VM
 
-*   toocreate una sessione di Secure Shell (SSH) con hello macchina virtuale, utilizzare hello comando seguente. Sostituire l'indirizzo IP hello e combinazione di nome host hello con hello `publicIpAddress` valore per la macchina virtuale.
+*   Per creare una sessione Secure Shell, SSH con la macchina virtuale, usare il comando seguente. Sostituire l'indirizzo IP e la combinazione di nome host con il valore `publicIpAddress` per la macchina virtuale.
 
     ```bash 
     ssh <publicIpAddress>
     ```
 
-### <a name="step-3-prepare-hello-database"></a>Passaggio 3: Preparare i database di hello
+### <a name="step-3-prepare-the-database"></a>Passaggio 3: Preparare il database
 
 1.  Questo passaggio presuppone che si abbia un'istanza di Oracle, cdb1, in esecuzione in una macchina virtuale denominata *myVM*.
 
-    Eseguire hello *oracle* radice utente avanzato e inizializzare listener di hello:
+    Usare la radice del superuser *oracle* e inizializzare il listener:
 
     ```bash
     $ sudo su - oracle
@@ -58,11 +58,11 @@ Prima di iniziare, assicurarsi che l'interfaccia della riga di comando di Azure 
     Starting /u01/app/oracle/product/12.1.0/dbhome_1/bin/tnslsnr: please wait...
 
     TNSLSNR for Linux: Version 12.1.0.2.0 - Production
-    Log messages written too/u01/app/oracle/diag/tnslsnr/myVM/listener/alert/log.xml
+    Log messages written to /u01/app/oracle/diag/tnslsnr/myVM/listener/alert/log.xml
     Listening on: (DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=myVM.twltkue3xvsujaz1bvlrhfuiwf.dx.internal.cloudapp.net)(PORT=1521)))
 
-    Connecting too(ADDRESS=(PROTOCOL=tcp)(HOST=)(PORT=1521))
-    STATUS of hello LISTENER
+    Connecting to (ADDRESS=(PROTOCOL=tcp)(HOST=)(PORT=1521))
+    STATUS of the LISTENER
     ------------------------
     Alias                     LISTENER
     Version                   TNSLSNR for Linux: Version 12.1.0.2.0 - Production
@@ -74,11 +74,11 @@ Prima di iniziare, assicurarsi che l'interfaccia della riga di comando di Azure 
     Listener Log File         /u01/app/oracle/diag/tnslsnr/myVM/listener/alert/log.xml
     Listening Endpoints Summary...
     (DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=myVM.twltkue3xvsujaz1bvlrhfuiwf.dx.internal.cloudapp.net)(PORT=1521)))
-    hello listener supports no services
-    hello command completed successfully
+    The listener supports no services
+    The command completed successfully
     ```
 
-2.  (Facoltativo) Verificare che il database di hello sia in modalità di archiviazione del log:
+2.  Assicurarsi che il database sia in modalità di log di archiviazione (facoltativo):
 
     ```bash
     $ sqlplus / as sysdba
@@ -94,16 +94,16 @@ Prima di iniziare, assicurarsi che l'interfaccia della riga di comando di Azure 
     SQL> ALTER DATABASE OPEN;
     SQL> ALTER SYSTEM SWITCH LOGFILE;
     ```
-3.  (Facoltativo) Creare un commit hello tootest di tabella:
+3.  Creare una tabella per testare il commit (facoltativo):
 
     ```bash
     SQL> alter session set "_ORACLE_SCRIPT"=true ;
     Session altered.
     SQL> create user scott identified by tiger;
     User created.
-    SQL> grant create session tooscott;
+    SQL> grant create session to scott;
     Grant succeeded.
-    SQL> grant create table tooscott;
+    SQL> grant create table to scott;
     Grant succeeded.
     SQL> alter user scott quota 100M on users;
     User altered.
@@ -115,7 +115,7 @@ Prima di iniziare, assicurarsi che l'interfaccia della riga di comando di Azure 
     SQL> commit;
     Commit complete.
     ```
-4.  Verificare o modificare le dimensioni e posizione di file di backup hello:
+4.  Verificare o modificare il percorso e le dimensioni del file di backup:
 
     ```bash
     $ sqlplus / as sysdba
@@ -125,7 +125,7 @@ Prima di iniziare, assicurarsi che l'interfaccia della riga di comando di Azure 
     db_recovery_file_dest                string      /u01/app/oracle/fast_recovery_area
     db_recovery_file_dest_size           big integer 4560M
     ```
-5. Utilizzare Oracle gestione del ripristino (RMAN) tooback backup database hello:
+5. Usare Oracle Recovery Manager (RMAN) per il backup del database:
 
     ```bash
     $ rman target /
@@ -134,11 +134,11 @@ Prima di iniziare, assicurarsi che l'interfaccia della riga di comando di Azure 
 
 ### <a name="step-4-application-consistent-backup-for-linux-vms"></a>Passaggio 4: Backup coerente con l'applicazione per le macchine virtuali Linux
 
-I backup coerenti con l'applicazione sono una nuova funzionalità di Backup di Azure. È possibile creare e selezionare tooexecute script prima e dopo snapshot di macchina virtuale hello (pre-snapshot e post-snapshot).
+I backup coerenti con l'applicazione sono una nuova funzionalità di Backup di Azure. È possibile creare e selezionare gli script da eseguire prima e dopo lo snapshot della macchina virtuale, ovvero pre-snapshot e post-snapshot.
 
-1. Scaricare il file JSON hello.
+1. Scaricare il file JSON.
 
-    Scaricare VMSnapshotScriptPluginConfig.json da https://github.com/MicrosoftAzureBackup/VMSnapshotPluginConfig. contenuto del file Hello un aspetto simile toohello seguenti:
+    Scaricare VMSnapshotScriptPluginConfig.json da https://github.com/MicrosoftAzureBackup/VMSnapshotPluginConfig. Il contenuto del file dovrebbe essere simile a quello riportato di seguito:
 
     ```azurecli
     {
@@ -155,7 +155,7 @@ I backup coerenti con l'applicazione sono una nuova funzionalità di Backup di A
     }
     ```
 
-2. Crea cartella /etc/azure hello in hello VM:
+2. Creare la cartella /etc/azure nella macchina virtuale:
 
     ```bash
     $ sudo su -
@@ -163,13 +163,13 @@ I backup coerenti con l'applicazione sono una nuova funzionalità di Backup di A
     # cd /etc/azure
     ```
 
-3. Copiare i file JSON hello.
+3. Copiare il file JSON.
 
-    Copia VMSnapshotScriptPluginConfig.json toohello /etc/azure cartella.
+    Copiare il file VMSnapshotScriptPluginConfig.json nella cartella /etc/azure.
 
-4. Modificare il file JSON hello.
+4. Modificare il file JSON.
 
-    Modifica hello di hello VMSnapshotScriptPluginConfig.json file tooinclude `PreScriptLocation` e `PostScriptlocation` parametri. ad esempio:
+    Modificare il file VMSnapshotScriptPluginConfig.json per includere i parametri `PreScriptLocation` e `PostScriptlocation`. ad esempio:
 
     ```azurecli
     {
@@ -186,7 +186,7 @@ I backup coerenti con l'applicazione sono una nuova funzionalità di Backup di A
     }
     ```
 
-5. Creare hello file script di pre-snapshot e post-snapshot.
+5. Creare file di script di pre-snapshot e post-snapshot.
 
     Ecco un esempio di script di pre-snapshot e post-snapshot per un "backup a freddo", un backup offline, con arresto e riavvio:
 
@@ -226,7 +226,7 @@ I backup coerenti con l'applicazione sono una nuova funzionalità di Backup di A
     su - $ORA_OWNER -c "sqlplus / as sysdba @/etc/azure/post_script.sql" > /etc/azure/pre_script_$v_date.log
     ```
 
-    Per /etc/azure/pre_script.sql, modificare il contenuto di hello del file hello base alle esigenze:
+    Per /etc/azure/pre_script.sql, è necessario modificare il contenuto del file in base ai requisiti:
 
     ```bash
     alter tablespace SYSTEM begin backup;
@@ -236,7 +236,7 @@ I backup coerenti con l'applicazione sono una nuova funzionalità di Backup di A
     alter system archive log stop;
     ```
 
-    Per /etc/azure/post_script.sql, modificare il contenuto di hello del file hello base alle esigenze:
+    Per /etc/azure/post_script.sql, è necessario modificare il contenuto del file in base ai requisiti:
 
     ```bash
     alter tablespace SYSTEM end backup;
@@ -253,9 +253,9 @@ I backup coerenti con l'applicazione sono una nuova funzionalità di Backup di A
     # chmod 700 /etc/azure/post_script.sh
     ```
 
-7. Hello script di test.
+7. Testare gli script.
 
-    script di hello tootest, prima di tutto, Accedi come radice. Assicurarsi quindi che non ci siano errori:
+    Per testare gli script accedere innanzitutto come radice. Assicurarsi quindi che non ci siano errori:
 
     ```bash
     # /etc/azure/pre_script.sh
@@ -265,25 +265,25 @@ I backup coerenti con l'applicazione sono una nuova funzionalità di Backup di A
 Per altre informazioni, vedere [Backup coerente delle applicazioni per le macchine virtuali Linux](https://azure.microsoft.com/en-us/blog/announcing-application-consistent-backup-for-linux-vms-using-azure-backup/).
 
 
-### <a name="step-5-use-azure-recovery-services-vaults-tooback-up-hello-vm"></a>Passaggio 5: Utilizzare servizi di ripristino di Azure insiemi di credenziali tooback backup hello VM
+### <a name="step-5-use-azure-recovery-services-vaults-to-back-up-the-vm"></a>Passaggio 5: Usare gli insiemi di credenziali dei servizi di ripristino di Azure per eseguire il backup della VM
 
-1.  Nel portale di Azure hello, cercare **insiemi di credenziali di servizi di ripristino**.
+1.  Nel portale di Azure cercare gli **insiemi di credenziali di Servizi di ripristino**.
 
     ![Pagina degli insiemi di credenziali dei servizi di ripristino](./media/oracle-backup-recovery/recovery_service_01.png)
 
-2.  In hello **insiemi di credenziali di servizi di ripristino** pannello tooadd un nuovo insieme di credenziali, fare clic su **Aggiungi**.
+2.  Nel pannello **Insiemi di credenziali dei servizi di ripristino** fare clic su **Aggiungi** per aggiungere un nuovo insieme di credenziali.
 
     ![Pagina di aggiunta degli insiemi di credenziali dei servizi di ripristino](./media/oracle-backup-recovery/recovery_service_02.png)
 
-3.  toocontinue, fare clic su **myVault**.
+3.  Per continuare, fare clic su **myVault**.
 
     ![Pagina di dettaglio degli insiemi di credenziali dei servizi di ripristino](./media/oracle-backup-recovery/recovery_service_03.png)
 
-4.  In hello **myVault** pannello, fare clic su **Backup**.
+4.  Nel pannello **myVault** fare clic su **Backup**.
 
     ![Pagina di backup degli insiemi di credenziali dei servizi di ripristino](./media/oracle-backup-recovery/recovery_service_04.png)
 
-5.  In hello **Backup obiettivo** valori predefiniti di hello uso del pannello **Azure** e **macchina virtuale**. Fare clic su **OK**.
+5.  Nel pannello **Obiettivo del backup** usare i valori predefiniti **Azure** e **Macchina virtuale**. Fare clic su **OK**.
 
     ![Pagina di dettaglio degli insiemi di credenziali dei servizi di ripristino](./media/oracle-backup-recovery/recovery_service_05.png)
 
@@ -291,37 +291,37 @@ Per altre informazioni, vedere [Backup coerente delle applicazioni per le macchi
 
     ![Pagina di dettaglio dei criteri di backup degli insiemi di credenziali dei servizi di ripristino](./media/oracle-backup-recovery/recovery_service_06.png)
 
-7.  In hello **selezionare le macchine virtuali** blade, seleziona hello **myVM1** casella di controllo e quindi fare clic su **OK**. Fare clic su hello **Abilita backup** pulsante.
+7.  Nel pannello **Seleziona macchine virtuali** selezionare la casella di controllo **myVM1** e quindi fare clic su **OK**. Fare clic sul pulsante **Abilita backup**.
 
-    ![Pagina dei dettagli backup toohello ripristino Services insiemi di credenziali per gli elementi](./media/oracle-backup-recovery/recovery_service_07.png)
+    ![Pagina di dettaglio degli elementi per il backup degli insiemi di credenziali dei servizi di ripristino](./media/oracle-backup-recovery/recovery_service_07.png)
 
     > [!IMPORTANT]
-    > Dopo aver fatto clic **Abilita backup**, processo di backup hello non viene avviato finché non scade hello ora pianificata. tooset di un backup immediato completo hello passaggio successivo.
+    > Dopo aver fatto clic su **Abilita backup**, il processo di backup non viene avviato fino all'orario pianificato. Per configurare un backup immediato, completare il passaggio successivo.
 
-8.  In hello **myVault - elementi di Backup** pannello, in **Conteggio elementi di BACKUP**, selezionare il numero di backup dell'elemento hello.
+8.  Nel pannello **myVault - Elementi di backup** in **CONTEGGIO DEGLI ELEMENTI DI BACKUP** selezionare il numero di backup degli elementi.
 
     ![Pagina di dettaglio degli insiemi di credenziali myVault dei servizi di ripristino](./media/oracle-backup-recovery/recovery_service_08.png)
 
-9.  In hello **gli elementi di Backup (macchina virtuale di Azure)** pannello hello destra della pagina di hello, fare clic sui puntini di sospensione hello (**...** ) pulsante e quindi fare clic su **Backup ora**.
+9.  Nel pannello **Backup Items (Azure Virtual Machine)** (Elementi di backup: macchina virtuale di Azure), sul lato destro della pagina, fare clic sui puntini di sospensione (**...**) e su **Backup now** (Esegui il backup ora).
 
     ![Comando Backup now (Esegui il backup ora) degli insiemi di credenziali dei servizi di ripristino](./media/oracle-backup-recovery/recovery_service_09.png)
 
-10. Fare clic su hello **Backup** pulsante. Attendere hello toofinish di processo di backup. Quindi, passare troppo[passaggio 6: rimuovere i file di database hello](#step-6-remove-the-database-files).
+10. Fare clic sul pulsante **Backup**. Attendere il completamento del processo di backup. Quindi passare al [passaggio 6: Rimuovere i file di database](#step-6-remove-the-database-files).
 
-    stato hello tooview hello del processo di backup, fare clic su **processi**.
+    Per visualizzare lo stato del processo di backup, fare clic su **Processi**.
 
     ![Pagina dei processi degli insiemi di credenziali dei servizi di ripristino](./media/oracle-backup-recovery/recovery_service_10.png)
 
-    stato di Hello hello del processo di backup viene visualizzato nella seguente immagine hello:
+    Lo stato del processo di backup viene visualizzato nella figura seguente:
 
     ![Pagina dei processi degli insiemi di credenziali dei servizi di ripristino con stato](./media/oracle-backup-recovery/recovery_service_11.png)
 
-11. Per un backup coerente con l'applicazione, risolvere gli eventuali errori nel file di log hello. file di log di Hello si trova in /var/log/azure/Microsoft.Azure.RecoveryServices.VMSnapshotLinux/1.0.9114.0.
+11. Per un backup coerente con l'applicazione, risolvere gli eventuali errori nel file di log. Il file di log si trova in /var/log/azure/Microsoft.Azure.RecoveryServices.VMSnapshotLinux/1.0.9114.0.
 
-### <a name="step-6-remove-hello-database-files"></a>Passaggio 6: Rimuovere i file di database hello 
-Più avanti in questo articolo si apprenderà come tootest hello il processo di ripristino. Prima di testare il processo di ripristino di hello, si dispone di file di database tooremove hello.
+### <a name="step-6-remove-the-database-files"></a>Passaggio 6: Rimuovere i file di database 
+Più avanti in questo articolo verrà illustrato come testare il processo di ripristino. Prima di testare il processo di ripristino, è necessario rimuovere i file di database.
 
-1.  Rimuovere i file di backup e spazio tabelle hello:
+1.  Rimuovere lo spazio di tabella e i file di backup:
 
     ```bash
     $ sudo su - oracle
@@ -331,7 +331,7 @@ Più avanti in questo articolo si apprenderà come tootest hello il processo di 
     $ rm -rf *
     ```
     
-2.  (Facoltativo) Arrestare l'istanza di Oracle hello:
+2.  Arrestare l'istanza di Oracle (facoltativo):
 
     ```bash
     $ sqlplus / as sysdba
@@ -339,38 +339,38 @@ Più avanti in questo articolo si apprenderà come tootest hello il processo di 
     ORACLE instance shut down.
     ```
 
-## <a name="restore-hello-deleted-files-from-hello-recovery-services-vaults"></a>Ripristinare file eliminato hello da hello che insiemi di credenziali di servizi di ripristino
-hello toorestore eliminato file, hello completo alla procedura seguente:
+## <a name="restore-the-deleted-files-from-the-recovery-services-vaults"></a>Ripristinare i file eliminati dagli insiemi di credenziali dei servizi di ripristino
+Per ripristinare i file eliminati, completare la procedura seguente:
 
-1. Nel portale di Azure hello, cercare hello *myVault* elemento insiemi di credenziali di servizi di ripristino. In hello **Panoramica** pannello, in **Backup elementi**, selezionare hello numero di elementi.
+1. Nel portale di Azure e cercare l'elemento degli insiemi di credenziali dei servizi di ripristino *myVault*. Nel pannello **Panoramica** in **Elementi di backup** selezionare il numero di elementi.
 
     ![Elementi di backup myVault degli insiemi di credenziali dei servizi di ripristino](./media/oracle-backup-recovery/recovery_service_12.png)
 
-2. In **Conteggio elementi di BACKUP**, selezionare hello numero di elementi.
+2. In **CONTEGGIO DEGLI ELEMENTI DI BACKUP** fare clic sul numero di elementi.
 
     ![Numero di elementi di backup di macchine virtuali di Azure in insiemi di credenziali di servizi di ripristino](./media/oracle-backup-recovery/recovery_service_13.png)
 
-3. In hello **myvm1** pannello, fare clic su **il ripristino di File (anteprima)**.
+3. Nel pannello **myvm1** fare clic su **Ripristino di file (anteprima)**.
 
-    ![Schermata di hello servizi di ripristino di insiemi di credenziali di pagina di ripristino di file](./media/oracle-backup-recovery/recovery_service_14.png)
+    ![Schermata della pagina di ripristino dei file degli insiemi di credenziali dei servizi di ripristino](./media/oracle-backup-recovery/recovery_service_14.png)
 
-4. In hello **il ripristino di File (anteprima)** riquadro, fare clic su **Download Script**. Quindi, è possibile salvare cartella tooa file di download (SH) hello in computer client hello.
+4. Nel riquadro **Ripristino di file (anteprima)** fare clic su **Scarica script**. Quindi, salvare il file di download con estensione SH in una cartella nel computer client.
 
     ![Opzioni di salvataggio e download del file di script](./media/oracle-backup-recovery/recovery_service_15.png)
 
-5. Copiare hello sh file toohello macchina virtuale.
+5. Copiare il file con estensione sh nella VM.
 
-    Hello di esempio seguente viene illustrato come si toouse un toomove di comando di copia sicuro (scp) hello toohello file macchina virtuale. È inoltre possibile copiare negli Appunti di toohello contenuto hello e quindi incollare hello contenuto in un nuovo file in cui è installato nella macchina virtuale hello.
+    Nell'esempio seguente viene illustrato come usare un comando di copia di sicurezza (scp) per spostare il file nella macchina virtuale. È possibile anche copiare il contenuto negli Appunti e incollarlo in un nuovo file configurato nella macchina virtuale.
 
     > [!IMPORTANT]
-    > Nell'esempio seguente di hello, assicurarsi di aggiornare i valori di indirizzo e la cartella IP hello. i valori Hello devono eseguire il mapping toohello cartella in cui è salvato il file hello.
+    > Nell'esempio seguente assicurarsi di aggiornare i valori dell'indirizzo IP e della cartella. I valori devono corrispondere a quelli della cartella in cui è stato salvato il file.
 
     ```bash
     $ scp Linux_myvm1_xx-xx-2017 xx-xx-xx PM.sh <publicIpAddress>:/<folder>
     ```
-6. Modificare il file di hello, in modo che appartiene a una radice di hello.
+6. Modificare il file in modo che appartenga alla radice.
 
-    Nell'esempio seguente di hello, modificare il file di hello in modo che appartiene a una radice di hello. Modificare quindi le autorizzazioni.
+    Nell'esempio seguente modificare il file in modo che appartenga a una radice. Modificare quindi le autorizzazioni.
 
     ```bash 
     $ ssh <publicIpAddress>
@@ -379,24 +379,24 @@ hello toorestore eliminato file, hello completo alla procedura seguente:
     # chmod 755 /<folder>/Linux_myvm1_xx-xx-2017 xx-xx-xx PM.sh
     # /<folder>/Linux_myvm1_xx-xx-2017 xx-xx-xx PM.sh
     ```
-    Hello esempio seguente viene illustrato ciò che viene visualizzato dopo aver eseguito hello script precedente. Quando viene chiesto di toocontinue, immettere **Y**.
+    L'esempio seguente illustra ciò che dovrebbe venire visualizzato dopo aver eseguito lo script precedente. Quando viene chiesto di continuare, immettere **Y**.
 
     ```bash
     Microsoft Azure VM Backup - File Recovery
     ______________________________________________
-    hello script requires 'open-iscsi' and 'lshw' toorun.
-    Do you want us tooinstall 'open-iscsi' and 'lshw' on this machine?
-    Please press 'Y' toocontinue with installation, 'N' tooabort hello operation. : Y
+    The script requires 'open-iscsi' and 'lshw' to run.
+    Do you want us to install 'open-iscsi' and 'lshw' on this machine?
+    Please press 'Y' to continue with installation, 'N' to abort the operation. : Y
     Installing 'open-iscsi'....
     Installing 'lshw'....
 
-    Connecting toorecovery point using ISCSI service...
+    Connecting to recovery point using ISCSI service...
 
     Connection succeeded!
 
-    Please wait while we attach volumes of hello recovery point toothis machine...
+    Please wait while we attach volumes of the recovery point to this machine...
 
-    ************ Volumes of hello recovery point and their mount paths on this machine ************
+    ************ Volumes of the recovery point and their mount paths on this machine ************
 
     Sr.No.  |  Disk  |  Volume  |  MountPath
 
@@ -404,20 +404,20 @@ hello toorestore eliminato file, hello completo alla procedura seguente:
 
     2)  | /dev/sde  |  /dev/sde2  |  /root/myVM-20170517093913/Volume2
 
-    ************ Open File Explorer toobrowse for files. ************
+    ************ Open File Explorer to browse for files. ************
 
-    After recovery, tooremove hello disks and close hello connection toohello recovery point, please click 'Unmount Disks' in step 3 of hello portal.
+    After recovery, to remove the disks and close the connection to the recovery point, please click 'Unmount Disks' in step 3 of the portal.
 
-    Please enter 'q/Q' tooexit...
+    Please enter 'q/Q' to exit...
     ```
 
-7. Accedere a volumi montato toohello viene confermata.
+7. L'accesso ai volumi montati è stato confermato.
 
-    tooexit, immettere **q**e quindi cercare volumi montato hello. aggiunta di un elenco di hello volumi, al prompt dei comandi, immettere toocreate **df -k**.
+    Per uscire, immettere **q** e cercare i volumi montati. Per creare un elenco dei volumi aggiunti, a un prompt dei comandi, immettere **df -k**.
 
-    ![comando di Hello df -k](./media/oracle-backup-recovery/recovery_service_16.png)
+    ![Comando df-k](./media/oracle-backup-recovery/recovery_service_16.png)
 
-8. Hello utilizzare seguenti script toocopy hello mancante file toohello indietro cartelle:
+8. Usare lo script seguente per copiare nuovamente i file mancanti nelle cartelle:
 
     ```bash
     # cd /root/myVM-2017XXXXXXX/Volume2/u01/app/oracle/fast_recovery_area/CDB1/backupset/2017_xx_xx
@@ -429,7 +429,7 @@ hello toorestore eliminato file, hello completo alla procedura seguente:
     # cd /u01/app/oracle/oradata/cdb1
     # chown oracle:oinstall *.dbf
     ```
-9. In hello lo script seguente, è possibile utilizzare database di hello toorecover RMAN:
+9. Nello script seguente usare RMAN per ripristinare il database:
 
     ```bash
     # sudo su - oracle
@@ -441,93 +441,93 @@ hello toorestore eliminato file, hello completo alla procedura seguente:
     RMAN> SELECT * FROM scott.scott_table;
     ```
     
-10. Smontare il disco di hello.
+10. Smontare il disco.
 
-    Nel portale di Azure su hello hello **il ripristino di File (anteprima)** pannello, fare clic su **smontare dischi**.
+    Nel portale di Azure, nel pannello **Ripristino file (anteprima)** fare clic su **Unmount Disks** (Smonta dischi).
 
     ![Comando Unmount disks](./media/oracle-backup-recovery/recovery_service_17.png)
 
-## <a name="restore-hello-entire-vm"></a>Ripristinare hello intera macchina virtuale
+## <a name="restore-the-entire-vm"></a>Ripristinare l'intera VM
 
-Anziché ripristinare file eliminato hello dagli archivi di hello servizi di ripristino, è possibile ripristinare hello intera macchina virtuale.
+Anziché ripristinare i file eliminati dagli insiemi di credenziali dei servizi di ripristino, è possibile ripristinare l'intera macchina virtuale.
 
 ### <a name="step-1-delete-myvm"></a>Passaggio 1: Eliminare myVM
 
-*   Nel portale di Azure hello, passare toohello **myVM1** insieme di credenziali e quindi selezionare **eliminare**.
+*   Nel portale di Azure passare all'insieme di credenziali **myVM1** e selezionare **Elimina**.
 
     ![Comando Elimina insieme di credenziali](./media/oracle-backup-recovery/recover_vm_01.png)
 
-### <a name="step-2-recover-hello-vm"></a>Passaggio 2: Recuperare hello VM
+### <a name="step-2-recover-the-vm"></a>Passaggio 2: Ripristinare la VM
 
-1.  Andare troppo**insiemi di credenziali di servizi di ripristino**, quindi selezionare **myVault**.
+1.  Passare a **Insiemi di credenziali dei servizi di ripristino** e selezionare **myVault**.
 
     ![voce myVault](./media/oracle-backup-recovery/recover_vm_02.png)
 
-2.  In hello **Panoramica** pannello, in **Backup elementi**, selezionare hello numero di elementi.
+2.  Nel pannello **Panoramica** in **Elementi di backup** selezionare il numero di elementi.
 
     ![elementi di backup myVault](./media/oracle-backup-recovery/recover_vm_03.png)
 
-3.  In hello **gli elementi di Backup (macchina virtuale di Azure)** pannello seleziona **myvm1**.
+3.  Nel pannello **Backup Items (Azure Virtual Machine)** (Elementi di backup: macchina virtuale di Azure) selezionare **myvm1**.
 
     ![Pagina di ripristino della macchina virtuale](./media/oracle-backup-recovery/recover_vm_04.png)
 
-4.  In hello **myvm1** pannello, fare clic sui puntini di sospensione hello (**...** ) pulsante e quindi fare clic su **ripristinare VM**.
+4.  Nel pannello **myvm1** fare clic sui puntini di sospensione (**...**) e su **Ripristina macchina virtuale**.
 
     ![Comando Ripristina macchina virtuale](./media/oracle-backup-recovery/recover_vm_05.png)
 
-5.  In hello **punto di ripristino selezionare** blade, elemento selezionare hello che desidera toorestore e quindi fare clic su **OK**.
+5.  Nel pannello **Seleziona punto di ripristino** selezionare l'elemento che si vuole ripristinare e fare clic su **OK**.
 
-    ![Punto di ripristino selezionare hello](./media/oracle-backup-recovery/recover_vm_06.png)
+    ![Selezionare il punto di ripristino](./media/oracle-backup-recovery/recover_vm_06.png)
 
     Se è stato abilitato il backup coerente con l'applicazione, viene visualizzata una barra verticale di colore blu.
 
-6.  In hello **ripristino configurazione** pannello, nome della macchina virtuale selezionare hello, selezionare il gruppo di risorse hello e quindi fare clic su **OK**.
+6.  Nel pannello **Configurazione di ripristino** selezionare il nome della macchina virtuale, il gruppo di risorse e fare clic su **OK**.
 
     ![Valori di configurazione del ripristino](./media/oracle-backup-recovery/recover_vm_07.png)
 
-7.  hello toorestore macchina virtuale, fare clic su hello **ripristinare** pulsante.
+7.  Per ripristinare la macchina virtuale, fare clic sul pulsante **Ripristina**.
 
-8.  stato hello tooview hello del processo di ripristino, fare clic su **processi**, quindi fare clic su **i processi di Backup**.
+8.  Per visualizzare lo stato del processo di ripristino, fare clic su **Processi** e quindi su **Processi di backup**.
 
     ![Comando dello stato dei processi di backup](./media/oracle-backup-recovery/recover_vm_08.png)
 
-    Hello figura riportata di seguito viene illustrato hello stato del processo di ripristino hello:
+    L'immagine seguente mostra lo stato del processo di ripristino:
 
-    ![Stato del processo di ripristino hello](./media/oracle-backup-recovery/recover_vm_09.png)
+    ![Stato del processo di ripristino](./media/oracle-backup-recovery/recover_vm_09.png)
 
-### <a name="step-3-set-hello-public-ip-address"></a>Passaggio 3: Impostare l'indirizzo IP pubblico hello
-Dopo aver hello che VM viene ripristinato, impostare l'indirizzo IP pubblico hello.
+### <a name="step-3-set-the-public-ip-address"></a>Passaggio 3: Impostare l'indirizzo IP pubblico
+Dopo il ripristino della macchina virtuale, configurare l'indirizzo IP pubblico.
 
-1.  Nella casella di ricerca hello, immettere **indirizzo IP pubblico**.
+1.  Nella casella di ricerca inserire l'**indirizzo IP pubblico**.
 
     ![Elenco degli indirizzi IP pubblici](./media/oracle-backup-recovery/create_ip_00.png)
 
-2.  In hello **gli indirizzi IP pubblici** pannello, fare clic su **Aggiungi**. In hello **creare l'indirizzo IP pubblico** pannello per **nome**, selezionare il nome IP pubblico di hello. Per **Gruppo di risorse** selezionare **Usa esistente**. Fare quindi clic su **Crea**.
+2.  Nel pannello**Indirizzi IP pubblici** fare clic su **Aggiungi**. Nel pannello **Crea indirizzo IP pubblico** per **Nome** selezionare il nome dell'indirizzo IP pubblico. Per **Gruppo di risorse** selezionare **Usa esistente**. Fare quindi clic su **Crea**.
 
     ![Creare un indirizzo IP](./media/oracle-backup-recovery/create_ip_01.png)
 
-3.  tooassociate hello indirizzo IP pubblico con l'interfaccia di rete hello per hello macchina virtuale, eseguire la ricerca per e selezionare **myVMip**. Quindi fare clic su **Associa**.
+3.  Per associare l'indirizzo IP pubblico all'interfaccia di rete per la macchina virtuale, cercare e selezionare **myVMip**. Quindi fare clic su **Associa**.
 
     ![Associare l'indirizzo IP](./media/oracle-backup-recovery/create_ip_02.png)
 
-4.  Per **Tipo di risorsa** selezionare **Interfaccia di rete**. Selezionare l'interfaccia di rete hello utilizzato dall'istanza di macchina virtuale myVM hello e quindi fare clic su **OK**.
+4.  Per **Tipo di risorsa** selezionare **Interfaccia di rete**. Selezionare l'interfaccia di rete usata dall'istanza di myVM e fare clic su **OK**.
 
     ![Selezionare i valori Tipo di risorsa e Interfaccia di rete](./media/oracle-backup-recovery/create_ip_03.png)
 
-5.  Cercare e aprire l'istanza hello myVM che viene trasferita dal portale hello. Hello indirizzo IP associato hello VM è presente nella macchina virtuale myVM hello **Panoramica** blade.
+5.  Cercare e aprire l'istanza di myVM che viene trasferita dal portale. L'indirizzo IP associato alla macchina virtuale viene visualizzato nel pannello **Panoramica** di myVM.
 
     ![Valore dell'indirizzo IP](./media/oracle-backup-recovery/create_ip_04.png)
 
-### <a name="step-4-connect-toohello-vm"></a>Passaggio 4: Connettere toohello VM
+### <a name="step-4-connect-to-the-vm"></a>Passaggio 4: Eseguire la connessione alla VM
 
-*   tooconnect toohello macchina virtuale, utilizzare hello lo script seguente:
+*   Per eseguire la connessione alla macchina virtuale, usare lo script seguente:
 
     ```bash 
     ssh <publicIpAddress>
     ```
 
-### <a name="step-5-test-whether-hello-database-is-accessible"></a>Passaggio 5: Verificare se il database hello è accessibile
-*   accessibilità tootest, hello utilizzare lo script seguente:
+### <a name="step-5-test-whether-the-database-is-accessible"></a>Passaggio 5: Verificare se il database è accessibile
+*   Per testare l'accessibilità, usare lo script seguente:
 
     ```bash 
     $ sudo su - oracle
@@ -536,10 +536,10 @@ Dopo aver hello che VM viene ripristinato, impostare l'indirizzo IP pubblico hel
     ```
 
     > [!IMPORTANT]
-    > Se hello database **avvio** comando genera un errore, il database di hello toorecover, vedere [passaggio 6: database di hello usare RMAN toorecover](#step-6-optional-use-rman-to-recover-the-database).
+    > Se il comando **startup** del database genera un errore, per ripristinare il database, vedere [Passaggio 6: Usare RMAN per ripristinare il database (facoltativo)](#step-6-optional-use-rman-to-recover-the-database).
 
-### <a name="step-6-optional-use-rman-toorecover-hello-database"></a>Passaggio 6: Database (facoltativo) usare RMAN toorecover hello
-*   database di hello toorecover, hello utilizzare lo script seguente:
+### <a name="step-6-optional-use-rman-to-recover-the-database"></a>Passaggio 6: Usare RMAN per ripristinare il database (facoltativo)
+*   Usare lo script seguente per ripristinare il database:
 
     ```bash
     # sudo su - oracle
@@ -551,11 +551,11 @@ Dopo aver hello che VM viene ripristinato, impostare l'indirizzo IP pubblico hel
     RMAN> SELECT * FROM scott.scott_table;
     ```
 
-Hello backup e ripristino dei database 12C Database Oracle di hello in una macchina virtuale Linux di Azure è ora completato.
+L'esecuzione di backup e ripristino del database Oracle Database 12c su una macchina virtuale Linux di Azure è stata completata.
 
-## <a name="delete-hello-vm"></a>Eliminare hello VM
+## <a name="delete-the-vm"></a>Eliminare la VM
 
-Quando si non è più necessario hello VM, è possibile utilizzare hello seguente gruppo di risorse di comando tooremove hello, hello VM e tutte le relative risorse:
+Quando la macchina virtuale non è più necessaria, è possibile usare il comando seguente per rimuovere il gruppo di risorse, la macchina virtuale e tutte le risorse correlate:
 
 ```azurecli
 az group delete --name myResourceGroup

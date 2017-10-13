@@ -1,6 +1,6 @@
 ---
-title: aaaAzure interfaccia utente di Engagement Mobile - monitoraggio
-description: Informazioni su come toomonitor dati in tempo reale sull'applicazione con Azure Mobile Engagement
+title: Interfaccia utente di Azure Mobile Engagement - Monitoraggio
+description: Informazioni su come monitorare in tempo reale i dati dell'applicazione usando Azure Mobile Engagement
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,45 +14,45 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 3a581e4166bc88e6ee7aa784d4047c94533685b5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5f8a02e35db93585e0fe46d77b3ad18b94c99597
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toomonitor-real-time-data-about-your-application"></a>Come toomonitor dati in tempo reale sull'applicazione
-Questo articolo descrive hello **monitoraggio** scheda di hello **Mobile Engagement** portale. Utilizzare hello **Mobile Engagement** toomonitor portale e gestire le App per dispositivi mobili. Si noti che toostart tramite il portale di hello è innanzitutto necessario toocreate un **Azure Mobile Engagement** account. 
+# <a name="how-to-monitor-real-time-data-about-your-application"></a>Come monitorare in tempo reale i dati relativi all'applicazione
+In questo articolo viene descritta la scheda **MONITORAGGIO** del portale **Mobile Engagement**. Utilizzare il portale **Mobile Engagement** per monitorare e gestire le app per dispositivi mobili. Si noti che per iniziare a utilizzare il portale, è innanzitutto necessario creare un account **Azure Mobile Engagement** . 
 
-Hello sezione monitoraggio di hello dell'interfaccia utente fornisce informazioni in tempo reale analitica e consente di tooset avvisi quando vengono raggiunte le soglie per la maggior parte di hello stesso informazioni disponibili in passato in hello [analisi](mobile-engagement-user-interface-analytics.md) sezione Hello dell'interfaccia utente. Vedere hello **glossario** sezione hello [concetti](http://go.microsoft.com/fwlink/?LinkId=525555) argomento per le definizioni di termini e abbreviazioni Analitica e monitoraggio (come illustrato di seguito hello: utente attivo, nuovo utente, utente mantenuti, sessione, Grafico di percorsi utente, gli utenti mappa, gli URL di rilevamento, tendenze, attività, eventi, processo, errore, informazioni supplementari, arresto anomalo del sistema e App-info).
+Nella sezione Monitoraggio dell'interfaccia utente vengono fornite informazioni di analisi in tempo reale ed è possibile impostare gli avvisi quando vengono raggiunte le soglie per la maggior parte delle informazioni cronologicamente disponibili anche nella sezione [ANALISI](mobile-engagement-user-interface-analytics.md) dell'interfaccia utente. Nella sezione **Glossario** nell'argomento [Concetti](http://go.microsoft.com/fwlink/?LinkId=525555) sono riportate le definizioni dei termini e delle abbreviazioni usati in Analisi e Monitoraggio, ad esempio: utente attivo, nuovo utente, utente assorbito, sessione, grafico percorso utenti, mapping utenti, URL di rilevamento, tendenze, attività, evento, processo, errore, informazioni supplementari, arresto anomalo e informazioni sull'app.
 
 > [!NOTE]
-> Numero di sezioni di hello **Mobile Engagement** interfaccia utente del portale contengono hello **Mostra Guida** pulsante. Premere tooget questo pulsante più informazioni contestuali su una sezione.
+> Molte sezioni dell'interfaccia utente del portale **Mobile Engagement** contengono il pulsante **MOSTRA GUIDA**. Premere questo pulsante per ottenere ulteriori informazioni contestuali su una sezione.
 > 
 > 
 
 ## <a name="monitor---sessions-jobs-events-errors-and-crashes"></a>Monitoraggio: sessioni, processi, eventi, errori e arresti anomali
-È possibile verificare quanti utenti sono attualmente in sessione e su schermi specifici o stanno eseguendo particolari azioni. È possibile visualizzare l'attività dell'utente per sessioni, processi, eventi, errori e arresti anomali. È possibile visualizzare le informazioni correnti hello e visualizzare le informazioni di hello da hello ultima ora, giorno o settimana. È possibile visualizzare le informazioni di hello in ogni categoria o ordinamento hello specifica della sessione, processo, evento, errore e arresto anomalo del sistema.  Monitoraggio in tempo reale è utile toouse durante gli eventi, ad esempio un toosee campagna Push se è presente un miglioramento in azione destra dopo aver inviato la notifica Push.
+È possibile verificare quanti utenti sono attualmente in sessione e su schermi specifici o stanno eseguendo particolari azioni. È possibile visualizzare l'attività dell'utente per sessioni, processi, eventi, errori e arresti anomali. È possibile visualizzare le informazioni correnti e mostrare le informazioni dall'ora, del giorno o della settimana più recente. È possibile visualizzare tutte le informazioni in ogni categoria o ordinarle per sessione, processo, evento, errore e arresto anomalo specifico.  Il monitoraggio in tempo reale è utile durante eventi quali una campagna di push per verificare se esiste un aumento nell'azione subito dopo l'invio di una notifica push.
 
 ![Monitor1][14]  
 
 ## <a name="troubleshooting-with-monitor---events---details"></a>Risoluzione dei problemi con Monitoraggio - Eventi - Dettagli
-Genera un evento dell'applicazione dal dispositivo di test e nel monitoraggio - Events - dettagli è uno dei toofind modi più semplici hello dispositivo ID per il dispositivo di test e tooconfirm tale integrazione di Azure Mobile Engagement di Analitica, monitoraggio, e Funzioni segmenti dall'applicazione. Dopo aver creato hello ID dispositivo del dispositivo di test, è possibile aggiungere dispositivi di test tooyour in "Account – dispositivi personali". Se non è possibile generare un evento, assicurarsi che Azure Mobile Engagement è integrato correttamente in un'app Android o iOS/Web/Windows/Windows Phone con hello SDK.
+La generazione di un evento nell'applicazione dal dispositivo di test e la relativa ricerca in Monitoraggio - Eventi - Dettagli è uno dei modi più semplici per trovare l'ID del dispositivo di test e per confermare che l'integrazione Azure Mobile Engagement di Analisi, Monitoraggio e Segmenti funzioni dall'applicazione. Dopo aver ottenuto l'ID del dispositivo di test, è possibile aggiungerlo ai dispositivi di test in "Account personale – Dispositivi". Se non è possibile generare un evento, assicurarsi che Azure Mobile Engagement sia correttamente integrato nell'app Android/iOS/Web/Windows/Windows Phone con l'SDK.
 
 Per altre informazioni, vedere [Documentazione SDK][Link 5]
 
 ![Monitor2][15]  
 
 ## <a name="troubleshooting-with-monitor---crashes---details"></a>Risoluzione dei problemi con Monitoraggio - Arresti anomali - Dettagli
-È possibile esaminare le informazioni di arresto anomalo del sistema sull'applicazione dai dettagli di monitoraggio di arresti anomali - del - toohelp determinare perché un arresto anomalo dell'app. Inoltre, è necessario controllare i problemi noti relativi a ogni versione di hello SDK nelle note sulla versione di hello per ogni versione di hello SDK per Android o iOS/Web/Windows/Windows Phone.
+È possibile esaminare le informazioni sull'arresto anomalo dell'app da Monitoraggio - Arresti anomali - Dettagli per determinare il motivo per cui l'app si blocca. È consigliabile, inoltre, cercare i problemi noti di ogni versione dell'SDK nelle note di rilascio che accompagnano ogni versione dell'SDK per Android/iOS/Web/Windows/Windows Phone.
 
 Per altre informazioni, vedere [Documentazione SDK - Note di rilascio][Link 5]
 
 ![Monitor3][16]
 
 ## <a name="monitor---alerts"></a>Monitoraggio - Avvisi
-È inoltre possibile specificare le condizioni per gli avvisi che verranno inviati automaticamente tooyou tramite posta elettronica o messaggistica istantanea. (sono supportati tutti i servizi compatibili con XMPP come GTalk di Google o iChat Apple). Gli avvisi sono basati su una soglia di rilevamento predefinita maggiore (>) o minore (<) di un numero specifico di sessioni, processi, eventi, errori o arresti anomali al secondo, minuto o ora. Tramite Avvisi è possibile monitorare tutte le attività di un determinato tipo o semplicemente l'attività di un particolare processo, evento o errore. 
+È inoltre possibile specificare condizioni per gli avvisi da inviare automaticamente all'utente tramite posta elettronica o messaggistica istantanea (sono supportati tutti i servizi compatibili con XMPP come GTalk di Google o iChat Apple). Gli avvisi sono basati su una soglia di rilevamento predefinita maggiore (>) o minore (<) di un numero specifico di sessioni, processi, eventi, errori o arresti anomali al secondo, minuto o ora. Tramite Avvisi è possibile monitorare tutte le attività di un determinato tipo o semplicemente l'attività di un particolare processo, evento o errore. 
 
-È inoltre possibile specificare una frequenza minima di rilevamento, ovvero una quantità minima di hello di minuti che separeranno due notifiche relative hello stesso avviso toomake che quando viene attivato l'avviso, riceverà mai più di 1 notifica per l'intervallo specificato.
+È inoltre possibile specificare una velocità minima di rilevamento, ossia la quantità minima di minuti che separa due notifiche per lo stesso avviso, per assicurarsi che quando viene attivato l'avviso non si riceva mai più di una notifica per ogni intervallo specificato.
 
 ![Monitor4][17]
 

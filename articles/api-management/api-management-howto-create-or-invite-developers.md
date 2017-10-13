@@ -1,6 +1,6 @@
 ---
-title: aaaHow gestire gli account utente in Gestione API di Azure | Documenti Microsoft
-description: Informazioni su come toocreate o invita gli utenti in Gestione API di Azure
+title: Come gestire gli account utente in Gestione API di Azure | Microsoft Docs
+description: Informazioni su come creare o invitare gli utenti in Gestione API di Azure.
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,72 +14,72 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: 3966f4454e29621d7c615beefee352ec91b48b2e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d3a50f6d22cbf1797f580078bc0d2cc9cefe5064
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toomanage-user-accounts-in-azure-api-management"></a>La modalità di account utente di toomanage in Gestione API di Azure
-In Gestione API, gli sviluppatori sono utenti hello di hello API esposta tramite Gestione API. Questa guida Mostra toohow toocreate e invita gli sviluppatori toouse hello API e i prodotti che si apportano toothem disponibili con l'istanza di gestione API. Per informazioni sulla gestione degli account utente a livello di codice, vedere hello [entità utente](https://msdn.microsoft.com/library/azure/dn776330.aspx) documentazione in hello [API REST di gestione](https://msdn.microsoft.com/library/azure/dn776326.aspx) riferimento.
+# <a name="how-to-manage-user-accounts-in-azure-api-management"></a>Come gestire gli account utente in Gestione API di Azure
+In Gestione API gli sviluppatori sono gli utenti delle API esposte con Gestione API. In questa guida viene illustrato come creare e invitare gli sviluppatori a usare le API e i prodotti resi disponibili con l'istanza di Gestione API. Per informazioni sulla gestione degli account utente a livello di codice, vedere la documentazione [Entità utente](https://msdn.microsoft.com/library/azure/dn776330.aspx) nel riferimento [API Management REST (REST di gestione API)](https://msdn.microsoft.com/library/azure/dn776326.aspx).
 
 ## <a name="create-developer"> </a>Creare un nuovo sviluppatore
-toocreate uno sviluppatore di nuovo, fare clic su **portale di pubblicazione** in hello portale di Azure per il servizio Gestione API. Consente di procedere toohello portale di pubblicazione di gestione API. Se non è ancora stato creato un'istanza del servizio Gestione API, vedere [creare un'istanza del servizio Gestione API] [ Create an API Management service instance] in hello [Introduzione a gestione API di Azure] [ Get started with Azure API Management] esercitazione.
+Per creare un nuovo sviluppatore, fare clic su **Portale di pubblicazione** nel portale di Azure per il servizio Gestione API. Verrà visualizzato il portale di pubblicazione di Gestione API. Se non è stata creata un'istanza del servizio Gestione API, vedere [Creare un'istanza di Gestione API][Create an API Management service instance] nell'esercitazione [Introduzione a Gestione API di Azure][Get started with Azure API Management].
 
 ![Portale di pubblicazione][api-management-management-console]
 
-Fare clic su **utenti** da hello **gestione API** menu hello a sinistra e quindi fare clic su **aggiungere utente**.
+Fare clic su **Utenti** dal menu **Gestione API** sulla sinistra, quindi scegliere **aggiungi utente**.
 
 ![Create developer][api-management-create-developer]
 
-Immettere hello **posta elettronica**, **Password**, e **nome** nuovo sviluppatore hello e fare clic su **salvare**.
+Immettere **Indirizzo e-mail**, **Password** e **Nome** per il nuovo sviluppatore, quindi fare clic su **Salva**.
 
 ![Create developer][api-management-add-new-user]
 
-Per impostazione predefinita, gli account appena creato per sviluppatori sono **Active**e associati hello **sviluppatori** gruppo.
+Per impostazione predefinita, i nuovi account sviluppatore creati sono **attivi** e associati al gruppo **Sviluppatori**.
 
 ![New developer][api-management-new-developer]
 
-Gli account sviluppatore in un **active** lo stato può essere utilizzato tooaccess tutte le API di hello per le quali sono le sottoscrizioni. sviluppatore di tooassociate hello appena creato con altri gruppi aggiuntivi, vedere [come i gruppi con gli sviluppatori tooassociate][How tooassociate groups with developers].
+Gli account sviluppatore con stato **attivo** possono essere usati per accedere a tutte le API per cui dispongono di sottoscrizioni. Per associare il nuovo sviluppatore creato ad altri gruppi, vedere [Come associare gruppi a sviluppatori][How to associate groups with developers].
 
 ## <a name="invite-developer"> </a>Invitare uno sviluppatore
-tooinvite uno sviluppatore, fare clic su **utenti** da hello **gestione API** menu hello a sinistra e quindi fare clic su **invitare utente**.
+Per invitare uno sviluppatore, fare clic su **Utenti** dal menu **Gestione API** sulla sinistra, quindi scegliere **Invita utente**.
 
 ![Invite developer][api-management-invite-developer]
 
-Immettere l'indirizzo di posta elettronica e nome hello dello sviluppatore hello e fare clic su **invitare**.
+Immettere il nome e l'indirizzo di posta elettronica e fare clic su **Invita**.
 
 ![Invite developer][api-management-invite-developer-window]
 
-Viene visualizzato un messaggio di conferma, ma developer hello appena invito non è disponibile nell'elenco di hello fino a dopo aver accettato l'invito hello. 
+Viene visualizzato un messaggio di conferma, ma il nuovo sviluppatore invitato non appare nell'elenco finché l'invito non viene accettato. 
 
 ![Invite confirmation][api-management-invite-developer-confirmation]
 
-Quando uno sviluppatore è visualizzato un messaggio, viene inviato un messaggio toohello developer. generato con un modello e personalizzabile. Per altre informazioni, vedere [Configurare modelli di posta elettronica][Configure email templates].
+Quando uno sviluppatore viene invitato, gli viene inviato un messaggio di posta elettronica generato con un modello e personalizzabile. Per altre informazioni, vedere [Configurare modelli di posta elettronica][Configure email templates].
 
-Dopo aver accettato hello invito, account hello diventa attivo.
+Dopo l'accettazione dell'invito, l'account diventa attivo.
 
 ## <a name="block-developer"></a> Disattivare o riattivare un account sviluppatore
-Per impostazione predefinita, un nuovo account sviluppatore creato o invitato è **Attivo**. Fare clic su un account sviluppatore, toodeactivate **blocco**. Fare clic su un account sviluppatore bloccati, tooreactivate **attiva**. Un account sviluppatore bloccati non possa accedere al portale per sviluppatori hello o chiamare le API. Fare clic su un account utente, toodelete **eliminare**.
+Per impostazione predefinita, un nuovo account sviluppatore creato o invitato è **Attivo**. Per disattivare un account sviluppatore, fare clic su **Blocca**. Per riattivare un account sviluppatore bloccato, fare clic su **Attiva**. Un account sviluppatore bloccato non può accedere al portale per sviluppatori né chiamare le API. Per eliminare un account utente, fare clic su **Elimina**.
 
 ![Block developer][api-management-new-developer]
 
 ## <a name="reset-a-user-password"></a>Reimpostare la password di un utente
-password di hello tooreset per un account utente, fare clic su nome hello dell'account di hello.
+Per reimpostare la password per un account utente, fare clic sul nome dell'account.
 
-![Reimpostazione delle password][api-management-view-developer]
+![Reimposta password][api-management-view-developer]
 
-Fare clic su **reimpostazione password** toosend tooreset di utente toohello un collegamento la propria password.
+Fare clic su **Reimposta password** per inviare all'utente un collegamento per la reimpostazione della password.
 
 ![Reimpostazione delle password][api-management-reset-password]
 
-tooprogrammatically gestire account utente, vedere hello [entità utente](https://msdn.microsoft.com/library/azure/dn776330.aspx) documentazione in hello [API REST di gestione](https://msdn.microsoft.com/library/azure/dn776326.aspx) riferimento. un valore specifico utente account password tooa tooreset, è possibile utilizzare hello [aggiornare un utente](https://msdn.microsoft.com/library/azure/dn776330.aspx#UpdateUser) operazione e specificare la password desiderata hello.
+Per lavorare con gli account utente a livello di codice, vedere la documentazione [Entità utente](https://msdn.microsoft.com/library/azure/dn776330.aspx) nel riferimento [API Management REST (REST di gestione API)](https://msdn.microsoft.com/library/azure/dn776326.aspx). Per reimpostare la password di un account utente su un valore specifico, è possibile usare la procedura [Update a user (Aggiornamento di un utente)](https://msdn.microsoft.com/library/azure/dn776330.aspx#UpdateUser) e specificare la password desiderata.
 
 ## <a name="pending-verification"></a>Verifica in sospeso
 ![Verifica in sospeso][api-management-pending-verification]
 
 ## <a name="next-steps"></a>Passaggi successivi
-Dopo aver creato un account sviluppatore, è possibile associarlo a ruoli ed effettuare la sottoscrizione tooproducts e API. Per ulteriori informazioni, vedere [come toocreate e utilizzare gruppi][How toocreate and use groups].
+Dopo aver creato un account sviluppatore, è possibile associarlo ai ruoli ed effettuarne la sottoscrizione a prodotti e API. Per altre informazioni, vedere [Come creare e usare i gruppi][How to create and use groups].
 
 [api-management-management-console]: ./media/api-management-howto-create-or-invite-developers/api-management-management-console.png
 [api-management-add-new-user]: ./media/api-management-howto-create-or-invite-developers/api-management-add-new-user.png
@@ -97,8 +97,8 @@ Dopo aver creato un account sviluppatore, è possibile associarlo a ruoli ed eff
 [Invite a developer]: #invite-developer
 [Deactivate or reactivate a developer account]: #block-developer
 [Next steps]: #next-steps
-[How toocreate and use groups]: api-management-howto-create-groups.md
-[How tooassociate groups with developers]: api-management-howto-create-groups.md#associate-group-developer
+[How to create and use groups]: api-management-howto-create-groups.md
+[How to associate groups with developers]: api-management-howto-create-groups.md#associate-group-developer
 
 [Get started with Azure API Management]: api-management-get-started.md
 [Create an API Management service instance]: api-management-get-started.md#create-service-instance

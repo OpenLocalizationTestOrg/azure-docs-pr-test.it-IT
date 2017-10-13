@@ -1,5 +1,5 @@
 ---
-title: Configurazione per Windows Universal App Engagement SDK aaaAdvanced
+title: Configurazione avanzata per Engagement SDK per app universali di Windows
 description: Opzioni di configurazione avanzata per Azure Mobile Engagement per app universali di Windows
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,11 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 10/04/2016
 ms.author: piyushjo;ricksal
-ms.openlocfilehash: 23bd05012bc25d438d8d4985a112280bed0292b8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: cb9454212c94cf65093219c3d24c71277ede7877
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="advanced-configuration-for-windows-universal-apps-engagement-sdk"></a>Configurazione avanzata per Engagement SDK per app universali di Windows
 > [!div class="op_single_selector"]
@@ -29,27 +29,27 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Questa procedura viene descritto come tooconfigure varie opzioni di configurazione per le app Android di Azure Mobile Engagement.
+Questa procedura descrive come configurare le diverse opzioni di configurazione per le app Android di Azure Mobile Engagement.
 
 ## <a name="prerequisites"></a>Prerequisiti
 [!INCLUDE [Prereqs](../../includes/mobile-engagement-windows-store-prereqs.md)]
 
 ## <a name="advanced-configuration"></a>Configurazione avanzata
 ### <a name="disable-automatic-crash-reporting"></a>Disabilitare la segnalazione automatica degli arresti anomali
-È possibile disabilitare hello automatica degli arresti anomali delle funzionalità di impegno report. Quando si verifica un'eccezione non gestita, Engagement non eseguirà alcuna azione.
+È possibile disabilitare la funzionalità di segnalazione automatica degli arresti anomali di Engagement. Quando si verifica un'eccezione non gestita, Engagement non eseguirà alcuna azione.
 
 > [!WARNING]
-> Se si disabilita questa funzionalità, quindi quando si verifica un arresto anomalo del sistema non gestita dell'app, Engagement non invia l'arresto anomalo di hello **AND** non comporta la chiusura della sessione hello e processi.
+> Se si disabilita questa funzionalità, quando si verifica un arresto anomalo non gestito nell'app, Engagement non lo invierà **E** non chiuderà la sessione e i processi.
 > 
 > 
 
-toodisable automatico segnalazioni di arresti anomali, personalizzare la configurazione a seconda della modalità di hello è stata dichiarata:
+Per disabilitare la segnalazione automatica degli arresti anomali, personalizzare la configurazione in base al modo in cui che è stata dichiarata:
 
 #### <a name="from-engagementconfigurationxml-file"></a>Dal file `EngagementConfiguration.xml`
-Impostare i report dell'arresto anomalo troppo`false` tra `<reportCrash>` e `</reportCrash>` tag.
+Impostare la segnalazione degli arresti anomali su `false` tra i tag `<reportCrash>` e `</reportCrash>`.
 
 #### <a name="from-engagementconfiguration-object-at-run-time"></a>Dall'oggetto `EngagementConfiguration` in fase di esecuzione
-Impostare toofalse di arresto anomalo di report utilizzando l'oggetto EngagementConfiguration.
+Impostare la segnalazione degli arresti anomali su false usando l'oggetto EngagementConfiguration.
 
         /* Engagement configuration. */
         EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
@@ -59,18 +59,18 @@ Impostare toofalse di arresto anomalo di report utilizzando l'oggetto Engagement
         engagementConfiguration.Agent.ReportCrash = false;
 
 ### <a name="disable-real-time-reporting"></a>Disabilitare la segnalazione in tempo reale
-Per impostazione predefinita, i report del servizio di Engagement hello registra in tempo reale. Se l'applicazione indica spesso i registri, è preferibile toobuffer hello registri e tooreport usarle in una sola volta in una base di tempo regolari. la cosiddetta "modalità burst".
+Per impostazione predefinita, il servizio Engagement segnala i log in tempo reale. Se l'applicazione segnala spesso i log, è preferibile memorizzare i log nel buffer e segnalarli tutti insieme con cadenza regolare, la cosiddetta "modalità burst".
 
-toodo in tal caso, chiamare il metodo hello:
+A tale scopo, chiamare il metodo:
 
         EngagementAgent.Instance.SetBurstThreshold(int everyMs);
 
-argomento Hello è un valore in **millisecondi**. Ogni volta che si desidera la registrazione in tempo reale di tooreactivate hello, chiamare il metodo hello senza alcun parametro, o con valore 0 hello.
+L'argomento è un valore in **millisecondi**. Ogni volta che si vuole riattivare la registrazione in tempo reale, chiamare il metodo senza alcun parametro o con il valore 0.
 
-Modalità burst leggermente aumenta la durata della batteria hello ma ha un impatto sulle hello Engagement Monitor: durata di tutte le sessioni e i processi vengono arrotondati toohello burst soglia (in questo modo, le sessioni e i processi è inferiore a soglia burst hello potrebbe non essere visibile). È consigliabile usare una soglia di burst non maggiore di 30000, ovvero 30 secondi. Registri salvati sono elementi too300 limitato. Se l'invio richiede troppo tempo, è possibile che alcuni log vadano persi.
+La modalità burst aumenta lievemente la durata della batteria ma ha un impatto su Monitor di Engagement: la durata di tutte le sessioni e di tutti i processi viene arrotondata alla soglia di burst e, di conseguenza, le sessioni e i processi inferiori alla soglia di burst potrebbero non essere visibili. È consigliabile usare una soglia di burst non maggiore di 30000, ovvero 30 secondi. Per i log salvati è previsto un limite di 300 elementi. Se l'invio richiede troppo tempo, è possibile che alcuni log vadano persi.
 
 > [!WARNING]
-> soglia burst Hello non può essere configurato tooa periodo minore secondo. Se in tal caso, hello SDK Mostra una traccia con l'errore hello e reimposta automaticamente toohello valore predefinito zero secondi. Questo trigger prova SDK tooreport prova l'accesso in tempo reale.
+> La soglia di burst non può essere configurata per un periodo inferiore a un secondo. Se si imposta un valore minore, l'SDK mostrerà una traccia con l'errore e verrà reimpostato automaticamente sul valore predefinito, vale a dire, zero secondi. In questo modo si attiva l'SDK per la segnalazione dei log in tempo reale.
 > 
 > 
 

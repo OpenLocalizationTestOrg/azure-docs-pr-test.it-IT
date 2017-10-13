@@ -1,6 +1,6 @@
 ---
-title: aaaAdd hello connettore Twilio in App per la logica di Azure | Documenti Microsoft
-description: Panoramica di hello connettore Twilio con i parametri di API REST
+title: Aggiungere il connettore Twilio alle app per la logica di Azure | Microsoft Docs
+description: Panoramica del connettore Twilio con i parametri dell'API REST
 services: logic-apps
 documentationcenter: 
 author: MandiOhlinger
@@ -15,29 +15,29 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 09/19/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: b2b487f34bc76bee24b4237a71ee767d0d22ff7d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a790ac51b0fea7e3fa379d20e0e094e7ce0d7696
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="get-started-with-hello-twilio-connector"></a>Iniziare con il connettore di Twilio hello
-Connettersi tooTwilio toosend e ricevere i messaggi SMS e MMS IP globali. Con Twilio è possibile:
+# <a name="get-started-with-the-twilio-connector"></a>Introduzione al connettore Twilio
+Connettersi a Twilio per inviare e ricevere messaggi SMS, MMS e IP globali. Con Twilio è possibile:
 
-* Compilare il flusso di business in base ai dati hello che si ottiene da Twilio. 
-* Usare le azioni per recuperare un messaggio, elencare i messaggi e così via. Tali azioni ottengono una risposta e quindi apportare output di hello per le altre azioni. Ad esempio, quando si recupera un nuovo messaggio di Twilio, è possibile usarlo come flusso di lavoro del bus di servizio. 
+* Creare il flusso aziendale in base ai dati ottenuti da Twilio. 
+* Usare le azioni per recuperare un messaggio, elencare i messaggi e così via. Queste azioni ottengono una risposta e quindi rendono l'output disponibile per altre azioni. Ad esempio, quando si recupera un nuovo messaggio di Twilio, è possibile usarlo come flusso di lavoro del bus di servizio. 
 
 Creare prima di tutto un'app per la logica. Vedere [Creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="create-a-connection-tootwilio"></a>Creare una connessione tooTwilio
-Quando si aggiunge questa App per la logica tooyour connettore, immettere hello Twilio valori seguenti:
+## <a name="create-a-connection-to-twilio"></a>Creare una connessione a Twilio
+Quando si aggiunge questo connettore alle app per la logica, immettere i valori di Twilio seguenti:
 
 | Proprietà | Obbligatorio | Descrizione |
 | --- | --- | --- |
 | Account ID |Sì |Immettere l'ID dell'account Twilio |
 | Access Token |Sì |Immettere Il token di accesso di Twilio |
 
-> [!INCLUDE [Steps toocreate a connection tooTwilio](../../includes/connectors-create-api-twilio.md)]
+> [!INCLUDE [Steps to create a connection to Twilio](../../includes/connectors-create-api-twilio.md)]
 > 
 > 
 
@@ -45,7 +45,7 @@ Se non è disponibile un token di accesso di Twilio, vedere [User Identity & Acc
 
 ## <a name="connector-specific-details"></a>Dettagli specifici del connettore
 
-Visualizzare tutti i trigger e azioni definite in swagger hello e anche eventuali limiti di hello [dettagli connettore](/connectors/twilio/).
+Per visualizzare eventuali azioni e trigger definiti in Swagger ed eventuali limiti, vedere i [dettagli del connettore](/connectors/twilio/).
 
 ## <a name="more-connectors"></a>Altri connettori
-Tornare indietro toohello [elenco API](apis-list.md).
+Tornare all' [elenco di API](apis-list.md).

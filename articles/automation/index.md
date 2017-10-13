@@ -1,8 +1,8 @@
 ---
-title: aaaAzure documentazione su automazione - esercitazioni, riferimenti alle API | Documenti Microsoft
-description: "Informazioni su come processi di tooautomate toouse automazione e Gestione configurazione in ordine toosave ora e aumentare l'affidabilità delle normali attività amministrative."
+title: Documentazione di Automazione di Azure - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
+description: "Informazioni su come usare l'Automazione per automatizzare i processi e la gestione delle configurazioni al fine di risparmiare tempo e aumentare l'affidabilità delle operazioni amministrative standard."
 services: automation
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: eda979bac2434d9b4a91a4e661f5b46a6540a1d2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: ed25b6abaacbdd44b718a1a5febce5a02dacc334
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="automation-documentation"></a>Documentazione di Automazione
 
-Informazioni su come aumentare e l'ora di toosave automazione toouse hello affidabilità delle normali attività amministrative eseguite in un ambiente cloud. Esercitazioni, riferimenti ad API e altra documentazione illustrano come tooautomate processi che utilizzano i runbook o automatizzare la gestione della configurazione mediante configurazione dello stato desiderato.
+Informazioni su come usare l'Automazione per risparmiare tempo e aumentare l'affidabilità delle operazioni amministrative standard eseguite in un ambiente cloud. Esercitazioni, informazioni di riferimento sulle API e altri documenti in cui viene illustrato come automatizzare i processi tramite runbook o la gestione della configurazione tramite DSC (Desired State Configuration).
 
 <ul class="panelContent cardsFTitle">
     <li>

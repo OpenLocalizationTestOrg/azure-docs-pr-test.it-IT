@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con Salesforce | Microsoft Docs'
-description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e Salesforce.
+description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e Salesforce.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,96 +13,96 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/19/2017
 ms.author: jeedes
-ms.openlocfilehash: a916be8dbf0b4c6173cda873936a53cd1f3ff12b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a573a7ef79e28c50ae0923849a88f88af40f21be
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="tutorial-configuring-salesforce-for-automatic-user-provisioning"></a>Esercitazione: Configurazione di Salesforce per il provisioning utenti automatico
 
-obiettivo di Hello di questa esercitazione è tooshow tooperform necessari passaggi hello in Salesforce e Azure AD tooautomatically il provisioning e il de-provisioning degli account utente da Azure AD tooSalesforce.
+Questa esercitazione descrive le procedure da eseguire in Salesforce e Azure AD per effettuare automaticamente il provisioning e il deprovisioning degli account utente da Azure AD a Salesforce.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-scenario Hello descritto in questa esercitazione si presuppone che si disponga già di hello seguenti elementi:
+Per lo scenario descritto in questa esercitazione si presuppone che l'utente disponga di quanto segue:
 
 *   Tenant di Azure Active Directory.
 *   È necessario disporre di un tenant valido per Salesforce for Work o Salesforce for Education. È possibile usare un account della versione di valutazione gratuita per entrambi i servizi.
 *   Account utente in Salesforce con autorizzazioni di amministratore di team.
 
-## <a name="assigning-users-toosalesforce"></a>L'assegnazione di utenti tooSalesforce
+## <a name="assigning-users-to-salesforce"></a>Assegnazione di utenti a Salesforce
 
-Azure Active Directory Usa il concetto di "assegnazioni" toodetermine gli utenti che devono ricevere le app tooselected di accesso. Nel contesto di hello di provisioning dell'account utente automatico, solo gli utenti di hello e i gruppi "assegnati" tooan applicazione in Azure AD è sincronizzato.
+Per determinare gli utenti che dovranno ricevere l'accesso alle app selezionate, Azure Active Directory usa il concetto delle "assegnazioni". Nel contesto del provisioning automatico degli account utente, vengono sincronizzati solo gli utenti e i gruppi che sono stati "assegnati" a un'applicazione in Azure AD.
 
-Prima di configurare e abilitare hello provisioning del servizio, è necessario toodecide quali utenti e/o i gruppi in Azure AD rappresentano hello utenti devono accedere tooyour Salesforce app. Una volta deciso, è possibile assegnare queste app di Salesforce tooyour utenti seguendo le istruzioni di hello qui:
+Prima di configurare e abilitare il servizio di provisioning, è necessario stabilire quali utenti e/o gruppi in Azure AD rappresentano gli utenti che devono accedere all'app Salesforce. Dopo aver stabilito questo, è possibile assegnare tali utenti all'app Salesforce seguendo le istruzioni riportate qui:
 
-[Assegnare un'applicazione aziendale tooan utente o gruppo](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal)
+[Assegnare un utente o gruppo a un'app aziendale](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal)
 
-### <a name="important-tips-for-assigning-users-toosalesforce"></a>Suggerimenti importanti per l'assegnazione di utenti tooSalesforce
+### <a name="important-tips-for-assigning-users-to-salesforce"></a>Suggerimenti importanti per l'assegnazione di utenti a Salesforce
 
-*   È consigliabile che un singolo utente AD Azure viene assegnato hello tootest tooSalesforce configurazione provisioning. È possibile assegnare utenti e/o gruppi aggiuntivi in un secondo momento.
+*   È consigliabile assegnare un singolo utente di Azure AD a Salesforce per testare la configurazione del provisioning. È possibile assegnare utenti e/o gruppi aggiuntivi in un secondo momento.
 
-*  Quando si assegna un tooSalesforce utente, è necessario selezionare un ruolo utente valido. ruolo di "accesso predefinita" Hello non funziona per il provisioning
+*  Quando si assegna un utente a Salesforce, è necessario selezionare un ruolo utente valido. Il ruolo "Default Access" (Accesso predefinito) non è applicabile per il provisioning
 
     > [!NOTE]
-    > Questa app Importa ruoli personalizzati da Salesforce come parte del processo, il cliente che hello opportuno tooselect assegnare gli utenti di provisioning hello
+    > Questa app importa ruoli personalizzati da Salesforce come parte del processo di provisioning che il cliente può decidere di selezionare durante l'assegnazione di utenti
 
 ## <a name="enable-automated-user-provisioning"></a>Abilitare il provisioning utenti automatizzato
 
-Questa sezione viene illustrato come tramite la connessione API di provisioning dell'account utente del tooSalesforce il Azure AD e configura il provisioning del servizio toocreate hello, aggiornare e disabilitare gli account utente assegnato in Salesforce in base all'assegnazione di utenti e gruppi in Azure AD .
+Questa sezione illustra la connessione di Azure AD all'API per il provisioning degli account utente di Salesforce e la configurazione del servizio di provisioning per la creazione, l'aggiornamento e la disabilitazione degli account utente assegnati in Salesforce in base all'assegnazione di utenti e gruppi in Azure AD.
 
 >[!Tip]
->È inoltre possibile scegliere tooenabled basato su SAML Single Sign-On per Salesforce, attenendosi alle istruzioni hello fornite [portale di Azure](https://portal.azure.com). L'accesso Single Sign-On può essere configurato indipendentemente dal provisioning automatico, nonostante queste due funzionalità siano complementari.
+>Si può anche scegliere di abilitare l'accesso Single Sign-On basato su SAML per Salesforce, seguendo le istruzioni disponibili nel [portale di Azure](https://portal.azure.com). L'accesso Single Sign-On può essere configurato indipendentemente dal provisioning automatico, nonostante queste due funzionalità siano complementari.
 
-### <a name="tooconfigure-automatic-user-account-provisioning"></a>tooconfigure account il provisioning utente automatico:
+### <a name="to-configure-automatic-user-account-provisioning"></a>Per configurare il provisioning automatico degli account utente:
 
-obiettivo di Hello di questa sezione è toooutline tooenable provisioning utente dell'utente di Active Directory come account di tooSalesforce.
+In questa sezione viene descritto come abilitare il provisioning utenti degli account utente di Active Directory in Salesforce.
 
-1. In hello [portale di Azure](https://portal.azure.com), Sfoglia toohello **Azure Active Directory > App aziendali > tutte le applicazioni** sezione.
+1. Nel [portale di Azure](https://portal.azure.com) passare alla sezione **Azure Active Directory > App aziendali > Tutte le applicazioni**.
 
-2. Se è già stato configurato Salesforce per single sign-on, eseguire la ricerca per l'istanza di Salesforce utilizzando il campo di ricerca hello. In caso contrario, selezionare **Aggiungi** e cercare **Salesforce** nella raccolta di applicazione hello. Selezionare Salesforce dai risultati della ricerca hello e aggiungerlo tooyour elenco delle applicazioni.
+2. Se è già stato configurato Salesforce per l'accesso Single Sign-On, cercare l'istanza di Salesforce usando il campo di ricerca. In caso contrario, selezionare **Aggiungi** e cercare **Salesforce** nella raccolta di applicazioni. Selezionare Salesforce nei risultati della ricerca e aggiungerlo all'elenco delle applicazioni.
 
-3. Selezionare l'istanza di Salesforce, quindi selezionare hello **Provisioning** scheda.
+3. Selezionare l'istanza di Salesforce e quindi la scheda **Provisioning**.
 
-4. Set hello **modalità di Provisioning** troppo**automatica**. 
+4. Impostare **Modalità di provisioning** su **Automatico**. 
 ![provisioning](./media/active-directory-saas-salesforce-provisioning-tutorial/provisioning.png)
 
-5. In hello **credenziali di amministratore** sezione, fornire hello le impostazioni di configurazione seguente:
+5. Nella sezione **Credenziali di amministratore** specificare le impostazioni di configurazione seguenti:
    
-    a. In hello **nome utente amministratore** digitare un nome che è hello account Salesforce **amministratore di sistema** profilo in Salesforce.com assegnato.
+    a. Nella casella di testo **Nome utente amministratore** digitare un nome account di Salesforce con il profilo **Amministratore di sistema** assegnato in Salesforce.com.
    
-    b. In hello **Password amministratore** casella di testo, digitare la password hello per questo account.
+    b. Nella casella di testo **Password amministratore** digitare la password per questo account.
 
-6. tooget il token di sicurezza di Salesforce, aprire una nuova scheda e accedere a hello stesso account di amministratore di Salesforce. Fare clic sul nome, hello angolo superiore destro della pagina hello e quindi fare clic su **impostazioni personali**.
+6. Per ottenere il token di sicurezza di Salesforce, aprire una nuova scheda e accedere allo stesso account di amministratore di Salesforce. Nell'angolo superiore destro della pagina fare clic sul proprio nome e quindi su **Impostazioni personali**.
 
      ![Enable automatic user provisioning](./media/active-directory-saas-salesforce-provisioning-tutorial/sf-my-settings.png "Enable automatic user provisioning")
-7. Nel riquadro di spostamento a sinistra di hello, fare clic su **personale** tooexpand hello sezione correlata e quindi fare clic su **Reimposta Token di sicurezza personale**.
+7. Nel pannello di navigazione sinistro fare clic su **Personal** (Personale) per espandere la sezione corrispondente, quindi fare clic su **Reset My Security Token** (Reimposta token di sicurezza personale).
   
     ![Enable automatic user provisioning](./media/active-directory-saas-salesforce-provisioning-tutorial/sf-personal-reset.png "Enable automatic user provisioning")
-8. In hello **Reimposta Token di sicurezza personale** pagina, fare clic su **Reimposta Token di sicurezza** pulsante.
+8. Nella pagina **Reset My Security Token** (Reimposta token di sicurezza personale) fare clic sul pulsante **Reset Security Token** (Reimposta token di sicurezza).
 
     ![Enable automatic user provisioning](./media/active-directory-saas-salesforce-provisioning-tutorial/sf-reset-token.png "Enable automatic user provisioning")
-9. Controllare hello posta in arrivo associata all'account di amministratore. Cercare un messaggio di posta elettronica da Salesforce.com che contiene il nuovo token di sicurezza hello.
-10. Hello tooyour di token, vedere la finestra di Azure AD copiare e incollare il codice in hello **Socket Token** campo.
+9. Controllare la casella di posta elettronica associata a questo account di amministratore. Cercare un messaggio di posta elettronica da Salesforce.com contenente il nuovo token di sicurezza.
+10. Copiare il token, passare alla finestra di Azure AD e incollarlo nel campo **Socket Token**.
 
-11. Nel portale di Azure hello, fare clic su **Test connessione** tooensure Azure AD può connettersi tooyour Salesforce app.
+11. Nel portale di Azure fare clic su **Test connessione** per verificare che Azure AD possa connettersi all'app Salesforce.
 
-12. In hello **notifica tramite posta elettronica** immettere l'indirizzo di posta elettronica hello di una persona o il gruppo che deve ricevere le notifiche degli errori di provisioning e casella di controllo hello riportato di seguito.
+12. Nel campo **Messaggio di posta elettronica di notifica** immettere l'indirizzo di posta elettronica di una persona o un gruppo che riceverà le notifiche di errore relative al provisioning e selezionare la casella di controllo qui di seguito.
 
 13. Fare clic su **Salva**.  
     
-14.  Nella sezione mapping hello, selezionare **tooSalesforce sincronizzare Active Directory gli utenti di Azure.**
+14.  Nella sezione Mapping selezionare **Synchronize Azure Active Directory Users to Salesforce** (Sincronizza utenti di Azure Active Directory in Salesforce).
 
-15. In hello **mapping degli attributi** sezione, esaminare gli attributi utente hello che vengono sincronizzati da tooSalesforce di Azure AD. Si noti che gli attributi selezionati come hello **corrispondenza** proprietà sono utilizzate toomatch hello account utente in Salesforce per operazioni di aggiornamento. Selezionare hello Salva pulsante toocommit tutte le modifiche.
+15. Nella sezione **Mapping degli attributi** esaminare gli attributi utente che vengono sincronizzati da Azure AD a Salesforce. Notar e che gli attributi selezionati come proprietà **corrispondenti** vengono usati per trovare le corrispondenze con gli account utente in Salesforce per le operazioni di aggiornamento. Selezionare il pulsante Salva per eseguire il commit delle modifiche.
 
-16. tooenable hello servizio provisioning di Azure AD per Salesforce, hello modifica **lo stato di Provisioning** troppo**su** nella sezione Impostazioni hello
+16. Per abilitare il servizio di provisioning di Azure AD per Salesforce, impostare **Stato del provisioning** su **Attivato** nella sezione Impostazioni
 
 17. Fare clic su **Salva**.
 
-Verrà avviata la sincronizzazione iniziale di hello di eventuali utenti o gruppi assegnati tooSalesforce in hello gli utenti e gruppi. Si noti che la sincronizzazione iniziale hello accetta più tooperform di sincronizzazioni successive, che si verificano ogni 20 minuti circa, purché hello servizio è in esecuzione. È possibile utilizzare hello **i dettagli della sincronizzazione** sezione toomonitor lo stato di avanzamento e seguire i collegamenti tooprovisioning attività i report, che descrivono tutte le azioni eseguite da hello provisioning del servizio nella tua app di Salesforce.
+Viene avviata la sincronizzazione iniziale di tutti gli utenti e/o i gruppi assegnati a Salesforce nella sezione Utenti e gruppi. Notare che la sincronizzazione iniziale richiede più tempo delle sincronizzazioni successive, che saranno eseguite circa ogni 20 minuti per tutto il tempo che il servizio è in esecuzione. È possibile usare la sezione **Dettagli sincronizzazione** per monitorare lo stato di avanzamento e selezionare i collegamenti ai report delle attività di provisioning, che descrivono tutte le azioni eseguite dal servizio di provisioning sull'app Salesforce.
 
-È ora possibile creare un account di test. Attendere che i minuti too20 tooverify che hello account è stato sincronizzato tooSalesforce.
+È ora possibile creare un account di test. Attendere 20 minuti per verificare che l'account sia stato sincronizzato con Salesforce.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 

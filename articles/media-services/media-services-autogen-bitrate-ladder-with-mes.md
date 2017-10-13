@@ -1,6 +1,6 @@
 ---
-title: "tooauto Azure Media Encoder Standard aaaUse-generare una scala di velocità in bit | Documenti Microsoft"
-description: "Questo argomento viene illustrato come toouse Media codificatore Standard (MES) tooauto-generare una scala di velocità in bit in base alla risoluzione di input hello e alla velocità in bit. velocità in bit e la risoluzione di input hello mai essere superati. Ad esempio, se l'input hello è 720p 3 Mbps, l'output verrà rimangono nella migliore delle ipotesi 720p e inizierà a velocità inferiore a 3 Mbps."
+title: Usare Azure Media Encoder Standard per generare automaticamente un bitrate ladder | Microsoft Docs
+description: "In questo argomento viene illustrato come usare Media Encoder Standard (MES) per generare automaticamente un bitrate ladder in base alla risoluzione di input e alla velocità in bit. La risoluzione di input e la velocità in bit non vengono mai superate. Ad esempio, se l'input è 720p a 3 Mbps, l'output resterà al massimo a 720p e inizierà a una velocità inferiore a 3 Mbps."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,40 +14,40 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: 5437f54ac28c42ddd4f9d1986549d6da6261c5da
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b5616aa9f8b15ab576d914fbae89a56f64c27f4a
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-#  <a name="use-azure-media-encoder-standard-tooauto-generate-a-bitrate-ladder"></a>Usare Azure Media Encoder Standard tooauto-generare una scala di velocità in bit
+#  <a name="use-azure-media-encoder-standard-to-auto-generate-a-bitrate-ladder"></a>Usare Azure Media Encoder Standard per generare automaticamente un bitrate ladder
 
 ## <a name="overview"></a>Panoramica
 
-Questo argomento viene illustrato come toouse Media codificatore Standard (MES) tooauto-generare una scala di velocità in bit (coppie di risoluzione a velocità in bit) in base alla risoluzione di input hello e alla velocità in bit. Hello predefinito generato automaticamente non supererà mai velocità in bit e la risoluzione di hello di input. Ad esempio, se l'input hello è 720p 3 Mbps, l'output verrà rimangono nella migliore delle ipotesi 720p e inizierà a velocità inferiore a 3 Mbps.
+In questo argomento viene illustrato come usare Media Encoder Standard (MES) per generare automaticamente un bitrate ladder (coppia risoluzione-velocità in bit) in base alla risoluzione di input e alla velocità in bit. Il set di impostazioni generate automaticamente non supererà mai la risoluzione di input e la velocità in bit. Ad esempio, se l'input è 720p a 3 Mbps, l'output resterà al massimo a 720p e inizierà a una velocità inferiore a 3 Mbps.
 
 ### <a name="encoding-for-streaming-only"></a>Codifica solo per lo streaming
 
-Se si tooencode l'origine video solo per i flussi, quindi si è necessario utilizzare "Streaming adattivo" hello predefinito durante la creazione di un'attività di codifica. Quando si utilizza hello **il flusso adattivo** codificatore MES hello verrà predefinito, in modo intelligente chiudere una scala di velocità in bit. Tuttavia, non sarà in grado di toocontrol hello codifica i costi, poiché il servizio di hello determina quanti livelli toouse e la risoluzione. È possibile visualizzare esempi dei livelli di output prodotti da MES in seguito alla codifica con hello **il flusso adattivo** predefinito alla fine di hello di questo argomento. Hello output Asset conterrà i file MP4 in audio e video non sono interlacciati.
+Se si intende codificare il video di origine solo per lo streaming, è necessario usare il set di impostazioni "Flusso adattivo" quando si crea un'attività di codifica. Quando si usa il set di impostazioni **Flusso adattivo** il codificatore MES userà in modo intelligente un bitrate ladder. Tuttavia, non sarà possibile controllare i costi di codifica, poiché il servizio determina il numero di livelli da usare e la risoluzione. È possibile vedere esempi dei livelli di output prodotti da MES in seguito alla codifica con il set di impostazioni **Flusso adattivo** alla fine di questo argomento. L'asset di output conterrà i file MP4 in cui audio e video non sono di tipo Interleaved.
 
 ### <a name="encoding-for-streaming-and-progressive-download"></a>Codifica per streaming e download progressivo
 
-Se si tooencode del video di origine per i flussi e i file MP4 tooproduce per il download progressivo, quindi si è necessario utilizzare "Contenuto adattivo più velocità in bit MP4" hello predefinito durante la creazione di un'attività di codifica. Quando si utilizza hello **contenuto file MP4 a velocità in bit adattiva più** preimpostato, codificatore MES hello applicherà hello stessa logica codifica, come illustrato in precedenza, ma ora asset di output di hello conterrà MP4 di file audio e video sono interleave. È possibile utilizzare uno di questi file MP4 (ad esempio, hello versione più recente a velocità in bit) come un file di download progressivo.
+Se si intende codificare un video di origine per lo streaming e per produrre file MP4 per il download progressivo, è necessario usare il set di impostazioni "Content Adaptive Multiple Bitrate MP4" durante la creazione di un'attività di codifica. Quando si usa il set di impostazioni **Content Adaptive Multiple Bitrate MP4**, il codificatore MES applicherà la stessa logica di codifica illustrata in precedenza, ma ora l'asset di output conterrà file MP4 in cui audio e video sono di tipo Interleaved. È possibile usare uno di questi file MP4 (ad esempio la versione con bitrate più elevato) come file di download progressivo.
 
 ## <a id="encoding_with_dotnet"></a>Codifica con l’SDK .NET dei servizi multimediali
 
-esempio di codice seguente Hello utilizza hello tooperform Media Services .NET SDK seguenti attività:
+Il seguente codice usa l'SDK .NET di Servizi multimediali per eseguire le seguenti attività: 
 
 - Creare un processo di codifica.
-- Ottiene un codificatore Media Encoder Standard toohello di riferimento.
-- Aggiungere un processo di codifica attività toohello e specificare hello toouse **il flusso adattivo** predefinito. 
-- Creare un asset di output che conterrà l'asset codificato hello.
-- Aggiungere un avanzamento del processo hello toocheck gestore dell'evento.
-- Inviare il processo di hello.
+- Ottenere un riferimento al codificatore Media Encoder Standard.
+- Aggiungere un'attività di codifica al processo e specificare l'uso del set di impostazioni **Flusso adattivo**. 
+- Creare un asset di output che conterrà l'asset codificato.
+- Aggiungere un gestore eventi per controllare l'avanzamento del processo.
+- Inviare il processo.
 
 #### <a name="create-and-configure-a-visual-studio-project"></a>Creare e configurare un progetto di Visual Studio
 
-Configurare l'ambiente di sviluppo e di popolare il file app. config hello con informazioni di connessione, come descritto in [lo sviluppo di servizi multimediali con .NET](media-services-dotnet-how-to-use.md). 
+Configurare l'ambiente di sviluppo e popolare il file app.config con le informazioni di connessione, come descritto in [Sviluppo di applicazioni di Servizi multimediali con .NET](media-services-dotnet-how-to-use.md). 
 
 #### <a name="example"></a>Esempio
 
@@ -61,7 +61,7 @@ Configurare l'ambiente di sviluppo e di popolare il file app. config hello con i
     {
         class Program
         {
-        // Read values from hello App.config file.
+        // Read values from the App.config file.
         private static readonly string _AADTenantDomain =
         ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -80,7 +80,7 @@ Configurare l'ambiente di sviluppo e di popolare il file app. config hello con i
             // Get an uploaded asset.
             var asset = _context.Assets.FirstOrDefault();
 
-            // Encode and generate hello output using hello "Adaptive Streaming" preset.
+            // Encode and generate the output using the "Adaptive Streaming" preset.
             EncodeToAdaptiveBitrateMP4Set(asset);
 
             Console.ReadLine();
@@ -91,8 +91,8 @@ Configurare l'ambiente di sviluppo e di popolare il file app. config hello con i
             // Declare a new job.
             IJob job = _context.Jobs.Create("Media Encoder Standard Job");
 
-            // Get a media processor reference, and pass tooit hello name of hello 
-            // processor toouse for hello specific task.
+            // Get a media processor reference, and pass to it the name of the 
+            // processor to use for the specific task.
             IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
 
             // Create a task
@@ -101,11 +101,11 @@ Configurare l'ambiente di sviluppo e di popolare il file app. config hello con i
             "Adaptive Streaming",
             TaskOptions.None);
 
-            // Specify hello input asset toobe encoded.
+            // Specify the input asset to be encoded.
             task.InputAssets.Add(asset);
-            // Add an output asset toocontain hello results of hello job. 
+            // Add an output asset to contain the results of the job. 
             // This output is specified as AssetCreationOptions.None, which 
-            // means hello output asset is not encrypted. 
+            // means the output asset is not encrypted. 
             task.OutputAssets.AddNew("Output asset",
             AssetCreationOptions.None);
 
@@ -159,7 +159,7 @@ Configurare l'ambiente di sviluppo e di popolare il file app. config hello con i
 
 ## <a id="output"></a>Output
 
-Questa sezione vengono illustrate tre esempi di livelli di output prodotti da MES in seguito alla codifica con hello **il flusso adattivo** predefinito. 
+Questa sezione mostra tre esempi dei livelli di output prodotti da MES in seguito alla codifica con il set di impostazioni **Flusso adattivo**. 
 
 ### <a name="example-1"></a>Esempio 1
 L'origine con altezza "1080" e una frequenza frame "29.970" produce 6 livelli video:

@@ -1,6 +1,6 @@
 ---
-title: aaaAdd un firewall generazione successivo in Centro sicurezza di Azure | Documenti Microsoft
-description: Questo documento viene illustrato come tooimplement hello indicazioni Centro sicurezza di Azure * * aggiungere una successiva generazione Firewall * * e * * traffico Route tramite NGFW solo * *.
+title: Aggiungere un firewall di nuova generazione nel Centro sicurezza di Azure | Microsoft Docs
+description: Questo argomento illustra come implementare le raccomandazioni **Aggiungi un firewall di nuova generazione** e **Route traffice through NGFW only** (Indirizza il traffico solo tramite il firewall di nuova generazione) del Centro sicurezza di Azure.
 services: security-center
 documentationcenter: na
 author: TerryLanfear
@@ -14,59 +14,59 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/02/2017
 ms.author: terrylan
-ms.openlocfilehash: 9a80f12571ba08eadf3361728c6321388c863235
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 30589d0a943517c03394a3aae7c03c8094e78c1f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="add-a-next-generation-firewall-in-azure-security-center"></a>Aggiungere un firewall di nuova generazione in Centro sicurezza di Azure
-Centro sicurezza di Azure potrebbe è consigliabile aggiungere un firewall generazione successivo (NGFW) da un tooincrease partner Microsoft i meccanismi di protezione. Questo documento viene illustrato un esempio di come toodo questo.
+È possibile che il Centro sicurezza di Azure consigli di aggiungere un firewall di nuova generazione di un partner Microsoft per aumentare le impostazioni di sicurezza. In questo documento è riportato un esempio di come eseguire questa operazione.
 
 > [!NOTE]
-> Questo documento introduce servizio hello utilizzando un esempio di distribuzione.  Questa non è una guida dettagliata.
+> Il documento introduce il servizio usando una distribuzione di esempio.  Questa non è una guida dettagliata.
 >
 >
 
-## <a name="implement-hello-recommendation"></a>Implementare la raccomandazione hello
-1. In hello **indicazioni** pannello seleziona **aggiunge un Firewall generazione successiva**.
+## <a name="implement-the-recommendation"></a>Implementare la raccomandazione
+1. Nel pannello **Raccomandazioni** selezionare **Aggiungi un firewall di nuova generazione**.
    ![Aggiungi un firewall di nuova generazione][1]
-2. In hello **aggiunge un Firewall generazione successiva** pannello, selezionare un endpoint.
+2. Nel pannello **Aggiungi un firewall di nuova generazione** selezionare un endpoint.
    ![Selezionare un endpoint][2]
-3. Viene visualizzato un secondo pannello **Aggiungi un firewall di nuova generazione**. È possibile scegliere toouse una soluzione esistente se è disponibile oppure è possibile crearne uno nuovo. In questo esempio non sono disponibili soluzioni esistenti ed è necessario creare un firewall di nuova generazione.
+3. Viene visualizzato un secondo pannello **Aggiungi un firewall di nuova generazione**. È possibile scegliere di usare una soluzione esistente eventualmente disponibile o di crearne una nuova. In questo esempio non sono disponibili soluzioni esistenti ed è necessario creare un firewall di nuova generazione.
    ![Creare un firewall di nuova generazione][3]
-4. toocreate un NGFW, selezionare una soluzione hello elenco dei partner integrato. In questo esempio si selezionerà **Check Point**.
+4. Per creare un firewall di nuova generazione, selezionare una soluzione dall'elenco di partner integrati. In questo esempio si selezionerà **Check Point**.
    ![Selezionare un firewall di nuova generazione][4]
-5. Hello **Check Point** pannello apre fornire informazioni sulla soluzione partner hello. Selezionare **crea** nel pannello informazioni hello.
+5. Viene visualizzato il pannello **Check Point** , dove sono disponibili informazioni sulla soluzione del partner. Selezionare **Crea** nel pannello informativo.
    ![Pannello di informazioni sul firewall][5]
-6. Hello **crea macchina virtuale** apre blade. Immettere le informazioni necessarie toospin rapidamente una macchina virtuale (VM) che esegue hello NGFW. Seguire i passaggi di hello e fornire informazioni NGFW hello necessarie. Selezionare OK tooapply.
-   ![Creare una macchina virtuale toorun NGFW][6]
+6. Viene visualizzato il pannello **Crea macchina virtuale**. Qui è possibile immettere le informazioni necessarie per creare una macchina virtuale (VM) che esegua il firewall di nuova generazione. Seguire i passaggi e fornire le informazioni necessarie sul firewall di nuova generazione. Selezionare OK per applicare.
+   ![Creare la macchina virtuale per eseguire il firewall di nuova generazione][6]
 
 ## <a name="route-traffic-through-ngfw-only"></a>Route traffic through NGFW only (Indirizza il traffico solo tramite il firewall di nuova generazione)
-Restituire toohello **indicazioni** blade. Dopo l'aggiunta di un firewall di nuova generazione tramite il Centro sicurezza, è stata generata la nuova voce **Indirizza il traffico solo tramite il firewall di nuova generazione**. Questa raccomandazione viene creata solo se il firewall di nuova generazione è installato tramite il Centro sicurezza PC. Se si dispone di endpoint con connessione Internet, il Centro sicurezza PC consiglia di configurare regole di gruppo di sicurezza di rete che impongono il traffico in entrata tooyour VM tramite il NGFW.
+Tornare al pannello **Raccomandazioni** . Dopo l'aggiunta di un firewall di nuova generazione tramite il Centro sicurezza, è stata generata la nuova voce **Indirizza il traffico solo tramite il firewall di nuova generazione**. Questa raccomandazione viene creata solo se il firewall di nuova generazione è installato tramite il Centro sicurezza PC. Se si dispone di endpoint con connessione Internet, il Centro sicurezza consiglia di configurare le regole dei gruppi di sicurezza di rete che indirizzano il traffico in ingresso alla macchina virtuale tramite il firewall di nuova generazione.
 
-1. In hello **pannello indicazioni**selezionare **indirizzare il traffico attraverso NGFW solo**.
+1. Nel pannello **Raccomandazioni** selezionare **Indirizza il traffico solo tramite il firewall di nuova generazione**.
    ![Indirizza il traffico solo tramite il firewall di nuova generazione][7]
-2. Verrà aperto il pannello hello **indirizzare il traffico attraverso NGFW solo**, in cui sono elencate le macchine virtuali che è possibile indirizzare il traffico. Selezionare una macchina virtuale dall'elenco di hello.
+2. Verrà visualizzato il pannello **Indirizza il traffico solo tramite il firewall di nuova generazione** in cui sono elencate le macchine virtuali su cui è possibile instradare il traffico. Selezionare una VM dall'elenco.
    ![Selezionare una macchina virtuale][8]
-3. Un pannello per hello selezionata verrà visualizzata la macchina virtuale, la visualizzazione delle regole in entrata correlate. Una descrizione fornisce altre informazioni sui possibili passaggi successivi. Selezionare **modificare le regole in entrata** tooproceed con la modifica di una regola in ingresso. Hello aspettativa è che **origine** non è stato impostato troppo**qualsiasi** per gli endpoint con connessione Internet hello collegato con hello NGFW. vedere toolearn più sulle proprietà hello della regola in ingresso di hello [regole NSG](../virtual-network/virtual-networks-nsg.md#nsg-rules).
-   ![Configurare l'accesso toolimit regole][9]
-   ![modifica la regola in ingresso][10]
+3. Viene visualizzato un pannello per la VM selezionata con le regole in ingresso correlate. Una descrizione fornisce altre informazioni sui possibili passaggi successivi. Selezionare **Modifica le regole in ingresso** per procedere con la modifica di una regola in ingresso. È possibile che **Origine** non sia impostato su **Qualsiasi** per gli endpoint con connessione Internet collegati al firewall di nuova generazione. Per altre informazioni sulle proprietà della regola in ingresso, vedere [Regole NSG](../virtual-network/virtual-networks-nsg.md#nsg-rules).
+   ![Configurare le regole per limitare l'accesso][9]
+    ![Modificare la regola in ingresso][10]
 
 ## <a name="see-also"></a>Vedere anche
-Questo documento ha illustrato come tooimplement hello raccomandazione Centro sicurezza PC "Aggiungi un Firewall generazione successivo." toolearn ulteriori informazioni su NGFWs e hello soluzione partner punto di controllo, vedere hello informazioni seguenti:
+Questo documento illustra come implementare la raccomandazione "Aggiungi un firewall di nuova generazione" del Centro sicurezza. Per ulteriori informazioni sui firewall di nuova generazione e la soluzione del partner Check Point, vedere gli argomenti seguenti:
 
 * [Firewall di nuova generazione](https://en.wikipedia.org/wiki/Next-Generation_Firewall)
 * [Check Point vSEC](https://azure.microsoft.com/marketplace/partners/checkpoint/check-point-r77-10/)
 
-toolearn ulteriori informazioni su Centro di sicurezza, vedere l'esempio hello:
+Per altre informazioni sul Centro sicurezza, vedere gli argomenti seguenti:
 
-* [L'impostazione di criteri di sicurezza nel Centro protezione Azure](security-center-policies.md) -informazioni su come tooconfigure criteri di sicurezza.
+* [Impostazione dei criteri di sicurezza nel Centro sicurezza di Azure](security-center-policies.md) : informazioni su come configurare i criteri di sicurezza.
 * [Gestione delle raccomandazioni di sicurezza nel Centro sicurezza di Azure](security-center-recommendations.md) : informazioni sul modo in cui le raccomandazioni semplificano la protezione delle risorse di Azure.
-* [Il monitoraggio dello stato di sicurezza nel Centro protezione Azure](security-center-monitoring.md) -informazioni su come toomonitor hello integrità delle risorse di Azure.
-* [La gestione e risponde toosecurity gli avvisi in Centro sicurezza di Azure](security-center-managing-and-responding-alerts.md) -informazioni su come avvisi toosecurity toomanage e rispondere.
-* [Monitoraggio di soluzioni dei partner con Centro sicurezza di Azure](security-center-partner-solutions.md) -informazioni su come toomonitor hello lo stato di integrità delle soluzioni di partner.
-* [Domande frequenti su Centro sicurezza di Azure](security-center-faq.md) -domande frequenti sull'utilizzo di hello servizio di ricerca.
+* [Monitoraggio dell'integrità della sicurezza nel Centro sicurezza di Azure](security-center-monitoring.md) : informazioni su come monitorare l'integrità delle risorse di Azure.
+* [Gestione e risposta agli avvisi di sicurezza nel Centro sicurezza di Azure](security-center-managing-and-responding-alerts.md) : informazioni su come gestire e rispondere agli avvisi di sicurezza.
+* [Monitoraggio delle soluzioni dei partner con il Centro sicurezza di Azure](security-center-partner-solutions.md) : informazioni su come monitorare lo stato integrità delle soluzioni dei partner.
+* [Domande frequenti sul Centro sicurezza di Azure](security-center-faq.md) : domande frequenti sull'uso del servizio.
 * [Blog sulla sicurezza di Azure](http://blogs.msdn.com/b/azuresecurity/) : post di blog sulla sicurezza e sulla conformità di Azure.
 
 <!--Image references-->

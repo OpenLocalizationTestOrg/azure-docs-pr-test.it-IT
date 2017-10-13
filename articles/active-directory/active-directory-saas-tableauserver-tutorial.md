@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con Tableau Server | Microsoft Docs'
-description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e Tableau Server.
+description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e Tableau Server.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,230 +13,230 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/18/2017
 ms.author: jeedes
-ms.openlocfilehash: feb2087bd6ae6ddcb920901e6719688fc95ae287
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6b35609d88fbbf649e15863901d521886db2a4d6
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-tableau-server"></a>Esercitazione: Integrazione di Azure Active Directory con Tableau Server
 
-In questa esercitazione, è illustrato come toointegrate Tableau Server con Azure Active Directory (Azure AD).
+Questa esercitazione descrive come integrare Tableau Server con Azure Active Directory (Azure AD).
 
-Integrazione di Server Tableau con Azure AD fornisce hello seguenti vantaggi:
+L'integrazione di Tableau Server con Azure AD offre i vantaggi seguenti:
 
-- È possibile controllare in Azure AD che ha accesso tooTableau Server
-- È possibile abilitare l'utenti tooautomatically get connesso tooTableau Server (Single Sign-On) con i propri account Azure AD
-- È possibile gestire gli account in un'unica posizione centrale - hello portale di Azure
+- È possibile controllare in Azure AD chi può accedere a Tableau Server
+- È possibile abilitare gli utenti per l'accesso automatico a Tableau Server (Single Sign-On) con i propri account Azure AD
+- È possibile gestire gli account in un'unica posizione centrale: il portale di Azure.
 
-Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-integrazione di Azure AD con Server Tableau tooconfigure, è necessario hello seguenti elementi:
+Per configurare l'integrazione di Azure AD con Tableau Server, sono necessari gli elementi seguenti:
 
 - Sottoscrizione di Azure AD.
 - Sottoscrizione di Tableau Server abilitata per l'accesso Single Sign-On
 
 > [!NOTE]
-> hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.
+> Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.
 
-passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:
+A questo scopo, è consigliabile seguire le indicazioni seguenti:
 
 - Non usare l'ambiente di produzione a meno che non sia necessario.
 - Se non si dispone di un ambiente di prova di Azure AD, è possibile ottenere una versione di valutazione di un mese [qui](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Descrizione dello scenario
-In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. scenario di Hello descritto in questa esercitazione è composto da due componenti principali:
+In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:
 
-1. Aggiunta di Server Tableau dalla raccolta hello
+1. Aggiunta di Tableau Server dalla raccolta
 2. Configurazione e test dell'accesso Single Sign-On di Azure AD
 
-## <a name="adding-tableau-server-from-hello-gallery"></a>Aggiunta di Server Tableau dalla raccolta hello
-integrazione hello tooconfigure di Tableau Server in Azure AD, è necessario tooadd Tableau Server dall'elenco di tooyour hello raccolta di App SaaS gestite.
+## <a name="adding-tableau-server-from-the-gallery"></a>Aggiunta di Tableau Server dalla raccolta
+Per configurare l'integrazione di Tableau Server in Azure AD, è necessario aggiungere Tableau Server dalla raccolta al proprio elenco di app SaaS gestite.
 
-**tooadd Tableau Server dalla raccolta di hello, eseguire hello alla procedura seguente:**
+**Per aggiungere Tableau Server dalla raccolta, seguire questa procedura:**
 
-1. In hello  **[portale di Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona. 
+1. Nel **[portale di Azure](https://portal.azure.com)** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro. 
 
     ![Active Directory][1]
 
-2. Passare troppo**applicazioni aziendali**. Quindi andare troppo**tutte le applicazioni**.
+2. Passare ad **Applicazioni aziendali**. Andare quindi a **Tutte le applicazioni**.
 
     ![Applicazioni][2]
     
-3. tooadd nuova applicazione, fare clic su **nuova applicazione** pulsante nella parte superiore di hello della finestra di dialogo.
+3. Fare clic sul pulsante **Nuova applicazione** nella parte superiore della finestra di dialogo per aggiungere una nuova applicazione.
 
     ![Applicazioni][3]
 
-4. Nella casella di ricerca hello, digitare **Tableau Server**.
+4. Nella casella di ricerca digitare **Tableau Server**.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-tableauserver-tutorial/tutorial_tableauserver_search.png)
 
-5. Nel riquadro dei risultati hello, selezionare **Tableau Server**, quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.
+5. Nel pannello dei risultati selezionare **Tableau Server** e quindi fare clic sul pulsante **Aggiungi** per aggiungere l'applicazione.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-tableauserver-tutorial/tutorial_tableauserver_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configurazione e test dell'accesso Single Sign-On di Azure AD
 In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con Tableau Server usando un utente di test di nome "Britta Simon".
 
-Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello in Server Tableau è tooa utente in Azure AD. In altre parole, una relazione di collegamento tra un utente di Azure AD e l'utente correlato di hello in Server Tableau deve toobe stabilita.
+Per il funzionamento dell'accesso Single Sign-On, Azure AD deve conoscere l'utente controparte di Tableau Server corrispondente a un utente di Azure AD. In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in Tableau Server.
 
-Nel Server Tableau, assegnare il valore di hello di hello **nome utente** in Azure AD come valore hello hello **Username** tooestablish relazione di collegamento hello.
+Per stabilire la relazione di collegamento, in Tableau Server assegnare il valore del **nome utente** in Azure AD come valore di **Username** (Nome utente).
 
-tooconfigure e prova AD Azure single sign-on con Server Tableau, è necessario hello toocomplete seguenti blocchi predefiniti:
+Per configurare e testare l'accesso Single Sign-On di Azure AD con Tableau Server, è necessario completare i blocchi predefiniti seguenti:
 
-1. **[Configurazione di Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.
-2. **[Creazione di un utente prova AD Azure](#creating-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.
-3. **[Creazione di un utente test Tableau Server](#creating-a-tableau-server-test-user)**  -toohave un equivalente di Britta Simon Tableau server che è la rappresentazione toohello collegato Azure AD dell'utente.
-4. **[Assegnazione utente di prova hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.
-5. **[Test di Single Sign-On](#testing-single-sign-on)**  -tooverify hello se funzionamento della configurazione.
+1. **[Configurazione dell'accesso Single Sign-On di Azure AD](#configuring-azure-ad-single-sign-on)** : per abilitare gli utenti all'uso di questa funzionalità.
+2. **[Creazione di un utente test di Azure AD](#creating-an-azure-ad-test-user)** : per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.
+3. **[Creazione di un utente di test di Tableau Server](#creating-a-tableau-server-test-user)**: per avere una controparte di Britta Simon in Tableau Server collegata alla rappresentazione dell'utente in Azure AD.
+4. **[Assegnazione dell'utente test di Azure AD](#assigning-the-azure-ad-test-user)** : per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** : per verificare se la configurazione funziona.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configurazione dell'accesso Single Sign-On di Azure AD
 
-In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure e configurare l'accesso single sign-on nell'applicazione Server Tableau.
+In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di Azure e viene configurato l'accesso Single Sign-On nell'applicazione Tableau Server.
 
-**Azure AD tooconfigure single sign-on con Server Tableau, eseguire hello alla procedura seguente:**
+**Per configurare l'accesso Single Sign-On di Azure AD con Tableau Server, seguire questa procedura:**
 
-1. Nel portale di Azure su hello hello **Tableau Server** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.
+1. Nella pagina di integrazione dell'applicazione **Tableau Server** del portale di Azure fare clic su **Single Sign-On**.
 
     ![Configura accesso Single Sign-On][4]
 
-2. In hello **Single sign-on** finestra di dialogo Seleziona **modalità** come **basato su SAML Sign-on** tooenable single sign-on.
+2. Nella finestra di dialogo **Single Sign-On** selezionare **Accesso basato su SAML** per **Modalità** per abilitare l'accesso Single Sign-On.
  
     ![Configura accesso Single Sign-On](./media/active-directory-saas-tableauserver-tutorial/tutorial_tableauserver_samlbase.png)
 
-3. In hello **Tableau dominio del Server e gli URL** seguire hello alla procedura seguente:
+3. Nella sezione **URL e dominio Tableau Server** seguire questa procedura:
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-tableauserver-tutorial/tutorial_tableauserver_url.png)
 
-    a. In hello **Sign-on URL** casella di testo, digitare un URL utilizzando hello seguente modello:`https://azure.<domain name>.link`
+    a. Nella casella di testo **URL di accesso** digitare l'URL usando il modello seguente: `https://azure.<domain name>.link`.
     
-    b. In hello **identificatore** casella di testo, digitare un URL utilizzando hello seguente modello:`https://azure.<domain name>.link`
+    b. Nella casella di testo **Identificatore** digitare l'URL adottando il modello seguente: `https://azure.<domain name>.link`
 
-    c. In hello **URL di risposta** casella di testo, digitare un URL utilizzando hello seguente modello:`https://azure.<domain name>.link/wg/saml/SSO/index.html`
+    c. Nella casella di testo **URL di risposta** digitare l'URL usando il modello seguente: `https://azure.<domain name>.link/wg/saml/SSO/index.html`
      
     > [!NOTE] 
-    > Hello valori precedenti non sono valori reali. In un secondo momento, aggiornare i valori hello con URL effettivo hello e l'identificatore dalla pagina di configurazione Server Tableau hello. 
+    > I valori precedenti non sono valori reali. Successivamente si aggiorneranno i valori con l'URL e l'identificatore effettivi indicati nella pagina di configurazione di Tableau Server. 
 
-4. Applicazione Server tableau prevede asserzioni SAML hello in un formato specifico. Configurare hello seguendo le attestazioni per questa applicazione. È possibile gestire i valori hello di questi attributi da hello **"Attributi utente"** sezione nella pagina di integrazione dell'applicazione. Hello schermata riportata di seguito viene illustrato un esempio di hello stesso.
+4. L'applicazione Tableau Server si aspetta che le asserzioni SAML abbiano un formato specifico. Configurare le attestazioni seguenti per questa applicazione. È possibile gestire i valori di questi attributi dalla sezione **Attributi utente** nella pagina di integrazione dell'applicazione. Lo screenshot seguente illustra un esempio relativo a questa operazione.
     
     ![Configura accesso Single Sign-On](./media/active-directory-saas-tableauserver-tutorial/3.png)
     
-5. In hello **gli attributi utente** sezione hello **Single sign-on** finestra di dialogo, configurare attributi token SAML, come illustrato nell'immagine di hello precedente ed eseguire hello alla procedura seguente:
+5. Nella sezione **Attributi utente** della finestra di dialogo **Single Sign-On** configurare l'attributo del token SAML come indicato nell'immagine precedente e seguire questa procedura:
     
     | Nome attributo | Valore attributo |
     | ---------------| --------------- |    
     | username | *user.displayname* |
 
-    a. Fare clic su **Aggiungi attributo** tooopen hello **Aggiungi attributo** finestra di dialogo.
+    a. Fare clic su **Aggiungi attributo** per aprire la finestra di dialogo **Aggiungi attributo**.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-tableauserver-tutorial/tutorial_officespace_04.png)
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-tableauserver-tutorial/tutorial_officespace_05.png)
     
-    b. In hello **nome** casella di testo, nome dell'attributo di tipo hello mostrato per la riga.
+    b. Nella casella di testo **Nome** digitare il nome dell'attributo indicato per la riga.
     
-    c. Da hello **valore** elencare, valore dell'attributo di tipo hello mostrato per la riga.
+    c. Nell'elenco **Valore** digitare il valore dell'attributo indicato per la riga.
     
     d. Fare clic su **Ok**
 
 
-6. In hello **certificato di firma SAML** fare clic su **Metadata XML** e quindi salvare il file di metadati hello nel computer in uso.
+6. Nella sezione **Certificato di firma SAML** fare clic su **XML di metadati** e quindi salvare il file dei metadati nel computer.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-tableauserver-tutorial/tutorial_tableauserver_certificate.png) 
 
 7. Fare clic sul pulsante **Salva** .
 
-    ![Configurare l'accesso Single Sign-On](./media/active-directory-saas-tableauserver-tutorial/tutorial_general_400.png)
+    ![Configura accesso Single Sign-On](./media/active-directory-saas-tableauserver-tutorial/tutorial_general_400.png)
 <CS>
-8. tooget SSO configurato per l'applicazione, è necessario tooyour toosign-nel tenant di Tableau Server come amministratore.
+8. Per configurare l'accesso SSO sull'applicazione, è necessario accedere al tenant di Tableau Server come amministratore.
    
-   a. In configurazione Server Tableau hello, fare clic su hello **SAML** scheda.
+   a. Nella finestra Tableau Server Configuration (Configurazione Tableau Server) fare clic sulla scheda **SAML** .
   
     ![Configura accesso Single Sign-On](./media/active-directory-saas-tableauserver-tutorial/tutorial_tableauserver_001.png) 
   
-   b. Selezionare una casella di controllo hello **Use SAML single sign-on**.
+   b. Selezionare la casella di controllo **Use SAML for single sign-on (Usa SAML per Single Sign-On)**.
    
-   c. URL restituito tableau Server: URL del Server Tableau gli utenti accedono, ad esempio http://tableau_server hello. Non è consigliabile utilizzare http://localhost. Gli URL con barra finale (ad esempio http://tableau_server/) non sono supportati. Copia **URL restituito Server Tableau** e incollarlo tooAzure AD **URL di accesso** nella casella di testo **Tableau dominio del Server e gli URL** sezione.
+   c. Tableau Server return URL (URL restituito di Tableau Server): l'URL a cui accedono gli utenti di Tableau Server, ad esempio http://tableau_server. Non è consigliabile utilizzare http://localhost. Gli URL con barra finale (ad esempio http://tableau_server/) non sono supportati. Copiare l'**URL restituito di Tableau Server** e incollarlo nella casella di testo **URL di accesso** in Azure AD nella sezione **URL e dominio Tableau Server**.
    
-   d. ID entità SAML: hello entity ID che identifica in modo univoco il toohello di installazione Server Tableau IdP. È possibile immettere l'URL del Server Tableau nuovamente in questo caso, se si desidera, ma non è toobe l'URL del Server Tableau. Copia **ID entità SAML** e incollarlo tooAzure AD **identificatore** nella casella di testo **Tableau dominio del Server e gli URL** sezione.
+   d. SAML entity ID (ID entità SAML): l'ID entità identifica in modo univoco l'installazione di Tableau Server nel provider di identità. Se si desidera, qui è possibile immettere di nuovo l'URL di Tableau Server, ma non deve essere l'URL di Tableau Server in uso. Copiare l'**ID di entità SAML** e incollarlo nella casella di testo **Identificatore** in Azure AD nella sezione **URL e dominio Tableau Server**.
      
-   e. Fare clic su hello **Esporta File di metadati** e aprirlo in un'applicazione hello testo dell'editor. Individuare l'URL di servizio Consumer di asserzione con Http Post e indice 0 e copia hello URL. Ora incollarlo tooAzure AD **URL di risposta** nella casella di testo **Tableau dominio del Server e gli URL** sezione.
+   e. Fare clic su **Export Metadata File** (Esporta file di metadati) e aprire il file nell'applicazione editor di testo. Cercare l'URL del servizio consumer di asserzione con Http Post e Indice 0 e copiarlo. Incollarlo quindi nella casella di testo **URL di risposta** di Azure AD nella sezione **URL e dominio Tableau Server**.
    
-   f. Individuare il file di metadati di federazione scaricato dal portale di Azure e quindi caricarlo in hello **file di metadati del provider di identità SAML**.
+   f. Individuare il file di metadati della federazione scaricato dal portale di Azure e quindi caricarlo in **SAML Idp metadata file**(File metadati IdP SAML).
    
-   g. Fare clic su hello **OK** nella pagina Configurazione Server Tableau hello.
+   g. Fare clic sul pulsante **OK** nella pagina di configurazione di Tableau Server.
    
     >[!NOTE] 
-    >Cliente tooupload qualsiasi certificato nella configurazione di hello Tableau Server SAML SSO e si verrà ottenere ignorato in hello flusso SSO.
-    >Se si devono consentire la configurazione SAML nel Server Tableau, vedere l'articolo toothis [configurare SAML](http://onlinehelp.tableau.com/current/server/en-us/config_saml.htm).
+    >Il cliente deve caricare eventuali certificati nella configurazione SSO SAML di Tableau Server e il passaggio verrà ignorato nel flusso SSO.
+    >Per assistenza nella configurazione di SAML in Tableau Server, vedere questo articolo: [Configure SAML](http://onlinehelp.tableau.com/current/server/en-us/config_saml.htm) (Configurazione di SAML).
     >
 <CE>
 
 > [!TIP]
-> È ora possibile leggere una versione di queste istruzioni all'interno di hello concisa [portale di Azure](https://portal.azure.com), mentre si stanno impostando app hello!  Dopo l'aggiunta di questa app da hello **Active Directory > applicazioni aziendali** fare semplicemente clic su hello **Single Sign-On** scheda e l'accesso hello incorporato documentazione tramite hello  **Configurazione** sezione nella parte inferiore di hello. È possibile leggere altre informazioni sulla funzionalità di documentazione embedded hello qui: [AD Azure incorporato documentazione]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Un riepilogo delle istruzioni è disponibile all'interno del [portale di Azure](https://portal.azure.com) durante la configurazione dell'app.  Dopo aver aggiunto l'app dalla sezione **Active Directory > Applicazioni aziendali** è sufficiente fare clic sulla scheda **Single Sign-On** e accedere alla documentazione incorporata tramite la sezione **Configurazione** nella parte inferiore. Altre informazioni sulla funzione di documentazione incorporata sono disponibili in [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985) (Documentazione incorporata di Azure AD).
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Creazione di un utente test di Azure AD
-obiettivo di Hello di questa sezione è un utente di test nel portale di Azure chiamato Britta Simon hello toocreate.
+Questa sezione descrive come creare un utente test denominato Britta Simon nel portale di Azure.
 
 ![Creare un utente di Azure AD][100]
 
-**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**
+**Per creare un utente test in Azure AD, eseguire la procedura seguente:**
 
-1. In hello **portale di Azure**via hello riquadro di spostamento a sinistra, fare clic su **Azure Active Directory** icona.
+1. Nel **portale di Azure** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-tableauserver-tutorial/create_aaduser_01.png) 
 
-2. elenco di hello toodisplay di utenti, andare troppo**utenti e gruppi** e fare clic su **tutti gli utenti**.
+2. Passare a **Utenti e gruppi** e fare clic su **Tutti gli utenti** per visualizzare l'elenco di utenti.
     
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-tableauserver-tutorial/create_aaduser_02.png) 
 
-3. hello tooopen **utente** finestra di dialogo, fare clic su **Aggiungi** nella parte superiore di hello della finestra di dialogo hello.
+3. Nella parte superiore della finestra di dialogo fare clic su **Aggiungi** per aprire la finestra di dialogo **Utente**.
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-tableauserver-tutorial/create_aaduser_03.png) 
 
-4. In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:
+4. Nella pagina della finestra di dialogo **Utente** seguire questa procedura:
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-tableauserver-tutorial/create_aaduser_04.png) 
 
-    a. In hello **nome** casella tipo **BrittaSimon**.
+    a. Nella casella di testo **Nome** digitare **BrittaSimon**.
 
-    b. In hello **nome utente** casella di testo, hello tipo **indirizzo di posta elettronica** di BrittaSimon.
+    b. Nella casella di testo **Nome utente** digitare l'**indirizzo di posta elettronica** di BrittaSimon.
 
-    c. Selezionare **Show Password** e annotare il valore di hello di hello **Password**.
+    c. Selezionare **Mostra password** e prendere nota del valore della **Password**.
 
     d. Fare clic su **Crea**.
  
 ### <a name="creating-a-tableau-server-test-user"></a>Creazione di un utente test di Tableau Server
 
-obiettivo di Hello di questa sezione è un utente denominato Britta Simon Tableau server toocreate. È necessario tooprovision tutti gli utenti di hello server Tableau hello. 
+Questa sezione descrive come creare un utente chiamato Britta Simon in Tableau Server. In Tableau Server è necessario eseguire il provisioning di tutti gli utenti. 
 
-Nome utente dell'utente hello deve corrispondere il valore hello che è stato configurato nell'attributo personalizzato di hello Azure AD di **username**. Con hello corretto mapping integrazione hello dovrebbe funzionare [configurazione Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on).
+Il valore username dell'utente deve corrispondere al valore configurato nell'attributo personalizzato **username**in Azure AD. Con un mapping corretto, l'integrazione per la [Configurazione dell'accesso Single Sign-On di Azure AD](#configuring-azure-ad-single-sign-on)dovrebbe funzionare.
 
 >[!NOTE]
->Se è necessario un utente toocreate manualmente, è necessario toocontact messaggio Tableau Server per l'amministratore dell'organizzazione.
+>Se si deve creare manualmente un utente, è necessario contattare l'amministratore di Tableau Server dell'organizzazione.
 > 
 > 
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Assegnazione utente test hello Azure AD
+### <a name="assigning-the-azure-ad-test-user"></a>Assegnazione dell'utente test di Azure AD
 
-In questa sezione per abilitare Britta Simon toouse single sign-on Azure concessione dell'accesso tooTableau Server.
+In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sign-On di Azure concedendole l'accesso a Tableau Server.
 
 ![Assegna utente][200] 
 
-**tooassign Britta Simon tooTableau Server, eseguire hello alla procedura seguente:**
+**Per assegnare Britta Simon a Tableau Server, seguire questa procedura:**
 
-1. Nel portale di Azure hello, aprire la visualizzazione di applicazioni hello, quindi selezionare Visualizza directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.
+1. Nel portale di Azure aprire la visualizzazione delle applicazioni e quindi la visualizzazione delle directory e passare ad **Applicazioni aziendali**, quindi fare clic su **Tutte le applicazioni**.
 
     ![Assegna utente][201] 
 
-2. Nell'elenco di applicazioni hello, selezionare **Tableau Server**.
+2. Nell'elenco delle applicazioni selezionare **Tableau Server**.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-tableauserver-tutorial/tutorial_tableauserver_app.png) 
 
-3. Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.
+3. Scegliere **Utenti e gruppi** dal menu a sinistra.
 
     ![Assegna utente][202] 
 
@@ -244,7 +244,7 @@ In questa sezione per abilitare Britta Simon toouse single sign-on Azure concess
 
     ![Assegna utente][203]
 
-5. In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.
+5. Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco Utenti.
 
 6. Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.
 
@@ -252,14 +252,14 @@ In questa sezione per abilitare Britta Simon toouse single sign-on Azure concess
     
 ### <a name="testing-single-sign-on"></a>Test dell'accesso Single Sign-On
 
-In questa sezione si test configurazione di Azure AD single sign-on utilizzando hello Pannello di accesso.
+In questa sezione viene testata la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.
 
-Quando si fa clic su riquadro Server Tableau hello in hello Pannello di accesso, è necessario ottenere l'applicazione Server Tableau tooyour automaticamente firmato-on.
+Quando si fa clic sul riquadro Tableau Server nel pannello di accesso, viene effettuato automaticamente l'accesso all'applicazione Tableau Server.
 Per altre informazioni sul pannello di accesso, vedere [Introduzione al Pannello di accesso](https://msdn.microsoft.com/library/dn308586). 
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md)
 
 

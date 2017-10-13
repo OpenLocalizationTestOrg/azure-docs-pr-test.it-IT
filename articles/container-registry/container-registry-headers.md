@@ -1,6 +1,6 @@
 ---
-title: repository del Registro di sistema di contenitore aaaAzure | Documenti Microsoft
-description: Il repository del Registro di sistema di Azure contenitore toouse per le immagini Docker
+title: Archivi di registri contenitori di Azure | Documentazione Microsoft
+description: Come usare gli archivi di registri contenitori di Azure per le immagini Docker
 services: container-registry
 documentationcenter: 
 author: cristy
@@ -8,37 +8,37 @@ manager: balans
 editor: dlepow
 ms.service: container-registry
 ms.devlang: na
-ms.topic: how-to-article
+ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/22/2017
 ms.author: cristyg
-ms.openlocfilehash: 06172a63465838a78a607f268da116d8158789ee
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 2090d4c951e2261529bf1b7b361510d5822060a5
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-container-registry-repositories"></a>Archivi di registri contenitori di Azure
 
-I registri contenitori di Azure sono compatibili con una vasta gamma di servizi e agenti di orchestrazione. toomake è più facile tootrack hello origine i servizi e gli agenti da cui viene utilizzato ACR, abbiamo iniziato con campo di intestazione hello Docker nel file Docker.config hello.
+I registri contenitori di Azure sono compatibili con una vasta gamma di servizi e agenti di orchestrazione. Per tenere traccia in modo più semplice dei servizi di origine e degli agenti da cui viene usato il servizio Registro contenitori di Azure, abbiamo iniziato a usare il campo di intestazione Docker nel file Docker.config.
 
 
 
-## <a name="viewing-repositories-in-hello-portal"></a>Visualizzazione di repository in hello portale
+## <a name="viewing-repositories-in-the-portal"></a>Visualizzazione dei repository nel portale
 
-intestazioni ACR Hello seguono il formato di hello:
+Le intestazioni del servizio Registro contenitori di Azure hanno il formato seguente:
 ```
 X-Meta-Source-Client: <cloud>/<service>/<optionalservicename>
 ```
 
 * Cloud: Azure, Azure Stack o altri cloud di Azure per enti pubblici o paesi specifici. Anche se Azure Stack e i cloud per enti pubblici non sono attualmente supportati, questo parametro consente il supporto futuro.
-* Servizio: nome del servizio di hello.
-* Optionalservicename: parametro facoltativo per i servizi con i servizi secondari o toospecify uno SKU (ex: corrispondono App web con Azure/app-servizio/web-App).
+* Service: nome del servizio.
+* Optionalservicename: parametro facoltativo per i servizi con servizi secondari o per specificare un'unità SKU (ad esempio, le app Web corrispondono ad Azure/app-service/web-apps).
 
-Orchestrators e servizi dei partner sono invitati toouse intestazione specifici valori toohelp con i dati di telemetria. Gli utenti possono inoltre modificare il valore di hello passato toohello intestazione se desiderano.
+I partner sono invitati a usare valori di intestazione specifici per i loro servizi e agenti di orchestrazione, in modo da agevolare la raccolta dei dati di telemetria. Gli utenti possono anche modificare il valore passato all'intestazione, se necessario.
 
-di seguito sono valori Hello si vuole creare ACR partner toouse toopopulate hello "X-Meta-origine-Client" campo:
+Di seguito sono indicati i valori che viene richiesto di usare ai partner del servizio Registro contenitori di Azure per il campo "X-Meta-Source-Client":
 
 | Nome servizio              | Intestazione                                |
 | ------------------------- | ------------------------------------- |
@@ -57,4 +57,4 @@ di seguito sono valori Hello si vuole creare ACR partner toouse toopopulate hell
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-[Altre informazioni sui registri e i servizi di hello è supportato e orchestrators](container-registry-intro.md)
+[Altre informazioni sui registri e i servizi e gli agenti di orchestrazione supportati](container-registry-intro.md)

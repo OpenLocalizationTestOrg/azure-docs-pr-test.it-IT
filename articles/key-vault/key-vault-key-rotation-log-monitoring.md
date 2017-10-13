@@ -1,6 +1,6 @@
 ---
-title: aaaSet backup insieme credenziali chiavi Azure con la rotazione della chiave end-to-end e il controllo | Documenti Microsoft
-description: Utilizzare questa procedura-tootoohelp che impostare rotazione delle chiavi e i registri di monitoraggio dell'insieme di credenziali chiave.
+title: Configurare l'insieme di credenziali delle chiavi di Azure con rotazione e controllo delle chiavi end-to-end | Documentazione Microsoft
+description: Usare questa procedura per configurare la rotazione delle chiavi e i log di controllo dell'insieme di credenziali delle chiavi.
 services: key-vault
 documentationcenter: 
 author: swgriffith
@@ -14,39 +14,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/07/2017
 ms.author: jodehavi;stgriffi
-ms.openlocfilehash: e0c393873077e3b91adc9fa7f39128bc1b6abe26
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f98ba1e2da6924476392948a4d18c807d68e39e3
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="set-up-azure-key-vault-with-end-to-end-key-rotation-and-auditing"></a>Configurare l'insieme di credenziali delle chiavi di Azure con rotazione e controllo delle chiavi end-to-end
 ## <a name="introduction"></a>Introduzione
-Dopo la creazione di credenziali delle chiavi, sarà in grado di toostart utilizzando toostore tale insieme di credenziali, le chiavi e segreti. Le applicazioni non è più necessitano toopersist le chiavi o i segreti, ma piuttosto verranno richiesti dall'insieme di credenziali chiave hello in base alle esigenze. Ciò permette tooupdate chiavi e segreti senza influire sul comportamento di hello dell'applicazione, che consente un'ampia gamma di possibilità per la chiave e la gestione di informazioni segrete.
+Dopo aver creato l'insieme di credenziali delle chiavi sarà possibile iniziare a usarlo per archiviare le chiavi e i segreti. Le applicazioni non devono più rendere persistenti le chiavi o i segreti, ma li richiederanno all'insieme di credenziali delle chiavi in base alle esigenze. In questo modo è possibile aggiornare le chiavi e i segreti senza influenzare il comportamento dell'applicazione. Si apre così un ampio ventaglio di possibilità per la gestione di chiavi e segreti.
 
-Questo articolo descrive un esempio di utilizzo insieme credenziali chiavi Azure toostore un segreto, in questo caso una chiave dell'Account di archiviazione Azure che si accede da un'applicazione. Dimostra anche l'implementazione di una rotazione pianificata della chiave dell'account di archiviazione. Infine, esamina una dimostrazione di come toomonitor hello i log di controllo dell'insieme di credenziali chiave e generano avvisi quando vengono effettuate le richieste impreviste.
+Questo articolo illustra un esempio di uso dell'insieme di credenziali delle chiavi di Azure per archiviare un segreto, in questo caso una chiave dell'account di archiviazione di Azure a cui accede un'applicazione. Dimostra anche l'implementazione di una rotazione pianificata della chiave dell'account di archiviazione. Illustra infine come monitorare i log di controllo dell'insieme di credenziali delle chiavi e generare avvisi in caso di richieste impreviste.
 
 > [!NOTE]
-> In questa esercitazione non è previsto tooexplain dettaglio hello la configurazione iniziale di credenziali delle chiavi. Per altre informazioni, vedere [Introduzione all'insieme di credenziali delle chiavi di Azure](key-vault-get-started.md). Per le istruzioni relative all'interfaccia della riga di comando multipiattaforma, vedere [Gestire l'insieme di credenziali delle chiavi tramite l'interfaccia della riga di comando](key-vault-manage-with-cli2.md).
+> Questa esercitazione non illustra nei dettagli la configurazione iniziale dell'insieme di credenziali delle chiavi. Per altre informazioni, vedere [Introduzione all'insieme di credenziali delle chiavi di Azure](key-vault-get-started.md). Per le istruzioni relative all'interfaccia della riga di comando multipiattaforma, vedere [Gestire l'insieme di credenziali delle chiavi tramite l'interfaccia della riga di comando](key-vault-manage-with-cli2.md).
 >
 >
 
 ## <a name="set-up-key-vault"></a>Configurare l'insieme di credenziali delle chiavi
-tooenable un tooretrieve applicazione un segreto dall'insieme di credenziali chiave, è necessario creare segreto hello e caricarlo tooyour insieme di credenziali. Questo può essere eseguito avviando una sessione di PowerShell di Azure e la firma in tooyour account Azure con hello comando seguente:
+Per consentire a un'applicazione di recuperare un segreto dall'insieme di credenziali delle chiavi, è prima necessario creare il segreto e caricarlo nell'insieme di credenziali. Per eseguire queste operazioni, avviare una sessione di Azure PowerShell e accedere all'account Azure con il comando seguente:
 
 ```powershell
 Login-AzureRmAccount
 ```
 
-Nella finestra popup del browser hello, immettere il nome utente dell'account Azure e la password. PowerShell recupera tutte le sottoscrizioni di hello che sono associate a questo account. Usa PowerShell hello primo per impostazione predefinita.
+Nella finestra del browser a comparsa, immettere il nome utente e la password dell'account Azure. PowerShell recupera tutte le sottoscrizioni associate a questo account e usa la prima per impostazione predefinita.
 
-Se si dispone di più sottoscrizioni, potrebbe essere toospecify hello che è stato utilizzato toocreate credenziali delle chiavi. Immettere hello sottoscrizioni hello toosee per l'account di seguito:
+Se sono disponibili più sottoscrizioni, potrebbe essere necessario specificare quella usata per creare l'insieme di credenziali delle chiavi. Immettere il comando seguente per visualizzare le sottoscrizioni relative all'account:
 
 ```powershell
 Get-AzureRmSubscription
 ```
 
-sottoscrizione di hello toospecify è associato alla chiave dell'insieme di credenziali di hello effettuerà l'accesso, immettere:
+Per specificare la sottoscrizione associata all'insieme di credenziali delle chiavi da registrare, immettere:
 
 ```powershell
 Set-AzureRmContext -SubscriptionId <subscriptionID>
@@ -58,56 +58,56 @@ Dato che questo articolo illustra l'archiviazione di una chiave dell'account di 
 Get-AzureRmStorageAccountKey -ResourceGroupName <resourceGroupName> -Name <storageAccountName>
 ```
 
-Dopo aver recuperato il segreto (in questo caso, la chiave di account di archiviazione), è necessario convertire la stringa sicura tooa e quindi creare una chiave privata con tale valore nell'insieme di credenziali chiave.
+Dopo aver recuperato il segreto, in questo caso la chiave dell'account di archiviazione, è necessario convertirlo in una stringa sicura e quindi creare un segreto con quel valore nell'insieme di credenziali delle chiavi.
 
 ```powershell
 $secretvalue = ConvertTo-SecureString <storageAccountKey> -AsPlainText -Force
 
 Set-AzureKeyVaultSecret -VaultName <vaultName> -Name <secretName> -SecretValue $secretvalue
 ```
-Quindi, è possibile ottenere hello URI per il segreto hello che è stato creato. Quando si chiama hello tooretrieve di insieme di credenziali chiave segreta viene utilizzato in un passaggio successivo. Eseguire il comando PowerShell seguente hello e prendere nota del valore di ID hello, ovvero segreto hello URI:
+Ottenere quindi l'URI per il segreto creato. L'URI viene usato in un secondo momento, quando si chiama l'insieme di credenziali delle chiavi per recuperare il segreto. Eseguire questo comando PowerShell e prendere nota del valore ID, che rappresenta l'URI del segreto:
 
 ```powershell
 Get-AzureKeyVaultSecret –VaultName <vaultName>
 ```
 
-## <a name="set-up-hello-application"></a>Configurare un'applicazione hello
-Dopo aver creato un segreto archiviato, è possibile utilizzare codice tooretrieve e utilizzarlo. Esistono alcuni tooachieve necessarie di passaggi questo. Hello primo e più importante passaggio è registrazione dell'applicazione con Azure Active Directory e quindi di comunicare le informazioni dell'applicazione insieme di credenziali chiave in modo che questa operazione può consentire le richieste dall'applicazione.
+## <a name="set-up-the-application"></a>Configurare l'applicazione
+Ora che il segreto è stato archiviato è possibile usare il codice per recuperarlo e usarlo. Per ottenere questo risultato, sono necessari alcuni passaggi. Il primo e più importante è registrare l'applicazione in Azure Active Directory e quindi indicare le informazioni sull'applicazione All'insieme di credenziali delle chiavi in modo da consentire richieste dall'applicazione.
 
 > [!NOTE]
-> L'applicazione deve essere creato in hello stesso tenant di Azure Active Directory come credenziali delle chiavi.
+> L'applicazione deve essere creata nello stesso tenant di Azure Active Directory dell'insieme di credenziali delle chiavi.
 >
 >
 
-Aprire scheda applicazioni hello di Azure Active Directory.
+Aprire la scheda Applicazioni di Azure Active Directory.
 
 ![Aprire applicazioni in Azure Active Directory](./media/keyvault-keyrotation/AzureAD_Header.png)
 
-Scegliere **aggiungere** tooadd un tooyour applicazione Azure Active Directory.
+Scegliere **Aggiungi** per aggiungere un'applicazione in Azure Active Directory.
 
 ![Scegliere Aggiungi](./media/keyvault-keyrotation/Azure_AD_AddApp.png)
 
-Lasciare il tipo di applicazione hello come **applicazione WEB, e/o API WEB** e assegnare un nome di applicazione.
+Lasciare il tipo di applicazione **Applicazione Web e/o API Web** e immettere un nome per l'applicazione.
 
-![Applicazione hello nome](./media/keyvault-keyrotation/AzureAD_NewApp1.png)
+![Assegnare un nome all'applicazione](./media/keyvault-keyrotation/AzureAD_NewApp1.png)
 
 Immettere **URL accesso** e **URI ID app** per l'applicazione. È possibile usare qualsiasi valore per questa demo. Sarà comunque possibile modificarli in un secondo momento se necessario.
 
 ![Specificare gli URI necessari](./media/keyvault-keyrotation/AzureAD_NewApp2.png)
 
-Dopo l'aggiunta di un'applicazione hello tooAzure Active Directory, verrà inserito nella pagina dell'applicazione hello. Fare clic su hello **configura** scheda e quindi individuare e copiare hello **ID Client** valore. Prendere nota dell'ID client hello per i passaggi successivi.
+Dopo aver aggiunto l'applicazione ad Azure Active Directory verrà visualizzata la pagina dell'applicazione. Fare clic sulla scheda **Configura** e quindi trovare e copiare il valore **ID client**. Annotare l'ID client per i passaggi successivi.
 
-Generare quindi una chiave per l'applicazione in modo che possa interagire con Azure Active Directory. È possibile creare questo in hello **chiavi** sezione hello **configurazione** scheda. Prendere nota della chiave di hello appena generato dall'applicazione Azure Active Directory per l'utilizzo in un passaggio successivo.
+Generare quindi una chiave per l'applicazione in modo che possa interagire con Azure Active Directory. La chiave può essere creata nella sezione **Chiavi** della scheda **Configurazione**. Prendere nota della chiave appena generata dall'applicazione di Azure Active Directory per usarla in un secondo momento.
 
 ![Chiavi delle applicazioni di Azure Active Directory](./media/keyvault-keyrotation/Azure_AD_AppKeys.png)
 
-Prima di stabilire tutte le chiamate dall'applicazione in insieme di credenziali chiave di hello, è necessario indicare l'insieme di credenziali chiave hello sull'applicazione e le relative autorizzazioni. Hello comando seguente accetta hello insieme di credenziali nome e ID client hello da app di Azure Active Directory e concede **ottenere** accesso tooyour chiave dell'insieme di credenziali per un'applicazione hello.
+Prima di stabilire chiamate dall'applicazione nell'insieme di credenziali delle chiavi è necessario fornire informazioni sull'applicazione e le relative autorizzazioni all'insieme di credenziali delle chiavi. Il comando seguente recupera il nome dell'insieme di credenziali e l'ID client dall'app di Azure Active Directory e concede l'accesso **Get** all'insieme di credenziali delle chiavi per l'applicazione.
 
 ```powershell
 Set-AzureRmKeyVaultAccessPolicy -VaultName <vaultName> -ServicePrincipalName <clientIDfromAzureAD> -PermissionsToSecrets Get
 ```
 
-A questo punto, si è pronti toostart compilazione l'applicazione chiama. Nell'applicazione, è necessario installare hello NuGet pacchetti necessari toointeract con l'insieme di credenziali chiave di Azure e Azure Active Directory. Dalla console di gestione di pacchetti di Visual Studio hello, immettere hello i comandi seguenti. Al momento della stesura di hello di questo articolo, versione corrente di hello del pacchetto di Azure Active Directory hello è 3.10.305231913, pertanto si tooconfirm versione più recente di hello e aggiornare di conseguenza.
+A questo punto è possibile iniziare a creare le chiamate dell'applicazione. Nell'applicazione è necessario installare i pacchetti NuGet necessari per interagire con l'insieme di credenziali delle chiavi di Azure e Azure Active Directory. Immettere i comandi seguenti nella console di Gestione pacchetti di Visual Studio. Al momento della stesura di questo articolo la versione corrente del pacchetto di Azure Active Directory è 3.10.305231913, quindi si consiglia di verificare la versione più recente e aggiornare di conseguenza.
 
 ```powershell
 Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -Version 3.10.305231913
@@ -115,13 +115,13 @@ Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -Version 3.10.30
 Install-Package Microsoft.Azure.KeyVault
 ```
 
-Nel codice dell'applicazione, creare un metodo della classe toohold hello per l'autenticazione di Azure Active Directory. In questo esempio, la classe è denominata **Utils**. Aggiungere hello seguente istruzione using:
+Nel codice dell'applicazione creare una classe che contenga il metodo per l'autenticazione di Azure Active Directory. In questo esempio, la classe è denominata **Utils**. Aggiungere l'istruzione using seguente:
 
 ```csharp
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
 ```
 
-Successivamente, aggiungere hello seguente token di metodo tooretrieve hello JWT da Azure Active Directory. Per manutenzione, è consigliabile valori stringa hardcoded di hello toomove alla configurazione del web o applicazione.
+Aggiungere quindi il metodo seguente per recuperare il token JWT da Azure Active Directory. Per ottimizzare la gestione, è consigliabile trasferire i valori di stringa hardcoded nella configurazione Web o dell'applicazione.
 
 ```csharp
 public async static Task<string> GetToken(string authority, string resource, string scope)
@@ -134,19 +134,19 @@ public async static Task<string> GetToken(string authority, string resource, str
 
     if (result == null)
 
-    throw new InvalidOperationException("Failed tooobtain hello JWT token");
+    throw new InvalidOperationException("Failed to obtain the JWT token");
 
     return result.AccessToken;
 }
 ```
 
-Aggiungere hello codice necessario toocall insieme di credenziali chiave e recuperare il valore segreto. È innanzitutto necessario aggiungere il seguente hello istruzione using:
+Aggiungere il codice necessario per chiamare l'insieme di credenziali delle chiavi e recuperare il valore del segreto. Aggiungere prima di tutto l'istruzione using seguente:
 
 ```csharp
 using Microsoft.Azure.KeyVault;
 ```
 
-Aggiungere tooinvoke chiamate di metodo hello insieme di credenziali chiave e recuperare il segreto. In questo metodo, fornire il segreto hello URI che è stato salvato in un passaggio precedente. Si noti utilizzo hello di hello **GetToken** metodo hello **Utils** classe creata in precedenza.
+Aggiungere le chiamate di metodo per richiamare l'insieme di credenziali delle chiavi e recuperare il segreto. In questo metodo viene specificato l'URI del segreto salvato in un passaggio precedente. Si noti l'uso del metodo **GetToken** dalla classe **Utils** creata in precedenza.
 
 ```csharp
 var kv = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(Utils.GetToken));
@@ -154,16 +154,16 @@ var kv = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(Utils.GetT
 var sec = kv.GetSecretAsync(<SecretID>).Result.Value;
 ```
 
-Quando si esegue l'applicazione, si dovrebbe ora autenticazione tooAzure Active Directory e quindi recuperare il valore segreto dall'insieme di credenziali chiave di Azure.
+Quando si esegue l'applicazione, verrà eseguita l'autenticazione in Azure Active Directory e quindi verrà recuperato il valore del segreto dall'insieme di credenziali delle chiavi di Azure.
 
 ## <a name="key-rotation-using-azure-automation"></a>Rotazione delle chiavi con Automazione di Azure
-Sono disponibili diverse opzioni per l'implementazione di una strategia di rotazione per i valori memorizzati come segreti dell'insieme di credenziali delle chiavi di Azure. La rotazione dei segreti può essere eseguita nell'ambito di un processo manuale, a livello di codice usando chiamate API oppure con uno script di automazione. Ai fini di hello di questo articolo, sarà con Azure PowerShell combinato con automazione di Azure toochange una chiave di accesso di Account di archiviazione Azure. Verrà quindi aggiornato un segreto dell'insieme di credenziali delle chiavi con la nuova chiave.
+Sono disponibili diverse opzioni per l'implementazione di una strategia di rotazione per i valori memorizzati come segreti dell'insieme di credenziali delle chiavi di Azure. La rotazione dei segreti può essere eseguita nell'ambito di un processo manuale, a livello di codice usando chiamate API oppure con uno script di automazione. In questo articolo verrà usato Azure PowerShell insieme ad Automazione di Azure per modificare una chiave di accesso dell'account di archiviazione di Azure. Verrà quindi aggiornato un segreto dell'insieme di credenziali delle chiavi con la nuova chiave.
 
-tooallow automazione di Azure tooset i valori dei segreti nell'insieme di credenziali chiave, è necessario ottenere l'ID client hello per connessione hello denominato AzureRunAsConnection, che è stata creata quando è stata stabilita l'istanza di automazione di Azure. È possibile trovare l'ID scegliendo **Asset** dall'istanza di Automazione di Azure. Da qui, si sceglie **connessioni** e quindi selezionare hello **AzureRunAsConnection** principio del servizio. Prendere nota di hello **ID applicazione**.
+Per consentire ad Automazione di Azure di impostare i valori del segreto nell'insieme di credenziali delle chiavi, è necessario ottenere l'ID client per la connessione denominata AzureRunAsConnection, creata al momento della definizione dell'istanza di Automazione di Azure. È possibile trovare l'ID scegliendo **Asset** dall'istanza di Automazione di Azure. Scegliere quindi **Connessioni** e selezionare l'entità servizio **AzureRunAsConnection**. Prendere nota del valore di **ID applicazione**.
 
 ![ID client di Automazione di Azure](./media/keyvault-keyrotation/Azure_Automation_ClientID.png)
 
-In **Asset** scegliere **Moduli**. Da **moduli**selezionare **raccolta**e quindi cercare e **importazione** le versioni aggiornate di ciascuno dei seguenti moduli hello:
+In **Asset** scegliere **Moduli**. In **Moduli** selezionare **Raccolta** e quindi cercare e **importare** le versioni aggiornate di ognuno dei moduli seguenti:
 
     Azure
     Azure.Storage
@@ -174,30 +174,30 @@ In **Asset** scegliere **Moduli**. Da **moduli**selezionare **raccolta**e quindi
 
 
 > [!NOTE]
-> Al momento della stesura di hello di questo articolo, hello indicato in precedenza i moduli necessari toobe aggiornata solo per lo script seguente hello. Se si verificano errori nel processo di automazione, verificare di avere importato tutti i moduli necessari e le relative dipendenze.
+> Al momento della stesura di questo articolo è necessario aggiornare solo i moduli indicati in precedenza per lo script seguente. Se si verificano errori nel processo di automazione, verificare di avere importato tutti i moduli necessari e le relative dipendenze.
 >
 >
 
-Dopo avere recuperato ID applicazione hello per la connessione di automazione di Azure, è necessario che l'insieme di credenziali chiave che l'applicazione disponga di accesso tooupdate segreti nell'insieme di credenziali. Questo può essere eseguita con hello comando PowerShell seguente:
+Dopo aver recuperato l'ID applicazione per la connessione di Automazione di Azure è necessario indicare all'insieme di credenziali delle chiavi che l'applicazione è autorizzata ad aggiornare i segreti dell'insieme di credenziali. A tale scopo è possibile usare il comando PowerShell seguente:
 
 ```powershell
 Set-AzureRmKeyVaultAccessPolicy -VaultName <vaultName> -ServicePrincipalName <applicationIDfromAzureAutomation> -PermissionsToSecrets Set
 ```
 
-Selezionare quindi **Runbook** nell'istanza di Automazione di Azure e quindi selezionare **Aggiungi runbook**. Selezionare **Creazione rapida**. Nome del runbook, quindi selezionare **PowerShell** come tipo di runbook hello. È necessario hello opzione tooadd una descrizione. Fare infine clic su **Crea**.
+Selezionare quindi **Runbook** nell'istanza di Automazione di Azure e quindi selezionare **Aggiungi runbook**. Selezionare **Creazione rapida**. Assegnare un nome al runbook e selezionare **PowerShell** come tipo di runbook. È possibile aggiungere una descrizione. Fare infine clic su **Crea**.
 
 ![Creare un runbook](./media/keyvault-keyrotation/Create_Runbook.png)
 
-Incollare lo script di PowerShell nel riquadro dell'editor per il nuovo runbook hello seguente hello:
+Incollare lo script di PowerShell seguente nel riquadro dell'editor per il nuovo runbook:
 
 ```powershell
 $connectionName = "AzureRunAsConnection"
 try
 {
-    # Get hello connection "AzureRunAsConnection "
+    # Get the connection "AzureRunAsConnection "
     $servicePrincipalConnection=Get-AutomationConnection -Name $connectionName         
 
-    "Logging in tooAzure..."
+    "Logging in to Azure..."
     Add-AzureRmAccount `
         -ServicePrincipal `
         -TenantId $servicePrincipalConnection.TenantId `
@@ -216,13 +216,13 @@ catch {
     }
 }
 
-#Optionally you may set hello following as parameters
+#Optionally you may set the following as parameters
 $StorageAccountName = <storageAccountName>
 $RGName = <storageAccountResourceGroupName>
 $VaultName = <keyVaultName>
 $SecretName = <keyVaultSecretName>
 
-#Key name. For example key1 or key2 for hello storage account
+#Key name. For example key1 or key2 for the storage account
 New-AzureRmStorageAccountKey -ResourceGroupName $RGName -Name $StorageAccountName -KeyName "key2" -Verbose
 $SAKeys = Get-AzureRmStorageAccountKey -ResourceGroupName $RGName -Name $StorageAccountName
 
@@ -231,12 +231,12 @@ $secretvalue = ConvertTo-SecureString $SAKeys[1].Value -AsPlainText -Force
 $secret = Set-AzureKeyVaultSecret -VaultName $VaultName -Name $SecretName -SecretValue $secretvalue
 ```
 
-Riquadro editor hello scegliere **riquadro Test** tootest lo script. Hello script viene eseguito senza errori, è possibile selezionarlo **pubblica**, ed è quindi possibile applicare una pianificazione per hello runbook nel riquadro di configurazione del runbook hello.
+Nel riquadro dell'editor scegliere **Riquadro di test** per testare lo script. Dopo aver eseguito lo script senza errori è possibile selezionare **Pubblica** e quindi applicare una pianificazione per il runbook nel riquadro di configurazione del runbook.
 
 ## <a name="key-vault-auditing-pipeline"></a>Pipeline di controllo dell'insieme di credenziali delle chiavi
-Quando si configura un insieme di credenziali chiave, è possibile attivare il controllo toocollect accede toohello chiave insieme di credenziali di accesso richieste. Questi log vengono archiviati in un apposito account di archiviazione di Azure e possono essere estratti, monitorati e analizzati. Hello nello scenario seguente Usa funzioni di Azure, App per la logica di Azure e insieme di credenziali chiave audit log toocreate toosend una pipeline tramite posta elettronica quando un'app che corrisponde a hello app ID dell'app web hello recupera i segreti dall'insieme di credenziali hello.
+Quando si configura un insieme di credenziali delle chiavi è possibile attivare il controllo per raccogliere log relativi alle richieste di accesso all'insieme di credenziali delle chiavi. Questi log vengono archiviati in un apposito account di archiviazione di Azure e possono essere estratti, monitorati e analizzati. Lo scenario seguente usa le funzioni di Azure, le app per la logica di Azure e i log di controllo dell'insieme di credenziali delle chiavi per creare una pipeline per l'invio di un messaggio di posta elettronica quando i segreti dell'insieme di credenziali vengono recuperati da un'app che corrisponde all'ID app dell'app Web.
 
-È prima di tutto necessario abilitare la registrazione per l'insieme di credenziali delle chiavi. Questa operazione può essere eseguita tramite i seguenti comandi PowerShell hello (è possibile visualizzare i dettagli completi [chiave dell'insieme di credenziali-registrazione](key-vault-logging.md)):
+È prima di tutto necessario abilitare la registrazione per l'insieme di credenziali delle chiavi. Questa operazione può essere eseguita tramite i comandi di PowerShell seguenti (per i dettagli completi, vedere [key-vault-logging](key-vault-logging.md)):
 
 ```powershell
 $sa = New-AzureRmStorageAccount -ResourceGroupName <resourceGroupName> -Name <storageAccountName> -Type Standard\_LRS -Location 'East US'
@@ -244,29 +244,29 @@ $kv = Get-AzureRmKeyVault -VaultName '<vaultName>'
 Set-AzureRmDiagnosticSetting -ResourceId $kv.ResourceId -StorageAccountId $sa.Id -Enabled $true -Categories AuditEvent
 ```
 
-Dopo questa opzione è abilitata, i log di controllo Avvia la raccolta in hello designato account di archiviazione. Questi log contengono eventi relativi alla modalità di accesso all'insieme di credenziali delle chiavi, a quando avviene l'accesso e a chi lo esegue.
+Dopo aver abilitato la registrazione, i log di controllo iniziano la raccolta di informazioni nell'account di archiviazione designato. Questi log contengono eventi relativi alla modalità di accesso all'insieme di credenziali delle chiavi, a quando avviene l'accesso e a chi lo esegue.
 
 > [!NOTE]
-> È possibile accedere a informazioni di registrazione 10 minuti dopo l'operazione di insieme di credenziali chiave hello. ma in genere saranno disponibili anche prima.
+> È possibile accedere alle informazioni di registrazione dopo 10 minuti dall'operazione sull'insieme di credenziali delle chiavi, ma in genere saranno disponibili anche prima.
 >
 >
 
-passaggio successivo Hello è troppo[creare una coda di Azure Service Bus](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md). Questa è la posizione in cui verrà eseguito il push dei log di controllo dell'insieme di credenziali delle chiavi. Quando i messaggi di log di controllo hello presenti nella coda di hello, hello logica app li preleva e interviene su di essi. Creare un bus di servizio con hello alla procedura seguente:
+Il passaggio successivo consiste nella [creazione di una coda del bus di servizio di Azure](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md). Questa è la posizione in cui verrà eseguito il push dei log di controllo dell'insieme di credenziali delle chiavi. Quando i messaggi del log di controllo sono nella coda, l'app per la logica li preleva e interviene su di essi. Creare un bus di servizio seguendo questa procedura:
 
-1. Creare uno spazio dei nomi del Bus di servizio (se si dispone già di quello che si desidera toouse a tale scopo, ignorare tooStep 2).
-2. Selezionare il bus di servizio toohello hello portale di Azure e spazio dei nomi selezionare hello coda hello toocreate in.
-3. Selezionare **New** e scegliere **Service Bus > coda** e immettere i dettagli di hello necessario.
-4. Selezionare informazioni di connessione del Bus di servizio hello scegliendo hello dello spazio dei nomi e fare clic su **informazioni di connessione**. Queste informazioni è necessario per la sezione successiva di hello.
+1. Creare uno spazio dei nomi del bus di servizio. Se è già presente uno spazio dei nomi da usare a questo scopo, andare direttamente al passaggio 2.
+2. Passare al bus di servizio nel portale di Azure e selezionare lo spazio dei nomi nel quale creare la coda.
+3. Selezionare **Nuovo**, scegliere **Bus di servizio -> Coda** e immettere i dettagli necessari.
+4. Selezionare le informazioni di connessione del bus di servizio scegliendo lo spazio dei nomi e facendo clic su **Informazioni di connessione**. Queste informazioni saranno necessarie per la sezione successiva.
 
-Successivamente, [creare una funzione Azure](../azure-functions/functions-create-first-azure-function.md) toopoll insieme di credenziali chiave interno hello account di archiviazione e registri prelevati nuovi eventi. Questa funzione verrà attivata in base alla pianificazione.
+[Creare una funzione di Azure](../azure-functions/functions-create-first-azure-function.md) per eseguire il polling dei log dell'insieme di credenziali delle chiavi nell'account di archiviazione e selezionare i nuovi eventi. Questa funzione verrà attivata in base alla pianificazione.
 
-toocreate una funzione di Azure, scegliere **nuovo > funzione App** in hello portale di Azure. Durante la creazione è possibile usare un piano di hosting esistente o crearne uno nuovo. È anche possibile optare per l'hosting dinamico. Ulteriori informazioni sulla funzione Opzioni di hosting sono reperibile in [come tooscale Azure funzioni](../azure-functions/functions-scale.md).
+Per creare una funzione di Azure, scegliere **Nuovo -> App per le funzioni** nel portale di Azure. Durante la creazione è possibile usare un piano di hosting esistente o crearne uno nuovo. È anche possibile optare per l'hosting dinamico. Altre informazioni sulle opzioni di hosting delle funzioni sono disponibili in [Scalabilità di Funzioni di Azure](../azure-functions/functions-scale.md).
 
-Quando viene creato hello funzione Azure, passare tooit e scegliere un timer di funzione e C\#. quindi fare clic su **Creare questa funzione**.
+Dopo aver creato la funzione di Azure, passare alla funzione e scegliere una funzione timer e C\#, quindi fare clic su **Creare questa funzione**.
 
 ![Pannello iniziale di Funzioni di Azure](./media/keyvault-keyrotation/Azure_Functions_Start.png)
 
-In hello **sviluppare** scheda, sostituire il codice di run.csx hello con hello seguente:
+Nella scheda **Sviluppo** sostituire il codice run.csx con il seguente:
 
 ```csharp
 #r "Newtonsoft.Json"
@@ -304,7 +304,7 @@ public static void Run(TimerInfo myTimer, TextReader inputBlob, TextWriter outpu
         else
         {
             dtPrev = DateTime.UtcNow;
-            log.Verbose($"Sync point file didnt have a date. Setting toonow.");
+            log.Verbose($"Sync point file didnt have a date. Setting to now.");
         }
     }
 
@@ -339,7 +339,7 @@ public static void Run(TimerInfo myTimer, TextReader inputBlob, TextWriter outpu
 
             dynamic dynJson = JsonConvert.DeserializeObject(text);
 
-            //required tooorder by time as they may not be in hello file
+            //required to order by time as they may not be in the file
             var results = ((IEnumerable<dynamic>) dynJson.records).OrderBy(p => p.time);
 
             foreach (var jsonItem in results)
@@ -350,7 +350,7 @@ public static void Run(TimerInfo myTimer, TextReader inputBlob, TextWriter outpu
                     log.Info($"{jsonItem.ToString()}");
 
                     var payloadStream = new MemoryStream(Encoding.UTF8.GetBytes(jsonItem.ToString()));
-                    //When sending tooServiceBus, use hello payloadStream and set keeporiginal tootrue
+                    //When sending to ServiceBus, use the payloadStream and set keeporiginal to true
                     var message = new BrokeredMessage(payloadStream, true);
                     sbClient.Send(message);
                     dtPrev = dt;
@@ -369,23 +369,23 @@ static string GetContainerSasUri(CloudBlockBlob blob)
     sasConstraints.SharedAccessExpiryTime = DateTime.UtcNow.AddHours(24);
     sasConstraints.Permissions = SharedAccessBlobPermissions.Read;
 
-    //Generate hello shared access signature on hello container, setting hello constraints directly on hello signature.
+    //Generate the shared access signature on the container, setting the constraints directly on the signature.
     string sasBlobToken = blob.GetSharedAccessSignature(sasConstraints);
 
-    //Return hello URI string for hello container, including hello SAS token.
+    //Return the URI string for the container, including the SAS token.
     return blob.Uri + sasBlobToken;
 }
 ```
 
 
 > [!NOTE]
-> Le variabili di hello tooreplace che all'hello precedente account di archiviazione tooyour toopoint codice in cui vengono scritti i log di insieme di credenziali chiave di hello, creato in precedenza, il bus di servizio hello e hello registri del percorso specifico toohello insieme di credenziali chiave di archiviazione.
+> Assicurarsi di sostituire le variabili nel codice precedente in modo che puntino all'account di archiviazione in cui vengono scritti i log dell'insieme di credenziali delle chiavi, al bus di servizio creato in precedenza e al percorso specifico dei log di archiviazione dell'insieme di credenziali delle chiavi.
 >
 >
 
-funzione Hello preleva hello ultimo file di log dall'account di archiviazione hello in cui vengono scritti i log dell'insieme di credenziali chiave di hello, acrobazie hello gli eventi più recenti da tale file, e li inserisce tooa della coda del Bus di servizio. Un singolo file potrebbero essere più eventi, è necessario creare un file sync.txt funzione hello prende in considerazione anche toodetermine hello timestamp dell'hello ultimo evento che è stato prelevato. In questo modo si garantisce che non push hello stesso evento più volte. Questo file sync.txt contiene un timestamp per l'evento è stato rilevato ultimo hello. i registri, quando caricati, Hello hanno toobe ordinati in base a hello timestamp tooensure vengono ordinati correttamente.
+La funzione seleziona il file del log più recente dall'account di archiviazione in cui vengono scritti i log dell'insieme di credenziali delle chiavi, acquisisce gli eventi più recenti dal file e ne effettua il push in una coda del bus di servizio. Dato che un singolo file può avere più eventi, è necessario creare un file sync.txt anch'esso esaminato dalla funzione per determinare il timestamp dell'ultimo evento selezionato. In questo modo è possibile assicurarsi di non effettuare il push dello stesso evento più volte. Questo file sync.txt contiene un timestamp per l'ultimo evento rilevato. I log, quando caricati, devono essere ordinati in base al timestamp per far sì che vengano ordinati correttamente.
 
-Per questa funzione è fare riferimento a un paio di librerie aggiuntive che non sono disponibili predefinito hello nelle funzioni di Azure. tooinclude, abbiamo bisogno di funzioni di Azure toopull loro tramite NuGet. Scegliere hello **Visualizza file** opzione.
+Per questa funzione si fa riferimento a un paio di altre librerie non disponibili per impostazione predefinita in Funzioni di Azure. Per includerle è necessario che Funzioni di Azure le recuperi tramite NuGet. Scegliere l'opzione **Visualizza file**.
 
 ![Opzione Visualizza file](./media/keyvault-keyrotation/Azure_Functions_ViewFiles.png)
 
@@ -403,37 +403,37 @@ Aggiungere poi un file denominato project.json con il contenuto seguente:
        }
     }
 ```
-Al momento **salvare**, le funzioni di Azure verranno scaricati i file binari hello necessario.
+Dopo aver fatto clic su **Salva** , Funzioni di Azure scaricherà i file binari necessari.
 
-Passare toohello **integrazione** scheda e assegnare il parametro di timer hello toouse un nome significativo all'interno di funzione hello. In hello codice precedente, è previsto che hello timer toobe chiamato *myTimer*. Specificare un [espressione CRON](../app-service-web/web-sites-create-web-jobs.md#CreateScheduledCRON) nel modo seguente: 0 \* \* \* \* \* di timer hello che causerà toorun funzione hello una volta al minuto.
+Passare alla scheda **Integra** e assegnare al parametro timer un nome significativo da usare all'interno della funzione. Nel codice precedente è previsto che il timer si chiami *myTimer*. Specificare un'[espressione CRON](../app-service/web-sites-create-web-jobs.md#CreateScheduledCRON) come segue: 0 \* \* \* \* \* per il timer che attiverà l'esecuzione della funzione una volta al minuto.
 
-Hello nella stessa **integrazione** scheda, aggiungere un input di tipo hello **archiviazione Blob di Azure**. Questo punterà toohello sync.txt file che contiene il timestamp di hello dell'ultimo evento hello esaminato dalla funzione hello. Questo sarà disponibile nell'ambito di funzione hello in base al nome di parametro hello. Nel codice precedente di hello, hello input di archiviazione Blob di Azure prevede hello parametro nome toobe *inputBlob*. Scegliere l'account di archiviazione hello in cui risiederà file sync.txt hello (potrebbe essere hello stesso o in un altro account di archiviazione). Nel campo percorso hello, specificare il percorso di hello in cui si trova il file hello in formato hello {container-name}/path/to/sync.txt.
+Nella stessa scheda **Integra** aggiungere un input di tipo **Archiviazione BLOB di Azure**. Questo punterà al file sync.txt che contiene il timestamp dell'ultimo evento esaminato dalla funzione. L'input sarà disponibile all'interno della funzione in base al nome del parametro. Nel codice precedente, l'input Archiviazione BLOB di Azure prevede che il nome del parametro sia *inputBlob*. Scegliere l'account di archiviazione in cui risiederà il file sync.txt. Può essere lo stesso account di archiviazione o un account diverso. Nel campo del percorso specificare il percorso in cui si trova il file, nel formato {nome-contenitore}/path/to/sync.txt.
 
-Aggiungere un output di tipo hello *archiviazione Blob di Azure* output. Questo punterà toohello sync.txt file definito nell'input hello. Viene utilizzato da hello funzione toowrite hello timestamp dell'ultimo evento hello esaminato. il codice precedente Hello prevede toobe questo parametro chiamato *outputBlob*.
+Aggiungere un output di tipo *Archiviazione BLOB di Azure*. Anche questo punterà al file sync.txt appena definito nell'input. Viene usato dalla funzione per scrivere il timestamp dell'ultimo evento esaminato. Il codice precedente prevede che questo parametro sia denominato *outputBlob*.
 
-A questo punto, la funzione hello è pronta. Verificare che tooswitch indietro toohello **sviluppare** scheda e salvare il codice hello. Esaminare la finestra di output di hello per gli errori di compilazione e correggerle di conseguenza. Se il codice hello viene compilato, codice hello deve ora controllare i registri di insieme di credenziali chiave hello ogni minuto e inserendo nuovi eventi in hello definita coda del Bus di servizio. Dovrebbe essere informazioni di registrazione scrivono finestra log toohello ogni volta che viene attivata la funzione hello.
+A questo punto la funzione è pronta. Assicurarsi di tornare alla scheda **Sviluppo** e salvare il codice. Verificare se nella finestra di output sono presenti errori di compilazione ed eventualmente correggerli. Dopo la compilazione, il codice controllerà i log dell'insieme di credenziali delle chiavi ogni minuto, effettuando il push di eventuali nuovi eventi nella coda del bus di servizio definito. Le informazioni di registrazione verranno scritte nella finestra del log ogni volta che la funzione viene attivata.
 
 ### <a name="azure-logic-app"></a>App per la logica di Azure
-Successivamente è necessario creare un'app di Azure logica che preleva eventi hello funzione hello è push toohello della coda del Bus di servizio, analizza il contenuto di hello e invia un messaggio di posta elettronica in base a una condizione viene cercata la corrispondenza.
+A questo punto è necessario creare un'app per la logica di Azure che seleziona gli eventi di cui la funzione effettua il push nella coda del bus di servizio, analizza il contenuto e invia un messaggio di posta elettronica in base alla soddisfazione di una condizione.
 
-[Creare un'app di logica](../logic-apps/logic-apps-create-a-logic-app.md) passando troppo**nuovo > App per la logica**.
+Per [creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md) passare a **Nuovo -> App per la logica**.
 
-Una volta creato, hello logica app passare tooit e scegliere **modifica**. Nell'editor di hello logica app scegliere **coda di Service Bus** e immettere tooconnect di credenziali del Bus di servizio è toohello coda.
+Dopo averla creata, passare all'app per la logica e scegliere **modifica**. Nell'editor di app per la logica scegliere **Coda del bus di servizio** e immettere le credenziali del bus di servizio per connetterlo alla coda.
 
 ![Bus di servizio dell'app per la logica di Azure](./media/keyvault-keyrotation/Azure_LogicApp_ServiceBus.png)
 
-Scegliere quindi **Aggiungi una condizione**. Nella condizione di hello, passare toohello editor avanzato e immettere hello nel codice seguente, sostituendo APP_ID con hello APP_ID effettivo dell'app web:
+Scegliere quindi **Aggiungi una condizione**. Nella condizione passare all'editor avanzato e immettere il codice seguente, sostituendo APP_ID con l'effettivo APP_ID dell'app Web:
 
 ```
 @equals('<APP_ID>', json(decodeBase64(triggerBody()['ContentData']))['identity']['claim']['appid'])
 ```
 
-Questa espressione restituisce essenzialmente **false** se hello *appid* da hello evento in entrata (ovvero il corpo di hello del messaggio hello del Bus di servizio) è non hello *appid* di hello app.
+Questa espressione restituisce essenzialmente **false** se il valore*appid* dell'evento in ingresso, ovvero il corpo del messaggio del bus di servizio, non è l'*appid* dell'app.
 
 Creare ora un'azione in **Se no, non fare nulla** .
 
 ![Scelta dell'azione per l'app per la logica di Azure](./media/keyvault-keyrotation/Azure_LogicApp_Condition.png)
 
-Per l'azione di hello, scegliere **Office 365 - invio di email**. Compilare hello campi toocreate toosend un messaggio di posta elettronica quando hello definito condizione restituisce **false**. Se non si dispone di Office 365, da prendere in considerazione alternative tooachieve hello stessi risultati.
+Per l'azione, scegliere **Office 365 - send email**. Compilare i campi per creare un messaggio di posta elettronica da inviare quando la condizione specificata restituisce **false**. Se non si ha Office 365 è possibile valutare alternative per ottenere lo stesso risultato.
 
-A questo punto, si dispone di una pipeline tooend fine che cerca i log di controllo nuovo insieme di credenziali chiave di una volta al minuto. Inserisce nuovi registri trova tooa coda del bus di servizio. app per la logica Hello viene attivata quando un nuovo messaggio inserita nella coda di hello. Se hello *appid* all'interno di hello evento non corrisponde all'ID di app hello di hello applicazione chiamante, invia un messaggio di posta elettronica.
+A questo punto è disponibile una pipeline end-to-end che controlla se sono disponibili nuovi log di controllo dell'insieme di credenziali delle chiavi ogni minuto. La pipeline effettua il push dei nuovi log trovati in una coda del bus di servizio. L'app per la logica viene attivata quando arriva un nuovo messaggio nella coda. Se l'*appid* all'interno dell'evento non corrisponde all'ID app dell'applicazione chiamante, invia un messaggio di posta elettronica.

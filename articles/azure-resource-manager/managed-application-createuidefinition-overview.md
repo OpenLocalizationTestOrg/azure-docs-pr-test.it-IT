@@ -1,9 +1,9 @@
 ---
-title: la creazione di definizione dell'interfaccia utente per le applicazioni gestite Azure aaaUnderstand | Documenti Microsoft
-description: Viene descritto come definizioni dell'interfaccia utente toocreate per le applicazioni gestite di Azure
+title: Informazioni sulla creazione di una definizione dell'interfaccia utente per le applicazioni gestite di Azure | Microsoft Docs
+description: Illustra come creare definizioni dell'interfaccia utente per le applicazioni gestite di Azure
 services: azure-resource-manager
 documentationcenter: na
-author: tabrezm
+author: tfitzmac
 manager: timlt
 editor: tysonn
 ms.service: azure-resource-manager
@@ -12,15 +12,15 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/11/2017
-ms.author: tabrezm;tomfitz
-ms.openlocfilehash: d53ddf438c24d5a6cb8dd53ca0b4694ab0462515
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.author: tomfitz
+ms.openlocfilehash: 077012a2fe9b4b6e6e042fdeb9be2b1d37685bc9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="getting-started-with-createuidefinition"></a>Introduzione a CreateUiDefinition
-Questo documento introduce i concetti di base hello di un CreateUiDefinition, utilizzato dall'interfaccia utente di hello toogenerate portale Azure hello per la creazione di un'applicazione gestita.
+Questo documento illustra i concetti di base di CreateUiDefinition, che consente al portale di Azure di generare l'interfaccia utente per la creazione di un'applicazione gestita.
 
 ```json
 {
@@ -39,34 +39,34 @@ CreateUiDefinition contiene sempre tre proprietà:
 
 * handler
 * version
-* parameters
+* Parametri
 
-Per le applicazioni gestite, deve essere sempre gestore `Microsoft.Compute.MultiVm`, e la versione più recente supportato hello è `0.1.2-preview`.
+Per le applicazioni gestite la proprietà handler deve essere sempre `Microsoft.Compute.MultiVm` e la versione supportata più recente è `0.1.2-preview`.
 
-schema Hello di proprietà parametri hello dipende dalla combinazione di hello del gestore specificato hello e versione. Per le applicazioni gestite, proprietà hello supportato sono `basics`, `steps`, e `outputs`. Nozioni di base e passaggi proprietà Hello contengono hello _elementi_ , ad esempio caselle di testo ed elenchi a discesa - toobe visualizzati in hello portale di Azure. output di Hello è toomap utilizzati valori di output di hello di hello elementi specificati toohello parametri di modello di distribuzione Azure Resource Manager hello.
+Lo schema della proprietà parameters dipende dalla combinazione delle proprietà handler e version specificate. Per le applicazioni gestite sono supportate le proprietà `basics`, `steps` e `outputs`. Le proprietà basics e steps contengono _elementi_, ad esempio caselle di testo ed elenchi a discesa, da visualizzare nel portale di Azure. La proprietà outputs viene usata per il mapping dei valori di output degli elementi specificati ai parametri del modello di distribuzione Azure Resource Manager.
 
-L'inclusione di `$schema` è consigliata ma facoltativa. Se specificato, hello valore per `version` deve corrispondere una versione di hello hello `$schema` URI.
+L'inclusione di `$schema` è consigliata ma facoltativa. Se specificato, il valore per la proprietà `version` deve corrispondere alla versione nell'URI di `$schema`.
 
 ## <a name="basics"></a>Nozioni di base
-Hello nozioni di base è sempre hello primo passaggio della procedura guidata hello generata hello portale di Azure analizza un CreateUiDefinition. Inoltre specificare gli elementi di hello toodisplaying `basics`, portale hello inserisce elementi per la sottoscrizione di hello toochoose gli utenti, gruppo di risorse e posizione per la distribuzione di hello. In genere, gli elementi che eseguono query per i parametri a livello di distribuzione, ad esempio hello nome delle credenziali di un cluster o un amministratore, devono andare in questo passaggio.
+Il passaggio relativo alle informazioni di base è sempre il primo passaggio della procedura guidata generata quando il portale di Azure analizza CreateUiDefinition. Oltre a visualizzare gli elementi specificati in `basics`, il portale inserisce elementi che consentono agli utenti di scegliere la sottoscrizione, il gruppo di risorse e la posizione della distribuzione. In genere gli elementi che eseguono query per parametri a livello di distribuzione, ad esempio il nome di un cluster o le credenziali dell'amministratore, devono essere inseriti in questo passaggio.
 
-Se il comportamento di un elemento dipende dalla sottoscrizione, gruppo di risorse o percorso dell'utente hello, tale elemento può essere utilizzato in Nozioni di base. Ad esempio, **Microsoft.Compute.SizeSelector** varia a seconda sottoscrizione e il percorso toodetermine hello elenco dell'utente hello di dimensioni disponibili. È quindi possibile usare **Microsoft.Compute.SizeSelector** solo nelle proprietà steps. In genere, solo gli elementi in hello **Microsoft.Common** dello spazio dei nomi può essere usato in Nozioni di base. Anche se alcuni elementi in altri spazi dei nomi (ad esempio **Microsoft.Compute.Credentials**) che non dipendono dal contesto dell'utente hello, sono ancora consentiti.
+Se il comportamento di un elemento dipende dalla sottoscrizione, dal gruppo di risorse o dalla posizione dell'utente, non è possibile usare tale elemento per le proprietà basics. Ad esempio, **Microsoft.Compute.SizeSelector** dipende dalla sottoscrizione e dalla posizione dell'utente per la determinazione dell'elenco delle dimensioni disponibili. È quindi possibile usare **Microsoft.Compute.SizeSelector** solo nelle proprietà steps. In genere è possibile usare nelle proprietà basics solo gli elementi disponibili nello spazio dei nomi **Microsoft.Common**. Sono tuttavia consentiti alcuni elementi disponibili in altri spazi dei nomi, ad esempio **Microsoft.Compute.Credentials**, che non dipendono dal contesto dell'utente.
 
 ## <a name="steps"></a>Passi
-proprietà passaggi Hello può contenere zero o più toodisplay passaggi aggiuntivi dopo nozioni di base, ognuno dei quali contiene uno o più elementi. È possibile aggiungere passaggi per ogni ruolo o a livello di applicazione hello da distribuire. Ad esempio, è possibile aggiungere un passaggio per gli input per i nodi master hello e un passaggio per i nodi di lavoro hello in un cluster.
+La proprietà steps può contenere zero o più passaggi aggiuntivi da visualizzare dopo la proprietà basics, ognuna delle quali contiene uno o più elementi. Prendere in considerazione l'aggiunta di passaggi per ogni ruolo o livello dell'applicazione in fase di distribuzione. Aggiungere ad esempio un passaggio per gli input dei nodi master e un passaggio per i nodi di lavoro in un cluster.
 
-## <a name="outputs"></a>outputs
-portale di Azure Hello utilizza hello `outputs` gli elementi di proprietà toomap da `basics` e `steps` toohello parametri di modello di distribuzione Azure Resource Manager hello. Hello chiavi del dizionario sono nomi di hello hello dei parametri di modello e i valori hello sono proprietà degli oggetti di output di hello dagli elementi hello a cui fa riferimento.
+## <a name="outputs"></a>Output
+Il portale di Azure usa la proprietà `outputs` per il mapping di elementi da `basics` e `steps` ai parametri del modello di distribuzione Azure Resource Manager. Le chiavi di questo dizionario sono i nomi dei parametri del modello e i valori sono le proprietà degli oggetti di output dagli elementi a cui si fa riferimento.
 
 ## <a name="functions"></a>Funzioni
-Simile troppo[funzioni di modello](resource-group-template-functions.md) in Gestione risorse di Azure (entrambi nella sintassi e la funzionalità), CreateUiDefinition fornisce funzioni per l'utilizzo degli elementi input e output, nonché le funzionalità, ad esempio istruzioni condizionali.
+Analogamente alle [funzioni del modello](resource-group-template-functions.md) in Azure Resource Manager, a livello di sintassi e di funzionalità, CreateUiDefinition offre funzioni per l'uso di input e output degli elementi, oltre a funzionalità quali le istruzioni condizionali.
 
 ## <a name="next-steps"></a>Passaggi successivi
-CreateUiDefinition ha uno schema semplice, profondità di reale Hello di esso viene fornito da tutti gli elementi di hello è supportato e funzioni, quali hello documenti seguenti descrivono in modo dettagliato wondrous:
+CreateUiDefinition ha uno schema semplice, ma supporta numerosi elementi e funzioni, illustrati in modo dettagliato nei documenti seguenti:
 
 - [Elementi](managed-application-createuidefinition-elements.md)
 - [Funzioni](managed-application-createuidefinition-functions.md)
 
 Per uno schema JSON corrente per CreateUiDefinition, vedere qui: https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json. 
 
-Nelle versioni successive è disponibile in hello nello stesso percorso. Sostituire hello `0.1.2-preview` parte dell'URL di hello e hello `version` valore con l'identificatore di versione di hello intendi toouse. gli identificatori di versione di Hello attualmente supportato sono `0.0.1-preview`, `0.1.0-preview`, `0.1.1-preview`, e `0.1.2-preview`.
+Le versioni più aggiornate verranno rese disponibili nello stesso percorso. Sostituire la parte `0.1.2-preview` dell'URL e il valore `version` con l'identificatore della versione da usare. Gli identificatori attualmente supportati per la versione sono `0.0.1-preview`, `0.1.0-preview`, `0.1.1-preview` e `0.1.2-preview`.

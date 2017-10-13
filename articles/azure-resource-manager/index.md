@@ -1,8 +1,8 @@
 ---
-title: Gestione risorse di documentazione - esercitazioni, riferimenti alle API aaaAzure | Documenti Microsoft
-description: Informazioni su come toouse toodeploy Gestione risorse e gestire le risorse di soluzione come un gruppo e toocreate modelli per la distribuzione di risorse coerente e ripetibile.
+title: Documentazione di Azure Resource Manager - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
+description: Informazioni su come usare Resource Manager per distirbuire e gestire a gruppi le risorse di una soluzione e per creare modelli per una distribuzione coerente e ripetibile delle risorse.
 services: azure-resource-manager
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: dc920b14e84bbad1a178fc91a61a1d2642d644b1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: ab6725298c9e9c496d2e20b4e68ff72af1432bb2
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 #<a name="azure-resource-manager-documentation"></a>Documentazione di Azure Resource Manager
 
-Informazioni su come toouse toodeploy Resource Manager, monitoraggio e la gestione delle risorse della soluzione come gruppo. Altra documentazione, esercitazioni e riferimenti alle API mostrano come tooset risorsa gruppi e creare modelli per la distribuzione coerenza e ripetibile.
+Informazioni su come usare Resource Manager per distribuire, monitorare e gestire a gruppi le risorse di una soluzione. Esercitazioni, informazioni di riferimento sulle API e altri documenti in cui viene illustrato come impostare gruppi di risorse e creare modelli per una distribuzione coerente e ripetibile.
 
 <ul class="panelContent cardsFTitle">
     <li>

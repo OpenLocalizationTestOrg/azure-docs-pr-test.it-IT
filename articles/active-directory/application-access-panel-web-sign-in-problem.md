@@ -1,6 +1,6 @@
 ---
-title: la firma nel sito Web del Pannello di accesso toohello aaaProblem | Documenti Microsoft
-description: Problemi di tootroubleshoot informazioni aggiuntive che possono verificarsi durante il tentativo di toosign in toouse hello Pannello di accesso
+title: Problemi di accesso al sito Web del pannello di accesso | Microsoft Docs
+description: Linee guida per risolvere i possibili problemi durante il tentativo di accedere per usare il pannello di accesso
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -14,17 +14,17 @@ ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
 ms.reviwer: japere
-ms.openlocfilehash: 1037f7c5fbaa9425760ad5739b383c716d5fc3a3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 28d91237adf745e591b02322de7881c8122827ac
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="problem-signing-in-toohello-access-panel-website"></a>Problema di accesso sito Web del Pannello di accesso toohello
+# <a name="problem-signing-in-to-the-access-panel-website"></a>Problemi di accesso al sito Web del pannello di accesso
 
-Hello Pannello di accesso è un portale basato sul web che consente un utente che ha un lavoro o scuola account in Azure Active Directory (Azure AD) tooview e avviare basato su cloud applicazioni che amministratore hello Azure AD ha concesso l'accesso a. Un utente con le edizioni di Azure AD consente inoltre di gruppi self-service e funzionalità di gestione di app tramite hello Pannello di accesso. Hello Pannello di accesso è separato dal portale di Azure hello e non richiede agli utenti toohave una sottoscrizione di Azure.
+Il pannello di accesso è un portale basato sul Web che permette a un utente che ha un account aziendale o dell'istituto di istruzione in Azure Active Directory (Azure AD) di visualizzare e avviare applicazioni basate sul cloud a cui l'amministratore di Azure AD ha concesso l'accesso. Un utente dotato di edizioni di Azure AD può anche usare le funzionalità di gestione self-service di gruppi e app tramite il pannello di accesso. Il pannello di accesso è separato dal portale di Azure e non richiede una sottoscrizione Azure.
 
-Gli utenti possono accedere toohello Pannello di accesso se hanno un account aziendale o dell'istituto di istruzione in Azure AD.
+Gli utenti possono accedere al pannello di accesso se hanno un account aziendale o dell'istituto di istruzione in Azure AD.
 
 -   Gli utenti possono essere autenticati direttamente tramite Azure AD.
 
@@ -32,33 +32,33 @@ Gli utenti possono accedere toohello Pannello di accesso se hanno un account azi
 
 -   Gli utenti possono essere autenticati tramite Windows Server Active Directory.
 
-Se un utente dispone di una sottoscrizione per Azure o Office 365 e ha utilizzato hello portale di Azure o un'applicazione di Office 365, saranno in grado di toouse hello facilmente Pannello di accesso senza la necessità di toosign in nuovamente. Gli utenti non autenticati in toosign richiesta in utilizzando hello username e password per il proprio account in Azure AD. Se l'organizzazione hello è configurata la federazione, digitare il nome utente hello è sufficiente.
+Se un utente ha una sottoscrizione per Azure o un abbonamento a Office 365 e ha usato il portale di Azure o un'applicazione di Office 365, potrà usare il pannello di accesso in tutta semplicità senza dover eseguire di nuovo l'accesso. Gli utenti non autenticati dovranno accedere usando il nome utente e la password del proprio account in Azure AD. Se l'organizzazione ha configurato la federazione, sarà sufficiente digitare il nome utente.
 
-## <a name="general-issues-toocheck-first"></a>Generale problemi toocheck prima 
+## <a name="general-issues-to-check-first"></a>Problemi generali da verificare per primi 
 
--   Verificare che l'utente hello accede toohello **correggere URL**: <https://myapps.microsoft.com>
+-   Verificare che l'utente acceda all'**URL corretto**: <https://myapps.microsoft.com>
 
--   Assicurarsi che il browser dell'utente hello sia aggiunto hello URL tooits **siti attendibili**
+-   Verificare che il browser dell'utente abbia aggiunto l'URL ai **siti attendibili**
 
--   Verificare che l'account dell'utente hello è **abilitato** per accessi.
+-   Verificare che l'account dell'utente sia **abilitato** per l'accesso.
 
--   Verificare che l'account dell'utente hello è **non bloccato.**
+-   Verificare che l'account dell'utente non sia **bloccato**.
 
--   Assicurarsi che utente hello **password non è scaduta o è stata dimenticata.**
+-   Verificare che la **password dell'utente non sia scaduta o non sia stata dimenticata**.
 
 -   Verificare che **Multi-Factor Authentication** non blocchi l'accesso utente.
 
 -   Verificare che un criterio di **accesso condizionale** o di **protezione delle identità** non blocchi l'accesso utente.
 
--   Assicurarsi che un utente **informazioni di contatto autenticazione** è toodate tooallow multi-Factor Authentication o l'accesso condizionale criteri toobe applicata.
+-   Verificare che le **informazioni di contatto per l'autenticazione** di un utente siano aggiornate per permettere l'applicazione di Multi-Factor Authentication o di criteri di accesso condizionale.
 
--   Verificare che tooalso try cancellare i cookie del browser e riprovare toosign in.
+-   Assicurarsi anche di cancellare i cookie del browser e riprovare ad accedere.
 
-## <a name="meeting-browser-requirements-for-hello-access-panel"></a>Requisiti del browser per hello Pannello di accesso
+## <a name="meeting-browser-requirements-for-the-access-panel"></a>Applicazione dei requisiti del browser per il pannello di accesso
 
-Pannello di accesso Hello richiede un browser che supporta JavaScript e CSS sono state abilitate. toouse basato su password single sign-on (SSO nel Pannello di accesso, hello estensione del Pannello di accesso hello) deve essere installato nel browser dell'utente hello. Questa estensione viene scaricata automaticamente quando un utente seleziona un'applicazione configurata per il servizio Single Sign-On basato su password.
+Per il pannello di accesso è necessario un browser che supporti JavaScript e in cui sia abilitato CSS. Per usare il servizio Single Sign-On (SSO) basato su password nel pannello di accesso, è necessario installare l'estensione del pannello di accesso nel browser dell'utente. Questa estensione viene scaricata automaticamente quando un utente seleziona un'applicazione configurata per il servizio Single Sign-On basato su password.
 
-Per SSO basato su password, browser dell'utente finale di hello può essere:
+Per l'accesso Single Sign-On basato su password il browser dell'utente finale può essere uno dei seguenti:
 
 -   Internet Explorer 8, 9, 10, 11 su Windows 7 o versioni successive
 
@@ -69,9 +69,9 @@ Per SSO basato su password, browser dell'utente finale di hello può essere:
 -   Firefox 26.0 o versione successiva in Windows XP SP2 o versione successiva e in Mac OS X 10.6 o versione successiva
 
 
-## <a name="problems-with-hello-users-account"></a>Problemi con l'account dell'utente hello
+## <a name="problems-with-the-users-account"></a>Problemi relativi all'account dell'utente
 
-Accesso toohello Pannello di accesso può essere bloccata a causa di problemi di tooa hello account utente. Di seguito sono riportate alcune soluzioni per i problemi relativi agli utenti e alle impostazioni degli account:
+L'accesso al pannello di accesso può essere bloccato a causa di un problema relativo all'account dell'utente. Di seguito sono riportate alcune soluzioni per i problemi relativi agli utenti e alle impostazioni degli account:
 
 -   [Controllare se esiste un account utente in Azure Active Directory](#check-if-a-user-account-exists-in-azure-active-directory)
 
@@ -93,188 +93,188 @@ Accesso toohello Pannello di accesso può essere bloccata a causa di problemi di
 
 ### <a name="check-if-a-user-account-exists-in-azure-active-directory"></a>Controllare se esiste un account utente in Azure Active Directory
 
-Se è presente, un account utente di toocheck procedura hello riportata di seguito:
+Per controllare se l'account di un utente è presente, eseguire questa procedura:
 
-1.  Aprire hello [ **portale Azure** ](https://portal.azure.com/) e accedere come un **amministratore globale.**
+1.  Aprire il [**portale di Azure**](https://portal.azure.com/) e accedere come **Amministratore globale**.
 
-2.  Aprire hello **estensione di Azure Active Directory** facendo **più servizi** nella parte inferiore di hello del menu di navigazione a sinistra principale hello.
+2.  Aprire l'**estensione Azure Active Directory** facendo clic su **Altri servizi** nella parte inferiore del menu di navigazione principale a sinistra.
 
-3.  Digitare **"Azure Active Directory**" nella casella di ricerca di filtro hello e seleziona hello **Azure Active Directory** elemento.
+3.  Digitare "**Azure Active Directory**" nella casella di ricerca filtro e selezionare l'elemento **Azure Active Directory**.
 
-4.  Fare clic su **utenti e gruppi** nel menu di navigazione hello.
+4.  Fare clic su **Utenti e gruppi** nel menu di navigazione.
 
 5.  Fare clic su **Tutti gli utenti**.
 
-6.  **Ricerca** per utente hello si è interessati e **fare clic sulla riga hello** tooselect.
+6.  **Cercare** l'utente desiderato e **fare clic sulla riga corrispondente** per selezionarlo.
 
-7.  Controllare la proprietà hello di hello utente oggetto toobe assicurarsi che vengano visualizzate come previsto e che nessun dato è manca.
+7.  Controllare le proprietà dell'oggetto utente per assicurarsi che vengano specificate come previsto e che non manchi alcun dato.
 
 ### <a name="check-a-users-account-status"></a>Controllare lo stato dell'account di un utente
 
-di toocheck un utente stato dell'account, attenersi alla procedura hello riportata di seguito:
+Per controllare lo stato dell'account di un utente, eseguire questa procedura:
 
-1.  Aprire hello [ **portale Azure** ](https://portal.azure.com/) e accedere come un **amministratore globale.**
+1.  Aprire il [**portale di Azure**](https://portal.azure.com/) e accedere come **Amministratore globale**.
 
-2.  Aprire hello **estensione di Azure Active Directory** facendo **più servizi** nella parte inferiore di hello del menu di navigazione a sinistra principale hello.
+2.  Aprire l'**estensione Azure Active Directory** facendo clic su **Altri servizi** nella parte inferiore del menu di navigazione principale a sinistra.
 
-3.  Digitare **"Azure Active Directory**" nella casella di ricerca di filtro hello e seleziona hello **Azure Active Directory** elemento.
+3.  Digitare "**Azure Active Directory**" nella casella di ricerca filtro e selezionare l'elemento **Azure Active Directory**.
 
-4.  Fare clic su **utenti e gruppi** nel menu di navigazione hello.
+4.  Fare clic su **Utenti e gruppi** nel menu di navigazione.
 
 5.  Fare clic su **Tutti gli utenti**.
 
-6.  **Ricerca** per utente hello si è interessati e **fare clic sulla riga hello** tooselect.
+6.  **Cercare** l'utente desiderato e **fare clic sulla riga corrispondente** per selezionarlo.
 
 7.  Fare clic su **Profilo**.
 
-8.  In **impostazioni** assicurarsi che **blocco Accedi** è troppo**n**.
+8.  In **Impostazioni** assicurarsi che l'opzione **Blocca l'accesso** sia impostata su **No**.
 
 ### <a name="reset-a-users-password"></a>Reimpostare la password di un utente
 
-tooreset una password, seguire hello passaggi riportati di seguito:
+Per reimpostare la password di un utente, eseguire questa procedura:
 
-1.  Aprire hello [ **portale Azure** ](https://portal.azure.com/) e accedere come un **amministratore globale.**
+1.  Aprire il [**portale di Azure**](https://portal.azure.com/) e accedere come **Amministratore globale**.
 
-2.  Aprire hello **estensione di Azure Active Directory** facendo **più servizi** nella parte inferiore di hello del menu di navigazione a sinistra principale hello.
+2.  Aprire l'**estensione Azure Active Directory** facendo clic su **Altri servizi** nella parte inferiore del menu di navigazione principale a sinistra.
 
-3.  Digitare **"Azure Active Directory**" nella casella di ricerca di filtro hello e seleziona hello **Azure Active Directory** elemento.
+3.  Digitare "**Azure Active Directory**" nella casella di ricerca filtro e selezionare l'elemento **Azure Active Directory**.
 
-4.  Fare clic su **utenti e gruppi** nel menu di navigazione hello.
+4.  Fare clic su **Utenti e gruppi** nel menu di navigazione.
 
 5.  Fare clic su **Tutti gli utenti**.
 
-6.  **Ricerca** per utente hello si è interessati e **fare clic sulla riga hello** tooselect.
+6.  **Cercare** l'utente desiderato e **fare clic sulla riga corrispondente** per selezionarlo.
 
-7.  Fare clic su hello **reimpostazione password** pulsante nella parte superiore di hello del Pannello di utente hello.
+7.  Fare clic sul pulsante **Reimposta password** nella parte superiore del pannello dell'utente.
 
-8.  Fare clic su hello **reimpostazione password** pulsante hello **reimpostazione password** pannello visualizzato.
+8.  Fare clic sul pulsante **Reimposta password** nel pannello **Reimposta password** visualizzato.
 
-9.  Hello copia **password temporanea** o **immettere una nuova password** per utente hello.
+9.  Copiare la **password temporanea** o **immettere una nuova password** per l'utente.
 
-10. Comunicare il nuovo utente toohello password, essere necessario toochange questa password durante il successivo accesso tooAzure Active Directory.
+10. Comunicare questa nuova password all'utente, che potrebbe doverla modificare durante il successivo accesso ad Azure Active Directory.
 
 ### <a name="enable-self-service-password-reset"></a>Abilitare la reimpostazione self-service delle password
 
-password self-service tooenable reimpostare, attenersi alla procedura di distribuzione hello seguente:
+Per abilitare la reimpostazione self-service delle password, eseguire questa procedura di distribuzione:
 
--   [Abilitare gli utenti tooreset le password di Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-passwords-getting-started#enable-users-to-reset-their-azure-ad-passwords)
+-   [Consentire agli utenti di reimpostare le password di Azure AD](https://docs.microsoft.com/azure/active-directory/active-directory-passwords-getting-started#enable-users-to-reset-their-azure-ad-passwords)
 
--   [Abilitare gli utenti tooreset o modificare le password di Active Directory locale](https://docs.microsoft.com/azure/active-directory/active-directory-passwords-getting-started#enable-users-to-reset-or-change-their-ad-passwords)
+-   [Consentire agli utenti di reimpostare o modificare le password locali di Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-passwords-getting-started#enable-users-to-reset-or-change-their-ad-passwords)
 
 ### <a name="check-a-users-multi-factor-authentication-status"></a>Controllare lo stato di autenticazione a più fattori di un utente
 
-toocheck un utente di multi-factor lo stato di autenticazione, seguire hello passaggi riportati di seguito:
+Per controllare lo stato di autenticazione a più fattori di un utente, eseguire questa procedura:
 
-1.  Aprire hello [ **portale Azure** ](https://portal.azure.com/) e accedere come un **amministratore globale.**
+1.  Aprire il [**portale di Azure**](https://portal.azure.com/) e accedere come **Amministratore globale**.
 
-2.  Aprire hello **estensione di Azure Active Directory** facendo **più servizi** nella parte inferiore di hello del menu di navigazione a sinistra principale hello.
+2.  Aprire l'**estensione Azure Active Directory** facendo clic su **Altri servizi** nella parte inferiore del menu di navigazione principale a sinistra.
 
-3.  Digitare **"Azure Active Directory**" nella casella di ricerca di filtro hello e seleziona hello **Azure Active Directory** elemento.
+3.  Digitare "**Azure Active Directory**" nella casella di ricerca filtro e selezionare l'elemento **Azure Active Directory**.
 
-4.  Fare clic su **utenti e gruppi** nel menu di navigazione hello.
+4.  Fare clic su **Utenti e gruppi** nel menu di navigazione.
 
 5.  Fare clic su **Tutti gli utenti**.
 
-6.  Fare clic su hello **multi-Factor Authentication** pulsante nella parte superiore di hello del pannello hello.
+6.  Fare clic sul pulsante **Multi-Factor Authentication** nella parte superiore del pannello.
 
-7.  Una volta hello **portale di amministrazione di multi-Factor Authentication** carichi, verificare che trovano in hello **utenti** scheda.
+7.  Quando viene caricato il **portale di amministrazione di Multi-Factor Authentication**, assicurarsi di passare alla scheda **Utenti**.
 
-8.  Trovare utente hello elenco hello degli utenti, la ricerca, filtro o l'ordinamento.
+8.  Trovare l'utente nell'elenco degli utenti tramite una ricerca, l'applicazione di un filtro o l'ordinamento.
 
-9.  Utente selezionare hello hello elenco di utenti e **abilitare**, **disabilitare**, o **Imponi** autenticazione a più fattori in base alle esigenze.
+9.  Selezionare l'utente nell'elenco di utenti e scegliere **Abilita**, **Disabilita** o **Applica** per l'autenticazione a più fattori nel modo desiderato.
 
    >[!NOTE]
-   >Se un utente si trova in un **applicato** stato, è possibile impostarle troppo**disabilitato** temporaneamente toolet li nuovamente nel proprio account. Una volta in, è possibile modificare il proprio stato troppo**abilitato** nuovamente toorequire li toore la registrazione di informazioni sul contatto durante il successivo accesso. In alternativa, è possibile seguire i passaggi hello hello [informazioni di contatto di autenticazione dell'utente di controllare](#check-a-users-authentication-contact-info) tooverify o set di dati per loro.
+   >Se lo stato di un utente è impostato su **Applicato**, è possibile impostarlo temporaneamente su **Disattivato** per permettere all'utente di accedere di nuovo al proprio account. Quando l'utente è connesso, è possibile modificarne di nuovo lo stato in **Attivato** per chiedergli di registrare di nuovo le informazioni di contatto durante il successivo accesso. In alternativa, è possibile eseguire la procedura descritta in [Controllare le informazioni di contatto per l'autenticazione di un utente](#check-a-users-authentication-contact-info) per verificare o impostare questi dati per l'utente.
    >
    >
 
 ### <a name="check-a-users-authentication-contact-info"></a>Controllare le informazioni di contatto per l'autenticazione di un utente
 
-informazioni utilizzate per multi-factor authentication, l'accesso condizionale, la protezione dell'identità e la reimpostazione della Password, contattare l'autenticazione dell'utente toocheck procedura hello riportata di seguito:
+Per controllare le informazioni di contatto per l'autenticazione di un utente usate per l'autenticazione a più fattori, l'accesso condizionale, la protezione delle identità e la reimpostazione delle password, eseguire questa procedura:
 
-1.  Aprire hello [ **portale Azure** ](https://portal.azure.com/) e accedere come un **amministratore globale.**
+1.  Aprire il [**portale di Azure**](https://portal.azure.com/) e accedere come **Amministratore globale**.
 
-2.  Aprire hello **estensione di Azure Active Directory** facendo **più servizi** nella parte inferiore di hello del menu di navigazione a sinistra principale hello.
+2.  Aprire l'**estensione Azure Active Directory** facendo clic su **Altri servizi** nella parte inferiore del menu di navigazione principale a sinistra.
 
-3.  Digitare **"Azure Active Directory**" nella casella di ricerca di filtro hello e seleziona hello **Azure Active Directory** elemento.
+3.  Digitare "**Azure Active Directory**" nella casella di ricerca filtro e selezionare l'elemento **Azure Active Directory**.
 
-4.  Fare clic su **utenti e gruppi** nel menu di navigazione hello.
+4.  Fare clic su **Utenti e gruppi** nel menu di navigazione.
 
 5.  Fare clic su **Tutti gli utenti**.
 
-6.  **Ricerca** per utente hello si è interessati e **fare clic sulla riga hello** tooselect.
+6.  **Cercare** l'utente desiderato e **fare clic sulla riga corrispondente** per selezionarlo.
 
 7.  Fare clic su **Profilo**.
 
-8.  Scorrere verso il basso troppo**informazioni di contatto autenticazione**.
+8.  Scorrere fino a **Informazioni di contatto per l'autenticazione**.
 
-9.  **Revisione** dati hello registrati per utente hello e aggiornare in base alle esigenze.
+9.  Fare clic su **Verifica** per controllare i dati registrati per l'utente e aggiornarli nel modo necessario.
 
-### <a name="check-a-users-group-memberships"></a>Controllare le appartenenze a gruppi dell'utente
+### <a name="check-a-users-group-memberships"></a>Controllare le appartenenze ai gruppi di un utente
 
-di toocheck un utente appartenenza ai gruppi, attenersi alla procedura hello riportata di seguito:
+Per controllare le appartenenze ai gruppi di un utente, eseguire questa procedura:
 
-1.  Aprire hello [ **portale Azure** ](https://portal.azure.com/) e accedere come un **amministratore globale.**
+1.  Aprire il [**portale di Azure**](https://portal.azure.com/) e accedere come **Amministratore globale**.
 
-2.  Aprire hello **estensione di Azure Active Directory** facendo **più servizi** nella parte inferiore di hello del menu di navigazione a sinistra principale hello.
+2.  Aprire l'**estensione Azure Active Directory** facendo clic su **Altri servizi** nella parte inferiore del menu di navigazione principale a sinistra.
 
-3.  Digitare **"Azure Active Directory**" nella casella di ricerca di filtro hello e seleziona hello **Azure Active Directory** elemento.
+3.  Digitare "**Azure Active Directory**" nella casella di ricerca filtro e selezionare l'elemento **Azure Active Directory**.
 
-4.  Fare clic su **utenti e gruppi** nel menu di navigazione hello.
+4.  Fare clic su **Utenti e gruppi** nel menu di navigazione.
 
 5.  Fare clic su **Tutti gli utenti**.
 
-6.  **Ricerca** per utente hello si è interessati e **fare clic sulla riga hello** tooselect.
+6.  **Cercare** l'utente desiderato e **fare clic sulla riga corrispondente** per selezionarlo.
 
-7.  Fare clic su **gruppi** toosee gruppi utente hello è membro.
+7.  Fare clic su **Gruppi** per visualizzare i gruppi di cui l'utente è membro.
 
 ### <a name="check-a-users-assigned-licenses"></a>Controllare le licenze assegnate di un utente
 
-toocheck un utente assegnate le licenze, seguire hello passaggi riportati di seguito:
+Per controllare le licenze assegnate di un utente, eseguire questa procedura:
 
-1.  Aprire hello [ **portale Azure** ](https://portal.azure.com/) e accedere come un **amministratore globale.**
+1.  Aprire il [**portale di Azure**](https://portal.azure.com/) e accedere come **Amministratore globale**.
 
-2.  Aprire hello **estensione di Azure Active Directory** facendo **più servizi** nella parte inferiore di hello del menu di navigazione a sinistra principale hello.
+2.  Aprire l'**estensione Azure Active Directory** facendo clic su **Altri servizi** nella parte inferiore del menu di navigazione principale a sinistra.
 
-3.  Digitare **"Azure Active Directory**" nella casella di ricerca di filtro hello e seleziona hello **Azure Active Directory** elemento.
+3.  Digitare "**Azure Active Directory**" nella casella di ricerca filtro e selezionare l'elemento **Azure Active Directory**.
 
-4.  Fare clic su **utenti e gruppi** nel menu di navigazione hello.
+4.  Fare clic su **Utenti e gruppi** nel menu di navigazione.
 
 5.  Fare clic su **Tutti gli utenti**.
 
-6.  **Ricerca** per utente hello si è interessati e **fare clic sulla riga hello** tooselect.
+6.  **Cercare** l'utente desiderato e **fare clic sulla riga corrispondente** per selezionarlo.
 
-7.  Fare clic su **licenze** toosee utente hello licenze è attualmente assegnato.
+7.  Fare clic su **Licenze** per visualizzare le licenze attualmente assegnate all'utente.
 
 ### <a name="assign-a-user-a-license"></a>Assegnare una licenza a un utente 
 
-un utente, tooa licenza tooassign procedura hello riportata di seguito:
+Per assegnare una licenza a un utente, eseguire questa procedura:
 
-1.  Aprire hello [ **portale Azure** ](https://portal.azure.com/) e accedere come un **amministratore globale.**
+1.  Aprire il [**portale di Azure**](https://portal.azure.com/) e accedere come **Amministratore globale**.
 
-2.  Aprire hello **estensione di Azure Active Directory** facendo **più servizi** nella parte inferiore di hello del menu di navigazione a sinistra principale hello.
+2.  Aprire l'**estensione Azure Active Directory** facendo clic su **Altri servizi** nella parte inferiore del menu di navigazione principale a sinistra.
 
-3.  Digitare **"Azure Active Directory**" nella casella di ricerca di filtro hello e seleziona hello **Azure Active Directory** elemento.
+3.  Digitare "**Azure Active Directory**" nella casella di ricerca filtro e selezionare l'elemento **Azure Active Directory**.
 
-4.  Fare clic su **utenti e gruppi** nel menu di navigazione hello.
+4.  Fare clic su **Utenti e gruppi** nel menu di navigazione.
 
 5.  Fare clic su **Tutti gli utenti**.
 
-6.  **Ricerca** per utente hello si è interessati e **fare clic sulla riga hello** tooselect.
+6.  **Cercare** l'utente desiderato e **fare clic sulla riga corrispondente** per selezionarlo.
 
-7.  Fare clic su **licenze** toosee utente hello licenze è attualmente assegnato.
+7.  Fare clic su **Licenze** per visualizzare le licenze attualmente assegnate all'utente.
 
-8.  Fare clic su hello **assegnare** pulsante.
+8.  Fare clic sul pulsante **Assegna** .
 
-9.  Selezionare **uno o più prodotti** dall'elenco di hello dei prodotti disponibili.
+9.  Selezionare **uno o più prodotti** nell'elenco dei prodotti disponibili.
 
-10. **Parametro facoltativo** fare clic su hello **opzioni assegnazione** toogranularly elemento assegnare i prodotti. Fare clic su **OK** al termine.
+10. **Facoltativo**: fare clic sulla voce **Opzioni di assegnazione** per assegnare in modo granulare i prodotti. Fare clic su **OK** al termine.
 
-11. Fare clic su hello **assegnare** pulsante tooassign questi utente toothis licenze.
+11. Fare clic sul pulsante **Assegna** per assegnare queste licenze all'utente.
 
-## <a name="if-these-troubleshooting-steps-do-not-resolve-hello-issue"></a>Se i passaggi di risoluzione dei problemi non risolvono il problema di hello
+## <a name="if-these-troubleshooting-steps-do-not-resolve-the-issue"></a>Se questi passaggi per la risoluzione dei problemi non risolvono il problema
 
-Aprire un ticket di supporto con hello se disponibili le seguenti informazioni:
+Aprire un ticket di supporto con le informazioni seguenti, se disponibili:
 
 -   ID errore di correlazione
 
@@ -289,4 +289,4 @@ Aprire un ticket di supporto con hello se disponibili le seguenti informazioni:
 -   Tracce Fiddler
 
 ## <a name="next-steps"></a>Passaggi successivi
-[Fornire le applicazioni single sign-on tooyour con Proxy dell'applicazione](active-directory-application-proxy-sso-using-kcd.md)
+[Fornire l'accesso Single Sign-On alle app con il proxy di applicazione](active-directory-application-proxy-sso-using-kcd.md)

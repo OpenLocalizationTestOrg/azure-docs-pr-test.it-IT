@@ -1,6 +1,6 @@
 ---
-title: aaaGuide toocreating un servizio dati per hello Marketplace | Documenti Microsoft
-description: Istruzioni dettagliate su come toocreate, certificare e distribuire un servizio dati per acquistano su hello Azure Marketplace.
+title: Guida alla creazione di un servizio dati per il Marketplace | Documentazione Microsoft
+description: Istruzioni dettagliate su come creare, certificare e distribuire un servizio dati per l'acquisto in Azure Marketplace.
 services: marketplace-publishing
 documentationcenter: 
 author: HannibalSII
@@ -14,20 +14,20 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/26/2016
 ms.author: hascipio; avikova
-ms.openlocfilehash: 8917a43959834d15f70866297f98d24bb83e217f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2ab624941fc385f14b62bb5d743927f157955845
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="examples-of-mapping-an-existing-web-service-tooodata-through-csdls"></a>Esempi di mapping esistente web servizio tooOData tramite CSDLs
+# <a name="examples-of-mapping-an-existing-web-service-to-odata-through-csdls"></a>Esempi di mapping di un servizio Web esistente in OData tramite CSDL
 > [!IMPORTANT]
-> **In questo momento non stiamo più caricando nuovi editori di servizi dati. I nuovi servizi dati non saranno approvati per l'elencazione.** Se si dispone di un'applicazione SaaS di business si desidera toopublish in AppSource è possibile trovare ulteriori informazioni [qui](https://appsource.microsoft.com/partners). Se si utilizzano applicazioni IaaS sviluppatore del servizio si sarebbe ad esempio toopublish in Azure Marketplace è possibile trovare ulteriori informazioni [qui](https://azure.microsoft.com/marketplace/programs/certified/).
+> **In questo momento non stiamo più caricando nuovi editori di servizi dati. I nuovi servizi dati non saranno approvati per l'elencazione.** Se si dispone di un'applicazione aziendale SaaS che si vuole pubblicare in AppSource, è possibile trovare altre informazioni [qui](https://appsource.microsoft.com/partners). Se si dispone di un'applicazione IaaS o di un servizio per gli sviluppatori che si vuole pubblicare in Azure Marketplace, è possibile trovare altre informazioni [qui](https://azure.microsoft.com/marketplace/programs/certified/).
 > 
 > 
 
 ## <a name="example-functionimport-for-raw-data-returned-using-post"></a>Esempio: FunctionImport per i dati "Raw" restituiti utilizzando "POST"
-Utilizzare toocreate dati non elaborati POST una forma subordinata di nuovo e restituire il relativo server definiti URL(location) o tooupdate parte subordinata server hello hello URL.  In un flusso, vale a dire non strutturato, ad esempio hello subordinati. un file di testo.  Prestare attenzione che POST non è idempotente senza un percorso.
+Utilizzare dati Raw POST per creare un nuovo subordinato e restituire il relativo URL definito dal server (percorso) o per aggiornare una parte del subordinato nell’URL definito dal server.  Dove il subordinato è una struttura, ad esempio non strutturata, come un file di testo.  Prestare attenzione che POST non è idempotente senza un percorso.
 
         <!--  No EntitySet or EntityType nodes required for Raw output-->
         <FunctionImport Name="AddUsageEvent" ReturnType="Raw(text/plain)" d:EncodeParameterValues="true" d:AllowedHttpMethods="POST" d:BaseUri="http://services.organization.net/MyServicePath?name={name}&amp;AccountKey=22AC643">
@@ -45,7 +45,7 @@ Utilizzare toocreate dati non elaborati POST una forma subordinata di nuovo e re
         </FunctionImport>
 
 ## <a name="example-functionimport-using-delete"></a>Esempio: FunctionImport utilizzando "DELETE"
-Utilizzare DELETE tooremove un URI specificato.
+Utilizzare DELETE per rimuovere un URI specificato.
 
         <EntitySet Name="DeleteUsageFileEntitySet" EntityType="MyOffer.DeleteUsageFileEntity" />
         <FunctionImport Name="DeleteUsageFile" EntitySet="DeleteUsageFileEntitySet" ReturnType="Collection(MyOffer.DeleteUsageFileEntity)"  d:AllowedHttpMethods="DELETE" d:EncodeParameterValues="true” d:BaseUri=”http://services.organization.net/MyServicePath?name={name}&amp;AccountKey=22AC643" >
@@ -66,7 +66,7 @@ Utilizzare DELETE tooremove un URI specificato.
         </EntityType>
 
 ## <a name="example-functionimport-using-post"></a>Esempio: FunctionImport utilizzando "POST"
-Utilizzare toocreate dati non elaborati POST una forma subordinata di nuovo e restituire il relativo server definiti URL(location) o tooupdate parte subordinata server hello hello URL.  Dove subordinati hello sono una struttura. Prestare attenzione che POST non è idempotente senza un percorso.
+Utilizzare dati Raw POST per creare un nuovo subordinato e restituire il relativo URL definito dal server (percorso) o per aggiornare una parte del subordinato nell’URL definito dal server.  In cui la subordinata è una struttura. Prestare attenzione che POST non è idempotente senza un percorso.
 
         <EntitySet Name="CreateANewModelEntitySet2" EntityType=" MyOffer.CreateANewModelEntity2" />
         <FunctionImport Name="CreateModel" EntitySet="CreateANewModelEntitySet2" ReturnType="Collection(MyOffer.CreateANewModelEntity2)" d:EncodeParameterValues="true" d:AllowedHttpMethods="POST" d:BaseUri=”http://services.organization.net/MyServicePath?name={name}&amp;AccountKey=22AC643">
@@ -84,7 +84,7 @@ Utilizzare toocreate dati non elaborati POST una forma subordinata di nuovo e re
         </FunctionImport>
 
 ## <a name="example-functionimport-using-put"></a>Esempio: FunctionImport mediante "PUT"
-Utilizzare PUT toocreate una forma subordinata di nuovo o forma subordinata intero tooupdate hello in un server definito dall'URL.  Hello subordinate, in cui una struttura, PUT è idempotente in modo più occorrenze comporterà hello stesso stato, ovvero x=5.  PUT deve essere utilizzato con hello completa del contenuto di hello specificato risorse.
+Utilizzare PUT per creare un nuovo subordinato o per aggiornare l'intero subordinato in un URL definito dal server.  Dove il subordinato è una struttura, PUT è idempotente, quindi più occorrenze comportano lo stesso stato, ovvero x=5.  PUT deve essere utilizzato con il contenuto completo della risorsa specificata.
 
         <EntitySet Name="UpdateAnExistingModelEntitySet" EntityType="MyOffer.UpdateAnExistingModelEntity" />
         <FunctionImport Name="UpdateModel" EntitySet="UpdateAnExistingModelEntitySet" ReturnType="Collection(MyOffer.UpdateAnExistingModelEntity)" d:EncodeParameterValues="true" d:AllowedHttpMethods="PUT" d:BaseUri=”http://services.organization.net/MyServicePath?name={name}&amp;AccountKey=22AC643">
@@ -106,7 +106,7 @@ Utilizzare PUT toocreate una forma subordinata di nuovo o forma subordinata inte
 
 
 ## <a name="example-functionimport-for-raw-data-returned-using-put"></a>Esempio: FunctionImport per i dati "Raw" restituiti utilizzando "PUT"
-Utilizzare toocreate dati inseriti non elaborato una forma subordinata di nuovo o subordinati di tooupdate hello intera in un URL del server definito.  In un flusso, vale a dire non strutturato, ad esempio hello subordinati. un file di testo.  PUT è idempotente in modo più occorrenze comporterà hello stesso stato, ovvero x=5.  PUT deve essere utilizzato con hello completa del contenuto di hello specificato risorse.
+Utilizzare dati Raw PUT per creare un nuovo subordinato o per aggiornare l'intero subordinato in un URL definito dal server.  Dove il subordinato è una struttura, ad esempio non strutturata, come un file di testo.  PUT è idempotente, quindi più occorrenze comportano lo stesso stato, ovvero x=5.  PUT deve essere utilizzato con il contenuto completo della risorsa specificata.
 
         <!--  No EntitySet or EntityType nodes required for Raw output-->
         <FunctionImport Name="CancelBuild” ReturnType="Raw(text/plain)" d:AllowedHttpMethods="PUT" d:EncodeParameterValues="true" d:BaseUri=” http://services.organization.net/MyServicePath?name={name}&amp;AccountKey=22AC643">
@@ -125,7 +125,7 @@ Utilizzare toocreate dati inseriti non elaborato una forma subordinata di nuovo 
 
 
 ## <a name="example-functionimport-for-raw-data-returned-using-get"></a>Esempio: FunctionImport per i dati "Raw" restituiti utilizzando "GET"
-Utilizzare Raw ottenere dati tooreturn una forma subordinata che non è strutturata, ad esempio testo.
+Utilizzare dati Raw GET per restituire un subordinato non strutturato, ad esempio testo.
 
         <!--  No EntitySet or EntityType nodes required for Raw output-->
         <FunctionImport Name="GetModelUsageFile" ReturnType="Raw(text/plain)" d:EncodeParameterValues="true" d:AllowedHttpMethods="GET" d:BaseUri="https://cmla.cloudapp.net/api2/model/builder/build?buildId={buildId}&amp;apiVersion={apiVersion}">
@@ -144,7 +144,7 @@ Utilizzare Raw ottenere dati tooreturn una forma subordinata che non è struttur
         </FunctionImport>
 
 ## <a name="example-functionimport-for-paging-through-returned-data"></a>Esempio: FunctionImport per "Paging" tramite dati restituiti
-Utilizzare il paging RESTful implementato tramite i dati con GET.  Paging predefinito viene impostato too100 riga per ogni pagina di dati.
+Utilizzare il paging RESTful implementato tramite i dati con GET.  Il paging predefinito è impostato su 100 righe per ogni pagina di dati.
 
         <EntitySet Name=”CropEntitySet" EntityType="MyOffer.CropEntity" />
         <FunctionImport    Name="GetCropReport" EntitySet="CropEntitySet” ReturnType="Collection(MyOffer.CropEntity)" d:EmitSelfLink="false" d:EncodeParameterValues="true" d:Paging="SkipTake" d:MaxPageSize="100" d:BaseUri="http://api.mydata.org/Crop? report={report}&amp;series={series}&amp;start={$skip}&amp;size=100">
@@ -159,7 +159,7 @@ Utilizzare il paging RESTful implementato tramite i dati con GET.  Paging predef
         </FunctionImport>
 
 ## <a name="see-also"></a>Vedere anche
-* Se si è interessati alla comprensione hello l'intero processo di mapping di OData e lo scopo, leggere questo articolo [Mapping di dati del servizio OData](marketplace-publishing-data-service-creation-odata-mapping.md) tooreview definizioni, strutture e le istruzioni.
-* Se è interessati a learning e informazioni sui nodi specifici di hello e i relativi parametri, leggere questo articolo [nodi Mapping di dati del servizio OData](marketplace-publishing-data-service-creation-odata-mapping-nodes.md) per le definizioni e le spiegazioni, esempi e il contesto casi di utilizzo.
-* toohello tooreturn previsto percorso per la pubblicazione toohello un servizio dati Azure Marketplace, leggere questo articolo [Guida alla pubblicazione di dati del servizio](marketplace-publishing-data-service-creation.md).
+* Per apprendere il processo di mapping generale e lo scopo di OData , leggere questo articolo [Mapping di OData del servizio dati](marketplace-publishing-data-service-creation-odata-mapping.md) per esaminare le definizioni, le strutture e le istruzioni.
+* Per ricevere formazione e informazioni sui nodi specifici e i relativi parametri, leggere questo articolo [Nodi di mapping di OData del servizio dati](marketplace-publishing-data-service-creation-odata-mapping-nodes.md) per le definizioni e le spiegazioni e per esempi e casi di utilizzo contestuali.
+* Per ripristinare il percorso prescritto per la pubblicazione di un servizio dati in Azure Marketplace, leggere l'articolo di [guida alla pubblicazione del servizio dati](marketplace-publishing-data-service-creation.md).
 

@@ -1,6 +1,6 @@
 ---
-title: aaaBridge WebView Android con native Mobile Engagement SDK Android
-description: Viene descritto come ponte tra WebView toocreate esecuzione di Javascript e hello native Mobile Engagement SDK Android
+title: Creare un bridge tra WebView di Android e Mobile Engagement SDK per Android nativo
+description: Viene descritto come creare un bridge tra WebView che esegue JavaScript e Mobile Engagement SDK nativo per Android
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,11 +14,11 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: a7a09bcc156490fe69ad29a67809745dcfc22da6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f4fc7b3c81747ec80974a99084eeb1acc311f11f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="bridge-android-webview-with-native-mobile-engagement-android-sdk"></a>Creare un bridge tra WebView di Android e Mobile Engagement SDK per Android nativo
 > [!div class="op_single_selector"]
@@ -27,9 +27,9 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Alcune App per dispositivi mobili sono progettati come un'applicazione ibrida in cui l'app hello stessa viene sviluppata utilizzando lo sviluppo di Android native ma alcune o tutte le schermate di hello viene eseguite in un WebView Android. È comunque possibile utilizzare Mobile Engagement SDK Android all'interno di tali applicazioni e di questa esercitazione viene descritto come toogo su questa operazione. codice di esempio Hello seguente si basa sull'hello documentazione Android [qui](https://developer.android.com/guide/webapps/webview.html#BindingJavaScript). Viene descritto come questo approccio documentato può essere utilizzato tooimplement hello stesso per metodi di Mobile Engagement Android SDK comunemente utilizzati in modo che Webview da un'applicazione ibrida può inoltre iniziare richieste tootrack eventi, processi e app-info, errori durante l'invio tramite pipe tramite il nostro Android SDK. 
+Alcune app per dispositivi mobili vengono progettate come app ibride dove l'app stessa è sviluppata con Android nativo, ma le schermate vengono restituite, totalmente o in parte, in WebView di Android. È comunque possibile usare Mobile Engagement SDK per Android all'interno di tali app e questa esercitazione illustra come farlo. Il codice di esempio riportato sotto si basa sulla documentazione Android disponibile [qui](https://developer.android.com/guide/webapps/webview.html#BindingJavaScript). Si descrive come usare questo approccio documentato per implementare gli stessi metodi comunemente usati per Mobile Engagement SDK per Android in modo che WebView possa avviare richieste da un'app ibrida per tenere traccia di eventi, processi, errori e informazioni app durante il piping via SDK per Android. 
 
-1. Prima di tutto, è necessario tooensure che sono già state completate tramite il nostro [esercitazione introduttiva](mobile-engagement-android-get-started.md) toointegrate hello Mobile Engagement SDK Android nell'applicazione ibrida. Una volta eseguita, il `OnCreate` metodo avrà un aspetto simile hello seguenti.  
+1. Prima di tutto, è necessario verificare di aver terminato l' [esercitazione introduttiva](mobile-engagement-android-get-started.md) per integrare Mobile Engagement SDK per Android nell'app ibrida. Al termine dell'operazione, il metodo `OnCreate` avrà un aspetto simile al seguente.  
    
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ Alcune App per dispositivi mobili sono progettati come un'applicazione ibrida in
             engagementConfiguration.setConnectionString("<Mobile Engagement Conn String>");
             EngagementAgent.getInstance(this).init(engagementConfiguration);
         }
-2. Verificare che l'app ibrida visualizzi WebView sulla schermata. Hello il codice sarà simile toohello seguente in cui è in corso il caricamento un file HTML locale **Sample.html** in Ciao Webview hello `onCreate` metodo dello schermo. 
+2. Verificare che l'app ibrida visualizzi WebView sulla schermata. Il codice sarà simile al seguente, dove è in corso il caricamento del file HTML locale **Sample.html** in WebView nel metodo `onCreate` della schermata. 
    
         private void SetWebView() {
             WebView myWebView = (WebView) findViewById(R.id.webview);
@@ -52,7 +52,7 @@ Alcune App per dispositivi mobili sono progettati come un'applicazione ibrida in
             ...
             SetWebView();
         }
-3. Creare un file di bridge denominato **WebAppInterface** che consente di creare un wrapper per alcuni comunemente utilizzati i metodi di Mobile Engagement SDK Android usando hello `@JavascriptInterface` approccio descritto in hello [documentazione Android ](https://developer.android.com/guide/webapps/webview.html#BindingJavaScript):
+3. Creare un file bridge denominato **WebAppInterface** per generare un wrapper su alcuni metodi comunemente usati di Mobile Engagement SDK per Android tramite l'approccio `@JavascriptInterface` descritto nella [documentazione Android](https://developer.android.com/guide/webapps/webview.html#BindingJavaScript):
    
         import android.content.Context;
         import android.os.Bundle;
@@ -67,7 +67,7 @@ Alcune App per dispositivi mobili sono progettati come un'applicazione ibrida in
         public class WebAppInterface {
             Context mContext;
    
-            /** Instantiate hello interface and set hello context */
+            /** Instantiate the interface and set the context */
             WebAppInterface(Context c) {
                 mContext = c;
             }
@@ -110,7 +110,7 @@ Alcune App per dispositivi mobili sono progettati come un'applicazione ibrida in
                 return extras;
             }
         }  
-4. Quando abbiamo creato hello sopra file bridge, dobbiamo tooensure che è associato il nostro Webview. Per questo toohappen, è necessario tooedit il `SetWebview` metodo in modo che rispecchi hello seguente:
+4. Dopo aver creato il file bridge di cui sopra, è necessario verificare che sia associato a WebView. A tale scopo, è necessario modificare il metodo `SetWebview` che deve somigliare al seguente:
    
         private void SetWebView() {
             WebView myWebView = (WebView) findViewById(R.id.webview);
@@ -119,8 +119,8 @@ Alcune App per dispositivi mobili sono progettati come un'applicazione ibrida in
             webSettings.setJavaScriptEnabled(true);
             myWebView.addJavascriptInterface(new WebAppInterface(this), "EngagementJs");
         }
-5. In hello sopra frammento di codice, è stato chiamato `addJavascriptInterface` tooassociate il bridge di classe con il nostro Webview e anche creato un handle chiamato **EngagementJs** metodi hello toocall dal file bridge hello. 
-6. Creare ora hello seguente file denominato **Sample.html** nel progetto in una cartella denominata **asset** che vengono caricati in Webview hello e in cui si chiamerà i metodi di hello dal file bridge hello.
+5. Nel frammento precedente, `addJavascriptInterface` è stato chiamato per associare la classe bridge a WebView ed è stato creato anche un handle denominato **EngagementJs** per chiamare i metodi dal file bridge. 
+6. Creare nel progetto il seguente file denominato **Sample.html** all'interno di una cartella dal nome **assets**, che viene caricata in WebView e in cui verranno chiamati i metodi dal file bridge.
    
         <!doctype html>
         <html>
@@ -144,7 +144,7 @@ Alcune App per dispositivi mobili sono progettati come un'applicazione ibrida in
                         if(input)
                         {
                             var value = input.value;
-                            // Example of how extras info can be passed with hello Engagement logs
+                            // Example of how extras info can be passed with the Engagement logs
                             var extras = '{"CustomerId":"MS290011"}';
    
                             if(value && value.length > 0)
@@ -197,16 +197,16 @@ Alcune App per dispositivi mobili sono progettati come un'applicazione ibrida in
                 </div>
             </body>
         </html>
-7. Esempio hello nota punti sui file HTML hello precedente:
+7. Notare i punti seguenti riguardanti il file HTML indicato sopra:
    
-   * Contiene un set di caselle di input in cui è possibile fornire dati toobe utilizzati come nomi per l'evento, processo, l'errore, AppInfo. Quando si fa clic su hello pulsante Avanti tooit, toohello Javascript che questo toohello chiamata Mobile Engagement SDK Android chiama i metodi di hello da hello bridge file toopass viene eseguita una chiamata. 
-   * Ci stiamo tag su alcuni eventi toohello statico informazioni supplementari, processi e persino errori toodemonstrate come questa operazione. Queste informazioni aggiuntive viene inviata come stringa di un formato JSON che, se si osserva hello `WebAppInterface` file, viene analizzato e inserire in un Android `Bundle` e viene passato insieme a eventi, i processi, errori di invio. 
-   * Un processo di Engagement Mobile viene avviato con nome hello specificata nella casella di input hello, eseguito per 10 secondi e arrestato. 
-   * Un appinfo Engagement Mobile o un tag viene passato come chiave statica hello e il valore di hello immesse nell'input hello come valore di hello per tag hello con 'cliente'. 
-8. Esecuzione hello app e visualizzato sarà hello seguente. Ora di fornire un nome per un evento di verifica come hello seguenti e fare clic su **inviare** sotto di essa. 
+   * Contiene un set di caselle di input in cui è possibile fornire i dati da usare come nomi per Event, Job, Error e AppInfo. Quando si fa clic sul pulsante accanto, viene eseguita una chiamata a JavaScript che a sua volta chiama i metodi dal file bridge per passare la chiamata a Mobile Engagement SDK per Android. 
+   * Vengono aggiunte alcune informazioni statiche extra agli eventi, ai processi e anche agli errori per mostrare come eseguire questa operazione. Queste informazioni aggiuntive vengono inviate come stringa JSON che, guardando il file `WebAppInterface`, viene analizzata e inserita in un `Bundle` Android, quindi passata con l'invio di Events, Jobs ed Errors. 
+   * Un processo di Mobile Engagement viene avviato con il nome specificato nella casella di input, viene eseguito per 10 secondi, quindi arrestato. 
+   * Un appinfo o tag Mobile Engagement viene passato con 'customer_name' come chiave statica e con il valore immesso nell'input come valore del tag. 
+8. Eseguire l'app per visualizzare quanto segue. Assegnare un nome a un evento test simile a quello seguente, quindi fare clic su **Send** sotto. 
    
     ![][1]
-9. Se si passa toohello **monitoraggio** scheda della finestra dell'app e l'aspetto in **eventi -> Dettagli**, verrà visualizzato questo evento visualizzati insieme hello statico app-info che viene inviato. 
+9. È possibile visualizzare questo evento insieme alle informazioni app statiche inviate passando alla scheda **Monitoraggio** dell'app e guardando in **Eventi -> Dettagli**. 
    
    ![][2]
 

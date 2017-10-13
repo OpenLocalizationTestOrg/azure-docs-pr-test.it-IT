@@ -13,7 +13,7 @@
 ### [Guida per gli sviluppatori all'insieme di credenziali delle chiavi](key-vault-developers-guide.md)
 ### [Limiti del servizio](key-vault-service-limits.md)
 ### [Chiavi protette dal modulo di protezione hardware](key-vault-hsm-protected-keys.md)
-### [Eseguire la migrazione too.NET 2.0](key-vault-dotnet2api-release-notes.md)
+### [Eseguire la migrazione a .NET 2.0](key-vault-dotnet2api-release-notes.md)
 ### Panoramiche
 #### [Scenari di sicurezza](key-vault-ovw-security-worlds.md)
 #### [Eliminazione temporanea](key-vault-ovw-soft-delete.md)
@@ -25,10 +25,10 @@
 ### [Accesso protetto da firewall](key-vault-access-behind-firewall.md)
 ### [Disponibilità e ridondanza](key-vault-disaster-recovery-guidance.md)
 ### [Modificare l'ID tenant](key-vault-subscription-move-fix.md)
-### [Creare e gestire con l'interfaccia della riga di comando 2.0](key-vault-manage-with-cli2.md)
-### [Come insieme di credenziali chiave toouse soft-eliminazione con CLI](key-vault-soft-delete-cli.md)
-### [Come insieme di credenziali chiave toouse soft-delete con PowerShell](key-vault-soft-delete-powershell.md)
-### [Usare l'accesso toogrant gruppi](key-vault-group-permissions-for-apps.md)
+### [Creare e gestire con l'interfaccia della riga di comando di Azure](key-vault-manage-with-cli2.md)
+### [Come usare l'eliminazione temporanea di Key Vault con l'interfaccia della riga di comando](key-vault-soft-delete-cli.md)
+### [Come usare l'eliminazione temporanea di Key Vault con Azure PowerShell](key-vault-soft-delete-powershell.md)
+### [Usare i gruppi per concedere l'accesso](key-vault-group-permissions-for-apps.md)
 ### [Proteggere l'insieme di credenziali delle chiavi](key-vault-secure-your-key-vault.md)
 
 ## Automazione
@@ -36,8 +36,8 @@
 
 # riferimento
 ## [Esempi di codice](https://azure.microsoft.com/en-us/resources/samples/?service=key-vault)
-## [PowerShell](/powershell/module/azurerm.keyvault)
-## [Interfaccia della riga di comando di Azure 2](/cli/azure/keyvault)
+## [Azure PowerShell](/powershell/module/azurerm.keyvault)
+## [Interfaccia della riga di comando di Azure](/cli/azure/keyvault)
 ## [.NET](/dotnet/api/microsoft.azure.keyvault)
 ## [Java](/java/api/com.microsoft.azure.keyvault)
 ## Node.js

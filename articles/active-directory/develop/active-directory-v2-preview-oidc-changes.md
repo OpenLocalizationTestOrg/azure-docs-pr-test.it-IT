@@ -1,6 +1,6 @@
 ---
-title: aaaChanges toohello AD Azure v 2.0 endpoint | Documenti Microsoft
-description: Una descrizione delle modifiche che vengono effettuati i protocolli anteprima pubblica di toohello app modello v 2.0.
+title: Modifiche all'endpoint v2.0 di Azure AD | Documentazione Microsoft
+description: Descrizione delle modifiche in corso ai protocolli del Modello app 2.0 disponibili in anteprima pubblica.
 services: active-directory
 documentationcenter: 
 author: dstrockis
@@ -15,28 +15,28 @@ ms.topic: article
 ms.date: 09/16/2016
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: d7b28a481e12d5dbbc4a10110193bdbd754f4929
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ae73833a68db14804dc40eaf07ff7d3effaa9052
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="important-updates-toohello-v20-authentication-protocols"></a>V 2.0 toohello aggiornamenti importanti protocolli di autenticazione
-Nota per gli sviluppatori: Su hello due settimane successive, verrà rilasciato alcuni aggiornamenti i protocolli di autenticazione v 2.0 tooour che possono comportare modifiche per le applicazioni che è stato scritto durante il periodo di anteprima di rilievo.  
+# <a name="important-updates-to-the-v20-authentication-protocols"></a>Aggiornamenti importanti ai protocolli di autenticazione della versione 2.0
+Nota per gli sviluppatori: nelle prossime due settimane verranno rilasciati alcuni aggiornamenti ai protocolli di autenticazione della versione 2.0 che potrebbero comportare modifiche di rilievo per le app scritte durante il periodo di anteprima.  
 
 ## <a name="who-does-this-affect"></a>Parti interessate
-Qualsiasi App che sono stati scritti v 2.0 hello toouse convergente endpoint di autenticazione,
+Le app scritte per l'uso dell'endpoint di autenticazione convergente della versione 2.0,
 
 ```
 https://login.microsoftonline.com/common/oauth2/v2.0/authorize
 ```
 
-Sono disponibili ulteriori informazioni sull'endpoint v 2.0 hello [qui](active-directory-appmodel-v2-overview.md).
+Altre informazioni sull'endpoint della versione 2.0 sono disponibili [qui](active-directory-appmodel-v2-overview.md).
 
-Se creata un'app usando endpoint v 2.0 hello codificando toohello direttamente il protocollo v 2.0, utilizzando uno dei nostri middlewares di OpenID Connect o OAuth web o tramite altri 3 autenticazione tooperform librerie di terze parti, deve essere preparato tootest progetti e verificare eventuali modifiche necessarie.
+Se è stata compilata un'app con l'endpoint della versione 2.0 creando il codice direttamente nel protocollo della versione 2.0 e usando il middleware Web OAuth o OpenID Connect oppure usando altre librerie di terze parti per eseguire l'autenticazione, è necessario testare i progetti e apportare le eventuali modifiche necessarie.
 
 ## <a name="who-doesnt-this-affect"></a>Parti non interessate
-Qualsiasi App che sono stati scritti su endpoint di autenticazione hello produzione AD Azure,
+Le app scritte in base all'endpoint di autenticazione di Azure AD di produzione,
 
 ```
 https://login.microsoftonline.com/common/oauth2/authorize
@@ -44,11 +44,11 @@ https://login.microsoftonline.com/common/oauth2/authorize
 
 Questo protocollo è fisso e non subirà modifiche.
 
-Inoltre, se l'app **solo** utilizza l'autenticazione tooperform la libreria ADAL, non sarà possibile toochange nulla.  ADAL è schermato app dalle modifiche hello.  
+Se l'app usa **solo** la libreria ADAL per eseguire l'autenticazione, non è necessario apportare alcuna modifica.  ADAL protegge l'app dalle modifiche.  
 
-## <a name="what-are-hello-changes"></a>Quali sono le modifiche di hello?
-### <a name="removing-hello-x5t-value-from-jwt-headers"></a>Rimozione di valore x5t hello dalle intestazioni JWT
-Hello v 2.0 endpoint utilizza i token JWT, che contiene una sezione di intestazione parametri ai relativi metadati sul token hello.  Se si decodifica intestazione hello di uno dei nostri Jwt corrente, si otterrebbe simile al seguente:
+## <a name="what-are-the-changes"></a>Dettaglio delle modifiche
+### <a name="removing-the-x5t-value-from-jwt-headers"></a>Rimozione del valore x5t dalle intestazioni JWT
+L'endpoint della versione 2.0 fa ampio uso dei token JWT, che contengono una sezione dei parametri di intestazione con i relativi metadati sul token.  Decodificando l'intestazione di uno dei JWT correnti, si otterrebbe un risultato simile al seguente:
 
 ```
 { 
@@ -59,23 +59,23 @@ Hello v 2.0 endpoint utilizza i token JWT, che contiene una sezione di intestazi
 }
 ```
 
-In entrambe le proprietà "x5t" e "kid" hello identificano la chiave pubblica di hello che deve essere la firma del token di hello toovalidate utilizzati, così come viene recuperato dall'endpoint di metadati di OpenID Connect hello.
+Dove entrambe le proprietà "x5t" e "kid" identificano la chiave pubblica da usare per convalidare la firma del token, recuperata dall'endpoint dei metadati di OpenID Connect.
 
-modifica di Hello che stiamo qui è proprietà hello "x5t" tooremove.  È possibile continuare hello toouse toovalidate meccanismi stesso token, ma è necessario basarsi solo sui hello "kid" proprietà tooretrieve hello chiave pubblica corretta, come specificato in hello protocollo OpenID Connect. 
+La modifica consiste nella rimozione della proprietà "x5t".  È possibile continuare a usare gli stessi meccanismi per la convalida dei token, ma per il recupero della chiave pubblica corretta è possibile basarsi unicamente sulla proprietà "kid", come specificato nel protocollo OpenID Connect. 
 
 > [!IMPORTANT]
-> **Il processo: verificare che l'app non dipende dalla presenza hello del valore x5t hello.**
+> **Assicurarsi che l'app non dipenda dall'esistenza del valore x5t.**
 > 
 > 
 
 ### <a name="removing-profileinfo"></a>Rimozione di profile_info
-In precedenza, endpoint v 2.0 hello è stato restituendo un oggetto JSON con codificata base64 nelle risposte token chiamate `profile_info`.  Quando si richiede un token di accesso dall'endpoint v 2.0 hello inviando una richiesta per:
+In precedenza, l'endpoint della versione 2.0 restituiva un oggetto JSON con codifica Base64 denominato `profile_info` nelle risposte dei token.  Quando si richiedeva un token di accesso dall'endpoint della versione 2.0 inviando una richiesta a:
 
 ```
 https://login.microsoftonline.com/common/oauth2/v2.0/token
 ```
 
-risposta Hello sarebbe simile hello oggetto JSON seguente:
+La risposta era simile all'oggetto JSON seguente:
 
 ```
 { 
@@ -88,9 +88,9 @@ risposta Hello sarebbe simile hello oggetto JSON seguente:
 }
 ```
 
-Hello `profile_info` informazioni di valore contenuto utente hello che ha firmato in app hello: il nome visualizzato, nome, cognome, indirizzo di posta elettronica, identificatore e così via.  In primo luogo, hello `profile_info` usati per la memorizzazione nella cache di token e ai fini della visualizzazione.
+Il valore `profile_info` conteneva informazioni sull'utente che aveva eseguito l'accesso all'app, ad esempio il nome visualizzato, il nome, il cognome, l'indirizzo di posta elettronica, l'identificatore e così via.  `profile_info` veniva usato principalmente per la memorizzazione nella cache dei token e ai fini della visualizzazione.
 
-Ora viene rimossa hello `profile_info` valore, ma niente paura, forniamo ancora questa toodevelopers informazioni in una posizione leggermente diversa.  Invece di `profile_info`, endpoint v 2.0 hello restituirà ora un `id_token` in ogni risposta token:
+Il valore `profile_info` è stato rimosso e le informazioni vengono ora fornite agli sviluppatori in una posizione leggermente diversa.  Invece di `profile_info`, l'endpoint della versione 2.0 restituisce ora un `id_token` in ogni risposta del token:
 
 ```
 { 
@@ -103,17 +103,17 @@ Ora viene rimossa hello `profile_info` valore, ma niente paura, forniamo ancora 
 }
 ```
 
-È possibile decodificare e analizzare hello id_token tooretrieve hello ricevuto da profile_info stesse informazioni.  Hello id_token è un JSON Web Token (JWT), con il contenuto come specificato da OpenID Connect.  Hello codice per questa operazione deve essere molto simile – è necessario semplicemente intermedio hello tooextract segmento (corpo hello) di id_token hello e base64 decodificarlo in oggetto JSON di hello tooaccess all'interno.
+È possibile decodificare e analizzare l'id_token per recuperare le stesse informazioni fornite da profile_info.  L'id_token è un token Web JSON (JWT) il cui contenuto è specificato da OpenID Connect.  Il codice per eseguire questa operazione dovrebbe essere molto simile. È sufficiente estrarre il segmento intermedio (il corpo) dell'id_token e decodificarlo con Base64 per accedere all'oggetto JSON al suo interno.
 
-Su hello due settimane successive, è consigliabile codificare le informazioni sull'utente di app tooretrieve hello da entrambi hello `id_token` o `profile_info`; a seconda del valore è presente.  In questo modo, quando viene apportata la modifica hello, l'app è gestita senza transizione hello da `profile_info` troppo`id_token` senza interruzioni.
+Nelle prossime due settimane è consigliabile scrivere il codice dell'app in modo che le informazioni sull'utente vengano recuperate da `id_token` o `profile_info`, a seconda del valore presente.  In questo modo, quando verrà apportata la modifica l'app potrà gestire senza problemi la transizione da `profile_info` a `id_token`, senza interruzioni.
 
 > [!IMPORTANT]
-> **Il processo: verificare che l'app non dipende dalla presenza hello di hello `profile_info` valore.**
+> **Assicurarsi che l'app non dipenda dall'esistenza del `profile_info` valore.**
 > 
 > 
 
 ### <a name="removing-idtokenexpiresin"></a>Rimozione di id_token_expires_in
-Simile troppo`profile_info`, viene anche rimossa hello `id_token_expires_in` parametro dalle risposte.  In precedenza, restituisce un valore per endpoint v 2.0 hello `id_token_expires_in` insieme a ogni risposta id_token, ad esempio in una risposta authorize:
+Oltre a `profile_info` verrà rimosso anche il parametro `id_token_expires_in` dalle risposte.  In precedenza, l'endpoint della versione 2.0 restituiva un valore per `id_token_expires_in` insieme a ogni risposta dell'id_token, ad esempio in una risposta di autorizzazione:
 
 ```
 https://myapp.com?id_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsI...&id_token_expires_in=3599...
@@ -132,15 +132,15 @@ O in una risposta del token:
 }
 ```
 
-Hello `id_token_expires_in` valore indica il numero di hello di secondi hello id_token resta valido per.  A questo punto, viene rimossa hello `id_token_expires_in` valore completamente.  In alternativa, è possibile utilizzare standard di OpenID Connect hello `nbf` e `exp` validità hello tooexamine di un id_token di attestazioni.  Vedere hello [riferimento token v 2.0](active-directory-v2-tokens.md) per ulteriori informazioni su queste attestazioni.
+Il valore `id_token_expires_in` indicava il numero di secondi di validità dell'id_token.  Il valore `id_token_expires_in` viene ora completamente rimosso.  Al suo posto è possibile usare le attestazioni `nbf` e `exp` dello standard OpenID Connect per esaminare la validità di un id_token.  Per altre informazioni su queste attestazioni, vedere il [riferimento al token della versione 2.0](active-directory-v2-tokens.md) .
 
 > [!IMPORTANT]
-> **Il processo: verificare che l'app non dipende dalla presenza hello di hello `id_token_expires_in` valore.**
+> **Assicurarsi che l'app non dipenda dall'esistenza del `id_token_expires_in` valore.**
 > 
 > 
 
-### <a name="changing-hello-claims-returned-by-scopeopenid"></a>Modifica delle attestazioni hello restituita dall'ambito = openid
-Questa modifica sarà hello più rilevante, infatti, influisce negativamente quasi tutte le applicazioni che utilizza hello v 2.0 endpoint.  Molte applicazioni invia richieste toohello v 2.0 endpoint utilizzando hello `openid` definire l'ambito, ad esempio:
+### <a name="changing-the-claims-returned-by-scopeopenid"></a>Modifica delle attestazioni restituite da scope=openid
+Questa sarà la modifica più significativa, che influirà su quasi tutte le app che usano l'endpoint della versione 2.0.  Molte applicazioni inviano richieste all'endpoint della versione 2.0 usando l'ambito `openid`, ad esempio:
 
 ```
 https://login.microsoftonline.com/common/oauth2/v2.0/authorize?
@@ -151,9 +151,9 @@ client_id=...
 &scope=openid offline_access https://outlook.office.com/mail.read
 ```
 
-Oggi, quando hello utente concede il consenso per hello `openid` ambito, l'app riceve una serie di informazioni sull'utente hello in hello id_token risultante.  Le attestazioni includono, ad esempio, il nome dell'utente, il nome utente preferito, l'indirizzo di posta elettronica, l'ID oggetto e altro ancora.
+Attualmente, quando l'utente concede l'autorizzazione per l'ambito `openid`, l'applicazione riceve molte informazioni sull'utente nell'id_token risultante.  Le attestazioni includono, ad esempio, il nome dell'utente, il nome utente preferito, l'indirizzo di posta elettronica, l'ID oggetto e altro ancora.
 
-In questo aggiornamento, si sta modificando le informazioni di hello che hello `openid` ambito consente all'app l'accesso a comform toobetter con hello specifica OpenID Connect.  Hello `openid` ambito verrà solo consentire all'utente di hello app toosign in e ricevere un identificatore specifico dell'app per utente hello in hello `sub` attestazione di hello id_token.  Hello attestazioni in un id_token con solo hello `openid` ambito concessa sarà privo di informazioni personali.  Di seguito sono riportati alcuni esempi di attestazioni dell'id_token:
+In questo aggiornamento vengono modificate le informazioni a cui l'app ha accesso tramite l'ambito `openid` , per una maggiore conformità alle specifiche di OpenID Connect.  L'ambito `openid` consente all'app di far accedere l'utente e di ricevere un identificatore specifico dell'app per l'utente nell'attestazione `sub` dell'id_token.  Le attestazioni in un id_token a cui è stato concesso solo l'ambito `openid` saranno prive di informazioni personali.  Di seguito sono riportati alcuni esempi di attestazioni dell'id_token:
 
 ```
 { 
@@ -169,12 +169,12 @@ In questo aggiornamento, si sta modificando le informazioni di hello che hello `
 }
 ```
 
-Se si desiderano tooobtain informazioni personali (PII) sull'utente hello nell'app, necessarie per l'app toorequest ulteriori autorizzazioni utente hello.  Microsoft sta introducendo il supporto per due nuovi ambiti dalla specifica di OpenID Connect hello: hello `email` e `profile` ambiti, che consentono di toodo così.
+Per ottenere informazioni personali sull'utente nell'app, questa dovrà richiedere autorizzazioni aggiuntive all'utente.  Viene ora introdotto il supporto per due nuovi ambiti dalla specifica di OpenID Connect, `email` e `profile`, che consentono di eseguire questa operazione.
 
-* Hello `email` ambito è molto semplice: consente l'indirizzo di posta elettronica principale dell'utente le app accesso toohello tramite hello `email` id_token hello di attestazione.  Si noti che hello `email` attestazione non sempre è presente in id_tokens: solo verrà incluso se è disponibile nel profilo dell'utente hello.
-* Hello `profile` ambito mette a disposizione il tooall accesso app altre informazioni di base sull'utente hello-loro nome, nome utente preferito, ID di oggetto e così via.
+* L'ambito `email` è molto semplice: consente all'app di accedere all'indirizzo di posta elettronica primario dell'utente tramite l'attestazione `email` nell'id_token.  Si noti che l'attestazione `email` non sarà sempre presente nell'id_token, ma verrà inclusa solo se disponibile nel profilo dell'utente.
+* L'ambito `profile` concede all'app l'accesso a tutte le altre informazioni di base sull'utente, vale a dire il nome, il nome utente preferito, l'ID oggetto e così via.
 
-In questo modo è toocode l'app in maniera minima riservatezza: è possibile richiedere utente hello solo i set di hello di informazioni che l'app richiede toodo relativo processo.  Se si desidera toocontinue recupero set completo di hello di informazioni sull'utente che sta ricevendo l'app, è necessario includere tutti e tre gli ambiti delle richieste di autorizzazione:
+Questo permette di creare il codice dell'app in modo che la divulgazione delle informazioni sia minima, chiedendo all'utente solo il set di informazioni necessario per il funzionamento dell'app.  Se si vuole continuare a ottenere il set di informazioni utente completo attualmente ricevuto dall'app, è necessario includere tutti e tre gli ambiti nelle richieste di autorizzazione:
 
 ```
 https://login.microsoftonline.com/common/oauth2/v2.0/authorize?
@@ -185,55 +185,55 @@ client_id=...
 &scope=openid profile email offline_access https://outlook.office.com/mail.read
 ```
 
-L'app è possibile iniziare l'invio di hello `email` e `profile` immediatamente gli ambiti e hello v 2.0 endpoint verrà accettare questi due ambiti e iniziare la richiesta di autorizzazioni agli utenti in base alle esigenze.  Tuttavia, non modificare hello interpretazione hello di hello `openid` ambito verrà rese effettive per alcune settimane.
+L'applicazione può iniziare immediatamente a inviare gli ambiti `email` e `profile` e, dopo averli accettati, l'endpoint della versione 2.0 inizia a richiedere agli utenti le autorizzazioni necessarie.  Tuttavia, la modifica all'interpretazione dell'ambito `openid` non sarà effettiva ancora per alcune settimane.
 
 > [!IMPORTANT]
-> **Il processo: Aggiungi hello `profile` e `email` ambiti se l'app richiede informazioni sull'utente hello.**  Si noti che ADAL includerà entrambe le autorizzazioni nelle richieste per impostazione predefinita. 
+> **Aggiungere gli ambiti `profile` e `email` se l'app richiede informazioni sull'utente.**  Si noti che ADAL includerà entrambe le autorizzazioni nelle richieste per impostazione predefinita. 
 > 
 > 
 
-### <a name="removing-hello-issuer-trailing-slash"></a>Rimozione hello dell'autorità di certificazione con una barra finale.
-In precedenza, hello dell'autorità di certificazione che viene visualizzato nel token dall'endpoint v 2.0 hello impiegato modulo hello
+### <a name="removing-the-issuer-trailing-slash"></a>Rimozione della barra finale dell'autorità di certificazione
+In precedenza, il valore dell'autorità di certificazione visualizzato nei token dall'endpoint della versione 2.0 aveva il formato
 
 ```
 https://login.microsoftonline.com/{some-guid}/v2.0/
 ```
 
-Guid hello in cui è tenantId hello del tenant hello Azure AD che ha rilasciato il token hello.  Con queste modifiche, il valore di autorità di certificazione hello diventa
+dove guid era l'ID tenant del tenant di Azure AD che aveva emesso il token.  Con queste modifiche, il valore dell'autorità di certificazione diventa
 
 ```
 https://login.microsoftonline.com/{some-guid}/v2.0 
 ```
 
-in entrambi i token e nel documento di individuazione OpenID Connect hello.
+sia nei token che nel documento di individuazione di OpenID Connect.
 
 > [!IMPORTANT]
-> **Il processo: verificare che l'applicazione accetta un valore dell'autorità di certificazione hello con e senza una barra finale durante la convalida dell'autorità di certificazione.**
+> **Assicurarsi che l'app accetti il valore dell'autorità di certificazione con e senza una barra finale durante la convalida dell'autorità di certificazione.**
 > 
 > 
 
 ## <a name="why-change"></a>Perché cambiare
-obiettivo principale di Hello per l'introduzione di queste modifiche è toobe conformi con hello OpenID Connect specifica standard.  Essendo OpenID Connect conforme, ci auguriamo che toominimize le differenze tra l'integrazione con servizi di identità Microsoft e con altri servizi di identità nel settore hello.  Vogliamo tooenable sviluppatori toouse le librerie di autenticazione open source preferita senza differenze di tooalter hello librerie tooaccommodate Microsoft.
+La motivazione principale per l'introduzione di queste modifiche è la conformità alle specifiche dello standard OpenID Connect.  Con la conformità a OpenID Connect, Microsoft punta a ridurre al minimo le differenze tra l'integrazione con i servizi di identità Microsoft e con altri servizi di identità del settore.  Gli sviluppatori devono avere la possibilità di usare le librerie di autenticazione open source preferite, senza doverle adattare alle differenze di Microsoft.
 
 ## <a name="what-can-you-do"></a>Cosa fare
-A partire da oggi, si può iniziare a creare tutte le modifiche di hello descritte in precedenza.  Nell'immediato:
+A partire da oggi, è possibile iniziare ad apportare tutte le modifiche descritte sopra.  Nell'immediato:
 
-1. **Rimuovere tutte le dipendenze da hello `x5t` parametro header.**
-2. **Gestire correttamente la transizione hello da `profile_info` troppo`id_token` nelle risposte token.**
-3. **Rimuovere tutte le dipendenze da hello `id_token_expires_in` parametro di risposta.**
-4. **Aggiungere hello `profile` e `email` ambiti tooyour app se l'applicazione necessita di informazioni utente di base.**
+1. **Rimuovere tutte le dipendenze dal`x5t` parametro di intestazione.**
+2. **Gestire correttamente la transizione da `profile_info` a `id_token` nelle risposte dei token**.
+3. **Rimuovere tutte le dipendenze dal parametro di risposta `id_token_expires_in`.**
+4. **Aggiungere gli ambiti `profile` e `email` all'app se sono necessarie informazioni utente di base.**
 5. **Accettare i valori dell'autorità di certificazione nei token con e senza una barra finale.**
 
-Il nostro [documentazione relativa al protocollo v 2.0](active-directory-v2-protocols.md) è già stato aggiornato tooreflect queste modifiche, è possibile utilizzarlo come riferimento per consentire di aggiornare il codice.
+La [documentazione relativa al protocollo della versione 2.0](active-directory-v2-protocols.md) è già stata aggiornata in base a queste modifiche e può essere usata come riferimento nell'aggiornamento del codice.
 
-Se si dispone di ulteriori domande sull'ambito hello delle modifiche di hello, è possibile tooreach libero out toous su Twitter in @AzureAD.
+Per qualsiasi domanda sull'ambito delle modifiche, è possibile contattare @AzureAD su Twitter.
 
 ## <a name="how-often-will-protocol-changes-occur"></a>Frequenza delle modifiche ai protocolli
-È non prevede altre importanti modifiche toohello i protocolli di autenticazione.  È intenzionalmente stiamo unendo le modifiche in una versione in modo che non sarà possibile toogo tramite questo tipo di processo di aggiornamento nuovamente nel prossimo futuro.  Naturalmente, continueremo tooadd funzionalità toohello convergente v 2.0 i servizio di autenticazione che è possibile trarre vantaggio da, ma tali modifiche devono essere additivo e non si interromperà il codice esistente.
+Non sono previste altre modifiche di rilievo ai protocolli di autenticazione.  Microsoft sta unendo intenzionalmente queste modifiche in un unico rilascio per evitare la necessità di eseguire questo tipo di processo di aggiornamento nel prossimo futuro.  Verranno naturalmente aggiunte altre funzionalità al servizio di autenticazione convergente della versione 2.0, ma non comporteranno modifiche di rilievo al codice esistente.
 
-Infine, desideriamo toosay grazie per provare operazioni durante il periodo di anteprima di hello.  esperienze dei nostri adottato e approfondimenti Hello sono state preziose finora e ci auguriamo che si continuerà a tooshare le opinioni e idee.
+Microsoft ringrazia gli utenti per la disponibilità nel periodo di anteprima.  Le informazioni e l'esperienza dei primi utenti sono state preziose e Microsoft si augura che continueranno a condividere idee e opinioni.
 
 Buon lavoro.
 
-Divisione di identità Microsoft Hello
+Microsoft Identity Division
 

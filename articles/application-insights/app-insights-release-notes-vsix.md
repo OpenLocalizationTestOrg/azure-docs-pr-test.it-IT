@@ -1,6 +1,6 @@
 ---
-title: aaaRelease note per l'estensione di Visual Studio Developer Analitica
-description: "aggiornamenti più recenti di Hello per Visual Studio tools per sviluppatori Analitica."
+title: Note sulla versione per l'estensione di Visual Studio per Developer Analytics
+description: "Aggiornamenti più recenti per Strumenti di Visual Studio per Developer Analytics"
 services: application-insights
 documentationcenter: 
 author: acearun
@@ -13,28 +13,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/20/2017
 ms.author: bwren
-ms.openlocfilehash: 4350333df69883eb9bd17dcee8d74fbb3be19a2d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 2e6987d30b56407559f54c02817ee94eff8df46b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="release-notes-for-developer-analytics-tools"></a>Note sulla versione per Strumenti di analisi per sviluppatori
 
 ## <a name="version-718-visual-studio-2015"></a>Versione 7.18 (Visual Studio 2015)
 
 * Avvisi popup riprogettati.
-* "Not" filtri nella visualizzazione dettagli hello per gli eventi in ricerca di Application Insights.
+* Filtri "Not" nella visualizzazione Dettagli per gli eventi presenti in Ricerca di Application Insights.
 * Correzioni di bug
 
 ## <a name="version-86-visual-studio-2017-rtw-and-rc4-and-version-717-visual-studio-2015"></a>Versione 8.6 (Visual Studio 2017 RTW e RC4) e versione 7.17 (Visual Studio 2015)
 
-* Annotazioni contrassegno quando si pubblica l'app da Visual Studio sono ora reso tooyour dati in Esplora metriche Ciao hello portale di Azure
-* Gli indicatori vengono aggiunti a questo punto tooscrollbars nei file di codice, toored corrispondente e giallo CodeLens gli avvisi da Application Insights
-* Aggiornare le informazioni nella finestra di configurazione hello sui prezzi
+* Le annotazioni usate per indicare quando viene pubblicata un'app da Visual Studio sono ora basate sui dati presenti in Esplora metriche del portale di Azure
+* Alle barre di scorrimento dei file di codice sono stati aggiunti indicatori corrispondenti agli avvisi CodeLens di colore giallo e rosso da Application Insights
+* Nella finestra di configurazione sono state aggiornate le informazioni sui prezzi
 * Correzioni di bug
 
-[Vedere hello dettagliate qui le note](https://www.visualstudio.com/news/releasenotes/vs2017-relnotes#devanalytics)
+[Vedere qui le note dettagliate](https://www.visualstudio.com/news/releasenotes/vs2017-relnotes#devanalytics)
 
 ## <a name="version-716-visual-studio-2015"></a>Versione 7.16 (Visual Studio 2015)
 
@@ -42,8 +42,8 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="version-85-visual-studio-2017-rc3-and-version-715-visual-studio-2015"></a>Versione 8.5 (Visual Studio 2017 RC3) e versione 7.15 (Visual Studio 2015)
 
-* CodeLens Mostra ora debug e dati di telemetria in tempo reale in progetti che inviano una risorsa di Application Insights tooan dati
-* Applicazione Insights informazioni sui prezzi viene ora visualizzate nella finestra di configurazione di hello
+* CodeLens consente ora di visualizzare sia i dati di debug sia i dati di telemetria live nei progetti che inviano dati a una risorsa di Application Insights
+* Le informazioni sui prezzi di Application Insights sono ora disponibili nella finestra di configurazione
 * CodeLens per richieste ed eccezioni supporta ora progetti ASP.NET scritti in Visual Basic
 * In Ricerca di Application Insights viene ora visualizzato il numero di eventi non campionati
 * Correzioni di bug
@@ -62,52 +62,52 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="version-84-visual-studio-2017-rc2-and-version-711-visual-studio-2015"></a>Versione 8.4 (Visual Studio 2017 RC2) e versione 7.11 (Visual Studio 2015)
 
-* CodeLens Mostra le richieste per le sessioni di debug locale per i progetti con Application Insights SDK hello
-* CodeLens è possibile accedere direttamente impatto sugli utenti di tooApplication Analitica toosee
-* Inserire le visualizzazioni di pagina toocollect JavaScript
+* In CodeLens vengono ora visualizzate le richieste di sessioni di debug locali per i progetti presenti in Application Insights SDK
+* CodeLens consente di accedere direttamente ad Analisi applicazione per verificare l'impatto sugli utenti
+* Possibilità di inserire codice JavaScript per raccogliere visualizzazioni di pagina
 * Correzioni di bug
 
 ## <a name="version-710-visual-studio-2015"></a>Versione 7.10 (Visual Studio 2015)
 
-* Nuovo design per la finestra di configurazione di Application Insights hello
+* Nuovo design della finestra di configurazione di Application Insights
 * Correzioni di bug
 
 ## <a name="version-79-visual-studio-2015"></a>Versione 7.9 (Visual Studio 2015)
 
-* CodeLens Mostra le eccezioni che si sono verificati durante le sessioni di debug locale per i progetti con Application Insights SDK hello
+* In CodeLens vengono ora visualizzate le eccezioni che si sono verificate durante le sessioni di debug locali per i progetti presenti in Application Insights SDK
 * Correzioni di bug
 
 ## <a name="version-83-visual-studio-2017-rc-and-version-78-visual-studio-2015"></a>Versione 8.3 (Visual Studio 2017 RC) e versione 7.8 (Visual Studio 2015)
 
-* Nuova esperienza per l'aggiunta di Application Insights nella finestra di configurazione hello
+* Nuova procedura per aggiungere Application Insights nella finestra di configurazione
 * Correzioni di bug
 
 ## <a name="version-77-visual-studio-2015"></a>Versione 7.7 (Visual Studio 2015)
 
-* Mapping di più accurata da toomethods gli eventi di telemetria il routing ASP.NET personalizzati
+* Mapping più accurati tra gli eventi di telemetria e i metodi che usano routing ASP.NET personalizzato
 * Correzioni di bug
 
 ## <a name="version-76-visual-studio-2015"></a>Versione 7.6 (Visual Studio 2015)
 
-* Analizzare gli eventi coinvolto in un'operazione dalla scheda di hello nuova operazione di rilevamento sugli eventi nello strumento di ricerca hello
+* Analisi degli eventi interessati in un'operazione eseguita dalla nuova scheda Operazione di traccia su eventi nello strumento Ricerca
 * Correzioni di bug
 
 ## <a name="version-75-visual-studio-2015"></a>Versione 7.5 (Visual Studio 2015)
 
 * Informazioni di telemetria della produzione per le richieste presenti in Strumenti di diagnostica
-* Utilizzare la creazione di elementi da elementi correlati nello strumento di ricerca hello
+* Creazione di elementi di lavoro da elementi correlati nello strumento Ricerca
 * Correzioni di bug
 
 ## <a name="version-74-visual-studio-2015"></a>Versione 7.4 (Visual Studio 2015)
 
-* riquadro filtro Hello nelle tendenze sono ora ridimensionabile
+* Possibilità di ridimensionare il riquadro del filtro in Tendenze
 * Correzioni di bug
 
 ## <a name="version-73-visual-studio-2015"></a>Versione 7.3 (Visual Studio 2015)
 
 * Richieste in CodeLens
 * Finestra di configurazione
-* HockeyApp SDK aggiornato toov4.2.2
+* HockeyApp SDK aggiornato alla versione 4.2.2
 * Correzioni di bug
 
 ## <a name="version-72-visual-studio-2015"></a>Versione 7.2 (Visual Studio 2015)
@@ -121,126 +121,126 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="version-70"></a>Versione 7.0
 ### <a name="azure-application-insights-trends"></a>Tendenze di Azure Application Insights
-Azure Application Insights è un nuovo strumento di Visual Studio che è possibile utilizzare toohelp per analizzare il funzionamento dell'app nel tempo. hello tooget avviato **Application Insights** barra degli strumenti pulsante o nella finestra di ricerca di Application Insights hello scegliere **esplorare le tendenze di telemetria**. O, in hello **vista** menu, fare clic su **altre finestre**, quindi fare clic su **tendenze di Application Insights**. Scegliere uno dei cinque tooget query comuni avviato. È possibile analizzare set di dati diversi in base ai tipi di dati di telemetria, agli intervalli di tempo e ad altre proprietà. toofind anomalie nei dati, scegliere una delle opzioni di anomalie hello in hello **tipo di visualizzazione** elenco a discesa. opzioni di filtro nella parte inferiore di hello della finestra hello Hello rendono semplice toohone in base a subset specifici dei dati di telemetria.
+Azure Application Insights è un nuovo strumento di Visual Studio che consente di analizzare il funzionamento dell'app nel corso del tempo. Per iniziare, usando il pulsante della barra degli strumenti di **Application Insights** o la finestra Ricerca di Application Insights, scegliere **Esplora tendenze di telemetria**. Oppure, nel menu **Visualizza**, fare clic su **Other Windows** (Altre versioni di Windows) e quindi su **Tendenze di Application Insights**. Scegliere una delle cinque query più comuni per iniziare. È possibile analizzare set di dati diversi in base ai tipi di dati di telemetria, agli intervalli di tempo e ad altre proprietà. Per trovare le anomalie nei dati, scegliere una delle opzioni relative alle anomalie nell'elenco a discesa **Tipo di visualizzazione** . Le opzioni di filtro nella parte inferiore della finestra permettono di trovare facilmente subset specifici dei dati di telemetria.
 
 ![Tendenze di Application Insights](./media/app-insights-release-notes-vsix/Trends.png)
 
 ### <a name="exceptions-in-codelens"></a>Eccezioni in CodeLens
-La telemetria delle eccezioni viene ora visualizzata in CodeLens. Se si è connessi i toohello progetto servizio Application Insights, verrà visualizzato il numero di hello di eccezioni che si sono verificati in ogni metodo nell'ambiente di produzione in hello nelle ultime 24 ore. Da CodeLens, è possibile passare tooSearch o eccezioni di hello tooinvestigate le tendenze in modo più dettagliato.
+La telemetria delle eccezioni viene ora visualizzata in CodeLens. Se il progetto è già connesso al servizio Application Insights, verrà visualizzato il numero di eccezioni che si sono verificate in ogni metodo nell'ambiente di produzione nelle ultime 24 ore. Da CodeLens è possibile passare a Ricerca o Tendenze per ricercare le eccezioni in modo più dettagliato.
 
 ![Eccezioni in CodeLens](./media/app-insights-release-notes-vsix/ExceptionsCodeLens.png)
 
 ### <a name="aspnet-core-support"></a>Supporto di ASP.NET Core
-Application Insights ora supporta i progetti ASP.NET Core RC2 in Visual Studio. È possibile aggiungere progetti ASP.NET Core RC2 toonew Application Insights da hello **nuovo progetto** finestra di dialogo, come illustrato di seguito schermata hello. O aggiungerlo tooan di progetto esistente, fare clic sul progetto hello in Esplora soluzioni e quindi fare clic su **Aggiungi Application Insights Telemetry**.
+Application Insights ora supporta i progetti ASP.NET Core RC2 in Visual Studio. È possibile aggiungere Application Insights ai nuovi progetti ASP.NET Core RC2 dalla finestra di dialogo **Nuovo progetto** , come nello screenshot seguente. Oppure è possibile aggiungerlo a un progetto esistente, fare clic con il pulsante destro del mouse sul progetto in Esplora soluzioni e quindi scegliere **Aggiungi Application Insights Telemetry**.
 
 ![Supporto di ASP.NET Core](./media/app-insights-release-notes-vsix/NetCoreSupport.png)
 
-ASP.NET 5 RC1 e progetti ASP.NET Core RC2 hanno inoltre il nuovo supporto nella finestra Strumenti di diagnostica hello. In fase di debug locale sul PC, dall'app ASP.NET sarà possibile visualizzare gli eventi di Application Insights, quali richieste ed eccezioni. Da ogni evento, fare clic su **ricerca** toodrill verso il basso per ulteriori informazioni.
+Inoltre, i progetti ASP.NET 5 RC1 e ASP.NET Core RC2 presentano un nuovo supporto nella finestra degli strumenti di diagnostica. In fase di debug locale sul PC, dall'app ASP.NET sarà possibile visualizzare gli eventi di Application Insights, quali richieste ed eccezioni. Da ogni evento fare clic su **Cerca** per eseguire il drill-down per ottenere altre informazioni.
 
 ![Supporto degli strumenti di diagnostica](./media/app-insights-release-notes-vsix/DiagnosticTools.png)
 
 ### <a name="hockeyapp-for-universal-windows-apps"></a>HockeyApp per App Windows universali
-Supporta inoltre il toobeta feedback utente e la distribuzione, HockeyApp symbolicated arresto anomalo del sistema reporting per le app di Windows universale. Sono stati apportati anche più facile tooadd hello HockeyApp SDK: pulsante destro del mouse sul progetto Windows universale e quindi fare clic su **App Hockey - consentire Crash Analitica**. Installa hello SDK, imposta l'insieme di arresto anomalo del sistema ed esegue il provisioning di una risorsa HockeyApp nel cloud hello, tutto senza caricare i toohello app servizio HockeyApp.
+Oltre ai commenti e suggerimenti degli utenti e alla distribuzione beta, HockeyApp fornisce la segnalazione degli arresti anomali con simboli per le App universali di Windows. L'aggiunta di HockeyApp SDK è ora ancora più semplice: fare clic con il pulsante destro del mouse sul progetto Windows universale e quindi scegliere **HockeyApp - Abilita Analisi arresti anomali**. In questo modo si installa l'SDK, si configura la raccolta di arresti anomali del sistema e si effettua il provisioning di una risorsa HockeyApp nel cloud, senza caricare l'app nel servizio HockeyApp.
 
 Altre nuove funzionalità:
 
-* Sono stati apportati hello esperienza di ricerca di Application Insights più veloce e più intuitiva. grazie all'applicazione automatica degli intervalli di tempo e dei filtri di dettagli nel momento stesso in cui vengono selezionati.
-* Anche in ricerca di Application Insights, ora è un codice di toohello toojump opzione direttamente dalla telemetria richiesta hello.
-* Sono stati apportati miglioramenti all'esperienza toohello Accedi HockeyApp.
+* L'esperienza di Ricerca di Application Insights è più veloce e intuitiva, grazie all'applicazione automatica degli intervalli di tempo e dei filtri di dettagli nel momento stesso in cui vengono selezionati.
+* In Ricerca di Application Insights ora è disponibile anche un'opzione per passare al codice direttamente dai dati di telemetria della richiesta.
+* Sono stati apportati miglioramenti all'esperienza di accesso a HockeyApp.
 * In Strumenti di diagnostica vengono ora visualizzate le informazioni di telemetria della produzione per le eccezioni.
 
 ## <a name="version-52"></a>Versione 5.2
-Siamo introduzione hello tooannounce lieta di scenari HockeyApp in Visual Studio. l'integrazione prima Hello è nella distribuzione di beta di App universali di Windows e Windows Form all'interno di Visual Studio.
+Microsoft è lieta di annunciare l'introduzione di scenari di HockeyApp in Visual Studio. La prima integrazione è nella distribuzione beta delle app di Windows universale e delle app di Windows Form da Visual Studio.
 
-Con la distribuzione beta, caricare nelle versioni precedenti di tooHockeyApp l'App per subset di distribuzione tooa selezionato di clienti o tester. La distribuzione beta, combinata con le funzionalità di feedback degli utenti e di raccolta degli arresti anomali di HockeyApp, può fornire utili informazioni sull'app prima di effettuare un rilascio su vasta scala. È possibile utilizzare questo problemi tooaddress informazioni con l'app in modo che è possibile evitare o ridurre al minimo i problemi in futuri, ad esempio classificazioni app bassa, commenti e suggerimenti negativo e così via.
+Con la distribuzione beta, si caricano le versioni non definitive delle app in HockeyApp per distribuirle a un subset selezionato di clienti o tester. La distribuzione beta, combinata con le funzionalità di feedback degli utenti e di raccolta degli arresti anomali di HockeyApp, può fornire utili informazioni sull'app prima di effettuare un rilascio su vasta scala. È possibile usare queste informazioni per risolvere i problemi relativi all'app e poter così evitare o ridurre al minimo futuri problemi, ad esempio classificazioni delle app basse, feedback negativo e così via.
 
-Controllare la modalità semplice è tooupload compilazioni per la distribuzione beta dall'interno di Visual Studio.
+Caricare build per la distribuzione beta da Visual Studio è davvero semplice.
 
 ### <a name="universal-windows-apps"></a>App Windows universali
-menu di scelta rapida Hello per un nodo di progetto di app universali di Windows include ora un tooupload opzione tooHockeyApp la compilazione.
+Il menu contestuale per il nodo di un progetto per un'app di Windows universale ora include un'opzione per caricare la build in HockeyApp.
 
 ![Menu contestuale del progetto per le app di Windows universale](./media/app-insights-release-notes-vsix/UniversalContextMenu.png)
 
-Scegliere hello elemento e hello HockeyApp caricare la finestra di dialogo viene visualizzata. È necessario un tooupload account HockeyApp la compilazione. I nuovi utenti potranno creare un account con un semplice processo.
+Scegliere la voce per aprire la finestra di dialogo di caricamento di HockeyApp. Per caricare la build, sarà necessario un account HockeyApp. I nuovi utenti potranno creare un account con un semplice processo.
 
-Quando si è connessi, verrà visualizzato il modulo caricamento hello nella finestra di dialogo hello.
+Quando si è connessi, verrà visualizzato il form per il caricamento nella finestra di dialogo.
 
 ![Finestra di dialogo di caricamento per le app di Windows universale](./media/app-insights-release-notes-vsix/UniversalUploadDialog.png)
 
-Selezionare tooupload contenuto hello (file con estensione AppX o. appxbundle) e quindi scegliere le opzioni di versione nella procedura guidata hello. Facoltativamente, è possibile aggiungere note sulla versione nella pagina successiva di hello. Scegliere **fine** caricamento hello toobegin.
+Selezionare il contenuto da caricare (un file APPXBUNDLE o APPX) e quindi scegliere le opzioni per la versione nella procedura guidata. Nella pagina successiva è possibile aggiungere le note sulla versione. Scegliere **Fine** per iniziare il caricamento.
 
-Una volta completato il caricamento di hello, viene visualizzata una notifica HockeyApp con conferma e di un'app toohello collegamento nel portale HockeyApp hello.
+Al termine del caricamento, viene visualizzata una notifica di HockeyApp con la conferma e un collegamento all'app nel portale di HockeyApp.
 
 ![Notifica di caricamento completato](./media/app-insights-release-notes-vsix/UploadComplete.png)
 
 La procedura è terminata. Sono bastati pochi clic per caricare una build per la distribuzione beta.
 
-È possibile gestire l'applicazione in numerosi modi diversi nel portale HockeyApp hello. Ad esempio, è possibile invitare gli utenti, visualizzare i report sugli arresti anomali e il feedback, modificare i dettagli e così via.
+È possibile gestire l'applicazione in diversi modi nel portale di HockeyApp. Ad esempio, è possibile invitare gli utenti, visualizzare i report sugli arresti anomali e il feedback, modificare i dettagli e così via.
 
 ![Portale di HockeyApp](./media/app-insights-release-notes-vsix/HockeyAppPortal.png)
 
-Vedere hello [HockeyApp Knowledge Base](http://support.hockeyapp.net/kb/app-management-2) per ulteriori informazioni sulla gestione delle app.
+Per altri dettagli sulla gestione dell'app, vedere [HockeyApp Knowledge Base](http://support.hockeyapp.net/kb/app-management-2) (Knowledge Base di HockeyApp).
 
 ### <a name="windows-forms-apps"></a>App Windows Form
-menu di scelta rapida Hello per un nodo di progetto Windows Form include ora un tooupload opzione tooHockeyApp la compilazione.
+Il menu contestuale per il nodo di un progetto per Windows Form ora include un'opzione per caricare la build in HockeyApp.
 
 ![Menu contestuale del progetto per le app Windows Form](./media/app-insights-release-notes-vsix/WinFormContextMenu.png)
 
-Si aprirà hello HockeyApp caricamento finestra di dialogo che è simile toohello uno in un'app di Windows universale.
+Viene aperta la finestra di dialogo di caricamento di HockeyApp, simile a quella di un'app di Windows universale.
 
 ![Finestra di dialogo di caricamento per le app di Windows Form](./media/app-insights-release-notes-vsix/WinFormsUploadDialog.png)
 
-Si noti un nuovo campo in questa procedura guidata, per specificare la versione di hello dell'app hello. Per le app di Windows universale, le informazioni di hello vengono popolate dal manifesto hello. App di Windows Form, purtroppo, non è una funzionalità equivalente toothis. Sarà necessario toospecify li manualmente.
+In questa procedura guidata è presente un nuovo campo per specificare la versione dell'app. Per le app di Windows universale, le informazioni vengono inserite dal manifesto. Le app di Windows Form, purtroppo, non hanno una funzionalità equivalente. Sarà necessario specificarle manualmente.
 
-il resto di Hello del flusso di hello è simile app di Windows tooUniversal: scegliere compilazione e opzioni di versione, versione aggiungere note, caricare e gestire nel portale HockeyApp hello.
+Il resto del flusso è simile a quello delle app di Windows universale: scelta della build e delle opzioni per la versione, aggiunta delle note sulla versione, caricamento e gestione nel portale di HockeyApp.
 
 È davvero semplice. È possibile provare e inviare commenti e suggerimenti.
 
 ## <a name="version-43"></a>Versione 4.3
 ### <a name="search-telemetry-from-local-debug-sessions"></a>Ricercare i dati di telemetria da sessioni di debug locali
-Con questa versione, è ora possibile cercare generato nella sessione di debug di Visual Studio hello telemetria di Application Insights. Prima la ricerca era possibile soltanto se l'app era stata registrata in Application Insights. A questo punto, l'app deve solo toohave hello Application Insights SDK installato toosearch per dati di telemetria locale.
+In questa versione ora è possibile cercare i dati di telemetria di Application Insights generati nella sessione di debug di Visual Studio. Prima la ricerca era possibile soltanto se l'app era stata registrata in Application Insights. Ora, per cercare i dati di telemetria locali, è sufficiente che nell'app sia installato Application Insights SDK.
 
-Se si dispone di un'applicazione ASP.NET con Application Insights SDK hello, hello seguendo i passaggi toouse ricerca.
+Se si ha un'applicazione ASP.NET con Application Insights SDK, seguire questa procedura per usare la ricerca.
 
 1. Eseguire il debug dell'applicazione.
 2. Aprire Ricerca di Application Insights in uno dei modi seguenti:
-   * In hello **vista** menu, fare clic su **altre finestre**, quindi fare clic su **ricerca di Application Insights**.
-   * Fare clic su hello **Application Insights** pulsante della barra degli strumenti.
+   * Scegliere **Altre finestre** dal menu **Visualizza** e quindi fare clic su **Ricerca di Application Insights**.
+   * Fare clic sul pulsante della barra degli strumenti **Application Insights** .
    * In Esplora soluzioni espandere **ApplicationInsights.config** e quindi fare clic su **Cerca nei dati di telemetria della sessione di debug**.
-3. Se si è ancora iscritti con Application Insights, finestra di ricerca hello aprirà in modalità di telemetria della sessione di debug.
-4. Fare clic su hello **ricerca** icona toosee dati di telemetria locale.
+3. Se non è stata eseguita l'iscrizione ad Application Insights, la finestra di ricerca viene aperta in modalità telemetria della sessione di debug.
+4. Fare clic sull'icona **Cerca** per visualizzare i dati di telemetria locali.
 
 ![Caricamento completato](./media/app-insights-release-notes-vsix/LocalSearch.png)
 
 ## <a name="version-42"></a>Versione 4.2
-In questa versione, abbiamo aggiunto una ricerca di dati più semplici nel contesto di hello degli eventi, con hello possibilità toojump toocode da altri eventi di dati e un'esperienza semplice di toosend tooApplication di dati del registrazione Insights toomake di funzionalità. Questa estensione viene aggiornata ogni mese. Se si dispone di commenti e suggerimenti o richieste, inviarlo tooaidevtools@microsoft.com.
+In questa versione sono state aggiunte funzionalità per semplificare la ricerca di dati nel contesto degli eventi, con la possibilità di passare al codice da altri eventi di dati e inviare i dati di registrazione in Application Insights. Questa estensione viene aggiornata ogni mese. Inviare eventuali commenti o suggerimenti a aidevtools@microsoft.com.
 
 ### <a name="no-click-logging-experience"></a>Registrazione senza clic
-Se già in uso NLog, log4net o System.Diagnostics.Tracing, non è tooworry sullo spostamento di tutti i tooApplication tracce Insights. In questa versione, è stato integrato adattatori di registrazione di Application Insights hello con esperienza di configurazione normale hello.
-Se si dispone già di uno di questi framework di registrazione configurati, hello seguente sezione viene descritto come tooget è.
+Se si usa NLog, log4net o System.Diagnostics.Tracing, non è necessario spostare le tracce in Application Insights. In questa versione gli adattatori di registrazione di Application Insights sono stati integrati nel normale processo di configurazione.
+Se uno di questi framework di registrazione è già stato configurato, la sezione seguente illustra come ottenerlo.
 **Se Application Insights è già stato aggiunto:**
 
-1. Pulsante destro del mouse sul nodo progetto hello e quindi fare clic su **Application Insights**, quindi fare clic su **Configura Application Insights**. Verificare che sia visualizzato hello opzione tooadd hello adapter corretto nella finestra di configurazione hello.
-2. In alternativa, quando si compila la soluzione hello, nota hello finestra popup che viene visualizzato in hello in alto a destra dello schermo e fare clic su **configura**.
+1. Fare clic con il pulsante destro del mouse sul nodo del progetto, scegliere **Application Insights** e quindi fare clic su **Configura Application Insights**. Verificare che venga visualizzata l'opzione che consente di aggiungere l'adattatore corretto nella finestra di configurazione.
+2. In alternativa, durante la compilazione della soluzione, nella finestra popup visualizzata nella parte superiore destra della schermata fare clic su **Configura**.
 
 ![Notifica di registrazione](./media/app-insights-release-notes-vsix/LoggingToast.png)
 
-Dopo aver scheda registrazione hello installata, eseguire l'applicazione e verificare che sia che possibile visualizzare dati hello nella scheda Strumenti di diagnostica hello, simile al seguente:
+Dopo aver installato l'adattatore di registrazione, eseguire l'applicazione e verificare di visualizzare i dati nella scheda degli strumenti di diagnostica, come di seguito:
 
 ![Tracce](./media/app-insights-release-notes-vsix/Traces.png)
 
-### <a name="jump-tooor-find-hello-code-where-hello-telemetry-event-property-is-emitted"></a>Jump tooor trovare codice hello in cui viene generato proprietà evento di telemetria hello
-Nuova versione di hello utente può fare clic su qualsiasi valore in Dettagli evento hello e si cerca una stringa corrispondente nella soluzione corrente hello. I risultati verranno visualizzati nell'elenco "Risultati ricerca" di Visual Studio come illustrato di seguito:
+### <a name="jump-to-or-find-the-code-where-the-telemetry-event-property-is-emitted"></a>Trovare o passare al codice in cui viene generata la proprietà dell'evento di telemetria
+Con la nuova versione l'utente può fare clic su qualsiasi valore nei dettagli dell'evento per ricercare una stringa corrispondente nella soluzione aperta. I risultati verranno visualizzati nell'elenco "Risultati ricerca" di Visual Studio come illustrato di seguito:
 
 ![Ricerca della corrispondenza](./media/app-insights-release-notes-vsix/FindMatch.png)
 
 ### <a name="new-search-window-for-when-you-are-not-signed-in"></a>Nuova finestra di ricerca da usare quando non si è connessi
-È stato migliorato aspetto hello hello toohelp finestra di ricerca di Application Insights cercare i dati mentre l'app è in produzione.
+La finestra Ricerca di Application Insights è stata modificata per consentire di cercare i dati mentre l'app è in fase di produzione.
 
 ![Finestra di ricerca](./media/app-insights-release-notes-vsix/SearchWindow.png)
 
-### <a name="see-all-telemetry-events-associated-with-hello-event"></a>Visualizzare tutti gli eventi di telemetria associati all'evento hello
-È stata aggiunta una nuova scheda, con query predefinite per tutti i dati correlati toohello telemetria evento hello Visualizza, scheda toohello successiva per i dettagli dell'evento. Ad esempio, una richiesta ha un campo denominato **ID operazione**. Ogni richiesta di evento toothis associato è hello stesso valore per **ID operazione**. Se si verifica un'eccezione durante l'elaborazione richiesta hello operazione hello, eccezione hello ha hello stessa operazione ID come toomake richiesta hello è toofind più semplice. Se si sta consultando una richiesta, fare clic su **tutti i dati di telemetria per questa operazione** tooopen una nuova scheda che visualizza i risultati della ricerca nuovo hello.
+### <a name="see-all-telemetry-events-associated-with-the-event"></a>Visualizzare tutti gli eventi di telemetria associati all'evento
+È stata aggiunta una nuova scheda, con query predefinite per tutti i dati correlati all'evento di telemetria visualizzato dall'utente, accanto alla scheda dei dettagli dell'evento. Ad esempio, una richiesta ha un campo denominato **ID operazione**. Ogni evento associato alla richiesta avrà lo stesso valore per **ID operazione**. Se si verifica un'eccezione mentre l'operazione sta elaborando la richiesta, all'eccezione viene assegnato lo stesso ID operazione della richiesta per facilitarne la ricerca. Se si sta visualizzando una richiesta, fare clic su **Tutti i dati di telemetria per questa operazione** per aprire una nuova scheda che visualizza i nuovi risultati della ricerca.
 
 ![Elementi correlati](./media/app-insights-release-notes-vsix/RelatedItems.png)
 
@@ -250,47 +250,47 @@ Ora è possibile passare alla schermata successiva o tornare a quella precedente
 ![Tornare alla schermata precedente](./media/app-insights-release-notes-vsix/GoBAck.png)
 
 ## <a name="version-41"></a>Versione 4.1
-Questa versione include numerose nuove funzionalità e aggiornamenti. È necessario toohave Update 1 installato tooinstall questa versione.
+Questa versione include numerose nuove funzionalità e aggiornamenti. Per installare questa versione, è necessario avere installato Update 1.
 
-### <a name="jump-from-an-exception-toomethod-in-source-code"></a>Passare da un toomethod eccezione nel codice sorgente
-A questo punto, se si visualizzano le eccezioni dall'app di produzione nella finestra di ricerca di Application Insights hello, è possibile passare toohello metodo nel codice in cui è in corso eccezione hello. È necessario solo hello toohave corretto progetto caricato e Application Insights si occupa del resto hello! (toolearn più sulla finestra di ricerca di Application Insights hello, vedere le note sulla versione di hello per versione 4.0 in sezioni che seguono hello).
+### <a name="jump-from-an-exception-to-method-in-source-code"></a>Passare da un'eccezione al metodo nel codice sorgente
+Ora, se si visualizzano eccezioni dall'app di produzione nella finestra Ricerca di Application Insights, è possibile passare al metodo nel punto del codice in cui si sta verificando l'eccezione. È sufficiente caricare il progetto corretto e tutte le operazioni saranno eseguite da Application Insights. Per altre informazioni sulla finestra Ricerca di Application Insights, vedere le note sulla versione per la versione 4.0 nelle sezioni seguenti.
 
-Come funziona? È possibile usare Ricerca di Applications Insights anche quando una soluzione non è aperta. area di traccia di stack Hello Visualizza un messaggio informativo e non sono disponibili molti degli elementi dello stack hello hello.
+Come funziona? È possibile usare Ricerca di Applications Insights anche quando una soluzione non è aperta. L'area di analisi dello stack visualizza un messaggio informativo e molti elementi non saranno disponibili.
 
-Se sono disponibili informazioni di file, alcuni elementi potrebbero essere collegamenti, ma l'elemento di informazione soluzione hello saranno ancora visibile.
+Se sono disponibili informazioni sui file, alcuni elementi potrebbero essere collegamenti, ma l'elemento con informazioni sulla soluzione sarà comunque visibile.
 
-Se si fa clic su un collegamento ipertestuale hello, si sarà passa toohello percorso del metodo hello selezionata nel codice. Potrebbe esserci una differenza nel numero di versione di hello, ma la funzionalità di hello, toojump toohello corretta versione di hello codice, verrà derivare nelle versioni successive.
+Se si fa clic sul collegamento ipertestuale, si passerà alla posizione del metodo selezionato nel codice. Potrebbe esserci una differenza nel numero di versione, ma la funzionalità per passare alla versione corretta del codice sarà presente nelle versioni successive.
 
 ![Fare clic sui dettagli dell'eccezione](./media/app-insights-release-notes-vsix/jumptocode.png)
 
-### <a name="new-entry-points-toohello-search-experience-in-solution-explorer"></a>Nuova voce punta toohello un'esperienza di ricerca in Esplora soluzioni
+### <a name="new-entry-points-to-the-search-experience-in-solution-explorer"></a>Nuovi punti di ingresso per l'esperienza di ricerca in Esplora soluzioni
 Ora è possibile accedere alla funzionalità di ricerca da Esplora soluzioni.
 
 ![Eseguire la ricerca in Esplora soluzioni](./media/app-insights-release-notes-vsix/searchentry.png)
 
 ### <a name="displays-a-notification-when-publish-is-completed"></a>Visualizzare una notifica al termine della pubblicazione
-Una finestra di dialogo popup viene visualizzato quando il progetto di hello viene pubblicato in linea, in modo che è possibile visualizzare i dati di Application Insights nell'ambiente di produzione.
+Dopo la pubblicazione del progetto online, verrà visualizzata una finestra di dialogo popup che consente di vedere i dati di Application Insights nell'ambiente di produzione.
 
 ![Notifica di pubblicazione completata](./media/app-insights-release-notes-vsix/publishtoast.png)
 
 ## <a name="version-40"></a>Versione 4.0
 ### <a name="search-application-insights-data-from-within-visual-studio"></a>Cercare i dati di Application Insights da Visual Studio
-Come funzione di ricerca hello nel portale Application Insights hello, ora in Visual Studio è possibile filtrare e cercare i tipi di eventi, i valori delle proprietà e il testo e quindi controllare i singoli eventi.
+Come per la funzione di ricerca nel portale di Application Insights, ora in Visual Studio è possibile filtrare e cercare tipi di eventi, valori delle proprietà e testo e quindi esaminare singoli eventi.
 
 ![Finestra di ricerca](./media/app-insights-release-notes-vsix/search.png)
 
 ### <a name="see-data-coming-from-your-local-computer-in-diagnostic-tools"></a>Visualizzare i dati del computer locale in Strumenti di diagnostica
-È possibile visualizzare i dati di telemetria, in aggiunta tooother dati, nella pagina Strumenti di diagnostica di Visual Studio hello di debug. È supportato solo ASP.NET 4.5.
+È possibile visualizzare la telemetria, oltre ad altri dati di debug, nella pagina Strumenti di diagnostica di Visual Studio. È supportato solo ASP.NET 4.5.
 
 ![Pagina Strumenti di diagnostica](./media/app-insights-release-notes-vsix/diagtools.png)
 
-### <a name="add-hello-sdk-tooyour-project-without-signing-in-tooazure"></a>Aggiungi progetto di hello SDK tooyour senza accedere tooAzure
-Non è più necessario toosign tooAzure tooadd Application Insights pacchetti tooyour progetto, tramite hello **nuovo progetto** finestra di dialogo o dal menu di scelta rapida progetto hello. Se si accede, hello SDK sarà installato e configurato toosend telemetria toohello portale come prima. Se non riesci ad accedere, hello SDK verrà aggiunto il progetto tooyour e genera dati di telemetria per l'hub di diagnostica hello. Sarà possibile configurarlo in un secondo momento, se necessario.
+### <a name="add-the-sdk-to-your-project-without-signing-in-to-azure"></a>Aggiungere l'SDK al progetto senza avere accedere ad Azure
+Non è più necessario accedere ad Azure per aggiungere pacchetti di Application Insights al progetto tramite la finestra di dialogo **Nuovo progetto** o dal menu di scelta rapida del progetto. Se si esegue l'accesso, l'SDK viene installato e configurato per l'invio di dati di telemetria al portale, come in precedenza. Se non esegue l'accesso, l'SDK viene aggiunto al progetto e genera i dati di telemetria per l'hub di diagnostica. Sarà possibile configurarlo in un secondo momento, se necessario.
 
 ![Finestra di dialogo Nuovo progetto](./media/app-insights-release-notes-vsix/newproject.png)
 
 ### <a name="device-support"></a>Supporto dei dispositivi
-Al *Connect();* 2015 [è stato annunciato](https://azure.microsoft.com/blog/deep-diagnostics-for-web-apps-with-application-insights/) che l'esperienza per sviluppatori di dispositivi mobili è HockeyApp. HockeyApp consente di distribuire beta compilazioni tooyour tester, raccogliere e analizzare tutti gli arresti anomali dall'app e raccogliere il feedback direttamente da parte dei clienti.
-HockeyApp supporta l'app su qualsiasi piattaforma prescelto toobuild, se che essere iOS, Android o Windows o una soluzione multipiattaforma con Xamarin, Cordova o Unity.
+Al *Connect();* 2015 [è stato annunciato](https://azure.microsoft.com/blog/deep-diagnostics-for-web-apps-with-application-insights/) che l'esperienza per sviluppatori di dispositivi mobili è HockeyApp. HockeyApp consente di distribuire le build beta ai tester, raccogliere e analizzare tutti gli arresti anomali dell'app e raccogliere commenti e suggerimenti direttamente dai clienti.
+HockeyApp supporta l'app su qualsiasi piattaforma scelta per la compilazione, sia essa iOS, Android, Windows o una soluzione multipiattaforma come Xamarin, Cordova o Unity.
 
-Nelle future versioni di hello estensione Application Insights, verranno introdotti un'esperienza più integrata tra Visual Studio e HockeyApp. Per il momento, è possibile iniziare con HockeyApp aggiungendo semplicemente un riferimento di NuGet hello. Vedere hello [documentazione](http://support.hockeyapp.net/kb/client-integration-windows-and-windows-phone) per ulteriori informazioni.
+Nelle versioni future dell'estensione Application Insights sarà introdotta un'esperienza maggiormente integrata tra HockeyApp e Visual Studio. Per ora è possibile iniziare a usare HockeyApp semplicemente aggiungendo il riferimento NuGet. Per altre informazioni, vedere la [documentazione](http://support.hockeyapp.net/kb/client-integration-windows-and-windows-phone) .

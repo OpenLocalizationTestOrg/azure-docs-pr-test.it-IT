@@ -1,6 +1,6 @@
 ---
-title: aaaManage scadenza del contenuto web nella rete CDN di Azure | Documenti Microsoft
-description: Informazioni su come toomanage scadenza del contenuto di Azure Web App o servizi basati su Cloud, ASP.NET o IIS nella rete CDN di Azure.
+title: Gestire la scadenza di contenuti Web nella rete CDN di Azure | Microsoft Docs
+description: Informazioni su come gestire la scadenza del contenuto di app Web o servizi cloud di Azure, ASP.NET o IIS nella rete CDN di Azure.
 services: cdn
 documentationcenter: .NET
 author: zhangmanling
@@ -14,11 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: a0154236c3893b627f4480e0688f555964862556
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: c207d780857a61d4b1fc0f39e6185cae67abc955
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="manage-expiration-of-azure-web-appscloud-services-aspnet-or-iis-content-in-azure-cdn"></a>Gestire la scadenza del contenuto di app Web o servizi cloud di Azure, ASP.NET o IIS nella rete CDN di Azure
 > [!div class="op_single_selector"]
@@ -27,19 +27,19 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-I file provenienti da un server Web di origine accessibile pubblicamente possono essere memorizzati nella cache della rete CDN di Azure fino allo scadere della relativa durata (TTL).  Hello durata (TTL) è determinato dal hello [ *Cache-Control* intestazione](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9) in risposta hello HTTP dal server di origine hello.  Questo articolo viene descritto come tooset `Cache-Control` intestazioni per le app Web di Azure, servizi Cloud di Azure, le applicazioni e siti di Internet Information Services, che sono configurati in modo analogo.
+I file provenienti da un server Web di origine accessibile pubblicamente possono essere memorizzati nella cache della rete CDN di Azure fino allo scadere della relativa durata (TTL).  La durata (TTL) è determinata dall'[intestazione *Cache-Control*](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9) nella risposta HTTP del server di origine.  Questo articolo descrive come impostare le intestazioni `Cache-Control` per App Web di Azure, Servizi cloud di Azure, applicazioni ASP.NET e siti Internet Information Services, che hanno tutti una configurazione simile.
 
 > [!TIP]
-> È non possibile scegliere tooset alcuna durata (TTL) su un file.  In tal caso, la rete CDN di Azure applica automaticamente una durata (TTL) predefinita di sette giorni.
+> È possibile scegliere di non impostare alcuna durata (TTL) per un file.  In tal caso, la rete CDN di Azure applica automaticamente una durata (TTL) predefinita di sette giorni.
 > 
-> Per ulteriori informazioni sul funzionamento toospeed toofiles di accesso e altre risorse di rete CDN di Azure, vedere hello [Panoramica della rete CDN di Azure](cdn-overview.md).
+> Per altre informazioni sull'uso della rete CDN di Azure per velocizzare l'accesso a file e altre risorse, vedere la [panoramica della rete CDN di Azure](cdn-overview.md).
 > 
 > 
 
 ## <a name="setting-cache-control-headers-in-configuration"></a>Impostazione delle intestazioni Cache-Control nella configurazione
-Per il contenuto statico, ad esempio immagini e fogli di stile, è possibile controllare la frequenza di aggiornamento hello modificando hello **applicationHost. config** o **Web. config** file per l'applicazione web.  Hello **system.webServer\staticContent\clientCache** elemento nel file di configurazione hello imposterà hello `Cache-Control` intestazione per il contenuto. Per **Web. config**, hello configurazione impostazioni avranno effetto su tutti gli elementi nella cartella di hello e tutte le sottocartelle, a meno che non viene sottoposto a override a livello di hello sottocartella.  Ad esempio, è possibile impostare un valore predefinito time-to-live in hello radice toohave tutto il contenuto statico memorizzato nella cache per 3 giorni, ma è presente una sottocartella con più variabile contenuto con le impostazioni della cache di 6 ore.  Per **applicationHost. config**, tutte le applicazioni hello sito verranno modificate, ma può essere sottoposto a override in **Web. config** file hello applicazioni.
+Per il contenuto statico, come immagini e fogli di stile, è possibile controllare la frequenza di aggiornamento modificando i file **applicationHost.config** o **web.config** per l'applicazione Web.  L'elemento **system.webServer\staticContent\clientCache** nel file di configurazione imposterà l'intestazione `Cache-Control` per il contenuto. Per **web.config**, le impostazioni di configurazione influiranno su qualsiasi elemento presente nella cartella e in tutte le sottocartelle, a meno di non eseguirne l'override a livello di sottocartella.  Ad esempio, è possibile impostare una durata (TTL) predefinita nella radice per memorizzare nella cache tutto il contenuto statico per tre giorni, ma impostare un valore di sei ore per una sottocartella che include contenuto più variabile.  Per **applicationHost.config**, tutte le applicazioni nel sito saranno interessate, ma è possibile eseguirne l'override nei file **web.config** nelle applicazioni.
 
-Hello codice XML seguente viene illustrato un esempio dell'impostazione **clientCache** toospecify una durata massima di 3 giorni:  
+L'esempio di codice XML seguente mostra l'impostazione di **clientCache** in modo da specificare una durata massima di tre giorni:  
 
 ```xml
 <configuration>
@@ -51,24 +51,24 @@ Hello codice XML seguente viene illustrato un esempio dell'impostazione **client
 </configuration>
 ```
 
-Specifica di **UseMaxAge** aggiunge un `Cache-Control: max-age=<nnn>` risposta toohello intestazione in base al valore di hello specificato in hello **CacheControlMaxAge** attributo. formato Hello di timespan hello è per hello **cacheControlMaxAge** attributo <days>.<hours>:<min>:<sec>. Per ulteriori informazioni su hello **clientCache** nodo, vedere [nella Cache del Client <clientCache> ](http://www.iis.net/ConfigReference/system.webServer/staticContent/clientCache).  
+Specificando **UseMaxAge**, si aggiunge un'intestazione `Cache-Control: max-age=<nnn>` alla risposta in base al valore specificato nell'attributo **CacheControlMaxAge**. Il formato dell'intervallo di tempo per l'attributo **cacheControlMaxAge** è <days>.<hours>:<min>:<sec>. Per altre informazioni sul nodo **clientCache**, vedere l'argomento relativo alla [cache client <clientCache>](http://www.iis.net/ConfigReference/system.webServer/staticContent/clientCache).  
 
 ## <a name="setting-cache-control-headers-in-code"></a>Impostazione delle intestazioni Cache-Control nel codice
-Per le applicazioni ASP.NET, è possibile impostare il comportamento della cache di hello CDN a livello di programmazione dall'impostazione hello **HttpResponse** proprietà. Per ulteriori informazioni su hello **HttpResponse** proprietà, vedere [proprietà HttpResponse cache](http://msdn.microsoft.com/library/system.web.httpresponse.cache.aspx) e [classe HttpCachePolicy](http://msdn.microsoft.com/library/system.web.httpcachepolicy.aspx).  
+Per le applicazioni ASP.NET, è possibile impostare a livello di codice il comportamento di memorizzazione nella cache della rete CDN impostando la proprietà **HttpResponse.Cache** . Per altre informazioni sulla proprietà **HttpResponse.Cache**, vedere [Proprietà HttpResponse.Cache](http://msdn.microsoft.com/library/system.web.httpresponse.cache.aspx) e [Classe HttpCachePolicy](http://msdn.microsoft.com/library/system.web.httpcachepolicy.aspx).  
 
-Se si desidera il contenuto dell'applicazione di cache tooprogrammatically in ASP.NET, assicurarsi che il contenuto di hello viene contrassegnato come inseribile nella cache impostando HttpCacheability troppo*pubblica*. Assicurarsi anche che sia impostato un validator della cache. validator della cache di Hello può essere una data ultima modifica timestamp impostato chiamando SetLastModified o un valore etag impostato chiamando SetETag. Facoltativamente, è anche possibile specificare una data di scadenza della cache chiamando SetExpires oppure affidarsi euristica hello predefinita della cache descritta in precedenza in questo documento.  
+Se si vuole memorizzare nella cache il contenuto dell'applicazione a livello di codice in ASP.NET, assicurarsi che tale contenuto sia contrassegnato come inseribile nella cache impostando HttpCacheability su *Public*. Assicurarsi anche che sia impostato un validator della cache. Il validator della cache può essere un timestamp dell'ultima modifica impostato chiamando SetLastModified oppure un valore etag impostato chiamando SetETag. Facoltativamente, è anche possibile specificare una scadenza della cache chiamando SetExpires oppure affidarsi all'euristica predefinita della cache descritta prima in questo documento.  
 
-Ad esempio, toocache contenuto per un'ora, aggiungere il seguente hello:  
+Ad esempio, per memorizzare nella cache il contenuto per un'ora, aggiungere il codice seguente:  
 
 ```csharp
-// Set hello caching parameters.
+// Set the caching parameters.
 Response.Cache.SetExpires(DateTime.Now.AddHours(1));
 Response.Cache.SetCacheability(HttpCacheability.Public);
 Response.Cache.SetLastModified(DateTime.Now);
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Dettagli sugli hello **clientCache** elemento](http://www.iis.net/ConfigReference/system.webServer/staticContent/clientCache)
-* [Leggere la documentazione di hello per hello **HttpResponse** proprietà](http://msdn.microsoft.com/library/system.web.httpresponse.cache.aspx) 
-* [Leggere la documentazione di hello per hello **classe HttpCachePolicy**](http://msdn.microsoft.com/library/system.web.httpcachepolicy.aspx).  
+* [Vedere informazioni dettagliate sull'elemento **clientCache**](http://www.iis.net/ConfigReference/system.webServer/staticContent/clientCache)
+* [Vedere la documentazione sulla proprietà **HttpResponse.Cache**](http://msdn.microsoft.com/library/system.web.httpresponse.cache.aspx) 
+* [Vedere la documentazione sulla classe **HttpCachePolicy**](http://msdn.microsoft.com/library/system.web.httpcachepolicy.aspx)  
 

@@ -1,6 +1,6 @@
 ---
-title: aaaUse Redgate tooload dati tooyour Azure del data warehouse | Documenti Microsoft
-description: Informazioni su come Studio di piattaforma di toouse Redgate dati per scenari di data warehouse.
+title: Usare Redgate per caricare i dati in Azure Data Warehouse | Documentazione Microsoft
+description: Informazioni su come usare Data Platform Studio di Redgate per scenari di data warehousing.
 services: sql-data-warehouse
 documentationcenter: NA
 author: ckarst
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: loading
 ms.date: 10/31/2016
 ms.author: cakarst;barbkess
-ms.openlocfilehash: 6082390c07c8ffa73ebd8ab272ace00ba8bb1897
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a38b237d5bfc0450c1ca79b53a5784dbb9bf8602
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="load-data-with-redgate-data-platform-studio"></a>Caricare dati con Data Platform Studio di Redgate
 > [!div class="op_single_selector"]
@@ -30,7 +30,7 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-In questa esercitazione illustra come toouse [dati piattaforma Studio del Redgate](http://www.red-gate.com/products/azure-development/data-platform-studio/) dati toomove (dp) da un tooAzure di SQL Server on-premise SQL Data Warehouse. Dati piattaforma Studio applica correzioni più appropriato per la compatibilità di hello e ottimizzazioni, pertanto dispone di hello più rapidamente tooget modo Introduzione a SQL Data Warehouse.
+Questa esercitazione illustra come usare [Data Platform Studio (DPS) di Redgate](http://www.red-gate.com/products/azure-development/data-platform-studio/) per spostare dati da un'istanza di SQL Server locale ad Azure SQL Data Warehouse. Data Platform Studio applica le correzioni e le ottimizzazioni di compatibilità più appropriate, motivo per cui è il modo più rapido per iniziare a utilizzare SQL Data Warehouse.
 
 > [!NOTE]
 > [Redgate](http://www.red-gate.com), partner Microsoft da lunga data, offre diversi strumenti di SQL Server. Questa funzionalità di Data Platform Studio è disponibile gratuitamente per uso sia commerciale che non commerciale.
@@ -39,102 +39,102 @@ In questa esercitazione illustra come toouse [dati piattaforma Studio del Redgat
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 ### <a name="create-or-identify-resources"></a>Creare o identificare le risorse
-Prima di iniziare questa esercitazione, è necessario toohave:
+Prima di iniziare questa esercitazione, è necessario avere a disposizione quanto segue:
 
-* **Database di SQL Server locale**: hello dati che si desidera tooimport tooSQL Data Warehouse deve toocome da un Server SQL locale (versione 2008R2 o versione successiva). Data Platform Studio non è in grado di importare direttamente dati da un database SQL di Azure o da file di testo.
-* **Account di archiviazione Azure**: Studio piattaforma dati prepara i dati hello nell'archiviazione Blob di Azure prima di caricarli in SQL Data Warehouse. account di archiviazione Hello devono usare modello di distribuzione di "gestione di risorse" hello (impostazione predefinita hello) anziché il modello di distribuzione "Classiche" hello. Se non si dispone di un account di archiviazione, informazioni su come tooCreate un account di archiviazione. 
-* **SQL Data Warehouse**: in questa esercitazione sposta dati hello da tooSQL di SQL Server on-premise Data Warehouse, pertanto è necessario toohave online a un data warehouse. Se si dispone già di un data warehouse, informazioni su come tooCreate un Data Warehouse di SQL Azure.
-
-> [!NOTE]
-> Le prestazioni sono migliori se l'account di archiviazione hello e hello data warehouse vengono creati in hello stessa area.
-> 
-> 
-
-## <a name="step-1-sign-in-toodata-platform-studio-with-your-azure-account"></a>Passaggio 1: Accedi tooData Studio piattaforma con l'account di Azure
-Aprire il web browser e passare toohello [Studio piattaforma dati](https://www.dataplatformstudio.com/) sito Web. Accedi con hello stesso account di Azure che è usato toocreate hello storage account e del data warehouse. Se l'indirizzo di posta elettronica è associato sia un lavoro account e un account Microsoft, che account hello toochoose con tooyour di accedere alle risorse.
+* **Database di SQL Server locale**: i dati da importare in SQL Data Warehouse devono provenire da un'istanza di SQL Server locale (versione 2008 R2 o successiva). Data Platform Studio non è in grado di importare direttamente dati da un database SQL di Azure o da file di testo.
+* **Account di archiviazione di Azure**: Data Platform Studio colloca temporaneamente i dati in Archiviazione BLOB di Azure prima di caricarli in SQL Data Warehouse. L'account di archiviazione deve usare il modello di distribuzione "Resource Manager" (impostazione predefinita) e non il modello di distribuzione "Classica". Se non si dispone di un account di archiviazione, vedere l'articolo relativo alla creazione di tale account. 
+* **SQL Data Warehouse**: questa esercitazione sposta i dati da un'istanza di SQL Server locale a SQL Data Warehouse ed è quindi necessario avere un data warehouse online. Se non si dispone di un data warehouse, vedere l'articolo relativo alla creazione di un'istanza di Azure SQL Data Warehouse.
 
 > [!NOTE]
-> Se si tratta del primo utilizzo Studio piattaforma dati, sono frequenti toogrant hello applicazione autorizzazione toomanage le risorse di Azure.
+> Per migliorare le prestazioni, creare l'account di archiviazione e il data warehouse nella stessa area geografica.
 > 
 > 
 
-## <a name="step-2-start-hello-import-wizard"></a>Passaggio 2: Avviare Importazione guidata hello
-Dalla schermata principale di hello dei punti di distribuzione, selezionare hello importazione tooAzure SQL Data Warehouse collegamento toostart hello importazione guidata.
+## <a name="step-1-sign-in-to-data-platform-studio-with-your-azure-account"></a>Passaggio 1: Accedere a Data Platform Studio con il proprio account Azure
+Aprire il Web browser e passare al sito Web [Data Platform Studio](https://www.dataplatformstudio.com/). Accedere con lo stesso account Azure usato per creare l'account di archiviazione e il data warehouse. Se il proprio indirizzo di posta elettronica è associato sia a un account aziendale o dell'istituto di istruzione che a un account Microsoft, verificare di usare l'account che ha accesso alle risorse.
+
+> [!NOTE]
+> Se si usa Data Platform Studio per la prima volta, viene chiesto di concedere l'autorizzazione applicazione per la gestione delle risorse di Azure.
+> 
+> 
+
+## <a name="step-2-start-the-import-wizard"></a>Passaggio 2: Avviare l'importazione guidata
+Nella schermata principale di DPS selezionare il collegamento Import to Azure SQL Data Warehouse (Importa in Azure SQL Data Warehouse) per avviare l'importazione guidata.
 
 ![][1]
 
-## <a name="step-3-install-hello-data-platform-studio-gateway"></a>Passaggio 3: Installare hello dati piattaforma Studio Gateway
-database di SQL Server on-premise tooyour tooconnect, è necessario tooinstall hello Gateway dei punti di distribuzione. gateway Hello è un agente client che fornisce accesso tooyour ambiente locale, estrae i dati di hello e lo carica tooyour account di archiviazione. I dati non passano mai attraverso i server Redgate. hello tooinstall Gateway:
+## <a name="step-3-install-the-data-platform-studio-gateway"></a>Passaggio 3: Installare il gateway di Data Platform Studio
+Per connettersi al database di SQL Server locale è necessario installare il gateway di DPS. Il gateway è un agente client che fornisce l'accesso all'ambiente locale, estrae i dati e li carica nell'account di archiviazione. I dati non passano mai attraverso i server Redgate. Per installare il gateway:
 
-1. Fare clic su hello **crea Gateway** collegamento
-2. Scaricare e installare il Gateway di hello con hello programma di installazione fornito
+1. Fare clic sul collegamento **Create Gateway** (Crea gateway).
+2. Scaricare e installare il gateway usando il programma di installazione fornito
 
 ![][2]
 
 > [!NOTE]
-> Hello Gateway può essere installato in tutti i computer con database di SQL Server origine toohello accesso rete. Accede a database di SQL Server hello utilizzando l'autenticazione di Windows hello credenziali dell'utente corrente hello.
+> Il gateway può essere installato in qualsiasi computer con accesso al database di SQL Server di origine. Accedere al database di SQL Server usando l'autenticazione di Windows con le credenziali dell'utente corrente.
 > 
 > 
 
-Una volta installato, hello tooConnected modifiche dello stato di Gateway ed è possibile fare clic su Avanti.
+Dopo l'installazione, lo stato del server viene modificato in Connected (Connesso) ed è possibile selezionare Next (Avanti).
 
-## <a name="step-4-identify-hello-source-database"></a>Passaggio 4: Identificare i database di origine hello
-In hello *immettere nome Server* casella di testo, immettere il nome di hello del server di hello che ospita il database e selezionare **Avanti**. Quindi, dal menu a discesa hello, selezionare hello database tooimport dati.
+## <a name="step-4-identify-the-source-database"></a>Passaggio 4: Identificare il database di origine
+Nella casella di testo *Enter Server Name* (Immettere il nome del server) immettere il nome del server che ospita il database e selezionare **Next** (Avanti). Quindi, dal menu a discesa, selezionare il database da cui si vogliono importare i dati.
 
 ![][3]
 
-DP controlla se i database selezionati di hello per le tabelle tooimport. Per impostazione predefinita, dei punti di distribuzione consente di importare tutte le tabelle hello hello database. È possibile selezionare o deselezionare le tabelle espandendo hello tutte le tabelle di collegamento. Selezionare hello rollforward toomove di pulsante Avanti.
+DPS controlla il database selezionato riguardo alle tabelle da importare. Per impostazione predefinita, DPS importa tutte le tabelle del database. È possibile selezionare o deselezionare le tabelle espandendo il collegamento All Tables (Tutte le tabelle). Per continuare, fare clic sul pulsante Next (Avanti).
 
-## <a name="step-5-choose-a-storage-account-toostage-hello-data"></a>Passaggio 5: Scegliere una data di archiviazione account toostage hello
-Dei punti di distribuzione richiede i dati hello toostage un percorso. Scegliere un account di archiviazione esistente dalla sottoscrizione e selezionare **Next** (Avanti).
+## <a name="step-5-choose-a-storage-account-to-stage-the-data"></a>Passaggio 5: Scegliere un account di archiviazione per la collocazione temporanea dei dati
+DPS chiede di specificare una posizione per la collocazione temporanea dei dati. Scegliere un account di archiviazione esistente dalla sottoscrizione e selezionare **Next** (Avanti).
 
 > [!NOTE]
-> Crea un nuovo contenitore blob in hello scelto l'account di archiviazione e utilizzare una cartella distinta per ogni importazione dei punti di distribuzione.
+> DPS crea un nuovo contenitore BLOB nell'account di archiviazione scelto e usa una cartella distinta per ogni importazione.
 > 
 > 
 
 ![][4]
 
 ## <a name="step-6-select-a-data-warehouse"></a>Passaggio 6: Selezionare un data warehouse
-È quindi necessario selezionare un online [Azure SQL Data Warehouse](http://aka.ms/sqldw) dati hello tooimport nel database. Dopo aver selezionato il database, è necessario tooenter hello credenziali tooconnect toohello del database e selezionare **Avanti**.
+A questo punto, è possibile selezionare un database di [Azure SQL Data Warehouse](http://aka.ms/sqldw) online in cui importare i dati. Dopo aver selezionato il database, immettere le credenziali per connettersi a quest'ultimo e selezionare **Next** (Avanti).
 
 ![][5]
 
 > [!NOTE]
-> DP unisce le tabelle di dati di origine hello in data warehouse di hello. DP Avvisa se il nome di tabella hello richiede toooverwrite esistenti nelle tabelle hello data warehouse. È possibile eliminare tutti gli oggetti esistenti nel data warehouse di hello tracciando Elimina tutti gli oggetti esistenti prima dell'importazione.
+> DPS unisce le tabelle di dati di origine nel data warehouse. DPS visualizza un avviso se il nome della tabella deve sovrascrivere le tabelle esistenti nel data warehouse. Facoltativamente, è possibile eliminare eventuali oggetti esistenti nel data warehouse selezionando Delete all existing objects (Elimina tutti gli oggetti esistenti) prima dell'importazione.
 > 
 > 
 
-## <a name="step-7-import-hello-data"></a>Passaggio 7: Importare dati hello
-DP conferma che si desidera dati hello tooimport. Fare clic su hello inizio pulsante toobegin hello dati importazione.
+## <a name="step-7-import-the-data"></a>Passaggio 7: Importare i dati
+DPS conferma che si vogliono importare i dati. È sufficiente fare clic sul pulsante Start import (Avvia importazione) per avviare l'importazione.
 
 ![][6]
 
-Dei punti di distribuzione consente di visualizzare una visualizzazione che mostra lo stato di avanzamento hello di estrazione e caricamento di dati hello dal hello locale di SQL Server e hello lo stato di avanzamento dell'importazione di hello in SQL Data Warehouse.
+DPS mostra una visualizzazione contenente lo stato di avanzamento dell'estrazione e del caricamento dei dati dall'istanza di SQL Server locale e lo stato di avanzamento dell'importazione in SQL Data Warehouse.
 
 ![][7]
 
-Una volta completata l'importazione di hello, dei punti di distribuzione consente di visualizzare un riepilogo di importazione dei dati hello e un report delle modifiche di correzioni hello che sono state eseguite.
+Al termine dell'importazione, DPS visualizza un riepilogo dell'importazione dei dati e un report delle modifiche delle correzioni di compatibilità che sono state eseguite.
 
 ![][8]
 
 ## <a name="next-steps"></a>Passaggi successivi
-tooexplore i dati all'interno di SQL Data Warehouse, avviare la visualizzazione:
+Per esplorare i dati in SQL Data Warehouse, consultare gli articoli seguenti:
 
 * [Query Azure SQL Data Warehouse (Visual Studio)][Query Azure SQL Data Warehouse (Visual Studio)] (Eseguire query in Azure SQL Data Warehouse (Visual Studio))
 * [Visualizzare i dati con Power BI][Visualize data with Power BI]
 
-altre informazioni sulle dati piattaforma Studio del Redgate toolearn:
+Per altre informazioni su Data Platform Studio di Redgate:
 
-* [Visitare la home page dei punti di distribuzione hello](http://www.dataplatformstudio.com/)
+* [Visitare la home page di DPS](http://www.dataplatformstudio.com/)
 * [Guardare una demo di DPS su Channel9](https://channel9.msdn.com/Blogs/cloud-with-a-silver-lining/Loading-data-into-Azure-SQL-Datawarehouse-with-Redgate-Data-Platform-Studio)
 
-Per una panoramica di altri modi toomigrate e caricare i dati in SQL Data Warehouse vedere:
+Per una panoramica dei modi in cui è possibile eseguire la migrazione e caricare i dati in SQL Data Warehouse, vedere gli articoli seguenti:
 
-* [Eseguire la migrazione del Data Warehouse di tooSQL soluzione][Migrate your solution tooSQL Data Warehouse]
+* [Eseguire la migrazione della soluzione in SQL Data Warehouse][Migrate your solution to SQL Data Warehouse]
 * [Caricare i dati in Azure SQL Data Warehouse](sql-data-warehouse-overview-load.md)
 
-Per ulteriori suggerimenti per lo sviluppo, vedere hello [Cenni preliminari sullo sviluppo di SQL Data Warehouse](sql-data-warehouse-overview-develop.md).
+Per altri suggerimenti sullo sviluppo, vedere [Panoramica sullo sviluppo per SQL Data Warehouse](sql-data-warehouse-overview-develop.md).
 
 <!--Image references-->
 [1]: media/sql-data-warehouse-redgate/2016-10-05_15-59-56.png
@@ -149,6 +149,6 @@ Per ulteriori suggerimenti per lo sviluppo, vedere hello [Cenni preliminari sull
 <!--Article references-->
 [Query Azure SQL Data Warehouse (Visual Studio)]: ./sql-data-warehouse-query-visual-studio.md
 [Visualize data with Power BI]: ./sql-data-warehouse-get-started-visualize-with-power-bi.md
-[Migrate your solution tooSQL Data Warehouse]: ./sql-data-warehouse-overview-migrate.md
+[Migrate your solution to SQL Data Warehouse]: ./sql-data-warehouse-overview-migrate.md
 [Load data into Azure SQL Data Warehouse]: ./sql-data-warehouse-overview-load.md
 [SQL Data Warehouse development overview]: ./sql-data-warehouse-overview-develop.md

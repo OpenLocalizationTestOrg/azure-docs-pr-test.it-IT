@@ -1,5 +1,5 @@
 ---
-title: aaaAzure le macchine virtuali Linux e archiviazione di Azure | Documenti Microsoft
+title: VM Linux di Azure e Archiviazione di Azure | Microsoft Docs
 description: Descrive l'archiviazione Standard e Premium di Azure, Managed Disks e i dischi non gestiti con le macchine virtuali Linux.
 services: virtual-machines-linux
 documentationcenter: virtual-machines-linux
@@ -14,48 +14,48 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 2/7/2017
 ms.author: rasquill
-ms.openlocfilehash: d34441698a4e59721847685099e5fb3aa378c597
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5e8a62bb180de7288531139594cb61440cab04c5
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="azure-and-linux-vm-storage"></a>Archiviazione delle macchine virtuali Linux e Azure
-Archiviazione di Azure è una soluzione di archiviazione cloud hello per le moderne applicazioni che si basano su esigenze di hello toomeet scalabilità dei clienti, disponibilità e durata.  In aggiunta toomaking è possibile per gli sviluppatori toobuild applicazioni su larga scala toosupport nuovi scenari, archiviazione di Azure fornisce inoltre foundation archiviazione hello macchine virtuali di Azure.
+Archiviazione di Azure è la soluzione di archiviazione cloud per le applicazioni moderne basate su durata, disponibilità e scalabilità per soddisfare le esigenze dei clienti.  Oltre a consentire agli sviluppatori di compilare applicazioni di grande portata per supportare nuovi scenari, Archiviazione di Azure offre anche la base di archiviazione per le macchine virtuali di Azure.
 
 ## <a name="managed-disks"></a>Managed Disks
 
-Macchine virtuali di Azure sono ora disponibili tramite [dischi gestiti di Azure](../windows/managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json), che consente le macchine virtuali si toocreate senza creare o gestire qualsiasi [gli account di archiviazione di Azure](../../storage/common/storage-introduction.md) manualmente. Specificare se si desidera Premium o archiviazione Standard e dimensioni disco hello devono essere e Azure hello dischi di macchina virtuale viene creato. Le macchine virtuali con Managed Disks hanno diverse funzionalità importanti, tra cui:
+Sono ora disponibili macchine virtuali di Azure con [Azure Managed Disks](../windows/managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json), che consentono di creare macchine virtuali senza dover creare o gestire da sé gli [account di archiviazione di Azure](../../storage/common/storage-introduction.md). È sufficiente specificare se si desidera l'Archiviazione Premium o Standard e le dimensioni del disco. Azure penserà a creare i dischi della macchina virtuale. Le macchine virtuali con Managed Disks hanno diverse funzionalità importanti, tra cui:
 
-- Supporto per la scalabilità automatica. Azure Crea dischi hello e gestisce hello toosupport di archiviazione sottostante backup too10, 000 dischi per ogni sottoscrizione.
+- Supporto per la scalabilità automatica. Azure crea i dischi e gestisce l'archiviazione sottostante per supportare fino a 10.000 dischi per sottoscrizione.
 - Maggiore affidabilità con i set di disponibilità. Azure assicura che i dischi di macchine virtuali siano isolati automaticamente tra loro all'interno dei set di disponibilità.
 - Maggiore controllo degli accessi. Managed Disks espone varie operazioni controllate dal [Controllo degli accessi in base al ruolo di Azure](../../active-directory/role-based-access-control-what-is.md).
 
 Il prezzo di Managed Disks è diverso da quello dei dischi non gestiti. Per le relative informazioni, vedere [Prezzi e fatturazione di Managed Disks](../windows/managed-disks-overview.md#pricing-and-billing).
 
-È possibile convertire le macchine virtuali esistenti che usano dischi gestiti toouse dischi non gestito con [az vm convertire](/cli/azure/vm#convert). Per ulteriori informazioni, vedere [come tooconvert una VM Linux da non gestito dischi dischi gestiti tooAzure](convert-unmanaged-to-managed-disks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Non è possibile convertire un disco non gestito in un disco gestito se hello non gestito disco in un account di archiviazione, o in qualsiasi momento è stata, crittografata con [crittografia Servizio archiviazione di Azure (SSE)](../../storage/common/storage-service-encryption.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). dettagli come tootooconvert non gestita dischi o sono stati, in un account di archiviazione crittografati, i passaggi seguenti di Hello:
+È possibile convertire le macchine virtuali esistenti che usano i dischi non gestiti per usare quelli gestiti tramite [az vm convert](/cli/azure/vm#convert). Per altre informazioni, vedere [come convertire una macchina virtuale Linux da dischi non gestiti ad Azure Managed Disks](convert-unmanaged-to-managed-disks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Non è possibile convertire un disco non gestito in un disco gestito se il disco non gestito si trova in un account di archiviazione che è stato, anche in passato, crittografato con la [Crittografia del servizio di archiviazione di Azure (SSE)](../../storage/common/storage-service-encryption.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). La procedura seguente illustra come convertire dischi non gestiti che sono, o sono stati, in un account di archiviazione crittografato:
 
-- Copiare hello disco rigido virtuale (VHD) con [avvio di copia blob archiviazione az](/cli/azure/storage/blob/copy#start) tooa account di archiviazione che non è mai stato abilitato per la crittografia del servizio di archiviazione di Azure.
+- Copiare il disco rigido virtuale con [az storage blob copy start](/cli/azure/storage/blob/copy#start) in un account di archiviazione che non è mai stato abilitato per la crittografia del servizio di archiviazione di Azure.
 - Creare una macchina virtuale che usi dischi gestiti e specificare il file del disco rigido virtuale durante la creazione con [az vm create](/cli/azure/vm#create) o
-- Collegare hello copiati VHD con [collegare il disco di macchina virtuale az](/cli/azure/vm/disk#attach) tooa in esecuzione sulla macchina virtuale con dischi gestiti.
+- Collegare il disco rigido virtuale copiato con [az vm disk attach](/cli/azure/vm/disk#attach) a una macchina virtuale in esecuzione con dischi gestiti.
 
 
 ## <a name="azure-storage-standard-and-premium"></a>Archiviazione di Azure: Standard e Premium
-È possibile creare macchine virtuali di Azure, con Managed Disks o dischi non gestiti, basate su dischi di archiviazione Standard o Premium. Quando si utilizza toochoose portale hello la macchina virtuale è necessario attivare o disattivare un elenco a discesa in hello **nozioni di base** tooview schermata dischi standard e premium. Quando le unità attivato/disattivato tooSSD, solo le macchine virtuali abilitate, verranno visualizzate di archiviazione premium tutte supportate dalle unità SSD.  Quando vengono visualizzati tooHDD attivato/disattivato, le macchine virtuali abilitati archiviazione standard supportate da ruotando le unità disco, con archiviazione premium macchine virtuali supportate da unità SSD.
+È possibile creare macchine virtuali di Azure, con Managed Disks o dischi non gestiti, basate su dischi di archiviazione Standard o Premium. Quando si usa il portale per scegliere la macchina virtuale, è necessario aprire un menu a tendina nella schermata **Informazioni di base** per visualizzare i dischi Standard e Premium. Quando se ne esegue l'attivazione sull'unità SSD, vengono mostrate soltanto le macchine virtuali con l'archiviazione premium abilitata, tutte supportate dalle unità SSD.  Quando se ne esegue l'attivazione sull'unità HDD, vengono visualizzate le macchine virtuali con l'archiviazione standard abilitata supportate dalle unità disco rotante, oltre alle macchine virtuali con l'archiviazione premium supportate dalle unità SSD.
 
-Quando si crea una macchina virtuale da hello `azure-cli` è possibile scegliere tra standard e premium, quando si sceglie di dimensioni della macchina virtuale tramite hello hello `-z` o `--vm-size` flag cli.
+Durante la creazione di una macchina virtuale da `azure-cli` è possibile scegliere tra l'archiviazione standard e quella premium quando si sceglie la dimensione della macchina virtuale tramite il flag dell'interfaccia della riga di comando di `-z` o `--vm-size`.
 
 ## <a name="creating-a-vm-with-a-managed-disk"></a>Creazione di una macchina virtuale con un disco gestito
 
-l'esempio Hello necessario hello CLI di Azure 2.0, è possibile [installare qui](/cli/azure/install-azure-cli).
+L'esempio seguente richiede l'interfaccia della riga di comando di Azure 2.0, [installabile da qui](/cli/azure/install-azure-cli).
 
-Creare innanzitutto un hello toomanage gruppo di risorse alle risorse con [gruppo az creare](/cli/azure/group#create):
+Creare innanzitutto un gruppo di risorse per gestire le risorse con [az group create](/cli/azure/group#create):
 
 ```azurecli
 az group create --location westus --name myResourceGroup
 ```
 
-Creare ora hello macchina virtuale con [creare vm az](/cli/azure/vm#create). Specificare un argomento `--public-ip-address-dns-name` univoco, in quanto viene usato probabilmente `mypublicdns`.
+Creare quindi una VM con il comando [az vm create](/cli/azure/vm#create). Specificare un argomento `--public-ip-address-dns-name` univoco, in quanto viene usato probabilmente `mypublicdns`.
 
 ```azurecli
 az vm create \
@@ -67,7 +67,7 @@ az vm create \
     --public-ip-address-dns-name mypublicdns
 ```
 
-esempio di Hello precedente crea una macchina virtuale con un disco gestito in un account di archiviazione Standard. toouse un account di archiviazione Premium, aggiungere hello `--storage-sku Premium_LRS` argomento, ad esempio hello di esempio seguente:
+L'esempio precedente crea una macchina virtuale con un disco gestito in un account di archiviazione Standard. Per usare un account di archiviazione Premium, aggiungere l'argomento `--storage-sku Premium_LRS`, come nell'esempio seguente:
 
 ```azurecli
 az vm create \
@@ -81,22 +81,22 @@ az vm create \
 ```
 
 ## <a name="standard-storage"></a>Archiviazione standard
-Standard di archiviazione Azure è il tipo predefinito hello di archiviazione.  Archiviazione standard è conveniente e garantisce ottime prestazioni.  
+Archiviazione standard di Azure è il tipo di archiviazione predefinito.  Archiviazione standard è conveniente e garantisce ottime prestazioni.  
 
 ## <a name="premium-storage"></a>Archiviazione Premium
-Archiviazione Premium di Azure offre prestazioni elevate e supporto per dischi a bassa latenza per le macchine virtuali che eseguono carichi di lavoro con I/O intensivo. I dischi delle macchine virtuali (VM) che usano Archiviazione Premium archiviano i dati in unità SSD (Solid State Drive). È possibile migrare tooAzure di dischi macchina virtuale dell'applicazione velocità hello sfruttare tootake archiviazione Premium e le prestazioni di questi dischi.
+Archiviazione Premium di Azure offre prestazioni elevate e supporto per dischi a bassa latenza per le macchine virtuali che eseguono carichi di lavoro con I/O intensivo. I dischi delle macchine virtuali (VM) che usano Archiviazione Premium archiviano i dati in unità SSD (Solid State Drive). È possibile migrare i dischi delle macchine virtuali dell'applicazione ad Archiviazione Premium di Azure per trarre vantaggio dalla velocità e dalle prestazioni di questi dischi.
 
 Funzionalità di Archiviazione Premium:
 
-* I dischi di archiviazione Premium: Archiviazione Premium di Azure supporta dischi di macchina virtuale che possono essere collegato tooDS, DSv2 o GS serie macchine virtuali di Azure.
-* Blob di pagine Premium: Archiviazione Premium supporta BLOB di pagine di Azure, che vengono utilizzati toohold dischi persistenti per macchine virtuali di Azure (VM).
-* Archiviazione con ridondanza locale Premium: Un account di archiviazione Premium solo supporta localmente ridondante archiviazione (LRS) come opzione di replica hello e mantiene tre copie dei dati hello all'interno di una singola area.
+* Dischi di Archiviazione Premium: Archiviazione Premium di Azure supporta dischi VM che possono essere collegati a VM di Azure della serie DS, DSv2 o GS.
+* BLOB di pagine Premium: Archiviazione Premium supporta i BLOB di pagine di Azure, che vengono usati per conservare dischi persistenti per Macchine virtuali di Azure.
+* Archiviazione con ridondanza locale Premium: un account di Archiviazione Premium supporta solo l'opzione di replica di archiviazione con ridondanza locale e mantiene tre copie dei dati in una singola area.
 * [Archiviazione Premium](../../storage/common/storage-premium-storage.md)
 
 ## <a name="premium-storage-supported-vms"></a>VM supportate da Archiviazione Premium
 Archiviazione Premium supporta Macchine virtuali di Azure (VM) delle serie DS, DSv2, GS e Fs. Con le VM supportate da Archiviazione Premium è possibile usare dischi sia di Archiviazione Standard che di Archiviazione Premium. Non è tuttavia possibile usare i dischi di Archiviazione Premium con le macchine virtuali di serie non compatibili con Archiviazione Premium.
 
-Di seguito sono hello distribuzioni di Linux che è stati convalidati con archiviazione Premium.
+Di seguito sono riportate le distribuzioni di Linux convalidate con Archiviazione Premium.
 
 | Distribuzione | Versione | Kernel supportato |
 | --- | --- | --- |
@@ -110,17 +110,17 @@ Di seguito sono hello distribuzioni di Linux che è stati convalidati con archiv
 | RHEL |6.8+, 7.2+ | |
 
 ## <a name="azure-file-storage"></a>Archiviazione file di Azure
-Archiviazione di File di Azure offre le condivisioni di file in un cloud di hello tramite il protocollo SMB standard di hello. I file di Azure, è possibile eseguire la migrazione di applicazioni aziendali che si basano su file server tooAzure. Le applicazioni in esecuzione in Azure possono montare condivisioni file dalle macchine virtuali di Azure con Linux. E con una versione più recente di hello di archiviazione di File, è inoltre possibile collegare una condivisione file da un'applicazione locale che supporta SMB 3.0.  Poiché le condivisioni file sono condivisioni SMB, è possibile accedervi tramite le API del file system standard.
+L'archiviazione file di Azure offre condivisioni file nel cloud usando il protocollo SMB standard. Con l’archiviazione file di Azure è possibile migrare le applicazioni aziendali basate su server di file in Azure. Le applicazioni in esecuzione in Azure possono montare condivisioni file dalle macchine virtuali di Azure con Linux. Con la versione più recente dell’archiviazione di file, è inoltre possibile montare una condivisione di file da un'applicazione locale che supporta SMB 3.0.  Poiché le condivisioni file sono condivisioni SMB, è possibile accedervi tramite le API del file system standard.
 
-Archiviazione di file è basata su hello stessa tecnologia di archiviazione Blob, tabelle e code, in modo da archiviazione di File offre disponibilità hello, durata, scalabilità e ridondanza geografica che viene compilata nella piattaforma di archiviazione di Azure hello. Per informazioni sugli obiettivi di prestazioni e sui limiti di Archiviazione file, vedere Obiettivi di scalabilità e prestazioni per Archiviazione di Azure.
+Il servizio di archiviazione file è basato sulla stessa tecnologia dei servizi BLOB, tabelle e archiviazione code e può quindi sfruttare le funzionalità di disponibilità, durabilità, scalabilità e ridondanza geografica integrate nella piattaforma di archiviazione di Azure. Per informazioni sugli obiettivi di prestazioni e sui limiti di Archiviazione file, vedere Obiettivi di scalabilità e prestazioni per Archiviazione di Azure.
 
-* [Come toouse archiviazione di File di Azure con Linux](../../storage/files/storage-how-to-use-files-linux.md)
+* [Come usare Archiviazione file di Azure con Linux](../../storage/files/storage-how-to-use-files-linux.md)
 
 ## <a name="hot-storage"></a>Archiviazione ad accesso frequente
-livello di archiviazione di Azure a caldo Hello è ottimizzato per l'archiviazione dei dati che si accede frequentemente.  Archiviazione a caldo è tipo di archiviazione hello predefinito per gli archivi blob.
+Il livello di archiviazione ad accesso frequente di Azure è ottimizzato per l'archiviazione di dati a cui si accede di frequente.  L'Archiviazione ad accesso frequente è il tipo di archiviazione predefinito per gli archivi BLOB.
 
 ## <a name="cool-storage"></a>Archiviazione ad accesso sporadico
-livello di archiviazione Azure sporadico Hello è ottimizzato per l'archiviazione dei dati sono raramente accessibile e lunga durata. Esempi di casi d'uso dell'archiviazione ad accesso sporadico includono backup, contenuti multimediali, dati scientifici, conformità e archiviazione dati. In generale, i dati usati raramente sono i candidati ideali per l'archiviazione ad accesso sporadico.
+Il livello di archiviazione ad accesso sporadico di Azure è ottimizzato per l'archiviazione di dati a cui si accede di raramente e di lunga durata. Esempi di casi d'uso dell'archiviazione ad accesso sporadico includono backup, contenuti multimediali, dati scientifici, conformità e archiviazione dati. In generale, i dati usati raramente sono i candidati ideali per l'archiviazione ad accesso sporadico.
 
 |  | livello di archiviazione ad accesso frequente | livello di archiviazione ad accesso sporadico |
 |:--- |:---:|:---:|
@@ -131,9 +131,9 @@ livello di archiviazione Azure sporadico Hello è ottimizzato per l'archiviazion
 | e costi di transazione |e costi di transazione | |
 
 ## <a name="redundancy"></a>Ridondanza
-dati Hello in di Microsoft Azure è sempre l'account di archiviazione replicata tooensure durabilità e disponibilità elevata, riunione hello contratto di servizio di archiviazione Azure, anche in faccia hello di errori hardware temporanei.
+I dati dell'account di archiviazione di Microsoft Azure vengono sempre replicati per assicurarne durabilità e disponibilità elevata, rispettando il contratto di servizio di Archiviazione di Azure anche in caso di errori hardware temporanei.
 
-Quando si crea un account di archiviazione, è necessario selezionare una delle seguenti opzioni di replica hello:
+Quando si crea un account di archiviazione, è necessario selezionare una delle opzioni di replica seguenti:
 
 * Archiviazione con ridondanza locale (LRS)
 * Archiviazione con ridondanza della zona (ZRS).
@@ -141,69 +141,69 @@ Quando si crea un account di archiviazione, è necessario selezionare una delle 
 * Archiviazione con ridondanza geografica e accesso in lettura (RA-GRS).
 
 ### <a name="locally-redundant-storage"></a>Archiviazione con ridondanza locale
-I dati all'interno di area hello in cui viene creato l'account di archiviazione vengono replicati archiviazione localmente ridondante (LRS). toomaximize durabilità, ogni richiesta effettuata per i dati nell'account di archiviazione vengono replicate tre volte. Queste tre repliche risiedono ognuna in domini di errore e domini di aggiornamento distinti.  Una richiesta viene restituita correttamente solo dopo che è stato scritto tooall tre repliche.
+Con l'archiviazione con ridondanza locale (LRS), i dati vengono replicati all'interno dell'area in cui è stato creato l'account di archiviazione. Per massimizzare la durabilità, ogni richiesta effettuata per i dati nell'account di archiviazione viene replicata per tre volte. Queste tre repliche risiedono ognuna in domini di errore e domini di aggiornamento distinti.  Una richiesta viene restituita correttamente dopo che è stata scritta in tutte e tre le repliche.
 
 ### <a name="zone-redundant-storage"></a>Archiviazione con ridondanza della zona
-Archiviazione con ridondanza della zona (ZRS), i dati vengono replicati tra due strutture toothree, all'interno di una singola area o in due aree, fornendo una durabilità maggiore rispetto a ridondanza locale. Se l'account di archiviazione dispone di ridondanza della zona abilitata, i dati sono durevoli anche in caso di errore a una delle strutture di hello di hello.
+Con l'archiviazione con ridondanza della zona (ZRS) i dati vengono replicati in due o tre strutture all'interno di una singola area o in due aree, fornendo una durabilità maggiore rispetto all'archiviazione con ridondanza locale. Se per l'account di archiviazione è stata abilitata l'archiviazione con ridondanza della zona, la durabilità dei dati è assicurata anche in caso di problemi in una delle strutture.
 
 ### <a name="geo-redundant-storage"></a>Archiviazione con ridondanza geografica
-Archiviazione con ridondanza geografica (GRS) consente di replicare i dati tooa area secondaria a centinaia di miglia di distanza area primaria hello. Se l'account di archiviazione con ridondanza geografica abilitata, i dati sono durevoli anche in caso di hello di una completa interruzione dell'alimentazione locale o di emergenza in cui hello area primaria non è recuperabile.
+Con l'archiviazione con ridondanza geografica (GRS) i dati vengono replicati in un'area secondaria a centinaia di chilometri di distanza dall'area primaria. Se per l'account di archiviazione è stata abilitata l'archiviazione con ridondanza geografica, la durabilità dei dati è assicurata anche in caso di un'interruzione completa dell'alimentazione locale o in situazioni di emergenza in cui l'area primaria non è recuperabile.
 
 ### <a name="read-access-geo-redundant-storage"></a>Archiviazione con ridondanza geografica e accesso in lettura
-Archiviazione con ridondanza geografica e accesso in lettura (RA-GRS) ottimizza la disponibilità dell'account di archiviazione, fornendo i dati di accesso in sola lettura toohello nella posizione secondaria hello, inoltre toohello replica tra due aree fornito dalla funzionalità GRS. In caso di hello che i dati diventino non disponibili nell'area primaria hello, l'applicazione può leggere i dati dall'area secondaria hello.
+L'archiviazione con ridondanza geografica e accesso in lettura(RA-GRS) massimizza la disponibilità dell'account di archiviazione fornendo l'accesso in sola lettura ai dati nella posizione secondaria, oltre alla replica tra due aree assicurata dall'archiviazione con ridondanza geografica. Qualora i dati diventino non disponibili nell'area primaria, l'applicazione potrà leggerli dall'area secondaria.
 
 Per un approfondimento sulla ridondanza dell'Archiviazione di Azure, vedere:
 
 * [Replica di Archiviazione di Azure](../../storage/common/storage-redundancy.md)
 
 ## <a name="scalability"></a>Scalabilità
-Archiviazione di Azure è altamente scalabile, pertanto è possibile archiviare ed elaborare centinaia di terabyte di scenari di dati toosupport hello dati necessari per l'analisi di scientifici, finanziari e applicazioni multimediali. Oppure è possibile archiviare hello piccole quantità di dati necessari per un sito Web di piccole aziende. Ogni volta che sono comprese le proprie esigenze, si paga solo per i dati di hello che si desidera archiviare. In Archiviazione di Azure sono al momento archiviate decine di migliaia di miliardi di oggetti univoci dei clienti e sono gestiti in media milioni di richieste al secondo.
+Archiviazione di Azure è estremamente scalabile, per consentire l'archiviazione e l'elaborazione di centinaia di terabyte di dati per supportare gli scenari di Big Data necessari per applicazioni scientifiche, di analisi finanziaria e multimediali. In alternativa, è possibile archiviare piccole quantità di dati necessarie per un piccolo sito Web aziendale. Qualsiasi siano le esigenze, il cliente paga solo per i dati archiviati. In Archiviazione di Azure sono al momento archiviate decine di migliaia di miliardi di oggetti univoci dei clienti e sono gestiti in media milioni di richieste al secondo.
 
-Per gli account di archiviazione standard: un account di archiviazione standard con una frequenza totale massima di richieste di 20.000 IOPS. Hello IOPS totali per tutti i dischi di macchina virtuale in un account di archiviazione standard non deve superare questo limite.
+Per gli account di archiviazione standard: un account di archiviazione standard con una frequenza totale massima di richieste di 20.000 IOPS. Il numero totale di IOPS in tutti i dischi della macchina virtuale in un account di archiviazione standard non deve superare questo limite.
 
-Per gli account di archiviazione Premium: un account di archiviazione Premium ha una velocità effettiva totale massima di 50 Gbps. velocità effettiva totale Hello in tutti i dischi di macchina virtuale non deve superare questo limite.
+Per gli account di archiviazione Premium: un account di archiviazione Premium ha una velocità effettiva totale massima di 50 Gbps. La velocità effettiva totale in tutti i dischi della macchina virtuale non deve superare questo limite.
 
 ## <a name="availability"></a>Disponibilità
-È garantito che almeno 99,99% (99,9% per il livello di accesso sporadico) di tempo hello, si verrà correttamente elaborare richieste tooread dati dagli account di archiviazione con ridondanza geografica di accesso in lettura (RA-GRS), condizione che non è stato possibile tentativi tooread dati dall'area primaria hello Ritentare in area secondaria hello.
+Microsoft garantisce che per almeno il 99,99% (99,9% per il livello di accesso Non frequente) del tempo sarà in grado di elaborare le richieste di lettura dei dati degli account di archiviazione con ridondanza geografica e accesso in lettura (RA-GRS), purché i tentativi non riusciti di lettura dei dati nell'area primaria vengano ripetuti nell'area secondaria.
 
-È garantito che almeno il 99,9% (99% per il livello di accesso sporadico) di tempo hello, verrà completata processo richiede i dati tooread archiviazione con ridondanza locale (LRS), archiviazione ridondante zona (ZRS) e account di archiviazione con ridondanza geografica (GRS).
+Microsoft garantisce che per almeno il 99,9% (99% per il livello di accesso Non frequente) del tempo sarà in grado di elaborare le richieste di lettura dei dati degli account di archiviazione con ridondanza locale (LRS), archiviazione con ridondanza della zona (ZRS) e archiviazione con ridondanza geografica (GRS).
 
-È garantito che almeno il 99,9% (99% per il livello di accesso sporadico) di tempo hello, verrà completata processo richiede toowrite dati tooLocally archiviazione ridondante (LRS), zona ridondanti archiviazione (ZRS) e gli account di archiviazione (GRS) con ridondanza geografica e con ridondanza geografica di accesso in lettura Account di archiviazione (RA-GRS).
+Microsoft garantisce che per almeno il 99,9% (99% per il livello di accesso Non frequente) del tempo sarà in grado di elaborare le richieste di scrittura dei dati negli account di archiviazione con ridondanza locale (LRS), archiviazione con ridondanza della zona (ZRS), archiviazione con ridondanza geografica (GRS) e archiviazione con ridondanza geografica e accesso in lettura (RA-GRS).
 
 * [Contratto di servizio per l'archiviazione di Azure](https://azure.microsoft.com/support/legal/sla/storage/v1_1/)
 
 ## <a name="regions"></a>Regioni
-Azure è in genere disponibile nelle 30 aree tutto il mondo hello e ha annunciato piani per le aree aggiuntive 4. Espansione geografica è una priorità per Azure, perché consente prestazioni più elevate di tooachieve nostri clienti e supporta i requisiti e le preferenze relative al percorso dei dati.  Azures toolaunch area più recente è in Germania.
+Azure è disponibile a livello generale in 30 aree del mondo ed è stata annunciata l'aggiunta di altre 4 aree. L'espansione geografica è una priorità per Azure, perché permette ai clienti di ottenere prestazioni più elevate e supporta i loro requisiti e preferenze in merito alla posizione dei dati.  L'area aggiunta più di recente per il lancio di Azure è la Germania.
 
-Hello Germania Microsoft Cloud fornisce un toohello opzione differenziati già disponibili i servizi Cloud Microsoft in Europa, creazione di maggiori opportunità di innovazione e la crescita economica per elevata regolamentato partner e clienti in Germania, Hello (unione) e hello associazione franca europea (EFTA).
+Microsoft Cloud Germany offre un'opzione differenziata per i servizi Microsoft Cloud già disponibili in Europa, creando maggiori opportunità di innovazione e crescita economica per i clienti e i partner altamente regolati in Germania, nell'Unione europea (UE) e nell'Associazione europea di libero scambio (AELS).
 
-Dati del cliente in questi Data Center di nuovo, Magdeburg e Francoforte, viene gestiti nel controllo del codice di un dominio trusted di dati, T sistemi internazionali, una società tedesca indipendente e figlia di Deutsche Telekom hello. Servizi cloud commerciali di Microsoft in questi Data Center rispettare norme di gestione dei dati di tooGerman e offrono ai clienti le scelte aggiuntive di come e dove i dati vengono elaborati.
+La gestione dei dati dei clienti archiviati in questi nuovi data center, a Magdeburg e Francoforte, avviene sotto il controllo di un trustee dati, T-Systems International, ossia una società tedesca indipendente e sussidiaria di Deutsche Telekom. I servizi cloud commerciali di Microsoft in questi data center sono conformi alle normative sul trattamento dei dati vigenti in Germania e offrono ai clienti l'ulteriore possibilità di scegliere la modalità e il luogo di elaborazione dei dati.
 
 * [Mappa delle aree di Azure](https://azure.microsoft.com/regions/)
 
 ## <a name="security"></a>Sicurezza
-Archiviazione di Azure fornisce un set completo di funzionalità di sicurezza che insieme consentono agli sviluppatori di applicazioni sicure toobuild. account di archiviazione Hello stesso può essere protetto tramite controllo di accesso basato sui ruoli e Azure Active Directory. È possibile proteggere i dati in transito tra un'applicazione e Azure usando la crittografia lato client, HTTPS o SMB 3.0. Dati possono essere impostati toobe crittografato automaticamente quando scritti tooAzure archiviazione mediante la crittografia del servizio di archiviazione (SSE). I dischi del sistema operativo e i dati utilizzati dalle macchine virtuali possono essere impostati toobe crittografata con la crittografia del disco di Azure. È possibile concedere l'accesso delegato toohello dati oggetti nell'archiviazione di Azure tramite firme di accesso condiviso.
+Archiviazione di Azure fornisce un set completo di funzionalità di sicurezza, che consentono agli sviluppatori di creare applicazioni sicure. Lo stesso account di archiviazione può essere protetto tramite il controllo degli accessi in base al ruolo e Azure Active Directory. È possibile proteggere i dati in transito tra un'applicazione e Azure usando la crittografia lato client, HTTPS o SMB 3.0. I dati possono essere impostati per la crittografia automatica quando vengono scritti in Archiviazione di Azure con Crittografia del servizio di archiviazione di Azure (SSE). I dischi di dati e del sistema operativo usati dalle macchine virtuali possono essere impostati per la crittografia con Crittografia dischi di Azure. È possibile concedere l'accesso delegato agli oggetti dati in Archiviazione di Azure usando le firme di accesso condiviso.
 
 ### <a name="management-plane-security"></a>Sicurezza del piano di gestione
-il piano di gestione di Hello è costituito da toomanage le risorse usate hello account di archiviazione. In questa sezione verrà descritto come modello di distribuzione Azure Resource Manager hello e modalità di accesso di account di archiviazione tooyour toouse toocontrol di controllo di accesso basato sui ruoli (RBAC). Verranno inoltre presentati gestire le chiavi di account di archiviazione e come tooregenerate li.
+Il piano di gestione è costituito dalle risorse usate per gestire l'account di archiviazione. Questa sezione illustra il modello di distribuzione Azure Resource Manager e come usare il controllo degli accessi in base al ruolo per controllare l'accesso agli account di archiviazione. Descrive anche la gestione delle chiavi dell'account di archiviazione e come rigenerarle.
 
 ### <a name="data-plane-security"></a>Sicurezza del piano dati
-In questa sezione verrà esaminato consentire l'accesso agli oggetti di dati effettivi di toohello nell'account di archiviazione, ad esempio BLOB, file, code e tabelle, tramite firme di accesso condiviso e criteri di accesso archiviati. Vengono trattate anche le firme di accesso condiviso sia a livello di servizio che di account. Si noterà anche come toolimit accedere tooa specifico indirizzo IP (o un intervallo di indirizzi IP), come protocollo di hello toolimit utilizzato tooHTTPS e come toorevoke una firma di accesso condiviso senza attendere che tooexpire.
+Questa sezione illustra come concedere l'accesso agli oggetti dati effettivi nell'account di archiviazione, ad esempio BLOB, file, code e tabelle, usando firme di accesso condiviso e criteri di accesso archiviati. Vengono trattate anche le firme di accesso condiviso sia a livello di servizio che di account. Si vedrà anche come limitare l'accesso a un indirizzo IP specifico, o un intervallo di indirizzi IP, come limitare il protocollo usato per HTTPS e come revocare una firma di accesso condiviso senza attendere che scada.
 
 ## <a name="encryption-in-transit"></a>Crittografia in transito
-Questa sezione viene descritto come toosecure dati durante il trasferimento da o verso l'archiviazione di Azure. Parleremo hello consigliato l'utilizzo della crittografia hello e HTTPS utilizzata da SMB 3.0 per condivisioni File di Azure. È inoltre verrà dare un'occhiata crittografia lato Client, che consentono di tooencrypt hello prima di essere trasferiti nell'account di archiviazione in un'applicazione client e toodecrypt hello dati dopo che viene trasferita all'esterno di archiviazione.
+Questa sezione descrive come proteggere i dati durante il trasferimento da e verso Archiviazione di Azure. Si esaminerà l'uso consigliato di HTTPS e la crittografia utilizzata da SMB 3.0 per le condivisioni file di Azure. Si osserverà anche la crittografia lato client, che consente di crittografare i dati prima che siano trasferiti nel servizio di archiviazione in un'applicazione client e di decrittografarli dopo il trasferimento dal servizio di archiviazione.
 
 ## <a name="encryption-at-rest"></a>Crittografia di dati inattivi
-Si parlerà crittografia del servizio di archiviazione (SSE) e come è possibile abilitare la funzionalità per un account di archiviazione, pertanto i BLOB in blocchi, BLOB di pagine e aggiungere BLOB viene crittografato automaticamente quando scritti tooAzure archiviazione. Verranno inoltre esaminati come è possibile utilizzare la crittografia del disco di Azure e analizzare le differenze di base hello e casi di crittografia del disco e SSE e crittografia lato Client. Si esaminerà brevemente la conformità FIPS per i computer del Governo degli Stati Uniti.
+Si discuterà di Crittografia del servizio di archiviazione (SSE) e come è possibile abilitarla per un account di archiviazione, determinando la crittografia automatica dei BLOB in blocchi, BLOB di pagine e BLOB aggiunti al momento della scrittura nell'Archiviazione di Azure. Verrà illustrato anche come è possibile usare Crittografia dischi di Azure e si esamineranno differenze di base e casi relativi a Crittografia dischi rispetto a SSE e alla crittografia lato client. Si esaminerà brevemente la conformità FIPS per i computer del Governo degli Stati Uniti.
 
 * [Guida alla sicurezza di Archiviazione di Azure](../../storage/common/storage-security-guide.md)
 
 ## <a name="temporary-disk"></a>Disco temporaneo
-Ogni VM contiene un disco temporaneo. disco temporaneo Hello fornisce l'archiviazione a breve termine per i processi e le applicazioni e dati di archivio tooonly desiderato, ad esempio i file di paging o di scambio. Dati su disco temporaneo hello potrebbero andare persi durante un [evento di manutenzione](manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#understand-vm-reboots---maintenance-vs-downtime) o quando si [ridistribuire una macchina virtuale](redeploy-to-new-node.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Durante un riavvio standard di hello VM, dati hello nell'unità temporanea hello devono essere rese persistenti.
+Ogni VM contiene un disco temporaneo. Il disco temporaneo offre archiviazione a breve termine per applicazioni e processi ed è destinato solo all'archiviazione di dati come file di paging o di scambio. I dati presenti nel disco temporaneo potrebbero andare persi durante un [evento di manutenzione](manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#understand-vm-reboots---maintenance-vs-downtime) o la [ridistribuzione di una VM](redeploy-to-new-node.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Durante un riavvio standard della VM, i dati nell'unità temporanea vengono mantenuti.
 
-Nelle macchine virtuali Linux, hello disco è in genere **dev/sdb** formattato e montato troppo**/mnt** da hello agente Linux di Azure. dimensioni Hello del disco temporaneo hello variano in base alle dimensioni di hello della macchina virtuale hello. Per altre informazioni, vedere [Dimensioni per le macchine virtuali Linux](sizes.md).
+Nelle macchine virtuali Linux il disco è in genere **/dev/sdb** e viene formattato e montato in **/mnt** dall'agente Linux di Azure. Le dimensioni del disco temporaneo variano in base alle dimensioni della macchina virtuale. Per altre informazioni, vedere [Dimensioni per le macchine virtuali Linux](sizes.md).
 
-Per ulteriori informazioni sulle modalità di utilizzo disco temporaneo hello Azure, vedere [informazioni sulle unità temporanea hello in macchine virtuali di Microsoft Azure](https://blogs.msdn.microsoft.com/mast/2013/12/06/understanding-the-temporary-drive-on-windows-azure-virtual-machines/)
+Per altre informazioni sull'uso del disco temporaneo in Azure, vedere l'articolo relativo alle [unità temporanee nelle macchine virtuali di Microsoft Azure](https://blogs.msdn.microsoft.com/mast/2013/12/06/understanding-the-temporary-drive-on-windows-azure-virtual-machines/)
 
 ## <a name="cost-savings"></a>Risparmi sui costi
 * [Costi di archiviazione](https://azure.microsoft.com/pricing/details/storage/)

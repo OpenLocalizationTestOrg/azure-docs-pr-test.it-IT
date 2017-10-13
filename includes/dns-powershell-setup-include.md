@@ -2,28 +2,28 @@
 
 ### <a name="before-you-begin"></a>Prima di iniziare
 
-Verificare di aver hello seguenti prima di iniziare la configurazione.
+Prima di iniziare la configurazione, verificare di essere in possesso degli elementi seguenti.
 
 * Una sottoscrizione di Azure. Se non si ha una sottoscrizione di Azure, è possibile attivare i [vantaggi per i sottoscrittori di MSDN](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/) oppure iscriversi per ottenere un [account gratuito](https://azure.microsoft.com/pricing/free-trial/).
-* È necessario tooinstall hello più recente di hello cmdlet PowerShell di gestione risorse di Azure. Per ulteriori informazioni, vedere [come tooinstall e configurare Azure PowerShell](/powershell/azureps-cmdlets-docs).
+* È necessario installare la versione più recente dei cmdlet di PowerShell per Azure Resource Manager. Per altre informazioni, vedere [Come installare e configurare Azure PowerShell](/powershell/azureps-cmdlets-docs).
 
-### <a name="sign-in-tooyour-azure-account"></a>Accedi tooyour account Azure
+### <a name="sign-in-to-your-azure-account"></a>Accedere con l'account Azure
 
-Aprire la console di PowerShell e tooyour account di connessione. Per altre informazioni, vedere [Uso di PowerShell con Resource Manager](../articles/azure-resource-manager/powershell-azure-resource-manager.md).
+Aprire la console di PowerShell e connettersi al proprio account. Per altre informazioni, vedere [Uso di PowerShell con Resource Manager](../articles/azure-resource-manager/powershell-azure-resource-manager.md).
 
 ```powershell
 Login-AzureRmAccount
 ```
 
-### <a name="select-hello-subscription"></a>Selezionare la sottoscrizione hello
+### <a name="select-the-subscription"></a>Selezionare la sottoscrizione
  
-Controllare le sottoscrizioni di hello per account hello.
+Controllare le sottoscrizioni per l'account.
 
 ```powershell
 Get-AzureRmSubscription
 ```
 
-Scegliere quali di toouse le sottoscrizioni di Azure.
+Scegliere le sottoscrizioni ad Azure da usare.
 
 ```powershell
 Select-AzureRmSubscription -SubscriptionName "your_subscription_name"
@@ -31,7 +31,7 @@ Select-AzureRmSubscription -SubscriptionName "your_subscription_name"
 
 ### <a name="create-a-resource-group"></a>Creare un gruppo di risorse
 
-Gestione risorse di Azure richiede che tutti i gruppi di risorse specifichino un percorso Questo percorso viene utilizzato come percorso predefinito di hello per le risorse in tale gruppo di risorse. Tuttavia, poiché tutte le risorse DNS sono globali, non è regionale, scelta hello del percorso del gruppo di risorse ha alcun impatto su DNS di Azure.
+Azure Resource Manager richiede che tutti i gruppi di risorse specifichino una località. che viene usato come percorso predefinito per le risorse presenti in tale gruppo di risorse. Tuttavia, dato che tutte le risorse DNS sono globali, non regionali, la scelta del percorso del gruppo di risorse non ha alcun impatto sul servizio DNS di Azure.
 
 Se si usa un gruppo di risorse esistente, è possibile ignorare questo passaggio.
 
@@ -41,7 +41,7 @@ New-AzureRmResourceGroup -Name MyAzureResourceGroup -location "West US"
 
 ### <a name="register-resource-provider"></a>Registrare il provider di risorse
 
-Hello servizio DNS di Azure viene gestita dal provider di risorse Microsoft. Network hello. La sottoscrizione di Azure deve essere registrato toouse questo provider di risorse prima di poter usare DNS di Azure. Questa operazione viene eseguita una sola volta per ogni sottoscrizione.
+Il servizio DNS di Azure viene gestito dal provider di risorse Microsoft.Network. Per poter usare il servizio DNS di Azure, la sottoscrizione di Azure deve essere registrata per l'uso di questo provider di risorse. Questa operazione viene eseguita una sola volta per ogni sottoscrizione.
 
 ```powershell
 Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Network

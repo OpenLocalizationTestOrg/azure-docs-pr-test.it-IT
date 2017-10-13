@@ -1,6 +1,6 @@
 ---
-title: Operazioni con esecuzione prolungata aaaPolling | Documenti Microsoft
-description: Questo argomento viene illustrato come toopoll operazioni a esecuzione prolungata.
+title: Polling di operazioni con esecuzione prolungata | Microsoft Docs
+description: Questo argomento descrive come eseguire il polling di operazioni con esecuzione prolungata.
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,36 +14,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: juliako
-ms.openlocfilehash: f8315a5ddbe484d794c3e2164e47dd9e70521671
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7123a2d44d3b7c332afe30fb0fcea88ca29e313a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="delivering-live-streaming-with-azure-media-services"></a>Distribuzione di Live Streaming con Servizi multimediali di Azure
 
 ## <a name="overview"></a>Panoramica
 
-Servizi multimediali di Microsoft Azure offre API che inviano richieste di operazioni di toostart tooMedia Services (ad esempio: creare, avviare, arrestare o eliminare un canale). Queste operazioni hanno un'esecuzione prolungata.
+Servizi multimediali di Microsoft Azure offre API che inviano richieste a servizi multimediali per avviare operazioni, ad esempio creazione, avvio, arresto o eliminazione di un canale. Queste operazioni hanno un'esecuzione prolungata.
 
-Hello Media Services .NET SDK fornisce le API che inviano la richiesta hello e attendere hello operazione toocomplete (internamente, Buongiorno API eseguono il polling dell'avanzamento dell'operazione a intervalli definiti). Ad esempio, quando si chiama canale. Start (), il metodo hello restituisce dopo l'avvio del canale hello. È inoltre possibile utilizzare la versione asincrona di hello: attesa del canale. StartAsync() (per informazioni sul modello asincrono basato su attività, vedere [toccare](https://msdn.microsoft.com/library/hh873175\(v=vs.110\).aspx)). Le API che inviano una richiesta di operazione e quindi eseguire il polling per lo stato di hello fino al completamento dell'operazione hello vengono definite "metodi di polling". Questi metodi (in particolare versione asincrona di hello) sono consigliati per le applicazioni rich client e/o i servizi con stato.
+L'SDK di Servizi multimediali per .NET fornisce le API che inviano la richiesta e attendono il completamento dell'operazione (a livello interno, le API eseguono il polling dell'avanzamento dell'operazione a intervalli definiti). Ad esempio, quando si chiama channel.Start(), il metodo restituisce dopo l'avvio del canale. È possibile anche usare la versione asincrona: await channel.StartAsync(). Per informazioni sul modello asincrono basato su attività, vedere [TAP](https://msdn.microsoft.com/library/hh873175\(v=vs.110\).aspx). Le API che inviano una richiesta di operazione e quindi eseguono il polling dello stato fino al completamento dell'operazione vengono definite "metodi di polling". Tali metodi (in special modo la versione asincrona) sono consigliati per le applicazioni rich client e/o i servizi con stato.
 
-Esistono scenari in cui un'applicazione non può attendere una richiesta http a esecuzione prolungata e desidera toopoll hello dell'avanzamento dell'operazione manualmente. Un esempio tipico sarebbe un browser che interagisce con un servizio web senza stato: quando il browser di hello richiede toocreate un canale, servizio web hello avvia un'operazione a esecuzione prolungata e restituisce hello browser toohello ID di operazione. browser Hello potrebbe quindi chiedere di hello web servizio tooget hello stato dell'operazione basato sull'ID di hello. Hello Media Services .NET SDK fornisce le API che sono utili per questo scenario. definite "metodi di non polling",
-"metodi di non polling" Hello hanno hello seguente modello di denominazione: inviare*OperationName*operazione (ad esempio, SendCreateOperation). Inviare*OperationName*operazione restituiscono hello **IOperation** oggetto; hello oggetto restituito contiene le informazioni che possono essere utilizzati tootrack hello operazione. Hello trasmissione*OperationName*OperationAsync restituiscono **attività<IOperation>**.
+In alcuni scenari è possibile che un'applicazione non possa attendere una richiesta HTTP con esecuzione prolungata e sia necessario eseguire il polling manuale dell'avanzamento dell'operazione. Un esempio tipico può essere un browser che interagisce con un servizio Web senza stato: quando il browser richiede di creare un canale, il servizio Web avvia un'operazione con esecuzione prolungata e restituisce l'ID operazione al browser. Il browser potrebbe quindi chiedere al servizio Web di ottenere lo stato dell'operazione in base all'ID. L'SDK di Servizi multimediali per .NET fornisce API che sono utili per questo scenario, definite "metodi di non polling",
+che sono caratterizzati dal seguente criterio di denominazione: Send*NomeOperazione*Operation, ad esempio SendCreateOperation. I metodi Send*NomeOperazione*Operation restituiscono l'oggetto **IOperation**. L'oggetto restituito contiene informazioni che consentono di tenere traccia dell'operazione. I metodi Send*NomeOperazione*OperationAsync restituiscono **Task<IOperation>**.
 
-Attualmente, hello dei seguenti metodi di non polling supporto classi: **canale**, **StreamingEndpoint**, e **programma**.
+Attualmente, le classi seguenti supportano i metodi non polling: **Channel**, **StreamingEndpoint** e **Program**.
 
-toopoll hello dello stato dell'operazione, utilizzare hello **GetOperation** metodo hello **OperationBaseCollection** classe. Utilizzare hello seguente lo stato dell'operazione intervalli toocheck hello: per **canale** e **StreamingEndpoint** operazioni, usare 30 secondi; per **programma** operazioni, utilizzare 10 secondi.
+Per eseguire il polling dello stato delle operazioni, usare il metodo **GetOperation** sulla classe **OperationBaseCollection**. Usare gli intervalli seguenti per controllare lo stato dell'operazione: per le operazioni **Channel** e **StreamingEndpoint**, usare 30 secondi; per le operazioni **Program**, usare 10 secondi.
 
 ## <a name="create-and-configure-a-visual-studio-project"></a>Creare e configurare un progetto di Visual Studio
 
-Configurare l'ambiente di sviluppo e di popolare il file app. config hello con informazioni di connessione, come descritto in [lo sviluppo di servizi multimediali con .NET](media-services-dotnet-how-to-use.md).
+Configurare l'ambiente di sviluppo e popolare il file app.config con le informazioni di connessione, come descritto in [Sviluppo di applicazioni di Servizi multimediali con .NET](media-services-dotnet-how-to-use.md).
 
 ## <a name="example"></a>Esempio
 
-esempio Hello definisce una classe denominata **ChannelOperations**. Questa definizione di classe può essere un punto di partenza per la definizione di classe del servizio Web. Per semplicità, hello negli esempi seguenti utilizzano versioni non asincrone hello dei metodi.
+L'esempio seguente definisce una classe denominata **ChannelOperations**. Questa definizione di classe può essere un punto di partenza per la definizione di classe del servizio Web. Per esigenze di semplicità, negli esempi seguenti vengono usate le versioni non asincrone dei metodi.
 
-esempio Hello Mostra anche come client hello possibile utilizzare questa classe.
+Nell'esempio viene inoltre illustrato il modo in cui il client potrebbe usare questa classe.
 
 ### <a name="channeloperations-class-definition"></a>Definizione della classe ChannelOperations
 
@@ -54,12 +54,12 @@ esempio Hello Mostra anche come client hello possibile utilizzare questa classe.
     using System.Net;
 
     /// <summary> 
-    /// hello ChannelOperations class only implements 
-    /// hello Channel’s creation operation. 
+    /// The ChannelOperations class only implements 
+    /// the Channel’s creation operation. 
     /// </summary> 
     public class ChannelOperations
     {
-        // Read values from hello App.config file.
+        // Read values from the App.config file.
         private static readonly string _AADTenantDomain =
             ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -77,12 +77,12 @@ esempio Hello Mostra anche come client hello possibile utilizzare questa classe.
         }
 
         /// <summary>  
-        /// Initiates hello creation of a new channel.  
+        /// Initiates the creation of a new channel.  
         /// </summary>  
-        /// <param name="channelName">Name toobe given toohello new channel</param>  
+        /// <param name="channelName">Name to be given to the new channel</param>  
         /// <returns>  
-        /// Operation Id for hello long running operation being executed by Media Services. 
-        /// Use this operation Id toopoll for hello channel creation status. 
+        /// Operation Id for the long running operation being executed by Media Services. 
+        /// Use this operation Id to poll for the channel creation status. 
         /// </returns> 
         public string StartChannelCreation(string channelName)
         {
@@ -99,14 +99,14 @@ esempio Hello Mostra anche come client hello possibile utilizzare questa classe.
         }
 
         /// <summary> 
-        /// Checks if hello operation has been completed. 
-        /// If hello operation succeeded, hello created channel Id is returned in hello out parameter.
+        /// Checks if the operation has been completed. 
+        /// If the operation succeeded, the created channel Id is returned in the out parameter.
         /// </summary> 
-        /// <param name="operationId">hello operation Id.</param> 
+        /// <param name="operationId">The operation Id.</param> 
         /// <param name="channel">
-        /// If hello operation succeeded, 
-        /// hello created channel Id is returned in hello out parameter.</param>
-        /// <returns>Returns false if hello operation is still in progress; otherwise, true.</returns> 
+        /// If the operation succeeded, 
+        /// the created channel Id is returned in the out parameter.</param>
+        /// <returns>Returns false if the operation is still in progress; otherwise, true.</returns> 
         public bool IsCompleted(string operationId, out string channelId)
         {
             IOperation operation = _context.Operations.GetOperation(operationId);
@@ -117,9 +117,9 @@ esempio Hello Mostra anche come client hello possibile utilizzare questa classe.
             switch (operation.State)
             {
                 case OperationState.Failed:
-                    // Handle hello failure. 
+                    // Handle the failure. 
                     // For example, throw an exception. 
-                    // Use hello following information in hello exception: operationId, operation.ErrorMessage.
+                    // Use the following information in the exception: operationId, operation.ErrorMessage.
                     break;
                 case OperationState.Succeeded:
                     completed = true;
@@ -180,7 +180,7 @@ esempio Hello Mostra anche come client hello possibile utilizzare questa classe.
         }
     }
 
-### <a name="hello-client-code"></a>codice client Hello
+### <a name="the-client-code"></a>The client code
     ChannelOperations channelOperations = new ChannelOperations();
     string opId = channelOperations.StartChannelCreation("MyChannel001");
 
@@ -193,7 +193,7 @@ esempio Hello Mostra anche come client hello possibile utilizzare questa classe.
         isCompleted = channelOperations.IsCompleted(opId, out channelId);
     }
 
-    // If we got here, we should have hello newly created channel id.
+    // If we got here, we should have the newly created channel id.
     Console.WriteLine(channelId);
 
 

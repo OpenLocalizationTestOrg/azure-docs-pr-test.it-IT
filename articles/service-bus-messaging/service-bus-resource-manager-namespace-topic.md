@@ -1,5 +1,5 @@
 ---
-title: aaaCreate sottoscrizione dell'argomento dello spazio dei nomi Service Bus di Azure utilizzando il modello di gestione risorse di Azure | Documenti Microsoft
+title: Creare una sottoscrizione e un argomento dello spazio dei nomi del bus di servizio di Azure tramite un modello di Azure Resource Manager | Documentazione Microsoft
 description: Creare uno spazio dei nomi del bus di servizio con argomento e sottoscrizione usando un modello di Azure Resource Manager
 services: service-bus-messaging
 documentationcenter: .net
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: dotnet
 ms.workload: na
 ms.date: 08/07/2017
 ms.author: sethm;shvija
-ms.openlocfilehash: 9b5f7d8710e598b73c0a7ea3daf8c300f7fa9ecd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8dd48787e7b788d249085b3110484de1a2c1d265
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="create-a-service-bus-namespace-with-topic-and-subscription-using-an-azure-resource-manager-template"></a>Creare uno spazio dei nomi del bus di servizio con argomento e sottoscrizione usando un modello di Azure Resource Manager
 
-In questo articolo viene illustrato come toouse un modello di gestione risorse di Azure che crea uno spazio dei nomi del Bus di servizio e un argomento e una sottoscrizione all'interno di tale spazio dei nomi. Si apprenderà come toodefine quali risorse vengono distribuite come toodefine parametri e che vengono specificati quando è eseguita la distribuzione di hello. È possibile utilizzare questo modello per la propria distribuzioni o personalizzarlo toomeet i requisiti
+Questo articolo illustra come usare un modello di Azure Resource Manager per creare uno spazio dei nomi del bus di servizio nonché un argomento e una sottoscrizione in quello spazio dei nomi. Verrà illustrato come definire le risorse da distribuire e i parametri specificati quando viene eseguita la distribuzione. È possibile usare questo modello per la distribuzione o personalizzarlo in base alle esigenze.
 
 Per altre informazioni sulla creazione di modelli, vedere [Creazione di modelli di Azure Resource Manager][Authoring Azure Resource Manager templates].
 
-Per il modello di hello completo, vedere hello [spazio dei nomi Service Bus con argomento e sottoscrizione] [ Service Bus namespace with topic and subscription] modello.
+Per il modello completo, vedere il [modello dello spazio dei nomi con argomento e sottoscrizione del bus di servizio][Service Bus namespace with topic and subscription] su GitHub.
 
 > [!NOTE]
-> Hello seguenti modelli di gestione risorse di Azure sono disponibile per il download e distribuzione.
+> Questi modelli di Azure Resource Manager sono disponibili per il download e la distribuzione.
 > 
 > * [Creare uno spazio dei nomi del bus di servizio](service-bus-resource-manager-namespace.md)
 > * [Creare uno spazio dei nomi del bus di servizio con coda](service-bus-resource-manager-namespace-queue.md)
 > * [Creare uno spazio dei nomi del bus di servizio con coda e regola di autorizzazione](service-bus-resource-manager-namespace-auth-rule.md)
 > * [Creare uno spazio dei nomi del bus di servizio con argomento, sottoscrizione e regola](service-bus-resource-manager-namespace-topic-with-rule.md)
 > 
-> toocheck per i modelli più recenti di hello, visitare hello [modelli di avvio rapido di Azure] [ Azure Quickstart Templates] raccolta e cercare "Bus di servizio".
+> Per verificare gli ultimi modelli, visitare la raccolta [Modelli di avvio rapido di Azure][Azure Quickstart Templates] e cercare "service bus".
 > 
 > 
 
@@ -46,18 +46,18 @@ Questo modello consente di distribuire uno spazio dei nomi del bus di servizio c
 
 Gli [argomenti e le sottoscrizioni del bus di servizio](service-bus-queues-topics-subscriptions.md#topics-and-subscriptions) offrono una forma di comunicazione uno-a-molti, in un schema di *pubblicazione/sottoscrizione*.
 
-toorun hello automaticamente la distribuzione, fare clic su hello seguente pulsante:
+Per eseguire automaticamente la distribuzione, fare clic sul pulsante seguente:
 
-[![Distribuire tooAzure](./media/service-bus-resource-manager-namespace-topic/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-servicebus-create-topic-and-subscription%2Fazuredeploy.json)
+[![Distribuzione in Azure](./media/service-bus-resource-manager-namespace-topic/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-servicebus-create-topic-and-subscription%2Fazuredeploy.json)
 
-## <a name="parameters"></a>parameters
+## <a name="parameters"></a>Parametri
 
-Con Gestione risorse di Azure, si definiscono i parametri per i valori si desidera toospecify quando viene distribuito il modello di hello. modello Hello include una sezione denominata `Parameters` che contiene tutti i valori di parametro hello. È necessario definire un parametro per i valori che variano in base progetto hello che si distribuisce o Hello che si distribuisce ambiente di hello. Non definire parametri per i valori che saranno sempre hello stesso. Ogni valore del parametro viene utilizzato in hello modello toodefine hello le risorse distribuite.
+Gestione risorse di Azure permette di definire i parametri per i valori da specificare durante la distribuzione del modello. Il modello include una sezione denominata `Parameters` che contiene tutti i valori dei parametri. È necessario definire un parametro per i valori che variano in base al progetto distribuito o all'ambiente in cui viene distribuito il progetto. Non definire i parametri per i valori che rimangono invariati. Ogni valore di parametro nel modello viene usato per definire le risorse distribuite.
 
-modello di Hello definisce hello seguenti parametri.
+Il modello definisce i parametri seguenti.
 
 ### <a name="servicebusnamespacename"></a>serviceBusNamespaceName
-nome Hello del toocreate di spazio dei nomi Service Bus hello.
+Nome dello spazio dei nomi del bus di servizio da creare.
 
 ```json
 "serviceBusNamespaceName": {
@@ -66,7 +66,7 @@ nome Hello del toocreate di spazio dei nomi Service Bus hello.
 ```
 
 ### <a name="servicebustopicname"></a>serviceBusTopicName
-nome Hello dell'argomento hello creato nello spazio dei nomi Service Bus hello.
+Nome dell'argomento creato nello spazio dei nomi del bus di servizio.
 
 ```json
 "serviceBusTopicName": {
@@ -75,7 +75,7 @@ nome Hello dell'argomento hello creato nello spazio dei nomi Service Bus hello.
 ```
 
 ### <a name="servicebussubscriptionname"></a>serviceBusSubscriptionName
-nome Hello della sottoscrizione di hello creato nello spazio dei nomi Service Bus hello.
+Nome della sottoscrizione creata nello spazio dei nomi del bus di servizio.
 
 ```json
 "serviceBusSubscriptionName": {
@@ -84,14 +84,14 @@ nome Hello della sottoscrizione di hello creato nello spazio dei nomi Service Bu
 ```
 
 ### <a name="servicebusapiversion"></a>serviceBusApiVersion
-versione di API di Service Bus Hello del modello di hello.
+Versione API del bus di servizio del modello.
 
 ```json
 "serviceBusApiVersion": {
 "type": "string"
 }
 ```
-## <a name="resources-toodeploy"></a>Risorse toodeploy
+## <a name="resources-to-deploy"></a>Risorse da distribuire
 Crea uno spazio dei nomi del bus di servizio standard di tipo **Messaggistica**con un argomento e una sottoscrizione.
 
 ```json
@@ -128,7 +128,7 @@ Crea uno spazio dei nomi del bus di servizio standard di tipo **Messaggistica**c
     }]
 ```
 
-## <a name="commands-toorun-deployment"></a>Comandi toorun distribuzione
+## <a name="commands-to-run-deployment"></a>Comandi per eseguire la distribuzione
 [!INCLUDE [app-service-deploy-commands](../../includes/app-service-deploy-commands.md)]
 
 ## <a name="powershell"></a>PowerShell
@@ -144,14 +144,14 @@ azure group deployment create \<my-resource-group\> \<my-deployment-name\> --tem
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-Dopo aver creato e distribuito risorse usando Gestione risorse di Azure, consultare come toomanage queste risorse visualizzando questi articoli:
+Dopo aver creato e distribuito le risorse con Azure Resource Manager, è possibile imparare a gestire queste risorse. Leggere gli articoli seguenti:
 
 * [Gestire Bus di servizio con PowerShell](service-bus-manage-with-ps.md)
-* [Gestire le risorse di Service Bus con hello Service Bus Explorer](https://github.com/paolosalvatori/ServiceBusExplorer/releases)
+* [Gestire le risorse del bus di servizio con Service Bus Explorer](https://github.com/paolosalvatori/ServiceBusExplorer/releases)
 
 [Authoring Azure Resource Manager templates]: ../azure-resource-manager/resource-group-authoring-templates.md
 [Azure Quickstart Templates]: https://azure.microsoft.com/documentation/templates/?term=service+bus
 [Learn more about Service Bus topics and subscriptions]: service-bus-queues-topics-subscriptions.md
 [Using Azure PowerShell with Azure Resource Manager]: ../azure-resource-manager/powershell-azure-resource-manager.md
-[Using hello Azure CLI for Mac, Linux, and Windows with Azure Resource Management]: ../azure-resource-manager/xplat-cli-azure-resource-manager.md
+[Using the Azure CLI for Mac, Linux, and Windows with Azure Resource Management]: ../azure-resource-manager/xplat-cli-azure-resource-manager.md
 [Service Bus namespace with topic and subscription]: https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-topic-and-subscription/

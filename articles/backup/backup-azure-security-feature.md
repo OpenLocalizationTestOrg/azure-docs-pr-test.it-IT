@@ -1,6 +1,6 @@
 ---
-title: "aaaSecurity toohelp di funzionalità di protezione dei backup di ibrido che usano i Backup di Azure | Documenti Microsoft"
-description: "Informazioni su come funzionalità di sicurezza toouse nei backup toomake Azure Backup più sicure"
+title: "Funzionalità di sicurezza per la protezione dei backup ibridi che usano Backup di Azure | Microsoft Docs"
+description: "Informazioni su come usare le funzionalità di sicurezza in Backup di Azure per rendere più sicuri i backup"
 services: backup
 documentationcenter: 
 author: JPallavi
@@ -14,87 +14,87 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/08/2017
 ms.author: pajosh
-ms.openlocfilehash: 17a0f5e877f84af53c15062ec4a8df480383125e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 8ef9ddc345fb553b93815022dc3e6a796cae8b3a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="security-features-toohelp-protect-hybrid-backups-that-use-azure-backup"></a>Toohelp funzionalità di sicurezza di protezione dei backup di ibride che utilizzano i Backup di Azure
-Le preoccupazioni riguardo ai problemi di sicurezza, come malware, ransomware e intrusioni, aumentano continuamente. Questi problemi di sicurezza possono essere costosi in termini di denaro e di dati. tooguard da tali attacchi, Backup di Azure ora fornisce sicurezza toohelp funzionalità di protezione dei backup di ibrida. Questo articolo descrive come tooenable e utilizzare queste funzionalità, utilizzando un agente di servizi di ripristino di Azure e i Server di Backup di Azure. Queste funzionalità includono:
+# <a name="security-features-to-help-protect-hybrid-backups-that-use-azure-backup"></a>Funzionalità di sicurezza per la protezione dei backup ibridi che usano Backup di Azure
+Le preoccupazioni riguardo ai problemi di sicurezza, come malware, ransomware e intrusioni, aumentano continuamente. Questi problemi di sicurezza possono essere costosi in termini di denaro e di dati. Per evitare questi attacchi, Backup di Azure offre ora una serie di funzionalità di sicurezza per la protezione dei backup ibridi. Questo articolo descrive come abilitare e usare queste funzionalità tramite un agente di Servizi di ripristino di Azure e il server di Backup di Azure. Queste funzionalità includono:
 
-- **Prevenzione**. Ogni volta che viene eseguita un'operazione critica, come la modifica di una passphrase, viene aggiunto un ulteriore livello di autenticazione. La convalida è tooensure che tali operazioni possono essere eseguite solo da utenti che dispongono di credenziali di Azure valide.
-- **Invio di avvisi**. Verrà inviata una notifica di posta elettronica toohello amministratore della sottoscrizione ogni volta che un'operazione critica, ad esempio l'eliminazione di dati di backup viene eseguita. Questo messaggio di posta elettronica garantisce che l'utente hello notifica rapidamente su tali azioni.
-- **Ripristino**. Dati di backup eliminati vengono mantenuti per un ulteriore 14 giorni dalla data di hello di eliminazione hello. In questo modo si garantisce la recuperabilità dei dati hello all'interno di un determinato periodo di tempo, pertanto non c'è alcuna perdita di dati, anche se si verifica un attacco. Inoltre, un numero maggiore di punti di recupero con registrazione minima viene mantenuto tooguard contro dati danneggiati.
+- **Prevenzione**. Ogni volta che viene eseguita un'operazione critica, come la modifica di una passphrase, viene aggiunto un ulteriore livello di autenticazione. Questa convalida serve a garantire che tali operazioni possano essere eseguite solo dagli utenti che hanno credenziali di Azure valide.
+- **Invio di avvisi**. Ogni volta che viene eseguita un'operazione critica, come l'eliminazione dei dati di backup, viene inviata una notifica tramite posta elettronica all'amministratore della sottoscrizione. Questo messaggio di posta elettronica garantisce che l'utente venga informato rapidamente riguardo a tali azioni.
+- **Ripristino**. I dati di backup eliminati vengono conservati per altri 14 giorni dalla data di eliminazione. In questo modo, viene garantita la possibilità di recuperare i dati entro un certo periodo di tempo, così da scongiurare la perdita di dati anche in caso di attacco. Inoltre, viene conservato un maggior numero di punti di recupero per prevenire il rischio di dati danneggiati.
 
 > [!NOTE]
 > Le funzionalità di sicurezza non devono essere abilitate se si usa il backup di VM IaaS (Infrastructure as a Service, infrastruttura distribuita come servizio). Poiché queste funzionalità non sono ancora disponibili per il backup di VM IaaS, la loro abilitazione non avrà alcun impatto. Le funzionalità di sicurezza devono essere abilitate solo se si usa: <br/>
->  * **Agente di Backup di Azure**. Versione minima dell'agente: 2.0.9052. Dopo avere abilitato queste funzionalità, è consigliabile aggiornare operazioni critiche tooperform versione agente toothis. <br/>
+>  * **Agente di Backup di Azure**. Versione minima dell'agente: 2.0.9052. Dopo aver abilitato queste funzionalità, è necessario eseguire l'aggiornamento a questa versione dell'agente per poter eseguire operazioni critiche. <br/>
 >  * **Server di Backup di Azure**. Versione minima dell'agente di Backup di Azure: 2.0.9052, con l'aggiornamento 1 del server di Backup di Azure. <br/>
 >  * **System Center Data Protection Manager**. Versione minima dell'agente di Backup di Azure: 2.0.9052, con Data Protection Manager 2012 R2 UR12 o Data Protection Manager 2016 UR2. <br/> 
 
 
 > [!NOTE]
-> Queste funzionalità sono disponibili solo per l'insieme di credenziali dei Servizi di ripristino. Hello tutti i nuovi insiemi di credenziali di servizi di ripristino hanno le funzionalità abilitate per impostazione predefinita. Per gli archivi di servizi di ripristino esistenti, gli utenti abilitano queste funzionalità tramite i passaggi di hello indicati nella seguente sezione hello. Dopo aver hello funzionalità sono abilitate, si applicano i computer agente di servizi di ripristino hello tooall, le istanze del Server di Backup di Azure e registrati con l'insieme di credenziali hello server Data Protection Manager. L'abilitazione di questa impostazione è un'azione eseguibile una volta sola e in seguito non sarà più possibile disabilitare le funzionalità.
+> Queste funzionalità sono disponibili solo per l'insieme di credenziali dei Servizi di ripristino. Tutti i nuovi insiemi di credenziali creati con i Servizi di ripristino hanno queste funzionalità abilitate per impostazione predefinita. Per gli insiemi di credenziali di Servizi di ripristino esistenti, gli utenti devono abilitare queste funzionalità tramite i passaggi descritti nella sezione seguente. Una volta abilitate, le funzionalità vengono applicate a tutti i computer dell'agente di Servizi di ripristino, le istanze del server di Backup di Azure e i server Data Protection Manager registrati con l'insieme di credenziali. L'abilitazione di questa impostazione è un'azione eseguibile una volta sola e in seguito non sarà più possibile disabilitare le funzionalità.
 >
 
 ## <a name="enable-security-features"></a>Abilitare le funzionalità di sicurezza
-Se si sta creando un insieme di credenziali di servizi di ripristino, è possibile utilizzare tutte le funzionalità di sicurezza hello. Se si usa un insieme di credenziali esistente, abilitare le funzionalità di sicurezza eseguendo questa procedura:
+Se si crea un insieme di credenziali di Servizi di ripristino, è possibile usare tutte le funzionalità di sicurezza. Se si usa un insieme di credenziali esistente, abilitare le funzionalità di sicurezza eseguendo questa procedura:
 
-1. Accedi toohello portale di Azure utilizzando le credenziali di Azure.
+1. Accedere al portale di Azure con le credenziali di Azure.
 2. Selezionare **Sfoglia** e quindi digitare **Servizi di ripristino**.
 
     ![Screenshot dell'opzione Sfoglia del portale di Azure](./media/backup-azure-security-feature/browse-to-rs-vaults.png) <br/>
 
-    viene visualizzato l'elenco di Hello degli archivi di servizi di ripristino. Selezionare un insieme di credenziali dall'elenco. Apre il dashboard di Hello insieme di credenziali selezionato.
-3. Elenco di hello di elementi visualizzato in insieme di credenziali, hello in **impostazioni**, fare clic su **proprietà**.
+    Verrà visualizzato l'elenco degli insiemi di credenziali dei servizi di ripristino. Selezionare un insieme di credenziali dall'elenco. Viene aperto il dashboard dell'insieme di credenziali selezionato.
+3. Nell'elenco degli elementi visualizzato sotto l'insieme di credenziali fare clic su **Proprietà** in **Impostazioni**.
 
     ![Screenshot delle opzioni per l'insieme di credenziali di Servizi di ripristino](./media/backup-azure-security-feature/vault-list-properties.png)
 4. Fare clic su **Aggiorna** in **Impostazioni di sicurezza**.
 
     ![Screenshot delle proprietà dell'insieme di credenziali di Servizi di ripristino](./media/backup-azure-security-feature/security-settings-update.png)
 
-    aggiornare il collegamento Hello apre hello **le impostazioni di sicurezza** pannello, che fornisce un riepilogo delle funzionalità di hello e consente di abilitarle.
-5. Dall'elenco a discesa hello **sono state configurate Azure multi-Factor Authentication?**, selezionare un valore tooconfirm se è stata abilitata [Azure multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md). Se è abilitato, viene richiesto durante la firma nel portale di Azure toohello tooauthenticate da un altro dispositivo (ad esempio, un telefono cellulare).
+    Il collegamento Aggiorna apre il pannello **Impostazioni di sicurezza**, che contiene un riepilogo delle funzionalità e permette di abilitarle.
+5. Nell'elenco a discesa **È stata eseguita la configurazione di Azure Multi-Factor Authentication?** selezionare un valore per confermare se [Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md) è stato abilitato. Se è stata abilitato, verrà chiesto di eseguire l'autenticazione da un altro dispositivo, ad esempio uno smartphone, quando si accede al portale di Azure.
 
-   Quando si eseguono operazioni critiche nel Backup, è possibile tooenter un PIN, disponibile nel portale di Azure hello di sicurezza. L'abilitazione di Azure Multi-Factor Authentication aggiunge un livello di sicurezza. Solo gli utenti con le credenziali di Azure valide autorizzati e autenticati da un secondo dispositivo, è possibile accedere hello portale di Azure.
-6. Selezionare le impostazioni di sicurezza, toosave **abilitare** e fare clic su **salvare**. È possibile selezionare **abilitare** solo dopo aver selezionato un valore in hello **sono state configurate Azure multi-Factor Authentication?** elenco nel passaggio precedente hello.
+   Quando si eseguono operazioni critiche in Backup, è necessario immettere il PIN di sicurezza, disponibile nel portale di Azure. L'abilitazione di Azure Multi-Factor Authentication aggiunge un livello di sicurezza. Solo gli utenti autorizzati con credenziali di Azure valide e autenticati da un secondo dispositivo potranno accedere al portale di Azure.
+6. Per salvare le impostazioni di sicurezza, selezionare **Abilita** e fare clic su **Salva**. È possibile selezionare **Abilita** solo dopo aver selezionato un valore nell'elenco **È stata eseguita la configurazione di Azure Multi-Factor Authentication?** nel passaggio precedente.
 
     ![Screenshot delle impostazioni di sicurezza](./media/backup-azure-security-feature/enable-security-settings-dpm-update.png)
 
 ## <a name="recover-deleted-backup-data"></a>Ripristino dei dati di backup eliminati
-Mantiene i dati di backup eliminati per 14 giorni, backup e non viene eliminata immediatamente se hello **Interrompi backup con dati di backup delete** viene eseguita l'operazione. toorestore questi dati in hello 14 giorni, richiedere hello alla procedura seguente, a seconda di ciò che si utilizza:
+Backup conserva i dati di backup eliminati per altri 14 giorni anziché eliminarli immediatamente quando viene eseguita l'**interruzione del backup con l'eliminazione dei dati di backup**. Per ripristinare i dati entro i 14 giorni previsti, eseguire la procedura seguente, a seconda del componente usato:
 
 Per utenti dell'**agente di Servizi di ripristino di Azure**:
 
-1. Se il computer di hello backup sono stati in cui il problema è ancora disponibile, utilizzare [ripristinare dati toohello nello stesso computer](backup-azure-restore-windows-server.md#use-instant-restore-to-recover-data-to-the-same-machine) in servizi di ripristino di Azure, toorecover da tutti i punti di ripristino precedente hello.
-2. Se il computer non è disponibile, utilizzare [ripristino tooan alternativo macchina](backup-azure-restore-windows-server.md#use-instant-restore-to-restore-data-to-an-alternate-machine) toouse un'altra tooget di computer Servizi di ripristino di Azure questi dati.
+1. Se il computer in cui sono stati eseguiti i backup è ancora disponibile, usare [Ripristinare i dati nello stesso computer](backup-azure-restore-windows-server.md#use-instant-restore-to-recover-data-to-the-same-machine) in Servizi di ripristino di Azure per recuperare i dati da tutti i punti di recupero precedenti.
+2. Se invece il computer non è disponibile, scegliere [Ripristinare in un altro computer](backup-azure-restore-windows-server.md#use-instant-restore-to-restore-data-to-an-alternate-machine) per usare un altro computer con Servizi di ripristino di Azure per ottenere questi dati.
 
 Per gli utenti che usano il **server di Backup di Azure**:
 
-1. Se il server di hello backup sono stati in cui il problema è ancora disponibile, riproteggere hello eliminato le origini dati e utilizzare hello **Ripristina dati** funzionalità toorecover da tutti i punti di ripristino precedente hello.
-2. Se il server non è disponibile, utilizzare [ripristinare i dati da un altro Server di Backup di Azure](backup-azure-alternate-dpm-server.md) toouse un altro Server di Backup di Azure istanza tooget questi dati.
+1. Se il server in cui sono stati eseguiti i backup è ancora disponibile, proteggere di nuovo le origini dati eliminate e usare la funzionalità di ripristino dei **dati per recuperare** i dati da tutti i punti di recupero precedenti.
+2. Se questo server non è disponibile, scegliere [Ripristinare i dati da un altro server di Backup di Azure](backup-azure-alternate-dpm-server.md) per usare un'altra istanza del server di Backup di Azure per ottenere questi dati.
 
 Per gli utenti di **Data Protection Manager**:
 
-1. Se il server di hello backup sono stati in cui il problema è ancora disponibile, riproteggere hello eliminato le origini dati e utilizzare hello **Ripristina dati** funzionalità toorecover da tutti i punti di ripristino precedente hello.
-2. Se il server non è disponibile, utilizzare [Aggiungi DPM esterno](backup-azure-alternate-dpm-server.md) toouse un'altra Data Protection Manager server tooget questi dati.
+1. Se il server in cui sono stati eseguiti i backup è ancora disponibile, proteggere di nuovo le origini dati eliminate e usare la funzionalità di ripristino **dei dati per recuperare** i dati da tutti i punti di recupero precedenti.
+2. Se questo server non è disponibile, usare [Aggiungi DPM esterno](backup-azure-alternate-dpm-server.md) per usare un altro server Data Protection Manager per ottenere questi dati.
 
 ## <a name="prevent-attacks"></a>Prevenire gli attacchi
-Controlli sono stati aggiunti toomake che solo gli utenti validi è possono eseguire diverse operazioni. Questi controlli includono l'aggiunta di un ulteriore livello di autenticazione e il mantenimento di un intervallo minimo di conservazione per scopi di ripristino.
+Sono stati aggiunti alcuni controlli per garantire che solo gli utenti validi possano eseguire diverse operazioni. Questi controlli includono l'aggiunta di un ulteriore livello di autenticazione e il mantenimento di un intervallo minimo di conservazione per scopi di ripristino.
 
-### <a name="authentication-tooperform-critical-operations"></a>Operazioni di autenticazione tooperform critiche
-Come parte dell'aggiunta di un ulteriore livello di autenticazione per le operazioni critiche, sono richieste tooenter un PIN di sicurezza quando si eseguono **Arresta protezione dati con dati di eliminazione** e **modifica Passphrase** operazioni .
+### <a name="authentication-to-perform-critical-operations"></a>Autenticazione per eseguire operazioni critiche
+Come parte dell'aggiunta di un ulteriore livello di autenticazione per le operazioni critiche, viene chiesto di immettere un PIN di sicurezza quando si eseguono le operazioni **Arresta protezione dei dati con eliminazione dei dati** e **Modifica passphrase**.
 
-tooreceive questo PIN:
+Per ricevere questo PIN:
 
-1. Accedi toohello portale di Azure.
-2. Sfoglia troppo**insieme di credenziali di servizi di ripristino** > **impostazioni** > **proprietà**.
-3. Fare clic su **Genera** in **PIN di sicurezza**. Verrà aperto un pannello che contiene toobe PIN hello immesso nell'interfaccia utente dell'agente di servizi di ripristino di Azure hello.
+1. Accedere al portale di Azure.
+2. Passare a **Insiemi di credenziali dei servizi di ripristino** > **Impostazioni** > **Proprietà**.
+3. Fare clic su **Genera** in **PIN di sicurezza**. Verrà visualizzato un pannello contenente il PIN da immettere nell'interfaccia utente dell'agente di Servizi di ripristino di Azure.
     Questo PIN è valido solo per cinque minuti e viene generato automaticamente dopo questo periodo.
 
 ### <a name="maintain-a-minimum-retention-range"></a>Mantenimento di un intervallo minimo di conservazione
-punti disponibili tooensure vengono sempre un numero di ripristino valido, hello seguenti controlli è stati aggiunti:
+Per garantire che sia sempre disponibile un numero valido di punti di recupero, sono stati aggiunti i controlli seguenti:
 
 - Per la conservazione giornaliera, è necessario garantire almeno **sette** giorni.
 - Per la conservazione settimanale, è necessario garantire almeno **quattro** settimane.
@@ -102,19 +102,19 @@ punti disponibili tooensure vengono sempre un numero di ripristino valido, hello
 - Per la conservazione annuale, è necessario garantire almeno **un** anno.
 
 ## <a name="notifications-for-critical-operations"></a>Notifiche relative alle operazioni critiche
-In genere, quando viene eseguita un'operazione critica, salve sottoscrizione viene inviata una notifica di posta elettronica con i dettagli sull'operazione hello. È possibile configurare i destinatari di posta elettronica aggiuntivi per queste notifiche utilizzando hello portale di Azure.
+In genere, quando viene eseguita un'operazione critica, l'amministratore della sottoscrizione riceve una notifica tramite posta elettronica con i dettagli dell'operazione. È possibile configurare altri destinatari di posta elettronica per queste notifiche usando il portale di Azure.
 
-funzionalità di sicurezza Hello indicate in questo articolo forniscono meccanismi di difesa contro gli attacchi di destinazione. Ancora più importante, se si verifica un attacco, queste funzionalità consentono di hello toorecover capacità dei dati.
+Le funzionalità di sicurezza descritte in questo articolo offrono meccanismi di difesa da attacchi mirati. Un aspetto ancora più importante è che se si verifica un attacco, queste funzionalità permettono di ripristinare i dati.
 
 ## <a name="troubleshooting-errors"></a>Risoluzione dei problemi
 | Operazione | Dettagli errore | Risoluzione |
 | --- | --- | --- |
-| Modifica dei criteri |Impossibile modificare i criteri di backup Hello. Errore: hello corrente non riuscita a causa di errore interno del servizio tooan [0x29834]. Ripetere l'operazione di hello dopo qualche minuto. Se hello problema persiste, contattare il supporto tecnico Microsoft. |**Causa:**<br/>Questo errore si verifica quando sono abilitate le impostazioni di sicurezza, si tenta di mantenimento dati tooreduce sotto valori minimi di hello specificato in precedenza e si è nella versione non supportata (le versioni supportate sono specificate nella nota prima di questo articolo). <br/>**Azione consigliata:**<br/> In questo caso, è necessario impostare il periodo di memorizzazione sopra hello memorizzazione minimo periodo indicato (sette giorni per ogni giorno, quattro settimane per ogni settimana, tre settimane per mese o anno per la frequenza annuale) tooproceed con i criteri relativi aggiornamenti. Facoltativamente, approccio consigliato sarebbe tooupdate l'agente di backup, gli aggiornamenti della sicurezza di hello tutti i Server di Backup di Azure e/o DPM UR tooleverage. |
-| Modificare la passphrase |Il PIN di sicurezza immesso non è corretto. (ID: 100130) Fornire toocomplete PIN di sicurezza corretto hello questa operazione. |**Causa:**<br/> Questo errore si verifica quando si immette un PIN di sicurezza non valido o scaduto durante l'esecuzione di operazioni critiche, ad esempio la modifica della passphrase. <br/>**Azione consigliata:**<br/> operazione di hello toocomplete, è necessario immettere il PIN di sicurezza valido. tooget hello PIN, accedere nel portale tooAzure e passare l'insieme di credenziali di servizi tooRecovery > Impostazioni > Proprietà > Genera PIN di sicurezza. Utilizzare questa passphrase toochange PIN. |
-| Modificare la passphrase |Operazione non riuscita. ID: 120002 |**Causa:**<br/>Questo errore si verifica quando si abilitano le impostazioni di sicurezza, si tenta di passphrase toochange e si è nella versione non supportata (versioni valide specificate nella prima nota di questo articolo).<br/>**Azione consigliata:**<br/> passphrase toochange, è necessario aggiornare prima versione dell'agente di backup toominimum 2.0.9052 minimo, Azure Backup server toominimum update 1 e/o DPM toominimum UR12 di DPM 2012 R2 o DPM 2016 UR2 (download collegamenti riportati di seguito), quindi immettere il PIN di sicurezza valido. tooget hello PIN, accedere nel portale tooAzure e passare l'insieme di credenziali di servizi tooRecovery > Impostazioni > Proprietà > Genera PIN di sicurezza. Utilizzare questa passphrase toochange PIN. |
+| Modifica dei criteri |Non è possibile modificare i criteri di backup. Errore: impossibile eseguire l'operazione corrente a causa di un errore di servizio interno [0x29834]. Ripetere l'operazione in un secondo momento. Se il problema persiste, contattare il supporto tecnico Microsoft. |**Causa:**<br/>Questo errore si verifica quando sono abilitate le impostazioni di sicurezza, si tenta di ridurre il periodo di mantenimento dati al sotto dei valori minimi specificati in precedenza e si usa una versione non supportata. Le versioni supportate sono specificate nella prima nota di questo articolo. <br/>**Azione consigliata**<br/> In questo caso, per procedere con gli aggiornamenti relativi ai criteri è necessario impostare il periodo di mantenimento dati al di sopra del valore minimo specificato (sette giorni per il backup giornaliero, quattro settimane per il backup settimanale, tre settimane per il backup mensile o un anno per il backup annuale). Facoltativamente, per sfruttare tutti gli aggiornamenti della sicurezza un approccio consigliato è l'aggiornamento dell'agente di backup, del server di Backup di Azure e/o di DPM UR. |
+| Modifica della passphrase |Il PIN di sicurezza immesso non è corretto. (ID: 100130) Specificare il PIN di sicurezza corretto per completare questa operazione. |**Causa:**<br/> Questo errore si verifica quando si immette un PIN di sicurezza non valido o scaduto durante l'esecuzione di operazioni critiche, ad esempio la modifica della passphrase. <br/>**Azione consigliata:**<br/> Per completare l'operazione, è necessario immettere un PIN di sicurezza valido. Per ottenere il PIN, accedere al portale di Azure e passare a Insieme di credenziali di Servizi di ripristino > Impostazioni > Proprietà > Genera PIN di sicurezza. Usare questo PIN per modificare la passphrase. |
+| Modificare la passphrase |Operazione non riuscita. ID: 120002 |**Causa:**<br/>Questo errore si verifica quando sono abilitate impostazioni di sicurezza, si tenta di modificare la passphrase e si usa una versione non supportata. Le versioni valide sono specificate nella prima nota di questo articolo.<br/>**Azione consigliata**<br/> Per modificare la passphrase, è prima necessario aggiornare l'agente di backup almeno alla versione 2.0.9052, il server di Backup di Azure almeno all'Update 1 e/o DPM almeno a DPM 2012 R2 UR12 o a DPM 2016 UR2 (collegamenti per il download riportati più avanti). Immettere quindi un PIN di sicurezza valido. Per ottenere il PIN, accedere al Portale di Azure e passare a Insieme di credenziali di Servizi di ripristino > Impostazioni > Proprietà > Genera PIN di sicurezza. Usare questo PIN per modificare la passphrase. |
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Introduzione a servizi di ripristino di Azure dell'insieme di credenziali](backup-azure-vms-first-look-arm.md) tooenable queste funzionalità.
-* [Scaricare l'agente di servizi di ripristino di Azure più recenti hello](http://aka.ms/azurebackup_agent) toohelp proteggere i computer Windows e proteggersi da attacchi ai dati di backup.
-* [Download hello Server di Backup più recente di Azure](https://aka.ms/latest_azurebackupserver) toohelp proteggere carichi di lavoro e i dati di backup da attacchi di protezione.
-* [Scaricare UR12 per System Center 2012 R2 Data Protection Manager](https://support.microsoft.com/help/3209592/update-rollup-12-for-system-center-2012-r2-data-protection-manager) o [scaricare UR2 per System Center 2016 Data Protection Manager](https://support.microsoft.com/help/3209593/update-rollup-2-for-system-center-2016-data-protection-manager) toohelp proteggere carichi di lavoro e i dati di backup da attacchi di protezione.
+* Vedere [Get started with Azure Recovery Services vault](backup-azure-vms-first-look-arm.md) (Introduzione all'insieme di credenziali di Servizi di ripristino di Azure) per abilitare queste funzionalità.
+* Vedere [Download the latest Azure Recovery Services agent](http://aka.ms/azurebackup_agent) (Download dell'agente di Servizi di ripristino di Azure più recente) per proteggere i computer Windows e i dati di backup dagli attacchi.
+* Vedere [Download the latest Azure Backup Server](https://aka.ms/latest_azurebackupserver) (Download del server di Backup di Azure più recente) per proteggere i carichi di lavoro e i dati di backup dagli attacchi.
+* Vedere [Download UR12 for System Center 2012 R2 Data Protection Manager](https://support.microsoft.com/help/3209592/update-rollup-12-for-system-center-2012-r2-data-protection-manager) (Download della versione UR2 per System Center 2012 R2 Data Protection Manager) o [Download UR2 for System Center 2016 Data Protection Manager](https://support.microsoft.com/help/3209593/update-rollup-2-for-system-center-2016-data-protection-manager) (Download della versione UR2 per System Center 2016 Data Protection Manager) per proteggere i carichi di lavoro e i dati di backup dagli attacchi.

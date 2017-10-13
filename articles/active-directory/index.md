@@ -1,9 +1,9 @@
 ---
 layout: LandingPage
-description: "Informazioni su come abilitare e le directory toosynchronize accesso single sign-on. Documentazione illustra come toointegrate una gamma completa di funzionalità di gestione delle identità."
-title: aaaAzure documentazione di Active Directory - esercitazioni, riferimenti alle API | Documenti Microsoft
+description: "Informazioni sulla sincronizzazione di directory locali e abilitazione di Single Sign-On. La documentazione illustra come integrare una suite completa di funzionalità di gestione delle identità."
+title: Documentazione di Azure Active Directory - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
 services: active-directory
-author: carolz
+author: czeumault
 manager: carolz
 ms.assetid: 
 ms.service: active-directory
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: a99aa3cc979a518c5b53cb1540f037b6776fb157
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a0a9b69824829d0b7a07583210eaddb1f39bcf88
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-active-directory-documentation"></a>Documentazione di Azure Active Directory
 
-Informazioni su come toosynchronize directory e abilitare single sign-on con Azure Active Directory (Azure AD). Altra documentazione, esercitazioni e riferimenti alle API mostra come verificare la funzionalità di gestione di identità toointegrate tra cui multi-factor authentication, registrazione del dispositivo, l'accesso basato sui ruoli e il monitoraggio della protezione e avviso.
+Informazioni sulla sincronizzazione di directory locali e abilitazione di Single Sign-On con Azure Active Directory (Azure AD). Esercitazioni, informazioni di riferimento sulle API e altri documenti in cui viene illustrato come integrare funzionalità di gestione delle identità, tra cui l'autenticazione a più fattori, la registrazione dei dispositivi, il controllo di accesso basato sui ruoli e le funzioni di monitoraggio e avvisi di sicurezza.
 
 <ul class="panelContent cardsFTitle">
     <li>

@@ -1,6 +1,6 @@
 ---
-title: aaaPrepare Hyper-V ospita (senza System Center VMM) per la replica tooAzure | Documenti Microsoft
-description: Viene descritto come tooprepare Hyper-V ospita per replica tooAzure usando Azure Site Recovery
+title: Preparare gli host Hyper-V (senza System Center VMM) per la replica in Azure | Microsoft Docs
+description: Viene descritto come preparare gli host Hyper-V per la replica in Azure usando Azure Site Recovery
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,33 +14,33 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 06/22/2017
 ms.author: raynew
-ms.openlocfilehash: 714b229d5efbd66a9844bd09e36ac3f69919a6bb
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f9bcaa8e55be6e8fddaf88ebc3f18f5dbb2811e4
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="step-6-prepare-hyper-v-hosts-for-replication-tooazure"></a>Passaggio 6: Preparare l'host Hyper-V per la replica tooAzure
+# <a name="step-6-prepare-hyper-v-hosts-for-replication-to-azure"></a>Passaggio 6: Preparare gli host Hyper-V per la replica in Azure
 
-Hello seguire le istruzioni riportate in questo articolo di tooprepare locale toointeract gli host Hyper-V con Azure Site Recovery.
+Usare le istruzioni riportate in questo articolo per preparare gli host Hyper-V locali per l'interazione con Azure Site Recovery.
 
-Dopo aver letto questo articolo, inviare eventuali commenti nella parte inferiore di hello o porre domande tecniche su hello [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Dopo la lettura di questo articolo, è possibile inserire commenti nella parte inferiore oppure porre domande tecniche nel [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 
 ## <a name="prepare-hosts"></a>Preparare gli host
 
-- Verificare che gli host Hyper-V hello soddisfino hello [prerequisiti](site-recovery-prereq.md#disaster-recovery-of-hyper-v-vms-to-azure-no-vmm).
-- Assicurarsi che gli host hello possono accedere agli URL di hello necessarie:
+- Assicurarsi che gli host Hyper-V soddisfino i [prerequisiti](site-recovery-prereq.md#disaster-recovery-of-hyper-v-vms-to-azure-no-vmm).
+- Assicurarsi che gli host possano accedere agli URL necessari:
 
     [!INCLUDE [site-recovery-URLS](../../includes/site-recovery-URLS.md)]
     
-- Se si dispone di regole del firewall basato su indirizzi IP, assicurarsi che consentano la comunicazione tooAzure.
-- Consenti hello [intervalli IP dei Data Center Azure](https://www.microsoft.com/download/confirmation.aspx?id=41653)e hello porta HTTPS (443).
-- Consenti gli intervalli di indirizzi IP per hello area della sottoscrizione di Azure e per Stati Uniti occidentali (utilizzato per il controllo di accesso e gestione delle identità).
+- Se sono presenti regole del firewall basate sull'indirizzo IP, verificare che consentano la comunicazione con Azure.
+- Consentire gli [intervalli IP del data center di Azure ](https://www.microsoft.com/download/confirmation.aspx?id=41653) e la porta HTTPS (443).
+- Consentire gli intervalli di indirizzi IP per l'area di Azure della sottoscrizione e per gli Stati Uniti occidentali (usati per il controllo di accesso e la gestione delle identità).
 
-Durante la distribuzione di Site Recovery, aggiungere gli host Hyper-V che contengono macchine virtuali che si desidera che il sito di Hyper-V tooa tooreplicate. Provider di Site Recovery Hello e dell'agente di servizi di ripristino vengono installati in ogni host. sito Hello Hyper-V è registrato nell'insieme di credenziali di servizi di ripristino hello.
+Durante la distribuzione di Site Recovery, aggiungere gli host Hyper-V che contengono le VM da replicare in un sito Hyper-V. Il provider di Site Recovery e l'agente di Servizi di ripristino sono installati in ogni host. Il sito Hyper-V è registrato nell'insieme di credenziali di Servizi di ripristino.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Andare troppo[passaggio 7: creare un insieme di credenziali](hyper-v-site-walkthrough-create-vault.md)
+Andare a [Passaggio 7: Creare un insieme di credenziali](hyper-v-site-walkthrough-create-vault.md)
 

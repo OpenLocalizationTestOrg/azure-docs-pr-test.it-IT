@@ -1,6 +1,6 @@
 ---
-title: il modello di soluzione offerta per hello Marketplace aaaTesting | Documenti Microsoft
-description: Comprendere in che modo tootest offrono il modello di soluzione per hello Azure Marketplace.
+title: Test dell'offerta di modello di soluzione per il Marketplace | Documentazione Microsoft
+description: Informazioni su come testare l'offerta di modello di soluzione per Azure Marketplace.
 services: marketplace-publishing
 documentationcenter: 
 author: HannibalSII
@@ -14,35 +14,35 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 12/04/2015
 ms.author: hascipio; v-divte
-ms.openlocfilehash: 9c195c465d2fc6aa349e4bbcc348e5325f32850d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: da1fc4713fd1d832c7ba91226f72cbef63b241bc
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="test-your-solution-template-offer-in-staging"></a>Test dell'offerta di modello di soluzione in gestione temporanea
-Indica l'offerta in una "sandbox" in cui è possibile testare e verificare le funzionalità prima di pubblicarlo tooproduction privata di distribuzione di gestione temporanea. offerta Hello viene visualizzato come nel caso tooa cliente che ha distribuito di gestione temporanea. L'offerta deve essere toostaging toobe Certificate inserito.
+Per gestione temporanea si intende la distribuzione dell'offerta in un ambiente "sandbox" privato, in cui è possibile testarne e verificarne le funzionalità prima di eseguirne il push in produzione. L'offerta viene visualizzata nella gestione temporanea esattamente come verrebbe mostrata a un cliente che l'ha distribuita. L'offerta deve essere certificata per il push nella gestione temporanea.
 
-Dopo l'offerta di hello preconfigurato, è possibile visualizzare e testare offerta hello in hello [portale Azure](https://portal.azure.com/).
+Quando l'offerta è in gestione temporanea, è possibile visualizzarla e testarla nel [portale di Azure](https://portal.azure.com/).
 
-Eseguire operazioni di hello seguenti toopush toostaging l'offerta e testarlo in hello [portale Azure](https://portal.azure.com/):
+Per il push dell'offerta in gestione temporanea e l'esecuzione del test nel [portale di Azure](https://portal.azure.com/), seguire questa procedura:
 
-1. Passare toohello [portale pubblicazione](https://publish.windowsazure.com) > **modelli di soluzioni** scheda > l'offerta > **pubblica** > **Push tooStaging** .
-2. Specificare l'elenco di hello delle sottoscrizioni di Azure che consentono di utilizzare toopreview e testare l'offerta.
-3. Accedere utilizzando l'ID sottoscrizione hello utilizzata nel passaggio precedente hello toohello portale di anteprima di Azure.
-4. Eseguire almeno una sessione di test nel portale di anteprima di Azure hello nei punti di hello riportata di seguito:
-   * Assicurarsi che il contenuto di marketing venga visualizzata correttamente in hello Azure Marketplace.
-   * Distribuzione end-to-end di topologia hello.
+1. Passare al [portale di pubblicazione](https://publish.windowsazure.com) >  **scheda Modelli di soluzioni** > la propria offerta > **Pubblica** > **Push in Gestione temporanea**.
+2. Specificare l'elenco di sottoscrizioni di Azure che verrà usato per la visualizzazione in anteprima e il test dell'offerta.
+3. Accedere al portale di anteprima di Azure usando l'ID sottoscrizione usato nel passaggio precedente.
+4. Eseguire almeno un ciclo di test nel portale di anteprima di Azure sui punti riportati di seguito:
+   * Assicurarsi che il contenuto di marketing venga visualizzato correttamente in Azure Marketplace.
+   * Distribuzione end-to-end della topologia.
    * Eseguire test delle prestazioni e test di stress.
-   * Verificare che la topologia rispetti toohello procedure consigliate.
+   * Assicurarsi che la topologia sia conforme alle procedure consigliate.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Se si è soddisfatti dei risultati di hello, quindi è possibile procedere toohello offerta definitiva pubblicazione fase **passaggio 4**: [distribuzione il toohello offerta Marketplace](marketplace-publishing-push-to-production.md). In caso contrario, apportare le modifiche all'offerta e richiedere nuovamente la certificazione.
+Se si è soddisfatti dei risultati, è possibile procedere alla fase di pubblicazione dell'offerta finale, ovvero il **passaggio 4**: [Distribuzione dell'offerta nel Marketplace](marketplace-publishing-push-to-production.md). In caso contrario, apportare le modifiche all'offerta e richiedere nuovamente la certificazione.
 
 > [!NOTE]
 > Per le modifiche ai contenuti marketing, la certificazione non è necessaria.
 > 
 > 
 
-Vedere [Guida introduttiva: come toopublish un toohello offerta Azure Marketplace](marketplace-publishing-getting-started.md) per un'attività di server di pubblicazione tooall Guida.
+Per una guida a tutte le attività del server di pubblicazione, vedere [Come pubblicare un'offerta in Microsoft Azure Marketplace](marketplace-publishing-getting-started.md) .
 

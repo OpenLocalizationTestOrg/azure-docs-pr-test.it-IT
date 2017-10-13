@@ -1,6 +1,6 @@
 ---
-title: aaaUse DPM tooback backup portale tooAzure i carichi di lavoro | Documenti Microsoft
-description: Toobacking un'introduzione dei server DPM con il servizio di Azure Backup hello
+title: Usare DPM per il backup dei carichi di lavoro nel portale di Azure | Documentazione Microsoft
+description: Introduzione al backup dei server DPM di Azure usando il servizio Backup di Azure
 services: backup
 documentationcenter: 
 author: adigan
@@ -15,13 +15,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: adigan;giridham;jimpark;markgal;trinadhk
-ms.openlocfilehash: 1dd988ae55012ac7dc485d2416458542c60b6ae3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3422c8d57bdd786ce5d1a41fbb4c12cc4efffddd
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="preparing-tooback-up-workloads-tooazure-with-dpm"></a>Preparazione tooback dei carichi di lavoro tooAzure con Data Protection Manager
+# <a name="preparing-to-back-up-workloads-to-azure-with-dpm"></a>Preparazione del backup dei carichi di lavoro in Azure con DPM
 > [!div class="op_single_selector"]
 > * [Server di backup di Azure](backup-azure-microsoft-azure-backup.md)
 > * [SCDPM](backup-azure-dpm-introduction.md)
@@ -30,153 +30,153 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-Questo articolo fornisce un tooprotect di Microsoft Azure Backup toousing Introduzione i server di System Center Data Protection Manager (DPM) e i carichi di lavoro. Le informazioni dell'articolo riguardano:
+Questo articolo offre un'introduzione all'uso del servizio Backup di Microsoft Azure per proteggere i server e i carichi di lavoro DPM di System Center. Le informazioni dell'articolo riguardano:
 
 * Il funzionamento del backup del server DPM di Azure
-* Hello prerequisiti tooachieve un'esperienza uniforme di backup
-* Hello tipico errori rilevati e in che modo toodeal con essi
+* I prerequisiti per eseguire un backup senza problemi
+* Gli errori tipici rilevati e come gestirli
 * Scenari supportati
 
 > [!NOTE]
-> Azure offre due modelli di distribuzione per creare e usare le risorse: [Resource Manager e distribuzione classica](../azure-resource-manager/resource-manager-deployment-model.md). Questo articolo fornisce informazioni di hello e le procedure per il ripristino di macchine virtuali distribuite tramite il modello di gestione risorse hello.
+> Azure offre due modelli di distribuzione per creare e usare le risorse: [Azure Resource Manager e la distribuzione classica](../azure-resource-manager/resource-manager-deployment-model.md). Questo articolo include informazioni e procedure per il ripristino di VM distribuite con il modello Resource Manager.
 >
 >
 
-DPM di System Center esegue il backup di file e dati delle applicazioni. Dati sottoposti a backup tooDPM possono essere archiviati su nastro, disco, o backup tooAzure con Backup di Microsoft Azure. DPM interagisce con Backup di Azure nei modi seguenti:
+DPM di System Center esegue il backup di file e dati delle applicazioni. I dati sottoposti a backup su DPM possono essere archiviati su nastro, disco oppure sottoposti a backup in Azure usando il servizio Backup di Microsoft Azure. DPM interagisce con Backup di Azure nei modi seguenti:
 
-* **DPM distribuito come macchina virtuale locale o server fisica** -se DPM viene distribuito come server fisico o come macchina virtuale Hyper-V locale è possibile eseguire il backup dei dati tooa servizi di ripristino credenziali inoltre toodisk e backup su nastro.
-* **DPM distribuito come macchina virtuale di Azure** : a partire dalla versione di System Center 2012 R2 con aggiornamento 3, DPM può essere distribuito come macchina virtuale di Azure. Se DPM viene distribuito come macchina virtuale di Azure che è possibile eseguire il backup dei dati tooAzure dischi collegati toohello macchina virtuale Azure DPM oppure puoi eseguire l'offload archiviazione dei dati hello eseguendone il backup tooa che insieme di credenziali di servizi di ripristino.
+* **DPM distribuito come server fisico o come macchina virtuale locale** : se DPM è distribuito come server fisico o come macchina virtuale Hyper-V locale, è possibile eseguire il backup dei dati in un insieme di credenziali dei servizi di ripristino oltre al backup su disco e su nastro.
+* **DPM distribuito come macchina virtuale di Azure** : a partire dalla versione di System Center 2012 R2 con aggiornamento 3, DPM può essere distribuito come macchina virtuale di Azure. Se DPM è distribuito come macchina virtuale di Azure, è possibile eseguire il backup dei dati sui dischi di Azure allegati alla macchina virtuale Azure di DPM oppure è possibile eseguire l'offload dell'archiviazione dei dati eseguendo il backup su un insieme di credenziali dei servizi di ripristino.
 
-## <a name="why-backup-from-dpm-tooazure"></a>Motivo per cui eseguire il backup da Data Protection Manager tooAzure?
-Hello business vantaggi dell'utilizzo di Azure Backup per il backup dei server DPM includono:
+## <a name="why-backup-from-dpm-to-azure"></a>Perché eseguire il backup da DPM in Azure
+Di seguito sono elencati i vantaggi aziendali derivanti dall'uso del servizio Backup di Azure per eseguire il backup dei server DPM:
 
-* Per la distribuzione di DPM in locale, è possibile utilizzare Azure come un tootape distribuzione termine toolong alternativo.
-* Per le distribuzioni DPM in Azure, Backup di Azure consente archiviazione toooffload dal disco di Azure, hello e tooscale backup archiviando i dati precedenti nell'insieme di credenziali di servizi di ripristino e i nuovi dati sul disco.
+* Per la distribuzione DPM locale è possibile usare Azure come alternativa alla distribuzione a lungo termine su nastro.
+* Per le distribuzioni DPM in Azure, Backup di Azure consente di eseguire l'offload dell'archiviazione dal disco di Azure e aumentare le prestazioni archiviando i dati meno recenti in un insieme di credenziali dei servizi di ripristino e i dati nuovi sul disco.
 
 ## <a name="prerequisites"></a>Prerequisiti
-Preparare il Backup di Azure tooback backup dei dati DPM come segue:
+Di seguito viene descritto come preparare il servizio Backup di Azure all'esecuzione del backup dei dati DPM:
 
 1. **Creare un insieme di credenziali di Servizi di ripristino** : creare un insieme di credenziali nel portale di Azure.
-2. **Scaricare l'insieme di credenziali** , scaricare le credenziali di hello utilizzabile tooregister hello DPM server tooRecovery Services insieme di credenziali.
-3. **Installare Azure Backup Agent hello** : da Backup di Azure, installare l'agente hello in ogni server DPM.
-4. **Registrare server hello** : registro hello DPM server tooRecovery Services dell'insieme di credenziali.
+2. **Scaricare le credenziali dell'insieme di credenziali** : scaricare le credenziali usate per registrare il server DPM nell'insieme di credenziali dei servizi di ripristino.
+3. **Installare l'agente di Backup di Azure** : da Backup di Azure, installare l'agente in ogni server DPM.
+4. **Registrare il server** registrare il server DPM nell'insieme di credenziali dei servizi di ripristino.
 
-### <a name="1-create-a-recovery-services-vault"></a>1. Creare un insieme di credenziali di Servizi di ripristino
-un ripristino toocreate services insieme di credenziali:
+### <a name="1-create-a-recovery-services-vault"></a>1. Creare un insieme di credenziali dei servizi di ripristino
+Per creare un insieme di credenziali dei servizi di ripristino:
 
-1. Accedi toohello [portale di Azure](https://portal.azure.com/).
-2. Nel menu Hub hello, fare clic su **Sfoglia** e nell'elenco di hello delle risorse, digitare **servizi di ripristino**. Si inizia a digitare, elenco hello verrà filtrato in base all'input. Fare clic su **Insiemi di credenziali dei servizi di ripristino**.
+1. Accedere al [portale di Azure](https://portal.azure.com/).
+2. Scegliere **Sfoglia** dal menu Hub e digitare **Servizi di ripristino** nell'elenco di risorse. Non appena si inizia a digitare, l'elenco viene filtrato in base all'input. Fare clic su **Insiemi di credenziali dei servizi di ripristino**.
 
     ![Creare un insieme di credenziali dei servizi di ripristino - Passaggio 1](./media/backup-azure-dpm-introduction/open-recovery-services-vault.png)
 
-    viene visualizzato l'elenco di Hello degli insiemi di credenziali di servizi di ripristino.
-3. In hello **insiemi di credenziali di servizi di ripristino** menu, fare clic su **Aggiungi**.
+    Viene visualizzato l'elenco degli insiemi di credenziali dei servizi di ripristino.
+3. Scegliere **Aggiungi** dal menu **Insiemi di credenziali dei servizi di ripristino**.
 
     ![Creare un insieme di credenziali dei servizi di ripristino - Passaggio 2](./media/backup-azure-dpm-introduction/rs-vault-menu.png)
 
-    Servizi di ripristino Hello insieme di credenziali si apre Pannello chiesto tooprovide un **nome**, **sottoscrizione**, **gruppo di risorse**, e **percorso**.
+    Verrà visualizzato il pannello degli insiemi di credenziali dei servizi di ripristino, in cui viene richiesto di specificare **Nome**, **Sottoscrizione**, **Gruppo di risorse** e **Località**.
 
     ![Creare un insieme di credenziali dei servizi di ripristino - Passaggio 5](./media/backup-azure-dpm-introduction/rs-vault-attributes.png)
-4. Per **nome**, immettere un insieme di credenziali di nome descrittivo tooidentify hello. nome di Hello deve toobe univoco per la sottoscrizione di Azure hello. Digitare un nome che contenga tra i 2 e i 50 caratteri. Deve iniziare con una lettera e può contenere solo lettere, numeri e trattini.
-5. Fare clic su **sottoscrizione** elenco disponibile di hello toosee delle sottoscrizioni. Se non sei sicuro che toouse di sottoscrizione, utilizzare predefinito hello (o suggerito) sottoscrizione. Sono presenti scelte multiple solo se l'account dell'organizzazione è associato a più sottoscrizioni di Azure.
-6. Fare clic su **gruppo di risorse** toosee hello l'elenco dei gruppi di risorse disponibili, oppure fare clic su **New** toocreate un nuovo gruppo di risorse. Per informazioni complete sui gruppi di risorse, vedere [Panoramica di Azure Resource Manager](../azure-resource-manager/resource-group-overview.md)
-7. Fare clic su **percorso** tooselect hello località geografica per l'insieme di credenziali hello.
-8. Fare clic su **Crea**. Può richiedere un po' di tempo per hello toobe creato insieme di credenziali di servizi di ripristino. Monitorare le notifiche di stato hello in hello superiore destro area hello portale.
-   Una volta creato l'insieme di credenziali, viene aperto nel portale di hello.
+4. Nel campo **Nome**digitare un nome descrittivo per identificare l'insieme di credenziali. Il nome deve essere univoco per la sottoscrizione di Azure. Digitare un nome che contenga tra i 2 e i 50 caratteri. Deve iniziare con una lettera e può contenere solo lettere, numeri e trattini.
+5. Fare clic su **Sottoscrizione** per visualizzare l'elenco di sottoscrizioni disponibili. Se non si è certi di quale sottoscrizione usare, usare la sottoscrizione predefinita (o suggerita). Sono presenti scelte multiple solo se l'account dell'organizzazione è associato a più sottoscrizioni di Azure.
+6. Fare clic su **Gruppo di risorse** per visualizzare l'elenco di gruppi di risorse disponibili oppure fare clic su **Nuovo** per crearne uno nuovo. Per informazioni complete sui gruppi di risorse, vedere [Panoramica di Azure Resource Manager](../azure-resource-manager/resource-group-overview.md)
+7. Fare clic su **Località** per selezionare l'area geografica per l'insieme di credenziali.
+8. Fare clic su **Create**. La creazione dell'insieme di credenziali dei servizi di ripristino può richiedere alcuni minuti. Monitorare le notifiche di stato nell'area superiore destra del portale.
+   Una volta creato, l'insieme di credenziali viene aperto nel portale.
 
 ### <a name="set-storage-replication"></a>Impostare la replica di archiviazione
-opzione di replica di archiviazione Hello consente toochoose tra l'archiviazione con ridondanza geografica e l'archiviazione con ridondanza locale. Per impostazione predefinita, l'insieme di credenziali prevede l'archiviazione con ridondanza geografica. Lasciare l'archiviazione con ridondanza toogeo hello opzione set, se si tratta del backup primario. Se si vuole un'opzione più economica ma non altrettanto permanente, scegliere l'archiviazione con ridondanza locale. Altre informazioni sui [con ridondanza geografica](../storage/common/storage-redundancy.md#geo-redundant-storage) e [ridondanza locale](../storage/common/storage-redundancy.md#locally-redundant-storage) opzioni di archiviazione in hello [Cenni preliminari sulla replica di archiviazione di Azure](../storage/common/storage-redundancy.md).
+L'opzione della replica di archiviazione consente di scegliere tra l'archiviazione con ridondanza geografica e l'archiviazione con ridondanza locale. Per impostazione predefinita, l'insieme di credenziali prevede l'archiviazione con ridondanza geografica. Se si tratta del backup primario, lasciare l'opzione impostata sull'archiviazione con ridondanza geografica. Se si vuole un'opzione più economica ma non altrettanto permanente, scegliere l'archiviazione con ridondanza locale. Per altre informazioni sulle opzioni di archiviazione con [ridondanza geografica](../storage/common/storage-redundancy.md#geo-redundant-storage) e con [ridondanza locale](../storage/common/storage-redundancy.md#locally-redundant-storage), vedere la panoramica [Replica di Archiviazione di Azure](../storage/common/storage-redundancy.md).
 
-impostazione di replica tooedit hello archiviazione:
+Per modificare le impostazioni di replica di archiviazione:
 
-1. Selezionare il dashboard dell'insieme di credenziali di insieme di credenziali tooopen hello e il pannello impostazioni hello. Se hello **impostazioni** non apre pannello, fare clic su **tutte le impostazioni** nel dashboard dell'insieme di credenziali hello.
-2. In hello **impostazioni** pannello, fare clic su **Backup infrastruttura** > **la configurazione del Backup** tooopen hello **laconfigurazionedelBackup** blade. In hello **la configurazione del Backup** pannello, scegliere l'opzione di replica di archiviazione di hello per l'insieme di credenziali.
+1. Selezionare l'insieme di credenziali per aprire il dashboard dell'insieme di credenziali e il pannello Impostazioni. Se il pannello **Impostazioni** non si apre, fare clic su **Tutte le impostazioni** nel dashboard dell'insieme di credenziali.
+2. Nel pannello **Impostazioni** fare clic su **Infrastruttura di backup** > **Configurazione backup** per aprire il pannello **Configurazione backup**. Nel pannello **Configurazione backup** scegliere l'opzione di replica di archiviazione per l'insieme di credenziali.
 
     ![Elenco degli insiemi di credenziali per il backup](./media/backup-azure-vms-first-look-arm/choose-storage-configuration-rs-vault.png)
 
-    Dopo aver scelto l'opzione di archiviazione hello per l'insieme di credenziali, si è pronti tooassociate hello VM con insieme di credenziali hello. associazione hello toobegin, è necessario individuare e registrare hello macchine virtuali di Azure.
+    Dopo aver scelto l'opzione di archiviazione per l'insieme di credenziali, è possibile associare la macchina virtuale all'insieme di credenziali. Per iniziare l'associazione, è necessario trovare e registrare le macchine virtuali di Azure.
 
 ### <a name="2-download-vault-credentials"></a>2. Scaricare le credenziali dell’insieme di credenziali
-file delle credenziali dell'insieme di credenziali Hello è un certificato generato dal portale hello per ogni insieme di credenziali di backup. portale Hello carica quindi hello toohello chiave pubblica del servizio di controllo di accesso (ACS). chiave privata di Hello del certificato di hello è attivata la modalità utente toohello disponibile come parte del flusso di lavoro hello fornito come input per il flusso di lavoro di hello macchina registrazione. Consente di autenticare hello macchina toosend dati di backup identificato tooan insieme di credenziali in hello servizio Azure Backup.
+Il file delle credenziali di insieme è un certificato generato dal portale per ogni insieme di credenziali per il backup. Il portale carica quindi la chiave pubblica nel Servizio di controllo di accesso (o ACS). La chiave privata del certificato viene resa disponibile per l'utente come parte del flusso di lavoro indicato come input nel flusso di lavoro di registrazione del computer. In questo modo viene eseguita l'autenticazione del computer per l'invio dei dati di backup a un insieme di credenziali identificato nel servizio Backup di Azure.
 
-insieme di credenziali Hello viene utilizzato solo durante il flusso di lavoro di hello registrazione. È tooensure responsabilità dell'utente hello che l'insieme di credenziali non venga compromessa file hello. Se si trova in mani hello di qualsiasi utente non autorizzato, hello insieme di credenziali le credenziali file può essere utilizzato tooregister altre macchine hello stesso insieme di credenziali. Tuttavia, come dati di backup hello sono crittografati con una passphrase che appartiene toohello cliente, i dati di backup esistenti non possono essere compromesso. toomitigate questo problema, l'insieme di credenziali viene impostata tooexpire in 48hrs. È possibile scaricare l'insieme di credenziali hello di servizi di ripristino di un qualsiasi numero di volte, ma è applicabile solo hello file più recente dell'insieme di credenziali delle credenziali durante il flusso di lavoro di hello registrazione.
+Il file delle credenziali di insieme viene usato solo durante il flusso di lavoro di registrazione. È responsabilità dell'utente garantire che il file delle credenziali di insieme non venga danneggiato. Nelle mani di un utente non autorizzato il file delle credenziali di insieme può essere usato per registrare altri computer nello stesso insieme di credenziali. Poiché i dati di backup sono crittografati tramite una passphrase appartenente al cliente, i dati di backup esistenti non possono tuttavia essere compromessi. Per attenuare questo problema, le credenziali dell'insieme di credenziali sono impostate per scadere in 48hrs. Sebbene sia possibile scaricare le credenziali di un insieme di credenziali di un servizio di ripristino un numero illimitato di volte, solo il file delle credenziali più recente è applicabile durante il flusso di lavoro della registrazione.
 
-file delle credenziali dell'insieme di credenziali Hello viene scaricato tramite un canale protetto da hello portale di Azure. Hello servizio Azure Backup non è a conoscenza della chiave privata di hello del certificato hello e la chiave privata di hello non è persistenti nel portale di hello o servizio hello. Utilizzare hello seguendo i passaggi toodownload hello archivio credenziali file tooa computer locale.
+Il file delle credenziali di insieme viene scaricato dal portale di Azure tramite un canale sicuro. Il servizio Backup di Azure non è a conoscenza della chiave privata del certificato e la chiave privata non è persistente nel portale o nel servizio. Usare la procedura seguente per scaricare le credenziali di insieme in un computer locale.
 
-1. Accedi toohello [portale di Azure](https://portal.azure.com/).
-2. Aprire toowhich della toowhich insieme di credenziali di servizi di ripristino si desidera tooregister DPM macchina.
-3. Per impostazione predefinita si apre il pannello Impostazioni. Se è chiuso, fare clic su **impostazioni** nel pannello impostazioni hello tooopen dei dashboard dell'insieme di credenziali. Nel pannello Impostazioni fare clic su **Proprietà**.
+1. Accedere al [portale di Azure](https://portal.azure.com/).
+2. Aprire l'insieme di credenziali dei servizi di ripristino a cui si vuole registrare la macchina DPM.
+3. Per impostazione predefinita si apre il pannello Impostazioni. Se non si apre, fare clic su **Impostazioni** nel dashboard dell'insieme di credenziali per aprire il pannello delle impostazioni. Nel pannello Impostazioni fare clic su **Proprietà**.
 
     ![Pannello dell'insieme di credenziali aperto](./media/backup-azure-dpm-introduction/vault-settings-dpm.png)
-4. Nella pagina delle proprietà hello, fare clic su **scaricare** in **le credenziali di Backup**. portale di Hello genera i file di credenziali dell'insieme di credenziali di hello, che viene reso disponibili per il download.
+4. Nella pagina delle proprietà fare clic su **Scarica** in **Credenziali di backup**. Il portale genera il file delle credenziali di insieme, che diventa disponibile per il download.
 
     ![Scaricare](./media/backup-azure-dpm-introduction/vault-credentials.png)
 
-portale Hello genererà un insieme di credenziali utilizzando una combinazione di nome insieme di credenziali hello e hello data corrente. Fare clic su **salvare** toodownload hello archivio credenziali toohello account locale cartella di download o scegliere Salva con nome hello salvare menu toospecify un percorso per l'insieme di credenziali hello. Occuperà minuto tooa per toobe file hello generato.
+Il portale genererà una credenziale di insieme usando una combinazione del nome dell'insieme di credenziali e della data attuale. Fare clic su **Salva** per scaricare le credenziali di insieme nella cartella di download dell'account locale o selezionare Salva con nome dal menu Salva per specificare un percorso per le credenziali. La generazione del file potrebbe impiegare fino a un minuto.
 
 ### <a name="note"></a>Nota
-* Verificare che hello insieme di credenziali delle credenziali viene salvato in una posizione accessibile dal computer. Se è stata archiviata in un condivisione di file/SMB, la verifica delle autorizzazioni di accesso hello.
-* file delle credenziali dell'insieme di credenziali Hello viene utilizzato solo durante il flusso di lavoro di hello registrazione.
-* file delle credenziali dell'insieme di credenziali Hello scade dopo 48hrs e può essere scaricato dal portale hello.
+* Assicurarsi che il file delle credenziali dell'insieme di credenziali venga salvato in un percorso accessibile dal computer. Se vengano archiviate in una condivisione file/SMB, verificare le autorizzazioni di accesso.
+* Il file delle credenziali di insieme viene usato solo durante il flusso di lavoro di registrazione.
+* Il file delle credenziali di insieme scade dopo 48 ore e può essere scaricato dal portale.
 
 ### <a name="3-install-backup-agent"></a>3. Installare un agente di Backup
-Dopo aver creato l'insieme di credenziali di Backup di Azure hello, deve essere installato un agente in ogni computer Windows (Windows Server, client di Windows, server System Center Data Protection Manager o il computer Server di Backup di Azure) che consente di eseguire il backup dei dati e delle applicazioni tooAzure.
+Dopo aver creato l'insieme di credenziali di Backup di Azure, è necessario installare un agente su tutti i computer Windows (Windows Server, client Windows, server System Center Data Protection Manager o computer del server di Backup di Azure) per eseguire il backup dei dati e delle applicazioni in Azure.
 
-1. Aprire toowhich della toowhich insieme di credenziali di servizi di ripristino si desidera tooregister DPM macchina.
-2. Per impostazione predefinita si apre il pannello Impostazioni. Se è chiuso, fare clic su **impostazioni** pannello delle impostazioni di tooopen hello. Nel pannello Impostazioni fare clic su **Proprietà**.
+1. Aprire l'insieme di credenziali dei servizi di ripristino a cui si vuole registrare la macchina DPM.
+2. Per impostazione predefinita si apre il pannello Impostazioni. Se non viene visualizzato, fare clic su **Impostazioni** per aprire il pannello delle impostazioni. Nel pannello Impostazioni fare clic su **Proprietà**.
 
     ![Pannello dell'insieme di credenziali aperto](./media/backup-azure-dpm-introduction/vault-settings-dpm.png)
-3. Nella pagina Impostazioni hello, fare clic su **scaricare** in **Azure Backup Agent**.
+3. Nella pagina Impostazioni fare clic su **Scarica** in **Agente di Backup di Azure**.
 
     ![Scaricare](./media/backup-azure-dpm-introduction/azure-backup-agent.png)
 
-   Una volta scaricate agente hello, fare doppio clic su installazione di hello toolaunch MARSAgentInstaller.exe dell'agente di Backup di Azure hello. Scegliere la cartella di installazione hello e la cartella dei file temporanei necessari per l'agente di hello. percorso della cache di Hello specificato deve disporre di spazio disponibile ovvero almeno il 5% dei dati di backup hello.
-4. Se si utilizza un toohello tooconnect di server proxy internet, hello **configurazione Proxy** schermata, immettere i dettagli del server proxy hello. Se si utilizza un proxy autenticato, immettere i dettagli di nome e una password utente hello in questa schermata.
-5. l'agente di Backup di Azure Hello installazione di .NET Framework 4.5 e Windows PowerShell (se non è già disponibile) toocomplete hello.
-6. Dopo aver installato l'agente di hello, **Chiudi** finestra hello.
+   Dopo aver scaricato l'agente, fare doppio clic sul file MARSAgentInstaller.exe per avviare l'installazione dell'agente di Backup di Azure. Scegliere la cartella di installazione e la cartella Scratch necessarie per l'agente. Il percorso della cache specificato deve disporre di uno spazio libero pari almeno al 5% dei dati di backup.
+4. Se si usa un server proxy per connettersi a Internet, nella schermata **Configurazione proxy** immettere i dettagli del server proxy. Se si usa un proxy autenticato, immettere il nome utente e la password in questa schermata.
+5. Per completare l'installazione, l'agente Backup di Azure installerà .NET Framework 4.5 e Windows PowerShell (se non è già disponibile).
+6. Dopo aver installato l'agente, scegliere **Chiudi** per chiudere la finestra.
 
    ![Chiudi](../../includes/media/backup-install-agent/dpm_FinishInstallation.png)
-7. troppo**registro hello Server DPM** toohello insieme di credenziali, in hello **Management** scheda, fare clic su **Online**. Selezionare quindi **Registra**. Si aprirà hello registrazione guidata di installazione.
-8. Se si utilizza un toohello tooconnect di server proxy internet, hello **configurazione Proxy** schermata, immettere i dettagli del server proxy hello. Se si utilizza un proxy autenticato, immettere i dettagli di nome e una password utente hello in questa schermata.
+7. Per **registrare il server DPM** nell'insieme di credenziali, fare clic su **Online** nella scheda **Gestione**. Selezionare quindi **Registra**. Verrà visualizzata la Registrazione guidata server.
+8. Se si usa un server proxy per connettersi a Internet, nella schermata **Configurazione proxy** immettere i dettagli del server proxy. Se si usa un proxy autenticato, immettere il nome utente e la password in questa schermata.
 
     ![Configurazione proxy](../../includes/media/backup-install-agent/DPM_SetupOnlineBackup_Proxy.png)
-9. Nella schermata di credenziali dell'insieme di credenziali di hello, Sfoglia tooand hello selezionare insieme di credenziali le credenziali che è stato scaricato in precedenza.
+9. Nella schermata relativa alle credenziali di insieme individuare e selezionare il file delle credenziali di insieme scaricato in precedenza.
 
     ![Credenziali di insieme](../../includes/media/backup-install-agent/DPM_SetupOnlineBackup_Credentials.jpg)
 
-    file delle credenziali dell'insieme di credenziali Hello è valido solo per 48 ore (dopo che è stato scaricato dal portale hello). Se si verifica un errore in questa schermata (ad esempio, "Insieme di credenziali le credenziali di file specificato è scaduto"), account di accesso toohello Azure portal e scaricare hello archivio credenziali file nuovamente.
+    Il file delle credenziali di insieme è valido solo per 48 ore dopo che è stato scaricato dal portale. Se si verifica un errore in questa schermata, ad esempio "Il file delle credenziali di insieme fornito è scaduto", accedere al portale di Azure e scaricare nuovamente il file delle credenziali di insieme.
 
-    Verificare che il file di credenziali dell'insieme di credenziali hello è disponibile in una posizione in cui è possibile accedere da un'applicazione hello il programma di installazione. Se si verificano errori correlati di accedere, hello copia l'insieme di credenziali file tooa percorso temporaneo in questo computer e riprova l'operazione di hello.
+    Verificare che il file delle credenziali di insieme sia disponibile in un percorso accessibile dall'applicazione di installazione. Se si verificano errori relativi all'accesso, copiare il file delle credenziali di insieme in un percorso temporaneo nel computer e ripetere l'operazione.
 
-    Se si verifica un errore di credenziali dell'insieme di credenziali non valido (ad esempio, "non valido insieme di credenziali fornito") è danneggiato o non avere hello credenziali più recenti associate al servizio di ripristino hello di file hello. Ripetere l'operazione di hello dopo il download di un nuovo file delle credenziali dell'insieme di credenziali dal portale hello. Questo errore si verifica in genere se hello utente fa clic su hello **Download insieme di credenziali** opzione nel portale di Azure in rapida successione hello. In questo caso, solo hello secondo insieme di credenziali file delle credenziali è valido.
-10. utilizzo di hello toocontrol di larghezza di banda di rete durante il lavoro e le ore non lavorative, in hello **la limitazione delle richieste di impostazione** schermata, è possibile impostare i limiti di utilizzo della larghezza di banda hello e definire il lavoro hello e non lavorative ore.
+    Se si verifica un errore di credenziali dell'insieme di credenziali non valide, ad esempio "Le credenziali dell'insieme di credenziali specificate non sono valide", il file è danneggiato o non ha le credenziali più recenti associate al servizio di ripristino. Ripetere l'operazione dopo avere scaricato un nuovo file di archivio delle credenziali dal portale. Questo errore in genere si verifica se l'utente fa clic sull'opzione **Scarica credenziali di insieme** nel portale di Azure in rapida successione. In questo caso è valido solo il secondo file delle credenziali di insieme.
+10. Per controllare l'utilizzo della larghezza di banda di rete durante le ore lavorative e non lavorative, nella schermata **Impostazione di limitazione** è possibile impostare i limiti di utilizzo della larghezza di banda e definire le ore lavorative e non lavorative.
 
     ![Impostazione di limitazione](../../includes/media/backup-install-agent/DPM_SetupOnlineBackup_Throttling.png)
-11. In hello **impostazione cartella ripristino** schermata, Sfoglia per cartelle di hello in cui scaricare i file hello da Azure verranno inserite temporaneamente.
+11. Nella schermata **Impostazioni cartella di ripristino** cercare la cartella in cui verranno inseriti temporaneamente i file scaricati da Azure.
 
     ![Impostazioni cartella di ripristino](../../includes/media/backup-install-agent/DPM_SetupOnlineBackup_RecoveryFolder.png)
-12. In hello **impostazione di crittografia** schermata, è possibile generare una passphrase o fornire una passphrase (minimo 16 caratteri). Tenere presente che toosave hello passphrase in un luogo sicuro.
+12. Nella schermata **impostazione crittografia** , è possibile generare una passphrase o fornire una passphrase (almeno 16 caratteri). Ricordarsi di salvare la passphrase in un luogo sicuro.
 
     ![Crittografia](../../includes/media/backup-install-agent/DPM_SetupOnlineBackup_Encryption.png)
 
     > [!WARNING]
-    > Se hello passphrase viene persa o dimenticata; Consente di recuperare i dati di backup hello non consente di Microsoft. Microsoft non abbiano visibilità sul passphrase hello utilizzata dall'utente finale di hello utente finale di Hello proprietario hello passphrase di crittografia. Salvare il file hello in un luogo sicuro in quanto è necessario durante un'operazione di ripristino.
+    > Se la passphrase viene persa o dimenticata, Microsoft non potrà fornire assistenza per il recupero dei dati di backup. L'utente finale possiede la passphrase di crittografia, che non è visibile a Microsoft. Salvare il file in un luogo sicuro, in quanto potrebbe essere necessario durante un'operazione di ripristino.
     >
     >
-13. Dopo aver scelto hello **registrare** pulsante, hello macchina è stata registrata toohello insieme di credenziali e si sono ora pronti toostart backup tooMicrosoft Azure.
-14. Quando si usa Data Protection Manager, è possibile modificare le impostazioni di hello specificate durante il flusso di lavoro di hello registrazione facendo hello **configura** opzione selezionando **Online** in hello  **Gestione** scheda.
+13. Dopo aver fatto clic sul pulsante **Registra** , il computer sarà registrato nell'insieme di credenziali e si potrà avviare il backup in Microsoft Azure.
+14. Quando si usa Data Protection Manager, è possibile modificare le impostazioni specificate durante il flusso di lavoro di registrazione facendo clic sull'opzione **Configura** selezionando **Online** nella scheda **Gestione**.
 
 ## <a name="requirements-and-limitations"></a>Requisiti e limitazioni
 * DPM può essere eseguito come server fisico o come macchina virtuale Hyper-V installata in System Center 2012 SP1 o System Center 2012 R2. Inoltre, è possibile eseguirlo come macchina virtuale di Azure in System Center 2012 R2 (con almeno l'aggiornamento cumulativo 3 di DPM 2012 R2) oppure come macchina virtuale di Windows in VMware con System Center 2012 R2 e almeno il relativo aggiornamento cumulativo 5.
-* Se DPM viene eseguito con System Center 2012 SP1, è necessario installare l'aggiornamento cumulativo 2 per System Center Data Protection Manager SP1. Ciò è necessario prima di poter installare hello Azure Backup Agent.
-* server di Data Protection Manager Hello deve disporre di Windows PowerShell e .net Framework 4.5 installati.
-* DPM può eseguire il backup la maggior parte dei carichi di lavoro tooAzure Backup. Per un elenco completo dei componenti supportati, vedere hello Backup di Azure supporta i seguenti elementi.
-* Impossibile ripristinare i dati archiviati in Azure Backup con l'opzione "copia tootape" hello.
-* È necessario un account Azure con funzionalità di Backup di Azure hello abilitata. Se non si dispone di un account, è possibile creare un account di valutazione gratuita in pochi minuti. Informazioni sui [prezzi di Backup di Azure](https://azure.microsoft.com/pricing/details/backup/).
-* Tramite Azure Backup richiede hello Azure Backup Agent toobe installato nei server di hello tooback da backup. Ogni server deve essere almeno il 5% delle dimensioni hello dati hello che viene eseguito il backup, disponibile come archiviazione locale disponibile. Ad esempio backup 100 GB di dati richiede un minimo di 5 GB di spazio disponibile nel percorso temporaneo hello.
-* Verranno archiviati i dati in archiviazione di Azure dell'insieme di credenziali hello. Nessun importo toohello limite dei dati che è possibile eseguire il backup tooan Azure Backup vault ma dimensioni hello di un'origine dati (ad esempio una macchina virtuale o un database) non devono superare 54400 GB.
+* Se DPM viene eseguito con System Center 2012 SP1, è necessario installare l'aggiornamento cumulativo 2 per System Center Data Protection Manager SP1. Tale procedura è necessaria prima di poter installare Azure Backup Agent.
+* È necessario che nel server DPM siano installati Windows PowerShell e .Net Framework 4.5.
+* DPM può eseguire il backup della maggior parte dei carichi di lavoro nel servizio Backup di Azure. Per visualizzare un elenco completo degli elementi supportati, consultare gli elementi supportati di Backup di Azure riportati di seguito.
+* Usando l'opzione "Copia su nastro", non è possibile ripristinare i dati memorizzati in Backup di Azure.
+* È necessario disporre di un account di Azure su cui è abilitata la funzionalità Backup di Azure. Se non si dispone di un account, è possibile creare un account di valutazione gratuita in pochi minuti. Informazioni sui [prezzi di Backup di Azure](https://azure.microsoft.com/pricing/details/backup/).
+* Per usare Backup di Azure è necessario che Azure Backup Agent sia installato sui server da sottoporre a backup. Le dimensioni di ogni server devono essere almeno il 5% di quelle dei dati sottoposti a backup. Spazio disponibile come archiviazione locale. Se, ad esempio, si esegue il backup di 100 GB di dati, è necessario un minimo di 5 GB di spazio disponibile nello spazio di lavoro.
+* I dati verranno memorizzati nell'archiviazione relativa all'insieme di credenziali di Azure. Non esistono limiti relativi alla quantità di dati che è possibile sottoporre a backup in un insieme di credenziali di Backup di Azure, tuttavia la dimensione dell'origine dati (ad esempio, un database o una macchina virtuale) non deve superare i 54400 GB.
 
-Questi tipi di file sono supportati per eseguire il backup tooAzure:
+Il backup in Azure è supportato per i tipi di file seguenti:
 
 * Crittografati (solo backup completi)
 * Compressi (backup incrementali supportati)
@@ -194,6 +194,6 @@ Questi tipi di file non sono supportati:
 * Flusso di tipo sparse
 
 > [!NOTE]
-> Da in System Center 2012 DPM con SP1 in poi, è possibile eseguire il backup dei carichi di lavoro protetti da DPM tooAzure con Backup di Microsoft Azure.
+> A partire dalla versione di System Center 2012 DPM con SP1, è possibile eseguire il backup su carichi di lavoro (protetti da DPM) in Azure usando il servizio Backup di Microsoft Azure.
 >
 >

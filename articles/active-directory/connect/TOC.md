@@ -16,7 +16,7 @@
 ### [Impostazioni personalizzate](active-directory-aadconnect-get-started-custom.md)
 ### [Aggiornamento da DirSync](active-directory-aadconnect-dirsync-upgrade-get-started.md)
 ### [Eseguire l'aggiornamento da una versione precedente](active-directory-aadconnect-upgrade-previous-version.md)
-
+### [Eseguire l'installazione usando un database ADSync esistente](active-directory-aadconnect-existing-database.md)
 
 # Procedure
 ## Pianificare e progettare
@@ -27,6 +27,7 @@
 ### [Quando si ha già Azure AD](active-directory-aadconnect-existing-tenant.md)
 ## [Gestire Azure AD Connect](active-directory-aadconnect-whats-next.md)
 ### [Rinnovare i certificati per Office 365 e Azure AD](active-directory-aadconnect-o365-certs.md)
+### [Aggiornare il certificato SSL per una farm Active Directory Federation Services (AD FS)](active-directory-aadconnectfed-ssl-update.md)
 ### [Abilitare il writeback dei dispositivi](active-directory-aadconnect-feature-device-writeback.md)
 ### [Opzioni di accesso utente](active-directory-aadconnect-user-signin.md)
 #### [Seamless Single Sign-On](active-directory-aadconnect-sso.md)
@@ -41,7 +42,8 @@
 ##### [Aggiornare gli agenti di anteprima](active-directory-aadconnect-pass-through-authentication-upgrade-preview-authentication-agents.md)
 ##### [Blocco intelligente](active-directory-aadconnect-pass-through-authentication-smart-lockout.md)
 ##### [Domande frequenti](active-directory-aadconnect-pass-through-authentication-faq.md)
-##### [Risoluzione dei problemi](active-directory-aadconnect-troubleshoot-pass-through-authentication.md)
+##### [Risolvere i problemi](active-directory-aadconnect-troubleshoot-pass-through-authentication.md)
+##### [Approfondimento sulla sicurezza](active-directory-aadconnect-pass-through-authentication-security-deep-dive.md)
 ### [Supporto di più domini per la federazione](active-directory-aadconnect-multiple-domains.md)
 ### [Aggiornamento automatico](active-directory-aadconnect-feature-automatic-upgrade.md)
 ### [Usare un provider di identità SAML 2.0 per l'accesso Single Sign-On](active-directory-aadconnect-federation-saml-idp.md)
@@ -53,13 +55,13 @@
 ### [Sincronizzazione delle password](active-directory-aadconnectsync-implement-password-synchronization.md)
 ### [Account del servizio Azure AD](active-directory-aadconnectsync-howto-azureadaccount.md)
 ### [Installazione guidata](active-directory-aadconnectsync-installation-wizard.md)
-### [Modificare la configurazione predefinita di hello](active-directory-aadconnectsync-best-practices-changing-default-configuration.md)
+### [Modificare la configurazione predefinita](active-directory-aadconnectsync-best-practices-changing-default-configuration.md)
 ### [Configurare il filtro](active-directory-aadconnectsync-configure-filtering.md)
 ### [Utilità di pianificazione](active-directory-aadconnectsync-feature-scheduler.md)
 ### [Estensioni della directory](active-directory-aadconnectsync-feature-directory-extensions.md)
 
-### [Modifica password account del servizio Azure AD Sync hello](active-directory-aadconnectsync-change-serviceacct-pass.md)
-### [Modifica password dell'account di dominio Active Directory hello Active Directory](active-directory-aadconnectsync-change-addsacct-pass.md)
+### [Modifica della password dell'account del servizio Azure AD Sync](active-directory-aadconnectsync-change-serviceacct-pass.md)
+### [Modifica della password dell'account Active Directory Domain Services](active-directory-aadconnectsync-change-addsacct-pass.md)
 ### [Abilitare il Cestino di AD](active-directory-aadconnectsync-recycle-bin.md)
 
 ### [Synchronization Service Manager](active-directory-aadconnectsync-service-manager-ui.md)
@@ -80,7 +82,7 @@
 ### [Oggetto non sincronizzato](active-directory-aadconnectsync-troubleshoot-object-not-syncing.md)
 ### [Sincronizzazione delle password](active-directory-aadconnectsync-troubleshoot-password-synchronization.md)
 ### [Errore LargeObject provocato da userCertificate](active-directory-aadconnectsync-largeobjecterror-usercertificate.md)
-### [Come toorecover dal limite di 10 GB di LocalDB](active-directory-aadconnect-recover-from-localdb-10gb-limit.md)
+### [Come eseguire il ripristino dal limite di 10 GB per LocalDB](active-directory-aadconnect-recover-from-localdb-10gb-limit.md)
 
 # riferimento
 ## [Esempi di codice](https://azure.microsoft.com/en-us/resources/samples/?service=active-directory)
@@ -91,7 +93,7 @@
 ## [Account e autorizzazioni](active-directory-aadconnect-accounts-permissions.md)
 
 ## Servizio di sincronizzazione Azure AD Connect
-### [Attributi sincronizzati tooAzure Active Directory](active-directory-aadconnectsync-attributes-synchronized.md)
+### [Attributi sincronizzati con Azure Active Directory](active-directory-aadconnectsync-attributes-synchronized.md)
 ### [Cronologia di rilascio delle versioni dei connettori](active-directory-aadconnectsync-connector-version-history.md)
 ### [Riferimento alle funzioni](active-directory-aadconnectsync-functions-reference.md)
 ### [Attività operative e considerazioni](active-directory-aadconnectsync-operations.md)
@@ -103,7 +105,7 @@
 
 
 # Risorse correlate
-## [Monitorare l'identità dell'infrastruttura e sincronizzazione servizi locali nel cloud hello](../connect-health/active-directory-aadconnect-health.md)
+## [Monitorare l'infrastruttura di gestione delle identità locale e i servizi di sincronizzazione nel cloud](../connect-health/active-directory-aadconnect-health.md)
 ## [Guide alla progettazione della soluzione ibrida di gestione delle identità](https://azure.microsoft.com/documentation/articles/active-directory-hybrid-identity-design-considerations-overview/)
 
 

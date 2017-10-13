@@ -1,6 +1,6 @@
 ---
-title: un ambiente Azure ora serie Insights aaaCreate | Documenti Microsoft
-description: "In questa esercitazione si apprenderà come toocreate ambiente serie, connetterlo origine evento tooan e pronto tooanalyze i dati degli eventi in pochi minuti."
+title: Creare un ambiente Azure Time Series Insights | Microsoft Docs
+description: In queste esercitazione viene illustrato come creare un ambiente Time Series, connetterlo a un'origine evento e prepararsi ad analizzare i dati dell'evento in pochi minuti.
 keywords: 
 services: time-series-insights
 documentationcenter: 
@@ -8,49 +8,49 @@ author: op-ravi
 manager: santoshb
 editor: cgronlun
 ms.assetid: 
-ms.service: time-series-insights
+ms.service: tsi
 ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 04/21/2017
 ms.author: omravi
-ms.openlocfilehash: 7120fc9a6e4d4a4972f8cb37e4d9945cfb746fd2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5a159ed0ba38899b21212518d41ff995895904ef
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="create-a-new-time-series-insights-environment-in-hello-azure-portal"></a>Creare un nuovo ambiente di tempo serie Insights in hello portale di Azure
+# <a name="create-a-new-time-series-insights-environment-in-the-azure-portal"></a>Creare un nuovo ambiente Time Series Insights nel portale di Azure
 
-L'ambiente Time Series Insights è una risorsa di Azure con capacità di inserimento e archiviazione. I clienti di effettuare il provisioning ambienti tramite hello portale di Azure con capacità di hello necessario.
+L'ambiente Time Series Insights è una risorsa di Azure con capacità di inserimento e archiviazione. I clienti effettuano il provisioning degli ambienti tramite il portale di Azure con la capacità necessaria.
 
-## <a name="steps-toocreate-hello-environment"></a>Ambiente di hello toocreate passaggi
+## <a name="steps-to-create-the-environment"></a>Procedura per creare l'ambiente
 
-Seguire questi passaggi toocreate l'ambiente:
+Seguire questa procedura per creare l'ambiente:
 
-1.  Accedi toohello [portale di Azure](https://portal.azure.com).
-2.  Fare clic su hello sul segno più ("+") hello nell'angolo superiore sinistro.
-3.  Cercare "Approfondite serie ora" nella casella di ricerca hello.
+1.  Accedere al [portale di Azure](https://portal.azure.com).
+2.  Fare clic sul segno più ("+") nell'angolo superiore sinistro.
+3.  Cercare "Time Series Insights" nella casella di ricerca.
 
-  ![Creare hello ora serie Insights ambiente](media/get-started/getstarted-create-environment1.png)
+  ![Creare l'ambiente Time Series Insights](media/get-started/getstarted-create-environment1.png)
 
 4.  Selezionare "Time Series Insights" e fare clic su "Crea".
 
-  ![Crea gruppo di risorse Insights serie ora hello](media/get-started/getstarted-create-environment2.png)
+  ![Creare il gruppo di risorse Time Series Insights](media/get-started/getstarted-create-environment2.png)
 
-5.  Specificare il nome dell'ambiente. Questo nome rappresenta ambiente hello in [explorer serie tempo](https://insights.timeseries.azure.com).
-6.  Selezionare una sottoscrizione. Sceglierne una contenente l'origine evento. Tempo serie Insights può rilevare automaticamente IoT Hub di Azure e hello di risorse Hub eventi esistente nella stessa sottoscrizione.
+5.  Specificare il nome dell'ambiente. Questo nome rappresenterà l'ambiente nell'[utilità di esplorazione delle serie temporali](https://insights.timeseries.azure.com).
+6.  Selezionare una sottoscrizione. Sceglierne una contenente l'origine evento. Time Series Insights può rilevare automaticamente le risorse di Hub IoT di Azure e di Hub eventi esistenti nella stessa sottoscrizione.
 7.  Selezionare o creare un gruppo di risorse. Un gruppo di risorse è una raccolta di risorse di Azure usate insieme.
-8.  Selezionare un percorso di hosting. tooavoid lo spostamento dei dati tra data center, scegliere la posizione che contiene l'origine evento.
+8.  Selezionare un percorso di hosting. Per evitare di spostare i dati tra i data center, scegliere un percorso contenente l'origine evento.
 9.  Selezione di un piano tariffario.
 10. Selezionare la capacità. È possibile modificare la capacità di un ambiente dopo la creazione.
-11. Creare l'ambiente. È anche possibile aggiungere il dashboard di toohello di ambiente per facilitare l'accesso ogni volta che accedi.
+11. Creare l'ambiente. È anche possibile aggiungere l'ambiente al dashboard per semplificare l'accesso.
 
-  ![Creare hello ora serie Insights pin toodashboard](media/get-started/getstarted-create-environment3.png)
+  ![Creare l'aggiunta al dashboard per Time Series Insights](media/get-started/getstarted-create-environment3.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* [Definire i criteri di accesso dati](time-series-insights-data-access.md) tooaccess l'ambiente in [ora serie Insights portale](https://insights.timeseries.azure.com)
+* [Definire i criteri di accesso ai dati](time-series-insights-data-access.md) per accedere all'ambiente nel [portale di Time Series Insights](https://insights.timeseries.azure.com)
 * [Creare un'origine evento](time-series-insights-add-event-source.md)
-* [Invio di eventi](time-series-insights-send-events.md) origine evento toohello
+* [Inviare eventi](time-series-insights-send-events.md) all'origine evento

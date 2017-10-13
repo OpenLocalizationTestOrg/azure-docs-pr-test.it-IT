@@ -1,5 +1,5 @@
 ---
-title: controllo delle versioni SDK aaaClient e server in App per dispositivi mobili e i servizi mobili | Documenti Microsoft
+title: Controllo delle versioni SDK di client e server in App per dispositivi mobili e Servizi mobili | Documentazione Microsoft
 description: "Elenco degli SDK del client e compatibilità con versioni SDK del server per Servizi mobili e App per dispositivi mobili di Azure"
 services: app-service\mobile
 documentationcenter: 
@@ -14,26 +14,26 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 10/01/2016
 ms.author: glenga
-ms.openlocfilehash: 5874b7455ea407ca8c77fb1bd03d97d0767ebb47
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f79e819b1547f81498ea213858faf3c75e374782
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="client-and-server-versioning-in-mobile-apps-and-mobile-services"></a>Controllo delle versioni client e server in App per dispositivi mobili e Servizi mobili
-versione più recente di Hello di servizi mobili di Azure è hello **App per dispositivi mobili** funzionalità di servizio App di Azure.
+La versione più recente di Servizi mobili di Azure è la funzionalità **App per dispositivi mobili** del Servizio app di Azure.
 
-Hello client App per dispositivi mobili e server SDK originariamente sono basate su quelle di servizi mobili, ma sono *non* compatibili tra loro.
-È infatti necessario usare un SDK del client di *App per dispositivi mobili* con un SDK del server di *App per dispositivi mobili* e lo stesso vale per *Servizi mobili*. Il presente contratto verrà applicato tramite un valore di intestazione speciale utilizzato dalle hello client e server SDK, `ZUMO-API-VERSION`.
+Gli SDK del client e del server di App per dispositivi mobili in origine si basano su quelle in Servizi mobili, ma *non* sono compatibili tra loro.
+È infatti necessario usare un SDK del client di *App per dispositivi mobili* con un SDK del server di *App per dispositivi mobili* e lo stesso vale per *Servizi mobili*. Questo contratto viene applicato tramite un valore di intestazione speciale utilizzato dagli SDK del client e del server, `ZUMO-API-VERSION`.
 
-Nota: ogni volta che questo documento si riferisce tooa *servizi mobili* back-end, non devono necessariamente toobe ospitati in servizi mobili. È ora possibile toomigrate toorun un servizio mobile nel servizio App senza alcuna modifica al codice, ma è comunque possibile utilizzare servizio hello *servizi mobili* versioni del SDK.
+Nota: ogni volta che in questo documento si fa riferimento a un back-end di *Servizi mobili* , esso non deve necessariamente essere ospitato su Servizi mobili. È ora possibile eseguire la migrazione di un servizio mobile per l'esecuzione nel servizio app senza apportare modifiche al codice, ma il servizio continuerà a usare le versioni SDK di *Servizi mobili*.
 
-toolearn altre informazioni sulla migrazione tooApp servizio senza alcuna modifica al codice, vedere l'articolo hello [tooAzure un servizio Mobile servizio App di eseguire la migrazione].
+Per ulteriori informazioni sulla migrazione al servizio app senza apportare modifiche al codice, vedere l'articolo [Eseguire la migrazione di un servizio mobile al servizio app di Azure].
 
 ## <a name="header-specification"></a>Specifica di intestazione
-chiave Hello `ZUMO-API-VERSION` può essere specificato nell'intestazione HTTP hello o stringa di query hello. il valore di Hello è una stringa di versione in formato hello **x.y.z**.
+La chiave `ZUMO-API-VERSION` può essere specificata nell'intestazione HTTP o nella stringa di query. Il valore è una stringa di versione nel formato **x.y.z**.
 
-ad esempio:
+Ad esempio:
 
 GET https://service.azurewebsites.net/tables/TodoItem
 
@@ -42,31 +42,31 @@ HEADERS: ZUMO-API-VERSION: 2.0.0
 POST https://service.azurewebsites.net/tables/TodoItem?ZUMO-API-VERSION=2.0.0
 
 ## <a name="opting-out-of-version-checking"></a>Esclusione del controllo della versione
-È possibile rifiutare esplicitamente la verifica della impostando un valore di versione **true** per l'impostazione di app hello **MS_SkipVersionCheck**. Specificare questo file Web. config o nella sezione impostazioni dell'applicazione del portale di Azure hello hello.
+È possibile rifiutare esplicitamente il controllo della versione impostando un valore **true** per l'impostazione dell'app **MS_SkipVersionCheck**. Specificarlo nel file web.config o nella sezione Impostazioni applicazione del portale di Azure.
 
 > [!NOTE]
-> Esistono una serie di modifiche di comportamento tra servizi mobili e App per dispositivi mobili, in particolare nelle aree di hello di sincronizzazione non in linea, autenticazione e le notifiche push. È solo necessario rifiutare esplicitamente versione controllo dopo tooensure test completo che queste modifiche del comportamento non interrompe l'esecuzione funzionalità dell'app.
+> Esistono una serie di modifiche di comportamento tra Servizi mobili e App per dispositivi mobili, in particolare per quanto riguarda la sincronizzazione offline, l’autenticazione e le notifiche push. È consigliabile rifiutare esplicitamente solo il controllo della versione dopo aver completato un test per assicurarsi che queste modifiche del comportamento non interferiscano con le funzionalità dell'applicazione.
 >
 >
 
 ## <a name="summary-of-compatibility-for-all-versions"></a>Riepilogo della compatibilità per tutte le versioni
-Hello grafico mostra la compatibilità di hello tra tutti i tipi di client e server. Un back-end viene classificato come entrambi Mobile **servizi** o Mobile **app** basata su server hello SDK che utilizza.
+Il grafico seguente illustra la compatibilità tra tutti i tipi di client e server. Un back-end viene classificato come **Servizi** mobili o **App** per dispositivi mobili in base all'SDK del server usato.
 
-|  | **Servizi mobili** | **App per dispositivi mobili** |
+|  | **Servizi mobili**  | **App per dispositivi mobili**  |
 | --- | --- | --- |
 | [Client di Servizi mobili] |OK |Errore\* |
 | [Client di App per dispositivi mobili] |Errore\* |OK |
 
 \*Può essere controllato specificando **MS_SkipVersionCheck**.
 
-<!-- IMPORTANT!  hello anchors for Mobile Services and Mobile Apps MUST be 1.0.0 and 2.0.0 respectively, since there is an exception error message that uses those anchors. -->
+<!-- IMPORTANT!  The anchors for Mobile Services and Mobile Apps MUST be 1.0.0 and 2.0.0 respectively, since there is an exception error message that uses those anchors. -->
 
-<!-- NOTE: hello fwlink toothis document is http://go.microsoft.com/fwlink/?LinkID=690568 -->
+<!-- NOTE: the fwlink to this document is http://go.microsoft.com/fwlink/?LinkID=690568 -->
 
 ## <a name="1.0.0"></a>Client e server di Servizi mobili
-SDK per applicazioni client Hello in tabella hello riportata di seguito sono compatibili con **servizi mobili**.
+Gli SDK del client nella tabella seguente sono compatibili con **Servizi mobili**.
 
-Nota: hello SDK client Servizi mobili *non* per inviare un valore di intestazione `ZUMO-API-VERSION`. Se il servizio di hello riceve questa intestazione o un valore di stringa di query, verrà restituito un errore, a meno che non si è scelto in modo esplicito come descritto in precedenza.
+Nota: gli SDK del client di Servizi mobili *non* inviano un valore di intestazione per `ZUMO-API-VERSION`. Se il servizio riceve questo valore di intestazione o di stringa di query, verrà restituito un errore, a meno che non lo si abbia rifiutato in modo esplicito come descritto sopra.
 
 ### <a name="MobileServicesClients"></a> SDK del client di *Servizi* mobili
 | Piattaforma client | Versione | Valore dell'intestazione della versione |
@@ -93,7 +93,7 @@ Nota: hello SDK client Servizi mobili *non* per inviare un valore di intestazion
 
 ## <a name="2.0.0"></a>Client e server di App per dispositivi mobili di Azure
 ### <a name="MobileAppsClients"></a> SDK del client di *App* per dispositivi mobili
-Il controllo della versione è stato introdotto a partire da hello seguenti versioni del client hello SDK per **App mobili di Azure**:
+Il controllo della versione è stata introdotta a partire dalle seguenti versioni dell’SDK del client per **App per dispositivi mobili di Azure**:
 
 | Piattaforma client | Versione | Valore dell'intestazione della versione |
 | --- | --- | --- |
@@ -121,11 +121,11 @@ Il controllo della versione è incluso nelle seguenti versioni dell’SDK del se
 | 3.0.0-3.x.y |False/Non specificato |400 - Richiesta non valida |
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [tooAzure un servizio Mobile servizio App di eseguire la migrazione]
+* [Eseguire la migrazione di un servizio mobile al servizio app di Azure]
 
 [Client di Servizi mobili]: #MobileServicesClients
 [Client di App per dispositivi mobili]: #MobileAppsClients
 
 
 [Mobile App Server SDK]: http://www.nuget.org/packages/microsoft.azure.mobile.server
-[tooAzure un servizio Mobile servizio App di eseguire la migrazione]: app-service-mobile-migrating-from-mobile-services.md
+[Eseguire la migrazione di un servizio mobile al servizio app di Azure]: app-service-mobile-migrating-from-mobile-services.md

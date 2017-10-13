@@ -1,6 +1,6 @@
 ---
-title: criteri delle risorse per gli account di archiviazione aaaAzure | Documenti Microsoft
-description: Descrive i criteri di gestione risorse di Azure per la Gestione distribuzione hello di account di archiviazione.
+title: Criteri delle risorse di Azure per gli account di archiviazione | Documentazione Microsoft
+description: Descrive i criteri di Azure Resource Manager per gestire la distribuzione degli account di archiviazione.
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/05/2017
 ms.author: tomfitz
-ms.openlocfilehash: d37fc4bcf7cdec71b0e14f6231fc138bfb6a7893
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6612ee61f5c50e743241b92030660cea7ae7094d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="apply-resource-policies-toostorage-accounts"></a>Applicare gli account toostorage criteri delle risorse
-Questo argomento vengono illustrati diversi [criteri risorse](resource-manager-policy.md) è possibile applicare gli account di archiviazione tooAzure. Questi criteri assicurano la coerenza per gli account di archiviazione hello distribuita nella propria organizzazione. 
+# <a name="apply-resource-policies-to-storage-accounts"></a>Applicare i criteri delle risorse agli account di archiviazione
+Questo argomento indica diversi [criteri delle risorse](resource-manager-policy.md) che è possibile applicare agli account di archiviazione di Azure. Questi criteri assicurano la coerenza per gli account di archiviazione distribuiti nell'organizzazione. 
 
 ## <a name="define-permitted-storage-account-types"></a>Definire i tipi di account di archiviazione consentiti
 
-Hello seguente criterio limita le [tipi di account di archiviazione](../storage/common/storage-redundancy.md) può essere distribuito:
+I criteri seguenti consentono di limitare i [tipi di account di archiviazione](../storage/common/storage-redundancy.md) che è possibile distribuire:
 
 ```json
 {
@@ -52,11 +52,11 @@ Hello seguente criterio limita le [tipi di account di archiviazione](../storage/
 }
 ```
 
-Una regola dei criteri simile con un parametro per accettare gli SKU consentito hello è disponibile come una definizione dei criteri predefiniti. criteri predefiniti Hello con ID risorsa hello `/providers/Microsoft.Authorization/policyDefinitions/7433c107-6db4-4ad1-b57a-a76dce0154a1`. 
+Una regola di criterio simile con un parametro per accettare gli SKU consentiti è disponibile come definizione di criterio predefinita. Il criterio predefinito ha l'ID risorsa `/providers/Microsoft.Authorization/policyDefinitions/7433c107-6db4-4ad1-b57a-a76dce0154a1`. 
 
 ## <a name="define-permitted-access-tier"></a>Definire il livello di accesso consentito
 
-i criteri seguenti Hello specificano il tipo di hello di [livello di accesso](../storage/blobs/storage-blob-storage-tiers.md) che può essere specificata per gli account di archiviazione:
+I criteri seguenti specificano il tipo di [livello di accesso](../storage/blobs/storage-blob-storage-tiers.md) che è possibile definire per gli account di archiviazione:
 
 ```json
 {
@@ -86,7 +86,7 @@ i criteri seguenti Hello specificano il tipo di hello di [livello di accesso](..
 
 ## <a name="ensure-encryption-is-enabled"></a>Verificare che la crittografia sia abilitata
 
-i criteri seguenti Hello richiedono tutti tooenable gli account di archiviazione [la crittografia del servizio di archiviazione](../storage/common/storage-service-encryption.md):
+I criteri seguenti richiedono l'abilitazione della [crittografia del servizio di archiviazione](../storage/common/storage-service-encryption.md) per tutti gli account di archiviazione:
 
 ```json
 {
@@ -110,9 +110,9 @@ i criteri seguenti Hello richiedono tutti tooenable gli account di archiviazione
 }
 ```
 
-Questa regola dei criteri è disponibile anche come una definizione dei criteri predefinite con l'ID della risorsa hello `/providers/Microsoft.Authorization/policyDefinitions/7c5a74bf-ae94-4a74-8fcf-644d1e0e6e6f`.
+Questa regola di criterio è anche disponibile come definizione di criterio predefinita con l'ID risorsa `/providers/Microsoft.Authorization/policyDefinitions/7c5a74bf-ae94-4a74-8fcf-644d1e0e6e6f`.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Dopo aver definito una regola dei criteri (come illustrato in hello precedenti esempi), è necessario toocreate definizione dei criteri hello e assegnarlo tooa ambito. Hello ambito può essere una sottoscrizione, un gruppo di risorse o una risorsa. criteri tooassign tramite il portale di hello, vedere [tooassign portale utilizzare Azure e gestire i criteri di risorse](resource-manager-policy-portal.md). criteri di tooassign tramite l'API REST, PowerShell o l'interfaccia CLI di Azure, vedere [assegnare e gestire i criteri tramite script](resource-manager-policy-create-assign.md). 
-* Per istruzioni su come le aziende possono usare tooeffectively Gestione risorse di gestione di sottoscrizioni, vedere [lo scaffolding di Azure enterprise - governance sottoscrizione rigorosa](resource-manager-subscription-governance.md).
+* Dopo aver definito una regola di criterio, come mostrato negli esempi precedenti, è necessario creare la definizione di criterio e assegnarla a un ambito. L'ambito può essere una sottoscrizione, un gruppo di risorse o una risorsa. Per assegnare i criteri tramite il portale, vedere [Use Azure portal to assign and manage resource policies](resource-manager-policy-portal.md) (Usare il portale di Azure per assegnare e gestire i criteri delle risorse). Per assegnare i criteri tramite l'API REST, PowerShell o l'interfaccia della riga di comando di Azure, vedere [Assegnare e gestire i criteri tramite script](resource-manager-policy-create-assign.md). 
+* Per indicazioni su come le aziende possono usare Resource Manager per gestire efficacemente le sottoscrizioni, vedere [Azure enterprise scaffold - prescriptive subscription governance](resource-manager-subscription-governance.md) (Scaffolding aziendale Azure - Governance prescrittiva per le sottoscrizioni).
 

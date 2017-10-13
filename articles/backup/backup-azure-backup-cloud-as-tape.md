@@ -1,6 +1,6 @@
 ---
-title: aaaUse Azure Backup tooreplace infrastruttura nastro | Documenti Microsoft
-description: Informazioni su come Backup di Azure fornisce semantica simile a nastro che consente di toobackup e ripristinare i dati in Azure
+title: Usare Backup di Azure per sostituire l'infrastruttura basata su nastro | Documentazione Microsoft
+description: Informazioni sulla semantica di Backup di Azure, simile all'archiviazione su nastro, che consente di eseguire il backup e il ripristino dei dati in Azure
 services: backup
 documentationcenter: 
 author: trinadhk
@@ -15,53 +15,53 @@ ms.workload: storage-backup-recovery
 ms.date: 1/10/2017
 ms.author: saurse;trinadhk;markgal
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 4c5b095d95d39267c54b1eed9427bda09658bb94
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f0f3152daf5f91f7c9e540797bf09b21969d2d33
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="move-your-long-term-storage-from-tape-toohello-azure-cloud"></a>Spostare lo spazio di archiviazione a lungo termine da nastro toohello cloud di Azure
+# <a name="move-your-long-term-storage-from-tape-to-the-azure-cloud"></a>Spostare lo spazio di archiviazione a lungo termine su nastro nel cloud di Azure
 I clienti di Backup di Azure e System Center Data Protection Manager possono eseguire le attività seguenti:
 
-* Eseguire il backup dei dati nelle pianificazioni che più adatto alle proprie esigenze organizzative hello.
-* Dati di backup hello vengono conservati per periodi più lunghi
+* Eseguire il backup dei dati secondo le pianificazioni più adatte alle esigenze dell'organizzazione.
+* Mantenere i dati di backup per periodi più lunghi
 * Includere Azure nelle strategie di conservazione dei dati a lungo termine, in alternativa al backup su nastro.
 
-Questo articolo illustra come abilitare i criteri di backup e di conservazione. I clienti che utilizzano i nastri tooaddress lungo-termine-conservarli deve ora disponibile un'alternativa potente e affidabile con disponibilità hello di questa funzionalità. Hello è attivata nella versione più recente di hello di hello Azure Backup (disponibile [qui](http://aka.ms/azurebackup_agent)). I clienti di System Center Data Protection Manager è necessario aggiornare, almeno DPM 2012 R2 UR5 prima di utilizzare DPM con hello servizio Backup di Azure.
+Questo articolo illustra come abilitare i criteri di backup e di conservazione. I clienti che usano i nastri per soddisfare le esigenze di conservazione a lungo termine dispongono ora di un'alternativa efficace e affidabile. Questa funzionalità è abilitata nella versione più recente di Backup di Azure, disponibile [in questa pagina](http://aka.ms/azurebackup_agent). I clienti di System Center DPM devono effettuare l'aggiornamento a DPM 2012 R2 UR5 almeno, prima di poter usare DPM con il servizio Backup di Azure.
 
-## <a name="what-is-hello-backup-schedule"></a>Che cos'è hello pianificazione Backup?
-pianificazione del backup Hello indica la frequenza di hello hello operazione di backup. Ad esempio, le impostazioni di hello nella seguente schermata hello indicano che i backup vengono eseguiti ogni giorno alle 6 pm e a mezzanotte.
+## <a name="what-is-the-backup-schedule"></a>Che cos'è la pianificazione di backup?
+La pianificazione del backup indica la frequenza dell'operazione di backup. Ad esempio, le impostazioni nella schermata di seguito indicano che i backup vengono eseguiti ogni giorno alle ore 18.00 e a mezzanotte.
 
 ![Pianificazione giornaliera](./media/backup-azure-backup-cloud-as-tape/dailybackupschedule.png)
 
-I clienti possono anche pianificare un backup settimanale. Ad esempio, hello impostazioni nella seguente schermata hello indicano che i backup vengono eseguiti ogni alternativo domenica & mercoledì 9.30 e 1:00 AM.
+I clienti possono anche pianificare un backup settimanale. Ad esempio, le impostazioni nella schermata di seguito indicano che verranno eseguiti backup a domeniche e mercoledì alterni alle 9:30 e all'1: 00.
 
 ![Pianificazione settimanale](./media/backup-azure-backup-cloud-as-tape/weeklybackupschedule.png)
 
-## <a name="what-is-hello-retention-policy"></a>Che cos'è hello criteri di conservazione?
-criteri di conservazione Hello specificano durata hello per cui devono essere archiviati i backup hello. Anziché specificare solo un criterio"semplice" per tutti i punti di backup, i clienti possono specificare criteri di conservazione diversi in base a quando viene eseguito il backup di hello. Hello punto di backup eseguito ogni giorno, che funge da un punto di ripristino operativo, ad esempio, viene mantenuto per 90 giorni. punto di backup Hello eseguita alla fine hello ogni trimestre per scopi di controllo viene mantenuto per una durata.
+## <a name="what-is-the-retention-policy"></a>Che cos'è il criterio di conservazione?
+I criteri di conservazione specificano il periodo di tempo per cui il backup deve essere archiviato. Anziché specificare solo un "criterio semplice" per tutti i punti di backup, i clienti possono specificare criteri di conservazione diversi in base al momento in cui viene eseguito il backup. Ad esempio, un punto di backup eseguito quotidianamente, che funge da punto di ripristino operativo, viene conservato per 90 giorni. Il punto di backup eseguito alla fine di ogni trimestre per scopi di controllo viene mantenuto per un periodo più lungo.
 
 ![Criteri di conservazione](./media/backup-azure-backup-cloud-as-tape/retentionpolicy.png)
 
-Hello numero totale di "punti di conservazione" specificato in questo criterio è 90 (giornalieri punti) + 40 (uno ogni trimestre per 10 anni) = 130.
+Il numero totale di "punti di conservazione" specificati in questi criteri è pari a 90 (punti giornalieri) + 40 (uno per ogni trimestre per 10 anni) = 130.
 
 ## <a name="example--putting-both-together"></a>Esempio: Uso di entrambi i metodi
 ![Schermata di esempio](./media/backup-azure-backup-cloud-as-tape/samplescreen.png)
 
 1. **Criteri di mantenimento giornaliero**: i backup eseguiti quotidianamente vengono archiviati per sette giorni.
 2. **Criteri di conservazione settimanale**: i backup eseguiti ogni giorno a mezzanotte e ogni sabato alle 18.00 verranno conservati per quattro settimane
-3. **Criteri di conservazione mensile**: vengono conservati i backup eseguiti a mezzanotte e 6 pm hello ultima domenica di ogni mese per 12 mesi
-4. **Criteri di conservazione annuale**: i backup eseguiti alla mezzanotte hello ultima domenica di ogni marzo vengono conservati per 10 anni
+3. **Criteri di mantenimento mensile**: i backup eseguiti a mezzanotte e alle 18.00 dell'ultimo sabato del mese verranno conservati per 12 mesi
+4. **Criteri di mantenimento annuale**: i backup eseguiti a mezzanotte dell'ultimo sabato del mese di marzo verranno conservati per 10 anni
 
-numero totale di "punti di conservazione" Hello (punti da cui un cliente può ripristinare i dati) in hello diagramma precedente viene calcolata come segue:
+Il numero totale dei "punti di conservazione" (punti da cui un cliente può ripristinare i dati) riportati nel diagramma precedente viene calcolato nel modo seguente:
 
 * due punti al giorno per sette giorni = 14 punti di ripristino
 * due punti a settimana per quattro settimane = 8 punti di ripristino
 * due punti al mese per 12 mesi = 24 punti di ripristino
 * un punto all'anno per 10 anni = 10 punti di ripristino
 
-numero totale di Hello dei punti di ripristino è 56.
+Il numero totale dei punti di ripristino è 56.
 
 > [!NOTE]
 > Il backup di Azure non dispone di una restrizione sul numero di punti di ripristino.
@@ -69,12 +69,12 @@ numero totale di Hello dei punti di ripristino è 56.
 >
 
 ## <a name="advanced-configuration"></a>Configurazione avanzata
-Fare clic su **modifica** nella precedente schermata di hello, sono dotate di ulteriore flessibilità nello specificare pianificazioni di conservazione.
+Facendo clic su **Modifica** nella schermata precedente, i clienti dispongono di un'ulteriore flessibilità nella definizione delle pianificazioni di conservazione.
 
 ![Modifica](./media/backup-azure-backup-cloud-as-tape/modify.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
 Per ulteriori informazioni sul Backup di Azure vedere:
 
-* [Introduzione tooAzure Backup](backup-introduction-to-azure-backup.md)
+* [Introduzione a Backup di Azure](backup-introduction-to-azure-backup.md)
 * [Valutazione di Backup di Azure](backup-try-azure-backup-in-10-mins.md)

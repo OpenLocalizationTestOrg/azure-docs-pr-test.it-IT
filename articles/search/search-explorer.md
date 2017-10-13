@@ -1,6 +1,6 @@
 ---
-title: aaa "Query di un indice (portale - ricerca di Azure) | Documenti di Microsoft"
-description: Eseguire una query di ricerca in soluzioni di ricerca del portale di Azure hello.
+title: 'Eseguire query su un indice: portale e Ricerca di Azure | Microsoft Docs'
+description: Inviare una query di ricerca in Esplora ricerche del portale di Azure.
 services: search
 manager: jhubbard
 documentationcenter: 
@@ -13,13 +13,13 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.date: 07/10/2017
 ms.author: ashmaka
-ms.openlocfilehash: 56bab3ef8a66eeb053fbbeb6d322acb6824fb34b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: dd68d8ed073bf7b8666ddef35a2f1f84df690b4b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="query-an-azure-search-index-using-search-explorer-in-hello-azure-portal"></a>Query di un indice di ricerca di Azure utilizzando Esplora ricerche in hello portale di Azure
+# <a name="query-an-azure-search-index-using-search-explorer-in-the-azure-portal"></a>Eseguire query su un indice di Ricerca di Azure con Esplora ricerche nel portale di Azure
 > [!div class="op_single_selector"]
 > * [Panoramica](search-query-overview.md)
 > * [Portale](search-explorer.md)
@@ -28,41 +28,41 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Questo articolo viene illustrato come un indice utilizzando una ricerca di Azure tooquery **Esplora ricerche** in hello portale di Azure. È possibile usare Esplora ricerche toosubmit semplice o completo Lucene query stringhe tooany indice esistente nel servizio.
+Questo articolo illustra come eseguire query su un indice di Ricerca di Azure con **Esplora ricerche** nel portale di Azure. È possibile usare Esplora ricerche per inviare stringhe di query Lucene semplici o complete a qualsiasi indice nel servizio.
 
-## <a name="open-hello-service-dashboard"></a>Dashboard del servizio aprire hello
-1. Fare clic su **tutte le risorse** sulla barra di spostamento hello hello il lato sinistro di hello [portale di Azure](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+## <a name="open-the-service-dashboard"></a>Aprire il dashboard del servizio
+1. Fare clic su **Tutte le risorse** nell'indice sul lato sinistro del [portale di Azure](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 2. Selezionare il servizio Ricerca di Azure.
 
 ## <a name="select-an-index"></a>Selezionare un indice
 
-Indice di hello selezionare desideri toosearch da hello **indici** riquadro.
+Selezionare l'indice in cui si vuole eseguire la ricerca nel riquadro **Indici**.
 
    ![](./media/search-explorer/pick-index.png)
 
 ## <a name="open-search-explorer"></a>Aprire Esplora ricerche
 
-Fare clic sulla barra di ricerca di Esplora ricerche riquadro tooslide hello aprire hello e riquadro risultati.
+Fare clic sul riquadro Esplora ricerche per aprire la barra di ricerca e il riquadro dei risultati.
 
    ![](./media/search-explorer/search-explorer-tile.png)
 
 ## <a name="start-searching"></a>Avviare la ricerca
 
-Quando si utilizza Esplora ricerche hello, è possibile specificare [parametri di query](https://docs.microsoft.com/rest/api/searchservice/Search-Documents) query hello tooformulate.
+Quando si usa Esplora ricerche, per formulare la query è possibile specificare [parametri di query](https://docs.microsoft.com/rest/api/searchservice/Search-Documents).
 
 1. In **Stringa di query** digitare una query e quindi fare clic su **Cerca**. 
 
-   stringa di query Hello viene analizzata automaticamente in richiesta corretto hello URL toosubmit hello Azure API REST di ricerca di una richiesta HTTP.   
+   La stringa di query viene analizzata automaticamente in modo da ottenere l'URL di richiesta appropriato per inviare una richiesta HTTP per l'API REST di Ricerca di Azure.   
    
-   È possibile utilizzare qualsiasi valido semplice o completo Lucene sintassi toocreate hello richiesta di query. Hello `*` carattere è ricerca vuoto o non specificato tooan equivalente che restituisce tutti i documenti in nessun ordine particolare.
+   Per creare la richiesta è possibile usare qualsiasi sintassi di query Lucene semplice o completa valida. Il carattere `*` equivale a una ricerca vuota o non specificata che restituisce tutti i documenti senza un ordine particolare.
 
-2. In **risultati**, risultati della query sono presentati in JSON non elaborati, payload toohello identici restituiti in un corpo della risposta HTTP quando si inviano richieste a livello di codice.
+2. In **Risultati** vengono presentati i risultati della query in formato JSON non elaborato, identico al payload restituito nel corpo di una risposta HTTP quando si inviano richieste a livello di codice.
 
    ![](./media/search-explorer/search-bar.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Hello seguenti risorse fornisce esempi e informazioni sulla sintassi di query aggiuntive.
+Le risorse seguenti offrono altri esempi e informazioni relativi alla sintassi di query.
 
  + [Sintassi di query semplice](https://docs.microsoft.com/rest/api/searchservice/simple-query-syntax-in-azure-search) 
  + [Sintassi di query Lucene](https://docs.microsoft.com/rest/api/searchservice/lucene-query-syntax-in-azure-search) 

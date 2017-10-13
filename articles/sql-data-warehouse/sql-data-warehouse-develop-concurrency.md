@@ -1,5 +1,5 @@
 ---
-title: gestione aaaConcurrency e carico di lavoro in SQL Data Warehouse | Documenti Microsoft
+title: Gestione della concorrenza e del carico di lavoro in SQL Data Warehouse | Microsoft Docs
 description: Informazioni sulla gestione della concorrenza e del carico di lavoro nel Data Warehouse di SQL Azure per lo sviluppo di soluzioni.
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,24 +15,24 @@ ms.workload: data-services
 ms.custom: performance
 ms.date: 08/23/2017
 ms.author: joeyong;barbkess;kavithaj
-ms.openlocfilehash: 7f7e77aa687760252aed16573b609817ed9111c3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: eaf2d43286dbaa52ada1430fbb7ce1e37f41c0d4
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="concurrency-and-workload-management-in-sql-data-warehouse"></a>Gestione della concorrenza e del carico di lavoro in SQL Data Warehouse
-toodeliver prestazioni prevedibili su larga scala, Microsoft Azure SQL Data Warehouse consentono di controllare i livelli di concorrenza e allocazioni di risorse come la memoria e assegnazione di priorità di CPU. Questo articolo illustra i concetti di toohello della gestione della concorrenza e carico di lavoro, che spiega come entrambe le funzionalità sono state implementate e come sia possibile controllare in data warehouse. La gestione del carico di lavoro di SQL Data Warehouse è toohelp previsto è supportare ambienti con più utenti. Non è concepita per i carichi di lavoro multi-tenant.
+Per fornire prestazioni stimabili e scalabili, Microsoft Azure SQL Data Warehouse consente di controllare i livelli di concorrenza e le allocazioni di risorse, come la memoria e la classificazione in ordine di priorità della CPU. Questo articolo introduce i concetti di gestione della concorrenza e del carico di lavoro, spiegando in che modo entrambe le funzionalità sono state implementate e come vengono controllate nel data warehouse. La gestione del carico di lavoro di SQL Data Warehouse è concepita per facilitare il supporto di ambienti multiutente. Non è concepita per i carichi di lavoro multi-tenant.
 
 ## <a name="concurrency-limits"></a>Limiti di concorrenza
-SQL Data Warehouse consente di too1, 024 connessioni simultanee. Tutte le 1.024 connessioni possono inviare query contemporaneamente. Tuttavia, toooptimize una velocità effettiva, SQL Data Warehouse può accodare tooensure alcune query che una concessione di memoria minima assegnata a ogni query. L'accodamento avviene in fase di esecuzione della query. Dalle query di accodamento dei messaggi quando vengono raggiunti i limiti, concorrenza SQL Data Warehouse è possibile aumentare velocità effettiva totale per garantire che query attive toocritically di accesso necessarie risorse di memoria.  
+SQL Data Warehouse consente un massimo di 1.024 connessioni simultanee. Tutte le 1.024 connessioni possono inviare query contemporaneamente. Tuttavia, per ottimizzare la velocità effettiva, SQL Data Warehouse può accodare alcune query per garantire che a ognuna venga assegnata una concessione di memoria minima. L'accodamento avviene in fase di esecuzione della query. Accodando le query quando vengono raggiunti i limiti di concorrenza, SQL Data Warehouse è in grado di aumentare la velocità effettiva totale, assicurando che le query attive ottengano l'accesso alle risorse di memoria critiche necessarie.  
 
-I limiti di concorrenza sono regolati da due concetti, *query simultanee* e *slot di concorrenza*. Per tooexecute una query, deve essere eseguito entro il limite di concorrenza delle query hello sia allocazione slot di concorrenza hello.
+I limiti di concorrenza sono regolati da due concetti, *query simultanee* e *slot di concorrenza*. Perché una query venga eseguita, è necessario che rientri nel limite di concorrenza delle query e nell'allocazione di slot di concorrenza.
 
-* Le query simultanee sono query hello in esecuzione in hello stesso tempo. SQL Data Warehouse supporta le query simultanee di too32 su dimensioni maggiori del numero di DWU hello.
-* In base alle Unità Data Warehouse (DWU), vengono allocati slot di concorrenza. Ogni 100 DWU, vengono forniti 4 slot di concorrenza. Ad esempio, per DW100 vengono allocati 4 slot di concorrenza e per DW1000 ne vengono allocati 40. Ogni query utilizza uno o più concorrenza slot, dipende hello [classe di risorse](#resource-classes) di query hello. Query in esecuzione in una classe di risorse smallrc hello utilizzano uno slot di concorrenza. Le query in esecuzione in una classe di risorse superiore usano più slot di concorrenza.
+* Le query simultanee sono le query in esecuzione contemporaneamente. SQL Data Warehouse supporta fino a 32 query simultanee nelle DWU di dimensioni maggiori.
+* In base alle Unità Data Warehouse (DWU), vengono allocati slot di concorrenza. Ogni 100 DWU, vengono forniti 4 slot di concorrenza. Ad esempio, per DW100 vengono allocati 4 slot di concorrenza e per DW1000 ne vengono allocati 40. Ogni query utilizza uno o più slot di concorrenza, a seconda della [classe di risorse](#resource-classes) della query. Le query in esecuzione nella classe di risorse smallrc utilizzano uno slot di concorrenza. Le query in esecuzione in una classe di risorse superiore usano più slot di concorrenza.
 
-Hello nella tabella seguente descrive i limiti di hello per le query simultanee e slot di concorrenza in hello diverse dimensioni DWU.
+La tabella seguente descrive i limiti sia per le query simultanee che per gli slot di concorrenza a seconda delle dimensioni della DWU.
 
 ### <a name="concurrency-limits"></a>Limiti di concorrenza
 | DWU | Numero massimo di query simultanee | Numero di slot di concorrenza allocati |
@@ -50,21 +50,21 @@ Hello nella tabella seguente descrive i limiti di hello per le query simultanee 
 | DW3000 |32 |120 |
 | DW6000 |32 |240 |
 
-Quando viene raggiunta una di queste soglie, le nuove query vengono accodate e vengono eseguite in base al principio FIFO (First-In-First-Out).  Come al termine di una query e hello query e slot scende di sotto dei limiti di hello, vengono rilasciate le query in coda. 
+Quando viene raggiunta una di queste soglie, le nuove query vengono accodate e vengono eseguite in base al principio FIFO (First-In-First-Out).  Al termine dell'esecuzione delle query e quando il numero di query e di slot risulta inferiore ai limiti, le code accodate vengono rilasciate. 
 
 > [!NOTE]  
-> *Selezionare* query esecuzione esclusivamente su viste a gestione dinamica (DMV) o viste del catalogo non dipendono da uno qualsiasi dei limiti di concorrenza hello. È possibile monitorare il sistema hello indipendentemente dal numero di hello di query in esecuzione su di esso.
+> *selezione* eseguite esclusivamente sulle viste del catalogo o sulle viste a gestione dinamica (DMV) non sono disciplinate da nessuno dei limiti di concorrenza. È possibile monitorare il sistema indipendentemente dal numero di query in esecuzione nel sistema.
 > 
 > 
 
 ## <a name="resource-classes"></a>Classi di risorse
-Risorsa classi consente di controllare l'allocazione della memoria e cicli di CPU tooa query specificati. È possibile assegnare due tipi di risorsa classi tooa utente nel formato hello dei ruoli predefiniti del database. Hello due tipi di classi di risorse sono i seguenti:
-1. Classi di risorse dinamiche (**smallrc, mediumrc, largerc, xlargerc**) allocare una quantità di memoria a seconda di hello variabile DWU corrente. Ciò significa che quando si aumenta il backup tooa DWU più grandi, le query ottengono automaticamente maggiore quantità di memoria. 
-2. Le classi di risorse statiche (**staticrc10, staticrc20, staticrc30, staticrc40, staticrc50, staticrc60, staticrc70, staticrc80**) allocare hello stessa quantità di memoria indipendentemente dal valore hello DWU corrente (purché hello DWU stesso disponga di sufficiente memoria). Ciò significa che nelle DWU più grandi è possibile eseguire più query in ogni classe di risorse contemporaneamente.
+Attraverso le classi di risorse è possibile controllare l'allocazione di memoria e cicli di CPU assegnati a una query. È possibile assegnare due tipi di classi di risorse a un utente sotto forma di ruoli del database. I due tipi di classi di risorse sono i seguenti:
+1. Classi di risorse dinamiche (**smallrc, mediumrc, largerc, xlargerc**), che allocano una quantità variabile di memoria a seconda della DWU corrente. Ciò significa che quando si passa a una DWU più grande, le query ottengono automaticamente più memoria. 
+2. Classi di risorse statiche (**staticrc10, staticrc20, staticrc30, staticrc40, staticrc50, staticrc60, staticrc70, staticrc80**), che allocano la stessa quantità di memoria indipendentemente dalla DWU corrente (a condizione che la DWU stessa abbia memoria sufficiente). Ciò significa che nelle DWU più grandi è possibile eseguire più query in ogni classe di risorse contemporaneamente.
 
-Agli utenti delle classi **smallrc** e **staticrc10** viene assegnata una quantità di memoria più piccola e ciò permette di sfruttare una concorrenza maggiore. Al contrario, gli utenti assegnati troppo**xlargerc** o **staticrc80** figurano grandi quantità di memoria, e pertanto meno le query possono essere eseguiti contemporaneamente.
+Agli utenti delle classi **smallrc** e **staticrc10** viene assegnata una quantità di memoria più piccola e ciò permette di sfruttare una concorrenza maggiore. Al contrario, agli utenti delle classi **xlargerc** e **staticrc80** vengono assegnate grandi quantità di memoria e quindi è possibile eseguire contemporaneamente un numero minore di query.
 
-Per impostazione predefinita, ogni utente è un membro di classe di risorse ridotto hello, **smallrc**. Hello procedure `sp_addrolemember` è utilizzata una classe di risorse tooincrease hello e `sp_droprolemember` viene utilizzata una classe di risorse toodecrease hello. Ad esempio, questo comando potrebbe aumentare la classe di risorse hello di loaduser troppo**largerc**:
+Per impostazione predefinita, ogni utente è membro della classe di risorse piccola **smallrc**. Per aumentare la classe di risorse viene usata la procedura `sp_addrolemember`, mentre per diminuirla viene usata la procedura `sp_droprolemember`. Questo comando, ad esempio, assegna a loaduser una classe di risorse superiore, **largerc**:
 
 ```sql
 EXEC sp_addrolemember 'largerc', 'loaduser'
@@ -73,24 +73,24 @@ EXEC sp_addrolemember 'largerc', 'loaduser'
 
 ### <a name="queries-that-do-not-honor-resource-classes"></a>Query che non rispettano le classi di risorse
 
-Esistono alcuni tipi di query che non traggono vantaggio da un'allocazione di memoria maggiore. sistema Hello ignora l'allocazione di classe di risorse e sempre esecuzione queste query nella classe di risorse ridotto hello invece. Se tali query vengono eseguite sempre nella classe di risorse ridotto hello, essi possono verificarsi quando gli slot di concorrenza sono sotto pressione e non utilizzano più slot quelle necessarie. Vedere [Eccezioni della classe di risorse](#query-exceptions-to-concurrency-limits) per ulteriori informazioni.
+Esistono alcuni tipi di query che non traggono vantaggio da un'allocazione di memoria maggiore. Il sistema ignora l'allocazione della classe di risorse ed esegue sempre queste query nella classe di risorse piccola. Se queste query vengono eseguite sempre nella classe di risorse piccola, è possibile eseguirle quando gli slot di concorrenza sono sotto pressione, per non consumare più slot del necessario. Vedere [Eccezioni della classe di risorse](#query-exceptions-to-concurrency-limits) per ulteriori informazioni.
 
 ## <a name="details-on-resource-class-assignment"></a>Dettagli sull'assegnazione della classe di risorse
 
 
 Altri dettagli sulla classe di risorse:
 
-* *Modificare ruolo* è necessaria l'autorizzazione classe di risorse toochange hello di un utente.
-* Sebbene sia possibile aggiungere un utente tooone o più classi di risorse superiore hello, classi di risorse dinamiche hanno la precedenza sulle classi di risorse statiche. Ovvero, se un utente è assegnato tooboth **mediumrc**(dinamico) e **staticrc80**(statico), **mediumrc** è una classe di risorse hello che viene rispettato.
- * Quando un utente viene assegnato toomore classe di una risorsa in un tipo di classe di risorse (più di una classe di risorse dinamiche o più di una classe di risorse statiche), classe di risorse massimo hello viene rispettata. Ovvero, se un utente è assegnato largerc e tooboth mediumrc, classe di risorse superiore hello (largerc) viene rispettata. E se un utente è assegnato tooboth **staticrc20** e **statirc80**, **staticrc80** viene tenuto in considerazione.
-* Impossibile modificare la classe di risorse Hello di utente amministratore di sistema hello.
+* *Ruolo Alter* è obbligatoria per modificare la classe di risorse di un utente.
+* Anche se è possibile aggiungere un utente a una o più classi di risorse superiori, le classi di risorse dinamiche hanno la precedenza su quelle statiche. Ciò significa che se un utente viene assegnato a entrambe le classi **mediumrc**(dinamica) e **staticrc80**(statica), la precedenza va a **mediumrc**.
+ * Quando un utente è assegnato a più di una classe di risorse in un tipo di classe di risorse specifico (più classi di risorse dinamiche o più classi di risorse statiche), la precedenza va alla classe di risorse superiore. Ciò significa che se un utente viene assegnato a entrambe le classi mediumrc e largerc, la precedenza va alla classe di risorse superiore (largerc). Se un utente viene assegnato a entrambe le classi **staticrc20** e **statirc80**, la precedenza va a **staticrc80**.
+* La classe di risorse dell'utente amministratore di sistema non può essere modificata.
 
 Per un esempio dettagliato, vedere [Esempio di modifica della classe di risorse di un utente](#changing-user-resource-class-example).
 
 ## <a name="memory-allocation"></a>Allocazione della memoria
-Esistono vantaggi e svantaggi tooincreasing classe di risorse dell'utente. Sebbene l'aumento di una classe di risorse per un utente, le query offre memoria toomore di accesso, che può indicare le query eseguite più velocemente.  Tuttavia, le classi di risorse superiore riducono il numero di hello di query simultanee che è possibile eseguire. Si tratta di compromesso hello tra allocare grandi quantità di singola query di memoria tooa o consentire altre query, nonché le allocazioni di memoria, toorun contemporaneamente. Se un utente di elevata allocazioni di memoria per una query, gli altri utenti non potranno toothat accesso stesso memoria toorun una query.
+Esistono vantaggi e svantaggi legati all'incremento della classe di risorse dell'utente. Spostando un utente a una classe di risorse superiore, si consente alle rispettive query di accedere a una quantità maggiore di memoria e quindi l'esecuzione delle query è più rapida.  Una quantità maggiore di classi di risorse, tuttavia, riduce anche il numero di query simultanee che è possibile eseguire. Questo è il compromesso tra il fatto di allocare grandi quantità di memoria a una singola query o consentire l'esecuzione simultanea di altre query che necessitano di allocazioni di memoria. Se a un utente vengono allocate grandi quantità di memoria per una query, gli altri utenti non potranno accedere alla stessa memoria per eseguire una query.
 
-Hello nella tabella seguente viene eseguito il mapping hello memoria distribuzione tooeach dalla classe DWU e risorse.
+Nella tabella seguente la memoria allocata è associata a ogni distribuzione per classe DWU e classe di risorse.
 
 ### <a name="memory-allocations-per-distribution-for-dynamic-resource-classes-mb"></a>Allocazioni di memoria per ogni distribuzione per le classi di risorse dinamiche (MB)
 | DWU | smallrc | mediumrc | largerc | xlargerc |
@@ -108,7 +108,7 @@ Hello nella tabella seguente viene eseguito il mapping hello memoria distribuzio
 | DW3000 |100 |1.600 |3.200 |6.400 |
 | DW6000 |100 |3.200 |6.400 |12.800 |
 
-Hello nella tabella seguente viene eseguito il mapping hello memoria distribuzione tooeach DWU e classe di risorse statiche. Si noti che le classi di risorse superiore hello abbiano la memoria ridotti i limiti DWU toohonor hello globali.
+La tabella seguente indica la memoria allocata a ogni distribuzione in base alla DWU e alla classe di risorse statica. Si noti che le classi di risorse superiori hanno memoria ridotta per rispettare i limiti delle DWU globali.
 
 ### <a name="memory-allocations-per-distribution-for-static-resource-classes-mb"></a>Allocazioni di memoria per ogni distribuzione per le classi di risorse statiche (MB)
 | DWU | staticrc10 | staticrc20 | staticrc30 | staticrc40 | staticrc50 | staticrc60 | staticrc70 | staticrc80 |
@@ -126,7 +126,7 @@ Hello nella tabella seguente viene eseguito il mapping hello memoria distribuzio
 | DW3000 |100 |200 |400 |800 |1.600 |3.200 |6.400 |6.400 |
 | DW6000 |100 |200 |400 |800 |1.600 |3.200 |6.400 |12.800 |
 
-Da hello nella tabella precedente, è possibile vedere che una query in esecuzione in un DW2000 in hello **xlargerc** classe di risorse avrebbe accesso too6, 400 MB di memoria all'interno di ogni database distribuiti 60 hello.  In SQL Data Warehouse sono presenti 60 distribuzioni. Allocazione di memoria totale hello toocalculate per una query in una classe di risorse specifico, hello sopra i valori, pertanto, deve essere moltiplicata per 60.
+Come si può notare nella tabella precedente, una query in esecuzione in DW2000 nella classe di risorse **xlargerc** avrà accesso a 6.400 MB di memoria in ognuno dei 60 database distribuiti.  In SQL Data Warehouse sono presenti 60 distribuzioni. Per calcolare quindi l'allocazione totale di memoria per una query in una classe di risorse specifica, è necessario moltiplicare per 60 i valori precedenti.
 
 ### <a name="memory-allocations-system-wide-gb"></a>Allocazioni di memoria a livello di sistema (GB)
 | DWU | smallrc | mediumrc | largerc | xlargerc |
@@ -144,12 +144,12 @@ Da hello nella tabella precedente, è possibile vedere che una query in esecuzio
 | DW3000 |6 |94 |188 |375 |
 | DW6000 |6 |188 |375 |750 |
 
-Da questa tabella delle allocazioni di memoria a livello di sistema, è possibile notare che una query in esecuzione in un DW2000 nella classe della risorsa xlargerc hello viene allocata un totale di 375 GB di memoria (MB * 60 6.400 distribuzioni / 1.024 tooconvert tooGB) su interamente hello del proprio SQL Data Warehouse.
+Come si può notare in questa tabella di allocazioni di memoria a livello di sistema, a una query in esecuzione in DW2000 nella classe di risorse xlargerc viene allocato un totale di 375 GB di memoria (6.400 MB * 60 distribuzioni/1.024 per la conversione in GB) nell'intero SQL Data Warehouse.
 
-Hello stesso calcolo si applica toostatic classi di risorse.
+Lo stesso calcolo si applica alle classi di risorse statiche.
  
 ## <a name="concurrency-slot-consumption"></a>Utilizzo di slot di concorrenza  
-SQL Data Warehouse concede tooqueries di memoria più in esecuzione in più classi di risorse. La memoria è una risorsa fissa.  Pertanto, hello maggiore quantità di memoria allocata per ogni query, hello possono eseguire un minor numero di query simultanee. Hello nella tabella seguente sono reiterates tutti hello concetti precedente in una singola visualizzazione che mostra il numero di hello di slot di concorrenza disponibili da DWU e slot hello utilizzato da ogni classe di risorse.  
+SQL Data Warehouse concede più memoria alle query in esecuzione nelle classi di risorse più grandi. La memoria è una risorsa fissa.  Maggiore sarà la quantità di memoria allocata per ogni query, quindi, minore sarà il numero di richieste simultanee che è possibile eseguire. La tabella seguente riprende tutti i concetti descritti finora in un'unica rappresentazione che mostra il numero di slot di concorrenza disponibili per DWU e gli slot usati da ogni classe di risorse.  
 
 ### <a name="allocation-and-consumption-of-concurrency-slots-for-dynamic-resource-classes"></a>Allocazione e consumo degli slot di concorrenza per le classi di risorse dinamiche  
 | DWU | Numero massimo di query simultanee | Numero di slot di concorrenza allocati | Slot utilizzati da smallrc | Slot utilizzati da mediumrc | Slot utilizzati da largerc | Slot utilizzati da xlargerc |
@@ -183,50 +183,50 @@ SQL Data Warehouse concede tooqueries di memoria più in esecuzione in più clas
 | DW3000 | 32| 120| 1| 2| 4| 8| 16| 32| 64| 64|
 | DW6000 | 32| 240| 1| 2| 4| 8| 16| 32| 64| 128|
 
-Come si può notare da queste tabelle, l'esecuzione di SQL Data Warehouse come DW1000 alloca un massimo di 32 query simultanee e un totale di 40 slot di concorrenza. Se l'esecuzione avviene da parte di tutti gli utenti nella classe smallrc, vengono consentite 32 query simultanee, poiché ognuna richiede 1 slot di concorrenza. Se tutti gli utenti di un DW1000 erano in esecuzione in mediumrc, ogni query viene allocata 800 MB per ogni distribuzione di un'allocazione di memoria totale di 47 GB per ogni query e concorrenza sarebbe utenti too5 limitato (40 slot concorrenza slot 8 per ogni utente mediumrc /).
+Come si può notare da queste tabelle, l'esecuzione di SQL Data Warehouse come DW1000 alloca un massimo di 32 query simultanee e un totale di 40 slot di concorrenza. Se l'esecuzione avviene da parte di tutti gli utenti nella classe smallrc, vengono consentite 32 query simultanee, poiché ognuna richiede 1 slot di concorrenza. Se l'esecuzione avviene da parte di tutti gli utenti di un DW1000 in una classe mediumrc, per ogni query vengono allocati 800 MB a distribuzione, per un'allocazione di memoria totale pari a 47 GB per query, mentre il numero degli utenti simultanei viene limitato a 5 (40 slot di concorrenza, 8 per ogni utente mediumrc).
 
 ## <a name="selecting-proper-resource-class"></a>Scelta della classe di risorse appropriata  
-Una buona norma è una classe di risorse tooa toopermanently assegnare gli utenti, anziché modificare le classi di risorse. Ad esempio, le tabelle columnstore tooclustered di carichi di creare gli indici di qualità superiore quando allocata più memoria. tooensure che dispongono di accesso toohigher memoria carichi, creare un utente in modo specifico per il caricamento dei dati e assegnata in modo permanente questa classe di risorse utente tooa superiore.
-Esistono un paio di procedure consigliate, toofollow qui. Come indicato in precedenza, SQL Data Warehouse supporta due tipi di classi di risorse: le classi di risorse statiche e quelle dinamiche.
+È buona norma assegnare in modo permanente gli utenti a una classe di risorse invece di modificare la classe di risorse degli utenti. I caricamenti in tabelle columnstore cluster, ad esempio, creano indici di qualità superiore quando viene allocata una quantità di memoria maggiore. Per assicurarsi che caricamenti abbiano accesso alla memoria superiore, creare un utente specifico per il caricamento dei dati e assegnare permanentemente a questo utente una classe di risorse superiore.
+Ci sono alcune procedure consigliate da seguire. Come indicato in precedenza, SQL Data Warehouse supporta due tipi di classi di risorse: le classi di risorse statiche e quelle dinamiche.
 ### <a name="loading-best-practices"></a>Procedure consigliate per il caricamento
-1.  Se le aspettative hello caricamenti regolari quantità di dati, una classe di risorse statiche è una scelta ottimale. In un secondo momento, quando la scalabilità verticale tooget ulteriori capacità di calcolo, data warehouse di hello sarà in grado di toorun simultanea di più query out-of-the-box, come l'utente hello non utilizzata più memoria.
-2.  Se le aspettative hello Carica più grande in alcuni casi, una classe di risorse dinamiche è una scelta ottimale. In un secondo momento, nel caso di aumento tooget maggiore potenza di calcolo, hello carico utente riceverà più memoria out-of-the-box, pertanto consentendo hello carico tooperform più velocemente.
+1.  Se si prevedono caricamenti con quantità di dati regolari, una classe di risorse statica è una scelta appropriata. In un secondo momento, quando si aumenteranno le prestazioni per ottenere maggiore potenza di calcolo, il data warehouse potrà eseguire più query simultanee per impostazione predefinita, in quanto l'utente che esegue il caricamento non utilizza più memoria.
+2.  Se si prevedono caricamenti di entità più grande in alcune occasioni, una classe di risorse dinamica è una scelta appropriata. In un secondo momento, quando si aumenteranno le prestazioni per ottenere maggiore potenza di calcolo, l'utente che esegue il caricamento riceverà più memoria per impostazione predefinita, pertanto i tempi di caricamento saranno più rapidi.
 
-Hello carichi tooprocess memoria necessaria in modo efficiente dipende dalla natura hello della tabella hello caricata e quantità hello dei dati elaborati. Ad esempio, il caricamento di dati nelle tabelle CCI richiede che alcuni gruppi di righe di memoria toolet CCI raggiungere validità. Per ulteriori informazioni, vedere gli indici Columnstore hello - Guida di caricamento dei dati.
+La memoria necessaria per elaborare in modo efficiente i caricamenti dipende dalla natura della tabella caricata e dalla quantità di dati elaborati. Ad esempio, il caricamento di dati nelle tabelle CCI richiede una determinata quantità di memoria per consentire l'ottimizzazione per i rowgroup CCI. Per altre informazioni, vedere le indicazioni relative a indici columnstore e caricamento di dati.
 
-Come procedura consigliata, si consiglia di toouse almeno 200MB di memoria per i caricamenti.
+Come procedura consigliata, si consiglia di usare almeno 200 MB di memoria per i caricamenti.
 
 ### <a name="querying-best-practices"></a>Procedure consigliate per le query
-Le query hanno diversi requisiti a seconda della complessità. Aumentare la memoria per ogni query o ad aumentare la concorrenza hello sono entrambi tooaugment validi velocità effettiva globale a seconda delle esigenze di query hello.
-1.  Se le aspettative hello sono query complesse, regolare (ad esempio, toogenerate report giornaliero e settimanale) e non richiedono alcun vantaggio tootake di concorrenza, una classe di risorse dinamiche è una scelta ottimale. Se hello sistema dispone di ulteriori dati tooprocess, l'aumento di data warehouse di hello verrà pertanto automaticamente fornire più memoria toohello utente che esegue query hello.
-2.  Se le aspettative hello sono modelli di concorrenza diurna o variabile (ad esempio se viene eseguita una query di database hello tramite un web su vasta scala accessibile dell'interfaccia utente), una classe di risorse statiche è una scelta ottimale. In un secondo momento, nel caso di aumento warehouse toodata utente hello associata alla classe di risorse statiche hello verrà automaticamente essere in grado di toorun simultanea di più query.
+Le query hanno diversi requisiti a seconda della complessità. L'aumento della memoria per ogni query o l'aumento della concorrenza sono entrambi metodi validi per aumentare la velocità effettiva globale a seconda delle esigenze di query.
+1.  Se si prevedono query regolari complesse (ad esempio per generare report giornalieri e settimanali) e non è necessario sfruttare la concorrenza, una classe di risorse dinamica è una scelta appropriata. Se il sistema ha più dati da elaborare, un aumento delle prestazioni del data warehouse fornisce automaticamente più memoria per l'utente che esegue la query.
+2.  Se si prevedono modelli di concorrenza variabili o giornalieri (ad esempio se vengono eseguite query sul database tramite un'interfaccia utente Web accessibile su vasta scala), una classe di risorse statica è una scelta appropriata. In un secondo momento, quando si aumenteranno le prestazioni del data warehouse, l'utente associato alla classe di risorse statica potrà eseguire automaticamente un numero maggiore di query simultanee.
 
-Selezionando concessione di memoria appropriata a seconda delle necessità di hello della query è considerevole, in quanto dipende molti fattori, ad esempio quantità hello di dati sottoposti a query, natura hello gli schemi di tabella hello e vari join, selezione e predicati di gruppo. Dal punto di vista generale, allocazione di ulteriore memoria consentirà toocomplete query più veloce, ma consentirebbe di ridurre hello concorrenza complessiva. Se la concorrenza non è un problema, un'allocazione eccessiva di memoria non causa alcun danno. velocità effettiva toofine ottimizzazione, durante il tentativo varie caratteristiche di classi di risorse potrebbe essere necessario.
+La selezione di una concessione di memoria appropriata a seconda delle esigenze della query non è semplice, perché dipende da molti fattori, come la quantità di dati sottoposti a query, la natura degli schemi di tabella e i vari predicati di gruppo, selezione e join. Dal punto di vista generale, l'allocazione di più memoria consente tempi più rapidi per il completamento delle query, ma riduce la concorrenza complessiva. Se la concorrenza non è un problema, un'allocazione eccessiva di memoria non causa alcun danno. Per ottimizzare la velocità effettiva, potrebbe essere necessario provare diversi tipi di classi di risorse.
 
-È possibile utilizzare hello seguente stored procedure toofigure out concessione di memoria e concorrenza per ogni classe di risorse in corrispondenza di una determinata SLO e hello più vicino migliore classe di risorse per operazioni CCI con uso intensivo della memoria nella tabella non partizionata di CCI in una classe di risorse specificato:
+È possibile usare la stored procedure seguente per ottenere informazioni sulla concorrenza e sulla concessione di memoria per ogni classe di risorse in un determinato SLO e sulla classe di risorse migliore possibile per operazioni CCI a elevato utilizzo di memoria su una tabella CCI non partizionata con una classe di risorse specifica:
 
 #### <a name="description"></a>Descrizione:  
-Ecco scopo hello della stored procedure:  
-1. toohelp utente individuare concessione di memoria e concorrenza per ogni classe di risorse in un determinato SLO. Utente deve tooprovide NULL per lo schema e tablename per questo oggetto, come illustrato nel seguente esempio hello.  
-2. utente toohelp scoprire hello più vicino migliore classe di risorse per hello memoria intensed operazioni CCI (caricamento, la tabella di copia, ricompilazione dell'indice e così via) nella tabella non partizionata di CCI in una classe di risorse specificato. Hello stored procedure utilizza toofind dello schema di tabella out hello concessione di memoria necessaria per questo oggetto.
+Ecco lo scopo della stored procedure:  
+1. Aiutare l'utente a ottenere informazioni sulla concorrenza e sulla concessione di memoria per ogni classe di risorse in un determinato SLO. L'utente deve specificare NULL sia per lo schema che per il nome di tabella, come illustrato nell'esempio seguente.  
+2. Aiutare l'utente a ottenere informazioni sulla classe di risorse migliore possibile per operazioni CCI a elevato utilizzo di memoria (caricamento, copia di tabelle, ricompilazione dell'indice e così via) su una tabella CCI non partizionata con una classe di risorse specifica. La stored procedure usa lo schema di tabella per individuare la concessione di memoria necessaria.
 
 #### <a name="dependencies--restrictions"></a>Dipendenze e restrizioni:
-- Questa stored procedure non è il requisito di memoria toocalculate progettato per la tabella partizionata indice ColumnStore cluster.    
-- Questa stored procedure non accetta requisito di memoria in considerazione per hello della parte SELECT di un'istruzione CTAS/INSERT-SELECT e presume che sia toobe un'istruzione SELECT semplice.
-- Questa stored procedure utilizza una tabella temporanea in modo utilizzabile nella sessione hello in cui è stata creata questa stored procedure.    
-- Questa stored procedure dipende da hello attuali offerte (ad esempio, la configurazione hardware, configurazione DMS) e se uno qualsiasi di tale modifica quindi questa stored procedure non funzionerà correttamente.  
+- Questa stored procedure non è progettata per calcolare i requisiti di memoria per una tabella CCI partizionata.    
+- Questa stored procedure non prende in considerazione i requisiti di memoria per la parte SELECT di un'istruzione CTAS/INSERT-SELECT e presuppone che si tratti di un'istruzione SELECT semplice.
+- Questa stored procedure usa una tabella temporanea che quindi può essere usata nella sessione in cui è stata creata la stored procedure.    
+- Questa stored procedure dipende dalle risorse correnti (ad esempio, configurazione hardware e configurazione DMS) e in caso di modifiche non funziona più correttamente.  
 - Questa stored procedure dipende dal limite di concorrenza esistente e in caso di modifiche non funziona più correttamente.  
 - Questa stored procedure dipende dalle classi di risorse esistenti e in caso di modifiche non funziona più correttamente.  
 
 >  [!NOTE]  
->  Se non si ottiene alcun output dopo l'esecuzione della stored procedure con i parametri forniti, i motivi potrebbero essere due. <br />1. Uno dei parametri di Data Warehouse contiene un valore SLO non valido <br />2. OPPURE non ci sono classi di risorse corrispondenti per l'operazione CCI se è stato fornito il nome della tabella. <br />Ad esempio, DW100, concessione di memoria massima disponibile è 400MB e se lo schema della tabella è di tipo wide sufficiente toocross hello requisito di 400MB.
+>  Se non si ottiene alcun output dopo l'esecuzione della stored procedure con i parametri forniti, i motivi potrebbero essere due. <br />1. Uno dei parametri di Data Warehouse contiene un valore SLO non valido <br />2. OPPURE non ci sono classi di risorse corrispondenti per l'operazione CCI se è stato fornito il nome della tabella. <br />Ad esempio, con DW100, la concessione di memoria massima disponibile è 400 MB e lo schema di tabella è sufficientemente ampio per soddisfare il requisito di 400 MB.
       
 #### <a name="usage-example"></a>Esempio d'uso:
 Sintassi:  
 `EXEC dbo.prc_workload_management_by_DWU @DWU VARCHAR(7), @SCHEMA_NAME VARCHAR(128), @TABLE_NAME VARCHAR(128)`  
-1. @DWU:Fornire un tooextract di parametro NULL hello DWU corrente dal database di data Warehouse hello o fornire qualsiasi supportato DWU sotto forma di hello di 'DW100'
-2. @SCHEMA_NAME:Specificare un nome di schema della tabella hello
-3. @TABLE_NAME:Specificare un nome di tabella di interesse hello
+1. @DWU: Fornire un parametro NULL per estrarre la DWU corrente dal database di Data Warehouse oppure fornire una DWU supportata nel formato "DW100"
+2. @SCHEMA_NAME: Fornire un nome di schema della tabella
+3. @TABLE_NAME: Fornire un nome di tabella
 
 Esempi di esecuzione di questa stored procedure:  
 ```sql  
@@ -236,10 +236,10 @@ EXEC dbo.prc_workload_management_by_DWU 'DW6000', NULL, NULL;
 EXEC dbo.prc_workload_management_by_DWU NULL, NULL, NULL;  
 ```
 
-È stato possibile creare Table1 utilizzato in hello esempi sopra riportati come indicato di seguito:  
+La tabella Table1 usata negli esempi precedenti può venire creata come indicato di seguito:  
 `CREATE TABLE Table1 (a int, b varchar(50), c decimal (18,10), d char(10), e varbinary(15), f float, g datetime, h date);`
 
-#### <a name="heres-hello-stored-procedure-definition"></a>Ecco hello stored procedure definizione:
+#### <a name="heres-the-stored-procedure-definition"></a>Ecco la definizione della stored procedure:
 ```sql  
 -------------------------------------------------------------------------------
 -- Dropping prc_workload_management_by_DWU procedure if it exists.
@@ -259,7 +259,7 @@ CREATE PROCEDURE dbo.prc_workload_management_by_DWU
 AS
 IF @DWU IS NULL
 BEGIN
--- Selecting proper DWU for hello current DB if not specified.
+-- Selecting proper DWU for the current DB if not specified.
 SET @DWU = (
   SELECT 'DW'+CAST(COUNT(*)*100 AS VARCHAR(10))
   FROM sys.dm_pdw_nodes
@@ -271,7 +271,7 @@ SET @DWU_NUM = CAST (SUBSTRING(@DWU, 3, LEN(@DWU)-2) AS INT)
 
 -- Raise error if either schema name or table name is supplied but not both them supplied
 --IF ((@SCHEMA_NAME IS NOT NULL AND @TABLE_NAME IS NULL) OR (@TABLE_NAME IS NULL AND @SCHEMA_NAME IS NOT NULL))
---     RAISEERROR('User need toosupply either both Schema Name and Table Name or none of them')
+--     RAISEERROR('User need to supply either both Schema Name and Table Name or none of them')
        
 -- Dropping temp table if exists.
 IF OBJECT_ID('tempdb..#ref') IS NOT NULL
@@ -279,7 +279,7 @@ BEGIN
   DROP TABLE #ref;
 END
 
--- Creating ref. temptable (CTAS) toohold mapping info.
+-- Creating ref. temptable (CTAS) to hold mapping info.
 -- CREATE TABLE #ref
 CREATE TABLE #ref
 WITH (DISTRIBUTION = ROUND_ROBIN)
@@ -316,7 +316,7 @@ AS
   UNION ALL
     SELECT 'DW6000', 32, 240, 1, 32, 64, 128, 1, 2, 4, 8, 16, 32, 64, 128
 )
--- Creating workload mapping tootheir corresponding slot consumption and default memory grant.
+-- Creating workload mapping to their corresponding slot consumption and default memory grant.
 ,map
 AS
 (
@@ -554,11 +554,11 @@ GO
 ```
 
 ## <a name="query-importance"></a>Priorità delle query
-SQL Data Warehouse implementa le classi di risorse utilizzando i gruppi del carico di lavoro. Sono disponibili un totale di otto gruppi di carico di lavoro che controllano il comportamento di hello delle classi di risorse hello hello diverse dimensioni DWU. Per qualsiasi numero di DWU SQL Data Warehouse viene utilizzato solo quattro delle otto gruppi di carico di lavoro hello. Ciò è utile perché ogni gruppo di carico di lavoro viene assegnato tooone di quattro classi di risorse: smallrc mediumrc, largerc, o xlargerc. Hello importanza delle informazioni sui gruppi del carico di lavoro hello è che alcuni di questi gruppi di carico di lavoro siano impostate toohigher *importanza*. La priorità viene usata per la pianificazione della CPU. Le query eseguite con priorità alta otterranno tre volte più cicli della CPU rispetto a quelle con priorità media. Di conseguenza, i mapping degli slot della concorrenza determinano anche la priorità della CPU. Quando una query utilizza 16 o più slot, viene eseguita con priorità alta.
+SQL Data Warehouse implementa le classi di risorse utilizzando i gruppi del carico di lavoro. Esistono in totale otto gruppi di carichi di lavoro che controllano il comportamento delle classi di risorse nelle DWU di varie dimensioni. Per qualsiasi DWU, SQL Data Warehouse usa solo quattro degli otto gruppi del carico di lavoro. Il senso di questo approccio è assegnare a ogni gruppo di carichi di lavoro una delle quattro classi di risorse, tra smallrc, mediumrc, largerc o xlargerc. È importante comprendere per alcuni gruppi di carichi di lavoro viene impostato il livello di *priorità*più elevato. La priorità viene usata per la pianificazione della CPU. Le query eseguite con priorità alta otterranno tre volte più cicli della CPU rispetto a quelle con priorità media. Di conseguenza, i mapping degli slot della concorrenza determinano anche la priorità della CPU. Quando una query utilizza 16 o più slot, viene eseguita con priorità alta.
 
-Hello nella tabella seguente sono illustrati i mapping di importanza hello per ogni gruppo di carico di lavoro.
+Nella tabella seguente vengono riportati i mapping di priorità per ogni gruppo di carichi di lavoro.
 
-### <a name="workload-group-mappings-tooconcurrency-slots-and-importance"></a>Importanza e slot tooconcurrency mapping di gruppo del carico di lavoro
+### <a name="workload-group-mappings-to-concurrency-slots-and-importance"></a>Mapping dei gruppi di carichi di lavoro agli slot di concorrenza e relativa importanza
 | Gruppi di carichi di lavoro | Mapping degli slot di concorrenza | MB/Distribuzione | Mapping delle priorità |
 |:--- |:---:|:---:|:--- |
 | SloDWGroupC00 |1 |100 |Media |
@@ -570,9 +570,9 @@ Hello nella tabella seguente sono illustrati i mapping di importanza hello per o
 | SloDWGroupC06 |64 |6.400 |Alto |
 | SloDWGroupC07 |128 |12.800 |Alto |
 
-Da hello **allocazione e utilizzo di slot concorrenza** grafico, è possibile verificare che un DW500 Usa 1, 4, 8 o slot di concorrenza 16 per smallrc, mediumrc, largerc e xlargerc, rispettivamente. È possibile cercare i valori in hello precede l'importanza di hello toofind grafico per ogni classe di risorse.
+Come illustrato nel grafico **Allocation and consumption of concurrency slots** (Allocazione e utilizzo degli slot di concorrenza), DW500 utilizza 1, 4, 8 o 16 slot di concorrenza per smallrc, mediumrc, largerc e xlargerc rispettivamente. È possibile cercare questi valori nel grafico precedente per identificare la priorità di ciascuna classe di risorse.
 
-### <a name="dw500-mapping-of-resource-classes-tooimportance"></a>Mapping di DW500 di tooimportance classi di risorse
+### <a name="dw500-mapping-of-resource-classes-to-importance"></a>Mapping dell'importanza delle classi di risorse in DW500
 | classe di risorse | Gruppo del carico di lavoro | Numero di slot di concorrenza usati | MB/Distribuzione | priorità |
 |:--- |:--- |:---:|:---:|:--- |
 | smallrc |SloDWGroupC00 |1 |100 |Media |
@@ -588,7 +588,7 @@ Da hello **allocazione e utilizzo di slot concorrenza** grafico, è possibile ve
 | staticrc70 |SloDWGroupC03 |16 |1.600 |Alto |
 | staticrc80 |SloDWGroupC03 |16 |1.600 |Alto |
 
-È possibile utilizzare hello seguenti toolook query DMV in differenze hello nell'allocazione di risorse di memoria in modo dettagliato da prospettiva hello di carichi hello o tooanalyze active e cronologici l'utilizzo di gruppi di carico di lavoro hello. risoluzione dei problemi.
+Per esaminare in dettaglio le differenze nell'allocazione delle risorse di memoria dal punto di vista di resource governor o per analizzare l'utilizzo attivo e cronologico dei gruppi di carichi di lavoro in caso di risoluzione dei problemi, è possibile usare la query DMV seguente:
 
 ```sql
 WITH rg
@@ -637,9 +637,9 @@ ORDER BY
 ```
 
 ## <a name="queries-that-honor-concurrency-limits"></a>Query che rispettano i limiti di concorrenza
-La maggior parte delle query è regolata da classi di risorse. Queste query devono adattarsi all'interno di query simultanee hello e le soglie dello slot di concorrenza. L'utente non è possibile scegliere tooexclude una query dal modello di hello concorrenza slot.
+La maggior parte delle query è regolata da classi di risorse. Queste query devono rientrare in entrambe le soglie delle query simultanee e degli slot di concorrenza. Un utente può scegliere di escludere una query dal modello di slot di concorrenza.
 
-tooreiterate, hello istruzioni seguenti rispettano le classi di risorse:
+Le istruzioni seguenti rispettano le classi di risorse:
 
 * INSERT SELECT
 * AGGIORNAMENTO
@@ -652,12 +652,12 @@ tooreiterate, hello istruzioni seguenti rispettano le classi di risorse:
 * CREARE L'INDICE COLUMNSTORE CLUSTER
 * CREATE TABLE AS SELECT (CTAS)
 * Caricamento dei dati
-* Operazioni di spostamento dei dati eseguite dal servizio lo spostamento dei dati (DMS) hello
+* Operazioni di spostamento dati condotte dal Servizio di spostamento dati (DMS)
 
-## <a name="query-exceptions-tooconcurrency-limits"></a>Limiti tooconcurrency eccezioni di query
-Alcune query non rispettano risorse hello classe toowhich hello utente è assegnato. Questi limiti di concorrenza toohello le eccezioni vengono effettuati quando le risorse di memoria hello necessari per un particolare comando sono ridotte, spesso perché il comando hello è un'operazione di metadati. obiettivo di Hello di queste eccezioni è tooavoid maggiori delle allocazioni di memoria per le query che non saranno mai necessario. In questi casi, classe di risorse ridotto (smallrc) viene sempre utilizzata indipendentemente dalla classe di risorsa effettiva hello predefinito di hello assegnato toohello utente. Ad esempio, in smallrc verrà sempre eseguita `CREATE LOGIN` . Hello risorse richieste toofulfill questa operazione sono molto bassa, pertanto non rende la query di hello tooinclude senso nel modello di hello concorrenza slot.  Queste query non dipendono anche dal limite di 32 hello utente concorrenza, un numero illimitato di tali query è possibile eseguire backup toohello limite di sessioni di 1.024 sessioni.
+## <a name="query-exceptions-to-concurrency-limits"></a>Eccezioni query ai limiti di concorrenza
+Alcune query non rispettano la classe di risorse alla quale è assegnato l'utente. Queste eccezioni ai limiti di concorrenza vengono effettuate quando le risorse di memoria necessarie per un particolare comando sono basse, spesso perché il comando è un'operazione dei metadati. Con queste eccezioni, si intende evitare l'allocazione di più memoria alle query che non ne hanno bisogno. In questi casi, viene sempre usata la classe di risorse piccola predefinita (smallrc), indipendentemente dalla classe di risorse effettivamente assegnata all'utente. Ad esempio, in smallrc verrà sempre eseguita `CREATE LOGIN` . Le risorse necessarie per svolgere questa operazione sono molto ridotte e non avrebbe senso includere la query nel modello di slot di concorrenza.  Per queste query non è previsto il limite di 32 utenti simultanei; è possibile eseguire un numero illimitato di queste query fino al limite di 1.024 sessioni.
 
-Hello seguendo le istruzioni non rispetta le classi di risorse:
+Le istruzioni seguenti non rispettano le classi di risorse:
 
 * CREATE o DROP TABLE
 * ALTER TABLE... SWITCH, SPLIT o MERGE PARTITION
@@ -683,7 +683,7 @@ Removed as these two are not confirmed / supported under SQLDW
 -->
 
 ##  <a name="changing-user-resource-class-example"></a> Esempio di modifica della classe di risorse di un utente
-1. **Creare account di accesso:** aprire una connessione tooyour **master** database hello SQL server che ospita il database di SQL Data Warehouse ed eseguire i seguenti comandi hello.
+1. **Creare un account di accesso:** aprire una connessione al database **master** nel server SQL che ospita il database SQL Data Warehouse ed eseguire i comandi seguenti.
    
     ```sql
     CREATE LOGIN newperson WITH PASSWORD = 'mypassword';
@@ -691,37 +691,37 @@ Removed as these two are not confirmed / supported under SQLDW
     ```
    
    > [!NOTE]
-   > È un toocreate buona un utente nel database master di hello per gli utenti di Azure SQL Data Warehouse. Creazione di un utente nel database master consente a un utente toologin usando strumenti come SQL Server Management Studio senza specificare un nome di database.  Inoltre, consente loro toouse hello oggetto explorer tooview tutti i database in SQL server.  Per altre informazioni su creazione e gestione degli utenti, vedere [Proteggere un database in SQL Data Warehouse][Secure a database in SQL Data Warehouse].
+   > È consigliabile creare un utente nel database master per gli utenti di SQL Data Warehouse di Azure. La creazione di un utente nel database master consente all'utente di accedere tramite strumenti come SSMS senza specificare un nome di database.  Consente inoltre di usare Esplora oggetti per visualizzare tutti i database in SQL server.  Per altre informazioni su creazione e gestione degli utenti, vedere [Proteggere un database in SQL Data Warehouse][Secure a database in SQL Data Warehouse].
    > 
    > 
-2. **Creare l'utente di SQL Data Warehouse:** aprire una connessione toohello **SQL Data Warehouse** database ed eseguire hello comando seguente.
+2. **Creare un utente di SQL Data Warehouse:** aprire una connessione al database di **SQL Data Warehouse** ed eseguire il comando seguente.
    
     ```sql
     CREATE USER newperson FOR LOGIN newperson;
     ```
-3. **Concedere le autorizzazioni:** hello seguenti concessioni di esempio `CONTROL` su hello **SQL Data Warehouse** database. `CONTROL`in hello livello di database è hello equivalente del ruolo db_owner in SQL Server.
+3. **Concedere le autorizzazioni:** nell'esempio seguente viene concessa l'autorizzazione `CONTROL` nel database **SQL Data Warehouse**. `CONTROL` a livello di database corrisponde a db_owner in SQL Server.
    
     ```sql
-    GRANT CONTROL ON DATABASE::MySQLDW toonewperson;
+    GRANT CONTROL ON DATABASE::MySQLDW to newperson;
     ```
-4. **Aumentare la classe di risorse:** tooadd di query seguente hello di utilizzare un ruolo utente tooa maggiore carico di lavoro gestione.
+4. **Aumentare la classe di risorse:** per aggiungere un utente a un ruolo di gestione del carico di lavoro più elevato, usare la query seguente.
    
     ```sql
     EXEC sp_addrolemember 'largerc', 'newperson'
     ```
-5. **Classe di risorse di diminuire:** tooremove di query seguente hello di usare un utente a un ruolo di gestione del carico di lavoro.
+5. **Diminuire la classe di risorse:** per rimuovere un utente da un ruolo di gestione del carico di lavoro, usare la query seguente.
    
     ```sql
     EXEC sp_droprolemember 'largerc', 'newperson';
     ```
    
    > [!NOTE]
-   > Non è possibile tooremove smallrc di un utente.
+   > Non è possibile rimuovere un utente da smallrc.
    > 
    > 
 
 ## <a name="queued-query-detection-and-other-dmvs"></a>Rilevamento di query in coda e altre viste a gestione dinamica
-È possibile utilizzare hello `sys.dm_pdw_exec_requests` query DMV tooidentify che sono in attesa in una coda di concorrenza. Le query in attesa di uno slot di concorrenza saranno in stato **sospeso**.
+È possibile utilizzare la DMV `sys.dm_pdw_exec_requests` per identificare le query in attesa in una coda di concorrenza. Le query in attesa di uno slot di concorrenza saranno in stato **sospeso**.
 
 ```sql
 SELECT      r.[request_id]                 AS Request_ID
@@ -742,7 +742,7 @@ WHERE   ro.[type_desc]      = 'DATABASE_ROLE'
 AND     ro.[is_fixed_role]  = 0;
 ```
 
-Hello query seguente viene illustrato il ruolo di cui ogni utente è assegnato.
+La query seguente mostra il ruolo a cui è assegnato ogni utente.
 
 ```sql
 SELECT     r.name AS role_principal_name
@@ -753,14 +753,14 @@ JOIN    sys.database_principals AS m            ON rm.member_principal_id    = m
 WHERE    r.name IN ('mediumrc','largerc', 'xlargerc');
 ```
 
-SQL Data Warehouse è hello seguenti tipi di attesa:
+SQL Data Warehouse prevede i tipi di attesa seguenti.
 
-* **LocalQueriesConcurrencyResourceType**: le query che si trovano di fuori di framework di hello concorrenza slot. Le query DMV e le funzioni di sistema  come `SELECT @@VERSION` sono esempi di query locali.
-* **UserConcurrencyResourceType**: le query che si trovano all'interno di hello concorrenza slot framework. Le query sulle tabelle dell'utente finale rappresentano esempi in cui si usa questo tipo di risorsa.
+* **LocalQueriesConcurrencyResourceType**: query che si trovano all'esterno del framework di slot di concorrenza. Le query DMV e le funzioni di sistema  come `SELECT @@VERSION` sono esempi di query locali.
+* **UserConcurrencyResourceType**: query che si trovano all'interno del framework di slot di concorrenza. Le query sulle tabelle dell'utente finale rappresentano esempi in cui si usa questo tipo di risorsa.
 * **DmsConcurrencyResourceType**: attese risultanti dalle operazioni di spostamento dei dati.
-* **BackupConcurrencyResourceType**: indica che è in esecuzione il backup di un database. valore massimo di Hello per questo tipo di risorsa è 1. Se più copie di backup sono stati richiesti in hello contemporaneamente, hello ad altri utenti verranno inseriti nella coda.
+* **BackupConcurrencyResourceType**: indica che è in esecuzione il backup di un database. Il valore massimo per questo tipo di risorsa è 1. Se più copie di backup sono stati richieste contemporaneamente, le altre verranno accodate.
 
-Hello `sys.dm_pdw_waits` DMV può essere utilizzato toosee quali risorse di una richiesta è in attesa di.
+La DMV `sys.dm_pdw_waits` può essere usata per visualizzare le risorse per cui una richiesta è in attesa.
 
 ```sql
 SELECT  w.[wait_id]
@@ -796,7 +796,7 @@ JOIN    sys.dm_pdw_exec_requests r  ON w.[request_id] = r.[request_id]
 WHERE    w.[session_id] <> SESSION_ID();
 ```
 
-Hello `sys.dm_pdw_resource_waits` DMV Mostra solo le attese risorse hello utilizzate da una determinata query. Tempo di attesa di risorse solo misura il tempo di hello in attesa di risorse toobe fornito, come toosignal anziché di attesa, ovvero hello tempo impiegato per hello sottostante una query SQL Server tooschedule hello nella CPU hello.
+La DMV `sys.dm_pdw_resource_waits` mostra solo le attese di risorse utilizzate da una determinata query. Il tempo in attesa delle risorse misura solo il tempo richiesto per fornire le risorse, a differenza del tempo di attesa del segnale che rappresenta il tempo impiegato dal server SQL Server sottostante per pianificare la query sulla CPU.
 
 ```sql
 SELECT  [session_id]
@@ -814,7 +814,7 @@ FROM    sys.dm_pdw_resource_waits
 WHERE    [session_id] <> SESSION_ID();
 ```
 
-Hello `sys.dm_pdw_wait_stats` può essere utilizzata per l'analisi delle tendenze cronologiche di attese.
+L DMV `sys.dm_pdw_wait_stats` può essere usata per l'analisi della tendenza cronologica delle attese.
 
 ```sql
 SELECT    w.[pdw_node_id]
@@ -828,13 +828,13 @@ FROM    sys.dm_pdw_wait_stats w;
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altre informazioni sulla gestione degli utenti e della sicurezza del database, vedere [Proteggere un database in SQL Data Warehouse][Secure a database in SQL Data Warehouse]. Per ulteriori informazioni sulle classi di risorse come dimensioni maggiori possono migliorare la qualità di indice columnstore cluster, vedere [la ricompilazione di indici tooimprove segmento di qualità].
+Per altre informazioni sulla gestione degli utenti e della sicurezza del database, vedere [Proteggere un database in SQL Data Warehouse][Secure a database in SQL Data Warehouse]. Per ulteriori informazioni sulle classi di risorse più grandi che possono migliorare le qualità degli indici indice columnstore cluster, vedere [Ricompilazione degli indici per migliorare la qualità del segmento].
 
 <!--Image references-->
 
 <!--Article references-->
 [Secure a database in SQL Data Warehouse]: ./sql-data-warehouse-overview-manage-security.md
-[la ricompilazione di indici tooimprove segmento di qualità]: ./sql-data-warehouse-tables-index.md#rebuilding-indexes-to-improve-segment-quality
+[Ricompilazione degli indici per migliorare la qualità del segmento]: ./sql-data-warehouse-tables-index.md#rebuilding-indexes-to-improve-segment-quality
 [Secure a database in SQL Data Warehouse]: ./sql-data-warehouse-overview-manage-security.md
 
 <!--MSDN references-->

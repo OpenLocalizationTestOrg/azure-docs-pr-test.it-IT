@@ -1,5 +1,5 @@
 ---
-title: aaaPricing & fatturazione - App Azure per la logica | Documenti Microsoft
+title: Prezzi e fatturazione - App per la logica di Azure | Microsoft Docs
 description: Informazioni sul funzionamento dei prezzi e della fatturazione per App per la logica di Azure.
 author: kevinlam1
 manager: anneta
@@ -14,45 +14,45 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: LADocs; klam
-ms.openlocfilehash: fa10cbbf7657afba7fadb7c76817b7a5e4af7b42
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 63784c5e3af360b2f3f8cb330a9df8b27a85d859
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="logic-apps-pricing-model"></a>Modello di determinazione prezzi delle app per la logica
-Azure App per la logica consente tooscale ed eseguire flussi di lavoro di integrazione nel cloud hello.  Di seguito sono informazioni dettagliate sulla fatturazione e i piani tariffari per App per la logica di hello.
+Il servizio App per la logica di Azure supporta la scalabilità e l'esecuzione di un flusso di lavoro di integrazione nel cloud.  Di seguito sono riportati i dettagli relativi ai piani tariffari e di fatturazione di App per la logica.
 ## <a name="consumption-pricing"></a>Prezzi a consumo
-Le nuove app per la logica create usano un piano a consumo. Con modello tariffario consumo logica App hello, si paga solo per ciò che si utilizza.  In caso di piano a consumo, le app per la logica non sono soggette a limitazione.
+Le nuove app per la logica create usano un piano a consumo. Con il modello di determinazione prezzi a consumo delle app per la logica si paga solo l'uso effettivo.  In caso di piano a consumo, le app per la logica non sono soggette a limitazione.
 Viene misurato il consumo per tutte le azioni eseguite durante un'esecuzione di un'istanza dell'app per la logica.
 ### <a name="what-are-action-executions"></a>Informazioni sulle esecuzioni di azioni
-Ogni passaggio in una definizione di applicazione logica è un'azione, che include i trigger, i passaggi del flusso di controllo come condizioni, gli ambiti, cicli for each, fino a quando i cicli, chiama tooconnectors e chiamate di azioni toonative.
-I trigger sono azioni speciali che vengono progettati tooinstantiate una nuova istanza di un'app di logica quando si verifica un evento specifico.  Esistono numerosi comportamenti diversi per i trigger, che possono influire sulla modalità è a consumo hello logica app.
-* **Polling trigger** -trigger esegue continuamente il polling di un endpoint finché riceve un messaggio che soddisfa i criteri di hello per la creazione di un'istanza di un'app di logica.  è possibile configurare l'intervallo di polling Hello in trigger hello in Progettazione applicazione logica hello.  Ogni richiesta di poll, anche se non determina la creazione di un'istanza di un'app per la logica, viene conteggiata come esecuzione di azione.
-* **Trigger Webhook** -il trigger è in attesa di un toosend client è una richiesta su un particolare endpoint.  Ogni richiesta inviata toohello webhook endpoint viene considerato come un'esecuzione dell'azione. Richiesta di Hello e hello trigger HTTP Webhook sono entrambi trigger webhook.
-* **Trigger di ricorrenza** -trigger crea un'istanza di applicazione logica hello in base a intervallo di ricorrenza hello configurata nel trigger hello.  Ad esempio, un trigger di ricorrenza può essere configurato toorun ogni tre giorni o persino ogni minuto.
+Ogni passaggio della definizione di un'app per la logica è un'azione che include trigger, passaggi del flusso di controllo come condizioni, ambiti e cicli ForEach, cicli Do until, chiamate a connettori e chiamate ad azioni native.
+I trigger sono azioni speciali progettate per creare una nuova istanza di un'app per la logica quando si verifica un determinato evento.  Diversi comportamenti dei trigger potrebbero influire sulla misurazione dell'app per la logica.
+* **Trigger di poll**: questo trigger esegue continuamente il poll di un endpoint fino a quando non riceve un messaggio che soddisfa i criteri per la creazione di un'istanza di un'app per la logica.  L'intervallo di polling può essere configurato nel trigger nella finestra di progettazione delle app per la logica.  Ogni richiesta di poll, anche se non determina la creazione di un'istanza di un'app per la logica, viene conteggiata come esecuzione di azione.
+* **Trigger di webhook** : questo trigger attende che un client gli invii una richiesta su un determinato endpoint.  Ogni richiesta inviata all'endpoint del webhook viene conteggiata come esecuzione di azione. I trigger Richiesta e Webhook HTTP sono entrambi trigger di webhook.
+* **Trigger di ricorrenza**: questo trigger crea un'istanza dell'app per la logica in base all'intervallo di ricorrenza in esso configurato.  Un trigger di ricorrenza può ad esempio essere configurato per essere eseguito ogni tre giorni o anche ogni minuto.
 
-Esecuzioni dei trigger possono essere visualizzate nel pannello della risorsa App per la logica hello in hello parte della cronologia di Trigger.
+Le esecuzioni dei trigger vengono visualizzate nella sezione Cronologia trigger del pannello delle risorse delle app per la logica.
 
-Per tutte le azioni eseguite, riuscite o non riuscite, viene misurato il consumo come esecuzione di un'azione.  Azioni che sono state ignorate a causa di tooa condizione non viene raggiunto o che non è stata eseguita perché hello logica app terminato prima del completamento non vengono conteggiati come esecuzioni di azione.
+Per tutte le azioni eseguite, riuscite o non riuscite, viene misurato il consumo come esecuzione di un'azione.  Le azioni ignorate perché non è stata soddisfatta una condizione o non eseguite perché l'app per la logica è stata terminata prima del completamento non vengono conteggiate come esecuzioni di azioni.
 
-Azioni eseguite all'interno di cicli vengono conteggiate per ogni iterazione del ciclo di hello.  Ad esempio, un'unica azione in un ciclo for each lo scorrimento di un elenco di 10 elementi vengono conteggiati come numero hello di elementi nell'elenco di hello (10) moltiplicato per il numero di hello di azioni nel ciclo hello (1) più uno per avvio hello del ciclo di hello , che, in questo esempio, sarebbe (10 * 1) + 1 = 11 esecuzioni di azione.
-Per le app per la logica disabilitate non possono essere create nuove istanze. Di conseguenza, mentre sono disabilitate, non viene effettuato alcun addebito.  Tenere presente che dopo la disabilitazione di un'app logica potrebbe richiedere un po' di tempo per hello istanze tooquiesce prima completamente disabilitata.
+Le azioni eseguite all'interno di cicli vengono conteggiate per iterazione del ciclo.  Una singola azione in un ciclo ForEach che scorre un elenco di 10 elementi viene conteggiata come il numero di elementi dell'elenco (10) moltiplicato per il numero di azioni nel ciclo (1) più 1 per l'avvio del ciclo, ottenendo in questo esempio (10 * 1) + 1 = 11 esecuzioni di azioni.
+Per le app per la logica disabilitate non possono essere create nuove istanze. Di conseguenza, mentre sono disabilitate, non viene effettuato alcun addebito.  Tenere presente che quando si disabilita un'app per la logica, la disattivazione delle istanze prima della disabilitazione completa potrebbe richiedere qualche minuto.
 ### <a name="integration-account-usage"></a>Utilizzo dell'account di integrazione
-Inclusi nell'utilizzo in base al consumo è un [account integrazione](logic-apps-enterprise-integration-create-integration-account.md) per l'esplorazione e sviluppo a scopo di test consentono di hello toouse [B2B/EDI](logic-apps-enterprise-integration-b2b.md) e [elaborazione XML](logic-apps-enterprise-integration-xml.md)funzionalità delle app di logica senza alcun costo aggiuntivo. Sono in grado di toocreate un massimo di un account per ogni area e archiviare backup too10 contratti e le 25 mappe. Non sono previsti limiti per schemi, certificati e partner ed è possibile caricare tutti quelli necessari.
+Nell'utilizzo a consumo è incluso un [account di integrazione](logic-apps-enterprise-integration-create-integration-account.md) a scopo di esplorazione, sviluppo e test, che consente di usare le funzionalità [B2B/EDI](logic-apps-enterprise-integration-b2b.md) e di [elaborazione XML](logic-apps-enterprise-integration-xml.md) di App per la logica senza costi aggiuntivi. È possibile creare un massimo di un account per area e archiviare fino a 10 contratti e 25 mappe. Non sono previsti limiti per schemi, certificati e partner ed è possibile caricare tutti quelli necessari.
 
-Inoltre toohello inclusione degli account di integrazione con il consumo, si possono inoltre creare integration standard account con il contratto di servizio di App logica standard e senza questi limiti. Per altre informazioni, vedere la pagina relativa ai [prezzi di Azure](https://azure.microsoft.com/pricing/details/logic-apps).
+Oltre a includere account di integrazione a consumo, è anche possibile creare account di integrazione standard senza questi limiti e con il contratto di servizio di App per la logica standard. Per altre informazioni, vedere la pagina relativa ai [prezzi di Azure](https://azure.microsoft.com/pricing/details/logic-apps).
 
 ## <a name="app-service-plans"></a>Piani di servizio app
-App per la logica creata in precedenza che fanno riferimento a un piano di servizio App continua toobehave come prima. In base al piano hello scelto, vengono limitati dopo hello prescritte esecuzioni giornaliere vengono superate, ma vengono fatturate usando misuratore di esecuzione azione hello.
-I clienti EA che dispongono di un piano di servizio App nella propria sottoscrizione, il quale non è associato in modo esplicito hello logica App toobe, ottiene il vantaggio di quantità hello incluso.  Ad esempio, se si dispone di un piano di servizio App Standard sottoscrizione EA e dell'applicazione una logica di hello stessa sottoscrizione quindi che non sono addebitata per 10.000 esecuzioni di azione al giorno (vedere la seguente tabella). 
+Le app per la logica già create, che fanno riferimento a un piano di servizio app, continuano a comportarsi come prima. A seconda del piano scelto, la limitazione viene applicata dopo che viene superato il numero di esecuzioni giornaliere previste, ma la fatturazione si basa sul misuratore di esecuzioni delle azioni.
+I clienti EA con un piano di servizio app nella sottoscrizione, che non deve essere associato in modo esplicito all'app per la logica, hanno il benefit delle quantità incluso.  Se, ad esempio, nella stessa sottoscrizione EA sono inclusi un piano di servizio app Standard e un'app per la logica , non viene effettuato l'addebito per 10.000 esecuzioni di azioni al giorno. Vedere la tabella seguente. 
 
 Piani di servizio app ed esecuzioni di azioni giornaliere consentite:
 |  | Gratuito/Condiviso/Basic | Standard | Premium |
 | --- | --- | --- | --- |
 | Esecuzioni di azioni al giorno |200 |10.000 |50.000 |
-### <a name="convert-from-app-service-plan-pricing-tooconsumption"></a>Convertire dal piano di servizio App prezzi tooConsumption
-un'applicazione di logica che dispone di un servizio App piano associato toochange modello consumo tooa, Rimuovi hello riferimento toohello piano di servizio App nella definizione di App per la logica di hello.  Questa modifica può essere eseguita con un cmdlet di PowerShell tooa chiamata:`Set-AzureRmLogicApp -ResourceGroupName ‘rgname’ -Name ‘wfname’ –UseConsumptionModel -Force`
+### <a name="convert-from-app-service-plan-pricing-to-consumption"></a>Passare dal piano tariffario del servizio app a prezzi al consumo
+Per modificare un'app per la logica a cui è associato un piano di servizio in un modello a consumo, rimuovere il riferimento al piano di servizio app nella definizione dell'app per la logica.  Per apportare questa modifica, è sufficiente una chiamata a un cmdlet di PowerShell: `Set-AzureRmLogicApp -ResourceGroupName ‘rgname’ -Name ‘wfname’ –UseConsumptionModel -Force`
 ## <a name="pricing"></a>Prezzi
 Per informazioni sui prezzi, vedere [Prezzi di App per la logica](https://azure.microsoft.com/pricing/details/logic-apps).
 

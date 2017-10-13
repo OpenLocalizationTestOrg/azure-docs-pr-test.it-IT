@@ -1,23 +1,23 @@
 ## <a name="route-tables"></a>Tabelle di route
-Risorse tabella route contiene le route utilizzate toodefine come flussi di traffico all'interno dell'infrastruttura di Azure. È possibile utilizzare toosend route (UDR) definito dall'utente tutto il traffico da un determinata subnet tooa dispositivo virtuale, ad esempio un sistema di rilevamento delle intrusioni o di firewall (ID). È possibile associare un toosubnets tabella di route. 
+Le risorse di tabelle di route contengono le route usate per definire il flusso del traffico all'interno dell'infrastruttura di Azure. È possibile usare le route definite dall'utente (UDR) per inviare tutto il traffico da una determinata subnet a un dispositivo virtuale, ad esempio un firewall o un sistema di rilevamento delle intrusioni (IDS). È possibile associare una tabella di route alle subnet. 
 
-Tabelle di route contengono hello le proprietà seguenti.
+Le tabella di route contengono le proprietà seguenti.
 
 | Proprietà | Descrizione | Valori di esempio |
 | --- | --- | --- |
-| **routes** |Raccolta di utenti definiti route nella tabella di route hello |vedere [route definite dall'utente](#User-defined-routes) |
-| **subnet** |Raccolta della tabella di routing hello subnet viene applicata troppo|vedere [subnet](#Subnets) |
+| **routes** |Raccolta di route definite dall'utente nella tabella di route |vedere [route definite dall'utente](#User-defined-routes) |
+| **subnet** |Raccolta di subnet a cui viene applicata la tabella di route |vedere [subnet](#Subnets) |
 
 ### <a name="user-defined-routes"></a>route definite dall'utente
-È possibile creare toospecify UDRs cui traffico deve essere inviato, in base al relativo indirizzo di destinazione. È possibile considerare una route come definizione del gateway predefinito hello basate sull'indirizzo di destinazione hello di un pacchetto di rete.
+È possibile creare route definite dall'utente per specificare dove inviare il traffico, in base al relativo indirizzo di destinazione. Una route può essere considerata come la definizione del gateway predefinito in base all'indirizzo di destinazione di un pacchetto di rete.
 
-UDRs contengono hello le proprietà seguenti. 
+Le route definite dall'utente contengono le proprietà seguenti. 
 
 | Proprietà | Descrizione | Valori di esempio |
 | --- | --- | --- |
-| **addressPrefix** |Prefisso dell'indirizzo o indirizzo IP completo per la destinazione di hello |192.168.1.0/24, 192.168.1.101 |
-| **nextHopType** |Tipo di dispositivo hello traffico verrà inviato troppo|VirtualAppliance, Gateway VPN, Internet |
-| **nextHopIpAddress** |Indirizzo IP dell'hop successivo hello |192.168.1.4 |
+| **addressPrefix** |Prefisso dell'indirizzo o indirizzo IP completo per la destinazione |192.168.1.0/24, 192.168.1.101 |
+| **nextHopType** |Tipo di dispositivo al quale verrà inviato il traffico. |VirtualAppliance, Gateway VPN, Internet |
+| **nextHopIpAddress** |Indirizzo IP per l'hop successivo |192.168.1.4 |
 
 Tabella di route di esempio in formato JSON:
 
@@ -52,6 +52,6 @@ Tabella di route di esempio in formato JSON:
 
 ### <a name="additional-resources"></a>Risorse aggiuntive
 * Altre informazioni sulle [route definite dall'utente](../articles/virtual-network/virtual-networks-udr-overview.md).
-* Hello lettura [la documentazione di riferimento API REST](https://msdn.microsoft.com/library/azure/mt502549.aspx) per le tabelle di route.
-* Hello lettura [la documentazione di riferimento API REST](https://msdn.microsoft.com/library/azure/mt502539.aspx) per l'utente definito route (UDRs).
+* Leggere [la documentazione di riferimento API REST](https://msdn.microsoft.com/library/azure/mt502549.aspx) per le tabelle di route.
+* Leggere [la documentazione di riferimento API REST](https://msdn.microsoft.com/library/azure/mt502539.aspx) per le route definite dall'utente.
 

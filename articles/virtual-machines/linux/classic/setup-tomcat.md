@@ -1,6 +1,6 @@
 ---
-title: aaaSet backup Apache Tomcat in una macchina virtuale Linux | Documenti Microsoft
-description: Informazioni su come tooset backup Tomcat7 Apache tramite le macchine virtuali di Azure che eseguono Linux.
+title: Configurare Apache Tomcat su una macchina virtuale Linux | Documentazione Microsoft
+description: Informazioni su come configurare Apache Tomcat7 usando macchine virtuali di Azure che eseguono Linux.
 services: virtual-machines-linux
 documentationcenter: 
 author: NingKuang
@@ -15,27 +15,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/15/2015
 ms.author: ningk
-ms.openlocfilehash: b837a73e91fcb25d5459d993a0e93ceef1a1fc8b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: fa30c78a5a5d458ba8845c3c10b87538427786c9
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="set-up-tomcat7-on-a-linux-virtual-machine-with-azure"></a>Configurare Tomcat7 in una macchina virtuale Linux con Azure
-Apache Tomcat (o semplicemente Tomcat, anche in precedenza denominato Tomcat Giacarta) è un server web di origine aperti e il contenitore servlet sviluppato da hello Apache Software Foundation ASF (). Tomcat implementa hello Servlet Java e le specifiche Java Server Pages (JSP) hello di Sun Microsystems. Tomcat fornisce un ambiente di server web HTTP Java puro in cui toorun codice Java. In configurazione più semplice hello Tomcat viene eseguito in un processo unico sistema operativo. Questo processo esegue una macchina virtuale Java (JVM). Ogni richiesta HTTP da un browser di tooTomcat viene elaborato come un thread separato nel processo di Tomcat hello.  
+Apache Tomcat (o semplicemente Tomcat, precedentemente chiamato anche Jakarta Tomcat) è un server Web e contenitore di servlet open source sviluppato da Apache Software Foundation (ASF). Tomcat implementa le specifiche Java Servlet e Java Server Pages (JSP) di Sun Microsystems. Tomcat fornisce un ambiente server Web HTTP Java puro in cui eseguire codice Java. Nella configurazione più semplice, Tomcat viene eseguito in un singolo processo del sistema operativo. Questo processo esegue una macchina virtuale Java (JVM). Ogni richiesta HTTP da un browser a Tomcat viene elaborata nel processo di Tomcat come un thread separato.  
 
 > [!IMPORTANT]
-> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Azure Resource Manager e classico](../../../resource-manager-deployment-model.md). Questo articolo descrive come toouse hello modello di distribuzione classica. È consigliabile che più nuove distribuzioni di usare il modello di gestione risorse hello. vedere toouse toodeploy di modello un VM Ubuntu con Open JDK e Tomcat, un gestore delle risorse [questo articolo](https://azure.microsoft.com/documentation/templates/openjdk-tomcat-ubuntu-vm/).
+> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Azure Resource Manager e classico](../../../resource-manager-deployment-model.md). Questo articolo descrive come usare il modello di distribuzione classica. Per le distribuzioni più recenti si consiglia di usare il modello di Resource Manager. Per informazioni su come usare un modello di Resource Manager per distribuire una VM Ubuntu con Openjdk e Tomcat, vedere [questo articolo](https://azure.microsoft.com/documentation/templates/openjdk-tomcat-ubuntu-vm/).
 
 In questo articolo si installerà Tomcat7 su un'immagine Linux e la si distribuirà in Azure.  
 
 Si acquisiranno le nozioni seguenti:  
 
-* Come toocreate una macchina virtuale in Azure.
-* Tooprepare hello come macchina virtuale per Tomcat7.
-* Come tooinstall Tomcat7.
+* Come creare una macchina virtuale in Azure.
+* Come preparare la macchina virtuale per Tomcat7.
+* Come installare Tomcat7.
 
-La procedura presuppone che l'utente disponga già di una sottoscrizione di Azure.  Se non è possibile iscriversi per una valutazione gratuita in [hello sito Web di Azure](https://azure.microsoft.com/). Se si ha un abbonamento MSDN, vedere [Offerte speciali di Microsoft Azure: vantaggi per i membri di MSDN, MPN e Bizspark](https://azure.microsoft.com/pricing/member-offers/msdn-benefits/?c=14-39). toolearn ulteriori informazioni su Azure, vedere [cos'è Azure?](https://azure.microsoft.com/overview/what-is-azure/).
+La procedura presuppone che l'utente disponga già di una sottoscrizione di Azure.  In caso contrario è possibile registrarsi per una versione di valutazione gratuita sul [sito Web di Azure](https://azure.microsoft.com/). Se si ha un abbonamento MSDN, vedere [Offerte speciali di Microsoft Azure: vantaggi per i membri di MSDN, MPN e Bizspark](https://azure.microsoft.com/pricing/member-offers/msdn-benefits/?c=14-39). Per altre informazioni su Azure, vedere [Cos'è Microsoft Azure?](https://azure.microsoft.com/overview/what-is-azure/).
 
 Questo articolo presuppone che l'utente abbia una conoscenza pratica di base di Tomcat e Linux.  
 
@@ -45,220 +45,220 @@ In questa fase si creerà una macchina virtuale usando un'immagine Linux in Azur
 ### <a name="step-1-generate-an-ssh-authentication-key"></a>Passaggio 1: generare una chiave di autenticazione SSH
 SSH è uno strumento importante per gli amministratori di sistema. Non è consigliabile tuttavia configurare la protezione di accesso in base a una password stabilita da una persona fisica. Con un nome utente e una password debole, il sistema può essere esposto all'attacco da parte di utenti malintenzionati.
 
-buone notizie Hello sono che non esiste un modo tooleave di accesso remoto aprire senza doversi preoccupare delle password. Il metodo consiste nell'autenticazione con crittografia asimmetrica. Hello chiave privata dell'utente è hello uno che consente l'autenticazione di hello. È anche possibile bloccare hello account utente toonot consentire l'autenticazione di password.
+L'aspetto positivo è che esiste un modo per lasciare aperto l'accesso remoto e non doversi preoccupare delle password. Il metodo consiste nell'autenticazione con crittografia asimmetrica. La chiave privata dell'utente è quella che concede l'autenticazione. È anche possibile bloccare l'account dell'utente per impedire l'autenticazione tramite password.
 
-Un altro vantaggio di questo metodo è che non è necessario toosign password diverse toodifferent server. È possibile eseguire l'autenticazione usando la chiave privata personale hello in tutti i server, che consente di evitare tooremember password diversi.
+Un altro vantaggio di questo metodo è che non sono necessarie password diverse per accedere a server diversi. È possibile autenticarsi tramite la chiave privata personale in tutti i server, perciò non è necessario ricordare diverse password.
 
 
 
-Seguire questi passaggi toogenerate hello autenticazione la chiave SSH.
+Attenersi a questa procedura per generare la chiave di autenticazione SSH.
 
-1. Scaricare e installare PuTTYgen dalla seguente posizione hello: [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
+1. Scaricare e installare PuTTYgen dal percorso seguente: [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
 2. Eseguire Puttygen.exe.
-3. Fare clic su **genera** chiavi hello toogenerate. Nel processo di hello, è possibile aumentare la casualità per lo spostamento del mouse hello sull'area vuota di hello nella finestra di hello.  
-   ![PuTTY schermata generatore di chiavi che mostra hello generare di nuovo pulsante chiave][1]
-4. Dopo aver hello genera processo, Puttygen.exe mostrerà la nuova chiave pubblica.  
-   ![Schermata di generatore di chiavi puTTY che mostra nuova chiave pubblica hello e hello salvare pulsante chiave privata][2]
-5. Selezionare e copiare la chiave pubblica di hello e salvarlo in un file denominato publicKey.pem. Non fare clic su **Salva la chiave pubblica**, poiché hello salvato il formato di file della chiave pubblica è diversa dalla chiave pubblica di hello desiderato.
+3. Fare clic su **Generate** per generare le chiavi. Nel processo è possibile aumentare la casualità spostando il puntatore del mouse sull'area vuota della finestra.  
+   ![Schermata di PuTTY Key Generator che mostra il pulsante per generare una nuova chiave][1]
+4. Dopo il processo di generazione Puttygen.exe visualizzerà la nuova chiave pubblica.  
+   ![Schermata di PuTTY Key Generator che mostra la nuova chiave pubblica e il pulsante per salvare la chiave privata][2]
+5. Selezionare e copiare la chiave pubblica e salvarla in un file denominato publicKey.pem. Non fare clic su **Save public key**, poiché il formato di file della chiave pubblica salvata è diverso dalla chiave pubblica richiesta.
 6. Fare clic su **Save private key** e salvarla in un file denominato privateKey.ppk.
 
-### <a name="step-2-create-hello-image-in-hello-azure-portal"></a>Passaggio 2: Creare l'immagine di hello in hello portale di Azure
-1. In hello [portale](https://portal.azure.com/), fare clic su **New** nel hello attività barra toocreate un'immagine. Scegliere l'immagine Linux hello che è in base alle proprie esigenze. Hello esempio seguente Usa immagine Ubuntu 14.04 hello.
-![Schermata del portale hello che mostra il pulsante nuovo hello][3]
+### <a name="step-2-create-the-image-in-the-azure-portal"></a>Passaggio 2: creare l'immagine nel portale di Azure
+1. Nel [portale](https://portal.azure.com/) fare clic su **Nuovo** nella barra delle applicazioni per creare un'immagine. Scegliere quindi l'immagine Linux in base alle esigenze. Il seguente esempio usa l'immagine Ubuntu 14.04.
+![Schermata del portale che mostra il pulsante Nuovo][3]
 
-2. Per **nome Host**, specificare nome hello URL hello che i client Internet dovranno essere utilizzate dalle tooaccess questa macchina virtuale. Definire l'ultima parte di hello del nome DNS hello, ad esempio, tomcatdemo. Azure genera quindi l'URL di hello come tomcatdemo.cloudapp.net.  
+2. In **Nome host** specificare il nome per l'URL che verrà usato dall'utente e dai client Internet per accedere a questa macchina virtuale. Definire l'ultima parte del nome DNS, ad esempio tomcatdemo. Azure genera quindi l'URL tomcatdemo.cloudapp.net.  
 
-3. Per **chiave di autenticazione SSH**, copiarne il valore della chiave hello file publicKey.pem hello che contiene la chiave pubblica hello generata da PuTTYgen.  
-![Chiave di autenticazione SSH casella nel portale di hello][4]
+3. In **Chiave di autenticazione SSH** copiare il valore della chiave dal file publicKey.pem che contiene la chiave pubblica generata da PuTTYgen.  
+![Casella Chiave di autenticazione SSH nel portale][4]
 
 4. Configurare altre impostazioni in base alle esigenze, quindi fare clic su **Crea**.  
 
 ## <a name="phase-2-prepare-your-virtual-machine-for-tomcat7"></a>Fase 2: preparare la macchina virtuale per Tomcat7
-In questa fase, si configura un endpoint per il traffico di Tomcat e connettiti tooyour nuova macchina virtuale.
+In questa fase si configurerà un endpoint per il traffico in Tomcat e ci si connetterà alla nuova macchina virtuale.
 
-### <a name="step-1-open-hello-http-port-tooallow-web-access"></a>Passaggio 1: Aprire hello HTTP porta tooallow web access
-Gli endpoint di Azure sono costituiti da un protocollo TCP o UDP, insieme a una porta pubblica e privata. porta privata Hello è porta hello che hello servizio è in ascolto macchina virtuale di tooon hello. porta pubblica Hello è porta hello hello servizio cloud di Azure è in ascolto tooexternally per il traffico in ingresso, basato su Internet.  
+### <a name="step-1-open-the-http-port-to-allow-web-access"></a>Passaggio 1: aprire la porta HTTP per consentire l'accesso web
+Gli endpoint di Azure sono costituiti da un protocollo TCP o UDP, insieme a una porta pubblica e privata. La porta privata è la porta ascoltata dal servizio sulla macchina virtuale. La porta pubblica è la porta ascoltata esternamente dal servizio cloud di Azure per il traffico in ingresso basato su Internet.  
 
-La porta TCP 8080 è numero di porta predefinito hello Tomcat utilizzato toolisten. Se si apre questa porta con un endpoint di Azure, l'utente e altri client Internet potranno accedere alle pagine Tomcat.  
+La porta TCP 8080 è la porta predefinita su cui Tomcat è in ascolto. Se si apre questa porta con un endpoint di Azure, l'utente e altri client Internet potranno accedere alle pagine Tomcat.  
 
-1. Nel portale di hello, fare clic su **Sfoglia** > **macchine virtuali**, quindi fare clic su hello macchina virtuale in cui è stato creato.  
-   ![Schermata della directory di hello macchine virtuali][5]
-2. tooadd una macchina virtuale tooyour endpoint, fare clic su hello **endpoint** casella.
-   ![Schermata che Mostra casella endpoint hello][6]
+1. Nel portale di Azure fare clic su **Sfoglia** > **Macchine virtuali** e quindi fare clic sulla macchina virtuale che è stata creata.  
+   ![Schermata della directory Macchine virtuali][5]
+2. Per aggiungere un endpoint alla macchina virtuale, scegliere la casella **Endpoint** .
+   ![Schermata che mostra la casella Endpoint][6]
 3. Fare clic su **Aggiungi**.  
 
-   1. Per l'endpoint di hello, immettere un nome per l'endpoint hello **Endpoint**, quindi immettere 80 in **porta pubblica**.  
+   1. In **Endpoint** digitare un nome per l'endpoint, quindi digitare 80 nel campo **Porta pubblica**.  
 
-      Se si imposta la proprietà too80, non è necessario tooinclude numero di porta hello in URL hello utilizzati tooaccess Tomcat. Ad esempio, http://tomcatdemo.cloudapp.net.    
+      Se la porta viene impostata su 80, non occorre includere il numero di porta nell'URL che si usa per accedere a Tomcat. Ad esempio, http://tomcatdemo.cloudapp.net.    
 
-      Se si imposta il valore di tooanother, ad esempio 81, è necessario tooadd hello porta numero toohello URL tooaccess Tomcat. Ad esempio http://tomcatdemo.cloudapp.net:81/.
-   2. Digitare 8080 in **Porta privata**. Per impostazione predefinita Tomcat è in ascolto sulla porta TCP 8080. Se è stata modificata hello predefinito ascolto porta di Tomcat, è necessario aggiornare **porta privata** toobe hello stesso hello porta di ascolto Tomcat.  
+      Se si imposta la porta su un altro valore, come 81, è necessario aggiungere il numero di porta all'URL per accedere a Tomcat. Ad esempio http://tomcatdemo.cloudapp.net:81/.
+   2. Digitare 8080 in **Porta privata**. Per impostazione predefinita Tomcat è in ascolto sulla porta TCP 8080. Se è stata modificata la porta di ascolto predefinita di Tomcat, è necessario aggiornare la **porta privata** in modo che corrisponda alla porta di ascolto di Tomcat.  
       ![Schermata dell'interfaccia utente che mostra il comando Aggiungi, Porta pubblica e Porta privata][7]
-4. Fare clic su **OK** la macchina virtuale tooadd hello endpoint tooyour.
+4. Fare clic su **OK** per aggiungere l'endpoint alla macchina virtuale.
 
-### <a name="step-2-connect-toohello-image-you-created"></a>Passaggio 2: Connettere immagine toohello creato
-È possibile scegliere qualsiasi macchina virtuale SSH strumento tooconnect tooyour. In questo esempio viene usato PuTTY.  
+### <a name="step-2-connect-to-the-image-you-created"></a>Passaggio 2: effettuare la connessione all'immagine creata
+È possibile scegliere qualsiasi strumento SSH per connettersi alla macchina virtuale. In questo esempio viene usato PuTTY.  
 
-1. Ottenere il nome DNS hello della macchina virtuale dal portale di hello.
+1. Ottenere il nome DNS della macchina virtuale dal portale.
     1. Fare clic su **Sfoglia** > **Macchine virtuali**.
-    2. Selezionare il nome di hello della macchina virtuale e quindi fare clic su **proprietà**.
-    3. In hello **proprietà** riquadro, cercare in hello **nome di dominio** nome DNS della casella tooget hello.  
+    2. Selezionare il nome della macchina virtuale e quindi fare clic su **Proprietà**.
+    3. Nel riquadro **Proprietà** osservare la casella **Nome di dominio** per ottenere il nome DNS.  
 
-2. Ottenere il numero di porta hello per le connessioni SSH da hello **SSH** casella.  
-![Schermata che mostra i numero di porta di connessione SSH hello][8]
+2. Ricavare il numero di porta per le connessioni SSH dalla casella **SSH** .  
+![Schermata che mostra il numero di porta della connessione SSH][8]
 
 3. Scaricare [PuTTY](http://www.putty.org/).  
 
-4. Dopo il download, fare clic sul file eseguibile hello Putty.exe. Configurazione PuTTY, configurare le opzioni di base hello con il nome host hello e il numero ottenuto dalla proprietà hello della macchina virtuale porta.   
-![Schermata che mostra l'host di configurazione di PuTTY hello opzioni di nome e la porte][9]
+4. Dopo il download fare clic sul file eseguibile Putty.exe. Nella configurazione di PuTTY impostare le opzioni di base con il nome host e il numero di porta ottenuto dalle proprietà della macchina virtuale.   
+![Schermata che mostra le opzioni di configurazione di PuTTY relative a nome host e porta][9]
 
-5. Nel riquadro di sinistra hello, fare clic su **connessione** > **SSH** > **Auth**, quindi fare clic su **Sfoglia** toospecify percorso di Hello del file di privateKey.ppk hello. file privateKey.ppk Hello contiene la chiave privata hello generato da PuTTYgen in hello "fase 1: creare un'immagine" sezione di questo articolo.  
-![Schermata che illustra una gerarchia di directory hello connessione e il pulsante Sfoglia][10]
+5. Nel riquadro a sinistra fare clic su **Connessione** > **SSH** > **Autenticazione** e quindi fare clic su **Sfoglia** per specificare il percorso del file privateKey.ppk. Il file PrivateKey contiene la chiave privata generata da PuTTYgen in precedenza nella sezione "Fase 1: creare un'immagine" di questo articolo.  
+![Schermata che mostra la gerarchia di directory di connessione e il pulsante Sfoglia][10]
 
-6. Fare clic su **Apri**. Si potrebbe ricevere un avviso da una finestra di messaggio. Se è stato configurato il nome DNS hello e il numero di porta corretto, fare clic su **Sì**.
-![Schermata che illustra la notifica hello][11]
+6. Fare clic su **Apri**. Si potrebbe ricevere un avviso da una finestra di messaggio. Se il nome DNS e il numero di porta sono stati configurati correttamente, fare clic su **Yes**.
+![Schermata che mostra la notifica][11]
 
-7. Si sono tooenter richiesto il nome utente.  
-![Schermata che mostra dove nome utente tooenter][12]
+7. Viene chiesto di inserire il nome utente.  
+![Schermata che mostra dove inserite il nome utente][12]
 
-8. Immettere un nome utente hello utilizzato macchina virtuale di toocreate hello in hello "fase 1: creare un'immagine" sezione più indietro in questo articolo. Si noterà simile alla seguente hello:  
-![Schermata che Mostra conferma authentication hello][13]
+8. Inserire il nome utente utilizzato per creare la macchina virtuale nella sezione "Fase 1: creare un'immagine" di questo articolo. Verrà visualizzata una schermata simile alla seguente:   
+![Schermata che mostra la conferma dell'autenticazione][13]
 
 ## <a name="phase-3-install-software"></a>Fase 3: installare il software
-In questa fase, installare Java runtime environment di hello Tomcat7 e altri componenti Tomcat7.  
+In questa fase saranno installati l'ambiente di runtime Java, Tomcat7 e altri componenti di Tomcat7.  
 
 ### <a name="java-runtime-environment"></a>Ambiente di runtime Java
-Tomcat è scritto in Java. Esistono due tipi di Java Development Kit (JDK): OpenJDK e Oracle JDK. È possibile scegliere hello quello desiderato.  
+Tomcat è scritto in Java. Esistono due tipi di Java Development Kit (JDK): OpenJDK e Oracle JDK. È possibile scegliere quello preferito.  
 
 > [!NOTE]
-> Sia JDK sono quasi hello stesso codice per le classi hello hello API Java, ma il codice hello per la macchina virtuale hello è diverso. OpenJDK tende librerie aperte toouse, mentre tende Oracle JDK toouse chiuso quelle. Oracle JDK dispone di più classi e include alcuni bug corretti, inoltre è più stabile di OpenJDK.
+> Il codice contenuto dai due JDK per le classi nell'API Java è praticamente identico, mentre il codice per la macchina virtuale è diverso. OpenJDK tende a usare librerie aperte mentre Oracle JDK tende a usare librerie chiuse. Oracle JDK dispone di più classi e include alcuni bug corretti, inoltre è più stabile di OpenJDK.
 
 #### <a name="install-openjdk"></a>Installare OpenJDK  
 
-Comando che segue di hello utilizzare toodownload OpenJDK.   
+Usare il comando seguente per scaricare OpenJDK.   
 
     sudo apt-get update  
     sudo apt-get install openjdk-7-jre  
 
 
-* toocreate toocontain una directory hello file JDK:  
+* Per creare una directory in cui includere i file di JDK:  
 
         sudo mkdir /usr/lib/jvm  
-* file JDK tooextract hello in hello usr/lib/jvm/directory:  
+* Per estrarre i file di JDK nella directory /usr/lib/jvm/:  
 
         sudo tar -zxf jdk-8u5-linux-x64.tar.gz  -C /usr/lib/jvm/
 
 #### <a name="install-oracle-jdk"></a>Installare Oracle JDK
 
 
-Utilizzare hello seguente toodownload comando Oracle JDK dal sito Web Oracle hello.  
+Usare il comando seguente per scaricare Oracle JDK dal sito Web di Oracle.  
 
      wget --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u5-b13/jdk-8u5-linux-x64.tar.gz  
-* toocreate toocontain una directory hello file JDK:  
+* Per creare una directory in cui includere i file di JDK:  
 
         sudo mkdir /usr/lib/jvm  
-* file JDK tooextract hello in hello usr/lib/jvm/directory:  
+* Per estrarre i file di JDK nella directory /usr/lib/jvm/:  
 
         sudo tar -zxf jdk-8u5-linux-x64.tar.gz  -C /usr/lib/jvm/  
-* tooset Oracle JDK come hello predefinito Java virtual machine:  
+* Per impostare Oracle JDK come macchina virtuale Java predefinita:  
 
         sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk1.8.0_05/bin/java 100  
 
         sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk1.8.0_05/bin/javac 100  
 
 #### <a name="confirm-that-java-installation-is-successful"></a>Verificare che l'installazione di Java sia riuscita
-È possibile utilizzare un comando simile hello seguente tootest se hello Java runtime environment sia installato correttamente:  
+Per verificare se l'ambiente di runtime Java è stato installato correttamente, è possibile usare un comando simile al seguente:  
 
     java -version  
 
-Se è installato OpenJDK, si verrà visualizzato un messaggio hello seguente: ![messaggio di installazione ha esito positivo OpenJDK][14]
+Se è stato installato OpenJDK, si dovrebbe vedere un messaggio simile al seguente: ![installazione di OpenJDK riuscita][14]
 
-Se è installato Oracle JDK, si verrà visualizzato un messaggio hello seguente: ![messaggio di installazione ha esito positivo Oracle JDK][15]
+Se è stato installato Oracle JDK, si dovrebbe vedere un messaggio simile al seguente: ![installazione di Oracle JDK riuscita][15]
 
 ### <a name="install-tomcat7"></a>Installare Tomcat7
-Utilizzare hello successivo comando tooinstall Tomcat7.  
+Usare il seguente comando per installare Tomcat7.  
 
     sudo apt-get install tomcat7  
 
-Se non si utilizza Tomcat7, utilizzare la variante appropriata di hello di questo comando.  
+Se non si usa Tomcat7, modificare il comando in modo appropriato.  
 
 #### <a name="confirm-that-tomcat7-installation-is-successful"></a>Verificare che l'installazione di Tomcat7 sia riuscita
-Se è stata installata Tomcat7, toocheck Sfoglia nome DNS del server Tomcat tooyour. In questo articolo, l'URL di esempio hello è http://tomcatexample.cloudapp.net/. Se viene visualizzato un messaggio hello seguente, Tomcat7 sia installato correttamente.
+Per verificare se Tomcat7 è stato installato correttamente, passare al nome DNS del server Tomcat. In questo articolo l'URL di esempio è http://tomcatexample.cloudapp.net/. Se viene visualizzato un messaggio simile al seguente, Tomcat7 è stato installato correttamente.
 ![Messaggio con l'avviso che l'installazione di Tomcat7 è riuscita][16]
 
 ### <a name="install-other-tomcat7-components"></a>Installare altri componenti di Tomcat7
 Esistono altri componenti facoltativi di Tomcat che è possibile installare.  
 
-Hello utilizzare **sudo apt della cache di ricerca tomcat7** toosee comando tutti i componenti disponibili hello. Utilizzare hello comandi che seguono tooinstall alcuni componenti utili.  
+Usare il comando **sudo apt-cache search tomcat7** per visualizzare tutti i componenti disponibili. Usare i seguenti comandi per installare alcuni utili componenti.  
 
     sudo apt-get install tomcat7-admin      #admin web applications
 
-    sudo apt-get install tomcat7-user         #tools toocreate user instances  
+    sudo apt-get install tomcat7-user         #tools to create user instances  
 
 ## <a name="phase-4-configure-tomcat7"></a>Fase 4: configurare Tomcat7
 In questa fase si amministra Tomcat.
 
 ### <a name="start-and-stop-tomcat7"></a>Avviare e arrestare Tomcat7
-Hello Tomcat7 avviata automaticamente durante l'installazione. È inoltre possibile avviare con hello comando seguente:   
+Il server Tomcat7 si avvia automaticamente durante l'installazione. È possibile anche avviarlo con il seguente comando:   
 
     sudo /etc/init.d/tomcat7 start
 
-toostop Tomcat7:
+Per arrestare Tomcat7：
 
     sudo /etc/init.d/tomcat7 stop
 
-stato di hello tooview di Tomcat7:
+Per visualizzare lo stato di Tomcat7：
 
     sudo /etc/init.d/tomcat7 status
 
-servizi di Tomcat toorestart: 
+Per riavviare i servizi Tomcat： 
 
     sudo /etc/init.d/tomcat7 restart
 
 ### <a name="tomcat7-administration"></a>Amministrazione di Tomcat7
-È possibile modificare hello Tomcat utente configurazione file tooset backup le credenziali di amministratore. Utilizzare hello comando seguente:  
+È possibile modificare il file di configurazione utente di Tomcat per configurare le proprie credenziali di amministratore. Usare il comando seguente:  
 
     sudo vi  /etc/tomcat7/tomcat-users.xml   
 
 Di seguito è fornito un esempio:  
-![Schermata che mostra l'output del comando vi hello sudo][17]  
+![Schermata che mostra l'output del comando sudo vi][17]  
 
 > [!NOTE]
-> Creare una password complessa per nome utente amministratore hello.  
+> Creare una password complessa per il nome utente dell'amministratore.  
 
-Dopo avere modificato questo file, è necessario riavviare servizi Tomcat7 con hello comando tooensure che le modifiche di hello abbiano l'effetto seguente:  
+Dopo avere modificato questo file, è necessario riavviare i servizi Tomcat7 con il seguente comando per rendere effettive le modifiche:  
 
     sudo /etc/init.d/tomcat7 restart  
 
-Aprire il browser e immettere **http://<your tomcat server DNS name>manager/html** come hello URL. Ad esempio hello in questo articolo, l'URL hello è http://tomcatexample.cloudapp.net/manager/html.  
+Aprire il browser e immettere l'URL **http://<your tomcat server DNS name>/manager/html**. Ad esempio, in questo articolo l'URL è http://tomcatexample.cloudapp.net/manager/html.  
 
-Dopo la connessione, verrà visualizzato un codice simile toohello seguenti:  
-![Schermata di gestione di applicazioni Web Tomcat hello][18]
+Dopo la connessione, si dovrebbe visualizzare una schermata simile alla seguente:   
+![Schermata di Tomcat Web Application Manager][18]
 
 ## <a name="common-issues"></a>Problemi comuni
-### <a name="cant-access-hello-virtual-machine-with-tomcat-and-moodle-from-hello-internet"></a>Non è possibile accedere a hello la macchina virtuale con Tomcat e Moodle hello Internet
+### <a name="cant-access-the-virtual-machine-with-tomcat-and-moodle-from-the-internet"></a>Impossibile accedere alla macchina virtuale con Tomcat e Moodle da Internet
 #### <a name="symptom"></a>Sintomo  
-  Tomcat è in esecuzione ma non è possibile visualizzare pagina predefinita di Tomcat hello con il browser.
+  Tomcat è in esecuzione ma non è possibile visualizzare la pagina predefinita di Tomcat con il browser.
 #### <a name="possible-root-cause"></a>Possibile causa principale   
 
-  * porta di ascolto Hello Tomcat non è hello come porta privata di hello dell'endpoint della macchina virtuale per il traffico di Tomcat.  
+  * La porta di ascolto di Tomcat non corrisponde alla porta privata dell'endpoint della macchina virtuale per il traffico in Tomcat.  
 
-     Controllare la porta pubblica e privata endpoint impostazioni porta e verificare la porta privata hello è hello uguali a quelli di Tomcat hello porta di ascolto. Per istruzioni sulla configurazione degli endpoint per la macchina virtuale vedere la sezione di questo articolo "Fase 1: creare un'immagine".  
+     Controllare le impostazioni dell'endpoint della porta pubblica e privata e assicurarsi che la porta privata corrisponda alla porta di ascolto di Tomcat. Per istruzioni sulla configurazione degli endpoint per la macchina virtuale vedere la sezione di questo articolo "Fase 1: creare un'immagine".  
 
-     hello toodetermine Tomcat porta di ascolto, aprire /etc/httpd/conf/httpd.conf (Red Hat versione) o /etc/tomcat7/server.xml (Debian versione). Per impostazione predefinita, la porta di ascolto Tomcat hello è 8080. Di seguito è fornito un esempio:  
+     Per determinare la porta di ascolto di Tomcat, aprire /etc/httpd/conf/httpd.conf (versione Red Hat) o /etc/tomcat7/server.xml (versione Debian). Per impostazione predefinita la porta di ascolto di Tomcat è 8080. Di seguito è fornito un esempio:  
 
         <Connector port="8080" protocol="HTTP/1.1"  connectionTimeout="20000"   URIEncoding="UTF-8"            redirectPort="8443" />  
 
-     Se si utilizza una macchina virtuale come Debian o Ubuntu e si desidera toochange hello predefinito porta di Tomcat ascolto (ad esempio 8081), è necessario aprire anche la porta hello per sistema operativo hello. Prima di tutto, aprire il profilo di hello:  
+     Se si usa una macchina virtuale come Debian o Ubuntu e si vuole modificare la porta di ascolto di Tomcat predefinita (ad esempio 8081), è necessario aprire la porta anche per il sistema operativo. Aprire innanzitutto il profilo:  
 
         sudo vi /etc/default/tomcat7  
 
-     Quindi rimuovere l'ultima riga hello e modificare "no" troppo "yes".  
+     Rimuovere quindi i commenti dall’ultima riga e modificare “no” in “sì”.  
 
         AUTHBIND=yes
-  2. firewall Hello è disabilitato hello porta di ascolto di Tomcat.
+  2. Il firewall ha disabilitato la porta di ascolto di Tomcat.
 
-     È possibile visualizzare solo pagina predefinita di Tomcat hello dall'host locale hello. problema di Hello è molto probabile che la porta hello, vale a dire ascoltato tooby Tomcat, è bloccata da firewall hello. È possibile utilizzare la pagina hello hello w3m strumento toobrowse. Hello seguenti comandi installare w3m e passare pagina predefinita di Tomcat toohello:  
+     È possibile visualizzare la pagina predefinita di Tomcat solo dall'host locale. Molto probabilmente il problema è che la porta su cui è in ascolto Tomcat è bloccata dal firewall. È possibile usare lo strumento w3m per passare alla pagina Web. I seguenti comandi consentono di installare w3m e di passare alla pagina predefinita di Tomcat:  
 
 
         sudo yum install w3m w3m-img
@@ -267,48 +267,48 @@ Dopo la connessione, verrà visualizzato un codice simile toohello seguenti:
         w3m http://localhost:8080  
 #### <a name="solution"></a>Soluzione
 
-  * Se la porta di ascolto Tomcat hello è non hello stesso come porta privata di hello dell'endpoint hello per la macchina virtuale di traffico toohello, è necessario modificare la porta privata hello toobe hello stesso hello porta di ascolto Tomcat.   
-  2. Se il problema di hello è determinato dal firewall/iptables, aggiungere hello seguenti righe troppo/ecc/sysconfig/iptables. seconda riga Hello è necessaria solo per il traffico https:  
+  * Se la porta di ascolto di Tomcat non corrisponde alla porta privata dell'endpoint per il traffico nella macchina virtuale, è necessario modificare la porta privata dell'endpoint affinché corrisponda alla porta di ascolto di Tomcat.   
+  2. Se il problema è causato dal firewall o dagli iptable, aggiungere le seguenti righe a /etc/sysconfig/iptables. La seconda riga è necessaria solo per il traffico https:  
 
       -A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
 
       -A INPUT -p tcp -m tcp --dport 443 -j ACCEPT  
 
      > [!IMPORTANT]
-     > Verificare che le righe precedenti hello vengono posizionate sopra tutte le righe che verrebbero globale limitare l'accesso, come illustrato di seguito hello: - A -j REJECT - rifiuto-con icmp-host-consentito di INPUT
+     > Assicurarsi che le righe precedenti siano posizionate sopra eventuali righe che limiterebbero globalmente l'accesso, come la seguente: -A INPUT -j REJECT --reject-with icmp-host-prohibited
 
 
 
-tooreload hello iptables, eseguire hello comando seguente:
+Per ricaricare gli iptable, eseguire il seguente comando:
 
     service iptables restart
 
 Questa installazione è stata effettuata su CentOS 6.3.
 
-### <a name="permission-denied-when-you-upload-project-files-toovarlibtomcat7webapps"></a>Autorizzazione negata quando si carica progetto file troppo/var/lib/tomcat7/webapps /
+### <a name="permission-denied-when-you-upload-project-files-to-varlibtomcat7webapps"></a>Autorizzazione negata quando si caricano i file di progetto in /var/lib/tomcat7/webapps/
 #### <a name="symptom"></a>Sintomo
-  Quando si usa una macchina virtuale SFTP client (ad esempio FileZilla) tooconnect tooyour e passare troppo/var/lib/tomcat7/webapps/toopublish del sito, verrà un errore messaggio simili toohello segue:  
+  Quando si usa un client FTP sicuro (ad esempio FileZilla) per connettersi alla macchina virtuale e passare a /var/lib/tomcat7/webapps/ per pubblicare il sito, si ottiene un messaggio di errore simile al seguente:  
 
      status:    Listing directory /var/lib/tomcat7/webapps
      Command:    put "C:\Users\liang\Desktop\info.jsp" "info.jsp"
      Error:    /var/lib/tomcat7/webapps/info.jsp: open for write: permission denied
      Error:    File transfer failed
 #### <a name="possible-root-cause"></a>Possibile causa principale
-  È non presente alcuna cartella di /var/lib/tomcat7/webapps hello tooaccess autorizzazioni.  
+  Non si dispone delle autorizzazioni di accesso alla cartella /var/lib/tomcat7/webapps.  
 #### <a name="solution"></a>Soluzione  
-  Sono necessarie autorizzazioni tooget dall'account radice hello. È possibile modificare la proprietà hello della cartella dal nome utente toohello radice utilizzato quando è stato effettuato il provisioning macchina hello. Di seguito è riportato un esempio con il nome di account azureuser hello:  
+  È necessario ottenere l'autorizzazione dall'account radice. È possibile cambiare la proprietà di tale cartella dalla radice al nome utente usato per il provisioning della macchina. Di seguito è riportato un esempio con il nome dell'account azureuser:  
 
      sudo chown azureuser -R /var/lib/tomcat7/webapps
 
-  Utilizzare autorizzazioni hello di hello -R opzione tooapply anche per tutti i file all'interno di una directory.  
+  Usare l'opzione -R per applicare le autorizzazioni per tutti i file anche all'interno di una directory.  
 
-  Questo comando funziona anche per le directory. le modifiche all'opzione -R Hello salve le autorizzazioni per tutti i file e directory all'interno della directory hello. Di seguito è fornito un esempio:  
+  Questo comando funziona anche per le directory. L'opzione -R modifica le autorizzazioni per tutti i file e le directory all'interno della directory. Di seguito è fornito un esempio:  
 
      sudo chown -R username:group directory  
 
-  Questo comando modifica la proprietà (utente e gruppo) per tutti i file e directory che sono all'interno della directory hello.  
+  Questo comando cambia la proprietà (sia utente che gruppo) per tutti i file e le directory che si trovano all'interno della directory stessa.  
 
-  Hello comando seguente cambia solo autorizzazione hello di directory della cartella hello. Hello file e cartelle all'interno della directory hello non vengono modificate.  
+  Il comando seguente modifica l'autorizzazione solo per la directory della cartella. I file e cartelle all'interno della directory non vengono modificati.  
 
      sudo chown username:group directory
 

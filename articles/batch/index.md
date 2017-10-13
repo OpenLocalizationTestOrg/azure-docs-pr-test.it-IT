@@ -1,8 +1,8 @@
 ---
-title: aaaAzure Batch documentazione, esercitazioni, riferimenti alle API | Documenti Microsoft
-description: Informazioni su come toouse Batch paralleli su larga scala toorun e applicazioni di calcolo ad alte prestazioni in modo efficiente. Esercitazioni, informazioni di riferimento sulle API e altri documenti.
+title: Documentazione di Azure Batch - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
+description: Informazioni su come usare Azure Batch per eseguire in modo efficiente applicazioni parallele e HPC (High Performance Computing) su larga scala. Esercitazioni, informazioni di riferimento sulle API e altri documenti.
 services: batch
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 25172c7b3462794643d1cba539fcd0d9a6c4c62e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 31e15ecb995f0a5b1164296132db15e8de7e4363
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 #<a name="batch-documentation"></a>Documentazione di Batch
 
-Informazioni su come paralleli su larga scala di toouse Batch toorun e applicazioni di calcolo ad alte prestazioni in modo efficiente in hello cloud. Esercitazioni, riferimenti ad API e altra documentazione illustrano come toodefine hello Azure compute tooexecute risorse delle applicazioni in parallelo o a livello di scalabilità senza la configurazione manuale o la gestione dell'infrastruttura.
+Informazioni su come usare Azure Batch per eseguire in modo efficiente applicazioni parallele e HPC (High Performance Computing) su larga scala nel cloud. Esercitazioni, informazioni di riferimento sulle API e altri documenti in cui viene illustrato come definire le risorse di calcolo di Azure per eseguire le applicazioni in parallelo o in scala, senza necessità di configurare o gestire manualmente l'infrastruttura.
 
 <ul class="panelContent cardsFTitle">
     <li>

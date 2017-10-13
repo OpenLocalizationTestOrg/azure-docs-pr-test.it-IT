@@ -1,6 +1,6 @@
 ---
-title: fase aaaReal statistiche nella rete CDN di Azure | Documenti Microsoft
-description: Statistiche in tempo reale fornisce in tempo reale dati sulle prestazioni di hello della rete CDN di Azure per il recapito di contenuto tooyour client.
+title: Statistiche in tempo reale nella rete CDN di Azure | Documentazione Microsoft
+description: Le statistiche in tempo reale forniscono i dati in tempo reale sulle prestazioni della rete CDN durante la distribuzione di contenuto ai client.
 services: cdn
 documentationcenter: 
 author: zhangmanling
@@ -14,19 +14,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: 68900a5092b767e45c1fdf9cef2cd03f55f38a6e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e9b9522de6b2c54dc794b00100ffe358296ecfdd
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="real-time-stats-in-microsoft-azure-cdn"></a>Statistiche in tempo reale nella rete CDN di Microsoft Azure
 [!INCLUDE [cdn-premium-feature](../../includes/cdn-premium-feature.md)]
 
 ## <a name="overview"></a>Overview
-Questo documento illustra le statistiche in tempo reale nella rete CDN di Microsoft Azure.  Questa funzionalità fornisce i dati in tempo reale, ad esempio larghezza di banda, gli stati di cache e connessioni simultanee tooyour CDN profilo per il recapito di contenuto tooyour client. In questo modo, il monitoraggio continuo dell'integrità di hello del servizio in qualsiasi momento, inclusi gli eventi di pubblicazione.
+Questo documento illustra le statistiche in tempo reale nella rete CDN di Microsoft Azure.  Questa funzionalità fornisce dati in tempo reale, ad esempio la larghezza di banda, gli stati della cache e le connessioni simultanee al profilo della rete CDN per il recapito di contenuto ai client. In questo modo viene abilitato il monitoraggio continuo dell'integrità del servizio in qualsiasi momento, inclusi gli eventi di go-live.
 
-sono disponibile i seguenti grafici Hello:
+Sono disponibili i grafici seguenti:
 
 * [Larghezza di banda](#bandwidth)
 * [Codici di stato](#status-codes)
@@ -34,59 +34,59 @@ sono disponibile i seguenti grafici Hello:
 * [Connessioni](#connections)
 
 ## <a name="accessing-real-time-stats"></a>Accesso alle statistiche in tempo reale
-1. In hello [portale Azure](https://portal.azure.com), selezionare il profilo CDN tooyour.
+1. Nel [portale di Azure](https://portal.azure.com)passare al profilo della rete CDN.
    
     ![Pannello del profilo di rete CDN](./media/cdn-real-time-stats/cdn-profile-blade.png)
-2. Dal Pannello di profilo CDN hello, fare clic su hello **Gestisci** pulsante.
+2. Dal pannello del profilo della rete CDN fare clic sul pulsante **Gestisci** .
    
     ![Pulsante Gestisci pannello del profilo di rete CDN](./media/cdn-real-time-stats/cdn-manage-btn.png)
    
-    viene visualizzato il portale di gestione della rete CDN Hello.
-3. Passare il mouse su hello **Analitica** scheda, quindi passare il mouse su hello **statistiche in tempo reale** riquadro a comparsa.  Fare clic su **Oggetto di grandi dimensioni HTTP**.
+    Si aprirà il portale di gestione della rete CDN.
+3. Passare il puntatore sulla scheda **Analisi**, quindi sul riquadro a comparsa **Statistiche in tempo reale**.  Fare clic su **Oggetto di grandi dimensioni HTTP**.
    
     ![Portale di gestione della rete CDN](./media/cdn-real-time-stats/cdn-premium-portal.png)
    
-    vengono visualizzati i grafici di Hello statistiche in tempo reale.
+    Vengono visualizzati i grafici delle statistiche in tempo reale.
 
-Ognuno dei grafici hello Visualizza statistiche in tempo reale per l'intervallo di tempo selezionato hello, avvio durante il caricamento pagina hello.  grafici di Hello aggiornati automaticamente ogni pochi secondi.  Hello **aggiornare grafico** pulsante, se presente, verrà cancellato grafico hello, dopo il quale verranno visualizzate solo dati hello selezionato.
+Ogni grafico visualizza le statistiche in tempo reale per l'intervallo di tempo selezionato, a partire dal momento del caricamento della pagina.  I grafici vengono aggiornati automaticamente a intervalli di pochi secondi.  Il pulsante **Aggiorna grafico** , se presente, consente di cancellare il grafico, dopodiché saranno visualizzati solo i dati selezionati.
 
 ## <a name="bandwidth"></a>Larghezza di banda
 ![Grafico Larghezza di banda](./media/cdn-real-time-stats/cdn-bandwidth.png)
 
-Hello **della larghezza di banda** grafico consente di visualizzare la quantità hello di larghezza di banda utilizzata per la piattaforma corrente hello tramite l'intervallo di tempo selezionato hello. Hello ombreggiata parte grafico hello indica l'utilizzo della larghezza di banda. quantità esatta di Hello di larghezza di banda attualmente in uso viene visualizzato sotto un grafico a linee hello.
+Il grafico **Larghezza di banda** visualizza la quantità di larghezza di banda usata per la piattaforma corrente nel periodo di tempo specificato. La parte ombreggiata del grafico indica l'utilizzo della larghezza di banda. La quantità esatta di larghezza di banda attualmente in uso viene visualizzata direttamente sotto il grafico a linee.
 
 ## <a name="status-codes"></a>Codici di stato
 ![Grafico Codici di stato](./media/cdn-real-time-stats/cdn-status-codes.png)
 
-Hello **codici di stato** grafico indica la frequenza con cui si verificano alcuni codici di risposta HTTP su intervallo di tempo hello selezionato.
+Il grafico **Codici di stato** indica la frequenza con cui si verificano alcuni codici di risposta HTTP durante l'intervallo di tempo selezionato.
 
 > [!TIP]
 > Per una descrizione di ogni opzione relativa ai codici di stato HTTP, vedere [Azure CDN HTTP Status Codes](https://msdn.microsoft.com/library/mt759238.aspx)(Codici di stato HTTP della rete CDN di Azure).
 > 
 > 
 
-Direttamente sopra il grafico di hello viene visualizzato un elenco di codici di stato HTTP. Questo elenco indica ogni codice di stato che può essere incluso nel grafico a linee hello e numero corrente di hello di occorrenze al secondo per il codice di stato. Per impostazione predefinita, viene visualizzata una riga per ognuno di questi codici di stato nel grafico hello. Tuttavia, è possibile scegliere tooonly i codici di stato hello monitor che hanno un significato speciale per la configurazione della rete CDN. toodo, controllare i codici di stato hello desiderato e deselezionare tutte le altre opzioni, quindi fare clic su **aggiornare grafico**. 
+Direttamente sopra al grafico viene visualizzato un elenco dei codici di stato HTTP. Questo elenco indica ogni codice di stato che può essere incluso nel grafico a linee e il numero di occorrenze correnti al secondo per ogni codice di stato. Per impostazione predefinita, viene visualizzata una riga per ognuno di questi codici di stato nel grafico. Tuttavia, è possibile scegliere di monitorare solo i codici di stato che hanno un significato speciale per la configurazione della rete CDN. A tale scopo, selezionare i codici di stato desiderati e deselezionare tutte le altre opzioni, quindi fare clic su **Aggiorna grafico**. 
 
-È possibile nascondere temporaneamente i dati registrati per un codice di stato specifico.  Legenda hello direttamente sotto il grafico di hello, selezionare il codice di stato hello desiderato toohide. codice di stato Hello verrà nascoste dal grafico hello immediatamente. Fare nuovamente clic su quel codice di stato causerà toobe tale opzione visualizzato di nuovo.
+È possibile nascondere temporaneamente i dati registrati per un codice di stato specifico.  Nella legenda direttamente sotto il grafico selezionare il codice di stato che si vuole nascondere. Il codice di stato verrà nascosto immediatamente nel grafico. Se si seleziona di nuovo il codice di stato, l'opzione verrà visualizzata nuovamente.
 
 ## <a name="cache-statuses"></a>Stati della cache
 ![Grafico Stati della cache](./media/cdn-real-time-stats/cdn-cache-status.png)
 
-Hello **Cache stati** grafico indica la frequenza con cui si verificano determinati tipi di stato della cache su intervallo di tempo selezionato hello. 
+Il grafico **Stati della cache** indica la frequenza con cui si verificano alcuni tipi di stati della cache durante l'intervallo di tempo selezionato. 
 
 > [!TIP]
 > Per una descrizione di ogni opzione relativa agli stati della cache, vedere [Azure CDN Cache Status Codes](https://msdn.microsoft.com/library/mt759237.aspx)(Codici di stato della cache della rete CDN di Azure).
 > 
 > 
 
-Direttamente sopra il grafico di hello viene visualizzato un elenco dei codici di stato della cache. Questo elenco indica ogni codice di stato che può essere incluso nel grafico a linee hello e numero corrente di hello di occorrenze al secondo per il codice di stato. Per impostazione predefinita, viene visualizzata una riga per ognuno di questi codici di stato nel grafico hello. Tuttavia, è possibile scegliere tooonly i codici di stato hello monitor che hanno un significato speciale per la configurazione della rete CDN. toodo, controllare i codici di stato hello desiderato e deselezionare tutte le altre opzioni, quindi fare clic su **aggiornare grafico**. 
+Direttamente sopra al grafico viene visualizzato un elenco di codici di stato della cache. Questo elenco indica ogni codice di stato che può essere incluso nel grafico a linee e il numero di occorrenze correnti al secondo per ogni codice di stato. Per impostazione predefinita, viene visualizzata una riga per ognuno di questi codici di stato nel grafico. Tuttavia, è possibile scegliere di monitorare solo i codici di stato che hanno un significato speciale per la configurazione della rete CDN. A tale scopo, selezionare i codici di stato desiderati e deselezionare tutte le altre opzioni, quindi fare clic su **Aggiorna grafico**. 
 
-È possibile nascondere temporaneamente i dati registrati per un codice di stato specifico.  Legenda hello direttamente sotto il grafico di hello, selezionare il codice di stato hello desiderato toohide. codice di stato Hello verrà nascoste dal grafico hello immediatamente. Fare nuovamente clic su quel codice di stato causerà toobe tale opzione visualizzato di nuovo.
+È possibile nascondere temporaneamente i dati registrati per un codice di stato specifico.  Nella legenda direttamente sotto il grafico selezionare il codice di stato che si vuole nascondere. Il codice di stato verrà nascosto immediatamente nel grafico. Se si seleziona di nuovo il codice di stato, l'opzione verrà visualizzata nuovamente.
 
 ## <a name="connections"></a>Connessioni
 ![Grafico Connessioni](./media/cdn-real-time-stats/cdn-connections.png)
 
-Questo grafico indica il numero di connessioni sono state stabilite tooyour edge server. Ogni richiesta per un asset che passa attraverso la rete CDN costituisce una connessione.
+Questo grafico indica il numero di connessioni stabilite con i server perimetrali. Ogni richiesta per un asset che passa attraverso la rete CDN costituisce una connessione.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Per impostare la ricezione di notifiche, vedere [Avvisi in tempo reale nella rete CDN di Microsoft Azure](cdn-real-time-alerts.md)

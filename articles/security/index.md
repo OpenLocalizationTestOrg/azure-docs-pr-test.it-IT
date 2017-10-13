@@ -1,8 +1,8 @@
 ---
-title: aaaAzure sicurezza documentazione - esercitazioni | Documenti Microsoft
-description: Informazioni su come toocustomize opzioni di protezione in servizi di Azure toomeet hello requisiti delle distribuzioni di servizi e i dati nel cloud hello.
+title: Documentazione della sicurezza di Azure - Esercitazioni | Documentazione Microsoft
+description: Informazioni su come personalizzare le opzioni di sicurezza nei servizi Azure per soddisfare i requisiti delle distribuzioni di servizi e dati nel cloud.
 services: security
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: ef845a50b32dfec102d1f74d4af98e316dd7e1c8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 930546e0b5847ee088dc08a48e8a0f9d610c5839
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="security-documentation"></a>Documentazione di Sicurezza
 
-Informazioni su come toouse sicurezza di Azure tooprotect servizi e i dati in hello cloud. Altra documentazione ed esercitazioni che consentono di personalizzare le opzioni di sicurezza dei requisiti di servizi di Azure toomeet hello delle distribuzioni.
+Informazioni su come utilizzare la sicurezza di Azure per proteggere dati e servizi nel cloud. Esercitazioni e altri documenti in cui viene illustrato come personalizzare le opzioni di sicurezza nei servizi Azure per soddisfare i requisiti delle distribuzioni.
 
 <ul class="panelContent cardsFTitle">
     <li>

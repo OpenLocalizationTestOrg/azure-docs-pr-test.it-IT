@@ -1,6 +1,6 @@
 ---
-title: 'i metodi di routing del traffico aaaAzure Traffic Manager: | Documenti Microsoft'
-description: In questo articolo consente di capire i metodi di routing del traffico diversi hello usati da Gestione traffico
+title: Gestione traffico di Azure - Metodi di routing del traffico | Microsoft Docs
+description: Questo articolo fornisce informazioni sui diversi metodi di routing del traffico usati da Gestione traffico
 services: traffic-manager
 documentationcenter: 
 author: KumudD
@@ -14,55 +14,55 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/13/2017
 ms.author: kumud
-ms.openlocfilehash: b3eeca63ab5f2b9cd4a3a6b6a8fd3e40059e32b5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: fe776e24a4f78b389c6096694055b38befa3c419
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="traffic-manager-routing-methods"></a>Metodi di routing di Gestione traffico
 
-Azure Traffic Manager toodetermine metodi di routing del traffico supporta quattro modalità tooroute rete toohello di traffico diversi endpoint del servizio. Gestione traffico applica hello routing del traffico metodo tooeach query DNS che riceve. il metodo di routing del traffico Hello determina quale endpoint restituite nella risposta DNS hello.
+Gestione traffico di Microsoft Azure supporta tre metodi di routing del traffico per determinare la modalità di instradamento del traffico di rete ai vari endpoint di servizio. Gestione traffico applica il metodo di routing a ogni query DNS ricevuta, per determinare l'endpoint da restituire nella risposta DNS.
 
 In Gestione traffico sono disponibili quattro metodi di routing del traffico:
 
-* **[Priorità](#priority):** selezionare **priorità** quando si desidera toouse un endpoint del servizio principale per tutto il traffico e fornire backup nel caso in cui hello primario o gli endpoint di backup hello non sono disponibili.
-* **[Weighted](#weighted):** selezionare **Weighted** quando si desidera toodistribute traffico in un set di endpoint, ovvero in modo uniforme o tooweights secondo, che può essere definito.
-* **[Prestazioni](#performance):** selezionare **prestazioni** quando sono disponibili endpoint in aree geografiche diverse e si desideri che gli utenti finali toouse hello endpoint "più vicino" in termini di latenza di rete più bassa hello.
-* **[Geografico](#geographic):** selezionare **geografica** in modo che gli utenti sono endpoint toospecific diretto (Azure, esterna o Nested) in base alla quale posizione geografica le query DNS deriva da. Questo consente scenari di tooenable clienti Traffic Manager in cui è importante conoscere l'area geografica dell'utente e il routing in base che. Ne sono esempi la presenza di determinati requisiti sui dati, la localizzazione del contenuto e dell'esperienza dell'utente e la misurazione del traffico da aree diverse.
+* **[Priorità](#priority):** selezionare **Priorità** quando si vuole usare un endpoint di servizio primario per tutto il traffico e prevedere endpoint di backup nel caso in cui l'endpoint primario o gli endpoint di backup non siano disponibili.
+* **[Ponderato](#weighted):** selezionare **Ponderato** quando si vuole distribuire il traffico in un set di endpoint in modo uniforme o in base alle ponderazioni definite.
+* **[Prestazioni](#performance):** selezionare **Prestazioni** quando gli endpoint si trovano in aree geografiche diverse e si vuole che gli utenti finali usino l'endpoint "più vicino" in termini di latenza di rete più bassa.
+* **[Geografico](#geographic):** selezionare **Geografico** in modo che gli utenti vengono indirizzati a endpoint specifici (Azure, Esterno o Annidato) in base alla posizione geografica da cui provengono le query DNS. Questo consente ai clienti di Gestione traffico di abilitare scenari in cui è importante conoscere l'area geografica dell'utente ed eseguirne il routing in base a questa. Ne sono esempi la presenza di determinati requisiti sui dati, la localizzazione del contenuto e dell'esperienza dell'utente e la misurazione del traffico da aree diverse.
 
-Tutti i profili di Gestione traffico includono il monitoraggio continuo dell'integrità degli endpoint e il failover automatico degli endpoint. Per altre informazioni, vedere [Informazioni sul monitoraggio di Gestione traffico](traffic-manager-monitoring.md). Un singolo profilo di Gestione traffico può usare un solo metodo di routing del traffico. È possibile selezionare in qualsiasi momento un metodo di routing del traffico diverso per il profilo. Le modifiche vengono applicate entro un minuto e non si verificano periodi di inattività. I metodi di routing del traffico possono essere combinati usando profili nidificati di Gestione traffico. La nidificazione consente più sofisticate e flessibile configurazioni di routing del traffico che soddisfano le esigenze di hello delle applicazioni più grandi e complesse. Per altre informazioni, vedere [nested Traffic Manager profiles](traffic-manager-nested-profiles.md)(Profili nidificati di Gestione traffico).
+Tutti i profili di Gestione traffico includono il monitoraggio continuo dell'integrità degli endpoint e il failover automatico degli endpoint. Per altre informazioni, vedere [Informazioni sul monitoraggio di Gestione traffico](traffic-manager-monitoring.md). Un singolo profilo di Gestione traffico può usare un solo metodo di routing del traffico. È possibile selezionare in qualsiasi momento un metodo di routing del traffico diverso per il profilo. Le modifiche vengono applicate entro un minuto e non si verificano periodi di inattività. I metodi di routing del traffico possono essere combinati usando profili nidificati di Gestione traffico. I profili annidati consentono di creare configurazioni di routing del traffico sofisticate e flessibili per soddisfare le esigenze di applicazioni più grandi e più complesse. Per altre informazioni, vedere [nested Traffic Manager profiles](traffic-manager-nested-profiles.md)(Profili nidificati di Gestione traffico).
 
 ## <a name = "priority"></a>Metodo di routing del traffico Priorità
 
-Un'organizzazione desidera spesso tooprovide affidabilità dei servizi di distribuendo uno o più servizi di backup nel caso in cui il servizio primario diventa inattivo. metodo di routing del traffico "Priority" Hello consente Azure i clienti tooeasily implementare questo pattern di failover.
+Un'organizzazione vuole spesso offrire la massima affidabilità per i propri servizi dotandosi di uno o più servizi di backup in caso di inattività del servizio primario. Il metodo di routing del traffico "Priorità" consente ai clienti di Azure di implementare facilmente questo modello di failover.
 
 ![Metodo di routing del traffico "Priorità" di Gestione traffico di Azure][1]
 
-profilo di gestione traffico Hello contiene un elenco con priorità degli endpoint del servizio. Per impostazione predefinita, verrà inviata endpoint (più alta priorità) di tutto il traffico toohello primario. Se l'endpoint primario hello non è disponibile, le route di Traffic Manager hello endpoint secondo toohello di traffico. Se entrambi gli endpoint primario e secondario hello non sono disponibili, hello del traffico toohello terzo, e così via. Disponibilità di endpoint hello è in base allo stato di hello configurato (abilitato o disabilitato) e hello monitoraggio degli endpoint in corso.
+Il profilo di Gestione traffico contiene un elenco con priorità di endpoint di servizio. Per impostazione predefinita, tutto il traffico viene inviato all'endpoint primario (o con priorità più elevata). Se l'endpoint primario non è disponibile, Gestione traffico indirizza il traffico verso il secondo endpoint. Se l'endpoint primario e secondario non sono disponibili, il traffico viene indirizzato al terzo e così via. La disponibilità dell'endpoint si basa sullo stato configurato (abilitato o disabilitato) e sul monitoraggio degli endpoint in corso.
 
 ### <a name="configuring-endpoints"></a>Configurazione degli endpoint
 
-Con Gestione risorse di Azure, configurare priorità di endpoint hello in modo esplicito utilizzando la proprietà 'priority' hello per ogni endpoint. Questa proprietà accetta un valore compreso tra 1 e 1000, dove i valori più bassi rappresentano una priorità più elevata. Gli endpoint non possono avere lo stesso valore di priorità. L'impostazione di proprietà hello è facoltativa. Se omessa, viene utilizzata una priorità predefinita in base a ordine degli endpoint hello.
+In Azure Resource Manager la priorità degli endpoint viene configurata in modo esplicito, definendo la proprietà "priority" di ogni endpoint. Questa proprietà accetta un valore compreso tra 1 e 1000, dove i valori più bassi rappresentano una priorità più elevata. Gli endpoint non possono avere lo stesso valore di priorità. La proprietà è facoltativa e, se viene omessa, viene usata una priorità predefinita in base all'ordine degli endpoint.
 
 ##<a name = "weighted"></a>Metodo di routing del traffico Ponderato
-metodo di routing del traffico 'Weighted' Hello consente il traffico toodistribute in modo uniforme o toouse un peso predefinito.
+Il metodo di routing del traffico "Ponderato" consente di distribuire il traffico tra tutti gli endpoint in modo uniforme o con un peso predefinito.
 
 ![Metodo di routing del traffico "Ponderato" di Gestione traffico di Azure][2]
 
-Nell'hello ponderata routing del traffico (metodo), assegnare a un endpoint tooeach peso nella configurazione del profilo di Traffic Manager hello. peso Hello è un numero intero compreso tra 1 too1000. Questo parametro è facoltativo e, se omesso, viene usato il valore di peso predefinito "1".
+Nel metodo di routing del traffico "Ponderato" viene assegnato un peso a ogni endpoint come parte della configurazione del profilo di Gestione traffico. Ogni peso è un numero intero compreso tra 1 e 1000. Questo parametro è facoltativo e, se omesso, viene usato il valore di peso predefinito "1".
 
-Per ogni query DNS ricevuta, viene scelto un endpoint disponibile in modo casuale, probabilità di Hello della scelta di un endpoint si basa su un peso hello endpoint disponibili tooall. Utilizzando hello stesso peso tra tutti i risultati in una distribuzione del traffico anche gli endpoint. L'utilizzo di pesi superiori o inferiori in endpoint specifici provoca toobe tali endpoint ha restituito più o meno frequente nelle risposte DNS hello.
+Per ogni query DNS ricevuta, viene scelto un endpoint disponibile in modo casuale, con una probabilità di scelta basata sul peso assegnato a tutti gli endpoint disponibili. L'uso dello stesso peso in tutti gli endpoint comporta una distribuzione uniforme del traffico. Se vengono usati pesi superiori o inferiori in specifici endpoint, questi verranno restituiti più o meno frequentemente nelle risposte DNS.
 
-metodo Hello ponderato consente alcuni scenari utili:
+Il metodo "Ponderato" abilita alcuni scenari utili:
 
-* Aggiornamento graduale dell'applicazione: allocare una percentuale di nuovi endpoint di traffico tooroute tooa e aumentare gradualmente il traffico hello più tempo too100%.
-* Applicazione migrazione tooAzure: creare un profilo con endpoint di Azure ed esterni. Modificare il peso di hello hello endpoint tooprefer hello nuovi endpoint di.
-* Espansione del cloud per capacità aggiuntiva: espandere rapidamente una distribuzione locale nel cloud hello posizionandola dietro a un profilo di Traffic Manager. Quando è necessaria capacità aggiuntiva nel cloud hello, è possibile aggiungere o abilitare più endpoint e specificare la quantità di traffico passa tooeach endpoint.
+* Aggiornamento graduale dell'applicazione: allocare una percentuale di traffico da indirizzare a un nuovo endpoint, quindi incrementare gradualmente il traffico nel tempo fino al 100%.
+* Migrazione dell'applicazione in Azure: creare un profilo con endpoint di Azure ed esterni. Regolare il peso degli endpoint per preferire i nuovi endpoint.
+* Espansione del cloud per capacità aggiuntiva: espandere rapidamente una distribuzione locale nel cloud posizionandola dietro a un profilo di Gestione traffico. In caso di necessità di capacità aggiuntiva nel cloud, si possono aggiungere o abilitare più endpoint e si può specificare la quantità di traffico da indirizzare a ogni endpoint.
 
-Hello portale di gestione risorse di Azure supporta la configurazione di hello del routing del traffico ponderato.  È possibile configurare i pesi hello versioni di gestione risorse di Azure PowerShell e CLI hello API REST.
+Il portale di Azure Resource Manager supporta la configurazione del traffico pesato.  I pesi possono essere configurati usando le versioni Resource Manager di Azure PowerShell, dell'interfaccia della riga di comando e dell'API REST.
 
-È importante toounderstand che le risposte DNS vengono memorizzate nella cache dai client e per i server DNS ricorsivo di hello che hello client utilizzano nomi DNS tooresolve. Questa memorizzazione ha un impatto sulle distribuzioni del traffico ponderate. Quando il numero di hello del client e server DNS ricorsivo è elevato, la distribuzione del traffico funziona come previsto. Tuttavia, se il numero di hello del client o server DNS ricorsivo è ridotto, la memorizzazione nella cache può distorcere significativamente la distribuzione del traffico hello.
+È importante comprendere che le risposte DNS vengono memorizzate nella cache dai client e dai server ricorsivi usati per risolvere i nomi DNS. Questa memorizzazione ha un impatto sulle distribuzioni del traffico ponderate. Se il numero di client e di server DNS ricorsivi è elevato, la distribuzione del traffico funziona come previsto. Se invece il numero di client o di server DNS ricorsivi è limitato, la memorizzazione nella cache può modificare significativamente la distribuzione del traffico.
 
 I casi d'uso comuni in cui può verificarsi questa situazione includono:
 
@@ -70,65 +70,65 @@ I casi d'uso comuni in cui può verificarsi questa situazione includono:
 * Comunicazioni tra applicazioni
 * Applicazioni destinate a una base utenti ristretta che condivide un'infrastruttura DNS ricorsiva comune, ad esempio i dipendenti di un'organizzazione che si connettono tramite proxy.
 
-Questi effetti di memorizzazione nella cache DNS sono comuni tooall il traffico basato su DNS routing sistemi, non solo Traffic Manager di Azure. In alcuni casi, in modo esplicito la cancellazione della cache DNS hello possono fornire una soluzione alternativa. In altri casi, può essere più appropriato un metodo di routing del traffico alternativo.
+Questi effetti della memorizzazione nella cache DNS non riguardano solo Gestione traffico di Azure, ma sono comuni a tutti i sistemi di routing del traffico basati su DNS. In alcuni casi, la cancellazione della cache DNS in modo esplicito può risolvere il problema. In altri casi, può essere più appropriato un metodo di routing del traffico alternativo.
 
 ## <a name = "performance"></a>Metodo di routing del traffico Prestazioni
 
-Distribuzione di endpoint in due o più percorsi tra globo hello può migliorare la velocità di risposta hello di molte applicazioni dal routing del traffico toohello percorso tooyou "più vicino". il metodo di routing del traffico "Prestazioni" Hello fornisce questa funzionalità.
+La velocità di risposta di molte applicazioni può essere migliorata distribuendo gli endpoint in due o più posizioni a livello globale e indirizzando il traffico alla posizione più vicina. Questo è lo scopo del metodo di routing del traffico "Prestazioni".
 
 ![Metodo di routing del traffico "Prestazioni" di Gestione traffico di Azure][3]
 
-endpoint di Hello 'vicino' non è necessariamente più vicino in termini di distanza geografica. Al contrario, il metodo di routing del traffico "Prestazioni" hello determina endpoint più vicino hello misurazione della latenza di rete. Gestione traffico mantiene un tabella di latenza Internet tootrack hello tempo di round trip tra intervalli di indirizzi IP e ogni Data Center di Azure.
+L'endpoint più vicino non è necessariamente il più vicino in termini di distanza geografica. Il metodo di routing del traffico "Prestazioni" determina invece l'endpoint più vicino in termini di latenza di rete. La tabella della latenza di Internet indica il tempo di round trip tra intervalli di indirizzi IP e ciascun data center di Azure.
 
-Traffic Manager cerca dall'indirizzo IP della richiesta DNS in ingresso hello nella tabella di latenza Internet hello hello origine. Gestione traffico sceglie un endpoint disponibile nel Data Center di Azure che presenta una latenza più bassa di hello per tale intervallo di indirizzi IP, quindi restituisce tale endpoint nella risposta DNS hello hello.
+Gestione traffico individua nella tabella la riga relativa all'indirizzo IP di origine della richiesta DNS in ingresso e sceglie quindi nel data center di Azure l'endpoint disponibile con la latenza più bassa per l'intervallo di indirizzi IP specifico, e restituisce quindi l'endpoint nella risposta DNS.
 
-Come spiegato in [Modalità di funzionamento di Gestione traffico](traffic-manager-overview.md#how-traffic-manager-works), le query DNS non vengono ricevute direttamente dai client, Invece, le query DNS provengono da che hello client non siano toouse configurato il servizio DNS ricorsivo hello. Pertanto, hello IP indirizzo utilizzato toodetermine hello 'vicino' endpoint non è l'indirizzo IP del client hello, ma è hello di indirizzo IP del servizio DNS di hello ricorsiva. In pratica, questo indirizzo IP è un proxy valido per il client di hello.
-
-
-Gestione traffico regolarmente gli aggiornamenti hello tooaccount Internet tabella della latenza delle modifiche in hello Internet globali e nuove aree di Azure. Tuttavia, le prestazioni dell'applicazione variano in base alle variazioni in tempo reale del carico tra hello Internet. Il routing del traffico "Prestazioni" non prende in considerazione il monitoraggio del carico su un determinato endpoint di servizio. Se un endpoint non è più disponibile, non viene incluso nelle risposte alle query DNS.
+Come spiegato in [Modalità di funzionamento di Gestione traffico](traffic-manager-overview.md#how-traffic-manager-works), le query DNS non vengono ricevute direttamente dai client, ma dal servizio DNS ricorsivo per il quale sono configurati. Pertanto, l'indirizzo IP usato per determinare l'endpoint più vicino non è l'indirizzo IP del client, ma l'indirizzo IP del servizio DNS ricorsivo. In pratica, questo indirizzo IP è un proxy valido a questo scopo per il client.
 
 
-Toonote punti:
+Per adeguarsi alle modifiche nella rete Internet globale e all'aggiunta di nuove aree di Azure, Gestione traffico aggiorna regolarmente la tabella della latenza di Internet usata. Tuttavia, le prestazioni dell'applicazione variano in base alle variazioni del carico in tempo reale registrate in Internet. Il routing del traffico "Prestazioni" non prende in considerazione il monitoraggio del carico su un determinato endpoint di servizio. Se un endpoint non è più disponibile, non viene incluso nelle risposte alle query DNS.
 
-* Se il profilo contiene più endpoint in hello stessa regione di Azure, quindi Traffic Manager distribuisce il traffico in modo uniforme tra gli endpoint disponibili hello in tale area. Se si preferisce una distribuzione del traffico diversa all'interno di un'area, usare i [profili annidati di Gestione traffico](traffic-manager-nested-profiles.md).
-* Se tutte abilitate endpoint più vicino hello regione di Azure sono ridotte, gestione traffico consente di spostare gli endpoint toohello traffico nell'area di Azure più vicino successivo hello. Se si desidera toodefine una sequenza di failover preferito, utilizzare [profili di gestione traffico nidificati](traffic-manager-nested-profiles.md).
-* Quando si utilizza il metodo di routing del traffico delle prestazioni di hello con endpoint esterni o endpoint nidificato, è necessario posizione hello toospecify di tali endpoint. Scegliere la distribuzione tooyour di hello regione di Azure più vicina. I percorsi sono valori hello è supportati dalla tabella di latenza Internet hello.
-* l'algoritmo Hello che sceglie endpoint hello è deterministica. Ripetere le query DNS da hello stesso client vengono indirizzate toohello stesso endpoint. Quando viaggiano, i client solitamente usano server DNS ricorsivi diversi, client di Hello può essere indirizzato tooa diversi endpoint. Routing può essere influenzato anche dal aggiornamenti toohello tabella di latenza Internet. Pertanto, hello prestazioni metodo di routing del traffico non garantisce che un client è sempre indirizzate toohello stesso endpoint.
-* Quando viene modificato hello tabella di latenza Internet, è possibile notare che alcuni client diretto tooa diversi endpoint. Ciò riflette un routing più accurato in base ai dati di latenza correnti. Questi aggiornamenti sono l'accuratezza di hello toomaintain essenziale delle prestazioni-routing del traffico come hello che Internet in continua evoluzione.
+
+Punti da notare:
+
+* Se il profilo contiene più endpoint nella stessa area di Azure, il traffico indirizzato all'area in questione viene distribuito in modo uniforme tra gli endpoint disponibili nell'area. Se si preferisce una distribuzione del traffico diversa all'interno di un'area, usare i [profili annidati di Gestione traffico](traffic-manager-nested-profiles.md).
+* Se tutti gli endpoint abilitati nell'area di Azure più vicina sono danneggiati, Gestione traffico sposta il traffico sugli endpoint nella successiva area di Azure più vicina. Se si preferisce definire una sequenza di failover, usare i [profili annidati di Gestione traffico](traffic-manager-nested-profiles.md).
+* Quando si usa il metodo di routing del traffico "Prestazioni" con endpoint esterni o endpoint annidati, è necessario specificare la posizione di tali endpoint. Scegliere l'area di Azure più vicina alla distribuzione specifica. Si tratta delle posizioni supportate dalla tabella della latenza di Internet.
+* L'algoritmo che sceglie l'endpoint è deterministico. Le query DNS ripetute dallo stesso client vengono indirizzate allo stesso endpoint. Quando viaggiano, i client solitamente usano server DNS ricorsivi diversi, e possono pertanto essere indirizzati a un endpoint differente. Il routing potrebbe inoltre risentire degli aggiornamenti della tabella della latenza di Internet. Ne consegue che il metodo di routing del traffico "Prestazioni" non garantisce che un client sia sempre indirizzato allo stesso endpoint.
+* Quando viene aggiornata la tabella della latenza di Internet, è possibile notare che alcuni client vengono indirizzati a un endpoint diverso. Ciò riflette un routing più accurato in base ai dati di latenza correnti. Questi aggiornamenti sono essenziali per garantire la precisione del routing del traffico Prestazioni man mano che Internet si evolve.
 
 ## <a name = "geographic"></a>Metodo di routing del traffico Geografico
 
-Profili di gestione traffico possono essere configurato toouse hello geografico metodo di routing in modo che gli utenti vengono indirizzati gli endpoint toospecific (Azure, esterna o Nested) in base quale posizione geografica le query DNS deriva da. Questo consente scenari di tooenable clienti Traffic Manager in cui è importante conoscere l'area geografica dell'utente e il routing in base che. Ne sono esempi la presenza di determinati requisiti sui dati, la localizzazione del contenuto e dell'esperienza dell'utente e la misurazione del traffico da aree diverse.
-Quando un profilo è configurato per il routing geografico, ogni endpoint associato che è necessario un set di aree geografiche assegnate tooit toohave profilo. Un'area geografica può avere i seguenti livelli di granularità 
+I profili di Gestione traffico possono essere configurati per l'uso del metodo di routing Geografico, in modo che gli utenti vengono indirizzati a endpoint specifici (Azure, Esterno o Annidato) in base alla posizione geografica da cui provengono le query DNS. Questo consente ai clienti di Gestione traffico di abilitare scenari in cui è importante conoscere l'area geografica dell'utente ed eseguirne il routing in base a questa. Ne sono esempi la presenza di determinati requisiti sui dati, la localizzazione del contenuto e dell'esperienza dell'utente e la misurazione del traffico da aree diverse.
+Quando un profilo è configurato per il routing geografico, ogni endpoint associato al profilo deve avere un set di aree geografiche assegnate. Un'area geografica può avere i seguenti livelli di granularità 
 - Mondo: qualsiasi area
 - Raggruppamento di aree: ad esempio Africa, Medio Oriente, Australia/Pacifico e così via. 
 - Paese/area geografica: ad esempio Irlanda, Perù, Regione amministrativa speciale di Hong Kong e così via. 
 - Stato/provincia: ad esempio USA-California, Australia-Queensland, Canada-Alberta e così via (nota: questo livello di granularità è supportato solo per gli stati e province di Australia, Canada, Regno Unito e Stati Uniti).
 
-Quando un'area o un set di regioni viene assegnato tooan endpoint, tutte le richieste da tali aree Ottiene indirizzato endpoint toothat solo. Gestione traffico Usa indirizzo IP di origine hello di hello DNS query toodetermine hello area da cui un utente esegue una query da: si tratta in genere l'indirizzo IP hello del resolver DNS locali hello esecuzione query hello per conto di utente hello.  
+Quando un'area o un gruppo di aree è assegnato a un endpoint, tutte le richieste da tali aree vengono instradate solo a tale endpoint. Gestione traffico usa l'indirizzo IP di origine della query DNS per determinare l'area da cui l'utente sta eseguendo la query: in genere si tratta dell'indirizzo IP del resolver DNS locale che esegue la query per conto dell'utente.  
 
 ![Metodo geografico di routing del traffico di Gestione traffico di Azure](./media/traffic-manager-routing-methods/geographic.png)
 
-Gestione traffico legge l'indirizzo IP di origine hello di query DNS hello e decide quale area geografica è stato originato da. Cerca quindi toosee se è presente un endpoint che include questo tooit eseguito il mapping di area geografica. Questa ricerca viene avviata a livello di granularità più bassa hello (stato/provincia in cui è supportato, altrimenti a livello di hello paese/area geografica) e passa tutti modo hello al livello più alto toohello, ovvero di **World**. Hello trovata prima corrispondenza utilizzando questo attraversamento è designato come tooreturn endpoint hello in risposta alla query hello. In caso di corrispondenza con un endpoint di tipo nidificato, viene restituito un endpoint all'interno di tale profilo figlio, in base al suo metodo di routing. Hello punti seguenti è applicabili toothis comportamento:
+Gestione traffico legge l'indirizzo IP di origine della query DNS e decide da quale area geografica è stato originato. Verifica quindi se esiste un endpoint a cui è mappata questa area geografica. Questa ricerca viene avviata al livello di granularità più basso (stato/provincia dove è supportato, altrimenti a livello di paese/area geografica) e arriva fino al livello più alto che è il **mondo**. La prima corrispondenza trovata usando questo attraversamento viene indicata come endpoint da restituire nella risposta alla query. In caso di corrispondenza con un endpoint di tipo nidificato, viene restituito un endpoint all'interno di tale profilo figlio, in base al suo metodo di routing. I punti seguenti sono applicabili a questo comportamento:
 
-- Quando il tipo di routing hello è geografico Routing, un'area geografica può essere mappata endpoint tooone solo in un profilo di Traffic Manager. Ciò garantisce che il routing degli utenti sia deterministico e i clienti possano abilitare scenari che richiedono limiti geografici non ambigui.
-- Se area dell'utente viene mapping geografiche in due endpoint diversi, gestione traffico seleziona endpoint hello con granularità più bassa hello e non considera il routing delle richieste da tale toohello area altri endpoint. Ad esempio, si consideri un profilo con il tipo di routing geografico e con due endpoint: Endpoint1 ed Endpoint2. Endpoint1 è configurato il traffico tooreceive dall'Irlanda ed Endpoint2 tooreceive traffico da Europe. Se una richiesta proviene da Irlanda, è sempre tooEndpoint1 indirizzato.
-- Poiché un'area può essere mappate endpoint tooone solo, gestione traffico restituisce indipendentemente dal fatto endpoint hello sia integro.
+- Un'area geografica può essere mappata a un solo endpoint in un profilo di Gestione traffico quando il tipo di routing è quello geografico. Ciò garantisce che il routing degli utenti sia deterministico e i clienti possano abilitare scenari che richiedono limiti geografici non ambigui.
+- Se l'area geografica di un utente ricade entro il mapping geografico di due endpoint diversi, Gestione traffico seleziona l'endpoint con la granularità più bassa e non considera le richieste di routing di tale area all'altro endpoint. Ad esempio, si consideri un profilo con il tipo di routing geografico e con due endpoint: Endpoint1 ed Endpoint2. L'Endpoint1 è configurato per ricevere il traffico dall'Irlanda e l'Endpoint2 è configurato per ricevere il traffico dall'Europa. Se una richiesta proviene dall'Irlanda, viene sempre instradata all'Endpoint1.
+- Poiché un'area può essere mappata a un solo endpoint, Gestione traffico la restituisce indipendentemente dal fatto che l'endpoint sia integro o meno.
 
     >[!IMPORTANT]
-    >È consigliabile che i clienti che utilizzano il metodo di routing geografiche di hello associarlo con gli endpoint di tipo annidate hello con profili figlio contenenti almeno due endpoint all'interno di ognuno.
-- Se viene trovata una corrispondenza di endpoint e che l'endpoint è hello **arrestato** stato, gestione traffico restituisce una risposta NODATA. In questo caso, non le altre ricerche è più in alto nella gerarchia di area geografica hello. Questo comportamento è applicabile anche per i tipi annidati endpoint profilo figlio di hello è hello **arrestato** o **disabilitato** stato.
-- Se un endpoint viene visualizzato un **disabilitato** stato, non sarà incluso nell'area di hello processo di corrispondenza. Questo comportamento è applicabile anche per i tipi annidati endpoint endpoint hello è hello **disabilitato** stato.
-- Se una query proviene da un'area geografica che non ha alcun mapping in quel profilo, Gestione traffico restituisce una risposta NODATA. Pertanto, si consiglia ai clienti di utilizzare routing geografico con un endpoint, in teoria di tipo annidate con almeno due endpoint nel profilo figlio hello, con l'area di hello **World** tooit assegnato. Questo processo assicura anche che tutti gli indirizzi IP che non eseguono il mapping tooa area vengono gestiti.
+    >È consigliabile che i clienti usino il metodo di routing geografico associato con endpoint di tipo nidificato e profili figlio contenenti almeno due endpoint ciascuno.
+- Se viene trovata una corrispondenza di endpoint e l'endpoint è nello stato **Arrestato**, Gestione traffico restituisce una risposta NODATA. In questo caso non vengono eseguite ulteriori ricerche più in alto nella gerarchia dell'area geografica. Questo comportamento è applicabile anche per i tipi di endpoint annidati quando il profilo figlio è nello stato **Arrestato** o **Disabilitato**.
+- Se un endpoint si trova nello stato **Disabilitato**, non sarà incluso nel processo di ricerca di corrispondenza dell'area. Questo comportamento si applica anche per i tipi di endpoint annidati quando l'endpoint si trova nello stato **Disabilitato**.
+- Se una query proviene da un'area geografica che non ha alcun mapping in quel profilo, Gestione traffico restituisce una risposta NODATA. Pertanto è consigliabile che i clienti usino il routing geografico con un solo endpoint, idealmente di tipo nidificato con almeno due endpoint all'interno del profilo figlio, con l'area **Mondo** assegnata. Questo garantisce inoltre che vengano gestiti tutti gli indirizzi IP che non sono mappati a un'area.
 
-Come spiegato in [Modalità di funzionamento di Gestione traffico](traffic-manager-how-traffic-manager-works.md), le query DNS non vengono ricevute direttamente dai client, Invece, le query DNS provengono da che hello client non siano toouse configurato il servizio DNS ricorsivo hello. Pertanto, non è hello IP indirizzo utilizzato toodetermine hello area hello indirizzo IP del client, ma è hello di indirizzo IP del servizio DNS di hello ricorsiva. In pratica, questo indirizzo IP è un proxy valido per il client di hello.
+Come spiegato in [Modalità di funzionamento di Gestione traffico](traffic-manager-how-traffic-manager-works.md), le query DNS non vengono ricevute direttamente dai client, ma dal servizio DNS ricorsivo per il quale sono configurati. Pertanto l'indirizzo IP utilizzato per determinare l'area non è l'indirizzo IP del client ma l'indirizzo IP del servizio DNS ricorsivo. In pratica, questo indirizzo IP è un proxy valido a questo scopo per il client.
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Informazioni su come applicazioni a disponibilità elevata toodevelop utilizzando [monitoraggio degli endpoint di gestione traffico](traffic-manager-monitoring.md)
+Informazioni su come sviluppare applicazioni a disponibilità elevata tramite [Informazioni sul monitoraggio di Gestione traffico](traffic-manager-monitoring.md)
 
-Informazioni su come troppo[creare un profilo di Traffic Manager](traffic-manager-create-profile.md)
+Informazioni su come [creare un profilo di Gestione traffico](traffic-manager-create-profile.md)
 
 <!--Image references-->
 [1]: ./media/traffic-manager-routing-methods/priority.png

@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Configurazione di GitHub per il provisioning utenti automatico con Azure Active Directory | Microsoft Docs'
-description: Informazioni su come tooconfigure Azure Active Directory tooautomatically il provisioning e il de-provisioning account utente di tooGitHub.
+description: Informazioni su come configurare Azure Active Directory per effettuare automaticamente il provisioning e il deprovisioning degli account utente in GitHub.
 services: active-directory
 documentationcenter: 
 author: asmalser-msft
@@ -14,89 +14,89 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/14/2017
 ms.author: asmalser-msft
-ms.openlocfilehash: c1f0f7a42e4f8a94db3f409cd463e13bb1bc13bc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3cc70273e95dbf4913e7bbcd8a37bd9a52987b60
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-configuring-github-for-automatic-user-provisioning"></a>Esercitazione: Configurazione di GitHub per il provisioning utenti automatico
 
 
-obiettivo di Hello di questa esercitazione è tooshow hello passaggi che è necessario tooperform in GitHub e Azure AD tooautomatically il provisioning e il de-provisioning degli account utente da Azure AD tooGitHub. 
+Questa esercitazione descrive le procedure da eseguire in GitHub e Azure AD per effettuare automaticamente il provisioning e il deprovisioning degli account utente da Azure AD a GitHub. 
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-scenario Hello descritto in questa esercitazione si presuppone che si disponga già di hello seguenti elementi:
+Per lo scenario descritto in questa esercitazione si presuppone che l'utente disponga di quanto segue:
 
 *   Tenant di Azure Active Directory
-*   Un tenant di Github con hello [piano aziendale](https://help.github.com/articles/organization-billing-plans/#business-plan) o meglio abilitato 
+*   Tenant di Github con [piano Business](https://help.github.com/articles/organization-billing-plans/#business-plan) o superiore abilitato 
 *   Account utente in GitHub con autorizzazioni di amministratore 
 
 > [!NOTE]
-> Hello provisioning integrazione di Azure AD si basa su hello [GitHub SCIM API](https://developer.github.com/v3/scim/), ovvero i team tooGithub disponibili nel piano aziendale hello o migliori.
+> L'integrazione del provisioning di Azure AD è basata sull'[API SCIM di GitHub](https://developer.github.com/v3/scim/), disponibile per team GitHub con piano Business o superiore.
 
-## <a name="assigning-users-toogithub"></a>L'assegnazione di utenti tooGitHub
+## <a name="assigning-users-to-github"></a>Assegnazione di utenti a GitHub
 
-Azure Active Directory Usa il concetto di "assegnazioni" toodetermine gli utenti che devono ricevere le app tooselected di accesso. Nel contesto di hello di provisioning dell'account utente automatico, solo gli utenti di hello e i gruppi "assegnati" tooan applicazione in Azure AD è sincronizzato. 
+Per determinare gli utenti che dovranno ricevere l'accesso alle app selezionate, Azure Active Directory usa il concetto delle "assegnazioni". Nel contesto del provisioning automatico degli account utente vengono sincronizzati solo gli utenti e i gruppi che sono stati "assegnati" a un'applicazione in Azure AD. 
 
-Prima di configurare e abilitare hello provisioning del servizio, è necessario toodecide quali utenti e/o i gruppi in Azure AD rappresentano hello utenti devono accedere tooyour GitHub app. Una volta deciso, è possibile assegnare queste app di GitHub tooyour utenti seguendo le istruzioni di hello qui:
+Prima di configurare e abilitare il servizio di provisioning, è necessario stabilire quali utenti e/o gruppi in Azure AD rappresentano gli utenti che devono accedere all'app GitHub. Dopo averlo stabilito, è possibile assegnare gli utenti all'app GitHub seguendo le istruzioni riportate in:
 
-[Assegnare un'applicazione aziendale tooan utente o gruppo](active-directory-coreapps-assign-user-azure-portal.md)
+[Assegnare un utente o gruppo a un'app aziendale](active-directory-coreapps-assign-user-azure-portal.md)
 
-### <a name="important-tips-for-assigning-users-toogithub"></a>Suggerimenti importanti per l'assegnazione di utenti tooGitHub
+### <a name="important-tips-for-assigning-users-to-github"></a>Suggerimenti importanti per l'assegnazione di utenti a GitHub
 
-*   È consigliabile che un singolo utente AD Azure viene assegnato hello tootest tooGitHub configurazione provisioning. È possibile assegnare utenti e/o gruppi aggiuntivi in un secondo momento.
+*   È consigliabile assegnare un singolo utente di Azure AD a GitHub per testare la configurazione del provisioning. È possibile assegnare utenti e/o gruppi aggiuntivi in un secondo momento.
 
-*   Quando si assegna un tooGitHub utente, è necessario selezionare entrambi hello **utente** ruolo, o un altro valido specifici dell'applicazione, se disponibile, nella finestra di dialogo assegnazione hello. Hello **accesso predefinito** ruolo non funziona per il provisioning e gli utenti vengono ignorati.
+*   Quando si assegna un utente a GitHub, è necessario selezionare il ruolo **Utente** o un altro ruolo specifico dell'applicazione valido, se disponibile, nella finestra di dialogo di assegnazione. Poiché il ruolo **Accesso predefinito** non è applicabile per il provisioning, i relativi utenti vengono ignorati.
 
 
-## <a name="configuring-user-provisioning-toogithub"></a>Configurazione tooGitHub di provisioning dell'utente 
+## <a name="configuring-user-provisioning-to-github"></a>Configurazione del provisioning utenti in GitHub 
 
-Questa sezione viene illustrato come tramite la connessione API di provisioning dell'account utente del tooGitHub il Azure AD e configura il provisioning del servizio toocreate hello, aggiornare e disabilitare gli account utente assegnato in GitHub in base all'assegnazione di utenti e gruppi in Azure AD.
+Questa sezione illustra la connessione di Azure AD all'API per il provisioning degli account utente di GitHub e la configurazione del servizio di provisioning per la creazione, l'aggiornamento e la disabilitazione degli account utente assegnati in GitHub in base all'assegnazione di utenti e gruppi in Azure AD.
 
 > [!TIP]
-> È inoltre possibile scegliere tooenabled basato su SAML Single Sign-On per GitHub, attenendosi alle istruzioni hello fornite [portale di Azure](https://portal.azure.com). L'accesso Single Sign-On può essere configurato indipendentemente dal provisioning automatico, nonostante queste due funzionalità siano complementari.
+> Si può anche scegliere di abilitare l'accesso Single Sign-On basato su SAML per GitHub, seguendo le istruzioni disponibili nel [portale di Azure](https://portal.azure.com). L'accesso Single Sign-On può essere configurato indipendentemente dal provisioning automatico, nonostante queste due funzionalità siano complementari.
 
 
-### <a name="configure-automatic-user-account-provisioning-toogithub-in-azure-ad"></a>Configurare l'account utente automatico provisioning tooGitHub in Azure AD
+### <a name="configure-automatic-user-account-provisioning-to-github-in-azure-ad"></a>Configurare il provisioning automatico degli account utente in GitHub in Azure AD
 
 
-1. In hello [portale di Azure](https://portal.azure.com), Sfoglia toohello **Azure Active Directory > App aziendali > tutte le applicazioni** sezione.
+1. Nel [portale di Azure](https://portal.azure.com) passare alla sezione **Azure Active Directory > App aziendali > Tutte le applicazioni**.
 
-2. Se è già stato configurato GitHub per single sign-on, eseguire la ricerca per l'istanza di GitHub usando il campo di ricerca hello. In caso contrario, selezionare **Aggiungi** e cercare **GitHub** nella raccolta di applicazione hello. Selezionare GitHub dai risultati della ricerca hello e aggiungerlo tooyour elenco delle applicazioni.
+2. Se si è già configurato GitHub per l'accesso Single Sign-On, cercare l'istanza di GitHub usando il campo di ricerca. In caso contrario, selezionare **Aggiungi** e cercare **GitHub** nella raccolta di applicazioni. Selezionare GitHub nei risultati della ricerca e aggiungerlo all'elenco delle applicazioni.
 
-3. Selezionare l'istanza di GitHub, quindi selezionare hello **Provisioning** scheda.
+3. Selezionare l'istanza di GitHub e quindi la scheda **Provisioning**.
 
-4. Set hello **modalità di Provisioning** troppo**automatica**.
+4. Impostare **Modalità di provisioning** su **Automatico**.
 
     ![Provisioning di GitHub](./media/active-directory-saas-github-provisioning-tutorial/GitHub1.png)
 
-5. In hello **credenziali di amministratore** fare clic su **Authorize**. Viene aperta una finestra di dialogo di autorizzazione di GitHub in una nuova finestra del browser. 
+5. Nella sezione **Credenziali amministratore** fare clic su **Autorizza**. Viene aperta una finestra di dialogo di autorizzazione di GitHub in una nuova finestra del browser. 
 
-6. In nuova finestra hello, accedere a GitHub utilizzando l'account amministratore. Nella finestra di dialogo autorizzazione hello risultante selezionare team di GitHub hello che si desidera tooenable provisioning per e quindi selezionare **Authorize**. Hello toocomplete portale Azure toohello restituito, una volta completato il provisioning di configurazione.
+6. Nella nuova finestra accedere a GitHub con l'account di amministratore. Nella finestra di dialogo di autorizzazione risultante selezionare il team GitHub per cui si vuole abilitare il provisioning e quindi **Authorize** (Autorizza). Al termine, tornare al portale di Azure per completare la configurazione del provisioning.
 
     ![Finestra di dialogo di autorizzazione](./media/active-directory-saas-github-provisioning-tutorial/GitHub2.png)
 
-7. Nel portale di Azure hello, input **URL Tenant** e fare clic su **Test connessione** tooensure Azure AD può connettersi app GitHub tooyour. Se hello connessione non riesce, verificare che l'account GitHub abbia autorizzazioni di amministratore e **URl Tenant** immesso è corretto, quindi provare a hello "Autorizza" esegue nuovamente l'istruzione (è possibile costituiscono **URL Tenant** dalla regola: "https : //api.github.com/scim/v2/organizations/ + < Organizations_name > ", è possibile trovare le organizzazioni con l'account GitHub: **impostazioni** > **organizzazioni**).
+7. Nel portale di Azure immettere l'**URL tenant** e fare clic su **Test connessione** per verificare che Azure AD possa connettersi all'app GitHub. Se la connessione non riesce, verificare che l'account GitHub abbia le autorizzazioni di amministratore e che l'**URL tenant** sia stato immesso correttamente, quindi provare a eseguire di nuovo il passaggio per l'autorizzazione (è possibile calcolare l'**URL tenant** seguendo la regola: "https://api.github.com/scim/v2/organizations/ + <nome_organizzazioni>". È possibile individuare le organizzazioni nell'account GitHub in **Settings** (Impostazioni)  > **Organizations** (Organizzazioni)).
 
     ![Finestra di dialogo di autorizzazione](./media/active-directory-saas-github-provisioning-tutorial/GitHub3.png)
 
-8. Immettere l'indirizzo di posta elettronica hello di una persona o il gruppo che deve ricevere le notifiche degli errori di provisioning in hello **notifica tramite posta elettronica** campo e controllo hello casella di controllo "Invia una notifica di posta elettronica quando si verifica un errore".
+8. Immettere l'indirizzo di posta elettronica di una persona o un gruppo che riceverà le notifiche di errore relative al provisioning nel campo **Messaggio di posta elettronica di notifica** e selezionare la casella di controllo "Invia una notifica di posta elettronica in caso di errore".
 
 9. Fare clic su **Salva**. 
 
-10. Nella sezione mapping hello, selezionare **tooGitHub sincronizzare Active Directory gli utenti di Azure**.
+10. Nella sezione Mapping selezionare **Synchronize Azure Active Directory Users to GitHub** (Sincronizza utenti di Azure Active Directory in GitHub).
 
-11. In hello **mapping degli attributi** sezione, esaminare gli attributi utente hello che vengono sincronizzati da tooGitHub di Azure AD. gli attributi selezionati come Hello **corrispondenza** proprietà sono utilizzate toomatch hello account utente in GitHub per operazioni di aggiornamento. Selezionare hello Salva pulsante toocommit tutte le modifiche.
+11. Nella sezione **Mapping degli attributi** esaminare gli attributi utente che vengono sincronizzati da Azure AD a GitHub. Gli attributi selezionati come proprietà **corrispondenti** vengono usati per trovare le corrispondenze con gli account utente in GitHub per le operazioni di aggiornamento. Selezionare il pulsante Salva per eseguire il commit delle modifiche.
 
-12. tooenable hello servizio provisioning di Azure AD per GitHub, hello modifica **lo stato di Provisioning** troppo**su** in hello **impostazioni** sezione
+12. Per abilitare il servizio di provisioning di Azure AD per GitHub, impostare **Stato del provisioning** su **Sì** nella sezione **Impostazioni**
 
 13. Fare clic su **Salva**. 
 
-Questa operazione avvia la sincronizzazione iniziale di hello di eventuali utenti o gruppi assegnati tooGitHub in hello gli utenti e gruppi. la sincronizzazione iniziale Hello accetta più tooperform di sincronizzazioni successive, che si verificano ogni 20 minuti circa, purché hello servizio è in esecuzione. È possibile utilizzare hello **i dettagli della sincronizzazione** sezione toomonitor lo stato di avanzamento e seguire i collegamenti tooprovisioning attività i report, che descrivono tutte le azioni eseguite da hello provisioning del servizio.
+L'operazione avvia la sincronizzazione iniziale di tutti gli utenti e/o i gruppi assegnati a GitHub nella sezione Utenti e gruppi. La sincronizzazione iniziale richiede più tempo delle sincronizzazioni successive, che saranno eseguite circa ogni 20 minuti per tutto il tempo che il servizio è in esecuzione. È possibile usare la sezione **Dettagli sincronizzazione** per monitorare lo stato di avanzamento e selezionare i collegamenti ai report delle attività di provisioning che descrivono tutte le azioni eseguite dal servizio di provisioning.
 
-Per ulteriori informazioni sulla modalità di registrazione tooread provisioning di hello Azure AD, vedere [creazione di report per il provisioning utente automatico account](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-saas-provisioning-reporting).
+Per altre informazioni sulla lettura dei log di provisioning di Azure AD, vedere [Esercitazione: creazione di report sul provisioning automatico degli account utente](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-saas-provisioning-reporting).
 
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
@@ -106,4 +106,4 @@ Per ulteriori informazioni sulla modalità di registrazione tooread provisioning
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* [Informazioni su modalità di registrazione tooreview e ottengono report sull'attività di provisioning](active-directory-saas-provisioning-reporting.md)
+* [Informazioni su come esaminare i log e ottenere report sulle attività di provisioning](active-directory-saas-provisioning-reporting.md)

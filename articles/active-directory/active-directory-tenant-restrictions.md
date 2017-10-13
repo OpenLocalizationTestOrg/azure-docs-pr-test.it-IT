@@ -1,6 +1,6 @@
 ---
-title: aaaManage accesso toocloud App limitando - tenant di Azure | Documenti Microsoft
-description: Come toouse restrizioni Tenant toomanage quali utenti possono accedere le applicazioni in base al proprio tenant di Azure AD.
+title: Gestire l'accesso alle app cloud limitando i tenant - Azure | Microsoft Docs
+description: Come usare Restrizioni dei tenant per gestire gli utenti che possono accedere alle app in base ai tenant di Azure AD.
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -14,145 +14,145 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: kgremban
-ms.openlocfilehash: 6470fa217738b29104353ae17a2f53216f825c19
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7288f8fa173f8018570cd17aa7274f56a4eead41
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="use-tenant-restrictions-toomanage-access-toosaas-cloud-applications"></a>Utilizzare le applicazioni cloud Tenant restrizioni toomanage accesso tooSaaS
+# <a name="use-tenant-restrictions-to-manage-access-to-saas-cloud-applications"></a>Usare Restrizioni dei tenant per gestire l'accesso alle applicazioni cloud SaaS
 
-Le organizzazioni di grandi dimensioni che evidenziano sicurezza desidera toomove toocloud servizi come Office 365, ma tooknow necessità che possono accedere solo agli utenti approvati risorse. In genere, le aziende limitano i nomi di dominio o gli indirizzi IP quando desiderano accedere toomanage. Questo approccio non è efficace in situazioni dove le app SaaS vengono ospitate in un cloud pubblico ed eseguite su nomi di dominio condivisi come outlook.office.com e login.microsoftonline.com. Questi indirizzi di blocco è consigliabile mantenere gli utenti di accedere a Outlook Web hello interamente, anziché semplicemente limitando le risorse e le identità tooapproved.
+Le organizzazioni di grandi dimensioni che mettono l'accento sulla sicurezza vogliono passare a servizi cloud come Office 365, ma devono sapere che i loro utenti saranno in grado di accedere solo a risorse approvate. In genere, le aziende limitano gli indirizzi IP o i nomi di dominio quando vogliono gestire gli accessi. Questo approccio non è efficace in situazioni dove le app SaaS vengono ospitate in un cloud pubblico ed eseguite su nomi di dominio condivisi come outlook.office.com e login.microsoftonline.com. Bloccare questi indirizzi impedirebbe totalmente agli utenti di accedere ad Outlook sul Web invece di limitare il loro accesso alle identità e alle risorse approvate.
 
-Richiesta di verifica della Azure Active Directory soluzione toothis è una funzionalità denominata restrizioni Tenant. Tenant restrizioni consente alle organizzazioni toocontrol accesso tooSaaS cloud le applicazioni, in base all'utilizzo di applicazioni hello tenant hello Azure AD per single sign-on. È ad esempio, applicazioni di Office 365 dell'organizzazione di tooallow accesso tooyour, impedendo le istanze di accesso tooother delle organizzazioni di queste stesse applicazioni.  
+La soluzione offerta da Azure Active Directory per risolvere questo problema è costituita da una funzionalità denominata Restrizioni dei tenant. Restrizioni dei tenant consente alle organizzazioni di controllare l'accesso alle applicazioni cloud SaaS, in base al tenant di Azure AD usato dalle applicazioni per il Single Sign-On. Ad esempio, si supponga di voler consentire l'accesso alle applicazioni Office 365 dell'organizzazione, impedendolo al contempo alle istanze di quelle stesse applicazioni in altre organizzazioni.  
 
-Consente alle organizzazioni hello possibilità toospecify hello elenco di restrizioni di tenant che gli utenti sono autorizzati tooaccess del tenant. Azure AD quindi concede solo tenant toothese consentito l'accesso.
+Restrizioni dei tenant dà alle organizzazioni la facoltà di specificare l'elenco di tenant cui gli utenti possono accedere. Azure AD consente quindi l'accesso solo ai tenant autorizzati.
 
-Questo articolo è incentrato sulle restrizioni di Tenant per Office 365, ma la funzionalità hello dovrebbe funzionare con qualsiasi app di cloud SaaS che usa i protocolli di autenticazione moderna con Azure AD per single sign-on. Se si usa l'App con un annuncio di Azure diversi tenant di hello tenant usato da Office 365 SaaS, assicurarsi che tutti necessari tenant sono consentiti. Per ulteriori informazioni sulle app di SaaS cloud, vedere hello [Active Directory Marketplace](https://azure.microsoft.com/en-us/marketplace/active-directory/).
+Questo articolo si concentra su Restrizioni dei tenant per Office 365, ma la funzionalità dovrebbe funzionare con qualsiasi app cloud SaaS che utilizza protocolli di autenticazione moderna con Azure AD per il Single Sign-On. Se si usano app SaaS con un tenant Azure AD diverso da quello usato da Office 365, assicurarsi che tutti i tenant richiesti siano autorizzati. Per ulteriori informazioni sulle app cloud SaaS, vedere il [Marketplace di Active Directory](https://azure.microsoft.com/en-us/marketplace/active-directory/).
 
 ## <a name="how-it-works"></a>Funzionamento
 
-Hello complessiva soluzione comprende hello seguenti componenti: 
+La soluzione globale è composta dai seguenti elementi: 
 
-1. **Azure AD** : se hello `Restrict-Access-To-Tenants: <permitted tenant list>` è presente, Azure AD rilascia token di sicurezza per hello consentito tenant. 
+1. **Azure AD**: se `Restrict-Access-To-Tenants: <permitted tenant list>` è presente, Azure AD genera unicamente token di sicurezza per i tenant autorizzati. 
 
-2. **Infrastruttura del server proxy locale** – un dispositivo proxy in grado di ispezione SSL intestazione hello tooinsert configurato contenente hello elenco di tenant è consentito in traffico di Azure AD. 
+2. **Infrastruttura del server proxy locale**: un dispositivo proxy in grado di eseguire ispezioni SSL, configurato per inserire l'intestazione contenente l'elenco di tenant autorizzati nel traffico verso Azure AD. 
 
-3. **Il software client** – toosupport Tenant restrizioni, il software client deve richiedere i token direttamente da Azure AD, in modo che il traffico possa essere intercettato dall'infrastruttura del proxy hello. Restrizioni dei tenant è attualmente supportata nelle applicazioni Office 365 basate su browser e nei client Office dove vengono usate tecniche di autenticazione moderne come OAuth 2.0. 
+3. **Software client**: per supportare Restrizioni dei tenant, il software client deve richiedere i token direttamente da Azure AD, in modo che l'infrastruttura proxy possa intercettare il traffico. Restrizioni dei tenant è attualmente supportata nelle applicazioni Office 365 basate su browser e nei client Office dove vengono usate tecniche di autenticazione moderne come OAuth 2.0. 
 
-4. **L'autenticazione moderna** : servizi cloud è necessario utilizzare l'autenticazione moderna toouse Tenant restrizioni e bloccare l'accesso a tooall non autorizzata tenant. Servizi di Office 365 cloud devono essere configurato toouse protocolli di autenticazione moderna per impostazione predefinita. Per informazioni più recenti di hello sul supporto di Office 365 per l'autenticazione moderna, vedere [autenticazione moderna di Office 365 aggiornato](https://blogs.office.com/2015/11/19/updated-office-365-modern-authentication-public-preview/).
+4. **Autenticazione moderna**: i servizi cloud devono usare un'autenticazione moderna per usare Restrizioni dei tenant e bloccare l'accesso a tutti i tenant non autorizzati. È necessario configurare i servizi cloud di Office 365 affinché possano usare i protocolli di autenticazione moderna per impostazione predefinita. Per le informazioni più aggiornate sul supporto di Office 365 per l'autenticazione moderna, leggere il [relativo documento aggiornato](https://blogs.office.com/2015/11/19/updated-office-365-modern-authentication-public-preview/).
 
-Hello seguente diagramma illustra il flusso di traffico di alto livello hello. Ispezione SSL è necessaria solo per il traffico tooAzure AD, non ai servizi cloud di toohello Office 365. Questa distinzione è importante perché il volume di traffico hello per l'autenticazione tooAzure Active Directory è in genere molto inferiore di quelle applicazioni tooSaaS volume di traffico come Exchange Online e SharePoint Online.
+Il diagramma seguente illustra il flusso di traffico di alto livello. L'ispezione SSL è necessaria solo per il traffico verso Azure AD e non verso i servizi cloud di Office 365. Questa distinzione è importante perché il volume di traffico per l'autenticazione in Azure AD è in genere molto inferiore rispetto a quello verso applicazioni SaaS come Exchange Online e SharePoint Online.
 
 ![Flusso di traffico di Restrizioni dei tenant, diagramma](./media/active-directory-tenant-restrictions/traffic-flow.png)
 
 ## <a name="set-up-tenant-restrictions"></a>Impostare Restrizioni dei tenant
 
-Esistono due passaggi tooget, avviata con restrizioni di Tenant. Hello primo passaggio è assicurarsi che i client possono connettersi indirizzi destra toohello toomake. Hello in secondo luogo è tooconfigure l'infrastruttura del proxy.
+Ci sono due passaggi iniziali per quanto riguarda Restrizioni dei tenant. Il primo consiste nell'assicurarsi che i client possano connettersi agli indirizzi giusti. Il secondo consiste nel configurare l'infrastruttura del proxy.
 
 ### <a name="urls-and-ip-addresses"></a>URL e indirizzi IP
 
-toouse Tenant restrizioni, i client devono essere in grado di tooconnect toohello seguenti URL di Azure AD tooauthenticate: login.microsoftonline.com login.microsoft.com e login.windows.net. Inoltre, tooaccess Office 365, i client devono essere in grado di tooconnect toohello FQDN o URL e gli indirizzi IP definito in [gli intervalli di indirizzi IP e gli URL di Office 365](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2). 
+Per usare Restrizioni dei tenant, i client devono potersi connettere ai seguenti URL di Azure AD per l'autenticazione: login.microsoftonline.com, login.microsoft.com e login.windows.net. Inoltre, per accedere a Office 365, i client devono potersi connettere agli URL/FQDN e indirizzi IP definiti in [URL e intervalli di indirizzi IP per Office 365](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2). 
 
 ### <a name="proxy-configuration-and-requirements"></a>Configurazione e requisiti del proxy
 
-Hello seguente configurazione è necessario tooenable Tenant restrizioni tramite l'infrastruttura del proxy. Questa guida è generica, pertanto è consigliabile consultare la documentazione del fornitore di tooyour proxy per i passaggi di implementazione specifica.
+La configurazione seguente è necessaria per abilitare Restrizioni dei tenant tramite l'infrastruttura del proxy. Questa guida è generica, pertanto è consigliabile consultare la documentazione del fornitore del proxy per i passaggi di implementazione specifici.
 
 #### <a name="prerequisites"></a>Prerequisiti
 
-- proxy Hello deve essere tooperform in grado di intercettazione di SSL, l'inserimento di intestazione HTTP e le destinazioni di filtro con FQDN o URL. 
+- Il proxy deve poter eseguire l'intercettazione SSL, inserire intestazioni HTTP e filtrare le destinazioni tramite URL/FQDN. 
 
-- I client devono considerare attendibile la catena di certificati hello presentata dal proxy hello per le comunicazioni SSL. Ad esempio, se si utilizzano i certificati rilasciati da un'infrastruttura PKI interna, hello interno emittente certificato certificato dell'autorità radice deve essere attendibile.
+- I client devono considerare attendibile la catena di certificati presentata dal proxy per le comunicazioni SSL. Ad esempio, se vengono usati i certificati da un'infrastruttura PKI interna, deve essere considerato attendibile il certificato interno dell'autorità di certificazione interna.
 
-- Questa funzionalità è inclusa nelle sottoscrizioni di Office 365, ma se si desidera che le app SaaS di toouse restrizioni Tenant toocontrol accesso tooother licenze di Azure AD Premium 1 sono necessari.
+- Questa funzionalità è inclusa nelle sottoscrizioni di Office 365, ma se si desidera usare Restrizioni dei tenant per controllare l'accesso ad altre app SaaS, saranno necessarie licenze Premium 1 di Azure AD.
 
 #### <a name="configuration"></a>Configurazione
 
-Per ogni toologin.microsoftonline.com richiesta in ingresso, login.microsoft.com e login.windows.net, inserire due intestazioni HTTP: *limitare l'accesso al tenant* e *contesto di limitare l'accesso*.
+Per ogni richiesta in ingresso a login.microsoftonline.com, login.microsoft.com e login.windows.net, inserire due intestazioni HTTP: *Restrict-Access-To-Tenants* e *Restrict-Access-Context*.
 
-intestazioni Hello devono includere hello seguenti elementi: 
-- Per *limitare l'accesso al tenant*, un valore di \<consentito elenco tenant\>, ovvero un elenco delimitato da virgole di tenant desiderato tooallow utenti tooaccess. Qualsiasi dominio registrato con un tenant può essere tenant hello tooidentify utilizzati in questo elenco. Ad esempio, toopermit tooboth Contoso e Fabrikam tenant di accedere, hello coppia nome/valore aspetto:`Restrict-Access-To-Tenants: contoso.onmicrosoft.com,fabrikam.onmicrosoft.com` 
-- Per *contesto di limitare l'accesso*, un valore di un ID di directory singola dichiarazione tenant dall'impostazione di restrizioni di Tenant hello. Ad esempio, Contoso come tenant hello che impostare criteri di restrizione Tenant hello toodeclare, coppia nome/valore hello aspetto:`Restrict-Access-Context: 456ff232-35l2-5h23-b3b3-3236w0826f3d`  
+Le intestazioni devono includere gli elementi seguenti: 
+- Per *Restrict-Access-To-Tenants*, un valore di \<elenco tenant consentiti\>, ovvero un elenco delimitato da virgole contenente i tenant a cui gli utenti possono accedere. È possibile usare qualsiasi dominio registrato con un tenant per individuare il tenant nell'elenco. Ad esempio, per consentire l'accesso ai tenant Contoso e Fabrikam, la coppia nome/valore è simile alla seguente: `Restrict-Access-To-Tenants: contoso.onmicrosoft.com,fabrikam.onmicrosoft.com` 
+- Per *Restrict-Access-Context*, un valore ID di directory singola, dichiarando quale tenant imposta Restrizioni dei tenant. Ad esempio, per dichiarare Contoso come tenant di impostazione dei criteri di Restrizioni dei tenant, la coppia nome/valore avrà un aspetto simile al seguente: `Restrict-Access-Context: 456ff232-35l2-5h23-b3b3-3236w0826f3d`  
 
 > [!TIP]
-> È possibile trovare l'ID di directory in hello [portale di Azure](https://portal.azure.com). Accedere come amministratore, selezionare **Azure Active Directory**, quindi selezionare **Proprietà**.
+> L'ID della directory si trova nel [portale di Azure](https://portal.azure.com). Accedere come amministratore, selezionare **Azure Active Directory**, quindi selezionare **Proprietà**.
 
-tooprevent agli utenti di inserire le proprie intestazione HTTP con i tenant non riconosciuta, proxy hello deve intestazione limitare l'accesso al tenant di hello tooreplace se è già presente nella richiesta in ingresso hello. 
+Per impedire agli utenti di inserire le proprie intestazioni HTTP con i tenant non approvati, il proxy deve sostituire l'intestazione Restrict-Access-To-Tenants se questa è già presente nella richiesta in ingresso. 
 
-I client devono essere forzato toouse hello proxy per tutte le richieste toologin.microsoftonline.com login.microsoft.com e login.windows.net. Ad esempio, se i file PAC toodirect utilizzato client toouse hello proxy, gli utenti finali deve non essere in grado di tooedit o disabilitare file PAC hello.
+È necessario forzare l'uso del proxy nei client per tutte le richieste a login.microsoftonline.com, login.microsoft.com e login.windows.net. Ad esempio, se vengono usati file PAC per reindirizzare i client all'uso del proxy, gli utenti finali non devono poter modificare o disabilitare tali file.
 
-## <a name="hello-user-experience"></a>esperienza utente Hello
+## <a name="the-user-experience"></a>Esperienza utente
 
-Questa sezione illustra l'esperienza di hello per gli utenti finali e amministratori.
+In questa sezione viene illustrata l'esperienza per utenti finali e amministratori.
 
 ### <a name="end-user-experience"></a>Esperienza utente finale
 
-Un utente di esempio si trova in rete di Contoso hello, ma tenta tooaccess hello Fabrikam istanza un' condivisa applicazione SaaS come Outlook online. Se Contoso è un tenant non è consentito per l'istanza, l'utente hello Visualizza hello pagina seguente:
+Un utente di esempio si trova nella rete Contoso ma tenta di accedere online all'istanza Fabrikam di un'applicazione SaaS condivisa come Outlook. Se Contoso è un tenant non consentito per l'istanza, l'utente visualizza la pagina seguente:
 
 ![Pagina di accesso negato per gli utenti in tenant non consentiti](./media/active-directory-tenant-restrictions/end-user-denied.png)
 
 ### <a name="admin-experience"></a>Esperienza amministratore
 
-Mentre configurazione delle restrizioni di Tenant viene eseguita sull'infrastruttura di hello proxy aziendale, gli amministratori possono accedere direttamente i report di restrizioni Tenant hello in hello portale di Azure. i report tooview hello, toohello pagina di panoramica di Azure Active Directory e quindi cercare nella casella 'Funzionalità'.
+La configurazione di Restrizioni dei tenant viene eseguita nell'infrastruttura del proxy aziendale, ma gli amministratori possono accedere direttamente ai relativi report nel portale di Azure. Per visualizzare i report, passare alla pagina di panoramica di Azure Active Directory e quindi cercare in "Altre funzionalità".
 
-salve per tenant hello specificato come tenant hello contesto di accesso con restrizioni, può utilizzare questo toosee report che accessi tutti bloccato a causa di hello criteri di restrizione di Tenant, tra cui identità hello utilizzata e l'ID di directory di destinazione hello.
+L'amministratore per il tenant specificato come tenant Restricted-Access-Context può usare questo report per visualizzare tutti gli accessi bloccati a causa dei criteri di Restrizioni dei tenant, inclusi l'ID della directory di destinazione e le identità usate.
 
-![Utilizzare hello Azure tooview portale con restrizioni tentativi di accesso riusciti](./media/active-directory-tenant-restrictions/portal-report.png)
+![Usare il portale di Azure per visualizzare i tentativi di accesso con restrizioni](./media/active-directory-tenant-restrictions/portal-report.png)
 
-Come altri report di hello portale di Azure, è possibile utilizzare i filtri toospecify hello ambito del report. È possibile usare filtri per utenti, applicazioni, client o intervalli di tempo specifici.
+Come per gli altri report nel portale di Azure, è possibile usare i filtri per specificare l'ambito del report. È possibile usare filtri per utenti, applicazioni, client o intervalli di tempo specifici.
 
 ## <a name="office-365-support"></a>Supporto di Office 365
 
-Applicazioni di Office 365 devono soddisfare due criteri toofully supporto Tenant restrizioni:
+Le applicazioni di Office 365 devono soddisfare due criteri per supportare pienamente Restrizioni dei tenant:
 
-1. client Hello utilizzato supporta l'autenticazione moderna
-2. L'autenticazione moderna è abilitato come protocollo di autenticazione hello predefinito per il servizio cloud hello.
+1. Il client usato supporta l'autenticazione moderna
+2. L'autenticazione moderna è abilitata come protocollo di autenticazione predefinito per il servizio cloud.
 
-Fare riferimento troppo[autenticazione moderna di Office 365 aggiornato](https://blogs.office.com/2015/11/19/updated-office-365-modern-authentication-public-preview/) per informazioni più recenti di hello in Office client supportano attualmente l'autenticazione moderna. Questa pagina include anche collegamenti tooinstructions per abilitare l'autenticazione moderna su specifici Exchange Online e Skype for Business Online tenant. L'autenticazione moderna è già abilitata per impostazione predefinita in SharePoint Online.
+Fare riferimento al [documento aggiornato sull'autenticazione moderna di Office 365](https://blogs.office.com/2015/11/19/updated-office-365-modern-authentication-public-preview/) per le informazioni più recenti sui client Office che supportano attualmente l'autenticazione moderna. Questa pagina include anche collegamenti a istruzioni su come abilitare l'autenticazione moderna in tenant Exchange Online e Skype for Business Online specifici. L'autenticazione moderna è già abilitata per impostazione predefinita in SharePoint Online.
 
-Restrizioni tenant è attualmente supportato dalle applicazioni di Office 365 basati su browser (hello SharePoint del portale di Office, Yammer, siti, Outlook sul hello Web, ecc.). Per i thick client come Outlook, Skype for Business, Word, Excel, PowerPoint e così via, Restrizioni dei tenant può essere applicata solo quando si usa l'autenticazione moderna.  
+Restrizioni dei tenant è attualmente supportata nelle applicazioni Office 365 basate su browser come il portale di Office, Yammer, i siti SharePoint, Outlook sul Web e così via. Per i thick client come Outlook, Skype for Business, Word, Excel, PowerPoint e così via, Restrizioni dei tenant può essere applicata solo quando si usa l'autenticazione moderna.  
 
-Outlook e Skype per i client di Business che supportano l'autenticazione moderna sono comunque toouse protocolli legacy contro i tenant in cui non è abilitata l'autenticazione moderna, in modo efficace ignorando le restrizioni di Tenant. Per Outlook su Windows, i clienti possono scegliere restrizioni tooimplement impedire agli utenti finali di aggiungere non approvato account tootheir profili di posta elettronica. Ad esempio, vedere hello [impedisce l'aggiunta di account di Exchange non predefinito](http://gpsearch.azurewebsites.net/default.aspx?ref=1) impostazione di criteri di gruppo. Per Outlook su piattaforme non Windows e per Skype for Business su tutte le piattaforme, il supporto completo per le restrizioni del tenant non è attualmente disponibile.
+I client Outlook e Skype for Business che supportano l'autenticazione moderna possono comunque usare protocolli legacy con tenant dove l'autenticazione moderna non è abilitata, ignorando di fatto Restrizioni dei tenant. In Outlook per Windows, i clienti possono scegliere di implementare delle restrizioni per impedire agli utenti finali di aggiungere ai propri profili account di posta elettronica non approvati. Ad esempio, vedere l'impostazione di criteri di gruppo [Impedisci l'aggiunta di account di Exchange non predefiniti](http://gpsearch.azurewebsites.net/default.aspx?ref=1). Per Outlook su piattaforme non Windows e per Skype for Business su tutte le piattaforme, il supporto completo per le restrizioni del tenant non è attualmente disponibile.
 
 ## <a name="testing"></a>Test
 
-Se si desidera tootry le restrizioni di Tenant prima di implementarlo per l'intera organizzazione, sono disponibili due opzioni: un approccio basato su host utilizzando uno strumento come Fiddler o un'implementazione per fasi delle impostazioni del proxy.
+Se si desidera provare la funzionalità Restrizioni dei tenant prima di implementarla in tutta l'organizzazione, sono disponibili due opzioni: un approccio basato su host con uno strumento come Fiddler o una pianificazione per fasi delle impostazioni del proxy.
 
 ### <a name="fiddler-for-a-host-based-approach"></a>Fiddler per un approccio basato su host
 
-Fiddler è un proxy che possono essere utilizzati toocapture e modificano il traffico HTTP/HTTPS, tra cui l'inserimento di intestazioni HTTP per debug gratuitamente dal web. tooconfigure Fiddler tootest restrizioni Tenant, eseguire hello alla procedura seguente:
+Fiddler è un proxy di debug Web gratuito, utilizzabile per acquisire e modificare il traffico HTTP/HTTPS, incluso l'inserimento di intestazioni HTTP. Per configurare Fiddler per testare Restrizioni dei tenant, eseguire la procedura seguente:
 
 1.  [Scaricare e installare Fiddler](http://www.telerik.com/fiddler).
-2.  Configurare il traffico HTTPS toodecrypt Fiddler, per ogni [documentazione della Guida di Fiddler](http://docs.telerik.com/fiddler/Configure-Fiddler/Tasks/DecryptHTTPS).
-3.  Configurare hello tooinsert Fiddler *limitare l'accesso al tenant* e *contesto di limitare l'accesso* intestazioni usando le regole personalizzate:
-  1. Nello strumento Debugger Web Fiddler hello selezionare hello **regole** dal menu **personalizzare le regole...** file di CustomRules tooopen hello.
-  2. Aggiungere hello seguenti righe all'inizio di hello di hello *OnBeforeRequest* (funzione). Sostituire il \<dominio del tenant\> con un dominio registrato con il proprio tenant, ad esempio contoso.onmicrosoft.com. Sostituire \<l'ID della directory\> con l'identificatore GUID di Azure AD del proprio tenant.
+2.  Configurare Fiddler per decrittografare il traffico HTTPS, come indicato nella [relativa documentazione di aiuto](http://docs.telerik.com/fiddler/Configure-Fiddler/Tasks/DecryptHTTPS).
+3.  Configurare Fiddler per inserire le intestazioni *Restrict-Access-To-Tenants* e *Restrict-Access-Context* con regole personalizzate:
+  1. Nello strumento Fiddler Web Debugger, selezionare il menu **Rules** (Regole) e selezionare **Customize Rules…** (Personalizza regole…) per aprire il file CustomRules.
+  2. Aggiungere le righe seguenti all'inizio della funzione *OnBeforeRequest*. Sostituire il \<dominio del tenant\> con un dominio registrato con il proprio tenant, ad esempio contoso.onmicrosoft.com. Sostituire \<l'ID della directory\> con l'identificatore GUID di Azure AD del proprio tenant.
 
   ```
   if (oSession.HostnameIs("login.microsoftonline.com") || oSession.HostnameIs("login.microsoft.com") || oSession.HostnameIs("login.windows.net")){      oSession.oRequest["Restrict-Access-To-Tenants"] = "<tenant domain>";      oSession.oRequest["Restrict-Access-Context"] = "<directory ID>";}
   ```
 
-  Se è necessario tooallow più tenant, usare un nome di tenant hello tooseparate valori delimitati da virgole. ad esempio:
+  Se è necessario consentire più tenant, separare i vari nomi di tenant con le virgole. Ad esempio:
 
   ```
   oSession.oRequest["Restrict-Access-To-Tenants"] = "contoso.onmicrosoft.com,fabrikam.onmicrosoft.com";
   ```
 
-4. Salvare e chiudere file CustomRules hello.
+4. Salvare e chiudere il file CustomRules.
 
-Dopo aver configurato Fiddler, è possibile acquisire il traffico da passare toohello **File** menu e selezionando **acquisire il traffico**.
+Dopo aver configurato Fiddler, è possibile acquisire il traffico accedendo al menu **File** e selezionando **Capture Traffic** (Acquisisci traffico).
 
 ### <a name="staged-rollout-of-proxy-settings"></a>Implementazione per fasi delle impostazioni del proxy
 
-A seconda delle funzionalità di hello dell'infrastruttura di proxy, potrebbe essere implementazione hello toostage in grado di impostazioni tooyour che gli utenti. Di seguito sono indicate due opzioni generali da tenere in considerazione:
+A seconda delle funzionalità dell'infrastruttura di proxy, è possibile eseguire un'implementazione per fasi delle impostazioni agli utenti. Di seguito sono indicate due opzioni generali da tenere in considerazione:
 
-1.  Utilizzare PAC file toopoint test utenti tooa test infrastruttura del proxy, dall'infrastruttura del proxy toouse hello produzione mentre agli utenti normali.
+1.  Usare file PAC per indirizzare gli utenti di test a un'infrastruttura di proxy di test, mentre gli utenti normali continuano a utilizzare l'infrastruttura del proxy di produzione.
 2.  Alcuni server proxy possono supportare configurazioni diverse usando i gruppi.
 
-Consultare la documentazione del server proxy tooyour per informazioni dettagliate.
+Fare riferimento alla documentazione del server proxy per i dettagli specifici.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
 - Informazioni sull'[autenticazione moderna aggiornata di Office 365](https://blogs.office.com/2015/11/19/updated-office-365-modern-authentication-public-preview/)
 
-- Hello revisione [gli intervalli di indirizzi IP e gli URL di Office 365](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2)
+- Vedere [URL e intervalli di indirizzi IP per Office 365](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2)

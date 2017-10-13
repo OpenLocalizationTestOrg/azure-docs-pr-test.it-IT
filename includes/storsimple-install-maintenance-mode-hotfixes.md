@@ -1,17 +1,17 @@
 <!--author=SharS last changed: 9/17/15-->
 
-#### <a name="tooinstall-maintenance-mode-hotfixes-via-windows-powershell-for-storsimple"></a>tooinstall hotfix in modalità manutenzione tramite Windows PowerShell per StorSimple
+#### <a name="to-install-maintenance-mode-hotfixes-via-windows-powershell-for-storsimple"></a>Per installare gli aggiornamenti rapidi in modalità di manutenzione tramite Windows PowerShell per StorSimple
 > [!IMPORTANT]
-> In modalità manutenzione, è necessario innanzitutto tooapply hello hotfix su un controller e quindi su hello altri controller.
+> In modalità di manutenzione, è necessario applicare l’aggiornamento rapido prima in un controller e quindi nell’altro controller.
 > 
 > 
 
-1. Portare il dispositivo hello in modalità manutenzione. Vedere [passaggio 2: la modalità di manutenzione immettere](../articles/storsimple/storsimple-update-device.md#step2) per istruzioni sulla modalità di manutenzione tooenter.
-2. tooapply hello hotfix, tipo:
+1. Attivare la modalità di manutenzione per il dispositivo. Per istruzioni su come attivare la modalità di manutenzione, vedere [Passaggio 2: Attivare la modalità di manutenzione](../articles/storsimple/storsimple-update-device.md#step2).
+2. Per applicare l’aggiornamento rapido, digitare:
    
      `Start-HcsHotfix` 
-3. Quando richiesto, fornire hello percorso toohello cartella di rete condivisa che contiene i file dell'hotfix hello.
-4. Verrà richiesto di confermare. Tipo **Y** tooproceed con l'installazione dell'hotfix hello.
-5. Dopo che è stato applicato hello hotfix su un controller, accesso toohello altro controller. Come è stato fatto per controller precedente hello, è necessario applicare l'hotfix hello.
-6. Dopo l'applicazione hello hotfix, disattivare la modalità di manutenzione. Per istruzioni, vedere [Passaggio 4: Uscire dalla modalità di manutenzione](../articles/storsimple/storsimple-update-device.md#step4).
+3. Quando richiesto, specificare il percorso della cartella condivisa di rete che contiene i file dell'aggiornamento rapido.
+4. Verrà richiesto di confermare. Digitare **Y** per procedere con l'installazione dell'aggiornamento rapido.
+5. Dopo aver applicato l'aggiornamento rapido in un controller, accedere all’altro controller. Applicare l'aggiornamento rapido come è stato fatto per il precedente controller.
+6. Dopo aver applicato gli aggiornamenti rapidi, uscire dalla modalità di manutenzione. Per istruzioni, vedere [Passaggio 4: Uscire dalla modalità di manutenzione](../articles/storsimple/storsimple-update-device.md#step4).
 

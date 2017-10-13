@@ -1,5 +1,5 @@
 ---
-title: riferimento al modulo di regole aaaAzure CDN | Documenti Microsoft
+title: Riferimento del motore regole della rete CDN di Azure | Documentazione Microsoft
 description: "Documentazione di riferimento per le funzionalità e condizioni di corrispondenza del motore regole della rete CDN di Azure."
 services: cdn
 documentationcenter: 
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: rli
-ms.openlocfilehash: 4159715d15fc792afb49dcd2a30752fabcd94a38
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: c10145661a8c575381493c9aaa901c3ef92c2e81
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-cdn-rules-engine"></a>Motore regole della rete CDN di Azure
-In questo argomento elenca le descrizioni dettagliate delle funzionalità e le condizioni di corrispondenza disponibili di hello per Azure rete CDN (Content Delivery) [motore regole di business](cdn-rules-engine.md).
+In questo argomento sono riportate descrizioni dettagliate delle condizioni di corrispondenza e delle funzionalità disponibili per il [motore regole](cdn-rules-engine.md)della rete per la distribuzione di contenuti (CDN) di Azure.
 
-Hello HTTP motore regole di business è progettato toobe hello finale autorità specifica tipi di richieste vengono elaborate hello CDN.
+Il motore regole HTTP è progettato per essere l'autorità finale sul modo in cui i tipi di richieste specifici vengono elaborati dalla rete CDN.
 
 **Usi comuni**:
 
@@ -33,43 +33,43 @@ Hello HTTP motore regole di business è progettato toobe hello finale autorità 
 - Archiviare i dati di log personalizzati.
 
 ## <a name="terminology"></a>Terminologia
-Una regola è definita tramite l'utilizzo di hello di [ **espressioni condizionali**](cdn-rules-engine-reference-conditional-expressions.md), [ **corrisponde**](cdn-rules-engine-reference-match-conditions.md), e [  **funzionalità**](cdn-rules-engine-reference-features.md). Questi elementi vengono evidenziati in hello seguente illustrazione.
+Una regola è definita con l'utilizzo di [ **espressioni condizionali**](cdn-rules-engine-reference-conditional-expressions.md), [ **corrispondenze**](cdn-rules-engine-reference-match-conditions.md) e [ **funzionalità**](cdn-rules-engine-reference-features.md). Questi elementi vengono evidenziati nella figura seguente.
 
  ![Condizione di corrispondenza della rete CDN](./media/cdn-rules-engine-reference/cdn-rules-engine-terminology.png)
 
 ## <a name="syntax"></a>Sintassi
 
-modo Hello in cui verranno considerati caratteri speciali varia in base toohow una condizione di corrispondenza o valori di testo di handle di funzionalità. Una condizione di corrispondenza o la funzionalità potrebbe interpretare il testo in uno dei seguenti modi hello:
+Il modo in cui verranno trattati i caratteri speciali varia a seconda del modo in cui una condizione di corrispondenza o funzionalità gestisce i valori di testo. Una condizione di corrispondenza o funzionalità potrebbe interpretare il testo in uno dei modi seguenti:
 
 1. [**Valori letterali**](#literal-values) 
 2. [**Valori caratteri jolly**](#wildcard-values)
 3. [**Espressioni regolari**](#regular-expressions)
 
 ### <a name="literal-values"></a>Valori letterali
-Testo che viene interpretato come un valore letterale considererà tutti i caratteri speciali, con l'eccezione di hello del simbolo % hello, come parte del valore di hello che deve corrispondere. In altre parole, un valore letterale corrisponde condizione impostata troppo`\'*'\` verrà soddisfatta solo quando il cui valore esatto (ad esempio, `\'*'\`) è stato trovato.
+Il testo che viene interpretato come valore letterale tratterà tutti i caratteri speciali, fatta eccezione per il simbolo %, come parte del valore da mettere in corrispondenza. In altre parole, una condizione di corrispondenza letterale impostata su `\'*'\` verrà soddisfatta solo laddove si troverà tale valore (ad esempio, `\'*'\`).
  
-Un simbolo di percentuale è l'URL utilizzato tooindicate codifica (ad esempio, `%20`).
+Un simbolo di percentuale viene utilizzato per indicare la codifica URL (ad esempio `%20`).
 
 ### <a name="wildcard-values"></a>Valori caratteri jolly
-Testo che viene interpretato come valore di carattere jolly assegnerà caratteri toospecial significato aggiuntivo. Hello nella tabella seguente descrive come verrà interpretato hello seguente set di caratteri.
+Il testo che viene interpretato come un valore carattere jolly assegnerà un significato aggiuntivo ai caratteri speciali. Nella tabella seguente viene descritto come verrà interpretato il seguente set di caratteri.
 
 Character | Descrizione
 ----------|------------
-\ | Una barra rovesciata è usato tooescape hello caratteri specificato in questa tabella. Una barra rovesciata deve essere specificata direttamente prima di un carattere speciale hello che deve essere sottoposto a escape.<br/>Ad esempio, la seguente sintassi hello ignora un asterisco:`\*`
-% | Un simbolo di percentuale è l'URL utilizzato tooindicate codifica (ad esempio, `%20`).
+\ | Una barra rovesciata viene utilizzata per eseguire l'escape di ogni carattere specificato in questa tabella. Una barra rovesciata deve essere specificata direttamente prima del carattere speciale che deve essere sottoposto a escape.<br/>La sintassi seguente, ad esempio, ignora un asterisco: `\*`
+% | Un simbolo di percentuale viene utilizzato per indicare la codifica URL (ad esempio, `%20`).
 * | L'asterisco è un carattere jolly che rappresenta uno o più caratteri.
-Spazio | Un carattere di spazio indica che una condizione di corrispondenza può essere soddisfatto mediante hello specificato valori o i modelli.
-"value" | Una virgoletta singola non ha un significato speciale. Tuttavia, in cui viene utilizzato un set di virgolette tooindicate che un valore deve essere considerato come un valore letterale. E può essere utilizzato in hello seguenti modi:<br><br/>-Consente un toobe di condizione di corrispondenza soddisfatta ogni volta che hello specificato valore corrisponde a qualsiasi parte del valore di confronto hello.  Ad esempio, `'ma'` corrisponderebbe a una delle seguenti stringhe hello: <br/><br/>/business/**ma**rathon/asset.htm<br/>**ma**p.gif<br/>/business/template.**ma**p<br /><br />-Consente a un carattere speciale di toobe specificato come carattere letterale. Ad esempio, è possibile specificare un carattere di spazio letterale racchiudendo un carattere di spazio all'interno di un set di virgolette singole (ad esempio, `' '` o `'sample value'`).<br/>-Consente un valore vuoto di toobe specificato. Specificare un valore vuoto indicando un set di virgolette singole (ad esempio '').<br /><br/>**Importante:**<br/>-Se hello è specificato il valore non contiene un carattere jolly, quindi si verrà automaticamente considerato un valore letterale. Ciò significa che non è necessario toospecify un set di virgolette singole.<br/>- Se una barra rovesciata non effettua l'escape di un altro carattere in questa tabella, questo verrà ignorato se specificato all'interno di un set di virgolette singole.<br/>-Un altro modo toospecify un carattere speciale come carattere letterale è tooescape con una barra rovesciata (ad esempio, `\`).
+Spazio | Un carattere di spazio indica che una condizione di corrispondenza può essere soddisfatta da uno dei valori o modelli specificati.
+"value" | Una virgoletta singola non ha un significato speciale. Tuttavia, un set di virgolette singole viene utilizzato per indicare che un valore deve essere considerato come valore letterale. Può essere usato nei modi seguenti:<br><br/>- Consente una condizione di corrispondenza da soddisfare ogni volta che il valore specificato corrisponde a una parte qualsiasi del valore di confronto.  Ad esempio, `'ma'` corrisponde a una qualsiasi delle seguenti stringhe: <br/><br/>/business/**ma**rathon/asset.htm<br/>**ma**p.gif<br/>/business/template.**ma**p<br /><br />- Consente a un carattere speciale di essere specificato come carattere letterale. Ad esempio, è possibile specificare un carattere di spazio letterale racchiudendo un carattere di spazio all'interno di un set di virgolette singole (ad esempio, `' '` o `'sample value'`).<br/>- Consente di specificare un valore vuoto. Specificare un valore vuoto indicando un set di virgolette singole (ad esempio '').<br /><br/>**Importante:**<br/>- Se il valore specificato non contiene un carattere jolly, verrà automaticamente considerato un valore letterale. Ciò significa che non è necessario specificare un set di virgolette singole.<br/>- Se una barra rovesciata non effettua l'escape di un altro carattere in questa tabella, questo verrà ignorato se specificato all'interno di un set di virgolette singole.<br/>- Un altro modo per specificare un carattere speciale come un carattere letterale è quello di effettuare l'escape con una barra rovesciata (ad esempio, `\`).
 
 ### <a name="regular-expressions"></a>Espressioni regolari
 
-Le espressioni regolari definiscono un modello che verrà cercato all'interno di un valore di testo. Notazione delle espressioni regolari definisce simboli svariati tooa un significato specifico. Nella tabella seguente Hello indica i caratteri speciali come vengono gestiti dalle condizioni di corrispondenza e le funzionalità che supportano le espressioni regolari.
+Le espressioni regolari definiscono un modello che verrà cercato all'interno di un valore di testo. La notazione delle espressioni regolari definisce un significato specifico per una varietà di simboli. La tabella seguente indica come vengono trattati i caratteri speciali dalle funzionalità e dalle condizioni di corrispondenza che supportano le espressioni regolari.
 
 Carattere speciale | Descrizione
 ------------------|------------
-\ | Segue un hello carattere di barra rovesciata di escape hello. In questo modo toobe tale carattere considerato come un valore letterale anziché in modo semplice il significato di espressione regolare. Ad esempio, la seguente sintassi hello ignora un asterisco:`\*`
-% | il significato di Hello di un simbolo di percentuale dipende dal relativo utilizzo.<br/><br/> `%{HTTPVariable}`: questa sintassi identifica una variabile HTTP.<br/>`%{HTTPVariable%Pattern}`: Questa sintassi utilizza un tooidentify simbolo di percentuale HTTP variabile e come delimitatore.<br />`\%`: Un simbolo di percentuale di escape consente toobe utilizzato come valore letterale o codifica URL tooindicate (ad esempio, `\%20`).
-* | Un asterisco consente hello precedente toobe carattere corrispondenza zero o più volte. 
+\ | Una barra rovesciata esegue l'escape del carattere che la segue. In questo modo il carattere deve essere trattato come un valore letterale anziché adottare il significato di espressione regolare. La sintassi seguente, ad esempio, ignora un asterisco: `\*`
+% | Il significato di un simbolo di percentuale dipende dal relativo utilizzo.<br/><br/> `%{HTTPVariable}`: questa sintassi identifica una variabile HTTP.<br/>`%{HTTPVariable%Pattern}`: questa sintassi usa un simbolo di percentuale per identificare una variabile HTTP e come delimitatore.<br />`\%`: l'escape di un simbolo di percentuale consente di utilizzare tale simbolo come valore letterale o per indicare la codifica URL (ad esempio, `\%20`).
+* | Un asterisco consente al carattere precedente di essere messo in corrispondenza zero o più volte. 
 Spazio | Un carattere di spazio in genere è considerato come un carattere letterale. 
 "value" | Le virgolette singole vengono trattate come caratteri letterali. Un set di virgolette singole non ha un significato speciale.
 
@@ -78,5 +78,5 @@ Spazio | Un carattere di spazio in genere è considerato come un carattere lette
 * [Condizioni di corrispondenza del motore regole](cdn-rules-engine-reference-match-conditions.md)
 * [Espressioni condizionali del motore regole](cdn-rules-engine-reference-conditional-expressions.md)
 * [Funzionalità del motore regole](cdn-rules-engine-reference-features.md)
-* [Override del comportamento HTTP predefinito utilizzando il motore regole di hello](cdn-rules-engine.md)
+* [Override del comportamento HTTP predefinito mediante il motore di regole](cdn-rules-engine.md)
 * [Panoramica della rete CDN di Azure](cdn-overview.md)

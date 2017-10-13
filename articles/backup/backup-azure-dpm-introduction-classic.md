@@ -1,6 +1,6 @@
 ---
-title: aaaBack backup portale classico di DPM i carichi di lavoro tooAzure | Documenti Microsoft
-description: Toobacking un'introduzione dei server DPM con il servizio di Azure Backup hello
+title: Backup di carichi di lavoro DPM nel portale di Azure classico | Documentazione Microsoft
+description: Introduzione al backup dei server DPM di Azure usando il servizio Backup di Azure
 services: backup
 documentationcenter: 
 author: Nkolli1
@@ -15,13 +15,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/02/2017
 ms.author: nkolli;giridham;markgal
-ms.openlocfilehash: f408957db69d45f745d5e89bd97030a341405b72
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a9a516cfdfaf4b95c4f0121a66e90f6e71206e9f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="preparing-tooback-up-workloads-tooazure-with-dpm"></a>Preparazione tooback dei carichi di lavoro tooAzure con Data Protection Manager
+# <a name="preparing-to-back-up-workloads-to-azure-with-dpm"></a>Preparazione del backup dei carichi di lavoro in Azure con DPM
 > [!div class="op_single_selector"]
 > * [Server di backup di Azure](backup-azure-microsoft-azure-backup.md)
 > * [SCDPM](backup-azure-dpm-introduction.md)
@@ -30,28 +30,28 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-Questo articolo fornisce un tooprotect di Microsoft Azure Backup toousing Introduzione i server di System Center Data Protection Manager (DPM) e i carichi di lavoro. Le informazioni dell'articolo riguardano:
+Questo articolo offre un'introduzione all'uso del servizio Backup di Microsoft Azure per proteggere i server e i carichi di lavoro DPM di System Center. Le informazioni dell'articolo riguardano:
 
 * Il funzionamento del backup del server DPM di Azure
-* Hello prerequisiti tooachieve un'esperienza uniforme di backup
-* Hello tipico errori rilevati e in che modo toodeal con essi
+* I prerequisiti per eseguire un backup senza problemi
+* Gli errori tipici rilevati e come gestirli
 * Scenari supportati
 
-DPM di System Center esegue il backup di file e dati delle applicazioni. Dati sottoposti a backup tooDPM possono essere archiviati su nastro, disco, o backup tooAzure con Backup di Microsoft Azure. DPM interagisce con Backup di Azure nei modi seguenti:
+DPM di System Center esegue il backup di file e dati delle applicazioni. I dati sottoposti a backup su DPM possono essere archiviati su nastro, disco oppure sottoposti a backup in Azure usando il servizio Backup di Microsoft Azure. DPM interagisce con Backup di Azure nei modi seguenti:
 
-* **DPM distribuito come macchina virtuale locale o server fisica** -se DPM viene distribuito come server fisico o come macchina virtuale Hyper-V locale è possibile eseguire il backup di Azure Backup con dati tooan credenziali inoltre toodisk e backup su nastro.
-* **DPM distribuito come macchina virtuale di Azure** : a partire dalla versione di System Center 2012 R2 con aggiornamento 3, DPM può essere distribuito come macchina virtuale di Azure. Se DPM viene distribuito come macchina virtuale di Azure che è possibile eseguire il backup di dischi di dati tooAzure collegato toohello macchina virtuale di Azure di DPM oppure puoi eseguire l'offload archiviazione dei dati hello eseguendone il backup dell'insieme di credenziali di tooan Azure Backup.
+* **DPM distribuito come server fisico o come macchina virtuale locale** : se DPM viene distribuito come server fisico o come una macchina virtuale di Hyper-V locale, è possibile eseguire il backup dei dati su un insieme di credenziali di Backup di Azure, oltre che su dischi e nastri di backup.
+* **DPM distribuito come macchina virtuale di Azure** : a partire dalla versione di System Center 2012 R2 con aggiornamento 3, DPM può essere distribuito come macchina virtuale di Azure. Se DPM viene distribuito come macchina virtuale di Azure, sarà possibile eseguire il backup dei dati nei dischi di Azure associati alla macchina virtuale DPM di Azure oppure eseguire l'offload dell'archiviazione dei dati tramite il backup in un insieme di credenziali di Backup di Azure.
 
 ## <a name="why-backup-your-dpm-servers"></a>Motivi per eseguire il backup dei server DPM
-Hello business vantaggi dell'utilizzo di Azure Backup per il backup dei server DPM includono:
+Di seguito sono elencati i vantaggi aziendali derivanti dall'uso del servizio Backup di Azure per eseguire il backup dei server DPM:
 
-* Per la distribuzione di DPM in locale, è possibile utilizzare backup di Azure come un tootape distribuzione termine toolong alternativo.
-* Per le distribuzioni DPM in Azure, Backup di Azure consente archiviazione toooffload dal disco di Azure, hello e tooscale backup archiviando i dati meno recenti in Backup di Azure e i nuovi dati sul disco.
+* Per la distribuzione DPM locale è possibile usare il backup di Azure come alternativa alla distribuzione a lungo termine su nastro.
+* Per le distribuzioni DPM in Azure, Backup di Azure permette di ridurre lo spazio occupato dai dischi archiviati sul disco di Azure e di aumentare la scalabilità archiviando i dati meno recenti in Backup di Azure e quelli nuovi su disco.
 
 ## <a name="how-does-dpm-server-backup-work"></a>Funzionamento del backup del server DPM
-tooback rapidamente una macchina virtuale, prima è necessario uno snapshot in un momento dei dati di hello. ora pianificata Hello Azure Backup service avvia hello processo di backup in hello e trigger hello estensione backup tootake uno snapshot. coordinate di estensione del backup Hello con hello guest VSS tooachieve coerenza del servizio e richiama l'API del servizio di archiviazione Azure hello snapshot del blob hello una volta raggiunta la coerenza. Si tratta di fatto tooget uno snapshot coerente dei dischi hello della macchina virtuale hello, senza dovere tooshut verso il basso.
+Per eseguire il backup di una macchina virtuale è prima necessario acquisire uno snapshot dei dati in un momento specifico. Il servizio Backup di Azure avvia il processo di backup all'ora pianificata e avvia l'estensione per il backup per acquisire uno snapshot. L'estensione per il backup si coordina con il servizio VSS in-guest per assicurare coerenza e, dopo averla ottenuta, richiama l'API snapshot del BLOB del servizio Archiviazione di Azure. Questa operazione viene eseguita per ottenere uno snapshot coerente dei dischi della macchina virtuale senza che sia necessario arrestarla.
 
-Dopo che è stato eseguito snapshot hello, dati hello viene trasferiti dall'hello Azure Backup service toohello backup insieme di credenziali. servizio Hello si occupa di identificazione e il trasferimento solo i blocchi di hello che sono stati modificati dall'ultimo backup hello rendendo efficiente di rete e archiviazione di backup hello. Quando viene completato il trasferimento dei dati di hello, snapshot hello viene rimosso e viene creato un punto di ripristino. Questo punto di ripristino può essere visualizzato nel portale di Azure classico hello.
+Dopo l'acquisizione dello snapshot, il servizio Backup di Azure trasferisce i dati all'insieme di credenziali per il backup. Il servizio provvede a identificare e trasferire soltanto i blocchi che sono stati modificati dopo l'ultimo backup, rendendo in questo modo efficienti l'archiviazione dei backup e la rete. Quando il trasferimento dei dati è completato, lo snapshot viene rimosso e viene creato un punto di ripristino. È possibile visualizzare tale punto di ripristino nel portale di Azure classico.
 
 > [!NOTE]
 > Per quanto riguarda le macchine virtuali Linux, è possibile eseguire soltanto backup coerenti a livello di file.
@@ -59,19 +59,19 @@ Dopo che è stato eseguito snapshot hello, dati hello viene trasferiti dall'hell
 >
 
 ## <a name="prerequisites"></a>Prerequisiti
-Preparare il Backup di Azure tooback backup dei dati DPM come segue:
+Di seguito viene descritto come preparare il servizio Backup di Azure all'esecuzione del backup dei dati DPM:
 
-1. **Creare un insieme di credenziali di backup**. Se è ancora stato creato un insieme di credenziali di Backup nella sottoscrizione, vedere hello Azure versione del portale di questo articolo - [preparare tooback backup tooAzure i carichi di lavoro con DPM](backup-azure-dpm-introduction.md).
+1. **Creare un insieme di credenziali di backup**. Se non è stato ancora creato un insieme di credenziali di backup nella sottoscrizione, vedere la versione relativa al Portale di Azure di questo articolo: [Preparazione del backup dei carichi di lavoro in Azure con DPM](backup-azure-dpm-introduction.md).
 
   > [!IMPORTANT]
-  > A partire da marzo 2017, è possibile utilizzare non è più insiemi di credenziali Backup hello toocreate portale classico.
-  > È ora possibile aggiornare i servizi archivi di Backup gli insiemi di credenziali tooRecovery. Per informazioni dettagliate, vedere l'articolo hello [aggiornare un tooa insieme di credenziali di Backup dell'insieme di credenziali di servizi di ripristino](backup-azure-upgrade-backup-to-recovery-services.md). Microsoft incoraggia gli utenti tooupgrade insiemi di credenziali di servizi tooRecovery insiemi di credenziali di Backup.<br/> Dopo 15 ottobre 2017, è possibile utilizzare gli insiemi di credenziali di PowerShell toocreate Backup. **Entro il 1° novembre 2017**:
-  >- Tutti gli archivi di Backup rimanenti verrà automaticamente aggiornato tooRecovery servizi insiemi di credenziali.
-  >- Si sarà in grado di tooaccess ai dati di backup nel portale classico hello. Utilizzare invece hello Azure tooaccess portale i dati di backup in insiemi di servizi di ripristino.
+  > A partire da marzo 2017, non è più possibile usare il portale classico per creare insiemi di credenziali di backup.
+  > È ora possibile aggiornare gli insiemi di credenziali di Backup ad insiemi di credenziali dei servizi di ripristino. Per altre informazioni, vedere l'articolo [Aggiornare un insieme di credenziali di Backup a un insieme di credenziali di Servizi di ripristino](backup-azure-upgrade-backup-to-recovery-services.md). Microsoft consiglia di aggiornare gli insiemi di credenziali di Backup a insiemi di credenziali dei servizi di ripristino.<br/> Dopo il 15 ottobre 2017 non sarà possibile usare PowerShell per creare insiemi di credenziali di backup. **Entro il 1° novembre 2017**:
+  >- Tutti gli insiemi di credenziali di backup rimanenti verranno aggiornati automaticamente a insiemi di credenziali dei servizi di ripristino.
+  >- e non sarà più possibile accedere ai dati di backup nel portale classico. Sarà possibile invece usare il portale di Azure per accedere ai dati di backup negli insiemi di credenziali di servizi di ripristino.
   >
 
-2. **Scaricare l'insieme di credenziali** : In Azure Backup, carica certificato di gestione di hello creato toohello insieme di credenziali.
-3. **Installare hello Azure Backup Agent e registrare il server di hello** : da Backup di Azure, installare l'agente di hello in ogni server DPM e registrare i server DPM hello nell'insieme di credenziali backup hello.
+2. **Scaricare le credenziali di insieme** : in Backup di Azure caricare il certificato di gestione creato nell'insieme di credenziali.
+3. **Installare Azure Backup Agent e registrare il server** : da Backup di Azure, installare l'agente su ogni server DPM e registrare tale server nell'insieme di credenziali di backup.
 
 [!INCLUDE [backup-download-credentials](../../includes/backup-download-credentials.md)]
 
@@ -79,15 +79,15 @@ Preparare il Backup di Azure tooback backup dei dati DPM come segue:
 
 ## <a name="requirements-and-limitations"></a>Requisiti e limitazioni
 * DPM può essere eseguito come server fisico o come macchina virtuale Hyper-V installata in System Center 2012 SP1 o System Center 2012 R2. Inoltre, è possibile eseguirlo come macchina virtuale di Azure in System Center 2012 R2 (con almeno l'aggiornamento cumulativo 3 di DPM 2012 R2) oppure come macchina virtuale di Windows in VMware con System Center 2012 R2 e almeno il relativo aggiornamento cumulativo 5.
-* Se DPM viene eseguito con System Center 2012 SP1, è necessario installare l'aggiornamento cumulativo 2 per System Center Data Protection Manager SP1. Ciò è necessario prima di poter installare hello Azure Backup Agent.
-* server di Data Protection Manager Hello deve disporre di Windows PowerShell e .net Framework 4.5 installati.
-* DPM può eseguire il backup la maggior parte dei carichi di lavoro tooAzure Backup. Per un elenco completo dei componenti supportati, vedere hello Backup di Azure supporta i seguenti elementi.
-* Impossibile ripristinare i dati archiviati in Azure Backup con l'opzione "copia tootape" hello.
-* È necessario un account Azure con funzionalità di Backup di Azure hello abilitata. Se non si dispone di un account, è possibile creare un account di valutazione gratuita in pochi minuti. Informazioni sui [prezzi di Backup di Azure](https://azure.microsoft.com/pricing/details/backup/).
-* Tramite Azure Backup richiede hello Azure Backup Agent toobe installato nei server di hello tooback da backup. Ogni server deve essere almeno il 10% della dimensione hello dati hello che viene eseguito il backup, disponibile come archiviazione locale disponibile. Ad esempio, il backup di 100 GB di dati richiede un minimo di 10 GB di spazio disponibile nel percorso di file temporanei di hello. Sebbene hello minimo è 10%, è consigliabile 15% di toobe di spazio libero di archiviazione locale utilizzato per il percorso della cache di hello.
-* Verranno archiviati i dati in archiviazione di Azure dell'insieme di credenziali hello. Nessun importo toohello limite dei dati che è possibile eseguire il backup tooan Azure Backup vault ma dimensioni hello di un'origine dati (ad esempio una macchina virtuale o un database) non devono superare 54,400 GB.
+* Se DPM viene eseguito con System Center 2012 SP1, è necessario installare l'aggiornamento cumulativo 2 per System Center Data Protection Manager SP1. Tale procedura è necessaria prima di poter installare Azure Backup Agent.
+* È necessario che nel server DPM siano installati Windows PowerShell e .Net Framework 4.5.
+* DPM può eseguire il backup della maggior parte dei carichi di lavoro nel servizio Backup di Azure. Per visualizzare un elenco completo degli elementi supportati, consultare gli elementi supportati di Backup di Azure riportati di seguito.
+* Usando l'opzione "Copia su nastro", non è possibile ripristinare i dati memorizzati in Backup di Azure.
+* È necessario disporre di un account di Azure su cui è abilitata la funzionalità Backup di Azure. Se non si dispone di un account, è possibile creare un account di valutazione gratuita in pochi minuti. Informazioni sui [prezzi di Backup di Azure](https://azure.microsoft.com/pricing/details/backup/).
+* Per usare Backup di Azure è necessario che Azure Backup Agent sia installato sui server da sottoporre a backup. Le dimensioni di ogni server devono essere almeno il 10% di quelle dei dati sottoposti a backup. Lo spazio deve essere disponibile come archiviazione locale. Se, ad esempio, si esegue il backup di 100 GB di dati, è necessario un minimo di 10 GB di spazio disponibile nello spazio di lavoro. Anche se la dimensione minima è 10%, è consigliabile usare uno spazio di archiviazione locale del 15% per il percorso della cache.
+* I dati verranno memorizzati nell'archiviazione relativa all'insieme di credenziali di Azure. Non esistono limiti relativi alla quantità di dati che è possibile includere nel backup in un insieme di credenziali di Backup di Azure, tuttavia le dimensioni dell'origine dati (ad esempio, un database o una macchina virtuale) non devono superare 54.400 GB.
 
-Questi tipi di file sono supportati per eseguire il backup tooAzure:
+Il backup in Azure è supportato per i tipi di file seguenti:
 
 * Crittografati (solo backup completi)
 * Compressi (backup incrementali supportati)
@@ -105,6 +105,6 @@ Questi tipi di file non sono supportati:
 * Flusso di tipo sparse
 
 > [!NOTE]
-> Da in System Center 2012 DPM con SP1 in poi, puoi eseguire il backup dei carichi di lavoro protetti da DPM tooAzure con Backup di Microsoft Azure.
+> A partire dalla versione di System Center 2012 DPM con SP1, è possibile eseguire il backup di carichi di lavoro protetti da DPM in Azure, usando il servizio Backup di Microsoft Azure.
 >
 >

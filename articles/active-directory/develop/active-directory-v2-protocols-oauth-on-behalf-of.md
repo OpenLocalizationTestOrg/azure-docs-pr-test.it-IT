@@ -1,6 +1,6 @@
 ---
-title: v 2.0 aaaAzure AD OAuth 2.0 On-Behalf-Of flusso | Documenti Microsoft
-description: In questo articolo viene descritto come toouse HTTP messaggi tooimplement servizio tooservice l'autenticazione usando hello OAuth 2.0 On-Behalf-Of flusso.
+title: Flusso on-behalf-of di Azure AD v2.0 OAuth2.0 | Microsoft Docs
+description: Questo articolo illustra come usare i messaggi HTTP per implementare l'autenticazione da servizio a servizio usando il flusso on-behalf-of di OAuth2.0.
 services: active-directory
 documentationcenter: 
 author: navyasric
@@ -15,61 +15,61 @@ ms.topic: article
 ms.date: 05/04/2017
 ms.author: nacanuma
 ms.custom: aaddev
-ms.openlocfilehash: 6063869d07c2544000094db8deea7dce19f14f67
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 356083fbaabfcd2ec7581adf319fa22b810df0d3
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # Flusso on-behalf-of di Azure Active Directory v2.0 e di OAuth 2.0
-Hello flusso OAuth 2.0 On-Behalf-Of serve il caso d'uso di hello in cui un'applicazione richiama un servizio o API web, che a sua volta deve toocall un altro servizio web API. l'idea Hello è hello toopropagate delega di identità dell'utente e le autorizzazioni mediante una catena di richieste di hello. Per hello servizio di livello intermedio toomake autenticato richieste toohello servizio downstream, è necessario toosecure un token di accesso da Azure Active Directory (Azure AD), per conto di utente hello.
+Il flusso on-behalf-of di OAuth 2.0 viene usato quando un'applicazione richiama un servizio o un'API Web, che a sua volta deve chiamare un altro servizio o un'altra API Web. Lo scopo è di propagare l'identità utente delegato e le autorizzazioni attraverso la catena di richieste. Per eseguire richieste autenticate al servizio downstream, il servizio di livello intermedio deve assicurarsi un token di accesso da Azure Active Directory (Azure AD) per conto dell'utente.
 
 > [!NOTE]
-> endpoint di Hello v 2.0 non supporta tutti gli scenari di Azure Active Directory e le funzionalità. toodetermine se è necessario utilizzare endpoint v 2.0 hello, conoscenza [limitazioni v 2.0](active-directory-v2-limitations.md).
+> Non tutti gli scenari e le funzionalità di Azure Active Directory sono supportati dall'endpoint v2.0. Per determinare se è necessario usare l'endpoint 2.0, vedere l'articolo relativo alle [limitazioni della versione 2.0](active-directory-v2-limitations.md).
 >
 >
 
 ## Diagramma di protocollo
-Si supponga che l'utente hello è stato autenticato in un'applicazione utilizzando hello [flusso di concessione del codice di autorizzazione OAuth 2.0](active-directory-v2-protocols-oauth-code.md). A questo punto, un'applicazione hello ha un token di accesso (A token) con attestazioni dell'utente hello e web di livello intermedio di consenso tooaccess hello API (API A). API A questo punto, è necessario toomake un'API web downstream di richiesta autenticata toohello (API B).
+Si supponga che l'utente sia stato autenticato in un'applicazione usando il [flusso di concessione del codice di autorizzazione OAuth 2.0](active-directory-v2-protocols-oauth-code.md). A questo punto, l'applicazione contiene un token di accesso (token A) con le richieste dell'utente e il consenso per accedere all'API Web di livello intermedio (API A). L'API A deve ora eseguire una richiesta autenticata all'API Web downstream (API B).
 
-passaggi Hello costituiscono flusso di On-Behalf-Of hello e vengono descritte insieme hello hello seguente diagramma.
+I passaggi che seguono costituiscono il flusso on-behalf-of e vengono descritti con l'aiuto del diagramma seguente.
 
 ![Flusso on-behalf-of di OAuth2.0](media/active-directory-protocols-oauth-on-behalf-of/active-directory-protocols-oauth-on-behalf-of-flow.png)
 
 
-1. un'applicazione client Hello rende tooAPI una richiesta con r. token hello
-2. API A autentica toohello endpoint di rilascio dei token di Azure AD e richiede un token tooaccess B. API
-3. endpoint di rilascio dei token di Azure AD Hello convalida le credenziali dell'API A con un token e problemi hello token di accesso per le API B (token B).
-4. il token di Hello B viene impostato nell'intestazione di autorizzazione hello hello richiesta tooAPI B.
-5. Dati da hello risorsa protetta viene restituiti dall'API B.
+1. L'applicazione client esegue una richiesta all'API A con il token A.
+2. L'API A esegue l'autenticazione all'endpoint di rilascio del token di Azure AD e richiede un token per accedere all'API B.
+3. L'endpoint di rilascio del token di Azure AD convalida le credenziali dell'API A con il token A ed emette il token di accesso per l'API B (token B).
+4. Il token B viene impostato nell'intestazione di autorizzazione della richiesta all'API B.
+5. I dati della risorsa protetta vengono restituiti dall'API B.
 
 > [!NOTE]
-> In questo scenario, il servizio di livello intermedio hello non dispone di alcuna interazione tooobtain hello utente consenso tooaccess hello downstream API. Pertanto, hello opzione toogrant accesso toohello API a valle viene presentato iniziale come parte del passaggio di consenso hello durante l'autenticazione.
+> In questo scenario, il servizio di livello intermedio non ha alcuna interazione utente per ottenere il consenso dell'utente per accedere all'API downstream. Pertanto, l'opzione per la concessione dell'accesso all'API downstream viene presentata in anticipo come parte della fase del consenso durante l'autenticazione.
 >
 
-## Richiesta di token di servizio tooservice accesso
-toorequest un token di accesso, rendere un endpoint di v 2.0 toohello specifico del tenant di Azure AD di HTTP POST con hello seguenti parametri.
+## Richiesta del token di accesso da servizio a servizio
+Per richiedere un token di accesso, eseguire una richiesta HTTP POST per l'endpoint di Azure AD v2.0 specifico del tenant con i parametri seguenti.
 
 ```
 https://login.microsoftonline.com/<tenant>/oauth2/v2.0/token
 ```
 
-Esistono due casi, a seconda se un'applicazione hello client sceglie toobe protetto da un segreto condiviso o un certificato.
+L'applicazione client può scegliere di essere protetta da un segreto condiviso oppure da un certificato.
 
 ### Primo caso: richiesta del token di accesso con un segreto condiviso
-Quando si utilizza un segreto condiviso, una richiesta di token di accesso da servizio a servizio contiene hello seguenti parametri:
+Quando si usa un segreto condiviso, una richiesta di token di accesso da servizio a servizio contiene i parametri seguenti:
 
-| . |  | Descrizione |
+| Parametro |  | Descrizione |
 | --- | --- | --- |
-| grant_type |Obbligatoria | tipo di Hello di richiesta di token hello. Per una richiesta usando un token JWT, hello valore deve essere **urn: ietf:params:oauth:grant-tipo: jwt-connessione**. |
-| client_id |Obbligatoria | l'ID applicazione Hello che hello [portale di registrazione applicazione](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) assegnato tooyour app. |
-| client_secret |Obbligatoria | segreto dell'applicazione Hello che è stato generato per l'app nel portale di registrazione applicazione hello. |
-| assertion |Obbligatoria | valore di Hello del token hello utilizzato nella richiesta di hello. |
-| scope |Obbligatoria | Elenco di ambiti per richiesta di token hello separati da uno spazio. Per altre informazioni, vedere [Scopes](active-directory-v2-scopes.md) (Ambiti).|
-| requested_token_use |Obbligatoria | Specifica la modalità di elaborazione richiesta hello. Nel flusso di On-Behalf-Of hello, hello valore deve essere **on_behalf_of**. |
+| grant_type |Obbligatoria | Il tipo di richiesta del token. Per una richiesta con un token JWT, il valore deve essere **urn:ietf:params:oauth:grant-type:jwt-bearer**. |
+| client_id |Obbligatoria | ID applicazione che il [portale di registrazione delle applicazioni](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) ha assegnato all'app. |
+| client_secret |Obbligatoria | Segreto dell'applicazione generato per l'app nel portale di registrazione dell'applicazione. |
+| assertion |Obbligatoria | Il valore del token usato nella richiesta. |
+| scope |Obbligatoria | Un elenco di ambiti separati da spazi per la richiesta di token. Per altre informazioni, vedere [Scopes](active-directory-v2-scopes.md) (Ambiti).|
+| requested_token_use |Obbligatoria | Specifica la modalità di elaborazione della richiesta. Nel flusso on-behalf-of il valore deve essere **on_behalf_of**. |
 
 #### Esempio
-Hello POST HTTP seguente richiede un token di accesso con `user.read` ambito per l'API web di https://graph.microsoft.com hello.
+La richiesta HTTP POST seguente richiede un token di accesso con ambito `user.read` per l'API Web https://graph.microsoft.com.
 
 ```
 //line breaks for legibility only
@@ -87,22 +87,22 @@ grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer
 ```
 
 ### Secondo caso: richiesta del token di accesso con un certificato
-Una richiesta di token di accesso da servizio a servizio con un certificato contiene hello seguenti parametri:
+Una richiesta di token di accesso da servizio a servizio con un certificato contiene i parametri seguenti:
 
-| . |  | Descrizione |
+| Parametro |  | Descrizione |
 | --- | --- | --- |
-| grant_type |Obbligatoria | tipo di Hello di richiesta di token hello. Per una richiesta usando un token JWT, hello valore deve essere **urn: ietf:params:oauth:grant-tipo: jwt-connessione**. |
-| client_id |Obbligatoria | l'ID applicazione Hello che hello [portale di registrazione applicazione](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) assegnato tooyour app. |
-| client_assertion_type |Obbligatoria |il valore di Hello deve essere`urn:ietf:params:oauth:client-assertion-type:jwt-bearer` |
-| client_assertion |Obbligatoria | Un'asserzione (JSON Web Token) che è necessario toocreate e certificato di firma con hello è registrato come credenziali per l'applicazione.  Conoscenza [credenziali del certificato](active-directory-certificate-credentials.md) toolearn come tooregister il formato di certificato e hello di asserzione hello.|
-| assertion |Obbligatoria | valore di Hello del token hello utilizzato nella richiesta di hello. |
-| requested_token_use |Obbligatoria | Specifica la modalità di elaborazione richiesta hello. Nel flusso di On-Behalf-Of hello, hello valore deve essere **on_behalf_of**. |
-| scope |Obbligatoria | Elenco di ambiti per richiesta di token hello separati da uno spazio. Per altre informazioni, vedere [Scopes](active-directory-v2-scopes.md) (Ambiti).|
+| grant_type |Obbligatoria | Il tipo di richiesta del token. Per una richiesta con un token JWT, il valore deve essere **urn:ietf:params:oauth:grant-type:jwt-bearer**. |
+| client_id |Obbligatoria | ID applicazione che il [portale di registrazione delle applicazioni](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) ha assegnato all'app. |
+| client_assertion_type |Obbligatoria |Il valore deve essere `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`. |
+| client_assertion |Obbligatoria | Un'asserzione (un token JSON Web) che è necessario creare e firmare con il certificato registrato come credenziale per l'applicazione.  Leggere l'articolo relativo alle [credenziali basate su certificato](active-directory-certificate-credentials.md) per informazioni sulla registrazione del certificato e il formato dell'asserzione.|
+| assertion |Obbligatoria | Il valore del token usato nella richiesta. |
+| requested_token_use |Obbligatoria | Specifica la modalità di elaborazione della richiesta. Nel flusso on-behalf-of il valore deve essere **on_behalf_of**. |
+| scope |Obbligatoria | Un elenco di ambiti separati da spazi per la richiesta di token. Per altre informazioni, vedere [Scopes](active-directory-v2-scopes.md) (Ambiti).|
 
-Si noti che i parametri di hello sono quasi uguale a quello nel caso di hello della richiesta di hello hello dal segreto condiviso a ad eccezione del fatto che il parametro client_secret hello viene sostituito da due parametri: un client_assertion_type e client_assertion.
+Si noti che i parametri sono quasi uguali a quelli usati nella richiesta tramite segreto condiviso, con l'eccezione del parametro client_secret che viene sostituito da due parametri: client_assertion_type e client_assertion.
 
 #### Esempio
-Hello POST HTTP seguente richiede un token di accesso con `user.read` ambito per l'API web https://graph.microsoft.com hello con un certificato.
+La richiesta HTTP POST seguente richiede un token di accesso con ambito `user.read` per l'API Web https://graph.microsoft.com con un certificato.
 
 ```
 // line breaks for legibility only
@@ -120,19 +120,19 @@ grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer
 &scope=https://graph.microsoft.com/user.read
 ```
 
-## Risposta di token di accesso di servizio tooservice
-Una risposta con esito positivo è una risposta JSON OAuth 2.0 con hello seguenti parametri.
+## Risposta del token di accesso da servizio a servizio
+Una risposta di esito positivo è una risposta OAuth 2.0 JSON con i parametri seguenti.
 
-| . | Descrizione |
+| Parametro | Descrizione |
 | --- | --- |
-| token_type |Indica il valore di tipo di token hello. Hello solo tipo di Azure AD supporta **connessione**. Per ulteriori informazioni sui token di connessione, vedere hello [Framework di autorizzazione OAuth 2.0: utilizzo dei Token di connessione (RFC 6750)](http://www.rfc-editor.org/rfc/rfc6750.txt). |
-| scope |ambito Hello di accesso concesso nel token hello. |
-| expires_in |lunghezza Hello ora hello token di accesso è valido (in secondi). |
-| access_token |token di accesso richiesto Hello. Hello la chiamata di servizio è possibile utilizzare questo servizio di token tooauthenticate toohello ricevente. |
-| refresh_token |token di aggiornamento Hello hello richiesta token di accesso. Hello chiamata servizio toorequest questo token può utilizzare un altro token di accesso alla scadenza del token di accesso corrente hello. |
+| token_type |Indica il valore del tipo di token. L'unico tipo supportato da Azure AD è **Bearer**. Per altre informazioni sui token di connessione, vedere [OAuth 2.0 Authorization Framework: Bearer Token Usage (RFC 6750)](http://www.rfc-editor.org/rfc/rfc6750.txt)(Framework di autorizzazione di OAuth 2.0: uso dei token di connessione - RFC 6750). |
+| scope |L'ambito di accesso concesso nel token. |
+| expires_in |Il periodo di validità del token di accesso (in secondi). |
+| access_token |Token di accesso richiesto. Il servizio chiamante può usare questo token per l'autenticazione nel servizio ricevente. |
+| refresh_token |Il token di aggiornamento per il token di accesso richiesto. Il servizio chiamante può usare questo token per richiedere un altro token di accesso dopo la scadenza di quello corrente. |
 
 ### Esempio di risposta di esito positivo
-Hello esempio seguente mostra una richiesta di tooa risposta di esito positivo per un token di accesso per l'API web di https://graph.microsoft.com hello.
+L'esempio seguente mostra una risposta di esito positivo a una richiesta di token di accesso per l'API Web https://graph.microsoft.com.
 
 ```
 {
@@ -146,12 +146,12 @@ Hello esempio seguente mostra una richiesta di tooa risposta di esito positivo p
 ```
 
 ### Esempio di risposta con errore
-Una risposta di errore viene restituita dall'endpoint token Azure AD durante il tentativo di tooacquire un token di accesso per l'API a valle hello, se un criterio di accesso condizionale, ad esempio l'autenticazione a più fattori impostato su tale API downstream hello. il servizio di livello intermedio Hello deve area dell'applicazione client toohello errore in modo che un'applicazione hello client può fornire criteri di accesso condizionale hello toosatisfy interazione utente hello.
+Quando si tenta di acquisire un token di accesso per l'API downstream, se questa dispone di criteri di accesso condizionale, ad esempio l'autenticazione a più fattori impostata, l'endpoint del token di Azure AD restituisce una risposta con errore. Il servizio di livello intermedio dovrebbe segnalare l'errore all'applicazione client in modo che questa possa fornire l'interazione dell'utente per soddisfare i criteri di accesso condizionale.
 
 ```
 {
     "error":"interaction_required",
-    "error_description":"AADSTS50079: Due tooa configuration change made by your administrator, or because you moved tooa new location, you must enroll in multi-factor authentication tooaccess 'bf8d80f9-9098-4972-b203-500f535113b1'.\r\nTrace ID: b72a68c3-0926-4b8e-bc35-3150069c2800\r\nCorrelation ID: 73d656cf-54b1-4eb2-b429-26d8165a52d7\r\nTimestamp: 2017-05-01 22:43:20Z",
+    "error_description":"AADSTS50079: Due to a configuration change made by your administrator, or because you moved to a new location, you must enroll in multi-factor authentication to access 'bf8d80f9-9098-4972-b203-500f535113b1'.\r\nTrace ID: b72a68c3-0926-4b8e-bc35-3150069c2800\r\nCorrelation ID: 73d656cf-54b1-4eb2-b429-26d8165a52d7\r\nTimestamp: 2017-05-01 22:43:20Z",
     "error_codes":[50079],
     "timestamp":"2017-05-01 22:43:20Z",
     "trace_id":"b72a68c3-0926-4b8e-bc35-3150069c2800",
@@ -160,8 +160,8 @@ Una risposta di errore viene restituita dall'endpoint token Azure AD durante il 
 }
 ```
 
-## Utilizzare hello tooaccess token di accesso hello risorsa protetta
-Ora il servizio di livello intermedio hello è possibile usare toohello le richieste di token toomake acquisiti in precedenza autenticato hello a valle web API, l'impostazione di token hello in hello `Authorization` intestazione.
+## Usare il token di accesso per accedere alla risorsa protetta
+Il servizio di livello intermedio può ora usare il token acquisito in precedenza per eseguire richieste autenticate all'API Web downstream, impostando il token nell'intestazione `Authorization`.
 
 ### Esempio
 ```
@@ -171,6 +171,6 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJub25jZSI6IkFRQUJBQUFBQUFCbmZpRy1tQTZOVG
 ```
 
 ## Passaggi successivi
-Ulteriori informazioni su protocollo hello OAuth 2.0 e le auth tooservice servizio tooperform modo un altro utilizzando le credenziali del client.
+Altre informazioni sul protocollo OAuth 2.0 e su un altro modo per eseguire l'autenticazione da servizio a servizio usando le credenziali del client.
 * [Concessione di credenziali client OAuth 2.0 in Azure AD v2.0](active-directory-v2-protocols-oauth-client-creds.md)
 * [OAuth 2.0 in Azure AD v2.0](active-directory-v2-protocols-oauth-code.md)

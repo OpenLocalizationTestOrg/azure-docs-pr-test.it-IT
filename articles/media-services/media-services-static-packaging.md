@@ -1,5 +1,5 @@
 ---
-title: "attività di creazione statica dei pacchetti aaaUsing Azure Media Packager tooaccomplish | Documenti Microsoft"
+title: "Uso di Azure Media Packager per eseguire attività di creazione statica dei pacchetti | Microsoft Docs"
 description: "Questo argomento descrive varie attività eseguite con Azure Media Packager."
 services: media-services
 documentationcenter: 
@@ -14,25 +14,25 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: juliako
-ms.openlocfilehash: 64e8ba217bcd3074f5819ac3b74d2969432db5d3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: cd36e46821eb85db523a5c84ec44895f68cc60e1
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="using-azure-media-packager-tooaccomplish-static-packaging-tasks"></a>Utilizzo delle attività di creazione statica dei pacchetti tooaccomplish Azure Media Packager
+# <a name="using-azure-media-packager-to-accomplish-static-packaging-tasks"></a>Utilizzare Azure Media Packager per eseguire attività di creazione statica dei pacchetti
 > [!NOTE]
-> fine Hello della data di vita di Microsoft Azure Media Packager e Microsoft Azure Media Encryptor è stato esteso tooMarch 1, 2017. Prima di tale data, verranno aggiunte le funzionalità di hello di questi processori tooMedia codificatore Standard (MES). I clienti verranno forniti istruzioni su come toomigrate tooMES di processi toosend i flussi di lavoro. Le funzionalità di crittografia e di conversione di formato possono anche essere disponibili tramite la creazione dinamica dei pacchetti e la crittografia dinamica.
+> La fine della vita per Microsoft Azure Media Packager e Microsoft Azure Media Encryptor è stata estesa al 1° marzo 2017. Prima di tale data, le funzionalità di questi processori verranno aggiunte a Media Encoder Standard (MES). I clienti riceveranno istruzioni per eseguire la migrazione dei flussi di lavoro per inviare processi a MES. Le funzionalità di crittografia e di conversione di formato possono anche essere disponibili tramite la creazione dinamica dei pacchetti e la crittografia dinamica.
 > 
 > 
 
 ## <a name="overview"></a>Panoramica
-In ordine toodeliver digital video su hello internet è necessario comprimere hello media. File video digitali sono abbastanza elevati e potrebbe essere troppo grande toodeliver su hello internet o per toodisplay dispositivi dei clienti in modo corretto. La codifica è il processo di hello di compressione di video e audio in modo i clienti possono visualizzare i file multimediali. Una volta codificato, un video può essere inserito in contenitori di file diversi. il processo di Hello di inserire elementi multimediali codificati in un contenitore è denominato creazione di pacchetti. Ad esempio, è possibile richiedere un file MP4 e convertirlo in contenuto Smooth Streaming o HLS usando Azure Media Packager hello. 
+Per distribuire un video digitale tramite Internet è necessario comprimere il file multimediale. I file video digitali hanno dimensioni piuttosto elevate e possono risultare troppo grandi per la distribuzione su Internet o per la visualizzazione corretta sui dispositivi dei clienti. Mediante il processo di codifica è possibile comprimere video e audio per consentire ai clienti di visualizzare i file multimediali. Una volta codificato, un video può essere inserito in contenitori di file diversi. Il processo di collocare supporti di memorizzazione codificati in un contenitore è denominato creazione di pacchetti. Ad esempio, è possibile prendere un file MP4 e convertirlo in un contenuto Smooth Streaming o HLS usando Azure Media Packager. 
 
-Servizi Multimediali supporta pacchetti statici e dinamici. Quando si utilizza Creazione statica dei pacchetti è necessario toocreate una copia del contenuto in ogni formato richiesto dai clienti. Creazione di pacchetti dinamiche tutto che il necessario è toocreate un asset che contiene un set di file di formato MP4 o Smooth Streaming velocità in bit adattiva. Quindi, base hello di formato specificato nel manifesto hello o frammentare la richiesta, hello Streaming On Demand server garantisce che gli utenti ricevano il flusso di hello nel protocollo hello prescelto. Di conseguenza, è necessario solo toostore e pagare per i file hello in unico formato di archiviazione e servizi multimediali creerà e fornirà hello risposta appropriata in base alle richieste da un client.
+Servizi Multimediali supporta pacchetti statici e dinamici. Quando si utilizza il pacchetto di creazione statico è necessario creare una copia dei contenuti in ognuno dei formati richiesti dagli utenti. Con il pacchetto di creazione dinamico, è sufficiente creare un asset che contenga un set di file a velocità in bit adattiva MP4 o Smooth Streaming. In base al formato specificato nella richiesta del manifesto o del frammento, il server di streaming on demand garantirà agli utenti che il flusso sia ricevuto nel protocollo scelto. Di conseguenza, si archiviano e si pagano solo i file in un singolo formato di archiviazione e il servizio Servizi multimediali crea e fornisce la risposta appropriata in base alle richieste di un client.
 
 > [!NOTE]
-> È consigliabile toouse [creazione dinamica dei pacchetti](media-services-dynamic-packaging-overview.md).
+> Si consiglia di utilizzare [pacchetto di creazione dinamico](media-services-dynamic-packaging-overview.md).
 > 
 > 
 
@@ -40,28 +40,28 @@ Tuttavia, esistono alcuni scenari che richiedono la pacchetti di creazione stati
 
 * Convalida di velocità in bit adattiva MP4s codificata con codificatori esterni (ad esempio utilizzando codificatori di terze parti).
 
-È inoltre possibile utilizzare hello tooperform creazione statica dei pacchetti seguenti attività. È tuttavia consigliabile toouse la crittografia dinamica.
+È possibile utilizzare anche pacchetti di creazione statici per eseguire le attività seguenti. È tuttavia consigliabile utilizzare la crittografia dinamica.
 
-* Utilizzando la crittografia statica tooprotect il formato Smooth Streaming e MPEG DASH con PlayReady
-* Utilizzo di crittografia statica tooprotect HLSv3 con AES-128
-* Utilizzo di crittografia statica tooprotect HLSv3 con PlayReady
+* Utilizzare la crittografia statica per proteggere i formati Smooth e MPEG DASH con PlayReady
+* Utilizzare la crittografia statica per proteggere i pacchetti HLSv3 con AES-128
+* Utilizzare la crittografia statica per proteggere i pacchetti HLSv3 con PlayReady
 
 ## <a name="validating-adaptive-bitrate-mp4s-encoded-with-external-encoders"></a>Convalida della velocità in bit adattiva di MP4 codificata con codificatori esterni
-Se si desidera toouse un set di file MP4 a velocità in bit adattiva (più velocità in bit) che non sono stati codificati con codificatori Media Services, è necessario convalidare i file prima di un'ulteriore elaborazione. Hello Media Services Packager può convalidare un asset che contiene un set di file MP4 e verificare se l'asset hello può essere collocato tooSmooth Streaming o HLS. Se l'attività di convalida di hello ha esito negativo, processo di hello che sta elaborando l'attività hello verrà completata con un errore. codice XML che definisce i set di impostazioni per l'attività di convalida hello è reperibile in hello hello Hello [attività predefinite per Azure Media Packager](http://msdn.microsoft.com/library/azure/hh973635.aspx) argomento.
+Se si desidera utilizzare un set di file MP4 a velocità in bit adattiva (più velocità in bit) che non siano stati codificati con codificatori di Servizi multimediali, è necessario convalidare i file prima di un'ulteriore elaborazione. Media Services Packager può convalidare un asset che contiene un set di file MP4 e verificare se l'asset può essere inserito in Smooth Streaming o HLS. Se l'attività di convalida non riesce, il processo di elaborazione dell'attività verrà completato con un errore. Il codice XML che definisce il set di impostazioni per l'attività di convalida è disponibile nell'argomento [Set di impostazioni per Azure Media Packager](http://msdn.microsoft.com/library/azure/hh973635.aspx) .
 
 > [!NOTE]
-> Utilizzare tooproduce Media Encoder Standard hello o hello Media Services Packager toovalidate il contenuto in problemi di runtime tooavoid ordine. Se il server di Streaming On Demand hello non è in grado di tooparse i file di origine in fase di esecuzione, si riceverà un errore HTTP 1.1 "415 Unsupported Media Type". File di origine causa ripetutamente hello server toofail tooparse influisce sulle prestazioni del server di Streaming On Demand hello e può ridurre hello della larghezza di banda disponibile tooserving altre richieste. Servizi multimediali di Azure offre un accordo di livello di servizio (SLA) sui suoi servizi di Streaming On Demand; Tuttavia, questo contratto di servizio non può essere rispettato server hello usato in modo improprio rispettando hello descritto in precedenza.
+> Per evitare problemi di runtime, utilizzare Media Services Encoder Standard per generare o Media Services Packager per convalidare il contenuto. Se il server di Streaming su richiesta non è in grado di analizzare i file di origine in fase di esecuzione, si riceverà l'errore HTTP 1.1 "415 Unsupported Media Type". Impedisce ripetutamente al server di eseguire l'analisi dei file di origine sulle prestazioni del server Streaming on demand e può ridurre la larghezza di banda disponibile per l'elaborazione di altre richieste. Servizi multimediali di Azure offre un Contratto di servizio (SLA) dei suoi servizi di streaming on demand; tuttavia, questo contratto di servizio non può essere rispettato se il server non viene correttamente utilizzato nel modo descritto in precedenza.
 > 
 > 
 
-In questa sezione viene illustrato come tooprocess hello attività di convalida. Viene inoltre illustrato come toosee hello lo stato e hello messaggio hello del processo di cui viene completato con JobStatus.Error.
+In questa sezione viene illustrato come elaborare le attività di convalida. Viene inoltre illustrato come visualizzare lo stato e il messaggio di errore del processo che viene completato con JobStatus.Error.
 
-toovalidate i file del file MP4 con Media Services Packager, è necessario creare un file manifesto (ISM) e caricarlo insieme i file di origine hello in hello account di servizi multimediali. Di seguito è riportato un esempio del file con estensione ISM hello prodotto da hello Media Encoder Standard. nomi di file Hello sono tra maiuscole e minuscole. Assicurarsi inoltre che il testo hello nel file con estensione ISM hello è codificato con UTF-8.
+Per convalidare i file MP4 con Media Services Packager, è necessario creare un proprio file manifesto (.ism) e caricarlo insieme ai file di origine nell'account di servizi multimediali. Di seguito è riportato un esempio del file con estensione .ism generato da Media Encoder Standard. I nomi dei file fanno la differenza tra maiuscole e minuscole. Inoltre, assicurarsi che il testo nel file .ism sia codificato con UTF-8.
 
     <?xml version="1.0" encoding="utf-8" standalone="yes"?>
     <smil xmlns="http://www.w3.org/2001/SMIL20/Language">
       <head>
-    <!-- Tells hello server that these input files are MP4s – specific tooDynamic Packaging -->
+    <!-- Tells the server that these input files are MP4s – specific to Dynamic Packaging -->
         <meta name="formats" content="mp4" /> 
       </head>
       <body>
@@ -77,9 +77,9 @@ toovalidate i file del file MP4 con Media Services Packager, è necessario crear
       </body>
     </smil>
 
-Dopo aver creato i set di MP4 a velocità in bit adattiva hello possono ora usufruire creazione dinamica dei pacchetti. Creazione dinamica dei pacchetti consente flussi toodeliver in hello specificato protocollo senza creare ulteriori pacchetti. Per altre informazioni, vedere [pacchetti di creazione dinamici](media-services-dynamic-packaging-overview.md).
+Dopo avere creato la serie MP4 con velocità in bit adattiva, è possibile sfruttare i pacchetti di creazione dinamici. I pacchetti di creazione dinamici consentono di distribuire flussi nel protocollo specificato senza creare ulteriori pacchetti. Per altre informazioni, vedere [pacchetti di creazione dinamici](media-services-dynamic-packaging-overview.md).
 
-Hello nel seguente esempio di codice viene utilizzato Azure Media Services .NET SDK Extensions.  Verificare che tooupdate hello codice toopoint toohello cartella dove si trovano i file di input MP4 e file ISM. E inoltre toowhere MediaPackager_ValidateTask.xml trova il file. Questo file XML è definito nell'argomento [Set di impostazioni per Azure Media Packager](http://msdn.microsoft.com/library/azure/hh973635.aspx) .
+L’esempio di codice seguente utilizza le estensioni di Azure Media Services .NET SDK.  Assicurarsi di aggiornare il codice in modo che punti alla cartella dove si trovano i file MP4 di input e un file con estensione .ism. E inoltre a dove si trova il file Mediapackager_validatetask. Questo file XML è definito nell'argomento [Set di impostazioni per Azure Media Packager](http://msdn.microsoft.com/library/azure/hh973635.aspx) .
 
     using Microsoft.WindowsAzure.MediaServices.Client;
     using System;
@@ -99,8 +99,8 @@ Hello nel seguente esempio di codice viene utilizzato Azure Media Services .NET 
             private static readonly string _mediaFiles =
                 Path.GetFullPath(@"../..\Media");
 
-            // hello MultibitrateMP4Files folder should also
-            // contain hello .ism manifest file.
+            // The MultibitrateMP4Files folder should also
+            // contain the .ism manifest file.
             private static readonly string _multibitrateMP4s =
                 Path.Combine(_mediaFiles, @"MultibitrateMP4Files");
 
@@ -118,16 +118,16 @@ Hello nel seguente esempio di codice viene utilizzato Azure Media Services .NET 
 
             static void Main(string[] args)
             {
-                // Create and cache hello Media Services credentials in a static class variable.
+                // Create and cache the Media Services credentials in a static class variable.
                 _cachedCredentials = new MediaServicesCredentials(
                                 _mediaServicesAccountName,
                                 _mediaServicesAccountKey);
-                // Use hello cached credentials toocreate CloudMediaContext.
+                // Use the cached credentials to create CloudMediaContext.
                 _context = new CloudMediaContext(_cachedCredentials);
 
                 // Ingest a set of multibitrate MP4s.
                 //
-                // Use hello SDK extension method toocreate a new asset by 
+                // Use the SDK extension method to create a new asset by 
                 // uploading files from a local directory.
                 IAsset multibitrateMP4sAsset = _context.Assets.CreateFromFolder(
                     _multibitrateMP4s,
@@ -137,18 +137,18 @@ Hello nel seguente esempio di codice viene utilizzato Azure Media Services .NET 
                         Console.WriteLine("Uploading '{0}' - Progress: {1:0.##}%", af.Name, p.Progress);
                     });
 
-                // Use Azure Media Packager toovalidate hello files.
+                // Use Azure Media Packager to validate the files.
                 IAsset validatedMP4s =
                     ValidateMultibitrateMP4s(multibitrateMP4sAsset);
 
-                // Publish hello asset.
+                // Publish the asset.
                 _context.Locators.Create(
                     LocatorType.OnDemandOrigin,
                     validatedMP4s,
                     AccessPermissions.Read,
                     TimeSpan.FromDays(30));
 
-                                     // Get hello streaming URLs.
+                                     // Get the streaming URLs.
                 Console.WriteLine("Smooth Streaming URL:");
                 Console.WriteLine(validatedMP4s.GetSmoothStreamingUri().ToString());
                 Console.WriteLine("MPEG DASH URL:");
@@ -164,33 +164,33 @@ Hello nel seguente esempio di codice viene utilizzato Azure Media Services .NET 
                 SetISMFileAsPrimary(multibitrateMP4sAsset);
 
                 // Create a new job.
-                IJob job = _context.Jobs.Create("MP4 validation and converstion tooSmooth Stream job.");
+                IJob job = _context.Jobs.Create("MP4 validation and converstion to Smooth Stream job.");
 
-                // Read hello task configuration data into a string. 
+                // Read the task configuration data into a string. 
                 string configMp4Validation = File.ReadAllText(Path.Combine(
                         _configurationXMLFiles,
                         "MediaPackager_ValidateTask.xml"));
 
-                // Get hello SDK extension method too get a reference toohello Azure Media Packager.
+                // Get the SDK extension method to  get a reference to the Azure Media Packager.
                 IMediaProcessor processor = _context.MediaProcessors.GetLatestMediaProcessorByName(
                     MediaProcessorNames.WindowsAzureMediaPackager);
 
-                // Create a task with hello conversion details, using hello configuration data. 
+                // Create a task with the conversion details, using the configuration data. 
                 ITask task = job.Tasks.AddNew("Mp4 Validation Task",
                     processor,
                     configMp4Validation,
                     TaskOptions.None);
 
-                // Specify hello input asset toobe validated.
+                // Specify the input asset to be validated.
                 task.InputAssets.Add(multibitrateMP4sAsset);
 
-                // Add an output asset toocontain hello results of hello job. 
+                // Add an output asset to contain the results of the job. 
                 // This output is specified as AssetCreationOptions.None, which 
-                // means hello output asset is in hello clear (unencrypted). 
+                // means the output asset is in the clear (unencrypted). 
                 task.OutputAssets.AddNew("Validated output asset",
                         AssetCreationOptions.None);
 
-                // Submit hello job and wait until it is completed.
+                // Submit the job and wait until it is completed.
                 job.Submit();
                 job = job.StartExecutionProgressTask(
                     j =>
@@ -200,8 +200,8 @@ Hello nel seguente esempio di codice viene utilizzato Azure Media Services .NET 
                     },
                     CancellationToken.None).Result;
 
-                // If hello validation task fails and job completes with JobState.Error,
-                // display hello error message and throw an exception.
+                // If the validation task fails and job completes with JobState.Error,
+                // display the error message and throw an exception.
                 if (job.State == JobState.Error)
                 {
                     Console.WriteLine("  Job ID: " + job.Id);
@@ -225,7 +225,7 @@ Hello nel seguente esempio di codice viene utilizzato Azure Media Services .NET 
                             }
                         }
                     }
-                    throw new Exception("hello specified multi-bitrate MP4 set is not valid.");
+                    throw new Exception("The specified multi-bitrate MP4 set is not valid.");
                 }
 
 
@@ -237,7 +237,7 @@ Hello nel seguente esempio di codice viene utilizzato Azure Media Services .NET 
                 var ismAssetFiles = asset.AssetFiles.ToList().
                     Where(f => f.Name.EndsWith(".ism", StringComparison.OrdinalIgnoreCase)).ToArray();
 
-                // hello following code assigns hello first .ism file as hello primary file in hello asset.
+                // The following code assigns the first .ism file as the primary file in the asset.
                 // An asset should have one .ism file.  
                 ismAssetFiles.First().IsPrimary = true;
                 ismAssetFiles.First().Update();
@@ -245,23 +245,23 @@ Hello nel seguente esempio di codice viene utilizzato Azure Media Services .NET 
         }
     }
 
-## <a name="using-static-encryption-tooprotect-your-smooth-and-mpeg-dash-with-playready"></a>Utilizzando la crittografia statica tooProtect il formato Smooth Streaming e MPEG DASH con PlayReady
-Se si desidera tooprotect i contenuti con PlayReady, è possibile scegliere di utilizzare [crittografia dinamica](media-services-protect-with-drm.md) (Buongiorno opzione consigliata) o la crittografia statica (come descritto in questa sezione).
+## <a name="using-static-encryption-to-protect-your-smooth-and-mpeg-dash-with-playready"></a>Utilizzare la crittografia statica per proteggere i formati Smooth e MPEG DASH con PlayReady
+Se si desidera proteggere i contenuti con PlayReady, è possibile scegliere di utilizzare [la crittografia dinamica](media-services-protect-with-drm.md) (opzione consigliata) o la crittografia statica (come descritto in questa sezione).
 
-esempio Hello in questa sezione consente di codificare un file mezzanine (in questo caso, MP4) in file MP4 a velocità adattiva. Poi crea dei pacchetti MP4s in Smooth Streaming e quindi crittografa Smooth Streaming con PlayReady. Di conseguenza, si è in grado di toostream Smooth Streaming o MPEG DASH.
+L'esempio riportato in questa sezione consente di codificare un file in formato intermedio (in questo caso MP4) MP4 a velocità in bit adattiva. Poi crea dei pacchetti MP4s in Smooth Streaming e quindi crittografa Smooth Streaming con PlayReady. Di conseguenza si è in grado di trasmettere Smooth Streaming o MPEG DASH.
 
-Servizi multimediali offre un servizio per la distribuzione di licenze Microsoft PlayReady. Hello riportato in questo articolo viene illustrato come servizio di recapito delle licenze tooconfigure hello PlayReady di servizi multimediali (vedere hello ConfigureLicenseDeliveryService metodo definito nel codice hello riportato di seguito). Per ulteriori informazioni sul servizio di recapito licenza PlayReady per servizi multimediali, vedere [Uso della crittografia dinamica PlayReady e del server di distribuzione di licenze](media-services-protect-with-drm.md).
+Servizi multimediali offre un servizio per la distribuzione di licenze Microsoft PlayReady. Nell'esempio riportato in questo articolo viene illustrato come configurare il servizio di recapito licenze PlayReady di servizi multimediali (vedere il metodo ConfigureLicenseDeliveryService definito nel codice riportato di seguito). Per ulteriori informazioni sul servizio di recapito licenza PlayReady per servizi multimediali, vedere [Uso della crittografia dinamica PlayReady e del server di distribuzione di licenze](media-services-protect-with-drm.md).
 
 > [!NOTE]
-> toodeliver MPEG DASH crittografato con PlayReady, assicurarsi che toouse le opzioni CENC impostando le proprietà useSencBox e adjustSubSamples hello (descritto in hello [attività preimpostato per Azure Media Encryptor](http://msdn.microsoft.com/library/azure/hh973610.aspx) argomento) tootrue.  
+> Per distribuire il contenuto crittografato MPEG DASH con PlayReady, assicurarsi di usare le opzioni CENC impostando su true le proprietà useSencBox e adjustSubSamples, descritte nell'argomento [Set di impostazioni di attività per Azure Media Encryptor](http://msdn.microsoft.com/library/azure/hh973610.aspx) .  
 > 
 > 
 
-Verificare che hello tooupdate seguente cartella toohello toopoint del codice in cui si trova il file di input MP4.
+Assicurarsi di aggiornare il codice seguente in modo che punti alla cartella in cui si trova il file MP4 di input.
 
-E inoltre toowhere MediaPackager_MP4ToSmooth.xml e MediaEncryptor_PlayReadyProtection.xml si trovano i file. MediaPackager_MP4ToSmooth.xml è definito in [attività preimpostato per Azure Media Packager](http://msdn.microsoft.com/library/azure/hh973635.aspx) e MediaEncryptor_PlayReadyProtection.xml è definito in hello [attività preimpostato per Azure Media Encryptor](http://msdn.microsoft.com/library/azure/hh973610.aspx) argomento. 
+E anche a dove si trovano i file Mediapackager_mp4tosmooth e MediaEncryptor_PlayReadyProtection.xml. MediaPackager_MP4ToSmooth.xml è definito in [Set di impostazioni per Azure Media Packager](http://msdn.microsoft.com/library/azure/hh973635.aspx) e MediaEncryptor_PlayReadyProtection.xml è definito nell'argomento [Set di impostazioni di attività per Azure Media Encryptor](http://msdn.microsoft.com/library/azure/hh973610.aspx). 
 
-esempio Hello definisce il metodo di UpdatePlayReadyConfigurationXMLFile hello che è possibile utilizzare file di MediaEncryptor_PlayReadyProtection.xml toodynamically aggiornamento hello. Se si dispone di hello seme chiave, è possibile utilizzare hello CommonEncryption.GeneratePlayReadyContentKey metodo toogenerate hello chiave simmetrica basata su valori hello keySeedValue e KeyId.
+Nell'esempio viene definito il metodo UpdatePlayReadyConfigurationXMLFile che è possibile utilizzare per aggiornare dinamicamente il file MediaEncryptor_PlayReadyProtection.xml. Se si ha il seme chiave disponibile, è possibile utilizzare il metodo CommonEncryption.GeneratePlayReadyContentKey per generare la chiave simmetrica sulla base dei valori keySeedValue e KeyId.
 
     using System;
     using System.Collections.Generic;
@@ -302,59 +302,59 @@ esempio Hello definisce il metodo di UpdatePlayReadyConfigurationXMLFile hello c
 
             static void Main(string[] args)
             {
-                // Create and cache hello Media Services credentials in a static class variable.
+                // Create and cache the Media Services credentials in a static class variable.
                 _cachedCredentials = new MediaServicesCredentials(
                                 _mediaServicesAccountName,
                                 _mediaServicesAccountKey);
-                // Use hello cached credentials toocreate CloudMediaContext.
+                // Use the cached credentials to create CloudMediaContext.
                 _context = new CloudMediaContext(_cachedCredentials);
 
                 // Encoding and encrypting assets //////////////////////
                 // Load a single MP4 file.
                 IAsset asset = IngestSingleMP4File(_singleMP4File, AssetCreationOptions.None);
 
-                // Encode an MP4 file tooa set of multibitrate MP4s.
-                // Then, package a set of MP4s tooclear Smooth Streaming.
+                // Encode an MP4 file to a set of multibitrate MP4s.
+                // Then, package a set of MP4s to clear Smooth Streaming.
                 IAsset clearSmoothStreamAsset =
                     ConvertMP4ToMultibitrateMP4sToSmoothStreaming(asset);
 
                 // Create a common encryption content key that is used 
-                // a) tooset hello key values in hello MediaEncryptor_PlayReadyProtection.xml file
+                // a) to set the key values in the MediaEncryptor_PlayReadyProtection.xml file
                 //    that is used for encryption.
-                // b) tooconfigure hello license delivery service and 
+                // b) to configure the license delivery service and 
                 //
                 Guid keyId;
                 byte[] contentKey;
 
                 IContentKey key = CreateCommonEncryptionKey(out keyId, out contentKey);
 
-                // hello content key authorization policy must be configured by you 
-                // and met by hello client in order for hello PlayReady license
-                // toobe delivered toohello client. 
-                // In this example hello Media Services PlayReady license delivery service is used.
+                // The content key authorization policy must be configured by you 
+                // and met by the client in order for the PlayReady license
+                // to be delivered to the client. 
+                // In this example the Media Services PlayReady license delivery service is used.
                 ConfigureLicenseDeliveryService(key);
 
-                // Get hello Media Services PlayReady license delivery URL.
-                // This URL will be assigned toohello licenseAcquisitionUrl property 
-                // of hello MediaEncryptor_PlayReadyProtection.xml file.
+                // Get the Media Services PlayReady license delivery URL.
+                // This URL will be assigned to the licenseAcquisitionUrl property 
+                // of the MediaEncryptor_PlayReadyProtection.xml file.
                 Uri acquisitionUrl = key.GetKeyDeliveryUrl(ContentKeyDeliveryType.PlayReadyLicense);
 
-                // Update hello MediaEncryptor_PlayReadyProtection.xml file with hello key and URL info.
+                // Update the MediaEncryptor_PlayReadyProtection.xml file with the key and URL info.
                 UpdatePlayReadyConfigurationXMLFile(keyId, contentKey, acquisitionUrl);
 
 
-                // Encrypt your clear Smooth Streaming tooSmooth Streaming with PlayReady.
+                // Encrypt your clear Smooth Streaming to Smooth Streaming with PlayReady.
                 IAsset outputAsset = CreateSmoothStreamEncryptedWithPlayReady(clearSmoothStreamAsset);
 
 
-                // You can use hello http://smf.cloudapp.net/healthmonitor player 
-                // tootest hello smoothStreamURL URL.
+                // You can use the http://smf.cloudapp.net/healthmonitor player 
+                // to test the smoothStreamURL URL.
                 string smoothStreamURL = outputAsset.GetSmoothStreamingUri().ToString();
                 Console.WriteLine("Smooth Streaming URL:");
                 Console.WriteLine(smoothStreamURL);
 
-                // You can use hello http://dashif.org/reference/players/javascript/ player 
-                // tootest hello dashURL URL.
+                // You can use the http://dashif.org/reference/players/javascript/ player 
+                // to test the dashURL URL.
                 string dashURL = outputAsset.GetMpegDashUri().ToString();
                 Console.WriteLine("MPEG DASH URL:");
                 Console.WriteLine(dashURL);
@@ -362,21 +362,21 @@ esempio Hello definisce il metodo di UpdatePlayReadyConfigurationXMLFile hello c
 
             /// <summary>
             /// Creates a job with 2 tasks: 
-            /// 1 task - encodes a single MP4 toomultibitrate MP4s,
-            /// 2 task - packages MP4s tooSmooth Streaming.
+            /// 1 task - encodes a single MP4 to multibitrate MP4s,
+            /// 2 task - packages MP4s to Smooth Streaming.
             /// </summary>
-            /// <returns>hello output asset.</returns>
+            /// <returns>The output asset.</returns>
             public static IAsset ConvertMP4ToMultibitrateMP4sToSmoothStreaming(IAsset asset)
             {
                 // Create a new job.
-                IJob job = _context.Jobs.Create("Convert MP4 tooSmooth Streaming.");
+                IJob job = _context.Jobs.Create("Convert MP4 to Smooth Streaming.");
 
                 // Add task 1 - Encode single MP4 into multibitrate MP4s.
                 IAsset MP4sAsset = EncodeMP4IntoMultibitrateMP4sTask(job, asset);
-                // Add task 2 - Package a multibitrate MP4 set tooClear Smooth Stream.
+                // Add task 2 - Package a multibitrate MP4 set to Clear Smooth Stream.
                 IAsset packagedAsset = PackageMP4ToSmoothStreamingTask(job, MP4sAsset);
 
-                // Submit hello job and wait until it is completed.
+                // Submit the job and wait until it is completed.
                 job.Submit();
                 job = job.StartExecutionProgressTask(
                     j =>
@@ -386,7 +386,7 @@ esempio Hello definisce il metodo di UpdatePlayReadyConfigurationXMLFile hello c
                     },
                     CancellationToken.None).Result;
 
-                // Get hello output asset that contains hello Smooth Streaming asset.
+                // Get the output asset that contains the Smooth Streaming asset.
                 return job.OutputMediaAssets[1];
             }
 
@@ -395,17 +395,17 @@ esempio Hello definisce il metodo di UpdatePlayReadyConfigurationXMLFile hello c
             /// Then creates a Smooth Streaming Url.
             /// </summary>
             /// <param name="clearSmoothAsset">Asset that contains clear Smooth Streaming.</param>
-            /// <returns>hello output asset.</returns>
+            /// <returns>The output asset.</returns>
             public static IAsset CreateSmoothStreamEncryptedWithPlayReady(IAsset clearSmoothStreamAsset)
             {
                 // Create a job.
-                IJob job = _context.Jobs.Create("Encrypt tooPlayReady Smooth Streaming.");
+                IJob job = _context.Jobs.Create("Encrypt to PlayReady Smooth Streaming.");
 
                 // Add task 1 - Encrypt Smooth Streaming with PlayReady 
                 IAsset encryptedSmoothAsset =
                     EncryptSmoothStreamWithPlayReadyTask(job, clearSmoothStreamAsset);
 
-                // Submit hello job and wait until it is completed.
+                // Submit the job and wait until it is completed.
                 job.Submit();
                 job = job.StartExecutionProgressTask(
                     j =>
@@ -415,7 +415,7 @@ esempio Hello definisce il metodo di UpdatePlayReadyConfigurationXMLFile hello c
                     },
                     CancellationToken.None).Result;
 
-                // hello OutputMediaAssets[0] contains hello desired asset.
+                // The OutputMediaAssets[0] contains the desired asset.
                 _context.Locators.Create(
                     LocatorType.OnDemandOrigin,
                     job.OutputMediaAssets[0],
@@ -427,7 +427,7 @@ esempio Hello definisce il metodo di UpdatePlayReadyConfigurationXMLFile hello c
 
             /// <summary>
             /// Create a common encryption content key that is used 
-            /// tooset hello key values in hello MediaEncryptor_PlayReadyProtection.xml file
+            /// to set the key values in the MediaEncryptor_PlayReadyProtection.xml file
             /// that is used for encryption.
             /// </summary>
             /// <param name="keyId"></param>
@@ -457,7 +457,7 @@ esempio Hello definisce il metodo di UpdatePlayReadyConfigurationXMLFile hello c
 
                 XNamespace xmlns = "http://schemas.microsoft.com/iis/media/v4/TM/TaskDefinition#";
 
-                // Prepare hello encryption task template
+                // Prepare the encryption task template
                 XDocument doc = XDocument.Load(xmlFileName);
 
                 var licenseAcquisitionUrlEl = doc
@@ -473,7 +473,7 @@ esempio Hello definisce il metodo di UpdatePlayReadyConfigurationXMLFile hello c
                         .Where(p => p.Attribute("name").Value == "keyId")
                         .FirstOrDefault();
 
-                // Update hello "value" property.
+                // Update the "value" property.
                 if (licenseAcquisitionUrlEl != null)
                     licenseAcquisitionUrlEl.Attribute("value").SetValue(licenseAcquisitionUrl.ToString());
 
@@ -489,23 +489,23 @@ esempio Hello definisce il metodo di UpdatePlayReadyConfigurationXMLFile hello c
             /// <summary>
             /// Uploads a single file.
             /// </summary>
-            /// <param name="fileDir">hello location of hello files.</param>
+            /// <param name="fileDir">The location of the files.</param>
             /// <param name="assetCreationOptions">
-            ///  You can specify hello following encryption options for hello AssetCreationOptions.
+            ///  You can specify the following encryption options for the AssetCreationOptions.
             ///      None:  no encryption.  
             ///      StorageEncrypted: storage encryption. Encrypts a clear input file 
-            ///        before it is uploaded tooAzure storage. 
+            ///        before it is uploaded to Azure storage. 
             ///      CommonEncryptionProtected: for Common Encryption Protected (CENC) files. 
             ///        For example, a set of files that are already PlayReady encrypted. 
             ///      EnvelopeEncryptionProtected: for HLS with AES encryption files.
-            ///        NOTE: hello files must have been encoded and encrypted by Transform Manager. 
+            ///        NOTE: The files must have been encoded and encrypted by Transform Manager. 
             ///     </param>
             /// <returns>Returns an asset that contains a single file.</returns>
             /// </summary>
             /// <returns></returns>
             private static IAsset IngestSingleMP4File(string fileDir, AssetCreationOptions assetCreationOptions)
             {
-                // Use hello SDK extension method toocreate a new asset by 
+                // Use the SDK extension method to create a new asset by 
                 // uploading a mezzanine file from a local path.
                 IAsset asset = _context.Assets.CreateFromFile(
                     fileDir,
@@ -519,29 +519,29 @@ esempio Hello definisce il metodo di UpdatePlayReadyConfigurationXMLFile hello c
             }
 
             /// <summary>
-            /// Creates a task tooencode tooAdaptive Bitrate. 
-            /// Adds hello new task tooa job.
+            /// Creates a task to encode to Adaptive Bitrate. 
+            /// Adds the new task to a job.
             /// </summary>
-            /// <param name="job">hello job toowhich tooadd hello new task.</param>
-            /// <param name="asset">hello input asset.</param>
-            /// <returns>hello output asset.</returns>
+            /// <param name="job">The job to which to add the new task.</param>
+            /// <param name="asset">The input asset.</param>
+            /// <returns>The output asset.</returns>
             private static IAsset EncodeMP4IntoMultibitrateMP4sTask(IJob job, IAsset asset)
             {
-                // Get hello SDK extension method too get a reference toohello Media Encoder Standard.
+                // Get the SDK extension method to  get a reference to the Media Encoder Standard.
                 IMediaProcessor encoder = _context.MediaProcessors.GetLatestMediaProcessorByName(
                     MediaProcessorNames.MediaEncoderStandard);
 
-                ITask adpativeBitrateTask = job.Tasks.AddNew("MP4 tooAdaptive Bitrate Task",
+                ITask adpativeBitrateTask = job.Tasks.AddNew("MP4 to Adaptive Bitrate Task",
                    encoder,
                    "Adaptive Streaming",
                    TaskOptions.None);
 
-                // Specify hello input Asset
+                // Specify the input Asset
                 adpativeBitrateTask.InputAssets.Add(asset);
 
-                // Add an output asset toocontain hello results of hello job. 
+                // Add an output asset to contain the results of the job. 
                 // This output is specified as AssetCreationOptions.None, which 
-                // means hello output asset is in hello clear (unencrypted).
+                // means the output asset is in the clear (unencrypted).
                 IAsset abrAsset = adpativeBitrateTask.OutputAssets.AddNew("Multibitrate MP4s",
                                         AssetCreationOptions.None);
 
@@ -549,15 +549,15 @@ esempio Hello definisce il metodo di UpdatePlayReadyConfigurationXMLFile hello c
             }
 
             /// <summary>
-            /// Creates a task tooconvert hello MP4 file(s) tooa Smooth Streaming asset.
-            /// Adds hello new task tooa job.
+            /// Creates a task to convert the MP4 file(s) to a Smooth Streaming asset.
+            /// Adds the new task to a job.
             /// </summary>
-            /// <param name="job">hello job toowhich tooadd hello new task.</param>
-            /// <param name="asset">hello input asset.</param>
-            /// <returns>hello output asset.</returns>
+            /// <param name="job">The job to which to add the new task.</param>
+            /// <param name="asset">The input asset.</param>
+            /// <returns>The output asset.</returns>
             private static IAsset PackageMP4ToSmoothStreamingTask(IJob job, IAsset asset)
             {
-                // Get hello SDK extension method too get a reference toohello Azure Media Packager.
+                // Get the SDK extension method to  get a reference to the Azure Media Packager.
                 IMediaProcessor packager = _context.MediaProcessors.GetLatestMediaProcessorByName(
                     MediaProcessorNames.WindowsAzureMediaPackager);
 
@@ -566,18 +566,18 @@ esempio Hello definisce il metodo di UpdatePlayReadyConfigurationXMLFile hello c
                             _configurationXMLFiles,
                             "MediaPackager_MP4toSmooth.xml"));
 
-                // Create a new Task tooconvert adaptive bitrate tooSmooth Streaming.
-                ITask smoothStreamingTask = job.Tasks.AddNew("MP4 tooSmooth Task",
+                // Create a new Task to convert adaptive bitrate to Smooth Streaming.
+                ITask smoothStreamingTask = job.Tasks.AddNew("MP4 to Smooth Task",
                    packager,
                    smoothConfig,
                    TaskOptions.None);
 
-                // Specify hello input Asset, which is hello output Asset from hello first task
+                // Specify the input Asset, which is the output Asset from the first task
                 smoothStreamingTask.InputAssets.Add(asset);
 
-                // Add an output asset toocontain hello results of hello job. 
+                // Add an output asset to contain the results of the job. 
                 // This output is specified as AssetCreationOptions.None, which 
-                // means hello output asset is in hello clear (unencrypted).
+                // means the output asset is in the clear (unencrypted).
                 IAsset smoothOutputAsset =
                     smoothStreamingTask.OutputAssets.AddNew("Clear Smooth Stream",
                         AssetCreationOptions.None);
@@ -587,23 +587,23 @@ esempio Hello definisce il metodo di UpdatePlayReadyConfigurationXMLFile hello c
 
 
             /// <summary>
-            /// Creates a task tooencrypt Smooth Streaming with PlayReady.
-            /// Note: toodeliver DASH, make sure tooset hello useSencBox and adjustSubSamples 
-            /// configuration properties tootrue. 
+            /// Creates a task to encrypt Smooth Streaming with PlayReady.
+            /// Note: To deliver DASH, make sure to set the useSencBox and adjustSubSamples 
+            /// configuration properties to true. 
             /// In this example, MediaEncryptor_PlayReadyProtection.xml contains configuration.
             /// </summary>
-            /// <param name="job">hello job toowhich tooadd hello new task.</param>
-            /// <param name="asset">hello input asset.</param>
-            /// <returns>hello output asset.</returns>
+            /// <param name="job">The job to which to add the new task.</param>
+            /// <param name="asset">The input asset.</param>
+            /// <returns>The output asset.</returns>
             private static IAsset EncryptSmoothStreamWithPlayReadyTask(IJob job, IAsset asset)
             {
-                // Get hello SDK extension method too get a reference toohello Azure Media Encryptor.
+                // Get the SDK extension method to  get a reference to the Azure Media Encryptor.
                 IMediaProcessor playreadyProcessor = _context.MediaProcessors.GetLatestMediaProcessorByName(
                     MediaProcessorNames.WindowsAzureMediaEncryptor);
 
-                // Read hello configuration XML.
+                // Read the configuration XML.
                 //
-                // Note that hello configuration defined in MediaEncryptor_PlayReadyProtection.xml
+                // Note that the configuration defined in MediaEncryptor_PlayReadyProtection.xml
                 // is using keySeedValue. It is recommended that you do this only for testing 
                 // and not in production. For more information, see 
                 // http://msdn.microsoft.com/library/windowsazure/dn189154.aspx.
@@ -618,7 +618,7 @@ esempio Hello definisce il metodo di UpdatePlayReadyConfigurationXMLFile hello c
 
                 playreadyTask.InputAssets.Add(asset);
 
-                // Add an output asset toocontain hello results of hello job. 
+                // Add an output asset to contain the results of the job. 
                 // This output is specified as AssetCreationOptions.CommonEncryptionProtected.
                 IAsset playreadyAsset = playreadyTask.OutputAssets.AddNew(
                                                 "PlayReady Smooth Streaming",
@@ -628,9 +628,9 @@ esempio Hello definisce il metodo di UpdatePlayReadyConfigurationXMLFile hello c
             }
 
             /// <summary>
-            /// Configures authorization policy for hello content key. 
+            /// Configures authorization policy for the content key. 
             /// </summary>
-            /// <param name="contentKey">hello content key.</param>
+            /// <param name="contentKey">The content key.</param>
             static public void ConfigureLicenseDeliveryService(IContentKey contentKey)
             {
                 // Create ContentKeyAuthorizationPolicy with Open restrictions 
@@ -662,15 +662,15 @@ esempio Hello definisce il metodo di UpdatePlayReadyConfigurationXMLFile hello c
 
                 contentKeyAuthorizationPolicy.Options.Add(policyOption);
 
-                // Associate hello content key authorization policy with hello content key.
+                // Associate the content key authorization policy with the content key.
                 contentKey.AuthorizationPolicyId = contentKeyAuthorizationPolicy.Id;
                 contentKey = contentKey.UpdateAsync().Result;
             }
 
             static private string ConfigurePlayReadyLicenseTemplate()
             {
-                // hello following code configures PlayReady License Template using .NET classes
-                // and returns hello XML string.
+                // The following code configures PlayReady License Template using .NET classes
+                // and returns the XML string.
 
                 PlayReadyLicenseResponseTemplate responseTemplate = new PlayReadyLicenseResponseTemplate();
                 PlayReadyLicenseTemplate licenseTemplate = new PlayReadyLicenseTemplate();
@@ -695,17 +695,17 @@ esempio Hello definisce il metodo di UpdatePlayReadyConfigurationXMLFile hello c
         }
     }
 
-## <a name="using-static-encryption-tooprotect-hlsv3-with-aes-128"></a>Utilizzo di crittografia statica tooProtect HLSv3 con AES-128
-Se si desidera tooencrypt il contenuto HLS con AES-128, è possibile scegliere di usare la crittografia dinamica (opzione consigliata Buongiorno) o la crittografia statica (come illustrato in questa sezione). Se si decide di toouse la crittografia dinamica, vedere [utilizzando la crittografia dinamica AES-128 e servizio di recapito chiave](media-services-protect-with-aes128.md).
+## <a name="using-static-encryption-to-protect-hlsv3-with-aes-128"></a>Utilizzare la crittografia statica per proteggere i pacchetti HLSv3 con AES-128
+Se si desidera crittografare il contenuto HLS con AES-128, è possibile scegliere di utilizzare la crittografia dinamica (opzione consigliata) o crittografia statica (come illustrato in questa sezione). Se si decide di utilizzare la crittografia dinamica, vedere [utilizzare la crittografia AES-128 dinamica e il servizio di recapito chiave](media-services-protect-with-aes128.md).
 
 > [!NOTE]
-> In ordine tooconvert il contenuto in un pacchetto HLS, è necessario innanzitutto convertirlo/codificarlo il contenuto in formato Smooth Streaming.
-> Per hello HLS crittografato con AES tooget verificare anche che tooset hello seguenti proprietà nel file MediaPackager_SmoothToHLS.xml: hello set crittografare tootrue proprietà, impostare il valore chiave hello e hello keyuri valore toopoint tooyour authentication\ server di autorizzazione.
-> Servizi multimediali verrà crea un file di chiave e lo inserisce nel contenitore di asset hello. È consigliabile copiare hello /asset-containerguid/*.key file tooyour server (o creare un file chiave) e quindi eliminare file *.key hello dal contenitore di asset hello.
+> Per convertire il contenuto in formato HLS, è necessario prima convertire/codificare il contenuto in formato Smooth Streaming.
+> Inoltre, per crittografare HLS con AES assicurarsi di impostare le proprietà seguenti nel file MediaPackager_SmoothToHLS.xml: impostare la proprietà encrypt su true, impostare il valore della chiave e il valore keyuri in modo che punti al server di autenticazione\autorizzazione.
+> Servizi multimediali creerà un file di chiave e lo posizionerà nel contenitore di asset. Si deve copiare il file /asset-containerguid/*.key al server (o creare un file chiave) e quindi eliminare il file *.key dal contenitore di asset.
 > 
 > 
 
-esempio Hello in questa sezione consente di codificare un file mezzanine (in questo caso, MP4) in più file MP4 file e quindi MP4s un pacchetto in formato Smooth Streaming. Viene poi inserito Smooth Streaming in HTTP Live Streaming (HLS) crittografato con crittografia Advanced Encryption Standard (AES) 128-bit. Verificare che hello tooupdate seguente cartella toohello toopoint del codice in cui si trova il file di input MP4. E inoltre toowhere MediaPackager_MP4ToSmooth.xml e MediaPackager_SmoothToHLS.xml configurazione si trovano i file. È possibile trovare la definizione di hello per questi file in hello [attività preimpostato per Azure Media Packager](http://msdn.microsoft.com/library/azure/hh973635.aspx) argomento.
+L'esempio riportato in questa sezione codifica un file in formato intermedio (in questo caso MP4) in file MP4 a velocità multipla e poi i pacchetti MP4s in Smooth Streaming. Viene poi inserito Smooth Streaming in HTTP Live Streaming (HLS) crittografato con crittografia Advanced Encryption Standard (AES) 128-bit. Assicurarsi di aggiornare il codice seguente in modo che punti alla cartella in cui si trova il file MP4 di input. E inoltre a dove si trovano i file di configurazione Mediapackager_mp4tosmooth e MediaPackager_SmoothToHLS.xml. È possibile trovare la definizione di questi file nell'argomento [Set di impostazioni per Azure Media Packager](http://msdn.microsoft.com/library/azure/hh973635.aspx) .
 
     using System;
     using System.Collections.Generic;
@@ -722,9 +722,9 @@ esempio Hello in questa sezione consente di codificare un file mezzanine (in que
     {
         class Program
         {
-            // Paths toosupport files (within hello above base path). You can use 
-            // hello provided sample media files from hello "SupportFiles" folder, or 
-            // provide paths tooyour own media files below toorun these samples.
+            // Paths to support files (within the above base path). You can use 
+            // the provided sample media files from the "SupportFiles" folder, or 
+            // provide paths to your own media files below to run these samples.
 
             private static readonly string _mediaFiles =
                 Path.GetFullPath(@"../..\Media");
@@ -746,11 +746,11 @@ esempio Hello in questa sezione consente di codificare un file mezzanine (in que
 
             static void Main(string[] args)
             {
-                // Create and cache hello Media Services credentials in a static class variable.
+                // Create and cache the Media Services credentials in a static class variable.
                 _cachedCredentials = new MediaServicesCredentials(
                                 _mediaServicesAccountName, 
                                 _mediaServicesAccountKey);
-                // Use hello cached credentials toocreate CloudMediaContext.
+                // Use the cached credentials to create CloudMediaContext.
                 _context = new CloudMediaContext(_cachedCredentials);
 
                 // Encoding and encrypting assets //////////////////////
@@ -758,14 +758,14 @@ esempio Hello in questa sezione consente di codificare un file mezzanine (in que
                 // Load an MP4 file.
                 IAsset asset = IngestSingleMP4File(_singleMP4File, AssetCreationOptions.None);
 
-                // Encode an MP4 file tooa set of multibitrate MP4s.
-                // Then, package a set of MP4s tooclear Smooth Streaming.
+                // Encode an MP4 file to a set of multibitrate MP4s.
+                // Then, package a set of MP4s to clear Smooth Streaming.
                 IAsset clearSmoothStreamAsset = ConvertMP4ToMultibitrateMP4sToSmoothStreaming(asset);
 
                 // Create HLS encrypted with AES.
                 IAsset HLSEncryptedWithAESAsset = CreateHLSEncryptedWithAES(clearSmoothStreamAsset);
 
-                // You can use hello following player tootest hello HLS with AES stream.
+                // You can use the following player to test the HLS with AES stream.
                 // http://apps.microsoft.com/windows/app/3ivx-hls-player/f79ce7d0-2993-4658-bc4e-83dc182a0614 
                 string hlsWithAESURL = HLSEncryptedWithAESAsset.GetHlsUri().ToString();
                 Console.WriteLine("HLS with AES URL:");
@@ -775,21 +775,21 @@ esempio Hello in questa sezione consente di codificare un file mezzanine (in que
 
             /// <summary>
             /// Creates a job with 2 tasks: 
-            /// 1 task - encodes a single MP4 toomultibitrate MP4s,
-            /// 2 task - packages MP4s tooSmooth Streaming.
+            /// 1 task - encodes a single MP4 to multibitrate MP4s,
+            /// 2 task - packages MP4s to Smooth Streaming.
             /// </summary>
-            /// <returns>hello output asset.</returns>
+            /// <returns>The output asset.</returns>
             public static IAsset ConvertMP4ToMultibitrateMP4sToSmoothStreaming(IAsset asset)
             {
                 // Create a new job.
-                IJob job = _context.Jobs.Create("Convert MP4 tooSmooth Streaming.");
+                IJob job = _context.Jobs.Create("Convert MP4 to Smooth Streaming.");
 
                 // Add task 1 - Encode single MP4 into multibitrate MP4s.
                 IAsset MP4sAsset = EncodeSingleMP4IntoMultibitrateMP4sTask(job, asset);
-                // Add task 2 - Package a multibitrate MP4 set tooClear Smooth Streaming.
+                // Add task 2 - Package a multibitrate MP4 set to Clear Smooth Streaming.
                 IAsset packagedAsset = PackageMP4ToSmoothStreamingTask(job, MP4sAsset);
 
-                // Submit hello job and wait until it is completed.
+                // Submit the job and wait until it is completed.
                 job.Submit();
                 job = job.StartExecutionProgressTask(
                     j =>
@@ -799,7 +799,7 @@ esempio Hello in questa sezione consente di codificare un file mezzanine (in que
                     },
                     CancellationToken.None).Result;
 
-                // Get hello output asset that contains Smooth Streaming.
+                // Get the output asset that contains Smooth Streaming.
                 return job.OutputMediaAssets[1];
             }
 
@@ -807,15 +807,15 @@ esempio Hello in questa sezione consente di codificare un file mezzanine (in que
             /// Encrypts an HLS with AES-128.
             /// </summary>
             /// <param name="clearSmoothAsset">Asset that contains clear Smooth Streaming.</param>
-            /// <returns>hello output asset.</returns>
+            /// <returns>The output asset.</returns>
             public static IAsset CreateHLSEncryptedWithAES(IAsset clearSmoothStreamAsset)
             {
-                IJob job = _context.Jobs.Create("Encrypt tooHLS with AES.");
+                IJob job = _context.Jobs.Create("Encrypt to HLS with AES.");
 
-                // Add task 1 - Package clear Smooth Streaming tooHLS with AES.
+                // Add task 1 - Package clear Smooth Streaming to HLS with AES.
                 PackageSmoothStreamToHLS(job, clearSmoothStreamAsset);
 
-                // Submit hello job and wait until it is completed.
+                // Submit the job and wait until it is completed.
                 job.Submit();
                 job = job.StartExecutionProgressTask(
                     j =>
@@ -825,7 +825,7 @@ esempio Hello in questa sezione consente di codificare un file mezzanine (in que
                     },
                     CancellationToken.None).Result;
 
-                // hello OutputMediaAssets[0] contains hello desired asset.
+                // The OutputMediaAssets[0] contains the desired asset.
                 _context.Locators.Create(
                     LocatorType.OnDemandOrigin,
                     job.OutputMediaAssets[0],
@@ -838,23 +838,23 @@ esempio Hello in questa sezione consente di codificare un file mezzanine (in que
             /// <summary>
             /// Uploads a single file.
             /// </summary>
-            /// <param name="fileDir">hello location of hello files.</param>
+            /// <param name="fileDir">The location of the files.</param>
             /// <param name="assetCreationOptions">
-            ///  You can specify hello following encryption options for hello AssetCreationOptions.
+            ///  You can specify the following encryption options for the AssetCreationOptions.
             ///      None:  no encryption.  
             ///      StorageEncrypted: storage encryption. Encrypts a clear input file 
-            ///        before it is uploaded tooAzure storage. 
+            ///        before it is uploaded to Azure storage. 
             ///      CommonEncryptionProtected: for Common Encryption Protected (CENC) files. 
             ///        For example, a set of files that are already PlayReady encrypted. 
             ///      EnvelopeEncryptionProtected: for HLS with AES encryption files.
-            ///        NOTE: hello files must have been encoded and encrypted by Transform Manager. 
+            ///        NOTE: The files must have been encoded and encrypted by Transform Manager. 
             ///     </param>
             /// <returns>Returns an asset that contains a single file.</returns>
             /// </summary>
             /// <returns></returns>
             private static IAsset IngestSingleMP4File(string fileDir, AssetCreationOptions assetCreationOptions)
             {
-                // Use hello SDK extension method toocreate a new asset by 
+                // Use the SDK extension method to create a new asset by 
                 // uploading a mezzanine file from a local path.
                 IAsset asset = _context.Assets.CreateFromFile(
                     fileDir,
@@ -868,29 +868,29 @@ esempio Hello in questa sezione consente di codificare un file mezzanine (in que
             }
 
             /// <summary>
-            /// Creates a task tooencode tooAdaptive Bitrate. 
-            /// Adds hello new task tooa job.
+            /// Creates a task to encode to Adaptive Bitrate. 
+            /// Adds the new task to a job.
             /// </summary>
-            /// <param name="job">hello job toowhich tooadd hello new task.</param>
-            /// <param name="asset">hello input asset.</param>
-            /// <returns>hello output asset.</returns>
+            /// <param name="job">The job to which to add the new task.</param>
+            /// <param name="asset">The input asset.</param>
+            /// <returns>The output asset.</returns>
             private static IAsset EncodeSingleMP4IntoMultibitrateMP4sTask(IJob job, IAsset asset)
             {
-                // Get hello SDK extension method too get a reference toohello Media Encoder Standard.
+                // Get the SDK extension method to  get a reference to the Media Encoder Standard.
                 IMediaProcessor encoder = _context.MediaProcessors.GetLatestMediaProcessorByName(
                     MediaProcessorNames.MediaEncoderStandard);
 
-                ITask adpativeBitrateTask = job.Tasks.AddNew("MP4 tooAdaptive Bitrate Task",
+                ITask adpativeBitrateTask = job.Tasks.AddNew("MP4 to Adaptive Bitrate Task",
                    encoder,
                    "Adaptive Streaming",
                    TaskOptions.None);
 
-                // Specify hello input Asset
+                // Specify the input Asset
                 adpativeBitrateTask.InputAssets.Add(asset);
 
-                // Add an output asset toocontain hello results of hello job. 
+                // Add an output asset to contain the results of the job. 
                 // This output is specified as AssetCreationOptions.None, which 
-                // means hello output asset is in hello clear (unencrypted).
+                // means the output asset is in the clear (unencrypted).
                 IAsset abrAsset = adpativeBitrateTask.OutputAssets.AddNew("Multibitrate MP4s", 
                                         AssetCreationOptions.None);
 
@@ -898,15 +898,15 @@ esempio Hello in questa sezione consente di codificare un file mezzanine (in que
             }
 
             /// <summary>
-            /// Creates a task tooconvert hello MP4 file(s) tooa Smooth Streaming asset.
-            /// Adds hello new task tooa job.
+            /// Creates a task to convert the MP4 file(s) to a Smooth Streaming asset.
+            /// Adds the new task to a job.
             /// </summary>
-            /// <param name="job">hello job toowhich tooadd hello new task.</param>
-            /// <param name="asset">hello input asset.</param>
-            /// <returns>hello output asset.</returns>
+            /// <param name="job">The job to which to add the new task.</param>
+            /// <param name="asset">The input asset.</param>
+            /// <returns>The output asset.</returns>
             private static IAsset PackageMP4ToSmoothStreamingTask(IJob job, IAsset asset)
             {
-                // Get hello SDK extension method too get a reference toohello Azure Media Packager.
+                // Get the SDK extension method to  get a reference to the Azure Media Packager.
                 IMediaProcessor packager = _context.MediaProcessors.GetLatestMediaProcessorByName(
                     MediaProcessorNames.WindowsAzureMediaPackager);
 
@@ -915,18 +915,18 @@ esempio Hello in questa sezione consente di codificare un file mezzanine (in que
                             _configurationXMLFiles, 
                             "MediaPackager_MP4toSmooth.xml"));
 
-                // Create a new Task tooconvert adaptive bitrate tooSmooth Streaming.
-                ITask smoothStreamingTask = job.Tasks.AddNew("MP4 tooSmooth Task",
+                // Create a new Task to convert adaptive bitrate to Smooth Streaming.
+                ITask smoothStreamingTask = job.Tasks.AddNew("MP4 to Smooth Task",
                    packager,
                    smoothConfig,
                    TaskOptions.None);
 
-                // Specify hello input Asset, which is hello output Asset from hello first task
+                // Specify the input Asset, which is the output Asset from the first task
                 smoothStreamingTask.InputAssets.Add(asset);
 
-                // Add an output asset toocontain hello results of hello job. 
+                // Add an output asset to contain the results of the job. 
                 // This output is specified as AssetCreationOptions.None, which 
-                // means hello output asset is in hello clear (unencrypted).
+                // means the output asset is in the clear (unencrypted).
                 IAsset smoothOutputAsset = 
                     smoothStreamingTask.OutputAssets.AddNew("Clear Smooth Streaming", 
                         AssetCreationOptions.None);
@@ -935,38 +935,38 @@ esempio Hello in questa sezione consente di codificare un file mezzanine (in que
             }
 
             /// <summary>
-            /// Converts Smooth Streaming tooHLS.
+            /// Converts Smooth Streaming to HLS.
             /// </summary>
-            /// <param name="job">hello job toowhich tooadd hello new task.</param>
-            /// <param name="asset">hello Smooth Streaming asset.</param>
-            /// <returns>hello asset that was packaged tooHLS.</returns>
+            /// <param name="job">The job to which to add the new task.</param>
+            /// <param name="asset">The Smooth Streaming asset.</param>
+            /// <returns>The asset that was packaged to HLS.</returns>
             private static IAsset PackageSmoothStreamToHLS(IJob job, IAsset smoothStreamAsset)
             {
-                // Get hello SDK extension method too get a reference toohello Azure Media Packager.
+                // Get the SDK extension method to  get a reference to the Azure Media Packager.
                 IMediaProcessor processor = _context.MediaProcessors.GetLatestMediaProcessorByName(
                     MediaProcessorNames.WindowsAzureMediaPackager);
 
-                // Read hello configuration data into a string. 
-                // For hello HLS tooget encrypted with AES make sure tooset the
-                // encrypt configuration property tootrue.
+                // Read the configuration data into a string. 
+                // For the HLS to get encrypted with AES make sure to set the
+                // encrypt configuration property to true.
                 //
-                // In production, it is recommended toodo hello following:
+                // In production, it is recommended to do the following:
                 //    Set a Key url for your authn/authz server.
-                //    Copy hello /asset-containerguid/*.key file tooyour server (or craft a key file for yourself).
-                //    Delete *.key from hello asset container.
+                //    Copy the /asset-containerguid/*.key file to your server (or craft a key file for yourself).
+                //    Delete *.key from the asset container.
                 //
                 string configuration = File.ReadAllText(Path.Combine(_configurationXMLFiles, @"MediaPackager_SmoothToHLS.xml"));
 
-                // Create a task with hello encoding details, using a configuration file.
-                ITask task = job.Tasks.AddNew("My Smooth Streaming tooHLS Task",
+                // Create a task with the encoding details, using a configuration file.
+                ITask task = job.Tasks.AddNew("My Smooth Streaming to HLS Task",
                    processor,
                    configuration,
                    TaskOptions.ProtectedConfiguration);
 
-                // Specify hello input asset toobe encoded.
+                // Specify the input asset to be encoded.
                 task.InputAssets.Add(smoothStreamAsset);
 
-                // Add an output asset toocontain hello results of hello job. 
+                // Add an output asset to contain the results of the job. 
                 IAsset outputAsset = 
                     task.OutputAssets.AddNew("HLS asset", AssetCreationOptions.None);
 
@@ -976,19 +976,19 @@ esempio Hello in questa sezione consente di codificare un file mezzanine (in que
         }
     }
 
-## <a name="using-static-encryption-tooprotect-hlsv3-with-playready"></a>Utilizzo di crittografia statica tooProtect HLSv3 con PlayReady
-Se si desidera tooprotect i contenuti con PlayReady, è possibile scegliere di utilizzare [crittografia dinamica](media-services-protect-with-drm.md) (Buongiorno opzione consigliata) o la crittografia statica (come descritto in questa sezione).
+## <a name="using-static-encryption-to-protect-hlsv3-with-playready"></a>Utilizzare la crittografia statica per proteggere i pacchetti HLSv3 con PlayReady
+Se si desidera proteggere i contenuti con PlayReady, è possibile scegliere di utilizzare [la crittografia dinamica](media-services-protect-with-drm.md) (opzione consigliata) o la crittografia statica (come descritto in questa sezione).
 
 > [!NOTE]
-> In ordine tooprotect il contenuto mediante PlayReady è necessario innanzitutto convertirlo/codificarlo il contenuto in un formato Smooth Streaming.
+> Per proteggere il contenuto mediante PlayReady è necessario innanzitutto convertire/codificare il contenuto in un formato Smooth Streaming.
 > 
 > 
 
-esempio Hello in questa sezione consente di codificare un file mezzanine (in questo caso, MP4) in file più file MP4. Poi crea dei pacchetti MP4s in Smooth Streaming e  crittografa Smooth Streaming con PlayReady. tooproduce HTTP Live Streaming (HLS) crittografato con PlayReady, asset Smooth Streaming PlayReady hello deve toobe inserite in HLS. Questo argomento viene illustrato come tooperform tutti questi passaggi.
+L'esempio riportato in questa sezione codifica un file in formato intermedio (in questo caso MP4) in file MP4 a velocità multipla. Poi crea dei pacchetti MP4s in Smooth Streaming e  crittografa Smooth Streaming con PlayReady. Per produrre HTTP Live Streaming (HLS) crittografato con PlayReady, si deve inserire in un pacchetto HLS l'asset Smooth Streaming PlayReady. Questo argomento illustra come eseguire questa procedura.
 
-Servizi multimediali offre un servizio per la distribuzione di licenze Microsoft PlayReady. Hello riportato in questo articolo viene illustrato come servizio di recapito delle licenze tooconfigure hello PlayReady di servizi multimediali (vedere hello **ConfigureLicenseDeliveryService** metodo definito nel codice hello riportato di seguito). 
+Servizi multimediali offre un servizio per la distribuzione di licenze Microsoft PlayReady. Nell'esempio riportato in questo articolo viene illustrato come configurare il servizio di recapito licenze PlayReady di servizi multimediali (vedere il metodo **ConfigureLicenseDeliveryService** definito nel codice riportato di seguito). 
 
-Verificare che hello tooupdate seguente cartella toohello toopoint del codice in cui si trova il file di input MP4. E inoltre toowhere MediaPackager_MP4ToSmooth.xml MediaPackager_SmoothToHLS.xml e MediaEncryptor_PlayReadyProtection.xml si trovano i file. MediaPackager_MP4ToSmooth.xml e MediaPackager_SmoothToHLS.xml sono definiti nel [attività preimpostato per Azure Media Packager](http://msdn.microsoft.com/library/azure/hh973635.aspx) e MediaEncryptor_PlayReadyProtection.xml è definito in hello [attività preimpostato per Azure Media Encryptor](http://msdn.microsoft.com/library/azure/hh973610.aspx) argomento.
+Assicurarsi di aggiornare il codice seguente in modo che punti alla cartella in cui si trova il file MP4 di input. E inoltre a dovei si trovano i file Mediapackager_mp4tosmooth, MediaPackager_SmoothToHLS.xml e MediaEncryptor_PlayReadyProtection.xml. MediaPackager_MP4ToSmooth.xml e MediaPackager_SmoothToHLS.xml sono definiti in [Set di impostazioni per Azure Media Packager](http://msdn.microsoft.com/library/azure/hh973635.aspx) e MediaEncryptor_PlayReadyProtection.xml è definito nell'argomento [Set di impostazioni di attività per Azure Media Encryptor](http://msdn.microsoft.com/library/azure/hh973610.aspx).
 
     using System;
     using System.Collections.Generic;
@@ -1007,9 +1007,9 @@ Verificare che hello tooupdate seguente cartella toohello toopoint del codice in
     {
         class Program
         {
-            // Paths toosupport files (within hello above base path). You can use 
-            // hello provided sample media files from hello "SupportFiles" folder, or 
-            // provide paths tooyour own media files below toorun these samples.
+            // Paths to support files (within the above base path). You can use 
+            // the provided sample media files from the "SupportFiles" folder, or 
+            // provide paths to your own media files below to run these samples.
 
             private static readonly string _mediaFiles =
                 Path.GetFullPath(@"../..\Media");
@@ -1032,42 +1032,42 @@ Verificare che hello tooupdate seguente cartella toohello toopoint del codice in
 
             static void Main(string[] args)
             {
-                // Create and cache hello Media Services credentials in a static class variable.
+                // Create and cache the Media Services credentials in a static class variable.
                 _cachedCredentials = new MediaServicesCredentials(
                                 _mediaServicesAccountName,
                                 _mediaServicesAccountKey);
-                // Used hello chached credentials toocreate CloudMediaContext.
+                // Used the chached credentials to create CloudMediaContext.
                 _context = new CloudMediaContext(_cachedCredentials);
 
                 // Load an MP4 file.
                 IAsset asset = IngestSingleMP4File(_singleMP4File, AssetCreationOptions.None);
 
-                // Encode an MP4 file tooa set of multibitrate MP4s.
-                // Then, package a set of MP4s tooclear Smooth Streaming.
+                // Encode an MP4 file to a set of multibitrate MP4s.
+                // Then, package a set of MP4s to clear Smooth Streaming.
                 IAsset clearSmoothStreamAsset = ConvertMP4ToMultibitrateMP4sToSmoothStreaming(asset);
 
                 // Create a common encryption content key that is used 
-                // a) tooset hello key values in hello MediaEncryptor_PlayReadyProtection.xml file
+                // a) to set the key values in the MediaEncryptor_PlayReadyProtection.xml file
                 //    that is used for encryption.
-                // b) tooconfigure hello license delivery service and 
+                // b) to configure the license delivery service and 
                 //
                 Guid keyId;
                 byte[] contentKey;
 
                 IContentKey key = CreateCommonEncryptionKey(out keyId, out contentKey);
 
-                // hello content key authorization policy must be configured by you 
-                // and met by hello client in order for hello PlayReady license
-                // toobe delivered toohello client. 
-                // In this example hello Media Services PlayReady license delivery service is used.
+                // The content key authorization policy must be configured by you 
+                // and met by the client in order for the PlayReady license
+                // to be delivered to the client. 
+                // In this example the Media Services PlayReady license delivery service is used.
                 ConfigureLicenseDeliveryService(key);
 
-                // Get hello Media Services PlayReady license delivery URL.
-                // This URL will be assigned toohello licenseAcquisitionUrl property 
-                // of hello MediaEncryptor_PlayReadyProtection.xml file.
+                // Get the Media Services PlayReady license delivery URL.
+                // This URL will be assigned to the licenseAcquisitionUrl property 
+                // of the MediaEncryptor_PlayReadyProtection.xml file.
                 Uri acquisitionUrl = key.GetKeyDeliveryUrl(ContentKeyDeliveryType.PlayReadyLicense);
 
-                // Update hello MediaEncryptor_PlayReadyProtection.xml file with hello key and URL info.
+                // Update the MediaEncryptor_PlayReadyProtection.xml file with the key and URL info.
                 UpdatePlayReadyConfigurationXMLFile(keyId, contentKey, acquisitionUrl);
 
                 // Create HLS encrypted with PlayReady.
@@ -1080,21 +1080,21 @@ Verificare che hello tooupdate seguente cartella toohello toopoint del codice in
 
             /// <summary>
             /// Creates a job with 2 tasks: 
-            /// 1 task - encodes a single MP4 toomultibitrate MP4s,
-            /// 2 task - packages MP4s tooSmooth Streaming.
+            /// 1 task - encodes a single MP4 to multibitrate MP4s,
+            /// 2 task - packages MP4s to Smooth Streaming.
             /// </summary>
-            /// <returns>hello output asset.</returns>
+            /// <returns>The output asset.</returns>
             public static IAsset ConvertMP4ToMultibitrateMP4sToSmoothStreaming(IAsset asset)
             {
                 // Create a new job.
-                IJob job = _context.Jobs.Create("Convert MP4 tooSmooth Streaming.");
+                IJob job = _context.Jobs.Create("Convert MP4 to Smooth Streaming.");
 
                 // Add task 1 - Encode single MP4 into multibitrate MP4s.
                 IAsset MP4sAsset = EncodeSingleMP4IntoMultibitrateMP4sTask(job, asset);
-                // Add task 2 - Package a multibitrate MP4 set tooClear Smooth Streaming.
+                // Add task 2 - Package a multibitrate MP4 set to Clear Smooth Streaming.
                 IAsset packagedAsset = PackageMP4ToSmoothStreamingTask(job, MP4sAsset);
 
-                // Submit hello job and wait until it is completed.
+                // Submit the job and wait until it is completed.
                 job.Submit();
                 job = job.StartExecutionProgressTask(
                     j =>
@@ -1104,13 +1104,13 @@ Verificare che hello tooupdate seguente cartella toohello toopoint del codice in
                     },
                     CancellationToken.None).Result;
 
-                // Get hello output asset that contains Smooth Streaming.
+                // Get the output asset that contains Smooth Streaming.
                 return job.OutputMediaAssets[1];
             }
 
             /// <summary>
             /// Create a common encryption content key that is used 
-            /// tooset hello key values in hello MediaEncryptor_PlayReadyProtection.xml file
+            /// to set the key values in the MediaEncryptor_PlayReadyProtection.xml file
             /// that is used for encryption.
             /// </summary>
             /// <param name="keyId"></param>
@@ -1140,7 +1140,7 @@ Verificare che hello tooupdate seguente cartella toohello toopoint del codice in
 
                 XNamespace xmlns = "http://schemas.microsoft.com/iis/media/v4/TM/TaskDefinition#";
 
-                // Prepare hello encryption task template
+                // Prepare the encryption task template
                 XDocument doc = XDocument.Load(xmlFileName);
 
                 var licenseAcquisitionUrlEl = doc
@@ -1156,7 +1156,7 @@ Verificare che hello tooupdate seguente cartella toohello toopoint del codice in
                         .Where(p => p.Attribute("name").Value == "keyId")
                         .FirstOrDefault();
 
-                // Update hello "value" property.
+                // Update the "value" property.
                 if (licenseAcquisitionUrlEl != null)
                     licenseAcquisitionUrlEl.Attribute("value").SetValue(licenseAcquisitionUrl.ToString());
 
@@ -1170,23 +1170,23 @@ Verificare che hello tooupdate seguente cartella toohello toopoint del codice in
             }
 
             /// <summary>
-            // Encrypts clear Smooth Streaming tooSmooth Streaming with PlayReady.
-            // Then, packages hello PlayReady Smooth Streaming tooHLS with PlayReady.
+            // Encrypts clear Smooth Streaming to Smooth Streaming with PlayReady.
+            // Then, packages the PlayReady Smooth Streaming to HLS with PlayReady.
             /// </summary>
             /// <param name="clearSmoothAsset">Asset that contains clear Smooth Streaming.</param>
-            /// <returns>hello output asset.</returns>
+            /// <returns>The output asset.</returns>
             public static IAsset CreateHLSEncryptedWithPlayReady(IAsset clearSmoothStreamAsset)
             {
-                IJob job = _context.Jobs.Create("Encrypt tooHLS with PlayReady.");
+                IJob job = _context.Jobs.Create("Encrypt to HLS with PlayReady.");
 
                 // Add task 1 - Encrypt Smooth Streaming with PlayReady 
                 IAsset encryptedSmoothAsset =
                     EncryptSmoothStreamWithPlayReadyTask(job, clearSmoothStreamAsset);
 
-                // Add task 2 - Package tooHLS with PlayReady.
+                // Add task 2 - Package to HLS with PlayReady.
                 PackageSmoothStreamToHLS(job, encryptedSmoothAsset);
 
-                // Submit hello job and wait until it is completed.
+                // Submit the job and wait until it is completed.
                 job.Submit();
                 job = job.StartExecutionProgressTask(
                     j =>
@@ -1196,8 +1196,8 @@ Verificare che hello tooupdate seguente cartella toohello toopoint del codice in
                     },
                     CancellationToken.None).Result;
 
-                // Since we had two tasks, hello OutputMediaAssets[1]
-                // contains hello desired asset.
+                // Since we had two tasks, the OutputMediaAssets[1]
+                // contains the desired asset.
                 _context.Locators.Create(
                     LocatorType.OnDemandOrigin,
                     job.OutputMediaAssets[1],
@@ -1210,23 +1210,23 @@ Verificare che hello tooupdate seguente cartella toohello toopoint del codice in
             /// <summary>
             /// Uploads a single file.
             /// </summary>
-            /// <param name="fileDir">hello location of hello files.</param>
+            /// <param name="fileDir">The location of the files.</param>
             /// <param name="assetCreationOptions">
-            ///  You can specify hello following encryption options for hello AssetCreationOptions.
+            ///  You can specify the following encryption options for the AssetCreationOptions.
             ///      None:  no encryption.  
             ///      StorageEncrypted: storage encryption. Encrypts a clear input file 
-            ///        before it is uploaded tooAzure storage. 
+            ///        before it is uploaded to Azure storage. 
             ///      CommonEncryptionProtected: for Common Encryption Protected (CENC) files. 
             ///        For example, a set of files that are already PlayReady encrypted. 
             ///      EnvelopeEncryptionProtected: for HLS with AES encryption files.
-            ///        NOTE: hello files must have been encoded and encrypted by Transform Manager. 
+            ///        NOTE: The files must have been encoded and encrypted by Transform Manager. 
             ///     </param>
             /// <returns>Returns an asset that contains a single file.</returns>
             /// </summary>
             /// <returns></returns>
             private static IAsset IngestSingleMP4File(string fileDir, AssetCreationOptions assetCreationOptions)
             {
-                // Use hello SDK extension method toocreate a new asset by 
+                // Use the SDK extension method to create a new asset by 
                 // uploading a mezzanine file from a local path.
                 IAsset asset = _context.Assets.CreateFromFile(
                     fileDir,
@@ -1241,29 +1241,29 @@ Verificare che hello tooupdate seguente cartella toohello toopoint del codice in
 
             }
             /// <summary>
-            /// Creates a task tooencode tooAdaptive Bitrate. 
-            /// Adds hello new task tooa job.
+            /// Creates a task to encode to Adaptive Bitrate. 
+            /// Adds the new task to a job.
             /// </summary>
-            /// <param name="job">hello job toowhich tooadd hello new task.</param>
-            /// <param name="asset">hello input asset.</param>
-            /// <returns>hello output asset.</returns>
+            /// <param name="job">The job to which to add the new task.</param>
+            /// <param name="asset">The input asset.</param>
+            /// <returns>The output asset.</returns>
             private static IAsset EncodeSingleMP4IntoMultibitrateMP4sTask(IJob job, IAsset asset)
             {
-                // Get hello SDK extension method too get a reference toohello Media Encoder Standard.
+                // Get the SDK extension method to  get a reference to the Media Encoder Standard.
                 IMediaProcessor encoder = _context.MediaProcessors.GetLatestMediaProcessorByName(
                     MediaProcessorNames.MediaEncoderStandard);
 
-                ITask adpativeBitrateTask = job.Tasks.AddNew("MP4 tooAdaptive Bitrate Task",
+                ITask adpativeBitrateTask = job.Tasks.AddNew("MP4 to Adaptive Bitrate Task",
                    encoder,
                    "Adaptive Streaming",
                    TaskOptions.None);
 
-                // Specify hello input Asset
+                // Specify the input Asset
                 adpativeBitrateTask.InputAssets.Add(asset);
 
-                // Add an output asset toocontain hello results of hello job. 
+                // Add an output asset to contain the results of the job. 
                 // This output is specified as AssetCreationOptions.None, which 
-                // means hello output asset is in hello clear (unencrypted).
+                // means the output asset is in the clear (unencrypted).
                 IAsset abrAsset = adpativeBitrateTask.OutputAssets.AddNew("Multibitrate MP4s",
                                         AssetCreationOptions.None);
 
@@ -1271,15 +1271,15 @@ Verificare che hello tooupdate seguente cartella toohello toopoint del codice in
             }
 
             /// <summary>
-            /// Creates a task tooconvert hello MP4 file(s) tooa Smooth Streaming asset.
-            /// Adds hello new task tooa job.
+            /// Creates a task to convert the MP4 file(s) to a Smooth Streaming asset.
+            /// Adds the new task to a job.
             /// </summary>
-            /// <param name="job">hello job toowhich tooadd hello new task.</param>
-            /// <param name="asset">hello input asset.</param>
-            /// <returns>hello output asset.</returns>
+            /// <param name="job">The job to which to add the new task.</param>
+            /// <param name="asset">The input asset.</param>
+            /// <returns>The output asset.</returns>
             private static IAsset PackageMP4ToSmoothStreamingTask(IJob job, IAsset asset)
             {
-                // Get hello SDK extension method too get a reference toohello Azure Media Packager.
+                // Get the SDK extension method to  get a reference to the Azure Media Packager.
                 IMediaProcessor packager = _context.MediaProcessors.GetLatestMediaProcessorByName(
                     MediaProcessorNames.WindowsAzureMediaPackager);
 
@@ -1288,18 +1288,18 @@ Verificare che hello tooupdate seguente cartella toohello toopoint del codice in
                             _configurationXMLFiles,
                             "MediaPackager_MP4toSmooth.xml"));
 
-                // Create a new Task tooconvert adaptive bitrate tooSmooth Streaming.
-                ITask smoothStreamingTask = job.Tasks.AddNew("MP4 tooSmooth Task",
+                // Create a new Task to convert adaptive bitrate to Smooth Streaming.
+                ITask smoothStreamingTask = job.Tasks.AddNew("MP4 to Smooth Task",
                    packager,
                    smoothConfig,
                    TaskOptions.None);
 
-                // Specify hello input Asset, which is hello output Asset from hello first task
+                // Specify the input Asset, which is the output Asset from the first task
                 smoothStreamingTask.InputAssets.Add(asset);
 
-                // Add an output asset toocontain hello results of hello job. 
+                // Add an output asset to contain the results of the job. 
                 // This output is specified as AssetCreationOptions.None, which 
-                // means hello output asset is in hello clear (unencrypted).
+                // means the output asset is in the clear (unencrypted).
                 IAsset smoothOutputAsset =
                     smoothStreamingTask.OutputAssets.AddNew("Clear Smooth Streaming",
                         AssetCreationOptions.None);
@@ -1309,33 +1309,33 @@ Verificare che hello tooupdate seguente cartella toohello toopoint del codice in
 
 
             /// <summary>
-            /// Converts Smooth Stream tooHLS.
+            /// Converts Smooth Stream to HLS.
             /// </summary>
-            /// <param name="job">hello job toowhich tooadd hello new task.</param>
-            /// <param name="asset">hello Smooth Stream asset.</param>
-            /// <returns>hello asset that was packaged tooHLS.</returns>
+            /// <param name="job">The job to which to add the new task.</param>
+            /// <param name="asset">The Smooth Stream asset.</param>
+            /// <returns>The asset that was packaged to HLS.</returns>
             private static IAsset PackageSmoothStreamToHLS(IJob job, IAsset smoothStreamAsset)
             {
-                // Get hello SDK extension method too get a reference toohello Azure Media Packager.
+                // Get the SDK extension method to  get a reference to the Azure Media Packager.
                 IMediaProcessor processor = _context.MediaProcessors.GetLatestMediaProcessorByName(
                     MediaProcessorNames.WindowsAzureMediaPackager);
 
-                // Read hello configuration data into a string. 
+                // Read the configuration data into a string. 
                 //
                 string configuration = File.ReadAllText(
                             Path.Combine(_configurationXMLFiles,
                                         @"MediaPackager_SmoothToHLS.xml"));
 
-                // Create a task with hello encoding details, using a configuration file.
-                ITask task = job.Tasks.AddNew("My Smooth tooHLS Task",
+                // Create a task with the encoding details, using a configuration file.
+                ITask task = job.Tasks.AddNew("My Smooth to HLS Task",
                    processor,
                    configuration,
                    TaskOptions.ProtectedConfiguration);
 
-                // Specify hello input asset toobe encoded.
+                // Specify the input asset to be encoded.
                 task.InputAssets.Add(smoothStreamAsset);
 
-                // Add an output asset toocontain hello results of hello job. 
+                // Add an output asset to contain the results of the job. 
                 IAsset outputAsset =
                     task.OutputAssets.AddNew("HLS asset", AssetCreationOptions.None);
 
@@ -1344,22 +1344,22 @@ Verificare che hello tooupdate seguente cartella toohello toopoint del codice in
             }
 
             /// <summary>
-            /// Creates a task tooencrypt Smooth Streaming with PlayReady.
-            /// Note: Do deliver DASH, make sure tooset hello useSencBox and adjustSubSamples 
-            /// configuration properties tootrue.
+            /// Creates a task to encrypt Smooth Streaming with PlayReady.
+            /// Note: Do deliver DASH, make sure to set the useSencBox and adjustSubSamples 
+            /// configuration properties to true.
             /// </summary>
-            /// <param name="job">hello job toowhich tooadd hello new task.</param>
-            /// <param name="asset">hello input asset.</param>
-            /// <returns>hello output asset.</returns>
+            /// <param name="job">The job to which to add the new task.</param>
+            /// <param name="asset">The input asset.</param>
+            /// <returns>The output asset.</returns>
             private static IAsset EncryptSmoothStreamWithPlayReadyTask(IJob job, IAsset asset)
             {
-                // Get hello SDK extension method too get a reference toohello Azure Media Encryptor.
+                // Get the SDK extension method to  get a reference to the Azure Media Encryptor.
                 IMediaProcessor playreadyProcessor = _context.MediaProcessors.GetLatestMediaProcessorByName(
                     MediaProcessorNames.WindowsAzureMediaEncryptor);
 
-                // Read hello configuration XML.
+                // Read the configuration XML.
                 //
-                // Note that hello configuration defined in MediaEncryptor_PlayReadyProtection.xml
+                // Note that the configuration defined in MediaEncryptor_PlayReadyProtection.xml
                 // is using keySeedValue. It is recommended that you do this only for testing 
                 // and not in production. For more information, see 
                 // http://msdn.microsoft.com/library/windowsazure/dn189154.aspx.
@@ -1374,7 +1374,7 @@ Verificare che hello tooupdate seguente cartella toohello toopoint del codice in
 
                 playreadyTask.InputAssets.Add(asset);
 
-                // Add an output asset toocontain hello results of hello job. 
+                // Add an output asset to contain the results of the job. 
                 // This output is specified as AssetCreationOptions.CommonEncryptionProtected.
                 IAsset playreadyAsset = playreadyTask.OutputAssets.AddNew(
                                                 "PlayReady Smooth Streaming",
@@ -1386,9 +1386,9 @@ Verificare che hello tooupdate seguente cartella toohello toopoint del codice in
 
 
             /// <summary>
-            /// Configures authorization policy for hello content key. 
+            /// Configures authorization policy for the content key. 
             /// </summary>
-            /// <param name="contentKey">hello content key.</param>
+            /// <param name="contentKey">The content key.</param>
             static public void ConfigureLicenseDeliveryService(IContentKey contentKey)
             {
                 // Create ContentKeyAuthorizationPolicy with Open restrictions 
@@ -1420,15 +1420,15 @@ Verificare che hello tooupdate seguente cartella toohello toopoint del codice in
 
                 contentKeyAuthorizationPolicy.Options.Add(policyOption);
 
-                // Associate hello content key authorization policy with hello content key.
+                // Associate the content key authorization policy with the content key.
                 contentKey.AuthorizationPolicyId = contentKeyAuthorizationPolicy.Id;
                 contentKey = contentKey.UpdateAsync().Result;
             }
 
             static private string ConfigurePlayReadyLicenseTemplate()
             {
-                // hello following code configures PlayReady License Template using .NET classes
-                // and returns hello XML string.
+                // The following code configures PlayReady License Template using .NET classes
+                // and returns the XML string.
 
                 PlayReadyLicenseResponseTemplate responseTemplate = new PlayReadyLicenseResponseTemplate();
                 PlayReadyLicenseTemplate licenseTemplate = new PlayReadyLicenseTemplate();

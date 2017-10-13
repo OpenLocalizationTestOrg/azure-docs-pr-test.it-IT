@@ -1,5 +1,5 @@
 ---
-title: aaaSchema Aggiorna 2016 - 1 giugno Azure logica App | Documenti Microsoft
+title: "Aggiornamenti dello schema del 1° giugno 2016 - App per la logica di Azure | Microsoft Docs"
 description: Creare definizioni JSON per App per la logica di Azure con la versione dello schema 2016-06-01
 author: jeffhollan
 manager: anneta
@@ -15,21 +15,21 @@ ms.topic: article
 ms.custom: H1Hack27Feb2017
 ms.date: 07/25/2016
 ms.author: LADocs; jehollan
-ms.openlocfilehash: b0347fbbd692a93b63a2f8b741402a225450b35a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 43df04d6478e44c82c88b17d916cfc9fe4afc03e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="schema-updates-for-azure-logic-apps---june-1-2016"></a>Aggiornamenti dello schema per App per la logica di Azure: 1° giugno 2016
 
-Questo nuovo schema e l'API di versione per App di logica di Azure include importanti miglioramenti che App per la logica di rendere più affidabile e facile toouse:
+La nuova versione dello schema e dell'API per App per la logica di Azure include importanti miglioramenti che rendono le app per la logica più affidabili e facili da usare:
 
 * Gli [ambiti](#scopes) consentono di raggruppare o annidare le azioni come una raccolta di azioni.
 * [Condizioni e cicli](#conditions-loops) sono ora azioni di prima classe.
-* Ordinamento più preciso per l'esecuzione di azioni con hello `runAfter` proprietà, la sostituzione`dependsOn`
+* La proprietà `runAfter`, che sostituisce `dependsOn`, consente di ordinare con maggiore precisione l'esecuzione delle azioni.
 
-schema XML schema toohello 1 giugno 2016, visualizzare in anteprima tooupgrade App per la logica di hello 1 agosto 2015 [estrarre sezione aggiornamento hello](##upgrade-your-schema).
+Per aggiornare le app per la logica dallo schema di anteprima del 1° agosto 2015 allo schema del 1° giugno 2016, [vedere la sezione relativa all'aggiornamento](##upgrade-your-schema).
 
 <a name="scopes"></a>
 ## <a name="scopes"></a>Ambiti
@@ -88,9 +88,9 @@ Nelle versioni precedenti dello schema, le condizioni e i cicli sono parametri a
 <a name="run-after"></a>
 ## <a name="runafter-property"></a>Proprietà "runAfter"
 
-Hello `runAfter` sostituisce proprietà `dependsOn`, fornisce maggiore precisione quando si specifica l'ordine di esecuzione hello per le azioni in base allo stato di hello delle azioni precedenti.
+La proprietà `runAfter` sostituisce `dependsOn`, offrendo maggiore precisione quando si specifica l'ordine di esecuzione delle azioni in base allo stato di azioni precedenti.
 
-Hello `dependsOn` proprietà è un sinonimo di azione hello eseguito "e" è stata eseguita correttamente, indipendentemente da quante volte si desiderava tooexecute un'azione, in base alle azioni di hello precedente è stata eseguita, non è riuscita o ignorato. Hello `runAfter` proprietà flessibilità che un oggetto che specifica tutti hello dopo cui hello oggetto esegue i nomi di azione. Questa proprietà definisce anche una matrice degli stati accettabili come trigger. Ad esempio, se si desidera toorun dopo un passaggio ha esito positivo e anche dopo passaggio B ha esito positivo o negativo, costruire questo `runAfter` proprietà:
+La proprietà `dependsOn` indica l'esecuzione riuscita dell'azione, indipendentemente dal numero di volte che si vuole eseguire un'azione a seconda che la precedente sia riuscita, abbia avuto esito negativo o sia stata ignorata. La proprietà `runAfter` offre tale flessibilità in quanto oggetto che specifica tutti nomi delle azioni dopo cui viene eseguito. Questa proprietà definisce anche una matrice degli stati accettabili come trigger. Per impostare l'esecuzione dopo l'esito positivo del passaggio A e dopo l'esito positivo o negativo del passaggio B, ad esempio, si costruisce questa proprietà `runAfter`:
 
 ```
 {
@@ -104,59 +104,59 @@ Hello `dependsOn` proprietà è un sinonimo di azione hello eseguito "e" è stat
 
 ## <a name="upgrade-your-schema"></a>Aggiornare lo schema
 
-Aggiornamento toohello nuovo schema richiede solo pochi passaggi. Hello processo di aggiornamento include l'esecuzione dello script di aggiornamento hello, salvataggio come una nuova app per la logica e, se si desidera, eventualmente sovrascrivendo hello precedente logica app.
+L'aggiornamento al nuovo schema richiede pochi passaggi. Il processo di aggiornamento include l'esecuzione dello script di aggiornamento, il salvataggio come nuova app per la logica ed eventualmente, se necessario, la sovrascrittura dell'app per la logica precedente.
 
-1. Nel portale di Azure hello, Apri l'app logica.
+1. Nel portale di Azure aprire l'app per la logica.
 
-2. Andare troppo**Panoramica**. Sulla barra degli strumenti applicazione hello logica, scegliere **Aggiorna Schema**.
+2. Passare a **Panoramica**. Sulla barra degli strumenti dell'app per la logica scegliere **Aggiorna schema**.
    
     ![Scegliere Aggiorna schema][1]
    
-    Hello definizione aggiornata viene restituito, che è possibile copiare e incollare in una definizione di risorsa, se necessario. 
-    Tuttavia, si **consigliabile** si sceglie **Salva con nome** toomake assicurarsi che tutti i riferimenti di connessione siano validi in hello aggiornato logica app.
+    Verrà restituita la definizione aggiornata, che è possibile copiare e incollare in una definizione di risorsa, se necessario. 
+    È tuttavia **altamente consigliabile** scegliere **Salva con nome** per assicurarsi che tutti i riferimenti alla connessione siano validi nell'app per la logica aggiornata.
 
-3. Nella barra strumenti del Pannello di aggiornamento hello scegliere **Salva con nome**.
+3. Sulla barra degli strumenti del pannello per l'aggiornamento scegliere **Salva con nome**.
 
-4. Immettere il nome di logica hello e di stato. toodeploy app logica aggiornato, scegliere **crea**.
+4. Immettere il nome logico e lo stato. Per distribuire l'app per la logica aggiornata, scegliere **Crea**.
 
 5. Verificare che l'app per la logica aggiornata funzioni come previsto.
    
    > [!NOTE]
-   > Se si utilizza un trigger manuale o richiesta, URL callback hello cambia nell'app nuova logica. Esperienza di test hello nuovo URL toomake che hello end-to-end. toopreserve URL precedenti, è possibile clonare tramite l'app logica esistente.
+   > Se si usa un trigger manuale o di richiesta, l'URL di callback viene modificato nella nuova app per la logica. Testare il nuovo URL per verificare il funzionamento dell'esperienza end-to-end. Per mantenere gli URL precedenti, è possibile clonare l'app per la logica esistente.
 
-6. *Parametro facoltativo* toooverwrite app logica precedente con hello nuova versione dello schema, sulla barra degli strumenti hello, scegliere **Clone**, accanto troppo**Aggiorna Schema**. Questo passaggio è necessario solo se si desidera tookeep hello stessa risorsa ID richiesta trigger URL o dell'app logica.
+6. *Facoltativo* Per sovrascrivere l'app per la logica precedente con la nuova versione dello schema, sulla barra degli strumenti scegliere **Clona** accanto ad **Aggiorna schema**. Questo passaggio è necessario solo se si vuole mantenere lo stesso ID risorsa o lo stesso URL del trigger di richiesta dell'app per la logica.
 
 ### <a name="upgrade-tool-notes"></a>Note sullo strumento di aggiornamento
 
 #### <a name="mapping-conditions"></a>Mapping delle condizioni
 
-Nella definizione di hello aggiornato, strumento di hello rende tentativi al raggruppamento delle azioni branch true e false come ambito. In particolare, hello progettazione modello di `@equals(actions('a').status, 'Skipped')` dovrebbe essere visualizzato come un `else` azione. Tuttavia, se lo strumento hello rileva modelli non riconoscibile, strumento hello potrebbe creare condizioni distinte per true hello e branch false hello. Se necessario, è possibile modificare il mapping delle azioni dopo l'aggiornamento.
+Nella definizione aggiornata, lo strumento tenta di raggruppare le azioni dei rami true e false in un ambito. In particolare, il modello di progettazione `@equals(actions('a').status, 'Skipped')` verrà visualizzato come un'azione `else`. Se lo strumento rileva modelli non riconoscibili, tuttavia, potrebbe creare condizioni separate per i rami true e false. Se necessario, è possibile modificare il mapping delle azioni dopo l'aggiornamento.
 
 #### <a name="foreach-loop-with-condition"></a>Ciclo "foreach" con condizione
 
-Nel nuovo schema hello, è possibile utilizzare il modello hello filtro azione tooreplicate hello di un `foreach` ciclo con una condizione per ogni elemento, ma questa modifica dovrebbe verificarsi automaticamente quando esegue l'aggiornamento. condizione Hello diventa un'operazione di filtro prima di ciclo foreach hello per la restituzione solo di una matrice di elementi che corrispondono alla condizione hello e tale matrice viene passata in azione foreach hello. Per un esempio, vedere l'articolo relativo a [cicli e ambiti](../logic-apps/logic-apps-loops-and-scopes.md).
+Nel nuovo schema, è possibile usare l'azione di filtro per replicare il modello di un ciclo `foreach` con una condizione per elemento, ma questa modifica dovrebbe essere eseguita automaticamente durante l'aggiornamento. La condizione diventa un'azione di filtro prima del ciclo foreach per restituire solo una matrice di elementi che soddisfano la condizione e tale matrice viene passata nell'azione foreach. Per un esempio, vedere l'articolo relativo a [cicli e ambiti](../logic-apps/logic-apps-loops-and-scopes.md).
 
 #### <a name="resource-tags"></a>Tag delle risorse
 
-Dopo l'aggiornamento, vengono rimossi i tag delle risorse, pertanto è necessario reimpostarli per flusso di lavoro hello aggiornato.
+Dopo l'aggiornamento, i tag delle risorse vengono rimossi. È quindi necessario reimpostarli per il flusso di lavoro aggiornato.
 
 ## <a name="other-changes"></a>Altre modifiche
 
-### <a name="renamed-manual-trigger-toorequest-trigger"></a>Rinominare il trigger 'manual' too'request' trigger
+### <a name="renamed-manual-trigger-to-request-trigger"></a>Ridenominazione del trigger "manual" in "request"
 
-Hello `manual` tipo di trigger è stato deprecato e rinominato troppo`request` con tipo `http`. Questa modifica crea maggiore coerenza per il tipo di hello di pattern che hello trigger è toobuild utilizzato.
+Il tipo di trigger `manual` è deprecato ed è stato rinominato `request` con tipo `http`. Questa modifica offre maggiore coerenza per la tipologia di modello creata con il trigger.
 
 ### <a name="new-filter-action"></a>Nuova azione "filtro"
 
-una matrice di grandi dimensioni verso il basso tooa ridurre il numero di elementi, hello nuovi toofilter `filter` tipo accetta una matrice e una condizione, valuta la condizione hello per ogni elemento e restituisce una matrice con gli elementi che soddisfano la condizione hello.
+Per filtrare una matrice di grandi dimensioni in modo da ottenere un set ridotto di elementi, il nuovo tipo `filter` accetta una matrice e una condizione, valuta la condizione per ogni elemento e restituisce una matrice con gli elementi che soddisfano la condizione.
 
 ### <a name="restrictions-for-foreach-and-until-actions"></a>Restrizioni per le azioni "foreach" e "until"
 
-Hello `foreach` e `until` ciclo sono limitate tooa singola azione.
+I cicli `foreach` e `until` sono limitati a una singola azione.
 
 ### <a name="new-trackedproperties-for-actions"></a>Nuova proprietà "trackedProperties" per le azioni
 
-Azioni ora possono avere una proprietà aggiuntiva chiamata `trackedProperties`, che è l'elemento di pari livello toohello `runAfter` e `type` proprietà. Questo oggetto consente di specificare alcuni input azione o l'output che si desidera tooinclude in telemetria di diagnostica di Azure hello, generata come parte di un flusso di lavoro. ad esempio:
+Le azioni possono ora includere una proprietà aggiuntiva denominata `trackedProperties`, di pari livello rispetto alle proprietà `runAfter` e `type`. Questo oggetto specifica determinati input o output delle azioni da includere nei dati di telemetria di Diagnostica di Azure generati come parte di un flusso di lavoro, ad esempio:
 
 ```
 {                

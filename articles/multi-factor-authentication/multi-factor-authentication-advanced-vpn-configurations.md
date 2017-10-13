@@ -1,6 +1,6 @@
 ---
-title: "scenari di aaaAdvanced con autenticazione a più fattori di Azure e VPN di terze parti"
-description: Guide dettagliate per la configurazione per Azure MFA toointegrate con Cisco, Citrix e Juniper.
+title: Scenari avanzati con Azure MFA e VPN di terze parti
+description: Guide di configurazione dettagliate per l'integrazione di Azure MFA con Cisco, Citrix e Juniper.
 services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
@@ -12,19 +12,19 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/13/2017
+ms.date: 08/25/2017
 ms.author: kgremban
-ms.openlocfilehash: e23960ca4977cc01271f99fa2bec70449e9acfff
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 61cf29acac22d546e1b75604f799993ad6ff9042
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="advanced-scenarios-with-azure-multi-factor-authentication-and-third-party-vpn-solutions"></a>Scenari avanzati con Azure Multi-Factor Authentication e soluzioni VPN di terze parti
-Azure multi-Factor Authentication può essere utilizzato tooseamlessly connettersi con diverse soluzioni VPN di terze parti. Questo articolo è incentrato su dispositivo VPN di ASA Cisco®, un accessorio VPN SSL NetScaler di Citrix e hello Juniper reti Secure accesso/Pulse Secure connessione protetta SSL dispositivo VPN. Abbiamo creato configuration Guide tooaddress queste Appliance comuni tre, ma Server multi-Factor Authentication è possibile integrare con la maggior parte dei sistemi che utilizzano RADIUS, LDAP, IIS o l'autenticazione basata sulle attestazioni tooAD ADFS. Per informazioni più dettagliate, vedere la sezione relativa alle [configurazioni del server Multi-Factor Authentication](multi-factor-authentication-get-started-server.md#next-steps).
+È possibile usare Azure Multi-Factor Authentication per connettersi rapidamente a varie soluzioni VPN di terze parti. Questo articolo illustra in particolare i dispositivi VPN Cisco® ASA, Citrix NetScaler SSL e Juniper Networks Secure Access/Pulse Secure Connect Secure SSL. Sono disponibili guide alla configurazione utili per questi tre dispositivi comuni. Il server Multi-Factor Authentication può anche integrarsi con la maggior parte di altri sistemi che usano RADIUS, LDAP, IIS o l'autenticazione basata su attestazioni per AD FS. Per informazioni più dettagliate, vedere la sezione relativa alle [configurazioni del server Multi-Factor Authentication](multi-factor-authentication-get-started-server.md#next-steps).
 
 ## <a name="cisco-asa-vpn-appliance-and-azure-multi-factor-authentication"></a>Dispositivo VPN Cisco ASA e Azure Multi-Factor Authentication
-Azure multi-Factor Authentication si integra con la VPN di ASA Cisco® accessorio tooprovide una sicurezza aggiuntiva per gli account di accesso Cisco AnyConnect® VPN e accesso al portale.  Questa operazione può essere eseguita utilizzando un protocollo LDAP o RADIUS hello.  Consente di selezionare una delle seguenti toodownload hello dettagliate dettagliate per la configurazione di hello.
+Azure Multi-Factor Authentication si integra con i dispositivi VPN Cisco® ASA per fornire protezione aggiuntiva per gli account di accesso al client VPN Cisco AnyConnect® e l'accesso al portale.  È possibile usare il protocollo LDAP o RADIUS.  Selezionare una delle opzioni seguenti per scaricare le guide dettagliate per la configurazione.
 
 | Guida alla configurazione | Descrizione |
 | --- | --- |
@@ -32,7 +32,7 @@ Azure multi-Factor Authentication si integra con la VPN di ASA Cisco® accessori
 | [Configurazione del dispositivo VPN Cisco ASA con Anyconnect e Azure MFA per RADIUS](http://download.microsoft.com/download/4/5/7/4579C1CF-35B0-4FBE-8A1A-B49CB2CC0382/Cisco_ASA_Azure_MFA_RADIUS.docx) | Integrare il dispositivo VPN Cisco ASA con Azure MFA tramite RADIUS |
 
 ## <a name="citrix-netscaler-ssl-vpn-and-azure-multi-factor-authentication"></a>Dispositivo VPN Citrix NetScaler SSL e Azure Multi-Factor Authentication
-Azure multi-Factor Authentication si integra con la sicurezza aggiuntiva di tooprovide accessorio VPN SSL NetScaler di Citrix per gli account di accesso di Citrix NetScaler SSL VPN e accesso al portale.  Questa operazione può essere eseguita utilizzando un protocollo LDAP o RADIUS hello.  Consente di selezionare una delle seguenti toodownload hello dettagliate dettagliate per la configurazione di hello.
+Azure Multi-Factor Authentication si integra con i dispositivi VPN SSL Citrix NetScaler per fornire protezione aggiuntiva per gli account di accesso al client SSL Citrix NetScaler e l'accesso al portale.  È possibile usare il protocollo LDAP o RADIUS.  Selezionare una delle opzioni seguenti per scaricare le guide dettagliate per la configurazione.
 
 | Guida alla configurazione | Descrizione |
 | --- | --- |
@@ -40,7 +40,7 @@ Azure multi-Factor Authentication si integra con la sicurezza aggiuntiva di toop
 | [Configurazione del dispositivo VPN SSL Citrix NetScaler e Azure MFA per RADIUS](http://download.microsoft.com/download/1/A/4/1A482764-4A63-45C2-A5EC-2B673ACCDD12/Citrix_NS_Azure_MFA_RADIUS.docx) | Integrare il dispositivo VPN SSL Citrix NetScaler con Azure MFA tramite RADIUS |
 
 ## <a name="juniperpulse-secure-ssl-vpn-appliance-and-azure-multi-factor-authentication"></a>Client VPN SSL Juniper/Pulse Secure e Azure Multi-Factor Authentication
-Azure multi-Factor Authentication si integra con la sicurezza aggiuntiva di tooprovide accessorio Juniper/Pulse Secure SSL VPN per gli account di accesso Juniper/Pulse Secure SSL VPN e accesso al portale.  Questa operazione può essere eseguita utilizzando un protocollo LDAP o RADIUS hello.  Consente di selezionare una delle seguenti toodownload hello dettagliate dettagliate per la configurazione di hello.
+Azure Multi-Factor Authentication si integra con i client VPN SSL Juniper/Pulse Secure per fornire protezione aggiuntiva per gli account di accesso al client Juniper/Pulse Secure e l'accesso al portale.  È possibile usare il protocollo LDAP o RADIUS.  Selezionare una delle opzioni seguenti per scaricare le guide dettagliate per la configurazione.
 
 | Guida alla configurazione | Descrizione |
 | --- | --- |
@@ -49,6 +49,6 @@ Azure multi-Factor Authentication si integra con la sicurezza aggiuntiva di toop
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- [Aumentare l'infrastruttura di autenticazione esistente con estensione dei criteri di rete hello Azure multi-Factor Authentication](multi-factor-authentication-nps-extension.md)
+- [Ampliare l'infrastruttura di autenticazione esistente con l'estensione di Server dei criteri di rete per Multi-Factor Authentication di Azure](multi-factor-authentication-nps-extension.md)
 
 - [Configurare le impostazioni di Azure Multi-Factor Authentication](multi-factor-authentication-whats-next.md)

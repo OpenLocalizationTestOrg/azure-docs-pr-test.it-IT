@@ -1,6 +1,6 @@
 ---
-title: gli eventi per le macchine virtuali Linux in Azure aaaScheduled | Documenti Microsoft
-description: Eventi pianificati tramite il servizio Azure metadati hello per nelle macchine virtuali Linux.
+title: Eventi pianificati per macchine virtuali Linux in Azure | Microsoft Docs
+description: Eventi pianificati usando il servizio metadati di Azure per le macchine virtuali Linux.
 services: virtual-machines-windows, virtual-machines-linux, cloud-services
 documentationcenter: 
 author: zivraf
@@ -15,62 +15,62 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/14/2017
 ms.author: zivr
-ms.openlocfilehash: e153c8854725330acefd67d0ef542f6149170a7d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 75e509a7e39f5b268ce550d0c4dea2261d4fe56f
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="azure-metadata-service-scheduled-events-preview-for-linux-vms"></a>Servizio metadati di Azure: eventi pianificati (anteprima) per VM Linux
 
 > [!NOTE] 
-> Le anteprime vengono apportate tooyou disponibili nella condizione hello che accetti toohello condizioni di utilizzo. Per altre informazioni, vedere [Condizioni Supplementari di Microsoft Azure le Anteprime di Microsoft Azure](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> Le anteprime vengono rese disponibili per l'utente a condizione che si accettino le condizioni d'uso. Per altre informazioni, vedere [Condizioni Supplementari di Microsoft Azure le Anteprime di Microsoft Azure](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 >
 
-Gli eventi pianificati è uno dei servizi secondari hello in hello servizio metadati di Azure. Presenta informazioni sugli eventi imminenti, ad esempio i riavvii, in modo che l'applicazione possa prepararsi di conseguenza e limitare le interruzioni. Il servizio è disponibile per tutti i tipi di macchine virtuali di Azure, inclusi PaaS e IaaS. Gli eventi pianificati offre le attività di prevenzione di macchina virtuale ora tooperform effetto hello toominimize di un evento. 
+Eventi pianificati è uno dei servizi secondari del Servizio metadati di Azure. Presenta informazioni sugli eventi imminenti, ad esempio i riavvii, in modo che l'applicazione possa prepararsi di conseguenza e limitare le interruzioni. Il servizio è disponibile per tutti i tipi di macchine virtuali di Azure, inclusi PaaS e IaaS. Il servizio dà alla macchina virtuale il tempo sufficiente per eseguire attività preventive e ridurre al minimo l'effetto di un evento. 
 
 Eventi pianificati è disponibile per VM sia Windows che Linux. Per informazioni su Eventi pianificati in Windows, vedere [Eventi pianificati per macchine virtuali Windows](../windows/scheduled-events.md).
 
 ## <a name="why-scheduled-events"></a>Perché usare gli eventi pianificati
 
-Con agli eventi pianificati, è possibile eseguire passaggi impatto hello toolimit di piattaforma intiated manutenzione o le azioni avviate dall'utente nel servizio. 
+Con Eventi pianificati, è possibile eseguire la procedura per ridurre l'impatto della manutenzione avviata dalla piattaforma o delle azioni avviate dall'utente nel servizio. 
 
-Carichi di lavoro multi-istanza, che utilizza lo stato di replica tecniche toomaintain, potrebbe essere vulnerabile toooutages tra più istanze in corso. Tali interruzioni potrebbero comportare attività costose, ad esempio, la ricompilazione degli indici, o addirittura una perdita di replica. 
+I carichi di lavoro a più istanze, che usano tecniche di replica per mantenere lo stato, potrebbero essere soggetti a interruzioni tra più istanze. Tali interruzioni potrebbero comportare attività costose, ad esempio, la ricompilazione degli indici, o addirittura una perdita di replica. 
 
-In molti altri casi, hello complessiva disponibilità del servizio può essere migliorata eseguendo la sequenza di arresto, ad esempio completamento (o annullamento) pertanto le transazioni, la riassegnazione attività tooother macchine virtuali in cluster hello (failover manuale), o la rimozione di hello Macchina virtuale da un pool di bilanciamento del carico di rete. 
+In molti altri casi, la disponibilità generale del servizio può essere migliorata eseguendo la normale sequenza di arresto, ad esempio il completamento o l'annullamento della transazioni in corso, la riassegnazione delle attività ad altre macchine virtuali nel cluster, ovvero il failover manuale, o la rimozione della macchina virtuale da un pool di bilanciamento del carico della rete. 
 
-Vi sono casi in cui informando un amministratore su un evento futuro o registrazione dell'evento contribuire a migliorare l'efficienza hello di applicazioni ospitate nel cloud hello.
+Ci sono casi in cui è possibile migliorare l'utilità delle applicazioni ospitate nel cloud avvisando un amministratore della presenza di un evento imminente o registrando tale evento.
 
-Casi d'uso di Azure Metadata Service superfici agli eventi pianificati seguenti hello:
+Il Servizio metadati di Azure presenta gli eventi pianificati nei seguenti casi d'uso:
 -   Manutenzione avviata dalla piattaforma, ad esempio implementazione del sistema operativo host
 -   Chiamate avviate dall'utente, ad esempio riavvii iniziati dall'utente o ridistribuzione di una macchina virtuale
 
 
-## <a name="hello-basics"></a>Nozioni di base Hello  
+## <a name="the-basics"></a>Nozioni di base  
 
-Servizio di metadati di Azure espone informazioni sull'esecuzione di macchine virtuali tramite un Endpoint REST accessibile dall'interno di hello macchina virtuale. informazioni Hello sono disponibile tramite un indirizzo IP non instradabile, in modo che non è esposta all'esterno di hello macchina virtuale.
+Il Servizio metadati di Azure presenta informazioni sulle macchine virtuali in esecuzione usando un endpoint REST accessibile dall'interno della macchina virtuale. Le informazioni sono disponibili tramite un indirizzo IP non instradabile, in modo da non essere esposte al di fuori della macchina virtuale.
 
 ### <a name="scope"></a>Scope
-Gli eventi pianificati sono tooall esposto macchine virtuali in un servizio cloud o tooall macchine virtuali in un Set di disponibilità. Di conseguenza, è consigliabile controllare hello `Resources` campo hello evento tooidentify che le macchine virtuali verranno toobe interessati. 
+Gli eventi pianificati vengono presentati per tutte le macchine virtuali in un servizio cloud o per tutte le macchine virtuali in un set di disponibilità. Pertanto, è consigliabile controllare il campo `Resources` nell'evento per individuare le macchine virtuali che ne saranno interessate. 
 
-### <a name="discovering-hello-endpoint"></a>Individuazione di endpoint hello
-In caso di hello in cui viene creata una macchina virtuale in una rete virtuale (VNet), è disponibile da un IP statico non instradabile, servizio metadati hello `169.254.169.254`.
-Se hello macchina virtuale non è stato creato in una rete virtuale, il case predefinito hello per servizi cloud e le macchine virtuali classiche, logica aggiuntiva è necessario toodiscover hello endpoint toouse. Vedere come troppo toothis esempio toolearn[individua endpoint host hello](https://github.com/azure-samples/virtual-machines-python-scheduled-events-discover-endpoint-for-non-vnet-vm).
+### <a name="discovering-the-endpoint"></a>Individuazione dell'endpoint
+Nel caso in cui venga creata una macchina virtuale in una rete virtuale, il servizio di metadati è disponibile all'indirizzo IP statico non instradabile, `169.254.169.254`.
+Se la macchina virtuale non viene creata all'interno di una rete virtuale, i casi predefiniti per i servizi cloud e le macchine virtuali classiche, sarà necessaria una logica aggiuntiva per individuare l'endpoint da usare. Fare riferimento a questo esempio per informazioni su come [individuare l'endpoint dell'host](https://github.com/azure-samples/virtual-machines-python-scheduled-events-discover-endpoint-for-non-vnet-vm).
 
 ### <a name="versioning"></a>Controllo delle versioni 
-Hello servizio metadati dell'istanza viene creata. Le versioni sono obbligatorie e la versione corrente di hello è `2017-03-01`.
+Il Servizio metadati dell'istanza è con versione. Le versioni sono obbligatorie e la versione corrente è `2017-03-01`.
 
 > [!NOTE] 
-> Versioni precedenti di anteprima di eventi pianificati supportati {più recente} come hello. api-version. Questo formato non è più supportato e verrà rimossa in futuro hello.
+> Le versioni precedenti di anteprima di eventi pianificati {ultima} sono supportate come versione dell'API. Questo formato non è più supportato e verrà rimosso in futuro.
 
 ### <a name="using-headers"></a>Uso delle intestazioni
-Quando si eseguono query hello Metadata Service, è necessario specificare l'intestazione di hello `Metadata: true` tooensure hello richiesta non è stata reindirizzata accidentalmente.
+Quando si eseguono query sul Servizio metadati, è necessario specificare l'intestazione `Metadata: true` per garantire che la richiesta non sia stata reindirizzata accidentalmente.
 
 ### <a name="enabling-scheduled-events"></a>Attivazione degli eventi pianificati
-Hello prima volta che si effettua una richiesta per gli eventi pianificati, Azure consente implicitamente funzionalità hello sulla macchina virtuale. Di conseguenza, è possibile aspettarsi una risposta ritardata nella prima chiamata di backup tootwo minuti.
+La prima volta che si emette una richiesta per gli eventi pianificati, Azure abilita in modo implicito la funzionalità nella macchina virtuale. Di conseguenza la prima chiamata potrebbe ricevere una risposta con un ritardo massimo di due minuti.
 
 ### <a name="user-initiated-maintenance"></a>Manutenzione avviata dall'utente
-Manutenzione delle macchine virtuali tramite il portale di Azure, hello API, CLI, avviata dall'utente o PowerShell genera un evento pianificato. Questo consente la logica di preparazione tootest hello manutenzione dell'applicazione e tooprepare l'applicazione per la manutenzione avviata dall'utente.
+La manutenzione delle macchine virtuali avviata dall'utente tramite il portale, l'API o l'interfaccia della riga di comando di Azure oppure tramite PowerShell restituisce un evento pianificato. In questo modo è possibile testare la logica di preparazione della manutenzione dell'applicazione e permettere all'applicazione di prepararsi per la manutenzione avviata dall'utente.
 
 Il riavvio di una macchina virtuale pianifica un evento di tipo `Reboot`. La ridistribuzione di una macchina virtuale pianifica un evento di tipo `Redeploy`.
 
@@ -80,17 +80,17 @@ Il riavvio di una macchina virtuale pianifica un evento di tipo `Reboot`. La rid
 > [!NOTE] 
 > Attualmente la manutenzione avviata dall'utente che dà luogo a eventi pianificati non è configurabile. Questa funzionalità è pianificata per una versione successiva.
 
-## <a name="using-hello-api"></a>Tramite l'API di hello
+## <a name="using-the-api"></a>Uso dell'API
 
 ### <a name="query-for-events"></a>Query per gli eventi
-È possibile eseguire una query per gli eventi pianificati sufficiente chiamata hello seguenti:
+È possibile eseguire query per gli eventi pianificati semplicemente eseguendo la chiamata seguente:
 
 ```
 curl -H Metadata:true http://169.254.169.254/metadata/scheduledevents?api-version=2017-03-01
 ```
 
 Una risposta contiene una serie di eventi pianificati. Una serie vuota indica che al momento non sono presenti eventi pianificati.
-In caso di hello in cui sono presenti eventi pianificati, risposta hello contiene una matrice di eventi: 
+Nel caso in cui siano presenti eventi pianificati, la risposta contiene una serie di eventi: 
 ```
 {
     "DocumentIncarnation": {IncarnationID},
@@ -111,14 +111,14 @@ In caso di hello in cui sono presenti eventi pianificati, risposta hello contien
 |Proprietà  |  Descrizione |
 | - | - |
 | EventId | Identificatore globalmente univoco per l'evento. <br><br> Esempio: <br><ul><li>602d9444-d2cd-49c7-8624-8643e7171297  |
-| EventType | Impatto che l'evento causa. <br><br> Valori: <br><ul><li> `Freeze`: hello macchina virtuale è pianificato toopause per alcuni secondi. Hello della CPU è sospesa, ma non ha alcun impatto su memoria, i file aperti o connessioni di rete. <li>`Reboot`: hello macchina virtuale è pianificata per riavviare il sistema (memoria non persistente viene persa). <li>`Redeploy`: hello macchina virtuale è pianificato toomove tooanother nodo (dischi temporanei andranno persi). |
+| EventType | Impatto che l'evento causa. <br><br> Valori: <br><ul><li> `Freeze`: è pianificata una sospensione della macchina virtuale per alcuni secondi. La CPU viene sospesa, ma la memoria, i file aperti o le connessioni di rete non subiranno conseguenze. <li>`Reboot`: è pianificato un riavvio della macchina virtuale. La memoria non permanente andrà persa. <li>`Redeploy`: è pianificato uno spostamento della macchina virtuale in un altro nodo. I dischi temporanei andranno persi. |
 | ResourceType | Tipo di risorsa su cui l'evento influisce. <br><br> Valori: <ul><li>`VirtualMachine`|
-| Risorse| Elenco delle risorse su cui l'evento influisce. Questo è garantito macchine toocontain da almeno uno [dominio di aggiornamento](manage-availability.md), ma non può contenere tutti i computer hello UD. <br><br> Esempio: <br><ul><li> ["FrontEnd_IN_0", "BackEnd_IN_0"] |
-| Event Status | Stato dell'evento. <br><br> Valori: <ul><li>`Scheduled`: Questo evento è pianificato toostart dopo il tempo di hello specificato hello `NotBefore` proprietà.<li>`Started`: l'evento si è avviato.</ul> Non `Completed` o simile viene sempre fornito; evento hello non verrà restituito al termine dell'evento hello.
+| Risorse| Elenco delle risorse su cui l'evento influisce. Contiene sicuramente i computer per al massimo un [Dominio di aggiornamento](manage-availability.md), ma non può contenere tutti i computer nel dominio di aggiornamento. <br><br> Esempio: <br><ul><li> ["FrontEnd_IN_0", "BackEnd_IN_0"] |
+| Event Status | Stato dell'evento. <br><br> Valori: <ul><li>`Scheduled`: l'avvio dell'evento è pianificato in seguito al tempo specificato nella proprietà `NotBefore`.<li>`Started`: l'evento si è avviato.</ul> Non viene indicato `Completed` o uno stato simile; l'evento non verrà più restituito al suo completamento.
 | NotBefore| Tempo dopo il quale l'evento può essere avviato. <br><br> Esempio: <br><ul><li> 2016-09-19T18:29:47Z  |
 
 ### <a name="event-scheduling"></a>Pianificazione degli eventi
-Ogni evento è pianificata una quantità minima di tempo in futuro hello dipende dal tipo di evento. Questo tempo si riflette in una proprietà `NotBefore` dell'evento. 
+Ogni evento è pianificato con un ritardo minimo che dipende dal tipo di evento. Questo tempo si riflette in una proprietà `NotBefore` dell'evento. 
 
 |EventType  | Minimum Notice |
 | - | - |
@@ -128,21 +128,21 @@ Ogni evento è pianificata una quantità minima di tempo in futuro hello dipende
 
 ### <a name="starting-an-event"></a>Avvio di un evento 
 
-Dopo aver appreso di un imminente evento e completato la logica per l'arresto normale, è possibile approvare eventi in attesa di hello effettuando un `POST` chiamare il servizio metadati toohello con hello `EventId`. Ciò indica che è possibile abbreviare notifica minimo hello tooAzure ora (sempre). 
+Dopo aver appreso informazioni su un evento imminente e aver completato la logica per l'arresto normale, è possibile approvare l'evento in sospeso facendo una chiamata `POST` al servizio metadati con `EventId`. Ciò indica ad Azure che si può ridurre il tempo di notifica minimo, quando possibile. 
 
 ```
 curl -H Metadata:true -X POST -d '{"DocumentIncarnation":"5", "StartRequests": [{"EventId": "f020ba2e-3bc0-4c40-a10b-86575a9eabd5"}]}' http://169.254.169.254/metadata/scheduledevents?api-version=2017-03-01
 ```
 
 > [!NOTE] 
-> Riconoscimento di un evento consente hello evento tooproceed per tutti i `Resources` nell'evento hello, non solo hello macchina virtuale che riconosce l'evento hello. È pertanto possibile tooelect un acknowledgement leader toocoordinate hello, che può essere semplice come macchina di prima hello in hello `Resources` campo.
+> Il riconoscimento di un evento consente all'evento di procedere per tutti gli elementi `Resources` nell'evento, non solo per la macchina virtuale che riconosce l'evento. Pertanto è possibile scegliere un coordinatore che si occupi del riconoscimento, che potrebbe essere semplicemente il primo nel campo `Resources`.
 
 
 
 
 ## <a name="python-sample"></a>Esempio Python 
 
-Hello seguenti query di esempio hello servizio metadati per gli eventi pianificati e approva ogni evento in sospeso.
+L'esempio seguente esegue query sul servizio metadati per gli eventi pianificati e quindi approva gli eventi in sospeso.
 
 ```python
 #!/usr/bin/python
@@ -186,5 +186,5 @@ if __name__ == '__main__':
 
 ## <a name="next-steps"></a>Passaggi successivi 
 
-- Altre informazioni sulle API disponibili in hello hello [servizio metadati dell'istanza](instance-metadata-service.md).
+- Altre informazioni sulle API disponibili nel [servizio metadati dell'istanza](instance-metadata-service.md).
 - Informazioni sulla [manutenzione pianificata per le macchine virtuali Linux in Azure](planned-maintenance.md).

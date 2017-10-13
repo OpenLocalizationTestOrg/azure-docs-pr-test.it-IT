@@ -1,5 +1,5 @@
 ---
-title: Analisi degli eventi dell'infrastruttura di servizio con Application Insights aaaAzure | Documenti Microsoft
+title: Analisi di eventi di Azure Service Fabric con Azure Application Insights | Microsoft Docs
 description: Informazioni sulla visualizzazione e l'analisi di eventi con Application Insights per il monitoraggio e la diagnostica dei cluster di Azure Service Fabric.
 services: service-fabric
 documentationcenter: .net
@@ -14,43 +14,43 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 05/26/2017
 ms.author: dekapur
-ms.openlocfilehash: 59bb5a409f2951e5b2034049e782dd0da67f933c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4085a607b800f4f4f155cdc266bc203b0858fd7c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="event-analysis-and-visualization-with-application-insights"></a>Analisi e visualizzazione degli eventi con Application Insights
 
-Azure Application Insights è una piattaforma estendibile per la diagnostica e il monitoraggio dell'applicazione. Include un potente strumento di analisi ed esecuzione di query, visualizzazione e dashboard personalizzabili e altre opzioni tra cui gli avvisi automatizzati. È consigliata piattaforma per il monitoraggio e diagnostica per servizi e applicazioni di Service Fabric hello.
+Azure Application Insights è una piattaforma estendibile per la diagnostica e il monitoraggio dell'applicazione. Include un potente strumento di analisi ed esecuzione di query, visualizzazione e dashboard personalizzabili e altre opzioni tra cui gli avvisi automatizzati. È la piattaforma consigliata per il monitoraggio e la diagnostica di servizi e applicazioni di Service Fabric.
 
 ## <a name="setting-up-application-insights"></a>Configurazione di Application Insights
 
 ### <a name="creating-an-ai-resource"></a>Creazione di una risorsa AI
 
-risorsa toocreate AI, head toohello Azure Marketplace e cercare "Application Insights". È necessario visualizzate come prima soluzione hello (si trova nella categoria "Web + Mobile"). Fare clic su **crea** quando si sta esaminando risorsa destro hello (verificare che il percorso corrisponde a immagine hello riportata di seguito).
+Per creare una risorsa AI, visitare Azure Marketplace e cercare "Application Insights". Viene visualizzata come la prima soluzione nella categoria "Web e dispositivi mobili". Fare clic su **Crea** mentre si controllano le risorse sulla destra. Verificare che il percorso corrisponda a quello mostrato nell'immagine di seguito.
 
 ![Nuova risorsa di Application Insights](media/service-fabric-diagnostics-event-analysis-appinsights/create-new-ai-resource.png)
 
-È necessario toofill out alcune risorse di informazioni tooprovision hello correttamente. In hello *tipo di applicazione* campo, utilizzare "Applicazione web ASP.NET" Se si intende utilizzare uno qualsiasi di Service Fabric del modelli di programmazione o la pubblicazione di un cluster di toohello applicazione .NET. Se si intende distribuire contenitori e file eseguibili guest, usare "Generale". Predefinito toousing "Applicazione web ASP.NET" tookeep in generale, le opzioni di aprire in hello future. nome Hello è tooyour preferenza e sia il gruppo di risorse hello e la sottoscrizione siano modificabile post-distribuzione della risorsa hello. È consigliabile che la risorsa AI sia in hello stesso gruppo di risorse del cluster. Per altre informazioni, vedere [Creare una risorsa di Application Insights](../application-insights/app-insights-create-new-resource.md)
+È necessario inserire alcune informazioni per eseguire correttamente il provisioning della risorsa. Nel campo *Tipo di applicazione* usare "Applicazione Web ASP.NET" se si intende usare di uno dei modelli di programmazione di Service Fabric o se si intende pubblicare un'applicazione .NET nel cluster. Se si intende distribuire contenitori e file eseguibili guest, usare "Generale". In generale usare l'opzione predefinita "Applicazione Web ASP.NET" per tenere aperte le opzioni disponibili in futuro. L'utente può scegliere il nome in base alle proprie preferenze e sia la sottoscrizione sia il gruppo di risorse sono modificabile in seguito alla distribuzione della risorsa. Si consiglia di inserire la risorsa AI nello stesso gruppo di risorse del cluster. Per altre informazioni, vedere [Creare una risorsa di Application Insights](../application-insights/app-insights-create-new-resource.md)
 
-È necessario hello chiave di strumentazione AI tooconfigure AI con lo strumento di aggregazione di evento. Una volta configurata la risorsa AI è (richiede alcuni minuti dopo la convalida di distribuzione hello), passare tooit e trovare hello **proprietà** sezione hello barra di spostamento a sinistra. Verrà visualizzato un nuovo pannello che mostra una *CHIAVE DI STRUMENTAZIONE*. Se è necessario sottoscrizione hello toochange o gruppo di risorse della risorsa hello, può essere eseguita in questo caso anche.
+Per configurare AI con lo strumento di aggregazione di eventi è necessaria la chiave di strumentazione AI. La configurazione della risorsa AI può richiedere pochi minuti dopo la convalida della distribuzione. In seguito passare alla risorsa e cercare la sezione **Proprietà** nella barra di spostamento a sinistra. Verrà visualizzato un nuovo pannello che mostra una *CHIAVE DI STRUMENTAZIONE*. Qui è anche possibile modificare la sottoscrizione o il gruppo di risorse della risorsa.
 
 ### <a name="configuring-ai-with-wad"></a>Configurazione di AI con WAD
 
-Esistono due modi principali dati toosend di WAD tooAzure AI, ottenuto mediante l'aggiunta di una configurazione di WAD AI sink toohello, come descritto in dettaglio nella [questo articolo](../monitoring-and-diagnostics/azure-diagnostics-configure-application-insights.md).
+Per inviare i dati da WAD ad Azure AI esistono due modalità, realizzabili aggiungendo un sink AI alla configurazione di WAD, come descritto in [questo articolo](../monitoring-and-diagnostics/azure-diagnostics-configure-application-insights.md).
 
 #### <a name="add-an-ai-instrumentation-key-when-creating-a-cluster-in-azure-portal"></a>Aggiungere una chiave di strumentazione AI durante la creazione di un cluster nel portale di Azure
 
 ![Aggiunta di un AIKey](media/service-fabric-diagnostics-event-analysis-appinsights/azure-enable-diagnostics.png)
 
-Quando si crea un cluster, se è attivata la diagnostica "On", verrà visualizzato un campo facoltativo di tooenter una chiave di strumentazione di Application Insights. Se si incolla qui il IKey AI, sink hello AI verrà automaticamente configurato per consentire in modello di gestione risorse hello toodeploy utilizzati il cluster.
+Quando si crea un cluster, se la diagnostica è attiva, si visualizzerà un campo facoltativo per immettere una chiave di strumentazione di Application Insights. Se si incolla la chiave di strumentazione AI qui, il sink AI verrà automaticamente configurato per l'utente nel modello di Resource Manager che viene usato per distribuire il cluster.
 
-#### <a name="add-hello-ai-sink-toohello-resource-manager-template"></a>Aggiungere modello di gestione risorse AI Sink toohello hello
+#### <a name="add-the-ai-sink-to-the-resource-manager-template"></a>Aggiungere il sink AI al modello di Resource Manager
 
-In hello "WadCfg" del modello di gestione risorse di hello, aggiungere "Sink" includendo hello seguenti due modifiche:
+Nel modello di Resource Manager, in "WadCfg" aggiungere un "Sink" apportando le due modifiche seguenti:
 
-1. Aggiungere hello sink configurazione:
+1. Aggiungere la configurazione del sink:
 
     ```json
     "SinksConfig": {
@@ -64,52 +64,52 @@ In hello "WadCfg" del modello di gestione risorse di hello, aggiungere "Sink" in
 
     ```
 
-2. Includere hello Sink in hello DiagnosticMonitorConfiguration aggiungendo hello successiva riga in "DiagnosticMonitorConfiguration" di "WadCfg" hello:
+2. Includere il sink in DiagnosticMonitorConfiguration aggiungendo la riga seguente in "DiagnosticMonitorConfiguration" di "WadCfg":
 
     ```json
     "sinks": "applicationInsights"
     ```
 
-In entrambi i frammenti di codice hello sopra, hello "applicationInsights" nome era sink hello toodescribe utilizzato. Questo non è un requisito e come nome di hello del sink hello è incluso in "sink", è possibile impostare tooany stringa del nome di hello.
+In entrambi i frammenti di codice precedenti il nome "applicationInsights" è stato usato per descrivere il sink. Questo non è un requisito e fino a quando il nome del sink è incluso in "sink", è possibile impostare il nome per qualsiasi stringa.
 
-Attualmente, i registri dal cluster hello verranno visualizzati come tracce nel Visualizzatore di log del AI. Poiché la maggior parte delle tracce hello provenienti da piattaforma hello è di livello "Informativo", è anche possibile provare a modificare registri hello sink configurazione tooonly trasmissione di tipo "Critico" o "Error". Questa operazione può essere eseguita aggiungendo sink tooyour "Canali", come illustrato in [questo articolo](../monitoring-and-diagnostics/azure-diagnostics-configure-application-insights.md).
+Attualmente, i registri del cluster verranno mostrati come tracce nel visualizzatore di log di AI. Poiché la maggior parte delle tracce provenienti dal livello di infrastruttura è di tipo "Informazioni", è anche possibile modificare la configurazione del sink per inviare solo i log di tipo "Critico" o "Errore". Questa operazione può essere eseguita aggiungendo i "Canali" al sink, come illustrato in [questo articolo](../monitoring-and-diagnostics/azure-diagnostics-configure-application-insights.md).
 
 >[!NOTE]
->Se si utilizza un IKey AI errato nel portale o nel modello di gestione risorse, sarà necessario toomanually Modifica chiave hello e aggiornare il cluster hello / ridistribuirla. 
+>Se si usa una chiave di strumentazione di AI errata nel portale o nel modello di Resource Manager, è necessario modificare la chiave e aggiornare il cluster o ridistribuirlo manualmente. 
 
 ### <a name="configuring-ai-with-eventflow"></a>Configurazione di AI con EventFlow
 
-Se si utilizza EventFlow tooaggregate eventi, assicurarsi che tooimport hello `Microsoft.Diagnostics.EventFlow.Output.ApplicationInsights`pacchetto NuGet. seguente Hello è incluso in hello toobe *restituisce* sezione di hello *eventFlowConfig.json*:
+Se si usa EventFlow per aggregare gli eventi, assicurarsi di importare il pacchetto NuGet `Microsoft.Diagnostics.EventFlow.Output.ApplicationInsights`. È necessario includere nella sezione *output* di *eventFlowConfig.json* il codice seguente:
 
 ```json
 "outputs": [
     {
         "type": "ApplicationInsights",
-        // (replace hello following value with your AI resource's instrumentation key)
+        // (replace the following value with your AI resource's instrumentation key)
         "instrumentationKey": "00000000-0000-0000-0000-000000000000"
     }
 ]
 ```
 
-Apportare modifiche di hello necessario toomake che nei filtri, nonché includere tutti gli altri input (insieme ai rispettivi pacchetti NuGet).
+Assicurarsi di apportare le modifiche necessarie nei filtri, nonché di includere altri input, insieme ai rispettivi pacchetti NuGet.
 
 ## <a name="aisdk"></a>AI.SDK
 
-Si consiglia in genere toouse EventFlow e WAD come soluzioni di aggregazione, perché consentono un toodiagnostics approccio più modulare e non monitoraggio, ad esempio se si desidera toochange l'output da EventFlow, richiede tooyour alcuna modifica effettiva strumentazione, solo un file di configurazione tooyour semplice modifica. Se, tuttavia, si decide tooinvest con Application Insights e non sono probabilmente toochange tooa altra piattaforma, è consigliabile esaminare tramite AI nuovo SDK per l'aggregazione degli eventi e inviarli tooAI. Ciò significa che non sarà più possibile tooconfigure EventFlow toosend tooAI i dati, ma invece installerà pacchetto NuGet di Service Fabric del ApplicationInsight hello. Sono disponibili informazioni dettagliate sul pacchetto hello [qui](https://github.com/Microsoft/ApplicationInsights-ServiceFabric).
+In genere è consigliabile usare EventFlow e WAD come soluzioni di aggregazione, in quanto consentono di usare un approccio più modulare alla diagnostica e al monitoraggio. Ad esempio se si desidera modificare l'output da EventFlow non sono necessarie modifiche alla strumentazione effettiva, ma solo una semplice modifica al file di configurazione. Se, tuttavia, si decide di investire nell'uso di Application Insights e non si desidera passare a un'altra piattaforma, è consigliabile eseguire un'analisi usando il nuovo SDK di AI per l'aggregazione di eventi e l'invio ad AI. Ciò significa che non è più necessario configurare EventFlow per l'invio di dati AI, ma si dovrà installare il pacchetto NuGet di Service Fabric di ApplicationInsight. I dettagli del pacchetto sono disponibili [qui](https://github.com/Microsoft/ApplicationInsights-ServiceFabric).
 
-[Application Insights il supporto per i contenitori e Microservizi](https://azure.microsoft.com/app-insights-microservices/) vengono mostrate alcune hello nuove funzionalità che si sta lavorando (ancora attualmente in versione beta), che consentono di toohave più ricco di dialogo Opzioni di monitoraggio con AI. Sono inclusi il rilevamento delle dipendenze (utilizzato nella creazione di un AppMap di tutti i servizi e applicazioni in un cluster e hello comunicazione fra di esse) e una migliore correlazione di tracce provenienti dai servizi (tal modo è possibile una migliore individuazione di un problema di hello flusso di lavoro di un'applicazione o servizio).
+[Supporto di Application Insights per microservizi e contenitori](https://azure.microsoft.com/app-insights-microservices/) descrive alcune delle nuove funzionalità su cui si sta lavorando, attualmente ancora in versione beta, che consentono di avere opzioni di monitoraggio con AI pronte all'uso più ricche. Sono inclusi il rilevamento delle dipendenze, usato nella creazione di un AppMap per tutti i servizi e le applicazioni in un cluster e nella comunicazione tra di essi, e una migliore correlazione delle tracce provenienti dai servizi che consente di conoscere meglio un problema nel flusso di lavoro di un'app o di un servizio.
 
-Se si sviluppa in .NET e verrà probabilmente usato alcuni dei modelli di programmazione dell'infrastruttura servizio e sono disposti toouse AI come piattaforma per la visualizzazione e analisi dei dati di evento e di log, si consiglia di utilizzare attraverso hello route AI SDK come il monitoraggio e flusso di lavoro di diagnostica. Lettura [questo](../application-insights/app-insights-asp-net-more.md) e [questo](../application-insights/app-insights-asp-net-trace-logs.md) tooget introduttive sull'utilizzo AI toocollect e visualizzare i log.
+Se si sviluppa in .NET e si intende usare alcuni modelli di programmazione di Service Fabric e AI come piattaforma per la visualizzazione e l'analisi dei dati dell'evento e del log, è consigliabile usare la route AI SDK come flusso di lavoro di monitoraggio e diagnostica. Lettura [questo articolo](../application-insights/app-insights-asp-net-more.md) e [questo argomento](../application-insights/app-insights-asp-net-trace-logs.md) per iniziare a usare AI per raccogliere e visualizzare i log.
 
-## <a name="navigating-hello-ai-resource-in-azure-portal"></a>Esplorazione della risorsa AI hello nel portale di Azure
+## <a name="navigating-the-ai-resource-in-azure-portal"></a>Spostamento della risorsa AI nel portale di Azure
 
-Dopo aver configurato AI come output per gli eventi e registri, informazioni devono avviare tooshow nella risorsa AI tra qualche minuto. Passare toohello AI risorsa alla quale avrà si toohello AI dashboard risorse. Fare clic su **ricerca** hello AI barra delle applicazioni toosee hello più recente tracce che ha ricevuto e toofilter in grado di toobe al loro interno.
+Dopo aver configurato AI come output per log ed eventi, le informazioni verranno visualizzate nella risorsa AI in pochi minuti. Passare alla risorsa AI, che consente di accedere al dashboard della risorsa AI. Fare clic su **Cerca** nella barra delle applicazioni per visualizzare le tracce più recenti ricevute e applicare un filtro.
 
-*Esplora metriche* è uno strumento utile per la creazione di dashboard personalizzati in base alle metriche che possono essere segnalate da applicazioni, servizi e cluster. Vedere [esplorazione metriche in Application Insights](../application-insights/app-insights-metrics-explorer.md) tooset backup alcuni grafici per se stessi in base ai dati di hello raccogliere.
+*Esplora metriche* è uno strumento utile per la creazione di dashboard personalizzati in base alle metriche che possono essere segnalate da applicazioni, servizi e cluster. Vedere [Esaminare le metriche in Application Insights](../application-insights/app-insights-metrics-explorer.md) per configurare alcuni grafici per se stessi in base ai dati raccolti.
 
-Fare clic su **Analitica** si passerà portale Application Insights Analitica toohello, in cui è possibile eseguire query eventi e le tracce con ambito e Facoltatività maggiori. Per altre informazioni su questo argomento leggere [Analytics in Application Insights](../application-insights/app-insights-analytics.md) (Analisi in Application Insights).
+Facendo clic su **Analisi** si aprirà il portale di Analisi di Application Insights, dove è possibile eseguire query di eventi e tracce con ambito e operazioni facoltative maggiori. Per altre informazioni su questo argomento leggere [Analytics in Application Insights](../application-insights/app-insights-analytics.md) (Analisi in Application Insights).
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* [Impostazione di avvisi in AI](../application-insights/app-insights-alerts.md) toobe informato delle modifiche nell'utilizzo o di prestazioni
-* [Rilevamento in Application Insights smart](../application-insights/app-insights-proactive-diagnostics.md) esegue un'analisi proattiva dei dati di telemetria hello inviati tooAI toowarn di potenziali problemi di prestazioni
+* [Configurare gli avvisi in AI](../application-insights/app-insights-alerts.md) per ricevere una notifica sulle modifiche apportate alle prestazioni o all'uso
+* [Rilevamento intelligente in Application Insights](../application-insights/app-insights-proactive-diagnostics.md) esegue un'analisi proattiva dei dati di telemetria che vengono inviati ad AI per avvisare l'utente in caso di potenziali problemi di prestazioni

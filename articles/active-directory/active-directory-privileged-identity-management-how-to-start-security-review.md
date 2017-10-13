@@ -1,6 +1,6 @@
 ---
-title: aaaHow toostart una revisione accesso | Documenti Microsoft
-description: "Informazioni su come toocreate esaminare un accesso per l'identità con privilegi con hello applicazione Azure Privileged Identity Management."
+title: Come iniziare una verifica dell'accesso | Microsoft Docs
+description: "Informazioni su come creare una verifica dell'accesso per le identità con privilegi con l'applicazione Azure Privileged Identity Management."
 services: active-directory
 documentationcenter: 
 author: billmath
@@ -15,69 +15,69 @@ ms.workload: identity
 ms.date: 05/04/2017
 ms.author: billmath
 ms.custom: pim
-ms.openlocfilehash: 24feac307f77c69b5d68d6ae0623dbcb52416b01
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 2b516e2f05aa883c5e37f5864e5ee8a2b37d3a46
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toostart-an-access-review-in-azure-ad-privileged-identity-management"></a>Come toostart esaminare un accesso in Azure AD Privileged Identity Management
-Le assegnazioni dei ruoli diventano "obsolete" quando gli utenti hanno accessi con privilegi di cui non necessitano più. Ordine tooreduce hello rischio associato a queste assegnazioni di ruolo non aggiornato, gli amministratori di ruolo con privilegi devono esaminare regolarmente ruoli hello che gli utenti sono stati assegnati. Questo documento descrive i passaggi di hello per l'avvio di una revisione dell'accesso in Azure AD Privileged Identity Management (PIM).
+# <a name="how-to-start-an-access-review-in-azure-ad-privileged-identity-management"></a>Come avviare una verifica dell'accesso in Azure AD Privileged Identity Management
+Le assegnazioni dei ruoli diventano "obsolete" quando gli utenti hanno accessi con privilegi di cui non necessitano più. Per ridurre il rischio associato alle assegnazioni dei ruoli obsolete, gli amministratori dei ruoli con privilegi devono esaminare periodicamente i ruoli assegnati agli utenti. Questo documento illustra i passaggi per l'avvio di una verifica dell'accesso in Azure AD Privileged Identity Management (PIM).
 
 ## <a name="start-an-access-review"></a>Avviare una verifica dell'accesso
 > [!NOTE]
-> Se non si aggiunti dashboard tooyour dell'applicazione di PIM hello in hello portale di Azure, vedere la procedura di hello in [Introduzione a Azure Privileged Identity Management](active-directory-privileged-identity-management-getting-started.md)
+> Se l'applicazione PIM non è stata aggiunta al dashboard nel portale di Azure, vedere i passaggi descritti in [Introduzione ad Azure AD Privileged Identity Management](active-directory-privileged-identity-management-getting-started.md)
 > 
 > 
 
-Dalla pagina principale dell'applicazione PIM hello, sono disponibili tre modi toostart una revisione di accesso:
+Nella pagina principale dell'applicazione PIM sono disponibili tre opzioni per avviare una verifica dell'accesso:
 
 * **Verifiche di accesso** > **Aggiungi**
 * **Ruoli** > **Verifica**
-* Rivisto toobe ruolo specifico hello selezionare dall'elenco di ruoli hello > **revisione** pulsante
+* Selezionare il ruolo specifico da verificare dall'elenco dei ruoli > **Verifica**
 
-Quando fa clic su hello **esaminare** pulsante hello **avviare una verifica di accesso** pannello viene visualizzato. In questo pannello, in corso la revisione di hello tooconfigure con un nome e limite di tempo, scegliere un ruolo tooreview e decidere che eseguirà la revisione di hello.
+Quando si fa clic sul pulsante **Verifica**, viene visualizzato il pannello **Inizia una verifica di accesso**. In questo pannello configurare la verifica assegnando un nome e un limite temporale, scegliere un ruolo da verificare e decidere chi eseguirà la verifica.
 
 ![Schermata Inizia una verifica di accesso][1]
 
-### <a name="configure-hello-review"></a>Configurare la revisione di hello
-esaminare un accesso toocreate, è necessario tooname e impostare una data di inizio e fine.
+### <a name="configure-the-review"></a>Configurare la verifica
+Per creare una verifica di accesso, è necessario assegnare un nome e impostare le date di inizio e di fine.
 
 ![Schermata di configurazione della verifica][2]
 
-Verificare che lunghezza hello di hello viene rivisto un tempo sufficiente per gli utenti toocomplete. Se termina prima della data di fine hello, è possibile arrestare sempre la revisione di hello in anticipo.
+Definire una durata della verifica che consenta agli utenti di completare l'operazione. Se la verifica termina prima della data di fine, è sempre possibile arrestare la verifica in anticipo.
 
-### <a name="choose-a-role-tooreview"></a>Scegliere un ruolo tooreview
-Ogni verifica è incentrata su un solo ruolo. A meno che non è stato avviato hello accesso revisione dal pannello ruolo specifico, è necessario ora toochoose un ruolo.
+### <a name="choose-a-role-to-review"></a>Scegliere un ruolo da verificare
+Ogni verifica è incentrata su un solo ruolo. A meno che non si abbia avviato la verifica di accesso dal pannello di un ruolo specifico, è ora necessario scegliere un ruolo.
 
-1. Passare troppo**esaminare l'appartenenza al ruolo**
+1. Passare a **Verifica l'appartenenza ai ruoli**
    
     ![Schermata Verifica l'appartenenza ai ruoli][3]
-2. Scegliere un ruolo dall'elenco di hello.
+2. Scegliere un ruolo dall'elenco.
 
-### <a name="decide-who-will-perform-hello-review"></a>Decidere chi eseguirà la revisione di hello
-Sono disponibili tre opzioni per l'esecuzione di una verifica. È possibile assegnare hello revisione toosomeone toocomplete altro, è possibile farlo manualmente oppure è possibile esaminare le proprie accesso avere ogni utente.
+### <a name="decide-who-will-perform-the-review"></a>Decidere chi eseguirà la verifica
+Sono disponibili tre opzioni per l'esecuzione di una verifica. La revisione può essere assegnata a un altro utente, essere eseguita personalmente oppure ogni utente può verificare il proprio accesso.
 
-1. Passare troppo**selezionare revisori**
+1. Passare a **Selezionare i revisori**
    
     ![Schermata Selezionare i revisori][4]
-2. Scegliere una delle opzioni di hello:
+2. Scegliere una delle opzioni disponibili:
    
-   * **Seleziona il revisore**: usare questa opzione quando non è noto chi abbia bisogno dell'accesso. Con questa opzione, è possibile assegnare proprietario della risorsa hello revisione tooa o toocomplete gestione gruppo.
-   * **Me**: utile se si desidera toopreview come accesso revisioni del lavoro o se si desidera tooreview per conto di utenti che non è possibile.
-   * **I membri esaminare stessi**: usare questa revisione agli utenti di opzione toohave hello assegnazioni di ruolo.
+   * **Seleziona il revisore**: usare questa opzione quando non è noto chi abbia bisogno dell'accesso. Con questa opzione è possibile assegnare l'esecuzione della revisione a un proprietario delle risorse o a un gestore del gruppo.
+   * **Me**(Io): utile se si vuole visualizzare in anteprima come funzionano le verifiche dell'accesso o se si vuole eseguire una verifica per conto di utenti che non possono eseguire questa operazione.
+   * **Members review themselves**(I membri verificano se stessi): usare questa opzione per fare in modo che gli utenti verifichino le proprie assegnazioni di ruoli.
 
-### <a name="start-hello-review"></a>Avviare hello revisione
-Infine, è necessario toorequire opzione hello agli utenti di fornire un motivo se approvare l'accesso. Se si desidera aggiungere una descrizione della revisione hello e selezionare **avviare**.
+### <a name="start-the-review"></a>Avviare la verifica
+Infine è disponibile l'opzione per richiedere agli utenti di fornire un motivo se approvano l'accesso. Se si vuole, aggiungere una descrizione della verifica e selezionare **Start**(Avvia).
 
-Assicurarsi che si consente agli utenti a indicare che una revisione accesso attenderne e visualizzarle [come tooperform un accesso esaminare](active-directory-privileged-identity-management-how-to-perform-security-review.md).
+È necessario informare gli utenti che è presente una verifica dell'accesso in attesa e illustrare [come eseguire una verifica dell'accesso](active-directory-privileged-identity-management-how-to-perform-security-review.md).
 
-## <a name="manage-hello-access-review"></a>Gestire hello accesso revisione
-È possibile monitorare lo stato di avanzamento hello come revisori hello completare le revisioni nel dashboard di Azure AD PIM hello, sezione esaminate in hello. Nessun diritto di accesso verrà modificato nella directory hello finché [revisione hello completa](active-directory-privileged-identity-management-how-to-complete-review.md).
+## <a name="manage-the-access-review"></a>Gestire la verifica di accesso
+È possibile tenere traccia dello stato di avanzamento delle verifiche eseguite dai revisori nella sezione Verifiche di accesso del dashboard di Azure AD PIM. Nessun diritto di accesso verrà modificato nella directory fino al [completamento della verifica](active-directory-privileged-identity-management-how-to-complete-review.md).
 
-Fino al periodo di revisione hello, è possibile tenere la revisione toocomplete gli utenti o arresto hello revisione tempestivamente dall'accesso di hello esamina sezione.
+Fino al termine del periodo di verifica, è possibile ricordare agli utenti di completare la verifica o arrestare la verifica in anticipo nella sezione Verifiche di accesso.
 
-<!--Every topic should have next steps and links toohello next logical set of content tookeep hello customer engaged-->
+<!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
 ## <a name="pim-table-of-contents"></a>Sommario PIM
 [!INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
 

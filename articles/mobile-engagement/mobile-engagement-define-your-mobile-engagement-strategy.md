@@ -1,6 +1,6 @@
 ---
-title: aaaDefine la strategia di Mobile Engagement | Documenti Microsoft
-description: Informazioni su come tooonboard e ottimizzare l'Engagement Mobile con analitica e notifiche push.
+title: Definire la strategia di Mobile Engagement | Documentazione Microsoft
+description: Informazioni su come implementare e ottimizzare Mobile Engagement con analisi e notifiche push.
 services: mobile-engagement
 documentationcenter: Mobile
 author: piyushjo
@@ -14,120 +14,120 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: afe32cb71019092eb28f2a8557404d60ad48ada4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: db68bd3ebf7efde1d23820445f07c83c8c27dc20
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="define-your-mobile-engagement-strategy"></a>Definire la strategia di Mobile Engagement
-*È stata scritta l'app per un motivo: toohave utenti usano!*
+*Le app vengono scritte per un motivo ben preciso: essere usate dagli utenti.*
 
-Riteniamo è certamente inserire un'eccellente gestire di toomake durante il lavoro richiesto è un'applicazione eccezionale amate dagli utenti verranno. Anche probabile investito una quantità significativa di marketing utenti tooacquire di budget. Ma solo dopo hello iniziale entusiasmanti massimo di utenti, è possibile visualizzarli lenta arrestare usando l'app. *Questa è la quali Azure Mobile Engagement!* : aggirando li toostick e consentono di tooincrementally migliorare l'app tramite test e altre.
+È certamente necessario molto impegno per riuscire a realizzare un'app di qualità che piaccia ai propri utenti. È anche probabile che sia stata investita una parte considerevole del budget di marketing disponibile per acquisire il maggior numero possibile di utenti. Ma, dopo un incoraggiante picco iniziale, è facile assistere a una graduale diminuzione degli utenti dell'app. *Mobile Engagement serve proprio a evitare queste situazioni*: con questo servizio, gli autori possono promuovere l'uso di app e migliorarne le funzionalità grazie a test e informazioni sull'utilizzo.
 
-L'utilizzo e memorizzazione di tooimproving approccio si basa sul coinvolgere gli utenti di app tramite le notifiche push e i messaggi In-app, ma in modo molto speciale, con i messaggi e comunicazioni adattata toothem, ogni secondo comportamento tootheir nell'app. L'obiettivo è toolet per comunicare con destinatari più adatti hello al momento giusto hello e la posizione destra hello.
+L'approccio Microsoft al miglioramento della fidelizzazione e dell'utilizzo si basa sulla stimolazione dell'interesse degli utenti dell'app con notifiche push e messaggi in-app, ma in modo del tutto speciale: i messaggi e le comunicazioni sono personalizzati e si basano sul comportamento degli utenti durante l'uso dell'app. L'obiettivo è abilitare la comunicazione con il pubblico desiderato nel luogo giusto e al momento opportuno.
 
-Ma a tale scopo, è necessario toostart con *informazioni agli utenti*, quindi creare gruppi in base a quanto avveniva o le caratteristiche (ossia il segmenti) e quindi creare segmento tooeach comunicazioni pertinenti.
+Per realizzare questo obiettivo, è necessario prima di tutto *comprendere le esigenze degli utenti*, quindi creare gruppi basati sulle loro azioni o caratteristiche (in questo caso si parla di segmenti) e infine creare comunicazioni appropriate per ogni segmento.
 
 ## <a name="mobile-engagement-serves-your-objectives"></a>Mobile Engagement al servizio degli obiettivi degli autori di app
 *Fidelizzazione e utilizzo: due concetti chiave*
 
 Lo sviluppo di una strategia di Mobile Engagement presuppone prima di tutto una valutazione degli obiettivi e degli indicatori di prestazioni chiave (KPI) dell'app.
 
-Per iniziare, definire gli obiettivi di hello e indicatori KPI che consentono di toodefine i casi di utilizzo engagement con prisma destra hello.
+La definizione di tali obiettivi e KPI aiuterà a esaminare i propri casi di utilizzo dalla giusta prospettiva.
 
-Casi d'uso sono un elenco semplice di campagne che si desidera toocommunicate toomake con gli utenti, compresi tra iniziale semplice hello, toohello molto avanzate notifica utilità attivata dal sistema IT. Un caso d'uso ben costruito deve includere almeno trio hello *simulazione-che, quando*:
+I casi di utilizzo consistono in un semplice elenco di campagne che si vorrebbero realizzare per comunicare con gli utenti e che possono spaziare da un semplice benvenuto fino a sofisticate utilità di notifica attivate dal proprio reparto IT. Un caso di utilizzo ben strutturato deve includere almeno tre elementi fondamentali, *cosa-chi-quando*:
 
 1. Una designazione molto breve (ad esempio una "Campagna di benvenuto").
-2. **Cosa**: un esempio di messaggio (ad esempio, "toohave lieti nell'onboarding. Ricordare toologin tooget il 1 ° mese gratuito! "). Questo messaggio è in alcun modo finale, che si sarà in grado di toochange ogni volta che si desidera, ma è in genere toostart considerare quali si desidera toosay.
-3. **Chi**: segmento hello che verrà visualizzato questo messaggio (ad esempio, "tutti gli utenti che ha avviato prima l'applicazione hello per hello ora 3 giorni fa, hanno visitato la pagina di accesso hello ma hanno non connesso-in").
+2. **Cosa**: un messaggio di esempio (come "Benvenuto! Ricorda di effettuare l'accesso per ottenere il tuo primo mese di uso gratuito."). Questo messaggio non è affatto definitivo e potrà essere modificato in qualsiasi momento, ma in genere è utile per iniziare a pensare a cosa dire.
+3. **Chi**: il segmento che riceverà questo messaggio (ad esempio "Tutti gli utenti che hanno avviato l'app per la prima volta tre giorni fa, hanno visitato la pagina di accesso ma non hanno eseguito l'accesso").
    * Con Azure Mobile Engagement ciò è molto facile.
-   * Nuovamente, non è necessario toobe finale come è possibile definire i segmenti in qualsiasi momento, ma è importante toodefine anticipata sul tooensure di criteri di segmentazione è raccogliere i dati di destra hello.
-4. **Quando**: intervallo hello della campagna. Può essere in una determinata data, in seguito all'esecuzione di un'azione specifica oppure in base a un trigger di attivazione. Engagement Mobile offre una quantità di tempo toorightly possibilità importante il meccanismo di comunicazione.
+   * Anche in questo caso, il segmento non deve necessariamente essere quello finale, perché è possibile definire i segmenti in qualsiasi momento, ma è importante definire il criterio di segmentazione nelle fasi iniziali per essere certi di raccogliere i dati corretti.
+4. **Quando**: il momento di attivazione della campagna. Può essere in una determinata data, in seguito all'esecuzione di un'azione specifica oppure in base a un trigger di attivazione. Mobile Engagement offre un numero notevole di possibilità per inviare le comunicazioni al momento giusto.
 
-Dopo avere definiti i casi d'uso e segmento, fornisce un riferimento toodefine hello di dati che devono essere raccolti all'interno di un'applicazione. Questo è il ruolo di hello di un *"piano tag"*. Un piano di tag consente di tooensure che è la raccolta dei dati hello specificato toohello sviluppatori. Di conseguenza, gli sviluppatori sono in grado di tooembed Mobile Engagement con hello a destra del programma di installazione per si toowork le campagne con dati di destra hello. Inoltre, sarà molto importante toorun test tooensure hello integration sia corretto e raccoglie le informazioni necessarie.
+Una volta definiti i casi di utilizzo, vengono fornite delle linee guida per definire i dati che dovranno essere raccolti all'interno dell'applicazione. Questo ruolo è affidato al cosiddetto *"piano di tag"*. Un piano di tag consente di fare in modo che la raccolta dei dati venga specificata agli sviluppatori. Questi ultimi possono pertanto incorporare Mobile Engagement con la giusta configurazione che consentirà di condurre le campagne usando le informazioni corrette. L'esecuzione dei test sarà anch'essa di estrema importanza per garantire la correttezza dell'integrazione e della raccolta dei dati necessari.
 
-In base a integrazione hello, una volta che le applicazioni sono pubblicate, come un esperti di marketing essere in grado di toosee l'analitica in tempo reale, segmentare i destinatari e quindi avviare toosend smart destinazione tooengage notifica push con gli utenti finali in o all'esterno dell'app hello.
+In base al livello di integrazione, una volta pubblicate le applicazioni, come addetti al marketing si sarà in grado di visualizzare dati analitici in tempo reale, segmentare i gruppi di destinatari e iniziare a inviare notifiche push intelligenti per coinvolgere gli utenti finali all'interno o all'esterno dell'app.
 
-### <a name="use-cases-tooget-started"></a>Casi d'uso tooget avviato
-1. Benvenuti strategia: creare diverse campagne di notifica push basate sul comportamento dell'utente finale hello all'avvio di hello dell'applicazione hello in ordine coinvolgere toore in D + 2/5/10/15 dopo hello prima sessione e l'aumento della prima esecuzione conservazione.
-2. Alzare di livello un nuovo contenuto (funzionalità, articolo e video o prodotto) basato sul comportamento di hello di hello dell'utente finale toosend hello informazioni solo tooend-utenti che sono tooengage più probabile.
-3. Frequenza applicazione hello: meno dell'1% dell'utente di base che probabilmente toorate hello app 5: stelle nell'archivio di hello di destinazione.
-4. Aumentare la priorità delle sottoscrizioni: alzare di livello contenuto prezioso tooend-gli utenti che non ne conosce ancora tooincrease sottoscrizione.
-5. Esercitazione: non più esercitazioni obbligatorie per tutti gli utenti. Compilazione perché non ottimale esercitazioni in-app e quindi trigger tramite i messaggi all'interno dell'applicazione solo se l'utente hello sembra utilizzare toonot hello app o ha difficoltà nell'utilizzare una funzionalità?
+### <a name="use-cases-to-get-started"></a>Casi di utilizzo per iniziare
+1. Strategia di benvenuto: creare varie campagne di notifica push in base al comportamento degli utenti finali durante il lancio dell'applicazione, in modo da riprendere contatto con loro dopo 2, 5, 10 o 15 giorni dalla prima sessione e aumentare la fidelizzazione dopo il primo utilizzo.
+2. Promuovere un nuovo contenuto (funzionalità, articolo/video o prodotto) in base al comportamento dell'utente finale, in modo da inviare le informazioni solo agli utenti finali che con ogni probabilità saranno più interessati.
+3. Valutare l'applicazione: rivolgersi a meno dell'1% della propria base utenti che con maggiore probabilità valuterà l'app con cinque stelle nello store.
+4. Aumentare le sottoscrizioni: promuovere contenuti utili per utenti finali che ancora non li conoscono allo scopo di aumentare il numero di sottoscrizioni.
+5. Esercitazione: non più esercitazioni obbligatorie per tutti gli utenti. Meglio realizzare utili esercitazioni in-app attivabili tramite messaggi in-app solo quando l'utente non sembra fare uso dell'app o sembra avere problemi con una funzionalità.
 
-## <a name="why-do-you-need-analytics-tooengage"></a>Motivo per cui occorre tooengage analitica
-Come si sarà già intuito, la semplice trasmissione di una notifica push non è sufficiente. concetti principali di Hello di Mobile Engagement sono toohelp marketing e sviluppatori coinvolgere con l'utente finale a destra di hello al momento giusto hello e, nella hello destra. tooknow questi tre concetti principali, è essenziale toogather analitica dall'applicazione e quindi utilizzarlo toosegment i destinatari. Questa pratica si rivela ancora più efficace quando i segmenti basati sul comportamento vengono abbinati a dati provenienti da altri database, sistemi CRM o canali incrociati. Engagement mobile consente il recupero dei dati da qualsiasi posizione e le Usa target tootarget hello.
+## <a name="why-do-you-need-analytics-to-engage"></a>Importanza dei dati analitici per coinvolgere gli utenti
+Come si sarà già intuito, la semplice trasmissione di una notifica push non è sufficiente. Il concetto centrale di Mobile Engagement è aiutare sviluppatori e addetti al marketing a coinvolgere l'utente finale appropriato, nel posto giusto e al momento opportuno. Per mettere in pratica questi tre elementi fondamentali è essenziale raccogliere dati analitici dalle proprie applicazioni e usarli per segmentare i destinatari. Questa pratica si rivela ancora più efficace quando i segmenti basati sul comportamento vengono abbinati a dati provenienti da altri database, sistemi CRM o canali incrociati. Mobile Engagement consente di recuperare dati da qualsiasi origine e di usarli per rivolgersi ai giusti destinatari.
 
-toobe hello più contestuali possibile quando i destinatari di impegno, è knowledge hello toohave fondamentale del comportamento degli utenti finali di hello, tooknow il relativo stato in tempo reale. Raccolta dei dati consente gli esperti di marketing toofocus effettivamente su cosa è importante tooplay casi d'uso e raggiungere gli obiettivi di strategia di mobile engagement. Raggiungimento degli obiettivi di hello in precedenza è anche hello motivo consigliata hello in realtà non toogather nulla e tutti gli elementi in analitica hello ma solo quelle che consentono di toofocus su ciò che si desidera toolearn e casi d'uso. Si tratta di hello efficace toostart, provare, testare e informazioni su come soluzione hello toouse e indirizzo smart notifica push e aumentare la conservazione di hello di toobring un'applicazione in un livello storia di successo.
+È quindi consigliabile essere il più contestuali possibile quando ci si rivolge alla propria utenza ed è fondamentale essere consapevoli del comportamento degli utenti finali per conoscerne lo stato in tempo reale. La raccolta dei dati consente agli addetti al marketing di concentrarsi su ciò che conta veramente per individuare i casi di utilizzo e raggiungere gli obiettivi della strategia di Mobile Engagement. Per raggiungere gli obiettivi definiti in precedenza, è anche necessario raccogliere solo i dati che permettono di concentrarsi su ciò che si vuole apprendere e sui casi di utilizzo e non tutti i dati delle analisi indistintamente. Questo è un buon inizio. Provare, testare e apprendere come usare la soluzione e indirizzare notifiche push intelligenti per aumentare la fedeltà degli utenti a un'applicazione portandola così al livello di un caso di successo.
 
 > [!NOTE]
-> Ricorda: Troppi dati termina dati hello!
+> Ricordare sempre che troppi dati sono controproducenti.
 > 
 > 
 
 ### <a name="use-cases-and-best-practices"></a>Casi di utilizzo e procedure consigliate
-In hello nelle sezioni seguenti verranno discussi brevemente alcuni principali casi d'uso che siamo giunti sotto tooget nostri clienti che è stato avviato.
+Nelle sezioni seguenti sono illustrati in breve alcuni casi di utilizzo principali rilevati tra i clienti Microsoft.
 
 #### <a name="media"></a>Contenuti multimediali
-Raccogliere tipo hello di contenuto che viene usato dall'utente finale di hello e quindi segmentare i destinatari hello in base a questo comportamento tootarget specifici tipi di contenuto pubblico tooan solo che saranno probabilmente tooconsume. Questo consente di evitare lo spamming nell'intera base utenti e garantisce un migliore assorbimento dell'utenza.
+Raccogliere dati sui tipi di contenuti che vengono utilizzati dagli utenti finali e quindi segmentare i destinatari in base a tale comportamento per indirizzare un tipo di contenuto specifico solo a quei destinatari che presentano maggiori probabilità di farne uso. Questo consente di evitare lo spamming nell'intera base utenti e garantisce un migliore assorbimento dell'utenza.
 
 #### <a name="m-commerce"></a>M-commerce
-Raccogliere le categorie di prodotti hello visitate più di toopromote di destinatari hello applicazione e di destinazione all'interno di uno sconto o nuovo prodotto in tale categoria hello dell'utente finale sarà probabilmente toopurchase. Mira tooboost ricavi. Obiettivo di hello non è nuovamente toospam!
+Raccogliere le categorie di prodotto più visitate all'interno dell'applicazione e selezionare i destinatari tra cui promuovere sconti o nuovi prodotti nelle categorie in cui è più probabile che l'utente finale completi un acquisto. Puntare all'aumento dei ricavi. Anche qui, l'obiettivo è evitare lo spamming.
 
 #### <a name="gaming"></a>Giochi
-Raccogliere livello hello di gioco per un utente finale e hello il tempo impiegato in un gruppo di destinatari hello tootarget periodo specificato che può essere bloccata e sarebbe probabilmente toojump tooa accanto livello con un'offerta premi di produttività.
+Raccogliere dati sul livello di gioco di un utente finale e sul tempo di gioco trascorso in un determinato periodo per rivolgersi ai destinatari che potrebbero essere bloccati e che passerebbero volentieri a un livello successivo con un'offerta bonus.
 
-Con un toothose incentivi di utenti che hanno non riprodotto per alcuni tooencourage tootry ora li tooreturn di segnalare eventi specifici.
+Comunicare eventi specifici, incentivando gli utenti che non giocano più da un certo periodo di tempo, per invogliarli a tornare.
 
 #### <a name="retail"></a>Vendita al dettaglio
-Raccogliere i prodotti hello o marchi che un gruppo di destinatari deve essere tooconsume più probabile, basato sulle Preferiti o comportamento e ricavi di acquisto di unità hello destinatari tooyour archivio tooincrease.
+Raccogliere dati su prodotti o marche che un certo gruppo di destinatari potrebbe consumare con maggiore probabilità, in base alle preferenze e ai comportamenti, e indirizzare gli utenti ai punti vendita con l'obiettivo di incrementare i ricavi sugli acquisti.
 
 #### <a name="banking"></a>Banking
-Raccogliere i dati degli utenti finali che ha creato un account al primo avvio di hello di un'applicazione hello. Puntare toodeploy una strategia di iniziale con una notifica push di destinazione e aumentare il numero di hello di sottoscrizioni dell'account.
+Raccogliere dati degli utenti finali che hanno creato un account al primo avvio dell'applicazione. Puntare all'implementazione di una strategia di benvenuto con una notifica push mirata e all'aumento del numero di sottoscrizioni di account.
 
-### <a name="how-toocreate-a-great-tag-plan"></a>Come pianificare un tag grande toocreate?
-Un piano di tag deve essere ad esempio una descrizione del percorso di hello utente o un tipo di flusso di lavoro dell'applicazione hello, fornendo tutti hello tag necessari (dati) che devono essere raccolti toohave sufficiente un comportamento utente toounderstand analitica e correttamente segmento hello all'utente. Non si tratta di un processo tecnico. Marketing è pertanto in grado di toospecify dei dati hello da toocollect in base a una strategia di Mobile Engagement.
+### <a name="how-to-create-a-great-tag-plan"></a>Come creare un buon piano di tag
+Un piano di tag deve essere come una descrizione del percorso dell'utente o una sorta di flusso di lavoro dell'applicazione che permetta di raccogliere tutti i tag (dati) necessari e di avere le informazioni analitiche necessarie per capire i comportamenti e segmentare opportunamente la base utenti. Non si tratta di un processo tecnico. Di conseguenza, gli addetti al marketing sono in grado di specificare i dati da raccogliere sulla base della propria strategia di Mobile Engagement.
 
-Hello minimo tootag di è almeno tutte le schermate hello (chiamato *attività* in Engagement Mobile) di un'applicazione. Ciò consente di determinare l'utente hello-path.
+In un piano di tag è necessario come minimo includere tutte le schermate (dette *attività* in Mobile Engagement) di un'applicazione. In questo modo è possibile determinare il percorso dell'utente.
 
-Un'attività può incorporare *eventi* che raccolgono informazioni relative ad azioni come il clic su un pulsante. Consente la raccolta hello di interazioni all'interno di un'applicazione hello. Di conseguenza, gli esperti di marketing sono in grado di tooknow degli utenti a cui schermata sono visita la pagina e le rispettive attività.
+Un'attività può incorporare *eventi* che raccolgono informazioni relative ad azioni come il clic su un pulsante. Ciò consente la raccolta dei dati di interazione all'interno dell'applicazione. Di conseguenza, gli addetti al marketing possono sapere quali schermate vengono visitate dagli utenti e quali azioni eseguono questi ultimi in tali schermate.
 
-`Jobs` sono azioni con una durata. È molto utile per esperti di marketing toounderstand il tempo necessario per un utente toocreate un account o toologin per l'istanza. Questo potrebbe essere utile anche per gli sviluppatori toomonitor il tempo necessario toocall un servizio web.
+`Jobs` sono azioni con una durata. Si tratta di elementi particolarmente utili per gli addetti al marketing, perché consentono loro di comprendere, ad esempio, il tempo impiegato da un utente per creare un account o per eseguire l'accesso. Ciò potrebbe risultare utile anche per gli sviluppatori che vogliono monitorare il tempo necessario per chiamare un servizio Web.
 
-`Errors`può essere monitorato tooknow anche se gli utenti hanno problemi nell'app. Ad esempio, potrebbero sperimentare frequenti problemi di connessione.
+`Errors` per sapere se gli utenti riscontrano problemi con l'app. Ad esempio, potrebbero sperimentare frequenti problemi di connessione.
 
-Tutti di questo tipo di dati possono essere integrati con parametri (*extra informazioni* in Engagement Mobile) consentono di toogather dati dinamici da un'applicazione hello. Questo è importante tooallow accurato segmentazione. Ad esempio, gli esperti di marketing possibile segmentare un utente in base al tipo di hello del contenuto che è stata utilizzata. tipo di Hello del contenuto sarà informazioni dinamiche di hello di un'attività o un evento.
+Tutti questi tipi di dati possono essere estesi con parametri (*informazioni aggiuntive* in Mobile Engagement), in modo da raccogliere dati dinamici dall'applicazione. Si tratta di un aspetto importante per consentire una segmentazione con granularità fine. Gli addetti al marketing potrebbero ad esempio segmentare gli utenti in base al tipo di contenuto utilizzato. Il tipo di contenuto sarà costituito dalle informazioni dinamiche di un'attività o un evento.
 
-*Informazioni sull'app* dati che consente lo stato di hello tooconfirm di un'applicazione hello o di utente hello in tempo reale. Anche consente toocategorize una base di destinatari e definire la destinazione rapidamente. Ad esempio, è possibile utilizzare lo stato true o false se utente hello accesso viene eseguito o non o la data di scadenza della sottoscrizione.
+*informazioni sull'app* sono dati che consentono di conoscere in tempo reale lo stato dell'applicazione o dell'utente. Questi consentono anche di categorizzare una base di destinatari e di selezionarli velocemente. Ad esempio, è possibile usare uno stato true/false per indicare se l'utente esegue o meno l'accesso oppure la data di scadenza della sottoscrizione.
 
 #### <a name="example-of-tags"></a>Esempio di tag
-*Casi di utilizzo: Segmento destinatari comportamento tootarget hello destra dell'utente finale con contenuto di notifica push destra hello*
+*Caso di utilizzo: segmentare il comportamento dei destinatari per indirizzare all'utente finale idoneo notifiche push con contenuto appropriato*
 
-1. Inviare toopromote notifica push di una categoria di prodotto: raccogliere i destinatari di toosegment dati comportamento in base alla categoria di hello del prodotto che hanno visitato x volte in un periodo specifico o un elemento specifico che hanno aggiunto in un carrello. dati Hello raccolti verranno consentono toosegment e quindi inviare un pubblico di destra toohello di notifica push.
-2. Frequenza hello app: raccogliere i dati in base al contenuto hello condiviso per gli utenti di hello in un social network. Mira destinatari hello toosegment determinando hello *ambasciatori* dell'app. Usando una notifica push-app, ambasciatori hello sono pubblico migliore hello il toorate tooask app app 5 stelle nell'archivio di hello.
+1. Inviare notifiche push per promuovere una categoria di prodotti: raccogliere dati di comportamento per segmentare i destinatari in base alla categoria di prodotti visitata X volte in un determinato periodo o in base a un articolo specifico aggiunto a un carrello. I dati raccolti consentiranno la segmentazione e quindi l'invio di notifiche push ai destinatari appropriati.
+2. Valutare l'app: raccogliere dati in base al contenuto condiviso dagli utenti nei social network. Lo scopo è quello di segmentare i destinatari determinando gli *ambasciatori* dell'app. Tali utenti sono i migliori destinatari a cui chiedere, tramite una notifica push in-app, di valutare l'app con cinque stelle nello store.
    
    ![][1]
 
 *Caso di utilizzo: dati dichiarativi*
 
-1. Segmento avviso notizie: raccogliere i destinatari toosegment dichiarativa di dati in base alle proprie preferenze. Consente di inviare notifiche push su un argomento specifico di particolare interesse per un determinato gruppo di destinatari.
-2. Segmentare i destinatari in base allo stato di accesso. Raccogliere dati tooknow se un utente è connesso o ha creato un account. Consente agli utenti finali di destinazione che non sono ancora connessi e invia un tooconvert di dati gestito dall'utente tooencourage notifica push.
+1. Avvisi di novità da inviare ai segmenti: raccogliere dati dichiarativi per segmentare i destinatari in base alle loro preferenze. Consente di inviare notifiche push su un argomento specifico di particolare interesse per un determinato gruppo di destinatari.
+2. Segmentare i destinatari in base allo stato di accesso. Raccogliere dati per sapere se un utente è connesso o se ha creato un account. Consente di individuare gli utenti finali che non hanno ancora eseguito l'accesso e inviare loro una notifica push per convincerli a registrarsi.
    ![][2]
 
 ### <a name="next-steps"></a>Passaggi successivi
-* Visitare [concetti Engagement Mobile] toolearn informazioni sui concetti di base Mobile Engagement.
-* Visitare [creare un'App di Mobile Engagement](mobile-engagement-create.md) toocreate una nuova raccolta di App Mobile Engagement in Azure e avviare la gestione delle applicazioni con il portale Mobile Engagement hello.
-* Visitare [consigliate](mobile-engagement-getting-started-best-practices.md) toogo i dettagli.
-* Visitare [uno scenario di gioco App](mobile-engagement-gaming-scenario.md) toolearn sull'implementazione di Mobile Engagement con un'applicazione di esempio di gioco. 
-* Visitare [uno scenario di un'App multimediale](mobile-engagement-media-scenario.md) toolearn sull'implementazione di Mobile Engagement con un'app multimediale di esempio. 
-* Visitare [esercitazioni] toolearn ulteriori informazioni sull'implementazione di hello.
+* Per altre informazioni sui concetti di base di Mobile Engagement, vedere [Concetti relativi a Mobile Engagement] .
+* Vedere [Creare un'app Azure Mobile Engagement](mobile-engagement-create.md) per creare una nuova Raccolta di app di Mobile Engagement in Azure e iniziare a gestire le app tramite il portale di Mobile Engagement.
+* Per altre informazioni, vedere [Procedure consigliate](mobile-engagement-getting-started-best-practices.md) .
+* Per informazioni sull'implementazione di Mobile Engagement con un'app di gioco di esempio, vedere [uno scenario di app di gioco](mobile-engagement-gaming-scenario.md) . 
+* Per informazioni sull'implementazione di Mobile Engagement con un'app multimediale di esempio, vedere [uno scenario di app multimediale](mobile-engagement-media-scenario.md) . 
+* Per altre informazioni sull'implementazione, vedere la pagina [Esercitazioni] .
 
 <!-- Images. -->
 [1]: ./media/mobile-engagement-define-your-mobile-engagement-strategy/use-case1.png
 [2]: ./media/mobile-engagement-define-your-mobile-engagement-strategy/use-case2.png
 
 <!-- URLs. -->
-[concetti Engagement Mobile]: http://azure.microsoft.com/documentation/articles/mobile-engagement-concepts/
-[esercitazioni]: http://azure.microsoft.com/documentation/articles/mobile-engagement-ios-get-started/
+[Concetti relativi a Mobile Engagement]: http://azure.microsoft.com/documentation/articles/mobile-engagement-concepts/
+[Esercitazioni]: http://azure.microsoft.com/documentation/articles/mobile-engagement-ios-get-started/
 

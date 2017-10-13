@@ -1,6 +1,6 @@
 ---
-title: aaaOverview di metriche in Microsoft Azure | Documenti Microsoft
-description: Informazioni su come toocustomize monitoraggio grafici in Azure.
+title: Panoramica delle metriche in Microsoft Azure | Microsoft Docs
+description: Informazioni su come personalizzare i grafici di monitoraggio in Azure.
 author: rboucher
 manager: carmonm
 editor: 
@@ -14,57 +14,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/06/2017
 ms.author: robb
-ms.openlocfilehash: 4196b2e9bda713e9a0abc349eed78685abcaf194
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3f9ebb0f5737714dd685f0dcc1ff4b1c0c89528f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="overview-of-metrics-in-microsoft-azure"></a>Panoramica delle metriche in Microsoft Azure
-Tutti i servizi di Azure di tenere traccia delle metriche chiave che consentono di integrità hello toomonitor, prestazioni, disponibilità e utilizzo dei servizi. È possibile visualizzare queste metriche nel portale di Azure hello ed è anche possibile usare hello [API REST](https://msdn.microsoft.com/library/azure/dn931930.aspx) o [.NET SDK](http://www.nuget.org/packages/Microsoft.Azure.Management.Monitor) tooaccess hello set completo di metriche a livello di codice.
+Tutti i servizi di Azure tengono traccia delle metriche chiave che consentono di monitorare l'integrità, le prestazioni, la disponibilità e l'utilizzo dei dispositivi. È possibile visualizzare queste metriche nel portale di Azure e usare l'[API REST](https://msdn.microsoft.com/library/azure/dn931930.aspx) o [.NET SDK](http://www.nuget.org/packages/Microsoft.Azure.Management.Monitor) per accedere al set completo di metriche a livello di codice.
 
-Per alcuni servizi, potrebbe essere necessario tooturn sulla diagnostica in ordine toosee delle metriche. Per altri utenti, ad esempio macchine virtuali, si otterrà un set di metriche di base, ma necessario tooenable hello set completo di metriche di ad alta frequenza. Vedere [attivazione del monitoraggio e diagnostica](insights-how-to-use-diagnostics.md) toolearn altre.
+Per alcuni servizi, potrebbe essere necessario attivare la diagnostica per visualizzare le metriche. Per altri, ad esempio le macchine virtuali, si otterrà un set di metriche di base, ma sarà necessario abilitare le metriche ad alta frequenza del set completo. Per altre informazioni, vedere [Abilitare il monitoraggio e la diagnostica](insights-how-to-use-diagnostics.md) .
 
 ## <a name="using-monitoring-charts"></a>Uso di grafici di monitoraggio
-È possibile grafico delle metriche hello usarle in qualsiasi periodo di tempo scelto.
+È possibile rappresentare in un grafico qualsiasi metrica in un periodo di tempo scelto.
 
-1. In hello [portale Azure](https://portal.azure.com/), fare clic su **Sfoglia**, e quindi una risorsa si desidera monitorare.
-2. Hello **monitoraggio** sezione contiene le metriche più importanti di hello per ogni risorsa di Azure. Ad esempio, un'app Web contiene **Richieste ed errori**, mentre una macchina virtuale includerebbe **Percentuale CPU** e **Lettura e scrittura disco**: ![Sezione Monitoraggio](./media/insights-how-to-customize-monitoring/Insights_MonitoringChart.png)
-3. Facendo clic su qualsiasi grafico mostrerà hello **metrica** blade. Nel pannello hello inoltre toohello grafico, è una tabella che mostra le aggregazioni di metriche di hello (ad esempio Media, minimo e massimo, in intervallo di tempo hello scelto). Di seguito che è hello le regole di avviso per la risorsa hello.
+1. Nel [portale di Azure](https://portal.azure.com/)fare clic su **Sfoglia**e quindi su una risorsa che si intende monitorare.
+2. La sezione **Monitoraggio** include le metriche più importanti per ogni risorsa di Azure. Ad esempio, un'app Web contiene **Richieste ed errori**, mentre una macchina virtuale includerebbe **Percentuale CPU** e **Lettura e scrittura disco**: ![Sezione Monitoraggio](./media/insights-how-to-customize-monitoring/Insights_MonitoringChart.png)
+3. Facendo clic su un grafico qualsiasi viene visualizzato il pannello **Metrica** . Nel pannello, oltre al grafico, c'è una tabella che mostra le aggregazioni delle metriche (ad esempio, valore medio, minimo e massimo per l'intervallo di tempo scelto). Sotto si trovano le regole di avviso per la risorsa.
     ![Pannello Metrica](./media/insights-how-to-customize-monitoring/Insights_MetricBlade.png)
-4. linee di hello toocustomize visualizzate, fare clic su hello **modifica** pulsante grafico hello o hello **Modifica grafico** comando blade metriche hello.
-5. Nel Pannello di modifica Query hello è possibile eseguire tre operazioni:
+4. Per personalizzare le righe visualizzate, fare clic sul pulsante **Modifica** nel grafico o sul comando **Modifica grafico** nel pannello Metrica.
+5. Nel pannello Modifica query è possibile effettuare tre tipi di azione:
    
-   * Modificare l'intervallo di tempo hello
-   * Cambiare l'aspetto di hello tra barra e linea
+   * Modificare l'intervallo di tempo
+   * Passare dal grafico a barre al grafico a linee
    * Scegliere metriche diverse ![Modifica query](./media/insights-how-to-customize-monitoring/Insights_EditQuery.png)
-6. Modifica intervallo di tempo hello è sufficiente selezionare un intervallo diverso (ad esempio **ora precedente**) e fare clic su **salvare** nella parte inferiore di hello del pannello hello. È anche possibile scegliere **personalizzata**, che consente di toochoose qualsiasi periodo di tempo su hello ultime 2 settimane. Ad esempio, è possibile visualizzare hello interi due settimane o, semplicemente 1 ora da ieri. Digitare un altro in tooenter casella di testo hello ora.
+6. Per modificare l'intervallo di tempo è sufficiente scegliere un intervallo diverso (ad esempio **ora precedente**) e fare clic su **Salva** nella parte inferiore del pannello. Si può anche scegliere **Personalizzato**, che consente di scegliere un periodo di tempo qualsiasi nelle ultime due settimane. Ad esempio, è possibile visualizzare le due settimane intere o solo un'ora del giorno precedente. Digitare l'orario diverso nella casella di testo.
     ![Intervallo di tempo personalizzato](./media/insights-how-to-customize-monitoring/Insights_CustomTime.png)
-7. Sotto l'intervallo di tempo hello, il canale è scegliere un numero qualsiasi di tooshow metriche sul grafico hello.
-8. Quando si fa clic su Salva, verranno salvate le modifiche per quella specifica risorsa. Ad esempio, se si dispone di due macchine virtuali e si modifica un grafico in una, non influirà sugli altri hello.
+7. Sotto l'intervallo di tempo è possibile scegliere un numero qualsiasi di metriche da visualizzare nel grafico.
+8. Quando si fa clic su Salva, verranno salvate le modifiche per quella specifica risorsa. Ad esempio, se si dispone di due macchine virtuali e si modifica un grafico in una, l'altra non ne risentirà.
 
 ## <a name="creating-side-by-side-charts"></a>Creazione di grafici affiancati
-Con personalizzate nel portale di hello hello è possibile aggiungere il numero di grafici desiderato.
+Con la personalizzazione avanzata del portale è possibile aggiungere tutti i grafici che si vuole.
 
-1. In hello **...**  menu nella parte superiore di hello di fare clic su Pannello hello **aggiungere riquadri**:  
+1. Nel menu **...** nella parte superiore del pannello fare clic su **Aggiungi riquadri**:  
     ![Menu di aggiunta](./media/insights-how-to-customize-monitoring/Insights_AddMenu.png)
-2. Quindi, è possibile selezionare un grafico da hello **raccolta** hello destra dello schermo: ![raccolta](./media/insights-how-to-customize-monitoring/Insights_Gallery.png)
-3. Se non viene visualizzato metriche hello desiderate, è sempre possibile aggiungere uno di hello preimpostato, metriche e **modifica** hello metrica di hello tooshow grafico che è necessario.
+2. È quindi possibile selezionare un grafico nella **Raccolta** a destra dello schermo: ![Raccolta](./media/insights-how-to-customize-monitoring/Insights_Gallery.png)
+3. Se la metrica desiderata non è visibile, è sempre possibile aggiungere una delle metriche preimpostate e fare cli su **Modifica** per visualizzare nel grafico la metrica necessaria.
 
 ## <a name="monitoring-usage-quotas"></a>Monitoraggio delle quote di utilizzo
 La maggior parte delle metriche mostrano le tendenze nel tempo, ma alcuni dati, come le quote di utilizzo, sono informazioni temporizzate con una soglia.
 
-È inoltre possibile visualizzare le quote di utilizzo nel Pannello di hello per le risorse che dispone di quote:
+È inoltre possibile visualizzare le quote di utilizzo nel pannello per le risorse per cui sono previste quote:
 
 ![Utilizzo](./media/insights-how-to-customize-monitoring/Insights_UsageChart.png)
 
-Come con le metriche, è possibile utilizzare hello [API REST](https://msdn.microsoft.com/library/azure/dn931963.aspx) o [.NET SDK](http://www.nuget.org/packages/Microsoft.Azure.Management.Monitor) tooaccess hello set completo di quote di utilizzo a livello di codice.
+Come per le metriche, è possibile usare l'[API REST](https://msdn.microsoft.com/library/azure/dn931963.aspx) o [.NET SDK](http://www.nuget.org/packages/Microsoft.Azure.Management.Monitor) per accedere a livello di codice al set completo di quote di utilizzo.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * [Ricevere notifiche di avviso](insights-receive-alert-notifications.md) ogni volta che una metrica supera una soglia.
-* [Attivazione del monitoraggio e diagnostica](insights-how-to-use-diagnostics.md) toocollect dettagliate ad alta frequenza metriche sul servizio.
-* [Ridimensionamento automatico di conteggio delle istanze](insights-how-to-scale.md) toomake che il servizio sia disponibile e reattiva.
-* [Monitorare le prestazioni dell'applicazione](../application-insights/app-insights-azure-web-apps.md) se si desidera toounderstand esattamente come il codice viene eseguito nel cloud hello.
-* Utilizzare [Application Insights per le app JavaScript e pagine web](../application-insights/app-insights-web-track-usage.md) analitica client tooget sui browser hello che visita una pagina web.
+* [Abilitare il monitoraggio e la diagnostica](insights-how-to-use-diagnostics.md) per raccogliere metriche dettagliate e ad alta frequenza sul servizio.
+* [Scalare automaticamente il numero di istanze](insights-how-to-scale.md) per assicurarsi che il servizio sia disponibile e reattivo.
+* [Monitorare le prestazioni dell'applicazione](../application-insights/app-insights-azure-web-apps.md) se si desidera comprendere esattamente il comportamento del codice nel cloud.
+* Usare [Application Insights per app JavaScript e pagine Web](../application-insights/app-insights-web-track-usage.md) per ottenere l'analisi client sui browser che visitano una pagina Web.
 * [Monitorare la disponibilità e i tempi di risposta di qualsiasi pagina Web](../application-insights/app-insights-monitor-web-app-availability.md) con Application Insights per definire se la pagina è inattiva.
 

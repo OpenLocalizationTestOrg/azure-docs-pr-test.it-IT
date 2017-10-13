@@ -1,6 +1,6 @@
 ---
-title: aaaConfigure LVM in una macchina virtuale che esegue Linux | Documenti Microsoft
-description: Informazioni su come tooconfigure LVM su Linux in Azure.
+title: Configurare LVM in una macchina virtuale che esegue Linux | Microsoft Docs
+description: Informazioni su come configurare LVM su Linux in Azure.
 services: virtual-machines-linux
 documentationcenter: na
 author: szarkos
@@ -15,24 +15,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/02/2017
 ms.author: szark
-ms.openlocfilehash: 8daf792d87c6bb3d91a2eddcd01cfab34fd28cff
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7926627aaa3f0da935131f491d927ab5cb4b35c9
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="configure-lvm-on-a-linux-vm-in-azure"></a>Configurare LVM in una macchina virtuale Linux in Azure
-Questo documento verrà illustrate le modalità tooconfigure Manager di Volume logico (LVM) nella macchina virtuale di Azure. Sebbene sia possibile tooconfigure che LVM in qualsiasi disco collegato toohello macchina virtuale, per impostazione predefinita cloud la maggior parte delle immagini non avrà LVM configurato su hello disco del sistema operativo. Si tratta di problemi tooprevent con gruppi di volumi duplicati se hello disco del sistema operativo è sempre collegata tooanother VM di hello stessa distribuzione e il tipo, ad esempio durante uno scenario di ripristino. Pertanto è consigliabile solo nei dischi dati hello toouse LVM.
+Questo documento illustra come configurare il gestore dei volumi logici (Logical Volume Manager, LVM) nella macchina virtuale di Azure. Sebbene sia possibile configurare una LVM su qualsiasi disco collegato alla macchina virtuale, per impostazione predefinita la maggior parte delle immagini di cloud non avrà alcuna LVM configurata sul disco del sistema operativo. Questa impostazione consente di evitare problemi con i gruppi di volumi duplicati se il disco del sistema operativo viene collegato a un'altra macchina virtuale dello stesso tipo e della stessa distribuzione, ad esempio durante uno scenario di ripristino. Pertanto è consigliabile usare la LVM solo sui dischi dati.
 
 ## <a name="linear-vs-striped-logical-volumes"></a>Volumi lineari e volumi con striping logici
-LVM può essere utilizzato toocombine un numero di dischi fisici in un singolo volume di archiviazione. Per impostazione predefinita LVM in genere creerà i volumi logici lineari, il che significa che l'archiviazione fisica hello è concatenato. In questo caso le operazioni di lettura/scrittura in genere solo riceverà tooa singolo disco. Al contrario, è possibile creare anche i volumi con striping logici in cui le letture e scritture sono dischi toomultiple distribuita contenuti nel gruppo di volumi hello (vale a dire tooRAID0 simile). Per motivi di prestazioni, che è probabile che si desidererà toostripe i volumi logici in modo che le letture e scritture utilizzano tutti i dischi dati collegati.
+La LVM può essere usata per combinare un numero di dischi fisici in un unico volume di archiviazione. Per impostazione predefinita la LVM crea generalmente volumi logici lineari, il che significa che l'archiviazione fisica è concatenata. In questo caso, le operazioni di lettura/scrittura sono in genere inviate solo a un singolo disco. Al contrario, è anche possibile creare volumi logici con striping in cui le operazioni di lettura e scrittura sono distribuite in più dischi contenuti nel gruppo di volumi, ad esempio simile a RAID0. Per motivi di prestazioni è probabile che si debba eseguire lo striping dei volumi logici in modo che le letture e le scritture usino tutti i dischi dati associati.
 
-Questo documento descrive come toocombine dischi di dati diversi in un singolo gruppo di volumi e quindi creare un volume logico con striping. passaggi Hello riportati di seguito sono in qualche modo generalizzato toowork con la maggior parte delle distribuzioni. In hello casi la maggior parte delle utilità e flussi di lavoro per la gestione LVM in Azure non sono fondamentalmente diversi da quello di altri ambienti. Come sempre, consultare anche il fornitore Linux per la documentazione e le procedure consigliate per l'uso delle LVM con una distribuzione particolare.
+In questo documento viene descritto come combinare più dischi dati in un singolo gruppo di volumi e quindi creare un volume con striping logici. I passaggi seguenti sono generalizzati per funzionare con la maggior parte delle distribuzioni. Nella maggior parte dei casi le utilità e i flussi di lavoro per la gestione di LVM in Azure non sono fondamentalmente diversi da altri ambienti. Come sempre, consultare anche il fornitore Linux per la documentazione e le procedure consigliate per l'uso delle LVM con una distribuzione particolare.
 
 ## <a name="attaching-data-disks"></a>Collegamento di dischi dati
-Quando si utilizza LVM uno in genere consigliabile toostart con due o più dischi dati vuoti. In base alle proprie esigenze dei / o, è possibile scegliere tooattach dischi che vengono archiviati nel nostro servizio di archiviazione Standard, con backup too500 IO/ps per ogni disco o l'archiviazione Premium con backup too5000 IO/ps per ogni disco. In questo articolo non entra in dettaglio sul tooprovision e collegare la macchina virtuale dati dischi tooa Linux. Vedere articolo di Microsoft Azure hello [collegare un disco](add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) per istruzioni dettagliate su come tooattach dati vuoti di un disco di macchina virtuale di Linux tooa in Azure.
+In genere si preferisce iniziare con due o più dischi dati vuoti quando si usano le LVM. In base alle esigenze di I/O, è possibile scegliere di collegare dischi che sono archiviati nell'archiviazione Standard con un massimo di 500 IO/ps per ogni disco o nell'archiviazione Premium con un massimo di 5.000 IO/ps per ogni disco. In questo articolo non verrà illustrato in dettaglio come eseguire il provisioning e collegare dischi dati a una macchina virtuale Linux. Per istruzioni dettagliate su come collegare un disco dati vuoto a una macchina virtuale Linux in Azure, vedere l'articolo di Microsoft Azure relativo al [collegamento di dischi](add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
-## <a name="install-hello-lvm-utilities"></a>Installare utilità LVM hello
+## <a name="install-the-lvm-utilities"></a>Installare le utilità della LVM
 * **Ubuntu**
 
     ```bash  
@@ -58,16 +58,16 @@ Quando si utilizza LVM uno in genere consigliabile toostart con due o più disch
     sudo zypper install lvm2
     ```
 
-    In SLES11 è inoltre necessario modificare `/etc/sysconfig/lvm` e impostare `LVM_ACTIVATED_ON_DISCOVERED` troppo "Abilita":
+    In SLES11 è anche necessario modificare `/etc/sysconfig/lvm` e impostare `LVM_ACTIVATED_ON_DISCOVERED` su "attivo":
 
     ```sh   
     LVM_ACTIVATED_ON_DISCOVERED="enable" 
     ```
 
 ## <a name="configure-lvm"></a>Configurare la LVM
-In questa guida si presuppone che è stato collegato a tre dischi dati, che si farà riferimento tooas `/dev/sdc`, `/dev/sdd` e `/dev/sde`. Si noti che questi potrebbe non essere sempre hello stessi nomi di percorso nella macchina virtuale. È possibile eseguire '`sudo fdisk -l`' simile toolist di comando o i dischi disponibili.
+In questa guida si presuppone che siano stati connessi tre dischi dati, che vengono indicati come `/dev/sdc`, `/dev/sdd` e `/dev/sde`. Si noti che questi nomi di percorso potrebbero non essere sempre gli stessi nella VM. È possibile eseguire`sudo fdisk -l`o un comando simile per elencare i dischi disponibili.
 
-1. Preparare volumi fisici hello:
+1. Preparare i volumi fisici:
 
     ```bash    
     sudo pvcreate /dev/sd[cde]
@@ -76,40 +76,40 @@ In questa guida si presuppone che è stato collegato a tre dischi dati, che si f
     Physical volume "/dev/sde" successfully created
     ```
 
-2. Creare un gruppo di volumi. In questo esempio stiamo chiamando il gruppo di volumi hello `data-vg01`:
+2. Creare un gruppo di volumi. In questo esempio il nome del gruppo di volumi è `data-vg01`:
 
     ```bash    
     sudo vgcreate data-vg01 /dev/sd[cde]
     Volume group "data-vg01" successfully created
     ```
 
-3. Creare volumi logici hello. Hello comando seguente si creerà un singolo volume logico chiamato `data-lv01` intero volume di toospan hello gruppo, ma si noti che è anche possibile toocreate più volumi logici nel gruppo di volumi hello.
+3. Creare i volumi logici. Con il comando seguente si crea un singolo volume logico denominato `data-lv01` da estendere nell'intero gruppo, ma si noti che è anche possibile creare più volumi logici nel gruppo di volumi.
 
     ```bash   
     sudo lvcreate --extents 100%FREE --stripes 3 --name data-lv01 data-vg01
     Logical volume "data-lv01" created.
     ```
 
-4. Volume logico hello di formato
+4. Formattare il volume logico
 
     ```bash  
     sudo mkfs -t ext4 /dev/data-vg01/data-lv01
     ```
    
    > [!NOTE]
-   > Con l'uso di SLES11 `-t ext3` al posto di ext4. SLES11 supporta solo i file System tooext4 di accesso in sola lettura.
+   > Con l'uso di SLES11 `-t ext3` al posto di ext4. SLES11 supporta l'accesso in sola lettura per i file system ext4.
 
-## <a name="add-hello-new-file-system-tooetcfstab"></a>Aggiungere hello nuovo file system troppo/ecc/fstab
+## <a name="add-the-new-file-system-to-etcfstab"></a>Aggiungere il nuovo file a /etc/fstab
 > [!IMPORTANT]
-> Modifica in modo non corretto di hello `/etc/fstab` file potrebbe causare un avvio del sistema. In caso di dubbi, consultare la documentazione della distribuzione toohello per informazioni su come tooproperly modificare questo file. È inoltre consigliabile che un backup di hello `/etc/fstab` file viene creato prima della modifica.
+> Se il file `/etc/fstab` non viene modificato in modo corretto, il sistema potrebbe non essere disponibile per l'avvio. In caso di dubbi, fare riferimento alla documentazione della distribuzione per informazioni su come modificare correttamente questo file. È inoltre consigliabile creare una copia di backup del file `/etc/fstab` prima della modifica.
 
-1. Creare il punto di montaggio hello desiderato per il nuovo file system, ad esempio:
+1. Creare il punto di montaggio desiderato per il nuovo file system, ad esempio:
 
     ```bash  
     sudo mkdir /data
     ```
 
-2. Individuare il percorso di volume logico hello
+2. Individuare il percorso del volume logico
 
     ```bash    
     lvdisplay
@@ -118,22 +118,22 @@ In questa guida si presuppone che è stato collegato a tre dischi dati, che si f
     ....
     ```
 
-3. Aprire `/etc/fstab` in un editor di testo e aggiungere una voce per hello nuovo file system, ad esempio:
+3. Aprire `/etc/fstab` in un editor di testo e aggiungere una voce per il nuovo file system, ad esempio:
 
     ```bash    
     /dev/data-vg01/data-lv01  /data  ext4  defaults  0  2
     ```   
     Salvare e chiudere `/etc/fstab`.
 
-4. Verificare che hello `/etc/fstab` voce sia corretta:
+4. Verificare che la voce `/etc/fstab` sia corretta:
 
     ```bash    
     sudo mount -a
     ```
 
-    Se questo comando genera un messaggio di errore, controllare la sintassi di hello in hello `/etc/fstab` file.
+    Se questo comando genera un messaggio di errore, verificare la sintassi nel file `/etc/fstab`.
    
-    Prossima esecuzione hello `mount` comando tooensure hello file system è montato:
+    Eseguire quindi il comando `mount` per assicurarsi che il file system venga montato:
 
     ```bash    
     mount
@@ -143,7 +143,7 @@ In questa guida si presuppone che è stato collegato a tre dischi dati, che si f
 
 5. (Facoltativo) Parametri di avvio alternativo in `/etc/fstab`
    
-    Molte distribuzioni includono entrambi hello `nobootwait` o `nofail` montare i parametri che possono essere aggiunti toohello `/etc/fstab` file. Questi parametri consentono di errori durante il montaggio di un determinato file system e consentono hello Linux sistema toocontinue tooboot anche se è Impossibile tooproperly montaggio hello RAID file sistema. Per ulteriori informazioni su questi parametri, consultare la documentazione di tooyour della distribuzione.
+    Molte distribuzioni includono i parametri di montaggio `nobootwait` o `nofail`, che è possibile aggiungere al file `/etc/fstab`. Tali parametri consentono di ignorare gli errori durante il montaggio di uno specifico file system. Consentono pertanto di proseguire l'avvio del sistema Linux anche se non è possibile montare correttamente il file system RAID. Per ulteriori informazioni su questi parametri, fare riferimento alla documentazione della distribuzione.
    
     Esempio (Ubuntu):
 
@@ -152,17 +152,17 @@ In questa guida si presuppone che è stato collegato a tre dischi dati, che si f
     ```
 
 ## <a name="trimunmap-support"></a>Supporto per TRIM/UNMAP
-Alcuni kernel Linux supporto TRIM/UNMAP operazioni toodiscard i blocchi inutilizzati nel disco hello. Queste operazioni sono principalmente in tooinform standard di archiviazione Azure che pagine eliminate non sono più validi e possono essere ignorate. L'eliminazione delle pagine consente di risparmiare sui costi quando si creano file di grandi dimensioni per poi eliminarli.
+Alcuni kernel di Linux supportano operazioni TRIM/UNMAP allo scopo di rimuovere i blocchi inutilizzati sul disco. Nel servizio di archiviazione standard, queste operazioni sono particolarmente utili per informare Azure che le pagine eliminate non sono più valide e possono essere rimosse. L'eliminazione delle pagine consente di risparmiare sui costi quando si creano file di grandi dimensioni per poi eliminarli.
 
-Esistono due modi tooenable TRIM supportano le VM Linux. Come al solito, consultare la distribuzione hello approccio consigliato:
+Esistono due modi per abilitare la funzione TRIM in una VM Linux. Come di consueto, consultare la documentazione della distribuzione per stabilire l'approccio consigliato:
 
-- Hello utilizzare `discard` montare opzione `/etc/fstab`, ad esempio:
+- Usare l'opzione di montaggio `discard` in `/etc/fstab`, ad esempio:
 
     ```bash 
     /dev/data-vg01/data-lv01  /data  ext4  defaults,discard  0  2
     ```
 
-- In alcuni hello casi `discard` opzione può avere implicazioni sulle prestazioni. In alternativa, è possibile eseguire hello `fstrim` comando manualmente dalla riga di comando hello o aggiungerlo tooyour crontab toorun regolarmente:
+- In alcuni casi l'opzione `discard` può avere implicazioni sulle prestazioni. In alternativa, è possibile eseguire il comando `fstrim` manualmente dalla riga di comando oppure aggiungerlo a crontab per eseguirlo a intervalli regolari:
 
     **Ubuntu**
 

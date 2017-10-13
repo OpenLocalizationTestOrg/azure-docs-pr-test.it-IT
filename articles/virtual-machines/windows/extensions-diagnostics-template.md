@@ -1,6 +1,6 @@
 ---
-title: aaaAdd tooan di monitoraggio e diagnostica macchina virtuale di Azure | Documenti Microsoft
-description: Utilizzare un toocreate modello di gestione risorse di Azure una nuova macchina virtuale Windows con estensione diagnostica di Azure.
+title: Aggiungere monitoraggio e diagnostica a una macchina virtuale di Azure | Documentazione Microsoft
+description: Usare un modello di Gestione risorse di Azure per creare una nuova macchina virtuale Windows con l'estensione Diagnostica di Azure.
 services: virtual-machines-windows
 documentationcenter: 
 author: sbtron
@@ -16,19 +16,19 @@ ms.topic: article
 ms.date: 05/31/2017
 ms.author: saurabh
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: d8a831421a0f9d38c09d51cf8c2e6dff913c77ff
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6955e3d8c7b032ee898be11e611080905b5069ba
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="use-monitoring-and-diagnostics-with-a-windows-vm-and-azure-resource-manager-templates"></a>Usare monitoraggio e diagnostica con una macchina virtuale Windows e modelli di Azure Resource Manager
-Hello estensione diagnostica di Azure fornisce il monitoraggio di hello e funzionalità di diagnostica in un Windows basato su macchina virtuale di Azure. È possibile abilitare queste funzionalità nella macchina virtuale hello includendo l'estensione hello come parte del modello di gestione risorse di azure hello. Per altre informazioni sull'inclusione di un'estensione come parte di un modello di macchina virtuale, vedere [Creazione di modelli di Gestione risorse di Azure con le estensioni di macchina virtuale](template-description.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json#extensions) . Questo articolo descrive come è possibile aggiungere il modello di macchina virtuale windows hello diagnostica Azure estensione tooa.  
+L'estensione Diagnostica di Azure offre le funzionalità di monitoraggio e diagnostica in una macchina virtuale Windows basata su Azure. È possibile abilitare queste funzionalità nella macchina virtuale includendo l'estensione come parte del modello di Gestione risorse di Azure. Per altre informazioni sull'inclusione di un'estensione come parte di un modello di macchina virtuale, vedere [Creazione di modelli di Gestione risorse di Azure con le estensioni di macchina virtuale](template-description.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json#extensions) . Questo articolo illustra come aggiungere l'estensione Diagnostica di Azure a un modello di macchina virtuale Windows.  
 
-## <a name="add-hello-azure-diagnostics-extension-toohello-vm-resource-definition"></a>Aggiungere la definizione di risorsa VM hello diagnostica Azure estensione toohello
-estensione di diagnostica tooenable hello nella macchina virtuale Windows è necessario estensione hello tooadd come una risorsa di macchina virtuale in hello il modello di gestione di risorse.
+## <a name="add-the-azure-diagnostics-extension-to-the-vm-resource-definition"></a>Aggiungere l'estensione Diagnostica di Azure alla definizione della risorsa della VM
+Per abilitare l'estensione Diagnostica in una macchina virtuale Windows, è necessario aggiungere l'estensione come risorsa della VM nel modello di Gestione risorse.
 
-Per un semplice gestore di risorse basato su macchina virtuale aggiunta hello estensione configurazione toohello *risorse* matrice hello macchina virtuale: 
+Per una semplice macchina virtuale basata su Gestione risorse, aggiungere la configurazione dell'estensione alla matrice *resources* per la macchina virtuale: 
 
     "resources": [
                 {
@@ -61,57 +61,57 @@ Per un semplice gestore di risorse basato su macchina virtuale aggiunta hello es
             ]
 
 
-Un'altra convenzione comune viene aggiunta una configurazione estensione hello al nodo di risorse hello radice del modello di hello anziché definirla in nodo risorse della macchina virtuale hello. Con questo approccio è necessario tooexplicitly specificare una relazione gerarchica tra estensione hello e macchina virtuale hello con hello *nome* e *tipo* valori. ad esempio: 
+Un'altra convenzione comune consiste nell'aggiungere la configurazione dell'estensione al nodo delle risorse radice del modello, invece di definirla nel nodo delle risorse della macchina virtuale. Con questo approccio è necessario specificare esplicitamente una relazione gerarchica tra l'estensione e la macchina virtuale con i valori *name* e *type*. Ad esempio: 
 
     "name": "[concat(variables('vmName'),'Microsoft.Insights.VMDiagnosticsSettings')]",
     "type": "Microsoft.Compute/virtualMachines/extensions",
 
-estensione Hello è sempre associata a una macchina virtuale hello, è possibile sia direttamente definire direttamente nel nodo risorse della macchina virtuale hello o definirlo a livello di base hello e utilizzare hello tooassociate gerarchica convenzione di denominazione con hello virtuale macchina.
+L'estensione è sempre associata alla macchina virtuale. È quindi possibile definirla direttamente nel nodo delle risorse della macchina virtuale oppure è possibile definirla a livello di base e usare la convenzione di denominazione gerarchica per associarla alla macchina virtuale.
 
-Per le estensioni di set di scalabilità di macchine virtuali hello configurazione viene specificata in hello *extensionProfile* proprietà di hello *VirtualMachineProfile*.
+Per i set di scalabilità di macchine virtuali, la configurazione delle estensioni viene specificata nella proprietà *extensionProfile* di *VirtualMachineProfile*.
 
-Hello *publisher* proprietà con valore hello **Microsoft.Azure.Diagnostics** hello e *tipo* proprietà con valore hello **IaaSDiagnostics** identificare in modo univoco l'estensione di diagnostica Azure hello.
+La proprietà *publisher* con valore **Microsoft.Azure.Diagnostics** e la proprietà *type* con valore **IaaSDiagnostics** identificano in modo univoco l'estensione Diagnostica di Azure.
 
-valore di hello Hello *nome* proprietà può essere utilizzato toorefer toohello estensione nel gruppo di risorse hello. Impostarlo in modo specifico troppo**Microsoft.Insights.VMDiagnosticsSettings** consentirà di toobe facilmente identificato da hello garantire portale Azure che hello monitoraggio grafici visualizzati correttamente in hello portale di Azure.
+Il valore della proprietà *name* può essere usato per fare riferimento all'estensione nel gruppo di risorse. Se viene impostato esattamente su **Microsoft.Insights.VMDiagnosticsSettings**, l'identificazione da parte del portale di Azure risulterà semplificata. I grafici di monitoraggio saranno quindi visualizzati correttamente nel portale di Azure.
 
-Hello *typeHandlerVersion* specifica versione di hello dell'estensione hello desideri toouse. Impostazione *autoUpgradeMinorVersion* la versione secondaria troppo**true** assicura che si otterranno versione secondaria più recente di hello di estensione hello è disponibile. È consigliabile impostare sempre *autoUpgradeMinorVersion* tooalways essere **true** in modo che sia sempre possibile ottenere toouse hello più recente disponibile estensione di diagnostica con tutti i bug e le nuove funzionalità di hello correzioni. 
+Il valore *typeHandlerVersion* specifica la versione dell'estensione da usare. Se si imposta la versione secondaria *autoUpgradeMinorVersion* su **true** , si assicurerà di ottenere la versione secondaria più recente disponibile dell'estensione. È consigliabile impostare sempre *autoUpgradeMinorVersion* su **true** , in modo che venga usata sempre l'estensione Diagnostica più recente disponibile con tutte le nuove funzionalità e correzioni di bug. 
 
-Hello *impostazioni* elemento contiene una proprietà di configurazione per l'estensione hello che può essere impostato e leggere da estensione hello (talvolta definito tooas pubblica configurazione). Hello *xmlcfg* proprietà contiene una configurazione basata su xml per i registri di diagnostica hello, i contatori delle prestazioni e così via che verranno raccolte dall'agente di diagnostica hello. Vedere [dello Schema di configurazione di diagnostica](https://msdn.microsoft.com/library/azure/dn782207.aspx) per ulteriori informazioni sullo schema xml hello stesso. Una pratica comune è toostore hello effettivo xml di configurazione come una variabile nel modello di gestione risorse di Azure hello e quindi concatenate e base64 codificarli valore hello tooset per *xmlcfg*. Vedere la sezione hello [variabili di configurazione di diagnostica](#diagnostics-configuration-variables) toounderstand ulteriori informazioni sulla modalità toostore hello xml nelle variabili. Hello *storageAccount* proprietà specifica il nome di hello hello storage account toowhich dei dati di diagnostica verrà trasferito. 
+L'elemento *settings* contiene proprietà di configurazione per l'estensione che possono essere impostate e lette dall'estensione e sono spesso definite configurazione pubblica. La proprietà *xmlcfg* contiene configurazione basata su XML per i log di diagnostica e i contatori delle prestazioni che verranno raccolti dall'agente di diagnostica. Per altre informazioni sullo schema XML stesso, vedere [Schema di configurazione di diagnostica](https://msdn.microsoft.com/library/azure/dn782207.aspx) . Una procedura comune consiste nell'archiviare la configurazione XML effettiva come variabile nel modello di Gestione risorse di Azure e quindi concatenare le variabili e codificarle in Base 64 per impostare il valore per *xmlcfg*. Per altre informazioni su come archiviare il codice XML nelle variabili, vedere la sezione relativa alle [variabili di configurazione diagnostica](#diagnostics-configuration-variables) . La proprietà *storageAccount* specifica il nome dell'account di archiviazione in cui verranno trasferiti i dati di diagnostica. 
 
-proprietà Hello *protectedSettings* (configurazione privata tooas talvolta definito) può essere impostata ma non è possibile leggere nuovamente dopo l'impostazione. Hello natura di sola scrittura di *protectedSettings* risulta utile per l'archiviazione di segreti come chiave dell'account di archiviazione hello in cui verranno scritti i dati di diagnostica hello.    
+Le proprietà in *protectedSettings* , a volte definite configurazione privata, possono essere impostate ma non possono essere lette dopo l'impostazione. La natura di sola scrittura di *protectedSettings* risulta utile per l'archiviazione di segreti quali la chiave dell'account di archiviazione in cui verranno scritti i dati di diagnostica.    
 
 ## <a name="specifying-diagnostics-storage-account-as-parameters"></a>Specificare l'account di archiviazione di diagnostica come parametro
-Hello diagnostica estensione json frammento di codice precedente presuppone che i due parametri *existingdiagnosticsStorageAccountName* e *existingdiagnosticsStorageResourceGroup* diagnostica hello toospecify account di archiviazione in cui verranno archiviati i dati di diagnostica. Specifica account di archiviazione di diagnostica hello come parametro, account di archiviazione di diagnostica hello toochange semplice tra ambienti diversi, ad esempio è toouse un account di archiviazione di diagnostica diversi per i test e uno per il distribuzione di produzione.  
+Il frammento di codice JSON dell'estensione Diagnostica precedente presuppone due parametri *existingdiagnosticsStorageAccountName* e *existingdiagnosticsStorageResourceGroup* per specificare l'account di archiviazione di diagnostica in cui verranno archiviati i dati di diagnostica. Se si specifica l'account di archiviazione di diagnostica come parametro, sarà possibile modificare con maggiore facilità l'account di archiviazione di diagnostica in diversi ambienti. È ad esempio possibile usare un account di archiviazione di diagnostica per i test e un account di archiviazione diverso per la distribuzione di produzione.  
 
         "existingdiagnosticsStorageAccountName": {
             "type": "string",
             "metadata": {
-        "description": "hello name of an existing storage account toowhich diagnostics data will be transfered."
+        "description": "The name of an existing storage account to which diagnostics data will be transfered."
             }        
         },
         "existingdiagnosticsStorageResourceGroup": {
             "type": "string",
             "metadata": {
-        "description": "hello resource group for hello storage account specified in existingdiagnosticsStorageAccountName"
+        "description": "The resource group for the storage account specified in existingdiagnosticsStorageAccountName"
               }
         }
 
-Si tratta di best practice toospecify un account di archiviazione di diagnostica in un gruppo di risorse diverso rispetto a gruppo di risorse hello per la macchina virtuale hello. Un gruppo di risorse può essere considerato come un'unità di distribuzione con il proprio ciclo di vita toobe, una macchina virtuale può essere distribuita e ridistribuita come nuovi aggiornamenti di configurazioni vengono apportati tooit ma è opportuno archiviare i dati di diagnostica hello in hello toocontinue stesso account di archiviazione in tali distribuzioni di macchine virtuali. Con l'account di archiviazione hello in una risorsa diversa Abilita hello archiviazione account tooaccept di dati da varie distribuzioni di macchine virtuali, rendendo semplice tootroubleshoot problemi tra hello diverse versioni.
+È consigliabile specificare un account di archiviazione di diagnostica in un gruppo di risorse diverso rispetto al gruppo di risorse per la macchina virtuale. Un gruppo di risorse può essere considerato come un'unità di distribuzione con una durata specifica. È possibile distribuire e ridistribuire una macchina virtuale ogni volta che vengono applicati aggiornamenti della configurazione, ma è consigliabile continuare ad archiviare i dati di diagnostica nello stesso account di archiviazione nelle distribuzioni della macchina virtuale. La disponibilità dell'account di archiviazione in una risorsa diversa consente all'account di archiviazione di accettare i dati da diverse distribuzioni di macchina virtuale, semplificando la risoluzione dei problemi nelle diverse versioni.
 
 > [!NOTE]
-> Se si crea un modello di macchina virtuale windows da Visual Studio potrebbe essere impostato l'account di archiviazione predefinito hello toouse hello stesso account di archiviazione in cui viene caricato hello VHD della macchina virtuale. Si tratta di toosimplify la configurazione iniziale di VM hello. È quindi consigliabile valutare nuovamente hello modello toouse un account di archiviazione diversi che può essere passato come parametro. 
+> Se si crea un modello di macchina virtuale Windows da Visual Studio, è possibile configurare l'account di archiviazione predefinito in modo che usi lo stesso account di archiviazione in cui è stato caricato il VHD della macchina virtuale. Ciò consente di semplificare la configurazione iniziale della VM. È consigliabile effettuare il refactoring del modello in modo che usi un account di archiviazione diverso, che possa essere passato come parametro. 
 > 
 > 
 
 ## <a name="diagnostics-configuration-variables"></a>variabili di configurazione diagnostica
-Hello diagnostica estensione frammento di codice json precedente definisce un *accountid* toosimplify variabile recupero chiave dell'account di archiviazione per l'archiviazione di diagnostica hello hello:   
+Il frammento di codice JSON dell'estensione Diagnostica precedente definisce una variabile *accountid* per semplificare il recupero della chiave dell'account di archiviazione per l'archiviazione dei dati di diagnostica:   
 
     "accountid": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/',parameters('existingdiagnosticsStorageResourceGroup'), '/providers/','Microsoft.Storage/storageAccounts/', parameters('existingdiagnosticsStorageAccountName'))]"
 
 
-Hello *xmlcfg* proprietà per l'estensione diagnostica hello è definito usando più variabili che vengono concatenate. valori Hello di queste variabili sono in xml, pertanto è necessario toobe escape correttamente quando si impostano le variabili di hello json.
+La proprietà *xmlcfg* per l'estensione Diagnostica viene definita mediante più variabili concatenate. I valori di questi variabili sono in XML, quindi è necessario inserire correttamente il carattere di escape durante la configurazione delle variabili JSON.
 
-di seguito Hello sono file xml di configurazione diagnostica hello che raccoglie i contatori delle prestazioni a livello di sistema standard insieme alcuni registri eventi di windows e i registri infrastruttura diagnostica. È stato sequenza di escape e formattato correttamente in modo che hello configurazione possibile direttamente incollare nella sezione variabili hello del modello. Vedere hello [dello Schema di configurazione di diagnostica](https://msdn.microsoft.com/library/azure/dn782207.aspx) per un esempio più risorse umano leggibile di hello configurazione xml.
+L'esempio seguente illustra il codice XML di configurazione di diagnostica che raccoglie i contatori delle prestazioni standard a livello di sistema, insieme ad alcuni registri eventi di Windows e log di infrastruttura di diagnostica. I caratteri di escape e la formattazione sono corretti, quindi è possibile incollare la configurazione direttamente nella sezione del modello relativa alle variabili. Per un esempio più facile da leggere del codice XML di configurazione, vedere [Schema di configurazione di diagnostica](https://msdn.microsoft.com/library/azure/dn782207.aspx) .
 
         "wadlogs": "<WadCfg> <DiagnosticMonitorConfiguration overallQuotaInMB=\"4096\" xmlns=\"http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration\"> <DiagnosticInfrastructureLogs scheduledTransferLogLevelFilter=\"Error\"/> <WindowsEventLog scheduledTransferPeriod=\"PT1M\" > <DataSource name=\"Application!*[System[(Level = 1 or Level = 2)]]\" /> <DataSource name=\"Security!*[System[(Level = 1 or Level = 2)]]\" /> <DataSource name=\"System!*[System[(Level = 1 or Level = 2)]]\" /></WindowsEventLog>",
         "wadperfcounters1": "<PerformanceCounters scheduledTransferPeriod=\"PT1M\"><PerformanceCounterConfiguration counterSpecifier=\"\\Processor(_Total)\\% Processor Time\" sampleRate=\"PT15S\" unit=\"Percent\"><annotation displayName=\"CPU utilization\" locale=\"en-us\"/></PerformanceCounterConfiguration><PerformanceCounterConfiguration counterSpecifier=\"\\Processor(_Total)\\% Privileged Time\" sampleRate=\"PT15S\" unit=\"Percent\"><annotation displayName=\"CPU privileged time\" locale=\"en-us\"/></PerformanceCounterConfiguration><PerformanceCounterConfiguration counterSpecifier=\"\\Processor(_Total)\\% User Time\" sampleRate=\"PT15S\" unit=\"Percent\"><annotation displayName=\"CPU user time\" locale=\"en-us\"/></PerformanceCounterConfiguration><PerformanceCounterConfiguration counterSpecifier=\"\\Processor Information(_Total)\\Processor Frequency\" sampleRate=\"PT15S\" unit=\"Count\"><annotation displayName=\"CPU frequency\" locale=\"en-us\"/></PerformanceCounterConfiguration><PerformanceCounterConfiguration counterSpecifier=\"\\System\\Processes\" sampleRate=\"PT15S\" unit=\"Count\"><annotation displayName=\"Processes\" locale=\"en-us\"/></PerformanceCounterConfiguration><PerformanceCounterConfiguration counterSpecifier=\"\\Process(_Total)\\Thread Count\" sampleRate=\"PT15S\" unit=\"Count\"><annotation displayName=\"Threads\" locale=\"en-us\"/></PerformanceCounterConfiguration><PerformanceCounterConfiguration counterSpecifier=\"\\Process(_Total)\\Handle Count\" sampleRate=\"PT15S\" unit=\"Count\"><annotation displayName=\"Handles\" locale=\"en-us\"/></PerformanceCounterConfiguration><PerformanceCounterConfiguration counterSpecifier=\"\\Memory\\% Committed Bytes In Use\" sampleRate=\"PT15S\" unit=\"Percent\"><annotation displayName=\"Memory usage\" locale=\"en-us\"/></PerformanceCounterConfiguration><PerformanceCounterConfiguration counterSpecifier=\"\\Memory\\Available Bytes\" sampleRate=\"PT15S\" unit=\"Bytes\"><annotation displayName=\"Memory available\" locale=\"en-us\"/></PerformanceCounterConfiguration><PerformanceCounterConfiguration counterSpecifier=\"\\Memory\\Committed Bytes\" sampleRate=\"PT15S\" unit=\"Bytes\"><annotation displayName=\"Memory committed\" locale=\"en-us\"/></PerformanceCounterConfiguration><PerformanceCounterConfiguration counterSpecifier=\"\\Memory\\Commit Limit\" sampleRate=\"PT15S\" unit=\"Bytes\"><annotation displayName=\"Memory commit limit\" locale=\"en-us\"/></PerformanceCounterConfiguration><PerformanceCounterConfiguration counterSpecifier=\"\\PhysicalDisk(_Total)\\% Disk Time\" sampleRate=\"PT15S\" unit=\"Percent\"><annotation displayName=\"Disk active time\" locale=\"en-us\"/></PerformanceCounterConfiguration>",
@@ -120,52 +120,52 @@ di seguito Hello sono file xml di configurazione diagnostica hello che raccoglie
         "wadmetricsresourceid": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name , '/providers/', 'Microsoft.Compute/virtualMachines/')]",
         "wadcfgxend": "\"><MetricAggregation scheduledTransferPeriod=\"PT1H\"/><MetricAggregation scheduledTransferPeriod=\"PT1M\"/></Metrics></DiagnosticMonitorConfiguration></WadCfg>"
 
-nodo xml di definizione Hello metriche in hello di sopra di configurazione è un elemento di configurazione importanti poiché consente di definire come i contatori delle prestazioni di hello definite in precedenza nel codice xml hello *PerformanceCounter* nodo verrà aggregato e archiviati. 
+Il nodo XML della definizione Metrics nella configurazione precedente è un elemento di configurazione importante, perché definisce il modo in cui i contatori delle prestazioni specificati in precedenza nel codice XML nel nodo *PerformanceCounter* verranno aggregati e archiviati. 
 
 > [!IMPORTANT]
-> Queste metriche unità hello avvisi nel portale di Azure hello e grafici di monitoraggio.  Hello **metriche** nodo con hello *resourceID* e **MetricAggregation** deve essere incluso nella configurazione della diagnostica hello per la macchina virtuale, se si desidera toosee hello VM dati di monitoraggio di hello portale di Azure. 
+> Queste metriche guidano i grafici di monitoraggio e gli avvisi nel portale di Azure.  Il nodo **Metriche** con *resourceID* e **MetricAggregation** deve essere incluso nella configurazione di diagnostica per la macchina virtuale per visualizzare i dati di monitoraggio della macchina virtuale nel portale di Azure. 
 > 
 > 
 
-Hello Ecco un esempio di codice xml di hello per le definizioni delle metriche: 
+L'esempio seguente illustra il codice XML per le definizioni delle metriche: 
 
         <Metrics resourceId="/subscriptions/subscription().subscriptionId/resourceGroups/resourceGroup().name/providers/Microsoft.Compute/virtualMachines/vmName">
             <MetricAggregation scheduledTransferPeriod="PT1H"/>
             <MetricAggregation scheduledTransferPeriod="PT1M"/>
         </Metrics>
 
-Hello *resourceID* hello di macchina virtuale nella sottoscrizione che identifica in modo univoco. Assicurarsi che toouse hello subscription() e resourceGroup() funziona in modo che hello modello aggiorna automaticamente i valori in base hello sottoscrizione e della risorsa gruppo di che distribuzione.
+L'attributo *resourceID* identifica in modo univoco la macchina virtuale nella sottoscrizione. Assicurarsi di usare le funzioni subscription() e resourceGroup(), in modo che il modello aggiorni automaticamente questi valori in base alla sottoscrizione e al gruppo di risorse in cui si effettua la distribuzione.
 
-Se si siano creando più macchine virtuali in un ciclo, si disporrà di hello toopopulate *resourceID* valore con un toocorrectly funzione copyIndex() distinguere ogni singole macchine Virtuali. Hello *xmlCfg* valore può essere aggiornato toosupport questo come segue:  
+Se si creano più macchine virtuali in un ciclo, sarà necessario popolare il valore *resourceID* con una funzione copyIndex(), in modo da distinguere correttamente ogni singola VM. Il valore *xmlCfg* può essere aggiornato per supportare questa operazione, in modo analogo al seguente:  
 
     "xmlCfg": "[base64(concat(variables('wadcfgxstart'), variables('wadmetricsresourceid'), concat(parameters('vmNamePrefix'), copyindex()), variables('wadcfgxend')))]", 
 
-Hello MetricAggregation valore *PT1H* e *PT1M* indicano un'aggregazione di più di un minuto e un'aggregazione di un'ora.
+Il valore MetricAggregation impostato su *PT1H* e *PT1M* indica un'aggregazione pari a un'ora e un'aggregazione pari a un minuto.
 
 ## <a name="wadmetrics-tables-in-storage"></a>Tabelle WADMetrics nell'archiviazione
-configurazione della metrica Hello precedente genera tabelle nell'account di archiviazione di diagnostica con hello segue le convenzioni di denominazione:
+La configurazione precedente relativa a Metrics consentirà di generare tabelle nell'account di archiviazione di diagnostica con le convenzioni di denominazione seguenti:
 
 * **WADMetrics** : prefisso standard per tutte le tabelle WADMetrics
-* **PT1H** o **PT1M** : indica che la tabella hello contiene dati aggregati in 1 ora o 1 minuto
-* **P10D** : indica la tabella hello conterrà i dati di 10 giorni da quando la tabella hello iniziato a raccogliere i dati
+* **PT1H** o **PT1M**: indica che la tabella contiene dati aggregati per un periodo pari a un'ora o un minuto
+* **P10D** : indica che la tabella conterrà dati per 10 giorni a partire dal momento in cui la tabella ha iniziato a raccogliere i dati.
 * **V2S** : costante di tipo stringa.
-* **aaaammgg** : hello data di inizio in cui hello tabella la raccolta dei dati
+* **yyyymmdd** : data a partire dalla quale la tabella ha iniziato a raccogliere i dati.
 
 Esempio: *WADMetricsPT1HP10DV2S20151108* includerà i dati aggregati delle metriche per un periodo pari a un'ora per 10 giorni a partire dall'11 nov 2015    
 
-Ogni tabella WADMetrics conterrà hello seguenti colonne:
+Ogni tabella WADMetrics includerà le colonne seguenti:
 
-* **PartitionKey**: partitionkey hello viene creato in base a hello *resourceID* toouniquely valore identificare risorse VM hello. ad esempio: 002Fsubscriptions:<subscriptionID>:002FresourceGroups:002F<ResourceGroupName>:002Fproviders:002FMicrosoft:002ECompute:002FvirtualMachines:002F<vmName>  
-* **RowKey** : formato hello segue <Descending time tick>:<Performance Counter Name>. Hello decrescente calcolo segni di graduazione time è cicli di tempo massimo meno tempo hello di inizio di hello del periodo di aggregazione hello. Ad esempio, Se il periodo di campionamento hello avviato nel novembre-10/2015 e 00:00Hrs UTC quindi hello calcolo: Ticks - (DateTime(2015,11,10,0,0,0,DateTimeKind.Utc) nuovo. Segni di graduazione). Ad esempio per hello memoria byte disponibili chiave contatori delle prestazioni hello riga avrà un aspetto: 2519551871999999999__:005CMemory:005CAvailable:0020 byte
-* **CounterName** : nome hello hello del contatore delle prestazioni. Questo corrisponde hello *counterSpecifier* definito nel file di configurazione xml hello.
-* **Massimo** : hello valore massimo del contatore delle prestazioni hello periodo aggregazione hello.
-* **Minimo** : hello valore minimo del contatore delle prestazioni hello periodo aggregazione hello.
-* **Totale** : somma hello di tutti i valori del contatore delle prestazioni hello indicato per il periodo di aggregazione hello.
-* **Conteggio** : numero totale di hello di valori segnalati per contatore delle prestazioni hello.
-* **Media** : hello valore Media (totale) hello del contatore delle prestazioni per il periodo di aggregazione hello.
+* **PartitionKey**: la chiave di partizione viene costruita in base al valore di *resourceID* per identificare in modo univoco la risorsa di macchina virtuale, ad esempio: 002Fsubscriptions:<subscriptionID>:002FresourceGroups:002F<ResourceGroupName>:002Fproviders:002FMicrosoft:002ECompute:002FvirtualMachines:002F<vmName>  
+* **RowKey**: usa il formato <Descending time tick>:<Performance Counter Name>. Il calcolo relativo ai tick temporali decrescenti corrisponde al numero massimo di tick temporali meno l'ora di inizio del periodo di aggregazione. Ad esempio, se il periodo di campionamento è iniziato il 10 novembre 2015 alle 00:00 UTC, il calcolo sarà il seguente: DateTime.MaxValue.Ticks - (new DateTime(2015,11,10,0,0,0,DateTimeKind.Utc).Ticks). Per il contatore delle prestazioni dei byte disponibile della memoria, la riga avrà un aspetto analogo al seguente: 2519551871999999999__:005CMemory:005CAvailable:0020Bytes
+* **CounterName** : nome del contatore delle prestazioni. Corrisponde al valore *counterSpecifier* definito nel file di configurazione XML.
+* **Maximum** : valore massimo del contatore delle prestazioni nel periodo di aggregazione.
+* **Minimum** : valore minimo del contatore delle prestazioni nel periodo di aggregazione.
+* **Total** : somma di tutti i valori del contatore delle prestazioni rilevati nel periodo di aggregazione.
+* **Count** : numero totale di valori rilevati per il contatore delle prestazioni.
+* **Average** : valore medio (totale/conteggio) del contatore delle prestazioni nel periodo di aggregazione.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Per un modello di esempio completo di macchina virtuale Windows con estensione Diagnostica, vedere [201-vm-monitoring-diagnostics-extension](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-monitoring-diagnostics-extension)   
-* Distribuire hello resource manager modello tramite [Azure PowerShell](ps-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) o [riga di comando di Azure](../linux/create-ssh-secured-vm-from-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* Distribuire il modello di Resource Manager con [Azure PowerShell](ps-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) o la [riga di comando di Azure](../linux/create-ssh-secured-vm-from-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 * Altre informazioni sulla [Creazione di modelli di Gestione risorse di Azure](../../resource-group-authoring-templates.md)
 

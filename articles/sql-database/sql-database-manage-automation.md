@@ -1,6 +1,6 @@
 ---
-title: Database SQL di Azure utilizzando l'automazione di Azure aaaManage | Documenti Microsoft
-description: "Informazioni su come hello servizio automazione di Azure può essere utilizzato toomanage di database SQL di Azure su larga scala."
+title: Gestire i database SQL usando Automazione di Azure | Documentazione Microsoft
+description: "Informazioni su come è possibile usare il servizio Automazione di Azure per gestire database SQL su vasta scala."
 services: sql-database, automation
 documentationcenter: 
 author: jodoglevy
@@ -15,28 +15,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/03/2017
 ms.author: jhubbard
-ms.openlocfilehash: d613cca32ba86e27b9c1b952c4e723ea7f07beb0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7f45b8b654691063823c13bee61e9bb874a6a13a
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="managing-azure-sql-databases-using-azure-automation"></a>Gestire i database SQL usando Automazione di Azure
-Questa Guida verrà presentate toohello servizio di automazione di Azure e come può essere utilizzato toosimplify gestione dei database SQL di Azure.
+Questa guida fornisce un'introduzione al servizio Automazione di Azure e ne illustra l'utilizzo per semplificare la gestione dei database SQL.
 
 ## <a name="what-is-azure-automation"></a>Informazioni su Automazione di Azure
-[Automazione di Azure](https://azure.microsoft.com/services/automation/) è un servizio di Azure che consente di semplificare la gestione del cloud tramite l'automazione dei processi. Utilizzando l'automazione di Azure, le attività a esecuzione prolungata, manuale, soggetta a errori e ripetute spesso possono essere toovalue tempo per l'organizzazione, efficienza e affidabilità tooincrease automatizzati.
+[Automazione di Azure](https://azure.microsoft.com/services/automation/) è un servizio di Azure che consente di semplificare la gestione del cloud tramite l'automazione dei processi. Usando Automazione di Azure, è possibile automatizzare attività a esecuzione prolungata, manuali, soggette a errori e ripetute frequentemente per migliorare l'affidabilità, l'efficienza e i tempi di esecuzione.
 
-Automazione di Azure fornisce un motore di esecuzione del flusso di lavoro altamente affidabile e a disponibilità elevata che viene ridimensionata toomeet le proprie esigenze, man mano che aumenta l'organizzazione. In Automazione di Azure i processi possono essere attivati manualmente, da sistemi di terze parti o a intervalli pianificati in modo che le attività abbiano luogo esattamente quando necessario.
+Automazione di Azure offre un motore di esecuzione del flusso di lavoro a elevata disponibilità e affidabilità che garantisce la scalabilità necessaria per rispondere alle esigenze aziendali in base alla crescita dell'organizzazione. In Automazione di Azure i processi possono essere attivati manualmente, da sistemi di terze parti o a intervalli pianificati in modo che le attività abbiano luogo esattamente quando necessario.
 
-Liberare e ridurre i costi operativi IT / DevOps personale toofocus lavoro che aggiunge il valore di business spostando il toobe di attività di gestione cloud eseguiti automaticamente da automazione di Azure.
+Il servizio permette di ridurre i costi operativi e di liberare risorse dello staff IT/DevOp consentendo loro di concentrarsi su attività a valore aggiunto grazie al trasferimento delle attività di gestione del cloud all'esecuzione automatica di Automazione di Azure.
 
 ## <a name="how-can-azure-automation-help-manage-azure-sql-databases"></a>Come può Automazione di Azure aiutare nella gestione dei database SQL?
-Database SQL di Azure possono essere gestito in automazione di Azure con hello [i cmdlet di PowerShell per Azure SQL Database](https://docs.microsoft.com/powershell/servicemanagement/azure.sqldatabase/v1.6.1/azure.sqldatabase/) che sono disponibili in hello [gli strumenti di Azure PowerShell](/powershell/azure/overview). Automazione di Azure dispone di questi cmdlet di PowerShell per Azure SQL Database disponibili predefinito hello, che è possibile eseguire tutte le attività di gestione di database di SQL Server all'interno del servizio di hello. È anche possibile coppia questi cmdlet in automazione di Azure con i cmdlet di hello per altri servizi di Azure, l'attività complesse tooautomate in servizi di Azure e sistemi di terze parti 3rd.
+Il database SQL di Azure può essere gestito in Automazione di Azure usando i [cmdlet di PowerShell del database SQL di Azure](https://docs.microsoft.com/powershell/servicemanagement/azure.sqldatabase/v1.6.1/azure.sqldatabase/) disponibili negli [strumenti di Azure PowerShell](/powershell/azure/overview). I cmdlet di PowerShell per database SQL di Azure sono predefiniti in Automazione di Azure, per consentire l'esecuzione di tutte le attività di gestione dei database SQL dall'interno del servizio. È anche possibile abbinare tali cmdlet in Automazione di Azure ai cmdlet per altri servizi di Azure per automatizzare attività complesse in tutti i servizi di Azure e nei sistemi di terze parti.
 
-Automazione di Azure dispone inoltre hello possibilità toocommunicate con istanze di SQL Server direttamente, eseguendo i comandi SQL con PowerShell.
+Automazione di Azure è in grado di comunicare direttamente con i server SQL tramite l'invio di comandi SQL da PowerShell.
 
-Hello [raccolta di runbook di automazione di Azure](https://azure.microsoft.com/blog/2014/10/07/introducing-the-azure-automation-runbook-gallery/) contiene un'ampia gamma di prodotti team e community runbook tooget avviato l'automazione della gestione di database SQL di Azure, gli altri servizi di Azure e sistemi di terze parti 3rd. I Runbook della raccolta includono i seguenti:
+La [raccolta di Runbook di Automazione di Azure](https://azure.microsoft.com/blog/2014/10/07/introducing-the-azure-automation-runbook-gallery/) contiene diversi Runbook del team di prodotto e della community per iniziare ad automatizzare la gestione dei database SQL di Azure, altri servizi di Azure e sistemi di terze parti. I Runbook della raccolta includono i seguenti:
 
 * [Eseguire query SQL su un database SQL Server](https://gallery.technet.microsoft.com/scriptcenter/How-to-use-a-SQL-Command-be77f9d2)
 * [Scalabilità verticale (verso l’alto o il basso) di un database di SQL Azure in una pianificazione](https://gallery.technet.microsoft.com/scriptcenter/Azure-SQL-Database-e957354f)
@@ -44,10 +44,10 @@ Hello [raccolta di runbook di automazione di Azure](https://azure.microsoft.com/
 * [Tabelle dell’indice in un database SQL di Azure se sono molto frammentati](https://gallery.technet.microsoft.com/scriptcenter/Indexes-tables-in-an-Azure-73a2a8ea)
 
 ## <a name="next-steps"></a>Passaggi successivi
-Ora che si è appreso hello nozioni di base automazione di Azure e come può essere toomanage utilizzati database di SQL Azure, seguire questi toolearn collegamenti ulteriori informazioni sull'automazione di Azure.
+A questo punto, dopo aver appreso le nozioni di base di Automazione di Azure e come può essere usato per gestire i database SQL di Azure, seguire i collegamenti seguenti per altre informazioni su Automazione di Azure.
 
 * [Panoramica di Automazione di Azure](../automation/automation-intro.md)
 * [Il primo runbook](../automation/automation-first-runbook-graphical.md)
 * [Mappa di apprendimento di Automazione di Azure](https://azure.microsoft.com/documentation/learning-paths/automation/)
-* [Automazione di Azure: L'agente SQL in hello Cloud](https://azure.microsoft.com/blog/2014/06/26/azure-automation-your-sql-agent-in-the-cloud/) 
+* [Automazione di Azure: SQL Agent nel cloud](https://azure.microsoft.com/blog/2014/06/26/azure-automation-your-sql-agent-in-the-cloud/) 
 

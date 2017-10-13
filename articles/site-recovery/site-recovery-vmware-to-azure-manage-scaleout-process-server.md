@@ -1,6 +1,6 @@
 ---
 title: " Gestire un server di elaborazione con scalabilità orizzontale in Azure Site Recovery | Microsoft Docs"
-description: "Questo articolo viene descritto come tooset configurare e gestire un Server di elaborazione di scalabilità orizzontale in Azure Site Recovery."
+description: "Questo articolo descrive come configurare e gestire un server di elaborazione con scalabilità orizzontale in Azure Site Recovery."
 services: site-recovery
 documentationcenter: 
 author: AnoopVasudavan
@@ -14,41 +14,41 @@ ms.tgt_pltfrm: na
 ms.workload: backup-recovery
 ms.date: 06/29/2017
 ms.author: anoopkv
-ms.openlocfilehash: 3d72f9c2c7014a4ff2fa2af168aa55ad1452eae5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e5c01de19917235c34c035415df86291b9152bf0
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="manage-a-scale-out-process-server"></a>Gestire un server di elaborazione con scalabilità orizzontale
 
-Server di scalabilità orizzontale processo agisce come un coordinatore per il trasferimento di dati tra servizi di ripristino del sito di hello e l'infrastruttura locale. Questo articolo descrive come impostare, configurare e gestire i server di elaborazione con scalabilità orizzontale.
+Il server di elaborazione con scalabilità orizzontale funge da coordinatore per il trasferimento dei dati tra i servizi di Site Recovery e l'infrastruttura locale in uso. Questo articolo descrive come impostare, configurare e gestire i server di elaborazione con scalabilità orizzontale.
 
 ## <a name="prerequisites"></a>Prerequisiti
-di seguito Hello sono hello consigliato tooset necessarie di configurazione di rete di un Server di scalabilità orizzontale processo hardware e software.
+La tabella seguente elenca i requisiti minimi hardware, software e di rete richiesti per impostare un server di elaborazione con scalabilità orizzontale.
 
 > [!NOTE]
-> [Pianificazione della capacità](site-recovery-capacity-planner.md) è tooensure un passaggio importante distribuire hello processo Server di scalabilità orizzontale con una configurazione adatta i requisiti di carico. Altre informazioni sulle [caratteristiche di scalabilità per un server di elaborazione con scalabilità orizzontale](#sizing-requirements-for-a-configuration-server).
+> La [pianificazione della capacità](site-recovery-capacity-planner.md) è un passaggio importante per assicurarsi di distribuire un server di elaborazione con scalabilità orizzontale con una configurazione adatta ai requisiti di carico. Altre informazioni sulle [caratteristiche di scalabilità per un server di elaborazione con scalabilità orizzontale](#sizing-requirements-for-a-configuration-server).
 
 [!INCLUDE [site-recovery-configuration-server-requirements](../../includes/site-recovery-configuration-and-scaleout-process-server-requirements.md)]
 
-## <a name="downloading-hello-scale-out-process-server-software"></a>Download del software Server di scalabilità orizzontale processo hello
-1. Accedere toohello tooyour Azure portal e passare credenziali di servizi di ripristino.
-2. Sfoglia troppo**infrastruttura di Site Recovery** > **server di configurazione** (in VMware per la & macchine fisiche).
-3. Selezionare il toodrill di server di configurazione verso il basso nella pagina dei dettagli del server di configurazione hello.
-4. Fare clic su hello **+ Server di elaborazione** pulsante.
-5. In hello **server di elaborazione aggiungere** selezionare **distribuzione una scalabilità orizzontale di un processo Server on-premise** opzione hello **specificare dove toodeploy il server di elaborazione** elenco a discesa.
+## <a name="downloading-the-scale-out-process-server-software"></a>Download del software per il server di elaborazione con scalabilità orizzontale
+1. Accedere al portale di Azure e passare all'insieme di credenziali dei servizi di ripristino.
+2. Passare a **Infrastruttura di Site Recovery** > **Server di configurazione**, in For VMware & Physical Machines (Computer VMware e fisici).
+3. Selezionare il server di configurazione per eseguire il drill-down della relativa pagina delle informazioni.
+4. Fare clic sul pulsante **+ Server di elaborazione**.
+5. Nella pagina **Aggiungi server di elaborazione** selezionare l'opzione **Distribuire un server di elaborazione con scalabilità orizzontale in locale** dall'elenco a discesa **Scegliere dove distribuire il server di elaborazione**.
 
-  ![Pagina di aggiunta server](./media/site-recovery-vmware-to-azure-manage-scaleout-process-server/add-process-server.png)
-6. Fare clic su hello **hello Download installazione unificata di Microsoft Azure Site Recovery** collegamento toodownload hello più recente di installazione di Server di elaborazione hello scalabilità orizzontale.
+  ![Pagina Aggiungi server](./media/site-recovery-vmware-to-azure-manage-scaleout-process-server/add-process-server.png)
+6. Fare clic sul collegamento per **scarica l'installazione unificata di Microsoft Azure Site Recovery** per ottenere la versione più recente per l'installazione del server di elaborazione con scalabilità orizzontale.
 
   > [!WARNING]
-  Hello la versione del Server di scalabilità orizzontale processo deve essere uguale tooor inferiore alla versione di hello del Server di configurazione in esecuzione nell'ambiente. Compatibilità di versione tooensure un modo semplice è toouse hello stessi bit di installazione che è utilizzato recentemente tooinstall/aggiornare il Server di configurazione.
+  La versione del server di elaborazione con scalabilità orizzontale deve essere uguale o inferiore rispetto alla versione del server di configurazione in esecuzione nell'ambiente. Un modo semplice per garantire la compatibilità tra le versioni è l'uso degli stessi bit del programma di installazione usato per installare/aggiornare il server di configurazione.
 
 ## <a name="installing-and-registering-a-scale-out-process-server-from-gui"></a>Installazione e registrazione di un server di elaborazione con scalabilità orizzontale dall'interfaccia utente grafica
-Se hai tooscale orizzontalmente la distribuzione oltre 200 macchine di origine, oppure un totale giornaliero di varianza del tasso di più di 2 TB, è necessario volume di traffico hello toohandle server processo aggiuntivo.
+Se è necessario ridimensionare la distribuzione oltre 200 computer di origine oppure la varianza totale giornaliera è superiore a 2 TB, sono necessari server di elaborazione aggiuntivi per gestire il volume di traffico.
 
-Controllare hello [consigli per i server di elaborazione di dimensioni](#size-recommendations-for-the-process-server), quindi seguire queste istruzioni tooset dei server di elaborazione hello. Dopo aver configurato il server di hello, eseguire la migrazione toouse macchine di origine è.
+Vedere [Dimensioni consigliate per il server di elaborazione](#size-recommendations-for-the-process-server) e quindi seguire queste istruzioni per configurare il server di elaborazione. Dopo aver configurato il server è possibile eseguire la migrazione dei computer di origine per usarlo.
 
 [!INCLUDE [site-recovery-configuration-server-requirements](../../includes/site-recovery-add-process-server.md)]
 
@@ -56,7 +56,7 @@ Controllare hello [consigli per i server di elaborazione di dimensioni](#size-re
 ## <a name="installing-and-registering-a-scale-out-process-server-using-command-line"></a>Installazione e registrazione di un server di elaborazione con scalabilità orizzontale dalla riga di comando
 
 ```
-UnifiedSetup.exe [/ServerMode <CS/PS>] [/InstallDrive <DriveLetter>] [/MySQLCredsFilePath <MySQL credentials file path>] [/VaultCredsFilePath <Vault credentials file path>] [/EnvType <VMWare/NonVMWare>] [/PSIP <IP address toobe used for data transfer] [/CSIP <IP address of CS toobe registered with>] [/PassphraseFilePath <Passphrase file path>]
+UnifiedSetup.exe [/ServerMode <CS/PS>] [/InstallDrive <DriveLetter>] [/MySQLCredsFilePath <MySQL credentials file path>] [/VaultCredsFilePath <Vault credentials file path>] [/EnvType <VMWare/NonVMWare>] [/PSIP <IP address to be used for data transfer] [/CSIP <IP address of CS to be registered with>] [/PassphraseFilePath <Passphrase file path>]
 ```
 
 ### <a name="sample-usage"></a>Esempio di utilizzo
@@ -71,7 +71,7 @@ UNIFIEDSETUP.EXE /AcceptThirdpartyEULA /servermode "PS" /InstallLocation "D:\" /
 
 
 ### <a name="create-a-proxy-settings-configuration-file"></a>Creare un file di configurazione delle impostazioni del proxy
-Il parametro ProxySettingsFilePath prende un file come input. Creare file utilizzando hello seguente formattare e passarlo come parametro di input ProxySettingsFilePath.
+Il parametro ProxySettingsFilePath usa un file come input. Creare il file usando il formato seguente e passarlo come parametro ProxySettingsFilePath di input.
 ```
 * [ProxySettings]
 * ProxyAuthentication = "Yes/No"
@@ -82,15 +82,15 @@ Il parametro ProxySettingsFilePath prende un file come input. Creare file utiliz
 ```
 ## <a name="modifying-proxy-settings-for-scale-out-process-server"></a>Modifica delle impostazioni proxy per il server di elaborazione con scalabilità orizzontale
 1. Accedere al server di elaborazione con scalabilità orizzontale.
-2. Aprire una finestra di prompt dei comandi di PowerShell per amministratore.
-3. Eseguire hello comando seguente
+2. Aprire una finestra dei comandi di PowerShell per amministratore.
+3. Eseguire il comando seguente
   ```
   $pwd = ConvertTo-SecureString -String MyProxyUserPassword
   Set-OBMachineSetting -ProxyServer http://myproxyserver.domain.com -ProxyPort PortNumber –ProxyUserName domain\username -ProxyPassword $pwd
   net stop obengine
   net start obengine
   ```
-4. Quindi cerca nella directory toohello **%PROGRAMDATA%\ASR\Agent** e hello esecuzione comando seguente
+4. Passare alla directory **%PROGRAMDATA%\ASR\Agent** ed eseguire il comando seguente
   ```
   cmd
   cdpcli.exe --registermt
@@ -106,7 +106,7 @@ Il parametro ProxySettingsFilePath prende un file come input. Creare file utiliz
 [!INCLUDE [site-recovery-vmware-register-process-server](../../includes/site-recovery-vmware-register-process-server.md)]
 
 * Quindi aprire un prompt dei comandi come amministratore.
-* Sfogliare la directory toohello **%PROGRAMDATA%\ASR\Agent** ed eseguire il comando hello
+* Passare alla directory **%PROGRAMDATA%\ASR\Agent** ed eseguire il comando
 
 ```
 cdpcli.exe --registermt
@@ -121,19 +121,19 @@ net start obengine
 
 ## <a name="decommissioning-a-scale-out-process-server"></a>Rimozione di un server di elaborazione con scalabilità orizzontale
 1. Assicurarsi che:
-  - Mostra lo stato della connessione del Server di configurazione come **connesso** in hello portale di Azure
-  - Server di elaborazione è comunque possibile toocommunicate con il server di configurazione di hello.
-2. Accedere come amministratore server di elaborazione toohello
+  - Lo stato della connessione del server di configurazione sia visualizzato come **connesso** nel portale di Azure.
+  - Il server di elaborazione sia ancora in grado di comunicare con il server di configurazione.
+2. Accedere al server di elaborazione come amministratore.
 3. Scegliere Pannello di controllo > Programma > Disinstallare programmi
-4. Disinstallare i programmi di hello in sequenza hello fornito seguente:
+4. Disinstallare i programmi nella sequenza seguente:
   * Server di elaborazione/Server di configurazione di Microsoft Azure Site Recovery
   * Dipendenze del server di configurazione di Microsoft Azure Site Recovery
   * Agente di Servizi di ripristino di Microsoft Azure
 
-Può richiedere fino too15 minuti per tooreflect l'eliminazione di Server di elaborazione hello in hello portale di Azure.
+Possono essere necessari fino a 15 minuti affinché l'eliminazione del server di elaborazione sia visualizzata nel portale di Azure.
 
   > [!NOTE]
-  Se il server di elaborazione di hello è Impossibile toocommunicate con hello del Server di configurazione (stato di connessione nel portale è disconnesso), è necessario toofollow hello seguendo i passaggi toopurge da hello del Server di configurazione.
+  Se il server di elaborazione non è in grado di comunicare con il server di configurazione e quindi nel portale lo stato della connessione è Disconnesso, seguire questa procedura rimuoverlo dal server di configurazione.
 
 ## <a name="unregistering-a-disconnected-scale-out-process-server-from-a-configuration-server"></a>Annullamento della registrazione di un server di elaborazione con scalabilità orizzontale disconnesso da un server di configurazione
 
@@ -144,5 +144,5 @@ Può richiedere fino too15 minuti per tooreflect l'eliminazione di Server di ela
 | **Server di elaborazione aggiuntivo** | **Dimensione disco cache** | **Frequenza di modifica dei dati** | **Computer protetti** |
 | --- | --- | --- | --- |
 |4 vCPU (2 socket * 2 core a 2,5 GHz), 8 GB di memoria |300 GB |250 GB o inferiore |Replicare un massimo di 85 computer. |
-|8 vCPU (2 socket * 4 core a 2,5 GHz), 12 GB di memoria |600 GB |250 GB too1 TB |Replicare tra 85 e 150 computer. |
-|12 vCPU (2 socket * 6 core a 2,5 GHz), 24 GB di memoria |1 TB |1 TB too2 TB |Replicare tra 150 e 225 computer. |
+|8 vCPU (2 socket * 4 core a 2,5 GHz), 12 GB di memoria |600 GB |Da 250 GB a 1 TB |Replicare tra 85 e 150 computer. |
+|12 vCPU (2 socket * 6 core a 2,5 GHz), 24 GB di memoria |1 TB |Da 1 TB a 2 TB |Replicare tra 150 e 225 computer. |

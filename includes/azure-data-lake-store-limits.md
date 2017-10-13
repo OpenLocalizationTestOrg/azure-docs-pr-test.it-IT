@@ -1,7 +1,7 @@
-Azure Data Lake Store è un repository su vasta scala a livello aziendale per carichi di lavoro di analisi di Big Data. Archivio Data Lake consente toocapture dati di qualsiasi velocità di dimensioni, tipo e l'inserimento in un'unica posizione per analitica operative ed esplorative. Non sussiste alcun limite di toohello dei dati che è possibile archiviare in un account archivio Data Lake.
+Azure Data Lake Store è un repository su vasta scala a livello aziendale per carichi di lavoro di analisi di Big Data. Data Lake Store consente di acquisire dati di qualsiasi dimensione, tipo e velocità di inserimento in un'unica posizione per le analisi esplorative e operative. Non esiste alcun limite alla quantità di dati archiviabili in un account Data Lake Store.
 
 | **Risorsa** | **Limite predefinito** | **Commenti** |
 | --- | --- | --- |
-| Numero massimo di account Data Lake Store per sottoscrizione per ogni area |10 | Per questo limite, contattare il supporto toorequest un aumento |
-| Numero massimo di ACL di accesso, per file o cartella |32 | Si tratta di un limite rigido. Usare l'accesso toomanage gruppi con un minor numero di voci |
-| Numero massimo di ACL predefiniti, per file o cartella |32 | Si tratta di un limite rigido. Usare l'accesso toomanage gruppi con un minor numero di voci |
+| Numero massimo di account Data Lake Store per sottoscrizione per ogni area |10 | Contattare il supporto per richiedere un aumento del limite |
+| Numero massimo di ACL di accesso, per file o cartella |32 | Si tratta di un limite rigido. Per gestire l'accesso con un numero inferiore di voci, usare gruppi |
+| Numero massimo di ACL predefiniti, per file o cartella |32 | Si tratta di un limite rigido. Per gestire l'accesso con un numero inferiore di voci, usare gruppi |

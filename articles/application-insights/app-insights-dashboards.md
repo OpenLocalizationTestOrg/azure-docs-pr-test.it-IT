@@ -1,5 +1,5 @@
 ---
-title: aaaDashboards e spostamento in hello Azure Application Insights | Documenti Microsoft
+title: Navigazione e dashboard in Azure Application Insights | Microsoft Docs
 description: Creare visualizzazioni di query e grafici APM chiave.
 services: application-insights
 documentationcenter: 
@@ -13,95 +13,95 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 03/14/2017
 ms.author: bwren
-ms.openlocfilehash: 58811388205643bb672e0405b3226f12d0f447a9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9987f04e7e71df5fe10c8bc209a390cb940ec4f2
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="navigation-and-dashboards-in-hello-application-insights-portal"></a>Spostamento e i dashboard nel portale Application Insights hello
-Dopo aver [configurare Application Insights al progetto](app-insights-overview.md), verranno visualizzati i dati di telemetria sull'utilizzo e delle prestazioni dell'app nella risorsa di Application Insights del progetto in hello [portale di Azure](https://portal.azure.com).
+# <a name="navigation-and-dashboards-in-the-application-insights-portal"></a>Navigazione e dashboard nel portale Application Insights
+Dopo aver [impostato Application Insights nel progetto](app-insights-overview.md), i dati di telemetria sull'uso e le prestazioni dell'app verranno visualizzati nella risorsa di Application Insights del progetto nel [portale di Azure](https://portal.azure.com).
 
 ## <a name="find-your-telemetry"></a>Trovare i dati di telemetria
-Accedi toohello [portale di Azure](https://portal.azure.com) e passare a risorsa di Application Insights toohello creato per l'app.
+Nel [portale di Azure](https://portal.azure.com) passare alla risorsa di Application Insights creata per la propria app.
 
 ![Fare clic su Sfoglia, selezionare Application Insights, quindi fare clic sull'app.](./media/app-insights-dashboards/00-start.png)
 
-pannello della panoramica Hello (pagina) per l'app viene visualizzato un riepilogo delle metriche di diagnostica chiave hello dell'app ed è di altre funzionalità del portale hello toohello un gateway.
+Il pannello (pagina) Panoramica dell'app mostra un riepilogo della metrica di diagnostica chiave dell'app e permette di accedere alle altre funzionalità del portale.
 
-![I principali di dati di telemetria tooview route](./media/app-insights-dashboards/010-oview.png)
+![Route principali per visualizzare i dati di telemetria](./media/app-insights-dashboards/010-oview.png)
 
-È possibile personalizzare le griglie e grafici hello e aggiungerli tooa dashboard. In questo modo, è possibile unire dati di telemetria chiave hello da diverse App in un dashboard centrale.
+È possibile personalizzare tutti i grafici e le griglie e aggiungerli a un dashboard. In questo modo è possibile raccogliere i dati di telemetria chiave da diverse app in un dashboard centrale.
 
 ## <a name="dashboards"></a>Dashboard
-Hello in primo luogo viene visualizzato dopo l'accesso toohello [portale Microsoft Azure](https://portal.azure.com) è un dashboard. Qui è possibile raggruppare i grafici di hello che sono più importanti tooyou tra tutte le risorse di Azure, inclusi i dati di telemetria da [Azure Application Insights](app-insights-overview.md).
+Il primo oggetto visualizzato dopo l'accesso al [portale di Microsoft Azure](https://portal.azure.com) è un dashboard, in cui è possibile raggruppare i grafici più importanti di tutte le risorse di Azure, inclusi i dati di telemetria di [Azure Application Insights](app-insights-overview.md).
 
 ![Un dashboard personalizzato.](./media/app-insights-dashboards/31.png)
 
-1. **Passare alle risorse toospecific** , ad esempio l'app in Application Insights: barra sinistra hello di utilizzo.
-2. **Dashboard corrente restituito toohello**, o cambiare vista recenti tooother: menu di scelta rapida utilizzare hello in alto a sinistra.
-3. **Passare i dashboard**: menu di scelta rapida utilizzare hello nel titolo del dashboard hello
-4. **Creare, modificare e condividere i dashboard** nella barra degli strumenti del dashboard hello.
-5. **Modificare il dashboard di hello**: passare il mouse su un riquadro e quindi usare superiore barra toomove, personalizzare o rimuoverlo.
+1. **Passare a risorse specifiche** ad esempio l'app in Application Insights: usare la barra di sinistra.
+2. **Tornare al dashboard corrente** o passare ad altre visualizzazioni recenti: usare il menu a discesa in alto a sinistra.
+3. **Cambiare dashboard**: usare il menu a discesa nel titolo del dashboard.
+4. **Modificare, creare e condividere dashboard** nella barra degli strumenti.
+5. **Modificare il dashboard**: passare il puntatore del mouse su un riquadro e usare la relativa barra superiore per spostarlo, personalizzarlo o rimuoverlo.
 
-## <a name="add-tooa-dashboard"></a>Aggiungere dashboard tooa
-Quando si cerca un pannello o un set di grafici che è particolarmente interessante, è possibile aggiungere una copia del dashboard toohello. Saranno visibili al successivo accesso.
+## <a name="add-to-a-dashboard"></a>Aggiungere elementi a un dashboard
+I pannelli o i set di grafici particolarmente interessanti possono essere aggiunti al dashboard. Saranno visibili al successivo accesso.
 
-![toopin un grafico, passare il mouse su di essa e quindi fare clic su "…" nell'intestazione di hello.](./media/app-insights-dashboards/33.png)
+![Per aggiungere un grafico, passare il mouse su di esso e fare clic su "..." nell'intestazione.](./media/app-insights-dashboards/33.png)
 
-1. Aggiungi grafico toodashboard. Una copia di hello grafico viene visualizzato nel dashboard di hello.
-2. PIN hello intero pannello toohello - visualizzato nel dashboard hello sotto forma di riquadro che è possibile fare clic.
-3. Fare clic su dashboard corrente toohello di hello tooreturn nell'angolo superiore sinistro. È quindi possibile utilizzare visualizzazione corrente di hello dal menu a discesa tooreturn toohello.
+1. Aggiungere il grafico al dashboard. Una copia del grafico viene visualizzata nel dashboard.
+2. Aggiungere l'intero pannello al dashboard. Il pannello viene visualizzato nel dashboard sotto forma di riquadro su cui è possibile fare clic.
+3. Fare clic nell'angolo superiore sinistro per tornare al dashboard corrente. A questo punto è possibile usare il menu a discesa per tornare alla visualizzazione corrente.
 
-Si noti che i grafici sono raggruppati in riquadri e che un riquadro può contenere più di un grafico. Si blocca hello intero riquadro toohello o un dashboard.
+Si noti che i grafici sono raggruppati in riquadri e che un riquadro può contenere più di un grafico. Viene aggiunto al dashboard l'intero riquadro.
 
-grafico Hello viene aggiornata automaticamente con una frequenza che dipende da intervallo di tempo del grafico hello:
+Il grafico viene aggiornato automaticamente con una frequenza che dipende dall'intervallo di tempo del grafico:
 
-* Intervallo di ore too1 di tempo: aggiornare ogni 5 minuti
+* Intervallo di tempo fino ad un'ora: viene aggiornato ogni 5 minuti
 * Intervallo di tempo da una a 24 ore: viene aggiornato ogni 15 minuti
 * Intervallo di tempo superiore a 24 ore: (intervallo di tempo) / 60.
 
 ### <a name="pin-any-query-in-analytics"></a>Aggiungere query in Analisi
-È anche possibile [aggiungere Analitica](app-insights-analytics-using.md#pin-to-dashboard) grafici tooa [condivisa](#share-dashboards-with-your-team) dashboard. In questo modo tooadd grafici delle query insieme a metriche standard hello arbitrario. 
+È anche possibile aggiungere grafici di [Analisi](app-insights-analytics-using.md#pin-to-dashboard) a un dashboard [condiviso](#share-dashboards-with-your-team). In questo modo è possibile aggiungere grafici di una query arbitraria insieme alle metriche standard. 
 
-I risultati vengono ricalcolati automaticamente ogni ora. Clic sull'icona di aggiornamento di hello in hello grafico toorecalculate immediatamente. (L'aggiornamento del browser non esegue il ricalcolo).
+I risultati vengono ricalcolati automaticamente ogni ora. Fare clic sull'icona Aggiorna del grafico per un ricalcolo immediato. (L'aggiornamento del browser non esegue il ricalcolo).
 
-## <a name="adjust-a-tile-on-hello-dashboard"></a>Modificare un riquadro nel dashboard di hello
-Una volta un riquadro nel dashboard di hello, è possibile modificare.
+## <a name="adjust-a-tile-on-the-dashboard"></a>Modificare un riquadro nel dashboard
+Dopo aver aggiunto un riquadro al dashboard, è possibile modificarlo.
 
-![Passare il mouse sopra un grafico in ordine tooedit.](./media/app-insights-dashboards/36.png)
+![Passare il puntatore del mouse su un grafico per modificarlo.](./media/app-insights-dashboards/36.png)
 
-1. Aggiungere un riquadro toohello grafico.
-2. Impostare la metrica hello, group by dimensione e lo stile (tabella, grafico) di un grafico.
-3. Trascina toozoom diagramma hello. Fare clic su hello annullamento pulsante tooreset hello timespan; impostare le proprietà di filtro per i grafici di hello sul riquadro hello.
+1. Aggiungere un grafico al riquadro.
+2. Impostare la metrica, la dimensione group-by e lo stile (tabella, grafico) di un grafico.
+3. Trascinare il diagramma per ingrandire; fare clic sul pulsante di annullamento per reimpostare l'intervallo di tempo; impostare le proprietà di filtro per i grafici nel riquadro.
 4. Impostare il titolo del riquadro.
 
 I riquadri aggiunti dai pannelli di Esplora metriche hanno più opzioni di modifica rispetto ai riquadri aggiunti da un pannello Panoramica.
 
-riquadro Hello originale è stato aggiunto non è influenzato da tutte le modifiche.
+Il riquadro originale aggiunto non è interessato dalle modifiche.
 
 ## <a name="switch-between-dashboards"></a>Passare da un dashboard all'altro
-È possibile salvare più dashboard e passare da un dashboard all'altro. Quando si aggiunge un grafico o un pannello, vengono aggiunte toohello dashboard corrente.
+È possibile salvare più dashboard e passare da un dashboard all'altro. Quando si aggiunge un grafico o un pannello, l'aggiunta viene eseguita nel dashboard corrente.
 
-![tooswitch tra i dashboard, fare clic su Dashboard e selezionare un dashboard salvato. toocreate e salvare un nuovo dashboard, fare clic su nuovo. toorearrange, fare clic su Modifica.](./media/app-insights-dashboards/32.png)
+![Per passare da un dashboard all'altro, fare clic su Dashboard e selezionare un dashboard salvato. Per creare e salvare un nuovo dashboard, fare clic su Nuovo. Per modificare la disposizione, fare clic su Modifica.](./media/app-insights-dashboards/32.png)
 
-Ad esempio, potrebbe essere un dashboard per la visualizzazione a schermo intero nella chat team hello e l'altra per lo sviluppo generale.
+È possibile ad esempio usare un dashboard per la visualizzazione a schermo intero nell'area del team e un altro dashboard per lo sviluppo generale.
 
-Nel dashboard di hello, viene visualizzato un pannello sotto forma di riquadro: selezionarlo toogo toohello blade. Un grafico consente di replicare il grafico hello nella posizione originale.
+Nel dashboard i pannelli vengono visualizzati sotto forma di riquadri: fare clic sul riquadro desiderato per passare al pannello. I grafici sono una replica dei grafici che si trovano nel percorso originale.
 
-![Fare clic su un pannello di hello tooopen riquadro che rappresenta](./media/app-insights-dashboards/35.png)
+![Fare clic su un riquadro per aprire il pannello che rappresenta](./media/app-insights-dashboards/35.png)
 
 ## <a name="share-dashboards"></a>Condividere dashboard
 Dopo aver creato un dashboard, è possibile condividerlo con altri utenti.
 
-![Nell'intestazione di hello dashboard, fare clic su Condividi](./media/app-insights-dashboards/41.png)
+![Fare clic su Condividi nell'intestazione del dashboard](./media/app-insights-dashboards/41.png)
 
 Altre informazioni su [ruoli e controllo di accesso](app-insights-resources-roles-access-control.md).
 
 ## <a name="app-navigation"></a>Esplorazione delle app
-pannello della panoramica Hello è hello gateway toomore informazioni dell'app.
+Il pannello Panoramica è il gateway per altre informazioni sull'app.
 
-* **Qualsiasi riquadro o un grafico** : fare clic su qualsiasi riquadro o grafico toosee ulteriori dettagli sulla descrizione.
+* **Qualsiasi grafico o riquadro**: fare clic su qualsiasi riquadro o grafico per vedere altri dettagli sugli elementi visualizzati.
 
 ### <a name="overview-blade-buttons"></a>Pulsanti del pannello Panoramica
 ![Barra di spostamento superiore del pannello Panoramica](./media/app-insights-dashboards/app-overview-top-nav.png)
@@ -109,8 +109,8 @@ pannello della panoramica Hello è hello gateway toomore informazioni dell'app.
 * [**Esplora metriche**](app-insights-metrics-explorer.md): consente di creare grafici su prestazioni e uso.
 * [**Cerca**](app-insights-diagnostic-search.md): consente di analizzare istanze specifiche di eventi, ad esempio richieste, eccezioni o tracce di log.
 * [**Analisi**](app-insights-analytics.md): consente di eseguire query avanzate con i dati di telemetria.
-* **Intervallo di tempo** -modificare l'intervallo di hello visualizzato da tutti i grafici di hello nel pannello hello.
-* **Eliminare** -eliminare la risorsa di Application Insights hello per questa applicazione. È necessario anche rimuovere pacchetti di Application Insights hello dal codice dell'app oppure modificare hello [chiave di strumentazione](app-insights-create-new-resource.md#copy-the-instrumentation-key) nell'app toodirect telemetria tooa diversi risorsa di Application Insights.
+* **Intervallo di tempo**: consente di regolare l'intervallo visualizzato da tutti i grafici nel pannello.
+* **Elimina**: consente di eliminare la risorsa di Application Insights per l'app. È necessario anche rimuovere i pacchetti di Application Insights dal codice dell'app o modificare la [chiave di strumentazione](app-insights-create-new-resource.md#copy-the-instrumentation-key) nell'app per indirizzare i dati di telemetria a una risorsa di Application Insights diversa.
 
 ### <a name="essentials-tab"></a>Scheda Informazioni di base
 * [Chiave di strumentazione](app-insights-create-new-resource.md#copy-the-instrumentation-key): identifica la risorsa dell'app.
@@ -119,18 +119,18 @@ pannello della panoramica Hello è hello gateway toomore informazioni dell'app.
 ### <a name="app-navigation-bar"></a>Barra di spostamento delle app
 ![Barra di spostamento sinistra](./media/app-insights-dashboards/app-left-nav-bar.png)
 
-* **Panoramica** -pannello della panoramica app toohello restituito.
+* **Panoramica**: consente di tornare al pannello Panoramica delle app.
 * **Log attività**: fornisce avvisi e informazioni su eventi amministrativi di Azure.
-* [**Controllo di accesso** ](app-insights-resources-roles-access-control.md) -forniscono accesso a membri tooteam e altri.
-* [**Tag** ](../azure-resource-manager/resource-group-using-tags.md) -utilizzare tag toogroup app con altri utenti.
+* [**Controllo di accesso**](app-insights-resources-roles-access-control.md): fornire l'accesso a membri del team e altri utenti.
+* [**Tag**](../azure-resource-manager/resource-group-using-tags.md): consente di usare tag per raggruppare un'app con altre app.
 
 RICERCA CAUSA
 
-* [**Mappa delle applicazioni** ](app-insights-app-map.md) -Active mappa con i componenti di hello dell'applicazione, è derivato dalle informazioni di dipendenza hello.
+* [**Mappa delle applicazioni**](app-insights-app-map.md): una mappa attiva che mostra i componenti dell'applicazione, ricavata dalle informazioni sulle dipendenze.
 * [**Rilevamento intelligente**](app-insights-proactive-diagnostics.md): consente di esaminare gli avvisi recenti sulle prestazioni.
 * [**Flusso attivo**](app-insights-live-stream.md): un set fisso di metriche quasi istantanee, utile quando si distribuisce una nuova compilazione o si esegue il debug.
-* [**Disponibilità / test Web** ](app-insights-monitor-web-app-availability.md) -invia richieste regolare tooyour app web da intorno mondo hello. *
-* [**Gli errori, prestazioni** ](app-insights-web-monitor-performance.md) -eccezioni, guasti e una risposta volte per le richieste tooyour app e per le richieste dall'app troppo[dipendenze](app-insights-asp-net-dependencies.md).
+* [**Test Web/disponibilità**](app-insights-monitor-web-app-availability.md): consente di inviare regolarmente richieste all'App Web da ogni parte del mondo.*
+* [**Errori, Prestazioni**](app-insights-web-monitor-performance.md): eccezioni, frequenze di errori e tempi di risposta per le richieste verso l'app e dall'app alle [dipendenze](app-insights-asp-net-dependencies.md).
 * [**Performance**](app-insights-web-monitor-performance.md): tempo di risposta e tempi di risposta delle dipendenze.
 * [Server](app-insights-web-monitor-performance.md) : contatori delle prestazioni. Disponibile se si [installa Status Monitor](app-insights-monitor-performance-live-website-now.md).
 * **Browser** : prestazioni AJAX e di visualizzazione di pagine. Disponibile se si [instrumentano le pagine Web](app-insights-javascript.md).
@@ -141,16 +141,16 @@ CONFIGURA
 * **Per iniziare** : esercitazione inline.
 * **Proprietà** : chiave di strumentazione, sottoscrizione e ID risorsa.
 * [Avvisi](app-insights-alerts.md) : configurazione degli avvisi sulle metriche.
-* [L'esportazione continua](app-insights-export-telemetry.md) -configurare l'esportazione di archiviazione di dati di telemetria tooAzure.
+* [Esportazione continua](app-insights-export-telemetry.md) : configurazione dell'esportazione dei dati di telemetria nell'archiviazione di Azure.
 * [Test delle prestazioni](app-insights-monitor-web-app-availability.md#performance-tests) : impostazione di un carico sintetico nel sito Web.
 * [Quota e prezzi](app-insights-pricing.md) e [campionamento per inserimento](app-insights-sampling.md).
-* **L'accesso all'API** -creare [versione annotazioni](app-insights-annotations.md) e per hello API di accesso ai dati.
-* [**Gli elementi di lavoro** ](app-insights-diagnostic-search.md#create-work-item) -connettersi in modo che è possibile creare bug durante l'analisi di dati di telemetria, sistema di verifica del lavoro tooa.
+* **Accesso API**: consente di creare [annotazioni sulla versione](app-insights-annotations.md) e per l'API di accesso ai dati.
+* [**Elementi di lavoro**](app-insights-diagnostic-search.md#create-work-item): consente di connettersi a un sistema di verifica del lavoro per poter creare bug durante l'analisi dei dati di telemetria.
 
 IMPOSTAZIONI
 
 * [**Blocchi**](../azure-resource-manager/resource-group-lock-resources.md): bloccano le risorse di Azure.
-* [**Script di automazione** ](app-insights-powershell.md) -esportare una definizione di risorsa di Azure hello in modo che è possibile utilizzarlo come un nuove risorse toocreate di modello.
+* [**Script di automazione**](app-insights-powershell.md): consente di esportare una definizione della risorsa di Azure da usare come modello per la creazione di nuove risorse.
 
 
 ## <a name="video"></a>Video

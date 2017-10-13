@@ -1,6 +1,6 @@
 ---
-title: aaaAzure AD Panoramica del protocollo .NET | Documenti Microsoft
-description: "Modalità di accesso toouse HTTP messaggi tooauthorize tooweb applicazioni e API web nel tenant mediante Azure AD."
+title: Panoramica del protocollo .NET per Azure AD | Documentazione Microsoft
+description: Come usare messaggi HTTP per autorizzare l'accesso ad applicazioni Web e API Web nel proprio tenant con Azure Active Directory.
 services: active-directory
 documentationcenter: .net
 author: priyamohanram
@@ -13,21 +13,21 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 01/21/2016
 ms.author: priyamo
-ms.openlocfilehash: 5bd54af028c445afd3f35d67d47d7c84b476c757
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 42ce8dfd30cda7d4085778954350550fd9fdf13d
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 ## Registrare l'applicazione nel tenant di Active Directory
-In primo luogo, sarà necessario tooregister l'applicazione con il tenant di Azure Active Directory (Azure AD). Questo verrà offrono un ID applicazione per l'applicazione, nonché abilitare tooreceive token.
+Prima di tutto è necessario registrare l'applicazione nel tenant di Azure Active Directory (Azure AD). Verrà fornito un ID per l'applicazione, abilitandola per ricevere token.
 
-* Accedi toohello [portale Azure](https://portal.azure.com).
-* Scegliere il tenant di Azure Active Directory facendo clic sul proprio account nel hello angolo superiore destro della pagina hello.
-* Nel riquadro di spostamento a sinistra di hello, fare clic su **Azure Active Directory**.
+* Accedere al [portale di Azure](https://portal.azure.com).
+* Scegliere il tenant di Azure AD facendo clic sull'account nell'angolo superiore destro della pagina.
+* Nel riquadro di spostamento a sinistra fare clic su **Azure Active Directory**.
 * Fare clic su **Registrazioni per l'app** e quindi su **Aggiungi**.
-* Seguire le istruzioni di hello e creare una nuova applicazione. Per questa esercitazione non è rilevante che si tratti di un'applicazione Web o un'applicazione nativa, ma per esempi specifici per le applicazioni Web o native, consultare le [guide introduttive](../articles/active-directory/develop/active-directory-developers-guide.md).
-  * Per le applicazioni Web, fornire hello **Sign-On URL** ovvero hello URL di base dell'app, in cui gli utenti possono accedere ad esempio `http://localhost:12345`.
-<!--TODO: add once App ID URI is configurable: hello **App ID URI** is a unique identifier for your application. hello convention is toouse `https://<tenant-domain>/<app-name>`, e.g. `https://contoso.onmicrosoft.com/my-first-aad-app`-->
-  * Per le applicazioni Native, fornire un **URI di reindirizzamento**, quali Azure AD utilizzerà le risposte token tooreturn. Immettere un'applicazione, tooyour specifico valore. ad esempio`http://MyFirstAADApp`
-* Dopo aver completato la registrazione, Azure AD verrà assegnare l'applicazione di un identificatore univoco di client, hello l'ID dell'applicazione. Questo valore sarà necessario in hello nelle sezioni seguenti, quindi copiarlo dalla pagina dell'applicazione hello.
+* Seguire le istruzioni e creare una nuova applicazione. Per questa esercitazione non è rilevante che si tratti di un'applicazione Web o un'applicazione nativa, ma per esempi specifici per le applicazioni Web o native, consultare le [guide introduttive](../articles/active-directory/develop/active-directory-developers-guide.md).
+  * Per le applicazioni Web fornire l'**URL accesso**, ovvero l'URL di base dell'app con cui gli utenti possono accedere, ad esempio `http://localhost:12345`.
+<!--TODO: add once App ID URI is configurable: The **App ID URI** is a unique identifier for your application. The convention is to use `https://<tenant-domain>/<app-name>`, e.g. `https://contoso.onmicrosoft.com/my-first-aad-app`-->
+  * Per le applicazioni native fornire un **URI di reindirizzamento**, che Azure AD userà per restituire le risposte dei token. Immettere un valore specifico per l'applicazione in uso, ad esempio `http://MyFirstAADApp`
+* Dopo avere completato la registrazione, Azure AD assegnerà all'applicazione un identificatore client univoco, l'ID applicazione. Poiché questo valore sarà necessario nelle sezioni successive, copiarlo dalla pagina dell'applicazione.

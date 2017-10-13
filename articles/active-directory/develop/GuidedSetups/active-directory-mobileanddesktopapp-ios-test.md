@@ -1,5 +1,5 @@
 ---
-title: iOS v2 aaaAzure AD Getting Started - Test | Documenti Microsoft
+title: 'Introduzione a iOS con Azure AD v2: test | Microsoft Docs'
 description: "Informazioni sulle modalità per le applicazioni iOS (Swift) per chiamare un'API che richiede token di accesso dall'endpoint di Azure Active Directory v2"
 services: active-directory
 documentationcenter: dev-center-name
@@ -13,32 +13,32 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/09/2017
 ms.author: andret
-ms.openlocfilehash: 98c73eddabf9664feb19ac6878e9d7315b9aa79b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4a88096d2b0a23708acdbc1798eac528599b4f71
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-## <a name="test-querying-hello-microsoft-graph-api-from-your-ios-application"></a>Test query hello API di Microsoft Graph dall'applicazione iOS
+## <a name="test-querying-the-microsoft-graph-api-from-your-ios-application"></a>Verificare l'esecuzione di query di API Graph di Microsoft dall'applicazione iOS
 
-Premere `Command`  +  `R` codice hello toorun nel simulatore hello.
+Premere `Command` + `R` per eseguire il codice nel simulatore.
 
 ![Schermata di esempio](media/active-directory-mobileanddesktopapp-ios-test/iostestscreenshot.png)
 
-Quando sarai pronto tootest, toccare *'Chiamare l'API di Microsoft Graph'* ed è il nome utente e password, sarà richiesta tootype.
+Quando si è pronti per eseguire il test, toccare *"Call Microsoft Graph API"* (Chiamare l'API Graph di MIcrosoft) e verrà richiesto di digitare il nome utente e la password.
 
 ### <a name="consent"></a>Consenso
-Hello prima volta che accedi nell'applicazione tooyour, verrà visualizzata con un seguente toohello consenso simile dello schermo, in cui è necessario accettare tooexplicitly:
+La prima volta che si accede all'applicazione, viene visualizzata una schermata di consenso, simile alla figura seguente, in cui è necessario accettare in modo esplicito:
 
 ![Schermata di consenso](media/active-directory-mobileanddesktopapp-ios-test/iosconsentscreen.png)
 
 ### <a name="expected-results"></a>Risultati previsti
-Informazioni sul profilo utente restituiti dalla chiamata all'API di Microsoft Graph hello in hello dovrebbe *registrazione* sezione.
+Si dovrebbero visualizzare le informazioni del profilo utente restituite dalla chiamata dell'API Microsoft Graph nella sezione *Registrazione*.
 
 <!--start-collapse-->
 ### <a name="more-information-about-scopes-and-delegated-permissions"></a>Altre informazioni sugli ambiti e sulle autorizzazioni delegate
 
-API di Microsoft Graph Hello richiede hello `user.read` ambito tooread hello del profilo utente. Per impostazione predefinita, questo ambito viene aggiunto automaticamente in ogni applicazione registrata nel portale di registrazione. Altre API per Microsoft Graph e le API personalizzate per il server di back-end potrebbero richiedere anche altri ambiti. Ad esempio, per Microsoft Graph, hello ambito `Calendars.Read` è calendari dell'utente di hello toolist obbligatorio. In ordine tooaccess hello del calendario dell'utente in un contesto di un'applicazione, è necessario hello tooadd `Calendars.Read` informazioni di registrazione applicazione toohello di autorizzazione di delega e quindi aggiungere hello `Calendars.Read` toohello ambito `acquireTokenSilent` chiamare. utente Hello potrebbe essere richieste autorizzazioni aggiuntive quando si aumenta il numero di hello degli ambiti.
+L'API di Microsoft Graph richiede l'ambito `user.read` per leggere il profilo dell'utente. Per impostazione predefinita, questo ambito viene aggiunto automaticamente in ogni applicazione registrata nel portale di registrazione. Altre API per Microsoft Graph e le API personalizzate per il server di back-end potrebbero richiedere anche altri ambiti. Ad esempio, per Microsoft Graph, l'ambito `Calendars.Read` è necessario per elencare i calendari dell'utente. Per poter accedere al calendario dell'utente nel contesto di un'applicazione, è necessario aggiungere l'autorizzazione delegata `Calendars.Read` alle informazioni di registrazione dell'applicazione e quindi aggiungere l'ambito `Calendars.Read` alla chiamata `acquireTokenSilent`. Con l'aumentare del numero di ambiti è possibile che all'utente venga chiesto di esprimere anche altri tipi di consenso.
 
 <!--end-collapse-->
 

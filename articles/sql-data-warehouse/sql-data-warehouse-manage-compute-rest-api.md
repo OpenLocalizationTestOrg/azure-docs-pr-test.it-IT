@@ -1,5 +1,5 @@
 ---
-title: "aaaPause, riprendere, la scalabilità orizzontale con REST in Azure SQL Data Warehouse | Documenti Microsoft"
+title: Sospendere, riprendere e ridimensionare con REST in Azure SQL Data Warehouse | Documentazione Microsoft
 description: Gestire la potenza di calcolo in SQL Data Warehouse con REST, T-SQL e PowerShell.
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: manage
 ms.date: 07/25/2017
 ms.author: elbutter
-ms.openlocfilehash: fc867febb118fb5c86c2637a41b232076021b95d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 24e43205c0c562fca9b1c2c0e5eed4da54e17ed7
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="manage-compute-power-in-azure-sql-data-warehouse-rest"></a>Gestire la potenza di calcolo in Azure SQL Data Warehouse (REST)
 > [!div class="op_single_selector"]
@@ -37,7 +37,7 @@ ms.lasthandoff: 10/06/2017
 ## <a name="scale-compute-power"></a>Ridimensionare la potenza di calcolo
 [!INCLUDE [SQL Data Warehouse scale DWUs description](../../includes/sql-data-warehouse-scale-dwus-description.md)]
 
-hello toochange Dwu, utilizzare hello [crea o aggiorna Database] [ Create or Update Database] API REST. Hello esempio imposta hello servizio livello obiettivo tooDW1000 per database hello MySQLDW che è ospitato nel server MyServer. server Hello è denominato ResourceGroup1 in un gruppo di risorse di Azure.
+Per modificare le DWU, usare l'API REST descritta in [Create or Update Database][Create or Update Database] (Creare o aggiornare il database). L'esempio seguente imposta l'obiettivo del livello di servizio su DW1000 per il database MySQLDW ospitato nel server MyServer. Il server appartiene al gruppo di risorse di Azure ResourceGroup1.
 
 ```
 PATCH https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Sql/servers/{server-name}/databases/{database-name}?api-version=2014-04-01-preview HTTP/1.1
@@ -55,7 +55,7 @@ Content-Type: application/json; charset=UTF-8
 ## <a name="pause-compute"></a>Sospendere le risorse di calcolo
 [!INCLUDE [SQL Data Warehouse pause description](../../includes/sql-data-warehouse-pause-description.md)]
 
-toopause un database, utilizzare hello [Database pausa] [ Pause Database] API REST. Hello esempio seguente viene sospeso un database denominato Database02 ospitato in un server denominato Server01. server Hello è denominato ResourceGroup1 in un gruppo di risorse di Azure.
+Per sospendere un database, usare l'API REST descritta in [Pause Database][Pause Database] (Sospendere il database). L'esempio seguente sospende il database Database02 ospitato sul server Server01. Il server appartiene al gruppo di risorse di Azure ResourceGroup1.
 
 ```
 POST https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Sql/servers/{server-name}/databases/{database-name}/pause?api-version=2014-04-01-preview HTTP/1.1
@@ -66,7 +66,7 @@ POST https://management.azure.com/subscriptions/{subscription-id}/resourceGroups
 ## <a name="resume-compute"></a>Riavviare le risorse di calcolo
 [!INCLUDE [SQL Data Warehouse resume description](../../includes/sql-data-warehouse-resume-description.md)]
 
-toostart un database, utilizzare hello [Database Resume] [ Resume Database] API REST. Hello esempio seguente viene avviato un database denominato Database02 ospitato in un server denominato Server01. server Hello è denominato ResourceGroup1 in un gruppo di risorse di Azure. 
+Per avviare un database, usare l'API REST descritta in [Resume Database][Resume Database] (Riprendere il database). L'esempio seguente avvia il database Database02 ospitato sul server Server01. Il server appartiene al gruppo di risorse di Azure ResourceGroup1. 
 
 ```
 POST https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Sql/servers/{server-name}/databases/{database-name}/resume?api-version=2014-04-01-preview HTTP/1.1

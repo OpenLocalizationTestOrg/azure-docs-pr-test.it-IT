@@ -1,6 +1,6 @@
 ---
-title: un contenitore Docker aaaDeploy cluster in Azure | Documenti Microsoft
-description: Distribuire una soluzione Kubernetes, controller di dominio o del sistema operativo o Docker Swarm contenitore nel servizio di Azure usando hello portale di Azure o un modello di gestione risorse.
+title: Distribuire un cluster per contenitori Docker in Azure | Documentazione Microsoft
+description: Distribuire una soluzione Kubernetes, DC/OS o Docker Swarm nel servizio contenitore di Azure usando il portale di Azure o un modello di Resource Manager.
 services: container-service
 documentationcenter: 
 author: rgardler
@@ -16,19 +16,19 @@ ms.workload: na
 ms.date: 03/01/2017
 ms.author: rogardle
 ms.custom: H1Hack27Feb2017, mvc
-ms.openlocfilehash: 26e3a7d0af9d71acd8b5c85fd667fcf7d84cef66
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 0ef256537bf095e2a5d582bd345a9c8dcede2095
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="deploy-a-docker-container-hosting-solution-using-hello-azure-portal"></a>Distribuire un contenitore Docker usando il portale di Azure hello soluzione di hosting
+# <a name="deploy-a-docker-container-hosting-solution-using-the-azure-portal"></a>Distribuire una soluzione di hosting di contenitori Docker usando il portale di Azure
 
 
 
-Il servizio contenitore di Azure consente la distribuzione rapida delle soluzioni open source di clustering e orchestrazione dei contenitori più diffuse. Questo documento illustra la distribuzione di un cluster di servizio di contenitore di Azure tramite hello portale di Azure o un modello di avvio rapido di Azure Resource Manager. 
+Il servizio contenitore di Azure consente la distribuzione rapida delle soluzioni open source di clustering e orchestrazione dei contenitori più diffuse. Questo documento illustra la distribuzione di un cluster del servizio contenitore di Azure usando il portale di Azure o il modello di avvio rapido di Azure Resource Manager. 
 
-È inoltre possibile distribuire un cluster il servizio contenitore di Azure tramite hello [CLI di Azure 2.0](container-service-create-acs-cluster-cli.md) o hello API del servizio contenitore di Azure.
+È anche possibile distribuire un cluster del servizio contenitore di Azure usando l'[interfaccia della riga di comando di Azure 2.0](container-service-create-acs-cluster-cli.md) o le API del servizio contenitore di Azure.
 
 Per le informazioni di base, vedere [Introduzione al servizio contenitore di Azure](../container-service-intro.md).
 
@@ -38,167 +38,167 @@ Per le informazioni di base, vedere [Introduzione al servizio contenitore di Azu
 * **Sottoscrizione di Azure**: nel caso in cui non sia disponibile è possibile usare una [versione di prova gratuita](http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=AA4C1C935). Per cluster di maggiori dimensioni, prendere in considerazione una sottoscrizione con pagamento in base al consumo o altre opzioni di acquisto.
 
     > [!NOTE]
-    > L'utilizzo della sottoscrizione di Azure e [le quote di risorse](../../azure-subscription-service-limits.md), ad esempio le quote di core, limitare l'ambito dimensione hello del cluster di hello si distribuisce. toorequest un aumento della quota, aprire un [richiesta di supporto clienti online](../../azure-supportability/how-to-create-azure-support-request.md) senza alcun costo.
+    > L'uso della sottoscrizione di Azure e delle [quote di risorse](../../azure-subscription-service-limits.md), ad esempio le quote di core, possono limitare le dimensioni del cluster che si distribuisce. Per richiedere un aumento della quota, è possibile aprire una [richiesta di assistenza clienti online](../../azure-supportability/how-to-create-azure-support-request.md) senza alcun addebito.
     >
 
-* **Chiave pubblica SSH RSA**: durante la distribuzione tramite il portale di hello o uno dei modelli di avvio rapido di Azure hello, chiave pubblica di tooprovide hello è necessario per l'autenticazione nel servizio contenitore di Azure le macchine virtuali. le chiavi RSA Secure Shell (SSH) toocreate, vedere hello [OS X e Linux](../../virtual-machines/linux/mac-create-ssh-keys.md) o [Windows](../../virtual-machines/linux/ssh-from-windows.md) informazioni aggiuntive. 
+* **Chiave pubblica SSH RSA**: durante la distribuzione tramite il portale o uno dei modelli di avvio rapido di Azure, è necessario fornire la chiave pubblica per l'autenticazione nelle macchine virtuali del servizio contenitore di Azure. Per creare chiavi SSH (Secure Shell) RSA, vedere le informazioni aggiuntive per [OS X e Linux](../../virtual-machines/linux/mac-create-ssh-keys.md) e [Windows](../../virtual-machines/linux/ssh-from-windows.md). 
 
-* **ID dell'entità client e il segreto del servizio** (solo Kubernetes): per ulteriori informazioni e istruzioni toocreate un'entità servizio di Azure Active Directory, vedere [sulle entità servizio hello per un cluster Kubernetes](../kubernetes/container-service-kubernetes-service-principal.md).
+* **ID client e segreto dell'entità servizio** (solo Kubernetes): per altre informazioni e istruzioni sulla creazione di un'entità servizio di Azure Active Directory, vedere [Informazioni sull'entità servizio per un cluster Kubernetes](../kubernetes/container-service-kubernetes-service-principal.md).
 
 
 
-## <a name="create-a-cluster-by-using-hello-azure-portal"></a>Creare un cluster usando hello portale di Azure
-1. Accedi toohello portale di Azure selezionare **New**e hello Azure Marketplace per la ricerca **servizio contenitore di Azure**.
+## <a name="create-a-cluster-by-using-the-azure-portal"></a>Creare un cluster usando il portale di Azure
+1. Accedere al portale di Azure, selezionare **Nuovo** e quindi cercare **Azure Container Service** (Servizio contenitore di Azure) in Azure Marketplace.
 
     ![Servizio contenitore di Azure nel Marketplace](./media/container-service-deployment/acs-portal1.png)  <br />
 
 2. Fare clic su **Azure Container Service** (Servizio contenitore di Azure) e quindi su **Crea**.
 
-3. In hello **nozioni di base** pannello immettere hello le seguenti informazioni:
+3. Nel pannello **Informazioni di base** immettere le informazioni seguenti:
 
-    * **Orchestrator**: selezionare una delle hello contenitore orchestrators toodeploy nel cluster hello.
+    * **Agente di orchestrazione**: selezionare uno dei gli agenti di orchestrazione del contenitore da distribuire nel cluster.
         * **DC/OS**: distribuisce un cluster DC/OS.
         * **Swarm**: distribuisce un cluster Docker Swarm.
         * **Kubernetes**: consente di distribuire un cluster Kubernetes.
     * **Sottoscrizione**: selezionare una sottoscrizione di Azure.
-    * **Gruppo di risorse**: hello nome di un nuovo gruppo di risorse per la distribuzione di hello.
-    * **Percorso**: selezionare un'area di Azure per la distribuzione del servizio di contenitore di Azure hello. Per verificare la disponibilità, vedere [Prodotti disponibili in base all'area](https://azure.microsoft.com/regions/services/).
+    * **Gruppo di risorse**: immettere il nome del nuovo gruppo di risorse per la distribuzione.
+    * **Località**: selezionare un'area di Azure per la distribuzione del servizio contenitore di Azure. Per verificare la disponibilità, vedere [Prodotti disponibili in base all'area](https://azure.microsoft.com/regions/services/).
     
     ![Impostazioni di base](./media/container-service-deployment/acs-portal3.png)  <br />
     
-    Fare clic su **OK** quando si è pronti tooproceed.
+    Quando si è pronti per continuare, fare clic su **OK** .
 
-4. In hello **Master configurazione** pannello immettere hello seguendo le impostazioni di nodo principale di hello Linux o i nodi cluster hello (alcune impostazioni sono specifiche tooeach orchestrator):
+4. Nel pannello **Master configuration** (Configurazione master), immettere le impostazioni seguenti per il nodo o i nodi master Linux nel cluster. Alcune impostazioni sono specifiche per ogni agente di orchestrazione:
 
-    * **Nome DNS master**: hello prefisso utilizzato toocreate univoco nome dominio completo (FQDN) per master hello. Hello FQDN master è formato hello *prefisso*gestione*percorso*. cloudapp.azure.com.
-    * **Nome utente**: nome utente hello per un account in ognuna delle macchine virtuali Linux di hello cluster hello.
-    * **Chiave pubblica SSH RSA**: aggiungere hello toobe chiave pubblica utilizzata per l'autenticazione hello le macchine virtuali Linux. È importante che questa chiave non contiene interruzioni di riga e include hello `ssh-rsa` prefisso. Hello `username@domain` suffisso è facoltativo. Hello chiave dovrebbe essere simile alla seguente hello: **AAAAB3Nz ssh-rsa … <>...... UcyupgH azureuser@linuxvm** . 
-    * **Entità servizio**: se si seleziona orchestrator Kubernetes hello, immettere una Azure Active Directory **ID client dell'entità servizio** (detto anche appId hello) e **segreto client dell'entità servizio** (password). Per ulteriori informazioni, vedere [sulle entità servizio hello per un cluster Kubernetes](../kubernetes/container-service-kubernetes-service-principal.md).
-    * **Master conteggio**: numero di schemi in cluster hello hello.
-    * **Diagnostica delle macchine Virtuali**: per alcuni orchestrators, è possibile abilitare la diagnostica di VM su schemi hello.
+    * **Master DNS name** (Nome DNS master): il prefisso usato per creare un nome di dominio completo (FQDN) univoco per il master. L'FQDN master è in formato *prefix*mgmt.*location*.cloudapp.azure.com.
+    * **User name** (Nome utente): il nome utente per un account in ognuna delle macchine virtuali Linux nel cluster.
+    * **SSH RSA public key** (chiave pubblica SSH RSA): aggiungere la chiave pubblica usata per l'autenticazione nelle macchine virtuali Linux. È molto importante che questa chiave sia priva di interruzioni di riga e includa il prefisso `ssh-rsa`. Il suffisso `username@domain` è facoltativo. La chiave dovrebbe essere simile alla seguente: **ssh-rsa AAAAB3Nz...<...>...UcyupgH azureuser@linuxvm**. 
+    * **Service principal** (Entità servizio): se si seleziona l'agente di orchestrazione Kubernetes, immettere un **ID client dell'entità del servizio** (detto anche appId) e il **segreto client dell'entità servizio** (password) di Azure Active Directory. Per altre informazioni, vedere [About the service principal for a Kubernetes cluster](../kubernetes/container-service-kubernetes-service-principal.md) (Informazioni sull'entità servizio per un cluster Kubernetes).
+    * **Master count**(Conteggio master): numero di master nel cluster.
+    * **VM diagnostics** (Diagnostica delle macchine virtuali): per alcuni agenti di orchestrazione è possibile abilitare la diagnostica delle macchine virtuali nei master.
 
     ![Configurazione master](./media/container-service-deployment/acs-portal4.png)  <br />
 
-    Fare clic su **OK** quando si è pronti tooproceed.
+    Quando si è pronti per continuare, fare clic su **OK** .
 
-5. In hello **configurazione agente** pannello immettere hello le seguenti informazioni:
+5. Immettere le informazioni seguenti nel pannello **Configurazione agente**:
 
-    * **Numero di agenti**: per sciame Docker e Kubernetes, questo valore è numero iniziale di hello degli agenti in set di scalabilità di hello agente. Per i controller di dominio o del sistema operativo, è numero iniziale di hello degli agenti in un set di scalabilità privata. Per DC/OS viene creato anche un set di scalabilità pubblico contenente un numero predeterminato di agenti. Hello numero di agenti in questo set di scalabilità pubblico è determinato dal numero hello di schemi in cluster hello: un agente pubblico per uno schema e due agenti pubblici per tre o cinque schemi.
-    * **Dimensioni della macchina virtuale agente**: hello dimensioni delle macchine virtuali di hello agente.
-    * **Sistema operativo**: questa impostazione è attualmente disponibile solo se si seleziona orchestrator Kubernetes hello. Scegliere una distribuzione di Linux o un toorun del sistema operativo Windows Server su agenti hello. Questa impostazione determina se il cluster sarà in grado di eseguire applicazioni contenitore Linux o Windows. 
+    * **Conteggio agenti**: per Docker Swarm e Kubernetes, questo valore è il numero iniziale di agenti nel set di scalabilità degli agenti. Per DC/OS si tratta del numero iniziale di agenti in un set di scalabilità privato. Per DC/OS viene creato anche un set di scalabilità pubblico contenente un numero predeterminato di agenti. Il numero di agenti in questo set di scalabilità pubblico viene determinato in base al numero di master nel cluster, ovvero un agente pubblico per un master e due agenti pubblici per tre o cinque master.
+    * **Agent virtual machine size**(Dimensioni macchina virtuale dell'agente): specifica le dimensioni delle macchine virtuali dell'agente.
+    * **Operating system** (Sistema operativo): al momento questa impostazione è disponibile solo se è stato selezionato l'agente di orchestrazione Kubernetes. Scegliere una distribuzione Linux o un sistema operativo Windows Server da eseguire negli agenti. Questa impostazione determina se il cluster sarà in grado di eseguire applicazioni contenitore Linux o Windows. 
 
         > [!NOTE]
         > Il supporto dei contenitori Windows è disponibile in anteprima per i cluster Kubernetes. Nei cluster DC/OS e Swarm, al momento sono supportati solo gli agenti Linux nel servizio contenitore di Azure.
 
-    * **Le credenziali dell'agente**: se si seleziona sistema operativo di Windows hello, immettere un amministratore **nome utente** e **Password** per agente hello macchine virtuali. 
+    * **Agent credentials** (Credenziali agente): se si seleziona il sistema operativo Windows, immettere un **nome utente** e una **password** di amministratore per le macchine virtuali dell'agente. 
 
     ![Configurazione dell'agente](./media/container-service-deployment/acs-portal5.png)  <br />
 
-    Fare clic su **OK** quando si è pronti tooproceed.
+    Quando si è pronti per continuare, fare clic su **OK** .
 
 6. Al termine della convalida del servizio, fare clic su **OK** .
 
     ![Convalida](./media/container-service-deployment/acs-portal6.png)  <br />
 
-7. Esaminare le condizioni di hello. processo di distribuzione hello toostart, fare clic su **crea**.
+7. Leggere le condizioni. Fare quindi clic su **Crea** per avviare il processo di distribuzione.
 
-    Se si è scelto toopin hello distribuzione toohello portale di Azure, è possibile visualizzare lo stato di distribuzione hello.
+    Se si è scelto di aggiungere la distribuzione al portale di Azure, si potrà visualizzarne lo stato.
 
-    ![Stato della distribuzione](./media/container-service-deployment/acs-portal8.png)  <br />
+    ![Deployment Status](./media/container-service-deployment/acs-portal8.png)  <br />
 
-distribuzione di Hello richiede diversi minuti toocomplete. Quindi, i cluster del servizio di contenitore di Azure hello è pronto per l'utilizzo.
+La distribuzione richiede alcuni minuti. Al termine, il cluster del servizio contenitore di Azure è pronto per l'uso.
 
 
 ## <a name="create-a-cluster-by-using-a-quickstart-template"></a>Creare un cluster usando un modello di avvio rapido
-I modelli di avvio rapido di Azure sono disponibili toodeploy un cluster nel servizio contenitore di Azure. modelli di avvio rapido possono essere modificato tooinclude aggiuntive o avanzate configurazione di Azure Hello. toocreate un cluster il servizio contenitore di Azure utilizzando un modello di avvio rapido di Azure, è necessaria una sottoscrizione di Azure. Se non si ha una sottoscrizione, è possibile iscriversi per ottenere una [versione di prova gratuita](http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=AA4C1C935). 
+Sono disponibili modelli di avvio rapido di Azure per distribuire un cluster nel servizio contenitore di Azure. I modelli di avvio rapido forniti possono essere modificati per includere una configurazione di Azure aggiuntiva o avanzata. Per creare un'istanza del servizio contenitore di Azure usando un modello di avvio rapido di Azure è necessaria una sottoscrizione di Azure. Se non si ha una sottoscrizione, è possibile iscriversi per ottenere una [versione di prova gratuita](http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=AA4C1C935). 
 
-Seguire questi passaggi toodeploy un cluster utilizzando un modello e hello Azure CLI 2.0 (vedere [istruzioni di installazione e configurazione](/cli/azure/install-az-cli2)).
+Seguire questi passaggi per distribuire un cluster usando un modello e l'interfaccia della riga di comando di Azure 2.0. Vedere le [istruzioni di installazione e configurazione](/cli/azure/install-az-cli2).
 
 > [!NOTE] 
-> Se si è in un sistema di Windows, è possibile utilizzare un modello usando Azure PowerShell simile passaggi toodeploy. Vedere i passaggi più avanti in questa sezione. È inoltre possibile distribuire un modello tramite hello [portale](../../azure-resource-manager/resource-group-template-deploy-portal.md) o altri metodi.
+> In un sistema Windows è possibile usare una procedura simile per distribuire un modello tramite Azure PowerShell. Vedere i passaggi più avanti in questa sezione. È anche possibile distribuire un modello con il [portale](../../azure-resource-manager/resource-group-template-deploy-portal.md) o altri metodi.
 
-1. toodeploy un controller di dominio o del sistema operativo, Docker Swarm o Kubernetes cluster, selezionare uno dei modelli di avvio rapido disponibile hello da GitHub. Di seguito viene inserito un elenco parziale. Hello DC/OS e modelli sciame sono hello stesso, ad eccezione di hello orchestrator predefinita.
+1. Per distribuire un cluster DC/OS, Docker Swarm o Kubernetes, selezionare uno dei modelli di Guida introduttiva seguenti da GitHub. Di seguito viene inserito un elenco parziale. I modelli DC/OS e Swarm si equivalgono, differiscono unicamente nella selezione dell'agente di orchestrazione predefinito.
 
     * [Modello DC/OS](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-dcos)
     * [Modello Swarm](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-swarm)
     * [Modello Kubernetes](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-kubernetes)
 
-2. Accedi tooyour account Azure (`az login`) e assicurarsi che tale hello CLI di Azure viene connesso tooyour sottoscrizione di Azure. È possibile visualizzare la sottoscrizione predefinita hello utilizzando hello comando seguente:
+2. Accedere all'account Azure (`az login`) e assicurarsi che l'interfaccia della riga di comando di Azure sia collegata alla sottoscrizione di Azure. È possibile visualizzare la sottoscrizione predefinita usando il comando seguente:
 
     ```azurecli
     az account show
     ```
     
-    Se si dispone più tooset sottoscrizione ed è necessario un abbonamento predefinite diverse, eseguire `az account set --subscription` e specificare l'ID sottoscrizione hello o nome.
+    Se si ha più di una sottoscrizione ed è necessario impostare una sottoscrizione predefinita diversa, eseguire `az account set --subscription` e specificare il nome o l'ID sottoscrizione.
 
-3. Come procedura consigliata, utilizzare un nuovo gruppo di risorse per la distribuzione di hello. toocreate un gruppo di risorse, utilizzare hello `az group create` comando specificare un nome gruppo di risorse e il percorso: 
+3. Come procedura consigliata, usare un nuovo gruppo di risorse per la distribuzione. Per creare un gruppo di risorse, usare il comando `az group create` e specificare il nome e il percorso del gruppo di risorse: 
 
     ```azurecli
     az group create --name "RESOURCE_GROUP" --location "LOCATION"
     ```
 
-4. Creare un file contenente hello obbligatorio modello JSON parametri. File dei parametri hello download denominato `azuredeploy.parameters.json` che accompagna il modello di servizio di contenitore di Azure hello `azuredeploy.json` in GitHub. Immettere i valori dei parametri necessari per il cluster. 
+4. Creare un file JSON contenente i parametri obbligatori per il modello. Scaricare il file dei parametri denominato `azuredeploy.parameters.json` disponibile con il modello `azuredeploy.json` del servizio contenitore di Azure in GitHub. Immettere i valori dei parametri necessari per il cluster. 
 
-    Ad esempio, toouse hello [modello DC/OS](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-dcos), specificare i valori di parametro per `dnsNamePrefix` e `sshRSAPublicKey`. Visualizzare le descrizioni di hello in `azuredeploy.json` e le opzioni per gli altri parametri.  
+    Per usare ad esempio il [modello DC/OS](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-dcos), specificare i valori di parametro per `dnsNamePrefix` e `sshRSAPublicKey`. Vedere le descrizioni in `azuredeploy.json` e le opzioni per gli altri parametri.  
  
 
-5. Creare un cluster il servizio contenitore, passando i file dei parametri di distribuzione hello con hello seguente comando, dove:
+5. Creare un cluster del servizio contenitore passando il file dei parametri di distribuzione con il comando seguente, dove:
 
-    * **RESOURCE_GROUP** nome hello hello del gruppo di risorse creato nel passaggio precedente hello.
-    * **DEPLOYMENT_NAME** (facoltativo) è un nome con cui toohello distribuzione.
-    * **TEMPLATE_URI** hello percorso del file di distribuzione hello `azuredeploy.json`. Deve trattarsi di un URI file non elaborato hello, non un puntatore toohello UI GitHub. toofind questo URI, seleziona hello `azuredeploy.json` file in GitHub e fare clic su hello **Raw** pulsante.  
+    * **RESOURCE_GROUP** è il nome del gruppo di risorse creato nel passaggio precedente.
+    * **DEPLOYMENT_NAME** (facoltativo) è il nome assegnato alla distribuzione.
+    * **TEMPLATE_URI** è il percorso del file di distribuzione `azuredeploy.json`. Questo URI deve essere il file RAW, non un puntatore all'interfaccia utente di GitHub. Per trovare questo URI, selezionare il file `azuredeploy.json` in GitHub e fare clic sul pulsante **Raw**.  
 
     ```azurecli
     az group deployment create -g RESOURCE_GROUP -n DEPLOYMENT_NAME --template-uri TEMPLATE_URI --parameters @azuredeploy.parameters.json
     ```
 
-    È anche possibile fornire parametri sotto forma di stringa in formato JSON nella riga di comando hello. Utilizzare una comando simile toohello che segue:
+    È anche possibile specificare i parametri come stringa in formato JSON nella riga di comando. Usare un comando simile al seguente:
 
     ```azurecli
     az group deployment create -g RESOURCE_GROUP -n DEPLOYMENT_NAME --template-uri TEMPLATE_URI --parameters "{ \"param1\": {\"value1\"} … }"
     ```
 
     > [!NOTE]
-    > distribuzione di Hello richiede diversi minuti toocomplete.
+    > La distribuzione richiede alcuni minuti.
     > 
 
 ### <a name="equivalent-powershell-commands"></a>Comandi di PowerShell equivalenti
-È anche possibile distribuire un modello di cluster del servizio contenitore di Azure con PowerShell. Questo documento si basa sulla versione di hello 1.0 [modulo Azure PowerShell](https://azure.microsoft.com/blog/azps-1-0/).
+È anche possibile distribuire un modello di cluster del servizio contenitore di Azure con PowerShell. Questo documento si basa sul [modulo Azure PowerShell](https://azure.microsoft.com/blog/azps-1-0/)versione 1.0.
 
-1. toodeploy un controller di dominio o del sistema operativo, Docker Swarm o Kubernetes cluster, selezionare uno dei modelli di avvio rapido disponibile hello da GitHub. Di seguito viene inserito un elenco parziale. Si noti che hello DC/OS e modelli sciame sono hello stesso, con l'eccezione hello di hello orchestrator predefinita.
+1. Per distribuire un cluster DC/OS, Docker Swarm o Kubernetes, selezionare uno dei modelli di Guida introduttiva seguenti da GitHub. Di seguito viene inserito un elenco parziale. Si noti che i modelli DC/OS e Swarm si equivalgono, differiscono unicamente nella selezione dell'agente di orchestrazione predefinito.
 
     * [Modello DC/OS](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-dcos)
     * [Modello Swarm](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-swarm)
     * [Modello Kubernetes](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-kubernetes)
 
-2. Prima di creare un cluster nella sottoscrizione di Azure, verificare che la sessione di PowerShell è stata firmata in tooAzure. È possibile farlo con hello `Get-AzureRMSubscription` comando:
+2. Prima di creare un cluster nella sottoscrizione di Azure, verificare che la sessione di PowerShell sia stata registrata in Azure. A questo scopo, usare il comando `Get-AzureRMSubscription` :
 
     ```powershell
     Get-AzureRmSubscription
     ```
 
-3. Se è necessario toosign in tooAzure, utilizzare hello `Login-AzureRMAccount` comando:
+3. Se è necessario accedere ad Azure, usare il comando `Login-AzureRMAccount` :
 
     ```powershell
     Login-AzureRmAccount
     ```
 
-4. Come procedura consigliata, utilizzare un nuovo gruppo di risorse per la distribuzione di hello. toocreate un gruppo di risorse, utilizzare hello `New-AzureRmResourceGroup` comandi e specificare un'area del nome e la destinazione gruppo risorse:
+4. Come procedura consigliata, usare un nuovo gruppo di risorse per la distribuzione. Per creare un gruppo di risorse, usare il comando `New-AzureRmResourceGroup` e specificare il nome e l'area di destinazione del gruppo di risorse:
 
     ```powershell
     New-AzureRmResourceGroup -Name GROUP_NAME -Location REGION
     ```
 
-5. Dopo aver creato un gruppo di risorse, è possibile creare il cluster con hello comando seguente. URI di hello Hello desiderato è specificato un modello con hello `-TemplateUri` parametro. Quando si esegue questo comando, PowerShell richiede i valori dei parametri di distribuzione.
+5. Dopo aver creato il gruppo di risorse è possibile creare il cluster con il comando seguente. Specificare l'URI del modello desiderato per il parametro `-TemplateUri` . Quando si esegue questo comando, PowerShell richiede i valori dei parametri di distribuzione.
 
     ```powershell
     New-AzureRmResourceGroupDeployment -Name DEPLOYMENT_NAME -ResourceGroupName RESOURCE_GROUP_NAME -TemplateUri TEMPLATE_URI
     ```
 
 #### <a name="provide-template-parameters"></a>Fornire i parametri del modello
-Se si ha familiarità con PowerShell, significa che è possibile scorrere tra i parametri disponibili per un cmdlet hello digitando un segno meno (-) e quindi premere tasto TAB hello. Questa stessa funzionalità può essere usata anche con i parametri definiti nel modello. Non appena si digita il nome di modello hello, hello cmdlet recupera modello hello analizza parametri hello e aggiunge comando toohello parametri di modello hello in modo dinamico. In questo modo i valori dei parametri modello hello toospecify semplice. E, se si dimentica di un valore di parametro obbligatorio, PowerShell richiede il valore di hello.
+Se si ha familiarità con PowerShell, è possibile cercare un cmdlet tra i parametri disponibili digitando un segno meno (-) e quindi premendo TAB. Questa stessa funzionalità può essere usata anche con i parametri definiti nel modello. Quando si digita il nome del modello, il cmdlet recupera il modello, analizza i parametri e aggiunge i relativi parametri al comando in modo dinamico. In questo modo è semplice specificare i valori dei parametri del modello. Inoltre, se si dimentica un valore per un parametro obbligatorio, PowerShell richiede il valore.
 
-Ecco comando completo hello, con i parametri inclusi. Fornire i valori per i nomi di hello delle risorse di hello.
+Di seguito viene riportato il comando completo con i parametri inclusi. Specificare i propri valori per i nomi delle risorse.
 
 ```powershell
 New-AzureRmResourceGroupDeployment -ResourceGroupName RESOURCE_GROUP_NAME-TemplateURI TEMPLATE_URI -adminuser value1 -adminpassword value2 ....
@@ -207,7 +207,7 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName RESOURCE_GROUP_NAME-Templa
 ## <a name="next-steps"></a>Passaggi successivi
 Ora che si ha a disposizione un cluster funzionante, vedere i documenti seguenti per informazioni dettagliate sulla connessione e la gestione:
 
-* [Connettersi tooan cluster del servizio di contenitore di Azure](../container-service-connect.md)
+* [Connettersi a un cluster del servizio contenitore di Azure](../container-service-connect.md)
 * [Gestione di contenitori tramite l'API REST](container-service-mesos-marathon-rest.md)
 * [Gestione dei contenitori con Docker Swarm](container-service-docker-swarm.md)
 * [Uso del servizio contenitore di Azure e Kubernetes](../kubernetes/container-service-kubernetes-walkthrough.md)

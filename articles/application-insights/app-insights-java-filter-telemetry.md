@@ -1,6 +1,6 @@
 ---
-title: dati di telemetria di Application Insights di Azure nell'app web Java aaaFilter | Documenti Microsoft
-description: "Ridurre il traffico di dati di telemetria filtrando gli eventi di hello non è necessario toomonitor."
+title: Filtrare i dati di telemetria di Azure Application Insights nell'App Web Java | Microsoft Docs
+description: "Ridurre il traffico di telemetria escludendo gli eventi che non è necessario monitorare."
 services: application-insights
 documentationcenter: 
 author: CFreemanwa
@@ -12,25 +12,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/23/2016
 ms.author: bwren
-ms.openlocfilehash: 95713e11d5f86472777c67e4e7f3177fbf2cd0b4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5f6d6d4ad590b85810c42e9f9520850024c5446a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="filter-telemetry-in-your-java-web-app"></a>Filtrare i dati di telemetria nell'App Web Java
 
-I filtri forniscono una telemetria hello tooselect di modo che il [app web Java invia tooApplication Insights](app-insights-java-get-started.md). Esistono alcuni filtri pronti da usare che è possibile applicare, inoltre è possibile creare filtri personalizzati.
+I filtri consentono di selezionare i dati di telemetria [inviati dall'App Web Java ad Application Insights](app-insights-java-get-started.md). Esistono alcuni filtri pronti da usare che è possibile applicare, inoltre è possibile creare filtri personalizzati.
 
-i filtri di casella Hello includono:
+I filtri pronti da usare includono:
 
 * Livello di gravità della traccia
 * URL, parole chiave o codici di risposta specifici
-* Tempi di risposta rapidi - ovvero richieste toowhich l'app ha risposto tooquickly
+* Risposte rapide, vale a dire richieste a cui l'app ha risposto rapidamente
 * Nomi degli eventi specifici
 
 > [!NOTE]
-> I filtri distorcere metriche hello dell'app. Ad esempio, si potrebbe decidere che, in una risposta lenta toodiagnose ordine, si imposteranno tempi di risposta rapidi toodiscard un filtro. Ma è necessario essere consapevoli del fatto che i tempi di risposta medi hello segnalati da Application Insights potranno quindi essere più lenti rispetto a velocità true hello conteggio hello delle richieste sarà minore di count reale hello.
+> I filtri alterano le metriche dell'app. Ad esempio, si potrebbe decidere che, per diagnosticare un problema di risposte lente, verrà impostato un filtro per ignorare i tempi di risposta rapidi. È necessario però tenere presente che i tempi medi di risposta segnalati da Application Insights saranno così più lenti rispetto alla velocità effettiva e che il numero di richieste sarà inferiore rispetto al numero reale.
 > Se questo rappresenta un problema, usare il [campionamento](app-insights-sampling.md).
 
 ## <a name="setting-filters"></a>Impostazione di filtri
@@ -60,7 +60,7 @@ In ApplicationInsights.xml aggiungere una sezione `TelemetryProcessors` come in 
            </Processor>
 
            <Processor type="TelemetryEventFilter">
-                  <!-- Names of events we don't want toosee -->
+                  <!-- Names of events we don't want to see -->
                   <Add name="NotNeededNames" value="Start,Stop,Pause"/>
            </Processor>
 
@@ -88,7 +88,7 @@ In ApplicationInsights.xml aggiungere una sezione `TelemetryProcessors` come in 
 
 
 
-[Controllare il set completo di hello di processori incorporati](https://github.com/Microsoft/ApplicationInsights-Java/tree/master/core/src/main/java/com/microsoft/applicationinsights/internal/processor).
+[Esaminare l'insieme completo dei processori incorporati](https://github.com/Microsoft/ApplicationInsights-Java/tree/master/core/src/main/java/com/microsoft/applicationinsights/internal/processor).
 
 ## <a name="built-in-filters"></a>Filtri incorporati
 
@@ -115,9 +115,9 @@ In ApplicationInsights.xml aggiungere una sezione `TelemetryProcessors` come in 
            </Processor>
 ```
 
-* `DurationThresholdInMS`-Durata si riferisce toohello tempo pagina hello tooload. Se è impostato, le pagine caricate più velocemente del tempo definito non vengono segnalate.
+* `DurationThresholdInMS`: la durata si riferisce al tempo impiegato per caricare la pagina. Se è impostato, le pagine caricate più velocemente del tempo definito non vengono segnalate.
 * `NotNeededNames`: elenco delimitato da virgole con i nomi delle pagine.
-* `NotNeededUrls`: elenco delimitato da virgole con i frammenti di URL. Ad esempio, `"home"` esclude tutte le pagine contenenti "home" nell'URL hello.
+* `NotNeededUrls`: elenco delimitato da virgole con i frammenti di URL. Ad esempio, `"home"` esclude tutte le pagine il cui URL include il termine "home".
 
 
 ### <a name="request-telemetry-filter"></a>Filtro Dati di telemetria richiesta
@@ -136,7 +136,7 @@ In ApplicationInsights.xml aggiungere una sezione `TelemetryProcessors` come in 
 
 ### <a name="synthetic-source-filter"></a>Filtro Origine sintetica
 
-Filtra tutti i dati di telemetria con valori di proprietà SyntheticSource hello. Questi dati includono le richieste da bot, spider e test di disponibilità.
+Esclude tutti i dati di telemetria che dispongono di valori nella proprietà SyntheticSource. Questi dati includono le richieste da bot, spider e test di disponibilità.
 
 Escludere i dati di telemetria per tutte le richieste sintetiche:
 
@@ -187,7 +187,7 @@ Esclude le tracce di log (registrate tramite [TrackTrace()](app-insights-api-cus
 
 * I valori `FromSeverityLevel` validi sono:
  *  OFF             - Esclude TUTTE le tracce
- *  TRACE           - Non applica alcun filtro. è uguale a livello di tooTrace
+ *  TRACE           - Non applica alcun filtro. Corrisponde al livello Trace
  *  INFO            - Esclude il livello TRACE
  *  WARN            - Esclude TRACE e INFO
  *  ERROR           - Esclude WARN, INFO, TRACE
@@ -208,18 +208,18 @@ Nel codice creare una classe che implementa `TelemetryProcessor`:
 
     public class SuccessFilter implements TelemetryProcessor {
 
-       /* Any parameters that are required toosupport hello filter.*/
+       /* Any parameters that are required to support the filter.*/
        private final String successful;
 
-       /* Initializers for hello parameters, named "setParameterName" */
+       /* Initializers for the parameters, named "setParameterName" */
        public void setNotNeeded(String successful)
        {
           this.successful = successful;
        }
 
-       /* This method is called for each item of telemetry toobe sent.
-          Return false toodiscard it.
-          Return true tooallow other processors tooinspect it. */
+       /* This method is called for each item of telemetry to be sent.
+          Return false to discard it.
+          Return true to allow other processors to inspect it. */
        @Override
        public boolean process(Telemetry telemetry) {
         if (telemetry == null) { return true; }
@@ -235,7 +235,7 @@ Nel codice creare una classe che implementa `TelemetryProcessor`:
 ```
 
 
-### <a name="2-invoke-your-filter-in-hello-configuration-file"></a>2. Richiamare il filtro nel file di configurazione hello
+### <a name="2-invoke-your-filter-in-the-configuration-file"></a>2. Richiamare il filtro nel file di configurazione
 
 In ApplicationInsights.xml:
 
@@ -258,7 +258,7 @@ In ApplicationInsights.xml:
 
 *Il filtro non funziona.*
 
-* Verificare che siano stati specificati valori di parametro validi. Ad esempio, la durata deve essere espressa da numeri interi. Valori non validi causerà toobe filtro hello ignorato. Se il filtro personalizzato genera un'eccezione da un costruttore o un metodo impostato, verrà ignorato.
+* Verificare che siano stati specificati valori di parametro validi. Ad esempio, la durata deve essere espressa da numeri interi. Se i valori non sono validi, il filtro verrà ignorato. Se il filtro personalizzato genera un'eccezione da un costruttore o un metodo impostato, verrà ignorato.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

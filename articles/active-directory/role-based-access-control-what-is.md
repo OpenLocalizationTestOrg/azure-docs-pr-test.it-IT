@@ -1,6 +1,6 @@
 ---
-title: aaaManage accesso e autorizzazioni con RBAC - RBAC Azure | Documenti Microsoft
-description: Introduzione a Gestione accesso con controllo di accesso basato sui ruoli di Azure in hello portale di Azure. Utilizzare le autorizzazioni tooassign assegnazioni di ruolo nel servizio directory.
+title: 'Gestire accessi e autorizzazioni con il controllo degli accessi in base al ruolo: Controllo degli accessi in base al ruolo di Azure | Microsoft Docs'
+description: Introduzione alla gestione degli accessi con il Controllo degli accessi in base al ruolo di Azure nel portale di Azure. Usare le assegnazioni di ruolo per assegnare autorizzazioni nella directory.
 services: active-directory
 documentationcenter: 
 author: andredm7
@@ -14,56 +14,56 @@ ms.workload: identity
 ms.date: 07/13/2017
 ms.author: andredm
 ms.reviewer: rqureshi
-ms.openlocfilehash: 1c133b2b57b49d85f0e12a318c7997478e095fb9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 0462fe8ff75bdda397decb301c459795886e9e58
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="get-started-with-role-based-access-control-in-hello-azure-portal"></a>Introduzione a controllo di accesso basato sui ruoli nel portale di Azure hello
-Le aziende sicurezza è consigliabile concentrarsi sul dando dipendenti hello conoscere esattamente le autorizzazioni che necessarie. Numero eccessivo di autorizzazioni possono esporre un tooattackers account. Un numero di autorizzazioni insufficiente ostacola l'efficienza del lavoro dei dipendenti. Il Controllo degli accessi in base al ruolo di Azure (RBAC) aiuta a risolvere questo problema offrendo la gestione specifica degli accessi per Azure.
+# <a name="get-started-with-role-based-access-control-in-the-azure-portal"></a>Introduzione al controllo degli accessi in base al ruolo nel portale di Azure
+Le aziende orientate sulla sicurezza devono concedere ai propri dipendenti la quantità esatta di autorizzazioni di cui necessitano. un numero eccessivo di autorizzazioni può esporre un account agli attacchi. Un numero di autorizzazioni insufficiente ostacola l'efficienza del lavoro dei dipendenti. Il Controllo degli accessi in base al ruolo di Azure (RBAC) aiuta a risolvere questo problema offrendo la gestione specifica degli accessi per Azure.
 
-Usa tale controllo, è possibile separare i compiti all'interno del team e concedere solo quantità di hello di accesso toousers necessarie tooperform i processi. Invece di concedere a tutti autorizzazioni senza restrizioni per la sottoscrizione o le risorse di Azure, è possibile consentire solo determinate azioni. Ad esempio, un dipendente di usare RBAC toolet gestire macchine virtuali in una sottoscrizione, mentre un altro può gestire SQL database all'interno di hello stessa sottoscrizione.
+Usando il Controllo degli accessi in base al ruolo, è possibile separare i compiti all'interno del team e concedere agli utenti solo la quantità di accesso di cui hanno bisogno per svolgere il proprio lavoro. Invece di concedere a tutti autorizzazioni senza restrizioni per la sottoscrizione o le risorse di Azure, è possibile consentire solo determinate azioni. Ad esempio, usare il Controllo degli accessi in base al ruolo per consentire a un dipendente di gestire le macchine virtuali in una sottoscrizione, mentre un altro utente può gestire i database SQL della stessa sottoscrizione.
 
 ## <a name="basics-of-access-management-in-azure"></a>Nozioni fondamentali della gestione degli accessi in Azure
-Ogni sottoscrizione di Azure è associata a una directory di Azure Active Directory (AD). Gli utenti, gruppi e applicazioni da tale directory possono gestire le risorse nella sottoscrizione di Azure hello. Assegnare i diritti di accesso utilizzando hello portale di Azure, gli strumenti da riga di comando di Azure e le API di gestione di Azure.
+Ogni sottoscrizione di Azure è associata a una directory di Azure Active Directory (AD). Gli utenti, i gruppi e le applicazioni da tale directory possono gestire le risorse nella sottoscrizione di Azure. Assegnare questi diritti di accesso tramite il portale di Azure, gli strumenti da riga di comando di Azure o le API di gestione di Azure.
 
-Concedere l'accesso tramite l'assegnazione di hello appropriato RBAC ruolo toousers, gruppi e applicazioni in un determinato ambito. ambito Hello un'assegnazione di ruolo può essere una sottoscrizione, un gruppo di risorse o una singola risorsa. Un ruolo assegnato a un ambito padre concede l'accesso anche elementi figlio toohello in esso contenuti. Ad esempio, un utente con gruppo di risorse tooa di accesso è possibile gestire tutte le risorse di hello che contiene, ad esempio siti Web, macchine virtuali e subnet.
+Concedere l'accesso assegnando i ruoli Controllo degli accessi in base al ruolo appropriati a utenti, gruppi e applicazioni in un ambito specifico. L'ambito di un'assegnazione di ruolo può essere una sottoscrizione, un gruppo di risorse o una singola risorsa. Un ruolo assegnato a un ambito padre concede anche l'accesso agli elementi figlio contenuti al suo interno. Ad esempio, un utente con accesso a un gruppo di risorse può gestire tutte le risorse che contiene, come siti Web, macchine virtuali e subnet.
 
 ![Diagramma della relazione tra gli elementi di Azure Active Directory](./media/role-based-access-control-what-is/rbac_aad.png)
 
-ruolo RBAC Hello assegnato determina quali risorse hello utente, gruppo o applicazione è possibile gestire in tale ambito.
+Il ruolo RBAC assegnato determina quali risorse l'utente, il gruppo o l'applicazione può gestire in tale ambito.
 
 ## <a name="built-in-roles"></a>Ruoli predefiniti
-Azure RBAC presenta tre ruoli di base che si applicano a tipi di risorse tooall:
+Il Controllo degli accessi in base al ruolo di Azure include di tre ruoli di base che si applicano a tutti i tipi di risorsa:
 
-* **Proprietario** dispone di accesso completo tooall risorse hello toodelegate destra accesso tooothers inclusi.
-* **Collaboratore** possono creare e gestire tutti i tipi di risorse di Azure, ma non è possibile concedere l'accesso tooothers.
+* **Proprietario** ha accesso completo a tutte le risorse, compreso il diritto di delegare l'accesso ad altri utenti.
+* **Collaboratore** può creare e gestire tutti i tipi di risorse di Azure, ma non può concedere l'accesso ad altri utenti.
 * **Lettore** può visualizzare le risorse di Azure esistenti.
 
-rest Hello dei ruoli RBAC hello in Azure consente la gestione delle risorse di Azure specifiche. Ad esempio, hello ruolo Collaboratore di macchina virtuale consente toocreate utente hello e gestire macchine virtuali. Non viene loro rete virtuale di accesso toohello o subnet hello hello macchina virtuale si connette a. 
+Il resto dei ruoli RBAC in Azure consente la gestione di risorse di Azure specifiche. Ad esempio, il ruolo Collaboratore Macchina virtuale consente all'utente di creare e gestire macchine virtuali, ma non concede l'accesso alla rete virtuale o alla subnet a cui la macchina virtuale si connette. 
 
-[Ruoli predefiniti RBAC](role-based-access-built-in-roles.md) elenchi hello ruoli disponibili in Azure. Specifica le operazioni di hello e che ogni ruolo incorporato e concede toousers ambito. Se si cerca toodefine dei ruoli personalizzati per un maggiore controllo, vedere come toobuild [ruoli personalizzati in Azure RBAC](role-based-access-control-custom-roles.md).
+[Controllo degli accessi in base al ruolo: ruoli predefiniti](role-based-access-built-in-roles.md) elenca i ruoli disponibili in Azure. Specifica le operazioni e l'ambito che ogni ruolo predefinito concede agli utenti. Per definire ruoli personalizzati per un maggiore controllo, vedere come creare [ruoli personalizzati nel Controllo degli accessi in base al ruolo di Azure](role-based-access-control-custom-roles.md).
 
 ## <a name="resource-hierarchy-and-access-inheritance"></a>Gerarchia delle risorse ed ereditarietà dell'accesso
-* Ogni **sottoscrizione** in Azure appartiene tooonly una directory. Ogni directory può avere più di una sottoscrizione.
-* Ogni **gruppo di risorse** appartiene tooonly una sottoscrizione.
-* Ogni **risorse** appartiene tooonly un gruppo di risorse.
+* Ogni **sottoscrizione** in Azure appartiene a una sola directory. Ogni directory può avere più di una sottoscrizione.
+* Ogni **gruppo di risorse** appartiene a una sola sottoscrizione.
+* Ogni **risorsa** appartiene a un solo gruppo di risorse.
 
-L'accesso che si concede all'ambito padre viene ereditato dall'ambito figlio. ad esempio:
+L'accesso che si concede all'ambito padre viene ereditato dall'ambito figlio. Ad esempio:
 
-* Assegnare il gruppo hello Reader ruolo tooan Azure AD nell'ambito di sottoscrizione hello. membri di Hello di tale gruppo possono visualizzare tutte le risorse e del gruppo di risorse nella sottoscrizione hello.
-* Assegnare l'applicazione tooan ruolo di collaboratore hello nell'ambito del gruppo di risorse hello. È possibile gestire le risorse di tutti i tipi in tale gruppo di risorse, ma non altri gruppi di risorse nella sottoscrizione hello.
+* Si assegna il ruolo Lettore a un gruppo di Azure AD nell'ambito della sottoscrizione. I membri di tale gruppo possono visualizzare ogni gruppo di risorse e ogni risorsa nella sottoscrizione.
+* Si assegna il ruolo Collaboratore a un'applicazione nell'ambito del gruppo di risorse. Può gestire risorse di tutti i tipi in tale gruppo di risorse, ma non altri gruppi di risorse nella sottoscrizione.
 
 ## <a name="azure-rbac-vs-classic-subscription-administrators"></a>Controllo degli accessi in base al ruolo di Azure e Amministratore sottoscrizione classico
-Gli amministratori delle sottoscrizioni classico e co-amministratori hanno accesso completo toohello sottoscrizione di Azure. Essi possono gestire le risorse utilizzando hello [portale di Azure](https://portal.azure.com) con le API di gestione risorse di Azure o hello [portale di Azure classico](https://manage.windowsazure.com) e il modello di distribuzione classico di Azure. Nel modello RBAC hello, degli amministratori classici ruolo hello proprietario ambito della sottoscrizione hello.
+I ruoli Amministratore sottoscrizione classico e Coamministratore hanno l'accesso completo alla sottoscrizione di Azure. Possono gestire le risorse con il [portale di Azure](https://portal.azure.com) e le API di Azure Resource Manager o il [portale di Azure classico](https://manage.windowsazure.com) e il modello di distribuzione classica di Azure. Nel modello RBAC, agli amministratori classici viene assegnato il ruolo di Proprietario nell'ambito della sottoscrizione.
 
-Solo hello portale di Azure e il nuovo supporto per le API di gestione risorse di Azure Azure RBAC hello. Utenti e applicazioni che vengono assegnate ruoli RBAC non è possibile utilizzare il portale di gestione classico hello e il modello di distribuzione classica Azure hello.
+Solo il portale di Azure e le nuove API di Azure Resource Manager supportano il Controllo degli accessi in base al ruolo di Azure. Gli utenti e le applicazioni a cui vengono assegnati ruoli Controllo degli accessi in base al ruolo non possono usare il portale di gestione classico e il modello di distribuzione classica di Azure.
 
 ## <a name="authorization-for-management-vs-data-operations"></a>Autorizzazioni per le operazioni di gestione e per le operazioni sui dati
-RBAC Azure solo hello di supporta le operazioni di gestione risorse di Azure in hello portale di Azure e le API di gestione risorse di Azure. Non tutte le operazioni a livello di dati svolte sulle risorse di Azure possono essere autorizzate tramite RBAC. Ad esempio, è possibile autorizzare un utente toomanage gli account di archiviazione, ma non toohello BLOB o tabelle all'interno di un Account di archiviazione. Analogamente, un database SQL può essere gestito, ma non hello tabelle all'interno di esso.
+Il Controllo degli accessi in base al ruolo di Azure supporta solo operazioni di gestione delle risorse di Azure nel portale di Azure e nelle API di Azure Resource Manager. Non tutte le operazioni a livello di dati svolte sulle risorse di Azure possono essere autorizzate tramite RBAC. È possibile ad esempio autorizzare un utente a gestire gli account di archiviazione, ma non i BLOB e le tabelle all'interno di un account di archiviazione. Analogamente, può essere gestito un database SQL, ma non le tabelle in esso contenute.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Introduzione a [basata sui ruoli di controllo di accesso nel portale di Azure hello](role-based-access-control-configure.md).
-* Vedere hello [ruoli predefiniti RBAC](role-based-access-built-in-roles.md)
+* Introduzione al [Controllo degli accessi in base al ruolo di Azure nel portale di Azure](role-based-access-control-configure.md).
+* Vedere [Controllo degli accessi in base al ruolo: ruoli predefiniti](role-based-access-built-in-roles.md)
 * Definire i [ruoli personalizzati nel Controllo degli accessi in base al ruolo di Azure](role-based-access-control-custom-roles.md)

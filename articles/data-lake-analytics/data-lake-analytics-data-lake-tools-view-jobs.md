@@ -1,6 +1,6 @@
 ---
-title: aaaUse processo Browser e visualizzazione dei processi per i processi di Azure Data Lake Analitica | Documenti Microsoft
-description: 'Informazioni su come toouse processo Browser e visualizzazione dei processi per i processi di Azure Data Lake Analitica. '
+title: Usare Job Browser e Job View (Visualizzazione processo) per i processi di Azure Data Lake Analytics | Microsoft Docs
+description: 'Informazioni su come usare Job Browser e Job View (Visualizzazione processo) per i processi di Azure Data Lake Analytics. '
 services: data-lake-analytics
 documentationcenter: 
 author: mumian
@@ -14,25 +14,25 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/02/2017
 ms.author: jgao
-ms.openlocfilehash: c45e618426808349ca380b1bcfaefd4c947ce7ab
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8f1729f84a4fde2a56427a41b356d6263818519e
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="use-job-browser-and-job-view-for-azure-data-lake-analytics-jobs"></a>Usare Job Browser e Job View (Visualizzazione processo) per i processi di Azure Data Lake Analytics
-gli archivi di servizio di Azure Data Lake Analitica Hello inviato i processi in un [archivio query](#query-store). In questo articolo viene illustrato come toouse processo Browser e visualizzazione dei processi in Azure Data Lake Tools per hello toofind Visual Studio cronologico processo informazioni. 
+Il servizio Azure Data Lake Analytics archivia i processi inviati in un [archivio query](#query-store). Questo articolo contiene informazioni su come usare Job Browser e Job View (Visualizzazione processo) in Azure Data Lake Tools per Visual Studio per trovare informazioni sulla cronologia di processi. 
 
-Per impostazione predefinita, il servizio Data Lake Analitica hello archivia i processi di hello per 30 giorni. è possibile configurare il periodo di scadenza Hello dal portale di Azure hello configurando i criteri di scadenza hello personalizzato. Non sarà in grado di tooaccess informazioni sul processo di hello dopo la scadenza. 
+Per impostazione predefinita, il servizio Data Lake Analytics archivia i processi per 30 giorni. È possibile configurare il periodo di scadenza nel portale di Azure configurando un criterio di scadenza personalizzato. Non sarà possibile accedere alle informazioni sui processi dopo la scadenza. 
 
 ## <a name="prerequisites"></a>Prerequisiti
 Vedere [Prerequisiti di Data Lake Tools per Visual Studio](data-lake-analytics-data-lake-tools-get-started.md#prerequisites).
 
-## <a name="open-hello-job-browser"></a>Aprire hello processo Browser
-Accesso hello processo Browser tramite **Esplora Server > Azure > Data Lake Analitica > processi** in Visual Studio.  Utilizza hello processo Browser, è possibile accedere archivio query hello di un account Data Lake Analitica. Processo Browser Visualizza archivio Query in hello a sinistra, che mostra informazioni sul processo di base e visualizzazione dei processi in cui destra hello dettagliate informazioni sul processo.
+## <a name="open-the-job-browser"></a>Aprire Job Browser
+Accedere a Browser processi tramite **Esplora server > Azure > Data Lake Analytics > Processi** in Visual Studio.  Usando Browser processi è possibile accedere all'archivio query di un account Data Lake Analytics. In Browser processi a sinistra viene visualizzato Query Store, che mostra le informazioni di base sul processo, e a destra Vista processi, che mostra le informazioni dettagliate sul processo.
 
 ## <a name="job-view"></a>Job View (Visualizzazione processo)
-Visualizzazione dei processi Mostra hello informazioni dettagliate di un processo. tooopen un processo, è possibile fare doppio clic su un processo in hello processo Browser o aprirla dal menu Data Lake hello facendo clic su Visualizza processo. Verrà visualizzata una finestra di dialogo popolato con URL processo hello.
+Contiene informazioni dettagliate su un processo. Per aprire un processo, è possibile fare doppio clic su di esso in Job Browser o aprirlo dal menu Data Lake facendo clic su Job View (Visualizzazione processo). Verrà visualizzata una finestra di dialogo in cui è inserito l'URL del processo.
 
 ![Job Browser di Data Lake Tools per Visual Studio](./media/data-lake-analytics-data-lake-tools-view-jobs/data-lake-tools-job-view.png)
 
@@ -40,101 +40,101 @@ La finestra di dialogo Job View (Visualizzazione processo) contiene:
 
 * Riepilogo dei processi
   
-    Aggiorna vista processo hello toosee hello informazioni più recenti di processi in esecuzione.
+    Aggiornare la visualizzazione del processo per mostrare le informazioni più recenti relative ai processi in esecuzione.
   
   * Stato del processo (grafico):
     
-      Lo stato del processo descrive fasi processo hello:
+      Descrive le fasi del processo:
     
       ![Stato delle fasi del processo di Azure Data Lake Analytics](./media/data-lake-analytics-data-lake-tools-view-jobs/data-lake-tools-job-phases.png)
     
-    * Preparazione: Caricare cloud toohello di script, la compilazione e l'ottimizzazione di script hello mediante il servizio di compilazione hello.
-    * In coda: I processi sono in coda presamico sono in attesa di risorse sufficienti o i processi di hello superano massimo processi simultanei di hello al limite di account. impostazione di priorità Hello determina la sequenza hello di processi in coda - hello hello più basso, priorità più alta hello hello.
-    * Esecuzione: hello processo effettivamente è in esecuzione nell'account Data Lake Analitica.
-    * Completamento: processo hello è completato (ad esempio, finalizzazione del file hello).
+    * Preparing (Preparazione): caricare lo script nel cloud, compilandolo e ottimizzandolo tramite il servizio di compilazione.
+    * Queued (In coda): i processi vengono inseriti in coda quando sono in attesa di risorse sufficienti o quando viene superato il numero massimo di processi simultanei per il limite dell'account. L'impostazione di priorità determina la sequenza di processi in coda: più basso è il numero, maggiore è la priorità.
+    * Running (In esecuzione): il processo è in esecuzione nell'account Data Lake Analytics.
+    * Finalizing (Finalizzazione): il processo è in fase di completamento, ad esempio, nella fase di finalizzazione del file.
       
-      processo Hello può avere esito negativo in ogni fase. Ad esempio, errori di compilazione in fase di preparazione hello, errori di timeout nella fase di hello in coda e gli errori di esecuzione in fase di esecuzione hello e così via.
+      Il processo può avere esito negativo in ogni fase. Ad esempio, possono verificarsi errori di compilazione nella fase di preparazione, errori di timeout nella fase di inserimento in coda, errori di esecuzione nella fase di esecuzione e così via.
   * Basic Information
     
-      informazioni di base processo Hello viene visualizzata nella parte inferiore di hello del Pannello di riepilogo dei processi di hello.
+      Le informazioni di base sui processi vengono visualizzate nella parte inferiore del pannello di riepilogo del processo.
     
       ![Stato delle fasi del processo di Azure Data Lake Analytics](./media/data-lake-analytics-data-lake-tools-view-jobs/data-lake-tools-job-info.png)
     
-    * Job Result (Risultato processo): indica l'esito positivo o negativo. processo Hello potrebbe non riuscire in ogni fase.
+    * Job Result (Risultato processo): indica l'esito positivo o negativo. In ogni fase il processo potrebbe non riuscire.
     * Total Duration (Durata totale): il tempo reale tra l'ora di invio e l'ora di fine.
-    * Tempo di calcolo totale: somma hello ogni vertice del tempo di esecuzione, è possibile considerare che come hello ora che il processo di hello viene eseguita in solo un vertice. Fare riferimento tooTotal vertici toofind ulteriori informazioni su vertice.
-    * Ora di invio/inizio/fine: tempo hello quando il servizio Data Lake Analitica hello riceve hello toorun di invio/Avvia processo processo/Termina processo hello correttamente o No.
-    * In coda/Compilation/esecuzione: Il tempo di clock impiegato durante la fase di hello in coda/preparazione/esecuzione.
-    * Account: account Data Lake Analitica hello utilizzato per l'esecuzione processo hello.
-    * Autore: utente hello che ha inviato il processo di hello, può essere un reale un account utente o un account di sistema.
-    * Priorità: hello priorità processo hello. Hello hello numero inferiore, priorità più alta hello hello. Influisce solo sulla sequenza hello dei processi di hello in coda hello. L'impostazione di una priorità più elevata non ha la precedenza sui processi in esecuzione.
-    * Parallelismo: hello richiesto numero massimo di simultanee Azure Data Lake Analitica unità (ADLAUs), noto anche come vertici. Attualmente, un vertice è uguale tooone VM con due core virtuali e 6 GB di RAM, anche se questo è stato possibile aggiornare in futuro Data Lake Analitica degli aggiornamenti.
-    * Byte a sinistra: Byte toobe elaborati fino a quando non viene completato il processo di hello.
-    * Byte letti/scritti: byte che sono stati letti/scritti dall'inizio dell'esecuzione del processo hello.
-    * Totale vertici: processo hello viene suddivisa molti elementi di lavoro, ogni elemento di lavoro viene chiamato un vertice. Questo valore viene descritto come processo di hello quanti elementi di lavoro è costituito. Un vertice può essere considerato come un'unità di processo di base, nota anche come Azure Data Lake Analytics Unit (ADLAU); i vertici possono essere eseguiti in parallelismo. 
-    * Completato o in esecuzione o non riuscita: hello numero di vertici completato o in esecuzione o non è riuscita. Vertici possono non riuscire a causa di errori di sistema e codice utente tooboth, ma i tentativi di sistema hello non vertici automaticamente più volte. Se ancora non riuscito dopo avere ritentato un vertice hello, l'intero processo hello avrà esito negativo.
+    * Total Compute Time (Tempo di calcolo totale): la somma del tempo di esecuzione di ogni vertice; questo valore può essere considerato come il tempo di esecuzione del processo in un solo vertice. Per altre informazioni sul vertice, fare riferimento all'opzione Total Vertices (Totale vertici).
+    * Submit Time/Start Time/End Time: (Ora di invio/Ora di inizio/Ora di fine): ora in cui il servizio Data Lake Analytics riceve l'invio di un processo/avvia l'esecuzione del processo/termina il processo con esito positivo o negativo.
+    * Compilation/Queued/Running (Compilazione/In coda/In esecuzione): il tempo reale trascorso durante la fase di preparazione/inserimento in coda/esecuzione.
+    * Account: l'account Data Lake Analytics usato per l'esecuzione del processo.
+    * Author (Autore): l'utente che ha inviato il processo; può essere l'account di una persona reale o un account di sistema.
+    * Priority (Priorità): la priorità del processo. Più è basso il numero, maggiore sarà la priorità. Interessa solo la sequenza di processi in coda. L'impostazione di una priorità più elevata non ha la precedenza sui processi in esecuzione.
+    * Parallelismo: il numero massimo richiesto di unità Azure Data Lake Analytics Unit (ADLAU) simultanee, note anche come vertici. Attualmente, un vertice è uguale a una VM con due memorie centrali virtuali e 6 GB di RAM, anche se questo valore potrebbe essere modificato negli aggiornamenti futuri di Data Lake Analytics.
+    * Bytes Left (Byte restanti): byte da elaborare fino al completamento del processo.
+    * Bytes read/written (Byte letti/scritti): byte che sono stati letti/scritti dopo l'avvio del processo.
+    * Total vertices (Totale vertici): il processo è suddiviso in elementi di lavoro e ogni elemento è chiamato vertice. Questo valore descrive il numero di elementi di lavoro che costituiscono il processo. Un vertice può essere considerato come un'unità di processo di base, nota anche come Azure Data Lake Analytics Unit (ADLAU); i vertici possono essere eseguiti in parallelismo. 
+    * Completed/Running/Failed (Completati/In esecuzione/Non riusciti): indica il numero di vertici completati, in esecuzione o non riusciti. I vertici possono avere esito negativo a causa di errori di sistema o del codice utente, ma il sistema tenta automaticamente di eseguire i vertici più volte. Se l'esito è negativo dopo questi tentativi, tutto il processo avrà esito negativo.
 * Grafico del processo
   
-    Uno script U-SQL rappresenta la logica di trasformazione dei dati di input toooutput dati hello. script Hello viene compilato e ottimizzato il piano di esecuzione fisica tooa in fase di preparazione hello. Grafico processi è piano di esecuzione fisica tooshow hello.  Hello seguente diagramma illustra il processo di hello:
+    Uno script SQL U rappresenta la logica di trasformazione dei dati di input in dati di output. Lo script viene compilato e ottimizzato in un piano di esecuzione fisico in fase di preparazione. Il grafico del processo mostra il piano di esecuzione fisico.  Il diagramma seguente illustra il processo:
   
     ![Stato delle fasi del processo di Azure Data Lake Analytics](./media/data-lake-analytics-data-lake-tools-view-jobs/data-lake-tools-logical-to-physical-plan.png)
   
-    Un processo è suddiviso in più elementi di lavoro. Ogni elemento di lavoro è chiamato vertice. vertici Hello sono raggruppati come vertice Super (noto anche come fase) e visualizzati come grafico processi. le etichette di Hello verde fase nel grafico processo hello mostrano fasi hello.
+    Un processo è suddiviso in più elementi di lavoro. Ogni elemento di lavoro è chiamato vertice. I vertici vengono raggruppati come Supervertice (noto anche come fase) e visualizzati sotto forma di grafico del processo. Le etichette di colore verde nel grafico del processo indicano le fasi.
   
-    Ogni vertice in una fase esegue hello stesso tipo di lavoro con diverse parti di hello stessi dati. Ad esempio, se si dispone di un file con 1 TB di dati e centinaia di vertici leggono i dati nel file, ogni vertice sta leggendo un blocco. I quali vengono raggruppati in hello stessa fase ed eseguono stessa funzionano in diverse parti di stesso file di input.
+    Ogni vertice raggruppato in una fase esegue lo stesso tipo di lavoro con blocchi diversi degli stessi dati. Ad esempio, se si dispone di un file con 1 TB di dati e centinaia di vertici leggono i dati nel file, ogni vertice sta leggendo un blocco. Questi vertici vengono raggruppati nella stessa fase ed eseguono lo stesso lavoro su blocchi diversi dello stesso file di input.
   
   * <a name="state-information"></a>Informazioni sulla fase
     
-      In una determinata fase, vengono visualizzati alcuni numeri manifesto hello.
+      In una specifica fase, l'etichetta riporta alcuni numeri.
     
       ![Fase del grafico del processo di Azure Data Lake Analytics](./media/data-lake-analytics-data-lake-tools-view-jobs/data-lake-tools-job-graph-stage.png)
     
-    * SV1 Estrarre: nome hello di una fase, denominata da un metodo dell'operazione numero e hello.
-    * 84 vertici: hello conteggio totale dei vertici in questa fase. Figura Hello indica il numero di elementi di lavoro è suddivisa in questa fase.
-    * s/vertex 12.90: hello vertice medio tempo di esecuzione per questa fase. Questo valore viene calcolato da SUM (tempo di esecuzione di ogni vertice)/(conteggio totale vertici). Che indica se è possibile assegnare tutti i vertici hello eseguiti con parallelismo, completamento della fase intero hello in 12.90 s. Inoltre, se tutti hello lavoro in questa fase viene eseguita in modo seriale, il costo di hello sarebbe #vertices * tempo medio.
+    * SV1 Extract (Estrazione SV1): il nome di una fase, indicato da un numero e dal metodo dell'operazione.
+    * 84 vertices (84 vertici): il conteggio totale di vertici in questa fase. La cifra indica il numero di elementi di lavoro in cui il processo è suddiviso in questa fase.
+    * 12.90 s/vertex (12,90 s/vertice): il tempo medio di esecuzione di vertici per questa fase. Questo valore viene calcolato da SUM (tempo di esecuzione di ogni vertice)/(conteggio totale vertici). Se si assegnassero tutti i vertici eseguiti in parallelismo, l'intera fase verrebbe completata in 12,90 s. Se quindi tutto il lavoro in questa fase fosse eseguito in serie, il valore sarebbe numero vertici * tempo AVG.
     * 850,895 rows written (850,895 righe scritte): il conteggio totale delle righe scritte in questa fase.
     * R/W (L/S): la quantità di dati letti/scritti in questa fase, espressa in byte.
-    * Colori: Lo stato di diversi vertice hello fase tooindicate vengono utilizzati i colori.
+    * I colori usati nella fase indicano lo stato dei vertici.
       
-      * Verde indica vertice hello è riuscita.
-      * Arancione indica vertice hello viene ripetuta. vertice Hello eseguito un nuovo tentativo non riuscito, ma viene ritentata automaticamente e dal sistema di hello e hello complessivo fase viene completata correttamente. Se vertice hello ritentata ma ancora non riuscito, colori hello diventa rosso e hello intero processo non riuscito.
-      * Rosso indica non riuscita, il che significa un vertice determinati era stata ritentata più volte dal sistema hello ma ancora non riuscito. In questo caso verrà toofail intero processo hello.
+      * Il verde indica che il vertice è riuscito.
+      * L'arancione indica che sono stati eseguiti nuovi tentativi per il vertice. Il vertice non ha avuto esito positivo, ma il sistema ha eseguito automaticamente un nuovo tentativo riuscito e la fase è stata completata correttamente. Se i nuovi tentativi non riescono, il colore diventa rosso e l'intero processo risulta non riuscito.
+      * Il rosso indica l'esito negativo, ovvero il sistema ha eseguito più tentativi non riusciti per un determinato vertice. Questo scenario causa l'esito negativo dell'intero processo.
       * Il blu indica che un determinato vertice è in esecuzione.
-      * Il bianco indica hello è in attesa del vertice. vertice Hello potrebbe essere in attesa toobe pianificato dopo un ADLAU diventa disponibile, o può essere attesa per l'input perché i relativi dati di input non siano pronti.
+      * Il bianco indica che il vertice è in attesa. Il vertice può essere in attesa di pianificazione dopo che un'unità ADLAU è diventata disponibile o in attesa di input poiché i relativi dati di input potrebbero non essere pronti.
       
-      È possibile trovare altre informazioni per la fase di hello spostando il cursore del mouse da uno stato:
+      Posizionare il cursore del mouse vicino a uno stato per ottenere altri dettagli sulla fase:
       
       ![Dettagli della fase del grafico del processo di Azure Data Lake Analytics](./media/data-lake-analytics-data-lake-tools-view-jobs/data-lake-tools-job-graph-stage-details.png)
-  * Vertici: Vengono illustrati i dettagli di vertici hello, ad esempio, il numero di vertici in totale, vertici quanti sono stati completati, sono che non è riuscita o è ancora in esecuzione o in attesa e così via.
-  * Data read cross/intra pod (Lettura dati tra pod/nel pod): i file e i dati vengono archiviati in più pod nel file system distribuito. valore Hello descrive la quantità di dati non è stato letto hello stesso contenitore o cross pod.
-  * Tempo di calcolo totale: somma hello ogni vertice tempo di esecuzione in fase di hello, è possibile durante l'esecuzione di hello tempo impiegata se tutte le attività in fase di hello in solo un vertice.
-  * Dati e le righe di lettura/scrittura: indica la quantità dei dati o le righe sono stati letti/scritti o necessario toobe leggere.
+  * Vertices (Vertici): descrive i dettagli relativi ai vertici, ad esempio il numero totale di vertici, il numero di vertici completati, non riusciti, ancora in esecuzione o in attesa e così via.
+  * Data read cross/intra pod (Lettura dati tra pod/nel pod): i file e i dati vengono archiviati in più pod nel file system distribuito. Il valore qui descrive la quantità di dati letti nello stesso pod o tra più pod.
+  * Total Compute Time (Tempo di calcolo totale): la somma del tempo di esecuzione di ogni vertice nella fase; questo valore può essere considerato come il tempo di esecuzione se tutto il lavoro nella fase fosse eseguito in un solo vertice.
+  * Data and rows written/read (Dati e righe scritti/letti): la quantità di dati o righe letti/scritti o che devono essere letti.
   * Vertex read failures (Errori di lettura vertici): descrive il numero di vertici con esito negativo durante la lettura dei dati.
-  * Elimina vertice duplicato: se un vertice è troppo lenta, sistema di hello può pianificare più vertici toorun hello stesso elemento di lavoro. Vertici reductant verranno eliminati una volta che uno dei vertici hello completata correttamente. Vertice duplicati Elimina numero hello di record di vertici che vengono rimossi come duplicati in fase di hello.
-  * Revoca vertex: vertice hello è stata completata, ma ottenere nuovamente in seguito a causa di motivi toosome. Ad esempio, se perde il vertice a valle intermedia dei dati di input, viene chiesto toorerun vertice upstream hello.
-  * Esecuzioni di pianificazione vertex: tempo totale di hello vertici hello sono state pianificate.
-  * I dati di vertici Media/Min/Max letti: hello minimo/medio/massimo di ogni vertice leggere i dati.
-  * Durata: hello il tempo di clock che impiega una fase, è necessario tooload profilo toosee questo valore.
+  * Vertex duplicate discards (Eliminazioni vertici duplicati): se un vertice viene eseguito troppo lentamente, il sistema può pianificare più vertici per eseguire lo stesso elemento di lavoro. I vertici duplicati verranno rimossi dopo il completamento corretto di uno dei vertici. Registra il numero di vertici eliminati come duplicati nella fase.
+  * Vertex revocations (Revoche vertici): il vertice è stato completato, ma verrà eseguito di nuovo in un secondo momento per qualche motivo. Ad esempio, se il vertice di downstream perde i dati di input intermedi, verrà chiesto di eseguire di nuovo il vertice di upstream.
+  * Vertex schedule executions (Esecuzioni pianificazione vertici): il tempo totale per cui i vertici sono stati pianificati.
+  * Min/Average/Max Vertex data read (Dati vertici min/medi/max letti): la quantità minima/media/massima di dati letti di ogni vertice.
+  * Duration (Durata): il tempo reale di una fase; è necessario caricare il profilo per visualizzare questo valore.
   * Riproduzione del processo
     
-      Data Lake Analitica esegue i processi e gli archivi hello vertici in esecuzione le informazioni dei processi di hello, ad esempio quando vengono avviati i vertici hello, arrestato, non è riuscita e come vengono ripetute, e così via. Le informazioni di hello automaticamente registrate in archivio query hello e archiviate in un profilo del processo. È possibile scaricare il profilo di processo tramite "Carica profilo" nella visualizzazione processi hello ed è possibile visualizzare hello riproduzione processo dopo aver scaricato hello processo profilo.
+      Data Lake Analytics esegue i processi e archivia le informazioni di esecuzione sui vertici dei processi, ad esempio quando i vertici sono stati avviati o arrestati, hanno avuto esito negativo, i nuovi tentativi eseguiti e così via. Tutte le informazioni vengono registrate automaticamente nell'archivio query e archiviate nel relativo profilo del processo. È possibile scaricare il profilo del processo tramite Carica profilo nella visualizzazione processo; è possibile esaminare la riproduzione del processo dopo avere scaricato il profilo del processo.
     
-      La riproduzione di processo è una visualizzazione di sintesi di cosa è successo cluster hello. Consente di controllare lo stato di avanzamento del processo e rilevare visivamente eventuali colli di bottiglia o anomalie delle prestazioni in un periodo molto breve, in genere inferiore a 30 secondi.
+      Il processo di riproduzione è una visualizzazione di sintesi delle operazioni eseguite nel cluster. Consente di controllare lo stato di avanzamento del processo e rilevare visivamente eventuali colli di bottiglia o anomalie delle prestazioni in un periodo molto breve, in genere inferiore a 30 secondi.
   * Visualizzazione della mappa termica del processo 
     
-      È possibile selezionare la mappa di calore processo di riepilogo a discesa di visualizzazione hello nel grafico di processo. 
+      È possibile selezionare la mappa termica del processo tramite l'elenco a discesa di visualizzazione nel grafico del processo. 
     
       ![Visualizzazione della mappa termica del grafico del processo di Azure Data Lake Analytics](./media/data-lake-analytics-data-lake-tools-view-jobs/data-lake-tools-job-graph-heat-map-display.png)
     
-      Mostra mappa di calore dei / o, ora e la velocità effettiva hello di un processo tramite cui trova in cui il processo di hello impiega la maggior parte del tempo di hello, o se il processo è un processo di limiti dei / o e così via.
+      Mostra la mappa termica di I/O, del tempo e della velocità effettiva di un processo, consentendo di individuare il punto in cui il processo impiega la maggior parte del tempo o se si tratta di un processo associato a operazioni di I/O e così via.
     
       ![Esempio di mappa termica del grafico del processo di Azure Data Lake Analytics](./media/data-lake-analytics-data-lake-tools-view-jobs/data-lake-tools-job-graph-heat-map-example.png)
     
-    * Stato: hello stato di esecuzione processo, vedere le informazioni in [fase informazioni](#stage-information).
-    * Dati letti/scritti: mappa di calore hello del totale dei dati letti/scritti in ogni fase.
-    * Tempo di calcolo: mappa di calore hello di SUM (tempo di esecuzione ogni vertice), è possibile considerare questo il tempo necessario se viene eseguito tutto il lavoro in fase di hello con vertice solo 1.
-    * Tempo medio di esecuzione per ogni nodo: mappa di calore hello di SUM (tempo di esecuzione ogni vertice) / (numero di vertici). Ovvero se è possibile assegnare tutti i vertici hello eseguiti con parallelismo, fase intero hello verrà eseguita in questo periodo di tempo.
-    * Velocità effettiva di Input/Output: mappa di calore hello di velocità effettiva di input/output di ogni fase, è possibile verificare se il processo è un processo di binding i/o mediante l'oggetto.
+    * Progress (Stato): lo stato di esecuzione del processo: vedere i dettagli in [informazioni sulla fase](#stage-information).
+    * Data read/written (Dati letti/scritti): la mappa termica dei dati totali letti/scritti in ogni fase.
+    * Compute time (Tempo di calcolo): la mappa termica di SUM (tempo di esecuzione di ogni vertice); può essere considerato come il tempo necessario se tutte le operazioni nella fase fossero eseguite solo con 1 vertice.
+    * Average execution time per node (Tempo medio di esecuzione per ogni nodo): la mappa termica di SUM (tempo di esecuzione di ogni vertice)/(numero di vertici). Se quindi si assegnassero tutti i vertici eseguiti in parallelismo, l'intera fase verrebbe completata in questo intervallo di tempo.
+    * Input/Output throughput (Velocità effettiva di input/output): la mappa termica della velocità effettiva di input/output di ogni fase; consente di verificare se il processo è associato a operazioni di I/O.
 * Operazioni sui metadati
   
     È possibile eseguire alcune operazioni sui metadati nello script U-SQL, ad esempio creare un database, eliminare una tabella e così via. Queste operazioni vengono visualizzate in Metadata Operation (Operazione sui metadati) dopo la compilazione. Qui è possibile trovare asserzioni, creare e cancellare entità.
@@ -142,37 +142,37 @@ La finestra di dialogo Job View (Visualizzazione processo) contiene:
     ![Operazioni sui metadati di visualizzazione processo di Azure Data Lake Analytics](./media/data-lake-analytics-data-lake-tools-view-jobs/data-lake-tools-job-view-metadata-operations.png)
 * Cronologia dello stato
   
-    Hello cronologia dello stato viene inoltre visualizzata nella finestra di riepilogo dei processi, ma è possibile ottenere ulteriori dettagli. È possibile trovare hello dettagliata informazioni, ad esempio quando viene preparata processo hello, in coda, avviato, è terminata. È inoltre possibile trovare quante volte è stato compilato il processo di hello (hello CcsAttempts: 1), quando è in realtà cluster di hello processo inviato toohello (hello dettaglio: invio processo toocluster) e così via.
+    Nel riepilogo del processo viene visualizzata la cronologia dello stato, ma qui sono disponibili maggiori dettagli. È possibile trovare informazioni dettagliate, ad esempio quando il processo è stato preparato, inserito in coda, avviato in esecuzione e terminato. È anche possibile trovare il numero di volte per cui il processo è stato compilato (CcsAttempts: 1), quando il processo è stato inviato effettivamente al cluster (Detail: Dispatching job to cluster - Dettaglio: Invio del processo al cluster) e così via.
   
     ![Cronologia dello stato di visualizzazione processo di Azure Data Lake Analytics](./media/data-lake-analytics-data-lake-tools-view-jobs/data-lake-tools-job-view-state-history.png)
 * Diagnostica
   
-    strumento Hello individua automaticamente l'esecuzione del processo. e invierà avvisi in caso di errori o problemi di prestazioni nei processi. Si noti che è necessario toodownload profilo tooget informazioni complete di seguito. 
+    Lo strumento diagnostica automaticamente l'esecuzione del processo e invierà avvisi in caso di errori o problemi di prestazioni nei processi. Si noti che è necessario scaricare il profilo per ottenere informazioni complete qui. 
   
     ![Diagnostica di visualizzazione processo di Azure Data Lake Analytics](./media/data-lake-analytics-data-lake-tools-view-jobs/data-lake-tools-job-view-diagnostics.png)
   
-  * Warnings (Avvisi): viene visualizzato un avviso del compilatore. È possibile scegliere "x problemi" collegamento toohave ulteriori dettagli quando viene visualizzato l'avviso hello.
+  * Warnings (Avvisi): viene visualizzato un avviso del compilatore. È possibile fare clic sul collegamento relativo a "x problemi" per maggiori dettagli dopo la visualizzazione dell'avviso.
   * Vertex run too long (Esecuzione prolungata vertice): se si verifica il timeout di uno dei vertici, ad esempio dopo 5 ore, i problemi vengono indicati qui.
-  * Resource usage (Uso risorse): se il parallelismo assegnato è maggiore o minore rispetto al valore necessario, i problemi vengono indicati qui. Anche cui è possibile fare clic su risorse utilizzo toosee ulteriori informazioni ed eseguire scenari di simulazione toofind una migliore allocazione delle risorse (per ulteriori informazioni, vedere questa Guida).
+  * Resource usage (Uso risorse): se il parallelismo assegnato è maggiore o minore rispetto al valore necessario, i problemi vengono indicati qui. È anche possibile fare clic su questa opzione per visualizzare altri dettagli e scenari di simulazione per migliorare l'allocazione delle risorse; per altre informazioni, vedere queste indicazioni.
   * Memory check (Controllo memoria): se uno dei vertici usa più di 5 GB di memoria, i problemi vengono visualizzati qui. Il sistema potrebbe arrestare l'esecuzione del processo se viene usata una quantità di memoria superiore al limite di sistema.
 
 ## <a name="job-detail"></a>Dettagli processo
-Dettagli processo Mostra informazioni dettagliate del processo di hello, inclusi Script, le risorse e visualizzazione esecuzione vertice di hello.
+Mostra informazioni dettagliate sul processo, inclusi gli script, le risorse e la visualizzazione esecuzione vertici.
 
 ![Azure Data Lake Analytics di Azure Data Lake Analytics](./media/data-lake-analytics-data-lake-tools-view-jobs/data-lake-tools-job-details.png)
 
 * Script
   
-    Hello script U-SQL del processo di hello viene archiviato nell'archivio query hello. È possibile visualizzare script U-SQL originale hello e inviare nuovamente se necessario.
+    Lo script SQL U del processo viene archiviato nell'archivio query. È possibile visualizzare lo script U-SQL originale ed inviarlo di nuovo, se necessario.
 * Risorse
   
-    È possibile trovare l'output di compilazione processo hello archiviato nell'archivio query hello tramite le risorse. Ad esempio, è possibile trovare "algebra.xml" è utilizzato tooshow hello grafico processi, gli assembly hello che è stato registrato e così via di seguito.
+    Consente di trovare gli output di compilazione del processo archiviati nell'archivio query. Ad esempio, è possibile trovare "algebra.xml" che viene usato per mostrare il grafico del processo, l'assembly registrato e così via.
 * Vertex execution view (Visualizzazione esecuzioni vertici)
   
-    Mostra i dettagli di esecuzione dei vertici. Hello profilo processo consente di archiviare ogni log di esecuzione di vertici, ad esempio dati totali letti/scritti, runtime, lo stato e così via. Tramite questa visualizzazione è possibile ottenere altre informazioni su come è stato eseguito un processo. Per ulteriori informazioni, vedere [hello utilizzare Visualizzazione esecuzione vertice in Data Lake Tools per Visual Studio](data-lake-analytics-data-lake-tools-use-vertex-execution-view.md).
+    Mostra i dettagli di esecuzione dei vertici. Il profilo del processo archivia il log di esecuzione di ogni vertice, ad esempio i dati totali letti/scritti, il runtime, lo stato e così via. Tramite questa visualizzazione è possibile ottenere altre informazioni su come è stato eseguito un processo. Per altre informazioni vedere [Usare la visualizzazione esecuzioni di vertici in Azure Data Lake Tools per Visual Studio](data-lake-analytics-data-lake-tools-use-vertex-execution-view.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
-* informazioni di diagnostica toolog, vedere [accesso ai log di diagnostica per Azure Data Lake Analitica](data-lake-analytics-diagnostic-logs.md)
-* toosee una query più complessa, vedere [sito Web di analizzare i log di Azure Data Lake Analitica](data-lake-analytics-analyze-weblogs.md).
-* visualizzazione di esecuzione vertice toouse, vedere [hello utilizzare Visualizzazione esecuzione vertice in Data Lake Tools per Visual Studio](data-lake-analytics-data-lake-tools-use-vertex-execution-view.md)
+* Per registrare informazioni di diagnostica, vedere [Accessing diagnostics logs for Azure Data Lake Analytics](data-lake-analytics-diagnostic-logs.md)
+* Per visualizzare una query più complessa, vedere [Analizzare i log del sito Web mediante Analisi Data Lake di Azure](data-lake-analytics-analyze-weblogs.md).
+* Per usare la visualizzazione esecuzioni vertici, vedere [Usare la visualizzazione esecuzioni vertici in Azure Data Lake Tools per Visual Studio](data-lake-analytics-data-lake-tools-use-vertex-execution-view.md)
 

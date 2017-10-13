@@ -1,5 +1,5 @@
 ---
-title: aaaOverview di hub di eventi di Azure Capture | Documenti Microsoft
+title: Panoramica di Acquisizione di Hub eventi di Azure | Microsoft Docs
 description: Acquisire i dati di telemetria con Acquisizione di Hub eventi
 services: event-hubs
 documentationcenter: 
@@ -14,56 +14,56 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/21/2017
 ms.author: sethm;darosa
-ms.openlocfilehash: 0238cae712a0ed7bdf3e87ee93a069a553cb65df
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: c4fd365ec8eeb389f0df9f53cd2f2a18f4c9b52a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-event-hubs-capture"></a>Acquisizione di Hub eventi di Azure
 
-Acquisizione di hub eventi Azure consente tooautomatically recapito hello flusso di dati in hub eventi tooan [archiviazione Blob di Azure](https://azure.microsoft.com/services/storage/blobs/) o [archivio Azure Data Lake](https://azure.microsoft.com/services/data-lake-store/) account desiderato, con hello una maggiore flessibilità specificare un intervallo di tempo o dimensione. Impostazione di acquisizione è veloce, non esistono toorun i costi amministrativi e viene ridimensionato automaticamente con gli hub di eventi [unità di velocità effettiva](event-hubs-features.md#capacity). Acquisire gli hub eventi è tooload modo più semplice hello flusso di dati in Azure e consente toofocus sull'elaborazione dei dati anziché sull'acquisizione di dati.
+Acquisizione di Hub eventi di Azure consente di recapitare automaticamente i dati in streaming di Hub eventi in un account di [Archiviazione BLOB di Azure](https://azure.microsoft.com/services/storage/blobs/) o [Azure Data Lake Store](https://azure.microsoft.com/services/data-lake-store/) a scelta, con la possibilità di specificare un intervallo di tempo o di dimensioni. La configurazione di Acquisizione è rapida, non sono previsti costi amministrativi per l'esecuzione e viene ridimensionata automaticamente con le [unità elaborate](event-hubs-features.md#capacity) in Hub eventi. Acquisizione di Hub eventi è il modo più semplice per caricare i dati in streaming in Azure e consente di concentrarsi sull'elaborazione dei dati anziché sull'acquisizione.
 
-Acquisire gli hub eventi permette tooprocess in tempo reale e basata su batch pipeline sul hello stesso flusso. Ciò significa che è possibile compilare soluzioni che si adattano alle esigenze nel corso del tempo. Se si sta creando sistemi basati su batch corrente con un occhio verso futura elaborazione in tempo reale, o si desidera tooadd una soluzione di percorso freddo efficiente tooan esistente in tempo reale, acquisire gli hub eventi rende l'uso con il flusso di dati più semplici.
+Acquisizione di Hub eventi consente di elaborare pipeline in tempo reale e basate su batch nello stesso flusso. Ciò significa che è possibile compilare soluzioni che si adattano alle esigenze nel corso del tempo. Sia che si debbano compilare oggi sistemi basati su batch con lo sguardo rivolto alla futura elaborazione in tempo reale o che si voglia aggiungere un percorso a freddo efficiente a una soluzione in tempo reale esistente, Acquisizione di Hub eventi semplifica l'uso dei dati in streaming.
 
 ## <a name="how-event-hubs-capture-works"></a>Come funziona Acquisizione di Hub eventi
 
-Hub eventi è un buffer di durevole tempo conservazione per l'ingresso di telemetria, log distribuite a tooa simile. Hello tooscaling chiave in hub eventi è hello [modello consumer partizionato](event-hubs-features.md#partitions). Ogni partizione è un segmento di dati indipendente e viene utilizzata in modo indipendente. Nel tempo che all'età di dati esterno, in base al periodo di memorizzazione configurabile hello. Di conseguenza, un determinato hub eventi non sarà mai "troppo pieno".
+Hub eventi è un buffer permanente di conservazione nel tempo per l'ingresso della telemetria, simile a un log distribuito. La chiave per ridurre il numero di istanze di Hub eventi è il [modello di consumer partizionato](event-hubs-features.md#partitions). Ogni partizione è un segmento di dati indipendente e viene utilizzata in modo indipendente. Nel corso del tempo questi dati diventano obsoleti, a seconda del periodo di conservazione configurabile. Di conseguenza, un determinato hub eventi non sarà mai "troppo pieno".
 
-Acquisizione di hub eventi consente si toospecify proprio account di archiviazione Blob di Azure e un contenitore o un account archivio Azure Data Lake, che vengono utilizzati toostore hello acquisito dati. Questi account possono essere in hello stessa regione dell'hub eventi o in un'altra area, aggiungendo flessibilità toohello della funzionalità di acquisizione di hub eventi hello.
+Acquisizione di Hub eventi consente di specificare un account di Archiviazione BLOB di Azure e un contenitore oppure un account Azure Data Lake Store da usare per archiviare i dati acquisiti. Questi account possono trovarsi nella stessa area dell'hub eventi o in un'altra area, aumentando così la flessibilità della funzionalità Acquisizione di Hub eventi.
 
-I dati acquisiti vengono scritti in formato [Apache Avro][Apache Avro], un formato compatto, rapido, binario che offre strutture di dati avanzate con lo schema inline. Questo formato è ampiamente utilizzato ecosistema Hadoop hello flusso Analitica e Data Factory di Azure. Altre informazioni sull'uso di Avro sono disponibili più avanti in questo articolo.
+I dati acquisiti vengono scritti in formato [Apache Avro][Apache Avro], un formato compatto, rapido, binario che offre strutture di dati avanzate con lo schema inline. Questo formato è largamente usato nell'ecosistema Hadoop, dall'analisi di flusso e da Azure Data Factory. Altre informazioni sull'uso di Avro sono disponibili più avanti in questo articolo.
 
 ### <a name="capture-windowing"></a>Acquisire windowing
 
-Acquisizione di hub eventi consente tooset di acquisizione di toocontrol una finestra. Questa finestra è una dimensione minima e la configurazione di tempo con un "primo wins criteri," vale a dire che hello eseguita trigger durante un'operazione di acquisizione. Se si dispone di quindici minuti, 100 MB finestra di acquisizione e inviare 1 MB al secondo, i trigger di hello dimensioni finestra prima dell'intervallo di tempo hello. Ogni partizione acquisisce in modo indipendente e scrive un blob in blocchi completato al momento di hello dell'acquisizione, denominato per volta hello in cui hello è stata rilevata l'intervallo di acquisizione. convenzione di denominazione archiviazione Hello è come segue:
+Acquisizione di Hub eventi consente di configurare una finestra per controllare l'acquisizione. Questa finestra è una dimensione minima e una configurazione a tempo con un criterio basato sulla precedenza, ovvero il primo trigger rilevato avvia un'operazione di acquisizione. Se si ha una finestra di acquisizione di quindici minuti/100 MB e si invia 1 MB al secondo, la finestra della dimensione viene attivata prima della finestra temporale. Ogni partizione acquisisce in modo indipendente e scrive un BLOB in blocchi completo al momento dell'acquisizione, denominato in base all'ora in cui è stato rilevato l'intervallo di acquisizione. La convenzione di denominazione dell'archiviazione è la seguente:
 
 ```
 [namespace]/[event hub]/[partition]/[YYYY]/[MM]/[DD]/[HH]/[mm]/[ss]
 ```
 
-### <a name="scaling-toothroughput-units"></a>Unità di scala toothroughput
+### <a name="scaling-to-throughput-units"></a>Ridimensionamento alle unità elaborate
 
-Il traffico di Hub eventi è controllato dalle [unità elaborate](event-hubs-features.md#capacity). Una singola unità elaborata consente 1 MB al secondo o 1000 eventi al secondo in ingresso e il doppio in uscita. Hub eventi Standard può essere configurato con 1-20 unità elaborate e altre possono essere acquistate con una [richiesta di supporto][support request] per l'aumento della quota. L'uso superiore rispetto alle unità elaborate acquistate è limitato. Acquisizione di hub eventi copia i dati direttamente da archiviazione di hub eventi interno hello, ignorando le quote in uscita di unità di velocità effettiva e salvando il traffico in uscita per altri lettori di elaborazione, ad esempio flusso Analitica o Spark.
+Il traffico di Hub eventi è controllato dalle [unità elaborate](event-hubs-features.md#capacity). Una singola unità elaborata consente 1 MB al secondo o 1000 eventi al secondo in ingresso e il doppio in uscita. Hub eventi Standard può essere configurato con 1-20 unità elaborate e altre possono essere acquistate con una [richiesta di supporto][support request] per l'aumento della quota. L'uso superiore rispetto alle unità elaborate acquistate è limitato. Acquisizione di Hub eventi copia i dati direttamente dalla memoria di Hub eventi interna, ignorando le quote in uscita di unità elaborate e salvando l'uscita per altri lettori di elaborazione, ad esempio l'analisi di flusso o Spark.
 
-Acquisizione di Hub eventi, dopo essere stata configurata, viene eseguita automaticamente quando si invia il primo evento e continua l'esecuzione. toomake più semplice per tooknow l'elaborazione downstream che sia in esecuzione il processo di hello, hub eventi scrive file vuoti quando non sono presenti dati. Questo processo ottiene una cadenza prevedibile e un marcatore che possono alimentare i processori batch.
+Acquisizione di Hub eventi, dopo essere stata configurata, viene eseguita automaticamente quando si invia il primo evento e continua l'esecuzione. Per comunicare facilmente all'elaborazione downstream che il processo è funzionante, Hub eventi scrive file vuoti quando non sono presenti dati. Questo processo ottiene una cadenza prevedibile e un marcatore che possono alimentare i processori batch.
 
 ## <a name="setting-up-event-hubs-capture"></a>Configurazione di Acquisizione di Hub eventi
 
-È possibile configurare l'acquisizione al momento della creazione di hello evento hub utilizzando hello [portale di Azure](https://portal.azure.com), o utilizzando i modelli di gestione risorse di Azure. Per ulteriori informazioni, vedere hello seguenti articoli:
+È possibile configurare Acquisizione al momento della creazione dell'hub eventi usando il [portale di Azure](https://portal.azure.com) o i modelli di Azure Resource Manager. Per altre informazioni, vedere gli articoli seguenti:
 
-- [Abilitare gli hub di eventi Capture utilizzando hello portale di Azure](event-hubs-capture-enable-through-portal.md)
+- [Abilitare Acquisizione di Hub eventi usando il portale di Azure](event-hubs-capture-enable-through-portal.md)
 - [Creare uno spazio dei nomi di Hub eventi con un hub eventi e abilitare l'acquisizione con un modello di Azure Resource Manager](event-hubs-resource-manager-namespace-event-hub-enable-capture.md)
 
-## <a name="exploring-hello-captured-files-and-working-with-avro"></a>Esplorazione file hello acquisito e l'utilizzo di Avro
+## <a name="exploring-the-captured-files-and-working-with-avro"></a>Esplorazione dei file acquisiti e dell'uso di Avro
 
-Acquisire gli hub di eventi crea un file in formato Avro, come specificato nella finestra temporale hello configurato. È possibile visualizzare questi file con qualsiasi strumento, ad esempio [Azure Storage Explorer][Azure Storage Explorer]. È possibile scaricare hello file localmente toowork su di essi.
+Acquisizione di Hub eventi crea i file in formato Avro, come specificato nell'intervallo di tempo configurato. È possibile visualizzare questi file con qualsiasi strumento, ad esempio [Azure Storage Explorer][Azure Storage Explorer]. È possibile scaricare i file in locale per usarli.
 
-file Hello generati da acquisire gli hub eventi sono hello seguente schema Avro:
+I file generati da Acquisizione di Hub eventi hanno lo schema Avro seguente:
 
 ![][3]
 
-I file Avro tooexplore un modo semplice consiste nell'utilizzare hello [Avro strumenti] [ Avro Tools] file jar di Apache. Dopo aver scaricato il file jar, è possibile visualizzare schema hello di un file Avro specifico eseguendo hello comando seguente:
+Per esplorare facilmente i file di Avro, è possibile usare il file JAR [Avro Tools][Avro Tools] di Apache. Dopo avere scaricato questo file JAR, è possibile visualizzare lo schema di un file di Avro eseguendo il comando seguente:
 
 ```
 java -jar avro-tools-1.8.2.jar getschema <name of capture file>
@@ -88,24 +88,23 @@ Questo comando restituisce
 }
 ```
 
-È inoltre possibile utilizzare strumenti Avro tooconvert hello formato tooJSON ed eseguire altre elaborazioni.
+È anche possibile usare Avro Tools per convertire il file in formato JSON ed eseguire altre operazioni di elaborazione.
 
-tooperform avanzati di elaborazione, scaricare e installare Avro per la scelta della piattaforma. In fase di hello della redazione del presente documento, sono disponibili le implementazioni per C, C++ e C\#, Java, NodeJS, Perl, PHP, Python e Ruby.
+Per eseguire operazioni di elaborazione più avanzate, scaricare e installare Avro per la propria piattaforma. Al momento della stesura di questo articolo, sono disponibili implementazioni per C, C++, C\#, Java, NodeJS, Perl, PHP, Python e Ruby.
 
-In Apache Avro sono disponibili guide introduttive complete per [Java][Java] e [Python][Python]. È inoltre possibile leggere hello [introduzione acquisire gli hub di eventi](event-hubs-capture-python.md) articolo.
+In Apache Avro sono disponibili guide introduttive complete per [Java][Java] e [Python][Python]. È anche possibile leggere l'articolo [Acquisizione di Hub eventi di Azure](event-hubs-capture-python.md).
 
 ## <a name="how-event-hubs-capture-is-charged"></a>Come viene addebitato l'uso di Acquisizione di Hub eventi
 
-Acquisizione di hub eventi è a consumo Analogamente toothroughput unità: come tariffa oraria. addebito Hello è direttamente proporzionale toohello numero di unità di velocità effettiva acquistate per spazio dei nomi hello. Come unità di velocità effettiva vengono aumentate e ridotte, acquisire gli hub eventi metri aumentare e diminuire tooprovide prestazioni corrispondenti. metri Hello si verificano in parallelo. Per i dettagli sui prezzi, vedere [Prezzi di Hub eventi](https://azure.microsoft.com/pricing/details/event-hubs/). 
+L'uso di Acquisizione di Hub eventi viene registrato in modo simile a quello delle unità elaborate, come tariffa oraria. L'addebito è direttamente proporzionale al numero di unità elaborate acquistate per lo spazio dei nomi. Quando le unità elaborate aumentano o diminuiscono, anche Acquisizione di Hub eventi aumenta o diminuisce per offrire prestazioni corrispondenti. Le misurazioni vengono eseguite in parallelo. Per i dettagli sui prezzi, vedere [Prezzi di Hub eventi](https://azure.microsoft.com/pricing/details/event-hubs/). 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Acquisire gli hub eventi è più semplice modo tooget dati hello in Azure. Con Azure Data Lake, Azure Data Factory e Azure HDInsight, è possibile eseguire l'elaborazione batch e altre analisi usando strumenti e piattaforme familiari a scelta con la scalabilità necessaria.
+Acquisizione di Hub eventi rappresenta il modo più facile per ottenere i dati in Azure. Con Azure Data Lake, Azure Data Factory e Azure HDInsight, è possibile eseguire l'elaborazione batch e altre analisi usando strumenti e piattaforme familiari a scelta con la scalabilità necessaria.
 
-Sono disponibili ulteriori informazioni sugli hub di eventi visitando hello seguenti collegamenti:
+Per ulteriori informazioni su Hub eventi visitare i collegamenti seguenti:
 
 * [Introduzione all'invio e alla ricezione di eventi](event-hubs-dotnet-framework-getstarted-send.md)
-* Un'[applicazione di esempio completa che usa Hub eventi][sample application that uses Event Hubs]
 * [Panoramica di Hub eventi][Event Hubs overview]
 
 [Apache Avro]: http://avro.apache.org/
@@ -116,5 +115,3 @@ Sono disponibili ulteriori informazioni sugli hub di eventi visitando hello segu
 [Java]: http://avro.apache.org/docs/current/gettingstartedjava.html
 [Python]: http://avro.apache.org/docs/current/gettingstartedpython.html
 [Event Hubs overview]: event-hubs-what-is-event-hubs.md
-[sample application that uses Event Hubs]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-286fd097
-[Scale out Event Processing with Event Hubs]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-45f43fc3

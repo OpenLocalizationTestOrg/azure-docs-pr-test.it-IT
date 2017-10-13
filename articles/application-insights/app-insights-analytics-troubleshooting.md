@@ -1,5 +1,5 @@
 ---
-title: aaaTroubleshoot Analitica in Azure Application Insights | Documenti Microsoft
+title: Risolvere i problemi di Analytics in Azure Application Insights | Documentazione Microsoft
 description: 'Problemi con Application Insights Analytics? Inizia da qui. '
 services: application-insights
 documentationcenter: 
@@ -13,56 +13,56 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2016
 ms.author: bwren
-ms.openlocfilehash: e3be2fbc0237440d3b8a736484434a9f276296c7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 02df117908fc1790e8cfb9ec0a7218c1b8be856c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="troubleshoot-analytics-in-application-insights"></a>Risoluzione dei problemi di Analytics in Application Insights
-Problemi con [Application Insights Analytics](app-insights-analytics.md)? Inizia da qui. Analitica è hello potente strumento di ricerca di Azure Application Insights.
+Problemi con [Application Insights Analytics](app-insights-analytics.md)? Inizia da qui. Analytics è l'efficace strumento di ricerca incluso in Application Insights di Azure.
 
 ## <a name="limits"></a>Limiti
-* Al momento, i risultati della query sono toojust limitato più di una settimana di dati passati.
+* Attualmente sono disponibili i risultati delle query per una settimana di dati.
 * Browser su cui eseguiamo i test: versioni più recenti di Chrome, Edge e Internet Explorer.
 
 ## <a name="known-incompatible-browser-extensions"></a>Estensioni del browser dall'incompatibilità nota
 * Ghostery
 
-Disabilitare l'estensione hello o utilizzare un browser diverso.
+Disabilitare l'estensione o utilizzare un altro browser.
 
 ## <a name="e-a"></a> "Errore imprevisto"
 ![Schermata di errore imprevisto](./media/app-insights-analytics-troubleshooting/010.png)
 
 Si è verificato un errore interno durante il runtime del portale: eccezione non gestita.
 
-* Eseguire la pulizia della cache del browser hello. 
+* Svuotare la cache del browser. 
 
-## <a name="e-b"></a>403.... riprovare tooreload
-![403.... riprovare tooreload](./media/app-insights-analytics-troubleshooting/020.png)
+## <a name="e-b"></a>403 ... provare a ricaricare la pagina
+![403 ... please try to reload](./media/app-insights-analytics-troubleshooting/020.png)
 
-Si è verificato un errore correlato all'autenticazione (durante l'autenticazione o durante la generazione del token di accesso). portale Hello può in alcun modo troppo ripristinare senza modificare le impostazioni del browser.
+Si è verificato un errore correlato all'autenticazione (durante l'autenticazione o durante la generazione del token di accesso). Potrebbe non essere possibile ripristinare il portale senza modificare le impostazioni del browser.
 
-* Verificare [sono abilitati i cookie di terze parti](#cookies) nel browser hello. 
+* Verificare che nel browser siano attivati i [cookie di terze parti](#cookies) . 
 
 ## <a name="authentication"></a>403 ... verificare l'area di sicurezza
 ![403 ... verify security zone](./media/app-insights-analytics-troubleshooting/030.png)
 
-Si è verificato un errore correlato all'autenticazione (durante l'autenticazione o durante la generazione del token di accesso). portale Hello può in alcun modo troppo ripristinare senza modificare le impostazioni del browser.
+Si è verificato un errore correlato all'autenticazione (durante l'autenticazione o durante la generazione del token di accesso). Potrebbe non essere possibile ripristinare il portale senza modificare le impostazioni del browser.
 
-1. Verificare [sono abilitati i cookie di terze parti](#cookies) nel browser hello. 
-2. È stato usato un preferito, un segnalibro o un collegamento salvato tooopen hello Analitica portale? È eseguito l'accesso con credenziali diverse da quello utilizzato al momento del salvataggio collegamento hello?
-3. Provare a utilizzare una finestra del browser privata/in incognito (dopo aver chiuso tutte le finestre di questo tipo). È necessario tooprovide le credenziali. 
-4. Aprire un'altra finestra del browser (comune) e andare troppo[Azure](https://portal.azure.com). Uscire, Aprire il collegamento e accedere con le credenziali corrette hello.
+1. Verificare che nel browser siano attivati i [cookie di terze parti](#cookies) . 
+2. Il portale Analytics è stato aperto utilizzando preferiti, segnalibri o un collegamento salvato? L'accesso è stato eseguito con credenziali diverse da quelle utilizzate quando è stato salvato il collegamento?
+3. Provare a utilizzare una finestra del browser privata/in incognito (dopo aver chiuso tutte le finestre di questo tipo). Sarà necessario fornire le credenziali. 
+4. Aprire un'altra finestra del browser (normale) e accedere ad [Azure](https://portal.azure.com). Uscire, quindi aprire il collegamento ed effettuare l'accesso con le credenziali corrette.
 5. Gli utenti di Edge e Internet Explorer possono ricevere questo errore anche quando le impostazioni delle zone attendibili non sono supportate.
    
-    Verificare sia [portale Analitica](https://analytics.applicationinsights.io) e [portale di Azure Active Directory](https://portal.azure.com) in hello stessa area di protezione:
+    Verificare che il [portale di Analytics](https://analytics.applicationinsights.io) e il [portale di Azure Active Directory](https://portal.azure.com) si trovino nella stessa area di sicurezza:
    
    * In Internet Explorer aprire **Opzioni Internet**, **Sicurezza**, **Siti attendibili**, **Siti**:
      
-     ![Finestra di dialogo Opzioni Internet, l'aggiunta di un sito tooTrusted siti](./media/app-insights-analytics-troubleshooting/033.png)
+     ![Finestra di dialogo Opzioni Internet, aggiungere un sito all'elenco dei siti attendibili](./media/app-insights-analytics-troubleshooting/033.png)
      
-     Nell'elenco di siti Web hello, se uno qualsiasi dei hello URL seguenti sono incluso, assicurarsi che tale hello ad altri utenti sono inoltre inclusi:
+     Se nell'elenco dei siti Web compaiono i seguenti URL, controllare che siano inclusi anche gli altri:
      
      https://analytics.applicationinsights.io<br/>
      https://login.microsoftonline.com<br/>
@@ -71,15 +71,15 @@ Si è verificato un errore correlato all'autenticazione (durante l'autenticazion
 ## <a name="e-d"></a>404 ... Resource not found
 ![404 ... resource not found](./media/app-insights-analytics-troubleshooting/040.png)
 
-Una risorsa dell'applicazione è stata eliminata da Application Insights e non è più disponibile. Questa situazione può verificarsi se è stato salvato nella pagina hello URL toohello Analitica.
+Una risorsa dell'applicazione è stata eliminata da Application Insights e non è più disponibile. Questa situazione può verificarsi se è stato salvato l'URL alla pagina di Analytics.
 
 ## <a name="e-e"></a>403 ... No authorization
 ![403 ... not authorized](./media/app-insights-analytics-troubleshooting/050.png)
 
-Non si dispone dell'autorizzazione tooopen questa applicazione in Analitica.
+Non si dispone dell'autorizzazione ad aprire questa applicazione in Analytics.
 
-* Sono stati ottenuti hello collegamento da un altro utente? Chiedere che la hello toomake [lettori o collaboratori per questo gruppo di risorse](app-insights-resources-roles-access-control.md).
-* È stato salvato il collegamento hello utilizzando credenziali diverse? Aprire hello [portale di Azure](https://portal.azure.com), disconnettersi e quindi provare questo collegamento, fornendo le credenziali corrette hello.
+* Se il collegamento è stato fornito da un altro utente, Chiedere la conferma che l'utente destinatario sia un [lettore o collaboratore di questo gruppo di risorse](app-insights-resources-roles-access-control.md).
+* Se il collegamento è stato salvato con credenziali diverse, Aprire il [portale di Azure](https://portal.azure.com), disconnettersi e riprovare a usare questo collegamento, inserendo le credenziali corrette.
 
 ## <a name="html-storage"></a>403 ... HTML5 Storage
 Il portale utilizza HTML5 localStorage e sessionStorage.
@@ -87,24 +87,24 @@ Il portale utilizza HTML5 localStorage e sessionStorage.
 * Chrome: Impostazioni, Privacy, Impostazioni contenuti.
 * Internet Explorer: Opzioni Internet, scheda Avanzate, Sicurezza, Abilita archiviazione DOM
 
-![403... provare archiviazione tooenable HTML5](./media/app-insights-analytics-troubleshooting/060.png)
+![403 ... try to enable HTML5 storage](./media/app-insights-analytics-troubleshooting/060.png)
 
 ## <a name="e-g"></a>404 ... Sottoscrizione non trovata
 ![404 ... Sottoscrizione non trovata](./media/app-insights-analytics-troubleshooting/070.png)
 
-Hello URL è valido. 
+L'URL non è valido. 
 
-* Aprire una risorsa applicazione hello in [portale Application Insights](https://portal.azure.com). Quindi sul pulsante hello Analitica.
+* Aprire la risorsa dell'app nel [portale di Application Insights](https://portal.azure.com), quindi utilizzare il pulsante di analisi.
 
 ## <a name="e-h"></a>404 ... la pagina non esiste
 ![404 ... Page does not exist](./media/app-insights-analytics-troubleshooting/080.png)
 
-Hello URL è valido.
+L'URL non è valido.
 
-* Aprire una risorsa applicazione hello in [portale Application Insights](https://portal.azure.com). Quindi sul pulsante hello Analitica.
+* Aprire la risorsa dell'app nel [portale di Application Insights](https://portal.azure.com), quindi utilizzare il pulsante di analisi.
 
 ## <a name="cookies"></a>Abilitare i cookie di terze parti
-  Vedere [come toodisable terze parti cookie](http://www.digitalcitizen.life/how-disable-third-party-cookies-all-major-browsers), ma è necessario troppo**abilitare** li.
+  Vedere [come disabilitare il cookie di terze parti](http://www.digitalcitizen.life/how-disable-third-party-cookies-all-major-browsers), tenendo conto che in questo caso è necessario **abilitarli** .
 
 
 [!INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]

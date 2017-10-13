@@ -1,6 +1,6 @@
 ---
 title: Recupero di tabelle ARP - Modello di distribuzione classica - Risoluzione dei problemi di Azure ExpressRoute | Documentazione Microsoft
-description: Questa pagina vengono fornite istruzioni per il recupero hello ARP tabelle per un circuito ExpressRoute.
+description: Questa pagina fornisce istruzioni per ottenere le tabelle ARP tabelle per un circuito ExpressRoute.
 documentationcenter: na
 services: expressroute
 author: ganesr
@@ -14,34 +14,34 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/30/2017
 ms.author: ganesr
-ms.openlocfilehash: 2b01304a38fa0e0def27dbd7c391d7ad8bbdabff
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: fcc847b7e30fd55ca759830e0254ab7542e7663e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="getting-arp-tables-in-hello-classic-deployment-model"></a>Recupero delle tabelle nel modello di distribuzione classica hello ARP
+# <a name="getting-arp-tables-in-the-classic-deployment-model"></a>Recupero di tabelle ARP nel modello di distribuzione classica
 > [!div class="op_single_selector"]
 > * [PowerShell - Gestione risorse](expressroute-troubleshooting-arp-resource-manager.md)
 > * [PowerShell - Classico](expressroute-troubleshooting-arp-classic.md)
 > 
 > 
 
-In questo articolo vengono illustrati i passaggi hello per il recupero delle tabelle di hello protocollo ARP (Address Resolution) per il circuito ExpressRoute di Azure.
+L’articolo illustra i passaggi per ottenere le tabelle ARP ( Address Resolution Protocol) per il circuito ExpressRoute di Azure.
 
 > [!IMPORTANT]
-> Questo documento è previsto toohelp la diagnosi e risoluzione dei problemi semplici. Non è previsto toobe una sostituzione per il supporto tecnico Microsoft. Se è possibile risolvere il problema di hello utilizzando hello seguenti linee guida, aprire una richiesta di supporto con [Guida di Microsoft Azure e supporto](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade).
+> Questo documento è progettato per aiutare l'utente a rilevare e risolvere i problemi semplici. Non sostituisce tuttavia il supporto tecnico Microsoft. Se le seguenti linee guida non permettono di risolvere il problema, aprire una richiesta di supporto con [Guida e supporto di Azure Microsoft](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade).
 > 
 > 
 
 ## <a name="address-resolution-protocol-arp-and-arp-tables"></a>ARP (Address Resolution Protocol) e tabelle ARP
-ARP è un protocollo di livello 2 che viene definito in [RFC 826](https://tools.ietf.org/html/rfc826). ARP è toomap usato un indirizzo IP tooan di Ethernet indirizzo (MAC).
+ARP è un protocollo di livello 2 che viene definito in [RFC 826](https://tools.ietf.org/html/rfc826). Il protocollo ARP viene usato per mappare un indirizzo Ethernet (indirizzo MAC) su un indirizzo IP.
 
-Una tabella ARP fornisce un mapping di indirizzi IPv4 hello e un indirizzo MAC per un particolare peering. la tabella ARP per un circuito ExpressRoute peering Hello fornisce hello le seguenti informazioni per ogni interfaccia (primario e secondario):
+Una tabella ARP fornisce un mapping dell'indirizzo IPv4 e dell'indirizzo MAC per un particolare peering. La tabella ARP del peering di un circuito ExpressRoute fornisce le informazioni seguenti per ogni interfaccia (primaria e secondaria):
 
-1. Mapping di on-premise router interfaccia indirizzo tooa MAC indirizzo IP
-2. Mapping di ExpressRoute router interfaccia indirizzo tooa MAC indirizzo IP
-3. età Hello del mapping di hello
+1. Mapping dell'indirizzo IP dell'interfaccia del router locale all'indirizzo MAC
+2. Mapping dell'indirizzo IP dell'interfaccia del router ExpressRoute all'indirizzo MAC
+3. L’età del mapping
 
 Le tabelle ARP consentono di convalidare la configurazione di livello 2 e la risoluzione dei problemi di connettività di base di livello 2.
 
@@ -53,21 +53,21 @@ Di seguito è riportato un esempio di tabella ARP:
           0 Microsoft         10.0.0.2 aaaa.bbbb.cccc
 
 
-Hello successiva sezione fornisce informazioni su come tooview hello tabelle ARP visualizzate da router perimetrali di hello ExpressRoute.
+La sezione seguente fornisce informazioni su come visualizzare le tabelle ARP visibili tramite i router perimetrali di ExpressRoute.
 
 ## <a name="prerequisites-for-using-arp-tables"></a>Prerequisiti per l'utilizzo delle tabelle ARP
-Assicurarsi di aver seguito hello prima di continuare:
+Prima di continuare, verificare che siano presenti gli elementi seguenti:
 
-* Un circuito ExpressRoute valido configurato con almeno un peer. circuito Hello deve essere completamente configurato dal provider di connettività hello. Utente (o il provider di servizi) necessario configurare almeno un peering di hello (Azure pubblico privato, Azure o Microsoft) su questo circuito.
-* Intervalli di indirizzi IP vengono utilizzati per la configurazione di peering di hello (Azure pubblico privato, Azure e Microsoft). Esaminare esempi assegnazione di indirizzi IP hello in hello [nella pagina requisiti di routing ExpressRoute](expressroute-routing.md) tooget la comprensione di come gli indirizzi IP sono mappati toointerfaces il aise e sul lato di ExpressRoute hello. È possibile ottenere informazioni sulla configurazione di peering hello esaminando hello [pagina Configurazione di peering ExpressRoute](expressroute-howto-routing-classic.md).
-* Informazioni dal provider di team o la connettività di rete su indirizzi MAC hello delle interfacce hello utilizzati con questi indirizzi IP.
-* modulo Windows PowerShell più recente Hello per Azure (versione 1,50 o versione successiva).
+* Un circuito ExpressRoute valido configurato con almeno un peer. Il circuito deve essere completamente configurato dal provider di connettività. L'utente o il provider di connettività deve configurare almeno un peer (privato di Azure, pubblico di Azure e Microsoft) su questo circuito.
+* Gli intervalli degli indirizzi IP usati per la configurazione del peer (privato di Azure, pubblico di Azure e Microsoft). Consultare gli esempi di assegnazione dell'indirizzo IP in [Requisiti per il routing di ExpressRoute](expressroute-routing.md) per ottenere informazioni sul mapping degli indirizzi IP verso le interfacce sul lato utente e sul lato ExpressRoute. È possibile ottenere informazioni sulla configurazione del peering consultando la [pagina sulla configurazione del peering di ExpressRoute](expressroute-howto-routing-classic.md).
+* Informazioni dal team di rete o provider di connettività sugli indirizzi MAC delle interfacce usate con questi indirizzi IP.
+* Il più recente modulo PowerShell per Azure (versione 1.50 o successiva).
 
 ## <a name="arp-tables-for-your-expressroute-circuit"></a>Le tabelle ARP per il circuito ExpressRoute
-In questa sezione vengono fornite istruzioni su come tooview hello ARP tabelle per ogni tipo di peering con PowerShell. Prima di continuare, l'utente o il provider di servizi deve tooconfigure hello peering. Ogni circuito ha due percorsi (primario e secondario). È possibile controllare la tabella ARP per ogni percorso hello in modo indipendente.
+In questa sezione vengono fornite le istruzioni su come visualizzare le tabelle ARP per ciascun tipo di peering tramite PowerShell. Prima di continuare, il peering deve essere configurato dall’utente o dal provider di connettività. Ogni circuito ha due percorsi (primario e secondario). È possibile controllare la tabella ARP di ogni percorso in modo indipendente.
 
 ### <a name="arp-tables-for-azure-private-peering"></a>Tabelle ARP per il peering privato di Azure
-Hello seguendo i cmdlet disponibili hello ARP tabelle per il peering privato di Azure:
+Il cmdlet seguente fornisce le tabelle ARP per il peering privato di Azure
 
         # Required variables
         $ckt = "<your Service Key here>
@@ -78,7 +78,7 @@ Hello seguendo i cmdlet disponibili hello ARP tabelle per il peering privato di 
         # ARP table for Azure private peering--secondary path
         Get-AzureDedicatedCircuitPeeringArpInfo -ServiceKey $ckt -AccessType Private -Path Secondary
 
-Di seguito è l'output di esempio per uno dei percorsi di hello:
+Di seguito è illustrato un esempio di output per uno dei percorsi:
 
         Age InterfaceProperty IpAddress  MacAddress    
         --- ----------------- ---------  ----------    
@@ -87,7 +87,7 @@ Di seguito è l'output di esempio per uno dei percorsi di hello:
 
 
 ### <a name="arp-tables-for-azure-public-peering"></a>Tabelle ARP per il peering pubblico di Azure
-Hello seguendo i cmdlet disponibili hello ARP tabelle per il peering pubblico di Azure:
+Il cmdlet seguente fornisce le tabelle ARP per il peering pubblico di Azure
 
         # Required variables
         $ckt = "<your Service Key here>
@@ -98,7 +98,7 @@ Hello seguendo i cmdlet disponibili hello ARP tabelle per il peering pubblico di
         # ARP table for Azure public peering--secondary path
         Get-AzureDedicatedCircuitPeeringArpInfo -ServiceKey $ckt -AccessType Public -Path Secondary
 
-Di seguito è l'output di esempio per uno dei percorsi di hello:
+Di seguito è illustrato un esempio di output per uno dei percorsi:
 
         Age InterfaceProperty IpAddress  MacAddress    
         --- ----------------- ---------  ----------    
@@ -106,7 +106,7 @@ Di seguito è l'output di esempio per uno dei percorsi di hello:
           0 Microsoft         10.0.0.2 aaaa.bbbb.cccc
 
 
-Di seguito è l'output di esempio per uno dei percorsi di hello:
+Di seguito è illustrato un esempio di output per uno dei percorsi:
 
         Age InterfaceProperty IpAddress  MacAddress    
         --- ----------------- ---------  ----------    
@@ -115,7 +115,7 @@ Di seguito è l'output di esempio per uno dei percorsi di hello:
 
 
 ### <a name="arp-tables-for-microsoft-peering"></a>Tabelle ARP per il peering di Microsoft
-Hello seguente cmdlet fornisce hello ARP tabelle per il peering Microsoft:
+Il cmdlet seguente fornisce le tabelle ARP per il peering di Microsoft
 
     # ARP table for Microsoft peering--primary path
     Get-AzureDedicatedCircuitPeeringArpInfo -ServiceKey $ckt -AccessType Microsoft -Path Primary
@@ -124,7 +124,7 @@ Hello seguente cmdlet fornisce hello ARP tabelle per il peering Microsoft:
     Get-AzureDedicatedCircuitPeeringArpInfo -ServiceKey $ckt -AccessType Microsoft -Path Secondary
 
 
-Esempio di output è illustrato di seguito per uno dei percorsi di hello:
+Di seguito è illustrato un esempio di output per uno dei percorsi:
 
         Age InterfaceProperty IpAddress  MacAddress    
         --- ----------------- ---------  ----------    
@@ -132,40 +132,40 @@ Esempio di output è illustrato di seguito per uno dei percorsi di hello:
           0 Microsoft         65.0.0.2 aaaa.bbbb.cccc
 
 
-## <a name="how-toouse-this-information"></a>Come toouse queste informazioni
-è possibile Hello tabella ARP di un peering connettività e la configurazione utilizzata toovalidate livello 2. Questa sezione offre una panoramica dell'aspetto delle tabelle ARP in scenari diversi.
+## <a name="how-to-use-this-information"></a>Procedura: Come usare queste informazioni
+La tabella ARP di un peer può essere usata per convalidare la connettività e la configurazione di livello 2 valide. Questa sezione offre una panoramica dell'aspetto delle tabelle ARP in scenari diversi.
 
 ### <a name="arp-table-when-a-circuit-is-in-an-operational-expected-state"></a>La tabella ARP quando un circuito è in stato operativo (previsto)
-* una voce per il lato locale di hello con un indirizzo IP e MAC e una voce simile per hello lato Microsoft Hello tabella ARP.
-* l'ottetto ultimo Hello dell'indirizzo IP locale di hello è sempre un numero dispari.
-* ottetti di ultima Hello dell'indirizzo IP di Microsoft hello sono sempre un numero pari.
-* Hello stesso indirizzo MAC viene visualizzato sul lato di Microsoft per tutti i peering di tre (primario o secondario) hello.
+* La tabella ARP contiene una voce per il lato locale con gli indirizzi IP e MAC validi e una voce simile per il lato Microsoft.
+* L'ultimo ottetto dell'indirizzo IP locale è sempre un numero dispari.
+* L'ultimo ottetto dell'indirizzo IP Microsoft è sempre un numero pari.
+* Lo stesso indirizzo MAC viene visualizzato sul lato Microsoft per tutti i 3 peer (principale/secondario).
 
         Age InterfaceProperty IpAddress  MacAddress    
         --- ----------------- ---------  ----------    
          10 On-Prem           65.0.0.1 ffff.eeee.dddd
           0 Microsoft         65.0.0.2 aaaa.bbbb.cccc
 
-### <a name="arp-table-when-its-on-premises-or-when-hello-connectivity-provider-side-has-problems"></a>Tabella ARP quando è locale o quando il lato di provider di connettività hello presenta problemi
- Una sola voce viene visualizzata nella tabella ARP hello. Mostra il mapping di hello tra l'indirizzo MAC hello e indirizzo IP di hello utilizzato sul lato Microsoft hello.
+### <a name="arp-table-when-its-on-premises-or-when-the-connectivity-provider-side-has-problems"></a>La tabella ARP quando il lato locale o del provider di connettività presenta problemi
+ Viene visualizzata solo una voce nella tabella ARP. Mostra il mapping tra gli indirizzi MAC e IP usati sul lato Microsoft.
 
         Age InterfaceProperty IpAddress  MacAddress    
         --- ----------------- ---------  ----------    
           0 Microsoft         65.0.0.2 aaaa.bbbb.cccc
 
 > [!NOTE]
-> Se si riscontra un problema simile al seguente, aprire un supporto richiederla con il tooresolve di provider di connettività.
+> Se si verifica un problema simile, aprire una richiesta di supporto con il provider di connettività per risolverlo.
 > 
 > 
 
-### <a name="arp-table-when-hello-microsoft-side-has-problems"></a>Tabella ARP quando hello lato Microsoft presenta dei problemi
-* Non si noterà una tabella ARP visualizzata per il peering se sono presenti problemi in hello lato Microsoft.
+### <a name="arp-table-when-the-microsoft-side-has-problems"></a>La tabella ARP quando il lato Microsoft presenta problemi
+* Se sono presenti problemi sul lato Microsoft, non verrà visualizzata la tabella ARP illustrata per il peering.
 * Aprire una richiesta di supporto con [Guida e supporto di Azure Microsoft](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade). Specificare che si è riscontrato un problema di connettività di livello 2.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Convalidare le configurazioni di livello 3 per il circuito ExpressRoute
-  * Ottenere uno stato di hello route toodetermine riepilogo di sessioni BGP.
-  * Ottenere un toodetermine tabella di route che i prefissi sono annunciati attraverso ExpressRoute.
+  * Ottenere un riepilogo del routing per determinare lo stato delle sessioni BGP.
+  * Ottenere la tabella del routing per stabilire i prefissi pubblicati in ExpressRoute.
 * Convalidare il trasferimento dei dati controllando i byte in ingresso e uscita.
 * Aprire una richiesta di supporto con [Guida e supporto di Microsoft Azure](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) se continuano a verificarsi problemi.
 

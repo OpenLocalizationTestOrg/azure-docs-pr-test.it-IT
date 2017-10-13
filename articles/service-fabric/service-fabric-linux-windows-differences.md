@@ -1,6 +1,6 @@
 ---
-title: aaaAzure Service Fabric le differenze tra Linux e Windows | Documenti Microsoft
-description: Differenze tra hello Azure Service Fabric Preview in Linux e Azure Service Fabric in Windows.
+title: Differenze di Azure Service Fabric in Linux e Windows | Microsoft Docs
+description: Differenze tra Azure Service Fabric in Linux e Azure Service Fabric in Windows.
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
@@ -12,35 +12,27 @@ ms.devlang: dotNet
 ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 8/9/2017
+ms.date: 09/19/2017
 ms.author: subramar
-ms.openlocfilehash: 7a16a440dfc8d9006e274f46951be1562e6f10d9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 25976ba919454e26f1dd7965de5db7c4f80b9355
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="differences-between-service-fabric-on-linux-preview-and-windows-generally-available"></a>Differenze tra Service Fabric in Linux (anteprima) e in Windows (disponibile a livello generale)
+# <a name="differences-between-service-fabric-on-linux-and-windows"></a>Differenze tra Service Fabric in Linux e in Windows
 
-Poiché Service Fabric in Linux è un'anteprima, alcune funzionalità sono supportate in Windows, ma non ancora in Linux. Infine, il set di funzionalità hello saranno in parità quando Service Fabric in Linux diventa disponibile. Con le versioni future, questo gap di funzionalità verrà ridotto. Hello seguenti esistono differenze tra le versioni disponibili più recenti di hello (vale a dire tra la versione 5.6 in Windows e la versione 5.5 in Linux): 
+Alcune funzionalità sono supportate in Windows ma non ancora in Linux. Questo gap di funzionalità verrà ridotto con ogni versione e i set di funzionalità saranno infine gli stessi. Tra le versioni disponibili più recenti, ossia tra la versione 6.0 in Windows e la versione 6.0 in Linux, esistono le differenze seguenti: 
 
-* Reliable Collections e Reliable Stateful Services 
-* ReverseProxy 
-* Programma di installazione autonomo 
-* Convalida XML Schema per i file manifesto 
-* Reindirizzamento della console 
-* Hello errore Analysis Service (/FAs)
-* Docker Compose e driver di volume e registrazione per i contenitori 
-* Governance delle risorse per contenitori e servizi 
-* Servizio DNS
-* Supporto di Azure Active Directory
-* Comandi dell'interfaccia della riga di comando equivalenti ad alcuni comandi di Powershell 
-* Solo un subset di comandi di Powershell può essere eseguito su un cluster Linux (in formato espanso nella sezione successiva hello).
+* Tutti i modelli di programmazione disponibili in anteprima (Reliable Services senza stato, Reliable Services con stato e Reliable Actors Java/C#)
+* Envoy (ReverseProxy) disponibile in anteprima in Linux
+* Programma di installazione autonomo per Linux non ancora disponibile in Linux
+* Reindirizzamento della console (non supportato nei cluster di produzione Windows o Linux)
+* Servizio di analisi degli errori in Linux
+* Servizio DNS per i servizi di Service Fabric (il servizio DNS è supportato per i contenitori in Linux)
+* Comandi dell'interfaccia della riga di comando equivalenti ad alcuni comandi di Powershell (vedere l'elenco seguente, che si applica per la maggior parte solo a cluster autonomi)
 
->[!NOTE]
->Il reindirizzamento della console non è supportato nei cluster di produzione, nemmeno in Windows.
-
-Anche gli strumenti di sviluppo presentano differenze tra Windows e Linux. VisualStudio, Powershell, VSTS e ETW vengono usati in Windows mentre Yeoman, Eclipse, Jenkins, e LTTng vengono usati in Linux.
+Anche gli strumenti di sviluppo presentano differenze tra Windows e Linux. Visual Studio, Powershell, VSTS ed ETW vengono usati in Windows, mentre Yeoman, Eclipse, Jenkins e LTTng vengono usati in Linux.
 
 ## <a name="powershell-cmdlets-that-do-not-work-against-a-linux-service-fabric-cluster"></a>Cmdlet di Powershell che non funzionano in un cluster di Service Fabric in Linux
 
@@ -66,7 +58,6 @@ Anche gli strumenti di sviluppo presentano differenze tra Windows e Linux. Visua
 * Start-ServiceFabricPartitionRestart
 * Stop-ServiceFabricChaos
 * Stop-ServiceFabricTestCommand
-* Cmd
 * Get-ServiceFabricNodeConfiguration
 * Get-ServiceFabricClusterConfiguration
 * Get-ServiceFabricClusterConfigurationUpgradeStatus
@@ -106,4 +97,4 @@ Anche gli strumenti di sviluppo presentano differenze tra Windows e Linux. Visua
 * [Creare e distribuire la prima applicazione Java di Service Fabric in Linux usando Yeoman](service-fabric-create-your-first-linux-application-with-java.md)
 * [Create and deploy your first Service Fabric Java application on Linux using Service Fabric Plugin for Eclipse](service-fabric-get-started-eclipse.md) (Creare e distribuire la prima applicazione Java di Service Fabric in Linux usando il plug-in Service Fabric per Eclipse)
 * [Creare la prima applicazione CSharp in Linux](service-fabric-create-your-first-linux-application-with-csharp.md)
-* [Utilizzare le applicazioni di hello servizio infrastruttura CLI toomanage](service-fabric-application-lifecycle-sfctl.md)
+* [Usare l'interfaccia della riga di comando di Service Fabric per gestire le applicazioni](service-fabric-application-lifecycle-sfctl.md)

@@ -1,6 +1,6 @@
 ---
-title: dashboard del servizio di gestione aaaStorSimple | Documenti Microsoft
-description: "Dashboard del servizio StorSimple Manager hello descrive e illustra come toouse, integrità hello toomonitor della soluzione StorSimple."
+title: Dashboard del servizio StorSimple Manager | Microsoft Docs
+description: "Viene descritto il dashboard del servizio StorSimple Manager e si illustra come utilizzarlo per monitorare l'integrità della soluzione StorSimple."
 services: storsimple
 documentationcenter: 
 author: SharS
@@ -14,58 +14,58 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/24/2016
 ms.author: v-sharos
-ms.openlocfilehash: dc1197eb5deac337215b260845631a4f04be1011
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 596431b7279b753ca4da838eb028cdde2022ce02
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-hello-storsimple-manager-service-dashboard"></a>Utilizzare dashboard del servizio StorSimple Manager hello
+# <a name="use-the-storsimple-manager-service-dashboard"></a>Utilizzare il dashboard del servizio StorSimple Manager
 ## <a name="overview"></a>Panoramica
-pagina del dashboard del servizio StorSimple Manager Hello fornisce un riepilogo di tutti i dispositivi di hello che sono connesso toohello servizio StorSimple Manager, evidenziando quelli che richiedono attenzione da parte dell'amministratore di sistema. In questa esercitazione presenta pagina dashboard hello, spiega (funzione) e del contenuto del dashboard hello e vengono descritte le attività di hello che è possibile eseguire in questa pagina.
+La pagina dashboard del servizio StorSimple Manager fornisce una visualizzazione di riepilogo di tutti i dispositivi connessi al servizio StorSimple Manager, evidenziando quelli che richiedono attenzione da parte dell'amministratore di sistema. Questa esercitazione introduce la pagina dashboard, illustra il contenuto e la funzione del dashboard e descrive le attività che si possono eseguire da questa pagina.
 
 ![Dashboard del servizio](./media/storsimple-service-dashboard/HCS_ServiceDashboard.png)
 
-dashboard del servizio StorSimple Manager Hello Visualizza hello le seguenti informazioni:
+Nel dashboard del servizio StorSimple Manager sono visualizzate le informazioni seguenti:
 
-* In hello **grafico** area, è possibile visualizzare le metriche pertinenti hello del grafico per i dispositivi. È possibile visualizzare hello archiviazione primaria (in locale bloccata e a livelli) usata in tutti i dispositivi di hello, così come spazio di archiviazione cloud hello utilizzati dai dispositivi in un periodo di tempo. Usare hello controlli nell'angolo superiore destro di hello di hello grafico toospecify una scala temporale di 1 settimana, 1 mese, 3 mesi o 1 anno.
-* Hello **panoramica sull'utilizzo** Mostra hello archiviazione primaria che viene eseguito il provisioning e utilizzati da tutti i dispositivi toohello relativo spazio di archiviazione totale disponibile tra tutti i dispositivi. **Il provisioning** fa riferimento toohello quantità di spazio di archiviazione viene preparata e allocata per l'uso, mentre **utilizzato** fa riferimento toousage di volumi di base a quanto visualizzato dagli iniziatori hello che sono dispositivi toohello connesso.
-* Hello **avvisi** area fornisce uno snapshot di tutti gli avvisi attivi hello in tutti i dispositivi di hello, raggruppati in base alla gravità dell'avviso. Fare clic sul livello di gravità hello apre hello **avvisi** pagina, con ambito tooshow tali avvisi. In hello **avvisi** pagina, è possibile fare clic su un singolo tooview avviso ulteriori dettagli su tale avviso, incluse tutte le azioni consigliate. È inoltre possibile cancellare avviso hello se hello problema è stato risolto.
-* Hello **processi** area fornisce uno snapshot dei processi recenti in tutti i dispositivi connessi tooyour servizio. Sono disponibili collegamenti che è possibile utilizzare i processi attualmente in corso, quelli che non è riuscito a hello ultime 24 ore, toolook o quelli che vengono pianificati toorun in hello 24 ore successive.
-* Hello **riepilogo rapido** area fornisce informazioni utili, ad esempio lo stato del servizio, il numero di dispositivi connessi toohello servizio, posizione del servizio hello e dettagli della sottoscrizione hello associata al servizio hello. È inoltre disponibile un log di operazioni di collegamento toohello. Fare clic su hello collegamento toosee un elenco di tutte le operazioni del servizio StorSimple Manager completata.
+* Nell’area **grafico** è possibile visualizzare il grafico delle metriche pertinenti per i dispositivi. È possibile visualizzare l'archiviazione primaria (aggiunta in locale e a livelli) usata in tutti i dispositivi, nonché l'archiviazione cloud utilizzata dai dispositivi in un periodo di tempo. Utilizzare i controlli nell'angolo in alto a destra del grafico per specificare una scala temporale di 1 settimana, 1 mese, 3 mesi o 1 anno.
+* La **Panoramica sull'utilizzo** illustra l'archiviazione primaria fornita e utilizzata da tutti i dispositivi rispetto all'archiviazione totale disponibile tra tutti i dispositivi. **Fornito** si riferisce alla quantità di spazio di archiviazione preparata e allocata per l'uso, mentre **Utilizzato** si riferisce all'uso dei volumi come visualizzato dagli iniziatori connessi ai dispositivi.
+* L’area **avvisi** fornisce uno snapshot di tutti gli avvisi attivi per tutti i dispositivi, raggruppati in base alla gravità dell'avviso. Cliccando sul livello di gravità si apre la pagina **avvisi** , la quale è stata programmata per mostrare gli avvisi. Sulla pagina **avvisi** , è possibile fare clic su un singolo avviso per visualizzare ulteriori dettagli su tale avviso, incluse tutte le operazioni consigliate. È inoltre possibile cancellare l'avviso se il problema è stato risolto.
+* L’area **processi** fornisce uno snapshot dei processi recenti tra tutti i dispositivi connessi al servizio. Sono disponibili dei collegamenti che possono essere utilizzati per esaminare i processi attualmente in corso, quelli non riusciti nelle ultime 24 ore oppure quelli pianificati per l'esecuzione nelle 24 ore successive.
+* L’area di **riepilogo rapido** fornisce informazioni utili, ad esempio stato del servizio, numero di dispositivi connessi al servizio, il percorso del servizio e i dettagli della sottoscrizione associata al servizio. Viene inoltre fornito un collegamento al log delle operazioni. Fare clic sul collegamento per visualizzare un elenco di tutte le operazioni completate del servizio StorSimple Manager.
 
-È possibile utilizzare hello StorSimple Manager servizio dashboard pagina tooinitiate hello seguenti attività:
+È possibile usare il servizio StorSimple Manager per eseguire le attività seguenti:
 
-* Consente di visualizzare o rigenerare la chiave di registrazione del servizio hello.
-* Modifica hello chiave DEK del servizio.
-* Consente di visualizzare i log delle operazioni hello.
+* Visualizzare o rigenerare la chiave di registrazione del servizio.
+* Modificare la chiave DEK del servizio
+* Visualizzazione dei log delle operazioni.
 
-## <a name="view-or-regenerate-hello-service-registration-key"></a>Consente di visualizzare o rigenerare la chiave di registrazione del servizio hello
-chiave di registrazione del servizio Hello è tooregister usato un dispositivo StorSimple di Microsoft Azure con il servizio StorSimple Manager hello, in modo che hello dispositivo viene visualizzato in hello portale di Azure classico per ulteriori azioni di gestione. chiave Hello creato nel primo dispositivo hello e condivisi con rest hello dei dispositivi.
+## <a name="view-or-regenerate-the-service-registration-key"></a>Visualizzare o rigenerare la chiave di registrazione del servizio
+Il codice di registrazione del servizio viene utilizzato per registrare un dispositivo Microsoft Azure StorSimple con il servizio StorSimple Manager, di modo che il dispositivo venga visualizzato nel portale di Azure classico per altre azioni di gestione. La chiave viene creata sul primo dispositivo e condiviso con il resto dei propri dispositivi.
 
-Fare clic su **chiave di registrazione** (nella parte inferiore di hello della pagina hello) apre hello **chiave di registrazione del servizio** nella finestra di dialogo in cui è possibile una copia hello corrente del servizio registrazione toohello chiave Appunti o rigenerare la chiave di registrazione del servizio hello.
+Facendo clic su **Chiave di registrazione** nella parte inferiore della pagina, è possibile aprire la finestra di dialogo **Chiave di registrazione del servizio**, dalla quale è possibile copiare la chiave di registrazione del servizio corrente negli Appunti o rigenerare il codice di registrazione del servizio.
 
-Rigenerazione della chiave di hello interessano i dispositivi registrati in precedenza: interessa solo i dispositivi di hello che sono registrati con il servizio hello dopo hello chiave viene rigenerata.
+La rigenerazione della chiave non influisce sui dispositivi registrati in precedenza: sarà valida solo per i dispositivi registrati con il servizio dopo che la chiave viene rigenerata.
 
-Per ulteriori informazioni sulla visualizzazione e la generazione di chiavi, Vai di hello servizio registrazione troppo[chiave di registrazione del servizio Get hello](storsimple-manage-service.md#get-the-service-registration-key).
+Per ulteriori informazioni sulla visualizzazione e la generazione della chiave di registrazione del servizio, visitare [ottenere la chiave di registrazione](storsimple-manage-service.md#get-the-service-registration-key)
 
-## <a name="change-hello-service-data-encryption-key"></a>Modifica chiave DEK del servizio hello
-Le chiavi DEK del servizio sono utilizzati tooencrypt dati confidenziali, ad esempio credenziali dell'account di archiviazione, che vengono inviati dal dispositivo StorSimple toohello servizio StorSimple Manager. Sarà necessario toochange queste chiavi periodicamente se l'organizzazione IT con un criterio di rotazione delle chiavi su dispositivi di archiviazione hello. Hello il processo di modifica può essere variare leggermente a seconda se sussiste una o più dispositivi gestiti dal servizio StorSimple Manager hello.
+## <a name="change-the-service-data-encryption-key"></a>Modificare la chiave DEK del servizio
+Le chiavi DEK del servizio vengono utilizzate per crittografare dati riservati dei clienti, ad esempio credenziali di account di archiviazione, che vengono inviate dal servizio StorSimple Manager al dispositivo StorSimple. Occorre modificare queste chiavi periodicamente, se l'organizzazione IT dispone di un criterio di rotazione delle chiavi nei dispositivi di archiviazione. Il processo di modifica della chiave può essere leggermente diverso a seconda che ci sia una o più dispositivi gestiti dal servizio StorSimple Manager.
 
-Modifica hello chiave DEK del servizio sono un processo passaggio 3:
+La modifica della chiave DEK del servizio è un processo che prevede 3 fasi:
 
-1. Utilizza hello portale di Azure classico, autorizzare una dispositivo toochange hello chiave DEK del servizio.
-2. Utilizzo di Windows PowerShell per StorSimple, avviare hello servizio modifica della chiave DEK.
-3. Se si dispone di più di un dispositivo StorSimple, hello chiave DEK del servizio su hello aggiornare altri dispositivi.
+1. Mediante il portale di Azure classico, si autorizza un dispositivo a modificare la chiave DEK nel portale di gestione.
+2. Mediante Windows PowerShell per StorSimple, si consente di avviare la modifica della chiave DEK del servizio.
+3. Se si dispone di più di un dispositivo StorSimple, è necessario aggiornare la chiave DEK del servizio in altri dispositivi.
 
-Hello passaggi seguenti descrivono il processo di rollover hello hello servizio dati chiave di crittografia.
+I passaggi seguenti descrivono il processo di rollover per la chiave DEK del servizio.
 
 [!INCLUDE [storsimple-change-data-encryption-key](../../includes/storsimple-change-data-encryption-key.md)]
 
-## <a name="view-hello-operations-logs"></a>Visualizzare i registri operazioni hello
-È possibile visualizzare i log delle operazioni hello facendo hello collegamento disponibile in hello **riepilogo rapido** riquadro del dashboard hello. Verrà visualizzata la pagina Gestione toohello pagina servizi, in cui è possibile filtrare e vedere hello registra servizio StorSimple Manager tooyour specifico.
+## <a name="view-the-operations-logs"></a>Visualizzazione dei log delle operazioni
+È possibile visualizzare il log delle operazioni facendo clic sul collegamento dei logo delle operazione disponibile nel riquadro **riepilogo rapido** del dashboard. Verrà visualizzata la pagina Servizi di gestione, dove è possibile filtrare e visualizzare i registri specifici per il servizio StorSimple Manager.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Informazioni su come troppo[risolvere i problemi relativi a un dispositivo StorSimple](storsimple-troubleshoot-operational-device.md).
-* Per ulteriori informazioni su troppo[utilizzare hello tooadminister servizio StorSimple Manager dispositivo StorSimple](storsimple-manager-service-administration.md).
+* Informazioni su come [risolvere i problemi relativi a un dispositivo StorSimple](storsimple-troubleshoot-operational-device.md).
+* Ulteriori informazioni sull’ [utilizzo del servizio StorSimple Manager per amministrare il dispositivo StorSimple](storsimple-manager-service-administration.md).
 

@@ -1,6 +1,6 @@
 ---
-title: aaaAzure Active Directory per gli sviluppatori | Documenti Microsoft
-description: Un elenco di tutte le guide e gli articoli di riferimento nella Guida per sviluppatori hello Azure Active Directory.
+title: Azure Active Directory per gli sviluppatori | Microsoft Docs
+description: Elenco di tutte le guide e di tutti gli articoli di riferimento nella Guida per gli sviluppatori di Azure Active Directory.
 services: active-directory
 documentationcenter: dev-center-name
 author: bryanla
@@ -15,45 +15,45 @@ ms.workload: identity
 ms.date: 07/19/2017
 ms.author: bryanla
 ms.custom: aaddev
-ms.openlocfilehash: 49979a7619ea210fe708968c66fd2a0ca49efe22
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 307e6ddc9b3d5a85a25b185144a548e0101a9877
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="articles-in-hello-azure-ad-developer-guide"></a>Guida di articoli Developer hello Azure AD
-Hello seguito è riportato un elenco di tutti gli argomenti trattati nella Guida per sviluppatori hello Azure Active Directory.
+# <a name="articles-in-the-azure-ad-developer-guide"></a>Articoli nella Guida per gli sviluppatori di Azure AD
+Di seguito viene indicato un elenco di tutti gli argomenti trattati nella Guida per gli sviluppatori di Azure Active Directory.
 
 ## <a name="guides"></a>Guide
 Questi articoli descrivono i concetti e le funzionalità specifici di Azure Active Directory.
 
 |                                                                                                                                 |  |
 | ------------------------------------------------------------------------------------------------------------------------------- | --- |
-| [App multi-tenant](active-directory-devhowto-multi-tenant-overview.md)                                                         | Funzionamento di account di Microsoft toosign |
-| [OAuth e OpenID Connect](active-directory-protocols-openid-connect-code.md)                                                     | Come toosign-in utenti e chiamare le API web mediante i protocolli di autenticazione moderna |
-| [SAML 2.0](active-directory-saml-protocol-reference.md)                                                                         | Come toosign gli utenti utilizzando il protocollo di autenticazione SAML hello |
-| [Registrazione delle app](active-directory-integrating-applications.md)                                                                | Come tooregister un'app in Azure AD |
-| [Linee guida sulla personalizzazione](active-directory-branding-guidelines.md)                                                                  | Hello testo, stile e terminologia toouse quando si integra sign-in Microsoft |
-| [Accesso Single Sign-On per dispositivi mobili e desktop](active-directory-sso-android.md)                                                                         | Come tooget single-sign-on di utilizzo di applicazioni native |
-| [Azure AD B2B](../active-directory-b2b-what-is-azure-ad-b2b.md)                                                                 | La modalità del tenant tooinvite all'esterno di utenti in Azure AD |
-| [Provisioning utenti con SCIM 2.0](../active-directory-scim-provisioning.md)                                                     | La modalità di hello toouse SCIM protocollo toosync utenti dal tenant di Azure AD |
-| [API Graph di Azure AD](active-directory-graph-api.md)                                                                             | Come tooquery utente, gruppo e altri dati tramite le API REST di Microsoft |
-| [Certificazione AppSource](active-directory-devhowto-appsource-certified.md)                                                     | Come un'applicazione in Microsoft AppSource toopublish |
-| [Raccolta di app di Azure AD](active-directory-app-gallery-listing.md)                                                                 |Come toopublish un'applicazione in hello raccolta di app di Azure AD|
-| [Dashboard venditori di Office 365](https://msdn.microsoft.com/office/office365/howto/submit-web-apps-seller-dashboard)               | Come toopublish un'applicazione in hello dashboard venditori di Office 365 |
-| [Servizi connessi di Visual Studio](vs-active-directory-dotnet-getting-started.md)                                               | Come integrazione di Azure AD con MVC toouse progetti in Visual Studio |
-| [Windows Server ADFS](https://technet.microsoft.com/windows-server-docs/identity/ad-fs/overview/ad-fs-scenarios-for-developers) | Come toointegrate con Active Directory locale con ADFS |
+| [App multi-tenant](active-directory-devhowto-multi-tenant-overview.md)                                                         | Informazioni su come consentire l'accesso a qualsiasi account aziendale Microsoft |
+| [OAuth e OpenID Connect](active-directory-protocols-openid-connect-code.md)                                                     | Come consentire l'accesso agli utenti e chiamare le API Web con i protocolli di autenticazione moderni di Microsoft |
+| [SAML 2.0](active-directory-saml-protocol-reference.md)                                                                         | Come consentire agli utenti di eseguire l'accesso con il protocollo di autenticazione SAML |
+| [Registrazione delle app](active-directory-integrating-applications.md)                                                                | Come registrare un'app in Azure AD |
+| [Linee guida sulla personalizzazione](active-directory-branding-guidelines.md)                                                                  | Testo, stile e terminologia da usare quando si integrano gli accessi Microsoft |
+| [Accesso Single Sign-On per dispositivi mobili e desktop](active-directory-sso-android.md)                                                                         | Funzionamento dell'accesso Single-Sign-on nelle applicazioni native |
+| [Azure AD B2B](../active-directory-b2b-what-is-azure-ad-b2b.md)                                                                 | Come invitare utenti esterni nel proprio tenant di Azure AD |
+| [Provisioning utenti con SCIM 2.0](../active-directory-scim-provisioning.md)                                                     | Come usare il protocollo SCIM per sincronizzare gli utenti da tenant di Azure Active Directory |
+| [API Graph di Azure AD](active-directory-graph-api.md)                                                                             | Come eseguire query su utenti, gruppi e altri dati con le API REST di Microsoft |
+| [Certificazione AppSource](active-directory-devhowto-appsource-certified.md)                                                     | Come pubblicare un'applicazione in Microsoft AppSource |
+| [Raccolta di app di Azure AD](active-directory-app-gallery-listing.md)                                                                 |Come pubblicare un'applicazione nella raccolta di app di Azure AD|
+| [Dashboard venditori di Office 365](https://msdn.microsoft.com/office/office365/howto/submit-web-apps-seller-dashboard)               | Come pubblicare un'applicazione nel dashboard venditori di Office 365 |
+| [Servizi connessi di Visual Studio](vs-active-directory-dotnet-getting-started.md)                                               | Come usare l'integrazione di Azure AD con progetti MVC in Visual Studio |
+| [AD FS in Windows Server](https://technet.microsoft.com/windows-server-docs/identity/ad-fs/overview/ad-fs-scenarios-for-developers) | Come eseguire l'integrazione con Active Directory in locale con AD FS |
 
-## <a name="reference"></a>riferimento
+## <a name="reference"></a>Riferimento
 Questi articoli contengono riferimenti di base per API REST e di librerie di autenticazione, protocolli, errori, esempi di codice ed endpoint.
 
 |                                                                                     | |
 | ----------------------------------------------------------------------------------- | --- |
-| [Librerie di autenticazione (ADAL)](active-directory-authentication-libraries.md)     | Una panoramica delle librerie di hello & SDK fornite da Azure AD |
+| [Librerie di autenticazione (ADAL)](active-directory-authentication-libraries.md)     | Panoramica delle librerie e degli SDK messi a disposizione da Azure AD |
 | [Protocolli di autenticazione](active-directory-authentication-protocols.md)            | Dettagli dell'implementazione dei protocolli OAuth, OpenID Connect e SAML in Azure AD |
 | [Glossario](active-directory-dev-glossary.md)                                        | Terminologia e definizioni dei termini usati nella documentazione |
 | [Oggetti applicazione](active-directory-application-objects.md)                      | Spiegazione del modello applicativo di Azure AD |
-| [Manifesto dell'applicazione](active-directory-application-manifest.md)                    | Una spiegazione degli elementi di hello che costituiscono una registrazione di app di Azure AD |
-| [Durate dei token](../active-directory-configurable-token-lifetimes.md)              | durata predefinita di Hello del token di Azure AD e istruzioni per la personalizzazione |
+| [Manifesto dell'applicazione](active-directory-application-manifest.md)                    | Spiegazione degli elementi alla base della registrazione di un'app di Azure AD |
+| [Durate dei token](../active-directory-configurable-token-lifetimes.md)              | Durate predefinite dei token di Azure AD e istruzioni per la personalizzazione |
 | [Restrizioni e limiti del servizio](../active-directory-service-limits-restrictions.md) | Limitazioni per entità e oggetti di Azure AD |
 | [Esempi di codice](active-directory-code-samples.md)                                    | Elenco di tutti gli esempi di codice di Azure AD |

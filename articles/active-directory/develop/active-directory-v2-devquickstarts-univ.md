@@ -1,6 +1,6 @@
 ---
-title: v 2.0 aaaAzure AD App universali di Windows | Documenti Microsoft
-description: Come toobuild un'app universale di Windows che esegue l'accesso agli utenti con entrambi Account Microsoft personale e gli account aziendali o dell'istituto di istruzione.
+title: App universale Windows v2.0 di Azure AD | Microsoft Docs
+description: Come creare un'app universale di Windows che consente agli utenti di accedere con un account Microsoft personale, aziendale e dell'istituto di istruzione.
 services: active-directory
 documentationcenter: 
 author: jmprieur
@@ -15,21 +15,21 @@ ms.devlang: dotnet
 ms.date: 02/20/2016
 ms.author: jmprieur
 ms.custom: aaddev
-ms.openlocfilehash: 49b26c74fa5a76664c3229256c9bd128563b830c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 369802f1a42b8720aa730d5ac7e5576ed20eeddf
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="add-sign-in-tooa-windows-universal-app-using-hello-v20-endpoint"></a>Aggiungere app di Windows universale Accedi tooa utilizzando hello v 2.0 endpoint
-  esercitazione introduttiva Hello per le app universali di Windows non è ancora pronta... Riprovare più tardi e cercare gli aggiornamenti da @AzureAD su Twitter.
+# <a name="add-sign-in-to-a-windows-universal-app-using-the-v20-endpoint"></a>Aggiungere accesso a un'app di Windows universale usando l'endpoint v2.0
+  L'esercitazione introduttiva per app universali di Windows non è ancora disponibile... Riprovare più tardi e cercare gli aggiornamenti da @AzureAD su Twitter.
 
 > [!NOTE]
-> Non tutte le caratteristiche e gli scenari di Azure Active Directory sono supportati dall'endpoint di hello v 2.0.  toodetermine se è necessario utilizzare endpoint v 2.0 hello, conoscenza [limitazioni v 2.0](active-directory-v2-limitations.md).
+> Non tutti gli scenari e le funzionalità di Azure Active Directory sono supportati dall'endpoint 2.0.  Per determinare se è necessario usare l'endpoint v2.0, leggere le informazioni sulle [limitazioni v2.0](active-directory-v2-limitations.md).
 > 
 > 
 
     ## Get security updates for our products
 
-Si consiglia di generazione di eventi di sicurezza, visitare il sito di notifica tooget [questa pagina](https://technet.microsoft.com/security/dd252948) e la sottoscrizione di avvisi consultivo tooSecurity.
+È consigliabile ricevere notifiche in caso di problemi di sicurezza. A tale scopo, visitare [questa pagina](https://technet.microsoft.com/security/dd252948) e sottoscrivere gli avvisi di sicurezza.
 

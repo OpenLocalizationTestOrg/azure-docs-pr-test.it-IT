@@ -1,6 +1,6 @@
 ---
-title: aaaUse tooaccess l'autenticazione di Azure AD API di servizi multimediali di Azure con .NET | Documenti Microsoft
-description: Questo argomento viene illustrato come toouse tooaccess l'autenticazione di Azure Active Directory (Azure AD) di Azure Media Services API (AMS) con .NET.
+title: Usare l'autenticazione di Azure AD per accedere all'API Servizi multimediali di Microsoft Azure con .NET | Microsoft Docs
+description: In questo argomento viene illustrato come usare l'autenticazione di Azure Active Directory (Azure AD) per accedere all'API Servizi multimediali di Microsoft Azure (AMS) con .NET.
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -13,88 +13,88 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/17/2017
 ms.author: juliako
-ms.openlocfilehash: 2f750e460d9e476ad92e96adeac6500cb692cd77
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a9355200a05a3aa1b494b76977d38ddc42bfe179
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="use-azure-ad-authentication-tooaccess-azure-media-services-api-with-net"></a>Utilizzare l'autenticazione di Azure AD tooaccess API di servizi multimediali di Azure con .NET
+# <a name="use-azure-ad-authentication-to-access-azure-media-services-api-with-net"></a>Usare l'autenticazione di Azure AD per accedere all'API di Servizi multimediali di Azure con .NET
 
-A partire da windowsazure.mediaservices 4.0.0.4, Servizi multimediali di Azure supporta l'autenticazione basata su Azure Active Directory (Azure AD). In questo argomento illustra come toouse tooaccess l'autenticazione di Azure AD API di servizi multimediali di Azure con Microsoft .NET.
+A partire da windowsazure.mediaservices 4.0.0.4, Servizi multimediali di Azure supporta l'autenticazione basata su Azure Active Directory (Azure AD). In questo argomento viene illustrato come usare l'autenticazione di Azure AD per accedere all'API Servizi multimediali di Microsoft Azure con .NET.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
 - Un account Azure. Per informazioni dettagliate, vedere la pagina relativa alla [versione di prova gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/). 
-- Account di Servizi multimediali. Per ulteriori informazioni, vedere [creare un account di servizi multimediali di Azure tramite il portale di Azure hello](media-services-portal-create-account.md).
-- versione più recente Hello [NuGet](https://www.nuget.org/packages/windowsazure.mediaservices) pacchetto.
-- Familiarità con l'argomento hello [accesso alle API di servizi multimediali Azure con panoramica dell'autenticazione AAD](media-services-use-aad-auth-to-access-ams-api.md). 
+- Account di Servizi multimediali. Per altre informazioni, vedere [Creare un account Servizi multimediali di Azure con il portale di Azure](media-services-portal-create-account.md).
+- Il pacchetto [NuGet](https://www.nuget.org/packages/windowsazure.mediaservices) più recente.
+- Familiarità con l'argomento di [panoramica dell'accesso all'API Servizi multimediali di Azure con autenticazione Azure Active Directory](media-services-use-aad-auth-to-access-ams-api.md). 
 
 Quando si usa l'autenticazione di Azure AD con Servizi multimediali di Azure, è possibile eseguire l'autenticazione in uno di due modi:
 
-- **Autenticazione utente** autentica un utente hello app toointeract con risorse di servizi multimediali di Azure. applicazione interattiva Hello deve prima richiedere le credenziali utente hello. Un esempio è un'applicazione console di gestione che viene utilizzata dagli utenti autorizzati toomonitor processi di codifica o di streaming live. 
+- L'**autenticazione utente** consente di eseguire l'autenticazione di una persona che usa l'app per interagire con le risorse di Servizi multimediali di Azure. L'applicazione interattiva deve prima richiedere all'utente le credenziali. Un esempio è un'app della console di gestione usata dagli utenti autorizzati per monitorare i processi di codifica o lo streaming live. 
 - L'**autenticazione basata su un'entità servizio** consente di eseguire l'autenticazione di un servizio. Le applicazioni che usano in genere questo metodo di autenticazione sono app che eseguono servizi daemon, servizi di livello intermedio o processi pianificati, ad esempio app Web, app per le funzioni, app per la logica, API o microservizi.
 
 >[!IMPORTANT]
->Attualmente, Servizi multimediali di Azure supporta un modello di autenticazione di Servizio di controllo di accesso Azure. Tuttavia, autorizzazione di controllo di accesso verrà deprecato in 1 giugno 2018 toobe. È consigliabile eseguire la migrazione di modello di autenticazione di Azure Active Directory tooan appena possibile.
+>Attualmente, Servizi multimediali di Azure supporta un modello di autenticazione di Servizio di controllo di accesso Azure. L'autorizzazione di Controllo di accesso, tuttavia, verrà dichiarata deprecata il 1° giugno 2018. È consigliabile eseguire la migrazione all'autenticazione di Azure Active Directory il più presto possibile.
 
 ## <a name="get-an-azure-ad-access-token"></a>Ottenere un token di accesso di Azure AD
 
-tooconnect toohello API di servizi multimediali di Azure con autenticazione di Azure AD, hello client app deve toorequest un token di accesso di Azure AD. Quando si utilizza client .NET di servizi multimediali hello SDK, molti dei dettagli di hello sul tooacquire un token di accesso di Azure AD vengono incapsulati e semplificato per l'utente in hello [AzureAdTokenProvider](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.Authentication/AzureAdTokenProvider.cs) e [AzureAdTokenCredentials ](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.Authentication/AzureAdTokenCredentials.cs) classi. 
+Per connettersi all'API Servizi multimediali di Azure con l'autenticazione Azure AD, l'app client deve richiedere un token di accesso di Azure AD. Quando si usa l'SDK del client .NET di Servizi multimediali, molte informazioni dettagliate su come acquisire un token di accesso di Azure AD sono riepilogate e semplificate nelle classi [AzureAdTokenProvider](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.Authentication/AzureAdTokenProvider.cs) e [AzureAdTokenCredentials](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.Authentication/AzureAdTokenCredentials.cs). 
 
-Ad esempio, non è necessario tooprovide hello Azure AD autorità, URI di risorsa di servizi multimediali oppure nativo dettagli dell'applicazione Azure AD. Questi sono valori noti che sono già configurati per hello classe provider di token di accesso AD Azure. 
+Ad esempio, non è necessario fornire dettagli sull'autorità di Azure AD, sull'URI di risorsa di Servizi multimediali o sull'applicazione Azure AD nativa. Si tratta di valori noti già configurati per la classe del provider del token di accesso di Azure AD. 
 
-Se non si utilizza .NET SDK servizi multimediali di Azure, è consigliabile utilizzare hello [Azure AD Authentication Library](../active-directory/develop/active-directory-authentication-libraries.md). vedere tooget valori per parametri hello necessari toouse con Azure AD Authentication Library [utilizzare impostazioni di autenticazione tooaccess portale Azure AD Azure hello](media-services-portal-get-started-with-aad.md).
+Se non si usa l'SDK .NET di Servizi multimediali di Azure, è consigliabile usare [Azure AD Authentication Library](../active-directory/develop/active-directory-authentication-libraries.md). Per ottenere i valori dei parametri da usare con Azure Active Directory Authentication Library, vedere [Utilizzo del portale di Azure per accedere alle impostazioni di autenticazione di Azure AD](media-services-portal-get-started-with-aad.md).
 
-È inoltre possibile hello sostituire l'implementazione predefinita di hello di hello **AzureAdTokenProvider** con la propria implementazione.
+È anche possibile sostituire l'implementazione predefinita di **AzureAdTokenProvider** con la propria implementazione.
 
 ## <a name="install-and-configure-azure-media-services-net-sdk"></a>Installare e configurare l'SDK .NET di Servizi multimediali di Azure
 
 >[!NOTE] 
->autenticazione toouse Azure AD con hello Media Services .NET SDK, è necessario toohave hello più recente [NuGet](https://www.nuget.org/packages/windowsazure.mediaservices) pacchetto. Inoltre, aggiungere un riferimento toohello **ActiveDirectory** assembly. Se si utilizza un'app esistente, includere hello **Microsoft.WindowsAzure.MediaServices.Client.Common.Authentication.dll** assembly. 
+>Per usare l'autenticazione di Azure AD con l'SDK .NET di Servizi Multimediali, è necessario disporre del pacchetto [NuGet](https://www.nuget.org/packages/windowsazure.mediaservices) più recente. Aggiungere anche un riferimento all'assembly **Microsoft.IdentityModel.Clients.ActiveDirectory**. Se si usa un'app esistente, includere l'assembly **Microsoft.WindowsAzure.MediaServices.Client.Common.Authentication.dll**. 
 
 1. Creare una nuova applicazione console C# in Visual Studio.
-2. Hello utilizzare [windowsazure. mediaservices](https://www.nuget.org/packages/windowsazure.mediaservices) tooinstall pacchetto NuGet **Azure Media Services .NET SDK**. 
+2. Usare il pacchetto NuGet [windowsazure.mediaservices](https://www.nuget.org/packages/windowsazure.mediaservices) per installare l'**SDK .NET di Servizi multimediali di Azure**. 
 
-    tooadd riferimenti utilizzando NuGet, richiedere hello alla procedura seguente: in **Esplora**, nome del progetto hello e quindi scegliere **Gestione pacchetti NuGet**. Cercare quindi **windowsazure.mediaservices** e fare clic su **Installa**.
+    Per aggiungere riferimenti usando NuGet, seguire questa procedura: in **Esplora soluzioni** fare clic con il pulsante destro del mouse sul nome del progetto e quindi scegliere **Gestisci pacchetti NuGet**. Cercare quindi **windowsazure.mediaservices** e fare clic su **Installa**.
     
     -oppure-
 
-    Esecuzione hello il seguente comando in **Package Manager Console** in Visual Studio.
+    Eseguire il comando seguente nella finestra **Console di Gestione pacchetti** in Visual Studio.
 
         Install-Package windowsazure.mediaservices -Version 4.0.0.4
 
-3. Aggiungere **utilizzando** tooyour il codice sorgente.
+3. Aggiungere **mediante** al codice sorgente.
 
         using Microsoft.WindowsAzure.MediaServices.Client; 
 
 ## <a name="use-user-authentication"></a>Usare l'autenticazione utente
 
-tooconnect toohello API del servizio di supporto di Azure con l'opzione di autenticazione utente hello, hello client app deve toorequest un token di Azure AD tramite hello seguenti parametri:  
+Per connettersi all'API Servizi multimediali di Azure con l'opzione di autenticazione utente, l'app client deve richiedere un token di Azure AD tramite i parametri seguenti:  
 
-- Endpoint tenant di Azure AD. le informazioni sul tenant Hello possono essere recuperate da hello portale di Azure. Passare il mouse su hello utente connesso nell'angolo superiore destro di hello.
+- Endpoint del tenant di Azure AD. Le informazioni sul tenant possono essere recuperate dal portale di Azure. Passare il mouse sull'utente connesso nell'angolo superiore destro.
 - URI di risorsa per Servizi multimediali.
 - ID client dell'applicazione Servizi multimediali (nativa). 
 - URI di reindirizzamento dell'applicazione Servizi multimediali (nativa). 
 
-i valori Hello per questi parametri possono essere disponibili nella **AzureEnvironments.AzureCloudEnvironment**. Hello **AzureEnvironments.AzureCloudEnvironment** costante è un supporto in hello .NET SDK tooget impostazioni delle variabili di ambiente destra hello per un Data Center di Azure pubblico. 
+I valori per questi parametri sono reperibili in **AzureEnvironments.AzureCloudEnvironment**. La costante **AzureEnvironments.AzureCloudEnvironment** è un helper nell'SDK .NET che consente di ottenere le impostazioni delle variabili di ambiente ideali per un data center Azure pubblico. 
 
-Contiene le impostazioni di ambiente predefinite per l'accesso a servizi multimediali di hello solo i centri dati pubblici. Per le regioni cloud sovrane o governative è possibile usare rispettivamente **AzureChinaCloudEnvironment**, **AzureUsGovernmentEnvironment** o **AzureGermanCloudEnvironment**.
+Contiene le impostazioni di ambiente predefinite per l'accesso a Servizi multimediali esclusivamente nei data center pubblici. Per le regioni cloud sovrane o governative è possibile usare rispettivamente **AzureChinaCloudEnvironment**, **AzureUsGovernmentEnvironment** o **AzureGermanCloudEnvironment**.
 
-Hello esempio di codice seguente viene creato un token:
+L'esempio di codice seguente mostra come creare un token:
     
     var tokenCredentials = new AzureAdTokenCredentials("microsoft.onmicrosoft.com", AzureEnvironments.AzureCloudEnvironment);
     var tokenProvider = new AzureAdTokenProvider(tokenCredentials);
   
-toostart programmazione in servizi multimediali, è necessario toocreate un **CloudMediaContext** istanza che rappresenta il contesto di server hello. Hello **CloudMediaContext** include riferimenti tooimportant insiemi inclusi i processi, asset, file, i criteri di accesso e localizzatori. 
+Prima di iniziare la programmazione basata su Servizi multimediali, è necessario creare un'istanza di **CloudMediaContext** che rappresenta il contesto del server. **CloudMediaContext** contiene riferimenti a raccolte importanti composte da processi, asset, file, criteri di accesso e localizzatori. 
 
-È inoltre necessario hello toopass **URI per i servizi REST di supporti della risorsa** toohello **CloudMediaContext** costruttore. URI della risorsa hello tooget per i servizi REST di supporti, accedi toohello portale di Azure, selezionare l'account di servizi multimediali di Azure, selezionare **l'accesso all'API**, quindi selezionare **la connessione di servizi multimediali tooAzure con l'utente autenticazione**. 
+È anche necessario passare l'**URI di risorsa per i servizi REST multimediali** al costruttore **CloudMediaContext**. Per ottenere l'URI di risorsa per i servizi REST multimediali, accedere al portale di Azure, selezionare l'account Servizi multimediali di Azure, fare clic su **Accesso API**, quindi selezionare **Connettersi all'API Servizi multimediali di Azure con l'autorizzazione utente (interattiva)**. 
 
-Hello codice seguente viene creato un **CloudMediaContext** istanza:
+L'esempio di codice seguente mostra come creare un'istanza **CloudMediaContext**:
 
     CloudMediaContext context = new CloudMediaContext(new Uri("YOUR REST API ENDPOINT HERE"), tokenProvider);
 
-Hello di esempio seguente viene illustrato come toocreate hello il contesto di token e hello Azure AD:
+L'esempio seguente mostra come creare il token di Azure AD e il contesto:
 
     namespace AADAuthSample
     {
@@ -121,19 +121,19 @@ Hello di esempio seguente viene illustrato come toocreate hello il contesto di t
     }
 
 >[!NOTE]
->Se si verifica un'eccezione che indica "server remoto hello ha restituito un errore: non autorizzato (401)," hello vedere [il controllo degli accessi](media-services-use-aad-auth-to-access-ams-api.md#access-control) sezione di accesso alle API di servizi multimediali Azure con panoramica dell'autenticazione AD Azure.
+>Se si verifica un'eccezione che indica "Errore del server remoto: (401) Non autorizzato", vedere la sezione [Controllo di accesso](media-services-use-aad-auth-to-access-ams-api.md#access-control) di Accesso all'interfaccia API di Servizi multimediali di Azure con l'autenticazione di Azure Active Directory.
 
 ## <a name="use-service-principal-authentication"></a>Usare l'autenticazione basata su entità servizio
     
-tooconnect toohello API di servizi multimediali di Azure con l'opzione dell'entità servizio di hello, l'applicazione di livello intermedio (API web o applicazione web) con, è necessario un token di Azure AD toorequests hello seguenti parametri:  
+Per connettersi all'API Servizi multimediali di Azure con l'opzione dell'entità servizio, l'app di livello intermedio (API o applicazione Web) deve richiedere un token di Azure AD con i parametri seguenti:  
 
-- Endpoint tenant di Azure AD. le informazioni sul tenant Hello possono essere recuperate da hello portale di Azure. Passare il mouse su hello utente connesso nell'angolo superiore destro di hello.
+- Endpoint del tenant di Azure AD. Le informazioni sul tenant possono essere recuperate dal portale di Azure. Passare il mouse sull'utente connesso nell'angolo superiore destro.
 - URI di risorsa per Servizi multimediali.
-- I valori dell'applicazione Azure AD: hello **ID Client** e **segreto Client**.
+- Valori dell'applicazione Azure AD: **ID client** e **Segreto client**.
 
-i valori per hello Hello **ID Client** e **segreto Client** parametri è reperibile nel portale di Azure hello. Per ulteriori informazioni, vedere [Introduzione a Azure AD mediante l'autenticazione hello Azure portal](media-services-portal-get-started-with-aad.md).
+I valori per i parametri **ID client** e **Segreto client** sono reperibili nel portale di Azure. Per altre informazioni, vedere [Introduzione all'autenticazione di Azure AD tramite il portale di Azure](media-services-portal-get-started-with-aad.md).
 
-Hello esempio di codice seguente crea un token tramite hello **AzureAdTokenCredentials** costruttore che accetta **AzureAdClientSymmetricKey** come parametro: 
+L'esempio di codice seguente mostra come creare un token tramite il costruttore **AzureAdTokenCredentials** che accetta **AzureAdClientSymmetricKey** come parametro: 
     
     var tokenCredentials = new AzureAdTokenCredentials("{YOUR Azure AD TENANT DOMAIN HERE}", 
                                 new AzureAdClientSymmetricKey("{YOUR CLIENT ID HERE}", "{YOUR CLIENT SECRET}"), 
@@ -141,21 +141,21 @@ Hello esempio di codice seguente crea un token tramite hello **AzureAdTokenCrede
 
     var tokenProvider = new AzureAdTokenProvider(tokenCredentials);
 
-È inoltre possibile specificare hello **AzureAdTokenCredentials** costruttore che accetta **AzureAdClientCertificate** come parametro. 
+È anche possibile specificare il costruttore **AzureAdTokenCredentials** che accetta **AzureAdClientCertificate** come parametro. 
 
-Per istruzioni su come toocreate e configurare un certificato in un formato che può essere utilizzato da Azure AD, vedere [tooAzure AD App daemon con certificati - passaggi di configurazione manuale di autenticazione](https://github.com/Azure-Samples/active-directory-dotnet-daemon-certificate-credential/blob/master/Manual-Configuration-Steps.md).
+Per istruzioni su come creare e configurare un certificato in un modulo utilizzabile da Azure AD, vedere [Authenticating to Azure AD in daemon apps with certificates - manual configuration steps](https://github.com/Azure-Samples/active-directory-dotnet-daemon-certificate-credential/blob/master/Manual-Configuration-Steps.md) (Autenticazione in Azure AD nelle app daemon con certificati - Passaggi di configurazione manuale).
 
     var tokenCredentials = new AzureAdTokenCredentials("{YOUR Azure AD TENANT DOMAIN HERE}", 
                                 new AzureAdClientCertificate("{YOUR CLIENT ID HERE}", "{YOUR CLIENT CERTIFICATE THUMBPRINT}"), 
                                 AzureEnvironments.AzureCloudEnvironment);
 
-toostart programmazione in servizi multimediali, è necessario toocreate un **CloudMediaContext** istanza che rappresenta il contesto di server hello. È inoltre necessario hello toopass **URI per i servizi REST di supporti della risorsa** toohello **CloudMediaContext** costruttore. È possibile ottenere hello **URI per i servizi REST di supporti della risorsa** valore hello anche portale di Azure.
+Prima di iniziare la programmazione basata su Servizi multimediali, è necessario creare un'istanza di **CloudMediaContext** che rappresenta il contesto del server. È anche necessario passare l'**URI di risorsa per i servizi REST multimediali** al costruttore **CloudMediaContext**. È possibile ottenere dal portale di Azure anche il valore dell'**URI di risorsa per i servizi REST multimediali**.
 
-Hello codice seguente viene creato un **CloudMediaContext** istanza:
+L'esempio di codice seguente mostra come creare un'istanza **CloudMediaContext**:
 
     CloudMediaContext context = new CloudMediaContext(new Uri("YOUR REST API ENDPOINT HERE"), tokenProvider);
     
-Hello di esempio seguente viene illustrato come toocreate hello il contesto di token e hello Azure AD:
+L'esempio seguente mostra come creare il token di Azure AD e il contesto:
 
     namespace AADAuthSample
     {
@@ -187,4 +187,4 @@ Hello di esempio seguente viene illustrato come toocreate hello il contesto di t
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Introduzione a [caricamento file account tooyour](media-services-dotnet-upload-files.md).
+Introduzione al [caricamento di file nell'account](media-services-dotnet-upload-files.md).

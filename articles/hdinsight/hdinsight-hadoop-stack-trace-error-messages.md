@@ -1,6 +1,6 @@
 ---
-title: messaggi di errore - analisi dello stack aaaHadoop Azure HDInsight | Documenti Microsoft
-description: Indice dei messaggi di errore di analisi dello stack di Hadoop in Azure HDInsight. Trovare l'errore hello nelle informazioni sulla risoluzione dei problemi di hello elenco toosee.
+title: Messaggi di errore di analisi dello stack di Hadoop in Azure HDInsight | Documentazione Microsoft
+description: Indice dei messaggi di errore di analisi dello stack di Hadoop in Azure HDInsight. Individuare l'errore nell'elenco per visualizzare informazioni sulla risoluzione.
 keywords: analisi dello stack,  messaggi di errore
 services: hdinsight
 documentationcenter: NA
@@ -16,20 +16,20 @@ ms.tgt_pltfrm: NA
 ms.workload: big-data
 ms.date: 08/15/2017
 ms.author: jgao
-ms.openlocfilehash: 875cea0198d74feac5791b3bea095a01319dc45e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 45b3df39dcabf8be640bf6b9e5b83a452d6dd824
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="index-of-hadoop-in-hdinsight-troubleshooting-articles"></a>Indice di Hadoop negli articoli sulla risoluzione dei problemi di HDInsight
 Gli articoli sono organizzati per tipi di errori.
 
 ## <a name="out-of-memory-error"></a>Errore di memoria insufficiente
-* [Correggere un errore di memoria insufficiente con le impostazioni di memoria di Hive in Hadoop in Azure HDInsight](hdinsight-hadoop-hive-out-of-memory-error-oom.md): questo articolo illustra come correggere un errore di memoria esaurita da una query Hive. gli scenari dei clienti Hello includono una query tra molte tabelle di grandi dimensioni.
+* [Correggere un errore di memoria insufficiente con le impostazioni di memoria di Hive in Hadoop in Azure HDInsight](hdinsight-hadoop-hive-out-of-memory-error-oom.md): questo articolo illustra come correggere un errore di memoria esaurita da una query Hive. Lo scenario del cliente include una query in molte tabelle di grandi dimensioni.
 
 ## <a name="hive-query-performance"></a>Prestazioni delle query Hive
-* [Ottimizzare le query Hive per Hadoop in HDInsight](hdinsight-hadoop-optimize-hive-query.md): questo articolo descrive alcuni metodi di ottimizzazione delle prestazioni Hive più comuni che è possibile applicare tooHive query.
+* [Ottimizzare le query Hive per Hadoop in HDInsight](hdinsight-hadoop-optimize-hive-query.md): questo articolo illustra alcuni metodi più comuni per l'ottimizzazione delle prestazioni di Hive da applicare alle query Hive.
 * [Troubleshoot Hive query performance issues in HDInsight Hadoop cluster](https://blogs.msdn.microsoft.com/bigdatasupport/2015/08/13/troubleshooting-hive-query-performance-in-hdinsight-hadoop-cluster/)(Risolvere i problemi relativi alle prestazioni delle query Hive nei cluster Hadoop di HDInsight).
 
 ## <a name="more-troubleshooting-articles"></a>Altri articoli sulla risoluzione dei problemi

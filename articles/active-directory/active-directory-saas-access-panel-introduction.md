@@ -1,6 +1,6 @@
 ---
-title: "aaaWhat è il pannello di accesso di hello in Azure Active Directory? | Microsoft Docs"
-description: Informazioni su come varianti toouse di hello accedono tooaccess pannello (browser web, app Android, app iPhone e iPad) App SaaS.
+title: "Che cos'è il pannello di accesso in Azure Active Directory? | Microsoft Docs"
+description: Informazioni su come usare le varianti del pannello di accesso (Web browser, app per Android e app per iPhone e iPad) per accedere alle app SaaS.
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,83 +15,83 @@ ms.date: 07/31/2017
 ms.author: markvi
 ms.reviewer: asteen
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 800be6a69f13978c5b88e2fe28a416d4b763656c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: bd9066c251188c0f18fe1a9403baa2beaeeb987c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="what-is-hello-access-panel"></a>Che cos'è il pannello di accesso di hello?
+# <a name="what-is-the-access-panel"></a>Che cos'è il pannello di accesso?
 
-Pannello di accesso Hello è un portale basato sul web. Consente a un utente con un lavoro o account scuola in Azure Active Directory tooview avvio basato su cloud applicazioni e un amministratore di Azure AD ha concesso l'accesso a. È inoltre possibile utilizzare gruppi self-service e le funzionalità di gestione di app tramite il pannello di accesso di hello.
+Il pannello di accesso è un portale basato sul Web. Il pannello consente a un utente con un account aziendale o dell'istituto di istruzione in Azure Active Directory di visualizzare e avviare applicazioni basate sul cloud a cui l'amministratore di Azure AD ha concesso l'accesso. Tramite il pannello di accesso è anche possibile usare le funzionalità di gestione self-service di gruppi e app.
 
-Pannello di accesso Hello è separato dal portale di Azure hello e non è non toohave una sottoscrizione di Azure.
+Il pannello di accesso è separato dal portale di Azure e non richiede una sottoscrizione di Azure.
 
 ![Pannello di accesso][1]
 
-Pannello di accesso Hello consente tooedit alcune delle impostazioni del profilo, inclusi hello possibilità di:
+Il pannello di accesso consente di modificare alcune impostazioni del profilo, ad esempio:
 
-- Modifica della password hello associata a un account aziendale o dell'istituto di istruzione
+- Cambiare la password associata a un account aziendale o dell'istituto di istruzione
 
 - Modificare le impostazioni di ripristino password
 
-- Modifica di contatti e preferenze impostazioni correlate toomulti-factor authentication (per gli account che sono stati toouse richiesto da un amministratore)
+- Modificare le impostazioni di preferenze e contatti relative a Multi-Factor Authentication (per gli account per cui un amministratore ne ha richiesto l'uso)
 
 - Visualizzare i dettagli dell'account, ad esempio l'ID utente, l'indirizzo di posta elettronica alternativo, i numeri del cellulare e dell'ufficio e i dispositivi
 
-- Visualizzazione e avvio basato su cloud applicazioni hello amministratore di Azure AD ha concesso l'accesso a. Per ulteriori informazioni sul pannello di accesso hello dal punto di vista degli utenti hello, vedere il pannello di accesso hello. 
+- Visualizzare e avviare applicazioni basate su cloud a cui l'amministratore di Azure AD ha concesso l'accesso. Per altre informazioni sul pannello di accesso dal punto di vista dell'utente, vedere Uso del pannello di accesso. 
 
-- Gestire i gruppi in modalità self-service. In particolare, messaggio per l'amministratore può creare e gestire gruppi di sicurezza e l'appartenenza al gruppo di sicurezza richiesta in Azure AD. Per altre informazioni, vedere [Gestione dei gruppi in modalità self-service per gli utenti in Azure AD](active-directory-accessmanagement-self-service-group-management.md) e [Gestione dei gruppi](active-directory-manage-groups.md).
-
-
+- Gestire i gruppi in modalità self-service. In particolare, l'amministratore può creare e gestire gruppi di sicurezza e richiedere appartenenze a gruppi di sicurezza in Azure AD. Per altre informazioni, vedere [Gestione dei gruppi in modalità self-service per gli utenti in Azure AD](active-directory-accessmanagement-self-service-group-management.md) e [Gestione dei gruppi](active-directory-manage-groups.md).
 
 
-## <a name="accessing-hello-access-panel"></a>Accesso al pannello di accesso hello
 
-È possibile accedere a pannello di accesso hello visitando hello URL seguente in un web browser:`http://myapps.microsoft.com`
 
-Se si dispone di branding personalizzato configurato per la pagina di accesso, è possibile caricare questa personalizzazione aggiungendo fine toohello di dominio dell'organizzazione di hello URL:`http://myapps.microsoft.com/<your domain>.com`
+## <a name="accessing-the-access-panel"></a>Apertura del pannello di accesso
+
+Per usare il pannello di accesso, aprire l'URL seguente in un Web browser: `http://myapps.microsoft.com`
+
+Se sono state configurate impostazioni di personalizzazione per la pagina di accesso, è possibile caricarle aggiungendo il dominio dell'organizzazione alla fine dell'URL: `http://myapps.microsoft.com/<your domain>.com`
 
 In questo caso, è possibile usare qualsiasi nome di dominio attivo o verificato che sia stato configurato nel portale di Azure.
 
 ![Nome di dominio di Wingtip Toys][2]  
 
-È necessario toodistribute hello URL tooall gli utenti accederanno in tooapplications integrate con Azure AD.
+Questo URL deve essere distribuito a tutti gli utenti che eseguiranno l'accesso ad applicazioni integrate con Azure AD.
 
 ## <a name="authentication"></a>Autenticazione
 
-Pannello di accesso tooreach hello, è necessario essere autenticati in Azure AD tramite un account aziendale o dell'istituto di istruzione. È possibile tooAzure autenticato AD direttamente. In alternativa, se un'organizzazione ha configurato la federazione con Active Directory Federation Services (AD FS) o altre tecnologie, è possibile essere autenticati con Windows Server Active Directory.
+Per raggiungere il pannello di accesso, è necessario essere autenticati in Azure AD con un account aziendale o dell'istituto di istruzione. È possibile essere autenticati direttamente in Azure AD. In alternativa, se un'organizzazione ha configurato la federazione con Active Directory Federation Services (AD FS) o altre tecnologie, è possibile essere autenticati con Windows Server Active Directory.
 
-Se si dispone di una sottoscrizione per Azure o Office 365 e si utilizza hello portale di Azure o un'applicazione di Office 365, è possibile visualizzare l'elenco di hello delle applicazioni senza firma in nuovamente. Se non si sono autenticati si toosign richiesta in utilizzando hello username e password per l'account in Azure AD. Se l'organizzazione ha configurato la federazione, digitare il nome utente hello è sufficiente.
+Se si ha una sottoscrizione di Azure oppure un abbonamento a Office 365 ed è stato usato il portale di Azure o un'applicazione di Office 365, è possibile visualizzare l'elenco di applicazioni senza dover eseguire di nuovo l'accesso. Se non si è autenticati, viene chiesto di accedere usando il nome utente e la password dell'account in Azure AD. Se l'organizzazione ha configurato la federazione, sarà sufficiente digitare il nome utente.
 
-Quando l'autenticazione, è possibile interagire con applicazioni hello che l'amministratore è integrato con directory hello. toolearn toointegrate applicazioni con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory?](active-directory-appssoaccess-whatis.md).
+Dopo l'autenticazione, è possibile interagire con le applicazioni che l'amministratore ha integrato con la directory. Per informazioni su come integrare le applicazioni con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="web-browser-requirements"></a>Requisiti del Web browser
 
-Come minimo, il pannello di accesso di hello richiede un browser che supporta JavaScript e CSS sono state abilitate. Per hello toobe di utente connesso tooapplications tramite basato su password single sign-on (SSO), estensione del Pannello di accesso hello deve essere installato nel browser. estensione Hello viene scaricata automaticamente quando si seleziona un'applicazione che è configurata per SSO basato su password.
+Il pannello di accesso richiede almeno un browser che supporti JavaScript e abbia CSS abilitato. Affinché gli utenti possano accedere alle applicazioni tramite l'accesso Single Sign-On (SSO) basato su password, è necessario installare l'estensione del pannello di accesso nel browser. Questa estensione viene scaricata automaticamente quando si seleziona un'applicazione configurata per l'accesso SSO basato su password.
 
-estensione del Pannello di accesso Hello è attualmente disponibile per i browser Internet Explorer 8 e versioni successive, Edge, Chrome e Firefox.
+L'estensione del pannello di accesso è attualmente disponibile per i browser Internet Explorer 8 e versioni successive, Microsoft Edge, Chrome e Firefox.
 
 ## <a name="mobile-app-support"></a>Supporto per app per dispositivi mobili
 
-il team di Azure Active Directory Hello pubblica hello app mobile app. Quando si installa l'applicazione hello, è possibile accedere in applicazioni basate su toopassword SSO sui dispositivi iOS e Android.
+Il team di Azure Active Directory pubblica l'app per dispositivi mobili App personali. Quando si installa l'app, è possibile accedere alle applicazioni SSO basate su password da dispositivi iOS e Android.
 
 > [!NOTE]
-> È possibile accedere tooapplications che supportano la federazione con Azure AD (ad esempio Salesforce, Google Apps, Dropbox, Box, Concur, Workday, Office 365 e più di 70 altre) in qualsiasi browser web, su qualsiasi dispositivo, senza la necessità di un'app per dispositivi mobili o plug-in. Tutti gli altri [pannello esperienze di accesso](https://myapps.microsoft.com/) anche non richiedono hello my toobe app per dispositivi mobili App utilizzato in un dispositivo mobile.
+> È possibile accedere alle applicazioni che supportano la federazione con Azure AD (tra cui Salesforce, Google Apps, Dropbox, Box, Concur, Workday, Office 365 e più di 70 altre applicazioni) praticamente in qualsiasi Web browser, su qualsiasi dispositivo, senza necessità di un plug-in o di un'app per dispositivi mobili. Tutte le altre [esperienze del pannello di accesso](https://myapps.microsoft.com/) non richiedono l'uso dell'app per dispositivi mobili App personali in un dispositivo mobile.
 >
 >
 
 ### <a name="my-apps-for-android"></a>App personali per Android
 
 App personali per Android è supportata su qualsiasi dispositivo Android che esegue Android 4.1 e versioni successive.  
-È disponibile in hello [Google Play store](https://play.google.com/store/apps/details?id=com.microsoft.myapps).
+È disponibile in [Google Play Store](https://play.google.com/store/apps/details?id=com.microsoft.myapps).
 
 ![App personali per Android][3]   
 
 ### <a name="my-apps-for-iphone-and-ipad"></a>App personali per iPhone e iPad
 
 App personali per iOS è supportata su qualsiasi iPhone o iPad che esegue iOS 7 e versioni successive.  
-È disponibile in hello [Apple App Store](https://itunes.apple.com/us/app/my-apps-azure-active-directory/id824048653?mt=8).
+È disponibile nell'[App Store di Apple](https://itunes.apple.com/us/app/my-apps-azure-active-directory/id824048653?mt=8).
 
 ![App personali per iOS][4]    
 
@@ -99,10 +99,10 @@ App personali per iOS è supportata su qualsiasi iPhone o iPad che esegue iOS 7 
 
 ## <a name="managed-browser-for-my-apps"></a>Managed browser per App personali
 
-App personali inoltre è integrato in hello Intune Managed Browser. Hello Intune Managed Browser per dispositivi iOS e Android svolge un ruolo fondamentale nell'assicurare che i dati nei dispositivi mobili rimangano protetti. Consente di visualizzare ed esplorare in tutta sicurezza pagine Web che potrebbero contenere informazioni aziendali e garantisce un'esperienza di esplorazione Web sicura.  
-Sono disponibili le app toomy di accesso rapido nella home page di Managed Browser e i segnalibri, offrendo meno fa clic su tooreach qualsiasi applicazione che si desidera tooaccess.
+App personali si integra anche in Intune Managed Browser. Intune Managed Browser per dispositivi iOS e Android svolge un ruolo fondamentale nel garantire la sicurezza dei dati nei dispositivi mobili. Consente di visualizzare ed esplorare in tutta sicurezza pagine Web che potrebbero contenere informazioni aziendali e garantisce un'esperienza di esplorazione Web sicura.  
+È possibile accedere rapidamente ad App personali nella home page di Managed Browser e dai segnalibri, per poter aprire qualsiasi applicazione desiderata con un numero minore di clic.
 
-È disponibile in hello [Apple App Store](https://itunes.apple.com/us/app/microsoft-intune-managed-browser/id943264951?mt=8) e [Google Play Store](https://play.google.com/store/apps/details?id=com.microsoft.intune.mam.managedbrowser&hl=en).
+Questo strumento è disponibile nell'[App Store di Apple](https://itunes.apple.com/us/app/microsoft-intune-managed-browser/id943264951?mt=8) e in [Google Play Store](https://play.google.com/store/apps/details?id=com.microsoft.intune.mam.managedbrowser&hl=en).
 
 ![Managed Browser per App personali][5]    
 
@@ -110,81 +110,81 @@ Sono disponibili le app toomy di accesso rapido nella home page di Managed Brows
 
 
 
-## <a name="tips-for-testing-hello-user-experience"></a>Suggerimenti per un'esperienza utente hello test
+## <a name="tips-for-testing-the-user-experience"></a>Suggerimenti per testare l'esperienza utente
 
-Se si è un amministratore di Azure e si è connessi con un account nella directory di hello toohello portale di Azure, si accede automaticamente nel Pannello di accesso toohello come l'account corrente. In questo caso, è possibile visualizzare tutte le applicazioni che sono state assegnate tooyou.
+Gli amministratori di Azure che hanno eseguito l'accesso al portale di Azure usando un account nella directory accedono automaticamente al pannello di accesso con l'account corrente. In questo caso, potranno visualizzare tutte le applicazioni che sono state loro assegnate.
 
-**tootest come un *diversi* account utente:**
+**Per testare un account utente *diverso*:**
 
-1. Fare clic sul menu utente hello nell'angolo superiore destro di hello di hello portale di Azure o il pannello di accesso di hello e quindi selezionare **Sign Out**. 
-2. Passare toohello [Pannello di accesso](http://myapps.microsoft.com).
-3. Nella pagina di accesso hello, tipo hello username e password per account di hello nella directory desiderata tootest.
+1. Fare clic sul menu utente nell'angolo superiore destro del portale di Azure o del pannello di accesso e selezionare **Disconnetti**. 
+2. Passare al [pannello di accesso](http://myapps.microsoft.com).
+3. Nella pagina di accesso immettere il nome utente e la password dell'account nella directory da testare.
 
 
 ## <a name="starting-applications"></a>Avvio delle applicazioni
 
-Diversi tipi di applicazioni visualizzabili nel Pannello di accesso hello.
+Nel pannello di accesso possono essere visualizzati diversi tipi di applicazioni.
 
 ### <a name="office-365-applications"></a>Applicazioni di Office 365
 
-Se l'organizzazione Usa applicazioni di Office 365 e sono concessi in licenza per tali applicazioni di Office 365 hello vengono visualizzati nel Pannello di accesso.
+Se l'organizzazione usa applicazioni di Office 365 di cui si ha la licenza, tali applicazioni vengono visualizzate nel pannello di accesso.
 
-Quando si fa clic su un riquadro dell'applicazione per un'applicazione di Office 365, verrà reindirizzato toohello dell'applicazione e automaticamente connesso.
+Quando si fa clic sul riquadro di un'applicazione di Office 365, si viene reindirizzati a tale applicazione e l'accesso viene eseguito automaticamente.
 
 ### <a name="microsoft-and-third-party-applications-configured-with-federation-based-sso"></a>Applicazioni Microsoft e di terze parti configurate con il servizio Single Sign-On basato su federazione
 
-L'amministratore può aggiungere applicazioni nella sezione Active Directory del portale di Azure hello hello con modalità SSO hello impostata troppo**Azure Single Sign-On AD**. Se l'amministratore ha esplicitamente concesso che accedere alle applicazioni di toohello, è possibile visualizzare solo tali applicazioni.
+L'amministratore può aggiungere applicazioni nella sezione Active Directory del portale di Azure con la modalità SSO impostata su **Single Sign-On di Microsoft Azure AD**. È possibile visualizzare le applicazioni solo se l'amministratore ha concesso l'accesso a tali applicazioni in modo esplicito.
 
-Quando si fa clic su un riquadro per una di queste applicazioni, vengono reindirizzate e firmato automaticamente nell'applicazione toohello.
+Quando si fa clic su un riquadro di una di queste applicazioni, si viene reindirizzati a tale applicazione e l'accesso viene eseguito automaticamente.
 
 ### <a name="password-based-sso-without-identity-provisioning"></a>Single Sign-On basato su password senza provisioning delle identità
 
-L'amministratore può aggiungere applicazioni nella sezione Active Directory del portale di Azure hello hello con modalità SSO hello impostata troppo**basato su Password Single Sign-On**. Tutti gli utenti nella directory hello possono visualizzare tutte le applicazioni che sono state configurate in questa modalità.
+L'amministratore può aggiungere applicazioni nella sezione Active Directory del portale di Azure con la modalità SSO impostata su **Accesso Single Sign-On basato su password**. Tutti gli utenti della directory possono visualizzare tutte le applicazioni configurate in questa modalità.
 
-Hello prima volta, si fa clic su un riquadro per una di queste applicazioni, è richiesta tooinstall hello Password SSO plug-in per Internet Explorer o Chrome. installazione di Hello potrebbe richiedere si toorestart web browser. Quando si restituisce toohello Pannello di accesso e fare clic su riquadro dell'applicazione hello nuovamente, viene richiesto un nome utente e password per l'applicazione hello. Dopo avere immesso un nome utente e password, queste credenziali vengono archiviate in modo sicuro e collegati tooyour account in Azure AD.
+La prima volta che si fa clic su un riquadro di una di queste applicazioni, viene chiesto di installare il plug-in per l'accesso Single Sign-On basato su password per Internet Explorer o Chrome. L'installazione potrebbe richiedere il riavvio del Web browser. Quando si torna al pannello di accesso e si fa clic di nuovo sul riquadro dell'applicazione, viene chiesto di specificare un nome utente e una password per l'applicazione. Dopo l'immissione di nome utente e password, queste credenziali vengono archiviate in modo sicuro e collegate all'account in Azure AD.
 
-Hello successivo si fa clic su riquadro dell'applicazione hello, si accede automaticamente nell'applicazione toohello.  
-È non hanno tooenter nuovamente le credenziali e o installare hello Password SSO plug-in.
+La volta successiva che si fa clic sul riquadro dell'applicazione, l'accesso all'applicazione viene eseguito automaticamente.  
+Non è necessario immettere nuovamente le credenziali e/o installare il plug-in per l'accesso SSO basato su password.
 
-Se le credenziali sono cambiate nell'applicazione di terze parti hello destinazione, è necessario aggiornare anche le credenziali vengono archiviate in Azure AD. 
+Se le credenziali sono cambiate nell'applicazione di destinazione di terze parti, è necessario aggiornare anche le credenziali archiviate in Azure AD. 
 
-**credenziali tooupdate:**
+**Per aggiornare le credenziali:**
 
-1. Selezionare l'icona di hello nel riquadro dell'applicazione hello.
-2. Selezionare **aggiornare le credenziali** tooreenter hello username e password per l'applicazione di hello.
+1. Selezionare l'icona nel riquadro dell'applicazione.
+2. Selezionare **Aggiorna credenziali** per immettere di nuovo nome utente e password per l'applicazione.
 
 
 ### <a name="password-based-sso-with-identity-provisioning"></a>Single Sign-On basato su password con provisioning delle identità
 
-L'amministratore può aggiungere le applicazioni in hello **Active Directory** sezione del portale di Azure con la modalità SSO hello hello impostata troppo**basato su Password Single Sign-On**, insieme a provisioning delle identità.
+L'amministratore può aggiungere applicazioni nella sezione **Active Directory** del portale di Azure con la modalità SSO impostata su **Accesso Single Sign-On basato su password**, insieme al provisioning delle identità.
 
-Hello prima volta, si fa clic su un riquadro dell'applicazione per una di queste applicazioni, è richiesta tooinstall hello **Password SSO plug-in per Internet Explorer o Chrome**. installazione di Hello potrebbe richiedere si toorestart web browser.  
-Quando si restituisce toohello Pannello di accesso e fare clic su riquadro dell'applicazione hello nuovamente, si accede automaticamente nell'applicazione toohello.
+La prima volta che si fa clic su un riquadro di una di queste applicazioni, viene chiesto di installare il **plug-in per l'accesso SSO basato su password per Internet Explorer o Chrome**. L'installazione potrebbe richiedere il riavvio del Web browser.  
+Quando si torna nel pannello di accesso e si fa clic di nuovo sul riquadro dell'applicazione, l'accesso all'applicazione viene eseguito automaticamente.
 
-Alcune applicazioni potrebbero richiedere toochange è la password in hello primo accesso di. Se le credenziali sono cambiate nell'applicazione di terze parti hello destinazione, è necessario aggiornare anche le credenziali di hello archiviate in Azure AD. 
+Alcune applicazioni potrebbero richiedere di cambiare la password al primo accesso. Se le credenziali sono cambiate nell'applicazione di destinazione di terze parti, è necessario aggiornare anche le credenziali archiviate in Azure AD. 
 
-**credenziali tooupdate:**
+**Per aggiornare le credenziali:**
 
-1. Selezionare l'icona di hello nel riquadro dell'applicazione hello.
-2. Selezionare **aggiornare le credenziali** tooreenter hello username e password per l'applicazione di hello.
+1. Selezionare l'icona nel riquadro dell'applicazione.
+2. Selezionare **Aggiorna credenziali** per immettere di nuovo nome utente e password per l'applicazione.
 
 
 ### <a name="application-with-existing-sso-solutions"></a>Applicazione con soluzioni Single Sign-On esistenti
 
-tooconfigure SSO per un'applicazione, hello portale di Azure offre una terza opzione chiamata **Single Sign-On esistente**. Questa opzione consente il toocreate amministratore un'applicazione tooan di collegamento e lo inserisce nel Pannello di accesso hello per utenti selezionati.
+Per configurare l'accesso SSO per un'applicazione, il portale di Azure fornisce una terza opzione, ovvero **Accesso Single Sign-On esistente**. Questa opzione consente all'amministratore di creare un collegamento a un'applicazione e di inserirlo nel pannello di accesso per gli utenti selezionati.
 
-Ad esempio, se un'applicazione è configurata tooauthenticate utenti tramite AD FS 2.0, l'amministratore può utilizzare hello **Single Sign-On esistente** opzione toocreate tooit un collegamento nel Pannello di accesso hello. Quando si accede collegamento hello, vengono autenticati tramite AD FS 2.0 o qualsiasi applicazione di hello soluzione SSO esistente fornisce.
+Se, ad esempio, un'applicazione è configurata per l'autenticazione degli utenti tramite AD FS 2.0, l'amministratore può usare l'opzione **Accesso Single Sign-On esistente** per creare un collegamento nel pannello di accesso. Quando si accede al collegamento, viene eseguita l'autenticazione tramite AD FS 2.0 o qualunque soluzione SSO fornita dall'applicazione.
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- toosee un elenco di tutti gli argomenti che sono correlati tooapplication management, vedere hello [indice articolo per la gestione delle applicazioni in Azure Active Directory](active-directory-apps-index.md).
+- Per visualizzare un elenco di tutti gli argomenti relativi alla gestione delle applicazioni, vedere [Indice di articoli per la gestione di applicazioni in Azure Active Directory](active-directory-apps-index.md).
  
-- toolearn toointegrate un'app SaaS in Azure AD, vedere hello [elenco di esercitazioni sull'App SaaS toointegrate](active-directory-saas-tutorial-list.md).
+- Per informazioni su come integrare un'app SaaS in Azure AD, vedere l'[elenco di esercitazioni sull'integrazione di app SaaS](active-directory-saas-tutorial-list.md).
  
-- toolearn informazioni su gestione delle App con Azure AD, vedere hello [introduzione toosingle sign-on e la gestione di app l'accesso con Azure Active Directory](active-directory-appssoaccess-whatis.md).
+- Per altre informazioni sulla gestione di app con Azure AD, vedere l'[introduzione a Single Sign-On e alla gestione dell'accesso alle app con Azure Active Directory](active-directory-appssoaccess-whatis.md).
  
-- toolearn ulteriori informazioni su il provisioning dell'utente, vedere [automatizzare provisioning e deprovisioning applicazioni tooSaaS](active-directory-saas-app-provisioning.md).
+- Per altre informazioni sul provisioning degli utenti, vedere [Automatizzare il provisioning e il deprovisioning utenti in applicazioni SaaS con Azure Active Directory](active-directory-saas-app-provisioning.md).
 
 <!--Image references-->
 [1]: ./media/active-directory-saas-access-panel-introduction/01.png

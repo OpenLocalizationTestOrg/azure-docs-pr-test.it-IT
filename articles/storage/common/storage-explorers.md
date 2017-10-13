@@ -1,6 +1,6 @@
 ---
-title: aaaTools per l'utilizzo di archiviazione di Azure | Documenti Microsoft
-description: Un elenco di strumenti che consentono di tooview/interagire con i dati di archiviazione di Azure.
+title: Strumenti per l'uso di Archiviazione di Azure | Documentazione Microsoft
+description: Elenco di strumenti che consentono di visualizzare o interagire con i dati di Archiviazione di Azure.
 services: storage
 documentationcenter: 
 author: dineshmurthy
@@ -12,18 +12,18 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/11/2017
+ms.date: 09/06/2017
 ms.author: dineshmurthy
-ms.openlocfilehash: 3308de2153099a05a676ab1d76426bd932e8a96c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: c57a300b54c62bbd43c73121c22adbc44cb94776
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-storage-client-tools"></a>Strumento client di Archiviazione di Azure
-Gli utenti di archiviazione di Azure desiderano spesso toobe in grado di tooview/interagire con i dati utilizzando uno strumento client di archiviazione di Azure. Hello seguito nelle tabelle, sono elencati numerosi strumenti che consentono di toodo questo. È stato inserito una "X" in ogni blocco se contiene il possibilità hello tooeither enumerare e/o l'accesso di astrazione dati hello. tabella Hello Mostra anche se gli strumenti di hello è disponibile o meno. "Prova" indica che è una versione di valutazione gratuita, ma completa del prodotto hello non è disponibile. "S/N" indica che è disponibile una versione gratuita, mentre è possibile acquistare una versione diversa.
+Gli utenti dell'Archiviazione di Azure possono visualizzare o interagire con i propri dati utilizzando lo strumento client di Archiviazione di Azure. Nelle tabelle seguenti sono elencati numerosi strumenti che consentono di eseguire questa operazione. Con una "X" in ogni blocco viene indicata la possibilità di enumerare e/o accedere all'astrazione dei dati. Viene inoltre specificato se lo strumento è gratuito o meno. "Prova" indica che esiste una versione di valutazione gratuita, ma il prodotto completo non è gratuito. "S/N" indica che è disponibile una versione gratuita, mentre è possibile acquistare una versione diversa.
 
-È stata fornita solo uno snapshot degli strumenti client di archiviazione di Azure disponibili hello. Questi strumenti possono continuare tooevolve e aumento delle funzionalità. Se sono presenti correzioni o aggiornamenti, lascia un commento toolet che inviarci. Hello stesso vale se si conoscono gli strumenti che dovrebbero toobe qui, si sarà soddisfatti tooadd li.
+Si tratta unicamente di un riepilogo degli strumenti client di Archiviazione di Azure disponibili. Le funzionalità degli strumenti possono continuare a migliorare e aumentare. Per eventuali correzioni o aggiornamenti, è possibile lasciare un commento. Per suggerire l'aggiunta di altri strumenti simili, lasciare un commento.
 
 **Strumento client di Archiviazione di Microsoft Azure**
 
@@ -91,7 +91,7 @@ Gli utenti di archiviazione di Azure desiderano spesso toobe in grado di tooview
 
 **Strumenti client di Archiviazione di Azure di terze parti**
 
-Che non abbiamo verificato hello funzionalità o la qualità di richiedere hello seguenti strumenti di terze parti e la pubblicazione non implica un'approvazione da parte di Microsoft.
+La funzionalità o la qualità dichiarate per i seguenti strumenti di terze parti non è stata verificata e la pubblicazione non implica un'approvazione da parte di Microsoft.
 
 <table>
   <tr>
@@ -110,20 +110,6 @@ Che non abbiamo verificato hello funzionalità o la qualità di richiedere hello
     <td>Windows</td>
     <td>OSX</td>
     <td>Linux</td>
-  </tr>
-  <tr>
-    <td><a href="http://www.cloudportam.com/">Cloud Portam</a></td>
-    <td>X</td>
-    <td>X</td>
-    <td>X</td>
-    <td>X</td>
-    <td>X</td>
-    <td>X</td>
-    <td>Versione di valutazione</td>
-    <td>X</td>
-    <td></td>
-    <td></td>
-    <td></td>
   </tr>
   <tr>
     <td><a href="http://www.cerebrata.com/products/azure-management-studio/introduction">Cerabrata: Azure Management Studio</a></td>
@@ -154,7 +140,7 @@ Che non abbiamo verificato hello funzionalità o la qualità di richiedere hello
     <td></td>
   </tr>
   <tr>
-    <td><a href="https://github.com/sebagomez/azurestorageexplorer">Azure Storage Explorer</a></td>
+    <td><a href="https://github.com/sebagomez/azurestorageexplorer">Azure Web Storage Explorer</a></td>
     <td>X</td>
     <td>X</td>
     <td></td>
@@ -168,7 +154,7 @@ Che non abbiamo verificato hello funzionalità o la qualità di richiedere hello
     <td></td>
   </tr>
   <tr>
-    <td><a href="http://www.cloudberrylab.com/free-microsoft-azure-explorer.aspx">CloudBerry Explorer</a></td>
+    <td><a href="http://www.cloudberrylab.com/explorer/microsoft-azure.aspx">CloudBerry Explorer</a></td>
     <td>X</td>
     <td>X</td>
     <td></td>
@@ -220,34 +206,6 @@ Che non abbiamo verificato hello funzionalità o la qualità di richiedere hello
     <td>Versione di valutazione</td>
     <td></td>
     <td>X</td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td><a href="http://storageexplorer.codeplex.com/">Azure Web Storage Explorer</a></td>
-    <td>X</td>
-    <td>X</td>
-    <td></td>
-    <td>X</td>
-    <td>X</td>
-    <td></td>
-    <td>S</td>
-    <td>X</td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td><a href="https://zudio.co/">Zudio</a></td>
-    <td>X</td>
-    <td>X</td>
-    <td></td>
-    <td>X</td>
-    <td>X</td>
-    <td>X</td>
-    <td>Versione di valutazione</td>
-    <td>X</td>
-    <td></td>
     <td></td>
     <td></td>
   </tr>

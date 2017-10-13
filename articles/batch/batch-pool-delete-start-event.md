@@ -1,5 +1,5 @@
 ---
-title: aaa "evento di avvio di Azure Batch pool delete | Documenti di Microsoft"
+title: Evento di avvio eliminazione pool di Azure Batch | Microsoft Docs
 description: "Riferimento per l’evento di avvio eliminazione del pool di batch."
 services: batch
 author: tamram
@@ -12,17 +12,17 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
 ms.date: 04/20/2017
 ms.author: tamram
-ms.openlocfilehash: 79bb28bffc760a49cc0a95062f5086dc96c6a795
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f8a5241dce422e5c826ab428da6d7bc93284a1cf
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="pool-delete-start-event"></a>Evento di avvio eliminazione pool
 
- Questo evento viene generato quando un'operazione di eliminazione pool è stata avviata. Poiché hello eliminare un pool è un evento asincrono, è possibile prevedere un toobe di evento completo Elimina pool generato dopo l'operazione di eliminazione hello viene completata.
+ Questo evento viene generato quando un'operazione di eliminazione pool è stata avviata. Poiché l'eliminazione pool è un evento asincrono, è possibile prevedere l'emissione di un evento di completamento eliminazione pool una volta completata l'operazione di eliminazione.
 
- Hello esempio seguente viene illustrato hello corpo di un evento di inizio di eliminazione del pool.
+ L'esempio seguente illustra il corpo di un evento di avvio eliminazione pool.
 
 ```
 {
@@ -32,4 +32,4 @@ ms.lasthandoff: 10/06/2017
 
 |Elemento|Tipo|Note|
 |-------------|----------|-----------|
-|id|String|id di Hello del pool di hello.|
+|id|String|ID del pool.|

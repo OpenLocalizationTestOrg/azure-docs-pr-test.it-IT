@@ -1,10 +1,10 @@
 ---
-title: aaaGet avviato con Azure AD Privileged Identity Management | Documenti Microsoft
-description: "Informazioni su come toomanage con privilegi di identità con un'applicazione hello Azure Active Directory Privileged Identity Management nel portale di Azure."
+title: Introduzione ad Azure AD Privileged Identity Management | Microsoft Azure
+description: "Informazioni su come gestire le identità con privilegi con l'applicazione Azure Active Directory Privileged Identity Management nel portale di Azure."
 services: active-directory
 documentationcenter: 
-author: billmath
-manager: femila
+author: barclayn
+manager: mbaldwin
 editor: 
 ms.assetid: 2299db7d-bee7-40d0-b3c6-8d628ac61071
 ms.service: active-directory
@@ -12,43 +12,47 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/27/2017
-ms.author: billmath
-ms.custom: pim ; H1Hack27Feb2017
-ms.openlocfilehash: a89205023a8dbcc3649fa732735ca927e64736ce
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.date: 09/17/2017
+ms.author: barclayn
+ms.custom: pim
+ms.openlocfilehash: 0f9f09ca8fb30d494433ed8d26b808d1b5d4d0b1
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="start-using-azure-ad-privileged-identity-management"></a>Iniziare ad usare Azure AD Privileged Identity Management
-Con Azure Active Directory (AD) Privileged Identity Management è possibile gestire, il controllo e monitorare l'accesso all'interno dell'organizzazione. Questo ambito include tooresources di accesso di Azure AD e altri Microsoft online services quali Office 365 o Microsoft Intune.
 
-In questo articolo indica come tooadd hello tooyour app di Azure AD PIM dashboard del portale di Azure.
+Con Azure Active Directory (AD) Privileged Identity Management è possibile gestire, il controllo e monitorare l'accesso all'interno dell'organizzazione. Questo ambito include l'accesso alle risorse Azure, Azure AD e ad altri servizi Microsoft online, ad esempio Office 365 o Microsoft Intune.
 
-## <a name="add-hello-privileged-identity-management-application"></a>Aggiungere un'applicazione hello Privileged Identity Management
-Prima di usare Azure AD Privileged Identity Management, è necessario tooadd hello applicazione tooyour dashboard del portale di Azure.
+Questo articolo descrive come aggiungere l'app Azure AD PIM al dashboard del portale di Azure.
 
-1. Accedi toohello [portale di Azure](https://portal.azure.com/) come amministratore globale della directory.
-2. Se l'organizzazione dispone di più di una directory, selezionare il nome utente in hello nell'angolo superiore destro di hello portale di Azure. Selezionare la directory di hello in cui si desidera toouse PIM.
-3. Selezionare **più servizi** e utilizzare hello filtro textbox toosearch per **Azure AD Privileged Identity Management**.
-4. Controllare **Pin toodashboard** e quindi fare clic su **crea**. verrà visualizzata la finestra di Hello applicazione Privileged Identity Management.
+## <a name="add-the-privileged-identity-management-application"></a>Aggiungere l'applicazione Privileged Identity Management
 
-Se si sta hello prima persona toouse Azure AD Privileged Identity Management nella directory, vengono assegnati automaticamente hello **amministratore della sicurezza** e **amministratore del ruolo con privilegi** ruoli nella directory hello. Solo gli amministratori del ruolo con privilegi possono gestire le assegnazioni di ruoli degli utenti. Inoltre, è possibile scegliere hello toorun [guidata impostazioni di sicurezza.](active-directory-privileged-identity-management-security-wizard.md) che vengono illustrati l'esperienza di individuazione e assegnazione iniziale hello.
+Prima di usare Azure AD Privileged Identity Management è necessario aggiungere l'applicazione al dashboard del portale di Azure.
 
-## <a name="navigate-tooyour-tasks"></a>Passare tooyour attività
-Una volta configurato, Azure AD Privileged Identity Management vedrai il pannello di navigazione hello ogni volta che si apre un'applicazione hello. Utilizzare questo tooaccomplish blade le attività di gestione di identità.
+1. Accedere al [portale di Azure](https://portal.azure.com/) come amministratore globale della directory.
+2. Se l'organizzazione ha più directory, selezionare il proprio nome utente nell'angolo superiore destro del portale di Azure. Selezionare la directory in cui si vuole usare PIM.
+3. Selezionare **Altri servizi** e usare la casella di testo Filtro per cercare **Azure AD Privileged Identity Management**.
+4. Selezionare **Aggiungi al dashboard** e quindi fare clic su **Crea**. Verrà aperta l'applicazione Privileged Identity Management.
+
+I ruoli **Amministratore della sicurezza** e **Amministratore del ruolo con privilegi** della directory vengono assegnati automaticamente alla prima persona che usa Azure AD Privileged Identity Management nella directory. Solo gli amministratori del ruolo con privilegi possono gestire le assegnazioni di ruoli della directory Azure AD degli utenti. È anche possibile scegliere di eseguire la [procedura guidata per la sicurezza](active-directory-privileged-identity-management-security-wizard.md), che illustra in modo dettagliato l'esperienza di individuazione e assegnazione iniziale.
+
+## <a name="navigate-to-your-tasks"></a>Accedere alle attività
+
+Dopo la configurazione di Azure AD Privileged Identity Management, a ogni apertura dell'applicazione viene visualizzato il pannello di spostamento. Usare questo pannello per eseguire le attività di gestione delle identità.
 
 ![Attività principali per PIM - Screenshot](./media/active-directory-privileged-identity-management-getting-started/PIM_Tasks_New.png)
 
-* **Ruoli personali** consente di passare tooa elenco dei ruoli assegnati tooyou. In questa sezione è possibile attivare i ruoli per cui si è idonei.
-* **Approva richieste (anteprima)** visualizza un elenco di richieste di attivazione in sospeso dagli utenti della directory. [Altre informazioni.](./privileged-identity-management/azure-ad-pim-approval-workflow.md)
-* **(Anteprima) richieste in sospeso** consente di visualizzare qualsiasi corrente tooactivate toohave effettuate le richieste.
-* **Controllare l'accesso** accetta tooany in sospeso accesso esamina toocomplete, è necessario se si sta esaminando l'accesso per se stessi o un altro utente.
-* **I ruoli della Directory Azure AD** disponibile nella sezione 'Gestisci' hello è dashboard hello per le assegnazioni di ruolo con privilegi amministratori toomanage ruolo, modifica impostazioni di attivazione di ruolo, avvio accesso revisioni e altro ancora. opzioni di Hello in questo dashboard sono disabilitate per tutti gli utenti che non è un ruolo con privilegi di amministratore.
+- **My roles** (Ruoli personali) visualizza un elenco di ruoli idonei e attivi assegnati all'utente. Qui è possibile attivare tutti i ruoli idonei assegnati.
+- **Approva richieste (anteprima)** visualizza un elenco di richieste per l'attivazione di ruoli idonei della directory Azure AD da parte degli utenti della directory, che l'utente ha designato all'approvazione. [Altre informazioni.](./privileged-identity-management/azure-ad-pim-approval-workflow.md)
+- **Richieste in sospeso (anteprima)** visualizza le richieste in sospeso per attivare le assegnazioni dei ruoli idonei.
+- **Verifica l'accesso** elenca le verifiche di accesso attive assegnate all'utente per essere completate, sia per se stesso che per altri utenti.
+- **Ruoli della directory di Azure AD**, disponibile nella sezione della gestione del menu di spostamento sinistro, è il dashboard in cui gli amministratori dei ruoli con privilegi possono gestire le assegnazioni di ruoli, modificare le impostazioni di attivazione dei ruoli, avviare le verifiche di accesso e altro ancora. Per gli utenti che non sono amministratori dei ruoli con privilegi, questo dashboard è disabilitato. Questi utenti possono accedere a un dashboard speciale denominato My view (Visualizzazione personalizzata). Il dashboard My view (Visualizzazione personalizzata) visualizza solo informazioni relative all'accesso dell'utente al dashboard, non l'intero tenant.
+- **Ruoli delle risorse di Azure (anteprima)** nella sezione di gestione del menu di spostamento sinistro è visualizzato un elenco di risorse di sottoscrizione da cui scegliere per l'assegnazione dei ruoli 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Hello [Panoramica di Azure AD Privileged Identity Management](active-directory-privileged-identity-management-configure.md) include ulteriori dettagli su come è possibile gestire l'accesso amministrativo all'interno dell'organizzazione.
+La [panoramica di Azure AD Privileged Identity Management](active-directory-privileged-identity-management-configure.md) include altri dettagli su come gestire l'accesso amministrativo nell'organizzazione.
 
 [!INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
 

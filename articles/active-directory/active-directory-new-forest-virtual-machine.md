@@ -1,6 +1,6 @@
 ---
-title: aaaInstall una foresta di Active Directory in una rete virtuale di Azure | Documenti Microsoft
-description: Un'esercitazione che illustra come insieme di strutture toocreate un nuovo ambiente Active Directory in una macchina virtuale (VM) in una rete virtuale di Azure.
+title: Installazione di una foresta Active Directory in una rete virtuale di Azure | Documentazione Microsoft
+description: Un'esercitazione che illustra come creare una nuova foresta di Active Directory in una macchina virtuale (VM) in una rete virtuale di Azure.
 services: active-directory, virtual-network
 keywords: 'macchina virtuale active directory, installazione di una foresta active directory, video su azure active directory  '
 documentationcenter: 
@@ -15,111 +15,111 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 04/06/2017
 ms.author: joflore
-ms.openlocfilehash: 08121130777cc3c206d7b5b38974982884dca1c8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 0a45a563d8aed45dd30cc76a13b0e197c248be84
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="install-a-new-active-directory-forest-on-an-azure-virtual-network"></a>Installazione di una nuova foresta Active Directory in una rete virtuale di Azure
-Questo argomento viene illustrato come toocreate un nuovo Windows Server Active Directory dell'ambiente in una rete virtuale di Azure in una macchina virtuale (VM) su un [rete virtuale di Azure](../virtual-network/virtual-networks-overview.md). In questo caso, hello rete virtuale di Azure non è rete locale connesso tooan.
+In questo argomento viene illustrato come creare un nuovo ambiente Windows Server Active Directory su una macchina virtuale (VM) in una [rete virtuale di Azure](../virtual-network/virtual-networks-overview.md). In questo caso, la rete virtuale di Azure non è connessa a una rete locale.
 
 Altri argomenti di interesse:
 
-* Per un video che illustra questa procedura, vedere [come tooinstall un nuovo ambiente Active Directory della foresta in una rete virtuale di Azure](http://channel9.msdn.com/Series/Microsoft-Azure-Tutorials/How-to-install-a-new-Active-Directory-forest-on-an-Azure-virtual-network)
-* È possibile facoltativamente [configurare una VPN site-to-site](../vpn-gateway/vpn-gateway-site-to-site-create.md) e quindi installare una nuova foresta o estendere un tooan foresta locale rete virtuale di Azure. Per la procedura, vedere [Installazione di un controller di dominio Active Directory di replica in una rete virtuale di Azure](active-directory-install-replica-active-directory-domain-controller.md).
+* Per un video che illustra questa procedura, vedere [Come installare una nuova foresta Active Directory in una rete virtuale di Azure](http://channel9.msdn.com/Series/Microsoft-Azure-Tutorials/How-to-install-a-new-Active-Directory-forest-on-an-Azure-virtual-network)
+* Facoltativamente, è possibile [configurare una VPN da sito a sito](../vpn-gateway/vpn-gateway-site-to-site-create.md) e quindi installare una nuova foresta, oppure estendere una foresta locale a una rete virtuale di Azure. Per la procedura, vedere [Installazione di un controller di dominio Active Directory di replica in una rete virtuale di Azure](active-directory-install-replica-active-directory-domain-controller.md).
 * Per le linee guida concettuali sull'installazione di Servizi di dominio Active Directory in una rete virtuale di Azure, vedere [Linee guida per la distribuzione di Active Directory di Windows Server in macchine virtuali di Azure](https://msdn.microsoft.com/library/azure/jj156090.aspx).
 
 ## <a name="scenario-diagram"></a>Diagramma dello scenario
-In questo scenario, gli utenti esterni devono tooaccess di applicazioni per i server di dominio. macchine virtuali di Hello che eseguono Server applicazione hello e le macchine virtuali hello che eseguono i controller di dominio vengono installate installato nel proprio servizio cloud in una rete virtuale di Azure. Sono anche incluse in un set di disponibilità per una migliore tolleranza di errore.
+In questo scenario gli utenti esterni devono accedere alle applicazioni eseguite nei server aggiunti al dominio. Le macchine virtuali che eseguono i server applicazioni e le macchine virtuali che eseguono i controller di dominio sono installate nel proprio servizio cloud in una rete virtuale di Azure. Sono anche incluse in un set di disponibilità per una migliore tolleranza di errore.
 
 ![Foresta Active Directory in una macchina virtuale in Rete virtuale di Azure ][1] 7
 
 ## <a name="how-does-this-differ-from-on-premises"></a>Differenze rispetto all'installazione locale
-Non esistono molte differenze tra l'installazione locale di un controller di dominio e l'installazione in Azure. Nella hello nella tabella seguente sono elencate le differenze principali Hello.
+Non esistono molte differenze tra l'installazione locale di un controller di dominio e l'installazione in Azure. Le differenze principali sono elencate nella tabella seguente.
 
-| tooconfigure... | Locale | rete virtuale di Azure |
+| Configurazione | Locale | rete virtuale di Azure |
 | --- | --- | --- |
-| **Indirizzo IP per il controller di dominio hello** |Assegnare l'indirizzo IP statico nelle proprietà scheda di rete hello |Eseguire tooassign cmdlet Set-AzureStaticVNetIP di hello un indirizzo IP statico |
-| **Resolver del client DNS** |Impostare l'indirizzo di server preferito e alternativo DNS su hello proprietà scheda di rete dei membri del dominio |Impostare l'indirizzo del server DNS nella proprietà della rete virtuale hello hello |
-| **Archiviazione del database di Active Directory** |Facoltativamente, modificare il percorso di archiviazione predefinito hello da C:\ |È necessario toochange percorso di archiviazione predefinito da c:\. |
+| **Indirizzo IP del controller di dominio** |Assegnare un indirizzo IP statico nelle proprietà della scheda di rete |Eseguire il cmdlet Set-AzureStaticVNetIP per assegnare un indirizzo IP statico |
+| **Resolver del client DNS** |Impostare l'indirizzo del server DNS preferito e quello alternativo nelle proprietà della scheda di rete dei membri del dominio |Impostare l'indirizzo del server DNS nelle proprietà della rete virtuale |
+| **Archiviazione del database di Active Directory** |Modificare facoltativamente il percorso di archiviazione predefinito da C:\ |È necessario modificare il percorso di archiviazione predefinito da C:\ |
 
 ## <a name="create-an-azure-virtual-network"></a>Creare una rete virtuale di Azure
-1. Accedi toohello portale di Azure classico.
-2. Creare una rete virtuale. Fare clic su **Reti** > **Crea rete virtuale**. Utilizzare i valori hello hello tabella toocomplete hello guidata.
+1. Accedere al portale di Microsoft Azure classico.
+2. Creare una rete virtuale. Fare clic su **Reti** > **Crea rete virtuale**. Usare i valori nella tabella seguente per completare la procedura guidata.
 
    | Pagina della procedura guidata | Valori da specificare |
    | --- | --- |
-   |  **Dettagli della rete virtuale** |<p>Nome: immettere un nome per la rete virtuale</p><p>Regione: Scegliere l'area più vicina hello</p> |
+   |  **Dettagli della rete virtuale** |<p>Nome: immettere un nome per la rete virtuale</p><p>Area: scegliere l'area più vicina</p> |
    |  **DNS e VPN** |<p>Lasciare il campo relativo al server DNS vuoto</p><p>Non selezionare alcuna opzione VPN</p> |
    |  **Spazi degli indirizzi della rete virtuale** |<p>Nome subnet: immettere un nome per la subnet</p><p>IP iniziale: <b>10.0.0.0</b></p><p>CIDR: <b>/24 (256)</b></p> |
 
-## <a name="create-vms-toorun-hello-domain-controller-and-dns-server-roles"></a>Creare controller di dominio hello toorun macchine virtuali e i ruoli del server DNS
-Ripetere hello seguendo i passaggi toocreate macchine virtuali toohost hello ruolo controller di dominio in base alle esigenze. È consigliabile distribuire almeno due controller di dominio tooprovide la tolleranza di errore e la ridondanza virtuale. Se hello rete virtuale di Azure include almeno due controller di dominio che sono configurati in modo analogo (vale a dire, sono entrambi cataloghi globali, eseguire i server DNS, e non contiene alcun ruolo FSMO e così via) quindi posizionare le macchine virtuali hello che eseguono tali controller di dominio in un set di disponibilità per migliore tolleranza di errore.
+## <a name="create-vms-to-run-the-domain-controller-and-dns-server-roles"></a>Creare una VM per l'esecuzione del controller di dominio e dei ruoli del server DNS
+Ripetere i passaggi seguenti per creare macchine virtuali per ospitare il ruolo di controller di dominio in base alle esigenze. È consigliabile distribuire almeno due controller di dominio virtuali per fornire ridondanza e tolleranza di errore. Se la rete virtuale di Azure include almeno due controller di dominio configurati in modo analogo (vale a dire se sono entrambi cataloghi globali, eseguono server DNS, non contengono alcun ruolo FSMO e così via), posizionare le macchine virtuali che eseguono tali controller di dominio in un gruppo di disponibilità per una tolleranza di errore migliorata.
 
-toocreate hello macchine virtuali tramite Windows PowerShell anziché hello dell'interfaccia utente, vedere [toocreate usare Azure PowerShell e preconfigurare macchine virtuali basate su Windows](../virtual-machines/windows/classic/create-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
+Per creare le macchine virtuali tramite Windows PowerShell anziché tramite l'interfaccia utente, vedere [Uso di Azure PowerShell per creare e preconfigurare macchine virtuali basate su Windows](../virtual-machines/windows/classic/create-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
 
-1. Nel portale classico hello, fare clic su **New** > **calcolo** > **macchina virtuale** > **dalla raccolta**. Utilizzare i valori toocomplete hello guidata hello. Accettare il valore predefinito hello per un'impostazione a meno che non è necessaria o suggerito un altro valore.
+1. Nel portale classico fare clic su **Nuovo** > **Calcolo** > **Macchina virtuale** > **Da raccolta**. Usare i valori nella seguente tabella per completare la procedura guidata. Accettare il valore predefinito per tutte le impostazioni a meno che non venga suggerito o richiesto un altro valore.
 
    | Pagina della procedura guidata | Valori da specificare |
    | --- | --- |
    |  **Scegli un'immagine** |Windows Server 2012 R2 Datacenter |
-   |  **Configurazione macchina virtuale** |<p>Nome macchina virtuale: digitare un nome con etichetta singola (ad esempio AzureDC1).</p><p>Nuovo nome utente: Hello nome di un utente. Questo utente sarà un membro del gruppo Administrators locale di hello in hello macchina virtuale. Sarà necessario toosign questo nome in toohello VM per hello prima volta. account predefinito di Hello denominato Administrator non funzionerà.</p><p>Nuova password/conferma: digitare una password</p> |
-   |  **Configurazione macchina virtuale** |<p>Il servizio cloud: Scegliere <b>creare un nuovo servizio cloud</b> per hello prima macchina virtuale e selezionare che lo stesso nome del servizio di cloud quando si creano più macchine virtuali che ospiteranno il ruolo di controller di dominio hello.</p><p>Nome DNS del servizio cloud: specificare un nome globalmente univoco</p><p>Regione/gruppo di affinità/rete virtuale: specificare il nome di rete virtuale hello (ad esempio WestUSVNet).</p><p>Account di archiviazione: Scegliere <b>utilizzare un account di archiviazione generato automaticamente</b> per hello prima macchina virtuale e quindi selezionare account di archiviazione stesso nome quando si creano più macchine virtuali che ospiteranno il ruolo di controller di dominio hello.</p><p>Set di disponibilità: scegliere <b>Crea set di disponibilità</b>.</p><p>Nome set di disponibilità: tipo di un nome per la disponibilità di hello impostato quando si crea hello prima macchina virtuale e quindi selezionare stesso nome di quando si creano più macchine virtuali.</p> |
-   |  **Configurazione macchina virtuale** |<p>Selezionare <b>hello installa agente VM</b> e tutte le altre estensioni, è necessario.</p> |
-2. Collegare un tooeach disco macchina virtuale che verrà eseguito hello ruolo di server controller di dominio. disco aggiuntivo Hello è necessario toostore hello AD database, registri e SYSVOL. Specificare le dimensioni del disco hello (ad esempio, 10 GB) e lasciare hello **preferenze Cache dell'Host** impostare troppo**Nessuno**. Per i passaggi di hello, vedere [come tooAttach tooa un disco dati macchina virtuale Windows](../virtual-machines/windows/classic/attach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
-3. Dopo il primo accesso toohello macchina virtuale, aprire **Server Manager** > **servizi File e archiviazione** toocreate un volume su disco con NTFS.
-4. Riservare un indirizzo IP statico per le macchine virtuali che eseguiranno il ruolo di controller di dominio hello. tooreserve un indirizzo IP statico, scaricare installazione guidata piattaforma Web di Microsoft hello e [installare Azure PowerShell](/powershell/azure/overview) ed eseguire il cmdlet Set-AzureStaticVNetIP hello. ad esempio:
+   |  **Configurazione macchina virtuale** |<p>Nome macchina virtuale: digitare un nome con etichetta singola (ad esempio AzureDC1).</p><p>Nuovo nome utente: digitare il nome di un utente. Questo utente sarà membro del gruppo Administrators locale nella macchina virtuale. Questo nome sarà necessario per accedere alla macchina virtuale per la prima volta. L'account predefinito denominato Administrator non funzionerà.</p><p>Nuova password/conferma: digitare una password</p> |
+   |  **Configurazione macchina virtuale** |<p>Servizio cloud: scegliere <b>Crea un nuovo servizio cloud</b> per la prima macchina virtuale e selezionare lo stesso nome di servizio cloud quando si creano più VM che ospiteranno il ruolo di controller di dominio.</p><p>Nome DNS del servizio cloud: specificare un nome globalmente univoco</p><p>Regione/Gruppo di affinità/Rete virtuale: specificare un nome di rete virtuale (come WestUSVNet).</p><p>Account di archiviazione: scegliere <b>Usa un account di archiviazione generato automaticamente</b> per la prima macchina virtuale e quindi selezionare lo stesso nome di account di archiviazione quando si creano più VM che ospiteranno il ruolo di controller di dominio.</p><p>Set di disponibilità: scegliere <b>Crea set di disponibilità</b>.</p><p>Nome set di disponibilità: digitare un nome per il set di disponibilità impostato quando si crea la prima VM e quindi selezionare lo stesso nome quando si creano più VM.</p> |
+   |  **Configurazione macchina virtuale** |<p>Selezionare <b>Installa l'agente di macchine virtuali</b> ed eventuali altre estensioni necessarie.</p> |
+2. Collegare un disco a ogni macchina virtuale che eseguirà il ruolo del server di controller di dominio. Il disco aggiuntivo necessario per archiviare il database di Active Directory, log e SYSVOL. Specificare le dimensioni per il disco (ad esempio 10 GB) e lasciare l'opzione **Preferenze cache dell'host** impostata su **Nessuna**. Per la procedura, vedere [Come collegare un disco dati a una macchina virtuale Windows](../virtual-machines/windows/classic/attach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
+3. Dopo avere effettuato la prima connessione alla VM, aprire **Server Manager** > **Servizi file e archiviazione** per creare un volume in questo disco usando NTFS.
+4. Riservare un indirizzo IP statico per le macchine virtuali che eseguiranno il ruolo di controller di dominio. Per riservare un indirizzo IP statico, scaricare l'Installazione guidata piattaforma Web Microsoft e [installare Azure PowerShell](/powershell/azure/overview) , quindi eseguire il cmdlet Set-AzureStaticVNetIP. Ad esempio:
 
     `Get-AzureVM -ServiceName AzureDC1 -Name AzureDC1 | Set-AzureStaticVNetIP -IPAddress 10.0.0.4 | Update-AzureVM`
 
 Per altre informazioni sull'impostazione di un indirizzo IP statico, vedere [Configurare un indirizzo IP interno statico per una macchina virtuale](../virtual-network/virtual-networks-reserved-private-ip.md).
 
 ## <a name="install-windows-server-active-directory"></a>Installare Windows Server Active Directory
-Utilizzare hello stessa routine troppo[installare di dominio Active Directory](https://technet.microsoft.com/library/jj574166.aspx) utilizzare locale (ovvero, è possibile utilizzare Windows PowerShell, un file di risposte o hello dell'interfaccia utente). È necessario tooinstall le credenziali di amministratore tooprovide una nuova foresta. percorso di hello toospecify per hello database di Active Directory, i registri e SYSVOL, modificare il percorso di archiviazione predefinito hello da hello unità toohello dati aggiuntivi disco del sistema operativo che è collegato toohello macchina virtuale.
+[Installare Servizi di dominio Active Directory](https://technet.microsoft.com/library/jj574166.aspx) usando la procedura per l'installazione locale, ovvero usando l'interfaccia utente, un file di risposte o Windows PowerShell. Per installare una nuova foresta è necessario fornire le credenziali di amministratore. Per specificare il percorso del database di Active Directory, dei log e di SYSVOL, modificare il percorso di archiviazione predefinito dall'unità del sistema operativo al disco dati aggiuntivo precedentemente collegato alla VM.
 
-Al termine dell'installazione di controller di dominio hello, riconnettersi toohello macchina virtuale e accedere toohello controller di dominio. Memorizza le credenziali di dominio toospecify.
+Al termine dell'installazione del controller di dominio, connettersi nuovamente alla VM e accedere al controller di dominio. Ricordare di specificare le credenziali del dominio.
 
-## <a name="reset-hello-dns-server-for-hello-azure-virtual-network"></a>Reimpostare il server DNS hello per hello rete virtuale di Azure
-1. Reimpostare l'impostazione di server d'inoltro DNS hello su hello nuovo controller di dominio/server DNS.
+## <a name="reset-the-dns-server-for-the-azure-virtual-network"></a>Reimpostare il server DNS per la rete virtuale di Azure
+1. Reimpostare le impostazioni del server di inoltro DNS nel nuovo controller di dominio o nel server DNS.
    1. In Server Manager fare clic su **Strumenti**  > **DNS**.
-   2. In **gestore DNS**, fare doppio clic su nome hello del server DNS hello e fare clic su **proprietà**.
-   3. In hello **server d'inoltro** scheda e scegliere l'indirizzo IP hello del server d'inoltro hello **modifica**.  Selezionare l'indirizzo IP hello e fare clic su **eliminare**.
-   4. Fare clic su **OK** editor hello tooclose e **Ok** nuovamente le proprietà di server DNS di tooclose hello.
-2. Aggiornare impostazioni hello del server DNS per la rete virtuale hello.
-   1. Fare clic su **reti virtuali** > fare doppio clic sulla rete virtuale di hello creata > **configura** > **server DNS**, digitare il nome di hello e hello DIP di uno di Hello macchine virtuali che esegue il ruolo di server controller di dominio/DNS hello e fare clic su **salvare**.
-   2. Selezionare hello macchina virtuale e fare clic su **riavviare** tootrigger hello VM tooconfigure impostazioni del resolver DNS con indirizzo IP di hello del server DNS nuovo hello.
+   2. In **Gestore DNS** fare clic con il pulsante destro del mouse sul nome del server DNS e scegliere **Proprietà**.
+   3. Nella scheda **Server di inoltro** fare clic sull'indirizzo IP del server di inoltro, quindi scegliere **Modifica**.  Selezionare l'indirizzo IP e fare clic su **Elimina**.
+   4. Fare clic su **OK** per chiudere l'editor, quindi nuovamente su **OK** per chiudere le proprietà del server DNS.
+2. Aggiornare l'impostazione del server DNS per la rete virtuale.
+   1. Fare clic su **Reti virtuali** > fare doppio clic sulla rete virtuale creata > **Configura** > **Server DNS**, quindi digitare il nome e il DIP di una delle macchine virtuali che eseguono il ruolo del controller di dominio o del server DNS e fare clic su **Salva**.
+   2. Selezionare la VM e fare clic su **Restart** per fare in modo che la VM configuri le impostazioni del resolver DNS con l'indirizzo IP del nuovo server DNS.
 
 ## <a name="create-vms-for-domain-members"></a>Creare macchine virtuali per i membri del dominio
-1. Ripetere hello seguendo i passaggi toocreate macchine virtuali toorun come server applicazioni. Accettare il valore predefinito hello per un'impostazione a meno che non è necessaria o suggerito un altro valore.
+1. Ripetere i seguenti passaggi per creare macchine virtuali che vengano eseguite come server applicazioni. Accettare il valore predefinito per tutte le impostazioni a meno che non venga suggerito o richiesto un altro valore.
 
    | Pagina della procedura guidata | Valori da specificare |
    | --- | --- |
    |  **Scegli un'immagine** |Windows Server 2012 R2 Datacenter |
-   |  **Configurazione macchina virtuale** |<p>Nome macchina virtuale: digitare un nome con etichetta singola (ad esempio AppServer1).</p><p>Nuovo nome utente: Hello nome di un utente. Questo utente sarà un membro del gruppo Administrators locale di hello in hello macchina virtuale. Sarà necessario toosign questo nome in toohello VM per hello prima volta. account predefinito di Hello denominato Administrator non funzionerà.</p><p>Nuova password/conferma: digitare una password</p> |
-   |  **Configurazione macchina virtuale** |<p>Il servizio cloud: Scegliere **creare un nuovo servizio cloud** per hello prima VM e che il nome del servizio stesso cloud quando si creano più macchine virtuali selezionare ospiterà applicazione hello.</p><p>Nome DNS del servizio cloud: specificare un nome globalmente univoco</p><p>Regione/gruppo di affinità/rete virtuale: specificare il nome di rete virtuale hello (ad esempio WestUSVNet).</p><p>Account di archiviazione: Scegliere **utilizzare un account di archiviazione generato automaticamente** per hello prima macchina virtuale e quindi selezionare account di archiviazione stesso nome quando si crea più macchine virtuali che ospiterà applicazione hello.</p><p>Set di disponibilità: scegliere **Crea set di disponibilità**.</p><p>Nome set di disponibilità: tipo di un nome per la disponibilità di hello impostato quando si crea hello prima macchina virtuale e quindi selezionare stesso nome di quando si creano più macchine virtuali.</p> |
-   |  **Configurazione macchina virtuale** |<p>Selezionare <b>hello installa agente VM</b> e tutte le altre estensioni, è necessario.</p> |
-2. Dopo il provisioning di ogni macchina virtuale, accedere e creare un join toohello dominio. In **Server Manager** fare clic su **Server locale** > **GRUPPO DI LAVORO** > **Modifica...** e quindi selezionare **dominio** e nome del tipo hello del dominio locale. Fornire le credenziali di un utente di dominio e quindi riavviare hello VM toocomplete hello aggiunta a un dominio.
+   |  **Configurazione macchina virtuale** |<p>Nome macchina virtuale: digitare un nome con etichetta singola (ad esempio AppServer1).</p><p>Nuovo nome utente: digitare il nome di un utente. Questo utente sarà membro del gruppo Administrators locale nella macchina virtuale. Questo nome sarà necessario per accedere alla macchina virtuale per la prima volta. L'account predefinito denominato Administrator non funzionerà.</p><p>Nuova password/conferma: digitare una password</p> |
+   |  **Configurazione macchina virtuale** |<p>Servizio cloud: scegliere **Crea un nuovo servizio cloud** per la prima macchina virtuale e selezionare lo stesso nome di servizio cloud quando si creano più VM che ospiteranno l'applicazione.</p><p>Nome DNS del servizio cloud: specificare un nome globalmente univoco</p><p>Regione/Gruppo di affinità/Rete virtuale: specificare un nome di rete virtuale (come WestUSVNet).</p><p>Account di archiviazione: scegliere **Usa un account di archiviazione generato automaticamente** per la prima macchina virtuale e quindi selezionare lo stesso nome account di archiviazione quando si creano più VM che ospiteranno l'applicazione.</p><p>Set di disponibilità: scegliere **Crea set di disponibilità**.</p><p>Nome set di disponibilità: digitare un nome per il set di disponibilità impostato quando si crea la prima VM e quindi selezionare lo stesso nome quando si creano più VM.</p> |
+   |  **Configurazione macchina virtuale** |<p>Selezionare <b>Installa l'agente di macchine virtuali</b> ed eventuali altre estensioni necessarie.</p> |
+2. Dopo avere eseguito il provisioning di ogni macchina virtuale, accedere e aggiungerla al dominio. In **Server Manager** fare clic su **Server locale** > **GRUPPO DI LAVORO** > **Modifica...** e quindi selezionare **Dominio** e digitare il nome del dominio locale. Specificare le credenziali di un utente di dominio e quindi riavviare la macchina virtuale per completare l'aggiunta al dominio.
 
-toocreate hello macchine virtuali tramite Windows PowerShell anziché hello dell'interfaccia utente, vedere [toocreate usare Azure PowerShell e preconfigurare macchine virtuali basate su Windows](../virtual-machines/windows/classic/create-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
+Per creare le macchine virtuali tramite Windows PowerShell anziché tramite l'interfaccia utente, vedere [Uso di Azure PowerShell per creare e preconfigurare macchine virtuali basate su Windows](../virtual-machines/windows/classic/create-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
 
 Per altre informazioni su come usare Windows PowerShell, vedere [Iniziare a utilizzare i cmdlet di Azure](/powershell/azure/overview) e [Informazioni di riferimento sui cmdlet di Azure](/powershell/azure/get-started-azureps).
 
 ## <a name="see-also"></a>Vedere anche
-* [La modalità della foresta tooinstall un nuovo ambiente Active Directory in una rete virtuale di Azure](http://channel9.msdn.com/Series/Microsoft-Azure-Tutorials/How-to-install-a-new-Active-Directory-forest-on-an-Azure-virtual-network)
+* [Installazione di una nuova foresta Active Directory in una rete virtuale di Azure](http://channel9.msdn.com/Series/Microsoft-Azure-Tutorials/How-to-install-a-new-Active-Directory-forest-on-an-Azure-virtual-network)
 * [Linee guida per la distribuzione di Active Directory di Windows Server in macchine virtuali di Azure](https://msdn.microsoft.com/library/azure/jj156090.aspx)
 * [Configura una VPN da sito a sito](../vpn-gateway/vpn-gateway-site-to-site-create.md)
 * [Installazione di un controller di dominio Active Directory di replica in una rete virtuale di Azure](active-directory-install-replica-active-directory-domain-controller.md)
 * [Microsoft Azure IaaS per professionisti IT: (01) Dati fondamentali delle macchine virtuali](http://channel9.msdn.com/Series/Windows-Azure-IT-Pro-IaaS/01)
 * [Microsoft Azure IaaS per professionisti IT: (05) Creazione di reti virtuali e connettività cross-premise](http://channel9.msdn.com/Series/Windows-Azure-IT-Pro-IaaS/05)
 * [Panoramica di Rete virtuale.](../virtual-network/virtual-networks-overview.md)
-* [Come tooinstall e configurare Azure PowerShell](/powershell/azure/overview)
+* [Come installare e configurare Azure PowerShell](/powershell/azure/overview)
 * [Azure PowerShell](/powershell/azure/overview)
 * [Informazioni di riferimento sui cmdlet di Azure](/powershell/azure/get-started-azureps)
 * [Impostare un indirizzo IP statico per una macchina virtuale di Azure](http://windowsitpro.com/windows-azure/set-azure-vm-static-ip-address)
-* [Come indirizzo IP statico di tooassign tooAzure VM](http://www.bhargavs.com/index.php/2014/03/13/how-to-assign-static-ip-to-azure-vm/)
+* [Come assegnare un IP statico a una macchina virtuale di Azure](http://www.bhargavs.com/index.php/2014/03/13/how-to-assign-static-ip-to-azure-vm/)
 * [Installare una nuova foresta Active Directory](https://technet.microsoft.com/library/jj574166.aspx)
-* [Introduzione tooActive Directory Domain Services (AD DS) Virtualization (Level 100)](https://technet.microsoft.com/library/hh831734.aspx)
+* [Introduzione alla virtualizzazione di Servizi di dominio Active Directory (livello 100)](https://technet.microsoft.com/library/hh831734.aspx)
 
 <!--Image references-->
 [1]: ./media/active-directory-new-forest-virtual-machine/AD_Forest.png

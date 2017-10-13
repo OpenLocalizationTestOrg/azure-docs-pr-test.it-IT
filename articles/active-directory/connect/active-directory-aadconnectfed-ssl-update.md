@@ -1,6 +1,6 @@
 ---
-title: 'Azure AD Connect: Certificato SSL aggiornamento hello per una farm di Active Directory Federation Services (ADFS) | Documenti Microsoft'
-description: Questo documento dettagli hello passaggi tooupdate hello certificato SSL di una farm di ADFS con Azure AD Connect.
+title: 'Azure AD Connect: Aggiornare il certificato SSL per una farm Active Directory Federation Services (AD FS) | Microsoft Docs'
+description: Questo documento illustra la procedura necessaria per aggiornare il certificato SSL di una farm AD FS con Azure AD Connect.
 services: active-directory
 keywords: azure ad connect, aggiornamento ssl ad fs, aggiornamento certificato ad fs, modifica certificato ad fs, nuovo certificato ad fs, certificato ad fs, aggiornare certificato ssl ad fs, aggiornare ad fs certificato ssl, configurare certificato ssl ad fs, ad fs, ssl, certificato, certificato comunicazioni di servizio ad fs, aggiornare federazione, configurare federazione, aad connect
 authors: anandyadavmsft
@@ -14,93 +14,93 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/02/2017
 ms.author: anandy
-ms.openlocfilehash: bce7f75aab83b6abacb8472a6895054d137e10e0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 87807a203d71b3abfe3e93132eb7d0b82b14b4ee
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="update-hello-ssl-certificate-for-an-active-directory-federation-services-ad-fs-farm"></a>Aggiorna il certificato SSL di hello per una farm di Active Directory Federation Services (ADFS)
+# <a name="update-the-ssl-certificate-for-an-active-directory-federation-services-ad-fs-farm"></a>Aggiornare il certificato SSL per una farm Active Directory Federation Services (AD FS)
 
 ## <a name="overview"></a>Panoramica
-In questo articolo viene descritto come utilizzare certificato SSL di Azure AD Connect tooupdate hello per una farm di Active Directory Federation Services (ADFS). È possibile utilizzare un certificato SSL hello Azure AD Connect strumento tooeasily aggiornamento hello per farm ADFS hello AD anche se hello utente metodo di accesso selezionato non è AD FS.
+Questo articolo descrive come usare Azure AD Connect per aggiornare il certificato SSL relativo a una farm Active Directory Federation Services (AD FS). È possibile usare lo strumento Azure AD Connect per aggiornare facilmente il certificato SSL per la farm AD FS anche il metodo di accesso utente selezionato non è AD FS.
 
-È possibile eseguire l'intera operazione di hello di aggiornamento certificato SSL per la farm di hello AD FS in tutti i server Proxy applicazione Web (WAP) in tre passaggi semplici e federazione:
+È possibile eseguire l'intera operazione di aggiornamento del certificato SSL per la farm AD FS in tutti i server federativi e proxy applicazione Web in tre semplici passaggi:
 
 ![Tre passaggi](./media/active-directory-aadconnectfed-ssl-update/threesteps.png)
 
 
 >[!NOTE]
->toolearn ulteriori informazioni sui certificati utilizzati da ADFS, vedere [informazioni sui certificati utilizzati da ADFS](https://technet.microsoft.com/library/cc730660.aspx).
+>Per altre informazioni sui certificati usati da AD FS, vedere [Informazioni sui certificati utilizzati da AD FS](https://technet.microsoft.com/library/cc730660.aspx).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
 * **Farm AD FS**: assicurarsi che la farm AD FS sia basata su Windows Server 2012 R2 o versioni successive.
-* **Azure AD Connect**: verificare che hello versione di Azure AD Connect è 1.1.443.0 o versione successiva. Si userà attività hello **certificato SSL ADFS aggiornamento AD**.
+* **Azure AD Connect**: assicurarsi che la versione di Azure AD Connect sia 1.1.443.0 o successiva. Si userà l'attività **Aggiorna il certificato SSL di AD FS**.
 
 ![Attività Aggiorna il certificato SSL di AD FS](./media/active-directory-aadconnectfed-ssl-update/updatessltask.png)
 
 ## <a name="step-1-provide-ad-fs-farm-information"></a>Passaggio 1: Specificare informazioni sulla farm AD FS
 
-Azure AD Connect tenta automaticamente da tooobtain informazioni farm di hello AD FS:
-1. Esecuzione di query su informazioni relative alla farm hello da ADFS (Windows Server 2016 o versione successiva).
-2. Un riferimento a informazioni hello esecuzioni precedenti, che vengono archiviate localmente con Azure AD Connect.
+Azure AD Connect tenta di ottenere automaticamente informazioni sulla farm AD FS nei modi seguenti:
+1. Chiedendo informazioni sulla farm ad AD FS (Windows Server 2016 o versione successiva).
+2. Facendo riferimento alle informazioni ottenute da esecuzioni precedenti, archiviate localmente con Azure AD Connect.
 
-È possibile modificare l'elenco di hello del server che vengono visualizzati aggiungendo o rimuovendo hello server tooreflect hello configurazione corrente delle farm di hello AD FS. Non appena viene forniti informazioni sul server hello, Azure AD Connect consente di visualizzare la connettività hello e stato corrente del certificato SSL.
+L'elenco dei server visualizzati può essere modificato aggiungendo o rimuovendo i server in modo da riflettere la configurazione corrente della farm AD FS. Non appena riesce a ottenere informazioni sui server, Azure AD Connect visualizza la connettività e lo stato corrente del certificato SSL.
 
 ![Informazioni sui server AD FS](./media/active-directory-aadconnectfed-ssl-update/adfsserverinfo.png)
 
-Se l'elenco di hello contiene un server che non è più parte della farm ADFS hello Active Directory, fare clic su **rimuovere** server hello toodelete dall'elenco di hello del server nella farm ADFS.
+Se l'elenco contiene un server che non fa più parte della farm AD FS, fare clic su **Rimuovi** per eliminare il server dall'elenco dei server della farm AD FS.
 
 ![Server offline nell'elenco](./media/active-directory-aadconnectfed-ssl-update/offlineserverlist.png)
 
 >[!NOTE]
-> Rimozione di un server dall'elenco di hello del server per AD FS farm in Azure AD Connect è un'operazione locale e aggiornamenti hello informazioni per hello farm ADFS in locale da Azure AD Connect. Azure AD Connect non modifica la configurazione hello su ADFS tooreflect hello modifica.    
+> La rimozione di un server dall'elenco dei server della farm AD FS in Azure AD Connect è un'operazione locale e aggiorna le informazioni sulla farm AD FS mantenute localmente da Azure AD Connect. A seguito di questa operazione Azure AD Connect non modifica la configurazione in AD FS.    
 
 ## <a name="step-2-provide-a-new-ssl-certificate"></a>Passaggio 2: Specificare un nuovo certificato SSL
 
-Dopo aver verificato informazioni hello sui server della farm di ADFS, Azure AD Connect richiede nuovo certificato SSL di hello. Fornire un'installazione di hello di protetto da password PFX certificato toocontinue.
+Dopo aver confermato le informazioni sui server della farm AD FS, Azure AD Connect chiede il nuovo certificato SSL. Fornire un certificato PFX protetto da password per continuare l'installazione.
 
 ![Certificato SSL](./media/active-directory-aadconnectfed-ssl-update/certificate.png)
 
-Dopo aver fornito il certificato di hello, Azure AD Connect passa attraverso una serie di prerequisiti. Verificare tooensure certificato hello che hello certificato sia corretta per la farm ADFS hello:
+Dopo aver specificato il certificato, Azure AD Connect esegue una serie di verifiche dei prerequisiti per assicurarsi che il certificato sia corretto per la farm AD FS:
 
--   Hello nome soggetto alternativo di nome/soggetto certificato hello è hello stesso come nome del servizio federativo hello oppure è un certificato con caratteri jolly.
--   certificato di Hello è valido per più di 30 giorni.
--   catena di certificati Hello è valido.
--   certificato Hello è protetto da password.
+-   Il nome soggetto o il nome soggetto alternativo del certificato deve corrispondere al nome del servizio federativo oppure il certificato deve contenere caratteri jolly.
+-   Il certificato deve essere valido per più di 30 giorni.
+-   La catena di certificati deve essere valida.
+-   Il certificato deve essere protetto da password.
 
-## <a name="step-3-select-servers-for-hello-update"></a>Passaggio 3: Selezionare i server per l'aggiornamento di hello
+## <a name="step-3-select-servers-for-the-update"></a>Passaggio 3: Selezionare i server per l'aggiornamento
 
-Nel passaggio successivo hello, selezionare Server hello che richiedono i certificati SSL di hello toohave aggiornata. Impossibile selezionare i server che non sono in linea per l'aggiornamento di hello.
+Il passaggio successivo consiste nel selezionare i server in cui deve essere aggiornato il certificato SSL. I server offline non possono essere selezionati per l'aggiornamento.
 
-![Selezionare i server tooupdate](./media/active-directory-aadconnectfed-ssl-update/selectservers.png)
+![Selezionare i server da aggiornare](./media/active-directory-aadconnectfed-ssl-update/selectservers.png)
 
-Dopo aver completato la configurazione hello, Azure AD Connect consente di visualizzare il messaggio hello che indica lo stato di hello dell'aggiornamento hello e fornisce un'opzione tooverify hello ADFS Accedi.
+Dopo aver completato la configurazione, Azure AD Connect visualizza un messaggio che indica lo stato dell'aggiornamento e rende disponibile un'opzione per verificare l'accesso di AD FS.
 
 ![Configurazione completata](./media/active-directory-aadconnectfed-ssl-update/configurecomplete.png)   
 
 ## <a name="faqs"></a>Domande frequenti
 
-* **Quale deve essere hello nome del soggetto hello certificato per il certificato SSL di AD FS nuovo hello?**
+* **Quale deve essere il nome soggetto del certificato per il nuovo certificato SSL di AD FS?**
 
-    Azure AD Connect controlla se hello soggetto alternativo di nome/nome del soggetto hello certificato contiene il nome di servizio federativo hello. Ad esempio, se il nome del servizio federativo è fs.contoso.com, nome soggetto di nome/alternativo del soggetto hello deve essere fs.contoso.com.  Sono accettati anche certificati con caratteri jolly.
+    Azure AD Connect verifica che il nome soggetto o il nome soggetto alternativo del certificato includa il nome del servizio federativo. Ad esempio, se il nome del servizio federativo è fs.contoso.com, il nome soggetto o il nome soggetto alternativo deve essere fs.contoso.com.  Sono accettati anche certificati con caratteri jolly.
 
-* **Motivo per cui viene chiesto di credenziali nuovamente nella pagina server WAP di hello?**
+* **Perché vengono nuovamente richieste le credenziali nella pagina del server WAP?**
 
-    Se credenziali hello specificate per la connessione server ADFS tooAD non dispongono anche di server WAP di hello privilegio toomanage hello, Azure AD Connect richiede le credenziali che dispongono di privilegi amministrativi sui server WAP hello.
+    Se alle credenziali specificate per la connessione ai server AD FS non sono associati anche i privilegi necessari per gestire i server WAP, Azure AD Connect richiede credenziali con privilegi amministrativi per i server WAP.
 
-* **server Hello viene visualizzato come offline. Cosa devo fare?**
+* **Il server appare offline Cosa devo fare?**
 
-    Azure AD Connect non è possibile eseguire qualsiasi operazione se hello server è offline. Se server hello fa parte di hello farm AD FS, controllare server toohello di connettività hello. Dopo avere risolto il problema di hello, premere hello aggiornamento icona tooupdate hello dello stato nella procedura guidata hello. Se il server di hello faceva parte di hello farm in precedenza, ma ora non esiste più, fare clic su **rimuovere** toodelete dall'elenco di hello del server che si connettono AD Azure gestisce. Rimozione di server hello dall'elenco di hello in Azure AD Connect non modifica hello stessa configurazione di ADFS. Se si usa ADFS in Windows Server 2016 o versione successiva, hello server rimane nelle impostazioni di configurazione hello e verrà visualizzato nuovamente hello successivo hello attività viene eseguita.
+    Se il server è offline, Azure AD Connect non può eseguire alcuna operazione. Se il server fa parte della farm AD FS, controllare la connettività al server. Dopo avere risolto il problema, premere l'icona di aggiornamento per aggiornare lo stato nella procedura guidata. Se il server faceva parte della farm in precedenza, ma ora non esiste più, fare clic su **Rimuovi** per eliminarlo dall'elenco dei server gestiti da Azure AD Connect. La rimozione di un server dall'elenco in Azure AD Connect non modifica la configurazione di AD FS. Se si usa AD FS in Windows Server 2016 o versioni successive, il server rimane nelle impostazioni di configurazione e verrà visualizzato nuovamente in occasione dell'esecuzione successiva dell'attività.
 
-* **È possibile aggiornare un sottoinsieme di my Server farm con nuovo certificato SSL di hello?**
+* **È possibile aggiornare un subset di server della farm con il nuovo certificato SSL?**
 
-    Sì. È sempre possibile eseguire attività di hello **certificato SSL di aggiornamento** nuovamente i hello tooupdate server rimanenti. In hello **selezionare i server per SSL certificato aggiornamento** pagina, è possibile ordinare l'elenco di hello del server in **data di scadenza SSL** tooeasily i server di hello di accesso che non sono ancora aggiornati.
+    Sì. In qualsiasi momento, è possibile eseguire nuovamente l'attività **Aggiorna certificato SSL** per aggiornare i server rimanenti. Nella pagina **Selezionare i server per l'aggiornamento del certificato SSL** è possibile ordinare l'elenco dei server in base a **Data di scadenza SSL** per accedere con facilità ai server non ancora aggiornati.
 
-* **Rimosso server hello hello precedente esecuzione, ma ancora viene visualizzato come offline ed è elencato nella pagina di annuncio hello server ADFS. Anche dopo che è stato rimosso, perché è ancora presenti server offline hello?**
+* **Un server che era stato rimosso durante l'esecuzione precedente è ancora visualizzato come offline ed elencato nella pagina dei server AD FS. Perché il server offline è ancora presente dopo essere stato rimosso?**
 
-    Rimozione di server hello dall'elenco di hello in Azure AD Connect non rimuoverlo in hello configurazione di ADFS. Azure AD Connect fa riferimento AD FS (Windows Server 2016 o versioni successive) per qualsiasi informazione sulla farm hello. Se il server di hello è ancora presente nella configurazione di ADFS hello, sarà elencato in elenco hello.  
+    La rimozione di un server dall'elenco di Azure AD Connect non lo rimuove dalla configurazione di AD FS. Azure AD Connect fa riferimento ad AD FS (Windows Server 2016 o versioni successive) per qualsiasi informazione sulla farm. Se il server è ancora presente nella configurazione di AD FS, verrà nuovamente incluso nell'elenco.  
 
 ## <a name="next-steps"></a>Passaggi successivi
 

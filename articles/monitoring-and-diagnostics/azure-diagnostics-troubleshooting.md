@@ -1,5 +1,5 @@
 ---
-title: Diagnostica Azure aaaTroubleshooting | Documenti Microsoft
+title: Risoluzione dei problemi relativi a Diagnostica di Azure | Documentazione Microsoft
 description: Risoluzione dei problemi per l'uso di Diagnostica di Azure nelle macchine virtuali di Azure, in Service Fabric o in Servizi cloud.
 services: monitoring-and-diagnostics
 documentationcenter: .net
@@ -14,32 +14,33 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: robb
-ms.openlocfilehash: daaf9fa4c40982eb9ba04030d7e8ea1ad9fe085b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: b03265b52886b30e4b9de0b0293e5dadd6d2413a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-diagnostics-troubleshooting"></a>Risoluzione dei problemi di Diagnostica di Azure
-Risoluzione dei problemi relativi a informazioni pertinenti toousing diagnostica Azure. Per altre informazioni su Diagnostica di Azure, vedere [Panoramica di Diagnostica di Azure](azure-diagnostics.md).
+Questo articolo contiene informazioni sulla risoluzione dei problemi relativi all'uso di Diagnostica di Azure. Per altre informazioni su Diagnostica di Azure, vedere la [panoramica di Diagnostica di Azure](azure-diagnostics.md).
 
 ## <a name="logical-components"></a>Componenti logici
-**Avvio di plug-in di diagnostica (DiagnosticsPluginLauncher.exe)**: avvia hello l'estensione diagnostica Azure. Serve come voce hello processo del punto.
+**Utilità di avvio del plug-in di diagnostica (DiagnosticsPluginLauncher.exe)**: avvia l'estensione Diagnostica di Azure. Svolge la funzione di processo del punto di ingresso.
 
-**Plug-in di diagnostica (DiagnosticsPlugin.exe)**: processo principale che viene avviata dall'utilità di avvio di hello precedente e configura hello Agente monitoraggio, viene avviato e gestisce la durata. 
+**Plug-in di Diagnostica (DiagnosticsPlugin.exe)**: configura e avvia l'agente di monitoraggio e ne gestisce il ciclo di vita. È il principale processo avviato dall'utilità di avvio.
 
-**Agente di monitoraggio (MonAgent\*.exe processi)**: questi processi hello bulk di lavoro hello; ad esempio, di monitoraggio, raccolta e il trasferimento dei dati di diagnostica di hello.  
+**Agente di monitoraggio (processi MonAgent\*.exe)**: monitora, raccoglie e trasferisce i dati di diagnostica.  
 
 ## <a name="logartifact-paths"></a>Percorsi di log ed elementi
-Ecco gli elementi e i registri di hello percorsi toosome importanti. Si continuiamo riferimento toothese in tutto il resto di hello del documento hello:
-### <a name="cloud-services"></a>Servizi cloud
+Di seguito sono elencati i percorsi di alcuni log ed elementi importanti. Nel resto del documento verrà fatto riferimento a queste informazioni.
+
+### <a name="azure-cloud-services"></a>Servizi cloud di Azure
 | Elemento | Path |
 | --- | --- |
 | **File di configurazione di Diagnostica di Azure** | %SystemDrive%\Packages\Plugins\Microsoft.Azure.Diagnostics.PaaSDiagnostics\<versione>\Config.txt |
 | **File di log** | C:\Logs\Plugins\Microsoft.Azure.Diagnostics.PaaSDiagnostics\<versione>\ |
 | **Archivio locale dei dati di diagnostica** | C:\Resources\Directory\<CloudServiceDeploymentID>.\<NomeRuolo>.DiagnosticStore\WAD0107\Tables |
 | **File di configurazione dell'agente di monitoraggio** | C:\Resources\Directory\<CloudServiceDeploymentID>.\<NomeRuolo>.DiagnosticStore\WAD0107\Configuration\MaConfig.xml |
-| **Pacchetto dell'estensione di diagnostica di Azure** | %SystemDrive%\Packages\Plugins\Microsoft.Azure.Diagnostics.PaaSDiagnostics\<versione> |
+| **Pacchetto dell'estensione Diagnostica di Azure** | %SystemDrive%\Packages\Plugins\Microsoft.Azure.Diagnostics.PaaSDiagnostics\<versione> |
 | **Percorso dell'utilità di raccolta dei log** | %SystemDrive%\Packages\GuestAgent\ |
 | **File di log MonAgentHost** | C:\Resources\Directory\<CloudServiceDeploymentID>.\<RoleName>.DiagnosticStore\WAD0107\Configuration\MonAgentHost.<seq_num>.log |
 
@@ -51,16 +52,18 @@ Ecco gli elementi e i registri di hello percorsi toosome importanti. Si continui
 | **Archivio locale dei dati di diagnostica** | C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Diagnostics.IaaSDiagnostics\<VersioneDiagnostica>\WAD0107\Tables |
 | **File di configurazione dell'agente di monitoraggio** | C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Diagnostics.IaaSDiagnostics\<VersioneDiagnostica>\WAD0107\Configuration\MaConfig.xml |
 | **File di stato** | C:\Packages\Plugins\Microsoft.Azure.Diagnostics.IaaSDiagnostics\<versione>\Status |
-| **Pacchetto dell'estensione di diagnostica di Azure** | C:\Packages\Plugins\Microsoft.Azure.Diagnostics.IaaSDiagnostics\<VersioneDiagnostica>|
+| **Pacchetto dell'estensione Diagnostica di Azure** | C:\Packages\Plugins\Microsoft.Azure.Diagnostics.IaaSDiagnostics\<VersioneDiagnostica>|
 | **Percorso dell'utilità di raccolta dei log** | C:\WindowsAzure\Packages |
 | **File di log MonAgentHost** | C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Diagnostics.IaaSDiagnostics\<DiagnosticsVersion>\WAD0107\Configuration\MonAgentHost.<seq_num>.log |
 
-## <a name="metric-data-doesnt-show-in-azure-portal"></a>I dati relativi alle metriche non sono visualizzati nel portale di Azure
-Diagnostica di Microsoft Azure fornisce una serie di dati relativi alle metriche che possono essere visualizzati nel portale di Azure. Se si verificano problemi con visualizzare questi dati nel portale, account di archiviazione di diagnostica hello controllo -> WADMetrics\* tabella toosee se esistono record metrica corrispondenti hello. In questo caso, hello PartitionKey della tabella hello è hello ID di risorsa di macchina virtuale o un set di scalabilità della macchina virtuale e hello RowKey è il nome della metrica hello, ovvero il nome di contatore delle prestazioni.
+## <a name="metric-data-doesnt-appear-in-the-azure-portal"></a>Mancata visualizzazione dei dati relativi alle metriche nel portale di Azure
+Diagnostica di Azure offre dati relativi alle metriche che possono essere visualizzati nel portale di Azure. In caso di problemi con la visualizzazione dei dati nel portale, controllare la tabella WADMetrics\* nell'account di archiviazione di Diagnostica di Azure per verificare se siano presenti i record delle metriche corrispondenti. 
 
-Se l'ID di risorsa hello è errata, controllo configurazione di diagnostica -> metriche -> ResourceId toosee se l'ID di risorsa hello sia impostata correttamente.
+Il valore **PartitionKey** della tabella è l'ID risorsa, la macchina virtuale o il set di scalabilità di macchine virtuali. **RowKey** è il nome della metrica (detto anche nome del contatore delle prestazioni).
 
-Se non sono presenti dati di metrica specifica hello, controllo configurazione di diagnostica -> toosee PerformanceCounter metrica hello (contatore prestazioni) è incluso. Si abilita hello seguenti contatori per impostazione predefinita.
+Se l'ID risorsa non è corretto, controllare in **Diagnostics** **Configuration** (Configurazione di diagnostica) > **Metriche** > **ResourceId** se l'ID risorsa è impostato correttamente.
+
+Se non sono presenti dati per la metrica specifica, controllare in **Diagnostics Configuration** (Configurazione di diagnostica) > **PerformanceCounter** se la metrica (contatore delle prestazioni) è inclusa. Per impostazione predefinita sono abilitati i contatori seguenti:
 - \Processor(_Total)\% Processor Time
 - \Memory\Available Bytes
 - \ASP.NET Applications(__Total__)\Requests/Sec
@@ -80,60 +83,76 @@ Se non sono presenti dati di metrica specifica hello, controllo configurazione d
 - \LogicalDisk(D:)\Disk Write Bytes/sec
 - \LogicalDisk(D:)\Disk Read Bytes/sec
 
-Se la configurazione hello sia impostata correttamente ma non è ancora possibile visualizzare i dati di metrica hello, seguire le istruzioni di hello seguito per ulteriori indagini hello.
+Se la configurazione è impostata correttamente ma i dati relativi alle metriche non vengono comunque visualizzati, usare le linee guida seguenti per risolvere il problema.
 
 
-## <a name="azure-diagnostics-is-not-starting"></a>Mancato avvio di Diagnostica Azure
-Esaminare **DiagnosticsPluginLauncher.log** e **DiagnosticsPlugin.log** file dal percorso di hello di hello fornito in precedenza per informazioni sui motivi per cui diagnostica non è stato possibile toostart i file di log. 
+## <a name="azure-diagnostics-isnt-starting"></a>Mancato avvio di Diagnostica di Azure
+Per informazioni sui motivi per cui non è stato possibile avviare Diagnostica di Azure, vedere i file **DiagnosticsPluginLauncher.log** e **DiagnosticsPlugin.log** nel percorso dei file di log riportati in precedenza. 
 
-Se questi log indicano `Monitoring Agent not reporting success after launch`, significa che si è verificato un errore di avvio di MonAgentHost.exe. Esaminare i registri di hello per che nel percorso di hello indicato per `MonAgentHost log file` hello in precedenza nella sezione.
+Se questi log indicano `Monitoring Agent not reporting success after launch`, significa che si è verificato un errore di avvio di MonAgentHost.exe. Esaminare i log nel percorso indicato per `MonAgentHost log file` nella sezione precedente.
 
-Hello l'ultima riga del file di log hello contiene codice di uscita hello.  
+L'ultima riga del file di log contiene il codice di uscita.  
 
 ```
 DiagnosticsPluginLauncher.exe Information: 0 : [4/16/2016 6:24:15 AM] DiagnosticPlugin exited with code 0
 ```
-Se si trova un **negativo** codice di uscita, consultare toohello [tabella codici di uscita](#azure-diagnostics-plugin-exit-codes) in hello [riferimenti](#references).
+Se si trova un codice di uscita **negativo**, vedere la [tabella dei codici di uscita](#azure-diagnostics-plugin-exit-codes) nella sezione [Riferimenti](#references).
 
-## <a name="diagnostics-data-is-not-logged-tooazure-storage"></a>Dati di diagnostica viene registrato non tooAzure archiviazione
-Determinare se i dati non vengono visualizzati o solo alcuni dati hello non vengono visualizzati.
+## <a name="diagnostics-data-is-not-logged-to-azure-storage"></a>Mancata registrazione dei dati di diagnostica in Archiviazione di Azure
+Determinare se i dati non vengono visualizzati interamente o in parte.
 
 ### <a name="diagnostics-infrastructure-logs"></a>Log dell'infrastruttura di diagnostica
-La diagnostica di Azure registra gli errori rilevati nei log dell'infrastruttura di diagnostica. Assicurarsi di avere abilitato ([come?](#how-to-check-diagnostics-extension-configuration)) acquisizione dei log di infrastruttura di diagnostica nella configurazione e di cercare rapidamente gli eventuali errori rilevanti che compaiono nella hello `DiagnosticInfrastructureLogsTable` tabella nell'account di archiviazione configurato.
+Diagnostica registra tutti gli errori nei log dell'infrastruttura di diagnostica. Verificare di aver abilitato l'[acquisizione dei log dell'infrastruttura di diagnostica nella configurazione](#how-to-check-diagnostics-extension-configuration). È quindi possibile cercare rapidamente gli errori pertinenti riportati nella tabella `DiagnosticInfrastructureLogsTable` nell'account di archiviazione configurato.
 
-### <a name="no-data-is-showing-up"></a>Non sono visualizzati dati
-causa più comune di Hello di dati dell'evento manca completamente è informazioni sull'account di archiviazione definite in modo non corretto.
+### <a name="no-data-is-appearing"></a>Nessun dato visualizzato
+La causa più comune per cui non viene visualizzato alcun dato di eventi è la definizione non corretta delle informazioni dell'account di archiviazione.
 
 Soluzione: correggere la configurazione della diagnostica e reinstallare Diagnostica.
 
-Se l'account di archiviazione di hello è configurato correttamente, remote desktop in marca e macchina hello DiagnosticsPlugin.exe e MonAgentCore.exe sono in esecuzione. Se non sono in esecuzione, seguire le istruzioni in [Mancato avvio di Diagnostica di Azure](#azure-diagnostics-is-not-starting). Se l'esecuzione di processi di hello, passare troppo[dati recupero acquisiti localmente](#is-data-getting-captured-locally) e seguire questa Guida da qui.
+Se l'account di archiviazione è configurato correttamente, accedere in remoto al computer e verificare che DiagnosticsPlugin.exe e MonAgentCore.exe siano in esecuzione. Se non sono in esecuzione, seguire la procedura illustrata in [Mancato avvio di Diagnostica di Azure](#azure-diagnostics-is-not-starting). 
 
-### <a name="part-of-hello-data-is-missing"></a>Parte di dati hello è mancante
-Alcuni dati sono presenti ma una parte dei dati è mancante. Ciò significa che la raccolta dei dati hello / pipeline trasferimento sia impostata correttamente. Seguire le sottosezioni hello Ecco toonarrow verso il basso il problema hello:
-#### <a name="is-collection-configured"></a>La raccolta è configurata: 
-Configurazione di diagnostica contiene parte hello che indica per un particolare tipo di dati toobe raccolti. [Rivedere la configurazione di](#how-to-check-diagnostics-extension-configuration) toomake non desiderata per i dati è che non è stato configurato per la raccolta.
-#### <a name="is-hello-host-generating-data"></a>Host hello genera dati:
-- **I contatori delle prestazioni**: aprire perfmon e controllare il contatore hello.
-- **I log di traccia**: utilizzare desktop remoto hello macchina virtuale e aggiungere il file di configurazione dell'applicazione di toohello TextWriterTraceListener.  Vedere tooset http://msdn.microsoft.com/library/sk36c28t.aspx listener del testo hello.  Verificare che hello `<trace>` elemento ha `<trace autoflush="true">`.<br />
-Se i log di traccia non vengono generati, seguire le istruzioni in [Altre informazioni sui log di traccia mancanti](#more-about-trace-logs-missing).
-- **Le tracce ETW**: utilizzare desktop remoto hello macchina virtuale e installare PerfView.  In PerfView eseguire File -> User Command -> Listen etwprovder1,etwprovider2 (File -> Comando utente -> Attesa etwprovder1,etwprovider2) e così via.  Si noti che il comando di ascolto hello è tra maiuscole e minuscole e tra hello elenco delimitato da virgole dei provider ETW non possono essere presenti spazi.  Se il comando hello non riesce toorun, è possibile fare clic su pulsante 'Log' hello in hello in basso a destra di hello Perfview strumento toosee che animale toorun tentativi e il risultato di hello.  Supponendo che sia corretto, che quindi una nuova finestra verrà visualizzata su e in pochi secondi hello input inizieranno visualizzare le tracce ETW.
-- **I registri eventi**: hello VM utilizzare desktop remoto. Aprire `Event Viewer` e assicurarsi che sono presenti eventi hello.
-#### <a name="is-data-getting-captured-locally"></a>I dati vengono acquisiti in locale:
-Assicurarsi quindi hello recupero vengono acquisiti i dati in locale.
-dati di Hello vengono archiviati in locale in `*.tsf` file [archivio locale di hello per i dati di diagnostica](#log-artifacts-path). I diversi tipi di log vengono raccolti in file `.tsf` diversi. i nomi di Hello sono nomi di tabella toohello simili nell'archiviazione di azure. Ad esempio, `Performance Counters` viene raccolto in `PerformanceCountersTable.tsf`, i log eventi vengono raccolti in `WindowsEventLogsTable.tsf`. Utilizzare le istruzioni hello [estrazione Log locale](#local-log-extraction) sezione file di raccolta locale tooopen hello e assicurarsi che vengono visualizzate recupero raccolti sul disco.
+Se i processi sono in esecuzione, passare a [I dati vengono acquisiti in locale?](#is-data-getting-captured-locally) e seguire le istruzioni riportate in tale sottoparagrafo.
 
-Se si non vedere i log di recupero raccolti in locale e si dispone già di verificare che l'host hello è la generazione di dati, è probabile che un problema di configurazione. Rivedere la configurazione con attenzione per sezione appropriata hello. Esaminare inoltre configurazione hello generato per MonitoringAgent [MaConfig.xml](#log-artifacts-path) e assicurarsi che sia presente una sezione che descrive l'origine di log rilevanti hello e che non vengono perse nella conversione tra una configurazione di diagnostica di azure e configurazione dell'agente di monitoraggio.
-#### <a name="is-data-getting-transferred"></a>I dati vengono trasferiti:
-Se si è verificato hello recupero vengono acquisiti i dati in locale, ma non viene comunque visualizzato, nell'account di archiviazione: 
-- Prima di tutto, assicurarsi di aver fornito un account di archiviazione corretto e che sono non rollover hello etc.for chiavi account di archiviazione specificato. Per i servizi cloud, a volte gli utenti non aggiornano `useDevelopmentStorage=true`.
-- Se l'account di archiviazione specificato è corretto. Assicurarsi che non si dispone delle alcune limitazioni di rete che non consentono componenti hello tooreach gli endpoint di archiviazione pubblico. Un modo toodo che tooremote desktop in hello computer e provare toowrite qualcosa toohello dell'account di archiviazione stesso manualmente.
-- Infine, è possibile controllare gli errori segnalati dall'agente di monitoraggio. Agente di monitoraggio scrive il log in `maeventtable.tsf` si trova [archivio locale di hello per i dati di diagnostica](#log-artifacts-path). Seguire le istruzioni [estrazione Log locale](#local-log-extraction) sezione tooopen questo file e provare a scoprire se esistono `errors` che indica i file locali tooread di errori o scrivere toostorage.
+### <a name="part-of-the-data-is-missing"></a>Alcuni dati sono mancanti
+Se vengono visualizzati alcuni dati ma non tutti, la pipeline di raccolta/trasferimento dati è impostata correttamente. Seguire le istruzioni di questi sottoparagrafi per circoscrivere il problema.
 
-### <a name="capturing--archiving-logs"></a>Acquisizione e archiviazione dei log
-È parlato hello sopra passaggi, ma potrebbe non stabilire quali errato e sono pensare contattare il supporto tecnico. innanzitutto Hello che potrebbe essere richiesta è toocollect registri dal computer. È possibile risparmiare tempo eseguendo questa operazione autonomamente. Eseguire hello `CollectGuestLogs.exe` utilità in [percorso dell'utilità di raccolta Log](#log-artifacts-path) e genera un file zip con tutti i log di azure rilevanti in hello stessa cartella.
+#### <a name="is-the-collection-configured"></a>La raccolta è configurata? 
+La configurazione di Diagnostica contiene istruzioni per la raccolta di un determinato tipo di dati. [Esaminare la configurazione](#how-to-check-diagnostics-extension-configuration) per assicurarsi di cercare solo i dati per cui è stata configurata la raccolta.
+
+#### <a name="is-the-host-generating-data"></a>L'host genera dati?
+- **Contatori delle prestazioni**: aprire perfmon e controllare il contatore.
+
+- **Log di traccia**: accedere in remoto alla VM e aggiungere TextWriterTraceListener al file di configurazione dell'app.  Vedere http://msdn.microsoft.com/library/sk36c28t.aspx per impostare il listener di testo.  Verificare che l'elemento `<trace>` includa `<trace autoflush="true">`.<br />
+Se non risulta che i log di traccia vengano generati, vedere [Altre informazioni sui log di traccia mancanti](#more-about-trace-logs-missing).
+
+- **Tracce ETW**: accedere in remoto alla VM e installare PerfView.  In PerfView eseguire **File** > **User Command** > **Listen etwprovder1** > **etwprovider2** (File > Comando utente -> Ascolto etwprovder1 > etwprovider2) e così via. Nel **comando di ascolto** viene fatta distinzione tra maiuscole e minuscole e nell'elenco separato da virgole dei provider ETW non possono essere presenti spazi. Se l'esecuzione del comando ha esito negativo, è possibile selezionare il pulsante **Log** in basso a destra nello strumento Perfview per visualizzare i tentativi di esecuzione e i risultati.  Se l'input è corretto, verrà aperta una nuova finestra. Dopo pochi secondi inizieranno a essere visualizzate le tracce ETW.
+
+- **Log eventi**: accedere in remoto alla VM. Aprire `Event Viewer` e quindi verificare che gli eventi siano presenti.
+
+#### <a name="is-data-getting-captured-locally"></a>I dati vengono acquisiti in locale?
+Verificare quindi che i dati vengano acquisiti in locale.
+I dati vengono archiviati in locale nei file `*.tsf` nell'[archivio locale per i dati di diagnostica](#log-artifacts-path). I diversi tipi di log vengono raccolti in file `.tsf` diversi. I nomi sono simili a quelli delle tabelle in Archiviazione di Azure. 
+
+Ad esempio, i log di `Performance Counters` vengono raccolti in `PerformanceCountersTable.tsf`, mentre i log eventi vengono raccolti in `WindowsEventLogsTable.tsf`. Usare le istruzioni riportate nella sezione [Estrazione dei log locali](#local-log-extraction) per aprire i file di raccolta locali e verificare che vengano raccolti su disco.
+
+Se non risulta che i log vengano raccolti in locale e si è già verificato che l'host genera dati, è probabile che sia presente un problema di configurazione. Esaminare attentamente la configurazione. 
+
+Analizzare anche la configurazione generata per il file [MaConfig.xml](#log-artifacts-path) dell'agente di monitoraggio. Verificare che sia presente una sezione che descrive l'origine di log pertinente e quindi che non sia andata persa nella conversione tra la configurazione di Diagnostica e la configurazione dell'agente di monitoraggio.
+
+#### <a name="is-data-getting-transferred"></a>I dati vengono trasferiti?
+Se è stato verificato che i dati vengono acquisiti in locale ma non vengono comunque visualizzati nell'account di archiviazione, seguire questa procedura: 
+
+- Verificare di aver specificato un account di archiviazione corretto e che non sia stato eseguito il rollover di chiavi per l'account di archiviazione indicato. Per Servizi cloud di Azure, si riscontra talvolta che gli utenti non aggiornano `useDevelopmentStorage=true`.
+
+- Verificare che l'account di archiviazione specificato sia corretto. Assicurarsi che non siano presenti restrizioni di rete che impediscono ai componenti di raggiungere gli endpoint di archiviazione pubblici. Questa operazione può essere eseguita accedendo in remoto al computer e provando quindi a scrivere nello stesso account di archiviazione.
+
+- È infine possibile esaminare gli errori segnalati dall'agente di monitoraggio. L'agente di monitoraggio scrive i log in `maeventtable.tsf`, che si trova nell'[archivio locale dei dati di diagnostica](#log-artifacts-path). Per aprire questo file, seguire le istruzioni riportate nella sezione [Estrazione dei log locali](#local-log-extraction). Provare quindi a determinare se siano presenti `errors` che indicano errori di lettura nei file locali o scrittura nelle risorse di archiviazione.
+
+### <a name="capturing-and-archiving-logs"></a>Acquisizione e archiviazione dei log
+Se si intende contattare il supporto tecnico, considerare che per prima cosa potrebbe essere richiesto di raccogliere i log del computer. È possibile risparmiare tempo eseguendo questa operazione autonomamente. Eseguire `CollectGuestLogs.exe` nel [percorso dell'utilità di raccolta dei log](#log-artifacts-path). Verrà generato un file ZIP con tutti i log di Azure pertinenti nella stessa cartella.
 
 ## <a name="diagnostics-data-tables-not-found"></a>Tabelle dei dati di diagnostica non trovate
-tabelle di Hello in archiviazione di Azure che contiene gli eventi ETW vengono denominate usando hello seguente codice:
+Le tabelle in Archiviazione di Azure contenenti gli eventi ETW vengono denominate usando il codice seguente:
 
 ```C#
         if (String.IsNullOrEmpty(eventDestination)) {
@@ -184,7 +203,7 @@ Di seguito è fornito un esempio:
     }
 ]
 ```
-Vengono generate 4 tabelle:
+Questo codice genera quattro tabelle:
 
 | Evento | Nome tabella |
 | --- | --- |
@@ -195,79 +214,88 @@ Vengono generate 4 tabelle:
 
 ## <a name="references"></a>Riferimenti
 
-### <a name="how-toocheck-diagnostics-extension-configuration"></a>La configurazione dell'estensione diagnostica toocheck
-Hello toocheck modo più semplice la configurazione dell'estensione toonavigate toohttp://resources.azure.com, passare toohello virtuale computer o un servizio cloud in cui l'estensione diagnostica Azure hello (IaaSDiagnostics / PaaDiagnostics) in questione.
+### <a name="how-to-check-diagnostics-extension-configuration"></a>Come controllare la configurazione dell'estensione Diagnostica
+Il modo più semplice per controllare la configurazione dell'estensione consiste nel passare ad [Azure Resource Explorer](http://resources.azure.com) e quindi alla macchina virtuale o al servizio cloud in cui si trova l'estensione Diagnostica di Azure (IaaSDiagnostics/PaasDiagnostics).
 
-In alternativa, desktop remoto in computer hello ed esaminare il file di configurazione di diagnostica Azure hello descritto nella sezione appropriata hello [qui](#log-artifacts-path).
+In alternativa, connettersi tramite desktop remoto al computer ed esaminare il file di configurazione di Diagnostica di Azure descritto nella sezione [Percorsi di log ed elementi](#log-artifacts-path).
 
-In caso cercare **Microsoft.Azure.Diagnostics** quindi per hello **xmlCfg** o **WadCfg** campo. 
+In entrambi i casi cercare **Microsoft.Azure.Diagnostics** e quindi il campo **xmlCfg** o **WadCfg**. 
 
-In caso di macchine virtuali, se è presente, hello WadCfg campo significa hello configurazione è in JSON. Se il campo di xmlCfg hello è presente, significa hello configurazione è in formato XML e viene codificato base64. È necessario troppo[decodificarlo](http://www.bing.com/search?q=base64+decoder) toosee hello XML che è stato caricato dalla diagnostica.
+Se si esegue la ricerca su una macchina virtuale ed è presente il campo **WadCfg**, la configurazione è in formato JSON. Se è presente il campo **xmlCfg**, la configurazione è in formato XML con codifica Base64. Per visualizzare il codice XML caricato da Diagnostica è necessario [decodificare](http://www.bing.com/search?q=base64+decoder) il file.
 
-Per il ruolo di servizio Cloud, se si seleziona configurazione hello dal disco, i dati di hello codificato in base64 pertanto sarà necessario troppo[decodificarlo](http://www.bing.com/search?q=base64+decoder) toosee hello XML che è stato caricato dalla diagnostica.
+Per il ruolo del servizio cloud, se si seleziona la configurazione dal disco, ai dati è applicata la codifica Base64 ed è quindi necessario [decodificarli](http://www.bing.com/search?q=base64+decoder) per visualizzare il codice XML caricato da Diagnostica.
 
-### <a name="azure-diagnostics-plugin-exit-codes"></a>Codici di uscita del plug-in Diagnostica di Azure
-plug-in Hello restituisce hello seguenti codici di uscita:
+### <a name="azure-diagnostics-plugin-exit-codes"></a>Codici di uscita del plug-in di Diagnostica di Azure
+Il plug-in restituisce i seguenti codici di uscita:
 
 | Codice di uscita | Descrizione |
 | --- | --- |
 | 0 |Completamento della procedura. |
 | -1 |Errore generico. |
-| -2 |File di rcf hello tooload non è possibile.<p>Questo errore dovrebbe essere eseguita solo se l'utilità di avvio del plug-in agente guest hello viene richiamata manualmente, in modo non corretto, in hello macchina virtuale. |
-| -3 |Impossibile caricare il file di configurazione di diagnostica hello.<p><p>Soluzione: questo errore si verifica quando un file di configurazione non ha superato la convalida dello schema. soluzione hello è un file di configurazione che è conforme allo schema di hello tooprovide. |
-| -4 |Un'altra istanza di hello monitoraggio diagnostica agente sta già usando directory delle risorse locali hello.<p><p>Soluzione: specificare un valore diverso per **LocalResourceDirectory**. |
-| -6 |utilità di avvio del plug-in agente guest Hello tentato diagnostica toolaunch con una riga di comando non valida.<p><p>Questo errore dovrebbe essere eseguita solo se l'utilità di avvio del plug-in agente guest hello viene richiamata manualmente, in modo non corretto, in hello macchina virtuale. |
-| -10 |plug-in di diagnostica Hello terminato con un'eccezione non gestita. |
-| -11 |l'agente guest Hello è processo hello toocreate Impossibile responsabile per l'avvio e il monitoraggio hello agente di monitoraggio.<p><p>Soluzione: Verificare che le risorse di sistema sufficienti siano disponibili toolaunch nuovi processi.<p> |
-| -101 |Argomenti non validi durante la chiamata hello plug-in di diagnostica.<p><p>Questo errore dovrebbe essere eseguita solo se l'utilità di avvio del plug-in agente guest hello viene richiamata manualmente, in modo non corretto, in hello macchina virtuale. |
-| -102 |il processo di plug-in di Hello è Impossibile tooinitialize stesso.<p><p>Soluzione: Verificare che le risorse di sistema sufficienti siano disponibili toolaunch nuovi processi. |
-| -103 |il processo di plug-in di Hello è Impossibile tooinitialize stesso. In particolare è oggetto di logger non è possibile toocreate hello.<p><p>Soluzione: Verificare che le risorse di sistema sufficienti siano disponibili toolaunch nuovi processi. |
-| -104 |File di rcf hello tooload Impossibile fornito dall'agente guest hello.<p><p>Questo errore dovrebbe essere eseguita solo se l'utilità di avvio del plug-in agente guest hello viene richiamata manualmente, in modo non corretto, in hello macchina virtuale. |
-| -105 |Impossibile aprire il file di configurazione della diagnostica hello plug-in di diagnostica Hello.<p><p>Questo errore dovrebbe essere eseguita solo se plug-in di diagnostica hello viene richiamata manualmente, in modo non corretto, in hello macchina virtuale. |
-| -106 |Impossibile leggere il file di configurazione di diagnostica hello.<p><p>Soluzione: questo errore si verifica quando un file di configurazione non ha superato la convalida dello schema. Soluzione hello è pertanto tooprovide un file di configurazione che è conforme allo schema di hello. Vedere [come configurazione dell'estensione diagnostica toocheck](#how-to-check-diagnostics-extension-configuration). |
-| -107 |Hello risorsa directory pass toohello agente di monitoraggio non è valido.<p><p>Questo errore dovrebbe essere eseguita solo se hello agente di monitoraggio viene richiamata manualmente, in modo non corretto, in hello VM.</p> |
-| -108 |Non è possibile tooconvert hello file di configurazione nel file di configurazione dell'agente di monitoraggio hello.<p><p>Questo errore dovrebbe essere eseguita solo se il plug-in di diagnostica hello manualmente viene richiamato con un file di configurazione non valida. |
-| -110 |Errore di configurazione generale di Diagnostica.<p><p>Questo errore dovrebbe essere eseguita solo se il plug-in di diagnostica hello manualmente viene richiamato con un file di configurazione non valida. |
-| -111 |Agente di monitoraggio hello toostart non è possibile.<p><p>Soluzione: verificare che siano disponibili risorse di sistema sufficienti. |
+| -2 |Impossibile caricare il file rcf.<p>Questo errore interno dovrebbe verificarsi solo se l'utilità di avvio del plug-in dell'agente guest viene richiamata manualmente in modo non corretto sulla VM. |
+| -3 |Impossibile caricare il file di configurazione di Diagnostica.<p><p>Soluzione: questo errore si verifica quando un file di configurazione non ha superato la convalida dello schema. La soluzione consiste nel fornire un file di configurazione conforme allo schema. |
+| -4 |La directory delle risorse locali è già usata da un'altra istanza dell'agente di monitoraggio di Diagnostica.<p><p>Soluzione: specificare un valore diverso per **LocalResourceDirectory**. |
+| -6 |L'utilità di avvio del plug-in dell'agente guest ha tentato di avviare Diagnostica con una riga di comando non valida.<p><p>Questo errore interno dovrebbe verificarsi solo se l'utilità di avvio del plug-in dell'agente guest viene richiamata manualmente in modo non corretto sulla VM. |
+| -10 |Il plug-in di Diagnostica ha generato un'eccezione non gestita. |
+| -11 |L'agente guest non è stato in grado di creare il processo responsabile dell'avvio e del monitoraggio dell'agente di monitoraggio.<p><p>Soluzione: verificare che siano disponibili risorse di sistema sufficienti per avviare nuovi processi.<p> |
+| -101 |Argomenti non validi durante la chiamata del plug-in di Diagnostica.<p><p>Questo errore interno dovrebbe verificarsi solo se l'utilità di avvio del plug-in dell'agente guest viene richiamata manualmente in modo non corretto sulla VM. |
+| -102 |Il processo del plug-in non è in grado di inizializzarsi.<p><p>Soluzione: verificare che siano disponibili risorse di sistema sufficienti per avviare nuovi processi. |
+| -103 |Il processo del plug-in non è in grado di inizializzarsi. In particolare, non riesce a creare l'oggetto logger.<p><p>Soluzione: verificare che siano disponibili risorse di sistema sufficienti per avviare nuovi processi. |
+| -104 |Impossibile caricare il file rcf fornito dall'agente guest.<p><p>Questo errore interno dovrebbe verificarsi solo se l'utilità di avvio del plug-in dell'agente guest viene richiamata manualmente in modo non corretto sulla VM. |
+| -105 |Il plug-in di Diagnostica non è in grado di aprire il file di configurazione di Diagnostica.<p><p>Questo errore interno dovrebbe verificarsi solo se il plug-in di Diagnostica viene richiamato manualmente in modo non corretto sulla VM. |
+| -106 |Impossibile leggere il file di configurazione di Diagnostica.<p><p>Questo errore si verifica quando un file di configurazione non supera la convalida dello schema. <br><br>Soluzione: specificare un file di configurazione conforme allo schema. Per altre informazioni, vedere [Come controllare la configurazione dell'estensione Diagnostica](#how-to-check-diagnostics-extension-configuration). |
+| -107 |La directory delle risorse passata all'agente di monitoraggio non è valida.<p><p>Questo errore interno dovrebbe verificarsi solo se l'agente di monitoraggio viene richiamato manualmente in modo non corretto sulla VM.</p> |
+| -108 |Impossibile convertire il file di configurazione di Diagnostica nel file di configurazione dell'agente di monitoraggio.<p><p>Questo errore interno dovrebbe verificarsi solo se il plug-in di Diagnostica viene richiamato manualmente con un file di configurazione non valido. |
+| -110 |Errore di configurazione generale di Diagnostica.<p><p>Questo errore interno dovrebbe verificarsi solo se il plug-in di Diagnostica viene richiamato manualmente con un file di configurazione non valido. |
+| -111 |Impossibile avviare l'agente di monitoraggio.<p><p>Soluzione: verificare che siano disponibili risorse di sistema sufficienti. |
 | -112 |Errore generale: |
 
 ### <a name="local-log-extraction"></a>Estrazione dei log locali
-agente di monitoraggio Hello raccoglie i log e elementi come `.tsf` file. Il file `.tsf` non è leggibile ma è possibile convertirlo in `.csv` come illustrato di seguito: 
+L'agente di monitoraggio raccoglie log ed elementi come file `.tsf`. Il file con estensione `.tsf` non è leggibile ma può essere convertito in `.csv` come illustrato di seguito: 
 
 ```
 <Azure diagnostics extension package>\Monitor\x64\table2csv.exe <relevantLogFile>.tsf
 ```
-Un nuovo file denominato `<relevantLogFile>.csv` verrà creato in hello stesso percorso hello corrispondente `.tsf` file.
+Un nuovo file denominato `<relevantLogFile>.csv` verrà creato nello stesso percorso del file con estensione `.tsf` corrispondente.
 
-**Nota**: È sufficiente toorun questa utilità rispetto a file principale tsf hello (ad esempio, PerformanceCountersTable.tsf). Hello che accompagna i file (ad esempio, PerformanceCountersTables_\*\*001.tsf, PerformanceCountersTables_\*\*002. tsf e così via) verranno elaborate automaticamente.
+>[!NOTE] 
+> È necessario eseguire questa utilità solo per il file con estensione tsf principale, ad esempio PerformanceCountersTable.tsf. I file associati, ad esempio PerformanceCountersTables_\*\*001.tsf, PerformanceCountersTables_\*\*002.tsf e così via, verranno elaborati automaticamente.
 
-### <a name="more-about-trace-logs-missing"></a>Altre informazioni sui log di traccia mancanti
+### <a name="more-about-missing-trace-logs"></a>Altre informazioni sui log di traccia mancanti 
 
-**Nota:** principalmente toocloud servizi si applica solo a meno che non è stato configurato hello DiagnosticsMonitorTraceListener in un'applicazione in esecuzione nella VM IaaS. 
+>[!NOTE]
+> Le informazioni seguenti si applicano prevalentemente a Servizi cloud di Azure, a meno che non si sia configurato DiagnosticsMonitorTraceListener in un'applicazione eseguita nella VM IaaS. 
 
-- Verificare che hello che diagnosticmonitortracelistener sia configurato in App. config o Web. config hello.  Questo è configurato per impostazione predefinita nei progetti del servizio cloud, ma alcuni clienti impostarlo come commento out che provoca il toonot istruzioni di traccia hello essere raccolti da diagnostica. 
-- Se non ottenere registri dal metodo OnStart oppure eseguire hello rendere hello che DiagnosticMonitorTraceListener sia in App. config hello.  Per impostazione predefinita è presente nel file Web. config hello, ma che si applica solo toocode in esecuzione all'interno di w3wp.exe; Pertanto, è necessario in App. config toocapture tracce in esecuzione in WaIISHost.exe.
-- Assicurarsi di usare Diagnostics.Trace.TraceXXX anziché Diagnostics.Debug.WriteXXX.  salve le istruzioni di Debug verranno rimossa da una build di rilascio.
-- Assicurarsi che il codice compilato hello abbia effettivamente righe Trace hello (usare tooverify Reflector, ildasm o ILSpy).  Comandi Trace vengono rimossi dai dati binari hello compilato solo se si utilizza il simbolo di compilazione condizionale di hello TRACE.  Se tramite msbuild toobuild hello project, questo è un toorun problema comune in.
+- Verificare che in web.config o app.config sia configurato **DiagnosticMonitorTraceListener**.  Nei progetti di servizi cloud è configurato per impostazione predefinita, ma viene impostato come commento da alcuni clienti e in questo caso le istruzioni di traccia non verranno raccolte da Diagnostica. 
 
-## <a name="known-issues-and-mitigations"></a>Problemi noti e prevenzione
+- Se i log non vengono scritti dal metodo **OnStart** o **Run**, verificare che in app.config sia presente **DiagnosticMonitorTraceListener**.  Per impostazione predefinita si trova in web.config, ma ciò si applica solo al codice eseguito in w3wp.exe. Per acquisire le tracce in esecuzione in WaIISHost.exe è necessario che sia presente in app.config.
+
+- Verificare di usare **Diagnostics.Trace.TraceXXX** anziché **Diagnostics.Debug.WriteXXX**. Le istruzioni di debug vengono rimosse da una build di versione.
+
+- Verificare che il codice compilato includa effettivamente le **righe Diagnostics.Trace** (per la verifica usare Reflector, ildasm o ILSpy). I comandi **Diagnostics.Trace** vengono rimossi dal file binario compilato a meno che non venga usato il simbolo di compilazione condizionale TRACE. Questo problema comune si verifica quando si usa msbuild per compilare un progetto.   
+
+## <a name="known-issues-and-mitigations"></a>Problemi noti e procedure di prevenzione
 Di seguito è riportato un elenco di problemi noti con le relative misure di prevenzione:
 
-**1. Dipendenza di .NET 4.5:**
+**1. Dipendenza da .NET 4.5**
 
-WAD presenta una dipendenza di runtime nel framework .NET 4.5 o versioni successive. In fase di hello di scrittura, tutti i computer il provisioning per i servizi cloud, nonché tutti ufficiale azure base immagini di macchina virtuale dispone di .NET 4.5 o successiva. È tuttavia ancora possibile tooland in una situazione in cui si tenta di toorun WAD in un computer che non dispone di .NET 4.5 o versioni successive. Ciò si verifica quando si crea il computer a partire da un'immagine o uno snapshot precedente o si usa un disco personalizzato.
+L'estensione Diagnostica di Microsoft Azure presenta una dipendenza di runtime da .NET Framework 4.5 o versione successiva. Al momento della stesura di questo articolo, in tutti i computer sottoposti a provisioning per Servizi cloud di Azure e in tutte le immagini ufficiali basate su macchine virtuali di Azure è installato .NET 4.5 o versione successiva. 
 
-Questa situazione si manifesta in genere come codice di uscita **255** durante l'esecuzione di DiagnosticsPluginLauncher.exe. Errore si verifica a causa di eccezione non gestita toohello: 
+È comunque possibile che si provi a eseguire l'estensione Diagnostica di Microsoft Azure in un computer in cui non è presente .NET 4.5 o versione successiva. Ciò si verifica quando si crea il computer da un'immagine o uno snapshot meno recente o si usa un disco personalizzato.
+
+Questa situazione si manifesta in genere con un codice di uscita **255** durante l'esecuzione di **DiagnosticsPluginLauncher.exe**. L'errore è causato dall'eccezione non gestita seguente: 
 ```
 System.IO.FileLoadException: Could not load file or assembly 'System.Threading.Tasks, Version=1.5.11.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' or one of its dependencies
 ```
 
 **Prevenzione:** installare .NET 4.5 o versione successiva nel computer.
 
-**2. I dati dei contatori delle prestazioni sono disponibili nell'archiviazione ma non vengono visualizzati nel portale**
+**2. I dati dei contatori delle prestazioni sono disponibili nella risorsa di archiviazione ma non vengono visualizzati nel portale**
 
-Il portale delle macchine virtuali visualizza determinati contatori delle prestazioni per impostazione predefinita. Se non vengono visualizzati e si conosce il recupero di generazione dei dati hello perché è disponibile nel servizio di archiviazione. Controllare:
-- Se dati hello nel servizio di archiviazione sono i nomi dei contatori in inglese. Se i nomi dei contatori di hello non sono in inglese, portale grafico metrica non saranno in grado di toorecognize è.
-- Se si usano i caratteri jolly (\*) nei nomi di contatore delle prestazioni, portale hello non saranno in grado di toocorrelate hello configurato e raccolti contatore.
+Nell'esperienza del portale per le macchine virtuali vengono visualizzati per impostazione predefinita determinati contatori delle prestazioni. Se i contatori non vengono visualizzati e si è certi che i dati vengano generati perché sono disponibili nella risorsa di archiviazione, controllare quanto segue:
 
-**Attenuazione**: modificare tooEnglish lingua del computer hello per gli account di sistema. Pannello di controllo -> area -> Amministrazione -> Copia impostazioni -> deselezionare "Iniziale e account di sistema" in modo che non lingua personalizzata hello applicato toosystem account. Verificare inoltre che se si desidera toobe portale l'esperienza di utilizzo primario non utilizzare caratteri jolly.
+- Se i dati nella risorsa di archiviazione contengono i nomi dei contatori in lingua inglese. Se i nomi dei contatori non sono in inglese, il grafico delle metriche del portale non riesce a riconoscerli.
+
+- Se si usano caratteri jolly (\*) nei nomi dei contatori delle prestazioni, il portale non può correlare il contatore configurato e il contatore raccolto.
+
+**Prevenzione**: modificare la lingua del computer impostando l'inglese per gli account di sistema. A tale scopo, selezionare **Pannello di controllo** > **Area geografica** > **Opzioni di amministrazione** > **Copia impostazioni**. Deselezionare quindi **Schermata iniziale e account di sistema** affinché la lingua personalizzata non venga applicata all'account di sistema. Assicurarsi anche di non usare caratteri jolly se si vuole usare il portale come esperienza di utilizzo principale.

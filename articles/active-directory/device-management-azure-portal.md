@@ -1,6 +1,6 @@
 ---
-title: i dispositivi aaaManaging usando hello portale di Azure - anteprima | Documenti Microsoft
-description: Informazioni su come toouse hello dispositivi toomanage portale Azure.
+title: Gestione dei dispositivi tramite il portale di Azure - Anteprima | Microsoft Docs
+description: Informazioni su come usare il portale di Azure per gestire i dispositivi.
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,28 +15,28 @@ ms.topic: article
 ms.date: 08/24/2017
 ms.author: markvi
 ms.reviewer: jairoc
-ms.openlocfilehash: a39d14e4ce8bb79f0223a9de40d5f1259a869927
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4b46e1627a229b0649d9ccd2550cd28fda9849f8
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="managing-devices-using-hello-azure-portal---preview"></a>Gestendo i dispositivi con hello portale di Azure - anteprima
+# <a name="managing-devices-using-the-azure-portal---preview"></a>Gestione dei dispositivi tramite il portale di Azure - Anteprima
 
 >[!NOTE]
->Questa funzionalità è attualmente disponibile in anteprima pubblica. Essere preparati toorevert o rimuovere tutte le modifiche. funzionalità di Hello è disponibile in alcuna sottoscrizione di Azure Active Directory (Azure AD) durante l'anteprima pubblica. Tuttavia, quando la funzionalità hello diventa disponibile in genere, alcuni aspetti della funzionalità hello potrebbero richiedere una sottoscrizione di Azure Active Directory premium.
+>Questa funzionalità è attualmente disponibile in anteprima pubblica. Potrebbe essere necessario ripristinare o rimuovere eventuali modifiche. La funzionalità è disponibile in tutte le sottoscrizioni di Azure Active Directory (Azure AD) durante l'anteprima pubblica. Quando la funzionalità sarà disponibile a livello generale, alcuni aspetti potrebbero tuttavia richiedere una sottoscrizione Azure Active Directory Premium.
 
 
 Tramite la gestione dei dispositivi in Azure Active Directory (Azure AD) è possibile garantire che gli utenti accedano alle risorse da dispositivi che soddisfano gli standard di sicurezza e conformità. 
 
 In questo argomento:
 
-- Si presuppone che abbia familiarità con hello [gestione toodevice introduzione in Azure Active Directory](device-management-introduction.md)
+- Si presuppone che l'utente abbia familiarità con quanto descritto in [Introduzione alla gestione dei dispositivi in Azure Active Directory](device-management-introduction.md)
 
-- Vengono fornite con informazioni sulla gestione dei dispositivi utilizzando hello portale di Azure
+- Vengono fornite informazioni sulla gestione dei dispositivi tramite il portale di Azure
 
 
-dispositivi toomanage in hello portale di Azure, è necessario tooclick **dispositivi** in hello **Gestisci** sezione di hello hello **Azure Active Directory** blade.
+Per gestire i dispositivi nel portale di Azure, è necessario fare clic su **Dispositivi** nella sezione **Gestisci** del pannello **Azure Active Directory**.
 
 ![Gestire un dispositivo Intune](./media/device-management-azure-portal/11.png)
 
@@ -45,25 +45,25 @@ dispositivi toomanage in hello portale di Azure, è necessario tooclick **dispos
 
 ## <a name="configure-device-settings"></a>Configurare le impostazioni dei dispositivi
 
-i dispositivi con hello portale di Azure, è necessario toobe toomanage registrato o unita tooAzure Active Directory. Come amministratore, è possibile ottimizzare il processo di hello di registrazione e l'unione dei dispositivi, configurare le impostazioni di dispositivo hello.
+Per gestire i dispositivi tramite il portale di Azure, è necessario che i dispositivi siano registrati o aggiunti in Azure AD. Un amministratore può ottimizzare il processo di registrazione e aggiunta dei dispositivi configurando le relative impostazioni.
 
 ![Gestire un dispositivo Intune](./media/device-management-azure-portal/22.png)
 
 
-pannello delle impostazioni di dispositivo Hello consente tooconfigure:
+Il pannello delle impostazioni dei dispositivi consente di configurare:
 
-- **Gli utenti possono aggiungere dispositivi tooAzure AD** - questa impostazioni consente agli utenti di hello tooselect in grado di aggiungere dispositivi tooAzure AD. valore predefinito di Hello è **tutti**.
+- **Gli utenti possono aggiungere dispositivi ad Azure AD**: questa impostazione consente di selezionare gli utenti che possono aggiungere dispositivi ad Azure AD. L'impostazione predefinita è **Tutti**.
 
-- **Altri amministratori locali in Azure AD i dispositivi appartenenti** -è possibile selezionare gli utenti di hello che vengono concessi diritti di amministratore locale su un dispositivo. Gli utenti aggiunti vengono aggiunti toohello *amministratori dispositivo* ruolo in Azure AD. Agli amministratori globali di Azure AD e ai proprietari dei dispositivi vengono concessi i diritti di amministratore locale per impostazione predefinita. Questa opzione è una funzionalità di edizione premium disponibile tramite prodotti, come Azure AD Premium o Enterprise Mobility Suite (EMS) hello. 
+- **Amministratori locali aggiuntivi su dispositivi aggiunti ad Azure AD**: è possibile selezionare gli utenti a cui vengono concessi i diritti di amministratore locale per un dispositivo. Gli utenti aggiunti in questa posizione vengono aggiunti al ruolo *Amministratori di dispositivi* in Azure AD. Agli amministratori globali di Azure AD e ai proprietari dei dispositivi vengono concessi i diritti di amministratore locale per impostazione predefinita. Questa opzione è una funzionalità dell'edizione Premium disponibile tramite prodotti come Azure AD Premium o Enterprise Mobility Suite (EMS). 
 
-- **Gli utenti possono registrare i propri dispositivi con Azure AD** -è necessario tooconfigure toobe di dispositivi tooallow questa impostazione è registrato con Azure AD. Se si seleziona **Nessuno**, i dispositivi non sono consentiti tooregister quando non sono parte di Azure AD o ibrida aggiunto AD Azure. L'iscrizione a Microsoft Intune o Gestione dispositivi mobili per Office 365 richiede la registrazione. Se è stato configurato uno di questi servizi, sarà selezionata l'opzione **TUTTI**, mentre l'opzione **NESSUNO** sarà disabilitata.
+- **Gli utenti possono registrare i propri dispositivi in Azure AD**: è necessario configurare questa impostazione per consentire la registrazione dei dispositivi con Azure AD. Se si seleziona **Nessuno**, ai dispositivi non è consentito eseguire la registrazione se non sono aggiunti ad Azure AD o all'identità ibrida di AD Azure. L'iscrizione a Microsoft Intune o Gestione dispositivi mobili per Office 365 richiede la registrazione. Se è stato configurato uno di questi servizi, sarà selezionata l'opzione **TUTTI**, mentre l'opzione **NESSUNO** sarà disabilitata.
 
-- **Richiedi multi-Factor Authentication toojoin dispositivi** -è possibile scegliere se gli utenti sono necessari tooprovide una seconda autenticazione fattori toojoin loro tooAzure dispositivo Active Directory. valore predefinito di Hello è **n**. Si consiglia di richiedere l'autenticazione a più fattori quando si registra un dispositivo. Prima di abilitare multi-factor authentication per questo servizio, è necessario assicurarsi che l'autenticazione a più fattori è configurato per gli utenti di hello che registrano i propri dispositivi. Per altre informazioni sui diversi servizi di autenticazione a più fattori di Azure, vedere [Introduzione ad Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication-get-started.md). 
+- **Richiedi Multi-factor Auth per aggiungere i dispositivi**: è possibile scegliere se richiedere agli utenti di fornire un secondo fattore di autenticazione per aggiungere il dispositivo ad Azure AD. Il valore predefinito è **No**. Si consiglia di richiedere l'autenticazione a più fattori quando si registra un dispositivo. Per abilitare l'autenticazione a più fattori per questo servizio, è necessario verificare che tale tipo di autenticazione sia configurato per gli utenti che registrano i dispositivi. Per altre informazioni sui diversi servizi di autenticazione a più fattori di Azure, vedere [Introduzione ad Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication-get-started.md). 
 
-- **Numero massimo di dispositivi** -questa impostazione consente massimo hello tooselect di dispositivi che un utente può disporre di Azure AD. Se un utente raggiunge questa quota, non sono in altri dispositivi in grado di tooadd fino a quando una o più dispositivi esistenti hello vengono rimossi. offerta dispositivo Hello viene conteggiata per tutti i dispositivi che sono parte di Azure AD o Azure AD attualmente registrata. valore predefinito di Hello è **20**.
+- **Numero massimo di dispositivi per utente**: questa impostazione consente di selezionare il numero massimo di dispositivi che un utente può avere in Azure AD. Se un utente raggiunge la quota specificata, non potrà aggiungere altri dispositivi fino a quando non vengono rimossi uno o più dispositivi esistenti. La quota dei dispositivi viene calcolata considerando tutti i dispositivi attualmente aggiunti ad Azure AD o registrati in Azure AD. Il valore predefinito è **20**.
 
-- **Gli utenti possono sincronizzare le impostazioni e dati delle app tra dispositivi** -per impostazione predefinita, questa impostazione è troppo**Nessuno**. Selezionare utenti specifici o gruppi o tutti consente le impostazioni dell'utente hello e app dati toosync tra i propri dispositivi Windows 10. Leggere altre informazioni sul funzionamento della sincronizzazione in Windows 10.
-Questa opzione è delle funzionalità disponibile tramite prodotti, come Azure AD Premium o Enterprise Mobility Suite (EMS) hello.
+- **Gli utenti possono sincronizzare le impostazioni e i dati delle app su tutti i dispositivi**: per impostazione predefinita, il valore di questa opzione è **Nessuno**. Se si selezionano utenti o gruppi specifici oppure l'opzione TUTTI, si consente la sincronizzazione delle impostazioni dell'utente e dei dati delle app tra i dispositivi Windows 10. Leggere altre informazioni sul funzionamento della sincronizzazione in Windows 10.
+Questa opzione è una funzionalità Premium disponibile tramite prodotti come Azure AD Premium o Enterprise Mobility Suite (EMS).
  
     ![Gestire un dispositivo Intune](./media/device-management-azure-portal/21.png)
 
@@ -72,27 +72,27 @@ Questa opzione è delle funzionalità disponibile tramite prodotti, come Azure A
 
 ## <a name="locate-devices"></a>Individuare i dispositivi
 
-Come amministratore, nel portale di Azure hello sono disponibili due opzioni toolocate registrato e aggiunto i dispositivi:
+Un amministratore nel portale di Azure dispone di due opzioni per individuare i dispositivi registrati e aggiunti:
 
-- **Tutti i dispositivi** in hello **Gestisci** sezione di hello **dispositivi** pannello  
+- **Tutti i dispositivi** nella sezione **Gestisci** del pannello **Dispositivi**  
 
     ![Tutti i dispositivi](./media/device-management-azure-portal/41.png)
 
 
-- **Dispositivi** in hello **Gestisci** sezione di un **utente** pannello
+- **Dispositivi** nella sezione **Gestisci** di un pannello **Utente**
  
     ![Tutti i dispositivi](./media/device-management-azure-portal/43.png)
 
 
 
-Con entrambe le opzioni, è possibile ottenere la visualizzazione tooa che:
+Con entrambe le opzioni, è possibile ottenere una vista che:
 
 
-- Consente di toosearch per i dispositivi con nome visualizzato hello come filtro.
+- Consente di cercare i dispositivi usando il nome visualizzato come filtro.
 
 - Fornisce una panoramica dettagliata dei dispositivi registrati e aggiunti
 
-- Consente di tooperform delle attività di gestione comuni di dispositivi
+- Consente di eseguire attività comuni di gestione dei dispositivi
    
 
 ![Tutti i dispositivi](./media/device-management-azure-portal/51.png)
@@ -100,7 +100,7 @@ Con entrambe le opzioni, è possibile ottenere la visualizzazione tooa che:
 
 ## <a name="device-management-tasks"></a>Attività di gestione dei dispositivi
 
-Come amministratore, è possibile gestire hello registrato o aggiunto i dispositivi. Questa sezione fornisce informazioni sulle attività comuni di gestione dei dispositivi.
+L'amministratore può gestire i dispositivi registrati o aggiunti. Questa sezione fornisce informazioni sulle attività comuni di gestione dei dispositivi.
 
 
 **Gestire un dispositivo Intune**: un amministratore di Intune può gestire i dispositivi contrassegnati come **Microsoft Intune**. L'amministratore può visualizzare un dispositivo aggiuntivo 
@@ -110,38 +110,38 @@ Come amministratore, è possibile gestire hello registrato o aggiunto i disposit
 
 **Abilitare o disabilitare un dispositivo Azure AD**
 
-tooenable o disattivare un dispositivo, è necessario toobe un amministratore globale di Azure AD. La disabilitazione di un dispositivo ne impedisce l'accesso alle risorse di Azure AD.  dispositivo hello toodisable, è possibile fare clic su *...* Fare clic su dispositivo hello per altri dettagli.
+Per abilitare o disabilitare un dispositivo, è necessario essere un amministratore globale in Azure AD. La disabilitazione di un dispositivo ne impedisce l'accesso alle risorse di Azure AD.  Per disabilitare il dispositivo, è possibile fare clic su *...* o fare clic sul dispositivo per altri dettagli.
 
  
 ![Gestire un dispositivo Intune](./media/device-management-azure-portal/33.png)
 
-La disabilitazione di un dispositivo cambia lo stato di hello in hello **abilitato** colonna troppo**n**.
+Se un dispositivo viene disabilitato, lo stato nella colonna **ABILITATO** viene impostato su **No**.
 
 ![Disabilitare un dispositivo](./media/device-management-azure-portal/32.png)
 
 
-**Eliminare un dispositivo di Azure AD** -toodelete un dispositivo, è necessario toobe un amministratore globale di Azure AD.  
+**Eliminare un dispositivo Azure AD**: per eliminare un dispositivo, è necessario essere un amministratore globale in Azure AD.  
 L'eliminazione di un dispositivo comporta quanto segue:
  
 - Impedisce l'accesso del dispositivo alle risorse di Azure AD 
 
-- Rimuove tutti i dettagli dispositivo toohello collegato, ad esempio, le chiavi di BitLocker per i dispositivi Windows  
+- Rimuove tutti i dettagli collegati al dispositivo, ad esempio, le chiavi BitLocker per i dispositivi Windows  
 
 - È un'attività non reversibile e non è consigliata, a meno che non sia necessaria
 
-Se un dispositivo è gestito da un'altra autorità di gestione (ad esempio Microsoft Intune), assicurarsi che il dispositivo hello è stato cancellato / ritirato prima di eliminarlo hello in Azure AD.
+Se un dispositivo è gestito da un'altra autorità di gestione (ad esempio Microsoft Intune), assicurarsi che sia stato cancellato o disattivato prima di eliminarlo in Azure AD.
 
-È possibile selezionare "…" toodelete hello dispositivo oppure fare clic sul dispositivo hello per altri dettagli
+È possibile selezionare "…" per eliminare il dispositivo oppure fare clic sul dispositivo per altri dettagli
  
 ![Eliminare un dispositivo](./media/device-management-azure-portal/34.png)
 
 
-**Consente di visualizzare o copiare l'ID dispositivo** -è possibile utilizzare un dispositivo ID tooverify hello dispositivo ID dettagli sul dispositivo di hello o utilizzo di PowerShell durante la risoluzione dei problemi. copia di hello tooaccess opzione, fare clic su dispositivo hello.
+**Visualizzare o copiare l'ID dispositivo**: è possibile usare l'ID di un dispositivo per verificare i relativi dettagli nel dispositivo o per l'uso in PowerShell in fase di risoluzione dei problemi. Per accedere all'opzione di copia, fare clic sul dispositivo.
 
 ![Visualizzare l'ID dispositivo](./media/device-management-azure-portal/35.png)
   
 
-**Consente di visualizzare o copiare le chiavi BitLocker** -se si è un amministratore, è possibile visualizzare e hello copia BitLocker chiavi toohelp utenti toorecover le unità crittografata. Queste chiavi sono disponibili solo per i dispositivi Windows crittografati e le cui chiavi sono archiviate in Azure AD. È possibile copiare queste chiavi quando si accede ai dettagli del dispositivo hello.
+**Visualizzare o copiare le chiavi BitLocker**: un amministratore può visualizzare e copiare le chiavi BitLocker per aiutare gli utenti a recuperare l'unità crittografata. Queste chiavi sono disponibili solo per i dispositivi Windows crittografati e le cui chiavi sono archiviate in Azure AD. È possibile copiare queste chiavi quando si accede ai dettagli del dispositivo.
  
 ![Visualizzare le chiavi BitLocker](./media/device-management-azure-portal/36.png)
 
@@ -150,37 +150,37 @@ Se un dispositivo è gestito da un'altra autorità di gestione (ad esempio Micro
 ## <a name="audit-logs"></a>Log di controllo
 
 
-le attività di Hello dispositivo sono disponibili tramite log attività hello. Sono incluse attività attivata dal servizio Registrazione dispositivi di hello o dall'utente hello:
+Le attività del dispositivo sono disponibili tramite i log attività. I log includono le attività avviate dal servizio di registrazione dispositivo o dall'utente:
 
-- Creazione di un dispositivo e l'aggiunta di proprietari/gli utenti sul dispositivo hello
+- Creazione di un dispositivo e aggiunta di proprietari/utenti nel dispositivo
 
-- Modifica le impostazioni di toodevice
+- Modifiche alle impostazioni del dispositivo
 
 - Funzionamento del dispositivo, ad esempio eliminazione o aggiornamento
  
-Il toohello punto di ingresso dati di controllo è **log di controllo** in hello **attività** sezione di hello **dispositivi* blade.
+Il punto di ingresso ai dati di controllo è **Log di controllo** nella sezione **Attività** del pannello **Dispositivi*.
 
 ![Log di controllo](./media/device-management-azure-portal/61.png)
 
 
 Un log di controllo è una visualizzazione elenco predefinita che include:
 
-- Hello data e ora dell'occorrenza hello
+- Data e ora dell'occorrenza.
 
-- destinazioni Hello
+- Destinazioni
 
-- Hello iniziatore / attore (che) di un'attività
+- Iniziatore/attore di un'attività (chi)
 
-- attività Hello (novità)
+- Attività (cosa)
 
 ![Log di controllo](./media/device-management-azure-portal/63.png)
 
-È possibile personalizzare una visualizzazione elenco hello facendo **colonne** nella barra degli strumenti hello.
+Per personalizzare la visualizzazione elenco, fare clic su **Colonne** nella barra degli strumenti.
  
 ![Log di controllo](./media/device-management-azure-portal/64.png)
 
 
-toonarrow verso il basso hello segnalati livello tooa dati che funziona per l'utente, è possibile filtrare i dati di controllo hello utilizzando hello seguenti campi:
+Per limitare i dati segnalati in base alle esigenze, è possibile filtrare i dati di controllo usando i campi seguenti:
 
 - Categoria
 - Activity resource type (Tipo di risorsa dell'attività)
@@ -189,13 +189,13 @@ toonarrow verso il basso hello segnalati livello tooa dati che funziona per l'ut
 - Destinazione
 - Azione avviata da (attore)
 
-Inoltre toohello filtri, è possibile cercare voci specifiche.
+Oltre a usare i filtri, è possibile cercare voci specifiche.
 
 ![Log di controllo](./media/device-management-azure-portal/65.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* [Gestione toodevice introduzione in Azure Active Directory](device-management-introduction.md)
+* [Introduction to device management in Azure Active Directory](device-management-introduction.md) (Introduzione alla gestione dei dispositivi in Azure Active Directory)
 
 
 

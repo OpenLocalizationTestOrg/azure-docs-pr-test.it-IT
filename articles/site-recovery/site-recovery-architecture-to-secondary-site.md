@@ -1,6 +1,6 @@
 ---
-title: aaaHow funziona locale macchina replica tooa locale secondario del sito in Azure Site Recovery? | Microsoft Docs
-description: In questo articolo viene fornita una panoramica dei componenti e architettura utilizzata quando la replica locale macchine virtuali e il sito secondario di server fisici tooa con hello servizio Azure Site Recovery.
+title: Funzionamento della replica di computer locali in un sito locale secondario in Azure Site Recovery | Documentazione Microsoft
+description: Questo articolo fornisce una panoramica dei componenti e dell'architettura usati durante la replica di server fisici e macchine virtuali locali in un sito secondario con il servizio Azure Site Recovery.
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,93 +14,93 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 05/29/2017
 ms.author: raynew
-ms.openlocfilehash: 097a3f43446fec69ed7f9e0b7f11e8d11f41cc6a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: fca95c63964b955db7ddfbe53250702cc8af122e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-does-on-premises-machine-replication-tooa-secondary-site-work-in-site-recovery"></a>Modalità locale computer lavoro del sito secondario tooa di replica in Site Recovery?
+# <a name="how-does-on-premises-machine-replication-to-a-secondary-site-work-in-site-recovery"></a>Funzionamento della replica di computer locali in un sito secondario in Site Recovery
 
-Questo articolo vengono descritti i componenti di hello e processi per la replica locale macchine virtuali e server fisici tooAzure, utilizzando hello [Azure Site Recovery](site-recovery-overview.md) servizio.
+Questo articolo illustra i componenti e i processi interessati durante la replica di server fisici e macchine virtuali locali in Azure usando il servizio [Azure Site Recovery](site-recovery-overview.md).
 
-È possibile replicare hello tooa locale secondario sito seguente:
+È possibile replicare gli elementi seguenti in un sito locale secondario:
 - Macchine virtuali Hyper-V locali, macchine virtuali Hyper-V in cluster Hyper-V e host autonomi gestiti nei cloud System Center Virtual Machine Manager (VMM).
 - Macchine virtuali VMware locali e server fisici Windows/Linux. In questo scenario la replica è gestita da Scout.
 
-Inviare eventuali commenti nella parte inferiore di hello di questo articolo, o in hello [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Per inviare commenti è possibile usare la parte inferiore di questo articolo oppure il [forum sui Servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
-## <a name="replicate-hyper-v-vms-tooa-secondary-on-premises-site"></a>Replicare macchine virtuali Hyper-V tooa secondario nel sito locale
+## <a name="replicate-hyper-v-vms-to-a-secondary-on-premises-site"></a>Replicare macchine virtuali Hyper-V in un sito locale secondario
 
 
 ### <a name="architectural-components"></a>Componenti dell'architettura
 
-Ecco cosa occorre per la replica del sito secondario tooa di macchine virtuali Hyper-V.
+Di seguito sono indicati i componenti necessari per la replica di macchine virtuali Hyper-V in un sito secondario.
 
 **Componente** | **Posizione** | **Dettagli**
 --- | --- | ---
 **Azzurro** | È necessario un account Microsoft. |
-**Server VMM** | Si consiglia di un server VMM nel sito primario di hello e uno nel sito secondario hello | Ogni server VMM deve essere connesso toohello internet.<br/><br/> Ogni server deve disporre di almeno un cloud privato VMM, con set di profili di capacità hello Hyper-V.<br/><br/> Installare hello Provider di Azure Site Recovery nel server VMM hello. coordinate Hello Provider e Orchestra la replica con hello servizio Site Recovery su hello internet. Le comunicazioni tra Provider hello e Azure sono protetto e crittografato.
-**Server Hyper-V** |  Uno o più server Hyper-V host nei cloud VMM primario e secondario di hello.<br/><br/> I server devono essere connesso toohello internet.<br/><br/> Dati vengono replicati tra hello server primario e secondario Hyper-V host su hello LAN o VPN, utilizzando l'autenticazione Kerberos o certificati.  
-**VM Hyper-V** | Si trova nel server host Hyper-V di origine hello. | server host di origine Hello deve avere almeno una macchina virtuale che si desidera tooreplicate.
+**Server VMM** | È consigliabile distribuire un server VMM in un sito primario e uno nel sito secondario. | Ogni server VMM deve essere connesso a Internet.<br/><br/> Ogni server deve avere almeno un cloud privato VMM, con il profilo funzionalità di Hyper-V impostato.<br/><br/> Il provider di Azure Site Recovery viene installato nel server VMM. Il provider coordina e orchestra la replica con il servizio Site Recovery su Internet. Le comunicazioni tra il provider e Azure sono protette e crittografate.
+**Server Hyper-V** |  Uno o più server host Hyper-V nei cloud VMM primario e secondario.<br/><br/> I server devono essere connessi a Internet.<br/><br/> I dati vengono replicati tra il server host Hyper-V primario e secondario su LAN o VPN usando l'autenticazione Kerberos o del certificato.  
+**VM Hyper-V** | Situata nel server host Hyper-V di origine. | Il server host di origine deve avere almeno una VM che si vuole replicare.
 
 ### <a name="replication-process"></a>Processo di replica
 
-1. Impostare hello account Azure.
+1. Si configura l'account Azure.
 2. Si crea un insieme di credenziali dei servizi di replica per Site Recovery e si configurano le impostazioni dell'insieme di credenziali, tra cui:
 
-    - origine della replica Hello e destinazione (siti primari e secondari).
-    - Installazione del Provider di Azure Site Recovery hello e dell'agente di servizi di ripristino di Microsoft Azure hello. Hello Provider è installato nel server VMM e hello agente in ogni host Hyper-V.
-    - Si crea un criterio di replica per il cloud VMM di origine. criteri di Hello sono applicato tooall macchine virtuali presenti negli host nel cloud hello.
-    - Si abilita la replica per le VM Hyper-V. Viene eseguita la replica iniziale in base alle impostazioni di criteri di replica hello.
-4. Vengono rilevate le modifiche ai dati e la replica del delta cambia toobegins dopo il completamento della replica iniziale hello. Le modifiche rilevate per un elemento vengono salvate in un file HRL.
-5. Eseguire un toomake di failover di test che funzionino.
+    - L'origine e la destinazione della replica (siti primario e secondario).
+    - Installazione del provider di Azure Site Recovery e dell'agente Servizi di ripristino di Microsoft Azure. Il provider viene installato nei server VMM e l'agente in ogni host Hyper-V.
+    - Si crea un criterio di replica per il cloud VMM di origine. Il criterio viene applicato a tutte le VM negli host del cloud.
+    - Si abilita la replica per le VM Hyper-V. La replica iniziale viene eseguita in base alle impostazioni del criterio di replica.
+4. Le modifiche ai dati vengono rilevate e la replica delle modifiche differenziali viene avviata al termine della replica iniziale. Le modifiche rilevate per un elemento vengono salvate in un file HRL.
+5. Si esegue un failover di test per verificare che tutto funzioni correttamente.
 
-**Figura 1: La replica tooVMM VMM**
+**Figura 1: Replica da VMM a VMM**
 
-![Tooon tra più sedi locali](./media/site-recovery-components/arch-onprem-onprem.png)
+![Da sito locale a sito locale](./media/site-recovery-components/arch-onprem-onprem.png)
 
 ### <a name="failover-and-failback-process"></a>Processo di failover e failback
 
-1. È possibile eseguire un [failover](site-recovery-failover.md) pianificato o non pianificato tra siti locali. Se si esegue un failover pianificato, quindi le macchine virtuali di origine vengono arrestate tooensure senza perdita di dati.
-2. È possibile eseguire il failover a un singolo computer o creare [i piani di ripristino](site-recovery-create-recovery-plans.md) tooorchestrate failover di più macchine.
-4. Se si esegue un failover non pianificato tooa sito secondario, dopo il failover delle macchine hello nella posizione secondaria hello non sono abilitati per la replica o di protezione. Se si esegue un failover pianificato, dopo il failover hello, le macchine in posizione secondaria hello sono protetti.
-5. Quindi, si esegue il commit hello failover toostart accesso hello del carico di lavoro dalla replica hello macchina virtuale.
-6. Quando il sito primario è nuovamente disponibile, si avvia tooreplicate replica inversa da hello del sito secondario toohello primario. La replica inversa porta hello le macchine virtuali in uno stato protetto, ma Data Center secondario hello è ancora percorso attivo hello.
-7. sito primario di hello toomake nel percorso active hello, si avvia nuovamente un failover pianificato da tooprimary secondario, seguita da un'altra replica inversa.
+1. È possibile eseguire un [failover](site-recovery-failover.md) pianificato o non pianificato tra siti locali. Se si esegue un failover pianificato, le macchine virtuali di origine vengono arrestate per assicurare che non si verifichino perdite di dati.
+2. È possibile effettuare il failover di un solo computer o creare [piani di ripristino](site-recovery-create-recovery-plans.md) per orchestrare il failover di più computer.
+4. Se si esegue un failover non pianificato in un sito secondario, dopo il failover i computer della posizione secondaria non sono abilitati per la protezione o la replica. Se è stato eseguito un failover pianificato, dopo il failover i computer della posizione secondaria sono protetti.
+5. Si esegue quindi il commit del failover per avviare l'accesso al carico di lavoro dalla VM di replica.
+6. Quando il sito primario è nuovamente disponibile, si avvia la replica inversa dal sito secondario a quello primario. La replica inversa porta le macchine virtuali in uno stato protetto, ma per il datacenter secondario resta la posizione attiva.
+7. Per rendere di nuovo il sito primario la posizione attiva, occorre avviare un failover pianificato da sito secondario a primario, seguito da un'altra replica inversa.
 
 
 
 
-## <a name="replicate-vmware-vmsphysical-servers-tooa-secondary-site"></a>Replicare le macchine virtuali VMware/fisici server tooa sito secondario
+## <a name="replicate-vmware-vmsphysical-servers-to-a-secondary-site"></a>Replicare VM VMware/server fisici in un sito secondario
 
-Replicare le macchine virtuali VMware o il sito secondario di server fisici tooa utilizzando InMage Scout, utilizzo di questi componenti dell'architettura:
+Per la replica di server fisici o macchine virtuali VMware in un sito secondario tramite InMage Scout, si usano i componenti dell'architettura seguenti:
 
 
 ### <a name="architectural-components"></a>Componenti dell'architettura
 
 **Componente** | **Posizione** | **Dettagli**
 --- | --- | ---
-**Azzurro** | InMage Scout | tooobtain InMage Scout è necessaria una sottoscrizione di Azure.<br/><br/> Dopo aver creato un insieme di credenziali di servizi di ripristino, scaricare InMage Scout e installare tooset gli aggiornamenti più recenti di hello distribuzione hello.
-**Server di elaborazione** | Situato nel sito primario | Distribuire la memorizzazione nella cache di hello processo server toohandle, compressione e l'ottimizzazione di dati.<br/><br/> Gestisce inoltre l'installazione push dell'agente unificata toomachines desiderato tooprotect hello.
-**Server di configurazione** | Situato nel sito secondario | gestisce il server di configurazione di Hello, configurare e monitorare la distribuzione, ovvero tramite il sito Web management hello o console vContinuum hello.
-**Server vContinuum** | Facoltativo. Installato in hello stesso percorso del server di configurazione hello. | Fornisce una console per la gestione e il monitoraggio dell'ambiente protetto.
-**Server master di destinazione** | Si trova nel sito secondario hello | server di destinazione master Hello contiene i dati replicati. Riceve dati dal server di elaborazione hello, crea una macchina di replica nel sito secondario hello e contiene i punti di conservazione dati hello.<br/><br/> numero di Hello del server di destinazione master che è necessario dipende dal numero di hello che si proteggono macchine.<br/><br/> Se si desidera toofail toohello indietro primario di sito, è necessario un server di destinazione master sono troppo. Hello unificata agente è installato in questo server.
-**Server VMware ESX/ESXi e vCenter** |  Le macchine virtuali sono ospitate in host ESX/ESXi. Gli host vengono gestiti con un server vCenter. | È necessario un tooreplicate infrastruttura VMware le macchine virtuali VMware.
-**VM/server fisici** |  Unificata agente installato in macchine virtuali VMware e server fisici che si desidera tooreplicate. | agente Hello funge da un provider di comunicazione tra tutti i componenti di hello.
+**Azzurro** | InMage Scout | Per ottenere InMage Scout, è necessaria una sottoscrizione di Azure.<br/><br/> Dopo aver creato un insieme di credenziali di Servizi di ripristino, scaricare InMage Scout e installare gli aggiornamenti più recenti per configurare la distribuzione.
+**Server di elaborazione** | Situato nel sito primario | Il server di elaborazione viene distribuito per gestire la memorizzazione nella cache, la compressione e l'ottimizzazione dei dati.<br/><br/> Gestisce anche l'installazione push di Unified Agent nei computer da proteggere.
+**Server di configurazione** | Situato nel sito secondario | Il server di configurazione gestisce, configura e monitora la distribuzione usando il sito Web di gestione o la console vContinuum.
+**Server vContinuum** | Facoltativo. Installato nella stessa posizione del server di configurazione. | Fornisce una console per la gestione e il monitoraggio dell'ambiente protetto.
+**Server master di destinazione** | Situato nel sito secondario | Questo server contiene i dati replicati. Riceve i dati dal server di elaborazione e crea un computer di replica nel sito secondario e include i punti di conservazione dei dati.<br/><br/> Il numero di server di destinazione master necessari dipende dal numero di computer da proteggere.<br/><br/> Se si vuole eseguire il failback al sito primario, deve essere disponibile anche un server di destinazione master. Unified Agent viene installato in questo server.
+**Server VMware ESX/ESXi e vCenter** |  Le macchine virtuali sono ospitate in host ESX/ESXi. Gli host vengono gestiti con un server vCenter. | È necessaria un'infrastruttura VMware per replicare le VM VMware.
+**VM/server fisici** |  Unified Agent installato nei server fisici e nelle macchine virtuali VMware da replicare. | L'agente funge da provider di comunicazioni tra tutti i componenti.
 
 
 ### <a name="replication-process"></a>Processo di replica
 
-1. Si impostare i server del componente hello in ogni sito (processo di configurazione, la destinazione master) e installa hello agente unificato in un computer che si desidera tooreplicate.
-2. Dopo la replica iniziale, hello agente in ogni computer invia i server di elaborazione toohello delta della replica delle modifiche.
-3. server di elaborazione Hello Ottimizza dati hello e trasferisce i server di destinazione master toohello nel sito secondario hello. il server di configurazione di Hello gestisce il processo di replica hello.
+1. Configurare i server del componente in ogni sito, ovvero configurazione, elaborazione, destinazione master, e installare Unified Agent nei computer da replicare.
+2. Dopo la replica iniziale, l'agente installato in ogni computer invia le modifiche della replica differenziale al server di elaborazione.
+3. Il server di elaborazione ottimizza i dati e li trasferisce nel server di destinazione master nel sito secondario. Il server di configurazione gestisce il processo di replica.
 
-**Figura 2: VMware tooVMware replica**
+**Figura 2: Replica da VMware a VMware**
 
-![VMware tooVMware](./media/site-recovery-components/vmware-to-vmware.png)
+![Da VMware a VMware](./media/site-recovery-components/vmware-to-vmware.png)
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Hello revisione [matrice del supporto](site-recovery-support-matrix-to-sec-site.md)
+Rivedere la [matrice di supporto](site-recovery-support-matrix-to-sec-site.md)

@@ -1,6 +1,6 @@
 ---
-title: aaaHive con gli strumenti di Data Lake (Hadoop) per Visual Studio - HDInsight di Azure | Documenti Microsoft
-description: Informazioni su come toouse hello Data Lake tools per Visual Studio toorun Apache Hive query con Apache Hadoop in HDInsight di Azure.
+title: Hive con strumenti Data Lake (Hadoop) per Visual Studio - Azure HDInsight | Microsoft Docs
+description: Informazioni su come usare gli strumenti Data Lake per Visual Studio per eseguire query Apache Hive con Apache Hadoop in Azure HDInsight.
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 07/07/2017
+ms.date: 09/28/2017
 ms.author: larryfr
-ms.openlocfilehash: dc76974c02cf68bcf701b2b155842c9e9c5cb988
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: b9a8f857f42f16ec7735a79ec29e77e3c99c8ba7
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="run-hive-queries-using-hello-data-lake-tools-for-visual-studio"></a>Esecuzione di query Hive con strumenti di Data Lake hello per Visual Studio
+# <a name="run-hive-queries-using-the-data-lake-tools-for-visual-studio"></a>Eseguire query Hive usando gli strumenti Data Lake per Visual Studio
 
-Informazioni su come toouse hello Data Lake strumenti per Apache Hive tooquery di Visual Studio. gli strumenti di Data Lake Hello consentono tooeasily creare, inviare e monitorare tooHadoop query Hive in HDInsight di Azure.
+Informazioni su come usare gli strumenti Data Lake per Visual Studio per eseguire query su Apache Hive. Gli strumenti Data Lake consentono di creare, inviare e monitorare facilmente query Hive in Hadoop in HDInsight di Azure.
 
 ## <a id="prereq"></a>Prerequisiti
 
 * Un cluster Azure HDInsight (Hadoop in HDInsight)
 
   > [!IMPORTANT]
-  > Linux è hello solo sistema operativo utilizzato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+  > Linux è l'unico sistema operativo usato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
-* Visual Studio (una delle seguenti versioni di hello):
+* Visual Studio (una delle versioni seguenti):
 
     * Visual Studio 2013 Community/Professional/Premium/Ultimate con Update 4
 
@@ -41,13 +41,13 @@ Informazioni su come toouse hello Data Lake strumenti per Apache Hive tooquery d
 
     * Visual Studio 2017, qualsiasi edizione
 
-* Strumenti HDInsight per Visual Studio o Azure Data Lake Tools per Visual Studio. Vedere [iniziare a usare gli strumenti di Visual Studio Hadoop per HDInsight](hdinsight-hadoop-visual-studio-tools-get-started.md) per informazioni sull'installazione e configurazione di strumenti hello.
+* Strumenti HDInsight per Visual Studio o Azure Data Lake Tools per Visual Studio. Vedere [Introduzione all'uso di HDInsight Hadoop Tools per Visual Studio](hdinsight-hadoop-visual-studio-tools-get-started.md) per informazioni sull'installazione e la configurazione degli strumenti.
 
-## <a id="run"></a>Esecuzione di query Hive utilizzando hello Visual Studio
+## <a id="run"></a> Eseguire query Hive usando Visual Studio
 
 1. Aprire **Visual Studio** e scegliere **Nuovo** > **Progetto** > **Azure Data Lake** > **HIVE** > **Applicazione Hive**. Specificare un nome per questo progetto.
 
-2. Aprire hello **Script.hql** file che viene creato con questo progetto e Incolla in hello seguendo le istruzioni HiveQL:
+2. Aprire il file **Script.hql** creato con il progetto e incollarvi le seguenti istruzioni HiveQL:
 
    ```hiveql
    set hive.execution.engine=tez;
@@ -58,38 +58,38 @@ Informazioni su come toouse hello Data Lake strumenti per Apache Hive tooquery d
    SELECT t4 AS sev, COUNT(*) AS count FROM log4jLogs WHERE t4 = '[ERROR]' AND  INPUT__FILE__NAME LIKE '%.log' GROUP BY t4;
    ```
 
-    Queste istruzioni consentono di eseguire hello seguenti azioni:
+    Di seguito sono elencate le istruzioni che eseguono queste azioni:
 
-   * `DROP TABLE`: Hello tabella esiste, questa istruzione eliminata.
+   * `DROP TABLE`: se la tabella esiste, questa istruzione la elimina.
 
-   * `CREATE EXTERNAL TABLE`: crea una nuova tabella "esterna" in Hive. Le tabelle esterne archiviano solo la definizione di tabella hello nell'Hive (Buongiorno dati viene lasciati nella posizione originale hello).
+   * `CREATE EXTERNAL TABLE`: crea una nuova tabella "esterna" in Hive. Le tabelle esterne archiviano solo la definizione della tabella in Hive. I dati vengono lasciati nella posizione originale.
 
      > [!NOTE]
-     > Le tabelle esterne da utilizzare quando si prevede di hello sottostante toobe dati aggiornati da un'origine esterna. Ad esempio, un processo MapReduce o un servizio di Azure.
+     > Usa le tabelle esterne se si prevede che i dati sottostanti verranno aggiornati da un'origine esterna. Ad esempio, un processo MapReduce o un servizio di Azure.
      >
-     > Eliminazione di una tabella esterna **non** eliminare dati hello e definizione della tabella solo hello.
+     > L'eliminazione di una tabella esterna **non** comporta anche l'eliminazione dei dati. Viene eliminata solo la definizione della tabella.
 
-   * `ROW FORMAT`: Indica la formattazione di dati hello Hive. In questo caso, i campi di hello in ogni log sono separati da uno spazio.
+   * `ROW FORMAT`: indica a Hive il modo in cui sono formattati i dati. In questo caso, i campi in ogni log sono separati da uno spazio.
 
-   * `STORED AS TEXTFILE LOCATION`: Indica Hive dove hello memorizzati (directory dati di esempio/hello) e a cui è archiviato come testo.
+   * `STORED AS TEXTFILE LOCATION`: indica a Hive che i dati sono archiviati nella directory example/data e che sono archiviati come testo.
 
-   * `SELECT`: Selezionare un conteggio di tutte le righe in cui colonna `t4` contiene il valore di hello `[ERROR]`. L'istruzione dovrebbe restituire un valore pari a `3`, poiché sono presenti tre righe contenenti questo valore.
+   * `SELECT`: seleziona un numero di tutte le righe in cui la colonna `t4` include il valore `[ERROR]`. L'istruzione dovrebbe restituire un valore pari a `3`, poiché sono presenti tre righe contenenti questo valore.
 
-   * `INPUT__FILE__NAME LIKE '%.log'`: indica a Hive che si dovrebbero restituire solo i dati da file che terminano con .log. Questa clausola limita hello toohello sample.log file di ricerca contiene dati hello.
+   * `INPUT__FILE__NAME LIKE '%.log'`: indica a Hive che si dovrebbero restituire solo i dati da file che terminano con .log. Questa clausola limita la ricerca al file sample.log che contiene i dati.
 
-3. Dalla barra degli strumenti hello, selezionare hello **HDInsight Cluster** che si desidera toouse per questa query. Selezionare **Invia** istruzioni hello toorun come un processo Hive.
+3. Dalla barra degli strumenti, selezionare il **Cluster HDInsight** che si desidera usare per la query. Selezionare **Invia** per eseguire le istruzioni come processo Hive.
 
    ![Barra di invio](./media/hdinsight-hadoop-use-hive-visual-studio/toolbar.png)
 
-4. Hello **Hive riepilogo** viene visualizzata e visualizza le informazioni sull'esecuzione del processo hello. Hello utilizzare **aggiornamento** collegamento toorefresh hello informazioni sul processo finché hello **lo stato del processo** cambia troppo**completato**.
+4. Verrà visualizzata una finestra di **riepilogo del processo Hive** con informazioni relative al processo in esecuzione. Usare il collegamento **Aggiorna** per aggiornare le informazioni del processo finché il campo **Stato processo** non viene impostato su **Completato**.
 
    ![riepilogo del processo che mostra un processo completato](./media/hdinsight-hadoop-use-hive-visual-studio/jobsummary.png)
 
-5. Hello utilizzare **Output processo** collegamento di output di hello tooview del processo. Visualizza `[ERROR] 3`, ovvero il valore di hello restituito dalla query.
+5. Usare il collegamento **Output processo** per visualizzare l'output del processo. Mostra `[ERROR] 3`, ovvero il valore restituito dalla query.
 
 6. È anche possibile eseguire query Hive senza creare un progetto. Usando **Esplora server**, espandere **Azure** > **HDInsight**, fare clic con il pulsante destro del mouse sul server HDInsight, quindi scegliere **Scrivi una query Hive**.
 
-7. In hello **temp.hql** documento che viene visualizzata, aggiungere hello seguendo le istruzioni HiveQL:
+7. Nel documento **temp.hql** che viene visualizzato aggiungere le seguenti istruzioni HiveQL:
 
    ```hiveql
    set hive.execution.engine=tez;
@@ -97,24 +97,24 @@ Informazioni su come toouse hello Data Lake strumenti per Apache Hive tooquery d
    INSERT OVERWRITE TABLE errorLogs SELECT t1, t2, t3, t4, t5, t6, t7 FROM log4jLogs WHERE t4 = '[ERROR]' AND INPUT__FILE__NAME LIKE '%.log';
    ```
 
-    Queste istruzioni consentono di eseguire hello seguenti azioni:
+    Di seguito sono elencate le istruzioni che eseguono queste azioni:
 
-   * `CREATE TABLE IF NOT EXISTS`: crea una tabella, se non esiste già. Poiché hello `EXTERNAL` parola chiave non viene utilizzato, l'istruzione seguente crea una tabella interna. Le tabelle interne vengono archiviate nel data warehouse di hello Hive e vengono gestite dall'Hive.
+   * `CREATE TABLE IF NOT EXISTS`: crea una tabella, se non esiste già. Poiché la parola chiave `EXTERNAL` non viene usata, questa istruzione crea una tabella interna. Le tabelle interne vengono archiviate nel data warehouse di Hive e sono gestite da Hive.
 
      > [!NOTE]
-     > A differenza di `EXTERNAL` tabelle, anche l'eliminazione di una tabella interna Elimina hello dati sottostanti.
+     > A differenza delle tabelle `EXTERNAL`, se si elimina una tabella interna, vengono eliminati anche i dati sottostanti.
 
-   * `STORED AS ORC`: Archivia hello dati in formato di riga con ottimizzazione per la colonna (ORC). ORC è un formato altamente ottimizzato ed efficiente per l'archiviazione di dati Hive.
+   * `STORED AS ORC`: archivia i dati nel formato ORC, Optimized Row Columnar. ORC è un formato altamente ottimizzato ed efficiente per l'archiviazione di dati Hive.
 
-   * `INSERT OVERWRITE ... SELECT`: Consente di selezionare le righe da hello `log4jLogs` tabella contenenti `[ERROR]`, quindi inserisce dati di hello in hello `errorLogs` tabella.
+   * `INSERT OVERWRITE ... SELECT`: seleziona le righe della tabella `log4jLogs` contenenti `[ERROR]`, quindi inserisce i dati nella tabella `errorLogs`.
 
-8. Dalla barra degli strumenti hello, selezionare **Invia** processo hello toorun. Hello utilizzare **lo stato del processo** toodetermine processo hello è stata completata.
+8. Nella barra degli strumenti selezionare **Invia** per eseguire il processo. Usare **Stato processo** per accertarsi che il processo sia stato completato correttamente.
 
-9. tooverify che hello processo creato tabella hello, utilizzare **Esplora Server** espandere **Azure** > **HDInsight** > cluster HDInsight > **Database hive** > **predefinito**. Hello **degli errori** tabella e hello **log4jLogs** sono elencati nella tabella.
+9. Per verificare che il processo abbia creato la tabella, usare **Esplora server** ed espandere **Azure** > **HDInsight** > il proprio cluster HDInsight > **Database Hive** > **Predefinito**. Vengono elencate la tabella **errorLogs** e la tabella **log4jLogs**.
 
 ## <a id="nextsteps"></a>Passaggi successivi
 
-Come si può notare, gli strumenti di HDInsight hello per Visual Studio forniscono un modo semplice di toowork con query Hive in HDInsight.
+Come si può notare, gli strumenti HDInsight per Visual Studio forniscono un modo semplice per lavorare con le query Hive in HDInsight.
 
 Per informazioni generali su Hive in HDInsight:
 
@@ -126,7 +126,7 @@ Per informazioni su altre modalità d'uso di Hadoop in HDInsight:
 
 * [Usare MapReduce con Hadoop in HDInsight](hdinsight-use-mapreduce.md)
 
-Per ulteriori informazioni sugli strumenti di HDInsight hello per Visual Studio:
+Per altre informazioni su HDInsight Tools per Visual Studio:
 
 * [Introduzione all'uso di HDInsight Tools per Visual Studio](hdinsight-hadoop-visual-studio-tools-get-started.md)
 

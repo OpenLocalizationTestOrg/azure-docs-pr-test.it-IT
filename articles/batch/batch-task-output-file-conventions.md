@@ -1,6 +1,6 @@
 ---
-title: aaaPersist job e task tooAzure archiviazione con libreria di hello convenzioni dei File di output per .NET - Azure Batch | Documenti Microsoft
-description: "Informazioni su come toouse convenzioni File Batch di Azure library per .NET toopersist attività Batch e processo output tooAzure archiviazione e hello visualizzazione persistente output di hello portale di Azure."
+title: "Rendere persistente l'output di processi e attività in Archiviazione di Azure con la libreria File Conventions per .NET - Azure Batch | Microsoft Docs"
+description: "Informazioni su come usare la libreria Azure Batch File Conventions per .NET per rendere persistente l'output di attività e processi di Batch in Archiviazione di Azure e visualizzare l'output reso persistente nel portale di Azure."
 services: batch
 documentationcenter: .net
 author: tamram
@@ -15,89 +15,89 @@ ms.workload: big-compute
 ms.date: 06/16/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: cf2ac8632a13d32438c1bdcf11b4b9649de1e2b5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a9de327c20463469bc91d9720aa17333a36f919e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="persist-job-and-task-data-tooazure-storage-with-hello-batch-file-conventions-library-for-net-toopersist"></a>Processo di persistenza e dati tooAzure archiviazione con libreria di hello convenzioni dei File Batch per .NET toopersist di attività 
+# <a name="persist-job-and-task-data-to-azure-storage-with-the-batch-file-conventions-library-for-net-to-persist"></a>Rendere persistenti i dati di attività e processi in Archiviazione di Azure con la libreria Batch File Conventions per .NET 
 
 [!INCLUDE [batch-task-output-include](../../includes/batch-task-output-include.md)]
 
-Dati dell'attività toopersist unidirezionale sono hello toouse [libreria convenzioni File Batch di Azure per .NET][nuget_package]. libreria convenzioni File Hello semplifica il processo di hello di output dell'attività di archiviazione dati tooAzure, archiviazione e del suo recupero. È possibile utilizzare hello convenzioni File libreria nel codice di attività sia client &mdash; nel codice dell'attività per salvare in modo permanente i file e nel client toolist del codice e recuperarli. Il codice di attività può usare anche output di hello libreria tooretrieve hello di attività upstream, ad esempio un [le relazioni tra attività](batch-task-dependencies.md) scenario. 
+Un modo per rendere persistenti i dati consiste nell'usare la [libreria Azure Batch File Conventions per .NET][nuget_package]. La libreria File Conventions semplifica il processo di archiviazione dei dati di output delle attività in Archiviazione di Azure e il relativo recupero. È possibile usare la libreria File Conventions sia nel codice di attività che nel codice client: nel codice di attività per rendere persistenti i file e nel codice client per elencarli e recuperarli. È anche possibile usare la libreria nel codice di attività per recuperare l'output delle attività upstream, ad esempio in uno scenario di [dipendenze tra attività](batch-task-dependencies.md). 
 
-tooretrieve file alla libreria di hello convenzioni dei File di output, è possibile individuare il file hello per un determinato processo o un'attività elencandoli dall'ID e lo scopo. Non è necessario tooknow hello nomi o percorsi di file hello. Ad esempio, utilizzare toolist libreria di hello convenzioni dei File di tutti i file intermedi per una determinata attività oppure ottenere un file di anteprima per un determinato processo.
+Per recuperare i file di output con la libreria File Conventions, è possibile individuare i file per un determinato processo o un'attività elencandoli in base a ID e scopo. Non è necessario conoscere i nomi o i percorsi dei file. Ad esempio, è possibile usare la libreria File Conventions per elencare tutti i file intermedi per una determinata attività o per ottenere un file di anteprima per un determinato processo.
 
 > [!TIP]
-> A partire dalla versione 2017-05-01, hello API del servizio Batch supporta persistenti output dati tooAzure archiviazione per le attività e le attività di gestione processo eseguite sul pool creati con la configurazione della macchina virtuale hello. API del servizio Batch Hello fornisce toopersist un modo semplice l'output di codice che crea un'attività e funge da una libreria di convenzioni di File alternativo toohello hello. È possibile modificare l'output di toopersist Batch applicazioni client senza la necessità di un'applicazione hello tooupdate che l'attività è in esecuzione. Per ulteriori informazioni, vedere [mantenere i dati di attività tooAzure archiviazione con l'API del servizio Batch hello](batch-task-output-files.md).
+> A partire dalla versione 2017-05-01, l'API del servizio Batch supporta la persistenza dei dati di output in Archiviazione di Azure per le attività e le attività di gestione processo eseguite sui pool creati con la configurazione della macchina virtuale. L'API del servizio Batch mette a disposizione un modo semplice per rendere persistente l'output dall'interno del codice che crea un'attività e rappresenta un'alternativa alla libreria File Conventions. È possibile modificare le applicazioni client del servizio Batch in modo che rendano persistente l'output senza dover aggiornare l'applicazione eseguita dall'attività. Per altre informazioni, vedere [Rendere persistenti i dati di attività in Archiviazione di Azure con l'API del servizio Batch](batch-task-output-files.md).
 > 
 > 
 
-## <a name="when-do-i-use-hello-file-conventions-library-toopersist-task-output"></a>Utilizzo di output di hello convenzioni dei File della libreria toopersist attività
+## <a name="when-do-i-use-the-file-conventions-library-to-persist-task-output"></a>Quando è appropriato usare la libreria File Conventions per rendere persistente l'output delle attività?
 
-Azure Batch offre più di un metodo toopersist l'output dell'attività. Hello convenzioni dei File è migliori scenari toothese appropriato:
+Il servizio Azure Batch offre diversi modi per rendere persistente l'output delle attività. La libreria File Conventions è la scelta ottimale per questi scenari:
 
-- È possibile modificare facilmente codice hello per un'applicazione hello che l'attività è in esecuzione file toopersist utilizzando libreria convenzioni File hello.
-- Si desidera toostream dati tooAzure archiviazione mentre l'attività hello è ancora in esecuzione.
-- Si desidera toopersist dati dal pool creati con la configurazione di macchina virtuale hello o della configurazione del servizio cloud hello.
-- L'applicazione client o altre attività in hello processi toolocate esigenze e scaricare i file di output di attività per ID o in base allo scopo. 
-- Desideri che l'output dell'attività tooview in hello portale di Azure.
+- È possibile modificare facilmente il codice per l'applicazione eseguita dall'attività per rendere persistenti i file usando la libreria File Conventions.
+- Si vogliono inviare flussi di dati in Archiviazione di Azure mentre l'attività è ancora in esecuzione.
+- Si vogliono rendere persistenti i dati dai pool creati con la configurazione del servizio cloud o con la configurazione della macchina virtuale.
+- L'applicazione client o altre attività nel processo devono individuare e scaricare i file di output delle attività in base all'ID o allo scopo. 
+- Si vuole visualizzare l'output delle attività nel portale di Azure.
 
-Se lo scenario è diverso da quelli elencati in precedenza, potrebbe essere tooconsider un approccio diverso. Per ulteriori informazioni sulle altre opzioni per salvare in modo permanente l'output dell'attività, vedere [Persist processi e delle attività di output tooAzure archiviazione](batch-task-output.md). 
+Se lo scenario è diverso da quelli sopra elencati, potrebbe essere necessario prendere in considerazione un approccio diverso. Per altre informazioni sulle opzioni per rendere persistente l'output delle attività, vedere [Rendere persistente l'output di processi e attività](batch-task-output.md). 
 
-## <a name="what-is-hello-batch-file-conventions-standard"></a>Che cos'è hello convenzioni dei File Batch standard?
+## <a name="what-is-the-batch-file-conventions-standard"></a>Che cos'è lo standard Batch File Conventions?
 
-Hello [standard convenzioni dei File Batch](https://github.com/Azure/azure-sdk-for-net/tree/vs17Dev/src/SDKs/Batch/Support/FileConventions#conventions) fornisce uno schema di denominazione per i contenitori di destinazione hello e toowhich percorsi blob vengono scritti i file di output. File persistente tooAzure archiviazione conformi toohello convenzioni dei File standard sono automaticamente disponibili per la visualizzazione in hello portale di Azure. portale di Hello è a conoscenza di convenzione di denominazione hello e pertanto possa visualizzare i file che rispettano tooit.
+Lo [standard Batch File Conventions](https://github.com/Azure/azure-sdk-for-net/tree/vs17Dev/src/SDKs/Batch/Support/FileConventions#conventions) fornisce uno schema di denominazione per i percorsi di contenitori e BLOB di destinazione in cui vengono scritti i file di output. I file resi persistenti in Archiviazione di Azure e conformi allo standard File Conventions sono automaticamente disponibili per la visualizzazione nel portale di Azure. Il portale riconosce la convenzione di denominazione e pertanto può visualizzare i file che rispettano tale convenzione.
 
-libreria di convenzioni per i File Hello per .NET denomina automaticamente i contenitori di archiviazione e i file di output di attività in base toohello convenzioni dei File standard. libreria convenzioni File Hello fornisce anche metodi tooquery di file di output in archiviazione di Azure in base toojob ID, ID attività o scopo.   
+La libreria File Conventions per .NET assegna automaticamente i nomi ai contenitori di archiviazione e ai file di output delle attività in base allo standard File Conventions. La libreria File Conventions fornisce anche metodi per eseguire query sui file di output in Archiviazione di Azure in base all'ID del processo, all'ID dell'attività o allo scopo.   
 
-Se si sviluppa con un linguaggio diverso da .NET, è possibile implementare manualmente il standard convenzioni File hello nell'applicazione. Per ulteriori informazioni, vedere [sullo standard di convenzioni per i File Batch hello](batch-task-output.md#about-the-batch-file-conventions-standard).
+Se si sviluppa con un linguaggio diverso da .NET, è possibile implementare autonomamente lo standard File Conventions nell'applicazione. Per altre informazioni, vedere [Informazioni sullo standard Batch File Conventions](batch-task-output.md#about-the-batch-file-conventions-standard).
 
-## <a name="link-an-azure-storage-account-tooyour-batch-account"></a>Collegare un tooyour di account di archiviazione di Azure account Batch
+## <a name="link-an-azure-storage-account-to-your-batch-account"></a>Collegare un account di archiviazione di Azure all'account Batch
 
-toopersist dati di output tooAzure archiviazione utilizzando hello convenzioni File libreria, è innanzitutto necessario collegare un tooyour di account di archiviazione di Azure account Batch. Se non è già fatto, è possibile collegare un tooyour di account di archiviazione account Batch utilizzando hello [portale di Azure](https://portal.azure.com):
+Per rendere persistenti i dati di output in Archiviazione di Azure usando la libreria File Conventions, è prima necessario collegare un account di Archiviazione di Azure all'account Batch. Se non è già stato fatto, collegare un account di archiviazione all'account Batch tramite il [portale di Azure](https://portal.azure.com):
 
-1. Passare l'account Batch tooyour in hello portale di Azure. 
+1. Passare all'account Batch nel portale di Azure. 
 2. In **Impostazioni** selezionare **Account di archiviazione**.
 3. Se non è già disponibile un account di archiviazione associato all'account Batch, fare clic su **Account di archiviazione (nessuno)**.
-4. Selezionare un account di archiviazione dall'elenco di hello per la sottoscrizione. Per prestazioni ottimali, utilizzare un account di archiviazione di Azure in hello stessa area hello account Batch in cui si eseguono le attività.
+4. Selezionare un account di archiviazione nell'elenco per la sottoscrizione corrente. Per prestazioni ottimali, usare un account di Archiviazione di Azure nella stessa area dell'account Batch in cui si eseguono le attività.
 
 ## <a name="persist-output-data"></a>Rendere persistenti i dati di output
 
-attività e processi toopersist dati con libreria di hello convenzioni dei File di output, creare un contenitore di archiviazione di Azure, quindi salvare contenitore toohello output di hello. Hello utilizzare [libreria client di archiviazione di Azure per .NET](https://www.nuget.org/packages/WindowsAzure.Storage) nel contenitore di attività codice tooupload hello attività output toohello. 
+Per rendere persistenti i dati di output di processi e attività con la libreria File Conventions, creare un contenitore in Archiviazione di Azure e quindi salvare l'output nel contenitore. Usare la [libreria client di Archiviazione di Azure per .NET](https://www.nuget.org/packages/WindowsAzure.Storage) nel codice dell'attività per caricare l'output dell'attività nel contenitore. 
 
 Per altre informazioni sull'uso di contenitori e BLOB in Archiviazione di Azure, vedere [Introduzione all'archiviazione BLOB di Azure con .NET](../storage/blobs/storage-dotnet-how-to-use-blobs.md).
 
 > [!WARNING]
-> Tutti gli output di attività e processi persistenti con hello convenzioni relative ai File archiviati nella libreria hello stesso contenitore. Se un numero elevato di attività Cerca toopersist file hello stesso tempo, [archiviazione limitazioni](../storage/common/storage-performance-checklist.md#blobs) può essere applicata.
+> Tutti gli output di processi e attività resi persistenti con la libreria File Conventions vengono archiviati nello stesso contenitore. Se un numero elevato di attività tenta di rendere persistenti i file nello stesso momento, potrebbero essere applicate [limitazioni dell'archiviazione](../storage/common/storage-performance-checklist.md#blobs).
 > 
 > 
 
 ### <a name="create-storage-container"></a>Creare un contenitore di archiviazione
 
-toopersist attività output tooAzure archiviazione, prima di creare un contenitore chiamando [CloudJob][net_cloudjob].[ PrepareOutputStorageAsync][net_prepareoutputasync]. Questo metodo di estensione accetta un oggetto [CloudStorageAccount] [ net_cloudstorageaccount] come parametro. Viene creato un contenitore denominato in base toohello File convenzioni standard, in modo che il suo contenuto possono essere individuato dagli hello Azure portal e hello i metodi di recupero descritti più avanti in articolo hello.
+Per rendere persistente l'output delle attività in Archiviazione di Azure, creare innanzitutto un contenitore chiamando [CloudJob][net_cloudjob].[PrepareOutputStorageAsync][net_prepareoutputasync]. Questo metodo di estensione accetta un oggetto [CloudStorageAccount] [ net_cloudstorageaccount] come parametro. Crea un contenitore denominato in base allo standard File Conventions, in modo che il relativo contenuto sia individuabile dal portale di Azure e dai metodi di recupero descritti più avanti in questo articolo.
 
-È in genere inserire toocreate codice hello un contenitore nell'applicazione client &mdash; hello applicazione che crea il pool di processi e attività.
+In genere si inserisce il codice per creare un contenitore nell'applicazione client, ovvero l'applicazione che crea i pool, i processi e le attività.
 
 ```csharp
 CloudJob job = batchClient.JobOperations.CreateJob(
     "myJob",
     new PoolInformation { PoolId = "myPool" });
 
-// Create reference toohello linked Azure Storage account
+// Create reference to the linked Azure Storage account
 CloudStorageAccount linkedStorageAccount =
     new CloudStorageAccount(myCredentials, true);
 
-// Create hello blob storage container for hello outputs
+// Create the blob storage container for the outputs
 await job.PrepareOutputStorageAsync(linkedStorageAccount);
 ```
 
 ### <a name="store-task-outputs"></a>Archiviare gli output delle attività
 
-Ora che è stata preparata un contenitore di archiviazione di Azure, le attività è possono salvare toohello contenitore dell'output usando hello [TaskOutputStorage] [ net_taskoutputstorage] trovare la classe nella libreria convenzioni File hello.
+Dopo avere preparato un contenitore in Archiviazione di Azure, le attività possono salvare l'output nel contenitore usando la classe [TaskOutputStorage][net_taskoutputstorage] disponibile nella libreria File Conventions.
 
-Nel codice di attività, creare innanzitutto un [TaskOutputStorage] [ net_taskoutputstorage] dell'oggetto, quindi quando l'attività hello del completamento dell'operazione, chiamare hello [TaskOutputStorage] [ net_taskoutputstorage]. [SaveAsync] [ net_saveasync] toosave metodo relativo tooAzure output archiviazione.
+Nel codice dell'attività creare un oggetto [TaskOutputStorage][net_taskoutputstorage] e quindi, dopo che l'attività ha completato tutte le relative operazioni, chiamare il metodo [TaskOutputStorage][net_taskoutputstorage].[SaveAsync][net_saveasync] per salvarne l'output in Archiviazione di Azure.
 
 ```csharp
 CloudStorageAccount linkedStorageAccount = new CloudStorageAccount(myCredentials);
@@ -107,26 +107,26 @@ string taskId = Environment.GetEnvironmentVariable("AZ_BATCH_TASK_ID");
 TaskOutputStorage taskOutputStorage = new TaskOutputStorage(
     linkedStorageAccount, jobId, taskId);
 
-/* Code tooprocess data and produce output file(s) */
+/* Code to process data and produce output file(s) */
 
 await taskOutputStorage.SaveAsync(TaskOutputKind.TaskOutput, "frame_full_res.jpg");
 await taskOutputStorage.SaveAsync(TaskOutputKind.TaskPreview, "frame_low_res.jpg");
 ```
 
-Hello `kind` parametro di hello [TaskOutputStorage](https://msdn.microsoft.com/library/microsoft.azure.batch.conventions.files.taskoutputstorage.aspx).[ SaveAsync](https://msdn.microsoft.com/library/microsoft.azure.batch.conventions.files.taskoutputstorage.saveasync.aspx) metodo classifica hello file persistente. Esistono quattro tipi [TaskOutputKind][net_taskoutputkind] predefiniti: `TaskOutput`, `TaskPreview`, `TaskLog` e `TaskIntermediate.` È anche possibile definire categorie personalizzate di output.
+Il parametro `kind` del metodo [TaskOutputStorage](https://msdn.microsoft.com/library/microsoft.azure.batch.conventions.files.taskoutputstorage.aspx).[SaveAsync](https://msdn.microsoft.com/library/microsoft.azure.batch.conventions.files.taskoutputstorage.saveasync.aspx) consente di categorizzare i file persistenti. Esistono quattro tipi [TaskOutputKind][net_taskoutputkind] predefiniti: `TaskOutput`, `TaskPreview`, `TaskLog` e `TaskIntermediate.` È anche possibile definire categorie personalizzate di output.
 
-Questi tipi di output consentono toospecify quale tipo di output toolist quando si eseguono query in un secondo momento Batch per hello persistenti gli output di un'attività specifica. In altre parole, quando si elencano gli output di hello per un'attività, è possibile filtrare l'elenco di hello in uno dei tipi di output di hello. Ad esempio, "trarne vantaggio hello *anteprima* per attività di output *109*." Altre informazioni sulla visualizzazione e recupero di output viene visualizzato [recuperare l'output](#retrieve-output) successive dell'articolo hello.
+Questi tipi di output consentono di specificare il tipo di output da elencare, quando in seguito si eseguono query su Batch per visualizzare gli output salvati in modo permanente per una determinata attività. In altre parole, quando si elencano gli output per un'attività, è possibile filtrare l'elenco in base a uno dei tipi di output. Ad esempio, "Scaricare l'output di *anteprima* per l'attività *109*." Altre informazioni su come elencare e recuperare gli output sono disponibili in [Recuperare l'output](#retrieve-output) più avanti nell'articolo.
 
 > [!TIP]
-> Hello il tipo di output determina inoltre in hello Azure in cui viene visualizzato un determinato file portale: *TaskOutput*-suddiviso in categorie i file vengono visualizzati in **i file di output dell'attività**, e *TaskLog*i file vengono visualizzati in **attività registri**.
+> Il tipo di output determina anche dove viene visualizzato un file specifico nel portale di Azure. *TaskOutput*: i file categorizzati vengono visualizzati in **File di output delle attività** e i file di *TaskLog* vengono visualizzati in **Task logs** (Log delle attività).
 > 
 > 
 
 ### <a name="store-job-outputs"></a>Archiviare gli output del processo
 
-Inoltre genera toostoring attività, è possibile archiviare gli output di hello associati a un intero processo. Nell'attività di unione hello di un processo di rendering del filmato, ad esempio, si potrebbe persistere film hello completamente il rendering come output un processo. Al termine dell'esecuzione del processo, l'applicazione client è possibile elencare e recuperare l'output di hello per processo hello e non necessario tooquery hello singole attività.
+Oltre ad archiviare gli output di un'attività, è possibile archiviare gli output associato a un intero processo. Ad esempio, nell'attività di unione di un processo di rendering di un filmato, è possibile salvare in modo permanente l'intero filmato sottoposto a rendering come output del processo. Una volta completato il processo, l'applicazione client può elencare e recuperare gli output del processo senza dover eseguire query sulle singole attività.
 
-Archiviare l'output del processo dalla chiamata hello [JobOutputStorage][net_joboutputstorage].[ SaveAsync] [ net_joboutputstorage_saveasync] (metodo) e specificare hello [JobOutputKind] [ net_joboutputkind] e il nome file:
+Per archiviare l'output del processo, chiamare il metodo [JobOutputStorage][net_joboutputstorage].[SaveAsync][net_joboutputstorage_saveasync] e specificare [JobOutputKind][net_joboutputkind] e il nome file:
 
 ```csharp
 CloudJob job = new JobOutputStorage(acct, jobId);
@@ -136,21 +136,21 @@ await jobOutputStorage.SaveAsync(JobOutputKind.JobOutput, "mymovie.mp4");
 await jobOutputStorage.SaveAsync(JobOutputKind.JobPreview, "mymovie_preview.mp4");
 ```
 
-Come con hello **TaskOutputKind** tipo per l'output di un'attività, utilizzare hello [JobOutputKind] [ net_joboutputkind] toocategorize tipo un processo del persistenti i file. Questo parametro consente query toolater per un tipo specifico di output (elenco). Hello **JobOutputKind** tipo include categorie output e di anteprima e supporta la creazione di categorie personalizzate.
+Come con il tipo **TaskOutputKind** per gli output di un'attività, usare il tipo [JobOutputKind][net_joboutputkind] per categorizzare i file persistenti di un processo. Questo parametro consente di eseguire query in seguito, per ottenere l'elenco di un tipo specifico di output. Il tipo **JobOutputKind** include sia categorie di output che di anteprima e supporta la creazione di categorie personalizzate.
 
 ### <a name="store-task-logs"></a>Archiviare i log delle attività
 
-Inoltre toopersisting un'archiviazione toodurable file quando un'attività o un processo viene completato, potrebbe essere necessario toopersist file aggiornati durante l'esecuzione di un'attività di hello &mdash; i file di log o `stdout.txt` e `stderr.txt`, ad esempio. A tale scopo, la libreria di Azure Batch File convenzioni hello fornisce hello [TaskOutputStorage][net_taskoutputstorage].[ SaveTrackedAsync] [ net_savetrackedasync] metodo. Con [SaveTrackedAsync][net_savetrackedasync], è possibile tenere traccia di file tooa degli aggiornamenti nel nodo hello (in un intervallo specificato) e rendere persistenti tali tooAzure aggiornamenti archiviazione.
+Oltre a rendere persistente un file in una risorsa di archiviazione permanente quando un'attività o un processo viene completato, può essere necessario rendere persistenti i file aggiornati durante l'esecuzione di un'attività, ad esempio i file di log o `stdout.txt` e `stderr.txt`. A questo scopo, nella libreria Azure Batch File Conventions è disponibile il metodo [TaskOutputStorage][net_taskoutputstorage].[SaveTrackedAsync][net_savetrackedasync]. Con [SaveTrackedAsync][net_savetrackedasync] è possibile tenere traccia degli aggiornamenti a un file nel nodo (in base a un intervallo specificato) e salvare in modo permanente gli aggiornamenti in Archiviazione di Azure.
 
-Nel seguente frammento di codice di hello, utilizziamo [SaveTrackedAsync] [ net_savetrackedasync] tooupdate `stdout.txt` in archiviazione di Azure ogni 15 secondi, durante l'esecuzione di hello dell'attività hello:
+Nel frammento di codice seguente viene usato [SaveTrackedAsync][net_savetrackedasync] per aggiornare `stdout.txt` in Archiviazione di Azure ogni 15 secondi durante l'esecuzione dell'attività:
 
 ```csharp
 TimeSpan stdoutFlushDelay = TimeSpan.FromSeconds(3);
 string logFilePath = Path.Combine(
     Environment.GetEnvironmentVariable("AZ_BATCH_TASK_DIR"), "stdout.txt");
 
-// hello primary task logic is wrapped in a using statement that sends updates to
-// hello stdout.txt blob in Storage every 15 seconds while hello task code runs.
+// The primary task logic is wrapped in a using statement that sends updates to
+// the stdout.txt blob in Storage every 15 seconds while the task code runs.
 using (ITrackedSaveOperation stdout =
         await taskStorage.SaveTrackedAsync(
         TaskOutputKind.TaskLog,
@@ -158,29 +158,29 @@ using (ITrackedSaveOperation stdout =
         "stdout.txt",
         TimeSpan.FromSeconds(15)))
 {
-    /* Code tooprocess data and produce output file(s) */
+    /* Code to process data and produce output file(s) */
 
-    // We are tracking hello disk file toosave our standard output, but the
-    // node agent may take up too3 seconds tooflush hello stdout stream to
-    // disk. So give hello file a moment toocatch up.
+    // We are tracking the disk file to save our standard output, but the
+    // node agent may take up to 3 seconds to flush the stdout stream to
+    // disk. So give the file a moment to catch up.
      await Task.Delay(stdoutFlushDelay);
 }
 ```
 
-Hello commentato sezione `Code tooprocess data and produce output file(s)` è un segnaposto per il codice hello eseguirebbe in genere l'attività. Ad esempio, potrebbe essere disponibile codice che scarica i dati da Archiviazione di Azure ed esegue un calcolo o una trasformazione dei dati. aspetto importante di questo frammento di codice Hello è illustrare come è possibile eseguire il wrapping tale codice in un `using` tooperiodically blocco aggiornare un file con [SaveTrackedAsync][net_savetrackedasync].
+La sezione impostata come commento `Code to process data and produce output file(s)` è un segnaposto per il codice eseguito normalmente da un'attività. Ad esempio, potrebbe essere disponibile codice che scarica i dati da Archiviazione di Azure ed esegue un calcolo o una trasformazione dei dati. Questo frammento di codice è importante perché dimostra come è possibile eseguire il wrapping di tale codice in un blocco `using` per aggiornare periodicamente un file con [SaveTrackedAsync][net_savetrackedasync].
 
-agente nodo Hello è un programma che viene eseguito in ogni nodo nel pool di hello e fornisce l'interfaccia di comando e controllo hello tra nodo hello e il servizio Batch hello. Hello `Task.Delay` è necessaria alla fine di hello di questa chiamata `using` tooensure di blocco che hello agente nodo dispone di contenuto di hello tooflush ora dello standard toohello stdout.txt file nel nodo hello. Senza questo ritardo, è possibile toomiss hello ultimi secondi dell'output. Questo ritardo potrebbe non essere necessario per tutti i file.
+L'agente del nodo è un programma in esecuzione in ogni nodo del pool e fornisce l'interfaccia di comando e controllo tra il nodo e il servizio Batch. La chiamata `Task.Delay` è necessaria alla fine di questo blocco `using` per garantire che l'agente del nodo abbia tempo sufficiente per scaricare il contenuto dell'output standard nel file stdout.txt nel nodo. Senza questo ritardo, è possibile perdere gli ultimi secondi dell'output. Questo ritardo potrebbe non essere necessario per tutti i file.
 
 > [!NOTE]
-> Quando si abilita il file di rilevamento con **SaveTrackedAsync**, solo *aggiunge* toohello rilevati file sono persistenti tooAzure archiviazione. Utilizzare questo metodo solo per la registrazione non rotazione dei file di log o altri file che vengono scritti toowith aggiungere fine toohello operazioni del file hello.
+> Quando si abilita il rilevamento file con **SaveTrackedAsync**, solo le *aggiunte* al file rilevato vengono rese persistenti in Archiviazione di Azure. Usare questo metodo solo per il rilevamento dei file di log non a rotazione o altri file in cui le scritture vengono eseguite con operazioni di aggiunta alla fine del file.
 > 
 > 
 
 ## <a name="retrieve-output-data"></a>Recuperare i dati di output
 
-Quando si recupera l'output persistente utilizzando hello Azure convenzioni dei File Batch libreria, non in modo basato su attività e a processo. È possibile richiedere hello di output per attività o il processo senza la necessità di tooknow il relativo percorso di archiviazione di Azure o anche il nome del file. In alternativa, è possibile richiedere i file di output in base all'ID dell'attività o del processo.
+Quando si recupera l'output salvato in modo permanente con la libreria Azure Batch File Conventions, si esegue questa operazione con un approccio incentrato su attività e processo. È possibile richiedere l'output per un'attività o un processo specifico senza dover conoscere il percorso in Archiviazione di Azure, né il nome di file. In alternativa, è possibile richiedere i file di output in base all'ID dell'attività o del processo.
 
-Hello frammento di codice seguente scorre le attività di un processo, stampa alcune informazioni sui file di output di hello per attività hello e quindi scarica i file dall'archiviazione.
+Il frammento di codice seguente esegue l'iterazione delle attività di un processo, stampa alcune informazioni sui file di output per l'attività e quindi scarica i file dalla risorsa di archiviazione.
 
 ```csharp
 foreach (CloudTask task in myJob.ListTasks())
@@ -198,42 +198,42 @@ foreach (CloudTask task in myJob.ListTasks())
 }
 ```
 
-## <a name="view-output-files-in-hello-azure-portal"></a>Visualizzare i file di output in hello portale di Azure
+## <a name="view-output-files-in-the-azure-portal"></a>Visualizzare i file di output nel portale di Azure
 
-Hello portale di Azure consente di visualizzare i file di output di attività e i log dei tooa persistente collegati account di archiviazione di Azure utilizzando hello [standard convenzioni dei File Batch](https://github.com/Azure/azure-sdk-for-net/tree/vs17Dev/src/SDKs/Batch/Support/FileConventions#conventions). È possibile implementare queste convenzioni in un linguaggio di propria scelta hello oppure è possibile utilizzare raccolta convenzioni File hello nelle applicazioni .NET.
+Il portale di Azure visualizza gli output e i log di un'attività resi persistenti in un account di archiviazione di Azure collegato usando lo [standard Batch File Conventions](https://github.com/Azure/azure-sdk-for-net/tree/vs17Dev/src/SDKs/Batch/Support/FileConventions#conventions). È possibile implementare queste convenzioni nel linguaggio preferito o usare la libreria File Conventions nelle applicazioni .NET.
 
-visualizzazione di hello tooenable dei file di output nel portale di hello, è necessario soddisfare hello seguenti requisiti:
+Per abilitare la visualizzazione dei file di output nel portale, è necessario soddisfare i requisiti seguenti:
 
-1. [Collegare un account di archiviazione di Azure](#requirement-linked-storage-account) tooyour account Batch.
-2. Rispettare le convenzioni di denominazione toohello predefinito per i contenitori di archiviazione e i file durante il salvataggio di output. È possibile trovare la definizione di hello di queste convenzioni nella libreria convenzioni File hello [Leggimi][github_file_conventions_readme]. Se si utilizza hello [convenzioni File Batch di Azure] [ nuget_package] libreria toopersist l'output, i file sono persistenti in base toohello convenzioni dei File standard.
+1. [Collegare un account di archiviazione di Azure](#requirement-linked-storage-account) all'account Batch.
+2. Rispettare le convenzioni di denominazione predefinite per i contenitori di archiviazione e i file durante il salvataggio in modo permanente degli output. È possibile trovare la definizione di queste convenzioni nel file [LEGGIMI][github_file_conventions_readme] della libreria File Conventions. Se si usa la libreria [Azure Batch File Conventions][nuget_package] per rendere persistente l'output, i file vengono resi persistenti in base allo standard File Conventions.
 
-l'output dell'attività tooview file e viene registrato in hello portale di Azure, passare toohello attività il cui output si è interessati, quindi fare clic su **i file di output salvato** o **registri salvati**. La seguente immagine illustra hello **i file di output salvato** per attività hello con ID "007":
+Per visualizzare i file di output delle attività e i log nel portale di Azure, passare all'attività di cui si vuole visualizzare l'output, quindi fare clic su **File di output salvati** o **Log salvati**. L'immagine illustra l'opzione **ile di output salvato** per l'attività con ID "007":
 
-![Nel portale di Azure hello pannello risultati delle attività][2]
+![Pannello dei file di output delle attività nel portale di Azure][2]
 
 ## <a name="code-sample"></a>Esempio di codice
 
-Hello [PersistOutputs] [ github_persistoutputs] progetto di esempio è uno dei hello [esempi di codice di Azure Batch] [ github_samples] su GitHub. Questa soluzione di Visual Studio viene illustrato come dell'output dell'archiviazione toodurable toouse hello Azure convenzioni dei File Batch libreria toopersist attività. hello toorun di esempio, seguire questi passaggi:
+Il progetto di esempio [PersistOutputs][github_persistoutputs] è uno degli [esempi di codice di Azure Batch][github_samples] disponibili in GitHub. Questa soluzione di Visual Studio descrive come usare la libreria Azure Batch File Conventions per salvare in modo permanente l'output dell'attività in una risorsa di archiviazione permanente. Per eseguire l'esempio, seguire questa procedura:
 
-1. Progetto aperto hello in **Visual Studio 2015 o versione successiva**.
-2. Aggiungere il Batch e l'archiviazione **delle credenziali dell'account** troppo**AccountSettings.settings** nel progetto Microsoft.Azure.Batch.Samples.Common hello.
-3. **Compilare** (ma non le eseguono) hello soluzione. Se richiesto, ripristinare tutti i pacchetti NuGet.
-4. Hello utilizzare tooupload portale Azure un [pacchetto di applicazione](batch-application-packages.md) per **PersistOutputsTask**. Includere hello `PersistOutputsTask.exe` e i relativi assembly dipendenti nel pacchetto ZIP hello, set di ID dell'applicazione hello troppo "PersistOutputsTask" e un'applicazione hello pacchetto versione troppo "1.0".
-5. **Avviare** hello (esecuzione) **PersistOutputs** progetto.
-6. Quando richiesto toochoose hello persistenza tecnologia toouse per esempio hello in esecuzione, immettere **1** : esempio hello toorun utilizzando l'output dell'attività toopersist libreria convenzioni File hello. 
+1. Aprire il progetto in **Visual Studio 2015 o in una versione più recente**.
+2. Aggiungere **le credenziali dell'account** di archiviazione e Batch a **AccountSettings.settings** nel progetto Microsoft.Azure.Batch.Samples.Common.
+3. **Compilare** , ma non eseguire, la soluzione. Se richiesto, ripristinare tutti i pacchetti NuGet.
+4. Usare il portale di Azure per caricare un [pacchetto dell'applicazione](batch-application-packages.md) per **PersistOutputsTask**. Includere `PersistOutputsTask.exe` e relativi assembly dipendenti nel pacchetto ZIP, impostare l'ID applicazione su "PersistOutputsTask" e la versione del pacchetto dell'applicazione su "1.0".
+5. **Avviare**, ovvero eseguire, il progetto **PersistOutputs**.
+6. Quando viene richiesto di scegliere la tecnologia di persistenza da usare per l'esecuzione dell'esempio, immettere **1** per eseguire l'esempio con la libreria File Conventions per rendere persistente l'output dell'attività. 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-### <a name="get-hello-batch-file-conventions-library-for-net"></a>Ottenere libreria di hello convenzioni dei File Batch per .NET
+### <a name="get-the-batch-file-conventions-library-for-net"></a>Ottenere la libreria Batch File Conventions per .NET
 
-libreria di Hello convenzioni dei File Batch per .NET è disponibile sul [NuGet][nuget_package]. libreria Hello estende hello [CloudJob] [ net_cloudjob] e [CloudTask] [ net_cloudtask] classi con nuovi metodi. Vedere anche hello [documentazione di riferimento](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.conventions.files) per la libreria di convenzioni per i File hello.
+La libreria Batch File Conventions per .NET è disponibile in [NuGet][nuget_package]. La libreria estende le classi [CloudJob][net_cloudjob] e [CloudTask][net_cloudtask] con nuovi metodi. Vedere anche la [documentazione di riferimento](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.conventions.files) per la libreria File Conventions.
 
-Hello [codice sorgente] [ github_file_conventions] per hello convenzioni di File di libreria è disponibile su GitHub in hello Microsoft Azure SDK per il repository di .NET. 
+Il [codice sorgente][github_file_conventions] per la libreria File Conventions è disponibile in GitHub nel repository Microsoft Azure SDK per .NET. 
 
 ### <a name="explore-other-approaches-for-persisting-output-data"></a>Esplorare altri approcci per rendere persistenti i dati di output
 
-- Vedere [Persist processi e delle attività di output tooAzure archiviazione](batch-task-output.md) per una panoramica di rendere persistenti i dati di attività e processi.
-- Vedere [mantenere i dati di attività tooAzure archiviazione con l'API del servizio Batch hello](batch-task-output-files.md) toolearn come toouse hello API del servizio Batch toopersist dati di output.
+- Per una panoramica delle opzioni per rendere persistenti i dati di processi e attività, vedere [Rendere persistente l'output di processi e attività](batch-task-output.md).
+- Vedere [Rendere persistenti i dati di attività in Archiviazione di Azure con l'API del servizio Batch](batch-task-output-files.md) per scoprire come usare l'API del servizio Batch per rendere persistenti i dati di output.
 
 [forum_post]: https://social.msdn.microsoft.com/Forums/en-US/87b19671-1bdf-427a-972c-2af7e5ba82d9/installing-applications-and-staging-data-on-batch-compute-nodes?forum=azurebatch
 [github_file_conventions]: https://github.com/Azure/azure-sdk-for-net/tree/AutoRest/src/Batch/FileConventions
@@ -260,4 +260,4 @@ Hello [codice sorgente] [ github_file_conventions] per hello convenzioni di File
 [storage_explorer]: http://storageexplorer.com/
 
 [1]: ./media/batch-task-output/task-output-01.png "Selettori di file di output salvati e di log salvati nel portale"
-[2]: ./media/batch-task-output/task-output-02.png "Nel portale di Azure hello pannello risultati delle attività"
+[2]: ./media/batch-task-output/task-output-02.png "Pannello dei file di output delle attività nel portale di Azure"

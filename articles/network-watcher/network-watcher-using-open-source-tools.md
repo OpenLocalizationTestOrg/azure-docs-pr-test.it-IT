@@ -1,9 +1,9 @@
 ---
-title: modelli di traffico di rete aaaVisualize con Watcher di rete di Azure e strumenti open source | Documenti Microsoft
-description: Questa pagina vengono descritti come pacchetto Watcher di rete toouse capture Capanalysis toovisualize traffico modelli tooand dalle macchine virtuali.
+title: Visualizzare modelli di traffico di rete con Azure Network Watcher e strumenti open source | Microsoft Docs
+description: Questo articolo illustra come usare l'acquisizione pacchetti di Network Watcher con CapAnalysis per visualizzare i modelli di traffico da e verso le macchine virtuali.
 services: network-watcher
 documentationcenter: na
-author: georgewallace
+author: jimdial
 manager: timlt
 editor: 
 ms.assetid: 936d881b-49f9-4798-8e45-d7185ec9fe89
@@ -13,22 +13,22 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
-ms.author: gwallace
-ms.openlocfilehash: fca9a226729162cd90d412c7b699ac54d2257a0d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.author: jdial
+ms.openlocfilehash: 61abda6053fe743e294f309df3a6e1041052ec6e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="visualize-network-traffic-patterns-tooand-from-your-vms-using-open-source-tools"></a>Visualizzare tooand di modelli di traffico di rete dalle macchine virtuali utilizzando strumenti open source
+# <a name="visualize-network-traffic-patterns-to-and-from-your-vms-using-open-source-tools"></a>Visualizzare i modelli di traffico di rete da e verso le macchine virtuali usando strumenti open source
 
-Le acquisizioni di pacchetti contengono dati di rete che consentono di analisi forense rete tooperform e analisi approfondita dei pacchetti. Sono disponibili apre molti strumenti di origine è possibile utilizzare tooanalyze pacchetto acquisizioni toogain approfondimenti sulla rete. Uno di questi strumenti è CapAnalysis, uno strumento di visualizzazione dell'acquisizione pacchetti open source. Visualizzazione dei dati di acquisizione pacchetto è un modo utile tooquickly derivare informazioni dettagliate sui modelli e anomalie all'interno della rete. e di condividere tali informazioni in un modo facilmente utilizzabile.
+L'acquisizione pacchetti contiene dati della rete che permettono di eseguire l'analisi della rete e l'ispezione approfondita dei pacchetti. Sono disponibili diversi strumenti open source che è possibile usare per analizzare le acquisizioni pacchetti e ottenere informazioni dettagliate sulla rete. Uno di questi strumenti è CapAnalysis, uno strumento di visualizzazione dell'acquisizione pacchetti open source. La visualizzazione dei dati di acquisizione pacchetti permette di ottenere rapidamente informazioni approfondite sui modelli e le anomalie all'interno della rete e di condividere tali informazioni in un modo facilmente utilizzabile.
 
-Watcher di rete di Azure fornisce che si hello toocapture possibilità acquisisce dati importanti, consentendo tooperform pacchetti sulla rete. In questo articolo è fornire una procedura dettagliata di come toovisualize e ottenere informazioni dai pacchetti acquisisce con CapAnalysis Watcher di rete.
+Azure Network Watcher offre la possibilità di acquisire dati importanti eseguendo l'acquisizione pacchetti sulla rete. Questo articolo contiene una procedura dettagliata su come visualizzare e ottenere informazioni approfondite dalle acquisizioni pacchetti usando CapAnalysis con Network Watcher.
 
 ## <a name="scenario"></a>Scenario
 
-Si dispone di un'applicazione web semplice distribuita in una macchina virtuale in Azure desidera toouse Apri origine strumenti toovisualize relativo tooquickly il traffico di rete identificare modelli di flusso e di eventuali anomalie possibili. Network Watcher permette di ottenere un'acquisizione pacchetti dell'ambiente di rete e di memorizzarla direttamente nell'account di archiviazione. CapAnalysis quindi inserimento hello acquisizione pacchetto direttamente dal blob di archiviazione hello e visualizzare il relativo contenuto.
+Una semplice applicazione Web è distribuita in una macchina virtuale in Azure e si vogliono usare strumenti open source per visualizzarne il traffico di rete e identificare rapidamente i modelli di flusso e le eventuali anomalie. Network Watcher permette di ottenere un'acquisizione pacchetti dell'ambiente di rete e di memorizzarla direttamente nell'account di archiviazione. CapAnalysis può quindi inserire l'acquisizione pacchetto direttamente dal BLOB di archiviazione e visualizzarne il contenuto.
 
 ![scenario][1]
 
@@ -36,66 +36,66 @@ Si dispone di un'applicazione web semplice distribuita in una macchina virtuale 
 
 ### <a name="install-capanalysis"></a>Installare CapAnalysis
 
-tooinstall CapAnalysis in una macchina virtuale, è possibile fare riferimento le istruzioni ufficiale toohello https://www.capanalysis.net/ca/how-to-install-capanalysis qui.
-In ordine di accesso CapAnalysis in modalità remota, è la porta tooopen 9877 nella VM aggiungendo una nuova regola di sicurezza in ingresso. Per ulteriori informazioni sulla creazione di regole nei gruppi di sicurezza di rete, fare riferimento troppo[creare regole in un gruppo esistente](../virtual-network/virtual-networks-create-nsg-arm-pportal.md#create-rules-in-an-existing-nsg). Una volta regola hello è stata aggiunta correttamente, dovrebbe essere in grado di tooaccess CapAnalysis da`http://<PublicIP>:9877`
+Per installare CapAnalysis in una macchina virtuale, vedere le istruzioni ufficiali all'indirizzo https://www.capanalysis.net/ca/how-to-install-capanalysis.
+Per accedere a CapAnalysis in modalità remota, è necessario aprire la porta 9877 nella macchina virtuale mediante l'aggiunta di una nuova regola di sicurezza in ingresso. Per altre informazioni sulla creazione di regole in gruppi di sicurezza di rete, vedere [Creare regole in un gruppo di sicurezza di rete esistente](../virtual-network/virtual-networks-create-nsg-arm-pportal.md#create-rules-in-an-existing-nsg). Dopo aver aggiunto la regola, dovrebbe essere possibile accedere a CapAnalysis da `http://<PublicIP>:9877`.
 
-### <a name="use-azure-network-watcher-toostart-a-packet-capture-session"></a>Utilizzare il Watcher di rete di Azure toostart sessione di acquisizione di un pacchetto
+### <a name="use-azure-network-watcher-to-start-a-packet-capture-session"></a>Usare Azure Network Watcher per avviare una sessione di acquisizione pacchetti
 
-Watcher di rete consente il traffico di tootrack toocapture pacchetti da e verso una macchina virtuale. È possibile fare riferimento a istruzioni toohello [acquisizioni di pacchetti di gestione con Watcher di rete](network-watcher-packet-capture-manage-portal.md) toostart una sessione di acquisizione di pacchetti. Questa acquisizione pacchetto può essere archiviata in un toobe di archiviazione blob a cui accede CapAnalysis.
+Network Watcher consente di acquisire pacchetti per registrare il traffico da e verso una macchina virtuale. Per istruzioni su come avviare una sessione di acquisizione pacchetti, vedere l'articolo relativo alla [gestione dell'acquisizione pacchetti con Network Watcher](network-watcher-packet-capture-manage-portal.md). L'acquisizione pacchetti può essere memorizzata in un BLOB di archiviazione a cui accedere con CapAnalysis.
 
-### <a name="upload-a-packet-capture-toocapanalysis"></a>Caricare un tooCapAnalysis acquisizione pacchetti
-È possibile caricare direttamente un'acquisizione pacchetto eseguita dal controllo di rete utilizzando hello "importazione dalla scheda"URL e fornendo un blob di archiviazione toohello collegamento in cui è memorizzato l'acquisizione di pacchetti hello.
+### <a name="upload-a-packet-capture-to-capanalysis"></a>Caricare un'acquisizione pacchetti in CapAnalysis
+È possibile caricare direttamente un'acquisizione pacchetti eseguita da Network Watcher usando la scheda Importa dall'URL e specificando un collegamento al BLOB di archiviazione in cui è memorizzata l'acquisizione pacchetti.
 
-Se si fornisce un collegamento di tooCapAnalysis, assicurarsi che tooappend un URL di firma di accesso condiviso toohello token archiviazione blob.  toodo, passare la firma di accesso tooShared dall'account di archiviazione hello, designare hello consentita le autorizzazioni, quindi premere hello generare SAS pulsante toocreate un token. È quindi possibile aggiungere questo URL del blob archiviazione SAS toohello token pacchetto acquisizione.
+Quando si fornisce un collegamento a CapAnalysis, assicurarsi di aggiungere un token di firma di accesso condiviso per l'URL del BLOB di archiviazione.  A questo scopo, passare a Firma di accesso condiviso dall'account di archiviazione, definire le autorizzazioni consentite e fare clic sul pulsante Genera firma di accesso condiviso per creare un token. È quindi possibile aggiungere tale token di firma di accesso condiviso all'URL del BLOB di archiviazione dell'acquisizione pacchetti.
 
-Hello URL risultante avrà un aspetto simile al seguente: http://storageaccount.blob.core.windows.net/container/location?addSASkeyhere
+L'URL risultante avrà un aspetto simile al seguente: http://storageaccount.blob.core.windows.net/container/location?addSASkeyhere
 
 
 ### <a name="analyzing-packet-captures"></a>Analizzare le acquisizioni pacchetti
 
-CapAnalysis offre varie opzioni toovisualize l'acquisizione pacchetto, ogni analisi fornita da una prospettiva diversa. Questi riepiloghi visivi permettono di comprendere le tendenze del traffico di rete e individuare rapidamente eventuali attività inconsuete. Alcune di queste funzionalità vengono visualizzate in hello seguente elenco:
+CapAnalysis offre varie opzioni di visualizzazione dell'acquisizione pacchetti, ognuna delle quali consente l'analisi da una prospettiva diversa. Questi riepiloghi visivi permettono di comprendere le tendenze del traffico di rete e individuare rapidamente eventuali attività inconsuete. Alcune di queste funzionalità sono riportate nell'elenco seguente:
 
 1. Tabelle di flusso
 
-    In questo modo tabella hello elenco di flussi di dati del pacchetto di hello, hello timestamp associato flussi hello e hello vari protocolli associati al flusso di hello, nonché di IP di origine e di destinazione.
+    Questa tabella contiene l'elenco dei flussi nei dati del pacchetto, il timestamp e i diversi protocolli associati ai flussi, nonché gli indirizzi IP di origine e di destinazione.
 
     ![Pagina dei flussi di CapAnalysis][5]
 
 1. Panoramica dei protocolli
 
-    In questo riquadro consente tooquickly Vedere distribuzione hello del traffico di rete su hello diversi protocolli e aree geografiche.
+    Questo riquadro permette di visualizzare rapidamente la distribuzione del traffico di rete nei vari protocolli e nelle aree geografiche.
 
     ![Panoramica dei protocolli di CapAnalysis][6]
 
 1. Statistiche
 
-    In questo riquadro consente alle statistiche sul traffico di rete di tooview: byte inviati e ricevuti dall'origine e destinazione IP, i flussi per ogni origine hello e di destinazione gli indirizzi IP, protocollo utilizzato per flussi diversi e la durata di hello dei flussi.
+    Questo riquadro permette di visualizzare le statistiche sul traffico di rete, vale a dire i byte inviati e ricevuti dagli indirizzi IP di origine e di destinazione, i flussi per ognuno degli indirizzi IP di origine e di destinazione, il protocollo usato per i vari flussi e la durata dei flussi.
 
     ![Statistiche di CapAnalysis][7]
 
 1. Mappa geografica
 
-    Questo riquadro consente di visualizzare una mappa del traffico di rete, con colori scalabilità toohello volume di traffico da ogni paese. È possibile selezionare i paesi evidenziati tooview flusso ulteriori statistiche, ad esempio percentuale hello dei dati inviati e ricevuti da indirizzi IP in tale paese.
+    Questo riquadro consente di visualizzare una mappa del traffico di rete, con gradazioni di colore che indicano il volume di traffico da ogni paese. È possibile selezionare i paesi evidenziati per visualizzare altre statistiche sui flussi, ad esempio la proporzione di dati inviati e ricevuti dagli indirizzi IP in un determinato paese.
 
     ![Mappa geografica][8]
 
 1. Filtri
 
-    CapAnalysis include un set di filtri per l'analisi rapida di pacchetti specifici. Ad esempio, è possibile scegliere i dati di hello toofilter per informazioni dettagliate specifiche protocollo toogain a tale subset di traffico.
+    CapAnalysis include un set di filtri per l'analisi rapida di pacchetti specifici. Ad esempio, è possibile scegliere di filtrare i dati in base al protocollo per ottenere informazioni specifiche su tale subset del traffico.
 
     ![filters][11]
 
-    Visitare [https://www.capanalysis.net/ca/#about](https://www.capanalysis.net/ca/#about) toolearn ulteriori informazioni sulla funzionalità tutti CapAnalysis.
+    Per altre informazioni su tutte le funzionalità di CapAnalysis, vedere [https://www.capanalysis.net/ca/#about](https://www.capanalysis.net/ca/#about).
 
-## <a name="conclusion"></a>Conclusioni
+## <a name="conclusion"></a>Conclusione
 
-La funzionalità di acquisizione del Watcher di rete pacchetto consente toocapture hello tooperform necessario rete analisi forensi e comprendere meglio il traffico di rete. In questo scenario è stato illustrato come integrate facilmente le acquisizioni pacchetti di Network Watcher con strumenti di visualizzazione open source. Tramite strumenti open source, ad esempio acquisisce CapAnalysis toovisualize pacchetti, è possibile eseguire l'analisi approfondita dei pacchetti e identificare rapidamente le tendenze all'interno del traffico di rete.
+La funzionalità di acquisizione pacchetti di Network Watcher permette di acquisire i dati necessari per eseguire l'analisi della rete e comprendere meglio il traffico di rete. In questo scenario è stato illustrato come integrate facilmente le acquisizioni pacchetti di Network Watcher con strumenti di visualizzazione open source. L'uso di strumenti open source come CapAnalysis per visualizzare le acquisizioni pacchetti permette di eseguire ispezioni approfondite dei pacchetti e di identificare rapidamente le tendenze all'interno del traffico di rete.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-toolearn ulteriori informazioni sui registri del flusso di gruppo, visitare [registra flusso NSG](network-watcher-nsg-flow-logging-overview.md)
+Per altre informazioni sui registri dei flussi dei gruppi di sicurezza di rete, vedere [Introduzione alla registrazione dei flussi per i gruppi di sicurezza di rete](network-watcher-nsg-flow-logging-overview.md)
 
-Informazioni su come toovisualize il flusso di gruppo Registra con Power BI visitando [NSG visualizzare flussi di log con Power BI](network-watcher-visualize-nsg-flow-logs-power-bi.md)
+Per informazioni su come visualizzare i log dei flussi dei gruppi di sicurezza di rete con Power BI, vedere [Visualizzare i log dei flussi dei gruppi di sicurezza di rete con Power BI](network-watcher-visualize-nsg-flow-logs-power-bi.md)
 <!--Image references-->
 
 [1]: ./media/network-watcher-using-open-source-tools/figure1.png

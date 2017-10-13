@@ -1,5 +1,5 @@
 ---
-title: i client di Data Warehouse aaaSQL supportano per il controllo dati | Documenti Microsoft
+title: 'SQL Data Warehouse: supporto client di livello inferiore per controllo dati | Microsoft Docs'
 description: Informazioni sul supporto di client di livello inferiore di SQL Data Warehouse per il controllo dati
 services: sql-data-warehouse
 documentationcenter: 
@@ -15,29 +15,29 @@ ms.topic: article
 ms.custom: security
 ms.date: 10/31/2016
 ms.author: rortloff;barbkess
-ms.openlocfilehash: 377488680eb297c3e9b1dc754c003c5b19b47996
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a7ea6141285a0098339f1e071af2592dd4535c12
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="sql-data-warehouse----downlevel-clients-support-for-auditing-and-dynamic-data-masking"></a>SQL Data Warehouse - Supporto client di livello inferiore per controllo e maschera dati dinamica
 [Controllo](sql-data-warehouse-auditing-overview.md) funziona con i client SQL che supportano il reindirizzamento TDS.
 
-Qualsiasi client che implementa TDS 7.4 deve supportare anche il reindirizzamento. Eccezioni toothis includono JDBC 4.0 non è supportato completamente le funzionalità di reindirizzamento di hello e Tedious per Node.JS in cui non è stato implementato il reindirizzamento.
+Qualsiasi client che implementa TDS 7.4 deve supportare anche il reindirizzamento. Rappresentano un'eccezione JDBC 4.0, in cui non è del tutto supportata la funzionalità di reindirizzamento, e Tedious per Node.JS, in cui non è implementato il reindirizzamento.
 
-Per "I client legacy", vale a dire che supporta TDS versione 7.3 e hello seguito - nome FQDN del server nella stringa di connessione hello deve essere modificati:
+Per i "client di livello inferiore", ad esempio quelli che supportano la versione 7.3 di TDS e inferiori, il nome di dominio completo del server nella stringa di connessione deve essere modificato:
 
-FQDN server originale nella stringa di connessione hello: <*nome server*>. database.windows.net
+Nome di dominio completo del server originale nella stringa di connessione: <*server name*>.database.windows.net
 
-FQDN server modificato nella stringa di connessione hello: <*nome server*> database. **protezione**. windows.net
+Nome di dominio completo del server modificato nella stringa di connessione: <*server name*>.database.**secure**.windows.net
 
 Un elenco parziale di "client di livello inferiore" include:
 
 * .NET 4.0 e versioni precedenti,
 * ODBC 10.0 e versioni precedenti.
-* JDBC (mentre JDBC supporta TDS 7.4, hello funzionalità di reindirizzamento TDS non è completamente supportata)
+* JDBC (mentre JDBC supporta TDS 7.4, la funzionalità di reindirizzamento TDS non è del tutto supportata)
 * Tedious (per Node.JS)
 
-**Nota:** hello sopra Modifica nome FDQN di server può essere utile anche per applicare un criterio di controllo a livello di Server SQL senza la necessità di una configurazione passaggio in ogni database (attenuazione temporaneo).     
+**Nota:** la modifica del nome di dominio completo del server citata in precedenza può risultare utile per applicare un criterio di controllo a livello di server SQL senza la necessità di una procedura di configurazione in ogni database (attenuazione temporanea).     
 

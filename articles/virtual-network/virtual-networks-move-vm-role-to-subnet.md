@@ -1,6 +1,6 @@
 ---
-title: aaaMove una macchina virtuale (classico) o una subnet tooa diversi istanza ruolo Servizi Cloud - Azure PowerShell | Documenti Microsoft
-description: Informazioni su come toomove macchine virtuali (classico) e istanze del ruolo di servizi Cloud tooa subnet diversa utilizzando PowerShell.
+title: Spostare una VM (classica) o un'istanza del ruolo di Servizi cloud in un'altra subnet - Azure PowerShell | Documentazione Microsoft
+description: Informazioni su come spostare le VM (classiche) e le istanze del ruolo di Servizi cloud in un'altra subnet mediante PowerShell.
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,30 +15,30 @@ ms.workload: infrastructure-services
 ms.date: 03/22/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: c8d2de56f42a91be4a665414ea9641ffd46588fd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b094f8338394ef2e84cad3070936d715411326a4
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="move-a-vm-classic-or-cloud-services-role-instance-tooa-different-subnet-using-powershell"></a>Spostare una macchina virtuale (classico) o i servizi Cloud ruolo istanza tooa subnet diversa utilizzando PowerShell
-È possibile utilizzare le macchine virtuali (classico) da una subnet tooanother toomove di PowerShell in hello stessa rete virtuale (VNet). Le istanze del ruolo possono essere spostate con la modifica di file CSCFG hello, anziché tramite PowerShell.
+# <a name="move-a-vm-classic-or-cloud-services-role-instance-to-a-different-subnet-using-powershell"></a>Spostare una VM (classica) o un'istanza del ruolo di Servizi cloud in un'altra subnet mediante PowerShell
+È possibile usare PowerShell per spostare le proprie VM (classiche) da una subnet a un'altra nella stessa rete virtuale (VNet). Le istanze del ruolo possono essere spostate modificando il file CSCFG invece di usare PowerShell.
 
 > [!NOTE]
-> Questo articolo spiega come macchine virtuali toomove distribuito tramite solo modello di distribuzione classica hello.
+> Questo articolo spiega come spostare solo le VM distribuite tramite il modello di distribuzione classica.
 > 
 > 
 
-Motivi per cui spostare le macchine virtuali tooanother subnet? La migrazione è utile quando la subnet meno recente hello è troppo piccola e non può essere espansa a causa di tooexisting macchine virtuali in esecuzione in quella subnet. In tal caso, è possibile creare una nuova subnet più grande e la migrazione nuova subnet hello macchine virtuali toohello, quindi al termine della migrazione, è possibile eliminare vecchia subnet ormai vuota hello.
+Perché spostare le macchine virtuali in un'altra subnet? La migrazione in un'altra subnet è utile quando la subnet corrente è troppo piccola e non può essere espansa a causa delle macchine virtuali in esecuzione al suo interno. In tal caso, è possibile creare una nuova subnet più grande, migrarvi le macchine virtuali e al termine eliminare la precedente subnet ormai vuota.
 
-## <a name="how-toomove-a-vm-tooanother-subnet"></a>Come toomove tooanother subnet VM
-toomove una macchina virtuale, eseguire i cmdlet di PowerShell Set-AzureSubnet hello, utilizzando l'esempio hello riportato di seguito come modello. Nell'esempio hello seguente, TestVM viene spostata dalla subnet corrente, tooSubnet-2. Essere tooreflect di esempio hello tooedit che l'ambiente. Si noti che quando si esegue cmdlet Update-AzureVM hello come parte di una stored procedure, verrà riavviato la macchina virtuale come parte del processo di aggiornamento hello.
+## <a name="how-to-move-a-vm-to-another-subnet"></a>Come spostare una macchina virtuale in un'altra subnet
+Per spostare una macchina virtuale, eseguire il cmdlet di PowerShell Set-AzureSubnet usando l'esempio seguente come modello. In tale esempio TestVM viene spostata dalla subnet corrente a Subnet-2. Ricordarsi di modificare l'esempio in base all'ambiente in uso. Si noti che, ogni volta che il cmdlet Update-AzureVM viene eseguito in una procedura, riavvierà la macchina virtuale come parte del processo di aggiornamento.
 
     Get-AzureVM –ServiceName TestVMCloud –Name TestVM `
     | Set-AzureSubnet –SubnetNames Subnet-2 `
     | Update-AzureVM
 
-Se è stato specificato un indirizzo IP privato interno statico per la macchina virtuale, sarà necessario tooclear tale impostazione prima di poter spostare nuova subnet tooa VM hello. In tal caso, utilizzare il seguente di hello:
+Se è stato specificato un indirizzo IP privato interno statico per la macchina virtuale, sarà necessario cancellare tale impostazione prima di poter spostare la macchina virtuale in una nuova subnet. In questo caso, usare quanto segue:
 
     Get-AzureVM -ServiceName TestVMCloud -Name TestVM `
     | Remove-AzureStaticVNetIP `
@@ -47,8 +47,8 @@ Se è stato specificato un indirizzo IP privato interno statico per la macchina 
     | Set-AzureSubnet -SubnetNames Subnet-2 `
     | Update-AzureVM
 
-## <a name="toomove-a-role-instance-tooanother-subnet"></a>toomove una subnet tooanother istanza di ruolo
-toomove un'istanza del ruolo, modificare il file CSCFG hello. Nell'esempio hello riportato di seguito "Role0" viene spostato nella rete virtuale *VNETName* dalla subnet corrente troppo*Subnet-2*. Poiché l'istanza del ruolo hello era già stata distribuita, sarà solo necessario impostare il nome di Subnet hello = Subnet-2. Essere tooreflect di esempio hello tooedit che l'ambiente.
+## <a name="to-move-a-role-instance-to-another-subnet"></a>Per spostare un'istanza del ruolo in un'altra subnet
+Per spostare un'istanza del ruolo, modificare il file CSCFG. Nell'esempio seguente "Role0" nella rete virtuale *VNETName* viene spostato dalla subnet corrente a *Subnet-2*. Poiché l'istanza del ruolo è già stata distribuita, sarà necessario solo modificare Subnet name = Subnet-2. Ricordarsi di modificare l'esempio in base all'ambiente in uso.
 
     <NetworkConfiguration>
         <VirtualNetworkSite name="VNETName" />

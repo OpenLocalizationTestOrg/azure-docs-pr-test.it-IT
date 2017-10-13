@@ -1,5 +1,5 @@
 ---
-title: i messaggi per l'integrazione di enterprise B2B - App Azure per la logica aaaEDIFACT | Documenti Microsoft
+title: Messaggi EDIFACT per l'integrazione aziendale B2B - App per la logica di Azure | Microsoft Docs
 description: Scambiare messaggi EDIFACT in formato EDI per l'integrazione aziendale B2B con App per la logica di Azure
 services: logic-apps
 documentationcenter: .net,nodejs,java
@@ -15,86 +15,86 @@ ms.topic: article
 ms.custom: H1Hack27Feb2017
 ms.date: 07/26/2016
 ms.author: LADocs; jonfan
-ms.openlocfilehash: 496fadcda58de2d36459202b839b0a63c9e5857c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: fc9a0068de5f9464133eec0b043fbba1dc0fbde7
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="exchange-edifact-messages-for-enterprise-integration-with-logic-apps"></a>Scambiare messaggi EDIFACT per l'integrazione Enterprise con le app per la logica
 
-Per poter scambiare messaggi EDIFACT con App per la logica di Azure, è necessario creare un contratto EDIFACT e archiviarlo nell'account di integrazione. Ecco la procedura relativa hello toocreate un accordo EDIFACT.
+Per poter scambiare messaggi EDIFACT con App per la logica di Azure, è necessario creare un contratto EDIFACT e archiviarlo nell'account di integrazione. Di seguito viene illustrata la procedura per la creazione di un contratto EDIFACT.
 
 > [!NOTE]
-> Questa pagina vengono illustrate le funzionalità EDIFACT di hello per le app di logica di Azure. Per altre informazioni, vedere [X12](logic-apps-enterprise-integration-x12.md).
+> Questa pagina illustra le funzionalità EDIFACT di App per la logica di Azure. Per altre informazioni, vedere [X12](logic-apps-enterprise-integration-x12.md).
 
 ## <a name="before-you-start"></a>Prima di iniziare
 
-Ecco gli elementi di hello che è necessario:
+Sono necessari gli elementi seguenti:
 
 * Un [account di integrazione](../logic-apps/logic-apps-enterprise-integration-accounts.md) già definito e associato alla sottoscrizione di Azure.  
 * Almeno due [partner](logic-apps-enterprise-integration-partners.md) già definiti nell'account di integrazione.
 
 > [!NOTE]
-> Quando si crea un contratto, il contenuto di hello nei messaggi hello ricevuti o inviati tooand dal partner hello deve corrispondere il tipo di contratto hello.
+> Quando si crea un contratto, il contenuto dei messaggi che verranno ricevuti e inviati da e verso il partner deve corrispondere al tipo di contratto.
 
 Dopo aver [creato un account di integrazione](../logic-apps/logic-apps-enterprise-integration-accounts.md) e [aggiunto i partner](logic-apps-enterprise-integration-partners.md), è possibile creare un contratto EDIFACT attenendosi alla procedura seguente.
 
 ## <a name="create-an-edifact-agreement"></a>Creare un contratto EDIFACT 
 
-1.  Accedi toohello [portale di Azure](http://portal.azure.com "portale di Azure"). Scegliere dal menu a sinistra hello **più servizi**.
+1.  Accedere al [Portale di Azure](http://portal.azure.com "Portale di Azure"). Fare clic su **Altri servizi** nel menu a sinistra.
 
     > [!TIP]
-    > Se non viene visualizzato **più servizi**, è necessario innanzitutto menu hello tooexpand. Nella parte superiore di hello del menu hello compresso, selezionare **menu Mostra**.
+    > Se **Altri servizi** non viene visualizzato, potrebbe essere necessario espandere il menu. Nella parte superiore del menu compresso, selezionare **Visualizza menu**.
 
     ![Fare clic su "Altri servizi" nel menu a sinistra](./media/logic-apps-enterprise-integration-edifact/edifact-0.png)
 
-2. Nella casella di ricerca hello, digitare "integrazione" per il filtro. Selezionare dall'elenco risultati hello **account di integrazione**.
+2. Nella casella di ricerca, digitare "integrazione" come filtro. Nell'elenco dei risultati selezionare **Account di integrazione**.
 
     ![Filtro su "integrazione", selezionare "Account di integrazione"](./media/logic-apps-enterprise-integration-edifact/edifact-1-3.png)
 
-3. In hello **account di integrazione** blade che viene aperta, l'account di integrazione hello select in cui si desidera contratto hello toocreate.
+3. Nel pannello **Account di integrazione** visualizzato selezionare l'account di integrazione nel quale creare il contratto.
 Se non viene visualizzato alcun account di integrazione, [crearne prima uno](../logic-apps/logic-apps-enterprise-integration-accounts.md "Tutte le informazioni sugli account di integrazione").  
 
-    ![Selezionare account di integrazione in toocreate hello contratto](./media/logic-apps-enterprise-integration-edifact/edifact-1-4.png)
+    ![Selezionare l'account di integrazione in cui si vuole creare il contratto](./media/logic-apps-enterprise-integration-edifact/edifact-1-4.png)
 
-4. Scegliere hello **contratti** riquadro. Se non si dispone di un riquadro contratti, è innanzitutto necessario aggiungere il riquadro hello.   
+4. Selezionare il riquadro **Accordi**. Se non è presente il riquadro dei contratti, aggiungerlo.   
 
     ![Selezionare il riquadro "Contratti"](./media/logic-apps-enterprise-integration-edifact/edifact-1-5.png)
 
-5. Nel pannello contratti hello visualizzato, scegliere **Aggiungi**.
+5. Nel pannello Contratti visualizzato, selezionare **Aggiungi**.
 
     ![Selezionare "Aggiungi"](./media/logic-apps-enterprise-integration-edifact/edifact-agreement-2.png)
 
-6. In **Aggiungi**, digitare un **nome** per il contratto. In **Tipo di contratto**selezionare **EDIFACT**. Seleziona hello **Partner Host**, **identità Host**, **Partner Guest**, e **identità Guest** per il contratto.
+6. In **Aggiungi**, digitare un **nome** per il contratto. In **Tipo di contratto**selezionare **EDIFACT**. Selezionare il **Partner host**, l'**Identità host**, il **Partner guest**, e l'**Identità guest** per il contratto.
 
     ![Fornire i dettagli relativi al contratto](./media/logic-apps-enterprise-integration-edifact/edifact-1.png)
 
     | Proprietà | Descrizione |
     | --- | --- |
-    | Nome |Nome del contratto hello |
+    | Nome |Nome del contratto |
     | Tipo di contratto | Deve essere EDIFACT |
-    | Host Partner (Partner host) |Un contratto prevede un partner host e un partner guest. partner host Hello rappresenta organizzazione hello che configura l'accordo hello. |
-    | Host Identity (Identità host) |Un identificatore per il partner host hello |
-    | Guest Partner (Partner guest) |Un contratto prevede un partner host e un partner guest. partner guest Hello rappresenta organizzazione hello usato per esegue attività con partner host hello. |
-    | identità guest |Un identificatore per il partner guest hello |
-    | Receive Settings (Impostazioni di ricezione) |Queste proprietà si applicano tooall ricevuti da un contratto. |
-    | Send Settings (Impostazioni di invio) |Queste proprietà si applicano tooall i messaggi inviati da un contratto. |
+    | Host Partner (Partner host) |Un contratto prevede un partner host e un partner guest. Il partner host rappresenta l'organizzazione che configura il contratto. |
+    | Host Identity (Identità host) |Un identificatore per il partner host |
+    | Guest Partner (Partner guest) |Un contratto prevede un partner host e un partner guest. Il partner guest rappresenta l'organizzazione che intrattiene attività commerciali con il partner host. |
+    | identità guest |Un identificatore per il partner guest |
+    | Receive Settings (Impostazioni di ricezione) |Queste proprietà si applicano a tutti i messaggi ricevuti da un contratto. |
+    | Send Settings (Impostazioni di invio) |Queste proprietà si applicano a tutti i messaggi inviati da un contratto. |
 
 ## <a name="configure-how-your-agreement-handles-received-messages"></a>Configurare il modo in cui il contratto riceve i messaggi
 
-Ora che sono state impostate proprietà di contratto hello, è possibile configurare come contratto identifica e gestisce i messaggi in ingresso ricevuti dal partner mediante il presente contratto.
+Dopo aver impostato le proprietà del contratto, è possibile configurare il modo in cui il contratto identifica e gestisce i messaggi in arrivo ricevuti dal partner tramite il presente contratto.
 
 1.  In **Aggiungi**, selezionare **Impostazioni di ricezione**.
-Configurare queste proprietà in base al contratto con partner hello che scambia messaggi con l'utente. Per le relative proprietà, vedere le tabelle di hello in questa sezione.
+Configurare queste proprietà in base al contratto con il partner con cui si scambiano i messaggi. Per le descrizioni delle proprietà, vedere le tabelle in questa sezione.
 
     Il controllo **Impostazioni di ricezione** è suddiviso nelle sezioni seguenti: Identificatori, Riconoscimento, Schemi, Numeri di controllo, Convalide e Impostazioni interne.
 
     ![Configurare "Impostazioni di ricezione"](./media/logic-apps-enterprise-integration-edifact/edifact-2.png)  
 
-2. Al termine, assicurarsi che toosave le impostazioni scegliendo **OK**.
+2. Al termine, assicurarsi di salvare le impostazioni selezionando **OK**.
 
-A questo punto il contratto toohandle pronto in ingresso le impostazioni di messaggi conformi tooyour selezionate.
+Il contratto è pronto per gestire i messaggi in arrivo conformi alle impostazioni selezionate.
 
 ### <a name="identifiers"></a>Identificatori
 
@@ -107,67 +107,67 @@ A questo punto il contratto toohandle pronto in ingresso le impostazioni di mess
 
 | Proprietà | Descrizione |
 | --- | --- |
-| Conferma recapito messaggi (CONTRL) |Selezionare questo tooreturn casella di controllo, un tecnico mittente dell'interscambio toohello riconoscimento (CONTRL). riconoscimento Hello viene inviato il mittente di interscambio toohello in base alle hello impostazioni di invio per il contratto di hello. |
-| Acknowledgement (CONTRL) |Selezionare questa casella di controllo tooreturn che toohello mittente dell'interscambio in base a hello impostazioni di invio per il contratto di hello viene inviato da un riconoscimento hello di mittente di funzionale (CONTRL) riconoscimento toohello interscambio. |
+| Conferma recapito messaggi (CONTRL) |Selezionare questa casella di controllo per restituire un acknowledgment tecnico (CONTRL) al mittente dell'interscambio. L'acknowledgment viene inviato al mittente dell'interscambio in base alle impostazioni di invio del contratto. |
+| Acknowledgement (CONTRL) |Selezionare questa casella di controllo per restituire un acknowledgment funzionale (CONTRL) al mittente dell'interscambio. L'acknowledgment viene inviato al mittente dell'interscambio in base alle impostazioni di invio del contratto. |
 
 ### <a name="schemas"></a>Schemi
 
 | Proprietà | Descrizione |
 | --- | --- |
 | UNH2.1 (tipo) |Selezionare un tipo di set di transazioni. |
-| UNH2.2 (versione) |Immettere il numero di versione messaggio hello. (da un minimo di un carattere a un massimo di tre). |
-| UNH2.3 (versione) |Immettere il numero di rilascio messaggio hello. (da un minimo di un carattere a un massimo di tre). |
-| UNH2.5 (codice assegnato associazione) |Immettere il codice hello assegnato. (deve contenere al massimo sei caratteri, che devono essere alfanumerici). |
+| UNH2.2 (versione) |Immettere il numero di versione del messaggio (da un minimo di un carattere a un massimo di tre). |
+| UNH2.3 (versione) |Immettere il numero di rilascio del messaggio (da un minimo di un carattere a un massimo di tre). |
+| UNH2.5 (codice assegnato associazione) |Immettere il codice assegnato (deve contenere al massimo sei caratteri, che devono essere alfanumerici). |
 | UNH2.1 (ID mittente APP) |Immettere un valore alfanumerico costituito da almeno un carattere e al massimo 35. |
 | UNH2.2 (qualificatore codice mittente APP) |Immettere un valore alfanumerico con lunghezza massima di quattro caratteri. |
-| Schema |Seleziona hello caricato in precedenza schema desiderato toouse dall'account di integrazione associato. |
+| SCHEMA |Selezionare lo schema caricato in precedenza che si vuole usare dall'account di integrazione associato. |
 
 ### <a name="control-numbers"></a>Numeri di controllo
 | Proprietà | Descrizione |
 | --- | --- |
-| Disallow Interchange Control Number duplicates (Non consentire duplicati di numeri di controllo interscambio) |gli interscambi duplicati tooblock, selezionare questa proprietà. Se selezionata, hello EDIFACT decodificare azione controlla che hello numero di controllo interscambio (UNB5) per l'interscambio ricevuto hello non corrisponde a un numero di controllo interscambio elaborati in precedenza. Se viene rilevata una corrispondenza, non viene elaborato interscambio hello. |
-| Verifica UNB5 duplicati ogni (giorni) |Se si sceglie di numeri di controllo interscambio duplicato toodisallow, è possibile specificare il numero di hello di giorni quando hello tooperform controllo assegnando il valore appropriato hello per questa impostazione. |
-| Disallow Group control number duplicates (Non consentire duplicati di numeri di controllo di gruppo) |Selezionare questa proprietà tooblock gli interscambi con numeri di controllo gruppo duplicati (UNG5). |
-| Disallow Transaction set control number duplicates (Non consentire duplicati di numeri di controllo set di transazioni) |tooblock gli interscambi con set controllo numeri di transazioni duplicati (UNH1), selezionare questa proprietà. |
-| Numero di controllo acknowledgement EDIFACT |i numeri di riferimento per l'utilizzo del set di transazioni di hello toodesignate in un riconoscimento, immettere un valore per il prefisso di hello, un intervallo di numeri di riferimento e un suffisso. |
+| Disallow Interchange Control Number duplicates (Non consentire duplicati di numeri di controllo interscambio) |Selezionare questa casella di controllo per bloccare gli interscambi duplicati. Se questa opzione è selezionata, l'azione di decodifica EDIFACT verifica che il numero di controllo (UNB5) dell'interscambio ricevuto non corrisponda al numero di controllo di un interscambio elaborato in precedenza. Se viene rilevata una corrispondenza, l'interscambio non viene elaborato. |
+| Verifica UNB5 duplicati ogni (giorni) |Se si è scelto di non consentire numeri di controllo di interscambio duplicati, è possibile il numero di giorni in cui verrà eseguito il controllo assegnando il valore appropriato a questa impostazione. |
+| Disallow Group control number duplicates (Non consentire duplicati di numeri di controllo di gruppo) |Selezionare questa opzione per bloccare gli interscambi con numeri di controllo di gruppo duplicati (UNG5). |
+| Disallow Transaction set control number duplicates (Non consentire duplicati di numeri di controllo set di transazioni) |Selezionare questa opzione per bloccare gli interscambi con numeri di controllo di set di transazioni duplicati (UNH1). |
+| Numero di controllo acknowledgement EDIFACT |Per designare i numeri di riferimento di set di transazioni da usare in un riconoscimento, immettere un valore per il prefisso, un intervallo di numeri di riferimento e un suffisso. |
 
 ### <a name="validations"></a>Convalide
 
-Dopo aver completato ogni riga di convalida, ne viene aggiunta automaticamente un'altra. Se non si specifica alcuna regola, convalida Usa riga "Default" hello.
+Dopo aver completato ogni riga di convalida, ne viene aggiunta automaticamente un'altra. Se non si specifica alcuna regola, la convalida usa la riga predefinita.
 
 | Proprietà | Descrizione |
 | --- | --- |
-| Tipo messaggio |Selezionare il tipo di messaggio EDI hello. |
-| EDI Validation (Convalida EDI) |Eseguire la convalida EDI sui tipi di dati definiti da schema hello EDI proprietà, le restrizioni di lunghezza, gli elementi dati vuoti e separatori finali. |
-| Convalida estesa |Se non è di tipo di dati hello EDI, la convalida è sul requisito elemento dati di hello e ripetizione, enumerazioni e dati di convalida della lunghezza dell'elemento (min/max) è consentito. |
+| Tipo messaggio |Selezionare il tipo di messaggio EDI. |
+| EDI Validation (Convalida EDI) |Esegue la convalida EDI sui tipi di dati secondo quanto definito dalle proprietà EDI dello schema, le restrizioni di lunghezza, gli elementi dati vuoti e i separatori finali. |
+| Convalida estesa |Se il tipo di dati non è EDI, la convalida viene eseguita sul requisito dell'elemento dati e sulla ripetizione consentita, nonché sulle enumerazioni e sulla convalida della lunghezza dell'elemento dati (min/max). |
 | Consenti zeri iniziali e finali |Tutti gli zero iniziali e finali e i caratteri di spazio vengono mantenuti e non vengono rimossi. |
 | Rimuovi zero iniziali e finali |Tutti gli zero iniziali e finali e i caratteri di spazio vengono rimossi. |
-| Criterio separatori finali |Consente di generare separatori finali. <p>Selezionare **non è consentito** tooprohibit i delimitatori finali e il separatore nel hello ricevuto l'interscambio. Se l'interscambio di hello presenta delimitatori e separatori finali, interscambio hello viene dichiarato non valido. <p>Selezionare **facoltativo** tooaccept gli interscambi con o senza delimitatori e separatori finali. <p>Selezionare **obbligatorio** quando necessario interscambio ricevuto hello delimitatori e separatori finali. |
+| Criterio separatori finali |Consente di generare separatori finali. <p>Selezionare **Non consentiti** per non consentire delimitatori e separatori finali nell'interscambio ricevuto. Se l'interscambio contiene delimitatori e separatori finali, viene dichiarato non valido. <p>Selezionare **Facoltativi** per accettare interscambi con o senza delimitatori e separatori finali. <p>Selezionare **Obbligatori** se l'interscambio ricevuto deve contenere delimitatori e separatori finali. |
 
 ### <a name="internal-settings"></a>Impostazioni interne
 
 | Proprietà | Descrizione |
 | --- | --- |
-| Crea tag XML vuoti se sono consentiti separatori finali |Selezionare questo mittente di interscambio hello toohave casella di controllo includono vuoto tag XML per i separatori finali. |
-| Suddividi interscambio in set di transazioni - Sospendi set di transazioni in caso di errore|Consente di analizzare ogni set di transazioni in un interscambio in un documento XML separato applicando i set di transazioni toohello hello busta appropriata. Sospendere solo hello set di transazioni che non superano la convalida. |
-| Suddividi interscambio in set di transazioni - Sospendi interscambio in caso di errore|Consente di analizzare ogni set di transazioni in un interscambio in un documento XML separato applicando la busta appropriata hello. Sospendere l'intero interscambio hello quando uno o più set di transazioni nell'interscambio hello convalida ha esito negativo. | 
-| Mantieni interscambio - Sospendi set transazioni in caso di errore |Lascia intatto l'interscambio hello, crea un documento XML per l'intero interscambio in batch hello. Sospendere solo hello set di transazioni che non superano la convalida, pur continuando tooprocess set di tutte le altre transazioni. |
-| Mantieni interscambio - Sospendi interscambio in caso di errore |Lascia intatto l'interscambio hello, crea un documento XML per l'intero interscambio in batch hello. Sospendere l'intero interscambio hello quando uno o più set di transazioni nell'interscambio hello convalida ha esito negativo. |
+| Crea tag XML vuoti se sono consentiti separatori finali |Selezionare questa casella di controllo se si vuole che il mittente dell'interscambio includa tag XML vuoti come separatori finali. |
+| Suddividi interscambio in set di transazioni - Sospendi set di transazioni in caso di errore|Consente di analizzare ogni set di transazioni di un interscambio in un documento XML separato applicando la busta appropriata al set di transazioni. Sospende solo i set di transazioni che non superano la convalida. |
+| Suddividi interscambio in set di transazioni - Sospendi interscambio in caso di errore|Consente di analizzare ogni set di transazioni di un interscambio in un documento XML separato applicando la busta appropriata. Sospende tutto l'interscambio quando la convalida di uno o più set di transazioni dell'interscambio non riesce. | 
+| Mantieni interscambio - Sospendi set transazioni in caso di errore |Mantiene l'interscambio intatto, crea un documento XML per l'intero interscambio in batch. Sospende solo i set di transazioni che non superano la convalida, pur continuando a elaborare tutti gli altri set di transazioni. |
+| Mantieni interscambio - Sospendi interscambio in caso di errore |Mantiene l'interscambio intatto, crea un documento XML per l'intero interscambio in batch. Sospende tutto l'interscambio quando la convalida di uno o più set di transazioni dell'interscambio non riesce. |
 
 ## <a name="configure-how-your-agreement-sends-messages"></a>Configurare il modo in cui il contratto invia messaggi
 
-È possibile configurare come contratto identifica e gestisce i messaggi in uscita inviati partner tooyour mediante il presente contratto.
+È possibile configurare il modo in cui il contratto identifica e gestisce i messaggi in uscita inviati ai partner tramite il presente contratto.
 
 1.  In **Aggiungi**, selezionare **Impostazioni di avvio**.
-Configurare queste proprietà in base al contratto con il partner con cui si scambiano i messaggi. Per le relative proprietà, vedere le tabelle di hello in questa sezione.
+Configurare queste proprietà in base al contratto con il partner con cui si scambiano i messaggi. Per le descrizioni delle proprietà, vedere le tabelle in questa sezione.
 
     Il controllo **Impostazioni di invio** è suddiviso nelle sezioni seguenti: Identificatori, Riconoscimento, Schemi, Buste, Set di caratteri e separatori, Numeri di controllo e Convalida.
 
     ![Configurare "Impostazioni di invio"](./media/logic-apps-enterprise-integration-edifact/edifact-3.png)    
 
-2. Al termine, assicurarsi che toosave le impostazioni scegliendo **OK**.
+2. Al termine, assicurarsi di salvare le impostazioni selezionando **OK**.
 
-Il contratto è ora pronto toohandle messaggi conformi a impostazioni tooyour selezionata in uscita.
+Il contratto è pronto per gestire i messaggi in uscita conformi alle impostazioni selezionate.
 
 ### <a name="identifiers"></a>Identificatori
 
@@ -183,74 +183,74 @@ Il contratto è ora pronto toohandle messaggi conformi a impostazioni tooyour se
 ### <a name="acknowledgment"></a>Acknowledgment (Riconoscimento)
 | Proprietà | Descrizione |
 | --- | --- |
-| Conferma recapito messaggi (CONTRL) |Selezionare questa casella di controllo se il partner ospitato hello prevede tooreceive un riconoscimento tecnico (CONTRL). Questa impostazione specifica di tale partner ospitato hello, che invia il messaggio hello, richiede un acknowledgment dal partner guest hello. |
-| Acknowledgement (CONTRL) |Selezionare questa casella di controllo se il partner ospitato hello prevede tooreceive un riconoscimento funzionale (CONTRL). Questa impostazione specifica di tale partner ospitato hello, che invia il messaggio hello, richiede un acknowledgment dal partner guest hello. |
-| Genera il ciclo SG1/SG4 per i set di transazioni accettate |Se si sceglie toorequest un riconoscimento funzionale, selezionare la generazione di tooforce casella di controllo di cicli SG1/SG4 in acknowledgment funzionali CONTRL per set transazioni accettati. |
+| Conferma recapito messaggi (CONTRL) |Selezionare questa casella di controllo se il partner host prevede di ricevere un riconoscimento tecnico (CONTRL). Questa impostazione specifica che il partner host che invia il messaggio richiede un acknowledgment dal partner guest. |
+| Acknowledgement (CONTRL) |Selezionare questa casella di controllo se il partner host prevede di ricevere un acknowledgment funzionale (CONTRL). Questa impostazione specifica che il partner host che invia il messaggio richiede un acknowledgment dal partner guest. |
+| Genera il ciclo SG1/SG4 per i set di transazioni accettate |Se si è scelto di richiedere un acknowledgement funzionale, selezionare questa casella di controllo per forzare la generazione di cicli SG1/SG4 negli acknowledgement funzionali CONTRL per i set di transazioni accettati. |
 
 ### <a name="schemas"></a>Schemi
 | Proprietà | Descrizione |
 | --- | --- |
 | UNH2.1 (tipo) |Selezionare un tipo di set di transazioni. |
-| UNH2.2 (versione) |Immettere il numero di versione messaggio hello. |
-| UNH2.3 (versione) |Immettere il numero di rilascio messaggio hello. |
-| Schema |Selezionare toouse schema hello. Gli schemi si trovano nell'account di integrazione. tooaccess gli schemi, prima di collegare l'applicazione di integrazione account tooyour logica. |
+| UNH2.2 (versione) |Immettere il numero di versione del messaggio. |
+| UNH2.3 (versione) |Immettere il numero di rilascio del messaggio. |
+| SCHEMA |Selezionare lo schema da usare. Gli schemi si trovano nell'account di integrazione. Per accedere agli schemi, collegare l'account di integrazione alla app per la logica. |
 
 ### <a name="envelopes"></a>Buste
 | Proprietà | Descrizione |
 | --- | --- |
 | UNB8 (codice di priorità elaborazione) |Immettere un valore alfabetico di lunghezza non superiore a un carattere. |
 | UNB10 (contratto comunicazioni) |Immettere un valore alfanumerico costituito da almeno un carattere e al massimo 40. |
-| UNB11 (indicatore test) |Selezionare questa casella di controllo tooindicate che hello interscambio generato dati di test |
-| Applica segmento UNA (avviso stringa servizio) |Selezionare questo toogenerate casella di controllo, un segmento UNA per hello toobe di interscambio inviato. |
-| Applica segmenti UNG (intestazione gruppo funzionale) |Selezionare questa casella di controllo toocreate raggruppamento dei segmenti nell'intestazione gruppo funzionale hello in partner guest toohello di hello i messaggi inviati. Hello sono i seguenti valori segmenti UNG di hello toocreate utilizzati: <p>Per **UNG1**, immettere un valore alfanumerico costituito da almeno un carattere e al massimo sei. <p>Per **UNG2.1**, immettere un valore alfanumerico costituito da almeno un carattere e al massimo 35. <p>Per **UNG2.2** immettere un valore alfanumerico con lunghezza massima di quattro caratteri. <p>Per **UNG3.1**, immettere un valore alfanumerico costituito da almeno un carattere e al massimo 35. <p>Per **UNG3.2** immettere un valore alfanumerico con lunghezza massima di quattro caratteri. <p>Per **UNG6** immettere un valore alfanumerico costituito da almeno un carattere e al massimo tre. <p>Per **UNG7.1** immettere un valore alfanumerico costituito da almeno un carattere e al massimo tre. <p>Per **UNG7.2** immettere un valore alfanumerico costituito da almeno un carattere e al massimo tre. <p>Per **UNG7.3** immettere un valore alfanumerico costituito da almeno 1 carattere e al massimo 6. <p>Per **UNG8**, immettere un valore alfanumerico costituito da almeno un carattere e al massimo 14. |
+| UNB11 (indicatore test) |Selezionare questa casella di controllo per indicare che nell'interscambio vengono generati dati di test. |
+| Applica segmento UNA (avviso stringa servizio) |Selezionare questa casella di controllo per generare un segmento UNA per l'interscambio da inviare. |
+| Applica segmenti UNG (intestazione gruppo funzionale) |Selezionare questa casella di controllo per creare segmenti di raggruppamento nell'intestazione di gruppo funzionale nei messaggi inviati al partner guest. Per creare i segmenti UNG vengono usati i valori seguenti: <p>Per **UNG1**, immettere un valore alfanumerico costituito da almeno un carattere e al massimo sei. <p>Per **UNG2.1**, immettere un valore alfanumerico costituito da almeno un carattere e al massimo 35. <p>Per **UNG2.2** immettere un valore alfanumerico con lunghezza massima di quattro caratteri. <p>Per **UNG3.1**, immettere un valore alfanumerico costituito da almeno un carattere e al massimo 35. <p>Per **UNG3.2** immettere un valore alfanumerico con lunghezza massima di quattro caratteri. <p>Per **UNG6** immettere un valore alfanumerico costituito da almeno un carattere e al massimo tre. <p>Per **UNG7.1** immettere un valore alfanumerico costituito da almeno un carattere e al massimo tre. <p>Per **UNG7.2** immettere un valore alfanumerico costituito da almeno un carattere e al massimo tre. <p>Per **UNG7.3** immettere un valore alfanumerico costituito da almeno 1 carattere e al massimo 6. <p>Per **UNG8**, immettere un valore alfanumerico costituito da almeno un carattere e al massimo 14. |
 
 ### <a name="character-sets-and-separators"></a>Character Sets and Separators (Set di caratteri e separatori)
 
-Diverso da set di caratteri hello, è possibile immettere un diverso set di delimitatori toobe utilizzato per ogni tipo di messaggio. Se per un determinato schema del messaggio non è specificato un set di caratteri, viene utilizzato il set di caratteri predefinito hello.
+Oltre al set di caratteri, è possibile immettere un diverso set di delimitatori da usare per ogni tipo di messaggio. Se per un determinato schema del messaggio non è specificato un set di caratteri, viene usato il set di caratteri predefinito.
 
 | Proprietà | Descrizione |
 | --- | --- |
-| UNB1.1 (identificatore di sistema) |Seleziona hello di caratteri EDIFACT imposta toobe applicato su hello in uscita di interscambio. |
-| Schema |Selezionare uno schema dall'elenco a discesa hello. Dopo aver completato ogni riga, viene aggiunta automaticamente una nuova riga. Per lo schema selezionato hello, separatori hello selezionare set che si desidera toouse, in base alle seguenti descrizioni separatore hello. |
-| Tipo di input |Selezionare un tipo di input dall'elenco a discesa hello. |
-| Component Separator |gli elementi dati compositi tooseparate, immettere un singolo carattere. |
-| Data Element Separator |gli elementi dati semplici tooseparate negli elementi dati compositi, immettere un singolo carattere. |
-| Segment Terminator |fine hello tooindicate di un segmento EDI, immettere un singolo carattere. |
-| Suffisso |Selezionare carattere hello utilizzato con l'identificatore di segmento hello. Se si specifica un suffisso, hello elemento di dati carattere di terminazione segmento può essere vuoto. Se il carattere di terminazione di hello segmento viene lasciato vuoto, è necessario specificare un suffisso. |
+| UNB1.1 (identificatore di sistema) |Selezionare il set di caratteri EDIFACT da applicare all'interscambio in uscita. |
+| SCHEMA |Selezionare uno schema nell'elenco a discesa. Dopo aver completato ogni riga, viene aggiunta automaticamente una nuova riga. Per lo schema selezionato, selezionare il set di separatori che si vuole usare, in base alle seguenti descrizioni di separatore. |
+| Tipo di input |Selezionare un tipo di input nell'elenco a discesa. |
+| Component Separator |Per separare elementi di dati compositi immettere un singolo carattere. |
+| Data Element Separator |Per separare elementi di dati semplici in elementi di dati compositi Immettere un singolo carattere. |
+| Segment Terminator |Per indicare la fine di un segmento EDI, immettere un singolo carattere. |
+| Suffisso |Selezionare il carattere usato con l'identificatore di segmento. Se si designa un suffisso, l'elemento dati del terminatore di segmenti può essere vuoto. Se il carattere di terminazione segmento viene lasciato vuoto, è necessario designare un suffisso. |
 
 ### <a name="control-numbers"></a>Numeri di controllo
 | Proprietà | Descrizione |
 | --- | --- |
-| UNB5 (numero di controllo interscambio) |Immettere un prefisso, un intervallo di valori per il numero di controllo interscambio hello e un suffisso. Questi valori vengono utilizzati toogenerate un interscambio in uscita. suffisso e prefisso hello sono facoltativi, mentre il numero di controllo hello è obbligatorio. numero di controllo Hello viene incrementato per ogni nuovo messaggio; prefisso Hello e il suffisso restano hello stesso. |
-| UNG5 (numero di controllo gruppo) |Immettere un prefisso, un intervallo di valori per il numero di controllo interscambio hello e un suffisso. Questi valori vengono utilizzati numero di controllo gruppo toogenerate hello. suffisso e prefisso hello sono facoltativi, mentre il numero di controllo hello è obbligatorio. numero di controllo Hello viene incrementato per ogni nuovo messaggio finché non viene raggiunto il valore massimo hello; prefisso Hello e il suffisso restano hello stesso. |
-| UNH1 (numero di riferimento intestazione messaggio) |Immettere un prefisso, un intervallo di valori per il numero di controllo interscambio hello e un suffisso. Questi valori vengono utilizzati numero di riferimento intestazione messaggio hello toogenerate. suffisso e prefisso hello sono facoltativi, mentre il numero di riferimento hello è obbligatorio. numero di riferimento Hello viene incrementato per ogni nuovo messaggio; prefisso Hello e il suffisso restano hello stesso. |
+| UNB5 (numero di controllo interscambio) |Immettere un prefisso, un intervallo di valori per il numero di controllo dell'interscambio e un suffisso. Questi valori verranno usati per generare un interscambio in uscita. Il prefisso e il suffisso sono facoltativi, mentre il numero di controllo è obbligatorio. Il numero di controllo viene incrementato per ogni nuovo messaggio, mentre il prefisso e il suffisso rimangono invariati. |
+| UNG5 (numero di controllo gruppo) |Immettere un prefisso, un intervallo di valori per il numero di controllo dell'interscambio e un suffisso. Questi valori verranno usati per generare il numero di controllo di gruppo. Il prefisso e il suffisso sono facoltativi, mentre il numero di controllo è obbligatorio. Il numero di controllo viene incrementato per ogni nuovo messaggio fino al raggiungimento del valore massimo, mentre il prefisso e il suffisso rimangono invariati. |
+| UNH1 (numero di riferimento intestazione messaggio) |Immettere un prefisso, un intervallo di valori per il numero di controllo dell'interscambio e un suffisso. Questi valori verranno usati per generare il numero di riferimento dell'intestazione del messaggio. Il prefisso e il suffisso sono facoltativi, mentre il numero di riferimento è obbligatorio. Il numero di riferimento viene incrementato per ogni nuovo messaggio, mentre il prefisso e il suffisso rimangono invariati. |
 
 ### <a name="validations"></a>Convalide
 
-Dopo aver completato ogni riga di convalida, ne viene aggiunta automaticamente un'altra. Se non si specifica alcuna regola, convalida Usa riga "Default" hello.
+Dopo aver completato ogni riga di convalida, ne viene aggiunta automaticamente un'altra. Se non si specifica alcuna regola, la convalida usa la riga predefinita.
 
 | Proprietà | Descrizione |
 | --- | --- |
-| Tipo messaggio |Selezionare il tipo di messaggio EDI hello. |
-| EDI Validation (Convalida EDI) |Eseguire la convalida EDI sui tipi di dati secondo quanto definito dalle proprietà EDI di hello dello schema di hello, le restrizioni di lunghezza, gli elementi dati vuoti e separatori finali. |
-| Convalida estesa |Se non è di tipo di dati hello EDI, la convalida è sul requisito elemento dati di hello e ripetizione, enumerazioni e dati di convalida della lunghezza dell'elemento (min/max) è consentito. |
+| Tipo messaggio |Selezionare il tipo di messaggio EDI. |
+| EDI Validation (Convalida EDI) |Esegue la convalida EDI sui tipi di dati secondo quanto definito dalle proprietà EDI dello schema, le restrizioni di lunghezza, gli elementi dati vuoti e i separatori finali. |
+| Convalida estesa |Se il tipo di dati non è EDI, la convalida viene eseguita sul requisito dell'elemento dati e sulla ripetizione consentita, nonché sulle enumerazioni e sulla convalida della lunghezza dell'elemento dati (min/max). |
 | Consenti zeri iniziali e finali |Tutti gli zero iniziali e finali e i caratteri di spazio vengono mantenuti e non vengono rimossi. |
 | Rimuovi zero iniziali e finali |Tutti gli zero iniziali o finali vengono rimossi. |
-| Criterio separatori finali |Consente di generare separatori finali. <p>Selezionare **non è consentito** tooprohibit finali delimitatori e separatori di hello inviato l'interscambio. Se l'interscambio di hello presenta delimitatori e separatori finali, interscambio hello viene dichiarato non valido. <p>Selezionare **facoltativo** toosend gli interscambi con o senza delimitatori e separatori finali. <p>Selezionare **obbligatorio** se interscambio inviato hello deve disporre di delimitatori e separatori finali. |
+| Criterio separatori finali |Consente di generare separatori finali. <p>Selezionare **Non consentiti** per non consentire delimitatori e separatori finali nell'interscambio inviato. Se l'interscambio contiene delimitatori e separatori finali, viene dichiarato non valido. <p>Selezionare **Facoltativi** per inviare interscambi con o senza delimitatori e separatori finali. <p>Selezionare **Obbligatori** se l'interscambio inviato deve contenere delimitatori e separatori finali. |
 
 ## <a name="find-your-created-agreement"></a>Individuare il contratto creato
 
-1.  Al termine dell'impostazione di tutte le proprietà dell'accordo, in hello **Aggiungi** pannello, scegliere **OK** toofinish la creazione di contratto e il pannello di account di integrazione tooyour restituito.
+1.  Dopo aver impostato tutte le proprietà del contratto, scegliere **OK** nel pannello **Aggiungi** per completare la creazione del contratto e tornare al pannello dell'account di integrazione.
 
     Il contratto appena aggiunto viene visualizzato nell'elenco **Contratti**.
 
-2.  È anche possibile visualizzare i contratti nella panoramica dell'account di Integrazione. Scegliere il pannello di account di integrazione, **Panoramica**, quindi selezionare hello **contratti** riquadro. 
+2.  È anche possibile visualizzare i contratti nella panoramica dell'account di Integrazione. Nel pannello dell'account di integrazione, selezionare **Panoramica**, quindi selezionare il riquadro **Contratti**. 
 
-    ![Scegliere tooview riquadro "Accordi di" tutti i contratti](./media/logic-apps-enterprise-integration-edifact/edifact-4.png)   
+    ![Scegliere il riquadro Contratti per visualizzare tutti i contratti](./media/logic-apps-enterprise-integration-edifact/edifact-4.png)   
 
 ## <a name="view-swagger-file"></a>Visualizzare il file Swagger
-vedere i dettagli di Swagger hello tooview per connettore EDIFACT hello, [EDIFACT](/connectors/edifact/).
+Per visualizzare i dettagli di Swagger per il connettore EDIFACT, vedere [EDIFACT](/connectors/edifact/).
 
 ## <a name="learn-more"></a>Altre informazioni
-* [Altre informazioni su Enterprise Integration Pack hello](logic-apps-enterprise-integration-overview.md "apprendere Enterprise Integration Pack")  
+* [Altre informazioni su Enterprise Integration Pack](logic-apps-enterprise-integration-overview.md "Informazioni su Enterprise Integration Pack")  
 

@@ -1,6 +1,6 @@
 ---
-title: rilevato da Azure Active Directory Identity Protection aaaVulnerabilities | Documenti Microsoft
-description: "Panoramica di vulnerabilità hello rilevate da Azure Active Directory Identity Protection."
+title: "Vulnerabilità rilevate da Azure Active Directory Identity Protection | Documentazione Microsoft"
+description: "Panoramica delle vulnerabilità rilevate da Azure Active Directory Identity Protection"
 services: active-directory
 keywords: "azure active directory identity protection, cloud app discovery, gestione applicazioni, sicurezza, rischio, livello di rischio, vulnerabilità, criteri di sicurezza"
 documentationcenter: 
@@ -15,26 +15,26 @@ ms.topic: article
 ms.date: 07/12/2017
 ms.author: markvi
 ms.reviewer: nigu
-ms.openlocfilehash: 5e1cb401f8b566a180eb46e3420a090bcfc66767
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 364873ff54099a6123e40b12e819d1745751f285
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="vulnerabilities-detected-by-azure-active-directory-identity-protection"></a>Vulnerabilità rilevate da Azure Active Directory Identity Protection
-Le vulnerabilità sono punti deboli in un ambiente che possono essere sfruttati da un utente malintenzionato. È consigliabile risolvere tali condizioni di sicurezza hello tooimprove vulnerabilità dell'organizzazione e di impedire ai pirati informatici sfrutti li.
+Le vulnerabilità sono punti deboli in un ambiente che possono essere sfruttati da un utente malintenzionato. È consigliabile risolvere le vulnerabilità per migliorare le condizioni di sicurezza dell'organizzazione e impedire che vengano sfruttate da utenti malintenzionati.
 
 
 ![vulnerabilità](./media/active-directory-identityprotection-vulnerabilities/101.png "vulnerabilità")
 
 
 
-Hello nelle sezioni seguenti forniscono una panoramica delle vulnerabilità hello segnalati da Identity Protection.
+Le sezioni seguenti presentano una panoramica delle vulnerabilità segnalate da Identity Protection.
 
 ## <a name="multi-factor-authentication-registration-not-configured"></a>Registrazione per l'autenticazione a più fattori non configurata
-Questa vulnerabilità contribuisce di controllare la distribuzione di hello Azure multi-Factor Authentication all'interno dell'organizzazione. 
+Questa vulnerabilità consente di controllare la distribuzione di Azure Multi-Factor Authentication all'interno dell'organizzazione. 
 
-Azure multi-factor authentication fornisce un secondo livello toouser di autenticazione di sicurezza. Consente di salvaguardare accesso toodata e applicazioni rispettando richiesta dell'utente per un semplice processo. Offre autenticazione avanzata tramite una gamma di semplici opzioni di verifica, ad esempio una telefonata, un SMS, una notifica dell'app mobile o un codice di verifica e token OATH di terze parti.
+L'autenticazione a più fattori di Azure fornisce un secondo livello di sicurezza per l'autenticazione utente. Consente di proteggere l'accesso ai dati e alle applicazioni dell'utente, garantendo al tempo stesso una procedura di accesso semplice. Offre autenticazione avanzata tramite una gamma di semplici opzioni di verifica, ad esempio una telefonata, un SMS, una notifica dell'app mobile o un codice di verifica e token OATH di terze parti.
 
 È consigliabile richiedere l'autenticazione a più fattori di Azure per l'accesso degli utenti. L'autenticazione a più fattori svolge un ruolo chiave nei criteri di accesso condizionale basati sul rischio disponibili tramite Identity Protection.
 
@@ -43,18 +43,18 @@ Per altre informazioni, vedere [Informazioni su Azure Multi-Factor Authenticatio
 ## <a name="unmanaged-cloud-apps"></a>App per cloud non gestite
 Questa vulnerabilità consente di identificare le app per cloud non gestite all'interno dell'organizzazione.
 
-Nelle aziende moderne i reparti IT spesso sono consapevoli tutte le applicazioni cloud hello che gli utenti dell'organizzazione utilizzando toodo il proprio lavoro. È facile toosee perché gli amministratori avranno preoccupazioni dati toocorporate di accesso non autorizzato, perdita di dati e altri rischi di protezione. 
+Nelle aziende moderne, i reparti IT spesso non sono a conoscenza di tutte le applicazioni cloud usate per lavoro dagli utenti dell'organizzazione. L'accesso non autorizzato ai dati aziendali, le possibili perdite di dati e altri rischi di sicurezza rappresentano una preoccupazione per gli amministratori. 
 
-È consigliabile l'organizzazione di distribuire le applicazioni cloud di Cloud App Discovery toodiscover non gestita e toomanage queste applicazioni con Azure Active Directory.
+È consigliabile distribuire Cloud App Discovery per identificare le applicazioni cloud non gestite dell'organizzazione e gestirle con Azure Active Directory.
 
 Per altre informazioni, vedere [Ricerca di applicazioni cloud non gestite con Cloud App Discovery](active-directory-cloudappdiscovery-whatis.md).
 
 ## <a name="security-alerts-from-privileged-identity-management"></a>Avvisi di sicurezza di Privileged Identity Management
 Questa vulnerabilità permette di identificare e risolvere gli avvisi sulle identità con privilegi all'interno dell'organizzazione.  
 
-tooenable utenti toocarry operazioni privilegiate, le organizzazioni devono toogrant utenti di accesso con privilegi temporanei o permanente in Azure AD, le risorse di Azure o Office 365 o altre applicazioni SaaS. Ognuno di questi privilegi superficie di attacco hello aumenta gli utenti dell'organizzazione. Questa vulnerabilità consente di identificare gli utenti con accesso con privilegi non necessario e richiedere l'azione appropriata tooreduce o eliminare il rischio di hello che comportano. 
+Per consentire agli utenti di eseguire operazioni con privilegi, le organizzazioni devono concedere agli utenti accessi con privilegi temporanei o permanenti in Azure AD, per le risorse di Azure o Office 365 o per altre app SaaS. Ognuno di questi utenti con privilegi aumenta la superficie di attacco dell'organizzazione. Questa vulnerabilità consente di identificare gli utenti che hanno un accesso con privilegi non necessario e di intraprendere le azioni appropriate per ridurre o eliminare il rischio. 
 
-È consigliabile che l'organizzazione utilizza Azure AD Privileged Identity Management toomanage, controllo e le identità di monitoraggio privilegiato e tooresources loro accesso in Azure AD, nonché altri Microsoft online services quali Office 365 o Microsoft Intune.
+È consigliabile usare Azure AD Privileged Identity Management nell'organizzazione per gestire, controllare e monitorare le identità con privilegi e il relativo accesso alle risorse in Azure AD e in altri Microsoft Online Services, ad esempio Office 365 o Microsoft Intune.
 
 Per altre informazioni, vedere [Azure AD Privileged Identity Management](active-directory-privileged-identity-management-configure.md). 
 

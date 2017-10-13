@@ -1,6 +1,6 @@
 ---
-title: un nome di dominio aziendale Internet dominio tooa Traffic Manager aaaPoint | Documenti Microsoft
-description: "In questo articolo consentirà di scegliere il nome di dominio della società dominio nome tooa Traffic Manager."
+title: Impostare un dominio Internet aziendale in modo che punti a un nome di dominio di Gestione traffico | Documentazione Microsoft
+description: In questo articolo vengono fornite istruzioni per scegliere il nome di dominio aziendale per un nome di dominio di Gestione traffico.
 services: traffic-manager
 documentationcenter: 
 author: kumudd
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/11/2016
 ms.author: kumud
-ms.openlocfilehash: 84c428f60a1dc70452bf957d98a68c95e0b51715
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 0322b3510cfd4f94031d8c1db8f1cc032b997fa8
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="point-a-company-internet-domain-tooan-azure-traffic-manager-domain"></a>Scegliere un dominio Internet della società dominio tooan Traffic Manager di Azure
+# <a name="point-a-company-internet-domain-to-an-azure-traffic-manager-domain"></a>Impostare un dominio Internet aziendale in modo che punti a un dominio di Gestione traffico di Azure
 
-Quando si crea un profilo di Gestione traffico, Azure assegna automaticamente un nome DNS per tale profilo. toouse un nome dalla zona DNS, creare un record DNS CNAME che associa il nome di dominio toohello del profilo di Traffic Manager. È possibile trovare un nome di dominio di Traffic Manager hello in hello **generale** sezione nella pagina di configurazione hello di hello profilo di gestione traffico.
+Quando si crea un profilo di Gestione traffico, Azure assegna automaticamente un nome DNS per tale profilo. Per usare un nome dalla zona DNS, creare un record DNS CNAME che esegua il mapping al nome di dominio del profilo di Gestione traffico. È possibile visualizzare il nome di dominio di Gestione traffico nella sezione **Generale** nella pagina di configurazione del profilo di Gestione traffico.
 
-Ad esempio www.contoso.com nome toopoint toohello contoso.trafficmanager.net nome DNS di Traffic Manager, si creerà hello seguenti record di risorse DNS:
+Ad esempio, per scegliere il nome www.contoso.com per il nome DNS di Gestione traffico contoso.trafficmanager.net, è possibile creare il record di risorse DNS seguente:
 
     www.contoso.com IN CNAME contoso.trafficmanager.net
 
-Tutto il traffico richiede troppo*www.contoso.com* vengono indirizzati troppo*contoso.trafficmanager.net*.
+Tutto il traffico indirizzato a *www.contoso.com* viene reindirizzato a *contoso.trafficmanager.net*.
 
 > [!IMPORTANT]
-> Non è possibile puntare un dominio di secondo livello, ad esempio *contoso.com*, toohello dominio di Traffic Manager. Gli standard di protocollo DNS non consentono record CNAME per i nomi di dominio di secondo livello.
+> Non è possibile scegliere un dominio di secondo livello, come *contoso.com*, per il dominio di Gestione traffico. Gli standard di protocollo DNS non consentono record CNAME per i nomi di dominio di secondo livello.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

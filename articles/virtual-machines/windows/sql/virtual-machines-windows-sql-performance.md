@@ -1,5 +1,5 @@
 ---
-title: aaaPerformance procedure consigliate per SQL Server in Azure | Documenti Microsoft
+title: Procedure consigliate relative alle prestazioni per SQL Server in Azure | Microsoft Docs
 description: In questo argomento vengono fornite le procedure consigliate per ottimizzare le prestazioni di SQL Server in Macchine virtuali di Microsoft Azure.
 services: virtual-machines-windows
 documentationcenter: na
@@ -15,41 +15,41 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 ms.date: 06/27/2017
 ms.author: jroth
-ms.openlocfilehash: 42ec9fbeb2dec3a654b93bbd08d666369835ee73
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5595ea016ab01d20cee82b75f56623bb0727a1b3
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="performance-best-practices-for-sql-server-in-azure-virtual-machines"></a>Procedure consigliate per le prestazioni per SQL Server in Macchine virtuali di Azure
 
 ## <a name="overview"></a>Panoramica
 
-Questo argomento illustra le procedure consigliate per ottimizzare le prestazioni di SQL Server in Macchine virtuali di Microsoft Azure. Durante l'esecuzione di SQL Server in macchine virtuali di Azure, è consigliabile continuare a usare hello stesso database ottimizzazione delle prestazioni opzioni applicabili tooSQL Server nell'ambiente server locale. Tuttavia, prestazioni di hello di un database relazionale in un cloud pubblico dipendono da molti fattori, ad esempio dimensioni hello di una macchina virtuale e la configurazione hello hello di dischi di dati.
+Questo argomento illustra le procedure consigliate per ottimizzare le prestazioni di SQL Server in Macchine virtuali di Microsoft Azure. Durante l'esecuzione di SQL Server in Macchine virtuali di Azure, è consigliabile continuare a usare le stesse opzioni di ottimizzazione delle prestazioni dei database applicabili a SQL Server nell'ambiente server locale. Tuttavia, le prestazioni di un database relazionale in un cloud pubblico dipendono da molti fattori, ad esempio dalle dimensioni della macchina virtuale e dalla configurazione dei dischi dati.
 
-Durante la creazione di immagini di SQL Server, [prendere in considerazione il provisioning delle macchine virtuali nel portale di Azure hello](virtual-machines-windows-portal-sql-server-provision.md). Macchine virtuali di SQL Server disponibile nel portale di gestione risorse di hello implementare tutte queste le procedure consigliate, inclusa la configurazione di archiviazione hello.
+Durante la creazione di immagini di SQL Server, [è possibile eseguire il provisioning delle VM nel portale di Azure](virtual-machines-windows-portal-sql-server-provision.md). Tutte queste procedure consigliate, tra cui la configurazione dell'archiviazione, vengono implementate in VM di SQL Server di cui è stato eseguito il provisioning nel portale con Resource Manager.
 
-In questo articolo è incentrato su come ottenere hello *migliore* le prestazioni di SQL Server in macchine virtuali di Azure. Se il carico di lavoro è contenuto, potrebbero non essere necessarie tutte le ottimizzazione elencate di seguito. Prendere in considerazione le esigenze di prestazioni e i modelli di carico di lavoro durante la valutazione di queste indicazioni.
+Questo articolo riporta informazioni su come ottenere le *migliori* prestazioni per SQL Server nelle VM Azure. Se il carico di lavoro è contenuto, potrebbero non essere necessarie tutte le ottimizzazione elencate di seguito. Prendere in considerazione le esigenze di prestazioni e i modelli di carico di lavoro durante la valutazione di queste indicazioni.
 
 [!INCLUDE [learn-about-deployment-models](../../../../includes/learn-about-deployment-models-both-include.md)]
 
 ## <a name="quick-check-list"></a>Elenco di controllo rapido
 
-di seguito Hello è un elenco di controllo rapido per ottenere prestazioni ottimali di SQL Server in macchine virtuali di Azure:
+Di seguito è riportato un elenco controllo rapido per ottimizzare le prestazioni di SQL Server in Macchine virtuali di Azure:
 
 | Area | Ottimizzazioni |
 | --- | --- |
 | [Dimensioni macchina virtuale](#vm-size-guidance) |[DS3](../../virtual-machines-windows-sizes-memory.md) o superiore per SQL Enterprise.<br/><br/>[DS2](../../virtual-machines-windows-sizes-memory.md) o superiore per SQL Standard Edition e Web Edition. |
-| [Archiviazione](#storage-guidance) |Usare [Archiviazione Premium](../../../storage/common/storage-premium-storage.md). Archiviazione Standard è consigliata solo per i carichi di lavoro di sviluppo/test.<br/><br/>Mantenere hello [account di archiviazione](../../../storage/common/storage-create-storage-account.md) e macchina virtuale di SQL Server in hello stessa area.<br/><br/>Disabilitare Azure [archiviazione con ridondanza geografica](../../../storage/common/storage-redundancy.md) (replica geografica) nell'account di archiviazione hello. |
-| [Dischi](#disks-guidance) |Usare almeno 2 [dischi P30](../../../storage/common/storage-premium-storage.md#scalability-and-performance-targets) (1 per i file di log, 1 per i file di dati e TempDB).<br/><br/>Evitare l'uso del sistema operativo o di dischi temporanei per la registrazione o l'archiviazione di database.<br/><br/>Abilitare la cache di lettura su dischi hello ospita i file di dati hello e TempDB.<br/><br/>Non abilitare la memorizzazione nella cache nei dischi che ospitano i file di log hello.<br/><br/>Importante: Arrestare il servizio di SQL Server hello quando si modificano le impostazioni della cache di hello per un disco di macchina virtuale di Azure.<br/><br/>Eseguire lo striping di velocità effettiva dei / o tooget aumentato di dischi di più dati di Azure.<br/><br/>Formattare con dimensioni di allocazione documentate. |
-| [I/O](#io-guidance) |Abilitare la compressione di pagina di database.<br/><br/>Abilitare l'inizializzazione immediata dei file per i file di dati.<br/><br/>Limitare o disabilitare l'aumento automatico delle dimensioni nel database di hello.<br/><br/>Disabilitare la compattazione automatica nel database di hello.<br/><br/>Spostare tutti i dischi toodata database, inclusi i database di sistema.<br/><br/>Spostare l'errore log e trace file directory toodata dischi del Server SQL.<br/><br/>Configurare il percorso predefinito del file di backup e del file di database.<br/><br/>Abilitare le pagine bloccate.<br/><br/>Applicare le correzioni delle prestazioni di SQL Server. |
-| [Specifiche della funzione](#feature-specific-guidance) |Eseguire il backup direttamente tooblob archiviazione. |
+| [Archiviazione](#storage-guidance) |Usare [Archiviazione Premium](../../../storage/common/storage-premium-storage.md). Archiviazione Standard è consigliata solo per i carichi di lavoro di sviluppo/test.<br/><br/>Mantenere l'[account di archiviazione](../../../storage/common/storage-create-storage-account.md) e la macchina virtuale di SQL Server nella stessa area.<br/><br/>Disabilitare l' [archiviazione con ridondanza geografica](../../../storage/common/storage-redundancy.md) (replica geografica) di Azure nell'account di archiviazione. |
+| [Dischi](#disks-guidance) |Usare almeno 2 [dischi P30](../../../storage/common/storage-premium-storage.md#scalability-and-performance-targets) (1 per i file di log, 1 per i file di dati e TempDB).<br/><br/>Evitare l'uso del sistema operativo o di dischi temporanei per la registrazione o l'archiviazione di database.<br/><br/>Abilitare la lettura della cache sui dischi che ospitano i file di dati e TempDB.<br/><br/>Non abilitare la memorizzazione nella cache sui dischi che ospitano il file di log.<br/><br/>Importante: arrestare SQL Server quando si modificano le impostazioni della cache per un disco di una macchina virtuale di Azure.<br/><br/>Eseguire lo striping di più dischi dati di Azure per ottenere una maggiore velocità effettiva I/O.<br/><br/>Formattare con dimensioni di allocazione documentate. |
+| [I/O](#io-guidance) |Abilitare la compressione di pagina di database.<br/><br/>Abilitare l'inizializzazione immediata dei file per i file di dati.<br/><br/>Limitare o disabilitare l'aumento automatico delle dimensioni per il database.<br/><br/>Disabilitare la compattazione automatica per il database.<br/><br/>Spostare tutti i database su dischi dati, inclusi i database di sistema.<br/><br/>Spostare le directory dei file di traccia e dei log degli errori di SQL Server sui dischi dati.<br/><br/>Configurare il percorso predefinito del file di backup e del file di database.<br/><br/>Abilitare le pagine bloccate.<br/><br/>Applicare le correzioni delle prestazioni di SQL Server. |
+| [Specifiche della funzione](#feature-specific-guidance) |Eseguire il backup direttamente nell'archivio BLOB. |
 
-Per ulteriori informazioni su *come* e *perché* toomake queste ottimizzazioni, controllare i dettagli di hello e informazioni aggiuntive fornite nelle sezioni seguenti.
+Per altre informazioni su *come* e *perché* eseguire queste ottimizzazioni, vedere i dettagli e le linee guida riportate nelle sezioni seguenti.
 
 ## <a name="vm-size-guidance"></a>Linee guida per le dimensioni delle VM
 
-Per applicazioni sensibili delle prestazioni, è consigliabile utilizzare la seguente hello [dimensioni delle macchine virtuali](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json):
+Per le applicazioni sensibili alle prestazioni, è consigliabile usare le seguenti [dimensioni per le macchine virtuali](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json):
 
 * **SQL Server Enterprise Edition**: DS3 o superiore
 * **SQL Server Standard e Web Edition**: DS2 o superiore
@@ -61,44 +61,44 @@ Le VM serie DS, oltre alle serie DSv2 e GS, supportano [Archiviazione Premium](.
 > [!WARNING]
 > Archiviazione Standard è caratterizzata da latenze e larghezze di banda variabili ed è consigliata solo per i carichi di lavoro di sviluppo e test. Per i carichi di lavoro di produzione si consiglia di usare Archiviazione Premium.
 
-Inoltre, si consiglia di creare l'account di archiviazione di Azure in hello stesso data center, come i ritardi nel trasferimento tooreduce macchine virtuali SQL Server. Quando si crea un account di archiviazione, disabilitare la replica geografica in quanto l'ordine di scrittura coerente su più dischi non è garantito. In alternativa, si consiglia di configurare una tecnologia di ripristino di emergenza di SQL Server tra due data center di Azure. Per altre informazioni, vedere [Disponibilità elevata e ripristino di emergenza per SQL Server in Macchine virtuali di Azure](virtual-machines-windows-sql-high-availability-dr.md).
+È inoltre consigliabile creare account di archiviazione di Azure nello stesso data center delle macchine virtuali di SQL Server per ridurre i tempi di trasferimento. Quando si crea un account di archiviazione, disabilitare la replica geografica in quanto l'ordine di scrittura coerente su più dischi non è garantito. In alternativa, si consiglia di configurare una tecnologia di ripristino di emergenza di SQL Server tra due data center di Azure. Per altre informazioni, vedere [Disponibilità elevata e ripristino di emergenza per SQL Server in Macchine virtuali di Azure](virtual-machines-windows-sql-high-availability-dr.md).
 
 ## <a name="disks-guidance"></a>Linee guida per i dischi
 
 Esistono tre tipi di disco principali in una VM Azure:
 
-* **Disco del sistema operativo**: quando si crea una macchina virtuale di Azure, piattaforma hello assocerà almeno un disco (etichettata come hello **C** unità) toohello macchina virtuale per il disco del sistema operativo. Si tratta di un disco rigido virtuale memorizzato come BLOB di pagine nell'archivio.
-* **Disco temporaneo**: macchine virtuali di Azure contengono un altro disco denominato disco temporaneo hello (etichettata come hello **D**: unità). Si tratta di un disco nel nodo hello che può essere utilizzato per l'area scratch.
-* **I dischi dati**: È anche possibile collegare dischi aggiuntivi tooyour virtual machine come dischi dati e verranno archiviati nel servizio di archiviazione come BLOB di pagine.
+* **Disco del sistema operativo**: quando si crea una macchina virtuale Azure, la piattaforma associa almeno un disco, contrassegnato come unità **C**, alla VM per il disco del sistema operativo. Si tratta di un disco rigido virtuale memorizzato come BLOB di pagine nell'archivio.
+* **Disco temporaneo**: le macchine virtuali di Azure contengono un altro disco, chiamato disco temporaneo, contrassegnato come unità **D**. Questo è un disco sul nodo che può essere usato come area scratch.
+* **Dischi dati**: è possibile associare dischi aggiuntivi alla macchina virtuale nella forma di dischi dati, che vengono memorizzati nell'archivio come BLOB di pagine.
 
-Hello nelle sezioni seguenti vengono descritti consigli per l'utilizzo di questi dischi diversi.
+Nelle sezioni seguenti sono riportati alcuni consigli per l'uso di questi diversi dischi.
 
 ### <a name="operating-system-disk"></a>Disco del sistema operativo
 
 Per disco del sistema operativo si intende un disco rigido virtuale che è possibile avviare e montare come versione in esecuzione di un sistema operativo ed è etichettato come unità **C** .
 
-Valore predefinito di memorizzazione nella cache dei criteri nel disco del sistema operativo hello è **lettura/scrittura**. Per applicazioni sensibili delle prestazioni, è consigliabile usare dischi dati anziché disco del sistema operativo hello. Nella sezione hello nei dischi di dati sottostante.
+I criteri predefiniti di caching per il disco del sistema operativo predefinito sono **Lettura/Scrittura**. Per le applicazioni sensibili alle prestazioni, è consigliabile usare dischi dati anziché il disco del sistema operativo. Vedere la sezione relativa ai dischi di dati riportata di seguito.
 
 ### <a name="temporary-disk"></a>Disco temporaneo
 
-unità di archiviazione temporanea, etichettata come hello Hello **D**: disco, non è persistente tooAzure nell'archiviazione blob. Non archiviare il file del database utente o un file di log delle transazioni utente in hello **D**: unità.
+L'unità di archiviazione temporanea, etichettata come unità **D**:, non è persistente nell'archiviazione BLOB di Azure. Non archiviare i file del database utente o i file di log delle transazioni utente nell'unità **D**.
 
-Per la serie D Dv2 serie e le macchine virtuali serie G, unità temporanea di hello su queste macchine virtuali è basata su SSD. Se il carico di lavoro utilizza in modo intensivo del database TempDB (ad esempio per gli oggetti temporanei o join complessi), l'archiviazione di TempDB in hello **D** unità potrebbe causare una velocità effettiva di TempDB e TempDB latenza più bassa.
+Per le VM serie D, Dv2 e G, l'unità temporanea è basata su SSD. Se il carico di lavoro usa TempDB in modo intensivo, ad esempio per gli oggetti temporanei o join complessi, l'archiviazione di TempDB nell'unità **D** potrebbe comportare una maggiore velocità effettiva e una minore latenza di TempDB.
 
-Per le macchine virtuali che supportano Archiviazione Premium (serie DS, DSv2 e GS), si consiglia di archiviare TempDB su un disco che supporta Archiviazione Premium con il caching di lettura attivato. Un'eccezione toothis indicazione; Se l'utilizzo di TempDB è elevato della scrittura, è possibile ottenere prestazioni più elevate archiviando TempDB in locale hello **D** unità, è inoltre basate su SSD sulle dimensioni di questi computer.
+Per le macchine virtuali che supportano Archiviazione Premium (serie DS, DSv2 e GS), si consiglia di archiviare TempDB su un disco che supporta Archiviazione Premium con il caching di lettura attivato. Esiste un'eccezione a questo consiglio: se TempDB è soggetto a uso intenso in scrittura, è possibile migliorare le prestazioni archiviando TempDB nell'unità locale **D** , che in macchine di queste dimensioni è anche basata su SSD.
 
 ### <a name="data-disks"></a>Dischi dati
 
-* **Utilizzare dischi dati per i file di dati e di log**: come minimo, usare l'archiviazione Premium 2 [P30 dischi](../../../storage/common/storage-premium-storage.md#scalability-and-performance-targets) in un disco contiene i file di log hello e altri hello contiene dati hello e i file di TempDB. Ogni disco di archiviazione Premium fornisce una serie di operazioni IOPs e la larghezza di banda (MB/s) a seconda delle dimensioni, come descritto nell'articolo seguente hello: [con archiviazione Premium per i dischi](../../../storage/common/storage-premium-storage.md).
+* **Usare i dischi dati per i file di dati e di log**: come minimo, usare 2 [dischi P30](../../../storage/common/storage-premium-storage.md#scalability-and-performance-targets) con Archiviazione Premium di cui uno contenente i file di log e l'altro contenente i file di dati e TempDB. Ogni disco di Archiviazione Premium dispone di un numero di IOPs e larghezza di banda (MB/s) a seconda delle dimensioni, come descritto nell'articolo seguente: [Uso di Archiviazione Premium per dischi](../../../storage/common/storage-premium-storage.md).
 
-* **Striping del disco**: per una maggiore velocità effettiva, è possibile aggiungere ulteriori dischi dati e usare lo striping del disco. numero di hello toodetermine di dischi dati, è necessario tooanalyze hello svariate e larghezza di banda necessaria per i file di log e per i dati e i file di TempDB. Si noti che diverse dimensioni di macchina virtuale sono diversi limiti sul numero di hello di IOPs e la larghezza di banda supportate, vedere le tabelle di hello in IOPS per [dimensioni della macchina virtuale](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Utilizzare hello alle linee guida:
+* **Striping del disco**: per una maggiore velocità effettiva, è possibile aggiungere ulteriori dischi dati e usare lo striping del disco. Per determinare il numero di dischi dati, è necessario analizzare il numero di IOPS e larghezza di banda necessari per i file di log e i file di dati e TempDB. Si noti che a seconda delle dimensioni delle VM i limiti nel numero di IOPs e larghezza di banda supportati cambiano. Vedere le tabelle relative agli IOPS per [dimensione di VM](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Usare le linee guida seguenti:
 
-  * Per Windows 8 e Windows Server 2012 o versione successiva, utilizzare [spazi di archiviazione](https://technet.microsoft.com/library/hh831739.aspx) con hello alle linee guida:
+  * Per Windows 8 e Windows Server 2012 o versioni successive, usare [Spazi di archiviazione](https://technet.microsoft.com/library/hh831739.aspx) applicando le indicazioni seguenti:
 
-      1. Set hello interleave (dimensione di striping) too64 KB (65536 byte) per i carichi di lavoro OLTP e 256 KB (262.144 byte) per il data warehousing impatto sulle prestazioni di carichi di lavoro tooavoid a causa di problemi di allineamento toopartition. Questo valore deve essere impostato con PowerShell.
+      1. Impostare l'interleave (dimensione di striping) su 64 KB (65536 byte) per carichi di lavoro OLTP e su 256 KB (262144 KB) per carichi di lavoro di data warehouse, in modo da evitare effetti sulle prestazioni a causa del mancato allineamento delle partizioni. Questo valore deve essere impostato con PowerShell.
       1. Impostare il numero di colonne sul numero di dischi fisici. Usare PowerShell (e non l'interfaccia utente di Server Manager) per configurare più di 8 dischi. 
 
-    Ad esempio, hello PowerShell seguente crea un nuovo pool di archiviazione con hello interleave dimensioni too64 KB e hello il numero di colonne too2:
+    Ad esempio, lo script di PowerShell seguente crea un nuovo pool di archiviazione con la dimensione di interleave impostata su 64 KB e il numero di colonne impostato su 2:
 
     ```powershell
     $PoolCount = Get-PhysicalDisk -CanPool $True
@@ -107,58 +107,58 @@ Per le macchine virtuali che supportano Archiviazione Premium (serie DS, DSv2 e 
     New-StoragePool -FriendlyName "DataFiles" -StorageSubsystemFriendlyName "Storage Spaces*" -PhysicalDisks $PhysicalDisks | New-VirtualDisk -FriendlyName "DataFiles" -Interleave 65536 -NumberOfColumns 2 -ResiliencySettingName simple –UseMaximumSize |Initialize-Disk -PartitionStyle GPT -PassThru |New-Partition -AssignDriveLetter -UseMaximumSize |Format-Volume -FileSystem NTFS -NewFileSystemLabel "DataDisks" -AllocationUnitSize 65536 -Confirm:$false 
     ```
 
-  * Per Windows 2008 R2 o versioni precedenti, è possibile utilizzare i dischi dinamici (volumi con striping OS) e la dimensione di striping hello è sempre 64 KB. Si noti che questa opzione è deprecata a partire da Windows 8 e Windows Server 2012. Per informazioni, vedere l'istruzione di supporto hello in [servizio dischi virtuali viene effettuata la transizione tooWindows API di gestione archiviazione](https://msdn.microsoft.com/library/windows/desktop/hh848071.aspx).
+  * Per Windows 2008 R2 o versioni precedenti, è possibile usare i dischi dinamici (volumi con striping del sistema operativo) e la dimensione di striping è sempre di 64 KB. Si noti che questa opzione è deprecata a partire da Windows 8 e Windows Server 2012. Per informazioni, vedere l'informativa di supporto relativa al [passaggio dal servizio dischi virtuali all'API di gestione archiviazione di Windows](https://msdn.microsoft.com/library/windows/desktop/hh848071.aspx).
 
-  * Se il carico di lavoro non usa in modo intensivo i log e non sono necessarie operazioni di input/output al secondo dedicate, è possibile configurare un solo pool di archiviazione. In caso contrario, creare due pool di archiviazione, uno per i file di log hello e un altro pool di archiviazione per i file di dati hello e TempDB. Determinare il numero di hello di dischi associati a ogni pool di archiviazione in base alle proprie aspettative di carico. Tenere presente che le diverse dimensioni di macchine virtuali consentono diversi numeri di dischi dati associati. Per altre informazioni, vedere [Dimensioni delle macchine virtuali in Azure](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+  * Se il carico di lavoro non usa in modo intensivo i log e non sono necessarie operazioni di input/output al secondo dedicate, è possibile configurare un solo pool di archiviazione. In caso contrario, creare due pool di archiviazione, uno per i file di log e un altro pool di archiviazione per il file di dati e TempDB. Determinare il numero di dischi associati a ogni pool di archiviazione in base alle aspettative di carico. Tenere presente che le diverse dimensioni di macchine virtuali consentono diversi numeri di dischi dati associati. Per altre informazioni, vedere [Dimensioni delle macchine virtuali in Azure](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
-  * Se non si utilizza l'archiviazione Premium (scenari di sviluppo/test), indicazione hello è numero massimo di hello tooadd di dischi di dati supportati dal [dimensioni delle macchine Virtuali](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) e utilizzare lo Striping del disco.
+  * Se non si usa Archiviazione Premium (scenari di sviluppo e test), è consigliabile aggiungere il numero massimo di dischi dati supportato dalle [dimensioni della VM](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) e usare lo striping del disco.
 
-* **Criteri di memorizzazione nella cache**: i dischi di dati per l'archiviazione Premium, abilitare la cache di lettura sui dischi dati hello ospita solo il file di dati e di TempDB. Se non si usa Archiviazione Premium, non abilitare la memorizzazione nella cache per i dischi dati. Per istruzioni su come configurare la cache del disco, vedere hello seguenti argomenti: [Set-AzureOSDisk](https://msdn.microsoft.com/library/azure/jj152847) e [Set-AzureDataDisk](https://msdn.microsoft.com/library/azure/jj152851.aspx).
-
-  > [!WARNING]
-  > Arrestare il servizio di SQL Server hello quando si modifica l'impostazione della cache di hello della macchina virtuale di Azure dischi tooavoid hello probabilità eventuali danneggiamenti del database.
-
-* **Dimensioni dell'unità di allocazione NTFS**: quando si formatta il disco di dati hello, si consiglia di utilizzare una dimensione di unità di allocazione di 64 KB per file di dati e di log, nonché di TempDB.
-
-* **Procedure consigliate di gestione del disco**: quando si digita la rimozione di un disco dati o modificare la cache, è possibile arrestare il servizio di SQL Server hello durante la modifica di hello. Quando le impostazioni di memorizzazione nella cache di hello sono modificato sul disco del sistema operativo hello, Azure arresta hello VM cambia il tipo di cache di hello e riavvia hello VM. Quando vengono modificate le impostazioni della cache di hello di un disco dati, hello VM non è stato arrestato, ma il disco di dati hello viene disconnesso da hello VM hello durante la modifica e il successivo ricollegamento.
+* **Criteri di caching**: per i dischi dati con Archiviazione Premium, attivare il caching di lettura solo sui dischi dati che ospitano i file di dati e TempDB. Se non si usa Archiviazione Premium, non abilitare la memorizzazione nella cache per i dischi dati. Per istruzioni sulla configurazione del caching su disco, vedere gli argomenti seguenti: [Set-AzureOSDisk](https://msdn.microsoft.com/library/azure/jj152847) e [Set-AzureDataDisk](https://msdn.microsoft.com/library/azure/jj152851.aspx).
 
   > [!WARNING]
-  > Hello toostop errore del servizio SQL Server durante queste operazioni può causare il danneggiamento del database.
+  > Arrestare il servizio SQL Server quando si modifica l'impostazione della cache dei dischi della VM di Azure per evitare danneggiamenti al database.
+
+* **Dimensioni unità di allocazione NTFS**: quando si formatta il disco dati, è consigliabile usare una dimensione di unità di allocazione di 64 KB per file di log e dati, nonché per TempDB.
+
+* **Procedure consigliate per la gestione del disco**: quando si rimuove un disco dati o si modifica il relativo tipo di cache, arrestare il servizio SQL Server durante la modifica. Quando vengono modificate le impostazioni del caching sul disco del sistema operativo, Azure arresta la VM, cambia il tipo di cache e riavvia la VM. Quando vengono modificate le impostazioni della cache di un disco dati, la VM non viene arrestata, ma il disco dati viene scollegato dalla VM durante la modifica e quindi ricollegato.
+
+  > [!WARNING]
+  > Il mancato arresto del servizio SQL Server durante queste operazioni può danneggiare il database.
 
 ## <a name="io-guidance"></a>Linee guida per l'I/O
 
-* Quando si parallelizza dell'applicazione e le richieste, vengono ottenuti i risultati di migliore Hello con archiviazione Premium. Archiviazione Premium è progettato per scenari in cui la profondità della coda i/o hello è maggiore di 1, in modo che le minime o alcun miglioramento delle prestazioni per le richieste di seriale a thread singolo (anche se sono con utilizzo intensivo di archiviazione). Ad esempio, ciò potrebbe influire sulla di risultati dei test a thread singolo hello di strumenti di analisi delle prestazioni, ad esempio SQLIO.
+* Quando l'applicazione e le richieste vengono eseguite in parallelo, si ottengono i migliori risultati con Archiviazione Premium. Archiviazione Premium è progettato per scenari in cui la profondità della coda I/O è maggiore di 1, pertanto si noteranno eventualmente impercettibili miglioramenti delle prestazioni per le richieste seriali a thread singolo (anche se usano in modo intensivo l'archiviazione). Ad esempio, ciò potrebbe influire sui risultati di test a thread singolo degli strumenti di analisi delle prestazioni, ad esempio SQLIO.
 
-* È consigliabile usare la [compressione di pagina del database](https://msdn.microsoft.com/library/cc280449.aspx) in quanto consente di migliorare le prestazioni dei carichi di lavoro con utilizzo intensivo di I/O. Tuttavia, la compressione dei dati di hello potrebbe aumentare l'utilizzo della CPU nel server di database hello hello.
+* È consigliabile usare la [compressione di pagina del database](https://msdn.microsoft.com/library/cc280449.aspx) in quanto consente di migliorare le prestazioni dei carichi di lavoro con utilizzo intensivo di I/O. Tuttavia, la compressione dei dati potrebbe incrementare l'utilizzo della CPU nel server di database.
 
-* Considerare l'attivazione immediata dei file inizializzazione tooreduce hello tempo necessario per l'allocazione iniziale di file. Il vantaggio di tootake dell'inizializzazione immediata dei file, concedere hello account del servizio SQL Server (MSSQLSERVER) SE_MANAGE_VOLUME_NAME e aggiungerlo toohello **eseguire attività di manutenzione Volume** criteri di sicurezza. Se si utilizza un'immagine della piattaforma SQL Server per Azure, account del servizio predefinito hello (NT Service\MSSQLSERVER) non verrà aggiunto toohello **eseguire attività di manutenzione Volume** criteri di sicurezza. In altre parole, l'inizializzazione file immediata non è abilitata in un'immagine della piattaforma Server SQL di Azure. Dopo l'aggiunta di hello SQL Server service account toohello **eseguire attività di manutenzione Volume** criteri di protezione, riavviare il servizio SQL Server hello. Potrebbero essere presenti indicazioni sulla sicurezza da considerare per l'utilizzo di questa funzionalità. Per altre informazioni, vedere [Inizializzazione di file di database](https://msdn.microsoft.com/library/ms175935.aspx).
+* È possibile abilitare l'inizializzazione immediata dei file per ridurre il tempo necessario per l'allocazione iniziale dei file. Per sfruttare l'inizializzazione immediata dei file, concedere SE_MANAGE_VOLUME_NAME all'account di servizio SQL Server (MSSQLSERVER) e aggiungerlo ai criteri di sicurezza **Esecuzione attività di manutenzione volume**. Se si usa un'immagine della piattaforma SQL Server per Azure, l'account del servizio predefinito (NT Service\MSSQLSERVER) non viene aggiunto ai criteri di sicurezza **Esecuzione attività di manutenzione volume**. In altre parole, l'inizializzazione file immediata non è abilitata in un'immagine della piattaforma Server SQL di Azure. Dopo aver aggiunto l'account del servizio SQL Server ai criteri di sicurezza **Esecuzione attività di manutenzione volume** , riavviare il servizio SQL Server. Potrebbero essere presenti indicazioni sulla sicurezza da considerare per l'utilizzo di questa funzionalità. Per altre informazioni, vedere [Inizializzazione di file di database](https://msdn.microsoft.com/library/ms175935.aspx).
 
-* **aumento automatico delle dimensioni** viene considerato toobe una semplice contingenza per la crescita imprevista. La crescita dei dati e dei log non viene gestita quotidianamente con l'aumento automatico delle dimensioni. Se viene usata, pre-aumento delle dimensioni file hello utilizzando l'opzione Size hello.
+* **aumento automatico delle dimensioni** è considerato una semplice contingenza di crescita imprevista. La crescita dei dati e dei log non viene gestita quotidianamente con l'aumento automatico delle dimensioni. Se si usa questa funzionalità, impostare la precrescita del file mediante l'opzione Dimensioni.
 
-* Assicurarsi che **autoshrink** è disabilitato tooavoid inutili sovraccarichi che possono influire negativamente sulle prestazioni.
+* Verificare che la **compattazione automatica** sia disabilitata per evitare inutili sovraccarichi che possono influire negativamente sulle prestazioni.
 
-* Spostare tutti i dischi toodata database, inclusi i database di sistema. Per altre informazioni vedere l'articolo [Spostare i database di sistema](https://msdn.microsoft.com/library/ms345408.aspx).
+* Spostare tutti i database su dischi dati, inclusi i database di sistema. Per altre informazioni vedere l'articolo [Spostare i database di sistema](https://msdn.microsoft.com/library/ms345408.aspx).
 
-* Spostare l'errore log e trace file directory toodata dischi del Server SQL. È possibile farlo in Gestione configurazione SQL Server facendo clic con il pulsante destro del mouse sull'istanza di SQL Server e selezionando Proprietà. Hello impostazioni di file registro e di traccia di errore possono essere modificate in hello **parametri di avvio** hello scheda Dump Directory specificata nella hello **avanzate** hello scheda schermata seguente viene illustrato dove toolook per parametro di avvio Registro errore Hello.
+* Spostare le directory dei file di traccia e dei log degli errori di SQL Server sui dischi dati. È possibile farlo in Gestione configurazione SQL Server facendo clic con il pulsante destro del mouse sull'istanza di SQL Server e selezionando Proprietà. Le impostazioni per il log degli errori e il file di traccia possono essere modificate nella scheda **Parametri di avvio** . La Directory dump si specifica nella scheda **Avanzate** . La schermata illustra dove cercare il parametro di avvio del log degli errori.
 
     ![Schermata del log degli errori di SQL](./media/virtual-machines-windows-sql-performance/sql_server_error_log_location.png)
 
-* Configurare il percorso predefinito del file di backup e del file di database. Usare i suggerimenti di hello in questo argomento e apportare modifiche di hello nella finestra proprietà di Server hello. Per istruzioni, vedere [hello visualizzare o modificare percorsi predefiniti per i dati e i file di Log (SQL Server Management Studio)](https://msdn.microsoft.com/library/dd206993.aspx). Hello schermata riportata di seguito viene illustrato dove toomake queste modifiche.
+* Configurare il percorso predefinito del file di backup e del file di database. Seguire i consigli elencati in questo argomento ed eseguire le modifiche nella finestra Proprietà server. Per le istruzioni, vedere l'articolo dedicato alla [Visualizzazione o modifica dei percorsi predefiniti per i file di dati e di log (SQL Server Management Studio)](https://msdn.microsoft.com/library/dd206993.aspx). Le schermata seguente illustra come apportare tali modifiche.
 
     ![File di log e di backup di SQL](./media/virtual-machines-windows-sql-performance/sql_server_default_data_log_backup_locations.png)
-* Abilita bloccato tooreduce pagine i/o e qualsiasi attività di paging. Per ulteriori informazioni, vedere [abilitare hello Lock Pages in Memory-opzione (Windows)](https://msdn.microsoft.com/library/ms190730.aspx).
+* Attivare le pagine bloccate per ridurre le operazioni di I/O e le attività di paging. Per altre informazioni, vedere l'articolo [Abilitazione dell'opzione Blocco di pagine in memoria (Windows)](https://msdn.microsoft.com/library/ms190730.aspx).
 
-* Se si esegue SQL Server 2012, installare l'aggiornamento cumulativo 10 del Service Pack 1. Questo aggiornamento contiene correzione hello per ridurre le prestazioni dei / o quando si esegue select nell'istruzione di tabella temporanea in SQL Server 2012. Per altre informazioni, vedere questo [articolo della Knowledge Base](http://support.microsoft.com/kb/2958012).
+* Se si esegue SQL Server 2012, installare l'aggiornamento cumulativo 10 del Service Pack 1. Questo aggiornamento contiene la correzione per le prestazioni ridotte delle operazioni I/O quando si esegue select nell'istruzione di una tabella temporanea in SQL Server 2012. Per altre informazioni, vedere questo [articolo della Knowledge Base](http://support.microsoft.com/kb/2958012).
 
 * È consigliabile comprimere i file di dati durante il trasferimento in entrata e in uscita di Azure.
 
 ## <a name="feature-specific-guidance"></a>Linee guida per le specifiche della funzione
 
-Alcune distribuzioni possono ottenere ulteriori miglioramenti delle prestazioni usando tecniche di configurazione più avanzate. Hello seguito sono riportate alcune funzionalità di SQL Server che consentono di ottenere prestazioni migliori tooachieve:
+Alcune distribuzioni possono ottenere ulteriori miglioramenti delle prestazioni usando tecniche di configurazione più avanzate. Nell'elenco seguente vengono evidenziate alcune funzionalità di SQL Server che consentono di ottenere prestazioni migliori:
 
-* **Eseguire il backup archiviazione tooAzure**: quando si eseguono backup per SQL Server in esecuzione in macchine virtuali di Azure, è possibile utilizzare [tooURL di Backup di SQL Server](https://msdn.microsoft.com/library/dn435916.aspx). Questa funzionalità è disponibile a partire da SQL Server 2012 SP1 CU2 e consigliati per il backup dei dischi dati toohello associata. Quando si backup/ripristino in/da archiviazione di Azure, seguire indicazioni hello disponibili in [Backup di SQL Server tooURL procedure consigliate e risoluzione dei problemi e ripristino da backup archiviati in archiviazione di Azure](https://msdn.microsoft.com/library/jj919149.aspx). È anche possibile automatizzare i backup usando [Backup automatizzato per SQL Server in Macchine virtuali di Azure](virtual-machines-windows-sql-automated-backup.md).
+* **Backup nell'archiviazione di Azure**: quando si eseguono backup per SQL Server in esecuzione in macchine virtuali di Azure, è possibile usare [Backup di SQL Server nell'URL](https://msdn.microsoft.com/library/dn435916.aspx). Questa funzionalità è disponibile a partire da SQL Server 2012 SP1 CU2 ed è consigliata per il backup su dischi dati associati. Quando si esegue il backup o il ripristino da e verso l'archiviazione di Azure, seguire le indicazioni offerte in [Procedure consigliate e risoluzione dei problemi per il backup di SQL Server nell'URL e Ripristino da backup archiviati nell'archiviazione di Azure](https://msdn.microsoft.com/library/jj919149.aspx). È anche possibile automatizzare i backup usando [Backup automatizzato per SQL Server in Macchine virtuali di Azure](virtual-machines-windows-sql-automated-backup.md).
 
-    TooSQL precedente Server 2012, è possibile utilizzare [Backup di SQL Server tooAzure strumento](https://www.microsoft.com/download/details.aspx?id=40740). Questo strumento consente di velocità effettiva del backup tooincrease utilizzando più destinazioni di backup in striping.
+    Prima di SQL Server 2012, usare lo [strumento di backup di SQL Server in Azure](https://www.microsoft.com/download/details.aspx?id=40740). Questo strumento consente di aumentare la velocità effettiva di backup usando più destinazioni di backup in striping.
 
 * **File di dati di SQL Server in Azure**: questa nuova funzionalità ( [file di dati di SQL Server in Azure](https://msdn.microsoft.com/library/dn385720.aspx)) è disponibile a partire da SQL Server 2014. L'esecuzione di SQL Server con file di dati in Azure dimostra le caratteristiche di prestazioni paragonabili a quelle dei dischi dati di Azure.
 

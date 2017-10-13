@@ -1,6 +1,6 @@
 ---
-title: aaaInstall MongoDB in una macchina virtuale Windows in Azure | Documenti Microsoft
-description: Informazioni su come creare i tooinstall MongoDB in una macchina virtuale di Azure con il modello di distribuzione classica hello che esegue Windows Server.
+title: Installare MongoDB in una VM Windows in Azure | Documentazione Microsoft
+description: Informazioni su come installare MongoDB in una macchina virtuale di Azure creata con il modello di distribuzione classica che esegue Windows Server.
 services: virtual-machines-windows
 documentationcenter: 
 author: iainfoulds
@@ -15,40 +15,40 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/07/2017
 ms.author: iainfou
-ms.openlocfilehash: aafd86b4c49c6a97ae8a1a2191ae375b6c47483a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6b5af18d02fd508a21cdc21b38b1c16e79f07ecb
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="install-mongodb-on-a-windows-vm-in-azure"></a>Installare MongoDB in una VM Windows in Azure
 > [!IMPORTANT]
-> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md).  In questo articolo viene illustrato l'utilizzo del modello di distribuzione classica hello. Si consiglia di utilizzano il modello di gestione risorse hello più nuove distribuzioni. tooinstall e configurare MongoDB mediante modello di distribuzione di gestione risorse di hello, vedere [questo articolo](../install-mongodb.md).
+> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md).  Questo articolo illustra l'uso del modello di distribuzione classica. Microsoft consiglia di usare il modello di Gestione risorse per le distribuzioni più recenti. Per installare e configurare MongoDB tramite il modello di distribuzione Resource Manager, vedere [questo articolo](../install-mongodb.md).
 
-[MongoDB][MongoDB] è un diffuso database NoSQL open source a prestazioni elevate. In questo articolo viene descritta la creazione di una macchina virtuale Windows Server (VM) hello [portale di Azure][AzurePortal]. Creare e collegare un toohello disco dati VM prima dell'installazione e configurazione di MongoDB. Se si dispone di una macchina virtuale esistente in cui si desidera toouse Azure, è possibile passare direttamente troppo[installazione e configurazione di MongoDB](#install-and-run-mongodb-on-the-virtual-machine).
+[MongoDB][MongoDB] è un diffuso database NoSQL open source a prestazioni elevate. Questo articolo illustra come creare una macchina virtuale (VM) di Windows Server usando il [portale di Azure][AzurePortal]. Quindi, creare e collegare un disco dati alla macchina virtuale prima di installare e configurare MongoDB. Se in Azure è già disponibile una macchina virtuale da usare, è possibile passare direttamente all'[installazione e configurazione di MongoDB](#install-and-run-mongodb-on-the-virtual-machine).
 
 ## <a name="create-a-virtual-machine-running-windows-server"></a>Creare una macchina virtuale che esegue Windows Server
-Seguire questi toocreate istruzioni una macchina virtuale.
+Per creare una macchina virtuale, seguire queste istruzioni.
 
 [!INCLUDE [virtual-machines-create-WindowsVM](../../../../includes/virtual-machines-create-windowsvm.md)]
 
 > [!NOTE]
-> È possibile aggiungere un endpoint per MongoDB durante la creazione della macchina virtuale hello e configurarlo come segue: il nome come **Mongo**, utilizzare **TCP** come protocollo di hello e impostare entrambi hello porte pubbliche e private troppo**27017**.
+> Durante la creazione della macchina virtuale, è possibile aggiungere un endpoint per MongoDB e configurarlo come segue: denominarlo **Mongo**, usare il protocollo **TCP** e impostare le porte pubbliche e private su **27017**.
 >
 >
 
 ## <a name="attach-a-data-disk"></a>Collegamento di un disco dati
-archiviazione tooprovide per la macchina virtuale hello, collegare un disco dati e quindi inizializzarlo in modo che Windows è possibile utilizzarlo. È possibile collegare un eventuale disco dati esistente o collegare un disco vuoto.
+Per fornire la risorsa di archiviazione per la macchina virtuale, collegare un disco dati e inizializzarlo affinché possa essere utilizzato da Windows. È possibile collegare un eventuale disco dati esistente o collegare un disco vuoto.
 
 [!INCLUDE [howto-attach-disk-windows-linux](../../../../includes/howto-attach-disk-windows-linux.md)]
 
-Per istruzioni sull'inizializzazione di hello disco, vedere "procedura: inizializzare un nuovo disco dati in Windows Server" in [come tooattach dati disco macchina virtuale di Windows tooa](attach-disk.md).
+Per istruzioni sull’inizializzazione del disco, vedere "Procedura: inizializzazione di un nuovo disco dati in Windows Server" in [Come collegare un disco dati a una macchina virtuale di Windows](attach-disk.md).
 
-## <a name="install-and-run-mongodb-on-hello-virtual-machine"></a>Installare ed eseguire MongoDB sulla macchina virtuale hello
+## <a name="install-and-run-mongodb-on-the-virtual-machine"></a>Installare ed eseguire MongoDB nella macchina virtuale
 [!INCLUDE [install-and-run-mongo-on-win2k8-vm](../../../../includes/install-and-run-mongo-on-win2k8-vm.md)]
 
 ## <a name="summary"></a>Riepilogo
-In questa esercitazione è stato come toocreate una macchina virtuale che esegue Windows Server, in modalità remota connettersi tooit e collegare un disco dati.  È inoltre appreso tooinstall e configurare MongoDB nella macchina virtuale basato su Windows hello. È ora possibile accedere MongoDB sulla macchina virtuale basato su Windows hello, da seguenti hello avanzata nel hello [documentazione di MongoDB][MongoDocs].
+In questa esercitazione è stato illustrato come creare una macchina virtuale che esegue Windows Server, come stabilire una connessione remota a quest'ultima e come collegare un disco dati.  È stato inoltre illustrato come installare e configurare MongoDB sulla macchina virtuale basata su Windows. È ora possibile accedere a MongoDB nella macchina virtuale basata su Windows, seguendo gli argomenti avanzati illustrati nella [documentazione di MongoDB][MongoDocs].
 
 [MongoDocs]: http://docs.mongodb.org/manual/
 [MongoDB]: http://www.mongodb.org/

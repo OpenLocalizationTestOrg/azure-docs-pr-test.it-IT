@@ -1,5 +1,5 @@
 ---
-title: le raccolte di gestione degli hub di eventi aaaAzure | Documenti Microsoft
+title: Librerie di gestione di Hub eventi di Azure | Microsoft Docs
 description: "Gestire entità e spazi dei nomi di Hub eventi da .NET"
 services: event-hubs
 cloud: na
@@ -14,15 +14,15 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: sethm
-ms.openlocfilehash: b7db0077f6f31397ae46e926c3c28630a157824c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 0d659cb860a6c98342b548212820efe046decfcc
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="event-hubs-management-libraries"></a>Librerie di gestione di Hub eventi
 
-le raccolte di gestione degli hub di eventi Hello possano il provisioning dinamico di entità e spazi dei nomi di hub eventi. In questo modo eseguire distribuzioni complesse e scenari di messaggistica, in modo che è possibile determinare a livello di programmazione quali tooprovision di entità. Queste librerie sono attualmente disponibili per .NET.
+Le librerie di gestione di Hub eventi possono effettuare il provisioning di entità e spazi dei nomi di Hub eventi in modo dinamico, per consentire distribuzioni complesse e scenari di messaggistica e permettere di determinare a livello di codice le entità di cui effettuare il provisioning. Queste librerie sono attualmente disponibili per .NET.
 
 ## <a name="supported-functionality"></a>Funzionalità supportate
 
@@ -32,19 +32,19 @@ le raccolte di gestione degli hub di eventi Hello possano il provisioning dinami
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-tooget avviato utilizzando le raccolte di gestione di hello hub eventi, è necessario eseguire l'autenticazione con Azure Active Directory (AAD). AAD, è necessario eseguire l'autenticazione come un'entità servizio, che fornisce accesso tooyour risorse di Azure. Per informazioni su come creare un'entità servizio, vedere uno di questi articoli:  
+Per iniziare a usare le librerie di gestione di Hub eventi, è necessario eseguire l'autenticazione con Azure Active Directory (AAD). AAD richiede l'autenticazione come entità servizio, che fornisce l'accesso alle risorse di Azure in uso. Per informazioni su come creare un'entità servizio, vedere uno di questi articoli:  
 
-* [Utilizzare un'applicazione hello toocreate portale di Azure Active Directory e dell'entità servizio che possono accedere alle risorse](../azure-resource-manager/resource-group-create-service-principal-portal.md)
-* [Usare Azure PowerShell toocreate una risorse tooaccess dell'entità servizio](../azure-resource-manager/resource-group-authenticate-service-principal.md)
-* [Utilizzare toocreate CLI di Azure un risorse tooaccess dell'entità servizio](../azure-resource-manager/resource-group-authenticate-service-principal-cli.md)
+* [Usare il portale di Azure per creare un'applicazione Active Directory e un'entità servizio che accedono alle risorse](../azure-resource-manager/resource-group-create-service-principal-portal.md)
+* [Usare Azure PowerShell per creare un'entità servizio per accedere alle risorse](../azure-resource-manager/resource-group-authenticate-service-principal.md)
+* [Usare l'interfaccia della riga di comando di Azure per creare un'entità servizio per accedere alle risorse](../azure-resource-manager/resource-group-authenticate-service-principal-cli.md)
 
-Queste esercitazioni forniscono un `AppId` (ID Client), `TenantId`, e `ClientSecret` (chiave di autenticazione), ognuno dei quali vengono utilizzati per l'autenticazione per le raccolte di gestione di hello. È necessario disporre di **proprietario** le autorizzazioni per il gruppo di risorse hello in cui si desidera toorun.
+Nel corso di queste esercitazioni vengono forniti un `AppId` (ID client), un `TenantId` e un `ClientSecret` (chiave di autenticazione) che sono usati per l'autenticazione da parte delle librerie di gestione. È necessario avere autorizzazioni di **Proprietario** per il gruppo di risorse in cui verranno eseguite le librerie.
 
 ## <a name="programming-pattern"></a>Modello di programmazione
 
-Hello modello toomanipulate qualsiasi risorsa di hub eventi segue un protocollo comune:
+Il modello di modifica delle risorse di Hub eventi segue un protocollo comune:
 
-1. Ottenere un token da Azure Active Directory utilizzando hello `Microsoft.IdentityModel.Clients.ActiveDirectory` libreria.
+1. Ottenere un token da AAD usando la libreria `Microsoft.IdentityModel.Clients.ActiveDirectory`.
     ```csharp
     var context = new AuthenticationContext($"https://login.microsoftonline.com/{tenantId}");
 
@@ -54,7 +54,7 @@ Hello modello toomanipulate qualsiasi risorsa di hub eventi segue un protocollo 
     );
     ```
 
-1. Creare hello `EventHubManagementClient` oggetto.
+1. Creare l'oggetto `EventHubManagementClient`.
     ```csharp
     var creds = new TokenCredentials(token);
     var ehClient = new EventHubManagementClient(creds)
@@ -63,7 +63,7 @@ Hello modello toomanipulate qualsiasi risorsa di hub eventi segue un protocollo 
     };
     ```
 
-1. Set hello `CreateOrUpdate` tooyour i parametri specificati.
+1. Impostare i parametri `CreateOrUpdate` sui valori specificati.
     ```csharp
     var ehParams = new EventHubCreateOrUpdateParameters()
     {
@@ -71,7 +71,7 @@ Hello modello toomanipulate qualsiasi risorsa di hub eventi segue un protocollo 
     };
     ```
 
-1. Chiamare hello Execute.
+1. Effettuare la chiamata.
     ```csharp
     await ehClient.EventHubs.CreateOrUpdateAsync(resourceGroupName, namespaceName, EventHubName, ehParams);
     ```

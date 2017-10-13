@@ -1,6 +1,6 @@
 ---
-title: "disponibilità Server aaaSQL gruppi - macchine virtuali di Azure - prerequisiti | Documenti Microsoft"
-description: "Questa esercitazione viene illustrato come raggruppare i prerequisiti di hello tooconfigure per la creazione di una disponibilità di SQL Server Always On nelle macchine virtuali di Azure."
+title: "Gruppi di disponibilità di SQL Server - Macchine virtuali di Azure - Prerequisiti | Microsoft Docs"
+description: "Questa esercitazione illustra come configurare i prerequisiti per la creazione di un gruppo di disponibilità AlwaysOn di SQL Server nelle VM di Azure."
 services: virtual-machines
 documentationCenter: na
 authors: MikeRayMSFT
@@ -16,19 +16,19 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 ms.date: 05/09/2017
 ms.author: mikeray
-ms.openlocfilehash: eed0729ead25c7793bb17a04cd7fd996c7dc8c9d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3d508877928e033f24dae62c1042745ea7250033
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="complete-hello-prerequisites-for-creating-always-on-availability-groups-on-azure-virtual-machines"></a>Completare hello prerequisiti per la creazione di gruppi di disponibilità Always On su macchine virtuali di Azure
+# <a name="complete-the-prerequisites-for-creating-always-on-availability-groups-on-azure-virtual-machines"></a>Completare i prerequisiti per la creazione di gruppi di disponibilità AlwaysOn in Macchine virtuali di Azure
 
-Questa esercitazione viene illustrato come toocomplete hello prerequisiti per la creazione di un [SQL Server Always On gruppo di disponibilità nelle macchine virtuali di Azure (VM)](virtual-machines-windows-portal-sql-availability-group-tutorial.md). Al termine dei prerequisiti di hello, è un controller di dominio, due macchine virtuali di SQL Server e un server di controllo in un singolo gruppo di risorse.
+Questa esercitazione illustra come completare i prerequisiti per la creazione di un [gruppo di disponibilità AlwaysOn di SQL Server in Macchine virtuali di Azure](virtual-machines-windows-portal-sql-availability-group-tutorial.md). Dopo il completamento dei prerequisiti, sono presenti un controller di dominio, due VM di SQL Server e un server di controllo in un unico gruppo di risorse.
 
-**Tempo stimato**: potrebbe richiedere alcune ore prerequisiti hello toocomplete. Il tempo è dedicato principalmente alla creazione delle macchine virtuali.
+**Tempo stimato**: il completamento dei prerequisiti potrebbe richiedere due ore circa. Il tempo è dedicato principalmente alla creazione delle macchine virtuali.
 
-Hello diagramma seguente illustra ciò che si compila in esercitazione hello.
+Il diagramma seguente illustra le operazioni di compilazione nell'esercitazione.
 
 ![Gruppo di disponibilità](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/00-EndstateSampleNoELB.png)
 
@@ -41,44 +41,44 @@ L'esercitazione presuppone una conoscenza di base dei gruppi di disponibilità A
 È necessario un account Azure. È possibile [aprire un account Azure gratuito](/pricing/free-trial/?WT.mc_id=A261C142F) o [attivare i benefici della sottoscrizione di Visual Studio](/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F).
 
 ## <a name="create-a-resource-group"></a>Creare un gruppo di risorse
-1. Accedi toohello [portale di Azure](http://portal.azure.com).
-2. Fare clic su  **+**  toocreate un nuovo oggetto nel portale di hello.
+1. Accedere al [portale di Azure](http://portal.azure.com).
+2. Fare clic su **+** per creare un nuovo oggetto nel portale.
 
    ![Nuovo oggetto](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/01-portalplus.png)
 
-3. Tipo **gruppo di risorse** in hello **Marketplace** finestra di ricerca.
+3. Digitare **gruppo di risorse** nella finestra di ricerca del **Marketplace**.
 
    ![Gruppo di risorse](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/01-resourcegroupsymbol.png)
 4. Fare clic su **Gruppo di risorse**.
 5. Fare clic su **Crea**.
-6. In hello **gruppo di risorse** pannello, in **nome gruppo di risorse**, digitare un nome per il gruppo di risorse hello. ad esempio digitare **sql-ha-rg**.
-7. Se si dispone di più sottoscrizioni di Azure, verificare che la sottoscrizione hello hello sottoscrizione di Azure che si desidera il gruppo di disponibilità toocreate hello in.
-8. Selezionare una località. percorso Hello è hello Azure area in cui il gruppo di disponibilità toocreate hello. Per questa esercitazione, verrà toobuild tutte le risorse in un'unica posizione di Azure.
-9. Verificare che **toodashboard Pin** sia selezionata. Questa impostazione facoltativa viene inserito un collegamento per il gruppo di risorse hello in hello dashboard del portale di Azure.
+6. Nel pannello **Gruppo di risorse** digitare un nome in **Nome gruppo di risorse**, ad esempio digitare **sql-ha-rg**.
+7. Se si hanno più sottoscrizioni di Azure, verificare che la sottoscrizione sia la sottoscrizione di Azure in cui si vuole creare il gruppo di disponibilità.
+8. Selezionare una località. La località corrisponde all'area di Azure in cui si vuole creare il gruppo di disponibilità. Per questa esercitazione tutte le risorse verranno compilate in un'unica località di Azure.
+9. Verificare che l'opzione **Aggiungi al dashboard** sia selezionata. Questa impostazione facoltativa inserisce un collegamento per il gruppo di risorse nel dashboard del portale di Azure.
 
    ![Gruppo di risorse](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/01-resourcegroup.png)
 
-10. Fare clic su **crea** toocreate gruppo di risorse hello.
+10. Fare clic su **Crea** per creare il gruppo di risorse.
 
-Azure Crea gruppo di risorse hello e PIN di un gruppo di risorse toohello di scelta rapida nel portale di hello.
+Azure crea il gruppo di risorse e aggiunge un collegamento a quest'ultimo nel portale.
 
-## <a name="create-hello-network-and-subnets"></a>Creare subnet e la rete hello
-passaggio successivo Hello è toocreate hello reti e subnet nel gruppo di risorse di Azure hello.
+## <a name="create-the-network-and-subnets"></a>Creare la rete e le subnet
+Il passaggio successivo prevede la creazione di reti e di subnet nel gruppo di risorse di Azure.
 
-soluzione Hello Usa una rete virtuale con due subnet. Hello [Panoramica di rete virtuale](../../../virtual-network/virtual-networks-overview.md) vengono fornite ulteriori informazioni sulle reti in Azure.
+La soluzione usa una rete virtuale con due subnet. Per altre informazioni sulle reti in Azure, vedere [Panoramica di Rete virtuale](../../../virtual-network/virtual-networks-overview.md).
 
-rete virtuale hello toocreate:
+Per creare la rete virtuale:
 
-1. In hello portale di Azure, nel gruppo di risorse, fare clic su **+ Aggiungi**. Apre Azure hello **tutto** blade.
+1. Nel portale di Azure fare clic su **+ Aggiungi** nel gruppo di risorse specifico. Azure apre il pannello **Tutto** .
 
    ![Nuovo elemento](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/02-newiteminrg.png)
 2. Cercare **rete virtuale**.
 
      ![Cercare la rete virtuale](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/04-findvirtualnetwork.png)
 3. Fare clic su **Rete virtuale**.
-4. In hello **rete virtuale** pannello, fare clic su hello **Gestione risorse** modello di distribuzione e quindi fare clic su **crea**.
+4. Nel pannello **Rete virtuale** fare clic sul modello di distribuzione **Resource Manager** e quindi su **Crea**.
 
-    Hello nella tabella seguente vengono mostrate hello impostazioni per la rete virtuale hello:
+    La tabella seguente descrive le impostazioni per la rete virtuale:
 
    | **Campo** | Valore |
    | --- | --- |
@@ -86,61 +86,61 @@ rete virtuale hello toocreate:
    | **Spazio degli indirizzi** |10.33.0.0/24 |
    | **Nome della subnet** |Admin |
    | **Intervallo di indirizzi subnet** |10.33.0.0/29 |
-   | **Sottoscrizione** |Specificare una sottoscrizione di hello che si desidera toouse. Se è disponibile una sola sottoscrizione, il valore di **Sottoscrizione** non è impostato. |
-   | **Gruppo di risorse** |Scegliere **utilizzare esistente** e selezionare il nome di hello hello del gruppo di risorse. |
-   | **Posizione** |Specificare hello località di Azure. |
+   | **Sottoscrizione** |Specificare la sottoscrizione da usare. Se è disponibile una sola sottoscrizione, il valore di **Sottoscrizione** non è impostato. |
+   | **Gruppo di risorse** |Scegliere **Utilizza esistente** e selezionare il nome del gruppo di risorse. |
+   | **Posizione** |Specificare la località di Azure. |
 
-   L'intervallo di indirizzi indirizzo spazio e la subnet potrebbe essere diverso dalla tabella hello. A seconda della sottoscrizione, hello portale viene suggerito un spazio degli indirizzi disponibili e l'intervallo di indirizzi subnet corrispondente. Se non è disponibile uno spazio indirizzi sufficiente, usare un'altra sottoscrizione.
+   Lo spazio indirizzi e l'intervallo di indirizzi subnet possono essere diversi da quelli della tabella. A seconda della sottoscrizione, sul portale verrà suggerito uno spazio indirizzi disponibile e un intervallo di indirizzi subnet corrispondente. Se non è disponibile uno spazio indirizzi sufficiente, usare un'altra sottoscrizione.
 
-   esempio Hello utilizza hello Nome subnet **Admin**. Questa subnet è hello ai controller di dominio.
+   L'esempio usa il nome di subnet **Admin**. Questa subnet verrà usata per i controller di dominio.
 
 5. Fare clic su **Crea**.
 
-   ![Configurare la rete virtuale hello](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/06-configurevirtualnetwork.png)
+   ![Configurare la rete virtuale](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/06-configurevirtualnetwork.png)
 
-Azure torna toohello dashboard del portale e invia una notifica quando viene creata nuova rete hello.
+In questo modo, si torna al dashboard del portale e Azure invia una notifica dopo la creazione della rete.
 
 ### <a name="create-a-second-subnet"></a>Creare una seconda subnet
-nuova rete virtuale Hello presenta una subnet, denominata **Admin**. i controller di dominio hello usare questa subnet. Hello macchine virtuali di SQL Server utilizza una seconda subnet denominata **SQL**. tooconfigure questa subnet:
+La nuova rete virtuale dispone di una subnet, denominata **Admin**. I controller di dominio usano questa subnet. Le VM di SQL Server usano una seconda subnet denominata **SQL**. Per configurare questa subnet:
 
-1. Nel dashboard, fare clic su gruppo di risorse hello che è stato creato, **SQL a disponibilità elevata-RG**. Individuare il gruppo di risorse hello in rete hello **risorse**.
+1. Nel dashboard fare clic sul gruppo di risorse creato, **SQL-HA-RG**. Trovare la rete nel gruppo di risorse in **Risorse**.
 
-    Se **SQL a disponibilità elevata-RG** non è visibile, individuarlo facendo **gruppi di risorse** e applicando un filtro per nome gruppo di risorse hello.
-2. Fare clic su **autoHAVNET** nell'elenco di hello delle risorse. Azure apre il pannello di configurazione di rete hello.
-3. In hello **autoHAVNET** blade di rete virtuale, in **impostazioni** , fare clic su **subnet**.
+    Se **SQL-HA-RG** non è visibile, individuarlo facendo clic su **Gruppi di risorse** e filtrando in base al nome del gruppo di risorse.
+2. Scegliere **autoHAVNET** dall'elenco di risorse. Azure apre il pannello di configurazione della rete.
+3. Nel pannello della rete virtuale **autoHAVNET**, in **Impostazioni** fare clic su **Subnet**.
 
-    Subnet hello si noti che già stato creato.
+    Si noti la subnet già creata.
 
-   ![Configurare la rete virtuale hello](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/07-addsubnet.png)
+   ![Configurare la rete virtuale](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/07-addsubnet.png)
 5. Creare una seconda subnet. Fare clic su **+ Subnet**.
-6. In hello **aggiungere subnet** pannello configurare subnet hello digitando **sqlsubnet** in **nome**. Azure specifica automaticamente un **Intervallo di indirizzi**valido. Verificare che questo intervallo di indirizzi includa almeno 10 indirizzi. In un ambiente di produzione potrebbero essere necessari più indirizzi.
+6. Nel pannello **Aggiungi subnet** configurare la subnet digitando **sqlsubnet** in **Nome**. Azure specifica automaticamente un **Intervallo di indirizzi**valido. Verificare che questo intervallo di indirizzi includa almeno 10 indirizzi. In un ambiente di produzione potrebbero essere necessari più indirizzi.
 7. Fare clic su **OK**.
 
-    ![Configurare la rete virtuale hello](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/08-configuresubnet.png)
+    ![Configurare la rete virtuale](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/08-configuresubnet.png)
 
-Hello nella tabella seguente vengono riepilogate le impostazioni di configurazione di rete hello:
+La tabella seguente riepiloga le impostazioni di configurazione della rete:
 
 | **Campo** | Valore |
 | --- | --- |
 | **Nome** |**autoHAVNET** |
-| **Spazio degli indirizzi** |Questo valore dipende da spazi di indirizzi disponibili hello nella sottoscrizione. Un valore tipico è 10.0.0.0/16. |
+| **Spazio degli indirizzi** |Questo valore dipende dagli spazi indirizzi disponibili nella sottoscrizione. Un valore tipico è 10.0.0.0/16. |
 | **Nome della subnet** |**admin** |
-| **Intervallo di indirizzi subnet** |Questo valore dipende da intervalli di indirizzi disponibili hello nella sottoscrizione. Un valore tipico è 10.0.0.0/24 |
+| **Intervallo di indirizzi subnet** |Questo valore dipende dagli intervalli di indirizzi disponibili nella sottoscrizione. Un valore tipico è 10.0.0.0/24 |
 | **Nome della subnet** |**sqlsubnet** |
-| **Intervallo di indirizzi subnet** |Questo valore dipende da intervalli di indirizzi disponibili hello nella sottoscrizione. Un valore tipico è 10.0.1.0/24 |
-| **Sottoscrizione** |Specificare una sottoscrizione di hello che si desidera toouse. |
+| **Intervallo di indirizzi subnet** |Questo valore dipende dagli intervalli di indirizzi disponibili nella sottoscrizione. Un valore tipico è 10.0.1.0/24 |
+| **Sottoscrizione** |Specificare la sottoscrizione da usare. |
 | **Gruppo di risorse** |**SQL-HA-RG** |
-| **Posizione** |Specificare hello stesso percorso scelto per il gruppo di risorse hello. |
+| **Posizione** |Specificare la stessa località scelta per il gruppo di risorse. |
 
 ## <a name="create-availability-sets"></a>Creare set di disponibilità
 
-Prima di creare macchine virtuali, è necessario toocreate set di disponibilità. Set di disponibilità di riducono i tempi di inattività hello per gli eventi di manutenzione pianificato o. Un set di disponibilità di Azure è un gruppo logico di risorse che Azure inserisce in domini di errore e domini di aggiornamento fisici. Un dominio di errore garantisce che i membri del gruppo di disponibilità hello hello dispongano di risorse di rete e di alimentazione separate. Un dominio di aggiornamento assicura che i membri del gruppo di disponibilità hello non diventa inattivo per manutenzione nella hello stesso tempo. Per ulteriori informazioni, vedere [gestione hello disponibilità delle macchine virtuali](../manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+Prima di creare le macchine virtuali, è necessario creare i set di disponibilità. I set di disponibilità riducono il tempo di inattività per gli eventi di manutenzione sia pianificati che non pianificati. Un set di disponibilità di Azure è un gruppo logico di risorse che Azure inserisce in domini di errore e domini di aggiornamento fisici. Un dominio di errore assicura che i membri del set di disponibilità dispongano di risorse di alimentazione e di rete separate. Un dominio di aggiornamento assicura che i membri del set di disponibilità non vengano disattivati contemporaneamente per la manutenzione. Per altre informazioni, vedere [Gestire la disponibilità delle macchine virtuali](../manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
-Sono necessari due set di disponibilità, Uno è hello ai controller di dominio. in secondo luogo, Hello è per le macchine virtuali di hello SQL Server.
+Sono necessari due set di disponibilità, uno per i controller di dominio e il secondo per le VM di SQL Server.
 
-toocreate una disponibilità impostato, il gruppo di risorse toohello scegliere **Aggiungi**. Filtrare i risultati di hello digitando **set di disponibilità**. Fare clic su **Set di disponibilità** in hello risultati e quindi fare clic su **crea**.
+Per creare un set di disponibilità, passare al gruppo di risorse e fare clic su **Aggiungi**. Filtrare i risultati digitando **Set di disponibilità**. Fare clic su **Set di disponibilità** nei risultati e quindi su **Crea**.
 
-Configurare due set di disponibilità in base a parametri toohello hello nella tabella seguente:
+Configurare due set di disponibilità in base ai parametri riportati nella tabella seguente:
 
 | **Campo** | Set di disponibilità del controller di dominio | Set di disponibilità di SQL Server |
 | --- | --- | --- |
@@ -149,29 +149,29 @@ Configurare due set di disponibilità in base a parametri toohello hello nella t
 | **Domini di errore** |3 |3 |
 | **Domini di aggiornamento** |5 |3 |
 
-Dopo aver creato il set di disponibilità di hello, restituisce il gruppo di risorse toohello hello portale di Azure.
+Dopo avere creato i set di disponibilità, tornare al gruppo di risorse nel portale di Azure.
 
 ## <a name="create-domain-controllers"></a>Creare controller di dominio
-Dopo aver creato rete hello, subnet, set di disponibilità e un servizio di bilanciamento del carico con connessione Internet, è possibile macchine virtuali di hello toocreate pronto per il controller di dominio di hello.
+Dopo la creazione della rete, delle subnet, dei set di disponibilità e di un servizio di bilanciamento del carico con connessione Internet, è possibile creare le macchine virtuali per i controller di dominio.
 
-### <a name="create-virtual-machines-for-hello-domain-controllers"></a>Creare macchine virtuali per hello controller di dominio
-toocreate e configurare il controller di dominio di hello, restituire toohello **SQL a disponibilità elevata-RG** gruppo di risorse.
+### <a name="create-virtual-machines-for-the-domain-controllers"></a>Creare le macchine virtuali per i controller di dominio
+Per creare e configurare i controller di dominio, tornare al gruppo di risorse **SQL-HA-RG** .
 
-1. Fare clic su **Aggiungi**. Hello **tutto** apre blade.
+1. Fare clic su **Aggiungi**. Viene aperto il pannello **Tutto** .
 2. Digitare **Windows Server 2016 Datacenter**.
-3. Fare clic su **Windows Server 2016 Datacenter**. In hello **Data Center di Windows Server 2016** pannello, verificare che sia il modello di distribuzione hello **Gestione risorse**e quindi fare clic su **crea**. Apre Azure hello **crea macchina virtuale** blade.
+3. Fare clic su **Windows Server 2016 Datacenter**. Nel pannello **Windows Server 2016 Datacenter** verificare che il modello di distribuzione sia **Resource Manager** e quindi fare clic su **Crea**. Azure apre il pannello **Crea macchina virtuale** .
 
-Ripetere hello precedenti passaggi toocreate due macchine virtuali. Nome hello due macchine virtuali:
+Ripetere i passaggi precedenti per creare due macchine virtuali. Assegnare un nome alle due macchine virtuali:
 
 * ad-primary-dc
 * ad-secondary-dc
 
   > [!NOTE]
-  > Hello **ad-secondario-dc** macchina virtuale è facoltativa, tooprovide la disponibilità elevata per servizi di dominio Active Directory.
+  > La macchina virtuale **ad-secondary-dc** per fornire disponibilità elevata per Active Directory Domain Services.
   >
   >
 
-Hello nella tabella seguente vengono mostrate hello impostazioni per questi due computer:
+La tabella seguente descrive le impostazioni per queste due macchine:
 
 | **Campo** | Valore |
 | --- | --- |
@@ -186,248 +186,248 @@ Hello nella tabella seguente vengono mostrate hello impostazioni per questi due 
 | **Archiviazione** | **Usa dischi gestiti** - **Sì** |
 | **Rete virtuale** |autoHAVNET |
 | **Subnet** |admin |
-| **Indirizzo IP pubblico** |*Stesso nome hello VM* |
-| **Gruppo di sicurezza di rete** |*Stesso nome hello VM* |
+| **Indirizzo IP pubblico** |*Lo stesso nome della VM* |
+| **Gruppo di sicurezza di rete** |*Lo stesso nome della VM* |
 | **Set di disponibilità** |adavailabilityset </br>**Domini di errore**:2</br>**Domini di aggiornamento**:2|
 | **Diagnostica** |Enabled |
 | **Account di archiviazione di diagnostica** |*Creato automaticamente* |
 
    >[!IMPORTANT]
-   >È possibile inserire una VM in un set di disponibilità solo in fase di creazione. È possibile modificare la disponibilità di hello impostata dopo la creazione di una macchina virtuale. Vedere [gestione hello disponibilità delle macchine virtuali](../manage-availability.md).
+   >È possibile inserire una VM in un set di disponibilità solo in fase di creazione. Non è possibile modificare il set di disponibilità dopo che la VM è stata creata. Vedere [Gestire la disponibilità delle macchine virtuali](../manage-availability.md).
 
-Azure consente di creare macchine virtuali hello.
+Azure crea le macchine virtuali.
 
-Dopo aver create le macchine virtuali hello, configurare il controller di dominio di hello.
+Dopo avere creato le macchine virtuali, configurare il controller di dominio.
 
-### <a name="configure-hello-domain-controller"></a>Configurare il controller di dominio hello
-In hello i passaggi seguenti, configurare hello **ad-primary-dc** computer come controller di dominio per corp.contoso.com.
+### <a name="configure-the-domain-controller"></a>Configurare il controller di dominio
+Nei passaggi seguenti configurare la macchina virtuale **ad-primary-dc** come controller di dominio per corp.contoso.com.
 
-1. Nel portale di hello aprire hello **SQL a disponibilità elevata-RG** gruppo di risorse e seleziona hello **ad-primary-dc** macchina. In hello **ad-primary-dc** pannello, fare clic su **Connetti** tooopen un RDP file per l'accesso desktop remoto.
+1. Nel portale aprire il gruppo di risorse **SQL-HA-RG** e selezionare la macchina virtuale **ad-primary-dc**. Nel pannello **ad-primary-dc** fare clic su **Connetti** per aprire un file RDP per l'accesso desktop remoto.
 
-    ![Connettere la macchina virtuale di tooa](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/20-connectrdp.png)
+    ![Connettersi a una macchina virtuale](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/20-connectrdp.png)
 2. Accedere con l'account amministratore (**\DomainAdmin**) e la password (**Contoso!0000**) configurati.
-3. Per impostazione predefinita, hello **Server Manager** dashboard deve essere visualizzato.
-4. Fare clic su hello **Aggiungi ruoli e funzionalità** collegamento nel dashboard di hello.
+3. Per impostazione predefinita, verrà visualizzato il dashboard **Server Manager** .
+4. Fare clic sul collegamento **Aggiungi ruoli e funzionalità** sul dashboard.
 
     ![Server Manager - Aggiungere ruoli](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/22-addfeatures.png)
-5. Selezionare **Avanti** fino a ottenere toohello **i ruoli del Server** sezione.
-6. Seleziona hello **servizi di dominio Active Directory** e **Server DNS** ruoli. Quando richiesto, aggiungere eventuali funzionalità aggiuntive necessarie per questi ruoli.
+5. Selezionare **Avanti** fino a visualizzare la sezione **Ruoli server**.
+6. Selezionare i ruoli **Active Directory Domain Services** e **Server DNS**. Quando richiesto, aggiungere eventuali funzionalità aggiuntive necessarie per questi ruoli.
 
    > [!NOTE]
-   > Windows visualizza un avviso per indicare che non è presente alcun indirizzo IP statico. Se si sta testando configurazione hello, fare clic su **continua**. Per gli scenari di produzione, impostare toostatic indirizzo IP di hello in hello portale di Azure o [utilizzare PowerShell tooset hello indirizzo IP statico del computer controller di dominio hello](../../../virtual-network/virtual-networks-reserved-private-ip.md).
+   > Windows visualizza un avviso per indicare che non è presente alcun indirizzo IP statico. Se si sta eseguendo il test della configurazione, fare clic su **Continua**. Per gli scenari di produzione, impostare l'indirizzo IP come statico nel portale di Azure o [usare PowerShell per impostare l'indirizzo IP statico della macchina virtuale del controller di dominio](../../../virtual-network/virtual-networks-reserved-private-ip.md).
    >
    >
 
     ![Finestra di dialogo Aggiungi ruoli](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/23-addroles.png)
-7. Fare clic su **Avanti** fino a raggiungere hello **conferma** sezione. Seleziona hello **riavvio del server di destinazione hello automaticamente se necessario** casella di controllo.
+7. Fare clic su **Avanti** fino a raggiungere la sezione **Conferma**. Selezionare la casella di controllo **Riavvia automaticamente il server di destinazione se necessario**.
 8. Fare clic su **Installa**.
-9. Dopo funzionalità hello completato l'installazione, restituire toohello **Server Manager** dashboard.
-10. Seleziona hello nuovo **AD DS** opzione nel riquadro sinistro di hello.
-11. Fare clic su hello **più** collegamento sulla barra di avviso gialla hello.
+9. Dopo l'installazione delle funzionalità, tornare al dashboard **Server Manager** .
+10. Selezionare la nuova opzione **Servizi di dominio di Active Directory** nel riquadro di sinistra.
+11. Fare clic sul collegamento **Altro** sulla barra di avviso gialla.
 
-    ![Finestra di dialogo di AD DS su hello macchina virtuale di Server DNS](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/24-addsmore.png)
-12. In hello **azione** colonna di hello **tutti i Server-dettagli attività** finestra di dialogo, fare clic su **alzare di livello questo controller di dominio server tooa**.
-13. In hello **guidata configurazione di servizi di dominio di Active Directory**, utilizzare hello seguenti valori:
+    ![Finestra di dialogo Active Directory Domain Services nella macchina virtuale di Server DNS](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/24-addsmore.png)
+12. Nella colonna **Azione** della finestra di dialogo **Dettagli attività tutti i server** fare clic su **Alza di livello il server a controller di dominio**.
+13. Nella **Configurazione guidata Servizi di dominio di Active Directory**, usare i seguenti valori:
 
     | **Page** | Impostazione |
     | --- | --- |
     | **Configurazione distribuzione** |**Aggiungi una nuova foresta**<br/> **Nome di dominio radice** = corp.contoso.com |
     | **Opzioni controller di dominio** |**Password DSRM** = Contoso!0000<br/>**Conferma password** = Contoso!0000 |
-14. Fare clic su **Avanti** toogo tramite hello altre pagine della procedura guidata hello. In hello **controllo dei prerequisiti** pagina, verificare che venga visualizzato hello seguente messaggio: **tutti i controlli dei prerequisiti sono riusciti**. È possibile esaminare i messaggi di avviso applicabile, ma è possibile toocontinue con installazione hello.
-15. Fare clic su **Installa**. Hello **ad-primary-dc** macchina virtuale verrà riavviata automaticamente.
+14. Fare clic su **Avanti** per procedere nelle altre pagine della procedura guidata. Nella pagina **Controllo dei prerequisiti** verificare che venga visualizzato il seguente messaggio: **Tutti i controlli dei prerequisiti sono riusciti**. È possibile leggere tutti i messaggi di avviso applicabili o continuare con l'installazione.
+15. Fare clic su **Installa**. La macchina virtuale **ad-primary-dc** viene riavviata automaticamente.
 
-### <a name="note-hello-ip-address-of-hello-primary-domain-controller"></a>Prendere nota hello di indirizzo IP del controller di dominio primario hello
+### <a name="note-the-ip-address-of-the-primary-domain-controller"></a>Annotare l'indirizzo IP del controller di dominio primario
 
-Utilizzare il controller di dominio primario hello per DNS. Nota l'indirizzo IP del controller di dominio primario hello.
+Usare il controller di dominio primario per DNS. Annotare l'indirizzo IP del controller di dominio primario.
 
-Indirizzo IP di un modo tooget hello dominio primario del controller viene eseguita tramite hello portale di Azure.
+Un modo per ottenere l'indirizzo IP del controller di dominio primario è tramite il portale di Azure.
 
-1. Nel portale di Azure hello, aprire il gruppo di risorse hello.
+1. Nel portale di Azure aprire il gruppo di risorse.
 
-2. Fare clic su controller di dominio primario hello.
+2. Fare clic sul controller di dominio primario.
 
-3. Nel Pannello di controller di dominio primario hello, fare clic su **interfacce di rete**.
+3. Nel pannello del controller di dominio primario fare clic su **Interfacce di rete**.
 
 ![Interfacce di rete](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/25-primarydcip.png)
 
-Nota l'indirizzo IP privato hello per questo server.
+Annotare l'indirizzo IP privato per questo server.
 
-### <a name="configure-hello-virtual-network-dns"></a>Configurare la rete virtuale hello DNS
-Dopo aver creato il primo controller di dominio hello e abilitare il DNS nel server prima di hello, configurare hello rete virtuale toouse questo server per DNS.
+### <a name="configure-the-virtual-network-dns"></a>Configurare il DNS della rete virtuale
+Dopo aver creato il primo controller di dominio e attivato il DNS sul primo server, configurare la rete virtuale per usare questo server come DNS.
 
-1. Nel portale di Azure hello, fare clic su rete virtuale hello.
+1. Nel portale di Azure fare clic sulla rete virtuale.
 
 2. In **Impostazioni** fare clic su **Server DNS**.
 
-3. Fare clic su **personalizzata**e digitare l'indirizzo IP privato hello hello primario del controller di dominio.
+3. Fare clic su **Personalizzato** e digitare l'indirizzo IP privato del controller di dominio primario.
 
 4. Fare clic su **Salva**.
 
-### <a name="configure-hello-second-domain-controller"></a>Configurare il secondo controller di dominio hello
-Dopo il riavvio di controller di dominio primario hello, è possibile configurare il secondo controller di dominio hello. Questo passaggio facoltativo serve a garantire una disponibilità elevata. Seguire questi passaggi tooconfigure hello secondo controller di dominio:
+### <a name="configure-the-second-domain-controller"></a>Configurare il secondo controller di dominio
+Dopo il riavvio del controller di dominio primario, è possibile configurare il secondo controller di dominio. Questo passaggio facoltativo serve a garantire una disponibilità elevata. Seguire questi passaggi per configurare il secondo controller di dominio:
 
-1. Nel portale di hello aprire hello **SQL a disponibilità elevata-RG** gruppo di risorse e seleziona hello **ad-secondario-dc** macchina. In hello **ad-secondario-dc** pannello, fare clic su **Connetti** tooopen un RDP file per l'accesso desktop remoto.
-2. Accedi toohello VM utilizzando l'account amministratore configurato (**BUILTIN\DomainAdmin**) e la password (**Contoso! 0000**).
-3. Modifica hello preferito DNS server toohello indirizzo hello del controller di dominio.
-4. In **centro rete e condivisione**, fare clic su interfaccia di rete hello.
+1. Nel portale aprire il gruppo di risorse **SQL-HA-RG** e selezionare la macchina virtuale **ad-secondary-dc**. Nel pannello **ad-secondary-dc** fare clic su **Connetti** per aprire un file RDP per l'accesso desktop remoto.
+2. Accedere alla VM usando l'account dell'amministratore (**BUILTIN\DomainAdmin**) e la password (**Contoso!0000**) configurati.
+3. Sostituire l'indirizzo del server DNS preferito con l'indirizzo del controller di dominio.
+4. In **Centro connessioni di rete e condivisione** scegliere l'interfaccia di rete.
    ![Interfaccia di rete](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/26-networkinterface.png)
 
 5. Fare clic su **Proprietà**.
 6. Selezionare **Protocollo Internet versione 4 (TCP/IPv4)** e fare clic su **Proprietà**.
-7. Selezionare **hello utilizzare seguenti indirizzi server DNS** e specificare l'indirizzo di hello del controller di dominio primario hello in **server DNS preferito**.
-8. Fare clic su **OK**e quindi **Chiudi** modifiche hello toocommit. Questo punto si è in grado di toojoin hello VM troppo**corp.contoso.com**.
+7. Selezionare **Utilizza i seguenti indirizzi server DNS** e specificare l'indirizzo del controller di dominio primario in **Server DNS preferito**.
+8. Fare clic su **OK** e quindi su **Chiudi** per eseguire il commit delle modifiche. A questo punto è possibile aggiungere la macchina virtuale a **corp.contoso.com**.
 
    >[!IMPORTANT]
-   >Se si perde desktop remoto di hello connessione tooyour dopo la modifica delle impostazioni DNS hello, andare toohello portal e riavviare hello macchina virtuale di Azure.
+   >Se si perde la connessione al desktop remoto dopo avere modificato l'impostazione DNS, passare al portale di Azure e riavviare la macchina virtuale.
 
-9. Controller di dominio secondario hello toohello desktop remoto aprire **Dashboard di Server Manager**.
-10. Fare clic su hello **Aggiungi ruoli e funzionalità** collegamento nel dashboard di hello.
+9. Dal desktop remoto al controller di dominio secondario aprire il **dashboard di Server Manager**.
+10. Fare clic sul collegamento **Aggiungi ruoli e funzionalità** sul dashboard.
 
     ![Server Manager - Aggiungere ruoli](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/22-addfeatures.png)
-11. Selezionare **Avanti** fino a ottenere toohello **i ruoli del Server** sezione.
-12. Seleziona hello **servizi di dominio Active Directory** e **Server DNS** ruoli. Quando richiesto, aggiungere eventuali funzionalità aggiuntive necessarie per questi ruoli.
-13. Dopo funzionalità hello completato l'installazione, restituire toohello **Server Manager** dashboard.
-14. Seleziona hello nuovo **AD DS** opzione nel riquadro sinistro di hello.
-15. Fare clic su hello **più** collegamento sulla barra di avviso gialla hello.
-16. In hello **azione** colonna di hello **tutti i Server-dettagli attività** finestra di dialogo, fare clic su **alzare di livello questo controller di dominio server tooa**.
-17. In **configurazione distribuzione**selezionare **aggiungere un controller di dominio tooan esistente dominio**.
+11. Selezionare **Avanti** fino a visualizzare la sezione **Ruoli server**.
+12. Selezionare i ruoli **Active Directory Domain Services** e **Server DNS**. Quando richiesto, aggiungere eventuali funzionalità aggiuntive necessarie per questi ruoli.
+13. Dopo l'installazione delle funzionalità, tornare al dashboard **Server Manager** .
+14. Selezionare la nuova opzione **Servizi di dominio di Active Directory** nel riquadro di sinistra.
+15. Fare clic sul collegamento **Altro** sulla barra di avviso gialla.
+16. Nella colonna **Azione** della finestra di dialogo **Dettagli attività tutti i server** fare clic su **Alza di livello il server a controller di dominio**.
+17. In **Configurazione distribuzione** selezionare **Aggiungi un controller di dominio a un dominio esistente**.
    ![Configurazione distribuzione](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/28-deploymentconfig.png)
 18. Fare clic su **Seleziona**.
-19. Connettersi con un account amministratore hello (**CORP. Contoso.COM\domainadmin**) e la password (**Contoso! 0000**).
-20. In **selezionare un dominio dalla foresta hello**, selezionare il dominio e quindi fare clic su **OK**.
-21. In **opzioni Controller di dominio**, utilizzare i valori predefiniti di hello e una password modalità ripristino servizi directory.
+19. Connettersi usando l'account dell'amministratore (**CORP.CONTOSO.COM\domainadmin**) e la password (**Contoso!0000**).
+20. In **Selezionare un dominio dalla foresta** fare clic sul dominio e quindi su **OK**.
+21. In **Opzioni controller di dominio** usare i valori predefiniti e impostare una password DSRM.
 
    >[!NOTE]
-   >Hello **opzioni DNS** pagina potrebbe informare l'utente che non è possibile creare una delega per questo server DNS. È possibile ignorare questo avviso in ambienti non di produzione.
-22. Fare clic su **Avanti** fino hello nella finestra di dialogo hello **prerequisiti** controllare. Fare clic su **Installa**.
+   >Nella pagina **Opzioni DNS** è possibile che venga visualizzato un avviso indicante che non è possibile creare una delega per questo server DNS. È possibile ignorare questo avviso in ambienti non di produzione.
+22. Fare clic su **Avanti** fino a quando non viene visualizzato il controllo **Prerequisiti**. Fare clic su **Installa**.
 
-Dopo aver hello server termina modifiche alla configurazione di hello, riavviare il server hello.
+Quando il server completa le modifiche alla configurazione, riavviare il server.
 
-### <a name="add-hello-private-ip-address-toohello-second-domain-controller-toohello-vpn-dns-server"></a>Aggiungere l'indirizzo IP privato toohello secondo dominio controller toohello Server DNS VPN hello
+### <a name="add-the-private-ip-address-to-the-second-domain-controller-to-the-vpn-dns-server"></a>Aggiungere l'indirizzo IP privato del secondo controller di dominio al server DNS della VPN
 
-Nel portale di Azure in rete virtuale, hello modificare l'indirizzo IP del controller di dominio secondario hello hello Server DNS tooinclude hello. In questo modo la ridondanza del servizio DNS di hello.
+Nel portale di Azure, nella rete virtuale modificare il server DNS in modo da includere l'indirizzo IP del controller di dominio secondario. Ciò consente la ridondanza del servizio DNS.
 
-### <a name=DomainAccounts></a>Configurare gli account di dominio hello
+### <a name=DomainAccounts></a> Configurare gli account di dominio
 
-Nei passaggi successivi hello, configurare gli account di Active Directory hello. Hello nella tabella seguente mostra gli account hello:
+Nei passaggi successivi vengono configurati gli account Active Directory (AD). La tabella seguente illustra gli account:
 
 | |Account di installazione<br/> |sqlserver-0 <br/>Account del servizio SQL Agent e SQL Server |sqlserver-1<br/>Account del servizio SQL Agent e SQL Server
 | --- | --- | --- | ---
 |**Nome** |Installa |SQLSvc1 | SQLSvc2
 |**Utente SamAccountName** |Installa |SQLSvc1 | SQLSvc2
 
-Questa procedura hello utilizzare toocreate ogni account.
+Usare i passaggi seguenti per creare ogni account.
 
-1. Accedi toohello **ad-primary-dc** macchina.
+1. Accedere alla macchina virtuale **ad-primary-dc**.
 2. In **Server Manager** selezionare **Strumenti** e quindi fare clic su **Centro di amministrazione di Active Directory**.   
-3. Selezionare **corp (locale)** hello nel riquadro di sinistra.
-4. In hello destra **attività** riquadro, selezionare **New**, quindi fare clic su **utente**.
+3. Selezionare **corp (local)** nel riquadro di sinistra.
+4. Nel riquadro **Attività** a destra selezionare **Nuovo** e quindi fare clic su **Utente**.
    ![Centro di amministrazione di Active Directory](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/29-addcnewuser.png)
 
    >[!TIP]
-   >Impostare una password complessa per ogni account.<br/> Per gli ambienti non di produzione, toonever di account utente hello set scadrà.
+   >Impostare una password complessa per ogni account.<br/> Per gli ambienti non di produzione impostare l'account utente senza scadenza.
 
-5. Fare clic su **OK** utente hello toocreate.
-6. Ripetere i passaggi precedenti per ognuno dei tre account hello hello.
+5. Fare clic su **OK** per creare l'utente.
+6. Ripetere i passaggi precedenti per ognuno dei tre account.
 
-### <a name="grant-hello-required-permissions-toohello-installation-account"></a>Concedere le autorizzazioni di hello necessario account di installazione toohello
-1. In hello **il centro di amministrazione di Active Directory**selezionare **corp (locale)** nel riquadro di sinistra hello. Quindi nella finestra di destra hello **attività** riquadro, fare clic su **proprietà**.
+### <a name="grant-the-required-permissions-to-the-installation-account"></a>Concedere le autorizzazioni necessarie all'account di installazione
+1. Nel **Centro di amministrazione di Active Directory** selezionare **corp (local)** nel riquadro di sinistra. Nel riquadro **Attività** a destra fare quindi clic su **Proprietà**.
 
     ![Proprietà utente CORP](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/31-addcproperties.png)
-2. Selezionare **estensioni**, quindi fare clic su hello **avanzate** pulsante hello **sicurezza** scheda.
-3. In hello **impostazioni di sicurezza avanzate per corp** finestra di dialogo, fare clic su **Aggiungi**.
+2. Selezionare **Estensioni**, quindi fare clic sul pulsante **Avanzate** nella scheda **Sicurezza**.
+3. Nella finestra di dialogo **Impostazioni avanzate di sicurezza per corp** fare clic su **Aggiungi**.
 4. Fare clic su **Seleziona un'entità**, cercare **CORP\Install** e quindi fare clic su **OK**.
-5. Seleziona hello **Leggi tutte le proprietà** casella di controllo.
+5. Selezionare la casella di controllo **Leggi tutte le proprietà**.
 
-6. Seleziona hello **crea oggetti Computer** casella di controllo.
+6. Selezionare la casella di controllo **Create Computer objects** (Crea oggetti computer).
 
      ![Autorizzazioni utente Corp](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/33-addpermissions.png)
-7. Fare clic su **OK** e quindi di nuovo clic su **OK**. Chiude hello **corp** finestra Proprietà.
+7. Fare clic su **OK** e quindi di nuovo clic su **OK**. Chiudere la finestra delle proprietà di **corp**.
 
-Ora che è stata completata la configurazione di Active Directory e gli oggetti utente hello, creare due macchine virtuali di SQL Server e un server di controllo macchina virtuale. Aggiungere quindi tutti i tre dominio toohello.
+Dopo aver completato la configurazione di Active Directory e degli oggetti utente, creare due macchine virtuali di SQL Server e una macchina virtuale server di controllo. Aggiungere quindi tutte e tre le macchine virtuali al dominio.
 
 ## <a name="create-sql-server-vms"></a>Creare le macchine virtuali di SQL Server
 
-Creare altre tre macchine virtuali. soluzione Hello richiede due macchine virtuali con istanze di SQL Server. Una terza macchina virtuale fungerà da controllo. Windows Server 2016 può usare un [cloud di controllo](http://docs.microsoft.com/windows-server/failover-clustering/deploy-cloud-witness); tuttavia, per uniformità con sistemi operativi precedenti, in questo documento si usa una macchina virtuale come controllo.  
+Creare altre tre macchine virtuali. La soluzione richiede due macchine virtuali con istanze di SQL Server. Una terza macchina virtuale fungerà da controllo. Windows Server 2016 può usare un [cloud di controllo](http://docs.microsoft.com/windows-server/failover-clustering/deploy-cloud-witness); tuttavia, per uniformità con sistemi operativi precedenti, in questo documento si usa una macchina virtuale come controllo.  
 
-Prima di procedere, è consigliabile hello seguente deisign decisioni.
+Prima di procedere, considerare le seguenti decisioni di progettazione.
 
 * **Archiviazione - Azure Managed Disks**
 
-   Per l'archiviazione della macchina virtuale hello, utilizzare i dischi gestiti di Azure. Microsoft consiglia Managed Disks per le macchine virtuali di SQL Server. Archivio di handle di dischi in background hello gestito. Inoltre, quando le macchine virtuali con dischi gestiti sono hello stesso set di disponibilità, Azure distribuisce hello risorse tooprovide appropriato la ridondanza dell'archiviazione. Per altre informazioni, vedere [Panoramica di Azure Managed Disks](../managed-disks-overview.md). Per informazioni dettagliate sui dischi gestiti in un set di disponibilità, vedere [Usare Managed Disks per le macchine virtuali nel set di disponibilità](../manage-availability.md#use-managed-disks-for-vms-in-an-availability-set).
+   Per l'archiviazione delle macchine virtuali, usare Azure Managed Disks. Microsoft consiglia Managed Disks per le macchine virtuali di SQL Server. Managed Disks gestisce automaticamente le risorse di archiviazione. Inoltre, quando le macchine virtuali con Managed Disks sono nello stesso set di disponibilità, Azure distribuisce le risorse di archiviazione in modo da garantire la ridondanza appropriata. Per altre informazioni, vedere [Panoramica di Azure Managed Disks](../managed-disks-overview.md). Per informazioni dettagliate sui dischi gestiti in un set di disponibilità, vedere [Usare Managed Disks per le macchine virtuali nel set di disponibilità](../manage-availability.md#use-managed-disks-for-vms-in-an-availability-set).
 
 * **Rete - Indirizzi IP privati nell'ambiente di produzione**
 
-   Per le macchine virtuali hello, questa esercitazione vengono utilizzati indirizzi IP pubblici. In questo modo di connessione remota direttamente toohello di macchina virtuale tramite hello internet - semplifica i passaggi di configurazione. Negli ambienti di produzione è consigliabile solo gli indirizzi IP privati footprint della vulnerabilità hello tooreduce ordine dell'istanza di SQL Server hello risorsa macchina virtuale.
+   Per le macchine virtuali, in questa esercitazione si usano indirizzi IP pubblici. In questo modo la connessione remota può avvenire direttamente alla macchina virtuale tramite internet, semplificando la procedura di configurazione. Negli ambienti di produzione Microsoft consiglia di usare solo indirizzi IP privati al fine di ridurre la superficie di vulnerabilità della risorsa della VM dell'istanza di SQL Server.
 
-### <a name="create-and-configure-hello-sql-server-vms"></a>Creare e configurare macchine virtuali di hello SQL Server
-Creare successivamente tre VM, tra cui due VM di SQL Server e una VM per un nodo del cluster aggiuntivo. toocreate delle macchine virtuali di hello, tornare indietro toohello **SQL a disponibilità elevata-RG** gruppo di risorse, fare clic su **Aggiungi**, cercare l'elemento della raccolta appropriato hello, fare clic su **macchina virtuale**e quindi Fare clic su **dalla raccolta**. Utilizzare le informazioni di hello nella seguente tabella toohelp è creare macchine virtuali hello hello:
+### <a name="create-and-configure-the-sql-server-vms"></a>Creare e configurare le VM di SQL Server
+Creare successivamente tre VM, tra cui due VM di SQL Server e una VM per un nodo del cluster aggiuntivo. Per creare ogni VM, tornare al gruppo di risorse **SQL-HA-RG**, fare clic su **Aggiungi**, cercare l'elemento della raccolta appropriato, fare clic su **Macchina virtuale**, quindi su **Da raccolta**. Usare le informazioni nella tabella seguente per facilitare la creazione di VM:
 
 
 | Page | VM1 | VM2 | VM3 |
 | --- | --- | --- | --- |
-| Selezionare l'elemento della raccolta appropriato hello |**Windows Server 2016 Datacenter** |**SQL Server 2016 SP1 Enterprise on Windows Server 2016** |**SQL Server 2016 SP1 Enterprise on Windows Server 2016** |
+| Selezionare l'elemento della raccolta appropriato |**Windows Server 2016 Datacenter** |**SQL Server 2016 SP1 Enterprise on Windows Server 2016** |**SQL Server 2016 SP1 Enterprise on Windows Server 2016** |
 | **Elementi di base** |**Nome** = cluster-fsw<br/>**Nome utente** = DomainAdmin<br/>**Password** = Contoso!0000<br/>**Sottoscrizione** = sottoscrizione<br/>**Gruppo di risorse** = SQL-HA-RG<br/>**Posizione** = posizione di Azure |**Nome** = sqlserver-0<br/>**Nome utente** = DomainAdmin<br/>**Password** = Contoso!0000<br/>**Sottoscrizione** = sottoscrizione<br/>**Gruppo di risorse** = SQL-HA-RG<br/>**Posizione** = posizione di Azure |**Nome** = sqlserver-1<br/>**Nome utente** = DomainAdmin<br/>**Password** = Contoso!0000<br/>**Sottoscrizione** = sottoscrizione<br/>**Gruppo di risorse** = SQL-HA-RG<br/>**Posizione** = posizione di Azure |
-| Configurazione della macchina virtuale - **Dimensioni** |**DIMENSIONI** = DS1\_V2 (1 memoria centrale, 3,5 GB) |**DIMENSIONI** = DS2\_V2 (2 memorie centrali, 7 GB)</br>dimensioni Hello devono supportare l'archiviazione sull'unità SSD (supporto per dischi Premium. )) |**DIMENSIONI** = DS2\_V2 (2 memorie centrali, 7 GB) |
+| Configurazione della macchina virtuale - **Dimensioni** |**DIMENSIONI** = DS1\_V2 (1 memoria centrale, 3,5 GB) |**DIMENSIONI** = DS2\_V2 (2 memorie centrali, 7 GB)</br>Le dimensioni devono supportare l'archiviazione su unità SSD (Supporto disco Premium )) |**DIMENSIONI** = DS2\_V2 (2 memorie centrali, 7 GB) |
 | Configurazione della macchina virtuale - **Impostazioni** |**Archiviazione**: Usa dischi gestiti.<br/>**Rete virtuale** = autoHAVNET<br/>**Subnet** = sqlsubnet(10.1.1.0/24)<br/>**Indirizzo IP pubblico** generato automaticamente.<br/>**Gruppo di sicurezza di rete** = nessuno<br/>**Monitoraggio e diagnostica** = abilitato<br/>**Account di archiviazione di diagnostica**: usare un account di archiviazione generato automaticamente<br/>**Set di disponibilità** = sqlAvailabilitySet<br/> |**Archiviazione**: Usa dischi gestiti.<br/>**Rete virtuale** = autoHAVNET<br/>**Subnet** = sqlsubnet(10.1.1.0/24)<br/>**Indirizzo IP pubblico** generato automaticamente.<br/>**Gruppo di sicurezza di rete** = nessuno<br/>**Monitoraggio e diagnostica** = abilitato<br/>**Account di archiviazione di diagnostica**: usare un account di archiviazione generato automaticamente<br/>**Set di disponibilità** = sqlAvailabilitySet<br/> |**Archiviazione**: Usa dischi gestiti.<br/>**Rete virtuale** = autoHAVNET<br/>**Subnet** = sqlsubnet(10.1.1.0/24)<br/>**Indirizzo IP pubblico** generato automaticamente.<br/>**Gruppo di sicurezza di rete** = nessuno<br/>**Monitoraggio e diagnostica** = abilitato<br/>**Account di archiviazione di diagnostica**: usare un account di archiviazione generato automaticamente<br/>**Set di disponibilità** = sqlAvailabilitySet<br/> |
 | Configurazione della macchina virtuale - **Impostazioni SQL Server** |Non applicabile |**Connettività SQL** = privata (nella rete virtuale)<br/>**Porta** = 1433<br/>**Autenticazione SQL** = disabilitata<br/>**Configurazione dell'archiviazione** = generale<br/>**Applicazione automatica delle patch** = domenica alle 2:00<br/>**Backup automatizzato** = disabilitato</br>**Integrazione dell'insieme di credenziali delle chiavi di Azure** = Disabilitata |**Connettività SQL** = privata (nella rete virtuale)<br/>**Porta** = 1433<br/>**Autenticazione SQL** = disabilitata<br/>**Configurazione dell'archiviazione** = generale<br/>**Applicazione automatica delle patch** = domenica alle 2:00<br/>**Backup automatizzato** = disabilitato</br>**Integrazione dell'insieme di credenziali delle chiavi di Azure** = Disabilitata |
 
 <br/>
 
 > [!NOTE]
-> le dimensioni della macchina Hello qui suggerite sono concepite per il test di gruppi di disponibilità in macchine virtuali di Azure. Per prestazioni ottimali di hello sui carichi di lavoro di produzione, visualizzare le raccomandazioni hello per le dimensioni della macchina SQL Server e la configurazione in [procedure consigliate per SQL Server in macchine virtuali di Azure](virtual-machines-windows-sql-performance.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+> Le dimensioni delle macchine virtuali qui suggerite sono pensate per il test dei gruppi di disponibilità nelle VM di Azure. Per ottenere prestazioni ottimali su carichi di lavoro di produzione, vedere le dimensioni e la configurazione consigliate per la macchina virtuale di SQL Server in [Procedure consigliate per le prestazioni per SQL Server in Macchine virtuali di Azure](virtual-machines-windows-sql-performance.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 >
 >
 
-Dopo che le macchine virtuali hello tre completamente sono a provisioning, è necessario toojoin li toohello **corp.contoso.com** dominio e concedere le macchine toohello CORP\Install diritti amministrativi.
+Dopo aver effettuato il provisioning completo delle tre macchine virtuali, sarà necessario aggiungerle al dominio **corp.contoso.com** e concedere alle macchine i diritti amministrativi di CORP\Install.
 
-### <a name="joinDomain"></a>Dominio hello server toohello
+### <a name="joinDomain"></a>Aggiungere i server al dominio
 
-Si è ora in grado di toojoin hello macchine virtuali troppo**corp.contoso.com**. Esempio hello per le macchine virtuali di hello SQL Server e file hello condivisione di server di controllo:
+A questo punto è possibile aggiungere la macchina virtuale a **corp.contoso.com**. Eseguire le operazioni seguenti per le macchine virtuali di SQL Server e per il server di controllo della condivisione file:
 
-1. Connettersi in modalità remota la macchina virtuale con toohello **BUILTIN\DomainAdmin**.
+1. Connettersi in remoto alla macchina virtuale con **BUILTIN\DomainAdmin**.
 2. In **Server Manager** fare clic su **Server locale**.
-3. Fare clic su hello **WORKGROUP** collegamento.
-4. In hello **nome Computer** fare clic su **modifica**.
-5. Seleziona hello **dominio** casella di controllo e il tipo **corp.contoso.com** nella casella di testo hello. Fare clic su **OK**.
-6. In hello **la sicurezza di Windows** finestra di dialogo popup, specificare le credenziali di hello per account di amministratore di dominio predefinito hello (**CORP\DomainAdmin**) e la password di hello (**Contoso! 0000**).
-7. Quando viene visualizzato il messaggio "dominio corp.contoso.com toohello iniziale" hello, fare clic su **OK**.
-8. Fare clic su **Chiudi**, quindi fare clic su **Riavvia ora** nella finestra di dialogo popup hello.
+3. Fare clic sul collegamento **GRUPPO DI LAVORO**.
+4. Nella sezione **Nome computer** fare clic su **Cambia**.
+5. Selezionare la casella di controllo **Dominio** e digitare **corp.contoso.com** nella casella di testo. Fare clic su **OK**.
+6. Nella finestra di dialogo popup **Sicurezza di Windows** specificare le credenziali per l'account amministratore di dominio predefinito (**CORP\DomainAdmin**) e la password (**Contoso!0000**).
+7. uando viene visualizzato il messaggio di benvenuto nel dominio corp.contoso.com, fare clic su **OK**.
+8. Fare clic su **Chiudi** e quindi su **Riavvia ora** nella finestra di dialogo popup.
 
-### <a name="add-hello-corpinstall-user-as-an-administrator-on-each-cluster-vm"></a>Aggiungere l'utente Corp\Install hello come amministratore in ogni macchina virtuale del cluster
+### <a name="add-the-corpinstall-user-as-an-administrator-on-each-cluster-vm"></a>Aggiungere l'utente Corp\Install come amministratore in ogni VM del cluster
 
-Dopo il riavvio di ogni macchina virtuale come membro del dominio hello, aggiungere **CORP\Install** come membro del gruppo administrators locale hello.
+Dopo l'avvio di ogni macchina virtuale come membro del dominio, aggiungere **CORP\Install** come membro del gruppo di amministratori locale.
 
-1. Attendere fino a quando non viene riavviato hello macchina virtuale, quindi avviare nuovamente da toosign di controller di dominio primario hello in file con estensione RDP hello troppo**sqlserver 0** utilizzando hello **CORP\DomainAdmin** account.
+1. Attendere il riavvio della VM, quindi avviare di nuovo il file RDP dal controller di dominio primario per accedere a **sqlserver-0** usando l'account **CORP\DomainAdmin**.
    >[!TIP]
-   >Assicurarsi che si accede con l'account amministratore di dominio hello. Nei passaggi precedenti hello, si utilizzano account di amministratore predefiniti IN hello. Dopo avere hello server dominio hello, utilizzare account di dominio hello. Nella sessione RDP specificare *DOMINIO*\\*NOME UTENTE*.
+   >Assicurarsi di accedere con l'account di amministratore di dominio. Nei passaggi precedenti è stato usato l'account amministratore BUILTIN. Ora che il server appartiene al dominio, usare l'account di dominio. Nella sessione RDP specificare *DOMINIO*\\*NOME UTENTE*.
 
 2. In **Server Manager** selezionare **Strumenti**, quindi fare clic su **Gestione computer**.
-3. In hello **Gestione Computer** finestra, espandere **utenti e gruppi locali**, quindi selezionare **gruppi**.
-4. Fare doppio clic su hello **amministratori** gruppo.
-5. In hello **proprietà amministratori** finestra di dialogo, fare clic su hello **Aggiungi** pulsante.
-6. Immettere nome utente hello **CORP\Install**, quindi fare clic su **OK**.
-7. Fare clic su **OK** tooclose hello **proprietà amministratore** finestra di dialogo.
-8. Ripetere i passaggi precedenti hello in **sqlserver 1** e **cluster fsw**.
+3. Nella finestra **Gestione computer** espandere **Utenti e gruppi locali**, quindi selezionare **Gruppi**.
+4. Fare doppio clic sul gruppo **Administrators** .
+5. Nella finestra di dialogo **Proprietà Administrators** fare clic su pulsante **Aggiungi**.
+6. Immettere l'utente **CORP\Install** e quindi fare clic su **OK**.
+7. Fare clic su **OK** per chiudere la finestra di dialogo **Proprietà Administrators**.
+8. Ripetere i passaggi precedenti in **sqlserver-1** e **cluster-fsw**.
 
-### <a name="setServiceAccount"></a>Impostare gli account del servizio SQL Server hello
+### <a name="setServiceAccount"></a>Impostare gli account del servizio SQL Server
 
-In ogni macchina virtuale di SQL Server, impostare l'account del servizio SQL Server hello. Utilizzare account hello creati quando si [configurato gli account di dominio hello](#DomainAccounts).
+Impostare l'account del servizio SQL Server in ogni macchina virtuale di SQL Server. Usare gli account creati in fase di [configurazione degli account di dominio](#DomainAccounts).
 
 1. Aprire **Gestione configurazione SQL Server**.
-2. Fare doppio clic su servizio di SQL Server hello e quindi fare clic su **proprietà**.
-3. Impostare l'account hello e una password.
-4. Ripetere questi passaggi in hello altre VM SQL Server.  
+2. Fare clic con il pulsante destro del mouse sul servizio SQL Server e scegliere **Proprietà**.
+3. Impostare l'account e la password.
+4. Ripetere questi passaggi per l'altra VM di SQL Server.  
 
-Per i gruppi di disponibilità di SQL Server, ogni macchina virtuale di SQL Server deve toorun come account di dominio.
+Per i gruppi di disponibilità di SQL Server, ogni VM di SQL Server deve essere eseguita come account di dominio.
 
-### <a name="create-a-sign-in-on-each-sql-server-vm-for-hello-installation-account"></a>Creare un accesso in ogni macchina virtuale di SQL Server per l'account di installazione di hello
+### <a name="create-a-sign-in-on-each-sql-server-vm-for-the-installation-account"></a>Creare un accesso in ogni macchina virtuale di SQL Server per l'account di installazione
 
-Utilizzare il gruppo di disponibilità hello hello installazione account (CORP\install) tooconfigure. Questo account deve toobe un membro di hello **sysadmin** ruolo predefinito del server in ogni macchina virtuale di SQL Server. Hello seguenti passaggi necessari per creare un Accedi per account di installazione hello:
+Usare l'account di installazione (CORP\install) per configurare il gruppo di disponibilità. Questo account deve essere membro del ruolo del server predefinito **sysadmin** in ogni VM di SQL Server. La procedura seguente crea un account di accesso per l'account di installazione:
 
-1. Connessione server toohello tramite hello Remote Desktop Protocol (RDP) con hello  *\<MachineName\>\DomainAdmin* account.
+1. Connettersi al server tramite Remote Desktop Protocol (RDP) usando l'account *\<MachineName\>\DomainAdmin*.
 
-1. Aprire SQL Server Management Studio e connettersi toohello istanza locale di SQL Server.
+1. Aprire SQL Server Management Studio e connettersi all'istanza locale di SQL Server.
 
 1. In **Esplora oggetti** fare clic su **Sicurezza**.
 
@@ -437,34 +437,34 @@ Utilizzare il gruppo di disponibilità hello hello installazione account (CORP\i
 
 1. Fare clic su **Località**.
 
-1. Immettere le credenziali di rete hello dominio amministratore.
+1. Immettere le credenziali di rete dell'amministratore di dominio.
 
-1. Usare l'account di installazione di hello.
+1. Usare l'account di installazione.
 
-1. Un membro di hello del set di hello Accedi toobe **sysadmin** ruolo predefinito del server.
+1. Impostare l'account di accesso come membro del ruolo del server predefinito **sysadmin**.
 
 1. Fare clic su **OK**.
 
-Ripetere hello precedenti passaggi in hello altre VM SQL Server.
+Ripetere i passaggi precedenti nell'altra VM di SQL Server.
 
-## <a name="add-failover-clustering-features-tooboth-sql-server-vms"></a>Aggiungere tooboth di funzionalità Clustering di Failover le macchine virtuali di SQL Server
+## <a name="add-failover-clustering-features-to-both-sql-server-vms"></a>Aggiungere le funzionalità del cluster di failover a entrambe le VM di SQL Server
 
-funzionalità di Clustering di Failover tooadd, hello in entrambe le macchine virtuali di SQL Server:
+Per aggiungere le funzionalità del cluster di failover, seguire questa procedura in entrambe le VM di SQL Server:
 
-1. Connettersi toohello macchina virtuale di SQL Server tramite hello Remote Desktop Protocol (RDP) con hello *CORP\install* account. Aprire **Server Manager > Dashboard**.
-2. Fare clic su hello **Aggiungi ruoli e funzionalità** collegamento nel dashboard di hello.
+1. Connettersi alla macchina virtuale di SQL Server tramite Remote Desktop Protocol (RDP) usando l'account *CORP\install*. Aprire **Server Manager > Dashboard**.
+2. Fare clic sul collegamento **Aggiungi ruoli e funzionalità** sul dashboard.
 
     ![Server Manager - Aggiungere ruoli](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/22-addfeatures.png)
-3. Selezionare **Avanti** fino a ottenere toohello **funzionalità Server** sezione.
+3. Selezionare **Avanti** fino a visualizzare la sezione **Funzionalità server**.
 4. In **Funzionalità** selezionare **Clustering di failover**.
 5. Aggiungere le altre funzionalità necessarie.
-6. Fare clic su **installare** funzionalità hello tooadd.
+6. Fare clic su **Installa** per aggiungere le funzionalità.
 
-Ripetere i passaggi di hello in hello altre VM SQL Server.
+Ripetere i passaggi nell'altra VM di SQL Server.
 
-## <a name="a-nameendpoint-firewall-configure-hello-firewall-on-each-sql-server-vm"></a><a name="endpoint-firewall">Configurare firewall hello in ogni macchina virtuale di SQL Server
+## <a name="a-nameendpoint-firewall-configure-the-firewall-on-each-sql-server-vm"></a><a name="endpoint-firewall"> Configurare il firewall in ogni macchina virtuale di SQL Server
 
-soluzione Hello richiede hello seguendo le porte TCP toobe aprire nel firewall hello:
+La soluzione richiede che le seguenti porte TCP siano aperte nel firewall:
 
 - **VM di SQL Server**:<br/>
    Porta 1433 per un'istanza predefinita di SQL Server.
@@ -473,25 +473,25 @@ soluzione Hello richiede hello seguendo le porte TCP toobe aprire nel firewall h
 - **Endpoint del mirroring del database:** <br/>
    Qualsiasi porta disponibile. Negli esempi si usa spesso 5022.
 
-Hello firewall porte esigenza toobe aperti in entrambe le macchine virtuali di SQL Server.
+Le porte del firewall devono essere aperte in entrambe le VM di SQL Server.
 
-metodo Hello dell'apertura di porte hello dipende dalla soluzione di firewall hello in uso. la sezione successiva di Hello spiega come hello tooopen porte in Windows Firewall. Aprire le porte necessarie hello in ognuna delle macchine virtuali SQL Server.
+Il metodo per aprire le porte dipende dalla soluzione firewall in uso. La sezione successiva illustra come aprire le porte in Windows Firewall. Aprire le porte necessarie in ogni VM di SQL Server.
 
-### <a name="open-a-tcp-port-in-hello-firewall"></a>Aprire una porta TCP nel firewall hello
+### <a name="open-a-tcp-port-in-the-firewall"></a>Aprire una porta TCP nel firewall
 
-1. Nel primo Server SQL di hello **avviare** schermata, avviare **Windows Firewall con sicurezza avanzata**.
-2. Nel riquadro sinistro di hello selezionare **regole connessioni in entrata**. Nel riquadro di destra hello, fare clic su **nuova regola**.
+1. Nella schermata **Start** avviare **Windows Firewall con sicurezza avanzata** nella prima istanza di SQL Server.
+2. Nel riquadro sinistro selezionare **Regole connessioni in entrata**. Nel riquadro di destra fare clic su **Nuova regola**.
 3. Per **Tipo di regola** scegliere **Porta**.
-4. Per la porta hello, specificare **TCP** e hello tipo appropriato di numeri di porta. Vedere hello di esempio seguente:
+4. Per la porta specificare **TCP** e digitare i numeri di porta appropriati. Vedere l'esempio seguente:
 
    ![Firewall SQL](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/35-tcpports.png)
 
 5. Fare clic su **Avanti**.
-6. In hello **azione** pagina, mantenere **Consenti connessione hello** selezionata e quindi fare clic su **Avanti**.
-7. In hello **profilo** pagina, accettare le impostazioni predefinite di hello e quindi fare clic su **Avanti**.
-8. In hello **nome** , specificare un nome di regola (ad esempio **Azure LB Probe**) in hello **nome** casella di testo e quindi fare clic su **fine**.
+6. Nella pagina **Azione** mantenere selezionata l'opzione **Consenti la connessione** e fare clic su **Avanti**.
+7. Nella pagina **Profilo** accettare le impostazioni predefinite e fare clic su **Avanti**.
+8. Nella pagina **Nome** specificare un nome per la regola, ad esempio **Probe per Azure LB** nella casella di testo **Nome**, quindi fare clic su **Fine**.
 
-Ripetere questi passaggi su hello seconda macchina virtuale di SQL Server.
+Ripetere questi passaggi per la seconda VM di SQL Server.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

@@ -1,6 +1,6 @@
 ---
-title: Guida alla risoluzione dei problemi di Esplora archivi aaaAzure | Documenti Microsoft
-description: "Panoramica della funzionalità di debug hello due di Azure"
+title: Guida alla risoluzione dei problemi di Azure Storage Explorer | Microsoft Docs
+description: "Panoramica delle due funzionalità di debug di Azure"
 services: virtual-machines
 documentationcenter: 
 author: Deland-Han
@@ -11,71 +11,69 @@ ms.service: virtual-machines
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 05/18/2017
+ms.topic: troubleshooting
+ms.date: 09/08/2017
 ms.author: delhan
-ms.openlocfilehash: 5152f70418707d65c0a4bce9a916336829956219
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e06c73c2c00b27178f8431b83b5c5a42110b6b1e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-storage-explorer-troubleshooting-guide"></a>Guida alla risoluzione dei problemi di Azure Storage Explorer
 
-## <a name="introduction"></a>Introduzione
-
-Esplora archivi di Microsoft Azure (anteprima) è un'app autonoma che consente di utilizzare tooeasily dati di archiviazione di Azure in Windows, macOS e Linux. app Hello possono connettersi toStorage account ospitato in Azure, cloud statali e Stack di Azure.
+Microsoft Azure Storage Explorer (anteprima) è un'app autonoma che consente di usare facilmente dati di Archiviazione di Azure in Windows, macOS e Linux. L'app può connettersi ad account di archiviazione ospitati in Azure, Sovereign Clouds e Azure Stack.
 
 In questa guida sono riepilogate le soluzioni per gli errori comuni riscontrati in Storage Explorer.
 
 ## <a name="sign-in-issues"></a>Problemi relativi all'accesso
 
-Prima di continuare, provare a riavviare l'applicazione e verificare che i problemi di hello possono essere risolti.
+Sono supportati solo account AAD (Azure Active Directory). Se si usa un account ADFS, è probabile che l'accesso a Storage Explorer non funzioni. Prima di continuare, provare a riavviare l'applicazione per vedere se i problemi si risolvono.
 
 ### <a name="error-self-signed-certificate-in-certificate-chain"></a>Errore: certificato autofirmato nella catena di certificati
 
-Esistono diversi motivi, perché questo errore può verificarsi, e due motivi più comuni hello sono i seguenti:
+Esistono diversi motivi per cui è possibile riscontrare questo errore. I due motivi più comuni sono i seguenti:
 
-1. app Hello viene connesso tramite un "proxy trasparente", ovvero un server (ad esempio, il server aziendale) è intercetta il traffico HTTPS, la decrittografia e quindi crittografarlo utilizzando un certificato autofirmato.
+1. L'app è connessa tramite un "proxy trasparente", ovvero un server, ad esempio il server aziendale, che intercetta il traffico HTTPS, ne esegue la decrittografia e la crittografia con un certificato autofirmato.
 
-2. Si esegue un'applicazione, ad esempio software antivirus, che è inserendo messaggi hello HTTPS che si ricevano un certificato SSL autofirmato.
+2. Viene eseguita un'applicazione, ad esempio un software antivirus, che inserisce un certificato SSL autofirmato nei messaggi HTTPS ricevuti.
 
-Quando Esplora archivi rileva uno dei problemi di hello, può non sapere se è stata manomessa messaggio HTTPS hello ricevuto. Se si dispone di una copia del certificato autofirmato hello, è possibile utilizzare Esplora archivi di verificare l'attendibilità. Se si è certi di chi esegue l'inserimento dei certificati di hello, seguire questi passaggi toofind è:
+Quando Storage Explorer rileva un problema, è possibile che l'informazione relativa alla possibile manomissione del messaggio HTTPS ricevuto non sia nota. Se si dispone di una copia del certificato autofirmato, è possibile fare in modo che Storage Explorer li consideri attendibili. Se non si conosce l'autore dell'inserimento del certificato, seguire questi passaggi per trovarlo:
 
 1. Installare Open SSL
 
-    - [Windows](https://slproweb.com/products/Win32OpenSSL.html) (qualsiasi versione di hello chiaro dovrebbe essere sufficiente)
+    - [Windows](https://slproweb.com/products/Win32OpenSSL.html), una delle versioni light dovrebbe essere sufficiente
 
     - Mac e Linux: devono essere inclusi nel sistema operativo
 
 2. Eseguire Open SSL
 
-    - Windows: aprire la directory di installazione di hello, fare clic su **/bin/**, quindi fare doppio clic su **openssl.exe**.
+    - Windows: aprire la directory di installazione, fare clic su **/bin/**, quindi fare doppio clic su **openssl.exe**.
     - Mac e Linux: eseguire **openssl** da un terminale.
 
 3. Eseguire s_client -showcerts -connect microsoft.com:443
 
-4. Cercare i certificati autofirmati. Se si è certi che sono autofirmati, cercare in un punto qualsiasi oggetto hello ("s") e sono hello (ricerca per categorie ":") dell'autorità di certificazione stessa.
+4. Cercare i certificati autofirmati. Se si è certi di quali certificati sono autofirmati, verificare ovunque che l'oggetto ("s") e l'autorità emittente ("i:") siano uguali.
 
-5. Dopo aver individuato i certificati autofirmati, ciascuno di essi, copiare e incollare tutto da **---BEGIN CERTIFICATE---** troppo**---END CERTIFICATE---** tooa nuovo file con estensione cer.
+5. Dopo aver trovato i certificati autofirmati, per ognuno di essi, copiare e incollare tutto da e includendo **-----BEGIN CERTIFICATE-----** a **-----END CERTIFICATE-----** in un nuovo file con estensione CER.
 
-6. Aprire Esplora risorse di archiviazione, fare clic su **modifica** > **i certificati SSL** > **importazione certificati**e quindi utilizzare hello file selezione toofind, select, e aprire i file con estensione cer hello è stato creato.
+6. Aprire Storage Explorer, fare clic su **Modifica** > **Certificati SSL** > **Importa certificati**, quindi usare la selezione file per trovare, selezionare e aprire i file con estensione CER creati.
 
-Se non si trova alcun certificato autofirmato utilizzando hello sopra passaggi, contattare Microsoft tramite lo strumento di feedback hello per ulteriore assistenza.
+Se non è possibile trovare alcun certificato autofirmato seguendo i passaggi precedenti, contattare Microsoft tramite lo strumento di feedback per ricevere assistenza.
 
-### <a name="unable-tooretrieve-subscriptions"></a>Non è possibile tooretrieve sottoscrizioni
+### <a name="unable-to-retrieve-subscriptions"></a>Impossibile recuperare le sottoscrizioni
 
-Se si è grado tooretrieve le sottoscrizioni dopo l'accesso, seguire questo problema tootroubleshoot questi passaggi:
+Se non è possibile recuperare le sottoscrizioni dopo aver eseguito correttamente l'accesso, seguire questi passaggi per risolvere questo problema:
 
-- Verificare che l'account disponga di accesso toohello sottoscrizioni effettuando l'accesso al portale di Azure hello.
+- Verificare che l'account abbia accesso alle sottoscrizioni effettuando l'accesso al portale di Azure.
 
-- Assicurarsi di aver effettuato utilizzando l'ambiente corretto di hello (Azure, Cina di Azure, Azure in Germania, Azure del governo o Stack ambiente/Azure personalizzato).
+- Assicurarsi di aver effettuato l'accesso usando l'ambiente corretto, ad esempio Azure, Azure Cina, Azure Germania, Azure Governo degli Stati Uniti o Ambiente personalizzato/Azure Stack.
 
-- Se ci si trova dietro un proxy, assicurarsi che il proxy di Esplora archivi hello è stato configurato correttamente.
+- Se si è protetti da un proxy, assicurarsi che il proxy Storage Explorer sia stato configurato correttamente.
 
-- Provare a rimuovere e nuova aggiunta account hello.
+- Provare a rimuovere e a aggiungere nuovamente l'account.
 
-- Provare a eliminare hello i seguenti file dalla directory radice (vale a dire C:\Users\ContosoUser) e quindi aggiungere nuovamente l'account hello:
+- Provare a eliminare i file seguenti dalla directory radice, ovvero, C:\Utenti\ContosoUser, e quindi aggiungere nuovamente l'account:
 
     - .adalcache
 
@@ -83,25 +81,25 @@ Se si è grado tooretrieve le sottoscrizioni dopo l'accesso, seguire questo prob
 
     - .extaccounts
 
-- Console di strumenti per sviluppatori hello espressioni di controllo (premendo F12) quando si esegue l'accesso per i messaggi di errore:
+- Controllare la console degli strumenti per sviluppatori premendo F12 quando si esegue l'accesso per i messaggi di errore:
 
 ![strumenti per sviluppatori](./media/storage-explorer-troubleshooting/4022501_en_2.png)
 
-### <a name="unable-toosee-hello-authentication-page"></a>Pagina di autenticazione non è possibile toosee hello
+### <a name="unable-to-see-the-authentication-page"></a>Impossibile visualizzare la pagina di autenticazione
 
-Nel caso di pagina di autenticazione non è possibile toosee hello, seguire questo problema tootroubleshoot questi passaggi:
+Se non si riesce a visualizzare la pagina di autenticazione, seguire questi passaggi per risolvere questo problema:
 
-- A seconda della velocità di hello della connessione, potrebbe richiedere alcuni minuti per tooload nella pagina di accesso hello, attendere almeno un minuto prima di chiudere la finestra di dialogo di autenticazione hello.
+- A seconda della velocità della connessione, il caricamento della pagina di accesso potrebbe richiedere un po' di tempo, attendere almeno un minuto prima di chiudere la finestra di dialogo di autenticazione.
 
-- Se ci si trova dietro un proxy, assicurarsi che il proxy di Esplora archivi hello è stato configurato correttamente.
+- Se si è protetti da un proxy, assicurarsi che il proxy Storage Explorer sia stato configurato correttamente.
 
-- Console per sviluppatori di hello visualizzazione premendo tasto F12 hello. Controllare le risposte hello dalla console per sviluppatori hello e vedere se è possibile trovare qualsiasi indicazione per questo motivo l'autenticazione non funziona.
+- Visualizzare la console per sviluppatori premendo il tasto F12. Controllare le risposte nella console per sviluppatori per trovare informazioni sul mancato funzionamento dell'autenticazione.
 
 ### <a name="cannot-remove-account"></a>Impossibile rimuovere l'account
 
-Se si è grado tooremove un account o hello Riesegui autenticazione collegamento non ha alcun effetto, seguire questo problema tootroubleshoot questi passaggi:
+Se non è possibile rimuovere un account o se il collegamento per eseguire nuovamente l'autenticazione non esegue alcuna operazione, attenersi alla seguente procedura per risolvere questo problema:
 
-- Provare a eliminare hello i seguenti file dalla directory radice e quindi nuova aggiunta account hello:
+- Provare a eliminare i file seguenti dalla directory radice e quindi aggiungere nuovamente l'account:
 
     - .adalcache
 
@@ -109,7 +107,7 @@ Se si è grado tooremove un account o hello Riesegui autenticazione collegamento
 
     - .extaccounts
 
-- Se si desidera tooremove SAS associata alle risorse di archiviazione, eliminare i seguenti file hello:
+- Se si desidera rimuovere le risorse di archiviazione collegate al SAS, eliminare i file seguenti:
 
     - la cartella %AppData%/StorageExplorer per Windows
 
@@ -118,67 +116,67 @@ Se si è grado tooremove un account o hello Riesegui autenticazione collegamento
     - ~/.config/StorageExplorer per Linux
 
 > [!NOTE]
->  Sarà necessario tooreenter tutte le credenziali se si eliminano questi file.
+>  Se si eliminano questi file è necessario immettere nuovamente tutte le credenziali.
 
 ## <a name="proxy-issues"></a>Problemi di proxy
 
-Verificare innanzitutto che hello le seguenti informazioni immesse siano tutti corretti:
+In primo luogo, assicurarsi che le informazioni seguenti immesse siano corrette:
 
-- Hello URL del proxy e la porta numero
+- l'URL del proxy e il numero di porta
 
-- Nome utente e password se richiesto dal proxy hello
+- nome utente e password se richiesto dal proxy
 
 ### <a name="common-solutions"></a>soluzioni comuni
 
-Se si verificano ancora problemi, seguire questi passaggi tootroubleshoot loro:
+Se si verificano ancora problemi, attenersi alla procedura seguente per risolverli:
 
-- Se è possibile connettersi toohello Internet senza utilizzare il proxy, verificare che funziona con Esplora archivi senza le impostazioni proxy abilitate. In caso di hello, potrebbe esserci un problema con le impostazioni del proxy. Funziona con i problemi di hello tooidentify amministratore proxy.
+- Se è possibile connettersi a Internet senza usare il proxy, verificare che Storage Explorer funzioni senza le impostazioni del proxy abilitate. In questo caso, potrebbe esserci un problema con le impostazioni del proxy. Rivolgersi all'amministratore del proxy per identificare i problemi.
 
-- Verificare che altre applicazioni che utilizzano server proxy hello funzionino come previsto.
+- Verificare che altre applicazioni che usano il server proxy funzionino come previsto.
 
-- Verificare che sia possibile connettersi il portale di Microsoft Azure toohello tramite il web browser
+- Verificare che sia possibile connettersi al portale di Microsoft Azure usando il Web browser
 
 - Verificare di poter ricevere le risposte dagli endpoint del servizio. Immettere uno degli URL dell'endpoint nel browser. Se è possibile connettersi, si dovrebbe ricevere InvalidQueryParameterValue o una risposta XML simile.
 
-- Se anche altre persone usano Storage Explorer con il server proxy, accertarsi che riescano a connettersi. Se è possibile connettersi, è possibile toocontact l'amministratore del server proxy.
+- Se anche altre persone usano Storage Explorer con il server proxy, accertarsi che riescano a connettersi. Se questo non avviene, potrebbe essere necessario contattare l'amministratore del server proxy.
 
 ### <a name="tools-for-diagnosing-issues"></a>Strumenti per la diagnosi dei problemi
 
-Se si dispone di strumenti di rete, ad esempio Fiddler per Windows, i problemi di hello toodiagnose in grado di può essere come segue:
+Se si dispone di strumenti di rete, ad esempio Fiddler per Windows, è possibile diagnosticare i problemi come indicato di seguito:
 
-- Se si dispone di toowork tramite il proxy, è possibile tooconfigure il tooconnect strumento rete tramite proxy hello.
+- Se si deve usare il proxy, è necessario configurare lo strumento di rete per connettersi tramite il proxy.
 
-- Controllare il numero di porta hello utilizzato per lo strumento di rete.
+- Controllare il numero della porta usato dallo strumento di rete.
 
-- Immettere l'URL host locale hello e numero di porta dello strumento di rete come le impostazioni proxy in Esplora archivi hello. Se questo isdone correttamente, lo strumento rete inizia la registrazione delle richieste di rete dagli endpoint di servizio e toomanagement Esplora archivi. Ad esempio, immettere https://cawablobgrs.blob.core.windows.net/ per l'endpoint blob in un browser e si riceverà una risposta è simile al seguente hello, che suggerisce risorsa hello è presente, anche se non è possibile accedere.
+- Immettere l'URL dell'host locale e il numero della porta dello strumento di rete come impostazioni proxy in Storage Explorer. Se questa operazione viene eseguita correttamente, lo strumento di rete inizia la registrazione delle richieste di rete effettuate da Storage Explorer agli endpoint di gestione e del servizio. Ad esempio, immettere https://cawablobgrs.blob.core.windows.net/ per l'endpoint BLOB in un browser. Si riceverà una risposta simile alla seguente, che suggerisce che la risorsa è disponibile, anche se non è possibile accedervi.
 
 ![esempio di codice](./media/storage-explorer-troubleshooting/4022502_en_2.png)
 
 ### <a name="contact-proxy-server-admin"></a>Contattare l'amministratore del server proxy
 
-Se le impostazioni proxy siano corrette, è possibile toocontact l'amministratore del server proxy, e
+Se le impostazioni del proxy sono corrette, è necessario contattare l'amministratore del server proxy e
 
-- Assicurarsi che il proxy non blocchi il traffico tooAzure management o risorsa gli endpoint.
+- Assicurarsi che il proxy non blocchi il traffico agli endpoint di gestione o risorse di Azure.
 
-- Verificare il protocollo di autenticazione hello del server proxy. Storage Explorer attualmente non supporta i proxy NTLM.
+- Verificare il protocollo di autenticazione usato dal server proxy. Storage Explorer attualmente non supporta i proxy NTLM.
 
-## <a name="unable-tooretrieve-children-error-message"></a>Messaggio di errore "Impossibile tooRetrieve figli"
+## <a name="unable-to-retrieve-children-error-message"></a>Messaggio di errore "Unable to Retrieve Children" (Impossibile recuperare gli elementi figlio)
 
-Se si è connessi tooAzure tramite un proxy, verificare che le impostazioni proxy siano corrette. Se si sono state concesse accesso tooa risorsa dal proprietario hello di hello sottoscrizione o l'account, verificare di avere letto o elencare le autorizzazioni per tale risorsa.
+Se si è connessi ad Azure tramite un proxy, verificare che le impostazioni del proxy siano corrette. Se è stato concesso l'accesso a una risorsa dal proprietario della sottoscrizione o dell'account, verificare di avere letto o elencare le autorizzazioni per tale risorsa.
 
 ### <a name="issues-with-sas-url"></a>Problemi relativi all'URL SAS
-Se ci si connette tooa servizio tramite un URL SAS e verifica l'errore:
+Se ci si connette a un servizio tramite un URL SAS e si verifica questo errore:
 
-- Verificare che l'URL di hello fornisca delle autorizzazioni necessarie hello tooread o un elenco di risorse.
+- Verificare che l'URL abbia le autorizzazioni necessarie per la lettura o l'elenco delle risorse.
 
-- Verificare che hello che URL non sia scaduto.
+- Verificare che l'URL non sia scaduto.
 
-- Se hello URL SAS è basata su criteri di accesso, verificare che i criteri di accesso hello non è stato revocato.
+- Se l'URL SAS si basa su un criterio di accesso, verificare che i criteri di accesso non siano stati revocati.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Se nessuna delle soluzioni di hello risolvere il problema, inviare il problema tramite lo strumento di feedback hello con messaggio di posta elettronica e il numero di dettagli sul problema hello incluso come si può, in modo che possiamo contattarti per risolvere il problema di hello.
+Se nessuna delle soluzioni funziona, comunicare il problema tramite lo strumento di feedback inserendo l'indirizzo di posta elettronica e il maggior numero di informazioni possibili, in modo che Microsoft possa contattare l'utente per risolvere il problema.
 
-toodo, fare clic su **Guida** menu e quindi fare clic su **Invia commenti e suggerimenti**.
+A tale scopo, fare clic sul menu **Guida** e quindi fare clic su **Commenti e suggerimenti**.
 
 ![Commenti e suggerimenti](./media/storage-explorer-troubleshooting/4022503_en_1.png)

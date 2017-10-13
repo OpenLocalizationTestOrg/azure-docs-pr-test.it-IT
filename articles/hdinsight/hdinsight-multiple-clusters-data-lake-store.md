@@ -1,6 +1,6 @@
 ---
-title: "HDInsight più cluster con un account archivio Azure Data Lake - Azure aaaUse | Documenti Microsoft"
-description: "Informazioni su come toouse più di un HDInsight cluster con un singolo account archivio Data Lake"
+title: "Usare più cluster HDInsight con un account Azure Data Lake Store - Azure | Microsoft Docs"
+description: "Informazioni su come usare più di un cluster HDInsight con un singolo account Data Lake Store"
 keywords: archiviazione hdinsight, hdfs, dati strutturati, dati non strutturati, data lake store
 services: hdinsight,storage
 documentationcenter: 
@@ -14,30 +14,30 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/02/2017
+ms.date: 08/28/2017
 ms.author: nitinme
-ms.openlocfilehash: 3a125b91fcc1e436270a1bd349f7a2d8f27e06fb
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 08f860dcf0f1d6c69cee02261b2a4989fc5c694a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="use-multiple-hdinsight-clusters-with-an-azure-data-lake-store-account"></a>Usare più cluster HDInsight con un account Azure Data Lake Store
 
-A partire dalla versione 3.5 di HDInsight, è possibile creare cluster HDInsight con account archivio Azure Data Lake come file System predefinito hello.
-Supportando l'archiviazione illimitata, Data Lake Store è ideale non solo per l'hosting di grandi quantità di dati, ma anche per l'hosting di più cluster HDInsight che condividono un unico account Data Lake Store. Per instructionson come toocreate un HDInsight cluster con archivio Data Lake come archiviazione hello, vedere [HDInsight creare cluster con archivio Data Lake](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md).
+A partire da HDInsight versione 3.5, è possibile creare cluster HDInsight con account Azure Data Lake Store come file system predefinito.
+Supportando l'archiviazione illimitata, Data Lake Store è ideale non solo per l'hosting di grandi quantità di dati, ma anche per l'hosting di più cluster HDInsight che condividono un unico account Data Lake Store. Per istruzioni su come creare un cluster HDInsight con Data Lake Store come risorsa di archiviazione, vedere [Creare cluster HDInsight con Data Lake Store](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md).
 
-Questo articolo fornisce amministratore dell'archivio Data Lake toohello indicazioni per la configurazione di un singolo e condivise Account Data Lake archiviare che può essere utilizzato in più **active** cluster HDInsight. Questi consigli si applicano toohosting Hadoop protetto nonché non sicure più cluster in un account archivio Data Lake condiviso.
+Questo articolo fornisce agli amministratori di Data Lake Store le informazioni necessarie per configurare un singolo account Data Lake Store condiviso, che possa essere usato in più cluster HDInsight **attivi**. Queste indicazioni valgono per l'hosting di più cluster Hadoop sicuri e non sicuri in un account Data Lake Store condiviso.
 
 
 ## <a name="data-lake-store-file-and-folder-level-acls"></a>ACL a livello di file e cartella di Data Lake Store
 
-Hello parte restante di questo articolo si presuppone che esista una buona conoscenza dei file e cartelle livello ACL nell'archivio Azure Data Lake, come descritto in dettaglio [controllo degli accessi in archivio Azure Data Lake](../data-lake-store/data-lake-store-access-control.md).
+La parte rimanente di questo articolo presuppone una buona conoscenza degli ACL a livello di file e cartella in Azure Data Lake Store, descritte nel dettaglio in [Controllo di accesso in Azure Data Lake Store](../data-lake-store/data-lake-store-access-control.md).
 
 ## <a name="data-lake-store-setup-for-multiple-hdinsight-clusters"></a>Configurazione di Data Lake Store per più cluster HDInsight
-Richiedere una gerarchia di cartelle a due livelli prendano indicazioni hello tooexplain per l'utilizzo di cluster HDInsight vengono con un account archivio Data Lake. È consigliabile avere un account archivio Data Lake con struttura di cartelle hello **/cluster/finance**. Con questa struttura, tutti i cluster di hello necessari hello Finance organizzazione possono usare /clusters/finance come percorso di archiviazione hello. In futuro, se un'altra organizzazione, ad esempio Marketing, desidera che il cluster HDInsight toocreate con hello stesso account archivio Data Lake, è stato possibile creare /clusters/marketing hello. Per il momento si userà solo **/clusters/finance**.
+Si userà una gerarchia di cartelle a due livelli per spiegare i suggerimenti relativi all'uso di più cluster HDInsight con un account Data Lake Store. Si consideri, ad esempio, di avere un account Data Lake Store con la struttura di cartelle **/clusters/finance**. Con questa struttura, tutti i cluster necessari all'organizzazione Finanza possono usare /clusters/finance come percorso di archiviazione. Se un'altra organizzazione, ad esempio Marketing, volesse creare in futuro cluster HDInsight usando lo stesso account Data Lake Store, potrà creare il percorso cluster/marketing. Per il momento si userà solo **/clusters/finance**.
 
-tooenable toobe di struttura questa cartella può essere utilizzato in modo efficace dai cluster HDInsight, amministratore di archivio Data Lake hello deve assegnare le autorizzazioni appropriate, come descritto nella tabella hello. autorizzazioni Hello illustrate nella tabella hello corrispondono tooAccess ACL e non gli ACL predefinito. 
+Per far sì che questa struttura di cartelle venga usata dai cluster HDInsight in modo efficace, l'amministratore di Data Lake Store deve assegnare le autorizzazioni appropriate, come descritto nella tabella. Le autorizzazioni illustrate nella tabella corrispondono ad ACL di accesso, non ad ACL predefiniti. 
 
 
 |Cartella  |Autorizzazioni  |utente proprietario  |gruppo proprietario  | Utente non anonimo | Autorizzazioni utente non anonimo | Gruppo non anonimo | Autorizzazioni gruppo non anonimo |
@@ -46,20 +46,20 @@ tooenable toobe di struttura questa cartella può essere utilizzato in modo effi
 |/clusters | rwxr-x--x |admin |admin |Entità servizio |--x  |FINGRP |r-x         |
 |/clusters/finance | rwxr-x--t |admin |FINGRP  |Entità servizio |rwx  |-  |-     |
 
-Nella tabella di hello,
+Nella tabella,
 
-- **amministrazione** è autore hello e amministratore di hello account archivio Data Lake.
-- **Entità servizio** è hello Azure Active Directory (AAD) entità servizio associata a hello account.
-- **FINGRP** è un gruppo di utenti creato in AAD che contenga gli utenti da hello organizzazione Finance.
+- **admin** è l'autore e amministratore dell'account Data Lake Store.
+- **Entità servizio** è l'entità servizio di Azure Active Directory (AAD) associata all'account.
+- **FINGRP** è un gruppo di utenti creato in AAD in cui sono contenuti gli utenti dell'organizzazione Finance.
 
-Per istruzioni su come toocreate un'applicazione AAD (che crea un'entità servizio), vedere [creare un'applicazione AAD](../azure-resource-manager/resource-group-create-service-principal-portal.md#create-an-azure-active-directory-application). Per istruzioni su come toocreate un gruppo di utenti in AAD, vedere [la gestione dei gruppi in Azure Active Directory](../active-directory/active-directory-accessmanagement-manage-groups.md).
+Per istruzioni su come creare un'applicazione AAD (che crea anche un'entità servizio), vedere [Creare un'applicazione Azure Active Directory](../azure-resource-manager/resource-group-create-service-principal-portal.md#create-an-azure-active-directory-application). Per istruzioni su come creare un gruppo di utenti in AAD, vedere [Gestione dei gruppi in Azure Active Directory](../active-directory/active-directory-accessmanagement-manage-groups.md).
 
-Tooconsider alcuni punti chiave.
+Alcuni punti chiave di cui tener conto.
 
-- struttura di cartelle di livello due Hello (**/cluster/finance/**) deve essere creato e il provisioning con le autorizzazioni appropriate dall'amministratore di archivio Data Lake hello **prima** utilizzando l'account di archiviazione hello per i cluster. Questa struttura non viene creata automaticamente durante la creazione dei cluster.
-- esempio Hello precedente si consiglia di impostare hello appartenenza gruppo di **/cluster/finance** come **FINGRP** permessi e **r-x** accedere tooFINGRP toohello intera gerarchia di cartelle a partire dalla radice hello. In questo modo si garantisce che i membri di hello del FINGRP possono esplorare la struttura di cartella hello a partire dalla radice.
-- In caso di hello quando le entità di servizio diversi AAD è possibile creare cluster in **/cluster/finance**, hello sticky bit (quando impostato su hello **finance** cartella) garantisce che le cartelle creati da un servizio Impossibile eliminare l'entità da altre hello.
-- Quando la struttura di cartelle hello e le autorizzazioni siano soddisfatti, processo di creazione del cluster HDInsight crea un loaction di archiviazione specifici per i cluster in **/cluster/finance/**. Ad esempio, è possibile archiviazione hello per un cluster con hello Nome fincluster01 **/clusters/finance/fincluster01**. Hello proprietà e le autorizzazioni per le cartelle di hello create dal cluster HDInsight è illustrato nella tabella hello qui.
+- La struttura di cartelle a due livelli (**/cluster/finance/**) deve essere creata e configurata con le autorizzazioni appropriate dall'amministratore di Data Lake Store **prima** di usare l'account di archiviazione per i cluster. Questa struttura non viene creata automaticamente durante la creazione dei cluster.
+- Nell'esempio precedente si consiglia di impostare il gruppo proprietario di **/cluster/finance** come **FINGRP** e di fornire a FINGRP l'autorizzazione **r-x** per accedere all'intera gerarchia di cartelle, a partire dalla radice. In questo modo, i membri di FINGRP possono esplorare la struttura di cartelle a partire dalla radice.
+- Nel caso in cui più entità servizio AAD possano creare cluster in **/cluster/finance**, lo sticky bit (se impostato sulla cartella **finance**) garantisce che le cartelle create da un'entità servizio non possano essere eliminate da altre entità servizio.
+- Dopo aver impostato la struttura di cartelle e le relative autorizzazioni, il processo di creazione di cluster HDInsight crea un percorso di archiviazione specifico del cluster in **/clusters/finance/**. La risorsa di archiviazione per un cluster con nome fincluster01, ad esempio, può essere **/clusters/finance/fincluster01**. La tabella seguente elenca la proprietà e le autorizzazioni relative alle cartelle create dal cluster HDInsight.
 
     |Cartella  |Autorizzazioni  |utente proprietario  |gruppo proprietario  | Utente non anonimo | Autorizzazioni utente non anonimo | Gruppo non anonimo | Autorizzazioni gruppo non anonimo |
     |---------|---------|---------|---------|---------|---------|---------|---------|
@@ -69,32 +69,32 @@ Tooconsider alcuni punti chiave.
 
 ## <a name="recommendations-for-job-input-and-output-data"></a>Suggerimenti per i dati di input e di output del processo
 
-È consigliabile processo tooa dei dati di input e output da un processo di hello essere archiviati in una cartella di fuori **/cluster**. In questo modo si garantisce che anche se hello specifici per i cluster cartella tooreclaim eliminati alcuni spazio di archiviazione, hello processo input e output sono ancora disponibili per un utilizzo futuro. In tal caso, verificare che la gerarchia di cartelle hello per l'archiviazione hello processo input e output consenta appropriato livello di accesso per hello dell'entità servizio.
+È consigliabile che i dati di input di un processo e i dati di output del processo vengano archiviati in una cartella esterna a **/cluster**. In questo modo, anche se la cartella specifica del cluster viene eliminata per liberare spazio di archiviazione, gli input e gli output del processo rimangono disponibili per un utilizzo futuro. In tal caso, assicurarsi che la gerarchia di cartelle per l'archiviazione dei dati di input e di output del processo consenta il livello di accesso appropriato per l'entità servizio.
 
 ## <a name="limit-on-clusters-sharing-a-single-storage-account"></a>Limite di cluster che condividono un unico account di archiviazione
 
-limite Hello hello numero di cluster che è possibile condividere un singolo account archivio Data Lake dipende dal carico di lavoro hello in esecuzione su tali cluster. Presenza di troppi cluster o i carichi di lavoro genera un notevole carico nei cluster hello che condividono un account di archiviazione potrebbe hello storage account ingresso/uscita tooget limitate.
+Il limite relativo al numero di cluster che possono condividere un singolo account Data Lake Store dipende dal carico di lavoro in esecuzione sui cluster. La presenza di troppi cluster o di carichi di lavoro molto elevati nei cluster che condividono un account di archiviazione può causare una limitazione del traffico in ingresso/uscita dall'account di archiviazione.
 
 ## <a name="support-for-default-acls"></a>Supporto per gli ACL predefiniti
 
-Quando si crea un'entità servizio con accesso utente specifico (come illustrato nella tabella hello precedente), è consigliabile **non** aggiunta hello denominato utente con un valore predefinito-ACL. Utilizzo dei risultati di ACL predefiniti nell'assegnazione hello di 770 autorizzazioni per l'utente proprietario, gruppo di appartenenza e altri l'accesso utente denominato provisioning. Sebbene non sottragga autorizzazioni all'utente proprietario (7) o al gruppo proprietario (7), il valore predefinito di 770 sottrae tutte le autorizzazioni agli altri membri (0). Di conseguenza, un problema noto con una particolari casi di utilizzo illustrato in dettaglio in hello [problemi noti e soluzioni alternative](#known-issues-and-workarounds) sezione.
+Quando si crea un'entità servizio con accesso utente non anonimo (come illustrato nella tabella precedente), è consigliabile **non** aggiungere l'utente non anonimo con un ACL predefinito. L'assegnazione di un accesso utente non anonimo con ACL predefiniti determina l'assegnazione di 770 autorizzazioni per l'utente proprietario, il gruppo proprietario e altri membri. Sebbene non sottragga autorizzazioni all'utente proprietario (7) o al gruppo proprietario (7), il valore predefinito di 770 sottrae tutte le autorizzazioni agli altri membri (0). Questo genera un problema noto con un particolare caso d'uso analizzato in dettaglio nella sezione [Problemi noti e soluzioni alternative](#known-issues-and-workarounds).
 
 ## <a name="known-issues-and-workarounds"></a>Problemi noti e soluzioni alternative
 
-Questa sezione elenca hello conosciuti per l'uso di HDInsight con archivio Data Lake e le relative soluzioni.
+In questa sezione sono elencati i problemi noti relativi all'uso di HDInsight con Data Lake Store e le relative soluzioni alternative.
 
 ### <a name="publicly-visible-localized-yarn-resources"></a>Risorse YARN localizzate visibili pubblicamente
 
-Quando viene creato un nuovo account archivio Azure Data Lake, viene eseguito automaticamente il provisioning directory radice hello con accesso ACL autorizzazione bits set too770. cartella Hello radice proprietario l'utente è set toohello che hello account (amministratore archivio Data Lake hello) creato e hello appartenenza gruppo toohello gruppo primario dell'utente hello che ha creato l'account di hello. Per gli altri membri non è previsto alcun tipo di acceso.
+Quando viene creato un nuovo account Azure Data Lake Store, la directory radice viene automaticamente configurata con i bit di autorizzazione dell'ACL di accesso impostati su 770. L'utente proprietario della cartella radice è impostato sull'utente che ha creato l'account (l'amministratore di Data Lake Store) e il gruppo proprietario è impostato sul gruppo principale dell'utente che ha creato l'account. Per gli altri membri non è previsto alcun tipo di acceso.
 
-Queste impostazioni sono note tooaffect uno specifico HDInsight casi di utilizzo acquisiti in [YARN 247](https://hwxmonarch.atlassian.net/browse/YARN-247). Invio processo potrebbe non riuscire con un messaggio di errore simile toothis:
+Queste impostazioni influiscono su uno specifico caso d'uso di HDInsight acquisito in [YARN 247](https://hwxmonarch.atlassian.net/browse/YARN-247). Gli invii di processi possono avere esito negativo con un messaggio di errore simile al seguente:
 
-    Resource XXXX is not publicly accessible and as such cannot be part of hello public cache.
+    Resource XXXX is not publicly accessible and as such cannot be part of the public cache.
 
-Come indicato nella hello che YARN JIRA collegato in precedenza, durante la localizzazione di risorse pubbliche, hello localizzatore convalida hello tutte le risorse richieste sono effettivamente pubbliche selezionando le relative autorizzazioni sul sistema di file remoto hello. Eventuali LocalResource che non soddisfano questa condizione vengono rifiutate per la localizzazione. salve controllo delle autorizzazioni, include file toohello e accesso in lettura per "altri". Questo scenario non funziona della casella quando si ospita il cluster HDInsight su Azure Data Lake, poiché Azure Data Lake Nega l'accesso troppo "altri" a livello di cartella radice.
+Come indicato nel documento JIRA YARN citato in precedenza, durante la localizzazione delle risorse pubbliche il localizzatore verifica che tutte le risorse richieste siano realmente pubbliche controllandone le autorizzazioni sul file system remoto. Eventuali LocalResource che non soddisfano questa condizione vengono rifiutate per la localizzazione. Il controllo delle autorizzazioni include l'accesso in lettura al file per gli altri membri. Questo scenario non può essere applicato direttamente per l'hosting di cluster HDInsight in Azure Data Lake, poiché Azure Data Lake nega agli altri membri l'accesso a livello di cartella radice.
 
 #### <a name="workaround"></a>Soluzione alternativa
-Lettura-esecuzione set di autorizzazioni per **altri** tramite la gerarchia di hello, ad esempio, in  **/** , **/cluster** e   **/cluster/finance**  come illustrato nella tabella hello precedente.
+Impostare le autorizzazioni di lettura ed esecuzione per gli **altri** membri attraverso la gerarchia, ad esempio in corrispondenza di **/**, **/clusters** e **/clusters/finance**, come illustrato nella tabella precedente.
 
 ## <a name="see-also"></a>Vedere anche
 

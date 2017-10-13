@@ -1,6 +1,6 @@
 ---
-title: 'Azure Active B2C di Directory: Aggiungere i propri criteri toocustom gli attributi e utilizzare in Modifica profilo | Documenti Microsoft'
-description: "Una procedura dettagliata sull'uso di proprietà di estensione, gli attributi personalizzati e vengono inclusi nell'interfaccia utente di hello"
+title: 'Azure Active Directory B2C: Aggiungere attributi a criteri personalizzati e usarli nella modifica del profilo | Microsoft Docs'
+description: "Procedura dettagliata che illustra come usare proprietà di estensione e attributi personalizzati e includerli nell'interfaccia utente"
 services: active-directory-b2c
 documentationcenter: 
 author: rojasja
@@ -14,63 +14,63 @@ ms.topic: article
 ms.devlang: na
 ms.date: 08/04/2017
 ms.author: joroja
-ms.openlocfilehash: 8cc9c6a38d7652797ba54a3e02078ac2bf4a693b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f3e4eb6fedf850dbb827fd2a10593249d2f17ef1
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-active-directory-b2c-creating-and-using-custom-attributes-in-a-custom-profile-edit-policy"></a>Azure Active Directory B2C: Creazione e utilizzo di attributi personalizzati in criteri personalizzati di modifica del profilo
 
 [!INCLUDE [active-directory-b2c-advanced-audience-warning](../../includes/active-directory-b2c-advanced-audience-warning.md)]
 
-In questo articolo creare un attributo personalizzato nella directory di Azure Active Directory B2C e il nuovo attributo utilizzato come un'attestazione personalizzata in viaggio di hello profilo Modifica utente.
+In questo articolo si crea un attributo personalizzato nella directory di Azure AD B2C e si usa il nuovo attributo come attestazione personalizzata nel percorso utente di modifica del profilo.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Hello completato i passaggi nell'articolo hello [Guida introduttiva a criteri personalizzati](active-directory-b2c-get-started-custom.md).
+Completare la procedura descritta nell'articolo [Introduzione ai criteri personalizzati](active-directory-b2c-get-started-custom.md).
 
-## <a name="use-custom-attributes-toocollect-information-about-your-customers-in-azure-active-directory-b2c-using-custom-policies"></a>Utilizzare gli attributi personalizzati toocollect informazioni sui clienti in Azure Active Directory B2C usando i criteri personalizzati
-La directory di Azure Active Directory (Azure AD) B2C viene fornita con un set predefinito di attributi: nome, cognome, città, codice postale, userPrincipalName e così via.  È spesso necessario toocreate attributi personalizzati.  ad esempio:
-* Un'applicazione che riguardano il cliente deve toopersist un attributo, ad esempio "LoyaltyNumber".
+## <a name="use-custom-attributes-to-collect-information-about-your-customers-in-azure-active-directory-b2c-using-custom-policies"></a>Usare attributi personalizzati per raccogliere informazioni sui clienti in Azure Active Directory B2C usando criteri personalizzati
+La directory di Azure Active Directory (Azure AD) B2C viene fornita con un set predefinito di attributi: nome, cognome, città, codice postale, userPrincipalName e così via.  È spesso necessario creare attributi personalizzati.  ad esempio:
+* Un'applicazione per i clienti deve rendere persistente un attributo, ad esempio "LoyaltyNumber".
 * Un provider di identità ha un identificatore utente univoco che deve essere salvato, ad esempio "uniqueUserGUID".
-* Stato hello toopersist dell'utente, ad esempio "migrationStatus". è necessario un proprio processo utente personalizzata
+* Un percorso utente personalizzato deve rendere persistente lo stato dell'utente, ad esempio "migrationStatus".
 
-Con Azure Active Directory B2C, è possibile estendere il set di hello di attributi archiviati in ogni account utente. È anche possibile leggere e scrivere tali attributi tramite hello [API Azure AD Graph](active-directory-b2c-devquickstarts-graph-dotnet.md).
+Con Azure AD B2C è possibile estendere il set di attributi archiviati in ogni account utente. Questi attributi possono anche essere scritti e letti usando l' [API Graph di Azure AD](active-directory-b2c-devquickstarts-graph-dotnet.md).
 
-Le proprietà di estensione estendono schema hello degli oggetti utente hello nella directory hello.  proprietà di estensione Hello termini, un attributo personalizzato e attestazioni personalizzate, vedere toohello stessa operazione nel contesto di hello di questo nome di articolo e hello varia a seconda del contesto di hello (applicazione, oggetto, criteri).
+Le proprietà di estensione estendono lo schema degli oggetti utente nella directory.  I termini proprietà di estensione, attributo personalizzato e attestazione personalizzata fanno riferimento allo stesso concetto nel contesto di questo articolo e il nome varia a seconda del contesto (applicazione, oggetto, criteri).
 
-Le proprietà di estensione possono essere registrate solo su un oggetto applicazione anche se possono contenere dati per un utente. proprietà Hello è applicazione toohello associata. oggetto applicazione Hello deve essere concesso l'accesso in scrittura tooregister una proprietà di estensione. Proprietà di estensione 100 (tra tutti i tipi e tutte le applicazioni) possono essere scritti tooany singolo oggetto. Le proprietà di estensione vengono aggiunti toohello tipo di directory di destinazione e diventa immediatamente accessibile nel tenant di directory hello Azure Active Directory B2C.
-Se un'applicazione hello viene eliminata, vengono rimosse anche le proprietà di estensione insieme a tutti i dati in essi contenuti per tutti gli utenti. Se una proprietà di estensione viene eliminata dall'applicazione hello, viene anche rimossa per hello hello valori eliminati e gli oggetti directory di destinazione.
+Le proprietà di estensione possono essere registrate solo su un oggetto applicazione anche se possono contenere dati per un utente. La proprietà è collegata all'applicazione. All'oggetto applicazione deve essere concesso l'accesso in scrittura per registrare una proprietà di estensione. In un oggetto possono essere scritte 100 proprietà di estensione per TUTTI i tipi e TUTTE le applicazioni. Le proprietà di estensione vengono aggiunte al tipo di directory di destinazione e diventano immediatamente accessibili nel tenant della directory di Azure AD B2C.
+Se l'applicazione viene eliminata, vengono rimosse anche le proprietà di estensione insieme a tutti i dati contenuti per tutti gli utenti. Se una proprietà di estensione viene eliminata dall'applicazione, viene rimossa dagli oggetti della directory di destinazione e i valori vengono eliminati.
 
-Le proprietà di estensione esistono solo nel contesto di hello di un'applicazione registrata nel tenant di hello. id di oggetto Hello dell'applicazione deve essere incluso in hello TechnicalProfile che lo utilizzano.
+Le proprietà di estensione esistono solo nel contesto di un'applicazione registrata nel tenant. L'ID oggetto dell'applicazione deve essere incluso nell'elemento TechnicalProfile che usa l'applicazione.
 
 >[!NOTE]
->directory di Azure Active Directory B2C Hello include in genere un'applicazione Web denominata `b2c-extensions-app`.  Questa applicazione viene utilizzata principalmente per le attestazioni personalizzate di hello create tramite il portale di Azure hello dai criteri predefiniti di hello b2c.  L'uso di estensioni di tooregister questa applicazione per i criteri personalizzati b2c è consigliato solo per gli utenti esperti.  Istruzioni per questo sono incluse nella sezione passaggi successivi in questo articolo hello.
+>La directory di Azure AD B2C include in genere un'app Web denominata `b2c-extensions-app`.  Questa applicazione viene usata principalmente dai criteri B2C predefiniti per le attestazioni personalizzate create tramite il portale di Azure.  L'uso di questa applicazione per registrare estensioni per i criteri personalizzati B2C è consigliata solo agli utenti esperti.  Le istruzioni per questa operazione sono comprese nella sezione Passaggi successivi di questo articolo.
 
 
-## <a name="creating-a-new-application-toostore-hello-extension-properties"></a>Creazione di un nuovo toostore applicazione le proprietà di estensione hello
+## <a name="creating-a-new-application-to-store-the-extension-properties"></a>Creazione di una nuova applicazione per archiviare le proprietà di estensione
 
-1. Aprire una sessione di esplorazione e passare toohello [Azure Portal](https://portal.azure.com) e accedere con credenziali amministrative di hello Directory B2C da tooconfigure.
-1. Fare clic su **Azure Active Directory** nel menu di navigazione sinistro hello. Potrebbe essere necessario per la selezione di più servizi toofind >.
+1. Aprire una sessione di esplorazione, passare al [portale di Azure](https://portal.azure.com) e accedere con le credenziali amministrative della directory B2C che si vuole configurare.
+1. Nel menu di spostamento sinistro fare clic su **Azure Active Directory**. Potrebbe essere necessario selezionare Altri servizi> per trovarlo.
 1. Selezionare **Registrazioni per l'app** e fare clic su **Registrazione nuova applicazione**
-1. Fornire seguente hello consigliato voci:
-  * Specificare un nome per un'applicazione web hello: **WebApp-GraphAPI-DirectoryExtensions**
+1. Specificare gli elementi seguenti consigliati:
+  * Specificare un nome per l'applicazione web: **WebApp-GraphAPI-DirectoryExtensions**
   * Tipo di applicazione: app Web/API
   * URL di accesso: https://{tenantName}.onmicrosoft.com/WebApp-GraphAPI-DirectoryExtensions
-1. Selezionare **Crea. Operazione completata viene visualizzato in hello **notifiche**
-1. Selezionare un'applicazione web hello appena creato: **WebApp-GraphAPI-DirectoryExtensions**
+1. Selezionare **Crea. Il completamento dell'operazione viene visualizzato nella sezione **notifiche**
+1. Selezionare l'applicazione web appena creata: **WebApp-GraphAPI-DirectoryExtensions**
 1. Selezionare Impostazioni: **Autorizzazioni necessarie**
-1. Selezionare l'API **Windows Active Directory**
+1. Selezionare l'API **Windows Azure Active Directory**
 1. Inserire un segno di spunta in Autorizzazioni per l'applicazione: **Legge e scrive i dati della directory**, quindi **Salva**
 1. Selezionare **Concedere le autorizzazioni** e quindi fare clic su **Sì** per confermare.
-1. Copiare negli Appunti tooyour e salvare hello seguenti identificatori dagli WebApp-GraphAPI-DirectoryExtensions > Impostazioni > Proprietà >
+1. Copiare negli Appunti e salvare gli identificatori seguenti da WebApp-GraphAPI-DirectoryExtensions>Impostazioni>Proprietà>
 *  **ID applicazione**. Esempio: `103ee0e6-f92d-4183-b576-8c3739027780`
 * **ID oggetto**. Esempio: `80d8296a-da0a-49ee-b6ab-fd232aa45201`
 
 
 
-## <a name="modifying-your-custom-policy-tooadd-hello-applicationobjectid"></a>Modifica di hello di tooadd ApplicationObjectId i criteri personalizzati
+## <a name="modifying-your-custom-policy-to-add-the-applicationobjectid"></a>Modifica dei criteri personalizzati per l'aggiunta di ApplicationObjectId
 
 ```xml
     <ClaimsProviders>
@@ -96,16 +96,16 @@ Le proprietà di estensione esistono solo nel contesto di hello di un'applicazio
 ```
 
 >[!NOTE]
->Hello <TechnicalProfile Id="AAD-Common"> è tooas cui "comuni" perché gli elementi sono inclusi in e riutilizzati in hello tutti TechnicalProfiles di Azure Active Directory utilizzando l'elemento hello:`<IncludeTechnicalProfile ReferenceId="AAD-Common" />`
+><TechnicalProfile Id="AAD-Common"> viene definito "common" perché i relativi elementi vengono inclusi e riusati in tutti i TechnicalProfile di Azure Active Directory usando l'elemento: `<IncludeTechnicalProfile ReferenceId="AAD-Common" />`
 
 >[!NOTE]
->Quando hello TechnicalProfile scrive per la proprietà di estensione di hello prima ora toohello appena creato, è possibile che si verifichi un errore occasionale.  proprietà di estensione Hello creato hello prima volta che viene utilizzato.  
+>Quando TechnicalProfile scrive per la prima volta nella proprietà di estensione appena creata, può verificarsi un errore occasionale.  La proprietà di estensione viene creata la prima volta che viene usata.  
 
-## <a name="using-hello-new-extension-property--custom-attribute-in-a-user-journey"></a>Utilizzando una nuova proprietà di estensione hello / attributo personalizzato in un proprio processo utente
+## <a name="using-the-new-extension-property--custom-attribute-in-a-user-journey"></a>Uso della nuova proprietà di estensione o del nuovo attributo personalizzato in un percorso utente
 
 
-1. Aprire hello Relying Party(RP) file che descrive i criteri di modifica viaggio utente.  Se si sta avviando, potrebbe essere consigliabile toodownload la versione di hello RP PolicyEdit già configurata file direttamente dalla sezione criteri personalizzati di B2C Azure nel portale di Azure hello hello.  In alternativa, aprire il file XML dalla cartella di archiviazione.
-2. Aggiungere un'attestazione personalizzata `loyaltyId`.  Includendo hello personalizzato con una richiesta di rimborso in hello `<RelyingParty>` elemento, è passato come un toohello parametro UserJourney TechnicalProfiles e incluse nel token hello per un'applicazione hello.
+1. Aprire il file Relying Party che descrive il percorso utente di modifica del criterio.  Se si è appena iniziato, può essere consigliabile scaricare la versione del file RP-PolicyEdit già configurata direttamente dalla sezione dei criteri personalizzati di Azure B2C nel portale di Azure.  In alternativa, aprire il file XML dalla cartella di archiviazione.
+2. Aggiungere un'attestazione personalizzata `loyaltyId`.  Includendo l'attestazione personalizzata nell'elemento `<RelyingParty>`, l'attestazione viene passata come parametro agli elementi UserJourney TechnicalProfile e inclusa nel token per l'applicazione.
 ```xml
 <RelyingParty>
    <DefaultUserJourney ReferenceId="ProfileEdit" />
@@ -123,7 +123,7 @@ Le proprietà di estensione esistono solo nel contesto di hello di un'applicazio
    </TechnicalProfile>
  </RelyingParty>
  ```
-3. Aggiungere un file di criteri di attestazione definizione toohello estensione `TrustFrameworkExtensions.xml` all'interno di hello `<ClaimsSchema>` elemento, come illustrato.
+3. Aggiungere una definizione di attestazione al file dei criteri di estensione `TrustFrameworkExtensions.xml` all'interno dell'elemento `<ClaimsSchema>`, come illustrato di seguito.
 ```xml
 <ClaimsSchema>
         <ClaimType Id="extension_loyaltyId">
@@ -134,10 +134,10 @@ Le proprietà di estensione esistono solo nel contesto di hello di un'applicazio
         </ClaimType>
 </ClaimsSchema>
 ```
-4. Aggiungere hello stessa attestazione file di definizione dei criteri di Base toohello `TrustFrameworkBase.xml`.  
->Aggiunta di un `ClaimType` definizione base hello sia nel hello estensioni file in genere non è necessario, tuttavia, poiché i passaggi successivi hello aggiungerà hello extension_loyaltyId tooTechnicalProfiles nel file di Base hello, convalida criteri hello rifiuterà il caricamento di hello hello file di base senza di esso.
->Potrebbe essere utile tootrace esecuzione di hello del viaggio utente hello denominato "ProfileEdit" nel file TrustFrameworkBase.xml hello.  Ricerca di viaggio utente hello di hello stesso nome nell'editor e osservare che il passaggio 5 di orchestrazione richiama hello TechnicalProfileReferenceID = "SelfAsserted ProfileUpdate".  Ricerca e controllare questo toofamiliarize TechnicalProfile con flusso hello.
-5. Aggiungere loyaltyId come attestazioni di input e output di hello TechnicalProfile "SelfAsserted ProfileUpdate"
+4. Aggiungere la stessa definizione di attestazione al file dei criteri di base `TrustFrameworkBase.xml`.  
+>L'aggiunta di una definizione `ClaimType` al file di base e delle estensioni non è generalmente necessaria. Dato che i passaggi successivi aggiungeranno tuttavia extension_loyaltyId agli elementi TechnicalProfile nel file di base, la convalida dei criteri rifiuterà il caricamento del file di base in assenza della definizione.
+>Può essere utile tenere traccia dell'esecuzione del percorso utente denominato "ProfileEdit" nel file TrustFrameworkBase.xml.  Cercare il percorso utente con lo stesso nome nell'editor e osservare che il passaggio di orchestrazione 5 richiama TechnicalProfileReferenceID="SelfAsserted-ProfileUpdate".  Cercare ed esaminare questo elemento TechnicalProfile per acquisire familiarità con il flusso.
+5. Aggiungere loyaltyId come attestazione di input e output nell'elemento TechnicalProfile "SelfAsserted-ProfileUpdate"
 ```xml
 <TechnicalProfile Id="SelfAsserted-ProfileUpdate">
           <DisplayName>User ID signup</DisplayName>
@@ -151,8 +151,8 @@ Le proprietà di estensione esistono solo nel contesto di hello di un'applicazio
             <InputClaim ClaimTypeReferenceId="alternativeSecurityId" />
             <InputClaim ClaimTypeReferenceId="userPrincipalName" />
 
-            <!-- Optional claims. These claims are collected from hello user and can be modified. Any claim added here should be updated in the
-                 ValidationTechnicalProfile referenced below so it can be written toodirectory after being updateed by hello user, i.e. AAD-UserWriteProfileUsingObjectId. -->
+            <!-- Optional claims. These claims are collected from the user and can be modified. Any claim added here should be updated in the
+                 ValidationTechnicalProfile referenced below so it can be written to directory after being updateed by the user, i.e. AAD-UserWriteProfileUsingObjectId. -->
             <InputClaim ClaimTypeReferenceId="givenName" />
             <InputClaim ClaimTypeReferenceId="surname" />
             <InputClaim ClaimTypeReferenceId="extension_loyaltyId"/>
@@ -161,8 +161,8 @@ Le proprietà di estensione esistono solo nel contesto di hello di un'applicazio
             <!-- Required claims -->
             <OutputClaim ClaimTypeReferenceId="executed-SelfAsserted-Input" DefaultValue="true" />
 
-            <!-- Optional claims. These claims are collected from hello user and can be modified. Any claim added here should be updated in the
-                 ValidationTechnicalProfile referenced below so it can be written toodirectory after being updateed by hello user, i.e. AAD-UserWriteProfileUsingObjectId. -->
+            <!-- Optional claims. These claims are collected from the user and can be modified. Any claim added here should be updated in the
+                 ValidationTechnicalProfile referenced below so it can be written to directory after being updateed by the user, i.e. AAD-UserWriteProfileUsingObjectId. -->
             <OutputClaim ClaimTypeReferenceId="givenName" />
             <OutputClaim ClaimTypeReferenceId="surname" />
             <OutputClaim ClaimTypeReferenceId="extension_loyaltyId"/>
@@ -172,7 +172,7 @@ Le proprietà di estensione esistono solo nel contesto di hello di un'applicazio
           </ValidationTechnicalProfiles>
         </TechnicalProfile>
 ```
-6. Aggiunge l'attestazione "UserWriteProfileUsingObjectId-AAD" TechnicalProfile toopersist hello valore attestazione hello nella proprietà di estensione hello, per l'utente corrente di hello nella directory hello.
+6. Aggiungere l'attestazione nell'elemento TechnicalProfile "AAD-UserWriteProfileUsingObjectId" per rendere persistente il valore dell'attestazione nella proprietà di estensione per l'utente corrente nella directory.
 ```xml
 <TechnicalProfile Id="AAD-UserWriteProfileUsingObjectId">
           <Metadata>
@@ -197,10 +197,10 @@ Le proprietà di estensione esistono solo nel contesto di hello di un'applicazio
           <IncludeTechnicalProfile ReferenceId="AAD-Common" />
         </TechnicalProfile>
 ```
-7. Aggiunge l'attestazione nel valore di hello tooread TechnicalProfile "UserReadUsingObjectId-AAD" dell'attributo di estensione hello ogni volta che un utente accede. Hello TechnicalProfiles finora sono state modificate nel flusso di hello del solo gli account locali.  Volendo nuovo attributo hello nel flusso di hello di un account o federata sociale, un set diverso di TechnicalProfiles deve toobe modificato. Vedere i passaggi successivi.
+7. Aggiungere l'attestazione nell'elemento TechnicalProfile "AAD-UserReadUsingObjectId" per leggere il valore dell'attributo di estensione ogni volta che l'utente esegue l'accesso. Fino ad ora gli elementi TechnicalProfile sono stati modificati solo nel flusso degli account locali.  Per inserire il nuovo attributo nel flusso di un account di social networking/federato è necessario modificare un set diverso di elementi TechnicalProfile. Vedere i passaggi successivi.
 
 ```xml
-<!-- hello following technical profile is used tooread data after user authenticates. -->
+<!-- The following technical profile is used to read data after user authenticates. -->
      <TechnicalProfile Id="AAD-UserReadUsingObjectId">
        <Metadata>
          <Item Key="Operation">Read</Item>
@@ -225,16 +225,16 @@ Le proprietà di estensione esistono solo nel contesto di hello di un'applicazio
 
 
 >[!IMPORTANT]
->elemento IncludeTechnicalProfile Hello aggiunge tutti gli elementi di hello di Azure ad comune toothis TechnicalProfile.
+>L'elemento IncludeTechnicalProfile aggiunge tutti gli elementi di AAD-Common a questo TechnicalProfile.
 
-## <a name="test-hello-custom-policy-using-run-now"></a>Criterio personalizzato di test hello tramite "Esegui"
-1. Aprire hello **Pannello di Azure Active Directory B2C** e passare troppo**identità esperienza Framework > criteri personalizzati**.
-1. Selezionare i criteri personalizzati hello caricato, quindi scegliere hello **Esegui ora** pulsante.
-1. È necessario essere in grado di toosign utilizzando un indirizzo di posta elettronica.
+## <a name="test-the-custom-policy-using-run-now"></a>Testare i criteri personalizzati tramite "Esegui adesso"
+1. Aprire il pannello **Azure AD B2C** e passare a **Framework dell'esperienza di gestione delle identità > Criteri personalizzati**.
+1. Selezionare il criterio personalizzato che è stato caricato e fare clic sul pulsante **Esegui adesso**.
+1. Dovrebbe essere possibile iscriversi usando un indirizzo di posta elettronica.
 
-token id Hello inviato nuovamente tooyour applicazione include una nuova proprietà di estensione hello come un'attestazione personalizzata preceduta da extension_loyaltyId. Vedere l'esempio.
+Il token ID inviato all'applicazione include la nuova proprietà di estensione come attestazione personalizzata, preceduta da extension_loyaltyId. Vedere l'esempio.
 
-```
+```json
 {
   "exp": 1493585187,
   "nbf": 1493581587,
@@ -253,18 +253,18 @@ token id Hello inviato nuovamente tooyour applicazione include una nuova proprie
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Aggiungere hello nuova attestazione toohello flussi per gli account di accesso account social modificando hello TechnicalProfiles elencati. Questi due TechnicalProfiles utilizzate dal toowrite gli account di accesso account sociale o federata e leggere i dati utente hello utilizzando alternativeSecurityId hello come indicatore di posizione dell'oggetto utente hello hello.
-```
+### <a name="add-the-new-claim-to-the-flows-for-social-account-logins-by-changing-the-technicalprofiles-listed-below-these-two-technicalprofiles-are-used-by-socialfederated-account-logins-to-write-and-read-the-user-data-using-the-alternativesecurityid-as-the-locator-of-the-user-object"></a>Aggiungere la nuova attestazione ai flussi per gli accessi con account di social networking modificando gli elementi TechnicalProfile elencati di seguito. Questi due elementi TechnicalProfile vengono usati per gli accessi con account di social networking/federati per scrivere e leggere i dati utente usando alternativeSecurityId come localizzatore dell'oggetto utente.
+```xml
   <TechnicalProfile Id="AAD-UserWriteUsingAlternativeSecurityId">
 
   <TechnicalProfile Id="AAD-UserReadUsingAlternativeSecurityId">
 ```
 
-Utilizzando hello stessi attributi di estensione tra i criteri predefiniti e personalizzati.
-Quando si aggiungono gli attributi dell'estensione (noto anche come attributi personalizzati) tramite l'uso del portale hello, tali attributi vengono registrati utilizzando hello * * b2c-estensioni-app presente in ogni tenant b2c.  toouse questi attributi di estensione per il criterio personalizzato:
-1. All'interno di tenant b2c in portal.azure.com, passare troppo**Azure Active Directory** e selezionare **registrazioni di App**
+È possibile usare gli stessi attributi di estensione tra i criteri predefiniti e personalizzati.
+Quando si aggiungono attributi di estensione (noti anche come attributi personalizzati) tramite il portale, gli attributi vengono registrati usando la **b2c-extensions-app presente in ogni tenant b2c.  Per usare questi attributi di estensione nei criteri personalizzati:
+1. All'interno del tenant b2c in portal.azure.com, passare a **Azure Active Directory** e selezionare **Registrazioni dell'app**
 2. Trovare **b2c-extensions-app** e selezionarlo
-3. In hello record 'Essentials' **ID applicazione** e hello **ID di oggetto**
+3. Nella riga "Essentials" registrare l'**ID applicazione** e l'**ID oggetto**
 4. Includerli nei metadati del profilo tecnico AAD-Common come indicato di seguito:
 
 ```xml
@@ -276,25 +276,25 @@ Quando si aggiungono gli attributi dell'estensione (noto anche come attributi pe
               <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.AzureActiveDirectoryProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
               <!-- Provide objectId and appId before using extension properties. -->
               <Metadata>
-                <Item Key="ApplicationObjectId">insert objectId here</Item> <!-- This is hello "Object ID" from hello "b2c-extensions-app"-->
-                <Item Key="ClientId">insert appId here</Item> <!--This is hello "Application ID" from hello "b2c-extensions-app"-->
+                <Item Key="ApplicationObjectId">insert objectId here</Item> <!-- This is the "Object ID" from the "b2c-extensions-app"-->
+                <Item Key="ClientId">insert appId here</Item> <!--This is the "Application ID" from the "b2c-extensions-app"-->
               </Metadata>
 ```
 
-la coerenza tookeep con esperienza del portale hello, creare questi attributi utilizzando l'interfaccia utente del portale hello *prima* utilizzarle nei criteri personalizzati.  Quando si crea un attributo "ActivationStatus" nel portale di hello, è necessario consultare tooit come indicato di seguito:
+Per mantenere la coerenza con l'esperienza del portale, creare questi attributi tramite l'interfaccia utente del portale *prima* di usarli nei criteri personalizzati.  Quando si crea un attributo "ActivationStatus" nel portale, è necessario farvi riferimento, come indicato di seguito:
 
 ```
-extension_ActivationStatus in hello custom policy
-extension_<app-guid>_ActivationStatus via hello Graph API.
+extension_ActivationStatus in the custom policy
+extension_<app-guid>_ActivationStatus via the Graph API.
 ```
 
 
 ## <a name="reference"></a>riferimento
 
-* A **profilo tecnico (TP)** è un tipo di elemento che può essere considerato come un *funzione* che definisce il nome di un endpoint, i metadati, il protocollo e dettagli hello exchange di attestazioni che hello identità Esperienza Framework deve eseguire.  Quando questo *funzione* viene chiamato in un passaggio di orchestrazione o da un altro TechnicalProfile, hello InputClaims e OutputClaims vengono forniti come parametri per il chiamante di hello.
+* Un **profilo tecnico** è un tipo di elemento che può essere considerato una *funzione* che definisce il nome di un endpoint, i relativi metadati, il protocollo e i dettagli dello scambio di attestazioni che deve essere eseguito dal Framework dell'esperienza di gestione delle identità.  Quando questa *funzione* viene chiamata in un passaggio di orchestrazione o da un altro TechnicalProfile, gli elementi InputClaims e OutputClaims vengono forniti come parametri dal chiamante.
 
 
-* Per una gestione completa sulle proprietà di estensione, vedere l'articolo hello [le estensioni dello SCHEMA di DIRECTORY | CONCETTI RELATIVI ALL'API GRAPH](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-directory-schema-extensions)
+* Per una descrizione completa delle proprietà di estensione, vedere l'articolo [ESTENSIONI DELLO SCHEMA DELLA DIRECTORY | CONCETTI RELATIVI ALL'API GRAPH](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-directory-schema-extensions)
 
 >[!NOTE]
->Gli attributi di estensione nell'API Graph sono denominati in base alla convenzione hello `extension_ApplicationObjectID_attributename`. Criteri personalizzati fanno riferimento gli attributi tooextensions come extension_attributename, pertanto l'omissione di hello ApplicationObjectId in hello XML
+>Gli attributi di estensione nell'API Graph vengono denominati usando la convenzione `extension_ApplicationObjectID_attributename`. I criteri personalizzati fanno riferimento agli attributi di estensione come extension_attributename, omettendo quindi ApplicationObjectId nel file XML

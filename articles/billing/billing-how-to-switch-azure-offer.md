@@ -1,6 +1,6 @@
 ---
-title: offerta di sottoscrizione di Azure aaaChange | Documenti Microsoft
-description: Informazioni su come toochange il Azure sottoscrizione e il commutatore tooa diversi offrono tramite il portale di gestione di hello sottoscrizione
+title: Cambiare l'offerta di sottoscrizione di Azure | Documentazione Microsoft
+description: Informazioni su come modificare la sottoscrizione di Azure e passare a un'offerta diversa tramite il Centro account di Azure
 services: 
 documentationcenter: 
 author: genlin
@@ -12,29 +12,31 @@ ms.service: billing
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 07/06/2017
+ms.topic: troubleshooting
+ms.date: 08/30/2017
 ms.author: genli
-ms.openlocfilehash: 3bed1f270296ebeff70fa8d2e02c08ad6da27184
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 48f5f4db60c104778a6c391d254e0bc0c4c95cee
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="switch-your-azure-subscription-tooanother-offer"></a>Passare l'offerta tooanother sottoscrizione di Azure
+# <a name="change-your-azure-pay-as-you-go-subscription-to-a-different-offer"></a>Modificare la sottoscrizione con pagamento in base al consumo in un'offerta diversa
 
-Come un [consumo](https://azure.microsoft.com/offers/ms-azr-0003p/) cliente, è possibile passare l'offerta di sottoscrizione di Azure tooanother in hello [centro Account](https://account.windowsazure.com/Subscriptions). Ad esempio, è possibile utilizzare questo vantaggio tootake funzionalità di hello [crediti mensili per i sottoscrittori di Visual Studio](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/). Se si utilizza una [versione di valutazione gratuita](https://azure.microsoft.com/free/), informazioni su come troppo[aggiornamento tooPay-come-di-Go](billing-upgrade-azure-subscription.md).
+I clienti [con pagamento in base al consumo](https://azure.microsoft.com/offers/ms-azr-0003p/) possono passare a un'offerta diversa per la sottoscrizione di Azure nel [Centro account](https://account.windowsazure.com/Subscriptions). È ad esempio possibile usare questa funzionalità per sfruttare il [Credito Azure mensile per sottoscrittori di Visual Studio](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/). 
+
+**Per eseguire l'aggiornamento dalla versione di valutazione gratuita**, vedere [Aggiornare la versione di valutazione gratuita o la sottoscrizione di Azure per Microsoft Imagine alla sottoscrizione con pagamento in base al consumo](billing-upgrade-azure-subscription.md).
 
 ## <a name="whats-supported"></a>Attività supportate:
 
-| Da | Anche|
+| Da | To |
 | --- | --- |
-| [Pagamento in base al consumo](https://azure.microsoft.com/offers/ms-azr-0003p/) |[Sviluppo/test con pagamento in base al consumo](https://azure.microsoft.com/offers/ms-azr-0023p/) |
-| [Pagamento in base al consumo](https://azure.microsoft.com/offers/ms-azr-0003p/) |[Visual Studio Professional](https://azure.microsoft.com/offers/ms-azr-0059p/) |
-| [Pagamento in base al consumo](https://azure.microsoft.com/offers/ms-azr-0003p/) |[Visual Studio Test Professional](https://azure.microsoft.com/offers/ms-azr-0060p/) |
-| [Pagamento in base al consumo](https://azure.microsoft.com/offers/ms-azr-0003p/) |[MSDN Platforms](https://azure.microsoft.com/offers/ms-azr-0062p/) |
-| [Pagamento in base al consumo](https://azure.microsoft.com/offers/ms-azr-0003p/) |[Visual Studio Enterprise](https://azure.microsoft.com/offers/ms-azr-0063p/) |
-| [Pagamento in base al consumo](https://azure.microsoft.com/offers/ms-azr-0003p/) |[Visual Studio Enterprise (BizSpark)](https://azure.microsoft.com/offers/ms-azr-0064p/) |
+| Pagamento in base al consumo |[Sviluppo/test con pagamento in base al consumo](https://azure.microsoft.com/offers/ms-azr-0023p/) |
+| Pagamento in base al consumo |[Visual Studio Professional](https://azure.microsoft.com/offers/ms-azr-0059p/) |
+| Pagamento in base al consumo |[Visual Studio Test Professional](https://azure.microsoft.com/offers/ms-azr-0060p/) |
+| Pagamento in base al consumo |[MSDN Platforms](https://azure.microsoft.com/offers/ms-azr-0062p/) |
+| Pagamento in base al consumo |[Visual Studio Enterprise](https://azure.microsoft.com/offers/ms-azr-0063p/) |
+| Pagamento in base al consumo |[Visual Studio Enterprise (BizSpark)](https://azure.microsoft.com/offers/ms-azr-0064p/) |
 
 > [!NOTE]
 > Per altre modifiche di offerte, [contattare il supporto tecnico](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade).
@@ -48,83 +50,69 @@ Come un [consumo](https://azure.microsoft.com/offers/ms-azr-0003p/) cliente, è 
 >
 
 1. Accedere al [Centro account di Azure](https://account.windowsazure.com/Subscriptions).
-
 1. Selezionare la sottoscrizione con pagamento in base al consumo.
+1. Fare clic su **Passa a un'altra offerta**. Il pulsante è disponibile se si usa una sottoscrizione con pagamento in base al consumo ed è stato completato il primo periodo di fatturazione.
 
-1. Fare clic su **offerta tooanother commutatore**. pulsante Hello è disponibile solo se si è in uso prepagato e completato con il primo periodo di fatturazione.
+   ![Si noti il pulsante Cambia offerta sul lato destro della pagina](./media/billing-how-to-switch-azure-offer/switchbutton.png)
+1. **Selezionare l'offerta preferita** dall'elenco di offerte disponibili per l'aggiornamento della sottoscrizione. L'elenco varia in base alle appartenenze associate all'account. Se non sono disponibili opzioni, controllare l'[elenco di offerte disponibili a cui è possibile passare](#whats-supported) e assicurarsi che siano disponibili le appartenenze corrette. 
 
-   ![Hello avviso commutatore offrono pulsante hello destra della pagina hello](./media/billing-how-to-switch-azure-offer/switchbutton.png)
+   ![Selezionare un'offerta a cui passare](./media/billing-how-to-switch-azure-offer/selectoffer.png)
+1. A seconda dell'offerta a cui si passa, può essere visualizzata una nota relativa all'impatto del passaggio. Leggere attentamente l'elenco e seguire le istruzioni prima di procedere.
 
-1. **Offerta hello selezionare desiderata** dall'elenco di hello di offerte di sottoscrizione può essere cambiata. Questo elenco varia in base sull'appartenenza hello associato all'account. Se non è disponibile, verificare hello [elenco delle offerte disponibili, è possibile passare a](#whats-supported) e assicurarsi di disporre delle appartenenze a destra di hello. 
+   ![Esaminare le note](./media/billing-how-to-switch-azure-offer/thingstonote.png)
+1. È possibile rinominare la sottoscrizione. Per impostazione predefinita, viene impostata sul nuovo nome dell'offerta. Fare clic su **Cambia offerta** per completare il processo.
 
-   ![Selezionare un'offerta da tooswitch a](./media/billing-how-to-switch-azure-offer/selectoffer.png)
+   ![Fare clic sul pulsante verde](./media/billing-how-to-switch-azure-offer/confirmpage.png)
+1. Completamento della procedura La sottoscrizione viene ora trasferita alla nuova offerta.
 
-1. A seconda di offerta hello, che si passa, è possibile visualizzare una nota sull'impatto di hello del cambio di. Scorrere l'elenco attentamente e seguire le istruzioni di hello prima di procedere.
+## <a name="frequently-asked-questions"></a>Domande frequenti
 
-   ![Esaminare le note sulla hello](./media/billing-how-to-switch-azure-offer/thingstonote.png)
+### <a name="what-is-an-azure-offer"></a>Che cos'è un'offerta di Azure?
 
-1. È possibile rinominare la sottoscrizione. Per impostazione predefinita, si è toohello nuova offerta nome. Fare clic su **commutatore offrono** processo hello toocomplete.
+Per offerta di Azure si intende il *tipo* di sottoscrizione di Azure di cui si dispone. Ad esempio, [pagamento in base al consumo](https://azure.microsoft.com/offers/ms-azr-0003p/), [Azure in Open](https://azure.microsoft.com/offers/ms-azr-0111p/) e [Visual Studio Enterprise](https://azure.microsoft.com/offers/ms-azr-0063p/) sono tutte offerte di Azure. Tutte le offerte presentano diversi [termini](https://azure.microsoft.com/support/legal/offer-details/) e alcune offrono vantaggi speciali. L'offerta di sottoscrizione è disponibile nella pagina della sottoscrizione del Centro account. Fare clic sul nome dell'offerta per visualizzare maggiori dettagli.
 
-   ![Fare clic sul pulsante verde hello](./media/billing-how-to-switch-azure-offer/confirmpage.png)
+   ![Fare clic sul collegamento dell'offerta nel Centro account per ottenere maggiori dettagli](./media/billing-how-to-switch-azure-offer/offerlink.png)
 
-1. Completamento della procedura La sottoscrizione è ora toohello disattivati nuova offerta.
+### <a name="why-dont-i-see-the-button"></a>Perché il pulsante non è visualizzato?
 
-## <a name="what-is-an-azure-offer"></a>Che cos'è un'offerta di Azure?
+Il pulsante **Passa a un'altra offerta** potrebbe non essere visibile se:
 
-Un'offerta di Azure è hello *tipo* di hello sottoscrizione di Azure si dispone. Ad esempio, [pagamento in base al consumo](https://azure.microsoft.com/offers/ms-azr-0003p/), [Azure in Open](https://azure.microsoft.com/offers/ms-azr-0111p/) e [Visual Studio Enterprise](https://azure.microsoft.com/offers/ms-azr-0063p/) sono tutte offerte di Azure. Tutte le offerte presentano diversi [termini](https://azure.microsoft.com/support/legal/offer-details/) e alcune offrono vantaggi speciali. offerta Hello della sottoscrizione sono disponibili nella pagina di sottoscrizione hello centro Account. Fare clic su hello offerta nome tooget ulteriori dettagli.
+* Non si usa una sottoscrizione [con pagamento in base al consumo](https://azure.microsoft.com/offers/ms-azr-0003p/). Attualmente solo le sottoscrizioni con pagamento in base al consumo possono essere convertite in un'altra offerta.
+  * Se si usa la [versione di valutazione gratuita](https://azure.microsoft.com/free/), vedere le informazioni relative a come [eseguire l'aggiornamento alla versione con pagamento in base al consumo](billing-upgrade-azure-subscription.md).
+  * Per cambiare offerta da una sottoscrizione diversa, [contattare il supporto tecnico](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade).
+* Il primo periodo di fatturazione non è ancora terminato ed è necessario attenderne il completamento prima di poter cambiare le offerte.
 
-   ![Fare clic sul collegamento di offerta di hello nel centro Account tooget ulteriori dettagli](./media/billing-how-to-switch-azure-offer/offerlink.png)
+### <a name="why-do-i-see-there-are-no-offers-available-in-your-region-or-country-at-this-time"></a>Perché viene visualizzato il messaggio "Non ci sono al momento offerte disponibili nella propria area geografica o nel proprio paese"?
 
-## <a name="why-cant-i-switch-offers"></a>Perché non è possibile passare a un'altra offerta?
-
-Non è possibile visualizzare hello **offerta tooanother commutatore** se:
-
-* Non si usa una sottoscrizione [con pagamento in base al consumo](https://azure.microsoft.com/offers/ms-azr-0003p/). Attualmente solo le sottoscrizioni a pagamento a consumo possono essere disattivati tooanother offerta.
-
-  * Se si utilizza una [versione di valutazione gratuita](https://azure.microsoft.com/free/), informazioni su come troppo[aggiornamento tooPay-come-di-Go](billing-upgrade-azure-subscription.md).
-  * tooswitch offerta da un'altra sottoscrizione [contattare il supporto tecnico](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade).
-
-* Si è ancora nel primo periodo di fatturazione. è necessario attendere che il primo periodo di fatturazione offre tooend prima di poter passare.
-
-È possibile che venga visualizzato il messaggio **Non ci sono al momento offerte disponibili nella propria area geografica o nel proprio paese** se:
-
-* Non è consentito cambiare offerta. Controllare hello [elenco delle offerte disponibili, è possibile passare a](#whats-supported).
-
+* Potrebbe non essere consentito passare a un'altra offerta. Controllare l'[elenco delle offerte disponibili a cui è possibile passare](#whats-supported) e assicurarsi di aver attivato i vantaggi corretti con Visual Studio o BizSpark.
 * Alcune offerte potrebbero non essere disponibili in tutti i paesi.
 
-## <a name="what-does-switching-azure-offers-do-toomy-service-and-billing"></a>Cosa cambio offerte Azure toomy servizio e fatturazione?
+### <a name="what-does-switching-azure-offers-do-to-my-service-and-billing"></a>Qual è l'effetto del passaggio a un'altra offerta di Azure sul servizio e sulla fatturazione?
 
-Di seguito sono riportati dettagli hello di ciò che accade quando si passa che offerte in hello centro Account Azure.
+Le informazioni dettagliate seguenti illustrano gli effetti del passaggio ad altre offerte di Azure nel Centro account.
 
-### <a name="no-service-downtime"></a>Non sono previsti tempi di inattività del servizio
+#### <a name="no-service-downtime"></a>Non sono previsti tempi di inattività del servizio
 
-Non sussiste alcuna inattività del servizio per tutti gli utenti associati hello sottoscrizione. Tuttavia, si passa toomay offerta di hello presentano restrizioni. Ad esempio, alcune offerte proibiscono l'utilizzo di produzione, pertanto sarà necessario sottoscrizione tooanother alle risorse di produzione toomove.
+Non è previsto alcun tempo di inattività dei servizi per gli utenti associati alla sottoscrizione. Tuttavia, è possibile che l'offerta a cui si passa preveda restrizioni. Alcune offerte, ad esempio, non consentono l'uso in produzione. Sarà quindi necessario spostare le risorse di produzione a un'altra sottoscrizione.
 
-### <a name="quota-increases-are-reset"></a>Gli aumenti di quota vengono reimpostati
+#### <a name="quota-increases-are-reset"></a>Gli aumenti di quota vengono reimpostati
 
-Quando si passa offerte, qualsiasi [limite o quota aumenta supera il limite predefinito di hello](../azure-supportability/resource-manager-core-quotas-request.md) vengono reimpostate. Non sussiste alcuna inattività del servizio, anche se si dispone di più risorse oltre il limite predefinito di hello. Ad esempio, si utilizza 200 core nella sottoscrizione, quindi cambio offerte Reimposta quota core toohello indietro predefinito di 20 Core. macchine virtuali che utilizzano 200 core hello Hello non sono interessato e continuerà toorun. Tuttavia, se non si effettua un'altra richiesta di aumento di quota, non sarà possibile eseguire il provisioning di altri core.
+Quando si cambia offerta, tutti gli [aumenti di limite o quota al di sopra del limite predefinito](../azure-supportability/resource-manager-core-quotas-request.md) vengono reimpostati. Non ci sono tempi di inattività del servizio, anche se si hanno risorse che superano il limite predefinito. Ad esempio, se si usassero 200 core nella sottoscrizione, con il cambio di offerta la quota di core potrebbe essere reimpostata sul valore predefinito di 20 core. Le VM che usano i 200 core non sono interessate e continuano a funzionare. Tuttavia, se non si effettua un'altra richiesta di aumento di quota, non sarà possibile eseguire il provisioning di altri core.
 
-### <a name="billing"></a>Fatturazione
+#### <a name="billing"></a>Fatturazione
 
-Giorno hello che si passa una fattura viene generata per tutti gli addebiti in sospeso. Quindi, la sottoscrizione viene fatturata per condizioni del hello nuova offerta piano tariffario. La data di ricorrenza annuale toohello modifiche in cui è stato modificato offerte di fatturazione della sottoscrizione. Utilizzo di fatturazione e i dati prima di hello offerta modifica non viene mantenuto, pertanto si consiglia di scaricare una copia prima di passare.
+Il giorno del passaggio viene generata una fattura per tutti gli addebiti in sospeso. Gli addebiti per la sottoscrizione vengono quindi applicati in base alle condizioni tariffarie della nuova offerta. La ricorrenza di fatturazione della sottoscrizione viene modificata alla data in cui è stato eseguito il passaggio di offerte. I dati relativi all'utilizzo e alla fatturazione generati prima del passaggio a un'altra offerta non vengono conservati, quindi è consigliabile scaricarne una copia prima del passaggio.
 
-> [!NOTE]
-> A causa di vincoli relativi toobilling, commutatori offerta non sono possibili all'interno di hello primo ciclo di fatturazione dopo la creazione di una sottoscrizione.
->
->
+### <a name="can-i-migrate-from-pay-as-you-go-to-cloud-solution-providerhttpspartnermicrosoftcomsolutionscloud-reseller-overview-csp-or-enterprise-agreementhttpsazuremicrosoftcompricingenterprise-agreement-ea"></a>È possibile eseguire la migrazione dalla sottoscrizione con pagamento in base al consumo a [Cloud Solution Provider](https://partner.microsoft.com/Solutions/cloud-reseller-overview) (CSP) o al [Contratto Enterprise ](https://azure.microsoft.com/pricing/enterprise-agreement/)?
 
-## <a name="can-i-migrate-from-pay-as-you-go-toocloud-solution-providerhttpspartnermicrosoftcomsolutionscloud-reseller-overview-csp-or-enterprise-agreementhttpsazuremicrosoftcompricingenterprise-agreement-ea"></a>È possibile eseguire la migrazione di consumo troppo[Cloud Solution Provider](https://partner.microsoft.com/Solutions/cloud-reseller-overview) (CSP) o [contratto Enterprise Agreement](https://azure.microsoft.com/pricing/enterprise-agreement/) (EA)?
+* Per eseguire la migrazione all'offerta CSP, vedere l'argomento relativo alla [migrazione della sottoscrizione di Azure con pagamento in base al consumo all'offerta CSP](https://docs.microsoft.com/en-us/azure/cloud-solution-provider/migration/migration-from-payg-to-csp).
+* Per migrare la sottoscrizione esistente a un contratto Enterprise, chiedere all'amministratore dell'iscrizione di aggiungere l'account al contratto Enterprise. Seguire le istruzioni incluse nell'invito ricevuto tramite posta elettronica per lo spostamento delle sottoscrizioni nell'ambito dell'iscrizione al contratto Enterprise. Per altre informazioni, vedere [Associate an Existing Account](https://ea.azure.com/helpdocs/associateExistingAccount) (Associare un account esistente) nel portale EA.
 
-* tooCSP toomigrate, vedere [tooCSP la migrazione delle sottoscrizioni Azure](https://blogs.technet.microsoft.com/hybridcloudbp/2016/08/26/azure-subscription-migration-to-csp/).
+### <a name="can-i-migrate-data-and-services-to-a-new-subscription"></a>È possibile eseguire la migrazione di dati e servizi a una nuova sottoscrizione?
 
-* tooEA toomigrate, aiutare l'amministratore di registrazione di aggiungere l'account in hello EA. Seguire le istruzioni toohave di posta elettronica di invito hello spostato di sotto registrazione EA le sottoscrizioni. vedere, più toolearn [associare un Account esistente](https://ea.azure.com/helpdocs/associateExistingAccount) nel portale di hello EA.
-
-## <a name="can-i-migrate-data-and-services-tooa-new-subscription"></a>È possibile eseguire la migrazione dei dati e servizi nuova sottoscrizione tooa?
-
-* È possibile eseguire la migrazione di risorse hello direttamente toohello nuova sottoscrizione, vedere [spostare sottoscrizione o il gruppo di risorse toonew risorse](../azure-resource-manager/resource-group-move-resources.md).
-
-* la proprietà tootransfer di una sottoscrizione di Azure e tutti gli elementi in essa contenuti toosomeone else, vedere [trasferimento della proprietà di una sottoscrizione di Azure](billing-subscription-transfer.md)
+* Sì, è possibile eseguire la migrazione delle risorse direttamente alla nuova sottoscrizione. Vedere [Spostare le risorse in un gruppo di risorse o una sottoscrizione nuovi](../azure-resource-manager/resource-group-move-resources.md).
+* Per trasferire la proprietà di una sottoscrizione di Azure e tutti gli elementi in essa contenuti a un altro utente, vedere [Transferring ownership of an Azure subscription](billing-subscription-transfer.md) (Trasferimento della proprietà di una sottoscrizione di Azure)
 
 ## <a name="need-help-contact-support"></a>Richiesta di assistenza Contattare il supporto tecnico.
 
-Se è ancora più domande, [contattare il supporto tecnico](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) tooget risolta il problema.
+Per altre domande, è possibile [contattare il supporto tecnico](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) per ottenere una rapida risoluzione del problema.

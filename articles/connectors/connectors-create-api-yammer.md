@@ -1,6 +1,6 @@
 ---
-title: hello aaaAdd Yammer connettore nelle app di logica di Azure | Documenti Microsoft
-description: Panoramica di hello Yammer connettore con i parametri di API REST
+title: Aggiungere il connettore Yammer alle app per la logica di Azure | Microsoft Docs
+description: Panoramica del connettore Yammer con i parametri dell'API REST
 services: logic-apps
 documentationcenter: 
 author: MandiOhlinger
@@ -15,34 +15,34 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/18/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: be75df770a8062d839926dff8c0195d2647f78d1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c7a213343b4fb2b5a89a5052a459061b404a431c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="get-started-with-hello-yammer-connector"></a>Iniziare con il connettore di Yammer hello
-Connettere le conversazioni tooaccess tooYammer nella rete aziendale. Con Yammer è possibile:
+# <a name="get-started-with-the-yammer-connector"></a>Introduzione al connettore Yammer
+Connettersi a Yammer per accedere alle conversazioni della rete dell'organizzazione. Con Yammer è possibile:
 
-* Compilare il flusso di business in base ai dati hello che si ottiene da Yammer. 
+* Creare il flusso aziendale in base ai dati ottenuti da Yammer. 
 * Usare i trigger quando c'è un nuovo messaggio in un gruppo o un feed che si sta seguendo.
-* Usare azioni toopost un messaggio, ottenere tutti i messaggi e altro ancora. Tali azioni ottengono una risposta e quindi apportare output di hello per le altre azioni. Ad esempio, quando viene visualizzato un nuovo messaggio, è possibile inviare un messaggio di posta elettronica tramite Office 365.
+* Usare le azioni per pubblicare un messaggio, recuperare tutti i messaggi e così via. Queste azioni ottengono una risposta e quindi rendono l'output disponibile per altre azioni. Ad esempio, quando viene visualizzato un nuovo messaggio, è possibile inviare un messaggio di posta elettronica tramite Office 365.
 
 Creare prima di tutto un'app per la logica. Vedere [Creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="create-a-connection-tooyammer"></a>Creare una connessione tooYammer
-connettore di Yammer hello toouse, creare innanzitutto un **connessione** quindi fornire i dettagli di hello per queste proprietà: 
+## <a name="create-a-connection-to-yammer"></a>Creare una connessione a Yammer
+Per usare il connettore Yammer, creare prima una **connessione**, quindi specificare i dettagli di queste proprietà: 
 
 | Proprietà | Obbligatorio | Descrizione |
 | --- | --- | --- |
 | Token |Sì |Specificare le credenziali di Yammer |
 
-> [!INCLUDE [Steps toocreate a connection tooYammer](../../includes/connectors-create-api-yammer.md)]
+> [!INCLUDE [Steps to create a connection to Yammer](../../includes/connectors-create-api-yammer.md)]
 > 
 
 ## <a name="connector-specific-details"></a>Dettagli specifici del connettore
 
-Visualizzare tutti i trigger e azioni definite in swagger hello e anche eventuali limiti di hello [dettagli connettore](/connectors/yammer/).
+Per visualizzare eventuali azioni e trigger definiti in Swagger ed eventuali limiti, vedere i [dettagli del connettore](/connectors/yammer/).
 
 ## <a name="more-connectors"></a>Altri connettori
-Tornare indietro toohello [elenco API](apis-list.md).
+Tornare all' [elenco di API](apis-list.md).

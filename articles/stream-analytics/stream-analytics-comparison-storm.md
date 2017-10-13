@@ -1,6 +1,6 @@
 ---
-title: 'Piattaforme Analitica: Apache Storm confronto tooStream Analitica | Documenti Microsoft'
-description: "Scelta di una piattaforma di cloud analitica utilizzando un tooStream confronto Apache Storm Analitica indicazioni. Comprendere le funzionalità e le differenze."
+title: 'Piattaforme di analisi: confronto tra Apache Storm e Analisi di flusso | Microsoft Docs'
+description: "Informazioni utili per scegliere una piattaforma di analisi cloud tramite confronto tra Apache Storm e Analisi di flusso. Comprendere le funzionalità e le differenze."
 keywords: piattaforma di analisi, piattaforme di analisi, piattaforma di analisi cloud, confronto con Storm
 services: stream-analytics
 documentationcenter: 
@@ -15,16 +15,16 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/27/2017
 ms.author: samacha
-ms.openlocfilehash: 5a0ec5b2439596f0da962f04b776472031660062
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 97044cb5d7b0b3fcb3b85328df618a265bc59b61
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="choosing-a-streaming-analytics-platform-comparing-apache-storm-and-azure-stream-analytics"></a>Scegliere una piattaforma di analisi di flusso: confronto tra Apache Storm e Analisi di flusso di Azure
-Azure offre diverse soluzioni per l'analisi dei flussi di dati: [Analisi di flusso di Azure](https://docs.microsoft.com/azure/stream-analytics/) e [Apache Storm in Azure HDInsight](https://azure.microsoft.com/services/hdinsight/apache-storm/). Entrambe le piattaforme analitica hello vantaggi di una soluzione PaaS. Ma piattaforme hello presentano alcune differenze significative anche le funzionalità come illustrato come configurare e gestirli. 
+Azure offre diverse soluzioni per l'analisi dei flussi di dati: [Analisi di flusso di Azure](https://docs.microsoft.com/azure/stream-analytics/) e [Apache Storm in Azure HDInsight](https://azure.microsoft.com/services/hdinsight/apache-storm/). Entrambe le piattaforme di analisi offrono i vantaggi di una soluzione PaaS. Tuttavia, le piattaforme presentano differenze significative nelle loro funzionalità, nonché nel modo in cui vengono configurate e gestite. 
 
-Questo articolo fornisce un confronto side-by-side di funzionalità toohelp che si sceglie tra Apache Storm e Analitica di flusso di Azure come piattaforma cloud analitica. 
+Questo articolo fornisce un confronto delle funzionalità che consente di scegliere tra Apache Storm e Analisi di flusso di Azure come piattaforma di analisi cloud. 
 
 ## <a name="general-features"></a>Funzionalità generali
 
@@ -121,14 +121,14 @@ Gli utenti distribuiscono e monitorano un intero cluster, che può ospitare più
             </td>
             <td width="204" valign="top">
                 <p>
-Prezzo al volume dei dati elaborati e hello numero di unità di streaming necessarie per ogni ora che hello processo è in esecuzione. 
+Il prezzo viene determinato dal volume dei dati elaborati e dal numero di unità di streaming necessarie per ogni ora di esecuzione del processo. 
                 </p>
                     <p>Per altre informazioni, vedere <a href="http://azure.microsoft.com/pricing/details/stream-analytics/">Prezzi di Analisi di flusso</a>.</p>
                 </p>
             </td>
             <td width="246" valign="top">
                 <p>
-unità di Hello di acquisto è basata su cluster e viene addebitato in base a ora hello hello cluster è in esecuzione, indipendente da processi di distribuzione.
+L'unità di acquisto è basata su cluster e l'addebito avviene in base al tempo di esecuzione del cluster, indipendentemente dai processi distribuiti.
                 </p>
                 <p>
 Per altre informazioni, vedere <a href="http://azure.microsoft.com/pricing/details/hdinsight/">Prezzi di HDInsight</a>.
@@ -189,7 +189,7 @@ Per impostazione predefinita sono supportati i join temporali e le aggregazioni 
             </td>
             <td width="246" valign="top">
                 <p>
-Gli operatori temporali devono essere implementati da utente hello.
+Gli operatori temporali devono essere implementati dall'utente.
                 </p>
             </td>
         </tr>
@@ -201,12 +201,12 @@ Gli operatori temporali devono essere implementati da utente hello.
             </td>
             <td width="204" valign="top">
                 <p>
-Gli utenti possono creare, eseguire il debug e monitorare i processi tramite il portale di Azure, hello utilizzando dati di esempio derivati da un flusso in tempo reale.
+Gli utenti possono creare, eseguire il debug e monitorare i processi tramite il portale di Azure usando i dati di esempio derivati da Live Stream.
                 </p>
             </td>
             <td width="246" valign="top">
                 <p>
-Gli utenti che utilizzano .NET possono sviluppare, eseguire il debug e monitorare tramite Visual Studio. Gli utenti utilizzando Java o in altri linguaggi possono utilizzare hello IDE di propria scelta.
+Gli utenti che utilizzano .NET possono sviluppare, eseguire il debug e monitorare tramite Visual Studio. Gli utenti che utilizzano Java o altri linguaggi possono usare l'IDE preferito.
                 </p>
             </td>
         </tr>
@@ -218,12 +218,12 @@ Gli utenti che utilizzano .NET possono sviluppare, eseguire il debug e monitorar
             </td>
             <td width="204" valign="top">
                 <p>
-I registri di stato e le operazioni di processo di base sono disponibili toohelp debug. Flusso Analitica attualmente non consentire agli utenti di specificare il tipo di contenuto o la quantità di contenuto è incluso nei registri hello (ad esempio, la modalità dettagliata).
+Lo stato dei processi di base e i log delle operazioni sono disponibili per facilitare il debug. Analisi di flusso di Azure attualmente non consente agli utenti di specificare il tipo o la quantità di contenuto inclusi nei log (ad esempio, la modalità dettagliata).
                 </p>
             </td>
             <td width="246" valign="top">
                 <p>
-Sono disponibili log dettagliati. Gli utenti possono accedere i log in Visual Studio o dal cluster toohello accesso a registri hello direttamente.
+Sono disponibili log dettagliati. Gli utenti possono accedere ai log in Visual Studio o accedendo al cluster e accedendo direttamente ai log.
                 </p>
             </td>
         </tr>
@@ -388,7 +388,7 @@ Il monitoraggio viene implementato tramite il portale di Azure e le API REST. Gl
             </td>
             <td width="246" valign="top">
                 <p>
-Il monitoraggio viene implementato tramite hello Storm UI e le API REST.
+Il monitoraggio viene implementato tramite l'interfaccia utente di Storm e le API REST.
                 </p>
             </td>
         </tr>
@@ -400,12 +400,12 @@ Il monitoraggio viene implementato tramite hello Storm UI e le API REST.
             </td>
             <td width="204" valign="top">
                 <p>
-La scalabilità è determinata dal numero di hello di unità di Streaming (SUs) per ogni processo. Ogni unità di Streaming elabora backup too1 MB al secondo, con un massimo di 50 unità. Per ulteriori informazioni, vedere <a href="https://docs.microsoft.com/azure/stream-analytics/stream-analytics-scale-jobs">velocità effettiva di scala tooincrease</a>.
+La scalabilità è determinata dal numero di unità di streaming (SUs) per ogni processo. Ogni unità di streaming elabora fino a 1 MB al secondo, con un massimo di 50 unità. Per ulteriori informazioni, vedere <a href="https://docs.microsoft.com/azure/stream-analytics/stream-analytics-scale-jobs">Ridimensionare i processi di Analisi di flusso di Azure per aumentare la velocità effettiva dell'elaborazione dei flussi di dati</a>.
                 </p>
             </td>
             <td width="246" valign="top">
                 <p>
-La scalabilità è determinata dal numero di hello di nodi nel cluster HDInsight Storm hello. limite superiore di Hello numero hello di nodi è definito dalla quota di Azure dell'utente hello.
+La scalabilità è determinata dal numero di nodi del cluster HDInsight Storm. Il limite superiore al numero di nodi è definito dalla quota di Azure dell'utente.
                 </p>
             </td>
         </tr>
@@ -417,7 +417,7 @@ La scalabilità è determinata dal numero di hello di nodi nel cluster HDInsight
             </td>
             <td width="204" valign="top">
                 <p>
-Gli utenti possono aumentare l'elaborazione dati o ottimizzare i costi aumentando o diminuendo hello numero di unità di Streaming, con un limite superiore di 1 GB al secondo.
+Gli utenti possono aumentare l'elaborazione dati o ottimizzare i costi aumentando o diminuendo il numero di unità di streaming, con un limite superiore di 1 GB al secondo.
                 </p>
             </td>
             <td width="246" valign="top">
@@ -475,10 +475,10 @@ Applicazione di patch automatica senza tempi di inattività.
             </td>
             <td width="246" valign="top">
                 <p>
-Contratto di servizio del 99,9% tempo di attività del cluster Storm hello. 
+Tempo di attività per il contratto di servizio del 99,9% del cluster Storm. 
                 </p>
                 <p>
-Apache Storm è una piattaforma di streaming a tolleranza di errore. Tuttavia, è tooensure responsabilità dell'utente hello che il flusso di esecuzione dei processi senza interruzioni.
+Apache Storm è una piattaforma di streaming a tolleranza di errore. Tuttavia, è responsabilità dell'utente assicurare che i processi di streaming vengano eseguiti senza interruzioni.
                 </p>
             </td>
         </tr>
@@ -519,7 +519,7 @@ Criteri configurabili predefiniti per riordinare e rilasciare gli eventi o modif
             </td>
             <td width="246" valign="top">
                 <p>
-Gli utenti devono implementare logica toohandle questo scenario.
+Gli utenti devono deve implementare la logica per gestire questo scenario.
                 </p>
             </td>
         </tr>
@@ -531,7 +531,7 @@ Gli utenti devono implementare logica toohandle questo scenario.
             </td>
             <td width="204" valign="top">
                 <p>
-Dati di riferimento sono disponibili dall'archiviazione BLOB di Azure con un massimo di 100 MB di cache in memoria. Dati di riferimento viene aggiornati dal servizio hello.
+Dati di riferimento sono disponibili dall'archiviazione BLOB di Azure con un massimo di 100 MB di cache in memoria. I dati di riferimento vengono aggiornati dal servizio.
                 </p>
             </td>
             <td width="246" valign="top">

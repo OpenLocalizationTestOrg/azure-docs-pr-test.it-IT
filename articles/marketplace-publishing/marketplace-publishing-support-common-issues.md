@@ -1,6 +1,6 @@
 ---
-title: problemi di supporto di aaaHow tootroubleshoot comuni publisher | Documenti Microsoft
-description: Comprendere come problemi di supporto dell'autore tootroubleshoot comune e in che modo tooget supporta
+title: Come risolvere i problemi di supporto comuni degli editori | Documentazione Microsoft
+description: Informazioni su come risolvere i problemi di supporto comuni degli editori e come ottenere supporto
 services: marketplace-publishing
 documentationcenter: na
 author: v-jeana
@@ -14,64 +14,64 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/16/2017
 ms.author: v-jeana; hascipio; v-dabosl
-ms.openlocfilehash: e2ee765f23f1d5db68006fd42aedf7d6e691360e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: dcd87ae977d5b4b4a2353e446ab89ac81b239195
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-tootroubleshoot-common-azure-marketplace-publisher-issues"></a>Come server di pubblicazione Azure Marketplace comuni tootroubleshoot problemi
-Questo articolo spiega come tooresolve o get supportano per alcuni scenari comuni di Marketplace.
+# <a name="how-to-troubleshoot-common-azure-marketplace-publisher-issues"></a>Come risolvere i problemi comuni degli editori in Azure Marketplace
+Questo articolo spiega come risolvere o ottenere supporto per alcuni scenari comuni relativi al Marketplace.
 
 ## <a name="credits-and-refunds"></a>Crediti e rimborsi
-In alcuni casi, potrebbe essere necessario toorequest una carta di credito o un rimborso per conto di un cliente.  Supporto Microsoft può garantire che le richieste di carta di credito e restituzione del cliente sono considerate e una risposta viene fornita tooyou debito.
+In alcuni casi, potrebbe essere necessario richiedere un credito o un rimborso per conto di un cliente.  Il supporto Microsoft può assicurare che le richieste di credito e di rimborso del cliente vengano prese in considerazione e che venga fornita una risposta a tempo debito.
 
-Hello seguente illustra come toorequest una carta di credito o il rimborso per conto di un cliente.
+Di seguito viene illustrato come richiedere un credito o un rimborso per conto di un cliente.
 
 > [!NOTE]
-> Se un cliente o il rivenditore Azure contatta Microsoft toorequest rimborso del prezzo, verrà applicata hello stessi criteri utilizzati per la fornitura di servizi di Azure. Se i criteri di indicano il scadenza rimborso del prezzo, verrà rilasciato in modo proattivo e la tua autorizzazione tooissue per conto dell'utente un rimborso o un cliente toohello carta di credito o un rivenditore di Azure, come applicabile. Se i criteri non indicano che rimborso del prezzo scadenza, si può invitare cliente hello o toocontact reseller Azure è direttamente.
+> Se un cliente o un rivenditore di Azure contatta Microsoft per richiedere un rimborso o un credito, Microsoft applicherà le stesse politiche usate per la fornitura dei servizi di Azure. Se tali politiche stabiliscono che è dovuto un rimborso o un credito, Microsoft emetterà in modo proattivo, e l'utente autorizza Microsoft all'emissione per suo conto, un rimborso o un credito per il cliente o il rivenditore di Azure, come applicabile. Se le politiche non stabiliscono che è dovuto un rimborso o un credito, Microsoft potrà invitare il cliente o il rivenditore di Azure a contattare direttamente l'utente.
 >
 >
 
   ![1_RequestRefund][1]
 
-1. Spostarsi tra le pagine di supporto toohello qui: [https://support.microsoft.com/en-us/getsupport?tenant=ClassicCommercial&locale=en-us&supportregion=en-us&pesid=15635&sd=&oaspworkflow=start_1.0.0.0&wf=0 & ccsid = 635562546535117884](https://support.microsoft.com/en-us/getsupport?tenant=ClassicCommercial&locale=en-us&supportregion=en-us&pesid=15635&sd=&oaspworkflow=start_1.0.0.0&wf=0&ccsid=635562546535117884).
-2. In hello **tipo di problema** , quindi selezionare **gestione clienti**.
-3. In hello **categoria** , quindi selezionare **approva o richiesta di rimborso di un cliente**.
-4. Fare clic su **'Avvia richiesta'**.
+1. Passare alle pagine di supporto all'indirizzo: [https://support.microsoft.com/en-us/getsupport?tenant=ClassicCommercial&locale=en-us&supportregion=en-us&pesid=15635&sd=&oaspworkflow=start_1.0.0.0&wf=0&ccsid=635562546535117884](https://support.microsoft.com/en-us/getsupport?tenant=ClassicCommercial&locale=en-us&supportregion=en-us&pesid=15635&sd=&oaspworkflow=start_1.0.0.0&wf=0&ccsid=635562546535117884).
+2. Nella casella **Tipo di problema** selezionare **Gestione dei clienti**.
+3. Nella casella **Categoria** selezionare **Approvare o richiedere un rimborso per un cliente**.
+4. Fare clic su **Avvio richiesta**.
 
    ![2_RequestRefund][2]
 
 1. Fornire informazioni di contatto.
-2. In hello **qual è il problema di hello?** immettere hello le seguenti informazioni:
+2. Nella casella **Tipo di problema** immettere le informazioni seguenti:
 
-   * ID sottoscrizione Hello di hello interessati cliente
-   * nome del cliente Hello
-   * La quantità credito hello dovrebbe essere basato su
-   * periodo di Hello di carta di credito hello
-   * Data di fattura Hello di tale periodo
-   * motivo Hello credito hello
+   * ID sottoscrizione del cliente interessato
+   * Nome del cliente
+   * Quantità del credito
+   * Periodo del credito
+   * Data di fatturazione di tale periodo
+   * Motivo del credito
 
-Entro 24 ore si riceverà un messaggio di posta elettronica che conferma la ricezione delle informazioni fornite. Dopo aver eseguita una decisione nella richiesta tooyour relazione, si verrà informati del risultato hello.
+Entro 24 ore si riceverà un messaggio di posta elettronica che conferma la ricezione delle informazioni fornite. Una volta presa una decisione in relazione alla richiesta, si verrà informati del risultato.
 
 ## <a name="customer-subscription-validation"></a>Convalida della sottoscrizione del cliente
-In alcuni casi, potrebbe essere i dettagli della sottoscrizione hello toovalidate per uno dei clienti. È possibile contattare il supporto Microsoft toohelp con questo. Supporto Microsoft consentirà di tooconfirm che un ID sottoscrizione e l'indirizzo di fatturazione appartiene tooa noti cliente.
+In alcuni casi, è necessario convalidare i dettagli della sottoscrizione per uno dei propri clienti. A tale scopo, è possibile contattare il supporto Microsoft. Il supporto Microsoft fornirà assistenza per verificare che un ID sottoscrizione e un indirizzo di fatturazione appartengano a un cliente noto.
 
   ![subscriptionvalidation][3]
 
 * È possibile che si venga contattati da un cliente che richiede supporto.
-* Non è possibile sapere come toovalidate che un cliente è un cliente originale per un'offerta.
-* È possibile registrare una convalida della sottoscrizione supporto clienti toorequest richiesta.
-* Sarà necessario tooprovide un ID di sottoscrizione del cliente e l'indirizzo di fatturazione.
-* Microsoft contatterà l'utente conferma tooprovide che indirizzo di fatturazione hello e ID di sottoscrizione sono noti toous.
+* Si potrebbe non sapere come verificare che il cliente è idoneo per una determinata offerta.
+* È possibile registrare una richiesta di supporto per richiedere la convalida della sottoscrizione del cliente.
+* Sarà necessario specificare un ID sottoscrizione e un indirizzo di fatturazione del cliente.
+* Si verrà contattati da Microsoft per fornire la conferma che l'indirizzo di fatturazione e l'ID sottoscrizione siano noti.
 
 ## <a name="how-do-i-update-my-publisher-profile"></a>Com'è possibile aggiornare il profilo di pubblicazione?
-Se si desidera tooupdate il profilo di pubblicazione, si possono eseguire tramite hello Microsoft Dev Center:
+Per aggiornare il proprio profilo di pubblicazione, usare Microsoft Dev Center:
 
-**1. Accedi a Windows Dev Center toohello**.
+**1. Accedere a Windows Dev Center**.
 
-* Aprire un nuovo Incognito Chrome o Internet Explorer InPrivate browsing sessione tooensure che non si è effettuato l'accesso account personale tooa.
-* Andare troppo[http://dev.windows.com/registration?accountprogram=azure](http://dev.windows.com/registration?accountprogram=azure)
+* Aprire una nuova sessione in incognito in Chrome o InPrivate Browsing in Internet Explorer per assicurarsi di non essere connessi a un account personale.
+* Passare a [http://dev.windows.com/registration?accountprogram=azure](http://dev.windows.com/registration?accountprogram=azure)
 
 ![inprivate][4]
 
@@ -79,39 +79,39 @@ Se si desidera tooupdate il profilo di pubblicazione, si possono eseguire tramit
 
 ![signin][5]
 
-**3. Completare la verifica di "Aiutaci a proteggere l'account" hello**.
+**3. Completare la verifica per la protezione dell'account**.
 
 > [!NOTE]
-> È possibile utilizzare il numero di telefono o tooverify indirizzo di posta elettronica.
+> È possibile usare un numero di telefono o un indirizzo di posta elettronica per la verifica.
 >
 >
 
 ![protectacct][6]
 
-**4. Passare tooAccount dettagli e informazioni contatto**.
+**4. Passare a Dettagli account e Informazioni contatto**.
 
 ![acctdetails][7]
 
 ## <a name="how-do-i-add-or-delete-an-administrator-from-my-publishing-account"></a>Com'è possibile aggiungere o eliminare un amministratore dall'account di pubblicazione?
 ![manageadmins][8]
 
-1. Passare toohello portale di pubblicazione.
+1. Passare al portale di pubblicazione.
 2. Selezionare **Editori**.
 3. Selezionare **Amministratori**.
-4. Aggiungere l'indirizzo di posta elettronica hello di hello co-amministratore che si desidera tooadd o rimuovere.
+4. Aggiungere l'indirizzo di posta elettronica del coamministratore che si desidera aggiungere o rimuovere.
 5. Selezionare **Salva**.
 
 ## <a name="next-steps--other-support-queries"></a>Passaggi successivi: altre richieste di supporto
-Per hello seguenti problemi, effettuare l'accesso un problema in [https://portal.azure.com](https://portal.azure.com):
+Per i problemi seguenti, registrare un problema all'indirizzo [https://portal.azure.com](https://portal.azure.com):
 
 * Com'è possibile segnalare un errore di fatturazione?
 * Si sono notate discrepanze nell'estratto conto o nel rendiconto dell'utilizzo.
 * Occorre assistenza per l'interpretazione dell'estratto conto.
 
-Per hello problemi seguenti, creare una richiesta di supporto in [http://go.microsoft.com/fwlink/?LinkId=272975](http://go.microsoft.com/fwlink/?LinkId=272975):
+Per i problemi seguenti, creare una richiesta di supporto all'indirizzo [http://go.microsoft.com/fwlink/?LinkId=272975](http://go.microsoft.com/fwlink/?LinkId=272975):
 
 * Si sono verificati problemi durante la gestione dei servizi Web.
-* Come modificare l'account Microsoft hello associato al mio account venditore
+* Com'è possibile modificare l'account Microsoft associato all'account venditore?
 
 [1]: ./media/marketplace-publishing-support-common-issues/requestrefund1.png
 [2]: ./media/marketplace-publishing-support-common-issues/requestrefund2.png

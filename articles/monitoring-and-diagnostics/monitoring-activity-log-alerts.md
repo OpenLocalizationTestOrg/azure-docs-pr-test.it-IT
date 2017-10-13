@@ -1,6 +1,6 @@
 ---
-title: "gli avvisi del registro attività aaaCreate | Documenti Microsoft"
-description: "Ricevere una notifica tramite posta elettronica, SMS e webhook quando si verificano determinati eventi nel registro attività hello."
+title: "Creare avvisi del log attività | Microsoft Docs"
+description: "Ricevere una notifica tramite SMS, webhook e posta elettronica quando si verificano determinati eventi nel log attività."
 author: johnkemnetz
 manager: orenr
 editor: 
@@ -14,118 +14,118 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/03/2017
 ms.author: johnkem
-ms.openlocfilehash: ba0716cc12a0b3a0024ee5562a025f3f153f8982
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3885469ec0e1fcc31386dd0ad7fe6cb5d03ab28e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-activity-log-alerts"></a>Creare avvisi del log attività
 
 ## <a name="overview"></a>Panoramica
-Gli avvisi del registro attività sono avvisi che attiverà quando viene generato un nuovo evento del log di attività che corrisponde alle condizioni di hello specificate nell'avviso di hello. Si tratta di risorse di Azure e possono essere create usando un modello di Azure Resource Manager. Sono inoltre può essere creati, aggiornati o eliminati nel portale di Azure hello. In questo articolo vengono presentati i concetti di base hello gli avvisi del registro attività. Viene quindi visualizzato come toouse hello tooset portale Azure backup di un avviso per eventi del registro attività.
+Gli avvisi del log attività vengono attivati quando si verifica un nuovo evento del log attività che corrisponde alle condizioni specificate nell'avviso. Si tratta di risorse di Azure e possono essere create usando un modello di Azure Resource Manager. Possono essere create, aggiornate o eliminate anche nel portale di Azure. In questo articolo vengono presentati i concetti alla base degli avvisi del log attività. Questo articolo illustra come usare il portale di Azure per configurare un avviso sugli eventi del log attività.
 
-In genere, si creano gli avvisi del registro attività tooreceive notifiche quando:
+In genere, si creano avvisi del log attività per ricevere notifiche quando:
 
-* Modifiche specifiche sulle risorse di sottoscrizione di Azure, risorse o gruppi di risorse tooparticular spesso con ambito. Ad esempio, è consigliabile una notifica quando viene eliminata una macchina virtuale in myProductionResourceGroup toobe. In alternativa, è possibile toobe riceve una notifica se eventuali nuovi ruoli assegnati tooa utente nella sottoscrizione.
-* Si verifica un evento di integrità del servizio. Gli eventi di integrità servizio includono la notifica di eventi imprevisti e gli eventi di manutenzione che si applicano tooresources nella sottoscrizione.
+* Si verificano modifiche specifiche nelle risorse nella sottoscrizione di Azure. Questi avvisi sono spesso limitati a risorse o gruppi di risorse specifici. Potrebbe ad esempio essere utile ricevere una notifica quando viene eliminata una macchina virtuale in myProductionResourceGroup o se vengono assegnati nuovi ruoli a un utente nella sottoscrizione.
+* Si verifica un evento di integrità del servizio. Gli eventi di integrità del servizio includono la notifica di eventi imprevisti e di manutenzione che si applicano alle risorse nella sottoscrizione.
 
-In entrambi i casi, un avviso di log attività consente di monitorare solo per gli eventi nella sottoscrizione hello in cui hello viene creato l'avviso.
+In ogni caso, un avviso del log attività monitora solo degli eventi nella sottoscrizione in cui è stato creato l'evento.
 
-È possibile configurare un avviso di log attività in base a qualsiasi proprietà di primo livello nell'oggetto JSON hello per un evento di registro attività. Tuttavia, portale hello Mostra opzioni più comuni di hello:
+È possibile configurare un avviso del log attività in base a qualsiasi proprietà di primo livello nell'oggetto JSON per un evento del log attività. Tuttavia il portale mostra le opzioni più comuni:
 
-- **Categoria**: amministrazione, integrità del servizio, scalabilità automatica e indicazione. Per ulteriori informazioni, vedere [Panoramica del log attività Azure hello](./monitoring-overview-activity-logs.md#categories-in-the-activity-log). toolearn informazioni su eventi di integrità del servizio, vedere [ricevere gli avvisi del registro attività sulle notifiche di servizio](./monitoring-activity-log-alerts-on-service-notifications.md).
+- **Categoria**: amministrazione, integrità del servizio, scalabilità automatica e indicazione. Per altre informazioni, vedere [Panoramica del log attività di Azure](./monitoring-overview-activity-logs.md#categories-in-the-activity-log). Per altre informazioni sugli eventi di integrità del servizio, vedere [Ricevere gli avvisi del log attività sulle notifiche del servizio](./monitoring-activity-log-alerts-on-service-notifications.md).
 - **Gruppo di risorse**
 - **Risorsa**
 - **Tipo di risorsa**
-- **Nome dell'operazione**: nome dell'operazione di controllo di accesso basato sui ruoli Gestione risorse hello.
-- **Livello**: hello a livello di gravità dell'evento hello (dettagliato, informativo, avviso, errore o critico).
-- **Stato**: stato di hello dell'evento di hello, in genere avviato, non è riuscito o ha avuto esito positivo.
-- **Evento avviato da**: anche noto come hello "chiamante". indirizzo di posta elettronica Hello o un identificatore di Azure Active Directory dell'utente hello che ha eseguito l'operazione di hello.
+- **Nome operazione**: il nome dell'operazione del controllo degli accessi in base al ruolo di Resource Manager.
+- **Livello**: il livello di gravità dell'evento (dettagliato, informativo, avvertenza, errore o critico).
+- **Stato**: lo stato dell'evento, in genere Avviato, Non riuscito o Riuscito.
+- **Evento avviato da**: noto anche come "chiamante". L'indirizzo di posta elettronica o un identificatore di Azure Active Directory dell'utente che ha eseguito l'operazione.
 
 >[!NOTE]
->È necessario specificare almeno due delle hello criteri che precede l'avviso, con una categoria di hello. Non è possibile creare un avviso che viene attivato ogni volta che viene creato un evento nel log attività hello.
+>È necessario specificare nell'avviso almeno due dei criteri precedenti e uno di questi deve rappresentare la categoria. Non è possibile creare un avviso che viene attivato ogni volta che si crea un evento nei log attività.
 >
 >
 
-Quando si attiva un avviso di log di attività, utilizza un'azione gruppo toogenerate azioni o le notifiche. Un gruppo di azione è un set riutilizzabile di ricevitori di notifica, ad esempio gli indirizzi di posta elettronica, gli URL webhook o i numeri di telefono di SMS. ricevitori di Hello possono fare riferimento da più toocentralize gli avvisi e raggruppare i canali di notifica. Quando si definisce l'avviso del log di attività, sono disponibili due opzioni. È possibile:
+Quando un avviso del log di attività viene attivato, usa un gruppo di azione per generare azioni o notifiche. Un gruppo di azione è un set riutilizzabile di ricevitori di notifica, ad esempio gli indirizzi di posta elettronica, gli URL webhook o i numeri di telefono di SMS. Più avvisi possono fare riferimento ai ricevitori per centralizzare e raggruppare i canali di notifica. Quando si definisce l'avviso del log di attività, sono disponibili due opzioni. È possibile:
 
 * Usare un gruppo di azione esistente nell'avviso del log attività. 
 * Creare un nuovo gruppo di azione. 
 
-toolearn ulteriori informazioni sui gruppi di azioni, vedere [creare e gestire gruppi di azioni nel portale di Azure hello](monitoring-action-groups.md).
+Per altre informazioni sui gruppi di azione, vedere [Creare e gestire gruppi di azione nel portale di Azure](monitoring-action-groups.md).
 
-toolearn sulle notifiche di integrità del servizio, vedere [ricevere gli avvisi del registro attività sulle notifiche di integrità servizio](monitoring-activity-log-alerts-on-service-notifications.md).
+Per altre informazioni sulle notifiche sull'integrità del servizio, vedere [Ricevere gli avvisi del log attività per le notifiche sull'integrità del servizio](monitoring-activity-log-alerts-on-service-notifications.md).
 
-## <a name="create-an-alert-on-an-activity-log-event-with-a-new-action-group-by-using-hello-azure-portal"></a>Creare un avviso per un evento di registro attività con un nuovo gruppo di azione utilizzando hello portale di Azure
-1. In hello [portale](https://portal.azure.com)selezionare **monitoraggio**.
+## <a name="create-an-alert-on-an-activity-log-event-with-a-new-action-group-by-using-the-azure-portal"></a>Creare un avviso per un evento del log attività con un nuovo gruppo di azione usando il portale di Azure
+1. Nel [portale](https://portal.azure.com)selezionare **Monitoraggio**.
 
-    ![Hello "Monitoraggio" del servizio](./media/monitoring-activity-log-alerts/home-monitor.png)
-2. In hello **log attività** selezionare **avvisi**.
+    ![Servizio "Monitoraggio"](./media/monitoring-activity-log-alerts/home-monitor.png)
+2. Nella sezione **Log attività** selezionare **Avvisi**.
 
-    ![Nella scheda "Avvisi" Hello](./media/monitoring-activity-log-alerts/alerts-blades.png)
-3. Selezionare **Aggiungi avviso di log attività**e compilare i campi di hello.
+    ![Scheda "Avvisi"](./media/monitoring-activity-log-alerts/alerts-blades.png)
+3. Selezionare il comando **Aggiungi avviso del log attività** e compilare i campi.
 
-4. Immettere un nome in hello **nome dell'avviso log attività** e selezionare un **descrizione**.
+4. Immettere un nome per la casella **Nome avviso del log attività** e selezionare una **descrizione**.
 
-    ![comando "Aggiungi avviso registro attività" Hello](./media/monitoring-activity-log-alerts/add-activity-log-alert.png)
+    ![Comando "Aggiungi avviso del log attività"](./media/monitoring-activity-log-alerts/add-activity-log-alert.png)
 
-5. Hello **sottoscrizione** casella autofills con la sottoscrizione corrente. Questa sottoscrizione è hello uno nel gruppo di azioni quali hello viene salvato. risorsa avviso Hello è distribuito toothis sottoscrizione e i monitoraggi log eventi dell'attività da essa.
+5. Nella casella **Sottoscrizione** viene inserita automaticamente la sottoscrizione corrente. Il gruppo di azione verrà salvato in questa sottoscrizione. Questa è la sottoscrizione in cui verrà distribuita la risorsa di avviso e in cui verranno monitorati gli eventi del log attività.
 
-    ![finestra di dialogo "Aggiungi avviso registro attività" Hello](./media/monitoring-activity-log-alerts/activity-log-alert-new-action-group.png)
+    ![Finestra di dialogo "Aggiungi avviso del log attività"](./media/monitoring-activity-log-alerts/activity-log-alert-new-action-group.png)
 
-6. Seleziona hello **gruppo di risorse** in cui hello avviso risorsa sono stati creati. Non si tratta di gruppo di risorse hello monitorato dall'avviso hello. In alternativa, è il gruppo di risorse hello risorse avviso hello in cui si trova.
+6. Selezionare il **gruppo di risorse** in cui verrà creata la risorsa di avviso. Non è il gruppo di risorse che viene monitorato dall'avviso, ma è quello in cui si trova la risorsa di avviso.
 
-7. Facoltativamente, selezionare un **categoria di eventi** toomodify hello filtri aggiuntivi che vengono visualizzati. Per gli eventi amministrativi, i filtri di hello includono **gruppo di risorse**, **risorse**, **tipo di risorsa**, **nome operazione**, **Livello**, **stato**, e **evento avviato da**. Questi valori identificano gli eventi che devono essere monitorati da questo avviso.
+7. Selezionare facoltativamente una **categoria di eventi** per modificare i filtri aggiuntivi visualizzati. Per gli eventi amministrativi, i filtri includono **Gruppo di risorse**, **Risorse**, **Tipo di risorsa**, **Nome dell'operazione**, **Livello**, **Stato** ed **Evento avviato da**. Questi valori identificano gli eventi che devono essere monitorati da questo avviso.
 
     >[!NOTE]
-    >È necessario specificare almeno uno dei criteri che precede l'avviso hello. Non è possibile creare un avviso che viene attivato ogni volta che viene creato un evento nel log attività hello.
+    >È necessario specificare nell'avviso almeno uno dei criteri precedenti. Non è possibile creare un avviso che viene attivato ogni volta che si crea un evento nei log attività.
     >
     >
 
-8. Immettere un nome in hello **nome del gruppo di azione** e immettere un nome in hello **nome breve** casella. nome breve Hello viene utilizzato al posto di un nome di un gruppo completo azione quando le notifiche vengono inviate utilizzando questo gruppo.
+8. Immettere un nome nella casella **Nome gruppo di azione** e un nome nella casella **Nome breve gruppo di azione**. Il nome breve viene usato al posto del nome completo di un gruppo di azione quando le notifiche vengono inviate usando questo gruppo.
 
-9.  Definire un elenco di azioni fornendo dell'azione hello:
+9.  Definire un elenco di azioni, fornendo i dati dell'azione seguenti:
 
-    a. **Nome**: immettere il nome dell'azione di hello, alias o identificatore.
+    a. **Nome:**: immettere il nome, l'alias o l'identificatore dell'azione.
 
     b. **Tipo di azione**: selezionare webhook, posta elettronica o SMS.
 
-    c. **Dettagli**: basato sul tipo di azione hello, immettere un numero di telefono, indirizzo di posta elettronica o webhook URI.
+    c. **Dettagli**: in base al tipo di azione immettere un numero di telefono, un indirizzo di posta elettronica o l'URI del webhook.
 
-10. Selezionare **OK** avviso hello toocreate.
+10. Fare clic su **OK** per creare l'avviso.
 
-avviso di Hello richiede alcuni minuti toofully propagare e quindi diventare attivo. Viene attivato quando i criteri dell'avviso hello corrispondono a nuovi eventi.
+La propagazione completa dell'avviso richiede alcuni minuti, quindi l'avviso diventa attivo. Si attiva quando nuovi eventi corrispondono ai criteri dell'avviso.
 
-Per ulteriori informazioni, vedere [informazioni schema di webhook hello utilizzato con gli avvisi del registro attività](monitoring-activity-log-alerts-webhook.md).
+Per altre informazioni, vedere [Informazioni sullo schema webhook degli avvisi del log attività](monitoring-activity-log-alerts-webhook.md).
 
 >[!NOTE]
->gruppo di azioni Hello definito in questa procedura è riutilizzabile come un gruppo di azioni esistenti per tutte le definizioni di avviso futuri.
+>Il gruppo di azione definito in questi passaggi è riutilizzabile come gruppo di azione esistente per tutte le future definizioni di avviso.
 >
 >
 
-## <a name="create-an-alert-on-an-activity-log-event-for-an-existing-action-group-by-using-hello-azure-portal"></a>Creare un avviso per un evento di registro attività per un gruppo di azioni esistenti utilizzando hello portale di Azure
-1. Seguire i passaggi da 1 a 7 hello precedente sezione toocreate l'avviso di log di attività.
+## <a name="create-an-alert-on-an-activity-log-event-for-an-existing-action-group-by-using-the-azure-portal"></a>Creare un avviso per un evento del log attività con un gruppo di azione esistente usando il portale di Azure
+1. Seguire i passaggi da 1 a 7 nella sezione precedente per creare l'avviso del log attività.
 
-2. In **notificare tramite**selezionare hello **esistente** pulsante di azione di gruppo. Selezionare un gruppo di azioni esistenti dall'elenco di hello.
+2. In **Notifica tramite** selezionare il pulsante Gruppo di azione **esistente**. Selezionare un gruppo di azione esistente dall'elenco.
 
-3. Selezionare **OK** avviso hello toocreate.
+3. Fare clic su **OK** per creare l'avviso.
 
-avviso di Hello richiede alcuni minuti toofully propagare e quindi diventare attivo. Viene attivato quando i criteri dell'avviso hello corrispondono a nuovi eventi.
+La propagazione completa dell'avviso richiede alcuni minuti, quindi l'avviso diventa attivo. Si attiva quando nuovi eventi corrispondono ai criteri dell'avviso.
 
 ## <a name="manage-your-alerts"></a>Gestire gli avvisi
 
-Dopo aver creato un avviso, è visibile nella sezione avvisi hello del pannello monitoraggio hello. Selezionare l'avviso di hello da toomanage per:
+Dopo la creazione, l'avviso sarà visibile nella sezione Avvisi del pannello Monitoraggio. Selezionare l'avviso da gestire per:
 
 * Modificarlo.
 * Eliminarlo.
-* Disabilitare o abilitare, se si desidera tootemporarily arrestare o riprendere la ricezione di notifiche di avviso hello.
+* Disabilitarlo o abilitarlo per interrompere temporaneamente o riprendere la ricezione delle notifiche relative all'avviso.
 
 ## <a name="next-steps"></a>Passaggi successivi
 - Ottenere una [panoramica degli avvisi](monitoring-overview-alerts.md).
 - Informazioni sulla [limitazione della frequenza delle notifiche](monitoring-alerts-rate-limiting.md).
-- Hello revisione [schema webhook avvisi del registro attività](monitoring-activity-log-alerts-webhook.md).
+- Esaminare lo [schema webhook degli avvisi del log attività](monitoring-activity-log-alerts-webhook.md).
 - Altre informazioni sui [gruppi di azione](monitoring-action-groups.md).  
 - Informazioni sulle [notifiche per l'integrità del servizio](monitoring-service-notifications.md).
-- Creare un [attività tutte le operazioni del motore di scalabilità automatica per la sottoscrizione di avvisi toomonitor log](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-alert).
-- Creare un [attività tutte le operazioni di scala/scalabilità di scalabilità automatica non riuscita per la sottoscrizione di avvisi toomonitor log](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-failed-alert).
+- Creare un [avviso del log attività per monitorare tutte le operazioni del motore di scalabilità automatica della sottoscrizione](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-alert).
+- Creare un [avviso del log attività per monitorare tutte le operazioni di scalabilità automatica in riduzione e in aumento non riuscite per la sottoscrizione](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-failed-alert).

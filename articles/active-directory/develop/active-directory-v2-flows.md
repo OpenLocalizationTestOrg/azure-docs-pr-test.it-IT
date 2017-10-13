@@ -1,6 +1,6 @@
 ---
-title: tipi di aaaApp per endpoint v 2.0 di Azure Active Directory hello | Documenti Microsoft
-description: tipi di Hello di App e gli scenari supportati dall'endpoint di v 2.0 hello Azure Active Directory.
+title: Tipi di app per l'endpoint v2.0 di Azure Active Directory | Documentazione Microsoft
+description: Tipi di app e scenari supportati dall'endpoint v2.0 di Azure Active Directory.
 services: active-directory
 documentationcenter: 
 author: dstrockis
@@ -15,39 +15,39 @@ ms.topic: article
 ms.date: 05/01/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: db95c88d6865abac8ce80378ccd6b63cb38e0a01
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9d59e7f0e8f326c40be86e199d7712f6c565cc13
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="app-types-for-hello-azure-active-directory-v20-endpoint"></a>Tipi di App per l'endpoint di v 2.0 hello Azure Active Directory
-Hello Azure Active Directory (Azure AD) v 2.0 endpoint supporta l'autenticazione per un'ampia gamma di architetture di applicazioni moderne, tutti gli elementi basati su protocolli standard del settore [2.0 OAuth o OpenID Connect](active-directory-v2-protocols.md). Questo articolo descrive i tipi di hello di App che è possibile compilare utilizzando la versione 2.0 di Azure AD, indipendentemente dal fatto la lingua preferita o una piattaforma. informazioni in questo articolo Hello sono progettato toohelp la conoscenza degli scenari di alto livello prima di [iniziare a utilizzarla con codice hello](active-directory-appmodel-v2-overview.md#getting-started).
+# <a name="app-types-for-the-azure-active-directory-v20-endpoint"></a>Tipi di app per l'endpoint v2.0 di Azure Active Directory
+L'endpoint v2.0 di Azure Active Directory supporta l'autenticazione di un'ampia gamma di architetture di app moderne, basate sui protocolli standard del settore [OAuth 2.0 o OpenID Connect](active-directory-v2-protocols.md). Questo articolo descrive brevemente i tipi di app che è possibile compilare usando Azure AD v2.0, indipendentemente dal linguaggio o dalla piattaforma preferita. Le informazioni contenute in questo articolo consentono di comprendere gli scenari generali prima di [iniziare a usare il codice](active-directory-appmodel-v2-overview.md#getting-started).
 
 > [!NOTE]
-> endpoint di Hello v 2.0 non supporta tutti gli scenari di Azure Active Directory e le funzionalità. toodetermine se è necessario utilizzare endpoint v 2.0 hello, conoscenza [limitazioni v 2.0](active-directory-v2-limitations.md).
+> Non tutti gli scenari e le funzionalità di Azure Active Directory sono supportati dall'endpoint v2.0. Per determinare se è necessario usare l'endpoint 2.0, vedere l'articolo relativo alle [limitazioni della versione 2.0](active-directory-v2-limitations.md).
 > 
 > 
 
-## <a name="hello-basics"></a>Nozioni di base Hello
-È necessario registrare ogni applicazione che utilizza endpoint v 2.0 hello in hello [portale di registrazione dell'applicazione Microsoft](https://apps.dev.microsoft.com). processo di registrazione applicazione Hello raccoglie e assegna i valori per l'app:
+## <a name="the-basics"></a>Nozioni di base
+È necessario registrare ogni app che usa l'endpoint v 2.0 nel [portale di registrazione delle applicazioni Microsoft](https://apps.dev.microsoft.com). Il processo di registrazione delle app raccoglie e assegna all'app questi valori:
 
 * Un **ID applicazione** che identifica l'app in modo univoco
-* Oggetto **URI di reindirizzamento** che è possibile utilizzare toodirect risposte tooyour back-app
+* Un **URI di reindirizzamento** che può essere usato per reindirizzare le risposte all'app
 * Altri valori specifici dello scenario
 
-Per informazioni dettagliate, vedere come troppo[registrare un'app](active-directory-v2-app-registration.md).
+Per i dettagli, vedere come [registrare un'app](active-directory-v2-app-registration.md).
 
-Dopo aver registrato l'applicazione hello, hello applicazione comunica con Azure AD mediante l'invio di richieste AD Azure toohello v 2.0 endpoint. Offriamo Framework open source e le librerie che gestiscono hello dettagli di queste richieste. È anche la logica di autenticazione hello opzione tooimplement hello manualmente tramite la creazione di endpoint toothese richieste:
+Dopo la registrazione, l'app comunica con Azure AD inviando richieste all'endpoint di Azure AD 2.0. Microsoft offre framework e librerie open source che gestiscono i dettagli di queste richieste. È sempre possibile implementare personalmente la logica di autenticazione creando richieste a questi endpoint:
 
 ```
 https://login.microsoftonline.com/common/oauth2/v2.0/authorize
 https://login.microsoftonline.com/common/oauth2/v2.0/token
 ```
-<!-- TODO: Need a page for libraries toolink too-->
+<!-- TODO: Need a page for libraries to link to -->
 
 ## <a name="web-apps"></a>App Web
-Per le app web (.NET, PHP, Java, Ruby, Python, nodo) che hello accessi utente tramite un browser, è possibile utilizzare [OpenID Connect](active-directory-v2-protocols.md) per l'accesso utente. In OpenID Connect, app web hello riceve un ID token. Un token ID è un token di sicurezza che verifica l'identità dell'utente hello e fornisce informazioni sull'utente hello in forma di hello di attestazioni:
+Per le app Web (.NET, PHP, Java, Ruby, Python, Node) accessibili tramite un browser, è possibile eseguire l'accesso utente tramite [OpenID Connect](active-directory-v2-protocols.md). In OpenID Connect, l'app Web riceve un token ID. Un token ID è un token di sicurezza che verifica l'identità dell'utente e fornisce informazioni sull'utente sotto forma di attestazioni:
 
 ```
 // Partial raw ID token
@@ -62,20 +62,20 @@ eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImtyaU1QZG1Cd...
 }
 ```
 
-È possibile acquisire informazioni tutti i tipi di token e attestazioni che sono disponibili tooan app in hello hello [v 2.0 token riferimento](active-directory-v2-tokens.md).
+Per informazioni su tutti i tipi di token e attestazioni disponibili per un'app, vedere le [informazioni di riferimento sui token 2.0](active-directory-v2-tokens.md).
 
-Nelle applicazioni server web, il flusso di accesso autenticazione hello accetta questi passaggi:
+Nelle app del server Web, il flusso di autenticazione dell'accesso esegue i passaggi generali seguenti:
 
 ![Flusso di autenticazione dell'app Web](../../media/active-directory-v2-flows/convergence_scenarios_webapp.png)
 
-È possibile verificare l'identità dell'utente hello convalidando i token ID hello con una chiave di firma pubblica che viene ricevuta dall'endpoint di hello v 2.0. È impostato un cookie di sessione, che può essere utente hello tooidentify utilizzato nelle pagine successive richieste.
+È possibile verificare l'identità dell'utente convalidando il token ID con una chiave di firma pubblica ricevuta dall'endpoint 2.0. Viene anche impostato un cookie di sessione che può essere usato per identificare l'utente nelle richieste di pagina successive.
 
-esempi di questo scenario in azione, provare una delle hello codice app web Accedi toosee nostri v 2.0 [Introduzione](active-directory-appmodel-v2-overview.md#getting-started) sezione.
+Per osservare il funzionamento di questo scenario, provare uno degli esempi di codice di accesso per app Web nella sezione [Introduzione](active-directory-appmodel-v2-overview.md#getting-started) per la versione 2.0.
 
-Inoltre toosimple Accedi, un'app di server web potrebbe essere necessario tooaccess un altro servizio web, ad esempio un'API REST. In questo caso, hello web server app scatta in un flusso OAuth 2.0 e di OpenID Connect combinato usando hello [flusso di codice di autorizzazione OAuth 2.0](active-directory-v2-protocols.md). Per altre informazioni su questo scenario, vedere l'[introduzione alle app Web e alle API Web](active-directory-v2-devquickstarts-webapp-webapi-dotnet.md).
+Oltre al semplice accesso, un'app per server Web potrebbe dover accedere ad altri servizi Web, ad esempio a un'API REST. In questo caso, l'app per server Web agisce in un flusso di OpenID Connect e OAuth 2.0 combinato, tramite il [flusso del codice di autorizzazione OAuth 2.0](active-directory-v2-protocols.md). Per altre informazioni su questo scenario, vedere l'[introduzione alle app Web e alle API Web](active-directory-v2-devquickstarts-webapp-webapi-dotnet.md).
 
 ## <a name="web-apis"></a>API Web
-È possibile utilizzare hello v 2.0 endpoint toosecure servizi web, ad esempio API Web RESTful dell'app. Invece di token ID e i cookie di sessione, un'API Web utilizza un toosecure token di accesso OAuth 2.0, dati e tooauthenticate le richieste in ingresso. il chiamante Hello di un'API Web aggiunge un token di accesso nell'intestazione di autorizzazione hello di una richiesta HTTP, simile al seguente:
+È possibile usare l'endpoint v2.0 per proteggere i servizi Web, ad esempio l'API Web RESTful dell'app. Al posto dei token ID e dei cookie di sessione, un'API Web usa un token di accesso OAuth 2.0 per proteggere i dati e autenticare le richieste in ingresso. Il chiamante di un'API Web aggiunge un token di accesso nell'intestazione dell'autorizzazione di una richiesta HTTP come illustrato di seguito:
 
 ```
 GET /api/items HTTP/1.1
@@ -85,39 +85,39 @@ Accept: application/json
 ...
 ```
 
-Hello API Web utilizza le informazioni di identità e tooextract hello accesso token tooverify hello API del chiamante sul chiamante hello delle attestazioni che vengono codificate nel token di accesso hello. toolearn su tutti i tipi di token e attestazioni che sono disponibili tooan app, hello vedere hello [v 2.0 token riferimento](active-directory-v2-tokens.md).
+L'API Web usa il token di accesso per verificare l'identità del chiamante dell'API ed estrarre informazioni su quest'ultimo dalle attestazioni codificate nel token di accesso. Per informazioni su tutti i tipi di token e attestazioni disponibili per un'app, vedere le [informazioni di riferimento sui token 2.0](active-directory-v2-tokens.md).
 
-Un'API Web è possibile concedere agli utenti hello power tooopt in o rifiutare esplicitamente una funzionalità specifica o dati che espongono le autorizzazioni, noto anche come [ambiti](active-directory-v2-scopes.md). Per un chiamata app tooacquire tooa ambito di autorizzazione, utente hello deve consentire toohello ambito durante un flusso. endpoint v 2.0 Hello chiede l'autorizzazione utente hello e tale hello che API Web riceve registra le autorizzazioni in tutti i token di accesso. Hello API Web convalida i token di accesso hello riceve in ogni chiamata e vengono eseguiti controlli di autorizzazione.
+Un'API Web può consentire agli utenti di fornire il consenso o rifiutare esplicitamente specifici dati o funzionalità esponendo le autorizzazioni, note anche come [ambiti](active-directory-v2-scopes.md). Per far sì che un'app chiamante acquisisca l'autorizzazione ad accedere a un ambito, l'utente deve fornire il consenso all'ambito durante un flusso. L'endpoint 2.0 chiede l'autorizzazione all'utente e quindi registra le autorizzazioni nei token di accesso ricevuti dall'API Web. L'API Web convalida i token di accesso ricevuti ad ogni chiamata ed esegue i controlli di autorizzazione appropriati.
 
-Un'API Web può ricevere token di accesso da tutti i tipi di app, tra cui app per server Web, desktop, per dispositivi mobili, a singola pagina, daemon sul lato server e anche altre API Web. flusso di alto livello Hello per un'API Web è simile al seguente:
+Un'API Web può ricevere token di accesso da tutti i tipi di app, tra cui app per server Web, desktop, per dispositivi mobili, a singola pagina, daemon sul lato server e anche altre API Web. Il flusso generale per un'API Web è simile al seguente:
 
 ![Flusso di autenticazione dell'API Web](../../media/active-directory-v2-flows/convergence_scenarios_webapi.png)
 
-toolearn come toosecure un'API Web tramite i token di accesso OAuth2, hello codice API Web, vedere esempi in questo [Introduzione](active-directory-appmodel-v2-overview.md#getting-started) sezione.
+Per informazioni su come proteggere un'API Web con i token di accesso OAuth2, vedere gli esempi di codice dell'API Web nella sezione [introduttiva](active-directory-appmodel-v2-overview.md#getting-started).
 
-In molti casi, le API web è inoltre necessario toomake richieste in uscita a valle tooother web API protette da Azure Active Directory.  toodo in tal caso, API web può sfruttare i vantaggi di Azure AD **sul conto di** flusso, che consente di hello web API tooexchange un token di accesso in ingresso per un altro toobe token di accesso utilizzati nelle richieste in uscita.  Hello v 2.0 dell'endpoint per conto di flusso è descritta in [dettaglio qui](active-directory-v2-protocols-oauth-on-behalf-of.md).
+In molti casi, le API Web devono anche effettuare richieste in uscita ad altre API Web downstream protette da Azure Active Directory.  A questo scopo, le API Web possono ricorrere al flusso **Per conto di** di Azure AD, che consente all'API Web di scambiare un token di accesso in ingresso con un altro token di accesso da usare in richieste in uscita.  Il flusso Per conto di dell'endpoint 2.0 è descritto nel [dettaglio qui](active-directory-v2-protocols-oauth-on-behalf-of.md).
 
 ## <a name="mobile-and-native-apps"></a>App per dispositivi mobili e native
-Dispositivo installato App, ad esempio le App per dispositivi mobili e desktop, è spesso necessario servizi back-end tooaccess o API Web che memorizzano i dati e funzioni per conto dell'utente. Queste applicazioni è possono aggiungere servizi tooback-end di accesso e autorizzazione tramite hello [flusso di codice di autorizzazione OAuth 2.0](active-directory-v2-protocols-oauth-code.md).
+Le app installate in un dispositivo, ad esempio app desktop e per dispositivi mobili, devono spesso accedere a servizi back-end o ad API Web che archiviano i dati ed eseguono funzioni per conto dell'utente. Queste app possono aggiungere accesso e autorizzazioni ai servizi back-end tramite il [flusso del codice di autorizzazione OAuth 2.0](active-directory-v2-protocols-oauth-code.md).
 
-In questo flusso app hello riceve un codice di autorizzazione dall'endpoint v 2.0 hello quando hello utente accede. autorizzazione toocall servizi back-end dell'autorizzazione codice rappresenta hello app Hello per conto di utenti hello è connesso. app Hello può scambiare il codice di autorizzazione hello in background hello per un token di accesso OAuth 2.0 e un token di aggiornamento. app Hello può utilizzare hello accesso token tooauthenticate tooWeb API nelle richieste HTTP e hello aggiornamento tooget token nuovi token di accesso alla scadenza del token di accesso meno recenti.
+In questo flusso, l'app riceve un codice di autorizzazione dall'endpoint 2.0 quando l'utente effettua l'accesso. Questo codice rappresenta l'autorizzazione dell'app a chiamare servizi back-end per conto dell'utente che ha eseguito l'accesso. L'app può scambiare il codice di autorizzazione in background con un token di accesso OAuth 2.0 e un token di aggiornamento. L'app può usare il token di accesso per l'autenticazione all'API Web nelle richieste HTTP e il token di aggiornamento per ottenere nuovi token di accesso quando i precedenti scadono.
 
 ![Flusso di autenticazione dell'app nativa](../../media/active-directory-v2-flows/convergence_scenarios_native.png)
 
 ## <a name="single-page-apps-javascript"></a>App a singola pagina (JavaScript)
-Molte app moderne hanno un front-end dell'app a singola pagina scritto principalmente in JavaScript. Il front-end viene scritto spesso usando un framework come AngularJS, Ember.js o Durandal. endpoint v 2.0 Hello Azure AD supporta queste App tramite hello [flusso implicito OAuth 2.0](active-directory-v2-protocols-implicit.md).
+Molte app moderne hanno un front-end dell'app a singola pagina scritto principalmente in JavaScript. Il front-end viene scritto spesso usando un framework come AngularJS, Ember.js o Durandal. L'endpoint di Azure AD 2.0 supporta queste app tramite il [flusso implicito OAuth 2.0](active-directory-v2-protocols-implicit.md).
 
-In questo flusso app hello ricevuto token direttamente da hello v 2.0 autorizza un endpoint, senza gli scambi di qualsiasi server a server. Tutti la logica di autenticazione e accetta di gestione delle sessioni inserire interamente nel client JavaScript hello, senza i reindirizzamenti di pagina aggiuntiva.
+In questo flusso, l'app riceve i token direttamente dall'endpoint di autorizzazione 2.0, senza eseguire scambi tra server. In questo modo, tutta la logica di autenticazione e gestione della sessione avviene interamente nel client JavaScript, senza eseguire reindirizzamenti a pagine aggiuntive.
 
 ![Flusso di autenticazione implicita](../../media/active-directory-v2-flows/convergence_scenarios_implicit.png)
 
-toosee questo scenario in azione, provare uno degli esempi di codice hello applicazione a una pagina nel nostro [Introduzione](active-directory-appmodel-v2-overview.md#getting-started) sezione.
+Per visualizzare questo scenario, provare uno degli esempi di codice di applicazione a singola pagina nella sezione [introduttiva](active-directory-appmodel-v2-overview.md#getting-started).
 
 ## <a name="daemons-and-server-side-apps"></a>App daemon e lato server
-Le applicazioni che dispongono di processi a esecuzione prolungata o che funzionano senza l'interazione con un utente necessario anche un modo tooaccess protetto risorse, ad esempio API Web. Queste App possono eseguire l'autenticazione e di ottenere token utilizzando l'identità dell'applicazione hello, piuttosto che un utente delega di identità, con il flusso di credenziali client OAuth 2.0 hello.
+Anche le app che contengono processi a esecuzione prolungata o che non prevedono l'interazione con l'utente necessitano di un modo per accedere alle risorse protette, ad esempio le API Web. Queste app possono autenticarsi e ottenere i token usando l'identità dell'app, anziché un'identità delegata dell'utente, con il flusso delle credenziali client di OAuth 2.0.
 
-In questo flusso app hello interagisce direttamente con hello `/token` endpoint tooobtain endpoint:
+In questo flusso, l'app interagisce direttamente con l'endpoint `/token` per ottenere gli endpoint:
 
 ![Flusso di autenticazione dell'app daemon](../../media/active-directory-v2-flows/convergence_scenarios_daemon.png)
 
-toobuild un'applicazione daemon, vedere la documentazione di credenziali client hello in nostro [Introduzione](active-directory-appmodel-v2-overview.md#getting-started) sezione o provare un [applicazione di esempio .NET](https://github.com/Azure-Samples/active-directory-dotnet-daemon-v2).
+Per compilare un'app daemon, vedere la documentazione sulle credenziali client nella sezione [Introduzione](active-directory-appmodel-v2-overview.md#getting-started) oppure provare un'[app di esempio .NET](https://github.com/Azure-Samples/active-directory-dotnet-daemon-v2).

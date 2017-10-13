@@ -1,6 +1,6 @@
 ---
-title: aaaCreate un IoT Hub di Azure utilizzando un modello (PowerShell) | Documenti Microsoft
-description: Come toouse un toocreate modello di gestione risorse di Azure un IoT Hub con PowerShell.
+title: Creare un hub IoT di Azure con un modello (PowerShell) | Documentazione Microsoft
+description: Come usare un modello di Azure Resource Manager per creare un hub IoT con PowerShell.
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -14,68 +14,68 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/08/2017
 ms.author: dobett
-ms.openlocfilehash: e98ff5e898200cd727b9326fb3df393e43b021e6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f83fac6cffc9e58582417324a4348ca3b6220f0c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-an-iot-hub-using-azure-resource-manager-template-powershell"></a>Creare un hub IoT usando un modello di Azure Resource Manager (PowerShell)
 
 [!INCLUDE [iot-hub-resource-manager-selector](../../includes/iot-hub-resource-manager-selector.md)]
 
-È possibile utilizzare Gestione risorse di Azure toocreate e gestire hub IoT di Azure a livello di codice. In questa esercitazione illustra come toouse un toocreate modello di gestione risorse di Azure un hub IoT con PowerShell.
+È possibile utilizzare Gestione risorse di Azure per creare e gestire hub IoT di Azure a livello di codice. In questa esercitazione viene illustrato come usare un modello di Azure Resource Manager per creare un hub IoT con PowerShell.
 
 > [!NOTE]
-> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Azure Resource Manager e classico](../azure-resource-manager/resource-manager-deployment-model.md). In questo articolo viene illustrato l'utilizzo del modello di distribuzione Azure Resource Manager hello.
+> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Azure Resource Manager e classico](../azure-resource-manager/resource-manager-deployment-model.md). In questo articolo viene illustrato l'uso del modello di distribuzione Azure Resource Manager.
 
-toocomplete questa esercitazione, è necessario hello seguenti:
+Per completare l'esercitazione, sono necessari gli elementi seguenti:
 
 * Un account Azure attivo. <br/>Se non si ha un account, è possibile crearne uno [gratuito][lnk-free-trial] in pochi minuti.
 * [Azure PowerShell 1.0][lnk-powershell-install] o versione successiva.
 
 > [!TIP]
-> articolo Hello [tramite Azure PowerShell con Gestione risorse di Azure] [ lnk-powershell-arm] fornisce ulteriori informazioni su come toouse PowerShell e Azure Resource Manager modelli toocreate Azure le risorse.
+> Per altre informazioni su come usare PowerShell e i modelli di Azure Resource Manager per creare risorse di Azure, vedere [Using Azure PowerShell with Azure Resource Manager][lnk-powershell-arm] (Uso di Azure PowerShell con Azure Resource Manager).
 
-## <a name="connect-tooyour-azure-subscription"></a>Connettersi tooyour sottoscrizione di Azure
+## <a name="connect-to-your-azure-subscription"></a>Connettersi alla sottoscrizione di Azure
 
-In un prompt dei comandi di PowerShell, immettere hello successivo comando toosign in tooyour sottoscrizione di Azure:
+In un prompt dei comandi di PowerShell, immettere il comando seguente per accedere alla sottoscrizione di Azure:
 
 ```powershell
 Login-AzureRmAccount
 ```
 
-Se si dispone di più sottoscrizioni di Azure, consente l'accesso tooall accesso tooAzure hello le sottoscrizioni di Azure associate con le credenziali. Utilizzare hello toolist hello Azure sottoscrizioni disponibili per l'utente toouse comando seguente:
+Se si usano più sottoscrizioni Azure e si esegue l'accesso ad Azure, è possibile accedere a tutte le sottoscrizioni di Azure associate alle credenziali. Usare il comando seguente per elencare gli account Azure che è possibile usare:
 
 ```powershell
 Get-AzureRMSubscription
 ```
 
-Utilizzare hello seguente sottoscrizione tooselect comando che si desidera toouse toorun hello comandi toocreate l'hub IoT. È possibile utilizzare il nome di sottoscrizione hello o ID dall'output di hello del comando precedente hello:
+Usare il comando seguente per selezionare la sottoscrizione che si vuole usare per eseguire i comandi per creare l'hub IoT. È possibile usare il nome o l'ID della sottoscrizione dall'output del comando precedente:
 
 ```powershell
 Select-AzureRMSubscription `
     -SubscriptionName "{your subscription name}"
 ```
 
-È possibile utilizzare hello toodiscover comandi in cui è possibile distribuire un hub IoT e hello attualmente supportate le versioni dell'API seguente:
+È possibile usare i comandi seguenti per individuare dove è possibile distribuire un hub IoT e le versioni API attualmente supportate:
 
 ```powershell
 ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Devices).ResourceTypes | Where-Object ResourceTypeName -eq IoTHubs).Locations
 ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Devices).ResourceTypes | Where-Object ResourceTypeName -eq IoTHubs).ApiVersions
 ```
 
-Creare un toocontain gruppo di risorse hub IoT utilizzando hello comando in uno dei percorsi di hello è supportato per l'IoT Hub seguente. In questo esempio viene creato un gruppo di risorse denominato **MyIoTRG1**:
+Creare un gruppo di risorse per contenere l'hub IoT usando il comando seguente in una delle località supportate per l'hub IoT. In questo esempio viene creato un gruppo di risorse denominato **MyIoTRG1**:
 
 ```powershell
 New-AzureRmResourceGroup -Name MyIoTRG1 -Location "East US"
 ```
 
-## <a name="submit-a-template-toocreate-an-iot-hub"></a>Inviare un toocreate modello un hub IoT
+## <a name="submit-a-template-to-create-an-iot-hub"></a>Inviare un modello per creare un hub IoT
 
-Utilizzare un toocreate modello JSON un hub IoT nel gruppo di risorse. È anche possibile utilizzare un Azure Resource Manager modello toomake modifiche tooan IoT hub esistente.
+Utilizzare un modello JSON per creare un hub IoT nel gruppo di risorse. È anche possibile usare un modello di Azure Resource Manager per apportare modifiche a un hub IoT esistente.
 
-1. Utilizzare un toocreate editor di testo un modello di gestione risorse di Azure denominato **template.json** con hello in seguito toocreate definizione di risorsa di un nuovo hub IoT standard. Questo esempio aggiunge hello IoT Hub hello **Stati Uniti orientali** area, consente di creare due gruppi di consumer (**cg1** e **cg2**) su endpoint compatibili con Hub eventi hello e utilizza hello **2016-02-03** versione API. Questo modello prevede inoltre si toopass nel nome dell'hub IoT hello come un parametro denominato **hubName**. Per l'elenco corrente di hello di percorsi che supportano IoT Hub vedere [stato Azure][lnk-status].
+1. Usare un editor di testo per creare un modello di Azure Resource Manager denominato **template.json** con la definizione di risorsa seguente per creare un nuovo hub IoT standard. In questo esempio l'hub IoT viene aggiunto all'area **Stati Uniti orientali**, vengono creati due gruppi di consumer (**cg1** e **cg2**) sull'endpoint compatibile con Hub eventi e viene usata la versione **2016-02-03** dell'API. Questo modello prevede anche che il nome dell'hub IoT venga passato come un parametro denominato **hubName**. Per un elenco aggiornato delle località in cui è supportato l'hub IoT, vedere lo [Stato di Azure][lnk-status].
 
     ```json
     {
@@ -127,35 +127,35 @@ Utilizzare un toocreate modello JSON un hub IoT nel gruppo di risorse. È anche 
     }
     ```
 
-2. Salvare file di modello hello Azure Resource Manager nel computer locale. Questo esempio presuppone che il file venga salvato in una cartella denominata **c:\templates**.
+2. Salvare il file del modello di Azure Resource Manager sul computer locale. Questo esempio presuppone che il file venga salvato in una cartella denominata **c:\templates**.
 
-3. Eseguire hello toodeploy comando dopo il nuovo hub IoT, passando il nome di hello dell'hub IoT come parametro. In questo esempio, è il nome di hello dell'hub IoT hello `abcmyiothub`. nome Hello dell'hub IoT deve essere globalmente univoco:
+3. Eseguire il comando seguente per distribuire il nuovo hub IoT, passando il nome dell'hub IoT come parametro. In questo esempio, il nome dell'hub IoT è `abcmyiothub`. Il nome dell'hub IoT deve essere globalmente univoco:
 
     ```powershell
     New-AzureRmResourceGroupDeployment -ResourceGroupName MyIoTRG1 -TemplateFile C:\templates\template.json -hubName abcmyiothub
     ```
   [!INCLUDE [iot-hub-pii-note-naming-hub](../../includes/iot-hub-pii-note-naming-hub.md)]
 
-4. output di Hello Visualizza chiavi di hello per l'hub IoT hello che è stato creato.
+4. L'output visualizza le chiavi per l'hub IoT che è stato creato.
 
-5. l'applicazione aggiunta tooverify hello nuovo hub IoT, visitare hello [portale di Azure] [ lnk-azure-portal] e visualizzare l'elenco delle risorse. In alternativa, utilizzare hello **Get-AzureRmResource** cmdlet di PowerShell.
+5. Per verificare che l'applicazione abbia aggiunto il nuovo hub IoT, visitare il [portale di Azure][lnk-azure-portal] e visualizzare l'elenco delle risorse. In alternativa, usare il cmdlet di PowerShell **Get-AzureRmResource**.
 
 > [!NOTE]
-> Questa applicazione di esempio aggiunge un hub IoT Standard S1 che viene addebitato. È possibile eliminare l'hub IoT hello tramite hello [portale di Azure] [ lnk-azure-portal] o utilizzando hello **Remove-AzureRmResource** cmdlet PowerShell dopo aver terminato.
+> Questa applicazione di esempio aggiunge un hub IoT Standard S1 che viene addebitato. Al termine è possibile eliminare l'hub IoT usando il [portale di Azure][lnk-azure-portal] o il cmdlet di PowerShell **Remove-AzureRmResource**.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Dopo aver distribuito un hub IoT con un modello di gestione risorse di Azure PowerShell, è opportuno tooexplore ulteriormente:
+Dopo aver distribuito un hub IoT usando un modello di Azure Resource Manager con PowerShell, può essere opportuno ottenere informazioni più dettagliate:
 
-* Leggere informazioni sulle funzionalità di hello di hello [il provider di risorse IoT Hub API REST][lnk-rest-api].
-* Lettura [Panoramica di gestione risorse di Azure] [ lnk-azure-rm-overview] toolearn ulteriori informazioni sulla funzionalità hello di gestione risorse di Azure.
+* Informazioni sulle funzionalità dell'[API REST del provider di risorse dell'hub IoT][lnk-rest-api].
+* Per altre informazioni sulle funzionalità di Azure Resource Manager, vedere la [Panoramica di Azure Resource Manager][lnk-azure-rm-overview].
 
-toolearn più sullo sviluppo per l'IoT Hub, vedere hello seguenti articoli:
+Per altre informazioni sulle attività di sviluppo per l'hub IoT, vedere gli articoli seguenti:
 
-* [Introduzione tooC SDK][lnk-c-sdk]
+* [Introduzione a C SDK][lnk-c-sdk]
 * [Azure IoT SDKs][lnk-sdks] (SDK di IoT di Azure)
 
-toofurther esplorare le funzionalità di hello di IoT Hub, vedere:
+Per altre informazioni sulle funzionalità dell'hub IoT, vedere:
 
 * [Simulazione di un dispositivo con Azure IoT Edge][lnk-iotedge]
 

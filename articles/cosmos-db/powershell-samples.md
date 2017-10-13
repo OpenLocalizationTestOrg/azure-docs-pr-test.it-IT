@@ -1,6 +1,6 @@
 ---
-title: Esempi di PowerShell per Azure Cosmos DB aaaAzure | Documenti Microsoft
-description: Esempi di PowerShell Azure - toohelp script per creare e gestire gli account di Azure Cosmos DB.
+title: Esempi di Azure PowerShell per Azure Cosmos DB | Microsoft Docs
+description: Esempi di Azure PowerShell - Script per creare e gestire gli account di Azure Cosmos DB.
 services: cosmos-db
 author: mimig1
 manager: jhubbard
@@ -15,27 +15,27 @@ ms.tgt_pltfrm: na
 ms.workload: database
 ms.date: 05/10/2017
 ms.author: mimig
-ms.openlocfilehash: 8815e775f720226e98cc8dcf7743e481c213272b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7698e03c0dc8d1c6d1e926f45e903a909bfd0c93
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-powershell-samples-for-azure-cosmos-db"></a>Esempi di Azure PowerShell per Azure Cosmos DB
 
-Hello nella tabella seguente include collegamenti toosample Azure script di PowerShell per Azure Cosmos DB.
+La tabella seguente include collegamenti a esempi di script di Azure PowerShell per Azure Cosmos DB.
 
 | |  |
 |---|---|
 |**Creare un account di Azure Cosmos DB**||
-|[Creare un account API di DocumentDB](scripts/create-database-account-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json)| Crea un singolo toouse account Azure Cosmos DB con hello API DocumentDB. |
-|**Scalare Azure Cosmos DB**||
+|[Creare un account API di DocumentDB](scripts/create-database-account-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json)| Crea un singolo account API di Azure Cosmos DB da usare con l'API di DocumentDB. |
+|**Ridimensionare Azure Cosmos DB**||
 |[Replicare l'account di Azure Cosmos DB in più aree e configurare le priorità di failover](scripts/scale-multiregion-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json)|Replica a livello globale i dati dell'account in più aree con una priorità di failover specificata.|
 |**Proteggere Azure Cosmos DB**||
-| [Ottenere le chiavi dell'account](scripts/secure-get-account-key-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json) | Ottiene le chiavi primarie e secondarie scrittura master hello e primarie e secondarie chiavi di sola lettura per account hello.|
-| [Ottenere la stringa di connessione di MongoDB](scripts/secure-mongo-connection-string-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json) | Ottiene tooconnect stringa di connessione hello il tooyour app MongoDB account Azure Cosmos DB.|
-|[Rigenerare le chiavi dell'account](scripts/secure-regenerate-key-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json)|Rigenera chiave di sola lettura per conto di hello o master hello.|
-|[Creare un firewall](scripts/create-firewall-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json)| Crea un in ingresso IP accesso controllo criteri toolimit accesso toohello account da un set di computer e/o i servizi cloud approvato.|
+| [Ottenere le chiavi dell'account](scripts/secure-get-account-key-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json) | Ottiene le chiavi di scrittura master primarie e secondarie e le chiavi di sola lettura primarie e secondarie per l'account.|
+| [Ottenere la stringa di connessione di MongoDB](scripts/secure-mongo-connection-string-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json) | Ottiene la stringa di connessione per connettere l'app MongoDB all'account di Azure Cosmos DB.|
+|[Rigenerare le chiavi dell'account](scripts/secure-regenerate-key-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json)|Rigenera la chiave master o di sola lettura per l'account.|
+|[Creare un firewall](scripts/create-firewall-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json)| Crea un criterio di controllo di accesso IP in ingresso per limitare l'accesso all'account da un set di macchine e/o servizi cloud approvati.|
 |**Disponibilità elevata, ripristino di emergenza, backup e ripristino**||
-|[Configurare i criteri di failover](scripts/ha-failover-policy-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json)|Set di hello priorità di failover di ogni area in cui viene replicato l'account di hello.|
+|[Configurare i criteri di failover](scripts/ha-failover-policy-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json)|Imposta la priorità di failover di ogni area in cui l'account viene replicato.|
 |||

@@ -1,6 +1,6 @@
 ---
-title: aaaCollect e analizzare i contatori delle prestazioni in Azure Log Analitica | Documenti Microsoft
-description: I contatori delle prestazioni vengono raccolti dalle prestazioni tooanalyze Log Analitica su Windows e Linux gli agenti.  Questo articolo viene descritto come i contatori tooconfigure raccolta delle prestazioni per Windows e Linux gli agenti, i dettagli di cui vengono archiviati nel repository OMS hello e come tooanalyze nel portale di OMS hello.
+title: Raccogliere e analizzare contatori delle prestazioni in Log Analytics di Axure| Documentazione Microsoft
+description: I contatori delle prestazioni vengono raccolti da Log Analytics per analizzare le prestazioni degli agenti Windows e Linux.  Questo articolo descrive come configurare la raccolta di contatori delle prestazioni per gli agenti Windows e Linux, i cui dettagli vengono archiviati nel repository OMS, e come analizzarli nel portale di OMS.
 services: log-analytics
 documentationcenter: 
 author: mgoedtel
@@ -14,27 +14,27 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/12/2017
 ms.author: magoedte
-ms.openlocfilehash: 30146fecf8db1d8851b89fdb970f757bbb24abf1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 953bb453b0a9635627fbbb6c3913d0cd757101c7
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="windows-and-linux-performance-data-sources-in-log-analytics"></a>Origini dati per le prestazioni di Windows e Linux in Log Analytics
-I contatori delle prestazioni di Windows e Linux forniscono informazioni dettagliate sulle prestazioni di hello di componenti hardware, sistemi operativi e applicazioni.  Log Analitica può raccogliere i contatori delle prestazioni a intervalli frequenti per l'analisi quasi in tempo reale (NRT) in dati sulle prestazioni di addizione tooaggregating per analisi di più lungo termine e i report.
+I contatori delle prestazioni in Windows e Linux forniscono informazioni dettagliate sulle prestazioni di componenti hardware, sistemi operativi e applicazioni.  Log Analytics può raccogliere i contatori delle prestazioni a intervalli frequenti per l'analisi NRT (quasi in tempo reale) e l'aggregazione dei dati sulle prestazioni per l'analisi e la creazione di report più a lungo termine.
 
 ![Contatori delle prestazioni](media/log-analytics-data-sources-performance-counters/overview.png)
 
 ## <a name="configuring-performance-counters"></a>Configurazione dei contatori delle prestazioni
-Configurare i contatori delle prestazioni nel portale OMS hello da hello [menu dati nelle impostazioni di registro Analitica](log-analytics-data-sources.md#configuring-data-sources).
+Nel portale di OMS è possibile configurare i contatori delle prestazioni dal [menu Dati in Impostazioni di Log Analytics](log-analytics-data-sources.md#configuring-data-sources).
 
-Durante la prima configurazione di Windows oppure contatori delle prestazioni di Linux per una nuova area di lavoro OMS, è possibile hello opzione tooquickly creare diversi contatori comuni.  Sono elencati con un tooeach Avanti casella di controllo.  Assicurarsi di creare contatori di cui si desidera tooinitially vengono controllate e quindi fare clic su **Aggiungi hello selezionato i contatori delle prestazioni**.
+Quando si configurano i contatori delle prestazioni di Windows o Linux per la prima volta per una nuova area di lavoro OMS, è possibile creare rapidamente numerosi contatori comuni.  Viene visualizzato l'elenco dei contatori con le caselle di controllo corrispondenti.  Assicurarsi di aver selezionato tutti i contatori da creare e quindi fare clic su **Aggiungi i contatori delle prestazioni selezionati**.
 
-Per i contatori delle prestazioni di Windows è possibile scegliere un'istanza specifica per ogni contatore delle prestazioni. Per i contatori delle prestazioni di Linux, istanza hello di ogni contatore prescelto si applica tooall i contatori figlio del contatore padre hello. Hello nella tabella seguente mostra le istanze comuni hello tooboth disponibili Linux e Windows contatori delle prestazioni.
+Per i contatori delle prestazioni di Windows è possibile scegliere un'istanza specifica per ogni contatore delle prestazioni. Per i contatori delle prestazioni di Linux, l'istanza di ogni contatore scelto viene applicata a tutti i contatori figlio del contatore padre. La tabella seguente illustra le istanze comuni disponibili ai contatori delle prestazioni di Linux e Windows.
 
 | Nome dell'istanza | Descrizione |
 | --- | --- |
-| \_Totale |Totale di tutte le istanze di hello |
+| \_Totale |Totale di tutte le istanze |
 | \* |Tutte le istanze |
 | (/&#124;/var) |Corrisponde alle istanze denominate / oppure /var |
 
@@ -42,32 +42,32 @@ Per i contatori delle prestazioni di Windows è possibile scegliere un'istanza s
 
 ![Configurare i contatori delle prestazioni di Windows](media/log-analytics-data-sources-performance-counters/configure-windows.png)
 
-Seguire questa tooadd procedure un nuovo toocollect contatore delle prestazioni di Windows.
+Seguire questa procedura per aggiungere un nuovo contatore delle prestazioni Windows da raccogliere.
 
-1. Nome del tipo hello del contatore hello nella casella di testo hello in formato hello *\counter oggetto (istanza)*.  Quando si inizia a digitare, viene visualizzato un elenco di contatori comuni corrispondenti.  È possibile selezionare un contatore dall'elenco hello o digitarne uno proprio.  Per restituire tutte le istanze per un contatore specifico, specificare *oggetto\contatore*.  
+1. Digitare il nome del contatore nella casella di testo, usando il formato *oggetto(istanza)\contatore*.  Quando si inizia a digitare, viene visualizzato un elenco di contatori comuni corrispondenti.  È possibile selezionare un contatore nell'elenco o digitare quello desiderato.  Per restituire tutte le istanze per un contatore specifico, specificare *oggetto\contatore*.  
 
-    Quando si raccolgono i contatori delle prestazioni di SQL Server da istanze denominate, tutti un nome istanza contatori iniziano con *MSSQL$* e aggiungendo il nome dell'istanza di hello hello.  Ad esempio, hello toocollect percentuale riscontri Cache Log contatore per l'istanza di tutti i database dall'oggetto delle prestazioni di Database hello per SQL denominata INST2, specificare `MSSQL$INST2:Databases(*)\Log Cache Hit Ratio`.
+    Quando si raccolgono i contatori delle prestazioni di SQL Server da istanze denominate, tutti i contatori di tali istanze iniziano con *MSSQL$*, seguito dal nome dell'istanza.  Ad esempio, per raccogliere il contatore Percentuale riscontri cache log di tutti i database dall'oggetto delle prestazioni del database per l'istanza di SQL denominata INST2, specificare `MSSQL$INST2:Databases(*)\Log Cache Hit Ratio`.
 
-2. Fare clic su  **+**  o premere **invio** elenco toohello di tooadd hello contatore.
-3. Quando si aggiunge un contatore, Usa predefinito hello è 10 secondi per il relativo **intervallo di campionamento**.  Se si desidera che i requisiti di archiviazione hello tooreduce di hello raccolti i dati sulle prestazioni, è possibile modificare questo valore più alto tooa di backup too1800 secondi (30 minuti).
-4. Una volta terminato l'aggiunta di contatori, fare clic su hello **salvare** pulsante nella parte superiore di hello della configurazione di hello toosave schermata hello.
+2. Fare clic su **+** o premere **INVIO** per aggiungere il contatore all'elenco.
+3. Quando si aggiunge un contatore, per **Intervallo di campionamento** verrà usato il valore predefinito di 10 secondi.  Per ridurre i requisiti di spazio di archiviazione dei dati sulle prestazioni raccolti, è possibile impostare questa opzione su un valore più alto, fino a un massimo di 1800 secondi (30 minuti).
+4. Dopo aver aggiunto i contatori, fare clic sul pulsante **Salva** nella parte superiore della schermata per salvare la configurazione.
 
 ### <a name="linux-performance-counters"></a>Contatori delle prestazioni di Linux
 
 ![Configurare i contatori delle prestazioni di Linux](media/log-analytics-data-sources-performance-counters/configure-linux.png)
 
-Seguire questa tooadd procedure un nuovo toocollect contatore delle prestazioni di Linux.
+Seguire questa procedura per aggiungere un nuovo contatore delle prestazioni Linux da raccogliere.
 
-1. Per impostazione predefinita, tutte le modifiche di configurazione vengono automaticamente spostate tooall agenti.  Per gli agenti Linux, un file di configurazione viene inviato l'agente di raccolta dati Fluentd toohello.  Se si desidera toomodify questo file manualmente in ogni agente Linux, quindi deselezionare la casella di hello *Apply below macchine Linux di configurazione toomy* e seguire le guide di hello indicate di seguito.
-2. Nome del tipo hello del contatore hello nella casella di testo hello in formato hello *\counter oggetto (istanza)*.  Quando si inizia a digitare, viene visualizzato un elenco di contatori comuni corrispondenti.  È possibile selezionare un contatore dall'elenco hello o digitarne uno proprio.  
-3. Fare clic su  **+**  o premere **invio** tooadd hello contatore toohello elenco di altri contatori per oggetto hello.
-4. Tutti i contatori per un utilizzo dell'oggetto hello stesso **intervallo di campionamento**.  valore predefinito di Hello è 10 secondi.  È modificare il valore più alto tooa di backup too1800 secondi (30 minuti) se si desidera che i requisiti di archiviazione di hello tooreduce dei dati sulle prestazioni raccolti hello.
-5. Una volta terminato l'aggiunta di contatori, fare clic su hello **salvare** pulsante nella parte superiore di hello della configurazione di hello toosave schermata hello.
+1. Per impostazione predefinita, viene eseguito automaticamente il push di tutte le modifiche di configurazione in tutti gli agenti.  Per gli agenti Linux, viene inviato un file di configurazione all'agente di raccolta dati Fluentd.  Per modificare questo file manualmente in ogni agente Linux, deselezionare la casella *Apply below configuration to my Linux machines* (Applica la configurazione seguente alle macchine Linux) e attenersi alle istruzioni seguenti.
+2. Digitare il nome del contatore nella casella di testo, usando il formato *oggetto(istanza)\contatore*.  Quando si inizia a digitare, viene visualizzato un elenco di contatori comuni corrispondenti.  È possibile selezionare un contatore nell'elenco o digitare quello desiderato.  
+3. Fare clic su **+** o premere **INVIO** per aggiungere il contatore all'elenco di altri contatori per l'oggetto.
+4. Tutti i contatori per un oggetto usano lo stesso **intervallo di campionamento**.  Il valore predefinito è 10 secondi.  Per ridurre i requisiti di spazio di archiviazione dei dati sulle prestazioni raccolti, è possibile impostare questa opzione su un valore più alto, fino a un massimo di 1800 secondi (30 minuti).
+5. Dopo aver aggiunto i contatori, fare clic sul pulsante **Salva** nella parte superiore della schermata per salvare la configurazione.
 
 #### <a name="configure-linux-performance-counters-in-configuration-file"></a>Configurare i contatori delle prestazioni di Linux nel file di configurazione
-Anziché configurare i contatori delle prestazioni di Linux tramite il portale di OMS hello, è possibile hello di modifica dei file di configurazione nell'agente Linux di hello.  Toocollect le metriche delle prestazioni sono controllate dalla configurazione hello in **/e così via/rifiutare/microsoft/omsagent/\<id area di lavoro\>/conf/omsagent.conf**.
+Anziché usare il portale di OMS per configurare i contatori delle prestazioni di Linux, è possibile modificare i file di configurazione direttamente nell'agente Linux.  Le metriche delle prestazioni da raccogliere sono controllate dalla configurazione in **/etc/opt/microsoft/omsagent/\<workspace id\>/conf/omsagent.conf**.
 
-Ogni oggetto, o categoria, delle prestazioni metriche toocollect deve essere definito nel file di configurazione hello come una singola `<source>` elemento. sintassi di Hello seguito è descritto hello.
+Ogni oggetto o categoria delle metriche delle prestazioni da raccogliere deve essere definito nel file di configurazione come singolo elemento `<source>` . La sintassi segue il modello seguente.
 
     <source>
       type oms_omi  
@@ -78,17 +78,17 @@ Ogni oggetto, o categoria, delle prestazioni metriche toocollect deve essere def
     </source>
 
 
-in hello nella tabella seguente sono descritti i parametri Hello in questo elemento.
+I parametri di questo elemento sono descritti nella tabella seguente.
 
 | parameters | Descrizione |
 |:--|:--|
-| object\_name | Nome dell'oggetto per la raccolta di hello. |
-| instance\_regex |  Oggetto *espressione regolare* toocollect quali istanze di definizione. valore di Hello: `.*` specifica tutte le istanze. le metriche del processore toocollect per solo hello \_istanza totale, è possibile specificare `_Total`. per dati metrici sui processi toocollect hello solo le istanze crond o sshd, è possibile specificare: ' (crond\|sshd)`. |
-| counter\_name\_regex | Oggetto *espressione regolare* definizione toocollect quali contatori (per oggetto hello). specificare tutti i contatori per l'oggetto hello, toocollect: `.*`. toocollect solo i contatori di spazio di swapping per l'oggetto memoria hello, ad esempio, è possibile specificare:`.+Swap.+` |
-| interval | Frequenza di raccolta contatori dell'oggetto cui hello. |
+| object\_name | Nome dell'oggetto per la raccolta. |
+| instance\_regex |  *Espressione regolare* che definisce le istanze da raccogliere. Il valore `.*` specifica tutte le istanze. Per raccogliere le metriche del processore solo per l'istanza \_Total, è possibile specificare `_Total`. Per raccogliere le metriche del processore solo per le istanze crond o sshd, è possibile specificare `(crond\|sshd)`. |
+| counter\_name\_regex | *Espressione regolare* che definisce i contatori per l'oggetto da raccogliere. Per raccogliere tutti i contatori per l'oggetto, specificare `.*`. Per raccogliere solo i contatori dello spazio di swapping per l'oggetto Memory, ad esempio, è possibile specificare `.+Swap.+` |
+| interval | Frequenza con cui vengono raccolti i contatori dell'oggetto. |
 
 
-Hello nella tabella seguente vengono elencati oggetti hello e contatori che è possibile specificare nel file di configurazione hello.  Per alcune applicazioni sono disponibili contatori aggiuntivi, come descritto in [Collect performance counters for Linux applications in Log Analytics](log-analytics-data-sources-linux-applications.md) (Raccogliere contatori delle prestazioni per applicazioni Linux in Log Analytics).
+La tabella seguente elenca gli oggetti e i contatori che è possibile specificare nel file di configurazione.  Per alcune applicazioni sono disponibili contatori aggiuntivi, come descritto in [Collect performance counters for Linux applications in Log Analytics](log-analytics-data-sources-linux-applications.md) (Raccogliere contatori delle prestazioni per applicazioni Linux in Log Analytics).
 
 | Nome oggetto | Nome contatore |
 |:--|:--|
@@ -147,7 +147,7 @@ Hello nella tabella seguente vengono elencati oggetti hello e contatori che è p
 | Sistema | Utenti |
 
 
-Di seguito è una configurazione predefinita di hello per le metriche delle prestazioni.
+Di seguito è illustrata la configurazione predefinita per le metriche delle prestazioni.
 
     <source>
       type oms_omi
@@ -182,29 +182,29 @@ Di seguito è una configurazione predefinita di hello per le metriche delle pres
     </source>
 
 ## <a name="data-collection"></a>Raccolta dei dati
-Log Analytics raccoglierà tutti i contatori delle prestazioni specificati in base all'intervallo di campionamento definito in tutti gli agenti in cui è installato il contatore.  non vengono aggregati i dati di Hello e dati non elaborati hello sono disponibili in tutte le visualizzazioni di ricerca di log per durata hello specificata dalla sottoscrizione OMS.
+Log Analytics raccoglierà tutti i contatori delle prestazioni specificati in base all'intervallo di campionamento definito in tutti gli agenti in cui è installato il contatore.  I dati non vengono aggregati e i dati non elaborati sono disponibili in tutte le visualizzazioni di ricerca log per la durata specificata dalla sottoscrizione di OMS.
 
 ## <a name="performance-record-properties"></a>Proprietà dei record delle prestazioni
-Record di prestazioni sono un tipo di **prestazioni** e dispone di proprietà hello in hello nella tabella seguente.
+Il tipo dei record delle prestazioni è **Perf** e le proprietà sono elencate nella tabella seguente.
 
 | Proprietà | Descrizione |
 |:--- |:--- |
-| Computer |Computer in cui hello eventi raccolti da. |
-| CounterName |Nome del contatore delle prestazioni hello |
-| CounterPath |Percorso completo del contatore hello nel modulo hello \\ \\ \<Computer >\\oggetto (istanza)\\contatore. |
-| CounterValue |Valore numerico del contatore hello. |
-| InstanceName |Nome dell'istanza dell'evento hello.  Vuoto se l'istanza non è presente. |
-| ObjectName |Nome dell'oggetto prestazione hello |
-| SourceSystem |Tipo di agente hello dati raccolti da. <br><br>OpsManager: agente Windows, con connessione diretta o SCOM <br> Linux – Tutti gli agenti Linux  <br> AzureStorage: Diagnostica di Azure |
-| TimeGenerated |Data e ora dati hello è stati campionati. |
+| Computer |Computer da cui è stato raccolto l'evento. |
+| CounterName |Nome del contatore delle prestazioni. |
+| CounterPath |Percorso completo del contatore nel formato \\\\\<Computer>\\oggetto(istanza)\\contatore. |
+| CounterValue |Valore numerico del contatore. |
+| InstanceName |Nome dell'istanza dell'evento.  Vuoto se l'istanza non è presente. |
+| ObjectName |Nome dell'oggetto prestazioni |
+| SourceSystem |Tipo di agente da cui sono stati raccolti i dati. <br><br>OpsManager: agente Windows, con connessione diretta o SCOM <br> Linux – Tutti gli agenti Linux  <br> AzureStorage: Diagnostica di Azure |
+| TimeGenerated |Data e ora di campionamento dei dati. |
 
 ## <a name="sizing-estimates"></a>Stime di dimensionamento
- Secondo una stima approssimativa per la raccolta di un determinato contatore a intervalli di 10 secondi, le dimensioni equivalgono a circa 1 MB al giorno per istanza.  È possibile stimare i requisiti di archiviazione hello di un particolare contatore con hello formula seguente.
+ Secondo una stima approssimativa per la raccolta di un determinato contatore a intervalli di 10 secondi, le dimensioni equivalgono a circa 1 MB al giorno per istanza.  Con la formula seguente è quindi possibile stimare i requisiti di spazio di archiviazione per un contatore specifico.
 
     1 MB x (number of counters) x (number of agents) x (number of instances)
 
 ## <a name="log-searches-with-performance-records"></a>Ricerche di record delle prestazioni nei log
-Hello nella tabella seguente vengono forniti esempi di ricerche nei log che recuperano i record delle prestazioni.
+La tabella seguente mostra alcuni esempi di ricerche nei log che recuperano i record delle prestazioni.
 
 | Query | Descrizione |
 |:--- |:--- |
@@ -213,15 +213,15 @@ Hello nella tabella seguente vengono forniti esempi di ricerche nei log che recu
 | Type=Perf CounterName="Lunghezza corrente coda del disco" |Tutti i dati sulle prestazioni da un contatore specifico |
 | Type=Perf (ObjectName=Processor) CounterName="% tempo processore" InstanceName=_Total &#124; measure Avg(Average) as AVGCPU  by Computer |Utilizzo medio della CPU per tutti i computer |
 | Type=Perf (CounterName="% tempo processore") &#124;  measure max(Max) by Computer |Utilizzo massimo della CPU per tutti i computer |
-| Type=Perf ObjectName=LogicalDisk CounterName="Lunghezza corrente coda del disco" Computer="Nome computer" &#124; measure Avg(Average) by InstanceName |Media lunghezza corrente coda del disco in tutte le istanze di hello di un computer specifico |
+| Type=Perf ObjectName=LogicalDisk CounterName="Lunghezza corrente coda del disco" Computer="Nome computer" &#124; measure Avg(Average) by InstanceName |Lunghezza media della coda del disco corrente per tutte le istanze di un computer specifico |
 | Type=Perf CounterName="Trasferimenti disco/sec" &#124; measure percentile95(Average) by Computer |95° percentile di trasferimenti disco al secondo per tutti i computer |
 | Type=Perf CounterName="% tempo processore" InstanceName="_Total"  &#124; measure avg(CounterValue) by Computer Interval 1HOUR |Utilizzo orario medio della CPU per tutti i computer |
 | Type=Perf Computer="MyComputer" CounterName=%* InstanceName=_Total &#124; measure percentile70(CounterValue) by CounterName Interval 1HOUR |70° percentile orario di ogni contatore percentuale % per un computer specifico |
 | Type=Perf CounterName="% Processor Time" InstanceName="_Total"  (Computer="MyComputer") &#124; measure min(CounterValue), avg(CounterValue), percentile75(CounterValue), max(CounterValue) by Computer Interval 1HOUR |Utilizzo CPU orario medio, minimo, massimo e 75° percentile per un computer specifico |
-| Type=Perf ObjectName="MSSQL$INST2:Databases" InstanceName=master | Tutti i dati sulle prestazioni delle prestazioni del Database hello dell'oggetto per il database master hello dall'istanza di SQL Server INST2 denominata hello.  
+| Type=Perf ObjectName="MSSQL$INST2:Databases" InstanceName=master | Tutti i dati sulle prestazioni nell'oggetto delle prestazioni del database per il database master dell'istanza di SQL Server denominata INST2.  
 
 >[!NOTE]
-> Se l'area di lavoro è stato aggiornato toohello [Analitica Log nuovo linguaggio di query](log-analytics-log-search-upgrade.md), quindi hello sopra query modificherebbe toohello seguente.
+> Se l'area di lavoro è stata aggiornata al [nuovo linguaggio di query di Log Analytics](log-analytics-log-search-upgrade.md), le query precedenti verranno sostituite da quelle seguenti.
 
 > | Query | Descrizione |
 |:--- |:--- |
@@ -230,22 +230,22 @@ Hello nella tabella seguente vengono forniti esempi di ricerche nei log che recu
 | Perf &#124; where CounterName == "Current Disk Queue Length" |Tutti i dati sulle prestazioni da un contatore specifico |
 | Perf &#124; where ObjectName == "Processor" and CounterName == "% Processor Time" and InstanceName == "_Total" &#124; summarize AVGCPU = avg(Average) by Computer |Utilizzo medio della CPU per tutti i computer |
 | Perf &#124; where CounterName == "% Processor Time" &#124; summarize AggregatedValue = max(Max) by Computer |Utilizzo massimo della CPU per tutti i computer |
-| Perf &#124; where ObjectName == "LogicalDisk" and CounterName == "Current Disk Queue Length" and Computer == "MyComputerName" &#124; summarize AggregatedValue = avg(Average) by InstanceName |Media lunghezza corrente coda del disco in tutte le istanze di hello di un computer specifico |
+| Perf &#124; where ObjectName == "LogicalDisk" and CounterName == "Current Disk Queue Length" and Computer == "MyComputerName" &#124; summarize AggregatedValue = avg(Average) by InstanceName |Lunghezza media della coda del disco corrente per tutte le istanze di un computer specifico |
 | Perf &#124; where CounterName == "DiskTransfers/sec" &#124; summarize AggregatedValue = percentile(Average, 95) by Computer |95° percentile di trasferimenti disco al secondo per tutti i computer |
 | Perf &#124; where CounterName == "% Processor Time" and InstanceName == "_Total" &#124; summarize AggregatedValue = avg(CounterValue) by bin(TimeGenerated, 1h), Computer |Utilizzo orario medio della CPU per tutti i computer |
 | Perf &#124; where Computer == "MyComputer" and CounterName startswith_cs "%" and InstanceName == "_Total" &#124; summarize AggregatedValue = percentile(CounterValue, 70) by bin(TimeGenerated, 1h), CounterName | 70° percentile orario di ogni contatore percentuale % per un computer specifico |
 | Perf &#124; where CounterName == "% Processor Time" and InstanceName == "_Total" and Computer == "MyComputer" &#124; summarize ["min(CounterValue)"] = min(CounterValue), ["avg(CounterValue)"] = avg(CounterValue), ["percentile75(CounterValue)"] = percentile(CounterValue, 75), ["max(CounterValue)"] = max(CounterValue) by bin(TimeGenerated, 1h), Computer |Utilizzo CPU orario medio, minimo, massimo e 75° percentile per un computer specifico |
-| Perf &#124; where ObjectName == "MSSQL$INST2:Databases" and InstanceName == "master" | Tutti i dati sulle prestazioni delle prestazioni del Database hello dell'oggetto per il database master hello dall'istanza di SQL Server INST2 denominata hello.  
+| Perf &#124; where ObjectName == "MSSQL$INST2:Databases" and InstanceName == "master" | Tutti i dati sulle prestazioni nell'oggetto delle prestazioni del database per il database master dell'istanza di SQL Server denominata INST2.  
 
 ## <a name="viewing-performance-data"></a>Visualizzazione dei dati sulle prestazioni
-Quando si esegue una ricerca di log per i dati sulle prestazioni, hello **elenco** viene visualizzato per impostazione predefinita.  tooview hello dati sotto forma di grafico, fare clic su **metriche**.  Per una visualizzazione grafica dettagliata, fare clic su hello  **+**  contatore tooa successivo.  
+Quando si esegue una ricerca log di dati sulle prestazioni, per impostazione predefinita viene aperta la vista **Elenco**.  Per visualizzare i dati sotto forma di grafico, fare clic su **Metriche**.  Per una visualizzazione grafica dettagliata, fare clic su **+** accanto a un contatore.  
 
 ![Visualizzazione Metriche compressa](media/log-analytics-data-sources-performance-counters/metricscollapsed.png)
 
-dati sulle prestazioni tooaggregate in una ricerca di log, vedere [aggregazione metrica su richiesta e la visualizzazione in OMS](http://blogs.technet.microsoft.com/msoms/2016/02/26/on-demand-metric-aggregation-and-visualization-in-oms/).
+Per aggregare i dati sulle prestazioni in una ricerca log, vedere [On-demand metric aggregation and visualization in OMS](http://blogs.technet.microsoft.com/msoms/2016/02/26/on-demand-metric-aggregation-and-visualization-in-oms/) (Aggregazione metrica su richiesta e visualizzazione in OMS).
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 * [Raccogliere i contatori delle prestazioni da applicazioni Linux](log-analytics-data-sources-linux-applications.md) come il server HTTP Apache e MySQL.
-* Informazioni su [log ricerche](log-analytics-log-searches.md) tooanalyze hello dati raccolti da origini dati e le soluzioni.  
-* Esportare i dati raccolti troppo[Power BI](log-analytics-powerbi.md) per l'analisi e visualizzazioni aggiuntive.
+* Informazioni sulle [ricerche nei log](log-analytics-log-searches.md) per analizzare i dati raccolti dalle origini dati e dalle soluzioni.  
+* Esportare i dati raccolti in [Power BI](log-analytics-powerbi.md) per altre opzioni di visualizzazione e analisi.

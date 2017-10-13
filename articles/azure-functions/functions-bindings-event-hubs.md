@@ -1,10 +1,10 @@
 ---
-title: associazioni di hub di eventi di funzioni aaaAzure | Documenti Microsoft
-description: Comprendere come le associazioni di hub eventi di Azure toouse nelle funzioni di Azure.
+title: Associazioni di Hub eventi in Funzioni di Azure | Microsoft Docs
+description: Informazioni su come usare le associazioni di Hub eventi di Azure in Funzioni di Azure.
 services: functions
 documentationcenter: na
 author: wesmc7777
-manager: erikre
+manager: cfowler
 editor: 
 tags: 
 keywords: Funzioni di Azure, Funzioni, elaborazione eventi, calcolo dinamico, architettura senza server
@@ -16,55 +16,55 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 06/20/2017
 ms.author: wesmc
-ms.openlocfilehash: e864f032ad5ac58d318c9843c3844b5642733a70
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 85eb6985ef3579b1b2313db3ce5f91c3471da72f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-functions-event-hubs-bindings"></a>Associazioni di Hub eventi in Funzioni di Azure
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-Questo articolo viene illustrato come tooconfigure e utilizzare [hub eventi di Azure](../event-hubs/event-hubs-what-is-event-hubs.md) associazioni per le funzioni di Azure.
+Questo articolo illustra come configurare e usare le associazioni di [Hub eventi di Azure](../event-hubs/event-hubs-what-is-event-hubs.md) in Funzioni di Azure.
 Funzioni di Azure supporta il trigger e le associazioni di output per Hub eventi.
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
-Nel caso di nuovo hub di eventi tooAzure, vedere hello [Panoramica di hub eventi](../event-hubs/event-hubs-what-is-event-hubs.md).
+Se non si ha familiarità con Hub eventi di Azure, vedere la [panoramica di Hub eventi](../event-hubs/event-hubs-what-is-event-hubs.md).
 
 <a name="trigger"></a>
 
 ## <a name="event-hub-trigger"></a>Trigger di Hub eventi
-Utilizzare gli hub di eventi hello attivare toorespond tooan evento flusso di eventi di hub eventi tooan inviato. È necessario disporre dell'accesso in lettura toohello evento hub tooset dei trigger hello.
+È possibile usare il trigger di Hub eventi per rispondere a un evento inviato a un flusso di eventi di Hub eventi. Per configurare il trigger è necessario avere accesso in lettura ad Hub eventi.
 
-trigger di funzione Hello hub eventi Usa hello seguente oggetto JSON nella hello `bindings` matrice function.json:
+Il trigger di funzione di Hub eventi usa l'oggetto JSON seguente nella matrice `bindings` di function.json:
 
 ```json
 {
     "type": "eventHubTrigger",
     "name": "<Name of trigger parameter in function signature>",
     "direction": "in",
-    "path": "<Name of hello event hub>",
-    "consumerGroup": "Consumer group toouse - see below",
+    "path": "<Name of the event hub>",
+    "consumerGroup": "Consumer group to use - see below",
     "connection": "<Name of app setting with connection string - see below>"
 }
 ```
 
-`consumerGroup`è un hello tooset proprietà facoltativa utilizzata [gruppo di consumer](../event-hubs/event-hubs-features.md#event-consumers) utilizzato toosubscribe tooevents nell'hub hello. Se omesso, hello `$Default` viene utilizzato il gruppo di consumer.  
-`connection`deve essere hello nome di un'impostazione di app che contiene lo spazio dei nomi hello connessione stringa toohello dell'hub eventi.
-Copiare la stringa di connessione, fare clic su hello **informazioni di connessione** pulsante per hello *dello spazio dei nomi*, non hello hub di eventi stesso. La stringa di connessione deve disporre almeno di lettura trigger hello tooactivate di autorizzazioni.
+`consumerGroup`: proprietà facoltativa usata per impostare il [gruppo di consumer](../event-hubs/event-hubs-features.md#event-consumers) usato per effettuare la sottoscrizione agli eventi nell'hub. Se omessa, al suo posto viene usato il gruppo di consumer `$Default`.  
+`connection` deve essere il nome di un'impostazione dell'app che contiene la stringa di connessione per lo spazio dei nomi di Hub eventi.
+Copiare questa stringa di connessione facendo clic sul pulsante **Informazioni di connessione** per lo *spazio dei nomi*, non per lo stesso Hub eventi. Per attivare il trigger, questa stringa di connessione deve disporre almeno delle autorizzazioni Read.
 
-[Impostazioni aggiuntive](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json) può essere fornito in un host.json toofurther file fine ottimizzare gli hub di eventi trigger.  
+È possibile specificare [Impostazioni aggiuntive](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json) in un file host.json per ottimizzare i trigger di Hub eventi.  
 
 <a name="triggerusage"></a>
 
-## <a name="trigger-usage"></a>Uso dei trigger
-Quando una funzione di hub di eventi trigger viene attivata, il messaggio hello che lo attiva viene passato alla funzione hello sotto forma di stringa.
+## <a name="trigger-usage"></a>Utilizzo dei trigger
+Quando viene attivata una funzione trigger di Hub eventi, il messaggio che la attiva viene passato alla funzione sotto forma di stringa.
 
 <a name="triggersample"></a>
 
 ## <a name="trigger-sample"></a>Esempio di trigger
-Si supponga di avere hello seguenti hub di eventi trigger hello `bindings` matrice function.json:
+Si supponga che il trigger di Hub eventi seguente sia presente nella matrice `bindings` di function.json:
 
 ```json
 {
@@ -76,7 +76,7 @@ Si supponga di avere hello seguenti hub di eventi trigger hello `bindings` matri
 }
 ```
 
-Vedere l'esempio specifico del linguaggio hello che registra corpo del messaggio hello del trigger di hub eventi hello.
+Vedere l'esempio specifico del linguaggio che registra il corpo del messaggio del trigger di Hub eventi.
 
 * [C#](#triggercsharp)
 * [F#](#triggerfsharp)
@@ -95,7 +95,7 @@ public static void Run(string myEventHubMessage, TraceWriter log)
 }
 ```
 
-È inoltre possibile ricevere eventi hello come un [EventData](/dotnet/api/microsoft.servicebus.messaging.eventdata) oggetto, che consente di accedere ai metadati di evento toohello.
+È anche possibile ricevere l'evento come un oggetto [EventData](/dotnet/api/microsoft.servicebus.messaging.eventdata), che consente di accedere ai metadati dell'evento.
 
 ```cs
 #r "Microsoft.ServiceBus"
@@ -108,7 +108,7 @@ public static void Run(EventData myEventHubMessage, TraceWriter log)
 }
 ```
 
-tooreceive eventi in un batch, modificare la firma del metodo hello troppo`string[]` o `EventData[]`.
+Per ricevere gli eventi in un batch, impostare la firma del metodo su `string[]` o `EventData[]`.
 
 ```cs
 public static void Run(string[] eventHubMessages, TraceWriter log)
@@ -143,9 +143,9 @@ module.exports = function (context, myEventHubMessage) {
 <a name="output"></a>
 
 ## <a name="event-hubs-output-binding"></a>Associazione di output di Hub eventi
-Associazione toowrite eventi tooan evento hub eventi flusso di output di hello utilizzare gli hub di eventi. È necessario disporre di trasmissione autorizzazione tooan evento hub toowrite eventi tooit.
+È possibile usare l'associazione di output di Hub eventi per scrivere eventi in un flusso di eventi di Hub eventi. Per scrivervi eventi, è necessario disporre dell'autorizzazione Send verso un Hub eventi.
 
-associazione di output Hello utilizza hello seguente oggetto JSON nella hello `bindings` matrice function.json:
+L'associazione di output usa l'oggetto JSON seguente nella matrice `bindings` di function.json:
 
 ```json
 {
@@ -157,22 +157,22 @@ associazione di output Hello utilizza hello seguente oggetto JSON nella hello `b
 }
 ```
 
-`connection`deve essere hello nome di un'impostazione di app che contiene lo spazio dei nomi hello connessione stringa toohello dell'hub eventi.
-Copiare la stringa di connessione, fare clic su hello **informazioni di connessione** pulsante per hello *dello spazio dei nomi*, non hello hub di eventi stesso. Questa stringa di connessione deve avere flusso di eventi di trasmissione autorizzazioni toosend hello messaggio toohello.
+`connection` deve essere il nome di un'impostazione dell'app che contiene la stringa di connessione per lo spazio dei nomi di Hub eventi.
+Copiare questa stringa di connessione facendo clic sul pulsante **Informazioni di connessione** per lo *spazio dei nomi*, non per lo stesso Hub eventi. Per inviare il messaggio al flusso di eventi, questa stringa di connessione deve disporre di autorizzazioni Send.
 
 ## <a name="output-usage"></a>Uso dell'output
-In questa sezione viene illustrato come toouse gli hub di eventi di output di associazione nel codice di funzione.
+Questa sezione illustra come usare l'associazione di output di Hub eventi nel codice della funzione.
 
-È possibile creare hub di eventi di messaggi toohello configurato con i seguenti tipi di parametro hello:
+È possibile inviare i messaggi all'hub eventi configurato con i tipi di parametro seguenti:
 
 * `out string`
-* `ICollector<string>`(toooutput più messaggi)
+* `ICollector<string>` (per restituire più messaggi)
 * `IAsyncCollector<string>` (versione asincrona di `ICollector<T>`)
 
 <a name="outputsample"></a>
 
 ## <a name="output-sample"></a>Esempio di output
-Si supponga di avere seguito hello hub eventi di output dell'associazione in hello `bindings` matrice function.json:
+Si supponga che l'associazione di output di Hub eventi seguente sia presente nella matrice `bindings` di function.json:
 
 ```json
 {
@@ -184,7 +184,7 @@ Si supponga di avere seguito hello hub eventi di output dell'associazione in hel
 }
 ```
 
-Vedere l'esempio specifico del linguaggio hello che scrive un flusso di eventi toohello anche.
+Vedere l'esempio specifico del linguaggio che scrive un evento nel flusso di eventi.
 
 * [C#](#outcsharp)
 * [F#](#outfsharp)
@@ -205,7 +205,7 @@ public static void Run(TimerInfo myTimer, out string outputEventHubMessage, Trac
 }
 ```
 
-In alternativa, toocreate più messaggi:
+Oppure per creare più messaggi:
 
 ```cs
 public static void Run(TimerInfo myTimer, ICollector<string> outputEventHubMessage, TraceWriter log)
@@ -241,7 +241,7 @@ module.exports = function (context, myTimer) {
 };
 ```
 
-In alternativa, toosend più messaggi,
+Oppure, per inviare più messaggi,
 
 ```javascript
 module.exports = function(context) {

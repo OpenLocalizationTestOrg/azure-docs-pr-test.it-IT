@@ -1,5 +1,5 @@
 ---
-title: aaaPerformance i contatori per il gestore mappe partizioni
+title: Contatori delle prestazioni per Gestore mappe partizioni
 description: La classe ShardMapManager e i contatori delle prestazioni con routing dipendente dai dati
 services: sql-database
 documentationcenter: 
@@ -15,53 +15,53 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/23/2016
 ms.author: ddove
-ms.openlocfilehash: d24198563d9fa88d12e6c464dbe89bc300e72ca0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 60bb26fe6833998137ede71b363d5d40479a4c60
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="performance-counters-for-shard-map-manager"></a>Contatori delle prestazioni per Gestore mappe partizioni
-È possibile acquisire le prestazioni di hello di un [gestore mappe partizioni](sql-database-elastic-scale-shard-map-management.md), soprattutto quando si utilizza [routing dipendente dai dati](sql-database-elastic-scale-data-dependent-routing.md). I contatori vengono creati con i metodi della classe Microsoft.Azure.SqlDatabase.ElasticScale.Client hello.  
+È possibile acquisire le prestazioni di un [gestore mappe partizioni](sql-database-elastic-scale-shard-map-management.md), soprattutto quando si usa il [routing dipendente dai dati](sql-database-elastic-scale-data-dependent-routing.md). Per creare i contatori si usano i metodi della classe Microsoft.Azure.SqlDatabase.ElasticScale.Client.  
 
-I contatori sono utilizzati tootrack hello prestazioni di [routing dipendente dai dati](sql-database-elastic-scale-data-dependent-routing.md) operazioni. Questi contatori sono accessibili in hello Performance Monitor, nella categoria "Gestione di partizioni: Database elastico" hello.
+I contatori vengono usati per tenere traccia delle prestazioni delle operazioni di [routing dipendente dai dati](sql-database-elastic-scale-data-dependent-routing.md) . Questi contatori sono accessibili in Performance Monitor, sotto la categoria "Database elastico: Gestione di partizioni".
 
-**Per la versione più recente di hello:** andare troppo[Microsoft.Azure.SqlDatabase.ElasticScale.Client](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/). Vedere anche [aggiornare un'app toouse hello più recente database elastico libreria client](sql-database-elastic-scale-upgrade-client-library.md).
+**Per la versione più recente** , passare a [Microsoft.Azure.SqlDatabase.ElasticScale.Client](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/). Vedere anche [Aggiornare un'app in modo da usare la libreria client dei database elastici più recente](sql-database-elastic-scale-upgrade-client-library.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
-* categoria di prestazioni toocreate hello e contatori, hello utente deve far parte di hello locale **amministratori** gruppo computer hello che ospita un'applicazione hello.  
-* toocreate delle prestazioni istanza di contatore e aggiornare i contatori di hello, hello utente deve essere un membro di entrambi hello **amministratori** o **Performance Monitor Users** gruppo. 
+* Per creare la categoria e i contatori delle prestazioni, l'utente deve far parte del gruppo **Administrators** locale per il computer che ospita l'applicazione.  
+* Per creare un'istanza del contatore delle prestazioni e aggiornare i contatori, l'utente deve essere membro del gruppo **Administrators** o **Performance Monitor Users**. 
 
 ## <a name="create-performance-category-and-counters"></a>Creare una categoria e contatori delle prestazioni
-contatori di hello toocreate, chiamare il metodo CreatePeformanceCategoryAndCounters hello di hello [ShardMapManagmentFactory classe](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanagerfactory.aspx). Solo un amministratore può eseguire il metodo di hello: 
+Per creare i contatori, chiamare il metodo CreatePeformanceCategoryAndCounters della [classe ShardMapManagmentFactory](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanagerfactory.aspx). Solo un amministratore può eseguire il metodo: 
 
     ShardMapManagerFactory.CreatePerformanceCategoryAndCounters()  
 
-È inoltre possibile utilizzare [questo](https://gallery.technet.microsoft.com/scriptcenter/Elastic-DB-Tools-for-Azure-17e3d283) metodo hello tooexecute script di PowerShell. metodo Hello crea hello i contatori delle prestazioni seguenti:  
+È inoltre possibile utilizzare [questo](https://gallery.technet.microsoft.com/scriptcenter/Elastic-DB-Tools-for-Azure-17e3d283) script di PowerShell per eseguire il metodo. Il metodo crea i contatori delle prestazioni seguenti:  
 
-* **Memorizzato nella cache i mapping**: numero di mapping memorizzati nella cache per la mappa partizioni hello.
-* **DDR operazioni/sec**: frequenza delle operazioni di routing dipendente dati per la mappa partizioni hello. Questo contatore viene aggiornato quando una chiamata troppo[OpenConnectionForKey()](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmap.openconnectionforkey.aspx) risultati in una partizione di destinazione toohello connessione ha esito positivo. 
-* **Mapping di riscontri nella cache di ricerca/sec**: frequenza delle operazioni di ricerca ha esito positivo della cache per i mapping nella mappa partizioni hello. 
-* **Mapping di mancati riscontri nella cache di ricerca al secondo**: frequenza delle operazioni di ricerca della cache non riuscito per i mapping nella mappa partizioni hello.
-* **Mapping di aggiunte o aggiornate in cache/sec**: frequenza il mapping vengono aggiunti o aggiornati nella cache per mappa partizioni hello. 
-* **Mapping rimossi dalla cache/sec**: frequenza con cui i mapping vengono rimossi dalla cache per la mappa partizioni hello. 
+* **Mapping memorizzati nella cache**: numero di mapping memorizzati nella cache per la mappa partizioni.
+* **Operazioni di routing dipendente dai dati al secondo**: frequenza delle operazioni di routing dipendente dai dati per la mappa partizioni. Questo contatore viene aggiornato quando una chiamata a [OpenConnectionForKey()](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmap.openconnectionforkey.aspx) genera una connessione riuscita alla partizione di destinazione. 
+* **Riscontri di ricerca dei mapping nella cache al secondo**: frequenza delle operazioni di ricerca di mapping della mappa partizioni nella cache che hanno esito positivo. 
+* **Mancati riscontri di ricerca dei mapping nella cache al secondo**: frequenza delle operazioni di ricerca di mapping della mappa partizioni nella cache che hanno esito negativo.
+* **Mapping aggiunti o aggiornati nella cache al secondo**: frequenza con cui i mapping della mappa partizioni vengono aggiunti o aggiornati nella cache. 
+* **Mapping rimossi dalla cache al secondo**: frequenza con cui i mapping della mappa partizioni vengono rimossi dalla cache. 
 
 Vengono creati contatori delle prestazioni per ciascuna mappa partizioni memorizzata nella cache in modalità per processo.  
 
 ## <a name="notes"></a>Note
-Hello eventi seguenti attivano la creazione di hello hello dei contatori delle prestazioni:  
+I seguenti eventi attivano la creazione di contatori delle prestazioni:  
 
-* Inizializzazione di hello [ShardMapManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.aspx) con [caricamento eager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanagerloadpolicy.aspx)se hello ShardMapManager contiene le mappe partizioni. Questi includono hello [GetSqlShardMapManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanagerfactory.getsqlshardmapmanager.aspx?f=255&MSPPError=-2147217396#M:Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.ShardMapManagerFactory.GetSqlShardMapManager%28System.String,Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.ShardMapManagerLoadPolicy%29) hello e [TryGetSqlShardMapManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanagerfactory.trygetsqlshardmapmanager.aspx) metodi.
+* Inizializzazione di [ShardMapManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.aspx) con [caricamento eager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanagerloadpolicy.aspx), se ShardMapManager contiene mappe partizioni. Sono inclusi i metodi [GetSqlShardMapManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanagerfactory.getsqlshardmapmanager.aspx?f=255&MSPPError=-2147217396#M:Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.ShardMapManagerFactory.GetSqlShardMapManager%28System.String,Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.ShardMapManagerLoadPolicy%29) e [TryGetSqlShardMapManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanagerfactory.trygetsqlshardmapmanager.aspx).
 * Ricerca con esito positivo di una mappa partizioni (mediante [GetShardMap()](https://msdn.microsoft.com/library/azure/dn824215.aspx), [GetListShardMap()](https://msdn.microsoft.com/library/azure/dn824212.aspx) o [GetRangeShardMap()](https://msdn.microsoft.com/library/azure/dn824173.aspx)). 
 * Creazione di una mappa partizioni mediante CreateShardMap().
 
-i contatori delle prestazioni di Hello verranno aggiornati da tutte le operazioni eseguite su mapping e mappa partizioni hello cache. Completata la rimozione della mappa partizioni hello utilizzando DeleteShardMap () reults l'eliminazione di istanze di contatori delle prestazioni di hello.  
+I contatori delle prestazioni verranno aggiornati da tutte le operazioni della cache eseguite sulla mappa partizioni e sui mapping. La rimozione della mappa partizioni mediante DeleteShardMap() causa l'eliminazione dell'istanza dei contatori delle prestazioni.  
 
 ## <a name="best-practices"></a>Procedure consigliate
-* Creazione di una categoria di prestazioni hello e contatori deve essere eseguita solo una volta prima della creazione di hello dell'oggetto ShardMapManager. Ogni esecuzione del comando hello CreatePerformanceCategoryAndCounters() Cancella i contatori precedenti hello (perdita di dati restituiti da tutte le istanze) e crea nuovi.  
-* Le istanze dei contatori delle prestazioni vengono create in modalità per processo. Un arresto anomalo dell'applicazione o la rimozione di una mappa partizioni dalla cache di hello comporterà l'eliminazione di istanze dei contatori delle prestazioni hello.  
+* La creazione della categoria e dei contatori delle prestazioni deve essere eseguita solo una volta prima della creazione dell'oggetto ShardMapManager. Ogni esecuzione del comando CreatePerformanceCategoryAndCounters() cancella i contatori precedenti (con la perdita di tutti i dati segnalati da tutte le istanze) e ne crea di nuovi.  
+* Le istanze dei contatori delle prestazioni vengono create in modalità per processo. Un arresto anomalo dell'applicazione o la rimozione di una mappa partizioni dalla cache causa l'eliminazione delle istanze dei contatori delle prestazioni.  
 
-### <a name="see-also"></a>Vedere anche
+### <a name="see-also"></a>Vedere anche 
 [Panoramica sulle funzionalità di database elastico](sql-database-elastic-scale-introduction.md)  
 
 [!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]

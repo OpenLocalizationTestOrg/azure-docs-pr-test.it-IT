@@ -1,5 +1,5 @@
 ---
-title: aaaUse snapshot incrementali per il backup e ripristino di dischi di macchina virtuale Windows Azure non gestiti | Documenti Microsoft
+title: Usare snapshot incrementali per il backup e il ripristino di dischi di macchine virtuali Windows di Azure non gestiti | Microsoft Docs
 description: Creare una soluzione personalizzata per il backup e il ripristino dei dischi di macchine virtuali Windows di Azure tramite snapshot incrementali.
 services: virtual-machines-windows
 documentationcenter: na
@@ -14,10 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: aungoo
-ms.openlocfilehash: 2ad2fdcf1144ba134ba0eb1c0c7ecabffd1bc38f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: aea91f4d402e88d74cc1917efe1b368c458f1322
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 [!INCLUDE [virtual-machines-incremental-snapshots](../../../includes/virtual-machines-incremental-snapshots.md)]

@@ -1,5 +1,5 @@
 ---
-title: Registra aaaExplore traccia Java in Azure Application Insights | Documenti Microsoft
+title: Esaminare i log di traccia Java in Azure Application Insights | Documentazione Microsoft
 description: Eseguire la ricerca di tracce Log4J o Logback in Application Insights
 services: application-insights
 documentationcenter: java
@@ -13,29 +13,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/12/2016
 ms.author: bwren
-ms.openlocfilehash: e5f8e8c67e57753ba7574b97aa96dbb41db00ce1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5baba3deaf58a1a24995c60381592a9c2ffefd81
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="explore-java-trace-logs-in-application-insights"></a>Esplorare i log di traccia Java in Application Insights
-Se si usa Log4J o Logback (versione 1.2 o 2.0) per la traccia, è possibile utilizzare i log di traccia inviati automaticamente tooApplication informazioni dettagliate in cui è possibile esplorare e ricerche.
+Se si usa Logback o Log4J (v1.2 o v2.0) per la traccia, è possibile inviare automaticamente i log di traccia ad Application Insights dove è possibile esplorarli e eseguirvi ricerche.
 
-## <a name="install-hello-java-sdk"></a>Installare hello SDK per Java
+## <a name="install-the-java-sdk"></a>Installare Java SDK
 
 Installare [Application Insights SDK per Java][java], se questa operazione non è già stata eseguita.
 
-(Se non si desidera che le richieste di tootrack HTTP, è possibile omettere la maggior parte dei file di configurazione XML hello, ma è necessario includere almeno hello `InstrumentationKey` elemento. È inoltre necessario chiamare `new TelemetryClient()` tooinitialize hello SDK.)
+Se non si desidera tenere traccia delle richieste HTTP, è possibile omettere gran parte del file di configurazione .xml, ma è necessario includere almeno l'elemento `InstrumentationKey`. È anche necessario chiamare `new TelemetryClient()` per inizializzare il SDK.
 
 
-## <a name="add-logging-libraries-tooyour-project"></a>Aggiungere la registrazione delle librerie tooyour progetto
-*Scegliere hello modalità appropriata per il progetto.*
+## <a name="add-logging-libraries-to-your-project"></a>Aggiungere le librerie di registrazione al progetto
+*Scegliere il modo più appropriato per il progetto.*
 
 #### <a name="if-youre-using-maven"></a>Se si usa Maven...
-Se il progetto è già impostato toouse Maven per la compilazione, di tipo merge uno dei seguenti frammenti di codice nel file pom.xml hello.
+Se il progetto è già stato configurato per usare Maven per la compilazione, aggiungere uno dei frammenti di codice seguenti nel file pom.xml.
 
-Aggiornare quindi dipendenze progetto hello, i file binari hello tooget scaricati.
+Aggiornare quindi le dipendenze progetto per fare in modo che i file binari vengano scaricati.
 
 *Logback*
 
@@ -77,9 +77,9 @@ Aggiornare quindi dipendenze progetto hello, i file binari hello tooget scaricat
 ```
 
 #### <a name="if-youre-using-gradle"></a>Se si usa Gradle...
-Se il progetto è già impostato toouse Gradle per la compilazione, aggiungere uno dei seguenti righe toohello hello `dependencies` gruppo nel file gradle:
+Se il progetto è già configurato per usare Gradle per la compilazione, aggiungere una delle righe seguenti al gruppo `dependencies` nel file build.gradle:
 
-Aggiornare quindi dipendenze progetto hello, i file binari hello tooget scaricati.
+Aggiornare quindi le dipendenze progetto per fare in modo che i file binari vengano scaricati.
 
 **Logback**
 
@@ -101,7 +101,7 @@ Aggiornare quindi dipendenze progetto hello, i file binari hello tooget scaricat
 ```
 
 #### <a name="otherwise-"></a>In caso contrario...
-Scaricare ed estrarre appender di hello appropriato, quindi aggiungere hello libreria appropriata tooyour progetto:
+Scaricare ed estrarre l'appender appropriato e quindi aggiungere la libreria appropriata al progetto:
 
 | Logger | Scaricare | Libreria |
 | --- | --- | --- |
@@ -109,8 +109,8 @@ Scaricare ed estrarre appender di hello appropriato, quindi aggiungere hello lib
 | Log4J v2.0 |[SDK con appender Log4J v2](https://aka.ms/qypznq) |applicationinsights-logging-log4j2 |
 | Log4J v1.2 |[SDK con appender Log4J v1.2](https://aka.ms/ky9cbo) |applicationinsights-logging-log4j1_2 |
 
-## <a name="add-hello-appender-tooyour-logging-framework"></a>Aggiungere il framework di registrazione tooyour appender hello
-toostart recupero tracce, importante frammento hello merge del codice toohello Log4J o Logback file di configurazione: 
+## <a name="add-the-appender-to-your-logging-framework"></a>Aggiungere l'appender per il framework di registrazione
+Per iniziare la raccolta di tracce, unire il frammento di codice rilevante al file di configurazione Log4J o Logback: 
 
 *Logback*
 
@@ -153,12 +153,12 @@ toostart recupero tracce, importante frammento hello merge del codice toohello L
     </root>
 ```
 
-appenders Application Insights Hello può fare riferimento da qualsiasi logger configurato e non necessariamente logger radice hello (come illustrato negli esempi di codice hello sopra).
+È possibile fare riferimento agli appender di Application Insights da qualsiasi logger configurato e non necessariamente dal logger principale (come illustrato negli esempi di codice riportati sopra).
 
-## <a name="explore-your-traces-in-hello-application-insights-portal"></a>Esplorare le tracce nel portale Application Insights hello
-Ora che è stato configurato il progetto toosend tracce tooApplication Insights, è possibile visualizzare e cercare le tracce nel hello del portale Application Insights hello [ricerca] [ diagnostic] blade.
+## <a name="explore-your-traces-in-the-application-insights-portal"></a>Esplorare le tracce nel portale Application Insights.
+Ora che è stato configurato il progetto per inviare tracce in Application Insights, è possibile visualizzare e cercare queste tracce nel portale di Application Insights nel pannello [Ricerca][diagnostic].
 
-![Nel portale Application Insights hello, aprire una ricerca](./media/app-insights-java-trace-logs/10-diagnostics.png)
+![Nel portale di Application Insights, aprire Ricerca diagnostica](./media/app-insights-java-trace-logs/10-diagnostics.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
 [Ricerca diagnostica][diagnostic]

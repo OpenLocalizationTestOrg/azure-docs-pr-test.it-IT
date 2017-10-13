@@ -1,6 +1,6 @@
 ---
-title: servizio di gestione di dispositivi StorSimple aaaDeploy | Documenti Microsoft
-description: Viene illustrato come toocreate e delete hello del servizio di gestione di dispositivi StorSimple nel portale di Azure hello e descrive come toomanage hello chiave di registrazione del servizio.
+title: Distribuire il servizio Gestione dispositivi StorSimple | Documentazione Microsoft
+description: Descrive le procedure per creare ed eliminare il servizio Gestione dispositivi StorSimple nel portale di Azure e per gestire la chiave di registrazione del servizio.
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,102 +14,102 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/29/2016
 ms.author: alkohli
-ms.openlocfilehash: 9064053addc7b3dfcce08b47e81b38c2e0e1b559
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1881a0625b107ae1a90e5b772f5296a4d728973d
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="deploy-hello-storsimple-device-manager-service-for-storsimple-virtual-array"></a>Distribuire il servizio di gestione di dispositivi StorSimple hello per Array virtuale StorSimple
-## <a name="overview"></a>Panoramica
+# <a name="deploy-the-storsimple-device-manager-service-for-storsimple-virtual-array"></a>Distribuire il servizio Gestione dispositivi StorSimple per l'array virtuale StorSimple
+## <a name="overview"></a>Overview
 
-servizio di gestione di dispositivi StorSimple Hello in esecuzione in Microsoft Azure e si connette dispositivi StorSimple toomultiple. Dopo aver creato il servizio di hello, è possibile utilizzare i dispositivi di hello toomanage da hello Microsoft Azure portale in esecuzione in un browser. In questo modo toomonitor tutti i dispositivi che sono connesso toohello dispositivo StorSimple Manager hello del servizio da un'unica posizione centrale, riducendo così al minimo carico amministrativo.
+Il servizio Gestione dispositivi StorSimple viene eseguito in Microsoft Azure e si connette a più dispositivi StorSimple. Dopo aver creato il servizio, è possibile usarlo per gestire i dispositivi tramite il portale di Microsoft Azure in esecuzione in un browser. Ciò consente di monitorare tutti i dispositivi connessi al servizio Gestione dispositivi StorSimple da un'unica posizione centrale, con una conseguente riduzione del carico amministrativo.
 
-Hello comuni attività correlati tooa servizio di gestione di dispositivi StorSimple sono:
+Le attività comuni correlate a un servizio Gestione dispositivi StorSimple sono:
 
 * Creare un servizio
 * Eliminare un servizio
-* Ottenere una chiave di registrazione del servizio hello
-* Rigenerare la chiave di registrazione del servizio hello
+* Ottenere la chiave di registrazione del servizio
+* Rigenerare la chiave di registrazione del servizio
 
-In questa esercitazione viene descritto come tooperform di hello attività precedenti. informazioni di Hello contenute in questo articolo sono applicabile solo matrici virtuale tooStorSimple. Per ulteriori informazioni su StorSimple serie 8000, visitare troppo[distribuire un servizio StorSimple Manager](storsimple-manage-service.md).
+Questa esercitazione descrive come eseguire ognuna delle attività precedenti. Le informazioni contenute in questo articolo si applicano solo all'array virtuale StorSimple. Per altre informazioni su StorSimple serie 8000, andare a [Distribuire il servizio StorSimple Manager](storsimple-manage-service.md).
 
 ## <a name="create-a-service"></a>Creare un servizio
 
-toocreate un servizio, è necessario toohave:
+Per creare un servizio, è necessario avere:
 
 * Una sottoscrizione con un contratto Enterprise Agreement
 * Un account di archiviazione di Microsoft Azure attivo
-* le informazioni di fatturazione che viene utilizzate per la gestione accessi Hello
+* Le informazioni di fatturazione usate per la gestione degli accessi
 
-È inoltre possibile toogenerate un account di archiviazione quando si crea il servizio di hello.
+È inoltre possibile scegliere di generare un account di archiviazione al momento della creazione del servizio.
 
-Un singolo servizio può gestire più dispositivi, ma un dispositivo non può estendersi a più servizi. Una grande organizzazione può avere più toowork di istanze di servizio con diverse sottoscrizioni, organizzazioni o anche percorsi di distribuzione.
+Un singolo servizio può gestire più dispositivi, ma un dispositivo non può estendersi a più servizi. Una grande impresa può avere più istanze del servizio per lavorare con diverse sottoscrizioni, organizzazioni o anche percorsi di distribuzione.
 
 > [!NOTE]
-> È necessario istanze separate di dispositivi della serie StorSimple 8000 toomanage servizio StorSimple Manager di dispositivi e le matrici virtuale StorSimple.
+> Per gestire dispositivi StorSimple serie 8000 e array virtuali StorSimple sono necessarie istanze separate del servizio Gestione dispositivi StorSimple.
 
 
-Eseguire hello seguendo i passaggi toocreate un servizio.
+Per creare un servizio, attenersi alla procedura seguente.
 
 [!INCLUDE [storsimple-virtual-array-create-new-service](../../includes/storsimple-virtual-array-create-new-service.md)]
 
 ## <a name="delete-a-service"></a>Eliminare un servizio
 
-Prima di eliminare un servizio, verificare che non sia usato da dispositivi connessi. Se il servizio di hello è in uso, disattivare i dispositivi connesso hello. operazione di disattivazione Hello dividere hello connessione tra il dispositivo di hello e servizio hello, ma conservare i dati del dispositivo hello nel cloud hello.
+Prima di eliminare un servizio, verificare che non sia usato da dispositivi connessi. Se il servizio è in uso, disattivare i dispositivi connessi. L'operazione di disattivazione interromperà la connessione tra il dispositivo e il servizio mantenendo i dati del dispositivo nel cloud.
 
 > [!IMPORTANT]
-> Dopo l'eliminazione di un servizio, operazione hello non può essere annullata. Qualsiasi dispositivo che utilizza il servizio hello sarà necessario toobe delle impostazioni di fabbrica prima che possa essere usato con un altro servizio. In questo scenario, i dati locali di hello sul dispositivo hello, nonché la configurazione di hello, andranno persi.
+> Dopo che un servizio è stato eliminato, l'operazione non può essere annullata. Sarà necessario ripristinare le impostazioni predefinite di ogni dispositivo che usa questo servizio prima che il dispositivo possa essere usato con un altro servizio. In questo scenario i dati locali sul dispositivo e la configurazione andranno persi.
  
 
-Eseguire hello seguendo i passaggi toodelete un servizio.
+Per eliminare un servizio, attenersi alla procedura seguente.
 
-#### <a name="toodelete-a-service"></a>toodelete un servizio
+#### <a name="to-delete-a-service"></a>Per eliminare un servizio
 
-1. Andare troppo**tutte le risorse**. Ricercare il servizio Gestione dispositivi StorSimple. Selezionare servizio hello che si desidera toodelete.
+1. Passare a **Tutte le risorse**. Ricercare il servizio Gestione dispositivi StorSimple. Selezionare il servizio da eliminare.
    
-    ![Selezionare servizio toodelete](./media/storsimple-virtual-array-manage-service/deleteservice2.png)
-2. Passare tooyour servizio dashboard tooensure esistono dispositivi non connesso toohello servizio. Se non sono presenti dispositivi registrati con questo servizio, verrà visualizzato anche un effetto di toohello messaggio banner. Fare clic su **Elimina**.
+    ![Selezionare il servizio da eliminare](./media/storsimple-virtual-array-manage-service/deleteservice2.png)
+2. Passare al dashboard del servizio per verificare che non siano presenti dispositivi connessi al servizio. Se non sono presenti dispositivi registrati con questo servizio, verrà visualizzato un messaggio di intestazione in proposito. Fare clic su **Elimina**.
    
     ![Delete service](./media/storsimple-virtual-array-manage-service/deleteservice3.png)
 
-3. Quando viene richiesta la conferma, fare clic su **Sì** nella notifica di conferma hello. 
+3. Quando viene richiesta la conferma, fare clic su **Sì** nella notifica di conferma. 
    
     ![Confermare l'eliminazione del servizio](./media/storsimple-virtual-array-manage-service/deleteservice4.png)
-4. Potrebbe richiedere alcuni minuti per hello servizio toobe eliminato. Dopo aver hello servizio viene eliminato correttamente, si riceverà una notifica.
+4. L'eliminazione del servizio può richiedere alcuni minuti. Dopo aver eliminato correttamente il servizio, si riceverà una notifica.
    
     ![Eliminazione del servizio riuscita](./media/storsimple-virtual-array-manage-service/deleteservice6.png)
 
-elenco di Hello dei servizi verrà aggiornato.
+L'elenco dei servizi verrà aggiornato.
 
  ![Elenco aggiornato dei servizi](./media/storsimple-virtual-array-manage-service/deleteservice7.png)
 
-## <a name="get-hello-service-registration-key"></a>Ottenere una chiave di registrazione del servizio hello
-Dopo avere creato un servizio, è necessario tooregister dispositivo StorSimple con servizio hello. tooregister del primo dispositivo StorSimple, si sarà necessario hello chiave di registrazione del servizio. tooregister ulteriori dispositivi con un servizio StorSimple esistente, è necessario sia la chiave di registrazione hello e hello chiave DEK del servizio (che viene generato nel primo dispositivo hello durante la registrazione). Per ulteriori informazioni sulla chiave di crittografia di hello servizio dati, vedere [sicurezza in StorSimple](storsimple-security.md). È possibile ottenere la chiave di registrazione hello accedendo hello **chiavi** pannello per il servizio.
+## <a name="get-the-service-registration-key"></a>Ottenere la chiave di registrazione del servizio
+Dopo aver creato un servizio, è necessario registrare il dispositivo StorSimple. Per registrare il primo dispositivo StorSimple, è necessaria la chiave di registrazione del servizio. Per registrare altri dispositivi con un servizio StorSimple esistente, sono necessarie la chiave di registrazione e la chiave DEK del servizio (che viene generata durante la registrazione sul primo dispositivo). Per altre informazioni sulla chiave DEK del servizio, vedere [Sicurezza in StorSimple](storsimple-security.md). È possibile ottenere la chiave di registrazione mediante il pannello **Chiavi** per il servizio.
 
-Eseguire hello seguendo i passaggi tooget hello chiave di registrazione.
+Per ottenere la chiave di registrazione del servizio, attenersi alla procedura seguente.
 
-#### <a name="tooget-hello-service-registration-key"></a>chiave di registrazione del servizio hello tooget
-1. In hello **Gestione dispositivi StorSimple** pannello andare troppo**Management &gt;**  **chiavi**.
+#### <a name="to-get-the-service-registration-key"></a>Per ottenere la chiave di registrazione del servizio
+1. In **Gestione dispositivi StorSimple** passare a **Gestione&gt;** **Chiavi**.
    
    ![Pannello Chiavi](./media/storsimple-virtual-array-manage-service/getregkey2.png)
-2. In hello **chiavi** viene visualizzata una chiave di registrazione del servizio di pannello. Chiave di registrazione hello copia utilizzando l'icona di copia hello. 
+2. Nel pannello **Chiavi** viene visualizzata la chiave di registrazione del servizio. Copiare la chiave di registrazione usando l'icona di copia. 
 
-Mantenere una chiave di registrazione del servizio hello in un luogo sicuro. Sarà necessario questa chiave, nonché hello chiave DEK del servizio, tooregister ulteriori dispositivi con questo servizio. Dopo aver ottenuto una chiave di registrazione del servizio hello, sarà necessario tooconfigure il dispositivo tramite Windows PowerShell hello per l'interfaccia di StorSimple.
+Conservare la chiave di registrazione del servizio in una posizione sicura. Questa chiave e la chiave DEK del servizio saranno necessarie per registrare altri dispositivi con il servizio. Dopo aver ottenuto la chiave di registrazione del servizio, è necessario configurare il dispositivo tramite l'interfaccia di Windows PowerShell per StorSimple.
 
-## <a name="regenerate-hello-service-registration-key"></a>Rigenerare la chiave di registrazione del servizio hello
-Se si è obbligatorio tooperform rotazione delle chiavi o se l'elenco di hello degli amministratori del servizio è stato modificato, sarà necessario tooregenerate una chiave di registrazione del servizio. Quando si rigenera la chiave hello, nuova chiave hello viene utilizzato solo per registrare i dispositivi successivi. i dispositivi Hello già registrati sono interessati da questo processo.
+## <a name="regenerate-the-service-registration-key"></a>Rigenerare la chiave di registrazione del servizio
+La rigenerazione di una chiave di registrazione del servizio deve essere effettuata quando è necessario eseguire la rotazione delle chiavi o se l'elenco di amministratori del servizio è stato modificato. Quando si rigenera la chiave, quest'ultima viene usata solo per registrare dispositivi successivi. I dispositivi già registrati non sono interessati da questo processo.
 
-Eseguire hello seguendo i passaggi tooregenerate una chiave di registrazione del servizio.
+Per rigenerare una chiave di registrazione del servizio, attenersi alla procedura seguente.
 
-#### <a name="tooregenerate-hello-service-registration-key"></a>chiave di registrazione del servizio hello tooregenerate
-1. In hello **Gestione dispositivi StorSimple** pannello andare troppo**Management &gt;**  **chiavi**.
+#### <a name="to-regenerate-the-service-registration-key"></a>Per rigenerare la chiave di registrazione del servizio
+1. In **Gestione dispositivi StorSimple** passare a **Gestione&gt;** **Chiavi**.
    
    ![Pannello Chiavi](./media/storsimple-virtual-array-manage-service/getregkey2.png)
-2. In hello **chiavi** pannello, fare clic su **rigenerare**.
+2. Nel pannello **Chiavi** fare clic su **Rigenera**.
    
    ![Fare clic su Rigenera](./media/storsimple-virtual-array-manage-service/getregkey5.png)
-3. In hello **Rigenera chiave di registrazione** pannello revisione hello azione necessaria per la hello chiavi vengono rigenerate. Tutti i dispositivi successivi hello che sono registrati con questo servizio utilizzerà una nuova chiave di registrazione hello. Fare clic su **rigenerare** tooconfirm. Una volta completata la registrazione di hello si riceverà la notifica.
+3. Nel pannello **Rigenera la chiave di registrazione del servizio** esaminare l'azione necessaria quando le chiavi vengono rigenerate. Tutti i dispositivi successivi registrati con questo servizio useranno la nuova chiave di registrazione. Fare clic su **Rigenera** per confermare. Al completamento della registrazione si riceverà una notifica.
    
    ![Confermare la chiave di rigenerazione](./media/storsimple-virtual-array-manage-service/getregkey3.png)
 4. Verrà visualizzata una nuova chiave di registrazione del servizio.
@@ -119,6 +119,6 @@ Eseguire hello seguendo i passaggi tooregenerate una chiave di registrazione del
    Copiare la chiave e salvarla per registrare eventuali nuovi dispositivi con il servizio.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Informazioni su come troppo[iniziare](storsimple-virtual-array-deploy1-portal-prep.md) con un Array virtuale StorSimple.
-* Informazioni su come troppo[amministrare il dispositivo StorSimple](storsimple-ova-web-ui-admin.md).
+* Informazioni su come [iniziare a usare](storsimple-virtual-array-deploy1-portal-prep.md) un array virtuale StorSimple.
+* Informazioni su come [amministrare il dispositivo StorSimple](storsimple-ova-web-ui-admin.md).
 

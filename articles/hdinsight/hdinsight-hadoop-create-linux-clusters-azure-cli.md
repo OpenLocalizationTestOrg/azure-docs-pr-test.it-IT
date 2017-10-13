@@ -1,6 +1,6 @@
 ---
-title: i cluster Hadoop aaaCreate tramite riga di comando - hello Azure HDInsight | Documenti Microsoft
-description: Informazioni su come i cluster HDInsight toocreate usando hello multipiattaforma Azure CLI 1.0.
+title: Creare cluster Hadoop con una riga di comando - Azure HDInsight | Documentazione Microsoft
+description: Informazioni su come creare cluster HDInsight tramite l'interfaccia della riga di comando di Azure 1.0.
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -14,22 +14,22 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 06/26/2017
+ms.date: 09/26/2017
 ms.author: larryfr
-ms.openlocfilehash: 5295b01054b8c23df0e3b75a3e0e8c933ac48b3c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 791edd4e56c7957458d49f6f3bd87b67e96db7a8
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="create-hdinsight-clusters-using-hello-azure-cli"></a>Creare il cluster HDInsight tramite hello CLI di Azure
+# <a name="create-hdinsight-clusters-using-the-azure-cli"></a>Creare cluster HDInsight tramite l'interfaccia della riga di comando di Azure
 
 [!INCLUDE [selector](../../includes/hdinsight-create-linux-cluster-selector.md)]
 
-Hello passaggi in questa procedura dettagliata documento creazione di un cluster HDInsight 3.5 utilizzando hello Azure CLI 1.0.
+La procedura presentata in questo documento illustra come creare un cluster HDInsight 3.5 usando l'interfaccia della riga di comando di Azure 1.0.
 
 > [!IMPORTANT]
-> Linux è hello solo sistema operativo utilizzato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> Linux è l'unico sistema operativo usato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 
 ## <a name="prerequisites"></a>Prerequisiti
@@ -38,90 +38,90 @@ Hello passaggi in questa procedura dettagliata documento creazione di un cluster
 
 * **Una sottoscrizione di Azure**. Vedere [Ottenere una versione di valutazione gratuita di Azure](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).
 
-* **Interfaccia della riga di comando di Azure**. passaggi di Hello in questo documento sono stati testati ultima con versione 0.10.14 CLI di Azure.
+* **Interfaccia della riga di comando di Azure**. I passaggi descritti nel presente documento sono stati testati con la versione dell'interfaccia della riga di comando di Azure 0.10.14.
 
     > [!IMPORTANT]
-    > passaggi di Hello in questo documento non funzionano con l'interfaccia CLI di Azure 2.0. L'interfaccia della riga di comando di Azure 2.0 non supporta la creazione di un cluster HDInsight.
+    > La procedura descritta in questo documento non funziona con l'interfaccia della riga di comando di Azure 2.0. L'interfaccia della riga di comando di Azure 2.0 non supporta la creazione di un cluster HDInsight.
 
-## <a name="log-in-tooyour-azure-subscription"></a>Accedi tooyour sottoscrizione di Azure
+## <a name="log-in-to-your-azure-subscription"></a>Accedere alla sottoscrizione di Azure
 
-Seguire i passaggi di hello documentati in [connettersi tooan sottoscrizione di Azure da hello interfaccia della riga di comando di Azure (Azure CLI)](../xplat-cli-connect.md) e connettersi tooyour sottoscrizione utilizzando hello **accesso** (metodo).
+Seguire i passaggi descritti in [Connettersi a una sottoscrizione Azure dall'interfaccia della riga di comando di Azure](../xplat-cli-connect.md) e connettersi alla sottoscrizione usando il metodo **login** .
 
 ## <a name="create-a-cluster"></a>Creare un cluster
 
-Hello alla procedura seguente deve essere eseguita dalla riga di comando, ad esempio PowerShell o Bash.
+I passaggi seguenti devono essere eseguiti dalla riga di comando, ad esempio PowerShell o Bash.
 
-1. Utilizzare hello successivo comando tooauthenticate tooyour sottoscrizione di Azure:
+1. Per eseguire l'autenticazione della sottoscrizione di Azure, usare il comando seguente:
 
         azure login
 
-    Si è tooprovide richiesto il nome e la password. Se si dispone di più sottoscrizioni di Azure, utilizzare `azure account set <subscriptionname>` sottoscrizione hello tooset hello CLI di Azure, i comandi usano.
+    Occorre specificare il nome e la password. Se si dispone di più sottoscrizioni di Azure, usare `azure account set <subscriptionname>` per impostare la sottoscrizione utilizzata dai comandi dell'interfaccia della riga di comando di Azure.
 
-2. Passare in modalità di gestione risorse tooAzure utilizzando hello comando seguente:
+2. Passare alla modalità Gestione risorse di Azure usando il comando seguente:
 
         azure config mode arm
 
-3. Creare un gruppo di risorse. Il gruppo di risorse cluster HDInsight hello e account di archiviazione associato.
+3. Creare un gruppo di risorse. Questo gruppo di risorse contiene il cluster HDInsight e l'account di archiviazione associato.
 
         azure group create groupname location
 
-    * Sostituire `groupname` con un nome univoco per il gruppo di hello.
+    * Sostituire `groupname` con un nome univoco per il gruppo.
 
-    * Sostituire `location` con area geografica hello che si desidera che il gruppo di hello toocreate in.
+    * Sostituire `location` con l'area geografica in cui si vuole creare il gruppo.
 
-       Per un elenco di percorsi validi, utilizzare hello `azure location list` comandi e quindi utilizzare uno dei percorsi di hello da hello `Name` colonna.
+       Per un elenco di località valide, usare il comando `azure location list` e quindi una delle località della colonna `Name`.
 
-4. Creare un account di archiviazione. Questo account di archiviazione viene utilizzato come spazio di archiviazione di hello predefinito per il cluster HDInsight hello.
+4. Creare un account di archiviazione. Questo account di archiviazione verrà usato come risorsa di archiviazione predefinita per il cluster HDInsight.
 
         azure storage account create -g groupname --sku-name RAGRS -l location --kind Storage storagename
 
-    * Sostituire `groupname` con nome hello del gruppo di hello creato nel passaggio precedente hello.
+    * Sostituire `groupname` con il nome del gruppo creato nel passaggio precedente.
 
-    * Sostituire `location` con hello nello stesso percorso utilizzato nel passaggio precedente hello.
+    * Sostituire `location` con la stessa località usata nel passaggio precedente.
 
-    * Sostituire `storagename` con un nome univoco per l'account di archiviazione hello.
+    * Sostituire `storagename` con un nome univoco per l'account di archiviazione.
 
         > [!NOTE]
-        > Per ulteriori informazioni sui parametri hello utilizzati in questo comando, utilizzare `azure storage account create -h` tooview della Guida in linea per questo comando.
+        > Per altre informazioni sui parametri usati in questo comando, usare `azure storage account create -h` per visualizzare la Guida relativa a questo comando.
 
-5. Recuperare l'account di archiviazione hello hello chiave tooaccess utilizzato.
+5. Recuperare la chiave usata per accedere all'account di archiviazione.
 
         azure storage account keys list -g groupname storagename
 
-    * Sostituire `groupname` con nome gruppo di risorse hello.
-    * Sostituire `storagename` con nome hello hello dell'account di archiviazione.
+    * Sostituire `groupname` con il nome del gruppo di risorse.
+    * Sostituire `storagename` con il nome per l'account di archiviazione.
 
-     Nei dati hello che viene restituiti, salvare hello `key` valore per `key1`.
+     Nei dati restituiti salvare il valore `key` per `key1`.
 
 6. Creare un cluster HDInsight
 
         azure hdinsight cluster create -g groupname -l location -y Linux --clusterType Hadoop --defaultStorageAccountName storagename.blob.core.windows.net --defaultStorageAccountKey storagekey --defaultStorageContainer clustername --workerNodeCount 3 --userName admin --password httppassword --sshUserName sshuser --sshPassword sshuserpassword clustername
 
-    * Sostituire `groupname` con nome gruppo di risorse hello.
+    * Sostituire `groupname` con il nome del gruppo di risorse.
 
-    * Sostituire `Hadoop` con tipo di cluster hello che si desidera toocreate. ad esempio, `Hadoop`, `HBase`, `Kafka`, `Spark` o `Storm`.
+    * Sostituire `Hadoop` con il tipo di cluster da creare, ad esempio, `Hadoop`, `HBase`, `Kafka`, `Spark` o `Storm`.
 
      > [!IMPORTANT]
-     > HDInsight cluster possono essere di vario tipo, che corrispondono a carico di lavoro toohello o tecnologia di hello cluster è ottimizzata per. Non è toocreate alcun metodo supportato per un cluster che combina più tipi, ad esempio Storm e HBase in un cluster.
+     > Sono disponibili molti tipi di cluster HDInsight, che corrispondono al carico di lavoro o alla tecnologia per cui è ottimizzato il cluster. Non è disponibile alcun metodo supportato per creare un cluster che combini più tipi, ad esempio Storm e HBase in un cluster.
 
-    * Sostituire `location` con hello nello stesso percorso utilizzato nei passaggi precedenti.
+    * Sostituire `location` con la stessa località usata nel passaggio precedente.
 
-    * Sostituire `storagename` con nome di account di archiviazione hello.
+    * Sostituire `storagename` con il nome per l'account di archiviazione.
 
-    * Sostituire `storagekey` con chiave hello ottenuta nel passaggio precedente hello.
+    * Sostituire `storagekey` con la chiave ottenuta nel passaggio precedente.
 
-    * Per hello `--defaultStorageContainer` parametro, utilizzare hello stesso nome che si utilizzi per i cluster di hello.
+    * Per il parametro `--defaultStorageContainer` usare lo stesso nome usato per il cluster.
 
-    * Sostituire `admin` e `httppassword` con nome hello e una password desiderato toouse quando si accede a cluster hello tramite HTTPS.
+    * Sostituire `admin` e `httppassword` con il nome e la password da usare per l'accesso al cluster tramite HTTPS.
 
-    * Sostituire `sshuser` e `sshuserpassword` con hello username e password desiderato toouse quando si accede a cluster hello tramite SSH
+    * Sostituire `sshuser` e `sshuserpassword` con il nome utente e la password da usare per l'accesso al cluster tramite SSH
 
     > [!IMPORTANT]
-    > L'esempio precedente crea un cluster con 2 nodi di ruolo di lavoro. È inoltre possibile modificare il numero di hello di nodi di lavoro dopo la creazione del cluster eseguendo le operazioni di ridimensionamento. Se si prevede di usare più di 32 nodi del ruolo di lavoro, è necessario selezionare una dimensione del nodo head con almeno 8 core e 14 GB di RAM. È possibile impostare le dimensioni di un nodo head hello utilizzando hello `--headNodeSize` parametro durante la creazione del cluster.
+    > L'esempio precedente crea un cluster con 2 nodi di ruolo di lavoro. È inoltre possibile modificare il numero di nodi del ruolo di lavoro dopo la creazione del cluster eseguendo le operazioni di ridimensionamento. Se si prevede di usare più di 32 nodi del ruolo di lavoro, è necessario selezionare una dimensione del nodo head con almeno 8 core e 14 GB di RAM. È possibile impostare le dimensioni del nodo head usando il parametro `--headNodeSize` durante la creazione del cluster.
     >
     > Per altre informazioni sulle dimensioni di nodo e i costi associati, vedere [Prezzi di HDInsight](https://azure.microsoft.com/pricing/details/hdinsight/).
 
-    Potrebbe richiedere alcuni minuti per hello cluster creazione processo toofinish. in genere circa 15.
+    Il processo di creazione del cluster può richiedere alcuni minuti, in genere circa 15.
 
 ## <a name="troubleshoot"></a>Risoluzione dei problemi
 
@@ -129,7 +129,7 @@ Se si verificano problemi di creazione dei cluster HDInsight, vedere i [requisit
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Ora che la creazione di un cluster HDInsight tramite hello CLI di Azure è stata completata, utilizzare hello seguente come toolearn toowork con il cluster:
+Dopo aver creato un cluster HDInsight tramite l'interfaccia della riga di comando di Azure, usare le informazioni seguenti per acquisire familiarità con il cluster:
 
 ### <a name="hadoop-clusters"></a>Cluster Hadoop
 

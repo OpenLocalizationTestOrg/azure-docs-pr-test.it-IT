@@ -1,5 +1,5 @@
 ---
-title: gestione aaaDevice con l'IoT Hub Azure | Documenti Microsoft
+title: Gestione dei dispositivi con l'hub IoT di Azure | Documentazione Microsoft
 description: 'Panoramica della gestione dei dispositivi nell''hub IoT di Azure: modelli di gestione del ciclo di vita dei dispositivi aziendali, ad esempio riavvio, ripristino delle impostazioni predefinite, aggiornamento del firmware, configurazione, dispositivi gemelli, query e processi.'
 services: iot-hub
 documentationcenter: 
@@ -14,83 +14,83 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: briz
-ms.openlocfilehash: 7e22fb6eb3c541a513b16a047c7c3ef557255532
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6d667d42bfef2ec61b055009210d5621f51c17df
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="overview-of-device-management-with-iot-hub"></a>Panoramica della gestione dei dispositivi con l'hub IoT
 ## <a name="introduction"></a>Introduzione
-IoT Hub Azure offre funzionalità di hello e un modello di estendibilità che consentono di dispositivo e soluzioni di gestione dei dispositivi affidabile toobuild gli sviluppatori back-end. Intervallo di dispositivi da sensori vincolati e unico scopo MicroController, i gateway toopowerful indirizzare le comunicazioni per i gruppi di dispositivi.  Inoltre, casi d'uso hello e requisiti per gli operatori di IoT variano significativamente in settori.  Nonostante questa variante, la gestione dei dispositivi con l'IoT Hub fornisce funzionalità di hello, modelli e codice librerie toocater tooa insieme eterogeneo di dispositivi e utenti finali.
+L'hub IoT di Azure fornisce le funzionalità e un modello di estendibilità che consentono agli sviluppatori di dispositivi e sistemi di back-end di creare soluzioni affidabili per la gestione dei dispositivi. I dispositivi spaziano da sensori vincolati e microcontroller a scopo singolo, a potenti gateway che instradano le comunicazioni per gruppi di dispositivi.  Inoltre, i casi d'uso e i requisiti per gli operatori IoT variano notevolmente all'interno dei diversi settori.  Nonostante questa variabilità, la gestione dei dispositivi con l'hub IoT fornisce le funzionalità, i modelli e le librerie di codice necessari per soddisfare un insieme eterogeneo di dispositivi e utenti finali.
 
-Una parte essenziale della creazione di una soluzione di IoT aziendale ha esito positivo è tooprovide una strategia per la gestiscono degli operatori di gestione in corso di hello della propria raccolta di dispositivi. Operatori di IoT richiedono strumenti semplici e affidabili e le applicazioni che consentono loro toofocus su hello più aspetti strategici delle mansioni che esercitano. Questo articolo include:
+Una parte essenziale della creazione di una soluzione IoT enterprise è offrire una strategia per la gestione continuativa della raccolta di dispositivi da parte degli operatori. Gli operatori IoT necessitano di strumenti e applicazioni semplici e affidabili che consentano di concentrarsi sugli aspetti più strategici del loro lavoro. Questo articolo include:
 
-* Una breve panoramica di gestione di Azure IoT Hub approccio toodevice.
+* Una rapida panoramica sull'approccio dell'hub IoT di Azure alla gestione dei dispositivi.
 * Una descrizione dei comuni principi di gestione dei dispositivi.
-* Descrizione del ciclo di vita del dispositivo hello.
+* Una descrizione del ciclo di vita dei dispositivi.
 * Una panoramica sui comuni modelli di gestione dei dispositivi.
 
 ## <a name="device-management-principles"></a>Principi di gestione dei dispositivi
-IoT è accompagnata da un set univoco di problemi di gestione di dispositivi e ogni soluzione di classe enterprise è necessario risolvere hello principi seguenti:
+All'IoT è associato un esclusivo insieme di sfide di gestione dei dispositivi e ogni soluzione aziendale deve tenere in considerazione i principi riportati di seguito:
 
 ![Grafico dei principi di gestione dei dispositivi][img-dm_principles]
 
-* **Scala e automazione**: IoT soluzioni richiedono strumenti semplici che è possono automatizzare le attività di routine e abilitare le operazioni di dimensioni relativamente ridotte personale toomanage milioni di dispositivi. Quotidiane, operatori prevede che le operazioni del dispositivo toohandle in modalità remota, in blocco, e tooonly un avviso quando si verificano problemi che richiedono la loro attenzione diretta.
-* **Apertura e la compatibilità**: ecosistema dispositivo hello è particolarmente diverse. Gli strumenti di gestione devono essere tooaccommodate personalizzata una vasta gamma di protocolli, le classi di dispositivi e piattaforme. Gli operatori devono essere in grado di toosupport molti tipi di dispositivi, da hello più vincolati incorporato chips processo singolo, toopowerful e computer completamente funzionale.
-* **Riconoscimento del contesto**: gli ambienti IoT sono dinamici e in continua evoluzione. L'affidabilità del servizio è fondamentale. Operazioni di gestione dei dispositivi devono essere prese in hello account seguenti fattori tooensure tale manutenzione tempi di inattività non influiscono sulle operazioni aziendali critici o creare condizioni pericolose:
+* **Scalabilità e automazione**: le soluzioni IoT richiedono strumenti semplici per automatizzare le attività di routine e consentire a uno staff operativo relativamente ridotto di gestire milioni di dispositivi. Quotidianamente, gli operatori si aspettano di gestire le operazioni dei dispositivi in remoto e in blocco ricevendo avvisi solo quando si verificano problemi che richiedono attenzione diretta.
+* **Apertura e compatibilità**: l'ecosistema dei dispositivi è molto eterogeneo. Gli strumenti di gestione devono essere ottimizzati per gestire una vasta gamma di protocolli, piattaforme e classi di dispositivi. È necessario che gli operatori possano supportare molti tipi di dispositivi, dai più limitati chip incorporati per singoli processi a computer potenti e dotati di funzionalità complete.
+* **Riconoscimento del contesto**: gli ambienti IoT sono dinamici e in continua evoluzione. L'affidabilità del servizio è fondamentale. Le operazioni di gestione dei dispositivi devono tener conto dei fattori seguenti perché i tempi di inattività per la manutenzione non influiscano su operazioni aziendali critiche o creino condizioni di pericolo:
     * Finestre di manutenzione del contratto di servizio
     * Stato di rete e di alimentazione
     * Condizioni in uso
     * Georilevazione dei dispositivi
-* **Molti ruoli del servizio**: il supporto per i flussi di lavoro univoco hello e i processi dei ruoli operazioni IoT è essenziale. personale addetto alle operazioni di Hello devono funzionare harmoniously con hello a causa di limitazioni dei reparti IT interni.  Anche individuano modi sostenibile toosurface in tempo reale dispositivi operazioni informazioni toosupervisors e altri ruoli di gestione di business.
+* **Servizio per diversi ruoli**: il supporto degli esclusivi processi e flussi di lavoro dei ruoli operativi dell'IoT è essenziale. Il personale operativo deve poter lavorare in armonia con i vincoli specificati dei reparti IT interni.  Inoltre, deve trovare modi sostenibili per segnalare informazioni operative sui dispositivi in tempo reale ai supervisori e agli altri ruoli di gestione aziendale.
 
 ## <a name="device-lifecycle"></a>Ciclo di vita dei dispositivi
-È presente un set di fasi di gestione generale dei dispositivi che sono comuni tooall enterprise IoT progetti. In Azure IoT, sono disponibili cinque fasi all'interno del ciclo di vita di hello dispositivo:
+Esistono alcune fasi generali per la gestione dei dispositivi, comuni a tutti i progetti ioT enterprise. In IoT di Azure, ci sono cinque fasi nel ciclo di vita dei dispositivi:
 
-![Hello cinque fasi di ciclo di vita dei dispositivi Azure IoT: pianificare, eseguire il provisioning, configurare, monitorare, ritirare][img-device_lifecycle]
+![Le cinque fasi del ciclo di vita dei dispositivi Azure IoT: pianificazione, provisioning, configurazione, monitoraggio e ritiro][img-device_lifecycle]
 
-All'interno di ognuna di queste cinque fasi, esistono diversi requisiti di operatore di dispositivo che devono essere soddisfatte tooprovide una soluzione completa:
+Ciascuna di queste cinque fasi prevede diversi requisiti per gli operatori dei dispositivi che devono essere soddisfatte per fornire una soluzione completa:
 
-* **Pianificare**: toocreate operatori una combinazione di metadati di dispositivo che consente loro tooeasily e accuratamente la query per abilitare e associate a un gruppo di dispositivi per le operazioni di gestione delle operazioni bulk. È possibile utilizzare hello dispositivo doppi toostore metadati dispositivo sotto forma di hello di tag e proprietà.
+* **Pianificazione**: gli operatori possono creare uno schema di metadati dei dispositivi che consentirà di eseguire query su un gruppo di dispositivi e indirizzare le operazioni di gestione in blocco in modo facile e accurato. È possibile usare il dispositivo gemello per archiviare i metadati del dispositivo sotto forma di tag e proprietà.
   
-    *Ulteriori informazioni*: [introduzione gemelli dispositivo][lnk-twins-getstarted], [comprendere gemelli dispositivo][lnk-twins-devguide], [come proprietà di un doppio dispositivo toouse][lnk-twin-properties].
-* **Eseguire il provisioning**: in modo sicuro il provisioning di nuovi dispositivi tooIoT Hub e abilitare gli operatori tooimmediately individuare funzionalità del dispositivo.  Utilizzare le identità di hello Hub IoT identità del Registro di sistema toocreate flessibile dispositivi e le credenziali e per eseguire questa operazione in blocco tramite un processo. Compilare i dispositivi tooreport le funzionalità e le condizioni tramite le proprietà di dispositivo in un doppio dispositivo hello.
+    *Altre informazioni*: [Introduzione ai dispositivi gemelli][lnk-twins-getstarted], [Informazioni sui dispositivi gemelli][lnk-twins-devguide], [Come usare le proprietà dei dispositivi gemelli][lnk-twin-properties].
+* **Provisioning**: il provisioning dei nuovi dispositivi viene eseguito in modo sicuro nell'hub IoT e gli operatori possono individuare immediatamente le funzionalità dei dispositivi.  Usare il registro di identità dell'hub IoT per creare credenziali e identità flessibili per i dispositivi ed eseguire l'operazione in blocco tramite un processo. Creare dispositivi per creare report delle funzionalità e delle condizioni tramite le proprietà del dispositivo nel dispositivo gemello.
   
-    *Ulteriori informazioni*: [gestire le identità dispositivo][lnk-identity-registry], [Bulk di gestione delle identità del dispositivo][lnk-bulk-identity], [Come dispositivo toouse doppio proprietà][lnk-twin-properties].
-* **Configurare**: bulk facilitare le modifiche di configurazione e del firmware Aggiorna toodevices mantenendo l'integrità e sicurezza. Per eseguire queste operazioni di gestione dei dispositivi in blocco, usare le proprietà desiderate oppure metodi diretti e processi di trasmissione.
+    *Altre informazioni*: [Gestire le identità dei dispositivi][lnk-identity-registry], [Gestione in blocco delle identità dei dispositivi ][lnk-bulk-identity], [Come usare le proprietà dei dispositivi gemelli][lnk-twin-properties].
+* **Configurazione**: vengono facilitate le operazioni in blocco di modifica alla configurazione e aggiornamento del firmware dei dispositivi mantenendo al tempo stesso integrità e sicurezza. Per eseguire queste operazioni di gestione dei dispositivi in blocco, usare le proprietà desiderate oppure metodi diretti e processi di trasmissione.
   
-    *Ulteriori informazioni*: [utilizzare metodi diretti][lnk-c2d-methods], [richiamare un metodo diretto su un dispositivo][lnk-methods-devguide], [come proprietà di un doppio dispositivo toouse][lnk-twin-properties], [pianificazione e i processi di broadcast][lnk-jobs], [pianificare i processi su più dispositivi] [lnk-jobs-devguide].
-* **Monitoraggio**: monitorare l'integrità raccolta generale del dispositivo, lo stato di hello di operazioni in corso e tooissues operatori avvisi che potrebbero richiedere attenzione.  Applicare hello dispositivo doppi tooallow dispositivi tooreport in tempo reale condizioni operative e lo stato delle operazioni di aggiornamento. Problemi di compilazione report del dashboard potente che hello superficie di attacco più immediato tramite query gemelli di dispositivo.
+    *Altre informazioni*: [Usare metodi diretti][lnk-c2d-methods], [Richiamare un metodo diretto in un dispositivo][lnk-methods-devguide], [Come usare le proprietà dei dispositivi gemelli][lnk-twin-properties], [Pianificare e trasmettere processi][lnk-jobs], [Pianificare processi in più dispositivi][lnk-jobs-devguide].
+* **Monitoraggio**: vengono monitorati l'integrità complessiva della raccolta di dispositivi e lo stato delle operazioni in corso per segnalare agli operatori i problemi che potrebbero richiedere la loro attenzione.  Applicare il dispositivo gemello per consentire ai dispositivi di creare report in tempo reale sulle condizioni operative e sullo stato delle operazioni di aggiornamento. Creare report avanzati sui dashboard per mostrare i problemi più immediati mediante le query su dispositivo gemello.
   
-    *Ulteriori informazioni*: [come dispositivo toouse doppio proprietà][lnk-twin-properties], [linguaggio di query IoT Hub per gemelli di dispositivo, processi e il routing dei messaggi] [ lnk-query-language].
-* **Ritirare**: sostituire o rimuovere i dispositivi dopo un errore, eseguire l'aggiornamento del ciclo, o alla fine di hello della durata del servizio hello.  Utilizzare informazioni sul dispositivo di hello dispositivo doppi toomaintain se dispositivo fisico hello viene sostituito o archiviati se è stata ritirata. Utilizzare hello del Registro di sistema di IoT Hub identità per rilasciare in modo sicuro identità di dispositivi e le credenziali.
+    *Altre informazioni*: [Come usare le proprietà del dispositivo gemello][lnk-twin-properties], [Linguaggio di query dell'hub IoT per dispositivi gemelli e processi][lnk-query-language].
+* **Ritiro**: i dispositivi vengono sostituiti o ritirati dopo un guasto o un ciclo di aggiornamento oppure alla fine della vita utile.  Usare il dispositivo gemello per mantenere le informazioni sul dispositivo se il dispositivo fisico viene sostituito o archiviato in caso di ritiro. Usare il registro di identità dell'hub IoT per revocare in modo sicuro le credenziali e le identità del dispositivo.
   
-    *Ulteriori informazioni*: [come dispositivo toouse doppio proprietà][lnk-twin-properties], [gestire le identità dispositivo][lnk-identity-registry].
+    *Altre informazioni*: [Come usare le proprietà dei dispositivi gemelli][lnk-twin-properties], [Gestire le identità dei dispositivi][lnk-identity-registry].
 
 ## <a name="device-management-patterns"></a>Modelli di gestione dei dispositivi
-IoT Hub consente hello seguente insieme di modelli di gestione di dispositivi.  Hello [esercitazioni sulla gestione di dispositivi] [ lnk-get-started] illustrano in dettaglio come tooextend toofit questi modelli dello scenario esatto e come toodesign nuovi modelli basati su tali modelli di base.
+L'hub IoT supporta il set seguente di modelli di gestione dei dispositivi.  Le [esercitazioni sulla gestione dei dispositivi][lnk-get-started] illustrano con maggior dettagli come estendere questi modelli per adattarli perfettamente allo scenario e come progettare nuovi modelli basati sui modelli di base.
 
-* **Riavviare il computer** -app back-end hello informa dispositivo hello tramite un metodo diretto che ha riavviato.  proprietà tooupdate hello riavvio stato del dispositivo hello stato segnalato Hello dispositivo utilizza hello.
+* **Riavvio**: l'app back-end usa un metodo diretto per comunicare al dispositivo che è stato avviato un riavvio.  Il dispositivo usa le proprietà segnalate per aggiornare lo stato di riavvio del dispositivo.
   
     ![Grafico del modello di riavvio della gestione dei dispositivi][img-reboot_pattern]
-* **Impostazioni di fabbrica** -app back-end hello informa dispositivo hello tramite un metodo diretto che è stata avviata una ripristino delle impostazioni predefinite.  Hello dispositivo utilizza hello segnalato factory di hello tooupdate proprietà reimpostare lo stato del dispositivo hello.
+* **Ripristino delle impostazioni predefinite**: l'app back-end usa un metodo diretto per comunicare al dispositivo che è stato avviato un ripristino delle impostazioni predefinite.  Il dispositivo usa le proprietà segnalate per aggiornare lo stato del ripristino delle impostazioni predefinite del dispositivo.
   
     ![Grafico del modello di ripristino delle impostazioni predefinite della gestione dei dispositivi][img-facreset_pattern]
-* **Configurazione** -app back-end hello utilizza hello desiderato proprietà tooconfigure software in esecuzione sul dispositivo hello.  Hello dispositivo utilizza hello segnalato lo stato di configurazione tooupdate di proprietà del dispositivo hello.
+* **Configurazione**: l'app back-end usa le proprietà specificate per configurare il software in esecuzione nel dispositivo.  Il dispositivo usa le proprietà segnalate per aggiornare lo stato di configurazione del dispositivo.
   
     ![Grafico del modello di configurazione della gestione dei dispositivi][img-config_pattern]
-* **Aggiornamento del firmware** -app back-end hello informa dispositivo hello tramite un metodo diretto che è stata avviata l'aggiornamento del firmware.  dispositivo Hello avvia un'immagine di processo in più passaggi toodownload hello del firmware, applicare l'immagine del firmware hello e infine riconnettersi toohello servizio IoT Hub.  Durante l'intero processo di più passaggi hello, hello dispositivo utilizza hello segnalato lo stato di avanzamento di proprietà tooupdate hello e lo stato del dispositivo hello.
+* **Aggiornamento del firmware**: l'app back-end usa un metodo diretto per comunicare al dispositivo che è stato avviato un aggiornamento del firmware.  Il dispositivo avvia un processo in più passaggi per scaricare l'immagine del firmware, applicarla e infine riconnettersi al servizio hub IoT.  Durante i diversi passaggi di questo processo, il dispositivo usa le proprietà segnalate per aggiornare avanzamento e stato del dispositivo.
   
     ![Grafico del modello di aggiornamento del firmware della gestione dei dispositivi][img-fwupdate_pattern]
-* **Reporting di stato e avanzamento** -back-end di hello soluzione esegue query di un doppio dispositivo, in un set di dispositivi, tooreport stato hello e lo stato di avanzamento delle azioni in esecuzione su dispositivi hello.
+* **Creazione di report sull'avanzamento e sullo stato**: la soluzione back-end esegue query sui dispositivi gemelli in un set di dispositivi per creare report sullo stato e sull'avanzamento delle azioni in esecuzione nei dispositivi.
   
     ![Grafico del modello di creazione di report sull'avanzamento e sullo stato della gestione dei dispositivi][img-report_progress_pattern]
 
 ## <a name="next-steps"></a>Passaggi successivi
-capacità di Hello, modelli e librerie di codice forniti per la gestione dei dispositivi, l'IoT Hub consentono di applicazioni di IoT toocreate che soddisfino i requisiti di operatore IoT enterprise in ogni fase del ciclo di vita di dispositivo.
+Le funzionalità, i modelli e le librerie di codice forniti dall'hub IoT per la gestione dei dispositivi consentono di creare applicazioni IoT che soddisfano i requisiti degli operatori IoT aziendali in ogni fase del ciclo di vita dei dispositivi.
 
-toocontinue apprendimento sulle funzionalità di gestione di dispositivi hello in IoT Hub, vedere hello [iniziare con la gestione dei dispositivi] [ lnk-get-started] esercitazione.
+Per altre informazioni sulle funzionalità di gestione dei dispositivi nell'hub IoT, vedere l'esercitazione [Get started with device management][lnk-get-started] (Introduzione alla gestione dei dispositivi).
 
 <!-- Images and links -->
 [img-dm_principles]: media/iot-hub-device-management-overview/image4.png

@@ -1,6 +1,6 @@
 ---
-title: indicatori di monitoraggio aaaStorSimple | Documenti Microsoft
-description: Descrive hello diodi a emissione luminosa (LED) e lo stato di allarmi acustici utilizzati toomonitor hello del dispositivo StorSimple hello.
+title: Indicatori di monitoraggio di StorSimple | Microsoft Docs
+description: Descrive i diodi a emissione luminosa (LED) e gli avvisi sonori utilizzati per monitorare lo stato del dispositivo StorSimple.
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,30 +14,30 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 06/05/2017
 ms.author: alkohli
-ms.openlocfilehash: e690b8f4727272f5fbb8886a594a046f794a1380
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0d44f94719bff0cb58b3727050598e55f4774e66
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-storsimple-monitoring-indicators-toomanage-your-device"></a>Usare il dispositivo di StorSimple toomanage indicatori di monitoraggio
+# <a name="use-storsimple-monitoring-indicators-to-manage-your-device"></a>Utilizzare gli indicatori di monitoraggio StorSimple per gestire il dispositivo
 ## <a name="overview"></a>Panoramica
-Il dispositivo StorSimple include diodi a emissione luminosa (LED) e avvisi che è possibile utilizzare toomonitor hello moduli e stato generale del dispositivo StorSimple hello. indicatori di monitoraggio Hello è reperibile in componenti hardware hello enclosure principale del dispositivo hello e hello EBOD. Hello indicatori di monitoraggio può essere LED o allarmi acustici.
+Il dispositivo StorSimple include diodi a emissione luminosa (LED) e allarmi che possono essere utilizzati per monitorare i moduli e lo stato generale del dispositivo StorSimple. Gli indicatori di monitoraggio possono trovarsi in componenti hardware dello chassis principale e dello chassis EBOD del dispositivo. Gli indicatori di monitoraggio possono essere LED o allarmi acustici.
 
-Esistono tre stati utilizzati tooindicate hello LED di un modulo: verde, intermittente giallo-verde toored, o rosso-ambra.  
+Vengono utilizzate tre condizioni dei LED per indicare lo stato di un modulo: verde, intermittente da verde a rosso-ambra o rosso-ambra.  
 
 * I LED verdi indicano uno stato operativo integro.  
-* Toored-ambra verde lampeggiante LED rappresentano presenza hello di condizioni non critiche che potrebbero richiedere l'intervento dell'utente.  
-* LED rosso-ambra indicano che è presente un errore critico presente nel modulo hello.  
+* I LED intermittenti da verde a rosso-ambra indicano la presenza di condizioni non critiche che potrebbero richiedere l'intervento dell'utente.  
+* I LED rosso-ambra indicano la presenza di un errore critico all'interno del modulo.  
 
-Hello parte restante di questo articolo vengono descritti diversi indicatori LED di monitoraggio, le relative posizioni nel dispositivo StorSimple hello hello, lo stato del dispositivo hello basato su hello dei LED e qualsiasi allarmi acustici associati.
+Nel promemoria del presente articolo vengono descritti i vari indicatori LED di monitoraggio, le posizioni sul dispositivo StorSimple, lo stato del dispositivo in base alle condizioni dei LED ed eventuali allarmi acustici associati.
 
 ## <a name="front-panel-indicator-leds"></a>Indicatori LED sul pannello anteriore
-pannello anteriore Hello, noto anche come hello *pannello operativo* o *al pannello ops*, Visualizza lo stato di aggregazione hello di tutti i moduli di hello nel sistema hello. pannello anteriore Hello è identico in hello StorSimple primario e hello enclosure EBOD e viene riportato di seguito.  
+Il pannello anteriore, noto anche come *pannello operativo* o *pannello delle operazioni*, visualizza lo stato aggregato di tutti i moduli del sistema. Il pannello anteriore è identico sia nell'alloggiamento principale sia in quello EBOD del dispositivo StorSimple e viene illustrato di seguito.  
 
    ![Pannello anteriore del dispositivo][1]
 
-pannello anteriore Hello contiene hello indicatori seguenti:  
+Il pannello anteriore include i seguenti indicatori:  
 
 1. Pulsante di disattivazione audio
 2. Indicatore LED (verde/rosso-ambra) di alimentazione
@@ -45,14 +45,14 @@ pannello anteriore Hello contiene hello indicatori seguenti:
 4. Indicatore LED di errore logico (ACCESO rosso-ambra/SPENTO)
 5. Display ID unità  
 
-la differenza principale tra pannello anteriore hello LED per il dispositivo hello e quelle per l'enclosure EBOD hello Hello è hello **numero di identificazione di unità di sistema** mostrato sul display LED hello. unità di Hello predefinito visualizzato sul dispositivo hello è **00**, mentre l'ID di unità predefinito hello visualizzato in hello enclosure EBOD è **01**. In questo modo è tooquickly distinguere tra il dispositivo hello ed enclosure EBOD hello quando hello dispositivo viene acceso. Se il dispositivo è disattivato, utilizzare le informazioni di hello disponibili [accendere un nuovo dispositivo](storsimple-turn-device-on-or-off.md#turn-on-a-new-device) dispositivo hello toodifferentiate hello enclosure EBOD.  
+La differenza principale tra i LED del pannello anteriore del dispositivo e quelli dello chassis EBOD è il **Numero identificativo dell'unità di sistema** visualizzato sul display a LED. L'ID unità predefinito visualizzato sul dispositivo è **00**, mentre l'ID unità predefinito visualizzato sullo chassis EBOD è **01**. In questo modo è possibile distinguere rapidamente tra il dispositivo e lo chassis EBOD quando il dispositivo è acceso. Se il dispositivo è disattivato, utilizzare le informazioni fornite in [Accensione di un nuovo dispositivo](storsimple-turn-device-on-or-off.md#turn-on-a-new-device) per differenziarlo dallo chassis EBOD.  
 
 ## <a name="front-panel-led-status"></a>Stato dei LED sul pannello anteriore
-Utilizzare hello seguente lo stato di hello tooidentify tabella indicato dalle hello LED sul pannello anteriore di hello per hello dispositivo o l'enclosure EBOD hello.  
+Utilizzare la seguente tabella per identificare lo stato indicato dai LED sul pannello anteriore per il dispositivo o lo chassis EBOD.  
 
 | Alimentazione del sistema | Errore del modulo | Errore logico | Allarme | Stato |
 | --- | --- | --- | --- | --- |
-| Rosso-ambra |DISATTIVA |DISATTIVA |N/D |Alimentazione CA interrotta, funzionamento alimentazione di backup oppure alimentazione in e sono stati rimossi i moduli controller hello. |
+| Rosso-ambra |DISATTIVA |DISATTIVA |N/D |Alimentazione CA persa, funzionamento con alimentazione di backup oppure alimentazione CA ATTIVA con i moduli di controllo rimossi. |
 | Verde |ATTIVA |ATTIVA |N/D |Stato del test di alimentazione del pannello delle operazioni acceso (5 sec) |
 | Verde |DISATTIVA |DISATTIVA |N/D |Acceso, funzionamento corretto |
 | Verde |ATTIVA |N/D |LED di errore PCM, LED di malfunzionamento ventola |Qualsiasi errore PCM, errore delle ventola oppure sotto o sovratemperatura |
@@ -61,15 +61,15 @@ Utilizzare hello seguente lo stato di hello tooidentify tabella indicato dalle h
 | Verde |Lampeggiante |N/D |LED di stato del modulo sul modulo controller. LED di errore PCM, LED di malfunzionamento ventola |Tipo di modulo controller installato sconosciuto, errore del bus I2C, errore di configurazione del controller del modulo VPD (vital product data) |
 
 ## <a name="power-cooling-module-pcm-indicator-leds"></a>Indicatori LED del modulo di alimentazione e raffreddamento (PCM)
-Alimentazione e raffreddamento (PCM) indicatori LED del modulo sono reperibile in hello parte posteriore dell'enclosure principale hello o enclosure EBOD ogni modulo PCM. Questo argomento viene illustrato come hello toouse seguente lo stato di hello toomonitor LED del dispositivo StorSimple.  
+Gli indicatori LED del modulo di alimentazione e raffreddamento (PCM) sono disponibili nella parte posteriore dello chassis principale o nello chassis EBOD di ogni modulo PCM. In questo argomento viene descritto come utilizzare i seguenti LED per monitorare lo stato del dispositivo StorSimple.  
 
-* LED PCM per enclosure principale hello
-* LED PCM per hello enclosure EBOD
+* LED PCM per lo chassis principale
+* LED PCM per lo chassis EBOD
 
-## <a name="pcm-leds-for-hello-primary-enclosure"></a>LED PCM per enclosure principale hello
-dispositivo StorSimple Hello dispone di un modulo PCM da 764 w con una batteria aggiuntiva. Hello figura seguente Mostra pannello dei LED hello per dispositivo hello.  
+## <a name="pcm-leds-for-the-primary-enclosure"></a>LED PCM per lo chassis principale
+Il dispositivo StorSimple dispone di un modulo PCM da 764 W con una batteria aggiuntiva. Nella figura seguente è illustrato il pannello LED per il dispositivo.  
 
-   ![LED PCM nell'enclosure principale hello][2]
+   ![LED PCM per lo chassis principale][2]
 
 Legenda dei LED:
 
@@ -80,12 +80,12 @@ Legenda dei LED:
 5. Guasto CC
 6. Batteria integra  
 
-LED di stato di Hello di hello che PCM è indicato in hello pannello. Pannello LED del PCM di Hello dispositivo ha sei LED. Quattro di questi LED display hello stato alimentatore hello e ventola hello. Hello rimanenti due LED indica stato hello del modulo batteria di backup hello hello PCM. È possibile utilizzare hello seguenti tabelle toodetermine hello stato hello PCM.  
+Lo stato del PCM è indicato sul pannello dei LED. Il pannello dei LED PCM del dispositivo dispone di sei LED. Quattro di tali LED visualizzano lo stato dell’alimentatore e della ventola. Idue LED restanti indicano lo stato del modulo della batteria di backup nel PCM. È possibile utilizzare le tabelle riportate di seguito per determinare lo stato del PCM.  
 
 ### <a name="pcm-indicator-leds-for-power-supply-and-fan"></a>Indicatori LED del PCM per l'alimentatore e la ventola
 | Stato | PCM OK (verde) | Guasto CA (ambra) | Guasto ventola (ambra) | Guasto CC (ambra) |
 | --- | --- | --- | --- | --- |
-| Nessuna alimentazione CA (tooenclosure) |DISATTIVA |DISATTIVA |DISATTIVA |DISATTIVA |
+| Alimentazione CA assente (allo chassis) |DISATTIVA |DISATTIVA |DISATTIVA |DISATTIVA |
 | Alimentazione CA assente (solo questo PCM) |DISATTIVA |ATTIVA |DISATTIVA |ATTIVA |
 | CA presente PCM ATTIVO - OK |ATTIVA |DISATTIVA |DISATTIVA |DISATTIVA |
 | Guasto PCM (guasto ventola) |DISATTIVA |DISATTIVA |ATTIVA |N/D |
@@ -94,7 +94,7 @@ LED di stato di Hello di hello che PCM è indicato in hello pannello. Pannello L
 | Modalità standby |Intermittente |DISATTIVA |DISATTIVA |DISATTIVA |
 | Download firmware PCM |DISATTIVA |Intermittente |Intermittente |Intermittente |
 
-### <a name="pcm-indicator-leds-for-hello-backup-battery"></a>Indicatori LED del PCM per batteria di backup hello
+### <a name="pcm-indicator-leds-for-the-backup-battery"></a>Indicatori LED del PCM per la batteria di backup
 | Stato | Batteria integra (verde) | Errore batteria (ambra) |
 | --- | --- | --- |
 | Batteria assente |DISATTIVA |DISATTIVA |
@@ -104,16 +104,16 @@ LED di stato di Hello di hello che PCM è indicato in hello pannello. Pannello L
 | Errore batteria "hardware" (non recuperabile) |DISATTIVA |ATTIVA |
 | Batteria disattivata |Intermittente |DISATTIVA |
 
-## <a name="pcm-leds-for-hello-ebod-enclosure"></a>LED PCM per hello enclosure EBOD
-Hello chassis EBOD ha un PCM a 580 w e nessuna batteria aggiuntiva. il pannello PCM Hello per hello chassis EBOD ha indicatori LED solo per hello alimentatori e ventole hello. Hello figura seguente mostra questi LED.
+## <a name="pcm-leds-for-the-ebod-enclosure"></a>LED PCM per lo chassis EBOD
+Lo chassis EBOD dispone di un PCM da 580 W senza batteria aggiuntiva. Il pannello PCM per lo chassis EBOD dispone di indicatori LED esclusivi per gli alimentatori e la ventola. Nella figura seguente vengono illustrati tali LED.
 
-   ![LED PCM hello enclosure EBOD][3] 
+   ![LED PCM per lo chassis EBOD][3] 
 
-È possibile utilizzare hello seguente tabella toodetermine hello stato hello PCM.  
+È possibile utilizzare la tabella riportata di seguito per determinare lo stato del PCM.  
 
 | Stato | PCM OK (verde) | Guasto CA (ambra) | Guasto ventola (ambra) | Guasto CC (ambra) |
 | --- | --- | --- | --- | --- |
-| Nessuna alimentazione CA (tooenclosure) |DISATTIVA |DISATTIVA |DISATTIVA |DISATTIVA |
+| Alimentazione CA assente (allo chassis) |DISATTIVA |DISATTIVA |DISATTIVA |DISATTIVA |
 | Alimentazione CA assente (solo questo PCM) |DISATTIVA |ATTIVA |DISATTIVA |ATTIVA |
 | CA presente PCM ATTIVO - OK |ATTIVA |DISATTIVA |DISATTIVA |DISATTIVA |
 | Guasto PCM (guasto ventola) |DISATTIVA |DISATTIVA |ATTIVA |X |
@@ -123,36 +123,36 @@ Hello chassis EBOD ha un PCM a 580 w e nessuna batteria aggiuntiva. il pannello 
 | Download firmware PCM |DISATTIVA |Intermittente |Intermittente |Intermittente |
 
 ## <a name="controller-module-indicator-leds"></a>Indicatori LED del modulo controller
-dispositivo StorSimple Hello contiene LED per il controller primario di hello e i moduli controller EBOD di hello.   
+Il dispositivo StorSimple contiene LED per il controller primario e i moduli del controller EBOD.   
 
-### <a name="monitoring-leds-for-hello-primary-controller"></a>LED di monitoraggio per il controller primario di hello
-Hello figura riportata di seguito consente di identificare hello LED sul controller primario di hello. (Tutti i componenti di hello sono elencati tooaid orientamento).  
+### <a name="monitoring-leds-for-the-primary-controller"></a>LED di monitoraggio per il controller primario
+La figura seguente facilita l’identificazione dei LED sul controller primario. Per facilitare l’orientamento, vengono elencati tutti i componenti.  
 
    ![LED di monitoraggio - controller primario][4]
 
-Utilizzare hello seguente tabella toodetermine se il modulo controller hello funziona correttamente.  
+Utilizzare la tabella seguente per determinare se il modulo controller funziona correttamente.  
 
 ### <a name="controller-indicator-leds"></a>Indicatori LED del controller
 | LED | Descrizione |
 | --- | --- |
-| LED ID (blu) |Indica che tale modulo hello è stato identificato. Se il LED blu hello è lampeggiante in un controller in esecuzione, quindi hello controller è hello controller attivo e hello altro è hello controller in standby. Per ulteriori informazioni, vedere [controller attivo hello di identificazione sul dispositivo](storsimple-8000-controller-replacement.md#identify-the-active-controller-on-your-device). |
-| LED errore (ambra) |Indica un errore nel controller hello. |
-| LED OK (verde) |Luce verde fissa indica che controller hello OK. Una luce verde intermittente indica un errore di configurazione del controller VPD. |
-| LED attività SAS (verde) |Una luce verde continua indica una connessione senza attività corrente. Una luce verde lampeggiante indica hello connessione dispone di un'attività in corso. |
-| LED stato Ethernet |Il lato destro indica un’attività di collegamento/rete: collegamento attivo (verde continuo), attività di rete (verde intermittente). Il lato sinistro indica la velocità di rete: 1000 Mb/s (giallo), 100 Mb/s (verde) e 10 Mb/s (SPENTA). A seconda del modello componente hello, la luce potrebbe lampeggi anche se l'interfaccia di rete hello non è abilitato. |
-| LED POST |Indica lo stato di avanzamento di hello avvio quando hello controller viene acceso. Se il dispositivo di StorSimple hello non riesce tooboot, questo LED identificare il supporto Microsoft hello punto hello procedura di avvio in cui si è verificato un errore di hello. |
+| LED ID (blu) |Indica che è in corso l’identificazione del modulo. Se su un controller in esecuzione, il LED blu lampeggia, significa che tale controller è attivo mentre l'altro è in standby. Per ulteriori informazioni, vedere [Identificare un controller attivo sul dispositivo](storsimple-8000-controller-replacement.md#identify-the-active-controller-on-your-device). |
+| LED errore (ambra) |Indica un errore nel controller. |
+| LED OK (verde) |Una luce verde continua indica che il controller è OK. Una luce verde intermittente indica un errore di configurazione del controller VPD. |
+| LED attività SAS (verde) |Una luce verde continua indica una connessione senza attività corrente. Una luce verde intermittente indica un’attività in corso nella connessione. |
+| LED stato Ethernet |Il lato destro indica un’attività di collegamento/rete: collegamento attivo (verde continuo), attività di rete (verde intermittente). Il lato sinistro indica la velocità di rete: 1000 Mb/s (giallo), 100 Mb/s (verde) e 10 Mb/s (SPENTA). In base al modello del componente, tale indicazione luminosa potrebbe lampeggiare anche se l'interfaccia di rete non è abilitata. |
+| LED POST |Indica lo stato dell’avvio quando il controller è attivato. Se l’avvio del dispositivo StorSimple ha esito negativo, tale LED consente al supporto tecnico Microsoft di identificare il punto del processo di avvio in cui si è verificato l'errore. |
 
 > [!IMPORTANT]
-> Se il LED di errore hello è acceso, significa che è un problema con il modulo controller hello che può essere risolto riavviando controller hello. Se il controller hello il riavvio non risolve il problema, contattare il supporto Microsoft.  
+> Il LED di errore acceso indica un problema con il modulo controller che potrebbe essere risolto tramite riavvio. Se il riavvio del controller non consente di risolvere il problema, contattare il supporto tecnico Microsoft.  
 > 
 > 
 
-### <a name="monitoring-leds-for-hello-ebod-ebod-enclosure"></a>LED di monitoraggio per hello EBOD (enclosure EBOD)
-Ogni hello 6 Gb/controller EBOD SAS s dispone di LED che indicano lo stato, come illustrato nella seguente figura hello.  
+### <a name="monitoring-leds-for-the-ebod-ebod-enclosure"></a>LED di monitoraggio per EBOD (chassis EBOD)
+Ogni controller EBOD SAS 6 Gb/s dispone di LED che indicano lo stato, come illustrato nella figura seguente.  
 
   ![LED di monitoraggio - chassis EBOD][5]
 
-La tabella seguente hello utilizzare toodetermine se hello modulo controller EBOD funziona normalmente.  
+Utilizzare la tabella seguente per determinare se il modulo controller EBOD funziona normalmente.  
 
 ### <a name="ebod-controller-module-indicator-leds"></a>Indicatori LED del modulo controller EBOD
 | Stato | Modulo I/O OK (verde) | Errore modulo I/O (ambra) | Attività porta host (verde) |
@@ -164,16 +164,16 @@ La tabella seguente hello utilizzare toodetermine se hello modulo controller EBO
 | Connessione porta host esterna – Attività |- |- |Intermittente |
 | Errore metadati modulo controller |Intermittente |- |- |
 
-## <a name="disk-drive-indicator-leds-for-hello-primary-enclosure-and-ebod-enclosure"></a>Indicatori LED delle unità di disco per hello enclosure principale ed EBOD
-dispositivo StorSimple Hello è l'unità disco situate sia hello primario e hello EBOD. Come descritto in questa sezione, ogni unità disco contiene indicatori LED di monitoraggio. 
+## <a name="disk-drive-indicator-leds-for-the-primary-enclosure-and-ebod-enclosure"></a>Indicatori LED unità disco per lo chassis principale e lo chassis EBOD
+Le unità disco del dispositivo StorSimple sono collocate sia nello chassis principale che nello chassis EBOD. Come descritto in questa sezione, ogni unità disco contiene indicatori LED di monitoraggio. 
 
-Per le unità disco, hello hello lo stato è indicato da una verde LED e un LED rosso-ambra montati nella parte anteriore hello di ogni modulo di gestione delle spedizioni di unità. Hello figura seguente mostra questi LED.
+Per le unità disco, lo stato dell’unità è indicato da un LED verde e un LED rosso-ambra montati sulla parte anteriore di ogni modulo supporto unità. Nella figura seguente vengono illustrati tali LED.
 
   ![LED delle unità disco][6]
 
-Utilizzare hello seguente lo stato della tabella toodetermine hello di ogni unità disco, che a sua volta influisce sull'hello stato LED sul pannello anteriore.  
+Utilizzare la tabella seguente per determinare lo stato di ogni unità disco che, a sua volta, influisce sullo stato generale del LED del pannello anteriore.  
 
-### <a name="disk-drive-indicator-leds-for-hello-ebod-enclosure"></a>Indicatori LED delle unità di disco per hello enclosure EBOD
+### <a name="disk-drive-indicator-leds-for-the-ebod-enclosure"></a>Indicatori LED dell’unità disco per lo chassis EBOD
 | Stato | LED attività OK (verde) | LED errore (rosso-ambra) | LED pannello delle operazioni associato |
 | --- | --- | --- | --- |
 | Nessuna unità installata |DISATTIVA |DISATTIVA |None |
@@ -183,7 +183,7 @@ Utilizzare hello seguente lo stato della tabella toodetermine hello di ogni unit
 | Errore circuito di controllo alimentazione |DISATTIVA |ATTIVA |Errore del modulo (rosso) |
 
 ## <a name="audible-alarms"></a>Allarmi acustici
-Un dispositivo StorSimple contiene allarmi acustici sia enclosure principale hello e hello EBOD. Un allarme acustico si trova sul pannello anteriore hello (detto anche pannello operativo hello) di entrambe le enclosure. allarme acustico Hello indica quando una condizione di errore è presente. Hello seguenti condizioni attiverà allarme hello:  
+Un dispositivo StorSimple contiene allarmi acustici associati sia allo chassis principale che allo chassis EBOD. Un allarme acustico si trova sul pannello anteriore (noto anche come il pannello delle operazioni) di entrambi gli chassis. L’allarme acustico indica quando è presente una condizione di errore. L’allarme viene attivato dalle seguenti condizioni:  
 
 * Guasto alla ventola o errore
 * Voltaggio fuori misura
@@ -194,26 +194,26 @@ Un dispositivo StorSimple contiene allarmi acustici sia enclosure principale hel
 * Errore di alimentazione
 * Rimozione di un modulo di alimentazione e raffreddamento (PCM)  
 
-Hello nella tabella seguente vengono descritti hello vari stati di allarme.  
+Nella tabella seguente vengono descritti i vari stati di allarme.  
 
 ### <a name="alarm-states"></a>Stati di allarme
 | Stato di allarme | Azione | Azione con il pulsante di disattivazione audio premuto |
 | --- | --- | --- |
 | S0 |Modalità normale: invisibile all'utente |Doppio segnale acustico |
-| S1 |Modalità errore: 1 secondo accesa/1 secondo spenta |La transizione tooS2 o S3 (vedere note) |
+| S1 |Modalità errore: 1 secondo accesa/1 secondo spenta |Passaggio da S2 a S3 (vedere le note) |
 | S2 |Modalità promemoria: segnale acustico intermittente |None |
 | S3 |Modalità disattivato: invisibile all'utente |None |
 | S4 |Modalità errore critico: allarme continuo |Non disponibile: disattivazione non attiva |
 
 > [!NOTE]
-> * Nello stato S1, se non si preme Disattiva entro 2 minuti, hello automaticamente transizioni di stato tooS2 o S3.  
-> * Stati di allarme S1 tooS4 restituire tooS0 dopo la condizione di errore hello.  
+> * Nello stato di allarme S1, se non si preme Disattiva entro 2 minuti, lo stato passa automaticamente da S2 a S3.  
+> * Dopo la risoluzione della condizione di errore, gli stati di allarme da S1 a S4 tornano a S0.  
 > * Lo stato di errore critico S4 può essere immesso da qualunque altro stato.  
 
 
-È possibile disattivare l'allarme acustico hello premendo l'apposito pulsante hello al pannello ops hello. Verrà disattivato automaticamente dopo due minuti se l'opzione Disattiva hello non viene premuto manualmente. Quando viene disattivato l'allarme hello continueranno toosound con tooindicate brevi Beep intermittenti che esista ancora un problema. allarme Hello sarà invisibile all'utente quando vengono cancellati tutti i problemi di hello.
+È possibile disattivare l'allarme acustico premendo l'apposito pulsante sul pannello delle operazioni. Se, dopo due minuti il commutatore di disattivazione non viene azionato manualmente, la disattivazione avviene in modo automatico. Quando l'allarme viene disattivato, continuerà a emettere brevi segnali acustici intermittenti per indicare che il problema ancora persiste. L’allarme non emetterà segnali acustici quando tutti i problemi vengono risolti.
 
-Hello nella tabella seguente vengono descritti hello varie condizioni di allarme.
+Nella tabella seguente vengono descritte le varie condizioni di allarme.
 
 ### <a name="alarm-conditions"></a>Condizioni di allarme
 | Stato | Gravità | Allarme | LED pannello delle operazioni |

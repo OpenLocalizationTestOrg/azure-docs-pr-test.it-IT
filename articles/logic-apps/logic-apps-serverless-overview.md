@@ -1,6 +1,6 @@
 ---
-title: aaaOverview di Azure senza | Documenti Microsoft
-description: Creare potenti soluzioni cloud hello senza toothink sull'infrastruttura.
+title: Panoramica dell'architettura senza server di Azure | Microsoft Docs
+description: Creare potenti soluzioni nel cloud senza preoccuparsi dell'infrastruttura.
 keywords: 
 services: logic-apps
 author: jeffhollan
@@ -15,37 +15,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/30/2017
 ms.author: LADocs; jehollan
-ms.openlocfilehash: 7c9c09d96e472edd1631892982ac60aae97342a3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6803e22a78e27c15ff4fec301cd5bdd55aacd3e3
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="overview-of-azure-serverless-with-functions-and-logic-apps"></a>Panoramica dell'architettura senza server di Azure con Funzioni e App per la logica
 
-Le applicazioni senza server offrono una serie di vantaggi, tra cui un aumento della velocità di sviluppo, una riduzione del codice necessario e una scalabilità più semplice.  In questo articolo vengono inseriti in hello diversi attributi senza soluzioni e le offerte di Azure senza server.
+Le applicazioni senza server offrono una serie di vantaggi, tra cui un aumento della velocità di sviluppo, una riduzione del codice necessario e una scalabilità più semplice.  Questo articolo illustra i diversi attributi delle soluzioni senza server e delle offerte senza server di Azure.
 
 ## <a name="what-is-serverless"></a>Cosa significa "senza server"?
 
-Senza server non significa che non sono presenti server - significa semplicemente che non dispone di sviluppatori hello tooworry sui server.  Gran parte dello sviluppo di applicazioni tradizionale è rispondere alle domande sulla scalabilità, l'hosting e monitoraggio delle richieste di hello toomeet soluzioni dell'applicazione hello.  Con senza server, queste domande sono preso in considerazione come parte della soluzione hello.  Le applicazioni senza server, inoltre, prevedono una fatturazione in base al consumo.  Se un'applicazione hello non viene mai utilizzata, non si verifica mai un addebito.  Queste funzionalità consentono agli sviluppatori toofocus unicamente sulla logica di business hello della soluzione hello.
+Con l'espressione "senza server" non si intende assenza di server, ma che lo sviluppatore non deve preoccuparsi dei server.  Lo sviluppo di applicazioni tradizionali si basa essenzialmente sulla capacità di rispondere a domande su scalabilità, hosting e soluzioni di monitoraggio per soddisfare le esigenze specifiche dell'applicazione.  Con un'infrastruttura senza server, queste domande vengono gestite nell'ambito della soluzione.  Le applicazioni senza server, inoltre, prevedono una fatturazione in base al consumo.  Se l'applicazione non viene mai usata, non viene mai addebitato niente.  Queste funzionalità consentono agli sviluppatori di concentrarsi esclusivamente sulla logica di business della soluzione.
 
-servizi di base Hello in Azure intorno senza server sono [Azure funzioni](https://azure.microsoft.com/services/functions/) e [Azure logica app](https://azure.microsoft.com/services/logic-apps/).  Queste soluzioni seguire principi hello precedente e consentono agli sviluppatori di applicazioni cloud affidabile toobuild con quantità minima di codice.
+[Funzioni di Azure](https://azure.microsoft.com/services/functions/) e [App per la logica di Azure ](https://azure.microsoft.com/services/logic-apps/) sono i principali servizi di Azure che si avvalgono di un'infrastruttura senza server.  Entrambe le soluzioni seguono i principi sopra elencati e consentono agli sviluppatori di creare avanzate applicazioni cloud con una quantità minima di codice.
 
 ## <a name="what-are-azure-functions"></a>Che cos'è Funzioni di Azure?
 
-Funzioni di Azure è una soluzione per l'esecuzione facilmente piccoli frammenti di codice, o "funzioni", nel cloud hello. È possibile scrivere solo il codice hello che è necessario per hello problema, senza preoccuparsi di un intero toorun di infrastruttura dell'applicazione o hello. Funzioni può rendere più produttiva l'attività di sviluppo e consente di usare il linguaggio di sviluppo preferito, ad esempio C#, F#, Node.js, Python o PHP. Paga per ora hello che il codice viene eseguito e Azure viene ridimensionata in base alle esigenze.
+Funzioni di Azure è una soluzione che consente di eseguire facilmente piccole parti di codice, o "funzioni", nel cloud. È possibile scrivere solo il codice necessario per il problema effettivo, senza preoccuparsi di un'intera applicazione o dell'infrastruttura necessaria per eseguirlo. Funzioni può rendere più produttiva l'attività di sviluppo e consente di usare il linguaggio di sviluppo preferito, ad esempio C#, F#, Node.js, Python o PHP. Il costo addebitato si basa solo sul tempo in cui viene eseguito il codice e Azure viene scalato in base alle esigenze.
 
-Se si desidera toojump destra e iniziare a utilizzare le funzioni di Azure, iniziare con [creare la prima funzione Azure](../azure-functions/functions-create-first-azure-function.md). Se si cercano informazioni più tecniche sulle funzioni, vedere hello [di riferimento per sviluppatori](../azure-functions/functions-reference.md).
+Se si vuole iniziare immediatamente a usare Funzioni di Azure, passare a [Creare la prima funzione di Azure](../azure-functions/functions-create-first-azure-function.md). Per informazioni più tecniche su Funzioni, vedere [Guida di riferimento per gli sviluppatori](../azure-functions/functions-reference.md).
 
 ## <a name="what-are-azure-logic-apps"></a>Che cos'è App per la logica di Azure?
 
-Le app di logica di Azure fornisce un modo toosimplify e implementare integrazioni scalabile e flussi di lavoro nel cloud hello. Fornisce un visual toomodel della finestra di progettazione e automatizzare il processo come una serie di passaggi di un flusso di lavoro chiamato.  Esistono [molti connettori](../connectors/apis-list.md) in tutti i servizi cloud e locali tooquickly connettersi tooother un'app senza server API.  Un'app logica inizia con un trigger (like 'quando un account viene aggiunto tooDynamics CRM') e dopo l'attivazione è possibile iniziare molte azioni combinazioni, conversioni e la condizione logica.  Logica App è un'ottima scelta quando l'orchestrazione di diverse funzioni di Azure in un processo, in particolare quando il processo di hello richiede l'interazione con un sistema esterno o l'API.
+App per la logica di Azure consente di semplificare e implementare nel cloud flussi di lavoro e integrazioni scalabili. Offre una finestra di progettazione visiva in cui poter modellare e automatizzare il processo tramite una serie di passaggi, ovvero un flusso di lavoro.  Nei servizi cloud e locali sono disponibili [numerosi connettori](../connectors/apis-list.md) che consentono di connettere rapidamente un'app senza server ad altre API.  Un'app per la logica viene avviata con un trigger (corrispondente ad esempio all'aggiunta di un account a Dynamics CRM) e dopo l'attivazione può avviare molte azioni di combinazione, conversioni e logica condizionale.  App per la logica è la scelta ideale quando si devono coordinare varie funzioni di Azure in un processo, in particolar modo se il processo richiede l'interazione con un'API o un sistema esterno.
 
-tooget iniziare con le app di logica, iniziare con [la creazione della prima applicazione logica](logic-apps-create-a-logic-app.md).  Se si cercano informazioni più tecniche sull'App per la logica, vedere hello [di riferimento per sviluppatori](logic-apps-workflow-actions-triggers.md).
+Per iniziare ad acquisire familiarità con App per la logica, [creare una prima app per la logica](logic-apps-create-a-logic-app.md).  Per informazioni più tecniche su App per la logica, vedere [Guida di riferimento per gli sviluppatori](logic-apps-workflow-actions-triggers.md).
 
 ## <a name="how-can-i-build-and-deploy-serverless-applications-in-azure"></a>Come è possibile compilare e distribuire applicazioni senza server in Azure?
 
-Azure offre un'ampia gamma di strumenti di sviluppo, distribuzione e gestione per app senza server.  Le app possono essere compilate direttamente nel portale di Azure hello o con [gli strumenti di Visual Studio](logic-apps-serverless-get-started-vs.md).  Dopo essere stata sviluppata, un'applicazione può essere [immediatamente distribuita](logic-apps-create-deploy-template.md).  Azure fornisce anche strumenti per il monitoraggio di app senza server,  Questo monitoraggio è possibile accedere dal portale di Azure tramite API hello o SDK o con Application Insights e gli strumenti integrata tooOMS hello.
+Azure offre un'ampia gamma di strumenti di sviluppo, distribuzione e gestione per app senza server.  Le app possono essere compilate direttamente nel portale di Azure oppure con [gli strumenti di Visual Studio](logic-apps-serverless-get-started-vs.md).  Dopo essere stata sviluppata, un'applicazione può essere [immediatamente distribuita](logic-apps-create-deploy-template.md).  Azure fornisce anche strumenti per il monitoraggio di app senza server,  accessibili dal portale di Azure, tramite l'API o SDK o con gli strumenti integrati in OMS e Application Insights.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

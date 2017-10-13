@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con FilesAnywhere | Microsoft Docs'
-description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e FilesAnywhere.
+description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e FilesAnywhere.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,71 +13,71 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/17/2017
 ms.author: jeedes
-ms.openlocfilehash: 376364a5c75f8d069ea6390c58586acb378cd8b4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4153056bd21006061c6ad8ff9cf3c17de9248628
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-filesanywhere"></a>Esercitazione: Integrazione di Azure Active Directory con FilesAnywhere
 
-In questa esercitazione, è illustrato come toointegrate FilesAnywhere con Azure Active Directory (Azure AD).
+Questa esercitazione descrive come integrare FilesAnywhere con Azure Active Directory (Azure AD).
 
-Integrazione FilesAnywhere con Azure AD fornisce hello seguenti vantaggi:
+L'integrazione di FilesAnywhere con Azure AD offre i vantaggi seguenti:
 
-- È possibile controllare in Azure AD che ha accesso tooFilesAnywhere
-- È possibile abilitare l'utenti tooautomatically get connesso tooFilesAnywhere (Single Sign-On) con i propri account Azure AD
-- È possibile gestire gli account in un'unica posizione centrale - portale di gestione di Azure hello
+- È possibile controllare in Azure AD chi può accedere a FilesAnywhere
+- È possibile abilitare gli utenti per l'accesso automatico a FilesAnywhere (Single Sign-On) con i propri account Azure AD
+- È possibile gestire gli account da una posizione centrale: il portale di gestione di Azure
 
-Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-integrazione di Azure AD con FilesAnywhere tooconfigure, è necessario hello seguenti elementi:
+Per configurare l'integrazione di Azure AD con FilesAnywhere, sono necessari gli elementi seguenti:
 
 - Sottoscrizione di Azure AD.
 - Sottoscrizione di FilesAnywhere abilitata per l'accesso Single Sign-On
 
 
 > [!NOTE]
-> hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.
+> Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.
 
 
-passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:
+A questo scopo, è consigliabile seguire le indicazioni seguenti:
 
 - Non usare l'ambiente di produzione, a meno che non sia necessario.
 - Se non è disponibile un ambiente di prova di Azure AD, è possibile ottenere una versione di prova di un mese [qui](https://azure.microsoft.com/pricing/free-trial/).
 
 
 ## <a name="scenario-description"></a>Descrizione dello scenario
-In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. scenario di Hello descritto in questa esercitazione è composto da due componenti principali:
+In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:
 
-1. Aggiunta di FilesAnywhere dalla raccolta hello
+1. Aggiunta di FilesAnywhere dalla raccolta
 2. Configurazione e test dell'accesso Single Sign-On di Azure AD
 
 
-## <a name="adding-filesanywhere-from-hello-gallery"></a>Aggiunta di FilesAnywhere dalla raccolta hello
-integrazione hello tooconfigure di FilesAnywhere in Azure AD, è necessario tooadd FilesAnywhere dall'elenco di tooyour hello raccolta di App SaaS gestite.
+## <a name="adding-filesanywhere-from-the-gallery"></a>Aggiungere FilesAnywhere dalla raccolta
+Per configurare l'integrazione di FilesAnywhere in Azure AD, è necessario aggiungere FilesAnywhere dalla raccolta al proprio elenco di app SaaS gestite.
 
-**tooadd FilesAnywhere dalla raccolta di hello, eseguire hello alla procedura seguente:**
+**Per aggiungere FilesAnywhere dalla raccolta, seguire questa procedura:**
 
-1. In hello  **[il portale di gestione di Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona. 
+1. Nel **[portale di gestione di Azure](https://portal.azure.com)** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro. 
 
     ![Active Directory][1]
 
-2. Passare troppo**applicazioni aziendali**. Quindi andare troppo**tutte le applicazioni**.
+2. Passare ad **Applicazioni aziendali**. Andare quindi a **Tutte le applicazioni**.
 
     ![Applicazioni][2]
     
-3. Fare clic su **Aggiungi** pulsante nella parte superiore di hello della finestra di dialogo hello.
+3. Fare clic sul pulsante **Aggiungi** nella parte superiore della finestra di dialogo.
 
     ![Applicazioni][3]
 
-4. Nella casella di ricerca hello, digitare **FilesAnywhere**.
+4. Nella casella di ricerca digitare **FilesAnywhere**.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-FilesAnywhere-tutorial/tutorial_FilesAnywhere_search.png)
 
-5. Nel riquadro dei risultati hello, selezionare **FilesAnywhere**, quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.
+5. Nel pannello dei risultati selezionare **FilesAnywhere** e quindi fare clic sul pulsante **Aggiungi** per aggiungere l'applicazione.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-FilesAnywhere-tutorial/tutorial_FilesAnywhere_addfromgallery.png)
 
@@ -85,75 +85,75 @@ integrazione hello tooconfigure di FilesAnywhere in Azure AD, è necessario tooa
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configurazione e test dell'accesso Single Sign-On di Azure AD
 In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con FilesAnywhere in base a un utente test di nome "Britta Simon".
 
-Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello in FilesAnywhere è tooa utente in Azure AD. In altre parole, una relazione di collegamento tra un utente di Azure Active Directory e l'utente correlato di hello in FilesAnywhere deve toobe stabilita.
+Per il funzionamento dell'accesso Single Sign-On, Azure AD deve sapere qual è l'utente di FilesAnywhere che corrisponde a un utente di Azure AD. In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in FilesAnywhere.
 
-Questa relazione di collegamento viene stabilita tramite l'assegnazione valore hello di hello **nome utente** in Azure AD come valore hello hello **Username** in FilesAnywhere.
+La relazione di collegamento viene stabilita assegnando il valore del **nome utente** di Azure AD come valore di **Username** (Nome utente) in FilesAnywhere.
 
-tooconfigure e prova AD Azure single sign-on con FilesAnywhere, è necessario hello toocomplete seguenti blocchi predefiniti:
+Per configurare e testare l'accesso Single Sign-On di Azure AD con FilesAnywhere, è necessario completare i blocchi predefiniti seguenti:
 
-1. **[Configurazione di Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.
-2. **[Creazione di un utente prova AD Azure](#creating-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.
-3. **[Creazione di un utente test FilesAnywhere](#creating-a-filesanywhere-test-user)**  -toohave un equivalente di Britta Simon in FilesAnywhere toohello collegato AD Azure rappresentazione in seguito.
-3. **[Assegnazione utente di prova hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.
-4. **[Test di Single Sign-On](#testing-single-sign-on)**  -tooverify hello se funzionamento della configurazione.
+1. **[Configurazione dell'accesso Single Sign-On di Azure AD](#configuring-azure-ad-single-sign-on)** : per abilitare gli utenti all'uso di questa funzionalità.
+2. **[Creazione di un utente test di Azure AD](#creating-an-azure-ad-test-user)** : per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.
+3. **[Creazione di un utente test di FilesAnywhere](#creating-a-filesanywhere-test-user)** : per avere una controparte di Britta Simon in FilesAnywhere collegata alla relativa rappresentazione in Azure AD.
+3. **[Assegnazione dell'utente test di Azure AD](#assigning-the-azure-ad-test-user)** : per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.
+4. **[Testing Single Sign-On](#testing-single-sign-on)** : per verificare se la configurazione funziona.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configurazione dell'accesso Single Sign-On di Azure AD
 
-In questa sezione, si abilita Azure AD single sign-on nel portale di gestione di Azure hello e configurare l'accesso single sign-on nell'applicazione FilesAnywhere.
+In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di gestione di Azure e viene configurato l'accesso Single Sign-On nell'applicazione FilesAnywhere.
 
-**Azure AD tooconfigure single sign-on con FilesAnywhere, eseguire hello alla procedura seguente:**
+**Per configurare l'accesso Single Sign-On di Azure AD con FilesAnywhere, seguire questa procedura:**
 
-1. Nel portale di gestione di Azure hello in hello **FilesAnywhere** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.
+1. Nella pagina di integrazione dell'applicazione **FilesAnywhere** del portale di gestione di Azure fare clic su **Single Sign-On**.
 
     ![Configura accesso Single Sign-On][4]
 
-2. In hello **Single sign-on** finestra di dialogo, come **modalità** selezionare **basato su SAML Sign-on** tooenable single sign-on.
+2. Nella finestra di dialogo **Single Sign-On** in **Modalità** selezionare **Accesso basato su SAML** per abilitare l'accesso Single Sign-On.
  
     ![Configura accesso Single Sign-On](./media/active-directory-saas-FilesAnywhere-tutorial/tutorial_FilesAnywhere_samlbase.png)
 
-3. In hello **FilesAnywhere dominio e gli URL** sezione, se si desidera in un'applicazione hello tooconfigure **modalità avviata da IDP**:
+3. Nella sezione **URL e dominio FilesAnywhere**, se si vuole configurare l'applicazione in **modalità avviata da IDP**:
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-FilesAnywhere-tutorial/tutorial_filesanywhere_url.png)
     
-    a. In hello **URL di risposta** casella di testo, digitare un URL utilizzando hello seguente modello:`https://<company name>.filesanywhere.com/saml20.aspx?c=215`
+    a. Nella casella di testo **URL di risposta** digitare l'URL usando il modello seguente: `https://<company name>.filesanywhere.com/saml20.aspx?c=215`
 > [!NOTE]
-> Si noti il valore di hello **215** è un **clientid** ed è solo un esempio. È necessario tooreplace con valore clientid effettivo hello.
+> Si noti che il valore **215** di **clientid** è solo un esempio. È necessario sostituirlo con il valore clientid effettivo.
 
-4. In hello **FilesAnywhere dominio e gli URL** sezione, se si desidera in un'applicazione hello tooconfigure **modalità iniziata da SP**, eseguire hello alla procedura seguente:
+4. Nella sezione **URL e dominio FilesAnywhere**, se si vuole configurare l'applicazione in **modalità avviata da SP**, seguire questa procedura:
     
     ![Configura accesso Single Sign-On](./media/active-directory-saas-FilesAnywhere-tutorial/tutorial_filesanywhere_url1.png)
 
-    a. Fare clic su hello **Mostra URL impostazioni avanzate** opzione
+    a. Fare clic sull'opzione **Mostra impostazioni URL avanzate**
 
-    b. In hello **URL di accesso** casella di testo, digitare un URL utilizzando hello seguente modello:`https://<sub domain>.filesanywhere.com/`
+    b. Nella casella di testo **URL di accesso** digitare l'URL usando il modello seguente: `https://<sub domain>.filesanywhere.com/`
 
     > [!NOTE] 
-    > Si noti che queste non sono valori reali hello. È necessario tooupdate questi valori con hello URL di URL di accesso e di risposta effettivo. Contatto [team di supporto FilesAnywhere](mailto:support@FilesAnywhere.com) tooget questi valori. 
+    > Si noti che questi non sono i valori reali. È necessario aggiornare questi valori con l'URL di accesso, l'ID e l'URL di risposta effettivi. Per ottenere questi valori, contattare il [team di supporto di FilesAnywhere](mailto:support@FilesAnywhere.com). 
 
-5. Applicazione FilesAnywhere Software prevede asserzioni SAML hello in un formato specifico. Configurare hello seguendo le attestazioni per questa applicazione. È possibile gestire i valori hello di questi attributi da hello "**gli attributi utente**" sezione nella pagina di integrazione dell'applicazione. Hello seguente schermata mostra un esempio per questo oggetto.
+5. L'applicazione FilesAnywhere si aspetta che le asserzioni SAML abbiano un formato specifico. Configurare le attestazioni seguenti per questa applicazione. È possibile gestire i valori di questi attributi dalla sezione "**Attributi utente**" nella pagina di integrazione dell'applicazione. La schermata seguente illustra un esempio relativo a questa operazione.
     
     ![Configura accesso Single Sign-On](./media/active-directory-saas-FilesAnywhere-tutorial/tutorial_filesanywhere_attribute.png)
     
-    Hello quando gli utenti effettua l'iscrizione con FilesAnywhere ricevono valore hello **clientid** dall'attributo [FilesAnywhere team](mailto:support@FilesAnywhere.com). È l'attributo "Id Client" hello di tooadd con valore univoco di hello fornito da FilesAnywhere. Tutti gli attributi indicati sopra sono obbligatori.
+    Quando gli utenti si iscrivono a FilesAnywhere ricevono il valore dell'attributo **clientid** dal [team di FilesAnywhere](mailto:support@FilesAnywhere.com). È necessario aggiungere l'attributo "Client Id" con il valore univoco ricevuto da FilesAnywhere. Tutti gli attributi indicati sopra sono obbligatori.
     > [!NOTE] 
-    > Si noti il valore di hello **2331** di **clientid** è solo un esempio. È necessario tooprovide valore effettivo di hello.
+    > Si noti che il valore **2331** di **clientid** è solo un esempio. È necessario specificare il valore reale.
 
 
-6. In hello **gli attributi utente** sezione hello **Single sign-on** finestra di dialogo, configurare attributi token SAML, come illustrato nell'immagine di hello precedente ed eseguire hello alla procedura seguente:
+6. Nella sezione **Attributi utente** della finestra di dialogo **Single Sign-On** configurare l'attributo del token SAML come indicato nell'immagine precedente e seguire questa procedura:
     
     | Nome attributo | Valore attributo |
     | ---------------| --------------- |    
     | clientid | *"uniquevalue"* |
 
-    a. Fare clic su **Aggiungi attributo** tooopen hello **Aggiungi attributo** finestra di dialogo.
+    a. Fare clic su **Aggiungi attributo** per aprire la finestra di dialogo **Aggiungi attributo**.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-FilesAnywhere-tutorial/tutorial_FilesAnywhere_04.png)
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-FilesAnywhere-tutorial/tutorial_FilesAnywhere_05.png)
     
-    b. In hello **nome** casella di testo, nome dell'attributo di tipo hello mostrato per la riga.
+    b. Nella casella di testo **Nome** digitare il nome dell'attributo indicato per la riga.
     
-    c. Da hello **valore** elencare, valore dell'attributo di tipo hello mostrato per la riga.
+    c. Nell'elenco **Valore** digitare il valore dell'attributo indicato per la riga.
     
     d. Fare clic su **Ok**
 
@@ -161,46 +161,46 @@ In questa sezione, si abilita Azure AD single sign-on nel portale di gestione di
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-FilesAnywhere-tutorial/tutorial_general_400.png)
 
-8. In hello **certificato di firma SAML** fare clic su **certificato (Base64)** e quindi salvare il file di certificato hello nel computer in uso.
+8. Nella sezione **Certificato di firma SAML** fare clic su **Certificato (Base64)** e quindi salvare il file del certificato nel computer.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-FilesAnywhere-tutorial/tutorial_FilesAnywhere_certificate.png) 
 
-9. In hello **FilesAnywhere configurazione** fare clic su **configurare FilesAnywhere** tooopen **Configura sign-on** finestra.
+9. Nella sezione **Configurazione di FilesAnywhere** fare clic su **Configura FilesAnywhere** per aprire la finestra **Configura accesso**.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-FilesAnywhere-tutorial/tutorial_FilesAnywhere_configure.png) 
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-FilesAnywhere-tutorial/tutorial_FilesAnywhere_configuresignon.png)
 
-10. configurazione di SSO tooget completo per l'applicazione alla fine di FilesAnywhere, contattare [team di supporto FilesAnywhere](mailto:support@FilesAnywhere.com) e fornire loro token SAML hello scaricato URL Single Sign On (SSO) e di certificato di firma.
+10. Per completare la configurazione dell'accesso Single Sign-On per l'applicazione sul lato FilesAnywhere, indicare al [team di supporto di FilesAnywhere](mailto:support@FilesAnywhere.com) il certificato di firma del token SAML scaricato e l'URL di Single Sign-On (SSO).
 
 ### <a name="creating-an-azure-ad-test-user"></a>Creazione di un utente test di Azure AD
-obiettivo di Hello di questa sezione è un utente di test nel portale di gestione di Azure hello chiamato Britta Simon toocreate.
+Questa sezione descrive come creare un utente test chiamato Britta Simon nel portale di gestione di Azure.
 
 ![Creare un utente di Azure AD][100]
 
-**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**
+**Per creare un utente test in Azure AD, eseguire la procedura seguente:**
 
-1. In hello **portale di gestione di Azure**via hello riquadro di spostamento a sinistra, fare clic su **Azure Active Directory** icona.
+1. Nel **portale di gestione di Azure** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-FilesAnywhere-tutorial/create_aaduser_01.png) 
 
-2. Andare troppo**utenti e gruppi** e fare clic su **tutti gli utenti** elenco hello toodisplay degli utenti.
+2. Andare a **Utenti e gruppi** e fare clic su **Tutti gli utenti** per visualizzare l'elenco di utenti.
     
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-FilesAnywhere-tutorial/create_aaduser_02.png) 
 
-3. Nella parte superiore di hello della finestra di dialogo hello fare clic su **Aggiungi** tooopen hello **utente** finestra di dialogo.
+3. Nella parte superiore della finestra di dialogo fare clic su **Aggiungi** per aprire la finestra di dialogo **Utente**.
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-FilesAnywhere-tutorial/create_aaduser_03.png) 
 
-4. In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:
+4. Nella pagina della finestra di dialogo **Utente** seguire questa procedura:
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-FilesAnywhere-tutorial/create_aaduser_04.png) 
 
-    a. In hello **nome** casella tipo **BrittaSimon**.
+    a. Nella casella di testo **Nome** digitare **BrittaSimon**.
 
-    b. In hello **nome utente** casella di testo, hello tipo **indirizzo di posta elettronica** di BrittaSimon.
+    b. Nella casella di testo **Nome utente** digitare l'**indirizzo di posta elettronica** di BrittaSimon.
 
-    c. Selezionare **Show Password** e annotare il valore di hello di hello **Password**.
+    c. Selezionare **Mostra password** e prendere nota del valore della **Password**.
 
     d. Fare clic su **Crea**. 
 
@@ -208,26 +208,26 @@ obiettivo di Hello di questa sezione è un utente di test nel portale di gestion
 
 ### <a name="creating-a-filesanywhere-test-user"></a>Creare un utente test di FilesAnywhere
 
-L'applicazione supporta solo in tempo il provisioning dell'utente e dopo l'autenticazione degli utenti verrà creato automaticamente in un'applicazione hello. 
+L'applicazione supporta il provisioning dell'utente just-in-time e dopo l'autenticazione gli utenti verranno automaticamente creati nell'applicazione. 
 
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Assegnazione utente test hello Azure AD
+### <a name="assigning-the-azure-ad-test-user"></a>Assegnazione dell'utente test di Azure AD
 
-In questa sezione è abilitare Britta Simon toouse single sign-on Azure concedendo tooFilesAnywhere proprio accesso.
+In questa sezione viene concesso a Britta Simon l'accesso a FilesAnywhere per consentirle di usare l'accesso Single Sign-On di Azure.
 
 ![Assegna utente][200] 
 
-**tooassign Britta Simon tooFilesAnywhere, eseguire hello alla procedura seguente:**
+**Per assegnare Britta Simon a FilesAnywhere, seguire questa procedura:**
 
-1. Nel portale di gestione di Azure hello, aprire visualizzazione applicazioni hello, quindi selezionare la visualizzazione di directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.
+1. Nel portale di gestione di Azure aprire la visualizzazione con le applicazioni e quindi passare alla visualizzazione con le directory e andare ad **Applicazioni aziendali**, quindi fare clic su **Tutte le applicazioni**.
 
     ![Assegna utente][201] 
 
-2. Nell'elenco di applicazioni hello, selezionare **FilesAnywhere**.
+2. Selezionare **FilesAnywhere** nell'elenco delle applicazioni.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-FilesAnywhere-tutorial/tutorial_FilesAnywhere_app.png) 
 
-3. Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.
+3. Scegliere **Utenti e gruppi** dal menu a sinistra.
 
     ![Assegna utente][202] 
 
@@ -235,7 +235,7 @@ In questa sezione è abilitare Britta Simon toouse single sign-on Azure conceden
 
     ![Assegna utente][203]
 
-5. In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.
+5. Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco Utenti.
 
 6. Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.
 
@@ -245,14 +245,14 @@ In questa sezione è abilitare Britta Simon toouse single sign-on Azure conceden
 
 ### <a name="testing-single-sign-on"></a>Test dell'accesso Single Sign-On
 
-In questa sezione si test configurazione di Azure AD single sign-on utilizzando hello Pannello di accesso.
+In questa sezione viene testata la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.
 
-Quando si fa clic su riquadro FilesAnywhere hello in hello Pannello di accesso, è necessario ottenere automaticamente firmato in tooyour FilesAnywhere applicazione.
+Quando si fa clic sul riquadro FilesAnywhere nel Pannello di accesso, si dovrebbe accedere automaticamente all'applicazione FilesAnywhere.
 
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md)
 
 

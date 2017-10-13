@@ -1,6 +1,6 @@
 ---
-title: aaaWhat si sono verificati progetto processo Web toomy (Visual Studio di archiviazione di Azure, servizio connesso)? | Microsoft Docs
-description: "Viene descritto cosa è successo in un progetto processo Web di Azure dopo che l'account di archiviazione tooa utilizzando Visual Studio la connessione di servizi connessi"
+title: "Cosa è successo al progetto Webjob (servizio connesso a Visual Studio Archiviazione di Azure)? | Microsoft Docs"
+description: 'Viene descritto cosa succede in un progetto Webjob di Azure dopo la connessione a un account di archiviazione utilizzando i servizi connessi a Visual Studio '
 services: storage
 documentationcenter: 
 author: kraigb
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/02/2016
 ms.author: kraigb
-ms.openlocfilehash: ed0ce75f5b23eca3c41dacb48564d6e5b846f395
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8891685a99c5ba366b74af0a21396d4a5e499835
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="what-happened-toomy-webjob-project-visual-studio-azure-storage-connected-service"></a>Il progetto processo Web verificato anomalo toomy (Visual Studio di archiviazione di Azure, servizio connesso)?
+# <a name="what-happened-to-my-webjob-project-visual-studio-azure-storage-connected-service"></a>Cosa è successo al progetto Webjob (servizio connesso a Visual Studio Archiviazione di Azure)?
 ## <a name="references-added"></a>Aggiunta di riferimenti
-pacchetto NuGet di archiviazione di Azure Hello è stato aggiunto tooor aggiornata nel progetto di Visual Studio.  
-Questo pacchetto aggiunge hello segue i riferimenti .NET:
+Il pacchetto NuGet per l'Archiviazione di Azure è stato aggiunto o aggiornato nel progetto di Visual Studio.  
+Il pacchetto aggiunge i riferimenti a .NET seguenti:
 
 * **Microsoft.Data.Edm**
 * **Microsoft.Data.OData**
@@ -35,7 +35,7 @@ Questo pacchetto aggiunge hello segue i riferimenti .NET:
 * **System.Spatial**
 
 ## <a name="connection-string-for-azure-storage-added"></a>Aggiunta di stringa di connessione per l'Archiviazione di Azure
-Nel file app. config di hello del progetto, hello **AzureWebJobsStorage** e **AzureWebJobsDashboard** voci sono state aggiornate con stringa di connessione e la chiave dell'account di archiviazione hello selezionato.
+Nel file App.config del progetto gli elementi **AzureWebJobsStorage** e **AzureWebJobsDashboard** sono stati aggiornati con la stringa di connessione e la chiave dell'account di archiviazione selezionato.
 
 Per altre informazioni, vedere [Risorse di documentazione di Processi Web di Azure](http://go.microsoft.com/fwlink/?linkid=390226).
 

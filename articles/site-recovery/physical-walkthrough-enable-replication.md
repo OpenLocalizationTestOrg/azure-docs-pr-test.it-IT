@@ -1,6 +1,6 @@
 ---
-title: la replica aaaEnable per i server fisici, replica tooAzure con Azure Site Recovery | Documenti Microsoft
-description: Vengono riepilogati i passaggi di hello necessari tooenable tooAzure di replica per i server fisici, utilizzando il servizio di Azure Site Recovery hello
+title: Abilitare la replica dei server fisici in Azure con Azure Site Recovery | Microsoft Docs
+description: Vengono riepilogati i passaggi necessari per abilitare la replica dei server fisici in Azure usando il servizio Azure Site Recovery
 documentationcenter: 
 author: rayne-wiselman
 manager: carmonm
@@ -13,57 +13,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: raynew
-ms.openlocfilehash: dde4b1463023d2ccefa498f72bb51e57d60ac0d8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 42f35c53eec06a346281fd90c97aecfd2269307d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="step-10-enable-replication-for-physical-servers-tooazure"></a>Passaggio 10: Abilitare la replica per i server fisici tooAzure
+# <a name="step-10-enable-replication-for-physical-servers-to-azure"></a>Passaggio 10: Abilitare la replica dei server fisici in Azure
 
 
-In questo articolo viene descritto come replica tooenable per locale Windows/Linux tooAzure server fisici, utilizzando hello [Azure Site Recovery](site-recovery-overview.md) di hello portale di Azure.
+Questo articolo illustra come abilitare la replica dei server fisici Windows/Linux locali in Azure usando il servizio [Azure Site Recovery](site-recovery-overview.md) nel portale di Azure.
 
-Inviare commenti e domande nella parte inferiore di hello di questo articolo, o di hello [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Inserire commenti e domande nella parte inferiore di questo articolo oppure nel [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 
 ## <a name="before-you-start"></a>Prima di iniziare
 
-- I server devono avere hello [componente del servizio di mobilità installato](physical-walkthrough-install-mobility.md).
-- Se una macchina virtuale viene preparata per l'installazione push, il server di elaborazione hello installa automaticamente il servizio di mobilità hello quando si abilita la replica.
-- Quando si abilita un computer per la replica, l'account utente di Azure è necessario specifico [autorizzazioni](site-recovery-role-based-linked-access-control.md#permissions-required-to-enable-replication-for-new-virtual-machines) tooensure è in grado di toouse archiviazione di Azure e creare macchine virtuali di Azure.
-- Quando si aggiunge o modifica gli indirizzi IP per server, può richiedere too15 minuti o più per effetto tootake modifiche e per essi tooappear nel portale di hello.
+- Nei server deve essere installato il [componente servizio Mobility](physical-walkthrough-install-mobility.md).
+- Se una VM è pronta per l'installazione push, il server di elaborazione installa automaticamente il servizio Mobility quando si abilita la replica.
+- Quando si abilita un computer per la replica, l'account utente di Azure necessita di [autorizzazioni](site-recovery-role-based-linked-access-control.md#permissions-required-to-enable-replication-for-new-virtual-machines) specifiche per assicurarsi di poter usare Archiviazione di Azure e creare VM di Azure.
+- Quando si aggiungono o si modificano gli indirizzi IP per i server, possono essere necessari 15 minuti o più prima che le modifiche abbiano effetto e vengano visualizzate nel portale.
 
 
 ## <a name="exclude-disks-from-replication"></a>Escludere dischi dalla replica
 
-Per impostazione predefinita, vengono replicati tutti i dischi in un computer. È possibile escludere dischi dalla replica. Ad esempio non è possibile tooreplicate dischi con dati temporanei o dati che sono stato aggiornato ogni volta che un computer o applicazione viene riavviata (ad esempio pagefile.sys o tempdb di SQL Server). [Altre informazioni](site-recovery-exclude-disk.md)
+Per impostazione predefinita, vengono replicati tutti i dischi in un computer. È possibile escludere dischi dalla replica. Ad esempio, è possibile evitare di replicare i dischi con dati temporanei o dati che vengono aggiornati ogni volta che un computer o un'applicazione viene riavviata, come pagefile.sys o tempdb di SQL Server. [Altre informazioni](site-recovery-exclude-disk.md)
 
 ## <a name="replicate-servers"></a>Replicare i server
 
 1. Fare clic su **Passaggio 2: Eseguire la replica dell'applicazione** > **Origine**.
-2. In **origine**, selezionare il server di configurazione di hello.
+2. In **Origine** selezionare il server di configurazione.
 3. In **Tipo di computer** selezionare **Computer fisici**.
-4. Selezionare il server di elaborazione hello. Se è ancora stato creato alcun server di elaborazione aggiuntive, questo sarà il server di configurazione di hello. Fare quindi clic su **OK**.
-5. In **destinazione**, selezionare la sottoscrizione hello e hello gruppo di risorse in cui si desidera hello toocreate failover le macchine virtuali. Scegliere modello di distribuzione hello che si desidera toouse in Azure (classica o risorsa management), per eseguire il failover le macchine virtuali hello.
-6. Selezionare l'account di archiviazione di Azure hello desiderato toouse per la replica dei dati. Se non si desidera toouse un account già stato configurato, è possibile creare uno nuovo.
-7. Seleziona hello **rete Azure** e **Subnet** toowhich macchine virtuali di Azure connettersi dopo il failover. Selezionare **Configura ora per macchine virtuali selezionate** tooapply hello rete impostazione tooall macchine selezionate per la protezione. Selezionare **configurare successivamente** tooselect hello Azure rete al computer. Se non si desidera toouse una rete esistente, è possibile crearne uno.
+4. Selezionare il server di elaborazione. Se non sono stati creati server di elaborazione aggiuntivi, questo sarà il server di configurazione. Fare quindi clic su **OK**.
+5. In **Destinazione** selezionare la sottoscrizione e il gruppo di risorse in cui si vogliono creare le VM di cui viene effettuato il failover. Scegliere il modello di distribuzione (classica o Resource Manager) da usare in Azure per le VM di cui viene effettuato il failover.
+6. Selezionare l'account di archiviazione di Azure da usare per la replica dei dati. Se non si vuole usare un account già configurato, è possibile crearne uno nuovo.
+7. Selezionare la **rete** e la **subnet** di Azure a cui dovranno connettersi le VM di Azure dopo il failover. Scegliere **Configurare ora per le macchine virtuali selezionate** per applicare le impostazioni di rete a tutti i computer selezionati per la protezione. Scegliere **Configurare in seguito** per selezionare la rete di Azure per ogni computer. Se non si vuole usare una rete esistente, è possibile crearne una.
 
     ![Abilitare la replica](./media/physical-walkthrough-enable-replication/targetsettings.png)
 
-8. In **macchine fisiche**, fare clic su **+ macchina fisica** e immettere hello **nome** e **indirizzo IP**. Scegliere hello del sistema operativo della macchina hello desiderato tooreplicate. Sono necessari alcuni minuti fino a quando i computer vengono individuati e visualizzati nell'elenco di hello.
-9. In **proprietà** > **configurare proprietà**, selezionare account hello che verrà usato da hello processo server tooautomatically installare il servizio Mobility hello computer hello.
-10. Per impostazione predefinita, vengono replicati tutti i dischi. Fare clic su **tutti i dischi** e cancellare tutti i dischi non si desidera tooreplicate. Fare quindi clic su **OK**. È possibile impostare proprietà aggiuntive delle VM in un secondo momento.
+8. In **Computer fisici**, fare clic su **+Computer fisici** e inserire il **nome** e l'**indirizzo IP**. Scegliere il sistema operativo del computer da replicare. È necessario attendere alcuni minuti prima che i computer vengano individuati e visualizzati nell'elenco.
+9. In **Proprietà** > **Configura proprietà**selezionare l'account che verrà usato dal server di elaborazione per installare automaticamente il servizio Mobility nel computer.
+10. Per impostazione predefinita, vengono replicati tutti i dischi. Fare clic su **Tutti i dischi** e deselezionare i dischi da non replicare. Fare quindi clic su **OK**. È possibile impostare proprietà aggiuntive delle VM in un secondo momento.
 
     ![Abilitare la replica](./media/physical-walkthrough-enable-replication/enable-replication6.png)
-11. In **le impostazioni di replica** > **configurare le impostazioni di replica**, verificare che hello si seleziona il criterio di replica corretto. Se si modifica un criterio, le modifiche saranno tooreplicating applicato macchina e toonew macchine.
-12. Abilitare **la coerenza tra più macchine** se si desidera toogather macchine in un gruppo di replica e specificare un nome per il gruppo di hello. Fare quindi clic su **OK**. Si noti che:
+11. In **Impostazioni della replica** > **Configura impostazioni di replica** verificare che siano selezionati i criteri di replica corretti. Se si modificano i criteri, le modifiche verranno applicate al computer di replica e ai nuovi computer.
+12. Abilitare la **Coerenza tra più VM** per raccogliere le macchine in un gruppo di replica e specificare un nome per il gruppo. Fare quindi clic su **OK**. Si noti che:
 
     * I computer in gruppi di replica vengono replicati insieme e hanno punti di ripristino condivisi coerenti con l'arresto anomalo del sistema e coerenti con l'app in caso di failover.
-    * È consigliabile raggruppare i server fisici in modo da rispecchiare i carichi di lavoro. Abilitazione della coerenza tra più macchine può influire sulle prestazioni del carico di lavoro e deve essere utilizzato solo se sono in esecuzione macchine hello stesso carico di lavoro ed è necessaria la coerenza.
+    * È consigliabile raggruppare i server fisici in modo da rispecchiare i carichi di lavoro. L'abilitazione della coerenza tra più VM può influire sulle prestazioni del carico di lavoro e deve essere usata solo se i computer eseguono lo stesso carico di lavoro ed è necessaria la coerenza.
 
-13. Fare clic su **Abilita la replica**. È possibile monitorare lo stato di avanzamento di hello **Abilita protezione** processo **impostazioni** > **processi** > **processi di ripristino del sito**. Dopo aver hello **finalizzazione della protezione** processo viene eseguito hello macchina è pronta per il failover.
+13. Fare clic su **Abilita la replica**. È possibile tenere traccia dello stato del processo **Abilita protezione** in **Impostazioni** > **Processi** > **Processi di Site Recovery**. Dopo l'esecuzione del processo **Finalizza protezione** la macchina virtuale è pronta per il failover.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Andare troppo[passaggio 11: eseguire un failover di test](physical-walkthrough-test-failover.md)
+Andare a [Passaggio 11: Eseguire un failover di test](physical-walkthrough-test-failover.md)

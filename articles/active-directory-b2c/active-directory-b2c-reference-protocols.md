@@ -1,6 +1,6 @@
 ---
 title: 'Azure Active Directory B2C: protocolli di autenticazione | Documentazione Microsoft'
-description: "Modalità App toobuild direttamente tramite hello i protocolli supportati da Azure Active Directory B2C"
+description: Come compilare app direttamente usando i protocolli supportati da Azure Active Directory B2C
 services: active-directory-b2c
 documentationcenter: 
 author: dstrockis
@@ -14,69 +14,69 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/07/2017
 ms.author: dastrock
-ms.openlocfilehash: 8fa4cbebe711841d410b3ae43b78f893c06d9b63
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 8e7e7bc7633370057f8dc596ad04a3f1d796a7d2
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # AD B2C Azure: protocolli di autenticazione
-Azure Active Directory B2C (Azure AD B2C) fornisce l'identità come servizio per le app grazie al supporto di due protocolli standard del settore, OpenID Connect e OAuth 2.0. servizio Hello è conforme agli standard, ma le due implementazioni di questi protocolli possono presentare alcune differenze. 
+Azure Active Directory B2C (Azure AD B2C) fornisce l'identità come servizio per le app grazie al supporto di due protocolli standard del settore, OpenID Connect e OAuth 2.0. Anche se il servizio è conforme agli standard, possono esistere sottili differenze tra le implementazioni di questi protocolli. 
 
-informazioni di Hello in questa guida sono utile se si scrive codice per l'invio e la gestione delle richieste HTTP anziché tramite una libreria open source. È consigliabile leggere questa pagina prima di approfondire i dettagli di hello di ciascun protocollo specifico. Ma se si ha già familiarità con Azure Active Directory B2C, è possibile passare direttamente troppo[hello guide di riferimento di protocollo](#protocols).
+Le informazioni in questa guida sono utili se si scrive codice inviando e gestendo direttamente le richieste HTTP, anziché usando una raccolta open source. Si consiglia di leggere questa pagina prima di approfondire i dettagli dei protocolli specifici. Se si ha già familiarità con Azure AD B2C, è possibile passare direttamente alle [guide di riferimento dei protocolli](#protocols).
 
-<!-- TODO: Need link toolibraries above -->
+<!-- TODO: Need link to libraries above -->
 
-## Nozioni di base Hello
-Ogni applicazione che utilizza Azure Active Directory B2C deve toobe registrate nella directory di B2C in hello [portale di Azure](https://portal.azure.com). processo di registrazione applicazione Hello raccoglie e assegna alcuni valori tooyour app:
+## Nozioni di base
+Ogni app che usa Azure AD B2C deve essere registrata nella directory B2C del [portale di Azure](https://portal.azure.com). Il processo di registrazione app raccoglie e assegna all'app alcuni valori:
 
 * Un **ID applicazione** che identifica l'app in modo univoco.
-* Oggetto **URI di reindirizzamento** o **identificatore del pacchetto** che può essere utilizzato toodirect risposte tooyour indietro app.
-* Altri valori specifici dello scenario Per ulteriori informazioni, vedere [come tooregister applicazione](active-directory-b2c-app-registration.md).
+* Un **URI di reindirizzamento** o un **identificatore di pacchetto** che possono essere usati per indirizzare le risposte all'app.
+* Altri valori specifici dello scenario Per maggiori informazioni, vedere [Come registrare l'applicazione](active-directory-b2c-app-registration.md).
 
-Dopo aver registrato l'app, comunica con Azure Active Directory (Azure AD) tramite l'invio di richieste toohello endpoint:
+Dopo la registrazione, l'app comunica con Azure Active Directory (Azure AD) inviando richieste all'endpoint:
 
 ```
 https://login.microsoftonline.com/{tenant}/oauth2/v2.0/authorize
 https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token
 ```
 
-In quasi tutti i flussi OAuth e OpenID Connect, sono coinvolti nello scambio hello quattro parti:
+In quasi tutti i flussi di OAuth e OpenID Connect sono coinvolte nello scambio quattro parti:
 
 ![Ruoli di OAuth 2.0](./media/active-directory-b2c-reference-protocols/protocols_roles.png)
 
-* Hello **server autorizzazione** endpoint hello Azure AD. Gestisce in modo sicuro informazioni toouser nulla correlati e l'accesso. Gestisce inoltre le relazioni di trust hello tra parti hello in un flusso. È responsabile della verifica hello dell'identità utente, la concessione e revoca accesso tooresources e rilascio di token. È anche noto come provider di identità hello.
+* Il **server di autorizzazione** è l'endpoint di Azure AD. Gestisce in modo sicuro tutto ciò che ha a che fare con l'accesso e le informazioni sull'utente, nonché le relazioni di trust tra le parti in un flusso. Verifica l'identità dell'utente, concede e revoca l'accesso alle risorse e rilascia i token. È anche noto come provider di identità.
 
-* Hello **proprietario della risorsa** è in genere l'utente finale di hello. È parte di hello che possiede i dati di hello, e ha hello power tooallow terzi tooaccess dei dati o risorse.
+* Il **proprietario della risorsa** è in genere l'utente finale. È la parte che possiede i dati e può consentire a terze parti di accedere a tali dati o risorse.
 
-* Hello **client OAuth** è l'app. ed è identificato dal relativo ID applicazione. È in genere parte hello che gli utenti finali interagiscono. Inoltre, le richieste token dal server di autorizzazione hello. proprietario della risorsa Hello deve concedere hello client autorizzazione tooaccess hello risorse.
+* Il **client OAuth** è l'app ed è identificato dal relativo ID applicazione. Si tratta in genere dell’entità con cui interagiscono gli utenti finali. Richiede i token dal server di autorizzazione. Il proprietario della risorsa deve concedere al client l'autorizzazione ad accedere alla risorsa.
 
-* Hello **server delle risorse** in cui risiede la risorsa hello o dati. Considera attendibili autorizzazione hello server toosecurely autenticare e autorizzare i client di OAuth hello. Utilizza inoltre l'accesso connessione tooensure i token che accedono a risorse tooa può essere concessa.
+* Il **server delle risorse** è la posizione in cui si trova la risorsa o i dati. Considera attendibile il server di autorizzazione per autenticare e autorizzare il client OAuth in modo sicuro. Usa i token di accesso di connessione per fare in modo che sia possibile concedere l'accesso a una risorsa.
 
 ## Criteri
-I criteri di Azure Active Directory B2C sono senza dubbio, funzionalità più importanti di hello del servizio hello. Azure Active Directory B2C estende i protocolli di OAuth 2.0 e OpenID Connect standard hello introducendo i criteri. Questi consentono la Azure Active Directory B2C tooperform molto più semplice autenticazione e autorizzazione. 
+I criteri di Azure AD B2C sono probabilmente la caratteristica più importante del servizio. Azure AD B2C estende i protocolli OAuth 2.0 e OpenID Connect standard con l'introduzione dei criteri. Questi consentono ad Azure AD B2C di andare oltre la semplice autenticazione e autorizzazione. 
 
 I criteri descrivono in modo completo le esperienze di identità dell'utente, inclusi l'iscrizione, l'accesso e la modifica del profilo. I criteri possono essere definiti in un'interfaccia utente amministrativa ed eseguiti usando un parametro di query speciale nelle richieste di autenticazione HTTP. 
 
-I criteri non sono funzionalità standard di OAuth 2.0 e OpenID Connect, pertanto è necessario intraprendere hello ora toounderstand li. Per ulteriori informazioni, vedere hello [Guida di riferimento dei criteri di Azure Active Directory B2C](active-directory-b2c-reference-policies.md).
+I criteri non sono una funzionalità standard di OAuth 2.0 e OpenID Connect, è quindi consigliabile cercare di approfondirli. Per altre informazioni, vedere la [guida di riferimento dei criteri di Azure AD B2C](active-directory-b2c-reference-policies.md).
 
 ## Tokens
-implementazione di Hello Azure Active Directory B2C di OAuth 2.0 e OpenID Connect modo estensivo di token di connessione, inclusi i token di connessione che sono rappresentati come token web JSON (Jwt). Un token di connessione è una risorsa protetta un token di sicurezza leggero che concede hello tooa accesso "bearer".
+L'implementazione di OAuth 2.0 e OpenID Connect in Azure AD B2C fa un uso intensivo dei token di connessione, inclusi quelli rappresentati come token Web JSON (JWT). Un token di connessione è un token di sicurezza leggero che consente al "portatore" di accedere a una risorsa protetta.
 
-connessione Hello è qualsiasi entità che possono presentare token hello. Per poter ricevere un token di connessione, Azure AD deve prima autenticare una parte. Tuttavia, se il token hello toosecure durante la trasmissione e di archiviazione non vengono eseguite operazioni hello necessario può essere intercettato e usato da parti non autorizzate.
+Per "portatore" si intende qualsiasi parte che possa presentare il token. Per poter ricevere un token di connessione, Azure AD deve prima autenticare una parte. Se non vengono adottate le misure necessarie per proteggere il token durante la trasmissione e l'archiviazione, potrebbe essere intercettato e usato da parti non autorizzate.
 
 Alcuni token di sicurezza hanno meccanismi predefiniti che ne impediscono l'uso da parti non autorizzate, ma i token di connessione non presentano questo meccanismo. Devono essere trasportati usando un canale protetto, ad esempio un protocollo Transport Layer Security (HTTPS). 
 
-Se un token viene trasmesso all'esterno di un canale sicuro, un malintenzionato può usare un token di hello tooacquire attacco man-in-the-middle e usarlo risorsa tooa protetto di accesso toogain non autorizzato. Hello stessi principi di sicurezza si applicano quando i token di connessione vengono archiviati o memorizzate nella cache per un uso successivo. Assicurarsi sempre che l'app trasmetta e archivi i token di connessione in modo sicuro.
+Se un token di connessione viene trasmesso al di fuori di un canale protetto, un utente malintenzionato potrebbe usare un attacco man-in-the-middle per acquisire il token e usarlo per l'accesso non autorizzato a una risorsa protetta. Gli stessi principi di sicurezza si applicano quando i token di connessione vengono archiviati o memorizzati nella cache per un uso futuro. Assicurarsi sempre che l'app trasmetta e archivi i token di connessione in modo sicuro.
 
 Per altre considerazioni sulla sicurezza dei token di connessione, vedere la [RFC 6750 Section 5](http://tools.ietf.org/html/rfc6750).
 
-Sono disponibili in altre informazioni sui diversi tipi di token che vengono usati in Azure Active Directory B2C di hello [hello riferimento del token di Azure AD](active-directory-b2c-reference-tokens.md).
+Maggiori informazioni sui diversi tipi di token usati in Azure AD B2C sono disponibili nelle [informazioni di riferimento sui token in Azure AD B2C](active-directory-b2c-reference-tokens.md).
 
 ## Protocolli
-Quando si è pronti richiede alcuni esempi di tooreview, è possibile iniziare con una delle seguenti esercitazioni hello. Ognuno corrisponde tooa uno scenario di autenticazione specifico. Se è necessario determinare il flusso è adatta alle proprie esigenze, consultare [hello tipi di App, è possibile compilare utilizzando Azure AD B2C](active-directory-b2c-apps.md).
+Per esaminare alcuni esempi di richieste, è possibile iniziare con una delle esercitazioni indicate di seguito. Ognuna corrisponde a uno scenario di autenticazione specifico. Per determinare quale sia il flusso più adatto alle proprie esigenze, vedere i [tipi di app che è possibile compilare con Azure AD B2C](active-directory-b2c-apps.md).
 
 * [Compilare applicazioni native e per dispositivi mobili con OAuth 2.0.](active-directory-b2c-reference-oauth-code.md)
 * [Compilare app Web con OpenID Connect.](active-directory-b2c-reference-oidc.md)
-* [Creazione di applicazioni a pagina singola tramite flusso implicito hello OAuth 2.0](active-directory-b2c-reference-spa.md)
+* [Compilare app a pagina singola con il flusso implicito OAuth 2.0](active-directory-b2c-reference-spa.md)
 

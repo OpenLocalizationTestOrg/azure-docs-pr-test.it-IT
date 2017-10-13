@@ -1,14 +1,14 @@
-gli SKU di gateway VPN (precedente) legacy di Hello sono:
+Di seguito sono elencati gli SKU del gateway VPN legacy (precedenti):
 
 * Basic
 * Standard
 * HighPerformance
 
-Gateway VPN non usare gateway UltraPerformance hello SKU. Per informazioni su hello UltraPerformance SKU, vedere hello [ExpressRoute](../articles/expressroute/expressroute-about-virtual-network-gateways.md) documentazione.
+Il gateway VPN non usa lo SKU UltraPerformance. Per informazioni sullo SKU UltraPerformance, vedere la documentazione relativa a [ExpressRoute](../articles/expressroute/expressroute-about-virtual-network-gateways.md).
 
-Quando si lavora con hello SKU legacy, considerare hello seguenti:
+Quando si usano SKU legacy, tenere presente quanto segue:
 
-* Se si desidera un tipo di VPN PolicyBased toouse, è necessario utilizzare hello SKU Basic. Le VPN basate su criteri, precedentemente denominate routing statico, non sono supportate negli altri SKU.
-* Il protocollo BGP non è supportato nella SKU Basic hello.
-* Coesistenza Gateway VPN di ExpressRoute configurazioni non sono supportate nella SKU Basic hello.
-* Connessioni Gateway VPN S2S attivo-attivo possono essere configurate in hello HighPerformance SKU.
+* Per usare un tipo di VPN PolicyBased, è necessario usare lo SKU di livello Basic. Le VPN basate su criteri, precedentemente denominate routing statico, non sono supportate negli altri SKU.
+* BGP non è supportato nello SKU di livello Basic.
+* Le configurazioni con coesistenza di gateway VPN ed ExpressRoute non sono supportate nello SKU di livello Basic.
+* Le connessioni del gateway VPN S2S attivo/attivo possono essere configurate solo nello SKU HighPerformance.

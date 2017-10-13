@@ -1,6 +1,6 @@
 ---
-title: passaggi successivi creazione progetto infrastruttura aaaService | Documenti Microsoft
-description: "In questo articolo contiene collegamenti un set di tooa delle attività di sviluppo di componenti di base per l'infrastruttura di servizio"
+title: Passaggi successivi per la creazione del progetto di Service Fabric | Microsoft Docs
+description: "In questo articolo vengono forniti collegamenti a un set di attività di sviluppo principali per Infrastruttura di servizi"
 services: service-fabric
 documentationcenter: .net
 author: rwike77
@@ -12,66 +12,66 @@ ms.devlang: dotNet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 06/29/2017
+ms.date: 09/28/2017
 ms.author: rwike77
-ms.openlocfilehash: 45598bfabedf280fba8af449ef920f40b409a609
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4523c63493bc9cb3f96713c4abbc1dd1da9130d9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="your-service-fabric-application-and-next-steps"></a>Applicazione dell'infrastruttura di servizi e fasi successive
-L'applicazione Service Fabric di Azure è stata creata. In questo articolo descrive composizione di hello del progetto e alcuni possibili passaggi successivi.
+L'applicazione Service Fabric di Azure è stata creata. In questo articolo si descrive la costruzione del progetto e alcuni potenziali passaggi successivi.
 
 ## <a name="your-application"></a>L'applicazione
-Ogni nuova applicazione include un progetto di applicazione. Potrebbero essere presenti uno o due progetti aggiuntivi, in base al tipo di hello di servizio scelto.
+Ogni nuova applicazione include un progetto di applicazione. Potrebbero essere presenti uno o due progetti aggiuntivi in base al tipo di servizio scelto.
 
-### <a name="hello-application-project"></a>progetto di applicazione Hello
-progetto di applicazione Hello è costituito da:
+### <a name="the-application-project"></a>Il progetto dell'applicazione
+Il progetto dell'applicazione è composto da:
 
-* Un set di servizi di toohello riferimenti che costituiscono l'applicazione.
-* Tre profili (1-nodo locale, 5-nodo locale e Cloud) che è possibile utilizzare toomaintain preferenze per l'utilizzo di ambienti diversi, ad esempio le preferenze tooa correlati cluster endpoint e se tooperform aggiornare le distribuzioni per impostazione predefinita di pubblicazione.
-* Tre i file dei parametri dell'applicazione (come sopra) che è possibile utilizzare le configurazioni di applicazione specifico dell'ambiente toomaintain, ad esempio il numero di hello di toocreate partizioni per un servizio.
-* Uno script di distribuzione che è possibile utilizzare toodeploy l'applicazione dalla riga di comando hello o come parte di una pipeline automatizzata integrazione e la distribuzione continua.
-* manifesto dell'applicazione di Hello, che descrive un'applicazione hello. È possibile trovare hello manifesto nella cartella ApplicationPackageRoot hello.
+* Un set di riferimenti ai servizi che costituiscono l'applicazione.
+* Tre profili di pubblicazione (locale a 1 nodo, locale a 5 nodi e cloud) che consentono di gestire le preferenze per l'uso in ambienti diversi, ad esempio relative a un endpoint del cluster e alla scelta di eseguire o meno distribuzioni di aggiornamento per impostazione predefinita.
+* Tre file di parametri dell'applicazione (identici a quelli riportati in precedenza), che consentono di gestire configurazioni dell'applicazione specifiche per ogni ambiente, ad esempio il numero di partizioni da creare per un servizio.
+* Uno script di distribuzione che consente di distribuire l'applicazione dalla riga di comando o nell'ambito di una pipeline di integrazione e distribuzione continua automatizzata.
+* Il manifesto dell'applicazione, che descrive l'applicazione. Il manifesto è disponibile nella cartella ApplicationPackageRoot.
 
 ### <a name="stateless-service"></a>Servizio senza stato
-Quando si aggiunge un nuovo servizio senza stato, Visual Studio aggiunge una soluzione tooyour di progetto di servizio che include un tipo discende da `StatelessService`. servizio Hello incrementa una variabile locale in un contatore.
+Quando si aggiunge un nuovo servizio senza stato, Visual Studio aggiunge alla soluzione un progetto del servizio, che include un tipo proveniente da `StatelessService`. Il servizio incrementa una variabile locale in un contatore.
 
 ### <a name="stateful-service"></a>Servizio con stato
-Quando si aggiunge un nuovo servizio con stato, Visual Studio aggiunge una soluzione tooyour di progetto di servizio che include un tipo discende da `StatefulService`. servizio Hello incrementa un contatore nel relativo `RunAsync` (metodo) e archivia il risultato hello in un `ReliableDictionary`.
+Quando si aggiunge un nuovo servizio con stato, Visual Studio aggiunge alla soluzione un progetto del servizio, che include un tipo proveniente da `StatefulService`. Il servizio incrementa un contatore nel relativo metodo `RunAsync` e archivia il risultato in un `ReliableDictionary`.
 
 ### <a name="actor-service"></a>Servizio Actor
-Quando si aggiunge un nuovo attore affidabile, Visual Studio aggiunge due soluzioni di tooyour progetti: un progetto attore e un progetto di interfaccia.
+Quando si aggiunge un nuovo Reliable Actor, Visual Studio aggiunge due progetti alla soluzione: un progetto attore e un progetto interfaccia.
 
-progetto attore Hello fornisce metodi per l'impostazione e recupero valore hello di un contatore che viene mantenuto in modo affidabile all'interno dello stato dell'actor hello. Hello interfaccia progetto fornisce un'interfaccia che altri servizi possono utilizzare attore hello tooinvoke.
+Il progetto attore fornisce metodi per l'impostazione e il recupero del valore di un contatore che viene mantenuto in modo affidabile all'interno dello stato dell'attore. Il progetto di interfaccia fornisce un'interfaccia che può essere utilizzata da altri servizi per richiamare l'attore.
 
 ### <a name="stateless-web-api"></a>API Web senza stato
-progetto API Web senza stato Hello fornisce un base che è possibile utilizzare tooopen tooexternal client dell'applicazione di servizio web. Per ulteriori informazioni su come progetto di hello strutturato, vedere [servizi API Web dell'infrastruttura del servizio con self-hosting OWIN](service-fabric-reliable-services-communication-webapi.md).
+Il progetto API Web senza stato fornisce un servizio Web di base che è possibile usare per aprire l'applicazione ai client esterni. Per altre informazioni su come è strutturato il progetto, vedere [Introduzione ai servizi API Web di Service Fabric con self-hosting OWIN](service-fabric-reliable-services-communication-webapi.md).
 
 
 ### <a name="aspnet-core"></a>ASP.NET Core
-Hello Service Fabric SDK fornisce hello stesso insieme di modelli ASP.NET Core disponibili per i progetti ASP.NET Core autonoma: vuoto, [API Web][aspnet-webapi], e [applicazione Web][aspnet-webapp].
+Service Fabric SDK offre lo stesso set di modelli ASP.NET Core disponibile per i progetti ASP.NET Core autonomi: modello vuoto, [API Web][aspnet-webapi] e [applicazione Web][aspnet-webapp].
 
 ### <a name="guest-executables-and-guest-containers"></a>Eseguibili guest e contenitori guest
 
-Un'infrastruttura di servizio 'guest' è un servizio che non viene compilato con modelli di programmazione della piattaforma hello. È possibile comprimere i file binari hello per un utente guest è [direttamente nel pacchetto di applicazione hello](service-fabric-deploy-existing-app.md) o [tramite un'immagine contenitore](service-fabric-deploy-container.md). In entrambi i casi, Visual Studio crea hello gli elementi necessari in hello **ApplicationPackageRoot** nella cartella del progetto di applicazione hello. Visual Studio non creerà un nuovo progetto di servizio codice hello esiste già in un' posizione. Se si desidera toomanage il guest progetti insieme a progetto di applicazione di Service Fabric hello, è possibile aggiungerli toohello stessa soluzione di Visual Studio.
+Un "guest" di Service Fabric è un servizio che non è creato con i modelli di programmazione della piattaforma. È possibile comprimere i file binari per un guest [direttamente nel pacchetto dell'applicazione](service-fabric-deploy-existing-app.md) o [tramite un'immagine del contenitore](service-fabric-deploy-container.md). Visual Studio crea in entrambi i casi gli elementi necessari nella cartella **ApplicationPackageRoot** del progetto dell'applicazione. Visual Studio non creerà un nuovo progetto di servizio perché il codice esiste già in una qualche posizione. Se si desidera gestire i progetti guest insieme al progetto dell'applicazione di Service Fabric, è possibile aggiungerli alla soluzione di Visual Studio.
 
 ## <a name="next-steps"></a>Passaggi successivi
 ### <a name="create-an-azure-cluster"></a>Creare un cluster di Azure
-Hello Service Fabric SDK fornisce un cluster locale per lo sviluppo e test. toocreate un cluster in Azure, vedere [impostazione di un cluster di Service Fabric dal portale di Azure hello][create-cluster-in-portal].
+LSDK di Infrastruttura di servizi fornisce un cluster locale per lo sviluppo e il test. Per creare un cluster in Azure, vedere [Creare un cluster di Service Fabric in Azure tramite il portale di Azure][create-cluster-in-portal].
 
-### <a name="publish-your-application-tooazure"></a>Pubblicare l'applicazione tooAzure
-È possibile pubblicare l'applicazione direttamente da Visual Studio tooan cluster di Azure. toolearn, vedere [tooAzure l'applicazione di pubblicazione][publish-app-to-azure].
+### <a name="publish-your-application-to-azure"></a>Pubblicazione dell'applicazione in Azure
+È possibile pubblicare l'applicazione direttamente da Visual Studio in un cluster di Azure. Per informazioni, vedere [Publishing your application to Azure][publish-app-to-azure] (Pubblicare l'applicazione in Azure).
 
-### <a name="use-service-fabric-explorer-toovisualize-your-cluster"></a>Usare un cluster di Service Fabric Explorer toovisualize
-Service Fabric Explorer offre un modo semplice di toovisualize del cluster, incluse le applicazioni distribuite e il layout fisico. vedere, più toolearn [la visualizzazione del cluster usando Service Fabric Explorer][visualize-with-sfx].
+### <a name="use-service-fabric-explorer-to-visualize-your-cluster"></a>Visualizzare il cluster con Service Fabric Explorer
+Service Fabric Explorer offre un modo semplice per la visualizzazione del cluster, tra cui le applicazioni distribuite e il layout fisico. Per altre informazioni, vedere [Visualizzare il cluster con Service Fabric Explorer][visualize-with-sfx].
 
 ### <a name="version-and-upgrade-your-services"></a>Effettuare il versioning e aggiornare i servizi
-Service Fabric consente il controllo indipendente delle versioni e l'aggiornamento di servizi indipendenti in un'applicazione. vedere, più toolearn [controllo delle versioni e l'aggiornamento dei servizi][app-upgrade-tutorial].
+Service Fabric consente il controllo indipendente delle versioni e l'aggiornamento di servizi indipendenti in un'applicazione. Per altre informazioni, vedere [Versioning and upgrading your services][app-upgrade-tutorial] (Controllo delle versione e aggiornamento dei servizi).
 
 ### <a name="configure-continuous-integration-with-visual-studio-team-services"></a>Configurare l'integrazione continua con Visual Studio Team Services
-toolearn come è possibile impostare un processo di integrazione continua per l'applicazione di Service Fabric, vedere [configurare l'integrazione continua con Visual Studio Team Services][ci-with-vso].
+Per informazioni su come impostare un processo di integrazione continua per l'applicazione di Service Fabric, vedere [Configurare l'integrazione e la distribuzione continue di Service Fabric con Visual Studio Team Services][ci-with-vso].
 
 <!-- Links -->
 [add-web-frontend]: service-fabric-add-a-web-frontend.md

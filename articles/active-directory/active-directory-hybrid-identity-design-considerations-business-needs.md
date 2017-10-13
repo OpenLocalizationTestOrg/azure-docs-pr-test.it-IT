@@ -1,6 +1,6 @@
 ---
-title: "Considerazioni sulla progettazione di aaaAzure Active Directory ibrido identità - determinare i requisiti di identità | Documenti Microsoft"
-description: "Identificare hello esigenze aziendali che potrebbero causare requisiti hello toodefine per la progettazione di identità ibrida hello."
+title: "Considerazioni di progettazione per la soluzione ibrida di gestione delle identità di Azure Active Directory: determinare i requisiti di identità | Microsoft Docs"
+description: "Identificare le esigenze aziendali che consentiranno di definire i requisiti per la progettazione della soluzione ibrida di gestione delle identità."
 documentationcenter: 
 services: active-directory
 author: billmath
@@ -14,92 +14,92 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/18/2017
 ms.author: billmath
-ms.openlocfilehash: b2f1cad923b0f08ededa0d8f9a4ea8e799956e54
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6503034b3f5a17a2a42338c73329eef0b01f2f27
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="determine-identity-requirements-for-your-hybrid-identity-solution"></a>Determinare i requisiti per la soluzione ibrida di gestione delle identità
-Hello primo passaggio nella progettazione di una soluzione con identità ibrida consiste requisiti hello toodetermine per organizzazione hello che sarà l'utilizzo di questa soluzione.  Gestione identità ibride viene avviato come un ruolo di supporto (supporta tutte le altre soluzioni di cloud mediante l'autenticazione) e passa le funzionalità nuove e interessanti tooprovide che sbloccare nuovi carichi di lavoro per gli utenti.  Questi carichi di lavoro o i servizi che si desidera tooadopt per gli utenti stabiliscono requisiti hello per la progettazione di identità ibrida hello.  Tali servizi e i carichi di lavoro necessario gestione identità ibride tooleverage sia in locale e nel cloud hello.  
+Il primo passaggio della progettazione di una soluzione ibrida di gestione delle identità consiste nel determinare i requisiti per l'organizzazione che userà la soluzione.  La gestione ibrida delle identità nasce come un ruolo di supporto (supporta tutte le altre soluzioni cloud fornendo l'autenticazione) che può in seguito offrire funzionalità nuove e interessanti per i carichi di lavoro degli utenti.  I carichi di lavoro o i servizi che verranno adottati per gli utenti determinano i requisiti per la progettazione della soluzione ibrida di gestione delle identità.  Questi servizi e carichi di lavoro dovranno usare la soluzione ibrida di gestione delle identità sia in locale che nel cloud.  
 
-È necessario toogo gli aspetti chiave di hello business toounderstand che cos'è un requisito ora e le società hello piani per hello future. Se non si dispone di visibilità hello della strategia a lungo termine hello per la progettazione di identità ibride, probabilità sono che la soluzione non sarà scalabile con esigenze aziendali di hello aumenta e modifica.   T ha diagramma seguente viene illustrato un esempio di un ibrido identità architettura hello carichi di lavoro sono viene sbloccato per gli utenti. Questo è solo un esempio di tutte le possibilità nuovo hello che può essere sbloccato e può essere recapitato con una strategia di identità ibrida a tinta unita. 
+È necessario esaminare questi aspetti dell'attività per stabilire ciò che costituisce un requisito ora e ciò che l'azienda ha pianificato per il futuro. Se non si ha visibilità sulla strategia a lungo termine per la progettazione della soluzione ibrida di gestione delle identità, è possibile che la soluzione non garantisca la scalabilità necessaria in grado di sostenere la crescita e il cambiamento dell'azienda.   Il diagramma seguente mostra un esempio di architettura ibrida di gestione delle identità e i carichi di lavoro disponibili per gli utenti. Si tratta solo di un esempio di tutte le nuove funzionalità che possono essere rese disponibili e distribuite grazie a una solida strategia di gestione ibrida delle identità. 
 
-Alcuni componenti che fanno parte dell'architettura di identità ibrida hello![](./media/hybrid-id-design-considerations/hybrid-identity-architechture.png)
+Alcuni componenti che fanno parte dell'architettura ibrida di gestione delle identità ![](./media/hybrid-id-design-considerations/hybrid-identity-architechture.png)
 
 ## <a name="determine-business-needs"></a>Determinare le esigenze aziendali
-Ogni società dispone di requisiti diversi, anche se queste aziende fanno parte di hello stesso settore, i requisiti aziendali reali hello potrebbero variare. È possibile sfruttare le procedure consigliate del settore hello, ma in definitiva è hello esigenze aziendali che potrebbero causare requisiti hello toodefine per la progettazione di identità ibrida hello. 
+Ogni azienda ha requisiti specifici e anche le aziende che operano nello stesso settore possono manifestare esigenze diverse. È comunque utile vedere le procedure consigliate per un determinato settore, ma sarà necessario valutare le esigenze specifiche dell'azienda per definire i requisiti per la progettazione della soluzione ibrida di gestione delle identità. 
 
-Assicurarsi che segue hello tooanswer domande tooidentify l'azienda deve:
+Per identificare le esigenze aziendali, rispondere alle domande seguenti:
 
-* La società esegue la ricerca toocut costi operativi IT?
-* La società esegue la ricerca toosecure risorse di cloud (app SaaS, infrastruttura)?
-* La vostra società ricerca toomodernize il reparto IT?
-  * Sono gli utenti più complessi e di applicazioni mobili IT toocreate eccezioni nel tipo diverso di tooallow di rete Perimetrale di risorse di traffico tooaccess diverse?
-  * La società dispone di applicazioni legacy che necessari toobe pubblicati utente toothese ma che non sono facilmente toorewrite?
-  * Azienda necessario tooaccomplish tutte queste attività e gestirlo in un controllo a hello contemporaneamente?
-* La società ricerca identità degli utenti toosecure e ridurre i rischi riportando nuovi strumenti che consentono di sfruttare competenze hello di Azure sicurezza esperienza locale Microsoft?
-* È l'azienda sta tentando di eliminare hello tooget temuto account "esterni" in locale e spostarli toohello cloud in cui non sono più una minaccia inattiva all'interno dell'ambiente locale?
+* L'azienda intende operare tagli sui costi operativi per l'IT?
+* L'azienda prevede di proteggere gli asset cloud (app SaaS, infrastruttura e così via)?
+* L'azienda desidera modernizzare l'infrastruttura IT?
+  * La mobilità degli utenti è in crescita e aumentano le richieste al reparto IT per la creazione di eccezioni nella rete perimetrale per consentire a un tipo di traffico diverso di accedere a risorse differenti?
+  * La società dispone di app legacy che devono essere pubblicate e rese disponibili per questi utenti moderni ma che non sono facili da riscrivere?
+  * L'azienda deve eseguire tutte queste attività e tenerle sotto controllo allo stesso tempo?
+* L'azienda vuole proteggere le identità degli utenti e ridurre i rischi adottando nuovi strumenti basati sulla tecnologia di sicurezza di Microsoft Azure in locale?
+* L'azienda sta tentando di eliminare i temuti account "esterni" locali spostandoli nel cloud dove non rappresentano più una minaccia dormiente all'interno dell'ambiente locale?
 
 ## <a name="analyze-on-premises-identity-infrastructure"></a>Analizzare l'infrastruttura di gestione delle identità locale
-Dopo aver creato un'idea relative ai requisiti di business della società, è necessario tooevaluate l'infrastruttura di identità locale. Questa valutazione è importante per la definizione di hello requisiti tecnici toointegrate identità soluzione toohello cloud identity management sistema corrente. Verificare che hello tooanswer seguenti domande:
+Ora che ci si è fatti un'idea sui requisiti aziendali, è necessario valutare l'infrastruttura di gestione delle identità locale. Questa valutazione è importante per definire i requisiti tecnici per integrare la soluzione di gestione delle identità corrente nel sistema di gestione delle identità cloud. Rispondere alle domande seguenti:
 
 * Qual è la soluzione di autenticazione e autorizzazione locale usata dall'azienda? 
 * Al momento l'azienda usa servizi di sincronizzazione locali?
 * L'azienda usa provider di identità di terze parti (IdP)?
 
-È inoltre necessario toobe compatibile con i servizi cloud hello che l'azienda potrebbe avere. Esegue una valutazione toounderstand hello corrente integrazione SaaS, i modelli di soluzioni IaaS o PaaS nell'ambiente in uso è molto importante. Verificare che hello tooanswer seguente domande durante la valutazione:
+È anche necessario valutare quali sono i servizi cloud usati dall'azienda. È molto importante effettuare una valutazione per acquisire informazioni sull'integrazione corrente con modelli SaaS, IaaS o PaaS nell'ambiente in uso. Rispondere alle domande seguenti in fase di valutazione:
 
 * L'azienda usa un qualsiasi tipo d'integrazione con un provider di servizi cloud?
 * In caso affermativo, quali sono i servizi in uso?
 * Questa integrazione è già presente nell'ambiente di produzione o si tratta di un progetto pilota?
 
 > [!NOTE]
-> Se si dispone di un mapping accurato di tutte le App e servizi cloud, è possibile utilizzare lo strumento di Cloud App Discovery hello. Questo strumento fornisce al reparto IT la visibilità necessaria su tutte le app cloud, aziendali e non, usate nell'organizzazione. Che rende più semplice che mai toodiscover shadow IT dell'organizzazione, inclusi i dettagli su modelli di utilizzo e agli utenti l'accesso delle applicazioni cloud. vedere tooget avviato [individuazione app Cloud](active-directory-cloudappdiscovery-whatis.md).
+> Se non si dispone di una mappatura accurata di tutte le app e i servizi cloud nell'ambiente, è possibile usare lo strumento Cloud App Discovery. Questo strumento fornisce al reparto IT la visibilità necessaria su tutte le app cloud, aziendali e non, usate nell'organizzazione. In questo modo si semplifica l'individuazione di sistemi e soluzioni IT non autorizzati e l'acquisizione di schemi di utilizzo e di informazioni sugli utenti che accedono alle applicazioni cloud. Per un'introduzione, vedere [Cloud App Discovery](active-directory-cloudappdiscovery-whatis.md).
 > 
 > 
 
 ## <a name="evaluate-identity-integration-requirements"></a>Valutare i requisiti di integrazione della soluzione di gestione delle identità
-Successivamente, sarà necessario requisiti di integrazione delle identità di tooevaluate hello. Questa valutazione è requisiti tecnici di hello toodefine importanti per la modalità in cui verranno autenticati gli utenti, come la presenza dell'organizzazione hello apparirà nel cloud hello, come organizzazione hello consentirà autorizzazione e quale esperienza utente hello è toobe continua. Verificare che hello tooanswer seguenti domande:
+A questo punto, è necessario valutare i requisiti di integrazione della soluzione di gestione delle identità. Questa valutazione è importante per definire i requisiti tecnici relativi alla modalità di autenticazione degli utenti, all'aspetto che assumerà l'organizzazione nel cloud, alla modalità in cui l'organizzazione consentirà l'autorizzazione e alla definizione dell'esperienza utente. Rispondere alle domande seguenti:
 
 * L'organizzazione prevede di usare la federazione, l'autenticazione standard o entrambe?
-* La federazione è un requisito?  A causa delle operazioni seguenti hello:
+* La federazione è un requisito?  Motivo:
   * Accesso Single Sign-On basato su Kerberos
   * L'azienda dispone di applicazioni locali (sviluppate internamente o da terze parti) che usano il formato SAML o funzionalità federative simili.
   * Multi-Factor Authentication tramite smart card. RSA SecurID e così via.
-  * Regole di accesso client che consentono di risolvere domande hello riportate di seguito:
-    1. È possibile bloccare tutti l'accesso esterno tooOffice 365 basate sull'indirizzo IP di hello del client hello?
-    2. È possibile bloccare tutti l'accesso esterno tooOffice 365, ad eccezione di Exchange ActiveSync?
-    3. È possibile bloccare tutti l'accesso esterno tooOffice 365, ad eccezione delle applicazioni basate su browser (OWA, Simulato)
-    4. È possibile bloccare tutti l'accesso esterno tooOffice 365 per i membri di gruppi di Active Directory designati
+  * Regole di accesso client che risolvono le problematiche evidenziate dalle domande seguenti:
+    1. È possibile bloccare tutti gli accessi esterni a Office 365 in base all'indirizzo IP del client?
+    2. È possibile bloccare tutto l'accesso esterno a Office 365, ad eccezione di Exchange ActiveSync?
+    3. È possibile bloccare tutto l'accesso esterno a Office 365, ad eccezione delle app basate su browser, ad esempio Outlook Web App o SharePoint Online?
+    4. È possibile bloccare tutto l'accesso esterno a Office 365 per i membri dei gruppi di Active Directory definiti?
 * Preoccupazioni relative a sicurezza e controllo
 * Si dispone già di un investimento esistente in una soluzione di autenticazione federata
-* Specifica il nome dell'organizzazione verrà utilizzati per il dominio nel cloud hello?
-* Organizzazione di hello dispone di un dominio personalizzato?
+* Quale sarà il nome usato dall'organizzazione per il dominio nel cloud?
+* L'organizzazione ha un dominio personalizzato?
   1. Questo dominio è pubblico e facile da verificare tramite DNS?
-  2. In caso contrario, quindi si dispone di un dominio pubblico che può essere utilizzato tooregister un UPN alternativo in Active Directory?
-* Sono identificatori utente hello coerenti per la rappresentazione di cloud? 
-* Organizzazione di hello dispone di applicazioni che richiedono l'integrazione con servizi cloud?
-* Organizzazione di hello dispone di più domini e verrà tutte utilizzano l'autenticazione standard o federata?
+  2. In caso contrario, è disponibile un dominio pubblico che si può usare per registrare un nome dell'entità utente alternativo in Active Directory?
+* Gli ID utente sono coerenti per la rappresentazione nel cloud? 
+* L'organizzazione dispone di app che richiedono l'integrazione con servizi cloud?
+* Se l'organizzazione ha più domini, useranno tutti l'autenticazione federata o standard?
 
 ## <a name="evaluate-applications-that-run-in-your-environment"></a>Valutare le applicazioni in esecuzione nell'ambiente
-Dopo avere un'idea riguardanti locale e dell'infrastruttura cloud, è necessario applicazioni hello tooevaluate eseguite in questi ambienti. Questa valutazione è importante toodefine hello toointegrate requisiti tecnici di sistema di gestione identità queste applicazioni toohello cloud. Verificare che hello tooanswer seguenti domande:
+Ora che ci si è fatti un'idea sull'infrastruttura locale e cloud, è necessario valutare le applicazioni in esecuzione in questi ambienti. Questa valutazione è importante per definire i requisiti tecnici per integrare queste applicazioni nel sistema di gestione delle identità cloud. Rispondere alle domande seguenti:
 
 * Dove risiederanno le applicazioni?
-* Gli utenti accederanno alle applicazioni locali?  Nel cloud hello? A entrambe?
-* Sono presenti i piani di carichi di lavoro tootake hello esistente dell'applicazione e spostarli toohello cloud?
-* Esistono piani toodevelop nuove applicazioni che risiedono in locale o in hello cloud che utilizzeranno l'autenticazione cloud?
+* Gli utenti accederanno alle applicazioni locali?  Alle applicazioni nel cloud? A entrambe?
+* È previsto un piano per spostare i carichi di lavoro delle applicazioni esistenti nel cloud?
+* È previsto un piano per sviluppare nuove applicazioni che risiederanno in locale o nel cloud e che useranno l'autenticazione cloud?
 
 ## <a name="evaluate-user-requirements"></a>Valutare i requisiti degli utenti
-È anche i requisiti dell'utente tooevaluate hello. Questa valutazione è passaggi hello toodefine importanti che è necessaria per caricamento e l'assistenza degli utenti, di transizione toohello cloud. Verificare che hello tooanswer seguenti domande:
+A questo punto, è necessario valutare i requisiti degli utenti. Questa valutazione è importante per definire i passaggi necessari per la formazione e l'assistenza degli utenti per la transizione al cloud. Rispondere alle domande seguenti:
 
 * Gli utenti accederanno alle applicazioni in locale?
-* Gli utenti accederanno applicazioni nel cloud hello?
-* Come eseguire gli utenti in genere accesso tootheir ambiente locale?
-* Come gli utenti accesso toohello verrà cloud?
+* Gli utenti accederanno alle applicazioni nel cloud?
+* Qual è la modalità di accesso tipica all'ambiente locale?
+* In che modo gli utenti accederanno al cloud?
 
 > [!NOTE]
-> Annotare i tootake che ogni risposta e comprendere motivazioni hello delle risposte hello. [Determinare i requisiti di risposta agli eventi imprevisti](active-directory-hybrid-identity-design-considerations-incident-response-requirements.md) esaminerà le opzioni di hello disponibili e i vantaggi o svantaggi di ogni opzione.  Una volta fornite le risposte a queste domande, sarà possibile selezionare l'opzione più adatta in base alle esigenze aziendali.
+> Accertarsi di prendere nota di ogni risposta e comprendere la logica che ne sta alla base. [Determinare i requisiti di risposta agli eventi imprevisti](active-directory-hybrid-identity-design-considerations-incident-response-requirements.md) illustra le opzioni disponibili, oltre ai vantaggi e agli svantaggi di ogni opzione.  Una volta fornite le risposte a queste domande, sarà possibile selezionare l'opzione più adatta in base alle esigenze aziendali.
 > 
 > 
 

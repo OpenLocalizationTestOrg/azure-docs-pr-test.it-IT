@@ -1,6 +1,6 @@
 ---
-title: connettore aaaOutlook.com nelle app di logica di Azure | Documenti Microsoft
-description: "Creare app per la logica in Servizio app di Azure. Connettore Outlook.com consente toomanage la posta elettronica, i calendari e contatti. Consente anche di eseguire diverse azioni, ad esempio inviare messaggi, pianificare riunioni, aggiungere contatti e così via."
+title: Connettore Outlook.com in App per la logica di Azure | Microsoft Docs
+description: "Creare app per la logica in Servizio app di Azure. Il connettore Outlook.com consente di gestire la posta elettronica, i calendari e i contatti. Consente anche di eseguire diverse azioni, ad esempio inviare messaggi, pianificare riunioni, aggiungere contatti e così via."
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: MandiOhlinger
@@ -15,32 +15,32 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 08/18/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: 1df299b7a01390ebc6931707f3788c10fcacfae9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: bde1629504c97cf6706b42219570ffa6243073dd
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="get-started-with-hello-outlookcom-connector"></a>Iniziare con il connettore di Outlook.com hello
-Connettore Outlook.com consente toomanage la posta elettronica, i calendari e contatti. Consente anche di eseguire diverse azioni, ad esempio inviare messaggi, pianificare riunioni, aggiungere contatti e così via.
+# <a name="get-started-with-the-outlookcom-connector"></a>Introduzione al connettore Outlook.com
+Il connettore Outlook.com consente di gestire la posta elettronica, i calendari e i contatti. Consente anche di eseguire diverse azioni, ad esempio inviare messaggi, pianificare riunioni, aggiungere contatti e così via.
 
 Per iniziare subito a creare un'app per la logica, vedere [Creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="create-a-connection-toooutlookcom"></a>Creare una connessione tooOutlook.com
-app di logica toocreate con Outlook.com, è necessario creare innanzitutto un **connessione** quindi fornire i dettagli di hello per hello le proprietà seguenti:
+## <a name="create-a-connection-to-outlookcom"></a>Creare una connessione a Outlook.com
+Per creare app per la logica con Outlook.com, è prima necessario creare una **connessione** e quindi specificare i dettagli per le proprietà seguenti:
 
 | Proprietà | Obbligatorio | Descrizione |
 | --- | --- | --- |
 | Token |Sì |Fornisce le credenziali di Outlook.com |
 
-Dopo aver creato una connessione di hello, è possibile utilizzare azioni hello tooexecute e restare in attesa per i trigger di hello descritti in questo articolo.
+Dopo aver creato la connessione, è possibile usarla per eseguire le azioni e restare in ascolto dei trigger descritti in questo articolo.
 
-> [!INCLUDE [Steps toocreate a connection tooOutlook.com](../../includes/connectors-create-api-outlook.md)]
+> [!INCLUDE [Steps to create a connection to Outlook.com](../../includes/connectors-create-api-outlook.md)]
 >
 
 ## <a name="connector-specific-details"></a>Dettagli specifici del connettore
 
-Visualizzare tutti i trigger e azioni definite in swagger hello e anche eventuali limiti di hello [dettagli connettore](/connectors/outlook/).
+Per visualizzare eventuali azioni e trigger definiti in Swagger ed eventuali limiti, vedere i [dettagli del connettore](/connectors/outlook/).
 
 ## <a name="more-connectors"></a>Altri connettori
-Tornare indietro toohello [elenco API](apis-list.md).
+Tornare all' [elenco di API](apis-list.md).

@@ -1,6 +1,6 @@
 ---
-title: aaaAzure SQL Database Azure Case Study - Umbraco | Documenti Microsoft
-description: Informazioni su come Umbraco Usa il provisioning di Database SQL tooquickly e scalare un servizio per migliaia di tenant nel cloud hello
+title: 'Case study sul database SQL di Azure: Umbraco | Microsoft Docs'
+description: Altre informazioni su come Umbraco usa il database SQL per eseguire rapidamente il provisioning e ridimensionare i servizi per migliaia di tenant nel cloud
 services: sql-database
 documentationcenter: 
 author: CarlRabeler
@@ -15,18 +15,18 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 01/10/2017
 ms.author: carlrab
-ms.openlocfilehash: 93e39e509831a5ff90f129d9537ece0b0dafef0e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6e9c56874bf4bda7f4248a44e274532ed2555153
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="umbraco-uses-azure-sql-database-tooquickly-provision-and-scale-services-for-thousands-of-tenants-in-hello-cloud"></a>Umbraco viene utilizzato il provisioning di Database SQL di Azure tooquickly e scalare un servizio per migliaia di tenant nel cloud hello
+# <a name="umbraco-uses-azure-sql-database-to-quickly-provision-and-scale-services-for-thousands-of-tenants-in-the-cloud"></a>Umbraco usa il database SQL di Azure per eseguire rapidamente il provisioning e il ridimensionamento di servizi per migliaia di tenant nel cloud.
 ![Logo di Umbraco](./media/sql-database-implementation-umbraco/umbracologo.png)
 
-Umbraco è un sistema di gestione del contenuto di open source più diffuso (CMS) che può eseguire alcuna operazione da siti di piccole dimensioni campagna o brochure toocomplex applicazioni per aziende classificate Fortune 500 e siti Web di supporto globale. 
+Umbraco è un noto sistema di gestione di contenuti (CMS) open source che può eseguire qualsiasi contenuto, da siti per brochure o piccole campagne ad applicazioni complesse per siti Web di social media globali e aziende nella classifica Fortune 500. 
 
-> "È disponibile una vasta community di sviluppatori che utilizzano il sistema di hello, con più di 100.000 sviluppatori nei forum e più di 350.000 nei siti che sono in tempo reale, in esecuzione Umbraco".
+> "Un'ampia community di sviluppatori usa il sistema, con più di 100.000 sviluppatori nei nostri forum e oltre 350.000 siti attivi che eseguono il sistema Umbraco".
 > 
 > - Morten Christensen, responsabile tecnico, Umbraco
 > 
@@ -34,9 +34,9 @@ Umbraco è un sistema di gestione del contenuto di open source più diffuso (CMS
 > 
 > 
 
-distribuzioni dei clienti, toosimplify Umbraco aggiunto Umbraco-as-a-Service (UaaS): un'offerta di software-as-a-service (SaaS) che elimina la necessità di hello per le distribuzioni locali, offre scalabilità predefinite e rimuove gestione overhead abilitando gli sviluppatori toofocus gestione innovazione piuttosto che come soluzione di prodotto. Umbraco è in grado di tooprovide tutti questi vantaggi basandosi sulle hello del modello flessibile platform-as-a-service (PaaS) offerto da Microsoft Azure.
+Per semplificare le distribuzioni ai clienti, Umbraco ha aggiunto Umbraco-as-a-Service (UaaS), un'offerta di Software-as-a-Service (SaaS) che esclude la necessità di distribuzioni locali, fornisce un ridimensionamento predefinito ed elimina il sovraccarico di gestione, consentendo agli sviluppatori di concentrarsi sull'innovazione dei prodotti anziché sulla gestione della soluzione. Umbraco offre tutti questi vantaggi basandosi sul modello Platform-as-a-Service (PaaS) flessibile offerto da Microsoft Azure.
 
-UaaS consente ai clienti di SaaS toouse Umbraco CMS funzionalità che precedentemente erano presenti fuori la copertura. Per questi clienti viene eseguito il provisioning di un ambiente CMS di lavoro con un database di produzione. I clienti possono sommarsi tootwo database aggiuntivi per lo sviluppo e di ambienti, a seconda dei requisiti di gestione temporanea. Quando è necessario un nuovo ambiente, al cliente viene assegnato automaticamente un database tramite un processo automatizzato. Hello nuovo database è pronto, in secondi, in quanto database hello è già stato già eseguito il provisioning Umbraco da un pool elastico Azure dei database disponibili (vedere la figura 1).
+Il servizio UaaS consente ai clienti SaaS di usare funzionalità del sistema Umbraco CMS in precedenza non accessibili. Per questi clienti viene eseguito il provisioning di un ambiente CMS di lavoro con un database di produzione. I clienti possono aggiungere fino ad altri due database per gli ambienti di sviluppo e di gestione temporanea, a seconda dei requisiti. Quando è necessario un nuovo ambiente, al cliente viene assegnato automaticamente un database tramite un processo automatizzato. Il nuovo database è pronto in pochi secondi perché il provisioning è stato eseguito preventivamente da Umbraco tramite un pool elastico di database disponibili Azure (figura 1).
 
 ![Ciclo di vita del provisioning Umbraco](./media/sql-database-implementation-umbraco/figure1.png)
 
@@ -47,14 +47,14 @@ Con il database SQL di Azure e altri servizi di Azure, i clienti Umbraco possono
 
 1. Eseguire il provisioning
    
-   Umbraco gestisce 200 database disponibili, il cui provisioning è stato eseguito preventivamente da pool elastici. Quando un nuovo cliente si iscrive per UaaS, Umbraco fornisce cliente hello con un nuovo ambiente CMS quasi in tempo reale mediante assegnazione di un database dal pool di disponibilità hello.
+   Umbraco gestisce 200 database disponibili, il cui provisioning è stato eseguito preventivamente da pool elastici. Quando un nuovo cliente esegue l'iscrizione per il servizio UaaS, Umbraco gli fornisce un nuovo ambiente CMS in tempo pressoché reale, assegnando un database dal pool di disponibilità.
    
-   Quando un pool di disponibilità raggiunge la soglia, viene creato un nuovo pool elastico e i nuovi database sono pre-provisioning toobe assegnato toocustomers in base alle esigenze.
+   Quando viene raggiunta la soglia di un pool di disponibilità, viene creato un nuovo pool elastico e viene eseguito preventivamente il provisioning di nuovi database da assegnare ai clienti in base alle esigenze.
    
    L'implementazione è completamente automatizzata tramite le librerie di gestione in C# e le code del bus di servizio.
 2. Uso
    
-   I clienti utilizzare uno toothree ambienti (per la produzione, gestione temporanea e/o sviluppo), ognuno con il proprio database. Database del cliente sono in pool elastici, che consente di Umbraco tooprovide scalabilità senza dover eseguire il provisioning tooover efficiente.
+   I clienti usano da uno a tre ambienti, per la produzione, la gestione temporanea e/o lo sviluppo, ognuno con un proprio database. I database dei clienti si trovano in pool elastici, che consentono a Umbraco di fornire un ridimensionamento efficace evitando il provisioning eccessivo.
    
    ![Panoramica del progetto Umbraco](./media/sql-database-implementation-umbraco/figure2.png)
    
@@ -62,34 +62,34 @@ Con il database SQL di Azure e altri servizi di Azure, i clienti Umbraco possono
    
    Figura 2. Sito Web di clienti con Umbraco-as-a-Service (UaaS) che mostra una panoramica e i dettagli del progetto
    
-   Database SQL di Azure Usa unità di transazione Database (Dtu) toorepresent hello potenza relativa necessario per le transazioni di database reali. Per i clienti UaaS, i database in genere funzionano in Dtu circa 10, ma ciascuno con hello elasticità tooscale su richiesta. I clienti possono quindi disporre delle risorse necessarie, anche durante le ore di punta. Durante un recente evento sportivo domenica, ad esempio, un cliente UaaS verificato picchi di database di Dtu too100 per durata hello di gioco hello. Azure pool elastici consentito a Umbraco toosupport che richiedono elevata senza un calo delle prestazioni.
-3. Monitorare
+   Il database SQL di Azure usa le unità di transazioni di database (DTU) per esprimere la potenza relativa necessaria per le transazioni di database reali. Per i clienti UaaS, la potenza dei database è in genere di circa 10 DTU, ma la flessibilità di ogni database consente la scalabilità su richiesta. I clienti possono quindi disporre delle risorse necessarie, anche durante le ore di punta. Ad esempio, nel corso di un recente evento sportivo notturno di domenica, un cliente del servizio UaaS ha riscontrato un picco del database fino a 100 DTU per la durata dell'evento. Grazie ai pool elastici di Azure, il sistema Umbraco è stato in grado di supportare questa richiesta elevata senza compromettere le prestazioni.
+3. Monitoraggio
    
-   Umbraco Monitor attività con i dashboard nel portale di Azure con gli avvisi di posta elettronica personalizzati hello del database.
+   Umbraco monitora l'attività dei database tramite i dashboard del portale di Azure e agli avvisi di posta elettronica personalizzati.
 4. Ripristino di emergenza
    
-   Azure offre due opzioni di ripristino di emergenza (DR): la replica geografica attiva e il ripristino geografico. opzione di ripristino di emergenza che una società deve selezionare Hello dipende relativo [gli obiettivi di continuità aziendale](sql-database-business-continuity.md).
+   Azure offre due opzioni di ripristino di emergenza (DR): la replica geografica attiva e il ripristino geografico. L'opzione adatta ad ogni azienda dipende dagli [obiettivi di continuità aziendale](sql-database-business-continuity.md)specifici.
    
-   replica geografica attiva offre livello più veloce di hello della risposta nell'evento hello del tempo di inattività. Usando la replica geografica attiva, è possibile creare backup toofour database secondari leggibili in aree diverse, ed è quindi possibile avviare tooany failover dei database secondari hello nell'evento hello di un errore.
+   la replica geografica attiva assicura il livello di risposta più veloce in caso di tempi di inattività. Con la replica geografica attiva è possibile creare fino a quattro database secondari leggibili su server in aree diverse e quindi avviare il failover in uno qualsiasi dei database secondari in caso di errore.
    
-   Umbraco non richieda la replica geografica, ma si usufruire del ripristino a livello geografico Azure toohelp verificare tempi di inattività minimo nell'evento hello di interruzione. il ripristino geografico si basa sui backup di database nell'archiviazione di Azure con ridondanza geografica. Che consente agli utenti toorestore da una copia di backup quando è presente un'interruzione del servizio nell'area primaria hello.
+   Umbraco non richiede la replica geografica, tuttavia il ripristino geografico di Azure offre il vantaggio di tempi di inattività minimi in caso di interruzione. il ripristino geografico si basa sui backup di database nell'archiviazione di Azure con ridondanza geografica. Gli utenti possono quindi eseguire il ripristino da una copia di backup in caso di interruzione del servizio nell'area primaria.
 5. Deprovisioning
    
-   Quando viene eliminato l'ambiente di un progetto, tutti i database associati (di sviluppo, di gestione temporanea o live) vengono rimossi durante la pulizia della coda del bus di servizio. Questo processo automatizzato ripristini hello pool elastico la disponibilità dei database del database inutilizzati tooUmbraco, rendendoli disponibili per il provisioning future mantenendo l'utilizzo massimo.
+   Quando viene eliminato l'ambiente di un progetto, tutti i database associati (di sviluppo, di gestione temporanea o live) vengono rimossi durante la pulizia della coda del bus di servizio. Questo processo automatizzato ripristina i database inutilizzati nel pool di disponibilità di database elastici Umbraco, rendendoli disponibili per attività di provisioning future ottimizzando il livello di utilizzo.
 
-## <a name="elastic-pools-allow-uaas-tooscale-with-ease"></a>Pool elastici consentire UaaS tooscale con facilità
-Sfruttare i pool elastici Azure, Umbraco possibile ottimizzare le prestazioni per i clienti senza tooover - o effettuare il provisioning insufficiente. Umbraco è attualmente circa 3.000 database tra i pool elastici 19, con hello possibilità tooeasily scalabilità come necessari tooaccommodate uno qualsiasi dei 325,000 clienti esistenti o nuovi clienti che sono pronti toodeploy un CMS nel cloud hello.
+## <a name="elastic-pools-allow-uaas-to-scale-with-ease"></a>I pool elastici consentono un facile ridimensionamento del servizio UaaS
+Grazie all'uso di pool elastici di Azure, Umbraco è in grado di ottimizzare le prestazioni per i clienti senza ricorrere al provisioning eccessivo o insufficiente. Umbraco ha attualmente quasi 3.000 database in 19 pool elastici, assicurando un facile ridimensionamento in linea con le esigenze di uno qualsiasi dei 325.000 clienti esistenti o dei nuovi clienti disponibili a distribuire un sistema CMS nel cloud.
 
-In realtà, in base tooMorten Christensen, Technical Lead presso Umbraco, "UaaS sono ora verificati aumento delle dimensioni di circa 30 nuovi clienti al giorno. I clienti lieti praticità hello di essere in grado di tooprovision nuovi progetti in secondi, pubblicare aggiornamenti tootheir in tempo reale di siti da un ambiente di sviluppo mediante 'installazione di un solo clic' immediatamente e apportare modifiche altrettanto rapidamente se vengono individuati errori . "
+Secondo Morten Christensen, responsabile tecnico Umbraco, "Ogni giorno circa 30 nuovi clienti scelgono il servizio UaaS. I clienti apprezzano in particolare la possibilità di eseguire il provisioning di nuovi progetti in pochi secondi, pubblicare immediatamente gli aggiornamenti nei propri siti live da un ambiente di sviluppo tramite le "distribuzioni con un clic" e apportare modifiche altrettanto rapidamente qualora vengano rilevati errori".
 
-Se un cliente non ha più necessità di un secondo e/o un terzo ambiente, è possibile rimuovere semplicemente questi ambienti. Che consente di liberare risorse che possono essere utilizzate per altri clienti come parte del pool elastico la disponibilità dei database Umbraco hello.
+Se un cliente non ha più necessità di un secondo e/o un terzo ambiente, è possibile rimuovere semplicemente questi ambienti. In questo modo vengono liberate risorse che possono essere usate per altri clienti come parte del pool di disponibilità di database elastici Umbraco.
 
 ![Architettura di distribuzione Umbraco](./media/sql-database-implementation-umbraco/figure4.png)
 
 Figura 3. Architettura per la distribuzione di UaaS in Microsoft Azure
 
-## <a name="hello-path-from-datacenter-toocloud"></a>percorso di Hello dalla toocloud datacenter
-Quando gli sviluppatori di Umbraco hello inizialmente resa hello decisione toomove tooa modello SaaS, sapevano che devono toobuild un modo economico e scalabile servizio hello.
+## <a name="the-path-from-datacenter-to-cloud"></a>Percorso dal data center al cloud
+Al momento di adottare inizialmente la decisione di migrare a un modello SaaS, gli sviluppatori Umbraco sono consapevoli del fatto che necessitano di un modo conveniente e scalabile per distribuire il servizio.
 
 > "I pool elastici sono perfetti per l'offerta SaaS perché consentono di aumentare o ridurre la capacità in base alle esigenze. Il provisioning è semplice e grazie alla configurazione è possibile ottimizzare il livello di utilizzo".
 > 
@@ -97,36 +97,36 @@ Quando gli sviluppatori di Umbraco hello inizialmente resa hello decisione toomo
 > 
 > 
 
-"Desideravamo toospend tempo sulla risoluzione dei problemi dei clienti, non gestire l'infrastruttura. Desideravamo toomake è più facile per tooget nostri clienti hello maggior valore, "afferma Niels Hartvig, fondatore di Umbraco. "È considerato inizialmente hello server effettuata di hosting, ma la pianificazione della capacità avrebbe un incubo". Non a caso, Umbraco non impiega amministratori di database, aspetto che evidenzia l'uso di UaaS come proposta di valore chiave.
+"Il nostro obiettivo era quello di dedicare tempo prezioso alla risoluzione dei problemi dei clienti, non alla gestione dell'infrastruttura. Lo scopo era quello di mettere i clienti nella condizione migliore per ottenere il massimo valore" afferma Niels Hartvig, fondatore di Umbraco. "Inizialmente abbiamo valutato l'ipotesi di eseguire autonomamente l'hosting dei server, ma la pianificazione della capacità avrebbe rappresentato un incubo". Non a caso, Umbraco non impiega amministratori di database, aspetto che evidenzia l'uso di UaaS come proposta di valore chiave.
 
-Un obiettivo importante per gli sviluppatori di Umbraco hello è un modo per gli ambienti di tooprovision clienti UaaS tooprovide rapidamente e senza limiti di capacità. Ma fornisce che un servizio ospitato dedicato in Data Center Umbraco avrebbe richiesto un numero elevato di capacità in eccesso toohandle aumenta in elaborazione. Ciò avrebbe comportato l'aggiunta di una notevole infrastruttura di calcolo che sarebbe stata frequentemente sottoutilizzata.
+Un obiettivo importante perseguito dagli sviluppatori Umbraco è stato quello di offrire ai clienti UaaS un modo per eseguire il provisioning di ambienti rapidamente e senza limiti di capacità. Fornire tuttavia un servizio ospitato dedicato nei data center Umbraco avrebbe richiesto una capacità in eccesso elevata per gestire i picchi in fase di elaborazione. Ciò avrebbe comportato l'aggiunta di una notevole infrastruttura di calcolo che sarebbe stata frequentemente sottoutilizzata.
 
-Inoltre, i team di sviluppo Umbraco hello desiderato una soluzione che consentirebbe tooreuse quanto più possibile il loro codice esistente. Gli sviluppatori di Umbraco Mikkel Madsen gli stati "Siamo lieti con strumenti di sviluppo Microsoft hello che è stato già familiarità, ad esempio Microsoft SQL Server, Database SQL di Microsoft Azure, ASP.net e Internet Information Services (IIS). Prima di investire in una IaaS o un PaaS cloud soluzione, Desideravamo toomake assicurarsi che verrebbe supporta il nostro gli strumenti di Microsoft e piattaforme, in modo non sarebbe abbiamo toomake considerevoli modifiche tooour codebase. "
+Inoltre, il team di sviluppo Umbraco desiderava una soluzione che consentisse di riutilizzare quanto più possibile il codice esistente. Come afferma Mikkel Madsen, sviluppatore Umbraco, "Eravamo soddisfatti degli strumenti di sviluppo Microsoft con cui avevamo già familiarità, come Microsoft SQL Server, il database SQL di Microsoft Azure, ASP.net e Internet Information Services (IIS). Prima di investire su una soluzione cloud IaaS o PaaS, desideravamo assicurarci che supportasse gli strumenti e le piattaforme Microsoft in modo che non fosse necessario apportare modifiche sostanziali al codice base".
 
-toomeet tutti i relativi criteri Umbraco cercata un partner di cloud con hello qualificazioni seguenti:
+Per soddisfare tutti i criteri, Umbraco ha cercato un partner per il cloud con le caratteristiche seguenti:
 
 * Affidabilità e capacità adeguata
-* Supporto per strumenti di sviluppo di Microsoft, in modo che Umbraco tecnici non sarebbe forzato toocompletely reinventare proprio ambiente di sviluppo
-* Presenza in tutti i mercati hello in cui UaaS in competizione (aziende necessità tooensure che possono accedere rapidamente ai dati e che sono archiviati i dati in una posizione che soddisfi i requisiti normativi internazionali)
+* Supporto per gli strumenti di sviluppo Microsoft per non costringere i tecnici Umbraco a ricostruire completamente l'ambiente di sviluppo
+* Presenza in tutti i mercati geografici in cui il servizio UaaS opera come competitor: le aziende hanno bisogno di garantire il rapido accesso ai dati e l'archiviazione dei dati in una posizione in linea con i requisiti normativi internazionali
 
 ## <a name="why-umbraco-chose-azure-for-uaas"></a>Perché Umbraco ha scelto Azure per UaaS
-In base tooMorten Christensen "tenendo conto di tutte le opzioni, è selezionato Azure perché soddisfatto tutti i criteri, gestibilità e scalabilità toofamiliarity e la convenienza economica. Impostiamo ambienti hello in macchine virtuali di Azure e ogni ambiente dispone della propria istanza di Database SQL di Azure, con tutte le istanze di hello nei pool elastico. Separando i database tra ambienti di sviluppo, gestione temporanea e in tempo reale, possiamo offrire ai clienti ottime prestazioni isolamento corrispondente tooscale, ovvero una notevole vittoria. "
+Secondo Morten Christensen "Dopo un'attenta valutazione di tutte le opzioni, abbiamo scelto Azure perché soddisfa tutti i criteri, dalla gestibilità e scalabilità alla familiarità e al rapporto costi/benefici. Abbiamo configurato gli ambienti nelle VM Azure e ogni ambiente ha una propria istanza del database SQL di Azure, con tutte le istanze nei pool elastici. Separando i database tra gli ambienti di sviluppo, di gestione temporanea e live, siamo in grado di offrire ai clienti un livello avanzato di isolamento delle prestazioni abbinato alla scalabilità conseguendo un successo notevole".
 
-Morten continuerà, "prima, abbiamo tooprovision server per i database web manualmente. A questo punto, non abbiamo toothink su di esso. Tutto ciò che è automatizzato, dal provisioning toocleanup. "
+Morten afferma anche: "Prima era necessario eseguire manualmente il provisioning di server per i database Web. Ora non teniamo più in considerazione questo aspetto. Tutte le operazioni sono automatizzate, dal provisioning alle operazioni di eliminazione".
 
-Morten è inoltre buona hello scalabilità funzionalità fornite da Azure. "I pool elastici sono perfetti per l'offerta SaaS perché consentono di aumentare o ridurre la capacità in base alle esigenze. Il provisioning è semplice e grazie alla configurazione è possibile ottimizzare il livello di utilizzo". Stati morten, "semplicità hello del pool elastico, insieme a garanzia hello di Dtu in base a livelli di servizio, offre hello power tooprovision nuovo pool di risorse su richiesta. Di recente, uno dei nostri clienti più grande picco Dtu too100 nel proprio ambiente in tempo reale. Uso di Azure, i pool elastici fornito i database del cliente hello con risorse hello necessarie in tempo reale senza requisiti DTU toopredict. In altre parole, i clienti ottenere hello tempo che si aspettano e poter soddisfare i contratti di servizio delle prestazioni".
+Morten è soddisfatto anche delle funzionalità di ridimensionamento disponibili in Azure. "I pool elastici sono perfetti per l'offerta SaaS perché consentono di aumentare o ridurre la capacità in base alle esigenze. Il provisioning è semplice e grazie alla configurazione è possibile ottimizzare il livello di utilizzo". Morten afferma "La semplicità dei pool elastici, con la garanzia di DTU basate sui livelli di servizio, offre la possibilità di eseguire il provisioning di nuovi pool di risorse su richiesta. Uno dei nostri clienti più importanti ha raggiunto recentemente il picco di 100 DTU nell'ambiente live. Usando Azure, i pool elastici hanno fornito ai database dei clienti le risorse necessarie in tempo reale senza la necessità di prevedere in anticipo i requisiti di DTU. In poche parole, i clienti ottengono il tempo di risposta che si aspettano e possiamo soddisfare i contratti di servizio a livello di prestazioni".
 
-Mikkel Madsen sommi: "è stato adottato hello potente Azure algoritmo che si connette a un modello comune di SaaS scenario (caricamento nuovi clienti in tempo reale su larga scala) tooour applicazione (pre-provisioning del database, sia lo sviluppo e in tempo reale) nella parte superiore di hello tecnologia sottostante (tramite le code del Bus di servizio di Azure in combinazione con il Database di SQL Azure)."
+Mikkel Madsen ribadisce "Abbiamo adottato il potente algoritmo di Azure che connette uno scenario SaaS comune, come l'acquisizione di nuovi clienti in tempo reale su larga scala, al modello applicativo, come il provisioning preventivo di database, sia di sviluppo sia live, insieme alla tecnologia sottostante usando le code del bus di servizio Azure in combinazione con il database SQL di Azure".
 
 ## <a name="with-azure-uaas-is-exceeding-customer-expectations"></a>Con Azure il servizio UaaS supera le aspettative dei clienti
-Dopo la scelta di Azure come partner di cloud, Umbraco è stato in grado di tooprovide UaaS clienti con prestazioni ottimizzate di gestione del contenuto, senza investimenti di hello risorse IT necessari da una soluzione indipendente. Come Morten è indicato "noi piace praticità developer hello e la scalabilità che offre Azure e i clienti sono ora con l'affidabilità e le funzionalità di hello. Il successo è stato grande da ogni punto di vista".
+Da quando ha scelto Azure come partner cloud, Umbraco è stato in grado di fornire ai clienti UaaS prestazioni ottimali in termini di gestione dei contenuti, senza dover investire su risorse IT, come sarebbe stato necessario con una soluzione indipendente. Come afferma Morten, "Apprezziamo in particolare i vantaggi e la scalabilità che Azure mette a disposizione degli sviluppatori e i clienti sono particolarmente soddisfatti di funzionalità e affidabilità. Il successo è stato grande da ogni punto di vista".
 
 ## <a name="more-information"></a>Altre informazioni
-* toolearn ulteriori informazioni sui pool elastici Azure, vedere [pool elastici](sql-database-elastic-pool.md).
-* toolearn ulteriori informazioni su Azure Service Bus, vedere [Azure Service Bus](https://azure.microsoft.com/services/service-bus/).
-* toolearn ulteriori informazioni sui ruoli Web e ruoli di lavoro, vedere [i ruoli di lavoro](../fundamentals-introduction-to-azure.md#compute).    
-* toolearn informazioni sulle reti virtuali, vedere [la rete virtuale](https://azure.microsoft.com/documentation/services/virtual-network/).    
-* toolearn ulteriori informazioni su backup e ripristino, vedere [la continuità aziendale](sql-database-business-continuity.md).    
-* vedere toolearn ulteriori informazioni su Monitoraggio ppols, [monitoraggio pool](sql-database-elastic-pool-manage-portal.md).    
-* toolearn ulteriori informazioni su Umbraco come servizio, vedere [Umbraco](https://umbraco.com/cloud).
+* Per altre informazioni sui pool elastici, vedere [pool elastici](sql-database-elastic-pool.md).
+* Per altre informazioni sul bus di servizio di Azure, vedere [Bus di servizio](https://azure.microsoft.com/services/service-bus/).
+* Per altre informazioni sui ruoli Web e i ruoli di lavoro, vedere l'argomento relativo ai [ruoli di lavoro](../fundamentals-introduction-to-azure.md#compute).    
+* Per altre informazioni sulla rete virtuale, vedere [Rete virtuale](https://azure.microsoft.com/documentation/services/virtual-network/).    
+* Per altre informazioni su backup e ripristino, vedere [Panoramica della continuità aziendale del database SQL di Azure](sql-database-business-continuity.md).    
+* Per altre informazioni sul monitoraggio di pool, vedere [Monitorare e gestire un pool di database elastici con il portale di Azure](sql-database-elastic-pool-manage-portal.md).    
+* Per altre informazioni su Umbraco-as-a-Service, vedere [Umbraco](https://umbraco.com/cloud).
 

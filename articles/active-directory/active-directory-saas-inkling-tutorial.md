@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con Inkling | Documentazione Microsoft'
-description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e Inkling.
+description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e Inkling.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,71 +13,71 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/06/2017
 ms.author: jeedes
-ms.openlocfilehash: 544101f1972ec16222406b761d2b6f4987458df5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7b0639c6515298731f88346c2e4ca82664653a2b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-inkling"></a>Esercitazione: Integrazione di Azure Active Directory con Inkling
 
-In questa esercitazione, è illustrato come toointegrate Inkling con Azure Active Directory (Azure AD).
+Questa esercitazione descrive come integrare Inkling con Azure Active Directory (Azure AD).
 
-Integrazione Inkling con Azure AD fornisce hello seguenti vantaggi:
+L'integrazione di Inkling con Azure AD offre i vantaggi seguenti:
 
-- È possibile controllare in Azure AD che ha accesso tooInkling
-- È possibile abilitare l'utenti tooautomatically get connesso tooInkling (Single Sign-On) con i propri account Azure AD
-- È possibile gestire gli account in un'unica posizione centrale - portale di gestione di Azure hello
+- È possibile controllare in Azure AD chi può accedere a Inkling
+- È possibile abilitare gli utenti per l'accesso automatico a Inkling (Single Sign-On) con i propri account Azure AD
+- È possibile gestire gli account da una posizione centrale: il portale di gestione di Azure
 
-Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-integrazione di Azure AD con Inkling tooconfigure, è necessario hello seguenti elementi:
+Per configurare l'integrazione di Azure AD con Inkling sono necessari gli elementi seguenti:
 
 - Sottoscrizione di Azure AD.
 - Sottoscrizione di Inkling abilitata per l'accesso Single Sign-On
 
 
 > [!NOTE]
-> hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.
+> Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.
 
 
-passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:
+A questo scopo, è consigliabile seguire le indicazioni seguenti:
 
 - Non usare l'ambiente di produzione, a meno che non sia necessario.
 - Se non è disponibile un ambiente di prova di Azure AD, è possibile ottenere una versione di prova di un mese [qui](https://azure.microsoft.com/pricing/free-trial/).
 
 
 ## <a name="scenario-description"></a>Descrizione dello scenario
-In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. scenario di Hello descritto in questa esercitazione è composto da due componenti principali:
+In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:
 
-1. Aggiunta di Inkling dalla raccolta hello
+1. Aggiunta di Inkling dalla raccolta
 2. Configurazione e test dell'accesso Single Sign-On di Azure AD
 
 
-## <a name="adding-inkling-from-hello-gallery"></a>Aggiunta di Inkling dalla raccolta hello
-integrazione hello tooconfigure di Inkling in Azure AD, è necessario tooadd Inkling dall'elenco di tooyour hello raccolta di App SaaS gestite.
+## <a name="adding-inkling-from-the-gallery"></a>Aggiunta di Inkling dalla raccolta
+Per configurare l'integrazione di Inkling in Azure AD è necessario aggiungere Inkling dalla raccolta al proprio elenco di app SaaS gestite.
 
-**tooadd Inkling dalla raccolta di hello, eseguire hello alla procedura seguente:**
+**Per aggiungere Inkling dalla raccolta seguire questa procedura:**
 
-1. In hello  **[il portale di gestione di Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona. 
+1. Nel **[portale di gestione di Azure](https://portal.azure.com)** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro. 
 
     ![Active Directory][1]
 
-2. Passare troppo**applicazioni aziendali**. Quindi andare troppo**tutte le applicazioni**.
+2. Passare ad **Applicazioni aziendali**. Andare quindi a **Tutte le applicazioni**.
 
     ![Applicazioni][2]
     
-3. Fare clic su **Aggiungi** pulsante nella parte superiore di hello della finestra di dialogo hello.
+3. Fare clic sul pulsante **Aggiungi** nella parte superiore della finestra di dialogo.
 
     ![Applicazioni][3]
 
-4. Nella casella di ricerca hello, digitare **Inkling**.
+4. Nella casella di ricerca digitare **Inkling**.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-inkling-tutorial/tutorial_inkling_001.png)
 
-5. Nel riquadro dei risultati hello, selezionare **Inkling**, quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.
+5. Nel pannello dei risultati selezionare **Inkling** e quindi fare clic sul pulsante **Aggiungi** per aggiungere l'applicazione.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-inkling-tutorial/tutorial_inkling_0001.png)
 
@@ -85,94 +85,94 @@ integrazione hello tooconfigure di Inkling in Azure AD, è necessario tooadd Ink
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configurazione e test dell'accesso Single Sign-On di Azure AD
 In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con Inkling in base a un utente di test di nome "Britta Simon".
 
-Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello in Inkling è tooa utente in Azure AD. In altre parole, una relazione di collegamento tra un utente di Azure Active Directory e l'utente correlato di hello in Inkling deve toobe stabilita.
+Per il funzionamento dell'accesso Single Sign-On, Azure AD deve sapere qual è l'utente di Inkling che corrisponde a un utente di Azure AD. In altre parole deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in Inkling.
 
-Questa relazione di collegamento viene stabilita tramite l'assegnazione valore hello di hello **nome utente** in Azure AD come valore hello hello **Username** in Inkling.
+La relazione di collegamento viene stabilita assegnando il valore di **nome utente** in Azure AD come valore di **Username** (Nome utente) in Inkling.
 
-tooconfigure e prova AD Azure single sign-on con Inkling, è necessario hello toocomplete seguenti blocchi predefiniti:
+Per configurare e testare l'accesso Single Sign-On di Azure AD con Inkling è necessario completare le operazioni seguenti:
 
-1. **[Configurazione di Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.
-2. **[Creazione di un utente prova AD Azure](#creating-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.
-3. **[Creazione di un utente test Inkling](#creating-an-inkling-test-user)**  -toohave un equivalente di Britta Simon in Inkling toohello collegato AD Azure rappresentazione in seguito.
-4. **[Assegnazione utente di prova hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.
-5. **[Test di Single Sign-On](#testing-single-sign-on)**  -tooverify hello se funzionamento della configurazione.
+1. **[Configurazione dell'accesso Single Sign-On di Azure AD](#configuring-azure-ad-single-sign-on)** : per abilitare gli utenti all'utilizzo di questa funzionalità.
+2. **[Creazione di un utente test di Azure AD](#creating-an-azure-ad-test-user)** : per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.
+3. **[Creazione di un utente di test di Inkling](#creating-an-inkling-test-user)**: per avere una controparte di Britta Simon in Inkling collegata alla relativa rappresentazione in Azure AD.
+4. **[Assegnazione dell'utente test di Azure AD](#assigning-the-azure-ad-test-user)** : per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** : per verificare se la configurazione funziona.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configurazione dell'accesso Single Sign-On di Azure AD
 
-In questa sezione, si abilita Azure AD single sign-on nel portale di gestione di Azure hello e configurare l'accesso single sign-on nell'applicazione Inkling.
+In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di gestione di Azure e viene configurato l'accesso Single Sign-On nell'applicazione Inkling.
 
-**Azure AD tooconfigure single sign-on con Inkling, eseguire hello alla procedura seguente:**
+**Per configurare l'accesso Single Sign-On di Azure AD con Inkling, seguire questa procedura:**
 
-1. Nel portale di gestione di Azure hello in hello **Inkling** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.
+1. Nella pagina di integrazione dell'applicazione **Inkling** del portale di gestione di Azure fare clic su **Single Sign-On**.
 
     ![Configura accesso Single Sign-On][4]
 
-2. In hello **Single sign-on** finestra di dialogo, come **modalità** selezionare **basato su SAML Sign-on** tooenable single sign-on.
+2. Nella finestra di dialogo **Single Sign-On** in **Modalità** selezionare **Accesso basato su SAML** per abilitare l'accesso Single Sign-On.
  
     ![Configura accesso Single Sign-On](./media/active-directory-saas-inkling-tutorial/tutorial_general_300.png)
     
-3. In hello **Inkling dominio e gli URL** seguire hello alla procedura seguente:
+3. Nella sezione **URL e dominio Inkling** seguire questa procedura:
     
     ![Configura accesso Single Sign-On](./media/active-directory-saas-inkling-tutorial/tutorial_inkling_01.png)
 
-    a. In hello **identificatore** casella di testo, digitare un URL utilizzando hello seguente modello:`https://api.inkling.com/saml/v2/metadata/<user-id>`
+    a. Nella casella di testo **Identificatore** digitare l'URL adottando il modello seguente: `https://api.inkling.com/saml/v2/metadata/<user-id>`
 
-    b. In hello **URL di risposta** casella di testo, digitare un URL utilizzando hello seguente modello:`https://api.inkling.com/saml/v2/acs/<user-id>`
+    b. Nella casella di testo **URL di risposta** digitare l'URL usando il modello seguente: `https://api.inkling.com/saml/v2/acs/<user-id>`
 
     > [!NOTE] 
-    > Si noti che queste non sono valori reali hello. È necessario tooupdate questi valori con URL di risposta e identificatore effettivo hello. Contatto [team di supporto Inkling](mailto:press@inkling.com) tooget questi valori.
+    > Si noti che questi non sono i valori reali. È necessario aggiornare questi valori con l'identificatore e l'URL di risposta effettivi. Per ottenere questi valori contattare il [team di supporto di Inkling](mailto:press@inkling.com).
 
-4. In hello **certificato di firma SAML** fare clic su **Crea nuovo certificato**.
+4. Nella sezione **Certificato di firma SAML** fare clic su **Crea nuovo certificato**.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-inkling-tutorial/tutorial_general_400.png)    
 
-5. In hello **creare nuovo certificato** finestra di dialogo, fare clic sull'icona calendario hello e selezionare un **data di scadenza**. Fare quindi clic sul pulsante **Salva**.
+5. Nella finestra di dialogo **Crea nuovo certificato** fare clic sull'icona del calendario e selezionare una **data di scadenza**. Fare quindi clic sul pulsante **Salva**.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-inkling-tutorial/tutorial_general_500.png)
 
-6. In hello **certificato di firma SAML** selezionare **attivare di nuovo certificato** e fare clic su **salvare** pulsante.
+6. Nella sezione **Certificato di firma SAML** selezionare **Make new certificate active** (Rendi attivo il nuovo certificato) e fare clic sul pulsante **Salva**.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-inkling-tutorial/tutorial_inkling_02.png)
 
-7. Nel menu a comparsa hello **il certificato di Rollover** finestra, fare clic su **OK**.
+7. Nella finestra popup **Rollover certificate** (Certificato di rollover) fare clic su **OK**.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-inkling-tutorial/tutorial_general_600.png)
 
-8. In hello **certificato di firma SAML** fare clic su **Metadata XML** e quindi salvare il file di metadati hello nel computer in uso.
+8. Nella sezione **Certificato di firma SAML** fare clic su **XML di metadati** e quindi salvare il file dei metadati nel computer.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-inkling-tutorial/tutorial_inkling_03.png) 
 
-9. tooget SSO è configurato per l'applicazione, contattare [team di supporto Inkling](mailto:press@inkling.com) e fornire loro con scaricato **metadati**. 
+9. Per ottenere la configurazione dell'accesso Single Sign-On per l'applicazione contattare il [team di supporto di Inkling](mailto:press@inkling.com) e fornire i **metadati** scaricati. 
 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Creazione di un utente test di Azure AD
-obiettivo di Hello di questa sezione è un utente di test nel portale di gestione di Azure hello chiamato Britta Simon toocreate.
+Questa sezione descrive come creare un utente test chiamato Britta Simon nel portale di gestione di Azure.
 
 ![Creare un utente di Azure AD][100]
 
-**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**
+**Per creare un utente test in Azure AD, eseguire la procedura seguente:**
 
-1. In hello **portale di gestione di Azure**via hello riquadro di spostamento a sinistra, fare clic su **Azure Active Directory** icona.
+1. Nel **portale di gestione di Azure** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-inkling-tutorial/create_aaduser_01.png) 
 
-2. Andare troppo**utenti e gruppi** e fare clic su **tutti gli utenti** elenco hello toodisplay degli utenti.
+2. Andare a **Utenti e gruppi** e fare clic su **Tutti gli utenti** per visualizzare l'elenco di utenti.
     
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-inkling-tutorial/create_aaduser_02.png) 
 
-3. Nella parte superiore di hello della finestra di dialogo hello fare clic su **Aggiungi** tooopen hello **utente** finestra di dialogo.
+3. Nella parte superiore della finestra di dialogo fare clic su **Aggiungi** per aprire la finestra di dialogo **Utente**.
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-inkling-tutorial/create_aaduser_03.png) 
 
-4. In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:
+4. Nella pagina della finestra di dialogo **Utente** seguire questa procedura:
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-inkling-tutorial/create_aaduser_04.png) 
 
-    a. In hello **nome** casella tipo **BrittaSimon**.
+    a. Nella casella di testo **Nome** digitare **BrittaSimon**.
 
-    b. In hello **nome utente** casella di testo, hello tipo **indirizzo di posta elettronica** di BrittaSimon.
+    b. Nella casella di testo **Nome utente** digitare l'**indirizzo di posta elettronica** di BrittaSimon.
 
-    c. Selezionare **Show Password** e annotare il valore di hello di hello **Password**.
+    c. Selezionare **Mostra password** e prendere nota del valore della **Password**.
 
     d. Fare clic su **Create**(Crea). 
 
@@ -180,26 +180,26 @@ obiettivo di Hello di questa sezione è un utente di test nel portale di gestion
 
 ### <a name="creating-an-inkling-test-user"></a>Creazione di un utente di test di Inkling
 
-In questa sezione viene creato un utente chiamato Britta Simon in Inkling. Rivolgersi [team di supporto Inkling](mailto:press@inkling.com) utenti hello tooadd nella piattaforma Inkling hello.
+In questa sezione viene creato un utente chiamato Britta Simon in Inkling. Collaborare con il [team di supporto di Inkling](mailto:press@inkling.com) per aggiungere gli utenti alla piattaforma Inkling.
 
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Assegnazione utente test hello Azure AD
+### <a name="assigning-the-azure-ad-test-user"></a>Assegnazione dell'utente test di Azure AD
 
-In questa sezione è abilitare Britta Simon toouse single sign-on Azure concedendo tooInkling proprio accesso.
+In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sign-On di Azure concedendole l'accesso a Inkling.
 
 ![Assegna utente][200] 
 
-**tooassign Britta Simon tooInkling, eseguire hello alla procedura seguente:**
+**Per assegnare Britta Simon a Inkling seguire questa procedura:**
 
-1. Nel portale di gestione di Azure hello, aprire visualizzazione applicazioni hello, quindi selezionare la visualizzazione di directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.
+1. Nel portale di gestione di Azure aprire la visualizzazione applicazioni, passare alla visualizzazione directory e andare ad **Applicazioni aziendali**, quindi fare clic su **Tutte le applicazioni**.
 
     ![Assegna utente][201] 
 
-2. Nell'elenco di applicazioni hello, selezionare **Inkling**.
+2. Nell'elenco di applicazioni selezionare **Inkling**.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-inkling-tutorial/tutorial_inkling_50.png) 
 
-3. Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.
+3. Scegliere **Utenti e gruppi** dal menu a sinistra.
 
     ![Assegna utente][202] 
 
@@ -207,7 +207,7 @@ In questa sezione è abilitare Britta Simon toouse single sign-on Azure conceden
 
     ![Assegna utente][203]
 
-5. In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.
+5. Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco Utenti.
 
 6. Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.
 
@@ -217,14 +217,14 @@ In questa sezione è abilitare Britta Simon toouse single sign-on Azure conceden
 
 ### <a name="testing-single-sign-on"></a>Test dell'accesso Single Sign-On
 
-In questa sezione si test configurazione di Azure AD single sign-on utilizzando hello Pannello di accesso.
+In questa sezione viene testata la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.
 
-Quando si fa clic su riquadro Inkling hello in hello Pannello di accesso, è necessario ottenere applicazione Inkling tooyour automaticamente firmato-on.
+Quando si fa clic sul riquadro Inkling nel pannello di accesso, si accederà automaticamente all'applicazione Inkling.
 
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md)
 
 

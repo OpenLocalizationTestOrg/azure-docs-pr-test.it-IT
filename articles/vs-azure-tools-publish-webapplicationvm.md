@@ -1,6 +1,6 @@
 ---
-title: aaaPublish-WebApplicationVM | Documenti Microsoft
-description: Informazioni su come toodeploy una macchina virtuale del tooa applicazioni web. In caso contrario, questo script crea le risorse necessarie hello nella sottoscrizione di Azure.
+title: Publish-WebApplicationVM | Documentazione Microsoft
+description: Informazioni su come distribuire un'applicazione Web in una macchina virtuale. Se non sono presenti, lo script crea le risorse necessarie nella sottoscrizione di Azure.
 services: visual-studio-online
 documentationcenter: na
 author: kraigb
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 11/11/2016
 ms.author: kraigb
-ms.openlocfilehash: e4b52b620bebf44b87ddfc3b19c155bb65111814
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2738fc1dff50a177a227ae2c7719bd9a192d82ad
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="publish-webapplicationvm-windows-powershell-script"></a>Publish-WebApplicationVM (Windows PowerShell script)
-Consente di distribuire una macchina virtuale del tooa applicazioni web. script di Hello crea risorse hello necessarie nella sottoscrizione di Azure, se non sono presenti.
+Consente di distribuire un'applicazione Web in una macchina virtuale. Se non sono presenti, lo script crea le risorse necessarie nella sottoscrizione di Azure.
 
 ```
 Publish-WebApplicationVM
@@ -35,7 +35,7 @@ Publish-WebApplicationVM
 ```
 
 ### <a name="configuration"></a>Configurazione
-Hello percorso toohello file di configurazione JSON che descrive i dettagli di hello della distribuzione hello.
+Percorso del file di configurazione JSON che descrive i dettagli della distribuzione.
 
 | Alias | nessuno |
 | --- | --- |
@@ -46,18 +46,18 @@ Hello percorso toohello file di configurazione JSON che descrive i dettagli di h
 | Caratteri jolly accettati? |false |
 
 ### <a name="subscriptionname"></a>SubscriptionName
-nome Hello di hello sottoscrizione di Azure in cui si desidera macchina virtuale di toocreate hello.
+Nome della sottoscrizione di Azure in cui creare la macchina virtuale.
 
 | Alias | nessuno |
 | --- | --- |
 | Obbligatorio? |false |
 | Posizione |denominata |
-| Valore predefinito |Usa prima sottoscrizione hello nel file di sottoscrizione hello |
+| Valore predefinito |Usa la prima sottoscrizione nel file di sottoscrizione |
 | Input pipeline accettato? |false |
 | Caratteri jolly accettati? |false |
 
 ### <a name="webdeploypackage"></a>WebDeployPackage
-Hello percorso toohello web distribuzione pacchetto toopublish toohello macchina virtuale. È possibile creare il pacchetto utilizzando la procedura guidata pubblica Web hello in Visual Studio. Vedere [Procedura: Creare un pacchetto di distribuzione Web in Visual Studio](https://msdn.microsoft.com/library/dd465323.aspx).
+Percorso al pacchetto di distribuzione Web da pubblicare nella macchina virtuale. È possibile creare questo pacchetto usando la pubblicazione Web guidata di Visual Studio. Vedere [Procedura: Creare un pacchetto di distribuzione Web in Visual Studio](https://msdn.microsoft.com/library/dd465323.aspx).
 
 | Alias | nessuno |
 | --- | --- |
@@ -68,7 +68,7 @@ Hello percorso toohello web distribuzione pacchetto toopublish toohello macchina
 | Caratteri jolly accettati? |false |
 
 ### <a name="allowuntrusted"></a>AllowUntrusted
-Se true, consente l'uso di hello di certificati che non sono firmati da un'autorità radice attendibile.
+Se true, consente l'utilizzo di certificati che non sono firmati da un'autorità radice attendibile.
 
 | Alias | nessuno |
 | --- | --- |
@@ -79,7 +79,7 @@ Se true, consente l'uso di hello di certificati che non sono firmati da un'autor
 | Caratteri jolly accettati? |false |
 
 ### <a name="vmpassword"></a>VMPassword
-credenziali di Hello per l'account della macchina virtuale hello. Esempio: - VMPassword @{nome = "admin"; Password = "password"}
+Le credenziali per l'account della macchina virtuale. Esempio: - VMPassword @{nome = "admin"; Password = "password"}
 
 | Alias | nessuno |
 | --- | --- |
@@ -90,7 +90,7 @@ credenziali di Hello per l'account della macchina virtuale hello. Esempio: - VMP
 | Caratteri jolly accettati? |false |
 
 ### <a name="databaseserverpassword"></a>DatabaseServerPassword
-credenziali Hello per il database SQL di hello in Azure. Esempio: - DatabaseServerPassword @{nome = "admin"; Password = "password"}
+Le credenziali del database SQL in Azure. Esempio: - DatabaseServerPassword @{nome = "admin"; Password = "password"}
 
 | Alias | nessuno |
 | --- | --- |
@@ -101,7 +101,7 @@ credenziali Hello per il database SQL di hello in Azure. Esempio: - DatabaseServ
 | Caratteri jolly accettati? |false |
 
 ### <a name="sendhostmessagestooutput"></a>SendHostMessagesToOutput
-Se true, i messaggi di stampanti da hello script toohello flusso di output.
+Se impostato su true, stampa i messaggi dallo script al flusso di output.
 
 | Alias | nessuno |
 | --- | --- |
@@ -112,9 +112,9 @@ Se true, i messaggi di stampanti da hello script toohello flusso di output.
 | Caratteri jolly accettati? |false |
 
 ## <a name="remarks"></a>Osservazioni
-Per una spiegazione completa di toouse hello script toocreate Dev e ambienti di Test, vedere [tooDev tooPublish tramite script di Windows PowerShell e gli ambienti di Test](vs-azure-tools-publishing-using-powershell-scripts.md).
+Per una spiegazione completa sull'uso dello script per creare ambienti di sviluppo e test, vedere [Uso degli script di Windows PowerShell per la pubblicazione in ambienti di sviluppo e test](vs-azure-tools-publishing-using-powershell-scripts.md).
 
-file di configurazione JSON Hello specifica dettagli hello novità toobe distribuito. Sono incluse informazioni hello specificato al momento della creazione progetto di hello, ad esempio nome hello, gruppo di affinità, immagine VHD e dimensioni di macchina virtuale hello. Inoltre include endpoint hello nella macchina virtuale hello hello tooprovision di database, se presente e i parametri di distribuzione web. Hello di codice seguente viene illustrato un file di configurazione JSON di esempio:
+Il file di configurazione JSON specifica i dettagli degli elementi da distribuire. Include le informazioni specificate al momento della creazione del progetto, ad esempio il nome, il set di affinità, l’immagine VHD e la dimensione della macchina virtuale. Inoltre include gli endpoint nella macchina virtuale, i database per eseguire il provisioning, se presente, e i parametri di distribuzione Web. Il codice seguente mostra un esempio di file di configurazione JSON:
 
 ```
 {
@@ -183,5 +183,5 @@ file di configurazione JSON Hello specifica dettagli hello novità toobe distrib
 }
 ```
 
-È possibile modificare hello JSON configurazione file toochange ciò che viene eseguito il provisioning. Una macchina virtuale e un servizio cloud sono necessarie, ma hello database sezione è facoltativa.
+È possibile modificare il file di configurazione JSON per cambiare gli elementi del provisioning. Una macchina virtuale e un servizio cloud sono necessari, ma la sezione del database è facoltativa.
 

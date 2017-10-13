@@ -1,6 +1,6 @@
 ---
-title: aaaUpload elevati di dati in archivio Data Lake tramite metodi offline | Documenti Microsoft
-description: TooData Lake archivio BLOB di hello utilizzare dati di toocopy AdlCopy dello strumento da archiviazione di Azure
+title: "Caricare grandi quantità in Data Lake Store usando i metodi offline | Documentazione Microsoft"
+description: Usare lo strumento AdlCopy per copiare i dati da BLOB di Archiviazione di Azure a Data Lake Store
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -12,32 +12,32 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 05/10/2017
+ms.date: 08/28/2017
 ms.author: nitinme
-ms.openlocfilehash: 42ef75142a26ebfab05d89614782a54c244c4bcb
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 1309b44ea99af6d20a4d0f730dd68969f3c3082b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="use-hello-azure-importexport-service-for-offline-copy-of-data-toodata-lake-store"></a>Utilizzare il servizio di importazione/esportazione di Azure hello per copia offline di archivio data Lake di tooData
-In questo articolo si apprenderà come set di dati di grandi dimensioni toocopy (> 200 GB) in un archivio Azure Data Lake utilizzando metodi di copia non in linea, ad esempio hello [servizio di importazione/esportazione di Azure](../storage/common/storage-import-export-service.md). In particolare, file hello utilizzato come un esempio in questo articolo è 339,420,860,416 byte, ovvero circa 319 GB su disco. Chiameremo questo file 319GB.tsv.
+# <a name="use-the-azure-importexport-service-for-offline-copy-of-data-to-data-lake-store"></a>Usare il servizio Importazione/Esportazione di Microsoft Azure per la copia offline dei dati in Data Lake Store
+Questo articolo contiene informazioni su come copiare set di dati di grandi dimensioni (> 200 GB) in Azure Data Lake Store usando metodi di copia offline, ad esempio il [servizio Importazione/Esportazione di Azure](../storage/common/storage-import-export-service.md). In particolare, il file usato come esempio in questo articolo ha una dimensione di 339.420.860.416 byte, vale a dire circa 319 GB sul disco. Chiameremo questo file 319GB.tsv.
 
-Hello servizio importazione/esportazione di Azure consente di tootransfer grandi quantità di dati in modo sicuro nell'archiviazione Blob da disco rigido shipping tooAzure unità tooan Data Center di Azure.
+Il servizio Importazione/Esportazione di Azure consente di trasferire in modo sicuro grandi quantità di dati nell'archiviazione BLOB di Azure attraverso la spedizione delle unità disco rigido a un data center di Azure.
 
 ## <a name="prerequisites"></a>Prerequisiti
-Prima di iniziare, è necessario disporre delle seguenti hello:
+Per eseguire le procedure descritte è necessario:
 
 * **Una sottoscrizione di Azure**. Vedere [Ottenere una versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/).
 * **Un account di archiviazione di Azure**.
-* **Un account Azure Data Lake Store**. Per istruzioni su come toocreate uno, vedere [introduzione archivio Azure Data Lake](data-lake-store-get-started-portal.md)
+* **Un account di Archivio Data Lake di Azure**. Per istruzioni su come crearne uno, vedere [Introduzione ad Archivio Data Lake di Azure](data-lake-store-get-started-portal.md)
 
-## <a name="preparing-hello-data"></a>Preparazione dei dati hello
-Prima di utilizzare il servizio di importazione/esportazione di hello, trasferiti interruzione hello dati file toobe **in copie di meno di 200 GB** dimensioni. lo strumento di importazione Hello non funziona con i file di dimensioni superiori a 200 GB. In questa esercitazione verranno suddivise file hello in blocchi di 100 GB. A tale scopo è possibile usare [Cygwin](https://cygwin.com/install.html). Cygwin supporta i comandi di Linux. In questo caso, utilizzare hello comando seguente:
+## <a name="preparing-the-data"></a>Preparazione dei dati
+Prima di usare il servizio di importazione/esportazione, è necessario suddividere il file di dati da trasferire **in copie di dimensioni inferiori a 200 GB**. Lo strumento di importazione non funziona con file di dimensioni superiori a 200 GB. In questa esercitazione il file viene suddiviso in blocchi di 100 GB. A tale scopo è possibile usare [Cygwin](https://cygwin.com/install.html). Cygwin supporta i comandi di Linux. In questo caso usare il comando seguente:
 
     split -b 100m 319GB.tsv
 
-operazione di divisione Hello crea file con i seguenti nomi hello.
+L'operazione di suddivisione crea file con i nomi riportati di seguito.
 
     319GB.tsv-part-aa
 
@@ -48,28 +48,28 @@ operazione di divisione Hello crea file con i seguenti nomi hello.
     319GB.tsv-part-ad
 
 ## <a name="get-disks-ready-with-data"></a>Preparare i dischi con i dati
-Seguire le istruzioni hello [mediante il servizio di importazione/esportazione di Azure hello](../storage/common/storage-import-export-service.md) (in hello **preparare le unità** sezione) tooprepare le unità disco rigido. Ecco hello sequenza generale:
+Per preparare le unità disco rigido, seguire le istruzioni in [Usare il servizio Importazione/Esportazione di Azure](../storage/common/storage-import-export-service.md), sezione **Preparare le unità**. Di seguito è riportata la sequenza generale:
 
-1. Ottenere un disco rigido che soddisfa hello requisito toobe utilizzato per il servizio di importazione/esportazione di Azure hello.
-2. Identificare un account di archiviazione di Azure in cui verranno copiati i dati di hello dopo essere stato spedito toohello Data Center di Azure.
-3. Hello utilizzare [strumento di importazione/esportazione di Azure](http://go.microsoft.com/fwlink/?LinkID=301900&clcid=0x409), un'utilità della riga di comando. Di seguito è riportato un frammento di esempio che illustra come toouse hello dello strumento.
+1. Procurarsi un disco rigido che soddisfi i requisiti per l'uso con il servizio di Importazione/Esportazione di Azure.
+2. Identificare un account di archiviazione di Azure in cui verranno copiati i dati dopo la spedizione al data center di Azure.
+3. Usare lo [strumento di importazione/esportazione di Azure](http://go.microsoft.com/fwlink/?LinkID=301900&clcid=0x409), un'utilità della riga di comando. Di seguito è riportato un frammento di codice di esempio che indica come usare lo strumento.
 
     ````
     WAImportExport PrepImport /sk:<StorageAccountKey> /t: <TargetDriveLetter> /format /encrypt /logdir:e:\myexportimportjob\logdir /j:e:\myexportimportjob\journal1.jrn /id:myexportimportjob /srcdir:F:\demo\ExImContainer /dstdir:importcontainer/vf1/
     ````
-    Vedere [mediante il servizio di importazione/esportazione di Azure hello](../storage/common/storage-import-export-service.md) per più frammenti di codice di esempio.
-4. Hello comando precedente crea una registrazione di file hello percorso specificato. Utilizzare questo toocreate file journal un processo di importazione da hello [portale di Azure classico](https://manage.windowsazure.com).
+    Per altri frammenti di codice di esempio, vedere [Usare il servizio Importazione/Esportazione di Azure](../storage/common/storage-import-export-service.md).
+4. Il comando precedente crea un file journal nel percorso specificato. Usare questo file journal per creare un processo di importazione dal [portale di Azure classico](https://manage.windowsazure.com).
 
 ## <a name="create-an-import-job"></a>Creare un processo di importazione
-È ora possibile creare un processo di importazione utilizzando le istruzioni hello [mediante il servizio di importazione/esportazione di Azure hello](../storage/common/storage-import-export-service.md) (in hello **Crea processo di importazione hello** sezione). Per questo processo di importazione, con altri dettagli, fornire anche file journal hello creato durante la preparazione delle unità disco hello.
+È ora possibile creare un processo di importazione usando le istruzioni in [Usare il servizio Importazione/Esportazione di Azure](../storage/common/storage-import-export-service.md), sezione **Creare il processo di importazione**. Per questo processo di importazione fornire, oltre ad altri dettagli, anche il file journal creato durante la preparazione delle unità disco.
 
-## <a name="physically-ship-hello-disks"></a>Fisicamente spedire i dischi di hello
-È ora possibile fornire fisicamente hello dischi tooan Data Center di Azure. Dati hello non esiste, viene copiati sui blob di archiviazione di Azure toohello che immessa durante la creazione del processo di importazione hello. Inoltre, durante la creazione del processo di hello, se si è scelto di hello tooprovide in un secondo momento, le informazioni di rilevamento è ora possibile passare nuovamente tooyour importazione processo e aggiornamento hello numero di tracciabilità.
+## <a name="physically-ship-the-disks"></a>Spedire fisicamente i dischi
+A questo punto è possibile spedire fisicamente i dischi a un data center di Azure, dove i dati verranno copiati nei BLOB di Archiviazione di Azure specificato durante la creazione del processo di importazione. Inoltre, se durante la creazione del processo si è scelto di inserire le informazioni di rilevamento in un secondo momento, è possibile tornare al processo di importazione e aggiornare il numero di tracciabilità.
 
-## <a name="copy-data-from-azure-storage-blobs-tooazure-data-lake-store"></a>Copiare i dati dall'archivio Data Lake di archiviazione di Azure BLOB tooAzure
-Dopo lo stato di hello di hello processo di importazione mostra che viene completato il processo, è possibile verificare se i dati di hello sono disponibili nei blob di archiviazione di Azure hello che è stato specificato. È quindi possibile utilizzare un'ampia gamma di metodi toomove che i dati da hello BLOB archivio tooAzure Data Lake. Per tutti hello opzioni disponibili per il caricamento dei dati, vedere [l'inserimento di dati in archivio Data Lake](data-lake-store-data-scenarios.md#ingest-data-into-data-lake-store).
+## <a name="copy-data-from-azure-storage-blobs-to-azure-data-lake-store"></a>Copiare i dati dai BLOB di Archiviazione di Azure in Azure Data Lake Store
+Completato il processo di importazione, è possibile verificare se i dati sono disponibili nei BLOB di Archiviazione di Azure specificati. È quindi possibile usare diversi metodi per trasferire i dati dai BLOB ad Azure Data Lake Store. Per tutte le opzioni disponibili per il caricamento di dati, vedere [Inserire i dati in Archivio Data Lake](data-lake-store-data-scenarios.md#ingest-data-into-data-lake-store).
 
-In questa sezione si forniscono le definizioni di hello JSON che è possibile utilizzare toocreate una pipeline di Data Factory di Azure per la copia dei dati. È possibile utilizzare queste definizioni JSON da hello [portale di Azure](../data-factory/data-factory-copy-activity-tutorial-using-azure-portal.md), o [Visual Studio](../data-factory/data-factory-copy-activity-tutorial-using-visual-studio.md), o [Azure PowerShell](../data-factory/data-factory-copy-activity-tutorial-using-powershell.md).
+In questa sezione sono riportate le definizioni JSON che è possibile usare per creare una pipeline di Azure Data Factory per la copia dei dati. È possibile usare queste definizioni JSON dal [portale di Azure](../data-factory/v1/data-factory-copy-activity-tutorial-using-azure-portal.md), [Visual Studio](../data-factory/v1/data-factory-copy-activity-tutorial-using-visual-studio.md) o [Azure PowerShell](../data-factory/v1/data-factory-copy-activity-tutorial-using-powershell.md).
 
 ### <a name="source-linked-service-azure-storage-blob"></a>Servizio collegato all'origine (BLOB di Archiviazione di Azure)
 ````
@@ -93,9 +93,9 @@ In questa sezione si forniscono le definizioni di hello JSON che è possibile ut
         "type": "AzureDataLakeStore",
         "description": "",
         "typeProperties": {
-            "authorization": "<Click 'Authorize' tooallow this data factory and hello activities it runs tooaccess this Data Lake Store with your access rights>",
+            "authorization": "<Click 'Authorize' to allow this data factory and the activities it runs to access this Data Lake Store with your access rights>",
             "dataLakeStoreUri": "https://<adls_account_name>.azuredatalakestore.net/webhdfs/v1",
-            "sessionId": "<OAuth session id from hello OAuth authorization session. Each session id is unique and may only be used once>"
+            "sessionId": "<OAuth session id from the OAuth authorization session. Each session id is unique and may only be used once>"
         }
     }
 }
@@ -187,23 +187,23 @@ In questa sezione si forniscono le definizioni di hello JSON che è possibile ut
     }
 }
 ````
-Per ulteriori informazioni, vedere [spostare dati da archiviazione di Azure blob usando Azure Data Factory di archivio Data Lake tooAzure](../data-factory/data-factory-azure-datalake-connector.md).
+Per altre informazioni, vedere l'articolo sullo [spostamento dei dati dal BLOB di Archiviazione di Azure ad Azure Data Lake Store con Azure Data Factory](../data-factory/connector-azure-data-lake-store.md).
 
-## <a name="reconstruct-hello-data-files-in-azure-data-lake-store"></a>Ricostruire il file di dati hello in archivio Azure Data Lake
-Siamo partiti da un file che era 319 GB e si è interrotta, verso il basso nei file di dimensioni minori in modo che possono essere trasferito tramite il servizio di importazione/esportazione di Azure hello. Dopo avere dati hello archivio Azure Data Lake, è possibile ricostruire dimensioni originali tooits di file hello. È possibile utilizzare hello seguente così toodo cmldts Azure PowerShell.
+## <a name="reconstruct-the-data-files-in-azure-data-lake-store"></a>Ricostruire i file di dati in Azure Data Lake Store
+Il file originale da 319 GB è stato suddiviso in file di dimensioni minori, in modo che possano essere trasferiti usando il servizio di Importazione/Esportazione di Azure. Ora che i dati sono in Azure Data Lake Store, è possibile riportare il file alla dimensione originale. A tale scopo, è possibile usare i cmdlet di Azure PowerShell seguenti.
 
 ````
-# Login tooour account
+# Login to our account
 Login-AzureRmAccount
 
 # List your subscriptions
 Get-AzureRmSubscription
 
-# Switch toohello subscription you want toowork with
+# Switch to the subscription you want to work with
 Set-AzureRmContext –SubscriptionId
 Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.DataLakeStore"
 
-# Join  hello files
+# Join  the files
 Join-AzureRmDataLakeStoreItem -AccountName "<adls_account_name" -Paths "/importeddatafeb8job/319GB.tsv-part-aa","/importeddatafeb8job/319GB.tsv-part-ab", "/importeddatafeb8job/319GB.tsv-part-ac", "/importeddatafeb8job/319GB.tsv-part-ad" -Destination "/importeddatafeb8job/MergedFile.csv”
 ````
 

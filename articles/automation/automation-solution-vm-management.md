@@ -1,9 +1,9 @@
 ---
-title: "aaaStart o arrestare le macchine virtuali durante periodi di inattività [anteprima] soluzione | Documenti Microsoft"
-description: soluzioni di gestione delle macchine Virtuali Hello avvia e arresta le macchine virtuali di gestione risorse di Azure in una pianificazione e il monitoraggio proattivo da Analitica di Log.
+title: "Soluzione Avvio/Arresto di macchine virtuali durante gli orari di minore attività (anteprima) | Microsoft Docs"
+description: La soluzione Virtual Machine Management permette di avviare e arrestare le macchine virtuali di Azure Resource Manager in base a una pianificazione e di monitorare in modo attivo tramite Log Analytics.
 services: automation
 documentationCenter: 
-authors: mgoedtel
+authors: eslesar
 manager: carmonm
 editor: 
 ms.assetid: 06c27f72-ac4c-4923-90a6-21f46db21883
@@ -14,203 +14,203 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/01/2017
 ms.author: magoedte
-ms.openlocfilehash: 6cbe16dfb40bf13f29d9e58ca0bc8c5c7979879d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: b4271d07858eacf2fa55e748f276c8252b0dedf9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="startstop-vms-during-off-hours-preview-solution-in-automation"></a>Soluzione Avvio/Arresto di macchine virtuali durante gli orari di minore attività (anteprima) in Automazione di Azure
 
-Hello macchine virtuali di avvio/arresto durante soluzione orario di lavoro [anteprima] avvia e arresta le macchine virtuali di Azure Resource Manager in una pianificazione definita dall'utente e fornisce informazioni approfondite riuscita hello dei processi di automazione di hello che avviare e arrestare le macchine virtuali con OMS Log Analitica.  
+La soluzione Avvio/Arresto di macchine virtuali durante gli orari di minore attività (anteprima) permette di avviare e arrestare le macchine virtuali di Azure Resource Manager in base a una pianificazione definita dall'utente e, tramite OMS Log Analytics, fornisce informazioni approfondite sui processi di Automazione completati che avviano e arrestano le macchine virtuali.  
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-- utilizzano i runbook Hello un [account RunAs di Azure](automation-offering-get-started.md#authentication-methods).  Hello account RunAs è il metodo di autenticazione preferito hello poiché utilizza l'autenticazione del certificato anziché una password che può scadere o modificati di frequente.  
+- I runbook funzionano con un [account RunAs di Azure](automation-offering-get-started.md#authentication-methods).  L'account RunAs è il metodo di autenticazione preferito perché usa l'autenticazione del certificato anziché una password, che può scadere o essere modificata di frequente.  
 
-- Questa soluzione è possibile gestire solo macchine virtuali che sono in hello stessa sottoscrizione in cui risiede l'account di automazione hello.  
+- Questa soluzione può gestire solo le macchine virtuali nella stessa sottoscrizione in cui risiede l'account di Automazione.  
 
-- Questa soluzione consente di distribuire solo toohello seguenti aree di Azure - Europa occidentale, Stati Uniti orientali, Asia sudorientale e Australia sudorientale.  i runbook Hello gestire hello VM pianificazione possono essere destinati a macchine virtuali in qualsiasi area.  
+- È possibile eseguire la distribuzione solo nelle aree di Azure seguenti: Australia sud-orientale, Stati Uniti orientali, Asia sud-orientale ed Europa occidentale.  I runbook che gestiscono la pianificazione delle macchine virtuali possono essere usati in qualsiasi area.  
 
-- notifiche di posta elettronica toosend quando hello avviare e arrestare i runbook VM completa, una sottoscrizione di classe aziendale di Office 365 è obbligatorio.  
+- Per l'invio di notifiche tramite posta elettronica al termine dell'esecuzione dei runbook di avvio e arresto delle macchine virtuali, è necessaria una sottoscrizione di Office 365 di classe enterprise.  
 
 ## <a name="solution-components"></a>Componenti della soluzione
 
-Questa soluzione è costituita da hello seguendo le risorse che verranno importate e aggiunti tooyour account di automazione.
+Questa soluzione è costituita dalle risorse riportate di seguito, che verranno importate e aggiunte all'account di Automazione.
 
 ### <a name="runbooks"></a>Runbook
 
 Runbook | Descrizione|
 --------|------------|
-CleanSolution-MS-Mgmt-VM | Questo runbook rimuove tutti i contenuti di risorse e pianificazioni quando si passa soluzione hello toodelete dalla sottoscrizione.|  
+CleanSolution-MS-Mgmt-VM | Questo runbook rimuove tutte le risorse contenute e pianifica quando sarà necessario eliminare la soluzione dalla sottoscrizione.|  
 SendMailO365-MS-Mgmt | Questo runbook invia un messaggio di posta elettronica tramite Office 365 Exchange.|
-StartByResourceGroup-MS-Mgmt-VM | Questo runbook è macchine virtuali toostart previsto (entrambi classica e ARM basato su macchine virtuali) che si trova in un elenco di gruppi di risorse di Azure specificato.
-StopByResourceGroup-MS-Mgmt-VM | Questo runbook è macchine virtuali toostop previsto (entrambi classica e ARM basato su macchine virtuali) che si trova in un elenco di gruppi di risorse di Azure specificato.|
+StartByResourceGroup-MS-Mgmt-VM | Questo runbook avvia le macchine virtuali, sia quelle classiche che quelle basate su Azure Resource Manager, che si trovano in un determinato elenco di gruppi di risorse di Azure.
+StopByResourceGroup-MS-Mgmt-VM | Questo runbook arresta le macchine virtuali, sia quelle classiche che quelle basate su Azure Resource Manager, che si trovano in un determinato elenco di gruppi di risorse di Azure.|
 <br>
 
-### <a name="variables"></a>variables
+### <a name="variables"></a>Variabili
 
 Variabile | Descrizione|
 ---------|------------|
 Runbook **SendMailO365-MS-Mgmt** ||
-SendMailO365-IsSendEmail-MS-Mgmt | Specifica se i runbook StartByResourceGroup-MS-Mgmt-VM e StopByResourceGroup-MS-Mgmt-VM possono inviare notifiche tramite posta elettronica al termine dell'operazione.  Selezionare **True** tooenable e **False** toodisable avvisi di posta elettronica. Il valore predefinito è **False**.| 
+SendMailO365-IsSendEmail-MS-Mgmt | Specifica se i runbook StartByResourceGroup-MS-Mgmt-VM e StopByResourceGroup-MS-Mgmt-VM possono inviare notifiche tramite posta elettronica al termine dell'operazione.  Scegliere **True**per abilitare e **False** per disabilitare gli avvisi tramite posta elettronica. Il valore predefinito è **False**.| 
 Runbook **StartByResourceGroup-MS-Mgmt-VM** ||
-StartByResourceGroup-ExcludeList-MS-Mgmt-VM | Immettere toobe nomi VM escluso dall'operazione di gestione. separare i nomi utilizzando semi-colon(;) senza spazi. I valori fanno distinzione tra maiuscole e minuscole ed è supportato il carattere jolly asterisco.|
-StartByResourceGroup-SendMailO365-EmailBodyPreFix-MS-Mgmt | Testo che può essere aggiunto toohello inizio del corpo del messaggio di posta elettronica hello.|
-StartByResourceGroup-SendMailO365-EmailRunBookAccount-MS-Mgmt | Specifica il nome di hello dell'Account di automazione che contenga un runbook di posta elettronica hello hello.  **Non modificare questa variabile.**|
-StartByResourceGroup-SendMailO365-EmailRunbookName-MS-Mgmt | Specifica il nome di hello del runbook di posta elettronica hello.  Viene utilizzato da hello StartByResourceGroup-MS-Mgmt-VM e messaggio di posta elettronica toosend runbook StopByResourceGroup-MS-Mgmt-VM.  **Non modificare questa variabile.**|
-StartByResourceGroup-SendMailO365-EmailRunbookResourceGroup-MS-Mgmt | Specifica il nome di hello hello del gruppo di risorse che contenga un runbook di posta elettronica hello.  **Non modificare questa variabile.**|
-StartByResourceGroup-SendMailO365-EmailSubject-MS-Mgmt | Specifica il testo hello riga dell'oggetto del messaggio di posta elettronica hello hello.|  
-StartByResourceGroup-SendMailO365-EmailToAddress-MS-Mgmt | Specifica i destinatari hello del messaggio di posta elettronica hello.  Immettere i nomi separati da un punto e virgola (;) senza spazi.|
-StartByResourceGroup-TargetResourceGroups-MS-Mgmt-VM | Immettere toobe nomi VM escluso dall'operazione di gestione. separare i nomi utilizzando semi-colon(;) senza spazi. I valori fanno distinzione tra maiuscole e minuscole ed è supportato il carattere jolly asterisco.  Il valore predefinito (asterisco) includerà tutti i gruppi di risorse nella sottoscrizione hello.|
-StartByResourceGroup-TargetSubscriptionID-MS-Mgmt-VM | Specifica sottoscrizione hello contenente toobe macchine virtuali gestiti da questa soluzione.  Deve trattarsi di hello stessa sottoscrizione in cui risiede l'account di automazione di questa soluzione hello.|
+StartByResourceGroup-ExcludeList-MS-Mgmt-VM | Immettere i nomi di macchina virtuale da escludere dall'operazione di gestione e separarli usando un punto e virgola (;) senza spazi. I valori fanno distinzione tra maiuscole e minuscole ed è supportato il carattere jolly asterisco.|
+StartByResourceGroup-SendMailO365-EmailBodyPreFix-MS-Mgmt | Testo che è possibile aggiungere all'inizio del corpo del messaggio di posta elettronica.|
+StartByResourceGroup-SendMailO365-EmailRunBookAccount-MS-Mgmt | Specifica il nome dell'account di Automazione che contiene il runbook di posta elettronica.  **Non modificare questa variabile.**|
+StartByResourceGroup-SendMailO365-EmailRunbookName-MS-Mgmt | Specifica il nome del runbook di posta elettronica.  Questa variabile viene usata dai runbook StartByResourceGroup-MS-Mgmt-VM e StopByResourceGroup-MS-Mgmt-VM per inviare messaggi di posta elettronica.  **Non modificare questa variabile.**|
+StartByResourceGroup-SendMailO365-EmailRunbookResourceGroup-MS-Mgmt | Specifica il nome del gruppo di risorse che contiene il runbook di posta elettronica.  **Non modificare questa variabile.**|
+StartByResourceGroup-SendMailO365-EmailSubject-MS-Mgmt | Specifica il testo per la riga dell'oggetto del messaggio di posta elettronica.|  
+StartByResourceGroup-SendMailO365-EmailToAddress-MS-Mgmt | Specifica i destinatari del messaggio di posta elettronica.  Immettere i nomi separati da un punto e virgola (;) senza spazi.|
+StartByResourceGroup-TargetResourceGroups-MS-Mgmt-VM | Immettere i nomi di macchina virtuale da escludere dall'operazione di gestione e separarli usando un punto e virgola (;) senza spazi. I valori fanno distinzione tra maiuscole e minuscole ed è supportato il carattere jolly asterisco.  Il valore predefinito (asterisco) permette di includere tutti i gruppi di risorse nella sottoscrizione.|
+StartByResourceGroup-TargetSubscriptionID-MS-Mgmt-VM | Specifica la sottoscrizione che contiene le macchine virtuali che la soluzione deve gestire.  Deve trattarsi della stessa sottoscrizione in cui risiede l'account di Automazione della soluzione.|
 Runbook **StopByResourceGroup-MS-Mgmt-VM** ||
-StopByResourceGroup-ExcludeList-MS-Mgmt-VM | Immettere toobe nomi VM escluso dall'operazione di gestione. separare i nomi utilizzando semi-colon(;) senza spazi. I valori fanno distinzione tra maiuscole e minuscole ed è supportato il carattere jolly asterisco.|
-StopByResourceGroup-SendMailO365-EmailBodyPreFix-MS-Mgmt | Testo che può essere aggiunto toohello inizio del corpo del messaggio di posta elettronica hello.|
-StopByResourceGroup-SendMailO365-EmailRunBookAccount-MS-Mgmt | Specifica il nome di hello dell'Account di automazione che contenga un runbook di posta elettronica hello hello.  **Non modificare questa variabile.**|
-StopByResourceGroup-SendMailO365-EmailRunbookResourceGroup-MS-Mgmt | Specifica il nome di hello hello del gruppo di risorse che contenga un runbook di posta elettronica hello.  **Non modificare questa variabile.**|
-StopByResourceGroup-SendMailO365-EmailSubject-MS-Mgmt | Specifica il testo hello riga dell'oggetto del messaggio di posta elettronica hello hello.|  
-StopByResourceGroup-SendMailO365-EmailToAddress-MS-Mgmt | Specifica i destinatari hello del messaggio di posta elettronica hello.  Immettere i nomi separati da un punto e virgola (;) senza spazi.|
-StopByResourceGroup-TargetResourceGroups-MS-Mgmt-VM | Immettere toobe nomi VM escluso dall'operazione di gestione. separare i nomi utilizzando semi-colon(;) senza spazi. I valori fanno distinzione tra maiuscole e minuscole ed è supportato il carattere jolly asterisco.  Il valore predefinito (asterisco) includerà tutti i gruppi di risorse nella sottoscrizione hello.|
-StopByResourceGroup-TargetSubscriptionID-MS-Mgmt-VM | Specifica sottoscrizione hello contenente toobe macchine virtuali gestiti da questa soluzione.  Deve trattarsi di hello stessa sottoscrizione in cui risiede l'account di automazione di questa soluzione hello.|  
+StopByResourceGroup-ExcludeList-MS-Mgmt-VM | Immettere i nomi di macchina virtuale da escludere dall'operazione di gestione e separarli usando un punto e virgola (;) senza spazi. I valori fanno distinzione tra maiuscole e minuscole ed è supportato il carattere jolly asterisco.|
+StopByResourceGroup-SendMailO365-EmailBodyPreFix-MS-Mgmt | Testo che è possibile aggiungere all'inizio del corpo del messaggio di posta elettronica.|
+StopByResourceGroup-SendMailO365-EmailRunBookAccount-MS-Mgmt | Specifica il nome dell'account di Automazione che contiene il runbook di posta elettronica.  **Non modificare questa variabile.**|
+StopByResourceGroup-SendMailO365-EmailRunbookResourceGroup-MS-Mgmt | Specifica il nome del gruppo di risorse che contiene il runbook di posta elettronica.  **Non modificare questa variabile.**|
+StopByResourceGroup-SendMailO365-EmailSubject-MS-Mgmt | Specifica il testo per la riga dell'oggetto del messaggio di posta elettronica.|  
+StopByResourceGroup-SendMailO365-EmailToAddress-MS-Mgmt | Specifica i destinatari del messaggio di posta elettronica.  Immettere i nomi separati da un punto e virgola (;) senza spazi.|
+StopByResourceGroup-TargetResourceGroups-MS-Mgmt-VM | Immettere i nomi di macchina virtuale da escludere dall'operazione di gestione e separarli usando un punto e virgola (;) senza spazi. I valori fanno distinzione tra maiuscole e minuscole ed è supportato il carattere jolly asterisco.  Il valore predefinito (asterisco) permette di includere tutti i gruppi di risorse nella sottoscrizione.|
+StopByResourceGroup-TargetSubscriptionID-MS-Mgmt-VM | Specifica la sottoscrizione che contiene le macchine virtuali che la soluzione deve gestire.  Deve trattarsi della stessa sottoscrizione in cui risiede l'account di Automazione della soluzione.|  
 <br>
 
 ### <a name="schedules"></a>Pianificazioni
 
 Pianificazione | Descrizione|
 ---------|------------|
-StartByResourceGroup-Schedule-MS-Mgmt | Pianificazione per il runbook StartByResourceGroup, che esegue l'avvio hello di macchine virtuali gestite da questa soluzione. Creazione, il valore predefinito tooUTC fuso orario.|
-StopByResourceGroup-Schedule-MS-Mgmt | Pianificazione per il runbook StopByResourceGroup, che esegue hello arresto delle macchine virtuali gestiti da questa soluzione. Creazione, il valore predefinito tooUTC fuso orario.|
+StartByResourceGroup-Schedule-MS-Mgmt | Permette di pianificare il runbook StartByResourceGroup, che esegue l'avvio delle macchine virtuali gestite dalla soluzione. L'impostazione predefinita al momento della creazione è il fuso orario UTC.|
+StopByResourceGroup-Schedule-MS-Mgmt | Permette di pianificare il runbook StopByResourceGroup, che esegue l'arresto delle macchine virtuali gestite dalla soluzione. L'impostazione predefinita al momento della creazione è il fuso orario UTC.|
 
 ### <a name="credentials"></a>Credenziali
 
 Credenziali | Descrizione|
 -----------|------------|
-O365Credential | Specifica un valido Office 365 utente toosend posta elettronica dell'account.  Necessario solo se variabile SendMailO365-IsSendEmail-MS-Mgmt viene impostato troppo**True**.
+O365Credential | Specifica un account utente di Office 365 valido per l'invio di posta elettronica.  Sono obbligatorie solo se la variabile SendMailO365-IsSendEmail-MS-Mgmt è impostata su **True**.
 
 ## <a name="configuration"></a>Configurazione
 
-Eseguire i seguenti passaggi tooadd hello macchine virtuali di avvio/arresto durante l'orario di lavoro [anteprima] soluzione tooyour account di automazione hello e quindi configurare hello variabili toocustomize hello soluzione.
+Seguire questa procedura per aggiungere la soluzione Avvio/Arresto di macchine virtuali durante gli orari di minore attività (anteprima) all'account di Automazione e quindi configurare le variabili per personalizzarla.
 
-1. Hello-schermata home hello portale di Azure, selezionare hello **Marketplace** riquadro.  Se il riquadro hello non è più bloccato tooyour-schermata, dal riquadro di spostamento a sinistra di hello, selezionare **New**.  
-2. Nel Pannello di Marketplace hello, digitare **avvia macchina virtuale** nella casella di ricerca hello e quindi selezionare hello soluzione **macchine virtuali di avviare o arrestare l'orario di ufficio [anteprima]** dai risultati della ricerca hello.  
-3. In hello **macchine virtuali di avviare o arrestare l'orario di ufficio [anteprima]** pannello hello selezionata soluzione, esaminare le informazioni di riepilogo hello e quindi fare clic su **crea**.  
-4. Hello **Aggiungi soluzione** pannello viene visualizzato in cui ti trovi tooconfigure richiesta hello soluzione prima di poter importare alla sottoscrizione di automazione.<br><br> ![Pannello Aggiungi soluzione di Virtual Machine Management](media/automation-solution-vm-management/vm-management-solution-add-solution-blade.png)<br><br>
-5.  In hello **Aggiungi soluzione** pannello seleziona **dell'area di lavoro** e consente di selezionare un'area di lavoro OMS che è collegato toohello stessa sottoscrizione di Azure che hello account di automazione è in o crea una nuova area di lavoro OMS.  Se non si dispone di un'area di lavoro OMS, è possibile selezionare **Crea nuova area di lavoro** e hello **area di lavoro OMS** pannello eseguire l'esempio hello: 
-   - Specificare un nome per hello nuovo **area di lavoro OMS**.
-   - Selezionare un **sottoscrizione** toolink tooby selezionare dall'elenco a discesa hello se predefinito hello selezionato non è appropriato.
+1. Nella schermata iniziale del portale di Azure selezionare il riquadro **Marketplace**.  Se il riquadro non è aggiunto alla schermata iniziale, selezionare **Nuovo** nel riquadro di spostamento a sinistra.  
+2. Nel pannello Marketplace digitare **Avvia macchina virtuale** nella casella di ricerca e quindi selezionare la soluzione **Start/Stop VMs during off-hours [Preview]** (Avvio/Arresto di macchine virtuali durante gli orari di minore attività - anteprima) tra i risultati della ricerca.  
+3. Nel pannello **Start/Stop VMs during off-hours [Preview]** (Avvio/Arresto di macchine virtuali durante gli orari di minore attività - anteprima) per la soluzione selezionata, esaminare le informazioni di riepilogo e quindi fare clic su **Crea**.  
+4. Verrà visualizzato il pannello **Aggiungi soluzione**, in cui viene richiesto di configurare la soluzione prima di importarla nella sottoscrizione di Automazione.<br><br> ![Pannello Aggiungi soluzione di Virtual Machine Management](media/automation-solution-vm-management/vm-management-solution-add-solution-blade.png)<br><br>
+5.  Nel pannello **Aggiungi soluzione** selezionare **Area di lavoro**. Qui è possibile selezionare un'area di lavoro OMS collegata alla stessa sottoscrizione di Azure in cui si trova l'account di Automazione o creare una nuova area di lavoro OMS.  Se non è disponibile un'area di lavoro OMS, è possibile selezionare **Crea nuova area di lavoro** e seguire questa procedura nel pannello **Area di lavoro OMS**: 
+   - Specificare un nome per la nuova **area di lavoro OMS**.
+   - Selezionare una **sottoscrizione** a cui collegarsi. Se la sottoscrizione selezionata per impostazione predefinita non è appropriata, è possibile sceglierne una dall'elenco a discesa.
    - Per il **gruppo di risorse**, è possibile selezionare un gruppo di risorse esistente o crearne uno nuovo.  
-   - Selezionare un **percorso**.  Non sono attualmente forniti per la selezione in base ai soli percorsi hello **Australia sudorientale**, **Stati Uniti orientali**, **Asia sudorientale**, e **Europa occidentale**.
-   - Selezionare un **Piano tariffario**.  soluzione Hello viene offerto con due livelli: libero e OMS a pagamento di livello.  livello gratuito Hello pone un limite sulla quantità di hello di dati raccolti giornalmente, periodo di memorizzazione e runbook processo runtime minuti.  Hello OMS a pagamento di livello prevede un limite alla quantità di hello di dati raccolti giornalmente.  
+   - Selezionare un **percorso**.  Le uniche località attualmente selezionabili sono l'**Australia sud-orientale**, gli **Stati Uniti orientali**, l'**Asia sud-orientale** e l'**Europa occidentale**.
+   - Selezionare un **Piano tariffario**.  Per la soluzione sono disponibili due livelli, quello gratuito e il livello OMS a pagamento.  Il livello gratuito presenta un limite per la quantità di dati raccolti al giorno, il periodo di memorizzazione e i minuti di esecuzione dei processi dei runbook.  Il livello OMS a pagamento non ha limiti per la quantità di dati raccolti al giorno.  
 
         > [!NOTE]
-        > Mentre hello autonomo a pagamento di livello viene visualizzato come un'opzione, non è applicabile.  Se si seleziona e procedere con la creazione di hello di questa soluzione nella sottoscrizione, avrà esito negativo.  Questo problema sarà risolto al momento del rilascio ufficiale della soluzione.<br>Se si usa la soluzione, questa usa solo l'inserimento di log e i minuti di esecuzione dei processi di automazione.  soluzione Hello non aggiunge aggiuntive dell'ambiente OMS tooyour nodi.  
+        > Nonostante sia visualizzato come opzione, il livello a pagamento Autonomo non è applicabile.  Se si seleziona e si procede con la creazione della soluzione nella sottoscrizione, l'operazione avrà esito negativo.  Questo problema sarà risolto al momento del rilascio ufficiale della soluzione.<br>Se si usa la soluzione, questa usa solo l'inserimento di log e i minuti di esecuzione dei processi di automazione.  Non aggiunge altri nodi OMS all'ambiente in uso.  
 
-6. Dopo aver specificato le informazioni necessarie hello in hello **area di lavoro OMS** pannello, fare clic su **crea**.  Mentre viene verificate le informazioni di hello e viene creato l'area di lavoro hello, è possibile tenere traccia dello stato di avanzamento in **notifiche** dal menu di hello.  Verrà restituito toohello **Aggiungi soluzione** blade.  
-7. In hello **Aggiungi soluzione** pannello seleziona **Account di automazione**.  Se si sta creando una nuova area di lavoro OMS, sarà necessario tooalso creare un nuovo account di automazione che verrà associato con hello nuova area di lavoro OMS specificato in precedenza, inclusa la sottoscrizione di Azure, un gruppo di risorse e area.  È possibile selezionare **creare un account di automazione** e hello **account di automazione aggiungere** pannello fornire seguente hello: 
-  - In hello **nome** immettere nome hello di hello account di automazione.
+6. Dopo aver specificato le informazioni necessarie nel pannello **Area di lavoro OMS**, fare clic su **Crea**.  Per tenere traccia dello stato di avanzamento della verifica delle informazioni e della creazione dell'area di lavoro, è possibile usare la voce **Notifiche** nel menu.  Verrà visualizzato nuovamente il pannello **Aggiungi soluzione**.  
+7. Nel pannello **Aggiungi soluzione** selezionare **Account di Automazione**.  Se si sta creando una nuova area di lavoro OMS, viene richiesto di creare anche un nuovo account di Automazione da associare alla nuova area di lavoro OMS specificata in precedenza, nonché l'area, il gruppo di risorse e la sottoscrizione di Azure.  È possibile selezionare **Crea un account di Automazione** e specificare le informazioni seguenti nel pannello **Aggiungi account di Automazione**: 
+  - Nel campo **Nome** immettere il nome dell'account di Automazione.
 
-    Tutte le altre opzioni vengono popolati automaticamente in base a area di lavoro OMS hello selezionata e non è possibile modificare queste opzioni.  Un account RunAs di Azure è metodo di autenticazione hello predefinito per i runbook hello inclusi in questa soluzione.  Quando si fa clic su **OK**, opzioni di configurazione hello vengono convalidate e viene creato l'account di automazione hello.  È possibile tenere traccia dello stato di avanzamento in **notifiche** dal menu di hello. 
+    Tutte le altre opzioni vengono popolate automaticamente in base all'area di lavoro OMS selezionata e non è possibile modificarle.  Il metodo di autenticazione predefinito per i runbook inclusi nella soluzione è un account RunAs di Azure.  Dopo aver fatto clic su **OK**, le opzioni di configurazione vengono convalidate e viene creato l'account di Automazione.  Per tenere traccia dello stato di avanzamento, è possibile usare la voce **Notifiche** nel menu. 
 
-    In alternativa, è possibile selezionare un account RunAs di Automazione esistente.  Si noti che l'account hello selezionato non può essere già collegato tooanother area di lavoro OMS, in caso contrario un messaggio verrà visualizzato in tooinform pannello hello è.  Se è già collegato, è necessario un diverso account RunAs automazione tooselect o se crearne uno nuovo.<br><br> ![Automazione Account già collegato tooOMS dell'area di lavoro](media/automation-solution-vm-management/vm-management-solution-add-solution-blade-autoacct-warning.png)<br>
+    In alternativa, è possibile selezionare un account RunAs di Automazione esistente.  Si noti che l'account selezionato non può essere già collegato a un'altra area di lavoro OMS, in caso contrario nel pannello verrà visualizzato un messaggio informativo.  Se è già collegato, è necessario selezionare un account RunAs di Automazione diverso o crearne uno nuovo.<br><br> ![Account di Automazione già collegato all'area di lavoro OMS](media/automation-solution-vm-management/vm-management-solution-add-solution-blade-autoacct-warning.png)<br>
 
-8. Infine nel hello **Aggiungi soluzione** pannello seleziona **configurazione** hello e **parametri** pannello viene visualizzato.  In hello **parametri** pannello, viene chiesto di:  
-   - Specificare hello **nomi di gruppo di risorse di destinazione**, ovvero un nome di gruppo di risorse contenente toobe macchine virtuali gestiti da questa soluzione.  È possibile immettere più nomi, separati da un punto e virgola. I valori fanno distinzione tra maiuscole e minuscole.  I caratteri jolly è supportato se si desidera tootarget le macchine virtuali in tutti i gruppi di risorse nella sottoscrizione hello.
-   - Selezionare un **pianificazione** che è ricorrente data e ora per l'avvio e arresto hello della macchina virtuale in hello di gruppi di risorse di destinazione.  Per impostazione predefinita, la pianificazione di hello è fuso orario configurato toohello UTC e selezionare un'altra area non è disponibile.  Se si desidera tooconfigure hello pianificazione tooyour fuso orario specifico dopo la configurazione di soluzione hello, vedere [pianificazione di avvio e arresto di hello modifica](#modifying-the-startup-and-shutdown-schedule) sotto.    
+8. Infine, nel pannello **Aggiungi soluzione** selezionare **Configurazione**. Verrà visualizzato il pannello **Parametri**.  Nel pannello **Parametri** viene richiesto di:  
+   - Specificare i **nomi dei gruppi di risorse di destinazione** contenenti le macchine virtuali che devono essere gestite dalla soluzione.  È possibile immettere più nomi, separati da un punto e virgola. I valori fanno distinzione tra maiuscole e minuscole.  Per specificare come destinazione le macchine virtuali in tutti i gruppi di risorse della sottoscrizione, è possibile usare un carattere jolly.
+   - Selezionare una **pianificazione**, ovvero una data e un'ora ricorrenti per l'avvio e l'arresto delle macchine virtuali nei gruppi di risorse di destinazione.  Per impostazione predefinita, la pianificazione è configurata per il fuso orario UTC e non è prevista la selezione di un'area diversa.  Se si desidera configurare la pianificazione per il fuso orario specifico dopo aver configurato la soluzione, vedere la sezione seguente [Modifica della pianificazione di avvio e arresto](#modifying-the-startup-and-shutdown-schedule).    
 
-10. Dopo aver completato la configurazione impostazioni iniziale di hello necessarie per la soluzione hello, selezionare **crea**.  Tutte le impostazioni verranno convalidate e quindi verrà eseguito un tentativo soluzione hello toodeploy nella sottoscrizione.  Questo processo può richiedere alcuni secondi toocomplete ed è possibile tenere traccia dello stato di avanzamento in **notifiche** dal menu di hello. 
+10. Dopo aver configurato le impostazioni iniziali necessarie per la soluzione, selezionare **Crea**.  Tutte le impostazioni verranno convalidate e verrà eseguito un tentativo di distribuzione della soluzione nella sottoscrizione.  Questo processo può richiedere alcuni secondi. Per tenere traccia dello stato di avanzamento, è possibile usare la voce **Notifiche** nel menu. 
 
 ## <a name="collection-frequency"></a>Frequenza della raccolta
 
-Automazione del log e processo di flusso dati del processo vengono acquisiti nel repository OMS hello ogni cinque minuti.  
+Il log del processo di Automazione e i dati del flusso del processo vengono inseriti nel repository OMS ogni cinque minuti.  
 
-## <a name="using-hello-solution"></a>Utilizzo di soluzione hello
+## <a name="using-the-solution"></a>Uso della soluzione
 
-Quando si aggiunta soluzione di gestione delle macchine Virtuali hello, nel hello dell'area di lavoro OMS **StartStopVM vista** riquadro verrà aggiunto il dashboard OMS tooyour.  Questo riquadro Visualizza un numero e la rappresentazione grafica dei processi di runbook di hello per soluzione hello che sono stati avviati e completati.<br><br> ![Riquadro StartStopVM View (Visualizzazione di avvio e arresto di VM) di Virtual Machine Management](media/automation-solution-vm-management/vm-management-solution-startstopvm-view-tile.png)  
+Quando si aggiunge la soluzione Virtual Machine Management all'area di lavoro OMS, il riquadro **StartStopVM View** (Visualizzazione di avvio e arresto di VM) viene aggiunto al dashboard OMS.  Questo riquadro mostra un conteggio e la rappresentazione grafica dei processi di runbook della soluzione che sono stati avviati e completati.<br><br> ![Riquadro StartStopVM View (Visualizzazione di avvio e arresto di VM) di Virtual Machine Management](media/automation-solution-vm-management/vm-management-solution-startstopvm-view-tile.png)  
 
-Nell'account di automazione, è possibile accedere e gestire soluzioni hello selezionando hello **soluzioni** riquadro e quindi da hello **soluzioni** pannello selezione soluzione hello **[inizio-Stop-VM Area di lavoro]** dall'elenco di hello.<br><br> ![Elenco delle soluzioni di automazione](media/automation-solution-vm-management/vm-management-solution-autoaccount-solution-list.png)  
+Nell'account di Automazione è possibile accedere alla soluzione e gestirla selezionando il riquadro **Soluzioni** e scegliendo quindi la soluzione **Start-Stop-VM[Workspace]** (Avvio-Arresto-VM - Area di lavoro) dall'elenco nel pannello **Soluzioni**.<br><br> ![Elenco delle soluzioni di automazione](media/automation-solution-vm-management/vm-management-solution-autoaccount-solution-list.png)  
 
-Selezione di soluzione hello visualizzerà hello **Start-Stop-VM [area]** pannello soluzione, in cui è possibile rivedere le informazioni importanti, ad esempio hello **StartStopVM** riquadro, ad esempio nell'area di lavoro OMS, che Visualizza un numero e la rappresentazione grafica dei processi di runbook di hello per soluzione hello che sono stati avviati e completati.<br><br> ![Pannello delle soluzioni di automazione delle macchine virtuali](media/automation-solution-vm-management/vm-management-solution-solution-blade.png)  
+Verrà visualizzato il pannello della soluzione **Start-Stop-VM[Workspace]** (Avvio-Arresto-VM - Area di lavoro), in cui è possibile rivedere informazioni importanti come il riquadro **StartStopVM** (Avvio e arresto di VM) nell'area di lavoro OMS, contenente un conteggio e la rappresentazione grafica dei processi di runbook della soluzione che sono stati avviati e completati.<br><br> ![Pannello delle soluzioni di automazione delle macchine virtuali](media/automation-solution-vm-management/vm-management-solution-solution-blade.png)  
 
-Da qui è anche possibile aprire l'area di lavoro OMS ed eseguire un'ulteriore analisi hello di record del processo.  Fare clic su **tutte le impostazioni**e in hello **impostazioni** pannello seleziona **avvio rapido** e quindi in hello **avvio rapido** selezionare pannello ** Portale di OMS**.   Verrà aperta una nuova scheda o una nuova sessione del browser e verrà visualizzata l'area di lavoro OMS associata alla sottoscrizione e all'account di Automazione.  
+Da qui è anche possibile aprire l'area di lavoro OMS ed eseguire un'analisi aggiuntiva dei record dei processi.  È sufficiente fare clic su **Tutte le impostazioni** e quindi selezionare **Avvio rapido** nel pannello **Impostazioni** e infine **Portale di OMS** nel pannello **Avvio rapido**.   Verrà aperta una nuova scheda o una nuova sessione del browser e verrà visualizzata l'area di lavoro OMS associata alla sottoscrizione e all'account di Automazione.  
 
 
 ### <a name="configuring-e-mail-notifications"></a>Configurazione delle notifiche tramite posta elettronica
 
-le notifiche di posta elettronica tooenable quando hello avviano e arrestare i runbook VM completa, sarà necessario hello toomodify **O365Credential** credenziali e come minimo, hello seguenti variabili:
+Per abilitare le notifiche tramite posta elettronica al termine dell'esecuzione dei runbook di avvio e arresto di macchine virtuali, è necessario modificare le credenziali **O365Credential** e almeno le variabili seguenti:
 
  - SendMailO365-IsSendEmail-MS-Mgmt
  - StartByResourceGroup-SendMailO365-EmailToAddress-MS-Mgmt
  - StopByResourceGroup-SendMailO365-EmailToAddress-MS-Mgmt
 
-hello tooconfigure **O365Credential** credenziali, eseguire hello alla procedura seguente:
+Per configurare le credenziali **O365Credential**, seguire questa procedura:
 
-1. Scegliere l'account di automazione, **tutte le impostazioni** nella parte superiore di hello della finestra hello. 
-2. In hello **impostazioni** pannello sezione hello **risorse di automazione**selezionare **asset**. 
-3. In hello **asset** blade, seleziona hello **credenziali** riquadro e da hello **credenziali** blade, seleziona hello **O365Credential**.  
-4. Immettere un nome utente di Office 365 valido e una password e quindi fare clic su **salvare** toosave le modifiche.  
+1. Dall'account di automazione fare clic su **Tutte le impostazioni** nella parte superiore della finestra. 
+2. Nel pannello **Impostazioni** selezionare **Asset**nella sezione **Risorse di automazione**. 
+3. Nel pannello **Asset** selezionare il riquadro **Credenziali** e nel pannello **Credenziali** selezionare **O365Credential**.  
+4. Immettere un nome utente di Office 365 valido e la relativa password e quindi fare clic su **Salva** per salvare le modifiche.  
 
-le variabili di hello tooconfigure evidenziate in precedenza, eseguire hello alla procedura seguente:
+Per configurare le variabili evidenziate in precedenza, seguire questa procedura:
 
-1. Scegliere l'account di automazione, **tutte le impostazioni** nella parte superiore di hello della finestra hello. 
-2. In hello **impostazioni** pannello sezione hello **risorse di automazione**selezionare **asset**. 
-3. In hello **asset** blade, seleziona hello **variabili** riquadro e da hello **variabili** pannello selezionare variabile hello sopra elencati e quindi modificare il relativo valore successivo hello descrizione relativa all'hello [variabile](##variables) sezione precedente.  
-4. Fare clic su **salvare** variabile toohello di toosave hello le modifiche.   
+1. Dall'account di automazione fare clic su **Tutte le impostazioni** nella parte superiore della finestra. 
+2. Nel pannello **Impostazioni** selezionare **Asset**nella sezione **Risorse di automazione**. 
+3. Nel pannello **Asset** selezionare il riquadro **Variabili**. Nel pannello **Variabili** selezionare la variabile elencata in precedenza e modificarne il valore in base alla relativa descrizione specificata nella sezione [Variabili](##variables) di questo articolo.  
+4. Fare clic su **Salva** per salvare le modifiche alla variabile.   
 
-### <a name="modifying-hello-startup-and-shutdown-schedule"></a>Pianificazione di avvio e arresto hello modifica
+### <a name="modifying-the-startup-and-shutdown-schedule"></a>Modifica della pianificazione di avvio e arresto
 
-Gestione pianificazione di avvio e arresto hello in questa soluzione segue hello stesso i passaggi indicati [pianificazione di un runbook in automazione di Azure](automation-schedules.md).  Tenere presente che non è possibile modificare la configurazione di pianificazione hello.  Sarà necessario toodisable hello pianificazione esistente e quindi crearne uno nuovo e quindi collegare toohello **StartByResourceGroup-MS-Mgmt-VM** o **StopByResourceGroup-MS-Mgmt-VM** runbook che si desidera hello pianificare tooapply per.   
+Per gestire la pianificazione relativa all'avvio e all'arresto in questa soluzione viene seguita la stessa procedura illustrata in [Pianificazione di un runbook in Automazione di Azure](automation-schedules.md).  Tenere presente che non è possibile modificare la configurazione della pianificazione.  È necessario disabilitare la pianificazione esistente e crearne una nuova e quindi eseguire il collegamento al runbook **StartByResourceGroup-MS-Mgmt-VM** o **StopByResourceGroup-MS-Mgmt-VM** a cui si vuole applicare la pianificazione.   
 
 ## <a name="log-analytics-records"></a>Record di Log Analytics
 
-Automazione crea due tipi di record nel repository OMS hello.
+Automazione crea due tipi di record nel repository OMS.
 
 ### <a name="job-logs"></a>Log di processo
 
 Proprietà | Descrizione|
 ----------|----------|
-Chiamante |  Che ha iniziato l'operazione di hello.  I valori possibili sono un indirizzo di posta elettronica o il sistema per i processi pianificati.|
-Categoria | Classificazione del tipo di hello dei dati.  Per l'automazione, il valore di hello è JobLogs.|
-CorrelationId | GUID che rappresenta l'Id di correlazione di processo del runbook hello hello.|
-JobId | GUID che rappresenta l'Id di processo del runbook hello hello.|
-operationName | Specifica il tipo di hello di operazione eseguita in Azure.  Per l'automazione, il valore di hello sarà processo.|
-resourceId | Specifica il tipo di risorsa hello in Azure.  Per l'automazione, valore hello è l'account di automazione hello associato hello runbook.|
-ResourceGroup | Specifica nome del processo del runbook hello gruppo di risorse hello.|
-ResourceProvider | Specifica hello servizio Azure che fornisce risorse hello è possibile distribuire e gestire.  Per l'automazione, il valore di hello è automazione di Azure.|
-ResourceType | Specifica il tipo di risorsa hello in Azure.  Per l'automazione, valore hello è l'account di automazione hello associato hello runbook.|
-resultType | stato di Hello del processo del runbook hello.  I valori possibili sono:<br>- Avviato<br>- Interrotto<br>- Sospeso<br>- Non riuscito<br>- Completato|
-resultDescription | Descrive lo stato del risultato processo runbook hello.  I valori possibili sono:<br>- Processo avviato<br>- Processo non riuscito<br>- Processo completato|
-RunbookName | Specifica il nome di hello di hello runbook.|
-SourceSystem | Specifica il sistema di origine hello per dati hello inviati.  Per l'automazione, il valore di hello sarà: Operations Manager|
-StreamType | Specifica il tipo di hello dell'evento. I valori possibili sono:<br>- Dettagliato<br>- Output<br>- Errore<br>- Avviso|
-SubscriptionId | Specifica l'ID sottoscrizione hello del processo di hello.
-Tempo | Data e ora esecuzione processo del runbook hello.|
+Chiamante |  Chi ha avviato l'operazione.  I valori possibili sono un indirizzo di posta elettronica o il sistema per i processi pianificati.|
+Categoria | La classificazione del tipo di dati.  Per Automazione, il valore è JobLogs.|
+CorrelationId | Il GUID che rappresenta l'ID di correlazione del processo di runbook.|
+JobId | Il GUID che rappresenta l'ID del processo del runbook.|
+operationName | Specifica il tipo di operazione eseguita in Azure.  Per Automazione, il valore sarà Job.|
+resourceId | Specifica il tipo di risorsa in Azure.  Per Automazione, il valore è l'account di Automazione associato al runbook.|
+ResourceGroup | Specifica il nome del gruppo di risorse del processo del runbook.|
+ResourceProvider | Specifica il servizio di Azure che fornisce le risorse da distribuire e gestire.  Per Automazione, il valore è Automazione di Azure.|
+ResourceType | Specifica il tipo di risorsa in Azure.  Per Automazione, il valore è l'account di Automazione associato al runbook.|
+resultType | Lo stato del processo di runbook.  I valori possibili sono:<br>- Avviato<br>- Interrotto<br>- Sospeso<br>- Non riuscito<br>- Completato|
+resultDescription | Descrive lo stato del risultato del processo di runbook.  I valori possibili sono:<br>- Processo avviato<br>- Processo non riuscito<br>- Processo completato|
+RunbookName | Specifica il nome del runbook.|
+SourceSystem | Specifica il sistema di origine per i dati inviati.  Per Automazione, il valore è OpsManager.|
+StreamType | Specifica il tipo di evento. I valori possibili sono:<br>- Dettagliato<br>- Output<br>- Errore<br>- Avviso|
+SubscriptionId | Specifica l'ID sottoscrizione del processo.
+Time | Data e ora di esecuzione del processo del runbook.|
 
 
 ### <a name="job-streams"></a>Flussi di processo
 
 Proprietà | Descrizione|
 ----------|----------|
-Chiamante |  Che ha iniziato l'operazione di hello.  I valori possibili sono un indirizzo di posta elettronica o il sistema per i processi pianificati.|
-Categoria | Classificazione del tipo di hello dei dati.  Per l'automazione, il valore di hello è JobStreams.|
-JobId | GUID che rappresenta l'Id di processo del runbook hello hello.|
-operationName | Specifica il tipo di hello di operazione eseguita in Azure.  Per l'automazione, il valore di hello sarà processo.|
-ResourceGroup | Specifica nome del processo del runbook hello gruppo di risorse hello.|
-resourceId | Specifica l'Id della risorsa hello in Azure.  Per l'automazione, valore hello è l'account di automazione hello associato hello runbook.|
-ResourceProvider | Specifica hello servizio Azure che fornisce risorse hello è possibile distribuire e gestire.  Per l'automazione, il valore di hello è automazione di Azure.|
-ResourceType | Specifica il tipo di risorsa hello in Azure.  Per l'automazione, valore hello è l'account di automazione hello associato hello runbook.|
-resultType | risultato Hello di processo del runbook hello all'evento di hello hello time è stato generato.  I valori possibili sono:<br>- InProgress|
-resultDescription | Include il flusso di output di hello da hello runbook.|
-RunbookName | nome Hello di hello runbook.|
-SourceSystem | Specifica il sistema di origine hello per dati hello inviati.  Per l'automazione, il valore di hello sarà Operations Manager|
-StreamType | tipo di Hello del flusso di processo. I valori possibili sono:<br>- Avanzamento<br>- Output<br>- Avviso<br>- Errore<br>- Debug<br>- Dettagliato|
-Tempo | Data e ora esecuzione processo del runbook hello.|
+Chiamante |  Chi ha avviato l'operazione.  I valori possibili sono un indirizzo di posta elettronica o il sistema per i processi pianificati.|
+Categoria | La classificazione del tipo di dati.  Per Automazione, il valore è JobStreams.|
+JobId | Il GUID che rappresenta l'ID del processo del runbook.|
+operationName | Specifica il tipo di operazione eseguita in Azure.  Per Automazione, il valore sarà Job.|
+ResourceGroup | Specifica il nome del gruppo di risorse del processo del runbook.|
+resourceId | Specifica l'ID risorsa in Azure.  Per Automazione, il valore è l'account di Automazione associato al runbook.|
+ResourceProvider | Specifica il servizio di Azure che fornisce le risorse da distribuire e gestire.  Per Automazione, il valore è Automazione di Azure.|
+ResourceType | Specifica il tipo di risorsa in Azure.  Per Automazione, il valore è l'account di Automazione associato al runbook.|
+resultType | Risultato del processo del runbook al momento in cui è stato generato l'evento.  I valori possibili sono:<br>- InProgress|
+resultDescription | Include il flusso di output dal runbook.|
+RunbookName | Il nome del runbook.|
+SourceSystem | Specifica il sistema di origine per i dati inviati.  Per Automazione, il valore è OpsManager.|
+StreamType | Il tipo di flusso del processo. I valori possibili sono:<br>- Avanzamento<br>- Output<br>- Avviso<br>- Errore<br>- Debug<br>- Dettagliato|
+Time | Data e ora di esecuzione del processo del runbook.|
 
-Quando si eseguono tutte le ricerche log che restituisce i record di categoria di **JobLogs** o **JobStreams**, è possibile selezionare hello **JobLogs** o **JobStreams** visualizzazione che consente di visualizzare un set di sezioni di riepilogo degli aggiornamenti di hello restituiti dalla ricerca hello.
+Quando si esegue una ricerca di log che restituisce record di categoria di **JobLogs** o **JobStreams**, è possibile selezionare la visualizzazione **JobLogs** o **JobStreams** che presenta una serie di riquadri di riepilogo degli aggiornamenti restituiti dalla ricerca.
 
 ## <a name="sample-log-searches"></a>Ricerche di log di esempio
 
-Hello nella tabella seguente fornisce ricerche log di esempio per i record dei processi raccolti da questa soluzione. 
+La tabella seguente contiene esempi di ricerche nei log per i record dei processi raccolti da questa soluzione. 
 
 Query | Descrizione|
 ----------|----------|
@@ -218,24 +218,24 @@ Trova i processi completati per il runbook StartVM | Category=JobLogs RunbookNam
 Trova i processi completati per il runbook StopVM | Category=JobLogs RunbookName_s="StartByResourceGroup-MS-Mgmt-VM" ResultType=Failed &#124; measure count() by JobId_g
 Visualizza lo stato dei processi nel tempo per i runbook StartVM e StopVM | Category=JobLogs RunbookName_s="StartByResourceGroup-MS-Mgmt-VM" OR "StopByResourceGroup-MS-Mgmt-VM" NOT(ResultType="started") | measure Count() by ResultType interval 1day|
 
-## <a name="removing-hello-solution"></a>Rimozione di soluzioni hello
+## <a name="removing-the-solution"></a>Rimuovere la soluzione
 
-Se si decide di che non è più necessario soluzione hello toouse qualsiasi ulteriore, è possibile eliminarlo dal hello account di automazione.  L'eliminazione della soluzione hello rimuoverà solo i runbook hello, non eliminerà le pianificazioni di hello o le variabili che sono state create quando è stata aggiunta la soluzione hello.  Tali risorse occorre toodelete manualmente se non vengono utilizzati con altri runbook.  
+Se non c'è più bisogno di usare la soluzione, è possibile eliminarla dall'account di Automazione.  Eliminando la soluzione verranno rimossi soltanto i runbook, mentre le pianificazioni e le variabili create quando è stata aggiunta la soluzione non saranno eliminate.  Tali asset dovranno essere eliminati manualmente se non vengono usati con altri runbook.  
 
-toodelete hello soluzione, eseguire hello alla procedura seguente:
+Per eliminare la soluzione, attenersi alla procedura seguente:
 
-1.  Selezionare l'account di automazione, hello **soluzioni** riquadro.  
-2.  In hello **soluzioni** pannello, la soluzione hello selezionare **Start-Stop-VM [area]**.  In hello **VMManagementSolution [area]** pannello da fare clic su menu hello **eliminare**.<br><br> ![Eliminare una soluzione di gestione di macchine virtuali](media/automation-solution-vm-management/vm-management-solution-delete.png)
-3.  In hello **Elimina soluzione** finestra di conferma soluzione hello toodelete.
-4.  Mentre viene verificate informazioni hello e soluzione hello viene eliminata, è possibile tenere traccia dello stato di avanzamento in **notifiche** dal menu di hello.  Verrà restituito toohello **VMManagementSolution [area]** pannello dopo l'avvio di soluzione tooremove dei processi di hello.  
+1.  Dall'account di Automazione, selezionare il riquadro **Soluzioni**.  
+2.  Nel pannello**Soluzioni** selezionare la soluzione **Start-Stop-VM[Workspace]**.  Nel pannello **VMManagementSolution[Workspace]** fare clic su **Elimina** dal menu.<br><br> ![Eliminare una soluzione di gestione di macchine virtuali](media/automation-solution-vm-management/vm-management-solution-delete.png)
+3.  Nella finestra **Elimina soluzione** confermare di voler eliminare la soluzione.
+4.  Per tenere traccia dello stato di avanzamento della verifica delle informazioni e della rimozione della soluzione, è possibile usare la voce **Notifiche** nel menu.  Quando l'operazione di rimozione della soluzione inizia, l'utente viene rimandato al pannello **VMManagementSolution[Workspace]**.  
 
-area di lavoro OMS e account di automazione Hello non vengono eliminati come parte di questo processo.  Se si desidera tooretain area di lavoro OMS hello, sarà necessario eliminarlo toomanually.  Può essere eseguita anche dal portale di Azure hello.   Hello-schermata home hello portale di Azure, selezionare **Log Analitica** e quindi su hello **Log Analitica** pannello area di lavoro selezionare hello e fare clic su **eliminare** dal menu hello pannello delle impostazioni dell'area di lavoro di Hello.  
+L'account di Automazione e l'area di lavoro OMS non vengono eliminati.  Se non si desidera conservare l'area di lavoro OMS, è necessario eliminarla manualmente.  Tale operazione può essere eseguita anche dal portale di Azure.   Nella schermata iniziale del portale di Azure selezionare **Log Analytics** per aprire il pannello **Log Analytics** in cui selezionare l'area di lavoro e fare clic su **Elimina** nel menu del pannello impostazioni dell'area di lavoro.  
       
 ## <a name="next-steps"></a>Passaggi successivi
 
-- toolearn ulteriori informazioni su come query di ricerca diverso tooconstruct e revisione hello automazione del processo di log con Log Analitica, vedere [Accedi ricerche Log Analitica](../log-analytics/log-analytics-log-searches.md)
-- ulteriori sull'esecuzione di runbook, come i processi del runbook toomonitor e altri dettagli tecnici, vedere toolearn [tenere traccia di un processo del runbook](automation-runbook-execution.md)
-- toolearn ulteriori informazioni su OMS Log Analitica e origini di raccolta dati, vedere [dati di archiviazione di Azure la raccolta in panoramica Log Analitica](../log-analytics/log-analytics-azure-storage.md)
+- Per alte informazioni su come creare query di ricerca diverso ed esaminare i log del processo di automazione con Log Analytics, vedere [Ricerche nei log in Log Analytics](../log-analytics/log-analytics-log-searches.md)
+- Per maggiori informazioni sull'esecuzione dei runbook, su come monitorare i processi dei runbook e su altri dettagli tecnici, vedere come tenere traccia del processo di un runbook in [Esecuzione di runbook in Automazione di Azure](automation-runbook-execution.md)
+- Per altre informazioni su Log Analytics di OMS e sulle origini di raccolta dati, vedere la [panoramica della raccolta dati di Archiviazione di Azure in Log Analytics](../log-analytics/log-analytics-azure-storage.md)
 
 
 

@@ -1,5 +1,5 @@
 ---
-title: aaaPowerShell script toocreate una risorsa di Application Insights | Documenti Microsoft
+title: Script di PowerShell per creare una risorsa di Application Insights | Documentazione Microsoft
 description: Consente di automatizzare la creazione di risorse di Application Insights.
 services: application-insights
 documentationcenter: windows
@@ -13,28 +13,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/19/2016
 ms.author: bwren
-ms.openlocfilehash: 2ac00376d38026d64c2c5deabfaca60588924510
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a828af9c7d207dd84cc626fc70206018fd67e2dd
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="powershell-script-toocreate-an-application-insights-resource"></a>Script di PowerShell toocreate una risorsa di Application Insights
+# <a name="powershell-script-to-create-an-application-insights-resource"></a>Script di PowerShell per creare una risorsa di Application Insights
 
 
-Quando si desidera toomonitor una nuova applicazione - o una nuova versione di un'applicazione - con [Azure Application Insights](https://azure.microsoft.com/services/application-insights/), impostare una nuova risorsa in Microsoft Azure. Questa risorsa è in cui i dati di telemetria hello dall'app vengono analizzati e visualizzati. 
+Se si vuole monitorare una nuova applicazione oppure una nuova versione di un'applicazione con [Azure Application Insights](https://azure.microsoft.com/services/application-insights/), è possibile configurare una nuova risorsa in Microsoft Azure. Questa risorsa verrà usata per analizzare e visualizzare i dati di telemetria provenienti dall'app. 
 
-È possibile automatizzare la creazione di hello di una nuova risorsa tramite PowerShell.
+Per automatizzare la creazione di una nuova risorsa con PowerShell.
 
-Se, ad esempio, si intende sviluppare un'app per dispositivi mobili, è probabile che, in un dato momento, i clienti usino diverse versioni pubblicate dell'app. Per evitare che i risultati di telemetria hello tooget da diverse versioni confuse. Per ottenere il toocreate processo di compilazione una nuova risorsa per ogni compilazione.
+Se, ad esempio, si intende sviluppare un'app per dispositivi mobili, è probabile che, in un dato momento, i clienti usino diverse versioni pubblicate dell'app. Se però si vuole evitare di combinare i risultati di telemetria delle diverse versioni, è possibile fare in modo che il processo di compilazione crei una nuova risorsa per ogni compilazione.
 
 > [!NOTE]
-> Se si desidera toocreate un set di risorse tutto hello stesso tempo, prendere in considerazione [la creazione di risorse hello utilizzando un modello di Azure](app-insights-powershell.md).
+> Se si desidera creare un set di risorse simultaneamente, è consigliabile [creare le risorse tramite un modello di Azure](app-insights-powershell.md).
 > 
 > 
 
-## <a name="script-toocreate-an-application-insights-resource"></a>Script toocreate una risorsa di Application Insights
-Vedere le specifiche di cmdlet pertinenti hello:
+## <a name="script-to-create-an-application-insights-resource"></a>Script per creare una risorsa di Application Insights
+Vedere le specifiche dei cmdlet:
 
 * [New-AzureRmResource](https://msdn.microsoft.com/library/mt652510.aspx)
 * [New-AzureRmRoleAssignment](https://msdn.microsoft.com/library/mt678995.aspx)
@@ -48,31 +48,31 @@ Vedere le specifiche di cmdlet pertinenti hello:
 # Set Values
 ###########################################
 
-# If running manually, uncomment before hello first 
-# execution toologin toohello Azure Portal:
+# If running manually, uncomment before the first 
+# execution to login to the Azure Portal:
 
 # Add-AzureRmAccount / Login-AzureRmAccount
 
-# Set hello name of hello Application Insights Resource
+# Set the name of the Application Insights Resource
 
 $appInsightsName = "TestApp"
 
-# Set hello application name used for hello value of hello Tag "AppInsightsApp" 
+# Set the application name used for the value of the Tag "AppInsightsApp" 
 
 $applicationTagName = "MyApp"
 
-# Set hello name of hello Resource Group toouse.  
-# Default is hello application name.
+# Set the name of the Resource Group to use.  
+# Default is the application name.
 $resourceGroupName = "MyAppResourceGroup"
 
 ###################################################
-# Create hello Resource and Output hello name and iKey
+# Create the Resource and Output the name and iKey
 ###################################################
 
-# Select hello azure subscription
+# Select the azure subscription
 Select-AzureSubscription -SubscriptionName "MySubscription"
 
-# Create hello App Insights Resource
+# Create the App Insights Resource
 
 
 $resource = New-AzureRmResource `
@@ -84,7 +84,7 @@ $resource = New-AzureRmResource `
   -PropertyObject @{"Application_Type"="web"} `
   -Force
 
-# Give owner access toohello team
+# Give owner access to the team
 
 New-AzureRmRoleAssignment `
   -SignInName "myteam@fabrikam.com" `
@@ -98,10 +98,10 @@ Write-Host "IKey = " $resource.Properties.InstrumentationKey
 
 ```
 
-## <a name="what-toodo-with-hello-ikey"></a>Quali toodo con iKey hello
-Per identificare le singole risorse, viene usata una chiave di strumentazione (iKey), iKey Hello è un output dello script di creazione risorsa hello. Lo script di compilazione deve fornire hello iKey toohello che Application Insights SDK incorporato nell'applicazione.
+## <a name="what-to-do-with-the-ikey"></a>Cosa fare con l'iKey
+Per identificare le singole risorse, viene usata una chiave di strumentazione (iKey), ovvero l'output dello script di creazione della risorsa. Lo script di compilazione deve fornire l'iKey all'istanza di Application Insights SDK incorporata nell'app.
 
-Esistono due modi toomake hello iKey disponibili toohello SDK:
+È possibile fornire l'iKey all'SDK in due modi diversi:
 
 * In [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md): 
   * `<instrumentationkey>`*ikey*`</instrumentationkey>`

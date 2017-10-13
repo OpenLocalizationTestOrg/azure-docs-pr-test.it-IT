@@ -1,5 +1,5 @@
 ---
-title: Glossario di strumenti di Database aaaElastic | Documenti Microsoft
+title: Glossario sugli strumenti di database elastici | Documentazione Microsoft
 description: Spiegazione dei termini utilizzati per gli strumenti dei database elastici
 services: sql-database
 documentationcenter: 
@@ -15,30 +15,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/24/2016
 ms.author: ddove
-ms.openlocfilehash: d6573aad9a097e07135b0a64d1dafec19bb8cc7c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0fda4bb948bbed1c14d468519ba67cce9bc4e6c3
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="elastic-database-tools-glossary"></a>Glossario sugli strumenti di database elastici
-Hello termini seguenti vengono definiti per hello [strumenti di Database elastico](sql-database-elastic-scale-introduction.md), una funzionalità di Database SQL di Azure. strumenti Hello sono utilizzati toomanage [partizione viene mappata](sql-database-elastic-scale-shard-map-management.md)e includere hello [libreria client](sql-database-elastic-database-client-library.md), hello [strumento di merge di divisione](sql-database-elastic-scale-overview-split-and-merge.md), [pool elastici](sql-database-elastic-pool.md), e [query](sql-database-elastic-query-overview.md). 
+Di seguito sono elencate le definizioni dei termini usati per gli [strumenti di database elastici](sql-database-elastic-scale-introduction.md), una funzionalità del database SQL di Azure. Gli strumenti vengono usati per gestire le [mappe partizioni](sql-database-elastic-scale-shard-map-management.md) e includono la [libreria client](sql-database-elastic-database-client-library.md), lo [strumento di suddivisione-unione](sql-database-elastic-scale-overview-split-and-merge.md), i [pool elastici](sql-database-elastic-pool.md) e le [query](sql-database-elastic-query-overview.md). 
 
-Questi termini vengono utilizzati [aggiunta di una partizione utilizzando gli strumenti di Database elastico](sql-database-elastic-scale-add-a-shard.md) e [utilizzando i problemi di mappa partizioni toofix classe RecoveryManager hello](sql-database-elastic-database-recovery-manager.md).
+Questi termini vengono usati in [Aggiunta di una partizione utilizzando gli strumenti di database elastici](sql-database-elastic-scale-add-a-shard.md) e [Uso della classe RecoveryManager per correggere i problemi delle mappe partizioni](sql-database-elastic-database-recovery-manager.md).
 
 ![Termini della scalabilità elastica][1]
 
 **Database**: un database SQL di Azure. 
 
-**Routing dipendente dai dati**: hello funzionalità che consente una partizione di tooa tooconnect applicazione assegnata una chiave di partizionamento orizzontale specifica. Vedere [Routing dipendente dei dati](sql-database-elastic-scale-data-dependent-routing.md). Confrontare troppo**[Query più partizioni](sql-database-elastic-scale-multishard-querying.md)**.
+**Routing dipendente dei dati**: la funzionalità che consente a un'applicazione di connettersi a una partizione in base a una specifica chiave di partizionamento orizzontale. Vedere [Routing dipendente dei dati](sql-database-elastic-scale-data-dependent-routing.md). Confrontare con **[Multi-Shard Query](sql-database-elastic-scale-multishard-querying.md)**.
 
-**Mappa partizioni globale**: hello mappa tra le chiavi di partizionamento orizzontale e i rispettive partizioni all'interno di un **set di partizioni**. mappa di partizioni globale Hello viene archiviata in hello **gestore mappe partizioni**. Confrontare troppo**mappa partizioni locali**.
+**Mappa globale partizioni**: il mapping tra le chiavi di partizionamento orizzontale e le rispettive partizioni all'interno di un **set di partizioni**. La mappa partizioni globale viene archiviata nel **gestore mappe partizioni**. Confrontare con la **mappa partizioni locale**.
 
-**Mappa partizioni di tipo elenco**: una mappa partizioni in cui le chiavi di partizionamento orizzontale vengono mappate singolarmente. Confrontare troppo**mappa partizioni intervallo**.   
+**Mappa partizioni di tipo elenco**: una mappa partizioni in cui le chiavi di partizionamento orizzontale vengono mappate singolarmente. Confrontare con la **mappa partizioni di tipo intervallo**.   
 
-**Mappa partizioni locali**: archiviati in una partizione, mappa di partizioni locale hello contiene i mapping per gli shardlet hello che risiedono in partizioni hello.
+**Mappa partizioni locale**: archiviata in una partizione, la mappa partizioni locale contiene i mapping per gli shardlet che risiedono nella partizione.
 
-**Query su più partizioni**: hello possibilità tooissue una query su più partizioni; vengono restituiti i set di risultati utilizzando la semantica di UNION ALL (noto anche come "query fan-out"). Confrontare troppo**routing dipendente dai dati**.
+**Esecuzione di query su più partizioni**: la possibilità di eseguire una query su più partizioni; i set di risultati vengono restituiti usando la semantica di UNION ALL (nota anche come "query di tipo fan-out"). Confrontare con **Routing dipendente dai dati**.
 
 **Multi-tenant** e **Tenant singolo**: l'immagine mostra un database a tenant singolo e un database multi-tenant:
 
@@ -48,42 +48,42 @@ Ecco una rappresentazione di database a tenant singolo e multi-tenant **partizio
 
 ![Database a tenant singolo e multi-tenant](./media/sql-database-elastic-scale-glossary/shards-single-multi.png)
 
-**Mappa partizioni intervallo**: una mappa partizioni in cui hello strategia di distribuzione di partizioni si basa su più intervalli di valori contigui. 
+**Mappa partizioni di tipo intervallo**: una mappa partizioni in cui la strategia di distribuzione delle partizioni è basata su più intervalli di valori contigui. 
 
 **Tabelle di riferimento**: tabelle che non vengono partizionate, ma vengono replicate tra le partizioni. I codici di avviamento postale, ad esempio, possono essere archiviati in una tabella di riferimento. 
 
 **Partizione**: un database SQL di Azure che archivia i dati da un set di dati partizionato. 
 
-**Elasticità partizioni**: hello possibilità tooperform entrambi **scalabilità orizzontale** e **la scalabilità verticale**.
+**Elasticità di partizionamento**: la possibilità di eseguire il **ridimensionamento orizzontale** e il **ridimensionamento verticale**.
 
 **Tabelle partizionate**: tabelle che vengono partizionate, ovvero i cui dati vengono distribuiti tra le partizioni in base ai valori della chiave di partizionamento orizzontale. 
 
-**Chiave di partizionamento orizzontale**: un valore di colonna che determina la modalità di distribuzione dei dati tra le partizioni. Hello tipo di valore può essere uno dei seguenti hello: **int**, **bigint**, **varbinary**, o **uniqueidentifier**. 
+**Chiave di partizionamento orizzontale**: un valore di colonna che determina la modalità di distribuzione dei dati tra le partizioni. Il tipo valore può essere uno dei seguenti: **int**, **bigint**, **varbinary** o **uniqueidentifier**. 
 
-**Set di partizioni**: hello raccolta di partizioni che sono con attributo toohello stessa mappa partizioni nel gestore mappe partizioni di hello.  
+**Set di partizioni**: la raccolta di partizioni attribuite alla stessa mappa partizioni nel gestore delle mappe partizioni.  
 
-**Shardlet**: tutti i dati di hello associati a un singolo valore di una chiave di partizionamento orizzontale in una partizione. Un shardlet è hello più piccola unità di spostamento di dati possibili quando ridistribuzione di tabelle partizionate. 
+**Shardlet**: il complesso dei dati associati a un singolo valore di una chiave di partizionamento orizzontale in una partizione. Uno shardlet è la più piccola unità di spostamento dei dati possibile quando si ridistribuiscono tabelle partizionate. 
 
-**Mappa partizioni**: hello set di mapping tra le chiavi di partizionamento orizzontale e i rispettive partizioni.
+**Mappa partizioni**: il set di mapping tra le chiavi di partizionamento orizzontale e le rispettive partizioni.
 
-**Gestore mappe partizioni**: un archivio di oggetti e dati di gestione che contiene i mapping per uno o più set di partizioni, percorsi partizioni e alle mappe partizioni hello.
+**Gestore mappe partizioni**: un archivio di dati e oggetti di gestione che contiene le mappe partizioni, i percorsi delle partizioni e i mapping per uno o più set di partizioni.
 
 ![Mapping][2]
 
 ## <a name="verbs"></a>Verbi
-**Scalabilità orizzontale**: act hello della scala (o) una raccolta di partizioni, aggiungendo o rimuovendo mappa partizioni tooa di partizioni, come illustrato di seguito.
+**Scalare orizzontalmente**: aumentare o ridurre le dimensioni di una raccolta di partizioni aggiungendo o rimuovendo partizioni a una mappa partizioni.
 
 ![Scalabilità orizzontale e verticale][3]
 
-**Merge**: azione hello lo spostamento degli shardlet dalla partizione tooone due partizioni e aggiornare di conseguenza mappa partizioni hello.
+**Unire**: spostare shardlet da due partizioni a una partizione e aggiornare la mappa partizioni di conseguenza.
 
-**Spostamento di Shardlet**: intende hello lo spostamento di una partizione diversa di tooa singolo shardlet. 
+**Spostare shardlet**: spostare un singolo shardlet in una partizione diversa. 
 
-**Partizioni**: atto hello di partizionamento orizzontale in modo identico dati strutturati tra più database in base a una chiave di partizionamento orizzontale.
+**Partizione**: eseguire il partizionamento orizzontale di dati strutturati in modo identico in più database in base a una chiave di partizionamento orizzontale.
 
-**Split**: intende hello lo spostamento di shardlet diverse dalla partizione di una partizione tooanother (in genere nuovo). Una chiave di partizionamento orizzontale viene fornita dall'utente hello come punto di divisione hello.
+**Dividere**: spostare più shardlet da una partizione a un'altra (in genere nuova). Come punto di divisione viene usata una chiave di partizionamento orizzontale fornita dall'utente.
 
-**Scalabilità verticale**: atto hello di scalare (verticale) hello livello delle prestazioni di una singola partizione. Ad esempio, la modifica di una partizione da tooPremium Standard (che comporta più risorse di calcolo). 
+**Scalare verticalmente**: aumentare o ridurre il livello di prestazioni di una singola partizione. Ad esempio, modifica di una partizione da Standard a Premium (che comporta più risorse di elaborazione). 
 
 [!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
 

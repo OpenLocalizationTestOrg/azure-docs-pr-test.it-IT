@@ -1,6 +1,6 @@
 ---
-title: stack di comunicazione di servizi WCF aaaReliable | Documenti Microsoft
-description: Hello predefiniti WCF stack di comunicazione nell'infrastruttura del servizio fornisce la comunicazione WCF il servizio client per servizi affidabili.
+title: Stack di comunicazione WCF di Reliable Services | Documentazione Microsoft
+description: Lo stack di comunicazione WCF integrato in Service Fabric consente la comunicazione client-servizio di WCF per Reliable Services.
 services: service-fabric
 documentationcenter: .net
 author: BharatNarasimman
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 06/07/2017
 ms.author: bharatn
-ms.openlocfilehash: 7feebef4d46a6ae66d05129f47f9b5911e82aec9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7037620ebdc26a9f18531064bf45d058f5060e39
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="wcf-based-communication-stack-for-reliable-services"></a>Stack di comunicazione basato su WCF per Reliable Services
-Hello servizi affidabili framework consente dello stack comunicazione hello toochoose autori che desiderano toouse per il servizio del servizio. Può essere inserito nello stack di comunicazione hello di loro scelta tramite hello **ICommunicationListener** restituito da hello [CreateServiceReplicaListeners o CreateServiceInstanceListeners](service-fabric-reliable-services-communication.md) metodi. framework Hello fornisce un'implementazione dello stack di comunicazione hello basati su hello Windows Communication Foundation (WCF) per gli autori del servizio che desidera toouse comunicazioni basate su WCF.
+Il framework di Reliable Services consente agli autori del servizio di scegliere lo stack di comunicazione da usare per il servizio, nonché di collegarsi allo stack di comunicazione scelto tramite l'oggetto **ICommunicationListener** restituito dai metodi [CreateServiceReplicaListeners o CreateServiceInstanceListeners](service-fabric-reliable-services-communication.md). Il framework offre un'implementazione dello stack di comunicazione basata su Windows Communication Foundation (WCF) per gli autori del servizio che intendono usare la comunicazione basata su WCF.
 
 ## <a name="wcf-communication-listener"></a>Listener di comunicazione WCF
-implementazione di Hello WCF specifiche di **ICommunicationListener** viene fornito da hello **Microsoft.ServiceFabric.Services.Communication.Wcf.Runtime.WcfCommunicationListener** classe.
+L'implementazione specifica di WCF dell'oggetto **ICommunicationListener** viene fornita dalla classe **Microsoft.ServiceFabric.Services.Communication.Wcf.Runtime.WcfCommunicationListener**.
 
 Si supponga di avere un contratto di servizio di tipo `ICalculator`
 
@@ -37,7 +37,7 @@ public interface ICalculator
 }
 ```
 
-È possibile creare un listener di comunicazione WCF in hello servizio hello seguente modo.
+È possibile creare un listener di comunicazione WCF nel servizio come descritto di seguito.
 
 ```csharp
 
@@ -48,13 +48,13 @@ protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListe
             wcfServiceObject:this,
             serviceContext:context,
             //
-            // hello name of hello endpoint configured in hello ServiceManifest under hello Endpoints section
-            // that identifies hello endpoint that hello WCF ServiceHost should listen on.
+            // The name of the endpoint configured in the ServiceManifest under the Endpoints section
+            // that identifies the endpoint that the WCF ServiceHost should listen on.
             //
             endpointResourceName: "WcfServiceEndpoint",
 
             //
-            // Populate hello binding information that you want hello service toouse.
+            // Populate the binding information that you want the service to use.
             //
             listenerBinding: WcfUtility.CreateTcpListenerBinding()
         )
@@ -63,8 +63,8 @@ protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListe
 
 ```
 
-## <a name="writing-clients-for-hello-wcf-communication-stack"></a>Scrittura di client per lo stack di comunicazione WCF hello
-Per la scrittura di client toocommunicate con i servizi con WCF, il framework di hello fornisce **WcfClientCommunicationFactory**, che rappresenta l'implementazione di hello WCF specifiche di [ClientCommunicationFactoryBase](service-fabric-reliable-services-communication.md).
+## <a name="writing-clients-for-the-wcf-communication-stack"></a>Scrittura di client per lo stack di comunicazione WCF
+Per consentire ai client di scrittura di comunicare con i servizi usando WCF, il framework fornisce l'oggetto **WcfClientCommunicationFactory**, ovvero l'implementazione specifica di WCF di [ClientCommunicationFactoryBase](service-fabric-reliable-services-communication.md).
 
 ```csharp
 
@@ -76,7 +76,7 @@ public WcfCommunicationClientFactory(
     object callback = null);
 ```
 
-il canale di comunicazione WCF Hello è possibile accedere da hello **WcfCommunicationClient** creato da hello **WcfCommunicationClientFactory**.
+Il canale di comunicazione WCF è accessibile dall'oggetto **WcfCommunicationClient** creato da **WcfCommunicationClientFactory**.
 
 ```csharp
 
@@ -90,7 +90,7 @@ public class WcfCommunicationClient : ServicePartitionClient<WcfCommunicationCli
 
 ```
 
-Il codice client può utilizzare hello **WcfCommunicationClientFactory** insieme hello **WcfCommunicationClient** che implementa l'interfaccia **ServicePartitionClient** toodetermine endpoint del servizio di Hello e comunicare con il servizio di hello.
+Il codice client può usare **WcfCommunicationClientFactory** insieme a **WcfCommunicationClient** che implementa **ServicePartitionClient** per determinare l'endpoint del servizio e comunicare con esso.
 
 ```csharp
 // Create binding
@@ -102,7 +102,7 @@ var wcfClientFactory = new WcfCommunicationClientFactory<ICalculator>
     (clientBinding: binding, servicePartitionResolver: partitionResolver);
 
 //
-// Create a client for communicating with hello ICalculator service that has been created with the
+// Create a client for communicating with the ICalculator service that has been created with the
 // Singleton partition scheme.
 //
 var calculatorServiceCommunicationClient =  new WcfCommunicationClient(
@@ -111,14 +111,14 @@ var calculatorServiceCommunicationClient =  new WcfCommunicationClient(
                 ServicePartitionKey.Singleton);
 
 //
-// Call hello service tooperform hello operation.
+// Call the service to perform the operation.
 //
 var result = calculatorServiceCommunicationClient.InvokeWithRetryAsync(
                 client => client.Channel.Add(2, 3)).Result;
 
 ```
 > [!NOTE]
-> predefinito Hello ServicePartitionResolver si presuppone che il client hello è in esecuzione nel servizio hello nello stesso cluster. In caso non hello, creare un oggetto ServicePartitionResolver e passare gli endpoint di connessione di hello del cluster.
+> L'oggetto ServicePartitionResolver predefinito presuppone che il client sia in esecuzione nello stesso cluster del servizio. In caso contrario, creare un oggetto ServicePartitionResolver e passare gli endpoint di connessione del cluster.
 > 
 > 
 

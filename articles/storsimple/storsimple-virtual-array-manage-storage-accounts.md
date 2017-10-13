@@ -1,6 +1,6 @@
 ---
-title: le credenziali dell'account di archiviazione StorSimple Virtual Array aaaManage | Documenti Microsoft
-description: "Viene illustrato come è possibile utilizzare hello tooadd pagina Configura dispositivo StorSimple Manager, modificare, eliminare o le chiavi di sicurezza ruota hello per le credenziali dell'account di archiviazione associati hello Array virtuale StorSimple."
+title: Gestire le credenziali dell'account di archiviazione per l'array virtuale StorSimple | Documentazione Microsoft
+description: Spiega come usare la pagina Configura Gestione dispositivi di StorSimple per aggiungere, modificare, eliminare o ruotare le chiavi di sicurezza per le credenziali dell'account di archiviazione associate all'array virtuale StorSimple.
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,34 +14,34 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 02/27/2017
 ms.author: alkohli
-ms.openlocfilehash: 22a0341eae0b89020065be4dbfaae77999f8be0d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a4ce2d329d0e1399cffaf886adf2b95e34b9cd7b
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="use-storsimple-device-manager-toomanage-storage-account-credentials-for-storsimple-virtual-array"></a>Utilizzare Gestione periferiche di StorSimple toomanage credenziali di account di archiviazione per Array virtuale StorSimple
+# <a name="use-storsimple-device-manager-to-manage-storage-account-credentials-for-storsimple-virtual-array"></a>Usare Gestione dispositivi StorSimple per gestire le credenziali dell'account di archiviazione per l'array virtuale StorSimple
 
 ## <a name="overview"></a>Panoramica
-Hello **configurazione** sezione del Pannello di servizio di gestione di dispositivi StorSimple hello della matrice virtuale StorSimple presenta parametri del servizio globale hello che possono essere creati in hello servizio StorSimple Manager. Questi parametri possono essere applicati tooall hello dispositivi toohello servizio connesso e includono:
+La sezione **Configurazione** del pannello del servizio Gestione dispositivi StorSimple dell'array virtuale StorSimple illustra i parametri globali del servizio che possono essere creati nel servizio StorSimple Manager. Questi parametri possono essere applicati a tutti i dispositivi connessi al servizio e includono:
 
 * Credenziali dell'account di archiviazione
 * Record di controllo di accesso
   
   ![Dashboard del servizio Gestione dispositivi](./media/storsimple-virtual-array-manage-storage-accounts/ova-storageaccts-dashboard.png)  
 
-Questa esercitazione illustra come aggiungere, modificare o eliminare le credenziali dell'account di archiviazione per l'array virtuale StorSimple. informazioni di Hello in questa esercitazione si applicano solo toohello Array virtuale StorSimple. Per informazioni su come account di archiviazione toomanage serie 8000, vedere [utilizzare account di archiviazione di toomanage servizio StorSimple Manager hello](storsimple-manage-storage-accounts.md).
+Questa esercitazione illustra come aggiungere, modificare o eliminare le credenziali dell'account di archiviazione per l'array virtuale StorSimple. Le informazioni contenute in questa esercitazione si applicano solo all'array virtuale StorSimple. Per informazioni su come gestire gli account di archiviazione della serie 8000, vedere [Utilizzare il servizio StorSimple Manager per gestire l'account di archiviazione](storsimple-manage-storage-accounts.md).
 
-Account di archiviazione di credenziali contiene credenziali hello hello dispositivo tooaccess utilizza l'account di archiviazione con il provider del servizio cloud. Per gli account di archiviazione di Microsoft Azure, queste sono le credenziali quali nome dell'account hello e chiave di accesso primaria hello.
+Le credenziali dell'account di archiviazione contengono le credenziali usate dal dispositivo per accedere all'account di archiviazione con il provider di servizi cloud. Per gli account di archiviazione di Microsoft Azure, queste sono le credenziali, ad esempio il nome dell'account e la chiave di accesso primaria.
 
-In hello **le credenziali dell'account di archiviazione** blade, account di archiviazione di tutte le credenziali create per hello fatturazione sottoscrizione vengono visualizzate in formato tabulare che contiene le seguenti informazioni hello:
+Nel pannello **Credenziali dell'account di archiviazione** tutte le credenziali dell'account di archiviazione create per la sottoscrizione di fatturazione vengono visualizzate in un formato tabulare con le informazioni seguenti:
 
-* **Nome** : hello account toohello nome univoco assegnato al momento della creazione.
-* **SSL abilitato** : indica se hello SSL è abilitato e la comunicazione da dispositivo a cloud è su canale sicuro hello.
+* **Nome** : il nome univoco assegnato all'account al momento della creazione.
+* **SSL abilitato** : se SSL è abilitato e la comunicazione tra dispositivo e cloud avviene tramite il canale protetto.
   
   ![Sezione Configurazione](./media/storsimple-virtual-array-manage-storage-accounts/ova-storageaccountcredentials-blade.png)
 
-attività più comuni di Hello correlate toostorage le credenziali dell'account che possono essere eseguite su hello **le credenziali dell'account di archiviazione** blade sono:
+Le attività più comuni relative alle credenziali dell'account di archiviazione che possono essere eseguite nel pannello **Credenziali dell'account di archiviazione** sono:
 
 * Aggiungere una credenziale dell'account di archiviazione
 * Modificare una credenziale dell'account di archiviazione
@@ -50,67 +50,67 @@ attività più comuni di Hello correlate toostorage le credenziali dell'account 
 ## <a name="types-of-storage-account-credentials"></a>Tipi di credenziali dell'account di archiviazione
 Esistono tre tipi di credenziali dell'account di archiviazione che è possibile usare con il dispositivo StorSimple.
 
-* **Le credenziali dell'account di archiviazione generato automaticamente** : come suggerisce il nome di hello, questo tipo di credenziale dell'account di archiviazione viene generato automaticamente quando viene creato il servizio di hello. toolearn ulteriori informazioni su come viene creata la credenziale dell'account di archiviazione, vedere [creare un nuovo servizio](storsimple-virtual-array-manage-service.md#create-a-service).
-* **le credenziali dell'account di archiviazione nella sottoscrizione al servizio hello** : si tratta di account di archiviazione di Azure hello credenziali associate hello stessa sottoscrizione di quella del servizio hello. toolearn ulteriori informazioni su come creare le credenziali di account di archiviazione, vedere [informazioni sugli account di archiviazione di Azure](../storage/common/storage-create-storage-account.md).
-* **le credenziali dell'account di archiviazione all'esterno di sottoscrizione del servizio hello** : si tratta delle credenziali dell'account di archiviazione di Azure hello non sono associati al servizio e probabilmente hello era presente prima di servizio è stato creato.
+* **Credenziali dell'account di archiviazione generate automaticamente**: come il nome suggerisce, questo tipo di credenziale viene generato automaticamente alla creazione del servizio. Per altre informazioni sulla creazione della credenziale dell'account di archiviazione, vedere [Creare un nuovo servizio](storsimple-virtual-array-manage-service.md#create-a-service).
+* **Credenziali dell'account di archiviazione nella sottoscrizione del servizio**: le credenziali dell'account di archiviazione di Azure associate alla stessa sottoscrizione del servizio. Per altre informazioni su come vengono create queste credenziali dell'account di archiviazione, vedere [Informazioni sugli account di archiviazione di Azure](../storage/common/storage-create-storage-account.md).
+* **Credenziali dell'account di archiviazione esterne alla sottoscrizione del servizio**: le credenziali dell'account di archiviazione di Azure non associate al servizio e probabilmente esistenti prima che il servizio fosse creato.
 
 ## <a name="add-a-storage-account-credential"></a>Aggiungere una credenziale dell'account di archiviazione
-È possibile aggiungere una configurazione del servizio di archiviazione account credenziali tooyour dispositivo StorSimple Manager fornendo univoco descrittivo accesso credenziali di nome e che sono collegati toohello account di archiviazione. È anche possibile hello l'abilitazione di un canale sicuro per la comunicazione di rete tra il cloud di dispositivo e hello toocreate modalità di hello sicura sockets layer (SSL).
+È possibile aggiungere una credenziale dell'account di archiviazione al servizio Gestione dispositivi StorSimple indicando un nome descrittivo univoco e le credenziali di accesso collegate all'account di archiviazione. È inoltre possibile scegliere di abilitare la modalità SSL (Secure Socket Layer) per creare un canale protetto per la comunicazione di rete tra il dispositivo e il cloud.
 
-È possibile creare più account per un provider del servizio cloud specificato. Mentre credenziale dell'account di archiviazione hello viene salvato, il servizio di hello tenta toocommunicate con provider di servizi cloud. credenziali di Hello e dati di accesso hello fornite vengono autenticati in questo momento. Una credenziale dell'account di archiviazione viene creata solo se hello autenticazione ha esito positivo. Se l'autenticazione di hello non riesce, viene visualizzato un messaggio di errore appropriato.
+È possibile creare più account per un provider del servizio cloud specificato. Durante il salvataggio della credenziale dell'account di archiviazione, il servizio tenta di comunicare con il provider di servizi cloud. Le credenziali e i dati di accesso forniti vengono autenticati in questa fase. La credenziale dell'account di archiviazione viene creata solo se l'autenticazione ha esito positivo. Se l'autenticazione non riesce, viene visualizzato un messaggio di errore appropriato.
 
-Utilizzare hello le credenziali dell'account di archiviazione di Azure tooadd le procedure seguenti:
+Usare le procedure seguenti per aggiungere le credenziali dell'account di archiviazione di Azure:
 
-* una credenziale dell'account di archiviazione con tooadd hello stessa sottoscrizione di Azure come servizio di Gestione periferiche hello
-* una credenziale dell'account di archiviazione di Azure all'esterno di sottoscrizione del servizio di Gestione periferiche hello tooadd
+* Per aggiungere una credenziale dell'account di archiviazione con la stessa sottoscrizione di Azure del servizio Gestione dispositivi
+* Per aggiungere le credenziali di un account di archiviazione di Azure al di fuori della sottoscrizione del servizio Gestione dispositivi
 
-#### <a name="tooadd-a-storage-account-credential-that-has-hello-same-azure-subscription-as-hello-device-manager-service"></a>una credenziale dell'account di archiviazione con tooadd hello stessa sottoscrizione di Azure come servizio di Gestione periferiche hello
+#### <a name="to-add-a-storage-account-credential-that-has-the-same-azure-subscription-as-the-device-manager-service"></a>Per aggiungere una credenziale dell'account di archiviazione con la stessa sottoscrizione di Azure del servizio Gestione dispositivi
 
-1. Passare tooyour del servizio di Gestione periferiche, seleziona e fare doppio clic. Verrà visualizzata hello **Panoramica** blade.
-2. Selezionare **le credenziali dell'account di archiviazione** all'interno di hello **configurazione** sezione.
+1. Passare al servizio Gestione dispositivi, selezionare e fare doppio clic. Si apre il pannello **Panoramica**.
+2. Selezionare **Credenziali dell'account di archiviazione** nella sezione **Configurazione**.
 3. Fare clic su **Aggiungi**.
-4. In hello **aggiungere un account di archiviazione** pannello hello seguenti:
+4. Nel pannello **Aggiungi un account di archiviazione** eseguire le operazioni seguenti:
    
     1. Per **Sottoscrizione** selezionare **Corrente**.
-    2. Specificare il nome di hello dell'account di archiviazione di Azure.
-    3. Selezionare **abilitare** toocreate un canale sicuro per la comunicazione di rete tra il cloud di dispositivo e hello StorSimple. Selezionare **Disabilita** solo se si opera all'interno di un cloud privato.
-    4. Fare clic su **Aggiungi**. Ricevono una notifica dopo la creazione dell'account di archiviazione hello.<br></br>
+    2. Specificare il nome dell'account di archiviazione di Azure.
+    3. Selezionare**Abilita** per creare un canale sicuro per la comunicazione di rete tra il dispositivo StorSimple e il cloud. Selezionare **Disabilita** solo se si opera all'interno di un cloud privato.
+    4. Fare clic su **Aggiungi**. Quando la creazione dell'account di archiviazione viene completata, si riceve una notifica.<br></br>
    
         ![Aggiungere le credenziali di un account di archiviazione esistente](./media/storsimple-virtual-array-manage-storage-accounts/ova-add-storageacct.png)
 
-#### <a name="tooadd-an-azure-storage-account-credential-that-is-outside-of-hello-device-manager-service-subscription"></a>una credenziale dell'account di archiviazione di Azure all'esterno di sottoscrizione del servizio di Gestione periferiche hello tooadd
+#### <a name="to-add-an-azure-storage-account-credential-that-is-outside-of-the-device-manager-service-subscription"></a>Per aggiungere le credenziali di un account di archiviazione di Azure al di fuori della sottoscrizione del servizio Gestione dispositivi
 
-1. Passare tooyour del servizio di Gestione periferiche, seleziona e fare doppio clic. Verrà visualizzata hello **Panoramica** blade.
-2. Selezionare **le credenziali dell'account di archiviazione** all'interno di hello **configurazione** sezione. Elenca le credenziali di account di archiviazione esistente associate hello del servizio di gestione di dispositivi StorSimple.
+1. Passare al servizio Gestione dispositivi, selezionare e fare doppio clic. Si apre il pannello **Panoramica**.
+2. Selezionare **Credenziali dell'account di archiviazione** nella sezione **Configurazione**. Elenca le credenziali di un qualsiasi account di archiviazione esistente associate al servizio Gestione dispositivi StorSimple.
 3. Fare clic su **Aggiungi**.
-4. In hello **aggiungere un account di archiviazione** pannello hello seguenti:
+4. Nel pannello **Aggiungi un account di archiviazione** eseguire le operazioni seguenti:
    
     1. Per **Sottoscrizione** selezionare **Altro**.
    
-    2. Specificare il nome di hello delle credenziali di account di archiviazione di Azure.
+    2. Specificare il nome della credenziale dell'account di archiviazione di Azure.
    
-    3. In hello **chiave di accesso di account di archiviazione** casella di testo, specificare hello chiave di accesso primaria per le credenziali di account di archiviazione di Azure. tooget questa chiave, il servizio di archiviazione di Azure toohello go, selezionare le credenziali di account di archiviazione e fare clic su **la gestione delle chiavi di account**. È ora possibile copiare la chiave di accesso primaria hello.
+    3. Nella casella di testo **Chiave di accesso dell'account di archiviazione** specificare la chiave di accesso primaria per la credenziale dell'account di archiviazione di Azure. Per ottenere questa chiave, passare al servizio Archiviazione di Azure, selezionare la credenziale dell'account di archiviazione e fare clic su **Gestisci chiavi di accesso**. È ora possibile copiare la chiave di accesso primaria.
    
-    4. tooenable SSL, fare clic su hello **abilitare** pulsante toocreate un canale sicuro per la comunicazione di rete tra cloud hello e di servizio di gestione di dispositivi StorSimple. Fare clic su hello **disabilitare** pulsante solo se si sta operando all'interno di un cloud privato.
+    4. Per abilitare SSL, fare clic sul pulsante **Abilita** per creare un canale sicuro per la comunicazione di rete tra il servizio Gestione dispositivi StorSimple e il cloud. Fare clic sul pulsante **Disabilita** solo se si opera all'interno di un cloud privato.
    
-    5. Fare clic su **Aggiungi**. Ricevono una notifica dopo la credenziale dell'account di archiviazione hello è stato creato correttamente.
+    5. Fare clic su **Aggiungi**. Quando la creazione della credenziale dell'account di archiviazione viene completata, si riceve una notifica.
 
-5. credenziale dell'account di archiviazione Hello appena creato viene visualizzato nel Pannello di servizio di Gestione periferiche di configurare StorSimple hello in **le credenziali dell'account di archiviazione**.
+5. La credenziale dell'account di archiviazione appena creata viene visualizzata nel pannello del servizio Gestione dispositivi StorSimple in **Credenziali dell'account di archiviazione**.
    
-    ![Aggiungere una credenziale dell'account di archiviazione all'esterno di hello sottoscrizione al servizio Gestione dispositivi](./media/storsimple-virtual-array-manage-storage-accounts/ova-add-outside-storageacct.png)
+    ![Aggiungere una credenziale dell'account di archiviazione all'esterno della sottoscrizione del servizio Gestione dispositivi](./media/storsimple-virtual-array-manage-storage-accounts/ova-add-outside-storageacct.png)
 
 ## <a name="edit-a-storage-account-credential"></a>Modificare una credenziale dell'account di archiviazione
-È possibile modificare una credenziale dell'account di archiviazione usata dal dispositivo. Se si modifica una credenziale dell'account di archiviazione che è attualmente in uso, hello campi disponibili toomodify sono la chiave di accesso hello e modalità SSL hello per le credenziali di account di archiviazione hello. È possibile specificare una nuova chiave di accesso archiviazione hello o modificare hello **Abilita modalità SSL** selezione e salvare le impostazioni di hello aggiornato.
+È possibile modificare una credenziale dell'account di archiviazione usata dal dispositivo. Se si modifica una credenziale dell'account di archiviazione attualmente in uso, i campi disponibili per la modifica sono la chiave di accesso e la modalità SSL per la credenziale dell'account di archiviazione. È possibile indicare la nuova chiave di accesso alle risorse di archiviazione o modificare la selezione **Abilita modalità SSL** e salvare le impostazioni aggiornate.
 
-#### <a name="tooedit-a-storage-account-credential"></a>tooedit una credenziale dell'account di archiviazione
-1. Passare tooyour del servizio di Gestione periferiche, seleziona e fare doppio clic. Verrà visualizzata hello **Panoramica** blade.
-2. Selezionare **le credenziali dell'account di archiviazione** all'interno di hello **configurazione** sezione. Elenca le credenziali di account di archiviazione esistente associate hello del servizio di gestione di dispositivi StorSimple.
-3. Nell'elenco tabulare di hello delle credenziali di account di archiviazione, selezionare e fare doppio clic su account hello che si desidera toomodify.
-4. In credenziali dell'account di archiviazione hello **proprietà** pannello hello seguenti:
+#### <a name="to-edit-a-storage-account-credential"></a>Per modificare una credenziale dell'account di archiviazione
+1. Passare al servizio Gestione dispositivi, selezionare e fare doppio clic. Si apre il pannello **Panoramica**.
+2. Selezionare **Credenziali dell'account di archiviazione** nella sezione **Configurazione**. Elenca le credenziali di un qualsiasi account di archiviazione esistente associate al servizio Gestione dispositivi StorSimple.
+3. Nell'elenco tabulare delle credenziali dell'account di archiviazione, selezionare e fare doppio clic sull'account che si vuole modificare.
+4. Nel pannello **Proprietà** delle credenziali dell'account di archiviazione eseguire le operazioni seguenti:
    
-   1. Se necessario, è possibile modificare hello **abilita SSL** la selezione della modalità.
-   2. È possibile scegliere tooregenerate le chiavi di accesso delle credenziali di account di archiviazione. Per ulteriori informazioni, vedere [Rigenera chiavi dell'account di archiviazione hello](../storage/common/storage-create-storage-account.md#manage-your-storage-access-keys). Fornire hello nuova archiviazione delle credenziali chiave dell'account. Per un account di archiviazione di Azure, questa è la chiave di accesso primaria hello.
-   3. Fare clic su **salvare** nella parte superiore di hello di hello **proprietà** impostazioni hello toosave di blade. aggiornamento delle impostazioni di Hello in hello **le credenziali dell'account di archiviazione** blade.
+   1. Se necessario, è possibile modificare la selezione **Abilita SSL**.
+   2. È possibile rigenerare le chiavi di accesso delle credenziali dell'account di archiviazione. Per altre informazioni, vedere l'articolo [Rigenerazione delle chiavi di accesso alle risorse di archiviazione](../storage/common/storage-create-storage-account.md#manage-your-storage-access-keys). Indicare la nuova chiave della credenziale dell'account di archiviazione. Per un account di archiviazione di Azure si tratta della chiave di accesso primaria.
+   3. Fare clic su **Salva** nella parte superiore del pannello **Proprietà** per salvare le impostazioni. Le impostazioni vengono aggiornate nel pannello **Credenziali dell'account di archiviazione**.
       
       ![Modificare una credenziale dell'account di archiviazione](./media/storsimple-virtual-array-manage-storage-accounts/ova-edit-storageacct.png)
 
@@ -120,35 +120,35 @@ Utilizzare hello le credenziali dell'account di archiviazione di Azure tooadd le
 > 
 > 
 
-#### <a name="toodelete-a-storage-account-credential"></a>toodelete una credenziale dell'account di archiviazione
-1. Passare tooyour del servizio di Gestione periferiche, seleziona e fare doppio clic. Verrà visualizzata hello **Panoramica** blade.
-2. Selezionare **le credenziali dell'account di archiviazione** all'interno di hello **configurazione** sezione. Elenca le credenziali di account di archiviazione esistente associate hello del servizio di gestione di dispositivi StorSimple.
-3. Nell'elenco tabulare di hello delle credenziali di account di archiviazione, selezionare e fare doppio clic su account hello che si desidera toodelete.
-4. In credenziali dell'account di archiviazione hello **proprietà** pannello hello seguenti:
+#### <a name="to-delete-a-storage-account-credential"></a>Per eliminare una credenziale dell'account di archiviazione
+1. Passare al servizio Gestione dispositivi, selezionare e fare doppio clic. Si apre il pannello **Panoramica**.
+2. Selezionare **Credenziali dell'account di archiviazione** nella sezione **Configurazione**. Elenca le credenziali di un qualsiasi account di archiviazione esistente associate al servizio Gestione dispositivi StorSimple.
+3. Nell'elenco tabulare delle credenziali dell'account di archiviazione, selezionare e fare doppio clic sull'account che si vuole eliminare.
+4. Nel pannello **Proprietà** delle credenziali dell'account di archiviazione eseguire le operazioni seguenti:
    
-   1. Fare clic su **eliminare** credenziali hello toodelete.
-   2. Quando viene richiesta la conferma, fare clic su **Sì** toocontinue con l'eliminazione di hello. Elenco tabulare Hello è aggiornato tooreflect hello modifiche.
+   1. Fare clic su **Elimina** per eliminare le credenziali.
+   2. Quando viene richiesta la conferma, fare clic su **Sì** per continuare con l'eliminazione. L'elenco tabulare viene aggiornato per riflettere le modifiche.
       
       ![Eliminare una credenziale dell'account di archiviazione](./media/storsimple-virtual-array-manage-storage-accounts/ova-del-storageacct.png)
 
 ## <a name="synchronizing-storage-account-credential-keys"></a>Sincronizzazione delle chiavi della credenziale dell'account di archiviazione esistente
-Per motivi di sicurezza, la rotazione delle chiavi è spesso un requisito nei centri dati. Un amministratore di Microsoft Azure può rigenerare o modificare chiave primaria o secondaria hello accedendo direttamente alla credenziale dell'account di archiviazione hello (tramite il servizio di archiviazione di Microsoft Azure hello). servizio di gestione di dispositivi StorSimple Hello non rileva automaticamente questa modifica.
+Per motivi di sicurezza, la rotazione delle chiavi è spesso un requisito nei centri dati. Un amministratore di Microsoft Azure può rigenerare oppure modificare la chiave primaria o secondaria accedendo direttamente alla credenziale dell'account di archiviazione tramite il servizio Archiviazione di Microsoft Azure. Il servizio Gestione dispositivi StorSimple non visualizza la modifica automaticamente.
 
-servizio di gestione di dispositivi StorSimple tooinform hello Roc hello, è necessario del servizio di gestione di dispositivi StorSimple hello tooaccess, accesso hello archiviazione delle credenziali dell'account e quindi sincronizzare hello chiave primaria o secondaria (a seconda di quale è stata cambiata). servizio di Hello quindi Ottiene la chiave più recente di hello, consente di crittografare le chiavi di hello e invia hello crittografati dispositivo toohello chiave.
+Per comunicare la modifica al servizio Gestione dispositivi StorSimple, è necessario accedere al servizio Gestione dispositivi StorSimple, accedere alla credenziale dell'account di archiviazione e quindi sincronizzare la chiave primaria o secondaria, a seconda di quale chiave è stata modificata. Quindi, il servizio ottiene la chiave più recente, la crittografa e la invia al dispositivo.
 
-#### <a name="toosynchronize-keys-for-storage-account-credentials-in-hello-same-subscription-as-hello-service-azure-only"></a>hello di chiavi toosynchronize per le credenziali dell'account di archiviazione nella stessa sottoscrizione del servizio hello (solo Azure)
-1. Nel Pannello di destinazione del servizio di hello, selezionare il servizio, fare doppio clic sul servizio hello nome e quindi in hello **configurazione** fare clic su **le credenziali dell'account di archiviazione**.
-2. In hello **le credenziali dell'account di archiviazione** pannello hello selezionare nell'elenco di credenziali di account di archiviazione, credenziali dell'account di archiviazione hello le cui chiavi che si desidera toosynchronize.
-3. In hello **proprietà** pannello hello selezionata credenziale dell'account di archiviazione, hello seguenti:
+#### <a name="to-synchronize-keys-for-storage-account-credentials-in-the-same-subscription-as-the-service-azure-only"></a>Per sincronizzare le chiavi per le credenziali dell'account di archiviazione nella stessa sottoscrizione del servizio (solo Azure)
+1. Nel pannello di destinazione del servizio selezionare il servizio, fare doppio clic sul nome del servizio e nella sezione **Configurazione** fare clic su **Credenziali dell'account di archiviazione**.
+2. Nell'elenco delle credenziali dell'account di archiviazione nel pannello **Credenziali dell'account di archiviazione** selezionare la credenziale dell'account di archiviazione di cui si vuole sincronizzare le chiavi.
+3. Nel pannello **Proprietà** per le credenziali dell'account di archiviazione selezionato eseguire le operazioni seguenti:
    
     1. Fare clic su **Altro**, quindi su **Sincronizza chiave di accesso**.
    
-    2. Quando viene richiesta la conferma, fare clic su **Sincronizza chiave** sincronizzazione hello toocomplete.
+    2. Quando viene richiesta la conferma, fare clic su **Sincronizza chiave** per completare la sincronizzazione.
     
-4. In hello del servizio di gestione di dispositivi StorSimple, è necessario chiave hello tooupdate che è stato modificato in precedenza nel servizio di archiviazione di Microsoft Azure hello. In hello **Sincronizza chiave dell'account di archiviazione** pannello, se la chiave di accesso primaria hello è stata cambiata (rigenerata), fare clic su primario e quindi fare clic su **Sincronizza chiave**. Se la chiave secondaria hello è stata modificata, fare clic su **secondario**, quindi fare clic su **Sincronizza chiave**.
+4. Nel servizio Gestione dispositivi StorSimple è necessario aggiornare la chiave precedentemente modificata nel servizio Archiviazione di Microsoft Azure. Nel pannello **Sincronizza la chiave dell'account di archiviazione**, se la chiave di accesso primaria è stata modificata (rigenerata), fare clic su Primaria e quindi su **Sincronizza chiave**. Se è stata modificata la chiave secondaria, fare clic su **Secondaria**, quindi fare clic su **Sincronizza chiave**.
    
     ![Sincronizzare la chiave di accesso](./media/storsimple-virtual-array-manage-storage-accounts/ova-sync-acess-key.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Informazioni su come troppo[amministrare l'Array virtuale StorSimple](storsimple-ova-web-ui-admin.md).
+* Informazioni su come [amministrare StorSimple Virtual Array](storsimple-ova-web-ui-admin.md).
 

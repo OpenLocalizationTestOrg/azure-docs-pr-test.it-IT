@@ -1,6 +1,6 @@
 ---
-title: gli indirizzi IP aaaMultiple per macchine virtuali di Azure - modello | Documenti Microsoft
-description: "Informazioni su come tooassign più gli indirizzi IP macchina virtuale tooa utilizzando un modello di gestione risorse di Azure."
+title: "Più indirizzi IP per le macchine virtuali di Azure - Modello | Microsoft Docs"
+description: "Informazioni sulla modalità di assegnazione di più indirizzi IP a una macchina virtuale usando un modello di Azure Resource Manager."
 documentationcenter: 
 author: jimdial
 manager: timlt
@@ -14,89 +14,89 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 12/08/2016
 ms.author: jdial
-ms.openlocfilehash: e7660257b2d5c7da4b8b86771abe51a2c5012fa9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d4b189fb23dda1167c4f6b17b618c718d32dd98f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="assign-multiple-ip-addresses-toovirtual-machines-using-an-azure-resource-manager-template"></a>Assegnare più indirizzi IP macchine toovirtual utilizzando un modello di gestione risorse di Azure
+# <a name="assign-multiple-ip-addresses-to-virtual-machines-using-an-azure-resource-manager-template"></a>Assegnare più indirizzi IP a una macchina virtuale usando un modello di Azure Resource Manager
 
 [!INCLUDE [virtual-network-multiple-ip-addresses-intro.md](../../includes/virtual-network-multiple-ip-addresses-intro.md)]
 
-In questo articolo viene illustrato come una macchina virtuale (VM) durante la distribuzione Azure Resource Manager hello toocreate modello utilizzando un modello di gestione risorse. Impossibile assegnare indirizzi IP pubblici e privati toohello stessa scheda di rete quando si distribuisce una macchina virtuale tramite il modello di distribuzione classica hello. ulteriori informazioni sui modelli di distribuzione di Azure, leggere hello toolearn [comprendere i modelli di distribuzione](../resource-manager-deployment-model.md) articolo.
+Questo articolo spiega come creare una macchina virtuale (VM) tramite il modello di distribuzione Azure Resource Manager usando un modello di Resource Manager. È impossibile assegnare più indirizzi IP pubblici e privati alla stessa NIC quando si distribuisce una macchina virtuale tramite il modello di distribuzione classico. Per altre informazioni sui modelli di distribuzione di Azure, leggere l'articolo [Understand Azure deployment models](../resource-manager-deployment-model.md) (Informazioni sui modelli di distribuzione di Azure).
 
 [!INCLUDE [virtual-network-multiple-ip-addresses-template-scenario.md](../../includes/virtual-network-multiple-ip-addresses-scenario.md)]
 
 ## <a name="template-description"></a>Descrizione modello
 
-Distribuzione di un modello consente tooquickly e creare in modo coerente le risorse di Azure con i valori di configurazione diverso. Hello lettura [procedura dettagliata di modello di gestione risorse](../azure-resource-manager/resource-manager-template-walkthrough.md?toc=%2fazure%2fvirtual-network%2ftoc.json) articolo se non si ha familiarità con i modelli di gestione risorse di Azure. Hello [distribuire una macchina virtuale con più indirizzi IP](https://azure.microsoft.com/resources/templates/101-vm-multiple-ipconfig) modello viene utilizzato in questo articolo.
+La distribuzione di un modello consente di creare rapidamente e in modo coerente le risorse di Azure con diversi valori di configurazione. Se non si ha familiarità con i modelli di Azure Resource Manager, leggere l'articolo [Resource Manager template walkthrough](../azure-resource-manager/resource-manager-template-walkthrough.md?toc=%2fazure%2fvirtual-network%2ftoc.json) (Guida dettagliata sul modello di Resource Manager). In questo articolo viene usato il modello [Deploy a VM with multiple IP addresses](https://azure.microsoft.com/resources/templates/101-vm-multiple-ipconfig) (Distribuire una macchina virtuale con più indirizzi IP).
 
-<a name="resources"></a>La distribuzione del modello hello crea hello seguenti risorse:
+<a name="resources"></a>La distribuzione del modello consente di creare le risorse seguenti:
 
 |Risorsa|Nome|Descrizione|
 |---|---|---|
-|Interfaccia di rete|*myNic1*|configurazioni IP tre Hello descritte nella sezione di hello scenario di questo articolo vengono create e assegnate toothis scheda di rete.|
-|Risorsa indirizzo IP pubblico|ne vengono creati 2: *myPublicIP* e *myPublicIP2*|Queste risorse vengono assegnate indirizzi IP pubblici statici e vengono assegnate toohello *IPConfig 1* e *IPConfig 2* le configurazioni IP descritte nello scenario di hello.|
+|Interfaccia di rete|*myNic1*|Le tre configurazioni IP descritte nella sezione scenario di questo articolo vengono create e assegnate a questa NIC.|
+|Risorsa indirizzo IP pubblico|ne vengono creati 2: *myPublicIP* e *myPublicIP2*|A queste risorse vengono assegnati indirizzi IP pubblici statici e vengono assegnate le configurazioni IP descritte nello scenario *IPConfig-1* e *IPConfig-2*.|
 |VM|*myVM1*|Macchina virtuale Standard DS3.|
 |Rete virtuale|*myVNet1*|Rete virtuale con una subnet denominata *mySubnet*.|
-|Account di archiviazione|Distribuzione toohello univoco|Account di archiviazione.|
+|Account di archiviazione|Univoco per la distribuzione|Account di archiviazione.|
 
-<a name="parameters"></a>Quando si distribuisce il modello di hello, è necessario specificare i valori per hello seguenti parametri:
+<a name="parameters"></a>Quando si distribuisce il modello, è necessario specificare i valori dei parametri seguenti:
 
 |Nome|Descrizione|
 |---|---|
-|adminUsername|Nome utente amministratore. nome utente Hello deve essere conformi alle [requisiti di nome utente di Azure](../virtual-machines/windows/faq.md?toc=%2fazure%2fvirtual-network%2ftoc.json).|
-|adminPassword|Password di amministratore password hello devono essere conformi alle [requisiti delle password di Azure](../virtual-machines/windows/faq.md?toc=%2fazure%2fvirtual-network%2ftoc.json#what-are-the-password-requirements-when-creating-a-vm).|
-|dnsLabelPrefix|Nome DNS per PublicIPAddressName1. nome DNS Hello risolverà tooone di indirizzi IP pubblici hello assegnato toohello macchina virtuale. Hello nome deve essere univoco all'interno di hello Azure regione (località) è creare hello macchina virtuale in.|
-|dnsLabelPrefix1|Nome DNS per PublicIPAddressName2. nome DNS Hello risolverà tooone di indirizzi IP pubblici hello assegnato toohello macchina virtuale. Hello nome deve essere univoco all'interno di hello Azure regione (località) è creare hello macchina virtuale in.|
-|OSVersion|versione di Windows/Linux Hello per hello macchina virtuale. sistema operativo Hello è un'immagine completamente con patch di hello la versione di Windows/Linux selezionato.|
-|imagePublisher|Hello Windows/Linux immagine server di pubblicazione per hello selezionare macchina virtuale.|
-|imageOffer|immagine di Windows/Linux Hello per hello seleziona macchina virtuale.|
+|adminUsername|Nome utente amministratore. Il nome utente deve essere conforme ai [requisiti per il nome utente di Azure](../virtual-machines/windows/faq.md?toc=%2fazure%2fvirtual-network%2ftoc.json).|
+|adminPassword|Password amministratore. La password deve essere conforme ai [requisiti per la password di Azure](../virtual-machines/windows/faq.md?toc=%2fazure%2fvirtual-network%2ftoc.json#what-are-the-password-requirements-when-creating-a-vm).|
+|dnsLabelPrefix|Nome DNS per PublicIPAddressName1. Il nome DNS viene risolto con uno degli indirizzi IP pubblici assegnati alla VM. Il nome deve essere univoco all'interno dell'area di Azure (percorso) in cui è stata creata la VM.|
+|dnsLabelPrefix1|Nome DNS per PublicIPAddressName2. Il nome DNS viene risolto con uno degli indirizzi IP pubblici assegnati alla VM. Il nome deve essere univoco all'interno dell'area di Azure (percorso) in cui è stata creata la VM.|
+|OSVersion|La versione di Windows/Linux per la VM. Il sistema operativo è un'immagine con patch completa della specifica versione di Windows/Linux selezionata.|
+|imagePublisher|Editor di immagini Windows/Linux per la VM selezionata.|
+|imageOffer|Immagine Windows/Linux per la VM selezionata.|
 
-Ognuna delle risorse di hello distribuite dal modello hello è configurata con varie impostazioni predefinite. È possibile visualizzare queste impostazioni mediante uno dei seguenti metodi hello:
+Tutte le risorse distribuite dal modello sono configurate con diverse impostazioni predefinite. È possibile visualizzare queste impostazioni tramite uno dei metodi seguenti:
 
-- **Modello di visualizzazione hello in GitHub:** se si ha familiarità con i modelli, è possibile visualizzare le impostazioni di hello all'interno di hello [modello](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-multiple-ipconfig/azuredeploy.json).
-- **Visualizzare le impostazioni di hello dopo la distribuzione:** se non si ha familiarità con i modelli, è possibile distribuire il modello di hello tramite i passaggi in uno dei seguenti sezioni hello e quindi visualizzare le impostazioni di hello dopo la distribuzione.
+- **Visualizzare il modello su GitHub:**. se si ha familiarità con i modelli, è possibile visualizzare le impostazioni all'interno del [modello](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-multiple-ipconfig/azuredeploy.json).
+- **Visualizzare le impostazioni dopo la distribuzione:** se non si ha familiarità con i modelli, è possibile distribuire il modello usando la procedura in una delle sezioni seguenti e quindi visualizzare le impostazioni dopo la distribuzione.
 
-È possibile utilizzare hello portale di Azure, PowerShell o hello Azure interfaccia della riga di comando (CLI) toodeploy hello modello. Tutti i metodi di producano hello stesso risultato. modello hello toodeploy, hello completato i passaggi in uno dei hello le sezioni seguenti:
+È possibile usare il portale di Azure, PowerShell o l'interfaccia della riga di comando (CLI) di Azure per distribuire il modello. Tutti i metodi producono lo stesso risultato. Per distribuire il modello, completare la procedura in una delle sezioni seguenti:
 
-## <a name="deploy-using-hello-azure-portal"></a>Distribuire mediante hello portale di Azure
+## <a name="deploy-using-the-azure-portal"></a>Distribuire tramite il portale di Azure
 
-modello di hello toodeploy utilizzando hello portale di Azure completo hello seguendo i passaggi:
+Per distribuire il modello tramite il portale di Azure, completare la procedura seguente:
 
-1. Modificare il modello di hello, se necessario. Consente di distribuire il modello di Hello risorse hello e le impostazioni elencate nella hello [risorse](#resources) sezione di questo articolo. toolearn ulteriori informazioni sui modelli e in che modo tooauthor usarle, vedere l'articolo hello [modelli Authoring Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-network%2ftoc.json)articolo.
-2. Distribuire il modello di hello con uno dei seguenti metodi hello:
-    - **Modello di hello selezionare nel portale di hello:** hello completato i passaggi in hello [distribuire le risorse da un modello personalizzato](../azure-resource-manager/resource-group-template-deploy-portal.md?toc=%2fazure%2fvirtual-network%2ftoc.json#deploy-resources-from-custom-template) articolo. Scegliere il modello di pre-esistente hello denominato *101-vm-più-ipconfig*.
-    - **Direttamente:** fare clic su hello seguente modello di pulsante tooopen hello direttamente nel portale di hello:<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-vm-multiple-ipconfig%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
+1. Modificare il modello se necessario. Il modello consente di distribuire le risorse e le impostazioni elencate nella sezione [risorse](#resources) di questo articolo. Per altre informazioni sui modelli e sulle modalità di creazione, leggere l'articolo [Creazione di modelli di Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-network%2ftoc.json).
+2. Distribuire il modello con uno dei metodi seguenti:
+    - **Selezionare il modello nel portale:** completare la procedura riportata nell'articolo [Deploy resources from custom template](../azure-resource-manager/resource-group-template-deploy-portal.md?toc=%2fazure%2fvirtual-network%2ftoc.json#deploy-resources-from-custom-template) (Distribuire le risorse da un modello personalizzato). Scegliere il modello preesistente denominato *101-vm-multiple-ipconfig*.
+    - **Direttamente:** fare clic sul pulsante seguente per aprire il modello direttamente nel portale:<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-vm-multiple-ipconfig%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
 
-Indipendentemente dal metodo hello desiderato, è necessario toosupply valori per hello [parametri](#parameters) elencate in precedenza in questo articolo. Dopo aver distribuito hello VM, connettersi toohello macchina virtuale e aggiungere hello privata IP indirizzi toohello del sistema operativo è stato distribuito completando hello passaggi hello [aggiungere indirizzi del sistema operativo VM tooa](#os-config) sezione di questo articolo. Non aggiungere hello pubblica IP indirizzi toohello del sistema operativo.
+Indipendentemente dal metodo scelto, è necessario fornire i valori dei [parametri](#parameters) elencati in precedenza in questo articolo. Dopo aver distribuito la VM, connettersi alla VM e aggiungere gli indirizzi IP privati al sistema operativo che si è distribuito completando la procedura riportata nella sezione di questo articolo [Add IP addresses to a VM operating system](#os-config) (Aggiungere indirizzi IP al sistema operativo di una VM). Non aggiungere gli indirizzi IP pubblici al sistema operativo.
 
 ## <a name="deploy-using-powershell"></a>Distribuire tramite PowerShell
 
-modello di hello toodeploy tramite PowerShell, hello completo alla procedura seguente:
+Per distribuire il modello tramite Powershell, completare la procedura seguente:
 
-1. Modello di distribuzione hello completando i passaggi hello hello [distribuire un modello con PowerShell](../azure-resource-manager/resource-group-template-deploy-cli.md) articolo. Hello descritti più opzioni per la distribuzione di un modello. Se si sceglie toodeploy utilizzando hello `-TemplateUri parameter`, hello URI per questo modello è *https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/101-vm-multiple-ipconfig/azuredeploy.json*. Se si sceglie toodeploy utilizzando hello `-TemplateFile` parametro copia hello contenuto di hello [file modello](https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/101-vm-multiple-ipconfig/azuredeploy.json) da GitHub in un nuovo file nel computer. Modificare il contenuto del modello hello, se opportuno. Consente di distribuire il modello di Hello risorse hello e le impostazioni elencate nella hello [risorse](#resources) sezione di questo articolo. toolearn ulteriori informazioni sui modelli e in che modo tooauthor usarle, vedere l'articolo hello [modelli Authoring Azure Resource Manager ](../azure-resource-manager/resource-group-authoring-templates.md)articolo.
+1. Distribuire il modello completando i passaggi indicati nell'articolo [Deploy a template with PowerShell](../azure-resource-manager/resource-group-template-deploy-cli.md) (Distribuire un modello con Powershell). L'articolo descrive più opzioni per la distribuzione di un modello. Se si desidera distribuire tramite il `-TemplateUri parameter`, l'URI per questo modello è *https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/101-vm-multiple-ipconfig/azuredeploy.json*. Se si desidera distribuire usando il parametro `-TemplateFile`, copiare il contenuto del [file modello](https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/101-vm-multiple-ipconfig/azuredeploy.json) da GitHub in un nuovo file nel computer. Modificare il contenuto del modello se necessario. Il modello consente di distribuire le risorse e le impostazioni elencate nella sezione [risorse](#resources) di questo articolo. Per altre informazioni sui modelli e sulle modalità di creazione, leggere [Creazione di modelli di Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md).
 
-    Indipendentemente dall'opzione hello scegliere modello hello toodeploy con, è necessario fornire valori per i valori di parametro hello elencati nella hello [parametri](#parameters) sezione di questo articolo. Se si sceglie di parametri di toosupply utilizzando un file dei parametri, copiare il contenuto di hello di hello [file dei parametri](https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/101-vm-multiple-ipconfig/azuredeploy.parameters.json) da GitHub in un nuovo file nel computer in uso. Modificare i valori hello nel file hello. Utilizza il file hello creato come valore di hello per hello `-TemplateParameterFile` parametro.
+    Indipendentemente dall'opzione scelta per distribuire il modello, è necessario fornire i valori dei parametri elencati nella sezione [parametri](#parameters) di questo articolo. Se si desidera specificare i parametri usando un file dei parametri, copiare il contenuto del [file dei parametri](https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/101-vm-multiple-ipconfig/azuredeploy.parameters.json) da GitHub in un nuovo file nel computer. Modificare i valori nel file. Usare come valore per il parametro `-TemplateParameterFile` il file che è stato creato.
 
-    toodetermine i valori validi per i parametri imageOffer hello OSVersion e ImagePublisher, hello completo di passaggi di hello [Naviga e l'articolo di immagini di macchina virtuale di Windows seleziona](../virtual-machines/windows/cli-ps-findimage.md) articolo.
+    Per determinare i valori validi per i parametri di OSVersion, ImagePublisher e imageOffer, completare la procedura riportata nell'articolo [Esplorare e selezionare immagini di macchine virtuali Windows](../virtual-machines/windows/cli-ps-findimage.md).
 
     >[!TIP]
-    >Se non si è certi se un dnslabelprefix è disponibile, immettere hello `Test-AzureRmDnsAvailability -DomainNameLabel <name-you-want-to-use> -Location <location>` toofind comando out. Se è disponibile, il comando hello restituirà `True`.
+    >Se non si è sicuri di avere un dnslabelprefix disponibile, immettere il comando `Test-AzureRmDnsAvailability -DomainNameLabel <name-you-want-to-use> -Location <location>` per verificarlo. Se è disponibile, il comando restituirà `True`.
 
-2. Dopo aver distribuito hello VM, connettersi toohello macchina virtuale e aggiungere hello privata IP indirizzi toohello del sistema operativo è stato distribuito completando hello passaggi hello [aggiungere indirizzi del sistema operativo VM tooa](#os-config) sezione di questo articolo. Non aggiungere hello pubblica IP indirizzi toohello del sistema operativo.
+2. Dopo aver distribuito la VM, connettersi alla VM e aggiungere gli indirizzi IP privati al sistema operativo che si è distribuito completando la procedura riportata nella sezione di questo articolo [Add IP addresses to a VM operating system](#os-config) (Aggiungere indirizzi IP al sistema operativo di una VM). Non aggiungere gli indirizzi IP pubblici al sistema operativo.
 
-## <a name="deploy-using-hello-azure-cli"></a>Distribuire mediante hello CLI di Azure
+## <a name="deploy-using-the-azure-cli"></a>Distribuire tramite l'interfaccia della riga di comando di Azure
 
-modello di hello toodeploy utilizzando hello Azure CLI 1.0, hello completo alla procedura seguente:
+Per distribuire il modello usando l'interfaccia della riga di comando di Azure 1.0, completare la procedura seguente:
 
-1. Modello di distribuzione hello completando i passaggi hello hello [distribuire un modello con hello Azure CLI](../azure-resource-manager/resource-group-template-deploy-cli.md) articolo. Hello descritti più opzioni per la distribuzione modello hello. Se si sceglie toodeploy utilizzando hello `--template-uri` (-f), hello URI per questo modello è *https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/101-vm-multiple-ipconfig/azuredeploy.json*. Se si sceglie toodeploy utilizzando hello `--template-file` (-f) parametro copia hello contenuto di hello [file modello](https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/101-vm-multiple-ipconfig/azuredeploy.json) da GitHub in un nuovo file nel computer. Modificare il contenuto del modello hello, se opportuno. Consente di distribuire il modello di Hello risorse hello e le impostazioni elencate nella hello [risorse](#resources) sezione di questo articolo. toolearn ulteriori informazioni sui modelli e in che modo tooauthor usarle, vedere l'articolo hello [modelli Authoring Azure Resource Manager ](../azure-resource-manager/resource-group-authoring-templates.md)articolo.
+1. Distribuire il modello completando i passaggi indicati nell'articolo [Deploy a template with the Azure CLI](../azure-resource-manager/resource-group-template-deploy-cli.md) (Distribuire un modello con l'interfaccia della riga di comando di Azure). L'articolo descrive più opzioni per la distribuzione del modello. Se si desidera distribuire usando il `--template-uri` (-f), l'URI per questo modello è *https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/101-vm-multiple-ipconfig/azuredeploy.json*. Se si desidera distribuire usando il parametro `--template-file` (-f), copiare il contenuto del [file modello](https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/101-vm-multiple-ipconfig/azuredeploy.json) da GitHub in un nuovo file nel computer. Modificare il contenuto del modello se necessario. Il modello consente di distribuire le risorse e le impostazioni elencate nella sezione [risorse](#resources) di questo articolo. Per altre informazioni sui modelli e sulle modalità di creazione, leggere [Creazione di modelli di Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md).
 
-    Indipendentemente dall'opzione hello scegliere modello hello toodeploy con, è necessario fornire valori per i valori di parametro hello elencati nella hello [parametri](#parameters) sezione di questo articolo. Se si sceglie di parametri di toosupply utilizzando un file dei parametri, copiare il contenuto di hello di hello [file dei parametri](https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/101-vm-multiple-ipconfig/azuredeploy.parameters.json) da GitHub in un nuovo file nel computer in uso. Modificare i valori hello nel file hello. Utilizza il file hello creato come valore di hello per hello `--parameters-file` (-e) parametro.
+    Indipendentemente dall'opzione scelta per distribuire il modello, è necessario fornire i valori dei parametri elencati nella sezione [parametri](#parameters) di questo articolo. Se si desidera specificare i parametri usando un file dei parametri, copiare il contenuto del [file dei parametri](https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/101-vm-multiple-ipconfig/azuredeploy.parameters.json) da GitHub in un nuovo file nel computer. Modificare i valori nel file. Usare come valore per il parametro `--parameters-file` (-e) il file che è stato creato.
 
-    toodetermine i valori validi per i parametri imageOffer hello OSVersion e ImagePublisher, hello completo di passaggi di hello [Naviga e l'articolo di immagini di macchina virtuale di Windows seleziona](../virtual-machines/windows/cli-ps-findimage.md) articolo.
+    Per determinare i valori validi per i parametri di OSVersion, ImagePublisher e imageOffer, completare la procedura riportata nell'articolo [Esplorare e selezionare immagini di macchine virtuali Windows](../virtual-machines/windows/cli-ps-findimage.md).
 
-2. Dopo aver distribuito hello VM, connettersi toohello macchina virtuale e aggiungere hello privata IP indirizzi toohello del sistema operativo è stato distribuito completando hello passaggi hello [aggiungere indirizzi del sistema operativo VM tooa](#os-config) sezione di questo articolo. Non aggiungere hello pubblica IP indirizzi toohello del sistema operativo.
+2. Dopo aver distribuito la VM, connettersi alla VM e aggiungere gli indirizzi IP privati al sistema operativo che si è distribuito completando la procedura riportata nella sezione di questo articolo [Add IP addresses to a VM operating system](#os-config) (Aggiungere indirizzi IP al sistema operativo di una VM). Non aggiungere gli indirizzi IP pubblici al sistema operativo.
 
 [!INCLUDE [virtual-network-multiple-ip-addresses-os-config.md](../../includes/virtual-network-multiple-ip-addresses-os-config.md)]

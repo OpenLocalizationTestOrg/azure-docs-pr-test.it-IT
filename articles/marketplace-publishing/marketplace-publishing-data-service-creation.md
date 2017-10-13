@@ -1,6 +1,6 @@
 ---
-title: aaaGuide toocreating un servizio dati per hello Marketplace | Documenti Microsoft
-description: Istruzioni dettagliate su come toocreate, certificare e distribuire un servizio dati per acquistano su hello Azure Marketplace.
+title: Guida alla creazione di un servizio dati per il Marketplace | Documentazione Microsoft
+description: Istruzioni dettagliate su come creare, certificare e distribuire un servizio dati per l'acquisto in Azure Marketplace.
 services: marketplace-publishing
 documentationcenter: 
 author: HannibalSII
@@ -14,123 +14,123 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/26/2016
 ms.author: hascipio; avikova
-ms.openlocfilehash: 0220d357ae0ec89e7d4f6399605850e57c646f73
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: c0c9362f1c2e15c947aaaf7187f3383ad243140f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="data-service-publishing-guide-for-hello-azure-marketplace"></a>Guida alla pubblicazione dei dati del servizio per hello Azure Marketplace
+# <a name="data-service-publishing-guide-for-the-azure-marketplace"></a>Guida alla pubblicazione del servizio dati per Azure Marketplace
 > [!IMPORTANT]
-> **In questo momento non stiamo più caricando nuovi editori di servizi dati. I nuovi servizi dati non saranno approvati per l'elencazione.** Se si dispone di un'applicazione SaaS di business si desidera toopublish in AppSource è possibile trovare ulteriori informazioni [qui](https://appsource.microsoft.com/partners). Se si utilizzano applicazioni IaaS sviluppatore del servizio si sarebbe ad esempio toopublish in Azure Marketplace è possibile trovare ulteriori informazioni [qui](https://azure.microsoft.com/marketplace/programs/certified/).
+> **In questo momento non stiamo più caricando nuovi editori di servizi dati. I nuovi servizi dati non saranno approvati per l'elencazione.** Se si dispone di un'applicazione aziendale SaaS che si vuole pubblicare in AppSource, è possibile trovare altre informazioni [qui](https://appsource.microsoft.com/partners). Se si dispone di un'applicazione IaaS o di un servizio per gli sviluppatori che si vuole pubblicare in Azure Marketplace, è possibile trovare altre informazioni [qui](https://azure.microsoft.com/marketplace/programs/certified/).
 > 
 > 
 
-Dopo aver completato il passaggio di hello 1, [la creazione di Account e la registrazione](marketplace-publishing-accounts-creation-registration.md), si è illustrate hello [generale tecnici](marketplace-publishing-pre-requisites.md) e [requisiti tecnici](marketplace-publishing-data-service-creation-prerequisites.md) di un servizio dati offrono in Azure Marketplace. Ora è verranno illustrati i passaggi di hello per la creazione di un'offerta di servizio dati su hello [portale pubblicazione] [ link-pubportal] per hello Azure Marketplace.
+Dopo aver completato il passaggio 1, [Creazione e registrazione dell'account](marketplace-publishing-accounts-creation-registration.md), sono state fornite indicazioni sui [requisiti generali non tecnici](marketplace-publishing-pre-requisites.md) e [tecnici](marketplace-publishing-data-service-creation-prerequisites.md) delle offerte di servizi dati in Azure Marketplace. Ora verranno illustrati i passaggi per la creazione di un'offerta di servizio dati nel [portale di pubblicazione][link-pubportal] per Azure Marketplace.
 
-## <a name="1----login-toohello-publishing-portal"></a>1.    Account di accesso toohello portale di pubblicazione.
-Andare troppo[https://publish.windowsazure.com](https://publish.windowsazure.com.)
+## <a name="1----login-to-the-publishing-portal"></a>1.    Accedere al portale di pubblicazione.
+Passare alla pagina [https://publish.windowsazure.com](https://publish.windowsazure.com.)
 
-**Per prima tooPublishing di account di accesso a tempo portale, utilizzare hello stesso account con cui profilo venditore della società è stato registrato nel centro per sviluppatori.**  (In un secondo momento è possibile aggiungere qualsiasi dipendente della società come co-amministratore in hello portale di pubblicazione).
+**Per il primo accesso al portale di pubblicazione, usare lo stesso account con cui è stato registrato il profilo venditore della società nel Centro per sviluppatori.**  (Successivamente è possibile aggiungere qualsiasi dipendente della società come coamministratore nel portale di pubblicazione).
 
-Fare clic su hello **pubblicare un servizi dati** espansa se si tratta di account di accesso prima hello nel portale di pubblicazione hello.
+Fare clic sul riquadro **Pubblica servizi dati** se si tratta del primo accesso al portale di pubblicazione.
 
-## <a name="2----choose-data-services-in-hello-navigation-menu-on-hello-left-side"></a>2.    Scegliere **Data Services** nel menu di navigazione hello sul lato sinistro hello.
+## <a name="2----choose-data-services-in-the-navigation-menu-on-the-left-side"></a>2.    Selezionare **Servizi dati** nel menu di navigazione a sinistra.
   ![disegno](media/marketplace-publishing-data-service-creation/pubportal-main-nav.png)
 
 ## <a name="3----create-a-new-data-service"></a>3.    Creare un nuovo servizio dati
-Compilare per il nuovo servizio dati offrono titolo hello e fare clic su "+" su hello destra.
+Immettere il titolo per l'offerta del nuovo servizio, fare clic su "+" a destra.
 
   ![disegno](media/marketplace-publishing-data-service-creation/step-3.png)
 
-## <a name="4----review-hello-sub-menu-under-hello-newly-created-data-service-in-hello-navigation-menu"></a>4.    Sottomenu hello revisione in hello appena creata servizio dati in menu di navigazione hello.
-Fare clic su hello **procedura dettagliata** scheda e di esaminare tutti i passaggi necessari esigenze toopublish hello correttamente il servizio dati su hello Azure Marketplace.
+## <a name="4----review-the-sub-menu-under-the-newly-created-data-service-in-the-navigation-menu"></a>4.    Esaminare il sottomenu relativo al servizio dati appena creato nel menu di navigazione.
+Fare clic sulla scheda **Procedura dettagliata** ed esaminare tutti i passaggi necessari per pubblicare correttamente il servizio dati in Azure Marketplace.
 
 > [!TIP]
-> È sempre possibile fare clic sui collegamenti hello nella pagina "Procedura dettagliata" hello o utilizzare schede di sottomenu dell'offerta di servizio dati hello sul lato sinistro di hello.
+> È sempre possibile fare clic sui collegamenti nella pagina "Procedura dettagliata" o utilizzare schede nel sottomenu dell'offerta del servizio dati sul lato sinistro.
 > 
 > 
 
 ## <a name="5----create-a-new-plan"></a>5.    Creare un nuovo piano.
 ### <a name="offers-plans-transactions"></a>Offerte, piani, transazioni.
-Ciascuna offerta può contenere più piani, tuttavia è necessario disporre di almeno un (1) piano. Quando gli utenti finali di eseguire la sottoscrizione tooyour offerta sottoscrivono un piano dell'offerta hello. Ogni piano definisce come gli utenti finali potrà essere in grado di toouse il servizio.
+Ciascuna offerta può contenere più piani, tuttavia è necessario disporre di almeno un (1) piano. La sottoscrizione da parte degli utenti riguarda uno dei piani dell'offerta. Ciascun piano definisce il modo in cui gli utenti finali potranno utilizzare il servizio.
 
-Attualmente Azure Marketplace supporta solo modello basato su transazioni di sottoscrizione mensile per i servizi dati, ad esempio gli utenti finali pagamento mensile in base a prezzo toohello del piano di hello specifico hanno eseguito la sottoscrizione tooand sarà in grado di tooconsume ogni numero di mese di transazione definito dal piano hello.
+Al momento Azure Marketplace supporta solo il modello basato su transazioni di sottoscrizione mensile per i servizi dati, ad esempio l'utente finale pagherà un canone mensile in base al prezzo del piano specifico sottoscritto e potrà usufruire del numero di transazioni previsto dal piano su base mensile.
 
-Ogni transazione, in genere definita come numero di record, che verrà restituito il servizio dati basato su query di hello inviato toohello servizio. valore predefinito di Hello è 100. Numero di transazioni restituiti tooeach query verrà numero di record diviso per 100 e arrotondato per eccesso toohello numero intero più vicino.
+Di solito, ciascuna transazione viene definita come il numero di record restituiti dal servizio dati in base alla query inviata al servizio. Il valore predefinito è 100. Il numero di transazioni restituite per ciascuna query corrisponde al numero di record diviso per 100 e arrotondato per eccesso al numero intero più vicino.
 
-Si tratta del servizio di Azure Marketplace livello responsabilità toomonitor (misuratore) numero di transazioni utilizzato da ogni query.
+Il monitoraggio (misurazione) del numero di transazioni utilizzate da ciascuna query è responsabilità del livello di servizio di Azure Marketplace.
 
 > [!IMPORTANT]
-> Gli utenti finali che ha raggiunto il limite di transazione hello durante il mese di hello non potranno continuare servizio hello toouse fino al termine del loro ciclo di sottoscrizione mensile.
+> Gli utenti finali che hanno raggiunto il limite delle transazioni durante il mese non potranno continuare a usare il servizio fino alla fine del relativo ciclo di sottoscrizione mensile.
 > 
-> Hello piano o uno dei piani di hello possibile (ma non necessario) includono un numero illimitato di transazioni.
+> Facoltativamente, il piano o uno dei piani possono comprendere un numero illimitato di transazioni.
 > 
 > 
 
 ### <a name="create-a-plan"></a>Creare un piano.
-1. Fare clic su **"+"** toohello successivo "aggiungere un nuovo piano".
-2. Scegliere una delle opzioni di hello: **Unlimited** o **limitato** utilizzo per questo piano.  Se Limited quindi fornire il numero di hello del piano di hello transazione consentirà tooconsume in un mese.
+1. Fare clic su **"+"** accanto a "Aggiungi un nuovo piano".
+2. Selezionare una delle opzioni: uso **Senza limiti** o **Limitato** per questo piano.  Se si seleziona Limitato, indicare il numero di transazioni mensili consentito dal piano.
    
     ![disegno](media/marketplace-publishing-data-service-creation/step-5.1.png)  
    
-    Portale di pubblicazione verrà inoltre indicare "Identificatore del piano", che sarà utilizzato toocommunicate toohello gli utenti finali hello nome di piano hello hello dell'interfaccia utente e anche usato dai hello tooidentify di mercato servizio hello piano. Se si desidera, è possibile modificare hello "Identificatore del piano".
+    Il portale di pubblicazione suggerirà anche un "identificatore del piano", utilizzato per comunicare agli utenti finali il nome del piano nell'interfaccia utente e utilizzato dal servizio del Marketplace per identificarlo. Facoltativamente, è possibile modificare tale identificatore.
    
    > [!NOTE]
-   > Hello "Identificatore del piano" deve essere univoco nell'ambito di hello di ogni offerta. Come molti altri identificatori nell'hello pubblicazione portale pianificare identificatore sarà bloccato dopo hello prima tooproduction di pubblicazione e non saranno più in grado di toochange questo identificatore.
+   > L'identificatore del piano deve essere univoco all'interno dell'ambito di ciascuna offerta. Come molti altri identificatori utilizzati nel portale di pubblicazione, l'identificatore del piano verrà bloccato dopo la prima pubblicazione prodotta e non sarà più modificabile.
    > 
    > 
-3. Fare clic su tooaccept prescelto.
+3. Fare clic per confermare la scelta.
 4. Verranno quindi poste alcune domande aggiuntive circa il piano appena creato.
    
     ![disegno](media/marketplace-publishing-data-service-creation/step-5.2.png)
 
 | Domanda | Significato |
 | --- | --- |
-| **Il piano è gratuito e disponibile tutto il mondo?** |È possibile creare un piano completamente gratuito. Se è hello prevede solo per questa offerta – significa che si sta pubblicando "Offrono libero" in hello Marketplace. Se è solo per un (numero) piano, hello consente di definire un toolearn gli utenti finali toooffer opzione ulteriori informazioni sul servizio con un numero relativamente ridotto di transazioni al mese.  Se la risposta hello è "Sì", non verranno richiesto alcun ulteriori domande. |
+| **Il piano è gratuito e disponibile tutto il mondo?** |È possibile creare un piano completamente gratuito. Se si tratta dell'unico piano di questa offerta, verrà pubblicata un'offerta gratuita in Marketplace. Se si tratta solo di uno di alcuni piani, sarà possibile offrire agli utenti finali per ulteriori informazioni sul servizio con un numero relativamente ridotto di transazioni mensili.  Se la risposta è "Sì", non verranno poste ulteriori domande. |
 
 > [!NOTE]
-> Gli utenti finali possono aggiornare sempre toohello a pagamento di piani.
+> Gli utenti finali possono effettuare l'aggiornamento ai piani a pagamento.
 > 
 > 
 
 | Domanda | Significato |
 | --- | --- |
-| **È disponibile una versione di prova gratuita?** |È possibile scegliere tra "Nessuna versione di valutazione" affatto o assegnare toouse un'opzione il piano per "Un mese". I server di pubblicazione, ad esempio toouse questa opzione tooprovide gli utenti finali hello possibilità toounderstand hello vantaggi di hello offrono gratuitamente per un mese. |
+| **È disponibile una versione di prova gratuita?** |È possibile selezionare "Nessuna versione di prova" o fornire un'opzione per utilizzare il piano per "Un mese". Gli autori preferiscono questa opzione per offrire agli utenti finali la possibilità di scoprire i vantaggi dell'offerta mediante un mese di utilizzo gratuito. |
 
 > [!IMPORTANT]
-> Gli utenti finali saranno in grado di toopurchase una valutazione gratuita solo se hanno stabilito di pagamento, ad esempio carta di credito, contratto enterprise agreement.
+> Gli utenti finali potranno acquistare una versione di prova gratuita solo se hanno impostato uno strumento per i pagamenti, ad esempio una carta di credito, un contratto aziendale ecc.
 > 
-> Dopo un mese di valutazione gratuita di hello, Azure Marketplace inizierà ad addebitare i costi clienti prezzo hello data hello di sottoscrizione hello, a meno che il cliente hello avviata annullamento sottoscrizione hello. Non verranno fornito agli utenti finali toohello alcuna notifica speciale.
+> Dopo un mese di prova gratuita, Azure Marketplace addebiterà ai clienti il prezzo a partire dalla data della sottoscrizione, a meno che il cliente non abbia richiesto l'annullamento della sottoscrizione. Gli utenti finali non riceveranno alcuna particolare notifica.
 > 
 > 
 
 | Domanda | Significato |
 | --- | --- |
-| **Il piano è richiesto un toopurchase codice promozione?** |I server di pubblicazione hanno un tootheir di accesso toolimit opzione piani di servizio, fornendo un codice speciale, denominato "Un codice promozione" toospecific clienti. Solo gli utenti finali che conterrà il codice promozione sarà in grado di toosubscribe toohello piano. Se si sceglie "No", quindi si accetta che tutti gli utenti dall'area hello in hello offerta è disponibili (vedere [Marketplace Marketing Content Guide](marketplace-publishing-push-to-staging.md) per altri dettagli) sarà in grado di toosubscribe toothis piano. Non verranno poste ulteriori domande. |
-| **Nascondere anche il piano a tutti gli utenti che non dispongono di un codice di promozione valido?** |Se hello risposta toohello precedente domanda "Yes" hello, server di pubblicazione contiene toocompletely un'opzione rimuovere questo piano venga visualizzato nell'interfaccia utente di hello Marketplace hello. Significa che, i clienti non visualizzeranno il piano nella pagina dei dettagli dell'offerta hello. Gli utenti finali che riceveranno toopurchase un codice promozione, sarà in grado di toosubscribe tooit tramite questo codice promozione. |
+| **Il piano richiede un codice di promozione per l'acquisto?** |Gli autori hanno la possibilità di limitare l'accesso ai propri piani di servizio fornendo un codice speciale, noto come "codice di promozione", a determinati clienti. Solo gli utenti finali che dispongono di tale codice di promozione potranno sottoscrivere il piano. Se si seleziona "No", si accetta che tutti gli utenti dall'area in cui l'offerta è disponibile (vedere [Guida ai contenuti marketing nel Marketplace](marketplace-publishing-push-to-staging.md) per ulteriori dettagli) potranno sottoscrivere il piano. Non verranno poste ulteriori domande. |
+| **Nascondere anche il piano a tutti gli utenti che non dispongono di un codice di promozione valido?** |Se la risposta alla domanda precedente è "Sì", l'autore può anche rimuovere completamente il piano dalla visualizzazione nell'interfaccia utente del Marketplace. Ciò significa che i clienti non visualizzeranno il piano nella pagina dei dettagli dell'offerta. Gli utenti finali che riceveranno un codice di promozione per l'acquisto potranno effettuare la sottoscrizione tramite tale codice. |
 
 ## <a name="6----create-your-marketplace-marketing-content"></a>6.    Creare contenuti di marketing di Marketplace
-Per modalità tooprovide informazioni necessarie **Marketing, prezzi, supporto e le categorie** schede, visitare [Marketplace Marketing Content Guide](marketplace-publishing-push-to-staging.md) che è comune tooall gli elementi pubblicati in hello Azure Marketplace.  
+Per dettagli su come fornire le informazioni necessarie nelle schede **Marketing, Prezzi, Supporto e Categorie** , visitare la [Guida ai contenuti marketing nel Marketplace](marketplace-publishing-push-to-staging.md) che è comune a tutti gli elementi pubblicati in Azure Marketplace.  
 
-## <a name="7----connect-your-offer-tooyour-service-sql-azure-based-or-web-service-based"></a>7.    Connettere il tooyour offerta di servizio (SQL Azure basato su o il servizio Web basato su).
-Fare clic su hello **Data Services** sottomenu.
+## <a name="7----connect-your-offer-to-your-service-sql-azure-based-or-web-service-based"></a>7.    Collegare l'offerta al servizio (basato su SQL Azure o su servizio Web).
+Fare clic sul sottomenu **Servizi dati** .
 
-Nella parte superiore hello pagina hello verrà chiesto di offerta di hello tooprovide **Namespace**.  
+Nella metà superiore della pagina verrà richiesto di indicare lo **spazio dei nomi**dell'offerta.  
 
   ![disegno](media/marketplace-publishing-data-service-creation/step-7.png)
 
-Hello seguito domanda definirà hello Publisher modalità tooexpose appena creati offerta tooAzure Marketplace. (Per ulteriori informazioni, vedere hello [Guida prerequisiti tecniche di Data Services](marketplace-publishing-data-service-creation-prerequisites.md)).
+La domanda seguente definirà in che modo l'autore esporrà l'offerta appena creata in Azure Marketplace. (Per ulteriori informazioni, vedere la [Guida ai prerequisiti tecnici dei servizi dati](marketplace-publishing-data-service-creation-prerequisites.md)).
 
   ![disegno](media/marketplace-publishing-data-service-creation/step-7.2.png)
 
-**Pubblicazione hello Database basato su servizio**
+**Pubblicazione del servizio basato su database**
 
-Fare clic su **Database**. verrà visualizzata la seguente pagina Hello:
+Fare clic su **Database**. Verrà visualizzata la pagina seguente:
 
   ![disegno](media/marketplace-publishing-data-service-creation/step-7.3.png)
 
-toocreate un mapping di CSDL per hello set di dati in base hello database SQL di Azure:
+Per creare un mapping CSDL per il set di dati basato su database di SQL Azure:
 
   ![disegno](media/marketplace-publishing-data-service-creation/step-7.4.png)
 
@@ -145,17 +145,17 @@ Se il servizio Web
   ![disegno](media/marketplace-publishing-data-service-creation/step-7.7.png)
 
 > [!IMPORTANT]
-> Lettura [Mapping esistente web servizio tooOData tramite CSDL](marketplace-publishing-data-service-creation-odata-mapping.md) per istruzioni dettagliate ed esempi sulla creazione di un servizio Web di CSDL.
+> Leggere [Mapping di un servizio Web esistente in OData tramite CSDL](marketplace-publishing-data-service-creation-odata-mapping.md) per istruzioni dettagliate ed esempi sulla creazione di un servizio Web CSDL.
 > 
 > 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Dopo aver creato l'offerta di servizio dati, assicurarsi di aver completato le istruzioni di hello in hello [Marketplace Marketing Content Guide](marketplace-publishing-push-to-staging.md) prima di spostare in avanti troppo[test il servizio dati in gestione temporanea](marketplace-publishing-data-service-test-in-staging.md).
+Una volta creata l'offerta del servizio dati, verificare di aver completato le istruzioni della [guida ai contenuti di marketing nel Marketplace](marketplace-publishing-push-to-staging.md) prima di proseguire all'articolo [Testing your Data Service in Staging](marketplace-publishing-data-service-test-in-staging.md) (Test del servizio dati in staging).
 
 ## <a name="see-also"></a>Vedere anche
-* [Guida introduttiva: Come toopublish un toohello offerta Azure Marketplace](marketplace-publishing-getting-started.md)
-* Se si è interessati alla comprensione hello l'intero processo di mapping di OData e lo scopo, leggere questo articolo [Mapping di dati del servizio OData](marketplace-publishing-data-service-creation-odata-mapping.md) tooreview definizioni, strutture e le istruzioni.
-* Se è interessati a learning e informazioni sui nodi specifici di hello e i relativi parametri, leggere questo articolo [nodi Mapping di dati del servizio OData](marketplace-publishing-data-service-creation-odata-mapping-nodes.md) per le definizioni e le spiegazioni, esempi e il contesto casi di utilizzo.
-* Se si è interessati a esaminare alcuni esempi, leggere questo articolo [esempi di Mapping di dati del servizio OData](marketplace-publishing-data-service-creation-odata-mapping-examples.md) toosee codice di esempio e comprendere la sintassi di codice e il contesto.
+* [Guida introduttiva: Come pubblicare un'offerta in Azure Marketplace](marketplace-publishing-getting-started.md)
+* Per apprendere il processo di mapping generale e lo scopo di OData , leggere questo articolo [Mapping di OData del servizio dati](marketplace-publishing-data-service-creation-odata-mapping.md) per esaminare le definizioni, le strutture e le istruzioni.
+* Per ricevere formazione e informazioni sui nodi specifici e i relativi parametri, leggere l'articolo relativo ai [nodi di mapping di OData del servizio dati](marketplace-publishing-data-service-creation-odata-mapping-nodes.md) per definizioni, spiegazioni, esempi e casi di utilizzo contestuali.
+* Per esaminare gli esempi, leggere questo articolo [Esempi di mapping di OData del servizio dati](marketplace-publishing-data-service-creation-odata-mapping-examples.md) per consultare il codice di esempio e apprendere la sintassi del codice e il contesto.
 
 [link-pubportal]:https://publish.windowsazure.com

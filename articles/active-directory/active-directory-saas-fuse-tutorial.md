@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con Fuse | Microsoft Docs'
-description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e fusibile.
+description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e Fuse.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,190 +14,190 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/27/2017
 ms.author: jeedes
-ms.openlocfilehash: 720ed8af0b5de1e3bee5a40353ca0ee661766864
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9a91e22faced9e126043bebefd85c307dbdf933d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-fuse"></a>Esercitazione: Integrazione di Azure Active Directory con Fuse
 
-In questa esercitazione, è illustrato come associare è il toointegrate con Azure Active Directory (Azure AD).
+Questa esercitazione descrive come integrare Fuse con Azure Active Directory (Azure AD).
 
-Integrazione fusibile con Azure AD fornisce hello seguenti vantaggi:
+L'integrazione di Fuse con Azure AD offre i vantaggi seguenti:
 
-- È possibile controllare in Azure AD che ha accesso tooFuse.
-- È possibile abilitare l'utenti tooautomatically get connesso tooFuse (Single Sign-On) con i propri account Azure AD.
-- È possibile gestire gli account in un'unica posizione centrale - hello portale di Azure.
+- È possibile controllare in Azure AD chi può accedere a Fuse.
+- È possibile abilitare gli utenti per l'accesso automatico a Fuse (Single Sign-On) con gli account Azure AD personali.
+- È possibile gestire gli account in un'unica posizione centrale: il portale di Azure.
 
-Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-integrazione di Azure AD tooconfigure con fusibile, è necessario hello seguenti elementi:
+Per configurare l'integrazione di Azure AD con Fuse, sono necessari gli elementi seguenti:
 
 - Sottoscrizione di Azure AD.
 - Sottoscrizione di Fuse abilitata per l'accesso Single Sign-On
 
 > [!NOTE]
-> hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.
+> Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.
 
-passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:
+A questo scopo, è consigliabile seguire le indicazioni seguenti:
 
 - Non usare l'ambiente di produzione a meno che non sia necessario.
 - Se non è disponibile un ambiente di valutazione di Azure AD, è possibile [ottenere una versione di valutazione di un mese](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Descrizione dello scenario
-In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. scenario di Hello descritto in questa esercitazione è composto da due componenti principali:
+In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:
 
-1. Aggiungere fusibile dalla raccolta di hello
+1. Aggiungere Fuse dalla raccolta
 2. Configurare e testare l'accesso Single Sign-On di Azure AD
 
-## <a name="add-fuse-from-hello-gallery"></a>Aggiungere fusibile dalla raccolta di hello
-integrazione hello tooconfigure di fusibile in Azure AD, è necessario tooadd fusibile dall'elenco di tooyour hello raccolta di App SaaS gestite.
+## <a name="add-fuse-from-the-gallery"></a>Aggiungere Fuse dalla raccolta
+Per configurare l'integrazione di Fuse in Azure AD, è necessario aggiungere Fuse dalla raccolta al proprio elenco di app SaaS gestite.
 
-**tooadd fusibile dalla raccolta di hello, eseguire hello alla procedura seguente:**
+**Per aggiungere Fuse dalla raccolta, seguire questa procedura:**
 
-1. In hello  **[portale di Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona. 
+1. Nel **[portale di Azure](https://portal.azure.com)** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro. 
 
-    ![pulsante di Hello Azure Active Directory][1]
+    ![Pulsante Azure Active Directory][1]
 
-2. Passare troppo**applicazioni aziendali**. Quindi andare troppo**tutte le applicazioni**.
+2. Passare ad **Applicazioni aziendali**. Andare quindi a **Tutte le applicazioni**.
 
-    ![Pannello di applicazioni Enterprise Hello][2]
+    ![Pannello Applicazioni aziendali][2]
     
-3. tooadd nuova applicazione, fare clic su **nuova applicazione** pulsante nella parte superiore di hello della finestra di dialogo.
+3. Fare clic sul pulsante **Nuova applicazione** nella parte superiore della finestra di dialogo per aggiungere una nuova applicazione.
 
-    ![Nuovo pulsante dell'applicazione Hello][3]
+    ![Pulsante Nuova applicazione][3]
 
-4. Nella casella di ricerca hello, digitare **associare il**selezionare **associare il** dal pannello risultati quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.
+4. Nella casella di ricerca digitare **Fuse**, selezionare **Fuse** nel pannello dei risultati e quindi fare clic sul pulsante **Aggiungi** per aggiungere l'applicazione.
 
-    ![Associare il nell'elenco risultati hello](./media/active-directory-saas-fuse-tutorial/tutorial_fuse_addfromgallery.png)
+    ![Fuse nell'elenco risultati](./media/active-directory-saas-fuse-tutorial/tutorial_fuse_addfromgallery.png)
 
 ## <a name="configure-and-test-azure-ad-single-sign-on"></a>Configurare e testare l'accesso Single Sign-On di Azure AD
 
 In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con Fuse in base a un utente test di nome "Britta Simon".
 
-Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello in fusibile è tooa utente in Azure AD. In altre parole, una relazione di collegamento tra un utente di Azure AD e l'utente correlato hello fusibile esigenze toobe stabilita.
+Per il funzionamento dell'accesso Single Sign-On, Azure AD deve conoscere qual è l'utente di Fuse che corrisponde a un utente di Azure AD. In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in Fuse.
 
-In fusibile, assegnare il valore di hello di hello **nome utente** in Azure AD come valore hello hello **Username** tooestablish relazione di collegamento hello.
+Per stabilire la relazione di collegamento, in Fuse assegnare il valore del **nome utente** in Azure AD come valore di **Username** (Nome utente).
 
-tooconfigure e prova AD Azure single sign-on con fusibile, è necessario hello toocomplete seguenti blocchi predefiniti:
+Per configurare e testare l'accesso Single Sign-On di Azure AD con Fuse, è necessario completare i blocchi predefiniti seguenti:
 
-1. **[Configurare Azure Active Directory Single Sign-On](#configure-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.
-2. **[Creare un utente prova AD Azure](#create-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.
-3. **[Creare un utente test fusibile](#create-a-fuse-test-user)**  -toohave un equivalente di Britta Simon in fusibile che è la rappresentazione toohello collegato Azure AD dell'utente.
-4. **[Assegnare l'utente test hello Azure AD](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.
-5. **[Testare single sign-on](#test-single-sign-on)**  -tooverify hello se funzionamento della configurazione.
+1. **[Configurare l'accesso Single Sign-On di Azure AD](#configure-azure-ad-single-sign-on)**: per consentire agli utenti di usare questa funzionalità.
+2. **[Creare un utente di test di Azure AD](#create-an-azure-ad-test-user)**: per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.
+3. **[Creare un utente di test di Fuse](#create-a-fuse-test-user)**: per avere una controparte di Britta Simon in Fuse collegata alla rappresentazione dell'utente in Azure AD.
+4. **[Assegnare l'utente test di Azure AD](#assign-the-azure-ad-test-user)**: per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.
+5. **[Testare l'accesso Single Sign-On](#test-single-sign-on)** per verificare se la configurazione funziona.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Configurare l'accesso Single Sign-On di Azure AD
 
-In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure e configurare l'accesso single sign-on nell'applicazione fusibile.
+In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di Azure e viene configurato l'accesso Single Sign-On nell'applicazione Fuse.
 
-**tooconfigure AD Azure single sign-on con fusibile, eseguire hello alla procedura seguente:**
+**Per configurare Single Sign-On di Azure AD con Fuse, seguire questa procedura:**
 
-1. Nel portale di Azure su hello hello **associare il** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.
+1. Nella pagina di integrazione dell'applicazione **Fuse** del portale di Azure fare clic su **Single Sign-On**.
 
-    ![Collegamento per la configurazione dell'accesso Single Sign-On][4]
+    ![Collegamento Configura accesso Single Sign-On][4]
 
-2. In hello **Single sign-on** finestra di dialogo Seleziona **modalità** come **basato su SAML Sign-on** tooenable single sign-on.
+2. Nella finestra di dialogo **Single Sign-On** selezionare **Accesso basato su SAML** per **Modalità** per abilitare l'accesso Single Sign-On.
  
     ![Finestra di dialogo Single Sign-On](./media/active-directory-saas-fuse-tutorial/tutorial_fuse_samlbase.png)
 
-3. In hello **associare il dominio e gli URL** seguire hello alla procedura seguente:
+3. Nella sezione **URL e dominio Fuse** seguire questa procedura:
 
     ![Informazioni su URL e dominio per l'accesso Single Sign-On di Fuse](./media/active-directory-saas-fuse-tutorial/tutorial_fuse_url.png)
     
-    In hello **Sign-on URL** casella di testo, digitare un URL utilizzando hello seguente modello:`https://<tenant name>.fusion-universal.com/`
+    Nella casella di testo **URL di accesso** digitare l'URL usando il modello seguente: `https://<tenant name>.fusion-universal.com/`.
 
     > [!NOTE] 
-    > Poiché non è reale, Aggiorna il valore con hello URL effettivo Sign-On. Contatto [team di supporto di associare il Client](mailto:support@fusion-universal.com) tooget questo valore. 
+    > Poiché non è reale, è necessario aggiornare questo valore con l'URL di accesso effettivo. Per ottenere questo valore, contattare il [team di supporto clienti di Fuse](mailto:support@fusion-universal.com). 
  
-4. In hello **certificato di firma SAML** fare clic su **certificato (Raw)** e quindi salvare il file di certificato hello nel computer in uso.
+4. Nella sezione **Certificato di firma SAML** fare clic su **Certificate (Raw)** (Certificato (base)) e quindi salvare il file del certificato nel computer.
 
-    ![collegamento al download del certificato Hello](./media/active-directory-saas-fuse-tutorial/tutorial_fuse_certificate.png) 
+    ![Collegamento di download del certificato](./media/active-directory-saas-fuse-tutorial/tutorial_fuse_certificate.png) 
 
 5. Fare clic sul pulsante **Salva** .
 
-    ![Pulsante Salva di Configura accesso Single Sign-On](./media/active-directory-saas-fuse-tutorial/tutorial_general_400.png)
+    ![Pulsante Salva per la configurazione dell'accesso Single Sign-On](./media/active-directory-saas-fuse-tutorial/tutorial_general_400.png)
 
-6. In hello **configurazione associare il** fare clic su **configurare associare il** tooopen **Configura sign-on** finestra. Hello copia **Sign-Out URL, l'ID entità SAML e SAML Single Sign-On Service URL** da hello **sezione di riferimento rapido.**
+6. Nella sezione **Configurazione di Fuse** fare clic su **Configura Fuse** per aprire la finestra **Configura accesso**. Copiare l'**URL di disconnessione, l'ID di entità SAML e l'URL del servizio Single Sign-On SAML** dalla sezione **Riferimento rapido.**
 
     ![Configurazione di Fuse](./media/active-directory-saas-fuse-tutorial/tutorial_fuse_configure.png) 
 
-7. tooget SSO è configurato per l'applicazione, contattare [team di supporto fusibile](mailto:support@fusion-universal.com) e fornire loro seguente hello:
+7. Per ottenere l'accesso Single Sign-On configurato per l'applicazione, contattare il [team di supporto di Fuse](mailto:support@fusion-universal.com) e fornire i seguenti elementi:
 
-    * Hello scaricato **file di certificato (Raw)**
-    * Hello **SAML Single Sign-On Service URL**
-    * Hello **ID entità SAML**
-    * Hello **Sign-Out URL**
+    * **File del certificato (base)** scaricato
+    * **URL del servizio Single Sign-On SAML**
+    * **ID di entità SAML**
+    * **URL di disconnessione**
 
 > [!TIP]
-> È ora possibile leggere una versione di queste istruzioni all'interno di hello concisa [portale di Azure](https://portal.azure.com), mentre si stanno impostando app hello!  Dopo l'aggiunta di questa app da hello **Active Directory > applicazioni aziendali** fare semplicemente clic su hello **Single Sign-On** scheda e l'accesso hello incorporato documentazione tramite hello  **Configurazione** sezione nella parte inferiore di hello. È possibile leggere altre informazioni sulla funzionalità di documentazione embedded hello qui: [AD Azure incorporato documentazione]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Un riepilogo delle istruzioni è disponibile all'interno del [portale di Azure](https://portal.azure.com) durante la configurazione dell'app.  Dopo aver aggiunto l'app dalla sezione **Active Directory > Applicazioni aziendali** è sufficiente fare clic sulla scheda **Single Sign-On** e accedere alla documentazione incorporata tramite la sezione **Configurazione** nella parte inferiore. Altre informazioni sulla funzione di documentazione incorporata sono disponibili in [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985) (Documentazione incorporata di Azure AD).
 > 
 
 ### <a name="create-an-azure-ad-test-user"></a>Creare un utente test di Azure AD
 
-obiettivo di Hello di questa sezione è un utente di test nel portale di Azure chiamato Britta Simon hello toocreate.
+Questa sezione descrive come creare un utente test denominato Britta Simon nel portale di Azure.
 
    ![Creare un utente test di Azure AD][100]
 
-**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**
+**Per creare un utente test in Azure AD, eseguire la procedura seguente:**
 
-1. Nel portale di Azure, nel riquadro di sinistra hello, hello fare clic su hello **Azure Active Directory** pulsante.
+1. Nel portale di Azure fare clic sul pulsante **Azure Active Directory** nel riquadro sinistro.
 
-    ![pulsante di Hello Azure Active Directory](./media/active-directory-saas-fuse-tutorial/create_aaduser_01.png)
+    ![Pulsante Azure Active Directory](./media/active-directory-saas-fuse-tutorial/create_aaduser_01.png)
 
-2. elenco di hello toodisplay di utenti, andare troppo**utenti e gruppi**, quindi fare clic su **tutti gli utenti**.
+2. Per visualizzare l'elenco di utenti, passare a **Utenti e gruppi** e quindi fare clic su **Tutti gli utenti**.
 
-    ![Hello "Utenti e gruppi" e i collegamenti di "Tutti gli utenti"](./media/active-directory-saas-fuse-tutorial/create_aaduser_02.png)
+    ![Collegamenti "Utenti e gruppi" e "Tutti gli utenti"](./media/active-directory-saas-fuse-tutorial/create_aaduser_02.png)
 
-3. hello tooopen **utente** la finestra di dialogo, fare clic su **Aggiungi** nella parte superiore di hello di hello **tutti gli utenti** la finestra di dialogo.
+3. Per aprire la finestra di dialogo **Utente** fare clic su **Aggiungi** nella parte superiore della finestra di dialogo **Tutti gli utenti**.
 
-    ![pulsante Aggiungi Hello](./media/active-directory-saas-fuse-tutorial/create_aaduser_03.png)
+    ![Pulsante Aggiungi](./media/active-directory-saas-fuse-tutorial/create_aaduser_03.png)
 
-4. In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:
+4. Nella finestra di dialogo **Utente** seguire questa procedura:
 
-    ![finestra di dialogo utente Hello](./media/active-directory-saas-fuse-tutorial/create_aaduser_04.png)
+    ![Finestra di dialogo Utente](./media/active-directory-saas-fuse-tutorial/create_aaduser_04.png)
 
-    a. In hello **nome** digitare **BrittaSimon**.
+    a. Nella casella **Nome** digitare **BrittaSimon**.
 
-    b. In hello **nome utente** casella Tipo hello di indirizzo di posta elettronica dell'utente Britta Simon.
+    b. Nella casella **Nome utente** digitare l'indirizzo di posta elettronica dell'utente Britta Simon.
 
-    c. Seleziona hello **Show Password** casella di controllo e quindi annotare i valori hello visualizzati in hello **Password** casella.
+    c. Selezionare la casella di controllo **Mostra password** e quindi prendere nota del valore visualizzato nella casella **Password**.
 
     d. Fare clic su **Crea**.
  
 ### <a name="create-a-fuse-test-user"></a>Creare un utente test di Fuse
 
-In questa sezione viene creato un utente di nome Britta Simon in Fuse. Rivolgersi [team di supporto fusibile](mailto:support@fusion-universal.com) utenti hello tooadd nella piattaforma fusibile hello.
+In questa sezione viene creato un utente di nome Britta Simon in Fuse. Collaborare con il [team di supporto di Fuse](mailto:support@fusion-universal.com) per aggiungere gli utenti alla piattaforma Fuse.
 
 
-### <a name="assign-hello-azure-ad-test-user"></a>Assegnare l'utente test hello Azure AD
+### <a name="assign-the-azure-ad-test-user"></a>Assegnare l'utente test di Azure AD
 
-In questa sezione per abilitare Britta Simon toouse single sign-on Azure concessione dell'accesso tooFuse.
+In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sign-On di Azure concedendole l'accesso a Fuse.
 
-![Assegnazione del ruolo utente hello][200] 
+![Assegnare il ruolo utente][200] 
 
-**tooassign Britta Simon tooFuse, eseguire hello alla procedura seguente:**
+**Per assegnare Britta Simon a Fuse, seguire questa procedura:**
 
-1. Nel portale di Azure hello, aprire la visualizzazione di applicazioni hello, quindi selezionare Visualizza directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.
+1. Nel portale di Azure aprire la visualizzazione delle applicazioni e quindi la visualizzazione delle directory e passare ad **Applicazioni aziendali**, quindi fare clic su **Tutte le applicazioni**.
 
     ![Assegna utente][201] 
 
-2. Nell'elenco di applicazioni hello, selezionare **associare il**.
+2. Nell'elenco delle applicazioni selezionare **Fuse**.
 
-    ![collegamento fusibile Hello nell'elenco delle applicazioni hello](./media/active-directory-saas-fuse-tutorial/tutorial_fuse_app.png)  
+    ![Collegamento di Fuse nell'elenco delle applicazioni](./media/active-directory-saas-fuse-tutorial/tutorial_fuse_app.png)  
 
-3. Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.
+3. Scegliere **Utenti e gruppi** dal menu a sinistra.
 
-    ![collegamento di "Utenti e gruppi" Hello][202]
+    ![Collegamento "Utenti e gruppi"][202]
 
 4. Fare clic sul pulsante **Aggiungi**. Selezionare quindi **Utenti e gruppi** nella finestra di dialogo **Aggiungi assegnazione**.
 
-    ![riquadro assegnazione aggiungere Hello][203]
+    ![Riquadro Aggiungi assegnazione][203]
 
-5. In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.
+5. Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco Utenti.
 
 6. Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.
 
@@ -205,14 +205,14 @@ In questa sezione per abilitare Britta Simon toouse single sign-on Azure concess
     
 ### <a name="test-single-sign-on"></a>Testare l'accesso Single Sign-On
 
-In questa sezione si test configurazione di Azure AD single sign-on utilizzando hello Pannello di accesso.
+In questa sezione viene testata la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.
 
-Quando si fa clic su riquadro fusibile hello in hello Pannello di accesso, è necessario ottenere automaticamente firmato in tooyour fusibile applicazione.
-Per ulteriori informazioni sul pannello di accesso, vedere [introduzione toohello Pannello di accesso](active-directory-saas-access-panel-introduction.md). 
+Quando si fa clic sul riquadro Fuse nel pannello di accesso, si dovrebbe accedere automaticamente all'applicazione Fuse.
+Per altre informazioni sul pannello di accesso, vedere [Introduzione al Pannello di accesso](active-directory-saas-access-panel-introduction.md). 
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md)
 
 

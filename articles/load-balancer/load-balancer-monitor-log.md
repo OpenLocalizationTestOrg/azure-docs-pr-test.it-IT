@@ -1,9 +1,9 @@
 ---
-title: aaaMonitor operazioni, gli eventi e i contatori per il bilanciamento del carico | Documenti Microsoft
-description: "Informazioni su come gli eventi di avviso, tooenable e verificare la presenza di registrazione dello stato di integrità servizio di bilanciamento del carico di Azure"
+title: Monitorare operazioni, eventi e contatori per Azure Load Balancer | Documentazione Microsoft
+description: "Informazioni su come abilitare gli eventi di avviso e la registrazione dello stato di integrità del probe per il servizio di bilanciamento del carico di Azure"
 services: load-balancer
 documentationcenter: na
-author: kumudd
+author: KumudD
 manager: timlt
 tags: azure-resource-manager
 ms.assetid: 56656d74-0241-4096-88c8-aa88515d676d
@@ -12,58 +12,60 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/24/2016
+ms.date: 09/25/2017
 ms.author: kumud
-ms.openlocfilehash: ac53c2254e06cad780ad6144c5c30f0085d12576
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 36b9379f88ce024c1dcbf9977a873d95076d10df
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="log-analytics-for-azure-load-balancer"></a>Analisi dei log per il servizio di bilanciamento del carico di Azure
 
-È possibile utilizzare diversi tipi di registri in Azure toomanage e risolvere i problemi relativi a servizi di bilanciamento del carico. Alcuni di questi log sono accessibili tramite il portale di hello. Tutti i log possono essere estratti da Archiviazione BLOB di Azure e visualizzati in strumenti differenti, ad esempio Excel e PowerBI. È possibile ulteriori informazioni sui tipi diversi hello dei log dall'elenco di hello seguente.
+[!INCLUDE [load-balancer-basic-sku-include.md](../../includes/load-balancer-basic-sku-include.md)]
 
-* **Log di controllo:** è possibile utilizzare [registri di controllo Azure](../monitoring-and-diagnostics/insights-debugging-with-events.md) (precedentemente noto come registri) tooview tutte le operazioni vengono inviati tooyour sottoscrizioni Azure e il relativo stato. I log di controllo sono abilitati per impostazione predefinita e possono essere visualizzati nel portale di Azure hello.
-* **I registri eventi di avviso:** è possibile utilizzare questo rasied gli avvisi di log tooview dal servizio di bilanciamento del carico hello. stato Hello di bilanciamento del carico hello verrà raccolti ogni cinque minuti. Questo log viene scritto solo se viene generato un evento di avviso del bilanciamento del carico.
-* **I registri di probe di integrità:** è possibile utilizzare questo log tooview problemi per il probe di integrità, ad esempio il numero di hello di istanze del pool di back-end che non ricevano richieste dal bilanciamento del carico hello a causa di errori di probe di integrità. Questo log viene scritto toowhen viene apportata una modifica nello stato di probe di integrità hello.
+In Azure è possibile usare diversi tipi di log per gestire e risolvere i problemi dei bilanciamenti del carico. Alcuni di questi log sono accessibili tramite il portale Tutti i log possono essere estratti da Archiviazione BLOB di Azure e visualizzati in strumenti differenti, ad esempio Excel e PowerBI. L'elenco seguente contiene altre informazioni sui diversi tipi di log.
+
+* **Log di controllo:** è possibile usare i [log di controllo di Azure](../monitoring-and-diagnostics/insights-debugging-with-events.md) (noti in precedenza come log operativi) per visualizzare tutte le operazioni da inviare alle sottoscrizioni di Azure e il relativo stato. I log di controllo sono abilitati per impostazione predefinita e possono essere visualizzati nel portale di Azure.
+* **Log eventi di avviso:** è possibile usare questo log per visualizzare gli avvisi generati per il bilanciamento del carico. Le informazioni di stato per il bilanciamento del carico vengono raccolte ogni cinque minuti. Questo log viene scritto solo se viene generato un evento di avviso del bilanciamento del carico.
+* **Log del probe di integrità:** è possibile usare questo registro per visualizzare i problemi rilevati dal probe di integrità, ad esempio il numero di istanze del pool di back-end che non stanno ricevendo richieste dal servizio di bilanciamento del carico a causa di problemi del probe di integrità. Questo log viene scritto quando si apporta una modifica nello stato del probe di integrità.
 
 > [!IMPORTANT]
-> Attualmente l'analisi di log funziona solo per i servizi di bilanciamento del carico con connessione Internet. I log sono disponibili solo per le risorse distribuite nel modello di distribuzione di gestione risorse di hello. Non è possibile utilizzare i log per le risorse nel modello di distribuzione classica hello. Per ulteriori informazioni sui modelli di distribuzione hello, vedere [distribuzione classica e gestione di informazioni sulle risorse](../azure-resource-manager/resource-manager-deployment-model.md).
+> Attualmente l'analisi di log funziona solo per i servizi di bilanciamento del carico con connessione Internet. I log sono disponibili solo per le risorse distribuite nel modello di distribuzione di Gestione risorse. Non è possibile usare i log per le risorse nel modello di distribuzione classica. Per altre informazioni su questi modelli di distribuzione, vedere l'articolo relativo alle [informazioni sulla distribuzione di Gestione risorse e sulla distribuzione classica](../azure-resource-manager/resource-manager-deployment-model.md).
 
 ## <a name="enable-logging"></a>Abilitazione della registrazione
 
-La registrazione di controllo viene abilitata automaticamente per ogni risorsa di Resource Manager. È necessario evento tooenable e integrità probe registrazione toostart la raccolta dei dati di hello disponibili tramite tali log. Utilizzare hello registrazione tooenable i passaggi seguenti.
+La registrazione di controllo viene abilitata automaticamente per ogni risorsa di Resource Manager. È necessario abilitare la registrazione di eventi e del probe di integrità per iniziare a raccogliere i dati disponibili in tali log. Eseguire questa procedura per abilitare la registrazione.
 
-Accedi toohello [portale di Azure](http://portal.azure.com). Prima di procedere, [creare un servizio di bilanciamento del carico](load-balancer-get-started-internet-arm-ps.md) , se non se ne ha già uno.
+Accedere al [portale di Azure](http://portal.azure.com). Prima di procedere, [creare un servizio di bilanciamento del carico](load-balancer-get-started-internet-arm-ps.md) , se non se ne ha già uno.
 
-1. Nel portale di hello, fare clic su **Sfoglia**.
+1. Nel Portale di Azure fare clic su **Esplora**.
 2. Selezionare **Bilanciamento del carico**.
 
     ![portale - bilanciamento del carico](./media/load-balancer-monitor-log/load-balancer-browse.png)
 
 3. Selezionare un bilanciamento del carico esistente >> **Tutte le impostazioni**.
-4. Sul lato destro di hello di hello nella finestra di dialogo Nome hello di bilanciamento del carico hello, scorrere troppo**monitoraggio**, fare clic su **diagnostica**.
+4. Sul lato destro della finestra di dialogo sotto il nome del servizio di bilanciamento del carico, scorrere fino a **Monitoraggio** e fare clic su **Diagnostica**.
 
     ![portale - impostazioni di bilanciamento del carico](./media/load-balancer-monitor-log/load-balancer-settings.png)
 
-5. In hello **diagnostica** riquadro, in **stato**selezionare **su**.
+5. Nel riquadro **Diagnostica**, in **Stato**, selezionare **On**.
 6. Fare clic su **Account di archiviazione**.
-7. In **LOG** selezionare un account di archiviazione esistente o crearne uno nuovo. Utilizzare hello dispositivo di scorrimento toodetermine quanti giorni verranno archiviati i dati di eventi relativi a nei registri eventi di hello. 
-8. Fare clic su **Salva**.
+7. In **LOG** selezionare un account di archiviazione esistente o crearne uno nuovo. Usare il dispositivo di scorrimento per stabilire per quanti giorni i dati dell'evento verranno archiviati nei registri eventi. 
+8. Fare clic su **Save**.
 
     ![Portale - Log di diagnostica](./media/load-balancer-monitor-log/load-balancer-diagnostics.png)
 
 > [!NOTE]
-> I log di controllo non richiedono un account di archiviazione separato. utilizzo di Hello di archiviazione per l'evento e l'integrità probe registrazione spese del servizio.
+> I log di controllo non richiedono un account di archiviazione separato. Per l'uso del servizio di archiviazione per la registrazione di eventi e del probe di integrità è previsto un addebito.
 
 ## <a name="audit-log"></a>Log di controllo
 
-Per impostazione predefinita, viene generato il log di controllo di Hello. Hello registri vengono mantenuti per 90 giorni nell'archivio di registri eventi di Azure. Altre informazioni su questi registri leggendo hello [visualizzare eventi e log di controllo](../monitoring-and-diagnostics/insights-debugging-with-events.md) articolo.
+Il log di controllo viene generato per impostazione predefinita. I log vengono conservati per 90 giorni nell'archivio dei log eventi di Azure. Per altre informazioni su questi log, vedere l'articolo [Visualizzare eventi e log di controllo](../monitoring-and-diagnostics/insights-debugging-with-events.md) .
 
 ## <a name="alert-event-log"></a>Log eventi di avviso
 
-Questo log viene generato solo se è stato abilitato per ogni bilanciamento del carico. gli eventi di Hello vengono registrati in formato JSON e archiviati nell'account di archiviazione hello specificato quando è abilitata la registrazione di hello. Hello Ecco un esempio di un evento.
+Questo log viene generato solo se è stato abilitato per ogni bilanciamento del carico. Gli eventi vengono registrati in formato JSON e archiviati nell'account di archiviazione specificato quando è stata abilitata la registrazione. Di seguito è riportato un esempio di evento.
 
 ```json
 {
@@ -82,11 +84,11 @@ Questo log viene generato solo se è stato abilitato per ogni bilanciamento del 
 }
 ```
 
-Hello JSON output illustrato hello *eventname* proprietà che descrivono il motivo di hello di bilanciamento del carico hello creato un avviso. In questo caso, l'avviso di hello generato è stato scadenza tooTCP esaurimento delle porte causato da un'origine che IP NAT limita (SNAT).
+L'output JSON mostra la proprietà *eventname* che descrive il motivo per cui il bilanciamento del carico ha creato un avviso. In questo caso, l'avviso è stato generato a causa dell'esaurimento delle porte TCP dovuto ai limiti NAT dell'IP di origine (SNAT).
 
 ## <a name="health-probe-log"></a>Log del probe di integrità
 
-Questo log viene generato solo se è stato abilitato per ogni bilanciamento del carico, come indicato in precedenza. Hello dati vengono archiviati nell'account di archiviazione hello specificato quando è abilitata la registrazione di hello. Viene creato un contenitore denominato 'insights-log-loadbalancerprobehealthstatus' e viene registrato hello dati seguenti:
+Questo log viene generato solo se è stato abilitato per ogni bilanciamento del carico, come indicato in precedenza. I dati vengono archiviati nell'account di archiviazione specificato quando è stata abilitata la registrazione. Viene creato un contenitore denominato 'insights-logs-loadbalancerprobehealthstatus' e vengono registrati i dati seguenti:
 
 ```json
 {
@@ -122,21 +124,21 @@ Questo log viene generato solo se è stato abilitato per ogni bilanciamento del 
 }
 ```
 
-l'output JSON Hello Mostra hello proprietà campo hello informazioni di base per lo stato di integrità di hello probe. Hello *dipDownCount* numero totale di hello di istanze vengono visualizzate le proprietà nel back-end di hello che non ricevano il traffico di rete a causa delle risposte probe toofailed.
+L'output JSON mostra nel campo proprietà le informazioni di base per lo stato di integrità del probe. La proprietà *dipDownCount* indica il numero totale di istanze nel back-end che non ricevono traffico di rete a causa di risposte del probe non riuscite.
 
-## <a name="view-and-analyze-hello-audit-log"></a>Visualizzare e analizzare i log di controllo hello
+## <a name="view-and-analyze-the-audit-log"></a>Visualizzare e analizzare il log di controllo
 
-È possibile visualizzare e analizzare i dati di log di controllo utilizzando uno dei seguenti metodi hello:
+È possibile visualizzare e analizzare i dati del log di controllo con uno dei metodi seguenti:
 
-* **Gli strumenti di Azure:** recuperare informazioni dai log di controllo hello tramite Azure PowerShell, hello interfaccia della riga di comando (CLI di Azure), l'API REST di Azure hello o hello portale di anteprima di Azure. Istruzioni dettagliate per ogni metodo sono descritti in dettaglio in hello [controllare le operazioni con Gestione risorse](../azure-resource-manager/resource-group-audit.md) articolo.
-* **Power BI:** se non esiste ancora un account [Power BI](https://powerbi.microsoft.com/pricing) , è possibile crearne uno di prova gratuitamente. Utilizzo di hello [di contenuto log di controllo di Azure per Power BI](https://powerbi.microsoft.com/documentation/powerbi-content-pack-azure-audit-logs), è possibile analizzare i dati con i dashboard configurati in precedenza oppure è possibile personalizzare le visualizzazioni toosuit i requisiti.
+* **Strumenti di Azure:** recuperare le informazioni dai log di controllo tramite Azure PowerShell, l'interfaccia della riga di comando di Azure, l'API REST di Azure o il portale di anteprima di Azure. Per istruzioni dettagliate per ogni metodo, vedere l'articolo [Operazioni di controllo con Gestione risorse](../azure-resource-manager/resource-group-audit.md) .
+* **Power BI:** se non esiste ancora un account [Power BI](https://powerbi.microsoft.com/pricing) , è possibile crearne uno di prova gratuitamente. Con il [pacchetto di contenuto dei log di controllo di Azure per Power BI](https://powerbi.microsoft.com/documentation/powerbi-content-pack-azure-audit-logs) è possibile analizzare i dati con dashboard preconfigurati oppure personalizzare le viste in base alle esigenze.
 
-## <a name="view-and-analyze-hello-health-probe-and-event-log"></a>Visualizzare e analizzare i probe di integrità hello e registro eventi
+## <a name="view-and-analyze-the-health-probe-and-event-log"></a>Visualizzare e analizzare il log eventi e del probe di integrità
 
-È necessario un archivio tooyour tooconnect account e recupero delle voci di log hello JSON per i log di probe di evento e l'integrità. Dopo avere scaricato i file JSON hello, è possibile convertirli tooCSV e view in Excel, Power BI o qualsiasi altro strumento di visualizzazione di dati.
+È necessario connettersi all'account di archiviazione e recuperare le voci di log JSON per i log eventi e del probe di integrità. Dopo avere scaricato i file JSON, è possibile convertirli in CSV e visualizzarli in Excel, PowerBI o un altro strumento di visualizzazione dei dati.
 
 > [!TIP]
-> Se si ha familiarità con Visual Studio e concetti di base di modificare i valori costanti e variabili in c#, è possibile utilizzare hello [log strumenti convertitore](https://github.com/Azure-Samples/networking-dotnet-log-converter) disponibili da GitHub.
+> Se si ha familiarità con Visual Studio e i concetti di base della modifica dei valori di costanti e variabili in C#, è possibile usare i [convertitori di log](https://github.com/Azure-Samples/networking-dotnet-log-converter) disponibili in GitHub.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 

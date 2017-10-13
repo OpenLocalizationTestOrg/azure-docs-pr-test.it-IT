@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con Kantega SSO for Bitbucket | Microsoft Docs'
-description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e Kantega SSO per Bitbucket.
+description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e Kantega SSO for Bitbucket.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,117 +13,117 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: jeedes
-ms.openlocfilehash: e86a9a9a42f2f80fe83191f113f6bab46cc8a37d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6656c9abf8483ee98c0cb1a16c06d078e32240f2
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-kantega-sso-for-bitbucket"></a>Esercitazione: Integrazione di Azure Active Directory con Kantega SSO for Bitbucket
 
-In questa esercitazione, è illustrato come toointegrate Kantega SSO per Bitbucket con Azure Active Directory (Azure AD).
+Questa esercitazione descrive come integrare Kantega SSO for Bitbucket con Azure Active Directory (Azure AD).
 
-Integrazione Kantega SSO per Bitbucket con Azure AD fornisce hello seguenti vantaggi:
+L'integrazione di Kantega SSO for Bitbucket con Azure AD offre i vantaggi seguenti:
 
-- È possibile controllare in Azure AD che ha accesso tooKantega SSO per Bitbucket
-- È possibile abilitare l'utenti tooautomatically get connesso tooKantega SSO per Bitbucket (Single Sign-On) con i propri account Azure AD
-- È possibile gestire gli account in un'unica posizione centrale - hello portale di Azure
+- È possibile controllare in Azure AD chi può accedere a Kantega SSO for Bitbucket
+- È possibile abilitare gli utenti per l'accesso automatico a Kantega SSO for Bitbucket (Single Sign-On) con gli account Azure AD
+- È possibile gestire gli account in un'unica posizione centrale: il portale di Azure.
 
-Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-integrazione di Azure AD con SSO Kantega per Bitbucket tooconfigure, è necessario hello seguenti elementi:
+Per configurare l'integrazione di Azure AD con Kantega SSO for Bitbucket, sono necessari gli elementi seguenti:
 
 - Sottoscrizione di Azure AD.
 - Sottoscrizione di Kantega SSO for Bitbucket abilitata per l'accesso Single Sign-On
 
 > [!NOTE]
-> hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.
+> Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.
 
-passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:
+A questo scopo, è consigliabile seguire le indicazioni seguenti:
 
 - Non usare l'ambiente di produzione a meno che non sia necessario.
 - Se non si dispone di un ambiente di prova di Azure AD, è possibile ottenere una versione di valutazione di un mese [qui](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Descrizione dello scenario
-In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. scenario di Hello descritto in questa esercitazione è composto da due componenti principali:
+In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:
 
-1. Aggiunta di SSO Kantega per Bitbucket dalla raccolta hello
+1. Aggiunta di Kantega SSO for Bitbucket dalla raccolta
 2. Configurazione e test dell'accesso Single Sign-On di Azure AD
 
-## <a name="adding-kantega-sso-for-bitbucket-from-hello-gallery"></a>Aggiunta di SSO Kantega per Bitbucket dalla raccolta hello
-integrazione hello tooconfigure di Kantega SSO per Bitbucket in Azure AD, è necessario tooadd Kantega SSO per Bitbucket dall'elenco di tooyour hello raccolta di App SaaS gestite.
+## <a name="adding-kantega-sso-for-bitbucket-from-the-gallery"></a>Aggiunta di Kantega SSO for Bitbucket dalla raccolta
+Per configurare l'integrazione di Kantega SSO for Bitbucket in Azure AD, è necessario aggiungere Kantega SSO for Bitbucket dalla raccolta all'elenco di app SaaS gestite.
 
-**tooadd Kantega SSO per Bitbucket dalla raccolta di hello, eseguire hello alla procedura seguente:**
+**Per aggiungere Kantega SSO for Bitbucket dalla raccolta, seguire questa procedura:**
 
-1. In hello  **[portale di Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona. 
+1. Nel **[portale di Azure](https://portal.azure.com)** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro. 
 
     ![Active Directory][1]
 
-2. Passare troppo**applicazioni aziendali**. Quindi andare troppo**tutte le applicazioni**.
+2. Passare ad **Applicazioni aziendali**. Andare quindi a **Tutte le applicazioni**.
 
     ![Applicazioni][2]
     
-3. tooadd nuova applicazione, fare clic su **nuova applicazione** pulsante nella parte superiore di hello della finestra di dialogo.
+3. Fare clic sul pulsante **Nuova applicazione** nella parte superiore della finestra di dialogo per aggiungere una nuova applicazione.
 
     ![Applicazioni][3]
 
-4. Nella casella di ricerca hello, digitare **Kantega SSO per Bitbucket**.
+4. Nella casella di ricerca digitare **Kantega SSO for Bitbucket**.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-kantegassoforbitbucket-tutorial/tutorial_kantegassoforbitbucket_search.png)
 
-5. Nel riquadro dei risultati hello, selezionare **Kantega SSO per Bitbucket**, quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.
+5. Nel pannello dei risultati selezionare **Kantega SSO for Bitbucket** e quindi fare clic sul pulsante **Aggiungi** per aggiungere l'applicazione.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-kantegassoforbitbucket-tutorial/tutorial_kantegassoforbitbucket_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configurazione e test dell'accesso Single Sign-On di Azure AD
 In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con Kantega SSO for Bitbucket mediante un utente test di nome "Britta Simon".
 
-Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello in SSO Kantega per Bitbucket è tooa utente in Azure AD. In altre parole, una relazione di collegamento tra un utente di Azure Active Directory e l'utente correlato di hello in SSO Kantega per Bitbucket deve toobe stabilita.
+Per il funzionamento dell'accesso Single Sign-On, Azure AD deve individuare l'utente di Kantega SSO for Bitbucket corrispondente a un utente di Azure AD. In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in Kantega SSO for Bitbucket.
 
-In Kantega SSO per Bitbucket, assegnare il valore di hello di hello **nome utente** in Azure AD come valore hello hello **Username** tooestablish relazione di collegamento hello.
+Per stabilire la relazione di collegamento, in Kantega SSO for Bitbucket assegnare il valore di **nome utente** in Azure AD come valore di **Username** (Nome utente).
 
-tooconfigure e prova AD Azure single sign-on con Kantega SSO per Bitbucket, è necessario hello toocomplete seguenti blocchi predefiniti:
+Per configurare e testare l'accesso Single Sign-On di Azure AD con Kantega SSO for Bitbucket, è necessario completare i blocchi predefiniti seguenti:
 
-1. **[Configurazione di Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.
-2. **[Creazione di un utente prova AD Azure](#creating-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.
-3. **[Creazione di un SSO Kantega per utente test Bitbucket](#creating-a-kantega-sso-for-bitbucket-test-user)**  -toohave un equivalente di Britta Simon Kantega SSO per Bitbucket che è la rappresentazione toohello collegato Azure AD dell'utente.
-4. **[Assegnazione utente di prova hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.
-5. **[Test di Single Sign-On](#testing-single-sign-on)**  -tooverify hello se funzionamento della configurazione.
+1. **[Configurazione dell'accesso Single Sign-On di Azure AD](#configuring-azure-ad-single-sign-on)** : per abilitare gli utenti all'utilizzo di questa funzionalità.
+2. **[Creazione di un utente test di Azure AD](#creating-an-azure-ad-test-user)** : per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.
+3. **[Creazione di un utente test di Kantega SSO for Bitbucket](#creating-a-kantega-sso-for-bitbucket-test-user)**: per avere una controparte di Britta Simon in Kantega SSO for Bitbucket collegata alla rappresentazione dell'utente in Azure AD.
+4. **[Assegnazione dell'utente test di Azure AD](#assigning-the-azure-ad-test-user)** : per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** : per verificare se la configurazione funziona.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configurazione dell'accesso Single Sign-On di Azure AD
 
-In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure e configurare single sign-on in SSO il Kantega per l'applicazione di servizio.
+In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di Azure e viene configurato l'accesso Single Sign-On nell'applicazione Kantega SSO for Bitbucket.
 
-**tooconfigure AD Azure single sign-on con SSO Kantega per Bitbucket, eseguire hello alla procedura seguente:**
+**Per configurare l'accesso Single Sign-On di Azure AD con Kantega SSO for Bitbucket, seguire questa procedura:**
 
-1. Nel portale di Azure su hello hello **Kantega SSO per Bitbucket** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.
+1. Nella pagina di integrazione dell'applicazione **Kantega SSO for Bitbucket** del portale di Azure fare clic su **Single Sign-On**.
 
     ![Configura accesso Single Sign-On][4]
 
-2. In hello **Single sign-on** finestra di dialogo Seleziona **modalità** come **basato su SAML Sign-on** tooenable single sign-on.
+2. Nella finestra di dialogo **Single Sign-On** selezionare **Accesso basato su SAML** per **Modalità** per abilitare l'accesso Single Sign-On.
  
     ![Configura accesso Single Sign-On](./media/active-directory-saas-kantegassoforbitbucket-tutorial/tutorial_kantegassoforbitbucket_samlbase.png)
 
-3. In **IDP** avviato modalità, hello **Kantega SSO per dominio Bitbucket e gli URL** sezione eseguire hello seguente passaggio:
+3. In modalità avviata **IDP** nella sezione **URL e dominio Kantega SSO for Bitbucket** eseguire l'operazione seguente:
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-kantegassoforbitbucket-tutorial/tutorial_kantegassoforbitbucket_url1.png)
 
-    a. In hello **identificatore** casella di testo, digitare un URL utilizzando hello seguente modello:`https://<server-base-url>/plugins/servlet/no.kantega.saml/sp/<uniqueid>/login`
+    a. Nella casella di testo **Identificatore** digitare l'URL adottando il modello seguente: `https://<server-base-url>/plugins/servlet/no.kantega.saml/sp/<uniqueid>/login`
 
-    b. In hello **URL di risposta** casella di testo, digitare un URL utilizzando hello seguente modello:`https://<server-base-url>/plugins/servlet/no.kantega.saml/sp/<uniqueid>/login`
+    b. Nella casella di testo **URL di risposta** digitare l'URL usando il modello seguente: `https://<server-base-url>/plugins/servlet/no.kantega.saml/sp/<uniqueid>/login`
 
-4. In **SP** modalità avviata, controllo **Mostra URL impostazioni avanzate** ed eseguire hello seguente passaggio:
+4. In modalità avviata **SP** selezionare **Mostra impostazioni URL avanzate** ed eseguire l'operazione seguente:
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-kantegassoforbitbucket-tutorial/tutorial_kantegassoforbitbucket_url2.png)
     
-    In hello **Sign-on URL** casella di testo, digitare un URL utilizzando hello seguente modello:`https://<server-base-url>/plugins/servlet/no.kantega.saml/sp/<uniqueid>/login`
+    Nella casella di testo **URL di accesso** digitare l'URL usando il modello seguente: `https://<server-base-url>/plugins/servlet/no.kantega.saml/sp/<uniqueid>/login`
 
     > [!NOTE] 
-    > Poiché questi non sono i valori reali, Aggiornare questi valori con hello effettivo identificatore, l'URL di risposta e URL Sign-On. Questi valori vengono ricevuti durante la configurazione del plug-in di Bitbucket illustrato più avanti nell'esercitazione di hello hello.
+    > Poiché questi non sono i valori reali, aggiornarli con l'identificatore, l'URL di risposta e l'URL di accesso effettivi. Questi valori vengono ricevuti durante la configurazione del plug-in Bitbucket descritto più avanti nell'esercitazione.
 
-5. In hello **certificato di firma SAML** fare clic su **Metadata XML** e quindi salvare il file di metadati hello nel computer in uso.
+5. Nella sezione **Certificato di firma SAML** fare clic su **XML di metadati** e quindi salvare il file dei metadati nel computer.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-kantegassoforbitbucket-tutorial/tutorial_kantegassoforbitbucket_certificate.png) 
 
@@ -131,21 +131,21 @@ In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure 
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-kantegassoforbitbucket-tutorial/tutorial_general_400.png)
 
-7. In una finestra del web browser, accedere come amministratore nel portale di amministrazione di tooyour Bitbucket.
+7. In un'altra finestra del Web browser accedere al portale di amministrazione di Bitbucket come amministratore.
 
-8. Fare clic su ruota dentata e fare clic su hello **trovare nuovi componenti aggiuntivi**.
+8. Fare clic sull'ingranaggio e scegliere **Find new add-ons** (Trova nuovi componenti aggiuntivi).
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon1.png)
 
-9. Ricerca **Kantega SSO per SAML Bitbucket & Kerberos** e fare clic su **installare** tooinstall pulsante hello nuovo plug-in SAML.
+9. Cercare **Kantega SSO for Bitbucket SAML & Kerberos** e fare clic su **Install** (Installa) per installare il nuovo plug-in di SAML.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon2.png)
 
-10. verrà avviata l'installazione di plug-in di Hello.
+10. Viene avviata l'installazione del plug-in.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon31.png)
 
-11. Al termine dell'installazione di hello. Fare clic su **Close**.
+11. Al termine dell'installazione, Fare clic su **Close**.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon33.png)
 
@@ -153,11 +153,11 @@ In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure 
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon34.png)
     
-13. Fare clic su **configura** tooconfigure hello nuovo plug-in.  
+13. Fare clic su **Configure** (Configura) per configurare il nuovo plug-in.    
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon35.png)
 
-14. In hello **SAML** sezione. Selezionare **Azure Active Directory (Azure AD)** da hello **Aggiungi provider di identità** elenco a discesa.
+14. Nella sezione **SAML** Selezionare **Azure Active Directory (Azure AD)** dall'elenco a discesa **Add identity provider** (Aggiungi provider di identità).
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon4.png)
 
@@ -165,15 +165,15 @@ In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure 
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon5.png)
 
-16. In hello **proprietà App** sezione, eseguire la procedura seguente:
+16. Nella sezione **App properties** (Proprietà app) seguire questa procedura:
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon6.png)
 
-    a. Hello copia **URI ID App** valore e utilizzarlo come **URL Sign-On, l'URL di risposta e identificatore** su hello **Kantega SSO per dominio Bitbucket e gli URL** sezione nel portale di Azure.
+    a. Copiare il valore **URI ID app** e usarlo come **Identificatore, URL di risposta e URL di accesso** nella sezione **URL e dominio Kantega SSO for Bitbucket** nel portale di Azure.
 
     b. Fare clic su **Avanti**.
 
-17. In hello **importazione dei metadati** sezione, eseguire la procedura seguente:
+17. Nella sezione **Metadata import** (Importazione metadati) seguire questa procedura:
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon7.png)
 
@@ -181,23 +181,23 @@ In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure 
 
     b. Fare clic su **Avanti**.
 
-18. In hello **nome e SSO percorso** sezione, eseguire la procedura seguente:
+18. Nella sezione **Name and SSO location** (Nome e percorso SSO) seguire questa procedura:
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon8.png)
 
-    a. Aggiungi nome del Provider di identità hello in **nome provider di identità** casella di testo (ad esempio, Azure AD).
+    a. Aggiungere il nome del provider di identità nella casella di testo **Identity provider name** (Nome provider di identità), ad esempio Azure AD.
 
     b. Fare clic su **Avanti**.
 
-19. Verificare il certificato di firma hello e fare clic su **Avanti**.    
+19. Verificare il certificato di firma e fare clic su **Next** (Avanti).  
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon9.png)
 
-20. In hello **gli account utente di Bitbucket** sezione, eseguire la procedura seguente:
+20. Nella sezione **Bitbucket user accounts** (Account utente Bitbucket) seguire questa procedura:
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon10.png)
 
-    a. Selezionare **creare gli utenti nella Directory interna Bitbucket eventualmente** e immettere il nome appropriato del gruppo di hello hello per gli utenti (può essere più no. gruppi separati da virgola).
+    a. Selezionare **Create users in Bitbucket's internal Directory if needed** (Crea utenti nella directory interna di Bitbucket se necessario) e immettere il nome appropriato del gruppo per gli utenti (è possibile specificare più gruppi separati da virgola).
 
     b. Fare clic su **Avanti**.
 
@@ -205,58 +205,58 @@ In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure 
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon11.png)
 
-22. In hello **noto domini per Azure AD** sezione, eseguire la procedura seguente:   
+22. Nella sezione **Known domains for Azure AD** (Domini noti per Azure AD) seguire questa procedura: 
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-kantegassoforbitbucket-tutorial/addon12.png)
 
-    a. Selezionare **noto domini** dal riquadro sinistro di hello della pagina hello.
+    a. Selezionare **Known domains** (Domini noti) dal pannello sinistro della pagina.
 
-    b. Immettere un nome di dominio in hello **noto domini** casella di testo.
+    b. Immettere il nome di dominio nella casella di testo **Known domains** (Domini noti).
 
     c. Fare clic su **Salva**.  
 
 > [!TIP]
-> È ora possibile leggere una versione di queste istruzioni all'interno di hello concisa [portale di Azure](https://portal.azure.com), mentre si stanno impostando app hello!  Dopo l'aggiunta di questa app da hello **Active Directory > applicazioni aziendali** fare semplicemente clic su hello **Single Sign-On** scheda e l'accesso hello incorporato documentazione tramite hello  **Configurazione** sezione nella parte inferiore di hello. È possibile leggere altre informazioni sulla funzionalità di documentazione embedded hello qui: [AD Azure incorporato documentazione]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Un riepilogo delle istruzioni è disponibile all'interno del [portale di Azure](https://portal.azure.com) durante la configurazione dell'app.  Dopo aver aggiunto l'app dalla sezione **Active Directory > Applicazioni aziendali** è sufficiente fare clic sulla scheda **Single Sign-On** e accedere alla documentazione incorporata tramite la sezione **Configurazione** nella parte inferiore. Altre informazioni sulla funzione di documentazione incorporata sono disponibili in [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985) (Documentazione incorporata di Azure AD).
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Creazione di un utente test di Azure AD
-obiettivo di Hello di questa sezione è un utente di test nel portale di Azure chiamato Britta Simon hello toocreate.
+Questa sezione descrive come creare un utente test denominato Britta Simon nel portale di Azure.
 
 ![Creare un utente di Azure AD][100]
 
-**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**
+**Per creare un utente test in Azure AD, eseguire la procedura seguente:**
 
-1. In hello **portale di Azure**via hello riquadro di spostamento a sinistra, fare clic su **Azure Active Directory** icona.
+1. Nel **portale di Azure** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-kantegassoforbitbucket-tutorial/create_aaduser_01.png) 
 
-2. elenco di hello toodisplay di utenti, andare troppo**utenti e gruppi** e fare clic su **tutti gli utenti**.
+2. Passare a **Utenti e gruppi** e fare clic su **Tutti gli utenti** per visualizzare l'elenco di utenti.
     
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-kantegassoforbitbucket-tutorial/create_aaduser_02.png) 
 
-3. hello tooopen **utente** finestra di dialogo, fare clic su **Aggiungi** nella parte superiore di hello della finestra di dialogo hello.
+3. Nella parte superiore della finestra di dialogo fare clic su **Aggiungi** per aprire la finestra di dialogo **Utente**.
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-kantegassoforbitbucket-tutorial/create_aaduser_03.png) 
 
-4. In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:
+4. Nella pagina della finestra di dialogo **Utente** seguire questa procedura:
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-kantegassoforbitbucket-tutorial/create_aaduser_04.png) 
 
-    a. In hello **nome** casella tipo **BrittaSimon**.
+    a. Nella casella di testo **Nome** digitare **BrittaSimon**.
 
-    b. In hello **nome utente** casella di testo, hello tipo **indirizzo di posta elettronica** di BrittaSimon.
+    b. Nella casella di testo **Nome utente** digitare l'**indirizzo di posta elettronica** di BrittaSimon.
 
-    c. Selezionare **Show Password** e annotare il valore di hello di hello **Password**.
+    c. Selezionare **Mostra password** e prendere nota del valore della **Password**.
 
     d. Fare clic su **Crea**.
  
 ### <a name="creating-a-kantega-sso-for-bitbucket-test-user"></a>Creazione di un utente test di Kantega SSO for Bitbucket
 
-toolog agli utenti di Azure AD tooenable in tooBitbucket, è necessario eseguirne il provisioning in Bitbucket. In Kantega SSO for Bitbucket il provisioning è un'attività manuale.
+Per consentire agli utenti di Azure AD di accedere a Bitbucket, è necessario effettuarne il provisioning in Bitbucket. In Kantega SSO for Bitbucket il provisioning è un'attività manuale.
 
-**tooprovision un account utente, eseguire hello alla procedura seguente:**
+**Per eseguire il provisioning di un account utente, seguire questa procedura:**
 
-1. Accedi tooyour sito della società Bitbucket come amministratore.
+1. Accedere al sito aziendale Bitbucket come amministratore.
 
 2. Fare clic sull'icona delle impostazioni.
 
@@ -270,39 +270,39 @@ toolog agli utenti di Azure AD tooenable in tooBitbucket, è necessario eseguirn
 
     ![Aggiungere un dipendente](./media/active-directory-saas-kantegassoforbitbucket-tutorial/user3.png)     
 
-5. In hello **Create User** finestra di dialogo eseguire hello alla procedura seguente:
+5. Nella pagina della finestra di dialogo **Create User** (Crea utente) seguire questa procedura:
 
     ![Aggiungere un dipendente](./media/active-directory-saas-kantegassoforbitbucket-tutorial/user4.png) 
 
-    a. In hello **Username** casella Tipo hello email dell'utente come Brittasimon@contoso.com.
+    a. Nella casella di testo **Username** (Nome utente) digitare l'indirizzo di posta elettronica di un utente, ad esempio Brittasimon@contoso.com.
     
-    b. In hello **nome completo** casella di testo, nome completo del tipo di utente hello come Britta Simon.
+    b. Nella casella di testo **Full Name** (Nome completo) digitare il nome completo dell'utente, ad esempio Britta Simon.
     
-    c. In hello **indirizzo di posta elettronica** casella di testo, digitare hello di indirizzo di posta elettronica dell'utente come Brittasimon@contoso.com.
+    c. Nella casella di testo **Email address** (Indirizzo di posta elettronica) digitare l'indirizzo di posta elettronica dell'utente, ad esempio Brittasimon@contoso.com.
 
-    d. In hello **Password** casella di testo, digitare la password dell'utente hello.  
+    d. Nella casella di testo **Password** digitare la password dell'utente.  
 
-    e. In hello **Conferma Password** casella di testo, hello immettere nuovamente la password dell'utente.
+    e. Nella casella di testo **Confirm Password** (Conferma password) digitare di nuovo la password dell'utente.
 
     f. Fare clic su **Create User** (Crea utente).   
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Assegnazione utente test hello Azure AD
+### <a name="assigning-the-azure-ad-test-user"></a>Assegnazione dell'utente test di Azure AD
 
-In questa sezione per abilitare Britta Simon toouse single sign-on Azure concessione dell'accesso tooKantega SSO per Bitbucket.
+In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sign-On di Azure concedendole l'accesso a Kantega SSO for Bitbucket.
 
 ![Assegna utente][200] 
 
-**tooassign Britta Simon tooKantega SSO per Bitbucket, eseguire hello alla procedura seguente:**
+**Per assegnare Britta Simon a Kantega SSO for Bitbucket, seguire questa procedura:**
 
-1. Nel portale di Azure hello, aprire la visualizzazione di applicazioni hello, quindi selezionare Visualizza directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.
+1. Nel portale di Azure aprire la visualizzazione delle applicazioni e quindi la visualizzazione delle directory e passare ad **Applicazioni aziendali**, quindi fare clic su **Tutte le applicazioni**.
 
     ![Assegna utente][201] 
 
-2. Nell'elenco di applicazioni hello, selezionare **Kantega SSO per Bitbucket**.
+2. Nell'elenco di applicazioni selezionare **Kantega SSO for Bitbucket**.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-kantegassoforbitbucket-tutorial/tutorial_kantegassoforbitbucket_app.png) 
 
-3. Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.
+3. Scegliere **Utenti e gruppi** dal menu a sinistra.
 
     ![Assegna utente][202] 
 
@@ -310,7 +310,7 @@ In questa sezione per abilitare Britta Simon toouse single sign-on Azure concess
 
     ![Assegna utente][203]
 
-5. In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.
+5. Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco Utenti.
 
 6. Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.
 
@@ -318,14 +318,14 @@ In questa sezione per abilitare Britta Simon toouse single sign-on Azure concess
     
 ### <a name="testing-single-sign-on"></a>Test dell'accesso Single Sign-On
 
-In questa sezione si test configurazione di Azure AD single sign-on utilizzando hello Pannello di accesso.
+In questa sezione viene testata la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.
 
-Quando si fa clic hello SSO Kantega riquadro Bitbucket in hello Pannello di accesso, è necessario ottenere automaticamente firmato in tooyour Kantega SSO per l'applicazione di servizio.
-Per ulteriori informazioni sul pannello di accesso, vedere [introduzione toohello Pannello di accesso](active-directory-saas-access-panel-introduction.md). 
+Quando si fa clic sul riquadro Kantega SSO for Bitbucket nel pannello di accesso, si dovrebbe accedere automaticamente all'applicazione Kantega SSO for Bitbucket.
+Per altre informazioni sul pannello di accesso, vedere [Introduzione al Pannello di accesso](active-directory-saas-access-panel-introduction.md). 
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md)
 
 

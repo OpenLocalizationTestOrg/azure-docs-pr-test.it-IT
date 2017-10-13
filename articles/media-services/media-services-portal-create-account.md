@@ -1,6 +1,6 @@
 ---
-title: un account di servizi multimediali di Azure con il portale di Azure hello aaaCreate | Documenti Microsoft
-description: In questa esercitazione vengono illustrati i passaggi hello di creazione di un account di servizi multimediali di Azure con hello portale di Azure.
+title: Creare un account Servizi multimediali di Azure con il portale di Azure | Documentazione di Microsoft
+description: Questa esercitazione illustra la procedura di creazione di un account Servizi multimediali di Azure con il portale di Azure.
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -12,43 +12,46 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 07/10/2017
+ms.date: 09/03/2017
 ms.author: juliako
-ms.openlocfilehash: fdad93d5d470fc08380670ec0f6c2d33468b1492
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4e811dee81bfbd01b3cbe7f78a57b2ce92d1c0f9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="create-an-azure-media-services-account-using-hello-azure-portal"></a>Creare un account di servizi multimediali di Azure tramite hello portale di Azure
+# <a name="create-an-azure-media-services-account-using-the-azure-portal"></a>Creare un account Servizi multimediali di Azure con il portale di Azure
 > [!div class="op_single_selector"]
 > * [Portale](media-services-portal-create-account.md)
 > * [PowerShell](media-services-manage-with-powershell.md)
 > * [REST](https://docs.microsoft.com/rest/api/media/mediaservice)
 > 
 > [!NOTE]
-> toocomplete questa esercitazione, è necessario un account di Azure. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/). 
+> Per completare l'esercitazione, è necessario un account Azure. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/). 
 > 
 > 
 
-Hello portale di Azure fornisce un modo tooquickly creare un account di servizi multimediali di Azure (AMS). È possibile utilizzare il tooaccess account servizi multimediali che abilita è toostore, crittografare, codificare, gestire e trasmettere contenuto multimediale in Azure. In fase di hello è creare un account di servizi multimediali, inoltre creare un account di archiviazione associato (o utilizzarne uno esistente) in hello stessa area geografica hello account di servizi multimediali.
+Nel portale di Azure è possibile creare rapidamente un account di Servizi multimediali di Azure (AMS). È possibile utilizzare l'account per accedere ai servizi multimediali che consentono di archiviare, crittografare, codificare, gestire e distribuire in streaming contenuti multimediali in Azure. Durante la creazione di un account di Servizi multimediali, viene creato l'account di archiviazione associato (se non si desidera utilizzarne uno esistente) nella stessa area geografica dell'account di Servizi multimediali.
 
-In questo articolo vengono illustrati alcuni concetti comuni e viene illustrato come toocreate servizi multimediali di un account con hello portale di Azure.
-
-## <a name="concepts"></a>Concetti
-Per accedere a Servizi multimediali è necessario disporre di due account associati:
-
-* Account di Servizi multimediali. I consente di account, accedere tooa set di servizi multimediali di basato su cloud che sono disponibili in Azure. In un account di Servizi multimediali non è possibile archiviare contenuti multimediali effettivi, Archivia invece i metadati relativi a contenuti multimediali hello e processi di elaborazione media nell'account. Al momento di hello che creazione account hello, si seleziona un'area di servizi multimediali disponibile. paese Hello selezionato è un centro dati che vengono archiviati i record di metadati hello per l'account.
-  
-* Un account di archiviazione di Azure. Gli account di archiviazione devono trovarsi in hello stessa area geografica hello account di servizi multimediali. Quando si crea un account di servizi multimediali, è possibile scegliere un account di archiviazione esistente in hello stessa area oppure è possibile creare un nuovo account di archiviazione hello stessa area. Se si elimina un account di servizi multimediali, BLOB hello nell'account di archiviazione correlati non vengono eliminati.
+Questo articolo illustra alcuni concetti comuni e come creare un account Servizi multimediali con il portale di Azure.
 
 > [!NOTE]
 > Per informazioni sulla disponibilità delle funzionalità di Servizi multimediali di Azure nelle diverse aree, vedere la [disponibilità delle funzionalità di AMS nei data center](scenarios-and-availability.md#availability).
 
-## <a name="create-an-ams-account"></a>Creare un account AMS
-passaggi di Hello in questa sezione mostra come toocreate sistema AMS di un account.
+## <a name="concepts"></a>Concetti
+Per accedere a Servizi multimediali è necessario disporre di due account associati:
 
-1. Accedere all'indirizzo hello [portale di Azure](https://portal.azure.com/).
+* Account di Servizi multimediali. L'account consente di accedere a un set di Servizi multimediali basati su cloud disponibili in Azure. In un account di Servizi multimediali non è possibile archiviare contenuti multimediali effettivi, ma è possibile archiviare i metadati relativi al contenuto multimediale e i processi di elaborazione dei file multimediali. Al momento della creazione dell'account, è necessario selezionare un'area di Servizi multimediali disponibile. L'area selezionata è un data center in cui sono archiviati i record dei metadati per l'account.
+  
+* Un account di archiviazione di Azure. Gli account di archiviazione devono trovarsi nella stessa area geografica dell'account Servizi multimediali. Quando si crea un account di Servizi multimediali, è possibile scegliere un account di archiviazione esistente nella stessa area geografica oppure è possibile crearne uno nuovo, ma sempre nella stessa area. Se si elimina un account di Servizi multimediali, gli oggetti BLOB presenti nell'account di archiviazione associato non vengono eliminati.
+
+  > [!NOTE]
+  > Servizi multimediali limita l'account di archiviazione primario a un account di **archiviazione per utilizzo generico** con tabelle e code. Per altre informazioni sui tipi di archiviazione, vedere [Informazioni sugli account di archiviazione di Azure](https://docs.microsoft.com/azure/storage/common/storage-create-storage-account).
+
+## <a name="create-an-ams-account"></a>Creare un account AMS
+I passaggi descritti in questa sezione illustrano come creare un account Servizi multimediali di Azure.
+
+1. Accedere al [portale di Azure](https://portal.azure.com/).
 2. Fare clic su **+Nuovo** > **Web e dispositivi mobili** > **Servizi multimediali**.
    
     ![Creare Servizi multimediali](./media/media-services-create-account/media-services-new1.png)
@@ -56,31 +59,31 @@ passaggi di Hello in questa sezione mostra come toocreate sistema AMS di un acco
    
     ![Creare Servizi multimediali](./media/media-services-create-account/media-services-new3.png)
    
-   1. In **nome Account**, immettere il nome di hello del nuovo account di sistema AMS hello. Un nome di account di servizi multimediali è tutte lettere minuscole o numeri senza spazi e 3 caratteri too24.
-   2. Nella sottoscrizione, effettuare una scelta tra hello diverse sottoscrizioni di Azure che è possibile accedere.
-   3. In **gruppo di risorse**, selezionare hello risorse nuova o esistente.  Un gruppo di risorse è una raccolta di risorse che condividono il ciclo di vita, le autorizzazioni e i criteri. Fare clic [qui](../azure-resource-manager/resource-group-overview.md#resource-groups) per altre informazioni.
-   4. In **percorso**, selezionare hello area geografica che verrà utilizzato toostore hello supporti e i metadati record per l'account di servizi multimediali. Quest'area verrà utilizzato tooprocess e trasmettere file multimediali. Solo hello servizi multimediali aree disponibili vengono visualizzati nell'elenco a discesa hello. 
-   5. In **Account di archiviazione**, selezionare un archivio di blob storage account tooprovide del contenuto multimediale hello dall'account servizi multimediali. È possibile selezionare un account di archiviazione esistente in hello stessa area geografica account servizi multimediali, oppure è possibile creare un account di archiviazione. Viene creato un nuovo account di archiviazione in hello stessa area. le regole di Hello per account di archiviazione sono nomi hello stesso come account di servizi multimediali.
+   1. In **Nome account**immettere il nome del nuovo account di AMS. Un nome di account di Servizi multimediali deve essere composto solo da lettere minuscole o da numeri senza spazi con una lunghezza compresa tra 3 e 24 caratteri.
+   2. In Sottoscrizione selezionare una delle diverse sottoscrizioni di Azure per le quali è disponibile l'accesso.
+   3. In **Gruppo di risorse**selezionare la risorsa nuova o esistente.  Un gruppo di risorse è una raccolta di risorse che condividono il ciclo di vita, le autorizzazioni e i criteri. Fare clic [qui](../azure-resource-manager/resource-group-overview.md#resource-groups) per altre informazioni.
+   4. In **Località** selezionare l'area geografica che verrà usata per archiviare i contenuti multimediali e  i record di metadati per l'account Servizi multimediali. Questa area verrà usata per elaborare e riprodurre in streaming il contenuto multimediale. Nella casella dell'elenco a discesa vengono visualizzate solo le aree di Servizi multimediali disponibili. 
+   5. In **Account di archiviazione**selezionare un account di archiviazione per l'archivio BLOB del contenuto multimediale dell'account Servizi multimediali. È possibile scegliere un account di archiviazione esistente nella stessa area geografica dell'account Servizi multimediali oppure è possibile crearne uno. Un nuovo account di archiviazione viene creato nella stessa area geografica. Per i nomi degli account di archiviazione vengono seguite le stesse regole dei nomi degli account di Servizi multimediali.
       
        Altre informazioni sull'archiviazione sono disponibili [qui](../storage/common/storage-introduction.md).
-   6. Selezionare **Pin toodashboard** toosee lo stato di avanzamento hello di distribuzione account hello.
-4. Fare clic su **crea** nella parte inferiore di hello del modulo hello.
+   6. Selezionare **Aggiungi al dashboard** per visualizzare lo stato della distribuzione di account.
+4. Fare clic su **Crea** nella parte inferiore del form.
    
-    Una volta account hello viene creata correttamente, carica la pagina Panoramica. In hello account hello tabella di endpoint di streaming avrà un valore predefinito in hello endpoint di streaming **arrestato** stato. 
+    Dopo che l'account è stato creato, viene caricata la pagina della panoramica. Nella tabella dell'endpoint di streaming l'account avrà un endpoint di streaming predefinito con stato **Arrestato**. 
 
     >[!NOTE]
-    >Quando viene creato l'account di sistema AMS un **predefinito** endpoint di streaming viene aggiunto l'account tooyour in hello **arrestato** stato. lo streaming del contenuto e intraprendere sfruttare creazione dinamica dei pacchetti e la crittografia dinamica, toostart hello endpoint di streaming da cui si desidera in hello del contenuto toostream è toobe **esecuzione** stato. 
+    >Quando l'account AMS viene creato, un endpoint di streaming **predefinito** viene aggiunto all'account con stato **Arrestato**. Per avviare lo streaming del contenuto e sfruttare i vantaggi della creazione dinamica dei pacchetti e della crittografia dinamica, l'endpoint di streaming da cui si vuole trasmettere il contenuto deve essere nello stato **In esecuzione**. 
    
-## <a name="toomanage-your-ams-account"></a>toomanage l'account di sistema AMS
+## <a name="to-manage-your-ams-account"></a>Per gestire l'account AMS
 
-toomanage l'account di sistema AMS (ad esempio, connettersi toohello AMS API a livello di codice, di caricare video, codificare asset, configurare la protezione del contenuto, monitorare lo stato del processo) selezionare **impostazioni** sul lato sinistro di portale hello hello. Da hello **impostazioni**, passare tooone dei pannelli disponibili hello (ad esempio: **l'accesso all'API**, **asset**, **processi**, **Protezione del contenuto**).
+Selezionare **Impostazioni** a sinistra del portale per gestire l'account AMS, ad esempio connettersi all'API AMS a livello di codice, caricare video, codificare asset, configurare la protezione del contenuto e monitorare lo stato del processo. Da **Impostazioni** passare a uno dei pannelli disponibili, ad esempio **Accesso all'API**, **Asset**, **Processi** e **Protezione del contenuto**.
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
 Ora è possibile caricare i file nell'account AMS. Per altre informazioni, vedere [Upload files](media-services-portal-upload-files.md)(Caricare file).
 
-Se si intende tooaccess AMS API a livello di codice, vedere [hello accesso API di servizi multimediali di Azure con autenticazione di Azure AD](media-services-use-aad-auth-to-access-ams-api.md).
+Se si prevede di accedere all'API AMS a livello di codice, vedere [Accedere all'API di Servizi multimediali di Azure con l'autenticazione di Azure AD](media-services-use-aad-auth-to-access-ams-api.md).
 
 ## <a name="media-services-learning-paths"></a>Percorsi di apprendimento di Servizi multimediali
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

@@ -1,6 +1,6 @@
 ---
-title: architettura di Azure Active Directory aaaUnderstand | Documenti Microsoft
-description: "Spiega che cos'è un tenant di Azure AD e come toomanage Azure tramite Azure Active Directory"
+title: Informazioni sull'architettura di Azure Active Directory | Microsoft Docs
+description: Illustra il significato di tenant di Azure AD e come gestire Azure con Azure Active Directory
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -14,94 +14,94 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/02/2017
 ms.author: markvi
-ms.openlocfilehash: 799943c012dcc309907ed3c36372038a0aad222a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 50dad848cfbdab7f5b1fff0fcec3b5f754e6ae74
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="understand-azure-active-directory-architecture"></a>Informazioni sull'architettura di Azure Active Directory
-Consente di Azure Active Directory (Azure AD) è toosecurely gestire servizi di accesso tooAzure e risorse per gli utenti. In Azure AD è inclusa una suite completa di funzionalità di gestione delle identità. Per informazioni sulle funzionalità di Azure AD, vedere [Informazioni su Azure Active Directory](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-whatis).
+Azure Active Directory (Azure AD) consente di gestire in modo sicuro l'accesso ai servizi e alle risorse di Azure per gli utenti. In Azure AD è inclusa una suite completa di funzionalità di gestione delle identità. Per informazioni sulle funzionalità di Azure AD, vedere [Informazioni su Azure Active Directory](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-whatis).
 
-Con Azure AD, è possibile creare e gestire utenti e gruppi e abilitare tooallow autorizzazioni e negare l'accesso alle risorse tooenterprise. Per informazioni sulla gestione delle identità, vedere [hello nozioni di base della gestione delle identità di Azure](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals-identity).
+Con Azure AD, è possibile creare e gestire utenti e gruppi e abilitare le autorizzazioni per consentire o negare l'accesso alle risorse aziendali. Per informazioni sulla gestione delle identità, vedere [Nozioni fondamentali sulla gestione delle identità di Azure](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals-identity).
 
 ## <a name="azure-ad-architecture"></a>Architettura di Azure AD
-Architettura distribuita geograficamente di Azure AD combina un controllo esteso, il reindirizzamento automatico, failover e funzionalità di recupero consentono toodeliver-disponibilità e prestazioni tooour clienti aziendali.
+L'architettura distribuita geograficamente di Azure AD combina funzionalità complete di monitoraggio, reindirizzamento automatizzato, failover e ripristino che consentono di offrire ai clienti disponibilità e prestazioni a livello di organizzazione.
 
-in questo articolo viene trattato i seguenti elementi dell'architettura Hello:
+In questo articolo vengono illustrati gli elementi dell'architettura seguenti:
  *  Progettazione dell'architettura del servizio
  *  Scalabilità 
  *  Disponibilità continua
  *  Data center
 
 ### <a name="service-architecture-design"></a>Progettazione dell'architettura del servizio
-Hello più comuni modo toobuild è un sistema di dati, a disponibilità elevata, scalabile tramite blocchi indipendenti o unità di scala per il livello di dati hello Azure AD, unità di scala vengono chiamate *partizioni*. 
+L'approccio più diffuso per la compilazione di un sistema scalabile, con disponibilità elevata e ad alto contenuto di dati consiste nell'usare blocchi predefiniti o unità di scala indipendenti per il livello dati di Azure AD. Le unità di scala sono denominate *partizioni*. 
 
-livello dati Hello dispone di diversi servizi front-end che forniscono funzionalità di lettura / scrittura. diagramma di Hello seguente viene illustrato come i componenti di una partizione singola directory hello vengono distribuiti geograficamente distribuite data center. 
+Il livello dati ha diversi servizi front-end che forniscono funzionalità di lettura/scrittura. Il diagramma seguente illustra come i componenti di una partizione di directory singola vengono suddivisi in data center distribuiti geograficamente. 
 
   ![Partizioni di directory singola](./media/active-directory-architecture/active-directory-architecture.png)
 
-i componenti dell'architettura di Azure AD Hello includono una replica primaria e le repliche secondarie.
+I componenti dell'architettura di Azure AD includono una replica primaria e una replica secondaria.
 
 **Replica primaria**
 
-Hello *replica primaria* riceve tutti *scrive* per partizione hello a cui appartiene. Qualsiasi operazione di scrittura tooa replicate immediatamente la replica secondaria in un altro Data Center prima della restituzione chiamante toohello esito positivo, assicurando con ridondanza geografica durabilità delle scritture.
+La *replica primaria* riceve tutte le *operazioni di scrittura* per la partizione a cui appartiene. Ogni operazione di scrittura viene immediatamente replicata in una replica secondaria in un data center diverso prima di restituire un'operazione riuscita al chiamante, assicurando così la durabilità con ridondanza geografica delle operazioni di scrittura.
 
 **Repliche secondarie**
 
-Tutte le *operazioni di lettura* delle directory vengono gestite dalle *repliche secondarie*, che si trovano in data center situati fisicamente in aree geografiche diverse. Esistono molte repliche secondarie perché i dati vengono replicati in modo asincrono. Letture di directory, ad esempio le richieste di autenticazione, vengono gestite i centri dati che sono i clienti tooour Chiudi. repliche secondarie Hello sono responsabili per la scalabilità di lettura.
+Tutte le *operazioni di lettura* delle directory vengono gestite dalle *repliche secondarie*, che si trovano in data center situati fisicamente in aree geografiche diverse. Esistono molte repliche secondarie perché i dati vengono replicati in modo asincrono. Le operazioni di lettura delle directory, ad esempio le richieste di autenticazione, vengono gestite da data center vicini ai clienti. Le repliche secondarie sono responsabili della scalabilità delle operazioni di lettura.
 
 ### <a name="scalability"></a>Scalabilità
 
-La scalabilità rappresenta il possibilità hello di un toomeet tooexpand servizio l'aumento di richieste di prestazioni. Scrivere la scalabilità è ottenuta tramite il partizionamento dati hello. La scalabilità di lettura è necessario replicare i dati da una partizione toomultiple le repliche secondarie distribuite in tutto il mondo hello.
+La scalabilità è la possibilità per un servizio di espandersi per poter soddisfare le crescenti richieste in termini di prestazioni. La scalabilità delle operazioni di scrittura richiede il partizionamento dei dati. La scalabilità delle operazioni di lettura richiede la replica dei dati da una partizione a più repliche secondarie distribuite in tutto il mondo.
 
-Le richieste di applicazioni di directory sono in genere indirizzato toohello datacenter che sono fisicamente più vicini alla. Operazioni di scrittura sono coerenza di lettura / scrittura tooprovide replica primaria toohello reindirizzato in modo trasparente. Repliche secondarie estendono in modo significativo la scala hello di partizioni perché directory hello è sono in genere letture a soddisfare la maggior parte del tempo di hello.
+Le richieste provenienti dalle applicazioni directory vengono in genere instradate al data center fisicamente più vicino. Le operazioni di scrittura vengono reindirizzate in modo trasparente alla replica primaria per garantire la coerenza delle operazioni di lettura/scrittura. Le repliche secondarie estendono considerevolmente la scalabilità delle partizioni perché in genere le directory gestiscono per lo più operazioni di lettura.
 
-Le applicazioni di directory connettersi toohello più vicino al Data Center. migliorando le prestazioni e rendendo quindi possibile l'aumento del numero di istanze. Poiché una partizione di directory può avere molti repliche secondarie, repliche secondarie possono essere inserite i client di directory toohello più vicino. Solo interno componenti del servizio di replica primaria di destinazione elevato della scrittura hello active direttamente.
+Le applicazioni directory si connettono ai data center più vicini, migliorando le prestazioni e rendendo quindi possibile l'aumento del numero di istanze. Poiché una partizione di directory può avere più repliche secondarie, le repliche secondarie possono essere poste più vicino ai client delle directory. Solo i componenti del servizio directory interni con un numero elevato di operazioni di scrittura specificano come destinazione direttamente la replica primaria attiva.
 
 ### <a name="continuous-availability"></a>Disponibilità continua
 
-Disponibilità (o tempi di attività) definisce il possibilità hello di un sistema di tooperform senza interruzioni. Hello chiave tooAzure AD elevata disponibilità è che i nostri servizi possono diventare in fretta il traffico tra più centri dati distribuiti geograficamente. Ogni data center è indipendente e ciò abilita le modalità di errore con annullamento della correlazione.
+La disponibilità (o tempo di attività) definisce la possibilità per un sistema di funzionare senza interruzioni. La disponibilità elevata di Azure AD si basa sul fatto che i servizi possono spostare rapidamente il traffico tra più data center distribuiti geograficamente. Ogni data center è indipendente e ciò abilita le modalità di errore con annullamento della correlazione.
 
-Progettazione delle partizioni di Azure AD è semplificata toohello confrontati enterprise struttura di Active Directory che è fondamentale per la scalabilità verticale sistema hello. È stato adottato uno schema master singolo che include un processo di failover della replica primaria deterministico e orchestrato con attenzione.
+La progettazione delle partizioni di Azure AD è più semplice rispetto alla progettazione di AD aziendale, il che è importante per aumentare le prestazioni del sistema. È stato adottato uno schema master singolo che include un processo di failover della replica primaria deterministico e orchestrato con attenzione.
 
 **Tolleranza di errore**
 
-Un sistema è più disponibile in caso di errori di tolleranza d'errore toohardware, rete e software. Per ogni partizione di directory hello, esiste una replica master a disponibilità elevata: replica primaria hello. Solo operazioni di scrittura toohello partizione vengono eseguite in questa replica. La replica è viene continuamente monitorata e scritture possono essere spostate immediatamente tooanother replica (che diventa hello nuovo database primario) se viene rilevato un errore. Durante il failover, è possibile che si verifichi una perdita di disponibilità in scrittura, in genere per 1-2 minuti. La disponibilità in lettura non è invece interessata durante questo intervallo di tempo.
+Un sistema è più disponibile se è a tolleranza di errore di hardware, di rete e di software. Per ogni partizione nella directory, esiste una replica master a disponibilità elevata: la replica primaria. In questa replica vengono eseguite solo operazioni di scrittura nella partizione. Questa replica viene monitorata in modo continuo e attento e le operazioni di scrittura possono essere immediatamente spostate in un'altra replica, che diventa la nuova replica primaria, se viene rilevato un errore. Durante il failover, è possibile che si verifichi una perdita di disponibilità in scrittura, in genere per 1-2 minuti. La disponibilità in lettura non è invece interessata durante questo intervallo di tempo.
 
-Le operazioni di lettura (che sono maggiori di scritture di molti ordini di grandezza) passare solo toosecondary repliche. Poiché le repliche secondarie sono idempotenti, perdita di una qualsiasi replica in una determinata partizione viene compensata facilmente indirizzando hello letture tooanother replica, in genere hello stesso Data Center.
+Le operazioni di lettura (che sono più numerose di quelle di scrittura di diversi ordini di grandezza) passano solo alle repliche secondarie. Poiché le repliche secondarie sono idempotenti, la perdita di una replica in una determinata partizione viene facilmente compensata indirizzando le operazioni di lettura a un'altra replica, in genere nello stesso data center.
 
 **Durabilità dei dati**
 
-Un'operazione di scrittura è tooat duraturo almeno due data center tooit precedente riconosciuto. Ciò avviene per l'esecuzione del commit prima scrittura hello hello primario e quindi immediatamente la replica hello scrittura tooat almeno un altro data center. Ciò garantisce che un potenziale di perdita irreversibile di hello data center hosting hello primario non comporta la perdita di dati.
+Il commit durevole delle operazioni di scrittura viene eseguito in almeno due data center prima che ne venga accertata la ricezione. A questo scopo, viene prima eseguito il commit dell'operazione di scrittura nella replica primaria e immediatamente dopo l'operazione di scrittura viene replicata in almeno un altro data center. In questo modo, una possibile perdita irreversibile del data center che ospita la replica primaria non comporta una perdita di dati.
 
-Azure AD gestisce uno zero [obiettivo tempo di ripristino (RTO)](https://en.wikipedia.org/wiki/Recovery_time_objective) per l'emissione di token e di directory legge e scrive i in ordine di hello di minuti (5 minuti) RTO per directory. Viene anche mantenuto un [obiettivo del punto di ripristino (RPO, Recovery Point Objective)](https://en.wikipedia.org/wiki/Recovery_point_objective) pari a zero e non si verificheranno perdite di dati in caso di failover.
+Azure AD mantiene un [obiettivo del tempo di ripristino (RTO, Recovery Time Objective)](https://en.wikipedia.org/wiki/Recovery_time_objective) pari a zero per il rilascio di token e le operazioni di lettura delle directory e un valore RTO di alcuni minuti (circa 5) per le operazioni di scrittura delle directory. Viene anche mantenuto un [obiettivo del punto di ripristino (RPO, Recovery Point Objective)](https://en.wikipedia.org/wiki/Recovery_point_objective) pari a zero e non si verificheranno perdite di dati in caso di failover.
 
 ### <a name="data-centers"></a>Data center
 
-Le repliche di Azure AD vengono archiviate in dislocati in tutto il mondo hello. Per altre informazioni, vedere [Data center Azure](https://azure.microsoft.com/en-us/overview/datacenters).
+Le repliche di Azure AD vengono archiviate in data center situati in tutto il mondo. Per altre informazioni, vedere [Data center Azure](https://azure.microsoft.com/en-us/overview/datacenters).
 
-Azure AD opera tra data center con hello seguenti caratteristiche:
+Azure AD opera nei data center con le caratteristiche seguenti:
 
- * L'autenticazione, grafico e altri servizi di Active Directory si trovano dietro il servizio Gateway hello. Hello Gateway gestisce il bilanciamento del carico di questi servizi. Verrà eseguito il failover automatico se viene rilevato che server non integri usano probe di integrità transazionali. In base a questi probe di integrità, hello Gateway instrada in modo dinamico il traffico toohealthy data center.
- * Per *legge*, hello directory dispone di repliche e i servizi front-end corrispondenti in una configurazione attivo-attivo opera in più data center. In caso di errore di un intero data center, il traffico sarà automaticamente indirizzato tooa altro Data Center.
- *  Per *scrive*, hello directory verrà failover (master) replica primaria tra i data Center tramite pianificato (nuovo database primario è sincronizzata tooold primario) o procedure di failover di emergenza. Durabilità dei dati avviene mediante la replica di qualsiasi commit tooat almeno due data center.
+ * Autenticazione, Graph e gli altri servizi di AD si trovano dietro il servizio gateway. Il gateway gestisce il bilanciamento del carico di questi servizi. Verrà eseguito il failover automatico se viene rilevato che server non integri usano probe di integrità transazionali. In base a questi probe di integrità, il gateway instrada in modo dinamico il traffico ai data center integri.
+ * Per le *operazioni di lettura*, la directory ha repliche secondarie e servizi front-end corrispondenti in una configurazione attiva/attiva che operano in più data center. In caso di errore di un intero data center, il traffico verrà automaticamente instradato a un altro data center.
+ *  Per le *operazioni di scrittura*, la directory eseguirà il failover della replica primaria (master) nei data center tramite procedure di failover pianificate (la nuova replica primaria viene sincronizzata con quella precedente) o di emergenza. La durabilità dei dati si ottiene replicando i commit in almeno due data center.
 
 **Coerenza dei dati**
 
-modello di directory Hello è uno dei coerenza finale. Uno dei problemi tipici dei sistemi distribuiti di replica in modo asincrono è che i dati di hello restituiti da una replica "specifica" potrebbero non essere backup toodate. 
+Il modello della directory si basa sulla coerenza finale. Un problema tipico dei sistemi distribuiti che eseguono la replica asincrona è che i dati restituiti da una "particolare" replica potrebbero non essere aggiornati. 
 
-Azure Active Directory fornisce la coerenza di lettura / scrittura per applicazioni destinate a una replica secondaria tramite la replica primaria toohello di scritture di routing e in modo sincrono pull hello riscrive toohello replica secondaria.
+Azure AD offre la coerenza in lettura/scrittura per le applicazioni che specificano come destinazione una replica secondaria instradandone le operazioni di scrittura alla replica primaria ed effettuando di nuovo il pull sincrono delle operazioni di scrittura alla replica secondaria.
 
-Applicazione scrive utilizzando hello API Graph di Azure AD vengono ricavati dalla gestione di replica directory tooa di affinità per la coerenza di lettura / scrittura. servizio di Azure AD Graph Hello gestisce una sessione logica, che include replica secondaria tooa di affinità utilizzato per le letture; l'affinità viene acquisita in un "replica token" hello cache servizio grafico utilizzando una cache distribuita. Questo token viene quindi utilizzato per le operazioni successive hello stessa sessione logica. 
+Per le operazioni di scrittura delle applicazioni che usano l'API Graph di Azure AD non è necessario mantenere l'affinità con la replica di una directory per la coerenza in lettura/scrittura. Il servizio Graph di Azure AD gestisce una sessione logica, che è affine a una replica secondaria usata per le operazioni di lettura. L'affinità viene acquisita in un "token di replica" che il servizio Graph memorizza usando una cache distribuita. Questo token viene quindi usato per le operazioni successive nella stessa sessione logica. 
 
  >[!NOTE]
- >Operazioni di scrittura vengono replicate immediatamente letture toohello replica secondaria toowhich hello logico della sessione sono state rilasciate.
+ >Le operazioni di scrittura vengono immediatamente replicate nella replica secondaria in cui sono state rilasciate le operazioni di lettura della sessione logica.
  >
 
 **Protezione dei backup**
 
-directory Hello implementa eliminazioni reversibili, invece di eliminazioni di disco rigide, per gli utenti e i tenant per il ripristino semplice in caso di eliminazione accidentale di un cliente. Se l'amministratore del tenant accidentalmente eliminati gli utenti possono annullare e ripristinare gli utenti di hello eliminato. 
+La directory implementa le eliminazioni temporanee, invece delle eliminazioni definitive, per poter ripristinare facilmente utenti e tenant in caso di eliminazione accidentale da parte di un cliente. Se l'amministratore tenant elimina accidentalmente un utente, può facilmente annullare l'operazione e ripristinare l'utente eliminato. 
 
 Azure AD implementa backup giornalieri di tutti i dati e quindi può ripristinare autorevolmente i dati in caso di eliminazioni logiche o danneggiamenti. Il livello dati usa i codici di correzione degli errori e può quindi verificare la presenza di errori e correggere automaticamente determinati tipi di errori del disco.
 
@@ -109,11 +109,11 @@ Azure AD implementa backup giornalieri di tutti i dati e quindi può ripristinar
 
 L'esecuzione di un servizio a disponibilità elevata richiede funzionalità di monitoraggio e metriche di alto livello. Azure AD analizza e segnala ininterrottamente le principali metriche sull'integrità del servizio e i criteri di successo per ogni servizio. Vengono continuamente sviluppate e ottimizzate metriche e funzionalità di monitoraggio e avviso per ogni scenario, in ogni singolo servizio di Azure AD e nell'insieme di tutti i servizi.
 
-Se qualsiasi servizio di Azure AD non funziona come previsto, è immediatamente richiedere funzionalità toorestore azione più rapidamente possibile. Hello tracce più importanti di metrica Azure AD è rapidità con cui è possibile rilevare e limitare un cliente o live problema del sito. È investire molto in Monitoraggio e avvisi toominimize ora toodetect (destinazione TTD: < 5 minuti) e conformità operational toominimize ora toomitigate (destinazione TTM: < 30 minuti).
+Se un servizio di Azure AD non funziona come previsto, si interviene immediatamente per ripristinare la funzionalità il prima possibile. La metrica più importante di cui Azure AD tiene traccia è la velocità con cui è possibile rilevare e attenuare un problema del cliente o del sito Web. Vengono effettuati considerevoli investimenti nelle funzionalità di monitoraggio e avviso per ridurre al minimo i tempi di rilevamento (obiettivo per il tempo di rilevamento: < 5 minuti) e nella conformità operativa per ridurre al minimo i tempi di attenuazione (obiettivo per il tempo di attenuazione: < 30 minuti).
 
 **Operazioni sicure**
 
-Vengono usati controlli operativi, ad esempio Multi-Factor Authentication (MFA), per tutte le operazioni, oltre al controllo di tutte le operazioni. Inoltre, è usare un elevazione just-in-time sistema toogrant necessarie temporaneo l'accesso per qualsiasi attività su richiesta operativa in tempo reale. Per ulteriori informazioni, vedere [hello attendibili Cloud](https://azure.microsoft.com/en-us/support/trust-center).
+Vengono usati controlli operativi, ad esempio Multi-Factor Authentication (MFA), per tutte le operazioni, oltre al controllo di tutte le operazioni. Viene anche usato un sistema di elevazione JIT per concedere l'accesso temporaneo necessario per eventuali attività operative su richiesta su base regolare. Per altre informazioni, vedere [Il cloud attendibile](https://azure.microsoft.com/en-us/support/trust-center).
 
 ## <a name="next-steps"></a>Passaggi successivi
 [Guida per gli sviluppatori di Azure Active Directory](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-developers-guide)

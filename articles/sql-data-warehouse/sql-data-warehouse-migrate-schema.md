@@ -1,6 +1,6 @@
 ---
-title: aaaMigrate il tooSQL dello schema del Data Warehouse | Documenti Microsoft
-description: Suggerimenti per la migrazione del tooAzure schema SQL Data Warehouse per lo sviluppo di soluzioni.
+title: Eseguire la migrazione dello schema in SQL Data Warehouse | Documentazione Microsoft
+description: Suggerimenti per la migrazione dello schema in Azure SQL Data Warehouse per lo sviluppo di soluzioni.
 services: sql-data-warehouse
 documentationcenter: NA
 author: sqlmojo
@@ -15,59 +15,59 @@ ms.workload: data-services
 ms.custom: migrate
 ms.date: 10/31/2016
 ms.author: joeyong;barbkess
-ms.openlocfilehash: 1309b743b78564575695038a4856d9d25a2b18d1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 07ca2321852e276502187e768177e7e82bdfd080
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="migrate-your-schemas-toosql-data-warehouse"></a>Eseguire la migrazione del Data Warehouse di tooSQL schemi
-Indicazioni per la migrazione del tooSQL gli schemi SQL Data Warehouse. 
+# <a name="migrate-your-schemas-to-sql-data-warehouse"></a>Eseguire la migrazione degli schemi a SQL Data Warehouse
+Indicazioni per la migrazione degli schemi SQL a SQL Data Warehouse. 
 
 ## <a name="plan-your-schema-migration"></a>Pianificare la migrazione dello schema
 
-Quando si pianifica una migrazione, vedere hello [Cenni preliminari su tabella] [ table overview] toobecome familiarità con le considerazioni sulla progettazione di tabella, ad esempio le statistiche, distribuzione, il partizionamento e l'indicizzazione.  Vengono anche presentate alcune [funzionalità non supportate per le tabelle][unsupported table features] e le soluzioni alternative.
+Per pianificare una migrazione vedere la [panoramica delle tabelle][table overview] per aspetti della creazione delle tabelle come statistiche, distribuzione, partizionamento e indicizzazione.  Vengono anche presentate alcune [funzionalità non supportate per le tabelle][unsupported table features] e le soluzioni alternative.
 
-## <a name="use-user-defined-schemas-tooconsolidate-databases"></a>Utilizzare i database tooconsolidate degli schemi definiti dall'utente
+## <a name="use-user-defined-schemas-to-consolidate-databases"></a>Usare gli schemi definiti dall'utente per consolidare i database
 
 È probabile che carico di lavoro esistente includa più di un database. Ad esempio un data warehouse di SQL Server può includere un database di staging, un database del data warehouse e alcuni database del data mart. In questa topologia ogni database viene eseguito come carico di lavoro separato con criteri di protezione separati.
 
-Al contrario, SQL Data Warehouse viene eseguito hello intero data warehouse del carico di lavoro all'interno di un database. I join tra database non sono consentiti. Pertanto, Data Warehouse di SQL prevede che tutte le tabelle utilizzate da hello dati warehouse toobe archiviati all'interno di un database di hello.
+Al contrario, SQL Data Warehouse esegue tutto il carico di lavoro del data warehouse all'interno di un database. I join tra database non sono consentiti. SQL Data Warehouse prevede pertanto che tutte le tabelle usate dal data warehouse siano archiviate in un unico database.
 
-È consigliabile utilizzare gli schemi definiti dall'utente tooconsolidate il carico di lavoro esistente in un database. Per esempi, vedere [Schemi definiti dall'utente](sql-data-warehouse-develop-user-defined-schemas.md)
+È consigliabile usare schemi definiti dall'utente per consolidare il carico di lavoro esistente in un unico database. Per esempi, vedere [Schemi definiti dall'utente](sql-data-warehouse-develop-user-defined-schemas.md)
 
 ## <a name="use-compatible-data-types"></a>Usare tipi di dati compatibili
-Modificare il toobe di tipi di dati compatibile con SQL Data Warehouse. Per l'elenco dei tipi di dati supportati e non supportati, vedere [Tipi di dati][data types]. Questo argomento offre soluzioni alternative per i tipi di hello non supportato. Fornisce inoltre una query tooidentify i tipi esistenti che non sono supportati in SQL Data Warehouse.
+Modificare i tipi di dati in modo che siano compatibili con SQL Data Warehouse. Per l'elenco dei tipi di dati supportati e non supportati, vedere [Tipi di dati][data types]. L'argomento offre soluzioni alternative per i tipi non supportati. Offre anche una query per identificare i tipi esistenti che non sono supportati in SQL Data Warehouse.
 
 ## <a name="minimize-row-size"></a>Ridurre al minimo le dimensioni delle righe
-Per prestazioni ottimali, ridurre al minimo la lunghezza di riga hello delle tabelle. Poiché le lunghezze riga più brevi comportare prestazioni toobetter, utilizzare i tipi di dati più piccolo hello che funzionano per i dati. 
+Per prestazioni ottimali, ridurre al minimo la lunghezza delle righe delle tabelle. Dato che a righe più brevi corrispondono prestazioni migliori, usare i tipi di dati più brevi che funzionano per i dati. 
 
-Per la larghezza della riga della tabella, PolyBase ha un limite pari a 1 MB.  Se si prevede dati tooload in SQL Data Warehouse con PolyBase, aggiornare le larghezze di riga massimo tabelle toohave di minore di 1 MB. 
+Per la larghezza della riga della tabella, PolyBase ha un limite pari a 1 MB.  Se si prevede di caricare dati in SQL Data Warehouse con PolyBase, aggiornare le tabelle in modo che le righe abbiano una larghezza massima inferiore a 1 MB. 
 
 <!--
-- For example, this table uses variable length data but hello largest possible size of hello row is still less than 1 MB. PolyBase will load data into this table.
+- For example, this table uses variable length data but the largest possible size of the row is still less than 1 MB. PolyBase will load data into this table.
 
-- This table uses variable length data and hello defined row width is less than one MB. When loading rows, PolyBase allocates hello full length of hello variable-length data. hello full length of this row is greater than one MB.  PolyBase will not load data into this table.  
+- This table uses variable length data and the defined row width is less than one MB. When loading rows, PolyBase allocates the full length of the variable-length data. The full length of this row is greater than one MB.  PolyBase will not load data into this table.  
 
 -->
 
-## <a name="specify-hello-distribution-option"></a>Specificare l'opzione di distribuzione hello
-SQL Data Warehouse è un sistema di database distribuito. Ogni tabella è distribuita o replicato in nodi di calcolo hello. È disponibile un'opzione di tabella che consente di specificare la modalità toodistribute hello dati. scelte di Hello sono round-robin, replicate, o hash distribuito. Ognuna presenta vantaggi e svantaggi. Se non si specifica l'opzione di distribuzione hello, SQL Data Warehouse userà round robin come predefinito hello.
+## <a name="specify-the-distribution-option"></a>Specificare l'opzione di distribuzione
+SQL Data Warehouse è un sistema di database distribuito. Ogni tabella è distribuita o replicata nei nodi di calcolo. Un'opzione della tabella consente di specificare la modalità di distribuzione dei dati. Le scelte disponibili sono round robin, replica o distribuzione hash. Ognuna presenta vantaggi e svantaggi. Se non si specifica l'opzione di distribuzione, SQL Data Warehouse usa round robin come impostazione predefinita.
 
-- Round-robin è predefinito hello. È più semplice toouse di hello e carica i dati di hello più rapidamente possibile, ma join richiede lo spostamento dei dati che determina un rallentamento delle prestazioni delle query.
-- Replicati archivia una copia della tabella hello in ogni nodo di calcolo. Le tabelle replicate sono efficienti perché non richiedono lo spostamento di dati per i join e le aggregazioni. Tuttavia richiedono risorse di archiviazione aggiuntive e di conseguenza sono la scelta migliore per tabelle di dimensioni contenute.
-- Hash distribuita distribuisce le righe di hello in tutti i nodi di hello tramite una funzione hash. Poiché sono progettate tooprovide prestazioni elevate delle query in tabelle di grandi dimensioni, tabelle hash distribuiti sono cuore hello del Data Warehouse di SQL. Questa opzione richiede alcune pianificazione tooselect hello migliore colonna sulla quale toodistribute hello. Tuttavia, se non si sceglie hello colonna migliore hello prima volta, è possibile nuovamente distribuire facilmente hello dati in una colonna diversa. 
+- La modalità round robin è la modalità predefinita. È la più semplice da usare e carica i dati alla massima velocità, ma lo spostamento di dati richiesto dai join determina un rallentamento delle prestazioni delle query.
+- Nell'approccio con tabelle replicate, viene archiviata una copia della tabella in ogni nodo di calcolo. Le tabelle replicate sono efficienti perché non richiedono lo spostamento di dati per i join e le aggregazioni. Tuttavia richiedono risorse di archiviazione aggiuntive e di conseguenza sono la scelta migliore per tabelle di dimensioni contenute.
+- La distribuzione hash distribuisce le righe su tutti i nodi tramite una funzione hash. Le tabelle con distribuzione hash sono il nucleo di SQL Data Warehouse e sono progettate per garantire alte prestazioni per le query su tabelle di grandi dimensioni. Questa opzione richiede un certo grado di pianificazione nella scelta della colonna ottimale per la distribuzione dei dati. Se tuttavia al primo tentativo non si sceglie la colonna migliore, è possibile ridistribuire facilmente i dati in base a un'altra colonna. 
 
-toochoose hello migliore opzione di distribuzione per ogni tabella, vedere [Distributed tabelle](sql-data-warehouse-tables-distribute.md).
+Per scegliere la migliore opzione di distribuzione per ogni tabella, vedere [Tabelle con distribuzione](sql-data-warehouse-tables-distribute.md).
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Dopo avere eseguito la migrazione tooSQL di schema del database del Data Warehouse, procedere tooone di hello seguenti articoli:
+Dopo la migrazione dello schema del database a SQL Data Warehouse, passare a uno degli articoli seguenti:
 
 * [Eseguire la migrazione dei dati][Migrate your data]
 * [Eseguire la migrazione del codice][Migrate your code]
 
-Per ulteriori informazioni sulle procedure consigliate di SQL Data Warehouse, vedere hello [consigliate] [ best practices] articolo.
+Per altre informazioni, vedere l'articolo con le [procedure consigliate][best practices] di SQL Data Warehouse.
 
 <!--Image references-->
 

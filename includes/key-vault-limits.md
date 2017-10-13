@@ -13,4 +13,4 @@ Segreti, chiavi di account di archiviazione gestiti e transazioni dell'insieme d
 | Tutte le transazioni |2000 |
 |
 
-<sup>1</sup> La sottoscrizione prevede un limite globale per tutti i tipi di transazione, ovvero un valore 5 volte superiore al limite dell'insieme di credenziali delle chiavi. Ad esempio, HSM - altre transazioni per ogni sottoscrizione sono transazioni too5000 limitato entro 10 secondi per ogni sottoscrizione.
+<sup>1</sup> La sottoscrizione prevede un limite globale per tutti i tipi di transazione, ovvero un valore 5 volte superiore al limite dell'insieme di credenziali delle chiavi. Ad esempio, le transazioni diverse da HSM hanno un limite di 5000 transazioni ogni 10 secondi per sottoscrizione.

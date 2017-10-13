@@ -1,5 +1,5 @@
 ---
-title: Panoramica dell'API di hub eventi aaaAzure | Documenti Microsoft
+title: Panoramica delle API di Hub eventi di Azure | Microsoft Docs
 description: Panoramica delle API di Hub eventi di Azure disponibili
 services: event-hubs
 documentationcenter: na
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/15/2017
 ms.author: sethm
-ms.openlocfilehash: 46dfcc544ff92642cfd7a967f9ec38a0d8e2bd5d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 40cd76e1aacb68d6051cae4a3c90a8970f5449f0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="available-event-hubs-apis"></a>API di Hub eventi disponibili
 
 ## <a name="runtime-apis"></a>API di runtime
 
-di seguito Hello è una descrizione di tutti i client di runtime hub eventi di Azure attualmente disponibili. Benché alcune di queste librerie include anche funzionalità di gestione limitata, ci sono anche [librerie specifiche](#management-apis) dedicato toomanagement operazioni. lo stato attivo principale Hello di queste librerie è toosend e ricevere messaggi da un hub eventi.
+Di seguito vengono descritti tutti i client di runtime di Hub eventi di Azure attualmente disponibili. Sebbene alcune di queste librerie includano anche la funzionalità di gestione limitata, esistono [librerie specifiche](#management-apis) dedicate alle operazioni di gestione. L'obiettivo principale di queste librerie è di inviare e ricevere messaggi da un hub eventi.
 
-Vedere [informazioni aggiuntive](#additional-information) per ulteriori informazioni sullo stato corrente di hello ogni della libreria di runtime.
+Sono disponibili [altre informazioni](#additional-information) per trovare più dettagli sullo stato corrente di tutte le librerie di runtime.
 
 | Linguaggio/Piattaforma | Pacchetto client | Pacchetto EventProcessorHost | Repository |
 | --- | --- | --- | --- |
@@ -39,22 +39,22 @@ Vedere [informazioni aggiuntive](#additional-information) per ulteriori informaz
 ### <a name="additional-information"></a>Informazioni aggiuntive
 
 #### <a name="net"></a>.NET
-ecosistema .NET Hello ha più runtime, pertanto sono presenti più librerie .NET per gli hub eventi. libreria Standard di .NET Hello può essere eseguita tramite .NET Core o hello .NET Framework, mentre la libreria di .NET Framework hello può essere eseguita solo in un ambiente .NET Framework. Per altre informazioni su .NET Framework, vedere le [versioni del framework](https://docs.microsoft.com/dotnet/articles/standard/frameworks#framework-versions).
+I runtime in un ecosistema .NET sono vari, pertanto sono presenti più librerie .NET per gli Hub eventi. La libreria .NET Standard può essere eseguita usando .NET Core o .NET Framework, mentre la libreria .NET Framework può essere eseguita solo in un ambiente .NET Framework. Per altre informazioni su .NET Framework, vedere le [versioni del framework](https://docs.microsoft.com/dotnet/articles/standard/frameworks#framework-versions).
 
 #### <a name="node"></a>Nodo
 
-libreria di Node.js Hello è attualmente in anteprima e viene mantenuta come progetto lato dai dipendenti Microsoft e dai collaboratori esterni. Tutti i contributi compreso il codice sorgente sono graditi e verranno presi in esame.
+La libreria Node.js è attualmente in anteprima e viene gestita come progetto a parte da dipendenti Microsoft e collaboratori esterni. Tutti i contributi compreso il codice sorgente sono graditi e verranno presi in esame.
 
 ## <a name="management-apis"></a>API di gestione
 
-di seguito Hello è un elenco di tutte le librerie specifiche di gestione attualmente disponibili. Nessuna di queste librerie contengono le operazioni di runtime e hello solo scopo di gestire le entità di hub eventi.
+Di seguito è riportato un elenco di tutte le librerie di gestione specifiche attualmente disponibili. Nessuna di loro include operazioni di runtime e le librerie hanno il solo scopo di gestire le entità di Hub eventi.
 
 | Linguaggio/Piattaforma | Pacchetto di gestione | Repository |
 | --- | --- | --- | --- |
 | .NET Standard | [NuGet](https://www.nuget.org/packages/Microsoft.Azure.Management.EventHub) | [GitHub](https://github.com/Azure/azure-sdk-for-net/tree/AutoRest/src/ResourceManagement/EventHub) |
 
 ## <a name="next-steps"></a>Passaggi successivi
-Sono disponibili ulteriori informazioni sugli hub di eventi visitando hello seguenti collegamenti:
+Per ulteriori informazioni su Hub eventi visitare i collegamenti seguenti:
 
 * [Panoramica di Hub eventi](event-hubs-what-is-event-hubs.md)
 * [Creare un hub eventi](event-hubs-create.md)

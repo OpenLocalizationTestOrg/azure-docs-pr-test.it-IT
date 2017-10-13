@@ -1,6 +1,6 @@
 ---
 title: 'Always Encrypted: database SQL - Azure Key Vault | Documentazione Microsoft'
-description: Questo articolo illustra come i dati sensibili in un database SQL con i dati utilizzando la crittografia toosecure hello guidata su Always Encrypted in SQL Server Management Studio. Include inoltre istruzioni verranno illustrato come toostore ogni chiave di crittografia nell'insieme di credenziali chiave di Azure.
+description: Questo articolo illustra come proteggere i dati sensibili in un database SQL con la crittografia dei dati usando la procedura guidata Always Encrypted di SQL Server Management Studio. Include anche le istruzioni che illustrano come archiviare ogni chiave di crittografia nell'insieme di credenziali delle chiavi di Azure.
 keywords: crittografia dei dati, chiave di crittografia, crittografia del cloud
 services: sql-database
 documentationcenter: 
@@ -16,58 +16,58 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/06/2017
 ms.author: sstein
-ms.openlocfilehash: 8226bfef584e979643f5bb0747d4df16569f8204
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 61bfd420425b4740f6d4ebc01a403a88ff351382
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="always-encrypted-protect-sensitive-data-in-sql-database-and-store-your-encryption-keys-in-azure-key-vault"></a>Crittografia sempre attiva: Proteggere i dati sensibili nel database SQL e archiviare le chiavi di crittografia nell'insieme di credenziali delle chiavi di Azure
 
-Questo articolo illustra come toosecure dati sensibili in un SQL database con la crittografia dei dati utilizzando hello [procedura guidata Always Encrypted](https://msdn.microsoft.com/library/mt459280.aspx) in [SQL Server Management Studio (SSMS)](https://msdn.microsoft.com/library/hh213248.aspx). Include inoltre istruzioni verranno illustrato come toostore ogni chiave di crittografia nell'insieme di credenziali chiave di Azure.
+Questo articolo illustra come proteggere i dati sensibili in un database SQL con la crittografia dei dati tramite la [procedura guidata Always Encrypted](https://msdn.microsoft.com/library/mt459280.aspx) di [SQL Server Management Studio (SSMS)](https://msdn.microsoft.com/library/hh213248.aspx). Include anche le istruzioni che illustrano come archiviare ogni chiave di crittografia nell'insieme di credenziali delle chiavi di Azure.
 
-Always Encrypted è una nuova tecnologia di crittografia di dati in Database SQL di Azure e SQL Server che consente di proteggere i dati sensibili archiviati nel server di hello, durante lo spostamento tra client e server, mentre i dati di hello sono in uso. Sempre crittografato assicura che i dati sensibili mai viene visualizzato come testo non crittografato hello sistema di database. Dopo aver configurato la crittografia dei dati, solo le applicazioni client o server applicazioni che dispongono di chiavi di accesso toohello possibile accedere a dati in testo normale. Per informazioni dettagliate, vedere l'articolo relativo alla [crittografia sempre attiva (motore di database)](https://msdn.microsoft.com/library/mt163865.aspx).
+La crittografia sempre attiva è una nuova tecnologia di crittografia dei dati del database SQL di Azure e di SQL Server, che protegge i dati sensibili inattivi sul server durante lo spostamento tra client e server e durante l'uso. La crittografia sempre attiva garantisce che i dati sensibili non vengano mai visualizzati come testo non crittografato all'interno del sistema di database. Dopo avere configurato la crittografia dei dati solo le applicazioni client o i server applicazioni, che hanno accesso alle chiavi, possono accedere ai dati di testo non crittografato. Per informazioni dettagliate, vedere l'articolo relativo alla [crittografia sempre attiva (motore di database)](https://msdn.microsoft.com/library/mt163865.aspx).
 
-Dopo aver configurato hello database toouse Always Encrypted, si creerà un'applicazione client in c# con Visual Studio toowork con dati crittografato hello.
+Dopo avere configurato il database per usare la crittografia sempre attiva, viene creata un'applicazione client in C# con Visual Studio per lavorare con i dati crittografati.
 
-Seguire i passaggi di hello in questo articolo e informazioni su come tooset di crittografia sempre attiva per un database SQL di Azure. In questo articolo si apprenderà come hello tooperform seguenti attività:
+Seguire i passaggi in questo articolo per imparare come configurare la crittografia sempre attiva per un database SQL di Azure. Questo articolo spiega come eseguire le attività seguenti:
 
-* Utilizzare guidata sempre crittografato hello in SSMS toocreate [chiavi Always Encrypted](https://msdn.microsoft.com/library/mt163865.aspx#Anchor_3).
+* Usare la procedura guidata per la crittografia sempre attiva in SSMS per creare [chiavi con crittografia sempre attiva](https://msdn.microsoft.com/library/mt163865.aspx#Anchor_3).
   * Creare una [chiave master di colonna (CMK, Column Master Key)](https://msdn.microsoft.com/library/mt146393.aspx).
   * Creare una [chiave di crittografia di colonna (CEK, Column Encryption Key)](https://msdn.microsoft.com/library/mt146372.aspx).
 * Creare una tabella di database e crittografare le colonne.
-* Creare un'applicazione che inserisce, seleziona e visualizza i dati dalle colonne crittografato hello.
+* Creare un'applicazione che inserisce, seleziona e visualizza i dati delle colonne crittografate.
 
 ## <a name="prerequisites"></a>Prerequisiti
 Per questa esercitazione occorrono:
 
 * Un account e una sottoscrizione di Azure. Nel caso in cui non siano disponibili, è possibile usare una [versione di valutazione gratuita](https://azure.microsoft.com/pricing/free-trial/).
 * [SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx) versione 13.0.700.242 o successive.
-* [.NET framework 4.6](https://msdn.microsoft.com/library/w0x726c2.aspx) o versione successiva (computer hello client).
+* [.NET Framework 4.6](https://msdn.microsoft.com/library/w0x726c2.aspx) o versioni successive (nel computer client).
 * [Visual Studio](https://www.visualstudio.com/downloads/download-visual-studio-vs.aspx)
-* [Azure PowerShell](/powershell/azure/overview) versione 1.0 o successiva. Tipo **(Get-Module - ListAvailable azure). Versione** toosee quale versione di PowerShell in esecuzione.
+* [Azure PowerShell](/powershell/azure/overview) versione 1.0 o successiva. Digitare **(Get-Module azure -ListAvailable).Version** per verificare quale versione di PowerShell è in esecuzione.
 
-## <a name="enable-your-client-application-tooaccess-hello-sql-database-service"></a>Abilitare il servizio di Database SQL client applicazione tooaccess hello
-È necessario abilitare il servizio Database SQL di hello tooaccess di applicazione client tramite la configurazione di autenticazione richiesto hello e hello durante l'acquisizione dei *ClientId* e *Secret* che sarà necessario tooauthenticate l'applicazione nel seguente codice hello.
+## <a name="enable-your-client-application-to-access-the-sql-database-service"></a>Abilitare l'applicazione client per accedere al servizio di database SQL
+È necessario abilitare l'applicazione client per accedere al servizio del database SQL tramite la configurazione dell'autenticazione richiesta e l'acquisizione di *ClientId* e *Secret*, necessari per autenticare l'applicazione nel codice seguente.
 
-1. Aprire hello [portale di Azure classico](http://manage.windowsazure.com).
-2. Selezionare **Active Directory** e fare clic sull'istanza hello Active Directory che verrà utilizzato dall'applicazione.
+1. Aprire il [portale di Azure classico](http://manage.windowsazure.com).
+2. Selezionare **Active Directory** e fare clic sull'istanza di Active Directory che verrà usata dall'applicazione.
 3. Fare clic su **Applicazioni** e quindi su **AGGIUNGI**.
-4. Digitare un nome per l'applicazione (ad esempio: *myClientApp*), selezionare **applicazione WEB**, fare clic su toocontinue freccia hello.
-5. Per hello **URL accesso** e **URI ID APP** è possibile digitare un URL valido (ad esempio, *http://myClientApp*) e continuare.
+4. Digitare un nome per l'applicazione, ad esempio *myClientApp*, selezionare **APPLICAZIONE WEB**e fare clic sulla freccia per continuare.
+5. Per l'**URL DI ACCESSO** e l'**URI ID APP** digitare un URL valido (ad esempio, *http://myClientApp*) e continuare.
 6. Fare clic su **CONFIGURA**.
 7. Copiare l' **ID CLIENT**. Sarà necessario immettere questo valore nel codice in un secondo momento.
-8. In hello **chiavi** selezionare **1 anno** da hello **Seleziona durata** elenco a discesa. (Verrà copiato chiave hello dopo aver salvato nel passaggio 13.)
+8. Nella sezione relativa alle **chiavi** selezionare **1 anno** dall'elenco a discesa **Seleziona durata**. La chiave verrà copiata dopo il salvataggio nel passaggio 13.
 9. Scorrere verso il basso e fare clic su **Aggiungi applicazione**.
-10. Lasciare **Mostra** impostare troppo**Microsoft Apps** e selezionare **servizio Gestione API di Microsoft Azure**. Fare clic su hello toocontinue di segno di spunta.
-11. Selezionare **accedere a Gestione servizi di Azure... ** da hello **autorizzazioni delegate** elenco a discesa.
+10. Lasciare **MOSTRA** impostato su **App Microsoft** e selezionare **API di gestione del servizio Microsoft Azure**. Fare clic sul segno di spunta per continuare.
+11. Nell'elenco a discesa **Autorizzazioni delegate** selezionare **Access Azure Service Management...** (Gestione servizio di accesso Azure).
 12. Fare clic su **SAVE**.
-13. Dopo aver hello Salva al termine, copiare valore chiave hello hello **chiavi** sezione. Sarà necessario immettere questo valore nel codice in un secondo momento.
+13. Al termine del salvataggio copiare il valore della chiave nella sezione **Chiavi** . Sarà necessario immettere questo valore nel codice in un secondo momento.
 
-## <a name="create-a-key-vault-toostore-your-keys"></a>Creare un insieme di credenziali chiave di toostore delle chiavi
-Ora che è configurato l'app client e si ha l'ID client, è ora toocreate un insieme di credenziali chiave e configurare i criteri di accesso, pertanto si e l'applicazione può accedere a informazioni riservate dell'insieme di credenziali di hello (le chiavi sempre crittografato hello). Hello *creare*, *ottenere*, *elenco*, *sign*, *verificare*, *wrapKey*, e *unwrapKey* le autorizzazioni sono necessarie per la creazione di una nuova chiave master di colonna e per la configurazione di crittografia con SQL Server Management Studio.
+## <a name="create-a-key-vault-to-store-your-keys"></a>Creare un insieme di credenziali delle chiavi per archiviare le chiavi
+Quando l'app client è configurata e si dispone dell'ID client, è necessario creare un insieme di credenziali delle chiavi e configurare il criterio di accesso per consentire all'utente e all'applicazione di accedere alle chiavi private dell'insieme di credenziali, ovvero le chiavi con crittografia sempre attiva. Sono necessarie le autorizzazioni *create*, *get*, *list*, *sign*, *verify*, *wrapKey* e *unwrapKey* per creare una nuova chiave master di colonna e per configurare la crittografia con SQL Server Management Studio.
 
-È possibile creare rapidamente un insieme di credenziali chiave eseguendo lo script seguente hello. Per una spiegazione dettagliata di questi cmdlet e altre informazioni sulla creazione e la configurazione di un insieme di credenziali delle chiavi, vedere [Introduzione all'insieme di credenziali delle chiavi di Azure](../key-vault/key-vault-get-started.md).
+È possibile creare rapidamente un insieme di credenziali delle chiavi eseguendo lo script seguente. Per una spiegazione dettagliata di questi cmdlet e altre informazioni sulla creazione e la configurazione di un insieme di credenziali delle chiavi, vedere [Introduzione all'insieme di credenziali delle chiavi di Azure](../key-vault/key-vault-get-started.md).
 
     $subscriptionName = '<your Azure subscription name>'
     $userPrincipalName = '<username@domain.com>'
@@ -91,35 +91,35 @@ Ora che è configurato l'app client e si ha l'ID client, è ora toocreate un ins
 
 
 ## <a name="create-a-blank-sql-database"></a>Creare un database SQL vuoto
-1. Accedi toohello [portale di Azure](https://portal.azure.com/).
-2. Andare troppo**New** > **dati e archiviazione** > **Database SQL**.
-3. Creare un database **vuoto** denominato **Clinic** in un server nuovo o esistente. Per istruzioni su come toocreate un database nel portale di Azure hello visualizzato [di un database SQL di Azure](sql-database-get-started-portal.md).
+1. Accedere al [portale di Azure](https://portal.azure.com/).
+2. Fare clic su **Nuovo** > **Dati e archiviazione** > **Database SQL**.
+3. Creare un database **vuoto** denominato **Clinic** in un server nuovo o esistente. Per istruzioni dettagliate su come creare un database nel portale di Azure, vedere [Primo database SQL di Azure](sql-database-get-started-portal.md).
    
     ![Creazione di un database vuoto](./media/sql-database-always-encrypted-azure-key-vault/create-database.png)
 
-Si sarà necessario hello stringa di connessione in un secondo momento nell'esercitazione di hello, dopo aver creato il database di hello, selezionare toohello nuova Clinic database e la copia hello stringa di connessione. È possibile ottenere la stringa di connessione hello in qualsiasi momento, ma è facile toocopy in hello portale di Azure.
+La stringa di connessione sarà necessaria più avanti nell'esercitazione. Dopo avere creato il database selezionare quindi il nuovo database Clinic e copiare la stringa di connessione. È possibile ottenere la stringa di connessione in qualsiasi momento, ma è facile copiarla nel portale di Azure.
 
-1. Andare troppo**database SQL** > **Clinic** > **Mostra le stringhe di connessione di database**.
-2. Copiare la stringa di connessione hello per **ADO.NET**.
+1. Passare a **Database SQL** > **Clinic** > **Show database connection strings** (Mostra stringhe di connessione del database).
+2. Copiare la stringa di connessione per **ADO.NET**.
    
-    ![Copiare la stringa di connessione hello](./media/sql-database-always-encrypted-azure-key-vault/connection-strings.png)
+    ![Copia della stringa di connessione](./media/sql-database-always-encrypted-azure-key-vault/connection-strings.png)
 
-## <a name="connect-toohello-database-with-ssms"></a>La connessione a database toohello con SQL Server Management Studio
-Aprire SQL Server Management Studio e connettersi toohello server con database Clinic hello.
+## <a name="connect-to-the-database-with-ssms"></a>Connettersi al database con SSMS
+Aprire SSMS e connettersi al server con il database Clinic.
 
-1. Aprire SQL Server Management Studio. (Vai troppo**Connetti** > **motore di Database** tooopen hello **connettersi tooServer** finestra se non è aperto.)
-2. Immettere il nome e le credenziali del server. nome del server Hello sono disponibili nel Pannello di database SQL di hello e nella stringa di connessione hello copiato in precedenza. Nome completo del server di tipo hello, tra cui *database.windows.net*.
+1. Aprire SQL Server Management Studio. Passare a **Connetti** > **Motore di database** per aprire la finestra **Connetti al server**, se non è già aperta.
+2. Immettere il nome e le credenziali del server. Il nome del server è disponibile nel pannello del database SQL e nella stringa di connessione copiata in precedenza. Digitare il nome completo del server, compreso *database.windows.net*.
    
-    ![Copiare la stringa di connessione hello](./media/sql-database-always-encrypted-azure-key-vault/ssms-connect.png)
+    ![Copia della stringa di connessione](./media/sql-database-always-encrypted-azure-key-vault/ssms-connect.png)
 
-Se hello **nuova regola Firewall** viene visualizzata la finestra Accedi tooAzure e consentono di SQL Server Management Studio creare una nuova regola firewall per l'utente.
+Se viene visualizzata la finestra **Nuova regola firewall** , accedere ad Azure e lasciare che SSMS crei una nuova regola firewall per l'utente.
 
 ## <a name="create-a-table"></a>Creare una tabella
-In questa sezione si creerà un pazienti toohold di tabella. Non è inizialmente crittografati, si configurerà la crittografia nella sezione successiva hello.
+Questa sezione contiene istruzioni per creare una tabella con i dati dei pazienti. Non è crittografata inizialmente e la crittografia verrà configurata nella sezione successiva.
 
 1. Espandere **Database**.
-2. Pulsante destro del mouse hello **Clinic** database e fare clic su **nuova Query**.
-3. Hello Incolla seguente Transact-SQL (T-SQL) in nuova finestra query di hello e **Execute** è.
+2. Fare clic con il pulsante destro del mouse sul database **Clinic** e fare clic su **Nuova query**.
+3. Incollare il comando Transact-SQL (T-SQL) seguente nella finestra della nuova query ed **eseguirlo** .
 
         CREATE TABLE [dbo].[Patients](
          [PatientId] [int] IDENTITY(1,1),
@@ -137,86 +137,86 @@ In questa sezione si creerà un pazienti toohold di tabella. Non è inizialmente
 
 
 ## <a name="encrypt-columns-configure-always-encrypted"></a>Crittografare le colonne configurando la crittografia sempre attiva
-SQL Server Management Studio fornisce una procedura guidata che consente di configurare facilmente Always Encrypted tramite la configurazione di hello chiave master della colonna chiave di crittografia di colonna e le colonne crittografate automaticamente.
+SSMS offre una procedura guidata per configurare facilmente la crittografia sempre attiva impostando la chiave master di colonna, la chiave di crittografia di colonna e le colonne crittografate automaticamente.
 
 1. Espandere **Database** > **Clinic** > **Tabelle**.
-2. Pulsante destro del mouse hello **pazienti** tabella e selezionare **crittografa colonne** guidata sempre crittografato hello di tooopen:
+2. Fare clic con il pulsante destro del mouse sulla tabella **Patients** e selezionare **Crittografa colonne** per aprire la procedura guidata Always Encrypted:
    
     ![Crittografa colonne](./media/sql-database-always-encrypted-azure-key-vault/encrypt-columns.png)
 
-Creazione guidata sempre crittografato Hello include hello le sezioni seguenti: **selezione colonna**, **configurazione chiave Master**, **convalida**, e **riepilogo **.
+La procedura guidata Always Encrypted include le sezioni seguenti: **Selezione colonne**, **Configurazione della chiave master**, **Convalida** e **Riepilogo**.
 
 ### <a name="column-selection"></a>Selezione colonne
-Fare clic su **Avanti** su hello **Introduzione** hello tooopen pagina **selezione colonna** pagina. In questa pagina, verranno selezionate le colonne desiderate tooencrypt, [hello tipo di crittografia e specificare la chiave di crittografia di colonna (CEK)](https://msdn.microsoft.com/library/mt459280.aspx#Anchor_2) toouse.
+Fare clic su **Avanti** nella pagina **Introduzione** per aprire la pagina **Selezione colonne**. In questa pagina verranno selezionate le colonne da crittografare, [il tipo di crittografia e la chiave di crittografia di colonna (CEK)](https://msdn.microsoft.com/library/mt459280.aspx#Anchor_2) da usare.
 
-Crittografare il **CF** e la **data di nascita** per ogni paziente. colonna SSN Hello utilizzerà la crittografia deterministica, che supporta le ricerche di uguaglianza, join e group by. colonna BirthDate Hello utilizzerà la crittografia casuale, che non supporta le operazioni.
+Crittografare il **CF** e la **data di nascita** per ogni paziente. La colonna relativa al codice fiscale usa la crittografia deterministica, che supporta ricerche di uguaglianza, join e raggruppamenti. La colonna relativa alla data di nascita usa la crittografia casuale, che non supporta le operazioni.
 
-Set hello **tipo di crittografia** per la colonna SSN hello troppo**deterministica** e hello colonna BirthDate troppo**casuale**. Fare clic su **Avanti**.
+Impostare il **Tipo di crittografia** per la colonna CF su **Deterministica** e per la colonna Data di nascita su **Casuale**. Fare clic su **Avanti**.
 
 ![Crittografa colonne](./media/sql-database-always-encrypted-azure-key-vault/column-selection.png)
 
 ### <a name="master-key-configuration"></a>Configurazione della chiave master
-Hello **configurazione chiave Master** pagina è in cui impostare la CMK e provider dell'archivio chiavi hello selezionare dove hello CMK verranno archiviati. Attualmente, è possibile archiviare una chiave CMK nell'archivio certificati di Windows hello, insieme di credenziali chiave di Azure o un modulo di protezione hardware (HSM).
+La pagina **Configurazione della chiave master** consente di impostare la CMK e selezionare il provider dell'archivio chiavi in cui verrà archiviata la CMK. Attualmente è possibile archiviare una chiave master di colonna nell'archivio certificati di Windows, nell'insieme di credenziali delle chiavi di Azure o in un modulo di protezione hardware.
 
-Questa esercitazione viene illustrato come toostore le chiavi nell'insieme di credenziali chiave di Azure.
+Questa esercitazione illustra come archiviare le chiavi nell'insieme di credenziali delle chiavi di Azure.
 
 1. Selezionare **Insieme di credenziali delle chiavi di Azure**.
-2. Selezionare hello desiderato insieme di credenziali chiave dall'elenco a discesa hello.
+2. Selezionare l'insieme di credenziali delle chiavi desiderato dall'elenco a discesa.
 3. Fare clic su **Avanti**.
 
 ![Configurazione della chiave master](./media/sql-database-always-encrypted-azure-key-vault/master-key-configuration.png)
 
 ### <a name="validation"></a>Convalida
-È possibile crittografare colonne hello ora o salvare un toorun di script di PowerShell in un secondo momento. Per questa esercitazione, selezionare **procedere ora toofinish** e fare clic su **Avanti**.
+È attualmente possibile crittografare le colonne o salvare uno script di PowerShell da eseguire in un secondo momento. Per questa esercitazione selezionare **Procedi per completare ora** e fare clic su **Avanti**.
 
 ### <a name="summary"></a>Riepilogo
-Verificare che le impostazioni di hello siano tutti corrette e fare clic su **fine** installazione hello toocomplete per Always Encrypted.
+Verificare che tutte le impostazioni siano corrette e fare clic su **Fine** per completare la configurazione della crittografia sempre attiva.
 
 ![Riepilogo](./media/sql-database-always-encrypted-azure-key-vault/summary.png)
 
-### <a name="verify-hello-wizards-actions"></a>Verificare le azioni della procedura guidata di hello
-Al termine procedura hello, il database è configurato per Always Encrypted. Hello hello di guidata eseguito le azioni seguenti:
+### <a name="verify-the-wizards-actions"></a>Confermare le azioni della procedura guidata
+Al termine della procedura guidata, il database è configurato per la crittografia sempre attiva. La procedura guidata esegue le azioni seguenti:
 
 * È stata creata una chiave master di colonna ed è stata archiviata nell'insieme di credenziali delle chiavi di Azure.
 * È stata creata una chiave di crittografia di colonna ed è stata archiviata nell'insieme di credenziali delle chiavi di Azure.
-* Hello configurato selezionate colonne per la crittografia. tabella pazienti Hello attualmente non dispone di dati, ma i dati esistenti nelle colonne selezionata hello ora sono crittografati.
+* Configurazione delle colonne selezionate per la crittografia. La tabella Patients attualmente è vuota, ma eventuali dati esistenti nelle colonne selezionate sono ora crittografati.
 
-È possibile verificare la creazione di hello di chiavi hello in SQL Server Management Studio espandere **Clinic** > **sicurezza** > **le chiavi Always Encrypted**.
+È possibile verificare la creazione di chiavi in SSMS espandendo **Clinic** > **Sicurezza** > **Chiavi Always Encrypted**.
 
-## <a name="create-a-client-application-that-works-with-hello-encrypted-data"></a>Creare un'applicazione client che interagisce con i dati crittografato hello
-Ora che Always Encrypted è configurato, è possibile compilare un'applicazione che esegue *inserisce* e *seleziona* su hello colonne crittografate.  
+## <a name="create-a-client-application-that-works-with-the-encrypted-data"></a>Creare un'applicazione client che funziona con i dati crittografati
+Ora che la crittografia Always Encrypted è configurata, è possibile creare un'applicazione che esegua *inserimenti* e *selezioni* nelle colonne crittografate.  
 
 > [!IMPORTANT]
-> L'applicazione deve usare [SqlParameter](https://msdn.microsoft.com/library/system.data.sqlclient.sqlparameter.aspx) oggetti quando si passa server toohello dati di testo normale con colonne con crittografia sempre attiva. Il trasferimento di valori letterali senza usare oggetti SqlParameter genererà un'eccezione.
+> L'applicazione deve usare oggetti [SqlParameter](https://msdn.microsoft.com/library/system.data.sqlclient.sqlparameter.aspx) per trasferire dati di testo non crittografato al server con colonne con la crittografia sempre attiva. Il trasferimento di valori letterali senza usare oggetti SqlParameter genererà un'eccezione.
 > 
 > 
 
-1. Aprire Visual Studio e creare una nuova **Applicazione console** C# (Visual Studio 2015 e versioni precedenti) o **App console (.NET Framework)** (Visual Studio 2017 e versioni successive). Verificare che il progetto è stato impostato troppo**.NET Framework 4.6** o versione successiva.
-2. Progetto hello nome **AlwaysEncryptedConsoleAKVApp** e fare clic su **OK**.
-3. Installare i seguenti pacchetti NuGet passando troppo hello**strumenti** > **Gestione pacchetti NuGet** > **Package Manager Console**.
+1. Aprire Visual Studio e creare una nuova **Applicazione console** C# (Visual Studio 2015 e versioni precedenti) o **App console (.NET Framework)** (Visual Studio 2017 e versioni successive). Verificare che il progetto sia impostato su **.NET Framework 4.6** o versione successiva.
+2. Denominare il progetto **AlwaysEncryptedConsoleAKVApp** e fare clic su **OK**.
+3. Installare i pacchetti NuGet seguenti facendo clic su **Strumenti** > **Gestione pacchetti NuGet** > **Console di Gestione pacchetti**.
 
-Nella Console di gestione pacchetti hello, eseguire le due righe di codice.
+Eseguire queste 2 righe di codice nella Console di Gestione pacchetti.
 
     Install-Package Microsoft.SqlServer.Management.AlwaysEncrypted.AzureKeyVaultProvider
     Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory
 
 
 
-## <a name="modify-your-connection-string-tooenable-always-encrypted"></a>Modificare il tooenable di stringa di connessione Always Encrypted
-Questa sezione viene illustrato come tooenable sempre crittografato nella stringa di connessione di database.
+## <a name="modify-your-connection-string-to-enable-always-encrypted"></a>Modificare la stringa di connessione per abilitare la crittografia sempre attiva
+Questa sezione descrive come abilitare Always Encrypted nella stringa di connessione del database.
 
-tooenable Always Encrypted, è necessario hello tooadd **Column Encryption Setting** connessione tooyour parola chiave di stringa e impostarlo troppo**abilitato**.
+Per abilitare Always Encrypted è necessario aggiungere la parola chiave di **Column Encryption Setting** alla stringa di connessione e impostarla su **Abilitata**.
 
-È possibile impostare questo valore direttamente nella stringa di connessione hello oppure è possibile impostarlo utilizzando [SqlConnectionStringBuilder](https://msdn.microsoft.com/library/system.data.sqlclient.sqlconnectionstringbuilder.aspx). applicazione di esempio Hello hello sezione successiva viene illustrato come toouse **SqlConnectionStringBuilder**.
+È possibile impostarla direttamente nella stringa di connessione o tramite [SqlConnectionStringBuilder](https://msdn.microsoft.com/library/system.data.sqlclient.sqlconnectionstringbuilder.aspx). L'applicazione di esempio nella sezione successiva mostra come usare **SqlConnectionStringBuilder**.
 
-### <a name="enable-always-encrypted-in-hello-connection-string"></a>Abilita sempre crittografato nella stringa di connessione hello
-Aggiungere hello seguente stringa di connessione tooyour (parola chiave).
+### <a name="enable-always-encrypted-in-the-connection-string"></a>Abilitare la crittografia sempre attiva nella stringa di connessione
+Aggiungere la parola chiave seguente alla stringa di connessione.
 
     Column Encryption Setting=Enabled
 
 
 ### <a name="enable-always-encrypted-with-sqlconnectionstringbuilder"></a>Abilitare la crittografia sempre attiva con SqlConnectionStringBuilder
-Hello seguente codice mostra come tooenable Always Encrypted impostando [Columnencryptionsetting](https://msdn.microsoft.com/library/system.data.sqlclient.sqlconnectionstringbuilder.columnencryptionsetting.aspx) troppo[abilitato](https://msdn.microsoft.com/library/system.data.sqlclient.sqlconnectioncolumnencryptionsetting.aspx).
+Il codice seguente mostra come abilitare Always Encrypted impostando [SqlConnectionStringBuilder.ColumnEncryptionSetting](https://msdn.microsoft.com/library/system.data.sqlclient.sqlconnectionstringbuilder.columnencryptionsetting.aspx) su [Abilitata](https://msdn.microsoft.com/library/system.data.sqlclient.sqlconnectioncolumnencryptionsetting.aspx).
 
     // Instantiate a SqlConnectionStringBuilder.
     SqlConnectionStringBuilder connStringBuilder =
@@ -226,8 +226,8 @@ Hello seguente codice mostra come tooenable Always Encrypted impostando [Columne
     connStringBuilder.ColumnEncryptionSetting =
        SqlConnectionColumnEncryptionSetting.Enabled;
 
-## <a name="register-hello-azure-key-vault-provider"></a>Registrare il provider di credenziali chiave hello
-Hello codice seguente viene illustrato come tooregister hello provider insieme credenziali chiavi Azure con driver ADO.NET hello.
+## <a name="register-the-azure-key-vault-provider"></a>Registrare il provider dell'insieme di credenziali delle chiavi di Azure
+Il codice seguente mostra come registrare il provider dell'insieme di credenziali delle chiavi di Azure con il driver ADO.NET.
 
     private static ClientCredential _clientCredential;
 
@@ -250,14 +250,14 @@ Hello codice seguente viene illustrato come tooregister hello provider insieme c
 ## <a name="always-encrypted-sample-console-application"></a>Applicazione console di esempio della crittografia sempre attiva
 Questo esempio dimostra come:
 
-* Modificare il tooenable di stringa di connessione Always Encrypted.
-* La registrazione insieme credenziali chiavi Azure hello provider dell'archivio chiavi dell'applicazione.  
-* Inserire i dati in colonne crittografato hello.
+* Modificare la stringa di connessione per abilitare la crittografia sempre attiva.
+* Registrare l'insieme di credenziali delle chiavi di Azure come provider dell'archivio chiavi dell'applicazione.  
+* Inserire dati nelle colonne crittografate.
 * Selezionare un record filtrando in base a un valore specifico in una colonna crittografata.
 
-Sostituire il contenuto di hello di **Program.cs** con hello seguente codice. Sostituire la stringa di connessione hello per la variabile globale connectionString hello nella riga hello che precede direttamente il metodo Main hello con la stringa di connessione valida da hello portale di Azure. Si tratta di modifica di hello solo se è necessario codice toothis toomake.
+Sostituire il contenuto del file **Program.cs** con il codice seguente. Sostituire la stringa di connessione per la variabile globale connectionString nella riga che precede immediatamente il metodo Main con la stringa di connessione valida del portale di Azure. Questa è l'unica modifica che è necessario apportare al codice.
 
-Eseguire hello app toosee Always Encrypted in azione.
+Eseguire l'app per vedere in azione la crittografia sempre attiva.
 
     using System;
     using System.Collections.Generic;
@@ -273,8 +273,8 @@ Eseguire hello app toosee Always Encrypted in azione.
     {
     class Program
     {
-        // Update this line with your Clinic database connection string from hello Azure portal.
-        static string connectionString = @"<connection string from hello portal>";
+        // Update this line with your Clinic database connection string from the Azure portal.
+        static string connectionString = @"<connection string from the portal>";
         static string clientId = @"<client id from step 7 above>";
         static string clientSecret = "<key from step 13 above>";
 
@@ -285,35 +285,35 @@ Eseguire hello app toosee Always Encrypted in azione.
 
             Console.WriteLine("Signed in as: " + _clientCredential.ClientId);
 
-            Console.WriteLine("Original connection string copied from hello Azure portal:");
+            Console.WriteLine("Original connection string copied from the Azure portal:");
             Console.WriteLine(connectionString);
 
             // Create a SqlConnectionStringBuilder.
             SqlConnectionStringBuilder connStringBuilder =
                 new SqlConnectionStringBuilder(connectionString);
 
-            // Enable Always Encrypted for hello connection.
-            // This is hello only change specific tooAlways Encrypted
+            // Enable Always Encrypted for the connection.
+            // This is the only change specific to Always Encrypted
             connStringBuilder.ColumnEncryptionSetting =
                 SqlConnectionColumnEncryptionSetting.Enabled;
 
             Console.WriteLine(Environment.NewLine + "Updated connection string with Always Encrypted enabled:");
             Console.WriteLine(connStringBuilder.ConnectionString);
 
-            // Update hello connection string with a password supplied at runtime.
+            // Update the connection string with a password supplied at runtime.
             Console.WriteLine(Environment.NewLine + "Enter server password:");
             connStringBuilder.Password = Console.ReadLine();
 
 
-            // Assign hello updated connection string tooour global variable.
+            // Assign the updated connection string to our global variable.
             connectionString = connStringBuilder.ConnectionString;
 
 
-            // Delete all records toorestart this demo app.
+            // Delete all records to restart this demo app.
             ResetPatientsTable();
 
-            // Add sample data toohello Patients table.
-            Console.Write(Environment.NewLine + "Adding sample patient data toohello database...");
+            // Add sample data to the Patients table.
+            Console.Write(Environment.NewLine + "Adding sample patient data to the database...");
 
             InsertPatient(new Patient()
             {
@@ -353,7 +353,7 @@ Eseguire hello app toosee Always Encrypted in azione.
 
 
             // Fetch and display all patients.
-            Console.WriteLine(Environment.NewLine + "All hello records currently in hello Patients table:");
+            Console.WriteLine(Environment.NewLine + "All the records currently in the Patients table:");
 
             foreach (Patient patient in SelectAllPatients())
             {
@@ -361,20 +361,20 @@ Eseguire hello app toosee Always Encrypted in azione.
             }
 
             // Get patients by SSN.
-            Console.WriteLine(Environment.NewLine + "Now lets locate records by searching hello encrypted SSN column.");
+            Console.WriteLine(Environment.NewLine + "Now lets locate records by searching the encrypted SSN column.");
 
             string ssn;
 
-            // This very simple validation only checks that hello user entered 11 characters.
-            // In production be sure toocheck all user input and use hello best validation for your specific application.
+            // This very simple validation only checks that the user entered 11 characters.
+            // In production be sure to check all user input and use the best validation for your specific application.
             do
             {
                 Console.WriteLine("Please enter a valid SSN (ex. 999-99-0003):");
                 ssn = Console.ReadLine();
             } while (ssn.Length != 11);
 
-            // hello example allows duplicate SSN entries so we will return all records
-            // that match hello provided value and store hello results in selectedPatients.
+            // The example allows duplicate SSN entries so we will return all records
+            // that match the provided value and store the results in selectedPatients.
             Patient selectedPatient = SelectPatientBySSN(ssn);
 
             // Check if any records were returned and display our query results.
@@ -389,7 +389,7 @@ Eseguire hello app toosee Always Encrypted in azione.
                 Console.WriteLine("No patients found with SSN = " + ssn);
             }
 
-            Console.WriteLine("Press Enter tooexit...");
+            Console.WriteLine("Press Enter to exit...");
             Console.ReadLine();
         }
 
@@ -417,7 +417,7 @@ Eseguire hello app toosee Always Encrypted in azione.
             AuthenticationResult result = await authContext.AcquireTokenAsync(resource, _clientCredential);
 
             if (result == null)
-                throw new InvalidOperationException("Failed tooobtain hello access token");
+                throw new InvalidOperationException("Failed to obtain the access token");
             return result.AccessToken;
         }
 
@@ -463,9 +463,9 @@ Eseguire hello app toosee Always Encrypted in azione.
                 catch (Exception ex)
                 {
                     returnValue = 1;
-                    Console.WriteLine("hello following error was encountered: ");
+                    Console.WriteLine("The following error was encountered: ");
                     Console.WriteLine(ex.Message);
-                    Console.WriteLine(Environment.NewLine + "Press Enter key tooexit");
+                    Console.WriteLine(Environment.NewLine + "Press Enter key to exit");
                     Console.ReadLine();
                     Environment.Exit(0);
                 }
@@ -567,7 +567,7 @@ Eseguire hello app toosee Always Encrypted in azione.
         }
 
 
-        // This method simply deletes all records in hello Patients table tooreset our demo.
+        // This method simply deletes all records in the Patients table to reset our demo.
         static int ResetPatientsTable()
         {
             int returnValue = 0;
@@ -601,35 +601,35 @@ Eseguire hello app toosee Always Encrypted in azione.
 
 
 
-## <a name="verify-that-hello-data-is-encrypted"></a>Verificare che siano crittografati dati hello
-È possibile controllare rapidamente che i dati effettivi di hello nel server di hello sono crittografati eseguendo una query su dati di pazienti hello con SQL Server Management Studio (tramite la connessione corrente in cui **Column Encryption Setting** non è ancora abilitato).
+## <a name="verify-that-the-data-is-encrypted"></a>Verificare che i dati siano crittografati
+È possibile verificare rapidamente che i dati effettivi del server siano crittografati eseguendo una query dei dati della tabella Patients con SSMS tramite la connessione corrente in cui l'impostazione **Column Encryption Setting** non è ancora abilitata.
 
-Eseguire hello seguente query sul database Clinic hello.
+Eseguire la query seguente nel database Clinic.
 
     SELECT FirstName, LastName, SSN, BirthDate FROM Patients;
 
-È possibile vedere che le colonne crittografato hello non contengano i dati di testo normale.
+È possibile osservare che le colonne crittografate non contengono dati di testo non crittografato.
 
    ![Nuova applicazione console](./media/sql-database-always-encrypted-azure-key-vault/ssms-encrypted.png)
 
-toouse SSMS tooaccess hello dati in testo normale, è possibile aggiungere hello *Column Encryption Setting = abilitata* connessione toohello di parametro.
+Per usare SSMS per accedere ai dati di testo non crittografato, aggiungere il parametro *Column Encryption Setting=Enabled* alla connessione.
 
 1. In SSMS fare clic con il pulsante destro del mouse sul server in **Esplora oggetti** e scegliere **Disconnetti**.
-2. Fare clic su **Connetti** > **motore di Database** tooopen hello **connettersi tooServer** finestra e fare clic su **opzioni**.
+2. Fare clic su **Connetti** > **Motore di database** per aprire la finestra **Connetti al server** e quindi fare clic su **Opzioni**.
 3. Fare clic su **Parametri aggiuntivi per la connessione** e digitare **Column Encryption Setting=Enabled**.
    
     ![Nuova applicazione console](./media/sql-database-always-encrypted-azure-key-vault/ssms-connection-parameter.png)
-4. Eseguire hello seguente query sul database Clinic hello.
+4. Eseguire la query seguente nel database Clinic.
    
         SELECT FirstName, LastName, SSN, BirthDate FROM Patients;
    
-     È ora possibile visualizzare dati in formato testo hello nelle colonne crittografato hello.
+     È ora possibile visualizzare i dati non crittografati nelle colonne crittografate.
 
     ![Nuova applicazione console](./media/sql-database-always-encrypted-azure-key-vault/ssms-plaintext.png)
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Dopo aver creato un database che Usa crittografia sempre attiva, è necessario seguente hello toodo:
+Dopo avere creato un database che usa la crittografia sempre attiva, è possibile eseguire le operazioni seguenti:
 
 * [Ruotare e pulire le chiavi](https://msdn.microsoft.com/library/mt607048.aspx).
 * [Eseguire la migrazione dei dati già crittografati con la crittografia sempre attiva](https://msdn.microsoft.com/library/mt621539.aspx).

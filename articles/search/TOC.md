@@ -29,8 +29,8 @@
 
 ## Sviluppare
 ### [Versioni dell'API](search-api-versions.md)
-### [Aggiornamento hello SDK](search-dotnet-sdk-migration.md)
-### [Aggiornamento hello API REST](search-api-migration.md)
+### [Aggiornare l'SDK](search-dotnet-sdk-migration.md)
+### [Aggiornare l'API REST](search-api-migration.md)
 ### [Modellare tipi di dati complessi](search-howto-complex-data-types.md)
 ### [Gestire gli aggiornamenti simultanei](search-howto-concurrency.md)
 ### [Esempi di codice](https://azure.microsoft.com/resources/samples/?service=search)
@@ -38,7 +38,7 @@
 ## Gestisci
 ### Gestire Ricerca di Azure
 #### [Portale di Azure](search-manage.md)
-#### [PowerShell](search-manage-powershell.md)
+#### [Azure PowerShell](search-manage-powershell.md) di Azure
 ### [Monitorare l'utilizzo e le statistiche](search-monitor-usage.md)
 ### [Analisi del traffico di ricerca](search-traffic-analytics.md)
 ### [Prestazioni e ottimizzazione](search-performance-optimization.md)
@@ -50,7 +50,7 @@
 ### [Indicizzatore di Azure Cosmos DB](search-howto-index-documentdb.md)
 ### [Indicizzare i BLOB CSV](search-howto-index-csv-blobs.md)
 ### [Indicizzare i BLOB JSON](search-howto-index-json-blobs.md)
-### [Configurare le connessioni di indicizzatore tooSQL Server nella macchina virtuale di Azure](search-howto-connecting-azure-sql-iaas-to-azure-search-using-indexers.md)
+### [Configurare le connessioni dell'indicizzatore a SQL Server nella VM di Azure](search-howto-connecting-azure-sql-iaas-to-azure-search-using-indexers.md)
 ### [Mapping dei campi negli indicizzatori](search-indexer-field-mappings.md)
 ##  Search
 ### [Funzionamento della ricerca full-text](search-lucene-query-architecture.md)
@@ -59,7 +59,8 @@
 #### [Sintassi di query Lucene](https://docs.microsoft.com/rest/api/searchservice/lucene-query-syntax-in-azure-search)
 #### [Esempi di query con la sintassi Lucene](search-query-lucene-examples.md)
 #### [Sintassi delle espressioni di filtro](https://docs.microsoft.com/rest/api/searchservice/odata-expression-syntax-for-azure-search)
-### Ricerca personalizzata
+### Analizzatori in Ricerca di Azure
+#### [Panoramica](search-analyzers.md)
 #### [Analizzatori di linguaggi](https://docs.microsoft.com/rest/api/searchservice/language-support)
 #### [Analizzatori personalizzati](https://docs.microsoft.com/rest/api/searchservice/custom-analyzers-in-azure-search)
 ### [Risultati di paging](search-pagination-page-layout.md)

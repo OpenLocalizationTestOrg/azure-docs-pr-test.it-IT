@@ -1,5 +1,5 @@
 ---
-title: aaaAzure modello dati di telemetria Insights di applicazione - telemetria delle eccezioni | Documenti Microsoft
+title: Modello di dati di Azure Application Insights Telemetry - Telemetria delle eccezioni | Microsoft Docs
 description: Modello di dati di Application Insights per la telemetria delle eccezioni
 services: application-insights
 documentationcenter: .net
@@ -12,19 +12,19 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: bwren
-ms.openlocfilehash: 4c2b7d1ac3816d5623db9a35819a48a68a13a9cd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6b220b0cb6719bac606f599d657d08ab847c7590
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="exception-telemetry-application-insights-data-model"></a>Telemetria delle eccezioni: modello di dati di Application Insights
 
-In [Application Insights](app-insights-overview.md), un'istanza di eccezione rappresenta un'eccezione gestita o non gestita che si è verificato durante l'esecuzione di un'applicazione hello monitorato.
+In [Application Insights](app-insights-overview.md), un'istanza di eccezione rappresenta un'eccezione gestita o non gestita che si è verificata durante l'esecuzione dell'applicazione monitorata.
 
 ## <a name="problem-id"></a>ID problema
 
-Identificatore di in cui hello eccezione nel codice. Usato per il raggruppamento delle eccezioni. In genere una combinazione di tipo di eccezione e una funzione dallo stack di chiamate hello.
+Identificatore del punto nel codice in cui è stata generata l'eccezione. Usato per il raggruppamento delle eccezioni. In genere una combinazione di tipo di eccezione e una funzione dallo stack di chiamate.
 
 Lunghezza massima: 1024 caratteri
 
@@ -34,7 +34,7 @@ Livello di gravità della traccia. Il valore può essere `Verbose`, `Information
 
 ## <a name="exception-details"></a>Dettagli eccezione
 
-(toobe esteso)
+(Da aggiungere)
 
 ## <a name="custom-properties"></a>Proprietà personalizzate
 
@@ -47,5 +47,5 @@ Livello di gravità della traccia. Il valore può essere `Verbose`, `Information
 ## <a name="next-steps"></a>Passaggi successivi
 
 - Per informazioni sul modello di dati e sui tipi di Application Insights, vedere il [modello di dati](application-insights-data-model.md).
-- Informazioni su come troppo[diagnosi delle eccezioni nelle App web con Application Insights](app-insights-asp-net-exceptions.md).
+- Informazioni su come [diagnosticare le eccezioni nelle app Web con Application Insights](app-insights-asp-net-exceptions.md).
 - Verificare quali [piattaforme](app-insights-platforms.md) supportano Application Insights.

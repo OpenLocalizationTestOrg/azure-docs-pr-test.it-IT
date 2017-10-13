@@ -1,8 +1,8 @@
 ## <a name="create-a-resource-group"></a>Creare un gruppo di risorse
 
-Creare un gruppo di risorse con hello [gruppo az creare](/cli/azure/group#create) comando. Un gruppo di risorse di Azure è un contenitore logico in cui le risorse di Azure vengono distribuite e gestite. 
+Creare un gruppo di risorse con il comando [az group create](/cli/azure/group#create). Un gruppo di risorse di Azure è un contenitore logico in cui le risorse di Azure vengono distribuite e gestite. 
 
-esempio Hello crea un gruppo di risorse denominato *myResourceGroup* in hello *eastus* percorso.
+L'esempio seguente crea un gruppo di risorse denominato *myResourceGroup* nella località *stati uniti orientali*.
 
 ```azurecli-interactive 
 az group create --name myResourceGroup --location eastus
@@ -10,9 +10,9 @@ az group create --name myResourceGroup --location eastus
 
 ## <a name="create-a-virtual-machine"></a>Creare una macchina virtuale
 
-Creare una macchina virtuale con hello [creare vm az](/cli/azure/vm#create) comando. 
+Creare una VM con il comando [az vm create](/cli/azure/vm#create). 
 
-esempio Hello crea una macchina virtuale denominata *myVM* e crea le chiavi SSH se sono già presenti in un percorso chiave predefinito. toouse uno specifico set di chiavi, utilizzare hello `--ssh-key-value` opzione.  
+L'esempio seguente crea una macchina virtuale denominata *myVM* e le chiavi SSH, se non esistono già in un percorso predefinito. Per usare un set specifico di chiavi, utilizzare l'opzione `--ssh-key-value`.  
 
 ```azurecli-interactive 
 az vm create \
@@ -23,7 +23,7 @@ az vm create \
     --generate-ssh-keys
 ```
 
-Quando è stato creato hello VM, hello CLI di Azure Mostra toohello di informazioni simili esempio seguente. Prendere nota di hello `publicIpAddress`. Questo indirizzo è utilizzato tooaccess hello macchina virtuale.
+Dopo che la VM è stata creata, l'interfaccia della riga di comando di Azure mostra informazioni simili all'esempio seguente. Prendere nota di `publicIpAddress`. Questo indirizzo viene usato per accedere alla VM.
 
 ```azurecli-interactive 
 {
@@ -42,7 +42,7 @@ Quando è stato creato hello VM, hello CLI di Azure Mostra toohello di informazi
 
 ## <a name="open-port-80-for-web-traffic"></a>Aprire la porta 80 per il traffico Web 
 
-Per impostazione predefinita, nelle VM Linux distribuite in Azure sono consentite solo le connessioni SSH. Poiché questa macchina virtuale è in corso toobe un server web, è necessario tooopen la porta 80 da hello internet. Hello utilizzare [az vm aprire porte](/cli/azure/vm#open-port) comando tooopen hello desiderato porta.  
+Per impostazione predefinita, nelle VM Linux distribuite in Azure sono consentite solo le connessioni SSH. Poiché questa macchina virtuale verrà usata come server Web, è necessario aprire la porta 80 da Internet. Usare il comando [az vm open-port](/cli/azure/vm#open-port) per aprire la porta.  
  
 ```azurecli-interactive 
 az vm open-port --port 80 --resource-group myResourceGroup --name myVM
@@ -50,14 +50,14 @@ az vm open-port --port 80 --resource-group myResourceGroup --name myVM
 ## <a name="ssh-into-your-vm"></a>Usare SSH per connettersi alla macchina virtuale
 
 
-Se non si conosce hello indirizzo IP pubblico della macchina virtuale, esegue hello [elenco public-ip di rete az](/cli/azure/network/public-ip#list) comando:
+Se non si conosce già l'indirizzo IP pubblico della VM, eseguire il comando [az network public-ip list](/cli/azure/network/public-ip#list):
 
 
 ```azurecli-interactive
 az network public-ip list --resource-group myResourceGroup --query [].ipAddress
 ```
 
-Comando che segue di hello utilizzare toocreate una sessione SSH con la macchina virtuale hello. Sostituire hello corretto indirizzo IP pubblico della macchina virtuale. In questo esempio, è l'indirizzo IP hello *40.68.254.142*.
+Usare il comando seguente per creare una sessione SSH con la macchina virtuale. Sostituire l'indirizzo IP pubblico corretto della macchina virtuale. In questo esempio l'indirizzo IP è *40.68.254.142*.
 
 ```bash
 ssh azureuser@40.68.254.142

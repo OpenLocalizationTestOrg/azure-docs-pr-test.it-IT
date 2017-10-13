@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con ScaleX Enterprise | Documentazione Microsoft'
-description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e ScaleX Enterprise.
+description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e ScaleX Enterprise.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,129 +13,129 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/20/2017
 ms.author: jeedes
-ms.openlocfilehash: e398b98d9e0957b5f92c82359651c345d22c3a54
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 0ebed0c2605862426384c0e219e52c9d626b6246
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-scalex-enterprise"></a>Esercitazione: Integrazione di Azure Active Directory con ScaleX Enterprise
 
-In questa esercitazione, è illustrato come toointegrate ScaleX Enterprise con Azure Active Directory (Azure AD).
+Questa esercitazione descrive come integrare ScaleX Enterprise con Azure Active Directory (Azure AD).
 
-Integrazione di ScaleX Enterprise con Azure AD fornisce hello seguenti vantaggi:
+L'integrazione di ScaleX Enterprise con Azure AD offre i vantaggi seguenti:
 
-- È possibile controllare in Azure AD che ha accesso tooScaleX Enterprise
-- È possibile abilitare l'utenti tooautomatically get connesso tooScaleX Enterprise (Single Sign-On) con i propri account Azure AD
-- È possibile gestire gli account in un'unica posizione centrale - hello portale di Azure
+- È possibile controllare in Azure AD chi può accedere a ScaleX Enterprise
+- È possibile abilitare gli utenti per l'accesso automatico a ScaleX Enterprise (Single Sign-On) con i propri account Azure AD
+- È possibile gestire gli account in un'unica posizione centrale: il portale di Azure
 
-Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere. Informazioni sull'accesso alle applicazioni e Single Sign-On con [Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Per altre informazioni sull'integrazione di app SaaS con Azure Active Directory, vedere: Informazioni sull'accesso alle applicazioni e Single Sign-On con [Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-integrazione di Azure AD con ScaleX Enterprise tooconfigure, è necessario hello seguenti elementi:
+Per configurare l'integrazione di Azure AD con ScaleX Enterprise, sono necessari gli elementi seguenti:
 
 - Sottoscrizione di Azure AD.
 - Sottoscrizione di ScaleX Enterprise abilitata per l'accesso Single Sign-On
 
 > [!NOTE]
-> hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.
+> Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.
 
-passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:
+A questo scopo, è consigliabile seguire le indicazioni seguenti:
 
 - Non usare l'ambiente di produzione, a meno che non sia necessario.
 - Se non si dispone di un ambiente di prova di Azure AD, è possibile ottenere una versione di valutazione di un mese [qui](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Descrizione dello scenario
-In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. scenario di Hello descritto in questa esercitazione è composto da due componenti principali:
+In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:
 
-1. Aggiunta di ScaleX Enterprise dalla raccolta hello
+1. Aggiunta di ScaleX Enterprise dalla raccolta
 2. Configurazione e test dell'accesso Single Sign-On di Azure AD
 
-## <a name="adding-scalex-enterprise-from-hello-gallery"></a>Aggiunta di ScaleX Enterprise dalla raccolta hello
-integrazione hello tooconfigure di ScaleX Enterprise in tooAzure Active Directory, è necessario tooadd ScaleX Enterprise dall'elenco di tooyour hello raccolta di App SaaS gestite.
+## <a name="adding-scalex-enterprise-from-the-gallery"></a>Aggiunta di ScaleX Enterprise dalla raccolta
+Per configurare l'integrazione di ScaleX Enterprise in Azure AD, è necessario aggiungere ScaleX Enterprise dalla raccolta al proprio elenco di app SaaS gestite.
 
-**tooadd ScaleX Enterprise dalla raccolta di hello, eseguire hello alla procedura seguente:**
+**Per aggiungere ScaleX Enterprise dalla raccolta, seguire questa procedura:**
 
-1. In hello  **[portale di Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona. 
+1. Nel **[portale di Azure](https://portal.azure.com)** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro. 
 
     ![Active Directory][1]
 
-2. Passare troppo**applicazioni aziendali**. Quindi andare troppo**tutte le applicazioni**.
+2. Passare ad **Applicazioni aziendali**. Andare quindi a **Tutte le applicazioni**.
 
     ![Applicazioni][2]
     
-3. Fare clic su **Aggiungi** pulsante nella parte superiore di hello della finestra di dialogo hello.
+3. Fare clic sul pulsante **Aggiungi** nella parte superiore della finestra di dialogo.
 
     ![Applicazioni][3]
 
-4. Nella casella di ricerca hello, digitare **ScaleX Enterprise**.
+4. Nella casella di ricerca digitare **ScaleX Enterprise**.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-scalexenterprise-tutorial/tutorial_scalexenterprise_search.png)
 
-5. Nel riquadro dei risultati hello, selezionare **ScaleX Enterprise**, quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.
+5. Nel pannello dei risultati selezionare **ScaleX Enterprise** e quindi fare clic sul pulsante **Aggiungi** per aggiungere l'applicazione.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-scalexenterprise-tutorial/tutorial_scalexenterprise_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configurazione e test dell'accesso Single Sign-On di Azure AD
 In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con ScaleX Enterprise con un utente test di nome "Britta Simon".
 
-Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello in ScaleX Enterprise è tooa utente in Azure AD. In altre parole, una relazione di collegamento tra un utente di Azure AD e l'utente correlato di hello in ScaleX Enterprise richiede toobe stabilita.
+Per il funzionamento dell'accesso Single Sign-On, Azure AD deve conoscere qual è l'utente di ScaleX Enterprise che corrisponde a un utente di Azure AD. In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in ScaleX Enterprise.
 
-Questa relazione di collegamento viene stabilita tramite l'assegnazione valore hello di hello **nome utente** in Azure AD come valore hello hello **Username** in ScaleX Enterprise.
+La relazione di collegamento viene stabilita assegnando il valore di **nome utente** in Azure AD come valore di **nome utente** in ScaleX Enterprise.
 
-tooconfigure e prova AD Azure single sign-on con ScaleX Enterprise, è necessario hello toocomplete seguenti blocchi predefiniti:
+Per configurare e testare l'accesso Single Sign-On di Azure AD con ScaleX Enterprise, è necessario completare i blocchi predefiniti seguenti:
 
-1. **[Configurazione di Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.
-2. **[Creazione di un utente prova AD Azure](#creating-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.
-3. **[Creazione di un utente test ScaleX Enterprise](#creating-a-scalex-enterprise-test-user)**  -toohave un equivalente di Britta Simon in azienda ScaleX che è la rappresentazione toohello collegato Azure AD dell'utente.
-4. **[Assegnazione utente di prova hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.
-5. **[Test di Single Sign-On](#testing-single-sign-on)**  -tooverify hello se funzionamento della configurazione.
+1. **[Configurazione dell'accesso Single Sign-On di Azure AD](#configuring-azure-ad-single-sign-on)** : per abilitare gli utenti all'utilizzo di questa funzionalità.
+2. **[Creazione di un utente test di Azure AD](#creating-an-azure-ad-test-user)** : per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.
+3. **[Creazione di un utente test di ScaleX Enterprise](#creating-a-scalex-enterprise-test-user)**: per avere una controparte di Britta Simon in ScaleX Enterprise collegata alla relativa rappresentazione in Azure AD.
+4. **[Assegnazione dell'utente test di Azure AD](#assigning-the-azure-ad-test-user)** : per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** : per verificare se la configurazione funziona.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configurazione dell'accesso Single Sign-On di Azure AD
 
-In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure e configurare l'accesso single sign-on in applicazioni aziendali ScaleX.
+In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di Azure e viene configurato l'accesso Single Sign-On nell'applicazione ScaleX Enterprise.
 
-**Azure AD tooconfigure single sign-on con ScaleX Enterprise, eseguire hello alla procedura seguente:**
+**Per configurare l'accesso Single Sign-On di Azure AD con ScaleX Enterprise, seguire questa procedura:**
 
-1. Nel portale di Azure su hello hello **ScaleX Enterprise** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.
+1. Nella pagina di integrazione dell'applicazione **ScaleX Enterprise** del portale di Azure fare clic su **Single Sign-On**.
 
     ![Configura accesso Single Sign-On][4]
 
-2. In hello **Single sign-on** finestra di dialogo, come **modalità** selezionare **basato su SAML Sign-on** tooenable single sign-on.
+2. Nella finestra di dialogo **Single Sign-On** in **Modalità** selezionare **Accesso basato su SAML** per abilitare l'accesso Single Sign-On.
  
     ![Configura accesso Single Sign-On](./media/active-directory-saas-scalexenterprise-tutorial/tutorial_scalexenterprise_samlbase.png)
 
-3. In hello **ScaleX Enterprise dominio e gli URL** seguire hello procedura seguente se si desidera in un'applicazione hello tooconfigure **IDP** modalità iniziata da:
+3. Nella sezione **URL e dominio ScaleX Enterprise**, se si vuole configurare l'applicazione in modalità avviata da **IDP**, seguire questa procedura:
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-scalexenterprise-tutorial/tutorial_scalexenterprise_url1.png)
 
-    a. In hello **identificatore** casella di testo, valore di tipo hello utilizzando hello modello:`https://platform.rescale.com/saml2/<company id>/`
+    a. Nella casella di testo **Identificatore** digitare il valore adottando il modello seguente: `https://platform.rescale.com/saml2/<company id>/`
 
-    b. In hello **URL di risposta** casella di testo, digitare un URL utilizzando hello seguente modello:`https://platform.rescale.com/saml2/<company id>/acs/`
+    b. Nella casella di testo **URL di risposta** digitare l'URL usando il modello seguente: `https://platform.rescale.com/saml2/<company id>/acs/`
 
-4. Controllare **Mostra URL impostazioni avanzate**, se si desidera in un'applicazione hello tooconfigure **SP** modalità iniziata da:
+4. Selezionare **Mostra impostazioni URL avanzate**, se si desidera configurare l'applicazione in modalità avviata da **SP**:
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-scalexenterprise-tutorial/tutorial_scalexenterprise_url2.png)
 
-    In hello **Sign-on URL** casella di testo, valore di tipo hello utilizzando hello modello:`https://platform.rescale.com/saml2/<company id>/sso/`
+    Nella casella di testo **URL di accesso** digitare il valore usando il modello seguente: `https://platform.rescale.com/saml2/<company id>/sso/`
      
     > [!NOTE] 
-    > Non sono valori reali hello. Aggiornare questi valori con hello identificatore effettivo, l'URL di risposta o URL Sign-On. Contatto [team di supporto Client Enterprise ScaleX](http://info.rescale.com/contact_sales) tooget questi valori. 
+    > Questi non sono i valori reali. Aggiornare questi valori con l'identificatore, l'URL di risposta o l'URL di accesso effettivi. Per ottenere questi valori, contattare il [team di supporto clienti di ScaleX Enterprise](http://info.rescale.com/contact_sales). 
 
-5. L'applicazione ScaleX prevede asserzioni SAML hello in un formato specifico, che richiede di toomodify attributo personalizzato configurazione dei mapping tooyour SAML degli attributi del token. Fare clic su **visualizzare e modificare tutti gli altri attributi utente** hello tooopen casella di controllo personalizzato di attributi delle impostazioni.
+5. L'applicazione ScaleX prevede un formato specifico per le asserzioni SAML. È quindi necessario modificare mapping di attributi personalizzati alla configurazione degli attributi del token SAML. Fare clic sulla casella di controllo **Visualizza e modifica tutti gli altri attributi utente** per aprire le impostazioni degli attributi personalizzati.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-scalexenterprise-tutorial/scalex_attributes.png)
     
-    a. Fare clic con il pulsante destro attributo hello **nome** e fare clic su Elimina.
+    a. Fare clic con il pulsante destro del mouse sul **nome** attributo, quindi fare clic su Elimina.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-scalexenterprise-tutorial/delete_attribute_name.png)
 
-    b. Fare clic su **emailaddress** finestra Modifica attributo hello tooopen di attributo. Modificare il relativo valore da **user.mail** troppo**User** e fare clic su Ok.
+    b. Fare clic sull'attributo **emailaddress** per aprire la finestra Modifica attributo. Modificare il relativo valore da **user.mail** a **user.userprincipalname** e fare clic su OK.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-scalexenterprise-tutorial/edit_email_attribute.png)   
     
-5. In hello **certificato di firma SAML** fare clic su **certificato (Base64)** e quindi salvare il file di certificato hello nel computer in uso.
+5. Nella sezione **Certificato di firma SAML** fare clic su **Certificato (Base64)** e quindi salvare il file del certificato nel computer.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-scalexenterprise-tutorial/tutorial_scalexenterprise_certificate.png) 
 
@@ -143,99 +143,99 @@ In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure 
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-scalexenterprise-tutorial/tutorial_general_400.png)
     
-7. In hello **configurazione aziendale ScaleX** fare clic su **configurare ScaleX Enterprise** tooopen **Configura sign-on** finestra. Hello copia **ID entità SAML** e **SAML Single Sign-On Service URL** da hello **sezione di riferimento rapido.**
+7. Nella sezione **Configurazione di ScaleX Enterprise** fare clic su **Configura ScaleX Enterprise** per aprire la finestra **Configura accesso**. Copiare l'**ID di entità SAML** e l'**URL del servizio Single Sign-On SAML** dalla sezione **Riferimento rapido**.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-scalexenterprise-tutorial/tutorial_scalexenterprise_configure.png) 
 
-8. tooconfigure single sign-on sul **ScaleX Enterprise** lato, sito Web aziendale di account di accesso toohello ScaleX Enterprise come amministratore.
+8. Per configurare l'accesso Single Sign-On sul lato **ScaleX Enterprise**, accedere al sito Web aziendale di ScaleX Enterprise come amministratore.
 
-9. Fare clic sul menu hello hello superiore, destro e selezionare **amministrazione Contoso**.
+9. Fare clic sul menu in alto a destra e seleziona **Contoso Administration** (Amministrazione Contoso).
 
     > [!NOTE] 
     > Contoso è solo un esempio. Deve essere il nome effettivo della società. 
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-scalexenterprise-tutorial/Test_Admin.png) 
 
-10. Selezionare **integrazioni** dal menu in alto hello e selezionare **Single Sign-On**.
+10. Selezionare **Integrations** (Integrazioni) nel menu superiore e selezionare **Single Sign-On**.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-scalexenterprise-tutorial/admin_sso.png) 
 
-11. Completare il modulo hello come segue:
+11. Compilare il modulo come segue:
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-scalexenterprise-tutorial/scalex_admin_save.png) 
     
     a. Selezionare **Create any user who can authenticate with SSO** (Crea un utente qualsiasi che può eseguire l'autenticazione con SSO).
 
-    b. **Provider del servizio saml**: incollare il valore di hello ***urn: oasis: nomi: tc: SAML:2.0:nameid-formato: persistente***
+    b. **Service Provider saml** (Provider del servizio SAML): incollare il valore ***urn:oasis:names:tc:SAML:2.0:nameid-format:persistent***
 
-    c. **Nome del campo messaggio di posta elettronica di Provider di identità in risposta ACS**: incollare il valore di hello`http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress`
+    c. **Name of Identity Provider email field in ACS response** (Nome del campo e-mail del provider d'identità nella risposta ACS): incollare il valore `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress`
 
-    d. **ID entità EntityDescriptor Provider di identità:** hello Incolla **ID entità SAML** valore copiato dal portale di Azure hello.
+    d. **Identity Provider EntityDescriptor Entity ID** (ID entità EntityDescriptor del provider d'identità): incollare il valore **ID entità SAML** copiato dal portale di Azure.
 
-    e. **Identity Provider URL SingleSignOnService:** hello Incolla **SAML Single Sign-On Service URL** da hello portale di Azure.
+    e. **Identity Provider SingleSignOnService URL** (URL servizio Single Sign-On del provider d'identità): incollare l'**URL servizio Single Sign-On SAML** dal portale di Azure.
 
-    f. **Certificato X509 pubblico di Provider di identità:** certificato aprire hello X509 scaricato da hello Azure nel blocco note e incollare contenuto hello in questa casella. Verificare che siano che non interruzioni di riga hello intermedia hello contenuto del certificato.
+    f. **Identity Provider public X509 certificate** (Certificato X509 pubblico provider d'identità): aprire il certificato X509 scaricato da Azure nel blocco note e incollare i contenuti in questa casella. Verificare che non vi siano interruzioni di riga nella parte centrale dei contenuti del certificato.
     
-    g. Controllare hello seguenti caselle di controllo: **Enabled, crittografare NameID e AuthnRequests Sign.**
+    g. Selezionare le caselle di controllo seguenti: **Enabled, Encrypt NameID e Sign AuthnRequests** (Abilitato, Esegui crittografia dell'ID nome e Firma richieste di autenticazione).
 
-    h. Fare clic su **le impostazioni di aggiornamento SSO** impostazioni hello toosave.
+    h. Fare clic su **Update SSO Settings** (Aggiorna impostazioni SSO) per salvare le impostazioni.
 
 > [!TIP]
-> È ora possibile leggere una versione di queste istruzioni all'interno di hello concisa [portale di Azure](https://portal.azure.com), mentre si stanno impostando app hello!  Dopo l'aggiunta di questa app da hello **Active Directory > applicazioni aziendali** fare semplicemente clic su hello **Single Sign-On** scheda e l'accesso hello incorporato documentazione tramite hello  **Configurazione** sezione nella parte inferiore di hello. È possibile leggere altre informazioni sulla funzionalità di documentazione embedded hello qui: [AD Azure incorporato documentazione]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Un riepilogo delle istruzioni è disponibile all'interno del [portale di Azure](https://portal.azure.com) durante la configurazione dell'app.  Dopo aver aggiunto l'app dalla sezione **Active Directory > Applicazioni aziendali** è sufficiente fare clic sulla scheda **Single Sign-On** e accedere alla documentazione incorporata tramite la sezione **Configurazione** nella parte inferiore. Altre informazioni sulla funzione di documentazione incorporata sono disponibili in [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985) (Documentazione incorporata di Azure AD).
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Creazione di un utente test di Azure AD
-obiettivo di Hello di questa sezione è un utente di test nel portale di Azure chiamato Britta Simon hello toocreate.
+Questa sezione descrive come creare un utente test denominato Britta Simon nel portale di Azure.
 
 ![Creare un utente di Azure AD][100]
 
-**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**
+**Per creare un utente test in Azure AD, eseguire la procedura seguente:**
 
-1. In hello **portale di Azure**via hello riquadro di spostamento a sinistra, fare clic su **Azure Active Directory** icona.
+1. Nel **portale di Azure** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-scalexenterprise-tutorial/create_aaduser_01.png) 
 
-2. Andare troppo**utenti e gruppi** e fare clic su **tutti gli utenti** elenco hello toodisplay degli utenti.
+2. Andare a **Utenti e gruppi** e fare clic su **Tutti gli utenti** per visualizzare l'elenco di utenti.
     
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-scalexenterprise-tutorial/create_aaduser_02.png) 
 
-3. Nella parte superiore di hello della finestra di dialogo hello, fare clic su **Aggiungi** tooopen hello **utente** finestra di dialogo.
+3. Nella parte superiore della finestra di dialogo fare clic su **Aggiungi** per aprire la finestra di dialogo **Utente**.
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-scalexenterprise-tutorial/create_aaduser_03.png) 
 
-4. In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:
+4. Nella pagina della finestra di dialogo **Utente** seguire questa procedura:
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-scalexenterprise-tutorial/create_aaduser_04.png) 
 
-    a. In hello **nome** casella tipo **BrittaSimon**.
+    a. Nella casella di testo **Nome** digitare **BrittaSimon**.
 
-    b. In hello **nome utente** casella di testo, hello tipo **indirizzo di posta elettronica** di BrittaSimon.
+    b. Nella casella di testo **Nome utente** digitare l'**indirizzo di posta elettronica** di BrittaSimon.
 
-    c. Selezionare **Show Password** e annotare il valore di hello di hello **Password**.
+    c. Selezionare **Mostra password** e prendere nota del valore della **Password**.
 
     d. Fare clic su **Crea**.
  
 ### <a name="creating-a-scalex-enterprise-test-user"></a>Creazione di un utente test ScaleX Enterprise
 
-toolog agli utenti di Azure AD tooenable in tooScaleX Enterprise, è necessario eseguirne il provisioning in tooScaleX Enterprise. Nel caso di hello di ScaleX Enterprise, il provisioning è un'attività automatica e non manuali sono necessari passaggi. Tutti gli utenti possono eseguire l'autenticazione con credenziali SSO verranno automaticamente eseguito il provisioning in hello ScaleX lato.
+Per consentire agli utenti di Azure AD di accedere a ScaleX Enterprise, è necessario eseguirne il provisioning in ScaleX Enterprise. Nel caso di ScaleX Enterprise, il provisioning è un'attività automatica e non sono necessarie procedure manuali. Per tutti gli utenti che eseguono l'autenticazione con le credenziali SSO verrà automaticamente eseguito il provisioning sul lato ScaleX.
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Assegnazione utente test hello Azure AD
+### <a name="assigning-the-azure-ad-test-user"></a>Assegnazione dell'utente test di Azure AD
 
-In questa sezione è abilitare Britta Simon toouse single sign-on Azure concedendo Enterprise tooScaleX di accesso utente.
+In questa sezione si abilita Britta Simon all'uso dell'accesso Single Sign-On di Azure concedendole l'accesso a ScaleX Enterprise.
 
 ![Assegna utente][200] 
 
-**tooassign Britta Simon tooScaleX Enterprise, eseguire hello alla procedura seguente:**
+**Per assegnare Britta Simon a ScaleX Enterprise, seguire questa procedura:**
 
-1. Nel portale di Azure hello, aprire la visualizzazione di applicazioni hello, quindi selezionare Visualizza directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.
+1. Nel portale di Azure aprire la visualizzazione delle applicazioni e quindi la visualizzazione delle directory e passare ad **Applicazioni aziendali**, quindi fare clic su **Tutte le applicazioni**.
 
     ![Assegna utente][201] 
 
-2. Nell'elenco di applicazioni hello, selezionare **ScaleX Enterprise**.
+2. Nell'elenco delle applicazioni selezionare **ScaleX Enterprise**.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-scalexenterprise-tutorial/tutorial_scalexenterprise_app.png) 
 
-3. Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.
+3. Scegliere **Utenti e gruppi** dal menu a sinistra.
 
     ![Assegna utente][202] 
 
@@ -243,7 +243,7 @@ In questa sezione è abilitare Britta Simon toouse single sign-on Azure conceden
 
     ![Assegna utente][203]
 
-5. In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.
+5. Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco Utenti.
 
 6. Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.
 
@@ -251,14 +251,14 @@ In questa sezione è abilitare Britta Simon toouse single sign-on Azure conceden
 
 ### <a name="testing-single-sign-on"></a>Test dell'accesso Single Sign-On
 
-In questa sezione si test configurazione di Azure AD single sign-on utilizzando hello Pannello di accesso.
+In questa sezione viene testata la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.
 
-Fare clic su hello ScaleX Enterprise riquadro in hello Pannello di accesso, si otterranno automaticamente firmato in tooyour applicazione ScaleX aziendale. Per ulteriori informazioni su hello Pannello di accesso, vedere [introduzione toohello Pannello di accesso](https://msdn.microsoft.com/library/dn308586).
+Quando si fa clic sul riquadro ScaleX Enterprise nel pannello di accesso, si accede automaticamente all'applicazione ScaleX Enterprise. Per altre informazioni sul pannello di accesso, vedere [Introduzione al Pannello di accesso](https://msdn.microsoft.com/library/dn308586).
 
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md)
 
 

@@ -1,6 +1,6 @@
 ---
-title: aaaDeactivate ed eliminare un Array virtuale di Microsoft Azure StorSimple | Documenti Microsoft
-description: Viene descritto come dispositivo di StorSimple tooremove dal servizio innanzitutto disattivarlo e quindi eliminarlo.
+title: Disattivare ed eliminare un array virtuale Microsoft Azure StorSimple | Documentazione Microsoft
+description: Viene descritto come rimuovere un dispositivo StorSimple dal servizio disattivandolo e poi eliminandolo.
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,80 +14,80 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/21/2016
 ms.author: alkohli
-ms.openlocfilehash: b1f3ddb5822d19965739777e238af19b507df984
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8dea36f92b034f8c6cdb6875634848d37f4c6606
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="deactivate-and-delete-a-storsimple-virtual-array"></a>Disattivare ed eliminare un array virtuale StorSimple
 
-## <a name="overview"></a>Panoramica
+## <a name="overview"></a>Overview
 
-Quando si disattiva un Array virtuale StorSimple, si interrompe la connessione hello tra hello dispositivo e il servizio StorSimple Manager periferica corrispondente hello. In questa esercitazione viene illustrato come:
+Quando si disattiva un array virtuale StorSimple, si interrompe la connessione tra il dispositivo e il servizio Gestione dispositivi StorSimple corrispondente. In questa esercitazione viene illustrato come:
 
 * Disattivare un dispositivo 
 * Eliminare un dispositivo disattivato
 
-informazioni di Hello in questo articolo si applicano tooStorSimple array virtuale. Per informazioni sulla 8000 serie, passare toohow troppo[disattivare o eliminare un dispositivo](storsimple-deactivate-and-delete-device.md).
+Le informazioni in questo articolo si applicano solo agli array virtuali StorSimple. Per informazioni sulla serie 8000, passare alla procedura per [la disattivazione o per l'eliminazione di un dispositivo](storsimple-deactivate-and-delete-device.md).
 
-## <a name="when-toodeactivate"></a>Quando toodeactivate?
+## <a name="when-to-deactivate"></a>Quando disattivare
 
-La disattivazione è un'operazione permanente e non può essere annullata. È possibile registrare un dispositivo disattivato con il servizio di gestione di dispositivi StorSimple hello nuovamente. Si potrebbe necessario toodeactivate ed eliminare un Array virtuale StorSimple in hello seguenti scenari:
+La disattivazione è un'operazione permanente e non può essere annullata. Un dispositivo disattivato non può essere registrato di nuovo con il servizio Gestione dispositivi StorSimple. Negli scenari seguenti potrebbe essere necessario disattivare ed eliminare un array virtuale StorSimple:
 
-* **Failover pianificato** : il dispositivo è online e si prevede di toofail failover del dispositivo. Se si intende tooupgrade tooa maggiore dispositivo, potrebbe essere toofail failover del dispositivo. Dopo che la proprietà dati hello viene trasferita e hello failover è stato completato, il dispositivo di origine hello viene eliminato automaticamente.
-* **Failover non pianificato** : il dispositivo è offline ed è necessario toofail su dispositivo hello. Questo scenario può verificarsi durante un'emergenza quando si verifica un'interruzione nel Data Center hello e il dispositivo primario è inattivo. Si prevede di toofail su hello tooa secondario dispositivo. Dopo che la proprietà dati hello viene trasferita e hello failover è stato completato, il dispositivo di origine hello viene eliminato automaticamente.
-* **Rimuovere le autorizzazioni** : si desidera toodecommission hello dispositivo. Questa operazione richiede il toofirst disattivare hello dispositivo e quindi eliminarlo. Quando si disattiva un dispositivo, tutti i dati archiviati localmente non saranno più accessibili. È possibile solo i dati di hello accesso e di ripristino archiviati nel cloud hello. Se si prevede di dati del dispositivo hello tookeep dopo la disattivazione, è necessario creare uno snapshot di cloud di tutti i dati prima di disattivare un dispositivo. Snapshot cloud consente toorecover tutti hello dati in una fase successiva.
+* **Failover pianificato**: il dispositivo è in linea e si prevede di eseguirne il failover. Può essere necessario eseguire questa operazione se si prevede l'aggiornamento a un dispositivo di dimensioni superiori. Dopo il trasferimento della proprietà dei dati e il completamento del failover, il dispositivo di origine viene eliminato automaticamente.
+* **Failover non pianificato**: il dispositivo è offline ed è necessario eseguirne il failover. Questo scenario può verificarsi durante un'emergenza dovuta a un'interruzione nel datacenter e quando il dispositivo primario è inattivo. Si pianifica di eseguire il failover del dispositivo su un dispositivo secondario. Dopo il trasferimento della proprietà dei dati e il completamento del failover, il dispositivo di origine viene eliminato automaticamente.
+* **Rimozioni delle autorizzazioni**: si desidera rimuovere le autorizzazioni del dispositivo. Ciò richiede prima di tutto la disattivazione del dispositivo, quindi la sua eliminazione. Quando si disattiva un dispositivo, tutti i dati archiviati localmente non saranno più accessibili. È possibile solo accedere e recuperare i dati archiviati nel cloud. Se si pianifica cdi mantenere il dispositivo dopo la disattivazione, prima di effettuare tale operazione è necessario eseguire uno snapshot di tutti i dati nel cloud. In questo modo sarà possibile recuperare tutti i dati in una fase successiva.
 
 ## <a name="deactivate-a-device"></a>Disattivare un dispositivo
 
-toodeactivate il dispositivo, eseguire hello alla procedura seguente.
+Per disattivare un dispositivo seguire questa procedura.
 
-#### <a name="toodeactivate-hello-device"></a>dispositivo hello toodeactivate
+#### <a name="to-deactivate-the-device"></a>Per disattivare il dispositivo
 
-1. Nel servizio, andare troppo**gestione > dispositivi**. In hello **dispositivi** pannello, fare clic su e dispositivo di hello select che si desidera toodeactivate.
+1. Nel servizio passare a **Gestione > Dispositivi**. Nel pannello **Dispositivi** fare clic e selezionare il dispositivo che si desidera disattivare.
    
-    ![Selezionare toodeactivate dispositivo](./media/storsimple-virtual-array-deactivate-and-delete-device/deactivate-delete7.png)
-2. Nel **dashboard del dispositivo** pannello, fare clic su **... Ulteriori** e selezionare nell'elenco hello **disattiva**.
+    ![Selezione del dispositivo disattivare](./media/storsimple-virtual-array-deactivate-and-delete-device/deactivate-delete7.png)
+2. Nel pannello **Device dashboard** (Dashboard dispositivo) fare clic su **… More** (... Altro) e, nell'elenco, selezionare **Disattiva**.
    
     ![Clic su Disattiva](./media/storsimple-virtual-array-deactivate-and-delete-device/deactivate-delete8.png)
-3. In hello **disattiva** pannello, nome del tipo hello dispositivo e quindi fare clic su **disattiva**. 
+3. Nel pannello **Disattiva** digitare il nome del dispositivo e fare clic su **Disattiva**. 
    
     ![Conferma della disattivazione](./media/storsimple-virtual-array-deactivate-and-delete-device/deactivate-delete1.png)
    
-    Hello disattivare processo inizia e accetta toocomplete di pochi minuti.
+    Si avvia il processo di disattivazione il cui completamento richiede alcuni minuti.
    
     ![Disattivazione in corso](./media/storsimple-virtual-array-deactivate-and-delete-device/deactivate-delete2.png)
-4. Dopo la disattivazione, aggiorna l'elenco di hello dei dispositivi.
+4. Dopo la disattivazione, l'elenco dei dispositivi viene aggiornato.
    
     ![Disattivazione completata](./media/storsimple-virtual-array-deactivate-and-delete-device/deactivate-delete3.png)
    
     È ora possibile eliminare il dispositivo.
 
-## <a name="delete-hello-device"></a>Eliminare dispositivo hello
+## <a name="delete-the-device"></a>Eliminare il dispositivo
 
-Un dispositivo ha toodelete disattivate prima toobe è. L'eliminazione di un dispositivo per rimuoverlo dall'elenco di hello del servizio di dispositivi connessi toohello. servizio Hello quindi non può più gestire il dispositivo hello eliminato. dati Hello associati hello dispositivo rimangono tuttavia nel cloud hello. Su questi dati sono applicati degli addebiti.
+Per eliminare un dispositivo, è prima necessario disattivarlo. L’eliminazione di un dispositivo lo rimuove dall'elenco dei dispositivi connessi al servizio. Il servizio quindi non può più gestire il dispositivo eliminato. I dati associati al dispositivo rimangono comunque nel cloud. Su questi dati sono applicati degli addebiti.
 
-dispositivo hello toodelete, eseguire hello alla procedura seguente.
+Per eliminare il dispositivo, completare la procedura seguente.
 
-#### <a name="toodelete-hello-device"></a>dispositivo hello toodelete
+#### <a name="to-delete-the-device"></a>Per eliminare il dispositivo
 
-1. Il servizio StorSimple Device Manager andare troppo**gestione > dispositivi**. In hello **dispositivi** pannello selezionare un dispositivo disattivato che si desidera toodelete.
-2. In hello **dashboard del dispositivo** pannello, fare clic su **... Ulteriori** e quindi fare clic su **eliminare**.
+1. In Gestione dispositivi StorSimple passare a **Gestione > Dispositivi**. Nel pannello **Dispositivi** selezionare un dispositivo disattivato che si desidera eliminare.
+2. Nel pannello **Device dashboard** (Dashboard dispositivo) fare clic su **… More** (Altro), quindi su**Elimina**.
    
-   ![Selezionare toodelete dispositivo](./media/storsimple-virtual-array-deactivate-and-delete-device/deactivate-delete4.png)
-3. In hello **eliminare** pannello, il nome del tipo hello di eliminazione di hello tooconfirm dispositivo e quindi fare clic su **eliminare**. L'eliminazione dispositivo hello non elimina i dati di cloud hello associati hello dispositivo. 
+   ![Selezione del dispositivo da eliminare](./media/storsimple-virtual-array-deactivate-and-delete-device/deactivate-delete4.png)
+3. Nel pannello **Elimina** digitare il nome del dispositivo per confermare l'eliminazione, quindi fare clic su **Elimina**. L'eliminazione del dispositivo non determina l'eliminazione dei dati a esso associati presenti nel cloud. 
    
    ![Conferma dell'eliminazione](./media/storsimple-virtual-array-deactivate-and-delete-device/deactivate-delete5.png) 
-4. l'eliminazione di Hello viene avviato e richiede pochi minuti toocomplete.
+4. Si avvia il processo di eliminazione il cui completamento richiede alcuni minuti.
    
    ![Eliminazione in corso](./media/storsimple-virtual-array-deactivate-and-delete-device/deactivate-delete6.png)
    
-    Dopo l'eliminazione hello dispositivo, è possibile visualizzare l'elenco di hello aggiornato di dispositivi.
+    Dopo il completamento dell'eliminazione, è possibile visualizzare l'elenco aggiornato dei dispositivi.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* Per informazioni su come toofail, andare troppo[Failover e ripristino di emergenza di matrice virtuale StorSimple](storsimple-virtual-array-failover-dr.md).
+* Per informazioni su come eseguire il failover, fare riferimento all'articolo relativo a [failover e ripristino di emergenza per l'array virtuale StorSimple](storsimple-virtual-array-failover-dr.md).
 
-* altre informazioni sulle toolearn come toouse hello servizio di gestione di dispositivi StorSimple, andare troppo[utilizzare hello tooadminister servizio di gestione di dispositivi StorSimple l'Array virtuale StorSimple](storsimple-virtual-array-manager-service-administration.md). 
+* Per altre informazioni sull'uso del servizio Gestione dispositivi StorSimple, vedere l'articolo relativo all'[uso di Gestione dispositivi StorSimple per amministrare l'array virtuale StorSimple](storsimple-virtual-array-manager-service-administration.md). 
 

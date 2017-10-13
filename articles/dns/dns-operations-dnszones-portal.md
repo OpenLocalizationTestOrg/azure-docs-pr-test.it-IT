@@ -1,6 +1,6 @@
 ---
-title: aaaManage DNS zone DNS di Azure - portale di Azure | Documenti Microsoft
-description: "È possibile gestire le zone DNS utilizzando hello portale di Azure. In questo articolo viene descritto come tooupdate, eliminare e creare le zone DNS in DNS di Azure"
+title: Gestire le zone DNS in DNS Azure - Portale di Azure | Microsoft Docs
+description: "È possibile gestire le zone DNS usando il portale di Azure. Questo articolo illustra come aggiornare, eliminare e creare le zone DNS in DNS di Azure"
 services: dns
 documentationcenter: na
 author: georgewallace
@@ -12,13 +12,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/18/2017
 ms.author: gwallace
-ms.openlocfilehash: 0d8ce302bb7126dfe8077a6f3e33418e16fcea64
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 69a509612e6204fc93dd42bf2fe69cb165b5777c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toomanage-dns-zones-in-hello-azure-portal"></a>Come le zone DNS toomanage nella hello portale di Azure
+# <a name="how-to-manage-dns-zones-in-the-azure-portal"></a>Come gestire le zone DNS nel portale di Azure
 
 > [!div class="op_single_selector"]
 > * [Portale](dns-operations-dnszones-portal.md)
@@ -26,38 +26,38 @@ ms.lasthandoff: 10/06/2017
 > * [Interfaccia della riga di comando di Azure 1.0](dns-operations-dnszones-cli-nodejs.md)
 > * [Interfaccia della riga di comando di Azure 2.0](dns-operations-dnszones-cli.md)
 
-Questo articolo illustra come toomanage zone DNS utilizzando hello portale di Azure. È inoltre possibile gestire le zone DNS utilizzando hello multipiattaforma [CLI di Azure](dns-operations-dnszones-cli.md) o hello Azure [PowerShell](dns-operations-dnszones.md).
+Questo articolo spiega come gestire le zone DNS usando il portale di Azure. È anche possibile gestire le zone DNS usando l'[interfaccia della riga di comando di Azure](dns-operations-dnszones-cli.md) multipiattaforma o Azure [PowerShell](dns-operations-dnszones.md).
 
 ## <a name="create-a-dns-zone"></a>Creare una zona DNS
 
-1. Accedi toohello portale di Azure
-2. Nel menu Hub hello, fare clic su e fare clic su **nuovo > rete >** e quindi fare clic su **zona DNS** blade di zona DNS creare hello tooopen.
+1. Accedere al portale di Azure
+2. Nel menu Hub fare clic su **Nuovo > Rete >** e quindi fare clic su **Zona DNS** per aprire il pannello per creare una zona DNS.
 
     ![Zona DNS](./media/dns-operations-dnszones-portal/openzone650.png)
 
-4. In hello **zona DNS creare** pannello immettere i seguenti valori hello, quindi fare clic su **crea**:
+4. Nel pannello **Crea zona DNS** immettere i valori seguenti, quindi fare clic su **Crea**:
 
 
    | **Impostazione** | **Valore** | **Dettagli** |
    |---|---|---|
-   |**Nome**|contoso.com|nome Hello della zona DNS hello|
-   |**Sottoscrizione**|[Sottoscrizione]|Selezionare una zona DNS di sottoscrizione toocreate hello in.|
-   |**Gruppo di risorse**|**Crea nuovo:** contosoDNSRG|Creare un gruppo di risorse. nome del gruppo di risorse Hello deve essere univoco all'interno di sottoscrizione hello selezionata. ulteriori informazioni sui gruppi di risorse, leggere hello toolearn [Gestione risorse](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fdns%2ftoc.json#resource-groups) articolo introduttivo.|
+   |**Nome**|contoso.com|Nome della zona DNS|
+   |**Sottoscrizione**|[Sottoscrizione]|Selezionare una sottoscrizione in cui creare la zona DNS.|
+   |**Gruppo di risorse**|**Crea nuovo:** contosoDNSRG|Creare un gruppo di risorse. Il nome del gruppo di risorse deve essere univoco all'interno della sottoscrizione selezionata. Per altre informazioni sui gruppi di risorse, vedere l'articolo [Panoramica di Resource Manager](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fdns%2ftoc.json#resource-groups).|
    |**Posizione**|Stati Uniti occidentali||
 
 > [!NOTE]
-> gruppo di risorse Hello fa riferimento il percorso toohello hello del gruppo di risorse e non influisce sulla zona DNS hello. percorso di zona DNS Hello sono sempre "globale" e non viene visualizzato.
+> Il gruppo di risorse indica la località del gruppo di risorse e non ha alcun impatto sulla zona DNS. La posizione della zona DNS è sempre "globale" e non viene visualizzata.
 
 ## <a name="list-dns-zones"></a>Elencare le zone DNS
 
-Nel portale di Azure hello, passare troppo**più servizi** > **rete** > **zone DNS**. Ogni zona DNS è una risorsa a sé e in questa vista sono disponibili informazioni quali il numero di set di record e i server dei nomi. colonna Hello **server dei nomi** non è nella visualizzazione predefinita di hello, tooadd fare clic su **colonne**selezionare **server dei nomi** e fare clic su **eseguita**.
+Nel portale di Azure passare a **Altri servizi** > **Rete** > **Zone DNS**. Ogni zona DNS è una risorsa a sé e in questa vista sono disponibili informazioni quali il numero di set di record e i server dei nomi. La colonna **SERVER DEI NOMI** non è presente nella visualizzazione predefinita. Per aggiungerla, fare clic su **Colonne**, selezionare **Server dei nomi** e quindi fare clic su **Fine**.
 
 ![elenco delle zone DNS](./media/dns-operations-dnszones-portal/listzones.png)
 
 ## <a name="delete-a-dns-zone"></a>Eliminare una zona DNS
 
-Passare una zona DNS tooa nel portale di hello. In hello **zona DNS** pannello, fare clic su **Elimina zona**. Si è tooconfirm richiesta che si occupano di zona DNS di hello toodelete. L'eliminazione di una zona DNS elimina inoltre tutti i record contenuti nella zona hello hello.
+Passare a una zona DNS nel portale. Nel pannello **Zona DNS** fare clic su **Elimina zona**. Verrà chiesto di confermare l'intenzione di eliminare la zona DNS. L'eliminazione di una zona DNS comporta anche l'eliminazione di tutti i record contenuti nella zona.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Informazioni su come toowork con la zona DNS e i record visitando [introduzione DNS di Azure tramite il portale di Azure hello](dns-getstarted-portal.md).
+Per informazioni su come usare la zona e i record DNS, vedere [Introduzione a DNS Azure con il portale di Azure](dns-getstarted-portal.md).

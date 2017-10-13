@@ -1,6 +1,6 @@
 ---
-title: aaaList tutti i processi di importazione/esportazione di Azure | MicrosoftDocs
-description: Informazioni su come toolist tutti del servizio di importazione/esportazione di Azure hello i processi in una sottoscrizione.
+title: Elencare tutti i processi di Importazione/Esportazione di Azure | Documentazione Microsoft
+description: Informazioni su come elencare tutti i processi del servizio Importazione/Esportazione di Azure in una sottoscrizione.
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: 0e12bf3dc3f2084a1987ac362cf8d1041059543c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1977bfc0e516088310f45ecdd960287eeed2c2d8
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="enumerating-jobs-in-hello-azure-importexport-service"></a>Enumerazione di processi in hello servizio importazione/esportazione di Azure
-tooenumerate tutti i processi in una sottoscrizione, chiamata hello [elencare i processi](/rest/api/storageimportexport/jobs#Jobs_List) operazione. `List Jobs`Restituisce un elenco di processi, nonché hello gli attributi seguenti:
+# <a name="enumerating-jobs-in-the-azure-importexport-service"></a>Enumerazione dei processi nel servizio Importazione/Esportazione di Azure
+Per enumerare tutti i processi in una sottoscrizione, chiamare l'operazione [List Jobs](/rest/api/storageimportexport/jobs#Jobs_List). `List Jobs` restituisce un elenco dei processi nonché gli attributi seguenti:
 
--   tipo di Hello del processo (importazione o esportazione)
+-   Tipo di processo (importazione o esportazione)
 
--   stato corrente del processo Hello
+-   Stato corrente del processo
 
--   account di archiviazione associato del processo di Hello
+-   Account di archiviazione associato al processo
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* [Tramite l'API REST del servizio importazione/esportazione hello](storage-import-export-using-the-rest-api.md)
+* [Uso dell'API REST del servizio Importazione/Esportazione](storage-import-export-using-the-rest-api.md)

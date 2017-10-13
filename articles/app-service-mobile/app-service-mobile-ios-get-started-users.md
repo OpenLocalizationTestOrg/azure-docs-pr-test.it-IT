@@ -1,6 +1,6 @@
 ---
-title: aaaAdd l'autenticazione in iOS con App mobili di Azure
-description: "Informazioni su come utenti di tooauthenticate toouse App mobili di Azure di app iOS tramite un'ampia varietà di provider di identità, tra cui Azure ad, Google, Facebook, Twitter e Microsoft."
+title: Aggiungere l'autenticazione in iOS con le app per dispositivi mobili di Azure
+description: "Informazioni su come usare le app per dispositivi mobili di Azure per autenticare gli utenti dell'app iOS tramite vari provider di identità, tra cui AAD, Google, Facebook, Twitter e Microsoft."
 services: app-service\mobile
 documentationcenter: ios
 author: ggailey777
@@ -14,47 +14,47 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: glenga
-ms.openlocfilehash: df129e1c7517582db0e4705e0a6e98345ac8a48c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 21a2cc6c1eaf4b34cbe8c2d7c4dbb69c8730cf32
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="add-authentication-tooyour-ios-app"></a>Aggiungere app per iOS tooyour autenticazione
+# <a name="add-authentication-to-your-ios-app"></a>Aggiungere l'autenticazione all'app iOS
 [!INCLUDE [app-service-mobile-selector-get-started-users](../../includes/app-service-mobile-selector-get-started-users.md)]
 
-In questa esercitazione, si aggiunge l'autenticazione toohello [iOS quick start] progetto che utilizza un provider di identità supportati. In questa esercitazione si basa sull'hello [iOS quick start] esercitazione, è necessario completare prima.
+Questa esercitazione illustra come aggiungere l'autenticazione al progetto di [avvio rapido di iOS] tramite un provider di identità supportato. Questa esercitazione è basata sull'esercitazione relativa all' [avvio rapido di iOS] , che deve essere completata per prima.
 
-## <a name="register"></a>Registrare l'app per l'autenticazione e configurare hello servizio App
+## <a name="register"></a>Registrare l'app per l'autenticazione e configurare il servizio app
 [!INCLUDE [app-service-mobile-register-authentication](../../includes/app-service-mobile-register-authentication.md)]
 
-## <a name="redirecturl"></a>Aggiungere gli URL di reindirizzamento esterno consentito toohello app
+## <a name="redirecturl"></a>Aggiungere l'app agli URL di reindirizzamento esterni consentiti
 
-L'autenticazione sicura richiede la definizione di un nuovo schema URL per l'app.  App di hello authentication sistema tooredirect tooyour indietro in questo modo una volta completato il processo di autenticazione hello.  In questa esercitazione si usa lo schema URL _appname_.  È tuttavia possibile usare QUALSIASI schema URL.  Deve essere univoco tooyour applicazioni per dispositivi mobili.  reindirizzamento di hello tooenable sul lato server th:
+L'autenticazione sicura richiede la definizione di un nuovo schema URL per l'app.  In questo modo il sistema di autenticazione reindirizza all'app al termine del processo di autenticazione.  In questa esercitazione si usa lo schema URL _appname_.  È tuttavia possibile usare QUALSIASI schema URL.  Lo schema deve essere univoco per l'applicazione per dispositivi mobili.  Per abilitare il reindirizzamento sul lato server:
 
-1. In hello [portale di Azure], selezionare il servizio App.
+1. Nel [portale di Azure] selezionare il servizio app.
 
-2. Fare clic su hello **autenticazione / autorizzazione** opzione di menu.
+2. Fare clic sull'opzione di menu **Autenticazione/Autorizzazione**.
 
-3. Fare clic su **Azure Active Directory** in hello **provider di autenticazione** sezione.
+3. Fare clic su **Azure Active Directory** nella sezione **Provider di autenticazione**.
 
-4. Set hello **modalità di gestione** troppo**avanzate**.
+4. Impostare **Modalità di gestione** su **Avanzata**.
 
-5. In hello **consentito URL di reindirizzamento esterno**, immettere `appname://easyauth.callback`.  Hello _appname_ in questa stringa è hello lo schema dell'URL per l'applicazione per dispositivi mobili.  Deve seguire le normale specifica URL per un protocollo, ovvero usare solo lettere e numeri e iniziare con una lettera.  È opportuno prendere nota della stringa hello scelte in quanto è necessario tooadjust il codice dell'applicazione per dispositivi mobili con lo schema dell'URL in diverse posizioni hello.
+5. In **URL di reindirizzamento esterni consentiti** specificare `appname://easyauth.callback`.  Il valore _appname_ in questa stringa è lo schema URL per l'applicazione per dispositivi mobili.  Deve seguire le normale specifica URL per un protocollo, ovvero usare solo lettere e numeri e iniziare con una lettera.  È opportuno prendere nota della stringa scelta perché sarà necessario modificare il codice dell'applicazione per dispositivi mobili con lo schema URL in diverse posizioni.
 
 6. Fare clic su **OK**.
 
-7. Fare clic su **Salva**.
+7. Fare clic su **Save**.
 
-## <a name="permissions"></a>Limitare le autorizzazioni tooauthenticated utenti
+## <a name="permissions"></a>Limitare le autorizzazioni agli utenti autenticati
 [!INCLUDE [app-service-mobile-restrict-permissions-dotnet-backend](../../includes/app-service-mobile-restrict-permissions-dotnet-backend.md)]
 
-In Xcode, premere **eseguire** toostart hello app. Poiché tenta di app hello tooaccess back-end come un utente non autenticato, viene generata un'eccezione, ma hello *TodoItem* tabella richiede ora l'autenticazione.
+In Xcode fare clic su **Esegui** per avviare l'app. Viene generata un'eccezione perché l'app prova ad accedere al back-end come utente non autenticato, mentre ora la tabella *TodoItem* richiede l'autenticazione.
 
-## <a name="add-authentication"></a>Aggiungere l'autenticazione tooapp
+## <a name="add-authentication"></a>Aggiungere l'autenticazione all'app
 **Objective-C**:
 
-1. Nel Mac, aprire *QSTodoListViewController.m* in Xcode e aggiungere al metodo hello:
+1. In Mac aprire *QSTodoListViewController.m* in Xcode e aggiungere il metodo seguente:
 
     ```Objective-C
     - (void)loginAndGetData
@@ -76,17 +76,17 @@ In Xcode, premere **eseguire** toostart hello app. Poiché tenta di app hello to
     }
     ```
 
-    Modifica *google* troppo*microsoftaccount*, *twitter*, *facebook*, o *windowsazureactivedirectory* se non si utilizza Google come provider di identità. Se si usa Facebook sarà necessario [consentire i domini Facebook][1] all'interno dell'app.
+    Modificare *google* in *microsoftaccount*, *twitter*, *facebook* o *windowsazureactivedirectory* se non si usa Google come provider di identità. Se si usa Facebook sarà necessario [consentire i domini Facebook][1] all'interno dell'app.
 
-    Sostituire hello **urlScheme** con un nome univoco per l'applicazione.  Hello urlScheme deve essere hello stesso come hello protocollo lo schema dell'URL specificato nel hello **consentito URL di reindirizzamento esterno** campo hello portale di Azure. Hello urlScheme viene utilizzata da un'applicazione hello autenticazione callback tooswitch tooyour back-dopo la richiesta di autenticazione è stata completata.
+    Sostituire **urlScheme** con un nome univoco per l'applicazione.  Il valore di urlScheme deve corrispondere a quello del protocollo dello schema URL specificato nel campo **URL di reindirizzamento esterni consentiti** nel portale di Azure. urlScheme viene usato dal callback di autenticazione per tornare all'applicazione dopo aver completato la richiesta di autenticazione.
 
-2. Sostituire `[self refresh]` in `viewDidLoad` in *QSTodoListViewController.m* con hello seguente codice:
+2. Sostituire `[self refresh]` in `viewDidLoad` in *QSTodoListViewController.m* con il codice seguente:
 
     ```Objective-C
     [self loginAndGetData];
     ```
 
-3. Aprire hello `QSAppDelegate.h` file e aggiungere hello seguente codice:
+3. Aprire il file `QSAppDelegate.h` e aggiungere il codice seguente:
 
     ```Objective-C
     #import "QSTodoService.h"
@@ -94,7 +94,7 @@ In Xcode, premere **eseguire** toostart hello app. Poiché tenta di app hello to
     @property (strong, nonatomic) QSTodoService *qsTodoService;
     ```
 
-4. Aprire hello `QSAppDelegate.m` file e aggiungere hello seguente codice:
+4. Aprire il file `QSAppDelegate.m` e aggiungere il codice seguente:
 
     ```Objective-C
     - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
@@ -109,9 +109,9 @@ In Xcode, premere **eseguire** toostart hello app. Poiché tenta di app hello to
     }
     ```
 
-   Aggiungere il codice direttamente prima della lettura riga hello `#pragma mark - Core Data stack`.  Sostituire il _appname_ oggi hello urlScheme che è stato utilizzato nel passaggio 1.
+   Aggiungere questo codice direttamente prima della riga `#pragma mark - Core Data stack`.  Sostituire _appname_ con il valore di urlScheme usato nel passaggio 1.
 
-5. Aprire hello `AppName-Info.plist` file (sostituendo AppName con nome hello dell'app) e aggiungere hello seguente codice:
+5. Aprire il file `AppName-Info.plist` (sostituendo AppName con il nome dell'app) e aggiungere il codice seguente:
 
     ```XML
     <key>CFBundleURLTypes</key>
@@ -127,15 +127,15 @@ In Xcode, premere **eseguire** toostart hello app. Poiché tenta di app hello to
     </array>
     ```
 
-    Questo codice deve essere inserito all'interno di hello `<dict>` elemento.  Sostituire hello _appname_ stringa (all'interno della matrice per **CFBundleURLSchemes**) con il nome di app hello scelto nel passaggio 1.  È possibile inoltre apportare queste modifiche in hello plist editor, fare clic su hello `AppName-Info.plist` file nell'editor di XCode tooopen hello plist.
+    Questo codice deve essere inserito all'interno dell'elemento `<dict>`.  Sostituire la stringa _appname_ (all'interno della matrice per **CFBundleURLSchemes**) con il nome app scelto nel passaggio 1.  È possibile apportare queste modifiche anche nell'editor Plist. Fare clic sul file `AppName-Info.plist` in XCode per aprire l'editor Plist.
 
-    Sostituire hello `com.microsoft.azure.zumo` stringa per **CFBundleURLName** con l'Apple identificatore di aggregazione.
+    Sostituire la stringa `com.microsoft.azure.zumo` per **CFBundleURLName** con l'identificatore del bundle Apple.
 
-6. Premere *eseguire* toostart hello app e quindi l'accesso. Quando si è connessi, si deve essere elenco di attività in grado di tooview hello e aggiornamenti.
+6. Fare clic su *Run* (Esegui) per avviare l'app e quindi accedere. Una volta eseguito l'accesso, dovrebbe essere possibile visualizzare l'elenco Todo e apportare modifiche.
 
 **Swift**:
 
-1. Nel Mac, aprire *ToDoTableViewController.swift* in Xcode e aggiungere al metodo hello:
+1. In Mac aprire *ToDoTableViewController.swift* in Xcode e aggiungere il metodo seguente:
 
     ```swift
     func loginAndGetData() {
@@ -162,17 +162,17 @@ In Xcode, premere **eseguire** toostart hello app. Poiché tenta di app hello to
     }
     ```
 
-    Modifica *google* troppo*microsoftaccount*, *twitter*, *facebook*, o *windowsazureactivedirectory* se non si utilizza Google come provider di identità. Se si usa Facebook sarà necessario [consentire i domini Facebook][1] all'interno dell'app.
+    Modificare *google* in *microsoftaccount*, *twitter*, *facebook* o *windowsazureactivedirectory* se non si usa Google come provider di identità. Se si usa Facebook sarà necessario [consentire i domini Facebook][1] all'interno dell'app.
 
-    Sostituire hello **urlScheme** con un nome univoco per l'applicazione.  Hello urlScheme deve essere hello stesso come hello protocollo lo schema dell'URL specificato nel hello **consentito URL di reindirizzamento esterno** campo hello portale di Azure. Hello urlScheme viene utilizzata da un'applicazione hello autenticazione callback tooswitch tooyour back-dopo la richiesta di autenticazione è stata completata.
+    Sostituire **urlScheme** con un nome univoco per l'applicazione.  Il valore di urlScheme deve corrispondere a quello del protocollo dello schema URL specificato nel campo **URL di reindirizzamento esterni consentiti** nel portale di Azure. urlScheme viene usato dal callback di autenticazione per tornare all'applicazione dopo aver completato la richiesta di autenticazione.
 
-2. Rimuovere le righe di hello `self.refreshControl?.beginRefreshing()` e `self.onRefresh(self.refreshControl)` alla fine di `viewDidLoad()` in *ToDoTableViewController.swift*. Aggiungere una chiamata troppo`loginAndGetData()` al loro posto:
+2. Rimuovere le righe `self.refreshControl?.beginRefreshing()` e `self.onRefresh(self.refreshControl)` alla fine di `viewDidLoad()` in *ToDoTableViewController.swift*. Aggiungere una chiamata a `loginAndGetData()` al posto di tali righe:
 
     ```swift
     loginAndGetData()
     ```
 
-3. Aprire hello `AppDelegate.swift` file e aggiungere hello seguente riga toohello `AppDelegate` classe:
+3. Aprire il file `AppDelegate.swift` e aggiungere la riga seguente alla classe `AppDelegate`:
 
     ```swift
     var todoTableViewController: ToDoTableViewController?
@@ -187,9 +187,9 @@ In Xcode, premere **eseguire** toostart hello app. Poiché tenta di app hello to
     }
     ```
 
-    Sostituire hello _appname_ oggi hello urlScheme che è stato utilizzato nel passaggio 1.
+    Sostituire _appname_ con il valore di urlScheme usato nel passaggio 1.
 
-4. Aprire hello `AppName-Info.plist` file (sostituendo AppName con nome hello dell'app) e aggiungere hello seguente codice:
+4. Aprire il file `AppName-Info.plist` (sostituendo AppName con il nome dell'app) e aggiungere il codice seguente:
 
     ```xml
     <key>CFBundleURLTypes</key>
@@ -205,18 +205,18 @@ In Xcode, premere **eseguire** toostart hello app. Poiché tenta di app hello to
     </array>
     ```
 
-    Questo codice deve essere inserito all'interno di hello `<dict>` elemento.  Sostituire hello _appname_ stringa (all'interno della matrice per **CFBundleURLSchemes**) con il nome di app hello scelto nel passaggio 1.  È possibile inoltre apportare queste modifiche in hello plist editor, fare clic su hello `AppName-Info.plist` file nell'editor di XCode tooopen hello plist.
+    Questo codice deve essere inserito all'interno dell'elemento `<dict>`.  Sostituire la stringa _appname_ (all'interno della matrice per **CFBundleURLSchemes**) con il nome app scelto nel passaggio 1.  È possibile apportare queste modifiche anche nell'editor Plist. Fare clic sul file `AppName-Info.plist` in XCode per aprire l'editor Plist.
 
-    Sostituire hello `com.microsoft.azure.zumo` stringa per **CFBundleURLName** con l'Apple identificatore di aggregazione.
+    Sostituire la stringa `com.microsoft.azure.zumo` per **CFBundleURLName** con l'identificatore del bundle Apple.
 
-5. Premere *eseguire* toostart hello app e quindi l'accesso. Quando si è connessi, si deve essere elenco di attività in grado di tooview hello e aggiornamenti.
+5. Fare clic su *Run* (Esegui) per avviare l'app e quindi accedere. Una volta eseguito l'accesso, dovrebbe essere possibile visualizzare l'elenco Todo e apportare modifiche.
 
-L'autenticazione del servizio app usa la comunicazione tra app di Apple.  Per ulteriori informazioni su questo argomento, vedere toohello [documentazione di Apple][2]
+L'autenticazione del servizio app usa la comunicazione tra app di Apple.  Per altre informazioni su questo argomento, vedere la [documentazione Apple][2]
 <!-- URLs. -->
 
 [1]: https://developers.facebook.com/docs/ios/ios9#whitelist
 [2]: https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Inter-AppCommunication/Inter-AppCommunication.html
 [portale di Azure]: https://portal.azure.com
 
-[iOS quick start]: app-service-mobile-ios-get-started.md
+[avvio rapido di iOS]: app-service-mobile-ios-get-started.md
 

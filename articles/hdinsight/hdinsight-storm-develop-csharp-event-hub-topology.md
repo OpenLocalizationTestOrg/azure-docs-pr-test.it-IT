@@ -1,6 +1,6 @@
 ---
-title: eventi aaaProcess dagli hub eventi con Storm - HDInsight di Azure | Documenti Microsoft
-description: Informazioni su come dati tooprocess dagli hub di eventi di Azure con una topologia c# Storm create in Visual Studio, utilizzando hello strumenti HDInsight per Visual Studio.
+title: Elaborare eventi da Hub eventi con Storm - Azure HDInsight | Microsoft Docs
+description: Informazioni su come elaborare i dati degli Hub eventi di Azure con una topologia Storm C# creata in Visual Studio tramite HDInsight Tools per Visual Studio.
 services: hdinsight,notification hubs
 documentationcenter: 
 author: Blackmist
@@ -15,56 +15,56 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/03/2017
 ms.author: larryfr
-ms.openlocfilehash: 30cd910d80eba066f283197bcbbaf11145bc5524
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4b6fd87b057d93175d3ef284238d77be3bdde61d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="process-events-from-azure-event-hubs-with-storm-on-hdinsight-c"></a>Elaborare eventi dell'hub eventi di Azure con Storm in HDInsight (C#)
 
-Informazioni su come toowork con hub di eventi di Azure da Apache Storm in HDInsight. Questo documento viene utilizzato un elevato numero di c# topologia tooread e scrittura dati dagli hub Evbent
+Informazioni su come usare Hub eventi di Azure da Apache Storm in HDInsight. In questo documento viene usata una topologia Storm con C# per leggere e scrivere dati da Hub eventi
 
 > [!NOTE]
 > Per la versione Java di questo progetto, vedere [Elaborare eventi dell'hub eventi di Azure con Storm in HDInsight (Java)](hdinsight-storm-develop-java-event-hub-topology.md).
 
 ## <a name="scpnet"></a>SCP.NET
 
-passaggi di Hello in questo documento usano SCP.NET, un pacchetto NuGet che rende facile toocreate c# topologie e componenti per l'utilizzo con Storm in HDInsight.
+Nella procedura in questo documento viene usato SCP.NET, un pacchetto NuGet che semplifica la creazione di topologie e componenti C# per l'uso con Storm in HDInsight.
 
 > [!IMPORTANT]
-> Anche se hello i passaggi in questo documento si basano su un ambiente di sviluppo Windows con Visual Studio, progetto compilato hello può essere inviato tooa Storm nel cluster HDInsight che utilizza Linux. Solo i cluster basati su Linux creati dopo il 28 ottobre 2016 supportano le topologie SCP.NET.
+> Anche se i passaggi illustrati in questo documento si basano su un ambiente di sviluppo Windows con Visual Studio, il progetto compilato può essere inviato a Storm in un cluster HDInsight che usa Linux. Solo i cluster basati su Linux creati dopo il 28 ottobre 2016 supportano le topologie SCP.NET.
 
-HDInsight 3.4 e maggiore utilizzo Mono toorun c# topologie. esempio Hello utilizzato in questo documento illustra 3.6 di HDInsight. Se si prevede la creazione di soluzioni di .NET per HDInsight, controllare hello [compatibilità Mono](http://www.mono-project.com/docs/about-mono/compatibility/) documento per potenziali problemi di incompatibilità.
+HDInsight versione 3.4 o successiva usano Mono per eseguire le topologie C#. L'esempio in questo documento funziona con HDInsight 3.6. Se si prevede di creare soluzioni .NET personalizzate per HDInsight, leggere il documento [Mono Compatibility](http://www.mono-project.com/docs/about-mono/compatibility/) (Compatibilità di Mono) per individuare potenziali incompatibilità.
 
 ### <a name="cluster-versioning"></a>Controllo delle versioni del cluster
 
-Hello pacchetto Microsoft.SCP.Net.SDK NuGet usato per il progetto deve corrispondere versione principale di hello di Storm installato in HDInsight. HDInsight versioni 3.5 e 3.6 usa Storm versione 1.x, pertanto è necessario usare SCP.NET versione 1.0.x.x con questi cluster.
+Il pacchetto NuGet Microsoft.SCP.Net.SDK usato per il progetto deve corrispondere alla versione principale di Storm installata in HDInsight. HDInsight versioni 3.5 e 3.6 usa Storm versione 1.x, pertanto è necessario usare SCP.NET versione 1.0.x.x con questi cluster.
 
 > [!IMPORTANT]
-> esempio Hello in questo documento è previsto un 3.5 HDInsight o 3,6 cluster.
+> L'esempio in questo documento presuppone un cluster HDInsight 3.5 o 3.6.
 >
-> Linux è hello solo sistema operativo utilizzato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> Linux è l'unico sistema operativo usato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 Le topologie C# devono inoltre puntare a .NET 4.5.
 
-## <a name="how-toowork-with-event-hubs"></a>Come toowork con hub eventi
+## <a name="how-to-work-with-event-hubs"></a>Come lavorare con gli Hub eventi
 
-Microsoft fornisce un set di componenti Java che possono essere utilizzati toocommunicate con hub di eventi da una topologia di Storm. È possibile trovare i file di archivio (JAR) di Java hello che contiene una versione compatibile di HDInsight 3.6 di questi componenti in [https://github.com/hdinsight/mvn-repo/raw/master/org/apache/storm/storm-eventhubs/1.1.0.1/storm-eventhubs-1.1.0.1.jar](https://github.com/hdinsight/mvn-repo/raw/master/org/apache/storm/storm-eventhubs/1.1.0.1/storm-eventhubs-1.1.0.1.jar).
+Microsoft fornisce un set di componenti Java da usare per comunicare con gli Hub eventi da una topologia Storm. Il file di archivio Java (JAR) che contiene una versione compatibile di HDInsight 3.6 di questi componenti è disponibile in [https://github.com/hdinsight/mvn-repo/raw/master/org/apache/storm/storm-eventhubs/1.1.0.1/storm-eventhubs-1.1.0.1.jar](https://github.com/hdinsight/mvn-repo/raw/master/org/apache/storm/storm-eventhubs/1.1.0.1/storm-eventhubs-1.1.0.1.jar).
 
 > [!IMPORTANT]
-> Mentre i componenti di hello sono scritti in Java, è possibile utilizzarli da una topologia c#.
+> I componenti sono scritti in Java ma è comunque possibile usarli da una topologia C#.
 
-in questo esempio viene utilizzato i Hello seguenti componenti:
+Nell'esempio vengono usati i componenti seguenti:
 
 * __EventHubSpout__: legge i dati dagli Hub eventi.
-* __EventHubBolt__: scrive dati tooEvent hub.
-* __EventHubSpoutConfig__: tooconfigure EventHubSpout utilizzato.
-* __EventHubBoltConfig__: tooconfigure EventHubBolt utilizzato.
+* __EventHubBolt__: scrive i dati negli Hub eventi.
+* __EventHubSpoutConfig__: usato per configurare EventHubSpout.
+* __EventHubBoltConfig__: usato per configurare EventHubBolt.
 
 ### <a name="example-spout-usage"></a>Esempio di uso di uno spout
 
-SCP.NET fornisce metodi per l'aggiunta di una topologia di tooyour EventHubSpout. Questi metodi rendono più semplice tooadd beccuccio rispetto all'utilizzo di metodi generici hello per l'aggiunta di un componente di Java. Hello esempio seguente viene illustrato come toocreate beccuccio utilizzando hello __SetEventHubSpout__ e **EventHubSpoutConfig** metodi forniti da SCP.NET:
+SCP.NET offre metodi per l'aggiunta di EventHubSpout alla topologia. Questi metodi facilitano l'aggiunta di uno spout rispetto ai metodi generici di aggiunta di un componente Java. L'esempio seguente illustra come creare uno spout usando i metodi __SetEventHubSpout__ ed **EventHubSpoutConfig** forniti da SCP.NET:
 
 ```csharp
  topologyBuilder.SetEventHubSpout(
@@ -78,14 +78,14 @@ SCP.NET fornisce metodi per l'aggiunta di una topologia di tooyour EventHubSpout
     eventHubPartitions);
 ```
 
-esempio di Hello precedente crea un nuovo componente di beccuccio denominato __EventHubSpout__e lo configura toocommunicate con un hub eventi. Hello parallelismo per il componente hello è impostato toohello numero di partizioni nell'hub eventi hello. Questa impostazione consente di Storm toocreate un'istanza del componente hello per ogni partizione.
+Nell'esempio precedente viene creato un nuovo componente spout denominato __EventHubSpout__, che viene poi configurato per comunicare con un Hub eventi. Per il componente viene impostato anche l'hint di parallelismo sul numero di partizioni nell'Hub eventi. Questa impostazione consente a Storm di creare un'istanza del componente per ogni partizione.
 
 ### <a name="example-bolt-usage"></a>Esempio di utilizzo di bolt
 
-Hello utilizzare **JavaComponmentConstructor** toocreate metodo un'istanza di fulmine hello. Hello esempio seguente viene illustrato come toocreate e configurare una nuova istanza di hello **EventHubBolt**:
+Usare il metodo **JavaComponmentConstructor** per creare un'istanza del bolt. L'esempio seguente illustra come creare e configurare una nuova istanza di **EventHubBolt**:
 
 ```csharp
-// Java construcvtor for hello Event Hub Bolt
+// Java construcvtor for the Event Hub Bolt
 JavaComponentConstructor constructor = JavaComponentConstructor.CreateFromClojureExpr(
     String.Format(@"(org.apache.storm.eventhubs.bolt.EventHubBolt. (org.apache.storm.eventhubs.bolt.EventHubBoltConfig. " +
         @"""{0}"" ""{1}"" ""{2}"" ""{3}"" ""{4}"" {5}))",
@@ -96,7 +96,7 @@ JavaComponentConstructor constructor = JavaComponentConstructor.CreateFromClojur
         ConfigurationManager.AppSettings["EventHubName"],
         "true"));
 
-// Set hello bolt toosubscribe toodata from hello spout
+// Set the bolt to subscribe to data from the spout
 topologyBuilder.SetJavaBolt(
     "eventhubbolt",
     constructor,
@@ -105,41 +105,41 @@ topologyBuilder.SetJavaBolt(
 ```
 
 > [!NOTE]
-> In questo esempio viene utilizzata un'espressione di Clojure passata come stringa, anziché utilizzare **JavaComponentConstructor** toocreate un **EventHubBoltConfig**, come esempio beccuccio hello. Entrambi i metodi sono validi Utilizzare il metodo hello che ritiene tooyou migliore.
+> In questo esempio, per creare un **EventHubBoltConfig** viene usata un'espressione Clojure passata come stringa e non **JavaComponentConstructor**, come nell'esempio dello spout. Entrambi i metodi sono validi ed è possibile scegliere quello ritenuto migliore.
 
-## <a name="download-hello-completed-project"></a>Scaricare il progetto hello completata
+## <a name="download-the-completed-project"></a>Scaricare il progetto completo
 
-È possibile scaricare una versione completa di hello progetto creato in questa esercitazione da [GitHub](https://github.com/Azure-Samples/hdinsight-dotnet-java-storm-eventhub). Tuttavia, è comunque necessario tooprovide le impostazioni di configurazione seguendo i passaggi di hello in questa esercitazione.
+È possibile scaricare la versione completa del progetto creato in questa esercitazione da [GitHub](https://github.com/Azure-Samples/hdinsight-dotnet-java-storm-eventhub). Sarà tuttavia necessario fornire le impostazioni di configurazione seguendo la procedura riportata in questa esercitazione.
 
 ### <a name="prerequisites"></a>Prerequisiti
 
 * Un [cluster Apache Storm in HDInsight versione 3.5 o 3.6](hdinsight-apache-storm-tutorial-get-started.md).
 
     > [!WARNING]
-    > esempio Hello utilizzato in questo documento richiede Storm in HDInsight versione 3.5 o 3.6. Questo non funziona con le versioni precedenti di HDInsight, a causa di modifiche al nome di classe toobreaking. Per una versione di questo esempio funziona con i cluster precedenti, vedere [GitHub](https://github.com/Azure-Samples/hdinsight-dotnet-java-storm-eventhub/releases).
+    > Per l'esempio usato in questo documento è necessario Storm in HDInsight versione 3.5 o 3.6. Questo approccio non funzionerà con le versioni precedenti di HDInsight a causa di modifiche importanti apportate al nome della classe. Per una versione di questo esempio funziona con i cluster precedenti, vedere [GitHub](https://github.com/Azure-Samples/hdinsight-dotnet-java-storm-eventhub/releases).
 
 * Un [Hub eventi di Azure](../event-hubs/event-hubs-csharp-ephcs-getstarted.md).
 
-* Hello [Azure .NET SDK](http://azure.microsoft.com/downloads/).
+* [Azure .NET SDK](http://azure.microsoft.com/downloads/).
 
-* Hello [strumenti HDInsight per Visual Studio](hdinsight-hadoop-visual-studio-tools-get-started.md).
+* [HDInsight Tools per Visual Studio](hdinsight-hadoop-visual-studio-tools-get-started.md).
 
 * Java JDK 1.8 o versione successiva nell'ambiente di sviluppo. Sono disponibili download di JDK da [Oracle](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
 
-  * Hello **JAVA_HOME** directory di toohello punto deve variabile di ambiente contenente Java.
-  * Hello **%JAVA_HOME%/bin** directory deve trovarsi nel percorso di hello.
+  * La variabile di ambiente **JAVA_HOME** deve puntare alla directory contenente Java.
+  * La directory **%JAVA_HOME%/bin** deve essere inclusa nel percorso.
 
-## <a name="download-hello-event-hubs-components"></a>Scaricare i componenti di hello hub eventi
+## <a name="download-the-event-hubs-components"></a>Scaricare i componenti di Hub eventi
 
-Download hello hub eventi spout e bullone componente da [https://github.com/hdinsight/mvn-repo/raw/master/org/apache/storm/storm-eventhubs/1.1.0.1/storm-eventhubs-1.1.0.1.jar](https://github.com/hdinsight/mvn-repo/raw/master/org/apache/storm/storm-eventhubs/1.1.0.1/storm-eventhubs-1.1.0.1.jar).
+Scaricare il componente spout e bolt di Hub eventi da [https://github.com/hdinsight/mvn-repo/raw/master/org/apache/storm/storm-eventhubs/1.1.0.1/storm-eventhubs-1.1.0.1.jar](https://github.com/hdinsight/mvn-repo/raw/master/org/apache/storm/storm-eventhubs/1.1.0.1/storm-eventhubs-1.1.0.1.jar).
 
-Creare una directory denominata `eventhubspout`e salvarlo nella directory hello hello.
+Creare una directory denominata `eventhubspout` e salvare il file in tale directory.
 
 ## <a name="configure-event-hubs"></a>Configurare gli hub eventi
 
-Hub eventi è l'origine dati hello per questo esempio. Utilizzare le informazioni di hello nella sezione "Creare un hub eventi" hello di [Introduzione agli hub di eventi](../event-hubs/event-hubs-csharp-ephcs-getstarted.md).
+L'hub eventi è l'origine dati per questo esempio. Usare le informazioni contenute nella sezione "Creare un hub eventi" di [Introduzione all'Hub eventi](../event-hubs/event-hubs-csharp-ephcs-getstarted.md).
 
-1. Dopo aver creato l'hub di eventi hello, visualizzare hello **EventHub** pannello in hello Azure portale e selezionare **criteri di accesso condiviso**. Selezionare **+ Aggiungi** hello tooadd seguenti criteri:
+1. Dopo avere creato l'hub eventi, visualizzare il pannello **Hub eventi** nel portale di Azure e selezionare **Criteri di accesso condivisi**. Selezionare **+ Aggiungi** per aggiungere i criteri seguenti:
 
    | Nome | Autorizzazioni |
    | --- | --- |
@@ -148,75 +148,75 @@ Hub eventi è l'origine dati hello per questo esempio. Utilizzare le informazion
 
     ![Schermata della finestra Criteri di accesso condivisi](./media/hdinsight-storm-develop-csharp-event-hub-topology/sas.png)
 
-2. Seleziona hello **lettore** e **writer** criteri. Copiare e salvare hello chiave primaria per entrambi i criteri, questi valori vengono utilizzati in un secondo momento.
+2. Selezionare i criteri **reader** and **writer**. Copiare e salvare i valori di chiave primaria per entrambi i criteri, perché verranno usati in un secondo momento.
 
-## <a name="configure-hello-eventhubwriter"></a>Configurare hello EventHubWriter
+## <a name="configure-the-eventhubwriter"></a>Configurare EventHubWriter
 
-1. Se non è già installato più recente degli strumenti di HDInsight hello hello per Visual Studio, vedere [iniziare a usare gli strumenti HDInsight per Visual Studio](hdinsight-hadoop-visual-studio-tools-get-started.md).
+1. Se la versione più recente di HDInsight Tools per Visual Studio non è ancora installata, vedere [Introduzione all'uso di HDInsight Tools per Visual Studio](hdinsight-hadoop-visual-studio-tools-get-started.md).
 
-2. Download soluzione di hello da [eventhub-storm-ibrida](https://github.com/Azure-Samples/hdinsight-dotnet-java-storm-eventhub).
+2. Scaricare la soluzione da [eventhub-storm-hybrid](https://github.com/Azure-Samples/hdinsight-dotnet-java-storm-eventhub).
 
-3. In hello **EventHubWriter** progetto, aprire hello **app** file. Utilizzare le informazioni di hello da hub di eventi hello di configurato toofill precedenti valore hello hello seguenti chiavi:
-
-   | Chiave | Valore |
-   | --- | --- |
-   | EventHubPolicyName |Writer (se è utilizzato un nome diverso per i criteri di hello con *inviare* autorizzazione, utilizzare tale.) |
-   | EventHubPolicyKey |chiave di Hello per criteri di writer hello. |
-   | EventHubNamespace |spazio dei nomi Hello contenente dell'hub eventi. |
-   | EventHubName |Nome dell'hub eventi. |
-   | EventHubPartitionCount |numero di Hello di partizioni nell'hub eventi. |
-
-4. Salvare e chiudere hello **app** file.
-
-## <a name="configure-hello-eventhubreader"></a>Configurare hello EventHubReader
-
-1. Aprire hello **EventHubReader** progetto.
-
-2. Aprire hello **app** file per hello **EventHubReader**. Utilizzare le informazioni di hello da hub di eventi hello di configurato toofill precedenti valore hello hello seguenti chiavi:
+3. Nel progetto **EventHubWriter** aprire il file **App.config**. Usare le informazioni dell'hub eventi configurato prima per inserire il valore per le chiavi seguenti:
 
    | Chiave | Valore |
    | --- | --- |
-   | EventHubPolicyName |lettura (se è utilizzato un nome diverso per i criteri di hello con *ascolto* autorizzazione, utilizzare tale.) |
-   | EventHubPolicyKey |chiave di Hello per criteri di lettore hello. |
-   | EventHubNamespace |spazio dei nomi Hello contenente dell'hub eventi. |
+   | EventHubPolicyName |writer (se è stato usato un altro nome per il criterio con l'autorizzazione *Send*, usare l'altro nome) |
+   | EventHubPolicyKey |Chiave per il criterio writer. |
+   | EventHubNamespace |Spazio dei nomi contenente l'hub eventi. |
    | EventHubName |Nome dell'hub eventi. |
-   | EventHubPartitionCount |numero di Hello di partizioni nell'hub eventi. |
+   | EventHubPartitionCount |Numero di partizioni nell'hub eventi. |
 
-3. Salvare e chiudere hello **app** file.
+4. Salvare e chiudere il file **App.config**.
 
-## <a name="deploy-hello-topologies"></a>Distribuire le topologie di hello
+## <a name="configure-the-eventhubreader"></a>Configurare EventHubReader
 
-1. Da **Esplora**, hello rapida **EventHubReader** del progetto e selezionare **inviare tooStorm in HDInsight**.
+1. Aprire il progetto **EventHubReader**.
 
-    ![Schermata di Esplora soluzioni con tooStorm invia in HDInsight evidenziato](./media/hdinsight-storm-develop-csharp-event-hub-topology/submittostorm.png)
+2. Aprire il file **App.config** per **EventHubReader**. Usare le informazioni dell'hub eventi configurato prima per inserire il valore per le chiavi seguenti:
 
-2. In hello **inviare topologia** la finestra di dialogo, seleziona il **Cluster Storm**. Espandere **configurazioni aggiuntive**selezionare **i percorsi di File Java**selezionare **...** e selezionare hello directory che contiene i file JAR hello che è stato scaricato in precedenza. Infine fare clic su **Submit**.
+   | Chiave | Valore |
+   | --- | --- |
+   | EventHubPolicyName |reader (se è stato usato un altro nome per il criterio con l'autorizzazione *listen*, usare l'altro nome) |
+   | EventHubPolicyKey |Chiave per il criterio reader. |
+   | EventHubNamespace |Spazio dei nomi contenente l'hub eventi. |
+   | EventHubName |Nome dell'hub eventi. |
+   | EventHubPartitionCount |Numero di partizioni nell'hub eventi. |
+
+3. Salvare e chiudere il file **App.config**.
+
+## <a name="deploy-the-topologies"></a>Distribuire le topologie
+
+1. In **Esplora soluzioni** fare clic con il pulsante destro del mouse sul progetto **EventHubReader** e scegliere Submit to Storm on HDInsight **(Invia a Storm in HDInsight)**.
+
+    ![Schermata di Esplora soluzioni con Submit to Storm on HDInsight (Invia a Storm in HDInsight) evidenziato](./media/hdinsight-storm-develop-csharp-event-hub-topology/submittostorm.png)
+
+2. Nella finestra di dialogo **Submit Topology** (Invia topologia) selezionare il **cluster Storm**. Espandere **Additional Configurations** (Configurazioni aggiuntive), selezionare **Java File Paths** (Percorsi file Java), selezionare **...** e quindi selezionare la directory contenente il file JAR scaricato in precedenza. Infine fare clic su **Submit**.
 
     ![Schermata della finestra di dialogo Submit Topology (Invia topologia)](./media/hdinsight-storm-develop-csharp-event-hub-topology/submit.png)
 
-3. Quando è stata inviata la topologia hello, hello **Storm topologie Visualizzatore** viene visualizzato. tooview informazioni sulla topologia di hello, seleziona hello **EventHubReader** topologia nel riquadro di sinistra hello.
+3. Dopo l'invio della topologia, verrà visualizzato **Storm Topologies Viewer** (Visualizzatore topologie Storm). Selezionare la topologia **EventHubReader** nel riquadro a sinistra per visualizzare le relative informazioni.
 
     ![Schermata Storm Topologies Viewer (Visualizzatore topologie Storm)](./media/hdinsight-storm-develop-csharp-event-hub-topology/topologyviewer.png)
 
-4. Da **Esplora**, hello rapida **EventHubWriter** del progetto e selezionare **inviare tooStorm in HDInsight**.
+4. In **Esplora soluzioni** fare clic con il pulsante destro del mouse sul progetto **EventHubWriter** e scegliere **Submit to Storm on HDInsight** (Invia a Storm in HDInsight).
 
-5. In hello **inviare topologia** la finestra di dialogo, seleziona il **Cluster Storm**. Espandere **configurazioni aggiuntive**selezionare **i percorsi di File Java**selezionare **...** , e le directory hello select che contiene i file JAR hello scaricato in precedenza. Infine fare clic su **Submit**.
+5. Nella finestra di dialogo **Submit Topology** (Invia topologia) selezionare il **cluster Storm**. Espandere **Additional Configurations** (Configurazioni aggiuntive), selezionare **Java File Paths** (Percorsi file Java), selezionare **...** e quindi selezionare la directory contenente il file JAR scaricato in precedenza. Infine fare clic su **Submit**.
 
-6. Quando è stata inviata la topologia hello, aggiornare l'elenco di topologia di hello in hello **Storm topologie Visualizzatore** tooverify che entrambe le topologie sono in esecuzione nel cluster di hello.
+6. Dopo l'invio della topologia, aggiornare l'elenco delle topologie in **Storm Topologies Viewer** per verificare che siano entrambe in esecuzione nel cluster.
 
-7. In **Storm topologie Visualizzatore**selezionare hello **EventHubReader** topologia.
+7. In **Storm Topologies Viewer** (Visualizzatore topologie Storm) selezionare la topologia **EventHubReader**.
 
-8. componente hello tooopen riepilogo fulmine hello, fare doppio clic su hello **LogBolt** componente nel diagramma hello.
+8. Per aprire il riepilogo componenti per il bolt, fare doppio clic sul componente **LogBolt** nel diagramma.
 
-9. In hello **executor** , selezionare uno dei collegamenti hello in hello **porta** colonna. Consente di visualizzare informazioni registrate dal componente hello. informazioni di Hello registrato sono simile toohello seguente testo:
+9. Nella sezione **Executors** (Esecutori) selezionare uno dei collegamenti nella colonna **Porta**. Verranno visualizzate le informazioni registrate dal componente. Le informazioni registrate sono simili al testo seguente:
 
         2017-03-02 14:51:29.255 m.s.p.TaskHost [INFO] Received C# STDOUT: 2017-03-02 14:51:29,255 [1] INFO  EventHubReader_LogBolt [(null)] - Received data: {"deviceValue":1830978598,"deviceId":"8566ccbc-034d-45db-883d-d8a31f34068e"}
         2017-03-02 14:51:29.283 m.s.p.TaskHost [INFO] Received C# STDOUT: 2017-03-02 14:51:29,283 [1] INFO  EventHubReader_LogBolt [(null)] - Received data: {"deviceValue":1756413275,"deviceId":"647a5eff-823d-482f-a8b4-b95b35ae570b"}
         2017-03-02 14:51:29.313 m.s.p.TaskHost [INFO] Received C# STDOUT: 2017-03-02 14:51:29,312 [1] INFO  EventHubReader_LogBolt [(null)] - Received data: {"deviceValue":1108478910,"deviceId":"206a68fa-8264-4d61-9100-bfdb68ee8f0a"}
 
-## <a name="stop-hello-topologies"></a>Arrestare le topologie di hello
+## <a name="stop-the-topologies"></a>Arrestare le topologie
 
-le topologie hello toostop, selezionare ogni topologia hello **Visualizzatore della topologia Storm**, quindi fare clic su **Kill**.
+Per arrestare le topologie, selezionarle singolarmente in **Storm Topology Viewer** (Visualizzatore topologie Storm) e quindi fare clic su **Termina**.
 
 ![Schermata Storm Topology Viewer (Visualizzatore topologie Storm), con il pulsante Kill (Termina) evidenziato](./media/hdinsight-storm-develop-csharp-event-hub-topology/killtopology.png)
 
@@ -226,7 +226,7 @@ le topologie hello toostop, selezionare ogni topologia hello **Visualizzatore de
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-In questo documento, si è appreso come toouse hello Java hub eventi spout e bullone da toowork una topologia c# con i dati in hub eventi di Azure. toolearn informazioni sulla creazione di topologie di c#, vedere l'esempio hello:
+In questo documento si è appreso come usare lo spout e il bolt degli Hub eventi Java da una topologia C# per utilizzare i dati nell'hub eventi di Azure. Per altre informazioni sulla creazione di topologie C#, vedere gli articoli seguenti:
 
 * [Sviluppare topologie C# per Apache Storm in HDInsight tramite Visual Studio](hdinsight-storm-develop-csharp-visual-studio-topology.md)
 * [Guida alla programmazione SCP](hdinsight-storm-scp-programming-guide.md)

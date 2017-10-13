@@ -1,6 +1,6 @@
 ---
-title: archiviazione di file di Azure da una macchina virtuale Windows Azure aaaMount | Documenti Microsoft
-description: Archiviare i file nel cloud hello con l'archiviazione di file di Azure e montare la condivisione di file cloud da una macchina virtuale di Azure (VM).
+title: Montare l'archiviazione file di Azure da una macchina virtuale Windows di Azure | Microsoft Docs
+description: Archiviare i file nel cloud con l'archiviazione file di Azure e montare la condivisione file nel cloud da una macchina virtuale (VM) Azure.
 documentationcenter: 
 author: cynthn
 manager: timlt
@@ -13,62 +13,62 @@ ms.devlang:
 ms.topic: article
 ms.date: 06/15/2017
 ms.author: cynthn
-ms.openlocfilehash: 965f1c1b3f0d07fec6d86f9312a05e02e8ce7fe0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6ffb2d2da1e2439df6f5da543411e3c2c68d3435
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="use-azure-file-shares-with-windows-vms"></a>Usare le condivisioni file di Azure con le macchine virtuali Windows 
 
-È possibile usare condivisioni di file di Azure come un modo toostore e accedere ai file dalla macchina virtuale. Ad esempio, è possibile archiviare uno script o un file di configurazione dell'applicazione che si desidera che tutti i tooshare di macchine virtuali. In questo argomento viene illustrata come condivisione di file toocreate e montaggio di Azure e come tooupload e scaricare file.
+Le condivisioni file di Azure possono essere usate per archiviare file e accedervi da una macchina virtuale. Ad esempio, è possibile archiviare uno script o il file di configurazione di un'applicazione che si intende condividere con tutte le macchine virtuali. In questo argomento verrà illustrato come creare e montare una condivisione file di Azure e come caricare e scaricare file.
 
-## <a name="connect-tooa-file-share-from-a-vm"></a>Connettersi tooa condivisione di file da una macchina virtuale
+## <a name="connect-to-a-file-share-from-a-vm"></a>Connettersi a una condivisione file da una macchina virtuale
 
-In questa sezione si presuppone il che hai già un file di condivisione desiderata tooconnect per. Se è necessario toocreate uno, vedere [creare una condivisione file](#create-a-file-share) più avanti in questo argomento.
+In questa sezione si presuppone che la condivisione file a cui si desidera connettersi sia già stata creata. Se è necessario crearne una, vedere [Creare una condivisione file](#create-a-file-share) più avanti in questo argomento.
 
-1. Accedi toohello [portale di Azure](https://portal.azure.com).
-2. Scegliere dal menu a sinistra, hello **gli account di archiviazione**.
+1. Accedere al [portale di Azure](https://portal.azure.com).
+2. Fare clic su **Account di archiviazione** nel menu a sinistra.
 3. Scegliere l'account di archiviazione.
-4. In hello **Panoramica** pagina **servizi**selezionare **file**.
+4. Nella pagina **Panoramica** selezionare **File** dalla sezione **Servizi**.
 5. Selezionare una condivisione file.
-6. Fare clic su **Connetti** tooopen una pagina in cui viene illustrata la sintassi della riga di comando hello per la condivisione di file hello di montaggio da Windows o Linux.
-7. Evidenziare hello sintassi del comando hello e incollarlo nel blocco note o in altre posizioni in cui è possibile accedervi facilmente. 
-8. Modifica iniziali di hello hello sintassi tooremove * * > * * e sostituire *[lettera di unità]* con lettera di unità hello (ad esempio, **y:**) in cui si desidera toomount condivisione di file hello.
-8. Connettersi tooyour macchina virtuale e aprire un prompt dei comandi.
-9. Incolla in hello modificare la sintassi di connessione e premere **invio**.
-10. Quando hello connessione è stata creata, viene visualizzato il messaggio di hello **hello comando completato.**
-11. Controllare la connessione hello digitando hello lettera tooswitch toothat unità e quindi digitare **dir** contenuto hello toosee della condivisione file hello.
+6. Fare clic su **Connetti** per aprire una pagina in cui viene visualizzata la sintassi della riga di comando per montare la condivisione file da Windows o Linux.
+7. Evidenziare la sintassi del comando e incollarla in Blocco note o in un'altra applicazione di facile accesso. 
+8. Modificare la sintassi per rimuovere i caratteri iniziali **> ** e sostituire *[drive letter]* con la lettera di unità (ad esempio, **Y:**) in cui si desidera montare la condivisione file.
+8. Connettersi alla macchina virtuale e aprire un prompt dei comandi.
+9. Incollare la sintassi di connessione modificata e premere **INVIO**.
+10. Quando la connessione è stata creata, verrà visualizzato il messaggio **Esecuzione comando riuscita.**
+11. Verificare la connessione digitando la lettera di unità per passare all'unità e quindi digitare **dir** per vedere il contenuto della condivisione file.
 
 
 
 ## <a name="create-a-file-share"></a>Creare una condivisione file 
-1. Accedi toohello [portale di Azure](https://portal.azure.com).
-2. Scegliere dal menu a sinistra, hello **gli account di archiviazione**.
+1. Accedere al [portale di Azure](https://portal.azure.com).
+2. Fare clic su **Account di archiviazione** nel menu a sinistra.
 3. Scegliere l'account di archiviazione.
-4. In hello **Panoramica** pagina **servizi**selezionare **file**.
-5. Nella pagina del servizio File hello, fare clic su **+ condivisione File** toocreate condivisione del primo file. \
-6. Inserire il nome di condivisione file hello. I nomi delle condivisioni file possono contenere lettere minuscole, numeri e trattini singoli. Hello nome non può iniziare con un trattino e non è possibile utilizzare più trattini consecutivi. 
-7. Riempimento in un limite per le dimensioni file hello possibile too5120 GB.
-8. Fare clic su **OK** toodeploy condivisione di file hello.
+4. Nella pagina **Panoramica** selezionare **File** dalla sezione **Servizi**.
+5. Fare clic su **Condivisione file** nella pagina Servizio file per creare la prima condivisione file.
+6. Immettere il nome della condivisione file. I nomi delle condivisioni file possono contenere lettere minuscole, numeri e trattini singoli. Il nome non può iniziare con un trattino e non sono consentiti più trattini consecutivi. 
+7. Immettere un limite per le dimensioni del file, fino a 5120 GB.
+8. Fare clic su **OK** per distribuire la condivisione file.
    
 ## <a name="upload-files"></a>Caricare file
-1. Accedi toohello [portale di Azure](https://portal.azure.com).
-2. Scegliere dal menu a sinistra, hello **gli account di archiviazione**.
+1. Accedere al [portale di Azure](https://portal.azure.com).
+2. Fare clic su **Account di archiviazione** nel menu a sinistra.
 3. Scegliere l'account di archiviazione.
-4. In hello **Panoramica** pagina **servizi**selezionare **file**.
+4. Nella pagina **Panoramica** selezionare **File** dalla sezione **Servizi**.
 5. Selezionare una condivisione file.
-6. Fare clic su **caricare** tooopen hello **caricare file** pagina.
-7. Fare clic su hello cartella icona toobrowse nel file system locale per tooupload un file.   
-8. Fare clic su **caricare** condivisione di file toohello file hello tooupload.
+6. Fare clic su **Carica** per aprire la pagina **Carica file**.
+7. Fare clic sull'icona della cartella per individuare nel file system locale il file da caricare.   
+8. Fare clic su **Carica** per caricare il file nella condivisione file.
 
 ## <a name="download-files"></a>Download dei file
-1. Accedi toohello [portale di Azure](https://portal.azure.com).
-2. Scegliere dal menu a sinistra, hello **gli account di archiviazione**.
+1. Accedere al [portale di Azure](https://portal.azure.com).
+2. Fare clic su **Account di archiviazione** nel menu a sinistra.
 3. Scegliere l'account di archiviazione.
-4. In hello **Panoramica** pagina **servizi**selezionare **file**.
+4. Nella pagina **Panoramica** selezionare **File** dalla sezione **Servizi**.
 5. Selezionare una condivisione file.
-6. Fare clic sul file hello e scegliere **scaricare** toodownload il computer locale tooyour.
+6. Fare clic con il pulsante destro del mouse sul file e scegliere **Scarica** per scaricarlo nel computer locale.
    
 
 ## <a name="next-steps"></a>Passaggi successivi

@@ -1,6 +1,6 @@
 ---
-title: aaaReplicate fisico locale tooAzure server con Azure Site Recovery | Documenti Microsoft
-description: Viene fornita una panoramica dei passaggi di hello per la replica dei carichi di lavoro in esecuzione in locale Windows/Linux server fisici tooAzure con hello servizio Azure Site Recovery.
+title: Eseguire la replica di server fisici locali in Azure con Azure Site Recovery | Microsoft Docs
+description: Offre una panoramica della procedura di replica in Azure dei carichi di lavoro in esecuzione in server fisici Windows/Linux locali con il servizio Azure Site Recovery.
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,86 +14,86 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: raynew
-ms.openlocfilehash: f801b9544072d4029ec06cc1abfd4ff370e852e9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0a09b35e98dc0b2f5283c2a707a3a2b8ac9a39f2
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="replicate-physical-servers-tooazure-with-site-recovery"></a>Replicare tooAzure server fisici con il ripristino del sito
+# <a name="replicate-physical-servers-to-azure-with-site-recovery"></a>Replicare server fisici in Azure con Site Recovery
 
-In questo articolo viene fornita una panoramica di hello passaggi necessari tooreplicate locale Windows/Linux server fisici tooAzure, utilizzando hello [Azure Site Recovery](site-recovery-overview.md) di hello portale di Azure.
+Questo articolo fornisce una panoramica dei passaggi necessari per eseguire la replica di server fisici Windows/Linux locali in Azure usando il servizio [Azure Site Recovery](site-recovery-overview.md) nel portale di Azure.
 
 
 ## <a name="step-1-review-architecture-and-prerequisites"></a>Passaggio 1: Esaminare l'architettura e i prerequisiti
 
-Prima di iniziare la distribuzione, esaminare l'architettura dello scenario hello e assicurarsi di che aver compreso tutti i componenti di hello necessari tooset distribuzione hello.
+Prima di iniziare la distribuzione, esaminare l'architettura dello scenario e assicurarsi di comprendere quali componenti sono necessari per configurare la distribuzione.
 
-Andare troppo[passaggio 1: esaminare l'architettura di hello](physical-walkthrough-architecture.md)
+Andare a [Passaggio 1: Esaminare l'architettura](physical-walkthrough-architecture.md)
 
 
 ## <a name="step-2-review-prerequisites"></a>Passaggio 2: Esaminare i prerequisiti
 
-Assicurarsi di avere i prerequisiti di hello sul posto per ogni componente di distribuzione:
+Assicurarsi che siano rispettati i prerequisiti per ogni componente della distribuzione:
 
 - **Prerequisiti di Azure**: sono necessari un account Microsoft Azure, reti di Azure e account di archiviazione.
 - **Componenti locali di Site Recovery**: è necessario un computer che esegue i componenti locali di Site Recovery.
-- **Le macchine replicate**: server da tooreplicate necessario toocomply con requisiti di Azure e locali.
+- **Computer replicati**: i server di cui si vuole eseguire la replica devono essere conformi ai requisiti locali e di Azure.
 
-Andare troppo[passaggio 2: esaminare i prerequisiti e limitazioni](physical-walkthrough-prerequisites.md)
+Andare a [Passaggio 2: Esaminare i prerequisiti e le limitazioni](physical-walkthrough-prerequisites.md)
 
 ## <a name="step-3-plan-capacity"></a>Passaggio 3: Pianificare la capacità
 
-Se si sta eseguendo una distribuzione completa, è necessario toofigure risorse quali la replica è necessario. Se si sta eseguendo una rapida Configura tootest hello ambiente, è possibile ignorare questo passaggio.
+Se si sta eseguendo una distribuzione completa, è necessario individuare le risorse di replica richieste. Se si sta eseguendo una configurazione rapida per testare l'ambiente, è possibile ignorare questo passaggio.
 
-Andare troppo[passaggio 3: pianificare la capacità](physical-walkthrough-capacity.md)
+Andare a [Passaggio 3: Pianificare la capacità](physical-walkthrough-capacity.md)
 
 ## <a name="step-4-plan-networking"></a>Passaggio 4: Pianificare la rete
 
-È necessario toodo alcuni pianificazione tooensure che macchine virtuali di Azure siano connessi toonetworks dopo che si verifica il failover e che dispongano di hello destra indirizzi IP della rete.
+È necessario eseguire alcune attività di pianificazione per garantire che le VM di Azure siano connesse alle reti dopo il failover e che abbiano gli indirizzi IP appropriati.
 
-Andare troppo[passaggio 4: pianificare la rete](physical-walkthrough-network.md)
+Andare a [Passaggio 4: Pianificare la rete](physical-walkthrough-network.md)
 
 ##  <a name="step-5-prepare-azure-resources"></a>Passaggio 5: Preparare le risorse di Azure
 
 Configurare le reti e le risorse di archiviazione di Azure prima di iniziare. 
 
-Andare troppo[passaggio 5: preparare Azure](physical-walkthrough-prepare-azure.md)
+Andare a [Passaggio 5: Preparare Azure](physical-walkthrough-prepare-azure.md)
 
 
 ## <a name="step-6-set-up-a-vault"></a>Passaggio 6: Configurare un insieme di credenziali
 
-Per impostare un tooorchestrate insieme di credenziali di servizi di ripristino e gestire la replica. Quando si imposta l'insieme di credenziali hello, specificare gli elementi da tooreplicate, e in cui si desidera tooreplicate a.
+Si configura un insieme di credenziali di Servizi di ripristino per orchestrare e gestire la replica. Quando si configura l'insieme di credenziali, specificare gli elementi da replicare e la posizione in cui eseguire la replica.
 
-Andare troppo[passaggio 6: configurare un insieme di credenziali](physical-walkthrough-create-vault.md)
+Andare a [Passaggio 6: Configurare un insieme di credenziali](physical-walkthrough-create-vault.md)
 
 ## <a name="step-7-configure-source-and-target-settings"></a>Passaggio 7: Configurare le impostazioni di origine e di destinazione
 
-Configurare le impostazioni per l'origine hello e di destinazione del sito (Azure). Le impostazioni dell'origine include l'esecuzione del programma di installazione unificata tooinstall componenti Site Recovery di hello locali.
+Configurare le impostazioni per il sito di origine e di destinazione (Azure). Le impostazioni di origine includono l'esecuzione dell'installazione unificata per installare i componenti di Site Recovery locali.
 
-Andare troppo[passaggio 7: configurare hello origine e di destinazione](physical-walkthrough-source-target.md)
+Andare a [Passaggio 7: Configurare l'origine e la destinazione](physical-walkthrough-source-target.md)
 
 ## <a name="step-8-set-up-a-replication-policy"></a>Passaggio 8: Configurare un criterio di replica
 
-Impostare un criterio toospecify fisico come i server devono essere replicati.
+Si configura un criterio per specificare come replicare i server fisici.
 
-Andare troppo[passaggio 8: impostare un criterio di replica](physical-walkthrough-replication.md)
+Andare a [Passaggio 8: Configurare i criteri di replica](physical-walkthrough-replication.md)
 
-## <a name="step-9-install-hello-mobility-service"></a>Passaggio 9: Installare il servizio di mobilità hello
+## <a name="step-9-install-the-mobility-service"></a>Passaggio 9: Installare il servizio Mobility
 
-servizio di mobilità Hello deve essere installato in ogni server desiderate tooreplicate. Esistono alcuni modi tooset servizio hello, con l'installazione push o pull.
+Il servizio Mobility deve essere installato in ogni server da replicare. È possibile configurare il servizio con l'installazione push o pull.
 
-Andare troppo[passaggio 9: installare il servizio Mobility hello](physical-walkthrough-install-mobility.md)
+Andare a [Passaggio 9: Installare il servizio Mobility](physical-walkthrough-install-mobility.md)
 
 ## <a name="step-10-enable-replication"></a>Passaggio 10: Abilitare la replica
 
-Dopo che il servizio di mobilità hello è in esecuzione in un server, è possibile abilitare la replica. Dopo aver abilitato, viene eseguita la replica iniziale di VM hello.
+Quando il servizio Mobility è in esecuzione in un server, è possibile abilitare la replica. Dopo l'abilitazione, viene eseguita la replica iniziale delle VM.
 
-Andare troppo[passaggio 10: abilitare la replica](physical-walkthrough-enable-replication.md)
+Andare a [Passaggio 10: Abilitare la replica](physical-walkthrough-enable-replication.md)
 
 ## <a name="step-11-run-a-test-failover"></a>Passaggio 11: Eseguire un failover di test
 
-Al termine della replica iniziale e la replica differenziale è in esecuzione, è possibile eseguire un toomake di failover di test che tutto funziona come previsto.
+Dopo il completamento della replica iniziale e con la replica differenziale in esecuzione, è possibile eseguire un failover di test per verificare che tutto funzioni come previsto.
 
-Andare troppo[passaggio 11: eseguire un failover di test](physical-walkthrough-test-failover.md)
+Andare a [Passaggio 11: Eseguire un failover di test](physical-walkthrough-test-failover.md)
 

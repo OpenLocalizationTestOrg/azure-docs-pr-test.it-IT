@@ -1,6 +1,6 @@
 ---
-title: aaaMigrate esistente database tooscale-out | Documenti Microsoft
-description: Convertire gli strumenti di database elastico toouse database partizionati mediante la creazione di un gestore mappe partizioni
+title: "Eseguire la migrazione dei database esistenti per ottenere scalabilità orizzontale | Documentazione Microsoft"
+description: Convertire database partizionati per l'uso di strumenti dei database elastici mediante la creazione di un gestore mappe partizioni
 services: sql-database
 documentationcenter: 
 author: ddove
@@ -15,29 +15,29 @@ ms.tgt_pltfrm: NA
 ms.workload: data-management
 ms.date: 10/24/2016
 ms.author: ddove
-ms.openlocfilehash: fa2c9e3699f30667cf547d1faadf4504609199be
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 099f40d00753b7c86ba726a818f17d440a125221
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="migrate-existing-databases-tooscale-out"></a>Eseguire la migrazione di database esistente tooscale-out
-Gestire facilmente i database partizionati esistenti di scalabilità orizzontale utilizzando gli strumenti di database di Database SQL di Azure (ad esempio hello [libreria client di Database elastico](sql-database-elastic-database-client-library.md)). È prima necessario convertire un set esistente di hello toouse database [gestore mappe partizioni](sql-database-elastic-scale-shard-map-management.md). 
+# <a name="migrate-existing-databases-to-scale-out"></a>Eseguire la migrazione dei database esistenti per ottenere scalabilità orizzontale
+È possibile gestire facilmente i database partizionati con scalabilità orizzontale esistenti usando gli strumenti di database del database SQL di Azure, come ad esempio la [libreria client dei database elastici](sql-database-elastic-database-client-library.md). Prima è necessario convertire un set di database esistente per l'uso del [gestore delle mappe partizioni](sql-database-elastic-scale-shard-map-management.md). 
 
 ## <a name="overview"></a>Panoramica
-toomigrate un database partizionato esistente: 
+Per eseguire la migrazione di un database partizionato esistente: 
 
-1. Preparare hello [il database di gestione di partizioni mapping](sql-database-elastic-scale-shard-map-management.md).
-2. Creare una mappa partizioni hello.
-3. Preparare singole partizioni hello.  
-4. Aggiungere una mappa partizioni toohello di mapping.
+1. Preparare il [database del gestore delle mappe partizioni](sql-database-elastic-scale-shard-map-management.md).
+2. Creare la mappa partizioni.
+3. Preparare le singole partizioni.  
+4. Aggiungere i mapping alla mappa partizioni.
 
-Queste tecniche possono essere implementate usando entrambi hello [libreria client .NET Framework](http://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/), o gli script di PowerShell hello trovato in [database SQL di Azure - script di strumenti di Database elastico](https://gallery.technet.microsoft.com/scriptcenter/Azure-SQL-DB-Elastic-731883db). di seguito esempi di Hello utilizzano gli script di PowerShell hello.
+Queste tecniche possono essere implementate tramite la [libreria client .NET Framework](http://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/) o gli script di PowerShell disponibili nella pagina relativa agli [script degli strumenti di database elastico del database SQL di Azure](https://gallery.technet.microsoft.com/scriptcenter/Azure-SQL-DB-Elastic-731883db). Negli esempi in questo articolo vengono usati gli script PowerShell.
 
-Per ulteriori informazioni su hello ShardMapManager, vedere [gestione mappa partizioni](sql-database-elastic-scale-shard-map-management.md). Per una panoramica degli strumenti di database elastico hello, vedere [panoramica sulle funzionalità di Database elastico](sql-database-elastic-scale-introduction.md).
+Per altre informazioni su ShardMapManager, vedere [Gestione mappe partizioni](sql-database-elastic-scale-shard-map-management.md). Per una panoramica sugli strumenti di database elastici, vedere [Panoramica sulle funzionalità di database elastico](sql-database-elastic-scale-introduction.md).
 
-## <a name="prepare-hello-shard-map-manager-database"></a>Preparare il database di gestione di hello partizioni mappa
-gestore mappe partizioni di Hello è un database speciale che contiene i database di scalabilità orizzontale di hello dati toomanage. È possibile usare un database esistente o crearne un nuovo. Si noti che un database che funge da gestore mappe partizioni non deve essere hello stesso database come una partizione. Si noti inoltre che uno script di PowerShell hello non crea database hello automaticamente. 
+## <a name="prepare-the-shard-map-manager-database"></a>Preparare il database del gestore delle mappe partizioni
+Il gestore delle mappe partizioni è un database speciale che contiene i dati per la gestione dei database con un numero maggiore di istanze. È possibile usare un database esistente o crearne un nuovo. Si noti che il database che funge da gestore delle mappe partizioni non deve essere lo stesso della partizione. Si noti anche che lo script di PowerShell non crea automaticamente il database. 
 
 ## <a name="step-1-create-a-shard-map-manager"></a>Passaggio 1: Creare un gestore mappe partizioni
     # Create a shard map manager. 
@@ -45,56 +45,56 @@ gestore mappe partizioni di Hello è un database speciale che contiene i databas
     -Password '<password>' 
     -SqlServerName '<server_name>' 
     -SqlDatabaseName '<smm_db_name>' 
-    #<server_name> and <smm_db_name> are hello server name and database name 
-    # for hello new or existing database that should be used for storing 
+    #<server_name> and <smm_db_name> are the server name and database name 
+    # for the new or existing database that should be used for storing 
     # tenant-database mapping information.
 
-### <a name="tooretrieve-hello-shard-map-manager"></a>gestore mappe partizioni di hello tooretrieve
-Dopo la creazione, è possibile recuperare gestore mappe partizioni di hello con questo cmdlet. Questo passaggio è necessario ogni volta che è necessario toouse hello ShardMapManager oggetto.
+### <a name="to-retrieve-the-shard-map-manager"></a>Per recuperare il gestore mappe partizioni
+Dopo la creazione, è possibile recuperare il gestore mappe partizioni con questo cmdlet. Questo passaggio è necessario ogni volta che si deve usare l'oggetto ShardMapManager.
 
-    # Try tooget a reference toohello Shard Map Manager  
+    # Try to get a reference to the Shard Map Manager  
     $ShardMapManager = Get-ShardMapManager -UserName '<user_name>' 
     -Password '<password>' 
     -SqlServerName '<server_name>' 
     -SqlDatabaseName '<smm_db_name>' 
 
 
-## <a name="step-2-create-hello-shard-map"></a>Passaggio 2: creare una mappa partizioni hello
-È necessario selezionare il tipo di hello di toocreate mappa partizioni. scelta di Hello dipende dall'architettura di database hello: 
+## <a name="step-2-create-the-shard-map"></a>Passaggio 2: Creare la mappa partizioni
+È necessario selezionare il tipo di mappa partizioni da creare. La scelta dipende dall'architettura del database: 
 
-1. Single-tenant per ogni database (per i termini, vedere hello [glossario](sql-database-elastic-scale-glossary.md).) 
+1. Singolo tenant per database. Per informazioni sui i termini, vedere il [glossario](sql-database-elastic-scale-glossary.md). 
 2. Più tenant per database (due tipi):
    1. Mapping di tipo elenco
    2. Mapping di tipo intervallo
 
-Per un modello a singolo tenant, creare una mappa partizioni con **mapping di tipo elenco** . modello single-tenant Hello assegna a un database per ogni tenant. Si tratta di un modello efficace per gli sviluppatori SaaS in quanto semplifica la gestione.
+Per un modello a singolo tenant, creare una mappa partizioni con **mapping di tipo elenco** . Il modello single-tenant assegna un database per tenant. Si tratta di un modello efficace per gli sviluppatori SaaS in quanto semplifica la gestione.
 
 ![Mapping di tipo elenco][1]
 
-modello multi-tenant Hello assegna diversi tenant tooa singolo database ed è possibile distribuire i gruppi di tenant tra più database. Utilizzare questo modello quando si prevede che necessita di dati di dimensioni ridotte di toohave ogni tenant. In questo modello viene assegnato un intervallo di tenant tooa database utilizzando **mapping intervallo**. 
+Il modello multi-tenant assegna diversi tenant a un database singolo ed è possibile distribuire gruppi di tenant tra più database. Usare questo modello quando si prevedono esigenze di dati ridotte per ogni tenant. In questo modello viene assegnato un intervallo di tenant a un database usando il **mapping di tipo intervallo**. 
 
 ![Mapping di tipo intervallo][2]
 
-Oppure è possibile implementare un modello di database multi-tenant utilizzando un *mapping elenco* tooassign più singolo database tooa tenant. Ad esempio, DB1 viene utilizzato toostore informazioni sull'id tenant 1 e 5 e DB2 archivia i dati di 10 di tenant e tenant 7. 
+In alternativa è possibile implementare un modello di database multi-tenant usando il *mapping di tipo elenco* per assegnare più tenant a un database singolo. Ad esempio, DB1 viene usato per archiviare le informazioni sugli ID tenant 1 e 5 e DB2 archivia i dati per i tenant 7 e 10. 
 
 ![Tenant multipli su database singolo][3] 
 
 **In base alla scelta effettuata, procedere con una delle opzioni seguenti:**
 
 ### <a name="option-1-create-a-shard-map-for-a-list-mapping"></a>Opzione 1: creare una mappa partizioni per un mapping di tipo elenco
-Creare una mappa partizioni utilizzando hello ShardMapManager oggetto. 
+Creare una mappa partizioni usando l'oggetto ShardMapManager. 
 
-    # $ShardMapManager is hello shard map manager object. 
+    # $ShardMapManager is the shard map manager object. 
     $ShardMap = New-ListShardMap -KeyType $([int]) 
     -ListShardMapName 'ListShardMap' 
     -ShardMapManager $ShardMapManager 
 
 
 ### <a name="option-2-create-a-shard-map-for-a-range-mapping"></a>Opzione 2: creare una mappa partizioni per un mapping di tipo intervallo
-Si noti che tooutilize questo schema di mapping, i valori di id tenant deve intervalli continui toobe e toohave accettabile gap negli intervalli hello è semplicemente ignorando intervallo hello quando si creano database hello.
+Si noti che per usare questo modello di mapping, i valori dell'ID tenant devono essere a intervalli continui ed è accettabile avere gap negli intervalli semplicemente ignorando l'intervallo durante la creazione dei database.
 
-    # $ShardMapManager is hello shard map manager object 
-    # 'RangeShardMap' is hello unique identifier for hello range shard map.  
+    # $ShardMapManager is the shard map manager object 
+    # 'RangeShardMap' is the unique identifier for the range shard map.  
     $ShardMap = New-RangeShardMap 
     -KeyType $([int]) 
     -RangeShardMapName 'RangeShardMap' 
@@ -104,22 +104,22 @@ Si noti che tooutilize questo schema di mapping, i valori di id tenant deve inte
 Per l'impostazione di questo modello è necessario anche creare una mappa di tipo elenco, come illustrato nel passaggio 2, opzione 1.
 
 ## <a name="step-3-prepare-individual-shards"></a>Passaggio 3: preparare le singole partizioni
-Aggiungere ogni gestore mappe partizioni di partizioni (database) toohello. Questa funzione prepara i singoli database hello per archiviare le informazioni di mapping. Eseguire questo metodo su ogni partizione.
+Aggiungere ciascuna partizione (database) al gestore mappe partizioni. Ciò consente di preparare i singoli database per l'archiviazione delle informazioni di mapping. Eseguire questo metodo su ogni partizione.
 
     Add-Shard 
     -ShardMap $ShardMap 
     -SqlServerName '<shard_server_name>' 
     -SqlDatabaseName '<shard_database_name>'
-    # hello $ShardMap is hello shard map created in step 2.
+    # The $ShardMap is the shard map created in step 2.
 
 
 ## <a name="step-4-add-mappings"></a>Passaggio 4: aggiungere mapping
-aggiunta di Hello di mapping dipende dal tipo di hello di mappa partizioni che è stato creato. Se è stata creata una mappa di tipo elenco, aggiungere mapping di tipo elenco. Se è stata creata una mappa di tipo intervallo, aggiungere mapping di tipo intervallo.
+L'aggiunta di mapping dipende dal tipo di mappa partizioni creato. Se è stata creata una mappa di tipo elenco, aggiungere mapping di tipo elenco. Se è stata creata una mappa di tipo intervallo, aggiungere mapping di tipo intervallo.
 
-### <a name="option-1-map-hello-data-for-a-list-mapping"></a>Opzione 1: eseguire il mapping hello dati per il mapping di un elenco
-Eseguire il mapping hello dati aggiungendo un mapping di elenco per ogni tenant.  
+### <a name="option-1-map-the-data-for-a-list-mapping"></a>Opzione 1: eseguire il mapping dei dati per il mapping di tipo elenco
+Eseguire il mapping dei dati aggiungendo un mapping di tipo elenco per ogni tenant.  
 
-    # Create hello mappings and associate it with hello new shards 
+    # Create the mappings and associate it with the new shards 
     Add-ListMapping 
     -KeyType $([int]) 
     -ListPoint '<tenant_id>' 
@@ -127,10 +127,10 @@ Eseguire il mapping hello dati aggiungendo un mapping di elenco per ogni tenant.
     -SqlServerName '<shard_server_name>' 
     -SqlDatabaseName '<shard_database_name>' 
 
-### <a name="option-2-map-hello-data-for-a-range-mapping"></a>Opzione 2: eseguire il mapping hello dati per il mapping di un intervallo
-Aggiungere i mapping di intervallo hello per tutti i hello tenant intervallo per l'id, le associazioni di database:
+### <a name="option-2-map-the-data-for-a-range-mapping"></a>Opzione 2: eseguire il mapping dei dati per il mapping di tipo intervallo
+Aggiungere il mapping di tipo intervallo per tutte le associazioni intervallo ID tenant - database:
 
-    # Create hello mappings and associate it with hello new shards 
+    # Create the mappings and associate it with the new shards 
     Add-RangeMapping 
     -KeyType $([int]) 
     -RangeHigh '5' 
@@ -140,31 +140,31 @@ Aggiungere i mapping di intervallo hello per tutti i hello tenant intervallo per
     -SqlDatabaseName '<shard_database_name>' 
 
 
-### <a name="step-4-option-3-map-hello-data-for-multiple-tenants-on-a-single-database"></a>Passaggio 4 opzione 3: eseguire il mapping hello dati a più tenant su un singolo database
-Per ogni tenant, eseguire Add-ListMapping hello (opzione 1, sopra). 
+### <a name="step-4-option-3-map-the-data-for-multiple-tenants-on-a-single-database"></a>Passaggio 4, opzione 3: eseguire il mapping dei dati per più tenant su un database singolo
+Per ogni tenant eseguire Add-ListMapping (opzione 1, come riportato sopra). 
 
-## <a name="checking-hello-mappings"></a>Verifica mapping hello
-Informazioni sulle partizioni esistenti hello e mapping hello associate possono eseguire una query utilizzando i seguenti comandi:  
+## <a name="checking-the-mappings"></a>Verifica dei mapping
+È possibile eseguire query per ottenere informazioni sulle partizioni esistenti e sui mapping a esse associati usando i comandi seguenti:  
 
-    # List hello shards and mappings 
+    # List the shards and mappings 
     Get-Shards -ShardMap $ShardMap 
     Get-Mappings -ShardMap $ShardMap 
 
 ## <a name="summary"></a>Riepilogo
-Dopo aver completato l'installazione di hello, è possibile iniziare libreria client di Database elastico hello toouse. È anche possibile usare il [routing dipendente dai dati](sql-database-elastic-scale-data-dependent-routing.md) e le [query su più partizioni](sql-database-elastic-scale-multishard-querying.md).
+Dopo aver completato l'installazione, è possibile iniziare a usare la libreria client di database elastici. È anche possibile usare il [routing dipendente dai dati](sql-database-elastic-scale-data-dependent-routing.md) e le [query su più partizioni](sql-database-elastic-scale-multishard-querying.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
-Ottenere gli script di PowerShell hello da [Database elastica di database SQL di Azure strumenti sripts](https://gallery.technet.microsoft.com/scriptcenter/Azure-SQL-DB-Elastic-731883db).
+Gli script di PowerShell sono disponibili nella pagina relativa agli [script degli strumenti di database elastici del database SQL di Azure](https://gallery.technet.microsoft.com/scriptcenter/Azure-SQL-DB-Elastic-731883db).
 
-gli strumenti di Hello sono anche in GitHub: [/elastica-db-strumenti di Azure](https://github.com/Azure/elastic-db-tools).
+Gli strumenti sono disponibili anche in GitHub: [Azure/elastic-db-tools](https://github.com/Azure/elastic-db-tools).
 
-Utilizzare hello dello strumento di merge di divisione toomove dati tooor da un modello di modello multi-tenant tooa single-tenant. Vedere la pagina relativa allo [strumento di divisione-unione](sql-database-elastic-scale-get-started.md).
+Usare lo strumento di suddivisione-unione per spostare dati in o da un modello multi-tenant a un modello single-tenant. Vedere la pagina relativa allo [strumento di divisione-unione](sql-database-elastic-scale-get-started.md).
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 Per informazioni sugli schemi di architettura dati comuni delle applicazioni di database multi-tenant software come un servizio (SaaS), vedere [Schemi progettuali per applicazioni SaaS multi-tenant con il database SQL di Azure](sql-database-design-patterns-multi-tenancy-saas-applications.md).
 
 ## <a name="questions-and-feature-requests"></a>Domande e richieste di funzionalità
-Per domande, rivolgersi toous su hello [forum di Database SQL](http://social.msdn.microsoft.com/forums/azure/home?forum=ssdsgetstarted) e per le richieste di funzionalità, aggiungerli toohello [forum sul feedback su Database SQL](https://feedback.azure.com/forums/217321-sql-database/).
+Se ci sono domande, è possibile visitare il [forum sul database SQL](http://social.msdn.microsoft.com/forums/azure/home?forum=ssdsgetstarted) mentre è possibile inserire le richieste di nuove funzionalità nel [forum relativo a commenti e suggerimenti sul database SQL](https://feedback.azure.com/forums/217321-sql-database/).
 
 <!--Image references-->
 [1]: ./media/sql-database-elastic-convert-to-use-elastic-tools/listmapping.png

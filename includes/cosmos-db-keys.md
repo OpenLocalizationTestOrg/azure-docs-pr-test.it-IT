@@ -1,4 +1,4 @@
-  Ora passare a pannello di toohello DB Cosmos account e fare clic su **chiavi**, come si utilizzano questi valori in un'applicazione web hello è creare successivamente.
+  Passare ora al pannello dell'account Cosmos DB e fare clic su **Chiavi**, perché questi valori verranno usati nell'applicazione Web che verrà creata successivamente.
 
-![Cattura di schermata del portale di Azure, con un account Cosmos DB, con il pulsante di chiavi hello evidenziato nel Pannello di hello Cosmos DB account e i valori URI, chiave primaria e chiave SECONDARIA hello hello evidenziato nella hello pannello chiavi](./media/cosmos-db-keys/keys.png)
+![Screenshot del portale di Azure, che mostra un account Cosmos DB, con il pulsante Chiavi evidenziato nel pannello dell'account Cosmos DB e i valori di URI, CHIAVE PRIMARIA e CHIAVE SECONDARIA evidenziati nel pannello Chiavi](./media/cosmos-db-keys/keys.png)
 

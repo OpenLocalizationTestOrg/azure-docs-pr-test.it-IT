@@ -1,6 +1,6 @@
 ---
-title: aaaUsers contrassegnati per il report protezione rischi nel portale di Azure Active Directory hello | Documenti Microsoft
-description: Informazioni sugli utenti hello contrassegnati per il report protezione rischi nel portale di Azure Active Directory hello
+title: Report di sicurezza Utenti contrassegnati per il rischio nel portale di Azure Active Directory | Microsoft Docs
+description: Informazioni sul report di sicurezza Utenti contrassegnati per il rischio nel portale di Azure Active Directory
 services: active-directory
 author: MarkusVi
 manager: femila
@@ -13,59 +13,59 @@ ms.workload: identity
 ms.date: 08/24/2017
 ms.author: markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: 5077cd61d6119745a85ed712623904633a151331
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 04f15384a7cd0fa03300acdf159d371569ecf9fc
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="users-flagged-for-risk-security-report-in-hello-azure-active-directory-portal"></a>Utenti contrassegnati per il report protezione rischi nel portale di Azure Active Directory hello
+# <a name="users-flagged-for-risk-security-report-in-the-azure-active-directory-portal"></a>Report di sicurezza Utenti contrassegnati per il rischio nel portale di Azure Active Directory
 
-I report di sicurezza hello in hello Azure Active Directory (Azure AD), è possibile ottenere informazioni approfondite probabilità hello di account utente compromessi nell'ambiente in uso. 
+I report di sicurezza in Azure Active Directory (Azure AD) permettono di ottenere informazioni approfondite sulla probabile presenza di account utente compromessi nell'ambiente. 
 
-Azure Active Directory rileva sospette azioni che sono account utente tooyour correlati. Per ogni azione rilevati viene creato un record denominato *evento di rischio*. Per altre informazioni, vedere [Eventi di rischio di Azure Active Directory](active-directory-identity-protection-risk-events.md). 
+Azure Active Directory rileva le azioni sospette correlate agli account utente. Per ogni azione rilevati viene creato un record denominato *evento di rischio*. Per altre informazioni, vedere [Eventi di rischio di Azure Active Directory](active-directory-identity-protection-risk-events.md). 
 
-Hello rilevato gli eventi di rischio sono utilizzati toocalculate:
+Gli eventi di rischio rilevati vengono usati per calcolare:
 
-- **Accessi rischiosi** -un rischiosa l'accesso è un indicatore per un tentativo di accesso che siano stato eseguito da un utente che non è proprietario di legittimo hello di un account utente. Per altre informazioni, vedere [Accessi a rischio](active-directory-identityprotection.md#risky-sign-ins). 
+- **Accessi a rischio**. Un accesso rischioso è indicativo di un tentativo di accesso che potrebbe essere stato eseguito da qualcuno che non è il legittimo proprietario di un account utente. Per altre informazioni, vedere [Accessi a rischio](active-directory-identityprotection.md#risky-sign-ins). 
 
 - **Utenti contrassegnati per il rischio**. Un utente rischioso è indicativo di un account utente che potrebbe essere stato compromesso. Per altre informazioni, vedere [Utenti contrassegnati per il rischio](active-directory-identityprotection.md#users-flagged-for-risk).  
 
-Nel portale di Azure hello, è possibile trovare sicurezza hello segnala hello **Azure Active Directory** pannello in hello **sicurezza** sezione.  
+Nel Portale di Azure, è possibile trovare i report di sicurezza nel pannello di **Azure Active Directory** nella sezione **Sicurezza**.  
 
 ![Accessi a rischio](./media/active-directory-reporting-security-user-at-risk/10.png)
 
 
 
-## <a name="what-azure-ad-license-do-you-need-tooaccess-a-security-report"></a>Licenza Azure AD è necessario tooaccess un report di sicurezza?  
+## <a name="what-azure-ad-license-do-you-need-to-access-a-security-report"></a>Licenza di Azure AD necessaria per accedere a un report sulla sicurezza  
 
 Tutte le edizioni di Azure Active Directory offrono report sugli utenti contrassegnati per il rischio.  
-Tuttavia, il livello di hello di granularità dei report varia tra le edizioni di hello: 
+Tuttavia, il livello di granularità dei report varia a seconda delle edizioni: 
 
-- In hello **le edizioni di Azure Active Directory Free e Basic**, già un elenco di utenti contrassegnati i rischi. 
+- Nelle edizioni **Azure Active Directory Free e Basic**  è già incluso un elenco degli utenti contrassegnati per il rischio. 
 
-- Hello **Azure Active Directory Premium 1** edition estende questo modello, consentendo anche tooexamine alcune hello sottostante gli eventi di rischio che sono stati rilevati per ogni report. 
+- Nell'edizione **Azure Active Directory Premium 1** questo modello consente anche di esaminare alcuni degli eventi di rischio sottostanti che sono stati rilevati per ogni report. 
 
-- Hello **Azure Active Directory Premium 2** edition offre informazioni più dettagliate su tutti gli eventi di rischio sottostante hello e consente di criteri di sicurezza tooconfigure rispondono automaticamente tooconfigured rischio livelli.
+- L'edizione **Azure Active Directory Premium 2** offre informazioni più dettagliate su tutti gli eventi di rischio sottostanti e permette di configurare criteri di sicurezza che rispondono automaticamente a livelli di rischio configurati.
 
 
 
 ## <a name="azure-active-directory-free-and-basic-edition"></a>Versione gratuita e di base di Azure Active Directory
 
-gli utenti di Hello contrassegnati per il report di rischio nelle edizioni free e base di Azure Active Directory hello fornisce un elenco di account utente che sono stati compromessi. 
+Il report Utenti contrassegnati per il rischio nella versione gratuita e di base di Azure Active Directory offre un elenco degli account utente che potrebbero essere stati compromessi. 
 
 
 ![Accessi a rischio](./media/active-directory-reporting-security-user-at-risk/03.png)
 
-Se si seleziona un utente apre il pannello di dati utente correlato hello.
-Per gli utenti che sono a rischio, è possibile esaminare una cronologia di accesso dell'utente di hello e reimpostare la password di hello se necessario.
+Selezionando un utente verrà aperto il pannello dei dati utente correlati.
+Analizzare la cronologia di accesso degli utenti a rischio e reimpostare la password, se necessario.
 
 ![Accessi a rischio](./media/active-directory-reporting-security-user-at-risk/46.png)
 
 
 Questa finestra di dialogo offre la possibilità di:
 
-- Scaricare report hello
+- Scaricare il report
 
 - Cercare gli utenti
 
@@ -74,34 +74,34 @@ Questa finestra di dialogo offre la possibilità di:
 
 ## <a name="azure-active-directory-premium-editions"></a>Versione Premium di Azure Active Directory
 
-gli utenti di Hello contrassegnati per il report di rischio nelle edizioni premium di Azure Active Directory hello offre:
+Il report Utenti contrassegnati per il rischio della versione Premium di Azure Active Directory offre:
 
 - Un [elenco di account di utenti](active-directory-identityprotection.md#users-flagged-for-risk) che potrebbero essere stati compromessi 
 
-- Aggregare informazioni hello [tipi di eventi di rischio](active-directory-identity-protection-risk-events.md) che sono stati rilevati
+- informazioni aggregate sui [tipi di evento di rischio](active-directory-identity-protection-risk-events.md) che sono stati rilevati
 
-- Un report di hello toodownload opzione
+- Un'opzione per scaricare il report
 
-- Un'opzione tooconfigure un [criteri di monitoraggio e aggiornamento utente dei rischi](active-directory-identityprotection.md#user-risk-security-policy)  
+- avere un'opzione per configurare i [criteri per la correzione del rischio per gli utenti](active-directory-identityprotection.md#user-risk-security-policy)  
 
 
 ![Accessi a rischio](./media/active-directory-reporting-security-user-at-risk/71.png)
 
 Quando si seleziona un utente, si ottiene la visualizzazione di un report dettagliato per questo utente che consente di:
 
-- Aprire hello che visualizzare tutti gli accessi
+- aprire le visualizzazioni di tutti gli accessi
 
-- Reimpostare la password dell'utente hello
+- Reimpostare la password dell'utente
 
 - eliminare tutti gli eventi
 
-- Ricercare gli eventi di rischio segnalati per utente hello. 
+- ricercare la causa degli eventi a rischio segnalati per l'utente. 
 
 
 ![Accessi a rischio](./media/active-directory-reporting-security-user-at-risk/324.png)
 
 
-tooinvestigate un evento di rischio, selezionarne uno dall'hello di hello elenco tooopen **dettagli** pannello per questo evento di rischio. In hello **dettagli** pannello è hello opzione tooeither [chiudere manualmente un evento di rischio](active-directory-identityprotection.md#closing-risk-events-manually) o riattivare un evento di rischio chiuso manualmente. 
+Per analizzare un evento di rischio, selezionarne uno nell'elenco per aprire il pannello **Dettagli** dell'evento di rischio. Nel pannello **Dettagli**, è possibile [chiudere manualmente un evento di rischio](active-directory-identityprotection.md#closing-risk-events-manually) o riattivare un evento di rischio chiuso manualmente. 
 
 
 ![Accessi a rischio](./media/active-directory-reporting-security-user-at-risk/325.png)

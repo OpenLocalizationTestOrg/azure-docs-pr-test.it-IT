@@ -1,5 +1,5 @@
 ---
-title: aaaHost una trascrizione nel sito Web di guide in una VM Linux | Documenti Microsoft
+title: Ospitare un sito Web Rails in una macchina virtuale di Linux su Ruby | Documentazione Microsoft
 description: Impostare e ospitare un sito Web basato su Ruby on Rails in Azure usando una macchina virtuale Linux.
 services: virtual-machines-linux
 documentationcenter: ruby
@@ -15,48 +15,48 @@ ms.devlang: ruby
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: robmcm
-ms.openlocfilehash: c545c24fc6c89497854bbe55a6d0d1d0b072c386
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0518519da6c5e62a863a47d6743ab7b7c5923acf
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="ruby-on-rails-web-application-on-an-azure-vm"></a>Applicazione Web Ruby on Rails in una macchina virtuale di Azure
-Questa esercitazione viene illustrato come toohost una trascrizione nel sito Web di guide in Azure utilizzando una macchina virtuale di Linux.  
+Questa esercitazione mostra come ospitare un sito Web Ruby on Rails usando una macchina virtuale Linux.  
 
-Questa esercitazione è stata convalidata usando Ubuntu Server 14.04 LTS. Se si utilizza una distribuzione Linux diversa, potrebbe essere necessario toomodify hello passaggi tooinstall Guide.
+Questa esercitazione è stata convalidata usando Ubuntu Server 14.04 LTS. Se si usa una distribuzione Linux diversa, è necessario modificare la procedura per installare Rails.
 
 > [!IMPORTANT]
-> Azure offre due modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../azure-resource-manager/resource-manager-deployment-model.md).  In questo articolo viene illustrato l'utilizzo del modello di distribuzione classica hello. Si consiglia di utilizzano il modello di gestione risorse hello più nuove distribuzioni.
+> Azure offre due modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../azure-resource-manager/resource-manager-deployment-model.md).  Questo articolo illustra l'uso del modello di distribuzione classica. Microsoft consiglia di usare il modello di Gestione risorse per le distribuzioni più recenti.
 >
 >
 
 ## <a name="create-an-azure-vm"></a>Creare una macchina virtuale di Azure
 Iniziare creando una macchina virtuale di Azure con un'immagine Linux.
 
-toocreate hello VM, è possibile utilizzare il portale di Azure hello o hello Azure interfaccia della riga di comando (CLI).
+Per creare la VM, è possibile usare il portale di Azure o l'interfaccia della riga di comando (CLI) di Azure.
 
 ### <a name="azure-portal"></a>Portale di Azure
-1. Sign in hello [portale di Azure](https://portal.azure.com)
-2. Fare clic su **New**, quindi digitare "Ubuntu Server 14.04" nella casella di ricerca hello. Fare clic sulla voce hello restituito dalla ricerca hello. Per il modello di distribuzione di hello, selezionare **classico**, quindi fare clic su "Crea".
-3. Nel Pannello di nozioni di base hello, specificare i valori per i campi necessario hello: nome (per hello VM), nome utente, tipo di autenticazione e le credenziali corrispondenti hello, sottoscrizione di Azure, gruppo di risorse e percorso.
+1. Accedere al [portale di Azure](https://portal.azure.com)
+2. Fare clic su **Nuovo**, quindi digitare "Ubuntu Server 14.04" nella casella di ricerca. Fare clic sulla voce restituita dalla ricerca. Come modello di distribuzione selezionare **Classico**, quindi fare clic su "Crea".
+3. Nel pannello Informazioni di base immettere i valori per i campi obbligatori: nome (per la VM), nome utente, tipo di autenticazione e le credenziali corrispondenti, sottoscrizione di Azure, gruppo di risorse e località.
 
    ![Creare una nuova immagine Ubuntu](./media/virtual-machines-linux-classic-ruby-rails-web-app/createvm.png)
 
-4. Dopo il provisioning di hello VM, fare clic sul nome della macchina virtuale hello e fare clic su **endpoint** in hello **impostazioni** categoria. Trovare l'endpoint SSH hello, elencati in **autonomo**.
+4. Dopo il provisioning della macchina virtuale, fare clic sul nome della macchina virtuale e quindi fare clic su **Endpoint** nella categoria **Impostazioni**. Trovare l'endpoint SSH, elencato in **Autonomo**.
 
    ![Endpoint predefinito](./media/virtual-machines-linux-classic-ruby-rails-web-app/endpointsnewportal.png)
 
 ### <a name="azure-cli"></a>Interfaccia della riga di comando di Azure
-Seguire i passaggi di hello in [creare una macchina virtuale che esegue Linux][vm-instructions].
+Seguire i passaggi in [Creazione rapida di una macchina virtuale che esegue Linux][vm-instructions].
 
-Dopo il provisioning di hello VM, è possibile ottenere l'endpoint SSH hello eseguendo hello comando seguente:
+Al termine del provisioning della macchina virtuale, è possibile ottenere l'endpoint SSH eseguendo il comando seguente:
 
     azure vm endpoint list <vm-name>  
 
 ## <a name="install-ruby-on-rails"></a>Installare Ruby on Rails
-1. Usare SSH tooconnect toohello macchina virtuale.
-2. Dalla sessione SSH hello, utilizzare hello seguendo i comandi tooinstall Ruby hello VM:
+1. Usare SSH per connettersi alla macchina virtuale.
+2. Dalla sessione SSH usare i comandi seguenti per installare Ruby nella macchina virtuale:
 
         sudo apt-get update -y
         sudo apt-get upgrade -y
@@ -66,77 +66,77 @@ Dopo il provisioning di hello VM, è possibile ottenere l'endpoint SSH hello ese
         sudo apt-get install ruby2.4
 
         > [!TIP]
-        > hello brightbox repository contains hello current Ruby distribution.
+        > The brightbox repository contains the current Ruby distribution.
 
-    installazione di Hello potrebbe richiedere alcuni minuti. Quando viene completato, usare hello successivo comando tooverify Ruby è installato:
+    L'installazione potrebbe richiedere alcuni minuti. Al termine, immettere il comando seguente per verificare se l'installazione di Ruby è stata completata:
 
         ruby -v
 
-3. Comando che segue di hello utilizzare tooinstall Guide:
+3. Immettere il comando seguente per installare Rails:
 
         sudo gem install rails --no-rdoc --no-ri -V
 
-    Utilizzare hello - no-rdoc e --no-ri flag tooskip installazione della documentazione di hello, che è più veloce.
-    Questo comando richiederà probabilmente tooexecute, pertanto l'aggiunta di hello -V verrà visualizzate le informazioni sullo stato dell'installazione hello molto tempo.
+    Per velocizzare l'operazione, usare i flag --no-rdoc e --no-ri per ignorare l'installazione della documentazione.
+    È probabile che l'esecuzione di questo comando richieda tempo, quindi l'aggiunta di -V consentirà di visualizzare lo stato dell'installazione.
 
 ## <a name="create-and-run-an-app"></a>Creare ed eseguire un'applicazione
-Mentre si è ancora connessi tramite SSH, eseguire hello seguenti comandi:
+Mentre si è ancora connessi con SSH, eseguire i comandi seguenti:
 
     rails new myapp
     cd myapp
     rails server -b 0.0.0.0 -p 3000
 
-Hello [nuova](http://guides.rubyonrails.org/command_line.html#rails-new) comando crea una nuova app Guide. Hello [server](http://guides.rubyonrails.org/command_line.html#rails-server) comando Avvia hello server web WEBrick fornita con guide. (Per la produzione, è preferibile toouse un server diverso, ad esempio esclusive o passeggero.)
+Il comando [new](http://guides.rubyonrails.org/command_line.html#rails-new) crea una nuova app Rails. Il comando [server](http://guides.rubyonrails.org/command_line.html#rails-server) avvia il server Web WEBrick fornito con Rails. (per l'uso in un ambiente di produzione sarà opportuno usare un server differente, ad esempio Unicorn o Passenger).
 
-Verrà visualizzato il seguente toohello simili di output.
+L'output dovrebbe essere simile al seguente.
 
     => Booting WEBrick
     => Rails 4.2.1 application starting in development on http://0.0.0.0:3000
     => Run `rails server -h` for more startup options
-    => Ctrl-C tooshutdown server
+    => Ctrl-C to shutdown server
     [2015-06-09 23:34:23] INFO  WEBrick 1.3.1
     [2015-06-09 23:34:23] INFO  ruby 1.9.3 (2013-11-22) [x86_64-linux]
     [2015-06-09 23:34:23] INFO  WEBrick::HTTPServer#start: pid=27766 port=3000
 
 ## <a name="add-an-endpoint"></a>Aggiungere un endpoint
-1. Passare toohello [portale] [https://portal.azure.com] e selezionare la macchina virtuale.
+1. Andare al [portale di Azure][https://portal.azure.com] e selezionare la VM.
 
-2. Selezionare **endpoint** in hello **impostazioni** lungo pagina hello di hello bordo sinistro.
+2. Selezionare **ENDPOINT** in **Impostazioni** sul lato sinistro della pagina.
 
-3. Fare clic su **aggiungere** nella parte superiore di hello della pagina hello.
+3. Nella parte superiore della pagina fare clic su **AGGIUNGI**.
 
-4. In hello **aggiungere endpoint** finestra di dialogo immettere hello le seguenti informazioni:
+4. Nella finestra di dialogo **Aggiungi endpoint** immettere le informazioni seguenti:
 
    * **Nome**: HTTP
    * **Protocollo**: TCP
    * **Porta pubblica**: 80
    * **Porta privata**: 3000
    * **Indirizzo IP mobile**: Disabilitato
-   * **Elenco di controllo di accesso - ordine**: 1001, o in un altro valore che imposta la priorità hello della regola di accesso.
+   * **Elenco di controllo di accesso - Ordine**: 1001 o un altro valore che imposta la priorità di questa regola di accesso.
    * **Elenco di controllo di accesso - Nome**: allowHTTP
    * **Elenco di controllo di accesso - Azione**: consenti
    * **Elenco di controllo di accesso - Subnet remota**: 1.0.0.0/16
 
-     Questo endpoint dispone di una porta pubblica 80 che indirizza il traffico toohello porta privata di 3000, in cui è in ascolto server Guide hello. regola di elenco di controllo di accesso Hello consente il traffico pubblico sulla porta 80.
+     Questo endpoint ha una porta pubblica 80 che instraderà il traffico alla porta privata 3000, dove è in ascolto il server Rails. La regola dell'elenco di controllo di accesso consente il traffico pubblico sulla porta 80.
 
      ![new-endpoint](./media/virtual-machines-linux-classic-ruby-rails-web-app/createendpoint.png)
 
-5. Fare clic su OK toosave hello endpoint.
+5. Fare clic su OK per salvare l'endpoint.
 
-6. Verrà visualizzato il messaggio **Salvataggio dell'endpoint della macchina virtuale**. Una volta che il messaggio scomparirà, endpoint hello è attiva. È ora possibile testare l'applicazione passando il nome DNS toohello della macchina virtuale. sito Web di Hello dovrebbe apparire simile toohello seguenti:
+6. Verrà visualizzato il messaggio **Salvataggio dell'endpoint della macchina virtuale**. Quando questo messaggio scompare, significa che l'endpoint è attivo. A questo punto è possibile testare l'applicazione passando al nome DNS della macchina virtuale. L'aspetto del sito Web dovrebbe essere simile al seguente:
 
     ![Pagina predefinita Rails][default-rails-cloud]
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questa esercitazione, si ha la maggior parte dei passaggi di hello manualmente. In un ambiente di produzione, è necessario scrivere la propria app in un computer di sviluppo e distribuirlo toohello macchina virtuale di Azure. Inoltre, la maggior parte degli ambienti di produzione ospitano un'applicazione hello Guide in combinazione con un altro processo server come Apache o NginX, che gestisce richieste routing toomultiple istanze di un'applicazione hello guide e serve risorse statiche. Per altre informazioni, vedere http://rubyonrails.org/deploy/.
+In questa esercitazione è stata eseguita la maggior parte dei passaggi manualmente. In un ambiente di produzione, si potrebbe scrivere l'applicazione in un computer di sviluppo e distribuirla nella macchina virtuale di Azure. Inoltre, la maggior parte degli ambienti di produzione ospita l'applicazione Rails insieme a un altro processo server, ad esempio Apache o NginX, che gestisce il routing delle richieste a più istanze dell'applicazione Rails e la distribuzione di risorse statiche. Per altre informazioni, vedere http://rubyonrails.org/deploy/.
 
-toolearn ulteriori informazioni su Ruby su Guide, visitare hello [Ruby le guide di Guide][rails-guides].
+Per altre informazioni su Ruby on Rails, vedere le [Guide di Ruby on Rails][rails-guides].
 
-servizi di Azure toouse dall'applicazione Ruby, vedere:
+Per usare servizi di Azure dall'applicazione Ruby, vedere:
 
 * [Archiviare dati non strutturati mediante BLOB][blobs]
 * [Archiviare coppie chiave-valore mediante tabelle][tables]
-* [Fornire il contenuto di larghezza di banda elevata con hello Content Delivery Network][cdn-howto]
+* [Distribuire contenuti ad ampia larghezza di banda con la rete per la distribuzione di contenuti][cdn-howto]
 
 <!-- WA.com links -->
 [blobs]:../../../storage/blobs/storage-ruby-how-to-use-blob-storage.md

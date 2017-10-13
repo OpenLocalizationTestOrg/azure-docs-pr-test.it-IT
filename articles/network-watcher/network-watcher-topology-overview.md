@@ -1,9 +1,9 @@
 ---
-title: tootopology aaaIntroduction in Watcher di rete di Azure | Documenti Microsoft
-description: "Questa pagina fornisce una panoramica delle funzionalità di topologia hello Watcher di rete"
+title: Introduzione alla topologia di Azure Network Watcher | Documentazione Microsoft
+description: "Questa pagina fornisce una panoramica delle funzionalità di topologia di Network Watcher"
 services: network-watcher
 documentationcenter: na
-author: georgewallace
+author: jimdial
 manager: timlt
 editor: 
 ms.assetid: e753a435-38e0-482b-846b-121cb547555c
@@ -13,32 +13,32 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
-ms.author: gwallace
-ms.openlocfilehash: 7fa1c5518e4a25a5db999d898a9ee19fd0121db7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.author: jdial
+ms.openlocfilehash: d5cb5ba431eeae1956a9dbf1d48561c66faef9a6
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="introduction-tootopology-in-azure-network-watcher"></a>Introduzione tootopology in Watcher di rete di Azure
+# <a name="introduction-to-topology-in-azure-network-watcher"></a>Introduzione alla topologia di Azure Network Watcher
 
-La topologia restituisce un grafico delle risorse di rete in una rete virtuale. grafico di Hello illustra l'interconnessione hello tra hello risorse toorepresent hello fine tooend la connettività di rete.
+La topologia restituisce un grafico delle risorse di rete in una rete virtuale. Il grafico illustra l'interconnessione tra le risorse per rappresentare in modo completo la connettività di rete.
 
 ![Panoramica della topologia][1]
 
-Nel portale di hello topologia restituisce oggetti risorsa hello in una base di rete virtuale. relazioni Hello sono rappresentate dalle linee tra risorse hello risorse all'esterno di area di hello Watcher di rete, anche se nella risorsa hello gruppo non verrà visualizzato. risorse di Hello restituite nella visualizzazione portale hello sono un subset di componenti che sono rappresentate hello. elenco completo di hello toosee delle risorse di rete è possibile utilizzare [PowerShell](network-watcher-topology-powershell.md) o [REST](network-watcher-topology-rest.md)
+Nel portale la topologia restituisce gli oggetti risorsa per ogni singola rete virtuale. Le relazioni sono rappresentate dalle linee tra le risorse all'esterno dell'area di Network Watcher, anche se non vengono visualizzate nel gruppo di risorse. Le risorse restituite nella vista del portale sono un sottoinsieme di componenti di rete rappresentati in un grafico. Per visualizzare l'elenco completo delle risorse di rete è possibile usare [PowerShell](network-watcher-topology-powershell.md) o [REST](network-watcher-topology-rest.md).
 
 > [!NOTE]
-> È necessaria un'istanza del controllo di rete in ogni area che si desidera includere toorun topologia.
+> È necessaria un'istanza di Network Watcher in ogni area in cui si desidera eseguire la topologia.
 
-Poiché le risorse vengono restituite connessione hello tra di essi vengono modellati in due relazioni.
+Quando le risorse vengono restituite, la connessione tra di esse viene modellati in due relazioni.
 
 - **Contenimento** - Esempio: la rete virtuale contiene una subnet che contiene una scheda di interfaccia di rete.
 - **Associazione** - Esempio: una scheda NIC è associata a una macchina virtuale
 
 ### <a name="next-steps"></a>Passaggi successivi
 
-Informazioni su come toouse PowerShell tooretrieve hello topologia visualizzare visitando [topologia Watcher di rete con PowerShell](network-watcher-topology-powershell.md)
+Le informazioni su come usare PowerShell per recuperare la vista della topologia sono disponibili in [Network Watcher topology with PowerShell](network-watcher-topology-powershell.md) (Topologia di Network Watcher con PowerShell)
 
 <!--Image references-->
 

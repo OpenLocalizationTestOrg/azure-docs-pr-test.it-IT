@@ -1,5 +1,5 @@
 ---
-title: Considerazioni per SQL Server in Azure aaaSecurity | Documenti Microsoft
+title: Considerazioni relative alla sicurezza per SQL Server in Macchine virtuali di Azure | Microsoft Docs
 description: Questo argomento include linee guida generali per proteggere SQL Server in esecuzione in una macchina virtuale di Azure.
 services: virtual-machines-windows
 documentationcenter: na
@@ -15,88 +15,88 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 ms.date: 06/02/2017
 ms.author: jroth
-ms.openlocfilehash: 14c3d828fa87446da67beea6d28886de254afe15
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4ad9156e481eac0bae32bca35a2b126363e5d8b6
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="security-considerations-for-sql-server-in-azure-virtual-machines"></a>Considerazioni relative alla sicurezza per SQL Server in Macchine virtuali di Azure
 
-In questo argomento include linee guida di sicurezza generali che consentono di stabilire l'accesso sicuro tooSQL istanze del Server in una macchina virtuale di Azure (VM).
+Questo argomento include linee guida di sicurezza generali che consentono di stabilire l'accesso sicuro alle istanze di SQL Server in una macchina virtuale (VM) di Azure.
 
-Azure è conforme a diverse normative del settore e standard che consentono di toobuild una soluzione compatibile con SQL Server in esecuzione in una macchina virtuale. Per informazioni sulla conformità alle normative con Azure, vedere il [Centro protezione di Azure](https://azure.microsoft.com/support/trust-center/).
+Azure è conforme a molteplici normative e standard di settore che possono favorire la compilazione di una soluzione compatibile con SQL Server in esecuzione in una macchina virtuale. Per informazioni sulla conformità alle normative con Azure, vedere il [Centro protezione di Azure](https://azure.microsoft.com/support/trust-center/).
 
 [!INCLUDE [learn-about-deployment-models](../../../../includes/learn-about-deployment-models-both-include.md)]
 
-## <a name="control-access-toohello-sql-vm"></a>Controllo accesso toohello SQL VM
+## <a name="control-access-to-the-sql-vm"></a>Controllare l'accesso alla VM SQL
 
-Quando si crea la macchina virtuale SQL Server, prendere in considerazione come toocarefully controllare chi ha accesso toohello computer e tooSQL Server. In generale, è necessario eseguire il seguente hello:
+Quando si crea la macchina virtuale SQL Server, è importante controllare attentamente chi ha accesso al computer e a SQL Server. Come prassi generale è consigliabile eseguire le operazioni seguenti:
 
-- Limitare l'accesso tooSQL Server tooonly hello applicazioni e i client che ne hanno necessità.
+- Limitare l'accesso a SQL Server solo alle applicazioni e ai client che ne hanno necessità.
 - Seguire le procedure consigliate per la gestione di account utente e password.
 
-Hello le sezioni seguenti fornisce suggerimenti su pensare per questi punti.
+Le sezioni seguenti offrono alcuni suggerimenti e alcune considerazioni su questi punti.
 
 ## <a name="secure-connections"></a>Connessioni sicure
 
-Quando si crea una macchina virtuale di SQL Server con un'immagine della raccolta, hello **connettività di SQL Server** offre hello scelta dell'opzione **locale (all'interno di macchina virtuale)**, **privata (all'interno di rete virtuale)** , o **pubblico (Internet)**.
+Quando si crea una macchina virtuale di SQL Server con un'immagine della raccolta, l'opzione **SQL Server Connectivity** (Connettività SQL Server) offre la possibilità di scegliere tra **Locale (all'interno della macchina virtuale)**, **Privata (solo all'interno della rete virtuale)** o **Pubblico (Internet)**.
 
 ![Connettività di SQL Server](./media/virtual-machines-windows-sql-security/sql-vm-connectivity-option.png)
 
-Per una sicurezza ottimale hello, scegliere l'opzione più restrittiva di hello per lo scenario. Ad esempio, se si esegue un'applicazione che accede a SQL Server su hello stessa macchina virtuale, quindi **locale** è l'opzione più sicura hello. Se si esegue un'applicazione Azure che richiede accesso toohello SQL Server, quindi **privata** consente di proteggere la comunicazione tooSQL Server solo all'interno di hello specificato [rete virtuale di Azure](../../../virtual-network/virtual-networks-overview.md). Se è necessario **pubblica** (internest) accesso toohello macchina virtuale di SQL Server, quindi assicurarsi di toofollow che altre procedure consigliate in questo argomento tooreduce la superficie di attacco.
+Per ottimizzare la sicurezza, scegliere l'opzione più restrittiva per lo scenario in uso. Se ad esempio si esegue un'applicazione che accede a SQL Server nella stessa VM, **Locale** è la scelta più sicura. Se si esegue un'applicazione Azure che richiede l'accesso a SQL Server, l'opzione **Privata** consente di proteggere la comunicazione a SQL Server solo all'interno della [rete virtuale di Azure](../../../virtual-network/virtual-networks-overview.md) specificata. Se è richiesto l'accesso **Pubblico** (Internet) alla VM di SQL Server, assicurarsi di seguire le altre procedure consigliate in questo argomento per ridurre la superficie di attacco.
 
-Hello le opzioni selezionate nel portale di hello utilizzano regole di sicurezza in ingresso su macchine virtuali hello [Network Security Group](../../../virtual-network/virtual-networks-nsg.md) tooallow (gruppo) o negare macchina virtuale tooyour il traffico di rete. È possibile modificare o creare nuove regole in entrata di gruppo porta di SQL Server tooallow traffico toohello (valore predefinito 1433). È anche possibile specificare indirizzi IP specifici che sono consentiti toocommunicate tramite questa porta.
+Le opzioni selezionate nel portale usano le regole di sicurezza in ingresso nel [Gruppo di sicurezza di rete](../../../virtual-network/virtual-networks-nsg.md) (NSG) di VM per consentire o negare il traffico di rete alla macchina virtuale. È possibile modificare o creare nuove regole NSG in ingresso per consentire il traffico verso la porta SQL Server (porta predefinita 1433). È anche possibile specificare indirizzi IP specifici che sono autorizzati a comunicare tramite questa porta.
 
 ![Regole dei gruppi di sicurezza di rete](./media/virtual-machines-windows-sql-security/sql-vm-network-security-group-rules.png)
 
-Inoltre tooNSG regole toorestrict il traffico di rete, è inoltre possibile utilizzare hello Windows Firewall nella macchina virtuale hello.
+Oltre alle regole NSG per limitare il traffico di rete, è anche possibile usare Windows Firewall nella macchina virtuale.
 
-Se si utilizza l'endpoint con il modello di distribuzione classica hello, rimuovere tutti gli endpoint nella macchina virtuale hello se non si utilizza. Per istruzioni sull'uso di ACL con gli endpoint, vedere [Gestisci hello ACL su un endpoint](../classic/setup-endpoints.md#manage-the-acl-on-an-endpoint). Questo non è necessario per le macchine virtuali che utilizzano hello Gestione risorse.
+Se si usano gli endpoint con un modello di distribuzione classico, rimuovere tutti gli endpoint nella macchina virtuale che non vengono usati. Per istruzioni sull'uso di ACL con gli endpoint, vedere [Gestire l'elenco di controllo di accesso su un endpoint](../classic/setup-endpoints.md#manage-the-acl-on-an-endpoint). Questa operazione non è necessaria per le VM che usano Resource Manager.
 
-Infine, è possibile abilitare connessioni crittografate per istanza hello hello il motore di Database di SQL Server nella macchina virtuale di Azure. Configurare l'istanza di SQL server con un certificato firmato. Per ulteriori informazioni, vedere [toohello abilitare connessioni crittografate motore di Database](https://docs.microsoft.com/sql/database-engine/configure-windows/enable-encrypted-connections-to-the-database-engine) e [sintassi della stringa di connessione](https://msdn.microsoft.com/library/ms254500.aspx).
+Occorre infine considerare di abilitare le connessioni crittografate per l'istanza del motore di database SQL Server nella macchina virtuale di Azure. Configurare l'istanza di SQL server con un certificato firmato. Per altre informazioni, vedere [Abilitazione di connessioni crittografate al Motore di database](https://docs.microsoft.com/sql/database-engine/configure-windows/enable-encrypted-connections-to-the-database-engine) e [Sintassi della stringa di connessione](https://msdn.microsoft.com/library/ms254500.aspx).
 
 ## <a name="use-a-non-default-port"></a>Usare una porta diversa da quella predefinita
 
-Per impostazione predefinita, SQL Server è in ascolto sulla porta 1433 che tutti conoscono. Per una maggiore sicurezza, configurare SQL Server toolisten su una porta non predefinito, ad esempio 1401. Se si esegue il provisioning di un'immagine della raccolta di SQL Server in hello portale di Azure, è possibile specificare la porta in hello **impostazioni di SQL Server** blade.
+Per impostazione predefinita, SQL Server è in ascolto sulla porta 1433 che tutti conoscono. Per una maggiore sicurezza, configurare SQL Server per l'ascolto su una porta non predefinita, ad esempio la porta 1401. Se si esegue il provisioning di un'immagine della raccolta di SQL Server nel portale di Azure, è possibile specificare questa porta nel pannello **Impostazioni di SQL Server**.
 
-tooconfigure questo dopo il provisioning, sono disponibili due opzioni:
+Per configurare questa porta dopo il provisioning, sono disponibili due opzioni:
 
-- Per le macchine virtuali di gestione risorse, è possibile selezionare **configurazione di SQL Server** dal pannello della panoramica hello macchina virtuale. Ciò fornisce un'opzione porta hello toochange.
+- Per le macchine virtuali di Resource Manager, è possibile selezionare **Configurazione di SQL Server** dal pannello di panoramica della macchina virtuale. Da qui è possibile modificare la porta.
 
   ![Modificare la porta TCP nel portale](./media/virtual-machines-windows-sql-security/sql-vm-change-tcp-port.png)
 
-- Per le macchine virtuali classiche o per macchine virtuali di SQL Server che non è stato eseguito il provisioning con il portale di hello, è possibile configurare manualmente la porta hello connettendosi in remoto toohello macchina virtuale. Per i passaggi di configurazione hello, vedere [configurare un Server tooListen su una porta TCP specifica](https://docs.microsoft.com/sql/database-engine/configure-windows/configure-a-server-to-listen-on-a-specific-tcp-port). Se si utilizza questa tecnica manuale, è necessario anche tooadd un Windows Firewall regola tooallow il traffico in ingresso sulla porta TCP.
+- Per le VM classiche o per le VM di SQL Server di cui non è stato eseguito il provisioning con il portale, è possibile configurare la porta manualmente tramite connessione remota alla VM. Per i passaggi di configurazione, vedere [Configure a Server to Listen on a Specific TCP Port](https://docs.microsoft.com/sql/database-engine/configure-windows/configure-a-server-to-listen-on-a-specific-tcp-port) (Configurare un server per l'ascolto su una porta TCP specifica). Se si usa questa tecnica manuale, è necessario anche aggiungere una regola di Windows Firewall per consentire il traffico in ingresso su tale porta TCP.
 
 > [!IMPORTANT]
-> Specifica di una porta non predefinito è una buona idea se le connessioni internet toopublic aprire la porta di SQL Server.
+> Specificare una porta non predefinita è una buona idea se la porta di SQL Server è aperta a connessioni Internet pubbliche.
 
-Quando SQL Server è in ascolto su una porta non predefinito, è necessario specificare la porta hello quando ci si connette. Ad esempio, si consideri uno scenario in cui l'indirizzo IP del server hello è 13.55.255.255 e SQL Server è in ascolto sulla porta 1401. tooconnect tooSQL Server, è possibile specificare `13.55.255.255,1401` nella stringa di connessione hello.
+Quando SQL Server è in ascolto su una porta non predefinita, è necessario specificare la porta quando si esegue la connessione. Si consideri ad esempio uno scenario in cui l'indirizzo IP del server è 13.55.255.255 e SQL Server è in ascolto sulla porta 1401. Per connettersi a SQL Server, è necessario specificare `13.55.255.255,1401` nella stringa di connessione.
 
 ## <a name="manage-accounts"></a>Gestisci account
 
-Per evitare che utenti malintenzionati tooeasily ipotesi account nomi o password. Utilizzare hello toohelp i suggerimenti seguenti:
+È necessario fare in modo che gli utenti malintenzionati non indovinino facilmente i nomi di account o le password. Usare a tal fine i suggerimenti seguenti:
 
 - Creare un account amministratore locale univoco non denominato **Amministratore**.
 
-- Usare password complesse per tutti gli account. Per ulteriori informazioni su come toocreate una password complessa, vedere [creare una password complessa](https://support.microsoft.com/instantanswers/9bd5223b-efbe-aa95-b15a-2fb37bef637d/create-a-strong-password) articolo.
+- Usare password complesse per tutti gli account. Per altre informazioni sulla creazione di password complesse, vedere l'articolo [Crea una password complessa](https://support.microsoft.com/instantanswers/9bd5223b-efbe-aa95-b15a-2fb37bef637d/create-a-strong-password).
 
-- Per impostazione predefinita, in Azure viene selezionata l'autenticazione di Windows durante l'installazione della macchina virtuale SQL Server. Pertanto, hello **SA** account di accesso è disabilitato e viene assegnata una password dal programma di installazione. È consigliabile che hello **SA** account di accesso non deve essere utilizzata oppure abilitato. Se è necessario avere un account di accesso SQL, utilizzare una delle seguenti strategie hello:
+- Per impostazione predefinita, in Azure viene selezionata l'autenticazione di Windows durante l'installazione della macchina virtuale SQL Server. L'account di accesso **SA** è pertanto disabilitato e viene assegnata una password tramite il programma di installazione. È consigliabile non usare o abilitare l'account di accesso **SA**. Se è necessario avere un account di accesso SQL, usare una delle strategie seguenti:
 
-  - Creare un account SQL con un nome univoco che abbia appartenenza **sysadmin**. È possibile farlo dal portale hello abilitando **l'autenticazione di SQL** durante il provisioning.
+  - Creare un account SQL con un nome univoco che abbia appartenenza **sysadmin**. È possibile creare questo account dal portale attivando **Autenticazione di SQL Server** durante il provisioning.
 
     > [!TIP] 
-    > Se non si abilita l'autenticazione di SQL Server durante il provisioning, è necessario modificare manualmente la modalità di autenticazione hello troppo**SQL Server e l'autenticazione di Windows**. Per altre informazioni, vedere [Modifica della modalità di autenticazione del server](https://docs.microsoft.com/sql/database-engine/configure-windows/change-server-authentication-mode).
+    > Se non si attiva l'autenticazione di SQL Server durante il provisioning, è necessario modificare manualmente la modalità di autenticazione in **Autenticazione di SQL Server e di Windows**. Per altre informazioni, vedere [Modifica della modalità di autenticazione del server](https://docs.microsoft.com/sql/database-engine/configure-windows/change-server-authentication-mode).
 
-  - Se è necessario utilizzare hello **SA** account di accesso, abilitare hello login dopo il provisioning e assegnare una nuova password complessa.
+  - Se è necessario usare l'account di accesso **SA**, attivarlo dopo il provisioning e assegnare una nuova password complessa.
 
 ## <a name="follow-on-premises-best-practices"></a>Seguire le procedure consigliate locali
 
-Inoltre toohello consigliate descritte in questo argomento, è consigliabile rivedere e implementare procedure di sicurezza locali tradizionali hello dove applicabile. Per altre informazioni, vedere [Considerazioni sulla sicurezza per un'installazione di SQL Server](https://docs.microsoft.com/sql/sql-server/install/security-considerations-for-a-sql-server-installation).
+Oltre alle procedure descritte in questo argomento, è consigliabile rivedere e implementare le procedure di sicurezza locali tradizionali, ove applicabili. Per altre informazioni, vedere [Considerazioni sulla sicurezza per un'installazione di SQL Server](https://docs.microsoft.com/sql/sql-server/install/security-considerations-for-a-sql-server-installation).
 
 ## <a name="next-steps"></a>Passaggi successivi
 
 Se si è interessati anche alle procedure consigliate relative alle prestazioni, vedere [Procedure consigliate per le prestazioni per SQL Server in Macchine virtuali di Azure](virtual-machines-windows-sql-performance.md).
 
-Per altri argomenti correlati toorunning SQL Server in macchine virtuali di Azure, vedere [SQL Server in macchine virtuali di Azure Panoramica](virtual-machines-windows-sql-server-iaas-overview.md).
+Per altri argomenti relativi all'esecuzione di SQL Server nelle macchine virtuali di Azure, vedere [Panoramica di SQL Server in Macchine virtuali di Azure](virtual-machines-windows-sql-server-iaas-overview.md).
 

@@ -1,6 +1,6 @@
 ---
-title: aaaHow tooLink un tooAzure di sottoscrizione di Azure Active Directory B2C | Documenti Microsoft
-description: Fatturazione tooenable Guida dettagliata per il tenant di Azure Active Directory B2C in una sottoscrizione di Azure.
+title: Come collegare una sottoscrizione di Azure ad Azure AD B2C | Documentazione Microsoft
+description: Guida dettagliata all'abilitazione della fatturazione per tenant Azure AD B2C in una sottoscrizione di Azure.
 services: active-directory-b2c
 documentationcenter: dev-center-name
 author: rojasja
@@ -12,66 +12,66 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 12/05/2016
 ms.author: joroja
-ms.openlocfilehash: 07b2ed5f7f5f543c9cbb8e9a35107462448e9440
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5b9955b2af7f20a79981315fa33a0eb5380a5465
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="linking-an-azure-subscription-tooan-azure-b2c-tenant-toopay-for-usage-charges"></a>Collegamento toopay di tenant Azure B2C tooan una sottoscrizione di Azure per addebiti di utilizzo
+# <a name="linking-an-azure-subscription-to-an-azure-b2c-tenant-to-pay-for-usage-charges"></a>Collegamento di una sottoscrizione di Azure a un tenant di Azure B2C per pagare gli addebiti per l'utilizzo
 
-Gli addebiti di utilizzo correnti per Azure Active Directory B2C (o Azure Active Directory B2C) vengono fatturati tooan sottoscrizione Azure. È necessario per hello tenant amministratore tooexplicitly collegamento hello Azure Active Directory B2C tenant tooan dopo la creazione di tenant hello B2C stessa sottoscrizione di Azure.  Questo collegamento viene ottenuto tramite la creazione di un annuncio di Azure "B2C Tenant" risorsa di destinazione hello sottoscrizione di Azure. Molti tenant B2C può essere collegato tooa unica sottoscrizione di Azure e altre risorse di Azure (ad esempio, le macchine virtuali, archiviazione dei dati, LogicApps)
+I costi per l'utilizzo in corso di Azure Active Directory B2C (o Azure AD B2C) vengono addebitati a una sottoscrizione di Azure. Dopo la creazione del tenant B2C, l'amministratore del tenant Azure AD B2C deve collegarlo in modo esplicito a una sottoscrizione di Azure.  Questo collegamento viene realizzato mediante la creazione di una risorsa "Tenant B2C" di Azure AD B2C nella sottoscrizione di Azure di destinazione. È possibile collegare più tenant B2C a una singola sottoscrizione di Azure insieme ad altre risorse di Azure, come macchine virtuali, archivio dati o app per la logica.
 
 
 > [!IMPORTANT]
-> informazioni più recenti sull'utilizzo di fatturazione e i prezzi di B2C è hello dopo Hello: [dei prezzi di Azure Active Directory B2C](
-https://azure.microsoft.com/pricing/details/active-directory-b2c/)
+> Le informazioni più recenti sulla fatturazione relativa all'utilizzo e sui prezzi per B2C sono disponibili alla pagina [Prezzi di Azure Active Directory B2C](
+https://azure.microsoft.com/pricing/details/active-directory-b2c/).
 
 ## <a name="step-1---create-an-azure-ad-b2c-tenant"></a>Passaggio 1: Creare un tenant Azure AD B2C
 La prima operazione da eseguire è la creazione del tenant B2C. Se il tenant B2C di destinazione è già stato creato, è possibile ignorare questo passaggio. [Introduzione ad Azure AD B2C](active-directory-b2c-get-started.md)
 
-## <a name="step-2---open-azure-portal-in-hello-azure-ad-tenant-that-shows-your-azure-subscription"></a>Passaggio 2: Apri portale di Azure in hello Tenant di Azure AD che mostra la sottoscrizione di Azure
-Passare toohello [portale di Azure](https://portal.azure.com). Passare toohello Tenant di Azure AD che mostra hello desideri toouse sottoscrizione di Azure. In questo tenant di Azure AD è diverso dal tenant B2C hello. All'interno di hello portale di Azure, fare clic sul nome dell'account hello in alto a destra hello di hello tooselect tramite dashboard hello Tenant di Azure AD. Una sottoscrizione di Azure è tooproceed necessari. [Ottenere una sottoscrizione di Azure](https://account.windowsazure.com/signup?showCatalog=True)
+## <a name="step-2---open-azure-portal-in-the-azure-ad-tenant-that-shows-your-azure-subscription"></a>Passaggio 2: Aprire il portale di Azure nel tenant di Azure AD che mostra la sottoscrizione di Azure
+Passare al [portale di Azure](https://portal.azure.com). Passare al tenant di Azure AD che mostra la sottoscrizione di Azure che si vuole usare. Questo tenant di Azure AD è diverso dal tenant B2C. Nel portale di Azure fare clic sul nome dell'account nell'angolo superiore destro del dashboard e selezionare il tenant di Azure AD. Per continuare è necessaria una sottoscrizione di Azure. [Ottenere una sottoscrizione di Azure](https://account.windowsazure.com/signup?showCatalog=True)
 
-![Cambio tooyour Tenant di Azure AD](./media/active-directory-b2c-how-to-enable-billing/SelectAzureADTenant.png)
+![Passaggio al tenant di Azure AD](./media/active-directory-b2c-how-to-enable-billing/SelectAzureADTenant.png)
 
 ## <a name="step-3---create-a-b2c-tenant-resource-in-azure-marketplace"></a>Passaggio 3: Creare una risorsa Tenant B2C in Azure Marketplace
-Aprire Marketplace facendo clic sull'icona di hello Marketplace, oppure selezionando hello verde "+" in hello nell'angolo superiore sinistro del dashboard hello.  Cercare e selezionare Azure Active Directory B2C. Selezionare Crea.
+Per aprire Marketplace, fare clic sulla relativa icona o sul segno "+" verde nell'angolo superiore sinistro del dashboard.  Cercare e selezionare Azure Active Directory B2C. Selezionare Crea.
 
 ![Selezionare Marketplace](./media/active-directory-b2c-how-to-enable-billing/marketplace.png)
 
 ![Cercare AD B2C](./media/active-directory-b2c-how-to-enable-billing/searchb2c.png)
 
-Risorse di Azure Active Directory B2C Hello creare hello include finestra di dialogo seguenti parametri:
+La finestra di dialogo di creazione Risorsa di Azure AD B2C include i parametri seguenti:
 
-1. Tenant di Azure Active Directory B2C: selezionare un Tenant di Azure Active Directory B2C dall'elenco a discesa hello.  che mostra solo i tenant Azure AD B2C idonei.  Tenant B2C idonei soddisfano queste condizioni: hello amministratore globale del tenant hello B2C e tenant hello B2C non è attualmente associato tooan sottoscrizione di Azure
+1. Tenant Azure AD B2C: selezionare un tenant Azure AD B2C dall'elenco a discesa,  che mostra solo i tenant Azure AD B2C idonei.  I tenant B2C idonei soddisfano le condizioni seguenti: l'utente ne è l'amministratore globale e il tenant B2C non è attualmente associato a una sottoscrizione di Azure.
 
-2. Azure Active Directory B2C risorsa nome - è preselezionato toomatch hello di hello B2C Tenant
+2. Nome risorsa di Azure AD B2C: è preselezionata l'opzione che corrisponde al nome di dominio del tenant B2C.
 
-3. Sottoscrizione: sottoscrizione di Azure attiva di cui l'utente è amministratore o coamministratore.  È possibile aggiungere più tenant di Azure Active Directory B2C tooone sottoscrizione di Azure
+3. Sottoscrizione: sottoscrizione di Azure attiva di cui l'utente è amministratore o coamministratore.  È possibile aggiungere più tenant Azure AD B2C a una singola sottoscrizione di Azure.
 
 4. Gruppo di risorse e Località del gruppo di risorse: questo elemento consente di organizzare più risorse di Azure.  La scelta non influisce in alcun modo sulla località, sulle prestazioni o sullo stato di fatturazione del tenant B2C.
 
-5. Aggiungere toodashboard per tenant di tooyour B2C accesso più semplice e le impostazioni del tenant B2C hello e di informazioni di fatturazione ![Crea risorsa B2C](./media/active-directory-b2c-how-to-enable-billing/createresourceb2c.png)
+5. Selezionare l'opzione Aggiungi al dashboard per accedere più facilmente alle informazioni di fatturazione e alle impostazioni del tenant B2C. ![Creare una risorsa B2C](./media/active-directory-b2c-how-to-enable-billing/createresourceb2c.png)
 
 ## <a name="step-4---manage-your-b2c-tenant-resources-optional"></a>Passaggio 4: Gestire le risorse del tenant B2C (facoltativo)
-Una volta completata la distribuzione, una nuova risorsa "B2C Tenant" viene creata nel gruppo di risorse di destinazione hello e sottoscrizione di Azure correlate.  Insieme alle altre risorse di Azure viene visualizzata una nuova risorsa di tipo "Tenant B2C".
+Al termine della distribuzione viene creata una nuova risorsa "Tenant B2C" nel gruppo di risorse di destinazione e nella sottoscrizione di Azure correlata.  Insieme alle altre risorse di Azure viene visualizzata una nuova risorsa di tipo "Tenant B2C".
 
 ![Creare una risorsa B2C](./media/active-directory-b2c-how-to-enable-billing/b2cresourcedashboard.png)
 
-Fare clic su risorse tenant hello B2C, si è in grado di
-- Fare clic su informazioni di fatturazione tooreview nome sottoscrizione. Visualizzare Fatturazione e utilizzo.
-- Fare clic su impostazioni di Azure Active Directory B2C tooopen una nuova scheda del browser direttamente nel tenant di tooyour B2C pannello impostazioni
+Facendo clic sulla risorsa Tenant B2C è possibile:
+- Fare clic sul nome della sottoscrizione per rivedere le informazioni di fatturazione. Visualizzare Fatturazione e utilizzo.
+- Fare clic su Impostazioni di Azure AD B2C per aprire una nuova scheda del browser direttamente nel pannello Impostazioni del tenant B2C.
 - Inviare una richiesta di supporto.
-- Spostare il tooanother di risorse tenant B2C tooanother gruppo di risorse, o sottoscrizione Azure.  Questa opzione permette di cambiare la sottoscrizione di Azure a cui vengono addebitati i costi per l'utilizzo.
+- Spostare le risorse del tenant B2C in un'altra sottoscrizione di Azure o in un altro gruppo di risorse.  Questa opzione permette di cambiare la sottoscrizione di Azure a cui vengono addebitati i costi per l'utilizzo.
 
 ![Impostazioni della risorsa B2C](./media/active-directory-b2c-how-to-enable-billing/b2cresourcesettings.png)
 
 ## <a name="known-issues"></a>Problemi noti
-- Eliminazione del tenant B2C. Se viene creato un Tenant B2C, eliminato e ricreato con hello stesso nome di dominio, anche eliminare e ricreare la risorsa di "Collegamento" hello con hello stesso nome di dominio.  Noterai "Collegamento" risorsa in "Tutte le risorse" nel tenant di sottoscrizione hello tramite hello portale di Azure.
-- Restrizione autoimposta nel percorso di risorse regionali.  In rari casi, un utente potrebbe aver stabilito una restrizione regionale per la creazione di risorse di Azure.  Questa restrizione può impedire la creazione di hello di hello collegamento tra una sottoscrizione di Azure e un Tenant B2C. toomitigate, per ridurre questa restrizione.
+- Eliminazione del tenant B2C. Se un tenant B2C viene creato, eliminato e ricreato con lo stesso nome di dominio, è necessario eliminare e ricreare anche la risorsa "Collegamento" con lo stesso nome di dominio.  La risorsa "Collegamento" si trova in "Tutte le risorse" nel tenant di sottoscrizione mediante il portale di Azure.
+- Restrizione autoimposta nel percorso di risorse regionali.  In rari casi, un utente potrebbe aver stabilito una restrizione regionale per la creazione di risorse di Azure.  Questa restrizione può impedire la creazione del collegamento tra una sottoscrizione di Azure e un tenant B2C. Per attenuate il problema, ridurre questa restrizione.
 
 ## <a name="next-steps"></a>Passaggi successivi
 Dopo aver completato questa procedura per ogni tenant B2C, i costi vengono addebitati alla sottoscrizione di Azure in base al Contratto Enterprise o Azure Direct.
 - Esaminare l'utilizzo e la fatturazione all'interno della sottoscrizione di Azure selezionata
-- Esaminare i report dettagliati sull'utilizzo di giorno per giorno utilizzando hello [API di creazione di report di utilizzo](active-directory-b2c-reference-usage-reporting-api.md)
+- Esaminare i report dettagliati sull'utilizzo giornaliero con l'[API di segnalazione dell'utilizzo](active-directory-b2c-reference-usage-reporting-api.md)

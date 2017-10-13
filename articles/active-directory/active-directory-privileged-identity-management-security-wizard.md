@@ -1,6 +1,6 @@
 ---
-title: procedura guidata di protezione di aaaThe Azure AD Privileged Identity Management
-description: "Hello prima volta che si utilizza l'estensione di Azure Active Directory Privileged Identity Management hello, verrà visualizzata una procedura guidata di protezione. Questo articolo descrive i passaggi di hello per utilizzare la procedura guidata hello."
+title: Procedura guidata relativa alla sicurezza di Azure AD Privileged Identity Management
+description: Quando si usa l'estensione Azure Active Directory Privileged Identity Management per la prima volta, viene visualizzata una procedura guidata sulla sicurezza. Questo articolo descrive i passaggi della procedura guidata.
 services: active-directory
 documentationcenter: 
 author: billmath
@@ -15,30 +15,30 @@ ms.workload: identity
 ms.date: 02/27/2017
 ms.author: billmath
 ms.custom: pim ; H1Hack27Feb2017
-ms.openlocfilehash: 0b3019134d3c7cfac33b3acfcf430b4d4f67b119
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 260d178f3d8158411b3ad266e3b0d15edbebc722
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="using-hello-security-wizard-in-azure-ad-privileged-identity-management"></a>Utilizzando la procedura guidata protezione hello in Azure AD Privileged Identity Management 
-Se si hello prima persona toorun Azure Privileged Identity Management (PIM) per l'organizzazione, verrà visualizzata una procedura guidata. procedura guidata Hello consente di comprendere i rischi di sicurezza hello delle identità con privilegi e come toouse PIM tooreduce tali rischi. Non è necessario toomake le assegnazioni di ruolo tooexisting eventuali modifiche nella procedura guidata hello, se si preferisce toodo posticipato.
+# <a name="using-the-security-wizard-in-azure-ad-privileged-identity-management"></a>Uso della procedura guidata relativa alla sicurezza di Azure AD Privileged Identity Management 
+Se si è il primo utente a eseguire Azure Privileged Identity Management (PIM) per l'organizzazione, viene visualizzata una procedura guidata. La procedura guidata offre informazioni sui rischi di sicurezza delle identità con privilegi e su come usare PIM per ridurre tali rischi. Se si vuole farlo in seguito, non è necessario apportare modifiche alle assegnazioni dei ruoli esistenti nella procedura guidata.
 
-## <a name="what-tooexpect"></a>Quali tooexpect
-Prima che l'organizzazione inizia a usare PIM, tutte le assegnazioni di ruolo sono permanenti: gli utenti di hello sono sempre a questi ruoli, anche se non è necessario attualmente i propri privilegi.  innanzitutto Hello della procedura guidata hello Mostra un elenco di ruoli con privilegi elevati e il numero di utenti è attualmente in tali ruoli. È possibile analizzare in tooa particolare ruolo toolearn ulteriori informazioni su utenti, se uno o più di esse si ha dimestichezza.
+## <a name="what-to-expect"></a>Cosa aspettarsi
+Prima che l'organizzazione inizi a usare PIM, tutte le assegnazioni dei ruoli sono permanenti, ovvero gli utenti sono sempre presenti nei ruoli anche se in quel momento non necessitano dei privilegi del ruolo.  Il primo passaggio della procedura guidata visualizza un elenco dei ruoli con privilegi elevati e il numero di utenti attualmente presenti in tali ruoli. È possibile visualizzare i dettagli di un ruolo particolare per visualizzare altre informazioni sugli utenti nel caso in cui uno o più utenti non siano noti.
 
-secondo passaggio di Hello della procedura guidata hello offre le assegnazioni di ruolo dell'amministratore toochange opportunità.  
+Il secondo passaggio della procedura guidata offre la possibilità di modificare le assegnazioni dei ruoli di amministratore.  
 
 > [!WARNING]
-> È importante che siano presenti almeno un amministratore globale e più amministratori dei ruoli con privilegi con account aziendali e non account Microsoft. Se è presente solo un amministratore del ruolo con privilegi, organizzazione hello non sarà in grado di toomanage PIM se tale account viene eliminato.
-> Tenere inoltre le assegnazioni di ruolo permanente se un utente dispone di un account Microsoft (account utilizzano toosign in servizi tooMicrosoft Skype e Outlook.com). Se si prevede di toorequire autenticazione a più fattori per l'attivazione per tale ruolo, tale utente verrà bloccato.
+> È importante che siano presenti almeno un amministratore globale e più amministratori dei ruoli con privilegi con account aziendali e non account Microsoft. Se è presente un solo amministratore dei ruoli con privilegi, l'organizzazione non sarà in grado di gestire PIM se tale account viene eliminato.
+> Mantenere inoltre assegnazioni permanenti di ruoli se l'utente dispone di un account Microsoft (usato per accedere a servizi Microsoft come Skype e Outlook.com). Se si prevede di richiedere l'autenticazione MFA per l'attivazione di questo ruolo, l'utente verrà bloccato.
 > 
 > 
 
-Dopo avere apportato modifiche, la procedura guidata hello non mostrerà più. Hello successivo utilizzo di un ruolo con privilegi amministratore PIM, verrà visualizzato il dashboard PIM hello.  
+Dopo aver apportato le modifiche, la procedura guidata non verrà più visualizzata. Al successivo uso di PIM, anche da parte di un altro amministratore dei ruoli con privilegi, verrà visualizzato il dashboard di PIM.  
 
-* Se si sarebbe ad esempio tooadd o rimuovere utenti dai ruoli o modificare le assegnazioni da tooeligible permanente, leggere informazioni, vedere [come tooadd o rimuovere un ruolo utente](active-directory-privileged-identity-management-how-to-add-role-to-user.md).
-* Se si desidera toogive toomanage PIM, accedano a più utenti di leggere informazioni, vedere [modalità di accesso toomanage in PIM toogive](active-directory-privileged-identity-management-how-to-give-access-to-pim.md).
+* Se si vuole aggiungere o rimuovere utenti dai ruoli o modificare le assegnazioni da permanenti a idonee, vedere [Come aggiungere o rimuovere un ruolo utente](active-directory-privileged-identity-management-how-to-add-role-to-user.md)per altre informazioni.
+* Per concedere a più utenti l'accesso per la gestione di PIM, vedere l'articolo [Come concedere l'accesso per la gestione di Azure AD Privileged Identity Management](active-directory-privileged-identity-management-how-to-give-access-to-pim.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
 [!INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]

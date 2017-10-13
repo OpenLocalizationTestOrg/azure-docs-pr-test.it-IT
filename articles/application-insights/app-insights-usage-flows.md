@@ -1,6 +1,6 @@
 ---
-title: modelli di navigazione aaaAnalyze utente con l'utente scorre in Azure Application Insights | Documenti Microsoft
-description: "Analizzare la modalità di spostamento degli utenti tra pagine hello e le funzionalità dell'app web."
+title: Analizzare i modelli di spostamento degli utenti con Flussi utente in Azure Application Insights | Microsoft Docs
+description: "Analizzare il modo in cui gli utenti si spostano tra le pagine e le funzionalità dell'app Web."
 services: application-insights
 documentationcenter: 
 author: numberbycolors
@@ -12,28 +12,28 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 08/02/2017
 ms.author: cfreeman
-ms.openlocfilehash: d3f35dc78e9874e4b7974604bf91c40a5e5b78eb
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d17ed3dff08f00a1d6a2108608e42b29f95fbd84
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="analyze-user-navigation-patterns-with-user-flows-in-application-insights"></a>Analizzare i modelli di spostamento degli utenti con Flussi utente in Application Insights
 
 ![Strumento Flussi utente di Application Insights](./media/app-insights-usage-flows/flows.png)
 
-strumento utente scorre Hello Visualizza come utenti spostarsi tra pagine hello e le funzionalità del sito. È utile per rispondere a domande simili alle seguenti:
+Lo strumento Flussi utente permette di visualizzare il modo in cui gli utenti si spostano tra le pagine e le funzionalità del sito. È utile per rispondere a domande simili alle seguenti:
 * In che modo gli utenti lasciano una pagina del sito?
 * Su quali elementi di una pagina del sito fanno clic gli utenti?
-* In cui sono hello inserisce che gli utenti varianza la maggior parte del sito?
-* Quali sono le posizioni in cui gli utenti di ripetere l'operazione hello stessa azione ripetutamente?
+* In quali punti avviene più di frequente che gli utenti abbandonino il sito?
+* Ci sono punti in cui gli utenti ripetono più volte la stessa azione?
 
-strumento utente scorre Hello inizia da una visualizzazione di pagina iniziale o l'evento specificato. Questa visualizzazione pagina o un evento personalizzato, flussi di utente specificato. Mostra hello visualizzazioni pagina ed eventi personalizzati che gli utenti inviati immediatamente in un secondo momento durante una sessione, due i passaggi in seguito, e così via. Le linee di spessore variabile mostrano quante volte ogni percorso è stato seguito dagli utenti. Nodi speciali "Sessione" mostrano il numero di utenti non inviato alcun visualizzazioni di pagina o eventi personalizzati dopo hello precedente nodo evidenziazione in cui gli utenti probabilmente lasciato il sito.
+Lo strumento Flussi utente parte da un evento o una visualizzazione di pagina iniziale specificata. Data la visualizzazione di pagina o l'evento personalizzato, Flussi utente mostra le visualizzazioni di pagina e gli eventi personalizzati inviati immediatamente dopo dagli utenti durante una sessione, due passaggi dopo e così via. Le linee di spessore variabile mostrano quante volte ogni percorso è stato seguito dagli utenti. I nodi speciali "Sessione terminata" mostrano il numero di utenti che non hanno inviato visualizzazioni di pagina o eventi personalizzati dopo il nodo precedente, evidenziando il punto in cui probabilmente gli utenti hanno lasciato il sito.
 
 
 
 > [!NOTE]
-> La risorsa di Application Insights deve contenere le visualizzazioni di pagina o lo strumento di utente flussi di eventi personalizzati toouse hello. [Informazioni su come tooset verso l'alto la pagina toocollect app Visualizza automaticamente con Application Insights JavaScript SDK hello](app-insights-javascript.md).
+> Per poter usare lo strumento Flussi utente, la risorsa di Application Insights deve contenere visualizzazioni di pagina o eventi personalizzati. Vedere le [informazioni su come configurare l'app per la raccolta automatica delle visualizzazioni di pagina con Application Insights JavaScript SDK](app-insights-javascript.md).
 > 
 > 
 
@@ -41,42 +41,42 @@ strumento utente scorre Hello inizia da una visualizzazione di pagina iniziale o
 
 ![Scegliere un evento iniziale per Flussi utente](./media/app-insights-usage-flows/flows-initial-event.png)
 
-tooget avviato rispondere alle domande con lo strumento utente scorre hello, scegliere una visualizzazione di pagina iniziale o un evento personalizzato tooserve come punto di partenza per la visualizzazione hello hello:
-1. Fare clic sul collegamento hello in hello "cosa gli utenti eseguito dopo …?" titolo oppure fare clic sul pulsante Modifica hello. 
-2. Dall'elenco a discesa "Evento iniziale" hello, selezionare una visualizzazione della pagina o un evento personalizzato.
+Per iniziare a rispondere alle domande con lo strumento Flussi utente, scegliere una visualizzazione di pagina o un evento personalizzato iniziale da usare come punto di partenza per la visualizzazione:
+1. Fare clic sul collegamento nel titolo "Operazioni eseguite dagli utenti dopo…?" oppure fare clic sul pulsante Modifica. 
+2. Selezionare una visualizzazione di pagina o un evento personalizzato nell'elenco a discesa "Evento iniziale".
 3. Fare clic su "Crea grafico".
 
-colonna "Passaggio 1" Hello di visualizzazione hello Mostra ciò che gli utenti ha più di frequente subito dopo l'evento iniziale hello, ordinate dall'alto al basso da tooleast frequente. Hello "Passaggio 2" e Mostra le colonne successive degli utenti a cui è stati successivamente, creazione di un'immagine di tutti gli utenti di modi hello lo spostamento all'interno del sito.
+La colonna "Passaggio 1" della visualizzazione mostra cosa hanno fatto gli utenti con maggiore frequenza subito dopo l'evento iniziale, dalle azioni più frequenti alle meno frequenti ordinate dall'alto verso il basso. La colonna "Passaggio 2" e quelle successive mostrano cosa hanno fatto gli utenti successivamente, traducendo in un'immagine i diversi modi in cui gli utenti si sono spostati nel sito.
 
-Per impostazione predefinita, lo strumento di hello utente scorre un campionamento casuale solo hello ultime 24 ore di visualizzazioni di pagina e l'evento personalizzato dal sito. È possibile aumentare l'intervallo di tempo hello e modificare il bilanciamento hello di prestazioni e accuratezza per il campionamento casuale nel menu di modifica hello.
+Per impostazione predefinita, lo strumento Flussi utente esegue campionamenti casuali solo delle ultime 24 ore di visualizzazioni di pagina ed eventi personalizzati nel sito. È possibile aumentare l'intervallo di tempo e modificare il rapporto tra prestazioni e accuratezza per il campionamento casuale nel menu Modifica.
 
-Se alcune delle visualizzazioni pagina hello ed eventi personalizzati non sono rilevanti tooyou, fare clic su "X" hello nei nodi hello desiderato toohide. Dopo aver selezionato i nodi di hello toohide desiderati, fare clic sul pulsante "Crea grafico" hello seguito visualizzazione hello. toosee tutti i nodi di hello nascosti, fare clic sul pulsante Modifica hello, quindi cerca nella sezione "Eventi esclusi" hello.
+Se alcune delle visualizzazioni di pagina e degli eventi personalizzati non sono rilevanti, fare clic sulla "X" dei nodi da nascondere. Dopo aver selezionato i nodi da nascondere, fare clic sul pulsante "Crea grafico" nella parte inferiore della visualizzazione. Per vedere tutti i nodi nascosti, fare clic sul pulsante Modifica ed esaminare la sezione "Eventi esclusi".
 
-Se le visualizzazioni di pagina o a eventi personalizzati non sono presenti che si prevede di toosee sulla visualizzazione hello:
-* Verificare nella sezione "Eventi esclusi" hello nel menu di modifica hello.
-* Utilizzare il controllo di "Livello di dettaglio" hello hello modifica menu tooinclude meno frequenti gli eventi nella visualizzazione hello.
-* Se da parte degli utenti viene inviato raramente visualizzazione pagina hello o si prevede di evento personalizzato, provare a intervallo di tempo hello crescente di visualizzazione hello nel menu di modifica hello.
-* Assicurarsi di visualizzazione della pagina che hello o un evento personalizzato che previsto impostato toobe raccolti da hello Application Insights SDK nel codice sorgente hello del sito. [Altre informazioni sulla raccolta di eventi personalizzati](app-insights-api-custom-events-metrics.md).
+Se la visualizzazione non include visualizzazioni di pagina o eventi personalizzati previsti, seguire questa procedura:
+* Controllare la sezione "Eventi esclusi" del menu Modifica.
+* Usare il controllo "Livello di dettaglio" del menu Modifica per includere eventi meno frequenti nella visualizzazione.
+* Se la visualizzazione di pagina o l'evento personalizzato previsto viene inviato raramente dagli utenti, provare ad aumentare l'intervallo di tempo della visualizzazione nel menu Modifica.
+* Assicurarsi che la visualizzazione di pagina o l'evento personalizzato previsto sia configurato per la raccolta da parte di Application Insights SDK nel codice sorgente del sito. [Altre informazioni sulla raccolta di eventi personalizzati](app-insights-api-custom-events-metrics.md).
 
-Se si desidera più passaggi nella visualizzazione hello, utilizzare hello "Numero di passaggi" dispositivo di scorrimento hello toosee menu di modifica.
+Per vedere più passaggi nella visualizzazione, usare il dispositivo di scorrimento "Numero di passaggi" nel menu Modifica.
 
 ## <a name="after-visiting-a-page-or-feature-where-do-users-go-and-what-do-they-click"></a>Dopo aver visitato una pagina o una funzionalità, dove si spostano gli utenti e su quali elementi fanno clic?
 
-![Utilizzare flussi utente toounderstand in cui gli utenti fanno clic](./media/app-insights-usage-flows/flows-one-step.png)
+![Usare Flussi utente per determinare su quali elementi fanno clic gli utenti](./media/app-insights-usage-flows/flows-one-step.png)
 
-Se l'evento iniziale è una visualizzazione di pagina, hello prima colonna ("passaggio 1") della visualizzazione hello è toounderstand un modo rapido degli utenti a cui è state immediatamente dopo la visita la pagina hello. Provare ad aprire il sito in un toohello successiva finestra visualizzazione utente scorre. Confrontare le aspettative di interazione degli utenti con hello pagina toohello elencati eventi nella colonna "Passaggio 1" hello. Spesso, un elemento dell'interfaccia utente nella pagina hello apparentemente irrilevante tooyour team può essere tra più utilizzati nella pagina hello hello. Può trattarsi di un punto di partenza ideale per il sito tooyour miglioramenti di progettazione.
+Se l'evento iniziale è una visualizzazione di pagina, la prima colonna ("Passaggio 1") della visualizzazione offre un modo rapido per capire cosa hanno fatto gli utenti immediatamente dopo aver visitato la pagina. Provare ad aprire il sito in una finestra accanto alla visualizzazione di Flussi utente. Confrontare le aspettative sull'interazione degli utenti con la pagina con l'elenco di eventi nella colonna "Passaggio 1". Spesso, un elemento dell'interfaccia utente della pagina che al team sembra insignificante può essere tra i più usati nella pagina. Può essere un ottimo punto di partenza per migliorare la progettazione del sito.
 
-Se l'evento iniziale è un evento personalizzato, prima colonna hello Mostra ciò che gli utenti ha subito dopo l'esecuzione di tale azione. Come con le visualizzazioni di pagina, prendere in considerazione se hello osservata comportamento degli utenti soddisfi gli obiettivi del team e le aspettative dei clienti. Se l'evento iniziale selezionato è "Elemento aggiunto tooShopping carrello", ad esempio, un aspetto toosee se "Go tooCheckout" e "Completamento acquisto" vengono visualizzati nella visualizzazione hello dopo poco tempo. Se il comportamento di utente è molto diverso rispetto alle aspettative, utilizzare toounderstand visualizzazione hello come gli utenti vengono recupero "intercettati" in base alla progettazione corrente del sito.
+Se l'evento iniziale è un evento personalizzato, la prima colonna mostra cosa hanno fatto gli utenti subito dopo aver eseguito tale azione. Come con le visualizzazioni di pagina, valutare se il comportamento osservato degli utenti corrisponde agli obiettivi e alle aspettative del team. Se l'evento iniziale selezionato è "Aggiunta elemento al carrello", ad esempio, verificare se "Vai alla cassa" e "Acquisto completato" compaiono poco dopo nella visualizzazione. Se il comportamento degli utenti è molto diverso rispetto alle aspettative, usare la visualizzazione per capire come aiutare gli utenti a districarsi nell'attuale progettazione del sito.
 
-## <a name="where-are-hello-places-that-users-churn-most-from-your-site"></a>In cui sono hello inserisce che gli utenti varianza la maggior parte del sito?
+## <a name="where-are-the-places-that-users-churn-most-from-your-site"></a>In quali punti avviene più di frequente che gli utenti abbandonino il sito?
 
-Espressioni di controllo per i nodi "Sessione" apparentemente elevata-up in una colonna di visualizzazione di hello, in particolare all'inizio di un flusso. Ciò significa che molti utenti probabilmente variati dal sito dopo l'esempio hello percorso precedente delle pagine e le interazioni dell'interfaccia utente. In alcuni casi l'abbandono è previsto, ad esempio dopo aver completato un acquisto in un sito di e-commerce, ma in genere è segno di problemi di progettazione, prestazioni insoddisfacenti o altri aspetti del sito che è possibile migliorare.
+Cercare i nodi "Sessione terminata" mostrati nella parte alta delle colonne nella visualizzazione, in particolare all'inizio di un flusso. Ciò significa che molti utenti probabilmente hanno abbandonato il sito dopo aver seguito il percorso di pagine e interazioni dell'interfaccia utente precedente. In alcuni casi l'abbandono è previsto, ad esempio dopo aver completato un acquisto in un sito di e-commerce, ma in genere è segno di problemi di progettazione, prestazioni insoddisfacenti o altri aspetti del sito che è possibile migliorare.
 
-Tenere presente che i nodi "Sessione terminata" si basano unicamente sui dati di telemetria raccolti da questa risorsa di Application Insights. Se Application Insights non riceve dati di telemetria per alcune interazioni dell'utente, gli utenti Impossibile hanno ancora interagire con il sito in tale dopo strumento utente scorre hello afferma hello sessione è terminata.
+Tenere presente che i nodi "Sessione terminata" si basano unicamente sui dati di telemetria raccolti da questa risorsa di Application Insights. Se Application Insights non riceve dati di telemetria per determinate interazioni dell'utente, è comunque possibile che gli utenti abbiano interagito con il sito in quei modo dopo il momento indicato come termine della sessione dallo strumento Flussi utente.
 
-## <a name="are-there-places-where-users-repeat-hello-same-action-over-and-over"></a>Quali sono le posizioni in cui gli utenti di ripetere l'operazione hello stessa azione ripetutamente?
+## <a name="are-there-places-where-users-repeat-the-same-action-over-and-over"></a>Ci sono punti in cui gli utenti ripetono più volte la stessa azione?
 
-Cercare una visualizzazione della pagina o di un evento personalizzato che viene ripetuta da molti utenti i passaggi successivi in visualizzazione hello. In genere, ciò significa che gli utenti eseguono azioni ripetitive nel sito. Se si ritiene di ripetizioni, considerare Modifica progettazione hello del sito o l'aggiunta di ripetizioni di tooreduce nuove funzionalità. Ad esempio, aggiungere la funzionalità di modifica in blocco se gli utenti eseguono azioni ripetitive in ogni riga di un elemento tabella.
+Cercare una visualizzazione di pagina o un evento personalizzato ripetuto da molti utenti in passaggi successivi nella visualizzazione. In genere, ciò significa che gli utenti eseguono azioni ripetitive nel sito. In caso di azioni ripetitive, valutare la possibilità di modificare la progettazione del sito o di aggiungere nuove funzionalità per ridurre le ripetizioni. Ad esempio, aggiungere la funzionalità di modifica in blocco se gli utenti eseguono azioni ripetitive in ogni riga di un elemento tabella.
 
 ## <a name="common-questions"></a>Domande frequenti
 
@@ -84,15 +84,15 @@ Cercare una visualizzazione della pagina o di un evento personalizzato che viene
 
 ![Flussi utente con passaggi disconnessi](./media/app-insights-usage-flows/flows-disconnected.png)
 
-Se i passaggi (colonne) in una visualizzazione utente flussi vengono disconnessi, ciò significa nessuno dei percorsi di hello eseguiti dagli utenti tra i passaggi di hello sono sufficientemente frequenti toobe illustrato. tooshow meno frequenti eventi nella visualizzazione hello i passaggi di hello visualizzati connessi, regolare il dispositivo di scorrimento di hello "Livello di dettaglio" nel menu di modifica hello.
+Se i passaggi (colonne) in una visualizzazione di Flussi utente sono disconnessi, nessuno dei percorsi seguiti dagli utenti tra i passaggi è stato sufficientemente frequente da essere visualizzato. Per mostrare gli eventi meno frequenti nella visualizzazione in modo che i passaggi appaiano connessi, usare il dispositivo di scorrimento "Livello di dettaglio" nel menu Modifica.
 
-### <a name="does-hello-initial-event-represent-hello-first-time-hello-event-appears-in-a-session-or-any-time-it-appears-in-a-session"></a>Hello evento iniziale rappresentano hello prima ora hello evento viene visualizzato in una sessione o ogni volta che viene visualizzato in una sessione?
+### <a name="does-the-initial-event-represent-the-first-time-the-event-appears-in-a-session-or-any-time-it-appears-in-a-session"></a>L'evento iniziale rappresenta la prima volta che l'evento compare in una sessione oppure ogni volta che compare in una sessione?
 
-evento iniziale di Hello sulla visualizzazione hello rappresenta solo hello prima volta che un utente inviate tale visualizzazione della pagina o un evento personalizzato durante una sessione. Se gli utenti possono inviare l'evento iniziale hello più volte in una sessione, colonna "Passaggio 1" hello Mostra solo il comportano di utenti dopo hello *prima* istanza evento iniziale, non tutte le istanze.
+L'evento iniziale nella visualizzazione rappresenta solo la prima volta che un utente ha inviato tale visualizzazione di pagina o evento personalizzato durante una sessione. Se gli utenti possono inviare l'evento iniziale più volte in una sessione, la colonna "Passaggio 1" mostra solo il comportamento degli utenti dopo la *prima* istanza dell'evento iniziale, non dopo tutte le istanze.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
 * [Panoramica sull'uso](app-insights-usage-overview.md)
 * [Utenti, Sessioni ed Eventi](app-insights-usage-segmentation.md)
 * [Conservazione](app-insights-usage-retention.md)
-* [Aggiunta di eventi personalizzati tooyour app](app-insights-api-custom-events-metrics.md)
+* [Aggiunta di eventi personalizzati all'app](app-insights-api-custom-events-metrics.md)

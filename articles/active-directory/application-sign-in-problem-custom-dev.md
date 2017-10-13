@@ -1,6 +1,6 @@
 ---
-title: la firma nell'applicazione personalizzata tooan aaaProblems | Documenti Microsoft
-description: "Errori comuni che potrebbero causare si toonot essere in grado di toosign in un'applicazione che è stata sviluppata con Azure AD"
+title: Problemi di accesso a un'applicazione personalizzata | Microsoft Docs
+description: Errori comuni che potrebbero impedire l'accesso a un'applicazione sviluppata con Azure AD
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,21 +13,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: cc302e68ae6c129b74387c6fc5ba4fb45ccb8fb3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b0df23e040a73d18968f547eef7347f14cc577c6
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="problems-signing-in-tooan-custom-developed-application"></a>Problemi durante l'accesso nell'applicazione personalizzata tooan
+# <a name="problems-signing-in-to-an-custom-developed-application"></a>Problemi di accesso a un'applicazione personalizzata
 
-Esistono diversi errori che potrebbero causare si toonot essere in grado di toosign in un'app. Hello principali utenti verificano questo problema, infatti, le app configurate in modo errate.
+Ci sono diversi errori che potrebbero impedire l'accesso a un'app. Il motivo più frequente che causa questo problema è l'errata configurazione delle app.
 
-## <a name="errors-related-too-misconfigured-apps"></a>Errori correlati troppo non configurate correttamente le app
+## <a name="errors-related-to--misconfigured-apps"></a>Errori correlati alle app configurate in modo errato
 
-* Verificare che entrambe le configurazioni hello nel portale di hello corrispondano a quelli presenti nell'app. In particolare, confrontare ID applicazione/client, URL di risposta, chiavi/segreti client e URI ID app.
+* Verificare che le configurazioni nel portale corrispondano a quelle nell'app. In particolare, confrontare ID applicazione/client, URL di risposta, chiavi/segreti client e URI ID app.
 
-* Confrontare risorse hello si richiede accesso tooin codice con le autorizzazioni configurata hello in hello **risorse** scheda toomake aver effettuato la richiesta solo le risorse configurate.
+* Confrontare la risorsa a cui si richiede l'accesso nel codice con le autorizzazioni configurate nella scheda **Risorse necessarie** per assicurarsi di richiedere solo le risorse configurate.
 
 * Vedere [Azure AD in StackOverflow](http://stackoverflow.com/questions/tagged/azure-active-directory) per errori o problemi simili.
 
@@ -35,7 +35,7 @@ Esistono diversi errori che potrebbero causare si toonot essere in grado di toos
 
 [Guida per gli sviluppatori di Azure Active Directory](https://docs.microsoft.com/azure/active-directory/develop/active-directory-developers-guide)<br>
 
-[L'integrazione di applicazioni e consenso tooAzure AD](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications>)<br>
+[Integrazione di applicazioni con Azure Active Directory](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications>)<br>
 
 [Consenso e concessione delle autorizzazioni per le app con convergenza di Azure Active Directory v2.0](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-scopes)<br>
 

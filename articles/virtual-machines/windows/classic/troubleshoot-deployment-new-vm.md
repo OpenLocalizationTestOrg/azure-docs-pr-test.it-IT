@@ -1,5 +1,5 @@
 ---
-title: distribuzione macchina virtuale Windows classica aaaTroubleshoot | Documenti Microsoft
+title: Risolvere i problemi della distribuzione classica di una macchina virtuale Windows | Microsoft Docs
 description: Risolvere i problemi della distribuzione classica quando si crea una nuova macchina virtuale Windows in Azure
 services: virtual-machines-windows
 documentationcenter: 
@@ -12,14 +12,14 @@ ms.service: virtual-machines-windows
 ms.workload: na
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
-ms.topic: article
+ms.topic: troubleshooting
 ms.date: 12/16/2016
 ms.author: cjiang
-ms.openlocfilehash: aa12cb013a18e0572fbef8b7ea69106dd47c1fd9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 29647baeb878f2b85ba45aedd93c57d7db9c2550
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="troubleshoot-classic-deployment-issues-with-creating-a-new-windows-virtual-machine-in-azure"></a>Risolvere i problemi della distribuzione classica con la creazione di una nuova macchina virtuale Windows in Azure
 [!INCLUDE [virtual-machines-troubleshoot-deployment-new-vm-selectors](../../../../includes/virtual-machines-windows-troubleshoot-deployment-new-vm-selectors-include.md)]
@@ -27,66 +27,66 @@ ms.lasthandoff: 10/06/2017
 [!INCLUDE [virtual-machines-troubleshoot-deployment-new-vm-opening](../../../../includes/virtual-machines-troubleshoot-deployment-new-vm-opening-include.md)]
 
 > [!IMPORTANT] 
-> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md). In questo articolo viene illustrato l'utilizzo del modello di distribuzione classica hello. Si consiglia di utilizzano il modello di gestione risorse hello più nuove distribuzioni. Per la versione di hello Gestione risorse di questo articolo, vedere [qui](../../virtual-machines-windows-troubleshoot-deployment-new-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md). Questo articolo illustra l'uso del modello di distribuzione classica. Microsoft consiglia di usare il modello di Gestione risorse per le distribuzioni più recenti. Per la versione di Resource Manager di questo articolo, vedere [qui](../../virtual-machines-windows-troubleshoot-deployment-new-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
 [!INCLUDE [support-disclaimer](../../../../includes/support-disclaimer.md)]
 
 ## <a name="collect-audit-logs"></a>Raccogliere log di controllo
-toostart risoluzione dei problemi, controllo hello collect registra errore hello tooidentify associata hello problema.
+Per avviare la risoluzione dei problemi, raccogliere i log di controllo per identificare l'errore associato al problema.
 
-Nel portale di Azure hello, fare clic su **Sfoglia** > **macchine virtuali** > *la macchina virtuale Windows*  >   **Impostazioni** > **log di controllo**.
+Nel portale di Azure fare clic su **Esplora** > **Macchine virtuali** > *macchina virtuale Windows* > **Impostazioni** > **Log di controllo**.
 
 [!INCLUDE [virtual-machines-troubleshoot-deployment-new-vm-issue1](../../../../includes/virtual-machines-troubleshoot-deployment-new-vm-issue1-include.md)]
 
 [!INCLUDE [virtual-machines-windows-troubleshoot-deployment-new-vm-table](../../../../includes/virtual-machines-windows-troubleshoot-deployment-new-vm-table.md)]
 
-**Y:** se hello del sistema operativo è Windows generalizzato, viene caricato e/o acquisito con impostazione hello generalizzato, quindi non essere presenti gli eventuali errori. Analogamente, se hello del sistema operativo è Windows specializzati e viene caricato e/o acquisito con hello specializzati impostazione, quindi non essere presenti gli eventuali errori.
+**S:** se il sistema operativo è Windows generalizzato e viene caricato e/o acquisito con l'impostazione generalizzata, non si verificheranno errori. Analogamente, se il sistema operativo Windows è specializzato e viene caricato e/o acquisito con l'impostazione specializzata, non si verificheranno errori.
 
 **Errori di caricamento:**
 
-**N<sup>1</sup>:** se hello del sistema operativo è generalizzato di Windows e che è stato caricato come specializzato, si otterrà un errore di timeout di provisioning con hello VM bloccato nella schermata di configurazione guidata hello.
+**N<sup>1</sup>:** se il sistema operativo è Windows generalizzato e viene caricato come specializzato, si verificherà un errore di timeout del provisioning con la VM bloccata nella schermata di Configurazione guidata.
 
-**N<sup>2</sup>:** se hello del sistema operativo è Windows specializzati e che è stato caricato come generalizzato, si otterrà un errore di provisioning con hello VM bloccato nella schermata di configurazione guidata hello perché hello nuova macchina virtuale è in esecuzione con computer originale hello nome, nome utente e password.
+**N<sup>2</sup>:** se il sistema operativo è Windows specializzato e viene caricato come generalizzato, si verificherà un errore di provisioning con la VM bloccata nella schermata di Configurazione guidata perché la nuova VM è in esecuzione con nome computer, nome utente e password originali.
 
 **Risoluzione:**
 
-caricare entrambi questi errori, tooresolve hello VHD originale, disponibili in locale, con hello stessa impostazione come che per hello del sistema operativo (generalizzata o specializzata). tooupload come generalizzato, tenere presente che innanzitutto toorun sysprep. Vedere [creazione e caricamento di un disco rigido virtuale di Windows Server di tooAzure](createupload-vhd.md) per ulteriori informazioni.
+Per risolvere entrambi questi errori, caricare il disco rigido virtuale originale, disponibile in locale, con la stessa impostazione usata per il sistema operativo (generalizzato/specializzato). Per caricare il disco come generalizzato, ricordarsi di eseguire prima sysprep. Per altre informazioni, vedere [Creare e caricare un disco rigido virtuale con Windows Server in Azure](createupload-vhd.md) .
 
 **Errori di acquisizione:**
 
-**N<sup>3</sup>:** se hello del sistema operativo è generalizzato di Windows e l'acquisizione come specializzato, verrà generato un errore di timeout del provisioning poiché hello originale VM non è utilizzabile in quanto è contrassegnato come generalizzato.
+**N<sup>3</sup>:** se il sistema operativo è Windows generalizzato e viene acquisito come specializzato, si verificherà un errore di timeout del provisioning perché la VM originale non può essere usata essendo contrassegnata come generalizzata.
 
-**N<sup>4</sup>:** se hello del sistema operativo è Windows specializzati e che viene acquisito come generalizzato, si otterrà un errore di provisioning perché hello nuova macchina virtuale è in esecuzione con il nome del computer originale di hello, username e password. Inoltre, hello originale VM non è utilizzabile perché è contrassegnato come specializzate.
+**N<sup>4</sup>:** se il sistema operativo è Windows specializzato e viene acquisito come generalizzato, si verificherà un errore di provisioning perché la nuova VM è in esecuzione con nome computer, nome utente e password originali. La VM originale, inoltre, non può essere usata perché è contrassegnata come specializzata.
 
 **Risoluzione:**
 
-tooresolve entrambi questi errori, eliminare l'immagine corrente hello dal portale hello e [nuovamente acquisita da hello dischi rigidi virtuali correnti](capture-image.md) con hello stessa impostazione di quello per hello del sistema operativo (generalizzata o specializzata).
+Per risolvere entrambi questi errori, eliminare l'immagine corrente dal portale e [acquisirla di nuovo dai dischi rigidi virtuali correnti](capture-image.md) con la stessa impostazione usata per il sistema operativo (generalizzato/specializzato).
 
 ## <a name="issue-custom-gallery-marketplace-image-allocation-failure"></a>Problema: Immagine personalizzata/della raccolta/del marketplace - errore di allocazione
-Questo errore si verifica nelle situazioni hello nuova VM inviata tooa cluster che non è richiesta hello tooaccommodate di spazio libero disponibile, o non è in grado di supportare dimensioni della macchina virtuale hello richiesta. Non è possibile toomix diverse serie di macchine virtuali in hello stesso servizio cloud. Pertanto, se si desidera toocreate una nuova macchina virtuale di dimensioni diverse rispetto a ciò che può supportare il servizio cloud, hello calcolo richiesta avrà esito negativo.
+Questo errore si verifica nelle situazioni in cui la nuova richiesta di VM viene inviata a un cluster che non ha spazio disponibile sufficiente per soddisfare la richiesta o che non può supportare le dimensioni della VM richieste. Non è possibile combinare serie di VM diverse nello stesso servizio cloud. Se si vuole quindi creare una nuova VM con dimensioni diverse rispetto a quelle che il servizio cloud può supportare, la richiesta di calcolo non riuscirà.
 
-In base ai vincoli del servizio cloud hello hello è utilizzare toocreate hello nuova macchina virtuale, potrebbe verificarsi un errore causato da uno dei due situazioni.
+In base ai vincoli del servizio cloud usato per creare la nuova VM, si potrebbe verificare un errore causato da una delle due situazioni seguenti.
 
-**Causa 1:** servizio cloud hello è cluster specifico tooa bloccato o è il gruppo di affinità collegati tooan e pertanto bloccata tooa cluster specifico in base alla progettazione. In modo da richieste di nuove risorse di calcolo in quel gruppo di affinità vengono tentati in hello stesso cluster ospitate risorse esistenti hello. Tuttavia, hello dello stesso cluster potrebbe non hello supporto richiesto dimensioni delle macchine Virtuali o dispone di sufficiente spazio disponibile, causando un errore di allocazione. È true se le nuove risorse hello vengono create tramite un nuovo servizio cloud o un servizio cloud esistente.
+**Causa 1:** il servizio cloud è aggiunto a un cluster specifico oppure è collegato a un gruppo di affinità e perciò aggiunto a un cluster specifico in base alla progettazione. Le nuove richieste di risorse di calcolo in quel gruppo di affinità vengono quindi provate nello stesso cluster in cui sono ospitate le risorse esistenti. Tuttavia, lo stesso cluster potrebbe non supportare le dimensioni della VM richieste o non ha spazio disponibile sufficiente, causando un errore di allocazione. Questo vale indipendentemente dal fatto che le nuove risorse vengano create tramite un servizio cloud nuovo o esistente.
 
 **Risoluzione 1:**
 
 * Creare un nuovo servizio cloud e associarlo a un'area o una rete virtuale basata sull'area.
-* Creare una nuova macchina virtuale nel nuovo servizio cloud di hello.
-  Se si verifica un errore durante il tentativo di toocreate un nuovo servizio cloud, riprovare in un secondo momento o modificare hello area per il servizio cloud hello.
+* Crea una nuova VM nel nuovo servizio cloud.
+  Se si verifica un errore durante il tentativo di creare un nuovo servizio cloud, riprovare in un secondo momento o cambiare l'area per il servizio cloud.
 
 > [!IMPORTANT]
-> Se si sta tentando di toocreate una nuova macchina virtuale in un servizio cloud esistente ma non è stato e stato toocreate un nuovo servizio cloud per la nuova macchina virtuale, è possibile scegliere tooconsolidate tutte le macchine virtuali in hello stesso servizio cloud. toodo in tal caso, eliminare le macchine virtuali hello nel servizio cloud esistente hello e li riacquisire dei dischi nel nuovo servizio cloud di hello. Tuttavia, è importante tooremember che nuovo servizio cloud di hello avrà un nuovo nome e l'indirizzo VIP, pertanto sarà necessario tooupdate per tutte le dipendenze di hello che attualmente utilizzano queste informazioni per il servizio cloud esistente hello.
+> Se si sta provando a creare una nuova VM in un servizio cloud esistente, ma è stato necessario creare un nuovo servizio cloud per la nuova VM, è possibile scegliere di consolidare tutte le VM nello stesso servizio cloud. A questo scopo, eliminare le VM nel servizio cloud esistente e acquisirle di nuovo dai relativi dischi nel nuovo servizio cloud. È tuttavia importante ricordare che il nuovo servizio cloud avrà un nuovo nome e un nuovo indirizzo VIP, quindi sarà necessario aggiornarli per tutte le dipendenze che attualmente usano queste informazioni per il servizio cloud esistente.
 > 
 > 
 
-**Causa 2:** servizio cloud hello è associata a una rete virtuale è collegato tooan gruppo di affinità, pertanto è bloccato tooa cluster specifico in base alla progettazione. Tutte le nuove richieste di risorse di calcolo in tale gruppo di affinità vengono pertanto tentate in hello stesso cluster ospitate risorse esistenti hello. Tuttavia, hello dello stesso cluster potrebbe non hello supporto richiesto dimensioni delle macchine Virtuali o dispone di sufficiente spazio disponibile, causando un errore di allocazione. È true se le nuove risorse hello vengono create tramite un nuovo servizio cloud o un servizio cloud esistente.
+**Causa 2:** il servizio cloud è associato a una rete virtuale collegata a un gruppo di affinità e perciò è aggiunto a un cluster specifico in base alla progettazione. Tutte le nuove richieste di risorse di calcolo in quel gruppo di affinità vengono quindi provate nello stesso cluster in cui sono ospitate le risorse esistenti. Tuttavia, lo stesso cluster potrebbe non supportare le dimensioni della VM richieste o non ha spazio disponibile sufficiente, causando un errore di allocazione. Questo vale indipendentemente dal fatto che le nuove risorse vengano create tramite un servizio cloud nuovo o esistente.
 
 **Risoluzione 2:**
 
 * Crea una nuova rete virtuale a livello di area
-* Crea nuova macchina virtuale in una nuova rete virtuale hello hello.
-* [Connettere la rete virtuale esistente](https://azure.microsoft.com/blog/vnet-to-vnet-connecting-virtual-networks-in-azure-across-different-regions/) toohello nuova rete virtuale. Altre informazioni sulle [reti virtuali a livello di area](https://azure.microsoft.com/blog/2014/05/14/regional-virtual-networks/). In alternativa, è possibile [eseguire la migrazione della rete virtuale regionale rete virtuale basato su gruppo di affinità tooa](https://azure.microsoft.com/blog/2014/11/26/migrating-existing-services-to-regional-scope/)e quindi creare hello nuova macchina virtuale.
+* Creare la nuova VM nella nuova rete virtuale.
+* [Connettere la rete virtuale esistente](https://azure.microsoft.com/blog/vnet-to-vnet-connecting-virtual-networks-in-azure-across-different-regions/) alla nuova rete virtuale. Altre informazioni sulle [reti virtuali a livello di area](https://azure.microsoft.com/blog/2014/05/14/regional-virtual-networks/). In alternativa, è possibile [eseguire la migrazione della rete virtuale basata su gruppi di affinità alla rete virtuale a livello di area](https://azure.microsoft.com/blog/2014/11/26/migrating-existing-services-to-regional-scope/)e quindi creare la nuova VM.
 
 ## <a name="next-steps"></a>Passaggi successivi
 Se si incontrano problemi quando si avvia una VM Windows arrestata o si ridimensiona una VM Windows esistente in Azure, vedere l'articolo su come [risolvere i problemi della distribuzione classica con il riavvio o il ridimensionamento di una macchina virtuale Windows esistente in Azure](virtual-machines-windows-classic-restart-resize-error-troubleshooting.md).

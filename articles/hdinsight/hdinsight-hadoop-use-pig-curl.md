@@ -1,6 +1,6 @@
 ---
-title: aaaUse Hadoop Pig in HDInsight - Azure con | Documenti Microsoft
-description: Informazioni su come cluster di toouse REST toorun Pig Latin i processi in un Hadoop in HDInsight di Azure.
+title: Usare Pig di Hadoop con REST in HDInsight - Azure | Microsoft Docs
+description: Informazioni su come usare REST per eseguire processi Pig Latin in un cluster Hadoop in Azure HDInsight.
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,27 +16,27 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/31/2017
 ms.author: larryfr
-ms.openlocfilehash: 760139e3caad9103d8c9d34e7f548d476014b5ae
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a86864a779b0de1c6d5669cfbba0f3e1a27f1ff1
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="run-pig-jobs-with-hadoop-on-hdinsight-by-using-rest"></a>Eseguire processi Pig con Hadoop in HDInsight tramite REST
 
 [!INCLUDE [pig-selector](../../includes/hdinsight-selector-use-pig.md)]
 
-Informazioni su come toorun latino Pig processi rendendo cluster Azure HDInsight tooan di richieste REST. CURL è toodemonstrate usato come è possibile interagire con HDInsight mediante l'API REST WebHCat hello.
+Informazioni su come eseguire processi Pig Latin inviando richieste REST a un cluster HDInsight di Azure. Per illustrare come poter interagire con HDInsight usando l'API REST WebHCat, viene usato Curl.
 
 > [!NOTE]
-> Se si ha già familiarità con i server basati su Linux, Hadoop, ma sono tooHDInsight nuovo, vedere [suggerimenti basati su Linux di HDInsight](hdinsight-hadoop-linux-information.md).
+> Se si ha già familiarità con l'uso di server Hadoop basati su Linux ma non si è esperti di HDInsight, vedere [Informazioni sull'uso di HDInsight in Linux](hdinsight-hadoop-linux-information.md).
 
 ## <a id="prereq"></a>Prerequisiti
 
 * Un cluster Azure HDInsight (Hadoop in HDInsight) (basato su Linux o basato su Windows)
 
   > [!IMPORTANT]
-  > Linux è hello solo sistema operativo utilizzato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+  > Linux è l'unico sistema operativo usato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 * [Curl](http://curl.haxx.se/)
 
@@ -45,74 +45,74 @@ Informazioni su come toorun latino Pig processi rendendo cluster Azure HDInsight
 ## <a id="curl"></a>Eseguire processi Pig mediante Curl
 
 > [!NOTE]
-> Hello API REST è protetto tramite [l'autenticazione di base](http://en.wikipedia.org/wiki/Basic_access_authentication). Verificare sempre le richieste utilizzando tooensure HTTPS (Secure HTTP) che le credenziali vengono inviate in modo sicuro toohello server.
+> L'API REST viene protetta tramite l' [autenticazione dell'accesso di base](http://en.wikipedia.org/wiki/Basic_access_authentication). Per essere certi che le credenziali vengano inviate al server in modo sicuro, eseguire sempre le richieste usando il protocollo Secure HTTP (HTTPS).
 >
-> Quando si utilizzano i comandi di hello in questa sezione, sostituire `USERNAME` con hello utente tooauthenticate toohello cluster e sostituire `PASSWORD` con password hello per account utente di hello. Sostituire `CLUSTERNAME` con nome hello del cluster.
+> Quando si usano i comandi riportati in questa sezione, sostituire `USERNAME` con l'utente da autenticare nel cluster e `PASSWORD` con la password dell'account utente. Sostituire `CLUSTERNAME` con il nome del cluster.
 >
 
 
-1. Dalla riga di comando, utilizzare hello dopo che è possibile connettersi a cluster di HDInsight tooyour tooverify di comando:
+1. Da una riga di comando usare il comando seguente per verificare che sia possibile connettersi al cluster HDInsight:
 
     ```bash
     curl -u USERNAME:PASSWORD -G https://CLUSTERNAME.azurehdinsight.net/templeton/v1/status
     ```
 
-    Si dovrebbe ricevere hello risposta JSON seguente:
+    Dovrebbe essere visualizzata la risposta JSON seguente:
 
         {"status":"ok","version":"v1"}
 
-    i parametri di Hello utilizzati in questo comando sono i seguenti:
+    I parametri usati in questo comando sono i seguenti:
 
-    * **-u**: nome utente hello e la password utilizzati richiesta hello tooauthenticate
+    * **-u**: il nome utente e la password usati per autenticare la richiesta.
     * **-G**: indica che è una richiesta GET.
 
-     Hello inizio hello URL, **https://CLUSTERNAME.azurehdinsight.net/templeton/v1**, hello uguale per tutte le richieste. percorso di Hello, **/status**, indica che la richiesta hello stato tooreturn hello di WebHCat (noto anche come Templeton) per il server di hello.
+     L'inizio dell'URL, **https://CLUSTERNAME.azurehdinsight.net/templeton/v1**, sarà uguale per tutte le richieste. Il percorso, **/status**, indica che la richiesta deve restituire lo stato di WebHCat, noto anche come Templeton, per il server.
 
-2. Utilizzare hello seguente codice toosubmit un cluster di toohello processo Pig latino:
+2. Usare il seguente codice per inviare un processo Pig Latin al cluster:
 
     ```bash
     curl -u USERNAME:PASSWORD -d user.name=USERNAME -d execute="LOGS=LOAD+'/example/data/sample.log';LEVELS=foreach+LOGS+generate+REGEX_EXTRACT($0,'(TRACE|DEBUG|INFO|WARN|ERROR|FATAL)',1)+as+LOGLEVEL;FILTEREDLEVELS=FILTER+LEVELS+by+LOGLEVEL+is+not+null;GROUPEDLEVELS=GROUP+FILTEREDLEVELS+by+LOGLEVEL;FREQUENCIES=foreach+GROUPEDLEVELS+generate+group+as+LOGLEVEL,COUNT(FILTEREDLEVELS.LOGLEVEL)+as+count;RESULT=order+FREQUENCIES+by+COUNT+desc;DUMP+RESULT;" -d statusdir="/example/pigcurl" https://CLUSTERNAME.azurehdinsight.net/templeton/v1/pig
     ```
 
-    i parametri di Hello utilizzati in questo comando sono i seguenti:
+    I parametri usati in questo comando sono i seguenti:
 
-    * **-d**: perché `-G` non viene utilizzato, richiesta hello predefinite metodo POST toohello. `-d`Specifica i valori dei dati hello vengono inviati con richiesta di hello.
+    * **-d**: dato che `-G` non viene usato, la richiesta userà il metodo POST per impostazione predefinita. `-d` specifica i valori di dati che vengono inviati con la richiesta.
 
-    * **User.Name**: hello utente che esegue il comando hello
-    * **eseguire**: hello Pig latino istruzioni tooexecute
-    * **statusdir**: directory hello hello stato per questo processo viene scritto
+    * **user.name**: l'utente che esegue il comando.
+    * **execute**: le istruzioni Pig Latin da eseguire.
+    * **statusdir**: la directory in cui è scritto lo stato del processo.
 
     > [!NOTE]
-    > Si noti che gli spazi di hello in latino Pig istruzioni vengono sostituiti da hello `+` carattere se usato con Curl.
+    > Si noti che gli spazi tra le istruzioni Pig Latin vengono sostituiti dal carattere `+` se è in uso Curl.
 
-    Questo comando deve restituire un ID di processo che può essere utilizzato toocheck hello stato del processo di hello, ad esempio:
+    Questo comando dovrebbe restituire un ID processo utilizzabile per verificare lo stato del processo, ad esempio:
 
         {"id":"job_1415651640909_0026"}
 
-3. stato hello toocheck del processo di hello, utilizzare hello comando seguente
+3. Per verificare lo stato del processo, usare il comando seguente:
 
      ```bash
     curl -G -u USERNAME:PASSWORD -d user.name=USERNAME https://CLUSTERNAME.azurehdinsight.net/templeton/v1/jobs/JOBID | jq .status.state
     ```
 
-     Sostituire `JOBID` con valore hello restituito nel passaggio precedente hello. Ad esempio, se hello restituirà valore `{"id":"job_1415651640909_0026"}`, quindi `JOBID` è `job_1415651640909_0026`.
+     Sostituire `JOBID` con il valore restituito nel passaggio precedente. Se, ad esempio, il valore restituito è `{"id":"job_1415651640909_0026"}`, `JOBID` sarà `job_1415651640909_0026`.
 
-    Se ha completato il processo di hello, non è stato hello **SUCCEEDED**.
+    Se il processo è stato completato, lo stato è **SUCCEEDED**.
 
     > [!NOTE]
-    > Questa richiesta Curl restituisce documenti JavaScript Object Notation (JSON) con informazioni sul processo hello e jq è usato tooretrieve hello solo valore di stato.
+    > Questa richiesta Curl restituisce un documento JSON (JavaScript Object Notation) con informazioni sul processo e jq viene usato per recuperare il valore di stato.
 
 ## <a id="results"></a>Visualizzare risultati
 
-Quando hello cambiato lo stato del processo di hello troppo**SUCCEEDED**, è possibile recuperare i risultati di hello di hello processo. Hello `statusdir` parametro passato con query hello contiene percorso hello hello del file di output; in questo caso, `/example/pigcurl`.
+Quando lo stato del processo viene modificato in **SUCCEEDED**, è possibile recuperare i risultati del processo. Il parametro `statusdir` passato con la query contiene il percorso del file di output; in questo caso `/example/pigcurl`.
 
-HDInsight è possibile utilizzare l'archiviazione di Azure o archivio Azure Data Lake come archivio dati predefinito di hello. Esistono vari modi tooget dati hello a seconda di quale utilizzare. Per ulteriori informazioni, vedere hello archiviazione sezione hello [HDInsight basati su Linux informazioni](hdinsight-hadoop-linux-information.md#hdfs-azure-storage-and-data-lake-store) documento.
+HDInsight usa l'archiviazione di Azure o Azure Data Lake Store come archivio dati predefinito. In base all'archivio usato, sono disponibili vari modi per ottenere i dati. Per altre informazioni, vedere la sezione relativa all'archiviazione del documento [Informazioni sull'uso di HDInsight in Linux](hdinsight-hadoop-linux-information.md#hdfs-azure-storage-and-data-lake-store).
 
 ## <a id="summary"></a>Riepilogo
 
-Come illustrato in questo documento, è possibile utilizzare un toorun di richiesta HTTP non elaborato, monitoraggio e visualizzare i risultati dei processi Pig hello il cluster HDInsight.
+Come illustrato in questo documento, è possibile usare una richiesta HTTP non elaborata per eseguire, monitorare e visualizzare i risultati dei processi Pig nel cluster HDInsight.
 
-Per ulteriori informazioni sull'interfaccia REST hello usata in questo articolo, vedere hello [WebHCat riferimento](https://cwiki.apache.org/confluence/display/Hive/WebHCat+Reference).
+Per altre informazioni sull'interfaccia REST usata in questo articolo, vedere le [informazioni di riferimento su WebHCat](https://cwiki.apache.org/confluence/display/Hive/WebHCat+Reference).
 
 ## <a id="nextsteps"></a>Passaggi successivi
 

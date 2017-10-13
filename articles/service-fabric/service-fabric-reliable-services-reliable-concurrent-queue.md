@@ -1,5 +1,5 @@
 ---
-title: aaaReliableConcurrentQueue in Azure Service Fabric
+title: ReliableConcurrentQueue in Azure Service Fabric
 description: "ReliableConcurrentQueue è una coda ad alta velocità effettiva che consente operazioni di accodamento e rimozione dalla coda in parallelo."
 services: service-fabric
 documentationcenter: .net
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 5/1/2017
 ms.author: sangarg
-ms.openlocfilehash: 78a9905996b9ab265c1288d2b49753638d7bc445
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 122cb48149477f295a65b8ee623c647b6db10a86
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="introduction-tooreliableconcurrentqueue-in-azure-service-fabric"></a>Introduzione tooReliableConcurrentQueue in Azure Service Fabric
-La coda simultanea affidabile è una coda replicata, transazionale e asincrona che assicura concorrenza elevata per le operazioni di accodamento e rimozione dalla coda. È progettato toodeliver una velocità effettiva elevata e bassa latenza ordinando abbassando hello strict FIFO fornito da [coda affidabile](https://msdn.microsoft.com/library/azure/dn971527.aspx) e fornisce invece un ordinamento di sforzo.
+# <a name="introduction-to-reliableconcurrentqueue-in-azure-service-fabric"></a>Introduzione a ReliableConcurrentQueue in Azure Service Fabric
+La coda simultanea affidabile è una coda replicata, transazionale e asincrona che assicura concorrenza elevata per le operazioni di accodamento e rimozione dalla coda. È progettata per offrire velocità effettiva elevata e bassa latenza allentando il vincolo di ordinamento FIFO fornito dalla [coda affidabile](https://msdn.microsoft.com/library/azure/dn971527.aspx) e fornisce invece un ordinamento in base al migliore sforzo.
 
 ## <a name="apis"></a>API
 
@@ -33,20 +33,20 @@ La coda simultanea affidabile è una coda replicata, transazionale e asincrona c
 
 ## <a name="comparison-with-reliable-queuehttpsmsdnmicrosoftcomlibraryazuredn971527aspx"></a>Confronto con la [coda affidabile](https://msdn.microsoft.com/library/azure/dn971527.aspx)
 
-Coda simultanea affidabile è disponibile un'alternativa troppo[coda affidabile](https://msdn.microsoft.com/library/azure/dn971527.aspx). Deve essere usata nei casi in cui non è necessario l'ordine FIFO in modo vincolante poiché l'ordine FIFO richiede un compromesso in termini di concorrenza.  [Coda affidabile](https://msdn.microsoft.com/library/azure/dn971527.aspx) utilizza blocchi tooenforce FIFO ordinamento con tooenqueue consentiti al massimo una transazione e la maggior parte di una transazione consentita toodequeue alla volta. In confronto, affidabile simultanee nella coda vengono ridotti i hello ordinamento vincolo e consente a qualsiasi numero toointerleave transazioni simultanee loro enqueue e operazioni di rimozione dalla coda. L'ordine sforzo è fornito, tuttavia, hello ordinamento relativo di due valori in una coda simultanea affidabile può mai essere garantita.
+La coda simultanea affidabile è disponibile come alternativa alla [coda affidabile](https://msdn.microsoft.com/library/azure/dn971527.aspx). Deve essere usata nei casi in cui non è necessario l'ordine FIFO in modo vincolante poiché l'ordine FIFO richiede un compromesso in termini di concorrenza.  La [coda affidabile](https://msdn.microsoft.com/library/azure/dn971527.aspx) usa i blocchi per applicare l'ordinamento FIFO, consentendo al massimo una transazione per l'accodamento e al massimo una transazione per la rimozione dalla coda. La coda simultanea affidabile allenta invece il vincolo di ordinamento e consente a un qualsiasi numero di transazioni simultanee di interfoliare le operazioni di accodamento e rimozione dalla coda. Viene fornito l'ordinamento in base al migliore sforzo; tuttavia non è mai possibile garantire l'ordinamento dei due valori in una coda simultanea affidabile.
 
 La coda simultanea affidabile garantisce maggiore velocità effettiva e latenza ridotta rispetto alla [coda affidabile](https://msdn.microsoft.com/library/azure/dn971527.aspx) ogni volta che sono presenti più transazioni simultanee che eseguono operazioni di accodamento e/o rimozione dalla coda.
 
-Un esempio di caso d'uso per hello ReliableConcurrentQueue è hello [Message Queue](https://en.wikipedia.org/wiki/Message_queue) scenario. In questo scenario, uno o più produttori messaggio creare e aggiungere elementi toohello coda e il pull dei messaggi dalla coda di hello di uno o più consumer di messaggi e li elaborano. Più producer e consumer può lavorare in modo indipendente, utilizzando le transazioni simultanee nella coda di hello tooprocess ordine.
+Un esempio di caso d'uso per ReliableConcurrentQueue è lo scenario della [coda di messaggi](https://en.wikipedia.org/wiki/Message_queue). In questo scenario uno o più producer di messaggi creano e aggiungono elementi nella coda e uno o più consumer di messaggi prelevano i messaggi dalla coda e li elaborano. Più producer e consumer possono operare in modo indipendente usando le transazioni simultanee per elaborare la coda.
 
 ## <a name="usage-guidelines"></a>Linee guida per l'uso
-* coda Hello prevede che gli elementi di hello in coda hello hanno un periodo di memorizzazione bassa. Ovvero elementi hello sarebbero non rimanere nella coda di hello per molto tempo.
-* coda di Hello non garantisce l'ordine FIFO strict.
-* coda di Hello non legge il proprio scritture. Se un elemento viene accodato all'interno di una transazione, non sarà visibile tooa dequeuer all'interno di hello stessa transazione.
-* Le rimozioni dalla coda non sono isolate tra loro. Se l'elemento *A* viene rimosso dalla coda nella transazione *txnA*, anche se *txnA* non viene eseguito, elemento *A* non sarà visibile tooa simultanee transazione *txnB*.  Se *txnA* , interrompe *A* diventerà visibile troppo*txnB* immediatamente.
-* *TryPeekAsync* comportamento può essere implementato usando un *TryDequeueAsync* e quindi l'interruzione delle transazioni hello. Un esempio è reperibile nella sezione modelli di programmazione hello.
-* Il conteggio non è transazionale. Può essere utilizzato tooget un'idea del numero di hello di elementi nella coda di hello, ma rappresenta un punto nel tempo e non può essere ritenuto affidabile.
-* L'elaborazione in hello costosa elementi rimossi dalla coda non devono essere eseguiti mentre hello transazione è attiva, tooavoid transazioni a esecuzione prolungata che potrebbero avere un impatto sulle prestazioni nel sistema hello.
+* Il periodo di conservazione previsto per gli elementi nella coda è minimo, ovvero gli elementi non rimangono nella coda per molto tempo.
+* La coda non garantisce l'ordine FIFO in modo vincolante.
+* La coda non legge le proprie scritture. Se un elemento viene accodato all'interno di una transazione, non sarà visibile a un dequeuer all'interno della stessa transazione.
+* Le rimozioni dalla coda non sono isolate tra loro. Se l'elemento *A* viene rimosso dalla coda nella transazione *txnA*, anche se non viene eseguito il commit di *txnA*, l'elemento *A* non sarà visibile a una transazione simultanea *txnB*.  Se la transazione *txnA* viene interrotta, *A* diventa immediatamente visibile alla transazione *txnB*.
+* Il comportamento di *TryPeekAsync* può essere implementato usando un *TryDequeueAsync* e quindi interrompendo la transazione. Un esempio in proposito è reperibile nella sezione relativa ai modelli di programmazione.
+* Il conteggio non è transazionale. Può dare un'idea del numero di elementi in una coda, ma rappresenta un valore temporizzato e non può essere ritenuto affidabile.
+* Non è opportuno eseguire un'elaborazione dispendiosa sugli elementi rimossi dalla coda mentre la transazione è attiva per evitare transazioni ad esecuzione prolungata che possono impattare sulle prestazioni del sistema.
 
 ## <a name="code-snippets"></a>Frammenti di codice
 Ecco alcuni frammenti di codice e i relativi output previsti. La gestione delle eccezioni viene ignorata in questa sezione.
@@ -66,7 +66,7 @@ using (var txn = this.StateManager.CreateTransaction())
 }
 ```
 
-Si supponga che l'attività hello completata correttamente e che non esistevano Nessuna transazione simultanea Modifica coda hello. Hello utente potrà quindi aspettarsi elementi hello toocontain della coda di hello in uno dei seguenti ordini hello:
+Si supponga che l'attività sia stata completata e che non siano presenti transazioni simultanee che modificano la coda. L'utente può presupporre che la coda contenga gli elementi in uno dei seguenti ordini:
 
 > 10, 20
 
@@ -95,11 +95,11 @@ using (var txn = this.StateManager.CreateTransaction())
 }
 ```
 
-Si supponga che le attività di hello completato, che l'attività hello vengano eseguiti in parallelo e che si sono verificati non altre transazioni simultanee Modifica coda hello. È non possibile eseguire alcuna inferenza sull'ordine di hello di elementi nella coda di hello. Per questo frammento di codice, gli elementi di hello vengano visualizzati in uno dei 4 hello! ordinamenti possibili.  coda Hello tenterà elementi hello tookeep in ordine di hello originale (accodato), ma può essere forzato tooreorder loro scadenza tooconcurrent operazioni o errori.
+Si supponga che le attività siano state completate, che siano state eseguite in parallelo e che non sono presenti altre transazioni concorrenti che modificano la coda. Non è possibile eseguire alcuna inferenza sull'ordine degli elementi nella coda. Per questo frammento di codice, gli elementi possono comparire in uno qualsiasi dei 4 ordinamenti possibili.  La coda tenterà di mantenere gli elementi nell'ordine (in coda) originale, ma potrebbe essere necessario eseguire un riordino a causa di operazioni simultanee o errori.
 
 
 ### <a name="dequeueasync"></a>DequeueAsync
-Ecco alcuni frammenti di codice per l'utilizzo di TryDequeueAsync seguito dall'output di hello previsto. Si supponga di che tale coda hello è già popolato con i seguenti elementi nella coda di hello hello:
+Ecco alcuni frammenti di codice per l'uso di TryDequeueAsync con i relativi output previsti. Si supponga che la coda sia già stata popolata con i seguenti elementi nella coda:
 > 10, 20, 30, 40, 50, 60
 
 - *Caso 1: Singola attività di rimozione dalla coda*
@@ -115,7 +115,7 @@ using (var txn = this.StateManager.CreateTransaction())
 }
 ```
 
-Si supponga che l'attività hello completata correttamente e che non esistevano Nessuna transazione simultanea Modifica coda hello. Poiché è non possibile eseguire alcuna inferenza sull'ordine di hello di elementi di hello nella coda di hello, tutti e tre elementi hello potrebbe da rimuovere dalla coda, in qualsiasi ordine. coda Hello tenterà elementi hello tookeep in ordine di hello originale (accodato), ma può essere forzato tooreorder loro scadenza tooconcurrent operazioni o errori.  
+Si supponga che l'attività sia stata completata e che non siano presenti transazioni simultanee che modificano la coda. Poiché non è possibile eseguire alcuna inferenza sull'ordine degli elementi nella coda, tutti e tre gli elementi possono essere rimossi dalla coda in qualsiasi ordine. La coda tenterà di mantenere gli elementi nell'ordine (in coda) originale, ma potrebbe essere necessario eseguire un riordino a causa di operazioni simultanee o errori.  
 
 - *Caso 2: Attività di rimozione dalla coda in parallelo*
 
@@ -141,13 +141,13 @@ using (var txn = this.StateManager.CreateTransaction())
 }
 ```
 
-Si supponga che le attività di hello completato, che l'attività hello vengano eseguiti in parallelo e che si sono verificati non altre transazioni simultanee Modifica coda hello. Poiché nessun inferenza può essere effettuata sull'ordine di hello di elementi di hello nella coda di hello hello elenchi *dequeue1* e *dequeue2* conterrà ogni due elementi, in qualsiasi ordine.
+Si supponga che le attività siano state completate, che siano state eseguite in parallelo e che non sono presenti altre transazioni concorrenti che modificano la coda. Poiché non può essere eseguita alcuna inferenza sull'ordine degli elementi nella coda, gli elenchi *dequeue1* e *dequeue2* conterranno i due elementi in qualsiasi ordine.
 
-lo stesso elemento verrà Hello *non* entrambi gli elenchi. Di conseguenza, se dequeue1 contiene i valori *10*, *30*, dequeue2 conterrà i valori *20* e *40*.
+Lo stesso elemento *non* sarà presente in entrambi gli elenchi. Di conseguenza, se dequeue1 contiene i valori *10*, *30*, dequeue2 conterrà i valori *20* e *40*.
 
 - *Caso 3: ordine di rimozione dalla coda con interruzione della transazione*
 
-L'interruzione di una transazione con in transito rimuove dalla coda riporta elementi hello sul vertice hello della coda di hello. ordine di Hello in cui gli elementi di hello vengano rimessi sul vertice hello della coda di hello non è garantito. Esaminiamo hello seguente codice:
+L'interruzione di una transazione con rimozioni delle coda in transito riporta gli elementi all'inizio della coda. L'ordine in cui gli elementi vengono reinseriti all'inizio della coda non è garantito. Esaminare il codice seguente:
 
 ```
 using (var txn = this.StateManager.CreateTransaction())
@@ -155,25 +155,25 @@ using (var txn = this.StateManager.CreateTransaction())
     await this.Queue.TryDequeueAsync(txn, cancellationToken);
     await this.Queue.TryDequeueAsync(txn, cancellationToken);
 
-    // Abort hello transaction
+    // Abort the transaction
     await txn.AbortAsync();
 }
 ```
-Si supponga che sono stati rimossi dalla coda di elementi hello in hello seguente ordine:
+Si supponga che gli elementi siano stati rimossi dalla coda nell'ordine seguente:
 > 10, 20
 
-Quando si interrotta la transazione hello, hello sarebbe possibile aggiungere elementi head toohello posteriore della coda di hello in uno dei seguenti ordini hello:
+Quando si interrompe la transazione, gli elementi vengono inseriti di nuovo all'inizio della coda in uno dei seguenti ordini:
 > 10, 20
 
 > 20, 10
 
-Hello lo stesso vale per tutti i casi in cui la transazione hello non è stato *eseguito*.
+Lo stesso vale per tutti i casi in cui la transazione non è stata *eseguita* correttamente.
 
 ## <a name="programming-patterns"></a>Modelli di programmazione
 In questa sezione verranno esaminati alcuni modelli di programmazione che possono risultare utili usando ReliableConcurrentQueue.
 
 ### <a name="batch-dequeues"></a>Rimozioni dalla coda in batch
-Consigliato di un modello di programmazione sia per hello consumer attività toobatch la rimuove dalla coda anziché eseguire una rimozione dalla coda contemporaneamente. utente di Hello può scegliere toothrottle ritardi tra le dimensioni del batch ogni batch o hello. Hello frammento di codice seguente viene illustrato questo modello di programmazione.  Si noti che in questo esempio, l'elaborazione di hello viene eseguita dopo il commit della transazione hello in modo se un errore toooccur durante l'elaborazione, hello elementi non elaborati andranno persi senza essere stato trasformato.  In alternativa, è possibile eseguire l'elaborazione di hello nell'ambito della transazione hello, tuttavia questo può avere un impatto negativo sulle prestazioni e richiede una gestione degli elementi di hello già elaborato.
+Un modello di programmazione consigliato per l'attività di tipo consumer è inserire in batch le operazioni di rimozione dalla coda, anziché eseguire una rimozione alla volta. L'utente può scegliere di limitare i ritardi tra ogni batch o la dimensione del batch. Il frammento di codice seguente illustra questo modello di programmazione.  Si noti che in questo esempio l'elaborazione viene eseguita dopo il commit della transazione e pertanto se si verifica un errore durante l'elaborazione, gli elementi non elaborati andranno persi senza essere stati elaborati.  In alternativa, l'elaborazione può essere eseguita nell'ambito della transazione, ma ciò potrebbe avere un impatto negativo sulle prestazioni e richiede la gestione degli elementi già elaborati.
 
 ```
 int batchSize = 5;
@@ -194,12 +194,12 @@ while(!cancellationToken.IsCancellationRequested)
 
             if (ret.HasValue)
             {
-                // If an item was dequeued, add toohello buffer for processing
+                // If an item was dequeued, add to the buffer for processing
                 processItems.Add(ret.Value);
             }
             else
             {
-                // else break hello for loop
+                // else break the for loop
                 break;
             }
         }
@@ -207,7 +207,7 @@ while(!cancellationToken.IsCancellationRequested)
         await txn.CommitAsync();
     }
 
-    // Process hello dequeues
+    // Process the dequeues
     for (int i = 0; i < processItems.Count; ++i)
     {
         Console.WriteLine("Value : " + processItems[i]);
@@ -219,7 +219,7 @@ while(!cancellationToken.IsCancellationRequested)
 ```
 
 ### <a name="best-effort-notification-based-processing"></a>Elaborazione basata su notifica con il migliore sforzo
-Un altro modello di programmazione interessano utilizza hello conteggio API. In questo caso, è possibile implementare l'elaborazione sforzo basato sulla notifica per la coda di hello. coda di Hello conteggio può essere utilizzato toothrottle un accodamento o un'attività di rimozione dalla coda.  Si noti che nell'esempio precedente hello, poiché l'elaborazione di hello avviene all'esterno della transazione hello, gli elementi non elaborati potrebbero essere persi se si verifica un errore durante l'elaborazione.
+Un altro modello di programmazione interessante usa l'API di conteggio. In questo caso è possibile implementare l'elaborazione basata su notifica con il migliore sforzo per la coda. Il conteggio della coda consente di limitare un'attività di accodamento o di rimozione dalla coda.  Si noti che, come nell'esempio precedente, poiché l'elaborazione si verifica all'esterno della transazione, gli elementi non elaborati potrebbero essere persi in caso di errore durante l'elaborazione.
 
 ```
 int threshold = 5;
@@ -231,11 +231,11 @@ while(!cancellationToken.IsCancellationRequested)
     {
         cancellationToken.ThrowIfCancellationRequested();
 
-        // If hello queue does not have hello threshold number of items, delay hello task and check again
+        // If the queue does not have the threshold number of items, delay the task and check again
         await Task.Delay(TimeSpan.FromMilliseconds(delayMs), cancellationToken);
     }
 
-    // If there are approximately threshold number of items, try and process hello queue
+    // If there are approximately threshold number of items, try and process the queue
 
     // Buffer for dequeued items
     List<int> processItems = new List<int>();
@@ -250,7 +250,7 @@ while(!cancellationToken.IsCancellationRequested)
 
             if (ret.HasValue)
             {
-                // If an item was dequeued, add toohello buffer for processing
+                // If an item was dequeued, add to the buffer for processing
                 processItems.Add(ret.Value);
             }
         } while (processItems.Count < threshold && ret.HasValue);
@@ -258,7 +258,7 @@ while(!cancellationToken.IsCancellationRequested)
         await txn.CommitAsync();
     }
 
-    // Process hello dequeues
+    // Process the dequeues
     for (int i = 0; i < processItems.Count; ++i)
     {
         Console.WriteLine("Value : " + processItems[i]);
@@ -267,9 +267,9 @@ while(!cancellationToken.IsCancellationRequested)
 ```
 
 ### <a name="best-effort-drain"></a>Svuotamento in base al migliore sforzo
-Lo svuotamento della coda di hello non può essere garantito scadenza toohello natura simultanee hello della struttura di dati.  È possibile che, anche se nessuna operazione utente sulla coda hello sono in transito, tooTryDequeueAsync una determinata chiamata non può restituire un elemento che in precedenza era accodati e il commit.  elemento accodato Hello è garantita troppo*infine* diventano visibili toodequeue, ma senza un meccanismo di comunicazione fuori banda, un consumer indipendente non è in grado di tale coda hello ha raggiunto un stato stabile anche se tutti i sono stati interrotti i producer e alcuna nuova operazione di accodamento non sono consentite. Operazione di svuotamento hello è pertanto sforzo come implementati sotto.
+Lo svuotamento della coda non può essere garantito a causa della natura simultanea della struttura di dati.  È possibile che, anche se non è in corso alcuna operazione dell'utente nella coda, una chiamata specifica a TryDequeueAsync possa non restituire un elemento che in precedenza era stato accodato e di cui era stato eseguito il commit.  L'elemento accodato *alla fine* diventerà visibile per la rimozione dalla coda; tuttavia senza un meccanismo di comunicazione fuori banda, un consumer indipendente non può sapere se la coda ha raggiunto uno stato stabile, anche se sono stati arrestati tutti i producer e non sono consentite nuove operazione di accodamento. Di conseguenza l'operazione di svuotamento avviene in base al migliore sforzo, come implementato di seguito.
 
-utente Hello deve arrestare tutte le successive producer e attività del consumer e attendere qualsiasi toocommit le transazioni in transito o di interruzione, prima di tentare di coda hello toodrain.  Se l'utente hello conosce il numero di hello previsto di elementi nella coda di hello, è possibile impostare una notifica che segnala che sono stati rimossi dalla coda di tutti gli elementi.
+L'utente deve arrestare tutte le successive attività di producer e consumer e attendere il commit o l'interruzione delle transazioni in transito prima di tentare di svuotare la coda.  Se conosce il numero previsto di elementi nella coda, l'utente può impostare una notifica che segnala che tutti gli elementi sono stati rimossi dalla coda.
 
 ```
 int numItemsDequeued;
@@ -289,7 +289,7 @@ do
 
             if(ret.HasValue)
             {
-                // Buffer hello dequeues
+                // Buffer the dequeues
                 processItems.Add(ret.Value);
             }
         } while (ret.HasValue && processItems.Count < batchSize);
@@ -297,7 +297,7 @@ do
         await txn.CommitAsync();
     }
 
-    // Process hello dequeues
+    // Process the dequeues
     for (int i = 0; i < processItems.Count; ++i)
     {
         Console.WriteLine("Value : " + processItems[i]);
@@ -306,7 +306,7 @@ do
 ```
 
 ### <a name="peek"></a>Visualizzazione
-ReliableConcurrentQueue non fornisce hello *TryPeekAsync* api. Gli utenti possono ottenere peek hello semantica utilizzando un *TryDequeueAsync* e quindi l'interruzione delle transazioni hello. In questo esempio rimuove dalla coda vengono elaborati solo se è maggiore del valore dell'elemento hello *10*.
+ReliableConcurrentQueue non fornisce l'API *TryPeekAsync*. Gli utenti possono ottenere la visualizzazione semantica usando *TryDequeueAsync* e quindi interrompendo la transazione. In questo esempio le rimozioni dalla coda vengono elaborate solo se il valore dell'elemento è maggiore di *10*.
 
 ```
 using (var txn = this.StateManager.CreateTransaction())
@@ -318,7 +318,7 @@ using (var txn = this.StateManager.CreateTransaction())
     {
         if (ret.Value > 10)
         {
-            // Process hello item
+            // Process the item
             Console.WriteLine("Value : " + ret.Value);
             valueProcessed = true;
         }
@@ -342,5 +342,5 @@ using (var txn = this.StateManager.CreateTransaction())
 * [Eseguire il backup e il ripristino di Reliable Services (ripristino di emergenza)](service-fabric-reliable-services-backup-restore.md)
 * [Reliable State Manager configuration (Configurazione di Reliable State Manager)](service-fabric-reliable-services-configuration.md)
 * [Introduzione ai servizi API Web di Microsoft Azure Service Fabric](service-fabric-reliable-services-communication-webapi.md)
-* [Utilizzo avanzato di hello modello di programmazione di servizi affidabili](service-fabric-reliable-services-advanced-usage.md)
+* [Uso avanzato del modello di programmazione Reliable Services](service-fabric-reliable-services-advanced-usage.md)
 * [Guida di riferimento per gli sviluppatori per Reliable Collections](https://msdn.microsoft.com/library/azure/microsoft.servicefabric.data.collections.aspx)

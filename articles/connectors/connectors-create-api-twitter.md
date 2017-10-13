@@ -1,5 +1,5 @@
 ---
-title: aaaLearn come toouse hello in App per la logica del connettore Twitter | Documenti Microsoft
+title: Informazioni su come usare il connettore Twitter nelle app per la logica | Documentazione Microsoft
 description: Panoramica del connettore Twitter con i parametri dell'API REST
 services: 
 documentationcenter: 
@@ -15,93 +15,93 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/18/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: ead4e4dc95bf894fd72b908c5375b407ba27642d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: be8163043535833ce45b3d50939a537406cf8152
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="get-started-with-hello-twitter-connector"></a>Iniziare con il connettore di Twitter hello
-Con il connettore di Twitter hello è possibile:
+# <a name="get-started-with-the-twitter-connector"></a>Introduzione al connettore Twitter
+Con il connettore Twitter è possibile:
 
 * Pubblicare e recuperare tweet
 * Accedere a timeline, amici e follower
-* Eseguire una delle hello altre azioni e trigger descritto di seguito  
+* Eseguire le altre azioni e trigger descritti di seguito  
 
-toouse [i connettori](apis-list.md), è necessario innanzitutto toocreate un'app di logica. Come prima operazione [creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md).  
+Per usare [qualsiasi connettore](apis-list.md), è necessario innanzitutto creare un'app per la logica. Come prima operazione [creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md).  
 
-## <a name="connect-tootwitter"></a>Connettersi tooTwitter
-Prima che la logica app possa accedere a qualsiasi servizio, è necessario innanzitutto toocreate un *connessione* toohello servizio. Una [connessione](connectors-overview.md) fornisce la connettività tra un'app per la logica e un altro servizio.  
+## <a name="connect-to-twitter"></a>Connettersi a Twitter
+Perché l'app per la logica possa accedere a qualsiasi servizio, è necessario creare una *connessione* al servizio. Una [connessione](connectors-overview.md) fornisce la connettività tra un'app per la logica e un altro servizio.  
 
-### <a name="create-a-connection-tootwitter"></a>Creare una connessione tooTwitter
-> [!INCLUDE [Steps toocreate a connection tooTwitter](../../includes/connectors-create-api-twitter.md)]
+### <a name="create-a-connection-to-twitter"></a>Creare una connessione a Twitter
+> [!INCLUDE [Steps to create a connection to Twitter](../../includes/connectors-create-api-twitter.md)]
 > 
 > 
 
 ## <a name="use-a-twitter-trigger"></a>Usare un trigger di Twitter
-Un trigger è un evento che può essere utilizzato toostart flusso di lavoro hello definito in un'app di logica. [Altre informazioni sui trigger](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).
+Un trigger è un evento che può essere usato per avviare il flusso di lavoro definito in un'app per la logica. [Altre informazioni sui trigger](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).
 
-In questo esempio, verrà spiegato come hello toouse **durante il postback un tweet nuovo** attivare toosearch per #Seattle e, se viene trovato #Seattle, è possibile aggiornare un file nell'area di sincronizzazione con il testo hello tweet hello. In un esempio di enterprise, è possibile cercare il nome della società hello e aggiornare un database SQL con il testo hello tweet hello.
+Questo esempio illustra come usare il trigger **Quando viene pubblicato un nuovo tweet** per cercare #Seattle e, se viene individuato, aggiornare un file in Dropbox con il testo del tweet. In un esempio riguardante un'organizzazione si potrebbe cercare il nome dell'azienda e aggiornare un database SQL con il testo del tweet.
 
-1. Immettere *twitter* nella casella di ricerca hello nella finestra di progettazione di hello logica App, quindi selezionare hello **Twitter - quando viene inserito un nuovo tweet** trigger   
+1. Immettere *twitter* nella casella di ricerca nella finestra di progettazione delle app per la logica e selezionare il trigger **Twitter - Quando viene pubblicato un nuovo tweet**   
    ![Immagine di trigger Twitter 1](./media/connectors-create-api-twitter/trigger-1.png)  
-2. Immettere *#Seattle* in hello **testo di ricerca** controllo  
+2. Immettere *#Seattle* nel controllo **Testo di ricerca**  
    ![Immagine di trigger Twitter 2](./media/connectors-create-api-twitter/trigger-2.png) 
 
-A questo punto, l'app di logica è stato configurato con un trigger che verrà avviata un'esecuzione di hello altre azioni nel flusso di lavoro hello e il trigger. 
+A questo punto, l'app per la logica è stata configurata con un trigger che avvierà l'esecuzione di altri trigger e altre azioni nel flusso di lavoro. 
 
 > [!NOTE]
-> Per un toobe di app logica funzionale, deve contenere almeno un trigger e un'azione. Seguire passaggi hello hello successiva sezione tooadd un'azione.  
+> Affinché sia funzionale, l’app per la logica deve contenere almeno un trigger e un’azione. Seguire i passaggi nella sezione successiva per aggiungere un'azione.  
 > 
 > 
 
-## <a name="add-a-condition"></a>Add a condition
-Poiché si intende solo TWEET da utenti con più di 50 utenti, una condizione che il numero di hello di anelli di conferma deve essere aggiunto toohello logica app.  
+## <a name="add-a-condition"></a>Aggiungere una condizione
+Poiché si è interessati esclusivamente ai tweet degli utenti con più di 50 follower, è necessario prima di tutto aggiungere all'app per la logica una condizione che conferma il numero di follower.  
 
-1. Selezionare **+ nuovo passaggio** azione hello tooadd desideri tootake quando #Seattle si trova in un tweet nuovo  
+1. Selezionare **+ Nuovo passaggio** per aggiungere l'azione che deve essere eseguita quando viene individuato #Seattle in un nuovo tweet  
    ![Immagine di azione Twitter 1](../../includes/media/connectors-create-api-twitter/action-1.png)  
-2. Seleziona hello **aggiungere una condizione** collegamento.  
+2. Selezionare il collegamento **Aggiungi una condizione**.  
    ![Immagine di condizione Twitter 1](../../includes/media/connectors-create-api-twitter/condition-1.png)   
-   Verrà visualizzata hello **condizione** controllo in cui è possibile controllare le condizioni, ad esempio *è uguale a*, *è minore di*, *è maggiore di*, *contiene*e così via.  
+   Si apre il controllo **Condizione** in cui è possibile controllare condizioni come *è uguale a*, *è minore di*, *è maggiore di*, *contiene* e altre.  
    ![Immagine di condizione Twitter 2](../../includes/media/connectors-create-api-twitter/condition-2.png)   
-3. Seleziona hello **scegliere un valore** controllo.  
-   In questo controllo, è possibile selezionare uno o più proprietà hello dalle azioni precedenti o i trigger come valore di hello la cui condizione verrà valutata tootrue o false.
+3. Selezionare il controllo **Scegliere un valore**.  
+   In questo controllo è possibile selezionare una o più proprietà di azioni o trigger precedenti come valori la cui condizione restituirà true o false.
    ![Immagine di condizione Twitter 3](../../includes/media/connectors-create-api-twitter/condition-3.png)   
-4. Seleziona hello **...**  tooexpand hello elenco di proprietà in modo da visualizzare tutte le proprietà di hello disponibili.        
+4. Selezionare **...** per espandere l'elenco delle proprietà in modo da vedere tutte le proprietà disponibili.        
    ![Immagine di condizione Twitter 4](../../includes/media/connectors-create-api-twitter/condition-4.png)   
-5. Seleziona hello **il numero di anelli** proprietà.    
+5. Selezionare la proprietà **Followers count**.    
    ![Immagine di condizione Twitter 5](../../includes/media/connectors-create-api-twitter/condition-5.png)   
-6. Si noti bisogno di hello seguenti proprietà di conteggio è ora nel controllo value hello.    
+6. Si noti che la proprietà Followers count si trova ora nel controllo del valore.    
    ![Immagine di condizione Twitter 6](../../includes/media/connectors-create-api-twitter/condition-6.png)   
-7. Selezionare **è maggiore di** dall'elenco di operatori hello.    
+7. Selezionare **è maggiore di** nell'elenco degli operatori.    
    ![Immagine di condizione Twitter 7](../../includes/media/connectors-create-api-twitter/condition-7.png)   
-8. Immettere 50 come operando per hello hello *è maggiore di* operatore.  
-   condizione Hello viene aggiunto. Salvare il lavoro usando hello **salvare** collegamento nel menu hello precedente.    
+8. Immettere 50 come operando per l'operatore *è maggiore di*.  
+   La condizione viene aggiunta. Salvare il lavoro usando il collegamento **Salva** nel menu precedente.    
    ![Immagine di condizione Twitter 8](../../includes/media/connectors-create-api-twitter/condition-8.png)   
 
 ## <a name="use-a-twitter-action"></a>Usare un'azione di Twitter
-Un'azione è un'operazione effettuata dal flusso di lavoro hello definito in un'app di logica. [Altre informazioni sulle azioni](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).  
+Un'azione è un'operazione eseguita dal flusso di lavoro e definita in un'app per la logica. [Altre informazioni sulle azioni](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).  
 
-Dopo avere aggiunto un trigger, seguire questi tooadd passaggi un'azione che verrà registrato un nuovo tweet con contenuto hello di hello TWEET trovato dal trigger hello. Ai fini di hello di questa procedura dettagliata verrà registrato solo TWEET da utenti con più di 50 anelli.  
+Dopo aver aggiunto un trigger, seguire questi passaggi per aggiungere un'azione che pubblicherà un nuovo tweet con il contenuto dei tweet individuati dal trigger. Ai fini di questa procedura dettagliata verranno pubblicati solo i tweet degli utenti con più di 50 follower.  
 
-Nel passaggio successivo hello, si aggiungerà un'azione di Twitter che eseguirà un tweet utilizzando alcune delle proprietà hello di ogni tweet che è stata registrata da un utente che ha bisogno di più di 50 seguenti.  
+Nel passaggio successivo si aggiungerà un'azione di Twitter che pubblicherà un tweet usando alcune delle proprietà di ciascun tweet che è stato pubblicato da un utente che ha più di 50 follower.  
 
-1. Selezionare **Aggiungi un'azione**. Verrà aperto il controllo di ricerca hello in cui è possibile cercare altre azioni e trigger.  
+1. Selezionare **Aggiungi un'azione**. Viene aperto il controllo di ricerca in cui è possibile cercare altre azioni e trigger.  
    ![Immagine di condizione Twitter 9](../../includes/media/connectors-create-api-twitter/condition-9.png)   
-2. Immettere *twitter* nella casella di ricerca hello, quindi selezionare hello **Twitter: registrare un tweet** azione. Verrà visualizzata hello **registra un tweet** controllare dove verrà immesso tutti i dettagli per tweet hello inviata.      
+2. Immettere *twitter* nella casella di ricerca e selezionare l'azione **Twitter - Pubblica un tweet**. Si apre il controllo **Pubblica un tweet** in cui si potranno inserire tutti i dettagli del tweet da pubblicare.      
    ![Immagine di azione Twitter 1-5](../../includes/media/connectors-create-api-twitter/action-1-5.png)   
-3. Seleziona hello **Tweet testo** controllo. Tutti gli output di azioni precedenti e i trigger in hello logica app sono ora visibili. È possibile selezionare una delle seguenti e utilizzarle come parte del testo tweet hello di tweet nuovo hello.     
+3. Selezionare il controllo **Testo del tweet**. Ora sono visibili tutti gli output di azioni e trigger precedenti nell'app per la logica. È possibile selezionarli e usarli come parte del testo del nuovo tweet.     
    ![Immagine di azione Twitter 2](../../includes/media/connectors-create-api-twitter/action-2.png)   
 4. Selezionare **Nome utente**   
-5. Immettere *afferma:* nel controllo di testo tweet hello. Eseguire questa operazione subito dopo il nome utente.  
+5. Immettere *dice:* nel controllo di testo del tweet. Eseguire questa operazione subito dopo il nome utente.  
 6. Selezionare *Testo del tweet*.       
    ![Immagine di azione Twitter 3](../../includes/media/connectors-create-api-twitter/action-3.png)   
-7. Salvare il lavoro e invii un tweet con hello #Seattle hashtag tooactivate il flusso di lavoro.  
+7. Salvare il lavoro e inviare un tweet con l'hashtag #Seattle per attivare il flusso di lavoro.  
 
 
 ## <a name="connector-specific-details"></a>Dettagli specifici del connettore
 
-Visualizzare tutti i trigger e azioni definite in swagger hello e anche eventuali limiti di hello [dettagli connettore](/connectors/twitterconnector/). 
+Per visualizzare eventuali azioni e trigger definiti in Swagger ed eventuali limiti, vedere i [dettagli del connettore](/connectors/twitterconnector/). 
 
 ## <a name="next-steps"></a>Passaggi successivi
 [Creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md)

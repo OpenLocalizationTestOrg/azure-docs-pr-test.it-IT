@@ -1,5 +1,5 @@
 ---
-title: aaaAzure modello dati di telemetria Insights di applicazione - i dati di telemetria | Documenti Microsoft
+title: Modello di dati di Azure Application Insights Telemetry - Telemetria delle dipendenze | Microsoft Docs
 description: Modello di dati di Application Insights per la telemetria delle dipendenze
 services: application-insights
 documentationcenter: .net
@@ -12,23 +12,23 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 04/17/2017
 ms.author: bwren
-ms.openlocfilehash: cd5ab7c61d3498e4aa2a0aa0c8b0d106a92912e9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 2e97c3f951f46c32802aea543b93d5ab1bb76228
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="dependency-telemetry-application-insights-data-model"></a>Telemetria delle dipendenze: modello di dati di Application Insights
 
-I dati di telemetria (in [Application Insights](app-insights-overview.md)) rappresenta un'interazione del componente monitorato hello con un componente remoto, ad esempio SQL o un endpoint HTTP.
+In [Application Insights](app-insights-overview.md), la telemetria delle dipendenze rappresenta un'interazione del componente monitorato con un componente remoto, ad esempio SQL o un endpoint HTTP.
 
 ## <a name="name"></a>Nome
 
-Nome del comando hello avviata con questa chiamata della dipendenza. Valore di cardinalità basso. Esempi sono il nome della stored procedure e il modello di percorso URL.
+Nome del comando avviato con questa chiamata delle dipendenze. Valore di cardinalità basso. Esempi sono il nome della stored procedure e il modello di percorso URL.
 
 ## <a name="id"></a>ID
 
-Identificatore dell'istanza di una chiamata delle dipendenze. Utilizzato per la correlazione con l'elemento di dati di telemetria richiesta hello corrispondente chiamata della dipendenza toothis. Per altre informazioni vedere la pagina relativa alla [correlazione](application-insights-correlation.md).
+Identificatore dell'istanza di una chiamata delle dipendenze. Usato per la correlazione con l'elemento di telemetria delle richieste corrispondente a questa chiamata delle dipendenze. Per altre informazioni vedere la pagina relativa alla [correlazione](application-insights-correlation.md).
 
 ## <a name="data"></a>Dati
 

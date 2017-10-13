@@ -1,6 +1,6 @@
 ---
-title: aaaWindows contenuto Universal App SDK
-description: Contiene informazioni sul contenuto hello di hello Windows Universal App SDK per Azure Mobile Engagement
+title: Contenuto dell'SDK per app di Windows universali
+description: Informazioni sul contenuto di Azure Mobile Engagement SDK per app di Windows universali
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,30 +14,30 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: a8013d2433c0be62d737c8bc6e8360ed79bbe532
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: b28d525ab16487b963772e23fdecd11f94dcabd1
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="windows-universal-apps-sdk-content"></a>Contenuto dell'SDK per app di Windows universali
-Questo documento elenca e descrive il contenuto di hello hello SDK nell'applicazione distribuito.
+Questo documento elenca e descrive il contenuto distribuito dall'SDK nell'applicazione.
 
-## <a name="hello-resources-folder"></a>Hello `/Resources` cartella
-Questa cartella contiene tutte le risorse di hello che necessita di Mobile Engagement. È inoltre possibile personalizzare tali toofit l'app.
+## <a name="the-resources-folder"></a>Cartella `/Resources`
+Questa cartella contiene tutte le risorse richieste da Mobile Engagement. È inoltre possibile personalizzarle in modo da adattarle all'app.
 
-* `EngagementConfiguration.xml`: il file di configurazione di Mobile Engagement hello, si tratta in cui è possibile personalizzare le impostazioni di Mobile Engagement (stringa di connessione di Mobile Engagement, arresto anomalo di report...).
+* `EngagementConfiguration.xml` : il file di configurazione di Mobile Engagement, in cui è possibile personalizzare le impostazioni di Mobile Engagement (stringa di connessione di Mobile Engagement, segnalazione di arresto anomalo e così via).
 
 ### <a name="html-folder"></a>Cartella /html
-* `EngagementNotification.html`: hello `Notification` visualizzazione di progettazione html per le intestazioni nell'applicazione web.
-* `EngagementAnnouncement.html`: hello `Announcement` visualizzazione di progettazione html per le viste intermedi nell'applicazione web.
+* `EngagementNotification.html` : la progettazione HTML per la visualizzazione Web di `Notification` in banner in-app.
+* `EngagementAnnouncement.html` : la progettazione HTML per la visualizzazione Web di `Announcement` in visualizzazioni intermedie.
 
 ### <a name="images-folder"></a>Cartella /images
-* `EngagementIconNotification.png`: icona di marchio hello in hello sinistra di una notifica, sostituire quello attuale per l'icona del marchio.
-* `EngagementIconOk.png`: hello `Ok` icona hello reach pagine di contenuto per i pulsanti di azione o convalida hello.
-* `EngagementIconNOK.png`: hello `NOK` icona utilizzata quando il pulsante convalida hello hello reach pagine di contenuto è disabilitato.
-* `EngagementIconClose.png`: hello `Close` icona di hello raggiungere le notifiche e contenuto per hello chiudere pulsante.
+* `EngagementIconNotification.png`: l'icona del marchio visualizzata a sinistra di una notifica. Sostituirla con un'icona personalizzata.
+* `EngagementIconOk.png`: l'icona `Ok` delle pagine di contenuto Reach per il pulsante di azione o convalida.
+* `EngagementIconNOK.png`: l'icona `NOK` usata quando il pulsante di convalida delle pagine di contenuto Reach è disabilitato.
+* `EngagementIconClose.png`: l'icona `Close` per il pulsante che consente di ignorare il contenuto e le notifiche Reach.
 
 ### <a name="overlay-folder"></a>Cartella /overlay
-* `EngagementPageOverlay.cs`: hello sovrapposizione pagina responsabile dell'aggiunta hello copertura di Engagement figlio tooits di interfaccia utente nell'applicazione.
+* `EngagementPageOverlay.cs` : la pagina di sovrimpressione che determina l'aggiunta dell'interfaccia utente in-app Reach di Engagement al figlio.
 

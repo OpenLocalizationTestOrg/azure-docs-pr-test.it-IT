@@ -1,9 +1,9 @@
 ---
-title: elemento gestita dell'interfaccia utente dell'applicazione CredentialsCombo aaaAzure | Documenti Microsoft
-description: Descrive l'elemento dell'interfaccia utente Microsoft.Compute.CredentialsCombo hello per le applicazioni gestite di Azure
+title: Elemento CredentialsCombo dell'interfaccia utente dell'applicazione gestita di Azure | Microsoft Docs
+description: Illustra l'elemento Microsoft.Compute.CredentialsCombo dell'interfaccia utente per le applicazioni gestite di Azure
 services: azure-resource-manager
 documentationcenter: na
-author: tabrezm
+author: tfitzmac
 manager: timlt
 editor: tysonn
 ms.service: azure-resource-manager
@@ -12,12 +12,12 @@ ms.topic: reference
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/12/2017
-ms.author: tabrezm;tomfitz
-ms.openlocfilehash: d44a3929ebb7a5ff78b72f9eaeb6e52b098e266f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.author: tomfitz
+ms.openlocfilehash: 9a35d6d8631e02fd7b3745cc15efd92a1556de53
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="microsoftcomputecredentialscombo-ui-element"></a>Elemento Microsoft.Compute.CredentialsCombo dell'interfaccia utente
 Si tratta di un gruppo di controlli con convalida predefinita per le chiavi pubbliche SSH e le password di Windows e Linux. Usare questo elemento quando si [crea un'applicazione Azure gestita](managed-application-publishing.md).
@@ -26,7 +26,7 @@ Si tratta di un gruppo di controlli con convalida predefinita per le chiavi pubb
 ![Microsoft.Compute.CredentialsCombo](./media/managed-application-elements/microsoft.compute.credentialscombo.png)
 
 ## <a name="schema"></a>Schema
-Se `osPlatform` è **Windows**, hello nello schema seguente viene utilizzata:
+Se `osPlatform` è **Windows**, viene usato lo schema seguente:
 ```json
 {
   "name": "element1",
@@ -41,7 +41,7 @@ Se `osPlatform` è **Windows**, hello nello schema seguente viene utilizzata:
   "constraints": {
     "required": true,
     "customPasswordRegex": "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$",
-    "customValidationMessage": "hello password must contain at least 8 characters, with at least 1 letter and 1 number."
+    "customValidationMessage": "The password must contain at least 8 characters, with at least 1 letter and 1 number."
   },
   "options": {
     "hideConfirmation": false
@@ -51,7 +51,7 @@ Se `osPlatform` è **Windows**, hello nello schema seguente viene utilizzata:
 }
 ```
 
-Se `osPlatform` è **Linux**, hello nello schema seguente viene utilizzata:
+Se `osPlatform` è **Linux**, viene usato lo schema seguente:
 ```json
 {
   "name": "element1",
@@ -70,7 +70,7 @@ Se `osPlatform` è **Linux**, hello nello schema seguente viene utilizzata:
   "constraints": {
     "required": true,
     "customPasswordRegex": "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$",
-    "customValidationMessage": "hello password must contain at least 8 characters, with at least 1 letter and 1 number."
+    "customValidationMessage": "The password must contain at least 8 characters, with at least 1 letter and 1 number."
   },
   "options": {
     "hideConfirmation": false,
@@ -83,13 +83,13 @@ Se `osPlatform` è **Linux**, hello nello schema seguente viene utilizzata:
 
 ## <a name="remarks"></a>Osservazioni
 - È necessario specificare `osPlatform`, che può essere **Windows** o **Linux**.
-- Se `constraints.required` è troppo**true**, quindi hello password o le caselle di testo di chiave pubblica SSH devono contenere valori toovalidate correttamente. valore predefinito di Hello è **true**.
-- Se `options.hideConfirmation` è troppo**true**, quindi hello seconda casella di testo per la conferma della password dell'utente hello è nascosto. valore predefinito di Hello è **false**.
-- Se `options.hidePassword` è troppo**true**, quindi l'autenticazione di password toouse opzione hello è nascosto. È possibile usarla solo quando `osPlatform` è **Linux**. Il valore predefinito è **false**.
-- Vincoli aggiuntivi sugli hello consentiti password può essere implementata usando hello `customPasswordRegex` proprietà. stringa in Hello `customValidationMessage` viene visualizzato quando una password si verifica un errore di convalida personalizzata. Hello valore predefinito per entrambe le proprietà è **null**.
+- Se `constraints.required` è impostato su **true**, perché la convalida abbia esito positivo le caselle di testo della password o della chiave pubblica SSH devono contenere valori. Il valore predefinito è **true**.
+- Se la proprietà `options.hideConfirmation` è impostata su **true**, la seconda casella di testo per la conferma della password dell'utente è nascosta. Il valore predefinito è **false**.
+- Se `options.hidePassword` è impostato su **true**, l'opzione per l'uso dell'autenticazione della password è nascosta. È possibile usarla solo quando `osPlatform` è **Linux**. Il valore predefinito è **false**.
+- La proprietà `customPasswordRegex` permette di implementare vincoli aggiuntivi sulle password consentite. La stringa in `customValidationMessage` viene visualizzata quando una password non supera la convalida personalizzata. Il valore predefinito per entrambe le proprietà è **null**.
 
 ## <a name="sample-output"></a>Output di esempio
-Se `osPlatform` è **Windows**, o utente hello fornita una password anziché con una chiave pubblica SSH, quindi hello viene visualizzato output seguente:
+Se `osPlatform` è **Windows** oppure l'utente ha specificato una password anziché una chiave pubblica SSH, è previsto l'output seguente:
 
 ```json
 {
@@ -98,7 +98,7 @@ Se `osPlatform` è **Windows**, o utente hello fornita una password anziché con
 }
 ```
 
-Se una chiave pubblica SSH è fornito dall'utente di hello, quindi hello viene visualizzato output seguente:
+Se l'utente ha specificato una chiave pubblica SSH, è previsto l'output seguente:
 ```json
 {
   "authenticationType": "sshPublicKey",
@@ -107,6 +107,6 @@ Se una chiave pubblica SSH è fornito dall'utente di hello, quindi hello viene v
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per le applicazioni toomanaged un'introduzione, vedere [Panoramica applicazione gestita di Azure](managed-application-overview.md).
-* Le definizioni di interfaccia utente toocreating un'introduzione, vedere [introduzione CreateUiDefinition](managed-application-createuidefinition-overview.md).
+* Per un'introduzione alle applicazioni gestite, vedere [Panoramica di Applicazione gestita di Azure](managed-application-overview.md).
+* Per un'introduzione alla creazione delle definizioni dell'interfaccia utente, vedere [Introduzione a CreateUiDefinition](managed-application-createuidefinition-overview.md).
 * Per una descrizione delle proprietà comuni negli elementi dell'interfaccia utente, vedere [Elementi di CreateUiDefinition](managed-application-createuidefinition-elements.md).

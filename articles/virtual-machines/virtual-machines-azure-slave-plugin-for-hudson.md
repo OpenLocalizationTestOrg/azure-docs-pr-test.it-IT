@@ -1,6 +1,6 @@
 ---
-title: aaaHow toouse hello Azure slave plug-in con l'integrazione continua di Hudson | Documenti Microsoft
-description: Viene descritto come slave toouse hello Azure plug-in con l'integrazione continua di Hudson.
+title: Come usare il plug-in slave di Azure con una soluzione di integrazione continua Hudson | Microsoft Docs
+description: Descrive come usare il plug-in slave di Azure con una soluzione di integrazione continua Hudson
 services: virtual-machines-linux
 documentationcenter: 
 author: rmcmurray
@@ -14,30 +14,30 @@ ms.devlang: java
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
-ms.openlocfilehash: cd6e67ad71c208aa56746aa8b70ba507da20bee9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c11b59f8ea432075b147a391de4b7bd3331e639e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toouse-hello-azure-slave-plug-in-with-hudson-continuous-integration"></a>Modalità slave toouse hello Azure plug-in con l'integrazione continua di Hudson
-in fase di compilazione in esecuzione distribuita, Hello Azure slave plug-in per Hudson consente tooprovision i nodi secondari in Azure.
+# <a name="how-to-use-the-azure-slave-plug-in-with-hudson-continuous-integration"></a>Come usare il plug-in slave di Azure con una soluzione di integrazione continua Hudson
+Il plug-in slave di Azure per Hudson consente di eseguire il provisioning di nodi slave in Azure quando si eseguono build distribuite.
 
-## <a name="install-hello-azure-slave-plug-in"></a>Installare hello Azure Slave plug-in
-1. Nel dashboard di Hudson hello, fare clic su **gestire Hudson**.
-2. In hello **gestire Hudson** pagina, fare clic su **gestire plug-in**.
-3. Fare clic su hello **disponibile** scheda.
-4. Fare clic su **ricerca** e tipo **Azure** toolimit hello elenco toorelevant plug-in.
+## <a name="install-the-azure-slave-plug-in"></a>Installare il plug-in slave di Azure
+1. Nel dashboard di Hudson, fare clic su **Manage Hudson**.
+2. Nella pagina **Manage Hudson** (Gestisci Hudson) fare clic su **Manage Plugins** (Gestisci plug-in).
+3. Fare clic sulla scheda **Available** .
+4. Fare clic su **Search** (Cerca) e digitare **Azure** per limitare l'elenco ai plug-in pertinenti.
    
-    Se si sceglie tooscroll elenco hello di plug-in disponibili, si noterà hello Azure slave plug-in hello **distribuita di compilazione e gestione dei Cluster** sezione hello **altri** scheda.
-5. Selezionare una casella di controllo hello **plug-in Azure Slave**.
+    Se si decide di scorrere l'elenco di plug-in disponibili, si troverà il plug-in slave di Azure nella sezione **Cluster Management and Distributed Build** (Gestione cluster e compilazione distribuita) nella scheda **Others** (Altri).
+5. Selezionare la casella di controllo **Azure Slave Plugin**.
 6. Fare clic su **Installa**.
 7. Riavviare Hudson.
 
-Ora è installato il plug-in hello, passaggi successivi hello sarebbe hello tooconfigure plug-in con il profilo di sottoscrizione di Azure e toocreate un modello che verrà utilizzato per la creazione di hello macchine Virtuali per nodo slave hello.
+Dopo aver installato il plug-in, è necessario procedere alla relativa configurazione tramite il profilo della sottoscrizione di Azure e alla creazione di un modello che verrà usato durante la creazione della VM relativa al nodo slave.
 
-## <a name="configure-hello-azure-slave-plug-in-with-your-subscription-profile"></a>Configurare hello Azure Slave plug-in con il profilo di sottoscrizione
-Un profilo di sottoscrizione, anche tooas cui le impostazioni di pubblicazione, è un file XML che contiene credenziali protette e informazioni aggiuntive, è necessario toowork con Azure nell'ambiente di sviluppo. tooconfigure hello Azure slave plug-in, è necessario:
+## <a name="configure-the-azure-slave-plug-in-with-your-subscription-profile"></a>Configurare il plug-in slave di Azure con il profilo di sottoscrizione
+Un profilo di sottoscrizione, noto anche come impostazioni di pubblicazione, è un file XML contenente le credenziali protette e alcune informazioni aggiuntive necessarie per usare Azure nel proprio ambiente di sviluppo. Per configurare il plug-in slave di Azure, è necessario quanto segue:
 
 * ID sottoscrizione personale
 * Un certificato di gestione per la sottoscrizione
@@ -63,56 +63,56 @@ Questi elementi sono disponibili nel [profilo di sottoscrizione]. Di seguito è 
 
     </PublishData>
 
-Dopo aver creato il profilo di sottoscrizione, seguire questi hello tooconfigure passaggi Azure slave plug-in.
+Dopo avere creato il profilo di sottoscrizione, attenersi alla seguente procedura per configurare il plug-in slave di Azure.
 
-1. Nel dashboard di Hudson hello, fare clic su **gestire Hudson**.
+1. Nel dashboard di Hudson, fare clic su **Manage Hudson**.
 2. Fare clic su **Configure System**.
-3. Scorrere verso il basso hello di hello pagina toofind **Cloud** sezione.
+3. Scorrere verso il basso la pagina per trovare la sezione **Cloud** .
 4. Fare clic su **Add new cloud > Microsoft Azure** (Aggiungi nuovo cloud > Microsoft Azure).
    
     ![aggiungere nuovo cloud][add new cloud]
    
-    Campi hello in cui è necessario tooenter verranno visualizzati i dettagli della sottoscrizione.
+    Verranno visualizzati i campi in cui è necessario immettere i dettagli della sottoscrizione.
    
     ![configurare profilo][configure profile]
-5. Copiare i certificati di gestione e l'id sottoscrizione hello dal profilo di sottoscrizione e incollarli nei campi appropriati hello.
+5. Copiare l'ID sottoscrizione e il certificato di gestione dal profilo di sottoscrizione e incollarli nei campi appropriati.
    
-    Quando si copia certificato di gestione e l'id di sottoscrizione hello, **non** includere hello virgolette che racchiudono i valori hello.
+    Quando si copiano l'ID sottoscrizione e il certificato di gestione, **non** includere le virgolette che racchiudono i valori.
 6. Fare clic su **Verify configuration**.
-7. Quando si verifica configurazione hello correttamente, fare clic su **salvare**.
+7. Quando la configurazione viene verificata correttamente, fare clic su **Save**.
 
-## <a name="set-up-a-virtual-machine-template-for-hello-azure-slave-plug-in"></a>Impostare un modello di macchina virtuale per hello Azure Slave plug-in
-Un modello di macchina virtuale definisce i parametri di hello hello plug-in userà toocreate un nodo secondario in Azure. In hello alla procedura seguente si sarà creazione modello per una VM Ubuntu.
+## <a name="set-up-a-virtual-machine-template-for-the-azure-slave-plug-in"></a>Configurare un modello di macchina virtuale per il plug-in slave di Azure
+Un modello di macchina virtuale definisce i parametri che il plug-in userà per creare un nodo slave in Azure. Nella procedura seguente verrà creato un modello per una macchina virtuale Ubuntu.
 
-1. Nel dashboard di Hudson hello, fare clic su **gestire Hudson**.
+1. Nel dashboard di Hudson, fare clic su **Manage Hudson**.
 2. Fare clic su **Configure System**.
-3. Scorrere verso il basso hello di hello pagina toofind **Cloud** sezione.
-4. All'interno di hello **Cloud** sezione, trovare **aggiungere modello di macchina virtuale di Azure** e fare clic su hello **Aggiungi** pulsante.
+3. Scorrere verso il basso la pagina per trovare la sezione **Cloud** .
+4. All'interno della sezione **Cloud**, trovare **Add Azure Virtual Machine Template** (Aggiungere modello di macchina virtuale Azure) e fare clic sul pulsante **Add** (Aggiungi).
    
     ![aggiungere modello macchina virtuale][add vm template]
-5. Specificare un nome di servizio cloud in hello **nome** campo. Se nome hello specificato fa riferimento tooan servizio cloud esistente, verrà eseguito il provisioning hello VM in quel servizio. In caso contrario, Azure ne creerà uno nuovo.
-6. In hello **descrizione** immettere testo che descrive il modello di hello si sta creando. Queste informazioni sono esclusivamente a scopo di documentazione e non vengono utilizzate nel provisioning di una macchina virtuale.
-7. In hello **etichette** immettere **linux**. Questa etichetta modello hello tooidentify usato che si sta creando e modello hello tooreference successivamente utilizzati durante la creazione di un processo Hudson.
-8. Selezionare un'area in cui verrà creato hello macchina virtuale.
-9. Selezionare dimensioni della macchina virtuale appropriata hello.
-10. Specificare un account di archiviazione in cui verrà creato hello macchina virtuale. Assicurarsi che sia in hello stessa area hello del servizio cloud che verranno utilizzati. Se si desidera creare nuovo toobe di archiviazione, è possibile lasciare vuoto questo campo.
-11. Periodo di conservazione hello numero di minuti prima dell'eliminazione di un secondario inattivo Hudson. Mantenere questa hello valore predefinito di 60.
-12. In **utilizzo**, selezionare hello condizione appropriata quando verrà utilizzato questo nodo secondario. Per il momento, selezionare **Utilize this node as much as possible**.
+5. Specificare un nome del servizio cloud nel campo **Name** . Se il nome specificato fa riferimento a un servizio cloud esistente, il provisioning della macchina virtuale verrà effettuato in tale servizio. In caso contrario, Azure ne creerà uno nuovo.
+6. Nel campo **Description** , immettere il testo che descrive il modello che si sta creando. Queste informazioni sono esclusivamente a scopo di documentazione e non vengono utilizzate nel provisioning di una macchina virtuale.
+7. Nel campo **Labels** (Etichette) immettere **linux**. Questa etichetta viene utilizzata per identificare il modello che si sta creando e viene successivamente utilizzata per fare riferimento al modello durante la creazione di un processo Hudson.
+8. Selezionare un'area in cui verrà creata la macchina virtuale.
+9. Selezionare le dimensioni appropriate della macchina virtuale.
+10. Specificare un account di archiviazione in cui verrà creata la macchina virtuale. Assicurarsi che l'account si trovi nella stessa area del servizio cloud che verrà utilizzato. Per creare una nuova risorsa di archiviazione, lasciare questo campo vuoto.
+11. Il periodo di memorizzazione specifica il numero di minuti prima dell'eliminazione di uno slave inattivo da parte di Hudson. Lasciare il valore predefinito pari a 60.
+12. In **Usage**, selezionare la condizione appropriata quando verrà utilizzato questo nodo slave. Per il momento, selezionare **Utilize this node as much as possible**.
     
-     A questo punto, il modulo avrà un aspetto simile toothis:
+     A questo punto, il modulo dovrebbe avere un aspetto simile al seguente:
     
      ![configurazione modello][template config]
-13. In **famiglia di immagine o Id** è toospecify quale immagine del sistema verrà installato nella macchina virtuale. È possibile scegliere da un elenco di famiglie di immagini o specificare un'immagine personalizzata.
+13. In **Image Family or Id** è necessario specificare quale immagine del sistema verrà installata nella macchina virtuale. È possibile scegliere da un elenco di famiglie di immagini o specificare un'immagine personalizzata.
     
-     Se si desidera tooselect da un elenco delle famiglie di immagine, immettere hello primo carattere (maiuscole/minuscole) del nome della famiglia hello immagine. Ad esempio, digitando **U** verrà visualizzato l'elenco delle famiglie di Ubuntu Server. Dopo aver selezionato dall'elenco di hello, Jenkins utilizzerà più recente di tale immagine del sistema da tale gruppo hello durante il provisioning di una macchina virtuale.
+     Per selezionare da un elenco di famiglie di immagini, immettere il primo carattere (maiuscole/minuscole) del nome della famiglia dell'immagine. Ad esempio, digitando **U** verrà visualizzato l'elenco delle famiglie di Ubuntu Server. Dopo aver selezionato dall'elenco, Jenkins utilizzerà la versione più recente di tale immagine del sistema di tale famiglia durante il provisioning della macchina virtuale.
     
      ![elenco famiglie sistemi operativi][OS family list]
     
-     Se si dispone di un'immagine personalizzata che si desidera invece toouse, immettere il nome di hello di tale immagine personalizzata. I nomi delle immagini personalizzate non vengono visualizzati in un elenco in modo che sia tooensure che hello nome sia stato immesso correttamente.    
+     Se invece si dispone di un'immagine personalizzata che si desidera utilizzare, immettere il nome dell'immagine personalizzata. I nomi delle immagini personalizzati non vengono visualizzati nell'elenco, pertanto è necessario verificare che il nome venga immesso correttamente.    
     
-     Per questa esercitazione, digitare **U** toobring un elenco di immagini Ubuntu e selezionare **Ubuntu Server 14.04 LTS**.
+     Per questa esercitazione, digitare **U** per visualizzare un elenco di immagini Ubuntu e selezionare **Ubuntu Server 14.04 LTS**.
 14. Per **Launch method** (Metodo di avvio), selezionare **SSH**.
-15. Script hello seguente di copia e Incolla in hello **Init script** campo.
+15. Copiare lo script seguente e incollarlo nel campo **Init script** .
     
          # Install Java
     
@@ -136,22 +136,22 @@ Un modello di macchina virtuale definisce i parametri di hello hello plug-in use
     
          sudo apt-get install -y ant
     
-     Hello **Init script** verrà eseguito dopo la creazione della macchina virtuale hello. In questo esempio, script hello installa ant Java e git.
-16. In hello **Username** e **Password** campi, immettere i valori preferiti per l'account amministratore hello che verrà creato nella macchina virtuale.
-17. Fare clic su **verificare modello** toocheck se i parametri di hello specificati sono validi.
+     L' **Init script** verrà eseguito dopo aver creato la macchina virtuale. In questo esempio, lo script installa Java, git e ant.
+16. Nei campi **Username** (Nome utente) e **Password** immettere i valori preferiti relativi all'account amministratore che verrà creato nella macchina virtuale.
+17. Fare clic su **Verify Template** per verificare che i parametri specificati siano validi.
 18. Fare clic su **Save**.
 
 ## <a name="create-a-hudson-job-that-runs-on-a-slave-node-on-azure"></a>Creare un processo Hudson eseguito in un nodo slave in Azure
 In questa sezione si creerà un'attività di Hudson che verrà eseguita in un nodo slave in Azure.
 
-1. Nel dashboard di Hudson hello, fare clic su **nuovo processo**.
-2. Immettere un nome per il processo di hello che si sta creando.
-3. Tipo di processo hello selezionare **compilazione di un processo software stile liberare**.
+1. Nel dashboard di Hudson, fare clic su **New Job**.
+2. Immettere un nome per il processo che si sta creando.
+3. Per il tipo di processo, selezionare **Build a free-style software job**.
 4. Fare clic su **OK**.
-5. Nella pagina di configurazione processo hello, selezionare **limita l'accesso in cui è possibile eseguire questo progetto**.
-6. Selezionare **nodo e l'etichetta del menu** e selezionare **linux** (è specificata questa etichetta quando si crea il modello di macchina virtuale hello nella sezione precedente hello).
-7. In hello **compilare** fare clic su **istruzione di compilazione Aggiungi** e selezionare **eseguire shell**.
-8. Modificare lo script seguente, la sostituzione di hello **{nome account github}**, **{nome del progetto}**, e **{directory del progetto}** con valori appropriati e incollare hello modificare uno script nell'area di testo hello che viene visualizzato.
+5. Nella pagina di configurazione del processo, selezionare **Restrict where this project can be run**.
+6. Selezionare **Node and label menu** (Menu Nodo ed etichetta) e **linux** (questa etichetta è stata specificata al momento della creazione del modello di macchina virtuale nella sezione precedente).
+7. Nella sezione **Build** (Compilazione) fare clic su **Add build step** (Aggiungi passaggio di compilazione) e selezionare **Execute shell** (Esegui shell).
+8. Modificare lo script seguente sostituendo **(your GitHub account name)** (nome account GitHub), **(your project name)** (nome progetto) e **(your project directory)** (directory progetto) con i valori appropriati e incollare lo script modificato nell'area di testo visualizzata.
    
         # Clone from git repo
    
@@ -169,7 +169,7 @@ In questa sezione si creerà un'attività di Hudson che verrà eseguita in un no
    
         fi
    
-        # change directory tooproject
+        # change directory to project
    
         cd $currentDir/{your project directory}
    
@@ -177,12 +177,12 @@ In questa sezione si creerà un'attività di Hudson che verrà eseguita in un no
    
         ant
 9. Fare clic su **Save**.
-10. In dashboard Hudson hello, trovare il processo di hello appena creato e fare clic su hello **pianificare una compilazione** icona.
+10. Nel dashboard di Hudson, trovare il processo appena creato e fare clic sull'icona **Schedule a build** .
 
-Hudson verrà quindi creare un nodo secondario utilizzando il modello di hello creato nella sezione precedente hello e hello script specificato in fase di compilazione hello per questa attività.
+Hudson creerà quindi un nodo slave utilizzando il modello creato nella sezione precedente ed eseguirà lo script specificato nell'istruzione di compilazione di questa attività.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per ulteriori informazioni sull'uso di Azure con Java, vedere hello [Centro per sviluppatori Java di Azure].
+Per altre informazioni su come usare Azure con Java, vedere il [Centro per sviluppatori Java di Azure].
 
 <!-- URL List -->
 

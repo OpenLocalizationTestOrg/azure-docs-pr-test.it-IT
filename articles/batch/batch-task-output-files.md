@@ -1,6 +1,6 @@
 ---
-title: "attività e processi aaaPersist output tooAzure archiviazione con hello API del servizio Azure Batch | Documenti Microsoft"
-description: "Informazioni su come processo e attività di Batch toopersist toouse API del servizio Batch output tooAzure archiviazione."
+title: "Rendere persistente l'output di processi e attività in Archiviazione di Azure con l'API del servizio Azure Batch | Microsoft Docs"
+description: "Informazioni su come usare l'API del servizio Batch per rendere persistente l'output di attività e processi Batch in Archiviazione di Azure."
 services: batch
 author: tamram
 manager: timlt
@@ -12,49 +12,49 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
 ms.date: 06/16/2017
 ms.author: tamram
-ms.openlocfilehash: 71b3f7c0dda2d2a9d8eb3eef83229873c70ca22c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 2530b7c20347b9fb58aee4dfe693847cf3911741
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="persist-task-data-tooazure-storage-with-hello-batch-service-api"></a>Mantenere i dati di attività tooAzure archiviazione con hello API del servizio Batch
+# <a name="persist-task-data-to-azure-storage-with-the-batch-service-api"></a>Rendere persistenti i dati delle attività in Archiviazione di Azure con l'API del servizio Batch
 
 [!INCLUDE [batch-task-output-include](../../includes/batch-task-output-include.md)]
 
-A partire dalla versione 2017-05-01, hello API del servizio Batch supporta persistenti output dati tooAzure archiviazione per le attività e attività di processo di gestione eseguite in pool con la configurazione della macchina virtuale hello. Quando si aggiunge un'attività, è possibile specificare un contenitore di archiviazione di Azure come destinazione di hello per l'output dell'attività hello. servizio Batch Hello scrive quindi qualsiasi contenitore toothat dati di output quando hello attività è stata completata.
+A partire dalla versione 2017-05-01, l'API del servizio Batch supporta l'archiviazione permanente dei dati di output in Archiviazione di Azure per le attività e le attività di gestione processo eseguite sui pool con la configurazione della macchina virtuale. Quando si aggiunge un'attività, è possibile specificare un contenitore in Archiviazione di Azure come destinazione per l'output dell'attività. Il servizio Batch scrive quindi i dati di output in tale contenitore al completamento dell'attività.
 
-Un hello toousing vantaggio Batch output attività toopersist API del servizio è che non è necessaria un'applicazione hello toomodify che hello attività è in esecuzione. Al contrario, con alcune semplici modifiche tooyour applicazione client è possibile mantenere l'output dell'attività hello all'interno del codice hello Crea attività hello.   
+Un vantaggio dell'uso dell'API del servizio Batch per rendere persistente l'output dell'attività è il fatto di non avere la necessità di l'applicazione eseguita dall'attività. Con poche semplici modifiche dell'applicazione client, è invece possibile rendere persistente l'output dell'attività dall'interno del codice che crea l'attività.   
 
-## <a name="when-do-i-use-hello-batch-service-api-toopersist-task-output"></a>Utilizzo di output dell'attività toopersist hello API del servizio Batch
+## <a name="when-do-i-use-the-batch-service-api-to-persist-task-output"></a>Quando è appropriato usare l'API del servizio Batch per rendere persistente l'output delle attività?
 
-Azure Batch offre più di un metodo toopersist l'output dell'attività. Utilizzo di hello API del servizio Batch è un approccio pratico scenari adatti toothese migliori:
+Il servizio Azure Batch offre diversi modi per rendere persistente l'output delle attività. Usare l'API del servizio Batch è un approccio pratico adatto in particolar modo per gli scenari seguenti:
 
-- Si desidera toowrite codice toopersist attività output all'interno dell'applicazione client, senza modificare l'applicazione hello che l'attività è in esecuzione.
-- Si desidera toopersist output dalle attività di Batch e attività di processo di gestione nel pool creati con la configurazione della macchina virtuale hello.
-- Si desidera toopersist contenitore di archiviazione di Azure tooan dell'output con un nome arbitrario.
-- Che si desidera toopersist output tooan di archiviazione di Azure contenitore denominato in base toohello [standard convenzioni dei File Batch](https://github.com/Azure/azure-sdk-for-net/tree/vs17Dev/src/SDKs/Batch/Support/FileConventions#conventions). 
+- Si vuole scrivere codice per rendere persistente l'output dell'attività dall'interno dell'applicazione client, senza modificare l'applicazione eseguita dall'attività.
+- Si vuole rendere persistente l'output delle attività del servizio Batch e delle attività del gestore di processi create con la configurazione della macchina virtuale.
+- Si vuole rendere persistente l'output in un contenitore di Archiviazione di Azure con un nome arbitrario.
+- Si vuole rendere persistente l'output in un contenitore di Archiviazione di Azure denominato in base agli [standard di Batch File Conventions](https://github.com/Azure/azure-sdk-for-net/tree/vs17Dev/src/SDKs/Batch/Support/FileConventions#conventions). 
 
-Se lo scenario è diverso da quelli elencati in precedenza, potrebbe essere tooconsider un approccio diverso. Ad esempio, API del servizio Batch hello non attualmente supporta streaming output tooAzure archiviazione durante l'esecuzione di attività hello. toostream output, utilizzare la libreria hello convenzioni dei File Batch, disponibile per .NET. Per altre lingue, è necessario tooimplement la propria soluzione. Per ulteriori informazioni sulle altre opzioni per salvare in modo permanente l'output dell'attività, vedere [Persist processi e delle attività di output tooAzure archiviazione](batch-task-output.md). 
+Se lo scenario è diverso da quelli sopra elencati, potrebbe essere necessario prendere in considerazione un approccio diverso. Ad esempio, l'API del servizio Batch attualmente non supporta flussi dell'output in Archiviazione di Azure durante l'esecuzione dell'attività. Per questa esigenza, prendere in considerazione l'uso della libreria Batch File Conventions, disponibile per .NET. Per altri linguaggi, sarà necessario implementare una soluzione personalizzata. Per altre informazioni sulle opzioni per rendere persistente l'output delle attività, vedere [Rendere persistente l'output di processi e attività](batch-task-output.md). 
 
 ## <a name="create-a-container-in-azure-storage"></a>Creare un contenitore in Archiviazione di Azure
 
-output dell'attività di toopersist tooAzure archiviazione, sarà necessario toocreate un contenitore che funge da destinazione hello per i file di output. Creare il contenitore di hello prima di eseguire l'attività, preferibilmente prima di inviare il processo. contenitore hello toocreate o utilizzare hello appropriata libreria client di archiviazione di Azure SDK. Per ulteriori informazioni sulle API di archiviazione di Azure, vedere hello [documentazione di archiviazione di Azure](https://docs.microsoft.com/azure/storage/).
+Per rendere persistente l'output delle attività in Archiviazione di Azure, è necessario creare un contenitore che funge da destinazione per i file di output. Creare il contenitore prima di eseguire l'attività, preferibilmente prima di inviare il processo. Per creare il contenitore, usare la libreria client o l'SDK di Archiviazione di Azure appropriati. Per altre informazioni sulle API di Archiviazione di Azure, vedere la [documentazione su Archiviazione di Azure](https://docs.microsoft.com/azure/storage/).
 
-Ad esempio, se si scrive l'applicazione in c#, utilizzare hello [libreria client di archiviazione di Azure per .NET](https://www.nuget.org/packages/WindowsAzure.Storage/). Hello seguente esempio viene illustrato come un contenitore toocreate:
+Se si scrive l'applicazione in C#, ad esempio, usare la [libreria client di Archiviazione di Azure per .NET](https://www.nuget.org/packages/WindowsAzure.Storage/). L'esempio seguente mostra come creare un contenitore:
 
 ```csharp
 CloudBlobContainer container = storageAccount.CreateCloudBlobClient().GetContainerReference(containerName);
 await conainer.CreateIfNotExists();
 ```
 
-## <a name="get-a-shared-access-signature-for-hello-container"></a>Ottenere una firma di accesso condiviso per il contenitore di hello
+## <a name="get-a-shared-access-signature-for-the-container"></a>Ottenere una firma di accesso condiviso per il contenitore
 
-Dopo aver creato il contenitore di hello, ottenere una firma di accesso condiviso (SAS) con accesso in scrittura toohello contenitore. Una firma di accesso condiviso fornisce contenitore toohello accesso delegato. Hello firma di accesso condiviso concede l'accesso con un set specificato di autorizzazioni e in un intervallo di tempo specificato. Hello servizio Batch deve una firma di accesso condiviso con il contenitore toohello output attività di scrittura autorizzazioni toowrite. Per altre informazioni sulle firme di accesso condiviso, vedere [Uso delle firme di \(accesso condiviso\) in Archiviazione di Azure](../storage/common/storage-dotnet-shared-access-signature-part-1.md).
+Dopo aver creato il contenitore, è possibile ottenere una firma di accesso condiviso (SAS) con accesso in scrittura al contenitore. Una firma di accesso condiviso consente l'accesso delegato al contenitore. La firma di accesso condiviso concede l'accesso con un set specificato di autorizzazioni e per un intervallo di tempo specificato. Il servizio Batch deve disporre di una firma di accesso condiviso con autorizzazioni di scrittura per scrivere l'output delle attività del contenitore. Per altre informazioni sulle firme di accesso condiviso, vedere [Uso delle firme di \(accesso condiviso\) in Archiviazione di Azure](../storage/common/storage-dotnet-shared-access-signature-part-1.md).
 
-Quando si otterrà una firma di accesso condiviso utilizzando le API di archiviazione di Azure hello, hello API restituisce una stringa di token di firma di accesso condiviso. Questa stringa di token include tutti i parametri di hello SAS, tra cui autorizzazioni hello e intervallo di hello in cui hello firma di accesso condiviso è valida. toouse hello SAS tooaccess un contenitore di archiviazione di Azure, è necessario tooappend hello SAS stringa token toohello URI della risorsa. Hello URI risorsa, insieme a hello aggiunto token SAS, fornisce l'accesso autenticato tooAzure archiviazione.
+Quando si ottiene una firma di accesso condiviso tramite le API di Archiviazione di Azure, l'API restituisce una stringa di token di firma di accesso condiviso. Questa stringa di token include tutti i parametri della firma di accesso condiviso, incluse le autorizzazioni e l'intervallo di validità della firma di accesso condiviso. Per usare la firma di accesso condiviso per accedere a un contenitore in Archiviazione di Azure, è necessario aggiungere la stringa di token di firma di accesso all'URI della risorsa. L'URI della risorsa, insieme al token della firma di accesso condiviso aggiunto, consente l'accesso autenticato ad Archiviazione di Azure.
 
-Hello esempio seguente viene illustrato come la stringa per il contenitore di hello del token tooget una SAS di sola scrittura, quindi aggiunge l'URI del contenitore toohello hello SAS:
+L'esempio seguente mostra come ottenere una stringa di token di firma di accesso condiviso in sola scrittura per il contenitore, quindi aggiunge la firma di accesso condiviso all'URI del contenitore:
 
 ```csharp
 string containerSasToken = container.GetSharedAccessSignature(new SharedAccessBlobPolicy()
@@ -68,9 +68,9 @@ string containerSasUrl = container.Uri.AbsoluteUri + containerSasToken;
 
 ## <a name="specify-output-files-for-task-output"></a>Specificare i file di output per l'output dell'attività
 
-file di output toospecify per un'attività, creare una raccolta di [OutputFile](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.outputfile) oggetti e assegnarla toohello [CloudTask.OutputFiles](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudtask.outputfiles#Microsoft_Azure_Batch_CloudTask_OutputFiles) proprietà quando si crea l'attività hello. 
+Per specificare i file di output per un'attività, creare una raccolta di oggetti [OutputFile](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.outputfile) e assegnarla alla proprietà [CloudTask.OutputFiles](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudtask.outputfiles#Microsoft_Azure_Batch_CloudTask_OutputFiles) quando si crea l'attività. 
 
-esempio di codice .NET Hello crea un'attività che scrive file di numeri casuali tooa denominato `output.txt`. esempio Hello crea un file di output per `output.txt` toobe scritto toohello contenitore. esempio Hello crea anche i file di output per tutti i file di log che corrispondono a criterio file hello `std*.txt` (_ad esempio_, `stdout.txt` e `stderr.txt`). URL del contenitore Hello richiede hello associazioni di sicurezza che è stato creato in precedenza per il contenitore di hello. Hello servizio Batch Usa contenitore toohello di hello SAS tooauthenticate accesso: 
+L'esempio di codice .NET seguente crea un'attività che scrive numeri casuali in un file denominato `output.txt`. Nell'esempio viene creato un file di output per `output.txt` da scrivere nel contenitore. L'esempio crea anche i file di output per gli eventuali file di log corrispondenti al modello di file `std*.txt` (_ad esempio_, `stdout.txt` e `stderr.txt`). L'URL del contenitore richiede la firma di accesso condiviso creata in precedenza per il contenitore. Il servizio Batch usa la firma di accesso condiviso per autenticare l'accesso al contenitore: 
 
 ```csharp
 new CloudTask(taskId, "cmd /v:ON /c \"echo off && set && (FOR /L %i IN (1,1,100000) DO (ECHO !RANDOM!)) > output.txt\"")
@@ -98,99 +98,99 @@ new CloudTask(taskId, "cmd /v:ON /c \"echo off && set && (FOR /L %i IN (1,1,1000
 
 ### <a name="specify-a-file-pattern-for-matching"></a>Specificare un modello di file per la corrispondenza
 
-Quando si specifica un file di output, è possibile utilizzare hello [OutputFile.FilePattern](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.outputfile.filepattern#Microsoft_Azure_Batch_OutputFile_FilePattern) toospecify proprietà un modello di file per la corrispondenza. modello di file Hello potrebbe corrispondere a zero file, un singolo file o un set di file creati da attività hello.
+Quando si specifica un file di output, è possibile usare la proprietà [OutputFile.FilePattern](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.outputfile.filepattern#Microsoft_Azure_Batch_OutputFile_FilePattern) per specificare un modello di file per la corrispondenza. Il modello di file potrebbe corrispondere a zero file, un singolo file o un set di file creati dall'attività.
 
-Hello **FilePattern** proprietà supporta i caratteri jolly standard del file System, ad esempio `*` (per non ricorsivo corrisponde) e `**` (per ricorsiva corrisponde). Ad esempio, nell'esempio di codice hello precedente specifica hello file modello toomatch `std*.txt` non in modo ricorsivo: 
+La proprietà **FilePattern** supporta i caratteri jolly standard del file system, ad esempio `*` (per corrispondenze non ricorsive) e `**` (per corrispondenze ricorsive). Ad esempio, l'esempio di codice precedente specifica il modello di file da usare per trovare corrispondenze per `std*.txt` in modo non ricorsivo: 
 
 `filePattern: @"..\std*.txt"`
 
-tooupload un singolo file, specificare un modello di file senza caratteri jolly. Ad esempio, nell'esempio di codice hello precedente specifica hello file modello toomatch `output.txt`:
+Per caricare un singolo file, specificare un modello di file senza caratteri jolly. Ad esempio, l'esempio di codice precedente specifica il modello di file da usare per trovare corrispondenze per `output.txt`:
 
 `filePattern: @"output.txt"`
 
 ### <a name="specify-an-upload-condition"></a>Specificare una condizione di caricamento
 
-Hello [OutputFileUploadOptions.UploadCondition](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.outputfileuploadoptions.uploadcondition#Microsoft_Azure_Batch_OutputFileUploadOptions_UploadCondition) proprietà consente di caricare condizionale dei file di output. Uno scenario comune è tooupload un insieme di file se hello attività ha esito positivo e un set di file diverso, in caso di errore. È consigliabile, ad esempio, il file di log dettagliati tooupload solo quando l'attività hello non riesce e viene terminato con un codice di uscita diverso da zero. Analogamente, è opportuno file dei risultati tooupload solo se l'attività hello ha esito positivo, come tali file potrebbero essere mancanti o incomplete se hello attività ha esito negativo.
+La proprietà [OutputFileUploadOptions.UploadCondition](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.outputfileuploadoptions.uploadcondition#Microsoft_Azure_Batch_OutputFileUploadOptions_UploadCondition) consente il caricamento condizionale dei file di output. Uno scenario comune consiste nel caricare un set di file se l'attività ha esito positivo e un set di file diverso, in caso di errore. Ad esempio, può essere necessario caricare i file di log dettagliati solo quando l'attività ha esito negativo e viene terminata con un codice di uscita diverso da zero. Analogamente, può essere utile caricare il file dei risultati solo se l'attività ha esito positivo, perché tali file potrebbero essere mancanti o incompleti se l'attività non riesce.
 
-Nell'esempio di codice sopra Hello imposta hello **UploadCondition** proprietà troppo**TaskCompletion**. Questa impostazione specifica che se il file hello è toobe caricati dopo aver completato le attività di hello, indipendentemente dal valore hello hello codice di uscita. 
+L'esempio di codice precedente imposta la proprietà **UploadCondition** su **TaskCompletion**. Questa impostazione specifica che il file deve essere caricato dopo aver completato le attività, indipendentemente dal valore del codice di uscita. 
 
 `uploadCondition: OutputFileUploadCondition.TaskCompletion`
 
-Per altre impostazioni, vedere hello [OutputFileUploadCondition](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.common.outputfileuploadcondition) enum.
+Per altre impostazioni, vedere l'enumerazione [OutputFileUploadCondition](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.common.outputfileuploadcondition).
 
-### <a name="disambiguate-files-with-hello-same-name"></a>Risolvere le ambiguità nei file con hello stesso nome
+### <a name="disambiguate-files-with-the-same-name"></a>Eliminare le ambiguità causate da file con lo stesso nome
 
-attività Hello in un processo può produrre file hello con stesso nome. Ad esempio, i file `stdout.txt` e `stderr.txt` vengono creati per ogni attività eseguita in un processo. Poiché ogni attività viene eseguita in un contesto specifico, questi file non siano in conflitto nel file system di hello nodo. Tuttavia, quando si caricano file dal contenitore di condivisi di più attività tooa, è necessario il file toodisambiguate con hello stesso nome.
+Le attività in un processo possono produrre file con lo stesso nome. Ad esempio, i file `stdout.txt` e `stderr.txt` vengono creati per ogni attività eseguita in un processo. Dato che ogni attività viene eseguita in un contesto specifico, questi file non sono in conflitto nel file system del nodo. Quando si caricano file da più attività in un contenitore condiviso, tuttavia, è necessario evitare ambiguità tra i file con lo stesso nome.
 
-Hello [OutputFileBlobContainerDestination.Path](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.outputfileblobcontainerdestination.path#Microsoft_Azure_Batch_OutputFileBlobContainerDestination_Path) proprietà specifica il blob di destinazione hello o la directory virtuale per file di output. È possibile utilizzare hello **percorso** blob hello tooname di proprietà o la directory virtuale in modo che i file di output con hello stesso nome sono denominati in modo univoco in archiviazione di Azure. Usando un ID di attività hello in percorso hello è un nome univoco di tooensure efficace e identificare facilmente i file.
+La proprietà [OutputFileBlobContainerDestination.Path](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.outputfileblobcontainerdestination.path#Microsoft_Azure_Batch_OutputFileBlobContainerDestination_Path) specifica il BLOB o la directory virtuale di destinazione per i file di output. È possibile usare la proprietà **Path** come nome del BLOB o della directory virtuale, in modo che i file di output con lo stesso nome abbiano un nome univoco in Archiviazione di Azure. L'uso dell'ID attività nel percorso è un buon metodo per garantire nomi univoci e identificare facilmente i file.
 
-Se hello **FilePattern** tooa espressione con caratteri jolly è impostata, quindi tutti i file che corrispondono a hello criterio sono caricati toohello directory virtuale specificata da hello **percorso** proprietà. Ad esempio, se hello contenitore è `mycontainer`, attività hello ID `mytask`, e il modello di file hello è `..\std*.txt`, quindi hello assoluto URI toohello di file di output in archiviazione di Azure sarà simile a:
+Se la proprietà **FilePattern** è impostata su un'espressione con caratteri jolly, tutti i file che corrispondono al modello vengono caricati nella directory virtuale specificata dalla proprietà **Path**. Ad esempio, se il contenitore è `mycontainer`, l'ID attività è `mytask` e il modello di file è `..\std*.txt`, l'URI assoluto per i file di output in Archiviazione di Azure sarà simile a:
 
 ```
 https://myaccount.blob.core.windows.net/mycontainer/mytask/stderr.txt
 https://myaccount.blob.core.windows.net/mycontainer/mytask/stdout.txt
 ```
 
-Se hello **FilePattern** proprietà set toomatch un singolo nome file, quindi non contiene caratteri jolly, ovvero hello valore hello **percorso** proprietà specifica il nome di blob completo hello . Se si prevede di conflitto con un singolo file da più attività, quindi includere hello nome della directory virtuale hello come parte di toodisambiguate di nome file hello tali file. Ad esempio, set hello **percorso** ID attività hello tooinclude di proprietà, il carattere delimitatore hello (in genere una barra rovesciata) e nome del file hello:
+Se la proprietà **FilePattern** è impostata su a un singolo nome di file, ovvero non contiene caratteri jolly, il valore della proprietà **Path** specifica il nome completo del BLOB. Se si prevedono conflitti di nome per un singolo file da più attività, includere il nome della directory virtuale come parte del nome del file per evitare ambiguità. Ad esempio, impostare la proprietà **Path** in modo da includere l'ID attività, il carattere di delimitazione (in genere una barra rovesciata) e il nome del file:
 
 `path: taskId + @"/output.txt"`
 
-Hello assoluto URI toohello i file di output per un set di attività sarà simili a:
+L'URI assoluto dei file di output per un set di attività sarà simile a:
 
 ```
 https://myaccount.blob.core.windows.net/mycontainer/task1/output.txt
 https://myaccount.blob.core.windows.net/mycontainer/task2/output.txt
 ```
 
-Per ulteriori informazioni sulle directory virtuali in archiviazione di Azure, vedere [elencare i BLOB hello in un contenitore](../storage/blobs/storage-dotnet-how-to-use-blobs.md#list-the-blobs-in-a-container).
+Per altre informazioni sulle directory virtuali in Archiviazione di Azure, vedere [Elencare i BLOB in un contenitore](../storage/blobs/storage-dotnet-how-to-use-blobs.md#list-the-blobs-in-a-container).
 
 
 ## <a name="diagnose-file-upload-errors"></a>Diagnosticare gli errori di caricamento file
 
-Se l'output di caricamento file ha esito negativo archiviazione tooAzure, quindi attività hello Sposta toohello **completato** lo stato e hello [TaskExecutionInformation.FailureInformation](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.taskexecutioninformation.failureinformation#Microsoft_Azure_Batch_TaskExecutionInformation_FailureInformation) proprietà è impostata. Esaminare hello **FailureInformation** toodetermine proprietà sul tipo di errore. Di seguito è ad esempio, un errore che si verifica al momento del caricamento di file non è possibile trovare il contenitore di hello: 
+Se si verifica un errore di caricamento dei file di output in Archiviazione di Azure, l'attività passa allo stato **Completato** e viene impostata la proprietà [TaskExecutionInformation.FailureInformation](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.taskexecutioninformation.failureinformation#Microsoft_Azure_Batch_TaskExecutionInformation_FailureInformation). Esaminare la proprietà **FailureInformation** per determinare l'errore che si è verificato. Quello che segue è un esempio di errore che si verifica al momento del caricamento di file se non è possibile trovare il contenitore: 
 
 ```
 Category: UserError
 Code: FileUploadContainerNotFound
-Message: One of hello specified Azure container(s) was not found while attempting tooupload an output file
+Message: One of the specified Azure container(s) was not found while attempting to upload an output file
 ```
 
-In ogni caricamento di file, scrive due log del nodo di calcolo toohello file, Batch `fileuploadout.txt` e `fileuploaderr.txt`. È possibile esaminare questi toolearn i file di log altre informazioni sull'errore specifico. Nei casi in cui il caricamento di file hello mai tentativo, ad esempio perché non è stato possibile eseguire l'attività hello stessa, quindi questi file di log non esiste.
+Per ogni caricamento di file, il servizio Batch scrive due file di log nel nodo di calcolo, `fileuploadout.txt` e `fileuploaderr.txt`. È possibile esaminare questi file di log per ottenere ulteriori informazioni su un errore specifico. Nei casi in cui il caricamento del file non è mai stato tentato, ad esempio perché non può essere eseguita l'attività stessa, questi file di log non esisteranno.
 
 ## <a name="diagnose-file-upload-performance"></a>Diagnosticare le prestazioni di caricamento file
 
-Hello `fileuploadout.txt` file registra lo stato di caricamento. È possibile esaminare questo toolearn file richiede ulteriori informazioni su quanto tempo consente di caricare il file. Tenere presente che esistono molti fattori delle prestazioni tooupload, comprese le dimensioni di hello del nodo di hello, altre attività nel nodo hello in fase di hello di caricamento di hello, se un contenitore di destinazione hello in hello pool Batch hello stessa area, il numero di nodi è caricamento account di archiviazione toohello in hello stesso tempo e così via.
+Lo stato di caricamento viene registrato nel file `fileuploadout.txt`. È possibile esaminare questo file per ottenere ulteriori informazioni su quanto tempo richiede il caricamento del file. Tenere presente che esistono molti fattori che possono influire sulle prestazioni del caricamento, tra cui la dimensione del nodo, altre attività in esecuzione sul nodo durante il caricamento, il fatto che il contenitore di destinazione si trovi nella stessa area del pool di Batch, il numero di nodi in caricamento nell'account di archiviazione nello stesso momento e così via.
 
-## <a name="use-hello-batch-service-api-with-hello-batch-file-conventions-standard"></a>Utilizzare l'API del servizio Batch hello con hello convenzioni dei File Batch standard
+## <a name="use-the-batch-service-api-with-the-batch-file-conventions-standard"></a>Usare l'API del servizio Batch con lo standard Batch File Conventions
 
-Quando si mantiene fissa l'output dell'attività con hello API del servizio Batch, è possibile assegnare un nome del contenitore di destinazione e tuttavia si desidera che i BLOB. È anche possibile scegliere tooname loro in base toohello [standard convenzioni dei File Batch](https://github.com/Azure/azure-sdk-for-net/tree/vs17Dev/src/SDKs/Batch/Support/FileConventions#conventions). standard convenzioni File Hello determina i nomi di hello del contenitore di destinazione hello e blob in archiviazione di Azure per un file di output specificata in base ai nomi di hello del processo di hello e attività. Se si utilizza hello convenzioni dei File standard per la denominazione dei file di output, quindi i file di output sono disponibili per la visualizzazione in hello [portale di Azure](https://portal.azure.com).
+Quando si rende persistente l'output con l'API del servizio Batch, è possibile assegnare il nome preferito al contenitore di destinazione e ai BLOB. Si può anche scegliere il nome in base allo [standard Batch File Conventions](https://github.com/Azure/azure-sdk-for-net/tree/vs17Dev/src/SDKs/Batch/Support/FileConventions#conventions). Lo standard File Conventions determina i nomi del contenitore e del BLOB di destinazione in Archiviazione di Azure per un file di output specificato in base ai nomi del processo e dell'attività. Se si usa lo standard File Conventions per la denominazione dei file di output, i file di output sono disponibili per la visualizzazione nel [portale di Azure](https://portal.azure.com).
 
-Se si sviluppa in c#, è possibile utilizzare i metodi di hello incorporati hello [libreria convenzioni dei File Batch per .NET](https://www.nuget.org/packages/Microsoft.Azure.Batch.Conventions.Files). Questa libreria crea hello denominate in modo corretto i contenitori e percorsi blob per l'utente. Ad esempio, è possibile chiamare API hello tooget hello il nome corretto per il contenitore di hello, in base al nome di processo hello:
+Se si sviluppa in C#, è possibile usare i metodi inclusi nella [libreria Batch File Conventions per .NET](https://www.nuget.org/packages/Microsoft.Azure.Batch.Conventions.Files). Questa libreria crea automaticamente i percorsi di BLOB e contenitori con nomi appropriati. Ad esempio, è possibile chiamare l'API per ottenere il nome corretto per il contenitore, in base al nome del processo:
 
 ```csharp
 string containerName = job.OutputStorageContainerName();
 ```
 
-È possibile utilizzare hello [CloudJobExtensions.GetOutputStorageContainerUrl](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.conventions.files.cloudjobextensions.getoutputstoragecontainerurl) metodo tooreturn un URL di accesso condiviso (firma) utilizzati toowrite toohello contenitore. È quindi possibile passare questo toohello SAS [OutputFileBlobContainerDestination](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.outputfileblobcontainerdestination) costruttore.
+È possibile usare il metodo [CloudJobExtensions.GetOutputStorageContainerUrl](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.conventions.files.cloudjobextensions.getoutputstoragecontainerurl) per restituire un URL di firma di accesso condiviso usato per scrivere nel contenitore. È quindi possibile passare questa firma di accesso condiviso al costruttore [OutputFileBlobContainerDestination](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.outputfileblobcontainerdestination).
 
-Se si sviluppa in un linguaggio diverso da c#, si sarà necessario standard di tooimplement hello convenzioni dei File.
+Se si sviluppa in un linguaggio diverso da C#, sarà necessario implementare manualmente lo standard File Conventions.
 
 ## <a name="code-sample"></a>Esempio di codice
 
-Hello [PersistOutputs] [ github_persistoutputs] progetto di esempio è uno dei hello [esempi di codice di Azure Batch] [ github_samples] su GitHub. Questa soluzione di Visual Studio viene illustrato come libreria client di toouse hello Batch per attività toopersist .NET output toodurable archiviazione. hello toorun di esempio, seguire questi passaggi:
+Il progetto di esempio [PersistOutputs][github_persistoutputs] è uno degli [esempi di codice di Azure Batch][github_samples] disponibili in GitHub. Questa soluzione di Visual Studio descrive come usare la libreria client Batch per .NET per rendere persistente l'output dell'attività in una risorsa di archiviazione permanente. Per eseguire l'esempio, seguire questa procedura:
 
-1. Progetto aperto hello in **Visual Studio 2015 o versione successiva**.
-2. Aggiungere il Batch e l'archiviazione **delle credenziali dell'account** troppo**AccountSettings.settings** nel progetto Microsoft.Azure.Batch.Samples.Common hello.
-3. **Compilare** (ma non le eseguono) hello soluzione. Se richiesto, ripristinare tutti i pacchetti NuGet.
-4. Hello utilizzare tooupload portale Azure un [pacchetto di applicazione](batch-application-packages.md) per **PersistOutputsTask**. Includere hello `PersistOutputsTask.exe` e i relativi assembly dipendenti nel pacchetto ZIP hello, set di ID dell'applicazione hello troppo "PersistOutputsTask" e un'applicazione hello pacchetto versione troppo "1.0".
-5. **Avviare** hello (esecuzione) **PersistOutputs** progetto.
-6. Quando richiesto toochoose hello persistenza tecnologia toouse per esempio hello in esecuzione, immettere **2** toorun: esempio hello usando l'output dell'attività toopersist hello API del servizio Batch.
-7. Se si desidera, eseguire: esempio hello nuovamente, immettendo **3** toopersist output con l'API del servizio Batch hello e tooname hello blob e contenitore percorso di destinazione in base toohello convenzioni dei File standard.
+1. Aprire il progetto in **Visual Studio 2015 o in una versione più recente**.
+2. Aggiungere **le credenziali dell'account** di archiviazione e Batch a **AccountSettings.settings** nel progetto Microsoft.Azure.Batch.Samples.Common.
+3. **Compilare** , ma non eseguire, la soluzione. Se richiesto, ripristinare tutti i pacchetti NuGet.
+4. Usare il portale di Azure per caricare un [pacchetto dell'applicazione](batch-application-packages.md) per **PersistOutputsTask**. Includere `PersistOutputsTask.exe` e relativi assembly dipendenti nel pacchetto ZIP, impostare l'ID applicazione su "PersistOutputsTask" e la versione del pacchetto dell'applicazione su "1.0".
+5. **Avviare**, ovvero eseguire, il progetto **PersistOutputs**.
+6. Quando viene richiesto di scegliere la tecnologia di persistenza da usare per l'esecuzione dell'esempio, immettere **2** per eseguire l'esempio con l'API del servizio Batch per rendere persistente l'output dell'attività.
+7. Se si desidera, eseguire nuovamente l'esempio, immettere **3** per rendere persistente l'output con l'API del servizio Batch e definire anche i nomi per il percorso del BLOB e del contenitore di destinazione in base allo standard File Conventions.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- Per ulteriori informazioni sul salvataggio in modo permanente l'output dell'attività con libreria convenzioni File hello per .NET, vedere [mantenere job e task tooAzure archiviazione dati con libreria di hello convenzioni dei File Batch per .NET toopersist ](batch-task-output-file-conventions.md).
-- Per informazioni su altri approcci per rendere persistenti i dati di output in Batch di Azure, vedere [Persist processi e delle attività di output tooAzure archiviazione](batch-task-output.md).
+- Per altre informazioni su come rendere persistente l'output delle attività con la libreria File Conventions per .NET, vedere [Rendere persistenti i dati di attività e processi in Archiviazione di Azure con la libreria Batch File Conventions per .NET](batch-task-output-file-conventions.md).
+- Per informazioni su altri approcci per rendere persistente l'output delle attività in Azure Batch, vedere [Rendere persistente l'output di processi e attività](batch-task-output.md).
 
 [github_persistoutputs]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/ArticleProjects/PersistOutputs
 [github_samples]: https://github.com/Azure/azure-batch-samples

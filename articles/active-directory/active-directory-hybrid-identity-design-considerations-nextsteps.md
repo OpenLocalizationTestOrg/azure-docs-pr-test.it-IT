@@ -1,6 +1,6 @@
 ---
-title: "passaggi successivi di Active Directory ibrido identità progettazione considerazioni - aaaAzure | Documenti Microsoft"
-description: "Un riepilogo e passaggi successivi dopo aver letto Guida alle considerazioni di progettazione identità ibride hello"
+title: "Considerazioni di progettazione per la soluzione ibrida di gestione delle identità di Azure Active Directory: passaggi successivi | Documentazione Microsoft"
+description: "Riepilogo e passaggi successivi dopo la lettura della guida sulla progettazione dell'identità ibrida"
 documentationcenter: 
 services: active-directory
 author: billmath
@@ -14,34 +14,34 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/18/2017
 ms.author: billmath
-ms.openlocfilehash: 7100eaaf61a7b3b7d38a381f6bb9d8b82677c352
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 1d133430e0dcdcd0c24b44a2a7c452fbf16ecf29
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-active-directory-hybrid-identity-design-considerations--next-steps"></a>Considerazioni di progettazione dell'identità ibrida di Azure Active Directory - Passaggi successivi
-Ora che è stata completata la definizione dei requisiti ed esaminato tutte le opzioni di hello per la soluzione di gestione di dispositivi mobili, sei passaggi successivi di hello tootake pronto per la distribuzione di hello supportare l'infrastruttura che è adatta all'utente e la propria organizzazione.
+Dopo aver definito i requisiti ed esaminato tutte le opzioni per la soluzione di gestione dei dispositivi mobili, è possibile eseguire i passaggi successivi per la distribuzione dell'infrastruttura di supporto adatta alle esigenze dell'utente e dell'organizzazione.
 
 ## <a name="hybrid-identity-solutions"></a>Soluzioni di identità ibrida
--Consente di sfruttare gli scenari di soluzioni specifiche in base alle necessità è un ottimo modo tooreview e pianificare dettagli hello della distribuzione di un'infrastruttura di gestione di dispositivi mobili. Hello soluzioni seguenti descrive molti scenari di gestione dei dispositivi mobili più comuni hello:
+-Sfruttare i vantaggi offerti da scenari di soluzioni adatti alle proprie esigenze è un ottimo modo per verificare e pianificare i dettagli della distribuzione di un'infrastruttura di gestione dei dispositivi mobili. Le soluzioni seguenti descrivono molti dei più comuni scenari di gestione dei dispositivi mobili:
 
-* Hello [gestire dispositivi mobili e PC in una soluzione di ambienti aziendali](https://technet.microsoft.com/library/dn582037.aspx) consente di gestire i dispositivi mobili estendendo l'infrastruttura di System Center 2012 Configuration Manager in locale nel cloud hello con Microsoft Intune. Questa infrastruttura ibrida consente ai professionisti IT in ambienti di medie e grandi dimensioni di abilitare BYOD e accesso remoto riducendo la complessità amministrativa.
-* Hello [gestione dei dispositivi mobili per Configuration Manager 2007 soluzione](https://technet.microsoft.com/library/dn508400.aspx) consente di gestire i dispositivi mobili quando l'infrastruttura dipende da System Center Configuration Manager 2007. Questa soluzione Mostra come tooset di un singolo server che esegue System Center 2012 Configuration Manager in modo da poter quindi eseguire Microsoft Intune e trarre vantaggio dalle funzionalità MDM.
-* Hello [gestione dei dispositivi mobili nella soluzione di ambienti di piccole dimensioni](https://technet.microsoft.com/library/dn715906.aspx) è destinata a piccole aziende che necessitano di MDM. toosupport Viene spiegato come toouse Microsoft Intune tooextend la gestione dei dispositivi mobili toosupport corrente dell'infrastruttura BYOD. Questa soluzione descrive uno scenario più semplice di hello supportato per l'uso di Microsoft Intune in una configurazione solo cloud senza server locali, autonoma.
+* La [soluzione per la gestione di dispositivi mobili e PC negli ambienti aziendali](https://technet.microsoft.com/library/dn582037.aspx) consente di gestire i dispositivi mobili estendendo l'infrastruttura di System Center 2012 Configuration Manager locale nel cloud con Microsoft Intune. Questa infrastruttura ibrida consente ai professionisti IT in ambienti di medie e grandi dimensioni di abilitare BYOD e accesso remoto riducendo la complessità amministrativa.
+* La [soluzione per la gestione di dispositivi mobili per Configuration Manager 2007](https://technet.microsoft.com/library/dn508400.aspx) consente di gestire i dispositivi mobili quando l'infrastruttura si trova su System Center Configuration Manager 2007. Questa soluzione illustra come configurare un singolo server che esegue System Center 2012 Configuration Manager, in questo modo è possibile quindi eseguire Microsoft Intune e sfruttare la capacità MDM.
+* La [soluzione per la gestione dei dispositivi mobili negli ambienti di piccole dimensioni](https://technet.microsoft.com/library/dn715906.aspx) è destinata alle piccole aziende che devono supportare MDM. Illustra come usare Microsoft Intune per estendere l'infrastruttura corrente per il supporto della gestione dei dispositivi mobili e BYOD. Questa soluzione descrive lo scenario più semplice supportato per l'uso di Microsoft Intune in una configurazione autonoma, solo cloud senza server locali.
 
 ## <a name="hybrid-identity-documentation"></a>Documentazione di identità ibrida
 I contenuti concettuali, sulla pianificazione delle procedure, sulla distribuzione e sull'amministrazione sono utili quando si implementa la soluzione di gestione dei dispositivi mobili:
 
 * [Microsoft System Center](https://technet.microsoft.com/library/cc507089.aspx) consentono di acquisizione e consolidare le conoscenze su infrastruttura, criteri, processi e procedure consigliate in modo che il personale IT possa creare sistemi gestibili e automatizzare le operazioni.
-* [Microsoft Intune](https://technet.microsoft.com/library/jj676587.aspx) è un servizio di gestione di dispositivi basati su cloud che consente di toomanage i computer e dispositivi mobili e toosecure le informazioni aziendali.
-* [MDM per Office 365](https://technet.microsoft.com/library/ms.o365.cc.devicepolicy.aspx) consente toomanage e proteggere i dispositivi mobili quando sono connessi tooyour Office 365 organizzazione. È possibile utilizzare MDM per Office 365 tooset criteri di sicurezza dei dispositivi e le regole di accesso e i dispositivi mobili toowipe se sono stati persi o rubati.
+* [Microsoft Intune](https://technet.microsoft.com/library/jj676587.aspx) è un servizio di gestione di dispositivi basato sul cloud che consente di gestire computer e dispositivi mobili e proteggere le informazioni della società.
+* [MDM per Office 365](https://technet.microsoft.com/library/ms.o365.cc.devicepolicy.aspx) consente di gestire e proteggere i dispositivi mobili quando sono connessi all'organizzazione di Office 365. È possibile usare MDM per Office 365 per impostare regole di accesso e criteri di sicurezza dei dispositivi e per cancellare i dispositivi mobili, se vengono persi o rubati.
 
 ## <a name="hybrid-identity-resources"></a>Risorse di identità ibrida
-Monitoraggio seguente hello risorse spesso fornisce informazioni più recenti di hello e gli aggiornamenti in soluzioni di gestione dei dispositivi mobili:
+Il monitoraggio frequente di queste risorse consente di ottenere informazioni sulle notizie più recenti e aggiornamenti relativi alle soluzioni di gestione dei dispositivi mobili:
 
 * [Blog di Microsoft Enterprise Mobility](http://blogs.technet.com/b/enterprisemobility/)
-* [Blog del Cloud Microsoft hello](http://blogs.technet.com/b/in_the_cloud/)
+* [Blog di Microsoft In The Cloud](http://blogs.technet.com/b/in_the_cloud/)
 * [Blog di Microsoft Intune](http://blogs.technet.com/b/microsoftintune/)
 * [Blog di Microsoft System Center Configuration Manager](http://blogs.technet.com/b/configurationmgr/)
 * [Blog del team di Microsoft System Center Configuration Manager](http://blogs.technet.com/b/configmgrteam/)

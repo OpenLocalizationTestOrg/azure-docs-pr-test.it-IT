@@ -1,6 +1,6 @@
 ---
-title: i ruoli di hello aaaConfigure per un Azure cloud service con Visual Studio | Documenti Microsoft
-description: Informazioni su come tooset e configurare i ruoli per servizi cloud di Azure con Visual Studio.
+title: Configurare i ruoli per un servizio cloud di Azure con Visual Studio | Documentazione Microsoft
+description: Informazioni su come impostare e configurare i ruoli per i servizi cloud di Azure usando Visual Studio.
 services: visual-studio-online
 documentationcenter: na
 author: kraigb
@@ -14,123 +14,123 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 03/21/2017
 ms.author: kraigb
-ms.openlocfilehash: d3c62eb57040ebe987787e73b17b468bb82122bd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 17da71ac0c5ab9330b9244c0354e4d161d98229e
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="configure-azure-cloud-service-roles-with-visual-studio"></a>Configurare un ruolo per un servizio cloud di Azure con Visual Studio
-Un servizio cloud di Azure può includere uno o più ruoli di lavoro o ruoli Web. Per ogni ruolo, è necessario toodefine come impostare tale ruolo e inoltre configurare la modalità di esecuzione di tale ruolo. toolearn ulteriori informazioni sui ruoli nei servizi cloud, vedere il video hello [tooAzure introduzione servizi Cloud](https://channel9.msdn.com/Series/Windows-Azure-Cloud-Services-Tutorials/Introduction-to-Windows-Azure-Cloud-Services). 
+Un servizio cloud di Azure può includere uno o più ruoli di lavoro o ruoli Web. Per ogni ruolo è necessario definire la modalità di configurazione e configurare la modalità di esecuzione. Per altre informazioni sui ruoli nei servizi cloud, vedere il video [Introduzione ai servizi cloud di Azure](https://channel9.msdn.com/Series/Windows-Azure-Cloud-Services-Tutorials/Introduction-to-Windows-Azure-Cloud-Services). 
 
-informazioni di Hello per il servizio cloud vengono archiviate in hello i seguenti file:
+Le informazioni per il servizio cloud vengono archiviate nei file seguenti:
 
-- **Servicedefinition. Csdef** -file di definizione del servizio hello definisce le impostazioni di runtime hello per il servizio cloud include i ruoli richiesti, endpoint e dimensioni della macchina virtuale. Nessuno dei dati di hello archiviati in `ServiceDefinition.csdef` può essere modificato quando il ruolo è in esecuzione.
-- **ServiceConfiguration. cscfg** : file di configurazione del servizio hello configura il numero di istanze di un ruolo viene eseguito e valori hello delle impostazioni di hello è definito per un ruolo. Hello dati archiviati in `ServiceConfiguration.cscfg` possono essere modificate mentre il ruolo è in esecuzione.
+- **ServiceDefinition.csdef** - Il file di definizione del servizio definisce le impostazioni di runtime per il servizio cloud e include i ruoli richiesti, gli endpoint e le dimensioni della macchina virtuale. Nessun dato archiviato in `ServiceDefinition.csdef` può essere modificato durante l'esecuzione del ruolo.
+- **ServiceConfiguration.cscfg** - Il file di configurazione del servizio configura il numero delle istanze di un ruolo che vengono eseguite e i valori delle impostazioni definiti per un ruolo. I dati archiviati in `ServiceConfiguration.cscfg` possono essere modificati durante l'esecuzione del ruolo.
 
-toostore diversi valori per le impostazioni di hello che controllano la modalità di esecuzione di un ruolo, è possibile definire più configurazioni del servizio. È possibile usare una configurazione del servizio diversa per ogni ambiente di distribuzione. Ad esempio, è possibile impostare l'emulatore di archiviazione di Azure locale di archiviazione account connessione stringa toouse hello in una configurazione del servizio locale e creare un altro toouse di configurazione del Servizio archiviazione di Azure nel cloud hello.
+Per archiviare valori diversi per le impostazioni che controllano l'esecuzione del ruolo, è possibile creare più configurazioni del servizio. È possibile usare una configurazione del servizio diversa per ogni ambiente di distribuzione. Ad esempio, è possibile configurare la stringa di connessione dell'account di archiviazione in modo che usi l'emulatore di archiviazione di Azure locale in una configurazione del servizio locale e creare un'altra configurazione del servizio in modo che usi l'archiviazione di Azure nel cloud.
 
-Quando si crea un servizio cloud di Azure in Visual Studio, due configurazioni del servizio vengono automaticamente create e aggiunti tooyour progetto Azure:
+Quando si crea un servizio cloud in Visual Studio, vengono automaticamente create due configurazioni del servizio che sono poi aggiunte al progetto Azure:
 
 - `ServiceConfiguration.Cloud.cscfg`
 - `ServiceConfiguration.Local.cscfg`
 
 ## <a name="configure-an-azure-cloud-service"></a>Configurare un servizio cloud di Azure
-È possibile configurare un servizio cloud di Azure da Esplora soluzioni in Visual Studio, come illustrato nell'hello alla procedura seguente:
+È possibile configurare un servizio cloud di Azure da Esplora soluzioni in Visual Studio, come illustrato nella procedura seguente:
 
-1. Creare o aprire un progetto del servizio cloud di Azure in Visual Studio.
+1. Creare o aprire un progetto di servizio cloud di Azure in Visual Studio.
 
-1. In **Esplora**, fare clic sul progetto hello e selezionare il menu di scelta rapida hello **proprietà**.
+1. In **Esplora soluzioni** fare clic con il pulsante destro del mouse sul progetto e scegliere **Proprietà** dal menu di scelta rapida.
    
     ![Menu di scelta rapida di Esplora soluzioni](./media/vs-azure-tools-configure-roles-for-cloud-service/solution-explorer-project-context-menu.png)
 
-1. Nella pagina delle proprietà del progetto hello, selezionare hello **sviluppo** scheda. 
+1. Nella pagina delle proprietà del progetto, selezionare la scheda **Sviluppo**. 
 
     ![Pagina delle proprietà del progetto - Scheda Sviluppo](./media/vs-azure-tools-configure-roles-for-cloud-service/project-properties-development-tab.png)
 
-1. In hello **configurazione del servizio** elenco, il nome di hello selezionare della configurazione del servizio hello che si desidera tooedit. (Se si desidera toomake Modifica configurazioni del servizio hello tooall per questo ruolo, selezionare **tutte le configurazioni**.)
+1. Nell'elenco **Configurazione del servizio** scegliere il nome della configurazione del servizio da modificare. Per apportare modifiche a tutte le configurazioni del servizio per questo ruolo, è possibile scegliere **Tutte le configurazioni**.
    
     > [!IMPORTANT]
-    > Se si sceglie una configurazione del servizio specifica, alcune proprietà verranno disabilitate perché possono essere impostate solo per tutte le configurazioni. tooedit queste proprietà, è necessario selezionare **tutte le configurazioni**.
+    > Se si sceglie una configurazione del servizio specifica, alcune proprietà verranno disabilitate perché possono essere impostate solo per tutte le configurazioni. Per modificare queste proprietà, è necessario scegliere **Tutte le configurazioni**.
     > 
     > 
    
     ![Elenco Configurazione del servizio per un servizio cloud di Azure](./media/vs-azure-tools-configure-roles-for-cloud-service/cloud-service-service-configuration-property.png)
 
-## <a name="change-hello-number-of-role-instances"></a>Modificare hello il numero di istanze del ruolo
-prestazioni di hello tooimprove del servizio cloud, è possibile modificare il numero di hello di istanze di un ruolo in esecuzione, in base al numero di hello di utenti o hello carico previsto per un particolare ruolo. Una macchina virtuale separata viene creata per ogni istanza di un ruolo quando il servizio cloud hello in esecuzione in Azure. Ciò influisce sulla fatturazione hello per la distribuzione di hello di questo servizio cloud. Per altre informazioni sulla fatturazione, vedere l'argomento contenente [informazioni sulla fatturazione per Microsoft Azure](billing/billing-understand-your-bill.md).
+## <a name="change-the-number-of-role-instances"></a>Cambiare il numero di istanze del ruolo
+Per migliorare le prestazioni del servizio cloud, è possibile cambiare il numero di istanze di un ruolo in esecuzione, in base al numero di utenti o al carico previsto per un ruolo specifico. Una macchina virtuale separata viene creata per ogni istanza di un ruolo quando il servizio cloud è in esecuzione in Azure. Ciò influirà sulla fatturazione per la distribuzione di questo servizio cloud. Per altre informazioni sulla fatturazione, vedere l'argomento contenente [informazioni sulla fatturazione per Microsoft Azure](billing/billing-understand-your-bill.md).
 
-1. Creare o aprire un progetto del servizio cloud di Azure in Visual Studio.
+1. Creare o aprire un progetto di servizio cloud di Azure in Visual Studio.
 
-1. In **Esplora**, espandere il nodo di progetto hello. In hello **ruoli** nodo, pulsante destro del mouse sul ruolo hello desiderato tooupdate e, selezionare il menu di scelta rapida hello **proprietà**.
+1. In **Esplora soluzioni** espandere il nodo del progetto. Nel nodo **Ruoli**, fare clic con il pulsante destro del mouse sul ruolo da aggiornare e selezionare **Proprietà** dal menu di scelta rapida.
 
     ![Menu di scelta rapida di Esplora soluzioni di Azure](./media/vs-azure-tools-configure-roles-for-cloud-service/solution-explorer-azure-role-context-menu.png)
 
-1. Seleziona hello **configurazione** scheda.
+1. Scegliere la scheda **Configurazione**.
 
     ![Scheda Configurazione](./media/vs-azure-tools-configure-roles-for-cloud-service/role-configuration-properties-page.png)
 
-1. In hello **configurazione del servizio** elenco, selezionare hello sulla configurazione del servizio che si desidera tooupdate.
+1. Nell'elenco **Configurazione servizio** scegliere la configurazione del servizio da aggiornare.
    
     ![Elenco Configurazione servizio](./media/vs-azure-tools-configure-roles-for-cloud-service/role-configuration-properties-page-select-configuration.png)
 
-1. In hello **numero** testo immettere il numero di hello di istanze che si desidera toostart per questo ruolo. Ogni istanza viene eseguita su una macchina virtuale separata quando si pubblica tooAzure servizio cloud di hello.
+1. Nella casella di testo **Conteggio istanze** immettere il numero di istanze da avviare per questo ruolo. Quando il servizio cloud viene pubblicato in Azure, ogni istanza viene eseguita in una macchina virtuale diversa.
 
-    ![Numero di istanze di hello aggiornamento](./media/vs-azure-tools-configure-roles-for-cloud-service/role-configuration-properties-page-instance-count.png)
+    ![Aggiornamento del conteggio istanze](./media/vs-azure-tools-configure-roles-for-cloud-service/role-configuration-properties-page-instance-count.png)
 
-1. Da hello Visual Studio, sulla barra degli strumenti, seleziona **salvare**.
+1. Dalla barra degli strumenti di Visual Studio selezionare **Salva**.
 
 ## <a name="manage-connection-strings-for-storage-accounts"></a>Gestire le stringhe di connessione per gli account di archiviazione
-È possibile aggiungere, rimuovere o modificare le stringhe di connessione per le configurazioni del servizio. Ad esempio, è possibile che si voglia creare una stringa di connessione locale per una configurazione del servizio locale con valore `UseDevelopmentStorage=true`. È inoltre possibile tooconfigure una configurazione del servizio cloud che utilizza un account di archiviazione in Azure.
+È possibile aggiungere, rimuovere o modificare le stringhe di connessione per le configurazioni del servizio. Ad esempio, è possibile che si voglia creare una stringa di connessione locale per una configurazione del servizio locale con valore `UseDevelopmentStorage=true`. È anche possibile che si voglia definire una configurazione del servizio cloud che usa un account di archiviazione di Azure.
 
 > [!WARNING]
-> Quando si immettono informazioni chiave con account di archiviazione di Azure hello per una stringa di connessione di account di archiviazione, queste informazioni sono archiviate in locale il file di configurazione servizio hello. Queste informazioni, tuttavia, non vengono attualmente archiviate come testo crittografato.
+> Quando si immettono le informazioni chiave dell'account di archiviazione di Azure per una stringa di connessione dell'account di archiviazione, tali informazioni vengono archiviate localmente nel file di configurazione del servizio. Queste informazioni, tuttavia, non vengono attualmente archiviate come testo crittografato.
 > 
 > 
 
-Utilizzando un valore diverso per ogni configurazione del servizio, si non sono stringhe di connessione diverse toouse nel servizio cloud o modificare il codice quando si pubblica il tooAzure servizio cloud. È possibile utilizzare hello stesso nome per la stringa di connessione hello nel valore del codice e hello è diverso, in base alla configurazione di servizio hello che si seleziona quando si compila il servizio cloud o quando si esegue la pubblicazione.
+Se si usa un valore diverso per ogni configurazione del servizio, non sarà necessario usare stringhe di connessione diverse nel servizio cloud o modificare il codice quando si pubblica il servizio cloud in Azure. È possibile usare lo stesso nome per la stringa di connessione nel codice e il valore sarà diverso in base alla configurazione del servizio selezionata quando si compila il servizio cloud o quando lo si pubblica.
 
-1. Creare o aprire un progetto del servizio cloud di Azure in Visual Studio.
+1. Creare o aprire un progetto di servizio cloud di Azure in Visual Studio.
 
-1. In **Esplora**, espandere il nodo di progetto hello. In hello **ruoli** nodo, pulsante destro del mouse sul ruolo hello desiderato tooupdate e, selezionare il menu di scelta rapida hello **proprietà**.
+1. In **Esplora soluzioni** espandere il nodo del progetto. Nel nodo **Ruoli**, fare clic con il pulsante destro del mouse sul ruolo da aggiornare e selezionare **Proprietà** dal menu di scelta rapida.
 
     ![Menu di scelta rapida di Esplora soluzioni di Azure](./media/vs-azure-tools-configure-roles-for-cloud-service/solution-explorer-azure-role-context-menu.png)
 
-1. Seleziona hello **impostazioni** scheda.
+1. Fare clic sulla scheda **Impostazioni**.
 
     ![Scheda Settings](./media/vs-azure-tools-configure-roles-for-cloud-service/project-properties-settings-tab.png)
 
-1. In hello **configurazione del servizio** elenco, selezionare hello sulla configurazione del servizio che si desidera tooupdate.
+1. Nell'elenco **Configurazione servizio** scegliere la configurazione del servizio da aggiornare.
 
     ![Service Configuration](./media/vs-azure-tools-configure-roles-for-cloud-service/project-properties-settings-tab-select-configuration.png)
 
-1. Selezionare una stringa di connessione tooadd **Aggiungi impostazione**.
+1. Per aggiungere una stringa di connessione, scegliere **Aggiungi impostazione**.
 
     ![Aggiungere una stringa di connessione](./media/vs-azure-tools-configure-roles-for-cloud-service/project-properties-settings-tab-add-setting.png)
 
-1. Dopo l'aggiunta di nuova impostazione hello toohello elenco, aggiornare la riga hello nell'elenco di hello con le informazioni necessarie hello.
+1. Dopo aver aggiunto la nuova impostazione all'elenco, aggiornare la riga nell'elenco con le informazioni necessarie.
 
     ![Nuova stringa di connessione](./media/vs-azure-tools-configure-roles-for-cloud-service/project-properties-settings-tab-add-setting-new-setting.png)
 
-    - **Nome** -immettere il nome di hello che si desidera toouse hello stringa di connessione.
-    - **Tipo** : selezionare questa opzione **stringa di connessione** dall'elenco a discesa hello.
-    - **Valore** -è possibile immettere la stringa di connessione hello direttamente in hello **valore** cella o hello selezionare i puntini di sospensione (…) toowork in hello **crea stringa di connessione di archiviazione** finestra di dialogo.  
+    - **Nome**: digitare il nome da usare per la stringa di connessione.
+    - **Tipo**: scegliere **Stringa di connessione** nell'elenco a discesa.
+    - **Valore**: è possibile immettere la stringa di connessione direttamente nella cella **Valore** o selezionare i puntini di sospensione (...) per lavorare nella finestra di dialogo **Crea stringa di connessione a risorsa di archiviazione**.  
 
-1. In hello **crea stringa di connessione di archiviazione** finestra di dialogo, selezionare un'opzione per **connettersi utilizzando**. Seguire le istruzioni di hello per opzione hello selezionata:
+1. Nella finestra di dialogo **Crea stringa di connessione a risorsa di archiviazione**, selezionare un'opzione per **Connetti tramite**. Seguire quindi le istruzioni relative all'opzione selezionata:
 
-    - **Emulatore di archiviazione di Microsoft Azure** -se si seleziona questa opzione, le impostazioni rimanenti hello nella finestra di dialogo hello sono disabilitate perché sono validi solo tooAzure. Selezionare **OK**.
-    - **La sottoscrizione** : se si seleziona questa opzione, usare hello elenco a discesa elenco tooeither selezionare e accesso in un account Microsoft o aggiunta un account Microsoft. Selezionare una sottoscrizione e un account di archiviazione di Azure. Selezionare **OK**.
-    - **Credenziali immesse manualmente** : immettere il nome di account di archiviazione hello e una chiave primaria o a seconda di hello. Selezionare un'opzione per **Connessione**. Nella maggior parte dei casi è consigliato HTTPS. Selezionare **OK**.
+    - **Emulatore di archiviazione di Microsoft Azure**: se si seleziona questa opzione, le impostazioni rimanenti nella finestra di dialogo vengono disabilitate, poiché sono valide solo per Azure. Selezionare **OK**.
+    - **Sottoscrizione**: se si seleziona questa opzione, usare l'elenco a discesa per selezionare e accedere a un account Microsoft oppure aggiungere un account Microsoft. Selezionare una sottoscrizione e un account di archiviazione di Azure. Selezionare **OK**.
+    - **Credenziali immesse manualmente**: immettere il nome dell'account di archiviazione e la chiave primaria o secondaria. Selezionare un'opzione per **Connessione**. Nella maggior parte dei casi è consigliato HTTPS. Selezionare **OK**.
 
-1. Selezionare la stringa di connessione hello toodelete una stringa di connessione e quindi selezionare **Rimuovi impostazione**.
+1. Per eliminare una stringa di connessione, selezionarla e quindi scegliere **Rimuovi impostazione**.
 
-1. Da hello Visual Studio, sulla barra degli strumenti, seleziona **salvare**.
+1. Dalla barra degli strumenti di Visual Studio selezionare **Salva**.
 
 ## <a name="programmatically-access-a-connection-string"></a>Accedere a una stringa di connessione a livello di codice
 
-Hello passaggi seguenti viene illustrato come accedere a una stringa di connessione utilizzando il linguaggio c# tooprogrammatically.
+La procedura seguente illustra come accedere a una stringa di connessione a livello di codice usando C#.
 
-1. Aggiungere il seguente hello utilizzando file di direttive tooa c# in cui si sta impostazione hello toouse:
+1. Aggiungere le seguenti direttive using al file C# in cui si vuole usare l'impostazione:
 
     ```csharp
     using Microsoft.WindowsAzure;
@@ -138,55 +138,55 @@ Hello passaggi seguenti viene illustrato come accedere a una stringa di connessi
     using Microsoft.WindowsAzure.ServiceRuntime;
     ```
 
-1. Hello codice seguente viene illustrato un esempio di come tooaccess una stringa di connessione. Sostituire hello &lt;ConnectionStringName > segnaposto con il valore appropriato hello. 
+1. Il codice seguente è un esempio di come accedere a una stringa di connessione. Sostituire il segnaposto &lt;ConnectionStringName > con il valore appropriato. 
 
     ```csharp
-    // Setup hello connection tooAzure Storage
+    // Setup the connection to Azure Storage
     var storageAccount = CloudStorageAccount.Parse(RoleEnvironment.GetConfigurationSettingValue("<ConnectionStringName>"));
     ```
 
-## <a name="add-custom-settings-toouse-in-your-azure-cloud-service"></a>Aggiungere impostazioni personalizzate toouse nel servizio cloud di Azure
-Le impostazioni personalizzate nel file di configurazione del servizio hello consentono di aggiungere un nome e il valore di una stringa per una configurazione del servizio specifico. È possibile scegliere toouse tooconfigure questa impostazione una funzionalità nel servizio cloud leggendo il valore di hello di hello impostazione e l'utilizzo di questa logica di hello toocontrol valore nel codice. È possibile modificare questi valori di configurazione del servizio senza dovere toorebuild il pacchetto del servizio o quando è in esecuzione il servizio cloud. Il codice può cercare notifiche in caso di modifiche di un'impostazione. Vedere l' [Evento RoleEnvironment.Changing](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.changing.aspx).
+## <a name="add-custom-settings-to-use-in-your-azure-cloud-service"></a>Aggiungere impostazioni personalizzate da usare nel servizio cloud di Azure
+Le impostazioni personalizzate nel file di configurazione del servizio consentono di aggiungere un nome e un valore per una stringa per una configurazione del servizio specifica. È possibile scegliere di usare questa impostazione per configurare una funzionalità nel servizio cloud leggendo il valore dell'impostazione e usando questo valore per controllare la logica nel codice. È possibile cambiare questi valori della configurazione del servizio senza dovere ricompilare il pacchetto del servizio o quando il servizio cloud è in esecuzione. Il codice può cercare notifiche in caso di modifiche di un'impostazione. Vedere l' [Evento RoleEnvironment.Changing](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.changing.aspx).
 
 È possibile aggiungere, rimuovere o modificare impostazioni personalizzate per le configurazioni del servizio. Potrebbero essere necessari diversi valori per queste stringhe per configurazioni del servizio diverse.
 
-Utilizzando un valore diverso per ogni configurazione del servizio, si non sono stringhe diverse toouse nel servizio cloud o modificare il codice quando si pubblica il tooAzure servizio cloud. È possibile utilizzare hello stesso nome per la stringa hello nel valore del codice e hello è diverso, in base alla configurazione di servizio hello che si seleziona quando si compila il servizio cloud o quando si esegue la pubblicazione.
+Se si usa un valore diverso per ogni configurazione del servizio, non sarà necessario usare stringhe diverse nel servizio cloud o modificare il codice quando si pubblica il servizio cloud in Azure. È possibile usare lo stesso nome per la stringa nel codice e il valore sarà diverso in base alla configurazione del servizio selezionata quando si compila il servizio cloud o quando lo si pubblica.
 
-1. Creare o aprire un progetto del servizio cloud di Azure in Visual Studio.
+1. Creare o aprire un progetto di servizio cloud di Azure in Visual Studio.
 
-1. In **Esplora**, espandere il nodo di progetto hello. In hello **ruoli** nodo, pulsante destro del mouse sul ruolo hello desiderato tooupdate e, selezionare il menu di scelta rapida hello **proprietà**.
+1. In **Esplora soluzioni** espandere il nodo del progetto. Nel nodo **Ruoli**, fare clic con il pulsante destro del mouse sul ruolo da aggiornare e selezionare **Proprietà** dal menu di scelta rapida.
 
     ![Menu di scelta rapida di Esplora soluzioni di Azure](./media/vs-azure-tools-configure-roles-for-cloud-service/solution-explorer-azure-role-context-menu.png)
 
-1. Seleziona hello **impostazioni** scheda.
+1. Fare clic sulla scheda **Impostazioni**.
 
     ![Scheda Settings](./media/vs-azure-tools-configure-roles-for-cloud-service/project-properties-settings-tab.png)
 
-1. In hello **configurazione del servizio** elenco, selezionare hello sulla configurazione del servizio che si desidera tooupdate.
+1. Nell'elenco **Configurazione servizio** scegliere la configurazione del servizio da aggiornare.
 
     ![Elenco Configurazione servizio](./media/vs-azure-tools-configure-roles-for-cloud-service/project-properties-settings-tab-select-configuration.png)
 
-1. Selezionare un'impostazione personalizzata, tooadd **Aggiungi impostazione**.
+1. Per aggiungere un'impostazione personalizzata, selezionare **Aggiungi impostazione**.
 
     ![Aggiungere impostazioni personalizzate](./media/vs-azure-tools-configure-roles-for-cloud-service/project-properties-settings-tab-add-setting.png)
 
-1. Dopo l'aggiunta di nuova impostazione hello toohello elenco, aggiornare la riga hello nell'elenco di hello con le informazioni necessarie hello.
+1. Dopo aver aggiunto la nuova impostazione all'elenco, aggiornare la riga nell'elenco con le informazioni necessarie.
 
     ![Nuova impostazione personalizzata](./media/vs-azure-tools-configure-roles-for-cloud-service/project-properties-settings-tab-add-setting-new-setting.png)
 
-    - **Nome** -immettere il nome di hello dell'impostazione di hello.
-    - **Tipo** : selezionare questa opzione **stringa** dall'elenco a discesa hello.
-    - **Valore** -immettere il valore di hello dell'impostazione di hello. È possibile immettere il valore di hello direttamente in hello **valore** cella o hello selezionare i puntini di sospensione (…) tooenter hello valore hello **Modifica stringa** finestra di dialogo.  
+    - **Nome**: inserire il nome dell'impostazione.
+    - **Tipo**: scegliere **Stringa di connessione** dall'elenco a discesa.
+    - **Valore**: inserire il valore dell'impostazione. È possibile immettere il valore direttamente nella cella **Valore** o selezionare i puntini di sospensione (...) per immettere il valore nella finestra di dialogo **Modifica stringa**.  
 
-1. toodelete un'impostazione personalizzata, selezionare l'impostazione di hello e quindi selezionare **Rimuovi impostazione**.
+1. Per eliminare un'impostazione personalizzata, selezionarla e quindi scegliere **Rimuovi impostazione**.
 
-1. Da hello Visual Studio, sulla barra degli strumenti, seleziona **salvare**.
+1. Dalla barra degli strumenti di Visual Studio selezionare **Salva**.
 
 ## <a name="programmatically-access-a-custom-settings-value"></a>Accedere al valore dell'impostazione personalizzata a livello di codice
  
-Hello passaggi seguenti viene illustrato come accedere a un'impostazione personalizzata in c# tooprogrammatically.
+La procedura seguente illustra come accedere a un'impostazione personalizzata a livello di codice usando C#.
 
-1. Aggiungere il seguente hello utilizzando file di direttive tooa c# in cui si sta impostazione hello toouse:
+1. Aggiungere le seguenti direttive using al file C# in cui si vuole usare l'impostazione:
 
     ```csharp
     using Microsoft.WindowsAzure;
@@ -194,58 +194,58 @@ Hello passaggi seguenti viene illustrato come accedere a un'impostazione persona
     using Microsoft.WindowsAzure.ServiceRuntime;
     ```
 
-1. Hello codice seguente viene illustrato un esempio di come tooaccess un'impostazione personalizzata. Sostituire hello &lt;SettingName > segnaposto con il valore appropriato hello. 
+1. Il codice seguente è un esempio di come accedere a un'impostazione personalizzata. Sostituire il segnaposto &lt;SettingName> con il valore appropriato. 
     
     ```csharp
     var settingValue = RoleEnvironment.GetConfigurationSettingValue("<SettingName>");
     ```
 
 ## <a name="manage-local-storage-for-each-role-instance"></a>Gestire le risorse di archiviazione locali per ogni istanza del ruolo
-È possibile aggiungere una risorsa di archiviazione del file system locale per ogni istanza del ruolo. Hello i dati memorizzati nell'archiviazione non è accessibile da altre istanze del ruolo di hello per cui hello dati vengono archiviati o da altri ruoli.  
+È possibile aggiungere una risorsa di archiviazione del file system locale per ogni istanza del ruolo. I dati archiviati nella risorsa di archiviazione non sono accessibili da altre istanze del ruolo per il quale sono archiviati, né da altri ruoli.  
 
-1. Creare o aprire un progetto del servizio cloud di Azure in Visual Studio.
+1. Creare o aprire un progetto di servizio cloud di Azure in Visual Studio.
 
-1. In **Esplora**, espandere il nodo di progetto hello. In hello **ruoli** nodo, pulsante destro del mouse sul ruolo hello desiderato tooupdate e, selezionare il menu di scelta rapida hello **proprietà**.
+1. In **Esplora soluzioni** espandere il nodo del progetto. Nel nodo **Ruoli**, fare clic con il pulsante destro del mouse sul ruolo da aggiornare e selezionare **Proprietà** dal menu di scelta rapida.
 
     ![Menu di scelta rapida di Esplora soluzioni di Azure](./media/vs-azure-tools-configure-roles-for-cloud-service/solution-explorer-azure-role-context-menu.png)
 
-1. Seleziona hello **archiviazione locale** scheda.
+1. Selezionare la scheda **Risorsa di archiviazione locale**.
 
     ![Scheda Archiviazione locale](./media/vs-azure-tools-configure-roles-for-cloud-service/role-local-storage-tab.png)
 
-1. In hello **configurazione del servizio** elenco, verificare che **tutte le configurazioni** selezionata come impostazioni di archiviazione locale hello applicano tooall configurazioni del servizio. Qualsiasi altro valore comporta in tutti i campi di input hello nella pagina di hello è disabilitata. 
+1. Nell'elenco **Configurazione del servizio**, verificare che l'opzione selezionata sia **Tutte le configurazioni**, poiché le impostazioni di archiviazione locale si applicano a tutte le configurazioni di servizio. Qualsiasi altro valore comporta la disabilitazione di tutti i campi di input della pagina. 
 
     ![Elenco Configurazione servizio](./media/vs-azure-tools-configure-roles-for-cloud-service/role-local-storage-tab-service-configuration.png)
 
-1. Selezionare una voce di archiviazione locale, tooadd **aggiungere archiviazione locale**.
+1. Per aggiungere una voce relativa a una risorsa di archiviazione locale, selezionare **Aggiungi risorsa di archiviazione locale**.
 
     ![Aggiungi risorsa di archiviazione locale](./media/vs-azure-tools-configure-roles-for-cloud-service/role-local-storage-tab-add-local-storage.png)
 
-1. Dopo aver aggiunto la nuova voce archiviazione locale di hello toohello elenco, aggiornare la riga hello nell'elenco di hello con le informazioni necessarie hello.
+1. Dopo aver aggiunto la nuova risorsa di archiviazione locale all'elenco, aggiornare la riga nell'elenco con le informazioni necessarie.
 
     ![Nuova risorsa di archiviazione locale](./media/vs-azure-tools-configure-roles-for-cloud-service/role-local-storage-tab-new-local-storage.png)
 
-    - **Nome** -immettere il nome di hello che si desidera toouse per l'archiviazione locale nuovo hello.
-    - **Dimensioni (MB)** -immettere hello dimensione in MB necessaria per l'archiviazione locale nuovo hello.
-    - **Pulizia in riciclo ruolo** -selezionare dati opzione tooremove hello nella memoria locale nuovo hello quando hello di macchina virtuale per il ruolo di hello viene riciclato.
+    - **Nome**: digitare il nome da usare per la nuova risorsa di archiviazione locale.
+    - **Dimensione (MB)**: immettere la dimensione in MB necessaria per la nuova risorsa di archiviazione locale.
+    - **Pulisci a riciclo ruolo**: selezionare questa opzione per rimuovere i dati dalla nuova risorsa di archiviazione locale quando la macchina virtuale per il ruolo viene riciclata.
 
-1. toodelete una voce di archiviazione locale, selezionare la voce hello e quindi selezionare **rimuovere spazio di archiviazione locale**.
+1. Per eliminare una risorsa di archiviazione locale, selezionarla e scegliere **Remove Local Storage** (Rimuovi risorsa di archiviazione locale).
 
-1. Da hello Visual Studio, sulla barra degli strumenti, seleziona **salvare**.
+1. Dalla barra degli strumenti di Visual Studio selezionare **Salva**.
 
 ## <a name="programmatically-accessing-local-storage"></a>Accedere alla risorsa di archiviazione locale a livello di codice
 
-In questa sezione viene illustrato come tooprogrammatically accedere all'archiviazione locale utilizzando c# mediante la scrittura di un file di testo test `MyLocalStorageTest.txt`.  
+Questa sezione illustra come accedere alla risorsa di archiviazione locale a livello di codice usando C# per scrivere il file di testo di prova `MyLocalStorageTest.txt`.  
 
-### <a name="write-a-text-file-toolocal-storage"></a>Scrivere un'archiviazione toolocal file di testo
+### <a name="write-a-text-file-to-local-storage"></a>Scrivere un file di testo in una risorsa di archiviazione locale
 
-Hello seguente codice mostra un esempio di come un testo toowrite toolocal archiviazione di file. Sostituire hello &lt;LocalStorageName > segnaposto con il valore appropriato hello. 
+Il codice seguente è un esempio di come scrivere un file di testo in una risorsa di archiviazione locale. Sostituire il segnaposto &lt;LocalStorageName> con il valore appropriato. 
 
     ```csharp
-    // Retrieve an object that points toohello local storage resource
+    // Retrieve an object that points to the local storage resource
     LocalResource localResource = RoleEnvironment.GetLocalResource("<LocalStorageName>");
     
-    //Define hello file name and path
+    //Define the file name and path
     string[] paths = { localResource.RootPath, "MyLocalStorageTest.txt" };
     String filePath = Path.Combine(paths);
     
@@ -257,24 +257,24 @@ Hello seguente codice mostra un esempio di come un testo toowrite toolocal archi
 
     ```
 
-### <a name="find-a-file-written-toolocal-storage"></a>Trovare un file scritto toolocal archiviazione
+### <a name="find-a-file-written-to-local-storage"></a>Trovare un file scritto in una risorsa di archiviazione locale
 
-file hello tooview creata dal codice hello nella sezione precedente hello, seguire questi passaggi:
+Per visualizzare il file creato dal codice nella sezione precedente, seguire questa procedura:
     
-1.  Nell'area di notifica Windows hello, fare doppio clic sull'icona Azure hello e, dal menu di scelta rapida hello, selezionare **Mostra interfaccia utente di emulatore di calcolo**. 
+1.  Nell'area di notifica di Windows, fare clic con il pulsante destro del mouse sull'icona di Azure e, dal menu di scelta rapida, selezionare **Show Compute Emulator UI** (Mostra interfaccia utente dell'emulatore di calcolo). 
 
     ![Mostra emulatore di calcolo di Azure](./media/vs-azure-tools-configure-roles-for-cloud-service/show-compute-emulator.png)
 
-1. Selezionare ruolo web hello.
+1. Selezionare il ruolo Web.
 
     ![Emulatore di calcolo di Azure](./media/vs-azure-tools-configure-roles-for-cloud-service/compute-emulator.png)
 
-1. In hello **emulatore di calcolo di Microsoft Azure** dal menu **strumenti** > **Apri archivio locale**.
+1. Dal menu **Emulatore di calcolo di Microsoft Azure**, selezionare **Strumenti** > **Open local store** (Apri risorsa di archiviazione locale).
 
     ![Voce di menu Apri risorsa di archiviazione locale](./media/vs-azure-tools-configure-roles-for-cloud-service/compute-emulator-open-local-store-menu.png)
 
-1. Quando si apre la finestra di Esplora hello, immettere ' MyLocalStorageTest.txt ' in hello **ricerca** casella di testo e selezionare **invio** ricerca hello toostart. 
+1. Nella finestra di Esplora risorse visualizzata, immettere "MyLocalStorageTest.txt" nella casella di testo **Cerca** e premere **Invio** per avviare la ricerca. 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altre informazioni sui progetti Azure in Visual Studio, vedere [Configurazione di un progetto Azure](vs-azure-tools-configuring-an-azure-project.md). Altre informazioni sullo schema di servizi cloud hello leggendo [riferimento allo Schema](https://msdn.microsoft.com/library/azure/dd179398).
+Per altre informazioni sui progetti Azure in Visual Studio, vedere [Configurazione di un progetto Azure](vs-azure-tools-configuring-an-azure-project.md). Per altre informazioni sullo schema del servizio cloud, vedere [Guida di riferimento agli schemi](https://msdn.microsoft.com/library/azure/dd179398).
 

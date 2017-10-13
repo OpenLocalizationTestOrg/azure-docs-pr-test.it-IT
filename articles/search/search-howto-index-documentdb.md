@@ -1,6 +1,6 @@
 ---
-title: aaaIndexing un'origine dati DB Cosmos per ricerca di Azure | Documenti Microsoft
-description: In questo articolo illustra come toocreate un indicizzatore di ricerca di Azure con DB Cosmos come origine dati.
+title: Indicizzazione di un'origine dati Cosmos DB per Ricerca di Azure | Microsoft Docs
+description: Questo articolo illustra come creare l'indicizzatore di Ricerca di Azure con Cosmos DB come origine dati.
 services: search
 documentationcenter: 
 author: chaosrealm
@@ -14,41 +14,41 @@ ms.tgt_pltfrm: NA
 ms.workload: search
 ms.date: 08/10/2017
 ms.author: eugenesh
-ms.openlocfilehash: 195c9bc026ee1591679dc425ef083a32a3c86be6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 2f1791393b1e59721cc5a1030927cd00d74a5f13
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="connecting-cosmos-db-with-azure-search-using-indexers"></a>Connessione di Cosmos DB con Ricerca di Azure tramite indicizzatori
 
-Se si desidera una ricerca ottima esperienza tooimplement sui dati Cosmos DB, è possibile utilizzare dati di toopull un indicizzatore di ricerca di Azure in un indice di ricerca di Azure. In questo articolo verrà illustrato come toointegrate DB Cosmos Azure con ricerca di Azure senza la necessità di un'infrastruttura di indicizzazione toomaintain codice toowrite.
+Per ottenere un'esperienza di ricerca ottimale sui dati di Cosmos DB, è possibile usare un indicizzatore di Ricerca di Azure per inserire dati in un indice di Ricerca di Azure. Questo articolo illustra come integrare Azure Cosmos DB con Ricerca di Azure senza dover scrivere codice per gestire l'infrastruttura di indicizzazione.
 
-tooset di un indicizzatore Cosmos DB, è necessario disporre di un [servizio di ricerca di Azure](search-create-service-portal.md)e creare un indice, l'origine dati e infine indicizzatore hello. È possibile creare questi oggetti tramite hello [portale](search-import-data-portal.md), [.NET SDK](/dotnet/api/microsoft.azure.search), o [API REST](/rest/api/searchservice/) per tutti i linguaggi non .NET. 
+Per configurare un indicizzatore di Cosmos DB, è necessario avere un [servizio Ricerca di Azure](search-create-service-portal.md), creare un indice, l'origine dati e infine l'indicizzatore. È possibile creare questi oggetti usando il [portale](search-import-data-portal.md), [.NET SDK](/dotnet/api/microsoft.azure.search) o l'[API REST](/rest/api/searchservice/) per tutti i linguaggi diversi da .NET. 
 
-Se non si scelga portale hello, hello [importazione guidata dati](search-import-data-portal.md) in modo semplificato la creazione di hello di tutte queste risorse.
+Se si sceglie di usare il portale, l'[Importazione guidata dati](search-import-data-portal.md) consente di creare tutte queste risorse.
 
 > [!NOTE]
-> COSMOS DB è hello prossima generazione di DocumentDB. Anche se il nome di prodotto hello viene modificato, la sintassi è hello stesso come in precedenza. Continuare toospecify `documentdb` come indicato in questo articolo di indicizzatore. 
+> Cosmos DB è la nuova generazione di DocumentDB. Anche se il nome del prodotto è cambiato, la sintassi è immutata. Continuare a specificare `documentdb` come indicato in questo articolo sull'indicizzatore. 
 
 > [!TIP]
-> È possibile avviare hello **importare dati** guidata da hello Cosmos DB dashboard toosimplify l'indicizzazione dell'origine dati. Nella finestra di navigazione a sinistra, andare troppo**raccolte** > **aggiungere ricerca di Azure** tooget avviato.
+> È possibile avviare la procedura guidata **Importa dati** dal dashboard di Cosmos DB per semplificare l'indicizzazione dell'origine dati. Nel riquadro di spostamento a sinistra passare a **Raccolte** > **Aggiungi Ricerca di Azure** per iniziare.
 
 <a name="Concepts"></a>
 ## <a name="azure-search-indexer-concepts"></a>Concetti relativi all'indicizzatore di Ricerca di Azure
-Azure supporta la ricerca hello creazione e gestione di origini dati (inclusi DB Cosmos) e gli indicizzatori che operano su tali origini dati.
+Ricerca di Azure supporta la creazione e la gestione di origini dati (incluso Cosmos DB) e di indicizzatori che operano su tali origini dati.
 
-Oggetto **origine dati** specifica hello tooindex di dati, credenziali e i criteri per l'identificazione delle modifiche ai dati hello (ad esempio i documenti modificati o eliminati all'interno di raccolta). origine dati Hello è definita come risorsa indipendente in modo che può essere utilizzato da più indicizzatori.
+Un'**origine dati** specifica i dati per l'indice, le credenziali e i criteri per l'identificazione delle modifiche apportate ai dati (ad esempio documenti modificati o eliminati nella raccolta). L'origine dati è definita come risorsa indipendente affinché possa essere usata da più indicizzatori.
 
-Un **indicizzatore** descrive hello flusso dei dati dall'origine dati in un indice di ricerca di destinazione. Un indicizzatore consente di:
+Un **indicizzatore** descrive la modalità di flusso dei dati dall'origine dati a un indice di ricerca di destinazione. Un indicizzatore consente di:
 
-* Eseguire una copia occasionale dei dati di hello toopopulate un indice.
-* Un indice con le modifiche nell'origine dati hello in una pianificazione di sincronizzazione. pianificazione di Hello fa parte della definizione di indicizzatore hello.
-* Richiamare l'indice di tooan aggiornamenti su richiesta in base alle esigenze.
+* Eseguire una copia occasionale dei dati per popolare un indice.
+* Sincronizzare un indice con le modifiche nell'origine dati in base a una pianificazione. La pianificazione fa parte della definizione dell'indicizzatore.
+* Richiamare aggiornamenti su richiesta in un indice in base alle necessità.
 
 <a name="CreateDataSource"></a>
 ## <a name="step-1-create-a-data-source"></a>Passaggio 1: Creare un'origine dati
-toocreate un'origine dati, effettuare un POST:
+Per creare un'origine dati, creare un POST:
 
     POST https://[service name].search.windows.net/datasources?api-version=2016-09-01
     Content-Type: application/json
@@ -67,22 +67,22 @@ toocreate un'origine dati, effettuare un POST:
         }
     }
 
-corpo Hello della richiesta di hello contiene hello definizione dell'origine dati che deve includere hello seguenti campi:
+Il corpo della richiesta contiene la definizione dell'origine dati, che deve includere i campi seguenti:
 
-* **nome**: scegliere qualsiasi nome toorepresent database DB Cosmos.
+* **name**: scegliere qualsiasi nome per rappresentare il database di Cosmos DB.
 * **type**: deve essere `documentdb`.
 * **Credenziali**
   
-  * **connectionString**: obbligatorio. Specificare il database Azure Cosmos DB tooyour di hello connessione info in hello seguente formato:`AccountEndpoint=<Cosmos DB endpoint url>;AccountKey=<Cosmos DB auth key>;Database=<Cosmos DB database id>`
+  * **connectionString**: obbligatorio. Specificare le informazioni di connessione al database di Azure Cosmos DB nel formato seguente: `AccountEndpoint=<Cosmos DB endpoint url>;AccountKey=<Cosmos DB auth key>;Database=<Cosmos DB database id>`
 * **contenitore**:
   
-  * **name**: obbligatorio. Specificare l'id di hello di hello Cosmos DB raccolta toobe indicizzato.
-  * **query**: facoltativa. È possibile specificare un tooflatten query un documento JSON arbitrario in uno schema flat che ricerca di Azure può essere indicizzata.
+  * **name**: obbligatorio. Specificare l'ID della raccolta di Cosmos DB da indicizzare.
+  * **query**: facoltativa. È possibile specificare una query per rendere flat un documento JSON arbitrario in modo da ottenere uno schema flat che può essere indicizzato da Ricerca di Azure.
 * **dataChangeDetectionPolicy**: consigliato. Vedere la sezione [Indicizzazione di documenti modificati](#DataChangeDetectionPolicy).
 * **dataDeletionDetectionPolicy**: facoltativo. Vedere la sezione [Indicizzazione di documenti eliminati](#DataDeletionDetectionPolicy).
 
-### <a name="using-queries-tooshape-indexed-data"></a>Utilizzando le query tooshape indicizzata dati
-È possibile specificare un tooflatten query Cosmos DB due proprietà annidate o matrici, proiettare le proprietà JSON e filtrare hello toobe di dati indicizzati. 
+### <a name="using-queries-to-shape-indexed-data"></a>Utilizzo di query per formare dati indicizzati
+È possibile specificare una query di Cosmos DB per appiattire le matrici o le proprietà annidate, progettare le proprietà JSON e filtrare i dati da indicizzare. 
 
 Documento di esempio:
 
@@ -116,9 +116,9 @@ Query di appiattimento matrici:
 
 <a name="CreateIndex"></a>
 ## <a name="step-2-create-an-index"></a>Passaggio 2: Creare un indice
-Creare un indice di Ricerca di Azure di destinazione, se non ne è già disponibile uno. È possibile creare un indice utilizzando hello [interfaccia utente del portale Azure](search-create-index-portal.md), hello [creare API REST di indice](/rest/api/searchservice/create-index) o [classe Index](/dotnet/api/microsoft.azure.search.models.index).
+Creare un indice di Ricerca di Azure di destinazione, se non ne è già disponibile uno. È possibile creare un indice usando l'[interfaccia utente del portale di Azure](search-create-index-portal.md), l'[API REST di creazione dell'indice](/rest/api/searchservice/create-index) o la [classe Index](/dotnet/api/microsoft.azure.search.models.index).
 
-Hello di esempio seguente viene creato un indice con un campo id e la descrizione:
+L'esempio seguente crea un indice con campo descrizione e ID:
 
     POST https://[service name].search.windows.net/indexes?api-version=2016-09-01
     Content-Type: application/json
@@ -141,10 +141,10 @@ Hello di esempio seguente viene creato un indice con un campo id e la descrizion
        }]
      }
 
-Verificare che hello dello schema dell'indice di destinazione è compatibile con schema hello hello JSON dei documenti di origine o di output di hello la proiezione di query personalizzata.
+Assicurarsi che lo schema dell'indice di destinazione sia compatibile con lo schema dei documenti JSON di origine oppure con l'output della proiezione di query personalizzata.
 
 > [!NOTE]
-> Per le raccolte partizionate, chiave di documento predefinite hello è Cosmos DB `_rid` proprietà, che viene rinominato troppo`rid` in ricerca di Azure. I valori `_rid` di Cosmos DB contengono inoltre caratteri non validi per le chiavi di Ricerca di Azure. Per questo motivo, hello `_rid` i valori sono con codificata Base64.
+> Per le raccolte partizionate, la chiave di documento predefinita è la proprietà `_rid` di Cosmos DB, che viene rinominata `rid` in Ricerca di Azure. I valori `_rid` di Cosmos DB contengono inoltre caratteri non validi per le chiavi di Ricerca di Azure. Per questo motivo, i valori `_rid` presentano la codificata Base64.
 > 
 > 
 
@@ -163,7 +163,7 @@ Verificare che hello dello schema dell'indice di destinazione è compatibile con
 <a name="CreateIndexer"></a>
 ## <a name="step-3-create-an-indexer"></a>Passaggio 3: Creare un indicizzatore
 
-Dopo avere creato hello indice e l'origine dati, si è pronti toocreate indicizzatore di hello:
+Dopo aver creato l'indice e l'origine dati, è possibile creare l'indicizzatore:
 
     POST https://[service name].search.windows.net/indexers?api-version=2016-09-01
     Content-Type: application/json
@@ -176,30 +176,30 @@ Dopo avere creato hello indice e l'origine dati, si è pronti toocreate indicizz
       "schedule" : { "interval" : "PT2H" }
     }
 
-Questo indicizzatore viene eseguito ogni due ore (intervallo di pianificazione è impostata troppo "PT2H"). un indicizzatore toorun ogni 30 minuti, impostare l'intervallo di hello troppo "PT30M". intervallo supportato di Hello minimo è 5 minuti. Hello pianificazione è facoltativa: Se omesso, viene eseguito un indicizzatore solo una volta al momento della creazione. Tuttavia, è possibile eseguire un indicizzatore su richiesta in qualsiasi momento.   
+L'indicizzatore verrà eseguito ogni due ore (l'intervallo di pianificazione è impostato su "PT2H"). Per eseguire un indicizzatore ogni 30 minuti, impostare l'intervallo su "PT30M". L'intervallo minimo supportato è di 5 minuti. La pianificazione è facoltativa: se omessa, l'indicizzatore viene eseguito una sola volta al momento della creazione. Tuttavia, è possibile eseguire un indicizzatore su richiesta in qualsiasi momento.   
 
-Per ulteriori informazioni su hello creare API di indicizzatore, estrarre [indicizzatore creare](https://docs.microsoft.com/rest/api/searchservice/create-indexer).
+Per altre informazioni sull'API di creazione di un indicizzatore, vedere [Creare un indicizzatore](https://docs.microsoft.com/rest/api/searchservice/create-indexer).
 
 <a id="RunIndexer"></a>
 ### <a name="running-indexer-on-demand"></a>Esecuzione di un indicizzatore su richiesta
-In aggiunta toorunning periodicamente in base alla pianificazione, un indicizzatore può anche essere richiamato su richiesta:
+Oltre a essere eseguito periodicamente in base a una pianificazione, un indicizzatore può anche essere chiamato su richiesta:
 
     POST https://[service name].search.windows.net/indexers/[indexer name]/run?api-version=2016-09-01
     api-key: [Search service admin key]
 
 > [!NOTE]
-> Quando eseguire API restituisce correttamente, chiamata all'indicizzatore hello è stata pianificata, ma l'elaborazione effettiva hello avviene in modo asincrono. 
+> Quando l'API viene eseguita correttamente, la chiamata all'indicizzatore è stata pianificata, ma l'elaborazione effettiva si verifica in modo asincrono. 
 
-È possibile monitorare lo stato dell'indicizzatore hello nel portale di hello o utilizzando hello ottenere indicizzatore stato API, che verranno descritti successivamente. 
+È possibile monitorare lo stato dell'indicizzatore nel portale o tramite l'API Get Indexer Status, che viene descritta di seguito. 
 
 <a name="GetIndexerStatus"></a>
 ### <a name="getting-indexer-status"></a>Ottenere lo stato dell'indicizzatore
-È possibile recuperare cronologia hello di stato e l'esecuzione di un indicizzatore:
+È possibile recuperare lo stato e la cronologia di esecuzione di un indicizzatore:
 
     GET https://[service name].search.windows.net/indexers/[indexer name]/status?api-version=2016-09-01
     api-key: [Search service admin key]
 
-risposta Hello contiene stato complessivo dell'indicizzatore, chiamata di hello indicizzatore ultimo (o in corso) e la cronologia di hello delle chiamate recenti.
+La risposta contiene lo stato globale dell'indicizzatore, la chiamata all'indicizzatore ultimo (o in corso) e la cronologia delle chiamate recenti.
 
     {
         "status":"running",
@@ -227,28 +227,28 @@ risposta Hello contiene stato complessivo dell'indicizzatore, chiamata di hello 
         }]
     }
 
-Cronologia di esecuzione contiene backup toohello 50 ultime esecuzioni completate, che vengono ordinate in ordine cronologico inverso (in modo esecuzione più recente di hello per primo in risposta hello).
+La cronologia di esecuzione contiene fino alle 50 più recenti esecuzioni completate, in ordine cronologico inverso (in modo che l'esecuzione più recente venga visualizzata per prima nella risposta).
 
 <a name="DataChangeDetectionPolicy"></a>
 ## <a name="indexing-changed-documents"></a>Indicizzazione di documenti modificati
-scopo di Hello dei dati di modifica dei criteri di rilevamento è tooefficiently identificare gli elementi di dati modificati. Attualmente, i criteri di hello è supportato solo sono hello `High Water Mark` criteri utilizzando hello `_ts` proprietà (timestamp) fornita da DB Cosmos, specificata come indicato di seguito:
+Lo scopo di un criterio di rilevamento delle modifiche dei dati è quello di identificare in modo efficace gli elementi di dati modificati. L'unico tipo di criteri attualmente supportato è `High Water Mark` che usa la proprietà `_ts` (timestamp) fornita da Cosmos DB, specificato come indicato di seguito:
 
     {
         "@odata.type" : "#Microsoft.Azure.Search.HighWaterMarkChangeDetectionPolicy",
         "highWaterMarkColumnName" : "_ts"
     }
 
-Usa questo criterio è fortemente consigliato prestazioni indicizzatore buona tooensure. 
+L'uso di questi criteri è consigliato per garantire elevate prestazioni dell'indicizzatore. 
 
-Se si utilizza una query personalizzata, assicurarsi che tale hello `_ts` proprietà viene proiettata da query hello.
+Se si usa una query personalizzata, assicurarsi che la proprietà `_ts` sia progettata dalla query.
 
 <a name="IncrementalProgress"></a>
 ### <a name="incremental-progress-and-custom-queries"></a>Avanzamento incrementale e query personalizzate
-Stato di avanzamento incrementale durante l'indicizzazione assicura che se l'esecuzione dell'indicizzatore è stato interrotto da errori temporanei o il limite di tempo di esecuzione, indicizzatore hello può prelevare dove era stata interrotta successivo viene eseguito, anziché l'intera raccolta hello toore indice da zero. Questo approccio risulta particolarmente importante in caso di indicizzazione di raccolte di grandi dimensioni. 
+L'avanzamento incrementale durante l'indicizzazione assicura che, in caso di interruzione dell'esecuzione dell'indicizzatore a causa di errori temporanei o del limite del tempo di esecuzione, l'indicizzatore possa riprendere dal punto in cui è stato interrotto all'esecuzione successiva, invece di dovere ripetere dall'inizio l'indicizzazione dell'intera raccolta. Questo approccio risulta particolarmente importante in caso di indicizzazione di raccolte di grandi dimensioni. 
 
-tooenable lo stato incrementale quando si utilizza una query personalizzata, assicurarsi che la query Ordina risultati hello base hello `_ts` colonna. In questo modo periodico controllo verso il basso che ricerca di Azure utilizza lo stato incrementale tooprovide in presenza di hello di errori.   
+Per abilitare l'avanzamento incrementale quando si usa una query personalizzata, assicurarsi che la query ordini i risultati in base alla colonna `_ts`. Ciò consente la creazione di checkpoint periodici, che vengono usati da Ricerca di Azure per fornire l'avanzamento incrementale in caso di errori.   
 
-In alcuni casi, anche se la query contiene un `ORDER BY [collection alias]._ts` clausola, ricerca di Azure potrebbe non derivare query hello viene ordinato in base hello `_ts`. In ricerca di Azure è possibile indicare che i risultati vengono ordinati usando hello `assumeOrderByHighWaterMarkColumn` proprietà di configurazione. toospecify Questo hint, creare o aggiornare l'indicizzatore come segue: 
+In alcuni casi, anche se la query contiene una clausola `ORDER BY [collection alias]._ts`, è possibile che Ricerca di Azure non deduca che la query è ordinata in base a `_ts`. È possibile indicare a Ricerca di Azure che i risultati sono ordinati in base a un valore usando la proprietà `assumeOrderByHighWaterMarkColumn` della configurazione. Per specificare questo hint, creare o aggiornare l'indicizzatore come indicato di seguito: 
 
     {
      ... other indexer definition properties
@@ -258,17 +258,17 @@ In alcuni casi, anche se la query contiene un `ORDER BY [collection alias]._ts` 
 
 <a name="DataDeletionDetectionPolicy"></a>
 ## <a name="indexing-deleted-documents"></a>Indicizzazione di documenti eliminati
-Quando le righe vengono eliminate dalla raccolta di hello, in genere si toodelete le righe dall'indice di ricerca hello anche. scopo di Hello di criteri di rilevamento di eliminazione di dati è tooefficiently identificare gli elementi dati eliminati. Attualmente, i criteri di hello è supportato solo sono hello `Soft Delete` criteri (l'eliminazione è contrassegnata con un flag di qualche), che viene specificata come segue:
+Quando si eliminano righe dalla raccolta, in genere le si elimina anche dall'indice di ricerca. Scopo dei criteri di rilevamento dell'eliminazione dei dati è quello di identificare in modo efficace gli elementi di dati eliminati. Attualmente, l'unico criterio supportato è il criterio `Soft Delete` (l'eliminazione è contrassegnata da un tipo di flag), specificato come indicato sotto:
 
     {
         "@odata.type" : "#Microsoft.Azure.Search.SoftDeleteColumnDeletionDetectionPolicy",
-        "softDeleteColumnName" : "hello property that specifies whether a document was deleted",
-        "softDeleteMarkerValue" : "hello value that identifies a document as deleted"
+        "softDeleteColumnName" : "the property that specifies whether a document was deleted",
+        "softDeleteMarkerValue" : "the value that identifies a document as deleted"
     }
 
-Se si utilizza una query personalizzata, assicurarsi che tale proprietà hello a cui fa riferimento `softDeleteColumnName` viene proiettato da query hello.
+Se si usa una query personalizzata, assicurarsi che la proprietà a cui fa riferimento `softDeleteColumnName` sia progettata dalla query.
 
-Hello di esempio seguente crea un'origine dati con un criterio di eliminazione temporanea:
+L'esempio seguente crea un'origine dati con criteri di eliminazione temporanea:
 
     POST https://[Search service name].search.windows.net/datasources?api-version=2016-09-01
     Content-Type: application/json
@@ -293,7 +293,7 @@ Hello di esempio seguente crea un'origine dati con un criterio di eliminazione t
     }
 
 ## <a name="NextSteps"></a>Passaggi successivi
-Congratulazioni. Si è appreso come toointegrate DB Cosmos Azure con ricerca di Azure hello indicizzatore per Cosmos DB.
+Congratulazioni. Si è appena appreso come integrare Azure Cosmos DB con Ricerca di Azure usando l'indicizzatore per Cosmos DB.
 
-* toolearn come ulteriori informazioni su Azure Cosmos DB, vedere hello [pagina servizio Cosmos DB](https://azure.microsoft.com/services/documentdb/).
-* toolearn come più sulla ricerca di Azure, vedere hello [pagina del servizio di ricerca](https://azure.microsoft.com/services/search/).
+* Per altre informazioni su Azure Cosmos DB, vedere la [pagina del servizio Cosmos DB](https://azure.microsoft.com/services/documentdb/).
+* Per altre informazioni su Ricerca di Azure, vedere la [pagina del servizio Ricerca](https://azure.microsoft.com/services/search/).

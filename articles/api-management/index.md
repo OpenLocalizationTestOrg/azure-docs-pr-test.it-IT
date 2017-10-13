@@ -1,8 +1,8 @@
 ---
-title: aaaAzure la documentazione dell'API di Gestione - esercitazioni, riferimenti alle API | Documenti Microsoft
-description: Informazioni su come toouse gestione API toopublish API in modo sicuro e scalabile. Mostra documentazione come toocreate moderno gateway di API per servizi di back-end esistente.
+title: Documentazione di Gestione API di Azure - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
+description: Informazioni su come usare Gestione API per pubblicare le API in modo sicuro e scalabile. I documenti mostrano come creare gateway API moderni per i servizi back-end esistenti.
 services: api-management
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: c2bd5d7dc7c6df3ad01a704fdd28c9437d39a04b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: de56e8b5fb7866183b0f06c4ac877d7b80a282f9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="api-management-documentation"></a>Documentazione di Gestione API
 
-Informazioni su come toouse gestione API toopublish API tooexternal, partner e dipendenti gli sviluppatori in modo sicuro e scalabile. Esercitazioni, riferimenti ad API e altra documentazione illustrano come toocreate e gestire i gateway di API più recenti per i servizi back-end esistenti ospitati remoto via Internet.
+Informazioni su come usare Gestione API per pubblicare API per sviluppatori esterni, partner e dipendenti in modo sicuro e scalabile. Esercitazioni, informazioni di riferimento sulle API e altri documenti mostrano come creare e gestire gateway API moderni per i servizi back-end esistenti ospitati in qualsiasi posizione.
 
 <ul class="panelContent cardsFTitle">
     <li>

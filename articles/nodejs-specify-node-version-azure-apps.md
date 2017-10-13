@@ -1,6 +1,6 @@
 ---
-title: aaaSpecifying una versione di Node. js
-description: Informazioni su come toospecify hello versione di Node. js utilizzato da siti Web di Azure e servizi Cloud
+title: Specifica di una versione di Node.js
+description: Informazioni su come specificare la versione di Node. js usata da Siti Web e Servizi cloud di Azure
 services: 
 documentationcenter: nodejs
 author: TomArcher
@@ -14,50 +14,50 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 08/17/2016
 ms.author: tarcher
-ms.openlocfilehash: 09c27bfc43c132b6d66f9a2943179e06ee75bedc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a20179c72b227deb14df442bea7b80cf31728aa7
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="specifying-a-nodejs-version-in-an-azure-application"></a>Specifica di una versione di Node.js in un'applicazione Azure
-Quando si ospita un'applicazione Node.js, è consigliabile che l'applicazione usa una versione specifica di Node.js tooensure. Esistono diversi modi tooaccomplish ciò per le applicazioni ospitate in Azure.
+Quando si ospita un'applicazione Node.js, può essere necessario assicurarsi che utilizzi una versione specifica di Node.js. Questa operazione può essere eseguita in vari modi per le applicazioni ospitate in Azure.
 
 ## <a name="default-versions"></a>Versioni predefinite
-versioni di Node.js Hello fornite da Azure vengono aggiornate continuamente. Se non diversamente specificato, hello versione predefinita specificata nella hello `WEBSITE_NODE_DEFAULT_VERSION` variabile di ambiente da utilizzare. toooverride il valore predefinito, seguire la procedura seguente hello nelle sezioni seguenti di questo articolo
+Le versioni di Node.js fornite da Azure vengono aggiornate costantemente. Se non diversamente specificato, verrà usata la versione predefinita specificata nella variabile di ambiente `WEBSITE_NODE_DEFAULT_VERSION` . Per eseguire l'override di questo valore predefinito, seguire i passaggi disponibili nelle sezioni seguenti di questo articolo.
 
 > [!NOTE]
-> Se si ospitano l'applicazione in un servizio Cloud di Azure (ruolo web o di lavoro) ed è hello prima volta che è stato distribuito l'applicazione hello, Azure tenterà toouse hello stessa versione di Node. js, come è stato installato l'ambiente di sviluppo se si corrisponde a una delle versioni di hello predefinite disponibili in Azure.
+> Se l'applicazione è ospitata in un servizio cloud di Azure (ruolo di lavoro o Web) ed è la prima volta che si distribuisce l'applicazione, Azure tenterà di usare la stessa versione di Node.js installata nell'ambiente di sviluppo, se questa corrisponde a une delle versioni predefinite disponibili.
 >
 >
 
 ## <a name="versioning-with-packagejson"></a>Controllo delle versioni con package.json
-È possibile specificare una versione di hello di Node.js toobe utilizzata aggiungendo hello seguente tooyour **package. JSON** file:
+È possibile specificare la versione di Node.js da usare aggiungendo il codice seguente al file **package.json** :
 
     "engines":{"node":version}
 
-Dove *versione* è toouse numero versione specifica di hello. È possibile specificare condizioni più complesse per la versione, ad esempio:
+Dove *version* è lo specifico numero di versione da usare. È possibile specificare condizioni più complesse per la versione, ad esempio:
 
     "engines":{"node": "0.6.22 || 0.8.x"}
 
-Poiché 0.6.22 non è una delle versioni di hello disponibili nell'ambiente di hosting hello, hello versione più recente di hello 0,8 serie disponibile sarà utilizzato - 0.8.4.
+Poiché la 0.6.22 non è una delle versioni disponibili nell'ambiente host, verrà utilizzata la versione più recente della serie 0.8 disponibile, ovvero la 0.8.4.
 
 ## <a name="versioning-websites-with-app-settings"></a>Controllo delle versioni di Siti Web con Impostazioni app
-Se si ospita un'applicazione hello in un sito Web, è possibile impostare la variabile di ambiente hello **WEBSITE_NODE_DEFAULT_VERSION** versione desiderata di toohello.
+Se si ospita l'applicazione in un sito Web, è possibile impostare la variabile di ambiente **WEBSITE_NODE_DEFAULT_VERSION** sulla versione desiderata.
 
 ## <a name="versioning-cloud-services-with-powershell"></a>Controllo delle versioni dei servizi cloud con PowerShell
-Se si ospita un'applicazione hello in un servizio Cloud e si distribuisce un'applicazione hello con Azure PowerShell, è possibile eseguire l'override di versione di Node. js hello predefinita utilizzando hello **Set AzureServiceProjectRole** cmdlet di PowerShell. ad esempio:
+Se l'applicazione è ospitata in un servizio cloud e si sta distribuendo l'applicazione utilizzando Azure PowerShell, è possibile sostituire la versione predefinita di Node.js utilizzando il cmdlet di PowerShell **Set-AzureServiceProjectRole** . Ad esempio:
 
     Set-AzureServiceProjectRole WebRole1 Node 0.8.4
 
-Parametri di hello nota in hello sopra istruzione maiuscole e minuscole.  È possibile verificare versione corretta di hello di Node.js è stata selezionata per il controllo hello **motori** proprietà del ruolo **package. JSON**.
+Si noti che i parametri nell'istruzione precedente fanno la distinzione tra maiuscole e minuscole.  È possibile verificare di aver selezionato la versione corretta di Node.js controllando la proprietà **engines** nel **package.json** del ruolo.
 
-È inoltre possibile utilizzare hello **Get AzureServiceProjectRoleRuntime** tooretrieve un elenco delle versioni di Node.js disponibili per le applicazioni ospitate come un servizio Cloud.  Verificare sempre la versione di hello di Node.js dipende il progetto in questo elenco.
+È inoltre possibile usare **Get-AzureServiceProjectRoleRuntime** per recuperare un elenco delle versioni di Node.js disponibili per le applicazioni ospitate come servizi cloud.  Verificare sempre che la versione di Node. js dipenda da se il progetto è incluso nell'elenco.
 
 ## <a name="using-a-custom-version-with-azure-websites"></a>Uso di una versione personalizzata con i siti Web di Azure
-Sebbene Azure fornisce le diverse versioni predefinite di Node.js, è consigliabile toouse una versione che non viene fornita per impostazione predefinita. Se l'applicazione è ospitato come un sito Web di Azure, è possibile effettuare questa operazione utilizzando hello **iisnode.yml** file. Hello passaggi seguenti descrivono il processo di hello di utilizzo di una versione personalizzata di Node. js con un sito Web di Azure:
+Anche se in Azure sono disponibili svariate versioni predefinite di Node.js, potrebbe essere necessario utilizzare una versione non disponibile per impostazione predefinita. Se l'applicazione è ospitata come sito Web di Azure, è possibile eseguire l'operazione usando il file **iisnode.yml** . I passaggi successivi illustrano la procedura per l'uso di una versione personalizzata di Node.Js con un sito Web di Azure:
 
-1. Creare una nuova directory e quindi creare un **server.js** file all'interno di directory hello. Hello **server.js** file deve contenere i seguenti hello:
+1. Creare una nuova directory e quindi creare un file **server.js** al suo interno. Il contenuto del file deve essere il seguente **server.js** :
 
         var http = require('http');
         http.createServer(function(req,res) {
@@ -65,35 +65,35 @@ Sebbene Azure fornisce le diverse versioni predefinite di Node.js, è consigliab
           res.end('Hello from Azure running node version: ' + process.version + '</br>');
         }).listen(process.env.PORT || 3000);
 
-    Verrà visualizzata una versione di Node. js hello utilizzata durante l'esplorazione del sito Web hello.
-2. Creare un nuovo sito Web e il nome del sito hello hello della nota. Ad esempio, il seguente hello Usa hello [gli strumenti da riga di comando di Azure] toocreate un nuovo sito Web Azure denominato **mywebsite**e quindi abilitare un repository Git per il sito Web di hello.
+    Questo consentirà di visualizzare la versione di Node.js utilizzata durante l'esplorazione del sito Web.
+2. Creare un nuovo sito Web e prendere nota del nome del sito. Nel comando seguente, ad esempio, gli [strumenti da riga di comando di Azure] vengono utilizzati per creare un nuovo sito Web di Azure denominato **mywebsite**e quindi per abilitare un repository Git per il sito Web.
 
         azure site create mywebsite --git
-3. Creare una nuova directory denominata **bin** come elemento figlio della directory hello contenente hello **server.js** file.
-4. Scaricare una versione specifica di hello di **node.exe** (versione di Windows hello) che si desidera toouse con l'applicazione. Ad esempio, hello seguenti utilizza **curl** versione toodownload 0.8.1:
+3. Creare una nuova directory denominata **bin** come figlio della directory che contiene il file **server.js**.
+4. Scaricare la specifica versione di **node.exe** (per Windows) che si desidera utilizzare con l'applicazione. Nell'esempio seguente viene usato **curl** per scaricare la versione 0.8.1:
 
         curl -O http://nodejs.org/dist/v0.8.1/node.exe
 
-    Salvare hello **node.exe** file hello **bin** cartella creata in precedenza.
-5. Creare un **iisnode.yml** file hello stessa directory come hello **server.js** file e quindi aggiungere hello seguente toohello contenuto **iisnode.yml** file:
+    Salvare il file **node.exe** nella cartella **bin** creata in precedenza.
+5. Creare un file **iisnode.yml** nella stessa directory del file **server.js** e quindi aggiungere il contenuto seguente al file **iisnode.yml**:
 
         nodeProcessCommandLine: "D:\home\site\wwwroot\bin\node.exe"
 
-    Questo percorso è dove hello **node.exe** file all'interno del progetto sarà posizionato dopo aver pubblicato il toohello applicazione sito Web di Azure.
-6. Pubblicare l'applicazione. Ad esempio, poiché è stata creata in precedenza un nuovo sito Web con il parametro - git hello, hello comandi riportati di seguito verranno aggiungere hello applicazione file toomy repository Git locale e quindi inviarli repository del sito Web toohello:
+    Questo percorso corrisponde alla posizione in cui sarà situato il file **node.exe** all'interno del progetto dopo la pubblicazione dell'applicazione nel sito Web di Azure.
+6. Pubblicare l'applicazione. Ad esempio, poiché in precedenza è stato creato un nuovo sito Web con il parametro --git, i comandi seguenti consentiranno di aggiungere i file dell'applicazione al repository Git locale e quindi di effettuarne il push nel repository del sito Web:
 
         git add .
         git commit -m "testing node v0.8.1"
         git push azure master
 
-    Dopo aver pubblicato l'applicazione hello, Apri sito Web di hello in un browser. Dovrebbe essere visualizzato il messaggio "Hello from Azure running node version: v0.8.1".
+    Dopo la pubblicazione dell'applicazione, aprire il sito Web in un browser. Dovrebbe essere visualizzato il messaggio "Hello from Azure running node version: v0.8.1".
 
 ## <a name="next-steps"></a>Passaggi successivi
-Dopo aver compreso come versione di hello toospecify di Node.js utilizzati dall'applicazione, consultare come troppo[funzionano con i moduli], [compilare e distribuire un sito Web Node.js](app-service-web/app-service-web-get-started-nodejs.md), e [come toouse hello Azure Strumenti da riga di comando per Mac e Linux].
+Dopo avere appreso come specificare la versione di Node.js usata dall'applicazione, per altre informazioni vedere gli articoli che illustrano come [usare i moduli], [creare e distribuire un sito Web Node.js](app-service/app-service-web-get-started-nodejs.md) e [usare gli strumenti da riga di comando di Azure per Mac e Linux].
 
-Per ulteriori informazioni, vedere hello [Centro per sviluppatori di Node.js](https://azure.microsoft.com/develop/nodejs/).
+Per ulteriori informazioni, vedere il [Centro per sviluppatori di Node.js](https://azure.microsoft.com/develop/nodejs/).
 
-[come toouse hello Azure Strumenti da riga di comando per Mac e Linux]:cli-install-nodejs.md
-[gli strumenti da riga di comando di Azure]:cli-install-nodejs.md
-[funzionano con i moduli]: nodejs-use-node-modules-azure-apps.md
-[build and deploy a Node.js Web Site]: app-service-web/app-service-web-get-started-nodejs.md
+[usare gli strumenti da riga di comando di Azure per Mac e Linux]:cli-install-nodejs.md
+[strumenti da riga di comando di Azure]:cli-install-nodejs.md
+[usare i moduli]: nodejs-use-node-modules-azure-apps.md
+[build and deploy a Node.js Web Site]: app-service/app-service-web-get-started-nodejs.md

@@ -1,6 +1,6 @@
-È possibile creare più servizi all'interno di una sottoscrizione, ognuno eseguito il provisioning a un livello specifico, limitato solo dal numero di hello di servizi consentiti in ogni livello. Ad esempio, è possibile creare too12 servizi a livello di base hello e 12 di un altro servizi a livello di hello S1 all'interno di hello stessa sottoscrizione. Per altre informazioni sui livelli, vedere [Scegliere uno SKU o un piano tariffario per Ricerca di Azure](../articles/search/search-sku-tier.md).
+È possibile creare più servizi all'interno di una sottoscrizione, per ognuno dei quali viene eseguito il provisioning a un livello specifico, con l'unica limitazione data dal numero di servizi consentiti per ogni livello. Ad esempio, è possibile creare fino a 12 servizi a livello Basic e altri 12 servizi a livello S1 nella stessa sottoscrizione. Per altre informazioni sui livelli, vedere [Scegliere uno SKU o un piano tariffario per Ricerca di Azure](../articles/search/search-sku-tier.md).
 
-È possibile aumentare i limiti massimi del servizio su richiesta. Contattare il supporto di Azure, se è necessario più servizi all'interno di hello stessa sottoscrizione.
+È possibile aumentare i limiti massimi del servizio su richiesta. Se sono necessari più servizi nella stessa sottoscrizione, contattare il supporto di Azure.
 
 | Risorsa | Free | Basic | S1 | S2 | S3 | S3 HD <sup>1</sup> |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -9,7 +9,7 @@
 
 <sup>1</sup> S3 HD non supporta attualmente gli [indicizzatori](../articles/search/search-indexer-overview.md). 
 
-<sup>2</sup> Le unità di ricerca sono unità di fatturazione allocate come *replica* o come *partizione*. Per l'archiviazione, l'indicizzazione e le operazioni di query sono necessarie entrambe le risorse. ulteriori informazioni sulla modalità in cui vengono calcolate le unità di ricerca, oltre a un grafico di combinazioni valide di superare i limiti massimi di hello, vedere toolearn [livelli di risorse per carichi di lavoro di query e indicizzazione di scala](../articles/search/search-capacity-planning.md). 
+<sup>2</sup> Le unità di ricerca sono unità di fatturazione allocate come *replica* o come *partizione*. Per l'archiviazione, l'indicizzazione e le operazioni di query sono necessarie entrambe le risorse. Per altre informazioni sul modo in cui vengono calcolate le unità di ricerca e un grafico sulle combinazioni valide che non superano i limiti massimi, vedere [Ridimensionare i livelli di risorse per le query e l'indicizzazione dei carichi di lavoro](../articles/search/search-capacity-planning.md). 
 
 <sup>3</sup> Il livello gratuito si basa su risorse condivise usate da più sottoscrittori. Per questo livello, non esistono risorse dedicate per un singolo sottoscrittore. Per questo motivo, la scalabilità massima è contrassegnata come non applicabile.
 

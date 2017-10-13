@@ -1,6 +1,6 @@
 ---
-title: aaaLearn sulle operazioni di Azure SQL Data Warehouse | Documenti Microsoft
-description: "L'elasticità di SQL Data Warehouse consente di aumentare, ridurre o sospendere la potenza di calcolo usando una scala scorrevole di unità data warehouse (DWU). Questo articolo illustra le metriche di hello data warehouse e come interagiscono tooDWUs. "
+title: Informazioni sulle operazioni di Azure SQL Data Warehouse | Documentazione Microsoft
+description: "L'elasticità di SQL Data Warehouse consente di aumentare, ridurre o sospendere la potenza di calcolo usando una scala scorrevole di unità data warehouse (DWU). Questo articolo illustra le metriche del data warehouse e come sono correlate alle DWU. "
 services: sql-data-warehouse
 documentationcenter: NA
 author: jrowlandjones
@@ -15,58 +15,58 @@ ms.workload: data-services
 ms.custom: performance
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
-ms.openlocfilehash: 8be5ff6b14ab907e2b0a7eb55e0e2f4139aca8b7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 629ce22bf669a760d041bbd006b836d2da5d237b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="data-warehouse-workload"></a>Carico di lavoro del data warehouse
-Un carico di lavoro data warehouse si riferisce tooall di operazioni di hello di in un data warehouse. il carico di lavoro di Hello data warehouse comprende l'intero processo di caricamento dati nel warehouse hello, analisi e creazione di report per data warehouse di hello, la gestione dei dati nel data warehouse di hello ed esportazione dei dati dal data warehouse di hello di hello. Hello profondità e larghezza di questi componenti sono spesso proporzionati con livello di maturità hello del data warehouse di hello.
+Per carico di lavoro del data warehouse si intendono tutte le operazioni che passano attraverso un data warehouse. Tale carico di lavoro include pertanto l'intero processo di caricamento dei dati nel data warehouse, l'esecuzione dell'analisi e la creazione dei report a esso relativi, la gestione dei dati in esso contenuti e l'esportazione dei dati da esso. La profondità e l'estensione di questi componenti sono spesso proporzionali al livello di maturità del data warehouse.
 
-## <a name="new-toodata-warehousing"></a>Nuovo toodata warehouse?
-Un data warehouse è una raccolta di dati che vengono caricati da una o più dati di origini e tooperform utilizzati attività di business intelligence, ad esempio l'analisi dei dati e creazione di report.
+## <a name="new-to-data-warehousing"></a>Per gli utenti non esperti di data warehouse
+Un data warehouse è una raccolta di dati caricata da una o più origini dati e usata per eseguire attività di business intelligence, quali la creazione di report e l'analisi dei dati.
 
-Data warehouse sono caratterizzati dalle query in un'analisi di un numero maggiore di righe, ampi intervalli di dati e possono restituire risultati di dimensioni relativamente grandi per scopi di hello di analisi e creazione report. I data warehouse sono anche caratterizzati da caricamenti di dati relativamente estesi anziché da inserimenti, aggiornamenti o eliminazioni a livello di transazione di piccole dimensioni.
+I data warehouse sono caratterizzati da query che analizzano quantità più elevate di righe o grandi intervalli di dati e possono restituire risultati di dimensioni relativamente importanti ai fini dell'analisi e della creazione di report. I data warehouse sono anche caratterizzati da caricamenti di dati relativamente estesi anziché da inserimenti, aggiornamenti o eliminazioni a livello di transazione di piccole dimensioni.
 
-* Un data warehouse raggiunge prestazioni migliori quando hello dati vengono archiviati in modo che consente di ottimizzare le query che richiedono un numero elevato di righe tooscan o ampi intervalli di dati. Questo tipo di analisi funziona meglio quando l'archiviazione e la ricerca nelle colonne, anziché dalle righe dei dati di hello.
+* Un data warehouse funziona al meglio quando i dati sono archiviati in maniera da ottimizzare le query che devono analizzare grandi quantità di righe o grandi intervalli di dati. Questo tipo di analisi opera in modo ottimale quando i dati vengono archiviati e sottoposti a ricerche in base alle colonne invece che alle righe.
 
 > [!NOTE]
-> l'indice columnstore in memoria Hello, che usa l'archiviazione delle colonne, fornisce i guadagni di compressione too10x e 100 x miglioramento delle prestazioni di query su alberi binari tradizionale per le query di analitica e di reporting. Gli indici columnstore vengono considerate come hello standard per l'archiviazione e l'analisi dei dati di grandi dimensioni in un data warehouse.
+> L'indice columnstore in memoria, che si basa sull'archiviazione in colonne, offre una compressione fino a dieci volte superiore e prestazioni delle query anche cento volte più elevate rispetto agli alberi binari tradizionali per le query di creazione di report e analisi. Gli indici columnstore vengono considerati uno standard per l'archiviazione e l'analisi di grandi quantità di dati in un data warehouse.
 > 
 > 
 
-* Un data warehouse ha requisiti diversi rispetto a un sistema ottimizzato per l'elaborazione di transazioni online (OLTP). Hello sistema OLTP ha molte inserimento, aggiornamento e le operazioni di eliminazione. Queste operazioni di ricerca toospecific righe nella tabella hello. Tabella ricerche risultare migliori se hello dati vengono archiviati in un modo di riga per riga. dati Hello possono essere ordinati rapidamente la ricerca con una divisione e impera approccio definito una ricerca binaria di struttura ad albero o albero b.
+* Un data warehouse ha requisiti diversi rispetto a un sistema ottimizzato per l'elaborazione di transazioni online (OLTP). Il sistema OLTP prevede numerose operazioni di inserimento, aggiornamento ed eliminazione. Queste operazioni eseguono la ricerca fino a righe specifiche nella tabella. Le ricerche nelle tabelle vengono eseguite in modo ottimale quando i dati sono archiviati riga per riga. I dati possono essere ordinati e ricercati rapidamente secondo un approccio di tipo "divide et impera", noto anche come ricerca nell'albero binario o albero B.
 
 ## <a name="data-loading"></a>Caricamento dei dati
-Il caricamento dei dati è una parte importante del carico di lavoro di hello data warehouse. Le aziende hanno in genere un sistema OLTP occupato che tiene traccia delle modifiche per tutto il giorno hello quando i clienti generano transazioni aziendali. Periodicamente, spesso durante la notte durante una finestra di manutenzione, le operazioni di hello vengono spostate o copiati toohello data warehouse di. Una volta hello dati nel data warehouse di hello, gli analisti possono eseguire l'analisi e prendere decisioni aziendali sui dati hello.
+Il caricamento dei dati rappresenta una parte considerevole del carico di lavoro del data warehouse. Le aziende in genere dispongono di un sistema OLTP occupato che tiene traccia delle modifiche nel corso della giornata quando i clienti generano transazioni aziendali. Periodicamente, spesso di notte durante una finestra di manutenzione, le transazioni vengono spostate o copiate nel data warehouse. Quando i dati si trovano nel data warehouse, gli analisti possono eseguire l'analisi e prendere decisioni aziendali basandosi su di essi.
 
-* In genere, il processo di hello di caricamento viene chiamato ETL di estrazione, trasformazione e caricamento. In genere i dati devono toobe trasformato in modo che sia coerente con altri dati nel data warehouse di hello. Le aziende in precedenza, usare le trasformazioni hello tooperform server ETL dedicate. A questo punto, con l'elaborazione parallela massiva veloce è possibile caricare innanzitutto i dati in SQL Data Warehouse e quindi eseguire le trasformazioni di hello. Questo processo viene chiamato di estrazione, carico e trasformare (ELT) e sta diventando un nuovo standard per il carico di lavoro di hello data warehouse.
+* Il processo di caricamento tradizionalmente viene indicato con l'acronimo ETL (Extract, Transform, Load), ovvero estrazione, trasformazione e caricamento. I dati solitamente devono essere trasformati per diventare coerenti con gli altri dati contenuti nel data warehouse. In passato le aziende usavano server ETL dedicati per eseguire le trasformazioni. Ora, grazie all'elevata velocità dell'elaborazione parallela massiva, è possibile prima caricare i dati in SQL Data Warehouse e quindi effettuare le trasformazioni. Tale processo è detto ELT (Extract, Load, Transform), ovvero estrazione, caricamento e trasformazione, e sta diventando un nuovo standard per il carico di lavoro del data warehouse.
 
 > [!NOTE]
-> Con SQL Server 2016 è ora possibile eseguire l'analisi in tempo reale su una tabella OLTP. Ciò non sostituisce hello necessità per una toostore di data warehouse e analizzare i dati, ma fornisce un'analisi tooperform del modo in tempo reale.
+> Con SQL Server 2016 è ora possibile eseguire l'analisi in tempo reale su una tabella OLTP. Il data warehouse sarà comunque necessario per archiviare e analizzare i dati, ma l'analisi sarà possibile in tempo reale.
 > 
 > 
 
 ### <a name="reporting-and-analysis-queries"></a>Query di reporting e analisi
-Le query di reporting e analisi vengono spesso classificate come di piccole, medie e grandi dimensioni in base al numero di criteri, ma in genere si basano sul tempo. Nella maggior parte dei data warehouse è presente un carico di lavoro misto costituito da una combinazione di query a esecuzione rapida e query a esecuzione prolungata. In ogni caso, è importante toodetermine questa combinazione e toodetermine la frequenza (oraria, giornaliera, fine mese, trimestre-end e così via). È importante toounderstand che hello query miste del carico di lavoro, insieme a concorrenza, lead tooproper pianificazione della capacità per un data warehouse.
+Le query di reporting e analisi vengono spesso classificate come di piccole, medie e grandi dimensioni in base al numero di criteri, ma in genere si basano sul tempo. Nella maggior parte dei data warehouse è presente un carico di lavoro misto costituito da una combinazione di query a esecuzione rapida e query a esecuzione prolungata. In ogni caso è importante determinare tale combinazione e la relativa frequenza (oraria, giornaliera, a fine mese, a fine trimestre e così via). È fondamentale comprendere che il carico di lavoro con query miste, insieme alla concorrenza, porta a una pianificazione appropriata della capacità per un data warehouse.
 
-* Pianificazione della capacità può essere un'attività complessa per un carico di lavoro di query miste, soprattutto quando è necessario un data warehouse di lead time lunghi ora tooadd capacità toohello. SQL Data Warehouse rimuove urgenza hello della pianificazione della capacità, poiché è possibile aumentare e ridurre le capacità di calcolo in qualsiasi momento e dall'archiviazione e capacità di calcolo vengono ridimensionati in modo indipendente.
+* La pianificazione della capacità può essere un'attività complessa per un carico di lavoro con query miste, soprattutto se è necessario un lungo lead time per aggiungere capacità al data warehouse. Con SQL Data Warehouse la pianificazione della capacità non è più indispensabile, in quanto è possibile aumentare e ridurre la capacità di calcolo in qualsiasi momento e tale capacità e quella di archiviazione vengono dimensionate in modo indipendente.
 
 ### <a name="data-management"></a>Gestione dati
-La gestione dei dati è importante, specialmente quando si conosce che potrebbe divenire insufficiente spazio su disco in hello prossimo futuro. Data warehouse dividono in genere dati hello in intervalli significativi, che vengono archiviati come partizioni in una tabella. Tutti i prodotti basato su SQL Server consentono di spostare le partizioni da e verso la tabella hello. Questo consente di cambio di partizione si sposta precedente costosa archiviazione tooless dati e mantenere disponibili dati più recenti hello archiviazione online.
+La gestione dati è importante, soprattutto quando si sa che a breve lo spazio su disco potrebbe esaurirsi. I data warehouse in genere suddividono i dati in intervalli significativi, che vengono archiviati come partizioni in una tabella. Tutti i prodotti basati su SQL Server consentono di spostare le partizioni all'interno e all'esterno della tabella. Tale spostamento delle partizioni consente di spostare i dati meno recenti in aree di archiviazione meno costose e di mantenere disponibili i dati più recenti nello spazio di archiviazione online.
 
 * Gli indici columnstore supportano le tabelle partizionate. Per questi indici, le tabelle partizionate vengono usate per la gestione e l'archiviazione dei dati. Per le tabelle archiviate riga per riga, le partizioni hanno un peso maggiore sulle prestazioni delle query.  
-* PolyBase svolge un ruolo importante nella gestione dati. Usando PolyBase, è necessario tooHadoop dati meno recenti di hello opzione tooarchive o archiviazione blob di Azure.  Questo offre molte delle opzioni poiché dati hello sono ancora online.  Potrebbe richiedere più tempo tooretrieve dati da Hadoop, ma il compromesso di hello del tempo di recupero potrebbe superano hello costo di archiviazione.
+* PolyBase svolge un ruolo importante nella gestione dati. Usando PolyBase, si ha la possibilità di archiviare i dati meno recenti in Hadoop o nell'archivio BLOB di Azure.  Sono così disponibili numerose opzioni, dal momento che i dati sono ancora online.  Il recupero dei dati da Hadoop potrebbe richiedere più tempo, ma il costo di archiviazione potrebbe rivelarsi più vantaggioso.
 
 ### <a name="exporting-data"></a>Esportazione dei dati
-Un modo toomake sono disponibili dati per report e analisi sono toosend dati hello dati warehouse tooservers dedicato per l'esecuzione di report e analisi. Tali server sono denominati data mart. Ad esempio, è possibile pre-elaborare i dati del report e quindi esportarla dal server di hello data warehouse toomany mondo hello, toomake viene reso disponibile per i clienti e gli analisti.
+Un modo per rendere disponibili i dati per i report e l'analisi consiste nell'inviarli dal data warehouse ai server dedicati all'esecuzione di report e analisi. Tali server sono denominati data mart. Ad esempio, è possibile pre-elaborare i dati dei report e quindi esportarli dal data warehouse in numerosi server di tutto il mondo per renderli ampiamente disponibili per clienti e analisti.
 
-* Per la generazione di report, ogni notte è stato possibile popolare server di report di sola lettura con uno snapshot dei dati giornaliera hello. In questo modo maggiore larghezza di banda per i clienti, riducendo l'esigenza di risorse di calcolo di hello nel data warehouse di hello. Da un aspetto di sicurezza, i data mart consentono numero hello tooreduce di utenti che dispongono del data warehouse toohello di accesso.
-* Per analitica, è possibile creare un cubo di analisi nel data warehouse di hello ed eseguire analisi di data warehouse di hello, o pre-elaborare i dati ed esportarlo toohello computer analysis server per un'ulteriore analitica.
+* Per generare i report, ogni notte si potrebbe inserire uno snapshot dei dati giornalieri in server di report di sola lettura. Questo garantisce ai clienti una larghezza di banda superiore e diminuisce la richiesta di risorse di calcolo nel data warehouse. Dal punto di vista della sicurezza, i data mart consentono di ridurre il numero degli utenti che hanno accesso al data warehouse.
+* Per l'analisi, è possibile creare un apposito cubo nel data warehouse ed eseguire l'analisi su quest'ultimo oppure pre-elaborare i dati ed esportarli nel server di analisi in modo che possano essere analizzati ulteriormente.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Dopo avere esaminato su SQL Data Warehouse, consultare come tooquickly [creare un Data Warehouse SQL] [ create a SQL Data Warehouse] e [caricare dati di esempio][load sample data].
+Dopo aver appreso alcune informazioni su SQL Data Warehouse, vedere come [creare un SQL Data Warehouse][create a SQL Data Warehouse] rapidamente e [caricare i dati di esempio][load sample data].
 
 <!--Image references-->
 

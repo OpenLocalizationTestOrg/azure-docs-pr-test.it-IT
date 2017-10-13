@@ -1,6 +1,6 @@
 ---
-title: "attività di Azure aaaView registra risorse toomonitor | Documenti Microsoft"
-description: "Utilizzare hello attività registra errori e tooreview azioni dell'utente. Mostra il portale di Azure, PowerShell, l'interfaccia della riga di comando di Azure e REST."
+title: "Visualizzare i log attività di Azure per monitorare le risorse | Documentazione Microsoft"
+description: "Usare i log attività per esaminare le azioni degli utenti e gli errori. Mostra il portale di Azure, PowerShell, l'interfaccia della riga di comando di Azure e REST."
 services: azure-resource-manager
 documentationcenter: 
 author: tfitzmac
@@ -14,75 +14,75 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: tomfitz
-ms.openlocfilehash: 8430ed2a9c1dfe5f13423a55d358e590b0facb22
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9f90bc80c146c6c2da04aacbc110f7d389c0baa2
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="view-activity-logs-tooaudit-actions-on-resources"></a>Visualizza attività registra le azioni tooaudit sulle risorse
+# <a name="view-activity-logs-to-audit-actions-on-resources"></a>Visualizzare i log attività per controllare le azioni sulle risorse
 Con i log attività è possibile determinare:
 
-* le operazioni eseguite sulle risorse hello nella sottoscrizione
-* che ha avviato l'operazione di hello (anche se le operazioni avviate da un servizio back-end non restituiscono un utente come chiamante hello)
-* Quando si è verificato il funzionamento di hello
-* stato Hello dell'operazione di hello
-* i valori Hello altre proprietà che potrebbero facilitare la ricerca operazione hello
+* le operazioni eseguite sulle risorse nella sottoscrizione
+* chi ha avviato l'operazione (anche se le operazioni avviate da un servizio back-end non restituiscono un utente come chiamante);
+* quando si è verificata l'operazione;
+* lo stato dell'operazione;
+* i valori delle altre proprietà che potrebbero essere utili per esaminare l'operazione.
 
 [!INCLUDE [resource-manager-audit-limitations](../../includes/resource-manager-audit-limitations.md)]
 
-È possibile recuperare informazioni dal log attività hello tramite il portale di hello, PowerShell, CLI di Azure, l'API REST di Insights o [libreria .NET di Insights](https://www.nuget.org/packages/Microsoft.Azure.Insights/).
+È possibile recuperare le informazioni dai log attività tramite il portale, PowerShell, l'interfaccia della riga di comando di Azure, l'API REST di Insights o la [libreria .NET di Insights](https://www.nuget.org/packages/Microsoft.Azure.Insights/).
 
-## <a name="portal"></a>di Microsoft Azure
-1. Selezionare i log di attività hello tooview tramite il portale di hello **monitoraggio**.
+## <a name="portal"></a>Portale
+1. Per visualizzare i log attività dal portale, selezionare **Monitoraggio**.
    
     ![Selezionare i log di attività](./media/resource-group-audit/select-monitor.png)
 
-   O, nel log attività di hello tooautomatically filtro per una determinata risorsa o un gruppo di risorse, seleziona **log attività** da tale pannello della risorsa. Si noti che log attività hello vengono filtrati automaticamente dalla risorsa hello selezionato.
+   In alternativa, per filtrare automaticamente il log attività per una determinata risorsa o uno specifico gruppo di risorse, selezionare **Log attività** nel pannello di tale risorsa. Si noti che il log attività viene automaticamente filtrato in base alla risorsa selezionata.
    
     ![filtrare in base alla risorsa](./media/resource-group-audit/filtered-by-resource.png)
-2. In hello **Log attività** pannello viene visualizzato un riepilogo delle operazioni recenti.
+2. Nel pannello **Log attività** viene visualizzato un riepilogo delle operazioni recenti.
    
     ![visualizzare le azioni](./media/resource-group-audit/audit-summary.png)
-3. numero di hello toorestrict di operazioni visualizzata, selezionare condizioni diverse. Ad esempio, hello seguente immagine Mostra hello **Timespan** e **evento avviato da** campi modificati azioni di hello tooview da un particolare utente o applicazione per hello mese scorso. Selezionare **applica** risultati hello tooview della query.
+3. Per limitare il numero di operazioni visualizzate, selezionare condizioni diverse. Ad esempio, l'immagine seguente mostra i campi **Intervallo di tempo** ed **Evento avviato da** modificati per poter visualizzare le azioni eseguite da un determinato utente o applicazione il mese scorso. Selezionare **Applica** per visualizzare i risultati della query.
    
     ![impostare le opzioni di filtro](./media/resource-group-audit/set-filter.png)
 
-4. Se è necessario query hello toorun in un secondo momento, selezionare **salvare** e assegnare un nome di query hello.
+4. Se è necessario eseguire ancora la query in un secondo momento, selezionare **Salva** e assegnare un nome alla query.
    
     ![Salvare la query](./media/resource-group-audit/save-query.png)
-5. tooquickly eseguire una query, è possibile selezionare una delle query incorporato hello, ad esempio distribuzioni non riuscite.
+5. Per eseguire rapidamente una query, è possibile selezionare una query predefinita, ad esempio "distribuzioni non riuscite".
 
     ![Selezionare la query](./media/resource-group-audit/select-quick-query.png)
 
-   la query selezionata Hello imposta automaticamente i valori di filtro hello necessario.
+   La query selezionata imposta automaticamente i valori di filtro necessari.
 
     ![Visualizzare gli errori di distribuzione](./media/resource-group-audit/view-failed-deployment.png)   
 
-6. Selezionare una delle operazioni di hello toosee un riepilogo dell'evento hello.
+6. Selezionare una delle operazioni per visualizzare un riepilogo dell'evento.
 
     ![Visualizzare l'operazione](./media/resource-group-audit/view-operation.png)  
 
 ## <a name="powershell"></a>PowerShell
-1. le voci di log tooretrieve, eseguire hello **Get AzureRmLog** comando. Fornire parametri aggiuntivi toofilter hello elenco voci. Se non si specifica un'ora di inizio e fine, vengono restituite le voci per hello ultima ora. Ad esempio, eseguire le operazioni di hello tooretrieve per un gruppo di risorse durante l'ultima ora hello:
+1. Per recuperare le voci di log, eseguire il comando **Get-AzureRmLog** . Offrire parametri aggiuntivi per filtrare l'elenco di voci. Se non si specifica un'ora di inizio e fine, vengono restituite le voci per l'ultima ora. Ad esempio, per recuperare le operazioni per un gruppo di risorse durante l'ultima ora, eseguire:
 
   ```powershell
   Get-AzureRmLog -ResourceGroup ExampleGroup
   ```
    
-    Hello di esempio seguente viene illustrato come attività hello toouse log tooresearch operazioni eseguite durante un tempo specificato. date di inizio e fine Hello vengono specificate in un formato di Data.
+    L'esempio seguente illustra come usare il log attività per cercare le operazioni eseguite durante un intervallo di tempo specificato. Le date di inizio e fine vengono specificate in un formato Data.
 
   ```powershell
   Get-AzureRmLog -ResourceGroup ExampleGroup -StartTime 2015-08-28T06:00 -EndTime 2015-09-10T06:00
   ```
 
-    In alternativa, è possibile utilizzare funzioni toospecify hello data intervallo di date, ad esempio hello ultimi 14 giorni.
+    In alternativa, è possibile usare funzioni data per specificare l'intervallo di date, ad esempio gli ultimi 14 giorni.
    
   ```powershell 
   Get-AzureRmLog -ResourceGroup ExampleGroup -StartTime (Get-Date).AddDays(-14)
   ```
 
-2. In base all'ora di inizio hello specificate, i comandi precedenti hello possono restituire un lungo elenco di operazioni per il gruppo di risorse hello. È possibile filtrare i risultati di hello per ciò che si sta cercando, fornendo i criteri di ricerca. Se si sta tentando di tooresearch come un'app web è stata arrestata, ad esempio, è possibile eseguire hello comando seguente:
+2. A seconda dell'ora di inizio specificata, il comando precedente può restituire un lungo elenco di operazioni per il gruppo di risorse. I risultati possono essere filtrati in base all'elemento da cercare specificando i criteri di ricerca. Se si vuole capire il motivo per cui un'app Web è stata arrestata, ad esempio, è possibile eseguire questo comando:
 
   ```powershell
   Get-AzureRmLog -ResourceGroup ExampleGroup -StartTime (Get-Date).AddDays(-14) | Where-Object OperationName -eq Microsoft.Web/sites/stop/action
@@ -108,7 +108,7 @@ Con i log attività è possibile determinare:
   SubStatus         : OK
   ```
 
-3. È possibile esaminare le azioni di hello intraprese da un particolare utente, anche per un gruppo di risorse che non esiste più.
+3. È possibile cercare le azioni eseguite da un utente specifico, anche per un gruppo di risorse che non esiste più.
 
   ```powershell 
   Get-AzureRmLog -ResourceGroup deletedgroup -StartTime (Get-Date).AddDays(-14) -Caller someone@contoso.com
@@ -120,7 +120,7 @@ Con i log attività è possibile determinare:
   Get-AzureRmLog -ResourceGroup ExampleGroup -Status Failed
   ```
 
-5. È possibile concentrarsi su un errore esaminando il messaggio di stato hello per tale voce.
+5. È possibile concentrarsi su un errore esaminando il messaggio di stato per tale voce.
    
         ((Get-AzureRmLog -Status Failed -ResourceGroup ExampleGroup -DetailedOutput).Properties[1].Content["statusMessage"] | ConvertFrom-Json).error
    
@@ -132,7 +132,7 @@ Con i log attività è possibile determinare:
 
 
 ## <a name="azure-cli"></a>Interfaccia della riga di comando di Azure
-* le voci del registro tooretrieve eseguire hello **gruppo azure log Mostra** comando.
+* Per recuperare le voci di log, eseguire il comando **azure group log show** .
 
   ```azurecli
   azure group log show ExampleGroup --json
@@ -140,11 +140,11 @@ Con i log attività è possibile determinare:
 
 
 ## <a name="rest-api"></a>API REST
-le operazioni REST Hello per l'utilizzo di log attività hello fanno parte di hello [API REST di Insights](https://msdn.microsoft.com/library/azure/dn931943.aspx). tooretrieve attività log eventi, vedere [elenco eventi di gestione di hello in una sottoscrizione](https://msdn.microsoft.com/library/azure/dn931934.aspx).
+Le operazioni REST per l'uso del log attività fanno parte delle [Informazioni di riferimento sulle API REST di Azure Insights](https://msdn.microsoft.com/library/azure/dn931943.aspx). Per recuperare gli eventi del log attività, vedere [Elencare gli eventi di gestione in una sottoscrizione](https://msdn.microsoft.com/library/azure/dn931934.aspx).
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Log attività Azure è utilizzabile con Power BI toogain maggiori informazioni relative sulle azioni di hello nella sottoscrizione. Vedere [View and analyze Azure Activity Logs in Power BI and more](https://azure.microsoft.com/blog/analyze-azure-audit-logs-in-powerbi-more/)(Visualizzare e analizzare i log attività di Azure in Power BI e altri strumenti).
-* toolearn sull'impostazione di criteri di sicurezza, vedere [Azure Role-based Access Control](../active-directory/role-based-access-control-configure.md).
-* toolearn sui comandi hello per la visualizzazione delle operazioni di distribuzione, vedere [per visualizzare le operazioni di distribuzione](resource-manager-deployment-operations.md).
-* toolearn tooprevent eliminazioni su una risorsa per tutti gli utenti, vedere [bloccare le risorse con Gestione risorse di Azure](resource-group-lock-resources.md).
+* I log attività di Azure possono essere usati con Power BI per ottenere altre informazioni sulle azioni nella sottoscrizione. Vedere [View and analyze Azure Activity Logs in Power BI and more](https://azure.microsoft.com/blog/analyze-azure-audit-logs-in-powerbi-more/)(Visualizzare e analizzare i log attività di Azure in Power BI e altri strumenti).
+* Per informazioni su come impostare i criteri di sicurezza, vedere [Controllo degli accessi in base al ruolo in Azure](../active-directory/role-based-access-control-configure.md).
+* Per informazioni sui comandi per visualizzare le operazioni di distribuzione, vedere [Visualizzare le operazioni di distribuzione](resource-manager-deployment-operations.md).
+* Per informazioni su come impedire operazioni di eliminazione su una risorsa per tutti gli utenti, vedere [Bloccare le risorse con Azure Resource Manager](resource-group-lock-resources.md).
 

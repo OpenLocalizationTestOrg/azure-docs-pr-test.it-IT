@@ -1,8 +1,8 @@
 ---
-title: aaaAzure documentazione su Engagement Mobile - esercitazioni, riferimenti alle API | Documenti Microsoft
-description: Informazioni su come tooget approfondite sull'utilizzo di app per dispositivi mobili e segmentazione specifica degli utenti in tempo reale e tooenable base push delle notifiche e la messaggistica in-app.
+title: Documentazione di Azure Mobile Engagement - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
+description: Informazioni su come ottenere informazioni approfondite sull'uso delle app per dispositivi mobili e sulla segmentazione degli utenti in tempo reale, oltre che su come abilitare le notifiche push contestualizzate e la messaggistica in-app.
 services: mobile-engagement
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: c9d9dd859914d620b6e3c287bbde1906142f4736
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5f682ba16b52b9a084505b8212c4b6f043bb94c9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="mobile-engagement-documentation"></a>Documentazione di Mobile Engagement
 
-Informazioni su come tooincrease hello utilizzo e conservazione monetizzazione delle App per dispositivi mobili con Engagement Mobile. Esercitazioni, SDK e altra documentazione illustrano come tooget approfondite sull'utilizzo delle app e segmentazione specifica degli utenti in tempo reale e tooenable base push delle notifiche e la messaggistica in-app.
+Informazioni su come incrementare l'uso, la conservazione e la monetizzazione delle app per dispositivi mobili con Mobile Engagement. Esercitazioni, SDK e altri documenti mostrano su come ottenere informazioni approfondite sull'uso delle app e sulla segmentazione degli utenti in tempo reale, oltre che su come abilitare le notifiche push contestualizzate e la messaggistica in-app.
 
 <ul class="panelContent cardsFTitle">
     <li>

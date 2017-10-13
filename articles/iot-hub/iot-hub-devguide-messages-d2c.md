@@ -1,6 +1,6 @@
 ---
-title: messaggistica di dispositivo a cloud Azure IoT Hub aaaUnderstand | Documenti Microsoft
-description: Guida per sviluppatori - come toouse dispositivo a cloud con l'IoT Hub di messaggistica. Include informazioni sull'invio di dati di telemetria e non telemtry e l'utilizzo di routing dei messaggi toodeliver.
+title: Informazioni sulla messaggistica da dispositivo a cloud dell'hub IoT di Azure | Microsoft Docs
+description: 'Guida per gli sviluppatori: come usare la messaggistica da dispositivo a cloud con l''hub IoT. Include informazioni sull''invio di dati di telemetria e non e sull''uso del routing per recapitare i messaggi.'
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -11,57 +11,57 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 05/25/2017
+ms.date: 09/19/2017
 ms.author: dobett
-ms.openlocfilehash: 07dc8a6be747365c7efbc528ab2762b0d9790758
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4e346306ecb8f4897a249454c537ce9a1a4c4011
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="send-device-to-cloud-messages-tooiot-hub"></a>Inviare i messaggi da dispositivo a cloud tooIoT Hub
+# <a name="send-device-to-cloud-messages-to-iot-hub"></a>Inviare messaggi da dispositivo a cloud all'hub IoT
 
-toosend telemetria di serie temporali e gli avvisi generati da dispositivi tooyour soluzione back-end del, inviare i messaggi da dispositivo a cloud dall'hub IoT tooyour di dispositivo. Per una descrizione delle altre opzioni da dispositivo a cloud supportate dall'hub IoT, vedere [Indicazioni sulle comunicazioni da dispositivo a cloud][lnk-d2c-guidance].
+Per inviare i dati e gli avvisi di telemetria di serie temporali dai dispositivi al back-end della soluzione, inviare messaggi da dispositivo a cloud dal dispositivo all'hub IoT. Per una descrizione delle altre opzioni da dispositivo a cloud supportate dall'hub IoT, vedere [Indicazioni sulle comunicazioni da dispositivo a cloud][lnk-d2c-guidance].
 
-I messaggi da dispositivo a cloud vengono inviati tramite un endpoint per il dispositivo (**/devices/{deviceId}/messages/events**). Regole di routing, quindi indirizzare tooone i messaggi di endpoint servizio Web hello l'hub IoT. Regole di routing utilizzano hello intestazioni e corpo dei messaggi da dispositivo a cloud hello che passano attraverso il toodetermine hub in cui tooroute li. Per impostazione predefinita, i messaggi vengono indirizzati toohello incorporato orientati ai servizi endpoint (**messaggi di eventi**), che è compatibile con [hub eventi][lnk-event-hubs]. Pertanto, è possibile utilizzare standard [integrazione degli hub di eventi e SDK] [ lnk-compatible-endpoint] messaggi da dispositivo a cloud tooreceive nella soluzione di back-end.
+I messaggi da dispositivo a cloud vengono inviati tramite un endpoint per il dispositivo (**/devices/{deviceId}/messages/events**). A quel punto le regole di routing reindirizzano i messaggi a uno degli endpoint di servizio nell'hub IoT. Le regole di routing usano le intestazioni e il corpo dei messaggi da dispositivo a cloud che passano nell'hub per determinare dove reindirizzarli. Per impostazione predefinita, i messaggi vengono reindirizzati all'endpoint per servizio predefinito (**messages/events**) compatibile con [Hub eventi][lnk-event-hubs]. È quindi possibile usare l'[integrazione standard di Hub eventi e gli SDK][lnk-compatible-endpoint] per ricevere i messaggi da dispositivo a cloud nel back-end della soluzione.
 
-L'hub IoT implementa la messaggistica da dispositivo a cloud usando un modello di messaggistica di flusso. I messaggi da dispositivo a cloud dell'IoT Hub sono più simili [hub eventi] [ lnk-event-hubs] *eventi* di [Bus di servizio] [ lnk-servicebus] *messaggi* e non è presente un numero elevato di eventi passano attraverso il servizio di hello che possa essere letto da più lettori.
+L'hub IoT implementa la messaggistica da dispositivo a cloud usando un modello di messaggistica di flusso. I messaggi da dispositivo a cloud dell'hub IoT somigliano più a *eventi* di [Hub eventi][lnk-event-hubs] che non a *messaggi* del [bus di servizio][lnk-servicebus], poiché è presente un volume elevato di eventi che passa nel servizio ed è leggibile da più lettori.
 
-Messaggistica con l'IoT Hub dispositivo a cloud presenta hello seguenti caratteristiche:
+La messaggistica da dispositivo a cloud con hub IoT ha le caratteristiche seguenti:
 
-* I messaggi da dispositivo a cloud sono durevoli e mantenuto nel predefinito di un hub IoT **messaggi di eventi** endpoint per i giorni tooseven.
-* I messaggi da dispositivo a cloud possono contenere al massimo 256 KB e possono essere raggruppati in batch toooptimize Invia. I batch possono avere dimensioni massime pari a 256 KB.
-* Come spiegato in hello [tooIoT accesso controllo Hub] [ lnk-devguide-security] sezione IoT Hub consente il controllo di autenticazione e accesso al dispositivo.
-* IoT Hub consente toocreate too10 contenuto personalizzato degli endpoint. I messaggi vengono recapitati endpoint toohello in base a route configurate sull'hub IoT. Per altre informazioni, vedere [Regole di routing](#routing-rules).
+* I messaggi da dispositivo a cloud sono durevoli e vengono mantenuti nell'endpoint **messages/events** predefinito in un hub IoT per un massimo di sette giorni.
+* I messaggi da dispositivo a cloud possono avere dimensioni massime pari a 256 KB e possono essere raggruppati in batch per ottimizzare gli invii. I batch possono avere dimensioni massime pari a 256 KB.
+* Come illustrato nella sezione [Controllare l'accesso all'hub IoT][lnk-devguide-security], l'hub IoT consente il controllo di accesso e l'autenticazione per singoli dispositivi.
+* L'hub IoT consente di creare fino a 10 endpoint personalizzati. I messaggi vengono recapitati agli endpoint in base alle route configurate nell'hub IoT. Per altre informazioni, vedere [Regole di routing](#routing-rules).
 * L'hub IoT abilita milioni di dispositivi connessi contemporaneamente (vedere [Quote e limitazioni][lnk-quotas]).
 * L'hub IoT non consente il partizionamento arbitrario. I messaggi da dispositivo a cloud vengono partizionati in base al valore **deviceId**di origine.
 
-Per ulteriori informazioni sulle differenze hello hello IoT Hub e servizi di hub eventi, vedere [hub eventi di Azure e di confronto di IoT Hub Azure][lnk-comparison].
+Per altre informazioni sulle differenze tra l'hub IoT e i servizi di hub eventi, vedere [Confronto tra l'hub IoT e Hub eventi di Azure][lnk-comparison].
 
 ## <a name="send-non-telemetry-traffic"></a>Invio di traffico non di telemetria
 
-Spesso, i dispositivi inoltre dati tootelemetry punta, inviano i messaggi e le richieste che necessitano di esecuzione separato e operazioni di gestione nel back-end di hello soluzione. Ad esempio, gli avvisi critici che devono attivare un'azione specifica in hello back-end. È possibile scrivere facilmente un [regola di routing] [ lnk-devguide-custom] toosend questi tipi di endpoint tooan messaggi dedicato tootheir un'elaborazione basata su un'intestazione di messaggio hello o un valore nel corpo del messaggio hello.
+Spesso, oltre ai punti dati di telemetria, i dispositivi inviano messaggi e richieste che devono essere eseguiti e gestiti separatamente nel back-end della soluzione. Ad esempio, gli avvisi critici che devono attivare un'azione specifica nel back-end. È possibile scrivere facilmente una [regola di routing][lnk-devguide-custom] per l'invio di questi tipi di messaggi a un endpoint dedicato alla loro elaborazione che si basa sull'intestazione del messaggio o su un valore del corpo del messaggio.
 
-Per ulteriori informazioni su hello migliore modo tooprocess questo tipo di messaggio, vedere hello [esercitazione: come i messaggi da dispositivo a cloud IoT Hub tooprocess] [ lnk-d2c-tutorial] esercitazione.
+Per altre informazioni sul modo migliore di elaborare questo tipo di messaggio, vedere l'[Esercitazione: Elaborare messaggi da dispositivo a cloud dell'hub IoT usando .Net][lnk-d2c-tutorial].
 
 ## <a name="route-device-to-cloud-messages"></a>Routing di messaggi da dispositivo a cloud
 
-Sono disponibili due opzioni per le applicazioni back-end tooyour di routing messaggi da dispositivo a cloud:
+Sono disponibili due opzioni per il routing dei messaggi da dispositivo a cloud alle app back-end:
 
-* Utilizzare hello incorporato [endpoint compatibile con Hub eventi] [ lnk-compatible-endpoint] tooenable back-end App tooread hello dispositivo a cloud per i messaggi ricevuti dall'hub hello. toolearn su endpoint compatibili con Hub eventi predefiniti di hello, vedere [leggere messaggi da dispositivo a cloud da endpoint predefiniti hello][lnk-devguide-builtin].
-* Utilizzare gli endpoint toocustom di routing regole toosend messaggi nell'hub IoT. Gli endpoint personalizzati consentono i messaggi di dispositivo a cloud tooread applicazioni back-end tramite gli hub di eventi, le code del Bus di servizio o gli argomenti del Bus di servizio. toolearn sugli endpoint personalizzati e routing, vedere [usare endpoint personalizzati e le regole di routing per i messaggi da dispositivo a cloud][lnk-devguide-custom].
+* Usare l'[endpoint compatibile con Hub eventi][lnk-compatible-endpoint] predefinito per consentire alle app back-end di leggere i messaggi da dispositivo a cloud ricevuti dall'hub. Per informazioni sull'endpoint compatibile con l'Hub eventi predefinito, vedere [Read device-to-cloud messages from the built-in endpoint][lnk-devguide-builtin] (Leggere i messaggi da dispositivo a cloud dall'endpoint predefinito).
+* Usare le regole di routing per inviare messaggi a endpoint personalizzati nell'hub IoT. Gli endpoint personalizzati consentono alle app back-end di leggere i messaggi da dispositivo a cloud mediante gli hub eventi, le code o gli argomenti del bus di servizio. Per informazioni sugli endpoint personalizzati e di routing, vedere [Usare endpoint e regole di routing personalizzati per i messaggi da dispositivo a cloud][lnk-devguide-custom].
 
 ## <a name="anti-spoofing-properties"></a>Proprietà anti-spoofing
 
-dispositivo tooavoid lo spoofing degli indirizzi nei messaggi da dispositivo a cloud, l'IoT Hub timbri tutti i messaggi con hello le proprietà seguenti:
+Per evitare lo spoofing di dispositivi nei messaggi da dispositivo a cloud, l'hub IoT contrassegna tutti i messaggi con le proprietà seguenti:
 
 * **ConnectionDeviceId**
 * **ConnectionDeviceGenerationId**
 * **ConnectionAuthMethod**
 
-Hello innanzitutto due contengono hello **deviceId** e **generationId** di hello originari dispositivo, in base [le proprietà di identità dispositivo][lnk-device-properties].
+Le prime due contengono le proprietà **deviceId** e **generationId** del dispositivo di origine, come indicato in [Proprietà delle identità dei dispositivi][lnk-device-properties].
 
-Hello **ConnectionAuthMethod** proprietà contiene un oggetto JSON serializzato, con hello le proprietà seguenti:
+La proprietà **ConnectionAuthMethod** contiene un oggetto serializzato JSON con le proprietà seguenti:
 
 ```json
 {
@@ -73,9 +73,9 @@ Hello **ConnectionAuthMethod** proprietà contiene un oggetto JSON serializzato,
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per informazioni sul SDK di hello è possibile utilizzare i messaggi da dispositivo a cloud toosend, vedere [Azure IoT SDK][lnk-sdks].
+Per informazioni sugli SDK che è possibile usare per inviare i messaggi da dispositivo a cloud, vedere [Azure IoT SDK][lnk-sdks].
 
-Hello [iniziare] [ lnk-get-started] le esercitazioni illustrano come toosend dispositivo a cloud messaggi da dispositivi fisici sia simulati. Per ulteriori dettagli, vedere hello [messaggi da dispositivo a cloud IoT Hub processo mediante route] [ lnk-d2c-tutorial] esercitazione.
+Le esercitazioni di [Introduzione][lnk-get-started] illustrano come inviare messaggi da dispositivo a cloud da dispositivi fisici e simulati. Per altre informazioni, vedere l'esercitazione [Elaborare messaggi da dispositivo a cloud dell'hub IoT usando i route][lnk-d2c-tutorial].
 
 [lnk-devguide-builtin]: iot-hub-devguide-messages-read-builtin.md
 [lnk-devguide-custom]: iot-hub-devguide-messages-read-custom.md

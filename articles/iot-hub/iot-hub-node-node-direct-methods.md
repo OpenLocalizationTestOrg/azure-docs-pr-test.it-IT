@@ -1,6 +1,6 @@
 ---
-title: IoT Hub aaaAzure diretta di metodi (nodo) | Documenti Microsoft
-description: Toouse IoT Hub Azure diretto come metodi. Utilizzare hello Azure IoT SDK per Node.js tooimplement un'app dispositivo simulato che include un metodo diretto e un'applicazione di servizio che richiama metodo diretto hello.
+title: Metodi diretti dell'Hub IoT di Azure (Node) | Documentazione Microsoft
+description: Come usare metodi diretti dell'Hub IoT di Azure. Usare Azure IoT SDK per Node.js per implementare un'app per dispositivo simulato che include un metodo diretto e un'app di servizio che richiama il metodo diretto.
 services: iot-hub
 documentationcenter: 
 author: nberdy
@@ -15,28 +15,28 @@ ms.workload: na
 ms.date: 08/25/2017
 ms.author: nberdy
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 12300ba451816fec1f80163b633f6b6e411d9e5c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9a73c25724a239e56c3ea62a8452bb7c3a2b51be
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="use-direct-methods-on-your-iot-device-with-nodejs"></a>Usare i metodi diretti sul dispositivo IoT con Node. js
 [!INCLUDE [iot-hub-selector-c2d-methods](../../includes/iot-hub-selector-c2d-methods.md)]
 
-Alla fine di hello di questa esercitazione, si dispongono di due applicazioni di console Node.js:
+Al termine di questa esercitazione si avranno due app console Node.js:
 
-* **CallMethodOnDevice.js**, che chiama un metodo in app dispositivo simulato hello e Visualizza la risposta hello.
-* **SimulatedDevice.js**, che collega l'hub IoT tooyour con l'identità del dispositivo hello creato in precedenza e risponde toohello metodo chiamato dal cloud hello.
+* **CallMethodOnDevice.js**, che chiama un metodo nell'app per dispositivo simulato e visualizza la risposta.
+* **SimulatedDevice.js**, che si connette all'hub IoT con l'identità del dispositivo creata in precedenza e risponde al metodo chiamato dal cloud.
 
 > [!NOTE]
-> articolo Hello [Azure IoT SDK] [ lnk-hub-sdks] vengono fornite informazioni hello Azure IoT SDK che è possibile utilizzare toobuild toorun entrambe le applicazioni in dispositivi e la soluzione di back-end.
+> L'articolo [Azure IoT SDK][lnk-hub-sdks] offre informazioni sui vari Azure IoT SDK che è possibile usare per compilare applicazioni da eseguire nei dispositivi e il backend della soluzione.
 > 
 > 
 
-toocomplete questa esercitazione, è necessario hello seguenti:
+Per completare l'esercitazione, sono necessari gli elementi seguenti:
 
-* Node.js 0.10.x o versione successiva.
+* Node.js 4.0.x o versione successiva.
 * Un account Azure attivo. Se non si ha un account, è possibile creare un [account gratuito][lnk-free-trial] in pochi minuti.
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
@@ -44,20 +44,20 @@ toocomplete questa esercitazione, è necessario hello seguenti:
 [!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity.md)]
 
 ## <a name="create-a-simulated-device-app"></a>Creare un'app di dispositivo simulato
-In questa sezione si crea un'applicazione console Node. js che risponde tooa metodo chiamato dal cloud hello.
+In questa sezione viene creata un'applicazione console Node.js che risponde a un metodo chiamato dal cloud.
 
-1. Creare una nuova cartella vuota denominata **simulateddevice**. In hello **simulateddevice** cartella, creare un file di package. JSON usando hello seguente comando al prompt dei comandi. Accettare tutte le impostazioni predefinite hello:
+1. Creare una nuova cartella vuota denominata **simulateddevice**. Nella cartella **simulateddevice** creare un file package.json eseguendo questo comando al prompt dei comandi. Accettare tutte le impostazioni predefinite:
    
     ```
     npm init
     ```
-2. Al prompt dei comandi in hello **simulateddevice** cartella, eseguire hello successivo comando tooinstall hello **dispositivi iot di azure** pacchetto SDK di dispositivo e **azure-iot-dispositivo-mqtt**pacchetto:
+2. Eseguire questo comando al prompt dei comandi nella cartella **simulateddevice** per installare il pacchetto SDK per dispositivi **azure-iot-device** e il pacchetto **azure-iot-device-mqtt**:
    
     ```
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
-3. Utilizzando un editor di testo, creare un nuovo **SimulatedDevice.js** file hello **simulateddevice** cartella.
-4. Aggiungere il seguente hello `require` istruzioni hello iniziano hello **SimulatedDevice.js** file:
+3. Con un editor di testo creare un nuovo file **SimulatedDevice.js** nella cartella **simulateddevice**.
+4. Aggiungere le istruzioni `require` seguenti all'inizio del file **SimulatedDevice.js** :
    
     ```
     'use strict';
@@ -65,28 +65,28 @@ In questa sezione si crea un'applicazione console Node. js che risponde tooa met
     var Mqtt = require('azure-iot-device-mqtt').Mqtt;
     var DeviceClient = require('azure-iot-device').Client;
     ```
-5. Aggiungere un **connectionString** variabile e usarlo toocreate un **DeviceClient** istanza. Sostituire **{stringa di connessione dispositivo}** con stringa di connessione dispositivo hello generato nel hello *creare un'identità del dispositivo* sezione:
+5. Aggiungere una variabile **connectionString** e usarla per creare un'istanza di **DeviceClient**. Sostituire **{device connection string}** con la stringa di connessione del dispositivo generata nella sezione *Creare un'identità del dispositivo*:
    
     ```
     var connectionString = '{device connection string}';
     var client = DeviceClient.fromConnectionString(connectionString, Mqtt);
     ```
-6. Aggiungere hello seguente metodo di funzione tooimplement hello sul dispositivo hello:
+6. Aggiungere la funzione seguente per implementare il metodo nel dispositivo:
    
     ```
     function onWriteLine(request, response) {
         console.log(request.payload);
    
-        response.send(200, 'Input was written toolog.', function(err) {
+        response.send(200, 'Input was written to log.', function(err) {
             if(err) {
                 console.error('An error ocurred when sending a method response:\n' + err.toString());
             } else {
-                console.log('Response toomethod \'' + request.methodName + '\' sent successfully.' );
+                console.log('Response to method \'' + request.methodName + '\' sent successfully.' );
             }
         });
     }
     ```
-7. Aprire l'hub IoT tooyour connessione hello e avviare i listener per il metodo initialize hello:
+7. Aprire la connessione all'hub IoT e inizializzare il listener del metodo:
    
     ```
     client.open(function(err) {
@@ -98,47 +98,47 @@ In questa sezione si crea un'applicazione console Node. js che risponde tooa met
         }
     });
     ```
-8. Salvare e chiudere hello **SimulatedDevice.js** file.
+8. Salvare e chiudere il file **SimulatedDevice.js** .
 
 > [!NOTE]
-> cose tookeep semplice, in questa esercitazione non implementa alcun criterio di tentativo. Nel codice di produzione, è necessario implementare criteri di tentativi (ad esempio, il tentativo di connessione), come indicato nell'articolo MSDN hello [gestione degli errori temporanei][lnk-transient-faults].
+> Per semplicità, in questa esercitazione non si implementa alcun criterio di ripetizione dei tentativi. Nel codice di produzione è consigliabile implementare criteri di ripetizione dei tentativi, ad esempio i tentativi di connessione, come indicato nell'articolo di MSDN [Transient Fault Handling][lnk-transient-faults] (Gestione degli errori temporanei).
 > 
 > 
 
 ## <a name="call-a-method-on-a-device"></a>Chiamare un metodo su un dispositivo
-In questa sezione si crea un'applicazione console Node. js che chiama un metodo in app dispositivo simulato hello e quindi Visualizza la risposta hello.
+In questa sezione viene creata un'app console Node.js che chiama un metodo nell'app per dispositivo simulato e quindi visualizza la risposta.
 
-1. Creare una nuova cartella vuota denominata **callmethodondevice**. In hello **callmethodondevice** cartella, creare un file di package. JSON usando hello seguente comando al prompt dei comandi. Accettare tutte le impostazioni predefinite hello:
+1. Creare una nuova cartella vuota denominata **callmethodondevice**. Nella cartella **callmethodondevice** creare un file package.json eseguendo questo comando al prompt dei comandi. Accettare tutte le impostazioni predefinite:
    
     ```
     npm init
     ```
-2. Al prompt dei comandi in hello **callmethodondevice** cartella, eseguire hello successivo comando tooinstall hello **hub IOT di azure** pacchetto:
+2. Eseguire questo comando al prompt dei comandi nella cartella **callmethodondevice** per installare il pacchetto **azure-iothub**:
    
     ```
     npm install azure-iothub --save
     ```
-3. Utilizzando un editor di testo, creare un **CallMethodOnDevice.js** file hello **callmethodondevice** cartella.
-4. Aggiungere il seguente hello `require` istruzioni hello iniziano hello **CallMethodOnDevice.js** file:
+3. Usando un editor di testo creare un file **CallMethodOnDevice.js** nella cartella **callmethodondevice**.
+4. Aggiungere le istruzioni `require` seguenti all'inizio del file **CallMethodOnDevice.js**:
    
     ```
     'use strict';
    
     var Client = require('azure-iothub').Client;
     ```
-5. Aggiungere hello seguente dichiarazione di variabile e sostituire il valore di segnaposto hello con stringa di connessione IoT Hub per l'hub hello:
+5. Aggiungere la dichiarazione di variabile seguente e sostituire il valore del segnaposto con la stringa di connessione per l'hub IoT:
    
     ```
     var connectionString = '{iothub connection string}';
     var methodName = 'writeLine';
     var deviceId = 'myDeviceId';
     ```
-6. Creare l'hub IoT hello client tooopen hello connessione tooyour.
+6. Creare il client per aprire la connessione all'hub IoT.
    
     ```
     var client = Client.fromConnectionString(connectionString);
     ```
-7. Aggiungere hello funzione tooinvoke hello (metodo) e stampa hello dispositivo risposta toohello console del dispositivo seguenti:
+7. Aggiungere la funzione seguente per richiamare il metodo del dispositivo e stampare la risposta del dispositivo nella console:
    
     ```
     var methodParams = {
@@ -149,45 +149,45 @@ In questa sezione si crea un'applicazione console Node. js che chiama un metodo 
    
     client.invokeDeviceMethod(deviceId, methodParams, function (err, result) {
         if (err) {
-            console.error('Failed tooinvoke method \'' + methodName + '\': ' + err.message);
+            console.error('Failed to invoke method \'' + methodName + '\': ' + err.message);
         } else {
             console.log(methodName + ' on ' + deviceId + ':');
             console.log(JSON.stringify(result, null, 2));
         }
     });
     ```
-8. Salvare e chiudere hello **CallMethodOnDevice.js** file.
+8. Salvare e chiudere il file **CallMethodOnDevice.js**.
 
-## <a name="run-hello-apps"></a>Eseguire App hello
-Si è ora pronto toorun hello app.
+## <a name="run-the-apps"></a>Eseguire le app
+A questo punto è possibile eseguire le app.
 
-1. Al prompt dei comandi in hello **simulateddevice** cartella, eseguire hello in attesa di chiamate al metodo dall'IoT Hub toostart di comando seguente:
+1. Eseguire questo comando al prompt dei comandi nella cartella **simulateddevice** per iniziare ad ascoltare le chiamate ai metodi dall'hub IoT:
    
     ```
     node SimulatedDevice.js
     ```
    
     ![][7]
-2. Al prompt dei comandi in hello **callmethodondevice** cartella, eseguire hello monitoraggio l'hub IoT toobegin di comando seguente:
+2. Al prompt dei comandi nella cartella **callmethodondevice** eseguire questo comando per iniziare a monitorare l'hub IoT:
    
     ```
     node CallMethodOnDevice.js 
     ```
    
     ![][8]
-3. Si noterà dispositivo hello reagire toohello metodo stampando messaggio hello e un'applicazione hello denominato risposta di hello visualizzazione metodo hello dal dispositivo hello:
+3. Il dispositivo reagirà al metodo stampando il messaggio e l'applicazione che ha chiamato il metodo visualizzerà la risposta dal dispositivo:
    
     ![][9]
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questa esercitazione, è configurato un nuovo hub IoT in hello portale di Azure e quindi creata un'identità del dispositivo nel Registro di sistema dell'hub IoT hello identità. È stato utilizzato questo dispositivo identità tooenable hello simulato dispositivo app tooreact toomethods richiamato dal cloud hello. È stato creato anche un'applicazione che richiama metodi sul dispositivo hello e Visualizza la risposta hello dal dispositivo hello. 
+In questa esercitazione è stato configurato un nuovo hub IoT nel Portale di Azure ed è stata quindi creata un'identità del dispositivo nel registro di identità dell'hub IoT. Questa identità del dispositivo è stata usata per consentire all'app del dispositivo simulato di reagire ai metodi richiamati dal cloud. È stata anche creata un'applicazione che richiama i metodi sul dispositivo e visualizza la risposta dal dispositivo. 
 
-Guida introduttiva toocontinue con IoT Hub e tooexplore altri scenari IoT, vedere:
+Per altre informazioni sulle attività iniziali con l'hub IoT e per esplorare altri scenari IoT, vedere:
 
 * [Introduzione all'hub IoT]
 * [Pianificare processi in più dispositivi][lnk-devguide-jobs]
 
-toolearn come tooextend il metodo di pianificazione e di soluzione IoT chiama su più dispositivi, vedere hello [pianificazione e i processi di broadcast] [ lnk-tutorial-jobs] esercitazione.
+Per informazioni su come estendere la soluzione IoT e pianificare le chiamate al metodo su più dispositivi, vedere l'esercitazione [Pianificare e trasmettere processi][lnk-tutorial-jobs].
 
 <!-- Images. -->
 [7]: ./media/iot-hub-node-node-direct-methods/run-simulated-device.png

@@ -1,6 +1,6 @@
 ---
-title: aaaWorkflows per la configurazione di un circuito ExpressRoute | Documenti Microsoft
-description: Questa pagina vengono illustrati i flussi di lavoro hello per la configurazione di peering e il circuito ExpressRoute
+title: Flussi di lavoro per la configurazione di un circuito ExpressRoute | Documentazione Microsoft
+description: Questa pagina illustra i flussi di lavoro per la configurazione di un circuito ExpressRoute e dei peering
 documentationcenter: na
 services: expressroute
 author: cherylmc
@@ -14,35 +14,35 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/12/2017
 ms.author: cherylmc
-ms.openlocfilehash: 8e1dfc137401e0d6d53608ae6c8de0085e182eba
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: cba1b2cfee379e7d2b079bcb3089981ef1044d66
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="expressroute-workflows-for-circuit-provisioning-and-circuit-states"></a>Flussi di lavoro ExpressRoute per provisioning di un circuito e stati di circuito
-Questa pagina viene illustrato il provisioning del servizio di hello e routing configurazione dei flussi di lavoro a un livello elevato.
+Questa pagina illustra i flussi di lavoro di provisioning del servizio e configurazione del routing a livello generale.
 
 ![](./media/expressroute-workflows/expressroute-circuit-workflow.png)
 
-Hello figura riportata di seguito e i passaggi corrispondenti mostrano attività hello che è necessario eseguire in ordine toohave un ExpressRoute circuito provisioning end-to-end. 
+La figura e i passaggi corrispondenti riportati di seguito descrivono le attività per il provisioning end-to-end di un circuito ExpressRoute. 
 
-1. Utilizzare PowerShell tooconfigure un circuito ExpressRoute. Seguire le istruzioni hello hello [circuiti ExpressRoute creare](expressroute-howto-circuit-classic.md) per ulteriori dettagli.
-2. Connettività ordine dal provider di servizi di hello. Questo processo varia. Per ulteriori dettagli su come contattare il provider di connettività tooorder connettività.
-3. Verificare che il circuito hello sia stato preparato correttamente verificando il circuito ExpressRoute hello provisioning dello stato tramite PowerShell. 
-4. Configurare i domini di routing. Se il provider di connettività gestisce il livello 3, configurerà il routing per il circuito. Se il provider di connettività offre solo servizi di livello 2, è necessario configurare il routing per linee guida descritte in hello [requisiti di routing](expressroute-routing.md) e [configurazione del routing](expressroute-howto-routing-classic.md) pagine.
+1. Usare PowerShell per configurare un circuito ExpressRoute. Per altre informazioni, seguire le istruzioni contenute nell'articolo relativo alla [creazione di circuiti ExpressRoute](expressroute-howto-circuit-classic.md) .
+2. Ordinare la connettività dal provider di connettività. Questo processo varia. Per altre informazioni su come ordinare la connettività, contattare il provider di connettività.
+3. Assicurarsi che il provisioning del circuito sia stato eseguito correttamente verificando lo stato di provisioning del circuito ExpressRoute tramite PowerShell. 
+4. Configurare i domini di routing. Se il provider di connettività gestisce il livello 3, configurerà il routing per il circuito. Se invece il provider di connettività offre solo servizi di livello 2, sarà necessario configurare il routing secondo le linee guida descritte nelle pagine relative ai [requisiti di routing](expressroute-routing.md) e alla [configurazione del routing](expressroute-howto-routing-classic.md).
    
-   * Abilitare peering privato di Azure, è necessario abilitare questo peer di tooconnect tooVMs / cloud servizi distribuiti nelle reti virtuali.
-   * Abilitare peering pubblico di Azure, è necessario abilitare peering pubblico di Azure se si desiderano tooconnect tooAzure servizi ospitati su indirizzi IP pubblici. Si tratta di un tooaccess requisito risorse di Azure se si è scelto di tooenable routing predefinito per il peering privato di Azure.
-   * Abilitare Microsoft peering - è necessario abilitare questo tooaccess Office 365 e Dynamics 365. 
+   * Abilitare il peering privato di Azure: è necessario abilitare questo peering per la connessione alle macchine virtuali e ai servizi cloud distribuiti nelle reti virtuali.
+   * Abilitare il peering pubblico di Azure: è necessario abilitare questo peering se si desidera connettersi ai servizi di Azure ospitati in indirizzi IP pubblici. Questo è un requisito per accedere alle risorse di Azure se si è scelto di abilitare il routing predefinito per il peering privato di Azure.
+   * Abilitare il peering Microsoft: è necessario abilitare questo peering per accedere ai servizi Office 365 e Dynamics 365. 
      
      > [!IMPORTANT]
-     > È necessario assicurarsi che si usa un proxy separato o edge tooconnect tooMicrosoft rispetto a quello che viene utilizzato per hello hello Internet. Utilizzo di hello stesso bordo per ExpressRoute e hello Internet causerà routing asimmetrica e causare interruzioni della connettività di rete.
+     > Per la connessione a Microsoft è necessario usare un server proxy/perimetrale separato rispetto a quello usato per Internet. Se si usa lo stesso server perimetrale per ExpressRoute e Internet, si verificherà un routing asimmetrico con interruzioni della connettività di rete.
      > 
      > 
      
      ![](./media/expressroute-workflows/routing-workflow.png)
-5. Il collegamento virtuale reti circuiti tooExpressRoute: È possibile collegare il circuito ExpressRoute tooyour reti virtuali. Seguire le istruzioni [toolink reti virtuali](expressroute-howto-linkvnet-arm.md) tooyour circuito. Queste reti virtuali possono essere nella stessa sottoscrizione Azure circuito ExpressRoute hello hello, oppure può essere in una sottoscrizione diversa.
+5. Collegamento di reti virtuali a circuiti ExpressRoute: è possibile collegare reti virtuali al circuito ExpressRoute. Seguire le istruzioni [per collegare reti virtuali](expressroute-howto-linkvnet-arm.md) a un circuito. Queste reti virtuali possono trovarsi nella stessa sottoscrizione di Azure del circuito ExpressRoute oppure in una sottoscrizione diversa.
 
 ## <a name="expressroute-circuit-provisioning-states"></a>Stati di provisioning del circuito ExpressRoute
 Ogni circuito ExpressRoute prevede due stati:
@@ -50,62 +50,62 @@ Ogni circuito ExpressRoute prevede due stati:
 * Stato di provisioning del provider di servizi
 * Stato
 
-Status rappresenta lo stato di provisioning di Microsoft. Questa proprietà è impostata tooEnabled quando si crea un circuito Expressroute
+Status rappresenta lo stato di provisioning di Microsoft. Questa proprietà è impostata su Enabled quando si crea un circuito Expressroute
 
-stato di provisioning provider di connettività Hello rappresenta lo stato di hello sul lato del provider di connettività hello. Può essere impostato su *NotProvisioned*, *Provisioning* o *Provisioned*. Hello circuito ExpressRoute deve essere in stato di provisioning eseguito per si toobe in grado di toouse è.
+Lo stato di provisioning del provider di connettività rappresenta lo stato sul lato del provider di connettività. Può essere impostato su *NotProvisioned*, *Provisioning* o *Provisioned*. Il circuito ExpressRoute può essere usato solo se è impostato sullo stato Provisioned.
 
 ### <a name="possible-states-of-an-expressroute-circuit"></a>Stati possibili di un circuito ExpressRoute
-In questa sezione elenca gli stati possibili di hello per un circuito ExpressRoute.
+Questa sezione elenca gli stati possibili di un circuito ExpressRoute.
 
 **Al momento della creazione**
 
-Verrà visualizzato il circuito ExpressRoute hello in hello seguente non appena è stato eseguito circuito ExpressRoute di hello PowerShell cmdlet toocreate hello.
+Lo stato del circuito ExpressRoute sarà il seguente nel momento in cui si esegue il cmdlet di PowerShell per creare il circuito ExpressRoute.
 
     ServiceProviderProvisioningState : NotProvisioned
     Status                           : Enabled
 
 
-**Quando i provider di connettività è nel processo di hello del provisioning del circuito hello**
+**Quando il provider di connettività è in fase di provisioning del circuito**
 
-Verrà visualizzato il circuito ExpressRoute hello in hello seguente non appena è stato passare i provider di connettività toohello chiave servizio hello e avvio hello processo di provisioning.
+Lo stato del circuito ExpressRoute sarà il seguente quando si passa la chiave di servizio al provider di connettività ed è stato avviato il processo di provisioning.
 
     ServiceProviderProvisioningState : Provisioning
     Status                           : Enabled
 
 
-**Quando il provider di connettività è stata completata hello processo di provisioning**
+**Quando il provider di connettività ha completato il processo di provisioning**
 
-Verrà visualizzato hello in seguito lo stato come provider di connettività hello ha completato il processo di provisioning hello hello il circuito ExpressRoute.
+Lo stato del circuito ExpressRoute sarà il seguente quando il provider di connettività ha completato il processo di provisioning.
 
     ServiceProviderProvisioningState : Provisioned
     Status                           : Enabled
 
-Il provisioning e abilitato è hello circuito hello lo stato è possibile solo per si toobe in grado di toouse è. Se si usa un provider di livello 2, è possibile configurare il routing per il circuito solo quando è attivo questo stato.
+Provisioned ed Enabled sono gli unici stati che consentono di usare il circuito. Se si usa un provider di livello 2, è possibile configurare il routing per il circuito solo quando è attivo questo stato.
 
-**Quando il provider di connettività è deprovisioning circuito hello**
+**Quando il provider di connettività sta eseguendo il deprovisioning del circuito**
 
-Se è stato richiesto il circuito ExpressRoute hello toodeprovision di hello service provider, verrà visualizzato il circuito hello imposta toohello seguente stato dopo che il provider di servizi di hello ha completato hello processo di deprovisioning.
+Se si è richiesto al provider di servizi di eseguire il deprovisioning del circuito ExpressRoute, al termine del processo di deprovisioning eseguito dal provider di servizi lo stato del circuito sarà il seguente.
 
     ServiceProviderProvisioningState : NotProvisioned
     Status                           : Enabled
 
 
-È possibile scegliere di abilitare toore, se necessario, o eseguire i cmdlet PowerShell circuito hello toodelete.  
+È possibile scegliere di abilitarlo nuovamente, se necessario, o eseguire i cmdlet di PowerShell per eliminare il circuito.  
 
 > [!IMPORTANT]
-> Se si esegue PowerShell cmdlet toodelete hello circuito quando hello ServiceProviderProvisioningState Provisioning o provisioning eseguito operazione hello hello avrà esito negativo. . Prima di lavoro con il circuito ExpressRoute di hello toodeprovision di provider di connettività, quindi eliminare il circuito hello. Microsoft continuerà circuito hello toobill fino a quando non si esegue hello circuito hello toodelete cmdlet di PowerShell.
+> Se si esegue il cmdlet PowerShell per eliminare il circuito quando lo stato di ServiceProviderProvisioningState è Provisioning in corso o Provisioning eseguito, l'operazione avrà esito negativo. Collaborare con il provider di connettività per eseguire il deprovisioning del circuito ExpressRoute e quindi eliminare il circuito. Microsoft continuerà ad applicare l'addebito per il circuito finché non si esegue il cmdlet di PowerShell per eliminare il circuito.
 > 
 > 
 
 ## <a name="routing-session-configuration-state"></a>Stato di configurazione della sessione di routing
-stato di provisioning BGP Hello consente di sapere se sessione BGP hello è stata abilitata in hello Microsoft edge. Hello stato deve essere abilitato per l'utente toobe toouse in grado di hello peering.
+Lo stato di provisioning BGP indica se la sessione BGP è stata abilitata sul lato Microsoft. Per usare il peering è necessario che lo stato sia abilitato.
 
-È stato della sessione BGP hello toocheck importante soprattutto per il peering Microsoft. In aggiunta toohello BGP stato di provisioning, è un altro stato denominato *stato prefissi pubblici annunciati*. Hello annunciati prefissi pubblici stato deve essere *configurato* dello stato, sia per hello BGP sessione toobe backup e per il routing toowork end-to-end. 
+È importante controllare lo stato della sessione BGP soprattutto per il peering Microsoft. Oltre allo stato di provisioning BGP, esiste un altro stato denominato *prefissi pubblici annunciati*. Per i prefissi pubblici annunciati deve essere impostato lo stato *configured* perché la sessione BGP sia attiva e perché il routing funzioni in modalità end-to-end. 
 
-Se hello annunciati stato pubblica prefisso è impostato tooa *convalida necessita* stato sessione BGP hello non è abilitata, come hello annunciati prefissi non corrispondeva hello come numero in uno dei registri di routing hello. 
+Se invece è impostato lo stato *validation needed* , la sessione BGP non è abilitata, poiché i prefissi annunciati non corrispondono al numero AS nei registri di routing. 
 
 > [!IMPORTANT]
-> Se hello annunciati stato prefissi pubblici *convalida manuale* stato, è necessario aprire un ticket di supporto con [supporto tecnico Microsoft](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) e dimostrare che si è proprietari di indirizzi IP hello annunciati lungo hello associata numero sistema autonomo.
+> Se i prefissi pubblici annunciati sono impostati sullo stato *manual validation* , è necessario aprire un ticket di supporto con il [supporto tecnico Microsoft](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) e fornire la prova di essere proprietari degli indirizzi IP annunciati insieme con il numero di sistema autonomo (AS) associato.
 > 
 > 
 
@@ -114,5 +114,5 @@ Se hello annunciati stato pubblica prefisso è impostato tooa *convalida necessi
   
   * [Creare un circuito ExpressRoute](expressroute-howto-circuit-arm.md)
   * [Configurare il routing](expressroute-howto-routing-arm.md)
-  * [Collegare un circuito ExpressRoute di tooan rete virtuale](expressroute-howto-linkvnet-arm.md)
+  * [Collegare una rete virtuale a un circuito ExpressRoute](expressroute-howto-linkvnet-arm.md)
 

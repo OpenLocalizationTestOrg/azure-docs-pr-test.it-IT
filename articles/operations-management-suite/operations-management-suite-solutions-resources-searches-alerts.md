@@ -1,6 +1,6 @@
 ---
-title: aaaSaved ricerche e avvisi in soluzioni OMS | Documenti Microsoft
-description: "Soluzioni in OMS in genere comprendono le ricerche salvate nei dati tooanalyze Analitica Log raccolti dalla soluzione hello.  Si può anche definire utente hello toonotify di avvisi o automaticamente intervenire in problema grave di risposta tooa.  In questo articolo viene descritto come toodefine Analitica registro salvato avvisi e ricerche in un modello ARM in modo che possano essere incluse nelle soluzioni di gestione."
+title: Ricerche salvate e avvisi nelle soluzioni OMS | Microsoft Docs
+description: Le soluzioni in OMS includeranno in genere ricerche salvate di Log Analytics per l'analisi dei dati raccolti dalla soluzione.  Potranno anche definire avvisi per la notifica all'utente o per eseguire automaticamente un'azione in risposta a un problema critico.  Questo articolo descrive come definire le ricerche salvate e gli avvisi di Log Analytics in un modello di Azure Resource Manager in modo da consentirne l'inclusione nelle soluzioni di gestione.
 services: operations-management-suite
 documentationcenter: 
 author: bwren
@@ -14,39 +14,39 @@ ms.workload: infrastructure-services
 ms.date: 05/24/2017
 ms.author: bwren
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 93d7c5bbf061473833ca6c0a8e4d8e10d923f3ed
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 21c42a747a08c5386c65d10190baf0054a7adef8
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="adding-log-analytics-saved-searches-and-alerts-toooms-management-solution-preview"></a>Aggiunta Log Analitica salvato tooOMS ricerche e gli avvisi la soluzione di gestione (anteprima)
+# <a name="adding-log-analytics-saved-searches-and-alerts-to-oms-management-solution-preview"></a>Aggiunta di avvisi e di ricerche salvate di Log Analytics alla soluzione di gestione in OMS (anteprima)
 
 > [!NOTE]
-> Questa è una documentazione preliminare per la creazione di soluzioni di gestione in OMS attualmente disponibili in versione di anteprima. Qualsiasi schema descritto di seguito è soggetto toochange.   
+> Questa è una documentazione preliminare per la creazione di soluzioni di gestione in OMS attualmente disponibili in versione di anteprima. Qualsiasi schema descritto di seguito è soggetto a modifiche.   
 
 
-[Soluzioni di gestione in OMS](operations-management-suite-solutions.md) includerà in genere [ricerche salvate](../log-analytics/log-analytics-log-searches.md) nei dati tooanalyze Analitica Log raccolti dalla soluzione hello.  Possono anche definire [avvisi](../log-analytics/log-analytics-alerts.md) toonotify hello utente o eseguire automaticamente azioni problema critico tooa di risposta.  In questo articolo viene descritto come toodefine Analitica Log salvate ricerche e avvisi in un [modello di gestione delle risorse](../resource-manager-template-walkthrough.md) in modo che possano essere incluse [soluzioni di gestione](operations-management-suite-solutions-creating.md).
+Le [soluzioni di gestione in OMS](operations-management-suite-solutions.md) includeranno in genere [ricerche salvate](../log-analytics/log-analytics-log-searches.md) di Log Analytics per l'analisi dei dati raccolti dalla soluzione.  Potranno anche definire [avvisi](../log-analytics/log-analytics-alerts.md) per la notifica all'utente o per eseguire automaticamente un'azione in risposta a un problema critico.  Questo articolo descrive come definire le ricerche salvate e gli avvisi di Log Analytics in un [modello di Resource Manager](../resource-manager-template-walkthrough.md) in modo da consentirne l'inclusione nelle [soluzioni di gestione](operations-management-suite-solutions-creating.md).
 
 > [!NOTE]
-> Hello esempi in questo articolo utilizzano parametri e variabili che sono entrambe soluzioni toomanagement necessarie o comuni e descritte in [la creazione di soluzioni di gestione in Operations Management Suite (OMS)](operations-management-suite-solutions-creating.md)  
+> Gli esempi in questo articolo usano parametri e variabili che sono richiesti o comuni nelle soluzioni di gestione e che sono descritti in [Creazione di soluzioni di gestione in Operations Management Suite (OMS)](operations-management-suite-solutions-creating.md)  
 
 ## <a name="prerequisites"></a>Prerequisiti
-Questo articolo si presuppone che si ha già familiarità con come troppo[creare una soluzione di gestione](operations-management-suite-solutions-creating.md) e la struttura di hello di un [modello ARM](../resource-group-authoring-templates.md) e file di soluzione.
+Questo articolo presuppone che si abbia già familiarità con la [creazione di una soluzione di gestione](operations-management-suite-solutions-creating.md) e la struttura di un [modello di Azure Resource Manager](../resource-group-authoring-templates.md) e un file di soluzione.
 
 
 ## <a name="log-analytics-workspace"></a>Area di lavoro di Log Analytics
-Tutte le risorse in Log Analytics sono contenute in un'[area di lavoro](../log-analytics/log-analytics-manage-access.md).  Come descritto in [OMS dell'area di lavoro e account di automazione](operations-management-suite-solutions.md#oms-workspace-and-automation-account) dell'area di lavoro di hello non è incluso nella soluzione di gestione di hello ma deve essere presente prima di installata la soluzione hello.  Se non è disponibile, l'installazione di soluzioni hello avrà esito negativo.
+Tutte le risorse in Log Analytics sono contenute in un'[area di lavoro](../log-analytics/log-analytics-manage-access.md).  Come descritto in [Area di lavoro OMS e account di Automazione](operations-management-suite-solutions.md#oms-workspace-and-automation-account), l'area di lavoro non è inclusa nella soluzione di gestione, ma deve essere presente prima che la soluzione venga installata.  Se non è disponibile, l'installazione della soluzione non riuscirà.
 
-nome Hello dell'area di lavoro hello è nome hello di ogni risorsa Analitica di Log.  Questa operazione viene eseguita nella soluzione hello con hello **dell'area di lavoro** parametro come hello seguente esempio di una risorsa savedsearch.
+Il nome dell'area di lavoro è il nome di ogni risorsa di Log Analytics.  A questo scopo, nella soluzione viene usato il parametro **workspace** come nell'esempio seguente di una risorsa savedsearch.
 
     "name": "[concat(parameters('workspaceName'), '/', variables('SavedSearchId'))]"
 
 
 ## <a name="saved-searches"></a>Ricerche salvate
-Includere [ricerche salvate](../log-analytics/log-analytics-log-searches.md) in una soluzione tooallow utenti tooquery di dati raccolti dalla soluzione.  Ricerche salvate verranno visualizzato in **Preferiti** nel portale OMS hello e **ricerche salvate** in hello portale di Azure.  È necessaria una ricerca salvata anche per ogni avviso.   
+Includere [ricerche salvate](../log-analytics/log-analytics-log-searches.md) in una soluzione per consentire agli utenti di eseguire query sui dati raccolti dalla soluzione.  Le ricerche salvate verranno visualizzate in **Preferiti** nel portale di OMS e in **Ricerche salvate** nel portale di Azure.  È necessaria una ricerca salvata anche per ogni avviso.   
 
-[Ricerca salvata Analitica log](../log-analytics/log-analytics-log-searches.md) risorse hanno un tipo di `Microsoft.OperationalInsights/workspaces/savedSearches` e hello seguente struttura.  Questo include variabili e parametri comuni che è possibile copiare e incollare il frammento di codice nel file di soluzione e modificare i nomi di parametro hello. 
+Le risorse [ricerca salvata di Log Analytics](../log-analytics/log-analytics-log-searches.md) sono di tipo `Microsoft.OperationalInsights/workspaces/savedSearches` e hanno la struttura seguente.  Nella struttura sono inclusi parametri e variabili comuni ed è quindi possibile copiare e incollare questo frammento di codice nel file della soluzione e, se necessario, modificare i nomi dei parametri. 
 
     {
         "name": "[concat(parameters('workspaceName'), '/', variables('SavedSearch').Name)]",
@@ -65,33 +65,33 @@ Includere [ricerche salvate](../log-analytics/log-analytics-log-searches.md) in 
 
 
 
-Ogni proprietà hello di una ricerca salvata sono descritti nella seguente tabella hello. 
+Le singole proprietà di una ricerca salvata sono descritte nella tabella seguente. 
 
 | Proprietà | Descrizione |
 |:--- |:--- |
-| category | categoria di Hello per la ricerca salvata hello.  Le ricerche salvate nella stessa soluzione spesso condividono hello un'unica categoria pertanto vengono raggruppati insieme nella console di hello. |
-| displayname | Nome toodisplay per hello ricerca salvata nel portale di hello. |
-| query | Eseguire una query toorun. |
+| category | Categoria della ricerca salvata.  Tutte le ricerche salvate nella stessa soluzione condivideranno in genere una singola categoria in modo da essere raggruppate nella console. |
+| displayname | Nome da visualizzare per la ricerca salvata nel portale. |
+| query | Query da eseguire. |
 
 > [!NOTE]
-> Caratteri di escape toouse nella query hello potrebbe essere necessario se include caratteri che potrebbero essere interpretati come JSON.  Ad esempio, se la query è stata **OperationName:"Microsoft.Compute/virtualMachines/write tipo: AzureActivity"**, devono essere scritti nel file di soluzione hello come **OperationName tipo: AzureActivity:\" Microsoft.Compute/virtualMachines/write\"**.
+> Potrebbe essere necessario usare caratteri di escape, se la query include caratteri che potrebbero essere interpretati come JSON.  La query **Type:AzureActivity OperationName:"Microsoft.Compute/virtualMachines/write"**, ad esempio, dovrà essere scritta nel file di soluzione nel modo seguente: **Type:AzureActivity OperationName:\"Microsoft.Compute/virtualMachines/write\"**.
 
 ## <a name="alerts"></a>Avvisi
-Gli [avvisi di Log Analytics](../log-analytics/log-analytics-alerts.md) vengono creati da regole di avviso che eseguono una ricerca salvata a intervalli regolari.  Se i risultati di hello di hello query corrispondono ai criteri specificati, viene creato un record di avviso e vengono eseguite uno o più azioni.  
+Gli [avvisi di Log Analytics](../log-analytics/log-analytics-alerts.md) vengono creati da regole di avviso che eseguono una ricerca salvata a intervalli regolari.  Se i risultati della query corrispondono ai criteri specificati, viene creato un record di avviso e vengono eseguite una o più azioni.  
 
-Le regole di avviso in una soluzione di gestione sono costituite da hello seguenti tre risorse diverse.
+Le regole di avviso in una soluzione di gestione sono costituite dalle tre diverse risorse riportate di seguito.
 
-- **Ricerca salvata.**  Definisce una ricerca nei log hello che verrà eseguita.  Una singola ricerca salvata può essere condivisa da più regole di avviso.
-- **Pianificazione.**  Definisce la frequenza con cui hello ricerca nei log verrà eseguito.  Ogni regola di avviso avrà una sola pianificazione.
-- **Azione di avviso.**  Ogni regola di avviso avrà una risorsa di azione con un tipo di **avviso** che definisce i dettagli di hello di hello avviso, ad esempio criteri hello verrà creato un record di avviso e hello gravità dell'avviso.  risorsa dell'azione Hello definirà facoltativamente una risposta di posta elettronica e il runbook.
-- **Azione webhook (facoltativa).**  Se la regola di avviso hello chiamerà un webhook, quindi richiede una risorsa di un'ulteriore azione con un tipo di **Webhook**.    
+- **Ricerca salvata.**  Definisce la ricerca nei log che verrà eseguita.  Una singola ricerca salvata può essere condivisa da più regole di avviso.
+- **Pianificazione.**  Definisce la frequenza con cui verrà eseguita la ricerca nei log.  Ogni regola di avviso avrà una sola pianificazione.
+- **Azione di avviso.**  Ogni regola di avviso avrà una risorsa azione di tipo **Alert** che definisce dettagli dell'avviso come i criteri per la creazione di un record di avviso e la gravità.  La risorsa azione definirà facoltativamente una risposta tramite posta elettronica e runbook.
+- **Azione webhook (facoltativa).**  Se la regola di avviso chiamerà un webhook, è necessaria una risorsa azione aggiuntiva di tipo **Webhook**.    
 
-Le risorse ricerca salvata sono illustrate sopra.  Hello altre risorse sono descritti di seguito.
+Le risorse ricerca salvata sono illustrate sopra.  Di seguito sono descritte le altre risorse.
 
 
 ### <a name="schedule-resource"></a>Risorsa pianificazione
 
-Una ricerca salvata può avere una o più pianificazioni, ognuna delle quali rappresenta una regola di avviso separata. Hello pianificazione definisce la frequenza con cui hello ricerca viene eseguita e hello intervallo di tempo su cui hello vengono recuperati i dati.  Risorse di pianificazione dispongono di un tipo di `Microsoft.OperationalInsights/workspaces/savedSearches/schedules/` e hello seguente struttura. Questo include variabili e parametri comuni che è possibile copiare e incollare il frammento di codice nel file di soluzione e modificare i nomi di parametro hello. 
+Una ricerca salvata può avere una o più pianificazioni, ognuna delle quali rappresenta una regola di avviso separata. La pianificazione definisce la frequenza con cui viene eseguita la ricerca e l'intervallo di tempo per cui vengono recuperati i dati.  Le risorse pianificazione sono di tipo `Microsoft.OperationalInsights/workspaces/savedSearches/schedules/` e hanno la struttura seguente. Nella struttura sono inclusi parametri e variabili comuni ed è quindi possibile copiare e incollare questo frammento di codice nel file della soluzione e, se necessario, modificare i nomi dei parametri. 
 
 
     {
@@ -111,27 +111,27 @@ Una ricerca salvata può avere una o più pianificazioni, ognuna delle quali rap
 
 
 
-Nella hello nella tabella seguente sono descritte le proprietà di Hello per le risorse di pianificazione.
+Le proprietà delle risorse pianificazione sono descritte nella tabella seguente.
 
 | Nome dell'elemento | Obbligatorio | Descrizione |
 |:--|:--|:--|
-| Enabled       | Sì | Specifica se l'avviso di hello è abilitato quando viene creato. |
-| interval      | Sì | La frequenza con cui hello query viene eseguita in pochi minuti. |
-| queryTimeSpan | Sì | Periodo di tempo in minuti in base alla quale tooevaluate. |
+| Enabled       | Sì | Specifica se l'avviso viene abilitato al momento della creazione. |
+| interval      | Sì | Frequenza, in minuti, con cui viene eseguita la query. |
+| queryTimeSpan | Sì | Periodo di tempo, in minuti, per cui verranno valutati i risultati. |
 
-risorse di pianificazione Hello dovrebbero dipendere hello ricerca salvata in modo che viene creato prima pianificazione hello.
+La risorsa pianificazione dipenderà dalla ricerca salvata, che verrà quindi creata prima della pianificazione.
 
 
 ### <a name="actions"></a>Azioni
-Esistono due tipi di risorsa dell'azione specificata da hello **tipo** proprietà.  Una pianificazione richiede una **avviso** azione che definisce i dettagli di hello di regola di avviso hello e le azioni eseguite quando viene creato un avviso.  Può inoltre includere un **Webhook** azione se un webhook deve essere chiamato dall'avviso hello.  
+La proprietà **Type** specifica due tipi di risorsa azione.  Una pianificazione richiede un'azione **Alert** che definisce i dettagli della regola di avviso e le azioni da eseguire quando viene creato un avviso.  Può includere anche un'azione **Webhook**, se dall'avviso verrà chiamato un webhook.  
 
 Le risorse azione sono di tipo `Microsoft.OperationalInsights/workspaces/savedSearches/schedules/actions`.  
 
 #### <a name="alert-actions"></a>Azioni di avviso
 
-Ogni pianificazione avrà un'azione **Alert**,  Definisce i dettagli di hello di avviso hello e, facoltativamente, le azioni di notifica e monitoraggio e aggiornamento.  Una notifica invia un messaggio di posta elettronica tooone o più indirizzi.  Una risoluzione avvia un runbook problema rilevato hello tooremediate tooattempt di automazione di Azure.
+Ogni pianificazione avrà un'azione **Alert**,  che definisce i dettagli dell'avviso e, facoltativamente, le azioni di notifica e correzione.  Una notifica invia un messaggio di posta elettronica a uno o più indirizzi.  Una correzione avvia un runbook in Automazione di Azure per provare a risolvere il problema rilevato.
 
-Le azioni avviso hanno hello seguente struttura.  Questo include variabili e parametri comuni che è possibile copiare e incollare il frammento di codice nel file di soluzione e modificare i nomi di parametro hello. 
+Le azioni di avviso hanno la struttura seguente.  Nella struttura sono inclusi parametri e variabili comuni ed è quindi possibile copiare e incollare questo frammento di codice nel file della soluzione e, se necessario, modificare i nomi dei parametri. 
 
 
 
@@ -170,23 +170,23 @@ Le azioni avviso hanno hello seguente struttura.  Questo include variabili e par
         }
     }
 
-Nella hello le tabelle seguenti sono descritte le proprietà di Hello per le risorse di azione di allarme.
+Le proprietà delle risorse azione di avviso sono descritte nella tabella seguente.
 
 | Nome dell'elemento | Obbligatorio | Descrizione |
 |:--|:--|:--|
-| Type | Sì | Tipo di azione hello.  Per le azioni di avviso, sarà **Alert**. |
-| Nome | Sì | Nome visualizzato per l'avviso hello.  Si tratta di nome hello che viene visualizzato nella console di hello per regola di avviso hello. |
-| Descrizione | No | Descrizione facoltativa dell'avviso hello. |
-| Severity | Sì | Gravità di record di avviso hello da hello seguenti valori:<br><br> **Critical**<br>**Warning**<br>**Informational** |
+| Type | Sì | Tipo di azione.  Per le azioni di avviso, sarà **Alert**. |
+| Nome | Sì | Nome visualizzato per l'avviso.  È il nome visualizzato nella console per la regola di avviso. |
+| Descrizione | No | Descrizione facoltativa dell'avviso. |
+| Severity | Sì | Gravità del record di avviso tra i valori seguenti:<br><br> **Critical**<br>**Warning**<br>**Informational** |
 
 
 ##### <a name="threshold"></a>Soglia
-Questa sezione è obbligatoria  Definisce le proprietà di hello di soglia di avviso hello.
+Questa sezione è obbligatoria  e definisce le proprietà della soglia dell'avviso.
 
 | Nome dell'elemento | Obbligatorio | Descrizione |
 |:--|:--|:--|
-| Operatore | Sì | Operatore per il confronto di hello da hello seguenti valori:<br><br>**gt = maggiore di<br>lt = minore di** |
-| Valore | Sì | risultati di hello toocompare valore Hello. |
+| Operatore | Sì | Operatore di confronto tra i valori seguenti:<br><br>**gt = maggiore di<br>lt = minore di** |
+| Valore | Sì | Valore per il confronto dei risultati. |
 
 
 ##### <a name="metricstrigger"></a>MetricsTrigger
@@ -197,41 +197,41 @@ Questa sezione è facoltativa.  Includere la sezione per un avviso di misurazion
 
 | Nome dell'elemento | Obbligatorio | Descrizione |
 |:--|:--|:--|
-| TriggerCondition | Sì | Specifica se la soglia hello è per il numero totale di violazioni della sicurezza o violazioni consecutivi da hello seguenti valori:<br><br>**Total<br>Consecutive** |
-| Operatore | Sì | Operatore per il confronto di hello da hello seguenti valori:<br><br>**gt = maggiore di<br>lt = minore di** |
-| Valore | Sì | Numero di hello volte hello criteri deve essere avviso hello tootrigger soddisfatto. |
+| TriggerCondition | Sì | Specifica se la soglia riguarda il numero totale di violazioni o le violazioni consecutive, con i valori seguenti:<br><br>**Total<br>Consecutive** |
+| Operatore | Sì | Operatore di confronto tra i valori seguenti:<br><br>**gt = maggiore di<br>lt = minore di** |
+| Valore | Sì | Numero di volte in cui i criteri devono essere soddisfatti per attivare l'avviso. |
 
 ##### <a name="throttling"></a>Limitazione
-Questa sezione è facoltativa.  Includere questa sezione se si desidera ricevere avvisi relativi toosuppress da hello stessa regola per un periodo di tempo dopo la creazione di un avviso.
+Questa sezione è facoltativa.  Includere la sezione se si vogliono eliminare gli avvisi generati dalla stessa regola per un determinato intervallo di tempo dopo la creazione di un avviso.
 
 | Nome dell'elemento | Obbligatorio | Descrizione |
 |:--|:--|:--|
-| DurationInMinutes | Sì, se è incluso l'elemento Throttling | Numero di minuti toosuppress avvisi dopo uno dal hello viene creata la regola di avviso stesso. |
+| DurationInMinutes | Sì, se è incluso l'elemento Throttling | Numero di minuti in cui verranno eliminati gli avvisi dopo che ne è stato creato uno dalla stessa regola di avviso. |
 
 ##### <a name="emailnotification"></a>EmailNotification
- In questa sezione è facoltativa Include se si desidera hello avviso toosend tooone di posta elettronica o altri destinatari.
+ Questa sezione è facoltativa. Includere la sezione se si vuole inviare un messaggio di posta elettronica a uno o più destinatari.
 
 | Nome dell'elemento | Obbligatorio | Descrizione |
 |:--|:--|:--|
-| Destinatari | Sì | Elenco delimitato da virgole di posta elettronica indirizzi toosend notifica quando un avviso viene creato come nel seguente esempio hello.<br><br>**[ "recipient1@contoso.com", "recipient2@contoso.com" ]** |
-| Oggetto | Sì | Oggetto riga del messaggio di posta elettronica hello. |
+| Destinatari | Sì | Elenco delimitato da virgole di indirizzi di posta elettronica a cui inviare una notifica quando viene creato un avviso, come nell'esempio seguente.<br><br>**[ "recipient1@contoso.com", "recipient2@contoso.com" ]** |
+| Oggetto | Sì | Riga dell'oggetto del messaggio di posta elettronica. |
 | Attachment | No | Gli allegati non sono attualmente supportati.  Se questo elemento è incluso, il valore dovrà essere **None**. |
 
 
 ##### <a name="remediation"></a>Correzione
-Questa sezione è facoltativa se si desidera che un runbook toostart nell'avviso toohello risposta Include. |
+Questa sezione è facoltativa. Includere la sezione se si vuole avviare un runbook in risposta all'avviso. |
 
 | Nome dell'elemento | Obbligatorio | Descrizione |
 |:--|:--|:--|
-| RunbookName | Sì | Nome di hello runbook toostart. |
-| WebhookUri | Sì | URI del webhook hello per hello runbook. |
-| Expiry | No | Data e ora in cui monitoraggio e aggiornamento hello scadenza. |
+| RunbookName | Sì | Nome del runbook da avviare. |
+| WebhookUri | Sì | URI del webhook per il runbook. |
+| Expiry | No | Data e ora di scadenza della correzione. |
 
 #### <a name="webhook-actions"></a>Azioni webhook
 
-Le azioni Webhook avviano un processo chiamando un URL e fornendo facoltativamente toobe un payload inviato. Sono azioni tooRemediation simili, ma sono disponibili solo per webhook che può richiamare processi diversi dai runbook di automazione di Azure. Forniscono anche l'opzione aggiuntiva di hello di fornire un processo di payload recapitati toobe toohello remoto.
+Le azioni webhook avviano un processo chiamando un URL e, facoltativamente, fornendo un payload da inviare. Simili alle azioni correttive, sono destinate a webhook che possono richiamare processi diversi dai runbook di Automazione di Azure. Hanno inoltre l'opzione aggiuntiva di fornire un payload da recapitare al processo remoto.
 
-Se l'avviso chiamerà un webhook, quindi è necessario una risorsa di azione con un tipo di **Webhook** in aggiunta toohello **avviso** risorsa dell'azione.  
+Se l'avviso chiamerà un webhook, sarà necessaria una risorsa azione di tipo **Webhook** in aggiunta alla risorsa azione **Alert**.  
 
     {
       "name": "name": "[concat(parameters('workspaceName'), '/', variables('SavedSearch').Name, '/', variables('Schedule').Name, '/', variables('Webhook').Name)]",
@@ -249,28 +249,28 @@ Se l'avviso chiamerà un webhook, quindi è necessario una risorsa di azione con
       }
     }
 
-proprietà Hello per le risorse di azione Webhook sono descritte in hello le tabelle seguenti.
+Le proprietà delle risorse azione webhook sono descritte nella tabella seguente.
 
 | Nome dell'elemento | Obbligatorio | Descrizione |
 |:--|:--|:--|
-| type | Sì | Tipo di azione hello.  Per le azioni webhook, sarà **Webhook**. |
-| name | Sì | Nome visualizzato per l'azione di hello.  Non è visualizzato nella console di hello. |
-| wehookUri | Sì | URI per il webhook hello. |
-| customPayload | No | Payload personalizzato toobe inviati toohello webhook. formato Hello dipenderà quali webhook hello è previsto. |
+| type | Sì | Tipo di azione.  Per le azioni webhook, sarà **Webhook**. |
+| name | Sì | Nome visualizzato per l'azione.  Non viene visualizzato nella console. |
+| wehookUri | Sì | URI del webhook. |
+| customPayload | No | Payload personalizzato da inviare al webhook. Il formato dipenderà dalle previsioni del webhook. |
 
 
 
 
 ## <a name="sample"></a>Esempio
 
-Ecco un esempio di una soluzione che includono che include hello seguenti risorse:
+Di seguito è riportato un esempio di soluzione che include le risorse seguenti:
 
 - Ricerca salvata
 - Pianificazione
 - Azione di avviso
 - Azione webhook
 
-esempio utilizza Hello [parametri soluzione standard](operations-management-suite-solutions-solution-file.md#parameters) variabili comunemente utilizzati in una soluzione come anziché valori toohardcoding nelle definizioni di risorse hello.
+L'esempio usa variabili dei [parametri di soluzione standard](operations-management-suite-solutions-solution-file.md#parameters) comunemente usate in una soluzione, anziché impostare i valori come hardcoded nelle definizioni delle risorse.
 
     {
         "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
@@ -309,7 +309,7 @@ esempio utilizza Hello [parametri soluzione standard](operations-management-suit
           "recipients": {
             "type": "string",
             "metadata": {
-              "Description": "List of recipients for hello email alert separated by semicolon"
+              "Description": "List of recipients for the email alert separated by semicolon"
             }
           }
         },
@@ -477,7 +477,7 @@ esempio utilizza Hello [parametri soluzione standard](operations-management-suit
     }
 
 
-Hello seguenti il file di parametro fornisce i valori di esempi per questa soluzione.
+Il file di parametri seguente offre valori di esempio per la soluzione.
 
     {
         "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
@@ -506,6 +506,6 @@ Hello seguenti il file di parametro fornisce i valori di esempi per questa soluz
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Aggiungere visualizzazioni](operations-management-suite-solutions-resources-views.md) tooyour soluzione di gestione.
-* [Aggiungere i runbook di automazione e altre risorse](operations-management-suite-solutions-resources-automation.md) tooyour soluzione di gestione.
+* [Aggiungere viste](operations-management-suite-solutions-resources-views.md) alla soluzione di gestione.
+* [Aggiungere runbook di automazione e altre risorse](operations-management-suite-solutions-resources-automation.md) alla soluzione di gestione.
 

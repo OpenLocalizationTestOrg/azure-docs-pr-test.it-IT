@@ -1,6 +1,6 @@
 ---
-title: Canale operativo dell'infrastruttura del servizio aaaAzure | Documenti Microsoft
-description: Elenco completo dei log generati in cluster canale operative di Azure Service Fabric hello.
+title: Canale operativo di Service Fabric di Azure | Microsoft Docs
+description: Un elenco completo dei log generati da Service Fabric nel canale operativo dei cluster di Service Fabric.
 services: service-fabric
 documentationcenter: .net
 author: dkkapur
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 07/19/2017
 ms.author: dekapur
-ms.openlocfilehash: 358782420ed62b202d6a89fe0f200b5ef0384c9c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 934719868ab9968db352db2b440014d35dbc0274
+ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/29/2017
 ---
 # <a name="operational-channel"></a>Canale operativo 
 
-canale operativo Hello è costituito dai registri di alto livello azioni eseguite da Service Fabric i nodi e il cluster. Quando "Diagnostics" è abilitato per un cluster, hello agente diagnostica Azure viene distribuito il cluster e per impostazione predefinita è configurato tooread nei log dal canale operativo hello. Ulteriori informazioni sulla configurazione di hello [agente diagnostica Azure](service-fabric-diagnostics-event-aggregation-wad.md) configurazione di diagnostica di hello toomodify di toopick il cluster più registri o i contatori delle prestazioni. 
+Il canale operativo è costituito da log di azioni di alto livello eseguite da Service Fabric sui nodi e il cluster. Quando l'opzione "Diagnostica" è abilitata per un cluster, l'agente di Diagnostica di Azure viene distribuito nel cluster e per impostazione predefinita viene configurato per la lettura nei log dal canale operativo. Altre informazioni sulla configurazione dell'[agente di Diagnostica di Azure](service-fabric-diagnostics-event-aggregation-wad.md) per modificare la configurazione della diagnostica del cluster in modo da prelevare più log o contatori delle prestazioni. 
 
 ## <a name="operational-channel-logs"></a>Log del canale operativo 
 
-Di seguito è riportato un elenco completo dei log forniti dall'infrastruttura di servizio in canale operativo hello. 
+Di seguito è riportato un elenco completo dei log forniti da Service Fabric nel canale operativo. 
 
 | EventId | Nome | Origine (attività) | Level |
 | --- | --- | --- | --- |
@@ -56,6 +56,6 @@ Di seguito è riportato un elenco completo dei log forniti dall'infrastruttura d
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* Altre informazioni su Generale [la generazione di eventi a livello di piattaforma hello](service-fabric-diagnostics-event-generation-infra.md) in Service Fabric
-* Modifica il [diagnostica Azure](service-fabric-diagnostics-event-aggregation-wad.md) toocollect configurazione più log
-* [Configurazione di Application Insights](service-fabric-diagnostics-event-analysis-appinsights.md) registra il canale operativo toosee
+* Altre informazioni sul processo globale di [generazione di eventi a livello piattaforma](service-fabric-diagnostics-event-generation-infra.md) in Service Fabric
+* Modifica della configurazione di [Diagnostica di Microsoft Azure](service-fabric-diagnostics-event-aggregation-wad.md) per raccogliere più log
+* [Configurazione di Application Insights](service-fabric-diagnostics-event-analysis-appinsights.md) per visualizzare i log del canale operativo

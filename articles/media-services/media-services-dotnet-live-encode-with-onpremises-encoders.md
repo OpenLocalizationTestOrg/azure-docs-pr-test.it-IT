@@ -1,6 +1,6 @@
 ---
-title: aaaHow tooperform live streaming con locale codificatori usando .NET | Documenti Microsoft
-description: Questo argomento viene illustrato come toouse .NET tooperform live codifica con codificatori locali.
+title: Come eseguire lo streaming live con codificatori locali mediante .NET | Microsoft Docs
+description: Questo argomento illustra come usare .NET per eseguire la codifica live con codificatori in locale.
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,13 +14,13 @@ ms.devlang: ne
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: cenkdin;juliako
-ms.openlocfilehash: 332582c9f925f8b9270929b3fa8140fce010bbf9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3ef6065f5b9e05e0ea5716548699943a2c877bc4
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="how-tooperform-live-streaming-with-on-premises-encoders-using-net"></a>Come tooperform live streaming con codificatori locali usando .NET
+# <a name="how-to-perform-live-streaming-with-on-premises-encoders-using-net"></a>Come eseguire lo streaming live con codificatori locali mediante .NET
 > [!div class="op_single_selector"]
 > * [Portale](media-services-portal-live-passthrough-get-started.md)
 > * [.NET](media-services-dotnet-live-encode-with-onpremises-encoders.md)
@@ -28,46 +28,46 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-In questa esercitazione illustra i passaggi hello dell'utilizzo di hello Azure Media Services .NET SDK toocreate un **canale** che è configurato per un'operazione di recapito pass-through. 
+Questa esercitazione illustra come usare l'SDK di Servizi multimediali di Azure per .NET per creare un **canale** configurato per la distribuzione pass-through. 
 
 ## <a name="prerequisites"></a>Prerequisiti
-di seguito Hello sono esercitazione hello toocomplete necessarie:
+Per completare l'esercitazione è necessario quanto segue:
 
 * Un account Azure.
-* Account di Servizi multimediali.    toocreate un account di servizi multimediali, vedere [come un Account di servizi multimediali tooCreate](media-services-portal-create-account.md).
+* Account di Servizi multimediali.    Per creare un account Servizi multimediali, vedere [Creare un account Servizi multimediali di Azure con il portale di Azure](media-services-portal-create-account.md).
 * Configurare l'ambiente di sviluppo. Per ulteriori informazioni, vedere [Configurare l'ambiente](media-services-set-up-computer.md).
 * Una webcam. Ad esempio, [codificatore Telestream Wirecast](http://www.telestream.net/wirecast/overview.htm).
 
-Hello tooreview consigliato seguenti articoli:
+È consigliabile esaminare i seguenti articoli:
 
 * [Codificatori live e supporto RTMP di Servizi multimediali di Azure](https://azure.microsoft.com/blog/2014/09/18/azure-media-services-rtmp-support-and-live-encoders/)
 * [Streaming live con codificatori locali che creano flussi a bitrate multipli](media-services-live-streaming-with-onprem-encoders.md)
 
 ## <a name="create-and-configure-a-visual-studio-project"></a>Creare e configurare un progetto di Visual Studio
 
-Configurare l'ambiente di sviluppo e di popolare il file app. config hello con informazioni di connessione, come descritto in [lo sviluppo di servizi multimediali con .NET](media-services-dotnet-how-to-use.md). 
+Configurare l'ambiente di sviluppo e popolare il file app.config con le informazioni di connessione, come descritto in [Sviluppo di applicazioni di Servizi multimediali con .NET](media-services-dotnet-how-to-use.md). 
 
 ## <a name="example"></a>Esempio
-Hello esempio di codice seguente viene illustrato come hello tooachieve seguenti attività:
+Il seguente esempio di codice illustra come ottenere le attività seguenti:
 
-* Connessione dei servizi tooMedia
+* Connettersi a Servizi multimediali
 * Creare un canale
-* Aggiornare il canale hello
-* Recuperare l'endpoint di input del canale hello. endpoint di input Hello devono essere fornite toohello locale codificatore live. Hello codificatore live converte i segnali da toostreams fotocamera hello inviati come input del canale toohello endpoint (inserimento).
-* Recuperare l'endpoint di anteprima del canale hello
+* Aggiornare il canale
+* Recuperare l'endpoint di input del canale. È necessario fornire l'endpoint di input al codificatore live locale. Il codificatore live converte i segnali dalla fotocamera ai flussi che vengono inviati all'endpoint di input del canale (inserimento).
+* Recuperare l'endpoint di anteprima del canale
 * Creare e avviare un programma
-* Creare un localizzatore necessario tooaccess hello programma
+* Creare un localizzatore necessario per accedere al programma
 * Creare e avviare uno StreamingEndpoint
-* Aggiornare l'endpoint di streaming hello
+* Aggiornare l'endpoint di streaming
 * Arresto delle risorse
 
 >[!IMPORTANT]
->Assicurarsi che sia hello endpoint da cui si desidera toostream contenuto di streaming in hello **esecuzione** stato. 
+>Verificare che l'endpoint di streaming da cui si vuole trasmettere il contenuto sia nello stato **In esecuzione**. 
     
 >[!NOTE]
->È previsto un limite di 1.000.000 di criteri per i diversi criteri AMS (ad esempio per i criteri Locator o ContentKeyAuthorizationPolicy). È consigliabile utilizzare hello stesso ID di criteri, se si utilizza sempre hello stesso giorni accesso le autorizzazioni, ad esempio, i criteri per i localizzatori che sono previsti tooremain sul posto per un lungo periodo (non-caricamento criteri). Per altre informazioni, vedere [questo](media-services-dotnet-manage-entities.md#limit-access-policies) argomento.
+>È previsto un limite di 1.000.000 di criteri per i diversi criteri AMS (ad esempio per i criteri Locator o ContentKeyAuthorizationPolicy). Usare lo stesso ID criterio se si usano sempre gli stessi giorni/autorizzazioni di accesso, come nel cado di criteri per i localizzatori che devono rimanere attivi per molto tempo (criteri di non caricamento). Per altre informazioni, vedere [questo](media-services-dotnet-manage-entities.md#limit-access-policies) argomento.
 
-Per informazioni su come tooconfigure un codificatore live, vedere [codificatori Live e al supporto RTMP di servizi multimediali di Azure](https://azure.microsoft.com/blog/2014/09/18/azure-media-services-rtmp-support-and-live-encoders/).
+Per informazioni su come configurare un codificatore live, vedere [Codificatori live e supporto RTMP di Servizi multimediali di Azure](https://azure.microsoft.com/blog/2014/09/18/azure-media-services-rtmp-support-and-live-encoders/).
 
     using System;
     using System.Collections.Generic;
@@ -86,7 +86,7 @@ Per informazioni su come tooconfigure un codificatore live, vedere [codificatori
         private const string AssetlName = "asset001";
         private const string ProgramlName = "program001";
 
-        // Read values from hello App.config file.
+        // Read values from the App.config file.
         private static readonly string _AADTenantDomain =
         ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -103,11 +103,11 @@ Per informazioni su come tooconfigure un codificatore live, vedere [codificatori
 
             IChannel channel = CreateAndStartChannel();
 
-            // Set hello Live Encoder toopoint toohello channel's input endpoint:
+            // Set the Live Encoder to point to the channel's input endpoint:
             string ingestUrl = channel.Input.Endpoints.FirstOrDefault().Url.ToString();
 
-            // Use hello previewEndpoint toopreview and verify
-            // that hello input from hello encoder is actually reaching hello Channel.
+            // Use the previewEndpoint to preview and verify
+            // that the input from the encoder is actually reaching the Channel.
             string previewEndpoint = channel.Preview.Endpoints.FirstOrDefault().Url.ToString();
 
             IProgram program = CreateAndStartProgram(channel);
@@ -120,7 +120,7 @@ Per informazioni su come tooconfigure un codificatore live, vedere [codificatori
 
         public static IChannel CreateAndStartChannel()
         {
-            //If you want toochange hello Smooth fragments tooHLS segment ratio, you would set hello ChannelCreationOptions’s Output property.
+            //If you want to change the Smooth fragments to HLS segment ratio, you would set the ChannelCreationOptions’s Output property.
 
             IChannel channel = _context.Channels.Create(
             new ChannelCreationOptions
@@ -130,7 +130,7 @@ Per informazioni su come tooconfigure un codificatore live, vedere [codificatori
             Preview = CreateChannelPreview()
             });
 
-            //Starting and stopping Channels can take some time tooexecute. toodetermine hello state of operations after calling Start or Stop, query hello IChannel.State .
+            //Starting and stopping Channels can take some time to execute. To determine the state of operations after calling Start or Stop, query the IChannel.State .
 
             channel.Start();
 
@@ -150,7 +150,7 @@ Per informazioni su come tooconfigure un codificatore live, vedere [codificatori
                     {
                     Name = "TestChannelInput001",
                     // Setting 0.0.0.0 for Address and 0 for SubnetPrefixLength
-                    // will allow access tooIP addresses.
+                    // will allow access to IP addresses.
                     Address = IPAddress.Parse("0.0.0.0"),
                     SubnetPrefixLength = 0
                     }
@@ -171,7 +171,7 @@ Per informazioni su come tooconfigure un codificatore live, vedere [codificatori
                     {
                     Name = "TestChannelPreview001",
                     // Setting 0.0.0.0 for Address and 0 for SubnetPrefixLength
-                    // will allow access tooIP addresses.
+                    // will allow access to IP addresses.
                     Address = IPAddress.Parse("0.0.0.0"),
                     SubnetPrefixLength = 0
                     }
@@ -213,7 +213,7 @@ Per informazioni su come tooconfigure un codificatore live, vedere [codificatori
         {
             IAsset asset = _context.Assets.Create(AssetlName, AssetCreationOptions.None);
 
-            // Create a Program on hello Channel. You can have multiple Programs that overlap or are sequential;
+            // Create a Program on the Channel. You can have multiple Programs that overlap or are sequential;
             // however each Program must have a unique name within your Media Services account.
             IProgram program = channel.Programs.Create(ProgramlName, TimeSpan.FromHours(3), asset.Id);
             program.Start();

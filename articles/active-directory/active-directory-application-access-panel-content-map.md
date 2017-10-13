@@ -1,6 +1,6 @@
 ---
-title: aaaProblems utilizza sito Web del Pannello di accesso dell'applicazione hello o applicazione per dispositivi mobili"
-description: Problemi nell'utilizzo di applicazioni per dispositivi mobili o sito Web del Pannello di accesso dell'applicazione hello"
+title: Problemi relativi all'uso del sito Web o dell'applicazione per dispositivi mobili del pannello di accesso dell'applicazione
+description: Problemi relativi all'uso del sito Web o dell'applicazione per dispositivi mobili del pannello di accesso dell'applicazione
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -12,29 +12,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: bbec5bcc4200e26dd825e64529651e4d4974747d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d78f9c59c069664fa77bdf9a16a48bb3745b1224
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="problems-using-hello-application-access-panel-website-or-mobile-application"></a>Problemi relativi all'utilizzo di sito Web del Pannello di accesso dell'applicazione hello o applicazione per dispositivi mobili
+# <a name="problems-using-the-application-access-panel-website-or-mobile-application"></a>Problemi relativi all'uso del sito Web o dell'applicazione per dispositivi mobili del pannello di accesso dell'applicazione
 
 
-## <a name="i-do-not-see-hello-applications-i-expect-on-hello-application-access-panel"></a>Applicazioni hello che previsti non vengono visualizzati nel Pannello di accesso dell'applicazione hello
-  Hello documenti elencati di seguito consentono di tooresolve alcuni dei problemi più comuni di hello in questa categoria.
-  * [Impossibile interpretare il motivo per cui un'applicazione che sono stati assegnati non viene visualizzato nel Pannello di accesso hello](https://docs.microsoft.com/azure/active-directory/application-access-panel-unexpected-application-not-appearing/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
-  * [Impossibile interpretare il motivo per cui un'applicazione viene visualizzato nel Pannello di accesso hello](https://docs.microsoft.com/azure/active-directory/application-access-panel-unexpected-application-appears/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
+## <a name="i-do-not-see-the-applications-i-expect-on-the-application-access-panel"></a>Nel pannello di accesso dell'applicazione non vengono visualizzate le applicazioni previste
+  I documenti seguenti possono aiutare a risolvere alcuni dei problemi più comuni in questa categoria.
+  * [I don't know why an application I assigned is not appearing on the access panel](https://docs.microsoft.com/azure/active-directory/application-access-panel-unexpected-application-not-appearing/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav) (Un'applicazione assegnata non viene visualizzata nel pannello di accesso)
+  * [I don't know why an application is appearing on the access panel](https://docs.microsoft.com/azure/active-directory/application-access-panel-unexpected-application-appears/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav) (Un'applicazione imprevista viene visualizzata nel pannello di accesso)
 
-## <a name="im-having-problems-signing-in-toohello-application-access-panel"></a>Si verificano problemi durante la firma nel Pannello di accesso dell'applicazione toohello
-  Hello documenti elencati di seguito consentono di tooresolve alcuni dei problemi più comuni di hello in questa categoria.
-  * [Non riesco ad accedere nel sito Web del Pannello di accesso toohello](https://docs.microsoft.com/azure/active-directory/application-access-panel-web-sign-in-problem/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
+## <a name="im-having-problems-signing-in-to-the-application-access-panel"></a>Si verificano problemi durante l'accesso al pannello di accesso dell'applicazione
+  I documenti seguenti possono aiutare a risolvere alcuni dei problemi più comuni in questa categoria.
+  * [I cannot sign in to the access panel website](https://docs.microsoft.com/azure/active-directory/application-access-panel-web-sign-in-problem/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav) (Non è possibile accedere al sito Web del pannello di accesso)
 
-## <a name="im-having-problems-using-hello-application-access-panel-browser-extension"></a>Quando si verificano problemi con estensione browser del pannello accesso applicazione hello
-  Hello documenti elencati di seguito consentono di tooresolve alcuni dei problemi più comuni di hello in questa categoria.
-  * [Ho visto un errore quando si installa l'estensione di browser del Pannello di accesso di hello applicazione](https://docs.microsoft.com/azure/active-directory/application-access-panel-extension-problem-installing/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
+## <a name="im-having-problems-using-the-application-access-panel-browser-extension"></a>Si verificano problemi durante l'uso dell'estensione del browser del pannello di accesso dell'applicazione
+  I documenti seguenti possono aiutare a risolvere alcuni dei problemi più comuni in questa categoria.
+  * [I saw an error when installing the application access panel browser extension](https://docs.microsoft.com/azure/active-directory/application-access-panel-extension-problem-installing/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav) (Errore durante l'installazione dell'estensione del browser del pannello di accesso dell'applicazione)
 
-## <a name="im-having-problems-with-a-feature-on-hello-application-access-panel"></a>Si verificano problemi con una funzionalità nel Pannello di accesso dell'applicazione hello
-  Hello documenti elencati di seguito consentono di tooresolve alcuni dei problemi più comuni di hello in questa categoria.
-  * [Non so come accedere alle applicazioni self-service toouse](https://docs.microsoft.com/azure/active-directory/application-access-panel-self-service-applications-how-to/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
+## <a name="im-having-problems-with-a-feature-on-the-application-access-panel"></a>Si verificano problemi con una funzione del pannello di accesso dell'applicazione
+  I documenti seguenti possono aiutare a risolvere alcuni dei problemi più comuni in questa categoria.
+  * [I don't know how to use self-service application access](https://docs.microsoft.com/azure/active-directory/application-access-panel-self-service-applications-how-to/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav) (Come usare l'accesso self-service all'applicazione)
   * [I encountered a problem when using self-service application access](https://docs.microsoft.com/azure/active-directory/application-access-panel-self-service-applications-problem/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav) (Errore durante l'uso dell'accesso self-service all'applicazione)

@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure considerazioni di progettazione di Active Directory ibrido identità - determinare i requisiti di eventi imprevisti rResponse | Documenti Microsoft"
-description: "Determinare le funzionalità di monitoraggio e reporting per la soluzione con identità ibrida hello che può essere utilizzato da IT tootake azioni tooidentify e un potenziali minacce"
+title: "Considerazioni di progettazione dell'identità ibrida di Azure Active Directory - Determinare i requisiti di risposta a eventi imprevisti | Documentazione Microsoft"
+description: "Determinare le funzionalità di monitoraggio e reporting della soluzione di identità ibrida di cui può avvalersi il personale IT per identificare e contrastare potenziali minacce."
 documentationcenter: 
 services: active-directory
 author: billmath
@@ -14,49 +14,49 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/18/2017
 ms.author: billmath
-ms.openlocfilehash: 7084096f318ef461e8331fb6edde1b77d4108466
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 536071ec61d093af243bfd42faa6bb404172fb8e
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="determine-incident-response-requirements-for-your-hybrid-identity-solution"></a>Determinare i requisiti di risposta agli eventi imprevisti per una soluzione di identità ibrida
-Le organizzazioni di medie o grandi dimensioni saranno probabilmente necessario un [risposta agli eventi imprevisti di protezione](https://technet.microsoft.com/library/cc700825.aspx) in luogo toohelp IT agire di conseguenza toohello livello di evento imprevisto. sistema di gestione di identità Hello è un importante componente nel processo di risposta agli eventi imprevisti hello poiché può essere utilizzato toohelp identificare chi ha eseguito un'azione specifica rispetto a destinazione hello. soluzione con identità ibrida Hello deve essere in grado di tooprovide monitoraggio e reporting di funzionalità che possono essere sfruttate da IT tootake azioni tooidentify e contrastare una minaccia potenziale. In un piano di risposta tipica è hello seguenti fasi come parte del piano di hello:
+La maggior parte delle aziende di medie o grandi dimensioni dovrà definire una [risposta ad eventi imprevisti](https://technet.microsoft.com/library/cc700825.aspx) in materia di sicurezza per consentire al personale IT di prendere le azioni appropriate in base al livello di gravità. Il sistema di gestione delle identità è una componente importante del processo di risposta agli eventi imprevisti, poiché consente di identificare l'utente che ha eseguito una determinata azione nel perseguimento dell'obiettivo. La soluzione di identità ibrida, inoltre, deve essere in grado di fornire funzionalità di monitoraggio e reporting di cui può avvalersi il personale IT per intraprendere le azioni necessarie per identificare e contrastare una potenziale minaccia. In un piano di risposta agli eventi imprevisti, sono generalmente contenute le fasi seguenti:
 
 1. Valutazione iniziale.
 2. Comunicazione dell'evento.
 3. Controllo dei danni e riduzione dei rischi.
 4. Identificazione degli elementi danneggiati e livello di gravità.
 5. Conservazione delle prove.
-6. Parti tooappropriate di notifica.
+6. Informazione delle parti interessate.
 7. Ripristino del sistema.
 8. Documentazione.
 9. Valutazione dei danni e dei costi.
 10. Revisione del piano e del processo.
 
-Durante l'identificazione di hello di quello a cui è stato compromesso e in fase di gravità, sarà necessario tooidentify hello i sistemi che sono stati compromessi, i file che sono stati eseguiti e determinano la sensibilità hello di tali file. Il sistema di identità ibrida deve essere in grado di toofulfill tooassist questi requisiti si identificazione utente hello apportate le modifiche. 
+Durante l'identificazione degli elementi danneggiati e la definizione del livello di gravità, sarà necessario identificare i sistemi che sono stati compromessi e i file ai quali è stato eseguito l'accesso, determinandone anche il livello di riservatezza. Il sistema di identità ibrida deve essere in grado di soddisfare tali requisiti in modo da permettere l'identificazione dell'utente che ha effettuato tali modifiche. 
 
 ## <a name="monitoring-and-reporting"></a>Monitoraggio e reporting
-Sistema di identità hello molte volte può inoltre aiutare nella fase di valutazione iniziale principalmente se sistema hello è compilato il controllo e funzionalità di creazione di report. Durante la valutazione iniziale hello, amministratore IT deve essere in grado di tooidentify un'attività sospetta, o di sistema hello deve essere in grado di tootrigger che automaticamente in base a un'attività configurata in precedenza. Molte attività potrebbe indicare un possibile attacco, ma in altri casi, un sistema configurato in modo errato potrebbe provocare tooa numero di falsi positivi in un sistema di rilevamento delle intrusioni. 
+In molti casi, il sistema di identità è utile anche nella fase di valutazione iniziale, soprattutto se dispone di funzionalità di controllo e reporting integrate. Durante la valutazione iniziale, l'amministratore IT deve essere in grado di identificare eventuali attività sospette oppure è necessario che il sistema lo informi automaticamente in base a un'attività preconfigurata. Sebbene alcune attività possano effettivamente indicare un possibile attacco, in altri casi un sistema mal configurato può generare numerosi falsi positivi nell'ambito di un sistema di rilevamento delle intrusioni. 
 
-sistema di gestione di identità Hello deve assistere tooidentify gli amministratori IT e segnalare le attività sospette. In genere, è possibile soddisfare questi requisiti tecnici monitorando tutti i sistemi e adottando una funzionalità di reporting in grado di evidenziare potenziali minacce. Usa domande di hello sotto toohelp si progetta la soluzione con identità ibrida tenendo in requisiti di risposta agli eventi imprevisti considerazione:
+Il sistema di gestione delle identità deve aiutare gli amministratori IT a identificare e segnalare qualsiasi attività sospetta. In genere, è possibile soddisfare questi requisiti tecnici monitorando tutti i sistemi e adottando una funzionalità di reporting in grado di evidenziare potenziali minacce. Usare le domande seguenti per definire una soluzione di identità ibrida tenendo conto dei requisiti di risposta agli eventi imprevisti:
 
 * L'azienda ha già definito una risposta ad eventi imprevisti in materia di sicurezza?
-  * In caso affermativo, viene hello corrente sistema di gestione di identità usato come parte del processo di hello?
-* L'azienda necessita tooidentify tentativi di accesso sospetti dagli utenti in diversi dispositivi?
-* L'azienda necessita di toodetect potenziali compromesso credenziali dell'utente?
-* L'azienda necessita l'accesso e l'azione dell'utente tooaudit?
-* L'azienda necessita tooknow quando un utente di Reimposta la password?
+  * In caso affermativo, il sistema di gestione delle identità in uso è coinvolto in questo processo?
+* L'azienda ha esigenza di identificare eventuali tentativi di accesso sospetti eseguiti con vari tipi di dispositivi?
+* Per l'azienda può essere importante rilevare credenziali utente potenzialmente compromesse?
+* L'azienda desidera poter controllare gli accessi e le azioni degli utenti?
+* L'azienda desidera sapere quando un utente reimposta la password?
 
 ## <a name="policy-enforcement"></a>Imposizione dei criteri
-Durante il controllo dei danni e la fase di riduzione dei rischi, è importante tooquickly ridurre gli effetti effettive e potenziali hello di un attacco. L'operazione che avranno a questo punto può fare hello differenza tra un minore e uno degli strumenti principale. la risposta esatta Hello dipenderà dall'organizzazione e la natura hello di attacco hello che trovano ad affrontare. Se la valutazione iniziale hello concluso che è stato compromesso un account, è necessario tooenforce criteri tooblock questo account. Che è solo un esempio in cui verrà utilizzato il sistema di gestione delle identità di hello. Usa domande di hello sotto toohelp che è progettare la soluzione con identità ibrida prendendo in considerazione la modalità con cui sarà criteri applicati tooreact tooan in corso incidente:
+Durante le fasi di controllo dei danni e riduzione dei rischi, è importante limitare rapidamente gli effetti, potenziali ed effettivi, dell'attacco. Le azioni che vengono intraprese in questa fase possono fare una grande differenza a questo proposito. La risposta esatta dipende dal tipo di azienda e dalla natura dell'attacco che si sta affrontando. Se dalla valutazione iniziale è emerso che è stato compromesso un account, è necessario applicare il criterio che impone il blocco dell'account. Questo, ovviamente, è solo uno dei tanti modi in cui è possibile avvalersi del sistema di gestione delle identità. Usare le domande seguenti per definire una soluzione di identità ibrida tenendo conto delle modalità di applicazione dei criteri per rispondere a eventi imprevisti:
 
-* L'azienda prevede dei criteri degli utenti di tooblock sul posto da accesso rete hello se necessario?
-  * In caso affermativo, hello corrente soluzione esegue l'integrazione con sistema di gestione identità ibride hello siano tooadopt corso?
-* L'azienda necessita di accesso condizionale tooenforce per gli utenti che sono in quarantena? 
+* L'azienda ha già definito dei criteri che, se necessario, impediscono agli utenti di accedere alla rete?
+  * In caso affermativo, sarà possibile integrarli con la soluzione di gestione dell'identità ibrida che si intende adottare?
+* L'azienda desidera poter attivare l'accesso condizionale per gli utenti in quarantena? 
 
 > [!NOTE]
-> Annotare i tootake che ogni risposta e comprendere motivazioni hello delle risposte hello. [Definire la strategia di protezione dati](active-directory-hybrid-identity-design-considerations-data-protection-strategy.md) esaminerà le opzioni di hello disponibili e i vantaggi e svantaggi di ogni opzione.  Una volta fornite le risposte a queste domande, sarà possibile selezionare l'opzione più adatta in base alle esigenze aziendali.
+> Accertarsi di prendere nota di ogni risposta e comprendere la logica che ne sta alla base. [definizione della strategia di protezione dei dati](active-directory-hybrid-identity-design-considerations-data-protection-strategy.md) esamina le opzioni disponibili con i relativi vantaggi e svantaggi.  Una volta fornite le risposte a queste domande, sarà possibile selezionare l'opzione più adatta in base alle esigenze aziendali.
 > 
 > 
 

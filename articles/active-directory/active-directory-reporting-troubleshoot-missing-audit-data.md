@@ -1,6 +1,6 @@
 ---
-title: "Risoluzione dei problemi: I dati nel registro attività di Azure Active Directory hello mancanti | Documenti Microsoft"
-description: Gli elenchi di hello vari report disponibili per Azure Active Directory
+title: "Risoluzione dei problemi: dati mancanti nel log attività di Azure Active Directory | Microsoft Docs"
+description: Elenca i vari report disponibili per Azure Active Directory
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,31 +15,31 @@ ms.workload: identity
 ms.date: 07/15/2017
 ms.author: markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: 7bbec94ab42eb5b54a7e65e124060d057b4a1a34
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 47617f8f727027de113a0f503308c8accc58859e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="i-cant-find-some-actions-that-i-performed-in-hello-azure-active-directory-activity-log"></a>Non è possibile trovare alcune azioni eseguite nel registro attività di hello Azure Active Directory
+# <a name="i-cant-find-some-actions-that-i-performed-in-the-azure-active-directory-activity-log"></a>Non è possibile trovare alcune azioni eseguite nel log attività di Azure Active Directory
 
 
 ## <a name="symptoms"></a>Sintomi
 
-I eseguite alcune azioni nel portale di Azure hello e previsto toosee i log di controllo di hello per le azioni in hello `Activity logs > Audit Logs` pannello, ma non è possibile trovarli.
+Sono state eseguite alcune azioni nel portale di Azure e si prevedeva la visualizzazione dei log di controllo per tali azioni nel pannello `Activity logs > Audit Logs`, ma non è possibile trovarli.
 
  ![Creazione di report](./media/active-directory-reporting-troubleshoot-missing-audit-data/01.png)
  
 
 ## <a name="cause"></a>Causa
 
-Le azioni non vengono visualizzate immediatamente nel log di controllo di attività hello. Può richiedere da 15 minuti, i log di controllo di tooan ora toosee hello nel portale di hello dall'ora hello hello operazione viene eseguita.
+Le azioni non vengono visualizzate immediatamente nel log di controllo delle attività. La visualizzazione dei log di controllo nel portale può richiedere tra i 15 minuti e un'ora, a partire dal momento in cui viene eseguita l'azione.
 
 ## <a name="resolution"></a>Risoluzione
 
-Per vedere se nel registro hello vengono visualizzate le azioni di hello per ora tooan 15 minuti di attesa. Se non vengono ancora visualizzate, creare un ticket di supporto e il problema verrà esaminato.
+Attendere tra 15 minuti e un'ora e verificare se le azioni vengono visualizzate nel log. Se non vengono ancora visualizzate, creare un ticket di supporto e il problema verrà esaminato.
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Vedere hello [reporting domande frequenti su Azure Active Directory](active-directory-reporting-faq.md).
+Vedere [Domande frequenti sulla creazione di report in Azure Active Directory](active-directory-reporting-faq.md).
 

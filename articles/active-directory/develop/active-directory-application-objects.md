@@ -1,8 +1,8 @@
 ---
-title: "aaaAzure applicativa Active Directory e oggetti entità servizio | Documenti Microsoft"
-description: "Una descrizione della relazione di hello tra applicazioni e oggetti entità servizio in Azure Active Directory"
+title: "Oggetti applicazione e oggetti entità servizio di Azure Active Directory"
+description: "Descrizione della relazione tra oggetti applicazione e oggetti entità servizio in Azure Active Directory"
 documentationcenter: dev-center-name
-author: dstrockis
+author: bryanla
 manager: mbaldwin
 services: active-directory
 editor: 
@@ -12,63 +12,63 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 04/28/2016
-ms.author: dastrock
+ms.date: 09/26/2017
+ms.author: bryanla
 ms.custom: aaddev
-ms.openlocfilehash: ff7e308c0b326c3a32b101b7b323f2c0362763e4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 53ab4c04901994982b451149c4a82a5b72c9fc82
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="application-and-service-principal-objects-in-azure-active-directory-azure-ad"></a>Oggetti applicazione e oggetti entità servizio in Azure Active Directory (Azure AD)
-In alcuni casi hello significato del termine hello "applicazione" può essere interpretati erroneamente utilizzata nel contesto di hello di Azure Active Directory. obiettivo di Hello di questo articolo è toomake è chiaro, indicando concettuali e concreti aspetti dell'integrazione dell'applicazione Azure AD, con un'illustrazione di registrazione e di consenso per un [applicazione multi-tenant](active-directory-dev-glossary.md#multi-tenant-application).
+Spesso il significato del termine "applicazione" può essere frainteso quando usato nel contesto di Azure AD. Questo articolo intende chiarire gli aspetti concettuali e concreti dell'integrazione dell'applicazione di Azure AD, con un esempio di registrazione e consenso per un'[applicazione multi-tenant](active-directory-dev-glossary.md#multi-tenant-application).
 
 ## <a name="overview"></a>Panoramica
-Un'applicazione che è stata integrata con Azure AD ha implicazioni che vanno oltre aspetto software hello. "Application" viene spesso utilizzato come un termine concettuale, che fa riferimento toonot solo hello hello software dell'applicazione, ma la registrazione di Azure AD e ruolo di autenticazione/autorizzazione "conversazioni" in fase di esecuzione. Per definizione, un'applicazione può funzionare in un [client](active-directory-dev-glossary.md#client-application) ruolo (utilizzo di una risorsa), un [server delle risorse](active-directory-dev-glossary.md#resource-server) ruolo (che espone le API tooclients) o anche a entrambi. protocollo di conversazione Hello è definito da un [flusso di concessione di autorizzazione OAuth 2.0](active-directory-dev-glossary.md#authorization-grant), consentendo hello client o risorse tooaccess/proteggere dei dati una risorsa rispettivamente. Ora passiamo un livello più interno e vedere come modello di applicazione hello Azure AD rappresenta un'applicazione in fase di progettazione e in fase di esecuzione. 
+Un'applicazione che è stata integrata con Azure AD ha delle implicazioni che vanno oltre l'aspetto del software. "Applicazione" viene spesso usato come termine concettuale, che fa riferimento non solo al software applicativo, ma anche alla sua registrazione in Azure AD e al suo ruolo nelle "conversazioni" di autenticazione/autorizzazione in fase di runtime. Per definizione, un'applicazione può funzionare in un ruolo [client](active-directory-dev-glossary.md#client-application) (che utilizza una risorsa), in un ruolo [server di risorse](active-directory-dev-glossary.md#resource-server) (che espone le API ai client) o in entrambi i ruoli. Il protocollo di conversazione è definito da un [flusso di concessione di autorizzazione OAuth 2.0](active-directory-dev-glossary.md#authorization-grant), consentendo al client e alla risorsa di accedere e proteggere, rispettivamente, i dati di una risorsa. Verrà ora approfondito come il modello applicativo di Azure AD rappresenta un'applicazione in fase di progettazione e in fase di esecuzione. 
 
 ## <a name="application-registration"></a>Registrazione dell'applicazione
-Quando si registra un'applicazione Azure AD in hello [portale di Azure][AZURE-Portal], vengono creati due oggetti nel tenant di Azure AD: un oggetto applicazione e un oggetto entità servizio.
+Quando si registra un'applicazione di Azure AD nel [portale di Azure][AZURE-Portal], vengono creati due oggetti nel tenant di Azure AD: un oggetto applicazione e un oggetto entità servizio.
 
 #### <a name="application-object"></a>Oggetto applicazione
-Un'applicazione Azure AD è definita dal relativo l'unico oggetto applicazione che si trova nel tenant di Azure AD hello in cui è stata registrata un'applicazione hello, noto come tenant "home" dell'applicazione hello. Hello Azure AD Graph [entità applicazione] [ AAD-Graph-App-Entity] definisce lo schema di hello per le proprietà dell'oggetto di un'applicazione. 
+Un'applicazione di Azure AD è definita da un solo oggetto applicazione che risiede nel tenant di Azure AD in cui l'applicazione è stata registrata, noto come tenant "home" dell'applicazione. L'[entità applicativa][AAD-Graph-App-Entity] di Azure AD Graph definisce lo schema per le proprietà di un oggetto applicazione. 
 
 #### <a name="service-principal-object"></a>Oggetto entità servizio
-oggetto entità servizio Hello definisce i criteri di hello e le autorizzazioni per l'utilizzo di un'applicazione in un tenant specifico, fornendo la base hello per un'applicazione hello toorepresent dell'entità di sicurezza in fase di esecuzione. Hello Azure AD Graph [entità ServicePrincipal] [ AAD-Graph-Sp-Entity] definisce lo schema di hello per le proprietà dell'oggetto principale un servizio. 
+L'oggetto entità servizio definisce i criteri e le autorizzazioni per l'uso di un'applicazione in un tenant specifico e costituisce la base per un'entità di sicurezza in cui verrà rappresentata l'applicazione in fase di esecuzione. L'[entità ServicePrincipal][AAD-Graph-Sp-Entity] di Azure AD Graph definisce lo schema delle proprietà di un oggetto entità servizio. 
 
 #### <a name="application-and-service-principal-relationship"></a>Relazione tra applicazione e entità servizio
-Si consideri l'oggetto applicazione hello come hello *globale* rappresentazione dell'applicazione per l'utilizzo in tutti i tenant e dell'entità servizio hello come hello *locale* rappresentazione per l'utilizzo in uno specifico tenant. Hello oggetto applicazione funge da hello modello dal quale comuni e le proprietà predefinite sono *derivato* per la creazione di oggetti entità di servizio corrispondente. Pertanto, un oggetto applicazione ha una relazione 1:1 con un'applicazione software hello e una relazione 1: molti con i relativi oggetti principale di servizio corrispondente.
+Si può considerare l'oggetto applicazione come la rappresentazione *globale* dell'applicazione usata in tutti i tenant, e l'entità servizio come la rappresentazione *locale* usata in uno specifico tenant. L'oggetto applicazione funge da modello da cui *derivano* le proprietà comuni e predefinite per l'uso nella creazione di oggetti entità servizio corrispondenti. Un oggetto applicazione ha quindi una relazione 1:1 con l'applicazione software e relazioni 1:molti con gli oggetti entità servizio corrispondenti.
 
-Quando un'applicazione hello verrà utilizzata, abilitarlo tooestablish un'identità per l'accesso e/o tooresources accesso protetto dal tenant hello, è necessario creare un'entità servizio in ogni tenant. Un'applicazione single-tenant avrà solamente un'entità servizio (nel relativo tenant principale), in genere creata e autorizzata per essere usata durante la registrazione dell'applicazione. O API di applicazione Web di multi-tenant disporrà di un'entità di servizio creata in ogni tenant in cui un utente di tenant ha accettato le condizioni tooits utilizzare.  
+In ogni tenant in cui viene usata l'applicazione è necessario creare un'entità servizio per poter stabilire un'identità per l'iscrizione e/o l'accesso alle risorse che venga protetta da un tenant. Un'applicazione single-tenant ha una sola entità servizio (nel relativo tenant principale), creata e autorizzata per essere usata durante la registrazione dell'applicazione. Un'applicazione Web/API multi-tenant ha anche un'entità servizio creata in ogni tenant in cui l'utente ha dato il consenso all'uso.  
 
 > [!NOTE]
-> Le modifiche apportate tooyour oggetto applicazione, si riflettono anche nell'oggetto entità servizio dell'applicazione hello home tenant solo (tenant hello in cui è stata registrata). Per le applicazioni multi-tenant, le modifiche toohello applicazione non sono riportate negli oggetti dell'entità servizio di qualsiasi tenant consumer, fino a quando non viene rimosso l'accesso di hello tramite hello [Pannello di accesso dell'applicazione](https://myapps.microsoft.com) e concedere nuovamente.
+> Qualsiasi modifica apportata all'oggetto applicazione verrà riflessa solo nell'oggetto entità servizio nel tenant home dell'applicazione, ovvero nel tenant in cui è stata registrata. Per le applicazioni multi-tenant, le modifiche apportate all'oggetto applicazione non vengono riflesse negli oggetti entità servizio dei tenant consumer fino a quando non viene rimosso l'accesso tramite il [Pannello di accesso all'applicazione](https://myapps.microsoft.com) e poi concesso nuovamente.
 ><br>  
 > Si noti anche che le applicazioni native sono registrate come multi-tenant per impostazione predefinita.
 > 
 > 
 
 ## <a name="example"></a>Esempio
-Hello diagramma seguente viene illustrata hello relazione tra un'applicazione oggetto di applicazione e servizio corrispondente oggetti entità, nel contesto di hello di un'applicazione multi-tenant di esempio denominati **app HR**. In questo scenario sono presenti tre tenant di Azure AD: 
+Il diagramma seguente illustra la relazione tra l'oggetto applicazione e i corrispondenti oggetti entità servizio di un'applicazione, nel contesto di un'applicazione multi-tenant di esempio denominata **app HR**. In questo scenario sono presenti tre tenant di Azure AD: 
 
-* **Adatum** : hello tenant utilizzata dalla società hello sviluppato hello **app HR**
-* **Contoso** : hello tenant usato dall'organizzazione Contoso, che funge da consumer di hello hello **app HR**
-* **Fabrikam** : hello tenant usato dall'organizzazione di Fabrikam, che utilizza anche hello hello **app HR**
+* **Adatum**, il tenant usato dalla società che ha sviluppato l'**app HR**
+* **Contoso**, il tenant usato dall'organizzazione Contoso, che utilizza l'**app HR**
+* **Fabrikam**, il tenant usato dall'organizzazione Fabrikam, che utilizza anch'essa l'**app HR**
 
 ![Relazione tra un oggetto applicazione e un oggetto entità servizio](./media/active-directory-application-objects/application-objects-relationship.png)
 
-Nel diagramma precedente hello, passaggio 1 è il processo di hello di creazione di un'applicazione hello e oggetti entità servizio nel tenant principale dell'applicazione hello.
+Nel diagramma qui sopra, il passaggio 1 è il processo di creazione degli oggetti applicazione ed entità servizio nel tenant home dell'applicazione.
 
-Nel passaggio 2, quando gli amministratori di Contoso e Fabrikam completa ottenuto il consenso, un oggetto entità servizio viene creato nel tenant di Azure AD della propria azienda e le autorizzazioni assegnate hello concesso tale messaggio per l'amministratore. Si noti inoltre che app HR hello può essere configurato progettato tooallow consenso da parte degli utenti per l'uso di singoli.
+Nel passaggio 2, quando gli amministratori di Contoso e Fabrikam completano il consenso, nel tenant di Azure AD della rispettiva società viene creato un oggetto entità servizio a cui vengono assegnate le autorizzazioni concesse dall'amministratore. Si noti anche che l'app HR potrebbe essere configurata/progettata per permettere il consenso da parte di utenti per l'uso individuale.
 
-Nel passaggio 3, i tenant consumer hello di hello HR applicazione (Contoso e Fabrikam ogni) hanno proprio oggetto entità servizio. Ogni oggetto rappresenta l'uso di un'istanza di un'applicazione hello in fase di esecuzione disciplinato hello acconsentite autorizzazioni da amministratore rispettivi hello.
+Nel Passaggio 3, ogni tenant consumer dell'applicazione HR (Contoso e Fabrikam) dispone del proprio oggetto di entità servizio. Ognuno rappresenta l'uso di un'istanza dell'applicazione in fase di runtime, gestito tramite le autorizzazioni concesse dall'amministratore.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Oggetto applicazione di un'applicazione accessibile tramite API di Azure AD Graph, hello hello [portale di Azure] [ AZURE-Portal] editor del manifesto dell'applicazione, o [cmdlet di Azure AD PowerShell](https://docs.microsoft.com/powershell/azure/overview?view=azureadps-2.0), come rappresentato dal relativo OData [entità applicazione][AAD-Graph-App-Entity].
+L'oggetto applicazione di un'applicazione è accessibile tramite l'API Graph di Azure AD, l'editor del manifesto dell'applicazione del [portale di Azure][AZURE-Portal] o i [cmdlet PowerShell di Azure AD](https://docs.microsoft.com/powershell/azure/overview?view=azureadps-2.0), come rappresentato dall'[Entità applicativa][AAD-Graph-App-Entity] di OData.
 
-Oggetto entità servizio dell'applicazione è possibile accedere tramite API Azure AD Graph hello o [i cmdlet di Azure AD PowerShell](https://docs.microsoft.com/powershell/azure/overview?view=azureadps-2.0), come rappresentato dal relativo OData [entità ServicePrincipal] [ AAD-Graph-Sp-Entity].
+L'oggetto entità servizio di un'applicazione è accessibile tramite l'API Graph di Azure AD o i [cmdlet PowerShell di Azure AD](https://docs.microsoft.com/powershell/azure/overview?view=azureadps-2.0), come rappresentato dall'[Entità ServicePrincipal][AAD-Graph-Sp-Entity] di OData.
 
-Hello [Azure AD Graph Explorer](https://graphexplorer.azurewebsites.net/) è utile per l'esecuzione di query sia un'applicazione hello e oggetti entità servizio.
+L'[Explorer Graph di Azure AD](https://graphexplorer.azurewebsites.net/) è utile per eseguire query sugli oggetti applicazione ed entità servizio.
 
 <!--Image references-->
 

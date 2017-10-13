@@ -1,6 +1,6 @@
 ---
-title: le sottoscrizioni aaaNo errore quando tenta toosign nel portale di tooAzure o centro account Azure | Documenti Microsoft
-description: Fornisce una soluzione di hello per un problema in cui le sottoscrizioni non rilevato l'errore si verifica quando accede al portale tooAzure o centro account Azure.
+title: Errore Non sono state trovate sottoscrizioni quando si prova ad accedere al portale di Azure o al Centro account di Azure | Microsoft Docs
+description: Fornisce la soluzione al problema per cui si verifica l'errore Non sono state trovate sottoscrizioni quando si accede al portale di Azure o al Centro account di Azure.
 services: 
 documentationcenter: 
 author: genlin
@@ -12,48 +12,46 @@ ms.service: billing
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 08/21/2017
+ms.topic: troubleshooting
+ms.date: 08/30/2017
 ms.author: genli
-ms.openlocfilehash: def4d4a1f883dd948fe8132f2d85abc4c23ae624
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 19f27aa81d7b5e03828f18f5a38cf3362df17694
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="no-subscriptions-found-error-in-azure-portal-or-azure-account-center"></a>Errore Non sono state trovate sottoscrizioni nel portale di Azure o nel Centro account di Azure
-Si potrebbe ricevere un messaggio di errore "Non è stata trovata alcuna sottoscrizione" quando si tenta di toosign in toohello [portale di Azure](https://portal.azure.com/) o hello [centro account Azure](https://account.windowsazure.com/Subscriptions). Questo articolo offre una soluzione al problema.
+
+Potrebbe essere visualizzato il messaggio di errore "Non sono state trovate sottoscrizioni" quando si prova ad accedere al [portale di Azure](https://portal.azure.com/) o al [Centro account di Azure](https://account.windowsazure.com/Subscriptions). Questo articolo offre una soluzione al problema.
 
 ## <a name="symptom"></a>Sintomo
 
-Quando si tenta di toosign in toohello [portale di Azure](https://portal.azure.com/) o hello [centro account Azure](https://account.windowsazure.com/Subscriptions), viene visualizzato hello seguente messaggio di errore: "Non è stata trovata alcuna sottoscrizione".
+Quando si prova ad accedere al [portale di Azure](https://portal.azure.com/) o al [Centro account di Azure](https://account.windowsazure.com/Subscriptions), viene visualizzato il messaggio di errore seguente: "Non sono state trovate sottoscrizioni".
 
 ## <a name="cause"></a>Causa
 
-Questo problema si verifica se l'account non ha autorizzazioni sufficienti. 
+Questo problema si verifica se è stata effettuata una selezione nella directory errata o se l'account non ha autorizzazioni sufficienti. 
 
 ## <a name="solution"></a>Soluzione
 
-Assicurarsi di accedere come amministratore di hello corretto. Un amministratore di Account può accedere solo hello Account Center. Gli amministratori del servizio (SA) e coamministratore (CA) hanno toohello solo dell'autorizzazione di accesso portale di Azure o hello portale di Azure classico.
+### <a name="scenario-1-error-message-is-received-in-the-azure-portalhttpsportalazurecom"></a>Scenario 1: Il messaggio di errore viene visualizzato nel [portale di Azure](https://portal.azure.com)
 
-### <a name="scenario-1-error-message-is-received-in-hello-azure-portalhttpsportalazurecom"></a>Scenario 1: Messaggio di errore viene generato in hello [portale di Azure](https://portal.azure.com)
+Per risolvere il problema:
 
-toofix questo problema:
+* Verificare che sia selezionata la directory di Azure corretta facendo clic sull'account in alto a destra.
 
-* Verificare che tale hello directory Azure è selezionata, fare clic su account in alto a destra hello corretto.
+  ![Selezionare la directory in alto a destra nel portale di Azure](./media/billing-no-subscriptions-found/directory-switch.png)
+* Se è selezionata la directory di Azure corretta, ma viene comunque visualizzato il messaggio di errore, [richiedere che il proprio account venga aggiunto come proprietario](billing-add-change-azure-subscription-administrator.md).
 
-  ![Directory selezionare hello hello in alto a destra di hello portale di Azure](./media/billing-no-subscriptions-found/directory-switch.png)
+### <a name="scenario-2-error-message-is-received-in-the-azure-account-centerhttpsaccountwindowsazurecomsubscriptions"></a>Scenario 2: Il messaggio di errore viene visualizzato nel [Centro account di Azure](https://account.windowsazure.com/Subscriptions)
 
-* Se hello Azure right directory è selezionata, ma viene visualizzato il messaggio di errore hello, [l'account aggiunto come proprietario](billing-add-change-azure-subscription-administrator.md).
+Controllare se l'account usato è l'amministratore account. Per verificare chi è l'amministratore account, seguire questa procedura:
 
-### <a name="scenario-2-error-message-is-received-in-hello-azure-account-centerhttpsaccountwindowsazurecomsubscriptions"></a>Scenario 2: Messaggio di errore viene generato in hello [centro account Azure](https://account.windowsazure.com/Subscriptions)
-
-Controllare se l'account hello utilizzato è hello amministratore dell'Account. tooverify che hello amministratore dell'Account, eseguire la procedura seguente:
-
-1. Accedi toohello [portale di Azure](https://portal.azure.com).
-2. Nel menu Hub hello, selezionare **sottoscrizione**.
-3. Selezionare hello sottoscrizione che desidera toocheck e quindi selezionare **impostazioni**.
-4. Selezionare **Proprietà**. amministratore dell'account di sottoscrizione hello Hello viene visualizzato in hello **amministratore dell'Account** casella.
+1. Accedere alla [visualizzazione Sottoscrizioni nel portale di Azure](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade).
+1. Scegliere la sottoscrizione da controllare e quindi controllare la sezione **Impostazioni**.
+1. Selezionare **Proprietà**. L'amministratore account della sottoscrizione viene visualizzato nella casella **Amministratore account** .  
 
 ## <a name="need-help-contact-support"></a>Richiesta di assistenza Contattare il supporto tecnico.
-Se è ancora necessario della Guida, [contattare il supporto tecnico](http://go.microsoft.com/fwlink/?linkid=544831&clcid=0x409) tooget risolta il problema. 
+
+Se si necessita ancora di assistenza, [contattare il supporto tecnico](http://go.microsoft.com/fwlink/?linkid=544831&clcid=0x409) per ottenere una rapida risoluzione del problema. 

@@ -1,6 +1,6 @@
 ---
-title: aaaTroubleshoot Spark usando Azure HDInsight | Documenti Microsoft
-description: Ottenere risposte toocommon domande sull'uso di Apache Spark e Azure HDInsight.
+title: Risolvere i problemi di Spark tramite Azure HDInsight | Microsoft Docs
+description: Risposte alle domande frequenti sull'uso di Apache Spark e Azure HDInsight.
 keywords: Azure HDInsight, Spark, domande frequenti, guida alla risoluzione dei problemi, problemi comuni, configurazione dell'applicazione, Ambari
 services: Azure HDInsight
 documentationcenter: na
@@ -13,81 +13,81 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 7/7/2017
+ms.date: 8/31/2017
 ms.author: arijitt
-ms.openlocfilehash: c9f910daf295462238a3143ae2589db6d383097f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 84b78fe4eb60162f3cad0ae4ae7f98864d5bbf2b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="troubleshoot-spark-by-using-azure-hdinsight"></a>Risolvere i problemi di Spark tramite Azure HDInsight
 
-Informazioni sui problemi principali hello e le relative soluzioni quando si lavora con payload Apache Spark in Apache Ambari.
+Informazioni sui problemi principali che possono verificarsi quando si usano i payload di Apache Spark in Apache Ambari unitamente alle risoluzioni.
 
 ## <a name="how-do-i-configure-a-spark-application-by-using-ambari-on-clusters"></a>Come configurare un'applicazione Spark tramite Ambari nei cluster
 
 ### <a name="resolution-steps"></a>Procedura per la risoluzione
 
-i valori di configurazione Hello per questa procedura sono stati impostati in precedenza in HDInsight. vedere quali configurazioni di Spark, sono necessari valori di set e toowhat toobe, toodetermine [cosa provoca l'eccezione dell'applicazione OutofMemoryError un Spark](#what-causes-a-spark-application-outofmemoryerror-exception). 
+I valori di configurazione per questa procedura sono stati impostati in precedenza in HDInsight. Per determinare le configurazioni di Spark da impostare e i rispettivi valori, vedere [Causa dell'eccezione OutOfMemoryError in un'applicazione Spark](#what-causes-a-spark-application-outofmemoryerror-exception). 
 
-1. Nell'elenco di hello del cluster, selezionare **Spark2**.
+1. Nell'elenco di cluster selezionare **Spark2**.
 
     ![Selezionare un cluster dall'elenco](media/hdinsight-troubleshoot-spark/update-config-1.png)
 
-2. Seleziona hello **configurazioni** scheda.
+2. Selezionare la scheda **Configs** (Configurazioni).
 
-    ![Selezionare scheda configurazioni hello](media/hdinsight-troubleshoot-spark/update-config-2.png)
+    ![Selezionare la scheda Configs (Configurazioni)](media/hdinsight-troubleshoot-spark/update-config-2.png)
 
-3. Nell'elenco di hello delle configurazioni, selezionare **impostazioni predefinite personalizzate-spark2**.
+3. Nell'elenco delle configurazioni selezionare **Custom-spark2-defaults**.
 
     ![Selezionare custom-spark-defaults](media/hdinsight-troubleshoot-spark/update-config-3.png)
 
-4. Cercare il valore di hello impostazione necessarie tooadjust, ad esempio **spark.executor.memory**. In questo caso, hello valore **m 4608** è troppo alto.
+4. Ricercare l'impostazione del valore che si desidera modificare, come **spark.executor.memory**. In questo caso il valore **4608m** è troppo alto.
 
-    ![Selezionare il campo di spark.executor.memory hello](media/hdinsight-troubleshoot-spark/update-config-4.png)
+    ![Selezionare il campo spark.executor.memory](media/hdinsight-troubleshoot-spark/update-config-4.png)
 
-5. Set hello valore toohello impostazione consigliata. valore di Hello **m 2048** è consigliato per questa impostazione.
+5. Configurare il valore sull'impostazione consigliata. Il valore **2048m** è consigliato per questa impostazione.
 
-    ![Modifica valore too2048m](media/hdinsight-troubleshoot-spark/update-config-5.png)
+    ![Cambiare il valore in 2048m](media/hdinsight-troubleshoot-spark/update-config-5.png)
 
-6. Salvare il valore di hello e quindi salvare la configurazione hello. Sulla barra degli strumenti hello, selezionare **salvare**.
+6. Salvare il valore, quindi salvare la configurazione. Sulla barra degli strumenti selezionare**Save** (Salva).
 
-    ![Salva la configurazione e l'impostazione di hello](media/hdinsight-troubleshoot-spark/update-config-6a.png)
+    ![Salvare l'impostazione e la configurazione](media/hdinsight-troubleshoot-spark/update-config-6a.png)
 
-    Si riceve una notifica se una delle configurazioni richiede attenzione. Tenere presente hello e quindi selezionare **continuare comunque**. 
+    Si riceve una notifica se una delle configurazioni richiede attenzione. Annotare gli elementi e quindi selezionare **Proceed Anyway** (Continuare comunque). 
 
     ![Selezionare Proceed Anyway (Continuare comunque)](media/hdinsight-troubleshoot-spark/update-config-6b.png)
 
-    Scrivere una nota sulle modifiche di configurazione hello e quindi selezionare **salvare**.
+    Immettere una nota sulle modifiche apportate alla configurazione, quindi selezionare **Save** (Salva).
 
-    ![Immettere una nota relativa hello le modifiche](media/hdinsight-troubleshoot-spark/update-config-6c.png)
+    ![Immettere una nota sulle modifiche apportate](media/hdinsight-troubleshoot-spark/update-config-6c.png)
 
-7. Ogni volta che viene salvata una configurazione, viene richiesto il servizio di hello toorestart. Selezionare **Restart** (Riavvia).
+7. Ogni volta che viene salvata una configurazione, viene chiesto di riavviare il servizio. Selezionare **Restart** (Riavvia).
 
     ![Selezionare Restart (Riavvia)](media/hdinsight-troubleshoot-spark/update-config-7a.png)
 
-    Confermare il riavvio di hello.
+    Confermare il riavvio.
 
     ![Selezionare la conferma del riavvio completo](media/hdinsight-troubleshoot-spark/update-config-7b.png)
 
-    È possibile esaminare i processi di hello in esecuzione.
+    È possibile esaminare i processi in esecuzione.
 
     ![Esaminare i processi in esecuzione](media/hdinsight-troubleshoot-spark/update-config-7c.png)
 
-8. È possibile aggiungere configurazioni. Nell'elenco di hello delle configurazioni, selezionare **impostazioni predefinite di spark2 personalizzate**, quindi selezionare **Aggiungi proprietà**.
+8. È possibile aggiungere configurazioni. Nell'elenco delle configurazioni selezionare **Custom-spark2-defaults** e quindi selezionare **Add Property** (Aggiungi proprietà).
 
     ![Selezionare Add property (Aggiungi proprietà)](media/hdinsight-troubleshoot-spark/update-config-8.png)
 
-9. Definire una nuova proprietà. È possibile definire una singola proprietà tramite una finestra di dialogo per le impostazioni specifiche, ad esempio il tipo di dati di hello. In alternativa, è possibile definire più proprietà usando una definizione per riga. 
+9. Definire una nuova proprietà. È possibile definire una singola proprietà usando una finestra di dialogo per impostazioni specifiche, ad esempio il tipo di dati. In alternativa, è possibile definire più proprietà usando una definizione per riga. 
 
-    In questo esempio hello **spark.driver.memory** proprietà è definita con un valore di **4g**.
+    In questo esempio la proprietà **spark.driver.memory** è stata definita con un valore di **4g**.
 
     ![Definire una nuova proprietà](media/hdinsight-troubleshoot-spark/update-config-9.png)
 
-10. Salvare la configurazione hello e quindi riavviare il servizio di hello, come descritto nei passaggi 6 e 7.
+10. Salvare la configurazione e quindi riavviare il servizio come descritto nei passaggi 6 e 7.
 
-Queste modifiche sono a livello di cluster, ma possono essere ignorate quando si invia il processo di Spark hello.
+Queste modifiche si applicano a tutto il cluster ma è possibile eseguirne l'override quando si invia il processo Spark.
 
 ### <a name="additional-reading"></a>Informazioni aggiuntive
 
@@ -98,9 +98,9 @@ Queste modifiche sono a livello di cluster, ma possono essere ignorate quando si
 
 ### <a name="resolution-steps"></a>Procedura per la risoluzione
 
-1. vedere quali configurazioni di Spark, sono necessari valori di set e toowhat toobe, toodetermine [cosa provoca l'eccezione dell'applicazione OutofMemoryError un Spark](#what-causes-a-spark-application-outofmemoryerror-exception).
+1. Per determinare le configurazioni di Spark da impostare e i rispettivi valori, vedere [Causa dell'eccezione OutOfMemoryError in un'applicazione Spark](#what-causes-a-spark-application-outofmemoryerror-exception).
 
-2. Nella prima cella di hello del server Jupyter notebook hello, dopo aver hello **% % configurare** direttiva, specificare le configurazioni di Spark hello nel formato JSON valido. Modificare i valori effettivi di hello in base alle esigenze:
+2. Nella prima cella del notebook Jupyter, dopo la direttiva **%%configure**, specificare le configurazioni di Spark in un formato JSON valido. Modificare i valori effettivi in base alla necessità:
 
     ![Aggiungere una configurazione](media/hdinsight-troubleshoot-spark/add-configuration-cell.png)
 
@@ -113,9 +113,9 @@ Queste modifiche sono a livello di cluster, ma possono essere ignorate quando si
 
 ### <a name="resolution-steps"></a>Procedura per la risoluzione
 
-1. vedere quali configurazioni di Spark, sono necessari valori di set e toowhat toobe, toodetermine [cosa provoca l'eccezione dell'applicazione OutofMemoryError un Spark](#what-causes-a-spark-application-outofmemoryerror-exception). 
+1. Per determinare le configurazioni di Spark da impostare e i rispettivi valori, vedere [Causa dell'eccezione OutOfMemoryError in un'applicazione Spark](#what-causes-a-spark-application-outofmemoryerror-exception). 
 
-2. Inviare hello Spark applicazione tooLivy tramite un client REST come cURL. Utilizzare una comando simile toohello che segue. Modificare i valori effettivi di hello in base alle esigenze:
+2. Inviare l'applicazione Spark a Livy usando un client REST come cURL. Usare un comando simile al seguente. Modificare i valori effettivi in base alla necessità:
 
     ```apache
     curl -k --user 'username:password' -v -H 'Content-Type: application/json' -X POST -d '{ "file":"wasb://container@storageaccountname.blob.core.windows.net/example/jars/sparkapplication.jar", "className":"com.microsoft.spark.application", "numExecutors":4, "executorMemory":"4g", "executorCores":2, "driverMemory":"8g", "driverCores":4}'  
@@ -130,9 +130,9 @@ Queste modifiche sono a livello di cluster, ma possono essere ignorate quando si
 
 ### <a name="resolution-steps"></a>Procedura per la risoluzione
 
-1. vedere quali configurazioni di Spark, sono necessari valori di set e toowhat toobe, toodetermine [cosa provoca l'eccezione dell'applicazione OutofMemoryError un Spark](#what-causes-a-spark-application-outofmemoryerror-exception).
+1. Per determinare le configurazioni di Spark da impostare e i rispettivi valori, vedere [Causa dell'eccezione OutOfMemoryError in un'applicazione Spark](#what-causes-a-spark-application-outofmemoryerror-exception).
 
-2. Avviare shell di spark usando un comando simile toohello. Modificare il valore effettivo di hello delle configurazioni di hello in base alle esigenze: 
+2. Avviare spark-shell usando un comando simile al seguente. Modificare il valore effettivo delle configurazioni in base alla necessità: 
 
     ```apache
     spark-submit --master yarn-cluster --class com.microsoft.spark.application --num-executors 4 --executor-memory 4g --executor-cores 2 --driver-memory 8g --driver-cores 4 /home/user/spark/sparkapplication.jar
@@ -147,7 +147,7 @@ Queste modifiche sono a livello di cluster, ma possono essere ignorate quando si
 
 ### <a name="detailed-description"></a>Descrizione dettagliata
 
-applicazione di Spark Hello non riesce, con i seguenti tipi di eccezioni non rilevate hello:
+L'applicazione Spark termina con un errore quando si verificano i seguenti tipi di eccezioni non rilevate:
 
 ```apache
 ERROR Executor: Exception in task 7.0 in stage 6.0 (TID 439) 
@@ -191,15 +191,15 @@ java.lang.OutOfMemoryError
 
 ### <a name="probable-cause"></a>Possibile causa
 
-causa più probabile di Hello di questa eccezione è che non è sufficiente memoria heap è allocata toohello Java virtual machine (JVMs). Questi JVMs vengono avviate come executor o i driver come parte dell'applicazione di Spark hello. 
+La causa più probabile per questa eccezione è costituita dall'allocazione di memoria heap insufficiente alle macchine virtuali Java (JVM). Queste macchine virtuali Java vengono avviate come executor o driver come parte dell'applicazione Spark. 
 
 ### <a name="resolution-steps"></a>Procedura per la risoluzione
 
-1. Determinare hello dimensioni massime di hello dati hello Spark applicazione handle. È possibile rendere un'ipotesi basata sulla dimensione massima di hello hello di dati di input, i dati intermedi hello prodotto dalla trasformazione di dati di input hello e dati di output di hello che viene generati quando un'applicazione hello è ulteriormente la trasformazione di dati intermedi hello. Questo processo può essere iterativo se non si riesce a ottenere una stima iniziale formale. 
+1. Determinare le dimensioni massime dei dati che possono essere gestiti dall'applicazione Spark. È possibile ottenere una stima in base alle dimensioni massime dei dati di input, i dati intermedi prodotti tramite la trasformazione dei dati di input e i dati di output prodotti quando l'applicazione trasforma ulteriormente i dati intermedi. Questo processo può essere iterativo se non si riesce a ottenere una stima iniziale formale. 
 
-2. Verificare che il cluster HDInsight hello che si userà toouse disponga di sufficienti risorse in termini di memoria e core tooaccommodate hello Spark dell'applicazione. È possibile determinare questo visualizzando una sezione di metriche di cluster hello di hello YARN UI per i valori hello di **di memoria utilizzata** Visual Studio. **Memory Total** (Memoria totale) e i valori di **VCores Used** (VCore in uso) e **VCores Total** (VCore totali).
+2. Assicurarsi che il cluster HDInsight da usare abbia risorse sufficienti in termini di memoria e di core per l'applicazione Spark. Per eseguire questa verifica, visualizzare la sezione del cluster relativa alle metriche nell'interfaccia utente YARN e confrontare i valori di **Memory Used** (Memoria in uso) e **Memory Total** (Memoria totale) e i valori di **VCores Used** (VCore in uso) e **VCores Total** (VCore totali).
 
-3. Impostare hello seguente Spark valori tooappropriate delle configurazioni non devono superare il 90% di memoria disponibile hello e di core. i valori Hello devono essere anche all'interno di requisiti di memoria hello di hello applicazione Spark: 
+3. Impostare i valori appropriati per le configurazioni seguenti di Spark, che non devono superare il 90% della memoria e dei core disponibili. I valori devono essere compresi nei requisiti di memoria dell'applicazione Spark: 
 
     ```apache
     spark.executor.instances (Example: 8 for 8 executor count) 
@@ -211,12 +211,12 @@ causa più probabile di Hello di questa eccezione è che non è sufficiente memo
     spark.yarn.driver.memoryOverhead (Example: 384m for 384MB) 
     ```
 
-    tooget hello memoria totale utilizzata da tutti gli esecutori, Esegui hello comando seguente: 
+    Per calcolare la memoria totale usata da tutti gli esecutori: 
     
     ```apache
     spark.executor.instances * (spark.executor.memory + spark.yarn.executor.memoryOverhead) 
     ```
-    tooget hello memoria totale utilizzata dal driver hello, eseguire hello comando seguente:
+   Per calcolare la memoria totale usata dal driver:
     
     ```apache
     spark.driver.memory + spark.yarn.driver.memoryOverhead

@@ -1,6 +1,6 @@
 ---
-title: "aaaReporting tra i database di scalabilità orizzontale cloud | Documenti Microsoft"
-description: come tooset elastico query su partizioni orizzontali
+title: "Creazione di report tra database cloud con scalabilità orizzontale | Documentazione Microsoft"
+description: Come configurare query elastiche sui partizionamenti orizzontali
 services: sql-database
 documentationcenter: 
 manager: jhubbard
@@ -14,29 +14,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/27/2016
 ms.author: mlandzic
-ms.openlocfilehash: 78986c2040bf308195bf7c77e64d4f37273fcf36
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 62b5bcd26aa1ed219fb38970916e0e8847ceb577
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="reporting-across-scaled-out-cloud-databases-preview"></a>Creazione di report tra database cloud con scalabilità orizzontale (anteprima)
 ![Eseguire una query tra partizioni][1]
 
-I database partizionati distribuiscono righe su un livello di dati a scalabilità orizzontale. schema di Hello è identico in tutti i database partecipanti, noti anche come partizionamento orizzontale. Con una query elastica è possibile creare report che si estendono a tutti i database di un database partizionato.
+I database partizionati distribuiscono righe su un livello di dati a scalabilità orizzontale. Lo schema è identico in tutti i database partecipanti, ed è denominato anche partizionamento orizzontale. Con una query elastica è possibile creare report che si estendono a tutti i database di un database partizionato.
 
 Per l'avvio rapido, vedere [Creazione di report tra database cloud con scalabilità orizzontale](sql-database-elastic-query-getting-started.md).
 
 Per i database non partizionati, vedere [Eseguire query in database cloud con schemi diversi](sql-database-elastic-query-vertical-partitioning.md). 
 
 ## <a name="prerequisites"></a>Prerequisiti
-* Creare una mappa partizioni utilizzando hello libreria client di database elastico. Vedere [Gestione mappe partizioni](sql-database-elastic-scale-shard-map-management.md). Oppure usare app di esempio hello in [Introduzione agli strumenti di database elastico](sql-database-elastic-scale-get-started.md).
-* In alternativa, vedere [esistenti di eseguire la migrazione di database database tooscaled-out](sql-database-elastic-convert-to-use-elastic-tools.md).
-* utente Hello deve disporre dell'autorizzazione ALTER ANY EXTERNAL DATA SOURCE. Questa autorizzazione è inclusa con l'autorizzazione ALTER DATABASE hello.
-* Le autorizzazioni ALTER ANY EXTERNAL DATA SOURCE sono necessari toorefer toohello origine dati sottostante.
+* Creare una mappa partizioni usando la libreria client dei database elastici. Vedere [Gestione mappe partizioni](sql-database-elastic-scale-shard-map-management.md). In alternativa, usare l'app di esempio in [Introduzione agli strumenti del database elastico](sql-database-elastic-scale-get-started.md).
+* In alternativa, vedere [Migrate existing databases to scaled-out databases](sql-database-elastic-convert-to-use-elastic-tools.md)(Eseguire la migrazione di database esistenti per la scalabilità orizzontale).
+* L'utente deve disporre dell'autorizzazione ALTER ANY origine dei dati esterni. Questa autorizzazione è inclusa nell'autorizzazione ALTER DATABASE.
+* Per il riferimento all'origine dati sottostante sono necessarie autorizzazioni ALTER ANY EXTERNAL DATA SOURCE.
 
 ## <a name="overview"></a>Panoramica
-Queste istruzioni creano rappresentazione dei metadati hello del livello dati partizionati nel database di query elastico hello. 
+Queste istruzioni creano la rappresentazione dei metadati del livello dati con partizionamento orizzontale nel database elastico sottoposto a query. 
 
 1. [CREATE MASTER KEY](https://msdn.microsoft.com/library/ms174382.aspx)
 2. [CREATE DATABASE SCOPED CREDENTIAL](https://msdn.microsoft.com/library/mt270260.aspx)
@@ -44,7 +44,7 @@ Queste istruzioni creano rappresentazione dei metadati hello del livello dati pa
 4. [CREATE EXTERNAL TABLE](https://msdn.microsoft.com/library/dn935021.aspx) 
 
 ## <a name="11-create-database-scoped-master-key-and-credentials"></a>1.1 Creare la chiave master e le credenziali con ambito database
-Hello credenziali vengono utilizzate dal database remoti tooyour tooconnect query elastico hello.  
+Le credenziali vengono usate dalla query elastica per connettersi ai database remoti.  
 
     CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'password';
     CREATE DATABASE SCOPED CREDENTIAL <credential_name>  WITH IDENTITY = '<username>',  
@@ -52,7 +52,7 @@ Hello credenziali vengono utilizzate dal database remoti tooyour tooconnect quer
     [;]
 
 > [!NOTE]
-> Verificare che tale hello *"\<username\>"* non include alcun *"@servername"* suffisso. 
+> Assicurarsi che il *"\<nome utente\>"* non includa alcun suffisso *"@servername"*. 
 > 
 > 
 
@@ -79,11 +79,11 @@ Sintassi:
         SHARD_MAP_NAME='ShardMap' 
     );
 
-Recuperare l'elenco di hello delle origini dati esterne corrente: 
+Recuperare l'elenco di origini dati esterne correnti: 
 
     select * from sys.external_data_sources; 
 
-origine dati esterna Hello fa riferimento la mappa partizioni. Una query elastica utilizza quindi origine dati esterna hello e hello partizioni tooenumerate hello database delle mappe che fanno parte di livello dati hello sottostante. stesse credenziali Hello sono mappa di partizioni utilizzate tooread hello e tooaccess hello dati su partizioni hello durante l'elaborazione di hello di una query elastica. 
+L'origine dati esterna fa riferimento alla mappa partizioni. Una query elastica usa quindi l'origine dati esterna e la mappa partizioni sottostante per enumerare i database che partecipano al livello dati. Le stesse credenziali vengono usate per leggere la mappa partizioni e per accedere ai dati nelle partizioni durante l'elaborazione di una query elastica. 
 
 ## <a name="13-create-external-tables"></a>1.3 Creare tabelle esterne
 Sintassi:  
@@ -122,34 +122,34 @@ Sintassi:
         DISTRIBUTION=SHARDED(ol_w_id)
     ); 
 
-Recuperare l'elenco di hello delle tabelle esterne del database corrente hello: 
+Recuperare l'elenco di tabelle esterne dal database corrente: 
 
     SELECT * from sys.external_tables; 
 
-tabelle esterne toodrop:
+Per eliminare le tabelle esterne:
 
     DROP EXTERNAL TABLE [ database_name . [ schema_name ] . | schema_name. ] table_name[;]
 
 ### <a name="remarks"></a>Osservazioni
-Hello dati\_clausola origine definisce l'origine dati esterna hello (una mappa partizioni) che viene utilizzato per la tabella esterna hello.  
+La clausola \_DATA_SOURCE definisce l'origine dati esterna (una mappa partizioni) usata per la tabella esterna.  
 
-Hello SCHEMA\_nome e l'oggetto\_clausole nome mappa hello esterno definizione tooa tabella in uno schema diverso. Se omesso, schema hello dell'oggetto remoto hello si presuppone che toobe "dbo" e il nome è nome della tabella esterna identici toohello toobe da definire. Ciò è utile se hello nome della tabella remota è già in uso nel database di hello in cui si desidera toocreate tabella esterna di hello. Ad esempio, si desidera toodefine un tooget tabella esterna, una vista aggregata di viste del catalogo o del livello DMV sui dati di scalabilità. Poiché le viste del catalogo e DMV già esiste in locale, è possibile utilizzare i nomi per la definizione di tabella esterna hello. In alternativa, utilizzare un nome diverso e utilizzare della vista del catalogo hello o hello Nome DMV in hello SCHEMA\_nome e/o oggetto\_clausole di nome. (Vedere l'esempio hello riportato di seguito). 
+Le clausole SCHEMA\_NAME e OBJECT\_NAME eseguono il mapping della definizione della tabella esterna a una tabella in uno schema diverso. Se queste clausole vengono omesse, si presupporrà che lo schema dell'oggetto remoto sia "dbo" e che il relativo nome sia identico al nome della tabella esterna in fase di definizione. Questo è utile se il nome della tabella remota è già in uso nel database in cui si vuole creare la tabella esterna. Ad esempio, si vuole definire una tabella esterna per ottenere una visualizzazione aggregata delle viste del catalogo o delle viste a gestione dinamica (DMV) nel livello dati con scalabilità orizzontale. Poiché le viste del catalogo e le DMV esistono già localmente, non sarà possibile usare i rispettivi nomi per la definizione della tabella esterna. Usare invece un nome diverso e usare il nome della vista del catalogo o della DMV nelle clausole SCHEMA\_NAME e/o OBJECT\_NAME. Vedere l'esempio seguente. 
 
-clausola distribuzione Hello specifica distribuzione dei dati hello utilizzata per questa tabella. query processor di Hello utilizza informazioni hello disponibili in hello distribuzione clausola toobuild hello più efficace i piani di query.  
+La clausola DISTRIBUTION specifica la distribuzione dei dati usata per questa tabella. Query Processor utilizza le informazioni fornite nella clausola DISTRIBUTION per generare i piani di query più efficienti.  
 
-1. **PARTIZIONATO** significa dati partizionati orizzontalmente tra database hello. chiave di partizionamento per la distribuzione dei dati hello è hello Hello **< sharding_column_name >** parametro.
-2. **REPLICATI** significa che copie identiche di tabella hello siano presenti in ogni database. È il tooensure responsabilità che le repliche hello siano identiche tra database hello.
-3. **ARROTONDAMENTO\_ROBIN** significa che la tabella hello è partizionata orizzontalmente utilizzando un metodo di distribuzione dipendenti dall'applicazione. 
+1. **SHARDED** significa che i dati sono partizionati orizzontalmente tra i database. La chiave di partizionamento per la distribuzione dei dati è il parametro **<sharding_column_name>**.
+2. **REPLICATED** indica che in ogni database sono presenti copie identiche della tabella. Sarà quindi necessario assicurarsi che le repliche siano identiche in tutti i database.
+3. **ROUND\_ROBIN** significa che la tabella è partizionata orizzontalmente con un metodo di distribuzione dipendente dall'applicazione. 
 
-**Riferimento di livello dati**: tabella esterna hello DDL fa riferimento l'origine dati esterna tooan. origine dati esterna Hello specifica una mappa partizioni che fornisce la tabella esterna hello con hello informazioni necessarie toolocate tutti i database di hello nel livello dati. 
+**Riferimento al livello dati**: il DDL della tabella esterna fa riferimento a un'origine dati esterna. L'origine dati esterna specifica una mappa partizioni che fornisce alla tabella esterna le informazioni necessarie per individuare tutti i database nel livello dati. 
 
 ### <a name="security-considerations"></a>Considerazioni relative alla sicurezza
-Gli utenti con una tabella esterna toohello di accesso accedere automaticamente toohello tabelle remote sottostanti in credenziali hello specificata nella definizione dell'origine dati esterna hello. Evitare indesiderati l'elevazione dei privilegi tramite credenziali hello dell'origine dati esterna hello. Usare GRANT o REVOKE per la tabella esterna, come se fosse una tabella comune.  
+Gli utenti con accesso alla tabella esterna ottengono automaticamente l'accesso alle tabelle remote sottostanti con le credenziali specificate nella definizione dell'origine dati esterna. Evitare l'elevazione dei privilegi indesiderata mediante le credenziali dell'origine dati esterna. Usare GRANT o REVOKE per la tabella esterna, come se fosse una tabella comune.  
 
 Dopo aver definito l'origine dati esterna e le tabelle esterne, è ora possibile usare la sintassi T-SQL completa sulle tabelle esterne.
 
 ## <a name="example-querying-horizontal-partitioned-databases"></a>Esempio: esecuzione di query su database partizionati orizzontalmente
-Hello nella query seguente esegue un join a tre vie tra magazzini, ordini e le righe dell'ordine e utilizza più funzioni di aggregazione e un filtro selettivo. Si presuppone (1) partizionamento (partizionamento orizzontale) e (2) che data warehouse, ordini e le righe di ordine sono partizionate dalla colonna di id warehouse hello e query elastico hello può condividere il percorso dei join hello su partizioni hello ed elaborare hello costosa parte query hello su hello partizioni in parallelo. 
+La query seguente esegue un join a tre vie tra magazzini, ordini e righe di ordine e usa diverse funzioni di aggregazione e un filtro selettivo. Presuppone che (1) venga usato il partizionamento orizzontale, che (2) i magazzini, gli ordini e le righe di ordine siano partizionati orizzontalmente in base alla colonna warehouse id e che la query elastica possa condividere i join sulle partizioni ed elaborare la parte più onerosa della query sulle partizioni in parallelo. 
 
     select  
          w_id as warehouse,
@@ -167,14 +167,14 @@ Hello nella query seguente esegue un join a tre vie tra magazzini, ordini e le r
     group by w_id, o_c_id 
 
 ## <a name="stored-procedure-for-remote-t-sql-execution-spexecuteremote"></a>Stored procedure per l'esecuzione remota di T-SQL: sp\_execute_remote
-Query elastico introduce inoltre una stored procedure che fornisce accesso diretto toohello partizioni. Hello stored procedure viene chiamata [sp\_eseguire \_remoto](https://msdn.microsoft.com/library/mt703714) e può essere utilizzato tooexecute stored procedure remote o il codice T-SQL nel database remoto hello. Avrà hello seguenti parametri: 
+La query elastica introduce anche una stored procedure che fornisce l'accesso diretto alle partizioni. La stored procedure è denominata [sp\_execute \_remote](https://msdn.microsoft.com/library/mt703714) e può essere usata per eseguire stored procedure remote o codice T-SQL sui database remoti. È necessario specificare i seguenti parametri: 
 
-* Nome dell'origine dati (nvarchar): nome hello dell'origine dati esterna hello di tipo RDBMS. 
-* Query (nvarchar): toobe query hello T-SQL eseguito su ogni partizione. 
-* Dichiarazione di parametro (nvarchar) - facoltativa: stringa con definizioni dei tipi di dati per i parametri di hello utilizzati nel parametro di Query hello (ad esempio sp_executesql). 
+* Nome dell'origine dati (nvarchar): il nome dell'origine dati esterna di tipo RDBMS. 
+* Query (nvarchar): la query T-SQL da eseguire in ogni partizione. 
+* Dichiarazione del parametro (nvarchar) - Facoltativo: stringa con definizioni del tipo di dati per i parametri usati nel parametro della query, ad esempio sp_executesql. 
 * Elenco di valori dei parametri (facoltativo): elenco delimitato da virgole di valori dei parametri, ad esempio sp_executesql.
 
-sp Hello\_eseguire\_remoto utilizza hello origine dati esterna cui hello chiamata parametri tooexecute hello dato istruzione T-SQL nel database remoto hello. Usa credenziali hello del database di gestione di hello dati esterni origine tooconnect toohello shardmap e database remoti hello.  
+La stored procedure sp\_execute\_remote usa l'origine dati esterna specificata nei parametri di chiamata per eseguire l'istruzione T-SQL inclusa nei database remoti. Usa le credenziali dell'origine dati esterna per connettersi al database di gestione shardmap e ai database remoti.  
 
 Esempio: 
 
@@ -183,13 +183,13 @@ Esempio:
         N'select count(w_id) as foo from warehouse' 
 
 ## <a name="connectivity-for-tools"></a>Connettività per gli strumenti
-Regolare tooconnect di stringhe di connessione SQL Server utilizzare l'applicazione, BI e dati integrazione strumenti toohello database con le definizioni di tabella esterna. Assicurarsi che SQL Server sia supportato come origine dati per lo strumento. Fare riferimento a database elastico query hello come qualsiasi altro strumento di toohello database connessi a SQL Server e usare tabelle esterne da strumento o l'applicazione come se fossero tabelle locali. 
+Usare le normali stringhe di connessione di SQL Server per connettere l'applicazione, gli strumenti di Business Intelligence e di integrazione dei dati al database con le definizioni delle tabelle esterne. Assicurarsi che SQL Server sia supportato come origine dati per lo strumento. Fare quindi riferimento al database elastico sottoposto a query in modo analogo a qualsiasi altro database di SQL Server connesso allo strumento e usare le tabelle esterne dallo strumento o dall'applicazione come se fossero tabelle locali. 
 
 ## <a name="best-practices"></a>Procedure consigliate
-* Assicurarsi di che database elastico query endpoint hello ha toohello shardmap database e tutte le partizioni tramite hello che firewall di database di SQL Server.  
-* Convalidare o applicare la distribuzione dei dati hello definita tabella esterna hello. Se la distribuzione di dati effettivo è diversa dalla distribuzione hello specificata nella definizione di tabella, le query possono restituire risultati imprevisti. 
-* Query elastico attualmente non esegue l'eliminazione di partizioni quando predicati sulla chiave di partizionamento orizzontale hello consentirne toosafely escludere determinate partizioni dall'elaborazione.
-* Query elastico è ideale per le query in cui la maggior parte del calcolo hello può essere eseguita su partizioni hello. In genere si ottiene hello migliori prestazioni di query con predicati del filtro selettivo che può essere valutata in partizioni hello o join su hello chiavi che possono essere eseguite in modo allineate alle partizioni in tutte le partizioni di partizionamento. Altri modelli di query, potrebbe essere necessario grandi quantità di tooload dei dati dal nodo head di hello partizioni toohello e potrebbero essere scarse
+* Assicurarsi che il database di endpoint della query elastica abbia l'accesso al database di mappe partizioni e a tutte le partizioni attraverso i firewall del database SQL.  
+* Convalidare o imporre la distribuzione di dati definita dalla tabella esterna. Se la distribuzione di dati effettivo è diversa dalla distribuzione specificata nella definizione di tabella, le query possono restituire risultati imprevisti. 
+* La query elastica non esegue attualmente l'eliminazione di partizioni quando i predicati sulla chiave di partizionamento consentono l'esclusione sicura di alcune partizioni dall'elaborazione.
+* La query elastica funziona in modo ottimale per le query in cui la maggior parte dei calcoli può essere eseguita sulle partizioni. In genere si ottiene le migliori prestazioni di query con predicati del filtro selettivo che può essere valutata in join le partizioni tramite le chiavi di partizionamento che possono essere eseguite in modo su tutte le partizioni allineate alle partizioni. Altri modelli di query potrebbero richiedere il caricamento di quantità elevate di dati dalle partizioni al nodo head e potrebbero offrire prestazioni ridotte.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

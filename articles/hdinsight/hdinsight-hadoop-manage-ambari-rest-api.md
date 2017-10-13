@@ -1,6 +1,6 @@
 ---
-title: aaaMonitor e gestire Hadoop con l'API REST Ambari - HDInsight di Azure | Documenti Microsoft
-description: "Informazioni su come toouse Ambari toomonitor e gestire i cluster Hadoop in HDInsight di Azure. In questo documento, si apprenderà come cluster di hello toouse API REST Ambari incluso in HDInsight."
+title: Monitorare e gestire Hadoop con l'API REST Ambari - Azure HDInsight | Microsoft Docs
+description: "Informazioni sull'uso di Ambari per monitorare e gestire i cluster Hadoop in Azure HDInsight. In questo documento si apprenderà come usare l'API REST Ambari inclusa nei cluster HDInsight."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,51 +16,51 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/07/2017
 ms.author: larryfr
-ms.openlocfilehash: 1866a77c8e402231bccbcfba7174253aca41339b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7960d83bce22d4f671d61e9aaf55561bc24308f8
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="manage-hdinsight-clusters-by-using-hello-ambari-rest-api"></a>Gestire cluster HDInsight con Ambari REST API hello
+# <a name="manage-hdinsight-clusters-by-using-the-ambari-rest-api"></a>Gestire i cluster HDInsight mediante l'API REST Ambari
 
 [!INCLUDE [ambari-selector](../../includes/hdinsight-ambari-selector.md)]
 
-Informazioni su come toouse hello toomanage Ambari REST API e monitorare i cluster Hadoop in HDInsight di Azure.
+Informazioni sull'uso dell'API REST per gestire e monitorare i cluster Hadoop in Azure HDInsight.
 
-Ambari Apache semplifica la gestione hello e monitoraggio di un cluster Hadoop fornendo un web toouse semplice interfaccia utente e REST API. Ambari è incluso nel cluster HDInsight che utilizzano il sistema operativo Linux di hello. È possibile utilizzare cluster di hello toomonitor Ambari e apportare modifiche alla configurazione.
+Apache Ambari semplifica la gestione e il monitoraggio di un cluster Hadoop grazie a un'interfaccia utente Web facile da usare e alle API REST. Ambari è incluso nei cluster HDInsight che usano il sistema operativo Linux. È possibile usare Ambari per monitorare il cluster e apportare modifiche alla configurazione.
 
 ## <a id="whatis"></a>Informazioni su Ambari
 
-[Ambari Apache](http://ambari.apache.org) fornisce un'interfaccia utente che può essere utilizzato tooprovision, gestire e monitorare i cluster Hadoop. Gli sviluppatori possono integrare queste funzionalità nelle proprie applicazioni utilizzando hello [API REST Ambari](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md).
+[Apache Ambari](http://ambari.apache.org) fornisce l'interfaccia utente Web che può essere utilizzata per il provisioning, la gestione e il monitoraggio dei cluster Hadoop. Gli sviluppatori possono integrare queste funzionalità nelle applicazioni usando le [API REST Ambari](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md).
 
 Ambari viene fornito per impostazione predefinita con i cluster HDInsight basati su Linux.
 
-## <a name="how-toouse-hello-ambari-rest-api"></a>Come toouse hello API REST Ambari
+## <a name="how-to-use-the-ambari-rest-api"></a>Come usare l'API REST Ambari
 
 > [!IMPORTANT]
-> Hello informazioni ed esempi in questo documento richiedono un cluster HDInsight che utilizza il sistema operativo Linux. Per altre informazioni, vedere [Guida introduttiva di HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md).
+> Le informazioni e gli esempi descritti in questo documento richiedono un cluster HDInsight che usa il sistema operativo Linux. Per altre informazioni, vedere [Guida introduttiva di HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md).
 
-vengono forniti esempi di Hello in questo documento per shell Bonaldi hello (bash) e PowerShell. bash Hello esempi sono stati testati con GNU bash 4.3.11, ma dovrebbe funzionare con altre shell Unix. esempi di PowerShell Hello sono stati testati con PowerShell 5.0, ma dovrebbero funzionare con PowerShell 3.0 o versione successiva.
+In questo documento vengono descritti gli esempi per Bourne shell (bash) e PowerShell. Gli esempi bash sono stati testati con GNU bash 4.3.11 ma dovrebbero funzionare anche con altre shell Unix. Gli esempi PowerShell sono stati testati con PowerShell 5.0 ma dovrebbero funzionare anche con PowerShell 3.0 o versione successiva.
 
-Se si utilizza hello __shell Bonaldi__ (Bash), è necessario disporre delle seguenti hello installato:
+Se si usa __Bourne shell__ (bash) è necessario disporre di:
 
-* [cURL](http://curl.haxx.se/): cURL è un'utilità che può essere utilizzati toowork con le API REST dalla riga di comando hello. In questo documento è toocommunicate utilizzato con l'API REST Ambari hello.
+* [cURL](http://curl.haxx.se/): cURL è un'utilità che può essere usata per lavorare con le API REST dalla riga di comando. In questo documento viene usata per comunicare con l'API REST Ambari.
 
-Sia con bash che con PowerShell è necessario che sia installato anche [jq](https://stedolan.github.io/jq/). Jq è un'utilità per lavorare con documenti JSON. Viene utilizzato in **tutti** esempi Bash, hello e **uno** degli esempi di PowerShell hello.
+Sia con bash che con PowerShell è necessario che sia installato anche [jq](https://stedolan.github.io/jq/). Jq è un'utilità per lavorare con documenti JSON. Viene usata in **tutti** gli esempi bash e in **uno** degli esempi PowerShell.
 
 ### <a name="base-uri-for-ambari-rest-api"></a>URI di base per l'API REST Ambari
 
-URI di base per l'API REST Ambari in HDInsight hello Hello è https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME, in cui **CLUSTERNAME** hello nome del cluster.
+L'URI di base per l'API REST Ambari in HDInsight è https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME, dove **CLUSTERNAME** è il nome del cluster in uso.
 
 > [!IMPORTANT]
-> Mentre il nome del cluster hello in hello completo parte di nome (FQDN) del dominio di hello URI (CLUSTERNAME.azurehdinsight.net) è tra maiuscole e minuscole, le altre occorrenze in hello URI tra maiuscole e minuscole. Ad esempio, se il cluster è denominato `MyCluster`, hello di seguito è URI validi:
+> A differenza delle altre occorrenze nell'URI, nel nome del cluster nella parte del nome di dominio completo (FQDN) dell'URI (CLUSTERNAME.azurehdinsight.net) non viene fatta distinzione tra maiuscole e minuscole. Ad esempio, se il cluster è denominato `MyCluster`, son validi gli URI seguenti:
 > 
 > `https://mycluster.azurehdinsight.net/api/v1/clusters/MyCluster`
 >
 > `https://MyCluster.azurehdinsight.net/api/v1/clusters/MyCluster`
 > 
-> esempio Hello URI restituito un errore perché hello seconda occorrenza di nome hello è non hello correzione case.
+> Gli URI seguenti restituiscono un errore perché nella seconda occorrenza del nome non vengono usate le maiuscole/minuscole corrette.
 > 
 > `https://mycluster.azurehdinsight.net/api/v1/clusters/mycluster`
 >
@@ -68,22 +68,22 @@ URI di base per l'API REST Ambari in HDInsight hello Hello è https://CLUSTERNAM
 
 ### <a name="authentication"></a>Autenticazione
 
-Connessione tooAmbari in HDInsight richiede HTTPS. Nome dell'account admin hello utilizzare (valore predefinito di hello è **admin**) e la password fornita durante la creazione del cluster.
+La connessione ad Ambari su HDInsight richiede HTTPS. Usare il nome dell'account amministratore (il valore predefinito è **admin**) e la password forniti durante la creazione del cluster.
 
 ## <a name="examples-authentication-and-parsing-json"></a>Esempi: autenticazione e analisi di JSON
 
-Hello seguenti esempi illustrano come una richiesta GET hello toomake base Ambari REST API:
+Gli esempi seguenti illustrano come effettuare una richiesta GET all'API REST Ambari di base:
 
 ```bash
 curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME"
 ```
 
 > [!IMPORTANT]
-> esempi di Bash Hello in questo documento apportare hello seguenti presupposti:
+> Gli esempi bash in questo documento partono dai presupposti seguenti:
 >
-> * nome di accesso Hello per cluster hello è il valore predefinito hello di `admin`.
-> * `$PASSWORD`contiene la password di hello per hello comando account di accesso di HDInsight. È possibile impostare questo valore usando `PASSWORD='mypassword'`.
-> * `$CLUSTERNAME`contiene il nome di hello del cluster di hello. È possibile impostare questo valore usando `set CLUSTERNAME='clustername'`
+> * Il nome di accesso per il cluster è il valore predefinito di `admin`.
+> * `$PASSWORD` contiene la password per il comando di accesso di HDInsight. È possibile impostare questo valore usando `PASSWORD='mypassword'`.
+> * `$CLUSTERNAME` contiene il nome del cluster. È possibile impostare questo valore usando `set CLUSTERNAME='clustername'`
 
 ```powershell
 $resp = Invoke-WebRequest -Uri "https://$clusterName.azurehdinsight.net/api/v1/clusters/$clusterName" `
@@ -92,12 +92,12 @@ $resp.Content
 ```
 
 > [!IMPORTANT]
-> esempi di PowerShell Hello in questo documento apportare hello seguenti presupposti:
+> Gli esempi PowerShell in questo documento partono dai presupposti seguenti:
 >
-> * `$creds`è un oggetto credenziali che contiene l'account di accesso amministratore hello e una password per il cluster hello. È possibile impostare questo valore utilizzando `$creds = Get-Credential -UserName "admin" -Message "Enter hello HDInsight login"` fornendo credenziali hello quando richiesto.
-> * `$clusterName`è una stringa che contiene il nome di hello del cluster di hello. È possibile impostare questo valore usando `$clusterName="clustername"`.
+> * `$creds` è un oggetto credenziale che contiene la password e l'accesso dell'amministratore per il cluster. È possibile impostare questo valore usando `$creds = Get-Credential -UserName "admin" -Message "Enter the HDInsight login"` e specificando le credenziali quando richiesto.
+> * `$clusterName` è una stringa che contiene il nome del cluster. È possibile impostare questo valore usando `$clusterName="clustername"`.
 
-Entrambi gli esempi di restituire un documento JSON che inizia con l'esempio seguente la toohello simile informazioni:
+Entrambi gli esempi restituiscono un documento JSON che inizia con informazioni simili a quelle nell'esempio seguente:
 
 ```json
 {
@@ -121,14 +121,14 @@ Entrambi gli esempi di restituire un documento JSON che inizia con l'esempio seg
 
 ### <a name="parsing-json-data"></a>Analisi dei dati JSON
 
-Hello seguente utilizza `jq` tooparse hello documento di risposta JSON e visualizzare solo il messaggio hello `health_report` informazioni dai risultati di hello.
+L'esempio seguente usa `jq` per analizzare il documento di risposta JSON e visualizzare solo le informazioni `health_report` dai risultati.
 
 ```bash
 curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME" \
 | jq '.Clusters.health_report'
 ```
 
-PowerShell 3.0 e versioni successive fornisce hello `ConvertFrom-Json` cmdlet, che converte i documenti JSON hello in un oggetto che è più facile toowork con da PowerShell. Hello seguente utilizza `ConvertFrom-Json` toodisplay solo hello `health_report` informazioni dai risultati di hello.
+PowerShell 3.0 e versioni successive mette a disposizione il cmdlet `ConvertFrom-Json`, che converte il documento JSON in un oggetto più facile da usare da PowerShell. L'esempio seguente usa `ConvertFrom-Json` per visualizzare solo le informazioni `health_report` dai risultati.
 
 ```powershell
 $resp = Invoke-WebRequest -Uri "https://$clusterName.azurehdinsight.net/api/v1/clusters/$clusterName" `
@@ -138,13 +138,13 @@ $respObj.Clusters.health_report
 ```
 
 > [!NOTE]
-> Durante la maggior parte degli esempi di questo documento viene utilizzato `ConvertFrom-Json` toodisplay elementi dal documento di risposta hello, hello [Ambari aggiornamento configurazione](#example-update-ambari-configuration) esempio Usa jq. Jq tooconstruct in questo esempio viene utilizzato un nuovo modello da un documento di risposta JSON hello.
+> Anche se nella maggior parte degli esempi in questo documento viene usato `ConvertFrom-Json` per visualizzare gli elementi del documento di risposta, l'esempio sull'[aggiornamento della configurazione di Ambari](#example-update-ambari-configuration) usa jq. Jq viene usato in questo esempio per creare un nuovo modello dal documento di risposta JSON.
 
-Per un riferimento completo di hello API REST, vedere [Ambari API riferimento V1](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md).
+Per informazioni tecniche complete sull'API REST, vedere la pagina relativa alle [informazioni di riferimento per l'API Ambari V1](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md).
 
-## <a name="example-get-hello-fqdn-of-cluster-nodes"></a>Esempio: Ottenere hello FQDN di nodi del cluster
+## <a name="example-get-the-fqdn-of-cluster-nodes"></a>Esempio: Ottenere il nome di dominio completo dei nodi del cluster
 
-Quando si lavora con HDInsight, potrebbe essere necessario tooknow nome di dominio completo hello (FQDN) di un nodo del cluster. È possibile recuperare facilmente hello FQDN per hello vari nodi inclusi nel cluster hello hello seguono esempi di utilizzo:
+Quando si usa HDInsight, potrebbe essere necessario conoscere il nome di dominio completo di un nodo del cluster. È possibile recuperare con facilità l'FQDN per i diversi nodi del cluster usando gli esempi seguenti:
 
 * **Tutti i nodi**
 
@@ -202,14 +202,14 @@ Quando si lavora con HDInsight, potrebbe essere necessario tooknow nome di domin
     $respObj.host_components.HostRoles.host_name
     ```
 
-## <a name="example-get-hello-internal-ip-address-of-cluster-nodes"></a>Esempio: Ottenere l'indirizzo IP interno hello dei nodi del cluster
+## <a name="example-get-the-internal-ip-address-of-cluster-nodes"></a>Esempio: ottenere l'indirizzo IP interno dei nodi del cluster
 
 > [!IMPORTANT]
-> gli indirizzi IP di Hello restituiti da esempi di hello in questa sezione sono non direttamente accessibile su internet di hello. Ovvero sono accessibili solo all'interno di rete virtuale di Azure che contiene il cluster di HDInsight hello hello.
+> Gli indirizzi IP restituiti dagli esempi in questa sezione non sono direttamente accessibili tramite Internet. Sono accessibili solo all'interno della rete virtuale di Azure che contiene il cluster HDInsight.
 >
 > Per altre informazioni sull'uso di HDInsight e delle reti virtuali vedere [Estendere le funzionalità di HDInsight usando una rete virtuale di Azure personalizzata](hdinsight-extend-hadoop-virtual-network.md).
 
-indirizzo IP di hello toofind, è necessario conoscere il nome di dominio completo interno hello (FQDN) di hello nodi del cluster. Dopo aver creato hello FQDN, è possibile ottenere quindi l'indirizzo IP hello dell'host hello. Hello negli esempi seguenti vengono innanzitutto query Ambari per nome di dominio completo di tutti i nodi host hello hello, quindi eseguire una query Ambari per indirizzo IP hello di ogni host.
+Per trovare l'indirizzo IP, è necessario conoscere il nome di dominio completo (FQDN) interno dei nodi del cluster. Quando è stato ottenuto l'FQDN è possibile ottenere l'indirizzo IP dell'host. Negli esempi seguenti per prima cosa viene effettuata una query in Ambari per ottenere l'FQDN di tutti i nodi host, poi viene effettuata un'altra query in Ambari per ottenere l'indirizzo IP di ogni host.
 
 ```bash
 for HOSTNAME in $(curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/hosts" | jq -r '.items[].Hosts.host_name')
@@ -233,11 +233,11 @@ foreach($item in $respObj.items) {
 }
 ```
 
-## <a name="example-get-hello-default-storage"></a>Esempio: Ottenere spazio di archiviazione predefinito hello
+## <a name="example-get-the-default-storage"></a>Esempio: ottenere la risorsa di archiviazione predefinita
 
-Quando si crea un cluster HDInsight, è necessario utilizzare un Account di archiviazione Azure o di un archivio Data Lake come spazio di archiviazione predefinito hello per cluster hello. È possibile utilizzare queste informazioni Ambari tooretrieve dopo aver creato il cluster hello. Ad esempio, se si desidera che il contenitore di toohello tooread/scrittura dati all'esterno di HDInsight.
+Quando si crea un cluster HDInsight è necessario usare un account di archiviazione di Azure oppure Data Lake Store come risorsa di archiviazione predefinita per il cluster. È possibile usare Ambari per recuperare queste informazioni dopo la creazione del cluster, ad esempio se si desidera leggere o scrivere dati nel contenitore all'esterno di HDInsight.
 
-Hello negli esempi seguenti recupero hello archiviazione configurazione predefinita dal cluster hello:
+Negli esempi seguenti viene recuperata la configurazione di archiviazione predefinita dal cluster:
 
 ```bash
 curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/configurations/service_config_versions?service_name=HDFS&service_config_version=1" \
@@ -252,15 +252,15 @@ $respObj.items.configurations.properties.'fs.defaultFS'
 ```
 
 > [!IMPORTANT]
-> Questi esempi vengono restituiti hello prima configurazione applicata toohello server (`service_config_version=1`) che contiene queste informazioni. Se si recupera un valore che è stato modificato dopo la creazione del cluster, è possibile necessarie toolist hello configurazione versioni e recuperare hello più recente.
+> Questi esempi restituiscono la prima configurazione applicata al server (`service_config_version=1`) che contiene queste informazioni. Se si recupera un valore che è stato modificato dopo la creazione del cluster, potrebbe essere necessario elencare le versioni della configurazione e recuperare la versione più recente.
 
-valore restituito di Hello è tooone simile di hello seguono esempi:
+Il valore restituito è simile a uno degli esempi seguenti:
 
-* `wasb://CONTAINER@ACCOUNTNAME.blob.core.windows.net`-Questo valore indica che tale cluster hello viene utilizzato un account di archiviazione di Azure per spazio di archiviazione predefinito. Hello `ACCOUNTNAME` valore è il nome di hello hello dell'account di archiviazione. Hello `CONTAINER` parte è il nome di hello del contenitore blob hello nell'account di archiviazione hello. contenitore di Hello è radice hello di archiviazione compatibili di HDFS per cluster hello hello.
+* `wasb://CONTAINER@ACCOUNTNAME.blob.core.windows.net` - Questo valore indica che il cluster usa un account di archiviazione di Azure come risorsa di archiviazione predefinita. Il valore `ACCOUNTNAME` è il nome dell'account di archiviazione. La porzione `CONTAINER` corrisponde al nome del contenitore BLOB nell'account di archiviazione. Il contenitore è la radice della risorsa di archiviazione compatibile con HDFS per il cluster.
 
-* `adl://home`-Questo valore indica che tale cluster hello utilizza un archivio Azure Data Lake per spazio di archiviazione predefinito.
+* `adl://home` - Questo valore indica che il cluster usa Azure Data Lake Store come risorsa di archiviazione predefinita.
 
-    nome dell'account archivio Data Lake hello toofind, utilizzare hello seguono esempi:
+    Per trovare il nome dell'account Data Lake Store, usare gli esempi seguenti:
 
     ```bash
     curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/configurations/service_config_versions?service_name=HDFS&service_config_version=1" \
@@ -274,9 +274,9 @@ valore restituito di Hello è tooone simile di hello seguono esempi:
     $respObj.items.configurations.properties.'dfs.adls.home.hostname'
     ```
 
-    Hello valore restituito è simile troppo`ACCOUNTNAME.azuredatalakestore.net`, dove `ACCOUNTNAME` è il nome di hello di hello account archivio Data Lake.
+    Il valore restituito è simile a `ACCOUNTNAME.azuredatalakestore.net`, dove `ACCOUNTNAME` è il nome dell'account Data Lake Store.
 
-    directory di hello toofind all'interno di archivio Data Lake contenente archiviazione hello per cluster hello, utilizzare hello seguono esempi:
+    Per trovare la directory all'interno di Data Lake Store contenente la risorsa di archiviazione per il cluster, usare gli esempi seguenti:
 
     ```bash
     curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/configurations/service_config_versions?service_name=HDFS&service_config_version=1" \
@@ -290,15 +290,15 @@ valore restituito di Hello è tooone simile di hello seguono esempi:
     $respObj.items.configurations.properties.'dfs.adls.home.mountpoint'
     ```
 
-    Hello valore restituito è simile troppo`/clusters/CLUSTERNAME/`. Questo valore è un percorso all'interno di hello account archivio Data Lake. Questo percorso è la radice hello di hello HDFS compatibile file system per il cluster hello. 
+    Il valore restituito è simile a `/clusters/CLUSTERNAME/`. Questo valore è un percorso all'interno dell'account Data Lake Store. Questo percorso è la radice del file system compatibile con HDFS per il cluster. 
 
 > [!NOTE]
-> Hello `Get-AzureRmHDInsightCluster` cmdlet forniti da [Azure PowerShell](/powershell/azure/overview) anche restituisce hello informazioni sull'archiviazione per cluster hello.
+> Il cmdlet `Get-AzureRmHDInsightCluster` messo a disposizione da [Azure PowerShell](/powershell/azure/overview) restituisce anche le informazioni di archiviazione per il cluster.
 
 
 ## <a name="example-get-configuration"></a>Esempio: ottenere una configurazione
 
-1. Ottenere le configurazioni di hello che sono disponibili per il cluster.
+1. Consente di ottenere le configurazioni disponibili per il cluster.
 
     ```bash
     curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME?fields=Clusters/desired_configs"
@@ -310,7 +310,7 @@ valore restituito di Hello è tooone simile di hello seguono esempi:
     $respObj.Content
     ```
 
-    Questo esempio viene restituito un documento JSON che contiene la configurazione corrente di hello (identificato da hello *tag* valore) per i componenti di hello installati nel cluster hello. Hello esempio seguente è tratto da dati hello restituiti da un tipo di cluster Spark.
+    L'esempio restituisce un documento JSON contenente la configurazione corrente, identificata dal valore *tag*, per i componenti installati nel cluster. L'esempio di seguito rappresenta un estratto dei dati restituiti da un tipo di cluster Spark.
    
    ```json
    "spark-metrics-properties" : {
@@ -330,7 +330,7 @@ valore restituito di Hello è tooone simile di hello seguono esempi:
    }
    ```
 
-2. Ottenere la configurazione di hello per componente hello che si è interessati. In hello seguente esempio, sostituire `INITIAL` con il valore di tag hello restituito dalla richiesta precedente hello.
+2. Consente di ottenere la configurazione del componente a cui si è interessati. Nell'esempio seguente, sostituire `INITIAL` con il valore del tag restituito dalla richiesta precedente.
 
     ```bash
     curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/configurations?type=core-site&tag=INITIAL"
@@ -342,11 +342,11 @@ valore restituito di Hello è tooone simile di hello seguono esempi:
     $resp.Content
     ```
 
-    Questo esempio viene restituito un documento JSON che contiene la configurazione corrente di hello per hello `core-site` componente.
+    Questo esempio restituisce un documento JSON che contiene la configurazione corrente del componente `core-site`.
 
 ## <a name="example-update-configuration"></a>Esempio: aggiornare la configurazione
 
-1. Ottenere la configurazione corrente di hello cui Ambari vengono archiviate come hello "DCM":
+1. Ottenere la configurazione corrente, archiviata da Ambari come "configurazione desiderata":
 
     ```bash
     curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME?fields=Clusters/desired_configs"
@@ -357,7 +357,7 @@ valore restituito di Hello è tooone simile di hello seguono esempi:
         -Credential $creds
     ```
 
-    Questo esempio viene restituito un documento JSON che contiene la configurazione corrente di hello (identificato da hello *tag* valore) per i componenti di hello installati nel cluster hello. Hello esempio seguente è tratto da dati hello restituiti da un tipo di cluster Spark.
+    L'esempio restituisce un documento JSON contenente la configurazione corrente, identificata dal valore *tag*, per i componenti installati nel cluster. L'esempio di seguito rappresenta un estratto dei dati restituiti da un tipo di cluster Spark.
    
     ```json
     "spark-metrics-properties" : {
@@ -377,9 +377,9 @@ valore restituito di Hello è tooone simile di hello seguono esempi:
     }
     ```
    
-    Da questo elenco, è necessario il nome hello toocopy del componente hello (ad esempio, **spark\_thrift\_sparkconf** hello e **tag** valore.
+    È necessario copiare il nome del componente, ad esempio **spark\_thrift\_sparkconf**, e il valore **tag** dall'elenco.
 
-2. Recuperare la configurazione di hello per componente hello e tag tramite hello seguenti comandi:
+2. Recuperare la configurazione del componente e del tag usando i comandi seguenti:
    
     ```bash
     curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/configurations?type=spark-thrift-sparkconf&tag=INITIAL" \
@@ -396,21 +396,21 @@ valore restituito di Hello è tooone simile di hello seguono esempi:
     ```
 
     > [!NOTE]
-    > Sostituire **spark-thrift-sparkconf** e **iniziale** con tag che si desidera tooretrieve hello configurazione per e componente hello.
+    > Sostituire **spark-thrift-sparkconf** e **INITIAL** con il componente e il tag di cui si vuole recuperare la configurazione.
    
-    Jq è dati hello tooturn utilizzati recuperati dal HDInsight in un nuovo modello di configurazione. In particolare, questi esempi eseguono hello seguenti azioni:
+    Jq viene usato per trasformare i dati recuperati da HDInsight in un nuovo modello di configurazione. In particolare, questi esempi eseguono le azioni seguenti:
    
-    * Crea un valore univoco contenente hello stringa "version" e la data di hello, che viene archiviato in `newtag`.
+    * Crea un valore univoco contenente la stringa "version" e la data, che viene archiviato in `newtag`.
 
-    * Crea un documento radice per la nuova configurazione desiderato di hello.
+    * Crea un documento radice per la nuova configurazione desiderata.
 
-    * Ottiene hello contenuto di hello `.items[]` della matrice e lo aggiunge in hello **desired_config** elemento.
+    * Ottiene i contenuti della matrice `.items[]` e li aggiunge sotto l'elemento **desired_config**.
 
-    * Eliminazioni hello `href`, `version`, e `Config` elementi, mentre gli elementi non sono necessari toosubmit una nuova configurazione.
+    * Elimina gli elementi `href`, `version` e `Config` perché non sono necessari per l'invio di una nuova configurazione.
 
-    * Aggiunge un elemento `tag` con un valore di `version#################`. la parte numerica di Hello è basata su hello data corrente. Ogni configurazione deve avere un tag univoco.
+    * Aggiunge un elemento `tag` con un valore di `version#################`. La parte numerica si basa sulla data corrente. Ogni configurazione deve avere un tag univoco.
      
-    Infine, i dati hello viene salvati toohello `newconfig.json` documento. struttura del documento Hello dovrebbe apparire simile toohello esempio seguente:
+    Infine i dati vengono salvati nel documento `newconfig.json`. La struttura del documento deve essere simile all'esempio di seguito:
      
      ```json
     {
@@ -428,14 +428,14 @@ valore restituito di Hello è tooone simile di hello seguono esempi:
     }
     ```
 
-3. Aprire hello `newconfig.json` documento e modificare o aggiungere valori hello `properties` oggetto. modifiche di esempio seguenti Hello hello valore `"spark.yarn.am.memory"` da `"1g"` troppo`"3g"`. Aggiunge anche `"spark.kryoserializer.buffer.max"` con un valore di `"256m"`.
+3. Aprire il documento `newconfig.json` e modificare o aggiungere i valori nell'oggetto `properties`. L'esempio seguente modifica il valore di `"spark.yarn.am.memory"` da `"1g"` a `"3g"`. Aggiunge anche `"spark.kryoserializer.buffer.max"` con un valore di `"256m"`.
    
         "spark.yarn.am.memory": "3g",
         "spark.kyroserializer.buffer.max": "256m",
    
-    Dopo aver eseguito le modifiche, salvare file hello.
+    Al termine delle modifiche, salvare il file.
 
-4. Utilizzare i seguenti comandi toosubmit hello aggiornato configurazione tooAmbari hello.
+4. Usare i comandi seguenti per inviare la configurazione aggiornata ad Ambari.
    
     ```bash
     curl -u admin:$PASSWORD -sS -H "X-Requested-By: ambari" -X PUT -d @newconfig.json "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME"
@@ -451,13 +451,13 @@ valore restituito di Hello è tooone simile di hello seguono esempi:
     $resp.Content
     ```
    
-    Questi comandi inviare contenuto hello di hello **newconfig.json** toohello cluster di file desiderato hello nuova configurazione. richiesta di Hello restituisce un documento JSON. Hello **versionTag** elemento in questo documento deve corrispondere una versione di hello inviato e hello **configurazioni** oggetto contiene le modifiche alla configurazione hello richiesto.
+    Questi comandi inviano il contenuto del file **newconfig.json** al cluster come nuova configurazione desiderata. La richiesta restituisce un documento JSON. L'elemento **versionTag** di questo documento deve corrispondere alla versione inviata, mentre l'oggetto **configs** conterrà le modifiche di configurazione richieste.
 
 ### <a name="example-restart-a-service-component"></a>Esempio: Riavviare un componente del servizio
 
-A questo punto, se si osserva hello Ambari web dell'interfaccia utente, hello servizio Spark indica che riavviato per rendere effettive nuova configurazione hello toobe. Utilizzare i passaggi toorestart hello servizio hello.
+A questo punto, se si osserva l'interfaccia utente di Ambari Web, il servizio Spark indicherà che è necessario il riavvio per rendere effettiva la nuova configurazione. Usare la procedura seguente per riavviare il servizio.
 
-1. Utilizzare hello tooenable la modalità di manutenzione per hello servizio Spark seguenti:
+1. Usare il codice seguente per attivare la modalità di manutenzione del servizio Spark:
 
     ```bash
     curl -u admin:$PASSWORD -sS -H "X-Requested-By: ambari" \
@@ -474,7 +474,7 @@ A questo punto, se si osserva hello Ambari web dell'interfaccia utente, hello se
     $resp.Content
     ```
    
-    Questi comandi inviano un server di toohello documento JSON che attiva la modalità di manutenzione. È possibile verificare che il servizio di hello è ora in modalità di manutenzione utilizzando hello seguito richiesta:
+    Questi comandi inviano un documento JSON al server che attiva la modalità di manutenzione. È possibile verificare che il servizio sia in modalità di manutenzione usando la richiesta seguente:
    
     ```bash
     curl -u admin:$PASSWORD -sS -H "X-Requested-By: ambari" \
@@ -489,9 +489,9 @@ A questo punto, se si osserva hello Ambari web dell'interfaccia utente, hello se
     $respObj.ServiceInfo.maintenance_state
     ```
    
-    Hello valore restituito è `ON`.
+    Viene restituito il valore `ON`.
 
-2. Successivamente, utilizzare hello tooturn servizio hello seguenti:
+2. Successivamente usare il codice seguente per disattivare il servizio:
 
     ```bash
     curl -u admin:$PASSWORD -sS -H "X-Requested-By: ambari" \
@@ -508,7 +508,7 @@ A questo punto, se si osserva hello Ambari web dell'interfaccia utente, hello se
     $resp.Content
     ```
     
-    risposta Hello è simile toohello esempio seguente:
+    La risposta restituita è simile all'esempio seguente:
    
     ```json
     {
@@ -521,9 +521,9 @@ A questo punto, se si osserva hello Ambari web dell'interfaccia utente, hello se
     ```
     
     > [!IMPORTANT]
-    > Hello `href` valore restituito da questo URI Usa indirizzo IP interno hello hello di nodo del cluster. toouse dall'esterno del cluster di hello, sostituire parte hello '10.0.0.18:8080' con FQDN del cluster hello hello. 
+    > Il valore `href` restituito dall'URI usa l'indirizzo IP interno del nodo del cluster. Per usarlo dall'esterno del cluster, sostituire la parte '10.0.0.18:8080' con il nome FQDN del cluster. 
     
-    Hello seguenti comandi di recupera lo stato di hello della richiesta di hello:
+    Il comando seguente recupera lo stato della richiesta:
 
     ```bash
     curl -u admin:$PASSWORD -sS -H "X-Requested-By: ambari" \
@@ -538,9 +538,9 @@ A questo punto, se si osserva hello Ambari web dell'interfaccia utente, hello se
     $respObj.Requests.request_status
     ```
 
-    Una risposta di `COMPLETED` indica che la richiesta hello è stata completata.
+    La risposta `COMPLETED` indica che la richiesta è stata completata.
 
-3. Una volta completata la richiesta precedente hello, utilizzare hello toostart hello servizio.
+3. Dopo aver completato la richiesta precedente, usare il codice seguente per avviare il servizio.
    
     ```bash
     curl -u admin:$PASSWORD -sS -H "X-Requested-By: ambari" \
@@ -555,9 +555,9 @@ A questo punto, se si osserva hello Ambari web dell'interfaccia utente, hello se
         -Headers @{"X-Requested-By" = "ambari"} `
         -Body '{"RequestInfo":{"context":"_PARSE_.STOP.SPARK","operation_level":{"level":"SERVICE","cluster_name":"CLUSTERNAME","service_name":"SPARK"}},"Body":{"ServiceInfo":{"state":"STARTED"}}}'
     ```
-    servizio Hello ora utilizza hello nuova configurazione.
+    Il servizio ora usa la nuova configurazione.
 
-4. Infine, utilizzare hello seguente tooturn la modalità di manutenzione.
+4. Infine, usare il codice seguente per disattivare la modalità di manutenzione.
    
     ```bash
     curl -u admin:$PASSWORD -sS -H "X-Requested-By: ambari" \
@@ -575,5 +575,5 @@ A questo punto, se si osserva hello Ambari web dell'interfaccia utente, hello se
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per un riferimento completo di hello API REST, vedere [Ambari API riferimento V1](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md).
+Per informazioni tecniche complete sull'API REST, vedere la pagina relativa alle [informazioni di riferimento per l'API Ambari V1](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md).
 

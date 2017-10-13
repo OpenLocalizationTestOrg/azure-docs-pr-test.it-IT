@@ -1,6 +1,6 @@
 ---
 title: 'Azure Active Directory B2C: supporto | Documentazione Microsoft'
-description: Come toofile supporta le richieste per Azure Active Directory B2C
+description: Come inviare richieste di supporto per Azure Active Directory B2C
 services: active-directory-b2c
 documentationcenter: 
 author: swkrish
@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/06/2016
 ms.author: swkrish
-ms.openlocfilehash: 35b6e54b508434571fa19f2c70e166099e1f61f2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: ad02321c99c57d0f83f7eacb354e47d8c6d4d14f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-active-directory-b2c-file-support-requests"></a>Azure Active Directory B2C: Inviare richieste di supporto
-È possibile inviare richieste di supporto per Azure Active Directory (Azure AD) B2C su hello Azure portal utilizzando hello alla procedura seguente:
+È possibile inviare richieste di supporto per Azure Active Directory (AD) B2C nel portale di Azure seguendo questa procedura:
 
-1. [Seguire questi blade di passaggi toonavigate toohello B2C funzionalità nel portale di Azure hello](active-directory-b2c-app-registration.md#navigate-to-b2c-settings).
-2. Passare dal tenant tooanother B2C tenant che ha una sottoscrizione Azure associata. In genere, hello quest'ultimo è al tenant di dipendente o hello predefinita creata durante l'iscrizione per una sottoscrizione di Azure. vedere, più toolearn [come una sottoscrizione di Azure è tooAzure correlati AD](../active-directory/active-directory-how-subscriptions-associated-directory.md).
+1. [Seguire questa procedura per passare al pannello delle funzionalità B2C nel portale di Azure](active-directory-b2c-app-registration.md#navigate-to-b2c-settings).
+2. Passare dal tenant B2C in un altro tenant a cui è associata una sottoscrizione di Azure. In genere, questa è il tenant di dipendente o il tenant predefinito creato automaticamente quando è stata eseguita l'iscrizione per una sottoscrizione di Azure. Per altre informazioni, vedere la [relazione tra una sottoscrizione di Azure e Azure AD](../active-directory/active-directory-how-subscriptions-associated-directory.md).
    
     ![Supporto - Cambio di tenant](./media/active-directory-b2c-support/support-switch-dir.png)
 3. Dopo avere cambiato tenant, fare clic su **Guida e supporto**.
@@ -33,34 +33,34 @@ ms.lasthandoff: 10/06/2017
 4. Fare clic su **Nuova richiesta di supporto**.
    
     ![Supporto - Nuovo](./media/active-directory-b2c-support/support-new.png)
-5. In hello **nozioni di base** pannello, usare questi dettagli e fare clic su **Avanti**.
+5. Nel pannello **Informazioni di base** usare questi dettagli e fare clic su **Avanti**.
    
    * Il **Tipo di problema** è **Tecnico**.
-   * Scegliere hello appropriato **sottoscrizione**.
+   * Scegliere la **Sottoscrizione**appropriata.
    * Il **Servizio** è **Active Directory**.
-   * Scegliere hello appropriato **piano di supporto**. Se non si ha un piano di supporto, è possibile iscriversi per ottenerne uno [qui](https://azure.microsoft.com/en-us/support/plans/).
+   * Scegliere il **Piano di supporto**appropriato. Se non si ha un piano di supporto, è possibile iscriversi per ottenerne uno [qui](https://azure.microsoft.com/en-us/support/plans/).
      
      ![Supporto - Informazioni di base](./media/active-directory-b2c-support/support-basics.png)
-6. In hello **problema** pannello, usare questi dettagli e fare clic su **Avanti**.
+6. Nel pannello **Problema** usare questi dettagli e fare clic su **Avanti**.
    
-   * Scegliere hello appropriato **gravità** livello.
+   * Scegliere il livello di **Gravità** appropriato.
    * Il **Tipo di problema** è **B2C**.
-   * Scegliere hello appropriato **categoria**.
-   * Descrivere il problema in hello **dettagli** campo. Fornire dettagli come il nome di tenant hello B2C, descrizione del problema hello, i messaggi di errore, la correlazione degli ID, se disponibile e così via.
-   * In hello **tempo** campo, specificare hello data e ora (inclusi fuso orario) hello problema si è verificato.
-   * In **caricamento del File**, caricare tutte le schermate e i file che si ritiene che contribuirebbe a risolvere il problema di hello.
+   * Scegliere la **Categoria**appropriata.
+   * Descrivere il problema nel campo **Dettagli** . Specificare dettagli quali il nome del tenant B2C, la descrizione del problema, i messaggi di errore, gli ID di correlazione (se disponibili) e così via.
+   * Nel campo **Intervallo di tempo** specificare la data e l'ora, incluso il fuso orario, corrispondenti al momento in cui si è verificato il problema.
+   * In **Caricamento file**caricare tutte le schermate e tutti i file che potrebbero risultare utili per la risoluzione del problema.
      
      ![Supporto - Problema](./media/active-directory-b2c-support/support-problem.png)
-7. In hello **le informazioni di contatto** pannello, aggiungere le informazioni di contatto. Fare clic su **Crea**.
+7. Nel pannello **Informazioni di contatto** aggiungere le proprie informazioni di contatto. Fare clic su **Crea**.
    
     ![Supporto - Contatto](./media/active-directory-b2c-support/support-contact.png)
-8. Dopo aver inviato la richiesta di supporto, è possibile monitorarlo facendo **Guida e supporto** nella schermata iniziale, hello e quindi **Gestisci richieste di supporto**.
+8. Dopo aver inviato la richiesta di supporto, è possibile monitorarla facendo clic su **Guida e supporto** nella schermata iniziale, quindi su **Gestisci richieste di supporto**.
 
-## <a name="known-issue-filing-a-support-request-in-hello-context-of-a-b2c-tenant"></a>Problema noto: creazione di una richiesta di supporto nel contesto di hello di un tenant B2C
-Se si cerca una richiesta di supporto nel contesto di hello del tenant B2C toocreate ignorato il passaggio 2 sopra, verrà visualizzato il seguente errore hello.
+## <a name="known-issue-filing-a-support-request-in-the-context-of-a-b2c-tenant"></a>Problema noto: invio di una richiesta di supporto nel contesto di un Tenant B2C
+Se non è stato svolto il passaggio 2 precedente e si tenta di creare una richiesta di supporto nel contesto del tenant B2C, verrà visualizzato il seguente errore.
 
 > [!IMPORTANT]
-> Non tentare toosign iscrizione a una nuova sottoscrizione di Azure nel tenant di B2C.  
+> Non tentare di effettuare l'iscrizione per una nuova sottoscrizione di Azure nel tenant B2C.  
 > 
 > 
 

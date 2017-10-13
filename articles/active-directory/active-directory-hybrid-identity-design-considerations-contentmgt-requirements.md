@@ -1,6 +1,6 @@
 ---
-title: "Considerazioni sulla progettazione di aaaAzure Active Directory ibrido identità - determinare i requisiti di gestione del contenuto | Documenti Microsoft"
-description: "Fornisce informazioni approfondite come toodetermine hello requisiti di gestione dei contenuti dell'azienda. In genere quando un utente ha il proprio dispositivo potrebbe essere anche più credenziali che verranno essere alternati applicazione toohello in base che utilizza. È importante toodifferentiate il contenuto è stato creato utilizzando le credenziali personali rispetto a quelli creati utilizzando le credenziali aziendale hello. La soluzione di identità deve essere in grado di toointeract con cloud services tooprovide un utente finale di esperienza toohello durante garantire la privacy e aumentare la protezione di hello da perdita di dati."
+title: "Considerazioni di progettazione per la soluzione ibrida di gestione delle identità di Azure Active Directory: determinare i requisiti di gestione dei contenuti | Documentazione Microsoft"
+description: "Fornisce importanti informazioni su come determinare i requisiti di gestione dei contenuti dell'azienda. In genere, quando un utente usa un dispositivo personale, si avvale di più credenziali diverse, in base all'applicazione a cui deve accedere. È importante quindi distinguere i contenuti creati usando credenziali personali rispetto a quelli realizzati ricorrendo a credenziali aziendali. La soluzione di identità adottata deve essere in grado di interagire con i servizi cloud, in modo da fornire un'esperienza trasparente per l'utente finale, garantirne la privacy e migliorare la protezione contro la perdita di dati."
 documentationcenter: 
 services: active-directory
 author: billmath
@@ -14,50 +14,50 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/18/2017
 ms.author: billmath
-ms.openlocfilehash: 607d366633c37b65ec5cf8ae5c64d73ca1cc96b7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 840de1e1fcba74285788d51d8f544375f0affa77
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="determine-content-management-requirements-for-your-hybrid-identity-solution"></a>Determinare i requisiti di gestione dei contenuti per una soluzione di identità ibrida
-Informazioni sui requisiti di gestione dei contenuti hello per l'azienda può indirizzare influire sulla decisione su quale toouse soluzione di identità ibride. Con hello proliferazione di più dispositivi e dalla capacità di hello di utenti toobring i propri dispositivi ([BYOD](http://aka.ms/byodcg)), società hello devono proteggere i propri dati ma anche necessario tenere privacy dell'utente intatto. In genere quando un utente ha il proprio dispositivo potrebbe essere anche più credenziali che verranno essere alternati applicazione toohello in base che utilizza. È importante toodifferentiate il contenuto è stato creato utilizzando le credenziali personali rispetto a quelli creati utilizzando le credenziali aziendale hello. La soluzione di identità deve essere in grado di toointeract con cloud services tooprovide un utente finale di esperienza toohello durante garantire la privacy e aumentare la protezione di hello da perdita di dati. 
+Comprendere i requisiti aziendali relativi alla gestione dei contenuti può incidere direttamente sulla decisione in merito alla soluzione di identità ibrida da usare. Con la proliferazione delle tipologie di dispositivi e la possibilità per gli utenti di usare dispositivi personali anche nelle attività lavorative (approccio[BYOD](http://aka.ms/byodcg)), è sempre più forte l'esigenza per le aziende di proteggere i dati senza compromettere la privacy degli utenti. In genere, quando un utente usa un dispositivo personale, si avvale di più credenziali diverse, in base all'applicazione a cui deve accedere. È importante quindi distinguere i contenuti creati usando credenziali personali rispetto a quelli realizzati ricorrendo a credenziali aziendali. La soluzione di identità adottata deve essere in grado di interagire con i servizi cloud, in modo da fornire un'esperienza trasparente per l'utente finale, garantirne la privacy e migliorare la protezione contro la perdita di dati. 
 
-La soluzione di identità verrà utilizzata dai diversi controlli tecnici nella gestione dei contenuti tooprovide ordine come illustrato nella figura hello seguente:
+La soluzione di identità deve essere inoltre sottoposta a vari controlli tecnici per permettere la gestione dei contenuti, come illustrato nella figura seguente:
 
 ![](./media/hybrid-id-design-considerations/securitycontrols.png)
 
 **Controlli di protezione che interessano il sistema di gestione delle identità**
 
-In generale, i requisiti di gestione dei contenuti verranno utilizzati il sistema di gestione di identità in hello seguenti aree:
+In generale, i requisiti di gestione dei contenuti interessano il sistema di gestione delle identità nelle aree seguenti:
 
-* Privacy: identificazione utente hello che possiede una risorsa e applicare l'integrità toomaintain hello controlli appropriati.
-* Classificazione dei dati: identificare l'utente hello o gruppo e il livello di oggetto tooan accesso in base tooits classificazione. 
-* Protezione di perdita di dati: i controlli di sicurezza responsabili della protezione tooavoid perdita dei dati saranno necessario toointeract con hello identità sistema toovalidate hello identità dell'utente. Questo aspetto è importante anche per eventuali esigenze di auditing.
+* Privacy: identificare l'utente proprietario di una risorsa e applicare i controlli appropriati per garantirne l'integrità.
+* Classificazione dei dati: identificare l'utente o il gruppo e il livello di accesso a un oggetto in base a una classificazione prestabilita. 
+* Protezione contro la perdita di dati: per poter convalidare l'identità degli utenti, il sistema di gestione delle identità deve poter interagire con i controlli di protezione adottati per evitare perdite di dati. Questo aspetto è importante anche per eventuali esigenze di auditing.
 
 > [!NOTE]
 > Leggere l'articolo sulla [classificazione dei dati per la conformità al cloud](http://download.microsoft.com/download/0/A/3/0A3BE969-85C5-4DD2-83B6-366AA71D1FE3/Data-Classification-for-Cloud-Readiness.pdf) per maggiori informazioni sulle linee guida e le procedure consigliate per la classificazione dei dati.
 > 
 > 
 
-Quando pianificazione della soluzione di identità ibrida accertarsi che hello seguenti domande in base ai requisiti dell'organizzazione tooyour:
+Quando si pianifica una soluzione di identità ibrida, assicurarsi che venga fornita una risposta alle domande seguenti, in base ai requisiti aziendali:
 
-* L'azienda prevede dei controlli di sicurezza in luogo tooenforce privacy dei dati?
-  * In caso affermativo, i controlli di sicurezza sarà in grado di toointegrate con una soluzione con identità ibrida hello siano tooadopt corso?
+* Sono presenti in azienda controlli di sicurezza per garantire la riservatezza dei dati?
+  * In caso affermativo, sarà possibile integrarli con la soluzione di identità ibrida che si intende adottare?
 * È presente in azienda un sistema di classificazione dei dati?
-  * In caso affermativo, è toointegrate hello corrente soluzione in grado di soluzione con identità ibrida hello siano tooadopt corso?
+  * In caso affermativo, sarà possibile integrarlo con la soluzione di identità ibrida che si intende adottare?
 * È presente in azienda un sistema di protezione contro la perdita di dati? 
-  * In caso affermativo, è toointegrate hello corrente soluzione in grado di soluzione con identità ibrida hello siano tooadopt corso?
-* L'azienda necessita di tooaudit accesso tooresources?
+  * In caso affermativo, sarà possibile integrarlo con la soluzione di identità ibrida che si intende adottare?
+* L'azienda desidera controllare l'accesso alle risorse?
   * In caso affermativo, che tipo di risorse?
   * Quale livello di informazioni è necessario?
-  * In caso affermativo, in cui deve risiedere il log di controllo di hello? Locale o nel cloud hello?
-* L'azienda necessita tooencrypt eventuali messaggi di posta elettronica che contengono dati riservati (SSNs, i numeri di carta di credito e così via)?
-* L'azienda necessita tooencrypt tutti i documenti o contenuto condiviso con i partner commerciali esterni?
-* L'azienda necessita di criteri aziendali di tooenforce su determinati tipi di messaggi di posta elettronica (non Rispondi a tutti, non inoltrare)?
+  * Dove deve trovarsi il log di controllo, in locale o nel cloud?
+* L'azienda desidera crittografare i messaggi e-mail che contengono dati riservati (numeri di previdenza sociale, numeri di carta di credito e così via)?
+* L'azienda desidera crittografare tutti i documenti e i contenuti condivisi con partner commerciali esterni?
+* L'azienda intende applicare criteri specifici su determinati tipi di e-mail ("non rispondere a tutti", "non inoltrare" e così via)?
 
 > [!NOTE]
-> Annotare i tootake che ogni risposta e comprendere motivazioni hello delle risposte hello. [Definire la strategia di protezione dati](active-directory-hybrid-identity-design-considerations-data-protection-strategy.md) esaminerà le opzioni di hello disponibili e i vantaggi e svantaggi di ogni opzione.  Una volta fornite le risposte a queste domande, sarà possibile selezionare l'opzione più adatta in base alle esigenze aziendali.
+> Accertarsi di prendere nota di ogni risposta e comprendere la logica che ne sta alla base. [definizione della strategia di protezione dei dati](active-directory-hybrid-identity-design-considerations-data-protection-strategy.md) esamina le opzioni disponibili con i relativi vantaggi e svantaggi.  Una volta fornite le risposte a queste domande, sarà possibile selezionare l'opzione più adatta in base alle esigenze aziendali.
 > 
 > 
 

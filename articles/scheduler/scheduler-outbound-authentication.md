@@ -1,5 +1,5 @@
 ---
-title: aaaScheduler autenticazione in uscita
+title: "Autenticazione in uscita dell'Utilità di pianificazione"
 description: "Autenticazione in uscita dell'Utilità di pianificazione"
 services: scheduler
 documentationcenter: .NET
@@ -14,42 +14,42 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/15/2016
 ms.author: deli
-ms.openlocfilehash: ef713f4770b48d0a9176415e87c1042a823582e5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e345b2e22daae5b24c23645f7d2636f66df630ff
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="scheduler-outbound-authentication"></a>Autenticazione in uscita dell'Utilità di pianificazione
-I processi dell'utilità di pianificazione potrebbe essere necessario toocall out tooservices che richiedono l'autenticazione. In questo modo, un servizio chiamato può determinare se il processo di pianificazione hello può accedere alle risorse. Alcuni di questi servizi includono altri servizi di Azure, Salesforce.com, Facebook e siti Web custom protetti.
+I processi dell'Utilità di pianificazione potrebbero richiedere servizi che necessitano di autenticazione. In questo modo, un servizio richiamato può determinare se l'utilità di pianificazione può accedere alle sue risorse. Alcuni di questi servizi includono altri servizi di Azure, Salesforce.com, Facebook e siti Web custom protetti.
 
 ## <a name="adding-and-removing-authentication"></a>Aggiunta e rimozione di autenticazione
-Aggiunta di autenticazione tooa dell'utilità di pianificazione è semplice: aggiungere un elemento figlio JSON `authentication` toohello `request` elemento durante la creazione o l'aggiornamento del processo. I segreti passati servizio Utilità di pianificazione toohello in una richiesta PUT, PATCH o POST-come parte di hello `authentication` oggetto: non vengono mai restituiti nelle risposte. Nelle risposte, le informazioni segrete sono impostate toonull o potrebbero essere un token pubblico che rappresenta l'entità hello autenticato.
+Aggiungere un'autenticazione a un'utilità di pianificazione è semplice – è sufficiente aggiungere un elemento figlio JSON `authentication` all'`request` elemento durante la creazione o l’aggiornamento di un processo. I segreti passati al servizio dell’Utilità di pianificazione in una richiesta PUT, PATCH o POST – come parte dell’oggetto `authentication` – non vengono mai restituiti nelle risposte. Nelle risposte, le informazioni segrete sono impostati su null o potrebbero avere un token pubblico che rappresenti l'entità autenticata.
 
-autenticazione tooremove, PUT o PATCH in modo esplicito, il processo di hello impostazione hello `authentication` toonull dell'oggetto. Nessuna proprietà di autenticazione verrà visualizzata nella risposta.
+Per rimuovere l'autenticazione, effettuare un’azione PUT o PATCH in modo esplicito, impostando l’oggetto `authentication` su null. Nessuna proprietà di autenticazione verrà visualizzata nella risposta.
 
-Hello supportato solo tipi di autenticazione sono attualmente hello `ClientCertificate` modello (per l'utilizzo di certificati client SSL/TLS di hello), hello `Basic` del modello (per l'autenticazione di base) e hello `ActiveDirectoryOAuth` modello (per OAuth di Active Directory autenticazione).
+Attualmente, gli unici tipi di autenticazione supportati sono il modello `ClientCertificate` (per l'utilizzo di certificati client SSL/TLS), il modello `Basic` (per l'autenticazione di Base) e il modello `ActiveDirectoryOAuth` (per l'autenticazione OAuth di Active Directory).
 
 ## <a name="request-body-for-clientcertificate-authentication"></a>Corpo della richiesta per l'autenticazione ClientCertificate
-Quando si aggiunge l'autenticazione utilizzando hello `ClientCertificate` del modello, specificare i seguenti elementi aggiuntivi nel corpo della richiesta hello hello.  
+Quando si aggiunge un'autenticazione utilizzando il modello `ClientCertificate` , specificare i seguenti elementi aggiuntivi nel corpo della richiesta.  
 
 | Elemento | Descrizione |
 |:--- |:--- |
 | *authentication (elemento padre)* |Oggetto di autenticazione per l'utilizzo di un certificato client SSL. |
-| *type* |Obbligatorio. Tipo di autenticazione. Per i certificati client SSL, deve essere il valore di hello `ClientCertificate`. |
-| *pfx* |Obbligatorio. Contenuto con codifica Base64 del file PFX hello. |
-| *password* |Obbligatorio. File PFX hello tooaccess delle password. |
+| *type* |Obbligatorio. Tipo di autenticazione. Per i certificati client SSL, il valore deve essere `ClientCertificate`. |
+| *pfx* |Obbligatorio. I contenuti del file PFX in codifica Base64. |
+| *password* |Obbligatorio. La password per accedere al file PFX. |
 
 ## <a name="response-body-for-clientcertificate-authentication"></a>Corpo della risposta per l'autenticazione ClientCertificate
-Quando viene inviata una richiesta con informazioni di autenticazione, risposta hello contiene hello segue gli elementi correlati all'autenticazione.
+Quando viene inviata una richiesta con le informazioni di autenticazione, la risposta contiene i seguenti elementi relativi all'autenticazione.
 
 | Elemento | Descrizione |
 |:--- |:--- |
 | *authentication (elemento padre)* |Oggetto di autenticazione per l'utilizzo di un certificato client SSL. |
-| *type* |Tipo di autenticazione. Per i certificati client SSL, il valore di hello è `ClientCertificate`. |
-| *certificateThumbprint* |identificazione personale Hello del certificato hello. |
-| *certificateSubjectName* |Hello nome distinto del soggetto del certificato hello. |
-| *certificateExpiration* |Data di scadenza Hello del certificato hello. |
+| *type* |Tipo di autenticazione. Per i certificati client SSL, il valore è `ClientCertificate`. |
+| *certificateThumbprint* |L'identificazione personale del certificato. |
+| *certificateSubjectName* |Il nome distintivo del soggetto del certificato. |
+| *certificateExpiration* |La data di scadenza del certificato. |
 
 ## <a name="sample-rest-request-for-clientcertificate-authentication"></a>Richiesta REST di esempio per l'autenticazione ClientCertificate
 ```
@@ -144,23 +144,23 @@ Date: Wed, 16 Mar 2016 19:04:23 GMT
 ```
 
 ## <a name="request-body-for-basic-authentication"></a>Corpo della richiesta per l'autenticazione di Base
-Quando si aggiunge l'autenticazione utilizzando hello `Basic` del modello, specificare i seguenti elementi aggiuntivi nel corpo della richiesta hello hello.
+Quando si aggiunge un'autenticazione utilizzando il modello `Basic` , specificare i seguenti elementi aggiuntivi nel corpo della richiesta.
 
 | Elemento | Descrizione |
 |:--- |:--- |
 | *authentication (elemento padre)* |Oggetto di autenticazione per l’utilizzo dell'autenticazione di Base. |
-| *type* |Obbligatorio. Tipo di autenticazione. L'autenticazione di base, deve essere il valore di hello `Basic`. |
-| *username* |Obbligatorio. Nome utente tooauthenticate. |
-| *password* |Obbligatorio. Tooauthenticate password. |
+| *type* |Obbligatorio. Tipo di autenticazione. Per l'autenticazione di Base, il valore deve essere `Basic`. |
+| *username* |Obbligatorio. Nome utente da autenticare. |
+| *password* |Obbligatorio. Password da autenticare. |
 
 ## <a name="response-body-for-basic-authentication"></a>Corpo della risposta per l'autenticazione di Base
-Quando viene inviata una richiesta con informazioni di autenticazione, risposta hello contiene hello segue gli elementi correlati all'autenticazione.
+Quando viene inviata una richiesta con le informazioni di autenticazione, la risposta contiene i seguenti elementi relativi all'autenticazione.
 
 | Elemento | Descrizione |
 |:--- |:--- |
 | *authentication (elemento padre)* |Oggetto di autenticazione per l’utilizzo dell'autenticazione di Base. |
-| *type* |Tipo di autenticazione. L'autenticazione di base, il valore di hello è `Basic`. |
-| *username* |Hello autenticazione nome utente. |
+| *type* |Tipo di autenticazione. Per l'autenticazione di Base, il valore è `Basic`. |
+| *username* |Il nome utente autenticato. |
 
 ## <a name="sample-rest-request-for-basic-authentication"></a>Richiesta REST di esempio per l'autenticazione di base
 ```
@@ -254,30 +254,30 @@ Date: Wed, 16 Mar 2016 19:05:06 GMT
 ```
 
 ## <a name="request-body-for-activedirectoryoauth-authentication"></a>Corpo della richiesta per l'autenticazione ActiveDirectoryOAuth
-Quando si aggiunge l'autenticazione utilizzando hello `ActiveDirectoryOAuth` del modello, specificare i seguenti elementi aggiuntivi nel corpo della richiesta hello hello.
+Quando si aggiunge un'autenticazione utilizzando il modello `ActiveDirectoryOAuth` , specificare i seguenti elementi aggiuntivi nel corpo della richiesta.
 
 | Elemento | Descrizione |
 |:--- |:--- |
 | *authentication (elemento padre)* |Oggetto di autenticazione per l'autenticazione basata su ActiveDirectoryOAuth. |
-| *type* |Obbligatorio. Tipo di autenticazione. Per l'autenticazione ActiveDirectoryOAuth, il valore di hello deve essere `ActiveDirectoryOAuth`. |
-| *tenant* |Obbligatorio. Identificatore del tenant Hello per tenant hello Azure AD. |
-| *audience* |Obbligatorio. Toohttps://management.core.windows.net/ è impostato. |
-| *clientId* |Obbligatorio. Fornire l'identificatore hello del client per hello applicazione Azure AD. |
-| *secret* |Obbligatorio. Segreto del client hello che sta richiedendo hello token. |
+| *type* |Obbligatorio. Tipo di autenticazione. Per l'autenticazione ActiveDirectoryOAuth, il valore deve essere `ActiveDirectoryOAuth`. |
+| *tenant* |Obbligatorio. L'identificatore del tenant di Azure AD. |
+| *audience* |Obbligatorio. È impostato su https://management.core.windows.net/. |
+| *clientId* |Obbligatorio. Fornisce l'identificativo del client per l'applicazione Active Directory di Azure. |
+| *secret* |Obbligatorio. Segreto del client che richiede il token. |
 
 ### <a name="determining-your-tenant-identifier"></a>Determinazione del l'identificatore del tenant
-È possibile trovare l'identificatore del tenant per il tenant di Azure AD hello hello eseguendo `Get-AzureAccount` in Azure PowerShell.
+È possibile trovare l'identificatore del tenant di Azure AD eseguendo `Get-AzureAccount` in Azure PowerShell.
 
 ## <a name="response-body-for-activedirectoryoauth-authentication"></a>Corpo della risposta per l'autenticazione ActiveDirectoryOAuth
-Quando viene inviata una richiesta con informazioni di autenticazione, risposta hello contiene hello segue gli elementi correlati all'autenticazione.
+Quando viene inviata una richiesta con le informazioni di autenticazione, la risposta contiene i seguenti elementi relativi all'autenticazione.
 
 | Elemento | Descrizione |
 |:--- |:--- |
 | *authentication (elemento padre)* |Oggetto di autenticazione per l'autenticazione basata su ActiveDirectoryOAuth. |
-| *type* |Tipo di autenticazione. Per l'autenticazione ActiveDirectoryOAuth, il valore di hello è `ActiveDirectoryOAuth`. |
-| *tenant* |Identificatore del tenant Hello per tenant hello Azure AD. |
-| *audience* |Toohttps://management.core.windows.net/ è impostato. |
-| *clientId* |Hello identificatore client per un'applicazione hello Azure AD. |
+| *type* |Tipo di autenticazione. Per l'autenticazione ActiveDirectoryOAuth, il valore è `ActiveDirectoryOAuth`. |
+| *tenant* |L'identificatore del tenant di Azure AD. |
+| *audience* |È impostato su https://management.core.windows.net/. |
+| *clientId* |Identificativo del client per l'applicazione Azure AD. |
 
 ## <a name="sample-rest-request-for-activedirectoryoauth-authentication"></a>Richiesta REST di esempio per l'autenticazione ActiveDirectoryOAuth
 ```
@@ -380,7 +380,7 @@ Date: Wed, 16 Mar 2016 19:10:02 GMT
 
  [Concetti, terminologia e gerarchia di entità dell'Utilità di pianificazione di Azure](scheduler-concepts-terms.md)
 
- [Introduzione all'uso dell'utilità di pianificazione nel portale di Azure hello](scheduler-get-started-portal.md)
+ [Introduzione all'uso dell'Utilità di pianificazione di Azure nel portale di Azure](scheduler-get-started-portal.md)
 
  [Piani e fatturazione nell'utilità di pianificazione di Azure](scheduler-plans-billing.md)
 

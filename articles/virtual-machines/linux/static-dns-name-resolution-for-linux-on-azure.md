@@ -1,6 +1,6 @@
 ---
-title: aaaUse DNS interno per la macchina virtuale la risoluzione dei nomi con hello Azure CLI 2.0 | Documenti Microsoft
-description: Come la rete virtuale toocreate schede di interfaccia e utilizzare DNS interno per la risoluzione dei nomi di macchina virtuale in Azure con hello Azure CLI 2.0
+title: Usare il DNS interno per la risoluzione dei nomi di VM con l'interfaccia della riga di comando di Azure 2.0 | Documentazione Microsoft
+description: Come creare schede di interfaccia di rete virtuale e usare DNS interni per la risoluzione dei nomi di VM in Azure con l'interfaccia della riga di comando di Azure 2.0
 services: virtual-machines-linux
 documentationcenter: 
 author: vlivech
@@ -15,27 +15,27 @@ ms.devlang: azurecli
 ms.topic: article
 ms.date: 02/16/2017
 ms.author: v-livech
-ms.openlocfilehash: b3c4bfd3ab698f7b25d763ba9e60dd7984f6269d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 992920adb1ae3736d43cc5f0bbb2081a20a1674d
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="create-virtual-network-interface-cards-and-use-internal-dns-for-vm-name-resolution-on-azure"></a>Creare schede di interfaccia di rete virtuale e usare DNS interni per la risoluzione dei nomi di VM in Azure
-Questo articolo illustra come tooset statici nomi DNS interni per le macchine virtuali Linux mediante rete schede di interfaccia (vNics) e i nomi DNS con etichetta con hello CLI di Azure 2.0. È anche possibile eseguire questi passaggi con hello [CLI di Azure 1.0](static-dns-name-resolution-for-linux-on-azure-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Si ricorre ai nomi DNS statici per i servizi di infrastruttura permanenti, ad esempio per un server di compilazione Jenkins, usato per questo documento, o un server Git.
+Questo articolo illustra come impostare nomi DNS interni statici per VM Linux usando schede di interfaccia di rete virtuale (vNic) e nomi di etichette DNS con l'interfaccia della riga di comando di Azure 2.0. È possibile anche eseguire questi passaggi tramite l'[interfaccia della riga di comando di Azure 1.0](static-dns-name-resolution-for-linux-on-azure-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Si ricorre ai nomi DNS statici per i servizi di infrastruttura permanenti, ad esempio per un server di compilazione Jenkins, usato per questo documento, o un server Git.
 
-requisiti di Hello sono:
+I requisiti sono:
 
 * [Un account di Azure](https://azure.microsoft.com/pricing/free-trial/)
 * [File di chiavi SSH pubbliche e private](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ## <a name="quick-commands"></a>Comandi rapidi
-Se è necessario tooquickly attività hello, hello successiva sezione Dettagli comandi hello necessari. Ulteriori informazioni e il contesto per ogni passaggio è reperibile nel resto di hello del documento hello, [avvio qui](#detailed-walkthrough). tooperform questi passaggi, è necessario hello più recente [CLI di Azure 2.0](/cli/azure/install-az-cli2) installato e registrato con un account Azure tooan [accesso az](/cli/azure/#login).
+Se si vuole eseguire rapidamente l'attività, la sezione seguente indica dettagliatamente i comandi necessari. Altre informazioni dettagliate e il contesto per ogni passaggio sono disponibili nelle sezioni successive del documento, a partire da [qui](#detailed-walkthrough). Per eseguire questi passaggi è necessario aver installato la versione più recente dell'[interfaccia della riga di comando di Azure 2.0](/cli/azure/install-az-cli2) e aver effettuato l'accesso a un account Azure con il comando [az login](/cli/azure/#login).
 
 Pre-requisiti: gruppo di risorse, rete virtuale e subnet, gruppo di sicurezza di rete con SSH in ingresso.
 
 ### <a name="create-a-virtual-network-interface-card-with-a-static-internal-dns-name"></a>Creare una scheda di interfaccia di rete virtuale con un nome DNS interno statico
-Creare una scheda di rete virtuale hello con [az rete nic creare](/cli/azure/network/nic#create). Hello `--internal-dns-name` flag CLI è per l'etichetta DNS di impostazione hello, che fornisce nome DNS statico hello per scheda di interfaccia di rete virtuale hello (vNic). esempio Hello crea una scheda di rete virtuale denominata `myNic`, connetterla toohello `myVnet` rete virtuale e viene creato un record di nome DNS interno denominato `jenkins`:
+Creare la vNic con il comando [az network nic create](/cli/azure/network/nic#create). Il flag `--internal-dns-name` dell'interfaccia della riga di comando consente di impostare l'etichetta DNS, che indica il nome DNS statico per la scheda di interfaccia di rete virtuale (vNic). L'esempio seguente crea una scheda di rete virtuale denominata `myNic`, la connette alla rete virtuale `myVnet` e crea un record di nome DNS interno denominato `jenkins`:
 
 ```azurecli
 az network nic create \
@@ -46,8 +46,8 @@ az network nic create \
     --internal-dns-name jenkins
 ```
 
-### <a name="deploy-a-vm-and-connect-hello-vnic"></a>Distribuire una macchina virtuale e connettersi hello vNic
-Creare una VM con il comando [az vm create](/cli/azure/vm#create). Hello `--nics` flag si connette hello vNic toohello VM durante hello tooAzure di distribuzione. esempio Hello crea una macchina virtuale denominata `myVM` con i dischi di Azure gestita e collega hello vNic denominato `myNic` da hello passaggio precedente:
+### <a name="deploy-a-vm-and-connect-the-vnic"></a>Distribuire una VM e connettere la scheda di interfaccia di rete virtuale
+Creare una VM con il comando [az vm create](/cli/azure/vm#create). Il flag `--nics` consente di connette la scheda di interfaccia di rete virtuale alla VM durante la distribuzione in Azure. L'esempio seguente crea una VM `myVM` con Managed Disks di Azure e collega la scheda di interfaccia di rete virtuale denominata `myNic` ottenuta dal passaggio precedente:
 
 ```azurecli
 az vm create \
@@ -61,24 +61,24 @@ az vm create \
 
 ## <a name="detailed-walkthrough"></a>Procedura dettagliata
 
-Un'integrazione completa continua e distribuzione continua (CiCd) infrastruttura di Azure richiede alcuni server server toobe statico o di lunga durata. È consigliabile che le risorse di Azure come hello reti virtuali e i gruppi di sicurezza di rete sono statiche e le risorse distribuite raramente di lunga durata. Dopo la distribuzione di una rete virtuale, può essere riutilizzato per nuove distribuzioni senza alcuna infrastruttura toohello effetto negativo. È quindi possibile aggiungere un server di repository Git o un server di automazione di Jenkins recapita CiCd toothis di rete virtuale per gli ambienti di sviluppo o test.  
+In Azure, un'infrastruttura interamente basata sul modello CiCd (Continuous Integration and Continuous Deployment) richiede la disponibilità di server statici o di lunga durata. È consigliabile che gli asset di Azure, come le reti virtuali e i gruppi di sicurezza di rete, siano risorse statiche, ovvero di lunga durata e distribuite raramente. Dopo essere stata distribuita, una rete virtuale può essere usata in nuove distribuzioni senza alcun effetto negativo sull'infrastruttura. È possibile aggiungere in seguito un server repository Git e un server di automazione Jenkins, è possibile distribuire un modello CiCd in questa rete virtuale per un ambiente di test o di sviluppo.  
 
-I nomi DNS interni sono risolvibili solo all'interno di una rete virtuale di Azure. I nomi DNS hello sono interni, pertanto non sono toohello risolvibile all'esterno di internet, offre un'infrastruttura toohello aggiuntiva di sicurezza.
+I nomi DNS interni sono risolvibili solo all'interno di una rete virtuale di Azure. Trattandosi di nomi interni, non sono risolvibili esternamente in Internet e garantiscono quindi una sicurezza aggiuntiva per l'infrastruttura.
 
-In hello negli esempi seguenti, sostituire i nomi dei parametri di esempio con i valori desiderati. I nomi dei parametri di esempio includono `myResourceGroup`, `myNic` e `myVM`.
+Nell'esempio seguente sostituire i nomi dei parametri di esempio con i valori desiderati. I nomi dei parametri di esempio includono `myResourceGroup`, `myNic` e `myVM`.
 
-## <a name="create-hello-resource-group"></a>Creare il gruppo di risorse hello
-Innanzitutto, creare il gruppo di risorse hello con [gruppo az creare](/cli/azure/group#create). esempio Hello crea un gruppo di risorse denominato `myResourceGroup` in hello `westus` percorso:
+## <a name="create-the-resource-group"></a>Creare il gruppo di risorse.
+Creare prima il gruppo di risorse con [az group create](/cli/azure/group#create). Nell'esempio seguente viene creato un gruppo di risorse denominato `myResourceGroup` nella località `westus`:
 
 ```azurecli
 az group create --name myResourceGroup --location westus
 ```
 
-## <a name="create-hello-virtual-network"></a>Creare una rete virtuale hello
+## <a name="create-the-virtual-network"></a>Creare la rete virtuale
 
-passaggio successivo Hello è toobuild toolaunch una rete virtuale hello macchine virtuali in. rete virtuale Hello contiene una subnet per questa procedura dettagliata. Per ulteriori informazioni su reti virtuali di Azure, vedere [creare una rete virtuale mediante Azure CLI hello](../../virtual-network/virtual-networks-create-vnet-arm-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). 
+Il passaggio successivo è creare una rete virtuale in cui avviare le VM. Ai fini di questa procedura, la rete virtuale contiene una subnet. Per altre informazioni sulle reti virtuali in Azure, vedere [Creare una rete virtuale usando l'interfaccia della riga di comando di Azure](../../virtual-network/virtual-networks-create-vnet-arm-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). 
 
-Creare una rete virtuale di hello con [creazione della rete virtuale di rete az](/cli/azure/network/vnet#create). esempio Hello crea una rete virtuale denominata `myVnet` e subnet denominata `mySubnet`:
+Creare la rete virtuale con [az network vnet create](/cli/azure/network/vnet#create). L'esempio seguente creata una rete virtuale denominata `myVnet` e una sottorete denominata `mySubnet`:
 
 ```azurecli
 az network vnet create \
@@ -89,10 +89,10 @@ az network vnet create \
     --subnet-prefix 192.168.1.0/24
 ```
 
-## <a name="create-hello-network-security-group"></a>Creare il gruppo di sicurezza di rete hello
-Azure i gruppi di sicurezza di rete sono equivalenti tooa firewall a livello di rete hello. Per ulteriori informazioni sui gruppi di sicurezza di rete, vedere [come NSGs toocreate in hello Azure CLI](../../virtual-network/virtual-networks-create-nsg-arm-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). 
+## <a name="create-the-network-security-group"></a>Creare il gruppo di sicurezza di rete
+I gruppi di sicurezza di rete di Azure sono analoghi a un firewall a livello di rete. Per altre informazioni sui gruppi di sicurezza di rete, vedere [Come creare gruppi di sicurezza di rete nell'interfaccia della riga di comando di Azure](../../virtual-network/virtual-networks-create-nsg-arm-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). 
 
-Creare un gruppo di sicurezza di rete hello con [rete az creare](/cli/azure/network/nsg#create). esempio Hello crea un gruppo di sicurezza di rete denominato `myNetworkSecurityGroup`:
+Creare il gruppo di sicurezza di rete con [az network nsg create](/cli/azure/network/nsg#create). Nell'esempio seguente viene creato un gruppo di sicurezza di rete denominato `myNetworkSecurityGroup`:
 
 ```azurecli
 az network nsg create \
@@ -100,8 +100,8 @@ az network nsg create \
     --name myNetworkSecurityGroup
 ```
 
-## <a name="add-an-inbound-rule-tooallow-ssh"></a>Aggiungere un tooallow regola in entrata SSH
-Aggiungere una regola in ingresso per il gruppo di sicurezza di rete hello con [creare una regola gruppo rete az](/cli/azure/network/nsg/rule#create). esempio Hello crea una regola denominata `myRuleAllowSSH`:
+## <a name="add-an-inbound-rule-to-allow-ssh"></a>Aggiungere una regola in entrata per consentire SSH
+Aggiungere una regole in ingresso per il gruppo di sicurezza di rete con [az network nsg rule create](/cli/azure/network/nsg/rule#create). Nell'esempio seguente viene creata una regola denominata `myRuleAllowSSH`:
 
 ```azurecli
 az network nsg rule create \
@@ -118,8 +118,8 @@ az network nsg rule create \
     --access allow
 ```
 
-## <a name="associate-hello-subnet-with-hello-network-security-group"></a>Associare subnet hello hello il gruppo di sicurezza di rete
-subnet hello tooassociate hello gruppo di sicurezza di rete, utilizzare [aggiornare subnet rete virtuale di rete az](/cli/azure/network/vnet/subnet#update). esempio Hello associa il nome di subnet hello `mySubnet` con il gruppo di sicurezza di rete denominata hello `myNetworkSecurityGroup`:
+## <a name="associate-the-subnet-with-the-network-security-group"></a>Associare la subnet con il gruppo di sicurezza di rete
+Per associare la subnet con il gruppo di sicurezza di rete usare [az network vnet subnet update](/cli/azure/network/vnet/subnet#update). L'esempio seguente associa il nome di subnet `mySubnet` al gruppo di sicurezza di rete `myNetworkSecurityGroup`:
 
 ```azurecli
 az network vnet subnet update \
@@ -130,10 +130,10 @@ az network vnet subnet update \
 ```
 
 
-## <a name="create-hello-virtual-network-interface-card-and-static-dns-names"></a>Creare una scheda di interfaccia di rete virtuale hello e i nomi DNS statici
-Azure è molto flessibile, ma toouse i nomi DNS per la risoluzione dei nomi di macchina virtuale, è necessario toocreate virtuale schede di rete (vNics) che includono un'etichetta DNS. vNics sono importanti per poterli usare di nuovo connettendo le macchine virtuali toodifferent sul ciclo di vita di hello infrastruttura. Questo approccio consente di mantenere hello vNic come una risorsa statica durante hello macchine virtuali può essere temporaneo. Tramite l'assegnazione di etichette su NIC virtuale hello DNS, siamo tooenable in grado di risoluzione dei nomi semplici da altre macchine virtuali nella rete virtuale hello. Utilizzo dei nomi di risolvibili consente altri server di automazione hello tooaccess macchine virtuali in base al nome DNS hello `Jenkins` o di server di Git hello `gitrepo`.  
+## <a name="create-the-virtual-network-interface-card-and-static-dns-names"></a>Creare la scheda di interfaccia di rete virtuale e i nomi DNS statici
+Sebbene Azure sia molto flessibile, per poter usare nomi DNS per la risoluzione dei nomi di VM è necessario creare schede di interfaccia di rete virtuale (vNic) che includano un'etichetta DNS. Le schede di interfaccia di rete virtuale sono importanti in quanto è possibile riutilizzarle connettendole a VM differenti nel ciclo di vita dell'infrastruttura. In questo modo la scheda di interfaccia di rete virtuale diventa una risorsa statica, mentre le VM possono essere temporanee. Applicando l'etichettatura DNS a una scheda di interfaccia di rete virtuale, è possibile abilitare nella rete virtuale la risoluzione di nomi semplici provenienti da altre VM. L'uso di nomi risolvibili consente anche ad altre macchine virtuali di accedere al server di automazione in base al nome DNS `Jenkins` o al server Git come `gitrepo`.  
 
-Creare una scheda di rete virtuale hello con [az rete nic creare](/cli/azure/network/nic#create). esempio Hello crea una scheda di rete virtuale denominata `myNic`, connetterla toohello `myVnet` rete virtuale denominata `myVnet`e viene creato un record di nome DNS interno denominato `jenkins`:
+Creare la vNic con il comando [az network nic create](/cli/azure/network/nic#create). L'esempio seguente crea una scheda di rete virtuale denominata `myNic`, la connette alla rete virtuale `myVnet` denominata `myVnet` e crea un record di nome DNS interno denominato `jenkins`:
 
 ```azurecli
 az network nic create \
@@ -144,10 +144,10 @@ az network nic create \
     --internal-dns-name jenkins
 ```
 
-## <a name="deploy-hello-vm-into-hello-virtual-network-infrastructure"></a>Distribuire hello VM nell'infrastruttura di rete virtuale hello
-È ora disponibile una rete virtuale e una subnet, un gruppo di sicurezza di rete che agisce come un tooprotect firewall la subnet bloccare tutto il traffico in ingresso, ad eccezione di porta 22 per SSH e una scheda di rete virtuale. Ora è possibile distribuire una VM all'interno di questa infrastruttura di rete esistente.
+## <a name="deploy-the-vm-into-the-virtual-network-infrastructure"></a>Distribuire la macchina virtuale nell'infrastruttura di rete virtuale
+A questo punto sono disponibili una rete virtuale e subnet, un gruppo di sicurezza di rete che funge da firewall per proteggere la subnet bloccando tutto il traffico in ingresso tranne quello verso la porta 22 per SSH e una scheda di interfaccia di rete virtuale. Ora è possibile distribuire una VM all'interno di questa infrastruttura di rete esistente.
 
-Creare una VM con il comando [az vm create](/cli/azure/vm#create). esempio Hello crea una macchina virtuale denominata `myVM` con i dischi di Azure gestita e collega hello vNic denominato `myNic` da hello passaggio precedente:
+Creare una VM con il comando [az vm create](/cli/azure/vm#create). L'esempio seguente crea una VM `myVM` con Managed Disks di Azure e collega la scheda di interfaccia di rete virtuale denominata `myNic` ottenuta dal passaggio precedente:
 
 ```azurecli
 az vm create \
@@ -159,7 +159,7 @@ az vm create \
     --ssh-key-value ~/.ssh/id_rsa.pub
 ```
 
-Utilizzando hello CLI flag toocall risorse esistente, è indicare hello toodeploy Azure VM all'interno di una rete esistente hello. tooreiterate, dopo una rete virtuale e subnet sono stati distribuiti, essi possono essere lasciati come statiche o permanente di risorse all'interno di propria area di Azure.  
+Usando i flag dell'interfaccia della riga di comando per chiamare le risorse esistenti, si indica ad Azure di distribuire la macchina virtuale all'interno della rete esistente. Come già detto, dopo essere state distribuite la rete virtuale e la subnet possono essere usate come risorse statiche o permanenti nell'area di Azure.  
 
 ## <a name="next-steps"></a>Passaggi successivi
 * [Creare un ambiente Linux completo mediante l'interfaccia della riga di comando di Azure](create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)

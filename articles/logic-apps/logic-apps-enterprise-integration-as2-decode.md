@@ -1,6 +1,6 @@
 ---
-title: i messaggi AS2 aaaDecode - App Azure per la logica | Documenti Microsoft
-description: Come toouse hello decodificatore AS2 nella hello Enterprise Integration Pack per le app di logica di Azure
+title: Messaggi Decode AS2 - App per la logica di Azure | Documentazione Microsoft
+description: Come usare il decodificatore AS2 in Enterprise Integration Pack in App per la logica di Azure
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: padmavc
@@ -14,22 +14,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/27/2016
 ms.author: LADocs; padmavc
-ms.openlocfilehash: 2406e5ec68e0906700fad97d60cb83ef0d106cd6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a7920b2509fe368c6f7d55e17fe0bf0020c4562c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="decode-as2-messages-for-azure-logic-apps-with-hello-enterprise-integration-pack"></a>Decodificare i messaggi AS2 per le app di Azure logica con hello Enterprise Integration Pack 
+# <a name="decode-as2-messages-for-azure-logic-apps-with-the-enterprise-integration-pack"></a>Messaggi Decode AS2 in App per la logica di Azure con Enterprise Integration Pack 
 
-tooestablish protezione e affidabilità durante la trasmissione di messaggi, utilizzare connettore di messaggi hello decodifica AS2. Questo connettore offre funzionalità di firma digitale, decrittografia e riconoscimenti tramite notifiche sulla ricezione di messaggi.
+Per stabilire affidabilità e sicurezza durante la trasmissione dei messaggi, usare il connettore di messaggi Decode AS2. Questo connettore offre funzionalità di firma digitale, decrittografia e riconoscimenti tramite notifiche sulla ricezione di messaggi.
 
 ## <a name="before-you-start"></a>Prima di iniziare
 
-Ecco gli elementi di hello che è necessario:
+Sono necessari gli elementi seguenti:
 
 * Un account Azure, che è possibile [creare gratuitamente](https://azure.microsoft.com/free)
-* Un [account di integrazione](logic-apps-enterprise-integration-create-integration-account.md) già definito e associato alla sottoscrizione di Azure. È necessario disporre di un connettore di messaggio integrazione account toouse hello decodifica AS2.
+* Un [account di integrazione](logic-apps-enterprise-integration-create-integration-account.md) già definito e associato alla sottoscrizione di Azure. Per usare il connettore di messaggi Decode AS2 è necessario un account di integrazione.
 * Almeno due [partner](logic-apps-enterprise-integration-partners.md) già definiti nell'account di integrazione.
 * Un [contratto AS2](logic-apps-enterprise-integration-as2.md) già definito nell'account di integrazione.
 
@@ -37,13 +37,13 @@ Ecco gli elementi di hello che è necessario:
 
 1. [Creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md).
 
-2. connettore di messaggi Hello decodifica AS2 non dispone di trigger, pertanto è necessario aggiungere un trigger per avviare l'app di logica, ad esempio un trigger di richiesta. Nella finestra di progettazione logica App hello, aggiungere un trigger e quindi aggiungere un'app di logica di azione tooyour.
+2. Il connettore di messaggi Decode AS2 non dispone di trigger, pertanto è necessario aggiungerne uno per avviare l'app per la logica, ad esempio un trigger di richiesta. In Progettazione app per la logica aggiungere un trigger e un'azione all'app per la logica.
 
-3.  Nella casella di ricerca hello, immettere "AS2" per il filtro. Selezionare **AS2 - Decodifica il messaggio AS2**.
+3.  Nella casella di ricerca, immettere "AS2" come filtro. Selezionare **AS2 - Decodifica il messaggio AS2**.
    
     ![Cercare "AS2"](media/logic-apps-enterprise-integration-as2-decode/as2decodeimage1.png)
 
-4. Se è stato creato in precedenza tutte le connessioni tooyour account di integrazione, viene chiesto toocreate ora tale connessione. Nome della connessione, quindi selezionare account di integrazione hello che si desidera tooconnect.
+4. Se non sono state create in precedenza le connessioni all'account di integrazione, a questo punto viene richiesto di creare la connessione. Denominare la connessione e selezionare l'account di integrazione al quale connettersi.
    
     ![Create una connessione di integrazione](media/logic-apps-enterprise-integration-as2-decode/as2decodeimage2.png)
 
@@ -52,13 +52,13 @@ Ecco gli elementi di hello che è necessario:
     | Proprietà | Dettagli |
     | --- | --- |
     | Nome connessione * |Immettere un nome per la connessione. |
-    | Account di integrazione * |Immettere un nome per l'account di integrazione. Assicurarsi che l'app di account e la logica di integrazione siano hello nello stesso percorso di Azure. |
+    | Account di integrazione * |Immettere un nome per l'account di integrazione. Verificare che l'account di integrazione e l'app per la logica si trovino nella stessa località di Azure. |
 
-5.  Al termine, i dettagli relativi alla connessione dovrebbero essere simile toothis esempio. toofinish della creazione della connessione, scegliere **crea**.
+5.  Al termine, i dettagli della connessione dovrebbero essere simili a quelli dell'esempio seguente. Per completare la creazione della connessione, scegliere **Crea**.
 
     ![Dettagli della connessione di integrazione](media/logic-apps-enterprise-integration-as2-decode/as2decodeimage3.png)
 
-6. Dopo aver creata la connessione, come illustrato in questo esempio, selezionare **corpo** e **intestazioni** hello richiedere output.
+6. Dopo aver creato la connessione, come illustrato nell'esempio, selezionare **Corpo** e **Intestazioni** dagli output della richiesta.
    
     ![connessione di integrazione creata](media/logic-apps-enterprise-integration-as2-decode/as2decodeimage4.png) 
 
@@ -68,27 +68,27 @@ Ecco gli elementi di hello che è necessario:
 
 ## <a name="as2-decoder-details"></a>Dettagli del decodificatore AS2
 
-connettore di decodifica AS2 Hello esegue queste attività: 
+Il connettore Decode AS2 esegue queste attività: 
 
 * Elabora le intestazioni AS2/HTTP
-* Verifica firma hello (se configurata)
-* Consente di decrittografare i messaggi hello (se configurata)
-* Decomprime il messaggio hello (se configurata)
-* Riconcilia un MDN ricevuto con un messaggio in uscita originale hello
-* Aggiorna e correla i record nel database di non ripudio hello
+* Verifica la firma (se configurata)
+* Decrittografa i messaggi (se configurata)
+* Decomprime i messaggi (se configurata)
+* Riconcilia una notifica sulla ricezione del messaggio ricevuta con il messaggio in uscita originale
+* Aggiorna e mette in correlazione i record nel database di non ripudio
 * Scrive i record per la creazione di report di stato su AS2
-* il contenuto del payload di output hello è con codificata base64
-* Determina se un messaggio MDN è obbligatorio, se hello MDN deve essere sincrona o asincrona in base alla configurazione nell'accordo AS2
+* Il contenuto del payload di output è codificato con codifica Base 64
+* Determina se una notifica sulla ricezione del messaggio è obbligatoria, se deve essere sincrona o asincrona in base alla configurazione nel contratto AS2
 * Genera una notifica sulla ricezione del messaggio sincrona o asincrona, in base alle configurazioni nel contratto
-* Imposta proprietà e i token di correlazione hello in hello MDN
+* Imposta le proprietà e il token di correlazione nella notifica sulla ricezione del messaggio
 
 ## <a name="try-this-sample"></a>Provare questo esempio
 
-tootry la distribuzione di uno scenario di AS2 app ed esempio logica completamente operativo, vedere hello [AS2 scenario e il modello di applicazione logica](https://azure.microsoft.com/documentation/templates/201-logic-app-as2-send-receive/).
+Per distribuire un'app per la logica completamente operativa e uno scenario AS2 di esempio, vedere il [modello e lo scenario di app per la logica AS2](https://azure.microsoft.com/documentation/templates/201-logic-app-as2-send-receive/).
 
-## <a name="view-hello-swagger"></a>Swagger hello vista
-Vedere hello [swagger dettagli](/connectors/as2/). 
+## <a name="view-the-swagger"></a>Visualizzare il file Swagger
+Vedere i [dettagli del file Swagger](/connectors/as2/). 
 
 ## <a name="next-steps"></a>Passaggi successivi
-[Altre informazioni su hello Enterprise Integration Pack](logic-apps-enterprise-integration-overview.md) 
+[Altre informazioni su Enterprise Integration Pack](logic-apps-enterprise-integration-overview.md) 
 

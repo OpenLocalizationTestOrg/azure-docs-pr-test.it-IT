@@ -1,6 +1,6 @@
 ---
-title: aaaProtect dell'API di gestione API di Azure | Documenti Microsoft
-description: "Informazioni su come tooprotect dell'API di quote e limitazioni (limitazione di velocità) di criteri."
+title: Proteggere l'API con Gestione API di Azure | Microsoft Azure
+description: Informazioni su come proteggere l'API con criteri di quota e limitazione (limitazione della frequenza).
 services: api-management
 documentationcenter: 
 author: vladvino
@@ -14,106 +14,106 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: 3113fd277d434da0c051b8b90fd629a102bf4867
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 300b1d762a61c810dbffde5aaacd8a85f12c9fca
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="protect-your-api-with-rate-limits-using-azure-api-management"></a>Proteggere le API con limiti di frequenza usando Gestione API di Azure
-Questa guida viene illustrato come è facile tooadd protezione per l'API di back-end mediante criteri di limite e quota velocità con gestione API di Azure.
+Questa guida illustra quanto sia semplice aggiungere la protezione all'API back-end configurando il limite di frequenza e i criteri di quota con Gestione API di Azure.
 
-In questa esercitazione si creerà un prodotto di "Versione di valutazione gratuita" API che consente agli sviluppatori toomake backup too10 chiamate al minuto e backup tooa massimo di 200 chiamate alla settimana tooyour API utilizzando hello [frequenza delle chiamate limite per ogni sottoscrizione](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRate) e [ Quota di utilizzo di set per ogni sottoscrizione](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuota) criteri. Verrà quindi pubblicare API hello e testare i criteri di limite di frequenza hello.
+In questa esercitazione si creerà un prodotto API "Free Trial" che consente agli sviluppatori di eseguire fino a 10 chiamate al minuto e un massimo di 200 chiamate API alla settimana usando i criteri [Limit call rate per subscription](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRate) (Limita frequenza delle chiamate per sottoscrizione) e [Set usage quota per subscription](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuota) (Imposta quota di utilizzo per sottoscrizione). L'API verrà quindi pubblicata e verranno testati i criteri del limite di frequenza.
 
-Più avanzati la limitazione delle richieste di scenari con hello [frequenza limite dalla chiave](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRateByKey) e [quota dalla chiave](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuotaByKey) criteri, vedere [richiesta avanzata di limitazione delle richieste a gestione API di Azure](api-management-sample-flexible-throttling.md).
+Per scenari di limitazione più avanzati che usano i criteri [rate-limit-by-key](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRateByKey) e [quota-by-key](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuotaByKey), vedere [Limitazione avanzata delle richieste con Gestione API di Azure](api-management-sample-flexible-throttling.md).
 
-## <a name="create-product"></a>toocreate un prodotto
+## <a name="create-product"></a>Per creare un prodotto
 In questo passaggio si creerà un prodotto con una versione di valutazione gratuita che non richiede l'approvazione della sottoscrizione.
 
 > [!NOTE]
-> Se si già dispone di un prodotto configurato e si desidera toouse che per questa esercitazione, è possibile passare troppo[Configura frequenza delle chiamate per i criteri di limite e quota] [ Configure call rate limit and quota policies] e seguire l'esercitazione hello da lì, con il prodotto al posto del prodotto di valutazione gratuita di hello.
+> Se è già stato configurato un prodotto da usare in questa esercitazione, è possibile passare direttamente alla sezione [Configurare i criteri relativi a limiti di frequenza e quota delle chiamate][Configure call rate limit and quota policies] e seguire l'esercitazione da quel punto, usando il proprio prodotto al posto del prodotto Free Trial.
 > 
 > 
 
-tooget avviato, fare clic su **portale di pubblicazione** in hello portale di Azure per il servizio Gestione API.
+Per iniziare, fare clic sul **portale di pubblicazione** nel Portale di Azure relativo al servizio Gestione API.
 
 ![Portale di pubblicazione][api-management-management-console]
 
-> Se non è ancora stato creato un'istanza del servizio Gestione API, vedere [creare un'istanza del servizio Gestione API] [ Create an API Management service instance] in hello [gestione API in Gestione API di Azure prima] [ Manage your first API in Azure API Management] esercitazione.
+> Se non è ancora stata creata un'istanza del servizio Gestione API, vedere [Creare un'istanza di Gestione API][Create an API Management service instance] nell'esercitazione [Gestire la prima API in Gestione API di Azure][Manage your first API in Azure API Management].
 > 
 > 
 
-Fare clic su **prodotti** in hello **gestione API** menu hello toodisplay sinistro hello **prodotti** pagina.
+Scegliere **Prodotti** dal menu **Gestione API** sulla sinistra per visualizzare la pagina **Prodotti**.
 
 ![Add product][api-management-add-product]
 
-Fare clic su **Aggiungi prodotto** toodisplay hello **Aggiungi nuovo prodotto** la finestra di dialogo.
+Fare clic su **Aggiungi prodotto** (Aggiungi prodotto) per visualizzare la finestra di dialogo **Add new product** (Aggiungi nuovo prodotto).
 
 ![Aggiungi nuovo prodotto][api-management-new-product-window]
 
-In hello **titolo** digitare **versione di valutazione gratuita**.
+Nella casella **Titolo** digitare **Free Trial**.
 
-In hello **descrizione** casella, hello di tipo testo seguente: **i sottoscrittori non saranno in grado di toorun 10 chiamate al minuto backup tooa massimo di 200 chiamate/settimana dopo il quale viene negato l'accesso.**
+Digitare **I sottoscrittori potranno eseguire 10 chiamate al minuto per un massimo di 200 chiamate alla settimana, dopodiché l'accesso verrà negato** nella casella di testo **Descrizione**.
 
-Lo stato dei prodotti in Gestione API può essere Aperto o Protetto. Prodotti protetti devono essere toobefore sottoscritti possono essere utilizzati. mentre i prodotti aperti possono essere usati senza sottoscrizione. Verificare che **richiedono sottoscrizione** è toocreate selezionato un prodotto protetto che richiede una sottoscrizione. Questo è l'impostazione predefinita hello.
+Lo stato dei prodotti in Gestione API può essere Aperto o Protetto. Per poter usare i prodotti protetti, è necessario eseguire la sottoscrizione, mentre i prodotti aperti possono essere usati senza sottoscrizione. Per creare un prodotto protetto che richieda una sottoscrizione, assicurarsi che l'opzione **Require subscription** (Richiedi sottoscrizione) sia selezionata. Questa è l'impostazione predefinita.
 
-Se si desidera che un amministratore tooreview e accettare o rifiutare la sottoscrizione tenta toothis prodotto, selezionare **richiedono l'approvazione della sottoscrizione**. Se la casella di controllo hello non è selezionata, i tentativi di sottoscrizione sarà approvata automaticamente. In questo esempio, le sottoscrizioni vengono approvate automaticamente, in modo non si seleziona la casella hello.
+Se si preferisce che i tentativi di sottoscrizione del prodotto vengano esaminati e quindi accettati o rifiutati da un amministratore, selezionare **Richiedi approvazione della sottoscrizione**. Se la casella di controllo è deselezionata, i tentativi di sottoscrizione verranno approvati automaticamente. In questo esempio le sottoscrizioni vengono approvate automaticamente, quindi non selezionare la casella.
 
-sviluppatore tooallow account toosubscribe nuovo prodotto toohello più volte, seleziona hello **può supportare più sottoscrizioni simultanee** casella di controllo. Questa esercitazione non prevede l'uso di più sottoscrizioni simultanee, quindi lasciare la casella deselezionata.
+Per consentire agli account per sviluppatori di sottoscrivere più volte il nuovo prodotto, selezionare la casella di controllo **Consenti più sottoscrizioni simultanee** . Questa esercitazione non prevede l'uso di più sottoscrizioni simultanee, quindi lasciare la casella deselezionata.
 
-Dopo avere immesso tutti i valori, fare clic su **salvare** prodotto hello toocreate.
+Dopo aver immesso tutti i valori, fare clic su **Salva** per creare il prodotto.
 
 ![Product added][api-management-product-added]
 
-Per impostazione predefinita, i nuovi prodotti sono toousers visibile in hello **amministratori** gruppo. Verrà hello tooadd **sviluppatori** gruppo. Fare clic su **versione di valutazione gratuita**, quindi fare clic su hello **visibilità** scheda.
+Per impostazione predefinita, i nuovi prodotti sono visibili agli utenti nel gruppo **Amministratori** . Verrà ora aggiunto il gruppo **Sviluppatori** . Fare clic su **Free Trial** e fare clic sulla scheda **Visibilità**.
 
-> In Gestione API, i gruppi sono utilizzati toomanage hello visibilità dei prodotti toodevelopers. Prodotti concedono toogroups visibilità e gli sviluppatori possono visualizzare e sottoscrivere i prodotti toohello toohello visibili i gruppi in cui appartengono. Per ulteriori informazioni, vedere [come toocreate e utilizzare i gruppi in Gestione API di Azure][How toocreate and use groups in Azure API Management].
+> In Gestione API i gruppi permettono di gestire quali prodotti sono visibili per gli sviluppatori. I prodotti garantiscono la visibilità ai gruppi e gli sviluppatori possono visualizzare ed effettuare la sottoscrizione ai prodotti visibili ai gruppi ai quali appartengono. Per altre informazioni, vedere [Come creare e usare i gruppi in Gestione API di Azure][How to create and use groups in Azure API Management].
 > 
 > 
 
 ![Add developers group][api-management-add-developers-group]
 
-Seleziona hello **sviluppatori** casella di controllo e quindi fare clic su **salvare**.
+Selezionare la casella di controllo **Sviluppatori** e quindi fare clic su **Salva**.
 
-## <a name="add-api"></a>tooadd un'API toohello prodotto
-In questo passaggio dell'esercitazione hello, si aggiungeranno hello API Echo toohello nuova versione di valutazione gratuita del prodotto.
+## <a name="add-api"></a>Per aggiungere un'API al prodotto
+In questo passaggio dell'esercitazione si aggiungerà l'API My Echo al nuovo prodotto Free Trial.
 
-> Ogni istanza del servizio Gestione API preconfigurata con un'API Echo che possono essere tooexperiment utilizzati con e acquisire informazioni su gestione API. Per altre informazioni, vedere [Gestire la prima API in Gestione API di Azure][Manage your first API in Azure API Management].
+> Ogni istanza del servizio Gestione API è preconfigurata con un'API Echo utilizzabile per sperimentare e ottenere altre informazioni su Gestione API. Per altre informazioni, vedere [Gestire la prima API in Gestione API di Azure][Manage your first API in Azure API Management].
 > 
 > 
 
-Fare clic su **prodotti** da hello **gestione API** menu hello a sinistra e quindi fare clic su **versione di valutazione gratuita** prodotto hello tooconfigure.
+Scegliere **Prodotti** dal menu **Gestione API** a sinistra e quindi fare clic su **Free Trial** per configurare il prodotto.
 
 ![Configure product][api-management-configure-product]
 
-Fare clic su **tooproduct aggiungere API**.
+Fare clic su **Aggiungi API al prodotto**.
 
-![Aggiungere tooproduct API][api-management-add-api]
+![Aggiungi API al prodotto][api-management-add-api]
 
 Selezionare **Echo API** (API Echo) e quindi fare clic su **Salva**.
 
 ![Add Echo API][api-management-add-echo-api]
 
-## <a name="policies"></a>tooconfigure criteri di limite e quota di frequenza delle chiamate
-I limiti di velocità e le quote sono configurate nell'editor Criteri di hello. i criteri di Hello due verrà aggiunta in questa esercitazione sono hello [frequenza delle chiamate limite per ogni sottoscrizione](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRate) e [Set quota di utilizzo per ogni sottoscrizione](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuota) criteri. Nell'ambito del prodotto hello, è necessario applicare questi criteri.
+## <a name="policies"></a>Per configurare i criteri relativi a limiti di frequenza e quota delle chiamate
+I limiti di frequenza e le quote vengono configurate nell'editor dei criteri. In questa esercitazione verranno aggiunti i due criteri [Limit call rate per subscription](https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRate) (Limita frequenza delle chiamate per sottoscrizione) e [Set usage quota per subscription](https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuota) (Imposta quota di utilizzo per sottoscrizione). Questi criteri devono essere applicati nell'ambito del prodotto.
 
-Fare clic su **criteri** in hello **gestione API** menu di sinistra hello. In hello **prodotto** elenco, fare clic su **versione di valutazione gratuita**.
+Scegliere **Criteri** dal menu **Gestione API** a sinistra. Nell'elenco **Prodotto** fare clic su **Free Trial**.
 
 ![Product policy][api-management-product-policy]
 
-Fare clic su **Aggiungi criterio** tooimport hello modello di criteri e avviare la creazione di criteri di limite e una quota di frequenza hello.
+Fare clic su **Aggiungi criteri** per importare il modello dei criteri e iniziare a creare i criteri relativi a limiti di frequenza e quota.
 
 ![Aggiungi criteri][api-management-add-policy]
 
-Frequenza limite e quota criteri vengono in ingresso, in tal caso posizione hello cursore nell'elemento di hello in ingresso.
+I criteri relativi a limiti di frequenza e quota sono criteri in ingresso, di conseguenza posizionare il cursore nell'elemento in ingresso.
 
 ![Policy editor][api-management-policy-editor-inbound]
 
-Scorrere l'elenco di hello dei criteri e individuare hello **frequenza delle chiamate limite per ogni sottoscrizione** voce di criterio.
+Scorrere l'elenco dei criteri e individuare la voce del criterio **Limit call rate per subscription** (Limita frequenza delle chiamate per sottoscrizione).
 
 ![Policy statements][api-management-limit-policies]
 
-Dopo aver hello cursore viene posizionato nel hello **in ingresso** elemento dei criteri, fare clic sulla freccia di hello accanto a **frequenza delle chiamate limite per ogni sottoscrizione** tooinsert il relativo modello di criteri.
+Dopo aver posizionato il cursore nell'elemento dei criteri **inbound**, fare clic sulla freccia accanto a **Limit call rate per subscription** (Limita frequenza chiamate per sottoscrizione) per inserire il modello dei criteri corrispondente.
 
 ```xml
 <rate-limit calls="number" renewal-period="seconds">
@@ -123,21 +123,21 @@ Dopo aver hello cursore viene posizionato nel hello **in ingresso** elemento dei
 </rate-limit>
 ```
 
-Come si può vedere dal frammento di codice hello, criteri hello consentono l'impostazione dei limiti per le API del prodotto hello e le operazioni. In questa esercitazione è non utilizzare tale funzionalità, quindi eliminare hello **api** e **operazione** gli elementi da hello **limite di velocità** elemento, tale che solo hello outer **limite di velocità** rimarrà elemento, come illustrato nell'esempio seguente hello.
+Come è possibile rilevare dal frammento, il criterio consente di impostare limiti per le operazioni e le API del prodotto. In questa esercitazione non verrà usata tale funzionalità, quindi eliminare gli elementi **api** e **operation** dall'elemento **rate-limit**, in modo che resti solo l'elemento **rate-limit** esterno, come illustrato nell'esempio seguente.
 
 ```xml
 <rate-limit calls="number" renewal-period="seconds">
 </rate-limit>
 ```
 
-Nel prodotto di valutazione gratuita di hello, frequenza massima consentita di chiamata hello è 10 chiamate al minuto, quindi digitare **10** come valore hello hello **chiamate** attributo, e **60** per hello **periodo di rinnovo** attributo.
+Nel prodotto Free Trial la frequenza massima consentita è pari a 10 chiamate al minuto. Digitare quindi **10** come valore dell'attributo **calls** e **60** per l'attributo **renewal-period**.
 
 ```xml
 <rate-limit calls="10" renewal-period="60">
 </rate-limit>
 ```
 
-hello tooconfigure **Set quota di utilizzo per ogni sottoscrizione** criteri, posizione del cursore immediatamente di sotto di hello appena aggiunti **limite di velocità** elemento all'interno di hello **in ingresso** elemento, quindi individuare e fare clic su hello freccia toohello sinistro **Set quota di utilizzo per ogni sottoscrizione**.
+Per configurare il criterio **Set usage quota per subscription** (Imposta quota di utilizzo per sottoscrizione), posizionare il cursore immediatamente sotto il nuovo elemento **rate-limit** aggiunto nell'elemento **inbound** e quindi individuare la freccia a sinistra di **Set usage quota per subscription** (Imposta quota di utilizzo per sottoscrizione) e fare clic su di essa.
 
 ```xml
 <quota calls="number" bandwidth="kilobytes" renewal-period="seconds">
@@ -147,32 +147,32 @@ hello tooconfigure **Set quota di utilizzo per ogni sottoscrizione** criteri, po
 </quota>
 ```
 
-Allo stesso modo toohello **Set quota di utilizzo per ogni sottoscrizione** criteri, **Set quota di utilizzo per ogni sottoscrizione** criteri consentono l'impostazione di delimitatori per le API del prodotto hello e operazioni. In questa esercitazione è non utilizzare tale funzionalità, quindi eliminare hello **api** e **operazione** gli elementi da hello **quota** elemento, come illustrato nell'esempio seguente hello.
+Analogamente al criterio **Limit call rate per subscription** (Limita frequenza delle chiamate per sottoscrizione), il criterio **Set usage quota per subscription** (Imposta quota di utilizzo per sottoscrizione) consente di impostare limiti massimi per le operazioni e le API del prodotto. In questa esercitazione non verrà usata tale funzionalità, quindi eliminare gli elementi **api** e **operation** dall'elemento **quota**, come illustrato nell'esempio seguente.
 
 ```xml
 <quota calls="number" bandwidth="kilobytes" renewal-period="seconds">
 </quota>
 ```
 
-Le quote possono essere basate sul numero di hello chiamate per intervallo, la larghezza di banda o entrambi. In questa esercitazione è non stiamo la limitazione della larghezza di banda in base, quindi eliminare hello **della larghezza di banda** attributo.
+Le quote possono essere basate sul numero di chiamate per intervallo, larghezza di banda o entrambi. In questa esercitazione non verrà applicata la limitazione in base alla larghezza di banda, di conseguenza eliminare l'attributo **bandwidth** .
 
 ```xml
 <quota calls="number" renewal-period="seconds">
 </quota>
 ```
 
-Nel prodotto di valutazione gratuita di hello, quota hello è 200 chiamate alla settimana. Specificare **200** come valore hello hello **chiamate** attributo e quindi specificare **604800** come valore hello hello **periodo di rinnovo** attributo.
+Nel prodotto Free Trial la quota è pari a 200 chiamate alla settimana. Specificare **200** come valore dell'attributo **calls** e **604800** come valore dell'attributo **renewal-period**.
 
 ```xml
 <quota calls="200" renewal-period="604800">
 </quota>
 ```
 
-> Gli intervalli dei criteri sono specificati in secondi. intervallo di hello toocalculate per una settimana, è possibile moltiplicare hello numero di giorni (7 tramite un numero di ore del giorno (24) tramite un numero di minuti in un'ora (60) tramite un numero di secondi in un minuto (60) hello hello hello): 7 * 24 * 60 * 60 = 604800.
+> Gli intervalli dei criteri sono specificati in secondi. Per calcolare l'intervallo per una settimana, è possibile moltiplicare il numero di giorni (7) per il numero di ore in una giornata (24) per il numero di minuti in un'ora (60) per il numero di secondi in un minuto (60): 7 * 24 * 60 * 60 = 604800.
 > 
 > 
 
-Al termine della configurazione dei criteri di hello, deve corrispondere a hello di esempio seguente.
+Una volta completata la configurazione, i criteri dovrebbero essere simili a quelli dell'esempio seguente.
 
 ```xml
 <policies>
@@ -192,27 +192,27 @@ Al termine della configurazione dei criteri di hello, deve corrispondere a hello
 </policies>
 ```
 
-Dopo hello desiderato sono configurati i criteri, fare clic su **salvare**.
+Dopo avere configurato i criteri desiderati, fare clic su **Salva**.
 
 ![Save policy][api-management-policy-save]
 
-## <a name="publish-product"></a> prodotto hello toopublish
-Ora che hello hello API vengono aggiunti e configurati i criteri di hello, prodotto hello deve essere pubblicata in modo che possono essere usata dagli sviluppatori. Fare clic su **prodotti** da hello **gestione API** menu hello a sinistra e quindi fare clic su **versione di valutazione gratuita** prodotto hello tooconfigure.
+## <a name="publish-product"></a> Per pubblicare il prodotto
+A questo punto dopo aver aggiunto le API e aver configurato i criteri, il prodotto deve essere pubblicato per poter essere usato dagli sviluppatori. Scegliere **Prodotti** dal menu **Gestione API** a sinistra e quindi fare clic su **Free Trial** per configurare il prodotto.
 
 ![Configure product][api-management-configure-product]
 
-Fare clic su **pubblica**, quindi fare clic su **Sì, pubblicarlo** tooconfirm.
+Fare clic su **Pubblica**, quindi su **Yes, publish it** (Sì, pubblica) per confermare.
 
 ![Pubblicazione prodotto][api-management-publish-product]
 
-## <a name="subscribe-account"></a>toosubscribe un prodotto di toohello account sviluppatore
-Ora prodotto hello viene pubblicato, è disponibile toobe sottoscritto tooand utilizzato dagli sviluppatori.
+## <a name="subscribe-account"> </a>Per sottoscrivere un account per sviluppatore al prodotto
+Una volta pubblicato, il prodotto è disponibile per essere sottoscritto e usato dagli sviluppatori.
 
-> Gli amministratori di un'istanza di gestione API sono prodotto tooevery automaticamente sottoscritto. In questo passaggio dell'esercitazione, verrà sottoscrivere uno dei prodotti di hello developer non amministratore account toohello versione di valutazione gratuita. Se l'account sviluppatore fa parte del ruolo amministratori di hello, è possibile proseguire con questo passaggio, anche se già iscritto.
+> Gli amministratori di un'istanza di Gestione API sono automaticamente sottoscritti a tutti i prodotti. In questo passaggio dell'esercitazione verrà effettuata la sottoscrizione di uno degli account per sviluppatore non amministratore per il prodotto Free Trial. Se l'account per sviluppatore fa parte del ruolo Amministratori, è possibile procedere con questo passaggio anche se si è già effettuata la sottoscrizione.
 > 
 > 
 
-Fare clic su **utenti** su hello **gestione API** menu hello a sinistra e quindi fare clic su nome hello del tuo account sviluppatore. In questo esempio, utilizziamo hello **Clayton Gragg** account sviluppatore.
+Scegliere **Utenti** dal menu **Gestione API** a sinistra e fare clic sul nome dell'account per sviluppatore. In questo esempio verrà usato l'account per sviluppatore **Clayton Gragg** .
 
 ![Configure developer][api-management-configure-developer]
 
@@ -225,23 +225,23 @@ Selezionare **Free Trial** e quindi fare clic su **Sottoscrivi**.
 ![Aggiungi sottoscrizione][api-management-add-subscription]
 
 > [!NOTE]
-> In questa esercitazione, più sottoscrizioni simultanee non sono abilitate per il prodotto di valutazione gratuita di hello. In questo caso, sarebbe sottoscrizione hello tooname richiesta, come illustrato nell'esempio seguente hello.
+> In questa esercitazione non sono abilitate più sottoscrizioni simultanee per il prodotto con una versione di valutazione gratuita. Nel caso lo fossero, verrebbe richiesto di assegnare un nome alla sottoscrizione, come illustrato nell'esempio seguente.
 > 
 > 
 
 ![Aggiungi sottoscrizione][api-management-add-subscription-multiple]
 
-Dopo aver fatto clic **Sottoscrivi**, hello prodotto viene visualizzato in hello **sottoscrizione** elenco per l'utente hello.
+Dopo aver fatto clic su **Sottoscrivi**, il prodotto verrà visualizzato nell'elenco **Sottoscrizione** dell'utente.
 
 ![Sottoscrizione aggiunta][api-management-subscription-added]
 
-## <a name="test-rate-limit"></a>toocall un limite di frequenza hello operazione e di test
-Ora che hello prodotto di valutazione gratuita è configurato e pubblicato, è possibile chiamare alcune operazioni e testare i criteri di limite di frequenza hello.
-Portale per sviluppatori di toohello commutatore facendo **portale per sviluppatori** nel menu superiore destro di hello.
+## <a name="test-rate-limit"></a>Per chiamare un'operazione e testare il limite di frequenza
+A questo punto, dopo aver configurato e pubblicato il prodotto Free Trial, è possibile chiamare alcune operazioni e testare i criteri relativi ai limiti di frequenza.
+Passare al portale per sviluppatori facendo clic su **Portale per sviluppatori** nel menu in alto a destra.
 
 ![Portale per sviluppatori][api-management-developer-portal-menu]
 
-Fare clic su **API** in hello menu superiore e quindi fare clic su **API Echo**.
+Fare clic su **API** nel menu in alto e quindi su **Echo API** (API Echo).
 
 ![Portale per sviluppatori][api-management-developer-portal-api-menu]
 
@@ -249,29 +249,29 @@ Fare clic su **GET Resource** (GET su risorsa) e quindi su **Prova**.
 
 ![Open console][api-management-open-console]
 
-Mantenere i valori dei parametri di valore predefinito di hello e quindi selezionare la chiave di sottoscrizione per il prodotto di valutazione gratuita di hello.
+Mantenere i valori predefiniti dei parametri e selezionare la chiave della sottoscrizione per il prodotto con versione di valutazione gratuita.
 
 ![Chiave della sottoscrizione][api-management-select-key]
 
 > [!NOTE]
-> Se si dispone di più sottoscrizioni, essere certi tooselect hello chiave **versione di valutazione gratuita**, o altri criteri hello che sono stati configurati nei passaggi precedenti hello sarà attiva.
+> Se si hanno più sottoscrizioni, assicurarsi di selezionare la chiave per **Free Trial**, altrimenti i criteri configurati nei passaggi precedente non avranno effetto.
 > 
 > 
 
-Fare clic su **inviare**e quindi visualizzare la risposta hello. Hello nota **stato della risposta** di **200 OK**.
+Fare clic su **Invia**e quindi visualizzare la risposta. Notare che il valore di **Stato della risposta** è **200 OK**.
 
 ![Operation results][api-management-http-get-results]
 
-Fare clic su **inviare** con una frequenza maggiore di criteri di limite di frequenza hello di 10 chiamate al minuto. Criteri di limite di frequenza hello vengano superato, lo stato della risposta **429 troppo numerose richieste** viene restituito.
+Fare clic su **Invia** a una frequenza maggiore di quella dei criteri relativi ai limiti di frequenza pari a 10 chiamate al minuto. Al superamento dei criteri dei limiti di frequenza, viene restituito lo stato di risposta **429 Troppe richieste** .
 
 ![Operation results][api-management-http-get-429]
 
-Hello **contenuto della risposta** indica hello rimanenti intervallo prima di tentativi sarà ha esito positivo.
+In **Contenuto della risposta** è indicato che l'intervallo residuo prima dei nuovi tentativi avrà esito positivo.
 
-Quando il criterio di limite di velocità di hello di 10 chiamate al minuto è attivo, le chiamate successive avrà esito negativo fino a 60 secondi trascorsi da hello prima del prodotto prima è stato superato il limite di velocità hello di hello 10 chiamate con esito positivo toohello. In questo esempio hello rimanenti intervallo è 54 secondi.
+Quando sono attivi i criteri dei limiti di frequenza pari a 10 chiamate al minuto, le chiamate successive non verranno effettuate finché non trascorrono 60 secondi dalla prima delle 10 chiamate riuscite al prodotto precedenti al superamento del limite. In questo esempio l'intervallo residuo è di 54 secondi.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Osservare una dimostrazione dell'impostazione di limiti di velocità e le quote in hello seguente video.
+* Per una dimostrazione dell'impostazione dei limiti di frequenza e delle quote, vedere il video seguente.
 
 > [!VIDEO https://channel9.msdn.com/Blogs/AzureApiMgmt/Rate-Limits-and-Quotas/player]
 > 
@@ -304,24 +304,24 @@ Quando il criterio di limite di velocità di hello di 10 chiamate al minuto è a
 [api-management-subscription-added]: ./media/api-management-howto-product-with-rules/api-management-subscription-added.png
 [api-management-add-subscription-multiple]: ./media/api-management-howto-product-with-rules/api-management-add-subscription-multiple.png
 
-[How tooadd operations tooan API]: api-management-howto-add-operations.md
-[How tooadd and publish a product]: api-management-howto-add-products.md
+[How to add operations to an API]: api-management-howto-add-operations.md
+[How to add and publish a product]: api-management-howto-add-products.md
 [Monitoring and analytics]: ../api-management-monitoring.md
-[Add APIs tooa product]: api-management-howto-add-products.md#add-apis
+[Add APIs to a product]: api-management-howto-add-products.md#add-apis
 [Publish a product]: api-management-howto-add-products.md#publish-product
 [Manage your first API in Azure API Management]: api-management-get-started.md
-[How toocreate and use groups in Azure API Management]: api-management-howto-create-groups.md
-[View subscribers tooa product]: api-management-howto-add-products.md#view-subscribers
+[How to create and use groups in Azure API Management]: api-management-howto-create-groups.md
+[View subscribers to a product]: api-management-howto-add-products.md#view-subscribers
 [Get started with Azure API Management]: api-management-get-started.md
 [Create an API Management service instance]: api-management-get-started.md#create-service-instance
 [Next steps]: #next-steps
 
 [Create a product]: #create-product
 [Configure call rate limit and quota policies]: #policies
-[Add an API toohello product]: #add-api
-[Publish hello product]: #publish-product
-[Subscribe a developer account toohello product]: #subscribe-account
-[Call an operation and test hello rate limit]: #test-rate-limit
+[Add an API to the product]: #add-api
+[Publish the product]: #publish-product
+[Subscribe a developer account to the product]: #subscribe-account
+[Call an operation and test the rate limit]: #test-rate-limit
 
 [Limit call rate]: https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRate
 [Set usage quota]: https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuota

@@ -1,6 +1,6 @@
 ---
-title: configurare password single sign-on per un'applicazione Azure AD raccolta aaaProblem | Documenti Microsoft
-description: "Comprendere faccia persone problemi comuni di hello quando si configura Password Single Sign-on per le applicazioni che sono già elencati in hello raccolta di applicazioni Azure AD"
+title: Problema nella configurazione dell'accesso Single Sign-On basato su password per un'applicazione nella raccolta di Azure AD | Microsoft Docs
+description: Informazioni sui problemi comuni che si possono incontrare durante la configurazione dell'accesso Single Sign-On basato su password per applicazioni incluse nella raccolta delle applicazioni di Azure AD
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,98 +13,98 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 78c37c52453c375bf7ccbca6df5c9008be4ce642
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 58d29996a922fac6d295e753ba5d66d32e745a57
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="problem-configuring-password-single-sign-on-for-an-azure-ad-gallery-application"></a>Problema nella configurazione dell'accesso Single Sign-On basato su password per un'applicazione nella raccolta di Azure AD
 
-Questo articolo è utile faccia di persone di toounderstand hello comuni problemi quando si configura **Password Single Sign-on** con un'applicazione di raccolta di Azure AD.
+L'articolo descrive i problemi comuni che si possono incontrare durante la configurazione dell'accesso**Single Sign-On basato su password** con un'applicazione della raccolta di Azure AD.
 
-## <a name="credentials-are-filled-in-but-hello-extension-does-not-submit-them"></a>Le credenziali vengono compilate, ma non inviare estensione hello
+## <a name="credentials-are-filled-in-but-the-extension-does-not-submit-them"></a>Le credenziali vengono compilate, ma l'estensione non le invia
 
-Ciò in genere si verifica se l'accesso è stato modificato da fornitore dell'applicazione hello recente pagina tooadd un campo, modificare un identificatore sottostante è utilizzato i campi nome utente e password hello toodetect o come accesso hello l'esperienza per l'applicazione. Fortunatamente, in molti casi, Microsoft può rivolgersi applicazione fornitori toorapidly risolvere questi problemi.
+Questo problema si verifica in genere se il fornitore dell'applicazione ha modificato di recente la pagina di accesso per aggiungere un campo, modificare un identificatore sottostante che viene usato per rilevare i campi nome utente e password o modificare l'esperienza di accesso alla propria applicazione. In molti casi Microsoft può collaborare con i fornitori di applicazioni per risolvere i problemi rapidamente.
 
-Microsoft ha tooautomatically tecnologie rilevare quando interrompere le integrazioni, ma in alcuni casi non è in grado di toofind questi problemi destro stoccaggio oppure richiederà un certo tempo toofix. In caso di hello quando uno di questi integrazioni non funziona correttamente, Gradiremmo se è stato aperto un caso di supporto in modo è possibile risolvere più rapidamente possibile.
+Microsoft dispone di tecnologie per rilevare automaticamente queste interruzioni nelle integrazioni, ma a volte i problemi non vengono rilevati subito e richiedono tempo per essere risolti. Gli utenti che sperimentano questi problemi di integrazione sono invitati ad aprire un caso di supporto cosicché Microsoft possa correggere i problemi nel più breve tempo possibile.
 
-In aggiunta toothis, **in contatto con il fornitore dell'applicazione, se si** **inviarli ritenuti utili** in modo da poter usare tali toonatively integrare le applicazioni con Azure Active Directory. È possibile inviare hello fornitore toohello [elenco l'applicazione nella raccolta di applicazioni per Azure Active Directory hello](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing) tooget li avviati.
+**Se l'utente è inoltre in contatto con il fornitore dell'applicazione,****può inviargli la soluzione offerta da Microsoft** affinché si possa collaborare a integrare in modo nativo l'applicazione con Azure Active Directory. Per iniziare, è possibile indirizzare il fornitore all'[Inserimento dell'applicazione nella raccolta di applicazioni Azure Active Directory](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing).
 
-## <a name="credentials-are-filled-in-and-submitted-but-hello-page-indicates-hello-credentials-are-incorrect"></a>Le credenziali vengono compilate e inviate, ma la pagina hello indica hello credenziali non sono corrette
+## <a name="credentials-are-filled-in-and-submitted-but-the-page-indicates-the-credentials-are-incorrect"></a>Le credenziali vengono compilate e inoltrate, ma un messaggio nella pagina indica che le credenziali sono errate
 
-tooresolve questo problema, prima seguente hello di controllo:
+Per risolvere il problema, eseguire prima di tutto le operazioni seguenti:
 
--   Hanno utente hello innanzitutto provare troppo**accedere direttamente nel sito Web di applicazione toohello** con hello credenziali archiviate per loro.
+-   Chiedere all'utente di provare ad **accedere direttamente al sito Web dell'applicazione** con le credenziali archiviate.
 
-  * Se questa impostazione, è quindi necessario utente hello fare clic su hello **aggiornare le credenziali** pulsante hello **riquadro dell'applicazione** in hello **app** sezione di hello [applicazione Accedere al pannello](https://myapps.microsoft.com/) tooupdate li toohello più recente noto utilizza nome utente e password.
+  * Se riesce ad accedere, chiedergli di fare clic sul pulsante **Aggiorna credenziali** nell'**icona applicazione** della sezione **App** del [pannello di accesso dell'applicazione](https://myapps.microsoft.com/) per aggiornare le credenziali al nome utente e password funzionanti più recenti.
 
-   * Se è o un altro assegnato hello credenziali per l'utente, utente hello o assegnazione di applicazioni del gruppo passando toohello **utenti e gruppi** scheda dell'applicazione hello, selezionando l'assegnazione di hello e Fare clic su hello **credenziali di aggiornamento** pulsante.
+   * Se è stato un amministratore ad assegnare le credenziali per questo utente, individuare l'assegnazione dell'applicazione dell'utente o del gruppo passando alla scheda **Utenti gruppi** dell'applicazione, selezionando l'assegnazione e facendo clic sul pulsante**Aggiorna credenziali**.
 
--   Se le proprie credenziali utente hello assegnata dispone hello utente **controllare toobe assicurarsi che la password è scaduto in un'applicazione hello** e in tal caso, **aggiornare la password scaduta** accedendo toohello applicazione direttamente.
+-   Se è stato l'utente ad assegnarsi le credenziali, chiedergli di **verificare che la password dell'applicazione non sia scaduta** ed eventualmente **aggiornarla** accedendo all'applicazione direttamente.
 
-   * Dopo aver aggiornata la password di hello in un'applicazione hello, richiedere hello di hello utente tooclick **aggiornare le credenziali** pulsante hello **riquadro dell'applicazione** in hello **app** sezione di hello [Pannello di accesso dell'applicazione](https://myapps.microsoft.com/) tooupdate li toohello più recente noto utilizza nome utente e password.
+   * Dopo che la password è stata aggiornata nell'applicazione, chiedere all'utente di fare clic sul pulsante **Aggiorna credenziali** nell'**icona applicazione** della sezione **App** del [pannello di accesso dell'applicazione](https://myapps.microsoft.com/) per aggiornare le credenziali al nome utente e password funzionanti più recenti.
 
-   * Se è o un altro assegnato hello credenziali per l'utente, utente hello o assegnazione di applicazioni del gruppo passando toohello **utenti e gruppi** scheda dell'applicazione hello, selezionando l'assegnazione di hello e Fare clic su hello **credenziali di aggiornamento** pulsante.
+   * Se è stato un amministratore ad assegnare le credenziali per questo utente, individuare l'assegnazione dell'applicazione dell'utente o del gruppo passando alla scheda **Utenti gruppi** dell'applicazione, selezionando l'assegnazione e facendo clic sul pulsante**Aggiorna credenziali**.
 
--   Hanno estensione browser hello utente aggiornamento hello accesso pannello seguendo procedure hello seguito hello [come tooinstall hello estensione Browser Pannello di accesso](#how-to-install-the-access-panel-browser-extension) sezione.
+-   Chiedere all'utente di aggiornare l'estensione del browser del pannello di accesso seguendo la procedura indicata nella sezione [Come installare l'estensione del browser del pannello di accesso](#how-to-install-the-access-panel-browser-extension).
 
--   Verificare che l'estensione browser del Pannello di accesso hello sia in esecuzione e attivati nel browser dell'utente.
+-   Assicurarsi che l'estensione sia funzionante e abilitata nel browser dell'utente.
 
--   Verificare che gli utenti non siano cercando toosign nell'applicazione toohello dal Pannello di accesso hello durante in **modalità privata, inPrivate o incognito**. estensione del Pannello di accesso Hello non è supportata in queste modalità.
+-   Assicurarsi che gli utenti non stiano tentando di accedere all'applicazione dal pannello di accesso in **modalità privata o in incognito**. L'estensione del pannello di accesso non è supportata in queste modalità.
 
-Nel caso in cui il problema persiste, potrebbe essere case hello che è stata modificata sul lato applicazione hello che è temporaneamente interrotta l'integrazione dell'applicazione hello con Azure AD. Ad esempio, ciò può verificarsi quando il fornitore dell'applicazione hello introduce uno script nella pagina che si comporta in modo diverso per vs manuale automatico di input, causando automatizzata integrazione, ad esempio nostro, toobreak. Fortunatamente, in molti casi, Microsoft può rivolgersi applicazione fornitori toorapidly risolvere questi problemi.
+Se il problema persiste, è possibile che sia stata apportata una modifica sul lato applicazione che ha interrotto temporaneamente l'integrazione dell'applicazione con Azure AD. Il fornitore dell'applicazione potrebbe, ad esempio, aver introdotto nella pagina uno script con un comportamento che varia tra l'input manuale e l'input automatico e che causa l'interruzione nell'integrazione automatica. In molti casi Microsoft può collaborare con i fornitori di applicazioni per risolvere i problemi rapidamente.
 
-Microsoft ha tooautomatically tecnologie rilevare quando interrompere le integrazioni, ma in alcuni casi non è in grado di toofind questi problemi destro stoccaggio oppure richiederà un certo tempo toofix. In caso di hello quando uno di questi integrazioni non funziona correttamente, Gradiremmo se è stato aperto un caso di supporto in modo è possibile risolvere più rapidamente possibile.
+Microsoft dispone di tecnologie per rilevare automaticamente queste interruzioni nelle integrazioni, ma a volte i problemi non vengono rilevati subito e richiedono tempo per essere risolti. Gli utenti che sperimentano questi problemi di integrazione sono invitati ad aprire un caso di supporto cosicché Microsoft possa correggere i problemi nel più breve tempo possibile.
 
-In aggiunta toothis, **in contatto con il fornitore dell'applicazione, se si** **inviarli ritenuti utili** in modo da poter usare tali toonatively integrare le applicazioni con Azure Active Directory. È possibile inviare hello fornitore toohello [elenco l'applicazione nella raccolta di applicazioni per Azure Active Directory hello](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing) tooget li avviati.
+**Se l'utente è inoltre in contatto con il fornitore dell'applicazione,****può inviargli la soluzione offerta da Microsoft** affinché si possa collaborare a integrare in modo nativo l'applicazione con Azure Active Directory. Per iniziare, è possibile indirizzare il fornitore all'[Inserimento dell'applicazione nella raccolta di applicazioni Azure Active Directory](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing).
 
-## <a name="hello-extension-works-in-chrome-and-firefox-but-not-in-internet-explorer"></a>Hello estensione può essere utilizzata in Chrome e Firefox, ma non in Internet Explorer
+## <a name="the-extension-works-in-chrome-and-firefox-but-not-in-internet-explorer"></a>L'estensione funziona in Chrome e Firefox, ma non in Internet Explorer
 
-Esistono due cause principali toothis problema:
+Esistono due soluzioni principali a questo problema:
 
--   A seconda delle impostazioni di sicurezza hello abilitate in Internet Explorer, se il sito Web di hello non è parte di un **attendibili**, in alcuni casi lo script venga impedito l'esecuzione di un'applicazione hello.
+-   A seconda delle impostazioni di sicurezza abilitate in Internet Explorer, se il sito Web non rientra in un'**area attendibile**, è possibile che allo script Microsoft venga impedito di eseguire l'applicazione.
 
-  *  tooresolve, indicare utente hello troppo**Aggiungi sito Web dell'applicazione hello** toohello **siti attendibili** elenco all'interno di loro **le impostazioni di sicurezza di Internet Explorer**. È possibile inviare il toohello utenti [come tooadd toomy un sito attendibile siti elenco](https://answers.microsoft.com/en-us/ie/forum/ie9-windows_7/how-do-i-add-a-site-to-my-trusted-sites-list/98cc77c8-b364-e011-8dfc-68b599b31bf5) articolo per informazioni dettagliate.
+  *  Per risolvere il problema, chiedere all'utente di **aggiungere il sito Web dell'applicazione** all'elenco **Siti attendibili** nelle **impostazioni di sicurezza di Internet Explorer**. Per le istruzioni dettagliate, rimandare l'utente all'articolo relativo a [come aggiungere un sito all'elenco dei siti attendibili](https://answers.microsoft.com/en-us/ie/forum/ie9-windows_7/how-do-i-add-a-site-to-my-trusted-sites-list/98cc77c8-b364-e011-8dfc-68b599b31bf5).
 
--   In rare circostanze, la convalida di sicurezza di Internet Explorer può talvolta causare tooload pagina hello più lento rispetto a esecuzione hello dello script.
+-   La convalida di sicurezza di Internet Explorer può, in casi rari, fare sì che pagina venga caricata più lentamente rispetto all'esecuzione dello script Microsoft.
 
-   * Sfortunatamente, questa situazione può variare a seconda versione del browser hello, velocità del computer o al sito visitato. In questo caso, si consiglia di contattare il supporto in modo è possibile risolvere l'errore integrazione hello per questa applicazione specifica.
+   * Questa situazione può variare a seconda della versione del browser in uso, della velocità del computer o del sito visitato. Si consiglia in questo caso di contattare il supporto Microsoft in modo da correggere l'integrazione per questa applicazione specifica.
 
-In aggiunta toothis, **in contatto con il fornitore dell'applicazione, se si** **inviarli ritenuti utili** in modo da poter usare tali toonatively integrare le applicazioni con Azure Active Directory. È possibile inviare hello fornitore toohello [elenco l'applicazione nella raccolta di applicazioni per Azure Active Directory hello](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing) tooget li avviati.
+**Se l'utente è inoltre in contatto con il fornitore dell'applicazione,** **può inviargli la soluzione offerta da Microsoft** affinché si possa collaborare a integrare in modo nativo l'applicazione con Azure Active Directory. Per iniziare, è possibile indirizzare il fornitore all'[Inserimento dell'applicazione nella raccolta di applicazioni Azure Active Directory](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing).
 
-## <a name="check-if-hello-applications-login-page-has-changed-recently-or-requires-an-additional-field"></a>Controllare se hello pagina di accesso dell'applicazione è stato modificato di recente o richiede un campo aggiuntivo
+## <a name="check-if-the-applications-login-page-has-changed-recently-or-requires-an-additional-field"></a>Controllare se la pagina di accesso dell'applicazione è cambiata di recente o richiede un campo aggiuntivo
 
-Se la pagina di accesso dell'applicazione hello è cambiata drasticamente, talvolta in questo modo il nostro toobreak integrazioni. Un esempio è quando un fornitore dell'applicazione aggiunge un segno di campo, un captcha, o si verifica nel tootheir multi-factor authentication. Fortunatamente, in molti casi, Microsoft può rivolgersi applicazione fornitori toorapidly risolvere questi problemi.
+Se la pagina di accesso dell'applicazione è cambiata drasticamente, talvolta è possibile che si verifichi un'interruzione dell'integrazione. Un esempio è quando il fornitore dell'applicazione aggiunge un campo di accesso, un captcha o l'autenticazione a più fattori. In molti casi Microsoft può collaborare con i fornitori di applicazioni per risolvere i problemi rapidamente.
 
-Mentre Microsoft include le tecnologie tooautomatically rilevare quando interrompere le integrazioni, ma in alcuni casi non è in grado di toofind questi problemi sin da subito. In caso contrario hanno alcune toofix ora. In caso di hello quando uno di questi integrazioni non funziona correttamente, Gradiremmo apertura di un caso di supporto in modo è possibile risolvere più rapidamente possibile.
+Microsoft dispone di tecnologie per rilevare automaticamente queste interruzioni nelle integrazioni, ma a volte i problemi non vengono rilevati subito e richiedono tempo per essere risolti. Gli utenti che sperimentano questi problemi di integrazione sono invitati ad aprire un caso di supporto cosicché Microsoft possa correggere i problemi nel più breve tempo possibile.
 
-In aggiunta toothis, **in contatto con il fornitore dell'applicazione, se si** **inviarli ritenuti utili** in modo da poter usare tali toonatively integrare le applicazioni con Azure Active Directory. È possibile inviare hello fornitore toohello [elenco l'applicazione nella raccolta di applicazioni per Azure Active Directory hello](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing) tooget li avviati.
+**Se l'utente è inoltre in contatto con il fornitore dell'applicazione,** **può inviargli la soluzione offerta da Microsoft** affinché si possa collaborare a integrare in modo nativo l'applicazione con Azure Active Directory. Per iniziare, è possibile indirizzare il fornitore all'[Inserimento dell'applicazione nella raccolta di applicazioni Azure Active Directory](https://docs.microsoft.com/azure/active-directory/develop/active-directory-app-gallery-listing).
 
-## <a name="how-tooinstall-hello-access-panel-browser-extension"></a>Come tooinstall hello estensione Browser Pannello di accesso
+## <a name="how-to-install-the-access-panel-browser-extension"></a>Come installare l'estensione del browser per il pannello di accesso
 
-hello tooinstall estensione Browser Pannello di accesso, le operazioni di hello seguenti:
+Per installare l'estensione del browser per il pannello di accesso, seguire questa procedura:
 
-1.  Aprire hello [Pannello di accesso](https://myapps.microsoft.com) in uno dei browser supportato hello e accedere come un **utente** in Azure AD.
+1.  Aprire il [pannello di accesso](https://myapps.microsoft.com) in uno dei browser supportati e accedere come **utente** ad Azure AD.
 
-2.  Fare clic su un **applicazione password SSO** in hello Pannello di accesso.
+2.  Fare clic su un'**applicazione con accesso SSO basato su password** nel pannello di accesso.
 
-3.  Hello prompt dei comandi in cui viene chiesto tooinstall hello selezionare software **installa**.
+3.  Quando viene richiesto di installare il software, selezionare **Installa ora**.
 
-4.  Basata sul browser è il collegamento di download toohello diretto. **Aggiungere** browser tooyour di estensione hello.
+4.  A seconda del browser in uso, si verrà indirizzati al collegamento per il download. **Aggiungere** l'estensione al browser.
 
-5.  Se il browser viene richiesto, selezionare tooeither **abilitare** o **Consenti** hello estensione.
+5.  Se richiesto dal browser, scegliere se **abilitare** o **consentire** l'uso dell'estensione.
 
 6.  Al termine dell'installazione, **riavviare** la sessione del browser.
 
-7.  Accedere in hello Pannello di accesso e di vedere se è possibile **avviare** applicazioni password SSO
+7.  Accedere al pannello di accesso e verificare se è possibile **avviare** le applicazioni con accesso SSO basato su password.
 
-È anche possibile scaricare l'estensione hello per Chrome e Firefox dai collegamenti diretti hello riportato di seguito:
+È anche possibile scaricare l'estensione per Chrome e Firefox dai collegamenti diretti seguenti:
 
 -   [Estensione Pannello di accesso per Chrome](https://chrome.google.com/webstore/detail/access-panel-extension/ggjhpefgjjfobnfoldnjipclpcfbgbhl)
 
 -   [Estensione Pannello di accesso per Firefox](https://addons.mozilla.org/firefox/addon/access-panel-extension/)
 
 ## <a name="next-steps"></a>Passaggi successivi
-[Fornire le applicazioni single sign-on tooyour con Proxy dell'applicazione](active-directory-application-proxy-sso-using-kcd.md)
+[Fornire l'accesso Single Sign-On alle app con il proxy di applicazione](active-directory-application-proxy-sso-using-kcd.md)
 

@@ -1,6 +1,6 @@
 ---
-title: aaa"caricamento di file in un account di servizi multimediali tramite hello portale di Azure | Documenti di Microsoft"
-description: In questa esercitazione vengono illustrati i passaggi hello di caricamento dei file in un account di servizi multimediali tramite hello portale di Azure
+title: Caricare file in un account Servizi multimediali nel portale di Azure | Microsoft Docs
+description: Questa esercitazione illustra la procedura di caricamento di file in un account Servizi multimediali nel portale di Azure.
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,58 +14,54 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/07/2017
 ms.author: juliako
-ms.openlocfilehash: 4ce1e133c72854532735ba7c72a43c92a75bc240
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7ddfe44918b358a1749640d1c93dba490855cc5a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="upload-files-into-a-media-services-account-using-hello-azure-portal"></a>Caricare file in un account di servizi multimediali tramite hello portale di Azure
+# <a name="upload-files-to-a-media-services-account-in-the-azure-portal"></a>Caricare file in un account Servizi multimediali nel portale di Azure
 > [!div class="op_single_selector"]
 > * [Portale](media-services-portal-upload-files.md)
 > * [.NET](media-services-dotnet-upload-files.md)
 > * [REST](media-services-rest-upload-files.md)
 > 
 > [!NOTE]
-> toocomplete questa esercitazione, è necessario un account di Azure. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/). 
+> Per completare l'esercitazione, è necessario un account Azure. Per informazioni dettagliate, vedere la pagina relativa alla [versione di prova gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/). 
 > 
 
+In Servizi multimediali di Azure è possibile caricare i file digitali in un asset. L'asset può contenere video, audio, immagini, raccolte di anteprime, tracce di testo e file di sottotitoli codificati, oltre ai metadati relativi a questi file. Dopo aver caricato i file, i contenuti vengono archiviati in modo sicuro nel cloud per altre operazioni di elaborazione e streaming.
 
-In Servizi multimediali è possibile caricare i file digitali in un asset. Hello Asset può contenere video, audio, immagini, raccolte di anteprime, testo tracce e sottotitoli file (e relativi metadati hello.) Una volta caricati i file hello, il contenuto è archiviato in modo sicuro nel cloud hello per continuare l'elaborazione e il flusso.
-
-
-## <a name="upload-files"></a>Caricare file
-
->[!NOTE]
->È una limite toohello dimensione massima supportata per l'elaborazione in servizi multimediali. Vedere [questo](media-services-quotas-and-limitations.md) per informazioni sulla limitazione delle dimensioni del file hello.
+> [!NOTE]
+> Servizi multimediali prevede dimensioni massime per l'elaborazione dei file. Per informazioni sulle dimensioni massime dei file, vedere [Quote e limitazioni di Servizi multimediali](media-services-quotas-and-limitations.md).
 >
 
-1. In hello [portale di Azure](https://portal.azure.com/), selezionare l'account di servizi multimediali di Azure.
-2. In hello **impostazioni** pannello, fare clic su **asset**.
+## <a name="upload-files"></a>Caricare file
+1. Nel [portale di Azure ](https://portal.azure.com/) selezionare l'account Servizi multimediali di Azure.
+2. Selezionare **Impostazioni** > **Asset**. Selezionare quindi il pulsante **Carica**.
    
     ![Caricare file](./media/media-services-portal-vod-get-started/media-services-upload.png)
-3. Fare clic su hello **caricare** pulsante.
    
-    Hello **caricare una risorsa video** verrà visualizzata la finestra.
+    Verrà visualizzata la finestra **Carica un asset video** .
    
    > [!NOTE]
-   > Non esistono limiti alle dimensioni dei file.
-   > 
-   > 
-4. Sfoglia video toohello desiderato nel computer in uso, selezionarlo e fare clic su OK.  
+   > Servizi multimediali non limita le dimensioni dei file per il caricamento dei video.
+ 
+3. Nel computer, passare al video da caricare. Selezionare il video, quindi **OK**.  
    
-    Avvia il caricamento di Hello ed è possibile visualizzare lo stato di avanzamento hello in nome file hello.  
+    Verrà avviato il caricamento. Lo stato è visibile sotto il nome del file.  
 
-Una volta completato il caricamento di hello, si noterà nuovo asset hello elencati in hello **asset** finestra. 
-
-## <a name="next-steps"></a>Passaggi successivi
-Ora è possibile codificare gli asset caricati. Per altre informazioni, vedere [Encode assets](media-services-portal-encode.md)(Codificare gli asset).
-
-È possibile utilizzare anche funzioni Azure tootrigger un processo di codifica in base a un file in arrivo nel contenitore hello configurato. Per altre informazioni, vedere [questo esempio](https://azure.microsoft.com/resources/samples/media-services-dotnet-functions-integration/ ).
+Al termine del caricamento, il nuovo asset viene visualizzato nel riquadro **Asset**. 
 
 ## <a name="media-services-learning-paths"></a>Percorsi di apprendimento di Servizi multimediali
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
 ## <a name="provide-feedback"></a>Fornire commenti e suggerimenti
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
+
+## <a name="next-steps"></a>Passaggi successivi
+* Informazioni su come [codificare gli asset caricati](media-services-portal-encode.md).
+
+* È anche possibile usare Funzioni di Azure per attivare un processo di codifica quando un file arriva nel contenitore configurato. Per altre informazioni, vedere l'esempio in [Media Services: Integrating Azure Media Services with Azure Functions and Logic Apps](https://azure.microsoft.com/resources/samples/media-services-dotnet-functions-integration/) (Servizi multimediali: Integrazione di Servizi multimediali di Azure con Funzioni di Azure e App per la logica).
+
 

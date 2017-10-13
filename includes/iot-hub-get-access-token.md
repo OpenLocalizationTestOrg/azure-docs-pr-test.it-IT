@@ -1,7 +1,7 @@
 ## <a name="obtain-an-azure-resource-manager-token"></a>Ottenere un token di Azure Resource Manager
-Azure Active Directory deve autenticare tutte le attività da eseguire sulle risorse con Gestione risorse di Azure hello hello. Hello esempio illustrato di seguito utilizza l'autenticazione di password, per altri approcci, vedere [richiede l'autenticazione di Azure Resource Manager][lnk-authenticate-arm].
+Azure Active Directory deve autenticare tutte le attività da eseguire sulle risorse con Gestione risorse di Azure. Nell'esempio illustrato di seguito si usa l'autenticazione della password. Per altri approcci, vedere [Autenticazione delle richieste di Azure Resource Manager][lnk-authenticate-arm].
 
-1. Aggiungere i seguenti toohello codice hello **Main** metodo in Program.cs tooretrieve un token da Azure AD tramite l'id dell'applicazione hello e una password.
+1. Aggiungere il codice seguente al metodo **Main** in Program.cs per recuperare un token da Azure AD tramite l'id dell'applicazione e la password.
    
     ```
     var authContext = new AuthenticationContext(string.Format  
@@ -12,18 +12,18 @@ Azure Active Directory deve autenticare tutte le attività da eseguire sulle ris
    
     if (token == null)
     {
-      Console.WriteLine("Failed tooobtain hello token");
+      Console.WriteLine("Failed to obtain the token");
       return;
     }
     ```
-2. Creare un **ResourceManagementClient** dell'oggetto che utilizza hello token aggiungendo hello successivo toohello codice alla fine di hello **Main** metodo:
+2. Creare un oggetto **ResourceManagementClient** che usa il token aggiungendo il codice seguente alla fine del metodo **Main**:
    
     ```
     var creds = new TokenCredentials(token.AccessToken);
     var client = new ResourceManagementClient(creds);
     client.SubscriptionId = subscriptionId;
     ```
-3. Creare o ottenere un riferimento, hello nel gruppo di risorse in uso:
+3. Creare o ottenere un riferimento al gruppo di risorse in uso:
    
     ```
     var rgResponse = client.ResourceGroups.CreateOrUpdate(rgName,

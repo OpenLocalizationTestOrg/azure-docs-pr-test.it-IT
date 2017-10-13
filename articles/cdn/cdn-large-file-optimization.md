@@ -1,5 +1,5 @@
 ---
-title: ottimizzazione di download di file aaaLarge tramite hello rete CDN di Azure
+title: Ottimizzazione del download di file di grandi dimensioni tramite la rete di distribuzione dei contenuti di Azure
 description: Descrizione approfondita dell'ottimizzazione dei download di file di grandi dimensioni
 services: cdn
 documentationcenter: 
@@ -14,57 +14,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/16/2017
 ms.author: v-semcev
-ms.openlocfilehash: 2646979bfb38e997037bcff5b1cdda34e22c394a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7a5d5d1d0de24ebb0a5115ede1e572f38454bd78
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="large-file-download-optimization-via-hello-azure-content-delivery-network"></a>Ottimizzazione di download di file di grandi dimensioni tramite hello rete CDN di Azure
+# <a name="large-file-download-optimization-via-the-azure-content-delivery-network"></a>Ottimizzazione del download di file di grandi dimensioni tramite la rete di distribuzione dei contenuti di Azure
 
-Le dimensioni dei file di contenuto pubblicato su Internet hello continuare toogrow scadenza tooenhanced funzionalità grafica migliorata e contenuto multimediale. Questa crescita dipende da numerosi fattori: penetrazione a banda larga, i dispositivi di archiviazione economica più grandi, generalizzata aumento dei dispositivi ad alta definizione video e connesso a Internet (IoT). Critico tooensure un'esperienza uniforme e piacevole consumer è un meccanismo di recapito veloci ed efficienti per i file di grandi dimensioni.
+Le dimensioni di file dei contenuti distribuiti in Internet continua ad aumentare come conseguenza delle funzionalità avanzate, della grafica migliorata e della complessità dei contenuti multimediali. Questa crescita dipende da numerosi fattori: penetrazione a banda larga, i dispositivi di archiviazione economica più grandi, generalizzata aumento dei dispositivi ad alta definizione video e connesso a Internet (IoT). Un meccanismo di recapito veloci ed efficienti per i file di grandi dimensioni è fondamentale per garantire un'esperienza uniforme e piacevole consumer.
 
-La distribuzione di file di grandi dimensioni pone diverse sfide. In primo luogo, toodownload tempo medio di hello un file di grandi dimensioni può essere significativo poiché applicazioni potrebbero non scaricare tutti i dati in modo sequenziale. In alcuni casi, le applicazioni potrebbero scaricare ultima parte di hello di un file prima della prima parte hello. Quando viene richiesto solo una piccola quantità di un file o un utente posiziona il download, download hello può non riuscire. download di Hello anche potrebbe subire un ritardo fino a quando non dopo hello rete di distribuzione di contenuti (CDN) recupera l'intero file hello dal server di origine hello. 
+La distribuzione di file di grandi dimensioni pone diverse sfide. In primo luogo, il tempo medio per scaricare un file di grandi dimensioni può essere significativo, in quanto molte applicazioni potrebbero non scaricare tutti i dati in sequenza. In alcuni casi, le applicazioni potrebbero scaricare l'ultima parte di un file prima della prima. Quando è necessaria solo una piccola parte di un file o un utente sospende un download, il download può non riuscire. Il download può anche subire ritardi, finché la rete per la distribuzione di contenuti (rete CDN) non recupera l'intero file dal server di origine. 
 
-In secondo luogo, la latenza tra il computer di un utente e file hello hello determina la velocità di hello in corrispondenza del quale è possibile visualizzare il contenuto. Inoltre, problemi di congestione e capacità di rete possono influire sulla velocità effettiva. Maggiore distanze tra server e utenti creano ulteriori opportunità per toooccur perdita di pacchetti, riducendo così qualità. riduzione della qualità Hello dovuta a velocità effettiva limitata e perdita di pacchetti maggiore potrebbe aumentare il tempo di attesa hello per un toofinish di download di file. 
+In secondo luogo, la latenza tra il computer di un utente e il file determina la velocità a cui l'utente può visualizzare il contenuto. Inoltre, problemi di congestione e capacità di rete possono influire sulla velocità effettiva. Distanze maggiori tra server e utenti creano rischi aggiuntivi di perdita dei pacchetti, riducendo la qualità. La qualità inferiore causata dalla velocità effettiva limitata e dalla crescente perdita di pacchetti può comportare tempi di attesa notevolmente superiori per il completamento del download di un file. 
 
-In terzo luogo, molti file di grandi dimensioni non vengono distribuiti interamente. Gli utenti potrebbero annullare un download a metà o guardare solo hello primi minuti di un video MP4 lungo. Pertanto, software e i supporti di società di recapito si toodeliver solo parte di hello di un file richiesto. Distribuzione efficiente di hello richiesto parti consente di ridurre il traffico in uscita hello dal server di origine hello. Distribuzione efficiente riduce inoltre memoria hello e richieste dei / o sul server di origine hello. 
+In terzo luogo, molti file di grandi dimensioni non vengono distribuiti interamente. Gli utenti potrebbero annullare un download a metà o guardare solo i primi minuti di un lungo video MP4. Di conseguenza, per molte aziende di distribuzione di software e contenuti multimediali può essere utile distribuire solo la parte richiesta di un file. Una distribuzione efficiente delle parti richieste riduce il traffico in uscita dal server di origine. Una distribuzione efficiente riduce anche la pressione in termini di memoria e I/O sul server di origine. 
 
-Hello Azure Content Delivery Network da Akamai offre ora una funzionalità che fornisce file di grandi dimensioni in modo efficiente toousers tutto il mondo hello su larga scala. funzionalità di Hello riduce le latenze perché riduce il carico di hello sui server di origine hello. Questa funzionalità è disponibile con livello di prezzo Standard Akamai hello.
+La rete di distribuzione dei contenuti di Azure con tecnologia Akamai offre ora una funzionalità che permette di distribuire in modo efficiente e scalabile file di grandi dimensioni agli utenti di tutto il mondo. Questa funzionalità riduce le latenze perché riduce il carico sui server di origine. Questa funzionalità è disponibile con il piano tariffario Standard di Akamai.
 
-## <a name="configure-a-cdn-endpoint-toooptimize-delivery-of-large-files"></a>Configurare un endpoint di rete CDN toooptimize il recapito di file di grandi dimensioni
+## <a name="configure-a-cdn-endpoint-to-optimize-delivery-of-large-files"></a>Configurare un endpoint di rete CDN per ottimizzare la distribuzione di file di grandi dimensioni
 
-È possibile configurare la distribuzione di toooptimize endpoint rete CDN per i file di grandi dimensioni tramite hello portale di Azure. È inoltre possibile utilizzare le API REST o uno qualsiasi dei hello client SDK toodo questo. Hello passaggi seguenti viene illustrato il processo di hello tramite hello portale di Azure.
+È possibile configurare l'endpoint di rete CDN per ottimizzare la distribuzione di file di grandi dimensioni tramite il portale di Azure. A tale scopo è anche possibile usare le API REST o qualsiasi SDK client. I passaggi seguenti mostrano il processo tramite il portale di Azure.
 
-1. un nuovo endpoint su hello tooadd **profilo CDN** selezionare **Endpoint**.
+1. Per aggiungere un nuovo endpoint, nella pagina **Profilo CDN** selezionare **Endpoint**.
 
     ![Nuovo endpoint](./media/cdn-large-file-optimization/01_Adding.png)  
  
-2. In hello **ottimizzato per** elenco a discesa, seleziona **download di file di grandi dimensioni**.
+2. Nell'elenco a discesa **Ottimizzato per** selezionare **Download di file di grandi dimensioni**.
 
     ![Selezione dell'ottimizzazione per file di grandi dimensioni](./media/cdn-large-file-optimization/02_Creating.png)
 
 
-Dopo aver creato l'endpoint rete CDN hello, si applica le ottimizzazioni di file di grandi dimensioni hello per tutti i file che corrispondono a determinati criteri. Questo processo viene descritto nella seguente sezione Hello.
+Dopo aver creato l'endpoint di rete CDN, a tutti i file che soddisfano determinati criteri viene applicata l'ottimizzazione per file di grandi dimensioni. La sezione seguente descrive questo processo.
 
-## <a name="optimize-for-delivery-of-large-files-with-hello-azure-content-delivery-network-from-akamai"></a>Ottimizza per il recapito di file di grandi dimensioni con hello rete CDN di Azure da Akamai
+## <a name="optimize-for-delivery-of-large-files-with-the-azure-content-delivery-network-from-akamai"></a>Ottimizzare la distribuzione di file di grandi dimensioni con la rete di distribuzione dei contenuti di Azure con tecnologia Akamai
 
-funzionalità di tipo ottimizzazione file di grandi dimensioni Hello attiva rete ottimizzazioni e le configurazioni toodeliver file di grandi dimensioni in modo più veloce e più rispondente. La distribuzione web generali con Akamai memorizza nella cache i file solo sotto 1,8 GB e possono tunnel (non cache) file too150 GB. Ottimizzazione di file di grandi dimensioni vengono memorizzati nella cache i file di backup too150 GB.
+La funzionalità di ottimizzazione per file di grandi dimensioni attiva le ottimizzazioni e le configurazioni di rete per consentire la distribuzione di file di grandi dimensioni più rapidamente e tempestivamente. La distribuzione Web generica con Akamai memorizza nella cache solo i file con dimensioni inferiori a 1,8 GB e può effettuare il tunneling (senza memorizzazione nella cache) dei file di dimensioni fino a 150 GB. L'ottimizzazione per file di grandi dimensioni memorizza nella cache file di dimensioni fino a 150 GB.
 
-Questa ottimizzazione è efficace in determinate condizioni. Le condizioni includono la modalità di funzionamento di server di origine hello e dimensioni hello e tipi di file di hello richiesti. Prima di passare i dettagli su questi argomenti, è necessario comprendere il funzionamento di ottimizzazione hello. 
+Questa ottimizzazione è efficace in determinate condizioni. Le condizioni includono il modo in cui opera il server di origine e le dimensioni e i tipi dei file richiesti. Prima di affrontare dettagliatamente questi argomenti, è utile comprendere il funzionamento dell'ottimizzazione. 
 
 ### <a name="object-chunking"></a>Suddivisione degli oggetti in blocchi 
 
-Hello Azure Content Delivery Network da Akamai utilizza una tecnica denominata oggetto suddivisione in blocchi. Quando viene richiesto un file di grandi dimensioni, le parti più piccole del file hello hello rete CDN recupera dall'origine hello. Dopo che il server di edge/POP CDN hello riceve una richiesta di file completo o l'intervallo di byte, verifica se il tipo di file hello è supportato per l'ottimizzazione. Controlla inoltre se il tipo di file hello soddisfa i requisiti di dimensione file hello. Se la dimensione del file hello è maggiore di 10 MB, server perimetrale della rete CDN di hello richiede file hello dall'origine hello in blocchi di 2 MB. 
+La rete di distribuzione dei contenuti di Azure con tecnologia Akamai usa una tecnica chiamata suddivisione degli oggetti in blocchi. Quando viene richiesto un file di grandi dimensioni, la rete CDN recupera piccole parti del file dall'origine. Dopo che il server perimetrale/POP della rete CDN riceve la richiesta di un file completo o di un intervallo di byte, controlla se il tipo di file è supportato per l'ottimizzazione. Controlla inoltre che il tipo di file soddisfi i requisiti di dimensioni dei file. Se il file ha dimensioni maggiori di 10 MB, il server perimetrale della rete CDN richiede il file dall'origine in blocchi di 2 MB. 
 
-Dopo il blocco di hello arriva hello perimetrale della rete CDN, ha memorizzato nella cache e immediatamente servita toohello utente. rete CDN Hello quindi blocco successivo esegue la prelettura di hello in parallelo. La prelettura assicura che il contenuto di hello rimane un blocco avanti rispetto all'utente di hello, che riduce la latenza. Questo processo continua fino a hello intero file viene scaricato (se richiesto), tutti gli intervalli di byte devono (se richiesto), o client hello termina la connessione hello. 
+Quando il blocco arriva al server perimetrale della rete CDN, viene memorizzato nella cache e reso immediatamente disponibile all'utente. La rete CDN esegue la prelettura del blocco successivo in parallelo. Questa prelettura fa sì che il contenuto resti in anticipo di un blocco rispetto all'utente, riducendo la latenza. Questo processo continua finché non viene scaricato l'intero file (se richiesto), non sono disponibili tutti gli intervalli di byte (se richiesto) o il client non termina la connessione. 
 
-Per ulteriori informazioni sulla richiesta di intervallo di byte di hello, vedere [7233 RFC](https://tools.ietf.org/html/rfc7233).
+Per altre informazioni sulla richiesta di intervalli di byte, vedere [RFC 7233](https://tools.ietf.org/html/rfc7233).
 
-Hello rete CDN memorizza nella cache di eventuali blocchi di come vengono ricevuti. intero file Hello privo di toobe memorizzati nella cache nella cache di hello rete CDN. Le richieste successive per gli intervalli di byte o di file hello vengono soddisfatte dalla cache della rete CDN hello. Se non tutti i blocchi di hello vengono memorizzati nella cache nella rete CDN hello, prelettura è blocchi toorequest utilizzato dall'origine hello. Questa ottimizzazione si basa sulla capacità di hello hello origine toosupport intervallo di byte delle richieste del server. _Se il server di origine hello non supporta le richieste di intervallo di byte, questa ottimizzazione non è efficace._ 
+La rete CDN memorizza nella cache tutti i blocchi alla loro ricezione. Il file non deve essere memorizzato interamente nella cache della rete CDN. Le richieste successive del file o di intervalli di byte vengono soddisfatte dalla cache della rete CDN. Se non tutti i blocchi vengono memorizzati nella cache della rete CDN, viene usata la prelettura per richiedere i blocchi dall'origine. Questa ottimizzazione presuppone il fatto che il server di origine supporti le richieste di intervalli di byte. _Se il server di origine non supporta le richieste di intervalli di byte, questa ottimizzazione non è efficace._ 
 
 ### <a name="caching"></a>Memorizzazione nella cache
-L'ottimizzazione per file di grandi dimensioni usa tempi di scadenza della memorizzazione nella cache predefiniti diversi rispetto alla distribuzione Web generica. Differenzia la memorizzazione nella cache positiva e negativa in base ai codici di risposta HTTP. Se il server di origine hello specifica un'ora di scadenza tramite un controllo della cache o scade intestazione nella risposta hello, hello CDN soddisfa tale valore. Quando non viene specificata l'origine hello e file hello corrisponde alle condizioni di tipo e dimensioni hello per questo tipo di ottimizzazione, hello CDN Usa valori predefiniti di hello per l'ottimizzazione di file di grandi dimensioni. In caso contrario, hello CDN Usa valori predefiniti per la distribuzione web generali.
+L'ottimizzazione per file di grandi dimensioni usa tempi di scadenza della memorizzazione nella cache predefiniti diversi rispetto alla distribuzione Web generica. Differenzia la memorizzazione nella cache positiva e negativa in base ai codici di risposta HTTP. Se il server di origine specifica una scadenza tramite l'intestazione Cache-Control o Expires nella risposta, la rete CDN rispetta questo valore. Quando l'origine non specifica alcuna scadenza e il file soddisfa le condizioni di tipo e dimensioni per questo tipo di ottimizzazione, la rete CDN usa i valori predefiniti per l'ottimizzazione per file di grandi dimensioni. In caso contrario, la rete CDN usa i valori predefiniti per la distribuzione Web generica.
 
 
 |    | Distribuzione Web generica | Ottimizzazione per file di grandi dimensioni 
@@ -74,13 +74,13 @@ Memorizzazione nella cache: negativa <br> HTTP 204, 305, 404, <br> e 405 | None 
 
 ### <a name="deal-with-origin-failure"></a>Gestire gli errori di origine
 
-la lunghezza di timeout di lettura origine Hello aumenta da due secondi per minuti, tootwo recapito web generali per il tipo di ottimizzazione di hello file di grandi dimensioni. Aumento di questo account per tooavoid di dimensioni più grandi file hello una connessione di un timeout prematuro.
+La durata del timeout di lettura dell'origine aumenta da due secondi per la distribuzione Web generica a due minuti per il tipo di ottimizzazione per file di grandi dimensioni. Questo aumento è dovuto alle dimensioni di file maggiori, per evitare il timeout prematuro della connessione.
 
-Allo scadere di una connessione, hello CDN ripete un numero di volte prima dell'invio di un errore di "504 - Timeout del Gateway" toohello client. 
+Quando si verifica il timeout di una connessione, la rete CDN esegue un certo numero di tentativi prima di inviare l'errore "504 - Timeout gateway" al client. 
 
 ### <a name="conditions-for-large-file-optimization"></a>Condizioni per l'ottimizzazione dei file di grandi dimensioni
 
-Hello nella tabella seguente sono elencati i set di hello di toobe criteri soddisfatti per l'ottimizzazione di file di grandi dimensioni:
+La tabella seguente elenca il set di criteri che devono essere soddisfatti per l'ottimizzazione dei file di grandi dimensioni:
 
 Condizione | Valori 
 --- | --- 
@@ -89,40 +89,40 @@ Dimensione minima dei file | 10 MB
 Dimensione massima dei file | 150 GB 
 Caratteristiche del server di origine | Deve supportare richieste di intervalli di byte 
 
-## <a name="optimize-for-delivery-of-large-files-with-hello-azure-content-delivery-network-from-verizon"></a>Ottimizza per il recapito di file di grandi dimensioni con hello rete CDN di Azure da Verizon
+## <a name="optimize-for-delivery-of-large-files-with-the-azure-content-delivery-network-from-verizon"></a>Ottimizzare la distribuzione di file di grandi dimensioni con la rete di distribuzione dei contenuti di Azure con tecnologia Verizon
 
-Hello Azure Content Delivery Network da Verizon recapita i file di grandi dimensioni senza un limite sulle dimensioni del file. Funzionalità aggiuntive sono attivate per il recapito toomake predefinito dei file di grandi dimensioni più veloce.
+La rete di distribuzione dei contenuti di Azure con tecnologia Verizon distribuisce file di grandi dimensioni senza alcun limite riguardo alle dimensioni dei file. Altre funzionalità sono attivate per impostazione predefinita per accelerare la distribuzione di file di grandi dimensioni.
 
 ### <a name="complete-cache-fill"></a>Riempimento completo della cache
 
-funzionalità di riempimento completo della cache di Hello predefinito consente hello CDN toopull un file nella cache di hello quando una richiesta iniziale viene abbandonata o perso. 
+La funzionalità predefinita di riempimento completo della cache permette alla rete CDN di eseguire il pull di un file nella cache quando la richiesta iniziale viene abbandonata o persa. 
 
-Il riempimento completo della cache è particolarmente utile per asset di grandi dimensioni. In genere, gli utenti non scaricano dall'inizio toofinish. ma usano il download progressivo. comportamento predefinito di Hello forza hello edge server tooinitiate un recupero in background dell'asset hello dal server di origine hello. Asset hello in seguito, è nella cache locale del server perimetrale hello. Dopo la completa dell'oggetto hello è nella cache di hello, server perimetrale hello soddisfa le richieste di intervallo di byte toohello della rete CDN per l'oggetto memorizzato nella cache di hello.
+Il riempimento completo della cache è particolarmente utile per asset di grandi dimensioni. In genere, gli utenti non scaricano questi asset dall'inizio alla fine, ma usano il download progressivo. Il comportamento predefinito forza il server perimetrale ad avviare un recupero in background dell'asset dal server di origine. Al termine di questa operazione, l'asset si trova nella cache locale del server perimetrale. Quando l'oggetto si trova interamente nella cache, il server perimetrale può soddisfare le richieste di intervalli di byte alla rete CDN per l'oggetto memorizzato nella cache.
 
-comportamento predefinito di Hello può essere disabilitato tramite hello motore regole di business nel livello Verizon Premium hello.
+È possibile disabilitare il comportamento predefinito tramite il motore delle regole nel livello Premium di Verizon.
 
 ### <a name="peer-cache-fill-hot-filing"></a>Hotfiling del riempimento della cache peer
 
-funzionalità di archiviazione a caldo riempimento Hello predefinito peer cache utilizza un algoritmo sofisticato proprietario. Usa bordo aggiuntiva la memorizzazione nella cache di server in base alla larghezza di banda e aggregazione richieste metriche toofulfill client per gli oggetti di grandi dimensioni, diffusi. Questa funzionalità impedisce una situazione in cui un numero elevato di richieste aggiuntive viene inviato a server di origine tooa dell'utente. 
+Questa funzionalità predefinita usa un sofisticato algoritmo proprietario. La funzionalità usa server perimetrali aggiuntivi per la memorizzazione nella cache in base alla larghezza di banda e ad altre metriche delle richieste aggregate per soddisfare le richieste client di oggetti di grandi dimensioni e usati spesso. Questa funzionalità previene situazioni in cui un numero elevato di richieste aggiuntive viene inviato al server di origine di un utente. 
 
 ### <a name="conditions-for-large-file-optimization"></a>Condizioni per l'ottimizzazione dei file di grandi dimensioni
 
-funzionalità di ottimizzazione Hello per Verizon sono attivate per impostazione predefinita. Non viene applicato alcun limite per le dimensioni massime dei file. 
+Le funzionalità di ottimizzazione per Verizon sono attivate per impostazione predefinita. Non viene applicato alcun limite per le dimensioni massime dei file. 
 
-## <a name="additional-considerations"></a>Considerazioni aggiuntive
+## <a name="additional-considerations"></a>Ulteriori considerazioni
 
-Prendere in considerazione hello seguenti aspetti aggiuntivi per questo tipo di ottimizzazione.
+Per questo tipo di ottimizzazione, tenere presenti gli aspetti aggiuntivi seguenti.
  
 ### <a name="azure-content-delivery-network-from-akamai"></a>Rete di distribuzione dei contenuti di Azure con tecnologia Akamai
 
-- processo di suddivisione in blocchi Hello genera server di origine toohello altre richieste. Tuttavia, hello complessiva volume di dati rilasciati dall'origine hello è molto più piccolo. Risultati della suddivisione in blocchi in migliori caratteristiche di memorizzazione nella cache al hello CDN.
+- Il processo di suddivisione in blocchi genera richieste aggiuntive al server di origine. Tuttavia, il volume complessivo dei dati distribuiti dall'origine è notevolmente inferiore. La suddivisione in blocchi assicura caratteristiche di memorizzazione nella cache migliori nella rete CDN.
 
-- Memoria e la pressione dei / o vengono ridotte a origine hello perché vengono recapitati parti più piccole del file hello.
+- La pressione in termini di memoria e I/O risulta ridotta nell'origine, perché vengono distribuite piccole parti del file.
 
-- Per i blocchi memorizzati nella cache di hello CDN, non sono presenti ulteriori richieste origine toohello fino a quando il contenuto di hello scade o viene rimosso dalla cache di hello.
+- Per i blocchi memorizzati nella cache nella rete CDN non vi sono richieste aggiuntive all'origine fino alla scadenza del contenuto o finché il contenuto non viene rimosso dalla cache.
 
-- Gli utenti possono apportare intervallo richiede toohello rete CDN e vengono trattati come qualsiasi file normali. Ottimizzazione si applica solo se è un tipo di file valido e l'intervallo di byte hello è compreso tra 10 MB e 150 GB. Se le dimensioni medie dei file hello richiesta sono inferiore a 10 MB, è possibile invece recapito web generali toouse.
+- L'utente può effettuare richieste di intervalli di byte alla rete CDN, che vengono considerate normali richieste di file. L'ottimizzazione viene applicata solo se il tipo di file è valido e l'intervallo di byte è compreso tra 10 MB e 150 GB. Se la dimensione media dei file richiesta è inferiore a 10 MB, può essere preferibile usare la distribuzione Web generica.
 
 ### <a name="azure-content-delivery-network-from-verizon"></a>Rete di distribuzione dei contenuti di Azure con tecnologia Verizon
 
-tipo di ottimizzazione recapito Hello web generale possibile recapitare i file di grandi dimensioni.
+L'ottimizzazione basata sulla distribuzione Web generica è in grado di distribuire file di grandi dimensioni.

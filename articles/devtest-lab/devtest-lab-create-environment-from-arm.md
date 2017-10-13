@@ -1,6 +1,6 @@
 ---
-title: aaaCreate ambienti multi-VM e PaaS risorse con i modelli di gestione risorse di Azure | Documenti Microsoft
-description: Informazioni su come toocreate ambienti multi-VM e risorse di PaaS in Azure DevTest Labs da un modello di gestione risorse di Azure
+title: "Creare ambienti con più macchine virtuali e risorse PaaS con i modelli di Azure Resource Manager | Microsoft Docs"
+description: "Informazioni su come creare ambienti con più macchine virtuali e risorse PaaS in Azure DevTest Labs con un modello di Azure Resource Manager"
 services: devtest-lab,virtual-machines,visual-studio-online
 documentationcenter: na
 author: tomarcher
@@ -14,119 +14,119 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/31/2017
 ms.author: tarcher
-ms.openlocfilehash: ab8628f6cb5a666435258efb93921ec69ad3a13a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4e1aae6c041e4572e7e2281203f969e7649e1480
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="create-multi-vm-environments-and-paas-resources-with-azure-resource-manager-templates"></a>Creare ambienti con più macchine virtuali e risorse PaaS con i modelli di Azure Resource Manager
 
-Hello [portale di Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040) consente tooeasily [creare e aggiungere un ambiente lab tooa VM](https://docs.microsoft.com/en-us/azure/devtest-lab/devtest-lab-add-vm). Ciò vale per la creazione di una macchina virtuale alla volta. Tuttavia, se l'ambiente di hello contiene più macchine virtuali, ogni macchina virtuale ha toobe create individualmente. Per gli scenari, ad esempio un'app Web a più livelli o una farm di SharePoint, un meccanismo è tooallow necessari per la creazione di hello di più macchine virtuali in un unico passaggio. Tramite i modelli di gestione risorse di Azure, è possibile definire ora infrastruttura hello e configurazione della soluzione Azure e distribuire ripetutamente più macchine virtuali in uno stato coerente. Questa funzionalità offre hello seguenti vantaggi:
+Il [portale di Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040) consente di [creare e aggiungere una macchina virtuale a un lab](https://docs.microsoft.com/en-us/azure/devtest-lab/devtest-lab-add-vm). Ciò vale per la creazione di una macchina virtuale alla volta. Tuttavia, se l'ambiente contiene più macchine virtuali, ogni macchina deve essere creata individualmente. Per scenari quali app Web multilivello o farm di SharePoint, è necessario un meccanismo che consenta la creazione di più macchine virtuali in un unico passaggio. I modelli di Azure Resource Manager consentono di definire l'infrastruttura e la configurazione della soluzione di Azure e di distribuire ripetutamente più macchine virtuali in modo coerente. Ciò offre i vantaggi seguenti:
 
 - I modelli di Azure Resource Manager vengono caricati direttamente dal repository di controllo del codice sorgente (GitHub o Team Services Git).
-- Una volta configurato, gli utenti possono creare un ambiente scegliendo un modello di gestione risorse di Azure dal portale di Azure come le operazioni eseguite con altri tipi di hello [VM basi](./devtest-lab-comparing-vm-base-image-types.md).
-- Risorse di Azure PaaS possano eseguirne il provisioning in un ambiente da un modello di gestione risorse di Azure in tooIaaS inoltre le macchine virtuali.
-- costo Hello degli ambienti può essere registrato in lab hello in aggiunta tooindividual macchine virtuali create da altri tipi di base.
-- Risorse PaaS vengono create e verranno visualizzato nel costo rilevamento; chiusura automatica di macchina virtuale, tuttavia, non si applica tooPaaS risorse.
-- Gli utenti hanno hello stesso controllo dei criteri per gli ambienti di macchina virtuale in cui per le macchine virtuali singolo lab.
+- Una volta configurato, gli utenti possono creare un ambiente scegliendo un modello di Azure Resource Manager dal portale di Azure, così come avviene con altri tipi di [basi per VM](./devtest-lab-comparing-vm-base-image-types.md).
+- È possibile eseguire il provisioning delle risorse di Azure PaaS in un ambiente usando un modello di Azure Resource Manager oltre che le macchine virtuali IaaS.
+- È possibile tenere traccia del costo dell'ambiente insieme alle singole VM create da altri tipi di base.
+- Le risorse di PaaS vengono create e visualizzate nella verifica dei costi. Tuttavia, l'arresto automatico della macchina virtuale non si applica alle risorse di PaaS.
+- Gli utenti hanno lo stesso controllo dei criteri delle macchine virtuali per gli ambienti di quello che hanno per le macchine virtuali di un singolo lab.
 
-Altre informazioni su hello molti [vantaggi dell'utilizzo di modelli di gestione risorse](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#the-benefits-of-using-resource-manager) toodeploy, aggiornare o eliminare tutte le risorse lab in un'unica operazione.
+Altre informazioni sui numerosi [vantaggi offerti dai modelli di Resource Manager](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#the-benefits-of-using-resource-manager) per distribuire, aggiornare o eliminare tutte le risorse del lab con una sola operazione.
 
 > [!NOTE]
-> Quando si utilizza un modello di gestione risorse come un toocreate base lab altre macchine virtuali, esistono alcuni tookeep differenze presente per la creazione di macchine virtuali Multi o macchine virtuali di singolo. Use a virtual machine's Azure Resource Manager template (Usare un modello di Azure Resource Manager di una macchina virtuale) spiega più dettagliatamente queste differenze.
+> Quando si usa un modello di Resource Manager come base per creare più macchine virtuali lab, occorre tenere presente che ci sono alcune differenze tra la creazione di più macchine virtuali e una singola macchina virtuale. Use a virtual machine's Azure Resource Manager template (Usare un modello di Azure Resource Manager di una macchina virtuale) spiega più dettagliatamente queste differenze.
 >
 >
 
 ## <a name="configure-azure-resource-manager-template-repositories"></a>Configurare i repository del modello di Azure Resource Manager
 
-Come una delle procedure consigliate di hello con infrastruttura come codice e come codice di configurazione, i modelli di ambiente deve essere gestita in controllo del codice sorgente. Azure Labs DevTest applica questa procedura e carica tutti i modelli Azure Resource Manager direttamente dai repository VSTS Git o GitHub. Di conseguenza, è possono utilizzare modelli di gestione risorse tra hello intero ciclo di rilascio di da hello test toohello ambiente di produzione.
+Come procedura consigliata nei casi di infrastruttura come codice e configurazione come codice, i modelli di ambiente devono essere gestiti nel controllo del codice sorgente. Azure Labs DevTest applica questa procedura e carica tutti i modelli Azure Resource Manager direttamente dai repository VSTS Git o GitHub. Di conseguenza, i modelli di Resource Manager possono essere usati in tutto il ciclo di rilascio, dall'ambiente di test a quello di produzione.
 
-Esistono un paio di regole toofollow tooorganize i modelli di gestione risorse di Azure in un repository:
+Ci sono un paio di regole da seguire per organizzare i modelli di Azure Resource Manager in un repository:
 
-- file di modello master Hello deve essere denominato `azuredeploy.json`. 
+- Il nome del file del modello master deve essere `azuredeploy.json`. 
 
     ![File principali del modello di Azure Resource Manager](./media/devtest-lab-create-environment-from-arm/master-template.png)
 
-- Se si desidera che i valori di parametro toouse definiti in un file di parametro, il file di parametro hello deve essere denominato `azuredeploy.parameters.json`.
-- È possibile utilizzare parametri hello `_artifactsLocation` e `_artifactsLocationSasToken` tooconstruct hello parametersLink valore dell'URI, consentendo di DevTest Labs tooautomatically gestire modelli nidificati. Per altre informazioni, vedere [How Azure DevTest Labs makes nested Resource Manager template deployments easier for testing environments (Come Azure DevTest Labs semplifica le distribuzioni di modelli di Resource Manager nidificati negli ambienti di test)](https://blogs.msdn.microsoft.com/devtestlab/2017/05/23/how-azure-devtest-labs-makes-nested-arm-template-deployments-easier-for-testing-environments/).
-- I metadati possono essere descrizione e nome visualizzato del modello definito toospecify hello. I metadati deve essere contenuti in un file denominato `metadata.json`. Hello file di metadati di esempio seguente viene illustrato come hello toospecify nome visualizzato e la descrizione: 
+- Se si intende usare valori di parametro definiti in un file di parametri, il nome di tale file deve essere `azuredeploy.parameters.json`.
+- È possibile usare i parametri `_artifactsLocation` e `_artifactsLocationSasToken` per costruire il valori URI parametersLink e consentire a DevTest Labs di gestire automaticamente i modelli nidificati. Per altre informazioni, vedere [How Azure DevTest Labs makes nested Resource Manager template deployments easier for testing environments (Come Azure DevTest Labs semplifica le distribuzioni di modelli di Resource Manager nidificati negli ambienti di test)](https://blogs.msdn.microsoft.com/devtestlab/2017/05/23/how-azure-devtest-labs-makes-nested-arm-template-deployments-easier-for-testing-environments/).
+- È possibile definire metadati per specificare il nome e la descrizione visualizzati del modello. I metadati deve essere contenuti in un file denominato `metadata.json`. Il file di metadati di esempio seguente mostra come specificare il nome e la descrizione visualizzati: 
 
 ```json
 {
  
 "itemDisplayName": "<your template name>",
  
-"description": "<description of hello template>"
+"description": "<description of the template>"
  
 }
 ```
 
-Hello passaggi seguenti consentono di eseguire l'aggiunta di un lab tooyour repository utilizzando hello portale di Azure. 
+La procedura seguente consente di aggiungere un repository nel lab tramite il portale di Azure. 
 
-1. Accedi toohello [portale di Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
-1. Selezionare **più servizi**, quindi selezionare **DevTest Labs** dall'elenco di hello.
-1. Elenco dei laboratori hello selezionare lab desiderato hello.   
-1. Nel pannello del lab hello, selezionare **criteri di configurazione e**.
+1. Accedere al [portale di Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+1. Selezionare **Altri servizi** e quindi **DevTest Labs** dall'elenco.
+1. Nell'elenco dei lab selezionare il lab desiderato.   
+1. Nel pannello del lab selezionare **Configuration and Policies** (Configurazione e criteri).
 
     ![Configurazione e criteri](./media/devtest-lab-create-environment-from-arm/configuration-and-policies-menu.png)
 
-1. Da hello **criteri di configurazione e** elenco di impostazioni, seleziona **repository**. Hello **repository** blade sono elencati i repository hello che sono stati aggiunti toohello lab. Un repository denominato `Public Repo` viene generato automaticamente per tutte le esercitazioni e si connette toohello [repository GitHub di DevTest Labs](https://github.com/Azure/azure-devtestlab) che contiene più elementi di macchina virtuale per l'uso.
+1. Nell'elenco delle impostazioni **Configuration and Policies** (Configurazione e criteri) **Repository**. Il pannello **Repository** elenca i repository aggiunti al lab. Per tutti i lab viene automaticamente generato un repository denominato `Public Repo`, che si connette al repository [DevTest Labs di GitHub](https://github.com/Azure/azure-devtestlab), che contiene diversi elementi di macchina virtuale utilizzabili.
 
     ![Repository pubblico](./media/devtest-lab-create-environment-from-arm/public-repo.png)
 
-1. Selezionare **Aggiungi +** tooadd il repository di modello di gestione risorse di Azure.
-1. Quando hello secondo **repository** pannello visualizzata, immettere le informazioni necessarie hello come segue:
-    - **Nome** -nome hello repository utilizzato nell'ambiente lab hello.
-    - **URL clone GIT** -immettere l'URL del clone GIT HTTPS hello da GitHub o Visual Studio Team Services.  
-    - **Ramo** -immettere hello ramo nome tooaccess le definizioni di modello di gestione risorse di Azure. 
-    - **Token di accesso personale** -viene utilizzato il token di accesso personale hello toosecurely accedere il repository. Selezionare il token da Visual Studio Team Services tooget  **&lt;YourName >> profilo personale > sicurezza > token di accesso pubblico**. tooget il token da GitHub, selezionare l'avatar seguito selezionando **Impostazioni > token di accesso pubblico**. 
-    - **I percorsi delle cartelle** : utilizzando uno dei campi di input hello due, immettere percorso della cartella hello che inizia con una barra rovesciata - / - ed è relativo tooyour Git clone URI tooeither definizioni degli artefatti (primo campo di input) o il modello di gestione risorse di Azure definizioni.   
+1. Selezionare **Aggiungi +** per aggiungere il repository di modelli di Azure Resource Manager.
+1. Quando si apre il secondo pannello **Repository**, immettere le informazioni necessarie come indicato di seguito:
+    - **Nome**: immettere il nome del repository usato nel lab.
+    - **URL clone Git**: immettere l'URL del clone Git HTTPS copiato in precedenza da GitHub o da Visual Studio Team Services.  
+    - **Ramo**: immettere il nome del ramo per accedere alle definizioni dei modelli di Azure Resource Manager. 
+    - **Token di accesso personale**: il token di accesso personale usato per accedere in modo sicuro al repository. Per ottenere il token da Visual Studio Team Services, selezionare **&lt;YourName> > My profile > Security > Public access token** (NomeUtente > Profilo personale > Sicurezza > Token di accesso pubblico). Per ottenere il token da GitHub, selezionare l'avatar e quindi selezionare **Settings > Public access token** (Impostazioni > Token di accesso pubblico). 
+    - **Percorsi delle cartelle**: usando uno dei due campi di input, immettere il percorso della cartella che inizia con la barra rovesciata - / - ed è relativo all'URI del clone Git delle definizioni di elemento (primo campo di input) o delle definizioni di modello di Azure Resource Manager.   
     
         ![Repository pubblico](./media/devtest-lab-create-environment-from-arm/repo-values.png)
 
-1. Dopo aver creato tutti i campi necessario hello vengono immessi e superare la convalida di hello, selezionare **salvare**.
+1. Quando tutti i campi obbligatori sono stati immessi e hanno superato la verifica, selezionare **Salva**.
 
-Nella sezione successiva Hello verrà illustrata la creazione di ambienti da un modello di gestione risorse di Azure.
+La sezione successiva illustra come creare ambienti da un modello di Azure Resource Manager.
 
 ## <a name="create-an-environment-from-an-azure-resource-manager-template"></a>Creare un ambiente da un modello di Azure Resource Manager
 
-Una volta un repository di modello di gestione risorse di Azure è stato configurato nell'ambiente lab hello, gli utenti di lab possono creare un ambiente tramite il portale di Azure con hello alla procedura seguente:
+Dopo aver configurato un repository di modelli di Azure Resource Manager nel laboratorio, gli utenti del laboratorio possono creare un ambiente usando il portale di Azure, seguendo questa procedura:
 
-1. Accedi toohello [portale di Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
-1. Selezionare **più servizi**, quindi selezionare **DevTest Labs** dall'elenco di hello.
-1. Elenco dei laboratori hello selezionare lab desiderato hello.   
-1. Nel pannello del lab hello, selezionare **Aggiungi +**.
-1. Hello **scegliere una base** pannello consente di visualizzare le immagini di base hello è possibile utilizzare con i modelli di Azure Resource Manager hello elencati per primo. Seleziona hello desiderato modello di gestione risorse di Azure.
+1. Accedere al [portale di Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+1. Selezionare **Altri servizi** e quindi **DevTest Labs** dall'elenco.
+1. Nell'elenco dei lab selezionare il lab desiderato.   
+1. Nel pannello del lab selezionare **Aggiungi+**.
+1. Il pannello **Choose a base** (Scegli una base) visualizza le immagini di base che è possibile usare con i modelli di Azure Resource Manager prima elencati. Selezionare il modello di Azure Resource Manager desiderato.
 
     ![Scegli una base](./media/devtest-lab-create-environment-from-arm/choose-a-base.png)
   
-1. In hello **Aggiungi** pannello immettere hello **nome ambiente** valore. nome di ambiente Hello è ciò che gli utenti visualizzati tooyour lab hello. campi di input rimanenti Hello definiti nel modello di gestione risorse di Azure hello. Se i valori predefiniti sono definiti nel modello di hello o hello `azuredeploy.parameter.json` file è presente, vengono visualizzati i valori predefiniti in tali campi di input. Per i parametri di tipo *stringa sicura*, è possibile utilizzare informazioni segrete hello del lab hello [archivio segreto personale](https://azure.microsoft.com/en-us/updates/azure-devtest-labs-keep-your-secrets-safe-and-easy-to-use-with-the-new-personal-secret-store).
+1. Nel pannello **Aggiungi**, immettere il **nome dell'ambiente**. Il nome dell'ambiente è quello visualizzato agli utenti nel laboratorio. I campi di input rimanenti vengono definiti nel modello di Azure Resource Manager. Se i valori predefiniti sono definiti nel modello o se è presente il file `azuredeploy.parameter.json`, i valori predefiniti vengono visualizzati in tali campi di input. Per i parametri di tipo *stringa protetta*, è possibile usare i segreti archiviati nell'[archivio segreto personale](https://azure.microsoft.com/en-us/updates/azure-devtest-labs-keep-your-secrets-safe-and-easy-to-use-with-the-new-personal-secret-store) del lab.
 
     ![Pannello Aggiungi](./media/devtest-lab-create-environment-from-arm/add.png)
 
     > [!NOTE]
-    > Esistono diversi valori di parametro che, anche se specificati, vengono visualizzati come valori vuoti. Pertanto, se gli utenti assegnare tooparameters tali valori in un modello di gestione risorse di Azure, DevTest Labs non visualizza valori hello; invece che mostra i campi di input vuoti in cui gli utenti lab hello necessario tooenter un valore durante la creazione ambiente hello.
+    > Esistono diversi valori di parametro che, anche se specificati, vengono visualizzati come valori vuoti. Pertanto, se gli utenti assegnano tali valori ai parametri in un modello di Azure Resource Manager, DevTest Labs non li visualizza; vengono invece mostrati campi di input vuoti nei quali gli utenti del lab devono inserire un valore al momento della creazione dell'ambiente.
     > 
     > - GEN-UNIQUE
     > - GEN-UNIQUE-[N]
     > - GEN-SSH-PUB-KEY
     > - GEN-PASSWORD 
  
-1. Selezionare **Aggiungi** ambiente hello toocreate. avvio dell'ambiente Hello immediatamente il provisioning con stato hello visualizzazione in hello **macchine virtuali** elenco. Un nuovo gruppo di risorse viene creato automaticamente da hello lab tooprovision tutte le risorse di hello definite nel modello di gestione risorse di Azure hello.
-1. Una volta creato l'ambiente di hello, selezionare l'ambiente hello in hello **macchine virtuali** elenco pannello gruppo della risorsa tooopen hello e individuare tutte le risorse di hello eseguito il provisioning in ambiente hello.
+1. Selezionare **Aggiungi** per creare l'ambiente. L'ambiente avvia immediatamente il provisioning con lo stato visualizzato nell'elenco **Macchine virtuali**. Un nuovo gruppo di risorse viene creato automaticamente dal lab per eseguire il provisioning di tutte le risorse definite nel modello di Azure Resource Manager.
+1. Dopo aver creato l'ambiente, selezionarlo nell'elenco  **My virtual machines (Macchine virtuali personali)** per aprire il pannello del gruppo delle risorse e cercare tutte le risorse di cui si è eseguito il provisioning nell'ambiente.
     
     ![Elenco delle macchine virtuali](./media/devtest-lab-create-environment-from-arm/all-environment-resources.png)
    
-   È anche possibile espandere hello ambiente tooview hello solo elenco delle macchine virtuali nell'ambiente di hello sottoposti a provisioning.
+   È possibile anche espandere l'ambiente per visualizzare solo l'elenco di macchine virtuali oggetto del provisioning nell'ambiente.
     
     ![Elenco delle macchine virtuali](./media/devtest-lab-create-environment-from-arm/my-vm-list.png)
 
-1. Fare clic su uno di hello ambienti tooview hello azioni disponibili, ad esempio l'applicazione di elementi, collegare dischi dati, la modifica ora di arresto automatici e altro ancora.
+1. Fare clic su uno degli ambienti per visualizzare le azioni disponibili, quali l'applicazione di elementi, il collegamento di dischi dati, la modifica dell'ora di arresto automatico e altro.
 
     ![Azioni dell'ambiente](./media/devtest-lab-create-environment-from-arm/environment-actions.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Dopo aver creata una macchina virtuale, è possibile connettersi toohello VM selezionando **Connetti** nel pannello hello della macchina virtuale.
-* Consente di visualizzare e gestire le risorse in un ambiente selezionando ambiente hello in hello **macchine virtuali** elenco nell'ambiente lab. 
-* Esplorare hello [modelli di gestione risorse di Azure dalla raccolta di modelli di avvio rapido di Azure](https://github.com/Azure/azure-quickstart-templates)
+* Dopo aver creato la macchina virtuale, è possibile connettersi ad essa selezionando **Connetti** nel pannello della macchina virtuale.
+* Visualizzare e gestire le risorse in ambiente selezionando l'ambiente nell'elenco **My virtual machines (Macchine virtuali personali)** nel lab. 
+* Esplorare i [modelli di Azure Resource Manager dalla raccolta di modelli di avvio rapido di Azure](https://github.com/Azure/azure-quickstart-templates)

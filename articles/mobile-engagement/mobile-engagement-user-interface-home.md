@@ -1,6 +1,6 @@
 ---
-title: aaaAzure interfaccia utente di Engagement Mobile - Home
-description: Informazioni su come toomanage l'applicazione esistente e i progetti con Azure Mobile Engagement
+title: Interfaccia utente di Azure Mobile Engagement - Home
+description: Informazioni su come gestire l'applicazione e i progetti esistenti usando Azure Mobile Engagement
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,53 +14,53 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 727dad188c5876d09db84634a17e10b280039c49
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 0f15cb975f57f6f5cab12d5118ff50a6fab14388
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toomanage-your-existing-application-and-projects"></a>Come toomanage applicazione esistente e progetti
-Questo articolo descrive hello **Home** pagina di hello **Mobile Engagement** portale. Utilizzare hello **Mobile Engagement** toomonitor portale e gestire le App per dispositivi mobili. Si noti che toostart tramite il portale di hello è innanzitutto necessario toocreate un **Azure Mobile Engagement** account. 
+# <a name="how-to-manage-your-existing-application-and-projects"></a>Come gestire l'applicazione e i progetti esistenti
+In questo articolo viene descritta la pagina **Home** del portale **Mobile Engagement**. Utilizzare il portale **Mobile Engagement** per monitorare e gestire le app per dispositivi mobili. Si noti che per iniziare a utilizzare il portale, è innanzitutto necessario creare un account **Azure Mobile Engagement** . 
 
-tooget toohello home page fare clic su **Home** su hello in alto a sinistra della pagina hello. Contiene hello elenco di tutte le applicazioni che fanno parte di hello scelto insieme. In questa pagina è possibile vedere una rapida panoramica delle applicazioni.
+Per accedere alla home page, fare clic su **Home** nella parte superiore sinistra della pagina. Contiene l'elenco di tutte le applicazioni che fanno parte della raccolta selezionata. In questa pagina è possibile vedere una rapida panoramica delle applicazioni.
 
-home page di Hello contiene anche tutti i progetti che possono includere qualsiasi applicazione che è nell'account. Si noti che chiunque può accedere hello home page di hello dell'interfaccia utente tramite la creazione di un account, ma è necessario toogrant set tooother utenti affinché le applicazioni personalizzate toohave accesso tooyour in **progetti**.
+La home page contiene inoltre tutti i progetti che possono includere tutte le applicazioni presenti nell'account. Tenere presente che chiunque può accedere alla home page dell'interfaccia utente mediante la creazione di un account, ma è necessario concedere autorizzazioni ad altri utenti affinché possano accedere alle applicazioni personalizzate in **Progetti personali**.
 
-Inoltre, è possibile visualizzare il grafico di confronto hello per le applicazioni di hello selezionato. In alternativa, scegliere grafico di confronto tooview hello per le applicazioni selezionate in un progetto.
+È inoltre possibile visualizzare il grafico di confronto per le applicazioni selezionate. In alternativa, è possibile scegliere di visualizzare il grafico di confronto per le applicazioni selezionate in un progetto.
 
 ![Home1][0]
 
 ## <a name="my-applications"></a>Applicazioni personali
-Hello rapida panoramica delle applicazioni consente l'applicazione che si desidera tooselect tooopen tooview hello dettagliate opzioni della barra multifunzione. È possibile fare clic sul nome di hello del percorso dell'applicazione tooreturn toohello all'ultimo sito visitato della barra multifunzione nell'applicazione o fare clic su toogo di icona a forma di ingranaggio hello direttamente toohello pagina "Impostazioni" dell'applicazione. È possibile cercare, filtrare o ordinare le informazioni di hello visualizzati sulle applicazioni hello tabelle. È anche possibile trascinare e rilasciare l'ordine delle hello toochange intestazioni di colonna hello.
+La panoramica rapida delle applicazioni consente di selezionare l'applicazione da aprire per visualizzare in dettaglio le opzioni della barra multifunzione. È possibile selezionare il nome dell'applicazione per tornare al percorso della barra multifunzione visitato più di recente nell'applicazione oppure è possibile selezionare l'icona a ingranaggio per accedere direttamente alla pagina delle impostazioni dell'applicazione. È possibile cercare, filtrare oppure ordinare le informazioni visualizzate nelle tabelle delle applicazioni. È possibile trascinare e rilasciare le intestazioni della colonne per modificarne l'ordine.
 
-Tra le altre cose, panoramica hello delle applicazioni include:
+Tra le altre cose, la panoramica delle applicazioni include:
 
-* **Tendenza di nuovi utenti**: evoluzione dei nuovi utenti nelle ultime due settimane hello.
-* **Utenti attivi**: numero di utenti attivi negli ultimi 30 giorni hello.
-* **Tendenza di utenti attivi**: evoluzione di utenti attivi nelle ultime due settimane hello.
-* **Le sessioni**: una sessione è un utilizzo di un'applicazione hello eseguita da un utente, dall'ora hello hello utente inizia a usarlo, finché non termina utente hello.
-* **Le tendenze di sessione**: evoluzione delle sessioni nel hello ultime due settimane.
+* **Tendenza nuovi utenti**: evoluzione dei nuovi utenti nelle ultime due settimane.
+* **Utenti attivi**: numero di utenti attivi negli ultimi 30 giorni.
+* **Tendenza utenti attivi**: evoluzione degli utenti attivi nelle ultime due settimane.
+* **Sessioni**: una sessione indica un uso dell'applicazione da parte di un utente, dal momento in cui inizia a usarla fino a quando finisce.
+* **Tendenze delle sessioni**: l'evoluzione delle sessioni nelle ultime due settimane.
 
-Dopo aver scelto un'applicazione, è possibile avviare il monitoraggio e la gestione di App tramite hello dell'interfaccia utente. ad esempio:    
+Dopo avere fatto clic su un'applicazione, è possibile avviare il monitoraggio e la gestione delle app tramite l'interfaccia utente. ad esempio:    
 
 * [Monitorare in tempo reale i dati relativi all'applicazione](mobile-engagement-user-interface-monitor.md)
 * [Analizzare i dati cronologici sull'applicazione](mobile-engagement-user-interface-analytics.md)
-* [Creare e gestire i segmenti di modelli di utilizzo tooidentify utenti](mobile-engagement-user-interface-segments.md)
-* [Raggiungere toohello utenti dell'applicazione con le notifiche push](mobile-engagement-user-interface-reach.md)
+* [Creare e gestire segmenti di utenti per identificare modelli di utilizzo](mobile-engagement-user-interface-segments.md)
+* [Raggiungere gli utenti dell'applicazione con le notifiche push](mobile-engagement-user-interface-reach.md)
 
 ## <a name="my-projects"></a>Progetti personali
-È possibile utilizzare progetti toogroup le applicazioni e assegnare le autorizzazioni tooother utenti tooaccess le applicazioni. Assegnare le autorizzazioni agli utenti di tooother fornendo l'indirizzo di posta elettronica. Hello **nuovo progetto** pulsante consente un nuovo progetto toocreate immettendo solo "name" e "description" del nuovo progetto. Dopo aver creato un progetto, è possibile fare clic sul nome di hello tooedit di hello progetto nome e descrizione del prodotto e tooselect tutte le applicazioni hello desiderato toosee in questo progetto.
+È possibile utilizzare i progetti per raggruppare le applicazioni e concedere le autorizzazioni alle applicazioni stesse ad altri utenti. Si assegnano autorizzazioni ad altri utenti fornendo l'indirizzo di posta elettronica. Il pulsante **Nuovo progetto** consente di creare un nuovo progetto inserendo soltanto un "nome" e una "descrizione". Una volta creato un progetto, è possibile selezionarne il nome per modificare la descrizione e il nome del prodotto e per selezionare tutte le applicazioni che si desidera visualizzare nel progetto.
 
 ![Home6][60]
 
 I ruoli includono:
 
-* **Visualizzatore**: un visualizzatore è un utente che può essere solo applicazioni hello visualizzazione associata tooa progetto. Un visualizzatore può accedere alle analisi, monitorare i dati e consultare i risultati Reach. Un visualizzatore non può modificare le informazioni, né gestire le applicazioni o gli utenti. Un visualizzatore non può creare o modificare lo stato di una campagna Reach.
+* **Visualizzatore**: un visualizzatore può soltanto visualizzare le applicazioni associate a un progetto. Un visualizzatore può accedere alle analisi, monitorare i dati e consultare i risultati Reach. Un visualizzatore non può modificare le informazioni, né gestire le applicazioni o gli utenti. Un visualizzatore non può creare o modificare lo stato di una campagna Reach.
 * **Sviluppatore**: uno sviluppatore può eseguire le stesse attività di un visualizzatore nonché gestire le applicazioni. Uno sviluppatore può attivare o disattivare le applicazioni, modificare le informazioni delle applicazioni (pacchetto e firma, ad esempio) e creare campagne Reach. Uno sviluppatore non può gestire utenti.
-* **Amministratore**: un amministratore può eseguire tutte le attività di uno sviluppatore e gestire gli utenti. Un amministratore può invitare gli utenti toojoin un progetto, può modificare i ruoli utente e può modificare le informazioni del progetto. Nelle impostazioni è anche possibile impostare le autorizzazioni a livello di applicazione.
+* **Amministratore**: un amministratore può eseguire tutte le attività di uno sviluppatore e gestire gli utenti. Un amministratore può invitare gli utenti a partecipare a un progetto, modificare i ruoli degli utenti e le informazioni del progetto. Nelle impostazioni è anche possibile impostare le autorizzazioni a livello di applicazione.
 
-Fare clic su un progetto tooview tutte le applicazioni hello che fanno parte di questo progetto. Hello seguente immagine mostra il grafico di confronto hello per le applicazioni di hello selezionato.
+Fare clic su un progetto per visualizzare tutte le applicazioni che ne fanno parte. Nell'immagine seguente viene mostrato il grafico di confronto per le applicazioni selezionate.
 
 ![Home2][3]
 

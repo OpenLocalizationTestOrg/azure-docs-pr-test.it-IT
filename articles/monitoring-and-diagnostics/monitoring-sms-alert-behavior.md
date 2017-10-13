@@ -1,6 +1,6 @@
 ---
-title: comportamento di avviso aaaSMS in gruppi di azioni | Documenti Microsoft
-description: Formato del messaggio SMS e risponde tooSMS messaggi toounsubscribe, ripetuta o richiedere assistenza.
+title: Comportamento degli avvisi SMS nei gruppi di azione | Microsoft Docs
+description: Formato di messaggio SMS e risposta a messaggi SMS per l'annullamento e la riesecuzione della sottoscrizione o la richiesta di assistenza.
 author: anirudhcavale
 manager: orenr
 editor: 
@@ -14,63 +14,63 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: ancav
-ms.openlocfilehash: 3cd09b1903e3472f6402f62b74409d97e7e7ea97
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3e4eca174209eeb9cbce1d45111d1e5cc30af8b0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="sms-alert-behavior-in-action-groups"></a>Comportamento degli avvisi SMS nei gruppi di azione
 ## <a name="overview"></a>Panoramica ##
-Gruppi di azioni consentono di tooconfigure un elenco di destinatari. Questi gruppi possono quindi essere utilizzati quando si definiscono gli avvisi del registro attività; verifica che un gruppo particolare azione riceve una notifica quando viene attivato l'avviso di log attività hello. Uno degli avvisi meccanismi supportati hello è SMS; gli avvisi di Hello supportano la comunicazione bidirezionale. Un utente può rispondere tooan avviso:
+I gruppi di azione consentono di configurare un elenco di ricevitori. Questi gruppi possono essere usati in seguito durante la definizione degli avvisi del log attività per garantire che un determinato gruppo di azione riceva una notifica quando viene generato l'avviso del log attività. Uno dei metodi di avviso supportati è costituito dagli SMS. Gli avvisi supportano la comunicazione bidirezionale. Un utente può rispondere a un avviso per:
 
 - **Annullare la sottoscrizione agli avvisi:** un utente può annullare la sottoscrizione a tutti gli avvisi SMS per tutti i gruppi di azione o per un singolo gruppo di azioni.  
-- **Ripetuta tooalerts:** un utente può ripetuta tooall gli avvisi SMS per tutti i gruppi di azioni o un gruppo di azioni singolare.  
-- **Richiedere assistenza:** un utente può chiedere ulteriori informazioni su hello SMS. Sarà reindirizzato toothis articolo
+- **Rieseguire la sottoscrizione agli avvisi:** un utente può rieseguire la sottoscrizione a tutti gli avvisi SMS per tutti i gruppi di azione o per un singolo gruppo di azioni.  
+- **Richiedere assistenza:** un utente può richiedere altre informazioni nell'SMS. Viene reindirizzato a questo articolo
 
-Questo articolo descrive il comportamento di hello degli avvisi SMS hello e hello risposta azioni hello utente può eseguire in base alle impostazioni locali di hello dell'utente hello:
+Questo articolo descrive il comportamento degli avvisi SMS e le azioni di risposta che l'utente può eseguire in base alle impostazioni locali:
 
 ## <a name="usacanada-sms-behavior"></a>Comportamento SMS per Stati Uniti e Canada
 ### <a name="receiving-an-sms-alert"></a>Ricezione di un avviso SMS
-Un ricevitore di SMS, configurato come parte di un gruppo di azioni, riceverà un SMS quando viene generato un avviso. Hello SMS trasporterà hello le seguenti informazioni:
-* ShortName del gruppo di azioni hello questo avviso è stato inviato a
-- Titolo dell'avviso hello
+Un ricevitore di SMS, configurato come parte di un gruppo di azioni, riceverà un SMS quando viene generato un avviso. Il messaggio SMS include le informazioni seguenti:
+* Nome breve del gruppo di azione a cui è stato inviato l'avviso
+- Titolo dell'avviso
 
 ### <a name="unsubscribing-from-sms-alerts-for-one-action-group"></a>Annullamento della sottoscrizione agli avvisi SMS per un gruppo di azioni
-Un utente può annullare la sottoscrizione SMS per gli avvisi per gruppo di un'azione risponde toohello 20873 con parole chiave hello: "DISABILITARE &lt;Shortname del gruppo di azioni&gt;".
+Un utente può annullare la sottoscrizione agli SMS per gli avvisi di un solo gruppo di azioni rispondendo al codice breve 20873 con le parole chiave: "DISABLE &lt;nome breve del gruppo di azioni&gt;".
 
-Esempio: Un utente che desiderano toounsubscribe dagli avvisi per un gruppo di azioni con shortname hello "Azure", viene inviato un toohello SMS 20873 indicante "DISABILITARE Azure"
+Esempio: Un utente che vuole annullare la sottoscrizione agli avvisi di un gruppo di azioni con nome breve "Azure" invia un SMS al codice breve 20873 con il testo "DISABLE Azure"
 
 ### <a name="unsubscribing-from-sms-alerts-for-all-action-groups"></a>Annullamento della sottoscrizione agli avvisi SMS per tutti i gruppi di azioni
-Un utente può annullare la sottoscrizione tutti gli avvisi SMS per tutti i gruppi di azione risponde toohello 20873 con uno qualsiasi di hello parole chiave seguenti:
+Un utente può annullare la sottoscrizione a tutti gli avvisi SMS per tutti i gruppi di azioni rispondendo al codice breve 20873 con la parola chiave seguente:
 * STOP
 
-Esempio: Un utente che desiderano toounsubscribe da tutti gli avvisi SMS per tutti i gruppi di azioni, viene inviato un toohello SMS 20873 indicante "STOP"
+Esempio: Un utente che desidera annullare la sottoscrizione a tutti gli avvisi SMS per tutti i gruppi di azioni, potrebbe inviare un SMS non 20873 con il testo "STOP"
 
 >[!NOTE]
->Se un utente ha annullato la sottoscrizione da SMS avvisi, ma viene quindi aggiunto tooa azione al gruppo precedente. si verrà ricevere gli avvisi SMS per il nuovo gruppo di azioni, ma rimangono annullate da tutti i gruppi di azione precedente.
+>Se un utente ha annullato la sottoscrizione agli avvisi SMS e viene in seguito aggiunto a un nuovo gruppo di azioni, l'utente riceve gli avvisi SMS del nuovo gruppo di azioni mantenendo l'annullamento della sottoscrizione a tutti i gruppi di azioni precedenti.
 >
 >
 
-### <a name="resubscribing-toosms-alerts-for-one-action-group"></a>Ripetere la sottoscrizione tooSMS gli avvisi per un gruppo di azioni
-Un utente può ripetuta tooSMS per gli avvisi per gruppo di un'azione da risponde toohello 20873 con parole chiave hello: "abilitare &lt;Shortname del gruppo di azioni&gt;".
+### <a name="resubscribing-to-sms-alerts-for-one-action-group"></a>Riesecuzione della sottoscrizione agli avvisi SMS per un gruppo di azioni
+Un utente può rieseguire la sottoscrizione agli SMS per gli avvisi di un solo gruppo di azioni rispondendo al codice breve 20873 con le parole chiave: "ENABLE &lt;nome breve del gruppo di azioni&gt;".
 
-Esempio: Un utente che desiderano tooalerts tooresubscribe per un gruppo di azioni con shortname hello "Azure", viene inviato un toohello SMS 20873 indicante "Abilitare Azure"
+Esempio: Un utente che vuole rieseguire la sottoscrizione agli avvisi di un gruppo di azioni con nome breve "Azure" invia un SMS al codice breve 20873 con il testo "ENABLE Azure"
 
-### <a name="resubscribing-toosms-alerts-for-all-action-groups"></a>Ripetere la sottoscrizione tooSMS gli avvisi per tutti i gruppi di azioni
-Un utente può ripetuta tooall SMS per gli avvisi per tutti i gruppi di azioni da risponde toohello 20873 con uno qualsiasi di hello parole chiave seguenti:
+### <a name="resubscribing-to-sms-alerts-for-all-action-groups"></a>Riesecuzione della sottoscrizione agli avvisi SMS per tutti i gruppi di azioni
+Un utente può rieseguire la sottoscrizione a tutti gli avvisi SMS per tutti i gruppi di azioni rispondendo al codice breve 20873 con la parola chiave seguente:
 
 * START
 
-Esempio: Un utente che desiderano toounsubscribe da tutti gli avvisi SMS per tutti i gruppi di azioni, viene inviato un toohello SMS 20873 indicante "START"
+Esempio: Un utente che vuole annullare la sottoscrizione a tutti gli avvisi SMS per tutti i gruppi di azioni invia un SMS al codice breve 20873 con il testo "START"
 
 ### <a name="requesting-help-via-sms"></a>Richiesta di assistenza tramite SMS
-Un utente può chiedere per ulteriori informazioni su hello SMS ricevuti da risponde toohello 20873 con una delle seguenti parole chiave hello:
+Un utente può richiedere altre informazioni sul messaggio SMS ricevuto rispondendo al codice breve 20873 con la parola chiave seguente:
 * HELP
 
-Verrà inviata una risposta toohello utente con un articolo toothis di collegamento.
+Verrà inviata una risposta all'utente con un collegamento a questo articolo.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Ottenere un [panoramica degli avvisi di log attività](monitoring-overview-alerts.md) e informazioni su come viene generato un avviso di tooget  
+Ottenere una [panoramica degli avvisi del log attività](monitoring-overview-alerts.md) e informazioni sulla ricezione degli avvisi  
 Altre informazioni sulla [limitazione della frequenza degli SMS](monitoring-alerts-rate-limiting.md)  
 Altre informazioni sui [gruppi di azioni](monitoring-action-groups.md)

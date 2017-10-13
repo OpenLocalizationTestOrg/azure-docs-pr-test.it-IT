@@ -1,6 +1,6 @@
 ---
-title: aaaAzure interfaccia utente di Mobile Engagement - Account personale
-description: Informazioni su come toomanage i dispositivi di test e profilo di account con Azure Mobile Engagement
+title: Interfaccia utente di Azure Mobile Engagement - Account personale
+description: Informazioni su come gestire il profilo dell'account e i dispositivi di test usando Azure Mobile Engagement
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,45 +14,45 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 1d85f0e87c43605f59f6536ae42a7fb6a99ee36b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4e463e973dcfa1faa7b08e4738192161980b3aa2
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toomanage-your-account-profile-and-test-devices"></a>Come toomanage i dispositivi di test e profilo di account
-Questo articolo descrive hello **Home** pagina di hello **Mobile Engagement** portale. Utilizzare hello **Mobile Engagement** toomonitor portale e gestire le App per dispositivi mobili. 
+# <a name="how-to-manage-your-account-profile-and-test-devices"></a>Come gestire il profilo dell'account e i dispositivi di test
+Questo articolo descrive la **Home** page del portale **Mobile Engagement**. Utilizzare il portale **Mobile Engagement** per monitorare e gestire le app per dispositivi mobili. 
 
-tooget toohello **il mio account** pagina, fare clic sull'account in primo piano hello della pagina hello.
+Per ottenere la pagina **account personale** , fare clic sul proprio account nella parte superiore della pagina.
 
-Hello conto nella sezione dell'interfaccia utente è in cui è possibile visualizzare e modificare le impostazioni di hello associate al proprio account, tra cui impostazioni del profilo e verificare l'ID dispositivo hello. Queste impostazioni contengono elementi che è possibile accedere tramite l'API dispositivo hello.
+Nella sezione Account personale dell'interfaccia utente è possibile visualizzare e modificare le impostazioni associate al proprio account, incluse le impostazioni del profilo e gli ID dei dispositivi di test. Queste impostazioni contengono elementi a cui è possibile accedere anche tramite l'API di dispositivo.
 
 ![MyAccount1][7]  
 
 ## <a name="profile"></a>Profilo:
-È possibile visualizzare o modificare le impostazioni del proprio account mostrate di seguito: È inoltre possibile assegnare un altro utente dell'autorizzazione toouse l'applicazione in base agli indirizzi di posta elettronica da hello [Home](mobile-engagement-user-interface-home.md).
+È possibile visualizzare o modificare le impostazioni del proprio account mostrate di seguito: È anche possibile assegnare a un altro utente l'autorizzazione per usare l'applicazione in base all'indirizzo di posta elettronica da [Home](mobile-engagement-user-interface-home.md).
 
 ![MyAccount2][8]  
 
 ## <a name="devices"></a>Dispositivi:
-È possibile visualizzare, aggiungere o rimuovere test ID dispositivo di dispositivi di test hello che è possibile utilizzare tootest il **raggiungere** o **push** campagne. Le istruzioni contestuali per la modalità toofind hello ID dispositivo dei dispositivi per ogni piattaforma (iOS, Android, Windows Phone, e così via) vengono visualizzati quando si fa clic su "Nuovo dispositivo". 
+È possibile visualizzare, aggiungere o rimuovere gli ID dei dispositivi di test che si possono usare per testare le campagne di **copertura** o **push**. Istruzioni contestuali per trovare l'ID dei dispositivi per ogni piattaforma (iOS, Android, Windows Phone e così via) vengono visualizzate quando si fa clic su "Nuovo dispositivo". 
 
 ![MyAccount3][9]  
 
-toouse Push API o l'API dispositivo è necessario tooknow identificatore univoco del dispositivo degli utenti (parametro deviceid hello). Esistono diversi modi tooretrieve è:
+Per utilizzare l'API Push o l'API dispositivo è necessario conoscere l'identificatore univoco del dispositivo degli utenti (il parametro deviceid). Esistono diversi modi per recuperarlo:
 
-1. Dal back-end, è possibile utilizzare funzionalità di "Get" hello di hello API dispositivo tooget hello elenco completo degli identificatori di dispositivo.
-2. Dall'app, è possibile utilizzare tooget SDK hello è. (In Android, chiamare hello getDeviceID() funzione hello Agent (classe), e in iOS, leggere proprietà deviceid hello hello classe agente)
-3. Da un annuncio Reach, se associata a annuncio hello all'URL di azione hello contiene il modello di hello {deviceid}, si verrà automaticamente sostituito con identificatore hello del dispositivo hello hello azione di trigger.
+1. Dal back-end, è possibile utilizzare la funzionalità "Get" dell'API dispositivo per ottenere l'elenco completo degli identificatori dei dispositivi.
+2. Dall'app, è possibile ottenerlo utilizzando l'SDK (su Android chiamare la funzione getDeviceID() della classe Agent, su iOS leggere la proprietà deviceid della classe Agent).
+3. Da un annuncio Reach, se l'URL dell'azione associato all'annuncio contiene il modello {deviceid}, questo verrà sostituito automaticamente dall'identificatore del dispositivo che attiva l'azione.
    http://<example>.com/registeruser?deviceid={deviceid}&otherparam=myparamdata verrà sostituito con: http://<example>.com/registeruser?deviceid=XXXXXXXXXXXXXXXX&otherparam=myparamdata 
-4. Da un annuncio web Reach, se il codice HTML di annuncio hello hello contiene il modello di hello {deviceid}, si verrà automaticamente sostituito con identificatore hello del dispositivo che hello Visualizza l'annuncio di hello web.
+4. Da un annuncio Web Reach, se il codice HTML dell'annuncio contiene il modello {deviceid}, questo verrà sostituito automaticamente dall'identificatore del dispositivo di visualizzazione dell'annuncio Web.
    Ecco l'identificatore del dispositivo: {deviceid} verrà sostituito da: Ecco l'identificatore del dispositivo: XXXXXXXXXXXXXXXX
 5. Aprire l'applicazione sul dispositivo ed eseguire un evento nell'app contrassegnata.
-   Da parte dell'interfaccia utente, gli eventi di app - Monitor - - "Dettagli", trovare hello evento effettuata nell'elenco di hello.
-   Fare clic toothis evento hello Monitor.
-   È necessario trovare l'ID dispositivo nell'elenco di hello dei dispositivi hello che hanno eseguito questo evento.
-   Quindi, è possibile copiare l'ID dispositivo e registrarlo in hello "Dispositivi - Account - UI - nuovo dispositivo, selezionare la piattaforma del dispositivo".
-   >(Tenere presente che quando IDFA è disabilitato per iOS, hello ID dispositivo può modificare il tempo di hello se si disinstalla e reinstalla l'applicazione.)
+   Da "Interfaccia utente - app - Monitoraggio - Eventi - Dettagli", trovare l'evento eseguito nell'elenco.
+   Fare clic su questo evento in Monitoraggio.
+   L'ID del dispositivo sarà presente nell'elenco dei dispositivi che hanno eseguito l'evento.
+   Quindi, è possibile copiare tale ID del dispositivo e registrarlo in "Interfaccia utente - Account personale - Dispositivi - Nuovo dispositivo - Seleziona la piattaforma del dispositivo".
+   >Tenere presente che quando IDFA è disabilitato per iOS, l'ID del dispositivo potrebbe cambiare nel tempo se si disinstalla e si reinstalla l'app.
 
 ## <a name="troubleshooting-guide"></a>Guida per la risoluzione dei problemi
 * [Guida per la risoluzione dei problemi - Assistenza][Link 24]

@@ -1,6 +1,6 @@
 ---
-title: "funzionalità aaaSecurity che può essere utilizzata con l'archiviazione di Azure | Documenti Microsoft"
-description: " In questo articolo viene fornita una panoramica delle funzionalità di sicurezza di Azure hello principali che può essere utilizzato con l'archiviazione di Azure. "
+title: "Funzionalità di sicurezza per Archiviazione di Azure | Documentazione Microsoft"
+description: " Questo articolo offre informazioni generali sulle funzionalità di sicurezza principali di Azure che possono essere usate con Archiviazione di Azure. "
 services: security
 documentationcenter: na
 author: TerryLanfear
@@ -14,48 +14,48 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/23/2017
 ms.author: terrylan
-ms.openlocfilehash: 663cd2705527957d21ff9475a6322b42a16c95e5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: da28cbf5f6f91df1f89114a63bc3f2ebac0f6d73
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-storage-security-overview"></a>Panoramica sulla sicurezza di Archiviazione di Azure
-Archiviazione di Azure è una soluzione di archiviazione cloud hello per le moderne applicazioni che si basano su esigenze di hello toomeet scalabilità dei clienti, disponibilità e durata. Archiviazione di Azure offre un set completo di funzionalità di sicurezza:
+Archiviazione di Azure è la soluzione di archiviazione cloud per le applicazioni moderne basate su durata, disponibilità e scalabilità per soddisfare le esigenze dei clienti. Archiviazione di Azure offre un set completo di funzionalità di sicurezza:
 
-* account di archiviazione Hello possono essere protetti utilizzando Role-Based Access Control e Azure Active Directory.
+* L'account di archiviazione può essere protetto con il controllo degli accessi in base al ruolo e Azure Active Directory.
 * È possibile proteggere i dati in transito tra un'applicazione e Azure usando la crittografia lato client, HTTPS o SMB 3.0.
-* Dati possono essere impostati toobe crittografato automaticamente quando scritti tooAzure archiviazione mediante la crittografia del servizio di archiviazione.
-* I dischi del sistema operativo e i dati utilizzati dalle macchine virtuali possono essere impostati toobe crittografata con la crittografia del disco di Azure.
-* È possibile concedere l'accesso delegato toohello dati oggetti nell'archiviazione di Azure tramite firme di accesso condiviso.
-* metodo di autenticazione Hello utilizzato da un utente durante l'accesso di archiviazione può essere rilevato tramite analitica di archiviazione.
+* I dati possono essere impostati per la crittografia automatica quando vengono scritti in Archiviazione di Azure con Crittografia del servizio di archiviazione di Azure.
+* I dischi di dati e del sistema operativo usati dalle macchine virtuali possono essere impostati per la crittografia con Crittografia dischi di Azure.
+* È possibile concedere l'accesso delegato agli oggetti dati in Archiviazione di Azure usando le firme di accesso condiviso.
+* Il metodo di autenticazione usato da un utente quando accede alla risorsa di archiviazione può essere monitorato con Analisi archiviazione.
 
-Per informazioni più dettagliate di sicurezza in archiviazione di Azure, vedere hello [Guida alla protezione di archiviazione di Azure](../storage/common/storage-security-guide.md). Questa guida fornisce un approfondimento di funzionalità di sicurezza hello dell'archiviazione di Azure, ad esempio chiavi account di archiviazione, la crittografia dei dati in transito e rest e analitica di archiviazione.
+Per un'analisi più approfondita della sicurezza in Archiviazione di Azure, vedere la [Guida alla sicurezza di Archiviazione di Azure](../storage/common/storage-security-guide.md). Questa guida offre approfondimenti sulle funzionalità di sicurezza di Archiviazione di Azure, ad esempio chiavi dell'account di archiviazione, crittografia dei dati in transito e inattivi e Analisi archiviazione.
 
-Questo articolo offre informazioni generali sulle funzionalità di sicurezza di Azure che possono essere usate con Archiviazione di Azure. Vengono forniti tooarticles che forniscono i dettagli di ogni funzionalità in modo da acquisire più collegamenti.
+Questo articolo offre informazioni generali sulle funzionalità di sicurezza di Azure che possono essere usate con Archiviazione di Azure. Per altre informazioni sono disponibili collegamenti ad articoli di approfondimento su ogni funzionalità.
 
-Di seguito sono hello core funzionalità toobe illustrate in questo articolo:
+Qui di seguito sono elencati gli argomenti trattati in questo articolo:
 
 * Controllo degli accessi in base al ruolo
-* L'accesso delegato toostorage oggetti
+* Accesso delegato agli oggetti di archiviazione
 * Crittografia in transito
 * Crittografia di dati inattivi/Crittografia del servizio di archiviazione
 * Azure Disk Encryption
 * Insieme di credenziali chiave Azure
 
 ## <a name="role-based-access-control-rbac"></a>Controllo degli accessi in base al ruolo
-È possibile proteggere l'account di archiviazione con il controllo degli accessi in base al ruolo. Limitazione dell'accesso basato su hello [necessario tooknow](https://en.wikipedia.org/wiki/Need_to_know) e [privilegio](https://en.wikipedia.org/wiki/Principle_of_least_privilege) principi di sicurezza è fondamentale per le organizzazioni che vogliono tooenforce criteri di sicurezza per l'accesso ai dati. Questi diritti di accesso vengono concesse tramite l'assegnazione di hello appropriato RBAC ruolo toogroups e alle applicazioni da un determinato ambito. È possibile utilizzare [ruoli RBAC incorporati](../active-directory/role-based-access-built-in-roles.md), ad esempio di collaboratore di Account di archiviazione, tooassign privilegi toousers.
+È possibile proteggere l'account di archiviazione con il controllo degli accessi in base al ruolo. Per le organizzazioni che intendono applicare criteri di sicurezza per l'accesso ai dati è fondamentale limitare l'accesso in base a principi di [riservatezza](https://en.wikipedia.org/wiki/Need_to_know) e [privilegi minimi](https://en.wikipedia.org/wiki/Principle_of_least_privilege). Questi diritti di accesso vengono concessi assegnando il ruolo di controllo degli accessi appropriato a gruppi e applicazioni in un ambito specifico. È possibile usare i [ruoli predefiniti del controllo degli accessi in base al ruolo](../active-directory/role-based-access-built-in-roles.md), ad esempio Collaboratore Account di archiviazione, per assegnare privilegi agli utenti.
 
 Altre informazioni:
 
 * [Controllo degli accessi in base al ruolo di Azure Active Directory](../active-directory/role-based-access-control-configure.md)
 
-## <a name="delegated-access-toostorage-objects"></a>L'accesso delegato toostorage oggetti
-Una firma di accesso condiviso (SAS) fornisce l'accesso delegato tooresources nell'account di archiviazione. Hello SAS significa che è possibile concedere a che un client limitate tooobjects autorizzazioni nell'account di archiviazione per un determinato periodo di tempo e con un set specificato di autorizzazioni. È possibile concedere queste autorizzazioni limitate senza tooshare le chiavi di accesso di account. Hello firma di accesso condiviso è un URI che include i parametri di query di tutte le informazioni di hello necessarie per la risorsa di archiviazione tooa l'accesso autenticato. risorse di archiviazione tooaccess con hello SAS, hello client deve solo tooprovide hello SAS toohello appropriato al costruttore o metodo.
+## <a name="delegated-access-to-storage-objects"></a>Accesso delegato agli oggetti di archiviazione
+Una firma di accesso condiviso (SAS) fornisce accesso delegato alle risorse nell'account di archiviazione. Questa firma di accesso condiviso significa che è possibile concedere a un client autorizzazioni limitate per BLOB, code o tabelle per un periodo di tempo specificato e con un set di autorizzazioni. È possibile concedere queste autorizzazioni limitate senza la necessità di condividere le chiavi di accesso all'account. La firma di accesso condiviso è un URI che racchiude nei parametri di query tutte le informazioni necessarie per l'accesso autenticato a una risorsa di archiviazione. Per accedere alle risorse di archiviazione con la firma di accesso condiviso, il client deve solo passare la firma al costruttore o al metodo appropriato.
 
 Altre informazioni:
 
-* [Modello di firma di accesso condiviso di conoscenza hello](../storage/common/storage-dotnet-shared-access-signature-part-1.md)
+* [Informazioni sul modello di firma di accesso condiviso](../storage/common/storage-dotnet-shared-access-signature-part-1.md)
 * [Creare e usare una firma di accesso condiviso con l'archiviazione BLOB](../storage/blobs/storage-dotnet-shared-access-signature-part-2.md)
 
 ## <a name="encryption-in-transit"></a>Crittografia in transito
@@ -63,7 +63,7 @@ La crittografia in transito è un meccanismo di protezione dei dati durante la t
 
 * [Crittografia a livello di trasporto](../storage/common/storage-security-guide.md#encryption-in-transit), ad esempio HTTPS quando si trasferiscono dati all'interno o all'esterno di Archiviazione di Azure.
 * [Crittografia di rete](../storage/common/storage-security-guide.md#using-encryption-during-transit-with-azure-file-shares), ad esempio la crittografia SMB 3.0 per le condivisioni file di Azure.
-* [Crittografia client-side](../storage/common/storage-security-guide.md#using-client-side-encryption-to-secure-data-that-you-send-to-storage), dati di hello tooencrypt prima di essere trasferiti in toodecrypt e archiviazione dati hello dopo che viene trasferita all'esterno di archiviazione.
+* [Crittografia lato client](../storage/common/storage-security-guide.md#using-client-side-encryption-to-secure-data-that-you-send-to-storage), per crittografare i dati prima che siano trasferiti nella risorsa di archiviazione e decrittografarli dopo il trasferimento dalla risorsa di archiviazione.
 
 Altre informazioni sulla crittografia lato client:
 
@@ -73,9 +73,9 @@ Altre informazioni sulla crittografia lato client:
 ## <a name="encryption-at-rest"></a>Crittografia di dati inattivi
 Per molte organizzazioni, [la crittografia dei dati inattivi](https://blogs.microsoft.com/cybertrust/2015/09/10/cloud-security-controls-series-encrypting-data-at-rest/) è un passaggio obbligatorio per assicurare la privacy dei dati, la conformità e la sovranità dei dati. Esistono tre funzionalità di Azure che consentono di crittografare dati inattivi:
 
-* [La crittografia del servizio di archiviazione](../storage/common/storage-security-guide.md#encryption-at-rest) consente che il servizio di archiviazione hello crittografa automaticamente i dati durante la scrittura di archiviazione tooAzure toorequest.
-* [Crittografia client-side](../storage/common/storage-security-guide.md#client-side-encryption) offre inoltre funzionalità hello di crittografia.
-* [Crittografia disco Azure](../storage/common/storage-security-guide.md#using-azure-disk-encryption-to-encrypt-disks-used-by-your-virtual-machines) consente tooencrypt hello del sistema operativo dischi e i dischi di dati utilizzati da una macchina virtuale IaaS.
+* [Crittografia del servizio di archiviazione](../storage/common/storage-security-guide.md#encryption-at-rest) consente di richiedere che il servizio di archiviazione crittografi automaticamente i dati durante la scrittura in Archiviazione di Azure.
+* [Client-side Encryption](../storage/common/storage-security-guide.md#client-side-encryption) offre anche la funzionalità di crittografia dei dati inattivi.
+* [Crittografia dischi di Azure](../storage/common/storage-security-guide.md#using-azure-disk-encryption-to-encrypt-disks-used-by-your-virtual-machines) consente di crittografare i dischi dati e del sistema operativo usati da una macchina virtuale IaaS.
 
 Altre informazioni su Crittografia del servizio di archiviazione:
 
@@ -85,14 +85,14 @@ Altre informazioni su Crittografia del servizio di archiviazione:
 ## <a name="azure-disk-encryption"></a>Azure Disk Encryption
 Crittografia dischi di Azure per le macchine virtuali consente di soddisfare i requisiti di conformità e sicurezza dell'organizzazione, grazie alla possibilità di crittografare i dischi delle macchine virtuali, inclusi i dischi di avvio e di dati, con chiavi e criteri gestiti in [Insieme di credenziali delle chiavi di Azure](https://azure.microsoft.com/services/key-vault/).
 
-Crittografia dischi per le macchine virtuali funziona con sistemi operativi sia Linux, sia Windows. Utilizza inoltre un insieme di credenziali chiave toohelp proteggere, gestire e controllare l'uso delle chiavi di crittografia del disco. Tutti i dati di hello i dischi di macchina virtuale vengono crittografati a riposo usando la tecnologia di crittografia standard del settore negli account di archiviazione di Azure. soluzioni di crittografia del disco per Windows Hello è basato su [crittografia unità BitLocker di Microsoft](https://technet.microsoft.com/library/cc732774.aspx), e hello Linux soluzione si basa su [dm crypt](https://en.wikipedia.org/wiki/Dm-crypt).
+Crittografia dischi per le macchine virtuali funziona con sistemi operativi sia Linux, sia Windows. Usa l'insieme di credenziali delle chiavi per proteggere, gestire e controllare l'uso delle chiavi di crittografia dei dischi. Tutti i dati nei dischi delle macchine virtuali vengono crittografati mentre sono inattivi, usando una tecnologia di crittografia standard del settore negli account di archiviazione di Azure. La soluzione Crittografia dischi per Windows è basata su [Crittografia unità BitLocker](https://technet.microsoft.com/library/cc732774.aspx) di Microsoft e la soluzione Linux è basata su [dm-crypt](https://en.wikipedia.org/wiki/Dm-crypt).
 
 Altre informazioni:
 
 * [Crittografia dischi di Azure per le macchine virtuali IaaS Windows e Linux](https://gallery.technet.microsoft.com/Azure-Disk-Encryption-for-a0018eb0)
 
 ## <a name="azure-key-vault"></a>Insieme di credenziali chiave Azure
-La crittografia del disco di Azure Usa [insieme credenziali chiavi Azure](https://azure.microsoft.com/services/key-vault/) toohelp controllare e gestire chiavi di crittografia del disco e i segreti nella sottoscrizione di insieme di credenziali delle chiavi, assicurando che tutti i dati nei dischi di macchina virtuale hello vengono crittografati a riposo in di Azure Spazio di archiviazione. È consigliabile utilizzare chiavi tooaudit insieme di credenziali chiave e utilizzo dei criteri.
+Crittografia dischi di Azure usa [Insieme di credenziali delle chiavi di Azure](https://azure.microsoft.com/services/key-vault/) per facilitare il controllo e la gestione delle chiavi di crittografia dei dischi e dei segreti nella sottoscrizione dell'insieme di credenziali delle chiavi, assicurando al tempo stesso che tutti i dati nei dischi delle macchine virtuali siano crittografati quando inattivi in Archiviazione di Azure. È opportuno usare l'insieme di credenziali delle chiavi per controllare le chiavi e l'utilizzo di criteri.
 
 Altre informazioni:
 

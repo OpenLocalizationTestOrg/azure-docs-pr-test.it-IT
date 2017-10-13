@@ -1,6 +1,6 @@
 ---
-title: limitazione di aaaRate per SMS, messaggi di posta elettronica e ai webhook | Documenti Microsoft
-description: Comprendere in che modo Azure limita il numero di hello delle possibili notifiche SMS, posta elettronica o webhook da un gruppo di azioni.
+title: Limitazione della frequenza per SMS, messaggi di posta elettronica e Webhook | Microsoft Docs
+description: Informazioni su come Azure limita il numero di possibili notifiche tramite SMS, posta elettronica o webhook da un gruppo di azione.
 author: anirudhcavale
 manager: orenr
 editor: 
@@ -14,29 +14,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: ancav
-ms.openlocfilehash: 1cd08a5b982c82bb02e0bf93451aa1fcd9bc34af
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: bde645624ab1860d19ba18470f55845855a7d1fb
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="rate-limiting-for-sms-messages-emails-and-webhook-posts"></a>Limitazione della frequenza per i messaggi SMS e di posta elettronica e per i post webhook
-La limitazione della velocità è una sospensione di notifiche che si verifica quando l'indirizzo di posta elettronica o numero di telefono specifico tooa è vengono inviate le notifiche di un numero eccessivo. La limitazione assicura che gli avvisi siano gestibili ed eseguibili.
+La limitazione della frequenza è una sospensione delle notifiche che si verifica quando un numero eccessivo di notifiche viene inviato a un particolare numero telefono o indirizzo di posta elettronica. La limitazione assicura che gli avvisi siano gestibili ed eseguibili.
 
-le regole di Hello per posta elettronica e SMS sono hello stesso. limite della soglia di frequenza Hello è:
+Le regole per SMS e messaggi di posta elettronica sono uguali. Il limite della soglia di frequenza è:
 
  - **SMS**: 10 messaggi in un'ora.
  - **Messaggi di posta elettronica**: 100 messaggi in un'ora.
 
 ## <a name="rate-limit-rules"></a>Regole dei limiti di frequenza
-- Un numero di telefono specifico o di un messaggio di posta elettronica è limitato quando riceve più messaggi di quanti soglia hello consente di frequenza.
-- Un numero di telefono o un indirizzo di posta elettronica può fare parte di gruppi di azione tra più sottoscrizioni. La limitazione della frequenza viene applicata a tutte le sottoscrizioni. Non appena viene raggiunta la soglia hello, si applica anche se i messaggi vengono inviati da più sottoscrizioni.  
-- Quando un numero di telefono o posta elettronica è limitato di velocità, una notifica aggiuntiva verrà inviata toocommunicate hello la limitazione della velocità. Hello stati quando hello limitazione di velocità di notifica di scadenza.
+- Vengono messi i limiti di frequenza per uno specifico numero di telefono o un indirizzo di posta elettronica quando si ricevono più avvisi rispetto alla soglia di frequenza.
+- Un numero di telefono o un indirizzo di posta elettronica può fare parte di gruppi di azione tra più sottoscrizioni. La limitazione della frequenza viene applicata a tutte le sottoscrizioni. Al raggiungimento della soglia, si applica anche se i messaggi vengono inviati da più sottoscrizioni.  
+- Quando un numero di telefono o un messaggio di posta elettronica ha una limitazione della frequenza, viene inviata una notifica aggiuntiva per comunicare tale limitazione. La notifica indica la scadenza della limitazione della frequenza.
 
 ## <a name="rate-limit-of-webhooks"></a>Limitazione della frequenza di webhook ##
 Non esiste alcuna limitazione della frequenza per webhook.
 
 ## <a name="next-steps"></a>Passaggi successivi ##
 * Altre informazioni sul [Comportamento degli avvisi SMS](monitoring-sms-alert-behavior.md).
-* Ottenere un [panoramica degli avvisi di log attività](monitoring-overview-alerts.md)e informazioni su come tooreceive avvisi.  
-* Informazioni su come troppo[configurare gli avvisi ogni volta che viene registrata una notifica di integrità del servizio](monitoring-activity-log-alerts-on-service-notifications.md).
+* Leggere una [panoramica degli avvisi del log attività](monitoring-overview-alerts.md) e informazioni su come ricevere gli avvisi.  
+* Informazioni su come [configurare gli avvisi ogni volta che viene inviata una notifica sull'integrità del servizio](monitoring-activity-log-alerts-on-service-notifications.md).

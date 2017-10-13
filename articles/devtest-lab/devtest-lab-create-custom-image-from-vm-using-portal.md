@@ -1,6 +1,6 @@
 ---
-title: un'immagine personalizzata da una macchina virtuale Azure DevTest Labs in aaaCreate | Documenti Microsoft
-description: Informazioni su come un'immagine personalizzata in Azure DevTest Labs da una macchina virtuale con provisioning toocreate hello portale di Azure
+title: Creare un'immagine personalizzata di Azure DevTest Labs da una VM | Documentazione Microsoft
+description: Informazioni su come creare un'immagine personalizzata in Azure DevTest Labs da una VM predisposta usando il portale di Azure
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/10/2017
 ms.author: tarcher
-ms.openlocfilehash: 7dccb79d3db4aae676c7bd2f6b800301210491e2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9d2dcf7164985508d691e8a0c123efaf3b8aa19a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-a-custom-image-from-a-vm"></a>Creare un'immagine personalizzata da una VM
 
@@ -26,29 +26,29 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="step-by-step-instructions"></a>Istruzioni dettagliate
 
-È possibile creare un'immagine personalizzata da una macchina virtuale di provisioning e successivamente usare tale toocreate immagine personalizzata macchine virtuali identiche. Hello alla procedura seguente viene illustrato come toocreate immagine personalizzata da una macchina virtuale:
+È possibile creare un'immagine personalizzata da una macchina virtuale predisposta e successivamente utilizzare tale immagine per creare macchine virtuali identiche. I passaggi seguenti illustrano come creare un'immagine personalizzata da una macchina virtuale:
 
-1. Accedi toohello [portale di Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+1. Accedere al [portale di Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
 
-1. Selezionare **più servizi**, quindi selezionare **DevTest Labs** dall'elenco di hello.
+1. Selezionare **Altri servizi** e quindi **DevTest Labs** dall'elenco.
 
-1. Elenco dei laboratori hello selezionare lab desiderato hello.  
+1. Nell'elenco dei lab selezionare il lab desiderato.  
 
-1. Nel pannello del lab hello, selezionare **macchine virtuali**.
+1. Nel pannello del lab selezionare **My virtual machines**(Macchine virtuali personali).
  
-1. In hello **macchine virtuali** pannello selezionare hello VM da cui si desidera toocreate immagine personalizzata di hello.
+1. Nel pannello **My virtual machines** (Macchine virtuali personali) del lab selezionare la VM da cui creare l'immagine personalizzata.
 
-1. Nel pannello hello della macchina virtuale, selezionare **Crea immagine personalizzata (VHD)**.
+1. Nel pannello della macchina virtuale selezionare **Crea immagine personalizzata (disco rigido virtuale)**.
 
     ![Voce di menu Crea immagine personalizzata](./media/devtest-lab-create-template/create-custom-image.png)
 
-1. In hello **Crea immagine** pannello, immettere un nome e una descrizione per l'immagine personalizzata. Queste informazioni vengono visualizzate nell'elenco di hello di base quando si crea una macchina virtuale.
+1. Nel pannello **Immagine personalizzata** immettere un nome e una descrizione per l'immagine personalizzata. Queste informazioni vengono visualizzate nell'elenco delle immagini di base quando si crea una VM.
 
     ![Pannello Crea immagine personalizzata](./media/devtest-lab-create-template/create-custom-image-blade.png)
 
-1. Consente di indicare se è stato eseguito sysprep nella macchina virtuale hello. Se non è stato eseguito sysprep hello in hello macchina virtuale, specificare se si desidera eseguire quando una macchina virtuale viene creata da questa immagine personalizzata di sysprep.
+1. Indicare se è stato eseguito sysprep nella macchina virtuale. Se non è stato eseguito sysprep nella VM, specificare se si desidera eseguirlo quando si crea una VM da questa immagine personalizzata.
 
-1. Selezionare **OK** quando toocreate termine hello immagine personalizzata.
+1. Selezionare **OK** al termine per creare l'immagine personalizzata.
 
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
@@ -59,4 +59,4 @@ ms.lasthandoff: 10/06/2017
 
 ##<a name="next-steps"></a>Passaggi successivi
 
-- [Aggiungere un ambiente lab tooyour VM](./devtest-lab-add-vm-with-artifacts.md)
+- [Aggiungere una macchina virtuale al lab](./devtest-lab-add-vm-with-artifacts.md)

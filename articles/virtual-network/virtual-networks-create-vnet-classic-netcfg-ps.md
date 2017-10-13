@@ -1,6 +1,6 @@
 ---
-title: una rete virtuale usando un file di configurazione di rete aaaCreate | PowerShell | Classico | Documenti Microsoft
-description: Informazioni su come toocreate una rete virtuale usando una configurazione di rete del file nel portale di Azure hello.
+title: Creare una rete virtuale usando un file di configurazione di rete | PowerShell | Modello di distribuzione classica | Documentazione Microsoft
+description: Informazioni su come creare una rete virtuale utilizzando un file di configurazione di rete nel portale di Azure.
 services: virtual-network
 documentationcenter: 
 author: jimdial
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
-ms.openlocfilehash: 1e4005b06324ca61d63b03799ebbbc4373f14dbd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a67c3f73d9e56ab0081836ba5db62f5a01c7b6bc
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="create-a-virtual-network-classic-using-a-network-configuration-file-with-powershell"></a>Creare una rete virtuale (modello di distribuzione classica) usando un file di configurazione di rete con PowerShell
 [!INCLUDE [virtual-networks-create-vnet-selectors-classic-include](../../includes/virtual-networks-create-vnet-selectors-classic-include.md)]
@@ -28,7 +28,7 @@ ms.lasthandoff: 10/06/2017
 
 [!INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]
 
-Questo documento descrive la creazione di una rete virtuale utilizzando il modello di distribuzione classica hello. È anche possibile [creare una rete virtuale nel modello di distribuzione di gestione risorse di hello](virtual-networks-create-vnet-arm-ps.md).
+In questo documento viene illustrata la creazione di una rete virtuale utilizzando il modello di distribuzione classico. È inoltre possibile [creare una rete virtuale nel modello di distribuzione di Gestione risorse](virtual-networks-create-vnet-arm-ps.md).
 
 [!INCLUDE [virtual-networks-create-vnet-scenario-include](../../includes/virtual-networks-create-vnet-scenario-include.md)]
 

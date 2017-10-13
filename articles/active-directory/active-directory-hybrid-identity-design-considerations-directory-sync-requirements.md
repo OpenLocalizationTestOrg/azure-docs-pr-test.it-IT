@@ -1,6 +1,6 @@
 ---
-title: "Considerazioni sulla progettazione di aaaAzure Active Directory ibrido identità - determinare i requisiti di sincronizzazione della directory | Documenti Microsoft"
-description: Identificare i requisiti necessari per la sincronizzazione di tutti gli utenti di hello tra = in locale e nel cloud per enterprise hello.
+title: "Considerazioni di progettazione della soluzione ibrida di gestione delle identità di Azure Active Directory - Determinare i requisiti di sincronizzazione delle directory | Microsoft Docs"
+description: Identificare i requisiti necessari per sincronizzare tutti gli utenti per le applicazioni locali e nel cloud.
 documentationcenter: 
 services: active-directory
 author: billmath
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/18/2017
 ms.author: billmath
-ms.openlocfilehash: 6646e3792c65f37c3d62eecdb6c6f3bd257f04f1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5ef87e606f055359ca325befd6048353ce57ca2b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="determine-directory-synchronization-requirements"></a>Determinare i requisiti di sincronizzazione delle directory
-La sincronizzazione è fornire agli utenti un'identità nel cloud hello basata sull'identità locale. Che useranno sincronizzata conto per l'autenticazione o l'autenticazione federata, o meno agli utenti di hello è comunque necessario toohave un'identità nel cloud hello.  Questa identità sarà necessario toobe mantenute e aggiornate periodicamente.  gli aggiornamenti di Hello possono assumere forme diverse, dal titolo modifiche toopassword cambia.  
+La sincronizzazione consiste nel fornire agli utenti un'identità nel cloud basata sulla rispettiva identità locale. Gli utenti, infatti, devono necessariamente disporre di un'identità nel cloud, indipendentemente dal fatto che per autenticarsi si avvalgano di un account sincronizzato o di un'autenticazione federata.  L'identità dovrà inoltre essere gestita e aggiornata periodicamente.  Gli aggiornamenti possono assumere molte forme, tra cui modifiche al titolo o alla password.  
 
-Avviare la valutazione hello organizzazioni identità utente e soluzione requisiti locale. Questa valutazione è requisiti tecnici di hello toodefine importanti per la modalità di creazione e gestite nel cloud hello identità utente.  Per la maggior parte delle organizzazioni, Active Directory locale e verranno sincronizzati da, tuttavia in alcuni casi non sarà case hello directory locale hello che per gli utenti.  
+È necessario valutare in primo luogo i requisiti degli utenti e della soluzione di identità locale dell'azienda. Questa valutazione è importante per definire i requisiti tecnici cui attenersi per creare e mantenere le identità utente nel cloud.  Nella maggior parte delle aziende, Active Directory si trova in locale e costituisce la directory locale con la quale vengono sincronizzati gli utenti. In alcuni casi, tuttavia, la situazione può essere diversa.  
 
-Verificare che hello tooanswer seguenti domande:
+Rispondere alle domande seguenti:
 
 * Sono presenti una o più foreste di Active Directory?
   
@@ -36,35 +36,35 @@ Verificare che hello tooanswer seguenti domande:
 * È presente uno strumento di sincronizzazione locale?
   
   * In caso affermativo, gli utenti dispongono di una directory virtuale/integrazione delle identità?
-* Si dispone di qualsiasi altra directory locale che si desidera toosynchronize (ad esempio Directory LDAP, database delle risorse Umane e così via)?
-  * Verranno toobe esegue qualsiasi GALSync?
-  * Che cos'è lo stato corrente hello dell'UPN dell'organizzazione? 
+* Sono presenti altre directory locali che si desidera sincronizzare (ad esempio, la directory LDAP, il database delle risorse umane e così via)?
+  * Si intende eseguire sincronizzazioni con GALSync?
+  * Qual è lo stato corrente dei nomi di entità utente (UPN) presenti in azienda? 
   * È presente una directory diversa per l'autenticazione degli utenti?
   * Si usa Microsoft Exchange in azienda?
     * Si prevede di eseguire una distribuzione ibrida di Exchange?
 
-Dopo aver creato un'idea sui requisiti di sincronizzazione, è necessario toodetermine dello strumento è una toomeet corretta hello questi requisiti.  Microsoft offre diversi integrazione directory tooaccomplish di strumenti e la sincronizzazione.  Vedere hello [tabella di confronto di strumenti di gestione identità ibride directory integration](active-directory-hybrid-identity-design-considerations-tools-comparison.md) per ulteriori informazioni. 
+Dopo aver determinato i requisiti di sincronizzazione, è necessario ora individuare lo strumento corretto per soddisfare tali requisiti.  Microsoft offre diversi strumenti per eseguire la sincronizzazione e l'integrazione di directory.  Per altre informazioni, vedere [Confronto degli strumenti di integrazione directory per la soluzione ibrida di gestione delle identità](active-directory-hybrid-identity-design-considerations-tools-comparison.md) . 
 
-Dopo aver creato i requisiti di sincronizzazione e strumento hello effettuare tale operazione per l'azienda, è necessario tooevaluate hello delle applicazioni che utilizzano questi servizi di directory. Questa valutazione è importante toodefine hello requisiti tecnici toointegrate questi cloud toohello applicazioni. Verificare che hello tooanswer seguenti domande:
+Dopo aver individuato i requisiti di sincronizzazione e lo strumento corretto per la propria azienda, è necessario ora valutare le applicazioni che useranno i servizi di directory. Questa valutazione è importante per definire i requisiti tecnici cui attenersi per integrare le applicazioni nel cloud. Rispondere alle domande seguenti:
 
-* Queste applicazioni sarà spostato toohello cloud e utilizzare directory hello?
-* Sono presenti attributi speciali che devono sincronizzare toobe toohello cloud queste applicazioni possono utilizzarli correttamente?
-* Queste applicazioni è necessario toobe riscritto tootake sfruttare autenticazione cloud?
-* Queste applicazioni continuerà toolive locale mentre gli utenti accedere utilizzando l'identità cloud hello?
+* Queste applicazioni verranno migrate nel cloud e useranno la directory?
+* Sono presenti attributi speciali da sincronizzare nel cloud in modo che le applicazioni possano usarli correttamente?
+* Sarà necessario riscrivere le applicazioni per poter usufruire dei vantaggi offerti dall'autenticazione nel cloud?
+* Le applicazioni continueranno a risiedere in locale anche se gli utenti vi accederanno tramite l'identità cloud?
 
-È inoltre necessario toodetermine hello sicurezza requisiti e vincoli di sincronizzazione della directory. Questa valutazione è importante tooget un elenco di requisiti hello che sarà necessaria nell'ordine toocreate e gestire le identità dell'utente nel cloud hello. Verificare che hello tooanswer seguenti domande:
+È inoltre necessario definire la sincronizzazione delle directory relative ai requisiti di sicurezza e alle limitazioni. Questa valutazione è importante per ottenere un elenco dei requisiti a cui attenersi per creare e gestire le identità utente nel cloud. Rispondere alle domande seguenti:
 
-* In cui verranno collocati i server di sincronizzazione hello?
+* Dove verrà installato il server di sincronizzazione?
 * Verrà aggiunto al dominio?
-* Server hello si troverà in una rete con restrizioni dietro un firewall, ad esempio una rete Perimetrale?
-  * Sarà la sincronizzazione toosupport tooopen in grado di hello necessario firewall porte?
-* Si dispone di un piano di ripristino di emergenza per il server di sincronizzazione hello?
-* Si dispone di un account con autorizzazioni appropriate di hello per tutte le foreste che si desidera toosynch con?
-  * Se l'azienda non conosce risposte hello per questa domanda, nella sezione hello "Autorizzazioni per la sincronizzazione password" nell'articolo hello [hello installazione servizio di sincronizzazione di Azure Active Directory](https://msdn.microsoft.com/library/azure/dn757602.aspx#BKMK_CreateAnADAccountForTheSyncService) e determinare se esiste già un account con queste autorizzazioni o se è necessario toocreate uno.
-* Se dispone di sincronizzazione di più foreste è foresta tooeach tooget in grado di hello sincronizzazione server?
+* Il server verrà installato in una rete con limitazioni dietro un firewall, ad esempio una rete perimetrale?
+  * Sarà possibile aprire le porte del firewall necessarie per supportare la sincronizzazione?
+* È stato definito un piano di ripristino di emergenza per il server di sincronizzazione?
+* Si dispone di un account con le autorizzazioni appropriate per tutte le foreste con cui si desidera eseguire la sincronizzazione?
+  * Se non si conosce la risposta a questa domanda, consultare la sezione "Autorizzazioni per la sincronizzazione delle password" dell'articolo [Installare il servizio Azure Active Directory Sync](https://msdn.microsoft.com/library/azure/dn757602.aspx#BKMK_CreateAnADAccountForTheSyncService) e verificare se si dispone già di un account con queste autorizzazioni o se è necessario crearne uno.
+* Se è prevista la sincronizzazione con più foreste, il server di sincronizzazione è in grado di accedere a ognuna di esse?
 
 > [!NOTE]
-> Annotare i tootake che ogni risposta e comprendere motivazioni hello delle risposte hello. [Determinare i requisiti di risposta agli eventi imprevisti](active-directory-hybrid-identity-design-considerations-incident-response-requirements.md) esaminerà le opzioni di hello disponibili. Una volta fornite le risposte a queste domande, sarà possibile selezionare l'opzione più adatta in base alle esigenze aziendali.
+> Accertarsi di prendere nota di ogni risposta e comprendere la logica che ne sta alla base. [Determinare i requisiti di risposta agli eventi imprevisti](active-directory-hybrid-identity-design-considerations-incident-response-requirements.md) illustrerà le opzioni disponibili. Una volta fornite le risposte a queste domande, sarà possibile selezionare l'opzione più adatta in base alle esigenze aziendali.
 > 
 > 
 

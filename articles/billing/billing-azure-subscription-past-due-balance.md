@@ -1,6 +1,6 @@
 ---
-title: aaaPast notifica di saldo scaduto da Azure | Documenti Microsoft
-description: Viene descritto come pagamento toomake se la sottoscrizione di Azure ha una precedenza addebitare
+title: Messaggio di posta elettronica di Azure relativo a un saldo dovuto non pagato | Microsoft Docs
+description: Viene descritto come effettuare il pagamento se la sottoscrizione di Azure presenta un saldo dovuto non pagato
 services: 
 documentationcenter: 
 author: genlin
@@ -13,34 +13,40 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/28/2017
+ms.date: 08/30/2017
 ms.author: genli
-ms.openlocfilehash: ddae2106911fb598c54be8e02485b0df7ce51dcb
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 20761f9c6caf029b2b6bbc8e02b2f041c45abf01
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="resolve-past-due-balance-for-your-azure-subscription"></a>Risolvere problemi relativi a un saldo dovuto non pagato per la sottoscrizione di Azure 
-Se il pagamento non viene ricevuto o non è possibile elaborare il pagamento, è possibile ottenere un messaggio di posta elettronica o un avviso in hello [centro Account Azure](https://account.windowsazure.com) o hello [portale di Azure](https://portal.azure.com). Se non vengono visualizzate le notifiche di fatturazione nel messaggio di posta elettronica e si è amministratore dell'Account, di hello [hello indirizzo di posta elettronica nel profilo dell'amministratore dell'Account di Azure](billing-how-to-change-azure-account-profile.md). È consigliabile usare un indirizzo di posta elettronica che viene controllato regolarmente.
+# <a name="resolve-past-due-balance-for-your-azure-subscription-after-getting-an-email-from-azure"></a>Risolvere i problemi relativi al saldo scaduto per la sottoscrizione di Azure dopo aver ricevuto un messaggio di posta elettronica da Azure
 
-In caso di problemi con l'elaborazione del pagamento, è possibile che si riceva un messaggio di posta elettronica simile al seguente:
+Se il pagamento non viene ricevuto o non può essere elaborato, è possibile che si riceva un messaggio di posta elettronica o si visualizzi un avviso nel Centro account o nel portale di Azure. Il messaggio potrebbe essere simile al seguente:
 
-**Siamo rimasti Impossibile toocharge il credito di schede per la sottoscrizione. tooprevent interruzioni del servizio, aggiornare le informazioni di pagamento.**
+**Non è stato possibile effettuare l’addebito sulla carta di credito per la sottoscrizione. Per evitare interruzioni del servizio, aggiornare le informazioni di pagamento.**
 
-## <a name="if-you-forget-toopay-what-happens"></a>Se si dimentica toopay, cosa accade?
-servizio Hello viene annullata e le risorse non sono più disponibili. I dati di Azure sono eliminati 90 giorni dopo il servizio di hello è terminato.
+Seguire i passaggi in questo articolo per risolvere il problema di saldo scaduto.
 
-## <a name="how-tooresolve-hello-issue"></a>Come tooresolve hello problema
-Pagare il saldo totale.
+## <a name="resolve-the-past-due-balance"></a>Risolvere i problemi relativi al saldo scaduto
 
-* Se si utilizza una modalità di fattura di pagamento, inviare il percorso di pagamento toohello elencato nella parte inferiore di hello della fattura. Per assistenza, contattare [il supporto di Azure](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade).
+* Se la carta di credito viene rifiutata o è scaduta, [modificare la carta di credito usata per pagare la sottoscrizione](billing-how-to-change-credit-card.md) o contattare la banca per risolvere il problema. Quando si aggiorna il metodo di pagamento, Azure elabora immediatamente il pagamento di tutti gli addebiti in sospeso. Viene anche elaborato il pagamento per eventuali altri servizi Microsoft con addebiti in sospeso.
 
-* Se carta di credito hello è rifiutata o è scaduta, [modificare hello toopay di carta di credito utilizzata per la sottoscrizione di hello](billing-how-to-change-credit-card.md) o contattare il problema di hello tooresolve bank. Quando si aggiorna il metodo di pagamento hello, Azure elabora immediatamente il pagamento hello per tutti gli addebiti in sospeso. Viene anche elaborato il pagamento per eventuali altri servizi Microsoft con addebiti in sospeso.
+* Se si usa un metodo di pagamento con fattura, inviare il pagamento al destinatario elencato nella parte inferiore della fattura. Per assistenza, contattare [il supporto di Azure](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade).
 
-* Se non è visualizzata una fattura perché ha lasciato hello amministratore dell'Account società hello o ruoli modificati, contattare [supporto Azure](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade) problema hello tooresolve.
+* Se non è possibile visualizzare una fattura perché l'amministratore account ha lasciato la società o sono stati modificati i ruoli, contattare il [supporto di Azure](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade) per risolvere il problema.
 
-Se si è certi che il pagamento è stato elaborato, ma la sottoscrizione è ancora disabilitata, vedere le informazioni su come [riattivare la sottoscrizione di Azure disabilitata](billing-subscription-become-disable.md).
+* Se si è certi che il pagamento è stato elaborato, ma la sottoscrizione è ancora disabilitata, contattare il [supporto di Azure](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade).
+
+## <a name="not-getting-billing-email-notifications"></a>Non si ricevono notifiche di posta elettronica relative alla fatturazione?
+
+Se si è un amministratore account, [verificare l'indirizzo e-mail usato per le notifiche](billing-how-to-change-azure-account-profile.md). È consigliabile usare un indirizzo di posta elettronica che viene controllato regolarmente. Se l'indirizzo è corretto, controllare la cartella di posta indesiderata.
+
+## <a name="if-i-forget-to-pay-what-happens"></a>Cosa accade se ci si dimentica di effettuare il pagamento?
+
+Il servizio viene annullato e le risorse non saranno più disponibili. I dati di Azure verranno eliminati 90 giorni dopo il termine del servizio. Per altre informazioni, vedere [Microsoft Trust Center - Come vengono gestiti i dati](https://go.microsoft.com/fwLink/p/?LinkID=822930&clcid=0x409).
 
 ## <a name="need-help-contact-support"></a>Richiesta di assistenza Contattare il supporto tecnico.
-Se è ancora necessario della Guida, [contattare il supporto tecnico](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) tooget risolta il problema.
+
+Se si necessita ancora di assistenza, [contattare il supporto tecnico](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) per ottenere una rapida risoluzione del problema.

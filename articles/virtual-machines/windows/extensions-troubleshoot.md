@@ -1,5 +1,5 @@
 ---
-title: errori di estensione di macchina virtuale Windows aaaTroubleshooting | Documenti Microsoft
+title: Risoluzione degli errori delle estensioni di macchina virtuale Windows | Microsoft Docs
 description: Informazioni sulla risoluzione degli errori delle estensioni della macchina virtuale Windows di Azure
 services: virtual-machines-windows
 documentationcenter: 
@@ -15,17 +15,17 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 03/29/2016
 ms.author: kundanap
-ms.openlocfilehash: d24544743d9e0cb1a68ec9ab7718716f918054f8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4dba196e1b838f2092b30972fb070514bd2a4b25
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="troubleshooting-azure-windows-vm-extension-failures"></a>Risoluzione degli errori delle estensioni di macchina virtuale Windows di Azure
 [!INCLUDE [virtual-machines-common-extensions-troubleshoot](../../../includes/virtual-machines-common-extensions-troubleshoot.md)]
 
 ## <a name="viewing-extension-status"></a>Visualizzazione dello stato dell'estensione
-I modelli di Azure Resource Manager possono essere eseguiti da Azure PowerShell. Quando viene eseguita modello hello, lo stato dell'estensione hello può essere visualizzato da Esplora inventario risorse di Azure o hello strumenti da riga di comando.
+I modelli di Azure Resource Manager possono essere eseguiti da Azure PowerShell. Una volta che il modello viene eseguito, è possibile visualizzare lo stato dell'estensione da Esplora risorse di Azure o dagli strumenti da riga di comando.
 
 Di seguito è fornito un esempio:
 
@@ -33,7 +33,7 @@ Azure PowerShell:
 
       Get-AzureRmVM -ResourceGroupName $RGName -Name $vmName -Status
 
-Ecco l'output di esempio hello:
+Di seguito è riportato l'output di esempio:
 
       Extensions:  {
       "ExtensionType": "Microsoft.Compute.CustomScriptExtension",
@@ -59,12 +59,12 @@ Ecco l'output di esempio hello:
   ]
 
 ## <a name="troubleshooting-extension-failures"></a>Risoluzione degli errori delle estensioni
-### <a name="re-running-hello-extension-on-hello-vm"></a>Eseguire nuovamente l'estensione hello in hello VM
-Se si eseguono gli script nella macchina virtuale utilizzando l'estensione dello Script personalizzata hello, in alcuni casi è possibile eseguire un errore in cui VM è stato creato ma script hello non è riuscita. In queste condizioni, hello consigliato modo toorecover da questo errore è tooremove hello estensione e nuovamente il modello di hello.
-Nota: In futuro, questa funzionalità sarebbe tooremove avanzata hello necessità di disinstallazione dell'estensione hello.
+### <a name="re-running-the-extension-on-the-vm"></a>Eseguire nuovamente l'estensione nella macchina virtuale
+Se si eseguono gli script nella macchina virtuale usando l'estensione script personalizzato, è possibile riscontrare in alcuni casi un errore in cui la creazione della macchina virtuale è riuscita, ma lo script ha avuto esito negativo. In queste condizioni, il metodo consigliato per risolvere il problema consiste nel rimuovere l'estensione e eseguire nuovamente il modello.
+Nota: In futuro, questa funzionalità potrebbe essere migliorata in modo da eliminare la necessità di disinstallazione dell'estensione.
 
-#### <a name="remove-hello-extension-from-azure-powershell"></a>Rimuovere l'estensione hello da Azure PowerShell
+#### <a name="remove-the-extension-from-azure-powershell"></a>Rimuovere l'estensione da Azure PowerShell
     Remove-AzureRmVMExtension -ResourceGroupName $RGName -VMName $vmName -Name "myCustomScriptExtension"
 
-Una volta hello estensione è stata rimossa, il modello di hello può essere rieseguita toorun hello gli script hello VM.
+Una volta rimossa l'estensione, il modello può essere eseguito nuovamente per eseguire gli script nella macchina virtuale.
 

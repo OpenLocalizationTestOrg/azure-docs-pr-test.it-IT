@@ -1,6 +1,6 @@
 ---
-title: 'Esercitazione: Integrazione di Azure Active Directory con Salesforce Sandbox | Microsoft Docs'
-description: Informazioni su come toouse Salesforce Sandbox con Azure Active Directory tooenable single sign-on, il provisioning automatizzato e molto altro.
+title: 'Esercitazione: Integrazione di Azure Active Directory con Salesforce Sandbox | Documentazione Microsoft'
+description: Informazioni su come usare Salesforce Sandbox con Azure Active Directory per abilitare l'accesso Single Sign-On, il provisioning automatizzato e altro ancora.
 services: active-directory
 author: jeevansd
 documentationcenter: na
@@ -14,34 +14,34 @@ ms.workload: identity
 ms.date: 07/21/2017
 ms.author: jeedes
 ms.reviewer: jeedes
-ms.openlocfilehash: deccd6a07b57c8ba56b7e1c3f3ab311813ca017b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 32835e79188806bb2ff319eea23b1b52ab585ab1
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-salesforce-sandbox"></a>Esercitazione: Integrazione di Azure Active Directory con Salesforce Sandbox
 
-obiettivo di Hello di questa esercitazione è l'integrazione di hello tooshow di Azure e Salesforce Sandbox.  
+In questa esercitazione viene illustrata l'integrazione di Azure e Salesforce Sandbox.  
 
 >[!TIP]
->Per commenti e suggerimenti, vedere hello [pagina di supporto tecnico di Azure](http://go.microsoft.com/fwlink/?LinkId=521878). 
+>Per commenti, vedere la [pagina del supporto tecnico Azure](http://go.microsoft.com/fwlink/?LinkId=521878). 
 > 
 
-Concedere sandbox hello possibilità toocreate più copie della propria organizzazione in ambienti separati per diversi scopi, ad esempio sviluppo, testing e training, senza compromettere i dati hello e nelle applicazioni di produzione Salesforce organizzazione.  
+Sandbox offre la possibilità di creare più copie dell'organizzazione in ambienti distinti per diversi scopi, ad esempio sviluppo, test e formazione, senza compromettere i dati e le applicazioni dell’organizzazione di produzione Salesforce.  
 
 Per ulteriori informazioni, vedere [Panoramica di Sandbox](https://help.salesforce.com/HTViewHelpDoc?id=create_test_instance.htm&language=en_US)
 
-scenario Hello descritto in questa esercitazione si presuppone che si disponga già di hello seguenti elementi:
+Per lo scenario descritto in questa esercitazione si presuppone che l'utente disponga di quanto segue:
 
 * Sottoscrizione di Azure valida
 * Sandbox in Salesforce.com
 
-Se non si dispone di un ambiente sandbox valido in Salesforce.com, è necessario toocontact Salesforce.
+Se non si dispone di un sandbox valido in Salesforce.com, è necessario contattare Salesforce.
 
-scenario di Hello descritto in questa esercitazione è costituito da hello seguenti blocchi predefiniti:
+Lo scenario descritto in questa esercitazione include i blocchi predefiniti seguenti:
 
-1. Abilitazione hello di integrazione dell'applicazione per Salesforce Sandbox
+1. Abilitazione dell'integrazione dell'applicazione per Salesforce Sandbox
 2. Configurazione dell'accesso Single Sign-On (SSO)
 3. Abilitazione del dominio
 4. Configurazione del provisioning utente
@@ -49,142 +49,142 @@ scenario di Hello descritto in questa esercitazione è costituito da hello segue
 
 ![Scenario](./media/active-directory-saas-salesforce-sandbox-tutorial/IC769571.png "Scenario")
 
-## <a name="enable-hello-application-integration-for-salesforce-sandbox"></a>Abilitare l'integrazione dell'applicazione hello per Salesforce Sandbox
-obiettivo di Hello di questa sezione è toooutline come integrazione dell'applicazione hello tooenable per Salesforce sandbox.
+## <a name="enable-the-application-integration-for-salesforce-sandbox"></a>Abilitare l'integrazione dell'applicazione per Salesforce Sandbox
+In questa sezione viene descritto come abilitare l'integrazione dell'applicazione per Salesforce Sandbox.
 
-**integrazione dell'applicazione hello tooenable per Salesforce sandbox, eseguire hello alla procedura seguente:**
+**Per abilitare l'integrazione dell'applicazione per Salesforce Sandbox, eseguire la procedura seguente:**
 
-1. Nel portale di Azure classico, nel riquadro di spostamento sinistro hello hello fare clic su **Active Directory**.
+1. Nel portale di Azure classico fare clic su **Active Directory**nel riquadro di spostamento sinistro.
    
    ![Active Directory](./media/active-directory-saas-salesforce-sandbox-tutorial/IC700993.png "Active Directory")
-2. Da hello **Directory** elenco, directory hello selezionare per il quale si desidera l'integrazione di directory tooenable.
-3. visualizzazione di applicazioni hello tooopen, nella visualizzazione directory hello, fare clic su **applicazioni** nel menu superiore hello.
+2. Nell'elenco **Directory** selezionare la directory per la quale si desidera abilitare l'integrazione delle directory.
+3. Per aprire la visualizzazione applicazioni, nella visualizzazione directory fare clic su **Applications** nel menu superiore.
    
    ![Applicazioni](./media/active-directory-saas-salesforce-sandbox-tutorial/IC700994.png "Applicazioni")
-4. hello tooopen **raccolta di applicazioni**, fare clic su **Aggiungi un'App**, quindi fare clic su **aggiungere un'applicazione per my toouse organizzazione**.
+4. Per aprire la **Raccolta di applicazioni**, fare clic su **Aggiungi app**, quindi fare clic su **Aggiungi un'applicazione che verrà utilizzata dall'organizzazione**.
    
-   ![Cosa si desidera toodo? ] (./media/active-directory-saas-salesforce-sandbox-tutorial/IC700995.png "Cosa si desidera toodo?")
-5. In hello **casella di ricerca**, tipo **Salesforce Sandbox**.
+   ![Come procedere](./media/active-directory-saas-salesforce-sandbox-tutorial/IC700995.png "Come procedere")
+5. Nella **casella di ricerca** digitare **Salesforce Sandbox**.
    
    ![Raccolta di applicazioni](./media/active-directory-saas-salesforce-sandbox-tutorial/IC710978.png "Raccolta di applicazioni")
-6. Nel riquadro risultati hello selezionare **Salesforce Sandbox**, quindi fare clic su **completa** tooadd un'applicazione hello.
+6. Nel riquadro dei risultati selezionare **Salesforce Sandbox**, quindi fare clic su **Completa** per aggiungere l'applicazione.
    
    ![Salesforce Sandbox](./media/active-directory-saas-salesforce-sandbox-tutorial/IC746474.png "Salesforce Sandbox")
    
 ## <a name="configur-single-sign-on-sso"></a>Configurare l'accesso Single Sign-On (SSO)
 
-obiettivo di Hello di questa sezione è toooutline come tooenable utenti tooauthenticate tooSalesforce con il proprio account in Azure AD usando la federazione basata sul protocollo SAML hello.
+In questa sezione viene descritto come consentire agli utenti di eseguire l'autenticazione a Salesforce Sandbox tramite il proprio account di Azure AD usando la federazione basata sul protocollo SAML.
 
-**tooconfigure accesso single sign-on, eseguire hello alla procedura seguente:**
+**Per configurare l'accesso Single Sign-On, seguire questa procedura:**
 
-1. Nel portale di Azure classico, in hello hello **Salesforce Sandbox** pagina di integrazione dell'applicazione, fare clic su **configurare single sign-on** tooopen hello **configurare Single Sign-On** finestra di dialogo.
+1. Nella pagina di integrazione dell'applicazione **Salesforce Sandbox** del portale di Azure classico fare clic su **Configura accesso Single Sign-On** per aprire la finestra di dialogo **Configura accesso Single Sign-On**.
    
    ![Configurare l'accesso Single Sign-On](./media/active-directory-saas-salesforce-sandbox-tutorial/IC749323.png "Configurare l'accesso Single Sign-On")
-2. In hello **come si sarebbe ad esempio utenti toosign su tooSalesforce Sandbox** selezionare **Microsoft Azure AD Single Sign-On**, quindi fare clic su **Avanti**.
+2. Nella pagina **Stabilire come si desidera che gli utenti accedano a Salesforce Sandbox** selezionare **Single Sign-On di Microsoft Azure AD** e quindi fare clic su **Avanti**.
    
    ![Salesforce Sandbox](./media/active-directory-saas-salesforce-sandbox-tutorial/IC746479.png "Salesforce Sandbox")
-3. In hello **Configura URL App** pagina hello **URL di accesso** casella di testo, digitare l'URL usando hello modello `http://company.my.salesforce.com`e quindi fare clic su **Avanti**.
+3. Nella casella di testo **URL di accesso** della pagina **Configura URL app** digitare l'URL nel formato `http://company.my.salesforce.com` e quindi fare clic su **Avanti**.
    
    ![Configurare l'URL dell'app](./media/active-directory-saas-salesforce-sandbox-tutorial/IC781022.png "Configurare l'URL dell'app")
-4. Se già stato configurato single sign-on per un'altra istanza di Salesforce Sandbox nella directory, quindi è necessario configurare anche hello **identificatore** toohave hello stesso valore di hello **URL di accesso**. 
- * Hello **identificatore** trovato controllando hello **Mostra impostazioni avanzate** casella di controllo hello **Configura URL App** pagina della finestra di dialogo hello.
-5. In hello **Configura accesso single sign-on in Salesforce Sandbox** pagina, fare clic su **Scarica certificato**e quindi salvare il file di certificato hello nel computer in uso.
+4. Se l'accesso Single Sign-On è già stato configurato per un'altra istanza di Salesforce Sandbox nella directory, sarà necessario configurare anche l'**identificatore** in modo che abbia lo stesso valore di **URL di accesso**. 
+ * Per trovare il campo **Identificatore**, selezionare la casella di controllo **Impostazioni avanzate** nella pagina **Configura URL app** della finestra di dialogo.
+5. Nella pagina **Configura accesso Single Sign-On in Salesforce Sandbox** fare clic su **Scarica certificato** e quindi salvare il file di certificato nel computer.
    
    ![Configurare l'accesso Single Sign-On](./media/active-directory-saas-salesforce-sandbox-tutorial/IC781023.png "Configurare l'accesso Single Sign-On")
 6. In un'altra finestra del Web browser accedere al sito aziendale di Salesforce Sandbox come amministratore.
-7. Scegliere dal menu hello in primo piano hello **installazione**.
+7. Nel menu in alto fare clic su **Impostazione**.
    
    ![Installazione](./media/active-directory-saas-salesforce-sandbox-tutorial/IC781024.png "Installazione")
-8. Nel riquadro di spostamento hello hello sinistra, fare clic su **controlli di sicurezza**, quindi fare clic su **Single Sign-On Settings**.
+8. Nel riquadro di spostamento a sinistra, fare clic su **Security Controls** (Controlli di sicurezza) e quindi fare clic su **Single Sign-On Settings** (Impostazioni Single Sign-On).
    
    ![Single Sign-On Settings](./media/active-directory-saas-salesforce-sandbox-tutorial/IC781025.png "Single Sign-On Settings")
-9. Nella sezione Impostazioni di Single Sign-On hello, eseguire hello alla procedura seguente:
+9. Nella sezione Impostazioni Single Sign-On, eseguire la procedura seguente:
    
    ![Single Sign-On Settings](./media/active-directory-saas-salesforce-sandbox-tutorial/IC781026.png "Single Sign-On Settings")  
  1.  Selezionare **Abilitato SAML**. 
  2.  Fare clic su **New**.
-10. Nella sezione SAML Single Sign-On Settings hello, eseguire hello alla procedura seguente:
+10. Nella sezione Impostazioni SAML Single Sign-On, eseguire la procedura seguente:
     
     ![SAML Single Sign-On Settings](./media/active-directory-saas-salesforce-sandbox-tutorial/IC781027.png "SAML Single Sign-On Settings")  
- 1. Nella casella di testo Nome hello, digitare il nome di hello della configurazione di hello (ad esempio: *SPSSOWAAD\_Test*). 
- 2. Nel portale di Azure classico, in hello hello **Configura accesso single sign-on in Salesforce Sandbox** pagina finestra di dialogo, hello copia **URL autorità di certificazione** valore e quindi incollarlo hello **dell'autorità di certificazione**casella di testo.
- 3. In hello **Id entità** casella tipo **https://test.salesforce.com** se si tratta di hello prima Salesforce Sandbox istanza che si sta aggiungendo tooyour directory. Se esiste già un'istanza di Salesforce Sandbox, quindi per hello **ID entità** tipo di hello **URL di accesso**, che deve essere nel formato seguente:`http://company.my.salesforce.com`   
- 4. Fare clic su **Sfoglia** hello tooupload scaricato certificato.  
- 5. Come **tipo di identità SAML**selezionare **l'asserzione contiene l'ID di federazione di hello dall'oggetto utente hello**. 
- 6. Come **SAML Identity Location**selezionare **identità si trova nell'elemento NameIdentifier hello di hello Subject statement**.
- 7. Nel portale di Azure classico, in hello hello **Configura accesso single sign-on in Salesforce Sandbox** pagina finestra di dialogo, hello copia **URL accesso remoto** valore e quindi incollarlo hello **Provider di identità URL di accesso** casella di testo. 
- 8. SFDC non supporta la disconnessione SAML.  In alternativa, incollare 'https://login.microsoftonline.com/common/wsfederation?wa=wsignout1.0' in hello **Identity Provider Logout URL** casella di testo.
+ 1. Nella casella di testo Nome digitare il nome della configurazione, ad esempio *SPSSOWAAD\_Test*. 
+ 2. Nella finestra di dialogo **Configura accesso Single Sign-On in Salesforce Sandbox** del portale di Azure classico copiare il valore di **URL autorità di certificazione** e incollarlo nella casella di testo **Issuer** (Autorità di certificazione).
+ 3. Nella casella di testo **ID entità** digitare **https://test.salesforce.com** se è la prima istanza di Salesforce Sandbox aggiunta alla directory. Se esiste già un'istanza di Salesforce Sandbox, in **ID entità** digitare l'**URL di accesso**, che deve avere questo formato: `http://company.my.salesforce.com`   
+ 4. Per caricare il certificato scaricato, fare clic su **Sfoglia** .  
+ 5. In **SAML Identity Type** (Tipo di identità SAML) selezionare **Assertion contains the Federation ID from the User object** (L'asserzione contiene l'ID federazione dell'oggetto utente). 
+ 6. In **SAML Identity Location**(Percorso identità SAML) selezionare **Identity is in the NameIdentifier element of the Subject statement** (L'identità è nell'elemento NameIdentifier dell'istruzione Subject).
+ 7. Nella pagina della finestra di dialogo **Configura accesso Single Sign-On in Salesforce Sandbox** del portale di Azure classico copiare il valore di **URL accesso remoto** e incollarlo nella casella di testo **Identity Provider Login URL** (URL di accesso provider di identità). 
+ 8. SFDC non supporta la disconnessione SAML.  Come soluzione alternativa, incollare "https://login.microsoftonline.com/common/wsfederation?wa=wsignout1.0" nella casella di testo **Identity Provider Logout URL** (URL di disconnessione provider di identità).
  9. In **Service Provider Initiated Request Binding** (Binding richiesta avviato dal provider di servizi) selezionare **HTTP POST**. 
- 10. Fare clic su **Salva**.
-11. Nel portale di Azure classico hello, selezionare hello conferma della configurazione di single sign-on e quindi fare clic su **completa** tooclose hello **configurare Single Sign-On** finestra di dialogo.
+ 10. Fare clic su **Save**.
+11. Nel portale di Azure classico selezionare la conferma della configurazione dell'accesso Single Sign-On e quindi fare clic su **Complete** per chiudere la finestra di dialogo **Configura accesso Single Sign-On**.
     
     ![Configurare l'accesso Single Sign-On](./media/active-directory-saas-salesforce-sandbox-tutorial/IC781028.png "Configurare l'accesso Single Sign-On")
 
 ## <a name="enable-your-domain"></a>Abilitare il dominio
 In questa sezione si presuppone che sia già stato creato un dominio.  Per informazioni dettagliate, vedere [Definizione del nome di dominio](https://help.salesforce.com/HTViewHelpDoc?id=domain_name_define.htm&language=en_US).
 
-**tooenable il dominio, eseguire hello alla procedura seguente:**
+**Per abilitare il dominio, eseguire la procedura seguente:**
 
-1. Nel riquadro di spostamento a sinistra di hello, fare clic su **Gestione dominio**, quindi fare clic su **risorse del dominio.**
+1. Nel riquadro di spostamento a sinistra fare clic su **Domain Management** (Gestione dominio) e quindi su **My Domain** (Dominio personale).
    
    ![My Domain](./media/active-directory-saas-salesforce-sandbox-tutorial/IC781029.png "My Domain")
    
    >[!NOTE]
    >Assicurarsi che il dominio sia stato configurato correttamente. 
    > 
-2. In hello **Login Page Settings** fare clic su **modifica**, quindi, come **servizio di autenticazione**, selezionare il nome di hello di hello impostazione SAML Single Sign-On da hello precedente sezione e infine fare clic su **salvare**.
+2. Nella sezione **Login Page Settings** (Impostazioni pagina di accesso) fare clic su **Edit** (Modifica), quindi per **Authentication Service** (Servizio di autenticazione) selezionare il nome dell'impostazione Single Sign-On SAML definita nella sezione precedente e fare clic su **Save** (Salva).
    
    ![My Domain](./media/active-directory-saas-salesforce-sandbox-tutorial/IC781030.png "My Domain")
 
-Non appena si dispone di un dominio configurato, gli utenti devono usare Salesforce sandbox di hello dominio URL toologin toohello.  
+Non appena si dispone di un dominio configurato, gli utenti devono utilizzare l'URL del dominio per l'accesso a Salesforce Sandbox.  
 
-valore di hello tooget dell'URL di hello, selezionare il profilo SSO hello creato nella sezione precedente hello.
+Per ottenere il valore dell'URL, fare clic sul profilo SSO creato nella sezione precedente.
 
 ## <a name="configure-user-provisioning"></a>Configura provisioning utenti
-obiettivo di Hello di questa sezione è toooutline tooenable provisioning utente dell'utente di Active Directory come account di tooSalesforce Sandbox.
+In questa sezione viene descritto come abilitare il provisioning utente degli account utente di Active Directory in Salesforce Sandbox.
 
-**tooconfigure provisioning degli utenti, eseguire hello alla procedura seguente:**
+**Per configurare il provisioning utenti, seguire questa procedura:**
 
-1. Nel portale Salesforce hello, nella barra di spostamento superiore hello, selezionare il nome tooexpand nel menu utente:
+1. Nella barra di spostamento in alto del portale di Salesforce, selezionare il nome per espandere il menu utente:
    
    ![My Settings](./media/active-directory-saas-salesforce-sandbox-tutorial/IC698773.png "My Settings")
-2. Nel menu utente selezionare **impostazioni personali** tooopen il **impostazioni personali** pagina.
-3. Nel riquadro di sinistra hello, fare clic su **personale** tooexpand hello sezione personale e quindi fare clic su **Reimposta Token di sicurezza personale**:
+2. Nel menu utente selezionare **My Settings** (Impostazioni personali) per aprire la pagina **My Settings** (Impostazioni personali).
+3. Nel riquadro a sinistra fare clic su **Personal** (Personale) per espandere la sezione corrispondente e fare clic su **Reset My Security Token** (Reimposta token di sicurezza personale):
    
    ![My Settings](./media/active-directory-saas-salesforce-sandbox-tutorial/IC698774.png "My Settings")
-4. In hello **Reimposta Token di sicurezza personale** pagina, fare clic su **Reimposta Token di sicurezza** toorequest un messaggio di posta elettronica che contiene il token di sicurezza di Salesforce.com.
+4. Nella pagina **Reset My Security Token** (Reimposta token di sicurezza personale) fare clic su **Reset Security Token** (Reimposta token di sicurezza) per richiedere un messaggio di posta elettronica con il token di sicurezza di Salesforce.com.
    
    ![New Token](./media/active-directory-saas-salesforce-sandbox-tutorial/IC698776.png "New Token")
 5. Verificare nella cartella Posta in arrivo la presenza di un messaggio da Salesforce.com con oggetto analogo a "**conferma di sicurezza di salesforce.com.com**".
-6. Esaminare il messaggio di posta elettronica e copia hello sicurezza valore del token.
-7. Nel portale di Azure classico, in hello hello **salesforce Sandbox** pagina di integrazione dell'applicazione, fare clic su **Configura provisioning utente** tooopen hello **Configura Provisioning utente**finestra di dialogo.
+6. Aprire il messaggio di posta elettronica e copiare il valore del token di sicurezza.
+7. Nella pagina di integrazione dell'applicazione **Salesforce Sandbox** del portale di Azure classico fare clic su **Configura provisioning utenti** per aprire la finestra di dialogo **Configura provisioning utenti**.
    
-   ![Configurare il provisioning degli utenti](./media/active-directory-saas-salesforce-sandbox-tutorial/IC769573.png "Configurare il provisioning degli utenti")
-8. In hello **immettere il Salesforce Sandbox credenziali tooenable il provisioning utente automatico** fornire hello le impostazioni di configurazione seguente:
+   ![Configure user provisioning](./media/active-directory-saas-salesforce-sandbox-tutorial/IC769573.png "Configure user provisioning")
+8. Nella pagina **Immettere le credenziali di Salesforce Sandbox per abilitare il provisioning automatico degli utenti** specificare le impostazioni di configurazione seguenti:
    
    ![Salesforce Sandbox](./media/active-directory-saas-salesforce-sandbox-tutorial/IC746476.png "Salesforce Sandbox")   
- 1. In hello **nome utente di amministratore Sandbox Salesforce** casella di testo, tipo di un ambiente sandbox Salesforce nome account a cui è hello **amministratore di sistema** profilo in Salesforce.com assegnato.
- 2. In hello **Password amministratore Salesforce Sandbox** casella di testo, digitare la password hello per questo account.
- 3. In hello **Token di sicurezza utente** casella valore del token di sicurezza hello Incolla.
- 4. Fare clic su **convalida** tooverify la configurazione.
- 5. Fare clic su hello **Avanti** hello tooopen pulsante **conferma** pagina.
-9. In hello **conferma** pagina, fare clic su **completa** toosave la configurazione.
+ 1. Nella casella di testo **Nome utente amministratore Salesforce Sandbox** digitare un nome account di Salesforce Sandbox con il profilo **Amministratore di sistema** assegnato in Salesforce.com.
+ 2. Nella casella di testo **Password amministratore Salesforce Sandbox** digitare la password per questo account.
+ 3. Nella casella di testo **Token di sicurezza utente** incollare il valore del token di sicurezza.
+ 4. Fare clic su **Convalida** per verificare la configurazione.
+ 5. Fare clic sul pulsante **Avanti** per aprire la pagina **Conferma**.
+9. Nella pagina **Conferma** fare clic su **Completa** per salvare la configurazione.
    
 ## <a name="assigning-users"></a>Assegnazione degli utenti
 
-tootest della configurazione, è necessario toogrant hello Azure AD utenti tooallow utilizzando il tooit di accesso dell'applicazione tramite l'assegnazione.
+Per testare la configurazione, è necessario concedere l'accesso all'applicazione agli utenti di Azure AD a cui si vuole consentirne l'uso, assegnando tali utenti all'applicazione.
 
-**gli utenti di tooassign tooSalesforce Sandbox, eseguire hello alla procedura seguente:**
+**Per assegnare gli utenti a Salesforce Sandbox, eseguire la procedura seguente:**
 
-1. Nel portale di Azure classico hello, creare un account di prova.
-2. In hello * * Salesforce Sandbox * * pagina di integrazione dell'applicazione, fare clic su **assegnare gli utenti**.
+1. Nel portale di Azure classico creare un account di test.
+2. Nella pagina di integrazione dell'applicazione **Salesforce Sandbox** fare clic su **Assegna utenti**.
    
    ![Assegnare utenti](./media/active-directory-saas-salesforce-sandbox-tutorial/IC769574.png "Assegnare utenti")
-3. Selezionare l'utente test, fare clic su **assegnare**, quindi fare clic su **Sì** tooconfirm l'assegnazione.
+3. Selezionare l'utente di test, fare clic su **Assegna** e quindi su **Sì** per confermare l'assegnazione.
    
    ![Sì](./media/active-directory-saas-salesforce-sandbox-tutorial/IC767830.png "Sì")
 
-È ora necessario attendere 10 minuti e verificare che l'account di hello sia stato sincronizzato tooSalesforce Sandbox.
+È ora necessario attendere 10 minuti e verificare che l'account sia stato sincronizzato con Salesforce Sandbox.
 
-Se si desiderano tootest le impostazioni SSO, aprire Pannello di accesso hello. Per ulteriori dettagli su hello Pannello di accesso, vedere [introduzione toohello Pannello di accesso](https://msdn.microsoft.com/library/dn308586).
+Per testare le impostazioni di SSO, aprire il pannello di accesso. Per altre informazioni sul pannello di accesso, vedere [Introduzione al Pannello di accesso](https://msdn.microsoft.com/library/dn308586).
 

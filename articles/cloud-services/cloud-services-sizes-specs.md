@@ -1,6 +1,6 @@
 ---
-title: le dimensioni delle macchine aaaVirtual per i servizi Cloud di Azure | Documenti Microsoft
-description: Vengono elencate le dimensioni di macchina virtuale diversa hello (ID) per ruoli web e di lavoro del servizio cloud di Azure.
+title: Dimensioni delle macchine virtuali per i servizi cloud di Azure | Documentazione Microsoft
+description: Elenco delle diverse dimensioni e ID delle macchine virtuali per i ruoli Web e di lavoro del servizio cloud di Azure.
 services: cloud-services
 documentationcenter: 
 author: Thraka
@@ -14,43 +14,43 @@ ms.tgt_pltfrm: na
 ms.workload: tbd
 ms.date: 07/18/2017
 ms.author: adegeo
-ms.openlocfilehash: 93d91a67afc352f3d18c31e0dd5cf976bf46350c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 1ba56eb9539a4295fdaaab523cfd2a7e1587ef54
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="sizes-for-cloud-services"></a>Dimensioni dei servizi cloud
-Questo argomento descrive le dimensioni disponibili hello e le opzioni per le istanze del ruolo del servizio Cloud (ruoli web e ruoli di lavoro). Fornisce inoltre toobe considerazioni sulla distribuzione conoscere quando si pianifica toouse queste risorse. Ogni dimensione dispone di un ID da inserire nel [file di definizione del servizio](cloud-services-model-and-package.md#csdef). I prezzi per ogni dimensione sono disponibili sul hello [prezzi servizi Cloud](https://azure.microsoft.com/pricing/details/cloud-services/) pagina.
+Questo argomento descrive le dimensioni e le opzioni disponibili per le istanze del ruolo di servizio cloud, come ruoli Web e di lavoro. Fornisce anche considerazioni sulla distribuzione da tenere presenti quando si prevede di usare queste risorse. Ogni dimensione dispone di un ID da inserire nel [file di definizione del servizio](cloud-services-model-and-package.md#csdef). I prezzi per ogni dimensione sono disponibili nella pagina relativa ai [prezzi dei servizi cloud](https://azure.microsoft.com/pricing/details/cloud-services/).
 
 > [!NOTE]
-> toosee correlati i limiti di Azure, vedere [sottoscrizione Azure e limiti dei servizi, quote e vincoli](../azure-subscription-service-limits.md)
+> Per i limiti di Azure correlati, vedere [Sottoscrizione di Azure e limiti, quote e vincoli dei servizi](../azure-subscription-service-limits.md)
 >
 >
 
 ## <a name="sizes-for-web-and-worker-role-instances"></a>Dimensioni delle istanze del ruolo Web e di lavoro
-Non sono presenti più dimensioni standard toochoose da in Azure. Si tengano presenti le considerazioni seguenti per alcune di queste dimensioni:
+In Azure sono disponibili più dimensioni standard. Si tengano presenti le considerazioni seguenti per alcune di queste dimensioni:
 
-* Macchine virtuali serie D sono progettate toorun applicazioni che richiedono maggiore potenza di calcolo e le prestazioni del disco temporaneo. Macchine virtuali serie D offrono processori più veloci, un rapporto memoria-core superiore e un'unità SSD (unità SSD) per il disco temporaneo hello. Per informazioni dettagliate, vedere annuncio hello sul blog di Azure, hello [nuove dimensioni delle macchine virtuali di serie D](https://azure.microsoft.com/blog/2014/09/22/new-d-series-virtual-machine-sizes/).
-* Dv2-series, un toohello successivi serie D originale, dotato di una CPU più potente. Hello Dv2 serie CPU è circa 35% più rapida rispetto hello serie D CPU. Si basa su hello ultima generazione 2,4 GHz Intel Xeon® E5-2673 v3 processore (Haswalle) e con hello Intel turbina Boost tecnologia 2.0, possono aumentare fino too3.1 GHz. Hello Dv2 serie è hello stesse configurazioni di memoria e disco come hello serie D.
-* Macchine virtuali serie G offrono hello maggior quantità di memoria ed eseguiti su host che dispongono di processori della famiglia Intel Xeon E5 V3.
-* Hello macchine virtuali serie può essere distribuito in vari tipi di hardware e i processori. dimensioni Hello sono limitata, in base hello hardware, le prestazioni del processore coerente toooffer per hello in esecuzione l'istanza, indipendentemente dall'hardware hello in che viene distribuita. toodetermine hello hardware fisico in cui viene distribuita questa dimensione, query hello hardware virtuale all'interno di hello macchina virtuale.
-* dimensione A0 Hello è eccessiva sottoscritto nell'hardware fisico hello. Per queste dimensioni specifiche, altre distribuzioni dei clienti possono rallentare le prestazioni di hello del carico di lavoro in esecuzione. prestazioni relative di Hello viene indicata di seguito come linea di base hello previsto, la variabilità approssimativo soggetto tooan del 15%.
+* Le macchine virtuali serie D sono progettate per eseguire le applicazioni che richiedono maggiore potenza di calcolo e prestazioni del disco temporaneo. Le macchine virtuali serie D forniscono processori più veloci, un rapporto tra memoria e memoria centrale superiore e un'unità SSD ( solid-state drive) per il disco temporaneo. Per ulteriori informazioni, vedere l'annuncio sul blog di Azure, [Nuove dimensioni delle macchine virtuali serie D](https://azure.microsoft.com/blog/2014/09/22/new-d-series-virtual-machine-sizes/).
+* Serie Dv2, una versione successiva della serie D originale, dotata di una CPU più potente. La CPU della serie Dv2 è circa il 35% più rapida rispetto alla CPU della serie D. È basata sul processore Intel Xeon® E5-2673 v3 a 2,4 GHz (Haswell) e grazie alla tecnologia Intel Turbo Boost 2.0 può funzionare fino a 3,1 GHz. La serie Dv2 ha le stesse configurazioni di memoria e disco della serie D.
+* Le VM serie G offrono la maggiore quantità di memoria e vengono eseguite su host con processori della famiglia Intel Xeon E5 V3.
+* Le VM della serie A possono essere distribuite su vari tipi di hardware e processori. La dimensione è limitata, in base all'hardware, per offrire prestazioni del processore coerenti per l'istanza in esecuzione, indipendentemente dall'hardware in cui è distribuita. Per determinare l'hardware fisico in cui viene distribuita questa dimensione, eseguire una query nell'hardware virtuale dall'interno della macchina virtuale.
+* La sottoscrizione della dimensione A0 è eccessiva nell'hardware fisico. Solo per questa dimensione specifica, altre distribuzioni dei clienti possono compromettere le prestazioni del carico di lavoro in esecuzione. Le prestazioni relative sono indicate di seguito come linea di base prevista, con variabilità approssimativa del 15%.
 
-le dimensioni di Hello della macchina virtuale hello influiscono sui prezzi hello. dimensioni di Hello influiscono inoltre sulla capacità di elaborazione, memoria e archiviazione hello della macchina virtuale hello. I costi di archiviazione vengono calcolati separatamente in base alle pagine usate nell'account di archiviazione hello. Per informazioni dettagliate, vedere i [dettagli sui prezzi dei servizi cloud](https://azure.microsoft.com/pricing/details/cloud-services/) e [Prezzi di Archiviazione di Azure](https://azure.microsoft.com/pricing/details/storage/).
+La dimensione della macchina virtuale influisce sul prezzo. Influisce, inoltre, sull'elaborazione, sulla memoria e sulla capacità di archiviazione della macchina virtuale. I costi di archiviazione vengono calcolati separatamente in base alle pagine usate nell'account di archiviazione. Per informazioni dettagliate, vedere i [dettagli sui prezzi dei servizi cloud](https://azure.microsoft.com/pricing/details/cloud-services/) e [Prezzi di Archiviazione di Azure](https://azure.microsoft.com/pricing/details/storage/).
 
-Hello seguenti considerazioni potrebbe consentire di decidere la dimensione:
+Le considerazioni seguenti potrebbero essere utili all'utente per scegliere una dimensione:
 
-* Hello dimensioni A8 A11 e H serie sono noti anche come *istanze con utilizzo intensivo di calcolo*. progettato e ottimizzato per un utilizzo intensivo di calcolo hardware Hello che esegue queste dimensioni e applicazioni a elevato utilizzo di rete, calcolo ad alte prestazioni (HPC) tra cluster di applicazioni, modellazione e simulazioni. Hello A8 A11 serie utilizza Intel Xeon E5-2670 2,6 GHz e hello H serie utilizza 2667 con Intel Xeon E5 v3 @ 3,2 GHz. Per informazioni e considerazioni dettagliate sull'uso di queste dimensioni, vedere [Dimensioni delle VM High Performance Computing (HPC)](../virtual-machines/windows/sizes-hpc.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+* Le dimensioni delle serie A8-A11 e H sono note anche come *istanze a elevato uso di calcolo*. L'hardware che esegue queste dimensioni è progettato e ottimizzato per applicazioni a elevato utilizzo di calcolo e di rete, come applicazioni cluster HPC, modellazione e simulazioni. La serie A8-A11 usa Intel Xeon E5-2670 a 2,6 GHZ, mentre la serie H usa Intel Xeon E5-2667 v3 a 3,2 GHz. Per informazioni e considerazioni dettagliate sull'uso di queste dimensioni, vedere [Dimensioni delle VM High Performance Computing (HPC)](../virtual-machines/windows/sizes-hpc.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 * La serie Dv2, D e G sono ideali per le applicazioni che richiedono CPU più veloci, prestazioni migliori del disco locale o requisiti di memoria superiori. Offrono una potente combinazione per molte applicazioni di livello aziendale.
-* Alcuni degli host fisici di hello in data center di Azure potrebbero non supportare macchine virtuali dimensioni superiori, ad esempio dalla A5 A11. Di conseguenza, venga visualizzato il messaggio di errore hello **macchina virtuale tramite tooconfigure Failed {nome}** o **macchina virtuale tramite toocreate Failed {nome}** quando si ridimensiona un tooa macchina virtuale esistente nuovo dimensioni. creazione di una nuova macchina virtuale in una rete virtuale creata prima del 16 aprile 2013; o l'aggiunta di un nuova macchina virtuale tooan servizio cloud esistente. Vedere [errore: "Macchina virtuale di tooconfigure non riuscito"](https://social.msdn.microsoft.com/Forums/9693f56c-fcd3-4d42-850e-5e3b56c7d6be/error-failed-to-configure-virtual-machine-with-a5-a6-or-a7-vm-size?forum=WAVirtualMachinesforWindows) sul forum di supporto hello per soluzioni alternative per ogni scenario di distribuzione.
-* La sottoscrizione anche potrebbe limitare il numero di hello di core, che è possibile distribuire in determinati gruppi di dimensioni. tooincrease una quota, contattare il supporto tecnico di Azure.
+* Alcuni degli host fisici nei data center di Azure potrebbero non supportare macchine virtuali di dimensioni superiori, ad esempio da A5 ad A11. Di conseguenza, potrebbe essere visualizzato il messaggio di errore **Impossibile configurare la macchina virtuale {nome macchina virtuale}** o **Impossibile creare la macchina virtuale {nome macchina virtuale}** quando si configura una macchina virtuale esistente in base a una nuova dimensione, si crea una nuova macchina virtuale in una rete virtuale creata prima del 16 aprile 2013 o si aggiunge una nuova macchina a un servizio cloud esistente. Vedere [Errore: "Impossibile configurare la macchina virtuale"](https://social.msdn.microsoft.com/Forums/9693f56c-fcd3-4d42-850e-5e3b56c7d6be/error-failed-to-configure-virtual-machine-with-a5-a6-or-a7-vm-size?forum=WAVirtualMachinesforWindows) nel forum di supporto per le soluzioni alternative per ogni scenario di distribuzione.
+* La sottoscrizione può anche limitare il numero di core che è possibile distribuire in alcune famiglie di dimensioni . Per aumentare la quota, contattare il supporto tecnico di Azure.
 
 ## <a name="performance-considerations"></a>Considerazioni sulle prestazioni
-È stato creato il concetto di hello di hello Azure Compute Unit (ACU) tooprovide un modo per confrontare le prestazioni di calcolo (CPU) in SKU di Azure e tooidentify che SKU è probabilmente toosatisfy le prestazioni è necessario.  L'unità ACU adotta come standard una macchina virtuale Small (Standard_A1), a cui attribuisce il valore 100. Per tutte le altre SKU sarà quindi possibile valutare la maggiore velocità di elaborazione con cui sono in grado di eseguire un benchmark standard.
+È stato creato il concetto di unità di calcolo di Azure (ACU, Azure Compute Unit) per mettere a punto un modo per confrontare le prestazioni di calcolo (CPU) degli SKU di Azure e identificare lo SKU in grado di soddisfare con più probabilità le esigenze di prestazioni.  L'unità ACU adotta come standard una macchina virtuale Small (Standard_A1), a cui attribuisce il valore 100. Per tutte le altre SKU sarà quindi possibile valutare la maggiore velocità di elaborazione con cui sono in grado di eseguire un benchmark standard.
 
 > [!IMPORTANT]
-> Hello ACU è solo un'indicazione. Hello risultati per il carico di lavoro possono variare.
+> L'unità ACU costituisce solo un'indicazione di riferimento. I risultati possono variare in base al carico di lavoro.
 >
 >
 
@@ -69,15 +69,15 @@ Hello seguenti considerazioni potrebbe consentire di decidere la dimensione:
 | [G1-5](#g-series) |180 - 240* |
 | [H](#h-series) |290 - 300* |
 
-ACUs contrassegnati con un * utilizzare frequenza tooincrease CPU di tecnologia Intel® turbina e fornire un incremento delle prestazioni. Hello quantità di incremento hello può variare in base alle dimensioni della macchina virtuale hello, carico di lavoro e altri carichi di lavoro in esecuzione su hello stesso host.
+Le unità ACU contrassegnate con * usano la tecnologia Intel® Turbo per aumentare la frequenza della CPU e offrire un miglioramento delle prestazioni. L'entità dell'aumento di prestazioni può variare in base alle dimensioni della macchina virtuale, al carico di lavoro e agli altri carichi di lavoro in esecuzione sullo stesso host.
 
 ## <a name="size-tables"></a>Tabelle delle dimensioni
-Hello tabelle seguenti illustrano le dimensioni di hello e forniscono capacità di hello.
+Le tabelle seguenti illustrano le dimensioni e le capacità offerte da ogni dimensione.
 
-* La capacità di archiviazione viene visualizzata in unità di GiB o 1.024^3 byte. Quando il confronto dei dischi espresso in GB (1000 ^ 3 byte) toodisks misurata in GiB (1024 ^ 3) tenere presente che i numeri di capacità specificati in GiB potrebbero apparire più piccoli. Ad esempio, 1.023 GiB = 1.098,4 GB
+* La capacità di archiviazione viene visualizzata in unità di GiB o 1.024^3 byte. Quando si confrontano dischi misurati in GB (1.000^3 byte) con dischi misurati in GiB (1.024^3), tenere presente che i valori di capacità specificati in GiB potrebbero apparire inferiori. Ad esempio, 1.023 GiB = 1.098,4 GB
 * La velocità effettiva del disco viene misurata in operazioni di input/output al secondo (IOPS) e MBps, dove il valore di MBps corrisponde a 10^6 byte al secondo.
-* I dischi dati possono operare in modalità memorizzata nella cache o non memorizzata nella cache. Per l'operazione del disco dati memorizzati nella cache, la modalità cache di hello host è troppo**ReadOnly** o **ReadWrite**. Per l'operazione del disco dati non memorizzato nella cache, la modalità cache di hello host è impostata troppo**Nessuno**.
-* Larghezza di banda massima è hello aggregati larghezza di banda massima allocata e assegnato al tipo di macchina virtuale. larghezza di banda massima Hello fornisce indicazioni per la selezione di hello destra VM tipo tooensure sufficiente capacità della rete sono disponibile. Quando si passa da bassa, moderata, ad alta e molto elevato, la velocità effettiva hello aumenta di conseguenza. Le prestazioni di rete effettive dipenderanno da molti fattori, tra cui carichi di rete e dell'applicazione e le impostazioni di rete dell'applicazione.
+* I dischi dati possono operare in modalità memorizzata nella cache o non memorizzata nella cache. Per il funzionamento dei dischi dati memorizzati nella cache, la modalità di cache host è impostata su **ReadOnly** o su **ReadWrite**. Per il funzionamento dei dischi dati non memorizzati nella cache, la modalità di cache host è impostata su **None**.
+* La larghezza di banda della rete massima è la larghezza di banda aggregata massima allocata e assegnata a ogni tipo di VM. La larghezza di banda massima fornisce indicazioni per selezionare il tipo di VM corretto per garantire la disponibilità della capacità di rete adeguata. Quando si passa da bassa, moderata, alta e molto alta, la velocità effettiva aumenta di conseguenza. Le prestazioni di rete effettive dipenderanno da molti fattori, tra cui carichi di rete e dell'applicazione e le impostazioni di rete dell'applicazione.
 
 ## <a name="a-series"></a>Serie A
 | Dimensione            | Core CPU | Memoria: GiB  | Unità HDD locale: GiB       | Larghezza di banda della rete/scheda NIC max |
@@ -152,9 +152,9 @@ Per informazioni e considerazioni sull'uso di queste dimensioni, vedere [Dimensi
 | Standard_G5     | 32        | 448          | 6.144                |8/estremamente alta |
 
 ## <a name="h-series"></a>Serie H
-Macchine virtuali di Azure H serie sono hello successiva generazione elaborazione a elevate prestazioni esigenze di elaborazione di fascia alta, come la modellazione molecolare e fluidodinamica computazionale intese a macchine virtuali. Questi 8 e 16 core VM sono basate sulla tecnologia di processore Intel-2667 Haswalle E5 V3 hello con DDR4 memoria e archiviazione basate su SSD locale.
+Le macchine virtuali serie H di Azure sono le VM high performance computing di prossima generazione che puntano a risolvere esigenze di calcolo di fascia alta, come modellazione molecolare e fluidodinamica computazionale. Queste VM a 8 e 16 core sono basate sulla tecnologia del processore Intel Haswell E5-2667 V3 con memoria DDR4 e archiviazione basata su SSD locale.
 
-Offre inoltre la potenza della CPU sostanziale di toohello, hello H serie diverse opzioni per la rete RDMA di bassa latenza utilizzando FDR InfiniBand e diverse configurazioni toosupport memoria con utilizzo intensivo calcolo i requisiti di memoria.
+Oltre alla sostanziale potenza della CPU, la serie H offre diverse opzioni per rete RDMA a bassa latenza con FDR InfiniBand e diverse configurazioni di memoria a supporto di requisiti di calcolo a elevato uso di memoria.
 
 | Dimensione            | Core CPU | Memoria: GiB  | Unità SSD locale: GiB       | Larghezza di banda della rete/scheda NIC max |
 |---------------- | --------- | ------------ | -------------------- | ---------------------------- |
@@ -168,9 +168,9 @@ Offre inoltre la potenza della CPU sostanziale di toohello, hello H serie divers
 \*Con supporto di RDMA
 
 ## <a name="configure-sizes-for-cloud-services"></a>Configurare le dimensioni per i servizi Cloud
-È possibile specificare una dimensione di un'istanza del ruolo macchina virtuale hello come parte del modello di servizio hello descritto da hello [file di definizione del servizio](cloud-services-model-and-package.md#csdef). dimensioni Hello del ruolo hello determinano il numero di hello di core CPU, la capacità di memoria hello e hello locale dimensioni del file system allocata tooa esegue l'istanza. Scegliere le dimensioni di ruolo hello in base ai requisiti di risorse dell'applicazione.
+È possibile specificare le dimensioni di un'istanza del ruolo delle macchine virtuali nell'ambito del modello del servizio descritto dal [file di definizione del servizio](cloud-services-model-and-package.md#csdef). Le dimensioni di un ruolo determinano il numero di memorie centrali CPU, la capacità di memoria e la dimensione del file system locale allocati a una istanza in esecuzione. Scegliere le dimensioni del ruolo in base ai requisiti delle risorse dell'applicazione.
 
-Di seguito è riportato un esempio per l'impostazione hello ruolo dimensioni toobe [Standard_D2](#general-purpose-d) per un'istanza del ruolo Web:
+Di seguito è riportato un esempio per impostare la dimensione di ruolo [Standard_D2](#general-purpose-d) per un'istanza del ruolo Web:
 
 ```xml
 <WorkerRole name="Worker1" vmsize="Standard_D2">
@@ -178,17 +178,17 @@ Di seguito è riportato un esempio per l'impostazione hello ruolo dimensioni too
 </WorkerRole>
 ```
 
-## <a name="changing-hello-size-of-an-existing-role"></a>Modifica delle dimensioni di hello di un ruolo esistente
+## <a name="changing-the-size-of-an-existing-role"></a>Modifica delle dimensioni di un ruolo esistente
 
-Come natura hello delle nuove dimensioni delle macchine Virtuali saranno disponibili le modifiche del carico di lavoro, è opportuno dimensioni hello toochange del ruolo. toodo in modo, è necessario cambiare dimensioni della VM hello nel file di definizione del servizio (come illustrato in precedenza), riassemblare il servizio Cloud e distribuirlo. Non è possibile toochange dimensioni di macchina virtuale direttamente dal portale di hello o PowerShell.
+Man mano che la natura del carico di lavoro cambia o nuove dimensioni della VM diventano disponibili, è possibile che si desideri modificare la dimensione del ruolo. A tale scopo, è necessario modificare le dimensioni della macchina virtuale nel file di definizione del servizio, come illustrato in precedenza, ricreare il pacchetto del servizio cloud e distribuirlo. Non è possibile modificare le dimensioni delle macchine virtuali direttamente dal portale o da PowerShell.
 
 >[!TIP]
-> È toouse diverse dimensioni di macchina virtuale per il ruolo in ambienti diversi (ad es. test e produzione). Toodo unidirezionale questo è toocreate più file di definizione (con estensione csdef) del servizio nel progetto, quindi creare i pacchetti del servizio per l'ambiente cloud diverso durante la compilazione automatica con lo strumento CSPack hello. pacchetto services toolearn ulteriori informazioni su elementi hello di un cloud e toocreate, vedere [novità cloud hello servizi modello e come pacchetto?](cloud-services-model-and-package.md)
+> È possibile che si desideri usare dimensioni della VM differenti per il ruolo in ambienti diversi (ad esempio, test e produzione). A tal fine, è possibile creare più file di definizione del servizio (.csdef) nel progetto e successivamente creare pacchetti del servizio cloud differenti per ogni ambiente durante la compilazione automatica usano lo strumento CSPack. Per ulteriori informazioni sugli elementi di un pacchetto di servizi cloud e su come crearli, vedere [Cos'è il modello di servizi cloud e come è possibile crearne il pacchetto?](cloud-services-model-and-package.md)
 >
 >
 
 ## <a name="get-a-list-of-sizes"></a>Ottenere un elenco di dimensioni
-È possibile utilizzare PowerShell o hello API REST tooget un elenco di dimensioni. Hello API REST è documentata [qui](https://msdn.microsoft.com/library/azure/dn469422.aspx). Hello codice seguente è un comando di PowerShell che elencherà tutte le dimensioni di hello attualmente disponibili per il servizio Cloud.
+È possibile usare PowerShell o l'API REST per ottenere un elenco di dimensioni. L'API REST è documentata [qui](https://msdn.microsoft.com/library/azure/dn469422.aspx). Il codice seguente è un comando di PowerShell che elenca tutte le dimensioni attualmente disponibili per il servizio cloud.
 
 ```powershell
 Get-AzureRoleSize | where SupportedByWebWorkerRoles -eq $true | select InstanceSize

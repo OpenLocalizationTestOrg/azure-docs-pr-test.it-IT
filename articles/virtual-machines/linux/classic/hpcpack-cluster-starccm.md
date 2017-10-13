@@ -1,5 +1,5 @@
 ---
-title: STELLA aaaRun-CCM + con HPC Pack nelle macchine virtuali Linux | Documenti Microsoft
+title: Eseguire STAR-CCM+ con HPC Pack in VM Linux | Microsoft Docs
 description: "Distribuire un cluster Microsoft HPC Pack in Azure ed eseguire un processo STAR-CCM+ in più nodi di calcolo Linux su una rete RDMA."
 services: virtual-machines-linux
 documentationcenter: 
@@ -15,35 +15,35 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: big-compute
 ms.date: 09/13/2016
 ms.author: xpillons
-ms.openlocfilehash: 8265013cb295f53d6d4354ab2f100ef20d9f4c8c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b45fcfb981287035da02fda62eaf5f9436ec2379
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="run-star-ccm-with-microsoft-hpc-pack-on-a-linux-rdma-cluster-in-azure"></a>Eseguire STAR-CCM+ con Microsoft HPC Pack in un cluster Linux RDMA in Azure
-Questo articolo illustra come toodeploy Microsoft HPC Pack del cluster in Azure ed eseguire un [STELLA CD adapco-CCM +](http://www.cd-adapco.com/products/star-ccm%C2%AE) processo su più nodi di calcolo di Linux che sono collegate tra loro tramite InfiniBand.
+Questo articolo illustra come distribuire un cluster Microsoft HPC Pack in Azure ed eseguire un processo [CD-adapco STAR-CCM+](http://www.cd-adapco.com/products/star-ccm%C2%AE) su più nodi di calcolo Linux interconnessi con InfiniBand.
 
 [!INCLUDE [learn-about-deployment-models](../../../../includes/learn-about-deployment-models-both-include.md)]
 
-Microsoft HPC Pack fornisce funzionalità toorun un'ampia gamma di HPC su larga scala e applicazioni parallele, incluse le applicazioni MPI, nei cluster di macchine virtuali di Microsoft Azure. HPC Pack supporta anche applicazioni HPC che eseguono Linux su VM di nodi di calcolo Linux distribuite in un cluster HPC Pack. Per un toousing introduzione Linux nodi con HPC Pack, vedere [Introduzione a Linux nodi di calcolo in un cluster HPC Pack in Azure](hpcpack-cluster.md).
+Microsoft HPC Pack fornisce le funzionalità necessarie per eseguire svariate applicazioni HPC e parallele su larga scala, incluse le applicazioni MPI, in cluster di macchine virtuali di Microsoft Azure. HPC Pack supporta anche applicazioni HPC che eseguono Linux su VM di nodi di calcolo Linux distribuite in un cluster HPC Pack. Per informazioni introduttive sull'uso di nodi di calcolo Linux con HPC Pack, vedere [Introduzione all'uso di nodi di calcolo Linux in un cluster HPC Pack in Azure](hpcpack-cluster.md).
 
 ## <a name="set-up-an-hpc-pack-cluster"></a>Configurare un cluster HPC Pack
-Scaricare gli script di distribuzione IaaS di HPC Pack hello da hello [area Download](https://www.microsoft.com/en-us/download/details.aspx?id=44949) ed estrarli in locale.
+Scaricare gli script di distribuzione IaaS per HPC Pack dall'[Area download](https://www.microsoft.com/en-us/download/details.aspx?id=44949) ed estrarli localmente.
 
-Azure PowerShell è un prerequisito. Se PowerShell non è configurato nel computer locale, consultare l'articolo articolo hello [come tooinstall e configurare Azure PowerShell](/powershell/azure/overview).
+Azure PowerShell è un prerequisito. Se non è configurato nel computer locale, leggere l'articolo [Come installare e configurare Azure PowerShell](/powershell/azure/overview).
 
-In fase di hello di questo articolo, le immagini Linux hello da hello Azure Marketplace, che contiene i driver InfiniBand hello per Azure, sono per SLES 12, CentOS 6.5 e CentOS 7.1. Questo articolo si basa sull'utilizzo di hello SLES 12. nome di hello tooretrieve di tutte le immagini Linux che supportano HPC in hello Marketplace, è possibile eseguire hello comando PowerShell seguente:
+Al momento della stesura di questo documento, le immagini Linux da Azure Marketplace, che include i driver InfiniBand per Azure, sono specifiche per SLES 12, CentOS 6.5 e CentOS 7.1. Questo articolo è basato sull'uso di SLES 12. Per recuperare il nome di tutte le immagini Linux che supportano HPC nel Marketplace, è possibile eseguire il comando di PowerShell seguente:
 
 ```
     get-azurevmimage | ?{$_.ImageName.Contains("hpc") -and $_.OS -eq "Linux" }
 ```
 
-output di Hello è indicato hello percorso in cui queste immagini sono disponibili e hello Nome immagine (**ImageName**) toobe utilizzato nel modello di distribuzione hello in seguito.
+L'output elenca le posizioni in cui sono disponibili le immagini e il nome dell'immagine (**ImageName**) da usare in seguito nel modello di distribuzione.
 
-Prima distribuire i cluster di hello, è necessario toobuild un file di modello di distribuzione di HPC Pack. Poiché la destinazione è un piccolo cluster, nodo head hello verrà controller di dominio hello e ospitare un database SQL locale.
+Prima di distribuire il cluster, è necessario creare un file di modello di distribuzione per HPC Pack. Poiché si specifica come destinazione un cluster di piccole dimensioni, il nodo head sarà il controller di dominio e ospiterà un database SQL locale.
 
-Hello modello seguente verrà distribuire un nodo head, creare un file XML denominato **MyCluster.xml**e sostituire i valori hello di **SubscriptionId**, **StorageAccount**,  **Percorso**, **VMName**, e **ServiceName** con quelle dell'utente.
+Il modello seguente distribuirà un nodo head di questo tipo, creerà un nome file XML **MyCluster.xml** e sostituirà i valori di **SubscriptionId**, **StorageAccount**, **Location**, **VMName** e **ServiceName** con i valori dell'utente.
 
     <?xml version="1.0" encoding="utf-8" ?>
     <IaaSClusterConfig>
@@ -79,138 +79,138 @@ Hello modello seguente verrà distribuire un nodo head, creare un file XML denom
       </LinuxComputeNodes>
     </IaaSClusterConfig>
 
-Avviare la creazione del nodo head hello eseguendo hello comando di PowerShell in un prompt dei comandi con privilegi elevati:
+Avviare la creazione del nodo head eseguendo il comando di PowerShell in una finestra di comando con privilegi elevati:
 
 ```
     .\New-HPCIaaSCluster.ps1 -ConfigFile MyCluster.xml
 ```
 
-Dopo 20 minuti too30, nodo head hello deve essere pronta. È possibile connettersi tooit dal portale di Azure hello facendo hello **Connetti** sull'icona della macchina virtuale hello.
+Il nodo head sarà pronto dopo 20-30 minuti. È possibile connettersi al nodo dal portale di Azure facendo clic sull'icona **Connetti** della macchina virtuale.
 
-Server di inoltro DNS hello toofix potrebbe essere alla fine. toodo in tal caso, avviare Gestore DNS.
+Sarà infine necessario risolvere i problemi del server d'inoltro DNS. A questo scopo, avviare il Gestore DNS.
 
-1. Nome del server hello pulsante destro del mouse in Gestore DNS, selezionare **proprietà**, quindi fare clic su hello **server d'inoltro** scheda.
-2. Fare clic su hello **modifica** pulsante tooremove qualsiasi server d'inoltro e quindi fare clic su **OK**.
-3. Verificare che tale hello **utilizzare i parametri radice se non sono disponibili alcun server d'inoltro** casella di controllo è selezionata e quindi fare clic su **OK**.
+1. Fare clic con il pulsante destro del mouse sul nome del server in Gestore DNS, scegliere **Proprietà** e selezionare la scheda **Server d'inoltro**.
+2. Fare clic sul pulsante **Modifica**, rimuovere gli eventuali server d'inoltro e quindi fare clic su **OK**.
+3. Assicurarsi di selezionare la casella di controllo **Usa parametri radice se non sono disponibili server d'inoltro** e fare clic su **OK**.
 
 ## <a name="set-up-linux-compute-nodes"></a>Configurare nodi di calcolo Linux
-Distribuire nodi di calcolo di hello Linux utilizzando hello utilizzato nodo head di hello toocreate stesso modello di distribuzione.
+Distribuire i nodi di calcolo Linux con lo stesso modello di distribuzione usato per creare il nodo head.
 
-Copia file hello **MyCluster.xml** dal nodo head toohello di computer locale e aggiornamento hello **NodeCount** tag con il numero di hello di nodi che si desidera toodeploy (< = 20). Essere toohave attenzione core a sufficienza disponibili della quota di Azure, perché ogni istanza A9 utilizzerà 16 core nella sottoscrizione. È possibile utilizzare istanze A8 (8 core) anziché A9 se si desidera toouse più macchine virtuali in hello stesso budget.
+Copiare il file **MyCluster.xml** dal computer locale nel nodo head e aggiornare il tag **NodeCount** con il numero di nodi da distribuire (<=20). Assicurarsi di avere un numero sufficiente di core disponibili nella quota di Azure, perché ogni istanza A9 utilizzerà 16 core nella sottoscrizione. È possibile usare istanze A8 (8 core) invece di A9, se si vogliono usare più VM nello stesso budget.
 
-Nel nodo head hello, copiare gli script di distribuzione IaaS di HPC Pack hello.
+Nel nodo head copiare gli script di distribuzione IaaS per HPC Pack.
 
-Eseguire i seguenti comandi di PowerShell di Azure in un prompt dei comandi con privilegi elevati hello:
+Eseguire i comandi di Azure PowerShell seguenti in un prompt dei comandi con privilegi elevati:
 
-1. Eseguire **Add-AzureAccount** tooconnect tooyour sottoscrizione di Azure.
-2. Se si dispone di più sottoscrizioni, eseguire **Get-AzureSubscription** toolist li.
-3. Impostare una sottoscrizione predefinita eseguendo hello **Select-AzureSubscription - SubscriptionName xxxx-predefinito** comando.
-4. Eseguire **.\New-HPCIaaSCluster.ps1 - ConfigFile MyCluster.xml** toostart distribuzione dei nodi di calcolo di Linux.
+1. Eseguire **Add-AzureAccount** per connettersi alla sottoscrizione di Azure.
+2. Se sono disponibili più sottoscrizioni, eseguire **Get-AzureSubscription** per elencarle.
+3. Impostare una sottoscrizione predefinita eseguendo il comando **Select-AzureSubscription -SubscriptionName xxxx -Default** .
+4. Eseguire **.\New-HPCIaaSCluster.ps1 -ConfigFile MyCluster.xml** per avviare la distribuzione dei nodi di calcolo Linux. 
    
    ![Distribuzione del nodo head][hndeploy]
 
-Aprire lo strumento di gestione di Cluster HPC Pack hello. Dopo alcuni minuti, i nodi di calcolo Linux verranno visualizzati normalmente in un elenco di nodi di calcolo del cluster. Con la modalità di distribuzione classica hello, vengono create in modo sequenziale le macchine virtuali IaaS. Pertanto, se il numero di hello di nodi è importante, recupero tutti distribuito può richiedere una quantità significativa di tempo.
+Aprire lo strumento HPC Pack Cluster Manager Dopo alcuni minuti, i nodi di calcolo Linux verranno visualizzati normalmente in un elenco di nodi di calcolo del cluster. Con la modalità di distribuzione classica, le VM IaaS vengono create in modo sequenziale, quindi se il numero di nodi è importante, la distribuzione di tutte le VM potrebbe richiedere una quantità di tempo significativa.
 
 ![Nodi Linux in HPC Pack Cluster Manager][clustermanager]
 
-Ora che tutti i nodi siano in esecuzione nel cluster hello, esistono toomake le impostazioni di un'infrastruttura aggiuntiva.
+Quando tutti i nodi sono attivi e in esecuzione nel cluster, si dovranno configurare altri elementi dell'infrastruttura.
 
 ## <a name="set-up-an-azure-file-share-for-windows-and-linux-nodes"></a>Configurare una condivisione file di Azure per nodi Windows e Linux
-È possibile utilizzare script toostore del servizio File di Azure hello, pacchetti di applicazioni e i file di dati. File di Azure offre funzionalità CIFS su un'archivio BLOB di Azure come archivio permanente. Tenere presente che questo non è la soluzione più scalabile hello, ma è hello quello più semplice e non richiede le macchine virtuali dedicate.
+È possibile usare il servizio File di Azure per archiviare script, pacchetti delle applicazioni e file di dati. File di Azure offre funzionalità CIFS su un'archivio BLOB di Azure come archivio permanente. Si noti che questa non è la soluzione più ridimensionabile, ma si tratta della soluzione più semplice e non richiede macchine virtuali dedicate.
 
-Creare una condivisione di File di Azure seguendo le istruzioni di hello nell'articolo hello [Introduzione all'archiviazione di File di Azure in Windows](../../../storage/files/storage-dotnet-how-to-use-files.md).
+Creare una condivisione file di Azure seguendo le istruzioni disponibili nell'articolo [Introduzione ad Archiviazione file di Azure in Windows](../../../storage/files/storage-dotnet-how-to-use-files.md).
 
-Mantenere hello nome dell'account di archiviazione come **saname**, nome della condivisione file hello come **sharename**e una chiave di account di archiviazione hello come **sakey**.
+Mantenere il nome dell'account di archiviazione **saname**, il nome della condivisione file **sharename** e la chiave dell'account di archiviazione **sakey**.
 
-### <a name="mount-hello-azure-file-share-on-hello-head-node"></a>Condivisione di File di Azure hello montaggio nel nodo head hello
-Aprire un prompt dei comandi con privilegi elevati ed eseguire hello seguendo le credenziali di hello toostore comando nell'insieme di credenziali di hello computer locale:
+### <a name="mount-the-azure-file-share-on-the-head-node"></a>Montare la condivisione file di Azure nel nodo head
+Aprire un prompt dei comandi con privilegi elevati ed eseguire il comando seguente per archiviare le credenziali nell'insieme di credenziali del computer locale.
 
 ```
     cmdkey /add:<saname>.file.core.windows.net /user:<saname> /pass:<sakey>
 ```
 
-Quindi, toomount hello Azure condivisione File, eseguire:
+Per montare quindi la condivisione file di Azure eseguire:
 
 ```
     net use Z: \\<saname>.file.core.windows.net\<sharename> /persistent:yes
 ```
 
-### <a name="mount-hello-azure-file-share-on-linux-compute-nodes"></a>Montare in una condivisione hello Azure sui nodi di calcolo di Linux
-Uno strumento utile che viene fornito con HPC Pack è lo strumento clusrun hello. È possibile utilizzare questo hello toorun strumento da riga di comando stesso comando contemporaneamente su un set di nodi di calcolo. In questo caso, è utilizzata una condivisione di File di Azure toomount hello e renderlo persistente toosurvive riavvii.
-In un prompt con privilegi elevato nel nodo head hello, eseguire hello i comandi seguenti.
+### <a name="mount-the-azure-file-share-on-linux-compute-nodes"></a>Montare la condivisione file di Azure nei nodi di calcolo Linux
+Uno strumento utile disponibile in HPC Pack è l'utilità clusrun. Questa riga di comando consente di eseguire lo stesso comando simultaneamente su un set di nodi di calcolo. In questo caso viene usato per montare la condivisione file di Azure e renderla permanente, anche dopo eventuali riavvii.
+In un prompt dei comandi con privilegi elevati sul nodo head eseguire i comandi seguenti.
 
-directory di montaggio toocreate hello:
+Per creare la directory di montaggio:
 
 ```
     clusrun /nodegroup:LinuxNodes mkdir -p /hpcdata
 ```
 
-hello toomount condivisione File di Azure:
+Per montare la condivisione file di Azure:
 
 ```
     clusrun /nodegroup:LinuxNodes mount -t cifs //<saname>.file.core.windows.net/<sharename> /hpcdata -o vers=2.1,username=<saname>,password='<sakey>',dir_mode=0777,file_mode=0777
 ```
 
-condivisione di montaggio toopersist hello:
+Per rendere permanente la condivisione di montaggio:
 
 ```
     clusrun /nodegroup:LinuxNodes "echo //<saname>.file.core.windows.net/<sharename> /hpcdata cifs vers=2.1,username=<saname>,password='<sakey>',dir_mode=0777,file_mode=0777 >> /etc/fstab"
 ```
 
 ## <a name="install-star-ccm"></a>Installare STAR-CCM+
-Le istanze A8 e A9 delle VM di Azure forniscono il supporto per InfiniBand e le funzionalità RDMA. Hello kernel che consentono di tali funzionalità sono disponibili driver per Windows Server 2012 R2, SUSE 12, CentOS 6.5 e immagini CentOS 7.1 hello Azure Marketplace. Microsoft MPI e Intel MPI (versione 5. x) sono hello due MPI librerie che supportano i driver in Azure.
+Le istanze A8 e A9 delle VM di Azure forniscono il supporto per InfiniBand e le funzionalità RDMA. I driver del kernel che abilitano tali funzionalità sono disponibili in Azure Marketplace per le immagini Windows Server 2012 R2, SUSE 12, CentOS 6.5 e CentOS 7.1. Microsoft MPI e Intel MPI (versione 5.x) sono le due librerie MPI che supportano questi driver in Azure.
 
 CD-adapco STAR-CCM+ 11.x e versioni successive è incluso in Intel MPI versione 5.x, quindi è incluso il supporto di InfiniBand per Azure.
 
-Ottenere hello Linux64 STELLA-CCM + pacchetto da hello [portale CD adapco](https://steve.cd-adapco.com). In questo caso, è stata usata la versione 11.02.010 con precisione mista.
+Ottenere il pacchetto Linux64 STAR-CCM+ dal [portale di CD-adapco](https://steve.cd-adapco.com). In questo caso, è stata usata la versione 11.02.010 con precisione mista.
 
-Nel nodo head hello in hello **/hpcdata** File di Azure condividono, creare uno script della shell denominato **setupstarccm.sh** con hello dopo contenuto. Questo script deve essere eseguito su ogni tooset del nodo di calcolo di STELLA-CCM + localmente.
+Nel nodo head della condivisione file di Azure **/hpcdata** creare uno script della shell denominato **setupstarccm.sh** con il contenuto seguente. Questo script verrà eseguito in ogni nodo di calcolo per configurare STAR-CCM+ localmente.
 
 #### <a name="sample-setupstarcmsh-script"></a>Script setupstarcm.sh di esempio
 ```
     #!/bin/bash
-    # setupstarcm.sh tooset up STAR-CCM+ locally
+    # setupstarcm.sh to set up STAR-CCM+ locally
 
-    # Create hello CD-adapco main directory
+    # Create the CD-adapco main directory
     mkdir -p /opt/CD-adapco
 
-    # Copy hello STAR-CCM package from hello file share toohello local directory
+    # Copy the STAR-CCM package from the file share to the local directory
     cp /hpcdata/StarCCM/STAR-CCM+11.02.010_01_linux-x86_64.tar.gz /opt/CD-adapco/
 
-    # Extract hello package
+    # Extract the package
     tar -xzf /opt/CD-adapco/STAR-CCM+11.02.010_01_linux-x86_64.tar.gz -C /opt/CD-adapco/
 
-    # Start a silent installation of STAR-CCM without hello FLEXlm component
+    # Start a silent installation of STAR-CCM without the FLEXlm component
     /opt/CD-adapco/starccm+_11.02.010/STAR-CCM+11.02.010_01_linux-x86_64-2.5_gnu4.8.bin -i silent -DCOMPUTE_NODE=true -DNODOC=true -DINSTALLFLEX=false
 
     # Update memory limits
     echo "*               hard    memlock         unlimited" >> /etc/security/limits.conf
     echo "*               soft    memlock         unlimited" >> /etc/security/limits.conf
 ```
-A questo punto, tooset backup STELLA-CCM + in tutti i Linux nodi di calcolo, aprire un prompt dei comandi con privilegi elevati ed eseguire hello comando seguente:
+Per configurare STAR-CCM+ in tutti i nodi di calcolo Linux, aprire un prompt dei comandi con privilegi elevati ed eseguire il comando seguente:
 
 ```
     clusrun /nodegroup:LinuxNodes bash /hpcdata/setupstarccm.sh
 ```
 
-Durante l'eseguono di comandi hello, è possibile monitorare l'utilizzo della CPU hello utilizzando la mappa di calore hello di gestione Cluster. La configurazione di tutti i nodi dovrebbe richiedere qualche minuto.
+Durante l'esecuzione del comando, è possibile monitorare l'utilizzo della CPU con la mappa termica di Cluster Manager. La configurazione di tutti i nodi dovrebbe richiedere qualche minuto.
 
 ## <a name="run-star-ccm-jobs"></a>Eseguire processi STAR-CCM+
-HPC Pack viene utilizzato per le funzionalità di utilità di pianificazione di processo in ordine toorun STELLA-CCM + processi. toodo in tal caso, si base hello supporto di alcuni script processo hello toostart utilizzato ed eseguiti a STELLA-CCM +. dati di input Hello viene mantenuti nella condivisione di File di Azure hello primo per motivi di semplicità.
+HPC Pack viene usato per le relative funzionalità di pianificazione di processi per l'esecuzione di processi STAR-CCM+. A questo scopo, è necessario il supporto di alcuni script usati per attivare il processo ed eseguire STAR-CCM+. I dati di input vengono mantenuti nella condivisione file di Azure prima di tutto per semplicità.
 
-Hello lo script di PowerShell seguente viene utilizzato tooqueue una STELLA-CCM + processo. Accetta tre argomenti:
+Lo script di Powershell seguente viene usato per accodare un processo STAR-CCM+. Accetta tre argomenti:
 
-* nome del modello Hello
-* numero di Hello di nodi toobe utilizzato
-* numero di Hello di core in ogni nodo di toobe utilizzato
+* Nome del modello
+* Numero di nodi da usare
+* Numero di core in ogni nodo da usare
 
-Poiché a STELLA-CCM + può riempire la larghezza di banda di hello memoria, è in genere è preferibile toouse meno core per nodi di calcolo e aggiungere nuovi nodi. numero esatto di Hello di core per nodo dipenderà dalla famiglia di processori hello e la velocità di interconnessione hello.
+Poiché STAR-CCM+ può consumare tutta la larghezza di banda della memoria, è in genere consigliabile usare un numero minore di core per ogni nodo di calcolo e aggiungere nuovi nodi. Il rapporto esatto tra core e nodi dipende dalla famiglia del processore e dalla velocità di interconnessione.
 
-i nodi di Hello vengono allocati esclusivamente per il processo di hello e non possono essere condivisa con altri processi. il processo di Hello non viene avviato direttamente come un processo MPI. Hello **runstarccm.sh** script della shell verranno avvio hello MPI.
+I nodi vengono allocati esclusivamente per il processo e non possono essere condivisi con altri processi. Il processo non viene avviato direttamente come un processo MPI. Lo script della shell **runstarccm.sh** avvierà il servizio di avvio MPI.
 
-Hello input modello e hello **runstarccm.sh** script vengono archiviati in hello **/hpcdata** condivisione che era stati montati in precedenza.
+Il modello di input e lo script **runstarccm.sh** vengono archiviati nella condivisione **/hpcdata** montata in precedenza.
 
-File di log denominati con ID processo hello e vengono archiviati in hello **/hpcdata condivisione**, insieme a STELLA hello-CCM + file di output.
+Ai file di log viene assegnato l'ID del processo come nome e i file vengono archiviati nella **condivisione /hpcdata**, insieme ai file di output di STAR-CCM+.
 
 #### <a name="sample-submitstarccmjobps1-script"></a>Script SubmitStarccmJob.ps1 di esempio
 ```
@@ -221,13 +221,13 @@ File di log denominati con ID processo hello e vengono archiviati in hello **/hp
     $nbNodes=$args[1]
 
     #---------------------------------------------------------------------------------------------------------
-    # Create a new job; this will give us hello job ID that's used tooidentify hello name of hello uploaded package in Azure
+    # Create a new job; this will give us the job ID that's used to identify the name of the uploaded package in Azure
     #
     $job = New-HpcJob -Name "$modelName $nbNodes $nbCoresPerNode" -Scheduler $scheduler -NumNodes $nbNodes -NodeGroups "LinuxNodes" -FailOnTaskFailure $true -Exclusive $true
     $jobId = [String]$job.Id
 
     #---------------------------------------------------------------------------------------------------------
-    # Submit hello job     
+    # Submit the job     
     $workdir =  "/hpcdata"
     $execName = "$nbCoresPerNode runner.java $modelName.sim"
 
@@ -242,10 +242,10 @@ Sostituire **runner.java** con il servizio di avvio preferito per il modello Jav
 ```
     #!/bin/bash
     echo "start"
-    # hello path of this script
+    # The path of this script
     SCRIPT_PATH="$( dirname "${BASH_SOURCE[0]}" )"
     echo ${SCRIPT_PATH}
-    # Set hello mpirun runtime environment
+    # Set the mpirun runtime environment
     export CDLMD_LICENSE_FILE=1999@flex.cd-adapco.com
 
     # mpirun command
@@ -256,11 +256,11 @@ Sostituire **runner.java** con il servizio di avvio preferito per il modello Jav
     COUNT=${#NODESCORES[@]}
     NBCORESPERNODE=$1
 
-    # Create hello hostfile file
+    # Create the hostfile file
     NODELIST_PATH=${SCRIPT_PATH}/hostfile_$$
     echo ${NODELIST_PATH}
 
-    # Get every node name and write into hello hostfile file
+    # Get every node name and write into the hostfile file
     I=1
     NBNODES=0
     while [ ${I} -lt ${COUNT} ]
@@ -271,7 +271,7 @@ Sostituire **runner.java** con il servizio di avvio preferito per il modello Jav
     done
     let "NBCORES=${NBNODES}*${NBCORESPERNODE}"
 
-    # Run STAR-CCM with hello hostfile argument
+    # Run STAR-CCM with the hostfile argument
     #  
     ${STARCCM} -np ${NBCORES} -machinefile ${NODELIST_PATH} \
         -power -podkey "<yourkey>" -rsh ssh \
@@ -284,11 +284,11 @@ Sostituire **runner.java** con il servizio di avvio preferito per il modello Jav
     exit ${RTNSTS}
 ```
 
-Nel test viene usato un token di licenza di tipo Power-One-Demand. Per tale token, è necessario hello tooset **$CDLMD_LICENSE_FILE** variabile di ambiente troppo **1999@flex.cd-adapco.com**  e la chiave di hello in hello **- podkey** opzione della riga di comando hello .
+Nel test viene usato un token di licenza di tipo Power-One-Demand. Per questo token è necessario impostare la variabile di ambiente **$CDLMD_LICENSE_FILE** su **1999@flex.cd-adapco.com** e la chiave nell'opzione **-podkey** della riga di comando.
 
-Dopo alcune operazioni di inizializzazione, estrae script hello - da hello **CCP_NODES_CORES $** hello di variabili di ambiente HPC Pack set - elenco di nodi toobuild utilizza un file di host che hello avvio MPI. Questo file host conterrà un elenco di hello di nomi di nodo di calcolo che vengono utilizzati per il processo di hello, un nome per ogni riga.
+Dopo alcune operazioni di inizializzazione, lo script estrae l'elenco di nodi per la compilazione di un file host usato dal servizio di avvio MPI dalle variabili di ambiente **$CCP_NODES_CORES** impostate da HPC Pack. Il file host conterrà l'elenco di nomi di nodi di calcolo usati per il processo, un nome per ogni riga.
 
-formato Hello **CCP_NODES_CORES $** segue questo modello:
+Il formato della variabile **$CCP_NODES_CORES** segue questo modello:
 
 ```
 <Number of nodes> <Name of node1> <Cores of node1> <Name of node2> <Cores of node2>...`
@@ -296,28 +296,28 @@ formato Hello **CCP_NODES_CORES $** segue questo modello:
 
 Dove:
 
-* `<Number of nodes>`è il numero di hello di nodi allocata toothis processo.
-* `<Name of node_n_...>`è il nome di hello di ogni nodo allocata toothis processo.
-* `<Cores of node_n_...>`è il numero di hello di core nel nodo hello allocata toothis processo.
+* `<Number of nodes>` è il numero di nodi allocati a questo processo.
+* `<Name of node_n_...>` è il nome di ogni nodo allocato a questo processo.
+* `<Cores of node_n_...>` è il numero di core nel nodo allocato a questo processo.
 
-numero di core Hello (**$NBCORES**) è anche calcolata hello in base a numero di nodi (**$NBNODES**) e il numero di core per nodo hello (fornito come parametro **$NBCORESPERNODE**).
+Il numero di core **$NBCORES** viene calcolato anche in base al numero di nodi **$NBNODES** e al numero di core per nodo specificato come parametro **$NBCORESPERNODE**.
 
-Per le opzioni MPI hello, hello quelli che vengono utilizzati con Intel MPI in Azure sono:
+Ecco le opzioni MPI usate con Intel MPI in Azure:
 
-* `-mpi intel`toospecify Intel MPI.
-* `-fabric UDAPL`toouse InfiniBand Azure verbi.
-* `-cpubind bandwidth,v`larghezza di banda di toooptimize per MPI con STELLA-CCM +.
-* `-mppflags "-ppn $NBCORESPERNODE -genv I_MPI_DAPL_PROVIDER=ofa-v2-ib0 -genv I_MPI_DAPL_UD=0 -genv I_MPI_DYNAMIC_CONNECTION=0"`toomake Intel MPI utilizzare Azure InfiniBand e hello tooset obbligatorio per un numero di core per nodo.
-* `-batch`STELLA toostart-CCM + in modalità batch senza interfaccia utente.
+* `-mpi intel` per specificare Intel MPI.
+* `-fabric UDAPL` per usare verbi InfiniBand Azure.
+* `-cpubind bandwidth,v` per ottimizzare la larghezza di banda per MPI con STAR-CCM+.
+* `-mppflags "-ppn $NBCORESPERNODE -genv I_MPI_DAPL_PROVIDER=ofa-v2-ib0 -genv I_MPI_DAPL_UD=0 -genv I_MPI_DYNAMIC_CONNECTION=0"` per consentire il funzionamento di Intel MPI con InfiniBand Azure e impostare il numero di core per nodo necessario.
+* `-batch` per avviare STAR-CCM+ in modalità batch senza interfaccia utente.
 
-Infine, toostart un processo, assicurarsi che i nodi siano in esecuzione e che siano online in Gestione Cluster. Da un prompt dei comandi di PowerShell eseguire quindi questo comando:
+Per avviare un processo, assicurarsi infine che i nodi siano attivi, in esecuzione e online in Cluster Manager. Da un prompt dei comandi di PowerShell eseguire quindi questo comando:
 
 ```
     .\ SubmitStarccmJob.ps1 <model> <nbNodes> <nbCoresPerNode>
 ```
 
 ## <a name="stop-nodes"></a>Arrestare i nodi
-In un secondo momento al termine dei test, è possibile utilizzare hello toostop di HPC Pack PowerShell i comandi seguenti e avviare i nodi:
+Al termine dei test, per arrestare e avviare i nodi è possibile usare i comandi di PowerShell seguenti per HPC Pack:
 
 ```
     Stop-HPCIaaSNode.ps1 -Name <prefix>-00*

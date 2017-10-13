@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con SilkRoad Life Suite | Documentazione Microsoft'
-description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e SilkRoad vita Suite.
+description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e SilkRoad Life Suite.
 services: active-directory
 documentationcenter: 
 author: jeevansd
@@ -14,133 +14,133 @@ ms.devlang: na
 ms.topic: article
 ms.date: 3/10/2017
 ms.author: jeedes
-ms.openlocfilehash: 07367282ab42b7332f166d64743b4b447aec4935
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: ecf4e31ecea00d003fc47ea4cebb781ca58957f7
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-silkroad-life-suite"></a>Esercitazione: Integrazione di Azure Active Directory con SilkRoad Life Suite
-obiettivo di Hello di questa esercitazione è tooshow è come toointegrate SilkRoad vita Suite con Azure Active Directory (Azure AD). 
+Questa esercitazione descrive l'integrazione di SilkRoad Life Suite con Azure Active Directory (Azure AD). 
 
-Integrazione SilkRoad vita Suite con Azure AD fornisce hello seguenti vantaggi: 
+L'integrazione di SilkRoad Life Suite con Azure AD offre i vantaggi seguenti: 
 
-* È possibile controllare in Azure AD che ha accesso tooSilkRoad vita Suite 
-* È possibile abilitare l'utenti tooautomatically get connesso tooSilkRoad vita Suite single sign-on (SSO) con i propri account Azure AD
+* È possibile controllare in Azure AD chi può accedere a SilkRoad Life Suite. 
+* È possibile abilitare gli utenti per l'accesso automatico a SilkRoad Life Suite Single Sign-On (SSO) con i propri account Azure AD.
 
-Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
-integrazione di Azure AD con SilkRoad vita Suite tooconfigure, è necessario hello seguenti elementi:
+Per configurare l'integrazione di Azure AD con SilkRoad Life Suite, sono necessari gli elementi seguenti:
 
 * Sottoscrizione di Azure AD.
 * Sottoscrizione di SilkRoad Life Suite abilitata per l'accesso SSO
 
 >[!NOTE]
->hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione. 
+>Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione. 
 > 
 
-passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:
+A questo scopo, è consigliabile seguire le indicazioni seguenti:
 
 * Non usare l'ambiente di produzione, a meno che non sia necessario.
 * Se non è disponibile un ambiente di valutazione di Azure AD, è possibile [ottenere una versione di valutazione di un mese](https://azure.microsoft.com/pricing/free-trial/). 
 
 ## <a name="scenario-description"></a>Descrizione dello scenario
-obiettivo di Hello di questa esercitazione è tooenable si tootest SSO AD Azure in un ambiente di test.
+L'obiettivo di questa esercitazione è quello di testare l'accesso Single Sign-On (SSO) di Azure AD in un ambiente di test.
 
-scenario di Hello descritto in questa esercitazione è composto da due componenti principali:
+Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:
 
-1. Aggiunta gruppo vita SilkRoad dalla raccolta hello 
+1. Aggiunta di SilkRoad Life Suite dalla raccolta 
 2. Configurazione e test dell'accesso Single Sign-On (SSO) di Microsoft Azure AD
 
-## <a name="add-silkroad-life-suite-from-hello-gallery"></a>Aggiungere il gruppo di vita SilkRoad dalla raccolta hello
-integrazione hello tooconfigure di SilkRoad vita Suite in Azure AD, è necessario tooadd SilkRoad vita gruppo dall'elenco di tooyour hello raccolta di App SaaS gestite.
+## <a name="add-silkroad-life-suite-from-the-gallery"></a>Aggiungere SilkRoad Life Suite dalla raccolta
+Per configurare l'integrazione di SilkRoad Life Suite in Azure AD, è necessario aggiungere SilkRoad Life Suite dalla raccolta al proprio elenco di app SaaS gestite.
 
-**tooadd SilkRoad vita Suite dalla raccolta di hello, eseguire hello alla procedura seguente:**
+**Per aggiungere SilkRoad Life Suite dalla raccolta, seguire questa procedura:**
 
-1. In hello **portale di Azure classico**via hello riquadro di spostamento a sinistra, fare clic su **Active Directory**. 
+1. Nel **portale di Azure classico**fare clic su **Active Directory**nel riquadro di spostamento sinistro. 
    
     ![Active Directory][1]
 
-2. Da hello **Directory** elenco, directory hello selezionare per il quale si desidera l'integrazione di directory tooenable.
+2. Nell'elenco **Directory** selezionare la directory per la quale si desidera abilitare l'integrazione delle directory.
 
-3. visualizzazione di applicazioni hello tooopen, nella visualizzazione directory hello, fare clic su **applicazioni** nel menu superiore hello.
+3. Per aprire la visualizzazione applicazioni, nella visualizzazione directory fare clic su **Applications** nel menu superiore.
    
-    ![Applicazioni][2]
+    ![Applications][2]
 
-4. Fare clic su **Aggiungi** nella parte inferiore di hello della pagina hello.
+4. Fare clic su **Add** nella parte inferiore della pagina.
    
     ![Applicazioni][3]
 
-5. In hello **cosa si desidera toodo** finestra di dialogo, fare clic su **aggiungere un'applicazione dalla raccolta di hello**.
+5. Nella finestra di dialogo **Come procedere** fare clic su **Aggiungere un'applicazione dalla raccolta**.
    
     ![Applicazioni][4]
 
-6. Nella casella di ricerca hello, digitare **SilkRoad vita Suite**.
+6. Nella casella di ricerca digitare **SilkRoad Life Suite**.
    
     ![Applicazioni][5]
 
-7. Nel riquadro risultati hello selezionare **SilkRoad vita Suite**, quindi fare clic su **completa** tooadd un'applicazione hello.
+7. Nel riquadro dei risultati selezionare **SilkRoad Life Suite** e quindi fare clic su **Completa** per aggiungere l'applicazione.
    
     ![Applicazioni][50]
 
 ## <a name="configure-and-test-azure-ad-single-sign-on"></a>Configurare e testare l'accesso Single Sign-On di Azure AD
-obiettivo di Hello di questa sezione è tooshow come tooconfigure e SSO AD Azure con SilkRoad vita Suite di test basato su un utente di test denominato "Britta Simon".
+Questa sezione descrive come configurare e testare l'accesso SSO di Azure AD con SilkRoad Life Suite in base a un utente test di nome "Britta Simon".
 
-Per toowork SSO, Azure AD deve tooknow è quale utente controparte hello utente tooan SilkRoad vita Suite in Azure AD. In altre parole, una relazione di collegamento tra un utente di Azure AD e l'utente correlato di hello SilkRoad vita Suite deve toobe stabilita.
+Per il funzionamento dell'accesso SSO, Azure AD deve conoscere qual è l'utente di SilkRoad Life Suite che corrisponde a un utente di Azure AD. In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in SilkRoad Life Suite.
 
-Questa relazione di collegamento viene stabilita tramite l'assegnazione valore hello di hello **nome utente** in Azure AD come valore hello hello **Username** SilkRoad vita Suite.
+La relazione di collegamento viene stabilita assegnando il valore di **nome utente** in Azure AD come valore di **Username** (Nome utente) in SilkRoad Life Suite.
 
-tooconfigure e prova AD Azure single sign-on con SilkRoad vita Suite, è necessario hello toocomplete seguenti blocchi predefiniti:
+Per configurare e testare l'accesso Single Sign-On di Azure AD con SilkRoad Life Suite, è necessario completare i blocchi predefiniti seguenti:
 
-1. **[Configurazione di Azure single sign-on AD](#configuring-azure-ad-single-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.
-2. **[Creazione di un utente prova AD Azure](#creating-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.
-3. **[Creazione di un utente test SilkRoad vita Suite](#creating-a-silkroad-life-suite-test-user)**  -toohave un equivalente di Britta Simon SilkRoad vita Suite rappresentazione toohello collegato Azure AD dell'utente.
-4. **[Assegnazione utente di prova hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.
-5. **[Test di accesso single sign-on](#testing-single-sign-on)**  -tooverify hello se funzionamento della configurazione.
+1. **[Configurazione dell'accesso Single Sign-On di Azure AD](#configuring-azure-ad-single-single-sign-on)**: per abilitare gli utenti all'uso di questa funzionalità.
+2. **[Creazione di un utente test di Azure AD](#creating-an-azure-ad-test-user)** : per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.
+3. **[Creazione di un utente di test di SilkRoad Life Suite](#creating-a-silkroad-life-suite-test-user)** : per avere una controparte di Britta Simon in SilkRoad Life Suite collegata alla relativa rappresentazione in Azure AD.
+4. **[Assegnazione dell'utente test di Azure AD](#assigning-the-azure-ad-test-user)** : per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.
+5. **[Test dell'accesso Single Sign-On](#testing-single-sign-on)**: per verificare se la configurazione funziona.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Configurare l'accesso Single Sign-On di Azure AD
-obiettivo di Hello di questa sezione è tooenable SSO AD Azure nel portale di Azure classico hello e tooconfigure SSO nell'applicazione SilkRoad vita Suite.
+Questa sezione descrive come abilitare l'accesso SSO di Azure AD nel portale di Azure classico e configurare l'accesso SSO nell'applicazione SilkRoad Life Suite.
 
-**tooconfigure AD Azure single sign-on con SilkRoad vita Suite eseguire hello alla procedura seguente:**
+**Per configurare Single Sign-On di Azure AD con SilkRoad Life Suite, seguire questa procedura:**
 
-1. Sito dell'azienda SilkRoad tooyour accesso come amministratore. 
+1. Accedere al sito aziendale di SilkRoad come amministratore. 
 
   >[!NOTE] 
-  > tooobtain accesso toohello applicazione SilkRoad vita Suite autenticazione per configurare la federazione con Microsoft Azure AD, contattare il supporto SilkRoad o il rappresentante SilkRoad servizi.
+  > Per ottenere l'accesso all'applicazione SilkRoad Life Suite Authentication per configurare la federazione con Microsoft Azure AD, contattare il supporto SilkRoad o il rappresentante dei servizi SilkRoad.
   > 
 
-2. Andare troppo**Provider di servizi**, quindi fare clic su **federazione dettagli**. 
+2. Passare a **Service Provider** (Provider di servizi) e quindi fare clic su **Federation Details** (Dettagli federazione). 
    
     ![Single Sign-On di Microsoft Azure AD][10] 
 
-3. Fare clic su **scaricare i metadati della federazione**e quindi salvare il file di metadati hello nel computer in uso.
+3. Fare clic su **Download Federation Metadata**(Scarica metadati federazione) e quindi salvare il file di metadati nel computer.
    
     ![Single Sign-On di Microsoft Azure AD][11] 
 
-4. Nel portale di Azure classico, in hello hello **SilkRoad vita Suite** pagina di integrazione dell'applicazione, fare clic su **configurare single sign-on** tooopen hello **configurare Single Sign-On**  finestra di dialogo.
+4. Nella pagina di integrazione dell'applicazione **SilkRoad Life Suite** del portale di Azure classico fare clic su **Configura accesso Single Sign-On** per aprire la finestra di dialogo **Configura accesso Single Sign-On**.
    
     ![Configura accesso Single Sign-On][6] 
 
-5. In hello **come si sarebbe ad esempio utenti toosign su tooSilkRoad vita Suite** selezionare **Azure Single Sign-On AD**e quindi fare clic su **Avanti**.
+5. Nella pagina **Stabilire come si desidera che gli utenti accedano a SilkRoad Life Suite** selezionare **Single Sign-On di Microsoft Azure AD** e quindi fare clic su **Avanti**.
    
     ![Single Sign-On di Microsoft Azure AD][7] 
 
-6. In hello **Configura impostazioni App** finestra di dialogo eseguire hello alla procedura seguente:
+6. Nella pagina **Configurare le impostazioni dell'app** seguire questa procedura:
    
     ![Single Sign-On di Microsoft Azure AD][8]   
- 1. In hello **URL di accesso** casella di testo, digitare l'URL hello utilizzato dal sito SilkRoad vita Suite tooyour toosign-on agli utenti (ad esempio: *https://defcompanytest-test-redcarpet.silkroad-eng.com/Authentication/*).  
- 2. Aprire hello scaricato **Silkroad** file di metadati. 
- 3. Individuare hello **AssertionConsumerService** tag e quindi hello copia **percorso** attributo.         
+ 1. Nella casella di testo **URL di accesso** digitare l'URL usato dagli utenti per accedere al sito SilkRoad Life Suite, ad esempio *https://defcompanytest-test-redcarpet.silkroad-eng.com/Authentication/*.  
+ 2. Aprire il file dei metadati **Silkroad** scaricato. 
+ 3. Trovare il tag **AssertionConsumerService** e quindi copiare l'attributo **Location**.         
    
     ![Single Sign-On di Microsoft Azure AD][21] 
- 4. Incollare il valore di hello hello **URL di risposta** casella di testo.  
+ 4. Incollare il valore nella casella di testo **URL di risposta** .  
  5. Fare clic su **Avanti**.
 
-6. In hello **Configura accesso single sign-on SilkRoad vita Suite** eseguire hello alla procedura seguente:
+6. Nella pagina **Configura accesso Single Sign-On in SilkRoad Life Suite** seguire questa procedura:
    
     ![Single Sign-On di Microsoft Azure AD][9]  
- 1. Fare clic su Download certificate e quindi salvare il file hello nel computer in uso.  
+ 1. Fare clic su Download certificato e quindi salvare il file nel computer.  
  2. Fare clic su **Avanti**.
 
 7. Nell'applicazione **SilkRoad**, fare clic su **Authentication Sources** (Origini autenticazione).
@@ -149,124 +149,124 @@ obiettivo di Hello di questa sezione è tooenable SSO AD Azure nel portale di Az
 
 8. Fare clic su **Add Authentication Source**(Aggiungi origine autenticazione). 
    
-    ![Single Sign-On di Microsoft Azure AD][13] 
+    ![Accesso Single Sign-On di Azure AD][13] 
 
-9. In hello **Aggiungi origine autenticazione** seguire hello alla procedura seguente: 
+9. Nella sezione **Add Authentication Source** (Aggiungi origine autenticazione) seguire questa procedura: 
    
     ![Single Sign-On di Microsoft Azure AD][14]  
- 1. In **opzione 2 - File di metadati**, fare clic su **Sfoglia** hello tooupload scaricato i file di metadati.  
+ 1. In **Option 2 - Metadata File** (Opzione 2 - File di metadati) fare clic su **Browse** (Sfoglia) per caricare il file di metadati scaricato.  
  2. Fare clic su **Create Identity Provider using File Data**.
 
-10. In hello **origini di autenticazione** fare clic su **modifica**. 
+10. Nella sezione **Authentication Sources** (Origini autenticazione) fare clic su **Edit** (Modifica). 
     
      ![Single Sign-On di Microsoft Azure AD][15] 
 
-11. In hello **Modifica autenticazione origine** finestra di dialogo, eseguire hello alla procedura seguente: 
+11. Nella finestra di dialogo **Edit Authentication Source** (Modifica origine autenticazione) seguire questa procedura: 
     
      ![Single Sign-On di Microsoft Azure AD][16] 
  1. In **Enabled** (Attivo) selezionare **Yes** (Sì).   
- 2. In hello **descrizione IdP** casella di testo, digitare una descrizione per la configurazione (ad esempio: *SSO AD Azure*).  
- 3. In hello **nome IdP** casella di testo, digitare un nome di configurazione tooyour specifico (ad esempio: *Azure SP*).  
- 4. Fare clic su **Salva**.
+ 2. Nella casella di testo **IdP Description** digitare una descrizione per la configurazione, ad esempio *Azure AD SSO*.  
+ 3. Nella casella di testo **IdP Name** digitare un nome specifico per la configurazione, ad esempio *Azure SP*.  
+ 4. Fare clic su **Save**.
 
 12. Disabilitare tutte le altre origini di autenticazione. 
     
      ![Single Sign-On di Microsoft Azure AD][17]
 
-13. Nel portale di Azure classico, in hello hello **Single sign-on conferma** pagina, fare clic su **Avanti**.  
+13. Nella pagina **Conferma Single Sign-On** del portale di Azure classico fare clic su **Avanti**.  
     
      ![Single Sign-On di Microsoft Azure AD][18]
 
-14. In hello **Single sign-on conferma** pagina, fare clic su **completa**.
+14. Nella pagina **Conferma Single Sign-on** fare clic su **Completa**.
     
      ![Single Sign-On di Microsoft Azure AD][19]
 
 ### <a name="create-an-azure-ad-test-user"></a>Creare un utente test di Azure AD
-obiettivo di Hello di questa sezione è un utente di test nel portale di Azure classico chiamato Britta Simon hello toocreate.
+Questa sezione descrive come creare un utente test chiamato Britta Simon nel portale di Azure classico.
 
 ![Creare un utente di Azure AD][20]
 
-**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**
+**Per creare un utente test in Azure AD, eseguire la procedura seguente:**
 
-1. In hello **portale di Azure classico**via hello riquadro di spostamento a sinistra, fare clic su **Active Directory**.
+1. Nel **portale di Azure classico** fare clic su **Active Directory** nel riquadro di spostamento sinistro.
    
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_09.png)  
 
-2. Da hello **Directory** elenco, directory hello selezionare per il quale si desidera l'integrazione di directory tooenable.
+2. Nell'elenco **Directory** selezionare la directory per la quale si desidera abilitare l'integrazione delle directory.
 
-3. Fare clic su elenco hello toodisplay di utenti, nel menu hello nella parte superiore di hello, **utenti**.
+3. Per visualizzare l'elenco di utenti, fare clic su **Utenti**nel menu in alto.
    
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_03.png) 
 
-4. hello tooopen **Aggiungi utente** finestra di dialogo, nella barra degli strumenti hello nella parte inferiore di hello, fare clic su **Aggiungi utente**. 
+4. Per aprire la finestra di dialogo **Aggiungi utente**, fare clic su **Aggiungi utente** nella barra degli strumenti in basso. 
    
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_04.png) 
 
-5. In hello **informazioni sull'utente** finestra di dialogo eseguire hello alla procedura seguente: 
+5. Nella pagina **Informazioni sull'utente** seguire questa procedura: 
    
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_05.png)  
  1. In Tipo di utente selezionare Nuovo utente nell'organizzazione.  
- 2. In nome utente hello **textbox**, tipo **BrittaSimon**. 
+ 2. Nella casella di testo **Nome utente** digitare **BrittaSimon**. 
  3. Fare clic su **Avanti**.
 
-6. In hello **profilo utente** finestra di dialogo eseguire hello alla procedura seguente: 
+6. Nella pagina **Profilo utente** seguire questa procedura: 
    
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_06.png)  
- 1. In hello **nome** casella tipo **Laura**.    
- 2. In hello **cognome** casella di testo, tipo, **Simon**. 
- 3. In hello **nome visualizzato** casella tipo **Britta Simon**. 
- 4. In hello **ruolo** elenco, selezionare **utente**.
+ 1. Nella casella di testo **Nome** digitare **Britta**.    
+ 2. Nella casella di testo **Cognome** digitare **Simon**. 
+ 3. Nella casella di testo **Nome visualizzato** digitare **Britta Simon**. 
+ 4. Nell'elenco **Ruolo** selezionare **Utente**.
  5. Fare clic su **Avanti**.
 
-7. In hello **Ottieni password temporanea** nella pagina, fare clic su **creare**.
+7. Nella pagina **Ottieni password temporanea** fare clic su **crea**.
    
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_07.png) 
 
-8. In hello **Ottieni password temporanea** finestra di dialogo eseguire hello alla procedura seguente:
+8. Nella pagina **Ottieni password temporanea** seguire questa procedura:
    
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_08.png)  
- 1. Annotare il valore di hello di hello **nuova Password**. 
- 2. Fare clic su **Complete**.   
+ 1. Prendere nota del valore visualizzato in **Nuova password**. 
+ 2. Fare clic su **Completa**.   
 
 ### <a name="create-a-silkroad-life-suite-test-user"></a>Creare un utente test di SilkRoad Life Suite
-obiettivo di Hello di questa sezione è un utente denominato Britta Simon SilkRoad vita Suite toocreate. Laura deve avere un ID di SSO (talvolta tooas un *AuthParam*) corrispondente di Laura **emailaddress** in Azure AD.
+Questa sezione descrive come creare un utente chiamato Britta Simon in SilkRoad Life Suite. Britta deve avere un ID SSO, a volte definito *AuthParam*, che corrisponde al valore **emailaddress** in Azure AD.
 
-**un utente denominato Britta Simon SilkRoad vita Suite, toocreate eseguire hello alla procedura seguente:**
+**Per creare un utente test denominato Britta Simon in SilkRoad Life Suite, seguire questa procedura:**
 
-- Chiedere a un utente che ha il toocreate team di supporto SilkRoad vita Suite **ID SSO** hello attributo lo stesso valore hello **emailaddress** di Britta Simon in Azure AD.
+- Chiedere al team di supporto di SilkRoad Life Suite di creare un utente con un valore per l'attributo **SSO ID** equivalente all'**indirizzo di posta elettronica**di Britta Simon in Azure AD.
 
-### <a name="assign-hello-azure-ad-test-user"></a>Assegnare l'utente test hello Azure AD
-obiettivo Hello di questa sezione è tooenable Britta Simon toouse SSO Azure concedendo proprio tooSilkRoad accesso vita Suite.
+### <a name="assign-the-azure-ad-test-user"></a>Assegnare l'utente test di Azure AD
+Questa sezione descrive come abilitare Britta Simon all'uso dell'accesso SSO di Azure concedendole l'accesso a SilkRoad Life Suite.
 
 ![Assegna utente][200] 
 
-**tooassign Britta Simon tooSilkRoad vita Suite, eseguire hello alla procedura seguente:**
+**Per assegnare Britta Simon a SilkRoad Life Suite, seguire questa procedura:**
 
-1. In hello Azure portale classico, visualizzazione di applicazioni hello tooopen, nella visualizzazione directory hello, fare clic su **applicazioni** nel menu superiore hello.
+1. Per aprire la visualizzazione applicazioni nel portale di Azure classico, nella visualizzazione directory fare clic su **Applicazioni** nel menu in alto.
    
     ![Assegna utente][201] 
 
-2. Nell'elenco di applicazioni hello, selezionare **SilkRoad vita Suite**.
+2. Nell'elenco delle applicazioni selezionare **SilkRoad Life Suite**.
    
     ![Assegna utente][202] 
 
-3. Scegliere dal menu hello in primo piano hello **utenti**.
+3. Scegliere **Utenti**dal menu in alto.
    
     ![Assegna utente][203] 
 
-4. Nell'elenco di utenti hello, selezionare **Britta Simon**.
+4. Nell'elenco di utenti selezionare **Britta Simon**.
 
-5. Nella barra degli strumenti di hello nella parte inferiore di hello, fare clic su **assegnare**.
+5. Fare clic su **Assegna**sulla barra degli strumenti in basso.
    
     ![Assegna utente][205]
 
 ### <a name="test-single-sign-on"></a>Testare l'accesso Single Sign-On
-obiettivo di Hello di questa sezione è tootest la configurazione di SSO AD Azure utilizzando hello Pannello di accesso.  
+Questa sezione descrive come testare la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.  
 
-Quando si fa clic su riquadro SilkRoad vita Suite hello in hello Pannello di accesso, è necessario ottenere un'applicazione SilkRoad vita Suite tooyour firmato in automaticamente.
+Quando si fa clic sul riquadro SilkRoad Life Suite nel pannello di accesso, si dovrebbe accedere automaticamente all'applicazione SilkRoad Life Suite.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
-* [Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

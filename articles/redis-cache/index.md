@@ -1,8 +1,8 @@
 ---
-title: aaaAzure Redis Cache documentazione, esercitazioni, riferimenti alle API | Documenti Microsoft
-description: Informazioni su come toouse Cache Redis di Azure, una cache di dati protetti e broker di messaggistica che garantisce alle applicazioni fast accedere toodata. Esercitazioni, informazioni di riferimento sulle API e altro ancora.
+title: Documentazione di Cache Redis di Azure - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
+description: Informazioni su come usare Cache Redis di Azure, una cache di dati protetti e broker di messaggistica che offre alle applicazioni l'accesso rapido ai dati. Esercitazioni, informazioni di riferimento sulle API e altro ancora.
 services: redis-cache
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 1344e242321b84fe2fbd3bc466a3cb82aba177f4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6528d900ba3641189f8000db8d2535c9b215d148
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 #<a name="redis-cache-documentation"></a>Documentazione di Cache Redis
 
-Informazioni su come toouse Cache Redis di Azure, una cache di dati protetti e broker di messaggistica che fornisce una velocità effettiva elevata e bassa latenza accesso toodata per le applicazioni. Esercitazioni, riferimenti ad API e altra documentazione illustrano come toouse Cache Redis da qualsiasi applicazione in Azure.
+Informazioni su come usare Cache Redis di Azure, una cache di dati protetti e broker di messaggistica che offre una velocità effettiva elevata e accesso a bassa latenza ai dati per le applicazioni. Esercitazioni, informazioni di riferimento sulle API e altri documenti mostrano come usare Cache Redis da qualsiasi applicazione in Azure.
 
 <ul class="panelContent cardsFTitle">
     <li>

@@ -1,6 +1,6 @@
 ---
-title: un disco rigido virtuale in Azure a Debian Linux aaaPrepare | Documenti Microsoft
-description: Informazioni su come toocreate Debian 7 & VHD 8 file per la distribuzione in Azure.
+title: Preparare un disco rigido virtuale di Linux Debian in Azure | Documentazione Microsoft
+description: Informazioni su come creare i file Debian VHD 7 e 8 per la distribuzione in Azure.
 services: virtual-machines-linux
 documentationcenter: 
 author: szarkos
@@ -15,25 +15,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/02/2017
 ms.author: szark
-ms.openlocfilehash: e67d126de3db146357a6509aedb5f478576768f0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 63970d162c12984d6476bf0b9fc4ab70160eccdb
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="prepare-a-debian-vhd-for-azure"></a>Preparare un disco rigido virtuale Debian per Azure
 ## <a name="prerequisites"></a>Prerequisiti
-Questa sezione si presuppone che già stato installato un sistema operativo Debian Linux da un file con estensione ISO scaricato da hello [sito Web Debian](https://www.debian.org/distrib/) disco rigido virtuale tooa. File con estensione vhd toocreate; sono disponibili più strumenti Hyper-V è solo un esempio. Per istruzioni relative all'utilizzo di Hyper-V, vedere [hello ruolo Hyper-V di installare e configurare una macchina virtuale](https://technet.microsoft.com/library/hh846766.aspx).
+In questa sezione si presuppone che un sistema operativo Linux Debian sia già stato installato da un file .iso scaricato dal [sito Web di Debian](https://www.debian.org/distrib/) in un disco rigido virtuale. Sono disponibili vari strumenti per creare file con estensione .vhd; Hyper-V è solo un esempio. Per istruzioni sull’uso di Hyper-V, vedere [Installare il ruolo Hyper-V e configurare una macchina virtuale](https://technet.microsoft.com/library/hh846766.aspx).
 
 ## <a name="installation-notes"></a>Note sull'installazione
 * Vedere anche [Note generali sull'installazione di Linux](create-upload-generic.md#general-linux-installation-notes) per altri suggerimenti sulla preparazione di Linux per Azure.
-* il formato VHDX più recente di Hello non è supportato in Azure. È possibile convertire hello disco tooVHD formato Hyper-V Manager oppure hello **convert-vhd** cmdlet.
-* Quando si installa il sistema di Linux hello è consigliabile utilizzare partizioni standard anziché LVM (spesso predefinito hello per numerose installazioni). Questo modo si evita i conflitti di nome LVM con macchine virtuali clonate, in particolare se un sistema operativo disco mai necessario tooanother toobe collegato VM per la risoluzione dei problemi. Se si preferisce, su dischi di dati si può usare [LVM](configure-lvm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) o [RAID](configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
-* Non si configura una partizione di scambio su disco del sistema operativo hello. l'agente Linux di Azure Hello può essere configurato toocreate un file di swapping sul disco di risorse temporaneo hello. Ulteriori informazioni su questo sono reperibile in passaggi hello riportati di seguito.
-* Tutti i dischi rigidi virtuali hello devono avere dimensioni che sono multipli di 1 MB.
+* Il formato VHDX più recente non è supportato in Azure. È possibile convertire il disco in formato VHD tramite la console di gestione di Hyper-V o il cmdlet **convert-vhd** .
+* Durante l'installazione del sistema operativo Linux è consigliabile usare partizioni standard anziché LVM, che spesso è la scelta predefinita per numerose installazioni. In questo modo sarà possibile evitare conflitti di nome LVM con le macchine virtuali clonate, in particolare se fosse necessario collegare un disco del sistema operativo a un'altra macchina virtuale per la risoluzione dei problemi. Se si preferisce, su dischi di dati si può usare [LVM](configure-lvm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) o [RAID](configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+* Non configurare una partizione swap nel disco del sistema operativo. L'agente Linux di Azure può essere configurato in modo da creare un file swap sul disco temporaneo delle risorse. Altre informazioni su questo argomento sono disponibili nei passaggi seguenti.
+* Tutti i dischi rigidi virtuali devono avere dimensioni multiple di 1 MB.
 
-## <a name="use-azure-manage-toocreate-debian-vhds"></a>Usare Gestione di Azure toocreate Debian dischi rigidi virtuali
-Sono disponibili strumenti per la generazione di dischi rigidi virtuali Debian per Azure, ad esempio hello [azure-Gestisci](https://github.com/credativ/azure-manage) script tra [credativ](http://www.credativ.com/). Si tratta di hello consigliato approccio rispetto alla creazione di un'immagine da zero. Ad esempio, toocreate un disco rigido virtuale di 8 Debian eseguito hello seguenti comandi di gestione di azure toodownload (e le dipendenze) ed eseguire script azure_build_image hello:
+## <a name="use-azure-manage-to-create-debian-vhds"></a>Utilizzare Azure-Manage per creare dischi rigidi virtuali Debian
+Per la generazione di dischi rigidi virtuali Debian per Azure sono disponibili alcuni strumenti, ad esempio gli script [azure-manage](https://github.com/credativ/azure-manage) di [credativ](http://www.credativ.com/). Questo è l'approccio consigliato rispetto alla creazione di un'immagine da zero. Ad esempio, per creare un disco rigido virtuale Debian 8, eseguire i comandi seguenti per scaricare azure-manage (e le dipendenze) ed eseguire lo script azure_build_image:
 
     # sudo apt-get update
     # sudo apt-get install git qemu-utils mbr kpartx debootstrap
@@ -48,16 +48,16 @@ Sono disponibili strumenti per la generazione di dischi rigidi virtuali Debian p
 
 
 ## <a name="manually-prepare-a-debian-vhd"></a>Preparare manualmente un disco rigido virtuale Debian
-1. Nella console di gestione Hyper-V selezionare macchina virtuale hello.
-2. Fare clic su **Connetti** tooopen una finestra della console per la macchina virtuale hello.
-3. Impostare come commento la riga hello per **deb cdrom** in `/etc/apt/source.list` se si configurano hello VM rispetto a un file ISO.
-4. Modifica hello `/etc/default/grub` file e modificare hello **GRUB_CMDLINE_LINUX** parametro come indicato di seguito i parametri aggiuntivi kernel tooinclude per Azure.
+1. Nella console di gestione di Hyper-V selezionare la macchina virtuale.
+2. Fare clic su **Connetti** per aprire una finestra della console per la macchina virtuale.
+3. Impostare come commento la riga per **deb cdrom** in `/etc/apt/source.list` se si configura la macchina virtuale rispetto a un file ISO.
+4. Modificare il file `/etc/default/grub` e il parametro **GRUB_CMDLINE_LINUX** come indicato di seguito per includere parametri aggiuntivi del kernel per Azure.
    
         GRUB_CMDLINE_LINUX="console=tty0 console=ttyS0,115200 earlyprintk=ttyS0,115200 rootdelay=30"
-5. Ricompilare grub hello ed eseguire:
+5. Ricompilare il grub ed eseguire:
    
         # sudo update-grub
-6. Aggiungere repository Azure too/etc/apt/sources.list del Debian per Debian 7 o 8:
+6. Aggiungere i repository Azure di Debian al file /etc/apt/sources.list per Debian 7 o 8:
    
     **Debian 7.x "Wheezy"**
    
@@ -74,24 +74,24 @@ Sono disponibili strumenti per la generazione di dischi rigidi virtuali Debian p
         deb-src http://debian-archive.trafficmanager.net/debian-azure jessie main
 
 
-1. Installare l'agente Linux di Azure hello:
+1. Installare l'agente Linux di Azure:
    
         # sudo apt-get update
         # sudo apt-get install waagent
-2. Per Debian 7, è necessario toorun kernel basato su 3.16 hello dal repository wheezy backports hello. Creare innanzitutto un file denominato /etc/apt/preferences.d/linux.pref con hello seguente contenuto:
+2. Per Debian 7, è necessario eseguire il kernel basato su 3.16 dal repository wheezy-backports. Creare innanzitutto un file denominato /etc/apt/preferences.d/linux.pref con il seguente contenuto:
    
         Package: linux-image-amd64 initramfs-tools
         Pin: release n=wheezy-backports
         Pin-Priority: 500
    
-    Quindi eseguire di nuovo kernel di "sudo apt-get installare linux-image-amd64" tooinstall hello.
-3. Eseguire il deprovisioning macchina virtuale hello e prepararlo per il provisioning in Azure ed eseguire:
+    Quindi eseguire "sudo apt-get install linux-image-amd64" per l'installazione del nuovo kernel.
+3. Effettuare il deprovisioning della macchina virtuale e prepararla per il provisioning in Azure ed eseguire:
    
         # sudo waagent –force -deprovision
         # export HISTSIZE=0
         # logout
-4. Fare clic su **Azione** -> Arresta nella console di gestione di Hyper-V. Il VHD Linux è ora pronto toobe caricato tooAzure.
+4. Fare clic su **Azione** -> Arresta nella console di gestione di Hyper-V. Il file VHD Linux è ora pronto per il caricamento in Azure.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Si è ora pronto toouse Debian disco rigido virtuale toocreate nuove macchine virtuali in Azure. Se si tratta hello prima volta che si sta caricando tooAzure file con estensione vhd di hello, vedere i passaggi 2 e 3 in [creazione e caricamento di un disco rigido virtuale contenente il sistema operativo Linux di hello](classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json).
+È ora possibile usare il disco rigido virtuale Debian per creare nuove macchine virtuali in Azure. Se è la prima volta che si carica il file VHD in Azure, vedere i passaggi 2 e 3 nell'articolo [Creazione e caricamento di un disco rigido virtuale che contiene il sistema operativo Linux](classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json).
 

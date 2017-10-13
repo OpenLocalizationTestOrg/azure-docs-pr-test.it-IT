@@ -1,6 +1,6 @@
 ---
-title: aaaUsing Esplora archivi (Preview) con l'archiviazione di File di Azure | Documenti Microsoft
-description: Informazioni su come illustrate le procedure toouse toowork di esplorazione dell'archiviazione (anteprima) con file le condivisioni file.
+title: Uso di Storage Explorer (anteprima) con Archiviazione file di Azure | Microsoft Docs
+description: Informazioni su come usare Storage Explorer (anteprima) per l'utilizzo con file e condivisioni file.
 services: storage
 documentationcenter: na
 author: cawaMS
@@ -14,129 +14,129 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 03/09/2017
 ms.author: cawa
-ms.openlocfilehash: 98eb3cde711ae3dbfdb6ffaec23ae24f822370e9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 964691758254531cb92a5b1cbe055ef61d25dba8
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="using-storage-explorer-preview-with-azure-file-storage"></a>Uso di Storage Explorer (anteprima) con Archiviazione file di Azure
 
-File di archiviazione è un servizio che offre i file nelle condivisioni di hello cloud usando Azure hello protocollo Server Message Block (SMB) standard. Sono supportati sia SMB 2.1 che SMB 3.0. Con l'archiviazione di File di Azure, è possibile eseguire la migrazione di applicazioni legacy che si basano su tooAzure condivisioni file rapidamente e senza costose. È possibile utilizzare File archiviazione tooexpose dati pubblicamente toohello world o dati dell'applicazione toostore privatamente. In questo articolo si apprenderà come toouse toowork di esplorazione dell'archiviazione (anteprima) con file di condivisioni e i file.
+Archiviazione file di Azure offre condivisioni file nel cloud usando il protocollo Server Message Block (SMB)standard. Sono supportati sia SMB 2.1 che SMB 3.0. Con Archiviazione file di Azure si può eseguire la migrazione ad Azure delle applicazioni legacy basate su condivisioni file velocemente e senza costose riscritture. È possibile usare Archiviazione file per esporre pubblicamente dati a livello mondiale o per archiviare privatamente dati applicazione. Questo articolo illustra come usare Storage Explorer (anteprima) per l'utilizzo con file e condivisioni file.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-passaggi di hello toocomplete in questo articolo, è necessario seguente hello:
+Per seguire la procedura descritta in questo articolo, è necessario eseguire queste operazioni:
 
 - [Scaricare e installare Storage Explorer (anteprima)](http://www.storageexplorer.com/)
 
-- [Connettersi al servizio o account di archiviazione di Azure tooa](https://docs.microsoft.com//azure/vs-azure-tools-storage-manage-with-storage-explorer#connect-to-a-storage-account-or-service)
+- [Connettersi a un account o a un servizio di archiviazione di Azure](https://docs.microsoft.com//azure/vs-azure-tools-storage-manage-with-storage-explorer#connect-to-a-storage-account-or-service)
 
 ## <a name="create-a-file-share"></a>Creare una condivisione file
 
 Tutti i file devono risiedere in una condivisione file, ovvero un semplice raggruppamento logico di file. Un account può contenere un numero illimitato di condivisioni file e ogni condivisione può archiviare un numero illimitato di file.
 
-Hello alla procedura seguente viene illustrato come toocreate una condivisione di file all'interno di soluzioni di archiviazione (anteprima).
+La procedura seguente illustra come creare una condivisione file all'interno di Storage Explorer (anteprima).
 
 1. Aprire Storage Explorer (anteprima).
 
-2. Nel riquadro di sinistra hello, espandere account di archiviazione hello entro il quale si desidera toocreate hello condivisione File
+2. Nel riquadro sinistro espandere l'account di archiviazione all'interno del quale si vuole creare la condivisione file.
 
-3. Fare doppio clic su **condivisioni File**e - scegliere dal menu di scelta rapida hello - **Crea condivisione File**.
+3. Fare clic con il pulsante destro del mouse su **Condivisioni file** e scegliere **Crea condivisione file** dal menu di scelta rapida.
 
     ![Crea condivisione file](media/vs-azure-tools-storage-explorer-files/image1.png)
 
-4. Verrà visualizzata una casella di testo di sotto di hello **condivisioni File** cartella. Immettere il nome di hello per la condivisione di file. Vedere hello [condividere le regole di denominazione](https://docs.microsoft.com//azure/storage/storage-dotnet-how-to-use-blobs#create-a-container) sezione per un elenco di regole e restrizioni relative alla denominazione condivisioni file.
+4. Sotto la cartella **Condivisioni file** verrà visualizzata una casella di testo. Immettere il nome per la condivisione file. Per un elenco di regole e restrizioni relative alla denominazione delle condivisioni file, vedere la sezione relativa alle [regole di denominazione delle condivisioni](https://docs.microsoft.com//azure/storage/storage-dotnet-how-to-use-blobs#create-a-container).
 
-    ![Denominazione condivisione hello](media/vs-azure-tools-storage-explorer-files/image2.png)
+    ![Denominare la condivisione](media/vs-azure-tools-storage-explorer-files/image2.png)
 
-5. Premere **invio** quando toocreate done hello condivisione file, o **Esc** toocancel. Una volta condivisione file hello è stata creata correttamente, verrà visualizzato in hello **condivisioni File** cartella per hello selezionato di account di archiviazione.
+5. Premere **INVIO** al termine della creazione della condivisione file o **ESC** per annullare. La condivisione file appena creata viene visualizzata sotto la cartella **Condivisioni file** per l'account di archiviazione selezionato.
 
-    ![nuova condivisione di Hello](media/vs-azure-tools-storage-explorer-files/image3.png)
+    ![La nuova condivisione](media/vs-azure-tools-storage-explorer-files/image3.png)
 
 ## <a name="view-a-file-shares-contents"></a>Visualizzare il contenuto di una condivisione file
 
 Le condivisioni file contengono file e cartelle, che a loro volta possono contenere file.
 
-Hello passaggi seguenti viene illustrato come contenuto di hello tooview di un file condivide all'interno di soluzioni di archiviazione (anteprima): +
+La procedura seguente illustra come visualizzare il contenuto di una condivisione file all'interno di Storage Explorer (anteprima).
 
 1. Aprire Storage Explorer (anteprima).
 
-2. Nel riquadro di sinistra hello, espandere account di archiviazione di hello contenente desiderato tooview condivisione di file hello.
+2. Nel riquadro sinistro espandere l'account di archiviazione che contiene la condivisione file da visualizzare.
 
-3. Espandere l'account di archiviazione hello **condivisioni File**.
+3. Espandere le **Condivisioni file** dell'account di archiviazione.
 
-4. Condivisione di file hello pulsante destro del mouse si desidera tooview, quindi - scegliere dal menu di scelta rapida hello - **aprire**. È anche possibile fare doppio clic su condivisione file hello desiderato tooview.
+4. Fare clic con il pulsante destro del mouse sulla condivisione file da visualizzare e scegliere **Apri** dal menu di scelta rapida. È anche possibile fare doppio clic sulla condivisione file che si vuole visualizzare.
 
     ![Apri condivisione](media/vs-azure-tools-storage-explorer-files/image4.png)
 
-5. riquadro principale Hello verrà visualizzato il contenuto della condivisione di file hello.
+5. Nel riquadro principale verrà visualizzato il contenuto della condivisione file.
     
-    ![contenuto della condivisione di Hello](media/vs-azure-tools-storage-explorer-files/image5.png)
+    ![Contenuto della condivisione file](media/vs-azure-tools-storage-explorer-files/image5.png)
 
 ## <a name="delete-a-file-share"></a>Eliminare una condivisione file
 
-È possibile creare ed eliminare facilmente le condivisioni file in base alle esigenze. (toosee come toodelete singoli file, fare riferimento a sezione toohello [la gestione dei file in una condivisione file](https://docs.microsoft.com//azure/vs-azure-tools-storage-explorer-blobs#managing-blobs-in-a-blob-container).)
+È possibile creare ed eliminare facilmente le condivisioni file in base alle esigenze. Per informazioni su come eliminare singoli file, vedere la sezione relativa alla [gestione dei file in una condivisione file](https://docs.microsoft.com//azure/vs-azure-tools-storage-explorer-blobs#managing-blobs-in-a-blob-container).
 
-Hello alla procedura seguente viene illustrato come toodelete una condivisione di file all'interno di soluzioni di archiviazione (anteprima):
+La procedura seguente illustra come eliminare una condivisione file all'interno di Storage Explorer (anteprima).
 
 1. Aprire Storage Explorer (anteprima).
 
-2. Nel riquadro di sinistra hello, espandere account di archiviazione di hello contenente desiderato tooview condivisione di file hello.
+2. Nel riquadro sinistro espandere l'account di archiviazione che contiene la condivisione file da visualizzare.
 
-3. Espandere l'account di archiviazione hello **condivisioni File**.
+3. Espandere le **Condivisioni file** dell'account di archiviazione.
 
-4. Condivisione di file hello pulsante destro del mouse si desidera toodelete, quindi - scegliere dal menu di scelta rapida hello - **eliminare**. È anche possibile premere **eliminare** toodelete hello attualmente selezionato in una condivisione.
+4. Fare clic con il pulsante destro del mouse sulla condivisione file da eliminare e scegliere **Elimina** dal menu di scelta rapida. È anche possibile premere **CANC** per eliminare la condivisione file attualmente selezionata.
 
-    ![Elimina](media/vs-azure-tools-storage-explorer-files/image6.png)
+    ![Eliminazione](media/vs-azure-tools-storage-explorer-files/image6.png)
 
-5. Selezionare **Sì** toohello nella finestra di conferma.
+5. Fare clic su **Sì** nella finestra di dialogo di conferma.
     
     ![Finestra di dialogo di conferma](media/vs-azure-tools-storage-explorer-files/image7.png)
 
 ## <a name="copy-a-file-share"></a>Copiare una condivisione file
 
-Esplorazione dell'archiviazione (anteprima) permette toocopy Appunti toohello condivisione file e quindi incollare tale condivisione di file in un altro account di archiviazione. (toosee come toocopy singoli file, fare riferimento a sezione toohello [la gestione dei file in una condivisione file](https://docs.microsoft.com//azure/vs-azure-tools-storage-explorer-blobs#managing-blobs-in-a-blob-container).)
+Storage Explorer (anteprima) consente di copiare una condivisione file negli Appunti e quindi incollarla in un altro account di archiviazione. Per informazioni su come copiare singoli file, vedere la sezione relativa alla [gestione dei file in una condivisione file](https://docs.microsoft.com//azure/vs-azure-tools-storage-explorer-blobs#managing-blobs-in-a-blob-container).
 
-Hello alla procedura seguente viene illustrato come un file toocopy condividere da uno tooanother di account di archiviazione.
+La procedura seguenti illustra come copiare una condivisione file da un account di archiviazione a un altro.
 
 1. Aprire Storage Explorer (anteprima).
 
-2. Nel riquadro di sinistra hello, espandere account di archiviazione di hello contenente desiderato toocopy condivisione di file hello.
+2. Nel riquadro sinistro espandere l'account di archiviazione che contiene la condivisione file da copiare.
 
-3. Espandere l'account di archiviazione hello **condivisioni File**.
+3. Espandere le **Condivisioni file** dell'account di archiviazione.
 
-4. Condivisione di file hello pulsante destro del mouse si desidera toocopy, quindi - scegliere dal menu di scelta rapida hello - **condivisione File di copia**.
+4. Fare clic con il pulsante destro del mouse sulla condivisione file da copiare e scegliere **Copy File Share** (Copia condivisione file) dal menu di scelta rapida.
 
     ![Copia condivisione file](media/vs-azure-tools-storage-explorer-files/image8.png)
 
-5. Fare doppio clic su account di archiviazione di destinazione"hello desiderato" in cui desidera toopaste condivisione di file hello e - dal menu di scelta rapida hello - selezionare **Incolla condivisione File**.
+5. Fare clic con il pulsante destro del mouse sull'account di archiviazione di destinazione in cui si vuole incollare la condivisione file e scegliere **Paste File Share** (Incolla condivisione file) dal menu di scelta rapida.
 
     ![Incolla condivisione file](media/vs-azure-tools-storage-explorer-files/image9.png)
 
-## <a name="get-hello-sas-for-a-file-share"></a>Ottenere hello firma di accesso condiviso per una condivisione file
+## <a name="get-the-sas-for-a-file-share"></a>Ottenere la firma di accesso condiviso per una condivisione file
 
-Oggetto [firma di accesso condiviso (SAS)](https://docs.microsoft.com//azure/storage/storage-dotnet-shared-access-signature-part-1) fornisce l'accesso delegato tooresources nell'account di archiviazione. Ciò significa che è possibile concedere a che un client limitate tooobjects autorizzazioni nell'account di archiviazione per un determinato periodo di tempo e con un set specificato di autorizzazioni, senza dovere tooshare le chiavi di accesso di account.
+Una [firma di accesso condiviso (SAS)](https://docs.microsoft.com//azure/storage/storage-dotnet-shared-access-signature-part-1) fornisce accesso delegato alle risorse nell'account di archiviazione. Questo significa che è possibile concedere a un client autorizzazioni limitate per BLOB, code o tabelle per un periodo di tempo specificato e con un set di autorizzazioni specificato senza dover condividere le chiavi di accesso dell'account.
 
-Hello passaggi seguenti viene illustrato come toocreate una firma di accesso condiviso per un file di condividere: +
+La procedura seguente illustra come creare una firma di accesso condiviso per una condivisione file.
 
 1. Aprire Storage Explorer (anteprima).
 
-2. Nel riquadro di sinistra hello, espandere account di archiviazione hello contenente hello condivisione di file per i quali si desidera tooget una firma di accesso condiviso.
+2. Nel riquadro sinistro espandere l'account di archiviazione che contiene la condivisione file per cui si vuole ottenere una firma di accesso condiviso.
 
-3. Espandere l'account di archiviazione hello **condivisioni File**.
+3. Espandere le **Condivisioni file** dell'account di archiviazione.
 
-4. Condivisione di file desiderato hello e - scegliere dal menu di scelta rapida hello - **ottenere firma di accesso condiviso**.
+4. Fare clic con il pulsante destro del mouse sulla condivisione file e scegliere **Get Shared Access Signature** (Ottieni firma di accesso condiviso) dal menu di scelta rapida.
 
     ![Ottenere la firma di accesso condiviso](media/vs-azure-tools-storage-explorer-files/image10.png)
 
-5. In hello **firma di accesso condiviso** finestra di dialogo, specificare i criteri di hello, le date di inizio e di scadenza, fuso orario e desiderato per risorse hello livelli di accesso.
+5. Nella finestra di dialogo **Firma di accesso condiviso** specificare i criteri, le date di inizio e di scadenza, il fuso orario e i livelli di accesso da impostare per la risorsa.
 
     ![Finestra di dialogo Firma di accesso condiviso](media/vs-azure-tools-storage-explorer-files/image11.png)
 
-6. Al termine della specifica di opzioni di firma di accesso condiviso hello, selezionare **crea**.
+6. Una volta specificate le opzioni per la firma di accesso condiviso, scegliere **Crea**.
 
-7. Un secondo **firma di accesso condiviso** finestra di dialogo verrà quindi visualizzato che elenchi hello condivisione file e URL hello e che è possibile utilizzare tooaccess QueryStrings hello risorsa di archiviazione. Selezionare **copia** Avanti URL toohello desiderato toocopy toohello Appunti.
+7. Verrà visualizzata una seconda finestra di dialogo **Firma di accesso condiviso** con l'elenco della condivisione file insieme all'URL e alle stringhe di query che è possibile usare per accedere alla risorsa di archiviazione. Selezionare **Copia** accanto all'URL che si vuole copiare negli Appunti.
     
     ![Seconda finestra di dialogo Firma di accesso condiviso](media/vs-azure-tools-storage-explorer-files/image12.png)
 
@@ -144,31 +144,31 @@ Hello passaggi seguenti viene illustrato come toocreate una firma di accesso con
 
 ## <a name="manage-access-policies-for-a-file-share"></a>Gestire i criteri di accesso per una condivisione file
 
-Hello passaggi seguenti viene illustrato come toomanage (aggiungere e rimuovere) criteri di accesso per una condivisione file: +. i criteri di accesso Hello viene utilizzato per la creazione di URL di firma di accesso condiviso tramite la quale gli utenti possono utilizzare tooaccess hello risorsa di archiviazione File durante un periodo di tempo definito.
+La procedura seguente illustra come gestire, ovvero aggiungere e rimuovere, criteri di accesso per una condivisione file. I criteri di accesso vengono usati per la creazione di URL di firma di accesso condiviso che permettono di accedere alla risorsa di Archiviazione file in un periodo di tempo specificato.
 
 1. Aprire Storage Explorer (anteprima).
 
-2. Nel riquadro di sinistra hello, espandere account di archiviazione hello contenente hello condivisione di file i cui criteri di accesso desiderato toomanage.
+2. Nel riquadro sinistro espandere l'account di archiviazione che contiene la condivisione file di cui si vogliono gestire i criteri di accesso.
 
-3. Espandere l'account di archiviazione hello **condivisioni File**.
+3. Espandere le **Condivisioni file** dell'account di archiviazione.
 
-4. Selezionare condivisione di file desiderato hello e - dal menu di scelta rapida hello - **gestire criteri di accesso**.
+4. Selezionare la condivisione file e scegliere **Manage Access Policies** (Gestisci criteri di accesso) dal menu di scelta rapida.
 
     ![Menu di scelta rapida Manage Access Policies (Gestisci criteri di accesso)](media/vs-azure-tools-storage-explorer-files/image13.png)
 
-5. Hello **criteri di accesso** finestra di dialogo verrà elencati i criteri di accesso già creati per la condivisione di file selezionato hello.
+5. Nella finestra di dialogo **Criteri di accesso** saranno elencati tutti i criteri di accesso già creati per la condivisione file selezionata.
     
     ![Criteri di accesso](media/vs-azure-tools-storage-explorer-files/image14.png)
 
-6. Seguire questi passaggi a seconda delle attività di gestione criteri di accesso hello:
+6. Seguire questi passaggi a seconda dell'attività di gestione dei criteri di accesso:
     
-    - **Aggiungere nuovi criteri di accesso**: selezionare **Aggiungi**. Una volta generate, hello **criteri di accesso** finestra di dialogo verrà visualizzato hello appena aggiunto accedere criteri (con le impostazioni predefinite).
+    - **Aggiungere nuovi criteri di accesso**: selezionare **Aggiungi**. Una volta generati, nella finestra di dialogo **Criteri di accesso** verranno visualizzati i criteri di accesso appena aggiunti, con le impostazioni predefinite.
 
     - **Modificare i criteri di accesso**: apportare le modifiche desiderate e scegliere **Salva**.
 
-    - **Rimuovere un criterio di accesso** : selezionare questa opzione **rimuovere** desiderato tooremove un criterio di accesso toohello successivo.
+    - **Rimuovere criteri di accesso**: selezionare **Rimuovi** accanto ai criteri di accesso da rimuovere.
 
-7. Creare un nuovo URL di firma di accesso condiviso con criteri di accesso creato in precedenza hello:
+7. Creare un nuovo URL di firma di accesso condiviso usando i criteri di accesso creati in precedenza:
     
     ![Ottenere una firma di accesso condiviso](media/vs-azure-tools-storage-explorer-files/image15.png)
     
@@ -176,88 +176,88 @@ Hello passaggi seguenti viene illustrato come toomanage (aggiungere e rimuovere)
 
 ## <a name="managing-files-in-a-file-share"></a>Gestione dei file in una condivisione file
 
-Dopo aver creato una condivisione file, è possibile caricare una condivisione di file toothat file, scaricare un computer locale tooyour di file, aprire un file nel computer locale e molto altro ancora.
+Dopo aver creato una condivisione file, è possibile caricare un file in tale condivisione file, scaricare un file nel computer locale, aprire un file nel computer locale e molto altro ancora.
 
-Hello passaggi seguenti viene illustrato come condividono toomanage hello file (e cartelle) all'interno di un file.
+La procedura seguente illustra come gestire i file e le cartelle all'interno di una condivisione file.
 
 1.  Aprire Storage Explorer (anteprima).
 
-2.  Nel riquadro di sinistra hello, espandere account di archiviazione di hello contenente desiderato toomanage condivisione di file hello.
+2.  Nel riquadro sinistro espandere l'account di archiviazione che contiene la condivisione file da gestire.
 
-3.  Espandere l'account di archiviazione hello **condivisioni File**.
+3.  Espandere le **Condivisioni file** dell'account di archiviazione.
 
-4.  Fare doppio clic su condivisione file hello desiderato tooview.
+4.  Fare doppio clic sulla condivisione file che si vuole visualizzare.
 
-5.  riquadro principale Hello verrà visualizzato il contenuto della condivisione di file hello.
+5.  Nel riquadro principale verrà visualizzato il contenuto della condivisione file.
 
-    ![contenuto della condivisione di Hello](media/vs-azure-tools-storage-explorer-files/image17.png)
+    ![Contenuto della condivisione file](media/vs-azure-tools-storage-explorer-files/image17.png)
 
-6.  riquadro principale Hello verrà visualizzato il contenuto della condivisione di file hello.
+6.  Nel riquadro principale verrà visualizzato il contenuto della condivisione file.
 
-7.  Seguire questi che passaggi a seconda attività hello desiderato tooperform:
+7.  Seguire questi passaggi in base all'attività da eseguire:
 
-    - **Caricare una condivisione di file tooa**
+    - **Caricare file in una condivisione file**
 
-        a.  Sulla barra degli strumenti del riquadro principale hello, selezionare **caricare**e quindi **Carica file** dal menu a discesa hello.
+        a.  Sulla barra degli strumenti del riquadro principale selezionare **Carica** e quindi **Carica i file** dal menu a discesa.
 
         ![Caricare file](media/vs-azure-tools-storage-explorer-files/image18.png)
         
-        b. In hello **caricare file** finestra di dialogo, i puntini di sospensione selezionare hello (**...** ) pulsante a destra hello hello **file** file hello tooselect desiderato tooupload casella di testo.
+        b. Nella finestra di dialogo **Carica i file** scegliere il pulsante con i puntini di sospensione (**…**) a destra della casella **File** per selezionare i file da caricare.
 
         ![Aggiunta di file](media/vs-azure-tools-storage-explorer-files/image19.png)
 
         c. Selezionare **Carica**.
 
-    - **Caricare una condivisione di file di cartella tooa**
+    - **Caricare una cartella in una condivisione file**
         
-        a. Sulla barra degli strumenti del riquadro principale hello, selezionare **caricare**e quindi **cartella caricare** dal menu a discesa hello.
+        a. Sulla barra degli strumenti del riquadro principale selezionare **Carica** e quindi **Upload Folder** (Carica cartella) dal menu a discesa.
 
         ![Menu di Upload Folder (Carica cartella)](media/vs-azure-tools-storage-explorer-files/image20.png)
 
-        b. In hello **cartella caricamento** finestra di dialogo, i puntini di sospensione selezionare hello (**...** ) pulsante a destra hello hello **cartella** cartella hello di tooselect casella testo cui si desidera tooupload il contenuto.
+        b. Nella finestra di dialogo **Upload Folder** (Carica cartella) scegliere il pulsante con i puntini di sospensione (**…**) a destra della casella di testo **Cartella** per selezionare la cartella di cui si vuole caricare il contenuto.
 
-        c. Facoltativamente, specificare una cartella di destinazione in cui hello verrà caricato il contenuto della cartella selezionata. Se la cartella di destinazione hello non esiste, verrà creato.
+        c. È possibile specificare una cartella di destinazione in cui verrà caricato il contenuto della cartella selezionata. Se la cartella di destinazione non esiste, verrà creata.
 
         d. Selezionare **Carica**.
 
-    - **Scaricare un computer locale tooyour di file**
+    - **Scaricare un file nel computer locale**
         
-        a. Selezionare il file hello desiderato toodownload.
+        a. Selezionare il file da scaricare.
         
-        b. Sulla barra degli strumenti del riquadro principale hello, selezionare **scaricare**.
+        b. Sulla barra degli strumenti del riquadro principale selezionare **Scarica**.
         
-        c. In hello **specificare dove toosave hello scaricati file** finestra di dialogo, specificare il percorso di hello in cui si desidera file hello scaricato e hello nome desiderato toogive è.
+        c. Nella finestra di dialogo **Specify where to save the downloaded file** (Specificare dove salvare il file scaricato) specificare il percorso in cui salvare il file scaricato e il nome da assegnare.
 
         d. Selezionare **Salva**.
 
     - **Aprire un file nel computer locale**
         
-        a.  Selezionare il file hello desiderato tooopen.
+        a.  Selezionare il file da aprire.
         
-        b.  Sulla barra degli strumenti del riquadro principale hello, selezionare **aprire**.
+        b.  Sulla barra degli strumenti del riquadro principale selezionare **Apri**.
         
-        c.  file Hello verrà scaricato e aperto con l'applicazione hello associata al tipo sottostante del file hello.
+        c.  Il file verrà scaricato e aperto usando l'applicazione associata al tipo di file sottostante del file.
 
-    - **Copiare negli Appunti toohello un file**
+    - **Copiare un file negli Appunti**
 
-        a. Selezionare il file hello desiderato toocopy.
+        a. Selezionare il file da copiare.
 
-        b. Sulla barra degli strumenti del riquadro principale hello, selezionare **copia**.
+        b. Sulla barra degli strumenti del riquadro principale selezionare **Copia**.
 
-        c. Nel riquadro di sinistra hello, passare tooanother condivisione di file e fare doppio clic tooview nel riquadro principale hello.
+        c. Nel riquadro sinistro passare a un'altra condivisione file e fare doppio clic su di essa per visualizzarla nel riquadro principale.
 
-        d. Sulla barra degli strumenti del riquadro principale hello, selezionare **Incolla** toocreate una copia del file hello.
+        d. Sulla barra degli strumenti del riquadro principale selezionare **Incolla** per creare una copia del file.
 
     - **Eliminare un file**
 
-        a. Selezionare il file hello desiderato toodelete.
+        a. Selezionare il file da eliminare.
 
-        b. Sulla barra degli strumenti del riquadro principale hello, selezionare **eliminare**.
+        b. Sulla barra degli strumenti del riquadro principale selezionare **Elimina**.
 
-        c. Selezionare **Sì** toohello nella finestra di conferma.
+        c. Fare clic su **Sì** nella finestra di dialogo di conferma.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- Hello vista [note sulla versione di esplorazione dell'archiviazione (anteprima) e video più recenti](http://www.storageexplorer.com/).
+- Vedere le note sulla versione e i video in [Microsoft Azure Storage Explorer](http://www.storageexplorer.com/)(anteprima).
 
-- Informazioni su come troppo[creare applicazioni usando BLOB di Azure, tabelle, code e i file](https://azure.microsoft.com/documentation/services/storage/).
+- Informazioni su come creare applicazioni con BLOB, tabelle, code e file di Azure nella [Documentazione su Archiviazione](https://azure.microsoft.com/documentation/services/storage/).

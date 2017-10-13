@@ -1,6 +1,6 @@
 ---
 title: 'Backup di Azure: backup coerente con le applicazioni di VM Linux | Microsoft Docs'
-description: Utilizzare gli script tooguarantee backup coerenti con l'applicazione tooAzure, per le macchine virtuali Linux. gli script di Hello si applicano solo le macchine virtuali tooLinux in una distribuzione di gestione delle risorse; gli script Hello non si applicano tooWindows macchine virtuali o le distribuzioni di service manager. In questo articolo illustra i passaggi di hello per la configurazione script hello, tra cui la risoluzione dei problemi.
+description: Usare gli script per garantire backup coerenti con l'applicazione in Azure, per le macchine virtuali Linux. Gli script si applicano solo alle VM Linux in una distribuzione di Resource Manager, non si applicano alle VM di Windows o alle distribuzioni di Service Manager. In questo articolo vengono illustrati i passaggi per configurare gli script, inclusa la risoluzione dei problemi.
 services: backup
 documentationcenter: dev-center-name
 author: anuragmehrotra
@@ -14,86 +14,86 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 4/12/2017
 ms.author: anuragm;markgal
-ms.openlocfilehash: d557dd973364d79bb4d8ce954f648de835dd345f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 378c65bec8fd1f880ed459e76f5e4b5d85e49d2a
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="application-consistent-backup-of-azure-linux-vms-preview"></a>Backup coerente con le applicazioni di VM Linux di Azure (anteprima)
 
-In questo articolo parla hello pre-script di Linux e post-script di framework e come può essere utilizzato tootake backup coerenti con l'applicazione di macchine virtuali Linux di Azure.
+Questo articolo illustra il framework degli script di pre e post-backup di Linux e il relativo uso per eseguire backup coerenti con le applicazioni di VM Linux di Azure.
 
 > [!Note]
-> il framework di pre- script di e post-Hello è supportato solo per le macchine virtuali Linux distribuite di gestione risorse di Azure. Gli script per la coerenza con l'applicazione non sono supportati per le macchine virtuali distribuite di Service Manager o le macchine virtuali di Windows.
+> Il framework degli script di pre e post-backup è supportato solo per le macchine virtuali Linux distribuite di Azure Resource Manager. Gli script per la coerenza con l'applicazione non sono supportati per le macchine virtuali distribuite di Service Manager o le macchine virtuali di Windows.
 >
 
-## <a name="how-hello-framework-works"></a>Funzionamento di framework hello
+## <a name="how-the-framework-works"></a>Come funziona il framework
 
-framework Hello fornisce un'opzione toorun personalizzato pre- script e post-script durante la scrittura delle snapshot macchina virtuale. Gli pre-script di vengono eseguiti solo prima di creare snapshot VM hello e post script vengono eseguiti immediatamente dopo l'esecuzione di snapshot di macchina virtuale hello. In questo modo si hello flessibilità toocontrol dell'applicazione e l'ambiente durante la scrittura delle snapshot macchina virtuale.
+Il framework offre un'opzione per eseguire script di pre e post-backup durante la creazione di snapshot delle macchine virtuali. Gli script pre-backup vengono eseguiti immediatamente prima della creazione dello snapshot della macchina virtuale e gli script post-backup vengono eseguiti immediatamente dopo la creazione dello snapshot della macchina virtuale. Questo offre la flessibilità di controllare l'applicazione e l'ambiente quando si creano snapshot delle macchine virtuali.
 
-In questo scenario, è importante tooensure backup di VM coerenti con l'applicazione. pre-script di Hello può richiamare applicazione nativa API tooquiesce hello IOs e scaricamento su disco toohello contenuto in memoria. In questo modo si garantisce che snapshot hello è coerente con l'applicazione (vale a dire che un'applicazione hello arriva quando post-ripristino hello VM è avviato). Post-script di può essere utilizzato toothaw hello, IOs. Ciò avviene tramite le API dell'applicazione nativa in modo che un'applicazione hello possibile riprendere le normali operazioni post-snapshot della macchina virtuale.
+In questo scenario, è importante assicurare backup coerenti con le applicazioni delle macchine virtuali. Lo script di pre-backup può richiamare API native delle applicazioni per disattivare gli I/O e scaricare sul disco il contenuto in memoria. Ciò garantisce che lo snapshot sia coerente con le applicazioni (ossia, che l'applicazione venga avviata quando viene avviata la macchina virtuale dopo il ripristino). Lo script di post-backup può essere utilizzato per sbloccare gli I/O. Consente questo mediante le API native delle applicazioni, in modo che l'applicazione possa riprendere le normali operazioni successivamente allo snapshot della macchina virtuale.
 
-## <a name="steps-tooconfigure-pre-script-and-post-script"></a>Passaggi tooconfigure pre- script di e post-
+## <a name="steps-to-configure-pre-script-and-post-script"></a>Passaggi per configurare gli script di pre e post-backup
 
-1. Accedere in hello radice utente toohello VM Linux che si desidera ripristinare tooback.
+1. Accedere come utente root alla macchina virtuale Linux VM di cui si vuole eseguire il backup.
 
-2. Scaricare **VMSnapshotScriptPluginConfig.json** da [GitHub](https://github.com/MicrosoftAzureBackup/VMSnapshotPluginConfig)e quindi copiarlo toohello **/e così via/azure** cartella tutte le macchine virtuali hello eseguirai tooback backup. Creare hello **/e così via/azure** directory se non esiste già.
+2. Scaricare **VMSnapshotScriptPluginConfig.json** da [GitHub](https://github.com/MicrosoftAzureBackup/VMSnapshotPluginConfig) e quindi copiarlo nella cartella **/etc/azure** in tutte le macchine virtuali di cui si intende eseguire il backup. Creare la directory **/etc/azure** se non esiste già.
 
-3. Copiare hello pre- script di e post-per l'applicazione su hello tutte le macchine virtuali che si prevede di tooback backup. È possibile copiare hello script tooany percorso hello macchina virtuale. Essere percorso completo di hello tooupdate assicurarsi di hello file di script in hello **VMSnapshotScriptPluginConfig.json** file.
+3. Copiare lo script di pre-backup e lo script di post-backup per l'applicazione su tutte le macchine virtuali di cui eseguire il backup. È possibile copiare gli script in qualsiasi posizione nella macchina virtuale. Assicurarsi di aggiornare il percorso completo del file di script nel file **VMSnapshotScriptPluginConfig.json**.
 
-4. Assicurarsi che queste autorizzazioni per questi file hello:
+4. Assicurarsi che siano disponibili le autorizzazioni seguenti per i file:
 
-   - **VMSnapshotScriptPluginConfig.json**: autorizzazione "600". Ad esempio, solo l'utente "root" deve avere file toothis di autorizzazioni "lettura" e "scrittura", e nessun utente deve disporre di autorizzazioni "Esegui".
+   - **VMSnapshotScriptPluginConfig.json**: autorizzazione "600". Ad esempio solo l'utente "root" deve avere le autorizzazioni di "lettura" e "scrittura" per questo file, nessun utente deve avere autorizzazioni di "esecuzione".
 
-   - **File script di pre-backup**: autorizzazione "700".  Ad esempio, è necessario solo l'utente "root" "lettura", "scrittura" ed "eseguire" file toothis di autorizzazioni.
+   - **File script di pre-backup**: autorizzazione "700".  Ad esempio, solo l'utente "root" deve avere le autorizzazioni di "lettura", "scrittura" ed "esecuzione" per questo file.
   
-   - **Script di post-backup**: autorizzazione "700". Ad esempio, è necessario solo l'utente "root" "lettura", "scrittura" ed "eseguire" file toothis di autorizzazioni.
+   - **Script di post-backup**: autorizzazione "700". Ad esempio, solo l'utente "root" deve avere le autorizzazioni di "lettura", "scrittura" ed "esecuzione" per questo file.
 
    > [!Important]
-   > framework Hello offre agli utenti un potente. È importante che è protetta e tale utente "root" solo con i file JSON e script toocritical di accesso.
-   > Se non sono soddisfatti i requisiti precedenti hello, hello script non viene eseguito. In questo modo si genera un backup coerente con file system e arresto anomalo.
+   > Il framework offre notevoli potenzialità agli utenti. È importante assicurare che solo l'utente "root" abbia accesso ai file di script e JSON critici.
+   > Se i requisiti precedenti non sono soddisfatti, lo script non viene eseguito. In questo modo si genera un backup coerente con file system e arresto anomalo.
    >
 
 5. Configurare **VMSnapshotScriptPluginConfig.json** come illustrato di seguito:
     - **pluginName**: lasciare invariato il campo, altrimenti gli script potrebbero non funzionare come previsto.
 
-    - **preScriptLocation**: fornire il percorso completo di hello dello pre-script di hello in hello VM toobe corso che il backup.
+    - **preScriptLocation**: specificare il percorso completo dello script di pre-backup nella VM di cui si eseguirà il backup.
 
-    - **postScriptLocation**: fornire il percorso completo di hello dello post-script di hello in hello VM toobe corso che il backup.
+    - **postScriptLocation**: specificare il percorso completo dello script di post-backup nella VM di cui si eseguirà il backup.
 
-    - **preScriptParams**: specificare i parametri facoltativi hello necessarie toobe passato toohello pre script di. Tutti i parametri devono essere racchiusi tra virgolette e, se sono presenti più parametri, devono essere separati da virgole.
+    - **preScriptParams**: specificare i parametri facoltativi da passare allo script di pre-backup. Tutti i parametri devono essere racchiusi tra virgolette e, se sono presenti più parametri, devono essere separati da virgole.
 
-    - **postScriptParams**: fornire parametri facoltativi hello necessarie toobe passato post-script toohello. Tutti i parametri devono essere racchiusi tra virgolette e, se sono presenti più parametri, devono essere separati da virgole.
+    - **postScriptParams**: specificare i parametri facoltativi da passare allo script di post-backup. Tutti i parametri devono essere racchiusi tra virgolette e, se sono presenti più parametri, devono essere separati da virgole.
 
-    - **preScriptNoOfRetries**: impostare il numero di hello di tentativi di esecuzione dello pre-script di hello se si verifica un errore prima della chiusura. Zero indica un solo tentativo, senza alcun nuovo tentativo in caso di errore.
+    - **preScriptNoOfRetries**: impostare il numero di volte in cui lo script di pre-backup deve essere ritentato se è presente un errore prima di terminare. Zero indica un solo tentativo, senza alcun nuovo tentativo in caso di errore.
 
-    - **postScriptNoOfRetries**: impostare il numero di hello di tentativi di esecuzione dello post-script di hello se si verifica un errore prima della chiusura. Zero indica un solo tentativo, senza alcun nuovo tentativo in caso di errore.
+    - **postScriptNoOfRetries**: impostare il numero di volte in cui lo script di post-backup deve essere ritentato se è presente un errore prima di terminare. Zero indica un solo tentativo, senza alcun nuovo tentativo in caso di errore.
     
-    - **timeoutInSeconds**: specificare i singoli timeout per gli pre-script di hello e post-script di hello.
+    - **timeoutInSeconds**: specificare i timeout individuali per lo script di pre-backup e lo script di post-backup.
 
-    - **continueBackupOnFailure**: impostare questo valore troppo**true** se si desidera Azure Backup toofall tooa indietro coerente un arresto anomalo di coerente/backup del file system, se uno pre- script di o post-script ha esito negativo. L'impostazione troppo**false** hello backup in caso di errore di script (tranne quando si dispone di VM disco singolo che rientra nuovamente toocrash coerente backup indipendentemente da questa impostazione) ha esito negativo.
+    - **continueBackupOnFailure**: impostare questo valore su **true** se si desidera che Backup di Azure esegua il fallback a un backup coerente con file system/arresto anomalo in caso di errore dello script di pre-backup o post-backup. Impostando questo valore su **false** il backup viene interrotto in caso di errore dello script (tranne nel caso in cui sia presenta una macchina virtuale con un solo disco che esegue il fallback su un backup coerente con l'arresto anomalo indipendentemente da questa impostazione).
 
-    - **fsFreezeEnabled**: specificare se fsfreeze Linux deve essere chiamato durante la scrittura delle coerenza del hello VM snapshot tooensure file system. È consigliabile mantenere questa impostazione troppo**true** , a meno che l'applicazione presenta una dipendenza sulla disattivazione fsfreeze.
+    - **fsFreezeEnabled**: specificare se il comando fsfreeze di Linux deve essere chiamato durante la creazione dello snapshot della macchina virtuale per garantire la coerenza del file system. Si consiglia di mantenere questa impostazione su **true**, a meno che l'applicazione abbia legami di dipendenza con la disattivazione di fsfreeze.
 
-6. il framework di script Hello è ora configurato. Se il backup di VM hello è già configurato, backup successivo hello richiama script hello e attiva backup coerenti con l'applicazione. Se non è configurato il backup di VM hello, configurare utilizzando [gli insiemi di credenziali di macchine virtuali di Azure tooRecovery servizi di backup.](https://docs.microsoft.com/azure/backup/backup-azure-vms-first-look-arm)
+6. Il framework di script è ora configurato. Se il backup della macchina virtuale è già configurato, il backup successivo richiamerà gli script e attiverà backup coerenti con le applicazioni. Se il backup della macchina virtuale non è configurato, configurarlo facendo riferimento a [Backup di macchine virtuali di Azure in insiemi di credenziali di Servizi di ripristino](https://docs.microsoft.com/azure/backup/backup-azure-vms-first-look-arm)
 
 ## <a name="troubleshooting"></a>Risoluzione dei problemi
 
-Assicurarsi che aggiungere la registrazione appropriata durante la scrittura di pre- script di e post- script di e, esaminare gli eventuali problemi di script del toofix i registri di script. Se continuano a verificarsi problemi di esecuzione di script, fare riferimento toohello per ulteriori informazioni nella tabella seguente.
+Accertarsi di aggiungere le funzioni di log appropriate negli script di pre e post-backup e controllare i log di script per risolvere eventuali problemi degli script. Se continuano a verificarsi problemi durante l'esecuzione degli script, vedere la tabella seguente per altre informazioni.
 
 | Errore | Messaggio di errore | Azione consigliata |
 | ------------------------ | -------------- | ------------------ |
-| Pre-ScriptExecutionFailed |pre-script di Hello ha restituito un errore, in modo backup potrebbe non essere coerenti con l'applicazione. | Esaminare i registri errori hello relativi al problema di hello toofix script.|  
-|   Post-ScriptExecutionFailed |    post-script di Hello ha restituito un errore che potrebbe influire sullo stato dell'applicazione. |  Esaminare i registri errori hello relativi al problema di hello toofix script e controllare lo stato dell'applicazione hello. |
-| Pre-ScriptNotFound |  Hello pre-script non trovato nel percorso di hello specificato in hello **VMSnapshotScriptPluginConfig.json** file di configurazione. | Verificare che pre-che script sia presente nel percorso specificato nel backup coerenti con l'applicazione hello config file tooensure hello.|
-| Post-ScriptNotFound | Hello post-script non è stato trovato nel percorso di hello specificato in hello **VMSnapshotScriptPluginConfig.json** file di configurazione. | Assicurarsi che dopo questo script sono presente nel percorso specificato nel backup coerenti con l'applicazione hello config file tooensure hello.|
-| IncorrectPluginhostFile | Hello **Pluginhost** , incluso in hello VmSnapshotLinux estensione, è danneggiato, quindi non è possibile eseguire pre- script di e post-backup hello non saranno coerenti con l'applicazione.   | Disinstallare hello **VmSnapshotLinux** estensione e verranno reinstallati automaticamente con il problema successivo backup toofix hello hello. |
-| IncorrectJSONConfigFile | Hello **VMSnapshotScriptPluginConfig.json** file non è corretto, pertanto pre- script e non è possibile eseguire post-script di backup hello non saranno coerenti con l'applicazione. | Scaricare la copia hello da [GitHub](https://github.com/MicrosoftAzureBackup/VMSnapshotPluginConfig) e configurarlo nuovamente. |
-| InsufficientPermissionforPre-Script | Per l'esecuzione di script utente "root" deve essere proprietario di hello del file hello e file hello deve disporre di autorizzazioni "700" (ovvero, è necessario solo "proprietario" "lettura" e "scrittura" autorizzazioni "Esegui"). | Verificare che l'utente "root" hello "proprietario" hello del file di script e che solo "proprietario" con "autorizzazioni di lettura", "scrittura", "Esegui". |
-| InsufficientPermissionforPost-Script | Per l'esecuzione di script utente root deve essere proprietario di hello del file hello e file hello deve disporre di autorizzazioni "700" (ovvero, è necessario solo "proprietario" "lettura" e "scrittura" autorizzazioni "Esegui"). | Verificare che l'utente "root" hello "proprietario" hello del file di script e che solo "proprietario" con "autorizzazioni di lettura", "scrittura", "Esegui". |
-| Pre-ScriptTimeout | Hello l'esecuzione dello pre-script di backup coerenti con l'applicazione hello timeout. | Controllare lo script hello e aumentare il timeout di hello in hello **VMSnapshotScriptPluginConfig.json** file che si trova in **/e così via/azure**. |
-| Post-ScriptTimeout | timeout dell'esecuzione di Hello dello post-script di backup coerenti con l'applicazione hello. | Controllare lo script hello e aumentare il timeout di hello in hello **VMSnapshotScriptPluginConfig.json** file che si trova in **/e così via/azure**. |
+| Pre-ScriptExecutionFailed |Lo script di pre-backup ha restituito un errore perciò il backup potrebbe non essere coerente con le applicazioni.   | Controllare i log di errore dello script per risolvere il problema.|  
+|   Post-ScriptExecutionFailed |    Lo script di post-backup ha restituito un errore che potrebbe compromettere lo stato dell'applicazione. |    Controllare i log di errore dello script per risolvere il problema e verificare lo stato dell'applicazione. |
+| Pre-ScriptNotFound |  Lo script di pre-backup non è stato trovato nel percorso specificato nel file di configurazione **VMSnapshotScriptPluginConfig.json**. |   Assicurarsi che lo script di pre-backup sia presente nel percorso specificato nel file di configurazione per garantire un backup coerente con le applicazioni.|
+| Post-ScriptNotFound | Lo script di post-backup non è stato trovato nel percorso specificato nel file di configurazione **VMSnapshotScriptPluginConfig.json**. |   Assicurarsi che lo script di post-backup sia presente nel percorso specificato nel file di configurazione per garantire un backup coerente con le applicazioni.|
+| IncorrectPluginhostFile | Il file **Pluginhost** incluso con l'estensione VmSnapshotLinux è danneggiato perciò non è possibile eseguire gli script di pre e post-backup e il backup non sarà coerente con le applicazioni. | Disinstallare l'estensione **VmSnapshotLinux** che sarà automaticamente reinstallata con il backup successivo per risolvere il problema. |
+| IncorrectJSONConfigFile | Il file **VMSnapshotScriptPluginConfig.json** non è corretto, perciò non è possibile eseguire gli script di pre e post-backup e il backup non sarà coerente con le applicazioni. | Scaricare la copia da [GitHub](https://github.com/MicrosoftAzureBackup/VMSnapshotPluginConfig) ed eseguirne di nuovo la configurazione. |
+| InsufficientPermissionforPre-Script | Per eseguire gli script, l'utente "root" deve essere il proprietario del file e il file deve avere le autorizzazioni "700" (ovvero solo il "proprietario" deve possedere le autorizzazioni di "lettura", "scrittura" ed "esecuzione"). | Assicurarsi che l'utente "root" sia il "proprietario" del file di script e che solo il "proprietario" abbia le autorizzazioni di "lettura", "scrittura" ed "esecuzione". |
+| InsufficientPermissionforPost-Script | Per eseguire gli script, l'utente root deve essere il proprietario del file e il file deve avere le autorizzazioni "700" (ovvero solo il "proprietario" deve possedere le autorizzazioni di "lettura", "scrittura" ed "esecuzione"). | Assicurarsi che l'utente "root" sia il "proprietario" del file di script e che solo il "proprietario" abbia le autorizzazioni di "lettura", "scrittura" ed "esecuzione". |
+| Pre-ScriptTimeout | Si è verificato il time-out dell'esecuzione dello script di pre-backup per un backup coerente della applicazioni. | Controllare lo script e aumentare il timeout nel file **VMSnapshotScriptPluginConfig.json** disponibile all'indirizzo **/etc/azure**. |
+| Post-ScriptTimeout | Si è verificato il time-out dell'esecuzione dello script di post-backup per un backup coerente della applicazioni. | Controllare lo script e aumentare il timeout nel file **VMSnapshotScriptPluginConfig.json** disponibile all'indirizzo **/etc/azure**. |
 
 ## <a name="next-steps"></a>Passaggi successivi
-[Configurare l'archivio di servizi di ripristino backup tooa VM](https://docs.microsoft.com/azure/backup/backup-azure-arm-vms)
+[Configurare il backup di una VM in un insieme di credenziali di Servizi di ripristino](https://docs.microsoft.com/azure/backup/backup-azure-arm-vms)

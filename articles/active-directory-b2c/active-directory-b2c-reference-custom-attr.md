@@ -1,6 +1,6 @@
 ---
 title: 'Azure Active Directory B2C: attributi personalizzati | Documentazione Microsoft'
-description: "La modalità di attributi personalizzati di toouse in Azure Active Directory B2C toocollect informazioni utenti"
+description: Come utilizzare gli attributi personalizzati in Azure Active Directory B2C per raccogliere informazioni sugli utenti
 services: active-directory-b2c
 documentationcenter: 
 author: swkrish
@@ -14,14 +14,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/06/2016
 ms.author: swkrish
-ms.openlocfilehash: fb1bff77ad54c246c6d2f69f39c03eafb76fe6bf
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 356aaeff3a78fc7b682d621e8e0de9312582b2fe
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="azure-active-directory-b2c-use-custom-attributes-toocollect-information-about-your-consumers"></a>Azure Active B2C di Directory: Utilizzare attributi personalizzati toocollect informazioni utenti
-La directory Azure Active Directory (Azure AD) B2C viene fornita con un set predefinito di informazioni (attributi), ad esempio nome, cognome, città, codice postale e altri attributi. Tuttavia, ogni applicazione per consumatori presenta requisiti specifici su quali toogather attributi dal consumer. Con Azure Active Directory B2C, è possibile estendere il set di hello di attributi archiviati in ogni account utente. È possibile creare attributi personalizzati in hello [portale di Azure](https://portal.azure.com/) e usare nei criteri per l'abbonamento, come illustrato di seguito. È anche possibile leggere e scrivere tali attributi tramite hello [API Azure AD Graph](active-directory-b2c-devquickstarts-graph-dotnet.md).
+# <a name="azure-active-directory-b2c-use-custom-attributes-to-collect-information-about-your-consumers"></a>Azure Active Directory B2C: usare attributi personalizzati per raccogliere informazioni sugli utenti
+La directory Azure Active Directory (Azure AD) B2C viene fornita con un set predefinito di informazioni (attributi), ad esempio nome, cognome, città, codice postale e altri attributi. Tuttavia, ogni applicazione consumatori ha requisiti specifici relativi agli attributi da raccogliere. Con Azure AD B2C, è possibile estendere il set di attributi archiviati in ogni account utente. È possibile creare attributi personalizzati nel [portale di Azure](https://portal.azure.com/) e usarli nei criteri di iscrizione, come illustrato di seguito. Questi attributi possono anche essere scritti e letti usando l' [API Graph di Azure AD](active-directory-b2c-devquickstarts-graph-dotnet.md).
 
 > [!NOTE]
 > Gli attributi personalizzati usano le [Estensioni dello schema di directory dell'API Graph di Azure AD](https://msdn.microsoft.com/library/azure/dn720459.aspx).
@@ -29,29 +29,29 @@ La directory Azure Active Directory (Azure AD) B2C viene fornita con un set pred
 > 
 
 ## <a name="create-a-custom-attribute"></a>Creare un attributo personalizzato
-1. [Seguire questi blade di passaggi toonavigate toohello B2C funzionalità nel portale di Azure hello](active-directory-b2c-app-registration.md#navigate-to-b2c-settings).
+1. [Seguire questa procedura per passare al pannello delle funzionalità B2C nel portale di Azure](active-directory-b2c-app-registration.md#navigate-to-b2c-settings).
 2. Fare clic su **Attributi utente**.
-3. Fare clic su **+ Aggiungi** nella parte superiore di hello del pannello hello.
-4. Fornire un **nome** per l'attributo personalizzato hello (ad esempio, "ShoeSize") e, facoltativamente, un **descrizione**. Fare clic su **Crea**.
+3. Fare clic su **+Aggiungi** nella parte superiore del pannello.
+4. Fornire un **Nome** per l'attributo personalizzato (ad esempio, "ShoeSize") e, facoltativamente, una **Descrizione**. Fare clic su **Crea**.
    
    > [!NOTE]
-   > Solo hello "Stringa" **tipo di dati** è attualmente disponibile.
+   > Attualmente è disponibile solo il **tipo di dati** "String".
    > 
    > 
 
-attributo personalizzato Hello è ora disponibile nell'elenco di hello di **gli attributi utente**e per l'uso nei criteri per l'abbonamento.
+L'attributo personalizzato è ora disponibile nell'elenco degli **Attributi utente**e per l'uso nei criteri di iscrizione.
 
 ## <a name="use-a-custom-attribute-in-your-sign-up-policy"></a>Usare un attributo personalizzato nei criteri di iscrizione
-1. [Seguire questi blade di passaggi toonavigate toohello B2C funzionalità nel portale di Azure hello](active-directory-b2c-app-registration.md#navigate-to-b2c-settings).
+1. [Seguire questa procedura per passare al pannello delle funzionalità B2C nel portale di Azure](active-directory-b2c-app-registration.md#navigate-to-b2c-settings).
 2. Fare clic su **Criteri di iscrizione**.
-3. Fare clic su tooopen i criteri di iscrizione (ad esempio, "B2C_1_SiUp") è. Fare clic su **modifica** nella parte superiore di hello del pannello hello.
-4. Fare clic su **attributi iscrizione** e l'attributo personalizzato selezionare hello (ad esempio, "ShoeSize"). Fare clic su **OK**.
-5. Fare clic su **attestazioni applicazione** e l'attributo personalizzato hello selezionare. Fare clic su **OK**.
-6. Fare clic su **salvare** nella parte superiore di hello del pannello hello.
+3. Fare clic sul criterio di iscrizione (ad esempio, "B2C_1_SiUp") per aprirlo. Fare clic su **Modifica** nella parte superiore del pannello.
+4. Fare clic su **Attributi iscrizione** e selezionare l'attributo personalizzato (ad esempio, "ShoeSize"). Fare clic su **OK**.
+5. Fare clic su **Attestazioni applicazione** e selezionare l'attributo personalizzato. Fare clic su **OK**.
+6. Fare clic su **Salva** nella parte superiore del pannello.
 
-È possibile utilizzare funzionalità "Esegui" hello sull'esperienza di hello criteri tooverify hello consumer. Dovrebbero ora vedere "ShoeSize" nell'elenco di hello di attributi raccolti durante l'iscrizione consumer e visualizzarlo in un'applicazione hello token tooyour indietro inviato.
+È possibile utilizzare la funzionalità "Esegui ora" nei criteri per verificare l'esperienza utente. Ora si dovrebbe vedere "ShoeSize" nell'elenco di attributi che vengono raccolti durante l'iscrizione dell’utente e nel token inviato all'applicazione.
 
 ## <a name="notes"></a>Note
 * Insieme ai criteri di iscrizione, gli attributi personalizzati possono essere usati anche nei criteri di iscrizione o accesso e nei criteri di modifica del profilo.
-* Esiste una limitazione nota degli attributi personalizzati. È solo creato hello prima volta che viene utilizzata in tutti i criteri e non quando si aggiungerla elenco toohello di **gli attributi utente**.
+* Esiste una limitazione nota degli attributi personalizzati. Si verifica solo la prima volta che viene usato in un criterio e non quando viene aggiunto all'elenco di **Attributi utente**.
 

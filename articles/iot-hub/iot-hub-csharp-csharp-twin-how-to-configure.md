@@ -1,6 +1,6 @@
 ---
-title: "proprietà di un doppio dispositivo IoT Hub Azure aaaUse (.NET/.NET) | Documenti Microsoft"
-description: Come dispositivo di Azure IoT Hub toouse gemelli di tooconfigure dispositivi. Utilizzare il dispositivo di Azure IoT hello SDK per .NET tooimplement un'app dispositivo simulato e hello Azure IoT servizio SDK per .NET tooimplement un'applicazione di servizio che consente di modificare la configurazione di un dispositivo utilizzando una coppia di dispositivo.
+title: "Usare le proprietà di un dispositivo gemello dell'hub IoT di Azure (.NET/.NET) | Microsoft Docs"
+description: "Come usare le proprietà di un dispositivo gemello dell'hub IoT di Azure per configurare dispositivi. Usare Azure IoT SDK per dispositivi per .NET per implementare un'app per dispositivo simulato e Azure IoT SDK per servizi per .NET per implementare un'app di servizio che modifica la configurazione di un dispositivo usando un dispositivo gemello."
 services: iot-hub
 documentationcenter: .net
 author: dsk-2015
@@ -14,67 +14,67 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/10/2017
 ms.author: dkshir
-ms.openlocfilehash: 486436d29abfd5158c253adc5abf5935e0e1fdba
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 679cda28bf3ce9fb207fe3693a3453b355f1de15
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="use-desired-properties-tooconfigure-devices"></a>Utilizzare i dispositivi di proprietà desiderato tooconfigure
+# <a name="use-desired-properties-to-configure-devices"></a>Usare le proprietà desiderate per configurare i dispositivi
 [!INCLUDE [iot-hub-selector-twin-how-to-configure](../../includes/iot-hub-selector-twin-how-to-configure.md)]
 
-Alla fine di hello di questa esercitazione, si avranno due applicazioni di console .NET:
+Al termine di questa esercitazione si avranno due app console .NET:
 
-* **SimulateDeviceConfiguration**, un'app dispositivo simulato che è in attesa di un aggiornamento della configurazione desiderata e hello Visualizza lo stato di un processo di aggiornamento configurazione simulato.
-* **SetDesiredConfigurationAndQuery**, configurazione in un dispositivo di un'applicazione back-end, che imposta hello desiderato e le query hello il processo di aggiornamento di configurazione.
+* **SimulateDeviceConfiguration**, un'app per dispositivo simulata che attende un aggiornamento della configurazione desiderata e segnala lo stato di un processo di aggiornamento della configurazione simulata.
+* **SetDesiredConfigurationAndQuery.js**, un'app back-end che imposta la configurazione desiderata in un dispositivo ed esegue query sul processo di aggiornamento della configurazione.
 
 > [!NOTE]
-> articolo Hello [Azure IoT SDK] [ lnk-hub-sdks] fornisce informazioni su Azure IoT SDK hello che è possibile utilizzare toobuild applicazioni back-end sia sul dispositivo.
+> L'articolo [Azure IoT SDK][lnk-hub-sdks] contiene informazioni sui componenti Azure IoT SDK che consentono di compilare le app back-end e per dispositivi.
 > 
 > 
 
-toocomplete questa esercitazione è necessario hello segue:
+Per completare l'esercitazione, sono necessari gli elementi seguenti:
 
 * Visual Studio 2015 o Visual Studio 2017.
 * Un account Azure attivo. Se non si ha un account, è possibile crearne uno [gratuito][lnk-free-trial] in pochi minuti.
 
-Se si sono seguite hello [introduzione gemelli dispositivo] [ lnk-twin-tutorial] esercitazione, si dispone già di un hub IoT e un'identità del dispositivo chiamato **myDeviceId**. In tal caso, è possibile ignorare toohello [crea hello dispositivo simulato applicazione] [ lnk-how-to-configure-createapp] sezione.
+Se è stata seguita l'esercitazione [Introduzione ai dispositivi gemelli][lnk-twin-tutorial] sono già disponibili un hub IoT e un'identità del dispositivo denominata **myDeviceId**. È quindi possibile ignorare la sezione [Creare l'app per dispositivo simulata][lnk-how-to-configure-createapp].
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
 [!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity-portal.md)]
 
 <a id="#create-the-simulated-device-app"></a>
-## <a name="create-hello-simulated-device-app"></a>Creare app dispositivo simulato hello
-In questa sezione si crea un'applicazione console .NET che si connette hub tooyour come **myDeviceId**, in attesa di un aggiornamento della configurazione desiderata e quindi segnala gli aggiornamenti nel processo di aggiornamento configurazione hello simulato.
+## <a name="create-the-simulated-device-app"></a>Creare l'app per dispositivo simulata
+In questa sezione si crea un'app console .NET che si connette all'hub come **myDeviceId**, attende un aggiornamento della configurazione desiderata e quindi segnala gli aggiornamenti nel processo di aggiornamento della configurazione simulata.
 
-1. In Visual Studio, creare un nuovo progetto di Visual c# Windows Desktop classico utilizzando hello **applicazione Console** modello di progetto. Progetto hello nome **SimulateDeviceConfiguration**.
+1. In Visual Studio creare un nuovo progetto desktop classico di Windows Visual C# usando il modello di progetto **Applicazione console**. Chiamare il progetto **SimulateDeviceConfiguration**.
    
     ![Nuova app per il dispositivo di Windows classico in Visual C#][img-createdeviceapp]
 
-1. In Esplora soluzioni fare doppio clic su hello **SimulateDeviceConfiguration** del progetto e quindi fare clic su **Gestisci pacchetti NuGet...** .
-1. In hello **Gestione pacchetti NuGet** selezionare **Sfoglia** e cercare **microsoft.azure.devices.client**. Selezionare **installare** tooinstall hello **Microsoft.Azure.Devices.Client** pacchetto e accettare le condizioni di hello d'uso. Questa procedura Scarica, installa e aggiunge un riferimento toohello [dispositivo IoT di Azure SDK] [ lnk-nuget-client-sdk] NuGet pacchetto e le relative dipendenze.
+1. In Esplora soluzioni fare clic con il pulsante destro del mouse sul progetto **SimulateDeviceConfiguration** e quindi scegliere **Gestisci pacchetti NuGet...**.
+1. Nella finestra **Gestione pacchetti NuGet** selezionare **Sfoglia** e cercare **microsoft.azure.devices.client**. Selezionare **Installa** per installare il pacchetto **microsoft.azure.devices.client** e accettare le condizioni d'uso. Questa procedura scarica, installa e aggiunge un riferimento al pacchetto NuGet [Azure IoT SDK per dispositivi][lnk-nuget-client-sdk] e alle relative dipendenze.
    
     ![App client della finestra Gestione pacchetti NuGet][img-clientnuget]
-1. Aggiungere il seguente hello `using` le istruzioni nella parte superiore di hello di hello **Program.cs** file:
+1. Aggiungere le istruzione `using` seguenti all'inizio del file **Program.cs** :
    
         using Microsoft.Azure.Devices.Client;
         using Microsoft.Azure.Devices.Shared;
         using Newtonsoft.Json;
 
-1. Aggiungere i seguenti campi toohello hello **programma** classe. Sostituire il valore di segnaposto hello con stringa di connessione hello dispositivo che si è preso nota nella sezione precedente hello.
+1. Aggiungere i campi seguenti alla classe **Program** . Sostituire il valore del segnaposto con la stringa di connessione del dispositivo annotato nella sezione precedente.
    
         static string DeviceConnectionString = "HostName=<yourIotHubName>.azure-devices.net;DeviceId=<yourIotDeviceName>;SharedAccessKey=<yourIotDeviceAccessKey>";
         static DeviceClient Client = null;
         static TwinCollection reportedProperties = new TwinCollection();
 
-1. Aggiungere hello seguente metodo toohello **programma** classe:
+1. Aggiungere il metodo seguente alla classe **Program** :
  
         public static void InitClient()
         {
             try
             {
-                Console.WriteLine("Connecting toohub");
+                Console.WriteLine("Connecting to hub");
                 Client = DeviceClient.CreateFromConnectionString(DeviceConnectionString, TransportType.Mqtt);
             }
             catch (Exception ex)
@@ -83,9 +83,9 @@ In questa sezione si crea un'applicazione console .NET che si connette hub tooyo
                 Console.WriteLine("Error in sample: {0}", ex.Message);
             }
         }
-    Hello **Client** oggetto espone tutti i metodi di hello desiderate toointeract con gemelli di dispositivo dal dispositivo hello. Hello codice illustrato in precedenza, inizializza hello **Client** oggetto, quindi recupera hello dispositivo doppi per **myDeviceId**.
+    L'oggetto **Client** espone tutti i metodi necessari per interagire con i dispositivi gemelli dal dispositivo. Il codice riportato sopra inizializza l'oggetto **Client** e quindi recupera il dispositivo gemello per **myDeviceId**.
 
-1. Aggiungere hello seguente metodo toohello **programma** classe. Questo metodo imposta i valori iniziali di hello di telemetria sul dispositivo locale hello e quindi gli aggiornamenti hello gemelli di dispositivo.
+1. Aggiungere il metodo seguente alla classe **Program**. Questo metodo imposta i valori iniziali di telemetria nel dispositivo locale e quindi aggiorna il dispositivo gemello.
 
         public static async void InitTelemetry()
         {
@@ -116,7 +116,7 @@ In questa sezione si crea un'applicazione console .NET che si connette hub tooyo
             }
         }
 
-1. Aggiungere hello seguente metodo toohello **programma** classe. Si tratta di un callback che rileva una modifica in *le proprietà desiderate* in un doppio dispositivo hello.
+1. Aggiungere il metodo seguente alla classe **Program**. Si tratta di un callback che rileva una modifica nelle *proprietà desiderate* del dispositivo gemello.
 
         private static async Task OnDesiredPropertyChanged(TwinCollection desiredProperties, object userContext)
         {
@@ -154,9 +154,9 @@ In questa sezione si crea un'applicazione console .NET che si connette hub tooyo
             }
         }
 
-    Questo hello aggiornamenti metodo segnalato le proprietà sull'oggetto di un doppio hello dispositivo locale con la configurazione di hello richiesta e imposta lo stato di hello di aggiornamento troppo**in sospeso**, quindi gli aggiornamenti hello gemelli di dispositivo nel servizio hello. Dopo aver aggiornato correttamente un doppio dispositivo hello, completamento di modifica della configurazione hello chiamando il metodo hello `CompleteConfigChange` descritta al punto successivo hello.
+    Questo metodo aggiorna le proprietà segnalate nell'oggetto dispositivo gemello locale con la richiesta di aggiornamento della configurazione e imposta lo stato su **Pending** (Sospeso), quindi aggiorna il dispositivo gemello nel servizio. Dopo aver aggiornato correttamente il dispositivo gemello, quest'ultimo completerà la configurazione chiamando il metodo `CompleteConfigChange` descritto nel punto successivo.
 
-1. Aggiungere hello seguente metodo toohello **programma** classe. Questo metodo simula un ripristino del dispositivo, quindi gli aggiornamenti hello proprietà segnalate locale impostazione dello stato di hello troppo**successo** e rimuove hello **pendingConfig** elemento. Viene quindi aggiornato doppi dispositivo hello sul servizio hello. 
+1. Aggiungere il metodo seguente alla classe **Program**. Questo metodo simula una reimpostazione del dispositivo, aggiorna le proprietà segnalate locali impostando lo stato su **Success** e rimuove l'elemento **pendingConfig**, quindi aggiorna il dispositivo gemello nel servizio. 
 
         public static async void CompleteConfigChange()
         {
@@ -174,7 +174,7 @@ In questa sezione si crea un'applicazione console .NET che si connette hub tooyo
                 currentTelemetryConfig["pendingConfig"] = null;
 
                 await Client.UpdateReportedPropertiesAsync(reportedProperties);
-                Console.WriteLine("Config change complete \nPress any key tooexit.");
+                Console.WriteLine("Config change complete \nPress any key to exit.");
             }
             catch (AggregateException ex)
             {
@@ -191,7 +191,7 @@ In questa sezione si crea un'applicazione console .NET che si connette hub tooyo
             }
         }
 
-1. Aggiungere infine hello seguenti righe toohello **Main** metodo:
+1. Aggiungere infine le righe seguenti al metodo **Main**:
 
         try
         {
@@ -217,31 +217,31 @@ In questa sezione si crea un'applicazione console .NET che si connette hub tooyo
         }
 
    > [!NOTE]
-   > Questa esercitazione non simula alcun comportamento per gli aggiornamenti della configurazione simultanei. Alcuni processi di aggiornamento configurazione potrebbero essere in grado di tooaccommodate modifiche della configurazione di destinazione durante l'esecuzione di aggiornamento hello, alcuni potrebbe essere tooqueue mentre altri possibile rifiutarli con una condizione di errore. Verificare che tooconsider hello comportamento desiderato per il processo di configurazione specifica e aggiungere la logica appropriata hello prima dell'avvio di modifica della configurazione hello.
+   > Questa esercitazione non simula alcun comportamento per gli aggiornamenti della configurazione simultanei. Alcuni processi di aggiornamento della configurazione potrebbero consentire modifiche della configurazione di destinazione mentre l'aggiornamento è in esecuzione, altre potrebbero doverle accodare e altri ancora rifiutarle con una condizione di errore. È importante tenere in considerazione il comportamento desiderato per il processo di configurazione specifico e aggiungere la logica appropriata prima di iniziare la modifica della configurazione.
    > 
    > 
-1. Compilare la soluzione hello ed eseguire hello dispositivo app da Visual Studio, fare clic su **F5**. Nella console di output di hello, dovrebbe essere messaggi hello che indica che il dispositivo simulato è il recupero di un doppio dispositivo hello, impostazione dati di telemetria hello e in attesa di modifica della proprietà desiderata. Mantenere hello app in esecuzione.
+1. Compilare la soluzione e quindi eseguire l'app del dispositivo da Visual Studio facendo clic su **F5**. Nella console di output vengono visualizzati i messaggi che indicano che il dispositivo simulato sta recuperando il dispositivo gemello e configurando la telemetria ed è in attesa della modifica della proprietà desiderata. Mantenere l'app in esecuzione.
 
-## <a name="create-hello-service-app"></a>Creare l'applicazione di servizio hello
-In questa sezione si creerà un'applicazione console .NET che hello aggiornamenti *le proprietà desiderate* su hello gemelli di dispositivo associati **myDeviceId** con un nuovo oggetto di configurazione di telemetria. Quindi esegue una query gemelli dispositivo hello archiviate nell'hub IoT hello e Mostra differenza hello tra hello desiderato e le configurazioni di dispositivo hello segnalato.
+## <a name="create-the-service-app"></a>Creare l'app di servizio
+In questa sezione si creerà un'app console .NET che aggiorna le *proprietà desiderate* nel dispositivo gemello associato a **myDeviceId** con un nuovo oggetto di configurazione di telemetria. Viene quindi effettuata una query dei dispositivi gemelli archiviati nell'hub IoT e viene visualizzata la differenza tra la configurazione desiderata e quella segnalata del dispositivo.
 
-1. In Visual Studio, aggiungere una soluzione di Visual c# Windows Desktop classico progetto toohello corrente utilizzando hello **applicazione Console** modello di progetto. Progetto hello nome **SetDesiredConfigurationAndQuery**.
+1. In Visual Studio aggiungere un progetto desktop di Windows classico in Visual C# usando il modello di progetto **Applicazione console** . Assegnare al progetto il nome **SetDesiredConfigurationAndQuery**.
    
     ![Nuovo progetto desktop di Windows classico in Visual C#][img-createapp]
-1. In Esplora soluzioni fare doppio clic su hello **SetDesiredConfigurationAndQuery** del progetto e quindi fare clic su **Gestisci pacchetti NuGet...** .
-1. In hello **Gestione pacchetti NuGet** selezionare **Sfoglia**, cercare **microsoft.azure.devices**selezionare **installare** tooinstall Hello **Microsoft.Azure.Devices** pacchetto e accettare le condizioni di hello d'uso. Questa procedura Scarica, installa e aggiunge un riferimento toohello [SDK di servizi di Azure IoT] [ lnk-nuget-service-sdk] NuGet pacchetto e le relative dipendenze.
+1. In Esplora soluzioni fare clic con il pulsante destro del mouse sul progetto **SetDesiredConfigurationAndQuery** e quindi fare clic su **Gestisci pacchetti NuGet**.
+1. Nella finestra **Gestione pacchetti NuGet** selezionare **Esplora**, cercare **microsoft.azure.devices**, selezionare **Installa** per installare il pacchetto **Microsoft.Azure.Devices** e accettare le condizioni per l'uso. Questa procedura scarica, installa e aggiunge un riferimento al [pacchetto NuGet Azure IoT - SDK per dispositivi][lnk-nuget-service-sdk] e alle relative dipendenze.
    
     ![Finestra Gestione pacchetti NuGet][img-servicenuget]
-1. Aggiungere il seguente hello `using` le istruzioni nella parte superiore di hello di hello **Program.cs** file:
+1. Aggiungere le istruzione `using` seguenti all'inizio del file **Program.cs** :
    
         using Microsoft.Azure.Devices;
         using System.Threading;
         using Newtonsoft.Json;
-1. Aggiungere i seguenti campi toohello hello **programma** classe. Sostituire il valore di segnaposto hello con la stringa di connessione IoT Hub hub hello creato nella sezione precedente hello hello.
+1. Aggiungere i campi seguenti alla classe **Program** . Sostituire il valore del segnaposto con la stringa di connessione dell'hub IoT creato nella sezione precedente.
    
         static RegistryManager registryManager;
         static string connectionString = "{iot hub connection string}";
-1. Aggiungere hello seguente metodo toohello **programma** classe:
+1. Aggiungere il metodo seguente alla classe **Program** :
    
         static private async Task SetDesiredConfigurationAndQuery()
         {
@@ -275,37 +275,37 @@ In questa sezione si creerà un'applicazione console .NET che hello aggiornament
             }
         }
    
-    Hello **Registro di sistema** oggetto espone tutte hello metodi obbligatorio toointeract con gemelli di dispositivo dal servizio hello. Questo codice inizializza hello **Registro di sistema** oggetto recupera hello gemelli di dispositivo per **myDeviceId**e quindi aggiorna le proprietà desiderate con un nuovo oggetto di configurazione di telemetria.
-    Successivamente, viene eseguita una query gemelli dispositivo hello archiviate nell'hub IoT hello ogni 10 secondi e stampa hello desiderato e segnalate le configurazioni di telemetria. Fare riferimento toohello [il linguaggio di query di IoT Hub] [ lnk-query] toolearn come rich toogenerate report tra tutti i dispositivi.
+    L'oggetto **Registry** espone tutti i metodi necessari per interagire con i dispositivi gemelli dal servizio. Questo codice inizializza l'oggetto **Registry**, recupera il dispositivo gemello per **myDeviceId** e ne aggiorna le proprietà desiderate con un nuovo oggetto di configurazione dei dati di telemetria.
+    Ogni 10 secondi esegue una query dei dispositivi gemelli archiviati nell'hub IoT e stampa le configurazioni dei dati di telemetria desiderate e segnalate. Vedere il [linguaggio di query dell'hub IoT][lnk-query] per informazioni su come generare report avanzati in tutti i dispositivi.
    
    > [!IMPORTANT]
-   > Questa applicazione effettua una query dell'hub IoT ogni 10 secondi a scopo illustrativo. Utilizzare una query toogenerate rivolta all'utente report tra più dispositivi e non toodetect modifiche. Se la soluzione richiede notifiche in tempo reale degli eventi del dispositivo, usare le [notifiche relative al dispositivo gemello][lnk-twin-notifications].
+   > Questa applicazione effettua una query dell'hub IoT ogni 10 secondi a scopo illustrativo. Usare le query per generare i report destinati all'utente in più dispositivi e non per rilevare le modifiche. Se la soluzione richiede notifiche in tempo reale degli eventi del dispositivo, usare le [notifiche relative al dispositivo gemello][lnk-twin-notifications].
    > 
    > 
-1. Infine, aggiungere hello seguenti righe toohello **Main** metodo:
+1. Aggiungere infine le righe seguenti al metodo **Main** :
    
         registryManager = RegistryManager.CreateFromConnectionString(connectionString);
         SetDesiredConfigurationAndQuery();
-        Console.WriteLine("Press any key tooquit.");
+        Console.WriteLine("Press any key to quit.");
         Console.ReadLine();
-1. In Esplora soluzioni hello, aprire hello **progetti di avvio impostato...**  e verificare che hello **azione** per **SetDesiredConfigurationAndQuery** progetto **avviare**. Compilare la soluzione hello.
-1. Con **SimulateDeviceConfiguration** dispositivo che esegue di app, hello esecuzione del servizio app da Visual Studio tramite **F5**. Dovrebbe essere hello segnalati configurazione modificare da **in sospeso** troppo**successo** Active nuovo hello frequenza di invio dei cinque minuti invece di 24 ore.
+1. In Esplora soluzioni aprire **Imposta progetti di avvio** e assicurarsi che **Azione** per il progetto **SetDesiredConfigurationAndQuery** sia impostata su **Avvio**. Compilare la soluzione.
+1. Con l'app di dispositivo **SimulateDeviceConfiguration** in esecuzione, eseguire l'app di servizio da Visual Studio tramite **F5**. Si potrà osservare la configurazione segnalata passare da **Pending** a **Success** con la nuova frequenza di invio attiva di cinque minuti e non più di 24 ore.
 
  ![Dispositivo configurato correttamente][img-deviceconfigured]
    
    > [!IMPORTANT]
-   > Si verifica un ritardo di backup tooa minuto tra funzionamento del report dispositivo hello e risultato della query hello. Si tratta di tooenable hello query infrastruttura toowork su larga scala molto elevata. viste di un doppio di un singolo dispositivo consistenza tooretrieve utilizzano hello **getDeviceTwin** metodo hello **Registro di sistema** classe.
+   > Tra l'operazione relativa al report del dispositivo e il risultato della query si verifica un ritardo fino a un minuto, che consente all'infrastruttura della query di funzionare su una scala molto ampia. Per recuperare visualizzazioni coerenti di un solo dispositivo gemello, usare il metodo **getDeviceTwin** nella classe **Registry**.
    > 
    > 
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questa esercitazione, impostare una configurazione desiderata come *le proprietà desiderate* dalla soluzione hello back-end e ha scritto un toodetect app dispositivo che modificano e simulare un processo di aggiornamento di più passaggi tramite hello segnalato lo stato di creazione di report proprietà.
+In questa esercitazione è stata impostata una configurazione desiderata come *proprietà desiderate* da un back-end della soluzione ed è stata scritta un'app per dispositivo per rilevare tale modifica e simulare un processo di aggiornamento in più fasi che segnala lo stato tramite le proprietà segnalate.
 
-Hello utilizzare seguenti come risorse toolearn per:
+Per altre informazioni, vedere le risorse seguenti:
 
-* inviare i dati di telemetria dai dispositivi con hello [iniziare con l'IoT Hub] [ lnk-iothub-getstarted] esercitazione
-* pianificare o eseguire operazioni su grandi set di dispositivi Vedere hello [pianificazione e i processi di broadcast] [ lnk-schedule-jobs] esercitazione.
-* controllare i dispositivi in modo interattivo (ad esempio l'attivazione di una ventola da un'app controllata dall'utente), con hello [utilizzare metodi diretti] [ lnk-methods-tutorial] esercitazione.
+* Per inviare dati di telemetria dai dispositivi, vedere l'esercitazione [Introduzione all'hub IoT][lnk-iothub-getstarted].
+* Per pianificare o eseguire operazioni su grandi set di dispositivi, vedere l'esercitazione [Pianificare e trasmettere processi][lnk-schedule-jobs].
+* Per controllare i dispositivi in modo interattivo, ad esempio per attivare un ventilatore da un'app controllata dall'utente, vedere l'esercitazione [Use direct methods][lnk-methods-tutorial] (Usare metodi diretti).
 
 <!-- images -->
 [img-servicenuget]: media/iot-hub-csharp-csharp-twin-how-to-configure/servicesdknuget.png

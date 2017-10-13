@@ -1,6 +1,6 @@
 ---
-title: aaaAdd hello Cerca con Bing connettore logica App | Documenti Microsoft
-description: Panoramica del connettore di Cerca con Bing hello con i parametri di API REST
+title: Aggiungere il connettore di ricerca di Bing alle app per la logica | Microsoft Docs
+description: Panoramica del connettore di ricerca di Bing con i parametri dell'API REST.
 services: 
 suite: 
 documentationcenter: 
@@ -16,24 +16,24 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/07/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: 839b7d85367d1fdc63b91dcfe3166e177f10eaf1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 863a15d716161bfa9d3e041174504b73a2956e8d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="get-started-with-hello-bing-search-connector"></a>Iniziare con il connettore di Cerca con Bing hello
-Connettersi tooBing ricerca toosearch notizie, ricerca video e altro ancora. Con la ricerca di Bing è possibile: 
+# <a name="get-started-with-the-bing-search-connector"></a>Introduzione al connettore di ricerca di Bing
+Connettersi alla funzionalità di ricerca di Bing per cercare notizie, video e così via. Con la ricerca di Bing è possibile: 
 
-* Compilare il flusso di business in base a dati hello ottenuti dalla ricerca. 
-* Utilizzare le immagini toosearch azioni, ricerca hello notizie e altro ancora. Tali azioni ottengono una risposta e quindi apportare output di hello per le altre azioni. Ad esempio, cercare un video e quindi utilizzare tale video tooa che feed di Twitter toopost Twitter.
+* Creare il flusso aziendale in base ai dati ottenuti dalla ricerca. 
+* Usare azioni per cercare immagini, notizie e così via. Queste azioni ottengono una risposta e quindi rendono l'output disponibile per altre azioni. È ad esempio possibile cercare un video e quindi usare Twitter per pubblicarlo in un feed Twitter.
 
 Per iniziare subito a creare un'app per la logica, vedere [Creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md).
 
 ## <a name="connector-specific-details"></a>Dettagli specifici del connettore
 
-Visualizzare tutti i trigger e azioni definite in swagger hello e anche eventuali limiti di hello [dettagli connettore](/connectors/bingsearch/).
+Per visualizzare eventuali azioni e trigger definiti in Swagger ed eventuali limiti, vedere i [dettagli del connettore](/connectors/bingsearch/).
 
 ## <a name="more-connectors"></a>Altri connettori
-Tornare indietro toohello [elenco API](apis-list.md).
+Tornare all' [elenco di API](apis-list.md).
 

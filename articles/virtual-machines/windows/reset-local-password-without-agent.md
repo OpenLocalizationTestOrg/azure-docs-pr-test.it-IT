@@ -1,6 +1,6 @@
 ---
-title: aaaReset una password locale di Windows senza agente di Azure | Documenti Microsoft
-description: "Come tooreset hello password dell'account utente locale di Windows quando l'agente guest Azure hello non è installato o funzionante in una macchina virtuale"
+title: Reimpostare una password di Windows locale senza l'agente di Azure | Documentazione Microsoft
+description: "Come reimpostare la password di un account utente di Windows locale quando l'agente guest di Azure non è installato o funzionante in una VM"
 services: virtual-machines-windows
 documentationcenter: 
 author: iainfoulds
@@ -14,70 +14,70 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 04/07/2017
 ms.author: iainfou
-ms.openlocfilehash: c559c31ea142f9cf50d2c5b6182c5355fec9bac5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 880f5e5967298401fc2522124af3746d9906ffa8
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-tooreset-local-windows-password-for-azure-vm"></a>Come tooreset password di Windows locale per la macchina virtuale di Azure
-È possibile reimpostare la password di Windows locale di hello di una macchina virtuale in Azure utilizzando hello [portale di Azure o Azure PowerShell](reset-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) fornito è installato l'agente guest Azure hello. Questo metodo è hello tooreset di mezzo principale con una password per una macchina virtuale di Azure. Se si verificano problemi con l'agente guest Azure hello non risponde o non superati tooinstall dopo il caricamento di un'immagine personalizzata, è possibile reimpostare manualmente una password di Windows. In questo articolo illustra in dettaglio come tooreset una password di account locale mediante l'aggiunta di hello tooanother disco virtuale di origine del sistema operativo VM. 
+# <a name="how-to-reset-local-windows-password-for-azure-vm"></a>Come reimpostare una password di Windows locale per una VM di Azure
+È possibile reimpostare la password di Windows locale di una VM in Azure tramite il [portale di Azure o Azure PowerShell](reset-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) a condizione che l'agente guest di Azure sia installato. Questo è il metodo principale per reimpostare una password per una VM di Azure. In mancanza di risposta da parte dell'agente guest di Azure, o in caso di errore di installazione dopo il caricamento di un'immagine personalizzata, è possibile reimpostare la password di Windows manualmente. Questo articolo illustra come reimpostare la password di un account locale collegando il disco virtuale del sistema operativo di origine a un'altra VM. 
 
 > [!WARNING]
-> Questo processo viene usato solo come ultima risorsa. Provare sempre una password utilizzando hello tooreset [portale di Azure o Azure PowerShell](reset-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) prima.
+> Questo processo viene usato solo come ultima risorsa. Provare sempre a reimpostare la password usando prima il [portale di Azure o Azure PowerShell](reset-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 > 
 > 
 
-## <a name="overview-of-hello-process"></a>Panoramica del processo di hello
-passaggi di base Hello per l'esecuzione di una password locale reimpostata per una macchina virtuale Windows in Azure quando nessun agente guest Azure toohello di accesso è il seguente:
+## <a name="overview-of-the-process"></a>Panoramica della procedura
+Di seguito sono elencati i passaggi fondamentali della reimpostazione di una password locale per una VM Windows in Azure quando non è possibile accedere all'agente guest di Azure:
 
-* Eliminare una macchina virtuale di origine hello. i dischi virtuali Hello vengono mantenuti.
-* Collegare tooanother disco della macchina virtuale di hello origine del sistema operativo VM su hello stessa posizione all'interno di sottoscrizione di Azure. Questa macchina virtuale è hello di cui viene fatto riferimento tooas risoluzione dei problemi di macchina virtuale.
-* Utilizzando hello risoluzione dei problemi di macchina virtuale, creare i file di configurazione dal disco del sistema operativo della macchina virtuale di hello origine.
-* Scollegare il disco del sistema operativo della macchina virtuale di hello da hello risoluzione dei problemi di macchina virtuale.
-* Utilizzare un toocreate di gestione risorse modello una macchina virtuale con disco virtuale originale hello.
-* Quando viene avviato a nuova macchina virtuale, hello hello i file di configurazione è creare hello aggiornamento della password dell'utente hello necessario.
+* Eliminare la VM di origine. I dischi virtuali vengono mantenuti.
+* Collegare il disco del sistema operativo della VM di origine a un'altra VM nella stessa posizione nella sottoscrizione di Azure. Questa VM viene considerata come la VM per la risoluzione dei problemi.
+* Con l'ausilio di questa VM, creare dei file di configurazione sul disco del sistema operativo della VM di origine.
+* Scollegare il disco del sistema operativo della VM dalla VM per la risoluzione dei problemi.
+* Usare un modello di Resource Manager per creare una VM tramite il disco virtuale originale.
+* All'avvio della nuova VM, i file di configurazione creati aggiornano la password dell'utente richiesto.
 
 ## <a name="detailed-steps"></a>Procedura dettagliata
-Provare sempre una password utilizzando hello tooreset [portale di Azure o Azure PowerShell](reset-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) prima di tentare di hello alla procedura seguente. Assicurarsi di disporre di un backup della VM prima di iniziare. 
+Provare sempre a reimpostare la password usando il [portale di Azure o Azure PowerShell](reset-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) prima di procedere ai passaggi seguenti. Assicurarsi di disporre di un backup della VM prima di iniziare. 
 
-1. Eliminare hello interessate VM nel portale di Azure. L'eliminazione hello VM Elimina solo i metadati hello, riferimento hello di hello VM in Azure. i dischi virtuali Hello vengono mantenuti quando viene eliminato hello VM:
+1. Eliminare la VM interessata nel portale di Azure. Questa operazione determina l'eliminazione solo dei metadati, il riferimento della VM in Azure. Quando la VM viene eliminata, i dischi virtuali vengono mantenuti:
    
-   * Fare clic su hello seleziona macchina virtuale nel portale di Azure hello *eliminare*:
+   * Selezionare la VM nel portale di Azure, fare clic su *Elimina*:
      
-     ![Eliminare la VM esistente](./media/reset-local-password-without-agent/delete_vm.png)
-2. Collegare toohello di disco del sistema operativo della macchina virtuale di hello origine risoluzione dei problemi di macchina virtuale. Hello risoluzione dei problemi di macchina virtuale deve essere in hello stessa area come disco del sistema operativo della macchina virtuale di hello origine (ad esempio `West US`):
+     ![Eliminare una VM esistente](./media/reset-local-password-without-agent/delete_vm.png)
+2. Collegare il disco del sistema operativo della VM di origine alla VM per la risoluzione dei problemi. La VM per la risoluzione dei problemi deve essere nella stessa area del disco del sistema operativo della VM di origine (ad esempio `West US`):
    
-   * Selezionare la risoluzione dei problemi di macchina virtuale nel portale di Azure hello hello. Fare clic su *Dischi* | *Collega esistente*:
+   * Selezionare la VM per la risoluzione dei problemi nel portale di Azure. Fare clic su *Dischi* | *Collega esistente*:
      
      ![Collegare un disco esistente](./media/reset-local-password-without-agent/disks_attach_existing.png)
      
-     Selezionare *File VHD* e quindi selezionare l'account di archiviazione hello che contiene la macchina virtuale di origine:
+     Selezionare *File VHD*, quindi scegliere l'account di archiviazione contenente la VM di origine:
      
      ![Selezionare l'account di archiviazione](./media/reset-local-password-without-agent/disks_select_storageaccount.PNG)
      
-     Selezionare il contenitore di origine hello. contenitore di origine Hello è in genere *dischi rigidi virtuali*:
+     Selezionare il contenitore di origine. Il contenitore di origine è in genere *vhd*:
      
      ![Selezionare il contenitore di archiviazione](./media/reset-local-password-without-agent/disks_select_container.png)
      
-     Selezionare hello tooattach di disco rigido virtuale del sistema operativo. Fare clic su *selezionare* processo hello toocomplete:
+     Selezionare il disco rigido virtuale del sistema operativo da collegare. Fare clic su *Seleziona* per completare il processo:
      
      ![Selezionare il disco virtuale di origine](./media/reset-local-password-without-agent/disks_select_source_vhd.png)
-3. Toohello macchina virtuale tramite Desktop remoto di risoluzione dei problemi di connessione e assicurarsi che è visibile disco del sistema operativo della macchina virtuale di hello origine:
+3. Connettersi alla VM per la risoluzione dei problemi tramite Desktop remoto e assicurarsi che il disco del sistema operativo della VM di origine sia visibile:
    
-   * Selezionare la risoluzione dei problemi di macchina virtuale nel portale di Azure hello hello e fare clic su *Connetti*.
-   * Aprire il file RDP hello che scarica. Immettere nome utente di hello e la password di hello risoluzione dei problemi di macchina virtuale.
-   * In Esplora File, cercare il disco di dati hello che è collegato. Se hello origine che disco rigido virtuale della macchina virtuale è hello toohello disco collegato dati solo la risoluzione dei problemi di macchina virtuale, questa deve essere unità f: hello:
+   * Selezionare la VM per la risoluzione dei problemi nel portale di Azure e fare clic su *Connetti*.
+   * Aprire il file RDP scaricato. Immettere il nome utente e la password della VM per la risoluzione dei problemi.
+   * In Esplora file cercare il disco dati collegato. Se il disco rigido virtuale della VM di origine è l'unico disco dati collegato alla VM per la risoluzione dei problemi, questo deve corrispondere all'unità F:
      
      ![Visualizzare il disco dati collegato](./media/reset-local-password-without-agent/troubleshooting_vm_fileexplorer.png)
-4. Creare `gpt.ini` in `\Windows\System32\GroupPolicy` sul disco della macchina virtuale di hello origine (se esiste gpt.ini, rinominare toogpt.ini.bak):
+4. Creare `gpt.ini` in `\Windows\System32\GroupPolicy` sull'unità della VM di origine (in presenza del file gpt.ini, rinominarlo in gpt.ini.bak):
    
    > [!WARNING]
-   > Assicurarsi che non accidentalmente creare hello i seguenti file in C:\Windows, hello unità del sistema operativo per la risoluzione dei problemi di VM hello. Creare i seguenti file nell'unità di hello del sistema operativo per la macchina virtuale che viene collegato un disco dati di origine hello.
+   > Assicurarsi di non creare accidentalmente i seguenti file in C:\Windows, l'unità del sistema operativo per la VM per la risoluzione dei problemi. Creare i seguenti file nell'unità del sistema operativo per la VM di origine collegata come disco dati.
    > 
    > 
    
-   * Aggiungere hello dopo le righe in hello `gpt.ini` file creato:
+   * Aggiungere le righe seguenti al file `gpt.ini` creato:
      
      ```
      [General]
@@ -87,9 +87,9 @@ Provare sempre una password utilizzando hello tooreset [portale di Azure o Azure
      ```
      
      ![Creare gpt.ini](./media/reset-local-password-without-agent/create_gpt_ini.png)
-5. Creare `scripts.ini` in `\Windows\System32\GroupPolicy\Machine\Scripts`. Accertarsi che vengano visualizzate le cartelle nascoste. Se necessario, creare hello `Machine` o `Scripts` cartelle.
+5. Creare `scripts.ini` in `\Windows\System32\GroupPolicy\Machine\Scripts`. Accertarsi che vengano visualizzate le cartelle nascoste. Se necessario, creare le cartelle `Machine` o `Scripts`.
    
-   * Aggiungere hello seguente hello righe `scripts.ini` file creato:
+   * Aggiungere le righe seguenti al file `scripts.ini` creato:
      
      ```
      [Startup]
@@ -98,7 +98,7 @@ Provare sempre una password utilizzando hello tooreset [portale di Azure o Azure
      ```
      
      ![Creare scripts.ini](./media/reset-local-password-without-agent/create_scripts_ini.png)
-6. Creare `FixAzureVM.cmd` in `\Windows\System32` con hello contenuto seguente, sostituendo `<username>` e `<newpassword>` con valori personalizzati:
+6. Creare `FixAzureVM.cmd` in `\Windows\System32` con i contenuti seguenti, sostituendo `<username>` e `<newpassword>` con i propri valori:
    
     ```
     net user <username> <newpassword> /add
@@ -109,40 +109,40 @@ Provare sempre una password utilizzando hello tooreset [portale di Azure o Azure
 
     ![Creare FixAzureVM.cmd](./media/reset-local-password-without-agent/create_fixazure_cmd.png)
    
-    Quando si definisce una nuova password hello, è necessario soddisfare i requisiti di complessità password hello configurato per la macchina virtuale.
-7. Nel portale di Azure, scollegare il disco di hello dalla risoluzione dei problemi di VM hello:
+    Quando si definisce la nuova password, è necessario soddisfare i requisiti di complessità delle password configurate per la VM.
+7. Nel portale di Azure scollegare il disco dalla VM per la risoluzione dei problemi:
    
-   * Selezionare la risoluzione dei problemi di macchina virtuale nel portale di Azure hello hello, fare clic su *dischi*.
-   * I dischi di dati selezionare hello collegati nel passaggio 2, fare clic su *scollegamento*:
+   * Selezionare la VM per la risoluzione dei problemi nel portale di Azure, fare clic su *Dischi*.
+   * Selezionare il disco dati collegato nel passaggio 2, fare clic su *Scollega*:
      
      ![Scollegare il disco](./media/reset-local-password-without-agent/detach_disk.png)
-8. Prima di creare una macchina virtuale, è possibile ottenere il disco del sistema operativo di hello URI tooyour origine:
+8. Prima di creare una VM, è necessario ottenere l'URI per il disco del sistema operativo di origine:
    
-   * Fare clic su account di archiviazione hello selezionare nel portale di Azure hello *BLOB*.
-   * Selezionare il contenitore di hello. contenitore di origine Hello è in genere *dischi rigidi virtuali*:
+   * Selezionare l'account di archiviazione nel portale di Azure, fare clic su *BLOB*.
+   * Selezionare il contenitore. Il contenitore di origine è in genere *vhd*:
      
      ![Selezionare il BLOB dell'account di archiviazione](./media/reset-local-password-without-agent/select_storage_details.png)
      
-     Selezionare il disco rigido virtuale del sistema operativo VM di origine e fare clic su hello *copia* pulsante Avanti toohello *URL* nome:
+     Selezionare il disco rigido virtuale del sistema operativo della VM di origine e fare clic sul pulsante *Copia* accanto al nome *URL*:
      
      ![Copiare l'URI del disco](./media/reset-local-password-without-agent/copy_source_vhd_uri.png)
-9. Creare una macchina virtuale dal disco del sistema operativo della macchina virtuale di hello origine:
+9. Creare una VM dal disco del sistema operativo della VM di origine:
    
-   * Utilizzare [questo modello di gestione risorse di Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-specialized-vhd) toocreate una macchina virtuale da un disco rigido virtuale specializzata. Fare clic su hello `Deploy tooAzure` hello tooopen pulsante portale di Azure con i dettagli di hello basati su modelli popolato automaticamente.
-   * Se si desiderano tooretain tutte le impostazioni precedenti hello per hello macchina virtuale, selezionare *modifica modelli* tooprovide la rete virtuale esistente, subnet, scheda di rete o indirizzo IP pubblico.
-   * In hello `OSDISKVHDURI` la casella di testo di parametro, hello Incolla ottenere l'URI dell'origine del disco rigido virtuale nel precedente passaggio hello:
+   * Usare [questo modello di Azure Resource Manager](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-specialized-vhd) per creare una VM da un disco rigido virtuale specializzato. Fare clic sul pulsante `Deploy to Azure` per aprire il portale di Azure con i dettagli basati su modelli compilati automaticamente.
+   * Per mantenere tutte le impostazioni precedenti per la VM, selezionare *Modifica modello* per fornire rete virtuale, subnet, scheda di rete o IP pubblico.
+   * Nella casella di testo del parametro `OSDISKVHDURI` incollare l'URI del disco rigido virtuale di origine ottenuto nel passaggio precedente:
      
      ![Creare una VM dal modello](./media/reset-local-password-without-agent/create_new_vm_from_template.png)
-10. Dopo aver hello nuova macchina virtuale è in esecuzione, connettersi toohello macchina virtuale tramite Desktop remoto con password hello specificata in hello `FixAzureVM.cmd` script.
-11. Da toohello la sessione remota nuova macchina virtuale, rimuovere hello seguente file tooclean ambiente hello:
+10. Quando è in esecuzione, connettersi alla nuova VM tramite Desktop remoto con la nuova password specificata nello script `FixAzureVM.cmd`.
+11. Dalla sessione remota per la nuova VM, rimuovere i file seguenti per pulire l'ambiente:
     
     * Da %windir%\System32
       * rimuovere FixAzureVM.cmd
     * Da %windir%\System32\GroupPolicy\Machine\
       * rimuovere scripts.ini
     * Da %windir%\System32\GroupPolicy
-      * rimuovere gpt.ini (gpt.ini esistenti prima, se è stata rinominata toogpt.ini.bak, ridenominazione hello bak file indietro toogpt.ini)
+      * rimuovere il file gpt.ini (se gpt.ini era presente in precedenza, ed era stato rinominato in gpt.ini.bak, modificare il nome del file con estensione bak nuovamente in gpt.ini)
 
 ## <a name="next-steps"></a>Passaggi successivi
-Se non è possibile connettersi tramite Desktop remoto, vedere hello [Guida alla risoluzione dei problemi di RDP](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Hello [RDP risoluzione dei problemi di Guida dettagliate](detailed-troubleshoot-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) esamina la risoluzione dei problemi relativi a metodi anziché i passaggi specifici. È anche possibile [aprire una richiesta di supporto tecnico di Azure](https://azure.microsoft.com/support/options/) per ricevere un supporto pratico.
+Se non è ancora possibile connettersi tramite Desktop remoto, vedere la [guida alla risoluzione dei problemi di RDP](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). La [guida alla risoluzione dei problemi di RDP](detailed-troubleshoot-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) esamina i metodi di risoluzione dei problemi anziché i passaggi specifici. È anche possibile [aprire una richiesta di supporto tecnico di Azure](https://azure.microsoft.com/support/options/) per ricevere un supporto pratico.
 

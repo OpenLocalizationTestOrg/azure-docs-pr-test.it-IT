@@ -1,6 +1,6 @@
 ---
-title: "connettività SSL aaaConfigure nel Database di Azure per PostgreSQL | Documenti Microsoft"
-description: Le istruzioni e informazioni tooconfigure Azure Database PostgreSQL relative applicazioni associate tooproperly utilizzare connessioni SSL.
+title: "Configurare la connettività SSL nel Database di Azure per PostgreSQL | Microsoft Docs"
+description: Indicazioni e informazioni per configurare il Database di Azure per PostgreSQL e delle applicazioni associate per usare correttamente le connessioni SSL.
 services: postgresql
 author: JasonMAnderson
 ms.author: janders
@@ -10,119 +10,119 @@ ms.service: postgresql
 ms.custom: 
 ms.topic: article
 ms.date: 05/15/2017
-ms.openlocfilehash: 96a68088acd924196701e8d618d9d5edf44cb548
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 685aa4c2f75b7c3260ca737f7c786157480b2d90
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="configure-ssl-connectivity-in-azure-database-for-postgresql"></a>Configurare la connettività SSL nel Database di Azure per PostgreSQL
-Il Database di Azure per PostgreSQL preferenziale per la connessione il toohello di applicazioni client del servizio PostgreSQL utilizzando Secure Sockets Layer (SSL). Le connessioni SSL tra il server di database e applicazioni client di imposizione consente di proteggere da attacchi "man in intermedio hello" crittografando il flusso di dati hello tra server hello e l'applicazione.
+Il Database di Azure per PostgreSQL preferisce connettere le applicazioni client al servizio di PostgreSQL usando la connettività SSL (Secure Sockets Layer). L'applicazione delle connessioni SSL tra il server di database e le applicazioni client aiuta a proteggersi dagli attacchi "man in the middle" crittografando il flusso di dati tra il server e l'applicazione.
 
-Per impostazione predefinita, il servizio di database PostgreSQL hello è toorequire configurato SSL. Facoltativamente, è possibile disabilitare richiedere SSL per la connessione del servizio di database tooyour se l'applicazione client non supporta la connettività SSL. 
+Per impostazione predefinita, il servizio di database PostgreSQL è configurato per richiedere la connessione SSL. Se l'applicazione client non supporta la connettività SSL, si è liberi di disabilitare l'opzione di richiesta SSL per la connessione al servizio di database. 
 
 ## <a name="enforcing-ssl-connections"></a>Applicazione delle connessioni SSL
-Per tutti i Database di Azure per i server PostgreSQL eseguito il provisioning tramite hello portale di Azure e CLI, per impostazione predefinita è attivata l'imposizione di connessioni SSL. 
+Per impostazione predefinita, l'opzione di applicazione delle connessioni SSL è attiva quando si esegue il provisioning di tutti i Database di Azure per i server PostgreSQL attraverso l'interfaccia della riga di comando e il portale di Azure. 
 
-Allo stesso modo, le stringhe di connessione predefinite nelle impostazioni di "Stringhe di connessione" hello del server di hello portale di Azure includono parametri hello necessario per il server database tooyour tooconnect linguaggi comuni mediante SSL. Hello parametro SSL varia in base al connettore hello, ad esempio "ssl = true" o "sslmode = richiedono" o "sslmode = obbligatorio" e altre varianti.
+Analogamente, le stringhe di connessione predefinite nelle impostazioni "Stringhe di connessione" per il server nel portale di Azure includono i parametri obbligatori per le lingue comuni per effettuare la connessione al server di database tramite SSL. Il parametro SSL varia in base al connettore, ad esempio "ssl=true", "sslmode=require" oppure "sslmode=required" e altre varianti.
 
 ## <a name="configure-enforcement-of-ssl"></a>Configurare l'applicazione di SSL
-Facoltativamente, è possibile disabilitare l'applicazione della connettività SSL. Microsoft Azure si consiglia di abilitare tooalways **connessione SSL applicare** impostazione per una maggiore sicurezza.
+Facoltativamente, è possibile disabilitare l'applicazione della connettività SSL. Microsoft Azure consiglia di abilitare sempre l'impostazione **Enforce SSL connection** (Applica connessione SSL) per una maggiore sicurezza.
 
-### <a name="using-hello-azure-portal"></a>Utilizzo di hello portale di Azure
-Visitare il Database di Azure per il server PostgreSQL e fare clic su **Sicurezza connessione**. Utilizzare hello Attiva/Disattiva pulsante tooenable o disabilitare hello **connessione SSL applicare** impostazione. Fare quindi clic su **Salva**. 
+### <a name="using-the-azure-portal"></a>Uso del portale di Azure
+Visitare il Database di Azure per il server PostgreSQL e fare clic su **Sicurezza connessione**. Usare l'interruttore per abilitare o disabilitare l'impostazione **Applica connessione SSL**. Fare quindi clic su **Salva**. 
 
 ![Sicurezza connessione - Disabilitare l'applicazione di SSL](./media/concepts-ssl-connection-security/1-disable-ssl.png)
 
-È possibile verificare l'impostazione di hello visualizzando hello **Panoramica** hello toosee pagina **SSL applicare stato** indicatore.
+È possibile confermare l'impostazione aprendo la pagina **Panoramica** per visualizzare l'indicatore **SSL enforce status** (Stato di applicazione di SSL).
 
 ### <a name="using-azure-cli"></a>Utilizzare l'interfaccia della riga di comando di Azure
-È possibile abilitare o disabilitare hello **ssl imposizione** parametro utilizzando `Enabled` o `Disabled` valori rispettivamente in CLI di Azure.
+È possibile abilitare o disabilitare il parametro **ssl-enforcement** usando rispettivamente i valori `Enabled` o `Disabled` nell'interfaccia della riga di comando di Azure.
 
 ```azurecli
 az postgres server update --resource-group myresourcegroup --name mypgserver-20170401 --ssl-enforcement Enabled
 ```
 
 ## <a name="ensure-your-application-or-framework-supports-ssl-connections"></a>Verificare che le connessioni SSL siano supportate dall'applicazione o dal framework
-Per impostazione predefinita, molti framework di applicazione comuni che usano i servizi PostgreSQL per database, quali Drupal e Django, non abilitano SSL durante l'installazione. Abilitazione della connettività SSL devono essere eseguita dopo l'installazione o tramite l'applicazione di toohello specifici comandi CLI. Se il server PostgreSQL consiste nell'imporre le connessioni SSL e un'applicazione hello associata non è configurata correttamente, un'applicazione hello potrebbe non riuscire a tooconnect tooyour server di database. Consultare toolearn documentazione dell'applicazione, come le connessioni SSL tooenable.
+Per impostazione predefinita, molti framework di applicazione comuni che usano i servizi PostgreSQL per database, quali Drupal e Django, non abilitano SSL durante l'installazione. L'abilitazione della connettività SSL deve essere eseguita dopo l'installazione o tramite i comandi dell'interfaccia della riga di comando specifici dell'applicazione. Se il server PostgreSQL applica le connessioni SSL e l'applicazione associata non è configurata correttamente, l'applicazione potrebbe non riuscire a connettersi al server di database. Consultare la documentazione dell'applicazione per le informazioni su come abilitare le connessioni SSL.
 
 
 ## <a name="applications-that-require-certificate-verification-for-ssl-connectivity"></a>Applicazioni che richiedono la verifica del certificato per la connettività SSL
-In alcuni casi, le applicazioni richiedono un file di certificato locale generato da un tooconnect (. cer) di certificati Autorità di certificazione (CA) attendibili in modo sicuro. Vedere i seguenti passaggi tooobtain hello. cer file hello, decodificare certificato hello e associarlo tooyour applicazione.
+In alcuni casi, le applicazioni richiedono un file del certificato locale generato da un file di certificato (.cer) dell'autorità di certificazione (CA) attendibile per connettersi in modo sicuro. Vedere la procedura seguente per ottenere il file .cer, decodificare il certificato e associarlo all'applicazione.
 
-### <a name="download-hello-certificate-file-from-hello-certificate-authority-ca"></a>Scaricare il file di certificato hello da hello autorità di certificazione (CA) 
-Hello certificato richiesto toocommunicate tramite SSL con il Database di Azure per cui si trova il server PostgreSQL [qui](https://www.digicert.com/CACerts/BaltimoreCyberTrustRoot.crt). Scaricare i file del certificato hello localmente.
+### <a name="download-the-certificate-file-from-the-certificate-authority-ca"></a>Scaricare il file del certificato dall'autorità di certificazione (CA) 
+Il certificato richiesto per comunicare con il Database di Azure per il server PostgreSQL tramite SSL si trova [qui](https://www.digicert.com/CACerts/BaltimoreCyberTrustRoot.crt). Scaricare il file del certificato e salvarlo in locale.
 
 ### <a name="download-and-install-openssl-on-your-machine"></a>Scaricare e installare OpenSSL sul computer 
-file di certificato hello toodecode necessarie in modo sicuro per l'applicazione tooconnect tooyour server di database, è necessario tooinstall OpenSSL sul computer locale.
+Per decodificare il file del certificato richiesto dall'applicazione per connettersi al server di database in modo sicuro, è necessario installare OpenSSL sul computer locale.
 
 #### <a name="for-linux-os-x-or-unix"></a>Per Linux, OS X o Unix
-librerie OpenSSL Hello vengono fornite nel codice sorgente direttamente da hello [OpenSSL Software Foundation](http://www.openssl.org). Hello istruzioni seguenti consentono di eseguire hello passaggi necessari tooinstall OpenSSL sul computer Linux. In questo articolo Usa comandi noti toowork in Ubuntu 12.04 e versioni successive.
+Le librerie OpenSSL vengono distribuite nel codice sorgente direttamente da [OpenSSL Software Foundation](http://www.openssl.org). Le istruzioni seguenti consentono di eseguire i passaggi necessari per installare OpenSSL nel computer Linux. In questo articolo vengono usati i comandi noti per lavorare su Ubuntu 12.04 (e versioni successive).
 
 Aprire una sessione terminal e installare OpenSSL
 ```bash
 wget http://www.openssl.org/source/openssl-1.1.0e.tar.gz
 ``` 
-Estrarre i file hello dal pacchetto di download hello
+Estrarre i file dal pacchetto di download
 ```bash
 tar -xvzf openssl-1.1.0e.tar.gz
 ```
-Immettere la directory hello in cui sono stati estratti i file hello. Per impostazione predefinita, deve essere come segue.
+Specificare la directory in cui sono stati estratti i file. Per impostazione predefinita, deve essere come segue.
 
 ```bash
 cd openssl-1.1.0e
 ```
-Configurare OpenSSL eseguendo hello comando seguente. Se si desidera file hello in una cartella diversa /usr/local/openssl, assicurarsi che toochange hello seguenti come appropriato.
+Configurare OpenSSL eseguendo il comando indicato di seguito. Se si desidera collocare i file in una cartella diversa da /usr/local/openssl, assicurarsi di modificare quanto segue in modo appropriato.
 
 ```bash
 ./config --prefix=/usr/local/openssl --openssldir=/usr/local/openssl
 ```
-Ora che OpenSSL sia configurato correttamente, è necessario toocompile è tooconvert il certificato. toocompile, eseguire hello comando seguente:
+Ora che OpenSSL è stato configurato correttamente, è necessario compilarlo per convertire il certificato. A tale scopo, eseguire il comando seguente:
 
 ```bash
 make
 ```
-Una volta completata la compilazione, si è pronti tooinstall OpenSSL come eseguibile eseguendo hello comando seguente:
+Al termine della compilazione è possibile installare OpenSSL come eseguibile con questo comando:
 ```bash
 make install
 ```
-tooconfirm che OpenSSL è stato installato correttamente nel sistema, comando hello esecuzione seguente, verificare che si ottiene hello toomake stesso output.
+Per confermare di aver installato correttamente OpenSSL nel sistema, eseguire il comando seguente e assicurarsi di ottenere lo stesso output.
 
 ```bash
 /usr/local/openssl/bin/openssl version
 ```
-Se ha esito positivo dovrebbe segue messaggio hello.
+In caso affermativo, si dovrebbe vedere il messaggio seguente.
 ```bash
 OpenSSL 1.1.0e 7 Apr 2014
 ```
 
 #### <a name="for-windows"></a>Per Windows
-L'installazione di OpenSSL nei PC Windows può essere eseguita in hello seguenti modi:
-1. **(Scelta consigliata)**  Utilizzando hello funzionalità incorporata di barra rovesciata per Windows 10 finestra e versioni successive, OpenSSL è installato per impostazione predefinita. Istruzioni su come tooenable funzionalità Bash per Windows in Windows 10 è reperibile [qui](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide).
-2. Tramite il download di un'applicazione Win32/64 bit fornita dalla community di hello. Mentre hello OpenSSL Software Foundation non fornisce né avalla eventuali programmi di installazione di Windows specifici, forniscono un elenco di programmi di installazione disponibili [qui](https://wiki.openssl.org/index.php/Binaries)
+L'installazione di OpenSSL in un PC Windows può essere eseguita nei modi seguenti:
+1. **(Scelta consigliata)** Usando la funzionalità Bash per Windows disponibile in Windows 10 e versioni successive, OpenSSL viene installato per impostazione predefinita. Le istruzioni su come abilitare la funzionalità Bash per Windows in Windows 10 sono disponibili [qui](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide).
+2. Tramite il download di un'applicazione Win32/64 bit fornita dalla community. Pur non offrendo o avallando eventuali programmi di installazione di Windows specifici, OpenSSL Software Foundation offre un elenco dei programmi di installazione disponibili [qui](https://wiki.openssl.org/index.php/Binaries)
 
 ### <a name="decode-your-certificate-file"></a>Decodificare il file del certificato
-Hello scaricati autorità di certificazione radice file è in formato crittografato. Utilizzare i file del certificato hello toodecode OpenSSL. toodo in tal caso, eseguire il comando OpenSSL:
+Il file CA radice scaricato è in formato crittografato. Usare OpenSSL per decodificare il file del certificato. Per farlo, eseguire questo comando OpenSSL:
 
 ```dos
 OpenSSL>x509 -inform DER -in BaltimoreCyberTrustRoot.cer -text -out root.crt
 ```
 
-### <a name="connecting-tooazure-database-for-postgresql-with-ssl-certificate-authentication"></a>Per la connessione per PostgreSQL tooAzure Database con l'autenticazione del certificato SSL
-Ora che si è decodificati correttamente il certificato, è ora possibile connettere il server di database tooyour a in modo sicuro tramite SSL. verifica del certificato server tooallow, hello certificato deve essere collocato in ~/.postgresql/root.crt file hello nella home directory dell'utente hello. (File di Microsoft Windows hello è denominato % APPDATA%\postgresql\root.crt.). esempio Hello vengono fornite istruzioni per la connessione di Database tooAzure per PostgreSQL.
+### <a name="connecting-to-azure-database-for-postgresql-with-ssl-certificate-authentication"></a>Connessione al Database di Azure per PostgreSQL con autenticazione del certificato SSL
+Ora che il certificato è stato decodificato correttamente, è possibile connettersi al server di database in modo protetto tramite SSL. Per consentire la verifica dei certificati server, il certificato deve essere posizionato nel file ~/.postgresql/root.crt nella directory home dell'utente. Su Microsoft Windows il file è denominato % APPDATA%\postgresql\root.crt. Di seguito vengono fornite le istruzioni per connettersi al Database di Azure per PostgreSQL.
 
 > [!NOTE]
-> Attualmente, è presente un problema noto se si utilizza "sslmode = verificare-full" in servizio, toohello connessione connessione hello avrà esito negativo con il seguente errore hello: _certificato server per "&lt;area&gt;. Control.database.Windows.NET"(e 7 altri nomi) non corrispondano il nome host"&lt;servername&gt;. postgres.database.azure.com "._
-> Se "sslmode = verificare-full" è necessario, utilizzare convenzione di denominazione hello  **&lt;servername&gt;. database.windows.net** come nome host di stringa di connessione. Prevediamo tooremove questa limitazione in hello future. Le connessioni che utilizzano altri [modalità SSL](https://www.postgresql.org/docs/9.6/static/libpq-ssl.html#LIBPQ-SSL-SSLMODE-STATEMENTS) deve continuare convenzione di denominazione host hello preferito toouse  **&lt;servername&gt;. postgres.database.azure.com**.
+> Attualmente si verifica un problema noto se si usa "sslmode = verify-full" nella connessione al servizio, ovvero la connessione avrà esito negativo con un errore indicante che il _certificato del server per "&lt;area&gt;.control.database.windows.net" (e 7 altri nomi) non corrisponde al nome host "&lt;servername&gt;.postgres.database.azure.com"._
+> Se è obbligatorio usare la modalità "sslmode=verify-full", usare la convenzione di denominazione server  **&lt;nomeserver&gt;.database.windows.net** come nome host della stringa di connessione. In futuro questa limitazione verrà rimossa. Le connessioni che usano altre [modalità SSL](https://www.postgresql.org/docs/9.6/static/libpq-ssl.html#LIBPQ-SSL-SSLMODE-STATEMENTS) devono continuare a usare la convenzione di denominazione host preferita  **&lt;nomeserver&gt;.postgres.database.azure.com**.
 
 #### <a name="using-psql-command-line-utility"></a>Uso dell'utilità della riga di comando PSQL
-Hello di esempio seguente vengono illustrate le modalità di connessione tooyour PostgreSQL server utilizzando l'utilità della riga di comando di hello psql toosuccessfully. Hello utilizzare `root.crt` file creato e hello `sslmode=verify-ca` o `sslmode=verify-full` opzione.
+L'esempio seguente illustra come connettersi al server PostgreSQL tramite l'utilità della riga di comando PSQL. Usare il file `root.crt` creato e `sslmode=verify-ca` o l'opzione `sslmode=verify-full`.
 
-Utilizzando l'interfaccia della riga di comando di hello PostgreSQL, eseguire hello comando seguente:
+Usando l'interfaccia della riga di comando di PostgreSQL, eseguire il comando seguente:
 ```bash
 psql "sslmode=verify-ca sslrootcert=root.crt host=mypgserver-20170401.postgres.database.azure.com dbname=postgres user=mylogin@mypgserver-20170401"
 ```
-Se ha esito positivo, verrà visualizzato hello seguente output:
+Se l'operazione va a buon fine, si dovrebbe ottenere l'output seguente:
 ```bash
 Password for user mylogin@mypgserver-20170401:
 psql (9.6.2)
@@ -136,7 +136,7 @@ postgres=>
 ```
 
 #### <a name="using-pgadmin-gui-tool"></a>Uso dello strumento GUI pgAdmin
-Per configurare tooconnect pgAdmin 4 in modo sicuro tramite SSL è necessario hello tooset `SSL mode = Verify-CA` o `SSL mode = Verify-Full` come indicato di seguito:
+La configurazione di pgAdmin 4 per connettersi in modo sicuro tramite SSL richiede l'impostazione di `SSL mode = Verify-CA` o `SSL mode = Verify-Full` nel modo indicato di seguito:
 
 ![Schermata di pgAdmin - connessione - modalità SSL richiesta](./media/concepts-ssl-connection-security/2-pgadmin-ssl.png)
 

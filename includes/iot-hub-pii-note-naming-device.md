@@ -1,3 +1,3 @@
 > [!IMPORTANT]
-> dispositivo Hello ID potrebbe essere visibile nei log hello raccolti per il supporto tecnico e risoluzione dei problemi, quindi è opportuno assicurarsi che tooavoid le informazioni riservate durante l'assegnazione di un nome.
+> L'ID dispositivo può essere visibile nei log raccolti per il supporto tecnico e la risoluzione dei problemi, quindi evitare di indicare informazioni riservate nell'assegnazione del nome.
 >

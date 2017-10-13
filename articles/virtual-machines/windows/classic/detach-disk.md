@@ -1,6 +1,6 @@
 ---
-title: un disco da una macchina virtuale Windows aaaDetach | Documenti Microsoft
-description: Informazioni su un disco da una macchina virtuale in Azure utilizzando il modello di distribuzione classica hello toodetach.
+title: Scollegare un disco dati da una macchina virtuale di Windows | Microsoft Docs
+description: Informazioni su come scollegare un disco da una macchina virtuale in Azure utilizzando il modello di distribuzione classico.
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -15,19 +15,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/24/2017
 ms.author: cynthn
-ms.openlocfilehash: 6f4fda46b13ec83aed6051dd3c6459a9979de131
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 650c7e10150b95a6ad7cd455746f7c1d77b9b34c
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="how-toodetach-a-disk-from-a-windows-virtual-machine"></a>Come toodetach un disco da una macchina virtuale Windows
+# <a name="how-to-detach-a-disk-from-a-windows-virtual-machine"></a>Come scollegare un disco dati da una macchina virtuale di Windows
 > [!IMPORTANT]
-> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Resource Manager o la distribuzione classica](../../../resource-manager-deployment-model.md). In questo articolo viene illustrato l'utilizzo del modello di distribuzione classica hello. Si consiglia di utilizzano il modello di gestione risorse hello più nuove distribuzioni. Per informazioni su come un disco tramite toodetach hello Gestione risorse del modello, vedere [qui](../../virtual-machines-windows-detach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Resource Manager o la distribuzione classica](../../../resource-manager-deployment-model.md). Questo articolo illustra l'uso del modello di distribuzione classica. Microsoft consiglia di usare il modello di Gestione risorse per le distribuzioni più recenti. Per informazioni sullo scollegamento di un disco usando il modello di Resource Manager, vedere [qui](../../virtual-machines-windows-detach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
 [!INCLUDE [howto-detach-disk-windows-linux](../../../../includes/howto-detach-disk-windows-linux.md)]
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 [Informazioni sui dischi e sui dischi rigidi virtuali per le macchine virtuali](../about-disks-and-vhds.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
-[Come un tipo di dati tooattach disco tooa macchina virtuale di Windows](attach-disk.md)
+[Come collegare un disco dati a una macchina virtuale Windows](attach-disk.md)

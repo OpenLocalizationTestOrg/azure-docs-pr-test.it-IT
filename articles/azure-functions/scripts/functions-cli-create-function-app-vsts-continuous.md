@@ -1,5 +1,5 @@
 ---
-title: aaaCreate un'App di funzione e distribuire codice della funzione da Visual Studio Team Services | Documenti Microsoft
+title: Creare un'app per le funzioni e distribuire codice di funzione da Visual Studio Team Services | Documentazione Microsoft
 description: Creare un'app per le funzioni e distribuire codice di funzione da Visual Studio Team Services
 services: functions
 keywords: 
@@ -9,15 +9,15 @@ ms.date: 04/28/2017
 ms.topic: sample
 ms.service: functions
 ms.custom: mvc
-ms.openlocfilehash: 774bee73025cc9ac46f8b2a6c10edbfa3c2d353b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5851b5219b6e25a5a2b005fc3d3c3b44d98ed746
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-an-app-service"></a>Creare un servizio app
 
-In questo scenario si apprenderà come un'app in funzione usando toocreate hello [piano il consumo](../functions-scale.md#consumption-plan) con le relative risorse correlate e distribuisce continuamente il codice della funzione da un repository di Visual Studio Team Services (VSTS). In questo esempio sono necessari gli elementi seguenti:
+In questo scenario si apprenderà come creare un'app per le funzioni usando il [piano a consumo](../functions-scale.md#consumption-plan) con le risorse correlate e come distribuire in modo continuo il codice di funzione da un archivio di Visual Studio Team Services (VSTS). In questo esempio sono necessari gli elementi seguenti:
 
 * Archivio VSTS contenente il codice di funzione per il quale si hanno autorizzazioni amministrative.
 * [Token di accesso personale](https://help.github.com/articles/creating-an-access-token-for-command-line-use) per il proprio account GitHub.
@@ -26,7 +26,7 @@ In questo scenario si apprenderà come un'app in funzione usando toocreate hello
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Se si sceglie tooinstall e utilizza hello CLI in locale, in questo argomento è necessario che si esegue hello Azure CLI versione 2.0 o versione successiva. Eseguire `az --version` versione hello toofind. Se è necessario tooinstall o l'aggiornamento, vedere [installare Azure CLI 2.0]( /cli/azure/install-azure-cli). 
+Se si sceglie di installare e usare l'interfaccia della riga di comando in locale, per questo argomento è necessario eseguire la versione 2.0 o successiva dell'interfaccia della riga di comando di Azure. Eseguire `az --version` per trovare la versione. Se è necessario eseguire l'installazione o l'aggiornamento, vedere [Installare l'interfaccia della riga di comando di Azure 2.0]( /cli/azure/install-azure-cli). 
 
 ## <a name="sample-script"></a>Script di esempio
 
@@ -38,17 +38,17 @@ Questo esempio crea un'app per le funzioni di Azure e distribuisce il codice di 
 
 ## <a name="script-explanation"></a>Spiegazione dello script
 
-Questo script utilizza hello seguenti comandi toocreate un gruppo di risorse, app web, documentdb e tutte le relative risorse. Ogni comando in documentazione specifica toocommand hello tabella collegamenti.
+Questo script usa i comandi seguenti per creare un gruppo di risorse, l'App Web, il DocumentDB e tutte le risorse correlate. Ogni comando della tabella include collegamenti alla documentazione specifica del comando.
 
 | Comando | Note |
 |---|---|
-| [az group create](https://docs.microsoft.com/cli/azure/group#create) | Consente di creare un gruppo di risorse in cui sono archiviate tutte le risorse. |
-| [az storage account create](https://docs.microsoft.com/cli/azure/appservice/plan#create) | Consente di creare un piano di servizio app. |
-| [az functionapp create](https://docs.microsoft.com/cli/azure/appservice/web#delete) |
-| [az appservice web source-control config](https://docs.microsoft.com/cli/azure/appservice/web/source-control#config) | Associa un'app per le funzioni con un archivio Git o Mercurial. |
+| [az group create](https://docs.microsoft.com/cli/azure/group#az_group_create) | Consente di creare un gruppo di risorse in cui sono archiviate tutte le risorse. |
+| [az storage account create](https://docs.microsoft.com/cli/azure/appservice/plan#az_appservice_plan_create) | Consente di creare un piano di servizio app. |
+| [az functionapp create](https://docs.microsoft.com/cli/azure/appservice/web#az_appservice_web_delete) |
+| [az appservice web source-control config](https://docs.microsoft.com/cli/azure/appservice/web/source-control#az_appservice_web_source_control_config) | Associa un'app per le funzioni con un archivio Git o Mercurial. |
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per ulteriori informazioni su hello CLI di Azure, vedere [documentazione CLI di Azure](https://docs.microsoft.com/cli/azure/overview).
+Per altre informazioni sull'interfaccia della riga di comando di Azure, vedere la [documentazione sull'interfaccia della riga di comando di Azure](https://docs.microsoft.com/cli/azure/overview).
 
-Ulteriori esempi di script di Azure funzioni CLI sono reperibile in hello [documentazione di Azure funzioni](../functions-cli-samples.md).
+Altri esempi di script dell'interfaccia della riga di comando di Funzioni di Azure sono disponibili nella [documentazione di Funzioni di Azure](../functions-cli-samples.md).

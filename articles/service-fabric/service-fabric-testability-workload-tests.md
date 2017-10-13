@@ -1,6 +1,6 @@
 ---
-title: errori aaaSimulate in Azure microservizi | Documenti Microsoft
-description: Come tooharden i servizi in caso di errori normale e anomali.
+title: Simulare errori nei microservizi di Azure | Documentazione Microsoft
+description: Come proteggere i servizi in caso di errori normali e anomali
 services: service-fabric
 documentationcenter: .net
 author: anmolah
@@ -14,27 +14,27 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/15/2017
 ms.author: anmola
-ms.openlocfilehash: 05467e291dfc0f12a021955f8ea540881ec10746
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7ec671c23e101d0f7401bd4656fb201111602cad
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="simulate-failures-during-service-workloads"></a>Simulare gli errori durante i carichi di lavoro del servizio
-scenari di testabilità Hello in Azure Service Fabric consentono agli sviluppatori toonot preoccupare di gestione di errori di singoli. Tuttavia, sono disponibili scenari in cui potrebbe essere necessaria un'interfoliazione esplicita del carico di lavoro client e degli errori. Hello interfoliazione di errori e di carico di lavoro client garantisce che il servizio hello sta effettivamente eseguendo un'azione quando si verifica un errore. Dato il livello di hello del controllo che fornisce la testabilità, questi potrebbero essere in punti precisi dell'esecuzione del carico di lavoro hello. Questo induzione degli errori in stati diversi in un'applicazione hello può individuare i bug e migliorare la qualità.
+Gli scenari di testabilità in Service Fabric di Azure consentono agli sviluppatori di non preoccuparsi della gestione dei singoli errori. Tuttavia, sono disponibili scenari in cui potrebbe essere necessaria un'interfoliazione esplicita del carico di lavoro client e degli errori. L'interfoliazione del carico di lavoro client e degli errori garantisce che il servizio stia effettivamente eseguendo un’azione quando si verifica un errore. Dato il livello di controllo fornito dalla testabilità, questi errori potrebbero verificarsi in momenti precisi dell'esecuzione del carico di lavoro. L’induzione degli errori in stati diversi nell'applicazione può consentire di individuare bug e migliorare la qualità.
 
 ## <a name="sample-custom-scenario"></a>Esempio di scenario personalizzato
-Questo test viene illustrato uno scenario che esegue l'interfoliazione hello business del carico di lavoro con [errori normale e anomali](service-fabric-testability-actions.md#graceful-vs-ungraceful-fault-actions). devono essere provocati errori Hello interno hello delle operazioni del servizio o di calcolo per ottenere risultati ottimali.
+In questo test viene illustrato uno scenario in cui si verifica l'interfoliazione del carico di lavoro di business con [errori normali e anomali](service-fabric-testability-actions.md#graceful-vs-ungraceful-fault-actions). Per ottenere risultati ottimali, gli errori devono essere indotti nel corso delle operazioni del servizio o del calcolo.
 
-Verrà ora esaminato un esempio di un servizio che espone quattro carichi di lavoro: A, B, C e D. ogni corrisponde tooa set di flussi di lavoro e potrebbe essere di calcolo, archiviazione o una combinazione. Per i migliori risultati hello di semplicità, si verrà astratta carichi di lavoro hello in questo esempio. errori di diversi Hello eseguiti in questo esempio sono:
+Esaminiamo in dettaglio un esempio di servizio che espone quattro carichi di lavoro: A, B, C e D. Ognuno corrisponde a un insieme di flussi di lavoro e potrebbe essere calcolo, archiviazione o una combinazione. Per ragioni di semplicità, nel nostro esempio verranno estrapolati i carichi di lavoro. I diversi errori eseguiti in questo esempio sono:
 
-* RestartNode: Errore anomali toosimulate una macchina riavviare.
-* RestartDeployedCodePackage: Processo host del servizio errore anomali toosimulate arresti anomali.
-* RemoveReplica: Rimozione di replica errore normale toosimulate.
-* MovePrimary: Replica toosimulate errore normale Sposta attivate dal servizio di bilanciamento del carico hello Service Fabric.
+* RestartNode: errore anomalo per simulare un riavvio del computer.
+* RestartDeployedCodePackage: errore anomalo per simulare arresti anomali del processo host del servizio.
+* RemoveReplica: errore normale per simulare la rimozione della replica.
+* MovePrimary: errore normale per simulare gli spostamenti della replica attivati dal servizio di bilanciamento del carico di Service Fabric.
 
 ```csharp
-// Add a reference tooSystem.Fabric.Testability.dll and System.Fabric.dll.
+// Add a reference to System.Fabric.Testability.dll and System.Fabric.dll.
 
 using System;
 using System.Fabric;
@@ -46,7 +46,7 @@ class Test
 {
     public static int Main(string[] args)
     {
-        // Replace these strings with hello actual version for your cluster and application.
+        // Replace these strings with the actual version for your cluster and application.
         string clusterConnection = "localhost:19000";
         Uri applicationName = new Uri("fabric:/samples/PersistentToDoListApp");
         Uri serviceName = new Uri("fabric:/samples/PersistentToDoListApp/PersistentToDoListService");
@@ -93,31 +93,31 @@ class Test
     {
         // Create FabricClient with connection and security information here.
         FabricClient fabricClient = new FabricClient(clusterConnection);
-        // Maximum time toowait for a service toostabilize.
+        // Maximum time to wait for a service to stabilize.
         TimeSpan maxServiceStabilizationTime = TimeSpan.FromSeconds(120);
 
-        // How many loops of faults you want tooexecute.
+        // How many loops of faults you want to execute.
         uint testLoopCount = 20;
         Random random = new Random();
 
         for (var i = 0; i < testLoopCount; ++i)
         {
             var workload = SelectRandomValue<ServiceWorkloads>(random);
-            // Start hello workload.
+            // Start the workload.
             var workloadTask = RunWorkloadAsync(workload);
 
-            // While hello task is running, induce faults into hello service. They can be ungraceful faults like
+            // While the task is running, induce faults into the service. They can be ungraceful faults like
             // RestartNode and RestartDeployedCodePackage or graceful faults like RemoveReplica or MovePrimary.
             var fault = SelectRandomValue<ServiceFabricFaults>(random);
 
-            // Create a replica selector, which will select a primary replica from hello given service tootest.
+            // Create a replica selector, which will select a primary replica from the given service to test.
             var replicaSelector = ReplicaSelector.PrimaryOf(PartitionSelector.RandomOf(serviceName));
-            // Run hello selected random fault.
+            // Run the selected random fault.
             await RunFaultAsync(applicationName, fault, replicaSelector, fabricClient);
-            // Validate hello health and stability of hello service.
+            // Validate the health and stability of the service.
             await fabricClient.ServiceManager.ValidateServiceAsync(serviceName, maxServiceStabilizationTime);
 
-            // Wait for hello workload toofinish successfully.
+            // Wait for the workload to finish successfully.
             await workloadTask;
         }
     }
@@ -145,9 +145,9 @@ class Test
     {
         throw new NotImplementedException();
         // This is where you trigger and complete your service workload.
-        // Note that hello faults induced while your service workload is running will
-        // fault hello primary service. Hence, you will need tooreconnect toocomplete or check
-        // hello status of hello workload.
+        // Note that the faults induced while your service workload is running will
+        // fault the primary service. Hence, you will need to reconnect to complete or check
+        // the status of the workload.
     }
 
     private static T SelectRandomValue<T>(Random random)

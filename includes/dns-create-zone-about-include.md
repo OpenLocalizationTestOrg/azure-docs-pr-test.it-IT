@@ -1,14 +1,14 @@
-Una zona DNS è utilizzato toohost hello DNS record per un particolare dominio. toostart hosting del dominio DNS di Azure, è necessario toocreate una zona DNS per il nome di dominio. Ogni record DNS per il dominio viene quindi creato all'interno di questa zona DNS.
+Una zona DNS viene usata per ospitare i record DNS per un particolare dominio. Per iniziare a ospitare il dominio in DNS di Azure, è necessario creare una zona DNS per il nome di dominio. Ogni record DNS per il dominio viene quindi creato all'interno di questa zona DNS.
 
-Ad esempio, hello dominio 'contoso.com' può contenere più record DNS, ad esempio 'mail.contoso.com' (per un server di posta elettronica) e 'www.contoso.com' (per un sito web).
+Il dominio "contoso.com", ad esempio, può contenere diversi record DNS, come "mail.contoso.com" (per un server di posta) e "www.contoso.com" (per un sito Web).
 
 Creazione di una zona DNS in DNS di Azure:
 
-* nome Hello della zona hello deve essere univoco nel gruppo di risorse hello e zona hello non deve esistere già. Hello in caso contrario, l'operazione ha esito negativo.
-* Hello stesso nome della zona può essere riutilizzata in un gruppo di risorse diverso o un'altra sottoscrizione di Azure.
-* In più aree di condividano hello stesso nome, ogni istanza viene assegnato indirizzi server dei nomi diversi. Un solo set di indirizzi può essere configurato con nome di dominio di hello.
+* Il nome della zona deve essere univoco all'interno del gruppo di risorse e la zona non deve esistere già, altrimenti l'operazione non riesce.
+* Lo stesso nome di zona può essere usato di nuovo in un gruppo di risorse diverso o in un'altra sottoscrizione di Azure.
+* Se più zone condividono lo stesso nome, a ogni istanza vengono assegnati indirizzi di server dei nomi diversi. È possibile configurare solo un set di indirizzi con il registrar.
 
 > [!NOTE]
-> Non si dispone tooown un toocreate di nome di dominio una zona DNS con lo stesso nome di dominio in DNS di Azure. Tuttavia, è necessario tooown hello dominio tooconfigure hello Azure server dei nomi DNS come server dei nomi corretto per il nome di dominio hello con nome di dominio di hello hello.
+> Non è necessario essere proprietari di un dominio per creare una zona DNS con questo nome di dominio in DNS di Azure, ma è necessario essere proprietari del dominio per configurare i server dei nomi DNS di Azure come server dei nomi corretti per il nome di dominio con il registrar.
 > 
-> Per ulteriori informazioni, vedere [tooAzure un dominio DNS delegato](../articles/dns/dns-domain-delegation.md).
+> Per altre informazioni, vedere [Delegare un dominio a DNS di Azure](../articles/dns/dns-domain-delegation.md).

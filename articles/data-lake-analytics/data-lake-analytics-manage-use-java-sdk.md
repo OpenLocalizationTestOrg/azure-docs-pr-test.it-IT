@@ -1,6 +1,6 @@
 ---
-title: Azure Data Lake Analitica utilizzando Azure SDK per Java aaaManage | Documenti Microsoft
-description: Usare le applicazioni Azure Data Lake Analitica Java SDK toodevelop
+title: Gestire Azure Data Lake Analytics usando Java SDK di Azure | Microsoft Docs
+description: Usare l'SDK Java di Analisi Azure Data Lake per lo sviluppo di applicazioni
 services: data-lake-analytics
 documentationcenter: 
 author: matt1883
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/18/2017
 ms.author: saveenr
-ms.openlocfilehash: 79e5fa1bacd5fd65072a1c3c480482a8e51d94b6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 8a0c1c7aab89f3bb62d0eb9f42e8ac65309d617e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="manage--azure-data-lake-analytics-using-java-sdk"></a>Gestire Azure Data Lake Analytics usando Java SDK
 
@@ -26,17 +26,17 @@ In questa esercitazione verrà sviluppata un'applicazione console Java che esegu
 
 ## <a name="prerequisites"></a>Prerequisiti
 * **Java Development Kit (JDK) 8** con Java versione 1.8.
-* **IntelliJ** o un altro ambiente di sviluppo Java adatto. istruzioni di Hello in questo documento usano IntelliJ.
-* Creare un'applicazione Azure Active Directory (AAD) e recuperarne **ID client**, **ID tenant** e **chiave**. Per ulteriori informazioni sulle applicazioni di Azure ad e istruzioni su come tooget un ID client, vedere [applicazione creare Active Directory e l'entità servizio utilizzando portale](../azure-resource-manager/resource-group-create-service-principal-portal.md). URI di Reply Hello e la chiave è disponibile dal portale hello dopo aver creato un'applicazione hello e chiave generata.
+* **IntelliJ** o un altro ambiente di sviluppo Java adatto. Le istruzioni in questo documento sono relative a IntelliJ.
+* Creare un'applicazione Azure Active Directory (AAD) e recuperarne **ID client**, **ID tenant** e **chiave**. Per altre informazioni sulle applicazioni AAD e le istruzioni su come ottenere un ID client, vedere [Usare il portale per creare un'applicazione di Active Directory che acceda alle risorse](../azure-resource-manager/resource-group-create-service-principal-portal.md). Dopo aver creato l'applicazione e generato la chiave, anche l'URI di risposta e la chiave saranno disponibili dal portale.
 
 ## <a name="authenticating-using-azure-active-directory"></a>Autenticazione tramite Azure Active Directory
 
-fornisce il seguente frammento di codice per codice Hello **interattivo** l'autenticazione, in cui un'applicazione hello fornisce le proprie credenziali.
+Il frammento di codice seguente contiene il codice per l'autenticazione **non interattiva**, in cui l'applicazione fornisce le proprie credenziali.
 
 ## <a name="create-a-java-application"></a>Creare un'applicazione Java
-1. Aprire IntelliJ e creare un progetto Java utilizzando hello **della riga di comando App** modello.
-2. Fare clic sul progetto hello sul lato sinistro di hello dello schermo e fare clic su **aggiungere supporto per Framework**. Scegliere **Maven** e fare clic su **OK**.
-3. Aprire hello appena creato **"pom.xml"** file e aggiungere hello seguente frammento di testo tra hello  **\</version >** tag e hello  **\< /progetto >** tag:
+1. Aprire IntelliJ e creare un progetto Java usando il modello **Command Line App**.
+2. Fare clic con il pulsante destro del mouse sul progetto sulla sinistra dello schermo e fare clic su **Add Framework Support**(Aggiungi supporto framework). Scegliere **Maven** e fare clic su **OK**.
+3. Aprire il file **"pom.xml"** appena creato e aggiungere il frammento di testo seguente tra il tag **\</version>** e il tag **\</project>**:
 
 ```
 <repositories>
@@ -89,9 +89,9 @@ fornisce il seguente frammento di codice per codice Hello **interattivo** l'aute
 </dependencies>
 ```
 
-Andare troppo**File > Impostazioni > compilare > esecuzione > distribuzione**. Selezionare **Build Tools (Strumenti di compilazione) > Maven > Importing (Importazione)**. Selezionare **Import Maven projects automatically**(Importa automaticamente progetti Maven).
+Passare a **File > Settings (Impostazioni) > Build (Compilazione) > Execution (Esecuzione) > Deployment (Distribuzione)**. Selezionare **Build Tools (Strumenti di compilazione) > Maven > Importing (Importazione)**. Selezionare **Import Maven projects automatically**(Importa automaticamente progetti Maven).
 
-Aprire `Main.java` e sostituire hello blocco di codice esistente con hello seguente frammento di codice:
+Aprire `Main.java` e sostituire il blocco di codice esistente con il frammento di codice seguente:
 
 ```
 package com.company;
@@ -175,10 +175,10 @@ public class Main {
         WaitForNewline("File created.", "Submitting a job.");
 
         // ----------------------------------------
-        // Submit a job tooData Lake Analytics
+        // Submit a job to Data Lake Analytics
         // ----------------------------------------
 
-string script = "@input =  EXTRACT Data string FROM \"/input1.csv\" USING Extractors.Csv(); OUTPUT @input too@\"/output1.csv\" USING Outputters.Csv();", "testJob";
+string script = "@input =  EXTRACT Data string FROM \"/input1.csv\" USING Extractors.Csv(); OUTPUT @input TO @\"/output1.csv\" USING Outputters.Csv();", "testJob";
         UUID jobId = SubmitJobByScript(script);
         WaitForNewline("Job submitted.", "Getting job status.");
 
@@ -201,13 +201,13 @@ string script = "@input =  EXTRACT Data string FROM \"/input1.csv\" USING Extrac
 }
 ```
 
-Specificare i valori hello per i parametri indicati nel frammento di codice hello:
+Fornire i valori per i parametri indicati nel frammento di codice:
 * `localFolderPath`
 * `_adlaAccountName`
 * `_adlsAccountName`
 * `_resourceGroupName`
 
-Sostituire il segnaposto hello per:
+Sostituire i segnaposto per:
 * `CLIENT-ID`,
 * `CLIENT-SECRET`,
 * `TENANT-ID`
@@ -239,7 +239,7 @@ public static void WaitForNewline(String reason, String nextAction)
     if (nextAction == null)
         nextAction = "";
 
-    System.out.println(reason + "\r\nPress ENTER toocontinue...");
+    System.out.println(reason + "\r\nPress ENTER to continue...");
     try{System.in.read();}
     catch(Exception e){}
 
@@ -379,6 +379,6 @@ public static String GetJobStatus(UUID jobId) throws IOException, CloudException
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* toolearn U-SQL, vedere [Guida introduttiva di Azure Data Lake Analitica U-SQL language](data-lake-analytics-u-sql-get-started.md), e [riferimenti al linguaggio U-SQL](http://go.microsoft.com/fwlink/?LinkId=691348).
+* Per informazioni su U-SQL, vedere [Introduzione al linguaggio U-SQL di Azure Data Lake Analytics](data-lake-analytics-u-sql-get-started.md) e [U-SQL language reference](http://go.microsoft.com/fwlink/?LinkId=691348) (Riferimenti al linguaggio U-SQL).
 * Per informazioni sulle attività di gestione, vedere [Gestire Azure Data Lake Analytics tramite il portale di Azure](data-lake-analytics-manage-use-portal.md).
-* tooget una panoramica del Data Lake Analitica, vedere [Panoramica di Azure Data Lake Analitica](data-lake-analytics-overview.md).
+* Per una panoramica su Analisi Data Lake, vedere [Panoramica di Analisi Data Lake di Azure](data-lake-analytics-overview.md).

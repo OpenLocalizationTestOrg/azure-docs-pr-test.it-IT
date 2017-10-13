@@ -1,5 +1,5 @@
 ---
-title: Schema di configurazione di diagnostica 1.0 aaaAzure | Documenti Microsoft
+title: Schema di configurazione di Diagnostica di Azure 1.0 | Documentazione Microsoft
 description: "Utile SOLO se si usa Azure SDK 2.4 e versioni precedenti con le macchine virtuali di Azure, il set di scalabilità di macchine virtuali, Service Fabric o servizi Cloud."
 services: monitoring-and-diagnostics
 documentationcenter: .net
@@ -14,28 +14,28 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 05/15/2017
 ms.author: robb
-ms.openlocfilehash: bdd2b26217d6ea28f19e651ab429e7e7401ff57b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a8fdfb52d5091d3fc9779657737c7430fcfada51
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-diagnostics-10-configuration-schema"></a>Schema di configurazione di Diagnostica di Azure 1.0
 > [!NOTE]
-> Diagnostica di Azure è contatori delle prestazioni toocollect componente utilizzato hello e altre statistiche da macchine virtuali di Azure, il set di scalabilità di macchine virtuali, Service Fabric e servizi Cloud.  Questa pagina è utile solo se si usa uno di questi servizi.
+> Diagnostica di Azure è il componente usato per raccogliere i contatori delle prestazioni e altre statistiche da Macchine virtuali, set di scalabilità di macchine virtuali, Service Fabric e Servizi cloud di Azure.  Questa pagina è utile solo se si usa uno di questi servizi.
 >
 
 Lo strumento Diagnostica di Azure viene usato con altri prodotti di diagnostica Microsoft, quali Monitoraggio di Azure, Application Insights e Log Analytics.
 
-file di configurazione di diagnostica Azure Hello definisce i valori vengono utilizzati tooinitialize hello Monitor di diagnostica. Questo file è tooinitialize utilizzate le impostazioni di configurazione quando si avvia il monitoraggio di diagnostica hello.  
+Il file di configurazione di Diagnostica di Azure definisce i valori usati per inizializzare il monitor di diagnostica. Il file viene usato per inizializzare le impostazioni di diagnostica quando viene avviato il monitor di diagnostica.  
 
- Per impostazione predefinita, i file dello schema di configurazione diagnostica di Azure di hello è toohello installato `C:\Program Files\Microsoft SDKs\Azure\.NET SDK\<version>\schemas` directory. Sostituire `<version>` con la versione di hello installato di hello [Azure SDK](http://www.windowsazure.com/develop/downloads/).  
+ Per impostazione predefinita, il file dello schema di configurazione di Diagnostica di Azure viene installato nella directory `C:\Program Files\Microsoft SDKs\Azure\.NET SDK\<version>\schemas`. Sostituire `<version>` con la versione installata di [Azure SDK](http://www.windowsazure.com/develop/downloads/).  
 
 > [!NOTE]
->  file di configurazione della diagnostica Hello viene in genere utilizzata con le attività di avvio che richiedono toobe dati di diagnostica raccolti in precedenza nel processo di avvio hello. Per altre informazioni sull'uso di Diagnostica di Azure, vedere [Raccogliere dati di registrazione usando Diagnostica di Azure](assetId:///83a91c23-5ca2-4fc9-8df3-62036c37a3d7).  
+>  Il file di configurazione della diagnostica viene generalmente usato con le attività di avvio che richiedono la raccolta dei dati di diagnostica in una fase precedente del processo di avvio. Per altre informazioni sull'uso di Diagnostica di Azure, vedere [Raccogliere dati di registrazione usando Diagnostica di Azure](assetId:///83a91c23-5ca2-4fc9-8df3-62036c37a3d7).  
 
-## <a name="example-of-hello-diagnostics-configuration-file"></a>Esempio di file di configurazione della diagnostica hello  
- Hello di esempio seguente viene illustrato un tipico file di configurazione:  
+## <a name="example-of-the-diagnostics-configuration-file"></a>Esempio del file di configurazione della diagnostica  
+ L'esempio seguente illustra un tipico file di configurazione della diagnostica:  
 
 ```xml  
 <?xml version="1.0" encoding="utf-8"?>
@@ -52,28 +52,28 @@ file di configurazione di diagnostica Azure Hello definisce i valori vengono uti
    <Directories bufferQuotaInMB="1024"   
       scheduledTransferPeriod="PT1M">  
 
-      <!-- These three elements specify hello special directories   
-           that are set up for hello log types -->  
+      <!-- These three elements specify the special directories   
+           that are set up for the log types -->  
       <CrashDumps container="wad-crash-dumps" directoryQuotaInMB="256" />  
       <FailedRequestLogs container="wad-frq" directoryQuotaInMB="256" />  
       <IISLogs container="wad-iis" directoryQuotaInMB="256" />  
 
-      <!-- For regular directories hello DataSources element is used -->  
+      <!-- For regular directories the DataSources element is used -->  
       <DataSources>  
          <DirectoryConfiguration container="wad-panther" directoryQuotaInMB="128">  
             <!-- Absolute specifies an absolute path with optional environment expansion -->  
             <Absolute expandEnvironment="true" path="%SystemRoot%\system32\sysprep\Panther" />  
          </DirectoryConfiguration>  
          <DirectoryConfiguration container="wad-custom" directoryQuotaInMB="128">  
-            <!-- LocalResource specifies a path relative tooa local   
-                 resource defined in hello service definition -->  
+            <!-- LocalResource specifies a path relative to a local   
+                 resource defined in the service definition -->  
             <LocalResource name="MyLoggingLocalResource" relativePath="logs" />  
          </DirectoryConfiguration>  
       </DataSources>  
    </Directories>  
 
    <PerformanceCounters bufferQuotaInMB="512" scheduledTransferPeriod="PT1M">  
-      <!-- hello counter specifier is in hello same format as hello imperative   
+      <!-- The counter specifier is in the same format as the imperative   
            diagnostics configuration API -->  
       <PerformanceCounterConfiguration   
          counterSpecifier="\Processor(_Total)\% Processor Time" sampleRate="PT5S" />  
@@ -82,7 +82,7 @@ file di configurazione di diagnostica Azure Hello definisce i valori vengono uti
    <WindowsEventLog bufferQuotaInMB="512"  
       scheduledTransferLogLevelFilter="Verbose"  
       scheduledTransferPeriod="PT1M">  
-      <!-- hello event log name is in hello same format as hello imperative   
+      <!-- The event log name is in the same format as the imperative   
            diagnostics configuration API -->  
       <DataSource name="System!*" />  
    </WindowsEventLog>  
@@ -90,28 +90,28 @@ file di configurazione di diagnostica Azure Hello definisce i valori vengono uti
 ```  
 
 ## <a name="diagnosticsconfiguration-namespace"></a>Spazio dei nomi DiagnosticsConfiguration  
- spazio dei nomi XML Hello per file di configurazione di diagnostica hello è:  
+ Lo spazio dei nomi XML per il file di configurazione della diagnostica è il seguente:  
 
 ```  
 http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration  
 ```  
 
 ## <a name="schema-elements"></a>Elementi dello schema  
- file di configurazione della diagnostica Hello include hello seguenti elementi.
+ Il file di configurazione della diagnostica include gli elementi seguenti.
 
 
 ## <a name="diagnosticmonitorconfiguration-element"></a>Elemento DiagnosticMonitorConfiguration  
-elemento di primo livello Hello hello diagnostica del file di configurazione.  
+Elemento di livello superiore del file di configurazione della diagnostica.  
 
 Attributi:
 
 |Attributo  |Type   |Obbligatorio| Default | Descrizione|  
 |-----------|-------|--------|---------|------------|  
-|**configurationChangePollInterval**|duration|Facoltativo | PT1M| Specifica l'intervallo hello in cui viene eseguito il polling monitor di diagnostica hello per le modifiche di configurazione di diagnostica.|  
-|**overallQuotaInMB**|unsignedInt|Facoltativo| 4000 MB. Se si specifica un valore, non deve superare la quantità |quantità totale di Hello di archiviazione nel file system allocato per tutti i buffer di registrazione.|  
+|**configurationChangePollInterval**|duration|Facoltativo | PT1M| Specifica l'intervallo con cui il monitor di diagnostica esegue il polling per le modifiche della configurazione di diagnostica.|  
+|**overallQuotaInMB**|unsignedInt|Facoltativo| 4000 MB. Se si specifica un valore, non deve superare la quantità |Spazio totale di archiviazione del file system allocato per tutti i buffer di registrazione.|  
 
 ## <a name="diagnosticinfrastructurelogs-element"></a>Elemento DiagnosticInfrastructureLogs  
-Definisce una configurazione del buffer hello per i log hello generati dall'infrastruttura diagnostica sottostante hello.
+Definisce la configurazione del buffer per i log generati dall'infrastruttura di diagnostica sottostante.
 
 Elemento padre: [elemento DiagnosticMonitorConfiguration](#DiagnosticMonitorConfiguration).  
 
@@ -119,12 +119,12 @@ Attributi:
 
 |Attributo|Tipo|Descrizione|  
 |---------|----|-----------------|  
-|**bufferQuotaInMB**|unsignedInt|Facoltativo. Specifica hello quantità massima di archiviazione nel file system disponibile per hello specificato dati.<br /><br /> valore predefinito di Hello è 0.|  
-|**scheduledTransferLogLevelFilter**|string|Facoltativo. Specifica il livello minimo di gravità hello per le voci di log che vengono trasferiti. valore predefinito di Hello è **Undefined**. Altri valori possibili sono **Dettagli**, **Informazioni**, **Avviso**, **Errore** e **Critico**.|  
-|**scheduledTransferPeriod**|duration|Facoltativo. Specifica l'intervallo di hello tra i trasferimenti pianificati dei dati, arrotondati per eccesso toohello più vicino al minuto.<br /><br /> valore predefinito di Hello è PT0S.|  
+|**bufferQuotaInMB**|unsignedInt|Facoltativa. Specifica lo spazio massimo di archiviazione del file system disponibile per i dati specificati.<br /><br /> Il valore predefinito è 0.|  
+|**scheduledTransferLogLevelFilter**|string|Facoltativa. Specifica il livello di gravità minimo per le voci di log trasferite. Il valore predefinito è **Non definito**. Altri valori possibili sono **Dettagli**, **Informazioni**, **Avviso**, **Errore** e **Critico**.|  
+|**scheduledTransferPeriod**|duration|Facoltativa. Specifica l'intervallo tra trasferimenti di dati pianificati, arrotondato per eccesso al minuto più vicino.<br /><br /> Il valore predefinito è PT0S.|  
 
 ## <a name="logs-element"></a>Elemento Logs  
- Definisce una configurazione del buffer hello per i log di Azure di base.
+ Definisce la configurazione del buffer per i log di base di Azure.
 
  Elemento padre: [elemento DiagnosticMonitorConfiguration](#DiagnosticMonitorConfiguration).  
 
@@ -132,12 +132,12 @@ Attributi:
 
 |Attributo|Tipo|Descrizione|  
 |---------------|----------|-----------------|  
-|**bufferQuotaInMB**|unsignedInt|Facoltativo. Specifica hello quantità massima di archiviazione nel file system disponibile per hello specificato dati.<br /><br /> valore predefinito di Hello è 0.|  
-|**scheduledTransferLogLevelFilter**|string|Facoltativo. Specifica il livello minimo di gravità hello per le voci di log che vengono trasferiti. valore predefinito di Hello è **Undefined**. Altri valori possibili sono **Dettagli**, **Informazioni**, **Avviso**, **Errore** e **Critico**.|  
-|**scheduledTransferPeriod**|duration|Facoltativo. Specifica l'intervallo di hello tra i trasferimenti pianificati dei dati, arrotondati per eccesso toohello più vicino al minuto.<br /><br /> valore predefinito di Hello è PT0S.|  
+|**bufferQuotaInMB**|unsignedInt|Facoltativa. Specifica lo spazio massimo di archiviazione del file system disponibile per i dati specificati.<br /><br /> Il valore predefinito è 0.|  
+|**scheduledTransferLogLevelFilter**|string|Facoltativa. Specifica il livello di gravità minimo per le voci di log trasferite. Il valore predefinito è **Non definito**. Altri valori possibili sono **Dettagli**, **Informazioni**, **Avviso**, **Errore** e **Critico**.|  
+|**scheduledTransferPeriod**|duration|Facoltativa. Specifica l'intervallo tra trasferimenti di dati pianificati, arrotondato per eccesso al minuto più vicino.<br /><br /> Il valore predefinito è PT0S.|  
 
 ## <a name="directories-element"></a>Elemento Directories  
-Definisce la configurazione di hello buffer per i log basati su file che è possibile definire.
+Definisce la configurazione del buffer per i log basati su file che è possibile definire.
 
 Elemento padre: [elemento DiagnosticMonitorConfiguration](#DiagnosticMonitorConfiguration).  
 
@@ -146,11 +146,11 @@ Attributi:
 
 |Attributo|Tipo|Descrizione|  
 |---------------|----------|-----------------|  
-|**bufferQuotaInMB**|unsignedInt|Facoltativo. Specifica hello quantità massima di archiviazione nel file system disponibile per hello specificato dati.<br /><br /> valore predefinito di Hello è 0.|  
-|**scheduledTransferPeriod**|duration|Facoltativo. Specifica l'intervallo di hello tra i trasferimenti pianificati dei dati, arrotondati per eccesso toohello più vicino al minuto.<br /><br /> valore predefinito di Hello è PT0S.|  
+|**bufferQuotaInMB**|unsignedInt|Facoltativa. Specifica lo spazio massimo di archiviazione del file system disponibile per i dati specificati.<br /><br /> Il valore predefinito è 0.|  
+|**scheduledTransferPeriod**|duration|Facoltativa. Specifica l'intervallo tra trasferimenti di dati pianificati, arrotondato per eccesso al minuto più vicino.<br /><br /> Il valore predefinito è PT0S.|  
 
 ## <a name="crashdumps-element"></a>Elemento CrashDumps  
- Definisce hello directory dei dump di arresto anomalo del sistema.
+ Definisce la directory dei dump di arresto anomalo del sistema.
 
  Elemento padre: [elemento Directories](#Directories).  
 
@@ -158,11 +158,11 @@ Attributi:
 
 |Attributo|Tipo|Descrizione|  
 |---------------|----------|-----------------|  
-|**container**|string|nome Hello del contenitore di hello in cui il contenuto di hello della directory hello è toobe trasferiti.|  
-|**directoryQuotaInMB**|unsignedInt|Facoltativo. Specifica dimensioni massime di hello della directory hello in megabyte.<br /><br /> valore predefinito di Hello è 0.|  
+|**container**|string|Nome del contenitore in cui dovrà essere trasferito il contenuto della directory.|  
+|**directoryQuotaInMB**|unsignedInt|Facoltativa. Specifica le dimensioni massime della directory in MB.<br /><br /> Il valore predefinito è 0.|  
 
 ## <a name="failedrequestlogs-element"></a>Elemento FailedRequestLogs  
- Definisce hello directory dei log richieste non riuscite.
+ Definisce la directory dei log di richieste non riuscite.
 
  Elemento padre: [elemento Directories](#Directories).  
 
@@ -170,11 +170,11 @@ Attributi:
 
 |Attributo|Tipo|Descrizione|  
 |---------------|----------|-----------------|  
-|**container**|string|nome Hello del contenitore di hello in cui il contenuto di hello della directory hello è toobe trasferiti.|  
-|**directoryQuotaInMB**|unsignedInt|Facoltativo. Specifica dimensioni massime di hello della directory hello in megabyte.<br /><br /> valore predefinito di Hello è 0.|  
+|**container**|string|Nome del contenitore in cui dovrà essere trasferito il contenuto della directory.|  
+|**directoryQuotaInMB**|unsignedInt|Facoltativa. Specifica le dimensioni massime della directory in MB.<br /><br /> Il valore predefinito è 0.|  
 
 ##  <a name="iislogs-element"></a>Elemento IISLogs  
- Definisce hello directory dei log IIS.
+ Definisce la directory di log IIS.
 
  Elemento padre: [elemento Directories](#Directories).  
 
@@ -182,8 +182,8 @@ Attributi:
 
 |Attributo|Tipo|Descrizione|  
 |---------------|----------|-----------------|  
-|**container**|string|nome Hello del contenitore di hello in cui il contenuto di hello della directory hello è toobe trasferiti.|  
-|**directoryQuotaInMB**|unsignedInt|Facoltativo. Specifica dimensioni massime di hello della directory hello in megabyte.<br /><br /> valore predefinito di Hello è 0.|  
+|**container**|string|Nome del contenitore in cui dovrà essere trasferito il contenuto della directory.|  
+|**directoryQuotaInMB**|unsignedInt|Facoltativa. Specifica le dimensioni massime della directory in MB.<br /><br /> Il valore predefinito è 0.|  
 
 ## <a name="datasources-element"></a>Elemento DataSources  
  Definisce zero o più directory di log aggiuntivi.
@@ -191,7 +191,7 @@ Attributi:
  Elemento padre: [elemento Directories](#Directories).
 
 ## <a name="directoryconfiguration-element"></a>Elemento DirectoryConfiguration  
- Definisce la directory hello di toomonitor i file di log.
+ Definisce la directory di file di log da monitorare.
 
  Elemento padre: [elemento DataSources](#DataSources).
 
@@ -199,11 +199,11 @@ Attributi:
 
 |Attributo|Tipo|Descrizione|  
 |---------------|----------|-----------------|  
-|**container**|string|nome Hello del contenitore di hello in cui il contenuto di hello della directory hello è toobe trasferiti.|  
-|**directoryQuotaInMB**|unsignedInt|Facoltativo. Specifica dimensioni massime di hello della directory hello in megabyte.<br /><br /> valore predefinito di Hello è 0.|  
+|**container**|string|Nome del contenitore in cui dovrà essere trasferito il contenuto della directory.|  
+|**directoryQuotaInMB**|unsignedInt|Facoltativa. Specifica le dimensioni massime della directory in MB.<br /><br /> Il valore predefinito è 0.|  
 
 ## <a name="absolute-element"></a>Elemento Absolute  
- Definisce un percorso assoluto di hello directory toomonitor con espansione dell'ambiente facoltativo.
+ Definisce un percorso assoluto della directory da monitorare con espansione dell'ambiente facoltativa.
 
  Elemento padre: [elemento DirectoryConfiguration](#DirectoryConfiguration).  
 
@@ -211,11 +211,11 @@ Attributi:
 
 |Attributo|Tipo|Descrizione|  
 |---------------|----------|-----------------|  
-|**path**|string|Obbligatorio. Hello toomonitor directory toohello di percorso assoluto.|  
-|**expandEnvironment**|boolean|Obbligatorio. Se impostato troppo**true**, le variabili di ambiente nel percorso hello vengono espanse.|  
+|**path**|string|Obbligatorio. Percorso assoluto della directory da monitorare.|  
+|**expandEnvironment**|boolean|Obbligatorio. Se impostato su **true**, le variabili di ambiente nel percorso verranno espanse.|  
 
 ## <a name="localresource-element"></a>Elemento LocalResource  
- Definisce una risorsa locale tooa relativo percorso definita nella definizione del servizio hello.
+ Definisce un percorso relativo a una risorsa locale nella definizione del servizio.
 
  Elemento padre: [elemento DirectoryConfiguration](#DirectoryConfiguration).  
 
@@ -223,11 +223,11 @@ Attributi:
 
 |Attributo|Tipo|Descrizione|  
 |---------------|----------|-----------------|  
-|**nome**|string|Obbligatorio. nome Hello della risorsa locale hello contenente toomonitor directory hello.|  
-|**relativePath**|string|Obbligatorio. Hello toomonitor di percorso relativo toohello risorsa locale.|  
+|**nome**|string|Obbligatorio. Nome della risorsa locale che contiene la directory da monitorare.|  
+|**relativePath**|string|Obbligatorio. Percorso relativo della risorsa locale da monitorare.|  
 
 ## <a name="performancecounters-element"></a>Elemento PerformanceCounters  
- Definisce il toocollect contatore delle prestazioni di hello percorso toohello.
+ Definisce il percorso del contatore delle prestazioni da raccogliere.
 
  Elemento padre: [elemento DiagnosticMonitorConfiguration](#DiagnosticMonitorConfiguration).
 
@@ -236,11 +236,11 @@ Attributi:
 
 |Attributo|Tipo|Descrizione|  
 |---------------|----------|-----------------|  
-|**bufferQuotaInMB**|unsignedInt|Facoltativo. Specifica hello quantità massima di archiviazione nel file system disponibile per hello specificato dati.<br /><br /> valore predefinito di Hello è 0.|  
-|**scheduledTransferPeriod**|duration|Facoltativo. Specifica l'intervallo di hello tra i trasferimenti pianificati dei dati, arrotondati per eccesso toohello più vicino al minuto.<br /><br /> valore predefinito di Hello è PT0S.|  
+|**bufferQuotaInMB**|unsignedInt|Facoltativa. Specifica lo spazio massimo di archiviazione del file system disponibile per i dati specificati.<br /><br /> Il valore predefinito è 0.|  
+|**scheduledTransferPeriod**|duration|Facoltativa. Specifica l'intervallo tra trasferimenti di dati pianificati, arrotondato per eccesso al minuto più vicino.<br /><br /> Il valore predefinito è PT0S.|  
 
 ## <a name="performancecounterconfiguration-element"></a>Elemento PerformanceCounterConfiguration  
- Definisce toocollect contatore delle prestazioni di hello.
+ Definisce il contatore delle prestazioni da raccogliere.
 
  Elemento principale: [PerformanceCounters Element](#PerformanceCounters).  
 
@@ -248,11 +248,11 @@ Attributi:
 
 |Attributo|Tipo|Descrizione|  
 |---------------|----------|-----------------|  
-|**counterSpecifier**|string|Obbligatorio. Hello toocollect contatore delle prestazioni toohello di percorso.|  
-|**sampleRate**|duration|Obbligatorio. frequenza di Hello in cui hello deve essere raccolti contatore delle prestazioni.|  
+|**counterSpecifier**|string|Obbligatorio. Percorso del contatore delle prestazioni da raccogliere.|  
+|**sampleRate**|duration|Obbligatorio. Frequenza con la quale raccogliere il contatore delle prestazioni.|  
 
 ## <a name="windowseventlog-element"></a>Elemento WindowsEventLog  
- Definisce hello toomonitor di registri eventi.
+ Definisce i registri eventi da monitorare.
 
  Elemento padre: [elemento DiagnosticMonitorConfiguration](#DiagnosticMonitorConfiguration).
 
@@ -260,12 +260,12 @@ Attributi:
 
 |Attributo|Tipo|Descrizione|  
 |---------------|----------|-----------------|  
-|**bufferQuotaInMB**|unsignedInt|Facoltativo. Specifica hello quantità massima di archiviazione nel file system disponibile per hello specificato dati.<br /><br /> valore predefinito di Hello è 0.|  
-|**scheduledTransferLogLevelFilter**|string|Facoltativo. Specifica il livello minimo di gravità hello per le voci di log che vengono trasferiti. valore predefinito di Hello è **Undefined**. Altri valori possibili sono **Dettagli**, **Informazioni**, **Avviso**, **Errore** e **Critico**.|  
-|**scheduledTransferPeriod**|duration|Facoltativo. Specifica l'intervallo di hello tra i trasferimenti pianificati dei dati, arrotondati per eccesso toohello più vicino al minuto.<br /><br /> valore predefinito di Hello è PT0S.|  
+|**bufferQuotaInMB**|unsignedInt|Facoltativa. Specifica lo spazio massimo di archiviazione del file system disponibile per i dati specificati.<br /><br /> Il valore predefinito è 0.|  
+|**scheduledTransferLogLevelFilter**|string|Facoltativa. Specifica il livello di gravità minimo per le voci di log trasferite. Il valore predefinito è **Non definito**. Altri valori possibili sono **Dettagli**, **Informazioni**, **Avviso**, **Errore** e **Critico**.|  
+|**scheduledTransferPeriod**|duration|Facoltativa. Specifica l'intervallo tra trasferimenti di dati pianificati, arrotondato per eccesso al minuto più vicino.<br /><br /> Il valore predefinito è PT0S.|  
 
 ## <a name="datasource-element"></a>Elemento DataSource  
- Definisce toomonitor registro eventi di hello.
+ Definisce il registro eventi da monitorare.
 
  Elemento principale: [elemento WindowsEventLog](#windowsEventLog).  
 
@@ -273,4 +273,4 @@ Attributi:
 
 |Attributo|Tipo|Descrizione|  
 |---------------|----------|-----------------|  
-|**nome**|string|Obbligatorio. Un'espressione XPath specifica toocollect log hello.|  
+|**nome**|string|Obbligatorio. Espressione XPath che specifica il log da raccogliere.|  

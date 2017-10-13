@@ -1,5 +1,5 @@
 ---
-title: "Set di scalabilità di macchine virtuali Windows aaaAutoscale | Documenti Microsoft"
+title: "Ridimensionare set di scalabilità di macchine virtuali Windows | Microsoft Docs"
 description: "Impostare il ridimensionamento automatico per un set di scalabilità di macchine virtuali Windows tramite Azure PowerShell"
 services: virtual-machine-scale-sets
 documentationcenter: 
@@ -15,18 +15,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: adegeo
-ms.openlocfilehash: 67cf1c5063ceba4fc076dc270090defdbddbcfe0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 91f731bec46c005221f4e66e95822994070d4c26
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="automatically-scale-machines-in-a-virtual-machine-scale-set"></a>Ridimensionare automaticamente le macchine virtuali in un set di scalabilità di macchine virtuali
-Set di scalabilità di macchine virtuali semplificano automaticamente toodeploy e gestire macchine virtuali identiche come un set. I set di scalabilità offrono un livello di calcolo scalabile e personalizzabile per applicazioni con iperscalabilità e supportano le immagini della piattaforma Windows, le immagini della piattaforma Linux, le immagini personalizzate e le estensioni. Per altre informazioni sui set di scalabilità, vedere [Set di scalabilità di macchine virtuali](virtual-machine-scale-sets-overview.md).
+I set di scalabilità di macchine virtuali semplificano la distribuzione e la gestione di macchine virtuali identiche come un set. I set di scalabilità offrono un livello di calcolo scalabile e personalizzabile per applicazioni con iperscalabilità e supportano le immagini della piattaforma Windows, le immagini della piattaforma Linux, le immagini personalizzate e le estensioni. Per altre informazioni sui set di scalabilità, vedere [Set di scalabilità di macchine virtuali](virtual-machine-scale-sets-overview.md).
 
-Questa esercitazione viene illustrato come un set di scalabilità di macchine virtuali di Windows e automaticamente scala hello macchine in hello toocreate impostato. Creare una scala hello e impostare il ridimensionamento per la creazione di un modello di gestione risorse di Azure e la distribuzione con Azure PowerShell. Per altre informazioni sui modelli, vedere [Creazione di modelli di Gestione risorse di Azure](../azure-resource-manager/resource-group-authoring-templates.md). toolearn più sul ridimensionamento automatico del set di scalabilità, vedere [il ridimensionamento automatico e imposta la scala di macchina virtuale](virtual-machine-scale-sets-autoscale-overview.md).
+Questa esercitazione illustra come creare un set di scalabilità costituito da macchine virtuali Windows e come ridimensionare automaticamente le macchine virtuali nel set. Per creare il set di scalabilità e configurare il ridimensionamento, creare un modello di Azure Resource Manager e distribuirlo tramite Azure PowerShell. Per altre informazioni sui modelli, vedere [Creazione di modelli di Gestione risorse di Azure](../azure-resource-manager/resource-group-authoring-templates.md). Per altre informazioni sul ridimensionamento automatico dei set di scalabilità, vedere [Ridimensionamento automatico e set di scalabilità di macchine virtuali](virtual-machine-scale-sets-autoscale-overview.md).
 
-In questo articolo, si distribuisce seguente hello risorse ed estensioni:
+In questo articolo verranno distribuite le risorse e le estensioni seguenti:
 
 * Microsoft.Storage/storageAccounts
 * Microsoft.Network/virtualNetworks
@@ -41,16 +41,16 @@ In questo articolo, si distribuisce seguente hello risorse ed estensioni:
 Per altre informazioni sulle risorse di Resource Manager, vedere [Azure Resource Manager e distribuzione classica](../azure-resource-manager/resource-manager-deployment-model.md).
 
 ## <a name="step-1-install-azure-powershell"></a>Passaggio 1: installare Azure PowerShell
-Vedere [come tooinstall e configurare Azure PowerShell](/powershell/azure/overview) per informazioni sull'installazione hello la versione più recente di Azure PowerShell, selezionando la sottoscrizione e la firma in tooAzure.
+Per informazioni su come installare la versione più recente di Azure PowerShell, selezionare la sottoscrizione e accedere ad Azure, vedere [Come installare e configurare Azure PowerShell](/powershell/azure/overview) .
 
 ## <a name="step-2-create-a-resource-group-and-a-storage-account"></a>Passaggio 2: Creare un gruppo di risorse e un account di archiviazione
-1. **Creare un gruppo di risorse** : tutte le risorse devono essere distribuito tooa gruppo di risorse. Utilizzare [New AzureRmResourceGroup](https://msdn.microsoft.com/library/mt603739.aspx) toocreate un gruppo di risorse denominato **vmsstestrg1**.
-2. **Creare un account di archiviazione** : questo account di archiviazione è in cui è archiviato il modello di hello. Utilizzare [New AzureRmStorageAccount](https://msdn.microsoft.com/library/mt607148.aspx) toocreate un account di archiviazione denominato **vmsstestsa**.
+1. **Creare un gruppo di risorse** : tutte le risorse devono essere distribuite in un gruppo di risorse. Per creare un gruppo di risorse denominato [vmsstestrg1](https://msdn.microsoft.com/library/mt603739.aspx) , usare **New-AzureRmResourceGroup**.
+2. **Creare un account di archiviazione** : questo è l'account di archiviazione in cui viene archiviato il modello. Usare [New-AzureRmStorageAccount](https://msdn.microsoft.com/library/mt607148.aspx) per creare un account di archiviazione denominato **vmsstestsa**.
 
-## <a name="step-3-create-hello-template"></a>Passaggio 3: Creare il modello di hello
-Un modello di gestione risorse di Azure rende possibile la si toodeploy e gestire le risorse di Azure insieme con una descrizione JSON delle risorse di hello e parametri di distribuzione associati.
+## <a name="step-3-create-the-template"></a>Passaggio 3: Creare il modello
+Un modello di Gestione risorse di Azure permette di distribuire e gestire le risorse di Azure insieme tramite una descrizione JSON delle risorse e dei parametri di distribuzione associati.
 
-1. Nell'editor preferito, creare file hello C:\VMSSTemplate.json e aggiungere hello iniziale JSON struttura toosupport hello modello.
+1. In un editor a scelta creare il file C:\VMSSTemplate.json e aggiungere la struttura JSON iniziale a supporto del modello.
 
     ```json
     {
@@ -65,7 +65,7 @@ Un modello di gestione risorse di Azure rende possibile la si toodeploy e gestir
     }
     ```
 
-2. Parametri non sono sempre necessari, ma forniscono un modo tooinput valori quando viene distribuito il modello di hello. Aggiungere i parametri che è stato aggiunto il modello di toohello nell'elemento padre parametri hello.
+2. I parametri non sono sempre obbligatori, ma forniscono un modo per immettere i valori quando il modello viene distribuito. Aggiungere questi parametri all'interno dell'elemento padre dei parametri aggiunto al modello.
 
     ```json   
     "vmName": { "type": "string" },
@@ -76,13 +76,13 @@ Un modello di gestione risorse di Azure rende possibile la si toodeploy e gestir
     "resourcePrefix": { "type": "string" }
     ```
    
-    * Un nome per la macchina virtuale separata hello che viene utilizzato tooaccess hello macchine nel set di scalabilità hello.
-    * nome Hello hello dell'account di archiviazione in cui è archiviato il modello di hello.
-    * numero di Hello di macchine virtuali tooinitially creare nel set di scalabilità hello.
-    * nome Hello e la password dell'account di amministratore hello in macchine virtuali hello.
-    * Imposta un prefisso del nome per le risorse di hello scala hello toosupport creati.
+    * Nome per la macchina virtuale separata usata per accedere alle macchine virtuali nel set di scalabilità.
+    * Nome dell'account di archiviazione in cui viene archiviato il modello.
+    * Numero di macchine virtuali da creare inizialmente nel set di scalabilità.
+    * Nome e password dell'account amministratore nelle macchine virtuali.
+    * Prefisso del nome per le risorse create per supportare il set di scalabilità.
 
-3. Variabili possono essere utilizzate nei valori di toospecify modello che possono cambiare frequentemente o valori che devono toobe creato da una combinazione di valori di parametro. Aggiungere queste variabili che è stato aggiunto il modello di toohello nell'elemento padre variabili hello.
+3. Le variabili in un modello possono essere usate per specificare valori che possono subire modifiche frequenti o che devono essere creati da una combinazione di valori dei parametri. Aggiungere queste variabili all'interno dell'elemento padre delle variabili aggiunto al modello:
 
     ```json
     "dnsName1": "[concat(parameters('resourcePrefix'),'dn1')]",
@@ -104,14 +104,14 @@ Un modello di gestione risorse di Azure rende possibile la si toodeploy e gestir
     "wadcfgxend": "[concat('\"><MetricAggregation scheduledTransferPeriod=\"PT1H\"/><MetricAggregation scheduledTransferPeriod=\"PT1M\"/></Metrics></DiagnosticMonitorConfiguration></WadCfg>')]"
     ```
    
-    * I nomi DNS che vengono utilizzati da hello interfacce di rete.
+    * Nomi DNS che vengono usati dalle interfacce di rete.
 
-        * i nomi degli indirizzi IP di Hello e i prefissi di rete virtuale hello e le subnet.
-        * Hello nomi e gli identificatori di rete virtuale hello, bilanciamento del carico e le interfacce di rete.
-        * Nomi account di archiviazione per gli account di hello associati macchine hello in set di scalabilità hello.
-        * Impostazioni per l'estensione di diagnostica che viene installato nelle macchine virtuali hello hello. Per ulteriori informazioni su hello estensione di diagnostica, vedere [creare una macchina virtuale Windows con monitoraggio e diagnostica usando il modello di gestione risorse di Azure](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+        * Prefissi e nomi di indirizzi IP per la rete virtuale e le subnet.
+        * Nomi e identificatori di rete virtuale, servizio di bilanciamento del carico e rete.
+        * Nomi di account di archiviazione per gli account associati alle macchine virtuali nel set di scalabilità.
+        * Impostazioni per l'estensione Diagnostica installata nelle macchine virtuali. Per altre informazioni sull'estensione Diagnostica, vedere [Creare una macchina virtuale Windows con monitoraggio e diagnostica mediante il modello di Azure Resource Manager](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
-4. Aggiungere risorse di account di archiviazione hello nell'elemento padre di risorse hello che è stato aggiunto il modello di toohello. Il modello utilizza un hello toocreate ciclo consigliato cinque gli account di archiviazione in cui sono archiviati i dischi del sistema operativo hello e dati di diagnostica. Questo set di account può supportare fino a too100 di macchine virtuali in un set di scalabilità, ossia massimo corrente hello. Ogni account di archiviazione denominato con un indicatore lettera definite nelle variabili hello combinate con il prefisso hello forniti nei parametri hello per modello hello.
+4. Aggiungere la risorsa account di archiviazione all'interno dell'elemento padre delle risorse aggiunto al modello. Questo modello usa un ciclo per creare cinque account di archiviazione consigliati in cui sono archiviati i dischi del sistema operativo e i dati di diagnostica. Questo set di account può supportare fino a 100 macchine virtuali in un set di scalabilità, ovvero il limite massimo corrente. A ogni account di archiviazione è assegnato un nome costituito da un indicatore di lettera definito nelle variabili in combinazione con il prefisso specificato nei parametri per il modello.
 
     ```json
     {
@@ -127,7 +127,7 @@ Un modello di gestione risorse di Azure rende possibile la si toodeploy e gestir
     },
     ```
 
-5. Aggiungere risorse di rete virtuale hello. Per altre informazioni, vedere [Provider di risorse di rete](../virtual-network/resource-groups-networking.md).
+5. Aggiungere la risorsa rete virtuale. Per altre informazioni, vedere [Provider di risorse di rete](../virtual-network/resource-groups-networking.md).
 
     ```json
     {
@@ -147,7 +147,7 @@ Un modello di gestione risorse di Azure rende possibile la si toodeploy e gestir
     },
     ```
 
-6. Aggiungere hello pubbliche risorse indirizzo IP utilizzati da hello bilanciamento del caricano e l'interfaccia di rete.
+6. Aggiungere le risorse indirizzo IP pubblico usate dal servizio di bilanciamento del carico e l'interfaccia di rete.
 
     ```json
     {
@@ -176,7 +176,7 @@ Un modello di gestione risorse di Azure rende possibile la si toodeploy e gestir
     },
     ```
 
-7. Aggiungere una risorsa di bilanciamento del carico hello utilizzato dal set di scalabilità hello. Per altre informazioni, vedere [Supporto di Gestione risorse di Azure per il servizio di bilanciamento del carico](../load-balancer/load-balancer-arm.md).
+7. Aggiungere la risorsa servizio di bilanciamento del carico usata dal set di scalabilità. Per altre informazioni, vedere [Supporto di Gestione risorse di Azure per il servizio di bilanciamento del carico](../load-balancer/load-balancer-arm.md).
 
     ```json   
     {
@@ -217,7 +217,7 @@ Un modello di gestione risorse di Azure rende possibile la si toodeploy e gestir
     },
     ```
 
-8. Aggiungere risorse di interfaccia di rete hello utilizzato dalla macchina virtuale separata hello. Poiché le macchine in un set di scalabilità non sono accessibili tramite un indirizzo IP pubblico, una macchina virtuale separata viene creata in hello stesso virtuale macchine di hello tooremotely accesso di rete.
+8. Aggiungere la risorsa interfaccia di rete usata dalla macchina virtuale separata. Poiché non è possibile accedere tramite un indirizzo IP pubblico alle macchine virtuali di un set di scalabilità, viene creata una macchina virtuale separata nella stessa rete virtuale che verrà usata per accedere in modalità remota alle macchine virtuali.
 
     ```json  
     {
@@ -248,7 +248,7 @@ Un modello di gestione risorse di Azure rende possibile la si toodeploy e gestir
     },
     ```
 
-9. Aggiungere una macchina virtuale separata hello nella stessa rete set di scalabilità hello hello.
+9. Aggiungere la macchina virtuale separata nella stessa rete del set di scalabilità.
 
     ```json
     {
@@ -294,7 +294,7 @@ Un modello di gestione risorse di Azure rende possibile la si toodeploy e gestir
     },
     ```
 
-10. Aggiungere una risorsa del set di scalabilità della macchina virtuale hello e specificare l'estensione diagnostica hello installato in tutte le macchine virtuali nel set di scalabilità hello. Molte delle impostazioni di hello per questa risorsa sono simili alla risorsa di macchina virtuale hello. Hello principali differenze riguardano hello capacità elemento che specifica il numero di hello di macchine virtuali nel set di scalabilità hello e upgradePolicy che specifica la modalità con cui gli aggiornamenti vengono eseguiti toovirtual macchine. Hello set di scalabilità non viene creata finché non vengono creati tutti gli account di archiviazione hello come specificato con l'elemento dependsOn hello.
+10. Aggiungere la risorsa set di scalabilità di macchine virtuali e specificare l'estensione di Diagnostica installata in tutte le macchine virtuali nel set di scalabilità. Molte delle impostazioni per questa risorsa sono simili a quelle della risorsa macchina virtuale. Le differenze principali sono l'elemento capacity, che specifica il numero di macchine virtuali nel set di scalabilità, e l'elemento upgradePolicy, che specifica la modalità di esecuzione degli aggiornamenti delle macchine virtuali. Il set di scalabilità viene creato solo dopo che sono stati creati tutti gli account di archiviazione come specificato nell'elemento dependsOn.
 
     ```json
     {
@@ -399,7 +399,7 @@ Un modello di gestione risorse di Azure rende possibile la si toodeploy e gestir
     },
     ```
 
-11. Aggiungere hello autoscaleSettings risorsa che definisce la modalità in base all'utilizzo del processore hello computer hello in set di scalabilità hello hello set di scalabilità.
+11. Aggiungere la risorsa autoscaleSettings che definisce la modalità di regolazione del set di scalabilità in base all'utilizzo dei processori delle macchine virtuali nel set di scalabilità.
 
     ```json
     {
@@ -452,73 +452,73 @@ Un modello di gestione risorse di Azure rende possibile la si toodeploy e gestir
     Per questa esercitazione, i valori importanti sono i seguenti:
     
     * **metricName**  
-    Questo valore è hello stesso come contatore delle prestazioni hello definiti nella variabile wadperfcounter hello. Utilizzo di tale variabile, hello estensione di diagnostica raccoglie hello **( totale)\% tempo processore** contatore.
+    Questo valore corrisponde al contatore delle prestazioni definito nella variabile wadperfcounter. Con questa variabile, l'estensione Diagnostica raccoglie i dati del contatore **Processor(_Total)\% Processor Time**.
     
     * **metricResourceUri**  
-    Questo valore è l'identificatore di risorsa hello del set di scalabilità della macchina virtuale hello.
+    Questo valore è l'identificatore di risorsa del set di scalabilità di macchine virtuali.
     
     * **timeGrain**  
-    Questo valore è la granularità hello di metriche di hello che vengono raccolti. In questo modello, è impostato tooone minuto.
+    Questo valore corrisponde alla granularità delle metriche che vengono raccolte. In questo modello il valore è impostato su un minuto.
     
     * **statistic**  
-    Questo valore determina come le metriche hello vengono combinati tooaccommodate hello azione di scalabilità automatica. Hello i valori possibili sono: Media, Min, Max. In questo modello, verrà raccolti hello totale utilizzo medio della CPU delle macchine virtuali hello.
+    Questo valore determina il modo in cui vengono combinate le metriche per consentire l'azione di ridimensionamento automatico. I valori possibili sono: Average, Min, Max. In questo modello viene raccolto l'utilizzo medio totale della CPU delle macchine virtuali.
     
     * **timeWindow**  
-    Questo valore è hello intervallo di tempo in cui vengono raccolti i dati dell'istanza. Deve essere compreso tra 5 minuti e 12 ore.
+    Questo valore rappresenta l'intervallo di tempo in cui vengono raccolti i dati dell'istanza. Deve essere compreso tra 5 minuti e 12 ore.
     
     * **timeAggregation**  
-    il suo valore determina la modalità hello i dati raccolti devono essere combinati nel tempo. valore predefinito di Hello è Media. Hello i valori possibili sono: Media, minimo, massimo, ultimo, totale, conteggio.
+    Questo valore definisce il modo in cui i dati raccolti devono essere combinati nel tempo. Il valore predefinito è "Average". I valori possibili sono: Average, Minimum, Maximum, Last, Total, Count.
     
     * **operator**  
-    Questo valore è l'operatore hello toocompare utilizzati hello metrica hello e dati soglia. Hello i valori possibili sono: uguale a, diverso da, GreaterThan, GreaterThanOrEqual, LessThan, LessThanOrEqual.
+    Questo valore indica l'operatore usato per confrontare i dati della metrica e la soglia. I valori possibili sono: Equals, NotEquals, GreaterThan, GreaterThanOrEqual, LessThan, LessThanOrEqual.
     
     * **threshold**  
-    Questo valore è hello che attiva l'azione di scalabilità hello. In questo modello, i computer vengono aggiunti toohello scala impostata quando l'utilizzo medio della CPU hello tra le macchine nel set di hello è oltre il 50%.
+    Questo valore indica l'attivazione dell'azione di ridimensionamento. In questo modello le macchine virtuali vengono aggiunte al set di scalabilità quando l'utilizzo medio della CPU tra le macchine nel set supera il 50%.
     
     * **direction**  
-    Questo valore determina l'azione eseguita quando viene raggiunto il valore di soglia hello hello. i valori possibili di Hello sono aumentano o diminuiscono. In questo modello, hello numero di macchine virtuali nel set di scalabilità hello viene aumentato se la soglia di hello è oltre il 50% di tempo definito hello.
+    Questo valore determina l'azione da eseguire quando viene raggiunto il valore di soglia. I valori possibili sono Increase o Decrease. In questo modello il numero di macchine virtuali nel set di scalabilità viene aumentato se la soglia supera il 50% nell'intervallo di tempo definito.
     
     * **type**  
-    Questo valore è di tipo hello di azione che deve essere eseguita e deve essere impostato tooChangeCount.
+    Questo valore indica il tipo di azione che deve verificarsi e deve essere impostato su ChangeCount.
     
     * **value**  
-    Questo valore è il numero di hello di macchine virtuali che vengono aggiunti o rimossi dal set di scalabilità hello. Questo valore deve essere uguale o maggiore di 1. valore predefinito di Hello è 1. In questo modello, hello macchine nella scala hello impostare numerose aumenta di 1 quando viene raggiunta la soglia di hello.
+    Questo valore indica il numero di macchine virtuali che vengono aggiunte o rimosse dal set di scalabilità. Questo valore deve essere uguale o maggiore di 1. Il valore predefinito è 1. In questo modello il numero di macchine virtuali nel set di scalabilità aumenta di 1 quando viene raggiunta la soglia.
     
     * **cooldown**  
-    Questo valore è quantità hello di toowait tempo dall'ultima azione di scalabilità hello prima che si verifichi l'azione successiva hello. Questo valore deve essere compreso tra un minuto e una settimana.
+    Questo valore indica il tempo di attesa dopo l'ultima azione di ridimensionamento prima che venga eseguita l'azione successiva. Questo valore deve essere compreso tra un minuto e una settimana.
 
-12. Salvare il file di modello hello.    
+12. Salvare il file di modello.    
 
-## <a name="step-4-upload-hello-template-toostorage"></a>Passaggio 4: Caricare hello modello toostorage
-è possibile caricare il modello di Hello, purché si conosce il nome di hello e la chiave primaria dell'account di archiviazione hello creato nel passaggio 1.
+## <a name="step-4-upload-the-template-to-storage"></a>Passaggio 4: Caricare il modello nell'account di archiviazione
+È possibile caricare il modello purché si conosca il nome e la chiave primaria dell'account di archiviazione creato nel passaggio 1.
 
-1. Nella finestra di Microsoft Azure PowerShell hello, impostare una variabile che specifica il nome di hello hello dell'account di archiviazione creato nel passaggio 1.
+1. Nella finestra di Microsoft Azure PowerShell impostare una variabile che specifichi il nome dell'account di archiviazione creato nel passaggio 1.
    
     ```powershell
     $storageAccountName = "vmstestsa"
     ```
 
-2. Impostare una variabile che specifica una chiave primaria dell'account di archiviazione hello hello.
+2. Impostare una variabile che specifichi la chiave primaria dell'account di archiviazione.
    
     ```powershell
     $storageAccountKey = "<primary-account-key>"
     ```
    
-   È possibile ottenere la chiave facendo clic sull'icona chiave hello durante la visualizzazione di risorse di account di archiviazione hello in hello portale di Azure.
-3. Creare hello oggetto account di archiviazione contesto che viene utilizzato toovalidate operazioni con account di archiviazione hello.
+   È possibile ottenere la chiave facendo clic sull'icona della chiave durante la visualizzazione della risorsa account di archiviazione nel portale di Azure.
+3. Creare l'oggetto contesto dell'account di archiviazione usato per convalidare le operazioni con l'account di archiviazione.
    
     ```powershell
     $ctx = New-AzureStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $storageAccountKey
     ```
 
-4. Creare il contenitore di hello per archiviare il modello di hello.
+4. Creare il contenitore per l'archiviazione del modello.
 
     ```powershell
     $containerName = "templates"
     New-AzureStorageContainer -Name $containerName -Context $ctx  -Permission Blob
     ```
 
-5. Caricare hello modello file toohello nuovo contenitore.
+5. Caricare il file di modello nel nuovo contenitore.
 
     ```powershell   
     $blobName = "VMSSTemplate.json"
@@ -526,14 +526,14 @@ Un modello di gestione risorse di Azure rende possibile la si toodeploy e gestir
     Set-AzureStorageBlobContent -File $fileName -Container $containerName -Blob  $blobName -Context $ctx
     ```
 
-## <a name="step-5-deploy-hello-template"></a>Passaggio 5: Distribuire il modello di hello
-Ora che è stato creato il modello di hello, è possibile avviare la distribuzione delle risorse di hello. Utilizzare questo processo di hello toostart comando:
+## <a name="step-5-deploy-the-template"></a>Passaggio 5: Distribuire il modello
+Dopo aver creato il modello, è possibile avviare la distribuzione delle risorse. Per avviare il processo, usare questo comando:
 
 ```powershell
 New-AzureRmResourceGroupDeployment -Name "vmsstestdp1" -ResourceGroupName "vmsstestrg1" -TemplateUri "https://vmsstestsa.blob.core.windows.net/templates/VMSSTemplate.json"
 ```
 
-Quando preme INVIO, sei valori tooprovide richiesta per le variabili di hello che è assegnato. Specificare questi valori:
+Dopo aver premuto INVIO, verrà richiesto di specificare i valori per le variabili assegnate. Specificare questi valori:
 
 ```powershell
 vmName: vmsstestvm1
@@ -544,22 +544,22 @@ vmName: vmsstestvm1
   resourcePrefix: vmsstest
 ```
 
-Richiede circa 15 minuti per essere distribuito tutti hello risorse toosuccessfully.
+La distribuzione di tutte le risorse richiederà circa 15 minuti.
 
 > [!NOTE]
-> È possibile utilizzare anche le risorse di hello del portale hello possibilità toodeploy. Usare questo collegamento: "https://portal.azure.com/#create/Microsoft.Template/uri/<link tooVM Scale Set JSON template>"
+> Per distribuire le risorse, è anche possibile usare il portale. Usare questo collegamento: "https://portal.azure.com/#create/Microsoft.Template/uri/<link to VM Scale Set JSON template>"
 > 
 > 
 
 ## <a name="step-6-monitor-resources"></a>Passaggio 6: Monitorare le risorse
 Per ottenere informazioni sui set di scalabilità di macchine virtuali, è possibile usare i metodi seguenti:
 
-* portale di Azure Hello: attualmente è possibile ottenere una quantità limitata di informazioni tramite il portale di hello.
-* Hello [Esplora inventario risorse di Azure](https://resources.azure.com/) -questo strumento è hello migliore per l'esplorazione dello stato corrente di hello del set di scalabilità. Seguire questo percorso e dovrebbe essere vista istanza hello della scala hello imposta creato:
+* Portale di Azure: attualmente è possibile ottenere una quantità limitata di informazioni tramite il portale.
+* [Esplora risorse di Azure](https://resources.azure.com/) : si tratta dello strumento migliore per esaminare lo stato corrente del set di scalabilità. Seguire questo percorso per passare alla visualizzazione dell'istanza del set di scalabilità creato:
   
     sottoscrizioni > {sottoscrizioni dell'utente} > gruppi di risorse > vmsstestrg1 > providers > Microsoft.Compute > virtualMachineScaleSets > vmsstest1 > macchine virtuali
 
-* Azure PowerShell - usare questo comando tooget alcune informazioni:
+* Azure PowerShell: per ottenere alcune informazioni, usare il comando seguente:
 
   ```powershell
   Get-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name"
@@ -571,28 +571,28 @@ Per ottenere informazioni sui set di scalabilità di macchine virtuali, è possi
   Get-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" -InstanceView
   ```
 
-* Connessione macchina virtuale separata toohello esattamente come si farebbe qualsiasi altro computer e quindi è possibile accedere in remoto hello le macchine virtuali in hello scala set toomonitor singoli processi.
+* Connettersi alla macchina virtuale separata esattamente come a qualsiasi altra macchina virtuale e quindi accedere in modalità remota alle macchine virtuali nel set di scalabilità per monitorare i singoli processi.
 
 > [!NOTE]
 > Nell'articolo [Set di scalabilità di macchine virtuali](https://msdn.microsoft.com/library/mt589023.aspx)
 
-## <a name="step-7-remove-hello-resources"></a>Passaggio 7: Rimuovere le risorse di hello
-Poiché vengono addebitate per le risorse utilizzate in Azure, è sempre un risorse toodelete buona norma che non sono più necessari. Non è necessario toodelete ogni risorsa separatamente da un gruppo di risorse. È possibile eliminare il gruppo di risorse hello e tutte le relative risorse vengono eliminate automaticamente.
+## <a name="step-7-remove-the-resources"></a>Passaggio 7: Rimuovere le risorse
+Poiché vengono applicati addebiti per le risorse usate in Azure, è sempre consigliabile eliminare le risorse che non sono più necessarie. Non è necessario eliminare separatamente ogni risorsa da un gruppo di risorse. È possibile eliminare il gruppo di risorse e tutte le relative risorse automaticamente.
 
   ```powershell
   Remove-AzureRmResourceGroup -Name vmsstestrg1
   ```
 
-Se si desidera tookeep il gruppo di risorse, è possibile eliminare solo set di scalabilità di hello.
+Se si vuole mantenere il gruppo di risorse, è possibile eliminare solo il set di scalabilità.
 
   ```powershell
   Remove-AzureRmVmss -ResourceGroupName "resource group name" –VMScaleSetName "scale set name"
   ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Gestire i set di scalabilità hello appena creata utilizzando informazioni hello in [gestire macchine virtuali in un Set di scalabilità della macchina virtuale](virtual-machine-scale-sets-windows-manage.md).
+* Per gestire il set di scalabilità appena creato, usare le informazioni disponibili in [Gestire le macchine virtuali in un set di scalabilità di macchine virtuali](virtual-machine-scale-sets-windows-manage.md).
 * Altre informazioni sull'aumento delle prestazioni sono disponibili in [Scalabilità automatica verticale con set di scalabilità di macchine virtuali](virtual-machine-scale-sets-vertical-scale-reprovision.md)
 * Per alcuni esempi delle funzionalità di monitoraggio in Monitoraggio di Azure, vedere [Azure Monitor PowerShell quick start samples](../monitoring-and-diagnostics/insights-powershell-samples.md) (Esempi di avvio rapido di PowerShell per Monitoraggio di Azure).
-* Informazioni sulle funzionalità di notifica di [utilizzare scalabilità automatica azioni toosend posta elettronica e ai webhook notifiche di avviso in Monitoraggio di Azure](../monitoring-and-diagnostics/insights-autoscale-to-webhook-email.md)
-* Informazioni su come troppo[i log di controllo di utilizzare le notifiche degli avvisi di posta elettronica e ai webhook toosend in Monitoraggio di Azure](../monitoring-and-diagnostics/insights-auditlog-to-webhook-email.md)
+* Per informazioni sulle funzionalità di notifica, vedere [Use autoscale actions to send email and webhook alert notifications in Azure Monitor](../monitoring-and-diagnostics/insights-autoscale-to-webhook-email.md) (Usare le azioni di ridimensionamento automatico per inviare notifiche di avviso tramite e-mail e webhook in Monitoraggio di Azure).
+* Per informazioni, vedere [Use audit logs to send email and webhook alert notifications in Azure Monitor](../monitoring-and-diagnostics/insights-auditlog-to-webhook-email.md) (Usare i log di controllo per inviare notifiche di avviso tramite e-mail e webhook in Monitoraggio di Azure).
 

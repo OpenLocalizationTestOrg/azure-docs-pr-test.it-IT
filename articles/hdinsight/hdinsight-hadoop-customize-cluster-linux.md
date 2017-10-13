@@ -1,6 +1,6 @@
 ---
-title: cluster di HDInsight aaaCustomize usando le azioni script - Azure | Documenti Microsoft
-description: "Aggiungere i componenti personalizzati che basati su tooLinux HDInsight cluster usando le azioni di Script. Le azioni script sono script Bash che è possibile configurazione del cluster utilizzati toocustomize hello o aggiungere altri servizi e le utilità come tonalità, Solr o R."
+title: Personalizzare cluster HDInsight tramite l'azione script - Azure | Microsoft Docs
+description: "Aggiungere componenti personalizzati in cluster HDInsight basati su Linux usando azioni di script. Le azioni script sono script bash utilizzabili per personalizzare la configurazione del cluster o aggiungere servizi e utilità, come Hue, Solr o R."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,131 +16,131 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: larryfr
-ms.openlocfilehash: ff22680a8a50b21985f6941f1edaf1dcf863d13f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 0c5d00b6cb9f68a1a0e474f81c969eb1b5654c67
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="customize-linux-based-hdinsight-clusters-using-script-action"></a>Personalizzare cluster HDInsight basati su Linux tramite Azione script
 
-HDInsight fornisce un'opzione di configurazione denominata **genera Script azione** che richiama script personalizzati che consentono di personalizzare cluster hello. Questi script vengono utilizzati tooinstall i componenti aggiuntivi e modificare le impostazioni di configurazione. Le azioni script possono essere utilizzate durante o dopo la creazione del cluster.
+HDInsight offre un'opzione di configurazione denominata **Azione script** che richiama script personalizzati per la personalizzazione del cluster. Questi script vengono utilizzati per installare i componenti aggiuntivi e modificare le impostazioni di configurazione. Le azioni script possono essere utilizzate durante o dopo la creazione del cluster.
 
 > [!IMPORTANT]
-> azioni di Hello possibilità toouse script in un cluster già in esecuzione è disponibile solo per i cluster HDInsight basati su Linux.
+> La possibilità di usare le azioni script in un cluster già in esecuzione è disponibile solo per i cluster HDInsight basati su Linux.
 >
-> Linux è hello solo sistema operativo utilizzato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> Linux è l'unico sistema operativo usato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
-Le azioni script possono anche essere pubblicata toohello Azure Marketplace come un'applicazione di HDInsight. Alcuni degli esempi di hello in questo documento Mostra come installare un'applicazione di HDInsight utilizzando i comandi di azione di script di PowerShell e hello .NET SDK. Per ulteriori informazioni sulle applicazioni di HDInsight, vedere [HDInsight pubblicare applicazioni in Azure Marketplace hello](hdinsight-apps-publish-applications.md).
+Le azioni di script possono anche essere pubblicate in Azure Marketplace come applicazione HDInsight. Alcuni esempi in questo documento mostrano come è possibile installare un'applicazione HDInsight usando i comandi di azione script di PowerShell e .NET SDK. Per altre informazioni sulle applicazioni HDInsight, vedere [Pubblicare applicazioni HDInsight in Azure Marketplace](hdinsight-apps-publish-applications.md).
 
-## <a name="permissions"></a>Autorizzazioni
+## <a name="permissions"></a>autorizzazioni
 
-Se si utilizza un cluster di HDInsight appartenenti a un dominio, sono disponibili due Ambari le autorizzazioni necessarie quando si utilizzano le azioni script con cluster hello:
+Se si usa un cluster HDInsight aggiunto a un dominio, sono necessarie due autorizzazioni Ambari per l'uso di azioni script con il cluster:
 
-* **AMBARI. ESEGUIRE\_personalizzato\_comando**: il ruolo di amministratore Ambari hello dispone dell'autorizzazione per impostazione predefinita.
-* **CLUSTER. ESEGUIRE\_personalizzato\_comando**: entrambi hello amministrazione Cluster HDInsight e Ambari amministratore dispongono di questa autorizzazione per impostazione predefinita.
+* **AMBARI.RUN\_CUSTOM\_COMMAND**: il ruolo di amministratore Ambari ha questa autorizzazione per impostazione predefinita.
+* **CLUSTER.RUN\_CUSTOM\_COMMAND**: sia l'amministratore cluster HDInsight che l'amministratore Ambari hanno questa autorizzazione per impostazione predefinita.
 
 Per altre informazioni sull'uso delle autorizzazioni con HDInsight aggiunto a un dominio, vedere [Manage domain-joined HDInsight clusters](hdinsight-domain-joined-manage.md) (Gestire cluster HDInsight aggiunti al dominio).
 
 ## <a name="access-control"></a>Controllo di accesso
 
-Se non si è amministratore hello/proprietario della sottoscrizione Azure, l'account deve disporre almeno **collaboratore** gruppo di risorse toohello di accesso che contiene il cluster di HDInsight hello.
+Se non si è l'amministratore o il proprietario della sottoscrizione di Azure, l'account deve disporre almeno dell'accesso **Collaboratore** al gruppo di risorse contenente il cluster HDInsight.
 
-Inoltre, se si sta creando un cluster HDInsight, un utente con almeno **collaboratore** toohello accesso sottoscrizione di Azure deve registrato in precedenza provider hello per HDInsight. Registrazione del provider si verifica quando un utente con sottoscrizione di collaboratore accesso toohello crea una risorsa per hello prima sottoscrizione hello. Può essere eseguita anche senza creare una risorsa [registrando un provider tramite REST](https://msdn.microsoft.com/library/azure/dn790548.aspx).
+Se si crea un cluster HDInsight, è necessario che un utente con almeno l'accesso **Collaboratore** alla sottoscrizione di Azure abbia registrato in precedenza il provider per HDInsight. La registrazione del provider viene eseguita quando un utente con accesso Collaboratore alla sottoscrizione crea una risorsa per la prima volta nella sottoscrizione stessa. Può essere eseguita anche senza creare una risorsa [registrando un provider tramite REST](https://msdn.microsoft.com/library/azure/dn790548.aspx).
 
-Per ulteriori informazioni sull'utilizzo di gestione degli accessi, vedere hello seguenti documenti:
+Per altre informazioni sull'uso della gestione degli accessi, vedere i documenti seguenti:
 
-* [Introduzione alla gestione di accesso nel portale di Azure hello](../active-directory/role-based-access-control-what-is.md)
-* [Utilizzare le risorse di sottoscrizione di Azure tooyour accesso toomanage assegnazioni ruolo](../active-directory/role-based-access-control-configure.md)
+* [Introduzione alla gestione degli accessi nel portale di Azure](../active-directory/role-based-access-control-what-is.md)
+* [Usare le assegnazioni di ruolo per gestire l'accesso alle risorse della sottoscrizione di Azure](../active-directory/role-based-access-control-configure.md)
 
 ## <a name="understanding-script-actions"></a>Informazioni sulle azioni script
 
-Un'azione script è semplicemente uno script Bash a cui si forniscono parametri e un URI. script di Hello viene eseguito in nodi di cluster di HDInsight hello. di seguito Hello sono caratteristiche e funzionalità delle azioni di scripting.
+Un'azione script è semplicemente uno script Bash a cui si forniscono parametri e un URI. Lo script viene eseguito nei nodi del cluster HDInsight. Di seguito sono riportate le caratteristiche e funzionalità delle azioni script.
 
-* Devono essere archiviati in un URI che sia accessibile dal cluster HDInsight hello. di seguito Hello sono possibili percorsi di archiviazione:
+* Devono essere archiviate in un URI accessibile dal cluster HDInsight. Di seguito vengono indicate alcune tra le posizioni di archiviazione possibili:
 
-    * Un **archivio Azure Data Lake** account che sia accessibile dal cluster HDInsight hello. Per informazioni sull'uso di Azure Data Lake Store con HDInsight, vedere [Creare un cluster HDInsight con Data Lake Store usando il portale](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md).
+    * Account **Azure Data Lake Store** accessibile dal cluster HDInsight. Per informazioni sull'uso di Azure Data Lake Store con HDInsight, vedere [Creare un cluster HDInsight con Data Lake Store usando il portale](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md).
 
-        Quando si utilizza uno script archiviato nell'archivio Data Lake, il formato dell'URI hello è `adl://DATALAKESTOREACCOUNTNAME.azuredatalakestore.net/path_to_file`.
+        Quando si usa uno script archiviato in Data Lake Store, il formato dell'URI è `adl://DATALAKESTOREACCOUNTNAME.azuredatalakestore.net/path_to_file`.
 
         > [!NOTE]
-        > Hello servizio principale HDInsight utilizza tooaccess archivio Data Lake deve avere accesso in lettura toohello script.
+        > L'entità servizio usata da HDInsight per accedere a Data Lake Store deve avere accesso in lettura allo script.
 
-    * Un blob in un **account di archiviazione Azure** che è uno di questi account di archiviazione primario o altre hello per il cluster HDInsight hello. HDInsight è concesso l'accesso tooboth di questi tipi di account di archiviazione durante la creazione del cluster.
+    * Un BLOB in un **account di archiviazione di Azure** che rappresenta l'account di archiviazione primario o aggiuntivo per il cluster HDInsight. HDInsight può accedere a entrambi i tipi di account di archiviazione durante la creazione del cluster.
 
     * Un servizio di condivisione file pubblico, ad esempio BLOB di Azure, GitHub, OneDrive, Dropbox e così via.
 
-        Ad esempio URI, vedere hello [script azione script di esempio](#example-script-action-scripts) sezione.
+        Per gli URI di esempio, vedere la sezione [Script di Azione script di esempio](#example-script-action-scripts).
 
         > [!WARNING]
-        > HDInsight supporta solo account di archiviazione di Azure __per uso generico__. Non supporta attualmente hello __nell'archiviazione Blob__ tipo di account.
+        > HDInsight supporta solo account di archiviazione di Azure __per uso generico__. Non supporta attualmente il tipo di account di __archiviazione BLOB__.
 
-* Può essere limitata troppo**eseguiti solo alcuni tipi di nodi**, ad esempio head nodi o di lavoro.
+* Possono essere limitate all'**esecuzione solo in alcuni tipi di nodi**, ad esempio nodi head o del ruolo di lavoro.
 
   > [!NOTE]
-  > Se utilizzato con HDInsight Premium, è possibile specificare che devono essere utilizzati script di hello sul nodo del bordo hello.
+  > Se usato con HDInsight Premium, è possibile specificare che lo script deve essere usato nel nodo perimetrale.
 
 * Possono essere **persistenti** o **ad hoc**.
 
-    **Persistente** gli script sono cluster toohello aggiunta di nodi tooworker applicato dopo l'esecuzione di script hello. Ad esempio, la scalabilità del cluster di hello.
+    Gli script **persistenti** vengono applicati a nodi di lavoro aggiunti al cluster dopo l'esecuzione degli script. Ad esempio, durante il ridimensionamento del cluster.
 
-    Uno script persistente potrebbe anche applicare tipo di nodo tooanother modifiche, ad esempio un nodo head.
+    Uno script persistente potrebbe anche applicare modifiche apportate a un altro tipo di nodo, ad esempio un nodo head.
 
   > [!IMPORTANT]
   > Le azioni script persistenti devono avere un nome univoco.
 
-    Gli script **ad hoc** non sono persistenti. Non sono cluster toohello aggiunta di nodi tooworker applicato dopo script hello è stato eseguito. Successivamente è possibile alzare di livello un tooa script ad hoc persistente script o abbassare di livello uno script di script con salvataggio permanente tooan ad hoc.
+    Gli script **ad hoc** non sono persistenti. Non vengono infatti applicati ai nodi del ruolo di lavoro aggiunti al cluster dopo l'esecuzione dello script. È possibile alzare di livello uno script ad hoc in un secondo momento per renderlo persistente o abbassare di livello uno script persistente per renderlo ad hoc.
 
   > [!IMPORTANT]
   > Le azioni script usate durante la creazione di un cluster vengono automaticamente rese persistenti.
   >
   > Gli script che hanno esito negativo non vengono resi persistenti, anche in presenza di indicazioni specifiche in tal senso.
 
-* Può accettare **parametri** utilizzati dallo script hello durante l'esecuzione.
-* Eseguire con **privilegi al livello radice** nei nodi del cluster hello.
-* Può essere utilizzato tramite hello **portale di Azure**, **Azure PowerShell**, **CLI di Azure**, o **HDInsight .NET SDK**
+* Possono accettare **parametri** usati dallo script durante l'esecuzione.
+* Eseguire lo script con **privilegi a livello radice** nei nodi del cluster.
+* Possono essere usate con il **portale di Azure**, **Azure PowerShell**, l'**interfaccia della riga di comando di Azure** o **HDInsight .NET SDK**.
 
-cluster Hello mantiene una cronologia di tutti gli script sono stati eseguiti. cronologia Hello è utile quando è necessario toofind hello ID di uno script per le operazioni di innalzamento o abbassamento di livello.
+Il cluster mantiene una cronologia di tutti gli script eseguiti. La cronologia è utile quando è necessario trovare l'ID di uno script per le operazioni di innalzamento o abbassamento di livello.
 
 > [!IMPORTANT]
-> Non è tooundo alcun metodo automatico hello le modifiche apportate da un'azione di script. È possibile annullare manualmente le modifiche di hello oppure fornire uno script che li inverte.
+> Non esiste un metodo automatico per annullare le modifiche apportate da un'azione script. Annullare manualmente le modifiche o fornire uno script che le inverta.
 
 
-### <a name="script-action-in-hello-cluster-creation-process"></a>Genera script azione nel processo di creazione di cluster hello
+### <a name="script-action-in-the-cluster-creation-process"></a>Azione di script nel processo di creazione di cluster
 
 Le azioni script usate durante la creazione del cluster sono leggermente diverse da quelle eseguite in un cluster esistente:
 
-* script Hello è **automaticamente persistente**.
-* Oggetto **errore** in hello script può causare hello cluster creazione processo toofail.
+* Lo script viene **salvato automaticamente in modo permanente**.
+* Un **errore** nello script può causare l'esito negativo del processo di creazione del cluster.
 
-Hello diagramma seguente illustra quando viene eseguita l'azione di Script durante il processo di creazione di hello:
+Il diagramma seguente illustra quando l'opzione Azione di script viene eseguita durante il processo di creazione:
 
 ![Personalizzazione di cluster HDInsight e fasi durante la creazione di un cluster][img-hdi-cluster-states]
 
-script di Hello viene eseguito quando viene configurato HDInsight. In questa fase, viene eseguito lo script hello in parallelo in tutte hello i nodi specificati nel cluster hello e viene eseguito con privilegi radice nodi hello.
+Lo script viene eseguito durante la configurazione di HDInsight. In questa fase, lo script viene eseguito in parallelo in tutti i nodi specificati nel cluster e con privilegi a livello radice sui nodi.
 
 > [!NOTE]
-> Poiché nei nodi del cluster hello, script di hello viene eseguito con privilegi di livello radice, è possibile eseguire operazioni come l'arresto e avvio di servizi, inclusi i servizi correlati a Hadoop. Se si arresta i servizi, è necessario assicurarsi che il servizio di Ambari hello e altri servizi correlati a Hadoop siano in esecuzione prima di script hello al termine dell'esecuzione. Questi servizi sono necessari toosuccessfully determinare hello integrità e dello stato del cluster hello durante la creazione.
+> Dato che lo script viene eseguito con privilegi a livello radice nei nodi del cluster, è possibile eseguire operazioni quali l'arresto e l'avvio dei servizi, inclusi quelli correlati ad Hadoop. Se si arrestano i servizi, è necessario assicurarsi che i servizi di Ambari e altri servizi correlati ad Hadoop siano attivi prima che termini l'esecuzione dello script. Questi servizi sono necessari per determinare correttamente l'integrità e lo stato del cluster durante la creazione.
 
 
-Durante la creazione del cluster, è possibile usare più azioni di script alla volta. Questi script vengono richiamati nell'ordine di hello in cui sono stati specificati.
+Durante la creazione del cluster, è possibile usare più azioni di script alla volta. Questi script vengono richiamati nell'ordine in cui sono stati specificati.
 
 > [!IMPORTANT]
-> Le azioni di script devono essere completate entro 60 minuti; in caso contrario si verifica un timeout. Durante il provisioning del cluster, script di hello viene eseguito contemporaneamente ad altri processi di installazione e configurazione. Contesa per le risorse, ad esempio larghezza di banda della CPU ora o di rete potrebbe essere hello script tootake più toofinish rispetto a quello usato nell'ambiente di sviluppo.
+> Le azioni di script devono essere completate entro 60 minuti; in caso contrario si verifica un timeout. Durante il provisioning dei cluster, lo script viene eseguito contemporaneamente ad altri processi di installazione e configurazione. In caso di concorrenza per risorse come il tempo di CPU o la larghezza di banda di rete, lo script può richiedere più tempo per completare l'operazione rispetto al tempo che impiegherebbe in un ambiente di sviluppo.
 >
-> hello toominimize tempo accetta toorun hello script, evitare di attività, ad esempio il download e la compilazione di applicazioni dall'origine. Precompilazione di applicazioni e archiviare file binario hello in archiviazione di Azure.
+> Per ridurre al minimo il tempo necessario per eseguire lo script, evitare attività come il download e la compilazione di applicazioni dall'origine. Precompilare le applicazioni e archiviare il file binario in Archiviazione di Azure.
 
 
 ### <a name="script-action-on-a-running-cluster"></a>Azione script in un cluster in esecuzione
 
-A differenza degli script azioni utilizzate durante la creazione del cluster, un errore in uno script eseguite su un cluster già in esecuzione non determina automaticamente lo stato di hello cluster toochange tooa non riuscita. Al termine del processo di uno script, cluster hello deve restituire lo stato "running" tooa.
+A differenza delle azioni script usate durante la creazione di un cluster, un errore in uno script eseguito in un cluster già in esecuzione non determina automaticamente uno stato di errore del cluster. Al termine di uno script, il cluster deve restituire uno stato In esecuzione.
 
 > [!IMPORTANT]
-> Anche se il cluster hello presenta uno stato 'in esecuzione', hello script non riuscito potrebbe essere interrotto operazioni. Ad esempio, uno script è stato possibile eliminare i file necessari per il cluster hello.
+> Anche se lo stato del cluster è "in esecuzione", lo script non riuscito potrebbe includere attività interrotte. Ad esempio, uno script potrebbe eliminare file richiesti dal cluster.
 >
-> Le azioni di script eseguite con privilegi di radice, pertanto è necessario assicurarsi di comprendere cosa uno script prima di applicarla tooyour cluster.
+> Le azioni script vengono eseguite con privilegi a livello radice. Occorre quindi conoscere il comportamento di uno script prima di applicarlo al cluster.
 
-Quando l'applicazione di un cluster di tooa script, lo stato del cluster hello cambia toofrom **esecuzione** troppo**accettato**, quindi **HDInsight configurazione**e infine di nuovo troppo**Esecuzione** per gli script ha esito positivo. stato dello script Hello viene registrato nella cronologia dell'azione script hello ed è possibile utilizzare questo toodetermine informazioni script hello è riuscita o meno. Ad esempio, hello `Get-AzureRmHDInsightScriptActionHistory` cmdlet di PowerShell può essere utilizzato tooview hello stato di uno script. Restituisce toohello di informazioni simili seguente testo:
+Quando si applica uno script a un cluster, lo stato del cluster passa da **In esecuzione** ad **Accettato**, quindi a **Configurazione di HDInsight** e infine di nuovo a **In esecuzione** per gli script con esito positivo. Lo stato dello script viene registrato nella cronologia dell'azione script, che può essere usata per determinare l'esito positivo o negativo dello script. Ad esempio, il cmdlet di PowerShell `Get-AzureRmHDInsightScriptActionHistory` può essere usato per visualizzare lo stato di uno script. Verranno restituite informazioni simili al testo seguente:
 
     ScriptExecutionId : 635918532516474303
     StartTime         : 8/14/2017 7:40:55 PM
@@ -148,22 +148,22 @@ Quando l'applicazione di un cluster di tooa script, lo stato del cluster hello c
     Status            : Succeeded
 
 > [!NOTE]
-> Se è stata modificata la password utente (amministrazione) di hello cluster dopo la creazione del cluster hello, script azioni è state eseguite su questo cluster potrebbe non riuscire. Se si dispone di eventuali azioni script persistenti di nodi di lavoro di destinazione, questi script potrebbero non riuscire quando si aumenta il cluster hello.
+> Se è stata cambiata la password dell'utente del cluster (admin) dopo la creazione del cluster stesso, questo potrebbe causare l'esito negativo delle azioni script eseguite su questo cluster. Nel caso in cui siano presenti azioni script persistenti che hanno come destinazione nodi del ruolo di lavoro diversi, questi script potrebbero avere esito negativo se si ridimensiona il cluster.
 
 ## <a name="example-script-action-scripts"></a>Script di Azione script di esempio
 
-Script delle azioni di script può essere utilizzato tramite hello utilità seguenti:
+Gli script di Azione script possono essere usati tramite le seguenti utilità:
 
 * Portale di Azure
 * Azure PowerShell
 * Interfaccia della riga di comando di Azure
 * HDInsight .NET SDK
 
-HDInsight fornisce hello tooinstall gli script seguenti componenti nei cluster HDInsight:
+HDInsight fornisce script di esempio per installare i componenti seguenti nei cluster HDInsight:
 
 | Nome | Script |
 | --- | --- |
-| **Aggiungere un account di archiviazione di Azure** |https://hdiconfigactions.blob.core.windows.net/linuxaddstorageaccountv01/add-storage-account-v01.sh. Vedere [cluster HDInsight di aggiungere ulteriore spazio di archiviazione tooan](hdinsight-hadoop-add-storage.md). |
+| **Aggiungere un account di archiviazione di Azure** |https://hdiconfigactions.blob.core.windows.net/linuxaddstorageaccountv01/add-storage-account-v01.sh. Vedere [Add additional storage to an HDInsight cluster](hdinsight-hadoop-add-storage.md) (Aggiungere altra memoria a un cluster HDInsight). |
 | **Installare Hue.** |https://hdiconfigactions.blob.core.windows.net/linuxhueconfigactionv02/install-hue-uber-v02.sh. Vedere [Installare e usare Hue in cluster HDInsight](hdinsight-hadoop-hue-linux.md). |
 | **Installare Presto** |https://raw.githubusercontent.com/hdinsight/presto-hdinsight/master/installpresto.sh. Vedere [Installare e usare Presto nei cluster HDInsight Hadoop](hdinsight-hadoop-install-presto.md). |
 | **Installare Solr** |https://hdiconfigactions.blob.core.windows.net/linuxsolrconfigactionv01/solr-installer-v01.sh. Vedere [Installare e usare Solr nei cluster Hadoop di HDInsight](hdinsight-hadoop-solr-install-linux.md). |
@@ -173,57 +173,57 @@ HDInsight fornisce hello tooinstall gli script seguenti componenti nei cluster H
 
 ## <a name="use-a-script-action-during-cluster-creation"></a>Usare un'azione script durante la creazione di un cluster
 
-In questa sezione vengono forniti esempi in modi diversi di hello che è possibile usare azioni script durante la creazione di un cluster HDInsight.
+In questa sezione vengono forniti esempi sulle diverse modalità di utilizzo delle azioni script durante la creazione di un cluster HDInsight.
 
-### <a name="use-a-script-action-during-cluster-creation-from-hello-azure-portal"></a>Utilizzare un'azione di Script durante la creazione del cluster da hello portale di Azure
+### <a name="use-a-script-action-during-cluster-creation-from-the-azure-portal"></a>Usare un'azione script durante la creazione di un cluster dal portale di Azure
 
-1. Avviare la creazione di un cluster come descritto in [Creare cluster Hadoop in HDInsight](hdinsight-hadoop-provision-linux-clusters.md). Fermarsi quando si raggiunge hello __riepilogo Cluster__ sezione.
+1. Avviare la creazione di un cluster come descritto in [Creare cluster Hadoop in HDInsight](hdinsight-hadoop-provision-linux-clusters.md). Fermarsi quando si raggiunge la sezione __Riepilogo del cluster__.
 
-2. Da hello __riepilogo Cluster__ sezione, seleziona hello __modifica__ dei collegamenti per __impostazioni avanzate__.
+2. Nella sezione __Riepilogo del cluster__ selezionare il collegamento __Modifica__ per __Impostazioni avanzate__.
 
     ![Collegamento impostazioni avanzate](./media/hdinsight-hadoop-customize-cluster-linux/advanced-settings-link.png)
 
-3. Da hello __impostazioni avanzate__ selezionare __Script azioni__. Da hello __Script azioni__ selezionare __+ nuovo invio__
+3. Nella sezione __Impostazioni avanzate__ selezionare __Azioni script__. Nella sezione __Azioni script__ selezionare __+ Invia nuova__
 
     ![Inviare una nuova azione script](./media/hdinsight-hadoop-customize-cluster-linux/add-script-action.png)
 
-4. Hello utilizzare __selezionare uno script__ tooselect voce uno script di pre-effettuato. toouse uno script personalizzato, selezionare __personalizzato__ e quindi fornire hello __nome__ e __l'URI dello script Bash__ per lo script.
+4. Usare la voce __Seleziona uno script__ per selezionare uno script pronto. Per usare uno script personalizzato, selezionare __Personalizzato__ e indicare __Nome__ e __URI script Bash__ per lo script.
 
-    ![Aggiungere uno script nel modulo di script selezionare hello](./media/hdinsight-hadoop-customize-cluster-linux/select-script.png)
+    ![Aggiungere uno script nel modulo di selezione script](./media/hdinsight-hadoop-customize-cluster-linux/select-script.png)
 
-    Hello nella tabella seguente vengono descritti gli elementi di hello in form di hello:
+    Nella tabella seguente vengono illustrati gli elementi nel modulo:
 
     | Proprietà | Valore |
     | --- | --- |
-    | Selezionare uno script | toouse lo script, seleziona __personalizzato__. In caso contrario, selezionare uno degli script hello fornito. |
-    | Nome |Specificare un nome per l'azione script hello. |
-    | URI script Bash |Specificare hello URI toohello script che è richiamato toocustomize hello cluster. |
-    | Head/Worker/Zookeeper |Specificare i nodi di hello (**Head**, **lavoro**, o **ZooKeeper**) in cui personalizzazione hello viene eseguito uno script. |
-    | parameters |Specificare i parametri di hello, se richiesti dallo script hello. |
+    | Selezionare uno script | Per usare uno script personalizzato, selezionare __Personalizzato__. In caso contrario, selezionare uno degli script disponibili. |
+    | Nome |Specificare un nome per l'azione script. |
+    | URI script Bash |Specificare l'URI dello script da richiamare per personalizzare il cluster. |
+    | Head/Worker/Zookeeper |Specificare i nodi **head**, **ruolo di lavoro** o **Zookeeper** in cui viene eseguito lo script di personalizzazione. |
+    | Parametri |Specificare i parametri, se richiesti dallo script. |
 
-    Hello utilizzare __mantenere questa azione script__ tooensure voce che hello script viene applicato durante le operazioni di ridimensionamento.
+    Usare la voce __Salvare questa azione script in modo permanente__ per assicurarsi che lo script venga applicato durante le operazioni di ridimensionamento.
 
-5. Selezionare __crea__ script hello toosave. È quindi possibile utilizzare __+ invia di nuovo__ tooadd un altro script.
+5. Selezionare __Crea__ per salvare lo script. È quindi possibile usare __+ Invia nuovo__ per aggiungere un altro script.
 
     ![Azioni script multiple](./media/hdinsight-hadoop-customize-cluster-linux/multiple-scripts.png)
 
-    Una volta aggiunta di script, utilizzare hello __selezionare__ pulsante e quindi hello __Avanti__ pulsante tooreturn toohello __riepilogo Cluster__ sezione.
+    Dopo aver completato l'aggiunta degli script, usare il pulsante __Seleziona__ e quindi il pulsante __Avanti__ per tornare alla sezione __Riepilogo del cluster__.
 
-3. cluster di hello toocreate, selezionare __crea__ da hello __riepilogo Cluster__ selezione.
+3. Per creare il cluster, selezionare __Crea__ nella sezione __Riepilogo del cluster__.
 
 ### <a name="use-a-script-action-from-azure-resource-manager-templates"></a>Usare Azione di script dai modelli di Gestione risorse di Azure
 
-esempi di Hello in questa sezione illustrano come toouse script azioni con modelli di gestione risorse di Azure.
+Gli esempi in questa sezione mostrano come usare azioni script con modelli di Azure Resource Manager.
 
 #### <a name="before-you-begin"></a>Prima di iniziare
 
-* Per informazioni sulla configurazione di un toorun workstation, i cmdlet HDInsight Powershell, vedere [installare e configurare Azure PowerShell](/powershell/azure/overview).
-* Per istruzioni su come toocreate modelli, vedere [modelli Authoring Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md).
+* Per informazioni sulla configurazione di una workstation per l'esecuzione dei cmdlet PowerShell per HDInsight, vedere [Come installare e configurare Azure PowerShell](/powershell/azure/overview).
+* Per istruzioni su come creare modelli, vedere [Creazione di modelli di Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md).
 * Se Azure PowerShell non è stato usato in precedenza con Gestione risorse, vedere [Uso di Azure PowerShell con Gestione risorse di Azure](../azure-resource-manager/powershell-azure-resource-manager.md).
 
 #### <a name="create-clusters-using-script-action"></a>Creare cluster usando l'azione script
 
-1. Copiare hello seguente percorso tooa modelli nel computer in uso. Questo modello consente di installare Giraph in hello headnodes e lavoro i nodi del cluster di hello. È inoltre possibile verificare se il modello JSON hello è valido. Incollare il contenuto del modello in [JSONLint](http://jsonlint.com/), uno strumento di convalida JSON disponibile online.
+1. Copiare il modello seguente in un percorso di questo computer. Questo modello installa Giraph nei nodi head e nei nodi del ruolo di lavoro del cluster. È anche possibile verificare se il modello JSON è valido. Incollare il contenuto del modello in [JSONLint](http://jsonlint.com/), uno strumento di convalida JSON disponibile online.
 
             {
             "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
@@ -378,21 +378,21 @@ esempi di Hello in questa sezione illustrano come toouse script azioni con model
                 }
             }
         }
-2. Avviare PowerShell di Azure e accedere tooyour account Azure. Dopo aver fornito le credenziali, hello comando restituisce le informazioni relative all'account.
+2. Avviare Azure PowerShell e accedere al proprio account Azure. Una volta specificate le credenziali, il comando restituisce le informazioni relative all'account.
 
         Add-AzureRmAccount
 
         Id                             Type       ...
         --                             ----
         someone@example.com            User       ...
-3. Se si dispone di più sottoscrizioni, fornire l'ID sottoscrizione hello desiderato toouse per la distribuzione.
+3. Se si hanno più sottoscrizioni, specificare l'ID sottoscrizione da usare per la distribuzione.
 
         Select-AzureRmSubscription -SubscriptionID <YourSubscriptionId>
 
     > [!NOTE]
-    > È possibile utilizzare `Get-AzureRmSubscription` tooget un elenco di tutte le sottoscrizioni associate all'account, che include l'ID sottoscrizione hello per ognuno di essi.
+    > È possibile usare `Get-AzureRmSubscription` per ottenere un elenco di tutte le sottoscrizioni associate all'account, con il rispettivo ID sottoscrizione.
 
-4. Se non è già disponibile un gruppo di risorse, crearne uno. Specificare il nome di hello del gruppo di risorse hello e il percorso che è necessario per la soluzione. Viene restituito un riepilogo del nuovo gruppo di risorse hello.
+4. Se non è già disponibile un gruppo di risorse, crearne uno. Specificare il nome del gruppo di risorse e il percorso per la soluzione. Viene restituito un riepilogo del nuovo gruppo di risorse.
 
         New-AzureRmResourceGroup -Name myresourcegroup -Location "West US"
 
@@ -406,19 +406,19 @@ esempi di Hello in questa sezione illustrano come toouse script azioni con model
                             *
         ResourceId        : /subscriptions/######/resourceGroups/ExampleResourceGroup
 
-5. una distribuzione per il gruppo di risorse, eseguire hello toocreate **New AzureRmResourceGroupDeployment** comando e specificare i parametri necessari hello. i parametri di Hello includono hello dati seguenti:
+5. Per creare una distribuzione per il gruppo di risorse, eseguire il comando **New-AzureResourceGroupDeployment** e specificare i parametri necessari. I parametri includono i dati seguenti:
 
     * Nome per la distribuzione
-    * nome di Hello del gruppo di risorse
-    * percorso di Hello o modello di URL toohello creato.
+    * Nome del gruppo di risorse
+    * Percorso o URL del modello creato.
 
-  Passare anche gli eventuali altri parametri richiesti dal modello. In questo caso, hello script azione tooinstall R nel cluster hello non richiede alcun parametro.
+  Passare anche gli eventuali altri parametri richiesti dal modello. In questo caso, l'azione di script per installare R nel cluster non richiede parametri.
 
         New-AzureRmResourceGroupDeployment -Name mydeployment -ResourceGroupName myresourcegroup -TemplateFile <PathOrLinkToTemplate>
 
-    Sono valori tooprovide richiesta per i parametri di hello definiti nel modello di hello.
+    Viene richiesto di fornire valori per i parametri definiti nel modello.
 
-1. Quando il gruppo di risorse hello è stato distribuito, viene visualizzato un riepilogo della distribuzione hello.
+1. Quando il gruppo di risorse è stato distribuito, verrà visualizzato un riepilogo della distribuzione.
 
           DeploymentName    : mydeployment
           ResourceGroupName : myresourcegroup
@@ -427,70 +427,70 @@ esempi di Hello in questa sezione illustrano come toouse script azioni con model
           Mode              : Incremental
           ...
 
-2. Se la distribuzione non riesce, è possibile utilizzare i seguenti cmdlet tooget informazioni sugli errori di hello hello.
+2. Se la distribuzione non riesce, è possibile usare i cmdlet seguenti per ottenere informazioni relative agli errori.
 
         Get-AzureRmResourceGroupDeployment -ResourceGroupName myresourcegroup -ProvisioningState Failed
 
 ### <a name="use-a-script-action-during-cluster-creation-from-azure-powershell"></a>Usare un'azione script durante la creazione di un cluster da Azure PowerShell
 
-In questa sezione, utilizziamo hello [Aggiungi AzureRmHDInsightScriptAction](https://msdn.microsoft.com/library/mt603527.aspx) cmdlet tooinvoke script utilizzando l'azione Script toocustomize un cluster. Prima di procedere, assicurarsi di aver installato e configurato Azure PowerShell. Per informazioni sulla configurazione di un toorun workstation, i cmdlet HDInsight PowerShell, vedere [installare e configurare Azure PowerShell](/powershell/azure/overview).
+In questa sezione si userà il cmdlet [Add-AzureRmHDInsightScriptAction](https://msdn.microsoft.com/library/mt603527.aspx) per richiamare script usando l'azione di script per personalizzare un cluster. Prima di procedere, assicurarsi di aver installato e configurato Azure PowerShell. Per informazioni sulla configurazione di una workstation per l'esecuzione di cmdlet PowerShell per HDInsight, vedere [Come installare e configurare Azure PowerShell](/powershell/azure/overview).
 
-Hello script riportato di seguito viene illustrato come tooapply un'azione di script durante la creazione di un cluster con PowerShell:
+Lo script seguente mostra come applicare un'azione script durante la creazione di un cluster con PowerShell:
 
 [!code-powershell[main](../../powershell_scripts/hdinsight/use-script-action/use-script-action.ps1?range=5-90)]
 
-Può richiedere alcuni minuti prima che venga creato il cluster hello.
+La creazione del cluster può richiedere alcuni minuti.
 
-### <a name="use-a-script-action-during-cluster-creation-from-hello-hdinsight-net-sdk"></a>Utilizzare un'azione di Script durante la creazione del cluster da hello HDInsight .NET SDK
+### <a name="use-a-script-action-during-cluster-creation-from-the-hdinsight-net-sdk"></a>Usare un'azione script durante la creazione di un cluster da HDInsight .NET SDK
 
-Hello HDInsight .NET SDK fornisce librerie client che rende più semplice toowork con HDInsight da un'applicazione .NET. Per un esempio di codice, vedere [basati su Linux creare cluster HDInsight con hello .NET SDK](hdinsight-hadoop-create-linux-clusters-dotnet-sdk.md#use-script-action).
+HDInsight .NET SDK fornisce librerie client che semplificano l'uso di HDInsight da un'applicazione .NET. Per un esempio di codice, vedere [Creare cluster basati su Linux in HDInsight tramite .NET SDK](hdinsight-hadoop-create-linux-clusters-dotnet-sdk.md#use-script-action).
 
-## <a name="apply-a-script-action-tooa-running-cluster"></a>Applicare un tooa genera Script azione in esecuzione del cluster
+## <a name="apply-a-script-action-to-a-running-cluster"></a>Applicare un'azione script a un cluster in esecuzione
 
-In questa sezione, informazioni su come tooapply script tooa azioni in esecuzione del cluster.
+Questa sezione offre informazioni su come applicare azioni script a un cluster in esecuzione.
 
-### <a name="apply-a-script-action-tooa-running-cluster-from-hello-azure-portal"></a>Applicare un tooa genera Script azione in esecuzione del cluster da hello portale di Azure
+### <a name="apply-a-script-action-to-a-running-cluster-from-the-azure-portal"></a>Applicare un'azione script a un cluster in esecuzione dal portale di Azure
 
-1. Da hello [portale di Azure](https://portal.azure.com), selezionare il cluster HDInsight.
+1. Nel [portale di Azure](https://portal.azure.com)selezionare il cluster HDInsight.
 
-2. Panoramica del cluster HDInsight hello, selezionare hello **azioni Script** riquadro.
+2. Nella panoramica del cluster HDInsight selezionare il riquadro **Azioni script**.
 
     ![Riquadro Azioni script](./media/hdinsight-hadoop-customize-cluster-linux/scriptactionstile.png)
 
    > [!NOTE]
-   > È inoltre possibile selezionare **tutte le impostazioni** e quindi selezionare **azioni Script** da hello sezione Impostazioni.
+   > È anche possibile selezionare **Tutte le impostazioni** e quindi **Azioni script** dalla sezione Impostazioni.
 
-3. Dall'alto hello di hello sezione azioni Script, selezionare **invia di nuovo**.
+3. Nella parte superiore della sezione Azioni script selezionare **Invia nuova**.
 
-    ![Aggiungere un tooa di script in esecuzione del cluster](./media/hdinsight-hadoop-customize-cluster-linux/add-script-running-cluster.png)
+    ![Aggiungere uno script a un cluster in esecuzione](./media/hdinsight-hadoop-customize-cluster-linux/add-script-running-cluster.png)
 
-4. Hello utilizzare __selezionare uno script__ tooselect voce uno script di pre-effettuato. toouse uno script personalizzato, selezionare __personalizzato__ e quindi fornire hello __nome__ e __l'URI dello script Bash__ per lo script.
+4. Usare la voce __Seleziona uno script__ per selezionare uno script pronto. Per usare uno script personalizzato, selezionare __Personalizzato__ e indicare __Nome__ e __URI script Bash__ per lo script.
 
-    ![Aggiungere uno script nel modulo di script selezionare hello](./media/hdinsight-hadoop-customize-cluster-linux/select-script.png)
+    ![Aggiungere uno script nel modulo di selezione script](./media/hdinsight-hadoop-customize-cluster-linux/select-script.png)
 
-    Hello nella tabella seguente vengono descritti gli elementi di hello in form di hello:
+    Nella tabella seguente vengono illustrati gli elementi nel modulo:
 
     | Proprietà | Valore |
     | --- | --- |
-    | Selezionare uno script | toouse lo script, seleziona __personalizzato__. In caso contrario, selezionare uno degli script disponibili. |
-    | Nome |Specificare un nome per l'azione script hello. |
-    | URI script Bash |Specificare hello URI toohello script che è richiamato toocustomize hello cluster. |
-    | Head/Worker/Zookeeper |Specificare i nodi di hello (**Head**, **lavoro**, o **ZooKeeper**) in cui personalizzazione hello viene eseguito uno script. |
-    | parameters |Specificare i parametri di hello, se richiesti dallo script hello. |
+    | Selezionare uno script | Per usare uno script personalizzato, selezionare __Personalizzato__. In caso contrario, selezionare uno degli script disponibili. |
+    | Nome |Specificare un nome per l'azione script. |
+    | URI script Bash |Specificare l'URI dello script da richiamare per personalizzare il cluster. |
+    | Head/Worker/Zookeeper |Specificare i nodi **head**, **ruolo di lavoro** o **Zookeeper** in cui viene eseguito lo script di personalizzazione. |
+    | Parametri |Specificare i parametri, se richiesti dallo script. |
 
-    Hello utilizzare __mantenere questa azione script__ voce toomake che hello script viene applicato durante le operazioni di ridimensionamento.
+    Usare la voce __Salvare questa azione script in modo permanente__ per assicurarsi che lo script venga applicato durante le operazioni di ridimensionamento.
 
-5. Infine, utilizzare hello **crea** cluster toohello di pulsante tooapply hello script.
+5. Infine, usare il pulsante **Crea** per applicare lo script al cluster.
 
-### <a name="apply-a-script-action-tooa-running-cluster-from-azure-powershell"></a>Applicare un tooa genera Script azione in esecuzione i cluster di Azure PowerShell
+### <a name="apply-a-script-action-to-a-running-cluster-from-azure-powershell"></a>Applicare un'azione script a un cluster in esecuzione da Azure PowerShell
 
-Prima di procedere, assicurarsi di aver installato e configurato Azure PowerShell. Per informazioni sulla configurazione di un toorun workstation, i cmdlet HDInsight PowerShell, vedere [installare e configurare Azure PowerShell](/powershell/azure/overview).
+Prima di procedere, assicurarsi di aver installato e configurato Azure PowerShell. Per informazioni sulla configurazione di una workstation per l'esecuzione di cmdlet PowerShell per HDInsight, vedere [Come installare e configurare Azure PowerShell](/powershell/azure/overview).
 
-Hello esempio seguente viene illustrato come un cluster in esecuzione di script azione tooa tooapply:
+L'esempio seguente mostra come applicare un'azione script a un cluster in esecuzione:
 
 [!code-powershell[main](../../powershell_scripts/hdinsight/use-script-action/use-script-action.ps1?range=105-117)]
 
-Al termine dell'operazione di hello, viene visualizzato toohello di informazioni simili seguente testo:
+Al termine dell'operazione, vengono visualizzate informazioni simili alle seguenti:
 
     OperationState  : Succeeded
     ErrorMessage    :
@@ -499,31 +499,31 @@ Al termine dell'operazione di hello, viene visualizzato toohello di informazioni
     Parameters      :
     NodeTypes       : {HeadNode, WorkerNode}
 
-### <a name="apply-a-script-action-tooa-running-cluster-from-hello-azure-cli"></a>Applicare un tooa genera Script azione in esecuzione del cluster da hello CLI di Azure
+### <a name="apply-a-script-action-to-a-running-cluster-from-the-azure-cli"></a>Applicare un'azione script a un cluster in esecuzione dall'interfaccia della riga di comando di Azure
 
-Prima di procedere, assicurarsi di avere installato e configurato hello CLI di Azure. Per ulteriori informazioni, vedere [installazione hello Azure CLI](../cli-install-nodejs.md).
+Prima di procedere, assicurarsi di aver installato e configurato l'interfaccia della riga di comando di Azure. Per altre informazioni, vedere [Installare l'interfaccia della riga di comando di Azure](../cli-install-nodejs.md).
 
 [!INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
 
-1. tooswitch tooAzure modalità di gestione delle risorse, utilizzare hello comando hello riga di comando seguente:
+1. Per passare alla modalità Azure Resource Manager, usare il comando seguente nella riga di comando:
 
         azure config mode arm
 
-2. Utilizzare hello seguente tooauthenticate tooyour sottoscrizione di Azure.
+2. Usare il comando seguente per eseguire l'autenticazione nella sottoscrizione di Azure.
 
         azure login
 
-3. Utilizzare hello successivo comando tooapply un tooa azione script in esecuzione del cluster
+3. Usare il comando seguente per applicare un'azione script a un cluster in esecuzione
 
         azure hdinsight script-action create <clustername> -g <resourcegroupname> -n <scriptname> -u <scriptURI> -t <nodetypes>
 
-    Se non vengono specificati alcuni parametri per il comando, verrà richiesto di specificarli. Se hello script specificare con `-u` accetta parametri, è possibile specificare tali utilizzando hello `-p` parametro.
+    Se non vengono specificati alcuni parametri per il comando, verrà richiesto di specificarli. Se lo script specificato con `-u` accetta parametri, è possibile specificarli usando il parametro `-p`.
 
-    I tipi di nodo validi sono `headnode`, `workernode`, e `zookeeper`. Se script hello devono essere tipi di nodo toomultiple applicato, specificare i tipi di hello separati da un ';'. ad esempio `-n headnode;workernode`.
+    I tipi di nodo validi sono `headnode`, `workernode`, e `zookeeper`. Se lo script deve essere applicato a più tipi di nodo, specificare i tipi separati da ';'. Ad esempio: `-n headnode;workernode`.
 
-    toopersist hello script, aggiungere hello `--persistOnSuccess`. È inoltre possibile mantenere in un secondo momento script hello utilizzando `azure hdinsight script-action persisted set`.
+    Per salvare lo script in modo permanente, aggiungere `--persistOnSuccess`. È anche possibile salvare lo script in modo permanente in un secondo momento usando `azure hdinsight script-action persisted set`.
 
-    Al termine del processo di hello, viene visualizzato toohello simili di output il testo seguente:
+    Al termine del processo, viene visualizzato un output simile al testo seguente:
 
         info:    Executing command hdinsight script-action create
         + Executing Script Action on HDInsight cluster
@@ -533,127 +533,127 @@ Prima di procedere, assicurarsi di avere installato e configurato hello CLI di A
         data:    Operation ID:  b707b10e-e633-45c0-baa9-8aed3d348c13
         info:    hdinsight script-action create command OK
 
-### <a name="apply-a-script-action-tooa-running-cluster-using-rest-api"></a>Applicare un tooa genera Script azione in esecuzione tramite l'API REST di cluster
+### <a name="apply-a-script-action-to-a-running-cluster-using-rest-api"></a>Applicare un'azione script a un cluster in esecuzione usando le API REST
 
 Vedere l'articolo su come [eseguire azioni script in un cluster in esecuzione](https://msdn.microsoft.com/library/azure/mt668441.aspx).
 
-### <a name="apply-a-script-action-tooa-running-cluster-from-hello-hdinsight-net-sdk"></a>Applicare un tooa genera Script azione in esecuzione del cluster da hello HDInsight .NET SDK
+### <a name="apply-a-script-action-to-a-running-cluster-from-the-hdinsight-net-sdk"></a>Applicare un'azione script a un cluster in esecuzione da HDInsight .NET SDK
 
-Per un esempio di utilizzo di hello .NET SDK tooapply script tooa cluster, vedere [https://github.com/Azure-Samples/hdinsight-dotnet-script-action](https://github.com/Azure-Samples/hdinsight-dotnet-script-action).
+Per un esempio relativo all'uso di .NET SDK per applicare script a un cluster, vedere [https://github.com/Azure-Samples/hdinsight-dotnet-script-action](https://github.com/Azure-Samples/hdinsight-dotnet-script-action).
 
 ## <a name="view-history-promote-and-demote-script-actions"></a>Visualizzare la cronologia, alzare e abbassare di livello le azioni script
 
-### <a name="using-hello-azure-portal"></a>Utilizzo di hello portale di Azure
+### <a name="using-the-azure-portal"></a>Uso del portale di Azure
 
-1. Da hello [portale di Azure](https://portal.azure.com), selezionare il cluster HDInsight.
+1. Nel [portale di Azure](https://portal.azure.com)selezionare il cluster HDInsight.
 
-2. Panoramica del cluster HDInsight hello, selezionare hello **azioni Script** riquadro.
+2. Nella panoramica del cluster HDInsight selezionare il riquadro **Azioni script**.
 
     ![Riquadro Azioni script](./media/hdinsight-hadoop-customize-cluster-linux/scriptactionstile.png)
 
    > [!NOTE]
-   > È inoltre possibile selezionare **tutte le impostazioni** e quindi selezionare **azioni Script** da hello sezione Impostazioni.
+   > È anche possibile selezionare **Tutte le impostazioni** e quindi **Azioni script** dalla sezione Impostazioni.
 
-4. Una cronologia degli script per il cluster viene visualizzata nella sezione azioni Script hello. Queste informazioni includono un elenco degli script persistenti. Nella schermata di hello riportata di seguito, è possibile visualizzare tale hello Solr script è stato eseguito nel cluster. schermata di Hello non sono presenti eventuali script persistenti.
+4. Una cronologia degli script per il cluster viene visualizzata nella sezione Azioni script. Queste informazioni includono un elenco degli script persistenti. Nella schermata seguente si noterà che lo script Solr è stato eseguito nel cluster, la schermata tuttavia non mostra script persistenti.
 
     ![Sezione Azioni script](./media/hdinsight-hadoop-customize-cluster-linux/script-action-history.png)
 
-5. Selezione di uno script dalla cronologia hello Visualizza sezione proprietà hello per questo script. Dall'alto hello della schermata di hello, è possibile eseguire di nuovo script hello o alzare di livello.
+5. Selezionando uno script nella cronologia, viene visualizzata la sezione Proprietà per lo script. Nella parte superiore della schermata è possibile eseguire di nuovo lo script o alzarlo di livello.
 
     ![Proprietà delle azioni script](./media/hdinsight-hadoop-customize-cluster-linux/promote-script-actions.png)
 
-6. È inoltre possibile utilizzare hello **...**  toohello a destra delle voci sulle azioni di tooperform sezione azioni Script hello.
+6. È anche possibile usare i puntini di sospensione **...** a destra delle voci nella sezione Azioni script per eseguire alcune operazioni.
 
     ![Uso di ... nelle azioni script](./media/hdinsight-hadoop-customize-cluster-linux/deletepromoted.png)
 
 ### <a name="using-azure-powershell"></a>Uso di Azure PowerShell
 
-| Utilizzare la seguente hello... | Anche... |
+| Usare | Per |
 | --- | --- |
 | Get-AzureRmHDInsightPersistedScriptAction |Recuperare informazioni sulle azioni script persistenti |
-| Get-AzureRmHDInsightScriptActionHistory |Recuperare una cronologia dei cluster toohello applicare azioni di script o i dettagli per uno script specifico |
-| Set-AzureRmHDInsightPersistedScriptAction |Alza di livello un ad hoc tooa azioni script persistenti genera script azione |
-| Remove-AzureRmHDInsightPersistedScriptAction |Abbassa di livello un'azione di script con salvataggio permanente azione tooan ad hoc |
+| Get-AzureRmHDInsightScriptActionHistory |Recuperare una cronologia delle azioni script applicate al cluster o i dettagli di uno script specifico |
+| Set-AzureRmHDInsightPersistedScriptAction |Alzare di livello un'azione script ad hoc per renderla un'azione script persistente |
+| Remove-AzureRmHDInsightPersistedScriptAction |Abbassare di livello un'azione script persistente per renderla un'azione script ad hoc |
 
 > [!IMPORTANT]
-> Utilizzando `Remove-AzureRmHDInsightPersistedScriptAction` non vengono annullate le azioni di hello eseguite da uno script. Questo cmdlet rimuove solo flag persistente hello.
+> Usando `Remove-AzureRmHDInsightPersistedScriptAction` non vengono annullate le azioni eseguite da uno script. Questo cmdlet rimuove solo il flag persistente.
 
-Hello lo script di esempio seguente viene illustrato come utilizzare toopromote cmdlet hello e abbassare di livello uno script.
+Lo script di esempio seguente mostra come usare i cmdlet per alzare di livello e poi abbassare di livello uno script.
 
 [!code-powershell[main](../../powershell_scripts/hdinsight/use-script-action/use-script-action.ps1?range=123-140)]
 
-### <a name="using-hello-azure-cli"></a>Utilizzo di hello CLI di Azure
+### <a name="using-the-azure-cli"></a>Uso dell'interfaccia della riga di comando di Azure
 
-| Utilizzare la seguente hello... | Anche... |
+| Usare | Per |
 | --- | --- |
 | `azure hdinsight script-action persisted list <clustername>` |Recuperare un elenco di azioni script con salvataggio permanente |
 | `azure hdinsight script-action persisted show <clustername> <scriptname>` |Recuperare informazioni su una specifica azione script con salvataggio permanente |
-| `azure hdinsight script-action history list <clustername>` |Recuperare una cronologia dei cluster toohello applicare azioni di script |
+| `azure hdinsight script-action history list <clustername>` |Recuperare una cronologia delle azioni script applicate al cluster |
 | `azure hdinsight script-action history show <clustername> <scriptname>` |Recuperare informazioni su un'azione script specifica |
-| `azure hdinsight script action persisted set <clustername> <scriptexecutionid>` |Alza di livello un ad hoc tooa azioni script persistenti genera script azione |
-| `azure hdinsight script-action persisted delete <clustername> <scriptname>` |Abbassa di livello un'azione di script con salvataggio permanente azione tooan ad hoc |
+| `azure hdinsight script action persisted set <clustername> <scriptexecutionid>` |Alzare di livello un'azione script ad hoc per renderla un'azione script persistente |
+| `azure hdinsight script-action persisted delete <clustername> <scriptname>` |Abbassare di livello un'azione script persistente per renderla un'azione script ad hoc |
 
 > [!IMPORTANT]
-> Utilizzando `azure hdinsight script-action persisted delete` non vengono annullate le azioni di hello eseguite da uno script. Questo cmdlet rimuove solo flag persistente hello.
+> Usando `azure hdinsight script-action persisted delete` non vengono annullate le azioni eseguite da uno script. Questo cmdlet rimuove solo il flag persistente.
 
-### <a name="using-hello-hdinsight-net-sdk"></a>Utilizzo di hello HDInsight .NET SDK
+### <a name="using-the-hdinsight-net-sdk"></a>Uso di HDInsight .NET SDK
 
-Per un esempio dell'utilizzo di cronologia di hello .NET SDK tooretrieve script da un cluster, alzare di livello o abbassare di livello gli script, vedere [https://github.com/Azure-Samples/hdinsight-dotnet-script-action](https://github.com/Azure-Samples/hdinsight-dotnet-script-action).
+Per un esempio relativo all'uso di .NET SDK per recuperare la cronologia degli script da un cluster e alzare o abbassare di livello gli script, vedere [https://github.com/Azure-Samples/hdinsight-dotnet-script-action](https://github.com/Azure-Samples/hdinsight-dotnet-script-action).
 
 > [!NOTE]
-> Questo esempio viene illustrato come un'applicazione di HDInsight mediante tooinstall hello .NET SDK.
+> Questo esempio mostra anche come installare un'applicazione HDInsight mediante .NET SDK.
 
 ## <a name="support-for-open-source-software-used-on-hdinsight-clusters"></a>Supporto per software open source usato nei cluster HDInsight
 
-servizio Microsoft Azure HDInsight Hello utilizza un ecosistema di tecnologie open source in corrispondenza di Hadoop. Microsoft Azure offre un livello di supporto generale per le tecnologie open source. Per ulteriori informazioni, vedere hello **ambito supporto** sezione di hello [sito Web di Azure Support FAQ](https://azure.microsoft.com/support/faq/). servizio HDInsight Hello fornisce un ulteriore livello di supporto per i componenti predefiniti.
+Il servizio Microsoft Azure HDInsight usa un ecosistema di tecnologie open source ispirate ad Hadoop. Microsoft Azure offre un livello di supporto generale per le tecnologie open source. Per altre informazioni, vedere la sezione **Ambito del supporto** nel [sito Web delle domande frequenti sul supporto tecnico di Azure](https://azure.microsoft.com/support/faq/). Il servizio HDInsight offre un livello di supporto aggiuntivo per i componenti predefiniti.
 
-Esistono due tipi di componenti open source che sono disponibili nel servizio HDInsight hello:
+Nel servizio HDInsight sono disponibili due tipi di componenti open source:
 
-* **I componenti predefiniti** -questi componenti sono pre-installati nei cluster HDInsight e forniscono funzionalità di base del cluster di hello. Ad esempio, ResourceManager YARN, linguaggio di query Hive hello (HiveQL) e libreria Mahout hello appartenere toothis categoria. È disponibile in un elenco completo dei componenti cluster [novità introdotta nelle versioni di cluster Hadoop hello fornite da HDInsight](hdinsight-component-versioning.md).
-* **I componenti personalizzati** -, come un utente del cluster di hello, puoi installare o utilizzare nel carico di lavoro qualsiasi componente disponibile nella community hello o creato dall'utente.
+* **Componenti predefiniti** - Questi componenti sono preinstallati nei cluster HDInsight e forniscono la funzionalità di base del cluster. Questa categoria include ad esempio il gestore risorse YARN, il linguaggio di query Hive (HiveQL) e la libreria Mahout. L'elenco completo dei componenti del cluster è disponibile in [Novità delle versioni cluster di Hadoop incluse in HDInsight](hdinsight-component-versioning.md).
+* **Componenti personalizzati** - Un utente del cluster può installare o usare nel carico di lavoro qualsiasi componente disponibile nella community o creato da lui stesso.
 
 > [!WARNING]
-> I componenti forniti con i cluster di HDInsight hello sono completamente supportati. Il supporto di Microsoft consente tooisolate e risolvere i problemi correlati toothese componenti.
+> I componenti forniti con il cluster HDInsight sono completamente supportati. Il supporto tecnico Microsoft aiuta a isolare e risolvere i problemi legati a tali componenti.
 >
-> I componenti personalizzati ricevano supporto commercialmente ragionevole toohelp toofurther per risolvere il problema di hello. Supporto tecnico Microsoft potrebbe essere in grado di tooresolve problema di hello o si potrebbero chiedere i canali disponibili tooengage per tecnologie open source hello in cui si trova esperienza completa per tale tecnologia. È ad esempio possibile ricorrere a molti siti di community, come il [forum MSDN per HDInsight](https://social.msdn.microsoft.com/Forums/azure/home?forum=hdinsight) o [http://stackoverflow.com](http://stackoverflow.com). Anche per i progetti Apache sono disponibili siti specifici in [http://apache.org](http://apache.org), ad esempio [Hadoop](http://hadoop.apache.org/).
+> I componenti personalizzati ricevono supporto commercialmente ragionevole per semplificare la risoluzione dei problemi. Il supporto tecnico Microsoft potrebbe essere in grado di risolvere il problema OPPURE richiedere di usare i canali disponibili per le tecnologie open source, in cui è possibile ottenere supporto estremamente competente per la tecnologia specifica. È ad esempio possibile ricorrere a molti siti di community, come il [forum MSDN per HDInsight](https://social.msdn.microsoft.com/Forums/azure/home?forum=hdinsight) o [http://stackoverflow.com](http://stackoverflow.com). Anche per i progetti Apache sono disponibili siti specifici in [http://apache.org](http://apache.org), ad esempio [Hadoop](http://hadoop.apache.org/).
 
-servizio HDInsight Hello modi diversi componenti personalizzati toouse. Hello si applica allo stesso livello di supporto, indipendentemente da come un componente viene utilizzato o installato nel cluster hello. Hello elenco seguente vengono descritti modi più comuni di hello che i componenti personalizzati possono essere utilizzati nei cluster HDInsight:
+Il servizio HDInsight permette di usare i componenti personalizzati in molti modi. Indipendentemente dal modo in cui un componente viene usato o installato nel cluster, verrà applicato lo stesso livello di supporto. L'elenco seguente illustra i modi più comuni per usare i componenti personalizzati nei cluster HDInsight:
 
-1. Invio di processi - Hadoop o altri tipi di processi che utilizzano componenti personalizzati di esecuzione può essere inviato toohello cluster.
+1. Invio di processi - È possibile inviare al cluster processi Hadoop o di altro tipo che eseguono o usano componenti personalizzati.
 
-2. Personalizzazione del cluster - durante la creazione del cluster, è possibile specificare impostazioni aggiuntive e i componenti personalizzati che vengono installati nei nodi del cluster hello.
+2. Personalizzazione del cluster - Durante la creazione di un cluster, è possibile specificare impostazioni aggiuntive e componenti personalizzati, che verranno installati nei nodi del cluster.
 
-3. Esempi - per componenti personalizzati più diffusi, Microsoft e altri utenti possono fornire esempi di come utilizzare questi componenti nei cluster di HDInsight hello. Questi esempi vengono forniti senza supporto.
+3. Esempi - Microsoft e altri utenti possono fornire esempi relativi all'uso dei componenti personalizzati più diffusi nei cluster HDInsight. Questi esempi vengono forniti senza supporto.
 
 ## <a name="troubleshooting"></a>Risoluzione dei problemi
 
-È possibile utilizzare Ambari web UI tooview informazioni registrate dalle azioni di script. Se lo script hello non riesce durante la creazione del cluster, sono disponibili nell'account di archiviazione predefinito hello associato hello cluster anche hello log. In questa sezione vengono fornite informazioni sul funzionamento dei registri tooretrieve hello utilizzando entrambe queste opzioni.
+È possibile usare l'interfaccia utente Web Ambari per visualizzare le informazioni registrate dalle azioni script. Se lo script ha esito negativo durante la creazione del cluster, i log sono disponibili anche nell'account di archiviazione predefinito associato al cluster. Questa sezione fornisce informazioni su come recuperare i registri usando entrambe le opzioni.
 
-### <a name="using-hello-ambari-web-ui"></a>Utilizzo dell'interfaccia utente Web Ambari hello
+### <a name="using-the-ambari-web-ui"></a>Utilizzo dell'interfaccia utente Web Ambari
 
-1. Nel browser passare toohttps://CLUSTERNAME.azurehdinsight.net. Sostituire CLUSTERNAME con nome hello del cluster HDInsight.
+1. Nel browser passare a https://CLUSTERNAME.azurehdinsight.net. Sostituire CLUSTERNAME con il nome del cluster HDInsight.
 
-    Quando richiesto, immettere nome dell'account admin hello (amministratore) e la password per il cluster hello. Credenziali di amministratore hello tooreenter potrebbe essere in un web form.
+    Quando richiesto, immettere il nome dell'account amministratore (admin) e la password per il cluster. Potrebbe essere necessario immettere di nuovo le credenziali di amministratore in un Web Form.
 
-2. Selezionare hello hello barra nella parte superiore di hello della pagina hello **ops** voce. Viene visualizzato un elenco delle operazioni correnti e precedenti eseguite su cluster hello tramite Ambari.
+2. Nella barra nella parte superiore della pagina fare clic sulla voce **ops**. Verrà visualizzato un elenco delle operazioni correnti e precedenti eseguite nel cluster tramite Ambari.
 
     ![Barra nell'interfaccia utente di Ambari con selezionato ops](./media/hdinsight-hadoop-customize-cluster-linux/ambari-nav.png)
 
-3. Trovare le voci di hello associate **eseguire\_customscriptaction** in hello **operazioni** colonna. Queste voci vengono create quando esegue le azioni Script hello.
+3. Trovare le voci con **run\_customscriptaction** nella colonna **Operations**. Queste voci vengono create quando si eseguono le azioni script.
 
     ![Schermata delle operazioni](./media/hdinsight-hadoop-customize-cluster-linux/ambariscriptaction.png)
 
-    hello tooview STDOUT e STDERR uscita, selezionare una voce run\customscriptaction hello e drill-down tramite collegamenti hello. Questo output viene generato quando l'esecuzione dello script hello e possono contenere informazioni utili.
+    Selezionare la voce run\customscriptaction ed eseguire il drill-down dei collegamenti per visualizzare l'output di STDOUT e STDERR. Questo output viene generato all'esecuzione dello script e può contenere informazioni utili.
 
-### <a name="access-logs-from-hello-default-storage-account"></a>Registri di accesso dall'account di archiviazione predefinito hello
+### <a name="access-logs-from-the-default-storage-account"></a>Accesso ai registri dall'account di archiviazione predefinito
 
-Se la creazione del cluster di hello non riesce a causa di errore script tooa, hello registri sono accessibili dall'account di archiviazione cluster hello.
+Se la creazione del cluster non riesce a causa di un errore nell'azione script, i log sono accessibili dall'account di archiviazione cluster.
 
-* Hello i log di archiviazione sono disponibili in `\STORAGE_ACCOUNT_NAME\DEFAULT_CONTAINER_NAME\custom-scriptaction-logs\CLUSTER_NAME\DATE`.
+* I registri di archiviazione sono disponibili in `\STORAGE_ACCOUNT_NAME\DEFAULT_CONTAINER_NAME\custom-scriptaction-logs\CLUSTER_NAME\DATE`.
 
     ![Schermata delle operazioni](./media/hdinsight-hadoop-customize-cluster-linux/script_action_logs_in_storage.png)
 
-    In questa directory, hello registri sono organizzati per nodo head, workernode e nodi zookeeper separatamente. Di seguito sono riportati alcuni esempi:
+    In questa directory i registri sono organizzati per nodi head, nodi del ruolo di lavoro e nodi zookeeper. Di seguito sono riportati alcuni esempi:
 
     * **Nodo head** - `<uniqueidentifier>AmbariDb-hn0-<generated_value>.cloudapp.net`
 
@@ -661,28 +661,28 @@ Se la creazione del cluster di hello non riesce a causa di errore script tooa, h
 
     * **Nodo Zookeeper** - `<uniqueidentifier>AmbariDb-zk0-<generated_value>.cloudapp.net`
 
-* Tutti i stdout e stderr dell'host corrispondente hello è caricato toohello account di archiviazione. Per ogni azione script esiste un file **output-\*.txt** e un file **errors-\*.txt**. file txt di output di Hello contiene informazioni su hello URI dello script hello che è stata eseguita sull'host hello. Ad esempio
+* Tutti i file stdout e stderr dell'host corrispondente vengono caricati nell'account di archiviazione. Per ogni azione script esiste un file **output-\*.txt** e un file **errors-\*.txt**. Il file output-*.txt contiene informazioni relative all'URI dello script che è stato eseguito nell'host. Ad esempio
 
         'Start downloading script locally: ', u'https://hdiconfigactions.blob.core.windows.net/linuxrconfigactionv01/r-installer-v01.sh'
 
-* È possibile creare un cluster di azione script ripetutamente con hello stesso nome. In tal caso, è possibile distinguere i log rilevanti di hello in base al nome di cartella Data hello. Ad esempio, la struttura di cartelle hello per un cluster (mycluster) creato in date diverse appare simile toohello seguenti voci di log:
+* È possibile creare più volte un cluster dell'azione di script con lo stesso nome. In questo caso, è possibile distinguere i registri corrispondenti in base al nome della cartella della data. Ad esempio, la struttura di cartelle per un cluster (mycluster) creato in diverse date sarà simile alle seguenti voci di registro:
 
     `\STORAGE_ACCOUNT_NAME\DEFAULT_CONTAINER_NAME\custom-scriptaction-logs\mycluster\2015-10-04``\STORAGE_ACCOUNT_NAME\DEFAULT_CONTAINER_NAME\custom-scriptaction-logs\mycluster\2015-10-05`
 
-* Se si crea un cluster di azione di script con hello stesso nome in hello stesso giorno, è possibile utilizzare file di log desiderati hello tooidentify hello prefisso univoco.
+* Se in uno stesso giorno si creano più cluster dell'azione di script con lo stesso nome, è possibile usare il prefisso univoco per identificare i file di registro corrispondenti.
 
-* Se si crea un cluster quasi 12:00 (mezzanotte), è possibile che i file di log hello estendersi attraverso due giorni. In questi casi, vedrai due cartelle data diversi per hello dello stesso cluster.
+* Se si crea un cluster verso le 00.00 (mezzanotte), è possibile che i file di log si estendano su due giorni. In questi casi, per lo stesso cluster vengono visualizzate due diverse cartelle della data.
 
-* Contenitore predefinito di toohello i file di registro caricamento può richiedere too5 minuti, in particolare per i cluster di grandi dimensioni. In tal caso, se si desidera registri hello tooaccess, è necessario non immediatamente eliminare cluster hello se ha esito negativo di un'azione di script.
+* Il caricamento dei file di registro nel contenitore predefinito può richiedere fino a 5 minuti, soprattutto per i cluster di grandi dimensioni. Se si desidera accedere ai file di registro, quindi, è opportuno non eliminare immediatamente il cluster in caso di esito negativo di un'azione di script.
 
 ### <a name="ambari-watchdog"></a>Watchdog Ambari
 
 > [!WARNING]
-> Non modificare la password di hello per hello Ambari Watchdog (hdinsightwatchdog) il cluster HDInsight basati su Linux. La modifica della password per questo account hello interruzioni hello possibilità toorun nuove azioni di script nel cluster HDInsight hello.
+> Non modificare la password del watchdog Ambari (hdinsightwatchdog) nel cluster HDInsight basato su Linux. La modifica della password per questo account rende impossibile eseguire nuove azioni script nel cluster HDInsight.
 
 ### <a name="cant-import-name-blobservice"></a>Non è possibile importare il nome BlobService
 
-__Sintomi__: hello script azione non riuscita. Quando si visualizza l'operazione di hello in Ambari, viene visualizzato toohello simile a testo errore seguente:
+__Sintomi__: l'azione script non riesce. Quando si visualizza l'operazione in Ambari, viene restituito un errore simile al seguente:
 
 ```
 Traceback (most recent call list):
@@ -691,33 +691,33 @@ Traceback (most recent call list):
 ImportError: cannot import name BlobService
 ```
 
-__Causa__: questo errore si verifica se si esegue l'aggiornamento del client di archiviazione di Azure Python hello incluso con i cluster di HDInsight hello. HDInsight prevede l'uso della versione 0.20.0 del client di archiviazione di Azure.
+__Causa__: questo errore si verifica se si aggiorna il client di archiviazione di Azure Python incluso con il cluster HDInsight. HDInsight prevede l'uso della versione 0.20.0 del client di archiviazione di Azure.
 
-__Risoluzione__: tooresolve questo errore, connettersi manualmente dei nodi del cluster utilizzando tooeach `ssh` e utilizzare hello seguendo versione client corretta archiviazione di comando tooreinstall hello:
+__Risoluzione__: per risolvere questo problema, connettersi manualmente a ciascun nodo del cluster usando `ssh` e usare il comando seguente per reinstallare la versione corretta del client di archiviazione:
 
 ```
 sudo pip install azure-storage==0.20.0
 ```
 
-Per informazioni sulla connessione toohello cluster con SSH, vedere [utilizzo di SSH con HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).
+Per informazioni sulla connessione al cluster tramite SSH, vedere [Usare SSH con HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).
 
 ### <a name="history-doesnt-show-scripts-used-during-cluster-creation"></a>La cronologia non mostra gli script usati durante la creazione di un cluster
 
-Se il cluster è stato creato prima del 15 marzo 2016, potrebbe non essere visualizzata una voce nella cronologia delle azioni script. Se si ridimensiona cluster hello dopo 15 marzo 2016, hello script utilizzando durante la creazione del cluster vengono visualizzati nella cronologia applicate toonew nodi nel cluster di hello come parte di hello operazione di ridimensionamento.
+Se il cluster è stato creato prima del 15 marzo 2016, potrebbe non essere visualizzata una voce nella cronologia delle azioni script. Se il cluster è stato ridimensionato dopo il 15 marzo 2016, gli script usati durante la creazione del cluster verranno visualizzati nella cronologia man mano che vengono applicati a nuovi nodi nel cluster nell'ambito dell'operazione di ridimensionamento.
 
 Sussistono due eccezioni:
 
 * Se il cluster è stato creato prima del 1° settembre 2015. Le azioni script sono state introdotte in questa data. Per i cluster creati prima di tale data non possono quindi essere state usate le azioni script.
 
-* Se è usato più azioni di Script durante la creazione del cluster e hello stesso nome per più script o hello stesso nome, stesso URI, ma parametri diversi per più script. In questi casi, viene visualizzato il seguente errore hello:
+* Se sono state usate più azioni script durante la creazione del cluster ed è stato usato lo stesso nome per più script oppure lo stesso nome e lo stesso URI ma parametri diversi per più script. In questi casi si riceve un errore simile al seguente:
 
-    Nessun nuovo script azioni possono essere eseguito su questo cluster a causa di nomi di script tooconflicting negli script esistenti. I nomi di script forniti durante la creazione del cluster devono essere tutti univoci. Gli script esistenti vengono eseguiti durante il ridimensionamento.
+    Non è possibile eseguire nuove azioni script nel cluster a causa di nomi di script in conflitto negli script esistenti. I nomi di script forniti durante la creazione del cluster devono essere tutti univoci. Gli script esistenti vengono eseguiti durante il ridimensionamento.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
 * [Sviluppare script di Azione script per HDInsight](hdinsight-hadoop-script-actions-linux.md)
 * [Installare e usare Solr nei cluster HDInsight](hdinsight-hadoop-solr-install-linux.md)
 * [Installare e usare Giraph nei cluster HDInsight](hdinsight-hadoop-giraph-install-linux.md)
-* [Aggiungere ulteriore spazio di archiviazione tooan HDInsight cluster](hdinsight-hadoop-add-storage.md)
+* [Add additional storage to an HDInsight cluster](hdinsight-hadoop-add-storage.md) (Aggiungere altra memoria a un cluster HDInsight)
 
 [img-hdi-cluster-states]: ./media/hdinsight-hadoop-customize-cluster-linux/HDI-Cluster-state.png "Fasi durante la creazione di un cluster"

@@ -1,6 +1,6 @@
 ---
-title: aaaScenario - creare un dashboard di insights di clienti con Azure senza | Documenti Microsoft
-description: "Un esempio di come è possibile compilare un cliente toomanage dashboard commenti e suggerimenti, dati di social networking e altro ancora con le applicazioni di logica di Azure e le funzioni di Azure."
+title: 'Scenario: Creare un dashboard Customer Insights con Azure Serverless | Microsoft Docs'
+description: Esempio di come creare un dashboard per gestire i suggerimenti dei clienti, i dati di social networking e altro ancora con App per la logica di Azure e Funzioni di Azure.
 keywords: 
 services: logic-apps
 author: jeffhollan
@@ -15,95 +15,95 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/29/2017
 ms.author: jehollan
-ms.openlocfilehash: db175e895e37aa795a9c34bf4d65566bf68f8c37
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0b6e118cb13ab8185d8eeb42bec6147155967967
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="create-a-real-time-customer-insights-dashboard-with-azure-logic-apps-and-azure-functions"></a>Creare un dashboard Customer Insights in tempo reale con App per la logica di Azure e Funzioni di Azure
 
-Gli strumenti di Azure senza forniscono potenti funzionalità tooquickly compilare e ospitare applicazioni in cloud hello, senza dovere toothink sull'infrastruttura.  In questo scenario, verrà creato un tootrigger dashboard ai suggerimenti dei clienti, analizzare i commenti e suggerimenti con machine learning e pubblicare informazioni dettagliate di un'origine come Power BI o Azure Data Lake.
+Gli strumenti di Azure Serverless offrono potenti funzionalità per compilare rapidamente e ospitare applicazioni nel cloud, senza doversi preoccupare dell'infrastruttura.  In questo scenario si creerà un dashboard da attivare con i suggerimenti dei clienti, si analizzeranno i suggerimenti con Machine Learning e si pubblicheranno informazioni dettagliate in un'origine come Power BI o Azure Data Lake.
 
-## <a name="overview-of-hello-scenario-and-tools-used"></a>Panoramica dello scenario di hello e strumenti utilizzati
+## <a name="overview-of-the-scenario-and-tools-used"></a>Panoramica dello scenario e degli strumenti usati
 
-In ordine tooimplement questa soluzione, verranno utilizzate componenti chiave di hello due delle App senza server in Azure: [Azure funzioni](https://azure.microsoft.com/services/functions/) e [Azure logica app](https://azure.microsoft.com/services/logic-apps/).
+Per implementare questa soluzione, si sfrutteranno i due componenti chiave delle app senza server in Azure: [Funzioni di Azure](https://azure.microsoft.com/services/functions/) e [App per la logica di Azure](https://azure.microsoft.com/services/logic-apps/).
 
-Logica App è un motore del flusso di lavoro senza server nel cloud hello.  Fornisce l'orchestrazione tra i componenti server e si connette anche tooover 100 servizi e le API.  Per questo scenario, si creerà un tootrigger app logica ai suggerimenti dei clienti.  Alcuni dei connettori hello che consentono di reazione feedback toocustomer includono Outlook.com, Office 365, Monkey sondaggio, Twitter e una richiesta HTTP [da un web form](https://blogs.msdn.microsoft.com/logicapps/2017/01/30/calling-a-logic-app-from-an-html-form/).  Per hello del flusso di lavoro riportato di seguito, si esegue il monitoraggio un hashtag su Twitter.
+App per la logica è un motore del flusso di lavoro senza server nel cloud,  che fornisce l'orchestrazione tra componenti senza server e si connette anche a più di 100 servizi e API.  In questo scenario si creerà un'app per la logica da attivare con i suggerimenti da parte dei clienti.  Tra i connettori che possono migliorare la reazione ai suggerimenti dei clienti sono inclusi Outlook.com, Office 365, Survey Monkey, Twitter e una richiesta HTTP [da un Web Form](https://blogs.msdn.microsoft.com/logicapps/2017/01/30/calling-a-logic-app-from-an-html-form/).  Per il flusso di lavoro seguente, si monitorerà un hashtag su Twitter.
 
-Le funzioni forniscono senza calcolo nel cloud hello.  In questo scenario, si utilizzerà le funzioni di Azure tooflag TWEET dai clienti in base a una serie di parole chiave predefinite.
+Funzioni consente il calcolo senza server nel cloud.  In questo scenario si userà Funzioni di Azure per contrassegnare i tweet dei clienti in base a una serie di parole chiave predefinite.
 
-può essere l'intera soluzione Hello [compilati in Visual Studio](logic-apps-deploy-from-vs.md) e [distribuito come parte di un modello di risorsa](logic-apps-create-deploy-template.md).  È inoltre presente procedura dettagliata video dello scenario hello [su Channel 9](http://aka.ms/logicappsdemo).
+L'intera soluzione può essere [compilata in Visual Studio](logic-apps-deploy-from-vs.md) e [distribuita come parte di un modello di risorsa](logic-apps-create-deploy-template.md).  [Su Channel 9](http://aka.ms/logicappsdemo) è disponibile anche una procedura dettagliata video dello scenario.
 
-## <a name="build-hello-logic-app-tootrigger-on-customer-data"></a>Compilare hello logica app tootrigger sui dati dei clienti
+## <a name="build-the-logic-app-to-trigger-on-customer-data"></a>Compilare l'app per la logica da attivare sui dati del cliente
 
-Dopo aver [creazione di un'app di logica](logic-apps-create-a-logic-app.md) in Visual Studio o hello portale di Azure:
+Dopo avere [creato un'app per la logica](logic-apps-create-a-logic-app.md) in Visual Studio o nel portale di Azure:
 
 1. Aggiungere un trigger per **On New Tweets** (All'arrivo di nuovi tweet) da Twitter
-2. Configurare hello trigger toolisten tootweets su una parola chiave o hashtag.
+2. Configurare il trigger per l'ascolto di tweet correlati a una parola chiave o a un hashtag.
 
    > [!NOTE]
-   > proprietà ricorrenza Hello trigger hello determinerà frequenza dei controlli per i nuovi elementi per i trigger basate sul polling hello logica app
+   > La proprietà recurrence nel trigger determinerà con quale frequenza l'app per la logica deve verificare la presenza di nuovi elementi nei trigger basati sul polling
 
    ![Esempio di trigger di Twitter][1]
 
-Questa app ora verrà attivata all'arrivo di tutti i nuovi tweet.  È quindi possibile richiedere che i dati tweet e comprendere più sentiment hello espresso.  A tale scopo si usa hello [servizio cognitivi Azure](https://azure.microsoft.com/services/cognitive-services/) sentiment toodetect del testo.
+Questa app ora verrà attivata all'arrivo di tutti i nuovi tweet.  Sarà quindi possibile esaminare i dati dei tweet per comprendere meglio il sentiment espresso.  A questo scopo vengono usati i [Servizi cognitivi di Azure](https://azure.microsoft.com/services/cognitive-services/) per rilevare il sentiment del testo.
 
 1. Fare clic su **Nuovo passaggio**
-1. Selezionare o cercare hello **testo Analitica** connettore
-1. Seleziona hello **rilevare Sentiment** operazione
-1. Se richiesto, fornire una chiave di servizi cognitivi valida per il servizio Analitica testo hello
-1. Aggiungere hello **Tweet testo** come hello tooanalyze di testo.
+1. Selezionare o cercare il connettore **Analisi del testo**
+1. Selezionare l'operazione **Detect Sentiment** (Rileva sentiment)
+1. Se richiesto, immettere una chiave di Servizi cognitivi valida per il servizio Analisi del testo
+1. Aggiungere il **testo del tweet** come testo da analizzare.
 
-Ora che abbiamo dati tweet hello e approfondimenti su tweet hello, un numero di altri connettori può essere rilevante:
-* Power BI - aggiungere righe tooStreaming set di dati: TWEET visualizzazione in tempo reale in un dashboard di Power BI.
-* Azure Data Lake - accodare il file: aggiungere cliente dati tooan Azure Data Lake dataset tooinclude nei processi analitica.
+Ora che sono disponibili i dati del tweet e le informazioni approfondite sul tweet, diversi altri connettori possono risultare utili:
+* Power BI. Aggiunta di righe al set di dati di streaming: visualizza i tweet in tempo reale in un dashboard di Power BI.
+* Azure Data Lake. Aggiunta file: aggiunge i dati di un cliente a un set di dati di Azure Data Lake da includere nei processi di analisi.
 * SQL. Aggiunta di righe: archivia i dati in un database per recuperarli in seguito.
 * Slack. Invio messaggio: avvisa un canale di Slack all'arrivo di commenti negativi che richiedono l'esecuzione di azioni.
 
-Una funzione di Azure può essere anche usato toodo più personalizzato di calcolo sui dati hello.
+È anche possibile usare una funzione di Azure per eseguire un calcolo più personalizzato sui dati.
 
-## <a name="enriching-hello-data-with-an-azure-function"></a>Arricchimento dei dati di hello con una funzione di Azure
+## <a name="enriching-the-data-with-an-azure-function"></a>Arricchimento dei dati con una funzione di Azure
 
-Prima di poter creare una funzione, è necessario toohave un'app di funzione nella nostra sottoscrizione di Azure.  Informazioni dettagliate sulla creazione di una funzione di Azure nel portale di hello possono [sono disponibili qui](../azure-functions/functions-create-first-azure-function-azure-portal.md)
+Prima di poter creare una funzione, è necessario avere un'app per le funzioni nella sottoscrizione di Azure.  Per informazioni dettagliate sulla creazione di una funzione di Azure nel portale, [vedere qui](../azure-functions/functions-create-first-azure-function-azure-portal.md)
 
-Per toobe una funzione chiamata direttamente da un'app di logica, è necessario toohave HTTP attivare associazione.  È consigliabile utilizzare hello **HttpTrigger** modello.
+Perché una funzione possa essere chiamata direttamente da un'app per la logica, è necessaria un'associazione a un trigger HTTP.  È consigliabile usare il modello **HttpTrigger**.
 
-In questo scenario, il corpo della richiesta di hello Azure funzione hello sarebbe testo tweet hello.  Nel codice della funzione hello, definire semplicemente la logica nel Se testo tweet hello contiene una parola chiave o una frase.  funzione Hello stessa poteva essere tenuta semplice o complesso come necessario per lo scenario di hello.
+In questo scenario il corpo della richiesta della funzione di Azure sarà il testo del tweet.  Nel codice della funzione definire semplicemente la logica considerando se il testo del tweet contiene una parola chiave o una frase.  La semplicità o la complessità della funzione stessa dipende dallo scenario.
 
-Alla fine di hello della funzione hello, restituiscono semplicemente un'app di logica di risposta toohello con alcuni dati.  Può trattarsi di un semplice valore booleano (ad esempio, `containsKeyword`) o di un oggetto complesso.
+Alla fine della funzione è sufficiente restituire una risposta all'app per la logica con alcuni dati.  Può trattarsi di un semplice valore booleano (ad esempio, `containsKeyword`) o di un oggetto complesso.
 
 ![Passaggio della funzione di Azure configurata][2]
 
 > [!TIP]
-> Quando si accede a una risposta complessa da una funzione in un'app di logica, azione hello analizzare JSON.
+> Quando si accede a una risposta complessa da una funzione in un'app per la logica, usare l'azione Analizza JSON.
 
-Dopo aver salvata la funzione hello, può essere aggiunto in hello logica app creato in precedenza.  Nell'app logica hello:
+La funzione, dopo essere stata salvata, può essere aggiunta nell'app per la logica creata sopra.  Nell'app per la logica:
 
-1. Fare clic su tooadd un **nuovo passaggio**
-1. Seleziona hello **Azure funzioni** connettore
-1. Selezionare toochoose una funzione esistente e passare toohello funzione creata
-1. Inviare in hello **testo Tweet** per hello **corpo della richiesta**
+1. Fare clic per aggiungere un **nuovo passaggio**
+1. Selezionare il connettore **Funzioni di Azure**
+1. Selezionare l'opzione per scegliere una funzione esistente e passare alla funzione creata
+1. Inviare il **testo del tweet** come **corpo della richiesta**
 
-## <a name="running-and-monitoring-hello-solution"></a>In esecuzione e hello soluzione di monitoraggio
+## <a name="running-and-monitoring-the-solution"></a>Esecuzione e monitoraggio della soluzione
 
-Uno dei vantaggi di hello di orchestrazioni senza server nell'App per la logica di creazione è debug avanzato hello e funzionalità di monitoraggio.  Qualsiasi esecuzione (correnti o cronologici) può essere visualizzati all'interno di Visual Studio, hello portale di Azure o tramite l'API REST hello e SDK.
+Uno dei vantaggi di creare orchestrazioni senza server in App per la logica sono le funzionalità avanzate per il debug e il monitoraggio.  Qualsiasi esecuzione (corrente o cronologica) può essere visualizzata da Visual Studio, dal portale di Azure o tramite l'API REST e gli SDK.
 
-Uno dei hello tootest di modi più semplice un'app logica utilizza hello **eseguire** pulsante nella finestra di progettazione hello.  Fare clic su **eseguire** continuerà trigger hello toopoll ogni 5 secondi fino a quando non viene rilevato un evento e fornire una visualizzazione in tempo reale durante l'avanzamento hello eseguire.
+Uno dei modi più semplici per testare un'app per la logica consiste nell'usare il pulsante **Esegui** nella finestra di progettazione.  Facendo clic su **Esegui**, il polling del trigger continuerà a essere eseguito ogni 5 secondi finché non verrà rilevato un evento e a offrire una visualizzazione live dell'esecuzione in corso.
 
-Cronologia di esecuzione precedente può essere visualizzati nel pannello della panoramica hello hello portale di Azure o utilizzando Visual Studio Cloud Explorer hello.
+Le cronologie di esecuzione precedenti possono essere visualizzate nel pannello Panoramica del portale di Azure oppure usando Visual Studio Cloud Explorer.
 
 ## <a name="creating-a-deployment-template-for-automated-deployments"></a>Creazione di un modello per le distribuzioni automatizzate
 
-Dopo aver sviluppata una soluzione, possono essere acquisito e distribuito tramite tooany di modello area di Azure nel mondo hello una distribuzione di Azure.  Tale operazione è utile non solo per modificare i parametri delle diverse versioni di questo flusso di lavoro, ma anche per integrare la soluzione in una pipeline di compilazione e rilascio.  Per informazioni dettagliate sulla creazione di un modello di distribuzione, vedere [questo articolo](logic-apps-create-deploy-template.md).
+Una distribuzione, dopo essere stata sviluppata, può essere acquisita e distribuita in qualsiasi area di Azure del mondo tramite un modello di distribuzione di Azure.  Tale operazione è utile non solo per modificare i parametri delle diverse versioni di questo flusso di lavoro, ma anche per integrare la soluzione in una pipeline di compilazione e rilascio.  Per informazioni dettagliate sulla creazione di un modello di distribuzione, vedere [questo articolo](logic-apps-create-deploy-template.md).
 
-Funzioni di Azure possono anche essere incorporate nel modello di distribuzione hello - dell'intera soluzione hello con tutte le dipendenze può essere gestiti come un singolo modello.  Un esempio di un modello di distribuzione di funzione è reperibile in hello [repository di modelli di avvio rapido di Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/101-function-app-create-dynamic).
+Funzioni di Azure può anche essere incorporato nel modello di distribuzione, in modo che l'intera soluzione con tutte le dipendenze possa essere gestita come un singolo modello.  Per un esempio di modello di distribuzione delle funzioni, vedere il [repository di modelli di guide introduttive di Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/101-function-app-create-dynamic).
 
 ## <a name="next-steps"></a>Passaggi successivi
 
 * [Vedere altri esempi e scenari per App per la logica di Azure](logic-apps-examples-and-scenarios.md)
 * [Guardare un video con la procedura dettagliata sulla creazione di questa soluzione end-to-end](http://aka.ms/logicappsdemo)
-* [Informazioni su come toohandle e catch eccezioni all'interno di un'app di logica](logic-apps-exception-handling.md)
+* [Informazioni su come gestire e acquisire le eccezioni in un'app per la logica](logic-apps-exception-handling.md)
 
 <!-- Image References -->
 [1]: ./media/logic-apps-scenario-social-serverless/twitter.png

@@ -1,6 +1,6 @@
 ---
-title: aaaAzure multi-Factor Authentication - funzionamento
-description: "Azure multi-Factor Authentication consente di salvaguardare accesso toodata e applicazioni rispettando richiesta dell'utente per un semplice processo. Offre ulteriore sicurezza richiedendo una seconda forma di autenticazione nonché un'autenticazione avanzata tramite una gamma di opzioni di verifica semplice."
+title: Azure Multi-Factor Authentication - Come funziona
+description: "Azure multi-Factor Authentication contribuisce a salvaguardare l'accesso a dati e applicazioni rispondendo alla richiesta degli utenti di poter usare un processo di accesso semplice. Offre ulteriore sicurezza richiedendo una seconda forma di autenticazione nonché un'autenticazione avanzata tramite una gamma di opzioni di verifica semplice."
 services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
@@ -15,37 +15,37 @@ ms.date: 06/20/2017
 ms.author: kgremban
 ms.reviewer: yossib
 ms.custom: it-pro
-ms.openlocfilehash: 82f234fb86f145c42e8e56b8bdd2d61720c9ff2a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6fee02885cc76b3a4fdad11e8702f623d6fe6597
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="how-azure-multi-factor-authentication-works"></a>Come funziona Azure Multi-Factor Authentication
-sicurezza di Hello di verifica in due passaggi è compresa nel suo approccio a più livelli. La manomissione di più fattori rappresenta una sfida significativa per gli autori di attacchi. Anche se un utente malintenzionato riesce toolearn hello password utente, è inutile senza anche in possesso del dispositivo attendibile hello. 
+La sicurezza della verifica in due passaggi sta nel suo approccio a livelli. La manomissione di più fattori rappresenta una sfida significativa per gli autori di attacchi. Tuttavia, anche se un autore di attacco riesce a ottenere la password dell'utente, questa risulta inutile se non è in possesso del dispositivo attendibile. 
 
 ![Verifica](./media/multi-factor-authentication-how-it-works/howitworks.png)
 
-Azure multi-Factor Authentication consente di salvaguardare accesso toodata e applicazioni rispettando richiesta dell'utente per un semplice processo.  Offre ulteriore sicurezza richiedendo una seconda forma di autenticazione nonché un'autenticazione avanzata tramite una gamma di opzioni di verifica semplice.
+Azure multi-Factor Authentication contribuisce a salvaguardare l'accesso a dati e applicazioni rispondendo alla richiesta degli utenti di poter usare un processo di accesso semplice.  Offre ulteriore sicurezza richiedendo una seconda forma di autenticazione nonché un'autenticazione avanzata tramite una gamma di opzioni di verifica semplice.
 
 
 ## <a name="methods-available-for-two-step-verification"></a>Metodi disponibili per la verifica in due passaggi
-Quando un utente accede, una verifica aggiuntiva viene inviata toohello utente.  di seguito Hello sono un elenco di metodi che può essere utilizzato per la verifica di secondo.
+Quando un utente accede, una verifica aggiuntiva viene inviata all'utente.  Di seguito è riportato un elenco di metodi che possono essere utilizzati per la seconda verifica.
 
 | Metodo di verifica | Descrizione |
 | --- | --- |
-| Chiamata telefonica |Telefono registrato tooa dell'utente viene effettuata una chiamata. utente Hello immette un PIN, se necessario, quindi preme # hello. |
-| SMS |Il telefono cellulare dell'utente tooa con un codice a sei cifre viene inviato un messaggio di testo. Questo codice Hello immessi nella pagina di accesso hello. |
-| Notifica dell'app per dispositivi mobili |Smartphone dell'utente tooa viene inviata una richiesta di verifica. Hello utente immette il PIN, se necessario, quindi seleziona **verificare** su hello app per dispositivi mobili. |
-| Codice di verifica dell'app per dispositivi mobili |Hello app per dispositivi mobili, che è in esecuzione Smartphone dell'utente, viene visualizzato un codice di verifica che le modifiche apportate a ogni 30 secondi. utente Hello Trova codice più recente di hello e lo inserisce nella pagina di accesso hello. |
-| Token OATH di terze parti | Server di Azure multi-Factor Authentication può essere configurato tooaccept metodi di verifica di terze parti. |
+| Chiamata telefonica |Viene eseguita una chiamata al telefono registrato di un utente. Se è necessario l'utente immette un PIN, quindi preme il tasto #. |
+| SMS |Viene inviato un SMS al cellulare dell'utente con un codice di sei cifre. L'utente immette il codice nella pagina di accesso. |
+| Notifica dell'app per dispositivi mobili |Viene inviata una richiesta di verifica allo smartphone dell'utente. L'utente immette il PIN, se necessario, quindi seleziona **Verifica** nell'app per dispositivi mobili. |
+| Codice di verifica dell'app per dispositivi mobili |L'app per dispositivi mobili, che è in esecuzione sullo smartphone dell'utente, mostra un codice di verifica che cambia ogni 30 secondi. L'utente individua il codice più recente e lo inserisce nella pagina di accesso. |
+| Token OATH di terze parti | Il server Azure Multi-Factor Authentication può essere configurato per accettare metodi di verifica di terze parti. |
 
 Azure multi-Factor Authentication fornisce metodi di verifica selezionabili per cloud e server. È possibile scegliere i metodi disponibili per gli utenti: telefonata, SMS, notifica dell'app o codici dell'app. Per altre informazioni, vedere i [metodi di verifica selezionabili](multi-factor-authentication-whats-next.md#selectable-verification-methods).
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- Informazioni sulle diversa hello [versioni e i metodi di utilizzo per Azure multi-Factor Authentication](multi-factor-authentication-versions-plans.md)
+- Informazioni sulle diverse [versioni e i metodi di utilizzo per Multi-Factor Authentication](multi-factor-authentication-versions-plans.md)
 
-- Scegliere se toodeploy Azure MFA [in locale o cloud hello](multi-factor-authentication-get-started.md)
+- Scegliere se distribuire Azure MFA [nel cloud o in locale](multi-factor-authentication-get-started.md)
 
 - Risposte alle [Domande frequenti](multi-factor-authentication-faq.md)

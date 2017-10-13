@@ -1,6 +1,6 @@
 ---
-title: Panoramica di gestione risorse aaaAzure | Documenti Microsoft
-description: Viene descritto come toouse Gestione risorse di Azure per la distribuzione, gestione e controllo di accesso delle risorse in Azure.
+title: Panoramica di Azure Resource Manager | Documentazione Microsoft
+description: "Viene descritto come utilizzare Gestione risorse di Azure per la distribuzione, la gestione e il controllo dell’accesso delle risorse in Azure."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,82 +14,82 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/19/2017
 ms.author: tomfitz
-ms.openlocfilehash: a44fccd96d722c006224145d71cc44292255debf
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f539931e0704f904f4b942f185f086a790caf4da
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-resource-manager-overview"></a>Panoramica di Gestione risorse di Microsoft Azure
-infrastruttura di Hello per l'applicazione è in genere costituito da numerosi componenti, forse una macchina virtuale, account di archiviazione e rete virtuale, o un'app web, database, server di database e i servizi di terze parti 3rd. Questi componenti non appaiono come entità separate, ma come parti correlate e interdipendenti di una singola entità Si desidera toodeploy, gestire e monitorarli come gruppo. Gestione risorse di Azure consente toowork con risorse hello nella soluzione come gruppo. È possibile distribuire, aggiornare o eliminare tutte le risorse di hello per la soluzione in un'operazione singola, coordinata. Per la distribuzione viene usato un modello; questo modello può essere usato per diversi ambienti, ad esempio di testing, staging e produzione. Gestione risorse offre sicurezza, il controllo e assegnazione di tag toohelp funzionalità Gestione delle risorse dopo la distribuzione. 
+L'infrastruttura per l'applicazione è in genere costituita da vari componenti, ad esempio una macchina virtuale, un account di archiviazione e una rete virtuale oppure un'app Web, un database, un server di database e servizi di terze parti. Questi componenti non appaiono come entità separate, ma come parti correlate e interdipendenti di una singola entità e devono essere distribuite, gestite e monitorate come gruppo. Gestione risorse di Azure consente di usare le risorse incluse nella soluzione come un gruppo. È possibile distribuire, aggiornare o eliminare tutte le risorse della soluzione con un'unica operazione coordinata. Per la distribuzione viene usato un modello; questo modello può essere usato per diversi ambienti, ad esempio di testing, staging e produzione. Gestione risorse offre funzionalità di sicurezza, controllo e categorizzazione che semplificano la gestione delle risorse dopo la distribuzione. 
 
 ## <a name="terminology"></a>Terminologia
-Se si tooAzure nuovo gestore delle risorse, esistono alcuni termini potrebbe non essere familiarità con.
+Se non si ha esperienza con Azure Resource Manager, è possibile che non si conoscano alcuni termini.
 
 * **risorsa** : elemento gestibile disponibile tramite Azure. Alcune risorse comuni sono le macchine virtuali, gli account di archiviazione, le app Web, i database e le reti virtuali, ma ne esistono molte altre.
-* **gruppo di risorse** : contenitore con risorse correlate per una soluzione Azure. gruppo di risorse Hello può includere tutte le risorse di hello per soluzione hello o solo le risorse che si desidera toomanage come gruppo. Si decide come risorse tooallocate tooresource gruppi basati su cosa hello più utile per l'organizzazione. Vedere [Gruppi di risorse](#resource-groups).
-* **provider di risorse** -un servizio che fornisce risorse hello è possibile distribuire e gestire tramite Gestione risorse. Ogni provider di risorse offre operazioni per l'utilizzo di risorse hello che vengono distribuite. Alcuni provider di risorse comuni sono Microsoft. COMPUTE, che fornisce la risorsa di macchina virtuale hello, Microsoft.Storage, che fornisce risorse di account di archiviazione hello, e Microsoft, che fornisce risorse correlate tooweb app. Vedere [Provider di risorse](#resource-providers).
-* **Modello di gestione risorse** -file A JavaScript Object Notation (JSON) che definisce uno o più risorse toodeploy tooa gruppo di risorse. Definisce inoltre le dipendenze di hello tra risorse hello distribuito. modello di Hello può essere utilizzato toodeploy hello risorse ripetutamente e in modo coerente. Vedere [Distribuzione del modello](#template-deployment).
-* **la sintassi dichiarativa** -sintassi che consente di stato "Ecco cosa prevede toocreate" senza una sequenza di hello toowrite di programmazione toocreate comandi è. il modello di gestione risorse di Hello è riportato un esempio di sintassi dichiarativa. Nel file hello, definire le proprietà di hello per hello infrastruttura toodeploy tooAzure. 
+* **gruppo di risorse** : contenitore con risorse correlate per una soluzione Azure. Il gruppo di risorse può includere tutte le risorse della soluzione o solo le risorse da gestire come gruppo. L'utente decide come allocare le risorse ai gruppi di risorse nel modo più appropriato per l'organizzazione. Vedere [Gruppi di risorse](#resource-groups).
+* **provider di risorse** : servizio che mette a disposizione le risorse che è possibile distribuire e gestire con Resource Manager. Ogni provider di risorse offre operazioni per l'uso delle risorse distribuite. Alcuni provider di risorse comuni sono Microsoft.Compute che mette a disposizione la risorsa delle macchine virtuali, Microsoft.Storage che offre la risorsa di account di archiviazione e Microsoft.Web che mette a disposizione risorse correlate alle app Web. Vedere [Provider di risorse](#resource-providers).
+* **modello di Resource Manager** : file JavaScript Object Notation (JSON) che definisce una o più risorse da distribuire in un gruppo di risorse. Definisce anche le dipendenze tra le risorse distribuite. Il modello può essere usato per distribuire le risorse in modo coerente e ripetuto. Vedere [Distribuzione del modello](#template-deployment).
+* **sintassi dichiarativa** : sintassi che consente di indicare l'oggetto da creare senza dover scrivere la sequenza di comandi di programmazione per crearlo. Il modello di Resource Manager è un esempio di sintassi dichiarativa. Nel file vengono definite le proprietà per l'infrastruttura da distribuire in Azure. 
 
-## <a name="hello-benefits-of-using-resource-manager"></a>vantaggi di Hello dell'utilizzo di gestione risorse
+## <a name="the-benefits-of-using-resource-manager"></a>Vantaggi dell'utilizzo di Gestione risorse
 Gestione risorse offre numerosi vantaggi:
 
-* È possibile distribuire, gestire e monitorare tutte le risorse di hello per la soluzione come un gruppo, anziché gestire singolarmente queste risorse.
-* Più volte, è possibile distribuire la soluzione in tutto il ciclo di sviluppo hello e che le risorse vengono distribuite in uno stato coerente di fiducia.
+* È possibile distribuire, gestire e monitorare tutte le risorse per la soluzione come un gruppo, anziché gestire singolarmente tali risorse.
+* È possibile distribuire ripetutamente la soluzione nel corso del ciclo di vita dello sviluppo garantendo al contempo che le risorse vengano distribuite in uno stato coerente.
 * È possibile gestire l'infrastruttura con modelli dichiarativi, piuttosto che con script.
-* È possibile definire le dipendenze di hello tra risorse e pertanto vengono distribuiti in ordine corretto hello.
-* È possibile applicare tooall servizi di controllo di accesso nel gruppo di risorse perché il controllo di accesso basato sui ruoli (RBAC) in modo nativo viene integrato nella piattaforma di gestione di hello.
-* È possibile applicare tag tooresources toologically organizzare tutte le risorse di hello nella sottoscrizione.
-* Si può aiutare a chiarire la fatturazione dell'organizzazione visualizzando i costi per un gruppo di risorse di condivisione hello stesso tag.  
+* È possibile definire le dipendenze tra risorse e pertanto esse vengono distribuite nell'ordine corretto.
+* è possibile applicare il controllo di accesso a tutti i servizi nel gruppo di risorse perché il controllo di accesso basato sui ruoli (RBAC) è integrato in modo nativo nella piattaforma di gestione.
+* È possibile applicare tag alle risorse per organizzare in modo logico tutte le risorse nella sottoscrizione.
+* È possibile ottenere informazioni dettagliate sulla fatturazione per l'organizzazione visualizzando i costi di un gruppo di risorse che condividono lo stesso tag.  
 
-Gestione risorse fornisce un nuovo toodeploy modo e gestire le soluzioni. Se è stato utilizzato un modello di distribuzione precedente hello e si desidera toolearn sulle modifiche di hello, vedere [distribuzione classica e gestione di informazioni sulle risorse](resource-manager-deployment-model.md).
+Gestione risorse offre un nuovo modo per distribuire e gestire le soluzioni. Per informazioni sulle modifiche introdotte rispetto al modello di distribuzione precedente, vedere l'articolo relativo alle [informazioni sulla distribuzione di Gestione risorse e sulla distribuzione classica](resource-manager-deployment-model.md).
 
 ## <a name="consistent-management-layer"></a>Livello di gestione coerente
-Gestione risorse fornisce un livello di gestione coerente per le attività di hello eseguite tramite Azure PowerShell, CLI di Azure, il portale di Azure, API REST e gli strumenti di sviluppo. Tutti gli strumenti di hello utilizzano un insieme comune di operazioni. Utilizzare gli strumenti di hello che funzionano meglio per l'utente e utilizzano in modo intercambiabile senza confusione. 
+Resource Manager fornisce un livello di gestione coerente per le attività eseguite tramite Azure PowerShell, l'interfaccia della riga di comando di Azure, il portale di Azure, l'API REST e gli strumenti di sviluppo. Tutti gli strumenti usano un insieme comune di operazioni. È possibile usare gli strumenti più adatti alle proprie esigenze e spostarsi rapidamente tra gli strumenti senza confusione. 
 
-Hello immagine seguente viene illustrato come interagiscono tutti gli strumenti di hello hello stessa API di gestione risorse di Azure. Hello API passa le richieste di servizio di gestione risorse toohello, che autentica e autorizza le richieste di hello. Gestione risorse instrada quindi i provider di risorse appropriato hello richieste toohello.
+La figura seguente mostra come tutti gli strumenti interagiscono con la stessa API di Azure Resource Manager. L'API passa le richieste al servizio Resource Manager, che autentica e autorizza le richieste. Resource Manager indirizza le richieste ai provider di risorse appropriati.
 
 ![Modello di richiesta di Resource Manager](./media/resource-group-overview/consistent-management-layer.png)
 
 ## <a name="guidance"></a>Indicazioni
-Hello suggerimenti seguenti consentono di usufruire appieno di gestione risorse quando si lavora con le soluzioni.
+I suggerimenti seguenti consentono di sfruttare al meglio Resource Manager per le proprie soluzioni.
 
-1. Definire e distribuire l'infrastruttura tramite la sintassi dichiarativa hello nei modelli di gestione delle risorse, anziché tramite comandi imperativi.
-2. Definire tutti i passaggi di distribuzione e la configurazione nel modello di hello. Per la configurazione della soluzione, è consigliabile evitare procedure manuali.
-3. Eseguire i comandi imperativo toomanage le risorse, ad esempio toostart o arrestare un'app o un computer.
-4. Organizzare le risorse con hello stesso ciclo di vita in un gruppo di risorse. Usare le categorie per tutte le altre attività di organizzazione delle risorse.
+1. Definire e distribuire l'infrastruttura tramite la sintassi dichiarativa nei modelli di Gestione risorse, anziché tramite comandi imperativi.
+2. Definire tutti i passaggi di distribuzione e configurazione nel modello. Per la configurazione della soluzione, è consigliabile evitare procedure manuali.
+3. Eseguire i comandi imperativi per gestire le risorse, ad esempio per avviare o arrestare un'app o un computer.
+4. Includere le risorse con lo stesso ciclo di vita in un gruppo di risorse. Usare le categorie per tutte le altre attività di organizzazione delle risorse.
 
 Per altri suggerimenti sui modelli, vedere [Procedure consigliate per la creazione di modelli di Azure Resource Manager](resource-manager-template-best-practices.md).
 
-Per istruzioni su come le aziende possono usare tooeffectively Gestione risorse di gestione di sottoscrizioni, vedere [lo scaffolding di Azure enterprise - governance sottoscrizione rigorosa](resource-manager-subscription-governance.md).
+Per indicazioni su come le aziende possono usare Resource Manager per gestire efficacemente le sottoscrizioni, vedere [Azure enterprise scaffold - prescriptive subscription governance](resource-manager-subscription-governance.md) (Scaffolding aziendale Azure - Governance prescrittiva per le sottoscrizioni).
 
 ## <a name="resource-groups"></a>Gruppi di risorse
-Esistono tooconsider alcuni fattori importanti quando si definisce il gruppo di risorse:
+Esistono alcuni fattori importanti da considerare quando si definisce il gruppo di risorse:
 
-1. Tutte le risorse di hello del gruppo devono condividere hello stesso ciclo di vita. Le risorse vengono distribuite, aggiornate ed eliminate insieme. Se una risorsa, ad esempio un server di database, è necessario tooexist in un ciclo di distribuzione diversi deve essere in un altro gruppo di risorse.
+1. Tutte le risorse del gruppo devono condividere lo stesso ciclo di vita. Le risorse vengono distribuite, aggiornate ed eliminate insieme. Se una risorsa, ad esempio un server di database, deve esistere in un ciclo di distribuzione diverso deve essere inclusa in un altro gruppo di risorse.
 2. Ogni risorsa può appartenere a un solo gruppo di risorse.
-3. È possibile aggiungere o rimuovere un gruppo di risorse tooa in qualsiasi momento.
-4. È possibile spostare una risorsa da un gruppo di tooanother gruppo di risorse. Per ulteriori informazioni, vedere [spostare sottoscrizione o il gruppo di risorse toonew risorse](resource-group-move-resources.md).
+3. È possibile aggiungere o rimuovere una risorsa in un gruppo di risorse in qualsiasi momento.
+4. È possibile spostare una risorsa da un gruppo di risorse a un altro. Per altre informazioni, vedere [Spostare le risorse in un gruppo di risorse o una sottoscrizione nuovi](resource-group-move-resources.md).
 5. Un gruppo di risorse può contenere le risorse che risiedono in aree diverse.
-6. Un gruppo di risorse può essere utilizzato il controllo di accesso tooscope per le azioni amministrative.
-7. Una risorsa può interagire con le risorse di altri gruppi di risorse. Questa interazione è comune quando le risorse di hello due sono correlate ma non condividono hello stesso ciclo di vita (ad esempio, App web connessione database tooa).
+6. Un gruppo di risorse consente di definire l'ambito di controllo di accesso per operazioni amministrative.
+7. Una risorsa può interagire con le risorse di altri gruppi di risorse. Questa interazione è comune quando le due risorse sono correlate, ma non condividono lo stesso ciclo di vita, ad esempio app Web che si connettono a un database.
 
-Quando si crea un gruppo di risorse, è necessario tooprovide un percorso per il gruppo di risorse. Perché un gruppo di risorse necessita di un percorso? E, se le risorse di hello possono avere posizioni diverse rispetto al gruppo di risorse hello, perché il percorso del gruppo risorse hello importante affatto?" gruppo di risorse Hello archivia i metadati sulle risorse hello. Pertanto, quando si specifica un percorso per il gruppo di risorse hello, si specifica la memorizzazione dei metadati. Per motivi di conformità, potrebbe essere necessario tooensure che i dati sono archiviati in una determinata area.
+Quando si crea un gruppo di risorse è necessario specificarne il percorso. Perché un gruppo di risorse necessita di un percorso? E se le risorse possono avere percorsi diversi rispetto al gruppo di risorse, perché il percorso del gruppo di risorse è importante? Il gruppo di risorse archivia i metadati delle risorse. Quando si specifica un percorso per il gruppo di risorse, si specifica il percorso di archiviazione dei metadati. Per motivi di conformità potrebbe essere necessario assicurarsi che i dati siano archiviati in una determinata area.
 
 ## <a name="resource-providers"></a>Provider di risorse
-Ogni provider di risorse offre una serie di risorse e operazioni per l'uso di un servizio di Azure. Ad esempio, se si desidera toostore chiavi e segreti, si utilizzano hello **Microsoft.KeyVault** provider di risorse. Questo provider di risorse offre un tipo di risorsa denominato **gli insiemi di credenziali** per la creazione dell'insieme di credenziali chiave hello. 
+Ogni provider di risorse offre una serie di risorse e operazioni per l'uso di un servizio di Azure. Per archiviare chiavi e segreti sarà ad esempio necessario usare il provider di risorse **Microsoft.KeyVault** . Questo provider di risorse offre un tipo di risorsa denominato **vaults** per creare l'insieme di credenziali delle chiavi. 
 
-nome Hello di un tipo di risorsa è in formato hello: **{resource-provider} / {resource-type}**. Ad esempio, il tipo di insieme di credenziali chiave hello è **Microsoft.KeyVault/vaults**.
+Il nome di un tipo di risorsa è nel formato: **{resource-provider}/{resource-type}**. Ad esempio, il tipo di insieme di credenziali delle chiavi è **Microsoft.KeyVault/vaults**.
 
-Operazioni preliminari alla distribuzione delle risorse, è necessario comprendere quali hello disponibili di provider di risorse. Conoscere i nomi di hello della risorsa provider e le risorse consente definire le risorse desiderate toodeploy tooAzure. Inoltre, è necessario tooknow i percorsi validi hello e le versioni dell'API per ogni tipo di risorsa. Per altre informazioni, vedere [Provider e tipi di risorse](resource-manager-supported-services.md).
+Prima di iniziare con la distribuzione delle risorse è necessario comprendere i provider di risorse disponibili. Conoscere i nomi dei provider di risorse e delle risorse consente di definire le risorse da distribuire in Azure. Inoltre, è necessario conoscere le posizioni e le versioni dell'API valide per ogni tipo di risorsa. Per altre informazioni, vedere [Provider e tipi di risorse](resource-manager-supported-services.md).
 
 ## <a name="template-deployment"></a>Distribuzione del modello
-Con Gestione risorse, è possibile creare un modello (in formato JSON) che definisce l'infrastruttura di hello e configurazione della soluzione Azure. Usando il modello è possibile distribuire ripetutamente la soluzione nel corso del ciclo di vita garantendo al contempo che le risorse vengano distribuite in uno stato coerente. Quando si crea una soluzione dal portale di hello, soluzione hello include automaticamente un modello di distribuzione. Non è toocreate il modello da zero perché non è possibile iniziare con il modello di hello per la soluzione e personalizzarlo toomeet alle specifiche esigenze. È possibile recuperare un modello per un gruppo di risorse esistente da esportazione hello dello stato corrente del gruppo di risorse hello o visualizzazione modello di hello utilizzato per una particolare distribuzione. Visualizzazione hello [modello esportato](resource-manager-export-template.md) è un modo utile di toolearn sulla sintassi del modello hello.
+Resource Manager consente di creare un modello in formato JSON che definisce l'infrastruttura e la configurazione della soluzione di Azure. Usando il modello è possibile distribuire ripetutamente la soluzione nel corso del ciclo di vita garantendo al contempo che le risorse vengano distribuite in uno stato coerente. Quando si crea una soluzione dal portale, la soluzione include automaticamente un modello di distribuzione. Non è necessario creare un modello da zero perché è possibile iniziare con il modello per la soluzione e personalizzarlo per soddisfare esigenze specifiche. È possibile recuperare un modello per un gruppo di risorse esistente esportando lo stato corrente del gruppo di risorse oppure visualizzando il modello usato per una distribuzione specifica. Per conoscere la sintassi del modello è molto utile visualizzare il [modello esportato](resource-manager-export-template.md).
 
-toolearn sul formato hello del modello di hello e come creare l'oggetto, vedere [creare il primo modello di gestione risorse di Azure](resource-manager-create-first-template.md). hello tooview sintassi JSON per i tipi di risorse, vedere [definire le risorse nei modelli di Azure Resource Manager](/azure/templates/).
+Per informazioni sul formato del modello e sulla sua costruzione, vedere [Creare il primo modello di Azure Resource Manager](resource-manager-create-first-template.md). Per visualizzare la sintassi JSON per i tipi di risorse, vedere [Define resources in Azure Resource Manager templates](/azure/templates/) (Definire le risorse nei modelli di Azure Resource Manager).
 
-Gestione risorse Elabora modello hello come qualsiasi altra richiesta (vedere l'immagine di hello per [livello gestione coerente](#consistent-management-layer)). Modello hello analizza e converte la sintassi in operazioni dell'API REST per i provider di risorse appropriato hello. Ad esempio, quando Gestione risorse riceve un modello con hello seguente definizione di risorsa:
+Resource Manager elabora il modello come qualsiasi altra richiesta. Vedere la figura per il [livello di gestione coerente](#consistent-management-layer). Il modello analizza e converte la sintassi in operazioni dell'API REST per i provider di risorse appropriati. Ad esempio, quando Resource Manager riceve un modello con la definizione di risorsa seguente:
 
 ```json
 "resources": [
@@ -108,7 +108,7 @@ Gestione risorse Elabora modello hello come qualsiasi altra richiesta (vedere l'
 ]
 ```
 
-Converte hello definizione toohello operazione API REST, che viene inviato il provider toohello delle risorse seguenti:
+Converte la definizione nell'operazione dell'API REST seguente, che viene inviata al provider di risorse Microsoft.Storage:
 
 ```HTTP
 PUT
@@ -125,29 +125,29 @@ REQUEST BODY
 }
 ```
 
-Come definire i modelli e i gruppi di risorse è completamente backup tooyou e come si desidera toomanage la soluzione. Ad esempio, è possibile distribuire l'applicazione a tre livelli tramite un singolo modello tooa singolo gruppo di risorse.
+La modalità di definizione dei modelli e dei gruppi di risorse è una scelta personale e dipende dalla modalità di gestione della soluzione preferita. Ad esempio, è possibile distribuire l'applicazione a tre livelli tramite un unico modello in un singolo gruppo di risorse.
 
 ![modello a tre livelli](./media/resource-group-overview/3-tier-template.png)
 
-Tuttavia, non è toodefine dell'intera infrastruttura in un unico modello. Risulta spesso utile toodivide i requisiti di distribuzione in un set di modelli di destinazione, scopo specifico. È anche possibile riusare i modelli per altre soluzioni. toodeploy una particolare soluzione, creare un modello master che collega tutti i modelli di hello necessario. Hello immagine seguente viene illustrato come toodeploy una soluzione a tre livelli tramite un modello padre che include tre nidificata modelli.
+Non è tuttavia necessario definire l'intera infrastruttura in un singolo modello. Spesso, è consigliabile dividere i requisiti di distribuzione in un set di modelli specifici mirati, in base allo scopo. È anche possibile riusare i modelli per altre soluzioni. Per distribuire una soluzione specifica è necessario creare un modello master che colleghi tutti i modelli necessari. L'immagine seguente illustra come distribuire una soluzione a tre livelli tramite un modello padre che include tre modelli annidati.
 
 ![modello a tre livelli annidati](./media/resource-group-overview/nested-tiers-template.png)
 
-Se si prevedere i livelli con cicli di vita separata, è possibile distribuire i gruppi di risorse tooseparate tre livelli. Si noti hello risorse possono comunque essere tooresources collegato in altri gruppi di risorse.
+Se si immaginano livelli con cicli di vita separati, è possibile distribuire i tre livelli a gruppi di risorse separati. Si noti che le risorse possono comunque essere collegate alle risorse in altri gruppi.
 
 ![modello a livelli](./media/resource-group-overview/tier-templates.png)
 
 Per altre informazioni sulla progettazione di modelli, vedere [Procedure consigliate per la progettazione di modelli di Azure Resource Manager](best-practices-resource-manager-design-templates.md). Per informazioni sui modelli annidati, vedere [Uso di modelli collegati con Azure Resource Manager](resource-group-linked-templates.md).
 
-Gestione risorse di Azure consente di analizzare dipendenze tooensure risorse vengono create nell'ordine corretto hello. Se una risorsa si basa sul valore di un'altra risorsa, ad esempio una macchina virtuale che richiede un account di archiviazione per i dischi, impostare una dipendenza. Per altre informazioni, vedere [Definizione delle dipendenze nei modelli di Gestione risorse di Azure](resource-group-define-dependencies.md).
+Azure Resource Manager analizza le dipendenze per far sì che le risorse vengano create nell'ordine corretto. Se una risorsa si basa sul valore di un'altra risorsa, ad esempio una macchina virtuale che richiede un account di archiviazione per i dischi, impostare una dipendenza. Per altre informazioni, vedere [Definizione delle dipendenze nei modelli di Gestione risorse di Azure](resource-group-define-dependencies.md).
 
-È inoltre possibile utilizzare il modello di hello per infrastruttura toohello degli aggiornamenti. Ad esempio, è possibile aggiungere una soluzione di tooyour risorsa e aggiungere le regole di configurazione per le risorse di hello che sono già state distribuite. Se il modello di hello specifica la creazione di una risorsa ma che esiste già una risorsa, Gestione risorse di Azure esegue un aggiornamento anziché creare un nuovo asset. Azure Resource Manager aggiornamenti hello esistente asset toohello stesso stato perché sarebbe come nuovo.  
+Inoltre, è possibile utilizzare il modello per gli aggiornamenti all'infrastruttura. È ad esempio possibile aggiungere una risorsa alla soluzione e quindi aggiungere regole di configurazione per le risorse già distribuite. Se il modello specifica la creazione di una risorsa, ma la risorsa esiste già, Azure Resource Manager esegue un aggiornamento anziché creare un nuovo asset. Gestione risorse di Azure aggiorna l'asset esistente allo stesso stato di quelli nuovi.  
 
-Gestione risorse fornisce le estensioni per gli scenari, quando è necessario operazioni aggiuntive, ad esempio l'installazione di software specifico che non è incluso nel programma di installazione hello. Se si utilizza già un servizio di gestione configurazione, ad esempio DSC, Chef o Puppet, è possibile continuare a usare il servizio utilizzando le estensioni. Per informazioni sulle estensioni delle macchine virtuali, vedere [Informazioni sulle estensioni e sulle funzionalità delle macchine virtuali](../virtual-machines/windows/extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). 
+In Gestione risorse sono disponibili estensioni utili negli scenari che richiedono operazioni aggiuntive, ad esempio l'installazione di software specifico non incluso nella configurazione. Se si utilizza già un servizio di gestione configurazione, ad esempio DSC, Chef o Puppet, è possibile continuare a usare il servizio utilizzando le estensioni. Per informazioni sulle estensioni delle macchine virtuali, vedere [Informazioni sulle estensioni e sulle funzionalità delle macchine virtuali](../virtual-machines/windows/extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). 
 
-Infine, il modello di hello diventa parte del codice sorgente hello per l'app. È possibile archiviarlo nel repository di codice sorgente tooyour e aggiornarlo con l'evolversi dell'app. È possibile modificare il modello di hello tramite Visual Studio.
+Infine, il modello diventa parte del codice sorgente per l'applicazione. È possibile archiviarlo nel repository del codice sorgente e aggiornarlo con l'evoluzione dell'applicazione. È possibile modificare il modello tramite Visual Studio.
 
-Dopo aver definito il modello, si è pronti toodeploy hello risorse tooAzure. Per le risorse hello comandi toodeploy hello, vedere:
+Dopo aver definito il modello è possibile distribuire le risorse in Azure. Per i comandi per la distribuzione delle risorse, vedere:
 
 * [Distribuire le risorse con i modelli di Azure Resource Manager e Azure PowerShell](resource-group-template-deploy.md)
 * [Distribuire le risorse con i modelli di Azure Resource Manager e l'interfaccia della riga di comando di Azure](resource-group-template-deploy-cli.md)
@@ -155,11 +155,11 @@ Dopo aver definito il modello, si è pronti toodeploy hello risorse tooAzure. Pe
 * [Distribuire le risorse con i modelli e l'API REST di Resource Manager](resource-group-template-deploy-rest.md)
 
 ## <a name="tags"></a>Tag
-Gestione risorse fornisce una funzionalità di assegnazione di tag che consente di toocategorize risorse in base a requisiti tooyour per la gestione o di fatturazione. Usare i tag quando si dispone di una raccolta di gruppi di risorse e risorse complessa ed è necessario toovisualize tali risorse in modo hello più hello tooyou senso la maggior parte delle. Ad esempio possibile contrassegnare le risorse che svolgono un ruolo simile all'interno dell'organizzazione o appartengono toohello stesso reparto. Senza tag, gli utenti dell'organizzazione è possibile creare più risorse che possono essere toolater difficile identificano e gestire. Ad esempio, si consiglia toodelete tutte le risorse di hello per un particolare progetto. Se tali risorse non vengono contrassegnate per il progetto di hello, è necessario toomanually trovarli. Assegnazione di tag può essere un aspetto importante è tooreduce costi non necessari nella sottoscrizione. 
+Gestione risorse di Azure offre una funzionalità di categorizzazione che consente di suddividere le risorse in categorie in base ai requisiti di gestione o fatturazione. Usare i tag quando si ha un insieme complesso di gruppi di risorse e risorse ed è necessario visualizzare tali risorse nel modo più razionale. Ad esempio, è possibile contrassegnare le risorse che svolgono un ruolo simile nell'organizzazione o che appartengono allo stesso reparto. Senza tag è possibile che gli utenti dell'organizzazione creino più risorse che possono risultare difficili da identificare e gestire in un secondo momento. Si supponga ad esempio di voler eliminare tutte le risorse per un progetto specifico. Se le risorse non hanno tag per il progetto sarà necessario trovarle manualmente. L'assegnazione di tag può essere un modo importante per ridurre i costi non necessari nella sottoscrizione. 
 
-Le risorse non è necessario tooreside in hello stessa risorsa gruppo tooshare un tag. È possibile creare la propria tooensure tassonomia di tag in tutti gli utenti nell'organizzazione di utilizzano comuni tag anziché utenti inavvertitamente l'applicazione di tag leggermente diverso (ad esempio "dept" anziché "department").
+Non è necessario che le risorse si trovino nello stesso gruppo di risorse per condividere un tag. È possibile creare una propria tassonomia di tag per assicurarsi che tutti gli utenti dell'organizzazione utilizzino tag comuni anziché applichino inavvertitamente tag leggermente diversi (ad esempio "dept" anziché "department").
 
-Hello di esempio seguente mostra una macchina virtuale di tooa tag applicato.
+L'esempio seguente illustra un tag applicato a una macchina virtuale.
 
 ```json
 "resources": [    
@@ -176,66 +176,66 @@ Hello di esempio seguente mostra una macchina virtuale di tooa tag applicato.
 ]
 ```
 
-utilizzare tutte le risorse di hello con un valore di tag, tooretrieve hello cmdlet di PowerShell seguente:
+Per recuperare tutte le risorse con un valore di tag, usare il cmdlet di PowerShell seguente:
 
 ```powershell
 Find-AzureRmResource -TagName costCenter -TagValue Finance
 ```
 
-In alternativa, hello comando CLI di Azure 2.0 seguente:
+In alternativa, usare il comando della versione 2.0 dell'interfaccia della riga di comando di Azure seguente:
 
 ```azurecli
 az resource list --tag costCenter=Finance
 ```
 
-È inoltre possibile visualizzare le risorse contrassegnate tramite hello portale di Azure.
+È anche possibile visualizzare le risorse con tag tramite il portale di Azure.
 
-Hello [report utilizzo](../billing/billing-understand-your-bill.md) per la sottoscrizione include nomi di tag e valori, che consente di toobreak i costi da tag. Per ulteriori informazioni sui tag, vedere [tramite tag tooorganize le risorse di Azure](resource-group-using-tags.md).
+Il [report di uso](../billing/billing-understand-your-bill.md) della sottoscrizione include valori e nomi di tag per suddividere i costi per tag. Per altre informazioni sui tag, vedere [Uso dei tag per organizzare le risorse di Azure](resource-group-using-tags.md).
 
 ## <a name="access-control"></a>Controllo di accesso
-Gestione risorse consente toocontrol che dispone di accesso toospecific azioni per l'organizzazione. In modo nativo è integrato di controllo di accesso basato sui ruoli (RBAC) nella piattaforma di gestione di hello e si applica tale servizi tooall di controllo di accesso nel gruppo di risorse. 
+Gestione risorse di Azure consente di controllare gli utenti autorizzati ad accedere ad azioni specifiche per l'organizzazione. Integra in modo nativo il controllo degli accessi in base al ruolo nella piattaforma di gestione e applica tale controllo degli accessi a tutti i servizi nel gruppo di risorse. 
 
-Quando si utilizza il controllo di accesso basato sui ruoli, esistono due toounderstand i concetti principali:
+È necessario comprendere due concetti principali quando si usa il controllo degli accessi in base al ruolo:
 
 * Le definizioni di ruolo: descrivono un insieme di autorizzazioni e possono essere usate in più assegnazioni.
-* Le assegnazioni di ruolo: una definizione viene assegnata a un'identità (utente o gruppo) per un particolare ambito (sottoscrizione, gruppo di risorse o risorsa). assegnazione di Hello viene ereditata da ambiti di livello inferiore.
+* Le assegnazioni di ruolo: una definizione viene assegnata a un'identità (utente o gruppo) per un particolare ambito (sottoscrizione, gruppo di risorse o risorsa). L'assegnazione viene ereditata dagli ambiti inferiori.
 
-È possibile aggiungere una piattaforma definita toopre gli utenti e ruoli specifici di risorse. Ad esempio, è possibile sfruttare i vantaggi del ruolo predefinito di hello chiamato lettore che consente agli utenti tooview alle risorse ma non di modificarle. Aggiungere gli utenti dell'organizzazione che richiedono questo tipo di ruolo di lettore toohello di accesso e applicare hello ruolo toohello sottoscrizione, gruppo di risorse o la risorsa.
+È possibile aggiungere utenti alla piattaforma predefinita e ai ruoli specifici delle risorse. È ad esempio possibile sfruttare il ruolo predefinito denominato Lettore che consente agli utenti di visualizzare le risorse, ma non di modificarle. È possibile aggiungere al ruolo Lettore gli utenti dell'organizzazione che richiedono questo tipo di accesso e applicare il ruolo alla sottoscrizione, al gruppo di risorse o alla risorsa.
 
-Azure offre i seguenti quattro ruoli piattaforma hello:
+Azure offre i quattro ruoli di piattaforma seguenti:
 
 1. Proprietario: può gestire tutto, compresi gli accessi
 2. Collaboratore: può gestire tutto ad eccezione degli accessi
 3. Lettore: può visualizzare tutto, ma non apportare modifiche
-4. Amministratore accesso utenti, è possibile gestire risorse tooAzure di accesso utente
+4. Amministratore Accesso utenti: può gestire l'accesso degli utenti alle risorse di Azure
 
 Azure offre anche diversi ruoli specifici delle risorse. Alcuni ruoli comuni sono i seguenti:
 
-1. Collaboratore alla macchina virtuale, è possibile gestire le macchine virtuali ma non concedere accesso toothem e non può gestire hello virtuale rete o archiviazione account toowhich sono connessi
-2. Collaboratore di rete - possibile gestire tutte le risorse di rete, ma non concedere accesso toothem
-3. Collaboratore di Account di archiviazione - possono gestire gli account di archiviazione, ma non concedere accesso toothem
+1. Collaboratore Macchina virtuale: può gestire le macchine virtuali, ma non può concedere l'accesso alle macchine virtuali e non può gestire la rete virtuale o l'account di archiviazione a cui sono connesse
+2. Collaboratore Rete: può gestire tutte le risorse di rete, ma non concedere l'accesso a tali risorse
+3. Collaboratore Account di archiviazione: può gestire gli account di archiviazione, ma non concedere l'accesso a tali account
 4. Collaboratore SQL Server: può gestire server e database SQL, ma non i criteri di sicurezza correlati
-5. Collaboratore di sito Web - possono gestire i siti Web, ma non hello web piani toowhich sono connessi
+5. Collaboratore Sito Web: può gestire i siti Web, ma non i piani Web cui sono connessi
 
-Per hello l'elenco completo dei ruoli e delle azioni consentite, vedere [RBAC: compilato nei ruoli](../active-directory/role-based-access-built-in-roles.md). Per altre informazioni sul controllo degli accessi in base al ruolo, vedere [Controllo degli accessi in base al ruolo di Azure](../active-directory/role-based-access-control-configure.md). 
+Per l'elenco completo dei ruoli e delle azioni consentite, vedere [Controllo degli accessi in base al ruolo: ruoli predefiniti](../active-directory/role-based-access-built-in-roles.md). Per altre informazioni sul controllo degli accessi in base al ruolo, vedere [Controllo degli accessi in base al ruolo di Azure](../active-directory/role-based-access-control-configure.md). 
 
-In alcuni casi, si desidera toorun codice o script che accede alle risorse, ma non si desidera toorun in credenziali di un utente. Invece si desidera toocreate un'identità chiamata un servizio principale per un'applicazione hello e assegnare il ruolo appropriato di hello per l'entità servizio hello. Gestione risorse consente toocreate le credenziali per un'applicazione hello e l'autenticazione a livello di codice di un'applicazione hello. toolearn sulla creazione di entità servizio, vedere uno degli argomenti seguenti:
+In alcuni casi si vuole eseguire un codice o uno script che accede alle risorse, ma non con le credenziali di un utente. Si vuole invece creare un'identità chiamata "entità servizio" per l'applicazione e assegnare il ruolo appropriato per l'entità servizio. Resource Manager consente di creare le credenziali per l'applicazione e di autenticarla a livello di codice. Per altre informazioni sulla creazione di entità servizio, vedere uno degli argomenti seguenti:
 
-* [Usare Azure PowerShell toocreate una risorse tooaccess dell'entità servizio](resource-group-authenticate-service-principal.md)
-* [Utilizzare toocreate CLI di Azure un risorse tooaccess dell'entità servizio](resource-group-authenticate-service-principal-cli.md)
-* [Utilizzare l'applicazione Azure Active Directory toocreate portale e l'entità servizio che possono accedere alle risorse](resource-group-create-service-principal-portal.md)
+* [Usare Azure PowerShell per creare un'entità servizio per accedere alle risorse](resource-group-authenticate-service-principal.md)
+* [Usare l'interfaccia della riga di comando di Azure per creare un'entità servizio per accedere alle risorse](resource-group-authenticate-service-principal-cli.md)
+* [Usare il portale per creare un'applicazione Azure Active Directory e un'entità servizio che accedono alle risorse](resource-group-create-service-principal-portal.md)
 
-Anche in modo esplicito, è possibile bloccare risorse critiche tooprevent agli utenti l'eliminazione o modificarli. Per altre informazioni, vedere [Bloccare le risorse con Gestione risorse di Azure](resource-group-lock-resources.md).
+È anche possibile bloccare in modo esplicito le risorse critiche per impedire agli utenti di eliminarle o modificarle. Per altre informazioni, vedere [Bloccare le risorse con Gestione risorse di Azure](resource-group-lock-resources.md).
 
 ## <a name="activity-logs"></a>Log attività
-Resource Manager registra tutte le operazioni che creano, modificano o eliminano una risorsa. È possibile utilizzare hello attività registri toofind un errore durante la risoluzione dei problemi o toomonitor come un utente nell'organizzazione di modifica una risorsa. Selezionare i log hello toosee, **log attività** in hello **impostazioni** pannello per un gruppo di risorse. È possibile filtrare i registri di hello da molti valori diversi, tra cui l'operazione di hello avviata dall'utente. Per informazioni sull'utilizzo dei log attività hello, vedere [Visualizza attività registra toomanage Azure risorse](resource-group-audit.md).
+Resource Manager registra tutte le operazioni che creano, modificano o eliminano una risorsa. È possibile usare i log attività per trovare un errore durante la risoluzione dei problemi o monitorare il modo in cui un utente dell'organizzazione ha modificato una risorsa. Per visualizzare i log, selezionare **Log attività** nel pannello **Impostazioni** di un gruppo di risorse. I log possono essere filtrati in base a molti valori diversi, incluso l'utente che ha avviato l'operazione. Per informazioni sull'uso dei log attività, vedere [Visualizzare i log attività per gestire le risorse di Azure](resource-group-audit.md).
 
 ## <a name="customized-policies"></a>Criteri personalizzati
-Gestione risorse consente criteri toocreate personalizzato per gestire le risorse. tipi di Hello di criteri creati possono includere diversi scenari. È possibile applicare una convenzione di denominazione alle risorse e limitare i tipi e le istanze di risorse che possono essere distribuiti o le aree che possono ospitare un tipo di risorsa. È possibile richiedere un valore di tag sulla fatturazione tooorganize risorse dai servizi. Si creano criteri toohelp ridurre i costi e mantenere la coerenza tra la sottoscrizione. 
+Gestione risorse consente di creare criteri personalizzati per gestire le risorse. I tipi di criteri creati possono includere diversi scenari. È possibile applicare una convenzione di denominazione alle risorse e limitare i tipi e le istanze di risorse che possono essere distribuiti o le aree che possono ospitare un tipo di risorsa. È possibile richiedere l'applicazione di un valore di tag per le risorse per organizzare la fatturazione per i reparti. Creare criteri per ridurre i costi e mantenere la coerenza della sottoscrizione. 
 
-Definire criteri con JSON e quindi applicarli nell'intera sottoscrizione o all'interno di un gruppo di risorse. I criteri sono diversi dalle controllo di accesso basato sui ruoli perché sono tipi tooresource applicato.
+Definire criteri con JSON e quindi applicarli nell'intera sottoscrizione o all'interno di un gruppo di risorse. I criteri sono diversi dal controllo degli accessi in base al ruolo perché vengono applicati ai tipi di risorse.
 
-Hello di esempio seguente viene illustrato un criterio che assicura la coerenza di tag, specificando che tutte le risorse includono un tag costCenter.
+L'esempio seguente illustra un criterio che garantisce la coerenza dei tag specificando che tutte le risorse debbano includere un tag costCenter.
 
 ```json
 {
@@ -251,7 +251,7 @@ Hello di esempio seguente viene illustrato un criterio che assicura la coerenza 
 }
 ```
 
-È possibile creare molti altri tipi di criteri. Per ulteriori informazioni, vedere [risorse toomanage criteri di utilizzo e controllare l'accesso](resource-manager-policy.md).
+È possibile creare molti altri tipi di criteri. Per altre informazioni, vedere [Usare i criteri per gestire le risorse e controllare l'accesso](resource-manager-policy.md).
 
 ## <a name="sdks"></a>SDK
 Azure SDK sono disponibili per più linguaggi e piattaforme. Ogni implementazione del linguaggio è disponibile tramite Gestione pacchetti del relativo ecosistema e in GitHub.
@@ -273,14 +273,14 @@ Per informazioni sull'uso di questi linguaggi con le proprie risorse, vedere:
 * [Azure for Python developers](/python/azure/) (Azure per sviluppatori Python)
 
 > [!NOTE]
-> Se hello SDK non offre funzionalità di hello necessario, è inoltre possibile chiamare toohello [API REST di Azure](https://docs.microsoft.com/rest/api/resources/) direttamente.
+> Se l'SDK non offre le funzionalità necessarie, è anche possibile chiamare direttamente l' [API REST di Azure](https://docs.microsoft.com/rest/api/resources/) .
 > 
 > 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per una semplice introduzione tooworking con i modelli, vedere [esportare un modello di gestione risorse di Azure da risorse esistenti](resource-manager-export-template.md).
+* Per una semplice introduzione all'uso dei modelli, vedere [Esportare un modello di Azure Resource Manager da risorse esistenti](resource-manager-export-template.md).
 * Per istruzioni dettagliate sulla creazione di un modello, vedere [Creare il primo modello di Azure Resource Manager](resource-manager-create-first-template.md).
-* le funzioni hello toounderstand è possibile utilizzare in un modello, vedere [funzioni di modello](resource-group-template-functions.md)
+* Per comprendere le funzioni che è possibile usare in un modello, vedere [Funzioni del modello](resource-group-template-functions.md)
 * Per informazioni sull'uso di Visual Studio con Resource Manager, vedere [Creazione e distribuzione di gruppi di risorse di Azure tramite Visual Studio](vs-azure-tools-resource-groups-deployment-projects-create-deploy.md).
 
 Ecco una dimostrazione video di questa panoramica:

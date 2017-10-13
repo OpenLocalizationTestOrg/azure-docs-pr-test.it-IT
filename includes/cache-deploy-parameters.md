@@ -1,6 +1,6 @@
 
 ### <a name="cacheskuname"></a>cacheSKUName
-memorizzare nella Cache Redis di Azure nuovo piano tariffario di hello Hello.
+Piano tariffario della nuova Cache Redis di Azure.
 
     "cacheSKUName": {
       "type": "string",
@@ -10,15 +10,15 @@ memorizzare nella Cache Redis di Azure nuovo piano tariffario di hello Hello.
       ],
       "defaultValue": "Basic",
       "metadata": {
-        "description": "hello pricing tier of hello new Azure Redis Cache."
+        "description": "The pricing tier of the new Azure Redis Cache."
       }
     },
 
-modello Hello definisce i valori hello sono consentiti per questo parametro (Standard o Basic) e assegna un valore predefinito (Basic) se viene specificato alcun valore. Basic fornisce un singolo nodo con più dimensioni disponibili too53 GB.
-Fornisce due nodi primario/Replica con più dimensioni disponibili backup too53 GB e 99,9% contratto di servizio.
+Il modello definisce i valori consentiti per questo parametro (Basic o Standard) e assegna un valore predefinito (Basic) se non viene specificato alcun valore. Basic fornisce un singolo nodo con più dimensioni disponibili fino a 53 GB.
+Standard fornisce due nodi di replica/primario con più dimensioni disponibili fino a 53 GB e contratto di servizio con disponibilità del 99,9%.
 
 ### <a name="cacheskufamily"></a>cacheSKUFamily
-famiglia di Hello per sku hello.
+Famiglia dello SKU.
 
     "cacheSKUFamily": {
       "type": "string",
@@ -27,13 +27,13 @@ famiglia di Hello per sku hello.
       ],
       "defaultValue": "C",
       "metadata": {
-        "description": "hello family for hello sku."
+        "description": "The family for the sku."
       }
     },
 
 
 ### <a name="cacheskucapacity"></a>cacheSKUCapacity
-dimensione Hello della nuova istanza di Cache Redis di Azure hello. 
+Dimensioni dell'istanza della nuova Cache Redis di Azure. 
 
     "cacheSKUCapacity": {
       "type": "int",
@@ -48,10 +48,10 @@ dimensione Hello della nuova istanza di Cache Redis di Azure hello.
       ],
       "defaultValue": 0,
       "metadata": {
-        "description": "hello size of hello new Azure Redis Cache instance. "
+        "description": "The size of the new Azure Redis Cache instance. "
       }
     }
 
 
-modello di Hello definisce i valori hello consentiti per questo parametro (0, 1, 2, 3, 4, 5 o 6) e assegna un valore predefinito (1) se viene specificato alcun valore. Tali numeri corrispondono dimensioni della cache toofollowing: 0 = 250 MB, 1 = 1 GB, 2 = 2,5 GB, 3 = 6 GB, 4 = 13 GB, 5 = 26 GB, 6 = 53 GB
+Il modello definisce i valori consentiti per questo parametro (0, 1, 2, 3, 4, 5 o 6) e assegna un valore predefinito (1) se non viene specificato alcun valore. Questi numeri corrispondono alle dimensioni della cache seguenti: 0 = 250 MB, 1 = 1 GB, 2 = 2,5 GB, 3 = 6 GB, 4 = 13 GB, 5 = 26 GB, 6 = 53 GB
 

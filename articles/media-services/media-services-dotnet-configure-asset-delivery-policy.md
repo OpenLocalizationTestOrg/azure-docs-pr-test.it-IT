@@ -1,6 +1,6 @@
 ---
-title: criteri di recapito di asset aaaConfigure con .NET SDK | Documenti Microsoft
-description: Questo argomento viene illustrato come i criteri di distribuzione diversi asset tooconfigure con Azure Media Services .NET SDK.
+title: Configurare i criteri di distribuzione degli asset con .NET SDK | Microsoft Docs
+description: Questo argomento illustra come configurare criteri di distribuzione degli asset differenti con Servizi multimediali di Azure .NET SDK.
 services: media-services
 documentationcenter: 
 author: Mingfeiy
@@ -14,33 +14,33 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: juliako;mingfeiy
-ms.openlocfilehash: a6f2644d639cd36d4cdc269b6f01fd4acdf7160b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 282fd9e24dc147e31613469926128894d48366f4
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="configure-asset-delivery-policies-with-net-sdk"></a>Configurare i criteri di distribuzione degli asset con .NET SDK
 [!INCLUDE [media-services-selector-asset-delivery-policy](../../includes/media-services-selector-asset-delivery-policy.md)]
 
-## <a name="overview"></a>Panoramica
-Se si prevede di asset toodelivery crittografati, uno di hello passaggi hello contenuto di flusso di lavoro di recapito consiste nella configurazione di criteri di distribuzione per gli asset di servizi multimediali. criteri di distribuzione di asset Hello indicano a servizi multimediali la modalità desiderata per l'asset toobe recapitati: in quale protocollo di streaming deve l'asset essere dinamicamente incluso nel pacchetto (ad esempio, MPEG DASH, HLS, Smooth Streaming o tutti), se si desidera toodynamically o meno crittografare l'asset e come (busta o la crittografia comune).
+## <a name="overview"></a>Overview
+Se si prevede di distribuire dinamicamente asset crittografati in modo dinamico, uno dei passaggi del flusso di lavoro di distribuzione dei contenuti in Servizi multimediali consiste nella configurazione dei criteri di distribuzione degli asset. Questi criteri indicano a Servizi multimediali la modalità di distribuzione di un asset, ovvero il protocollo di streaming da usare per la creazione dinamica dei pacchetti (ad esempio, MPEG DASH, HLS, Smooth Streaming o tutti), se l'asset deve essere crittografato dinamicamente e l'eventuale modalità di crittografia (envelope o common).
 
-In questo argomento viene descritto come e perché toocreate e configurare i criteri di recapito di asset.
+Questo argomento illustra perché e come creare i criteri di distribuzione degli asset.
 
 >[!NOTE]
->Quando viene creato l'account di sistema AMS un **predefinito** endpoint di streaming viene aggiunto l'account tooyour in hello **arrestato** stato. lo streaming del contenuto e intraprendere sfruttare creazione dinamica dei pacchetti e la crittografia dinamica, toostart hello endpoint di streaming da cui si desidera in hello del contenuto toostream è toobe **esecuzione** stato. 
+>Quando l'account AMS viene creato, un endpoint di streaming **predefinito** viene aggiunto all'account con stato **Arrestato**. Per avviare lo streaming del contenuto e sfruttare i vantaggi della creazione dinamica dei pacchetti e della crittografia dinamica, l'endpoint di streaming da cui si vuole trasmettere il contenuto deve essere nello stato **In esecuzione**. 
 >
->Inoltre, toobe toouse in grado di creazione dinamica dei pacchetti e la crittografia dinamica dell'asset deve contenere un set di velocità in bit adattiva MP4s o file Smooth Streaming a velocità in bit adattiva.
+>Per usare la creazione dinamica dei pacchetti e la crittografia dinamica, l'asset deve contenere un set di file MP4 o Smooth Streaming a velocità in bit adattiva.
 
 
-È possibile applicare criteri diversi toohello stesso asset. Ad esempio, è possibile applicare PlayReady crittografia tooSmooth Streaming ed Envelope AES crittografia tooMPEG DASH e HLS. Tutti i protocolli che non sono definiti in un criterio di recapito (ad esempio, aggiungere un singolo criterio che specifica solo HLS come protocollo di hello) verrà impedito lo streaming. toothis eccezione Hello è se non sono presenti criteri di recapito di asset definito in alcun modo. Quindi, saranno possibile tutti i protocolli in crittografato hello.
+È possibile applicare criteri differenti allo stesso asset. È ad esempio possibile applicare la crittografia PlayReady a Smooth Streaming e la crittografia envelope AES (Advanced Encryption Standard) a MPEG DASH e HLS. Gli eventuali protocolli non definiti nei criteri di distribuzione (ad esempio quando si aggiunge un singolo criterio che specifica soltanto HLS come protocollo) verranno esclusi dallo streaming. Questo comportamento non si verifica quando non è presente alcun criterio di distribuzione degli asset. In tal caso, sono consentiti tutti i protocolli in chiaro.
 
-Se si desidera toodeliver asset crittografato di archiviazione, è necessario configurare i criteri di distribuzione dell'asset hello. Prima dell'asset può essere trasmesso, hello streaming flussi e crittografia di archiviazione hello viene rimosso il server dei contenuti usando hello specificati criteri di distribuzione. Ad esempio, toodeliver l'asset crittografato con una chiave di crittografia envelope Advanced Encryption Standard (AES), impostare il tipo di criteri di hello troppo**DynamicEnvelopeEncryption**. crittografia di archiviazione tooremove e le risorse hello flusso hello chiara, impostare il tipo di criteri di hello troppo**NoDynamicEncryption**. Esempi che illustrano come tooconfigure questi tipi di criteri seguono.
+Se si desidera distribuire un asset con memoria crittografata, è necessario configurare i criteri di distribuzione appropriati. Prima di trasmettere in streaming l'asset in base ai criteri specificati, il server rimuove la crittografia di archiviazione. Ad esempio, per distribuire l'asset crittografato con una chiave di crittografia envelope AES (Advanced Encryption Standard), impostare il tipo di criteri su **DynamicEnvelopeEncryption**. Per rimuovere la crittografia di archiviazione e trasmettere l'asset in chiaro, impostare il tipo di criteri su **NoDynamicEncryption**. I seguenti esempi mostrano come configurare questi tipi di criteri.
 
-A seconda della configurazione di criteri di distribuzione di hello asset si sarebbe toodynamically in grado di pacchetto, in modo dinamico crittografare ed eseguire il flusso hello seguenti protocolli di streaming: flussi MPEG DASH, HLS e Smooth Streaming.
+A seconda della modalità di configurazione dei criteri di distribuzione degli asset, sarà possibile creare dinamicamente i pacchetti, applicare la crittografia dinamica e trasmettere i protocolli di streaming seguenti: Smooth Streaming, HLS e MPEG-DASH.
 
-Hello seguito sono elencati i formati di hello utilizzare toostream Smooth, HLS e DASH.
+L'elenco seguente mostra i formati usati per i flussi Smooth, HLS e DASH.
 
 Smooth Streaming:
 
@@ -56,16 +56,16 @@ MPEG DASH
 
 
 ## <a name="considerations"></a>Considerazioni
-* Non è possbile eliminare un AssetDeliveryPolicy con un asset se esiste un localizzatore OnDemand (streaming) per quell’asset. criteri di hello tooremove da asset hello Hello consiglia prima di eliminare i criteri di hello.
-* Non è possibile creare un localizzatore di streaming in un asset crittografato per l’archiviazione se non è impostato alcun criterio di distribuzione degli asset.  Se non è hello Asset crittografato di archiviazione, sistema hello consentirà di creare un asset di hello localizzatore e il flusso in hello deselezionare senza un criterio di recapito di asset.
-* È possibile avere più criteri di recapito di asset associati a un singolo asset, ma è possibile specificare solo un modo toohandle AssetDeliveryProtocol un determinato.  Vale a dire se si tenta di toolink due criteri di recapito che specificare hello AssetDeliveryProtocol.SmoothStreaming protocollo che verrà generato un errore perché il sistema di hello non sapere quale si desidera che tooapply quando un client effettua una richiesta di Smooth Streaming.
-* Se si dispone di un asset con un localizzatore di streaming esistente, non è possibile collegare un nuovo asset toohello criteri (è possibile scollegare un criterio esistente da asset hello, o aggiornare i criteri di recapito associato hello asset).  Prima hanno localizzatore di streaming hello tooremove, modificare criteri hello e quindi ricreare hello localizzatore di streaming.  È possibile utilizzare hello locatorId stesso quando si ricrea hello streaming localizzatore, ma è necessario assicurarsi che non causino problemi per i client poiché il contenuto può essere memorizzato nella cache dall'origine hello o una rete CDN a valle.
+* Non è possbile eliminare un AssetDeliveryPolicy con un asset se esiste un localizzatore OnDemand (streaming) per quell’asset. Si suggerisce di rimuovere il criterio dall'asset prima di eliminare il criterio.
+* Non è possibile creare un localizzatore di streaming in un asset crittografato per l’archiviazione se non è impostato alcun criterio di distribuzione degli asset.  Se l'asset non è crittografato per l'archiviazione, il sistema consentirà di creare un localizzatore ed eseguire in streaming l'asset in chiaro senza un criterio di distribuzione degli asset.
+* È possibile avere più criteri di distribuzione degli asset associati a un singolo asset, ma è possibile specificare solo un modo per gestire un determinato AssetDeliveryProtocol.  Ciò significa che se si tenta di collegare due criteri di distribuzione che specificano il protocollo AssetDeliveryProtocol.SmoothStreaming, verrà generato un errore perché il sistema non sa quale applicare quando un client effettua una richiesta di Smooth Streaming.
+* Se si dispone di un asset con un localizzatore di streaming esistente, non è possibile collegare un nuovo criterio all'asset (è possibile scollegare un criterio esistente dall'asset, o aggiornare un criterio di distribuzione associato all'asset).  È innanzitutto necessario rimuovere il localizzatore di streaming, modificare i criteri e quindi creare nuovamente il localizzatore di streaming.  È possibile utilizzare lo stesso ID quando si ricrea il localizzatore di streaming, ma è necessario assicurarsi che questo non causi problemi per i client poiché il contenuto può essere memorizzato nella cache per l'origine o una rete CDN a valle.
 
 ## <a name="clear-asset-delivery-policy"></a>Criteri di distribuzione degli asset Clear
 
-esempio Hello **ConfigureClearAssetDeliveryPolicy** metodo specifica toonot applicare la crittografia dinamica e protocolli di flusso hello toodeliver in uno dei seguenti hello: protocolli MPEG DASH, HLS e Smooth Streaming. È possibile tooapply questo asset crittografato di archiviazione tooyour di criteri.
+Il metodo **ConfigureClearAssetDeliveryPolicy** seguente specifica di non applicare la crittografia dinamica e di distribuire il flusso con uno dei protocolli seguenti: MPEG DASH, HLS e Smooth Streaming. È possibile applicare questo criterio alle risorse crittografate di archiviazione.
 
-Per informazioni sui valori è possono specificare durante la creazione di un AssetDeliveryPolicy, vedere hello [tipi utilizzati durante la definizione di AssetDeliveryPolicy](#types) sezione.
+Per informazioni sui valori che è possibile specificare quando si crea un oggetto AssetDeliveryPolicy, vedere la sezione [Tipi usati durante la definizione di AssetDeliveryPolicy](#types) .
 
     static public void ConfigureClearAssetDeliveryPolicy(IAsset asset)
     {
@@ -79,9 +79,9 @@ Per informazioni sui valori è possono specificare durante la creazione di un As
 
 ## <a name="dynamiccommonencryption-asset-delivery-policy"></a>Criteri di distribuzione degli asset DynamicCommonEncryption
 
-esempio Hello **CreateAssetDeliveryPolicy** metodo crea hello **AssetDeliveryPolicy** ovvero tooapply configurato comuni crittografia dinamica (**DynamicCommonEncryption**) tooa smooth streaming protocollo (altri protocolli verranno impediti lo streaming). metodo Hello accetta due parametri: **Asset** (hello toowhich asset si vuole tooapply hello recapito criterio) e **IContentKey** (chiave simmetrica di hello di hello **CommonEncryption**dei tipi, per ulteriori informazioni, vedere: [la creazione di una chiave simmetrica](media-services-dotnet-create-contentkey.md#common_contentkey)).
+Il metodo **CreateAssetDeliveryPolicy** seguente crea l'oggetto **AssetDeliveryPolicy** configurato in modo da applicare la crittografia dinamica di tipo common (**DynamicCommonEncryption**) a un protocollo Smooth Streaming (gli altri protocolli vengono esclusi dallo streaming). Il metodo accetta due parametri: **Asset**, cioè l'asset a cui applicare i criteri di distribuzione, e **IContentKey**, cioè la chiave simmetrica del tipo **CommonEncryption**. Per altre informazioni, vedere l'articolo relativo alla [creazione di una chiave simmetrica](media-services-dotnet-create-contentkey.md#common_contentkey).
 
-Per informazioni sui valori è possono specificare durante la creazione di un AssetDeliveryPolicy, vedere hello [tipi utilizzati durante la definizione di AssetDeliveryPolicy](#types) sezione.
+Per informazioni sui valori che è possibile specificare quando si crea un oggetto AssetDeliveryPolicy, vedere la sezione [Tipi usati durante la definizione di AssetDeliveryPolicy](#types) .
 
     static public void CreateAssetDeliveryPolicy(IAsset asset, IContentKey key)
     {
@@ -99,7 +99,7 @@ Per informazioni sui valori è possono specificare durante la creazione di un As
                 AssetDeliveryProtocol.SmoothStreaming,
                 assetDeliveryPolicyConfiguration);
     
-            // Add AssetDelivery Policy toohello asset
+            // Add AssetDelivery Policy to the asset
             asset.DeliveryPolicies.Add(assetDeliveryPolicy);
     
             Console.WriteLine();
@@ -107,20 +107,20 @@ Per informazioni sui valori è possono specificare durante la creazione di un As
                 assetDeliveryPolicy.AssetDeliveryPolicyType);
      }
 
-Servizi multimediali di Azure consente inoltre tooadd Widevine crittografia. Hello seguente viene illustrato sia PlayReady e l'aggiunta di criteri di distribuzione di asset toohello Widevine.
+Servizi multimediali di Azure consente inoltre di aggiungere la crittografia Widevine. Nell'esempio seguente viene illustrato sia PlayReady che Widevine da aggiungere al criterio di recapito di asset.
 
     static public void CreateAssetDeliveryPolicy(IAsset asset, IContentKey key)
     {
-        // Get hello PlayReady license service URL.
+        // Get the PlayReady license service URL.
         Uri acquisitionUrl = key.GetKeyDeliveryUrl(ContentKeyDeliveryType.PlayReadyLicense);
 
 
-        // GetKeyDeliveryUrl for Widevine attaches hello KID toohello URL.
+        // GetKeyDeliveryUrl for Widevine attaches the KID to the URL.
         // For example: https://amsaccount1.keydelivery.mediaservices.windows.net/Widevine/?KID=268a6dcb-18c8-4648-8c95-f46429e4927c.  
-        // hello WidevineBaseLicenseAcquisitionUrl (used below) also tells Dynamaic Encryption 
-        // tooappend /? KID =< keyId > toohello end of hello url when creating hello manifest.
+        // The WidevineBaseLicenseAcquisitionUrl (used below) also tells Dynamaic Encryption 
+        // to append /? KID =< keyId > to the end of the url when creating the manifest.
         // As a result Widevine license acquisition URL will have KID appended twice, 
-        // so we need tooremove hello KID that in hello URL when we call GetKeyDeliveryUrl.
+        // so we need to remove the KID that in the URL when we call GetKeyDeliveryUrl.
 
         Uri widevineUrl = key.GetKeyDeliveryUrl(ContentKeyDeliveryType.Widevine);
         UriBuilder uriBuilder = new UriBuilder(widevineUrl);
@@ -142,38 +142,38 @@ Servizi multimediali di Azure consente inoltre tooadd Widevine crittografia. Hel
             assetDeliveryPolicyConfiguration);
 
 
-        // Add AssetDelivery Policy toohello asset
+        // Add AssetDelivery Policy to the asset
         asset.DeliveryPolicies.Add(assetDeliveryPolicy);
 
     }
 
 > [!NOTE]
-> Durante la crittografia con Widevine, sarà solo in grado di toodeliver utilizzando trattino. Verificare che toospecify trattino nel protocollo di recapito di asset hello.
+> Durante la crittografia con Widevine, si sarebbe in grado di recapitare utilizzando DASH. Assicurarsi di specificare il protocollo di recapito asset DASH.
 > 
 > 
 
 ## <a name="dynamicenvelopeencryption-asset-delivery-policy"></a>Criteri di distribuzione degli asset DynamicEnvelopeEncryption
-esempio Hello **CreateAssetDeliveryPolicy** metodo crea hello **AssetDeliveryPolicy** ovvero crittografia envelope dinamici di tooapply configurato (**DynamicEnvelopeEncryption** ) tooSmooth i protocolli di Streaming, HLS e DASH (se si decide toonot specificare alcuni protocolli, verranno bloccati dal flusso). metodo Hello accetta due parametri: **Asset** (hello toowhich asset si vuole tooapply hello recapito criterio) e **IContentKey** (chiave simmetrica di hello di hello **EnvelopeEncryption**dei tipi, per ulteriori informazioni, vedere: [la creazione di una chiave simmetrica](media-services-dotnet-create-contentkey.md#envelope_contentkey)).
+Il metodo **CreateAssetDeliveryPolicy** seguente crea l'oggetto **AssetDeliveryPolicy** configurato in modo da applicare la crittografia envelope dinamica (**DynamicEnvelopeEncryption**) ai protocolli Smooth Streaming, HLS e DASH (se si decide di non specificare alcuni protocolli, questi saranno esclusi dallo streaming). Il metodo accetta due parametri: **Asset**, cioè l'asset a cui applicare i criteri di distribuzione, e **IContentKey**, cioè la chiave simmetrica del tipo **EnvelopeEncryption**. Per altre informazioni, vedere l'articolo relativo alla [creazione di una chiave simmetrica](media-services-dotnet-create-contentkey.md#envelope_contentkey).
 
-Per informazioni sui valori è possono specificare durante la creazione di un AssetDeliveryPolicy, vedere hello [tipi utilizzati durante la definizione di AssetDeliveryPolicy](#types) sezione.   
+Per informazioni sui valori che è possibile specificare quando si crea un oggetto AssetDeliveryPolicy, vedere la sezione [Tipi usati durante la definizione di AssetDeliveryPolicy](#types) .   
 
     private static void CreateAssetDeliveryPolicy(IAsset asset, IContentKey key)
     {
 
-        //  Get hello Key Delivery Base Url by removing hello Query parameter.  hello Dynamic Encryption service will
-        //  automatically add hello correct key identifier toohello url when it generates hello Envelope encrypted content
-        //  manifest.  Omitting hello IV will also cause hello Dynamice Encryption service toogenerate a deterministic
-        //  IV for hello content automatically.  By using hello EnvelopeBaseKeyAcquisitionUrl and omitting hello IV, this
-        //  allows hello AssetDelivery policy toobe reused by more than one asset.
+        //  Get the Key Delivery Base Url by removing the Query parameter.  The Dynamic Encryption service will
+        //  automatically add the correct key identifier to the url when it generates the Envelope encrypted content
+        //  manifest.  Omitting the IV will also cause the Dynamice Encryption service to generate a deterministic
+        //  IV for the content automatically.  By using the EnvelopeBaseKeyAcquisitionUrl and omitting the IV, this
+        //  allows the AssetDelivery policy to be reused by more than one asset.
         //
         Uri keyAcquisitionUri = key.GetKeyDeliveryUrl(ContentKeyDeliveryType.BaselineHttp);
         UriBuilder uriBuilder = new UriBuilder(keyAcquisitionUri);
         uriBuilder.Query = String.Empty;
         keyAcquisitionUri = uriBuilder.Uri;
 
-        // hello following policy configuration specifies: 
-        //   key url that will have KID=<Guid> appended toohello envelope and
-        //   hello Initialization Vector (IV) toouse for hello envelope encryption.
+        // The following policy configuration specifies: 
+        //   key url that will have KID=<Guid> appended to the envelope and
+        //   the Initialization Vector (IV) to use for the envelope encryption.
         Dictionary<AssetDeliveryPolicyConfigurationKey, string> assetDeliveryPolicyConfiguration =
             new Dictionary<AssetDeliveryPolicyConfigurationKey, string> 
         {
@@ -187,7 +187,7 @@ Per informazioni sui valori è possono specificare durante la creazione di un As
                         AssetDeliveryProtocol.SmoothStreaming | AssetDeliveryProtocol.HLS | AssetDeliveryProtocol.Dash,
                         assetDeliveryPolicyConfiguration);
 
-        // Add AssetDelivery Policy toohello asset
+        // Add AssetDelivery Policy to the asset
         asset.DeliveryPolicies.Add(assetDeliveryPolicy);
 
         Console.WriteLine();
@@ -199,7 +199,7 @@ Per informazioni sui valori è possono specificare durante la creazione di un As
 
 ### <a id="AssetDeliveryProtocol"></a>AssetDeliveryProtocol
 
-Hello enum seguente descrive i possibili valori per il protocollo di recapito hello asset.
+L'enumerazione seguente descrive i valori che è possibile impostare per il protocollo di recapito di risorse.
 
     [Flags]
     public enum AssetDeliveryProtocol
@@ -234,7 +234,7 @@ Hello enum seguente descrive i possibili valori per il protocollo di recapito he
 
 ### <a id="AssetDeliveryPolicyType"></a>AssetDeliveryPolicyType
 
-Hello enum seguente vengono descritti i possibili valori per tipo di criterio di recapito asset hello.  
+L'enumerazione seguente descrive i valori che è possibile impostare per il tipo di criterio di recapito.  
 
     public enum AssetDeliveryPolicyType
     {
@@ -244,12 +244,12 @@ Hello enum seguente vengono descritti i possibili valori per tipo di criterio di
         None,
 
         /// <summary>
-        /// hello Asset should not be delivered via this AssetDeliveryProtocol. 
+        /// The Asset should not be delivered via this AssetDeliveryProtocol. 
         /// </summary>
         Blocked, 
 
         /// <summary>
-        /// Do not apply dynamic encryption toohello asset.
+        /// Do not apply dynamic encryption to the asset.
         /// </summary>
         /// 
         NoDynamicEncryption,  
@@ -267,7 +267,7 @@ Hello enum seguente vengono descritti i possibili valori per tipo di criterio di
 
 ### <a id="ContentKeyDeliveryType"></a>ContentKeyDeliveryType
 
-Hello enum seguente descrive i valori è possibile utilizzare metodo di recapito tooconfigure hello del client toohello chiave contenuto hello.
+L'enumerazione seguente descrive i valori che è possibile usare per configurare il metodo di recapito della chiave simmetrica al client.
     
     public enum ContentKeyDeliveryType
     {
@@ -299,7 +299,7 @@ Hello enum seguente descrive i valori è possibile utilizzare metodo di recapito
 
 ### <a id="AssetDeliveryPolicyConfigurationKey"></a>AssetDeliveryPolicyConfigurationKey
 
-Hello enum seguente descrive i possibili valori tooconfigure le chiavi usate tooget configurazione specifica per un criterio di recapito di asset.
+L'enumerazione seguente descrive i valori che è possibile impostare per configurare le chiavi usate per ottenere una configurazione specifica per un criterio di recapito di risorse.
 
     public enum AssetDeliveryPolicyConfigurationKey
     {
@@ -319,22 +319,22 @@ Hello enum seguente descrive i possibili valori tooconfigure le chiavi usate too
         EnvelopeBaseKeyAcquisitionUrl,
 
         /// <summary>
-        /// hello initialization vector toouse for envelope encryption in Base64 format.
+        /// The initialization vector to use for envelope encryption in Base64 format.
         /// </summary>
         EnvelopeEncryptionIVAsBase64,
 
         /// <summary>
-        /// hello PlayReady License Acquisition Url toouse for common encryption.
+        /// The PlayReady License Acquisition Url to use for common encryption.
         /// </summary>
         PlayReadyLicenseAcquisitionUrl,
 
         /// <summary>
-        /// hello PlayReady Custom Attributes tooadd toohello PlayReady Content Header
+        /// The PlayReady Custom Attributes to add to the PlayReady Content Header
         /// </summary>
         PlayReadyCustomAttributes,
 
         /// <summary>
-        /// hello initialization vector toouse for envelope encryption.
+        /// The initialization vector to use for envelope encryption.
         /// </summary>
         EnvelopeEncryptionIV,
 

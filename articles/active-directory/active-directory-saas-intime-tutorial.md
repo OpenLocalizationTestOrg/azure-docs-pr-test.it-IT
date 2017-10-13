@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con InTime | Microsoft Docs'
-description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e InTime.
+description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e InTime.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,109 +14,109 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: jeedes
-ms.openlocfilehash: 63652f0f098aeac95e89a2500b46a18440e34698
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4bb22c92ad7f6963be6ca15073f7f01da99ba2bb
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-intime"></a>Esercitazione: Integrazione di Azure Active Directory con InTime
 
-In questa esercitazione, è illustrato come toointegrate InTime con Azure Active Directory (Azure AD).
+Questa esercitazione descrive come integrare InTime con Azure Active Directory (Azure AD).
 
-Integrazione InTime con Azure AD fornisce hello seguenti vantaggi:
+L'integrazione di InTime con Azure AD offre i vantaggi seguenti:
 
-- È possibile controllare in Azure AD che ha accesso tooInTime.
-- È possibile abilitare l'utenti tooautomatically get connesso tooInTime (Single Sign-On) con i propri account Azure AD.
-- È possibile gestire gli account in un'unica posizione centrale - hello portale di Azure.
+- È possibile controllare in Azure AD chi può accedere a InTime.
+- È possibile abilitare gli utenti per l'accesso automatico a InTime (Single Sign-On) con gli account Azure AD personali.
+- È possibile gestire gli account da una posizione centrale: il portale di Azure.
 
-Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-integrazione di Azure AD con InTime tooconfigure, è necessario hello seguenti elementi:
+Per configurare l'integrazione di Azure AD con InTime, sono necessari gli elementi seguenti:
 
 - Sottoscrizione di Azure AD.
 - Sottoscrizione di InTime abilitata per l'accesso Single Sign-On
 
 > [!NOTE]
-> hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.
+> Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.
 
-passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:
+A questo scopo, è consigliabile seguire le indicazioni seguenti:
 
 - Non usare l'ambiente di produzione a meno che non sia necessario.
 - Se non è disponibile un ambiente di valutazione di Azure AD, è possibile [ottenere una versione di valutazione di un mese](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Descrizione dello scenario
-In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. scenario di Hello descritto in questa esercitazione è composto da due componenti principali:
+In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:
 
-1. Aggiunta di InTime dalla raccolta hello
+1. Aggiunta di InTime dalla raccolta
 2. Configurazione e test dell'accesso Single Sign-On di Azure AD
 
-## <a name="adding-intime-from-hello-gallery"></a>Aggiunta di InTime dalla raccolta hello
-integrazione hello tooconfigure di InTime in Azure AD, è necessario tooadd InTime dall'elenco di tooyour hello raccolta di App SaaS gestite.
+## <a name="adding-intime-from-the-gallery"></a>Aggiunta di InTime dalla raccolta
+Per configurare l'integrazione di InTime in Azure AD, è necessario aggiungere InTime dalla raccolta all'elenco di app SaaS gestite.
 
-**tooadd InTime dalla raccolta di hello, eseguire hello alla procedura seguente:**
+**Per aggiungere InTime dalla raccolta, seguire questa procedura:**
 
-1. In hello  **[portale di Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona. 
+1. Nel **[portale di Azure](https://portal.azure.com)** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro. 
 
-    ![pulsante di Hello Azure Active Directory][1]
+    ![Pulsante Azure Active Directory][1]
 
-2. Passare troppo**applicazioni aziendali**. Quindi andare troppo**tutte le applicazioni**.
+2. Passare ad **Applicazioni aziendali**. Andare quindi a **Tutte le applicazioni**.
 
-    ![Pannello di applicazioni Enterprise Hello][2]
+    ![Pannello Applicazioni aziendali][2]
     
-3. tooadd nuova applicazione, fare clic su **nuova applicazione** pulsante nella parte superiore di hello della finestra di dialogo.
+3. Fare clic sul pulsante **Nuova applicazione** nella parte superiore della finestra di dialogo per aggiungere una nuova applicazione.
 
-    ![Nuovo pulsante dell'applicazione Hello][3]
+    ![Pulsante Nuova applicazione][3]
 
-4. Nella casella di ricerca hello, digitare **InTime**selezionare **InTime** dal pannello risultati quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.
+4. Nella casella di ricerca digitare **InTime**, selezionare **InTime** dal pannello dei risultati e quindi fare clic sul pulsante **Aggiungi** per aggiungere l'applicazione.
 
-    ![Nell'elenco risultati hello InTime](./media/active-directory-saas-intime-tutorial/tutorial_intime_addfromgallery.png)
+    ![InTime nell'elenco risultati](./media/active-directory-saas-intime-tutorial/tutorial_intime_addfromgallery.png)
 
 ## <a name="configure-and-test-azure-ad-single-sign-on"></a>Configurare e testare l'accesso Single Sign-On di Azure AD
 
 In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con InTime usando un utente di test di nome "Britta Simon".
 
-Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello in InTime è tooa utente in Azure AD. In altre parole, una relazione di collegamento tra un utente di Azure Active Directory e l'utente correlato hello InTime deve toobe stabilita.
+Per il funzionamento dell'accesso Single Sign-On, Azure AD deve conoscere l'utente controparte di InTime corrispondente a un utente di Azure AD. In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in InTime.
 
-In InTime, assegnare il valore di hello di hello **nome utente** in Azure AD come valore hello hello **Username** tooestablish relazione di collegamento hello.
+Per stabilire la relazione di collegamento, in InTime assegnare il valore del **nome utente** in Azure AD come valore di **Username** (Nome utente).
 
-tooconfigure e prova AD Azure single sign-on con InTime, è necessario hello toocomplete seguenti blocchi predefiniti:
+Per configurare e testare l'accesso Single Sign-On di Azure AD con InTime, è necessario completare le procedure di base seguenti:
 
-1. **[Configurare Azure Active Directory Single Sign-On](#configure-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.
-2. **[Creare un utente prova AD Azure](#create-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.
-3. **[Creare un utente test InTime](#create-a-intime-test-user)**  -toohave un equivalente di Britta Simon in InTime che è la rappresentazione toohello collegato Azure AD dell'utente.
-4. **[Assegnare l'utente test hello Azure AD](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.
-5. **[Testare single sign-on](#test-single-sign-on)**  -tooverify hello se funzionamento della configurazione.
+1. **[Configurare l'accesso Single Sign-On di Azure AD](#configure-azure-ad-single-sign-on)**: per consentire agli utenti di usare questa funzionalità.
+2. **[Creare un utente di test di Azure AD](#create-an-azure-ad-test-user)**: per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.
+3. **[Creare un utente di test di InTime](#create-a-intime-test-user)**: per avere una controparte di Britta Simon in InTime collegata alla rappresentazione dell'utente in Azure AD.
+4. **[Assegnare l'utente test di Azure AD](#assign-the-azure-ad-test-user)**: per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.
+5. **[Testare l'accesso Single Sign-On](#test-single-sign-on)** per verificare se la configurazione funziona.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Configurare l'accesso Single Sign-On di Azure AD
 
-In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure e configurare l'accesso single sign-on nell'applicazione InTime.
+In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di Azure e viene configurato l'accesso Single Sign-On nell'applicazione InTime.
 
-**Azure AD tooconfigure single sign-on con InTime, eseguire hello alla procedura seguente:**
+**Per configurare l'accesso Single Sign-On di Azure AD con InTime, seguire questa procedura:**
 
-1. Nel portale di Azure su hello hello **InTime** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.
+1. Nella pagina di integrazione dell'applicazione **InTime** del portale di Azure fare clic su **Single Sign-On**.
 
     ![Collegamento per la configurazione dell'accesso Single Sign-On][4]
 
-2. In hello **Single sign-on** finestra di dialogo Seleziona **modalità** come **basato su SAML Sign-on** tooenable single sign-on.
+2. Nella finestra di dialogo **Single Sign-On** selezionare **Accesso basato su SAML** per **Modalità** per abilitare l'accesso Single Sign-On.
  
     ![Finestra di dialogo Single Sign-On](./media/active-directory-saas-intime-tutorial/tutorial_intime_samlbase.png)
 
-3. In hello **InTime dominio e gli URL** seguire hello alla procedura seguente:
+3. Nella sezione **URL e dominio InTime** seguire questa procedura:
 
     ![Informazioni su URL e dominio per l'accesso Single Sign-On di InTime](./media/active-directory-saas-intime-tutorial/tutorial_intime_url.png)
 
-    a. In hello **Sign-on URL** casella di testo, digitare l'URL hello:`https://intime6.intimesoft.com/mytime/login/login.xhtml`
+    a. Nella casella di testo **URL accesso** digitare l'URL: `https://intime6.intimesoft.com/mytime/login/login.xhtml`
 
-    b. In hello **identificatore** casella di testo, digitare l'URL hello:`https://auth.intimesoft.com/auth/realms/master`
+    b. Nella casella di testo **Identificatore** digitare l'URL: `https://auth.intimesoft.com/auth/realms/master`
 
-4. In hello **certificato di firma SAML** fare clic su **Metadata XML** e quindi salvare il file di metadati hello nel computer in uso.
+4. Nella sezione **Certificato di firma SAML** fare clic su **XML di metadati** e quindi salvare il file dei metadati nel computer.
 
-    ![collegamento al download del certificato Hello](./media/active-directory-saas-intime-tutorial/tutorial_intime_certificate.png) 
+    ![Collegamento di download del certificato](./media/active-directory-saas-intime-tutorial/tutorial_intime_certificate.png) 
 
-5. L'applicazione InTime prevede asserzioni SAML hello in un formato specifico, che richiede di tooadd attributo personalizzato configurazione dei mapping tooyour SAML degli attributi del token. Hello seguente schermata mostra un esempio per questo oggetto. il valore predefinito di Hello **identificatore utente** è **User** ma InTime prevede che questo toobe mappato con indirizzo di posta elettronica dell'utente hello. A tale scopo è possibile utilizzare **user.mail** attributo dall'elenco hello o utilizzare il valore di attributo appropriato hello in base alla configurazione organizzazione 
+5. L'applicazione InTime si aspetta che le asserzioni SAML abbiano un formato specifico, quindi è necessario aggiungere mapping di attributi personalizzati alla configurazione degli attributi del token SAML. La schermata seguente illustra un esempio relativo a questa operazione. Il valore predefinito dell'**ID utente** è **user.userprincipalname** ma InTime si aspetta che venga mappato all'indirizzo e-mail dell'utente. A tale scopo, è possibile usare l'attributo **user.mail** dall'elenco oppure usare il valore di attributo appropriato in base alla configurazione dell'organizzazione 
 
     ![Configurazione dell'attributo](./media/active-directory-saas-intime-tutorial/tutorial_intime_attribute.png)
 
@@ -124,77 +124,77 @@ In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure 
 
     ![Pulsante Salva di Configura accesso Single Sign-On](./media/active-directory-saas-intime-tutorial/tutorial_general_400.png)
 
-7. In hello **configurazione InTime** fare clic su **configurare InTime** tooopen **Configura sign-on** finestra. Hello copia **Sign-Out URL e SAML Single Sign-On Service URL** da hello **sezione di riferimento rapido.**
+7. Nella sezione **Configurazione di InTime** fare clic su **Configura InTime** per aprire la finestra **Configura accesso**. Copiare i valori **Sign-Out URL (URL di disconnessione) e SAML Single Sign-On Service URL (URL servizio Single Sign-On SAML)** dalla sezione **Quick Reference** (Riferimento rapido).
 
     ![Configurazione di InTime](./media/active-directory-saas-intime-tutorial/tutorial_intime_configure.png) 
 
-8. tooconfigure single sign-on sul **InTime** lato, è necessario hello toosend scaricato **Metadata XML**, **Sign-Out URL e SAML Single Sign-On Service URL** troppo[Team di supporto inTime](mailto:hdollard@intimesoft.com). Impostano questo hello toohave impostazione connessione SAML SSO impostato correttamente su entrambi i lati.
+8. Per configurare l'accesso Single Sign-On sul lato **InTime**, è necessario inviare il file **XML metadati** scaricato, **l'URL di disconnessione e l'URL del servizio Single Sign-On SAML** al [team di supporto di InTime](mailto:hdollard@intimesoft.com). La configurazione viene eseguita in modo che la connessione SSO SAML sia impostata correttamente su entrambi i lati.
 
 > [!TIP]
-> È ora possibile leggere una versione di queste istruzioni all'interno di hello concisa [portale di Azure](https://portal.azure.com), mentre si stanno impostando app hello!  Dopo l'aggiunta di questa app da hello **Active Directory > applicazioni aziendali** fare semplicemente clic su hello **Single Sign-On** scheda e l'accesso hello incorporato documentazione tramite hello  **Configurazione** sezione nella parte inferiore di hello. È possibile leggere altre informazioni sulla funzionalità di documentazione embedded hello qui: [AD Azure incorporato documentazione]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Un riepilogo delle istruzioni è disponibile all'interno del [portale di Azure](https://portal.azure.com) durante la configurazione dell'app.  Dopo aver aggiunto l'app dalla sezione **Active Directory > Applicazioni aziendali** è sufficiente fare clic sulla scheda **Single Sign-On** e accedere alla documentazione incorporata tramite la sezione **Configurazione** nella parte inferiore. Altre informazioni sulla funzione di documentazione incorporata sono disponibili in [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985) (Documentazione incorporata di Azure AD).
 > 
 
 ### <a name="create-an-azure-ad-test-user"></a>Creare un utente test di Azure AD
 
-obiettivo di Hello di questa sezione è un utente di test nel portale di Azure chiamato Britta Simon hello toocreate.
+Questa sezione descrive come creare un utente test denominato Britta Simon nel portale di Azure.
 
    ![Creare un utente test di Azure AD][100]
 
-**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**
+**Per creare un utente test in Azure AD, eseguire la procedura seguente:**
 
-1. Nel portale di Azure, nel riquadro di sinistra hello, hello fare clic su hello **Azure Active Directory** pulsante.
+1. Nel portale di Azure fare clic sul pulsante **Azure Active Directory** nel riquadro sinistro.
 
-    ![pulsante di Hello Azure Active Directory](./media/active-directory-saas-intime-tutorial/create_aaduser_01.png)
+    ![Pulsante Azure Active Directory](./media/active-directory-saas-intime-tutorial/create_aaduser_01.png)
 
-2. elenco di hello toodisplay di utenti, andare troppo**utenti e gruppi**, quindi fare clic su **tutti gli utenti**.
+2. Per visualizzare l'elenco di utenti, passare a **Utenti e gruppi** e quindi fare clic su **Tutti gli utenti**.
 
-    ![Hello "Utenti e gruppi" e i collegamenti di "Tutti gli utenti"](./media/active-directory-saas-intime-tutorial/create_aaduser_02.png)
+    ![Collegamenti "Utenti e gruppi" e "Tutti gli utenti"](./media/active-directory-saas-intime-tutorial/create_aaduser_02.png)
 
-3. hello tooopen **utente** la finestra di dialogo, fare clic su **Aggiungi** nella parte superiore di hello di hello **tutti gli utenti** la finestra di dialogo.
+3. Per aprire la finestra di dialogo **Utente** fare clic su **Aggiungi** nella parte superiore della finestra di dialogo **Tutti gli utenti**.
 
-    ![pulsante Aggiungi Hello](./media/active-directory-saas-intime-tutorial/create_aaduser_03.png)
+    ![Pulsante Aggiungi](./media/active-directory-saas-intime-tutorial/create_aaduser_03.png)
 
-4. In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:
+4. Nella finestra di dialogo **Utente** seguire questa procedura:
 
-    ![finestra di dialogo utente Hello](./media/active-directory-saas-intime-tutorial/create_aaduser_04.png)
+    ![Finestra di dialogo Utente](./media/active-directory-saas-intime-tutorial/create_aaduser_04.png)
 
-    a. In hello **nome** digitare **BrittaSimon**.
+    a. Nella casella **Nome** digitare **BrittaSimon**.
 
-    b. In hello **nome utente** casella Tipo hello di indirizzo di posta elettronica dell'utente Britta Simon.
+    b. Nella casella **Nome utente** digitare l'indirizzo di posta elettronica dell'utente Britta Simon.
 
-    c. Seleziona hello **Show Password** casella di controllo e quindi annotare i valori hello visualizzati in hello **Password** casella.
+    c. Selezionare la casella di controllo **Mostra password** e quindi prendere nota del valore visualizzato nella casella **Password**.
 
     d. Fare clic su **Crea**.
  
 ### <a name="create-a-intime-test-user"></a>Creare un utente di test di InTime
 
-In questa sezione viene creato un utente di nome Britta Simon in InTime. Lavorare con [team di supporto InTime](mailto:hdollard@intimesoft.com) utenti hello tooadd nella piattaforma InTime hello. Gli utenti devono essere creati e attivati prima di usare l'accesso Single Sign-On.
+In questa sezione viene creato un utente di nome Britta Simon in InTime. Collaborare con il [team di supporto di InTime](mailto:hdollard@intimesoft.com) per aggiungere gli utenti alla piattaforma InTime. Gli utenti devono essere creati e attivati prima di usare l'accesso Single Sign-On.
 
-### <a name="assign-hello-azure-ad-test-user"></a>Assegnare l'utente test hello Azure AD
+### <a name="assign-the-azure-ad-test-user"></a>Assegnare l'utente test di Azure AD
 
-In questa sezione per abilitare Britta Simon toouse single sign-on Azure concessione dell'accesso tooInTime.
+In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sign-On di Azure concedendole l'accesso a InTime.
 
-![Assegnazione del ruolo utente hello][200] 
+![Assegnare il ruolo utente][200] 
 
-**tooassign Britta Simon tooInTime, eseguire hello alla procedura seguente:**
+**Per assegnare Britta Simon a InTime, seguire questa procedura:**
 
-1. Nel portale di Azure hello, aprire la visualizzazione di applicazioni hello, quindi selezionare Visualizza directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.
+1. Nel portale di Azure aprire la visualizzazione delle applicazioni e quindi la visualizzazione delle directory e passare ad **Applicazioni aziendali**, quindi fare clic su **Tutte le applicazioni**.
 
     ![Assegna utente][201] 
 
-2. Nell'elenco di applicazioni hello, selezionare **InTime**.
+2. Nell'elenco delle applicazioni selezionare **InTime**.
 
-    ![Hello InTime collegamento nell'elenco delle applicazioni hello](./media/active-directory-saas-intime-tutorial/tutorial_intime_app.png)  
+    ![Collegamento di InTime nell'elenco delle applicazioni](./media/active-directory-saas-intime-tutorial/tutorial_intime_app.png)  
 
-3. Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.
+3. Scegliere **Utenti e gruppi** dal menu a sinistra.
 
-    ![collegamento di "Utenti e gruppi" Hello][202]
+    ![Collegamento "Utenti e gruppi"][202]
 
 4. Fare clic sul pulsante **Aggiungi**. Selezionare quindi **Utenti e gruppi** nella finestra di dialogo **Aggiungi assegnazione**.
 
-    ![riquadro assegnazione aggiungere Hello][203]
+    ![Riquadro Aggiungi assegnazione][203]
 
-5. In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.
+5. Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco Utenti.
 
 6. Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.
 
@@ -202,13 +202,13 @@ In questa sezione per abilitare Britta Simon toouse single sign-on Azure concess
     
 ### <a name="test-single-sign-on"></a>Testare l'accesso Single Sign-On
 
-In questa sezione si test configurazione di Azure AD single sign-on utilizzando hello Pannello di accesso.
+In questa sezione viene testata la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.
 
-Quando si fa clic sul riquadro InTime hello in hello Pannello di accesso, è necessario ottenere la pagina di accesso hello dell'applicazione InTime. Fare clic su hello **accesso** pulsante, una serie di IdPs sarà visualizzato in un elenco di pulsanti. Fare clic su **nome IDP** fornito da [team di supporto InTime](mailto:hdollard@intimesoft.com) toologin InTime nell'applicazione in uso. Per ulteriori informazioni sul pannello di accesso, vedere [introduzione toohello Pannello di accesso](active-directory-saas-access-panel-introduction.md). 
+Quando si fa clic sul riquadro InTime nel pannello di accesso, dovrebbe essere visualizzata la pagina di accesso dell'applicazione InTime. Fare clic sul pulsante di **accesso** per visualizzare una serie di IdP in un elenco di pulsanti. Fare clic sul **nome IDP** fornito dal [team di supporto di InTime](mailto:hdollard@intimesoft.com) per accedere all'applicazione InTime. Per altre informazioni sul pannello di accesso, vedere [Introduzione al Pannello di accesso](active-directory-saas-access-panel-introduction.md). 
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md)
 
 

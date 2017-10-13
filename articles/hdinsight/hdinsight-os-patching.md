@@ -1,6 +1,6 @@
 ---
-title: pianificazione di applicazione di patch aaaConfigure del sistema operativo per i cluster HDInsight basati su Linux - Azure | Documenti Microsoft
-description: Informazioni su come cluster di pianificazione di applicazione di patch tooconfigure del sistema operativo per HDInsight basati su Linux.
+title: Configurare una pianificazione dell'applicazione di patch al sistema operativo per i cluster di HDInsight basati su Linux - Azure | Microsoft Docs
+description: Informazioni su come configurare una pianificazione dell'applicazione di patch al sistema operativo per i cluster di HDInsight basati su Linux.
 services: hdinsight
 documentationcenter: 
 author: bprakash
@@ -15,38 +15,39 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 03/21/2017
 ms.author: bhanupr
-ms.openlocfilehash: 1598d64e594d7e8a68573fc63dd86051a5a9d025
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: af3c5a19ae8e2e606e4b0506f9f6dddb41192e40
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="os-patching-for-hdinsight"></a>Applicazione di patch del sistema operativo per HDInsight 
-Come un servizio gestito di Hadoop, HDInsight si occupa del processo di hello del sistema operativo di hello macchine virtuali sottostanti usate dai cluster di HDInsight. A partire dal 1 agosto 2016, sono stati modificati criteri applicazione di patch del sistema operativo guest di hello per i cluster HDInsight basati su Linux (versione 3.4 o successiva). obiettivo di Hello del nuovo criterio di hello è toosignificantly ridurre il numero di riavvii di hello toopatching scadenza. il nuovo criterio di Hello continuerà toopatch virtuali (VM) in Linux cluster ogni lunedì o giovedì a partire da Mezzanotte ora UTC in un termineranno tra i nodi del cluster specificato. Tuttavia, tutte le VM determinata riavvierà solo al massimo una volta ogni 30 giorni a causa del sistema operativo tooguest l'applicazione di patch. Inoltre, il primo riavvio hello per un cluster appena creato non si verificherà prima di 30 giorni dalla data di creazione di cluster hello. Patch è efficace quando le macchine virtuali hello vengono riavviate.
+Come servizio gestito di Hadoop, HDInsight si occupa dell'applicazione di patch al sistema operativo delle macchine virtuali sottostanti usate dal cluster HDInsight. A partire dal 1° agosto 2016, sono stati modificati i criteri di applicazione delle patch del sistema operativo guest per i cluster HDInsight basati su Linux (versione 3.4 o successiva). L'obiettivo del nuovo criterio è di ridurre in modo consistente il numero di riavvii causati dall'applicazione delle patch. Il nuovo criterio continuerà ad applicare le patch alle macchine virtuali sui cluster Linux ogni lunedì o giovedì a partire dalle ore 00:00 UTC con un flusso di intervalli sui nodi in ogni cluster. Tuttavia, le macchine virtuali verranno riavviate solo una volta ogni 30 giorni a causa dell'applicazione delle patch al sistema operativo guest. In aggiunta, il primo riavvio di un cluster appena creato non verrà eseguito prima di 30 giorni dalla data di creazione del cluster. I patch verranno applicati al riavvio delle macchine virtuali.
 
-## <a name="how-tooconfigure-hello-os-patching-schedule-for-linux-based-hdinsight-clusters"></a>Come tooconfigure hello pianificazione patch del sistema operativo per i cluster HDInsight basati su Linux
-macchine virtuali Hello in un cluster HDInsight è necessario toobe riavviato in alcuni casi, in modo che sia possono installare le patch di sicurezza importante. A partire dal 1 agosto 2016, nuovi cluster HDInsight basati su Linux (versione 3.4 o versioni successive) vengono riavviati utilizzando hello seguente pianificazione:
+## <a name="how-to-configure-the-os-patching-schedule-for-linux-based-hdinsight-clusters"></a>Procedura per configurare una pianificazione dell'applicazione di patch al sistema operativo per i cluster HDInsight basati su Linux
+Le macchine virtuali in un cluster HDInsight devono essere riavviate di tanto in tanto in modo che sia possibile installare le patch di sicurezza importanti. A partire dal 1° agosto 2016, i nuovi cluster HDInsight basati su Linux (versione 3.4 o successive) verranno riavviati in base alla pianificazione seguente:
 
-1. Una macchina virtuale in cluster hello solo possibile riavviare le patch al massimo una volta all'interno di un periodo di 30 giorni.
-2. il riavvio di Hello si verifica a partire da Mezzanotte UTC.
-3. il processo di riavvio Hello avviene a fasi su macchine virtuali nel cluster hello, in modo cluster hello è ancora disponibile durante il processo di riavvio hello.
-4. il primo riavvio Hello per un cluster appena creato non verrà eseguito prima di 30 giorni dopo la data di creazione cluster hello.
+1. Una macchina virtuale nel cluster può solo riavviare il computer per le patch al massimo una volta in un periodo di 30 giorni.
+2. Il riavvio avviene a partire da mezzanotte (UTC).
+3. Il processo di riavvio è scaglionato tra le macchine virtuali del cluster, pertanto il cluster è ancora disponibile durante il processo di riavvio.
+4. Il primo riavvio di un cluster appena creato non verrà eseguito prima di 30 giorni dalla data di creazione del cluster.
 
-Utilizzando l'azione di script hello descritta in questo articolo, è possibile modificare pianificazione patch hello del sistema operativo come indicato di seguito:
+Tramite l'azione di script descritta in questo articolo, è possibile modificare la pianificazione dell'applicazione delle patch al sistema operativo come segue:
 1. Abilitare o disabilitare il riavvio automatico
-2. Frequenza di hello set di riavvio (giorni tra i riavvii)
-3. Impostare hello giorno della settimana hello quando si verifica un riavvio
+2. Impostare la frequenza di riavvio (giorni tra i riavvii)
+3. Impostare il giorno della settimana in cui eseguire un riavvio
 
 > [!NOTE]
 > Questa azione di script funziona solo con i cluster HDInsight basati su Linux creati dopo il 1° agosto 2016. I patch verranno applicati solo al riavvio delle macchine virtuali. 
 >
 
-## <a name="how-toouse-hello-script"></a>Come toouse hello script 
+## <a name="how-to-use-the-script"></a>Come usare lo script 
 
-Quando questo script richiede hello le seguenti informazioni:
-1. percorso dello script Hello: https://hdiconfigactions.blob.core.windows.net/linuxospatchingrebootconfigv01/os-patching-reboot-config.sh.  HDInsight utilizza toofind questo URI ed eseguire script hello in tutte le macchine virtuali hello cluster hello.
+L'uso di questo script richiede le informazioni seguenti:
+1. Il percorso dello script: https://hdiconfigactions.blob.core.windows.net/linuxospatchingrebootconfigv01/os-patching-reboot-config.sh.
+    HDInsight usa l'URI per trovare ed eseguire lo script in tutte le macchine virtuali del cluster.
   
-2. tipi di nodo del cluster è applicare lo script hello Hello: nodo head, workernode, zookeeper. Questo script deve essere applicato tooall i tipi di nodo nel cluster hello. Se non è il tipo di nodo tooa applicati, quindi hello virtuale macchine per quel tipo di nodo continueranno pianificazione delle patch di toouse hello precedente.
+2. I tipi di nodo di cluster che vengono applicati allo script: nodo head, nodo del ruolo di lavoro, zookeeper. Questo script deve essere applicato a tutti i tipi di nodo del cluster. Se non viene applicato a un tipo di nodo, le macchine virtuali per quel tipo di nodo continueranno a usare la pianificazione per l'applicazione di patch precedente.
 
 
 3.  Parametro: Questo script accetta tre parametri numerici:
@@ -54,18 +55,18 @@ Quando questo script richiede hello le seguenti informazioni:
     | Parametro | Definizione |
     | --- | --- |
     | Abilitare/disabilitare il riavvio automatico |0 o 1. Il valore 0 disabilita il riavvio automatico, mentre 1 consente il riavvio automatico. |
-    | Frequenza |too90 7 (inclusivo). numero di Hello di toowait giorni prima di riavviare le macchine virtuali di hello per le patch che richiedono un riavvio. |
-    | Giorno della settimana |1 too7 (inclusivo). Il valore 1 indica il riavvio di hello deve essere eseguiti su un lunedì e 7 indica un esempio di Sunday.For, utilizzando i parametri di 1 60 2 risultati in automatico viene riavviato ogni 60 giorni (al massimo) martedì. |
-    | Persistenza |Quando l'applicazione di un cluster di script azione tooan esistente, è possibile contrassegnare script hello come persistente. Script persistenti vengono applicate quando workernodes nuovo vengono aggiunti il cluster toohello tramite operazioni di ridimensionamento. |
+    | Frequenza |da 7 a 90 (incluso). Il numero di giorni di attesa prima di riavviare le macchine virtuali per le patch che richiedono un riavvio. |
+    | Giorno della settimana |da 1 a 7 (incluso). Il valore 1 indica che il riavvio deve essere eseguito il lunedì e 7 indica la domenica. Ad esempio usando i parametri di 1 60 2 si produce un riavvio automatico ogni 60 giorni (al massimo) il martedì. |
+    | Persistenza |Quando si applica un'azione di script a un cluster esistente, è possibile contrassegnare lo script come persistente. Gli script persistenti vengono applicati quando vengono aggiunti nuovi nodi del ruolo di lavoro al cluster tramite operazioni di ridimensionamento. |
 
 > [!NOTE]
-> È necessario contrassegnare questo script come persistente quando l'applicazione cluster esistente tooan. In caso contrario, eventuali nuovi nodi creati tramite operazioni di ridimensionamento utilizzerà l'applicazione di patch pianificazione predefinito di hello.
-Se si applica script hello come parte del processo di creazione cluster di hello, viene mantenuta automaticamente.
+> Quando si applica a un cluster esistente, è necessario contrassegnare questo script come persistente. In caso contrario i nuovi nodi creati tramite le operazioni di ridimensionamento useranno il la pianificazione dell'applicazione di patch predefinita.
+Se si applica lo script come parte del processo di creazione del cluster, viene mantenuto automaticamente.
 >
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per passaggi specifici sull'utilizzo di azione script hello, vedere le sezioni in hello seguenti hello [HDInsight basati su personalizzare Linuz cluster utilizzando l'azione script](hdinsight-hadoop-customize-cluster-linux.md):
+Per la procedura dettagliata sull'uso dell'azione di script, vedere le sezioni seguenti di [Personalizzare cluster HDInsight basati su Linux tramite Azione script](hdinsight-hadoop-customize-cluster-linux.md):
 
 * [Usare un'azione script durante la creazione di un cluster](hdinsight-hadoop-customize-cluster-linux.md#use-a-script-action-during-cluster-creation)
-* [Applicare un tooa azione script in esecuzione del cluster](hdinsight-hadoop-customize-cluster-linux.md#apply-a-script-action-to-a-running-cluster)
+* [Applicare un'azione script a un cluster in esecuzione](hdinsight-hadoop-customize-cluster-linux.md#apply-a-script-action-to-a-running-cluster)

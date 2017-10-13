@@ -1,6 +1,6 @@
 ---
-title: IoT Hub Azure - introduzione connessione cloud toohello di dispositivi IoT | Documenti Microsoft
-description: "Informazioni su come tooconnect le lavagne IoT e starter kit tooAzure IoT Hub. I dispositivi è possono inviare dati di telemetria tooIoT Hub e IoT Hub è possibile monitorare e gestire i dispositivi."
+title: Hub IoT Azure - Introduzione alla connessione dei dispositivi IoT nel cloud | Documentazione Microsoft
+description: "Informazioni su come connettere le schede e gli starter kit all'Hub IoT. I dispositivi possono inviare dati di telemetria all'hub IoT e l'hub Iot può monitorare e gestire i dispositivi."
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -15,26 +15,26 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/22/2017
 ms.author: dobett
-ms.openlocfilehash: 6dc956308009091532019ff84aec881f042f0104
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 45016e6383761ffe78f13ccef1112ab3d9753498
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-iot-hub-get-started-tutorials"></a>Esercitazioni introduttive sull'Hub IoT Azure
 
-È possibile utilizzare Azure IoT Hub hello Azure IoT soluzioni dei dispositivi e gli SDK toobuild Internet delle cose (IoT):
+È possibile usare Hub IoT Azure e gli SDK per dispositivi Azure IoT per creare soluzioni Internet delle cose (IoT):
 
-* IoT Hub Azure è un servizio completamente gestito nel cloud hello che si connette in modo sicuro, consente di monitorare e gestire i dispositivi IoT. Utilizzare hello dispositivo IoT di Azure SDK tooimplement i dispositivi IoT.
-* Usare un gateway IoT in scenari IoT più complessi. Ad esempio, in cui è necessario tooconsider fattori, ad esempio dispositivi legacy, i costi di larghezza di banda, i criteri di sicurezza e privacy o l'elaborazione dati di bordo. In questi scenari, si utilizza Azure IoT Edge tooimplement un gateway che si connette l'hub IoT tooyour dispositivi.
+* Hub IoT Azure è un servizio completamente gestito nel cloud che si connette, monitora e gestisce i dispositivi IoT in modo sicuro. Usare gli SDK per dispositivi Azure IoT per implementare i dispositivi IoT.
+* Usare un gateway IoT in scenari IoT più complessi. Ad esempio, laddove è necessario prendere in considerazione fattori quali i dispositivi legacy, i costi della larghezza di banda, i criteri di protezione e privacy o l'elaborazione dei dati perimetrali. In questi scenari si usa Azure IoT Edge per implementare un gateway che connette i dispositivi all'hub IoT.
 
-## <a name="what-hello-tutorials-cover"></a>Le esercitazioni di hello riguardano
+## <a name="what-the-tutorials-cover"></a>Argomenti trattati nelle esercitazioni
 
-Queste esercitazioni vengono fornite informazioni si tooAzure IoT Hub e il dispositivo di hello SDK. esercitazioni di Hello riguardano IoT scenari toodemonstrate hello funzionalità comuni dell'IoT Hub. Hello esercitazioni viene inoltre illustrano come toocombine IoT Hub con altri Azure dei servizi e toobuild degli strumenti più potenti soluzioni IoT. Nelle esercitazioni di hello, è possibile scegliere i dispositivi IoT simulati o reali toouse. Inoltre, sono disponibili come toouse un gateway tooenable dispositivi tooconnect tooyour l'hub IoT.
+Queste esercitazioni presentano l'hub IoT Azure e gli SDK per dispositivi. Le esercitazioni concernono scenari IoT comuni per illustrare le funzionalità dell'hub IoT. Le esercitazioni spiegano anche come combinare l'hub IoT con altri servizi di Azure e strumenti per creare soluzioni IoT più potenti. Nelle esercitazioni è possibile scegliere di usare dispositivi IoT simulati o reali. È anche possibile imparare a usare un gateway per consentire ai dispositivi di connettersi all'hub IoT.
 
 ## <a name="set-up-your-device"></a>Configurare il dispositivo
 
-Connettere un IoT dispositivo o il gateway tooAzure IoT Hub. È possibile scegliere tooget un dispositivo fisico o simulato avviato:
+Connettere un dispositivo o un gateway IoT all'hub IoT di Azure. È possibile scegliere un dispositivo fisico o simulato per iniziare:
 
 | Dispositivo IoT                       | Linguaggio di programmazione |
 |----------------------------------|----------------------|
@@ -47,7 +47,7 @@ Connettere un IoT dispositivo o il gateway tooAzure IoT Hub. È possibile scegli
 | Dispositivo simulato nel PC           | [.NET][Sim_NET], [Java][Sim_Jav], [Node.js][Sim_Nd], [Python][Sim_Pyth] |
 | Simulatore di dispositivi online         | [Raspberry Pi (Node.js)][Ol_Sim] |
 
-Inoltre, è possibile utilizzare un bordo IoT gateway tooenable dispositivi tooconnect tooyour l'hub IoT:
+È anche possibile usare un gateway IoT Edge per consentire ai dispositivi di connettersi all'hub IoT:
 
 | Dispositivo gateway               | Linguaggio di programmazione | Piattaforma         |
 |------------------------------|----------------------|------------------|

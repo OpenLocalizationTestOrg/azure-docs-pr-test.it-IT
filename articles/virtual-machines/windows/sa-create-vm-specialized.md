@@ -1,6 +1,6 @@
 ---
-title: aaaCreate macchina virtuale da un disco specializzato in Azure | Documenti Microsoft
-description: Creare una nuova macchina virtuale collegando un disco specializzato non gestito, nel modello di distribuzione di gestione risorse di hello.
+title: Creare una macchina virtuale da un disco specializzato in Azure | Documentazione Microsoft
+description: Creare una nuova macchina virtuale collegando un disco non gestito specializzato nel modello di distribuzione Resource Manager.
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -15,75 +15,75 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/23/2017
 ms.author: cynthn
-ms.openlocfilehash: c88f213b6629a6c1d6ff5845e76c2f7719672714
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 974d89aa96cba94fedfd1acbaf4f1d30ac8e6257
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="create-a-vm-from-a-specialized-vhd-in-a-storage-account"></a>Creare una VM da un disco rigido virtuale specializzato in un account di archiviazione
 
-Creare una nuova macchina virtuale collegando un disco specializzato non gestito come disco del sistema operativo hello tramite Powershell. Un disco specializzato è una copia del disco rigido virtuale da una macchina virtuale esistente che gestisce gli account utente di hello, applicazioni e altri dati di stato dalla macchina virtuale originale. 
+Creare una nuova macchina virtuale collegando un disco non gestito specializzato come disco del sistema operativo con Powershell. Un disco specializzato è una copia del disco rigido virtuale proveniente da una macchina virtuale esistente che gestisce gli account utente, le applicazioni e altri dati di stato dalla macchina virtuale originale. 
 
 Sono disponibili due opzioni:
 * [Caricare un VHD](create-vm-specialized.md#option-1-upload-a-specialized-vhd)
-* [Copiare hello VHD di una macchina virtuale di Azure esistente](create-vm-specialized.md#option-2-copy-an-existing-azure-vm)
+* [Copiare il disco rigido virtuale di una VM di Azure esistente](create-vm-specialized.md#option-2-copy-an-existing-azure-vm)
 
 ## <a name="before-you-begin"></a>Prima di iniziare
-Se si usa PowerShell, assicurarsi di aver hello la versione più recente del modulo AzureRM.Compute PowerShell hello. Eseguire hello seguenti comando tooinstall.
+Se si usa PowerShell, verificare di avere la versione più recente del modulo di PowerShell AzureRM.Compute. Eseguire il comando seguente per installarlo.
 
 ```powershell
 Install-Module AzureRM.Compute 
 ```
-Per altre informazioni, vedere [Controllo delle versioni di Azure PowerShell](/powershell/azure/overview).
+Per altre informazioni, vedere [Azure PowerShell Versioning](/powershell/azure/overview) (Controllo delle versioni di Azure PowerShell).
 
 
 ## <a name="option-1-upload-a-specialized-vhd"></a>Opzione 1: Caricare un disco rigido virtuale specializzato
 
-È possibile caricare hello che disco rigido virtuale da una VM specializzata creato con uno strumento di virtualizzazione locale, come Hyper-V, o una macchina virtuale esportata da un altro cloud.
+È possibile caricare il disco rigido virtuale da una VM specializzata creata con uno strumento di virtualizzazione locale, ad esempio Hyper-V, o da una VM esportata da un altro cloud.
 
-### <a name="prepare-hello-vm"></a>Preparare hello VM
-È possibile caricare un disco rigido virtuale specializzato creato usando una VM locale o un disco rigido virtuale esportato da un altro cloud. Un disco rigido virtuale specializzato gestisce gli account utente di hello, applicazioni e altri dati di stato dalla macchina virtuale originale. Se si intende toouse hello file VHD come-è toocreate una nuova macchina virtuale, verificare hello operazioni viene completata. 
+### <a name="prepare-the-vm"></a>Preparare la macchina virtuale
+È possibile caricare un disco rigido virtuale specializzato creato usando una VM locale o un disco rigido virtuale esportato da un altro cloud. Un disco rigido virtuale specializzato gestisce gli account utente, le applicazioni e altri dati di stato dalla macchina virtuale originale. Se si intende usare il disco rigido virtuale così come è per creare una nuova macchina virtuale, assicurare il completamento delle operazioni seguenti. 
   
-  * [Preparare un tooAzure tooupload disco rigido virtuale di Windows](prepare-for-upload-vhd-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). **Non** generalizzare hello macchina virtuale con Sysprep.
-  * Rimuovere eventuali strumenti di virtualizzazione guest e gli agenti installati in hello VM (ad esempio strumenti di VMware).
-  * Assicurarsi di hello macchina virtuale è configurata toopull il relativo indirizzo IP e le impostazioni DNS attraverso DHCP. Ciò garantisce che il server hello ottenga un indirizzo IP all'interno di hello rete virtuale al momento dell'avvio. 
+  * [Preparare un disco rigido virtuale (VHD) di Windows per il caricamento in Azure](prepare-for-upload-vhd-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). **Non** generalizzare la macchina Virtuale con Sysprep.
+  * Rimuovere tutti gli strumenti di virtualizzazione guest e gli agenti installati nella macchina virtuale, ad esempio gli strumenti VMware.
+  * Assicurarsi che la macchina virtuale sia configurata per eseguire il pull dell'indirizzo IP e delle impostazioni DNS tramite DHCP. In questo modo il server ottiene un indirizzo IP all'interno della rete virtuale all'avvio. 
 
 
-### <a name="get-hello-storage-account"></a>Ottenere l'account di archiviazione hello
-È necessario un account di archiviazione nell'immagine di macchina virtuale di Azure toostore hello caricato. È possibile usare un account di archiviazione esistente o crearne uno nuovo. 
+### <a name="get-the-storage-account"></a>Ottenere l'account di archiviazione
+Per archiviare l'immagine della VM caricata, è necessario un account di archiviazione di Azure. È possibile usare un account di archiviazione esistente o crearne uno nuovo. 
 
-account di archiviazione disponibili hello tooshow, digitare:
+Per mostrare gli account di archiviazione disponibili, digitare:
 
 ```powershell
 Get-AzureRmStorageAccount
 ```
 
-Se si desidera toouse un account di archiviazione esistente, procedere toohello [immagine di macchina virtuale di caricamento hello](#upload-the-vm-vhd-to-your-storage-account) sezione.
+Se si vuole usare un account di archiviazione esistente, passare alla sezione [Caricare l'immagine della VM](#upload-the-vm-vhd-to-your-storage-account) .
 
-Se è necessario un account di archiviazione toocreate, seguire questi passaggi:
+Per creare un account di archiviazione, seguire questa procedura:
 
-1. È necessario il nome di hello hello del gruppo di risorse in cui deve essere creato l'account di archiviazione hello. toofind out tutti i gruppi di risorse hello nella sottoscrizione di tipo sono:
+1. È necessario il nome del gruppo di risorse in cui deve essere creato l'account di archiviazione. Per trovare tutti i gruppi di risorse inclusi nella sottoscrizione digitare:
    
     ```powershell
     Get-AzureRmResourceGroup
     ```
 
-    un gruppo di risorse denominato toocreate **myResourceGroup** in hello **Stati Uniti occidentali** area, digitare:
+    Per creare un gruppo di risorse denominato **MyResourceGroup** nell'area **Stati Uniti occidentali**, digitare:
 
     ```powershell
     New-AzureRmResourceGroup -Name myResourceGroup -Location "West US"
     ```
 
-2. Creare un account di archiviazione denominato **mystorageaccount** in questo gruppo di risorse utilizzando hello [New AzureRmStorageAccount](/powershell/module/azurerm.storage/new-azurermstorageaccount) cmdlet:
+2. Creare un account di archiviazione denominato **mystorageaccount** in questo gruppo di risorse con il cmdlet [New-AzureRmStorageAccount](/powershell/module/azurerm.storage/new-azurermstorageaccount).
    
     ```powershell
     New-AzureRmStorageAccount -ResourceGroupName myResourceGroup -Name mystorageaccount -Location "West US" `
         -SkuName "Standard_LRS" -Kind "Storage"
     ```
    
-### <a name="upload-hello-vhd-tooyour-storage-account"></a>Caricare l'account di archiviazione tooyour hello disco rigido virtuale
-Hello utilizzare [Aggiungi AzureRmVhd](/powershell/module/azurerm.compute/add-azurermvhd) cmdlet tooupload hello tooa il contenitore di immagini nell'account di archiviazione. In questo esempio caricamenti hello file **myVHD.vhd** da `"C:\Users\Public\Documents\Virtual hard disks\"` tooa account di archiviazione denominato **mystorageaccount** in hello **myResourceGroup** gruppo di risorse. sarà inseriti file Hello contenitore hello denominato **mycontainer** e sarà il nuovo nome di file hello **myUploadedVHD.vhd**.
+### <a name="upload-the-vhd-to-your-storage-account"></a>Caricare il disco rigido virtuale nell'account di archiviazione
+Usare il cmdlet [Add-AzureRmVhd](/powershell/module/azurerm.compute/add-azurermvhd) per caricare l'immagine in un contenitore nell'account di archiviazione. In questo esempio, il file **myVHD.vhd** viene caricato da `"C:\Users\Public\Documents\Virtual hard disks\"` a un account di archiviazione denominato **mystorageaccount** nel gruppo di risorse **myResourceGroup**. Il file viene inserito nel contenitore denominato **mycontainer** e il nuovo nome del file sarà **myUploadedVHD.vhd**.
 
 ```powershell
 $rgName = "myResourceGroup"
@@ -93,12 +93,12 @@ Add-AzureRmVhd -ResourceGroupName $rgName -Destination $urlOfUploadedImageVhd `
 ```
 
 
-Se ha esito positivo, si otterrà una risposta simile toothis simile:
+Se l'operazione riesce, si ottiene una risposta simile alla seguente:
 
 ```powershell
-MD5 hash is being calculated for hello file C:\Users\Public\Documents\Virtual hard disks\myVHD.vhd.
+MD5 hash is being calculated for the file C:\Users\Public\Documents\Virtual hard disks\myVHD.vhd.
 MD5 hash calculation is completed.
-Elapsed time for hello operation: 00:03:35
+Elapsed time for the operation: 00:03:35
 Creating new page blob of size 53687091712...
 Elapsed time for upload: 01:12:49
 
@@ -107,59 +107,59 @@ LocalFilePath           DestinationUri
 C:\Users\Public\Doc...  https://mystorageaccount.blob.core.windows.net/mycontainer/myUploadedVHD.vhd
 ```
 
-La connessione di rete e delle dimensioni di hello del file di disco rigido virtuale, questo comando potrebbe richiedere qualche minuto toocomplete.
+L'esecuzione del comando potrebbe richiedere del tempo, a seconda della connessione di rete e delle dimensioni del file VHD.
 
 
-## <a name="option-2-copy-hello-vhd-from-an-existing-azure-vm"></a>Opzione 2: Copiare hello disco rigido virtuale da una macchina virtuale di Azure esistente
+## <a name="option-2-copy-the-vhd-from-an-existing-azure-vm"></a>Opzione 2: Copiare il disco rigido virtuale da una VM di Azure esistente
 
-È possibile copiare un account toouse di disco rigido virtuale tooanother archiviazione durante la creazione di una macchina virtuale nuova, duplicata.
+È possibile copiare un disco rigido virtuale in un altro account di archiviazione da usare quando si crea una nuova VM duplicata.
 
 ### <a name="before-you-begin"></a>Prima di iniziare
 Verificare quanto segue:
 
-* Informazioni hello **gli account di archiviazione di origine e destinazione**. Per la macchina virtuale di origine hello, è necessario toohave hello archiviazione nomi account e contenitore. In genere, si sarà il nome di contenitore hello **dischi rigidi virtuali**. È inoltre necessario toohave un account di archiviazione di destinazione. Se non hai già uno, è possibile crearne uno usando portale hello (**più servizi** > gli account di archiviazione > Aggiungi) o tramite hello [New AzureRmStorageAccount](/powershell/module/azurerm.storage/new-azurermstorageaccount) cmdlet. 
-* Aver scaricato e installato hello [strumento AzCopy](../../storage/common/storage-use-azcopy.md). 
+* Disporre delle informazioni sugli **account di archiviazione di origine e destinazione**. Per la VM di origine è necessario disporre dei nomi degli account di archiviazione e dei contenitori. In genere il nome del contenitore sarà **vhds**. È inoltre necessario disporre di un account di archiviazione di destinazione. Se non si dispone già di un account di archiviazione, è possibile crearne uno usando il portale (**Servizi** > Account di archiviazione > Aggiungi) oppure mediante il cmdlet [New-AzureRmStorageAccount](/powershell/module/azurerm.storage/new-azurermstorageaccount). 
+* Avere scaricato e installato lo [strumento AzCopy](../../storage/common/storage-use-azcopy.md). 
 
-### <a name="deallocate-hello-vm"></a>Deallocare hello VM
-Dealloca hello VM, che consente di liberare hello toobe di disco rigido virtuale copiato. 
+### <a name="deallocate-the-vm"></a>Deallocare la VM
+Deallocare la VM, operazione che consente di liberare il disco rigido virtuale da copiare. 
 
-* **Portale**: fare clic su  **Macchine virtuali** > **myVM** &gt; Stop (Termina)
-* **PowerShell**: utilizzare [Stop AzureRmVM](/powershell/module/azurerm.compute/stop-azurermvm) toostop (deallocazione) hello macchina virtuale denominata **myVM** nel gruppo di risorse **myResourceGroup**.
+* **Portale**: fare clic su  **Macchine virtuali** > **myVM** > Stop (Termina)
+* **PowerShell**: usare [Stop-AzureRmVM](/powershell/module/azurerm.compute/stop-azurermvm) per arrestare (deallocare) la VM denominata **myVM** nel gruppo di risorse **myResourceGroup**.
 
 ```powershell
 Stop-AzureRmVM -ResourceGroupName myResourceGroup -Name myVM
 ```
 
-Hello **stato** per Ciao VM hello Azure portal cambia da **arrestato** troppo**arrestato (deallocato)**.
+Nel portale di Azure lo **stato** della VM passa da **Arrestato** ad **Arrestato (deallocato)**.
 
-### <a name="get-hello-storage-account-urls"></a>Ottenere l'URL di account di archiviazione hello
-È necessario hello gli URL di account di archiviazione di origine e destinazione hello. Hello URL simile a: `https://<storageaccount>.blob.core.windows.net/<containerName>/`. Se si conosce già nome account e il contenitore di archiviazione hello, è possibile solo sostituire informazioni hello tra hello tra parentesi quadre toocreate l'URL. 
+### <a name="get-the-storage-account-urls"></a>Ottenere gli URL dell'account di archiviazione
+Sono necessari gli URL degli account di archiviazione di origine e destinazione. Gli URL hanno l'aspetto seguente: `https://<storageaccount>.blob.core.windows.net/<containerName>/`. Se si conosce già il nome degli account di archiviazione e dei contenitori, per creare l'URL è sufficiente sostituire le informazioni tra parentesi. 
 
-È possibile utilizzare hello portale di Azure o Azure Powershell tooget hello URL:
+Per ottenere l'URL è possibile usare il portale di Azure o Azure PowerShell:
 
-* **Portale**: fare clic su hello  **>**  per **più servizi** > **gli account di archiviazione**  >   *account di archiviazione* > **BLOB** e il file VHD di origine è probabilmente in hello **dischi rigidi virtuali** contenitore. Fare clic su **proprietà** per il contenitore di hello e copiare il testo hello etichetta **URL**. È necessario che gli URL di hello di contenitori di origine e di destinazione sia hello. 
-* **PowerShell**: utilizzare [Get AzureRmVM](/powershell/module/azurerm.compute/get-azurermvm) informazioni hello tooget per macchina virtuale denominata **myVM** nel gruppo di risorse hello **myResourceGroup**. Nei risultati di hello, Cerca in hello **profilo di archiviazione** sezione per hello **Vhd Uri**. prima parte di Hello di hello Uri hello URL toohello ed ultima parte hello hello Nome disco rigido virtuale del sistema operativo per hello macchina virtuale.
+* **Portale**: fare clic su **>** per **Altri servizi** > **Account di archiviazione** > *account di archiviazione* > **BLOB**. Il file VHD di origine si trova probabilmente nel contenitore **vhds**. Fare clic su **Proprietà** per il contenitore e copiare il testo con l'etichetta **URL**. Sono necessari gli URL di entrambi i contenitori di origine e di destinazione. 
+* **PowerShell**: usare [Get-AzureRmVM](/powershell/module/azurerm.compute/get-azurermvm) per ottenere le informazioni dalla VM denominata **myVM** nel gruppo di risorse **myResourceGroup**. Nei risultati esaminare la sezione **Storage profile** (Profilo archiviazione) per l'**URI VHD**. La prima parte dell'URI è l'URL del contenitore, mentre l'ultima parte è il nome del disco rigido virtuale del sistema operativo della VM.
 
 ```powershell
 Get-AzureRmVM -ResourceGroupName "myResourceGroup" -Name "myVM"
 ``` 
 
-## <a name="get-hello-storage-access-keys"></a>Ottiene le chiavi di accesso di hello archiviazione
-Trova le chiavi di accesso hello per hello gli account di archiviazione di origine e di destinazione. Per altre informazioni sulle chiavi di accesso, vedere [Informazioni sugli account di archiviazione di Azure](../../storage/common/storage-create-storage-account.md).
+## <a name="get-the-storage-access-keys"></a>Ottenere le chiavi di accesso alle risorse di archiviazione
+Trovare le chiavi di accesso per gli account di archiviazione di origine e destinazione. Per altre informazioni sulle chiavi di accesso, vedere [Informazioni sugli account di archiviazione di Azure](../../storage/common/storage-create-storage-account.md).
 
-* **Portale**: fare clic su **Altri servizi** > **Account di archiviazione** > *account di archiviazione* > **Chiavi di accesso**. Tasto di copia hello etichettata come **key1**.
-* **PowerShell**: utilizzare [Get AzureRmStorageAccountKey](/powershell/module/azurerm.storage/get-azurermstorageaccountkey) tooget hello archiviazione chiave hello account di archiviazione **mystorageaccount** nel gruppo di risorse hello  **myResourceGroup**. Chiave di hello copia con l'etichetta **key1**.
+* **Portale**: fare clic su **Altri servizi** > **Account di archiviazione** > *account di archiviazione* > **Chiavi di accesso**. Copiare la chiave denominata **key1**.
+* **PowerShell**: usare [Get-AzureRmStorageAccountKey](/powershell/module/azurerm.storage/get-azurermstorageaccountkey) per ottenere la chiave di archiviazione per l'account di archiviazione **mystorageaccount** nel gruppo di risorse **myResourceGroup**. Copiare la chiave denominata **key1**.
 
 ```powershell
 Get-AzureRmStorageAccountKey -Name mystorageaccount -ResourceGroupName myResourceGroup
 ```
 
-### <a name="copy-hello-vhd"></a>Copiare hello disco rigido virtuale
-È possibile copiare file da un account di archiviazione a un altro usando AzCopy. Per il contenitore di destinazione hello, se il contenitore di hello specificato non esiste, si verrà creato automaticamente. 
+### <a name="copy-the-vhd"></a>Copiare il file VHD
+È possibile copiare file da un account di archiviazione a un altro usando AzCopy. Se il container di destinazione specificato non esiste, tale contenitore verrà creato automaticamente. 
 
-toouse AzCopy, aprire un prompt dei comandi nel computer locale e passare toohello cartella in cui è installato AzCopy. Sarà simile troppo*C:\Program Files (x86) \Microsoft SDKs\Azure\AzCopy*. 
+Per usare AzCopy, aprire un prompt dei comandi sul computer locale e passare alla cartella in cui è installato tale strumento. Il percorso sarà simile a *C:\Programmi (x86)\Microsoft SDKs\Azure\AzCopy*. 
 
-toocopy tutti hello file all'interno di un contenitore, utilizzare hello **/S** passare. Può essere utilizzato toocopy hello disco rigido virtuale del sistema operativo e tutti i dischi di dati hello se sono presenti in hello stesso contenitore. Questo esempio viene illustrato come toocopy hello tutti i file nel contenitore hello **mysourcecontainer** nell'account di archiviazione **mysourcestorageaccount** toohello contenitore **mydestinationcontainer**  in hello **mydestinationstorageaccount** account di archiviazione. Sostituire i nomi di hello di account di archiviazione hello e di contenitori con valori personalizzati. Sostituire `<sourceStorageAccountKey1>` e `<destinationStorageAccountKey1>` con chiavi a propria scelta.
+Per copiare tutti i file all'interno di un contenitore, è possibile usare l'opzione **/S**. Può essere usata per copiare il disco rigido virtuale del sistema operativo e tutti i dischi dati che si trovano nello stesso contenitore. Questo esempio mostra come copiare tutti i file che si trovano nel contenitore **mysourcecontainer** dell'account di archiviazione **mysourcestorageaccount** nel contenitore **mydestinationcontainer** dell'account di archiviazione **mydestinationstorageaccount**. Sostituire i nomi degli account di archiviazione e dei contenitori con nomi a propria scelta. Sostituire `<sourceStorageAccountKey1>` e `<destinationStorageAccountKey1>` con chiavi a propria scelta.
 
 ```
 AzCopy /Source:https://mysourcestorageaccount.blob.core.windows.net/mysourcecontainer `
@@ -167,7 +167,7 @@ AzCopy /Source:https://mysourcestorageaccount.blob.core.windows.net/mysourcecont
     /SourceKey:<sourceStorageAccountKey1> /DestKey:<destinationStorageAccountKey1> /S
 ```
 
-Se si vuole solo toocopy uno specifico VHD in un contenitore con più file, è possibile specificare anche il nome di file hello opzione /Pattern hello. In questo esempio, solo hello file denominato **myFileName.vhd** verranno copiati.
+Se si vuole copiare solo uno specifico file VHD in un contenitore con più file, è anche possibile specificare il nome del file usando l'opzione /Pattern. In questo esempio verrà copiato solo il file denominato **myFileName.vhd**.
 
 ```
 AzCopy /Source:https://mysourcestorageaccount.blob.core.windows.net/mysourcecontainer `
@@ -191,24 +191,24 @@ Elapsed time:            00.00:13:07
 ```
 
 ### <a name="troubleshooting"></a>Risoluzione dei problemi
-* Quando si utilizza AZCopy, se viene visualizzato l'errore hello "Richiesta hello tooauthenticate Server non riuscita", verificare che il valore di hello dell'intestazione di autorizzazione hello è del formato corretto, inclusa la firma hello. Se si utilizza 2 di chiave o una chiave di archiviazione secondaria hello, provare a usare la chiave di archiviazione primario o al 1 ° hello.
+* Quando si usa AZCopy, se viene visualizzato l'errore "Il server non è stato in grado di autenticare la richiesta", assicurarsi che il valore dell'intestazione di autorizzazione sia formato correttamente, inclusa la firma. Se si sta usando la chiave 2 o la chiave di archiviazione secondaria, provare a usare la chiave 1 o la chiave di archiviazione primaria.
 
-## <a name="create-hello-new-vm"></a>Creare hello nuova macchina virtuale 
+## <a name="create-the-new-vm"></a>Creare la nuova VM 
 
-È necessario toocreate rete e altri toobe risorse macchina virtuale utilizzato da hello nuova macchina virtuale.
+È necessario creare le risorse di rete e le altre risorse da usare nella nuova VM.
 
-### <a name="create-hello-subnet-and-vnet"></a>Creare reti virtuali e la subNet hello
+### <a name="create-the-subnet-and-vnet"></a>Creare la subNet e la vNet
 
-Creare reti virtuali hello e la subNet di hello [rete virtuale](../../virtual-network/virtual-networks-overview.md).
+Creare la rete virtuale e la subnet della [rete virtuale](../../virtual-network/virtual-networks-overview.md).
 
-1. Creare subNet hello. Questo esempio viene creata una subnet denominata **mySubNet**, nel gruppo di risorse hello **myResourceGroup**, e set hello prefisso di indirizzo di subnet troppo**10.0.0.0/24**.
+1. Creare la subnet. In questo esempio viene creata una subnet denominata **mySubNet** nel gruppo di risorse **myResourceGroup** e il prefisso dell'indirizzo della subnet viene impostato su **10.0.0.0/24**.
    
     ```powershell
     $rgName = "myResourceGroup"
     $subnetName = "mySubNet"
     $singleSubnet = New-AzureRmVirtualNetworkSubnetConfig -Name $subnetName -AddressPrefix 10.0.0.0/24
     ```
-2. Creare una rete virtuale hello. In questo esempio imposta hello toobe nome di rete virtuale **myVnetName**, hello percorso troppo**Stati Uniti occidentali**, e hello prefisso dell'indirizzo per la rete virtuale hello troppo**10.0.0.0/16**. 
+2. Creare la rete virtuale. In questo esempio il nome della rete virtuale è **myVnetName**, la posizione specificata è **Stati Uniti occidentali** e il prefisso dell'indirizzo per la rete virtuale è **10.0.0.0/16**. 
    
     ```powershell
     $location = "West US"
@@ -218,16 +218,16 @@ Creare reti virtuali hello e la subNet di hello [rete virtuale](../../virtual-ne
     ```    
 
 ### <a name="create-a-public-ip-address-and-nic"></a>Creare un indirizzo IP pubblico e NIC
-comunicazione tooenable con hello di macchina virtuale nella rete virtuale hello, è necessario un [indirizzo IP pubblico](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) e un'interfaccia di rete.
+Per abilitare la comunicazione con la macchina virtuale nella rete virtuale, sono necessari un [indirizzo IP pubblico](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) e un'interfaccia di rete.
 
-1. Creare l'indirizzo IP pubblico hello. In questo esempio, nome dell'indirizzo IP pubblico hello è troppo**myIP**.
+1. Creare l'IP pubblico. In questo esempio, il nome dell'indirizzo IP pubblico è **myIP**.
    
     ```powershell
     $ipName = "myIP"
     $pip = New-AzureRmPublicIpAddress -Name $ipName -ResourceGroupName $rgName -Location $location `
         -AllocationMethod Dynamic
     ```       
-2. Creare una scheda di rete hello. In questo esempio, il nome di interfaccia di rete hello è impostato troppo**myNicName**.
+2. Creare la scheda NIC. In questo esempio, il nome specificato della scheda NIC è **myNicName**.
    
     ```powershell
     $nicName = "myNicName"
@@ -235,9 +235,9 @@ comunicazione tooenable con hello di macchina virtuale nella rete virtuale hello
     -Location $location -SubnetId $vnet.Subnets[0].Id -PublicIpAddressId $pip.Id
     ```
 
-### <a name="create-hello-network-security-group-and-an-rdp-rule"></a>Creare gruppi di sicurezza di rete hello e una regola di RDP
-toobe toolog in grado di tooyour macchina virtuale tramite RDP, è necessario toohave una regola di sicurezza che consente l'accesso RDP sulla porta 3389. Poiché hello disco rigido virtuale per la nuova macchina virtuale è stato creato da un oggetto esistente hello specializzato macchina virtuale, dopo aver creato hello VM, è possibile utilizzare un account esistente dalla macchina virtuale di origine hello che aveva toolog autorizzazione sull'utilizzo di RDP.
-In questo esempio imposta hello Nome gruppo troppo**myNsg** e hello RDP troppo nome regola**myRdpRule**.
+### <a name="create-the-network-security-group-and-an-rdp-rule"></a>Creare il gruppo di sicurezza di rete e una regola RDP
+Per essere in grado di accedere alla VM tramite RDP, è necessario disporre di una regola di sicurezza che consenta l'accesso RDP sulla porta 3389. Poiché il disco rigido virtuale per la nuova macchina virtuale è stato creato da una VM specializzata esistente, dopo l'avvenuta creazione della macchina virtuale è possibile usare un account esistente dalla VM di origine che aveva l'autorizzazione di accedere tramite RDP.
+In questo esempio il nome NSG impostato è **myNsg**, mentre il nome della regola RDP è **myRdpRule**.
 
 ```powershell
 $nsgName = "myNsg"
@@ -251,53 +251,53 @@ $nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName $rgName -Location $loc
     
 ```
 
-Per ulteriori informazioni sugli endpoint e le regole di gruppo, vedere [apertura di porte tooa VM in Azure utilizzando PowerShell](nsg-quickstart-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+Per altre informazioni sugli endpoint e sulle regole NSG, vedere [Apertura di porte a una VM tramite PowerShell](nsg-quickstart-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
-### <a name="set-hello-vm-name-and-size"></a>Nome della macchina virtuale hello e le dimensioni
+### <a name="set-the-vm-name-and-size"></a>Impostare il nome e le dimensioni della macchina virtuale
 
-In questo esempio imposta hello nome della macchina virtuale troppo "myVM" e hello VM dimensione troppo "Standard_A2".
+In questo esempio il nome della macchina virtuale viene impostato su "myVM" e le dimensioni su "Standard_A2".
 ```powershell
 $vmName = "myVM"
 $vmConfig = New-AzureRmVMConfig -VMName $vmName -VMSize "Standard_A2"
 ```
 
-### <a name="add-hello-nic"></a>Aggiungere hello NIC
+### <a name="add-the-nic"></a>Aggiungere la scheda di interfaccia di rete
     
 ```powershell
 $vm = Add-AzureRmVMNetworkInterface -VM $vmConfig -Id $nic.Id
 ```
     
     
-### <a name="configure-hello-os-disk"></a>Configurare un disco del sistema operativo hello
+### <a name="configure-the-os-disk"></a>Configurare il disco del sistema operativo
 
-1. Impostare hello URI per hello disco rigido virtuale che è stato caricato o copiato. In questo esempio, i file di disco rigido virtuale denominato hello **myOsDisk.vhd** vengono mantenuti in un account di archiviazione denominato **myStorageAccount** in un contenitore denominato **myContainer**.
+1. Impostare l'URI per il disco rigido virtuale caricato o copiato. In questo esempio, il file del disco rigido virtuale denominato **myOsDisk.vhd** viene mantenuto in un account di archiviazione denominato **myStorageAccount** all'interno di un contenitore denominato **myContainer**.
 
     ```powershell
     $osDiskUri = "https://myStorageAccount.blob.core.windows.net/myContainer/myOsDisk.vhd"
     ```
-2. Aggiungere il disco del sistema operativo hello. In questo esempio, quando viene creata hello disco del sistema operativo, hello termine "osDisk" è appened toohello nome toocreate hello del sistema operativo disco nome della macchina virtuale. In questo esempio specifica inoltre che il disco rigido virtuale basato su Windows deve essere collegato toohello macchina virtuale come disco di hello del sistema operativo.
+2. Aggiungere il disco del sistema operativo. In questo esempio, quando viene creato il disco del sistema operativo, il termine "osDisk" viene collegato al nome della macchina virtuale per creare il nome del disco del sistema operativo. Questo esempio specifica anche che il disco rigido virtuale basato su Windows deve essere collegato alla macchina virtuale come disco del sistema operativo.
     
     ```powershell
     $osDiskName = $vmName + "osDisk"
     $vm = Set-AzureRmVMOSDisk -VM $vm -Name $osDiskName -VhdUri $osDiskUri -CreateOption attach -Windows
     ```
 
-Facoltativo: Se si dispone di dischi dati che toobe necessità collegato toohello VM, aggiungere dischi dati hello utilizzando gli URL dei dischi rigidi virtuali dati hello e hello i numero di unità logica (Lun) appropriati.
+Facoltativo: se si dispone di dischi dati da associare alla macchina virtuale, aggiungere i dischi dati tramite gli URL dei dischi rigidi virtuali di dati e il numero di unità logica (LUN) appropriato.
 
 ```powershell
 $dataDiskName = $vmName + "dataDisk"
 $vm = Add-AzureRmVMDataDisk -VM $vm -Name $dataDiskName -VhdUri $dataDiskUri -Lun 1 -CreateOption attach
 ```
 
-Quando si utilizza un account di archiviazione, dati hello e gli URL del disco del sistema operativo simile al seguente: `https://StorageAccountName.blob.core.windows.net/BlobContainerName/DiskName.vhd`. È possibile trovare nel portale di hello visualizzando contenitore di archiviazione di destinazione toohello, facendo clic su sistema operativo hello o disco rigido virtuale che è stato copiato, dati e quindi copiando il contenuto di hello dell'URL hello.
+Quando si usa un account di archiviazione, gli URL dei dischi dati e del sistema operativo sono simili al seguente: `https://StorageAccountName.blob.core.windows.net/BlobContainerName/DiskName.vhd`. Per trovarlo nel portale, passare al contenitore di archiviazione di destinazione, fare clic sul disco rigido virtuale del sistema operativo o dei dati copiato e quindi copiare il contenuto dell'URL.
 
 
-### <a name="complete-hello-vm"></a>Completare hello VM 
+### <a name="complete-the-vm"></a>Completare la VM 
 
-Creare hello VM utilizzando le configurazioni di hello che abbiamo appena creato.
+Creare la macchina virtuale usando le configurazioni appena create.
 
 ```powershell
-#Create hello new VM
+#Create the new VM
 New-AzureRmVM -ResourceGroupName $rgName -Location $location -VM $vm
 ```
 
@@ -310,8 +310,8 @@ RequestId IsSuccessStatusCode StatusCode ReasonPhrase
 
 ```
 
-### <a name="verify-that-hello-vm-was-created"></a>Verificare che hello che è stata creata una macchina virtuale
-È consigliabile vedere hello appena creato VM in hello [portale di Azure](https://portal.azure.com), in **Sfoglia** > **macchine virtuali**, oppure utilizzando hello seguente PowerShell comandi:
+### <a name="verify-that-the-vm-was-created"></a>Verificare che la VM sia stata creata
+La VM appena creata verrà visualizzata nel [portale di Azure](https://portal.azure.com) in **Sfoglia** > **Macchine virtuali** oppure usando i comandi di PowerShell seguenti:
 
 ```powershell
 $vmList = Get-AzureRmVM -ResourceGroupName $rgName
@@ -319,5 +319,5 @@ $vmList.Name
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-toosign tooyour nuova macchina virtuale, toohello Sfoglia VM in hello [portale](https://portal.azure.com), fare clic su **Connetti**e il file desktop remoto aprire hello. Utilizzare le credenziali dell'account hello del toosign macchina virtuale originale tooyour nuova macchina virtuale. Per ulteriori informazioni, vedere [come tooconnect e tooan virtuali di Azure di accesso del computer che eseguono Windows](connect-logon.md).
+Per accedere alla nuova macchina virtuale, passare alla VM nel [portale](https://portal.azure.com), fare clic su **Connetti**e aprire il file RDP di Desktop remoto. Usare le credenziali dell'account della macchina virtuale originale per accedere alla nuova macchina virtuale. Per altre informazioni, vedere [Come connettersi e accedere a una macchina virtuale di Azure che esegue Windows](connect-logon.md).
 

@@ -1,6 +1,6 @@
 ---
-title: errori di toodiagnose aaaHow con hello connessione guidata di Azure Active Directory
-description: Connessione guidata di active directory Hello ha rilevato un tipo di autenticazione incompatibile
+title: Come diagnosticare gli errori con Connessione guidata di Azure Active Directory
+description: La procedura guidata di connessione di Active Directory ha rilevato un tipo di autenticazione incompatibile.
 services: active-directory
 documentationcenter: 
 author: kraigb
@@ -15,45 +15,45 @@ ms.topic: article
 ms.date: 03/05/2017
 ms.author: kraigb
 ms.custom: aaddev
-ms.openlocfilehash: f71c5b41457c0c8db05042e8d5f723e58ad11844
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4f29f62b2996cae98b02c1ed5fcb59eca09301ef
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="diagnosing-errors-with-hello-azure-active-directory-connection-wizard"></a>Diagnostica degli errori con hello connessione guidata di Azure Active Directory
-Durante il rilevamento precedente codice di autenticazione, hello rilevato un tipo di autenticazione incompatibile.   
+# <a name="diagnosing-errors-with-the-azure-active-directory-connection-wizard"></a>Diagnosi degli errori con Connessione guidata di Azure Active Directory
+Durante il rilevamento di codice di autenticazione precedente, la procedura guidata ha rilevato un tipo di autenticazione non compatibile.   
 
 ## <a name="what-is-being-checked"></a>Elementi verificati
-**Nota:** toocorrectly rilevare precedente codice di autenticazione in un progetto, è necessario compilare il progetto hello.  Se si è verificato questo errore e non si ha il precedente codice di autenticazione del progetto, ricompilare e riprovare.
+**Nota:** per rilevare correttamente il precedente codice di autenticazione in un progetto, è necessario che il progetto sia compilato.  Se si è verificato questo errore e non si ha il precedente codice di autenticazione del progetto, ricompilare e riprovare.
 
 ### <a name="project-types"></a>Tipi di progetto
-procedura guidata di Hello controlla il tipo di hello di progetto che si sviluppa in modo è possibile inserire la logica di autenticazione appropriato hello nel progetto di hello.  Se è presente alcun controller che deriva da `ApiController` nel progetto hello progetto hello viene considerato un progetto WebAPI.  Se sono presenti solo i controller che derivano da `MVC.Controller` nel progetto hello progetto hello viene considerato un progetto MVC.  Qualsiasi altro elemento non è supportato dalla procedura guidata hello.
+La procedura guidata verifica il tipo di progetto in corso di sviluppo, in modo da potervi inserire la logica di autenticazione corretta.  Se nel progetto è presente un controller che deriva da `ApiController`, il progetto verrà considerato come un progetto WebAPI.  Se nel progetto sono presenti solo controller che derivano da `MVC.Controller`, il progetto verrà considerato come un progetto MVC.  Qualsiasi altro elemento non è supportato dalla procedura guidata.
 
 ### <a name="compatible-authentication-code"></a>Codice di autenticazione compatibile
-la procedura guidata Hello verifica inoltre le impostazioni di autenticazione che sono state configurate in precedenza con la procedura guidata hello o compatibili con la procedura guidata hello.  Se tutte le impostazioni sono presenti, viene considerato un caso rientrante, verrà visualizzata la procedura guidata hello impostazioni visualizzazione e hello.  Se solo alcune delle impostazioni di hello sono presenti, viene considerato un caso di errore.
+La procedura guidata cerca inoltre le impostazioni di autenticazione configurate in precedenza o che sono compatibili.  Se sono presenti tutte le impostazioni, viene considerato come caso rientrante. La procedura guidata verrà aperta e visualizzerà le impostazioni.  Se sono presenti solo alcune impostazioni, verrà considerato come caso di errore.
 
-In un progetto MVC, la procedura guidata hello verifica una delle seguenti impostazioni, derivanti dall'utilizzo precedente della procedura guidata hello hello:
+In un progetto MVC la procedura guidata cerca le impostazioni seguenti che derivano da usi precedenti della procedura guidata:
 
     <add key="ida:ClientId" value="" />
     <add key="ida:Tenant" value="" />
     <add key="ida:AADInstance" value="" />
     <add key="ida:PostLogoutRedirectUri" value="" />
 
-Inoltre, la procedura guidata hello controlla per una delle seguenti impostazioni in un progetto di Web API, derivanti dall'utilizzo precedente della procedura guidata hello hello:
+La procedura guidata cerca inoltre le impostazioni seguenti di un progetto API Web che derivano da usi precedenti della procedura guidata:
 
     <add key="ida:ClientId" value="" />
     <add key="ida:Tenant" value="" />
     <add key="ida:Audience" value="" />
 
 ### <a name="incompatible-authentication-code"></a>Codice di autenticazione incompatibile
-Infine, la procedura guidata hello tenta versioni toodetect di codice di autenticazione che sono state configurate con le versioni precedenti di Visual Studio. Se si riceve questo errore, significa che il progetto contiene un tipo di autenticazione non compatibile. la procedura guidata Hello rileva hello seguenti tipi di autenticazione da versioni precedenti di Visual Studio:
+La procedura guidata prova infine a rilevare le versioni del codice di autenticazione configurate con le versioni precedenti di Visual Studio. Se si riceve questo errore, significa che il progetto contiene un tipo di autenticazione non compatibile. La procedura guidata rileva i tipi seguenti di autenticazione dalle versioni precedenti di Visual Studio:
 
 * Autenticazione di Windows 
 * Account utente singoli 
 * Account dell'organizzazione 
 
-toodetect l'autenticazione di Windows in un progetto MVC, hello guidata viene cercato hello `authentication` elemento il **Web. config** file.
+Per individuare Autenticazione di Windows in un progetto MVC, la procedura guidata cerca l'elemento `authentication` nel file **web.config** .
 
 <pre>
     &lt;configuration&gt;
@@ -63,7 +63,7 @@ toodetect l'autenticazione di Windows in un progetto MVC, hello guidata viene ce
     &lt;/configuration&gt;
 </pre>
 
-toodetect l'autenticazione di Windows in un progetto di Web API, hello guidata viene cercato hello `IISExpressWindowsAuthentication` elemento nel progetto **csproj** file:
+Per individuare Autenticazione di Windows in un progetto API Web, la procedura guidata cerca l'elemento `IISExpressWindowsAuthentication` nel file con estensione **csproj** del progetto:
 
 <pre>
     &lt;Project&gt;
@@ -73,7 +73,7 @@ toodetect l'autenticazione di Windows in un progetto di Web API, hello guidata v
     &lt;/Project&gt;
 </pre>
 
-l'autenticazione di account utente toodetect, hello guidata viene cercato elemento pacchetto hello il **Packages** file.
+Per individuare l'autenticazione per singoli account utente, la procedura guidata cerca l'elemento package dal file **Packages.config** .
 
 <pre>
     &lt;packages&gt;
@@ -81,7 +81,7 @@ l'autenticazione di account utente toodetect, hello guidata viene cercato elemen
     &lt;/packages&gt;
 </pre>
 
-toodetect un vecchio modulo di autenticazione Account aziendale, hello guidata viene cercato hello che seguono l'elemento da **Web. config**:
+Per individuare una precedente forma di autenticazione di tipo account aziendale, la procedura guidata cerca il seguente elemento dal file **web.config**:
 
 <pre>
     &lt;configuration&gt;
@@ -91,7 +91,7 @@ toodetect un vecchio modulo di autenticazione Account aziendale, hello guidata v
     &lt;/configuration&gt;
 </pre>
 
-tipo di autenticazione hello toochange, rimuovere il tipo di autenticazione incompatibile hello e rieseguire la procedura guidata hello.
+Per cambiare il tipo di autenticazione, rimuovere il tipo non compatibile ed eseguire di nuovo la procedura guidata.
 
 Per altre informazioni, vedere [Scenari di autenticazione per Azure AD](active-directory-authentication-scenarios.md).
 

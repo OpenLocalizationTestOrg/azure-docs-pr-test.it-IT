@@ -1,5 +1,5 @@
 ---
-title: aumentare la quota di core aaaAzure Gestione risorse richieste | Documenti Microsoft
+title: Richieste di aumento della quota di core per Azure Resource Manager | Documentazione Microsoft
 description: Richieste di aumento della quota di core per Azure Resource Manager
 author: ganganarayanan
 ms.author: gangan
@@ -7,24 +7,24 @@ ms.date: 1/18/2017
 ms.topic: article
 ms.service: microsoft-docs
 ms.assetid: ce37c848-ddd9-46ab-978e-6a1445728a3b
-ms.openlocfilehash: b158b9f0e0338eb239da9253c2146ea93c02e316
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: cb6c5b3e86f126d4110d1cd29d8c9891e356e414
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="resource-manager-core-quota-increase-requests"></a>Richieste di aumento della quota di core per Resource Manager
 
-Quote di gestione risorse principali vengono applicate a livello di area hello e livello di famiglia di SKU.
-Altre informazioni su come vengono applicate le quote in hello [sottoscrizione di Azure e limiti dei servizi](http://aka.ms/quotalimits) pagina.
-altre informazioni sulle famiglie di SKU toolearn, possono risultare costi e prestazioni su hello [macchine virtuali: prezzi](http://aka.ms/pricingcompute) pagina.
+Le quote di core per Resource Manager sono imposte a livello di area e a livello di famiglia di SKU.
+Per altre informazioni su come vengono imposte le quote, vedere la pagina relativa ai [limiti del servizio e della sottoscrizione di Azure](http://aka.ms/quotalimits).
+Per altre informazioni sulle famiglie di SKU e per confrontare costi e prestazioni, vedere la pagina [Prezzi di Macchine virtuali](http://aka.ms/pricingcompute).
 
-toorequest un aumento, creare un caso di supporto di Quota per core nel portale di Azure hello [https://portal.azure.com](https://portal.azure.com).
+Per richiedere un aumento, creare una richiesta di supporto per la quota dei core nel portale di Azure, all'indirizzo [https://portal.azure.com](https://portal.azure.com).
 
 > [!NOTE]
-> Informazioni su come troppo[creare una richiesta di supporto](https://docs.microsoft.com/azure/azure-supportability/how-to-create-azure-support-request) in hello portale di Azure
+> Informazioni su come [creare una richiesta di supporto](https://docs.microsoft.com/azure/azure-supportability/how-to-create-azure-support-request) nel portale di Azure
 
-1. Nella pagina di richiesta supporto nuovo hello, selezionare il tipo di problema come "Quote" e il tipo di Quota come "Core".
+1. Nella pagina della nuova richiesta di supporto selezionare "Quota" in Tipo di problema e quindi scegliere "Core" in Tipo di quota.
 
     ![Pannello Informazioni di base della quota](./media/resource-manager-core-quotas-request/Basics-blade.png)
 
@@ -32,13 +32,13 @@ toorequest un aumento, creare un caso di supporto di Quota per core nel portale 
 
     ![Pannello Problema della quota](./media/resource-manager-core-quotas-request/Problem-step.png)
 
-3. Selezionare una famiglia di SKU hello che richiedono un aumento.
+3. Selezionare le famiglie di SKU per cui si richiede l'aumento.
 
     ![Serie SKU selezionata](./media/resource-manager-core-quotas-request/SKU-selected.png)
 
-4. Immettere i nuovi limiti hello desiderato nella sottoscrizione hello.
+4. Immettere i nuovi limiti da applicare alla sottoscrizione.
 
     ![Richiesta di nuova quota per lo SKU](./media/resource-manager-core-quotas-request/SKU-new-quota.png)
 
-- tooremove una riga, deselezionare l'opzione hello SKU dall'hello SKU famiglia a discesa o fare clic su hello "x" Ignora icona.
-Dopo aver immesso quota desiderato hello per ogni famiglia SKU, scegliere "Avanti" hello problema passaggio pagina toocontinue con creazione richiesta di supporto hello.
+- Per rimuovere una riga, deselezionare lo SKU dall'elenco a discesa delle famiglie di SKU oppure fare clic sull'icona di eliminazione "x".
+Dopo aver immesso la quota desiderata per ogni famiglia di SKU, fare clic su "Avanti" nella pagina del passaggio del problema per procedere con la creazione della richiesta di supporto.

@@ -1,6 +1,6 @@
 ---
-title: aaaMigrate dal SDK per Java tooMaven - aggiornamento precedente applicazioni Java di Azure Service Fabric toouse Maven | Documenti Microsoft
-description: Aggiornamento hello precedenti applicazioni Java utilizzato hello toouse Service Fabric Java SDK, le dipendenze di Service Fabric Java toofetch Maven. Dopo aver completato il programma di installazione, le applicazioni Java precedenti sarebbe in grado di toobuild.
+title: 'Eseguire la migrazione da Java SDK a Maven: aggiornare applicazioni Java di Azure Service Fabric precedenti per usare Maven | Microsoft Docs'
+description: "Aggiornare le applicazioni Java meno recenti che usano Service Fabric Java SDK per recuperare le dipendenze Java di Service Fabric da Maven. Al termine di questa configurazione, sarà possibile eseguire la compilazione delle applicazioni Java meno recenti."
 services: service-fabric
 documentationcenter: java
 author: sayantancs
@@ -14,36 +14,36 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/23/2017
 ms.author: saysa
-ms.openlocfilehash: 11b979facd7b3865141a6d3a035a6021dd06ca0c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 2123c5f26d77045bd22af56a844fdbf222930e7b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="update-your-previous-java-service-fabric-application-toofetch-java-libraries-from-maven"></a>Aggiornare le precedenti raccolte Java toofetch di applicazioni Java Service Fabric da Maven
-Di recente, è stata spostata file binari del servizio Fabric Java da hello Service Fabric Java SDK tooMaven hosting. È ora possibile usare **mavencentral** dipendenze di Service Fabric Java toofetch hello più recente. Questa Guida introduttiva si consente di aggiornare le applicazioni Java esistenti, che è stato creato in precedenza toobe utilizzato con Service Fabric Java SDK, utilizzando entrambi Yeoman modello o toobe compatibile con hello compilazione Maven basati su Eclipse.
+# <a name="update-your-previous-java-service-fabric-application-to-fetch-java-libraries-from-maven"></a>Aggiornare un'applicazione Java di Service Fabric precedente per recuperare le librerie Java da Maven
+I file binari Java di Service Fabric sono stati recentemente spostati da Service Fabric Java SDK all'hosting in Maven. È ora possibile usare **mavenCentral** per recuperare le dipendenze Java di Service Fabric più recenti. Questa guida introduttiva consente di aggiornare le applicazioni Java esistenti precedentemente create per l'uso con Service Fabric Java SDK, con un modello Yeoman o Eclipse, per garantirne la compatibilità con la compilazione basata su Maven.
 
 ## <a name="prerequisites"></a>Prerequisiti
-1. È necessario innanzitutto toouninstall hello SDK per Java esistente.
+1. È prima di tutto necessario disinstallare l'istanza esistente di Java SDK.
 
   ```bash
   sudo dpkg -r servicefabricsdkjava
   ```
-2. Il seguente servizio infrastruttura CLI più recente di installazione hello hello i passaggi indicati [qui](service-fabric-cli.md).
+2. Installare l'interfaccia della riga di comando di Service Fabric più recente seguendo la procedura descritta [qui](service-fabric-cli.md).
 
-3. toobuild e attività per le applicazioni Java di infrastruttura servizio hello, è necessario tooensure che si disponga di JDK 1.8 e Gradle installato. Se non è ancora installato, è possibile eseguire hello seguenti tooinstall JDK 1.8 (openjdk-8-jdk) e Gradle -
+3. Per compilare e gestire le applicazioni Java di Service Fabric, è necessario verificare che siano installati JDK 1.8 e Gradle. Se non sono ancora installati, è possibile eseguire questi comandi per installare JDK 1.8 (openjdk-8-jdk) e Gradle:
 
  ```bash
  sudo apt-get install openjdk-8-jdk-headless
  sudo apt-get install gradle
  ```
-4. Gli script di installazione o disinstallazione di aggiornamento hello di toouse l'applicazione hello nuovo CLI di infrastruttura servizio seguendo i passaggi di hello indicati [qui](service-fabric-application-lifecycle-sfctl.md). È possibile fare riferimento tooour Introduzione [esempi](https://github.com/Azure-Samples/service-fabric-java-getting-started) per riferimento.
+4. Aggiornare gli script di installazione/disinstallazione dell'applicazione per usare la nuova interfaccia della riga di comando di Service Fabric seguendo la procedura descritta [qui](service-fabric-application-lifecycle-sfctl.md). Per informazioni di riferimento, vedere gli [esempi](https://github.com/Azure-Samples/service-fabric-java-getting-started) introduttivi.
 
 >[!TIP]
-> Dopo la disinstallazione di Service Fabric Java SDK hello Yeoman non funzionerà. Seguire i prerequisiti di hello indicati [qui](service-fabric-create-your-first-linux-application-with-java.md) toohave Yeoman dell'infrastruttura del servizio Java generatore modello backup e l'utilizzo.
+> Dopo la disinstallazione di Service Fabric Java SDK, Yeoman non funzionerà. Seguire i prerequisiti descritti [qui](service-fabric-create-your-first-linux-application-with-java.md) per consentire il funzionamento del generatore di modelli Yeoman di Service Fabric per Java.
 
 ## <a name="service-fabric-java-libraries-on-maven"></a>Librerie Java di Service Fabric in Maven
-Le librerie Java di Service Fabric sono ospitate in Maven. È possibile aggiungere le dipendenze di hello in hello ``pom.xml`` o ``build.gradle`` di raccolte di Service Fabric Java toouse di progetti da **mavenCentral**.
+Le librerie Java di Service Fabric sono ospitate in Maven. È possibile aggiungere le dipendenze nel file ``pom.xml`` o ``build.gradle`` dei progetti per usare le librerie Java di Service Fabric da **mavenCentral**.
 
 ### <a name="actors"></a>Actor
 
@@ -90,7 +90,7 @@ Supporto di servizi senza stato di Service Fabric per l'applicazione.
 ### <a name="others"></a>Altro
 #### <a name="transport"></a>Trasporto
 
-Supporto del livello trasporto per l'applicazione Java di Service Fabric. Non è necessario tooexplicitly aggiungere questa dipendenza tooyour Reliable Actor o applicazioni di servizio, a meno che la programmazione a livello di trasporto hello.
+Supporto del livello trasporto per l'applicazione Java di Service Fabric. Non è necessario aggiungere esplicitamente questa dipendenza alle applicazioni Reliable Actors o Services, a meno che non si esegua la programmazione al livello trasporto.
 
   ```XML
   <dependency>
@@ -111,7 +111,7 @@ Supporto del livello trasporto per l'applicazione Java di Service Fabric. Non è
 
 #### <a name="fabric-support"></a>Supporto di Fabric
 
-Supporto di livello di sistema per l'infrastruttura del servizio, che comunica toonative runtime di Service Fabric. Non è necessario tooexplicitly aggiungere questa dipendenza tooyour Reliable Actor o applicazioni di servizio. Si ottiene recuperato automaticamente da Maven, quando si includono hello altre dipendenze precedente.
+Supporto a livello di sistema per Service Fabric, che comunica con il runtime nativo di Service Fabric. Non è necessario aggiungere esplicitamente questa dipendenza alle applicazioni Reliable Actors o Services. Viene recuperata automaticamente da Maven quando si includono le altre dipendenze riportate sopra.
 
   ```XML
   <dependency>
@@ -133,7 +133,7 @@ Supporto di livello di sistema per l'infrastruttura del servizio, che comunica t
 
 ## <a name="migrating-service-fabric-stateless-service"></a>Migrazione di un servizio senza stato di Service Fabric
 
-il servizio service Fabric esistente senza stato Java utilizzando le dipendenze di Service Fabric recuperate dal Maven, è necessario tooupdate hello la toobuild in grado di toobe ``build.gradle`` file all'interno di hello del servizio. In precedenza e utilizzato toobe come le seguenti:
+Per poter compilare il servizio Java senza stato di Service Fabric esistente usando le dipendenze di Service Fabric recuperate da Maven, è necessario aggiornare il file ``build.gradle`` all'interno del servizio. La versione precedente si presenta come segue:
 ```
 dependencies {
     compile fileTree(dir: '/opt/microsoft/sdk/servicefabric/java/packages/lib', include: ['*.jar'])
@@ -166,7 +166,7 @@ task copyDeps <<{
     }
 }
 ```
-A questo punto, le dipendenze di hello toofetch Maven, hello **aggiornato** ``build.gradle`` avrebbe parti corrispondenti hello come indicato di seguito:
+Per recuperare le dipendenze da Maven, il file ``build.gradle`` **aggiornato** includerà le parti corrispondenti come segue:
 ```
 repositories {
         mavenCentral()
@@ -219,20 +219,20 @@ task copyDeps <<{
     }
 }
 ```
-In generale, tooget un'idea generale sulla modalità di generazione script hello avrà un aspetto analogo per un servizio di linguaggio senza informazioni sullo stato dell'infrastruttura di servizio, è possibile fare riferimento a esempio tooany da esempi introduttivi. Ecco hello [gradle](https://github.com/Azure-Samples/service-fabric-java-getting-started/blob/master/Services/EchoServer/EchoServer1.0/EchoServerService/build.gradle) per esempio EchoServer hello.
+Per un'idea generale di come si presenterà lo script di compilazione per un servizio Java senza stato di Service Fabric, vedere uno qualsiasi degli esempi introduttivi, ad esempio il file [build.gradle](https://github.com/Azure-Samples/service-fabric-java-getting-started/blob/master/Services/EchoServer/EchoServer1.0/EchoServerService/build.gradle) per l'esempio EchoServer.
 
 ## <a name="migrating-service-fabric-actor-service"></a>Migrazione di un servizio Service Fabric Actors
 
-toobuild in grado di toobe applicazione Java Actor di Service Fabric esistente utilizzando le dipendenze di Service Fabric recuperate dal Maven, è necessario hello tooupdate ``build.gradle`` file all'interno del pacchetto di interfaccia hello e nel pacchetto di servizio hello. Se si dispone di un pacchetto TestClient, è necessario che anche tooupdate. In questo caso, per l'attore ``Myactor``, seguente hello sarebbe posizioni hello in cui è necessario tooupdate -
+Per poter compilare l'applicazione Java di Service Fabric Actors esistente usando le dipendenze di Service Fabric recuperate da Maven, è necessario aggiornare il file ``build.gradle`` all'interno del pacchetto dell'interfaccia e nel pacchetto del servizio. Se si ha un pacchetto TestClient, è necessario aggiornare anche quello. Per il servizio Actor ``Myactor`` sarà quindi necessario eseguire l'aggiornamento nelle posizioni seguenti:
 ```
 ./Myactor/build.gradle
 ./MyactorInterface/build.gradle
 ./MyactorTestClient/build.gradle
 ```
 
-#### <a name="updating-build-script-for-hello-interface-project"></a>L'aggiornamento di script di compilazione per il progetto di interfaccia hello
+#### <a name="updating-build-script-for-the-interface-project"></a>Aggiornamento dello script di compilazione per il progetto dell'interfaccia
 
-In precedenza e utilizzato toobe come le seguenti:
+La versione precedente si presenta come segue:
 ```
 dependencies {
     compile fileTree(dir: '/opt/microsoft/sdk/servicefabric/java/packages/lib', include: ['*.jar'])
@@ -240,7 +240,7 @@ dependencies {
 .
 .
 ```
-A questo punto, le dipendenze di hello toofetch Maven, hello **aggiornato** ``build.gradle`` avrebbe parti corrispondenti hello come indicato di seguito:
+Per recuperare le dipendenze da Maven, il file ``build.gradle`` **aggiornato** includerà le parti corrispondenti come segue:
 ```
 repositories {
     mavenCentral()
@@ -271,9 +271,9 @@ compileJava.dependsOn(explodeDeps)
 .
 ```
 
-#### <a name="updating-build-script-for-hello-actor-project"></a>L'aggiornamento di script di compilazione per il progetto attore hello
+#### <a name="updating-build-script-for-the-actor-project"></a>Aggiornamento dello script di compilazione per il progetto Actor
 
-In precedenza e utilizzato toobe come le seguenti:
+La versione precedente si presenta come segue:
 ```
 dependencies {
     compile fileTree(dir: '/opt/microsoft/sdk/servicefabric/java/packages/lib', include: ['*.jar'])
@@ -312,7 +312,7 @@ task copyDeps<< {
     }
 }
 ```
-A questo punto, le dipendenze di hello toofetch Maven, hello **aggiornato** ``build.gradle`` avrebbe parti corrispondenti hello come indicato di seguito:
+Per recuperare le dipendenze da Maven, il file ``build.gradle`` **aggiornato** includerà le parti corrispondenti come segue:
 ```
 repositories {
     mavenCentral()
@@ -370,9 +370,9 @@ task copyDeps<< {
 }
 ```
 
-#### <a name="updating-build-script-for-hello-test-client-project"></a>L'aggiornamento di script di compilazione del progetto client di test hello
+#### <a name="updating-build-script-for-the-test-client-project"></a>Aggiornamento dello script di compilazione per il progetto del client di test
 
-Qui le modifiche sono modifiche toohello simili illustrate nella sezione precedente, vale a dire, file di progetto hello attore. In precedenza hello Gradle toobe script utilizzato come le seguenti:
+Le modifiche sono simili a quelle illustrate nella sezione precedente per il progetto Actor. La versione precedente dello script Gradle si presenta come segue:
 ```
 dependencies {
     compile fileTree(dir: '/opt/microsoft/sdk/servicefabric/java/packages/lib', include: ['*.jar'])
@@ -412,7 +412,7 @@ task copyDeps<< {
         }
 }
 ```
-A questo punto, le dipendenze di hello toofetch Maven, hello **aggiornato** ``build.gradle`` avrebbe parti corrispondenti hello come indicato di seguito:
+Per recuperare le dipendenze da Maven, il file ``build.gradle`` **aggiornato** includerà le parti corrispondenti come segue:
 ```
 repositories {
     mavenCentral()
@@ -476,4 +476,4 @@ task copyDeps<< {
 
 * [Creare e distribuire la prima applicazione Java di Service Fabric in Linux usando Yeoman](service-fabric-create-your-first-linux-application-with-java.md)
 * [Creare e distribuire la prima applicazione Java di Service Fabric in Linux usando il plug-in Service Fabric per Eclipse](service-fabric-get-started-eclipse.md)
-* [Interagire con i cluster di Service Fabric usando hello servizio infrastruttura CLI](service-fabric-cli.md)
+* [Interagire con un cluster di Service Fabric usando l'interfaccia della riga di comando di Service Fabric](service-fabric-cli.md)

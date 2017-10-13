@@ -1,5 +1,5 @@
 ---
-title: aaaService infrastruttura Backup e ripristino | Documenti Microsoft
+title: Backup e ripristino di Service Fabric | Documentazione Microsoft
 description: Documentazione concettuale per il backup e ripristino di Service Fabric
 services: service-fabric
 documentationcenter: .net
@@ -14,57 +14,57 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/18/2017
 ms.author: mcoskun
-ms.openlocfilehash: e502b59c84999c3fe825167383f00a5ebd70c9b5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4242962e7e03053ef25f198a0b2f6c8012e693eb
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="back-up-and-restore-reliable-services-and-reliable-actors"></a>Eseguire il backup e il ripristino di Reliable Services e Reliable Actors
-Azure Service Fabric è una piattaforma a disponibilità elevata che replica stato hello in più nodi toomaintain la disponibilità elevata.  Di conseguenza, anche se un nodo cluster hello non riesce, servizi hello continuano toobe disponibili. Sebbene questa ridondanza integrata fornita dalla piattaforma hello potrebbe essere sufficiente per alcuni, in alcuni casi è consigliabile che hello servizio tooback dei dati (archivio esterno tooan).
+Azure Service Fabric è una piattaforma a disponibilità elevata che replica lo stato in più nodi per mantenere questa disponibilità elevata.  Anche in caso di errore di un nodo nel cluster, il servizio rimarrà quindi comunque disponibile. Anche se questa ridondanza predefinita fornita dalla piattaforma può essere sufficiente per alcune situazioni, in determinati casi è preferibile che il servizio esegua il backup dei dati in un archivio esterno.
 
 > [!NOTE]
-> È toobackup critici e il ripristino dei dati (e i test che funziona come previsto) in modo è possibile ripristinare da scenari di perdita dei dati.
+> È fondamentale eseguire il backup e il ripristino dei dati (e verificare che funzionino come previsto) per poter eseguire il ripristino in caso di perdita di dati.
 > 
 > 
 
-Ad esempio, un servizio necessario tooback dei dati in ordine tooprotect da hello seguenti scenari:
+Ad esempio, è possibile che in un servizio sia consigliabile eseguire il backup dei dati per evitare gli scenari seguenti:
 
-- Nell'evento hello di perdita definitiva di hello di un intero cluster di Service Fabric.
-- Perdita definitiva di una maggioranza delle repliche hello di una partizione di servizio
-- Errori amministrativi, in base al quale hello stato accidentalmente Ottiene eliminato o danneggiato. Questo problema può verificarsi, ad esempio, se un amministratore con privilegi sufficienti elimina erroneamente servizio hello.
-- Bug nel servizio hello che provocano il danneggiamento dei dati. Ad esempio, ciò può verificarsi quando un aggiornamento del codice del servizio inizia la scrittura di dati difettoso tooa insieme affidabile. In tal caso, entrambi hello codice e dati di hello possono avere toobe ripristinato tooan stato in precedenza.
-- Elaborazione dati offline. Potrebbe essere toohave pratico l'elaborazione offline dei dati per la business intelligence che si verifica separatamente dal servizio hello che genera dati hello.
+- Perdita definitiva di un intero cluster di Service Fabric.
+- Perdita definitiva della maggior parte delle repliche di una partizione del servizio.
+- Errori amministrativi che provocano l'eliminazione o il danneggiamento accidentale dello stato. Ad esempio, questo problema può verificarsi se un amministratore con privilegi sufficienti elimina accidentalmente il servizio.
+- Bug nel servizio che provocano il danneggiamento dei dati. Ad esempio, questo problema può verificarsi quando un aggiornamento del codice di servizio inizia a scrivere dati non corretti in una raccolta Reliable Collections. In tal caso, potrebbe essere necessario ripristinare uno stato precedente sia per il codice che per i dati.
+- Elaborazione dati offline. Potrebbe essere utile eseguire offline l'elaborazione dei dati per la business intelligence separatamente dal servizio che genera i dati.
 
-funzionalità di Backup/ripristino Hello consente servizi basati su backup toocreate e il ripristino di API per servizi affidabili hello. Hello API backup fornite dalla piattaforma hello consentono il/i backup dello stato di una partizione servizio, senza blocco lettura o di operazioni di scrittura. ripristino di Hello API consente toobe di una partizione servizio stato ripristinato da un backup scelto.
+La funzionalità Backup/Ripristino consente ai servizi basati sull'API Reliable Services di creare e ripristinare i backup. Le API di backup fornite dalla piattaforma consentono il backup dello stato di una partizione del servizio senza bloccare le operazioni di lettura o scrittura. Le API di ripristino consentono il ripristino dello stato di una partizione del servizio da un backup specificato.
 
 ## <a name="types-of-backup"></a>Tipi di backup
 Sono disponibili due opzioni di backup: completo e incrementale.
-Un backup completo è una copia di backup che contiene tutti hello dati necessari toorecreate hello lo stato della replica hello: Checkpoint e tutti i record di log.
-Poiché dispone di checkpoint hello e log di hello, un backup completo può essere ripristinato da solo.
+Un backup completo contiene tutti i dati necessari per ricreare lo stato della replica, ossia i checkpoint e tutti i record di log.
+Visto che contiene i checkpoint e il log, un backup completo può ripristinarsi autonomamente.
 
-Quando i checkpoint hello sono di grandi dimensioni, si verifica il problema di Hello con backup completi.
-Ad esempio, una replica che dispone di 16 GB di stato i checkpoint saranno che costituiscono circa too16 GB.
-Se si dispone di un obiettivo del punto di ripristino di cinque minuti, hello replica sono necessari toobe backup ogni cinque minuti.
-Ogni volta che viene eseguito il backup deve toocopy 16 GB di checkpoint inoltre too50 MB (configurabile utilizzando `CheckpointThresholdInMB`) relativi registri.
+I problemi con i backup completi si verificano quando i checkpoint sono di grandi dimensioni.
+Ad esempio, una replica con un stato di 16 GB avrà checkpoint che aggiungono circa 16 GB.
+Se l'obiettivo del punto di ripristino è di 5 minuti, il backup della replica deve essere eseguito ogni 5 minuti.
+A ogni backup, dovranno essere copiati 16 GB dei checkpoint oltre a 50 MB di log (configurabili usando `CheckpointThresholdInMB`).
 
 ![Esempio di backup completo.](media/service-fabric-reliable-services-backup-restore/FullBackupExample.PNG)
 
-problema di toothis soluzione hello è backup incrementali, in cui backup contiene solo i record del log hello modificato dall'ultimo backup hello.
+Per risolvere questo problema è possibile usare i backup incrementali, in cui il backup contiene solo i record del log modificati dopo l'ultimo backup.
 
 ![Esempio di backup incrementale.](media/service-fabric-reliable-services-backup-restore/IncrementalBackupExample.PNG)
 
-Poiché i backup incrementali sono solo le modifiche apportate dall'ultimo backup hello (non include i checkpoint hello), toobe sono in genere più veloce, ma non possono essere ripristinati in modo autonomo.
-toorestore un backup incrementale, hello intera catena di backup è obbligatorio.
+I backup incrementali includono solo le modifiche successive all'ultimo backup, senza checkpoint, quindi tendono a essere più veloci ma non possono essere ripristinati in modo indipendente.
+Per ripristinare un backup incrementale, è necessaria l'intera catena di backup.
 Una catena di backup inizia con un backup completo e prosegue con diversi backup incrementali contigui.
 
 ## <a name="backup-reliable-services"></a>Eseguire il backup di Reliable Services
-Hello autore servizio abbia il pieno controllo sul momento in backup toomake e in cui verranno archiviati i backup.
+L'autore del servizio ha il controllo completo sul momento di esecuzione dei backup e sulla posizione in cui vengono archiviati.
 
-toostart una copia di backup, il servizio di hello deve tooinvoke hello ereditata membro funzione `BackupAsync`.  
-I backup possono essere composto solo da repliche primarie e richiedono toobe di scrittura stato concesso.
+Per avviare un backup, il servizio deve chiamare la funzione membro ereditata `BackupAsync`.  
+I backup possono essere eseguiti solo da repliche primarie e richiedono la concessione dello stato di scrittura.
 
-Come illustrato di seguito, `BackupAsync` accetta un `BackupDescription` oggetto, uno in cui è possibile specificare un backup completo o incrementale, nonché una funzione di callback, `Func<< BackupInfo, CancellationToken, Task<bool>>>` che è richiamato quando la cartella di backup hello è stato creato in locale ed è pronto toobe spostati toosome archiviazione esterna.
+Come mostrato di seguito, `BackupAsync` accetta un oggetto `BackupDescription`, in cui è possibile specificare un backup completo o incrementale, nonché una funzione di callback, `Func<< BackupInfo, CancellationToken, Task<bool>>>`, che viene chiamata quando la cartella di backup è stata creata in locale e può essere spostata in un archivio esterno.
 
 ```csharp
 
@@ -74,19 +74,19 @@ await this.BackupAsync(myBackupDescription);
 
 ```
 
-Richiesta tootake un backup incrementale può non riuscire con `FabricMissingFullBackupException`. Questa eccezione indica che uno dei seguenti aspetti hello è in corso:
+La richiesta di esecuzione di un backup incrementale può non riuscire con `FabricMissingFullBackupException`. Questa eccezione segnala il verificarsi di una delle condizioni seguenti:
 
-- replica Hello non è mai eseguito un backup completo, poiché è stato contrassegnato come primario,
-- alcune delle hello i record di log dall'ultimo backup hello è stato troncato o
-- replica passato hello `MaxAccumulatedBackupLogSizeInMB` limite.
+- la replica non ha mai eseguito un backup completo dopo essere diventata primaria,
+- che alcuni dei record di log dall'ultimo backup sono stati troncati o
+- la replica ha superato il limite `MaxAccumulatedBackupLogSizeInMB`.
 
-Gli utenti possono aumentare la probabilità hello di essere in grado di toodo i backup incrementali configurando `MinLogSizeInMB` o `TruncationThresholdFactor`.
-Si noti che l'aumento di questi valori aumenta hello in base all'utilizzo del disco di replica.
+Gli utenti possono aumentare le probabilità di riuscire a eseguire i backup incrementali configurando `MinLogSizeInMB` o `TruncationThresholdFactor`.
+Si noti che l'aumento di questi valori comporta un aumento dell'utilizzo del disco per replica.
 Per altre informazioni, vedere [Configurazione di Reliable Services](service-fabric-reliable-services-configuration.md)
 
-`BackupInfo`vengono fornite informazioni sui backup di hello, incluso il percorso di hello hello cartella in cui il runtime hello backup hello (`BackupInfo.Directory`). funzione di callback Hello è possibile spostare hello `BackupInfo.Directory` tooan archivio esterno o in un'altra posizione.  Questa funzione restituisce anche valore booleano che indica se è il percorso di destinazione tooits toosuccessfully in grado di spostare hello cartella di backup.
+`BackupInfo` fornisce le informazioni relative al backup, incluso il percorso della cartella in cui il runtime ha salvato il backup (`BackupInfo.Directory`). La funzione di callback può spostare `BackupInfo.Directory` in un archivio esterno o in un'altra posizione.  Questa funzione restituisce anche un valore booleano che indica se è riuscita a spostare la cartella di backup nel percorso di destinazione.
 
-Hello codice seguente viene illustrato come hello `BackupCallbackAsync` metodo può essere utilizzato tooupload hello backup tooAzure archiviazione:
+Il codice seguente illustra in che modo è possibile usare il metodo `BackupCallbackAsync` per caricare il backup in Archiviazione di Azure:
 
 ```csharp
 private async Task<bool> BackupCallbackAsync(BackupInfo backupInfo, CancellationToken cancellationToken)
@@ -99,34 +99,34 @@ private async Task<bool> BackupCallbackAsync(BackupInfo backupInfo, Cancellation
 }
 ```
 
-Nell'esempio precedente hello `ExternalBackupStore` è una classe di esempio hello toointerface utilizzato con l'archiviazione Blob di Azure, e `UploadBackupFolderAsync` metodo hello che comprime cartella hello e lo inserisce nell'archivio Blob di Azure hello.
+Nell'esempio precedente `ExternalBackupStore` corrisponde alla classe di esempio usata per interfacciarsi con il servizio di archiviazione BLOB di Azure e `UploadBackupFolderAsync` è il metodo che comprime la cartella e la inserisce nell'archivio BLOB di Azure.
 
 Si noti che:
 
-  - In un dato momento può essere in corso una sola operazione di backup per replica. Più `BackupAsync` chiamata alla volta genererà `FabricBackupInProgressException` toolimit in-Flight backup tooone.
-  - Se una replica viene eseguito il failover mentre è in corso un backup, backup hello non sia stato completato. Pertanto, al termine del failover hello, si tratta responsabilità toorestart hello backup del servizio hello richiamando `BackupAsync` in base alle esigenze.
+  - In un dato momento può essere in corso una sola operazione di backup per replica. Se si hanno più chiamate `BackupAsync` simultanee, `FabricBackupInProgressException` limita a una le esecuzioni dei backup.
+  - In caso di failover di una replica durante l'esecuzione di un backup, è possibile che il backup non venga completato. Al termine del failover, il servizio dovrà quindi riavviare il backup chiamando `BackupAsync`, se necessario.
 
 ## <a name="restore-reliable-services"></a>Ripristinare Reliable Services
-In generale, hello casi potrebbe essere necessario tooperform un'operazione di ripristino rientrano in una di queste categorie:
+In generale, i casi in cui potrebbe essere necessario eseguire un'operazione di ripristino rientrano in una di queste categorie:
 
-  - servizio Hello partizionare i dati persi. Ad esempio, disco hello per due dei tre repliche per una partizione (inclusa la replica primaria di hello) Ottiene danneggiato o cancellato. nuovo database primario di Hello potrebbe essere necessario toorestore dati da un backup.
-  - intero servizio Hello viene persa. Ad esempio, un amministratore rimuove intero servizio hello e devono toobe ripristinato hello servizio e dati di hello.
-  - servizio Hello replicati i dati di applicazione danneggiata (ad esempio, a causa di un bug dell'applicazione). In questo caso, il servizio di hello ha toobe aggiornato o ripristinato tooremove hello causa del danneggiamento hello e non danneggiare i dati ha ripristinato toobe.
+  - La partizione del servizio ha perso dati. Ad esempio, il disco per due su tre repliche per una partizione, inclusa la replica primaria, viene danneggiato o cancellato. La nuova replica primaria potrebbe dover ripristinare i dati da un backup.
+  - L'intero servizio è andato perso. Ad esempio, un amministratore rimuove l'intero servizio ed è quindi necessario ripristinare il servizio e i dati.
+  - Il servizio ha replicato dati danneggiati dell'applicazione, ad esempio a causa di un bug dell'applicazione. Sarà quindi necessario aggiornare o ripristinare il servizio per rimuovere la causa del danneggiamento e ripristinare dati non danneggiati.
 
-Anche se molti approcci sono possibili, si offrono alcuni esempi sull'utilizzo di `RestoreAsync` toorecover da hello sopra gli scenari.
+Anche se sono possibili molti approcci, gli esempi seguenti sono basati sull'uso di `RestoreAsync` per il ripristino dagli scenari precedenti.
 
 ## <a name="partition-data-loss-in-reliable-services"></a>Perdita di dati della partizione in Reliable Services
-In questo caso, hello runtime verrà automaticamente rilevare perdite di dati hello e richiamare hello `OnDataLossAsync` API.
+In questo caso, il runtime rileva automaticamente la perdita dei dati e chiama l'API `OnDataLossAsync`.
 
-autore servizio Hello deve hello tooperform toorecover seguenti:
+L'autore del servizio deve eseguire le operazioni seguenti per il ripristino:
 
-  - Eseguire l'override di metodo della classe base virtuale hello `OnDataLossAsync`.
-  - Trovare hello più recente backup nel percorso esterno hello che contiene il backup del servizio hello.
-  - Scaricare l'ultimo backup hello (e decomprimere i backup hello nella cartella di backup hello se compresso).
-  - Hello `OnDataLossAsync` metodo fornisce un `RestoreContext`. Chiamare hello `RestoreAsync` API in hello fornito `RestoreContext`.
-  - Restituisce true se il ripristino di hello riuscita.
+  - Eseguire l'override del metodo della classe base virtuale `OnDataLossAsync`.
+  - Trovare il backup più recente nella posizione esterna che include i backup del servizio.
+  - Scaricare il backup più recente e decomprimerlo nella cartella di backup, se è compresso
+  - Il metodo `OnDataLossAsync` restituisce `RestoreContext`. Chiamare l'API `RestoreAsync` nel `RestoreContext` restituito.
+  - Restituire true se il ripristino è stato completato.
 
-Ecco un esempio di implementazione di hello `OnDataLossAsync` metodo:
+Di seguito è riportato un esempio di implementazione del metodo `OnDataLossAsync`.
 
 ```csharp
 protected override async Task<bool> OnDataLossAsync(RestoreContext restoreCtx, CancellationToken cancellationToken)
@@ -141,44 +141,44 @@ protected override async Task<bool> OnDataLossAsync(RestoreContext restoreCtx, C
 }
 ```
 
-`RestoreDescription`passato toohello `RestoreContext.RestoreAsync` chiamata contiene un membro denominato `BackupFolderPath`.
-Quando si ripristina un backup completo, questo `BackupFolderPath` deve essere impostato toohello percorso locale della cartella hello che contiene il backup completo.
-Quando si ripristina un backup completo e un numero di backup incrementali, `BackupFolderPath` deve essere impostato toohello percorso locale della cartella hello che contiene non solo backup completi di hello, ma anche tutti i hello backup incrementali.
-`RestoreAsync`chiamata può generare `FabricMissingFullBackupException` se hello `BackupFolderPath` fornito non contiene un backup completo.
+Il metodo `RestoreDescription` passato alla chiamata `RestoreContext.RestoreAsync` contiene un membro chiamato `BackupFolderPath`.
+Quando si ripristina un singolo backup completo, `BackupFolderPath` deve essere impostato sul percorso locale della cartella che contiene il backup completo.
+Quando si ripristina un backup completo e alcuni backup incrementali, `BackupFolderPath` deve essere impostato sul percorso locale della cartella che contiene sia il backup completo che tutti i backup incrementali.
+La chiamata `RestoreAsync` può generare `FabricMissingFullBackupException` se il metodo `BackupFolderPath` restituito non contiene un backup completo.
 Può anche generare `ArgumentException` se `BackupFolderPath` contiene una catena interrotta di backup incrementali,
-Ad esempio, se contiene hello backup completo, innanzitutto hello incrementale e hello terzo backup incrementale, ma nessun backup incrementale secondo hello.
+ad esempio, se contiene il backup completo e il primo e il terzo backup incrementale, ma non il secondo.
 
 > [!NOTE]
-> Hello RestorePolicy è tooSafe per impostazione predefinita.  Ciò significa che hello `RestoreAsync` API avrà esito negativo con ArgumentException se rileva tale cartella di backup hello contiene uno stato che è stato più vecchi di o uguale toohello contenuto in questa replica.  `RestorePolicy.Force`può essere utilizzato tooskip il controllo di sicurezza. Viene specificato come parte di `RestoreDescription`.
+> Il valore RestorePolicy è Safe per impostazione predefinita.  L'API `RestoreAsync` non riuscirà con ArgumentException se rileva che la cartella di backup include uno stato precedente o uguale allo stato contenuto nella replica.  Per ignorare questo controllo di sicurezza è possibile usare `RestorePolicy.Force`. Viene specificato come parte di `RestoreDescription`.
 > 
 
 ## <a name="deleted-or-lost-service"></a>Servizio eliminato o perso
-Se viene rimosso un servizio, è necessario innanzitutto creare nuovamente servizio hello prima di ripristinare i dati di hello.  È importante toocreate hello servizio con hello stessa configurazione, ad esempio, il partizionamento di schema, in modo che hello dati può essere ripristinata senza problemi.  Una volta servizio hello è attivo, hello dati toorestore API (`OnDataLossAsync` sopra) ha toobe richiamata per ogni partizione del servizio. A tal fine, è possibile usare `[FabricClient.TestManagementClient.StartPartitionDataLossAsync](https://msdn.microsoft.com/library/mt693569.aspx)` su ogni partizione.  
+Se un servizio viene rimosso, per ripristinare i dati sarà prima di tutto necessario ricrearlo.  È importante creare il servizio con la stessa configurazione, ad esempio con lo stesso schema di partizionamento, in modo che sia possibile ripristinare i dati senza problemi.  Quando il servizio è attivo, è necessario chiamare l'API per il ripristino dei dati (`OnDataLossAsync`, come indicato sopra) su ogni partizione del servizio. A tal fine, è possibile usare `[FabricClient.TestManagementClient.StartPartitionDataLossAsync](https://msdn.microsoft.com/library/mt693569.aspx)` su ogni partizione.  
 
-A questo punto, implementazione è hello come hello sopra scenario. Ogni partizione deve toorestore hello ultimo rilevanti backup dall'archivio esterno hello. Uno svantaggio è tale partizione hello che ID sia stato ora modificato, poiché hello runtime crea gli ID di partizione in modo dinamico. Di conseguenza, il servizio di hello necessita di informazioni di partizione appropriato toostore hello e servizio nome tooidentify hello corretto più recente backup toorestore da per ogni partizione.
+A partire da questo punto, l'implementazione è uguale a quella dello scenario precedente. Ogni partizione deve ripristinare il backup rilevante più recente dall'archivio esterno. Occorre prestare attenzione al fatto che ora l'ID della partizione potrebbe essere diverso, perché il runtime crea dinamicamente gli ID delle partizioni. Il servizio deve quindi archiviare le informazioni sulla partizione e il nome del servizio appropriati per identificare il più recente backup corretto da ripristinare per ogni partizione.
 
 > [!NOTE]
-> Non è consigliabile toouse `FabricClient.ServiceManager.InvokeDataLossAsync` in ogni partizione toorestore hello intero servizio, dal momento che potrebbe danneggiare lo stato del cluster.
+> Non è consigliabile usare `FabricClient.ServiceManager.InvokeDataLossAsync` su ogni partizione per ripristinare l'intero servizio perché può danneggiare lo stato del cluster.
 > 
 
 ## <a name="replication-of-corrupt-application-data"></a>Replica di dati dell'applicazione danneggiati
-Se l'aggiornamento dell'applicazione hello appena distribuito dispone di un bug, che può causare il danneggiamento dei dati. Ad esempio, un aggiornamento dell'applicazione può avviare tooupdate ogni record al numero di telefono in un dizionario affidabile con un prefisso non valido.  In questo caso, i numeri di telefono non valido di hello verranno replicati poiché Service Fabric non è a conoscenza di natura hello dei dati di hello che viene archiviati.
+Se l'aggiornamento dell'applicazione appena distribuito include un bug, potrebbe provocare il danneggiamento dei dati. È ad esempio possibile che l'aggiornamento di un'applicazione inizi ad aggiornare ogni record relativo a numeri di telefono in un oggetto ReliableDictionary specificando un prefisso non valido.  In questo caso, i numeri di telefono non validi verranno replicati, perché Service Fabric non conosce la natura dei dati archiviati.
 
-Hello in primo luogo toodo dopo è rilevare tali un bug che causa il danneggiamento dei dati egregious è toofreeze hello servizio a livello di applicazione hello e, se possibile, aggiornare la versione toohello hello codice dell'applicazione che non dispone di bug hello.  Tuttavia, anche dopo il codice di servizio hello è fissa, dati hello ancora potrebbero essere danneggiati e pertanto dati potrebbe essere necessario toobe ripristinato.  In questi casi, potrebbe non essere sufficiente toorestore hello backup più recente, poiché i backup più recenti di hello inoltre potrebbero essere danneggiati.  Pertanto, si è toofind hello ultimo backup eseguito prima dati hello sono danneggiati.
+Dopo avere rilevato un bug così grave da causare il danneggiamento dei dati, è prima di tutto necessario bloccare il servizio a livello di applicazione e, se possibile, eseguire l'aggiornamento alla versione del codice dell'applicazione che non include il bug.  Anche dopo la correzione del codice del servizio è tuttavia possibile che i dati siano ancora danneggiati e che sia necessario ripristinarli.  In questi casi potrebbe non essere sufficiente ripristinare il backup più recente, perché è possibile che anche i backup più recenti siano danneggiati.  È quindi necessario trovare il backup più recente eseguito prima del danneggiamento dei dati.
 
-Se non sei sicuro che i backup sono danneggiati, è possibile distribuire un nuovo cluster di Service Fabric e ripristinare i backup hello di partizioni interessate come hello sopra "Deleted o perdita di servizio" scenario.  Per ogni partizione, avviare minimo per il ripristino dei backup hello da toohello più recente di hello. Dopo aver trovato una copia di backup che non dispone di danneggiamento hello, spostamento o eliminazione della partizione di tutti i backup che erano più recenti (backup). Ripetere questo processo per ogni partizione. A questo punto, quando `OnDataLossAsync` viene chiamato nella partizione hello in cluster in produzione hello, hello ultimo backup disponibile in hello esterno archivio sarà hello uno prelevati da hello di sopra di processo.
+Se non si sa con esattezza quali siano i backup danneggiati, è possibile distribuire un nuovo Service Fabric Cluster e ripristinare i backup delle partizioni interessate con la stessa procedura dello scenario "Servizio eliminato o perso" precedente.  Per ogni partizione, avviare il ripristino dei backup dal più recente al meno recente. Dopo aver trovato un backup non danneggiato, spostare o eliminare tutti i backup della partizione più recenti di quel backup. Ripetere questo processo per ogni partizione. Quando `OnDataLossAsync` viene chiamata sulla partizione nel cluster di produzione, il backup più recente trovato nell'archivio esterno verrà selezionato dal processo precedente.
 
-A questo punto, i passaggi in hello, "Deleted o perdita di servizio" hello sezione può essere utilizzato lo stato di hello toorestore dello stato di toohello hello del servizio prima codice anomalo hello hello danneggiato.
+È ora possibile usare la procedura illustrata nella sezione "Servizio eliminato o perso" per ripristinare lo stato del servizio sul valore precedente al danneggiamento da parte del codice con bug.
 
 Si noti che:
 
-  - Quando si ripristina, esiste la possibilità che hello backup viene ripristinato è precedente rispetto allo stato della partizione hello hello prima hello dati sono andati persi. Per questo motivo, è necessario ripristinare solo come un ultimo toorecover risorsa quanti più dati possibile.
-  - stringa che rappresenta il percorso di cartella di backup hello Hello e hello percorsi dei file nella cartella di backup hello possono essere maggiori di 255 caratteri, in base al percorso FabricDataRoot hello e lunghezza del nome del tipo di applicazione. Ciò può causare alcuni metodi di .NET, ad esempio `Directory.Move`, hello toothrow `PathTooLongException` eccezione. Una soluzione alternativa consiste toodirectly chiamare le API kernel32, ad esempio `CopyFile`.
+  - Quando si esegue il ripristino è possibile che il backup ripristinato sia precedente allo stato della partizione prima della perdita dei dati. È quindi necessario procedere al ripristino solo come ultima risorsa per recuperare la quantità maggiore possibile di dati.
+  - La stringa che rappresenta il percorso della cartella di backup e i percorsi dei file nella cartella di backup può superare i 255 caratteri, in base al percorso FabricDataRoot e alla lunghezza del nome del tipo di applicazione. Questo approccio può far sì che alcuni metodi .NET, come `Directory.Move`, generino l'eccezione `PathTooLongException`. Una soluzione alternativa consiste nel chiamare direttamente le API kernel32, come `CopyFile`.
 
 ## <a name="backup-and-restore-reliable-actors"></a>Eseguire il backup e il ripristino di Reliable Actors
 
 
-Reliable Actors Framework si basa su Reliable Services. Hello ActorService che ospita actor(s) hello è un servizio affidabile con stato. Di conseguenza, tutti i backup di hello e funzionalità di ripristino disponibili in servizi affidabili anche attori tooReliable disponibili (eccetto i comportamenti specifico del provider di stato). Poiché i backup verranno eseguiti per partizione, verrà eseguito il backup degli stati per tutti gli attori in quella partizione (il ripristino è simile e verrà eseguito anch'esso per partizione). tooperform backup/ripristino, il proprietario del servizio hello deve creare una classe di servizio actor personalizzata che deriva dalla classe ActorService e quindi backup/ripristino simile tooReliable Services come descritto in precedenza nella sezione precedente.
+Reliable Actors Framework si basa su Reliable Services. L'ActorService che ospita l'attore o gli attori è un servizio Reliable con stato. Di conseguenza, tutte le funzionalità di backup e ripristino disponibili in Reliable Services sono disponibili anche per Reliable Actors (tranne i comportamenti specifici per il provider di stato). Poiché i backup verranno eseguiti per partizione, verrà eseguito il backup degli stati per tutti gli attori in quella partizione (il ripristino è simile e verrà eseguito anch'esso per partizione). Per eseguire il backup/ripristino, il proprietario del servizio deve creare un servizio Actor personalizzato che deriva da ActorService e quindi eseguire il backup/ripristino analogamente a quanto descritto nella sezione precedente per Reliable Services.
 
 ```csharp
 class MyCustomActorService : ActorService
@@ -194,14 +194,14 @@ class MyCustomActorService : ActorService
 }
 ```
 
-Quando si crea una classe del servizio actor personalizzato, è necessario che anche tooregister durante la registrazione attore hello.
+Quando si crea una classe di servizio Actor personalizzata, è necessario registrarla insieme all'attore.
 
 ```csharp
 ActorRuntime.RegisterActorAsync<MyActor>(
    (context, typeInfo) => new MyCustomActorService(context, typeInfo)).GetAwaiter().GetResult();
 ```
 
-provider di stato predefinito Hello per Reliable Actors `KvsActorStateProvider`. Per impostazione predefinita, il backup incrementale non è abilitato per `KvsActorStateProvider`. È possibile abilitare il backup incrementale creando `KvsActorStateProvider` con hello appropriato impostando nel relativo costruttore e passando quindi tooActorService costruttore come illustrato nel frammento di codice seguente:
+Il provider di stato predefinito per Reliable Actors è `KvsActorStateProvider`. Per impostazione predefinita, il backup incrementale non è abilitato per `KvsActorStateProvider`. È possibile abilitare il backup incrementale creando `KvsActorStateProvider` con l'impostazione appropriata nel relativo costruttore e quindi passandolo al costruttore ActorService come illustrato nel frammento di codice seguente:
 
 ```csharp
 class MyCustomActorService : ActorService
@@ -217,50 +217,50 @@ class MyCustomActorService : ActorService
 }
 ```
 
-Dopo il backup incrementale è stato abilitato, eseguire un backup incrementale può non riuscire con FabricMissingFullBackupException per uno dei seguenti motivi e sarà necessario tootake un backup completo prima di portare il/i backup incrementali:
+Dopo aver abilitato il backup incrementale, quest'ultimo può avere esito negativo con FabricMissingFullBackupException per uno dei motivi seguenti. Sarà pertanto necessario eseguire un backup completo prima di effettuarne di incrementali:
 
-  - replica Hello non è mai eseguito un backup completo perché era primario.
-  - Alcuni dei record di log hello è stati troncati perché è stato eseguito l'ultimo backup.
+  - La replica non ha mai eseguito un backup completo dopo essere diventata primaria.
+  - Alcuni dei record di log sono stati troncati in seguito all'ultimo backup.
 
-Quando è abilitato il backup incrementale, `KvsActorStateProvider` non utilizza toomanage circolare del buffer relativo log registra e lo tronca periodicamente. Se viene eseguito alcun backup dall'utente per un periodo di 45 minuti, il sistema hello tronca automaticamente i record del log hello. Questo intervallo può essere configurato specificando `logTrunctationIntervalInMinutes` in `KvsActorStateProvider` costruttore (analoga toowhen Abilita il backup incrementale). i record del log Hello possono inoltre ottenere troncati se la replica primaria necessario toobuild un'altra replica mediante l'invio di tutti i relativi dati.
+Quando è abilitato il backup incrementale, `KvsActorStateProvider` non usa il buffer circolare per gestire i propri record di log e lo tronca periodicamente. Se in 45 minuti non viene eseguito alcun backup da parte dell'utente, il sistema tronca automaticamente i record di log. Questo intervallo può essere configurato specificando `logTrunctationIntervalInMinutes` nel costruttore `KvsActorStateProvider`, in maniera simile a quando si abilita il backup incrementale. I record di log potrebbero essere troncati anche se la replica primaria deve creare un'altra replica inviando tutti i propri dati.
 
-Quando si esegue il ripristino da una catena di backup, servizi tooReliable analoghi, hello BackupFolderPath deve contenere sottodirectory con una sottodirectory contenente backup completo e altri sottodirectory che includono il/i backup incrementali. Se si verifica un errore di convalida della catena di backup di hello, Hello ripristino API genererà FabricException con messaggio di errore appropriato. 
+Quando si esegue il ripristino da una catena di backup, in maniera simile a Reliable Services, BackupFolderPath deve contenere sottodirectory con una di queste contenente il backup completo e le altre contenenti i backup incrementali. Se la convalida della catena di backup non riesce, l'API di ripristino genererà FabricException con un messaggio di errore appropriato. 
 
 > [!NOTE]
-> `KvsActorStateProvider`Ignora attualmente opzione hello RestorePolicy.Safe. Il supporto per questa funzionalità è pianificato per una versione futura.
+> Al momento l'opzione RestorePolicy.Safe viene ignorata da `KvsActorStateProvider`. Il supporto per questa funzionalità è pianificato per una versione futura.
 > 
 
 ## <a name="testing-backup-and-restore"></a>Test del backup e del ripristino
-È importante tooensure che i dati critici durante il backup e possono essere ripristinati da. Questa operazione può essere eseguita richiamando hello `Start-ServiceFabricPartitionDataLoss` cmdlet di PowerShell che possono provocare la perdita di dati in una partizione specifica di tootest se dati hello backup e ripristino delle funzionalità per il servizio funzioni come previsto.  È inoltre possibile tooprogrammatically richiamare la perdita di dati e il ripristino da anche tale evento.
+È importante assicurarsi che i dati critici vengano sottoposti a backup e che possano essere ripristinati. Per farlo, chiamare il cmdlet `Start-ServiceFabricPartitionDataLoss` in PowerShell che può indurre la perdita di dati in una determinata partizione per verificare se la funzionalità di backup e ripristino dei dati per il servizio funziona nel modo previsto.  Si può anche richiamare la perdita e il ripristino dei dati a livello di codice da tale evento.
 
 > [!NOTE]
-> È possibile trovare un'implementazione di esempio di backup e ripristino delle funzionalità in hello App riferimento Web in GitHub. Consultare hello `Inventory.Service` servizio per altri dettagli.
+> Nell'app di riferimento Web su GitHub è disponibile un esempio di implementazione della funzionalità di backup e ripristino. Per informazioni più dettagliate, vedere il servizio `Inventory.Service`.
 > 
 > 
 
-## <a name="under-hello-hood-more-details-on-backup-and-restore"></a>Quinte hello: ulteriori dettagli su backup e ripristino
+## <a name="under-the-hood-more-details-on-backup-and-restore"></a>Approfondimento: altri dettagli sul backup e ripristino
 Ecco altri dettagli sul backup e ripristino.
 
 ### <a name="backup"></a>Backup
-Hello affidabile di gestione dello stato fornisce backup coerenti hello possibilità toocreate senza il blocco di lettura o le operazioni di scrittura. toodo in tal caso, utilizza un meccanismo di persistenza di checkpoint e di log.  Hello affidabile di gestione dello stato accetta fuzzy checkpoint (lightweight) determinati pressione toorelieve punti dal log delle transazioni hello e migliorare i tempi di ripristino.  Quando `BackupAsync` viene chiamato, hello affidabile di gestione dello stato indica tutti gli oggetti affidabile toocopy loro più recente del punto di controllo file tooa backup cartella locale.  Quindi, hello affidabile di gestione dello stato copia tutti i record di log, a partire da hello "start puntatore" toohello ultimo record di log nella cartella di backup hello.  Poiché tutti i record di log hello dei record del log più recente toohello siano incluse nel backup hello e affidabile di gestione dello stato di hello mantiene registrazione write-ahead, hello gestore degli stati affidabile garantisce che tutte le transazioni che viene eseguito il commit (`CommitAsync` ha restituito correttamente) sono inclusi nel backup hello.
+Reliable State Manager consente di creare backup coerenti senza bloccare alcuna operazione di lettura o scrittura. A questo scopo, utilizza un checkpoint e un meccanismo di persistenza dei log.  Reliable State Manager accetta checkpoint fuzzy (semplici) in determinati punti per ridurre la pressione sul log transazionale e migliorare i tempi di ripristino.  Quando si chiama `BackupAsync`, Reliable State Manager indica a tutti gli oggetti Reliable di copiare i file di checkpoint più recenti in una cartella di backup locale.  Reliable State Manager copia quindi tutti i record del log a partire dal "puntatore iniziale" fino all'ultimo record del log nella cartella di backup.  Nel backup sono inclusi tutti i record di log fino all'ultimo e Reliable State Manager conserva i log write-ahead, di conseguenza Reliable State Manager assicura che nel backup siano incluse tutte le transazioni di cui viene eseguito il commit, ovvero di cui viene restituito correttamente `CommitAsync`.
 
-Qualsiasi transazione di cui viene eseguito il commit dopo `BackupAsync` è stato chiamato maggio o potrebbe non essere in backup di hello.  Una volta che la cartella di backup locale di hello è stata popolata dalla piattaforma hello (ad esempio, backup locale viene completato tramite il runtime hello), del servizio hello backup richiamata.  Il callback è responsabile dello spostamento hello backup tooan esterno percorso della cartella, ad esempio l'archiviazione di Azure.
+Eventuali transazioni di cui viene eseguito il commit dopo la chiamata di `BackupAsync` potrebbero essere incluse o meno nel backup.  Dopo il popolamento della cartella di backup locale da parte della piattaforma, ovvero dopo un backup locale completato dal runtime, verrà richiamato il callback del backup del servizio.  Il callback è responsabile dello spostamento della cartella di backup in una posizione esterna, ad esempio nell'Archiviazione di Azure.
 
 ### <a name="restore"></a>Ripristino
-Hello affidabile di gestione dello stato fornisce hello possibilità toorestore da un backup utilizzando hello `RestoreAsync` API.  
-Hello `RestoreAsync` metodo `RestoreContext` può essere chiamato solo all'interno di hello `OnDataLossAsync` metodo.
-Hello restituito da bool `OnDataLossAsync` indica se il servizio di hello ripristinato lo stato da un'origine esterna.
-Se hello `OnDataLossAsync` restituisce true, tutte le altre repliche da questo primario causerà la ricostruzione Service Fabric. Service Fabric garantisce che le repliche che riceveranno `OnDataLossAsync` chiamare primo ruolo primario di transizione toohello ma stato non vengono concesse lettura o scrittura dello stato.
+Reliable State Manager consente di eseguire il ripristino da un backup con l'API `RestoreAsync`.  
+È possibile chiamare il metodo `RestoreAsync` su `RestoreContext` solo all'interno del metodo `OnDataLossAsync`.
+Il valore booleano restituito da `OnDataLossAsync` indica se il servizio ha ripristinato il rispettivo stato da un'origine esterna.
+Se `OnDataLossAsync` restituisce true, Service Fabric ricompila tutte le altre repliche sulla base di questa replica primaria. Service Fabric fa in modo che le repliche che ricevono la chiamata `OnDataLossAsync` eseguano prima la transizione al ruolo primario, senza che venga concesso lo stato di lettura o scrittura.
 Per i responsabili dell'implementazione di StatefulService significa che `RunAsync` viene chiamato solo dopo il completamento corretto di `OnDataLossAsync`.
-Quindi, `OnDataLossAsync` verrà richiamato nel nuovo database primario di hello.
-Fino a quando un servizio consente di completare questa API correttamente (restituisce true o false) e termina la riconfigurazione rilevanti hello, hello API verrà mantenere viene chiamato uno alla volta.
+`OnDataLossAsync` viene quindi chiamato nella nuova replica primaria.
+Fino a quando un servizio non completa correttamente l'API, restituendo true o false, e non viene completata la relativa riconfigurazione, l'API continuerà a essere chiamata singolarmente.
 
-`RestoreAsync`prima Elimina tutti gli stati esistenti nella replica primaria hello che è stata chiamata su.  
-Hello affidabile stato Manager crea quindi tutti gli oggetti affidabile hello che esistono nella cartella di backup hello.  
-Successivamente, gli oggetti affidabile di hello sono istruzioni riportate toorestore dai loro checkpoint nella cartella di backup hello.  
-Infine, hello affidabile di gestione dello stato consente di recuperare il proprio stato da record del log nella cartella di backup hello hello ed esegue il ripristino.  
-Come parte del processo di ripristino hello, a partire da hello "punto di partenza" le operazioni che include i record di commit del log nella cartella di backup di hello sono oggetti affidabile toohello riprodotto.  
-Questo passaggio garantisce che hello ripristinato lo stato è coerente.
+`RestoreAsync` rilascia prima di tutto ogni stato esistente nella replica primaria in cui è stato chiamato.  
+Reliable State Manager crea quindi tutti gli oggetti Reliable esistenti nella cartella di backup.  
+Viene quindi indicato agli oggetti Reliable di eseguire il ripristino dai rispettivi checkpoint nella cartella di backup.  
+Reliable State Manager ripristina infine il proprio stato dai record dei log nella cartella di backup ed esegue il ripristino.  
+Come parte del processo di ripristino, le operazioni a partire dal "punto iniziale" con record di log di commit nella cartella di backup vengono riprodotte negli oggetti Reliable.  
+Questo passaggio assicura che lo stato ripristinato sia coerente.
 
 ## <a name="next-steps"></a>Passaggi successivi
   - [Reliable Collections](service-fabric-work-with-reliable-collections.md)

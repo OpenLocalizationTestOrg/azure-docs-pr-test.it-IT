@@ -1,6 +1,6 @@
 ---
-title: dati da Azure Log Analitica tooretrieve degli script aaaPython | Documenti Microsoft
-description: API di ricerca Log Analitica Log Hello consente qualsiasi client dell'API REST tooretrieve dati da un'area di lavoro Log Analitica.  Questo articolo fornisce uno script Python di esempio tramite l'API di ricerca Log hello.
+title: Script Python per recuperare dati da Azure Log Analytics | Microsoft Docs
+description: L'API di ricerca log Log Analytics consente a qualsiasi client API REST di recuperare dati da un'area di lavoro di Log Analytics.  Questo articolo fornisce uno script Python di esempio tramite l'API di ricerca log.
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -13,20 +13,20 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/28/2017
 ms.author: bwren
-ms.openlocfilehash: a45693b04cd388301b859e7186ca671786d0229e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 56d7c6dc648a01e7b0efc167cb65c94bac5468ec
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="retrieve-data-from-log-analytics-with-a-python-script"></a>Recuperare i dati da Log Analytics con uno script Python
-Hello [API di ricerca Log Analitica Log](log-analytics-log-search-api.md) consente a qualsiasi client dell'API REST tooretrieve dati da un'area di lavoro Log Analitica.  In questo articolo presenta uno script Python di esempio che utilizza l'API di ricerca Log Analitica Log hello.  
+L'[API di ricerca log Log Analytics](log-analytics-log-search-api.md) consente a qualsiasi client API REST di recuperare dati da un'area di lavoro di Log Analytics.  Questo articolo presenta uno script Python di esempio che utilizza l'API di ricerca log Log Analytics.  
 
 ## <a name="authentication"></a>Autenticazione
-Questo script utilizza un'entità servizio dell'area di lavoro di Azure Active Directory tooauthenticate toohello.  Le entità servizio consentono a un client applicazione toorequest che hello servizio autenticare un account anche se hello client non dispone di nome dell'account hello. Prima di eseguire questo script, è necessario creare un'entità servizio tramite il processo di hello in [utilizzare portale toocreate un'applicazione Azure Active Directory e dell'entità servizio che possono accedere alle risorse](../azure-resource-manager/resource-group-create-service-principal-portal.md).  È necessario tooprovide hello ID applicazione, ID Tenant e chiave di autenticazione toohello script. 
+Questo script utilizza un'entità servizio in Azure Active Directory per l'autenticazione nell'area di lavoro.  Le entità servizio consentono a un'applicazione client di richiedere al servizio l'autenticazione di un account anche se il client non ha il nome dell'account. Prima di eseguire lo script, creare un'entità servizio utilizzando il processo di [Usare il portale per creare un'applicazione Azure Active Directory e un'entità servizio che possano accedere alle risorse](../azure-resource-manager/resource-group-create-service-principal-portal.md).  È necessario fornire allo script l'ID applicazione, l'ID tenant e la chiave di autenticazione. 
 
 > [!NOTE]
-> Quando si [creare un account di automazione di Azure](../automation/automation-create-standalone-account.md), un'entità servizio viene creata toouse adatto con questo script.  Se si dispone già di un'entità servizio creata di automazione di Azure, dovrebbe essere in grado di toouse, anziché crearne uno nuovo, anche se potrebbe essere troppo[creare una chiave di autenticazione](../azure-resource-manager/resource-group-create-service-principal-portal.md#get-application-id-and-authentication-key) se non ne ha già uno.
+> Quando si [crea un account di Automazione di Azure](../automation/automation-create-standalone-account.md), viene creata un'entità servizio adatta all'uso con questo script.  Se si ha già un'entità servizio creata da Automazione di Azure, è possibile utilizzare quella anziché crearne una nuova, anche se può essere necessario [creare una chiave di autenticazione](../azure-resource-manager/resource-group-create-service-principal-portal.md#get-application-id-and-authentication-key) se l'entità non ne ha già una.
 
 ## <a name="script"></a>Script
 ``` python
@@ -40,7 +40,7 @@ from pprint import pprint
 resource_group = 'xxxxxxxx'
 workspace = 'xxxxxxxx'
 
-# Details of query.  Modify these tooyour requirements.
+# Details of query.  Modify these to your requirements.
 query = "Type=Event"
 end_time = datetime.datetime.utcnow()
 start_time = end_time - datetime.timedelta(hours=24)
@@ -61,7 +61,7 @@ context = adal.AuthenticationContext('https://login.microsoftonline.com/' + tena
 token_response = context.acquire_token_with_client_credentials('https://management.core.windows.net/', application_id, application_key)
 access_token = token_response.get('accessToken')
 
-# Add token tooheader
+# Add token to header
 headers = {
     "Authorization": 'Bearer ' + access_token,
     "Content-Type":'application/json'
@@ -90,7 +90,7 @@ response = requests.post(uri,json=search_params,headers=headers)
 # Response of 200 if successful
 if response.status_code == 200:
 
-    # Parse hello response tooget hello ID and status
+    # Parse the response to get the ID and status
     data = response.json()
     search_id = data["id"].split("/")
     id = search_id[len(search_id)-1]
@@ -99,12 +99,12 @@ if response.status_code == 200:
     # If status is pending, then keep checking until complete
     while status == "Pending":
 
-        # Build URL tooget search from ID and send request
+        # Build URL to get search from ID and send request
         uri_search = uri_search + '/' + id
         uri = uri_search + '?' + uri_api
         response = requests.get(uri,headers=headers)
 
-        # Parse hello response tooget hello status
+        # Parse the response to get the status
         data = response.json()
         status = data["__metadata"]["Status"]
 
@@ -119,4 +119,4 @@ print ("Returned top:" + str(data["__metadata"]["top"]))
 pprint (data["value"])
 ```
 ## <a name="next-steps"></a>Passaggi successivi
-- Altre informazioni su hello [API di ricerca Log Analitica Log](log-analytics-log-search-api.md).
+- Altre informazioni sull'[API di ricerca log Log Analytics](log-analytics-log-search-api.md).

@@ -1,6 +1,6 @@
 ---
-title: aaaH264 bitrate singolo con risoluzione 16x9 SD e Audio 5.1 | Documenti Microsoft
-description: Hello argomento viene fornita una panoramica di hello * * H264 bitrate singolo con risoluzione 16x9 SD Audio 5.1* * set di impostazioni.
+title: Codec video H.264 a bitrate singolo con risoluzione 16x9 SD e audio 5.1 | Documentazione Microsoft
+description: "Questo argomento offre una panoramica del set di impostazioni di attività **Codec video H.264 a bitrate singolo con risoluzione 16x9 SD e audio 5.1**."
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: a1805112549668699bc17c56b7b8c869c30eaf90
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6e8b7201d1c37deb02803f2e5160c68c8fdf1ed8
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="h264-single-bitrate-16x9-sd-audio-51"></a>Codec video H.264 a bitrate singolo con risoluzione 16x9 SD e audio 5.1
-`Media Encoder Standard` definisce un set di impostazioni di codifica che è possibile usare per la creazione di processi di codifica. È possibile utilizzare un `preset name` toospecify in formato di cui si desidera tooencode nel file multimediale. oppure creare set di impostazioni basati su JSON o XML personalizzati, con codifica UTF-8 o UTF-16. È quindi necessario passare codificatore personalizzato toohello preimpostato hello. Per elenco hello di hello tutti nomi supportati da questo set di impostazioni `Media Encoder Standard` codificatore, vedere [set di impostazioni di attività per supporti codificatore Standard](media-services-mes-presets-overview.md).  
+`Media Encoder Standard` definisce un set di impostazioni di codifica che è possibile usare per la creazione di processi di codifica. È possibile usare un `preset name` per specificare il formato in cui codificare il file multimediale oppure creare set di impostazioni basati su JSON o XML personalizzati, con codifica UTF-8 o UTF-16. Dopodiché, occorre trasmettere il set di impostazioni personalizzato al codificatore. Per un elenco di tutti i nomi dei set di impostazioni supportati dal codificatore `Media Encoder Standard`, vedere [Task Presets for Media Encoder Standard](media-services-mes-presets-overview.md) (Set di impostazioni di attività per Media Encoder Standard).  
   
- In questo argomento viene hello `H264 Single Bitrate 16x9 SD Audio 5.1` predefinito in formato XML e JSON.  
+ Questo argomento illustra il set di impostazioni `H264 Single Bitrate 16x9 SD Audio 5.1` nei formati XML e JSON.  
   
- Il set di impostazioni genera un unico file MP4 con una velocità in bit di 2200 kbps e audio AAC 5.1. Per informazioni dettagliate sul profilo, velocità in bit, il campionamento di velocità e così via di questo set di impostazioni, esaminare hello XML o JSON definita di seguito. Per una spiegazione di significa che ogni elemento e i valori validi di hello per ogni elemento, vedere hello [schema Media Encoder Standard](media-services-mes-schema.md).  
+ Il set di impostazioni genera un unico file MP4 con una velocità in bit di 2200 kbps e audio AAC 5.1. Per informazioni dettagliate su profilo, velocità in bit, frequenza di campionamento e così via di questo set di impostazioni, esaminare il codice XML o JSON definito di seguito. Per informazioni sul significato di ogni elemento e sui valori possibili per ciascuno, vedere lo [schema di Media Encoder Standard](media-services-mes-schema.md).  
   
  XML  
   

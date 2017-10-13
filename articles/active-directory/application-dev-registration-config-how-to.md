@@ -1,6 +1,6 @@
 ---
-title: aaaHow tooselect autorizzazioni per una determinato API | Documenti Microsoft
-description: Come endpoint di autenticazione hello toofind per un'applicazione personalizzata lo sviluppo o la registrazione con Azure AD.
+title: Come selezionare le autorizzazioni per un'API specifica | Microsoft Docs
+description: Come trovare gli endpoint di autenticazione per un'applicazione personalizzata che si sta sviluppando o registrando con Azure AD.
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,25 +13,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 303793eae96872c37b4de00e757ed0256494afa4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6966cf145375bf3d830d476564c428502ae40fd4
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-tooselect-permissions-for-a-given-api"></a>Come tooselect le autorizzazioni per una determinato API
+# <a name="how-to-select-permissions-for-a-given-api"></a>Come selezionare le autorizzazioni per un'API specifica
 
-È possibile trovare hello endpoint di autenticazione per l'applicazione in hello [portale di Azure](https://portal.azure.com).
+È possibile trovare gli endpoint di autenticazione per l'applicazione nel [portale di Azure](https://portal.azure.com).
 
--   Passare toohello [portale di Azure](https://portal.azure.com).
+-   Passare al [portale di Azure](https://portal.azure.com).
 
--   Dal riquadro di spostamento a sinistra di hello, fare clic su **Azure Active Directory**.
+-   Nel riquadro di spostamento sinistro fare clic su **Azure Active Directory**.
 
 -   Fare clic su **Registrazioni per l'app** e scegliere **Endpoint**.
 
--   Aprire questo hello **endpoint** pagina, che elenca tutti gli endpoint di autenticazione hello per il tenant.
+-   Verrà visualizzata la pagina **Endpoint** in cui sono elencati tutti gli endpoint di autenticazione per il tenant.
 
--   Utilizzare hello endpoint toohello specifico protocollo di autenticazione in uso, in combinazione con hello applicazione ID toocraft hello autenticazione richiesta tooyour specifico dell'applicazione.
+-   Per creare la richiesta di autenticazione specifica per l'applicazione, usare l'endpoint specifico del protocollo di autenticazione in uso, in combinazione con l'ID applicazione.
 
 ## <a name="next-steps"></a>Passaggi successivi
 [Guida per gli sviluppatori di Azure Active Directory](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-developers-guide#authentication-and-authorization-protocols)

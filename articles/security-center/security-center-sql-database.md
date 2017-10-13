@@ -1,5 +1,5 @@
 ---
-title: servizio Centro sicurezza PC e i Database SQL di Azure aaaAzure | Documenti Microsoft
+title: Centro sicurezza di Azure e servizio Database SQL di Azure | Microsoft Docs
 description: Questo articolo illustra come il Centro sicurezza consente di proteggere i database nel servizio Database SQL di Azure.
 services: sql-database
 documentationcenter: na
@@ -14,57 +14,57 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/02/2017
 ms.author: terrylan
-ms.openlocfilehash: 173590500f0ce64140f214ada24b9692e01dbd4c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 46dd298a5664d914e55d45c5b7599d5983287476
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-security-center-and-azure-sql-database-service"></a>Centro sicurezza di Azure e servizio Database SQL di Azure
-[Centro sicurezza di Azure](https://azure.microsoft.com/documentation/services/security-center/) consente di impedire, rilevare e rispondere toothreats. Offre funzionalità integrate di monitoraggio della sicurezza e gestione dei criteri tra le sottoscrizioni di Azure, facilita il rilevamento delle minacce che altrimenti passerebbero inosservate e funziona con un ampio ecosistema di soluzioni di sicurezza.
+Il [Centro sicurezza di Azure](https://azure.microsoft.com/documentation/services/security-center/) consente di impedire, rilevare e gestire le minacce. Offre funzionalità integrate di monitoraggio della sicurezza e gestione dei criteri tra le sottoscrizioni di Azure, facilita il rilevamento delle minacce che altrimenti passerebbero inosservate e funziona con un ampio ecosistema di soluzioni di sicurezza.
 
 Questo articolo illustra come il Centro sicurezza consente di proteggere i database nel servizio Database SQL di Azure.
 
 ## <a name="why-use-security-center"></a>Perché usare il Centro sicurezza?
-Centro sicurezza PC consente di proteggere i dati nel Database SQL, fornendo visibilità sicurezza hello del server e database. Con il Centro sicurezza è possibile:
+Il Centro sicurezza consente di proteggere i dati nel database SQL fornendo visibilità per la sicurezza di tutti i server e database. Con il Centro sicurezza è possibile:
 
 * Definire i criteri per la crittografia e il controllo del database SQL.
-* Monitoraggio della sicurezza hello di risorse del Database SQL per tutte le sottoscrizioni.
+* Monitorare la sicurezza delle risorse del database SQL per tutte le sottoscrizioni.
 * Identificare e correggere rapidamente i problemi di sicurezza.
 * Integrare gli avvisi generati dal [rilevamento delle minacce del database SQL di Azure](../sql-database/sql-database-threat-detection.md).
 
-Inoltre toohelping proteggere le risorse del Database SQL, Centro sicurezza PC fornisce inoltre il monitoraggio della protezione e gestione per macchine virtuali di Azure, servizi Cloud, servizi di App, le reti virtuali e altro ancora. Per altre informazioni sul Centro sicurezza, fare clic [qui](security-center-intro.md).
+Oltre ad aiutare a proteggere le risorse del database SQL, il Centro sicurezza offre funzionalità per il monitoraggio e la gestione della sicurezza per le macchine virtuali di Azure, i servizi cloud, i servizi app, le reti virtuali e altro ancora. Per altre informazioni sul Centro sicurezza, fare clic [qui](security-center-intro.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
-tooget avviato con il Centro sicurezza PC, è necessario disporre di un tooMicrosoft sottoscrizione Azure. livello gratuito di Hello del Centro sicurezza PC è abilitata con la sottoscrizione. Per altre informazioni sui livelli gratuito e standard del Centro sicurezza, vedere [Centro sicurezza Prezzi](https://azure.microsoft.com/pricing/details/security-center/).
+Per iniziare a usare Centro sicurezza, è necessario avere una sottoscrizione di Microsoft Azure. Il livello gratuito del Centro sicurezza viene abilitato con la sottoscrizione. Per altre informazioni sui livelli gratuito e standard del Centro sicurezza, vedere [Centro sicurezza Prezzi](https://azure.microsoft.com/pricing/details/security-center/).
 
-Il Centro sicurezza supporta l'accesso in base al ruolo. toolearn più informazioni sul controllo accesso basato sui ruoli (RBAC) in Azure, vedere [controllo di accesso basato sui ruoli di Azure Active Directory](../active-directory/role-based-access-control-configure.md). Hello domande frequenti su Centro di sicurezza vengono fornite informazioni su [la modalità di gestione autorizzazioni in Centro sicurezza PC](security-center-faq.md#permissions).
+Il Centro sicurezza supporta l'accesso in base al ruolo. Per ulteriori informazioni sul controllo di accesso in base al ruolo (RBAC) in Azure, vedere [Controllo di accesso in base al ruolo di Azure Active Directory](../active-directory/role-based-access-control-configure.md). Le domande frequenti relative al Centro sicurezza offrono informazioni sulla [modalità di gestione delle autorizzazioni nel Centro sicurezza](security-center-faq.md#permissions).
 
 ## <a name="access-security-center"></a>Accedere al Centro sicurezza
-Tramite il Centro sicurezza PC hello [portale di Azure](https://azure.microsoft.com/features/azure-portal/). [Accedi al portale toohello](https://portal.azure.com/) e seleziona hello **opzione Centro sicurezza PC**.
+È possibile accedere al Centro sicurezza tramite il [portale di Azure](https://azure.microsoft.com/features/azure-portal/). [Accedere al portale](https://portal.azure.com/) e selezionare l'opzione **Centro sicurezza**.
 
 ![Opzione Centro sicurezza][1]
 
-Hello **Centro sicurezza PC** apre blade.
+Verrà visualizzato il pannello **Centro sicurezza**.
 ![Pannello Centro sicurezza][2]
 
 ## <a name="set-security-policy"></a>Impostare i criteri di sicurezza
-Un criterio di sicurezza definisce il set di hello di controlli che sono consigliati per le risorse nel gruppo di risorse o di sottoscrizione specificato hello. Centro sicurezza PC, definire criteri per le sottoscrizioni o i gruppi di risorse in base della società tooyour le esigenze di sicurezza e riservatezza dei dati di hello in ogni sottoscrizione o tipo hello delle applicazioni.
+I criteri di sicurezza definiscono il set di controlli consigliati per le risorse nell'ambito della sottoscrizione o del gruppo di risorse specificato. Nel Centro sicurezza è possibile definire i criteri per le sottoscrizioni o i gruppi di risorse in base alle esigenze di sicurezza della propria società e al tipo di applicazioni o al livello di riservatezza dei dati di ogni sottoscrizione.
 
-È possibile impostare un criterio tooshow consigli per SQL transparent data encryption (TDE) e di controllo SQL.
+È possibile impostare criteri per visualizzare le raccomandazioni per il controllo SQL e la crittografia SQL Transparent Data Encryption (TDE).
 
-* Quando si attiva **controllo SQL e minaccia rilevamento**, Centro sicurezza PC consiglia che il controllo di accesso tooAzure Database essere abilitato per la conformità avanzate di rilevamento e motivi di indagine.
+* Quando si abilita la funzionalità di **controllo e rilevamento delle minacce SQL**, il Centro sicurezza suggerisce l'abilitazione del controllo dell'accesso al database di Azure per scopi di conformità e di rilevamento e analisi avanzati.
 * Quando si abilita la crittografia **SQL Transparent Data Encryption**, il Centro sicurezza suggerisce l'abilitazione della crittografia dati inattivi per il database SQL di Azure, i backup associati e file di log delle transazioni.
 
-tooset un criterio di sicurezza, seleziona hello **criteri** riquadro nel Pannello di hello Centro sicurezza PC. In hello **criteri di sicurezza** blade, sottoscrizione selezionare hello in cui si desidera che Criteri di sicurezza tooenable hello. Selezionare **criteri di prevenzione** e attivare **su** hello consigli relativi alla sicurezza che si desidera toouse in questa sottoscrizione.
+Per impostare criteri di sicurezza, selezionare il riquadro **Criteri** nel pannello Centro sicurezza. Nel pannello **Criteri di sicurezza** selezionare la sottoscrizione in cui abilitare i criteri di sicurezza. Selezionare **Criteri di prevenzione** e impostare su **On** le raccomandazioni di sicurezza da usare per la sottoscrizione.
 ![Criteri di sicurezza][3]
 
-vedere, più toolearn [impostare criteri di sicurezza](security-center-policies.md).
+Per altre informazioni, vedere [Impostare i criteri di sicurezza](security-center-policies.md).
 
 ## <a name="manage-security-recommendation"></a>Gestire una raccomandazione di sicurezza
-Centro sicurezza PC analizza periodicamente lo stato di sicurezza hello delle risorse di Azure. Quando identifica potenziali vulnerabilità della sicurezza, crea raccomandazioni. indicazioni Hello semplificato il processo di hello di configurazione dei controlli di hello necessita.
+Il Centro sicurezza analizza periodicamente lo stato di sicurezza delle risorse di Azure. Quando identifica potenziali vulnerabilità della sicurezza, crea raccomandazioni. Queste raccomandazioni illustrano in dettaglio il processo di configurazione dei controlli necessari.
 
-Dopo aver impostato un criterio di sicurezza, il Centro sicurezza PC analizza stato protezione hello i potenziali vulnerabilità tooidentify di risorse. indicazioni Hello vengono visualizzati in un formato di tabella in cui ogni riga rappresenta una raccomandazione particolare. Utilizzare hello nella tabella seguente come toohelp un riferimento che è comprendere hello disponibili indicazioni su Database SQL di Azure e quali ogni raccomandazione non se si applica. Selezionando una raccomandazione si viene reindirizzati tooan articolo che spiega come tooimplement hello indicazione del Centro sicurezza PC.
+Dopo l'impostazione dei criteri di sicurezza, il Centro sicurezza analizza lo stato di sicurezza delle risorse per identificare le potenziali vulnerabilità. Le raccomandazioni vengono visualizzate sotto forma di tabella, dove ogni riga rappresenta una particolare raccomandazione. Usare la tabella seguente come riferimento per comprendere le raccomandazioni disponibili per il database SQL di Azure e l'effetto prodotto da ogni raccomandazione che viene applicata. Se si seleziona una raccomandazione, viene visualizzato un articolo che illustra come implementare la raccomandazione nel Centro sicurezza.
 
 | Raccomandazione | Descrizione |
 | --- | --- |
@@ -72,39 +72,39 @@ Dopo aver impostato un criterio di sicurezza, il Centro sicurezza PC analizza st
 | [Enable Auditing & Threat detection on SQL databases](security-center-enable-auditing-on-sql-databases.md) (Abilita il controllo e il rilevamento delle minacce nei database SQL) |Raccomanda di abilitare il controllo e il rilevamento delle minacce per i database del servizio database SQL (solo per il servizio Database SQL; non prevede l'esecuzione di Microsoft SQL Server sulle macchine virtuali). |
 | [Abilita Transparent Data Encryption](security-center-enable-transparent-data-encryption.md) |Raccomanda di abilitare la crittografia per i database SQL (solo per il servizio Database SQL). |
 
-toosee indicazioni per le risorse di Azure, seleziona hello **indicazioni** riquadro nel Pannello di hello Centro sicurezza PC. In hello **indicazioni** pannello, selezionare i dettagli toosee una raccomandazione. In questo esempio si seleziona **Enable Auditing & Threat detection on SQL servers** (Abilita il controllo e il rilevamento delle minacce nei server SQL).
+Per visualizzare le raccomandazioni per le risorse di Azure, selezionare il riquadro **Raccomandazioni** nel pannello Centro sicurezza. Nel pannello **Raccomandazioni** selezionare una raccomandazione per visualizzare i dettagli. In questo esempio si seleziona **Enable Auditing & Threat detection on SQL servers** (Abilita il controllo e il rilevamento delle minacce nei server SQL).
 
 ![Raccomandazioni][4]
 
-Come indicato di seguito viene mostrato il Centro sicurezza PC hello istanze di SQL Server in cui il rilevamento di minaccia e di controllo non sono abilitati. Dopo l'attivazione del controllo, è possibile configurare le impostazioni di rilevamento minacce e di posta elettronica tooreceive impostazioni degli avvisi di sicurezza. Rilevamento minacce Avvisa quando rileva attività del database anomale che indicano la potenziale database toohello rischi di sicurezza. Hello avvisi vengono visualizzati nel dashboard di hello Centro sicurezza PC.
+Come illustrato di seguito, il Centro sicurezza mostra i server SQL in cui il controllo e il rilevamento delle minacce non sono abilitati. Dopo aver abilitato il controllo, è possibile configurare le impostazioni di rilevamento delle minacce e di posta elettronica per ricevere gli avvisi di sicurezza. La funzionalità di rilevamento delle minacce visualizza un avviso quando rileva attività di database che indicano la presenza di potenziali minacce alla sicurezza nel database. Gli avvisi vengono visualizzati nel dashboard del Centro sicurezza.
 ![Controllo e rilevamento delle minacce][5]
 
-Seguire i passaggi di hello in [rilevamento minacce del Database SQL nel portale di Azure hello](../sql-database/sql-database-threat-detection-portal.md) tooturn in e configurare l'individuazione e l'elenco di hello tooconfigure dei messaggi di posta elettronica che riceveranno gli avvisi di sicurezza al rilevamento di attività anomale.
+Seguire i passaggi in [SQL Database Threat Detection in the Azure portal](../sql-database/sql-database-threat-detection-portal.md) (Rilevamento di minacce del database SQL nel portale di Azure) per attivare e configurare il rilevamento di minacce e per configurare l'elenco dei messaggi di posta elettronica che riceveranno gli avvisi di sicurezza al rilevamento di anomalie dell'attività.
 
-toolearn informazioni sulle indicazioni, vedere [gestione consigli sulla sicurezza](security-center-recommendations.md).
+Per altre informazioni sulle raccomandazioni, vedere [Gestione delle raccomandazioni di sicurezza](security-center-recommendations.md).
 
 ## <a name="monitor-security-health"></a>Monitorare l'integrità della sicurezza
-Dopo aver abilitato [criteri di sicurezza](security-center-policies.md) per le risorse di una sottoscrizione, il Centro sicurezza PC analizzerà le risorse tooidentify potenziali vulnerabilità della sicurezza hello.  È possibile visualizzare lo stato di sicurezza hello delle risorse in hello **integrità delle risorse di sicurezza** riquadro. Quando fa clic su **dati** in hello **integrità delle risorse di sicurezza** riquadro, hello **risorse dati** pannello apre con le raccomandazioni di SQL per i problemi come il controllo e trasparente crittografia dei dati non sia abilitata. Include inoltre indicazioni per lo stato di integrità generale hello del database hello.
+Una volta abilitati i [criteri di sicurezza](security-center-policies.md) per le risorse di una sottoscrizione, il Centro sicurezza analizza la sicurezza delle risorse per identificare le potenziali vulnerabilità.  Nel riquadro **Integrità sicurezza delle risorse** è possibile visualizzare lo stato di sicurezza delle risorse. Quando si fa clic su **Dati** nel riquadro **Integrità sicurezza delle risorse**, viene aperto il pannello **Data Resources** (Risorse dati) con le raccomandazioni SQL relative a problemi come la mancata abilitazione del controllo e di Transparent Data Encryption. Include anche raccomandazioni relative allo stato di integrità generale del database.
 ![Integrità della sicurezza delle risorse][6]
 
-vedere, più toolearn [il monitoraggio dello stato di sicurezza](security-center-monitoring.md).
+Per altre informazioni, vedere [Monitoraggio dell'integrità della sicurezza](security-center-monitoring.md).
 
-## <a name="manage-and-respond-toosecurity-alerts"></a>Gestire e rispondere toosecurity avvisi
-Centro sicurezza PC automaticamente raccoglie, analizza e consente di integrare dati di log dalla [rilevamento minacce di SQL Azure](../sql-database/sql-database-threat-detection.md), come altre risorse di Azure, minacce reali toodetect e ridurre i falsi positivi. Viene visualizzato un elenco di avvisi di sicurezza in ordine di priorità del Centro sicurezza PC insieme hello informazioni necessarie tooquickly analizzare problema hello e indicazioni sul tooremediate un attacco.
+## <a name="manage-and-respond-to-security-alerts"></a>Gestire e rispondere agli avvisi di sicurezza
+Il Centro sicurezza raccoglie, analizza e integra automaticamente i dati di log generati dalla funzionalità di [rilevamento delle minacce del database SQL di Azure](../sql-database/sql-database-threat-detection.md) e da altre risorse di Azure per rilevare le minacce reali e ridurre i falsi positivi. Il Centro sicurezza visualizza un elenco degli avvisi di sicurezza in ordine di priorità, nonché le informazioni necessarie per analizzare rapidamente il problema e indicazioni per risolvere un attacco.
 
-avvisi toosee, seleziona hello **degli avvisi di sicurezza** riquadro nel Pannello di hello Centro sicurezza PC. In hello **degli avvisi di sicurezza** pannello, seleziona un avviso toolearn più sugli eventi hello che ha attivato avviso hello e cosa, se presente, i passaggi necessari per necessario tootake tooremediate un attacco. In questo esempio si seleziona **Potential SQL Injection** (Potenziale attacco SQL injection).
+Per visualizzare gli avvisi, selezionare il riquadro **Avvisi di sicurezza** nel pannello Centro sicurezza. Nel pannello **Avvisi di sicurezza** selezionare un avviso per visualizzare altre informazioni sugli eventi che hanno attivato l'avviso ed eventualmente i passaggi da seguire per risolvere i problemi associati a un attacco. In questo esempio si seleziona **Potential SQL Injection** (Potenziale attacco SQL injection).
 ![Avvisi di sicurezza][7]
 
-Come mostrato di seguito vengono forniti dettagli aggiuntivi che offrono approfondite quali avviso hello attivate, hello destinazione risorsa, quando applicabile hello origine indirizzo IP e indicazioni su come tooremediate.
+Come illustrato di seguito, il Centro sicurezza visualizza altre informazioni di approfondimento sull'evento che ha attivato l'avviso, la risorsa di destinazione, l'indirizzo IP di origine, quando applicabile, ed eventuali raccomandazioni per risolvere il problema.
 ![Potenziale attacco SQL injection][8]
 
-vedere, più toolearn [la gestione e risponde avvisi toosecurity](security-center-managing-and-responding-alerts.md).
+Per altre informazioni, vedere [Gestione e risposta agli avvisi di sicurezza](security-center-managing-and-responding-alerts.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Domande frequenti su Centro sicurezza PC](security-center-faq.md) : domande frequenti sull'utilizzo di hello servizio di ricerca.
-* [Guida alla pianificazione e le operazioni di Centro sicurezza PC](security-center-planning-and-operations-guide.md) : seguire una serie di passaggi e attività toooptimize l'utilizzo di centro di sicurezza in base a requisiti di sicurezza dell'organizzazione e il modello di gestione di cloud.
+* [Domande frequenti sul Centro sicurezza](security-center-faq.md): leggere le domande frequenti sull'uso del servizio.
+* [Guida alla pianificazione e alla gestione del Centro sicurezza](security-center-planning-and-operations-guide.md): eseguire una serie di passaggi e attività per ottimizzare l'uso del Centro sicurezza in base ai requisiti di sicurezza e al modello di gestione cloud dell'organizzazione.
 * [Sicurezza dei dati nel Centro sicurezza](security-center-data-security.md): apprendere come il Centro sicurezza raccoglie ed elabora i dati sulle risorse di Azure, tra cui informazioni di configurazione, metadati, registri eventi, file di dump di arresto anomalo del sistema e altro.
-* [Gestione degli eventi di sicurezza](security-center-incident.md) -informazioni su come protezione hello toouse avviso capacità nel Centro sicurezza PC tooassist nella gestione degli eventi di sicurezza.
+* [Gestione degli eventi imprevisti della sicurezza](security-center-incident.md): imparare a usare la funzionalità degli avvisi del Centro sicurezza per gestire gli eventi imprevisti della sicurezza.
 
 <!--Image references-->
 [1]: ./media/security-center-sql-database/security-center.png

@@ -1,6 +1,6 @@
 ---
-title: aaaDetect faccia ed emozioni con Azure Media Analitica | Documenti Microsoft
-description: "In questo argomento viene illustrato come è rivolto toodetect ed emozioni con Azure Media Analitica."
+title: Rilevare volti ed emozioni con Analisi Servizi multimediali di Azure | Microsoft Docs
+description: Questo argomento illustra come rilevare volti ed emozioni con Analisi Servizi multimediali di Azure.
 services: media-services
 documentationcenter: 
 author: juliako
@@ -12,47 +12,47 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 07/18/2017
+ms.date: 09/18/2017
 ms.author: milanga;juliako;
-ms.openlocfilehash: f58d81d82dde08a694cdb4d92c6bab6a40a9c157
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a55a0c2ef8c1c065b39fce9dc6ef2f806b60dfdc
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="detect-face-and-emotion-with-azure-media-analytics"></a>Rilevare volti ed emozioni con Analisi servizi multimediali di Azure
-## <a name="overview"></a>Panoramica
-Hello **Azure Media faccia Rilevatore** processore di contenuti multimediali (MP) consente di toocount, i movimenti di avanzamento e anche la partecipazione di destinatari misuratore e reazione tramite facciale. Questo servizio contiene due funzionalità: 
+## <a name="overview"></a>Overview
+Il processore di contenuti multimediali **Rilevamento multimediale volti di Azure** consente di contare, monitorare i movimenti e persino di valutare la partecipazione e le reazioni del pubblico in base alle espressioni del volto. Questo servizio contiene due funzionalità: 
 
 * **Rilevamento volti**
   
-    Il Rilevamento volti rileva e monitora i volti umani all'interno di un video. Più caratteri tipografici possono essere rilevati e successivamente essere rilevate man mano che vengono spostati, con hello ora e il percorso dei metadati restituiti in un file JSON. Durante il rilevamento, verrà eseguito un tentativo toogive un toohello ID coerenza stesso faccia mentre persona hello è spostamento sullo schermo, anche se è nascosto o lasciare brevemente il frame di hello.
+    Il Rilevamento volti rileva e monitora i volti umani all'interno di un video. È possibile rilevare e monitorare diversi volti mentre le persone si muovono; i metadati relativi a ora e luogo vengono restituiti in un file JSON. Durante il monitoraggio, il sistema tenterà di assegnare sempre lo stesso ID al volto mentre la persona si muove sullo schermo, anche se è nascosta o se esce brevemente dall'inquadratura.
   
   > [!NOTE]
-  > Questo servizio non esegue il riconoscimento facciale. Persona che lascia frame hello o diventa nascosto per troppo tempo verrà assegnato un nuovo ID quando viene restituita.
+  > Questo servizio non esegue il riconoscimento facciale. Se una persona esce dall'inquadratura o viene nascosta troppo a lungo, al suo ritorno le verrà assegnato un nuovo ID.
   > 
   > 
 * **Rilevamento emozioni**
   
-    Rilevamento emozioni è un componente facoltativo di hello processore di contenuti multimediali di rilevamento viso restituisce analisi su più attributi affettivi da facce hello rilevate, tra cui "Happiness", sadness, paura, anger e altro ancora. 
+    Il Rilevamento emozioni è un componente facoltativo del Processore multimediale di rilevamento volti che restituisce un'analisi di vari attributi emotivi dei volti rilevati, inclusi la felicità, la paura, la tristezza, la rabbia e altre emozioni. 
 
-Hello **Azure Media faccia Rilevatore** Management Pack è attualmente in anteprima.
+Attualmente il processore multimediale **Rilevamento multimediale volti di Azure** è disponibile in Anteprima.
 
-In questo argomento fornisce informazioni dettagliate sulle **Azure Media faccia Rilevatore** e Mostra come toouse con Media Services SDK per .NET.
+Questo argomento contiene informazioni dettagliate su **Azure Media Face Detector** e illustra come usare questa funzionalità con Media Services .NET SDK.
 
 ## <a name="face-detector-input-files"></a>File di input di Rilevamento volti
-File video. Attualmente, è supportato i seguenti formati hello: MOV o MP4 e WMV.
+File video. Attualmente sono supportati i formati seguenti: MP4, MOV e WMV.
 
 ## <a name="face-detector-output-files"></a>File di output di Rilevamento volti
-API di rilevamento e il rilevamento di faccia Hello fornisce il rilevamento di percorso faccia ad alta precisione e il rilevamento in grado di rilevare il too64 viso umana in un video. Volti frontali forniscono risultati ottimali hello, mentre i caratteri tipografici lato e facce di piccole dimensioni (minore o uguale a too24x24 pixel) potrebbe non essere accurata.
+L'API per il rilevamento e monitoraggio volti offre il rilevamento e il monitoraggio volti ad alta precisione ed è in grado di rilevare fino a 64 volti umani in un video. Le riprese anteriori producono i risultati migliori, mentre i profili e i volti piccoli (inferiori o uguali a 24x24 pixel) non garantiscono altrettanta precisione.
 
-Hello facce rilevate e di rilevamento vengono restituite con le coordinate (sinistro, superiore, larghezza e altezza) che indica la posizione hello di facce nell'immagine di hello in pixel, nonché di un viso ID numerico che indica il rilevamento di tale persona hello. Numeri di ID tipo di carattere sono tooreset soggetta a circostanze quando frontale hello viene smarrito o sovrapposta nel frame hello, risultante in alcune persone più ID di assegnazione.
+I volti rilevati e monitorati vengono restituiti con coordinate (sinistra, superiore, larghezza e altezza) indicanti la posizione dei volti nell'immagine in pixel e un codice ID del volto che indica il monitoraggio della persona. I codici ID del volto sono soggetti a ripristino quando le riprese non sono frontali o sono sovrapposte nel fotogramma, causando l'assegnazione di diversi ID alla stessa persona.
 
-## <a id="output_elements"></a>Elementi hello JSON del file di output
+## <a id="output_elements"></a>Elementi del file di output JSON
 
 [!INCLUDE [media-services-analytics-output-json](../../includes/media-services-analytics-output-json.md)]
 
-Rilevatore faccia utilizza tecniche di frammentazione (in cui i metadati di hello possono essere suddiviso in blocchi basati sul tempo ed è possibile scaricare solo gli elementi necessari) e la segmentazione (in cui gli eventi di hello sono suddivise in caso di ricevono troppo grande). Alcune semplici calcoli consentono di trasformare i dati di hello. Se ad esempio un evento è iniziato in corrispondenza di 6300 (scatti), con una scala cronologica di 2997 (scatti al secondo) e una frequenza di fotogrammi di 29,97 (fotogrammi al secondo):
+Il rilevatore di volti usa tecniche di frammentazione, che consentono di suddividere i metadati in blocchi basati sul tempo e di scaricare solo gli elementi necessari, e di segmentazione, che consentono di suddividere gli eventi se diventano troppo grandi. Alcuni semplici calcoli consentono di trasformare i dati. Se ad esempio un evento è iniziato in corrispondenza di 6300 (scatti), con una scala cronologica di 2997 (scatti al secondo) e una frequenza di fotogrammi di 29,97 (fotogrammi al secondo):
 
 * Inizio/Scala cronologica = 2,1 secondi
 * Secondi x frequenza di fotogrammi = 63 fotogrammi
@@ -62,7 +62,7 @@ Rilevatore faccia utilizza tecniche di frammentazione (in cui i metadati di hell
 [Video di input](http://ampdemo.azureedge.net/azuremediaplayer.html?url=https%3A%2F%2Freferencestream-samplestream.streaming.mediaservices.windows.net%2Fc8834d9f-0b49-4b38-bcaf-ece2746f1972%2FMicrosoft%20Convergence%202015%20%20Keynote%20Highlights.ism%2Fmanifest&amp;autoplay=false)
 
 ### <a name="task-configuration-preset"></a>Configurazione delle attività (set di impostazioni)
-Quando si crea un'attività con **Rilevamento multimediale volti di Azure**, è necessario specificare un set di impostazioni di configurazione. Hello seguente set di impostazioni di configurazione è solo per il rilevamento di tipo di carattere.
+Quando si crea un'attività con **Rilevamento multimediale volti di Azure**, è necessario specificare un set di impostazioni di configurazione. Il set di impostazioni di configurazione seguente serve unicamente per il rilevamento volti.
 
     {
       "version":"1.0",
@@ -77,7 +77,7 @@ Quando si crea un'attività con **Rilevamento multimediale volti di Azure**, è 
 | Mode |Fast: velocità di elaborazione elevata, ma meno accurata (impostazione predefinita).|
 
 ### <a name="json-output"></a>Output JSON
-esempio dell'output JSON seguente Hello è stato troncato.
+L'esempio seguente di output JSON è stato troncato.
 
     {
     "version": 1,
@@ -131,7 +131,7 @@ esempio dell'output JSON seguente Hello è stato troncato.
 [Video di input](http://ampdemo.azureedge.net/azuremediaplayer.html?url=https%3A%2F%2Freferencestream-samplestream.streaming.mediaservices.windows.net%2Fc8834d9f-0b49-4b38-bcaf-ece2746f1972%2FMicrosoft%20Convergence%202015%20%20Keynote%20Highlights.ism%2Fmanifest&amp;autoplay=false)
 
 ### <a name="task-configuration-preset"></a>Configurazione delle attività (set di impostazioni)
-Quando si crea un'attività con **Rilevamento multimediale volti di Azure**, è necessario specificare un set di impostazioni di configurazione. Hello seguente set di impostazioni di configurazione specifica toocreate che JSON basato sul rilevamento emozioni hello.
+Quando si crea un'attività con **Rilevamento multimediale volti di Azure**, è necessario specificare un set di impostazioni di configurazione. Il set di impostazioni di configurazione seguente specifica la creazione del file JSON in base al Rilevamento emozioni.
 
     {
       "version": "1.0",
@@ -147,13 +147,13 @@ Quando si crea un'attività con **Rilevamento multimediale volti di Azure**, è 
 | Nome attributo | Descrizione |
 | --- | --- |
 | Mode |Faces: solo rilevamento viso.<br/>PerFaceEmotion: restituisce un'emozione in modo indipendente per ogni rilevamento viso.<br/>AggregateEmotion: restituzione dei valori medi delle emozioni per tutti i volti nel fotogramma. |
-| AggregateEmotionWindowMs |Va usato se è selezionata la modalità AggregateEmotion. Specifica il periodo di hello del video tooproduce usato ogni risultato aggregato, in millisecondi. |
-| AggregateEmotionIntervalMs |Va usato se è selezionata la modalità AggregateEmotion. Specifica con quale aggregazione tooproduce frequenza risultati. |
+| AggregateEmotionWindowMs |Va usato se è selezionata la modalità AggregateEmotion. Specifica la lunghezza del video usato per produrre ogni risultato aggregato, in millisecondi. |
+| AggregateEmotionIntervalMs |Va usato se è selezionata la modalità AggregateEmotion. Specifica con quale frequenza produrre risultati aggregati. |
 
 #### <a name="aggregate-defaults"></a>Impostazioni predefinite degli aggregati
-Di seguito sono consigliati i valori per la finestra di aggregazione hello e le impostazioni dell'intervallo. Il valore di AggregateEmotionWindowMs non deve essere maggiore del valore di AggregateEmotionIntervalMs.
+Di seguito sono specificati i valori consigliati per la finestra di aggregazione e le impostazioni di intervallo. Il valore di AggregateEmotionWindowMs non deve essere maggiore del valore di AggregateEmotionIntervalMs.
 
-|| Impostazioni predefinite | Min(s) | Max(s) |
+|| Impostazioni predefinite | Max(s) | Min(s) |
 |--- | --- | --- | --- |
 | AggregateEmotionWindowMs |0,5 |2 |0,25|
 | AggregateEmotionIntervalMs |0,5 |1 |0,25|
@@ -313,26 +313,26 @@ Output JSON per l'emozione aggregata (troncato):
                  "fear": 0,
 
 ## <a name="limitations"></a>Limitazioni
-* formati video input Hello supportato includono MP4, MOV e WMV.
-* intervallo di dimensioni faccia rilevabili Hello è too2048x2048 24 x 24 pixel. i caratteri tipografici Hello da questo intervallo non venga rilevati.
-* Per ogni video, numero massimo di hello di facce restituito è 64.
-* Non è possibile rilevare alcuni volti a causa di problemi di tootechnical; ad esempio grandi faccia angoli (head-posa) e occlusione di grandi dimensioni. Volti frontali e di prossimità anteriore avere risultati migliori hello.
+* I formati video di input supportati includono MP4, MOV e WMV.
+* L'intervallo delle dimensioni rilevabili del volto è da 24x24 a 2048x2048 pixel. I volti al di fuori di questo intervallo non vengono rilevati.
+* Il numero massimo di volti restituiti per ogni video è 64.
+* È possibile che alcuni volti non vengano rilevati per problemi tecnici, ad esempio angoli del volto molto grandi (durante le pose) e grandi occlusioni. Le riprese frontali e quasi frontali producono i risultati migliori.
 
 ## <a name="net-sample-code"></a>Codice di esempio .NET
 
-esempio Hello programma mostra come:
+Il programma seguente illustra come:
 
-1. Creare un asset e caricare un file multimediale nell'asset hello.
-2. Creare un processo con un'attività di rilevamento viso in base a un file di configurazione che contiene i seguenti set di impostazioni json hello. 
+1. Creare un asset e caricare un file multimediale nell'asset.
+2. Creare un processo con un'attività di rilevamento viso in base al file di configurazione che contiene il set di impostazioni JSON seguente. 
    
         {
             "version": "1.0"
         }
-3. Scaricare i file JSON di output di hello. 
+3. Scaricare i file JSON di output. 
 
 #### <a name="create-and-configure-a-visual-studio-project"></a>Creare e configurare un progetto di Visual Studio
 
-Configurare l'ambiente di sviluppo e di popolare il file app. config hello con informazioni di connessione, come descritto in [lo sviluppo di servizi multimediali con .NET](media-services-dotnet-how-to-use.md). 
+Configurare l'ambiente di sviluppo e popolare il file app.config con le informazioni di connessione, come descritto in [Sviluppo di applicazioni di Servizi multimediali con .NET](media-services-dotnet-how-to-use.md). 
 
 #### <a name="example"></a>Esempio
 
@@ -363,17 +363,17 @@ Configurare l'ambiente di sviluppo e di popolare il file app. config hello con i
 
                 _context = new CloudMediaContext(new Uri(_RESTAPIEndpoint), tokenProvider);
 
-                // Run hello FaceDetection job.
+                // Run the FaceDetection job.
                 var asset = RunFaceDetectionJob(@"C:\supportFiles\FaceDetection\BigBuckBunny.mp4",
                                             @"C:\supportFiles\FaceDetection\config.json");
 
-                // Download hello job output asset.
+                // Download the job output asset.
                 DownloadAsset(asset, @"C:\supportFiles\FaceDetection\Output");
             }
 
             static IAsset RunFaceDetectionJob(string inputMediaFilePath, string configurationFile)
             {
-                // Create an asset and upload hello input media file toostorage.
+                // Create an asset and upload the input media file to storage.
                 IAsset asset = CreateAssetAndUploadSingleFile(inputMediaFilePath,
                     "My Face Detection Input Asset",
                     AssetCreationOptions.None);
@@ -381,38 +381,38 @@ Configurare l'ambiente di sviluppo e di popolare il file app. config hello con i
                 // Declare a new job.
                 IJob job = _context.Jobs.Create("My Face Detection Job");
 
-                // Get a reference tooAzure Media Face Detector.
+                // Get a reference to Azure Media Face Detector.
                 string MediaProcessorName = "Azure Media Face Detector";
 
                 var processor = GetLatestMediaProcessorByName(MediaProcessorName);
 
-                // Read configuration from hello specified file.
+                // Read configuration from the specified file.
                 string configuration = File.ReadAllText(configurationFile);
 
-                // Create a task with hello encoding details, using a string preset.
+                // Create a task with the encoding details, using a string preset.
                 ITask task = job.Tasks.AddNew("My Face Detection Task",
                     processor,
                     configuration,
                     TaskOptions.None);
 
-                // Specify hello input asset.
+                // Specify the input asset.
                 task.InputAssets.Add(asset);
 
-                // Add an output asset toocontain hello results of hello job.
+                // Add an output asset to contain the results of the job.
                 task.OutputAssets.AddNew("My Face Detectoion Output Asset", AssetCreationOptions.None);
 
-                // Use hello following event handler toocheck job progress.  
+                // Use the following event handler to check job progress.  
                 job.StateChanged += new EventHandler<JobStateChangedEventArgs>(StateChanged);
 
-                // Launch hello job.
+                // Launch the job.
                 job.Submit();
 
-                // Check job execution and wait for job toofinish.
+                // Check job execution and wait for job to finish.
                 Task progressJobTask = job.GetExecutionProgressTask(CancellationToken.None);
 
                 progressJobTask.Wait();
 
-                // If job state is Error, hello event handling
+                // If job state is Error, the event handling
                 // method for job progress should log errors.  Here we check
                 // for error state and exit if needed.
                 if (job.State == JobState.Error)

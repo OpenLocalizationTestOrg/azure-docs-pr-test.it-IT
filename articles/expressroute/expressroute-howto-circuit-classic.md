@@ -1,6 +1,6 @@
 ---
 title: 'Creare e modificare un circuito ExpressRoute: PowerShell: Azure classico| Microsoft Docs'
-description: In questo articolo vengono illustrati i passaggi hello per la creazione e il provisioning di un circuito ExpressRoute. Mostra anche come stato hello toocheck, aggiornare, o eliminare, quindi eseguire il deprovisioning del circuito.
+description: Questo articolo illustra i passaggi per la creazione e il provisioning di un circuito ExpressRoute. Questo articolo descrive anche come controllare lo stato, eseguire l'aggiornamento o effettuare l'eliminazione e il deprovisioning di un circuito.
 documentationcenter: na
 services: expressroute
 author: ganesr
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/21/2017
 ms.author: ganesr;cherylmc
-ms.openlocfilehash: 9897c88776a2153ba22aa9ff328becb9f12b660b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 93ddc2975db34053c6a776d1c3b931536f3f8ec7
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-and-modify-an-expressroute-circuit-using-powershell-classic"></a>Creare e modificare un circuito ExpressRoute mediante PowerShell (versione classica)
 > [!div class="op_single_selector"]
@@ -30,70 +30,70 @@ ms.lasthandoff: 10/06/2017
 > * [PowerShell (classico)](expressroute-howto-circuit-classic.md)
 >
 
-In questo articolo illustra hello passaggi toocreate un circuito ExpressRoute di Azure con modello di distribuzione classica hello e di cmdlet di PowerShell. Mostra anche come stato hello toocheck, aggiornare, o eliminare e il deprovisioning di un circuito ExpressRoute.
+Questo articolo illustra i passaggi per creare un circuito di Azure ExpressRoute tramite i cmdlet di PowerShell e il modello di distribuzione classica. L'articolo illustra anche le procedure di controllo di stato, aggiornamento, eliminazione e deprovisioning di un circuito ExpressRoute.
 
 [!INCLUDE [expressroute-classic-end-include](../../includes/expressroute-classic-end-include.md)]
 
 
-**Informazioni sui modelli di distribuzione di Azure**
+**Informazioni sui modelli di distribuzione di AzureAbout Azure deployment models**
 
 [!INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
 
 ## <a name="before-you-begin"></a>Prima di iniziare
-### <a name="step-1-review-hello-prerequisites-and-workflow-articles"></a>Passaggio 1. Rivedere i prerequisiti di hello e gli articoli del flusso di lavoro
-Assicurarsi di aver esaminato hello [prerequisiti](expressroute-prerequisites.md) e [flussi di lavoro](expressroute-workflows.md) prima di iniziare la configurazione.  
+### <a name="step-1-review-the-prerequisites-and-workflow-articles"></a>Passaggio 1. Consultare gli articoli sui prerequisiti e sul flusso di lavoro
+Prima di procedere con la configurazione, assicurarsi di avere verificato i [prerequisiti](expressroute-prerequisites.md) e i [flussi di lavoro](expressroute-workflows.md).  
 
-### <a name="step-2-install-hello-latest-versions-of-hello-azure-service-management-sm-powershell-modules"></a>Passaggio 2. Installare le versioni più recenti di hello dei moduli di PowerShell di gestione del servizio di Azure (SM) hello
-Seguire le istruzioni hello [Introduzione ai cmdlet di Azure PowerShell](/powershell/azure/overview) per istruzioni dettagliate su come tooconfigure i moduli di Azure PowerShell hello toouse computer.
+### <a name="step-2-install-the-latest-versions-of-the-azure-service-management-sm-powershell-modules"></a>Passaggio 2. Installare le versioni più recenti dei moduli di PowerShell per Gestione dei servizi di Azure.
+Per istruzioni dettagliate sulla configurazione del computer per l'uso con i moduli di Azure PowerShell, vedere [Getting started with Azure PowerShell cmdlets](/powershell/azure/overview) (Introduzione ai cmdlet di Azure PowerShell).
 
-### <a name="step-3-log-in-tooyour-azure-account-and-select-a-subscription"></a>Passaggio 3. Accedi tooyour account Azure e selezionare una sottoscrizione
-1. Aprire la console di PowerShell con diritti elevati e tooyour account di connessione. Utilizzare hello toohelp esempio che ci si connette seguenti:
+### <a name="step-3-log-in-to-your-azure-account-and-select-a-subscription"></a>Passaggio 3. Accedere all'account Azure e selezionare una sottoscrizione
+1. Aprire la console di PowerShell con diritti elevati e connettersi all'account. Per eseguire la connessione, usare gli esempi che seguono:
 
         Login-AzureRmAccount
 
-2. Controllare le sottoscrizioni di hello per account hello.
+2. Controllare le sottoscrizioni per l'account.
 
         Get-AzureRmSubscription
 
-3. Se si dispone di più di una sottoscrizione, selezionare una sottoscrizione di hello che si desidera toouse.
+3. Se sono disponibili più sottoscrizioni, selezionare la sottoscrizione da usare.
 
-        Select-AzureRmSubscription -SubscriptionName "Replace_with_your_subscription_name"
+        Select-AzureSubscription -SubscriptionId "Replace_with_your_subscription_id"
 
-4. Successivamente, utilizzare hello seguente cmdlet tooadd tooPowerShell la sottoscrizione di Azure per il modello di distribuzione classica hello.
+4. Verificare che l'ID sottoscrizione selezionato sia impostato come predefinito.
 
-        Add-AzureAccount
+        Get-AzureSubscription -default
 
 ## <a name="create-and-provision-an-expressroute-circuit"></a>Creare un circuito ExpressRoute ed eseguirne il provisioning
-### <a name="step-1-import-hello-powershell-modules-for-expressroute"></a>Passaggio 1. Importare i moduli di PowerShell hello per ExpressRoute
- Se non è già stato fatto, è necessario importare i moduli di Azure ed ExpressRoute hello nella sessione di PowerShell hello in toostart ordine utilizzando i cmdlet di ExpressRoute hello. Importare i moduli di hello da hello percorso in cui erano installati tooon nel computer locale. In base al metodo hello è utilizzato moduli hello tooinstall, percorso hello potrebbe essere diverso da hello esempio illustrato di seguito. Se necessario, modificare l'esempio hello.  
+### <a name="step-1-import-the-powershell-modules-for-expressroute"></a>Passaggio 1. Importare i moduli di PowerShell per ExpressRoute
+ Se ancora non è stato fatto, per iniziare a usare i cmdlet per ExpressRoute, è necessario importare i moduli di Azure ed ExpressRoute nella sessione di PowerShell. Importare i moduli dal percorso in cui sono stati installati sul computer locale. A seconda del metodo usato per installare i moduli, il percorso potrebbe essere diverso da quello illustrato nell'esempio seguente. Se necessario, modificare l'esempio.  
 
     Import-Module 'C:\Program Files (x86)\Microsoft SDKs\Azure\PowerShell\ServiceManagement\Azure\Azure.psd1'
     Import-Module 'C:\Program Files (x86)\Microsoft SDKs\Azure\PowerShell\ServiceManagement\Azure\ExpressRoute\ExpressRoute.psd1'
 
-### <a name="step-2-get-hello-list-of-supported-providers-locations-and-bandwidths"></a>Passaggio 2. Ottenere l'elenco di hello di provider supportati, posizioni e delle larghezze di banda
-Prima di creare un circuito ExpressRoute, è necessario l'elenco di hello del provider di connettività supportate, località e le opzioni di larghezza di banda.
+### <a name="step-2-get-the-list-of-supported-providers-locations-and-bandwidths"></a>Passaggio 2. Ottenere l'elenco dei provider, delle località e delle larghezze di banda supportate
+Prima di creare un circuito ExpressRoute, è necessario avere l'elenco delle località, delle opzioni di larghezza di banda e dei provider di connettività supportati.
 
-cmdlet di PowerShell Hello `Get-AzureDedicatedCircuitServiceProvider` restituisce queste informazioni, che verranno usati nei passaggi successivi:
+Il cmdlet `Get-AzureDedicatedCircuitServiceProvider` di PowerShell restituisce queste informazioni, che verranno usate nei passaggi successivi:
 
     Get-AzureDedicatedCircuitServiceProvider
 
-Controllare toosee se viene elencato il provider di connettività. Prendere nota di hello perché sarà necessaria successivamente quando si crea un circuito le seguenti informazioni:
+Verificare se sia presente anche il proprio provider di connettività. Prendere nota delle informazioni seguenti, perché saranno necessarie al momento della creazione di un circuito:
 
 * Nome
 * PeeringLocations
 * BandwidthsOffered
 
-Si è ora pronto toocreate un circuito ExpressRoute.         
+È ora possibile creare un circuito ExpressRoute.         
 
 ### <a name="step-3-create-an-expressroute-circuit"></a>Passaggio 3. Creare un circuito ExpressRoute
-Hello di esempio seguente viene illustrato come un ExpressRoute a 200 Mbps toocreate circuit tramite Equinix Silicon Valley. Se si usa un altro provider e impostazioni diverse, sostituire tali informazioni al momento della richiesta.
+L'esempio seguente illustra come creare un circuito ExpressRoute a 200 Mbps tramite Equinix nella Silicon Valley. Se si usa un altro provider e impostazioni diverse, sostituire tali informazioni al momento della richiesta.
 
 > [!IMPORTANT]
-> Dal momento hello che viene eseguita una chiave del servizio verrà addebitato il circuito ExpressRoute. Assicurarsi di eseguire questa operazione quando il provider di connettività hello è circuito hello tooprovision pronto.
+> Il circuito ExpressRoute viene addebitato dal momento in cui emessa una chiave di servizio. Verificare che l'operazione venga eseguita quando il provider di connettività è pronto a effettuare il provisioning del circuito.
 > 
 > 
 
-di seguito Hello è un esempio di richiesta per una nuova chiave di servizio:
+Di seguito è riportato un esempio di richiesta di una nuova chiave di servizio:
 
     $Bandwidth = 200
     $CircuitName = "MyTestCircuit"
@@ -102,21 +102,21 @@ di seguito Hello è un esempio di richiesta per una nuova chiave di servizio:
 
     New-AzureDedicatedCircuit -CircuitName $CircuitName -ServiceProviderName $ServiceProvider -Bandwidth $Bandwidth -Location $Location -sku Standard -BillingType MeteredData
 
-In alternativa, se si desidera toocreate un circuito ExpressRoute con il componente aggiuntivo premium hello, hello di utilizzare l'esempio seguente. Fare riferimento toohello [domande frequenti su ExpressRoute](expressroute-faqs.md) per ulteriori informazioni sul componente aggiuntivo di hello premium.
+Se invece si vuole creare un circuito ExpressRoute con il componente aggiuntivo Premium, usare l'esempio seguente. Per altri dettagli sul componente aggiuntivo Premium, vedere [Domande frequenti su ExpressRoute](expressroute-faqs.md) .
 
     New-AzureDedicatedCircuit -CircuitName $CircuitName -ServiceProviderName $ServiceProvider -Bandwidth $Bandwidth -Location $Location -sku Premium - BillingType MeteredData
 
 
-risposta Hello conterrà la chiave di servizio hello. È possibile ottenere una descrizione dettagliata di tutti i parametri di hello eseguendo hello:
+La risposta conterrà la chiave di servizio. È possibile ottenere descrizioni dettagliate di tutti i parametri eseguendo questo comando:
 
     get-help new-azurededicatedcircuit -detailed
 
-### <a name="step-4-list-all-hello-expressroute-circuits"></a>Passaggio 4. Elenco di tutti i circuiti ExpressRoute hello
-È possibile eseguire hello `Get-AzureDedicatedCircuit` comando hello di tooget un elenco di tutti i circuiti ExpressRoute creato:
+### <a name="step-4-list-all-the-expressroute-circuits"></a>Passaggio 4. Elencare tutti i circuiti ExpressRoute
+Per ottenere un elenco di tutti i circuiti ExpressRoute creati, eseguire il comando `Get-AzureDedicatedCircuit`:
 
     Get-AzureDedicatedCircuit
 
-risposta di Hello sarà simile toohello esempio seguente:
+La risposta sarà simile all'esempio seguente:
 
     Bandwidth                        : 200
     CircuitName                      : MyTestCircuit
@@ -127,7 +127,7 @@ risposta di Hello sarà simile toohello esempio seguente:
     Sku                              : Standard
     Status                           : Enabled
 
-È possibile recuperare queste informazioni in qualsiasi momento utilizzando hello `Get-AzureDedicatedCircuit` cmdlet. Effettuare hello chiamata senza parametri, vengono elencati tutti i circuiti hello. La chiave del servizio sarà elencata nel hello *ServiceKey* campo.
+È possibile recuperare queste informazioni in qualsiasi momento usando il cmdlet `Get-AzureDedicatedCircuit` . Se si effettua la chiamata senza parametri, verranno elencati tutti i circuiti. La chiave di servizio verrà elencata nel campo *ServiceKey* .
 
     Get-AzureDedicatedCircuit
 
@@ -140,32 +140,32 @@ risposta di Hello sarà simile toohello esempio seguente:
     Sku                              : Standard
     Status                           : Enabled
 
-È possibile ottenere una descrizione dettagliata di tutti i parametri di hello eseguendo hello:
+È possibile ottenere descrizioni dettagliate di tutti i parametri eseguendo questo comando:
 
     get-help get-azurededicatedcircuit -detailed
 
-### <a name="step-5-send-hello-service-key-tooyour-connectivity-provider-for-provisioning"></a>Passaggio 5. Inviare i provider di connettività di hello servizio tooyour chiave per il provisioning
-*ServiceProviderProvisioningState* fornisce informazioni sullo stato corrente di hello di provisioning sul lato di provider di servizi di hello. *Stato* fornisce lo stato di hello in hello lato Microsoft. Per ulteriori informazioni sul provisioning stati circuito, vedere hello [flussi di lavoro](expressroute-workflows.md#expressroute-circuit-provisioning-states) articolo.
+### <a name="step-5-send-the-service-key-to-your-connectivity-provider-for-provisioning"></a>Passaggio 5. Inviare la chiave di servizio al provider di connettività per il provisioning
+*ServiceProviderProvisioningState* offre informazioni sullo stato di provisioning corrente sul lato provider del servizio. *Status* indica lo stato sul lato Microsoft. Per altre informazioni sullo stato di provisioning dei circuiti, vedere l'articolo relativo ai [flussi di lavoro](expressroute-workflows.md#expressroute-circuit-provisioning-states) .
 
-Quando si crea un nuovo circuito ExpressRoute, circuito hello sarà nel seguente stato hello:
+Quando si crea un nuovo circuito ExpressRoute, il circuito ha lo stato seguente:
 
     ServiceProviderProvisioningState : NotProvisioned
     Status                           : Enabled
 
 
-circuito Hello andrà toohello seguente lo stato quando il provider di connettività hello è in corso di hello di abilitarlo per l'utente:
+Il circuito passa allo stato seguente quando è in corso l'abilitazione da parte del provider di connettività:
 
     ServiceProviderProvisioningState : Provisioning
     Status                           : Enabled
 
-Un circuito ExpressRoute deve essere nel seguente stato si toobe in grado di toouse hello è:
+Un circuito ExpressRoute può essere usato solo se è impostato sullo stato seguente:
 
     ServiceProviderProvisioningState : Provisioned
     Status                           : Enabled
 
 
-### <a name="step-6-periodically-check-hello-status-and-hello-state-of-hello-circuit-key"></a>Passaggio 6. Controllare periodicamente hello stato della chiave circuito hello e hello
-In questo modo è possibile sapere quando il provider ha abilitato il circuito. Dopo aver configurato il circuito hello, *ServiceProviderProvisioningState* verrà visualizzato come *provisioning eseguito* come illustrato nell'esempio seguente hello:
+### <a name="step-6-periodically-check-the-status-and-the-state-of-the-circuit-key"></a>Passaggio 6. Controllare periodicamente lo stato e la condizione della chiave del circuito
+In questo modo è possibile sapere quando il provider ha abilitato il circuito. Dopo la configurazione del circuito, *ServiceProviderProvisioningState* verrà visualizzato come *Provisioning eseguito*, come illustrato nell'esempio seguente:
 
     Get-AzureDedicatedCircuit
 
@@ -179,18 +179,18 @@ In questo modo è possibile sapere quando il provider ha abilitato il circuito. 
     Status                           : Enabled
 
 ### <a name="step-7-create-your-routing-configuration"></a>Passaggio 7. Creare la configurazione di routing
-Fare riferimento toohello [configurazione del routing circuito ExpressRoute (creare e modificare il circuito peering)](expressroute-howto-routing-classic.md) per istruzioni dettagliate.
+Per istruzioni dettagliate, vedere l'articolo relativo alla [configurazione del routing per un circuito ExpressRoute (creazione e modifica del peering del circuito)](expressroute-howto-routing-classic.md) .
 
 > [!IMPORTANT]
-> Queste istruzioni si applicano solo toocircuits creati con i provider di servizi che offrono servizi di livello 2 di connettività. Se si usa un provider di servizi che offre servizi gestiti di livello 3 (di solito un IP VPN, come MPLS), il provider di connettività configurerà e gestirà il routing per conto dell'utente.
+> Queste istruzioni si applicano solo ai circuiti creati con provider di servizi che offrono servizi di connettività di livello 2. Se si usa un provider di servizi che offre servizi gestiti di livello 3 (di solito un IP VPN, come MPLS), il provider di connettività configurerà e gestirà il routing per conto dell'utente.
 > 
 > 
 
-### <a name="step-8-link-a-virtual-network-tooan-expressroute-circuit"></a>Passaggio 8. Collegare un circuito ExpressRoute di tooan rete virtuale
-Successivamente, collegare un circuito ExpressRoute di tooyour rete virtuale. Fare riferimento troppo[toovirtual reti i circuiti ExpressRoute collegamento](expressroute-howto-linkvnet-classic.md) per istruzioni dettagliate. Se è necessario toocreate una rete virtuale usando il modello di distribuzione classica hello per ExpressRoute, vedere [creare una rete virtuale per ExpressRoute](expressroute-howto-vnet-portal-classic.md).
+### <a name="step-8-link-a-virtual-network-to-an-expressroute-circuit"></a>Passaggio 8. Collegare una rete virtuale a un circuito ExpressRoute
+Collegare quindi una rete virtuale al circuito ExpressRoute. Per istruzioni dettagliate, vedere [Collegare una rete virtuale a un circuito ExpressRoute](expressroute-howto-linkvnet-classic.md) . Se è necessario creare una rete virtuale usando il modello di distribuzione classica per ExpressRoute, vedere l'articolo relativo alla [Creazione di una rete virtuale per ExpressRoute](expressroute-howto-vnet-portal-classic.md).
 
-## <a name="getting-hello-status-of-an-expressroute-circuit"></a>Ottenere lo stato di hello di un circuito ExpressRoute
-È possibile recuperare queste informazioni in qualsiasi momento utilizzando hello `Get-AzureCircuit` cmdlet. Effettuare hello chiamata senza parametri, vengono elencati tutti i circuiti hello.
+## <a name="getting-the-status-of-an-expressroute-circuit"></a>Ottenere lo stato di un circuito ExpressRoute
+È possibile recuperare queste informazioni in qualsiasi momento usando il cmdlet `Get-AzureCircuit` . Se si effettua la chiamata senza parametri, verranno elencati tutti i circuiti.
 
     Get-AzureDedicatedCircuit
 
@@ -212,7 +212,7 @@ Successivamente, collegare un circuito ExpressRoute di tooyour rete virtuale. Fa
     Sku                              : Standard
     Status                           : Enabled
 
-È possibile ottenere informazioni su un circuito ExpressRoute specifico passando la chiave di servizio hello come una chiamata di toohello parametro.
+È possibile ottenere informazioni su un circuito ExpressRoute specifico passando la chiave di servizio come parametro alla chiamata.
 
     Get-AzureDedicatedCircuit -ServiceKey "*********************************"
 
@@ -226,24 +226,24 @@ Successivamente, collegare un circuito ExpressRoute di tooyour rete virtuale. Fa
     Status                           : Enabled
 
 
-È possibile ottenere una descrizione dettagliata di tutti i parametri di hello eseguendo hello di esempio seguente:
+È possibile ottenere descrizioni dettagliate di tutti i parametri eseguendo, ad esempio, questo comando:
 
     get-help get-azurededicatedcircuit -detailed
 
 ## <a name="modifying-an-expressroute-circuit"></a>Modifica di un circuito ExpressRoute
 È possibile modificare determinate proprietà di un circuito ExpressRoute senza conseguenze per la connettività.
 
-È possibile eseguire hello seguenti senza tempi di inattività:
+È possibile eseguire le operazioni seguenti senza tempi di inattività:
 
 * Abilitare o disabilitare un componente aggiuntivo ExpressRoute Premium per il circuito ExpressRoute.
-* Aumento della larghezza di banda hello del circuito ExpressRoute fornito è la capacità disponibile sulla porta hello. Si noti che il downgrade della larghezza di banda hello di un circuito non è supportato. 
-* Modificare hello piano dati a consumo tooUnlimited dati di controllo. Si noti tale piano del controllo modifica hello da dati senza limiti tooMetered che dati non è supportata.
+* Aumentare la larghezza di banda del circuito ExpressRoute, a condizione che sulla porta sia disponibile capacità. Si noti che il downgrade della larghezza di banda di un circuito non è supportato. 
+* Modificare il piano di misurazione da Dati a consumo a Dati senza limiti. Si noti che la modifica del piano di misurazione da Dati senza limiti a Dati a consumo non è supportata.
 * È possibile abilitare e disabilitare l'opzione *Allow Classic Operations*(Consenti operazioni classiche).
 
-Fare riferimento toohello [domande frequenti su ExpressRoute](expressroute-faqs.md) per ulteriori informazioni su limiti e limitazioni.
+Per altre informazioni su limiti e limitazioni, vedere [Domande frequenti su ExpressRoute](expressroute-faqs.md) .
 
-### <a name="tooenable-hello-expressroute-premium-add-on"></a>componente aggiuntivo di tooenable hello ExpressRoute premium
-È possibile abilitare il componente aggiuntivo di hello ExpressRoute premium per il circuito esistente utilizzando hello seguente cmdlet di PowerShell:
+### <a name="to-enable-the-expressroute-premium-add-on"></a>Per abilitare il componente aggiuntivo ExpressRoute Premium
+È possibile abilitare il componente aggiuntivo ExpressRoute Premium per il circuito esistente usando il cmdlet di PowerShell seguente:
 
     Set-AzureDedicatedCircuitProperties -ServiceKey "*********************************" -Sku Premium
 
@@ -256,22 +256,22 @@ Fare riferimento toohello [domande frequenti su ExpressRoute](expressroute-faqs.
     Sku                              : Premium
     Status                           : Enabled
 
-Il circuito avranno ora le funzionalità dei componenti aggiuntivi di hello ExpressRoute premium abilitata. Si noti che si inizierà fatturazione è per la funzionalità di componente aggiuntivo di hello premium come comando hello è stata eseguita correttamente.
+Il circuito avrà le funzionalità del componente aggiuntivo ExpressRoute Premium abilitate. La fatturazione della funzionalità del componente aggiuntivo Premium inizierà non appena il comando verrà eseguito correttamente.
 
-### <a name="toodisable-hello-expressroute-premium-add-on"></a>componente aggiuntivo di toodisable hello ExpressRoute premium
+### <a name="to-disable-the-expressroute-premium-add-on"></a>Per disabilitare il componente aggiuntivo ExpressRoute Premium
 > [!IMPORTANT]
-> Questa operazione può non riuscire se si utilizza le risorse che sono maggiori di ciò che è consentito per il circuito standard hello.
+> Questa operazione può avere esito negativo se si usano più risorse di quelle consentite per il circuito standard.
 > 
 > 
 
 #### <a name="considerations"></a>Considerazioni
 
-* È necessario assicurarsi che il numero di hello del circuito toohello collegato reti virtuali è inferiore a 10 prima effettuare il downgrade da premium toostandard. Se non si esegue questa operazione, la richiesta di aggiornamento avrà esito negativo e sarà tariffe fatturati hello.
-* È necessario scollegare tutte le reti virtuali in altre aree geopolitiche. Se non si esegue questa operazione, la richiesta di aggiornamento avrà esito negativo e sarà tariffe fatturati hello.
-* La tabella di route deve includere meno di 4.000 route per il peering privato. Se le dimensioni di tabella di route sono maggiore di 4.000 route, sessione BGP hello verrà eliminato e non verrà riabilitata fino a quando il numero di hello di prefissi annunciati scende sotto 4.000.
+* È necessario assicurarsi che il numero di reti virtuali collegate al circuito sia minore di 10 prima di eseguire il downgrade da premium a standard. In caso contrario, la richiesta di aggiornamento avrà esito negativo e verranno fatturate le tariffe Premium.
+* È necessario scollegare tutte le reti virtuali in altre aree geopolitiche. In caso contrario, la richiesta di aggiornamento avrà esito negativo e verranno fatturate le tariffe Premium.
+* La tabella di route deve includere meno di 4.000 route per il peering privato. Se la tabella di route include più di 4000 route, la sessione BGP verrà eliminata e non sarà riabilitata finché il numero di prefissi pubblicati non scenderà al di sotto di 4000.
 
-#### <a name="disable-hello-premium-add-on"></a>Disabilitare il componente aggiuntivo di hello premium
-È possibile disabilitare il componente aggiuntivo di hello ExpressRoute premium per il circuito esistente utilizzando hello cmdlet di PowerShell seguente:
+#### <a name="disable-the-premium-add-on"></a>Disabilitare il componente aggiuntivo Premium
+È possibile disabilitare il componente aggiuntivo ExpressRoute Premium per il circuito esistente usando il cmdlet di PowerShell seguente:
 
     Set-AzureDedicatedCircuitProperties -ServiceKey "*********************************" -Sku Standard
 
@@ -286,19 +286,19 @@ Il circuito avranno ora le funzionalità dei componenti aggiuntivi di hello Expr
 
 
 
-### <a name="tooupdate-hello-expressroute-circuit-bandwidth"></a>larghezza di banda circuito ExpressRoute hello tooupdate
-Controllare hello [domande frequenti su ExpressRoute](expressroute-faqs.md) per le opzioni della larghezza di banda per il provider è supportato. È possibile scegliere qualsiasi dimensione è maggiore della dimensione hello del circuito esistente, purché (in cui viene creato il circuito) la porta fisica hello consente.
+### <a name="to-update-the-expressroute-circuit-bandwidth"></a>Per aggiornare la larghezza di banda del circuito ExpressRoute
+Per le opzioni relative alla larghezza di banda supportate per il provider, vedere [Domande frequenti su ExpressRoute](expressroute-faqs.md) . È possibile scegliere qualsiasi dimensione maggiore della dimensione del circuito esistente, a condizione che sia consentita dalla porta fisica in cui viene creato il circuito.
 
 > [!IMPORTANT]
-> Potrebbe essere circuito ExpressRoute di hello toorecreate se ha capacità insufficiente sulla porta esistente hello. Se non è presente capacità aggiuntive disponibili in tale posizione non è possibile aggiornare il circuito hello.
+> Se la capacità sulla porta esistente non è sufficiente, potrebbe essere necessario ricreare il circuito ExpressRoute. Il circuito non può essere aggiornato se in tale posizione non è disponibile capacità aggiuntiva.
 >
-> È possibile ridurre la larghezza di banda hello di un circuito ExpressRoute senza interruzioni. Il downgrade della larghezza di banda è necessario il circuito ExpressRoute toodeprovision hello e quindi ripetere il provisioning di un nuovo circuito ExpressRoute.
+> Non è possibile ridurre la larghezza di banda di un circuito ExpressRoute senza interruzioni. Il downgrade della larghezza di banda richiede il deprovisioning del circuito ExpressRoute e quindi il provisioning di un nuovo circuito ExpressRoute.
 > 
 > 
 
 #### <a name="resize-a-circuit"></a>Ridimensionare un circuito
 
-Dopo aver stabilito quali dimensioni, è necessario, è possibile utilizzare il circuito hello tooresize di comando seguente:
+Dopo aver stabilito le dimensioni necessarie, usare il comando seguente per ridimensionare il circuito:
 
     Set-AzureDedicatedCircuitProperties -ServiceKey ********************************* -Bandwidth 1000
 
@@ -311,11 +311,11 @@ Dopo aver stabilito quali dimensioni, è necessario, è possibile utilizzare il 
     Sku                              : Standard
     Status                           : Enabled
 
-Il circuito verrà sono stato ridimensionato sul lato Microsoft hello. È necessario contattare le configurazioni di tooupdate provider di connettività nella loro toomatch lato questa modifica. Si noti che si inizierà di fatturazione per hello aggiornato opzione larghezza di banda da questo punto.
+Il circuito verrà ridimensionato sul lato di Microsoft. È necessario contattare il provider di connettività per aggiornare le configurazioni corrispondenti in base a questa modifica. Si noti che inizierà la fatturazione per la larghezza di banda aggiornata da questo punto in poi.
 
-Se viene visualizzato il seguente errore durante l'aumento della larghezza di banda circuito hello hello, significa non esiste alcuna larghezza di banda sufficiente a sinistra sulla porta di hello fisico in cui è stato creato il circuito esistente. Si crea un nuovo circuito delle dimensioni di hello che è necessario includere toodelete questo circuito. 
+Se quando si aumenta la larghezza di banda del circuito viene visualizzato l'errore seguente, significa che la larghezza di banda rimasta nella porta fisica in cui è stato creato il circuito esistente non è sufficiente. È necessario eliminare questo circuito e crearne uno nuovo delle dimensioni necessarie. 
 
-    Set-AzureDedicatedCircuitProperties : InvalidOperation : Insufficient bandwidth available tooperform this circuit
+    Set-AzureDedicatedCircuitProperties : InvalidOperation : Insufficient bandwidth available to perform this circuit
     update operation
     At line:1 char:1
     + Set-AzureDedicatedCircuitProperties -ServiceKey ********************* ...
@@ -328,21 +328,21 @@ Se viene visualizzato il seguente errore durante l'aumento della larghezza di ba
 
 ### <a name="considerations"></a>Considerazioni
 
-* È necessario scollegare tutte le reti virtuali da hello circuito ExpressRoute per toosucceed questa operazione. Controllare toosee se si dispone di alcuna rete virtuale che sono collegati circuito toohello se questa operazione ha esito negativo.
-* Se il provider del servizio di circuito ExpressRoute di hello lo stato di provisioning **Provisioning** o **provisioning eseguito** è necessario collaborare con il circuito di hello toodeprovision provider del servizio sul relativo lato. Si continuerà tooreserve risorse e a pagamento fino a quando il provider di servizi di hello completa deprovisioning circuito hello e invia una notifica di Microsoft.
-* Se il provider di servizi di hello è deprovisioning circuito hello (provider di servizi di hello lo stato di provisioning è stato impostato troppo**non è stato eseguito il provisioning**) è possibile eliminare il circuito hello. Questa operazione arresterà la fatturazione per il circuito hello.
+* Affinché l'operazione abbia esito positivo, è necessario scollegare tutte le reti virtuali dal circuito ExpressRoute. Se l'operazione ha esito negativo, controllare se sono presenti reti virtuali collegate al circuito.
+* Se lo stato di provisioning del provider del servizio del circuito ExpressRoute è **Provisioning in corso** o **Provisioning eseguito**, è necessario collaborare con il provider di servizi per eseguire il deprovisioning del circuito sul lato del provider. Le risorse continueranno a essere riservate e la fatturazione continuerà a essere applicata finché il provider di servizi non avrà completato il deprovisioning del circuito e inviato una notifica a Microsoft.
+* Se il provider di servizi ha eseguito il deprovisioning del circuito, ovvero lo stato di provisioning del provider di servizi è impostato su **Senza provisioning**, è possibile eliminare il circuito. Non verrà più applicata la fatturazione corrispondente.
 
 #### <a name="delete-a-circuit"></a>Eliminare un circuito
 
-È possibile eliminare il circuito ExpressRoute eseguendo hello comando seguente:
+È possibile eliminare un circuito ExpressRoute eseguendo questo comando:
 
     Remove-AzureDedicatedCircuit -ServiceKey "*********************************"
 
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Dopo aver creato il circuito, verificare che hello seguenti:
+Dopo aver creato il circuito, verificare di eseguire le operazioni seguenti:
 
 * [Creare e modificare il routing per un circuito ExpressRoute](expressroute-howto-routing-classic.md)
-* [Collegamento del circuito ExpressRoute di tooyour di rete virtuale](expressroute-howto-linkvnet-classic.md)
+* [Collegare la rete virtuale al circuito ExpressRoute](expressroute-howto-linkvnet-classic.md)
 

@@ -1,6 +1,6 @@
 ---
-title: una macchina virtuale di Linux in Azure da codice non aaaConvert dischi toomanaged dischi - Azure gestito | Documenti Microsoft
-description: Come tooconvert una VM Linux di dischi non gestito toomanaged dischi tramite Azure CLI 2.0 nel modello di distribuzione di gestione risorse di hello
+title: Convertire una macchina virtuale Linux in Azure da dischi non gestiti a dischi gestiti - Azure Managed Disks | Microsoft Docs
+description: Come convertire una macchina virtuale Linux da dischi non gestiti a dischi gestiti usando l'interfaccia della riga di comando di Azure 2.0 nel modello di distribuzione Resource Manager
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -15,17 +15,17 @@ ms.devlang: azurecli
 ms.topic: article
 ms.date: 06/23/2017
 ms.author: iainfou
-ms.openlocfilehash: 1b94da11deab46f344e28ab4491cf220506b6347
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 94f8e3330fb2d6547811315fcfdb8ced338e0247
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="convert-a-linux-virtual-machine-from-unmanaged-disks-toomanaged-disks"></a>Convertire una macchina virtuale Linux da dischi toomanaged dischi non gestito
+# <a name="convert-a-linux-virtual-machine-from-unmanaged-disks-to-managed-disks"></a>Convertire una macchina virtuale Linux da dischi non gestiti a dischi gestiti
 
-Se si dispone di macchine virtuali Linux esistenti (VM) che usano dischi non gestiti, è possibile convertire hello macchine virtuali gestite toouse dischi tramite hello [dischi gestiti di Azure](../windows/managed-disks-overview.md) servizio. Questo processo converte disco hello del sistema operativo sia eventuali dischi dati collegati.
+Se sono presenti macchine virtuali Linux che usano dischi non gestiti, è possibile convertire le macchine virtuali in modo che usino dischi gestiti mediante il servizio [Azure Managed Disks](../windows/managed-disks-overview.md). Questo processo consente di convertire sia il disco del sistema operativo che eventuali dischi dati collegati.
 
-Questo articolo illustra come tooconvert macchine virtuali tramite hello CLI di Azure. Se è necessario tooinstall o eseguirne l'aggiornamento, vedere [installare Azure CLI 2.0](/cli/azure/install-azure-cli). 
+Questo articolo illustra come convertire le macchine virtuali usando l'interfaccia della riga di comando di Azure. Se è necessario installarla o aggiornarla, vedere [Installare l'interfaccia della riga di comando di Azure 2.0](/cli/azure/install-azure-cli). 
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
@@ -33,21 +33,21 @@ Questo articolo illustra come tooconvert macchine virtuali tramite hello CLI di 
 
 
 ## <a name="convert-single-instance-vms"></a>Convertire VM a istanza singola
-Questa sezione vengono trattati come tooconvert a istanza singola macchine virtuali di Azure da codice non dischi toomanaged dischi. (Se le macchine virtuali si trovano in un set di disponibilità, vedere la sezione successiva di hello). È possibile utilizzare questo toostandard gestiti dischi dischi di macchine virtuali da dischi di toopremium gestiti i dischi premium (SSD) non gestita o da standard (HDD) non gestite di processo tooconvert hello.
+Questa sezione descrive come convertire i dischi delle macchine virtuali di Azure a istanza singola da non gestiti a gestiti. Se le macchine virtuali si trovano in un set di disponibilità, vedere la sezione successiva. È possibile usare questo processo per convertire le macchine virtuali da dischi non gestiti Premium (SDD) a dischi gestiti Premium o da dischi non gestiti standard (HDD) a dischi gestiti standard.
 
-1. Deallocare hello VM utilizzando [az vm deallocare](/cli/azure/vm#deallocate). esempio Hello dealloca hello macchina virtuale denominata `myVM` nel gruppo di risorse hello denominato `myResourceGroup`:
+1. Deallocare la macchina virtuale con il comando [az vm deallocate](/cli/azure/vm#deallocate). L'esempio seguente dealloca la macchina virtuale denominata `myVM` nel gruppo di risorse `myResourceGroup`:
 
     ```azurecli
     az vm deallocate --resource-group myResourceGroup --name myVM
     ```
 
-2. Convertire i dischi di hello VM toomanaged utilizzando [az vm convertire](/cli/azure/vm#convert). Hello seguente converte processo hello macchina virtuale denominata `myVM`, tra cui disco hello del sistema operativo e qualsiasi disco dati:
+2. Convertire la macchina virtuale per l'utilizzo di dischi gestiti con il comando [az vm convert](/cli/azure/vm#convert). Il processo seguente converte la macchina virtuale denominata `myVM`, incluso il disco del sistema operativo ed eventuali dischi dati:
 
     ```azurecli
     az vm convert --resource-group myResourceGroup --name myVM
     ```
 
-3. Avviare hello VM dopo i dischi di hello conversione toomanaged utilizzando [inizio vm az](/cli/azure/vm#start). Dopo l'avvio di esempio Hello hello macchina virtuale denominata `myVM` nel gruppo di risorse hello denominato `myResourceGroup`.
+3. Avviare la macchina virtuale dopo la conversione in dischi gestiti con il comando [az vm start](/cli/azure/vm#start). L'esempio seguente avvia la macchina virtuale denominata `myVM` nel gruppo di risorse `myResourceGroup`.
 
     ```azurecli
     az vm start --resource-group myResourceGroup --name myVM
@@ -55,11 +55,11 @@ Questa sezione vengono trattati come tooconvert a istanza singola macchine virtu
 
 ## <a name="convert-vms-in-an-availability-set"></a>Convertire VM in un set di disponibilità
 
-Se le macchine virtuali hello che si desidera tooconvert toomanaged dischi sono in un set di disponibilità, è necessario innanzitutto tooconvert hello disponibilità set tooa gestito set di disponibilità.
+Se le macchine virtuali che si desidera convertire in dischi gestiti si trovano in un set di disponibilità, è innanzitutto necessario convertire il set di disponibilità in un set di disponibilità gestito.
 
-Tutte le macchine virtuali nel set di disponibilità hello devono essere deallocate prima di convertire il set di disponibilità hello. Piano tooconvert tutti i dischi di macchine virtuali toomanaged dopo la disponibilità di hello impostare autonomamente è stato convertito tooa gestito set di disponibilità. Quindi, avviare tutte le macchine virtuali hello e continuare a funzionare come di consueto.
+Tutte le macchine virtuali nel set di disponibilità devono essere deallocate prima di convertire il set di disponibilità. Pianificare la conversione di tutte le macchine virtuali per l'utilizzo di dischi gestiti dopo la conversione del set di disponibilità stesso in un set gestito. Avviare quindi tutte le macchine virtuali e continuare a usarle normalmente.
 
-1. Elencare tutte le macchine virtuali in un set di disponibilità con il comando [az vm availability-set list](/cli/azure/vm/availability-set#list). Hello esempio seguente vengono elencate tutte le macchine virtuali in disponibilità hello set denominata `myAvailabilitySet` nel gruppo di risorse hello denominato `myResourceGroup`:
+1. Elencare tutte le macchine virtuali in un set di disponibilità con il comando [az vm availability-set list](/cli/azure/vm/availability-set#list). L'esempio seguente elenca tutte le macchine virtuali nel set di disponibilità denominato `myAvailabilitySet` nel gruppo di risorse `myResourceGroup`:
 
     ```azurecli
     az vm availability-set show \
@@ -69,13 +69,13 @@ Tutte le macchine virtuali nel set di disponibilità hello devono essere dealloc
         --output table
     ```
 
-2. Deallocare tutte le macchine virtuali hello utilizzando [az vm deallocare](/cli/azure/vm#deallocate). esempio Hello dealloca hello macchina virtuale denominata `myVM` nel gruppo di risorse hello denominato `myResourceGroup`:
+2. Deallocare tutte le macchine virtuali con il comando [az vm deallocate](/cli/azure/vm#deallocate). L'esempio seguente dealloca la macchina virtuale denominata `myVM` nel gruppo di risorse `myResourceGroup`:
 
     ```azurecli
     az vm deallocate --resource-group myResourceGroup --name myVM
     ```
 
-3. Convertire disponibilità hello impostare utilizzando [convert di set di disponibilità vm az](/cli/azure/vm/availability-set#convert). esempio Hello converte disponibilità hello set denominata `myAvailabilitySet` nel gruppo di risorse hello denominato `myResourceGroup`:
+3. Convertire il set di disponibilità con il comando [az vm availability-set convert](/cli/azure/vm/availability-set#convert). L'esempio seguente converte il set di disponibilità denominato `myAvailabilitySet` nel gruppo di risorse `myResourceGroup`:
 
     ```azurecli
     az vm availability-set convert \
@@ -83,13 +83,13 @@ Tutte le macchine virtuali nel set di disponibilità hello devono essere dealloc
         --name myAvailabilitySet
     ```
 
-4. Convertire tutti i dischi di toomanaged hello macchine virtuali tramite [az vm convertire](/cli/azure/vm#convert). Hello seguente converte processo hello macchina virtuale denominata `myVM`, tra cui disco hello del sistema operativo e qualsiasi disco dati:
+4. Convertire tutte le macchine virtuali per l'utilizzo di dischi gestiti con il comando [az vm convert](/cli/azure/vm#convert). Il processo seguente converte la macchina virtuale denominata `myVM`, incluso il disco del sistema operativo ed eventuali dischi dati:
 
     ```azurecli
     az vm convert --resource-group myResourceGroup --name myVM
     ```
 
-5. Avviare tutte le macchine virtuali hello dopo i dischi di hello conversione toomanaged utilizzando [inizio vm az](/cli/azure/vm#start). Dopo l'avvio di esempio Hello hello macchina virtuale denominata `myVM` nel gruppo di risorse hello denominato `myResourceGroup`:
+5. Avviare tutte le macchine virtuali dopo la conversione in dischi gestiti con il comando [az vm start](/cli/azure/vm#start). Nell'esempio seguente viene avviata la macchina virtuale denominata `myVM` nel gruppo di risorse `myResourceGroup`:
 
     ```azurecli
     az vm start --resource-group myResourceGroup --name myVM

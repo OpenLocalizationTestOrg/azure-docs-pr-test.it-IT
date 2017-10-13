@@ -1,6 +1,6 @@
 ---
-title: aaaUse Tez UI con HDInsight - basati su Windows Azure | Documenti Microsoft
-description: Informazioni su come i processi di hello toouse UI Tez toodebug Tez in HDInsight di HDInsight basati su Windows.
+title: Usare l'interfaccia utente di Tez con HDInsight basato su Windows - Azure | Microsoft Docs
+description: Informazioni su come usare l'interfaccia utente di Tez per il debug di processi Tez in HDInsight basato su Windows.
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -15,130 +15,130 @@ ms.workload: big-data
 ms.date: 01/17/2017
 ms.author: larryfr
 ROBOTS: NOINDEX
-ms.openlocfilehash: 7ae21242ee1f8dc34a8501bed1ca995480885540
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3889fa1c3523eb0330cbe3b7640fd8590a5ceadf
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="use-hello-tez-ui-toodebug-tez-jobs-on-windows-based-hdinsight"></a>Utilizzare i processi di UI Tez toodebug Tez hello in HDInsight basati su Windows
-Hello UI Tez è una pagina web che possono essere utilizzati i processi toounderstand e debug che utilizzano Tez come motore di esecuzione hello nei cluster HDInsight basati su Windows. Hello Tez UI consente processo hello toovisualize come un grafico degli elementi connessi, analizza ogni elemento e recuperare le statistiche e informazioni di registrazione.
+# <a name="use-the-tez-ui-to-debug-tez-jobs-on-windows-based-hdinsight"></a>Usare l'interfaccia utente di Tez per il debug di processi Tez in HDInsight basato su Windows
+L'interfaccia utente di Tez è una pagina Web che può essere usata per la comprensione e il debug di processi che usano Tez come motore di esecuzione nei cluster HDInsight basati su Windows. L'interfaccia utente di Tez consente di visualizzare il processo come grafico di elementi connessi, esaminare ogni elemento e recuperare statistiche e informazioni sulla registrazione.
 
 > [!IMPORTANT]
-> passaggi di Hello in questo documento richiedono un cluster HDInsight che utilizza Windows. Linux è hello solo sistema operativo utilizzato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> I passaggi descritti in questo documento richiedono un cluster HDInsight che usa Windows. Linux è l'unico sistema operativo usato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 ## <a name="prerequisites"></a>Prerequisiti
 * Un cluster HDInsight basato su Windows. Per la procedura di creazione di un nuovo cluster, vedere [Introduzione all'uso di HDInsight basato su Windows](hdinsight-hadoop-tutorial-get-started-windows.md).
 
   > [!IMPORTANT]
-  > Hello UI Tez è disponibile solo in cluster HDInsight basati su Windows creati dopo l'8 febbraio 2016.
+  > L'interfaccia utente di Tez è disponibile solo nei cluster HDInsight basati su Windows creati dopo l'8 febbraio 2016.
   >
   >
 * Un client Desktop remoto basato su Windows.
 
 ## <a name="understanding-tez"></a>Informazioni su Tez
-Tez è un framework estendibile per l'elaborazione dati in Hadoop, che garantisce una maggiore velocità rispetto alla tradizionale elaborazione di MapReduce. Per i cluster HDInsight basati su Windows, è un motore facoltativo che è possibile abilitare per l'Hive usando hello comando seguente come parte della query Hive:
+Tez è un framework estendibile per l'elaborazione dati in Hadoop, che garantisce una maggiore velocità rispetto alla tradizionale elaborazione di MapReduce. Per i cluster HDInsight basati su Windows, è un motore facoltativo che è possibile abilitare per Hive usando il comando seguente come parte della query Hive:
 
     set hive.execution.engine=tez;
 
-Quando il lavoro viene inviato tooTez, viene creato un indirizzate aciclico Graph (DAG) che descrive l'ordine di hello di esecuzione delle azioni hello richiesto dal processo hello. Singole azioni vengono chiamate i vertici ed eseguire una parte di hello processo globale. l'esecuzione effettiva Hello del lavoro hello descritto da un vertice viene chiamata un'attività e può essere distribuita in più nodi nel cluster hello.
+Quando riceve il lavoro, Tez crea un grafo aciclico diretto (DAG) che descrive l'ordine di esecuzione delle azioni necessarie per il processo. Le singole azioni sono chiamate vertici ed eseguono una parte dell'intero processo. L'esecuzione vera e propria del lavoro descritta da un vertice è chiamata attività e può essere distribuita in più nodi nel cluster.
 
-### <a name="understanding-hello-tez-ui"></a>Hello comprensione Tez UI
-Hello UI Tez è una pagina web che fornisce informazioni sui processi in esecuzione o che hanno in precedenza è stata eseguita con Tez. Consente di hello tooview DAG generati da Tez, come viene distribuito tra i cluster, i contatori, ad esempio la memoria utilizzata da attività e i vertici e informazioni sull'errore. Può offrire informazioni utili in hello seguenti scenari:
+### <a name="understanding-the-tez-ui"></a>Informazioni sull'interfaccia utente di Tez
+L'interfaccia utente di Tez è una pagina Web che fornisce informazioni sui processi in esecuzione o eseguiti in precedenza usando Tez. Consente di visualizzare il DAG generato da Tez, come è distribuito nei cluster, i contatori, ad esempio la memoria usata dalle attività e dai vertici, e le informazioni sugli errori. Può offrire informazioni utili negli scenari seguenti:
 
-* Monitoraggio dei processi con esecuzione prolungata, visualizzazione hello lo stato di avanzamento della mappa e ridurre le attività.
-* Analisi dei dati cronologici per i processi di esito positivo o negativo toolearn come l'elaborazione potrebbe essere migliorata o perché non è riuscito.
+* Monitoraggio di processi con esecuzione prolungata, visualizzazione dello stato delle attività di mapping e riduzione.
+* Analisi dei dati cronologici per i processi riusciti o non riusciti per capire come migliorare l'elaborazione o perché non è riuscita.
 
 ## <a name="generate-a-dag"></a>Generare un DAG
-Hello Tez UI conterrà dati solo se un processo che utilizza hello Tez motore è attualmente in esecuzione o è stato eseguito in hello precedente. Le query Hive semplici in genere possono essere risolte senza usare Tez, ma quelle più complesse che eseguono operazioni di filtro, raggruppamento, ordinamento, join e così via di solito richiedono Tez.
+L'interfaccia utente di Tez conterrà dati solo se un processo che usa il motore Tez è attualmente in esecuzione è o stato eseguito in passato. Le query Hive semplici in genere possono essere risolte senza usare Tez, ma quelle più complesse che eseguono operazioni di filtro, raggruppamento, ordinamento, join e così via di solito richiedono Tez.
 
-Utilizzare hello seguendo i passaggi toorun una query Hive che verrà eseguito utilizzando Tez.
+Usare la procedura seguente per eseguire una query Hive che verrà eseguita con Tez.
 
-1. In un web browser, passare toohttps://CLUSTERNAME.azurehdinsight.net, in cui **CLUSTERNAME** hello nome del cluster HDInsight.
-2. Scegliere dal menu a hello nella parte superiore di hello della pagina hello hello **Editor Hive**. Verrà visualizzata una pagina con hello seguenti query di esempio.
+1. In un Web browser passare a https://NOMECLUSTER.azurehdinsight.net, dove **NOMECLUSTER** è il nome del cluster HDInsight.
+2. Nel menu nella parte superiore della pagina selezionare **Editor Hive**. Verrà visualizzata una pagina con la query di esempio seguente.
 
         Select * from hivesampletable
 
-    Cancellare la query di esempio hello e sostituirlo con il seguente hello.
+    Cancellare la query di esempio e sostituirla con la seguente.
 
         set hive.execution.engine=tez;
         select market, state, country from hivesampletable where deviceplatform='Android' group by market, country, state;
-3. Seleziona hello **Invia** pulsante. Hello **sessione del processo** sezione hello parte inferiore della pagina hello verrà visualizzato lo stato di hello di query hello. Una volta hello troppo modifiche allo stato**completato**selezionare hello **Visualizza dettagli** collegare tooview hello risultati. Hello **Output processo** dovrebbe essere simile toohello seguenti:
+3. Selezionare il pulsante **Invia**. La sezione **Sessione processo** nella parte inferiore della pagina visualizzerà lo stato della query. Quando lo stato diventa **Operazione completata**, selezionare il collegamento **Visualizza dettagli** per visualizzare i risultati. L'**output del processo** dovrebbe essere simile al seguente:
 
         en-GB   Hessen      Germany
         en-GB   Kingston    Jamaica
         en-GB   Nairobi Area    Kenya
 
-## <a name="use-hello-tez-ui"></a>Utilizzare hello Tez UI
+## <a name="use-the-tez-ui"></a>Usare l'interfaccia utente di Tez
 > [!NOTE]
-> Hello UI Tez è disponibile solo da desktop hello hello head dei nodi del cluster, è necessario utilizzare i nodi head toohello tooconnect del Desktop remoto.
+> Poiché l'interfaccia utente di Tez è disponibile solo nel desktop dei nodi head del cluster, è necessario usare Desktop remoto per connettersi ai nodi head.
 >
 >
 
-1. Da hello [portale di Azure](https://portal.azure.com), selezionare il cluster HDInsight. Selezionare hello hello superiore del Pannello di HDInsight hello **Desktop remoto** icona. Verrà visualizzata blade desktop remoto hello
+1. Nel [portale di Azure](https://portal.azure.com)selezionare il cluster HDInsight. Nella parte superiore del pannello HDInsight selezionare l'icona **Desktop remoto**. Verrà visualizzato il pannello Desktop remoto.
 
     ![Icona Desktop remoto](./media/hdinsight-debug-tez-ui/remotedesktopicon.png)
-2. Dal Pannello di hello Desktop remoto, selezionare **Connetti** nodo head del cluster toohello tooconnect. Quando richiesto, utilizzare hello cluster utente nome e la password tooauthenticate hello connessione di Desktop remoto.
+2. Nel pannello Desktop remoto selezionare **Connetti** per connettersi al nodo head del cluster. Quando richiesto, usare il nome utente e la password di Desktop remoto per autenticare la connessione.
 
     ![Icona Connetti di Desktop remoto](./media/hdinsight-debug-tez-ui/remotedesktopconnect.png)
 
    > [!NOTE]
-   > Se non è stato abilitato connessione Desktop remoto, fornire un nome utente, password e la data di scadenza, quindi selezionare **abilitare** tooenable Desktop remoto. Una volta è stata abilitata, è possibile utilizzare hello precedenti passaggi tooconnect.
+   > Se la connettività Desktop remoto non è stata abilitata, specificare nome utente, password e data di scadenza e quindi selezionare **Abilita** per abilitare Desktop remoto. Una volta abilitata, seguire i passaggi precedenti per connettersi.
    >
    >
-3. Una volta connessi, aprire Internet Explorer sul desktop remoto di hello, icona dell'ingranaggio hello selezionare nella parte superiore di hello destra del browser hello e quindi selezionare **impostazioni visualizzazione compatibilità**.
-4. Dalla parte inferiore di hello del **impostazioni visualizzazione compatibilità**, deselezionare la casella di controllo hello per **visualizzare i siti intranet in vista di compatibilità** e **gli elenchi di compatibilità di utilizzare Microsoft**, e quindi selezionare **Chiudi**.
-5. In Internet Explorer passare toohttp://headnodehost:8188/tezui / #/. Verrà visualizzata hello Tez UI
+3. Dopo aver stabilito la connessione, aprire Internet Explorer sul desktop remoto, selezionare l'icona a forma di ingranaggio in alto a destra nel browser e quindi selezionare **Impostazioni Visualizzazione Compatibilità**.
+4. Nella parte inferiore di **Impostazioni Visualizzazione Compatibilità** deselezionare le caselle di controllo **Visualizza siti Intranet in Visualizzazione Compatibilità** e **Usa elenchi di compatibilità Microsoft** e quindi selezionare **Chiudi**.
+5. In Internet Explorer passare a http://headnodehost:8188/tezui/#/. Verrà visualizzata l'interfaccia utente di Tez.
 
     ![Interfaccia utente di Tez](./media/hdinsight-debug-tez-ui/tezui.png)
 
-    Quando viene caricato hello Tez UI, verrà visualizzato un elenco di DAG attualmente in esecuzione o sono stati eseguiti nel cluster hello. visualizzazione predefinita Hello include hello Dag Name, Id, autore, stato, ora di inizio, ora di fine, durata, ID dell'applicazione e coda. È possibile aggiungere più colonne utilizzando l'icona dell'ingranaggio hello in hello destra della pagina hello.
+    Quando l'interfaccia utente di Tez viene caricata, verrà visualizzato un elenco di DAG che sono attualmente in esecuzione o che sono stati eseguiti nel cluster. La visualizzazione predefinita include il nome DAG, l'ID, la persona che invia la richiesta, lo stato, l'ora di inizio, l'ora di fine, la durata, l'ID applicazione e la coda. È possibile aggiungere altre colonne usando l'icona a forma di ingranaggio a destra nella pagina.
 
-    Se si dispone di una sola voce, sia per le query hello che è stato eseguito nella sezione precedente hello. Se si dispone di più voci, è possibile eseguire la ricerca specificando i criteri di ricerca nei campi hello sopra hello DAG, quindi premere **invio**.
-6. Seleziona hello **Dag Name** per hello la voce più recente DAG. Verrà visualizzato informazioni hello DAG, nonché toodownload opzione hello un file zip dei file JSON che contengono informazioni hello DAG.
+    Se è presente una sola voce, sarà quella relativa alla query eseguita nella sezione precedente. Se sono presenti più voci, è possibile eseguire una ricerca immettendo i criteri di ricerca nei campi sopra i DAG e quindi premendo **INVIO**.
+6. In **Dag Name** (Nome DAG) selezionare la voce DAG più recente. Verranno visualizzate le informazioni sul DAG, oltre all'opzione per scaricare uno zip di file JSON contenenti informazioni sul DAG.
 
     ![DAG Details](./media/hdinsight-debug-tez-ui/dagdetails.png)
-7. Sopra hello **dettagli DAG** sono numerosi collegamenti che possono essere utilizzati toodisplay informazioni hello DAG.
+7. Sopra **DAG Details** (Dettagli DAG) sono presenti diversi collegamenti che possono essere usati per visualizzare informazioni sul DAG.
 
    * **DAG Counters** (Contatori DAG) visualizza informazioni sui contatori per il DAG.
    * **Graphical View** (Visualizzazione grafica) visualizza una rappresentazione grafica del DAG.
-   * **Tutti i vertici** Visualizza un elenco di vertici hello in questo DAG.
-   * **Tutte le attività** Visualizza un elenco di attività hello per tutti i vertici in questo DAG.
-   * **Tutti TaskAttempts** Visualizza informazioni su hello tenta toorun attività per questa DAG.
+   * **All Vertices** (Tutti i vertici) visualizza un elenco dei vertici nel DAG.
+   * **All Tasks** (Tutte le attività) visualizza un elenco delle attività per tutti i vertici nel DAG.
+   * **All TaskAttempts** (Tutti i tentativi di attività) visualizza informazioni sui tentativi di eseguire attività per il DAG.
 
      > [!NOTE]
-     > Se si scorre una visualizzazione della colonna hello per vertici, attività e TaskAttempts, si noti che sono presenti collegamenti tooview **contatori** e **consente di visualizzare o scaricare i log** per ogni riga.
+     > Scorrendo la visualizzazione colonne per vertici, attività e tentativi di attività, si noti che sono presenti collegamenti per visualizzare i **contatori** e per **visualizzare o scaricare i log** per ogni riga.
      >
      >
 
-     Se si è verificato un errore con il processo di hello, hello DAG dettagli verrà visualizzato lo stato non riuscito, insieme ai collegamenti tooinformation sull'operazione non riuscita di hello. Informazioni di diagnostica verranno visualizzate sotto i dettagli di hello DAG.
-8. Selezionare **Graphical View** (Visualizzazione grafica). Verrà visualizzata una rappresentazione grafica di hello DAG. È possibile posizionare il mouse hello sopra ogni vertice in hello vista toodisplay le informazioni.
+     Se si è verificato un errore nel processo, in DAG Details sarà visualizzato lo stato FAILED, con i collegamenti alle informazioni sull'attività non riuscita. Le informazioni di diagnostica verranno visualizzate sotto i dettagli DAG.
+8. Selezionare **Graphical View** (Visualizzazione grafica). Viene visualizzata una rappresentazione grafica del DAG. È possibile posizionare il mouse su ogni vertice nella visualizzazione per accedere alle relative informazioni.
 
     ![Graphical View](./media/hdinsight-debug-tez-ui/dagdiagram.png)
-9. Facendo clic su un vertice caricherà hello **dettagli del Vertex** per quell'elemento. Fare clic su hello **1 mappa** dettagli del vertex toodisplay per questo elemento. Selezionare **conferma** navigazione hello tooconfirm.
+9. Facendo clic su un vertice, verranno caricati i dati di **Vertex Details** (Dettagli vertice) per tale elemento. Fare clic sul vertice **Map 1** (Mappa 1) per visualizzare i dettagli per questo elemento. Selezionare **Confirm** (Conferma) per confermare lo spostamento.
 
     ![Vertex Details](./media/hdinsight-debug-tez-ui/vertexdetails.png)
-10. Si noti che è ora possibile i collegamenti nella parte superiore di hello della pagina hello toovertices correlate e attività.
+10. Si noti che ora nella parte superiore della pagina sono presenti i collegamenti relativi ai vertici e alle attività.
 
     > [!NOTE]
-    > Può arrivare in questa pagina inoltre tornando troppo**DAG dettagli**, se si seleziona **dettagli del Vertex**e quindi selezionando hello **1 mappa** vertice.
+    > È possibile accedere a questa pagina anche tornando a **DAG Details** (Dettagli DAG) e selezionando **Vertex Details** (Dettagli vertice) e quindi il vertice **Map 1** (Mappa 1).
     >
     >
 
     * **Vertex Counters** (Contatori vertice) visualizza informazioni sui contatori per il vertice.
     * **Tasks** (Attività) visualizza le attività per il vertice.
-    * **Attività tentativi** consente di visualizzare informazioni sulle attività di toorun tentativi per questo vertice.
+    * **Task Attempts** (Tentativi attività) visualizza informazioni sui tentativi di eseguire attività per il vertice.
     * **Sources &amp; Sinks** (Origini e sink) visualizza le origini dati e i sink per il vertice.
 
       > [!NOTE]
-      > Come con menu precedente hello, è possibile scorrere visualizzazione della colonna hello per le attività, i tentativi di attività e origini & Sinks__ toodisplay collega toomore informazioni per ogni elemento.
+      > Come per il menu precedente, è possibile scorrere la visualizzazione colonne per Tasks, Task Attempts e Sources & Sinks per visualizzare i collegamenti ad altre informazioni per ogni elemento.
       >
       >
-11. Selezionare **attività**, e quindi selezionare hello elemento **00_000000**. Verranno visualizzati i dati di **Task Details** (Dettagli attività) per questa attività. Da questa schermata è possibile visualizzare **Task Counters** (Contatori attività) e **Task Attempts** (Tentativi attività).
+11. Selezionare **Tasks** (Attività) e quindi l'elemento denominato **00_000000**. Verranno visualizzati i dati di **Task Details** (Dettagli attività) per questa attività. Da questa schermata è possibile visualizzare **Task Counters** (Contatori attività) e **Task Attempts** (Tentativi attività).
 
     ![Dettagli dell'attività](./media/hdinsight-debug-tez-ui/taskdetails.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
-Ora che si è appreso come hello toouse Tez Visualizza, altre informazioni, vedere [utilizzando Hive in HDInsight](hdinsight-use-hive.md).
+A questo punto, dopo avere appreso come usare la visualizzazione Tez, è possibile trovare altre informazioni in [Uso di Hive in HDInsight](hdinsight-use-hive.md).
 
-Per informazioni tecniche relative a Tez dettagliate, vedere hello [pagina Tez in Hortonworks](http://hortonworks.com/hadoop/tez/).
+Per informazioni tecniche più dettagliate su Tez, vedere la [pagina di Tez in Hortonworks](http://hortonworks.com/hadoop/tez/).

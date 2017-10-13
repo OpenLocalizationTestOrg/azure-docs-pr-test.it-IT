@@ -1,6 +1,6 @@
 ---
-title: la replica per le macchine virtuali VMware replica tooAzure con Azure Site Recovery aaaEnable | Documenti Microsoft
-description: "Vengono riepilogati i passaggi di hello tooenable tooAzure di replica è necessario per le macchine virtuali VMware tramite il servizio di Azure Site Recovery hello"
+title: Abilitare la replica per le VM VMware in Azure con Azure Site Recovery | Microsoft Docs
+description: Riepiloga i passaggi necessari per abilitare la replica delle macchine virtuali VMware in Azure con il servizio Azure Site Recovery
 documentationcenter: 
 author: rayne-wiselman
 manager: carmonm
@@ -13,33 +13,33 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: raynew
-ms.openlocfilehash: 490782bbbfa3dd92c626d3985c75d771df53d566
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 470b9ddd8df4a4e74ec7174f79020c252323e502
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="step-11-enable-replication-for-vmware-virtual-machines-tooazure"></a>Passaggio 11: Abilitare la replica per tooAzure macchine virtuali VMware
+# <a name="step-11-enable-replication-for-vmware-virtual-machines-to-azure"></a>Passaggio 11: Abilitare la replica delle macchine virtuali VMware in Azure
 
 
-In questo articolo viene descritto come replica tooenable per on-premise VMware virtual macchine tooAzure, utilizzando hello [Azure Site Recovery](site-recovery-overview.md) di hello portale di Azure.
+Questo articolo illustra come abilitare la replica delle macchine virtuali VMware locali in Azure usando il servizio [Azure Site Recovery](site-recovery-overview.md) nel portale di Azure.
 
-Inviare commenti e domande nella parte inferiore di hello di questo articolo, o di hello [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Inserire commenti e domande nella parte inferiore di questo articolo oppure nel [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 
 ## <a name="before-you-start"></a>Prima di iniziare
 
-- Le macchine virtuali VMware è necessario hello [componente del servizio di mobilità installato](vmware-walkthrough-install-mobility.md). -Se una macchina virtuale viene preparata per l'installazione push, il server di elaborazione hello installa automaticamente il servizio di mobilità hello quando si abilita la replica.
-- L'account utente di Azure necessario specifico [autorizzazioni](site-recovery-role-based-linked-access-control.md#permissions-required-to-enable-replication-for-new-virtual-machines) replica tooenable di tooAzure una macchina virtuale
-- Quando si aggiungono o si modificano le macchine virtuali, può richiedere too15 minuti o più per effetto tootake modifiche e per essi tooappear nel portale di hello.
-- È possibile controllare l'ora di ultimo individuato hello per le macchine virtuali in **server di configurazione** > **ultimo contatto in**.
-- tooadd macchine virtuali senza attendere l'individuazione pianificata hello, evidenziazione hello del server di configurazione (non selezionata), fare clic su **aggiornamento**.
+- Nelle macchine virtuali VMware deve essere installato il [componente del servizio Mobility](vmware-walkthrough-install-mobility.md). Se una VM è pronta per l'installazione push, il server di elaborazione installa automaticamente il servizio Mobility quando si abilita la replica.
+- L'account utente di Azure deve avere [autorizzazioni](site-recovery-role-based-linked-access-control.md#permissions-required-to-enable-replication-for-new-virtual-machines) specifiche per abilitare la replica di una nuova VM in Azure.
+- Quando si aggiungono o si modificano VM, possono trascorrere 15 minuti o più prima che le modifiche diventino effettive e vengano visualizzate nel portale.
+- È possibile controllare l'ora dell'ultima individuazione di VM in **Server di configurazione** > **Ora ultimo contatto**.
+- Per aggiungere VM senza attendere l'individuazione pianificata, evidenziare il server di configurazione, senza selezionarlo, e fare clic su **Aggiorna**.
 
 
 
 ## <a name="exclude-disks-from-replication"></a>Escludere dischi dalla replica
 
-Per impostazione predefinita, vengono replicati tutti i dischi in un computer. È possibile escludere dischi dalla replica. Ad esempio non è possibile tooreplicate dischi con dati temporanei o dati che sono stato aggiornato ogni volta che un computer o applicazione viene riavviata (ad esempio pagefile.sys o tempdb di SQL Server). [Altre informazioni](site-recovery-exclude-disk.md)
+Per impostazione predefinita, vengono replicati tutti i dischi in un computer. È possibile escludere dischi dalla replica. Ad esempio, è possibile evitare di replicare i dischi con dati temporanei o dati che vengono aggiornati ogni volta che un computer o un'applicazione viene riavviata, come pagefile.sys o tempdb di SQL Server. [Altre informazioni](site-recovery-exclude-disk.md)
 
 ## <a name="replicate-vms"></a>Replicare le VM
 
@@ -48,37 +48,37 @@ Prima di iniziare, guardare una rapida panoramica video
 >[!VIDEO https://channel9.msdn.com/Series/Azure-Site-Recovery/VMware-to-Azure-with-ASR-Video3-Protect-VMware-Virtual-Machines/player]
 
 1. Fare clic su **Passaggio 2: Eseguire la replica dell'applicazione** > **Origine**.
-2. In **origine**, selezionare il server di configurazione di hello.
+2. In **Origine** selezionare il server di configurazione.
 3. In **Tipo di computer** selezionare **Macchine virtuali**.
-4. In **vCenter/vSphere Hypervisor**, selezionare i server vCenter hello che gestisce host vSphere hello, o host hello.
-5. Selezionare il server di elaborazione hello. Se è ancora stato creato alcun server di elaborazione aggiuntive, questo sarà il server di configurazione di hello. Fare quindi clic su **OK**.
+4. In **vCenter/vSphere Hypervisor** selezionare il server vCenter che gestisce l'host di vSphere oppure selezionare l'host.
+5. Selezionare il server di elaborazione. Se non sono stati creati server di elaborazione aggiuntivi, questo sarà il server di configurazione. Fare quindi clic su **OK**.
 
     ![Abilitare la replica](./media/vmware-walkthrough-enable-replication/enable-replication2.png)
 
-6. In **destinazione**, selezionare la sottoscrizione hello e hello gruppo di risorse in cui si desidera hello toocreate failover le macchine virtuali. Scegliere modello di distribuzione hello che si desidera toouse in Azure (classica o risorsa management), per eseguire il failover le macchine virtuali hello.
+6. In **Destinazione** selezionare la sottoscrizione e il gruppo di risorse in cui si vogliono creare le VM di cui viene effettuato il failover. Scegliere il modello di distribuzione (classica o Resource Manager) da usare in Azure per le VM di cui viene effettuato il failover.
 
 
-7. Selezionare l'account di archiviazione di Azure hello desiderato toouse per la replica dei dati. Se non si desidera toouse un account già stato configurato, è possibile creare uno nuovo.
+7. Selezionare l'account di archiviazione di Azure da usare per la replica dei dati. Se non si vuole usare un account già configurato, è possibile crearne uno nuovo.
 
-8. Si connetterà hello seleziona Azure toowhich rete e subnet macchine virtuali di Azure, quando vengono creati dopo il failover. Selezionare **Configura ora per macchine virtuali selezionate**, tooapply hello rete impostazione tooall macchine selezionate per la protezione. Selezionare **configurare successivamente** tooselect hello Azure rete al computer. Se non si desidera toouse una rete esistente, è possibile crearne uno.
+8. Selezionare la rete di Azure e la subnet a cui dovranno connettersi le VM di Azure create dopo il failover. Scegliere **Configurare ora per le macchine virtuali selezionate** per applicare le impostazioni di rete a tutti i computer selezionati per la protezione. Scegliere **Configurare in seguito** per selezionare la rete di Azure per ogni computer. Se non si vuole usare una rete esistente, è possibile crearne una.
 
     ![Abilitare la replica](./media/vmware-walkthrough-enable-replication/enable-rep3.png)
-9. In **macchine virtuali** > **selezionare le macchine virtuali**fare clic e selezionare ogni computer in cui si desidera tooreplicate. È possibile selezionare solo i computer per cui è possibile abilitare la replica. Fare quindi clic su **OK**.
+9. In **Macchine virtuali** > **Seleziona macchine virtuali** fare clic per selezionare tutte le macchine virtuali da replicare. È possibile selezionare solo i computer per cui è possibile abilitare la replica. Fare quindi clic su **OK**.
 
     ![Abilitare la replica](./media/vmware-walkthrough-enable-replication/enable-replication5.png)
-10. In **proprietà** > **configurare proprietà**, selezionare account hello che verrà usato da hello processo server tooautomatically installare il servizio Mobility hello computer hello.
-11. Per impostazione predefinita, vengono replicati tutti i dischi. Fare clic su **tutti i dischi** e cancellare tutti i dischi non si desidera tooreplicate. Fare quindi clic su **OK**. È possibile impostare proprietà aggiuntive delle VM in un secondo momento.
+10. In **Proprietà** > **Configura proprietà**selezionare l'account che verrà usato dal server di elaborazione per installare automaticamente il servizio Mobility nel computer.
+11. Per impostazione predefinita, vengono replicati tutti i dischi. Fare clic su **Tutti i dischi** e deselezionare i dischi da non replicare. Fare quindi clic su **OK**. È possibile impostare proprietà aggiuntive delle VM in un secondo momento.
 
     ![Abilitare la replica](./media/vmware-walkthrough-enable-replication/enable-replication6.png)
-11. In **le impostazioni di replica** > **configurare le impostazioni di replica**, verificare che hello si seleziona il criterio di replica corretto. Se si modifica un criterio, le modifiche saranno tooreplicating applicato macchina e toonew macchine.
-12. Abilitare **la coerenza tra più macchine** se si desidera toogather macchine in un gruppo di replica e specificare un nome per il gruppo di hello. Fare quindi clic su **OK**. Si noti che:
+11. In **Impostazioni della replica** > **Configura impostazioni di replica** verificare che siano selezionati i criteri di replica corretti. Se si modificano i criteri, le modifiche verranno applicate al computer di replica e ai nuovi computer.
+12. Abilitare la **Coerenza tra più VM** per raccogliere le macchine in un gruppo di replica e specificare un nome per il gruppo. Fare quindi clic su **OK**. Si noti che:
 
     * I computer in gruppi di replica vengono replicati insieme e hanno punti di ripristino condivisi coerenti con l'arresto anomalo del sistema e coerenti con l'app in caso di failover.
-    * È consigliabile raggruppare le macchine virtuali e i server fisici in modo da rispecchiare i carichi di lavoro. Abilitazione della coerenza tra più macchine può influire sulle prestazioni del carico di lavoro e deve essere utilizzato solo se sono in esecuzione macchine hello stesso carico di lavoro ed è necessaria la coerenza.
+    * È consigliabile raggruppare le macchine virtuali e i server fisici in modo da rispecchiare i carichi di lavoro. L'abilitazione della coerenza tra più VM può influire sulle prestazioni del carico di lavoro e deve essere usata solo se i computer eseguono lo stesso carico di lavoro ed è necessaria la coerenza.
 
     ![Abilitare la replica](./media/vmware-walkthrough-enable-replication/enable-replication7.png)
-13. Fare clic su **Abilita la replica**. È possibile monitorare lo stato di avanzamento di hello **Abilita protezione** processo **impostazioni** > **processi** > **processi di ripristino del sito**. Dopo aver hello **finalizzazione della protezione** processo viene eseguito hello macchina è pronta per il failover.
+13. Fare clic su **Abilita la replica**. È possibile tenere traccia dello stato del processo **Abilita protezione** in **Impostazioni** > **Processi** > **Processi di Site Recovery**. Dopo l'esecuzione del processo **Finalizza protezione** la macchina virtuale è pronta per il failover.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Andare troppo[passaggio 12: eseguire un failover di test](vmware-walkthrough-test-failover.md)
+Andare al [Passaggio 12: Eseguire un failover di test](vmware-walkthrough-test-failover.md)

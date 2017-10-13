@@ -1,6 +1,6 @@
 ---
-title: un failover di test per Hyper-V replica (con System Center VMM) tooAzure aaaRun | Documenti Microsoft
-description: "Vengono riepilogati i passaggi di hello che è necessario per l'esecuzione di un failover di test per le macchine virtuali Hyper-V nei cloud VMM, la replica tramite il servizio di Azure Site Recovery hello tooAzure."
+title: Eseguire un failover di test per la replica Hyper-V (con System Center VMM) in Azure | Microsoft Docs
+description: Riepiloga i passaggi necessari per eseguire un failover di test per le VM Hyper-V nei cloud VMM di cui viene eseguita la replica in Azure usando il servizio Azure Site Recovery.
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,88 +14,88 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 07/25/2017
 ms.author: raynew
-ms.openlocfilehash: fc60e536f2eeb6f95dde3d347f364f3bf8bfdf45
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4688fc4bc74a9e0e04487cfbe965006070fd9a7b
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="step-11-run-a-test-failover-for-hyper-v-replication-with-vmm-tooazure"></a>Passaggio 11: Eseguire un failover di test per Hyper-V replica (con VMM) tooAzure
+# <a name="step-11-run-a-test-failover-for-hyper-v-replication-with-vmm-to-azure"></a>Passaggio 11: Eseguire un failover di test per la replica Hyper-V (con VMM) in Azure
 
-Dopo aver [abilitare la replica per le macchine virtuali Hyper-V](vmm-to-azure-walkthrough-enable-replication.md), utilizzare questo toorun articolo un failover di test da macchine virtuali di Hyper-V locali gestito in tooAzure cloud di System Center Virtual Machine Manager (VMM), utilizzando hello [ Azure Site Recovery](site-recovery-overview.md) di hello portale di Azure.
+Dopo avere [abilitato la replica per VM Hyper-V](vmm-to-azure-walkthrough-enable-replication.md), usare le istruzioni disponibili in questo articolo per eseguire un failover di test dalle macchine virtuali Hyper-V locali gestite in cloud System Center Virtual Machine Manager (VMM) in Azure tramite il servizio [Azure Site Recovery](site-recovery-overview.md) nel portale di Azure.
 
-Inviare commenti e domande nella parte inferiore di hello di questo articolo, o di hello [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Inserire commenti e domande nella parte inferiore di questo articolo oppure nel [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 ## <a name="before-you-start"></a>Prima di iniziare
 
-Prima di eseguire un failover di test, che è consigliabile verificare le proprietà della VM hello e apportare le modifiche è necessario. è possibile accedere a proprietà della macchina virtuale hello in **gli elementi replicati**. Hello **Essentials** pannello mostra le informazioni sulle impostazioni computer e lo stato.
+Prima di eseguire un failover di test, è consigliabile verificare le proprietà delle VM e apportare eventuali modifiche necessarie. È possibile accedere alle proprietà delle VM in **Elementi replicati**. Il pannello **Informazioni di base** visualizza informazioni sulle impostazioni e sullo stato dei computer.
 
 ## <a name="managed-disk-considerations"></a>Considerazioni su Managed Disks
 
-[Dischi gestiti](../virtual-machines/windows/managed-disks-overview.md) semplificano la gestione disco per le macchine virtuali di Azure, mediante la gestione degli account di archiviazione hello associati hello dischi di macchina virtuale. 
+[Managed Disks](../virtual-machines/windows/managed-disks-overview.md) semplifica la gestione dei dischi per le VM di Azure grazie alla gestione degli account di archiviazione associati ai dischi delle VM. 
 
-- Dischi gestiti vengono creati e collegati toohello macchina virtuale solo quando si verifica un failover tooAzure. Quando si abilita la protezione, i dati da macchine virtuali locali vengono replicati toostorage account.
-- Dischi gestiti possono essere creati solo per le macchine virtuali che vengono distribuite tramite il modello di distribuzione Gestione risorse di hello.
-- Il failback da Azure tooan locale ambiente Hyper-V non è attualmente supportato per i computer con dischi gestiti. È necessario impostare solo **utilizzare dischi gestiti** troppo**Sì** se si sta eseguendo una migrazione solo (failover tooAzure senza il failback)
-- Quando questa impostazione è abilitata, possono essere selezionati solo i set di disponibilità in gruppi di risorse con l'impostazione **Usa il servizio Managed Disks** abilitata. Le macchine virtuali con dischi gestiti devono essere in set di disponibilità con **utilizzare dischi gestiti** impostare troppo**Sì**. Se l'impostazione di hello non è abilitata per le macchine virtuali, è possibile selezionare solo set di disponibilità in gruppi di risorse senza dischi gestiti abilitati. [Altre informazioni](../virtual-machines/windows/manage-availability.md#use-managed-disks-for-vms-in-an-availability-set)
-- - Se l'account di archiviazione hello usato per la replica è stata crittografata con la crittografia del servizio di archiviazione, è Impossibile creare dischi gestiti durante il failover. In questo caso di non abilitare l'utilizzo di dischi gestiti, o disabilitare la protezione per hello macchina virtuale e riabilitarla toouse un account di archiviazione che non sia abilitata la crittografia. [Altre informazioni](../virtual-machines/windows/managed-disks-overview.md#managed-disks-and-encryption)
+- I dischi di Managed Disks vengono creati e collegati alla VM solo in caso di failover in Azure. Abilitando la protezione, i dati delle VM locali vengono replicati negli account di archiviazione.
+- È possibile creare dischi di Managed Disks solo per le VM distribuite tramite il modello di distribuzione Resource Manager.
+- Il failback da Azure a un ambiente Hyper-V locale non è al momento supportato per i computer con Managed Disks. Impostare **Usa il servizio Managed Disks** su **Sì** solo se si sta eseguendo esclusivamente una migrazione (failover in Azure senza failback)
+- Quando questa impostazione è abilitata, possono essere selezionati solo i set di disponibilità in gruppi di risorse con l'impostazione **Usa il servizio Managed Disks** abilitata. Le VM con Managed Disks devono trovarsi nei set di disponibilità con l'opzione **Usa il servizio Managed Disks** impostata su **Sì**. Se l'impostazione non è abilitata per le VM, possono essere selezionati solo i set di disponibilità nei gruppi di risorse senza Managed Disks. [Altre informazioni](../virtual-machines/windows/manage-availability.md#use-managed-disks-for-vms-in-an-availability-set).
+- - Se l'account di archiviazione usato per la replica è stato crittografato con Crittografia del servizio di archiviazione, la creazione dei dischi di Managed Disks durante il failover non riuscirà. In questo caso, non abilitare l'uso del servizio Managed Disks oppure disabilitare la protezione per la VM e riabilitarla per usare un account di archiviazione senza la crittografia abilitata. [Altre informazioni](../virtual-machines/windows/managed-disks-overview.md#managed-disks-and-encryption).
 
  
 ## <a name="network-considerations"></a>Considerazioni sulla rete
     
-- È possibile impostare l'indirizzo IP di hello destinazione toobe usato per hello Azure VM dopo il failover. Se non si fornisce un indirizzo, hello failover macchina utilizzerà DHCP. Se si imposta un indirizzo che non è disponibile in caso di failover, hello failover avrà esito negativo. Hello stesso indirizzo IP di destinazione è utilizzabile per il test failover se è disponibile in rete di failover di test hello hello indirizzo.
-- numero di Hello di schede di rete dipende dalla dimensione hello specificata per la macchina virtuale di destinazione hello, come indicato di seguito:
-    - Se il numero di hello di schede di rete nel computer di origine hello è minore o uguale toohello numero di schede consentite per le dimensioni del computer di destinazione hello, quindi sarà necessario destinazione hello hello origine hello stesso numero di schede.
-    - Se il numero di hello di schede per la macchina virtuale di origine hello supera il numero di hello consentito per la dimensione di destinazione hello quindi massimo di dimensioni di destinazione hello verrà utilizzato.
-    - Se, ad esempio un computer di origine ha due schede di rete e le dimensioni del computer di destinazione hello supporta quattro, il computer di destinazione hello avrà due schede. Se il computer di origine hello dispone di due schede ma hello dimensioni di destinazione supportata supportano solo una macchina di destinazione hello avrà una sola scheda di.     
-- Se hello macchina virtuale dispone di più schede di rete verranno tutti connettono toohello stessa rete.
-- Se macchina virtuale hello ha più schede di rete hello prima uno nell'elenco di hello diventa hello *predefinito* scheda di rete nella macchina virtuale di Azure hello.
+- È possibile impostare l'indirizzo IP di destinazione da usare per la VM di Azure dopo il failover. Se non si specifica un indirizzo, il computer di cui è stato eseguito il failover usa DHCP. Se si imposta un indirizzo che non è disponibile al momento del failover, il failover ha esito negativo. Se l'indirizzo è disponibile nella rete di failover di test, è possibile usare lo stesso indirizzo IP di destinazione per il failover di test.
+- Il numero di schede di rete dipende dalle dimensioni specificate per la macchina virtuale di destinazione, come illustrato di seguito:
+    - Se il numero di schede di rete nella macchina di origine è minore o uguale al numero di schede consentite per la macchina di destinazione, la destinazione avrà lo stesso numero di schede dell’origine.
+    - Se il numero di schede per la macchina virtuale di origine supera il numero consentito per le dimensioni di destinazione, verrà utilizzata la dimensione di destinazione massima.
+    - Ad esempio, se una macchina di origine dispone di due schede di rete e le dimensioni della macchina di destinazione ne supportano quattro, la macchina di destinazione avrà due schede. Se la macchina di origine dispone di due schede ma le dimensioni di destinazione supportate ne consentono solo una, la macchina di destinazione avrà una sola scheda.     
+- Se la macchina virtuale ha più schede di rete, si connetteranno tutte alla stessa rete.
+- Se la macchina virtuale ha più schede di rete, la prima nell'elenco diventa la scheda di rete *predefinita* nella macchina virtuale di Azure.
 
 
 ## <a name="view-and-manage-vm-settings"></a>Visualizzare e gestire le impostazioni delle VM
 
-È consigliabile verificare le proprietà di hello hello computer di origine prima di eseguire un failover.
+È consigliabile verificare le proprietà del computer di origine prima di eseguire un failover.
 
-1. In **elementi protetti**, fare clic su **elementi replicati**, fare clic su hello macchina virtuale.
+1. In **Elementi protetti** fare clic su **Elementi replicati** e quindi sulla VM.
 
     ![Abilitare la replica](./media/vmm-to-azure-walkthrough-test-failover/test-failover1.png)
-2. In hello **elemento replicato** riquadro, è possibile visualizzare un riepilogo delle informazioni di macchina virtuale, lo stato di integrità e punti di ripristino disponibile più recenti di hello. Fare clic su **proprietà** tooview ulteriori informazioni, vedere.
+2. Nel riquadro **Elemento replicato** è possibile vedere un riepilogo relativo a informazioni sulla VM, stato integrità e ultimi punti di recupero disponibili. Fare clic su **Proprietà** per visualizzare altri dettagli.
 
     ![Abilitare la replica](./media/vmm-to-azure-walkthrough-test-failover/test-failover2.png)
 3. In **Calcolo e rete** è possibile:
-    - Modificare il nome di macchina virtuale di Azure hello. nome Hello deve soddisfare [requisiti Azure](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements).
+    - Modificare il nome della VM di Azure. Il nome deve soddisfare i [requisiti di Azure](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements).
     - Specificare un [gruppo di risorse] successivo al failover.
-    - Specificare una dimensione di destinazione per hello macchina virtuale di Azure
+    - Specificare le dimensioni di destinazione per la VM di Azure
     - Selezionare un [set di disponibilità](../virtual-machines/windows/tutorial-availability-sets.md).
-    - Specificare se toouse [dischi gestiti](#managed-disk-considerations). Selezionare **Sì**, se si desidera tooattach dischi gestiti tooyour computer tooAzure di migrazione.
-    - Visualizzare o modificare le impostazioni di rete, inclusi hello/subnet della rete in cui hello macchina virtuale di Azure sarà posizionato dopo il failover e indirizzo IP hello che verrà assegnato tooit.
+    - Specificare se usare [Managed Disks](#managed-disk-considerations). Selezionare **Sì** per collegare i dischi di Managed Disks al computer nella migrazione in Azure.
+    - Visualizzare o modificare le impostazioni di rete, inclusi la rete/subnet in cui si troverà la VM di Azure dopo il failover e l'indirizzo IP che verrà assegnato a essa.
 
     ![Abilitare la replica](./media/vmm-to-azure-walkthrough-test-failover/test-failover4.png)
-4. In **dischi**, è possibile visualizzare informazioni sul sistema operativo hello e dischi dati in hello macchina virtuale.
+4. In **Dischi** è possibile vedere le informazioni sul sistema operativo e sui dischi dati della VM.
 
 
 ## <a name="run-a-test-failover"></a>Eseguire un failover di test
 
-A questo punto, eseguire una toomake di failover di test che tutto funzioni come previsto.
+Eseguire quindi un failover di test per verificare che tutto funzioni come previsto.
 
-- Se si desidera tooconnect tooAzure macchine virtuali tramite RDP dopo il failover, [preparare tooconnect](site-recovery-test-failover-to-azure.md#prepare-to-connect-to-azure-vms-after-failover).
- - test toofully toocopy di Active Directory e DNS è necessario nell'ambiente di test. [Altre informazioni](site-recovery-active-directory.md#test-failover-considerations)
+- Per connettersi alle VM di Azure con RDP dopo il failover, eseguire la [preparazione alla connessione](site-recovery-test-failover-to-azure.md#prepare-to-connect-to-azure-vms-after-failover).
+ - Per un test completo è necessario copiare Active Directory e DNS nell'ambiente di test. [Altre informazioni](site-recovery-active-directory.md#test-failover-considerations).
  - Per informazioni complete sul failover di test, leggere [questo articolo](site-recovery-test-failover-to-azure.md).
  
  Eseguire quindi un failover:
 
-1. toofail su un singolo computer, in **elementi replicati**, fare clic su hello VM > **+ Test Failover** icona.
-2. toofail sul ripristino di un piano, in **piani di ripristino**, piano hello rapida > **Failover di Test**. un piano di ripristino, toocreate [seguire queste istruzioni](site-recovery-create-recovery-plans.md).
-3. In **Failover di Test**selezionare hello Azure rete toowhich macchine virtuali di Azure saranno connesse dopo il failover viene eseguito.
-4. Fare clic su **OK** toobegin hello failover. È possibile monitorare i progressi facendo clic su hello VM tooopen le relative proprietà o in hello **Failover di Test** processo nel nome dell'insieme di credenziali > **processi** > **i processi di ripristino del sito**.
-5. Al termine del processo di failover di hello, inoltre deve essere in grado di replica hello toosee macchina di Azure vengono visualizzati nel portale di Azure hello > **macchine virtuali**. È necessario verificare che tale hello VM sia dimensioni appropriate hello, che si è connesso toohello di rete appropriata e che sia in esecuzione.
-6. Se sono preparati per le connessioni dopo il failover, dovrebbe essere in grado di tooconnect toohello macchina virtuale di Azure.
-7. Al termine, fare clic su **il failover di test di pulizia** nel piano di ripristino hello. In **note** registrare e salvare eventuali commenti associati hello test failover. Questa operazione eliminerà hello le macchine virtuali che sono state create durante il failover di test.
+1. Per eseguire il failover di una singola macchina, in **Elementi replicati** fare clic sulla VM e quindi sull'icona **+Failover di test**.
+2. Per eseguire il failover di un piano di ripristino, in **Piani di ripristino** fare clic con il pulsante destro del mouse sul piano e quindi su **Failover di test**. Per creare un piano di ripristino, [seguire queste istruzioni](site-recovery-create-recovery-plans.md).
+3. In **Failover di test** selezionare la rete di Azure a cui dovranno connettersi le VM di Azure dopo il failover.
+4. Fare clic su **OK** per iniziare il failover. Per tenere traccia dello stato del processo, fare clic sulla VM per visualizzarne le proprietà oppure fare clic sul processo **Failover di test** nel nome dell'insieme di credenziali > **Processi** > **Site Recovery jobs** (Processi di Site Recovery).
+5. Al termine del failover sarà possibile visualizzare la macchina virtuale di Azure di replica in **Macchine virtuali** nel portale di Azure. Assicurarsi che la macchina virtuale sia delle dimensioni appropriate, che sia connessa alla rete giusta e che sia in esecuzione.
+6. Se sono state preparate le connessioni dopo il failover, sarà possibile connettersi alla VM di Azure.
+7. Al termine, fare clic su **Cleanup test failover** (Pulizia failover di test) nel piano di ripristino. Fare clic su **Note** per registrare e salvare eventuali osservazioni associate al failover di test. Verranno eliminate le macchine virtuali create durante il failover di test.
 
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- [Altre informazioni](site-recovery-failover.md) sui diversi tipi di failover e come toorun li.
-- [Conoscenza failback](site-recovery-failback-from-azure-to-hyper-v.md), toofail back e replicare macchine virtuali di Azure, eseguire il backup cloud VMM primario locale di toohello.
+- [Altre informazioni](site-recovery-failover.md) sui diversi tipi di failover e su come eseguirli.
+- [Informazioni sul failback](site-recovery-failback-from-azure-to-hyper-v.md), per il failback e la replica di macchine virtuali di Azure nel cloud VMM locale primario.
 

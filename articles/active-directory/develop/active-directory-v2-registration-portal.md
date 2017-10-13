@@ -1,6 +1,6 @@
 ---
-title: Argomenti della Guida portale di registrazione aaaApp | Documenti Microsoft
-description: "Una descrizione delle varie funzionalità nel portale di registrazione app Microsoft hello."
+title: Guida del portale di registrazione delle app | Microsoft Docs
+description: "Descrizione delle varie funzionalità disponibili nel portale di registrazione delle app di Microsoft."
 services: active-directory
 documentationcenter: 
 author: lnalepa
@@ -15,35 +15,35 @@ ms.topic: article
 ms.date: 09/16/2016
 ms.author: lenalepa
 ms.custom: aaddev
-ms.openlocfilehash: 3eb17b629577446a336152799497e7d980fb825d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c60499c425a7fd800f7ca9a5bac1fed5af73b801
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="app-registration-reference"></a>Riferimento alla registrazione delle app
-Questo documento fornisce contesto e le descrizioni delle diverse funzionalità nel portale di registrazione di Microsoft App hello [https://apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList).
+Questo documento fornisce il contesto e le descrizioni di varie funzionalità disponibili nel portale di registrazione delle app di Microsoft [https://apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList).
 
 ## <a name="my-applications"></a>Applicazioni personali
-Questo elenco contiene tutte le applicazioni registrate per essere utilizzate con l'endpoint v 2.0 hello Azure AD.  Queste applicazioni hanno hello possibilità toosign gli utenti con entrambi gli account personali dell'account Microsoft e account di lavoro o dell'istituto di istruzione da Azure Active Directory.  toolearn informazioni sull'endpoint v 2.0 hello Azure AD, vedere il nostro [Panoramica v 2.0](active-directory-appmodel-v2-overview.md).  Queste applicazioni possono inoltre essere toointegrate utilizzato con l'endpoint di autenticazione account di Microsoft hello, `https://login.live.com`.
+Questo elenco include tutte le applicazioni registrate per l'uso con l'endpoint Azure AD 2.0.  Queste applicazioni permettono di eseguire l'accesso con account Microsoft personali e account aziendali o dell'istituto d'istruzione di Azure Active Directory.  Per altre informazioni sull'endpoint Azure AD 2.0, vedere la [panoramica della versione 2.0](active-directory-appmodel-v2-overview.md).  Queste applicazioni possono essere usate anche per l'integrazione con l'endpoint di autenticazione dell'account Microsoft, `https://login.live.com`.
 
 ## <a name="live-sdk-applications"></a>Applicazioni Live SDK
-Questo elenco include tutte le applicazioni registrate per l'uso solo con l'account Microsoft.  Non sono abilitate per l'uso con Azure Active Directory.  Si tratta di dove sono disponibili tutte le applicazioni che in precedenza era state registrate con il portale per sviluppatori di MSA hello in `https://account.live.com/developers/applications`.  Tutte le funzioni eseguite in precedenza in `https://account.live.com/developers/applications` ora possono essere eseguite nel nuovo portale, `https://apps.dev.microsoft.com`.  Per altre domande relative alle applicazioni dell'account Microsoft, è possibile contattare Microsoft.
+Questo elenco include tutte le applicazioni registrate per l'uso solo con l'account Microsoft.  Non sono abilitate per l'uso con Azure Active Directory.  Qui è possibile trovare tutte le applicazioni registrate in precedenza con il portale per sviluppatori di account Microsoft, all'indirizzo `https://account.live.com/developers/applications`.  Tutte le funzioni eseguite in precedenza in `https://account.live.com/developers/applications` ora possono essere eseguite nel nuovo portale, `https://apps.dev.microsoft.com`.  Per altre domande relative alle applicazioni dell'account Microsoft, è possibile contattare Microsoft.
 
 ## <a name="application-secrets"></a>Segreti applicazione
-I segreti dell'applicazione sono credenziali che consentono l'applicazione tooperform affidabile [l'autenticazione client](http://tools.ietf.org/html/rfc6749#section-2.3) con Azure AD.  In OAuth e OpenID Connect di segreti un'applicazione è comunemente noti tooas un `client_secret`.  Nel protocollo v 2.0 hello, qualsiasi applicazione che riceve un token di sicurezza in una posizione indirizzabile web (tramite un `https` schema) deve utilizzare un tooidentify segreto applicazione stesso tooAzure AD al momento di riscatto del token di sicurezza.  Inoltre, qualsiasi client native che riceve i token in un dispositivo verranno proibiti dall'utilizzo di un'autenticazione client secret tooperform applicazione, toodiscourage hello archiviazione di segreti in ambienti non protetti.
+I segreti applicazione sono credenziali che consentono all'applicazione di eseguire [l'autenticazione client](http://tools.ietf.org/html/rfc6749#section-2.3) in modo affidabile con Azure AD.  In OAuth e OpenID Connect il segreto applicazione è noto come `client_secret`.  Nel protocollo della versione 2.0, qualsiasi applicazione che riceve un token di sicurezza in una posizione con indirizzo Web, usando uno schema `https` , deve fare uso di un segreto applicazione per identificarsi in Azure AD al momento del riscatto del token di sicurezza.  Per evitare l'archiviazione di segreti in ambienti non protetti, i client nativi che ricevono i token in un dispositivo non possono usare un segreto applicazione per eseguire l'autenticazione client.
 
-Ogni app può contenere due segreti applicazione validi in qualsiasi momento.  Tramite la gestione di due segreti, hai hello ablilty tooperform periodica rollover della chiave in tutto l'ambiente dell'applicazione.  Dopo la migrazione intera hello l'applicazione tooa nuova chiave privata, è possibile eliminare segreto precedente hello e il provisioning di uno nuovo.
+Ogni app può contenere due segreti applicazione validi in qualsiasi momento.  Mantenendo due segreti è possibile eseguire periodicamente un rollover della chiave nell'intero ambiente dell'applicazione.  Dopo aver eseguito la migrazione dell'intera applicazione in un nuovo segreto, è possibile eliminare quello precedente ed effettuare il provisioning di un nuovo segreto.
 
-A questo punto, sono consentiti solo due tipi di segreti dell'applicazione nel portale di registrazione applicazione hello.  Scelta di **generare una nuova Password** genererà e archiviare una chiave privata condivisa nell'archivio dati di hello, che è possibile utilizzare nell'applicazione.  Scelta di **generare nuova coppia di chiavi** creerà una nuova coppia di chiavi pubblica/privata che può essere scaricata e usata per l'autenticazione di client tooAzure Active Directory.
+A questo punto, nel portale di registrazione delle app sono consentiti solo due tipi di segreti applicazione.  Scegliendo **Genera nuova password** nell'archivio dati corrispondente viene generato e archiviato un segreto condiviso, che è possibile usare nell'applicazione.  Scegliendo **Genera nuova coppia di chiavi** viene creata una nuova coppia di chiavi pubblica/privata che può essere scaricata e usata per l'autenticazione client in Azure AD.
 
 ## <a name="profile"></a>Profilo
-sezione profilo Hello del portale di registrazione applicazione hello può essere utilizzato toocustomize hello sign nella pagina per l'applicazione.  In questo momento è possibile modificare hello Accedi logo dell'applicazione della pagina, condizioni per l'URL del servizio e l'informativa sulla privacy.  Hello logo deve essere un trasparente 48 x 48 o 50 x 50 pixel immagine in un file GIF, PNG o JPEG 15 KB o inferiore.  Provare a modificare i valori hello e hello visualizzazione risultante nella pagina di accesso.
+La sezione relativa al profilo del portale di registrazione delle app può essere usata per personalizzare la pagina di accesso dell'applicazione.  Attualmente è possibile modificare il logo dell'applicazione della pagina di accesso, l'URL delle condizioni del servizio e l'informativa sulla privacy.  Il logo deve essere un'immagine trasparente da 48 x 48 o 50 x 50 pixel in un file GIF, PNG o JPEG di dimensioni non superiori a 15 KB.  Provare a modificare i valori e a visualizzare la pagina di accesso risultante.
 
 ## <a name="live-sdk-support"></a>Supporto Live SDK
-Quando si abilita "Supporto di Live SDK", archivia qualsiasi applicazione in cui verranno eseguito il provisioning di segreti che crei hello Azure AD e i dati dell'Account Microsoft.  In questo modo l'applicazione toointegrate direttamente con hello servizio Account Microsoft (login.live.com).  Se si desidera toobuild un'app usando Account Microsoft direttamente (come endpoint di v 2.0 toousing anziché hello Azure AD), assicurarsi che il supporto di SDK in tempo reale è abilitato.
+Quando si abilita il supporto Live SDK, per qualsiasi segreto applicazione creato viene eseguito il provisioning sia in Azure AD che negli archivi dati dell'account Microsoft.  In questo modo l'applicazione potrà integrarsi direttamente con il servizio di account Microsoft (login.live.com).  Se si vuole compilare un'app usando direttamente l'account Microsoft, anziché l'endpoint di Azure AD 2.0, assicurarsi che il supporto Live SDK sia abilitato.
 
-Disabilitando il supporto di Live SDK garantisce che il segreto dell'applicazione hello viene scritto nell'archivio dati hello Azure AD.  archivio dati di Azure AD Hello incorpora normative aziendale che consentono un toomeet determinati standard, ad esempio conformità FISMA.  Se si abilita il supporto Live SDK, l'applicazione potrebbe non essere conforme in base ad alcuni di questi standard.
+Disabilitando il supporto Live SDK il segreto applicazione viene scritto unicamente nell'archivio dati di Azure AD.  L'archivio dati di Azure AD incorpora normative di livello aziendale che permettono di soddisfare determinati standard, ad esempio la conformità FISMA.  Se si abilita il supporto Live SDK, l'applicazione potrebbe non essere conforme in base ad alcuni di questi standard.
 
-Se si prevede solo l'endpoint toouse hello Azure AD versione 2.0, è possibile disabilitare il supporto di Live SDK.
+Se si intende usare solo l'endpoint di Azure AD 2.0, è possibile disabilitare il supporto Live SDK.
 

@@ -1,6 +1,6 @@
 ---
-title: aaaHow tooenable SSO tra app in iOS usando ADAL | Documenti Microsoft
-description: "Come funzionalità hello toouse di hello tooenable SDK ADAL Single Sign-On tra le applicazioni. "
+title: Come abilitare l'accesso Single Sign-On tra app in iOS usando ADAL | Microsoft Docs
+description: "Come utilizzare le funzionalità dell'SDK ADAL per abilitare il Single Sign-On tra le applicazioni. "
 services: active-directory
 documentationcenter: 
 author: brandwe
@@ -15,20 +15,20 @@ ms.topic: article
 ms.date: 04/07/2017
 ms.author: brandwe
 ms.custom: aaddev
-ms.openlocfilehash: b7b4389a8dcd956211ffa1aaa431aaf21ded8961
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 73b8ed7e6a153a0790f7eae9bd51bb2e554ae72e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-tooenable-cross-app-sso-on-ios-using-adal"></a>Come tooenable SSO tra app in iOS usando ADAL
-Fornendo Single Sign-On (SSO) in modo che gli utenti solo tooenter le proprie credenziali una sola volta e le credenziali di lavoro automaticamente tutte le applicazioni è previsto dai clienti. immissione di nome utente e password su schermi di piccole dimensioni, spesso volte combinate con un fattore aggiuntivo (2FA), ad esempio una telefonata o un codice via SMS, la difficoltà di Hello risultati in rapida insoddisfazione dei clienti se un utente ha toodo più di una volta per il prodotto.
+# <a name="how-to-enable-cross-app-sso-on-ios-using-adal"></a>Come abilitare l'accesso Single Sign-On tra app in iOS usando ADAL
+Ora i clienti si aspettano che l'accesso SSO (Single Sign-On) venga fornito in modo che gli utenti debbano inserire le loro credenziali una volta sola e che le credenziali funzionino automaticamente per le varie applicazioni. La difficoltà di immissione di nome utente e password su uno schermo di piccole dimensioni, spesso abbinata a un fattore aggiuntivo (2FA) come una telefonata o un codice inviato tramite SMS, rende l'utente insoddisfatto se questa procedura va ripetuta più volte per il prodotto.
 
-Inoltre, se si applica una piattaforma di identità che altre applicazioni possono utilizzare, ad esempio Accounts Microsoft o un account aziendale da Office 365, i clienti prevedere che toouse disponibili di toobe tali credenziali in tutte le proprie applicazioni indipendentemente dal fornitore hello.
+Inoltre, se si applica una piattaforma delle identità che può essere usata da altre applicazioni, ad esempio Microsoft Accounts o un account aziendale di Office365, i clienti si aspettano che le credenziali siano disponibili all'uso in tutte le applicazioni, indipendentemente dal fornitore.
 
-Hello piattaforma Microsoft Identity, con il SDK di identità di Microsoft, funziona disco rigido per l'utente e fornisce capacità toodelight hello i clienti con SSO sia nel proprio gruppo di applicazioni o, come con le funzionalità di Service broker e un autenticatore applicazioni, attraverso intero dispositivo hello.
+La piattaforma Microsoft Identity, insieme agli altri SDK di Microsoft Identity, soddisfa queste aspettative e consente di offrire l'SSO ai clienti nella propria suite di applicazioni oppure, analogamente alla funzionalità broker e alle applicazioni di Authenticator, in tutto il dispositivo.
 
-Questa procedura dettagliata verrà specificato come tooconfigure Windows SDK all'interno di tooprovide l'applicazione ai clienti tooyour questo vantaggio.
+Questa procedura illustrerà come configurare l'SDK all'interno dell'applicazione per offrire questo vantaggio ai clienti.
 
 Questa procedura si applica a:
 
@@ -37,36 +37,36 @@ Questa procedura si applica a:
 * Azure Active Directory B2B
 * Accesso condizionale di Azure Active Directory
 
-documento Hello precedente presuppone che si conosca come troppo[provisioning delle applicazioni nel portale di hello legacy per Azure Active Directory](active-directory-how-to-integrate.md) e l'applicazione integrata con hello [Microsoft Identity iOS SDK](https://github.com/AzureAD/azure-activedirectory-library-for-objc).
+Il documento precedente presuppone che si sappia come effettuare il [provisioning delle applicazioni nel portale legacy per Azure Active Directory](active-directory-how-to-integrate.md) e che l'applicazione sia stata integrata con [Microsoft Identity iOS SDK](https://github.com/AzureAD/azure-activedirectory-library-for-objc).
 
-## <a name="sso-concepts-in-hello-microsoft-identity-platform"></a>Concetti di SSO nella piattaforma delle identità Microsoft hello
+## <a name="sso-concepts-in-the-microsoft-identity-platform"></a>Concetti di SSO nella piattaforma Microsoft Identity
 ### <a name="microsoft-identity-brokers"></a>Broker di Microsoft Identity
-Microsoft fornisce le applicazioni per ogni piattaforma per dispositivi mobili che consentono il bridging delle credenziali tra le applicazioni di fornitori diversi hello e consente a particolari funzionalità avanzate che richiedono un'unica posizione sicura da cui toovalidate credenziali. Queste applicazioni sono dette **broker**. In iOS e Android tali gestori vengono forniti tramite applicazioni scaricabile che i clienti installare in modo indipendente o possono essere inseriti toohello dispositivo da una società che gestisce alcuni o tutti i dispositivi hello per i relativi dipendenti. Questi gestori supportano la sicurezza di gestione solo per alcune applicazioni o l'intero dispositivo hello in base a ciò che gli amministratori IT desiderano. In Windows, questa funzionalità è fornita dalla selezione account incorporato nel sistema operativo toohello, tecnicamente detto hello Broker di autenticazione Web.
+Microsoft offre applicazioni per ogni piattaforma per dispositivi mobili che consentono il bridging delle credenziali tra le applicazioni di fornitori diversi e offre particolari funzionalità avanzate che richiedono un'unica posizione sicura da cui convalidare le credenziali. Queste applicazioni sono dette **broker**. Nei sistemi iOS e Android i broker sono forniti tramite applicazioni scaricabili che i clienti possono installare in modo indipendente oppure possono essere inviati al dispositivo da una società che gestisce alcuni o tutti i dispositivi dei suoi dipendenti. I broker supportano la gestione della sicurezza per alcune applicazioni soltanto o per tutto il dispositivo, a seconda di quanto stabilito dagli amministratori IT. In Windows questa funzionalità è fornita da un sistema di selezione dell'account incorporato nel sistema operativo, il cui nome tecnico è Web Authentication Broker.
 
-Per ulteriori informazioni su come vengono utilizzati questi intermediari e come i clienti potrebbero visualizzarli nel flusso di accesso per piattaforma di Microsoft Identity hello leggere.
+Per altre informazioni su come vengono usati questi broker e come vengono visualizzati dai clienti nel flusso di accesso per la piattaforma Microsoft Identity, continuare a leggere.
 
 ### <a name="patterns-for-logging-in-on-mobile-devices"></a>Modelli di accesso dai dispositivi mobili
-Accesso toocredentials nei dispositivi seguire due modelli di base per la piattaforma di Microsoft Identity hello:
+Nella piattaforma Microsoft Identity l'accesso alle credenziali nei dispositivi avviene in base a due modelli:
 
 * Accessi non assistiti da broker
 * Accessi assistiti da broker
 
 #### <a name="non-broker-assisted-logins"></a>Accessi non assistiti da broker
-Account di accesso non broker assistito sono esperienze di accesso eseguite inline con un'applicazione hello e utilizzano l'archiviazione locale di hello sul dispositivo hello per tale applicazione. Questa risorsa di archiviazione può essere condivisi tra le applicazioni, ma le credenziali di hello sono strettamente associati toohello app o un gruppo di applicazioni utilizzando credenziali. Molto probabile che hai verificato in molte applicazioni per dispositivi mobili quando si immette un nome utente e una password all'interno di un'applicazione hello stesso.
+Gli accessi non assistiti da broker sono esperienze di accesso in linea con l'applicazione e utilizzano le risorse di archiviazione locali nel dispositivo per l'applicazione. Le risorse di archiviazione possono essere condivise tra le applicazioni, ma le credenziali sono strettamente associate all'applicazione oppure a suite di applicazioni che usano le credenziali. Questa è l'esperienza più frequente in molte applicazioni per dispositivi mobili in cui si immettono un nome utente e una password all'interno dell'applicazione stessa.
 
-Questi account hanno hello seguenti vantaggi:
+Questi tipi di accessi offrono i seguenti vantaggi:
 
-* Esperienza utente esiste completamente all'interno di un'applicazione hello.
-* Le credenziali possono essere condivise tra le applicazioni firmate da hello stesso certificato, che fornisce una suite di tooyour esperienza single sign-on di applicazioni.
-* Controllo intorno esperienza hello della procedura di accesso viene fornito l'applicazione toohello prima e dopo l'accesso.
+* L'esperienza utente si svolge interamente all'interno dell'applicazione.
+* Le credenziali possono essere condivise tra applicazioni firmate dallo stesso certificato, offrendo un'esperienza di Single Sign-On alla suite di applicazioni.
+* Il controllo dell'esperienza di accesso viene fornito all'applicazione prima e dopo l'accesso.
 
-Questi account hanno hello seguenti svantaggi:
+Questi tipi di accessi presentano i seguenti svantaggi:
 
 * L'utente non può eseguire il Single Sign-On per tutte le app che usano un'identità Microsoft, ma solo per le identità Microsoft configurate dall'applicazione.
-* L'applicazione non può essere utilizzata con funzionalità più avanzate di business, ad esempio l'accesso condizionale o utilizzare hello InTune famiglia di prodotti.
+* L'applicazione non può essere usata con funzionalità aziendali più avanzate, ad esempio l'Accesso condizionale o la suite di prodotti InTune.
 * L'applicazione non supporta l'autenticazione basata su certificati per gli utenti aziendali.
 
-Ecco una rappresentazione del funzionamento con archiviazione condivisa hello del tooenable applicazioni SSO hello identità SDK:
+Di seguito viene illustrato il funzionamento degli SDK di Microsoft Identity con risorse di archiviazione condivise delle applicazioni per abilitare l'SSO:
 
 ```
 +------------+ +------------+  +-------------+
@@ -83,35 +83,35 @@ Ecco una rappresentazione del funzionamento con archiviazione condivisa hello de
 ```
 
 #### <a name="broker-assisted-logins"></a>Accessi assistiti da broker
-Gli account di accesso assistita da Service Broker sono esperienze di accesso che si verificano all'interno di un'applicazione hello broker e utilizzare hello archiviazione e la protezione delle credenziali di hello broker tooshare a tutte le applicazioni sul dispositivo hello applicabili alla piattaforma di Microsoft Identity hello. Ciò significa che le applicazioni utilizzano hello broker toosign gli utenti. In iOS e Android tali gestori vengono forniti tramite applicazioni scaricabile che i clienti installare in modo indipendente o possono essere inseriti toohello dispositivo da una società che gestisce il dispositivo di hello per utente. Un esempio di questo tipo di applicazione è un'applicazione Microsoft Authenticator hello in iOS. In Windows, questa funzionalità è fornita dalla selezione account incorporato nel sistema operativo toohello, tecnicamente detto hello Broker di autenticazione Web.
-esperienza Hello varia in base alla piattaforma e a volte può risultare problematica toousers se non è gestita correttamente. Si è probabilmente più familiarità con questo modello se è installata l'applicazione di Facebook hello e si usa Facebook Connect da un'altra applicazione. Hello utilizza piattaforma Microsoft Identity hello stesso modello.
+Gli accessi assistiti da broker sono esperienze di accesso che si svolgono all'interno dell'applicazione broker e usano le risorse di archiviazione e la sicurezza del broker per condividere le credenziali tra tutte le applicazioni sul dispositivo che applicano la piattaforma Microsoft Identity. Ciò significa che le applicazioni si affidano al broker per l'accesso degli utenti. Nei sistemi iOS e Android i broker sono inseriti tramite applicazioni scaricabili che i clienti possono installare in modo indipendente oppure possono essere inviati al dispositivo da una società che gestisce il dispositivo dell'utente. Un esempio di questo tipo di applicazione è l'applicazione Microsoft Authenticator per iOS. In Windows questa funzionalità è fornita da un sistema di selezione dell'account incorporato nel sistema operativo, il cui nome tecnico è Web Authentication Broker.
+L'esperienza varia in base alla piattaforma e talvolta può essere un elemento di disturbo per gli utenti se non viene gestita correttamente. Chi ha installato l'applicazione Facebook e usa la funzionalità di connessione di Facebook in un'altra applicazione avrà probabilmente maggiore dimestichezza con questo modello. La piattaforma Microsoft Identity usa lo stesso modello.
 
-Per iOS in tal modo animazione "transizione" tooa in cui l'applicazione viene inviato background toohello mentre le applicazioni Microsoft Authenticator hello provengono in primo piano toohello per hello utente tooselect account con cui desiderano ricevere toosign con.  
+Nel sistema operativo iOS questo genera un'animazione di "transizione" in cui l'applicazione viene inviata sullo sfondo mentre le applicazioni di Microsoft Authenticator vengono portate in primo piano in modo che l'utente possa scegliere con quale account accedere.  
 
-Per Android e Windows account hello selezione viene visualizzato all'interno dell'applicazione dell'utente toohello meno problematica.
+Nei sistemi Android e Windows la selezione degli account viene visualizzata in alto nell'applicazione, con un impatto meno fastidioso per l'utente.
 
-#### <a name="how-hello-broker-gets-invoked"></a>La modalità in cui viene richiamato il broker hello
-Se è installato un broker compatibile hello dispositivo come applicazione di Microsoft Authenticator, hello identità SDK hello verrà automaticamente hello lavoro richiamare broker hello automaticamente quando un utente indica che desiderano toolog con qualsiasi account da piattaforma di Microsoft Identity Hello. Potrebbe trattarsi di un account Microsoft personale, di un account aziendale o dell'istituto di istruzione o di un account dato e ospitato in Azure con i prodotti B2C e B2B. 
+#### <a name="how-the-broker-gets-invoked"></a>Come viene richiamato il broker
+Se nel dispositivo è installato un broker compatibile, ad esempio l'applicazione Microsoft Authenticator, gli SDK di Microsoft Identity richiamano automaticamente il broker quando un utente indica che vuole accedere con un account della piattaforma Microsoft Identity. Potrebbe trattarsi di un account Microsoft personale, di un account aziendale o dell'istituto di istruzione o di un account dato e ospitato in Azure con i prodotti B2C e B2B. 
 
- #### <a name="how-we-ensure-hello-application-is-valid"></a>Come è possibile garantire un'applicazione hello è valido
+ #### <a name="how-we-ensure-the-application-is-valid"></a>Come si garantisce la validità dell'applicazione
  
- identità del Hello necessità tooensure hello di broker di hello chiamata di un'applicazione è fondamentale toohello sicurezza che forniamo nell'account di accesso di Service broker assistito. IOS né Android applica gli identificatori univoci che sono validi solo per una determinata applicazione, in modo che applicazioni dannose potrebbero lo "spoofing" identificatore dell'applicazione legittimo e ricevere i token hello destinati a un'applicazione hello legittimi. tooensure che Microsoft segnala sempre con un'applicazione hello corretto in fase di esecuzione, chiediamo hello developer tooprovide un redirectURI personalizzato quando si registra l'applicazione con Microsoft. **Le modalità di creazione dell'URI di reindirizzamento da parte degli sviluppatori vengono trattate in dettaglio di seguito.** Questo valore di redirectURI personalizzato contiene hello ID Bundle dell'applicazione hello ed è garantita l'applicazione univoco toohello toobe da hello Apple App Store. Quando un gestore di hello chiamate applicazione broker hello richiede iOS hello tooprovide sistema operativo hello con ID di pacchetto che ha chiamato broker hello. broker Hello fornisce tooMicrosoft questo ID Bundle nel sistema di identità tooour chiamata hello. ID Bundle dell'applicazione hello hello non corrisponde a hello che ID Bundle fornito toous dallo sviluppatore hello durante la registrazione, si consentirà l'accesso toohello token per un'applicazione hello risorse hello richiede. Tale controllo garantisce che solo un'applicazione hello registrata dallo sviluppatore hello riceve i token.
+ La necessità di verificare l'identità di una chiamata di applicazione al broker è fondamentale per la sicurezza garantita con l'accesso assistito da broker. Né IOS né Android applicano identificatori univoci che sono validi solo per una determinata applicazione, cosicché le applicazioni dannose possono effettuare lo "spoofing" di un identificatore dell'applicazione legittimo e ricevere i token per l'applicazione legittima. Per garantire sempre la comunicazione con l'applicazione corretta in fase di esecuzione, chiediamo agli sviluppatori di assicurare un URI di reindirizzamento personalizzato al momento della registrazione dell'applicazione con Microsoft. **Le modalità di creazione dell'URI di reindirizzamento da parte degli sviluppatori vengono trattate in dettaglio di seguito.** Questo URI di reindirizzamento personalizzato contiene l'ID bundle dell'applicazione e Apple App Store ne garantisce l'univocità per l'applicazione. Quando un'applicazione chiama il broker, questo richiede al sistema operativo iOS per fornire l'ID bundle che ha chiamato il broker. Il broker fornisce questo ID bundle a Microsoft nella chiamata al sistema di identità. Se l'ID bundle dell'applicazione non corrisponde all'ID bundle offerto dallo sviluppatore durante la registrazione, verrà negato l'accesso ai token per la risorsa richiesti dall'applicazione. Questo controllo garantisce che solo l'applicazione registrata dallo sviluppatore riceva i token.
 
-**sviluppatore di Hello ha scelta hello del se hello Microsoft Identity SDK chiama broker hello o utilizza hello non broker assistito flusso.** Tuttavia se hello scelto non toouse hello assistito broker flusso perdono hello vantaggio derivante dall'utilizzo delle credenziali SSO utente hello potrà avere già aggiunto al dispositivo hello e impedisce loro applicazione in uso con le funzionalità di business Microsoft Fornisce i clienti, ad esempio l'accesso condizionale, funzionalità di gestione di Intune e l'autenticazione basata su certificato.
+**Lo sviluppatore può scegliere se Microsoft Identity SDK deve chiamare il broker o usare il flusso non assistito dal broker.** Se lo sviluppatore decide di non usare il flusso assistito dal broker, rinuncia al vantaggio dell'uso delle credenziali SSO che l'utente potrebbe avere già aggiunto nel dispositivo e impedisce di usare l'applicazione con le funzionalità aziendali offerte da Microsoft, ad esempio l'Accesso condizionale, le funzionalità di gestione di Intune e l'autenticazione basata su certificati.
 
-Questi account hanno hello seguenti vantaggi:
+Questi tipi di accessi offrono i seguenti vantaggi:
 
-* Utente di cui si verifichi SSO per tutte le loro applicazioni indipendentemente dal fornitore hello.
-* L'applicazione può utilizzare funzionalità più avanzate di business, ad esempio l'accesso condizionale o usare hello InTune suite di prodotti.
+* L'utente usufruisce del Single Sign-On per tutte le proprie applicazioni, indipendentemente dal fornitore.
+* L'applicazione può usare funzionalità aziendali più avanzate, ad esempio l'Accesso condizionale o la suite di prodotti InTune.
 * L'applicazione può supportare l'autenticazione basata su certificati per gli utenti aziendali.
-* Accedi molto più sicuro di riscontrare identità hello dell'applicazione hello e dell'utente hello vengono verificate dall'applicazione di Service broker hello con gli algoritmi di sicurezza aggiuntivo e la crittografia.
+* Un'esperienza di accesso molto più sicura dato che l'identità dell'applicazione e l'utente vengono verificati dall'applicazione broker con algoritmi di sicurezza aggiuntivi e la crittografia.
 
-Questi account hanno hello seguenti svantaggi:
+Questi tipi di accessi presentano i seguenti svantaggi:
 
-* In iOS utente hello viene eseguita la transizione dall'esperienza dell'applicazione mentre si scelgono le credenziali.
-* Perdita di account di accesso di hello possibilità toomanage hello esperienza per i clienti all'interno dell'applicazione.
+* Nel sistema iOS l'utente viene trasferito dall'esperienza dell'applicazione durante la selezione delle credenziali.
+* Perdita della possibilità di gestire l'esperienza di accesso per i clienti nell'applicazione.
 
-Ecco una rappresentazione di come utilizzare Microsoft Identity SDK hello hello broker tooenable applicazioni SSO:
+Di seguito viene rappresentato il funzionamento degli SDK di Microsoft Identity con le applicazioni broker per abilitare l'SSO:
 
 ```
 +------------+ +------------+   +-------------+
@@ -137,28 +137,28 @@ Ecco una rappresentazione di come utilizzare Microsoft Identity SDK hello hello 
               +-------------+
 ```
 
-Grazie a queste informazioni di base deve essere toobetter in grado di comprendere e implementare SSO all'interno dell'applicazione utilizzando una piattaforma di Microsoft Identity hello e SDK.
+Sulla base di queste informazioni di base dovrebbe essere possibile comprendere meglio e implementare l'SSO all'interno dell'applicazione con la piattaforma e gli SDK di Microsoft Identity.
 
 ## <a name="enabling-cross-app-sso-using-adal"></a>Abilitazione di SSO tra app tramite ADAL
-In questo caso si usa hello ADAL iOS SDK per:
+In questo esempio si userà ADAL iOS SDK per:
 
 * Attivare SSO non assistito da broker per la suite di app
 * Attivare il supporto per SSO assistito da broker
 
 ### <a name="turning-on-sso-for-non-broker-assisted-sso"></a>Attivazione dell'SSO per l'SSO non assistito da broker
-Per tutte le applicazioni di accesso non broker SSO assistito hello identità SDK gestisce gran parte delle complessità hello di SSO. Ciò include l'individuazione utente hello nella cache di hello e la gestione di un elenco di utenti ha effettuato l'accesso è tooquery.
+Per l'SSO non assistito da broker tra applicazioni, gli SDK di Microsoft Identity risolvono automaticamente gran parte delle complessità dell'SSO, tra cui la ricerca dell'utente corretto nella cache e la gestione di un elenco di utenti connessi di cui è possibile effettuare una query.
 
-tooenable SSO tutte le applicazioni che si è proprietari che è necessario hello toodo seguenti:
+Per abilitare l'SSO tra le applicazioni di cui si è proprietari, eseguire le operazioni seguenti:
 
-1. Verificare che tutte le hello di utente le applicazioni stesso Client o applicazione ID.
-2. Verificare che tutti i hello condivisione applicazioni la stessa firma del certificato di Apple in modo da poter condividere portachiavi
-3. Richiesta hello stesso diritto keychain per ognuna delle applicazioni.
-4. Informare hello identità SDK keychain condiviso hello che desideri toouse.
+1. Verificare che tutte le applicazioni usino lo stesso ID client o ID applicazione.
+2. Verificare che tutte le applicazioni condividano lo stesso certificato di firma di Apple per poter condividere i portachiavi.
+3. Richiedere lo stesso diritto per i portachiavi per ogni applicazione.
+4. Indicare agli SDK di Microsoft Identity il portachiavi condiviso da usare.
 
-#### <a name="using-hello-same-client-id--application-id-for-all-hello-applications-in-your-suite-of-apps"></a>Utilizzando lo stesso ID Client di hello / applicazione ID per tutte le applicazioni nel gruppo di applicazioni di hello
-Per consentire tooknow piattaforma di Microsoft Identity hello che ne sia consentita tooshare token tra le applicazioni, ognuna delle applicazioni sarà necessario tooshare hello stesso Client o applicazione ID. Questo è l'identificatore hello tooyou fornito al momento della prima applicazione è stato registrato nel portale di hello.
+#### <a name="using-the-same-client-id--application-id-for-all-the-applications-in-your-suite-of-apps"></a>Uso dello stesso ID client/ID applicazione per tutte le applicazioni della suite di applicazioni
+Per indicare alla piattaforma Microsoft Identity che è consentita la condivisione dei token tra le applicazioni, ogni applicazione dovrà condividere lo stesso ID client o ID applicazione. Si tratta dell'identificatore univoco fornito al momento della registrazione della prima applicazione nel portale.
 
-Per comprendere come identificare diverse App toohello servizio Microsoft Identity se utilizza hello stesso ID applicazione. risposte Hello sono con hello **Redirect URIs**. Ogni applicazione può avere più URI di reindirizzamento registrato nel portale di onboarding hello. Ogni app della suite avrà un URI di reindirizzamento diverso. La situazione potrebbe essere simile alla seguente:
+Ci si potrebbe chiedere come si fa a identificare le varie applicazioni nel servizio di gestione delle identità Microsoft se tutte utilizzano lo stesso ID applicazione. La risposta sono gli **URI di reindirizzamento**. Ogni applicazione può avere più URI di reindirizzamento registrati nel portale di caricamento. Ogni app della suite avrà un URI di reindirizzamento diverso. La situazione potrebbe essere simile alla seguente:
 
 URI di reindirizzamento dell'app 1: `x-msauth-mytestiosapp://com.myapp.mytestapp`
 
@@ -168,7 +168,7 @@ URI di reindirizzamento dell'app 3: `x-msauth-mytestiosapp://com.myapp.mytestapp
 
 ....
 
-Questi vengono nidificati sotto lo stesso ID client hello / ID dell'applicazione e ricercata hello in base a URI è restituire toous nella configurazione del SDK di reindirizzamento.
+Gli URI vengono nidificati sotto lo stesso ID client / ID applicazione e cercati in base all'URI di reindirizzamento restituito nella configurazione dell'SDK.
 
 ```
 +-------------------+
@@ -194,12 +194,12 @@ Questi vengono nidificati sotto lo stesso ID client hello / ID dell'applicazione
 ```
 
 
-*Si noti che hello formato degli URI di reindirizzamento vengono spiegate di seguito. È possibile utilizzare qualsiasi URI di reindirizzamento a meno che non si desidera broker hello toosupport, nel qual caso è necessario simile hello precedente*
+*Il formato degli URI di reindirizzamento viene illustrato di seguito. È possibile usare qualsiasi URI di reindirizzamento a meno che non si voglia supportare il broker, nel qual caso deve essere simile ai precedenti*
 
 #### <a name="create-keychain-sharing-between-applications"></a>Creare la condivisione dei portachiavi tra le applicazioni
-Abilitazione della condivisione di portachiavi esula hello in questo documento e coperto da Apple nel proprio documento [aggiunta di funzionalità](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/AddingCapabilities/AddingCapabilities.html). È importante soprattutto di stabilire il toobe portachiavi chiamato desiderato e aggiungere tale funzionalità in tutte le applicazioni.
+L'abilitazione della condivisione dei portachiavi esula dall'ambito di questo documento ed è illustrata da Apple nel documento relativo all' [Adding Capabilities](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/AddingCapabilities/AddingCapabilities.html)(Aggiunta di funzionalità). È importante decidere quale portachiavi deve essere chiamato e aggiungere tale funzionalità in tutte le applicazioni.
 
-Quando si dispone dei diritti impostare correttamente la dovrebbe essere un file nella directory del progetto intitolata `entitlements.plist` che contiene un elemento che sembra hello seguenti:
+Una volta configurati correttamente i diritti, nella directory del progetto verrà visualizzato un file denominato `entitlements.plist` il cui contenuto è simile al seguente:
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -215,43 +215,43 @@ Quando si dispone dei diritti impostare correttamente la dovrebbe essere un file
 </plist>
 ```
 
-Dopo aver diritto portachiavi hello abilitato in ognuna delle applicazioni e si è pronti toouse SSO, informare hello Microsoft Identity SDK portachiavi utilizzando hello impostazione in seguito il `ADAuthenticationSettings` con hello seguente impostazione:
+Una volta abilitato il diritto per i portachiavi in ogni applicazione e quando si è pronti a usare SSO, notificare il portachiavi a Microsoft Identity SDK usando l'impostazione seguente in `ADAuthenticationSettings` :
 
 ```
 defaultKeychainSharingGroup=@"com.myapp.mycache";
 ```
 
 > [!WARNING]
-> Quando si condivide un portachiavi tra le applicazioni qualsiasi applicazione può eliminare utenti o peggio eliminare tutti i token hello in tutta l'applicazione. Questo è particolarmente disastroso se si hanno applicazioni che si basano su hello token toodo operazioni in background. La condivisione a un portachiavi significa che è necessario prestare particolare attenzione in tutte le rimuove operazioni tramite hello identità SDK.
+> Quando si condivide un portachiavi tra le applicazioni, qualsiasi applicazione può eliminare utenti o peggio ancora eliminare tutti i token dell'applicazione. Questo può essere un problema grave se sono presenti applicazioni che usano i token per svolgere operazioni in background. La condivisione di un portachiavi implica che è necessario prestare grande attenzione durante tutte le operazioni di eliminazione con gli SDK di Microsoft Identity.
 > 
 > 
 
-L'operazione è terminata. Hello Microsoft Identity SDK ora condividono le credenziali in tutte le applicazioni. elenco di utenti Hello verrà inoltre essere condivisi tra le istanze dell'applicazione.
+L'operazione è terminata. L'SDK di Microsoft Identity condividerà le credenziali tra tutte le applicazioni. Anche l'elenco degli utenti verrà condiviso tra le istanze dell'applicazione.
 
 ### <a name="turning-on-sso-for-broker-assisted-sso"></a>Attivazione di SSO per SSO assistito da broker
-consente a un'applicazione di toouse qualsiasi broker da cui è installato nel dispositivo hello è Hello **disattivata per impostazione predefinita**. Ordinare toouse l'applicazione con broker hello è necessario apportare alcune modifiche alla configurazione e aggiungere un'applicazione tooyour di codice.
+La possibilità per un'applicazione di usare qualsiasi broker installato nel dispositivo è **disattivata per impostazione predefinita**. Per usare l'applicazione con il broker è necessario apportare alcune modifiche alla configurazione e aggiungere una parte di codice all'applicazione.
 
-Hello passaggi toofollow sono:
+Ecco i passaggi da seguire:
 
-1. Abilitare la modalità di Service broker in toohello di chiamata del codice dell'applicazione SDK MS.
-2. Stabilire un nuovo URI di reindirizzamento e fornire tooboth hello app e la registrazione dell'app.
+1. Abilitare la modalità broker nella chiamata del codice dell'applicazione a MS SDK.
+2. Stabilire un nuovo URI di reindirizzamento e fornirlo sia all'app che alla registrazione dell'app
 3. Registrazione di uno schema URL.
-4. Supporto iOS9: aggiungere un file Info. plist tooyour di autorizzazione.
+4. Supporto per iOS9: aggiungere un'autorizzazione al file info.plist.
 
 #### <a name="step-1-enable-broker-mode-in-your-application"></a>Passaggio 1: Abilitare la modalità broker nell'applicazione
-possibilità di Hello per il broker di hello toouse applicazione è attivata quando si crea la configurazione iniziale dell'oggetto di autenticazione o contesto"hello". A tal fine, impostare il tipo delle credenziali nel codice:
+La possibilità per l'applicazione di usare il broker viene attivata quando si crea il "contesto" o la configurazione iniziale dell'oggetto di autenticazione. A tal fine, impostare il tipo delle credenziali nel codice:
 
 ```
-/*! See hello ADCredentialsType enumeration definition for details */
+/*! See the ADCredentialsType enumeration definition for details */
 @propertyADCredentialsType credentialsType;
 ```
-Hello `AD_CREDENTIALS_AUTO` impostazione consentirà hello Microsoft Identity SDK tootry toocall out broker toohello, `AD_CREDENTIALS_EMBEDDED` impedirà hello Microsoft Identity SDK dalla chiamata toohello broker.
+L'impostazione `AD_CREDENTIALS_AUTO` consentirà a Microsoft Identity SDK di provare a chiamare il broker, mentre `AD_CREDENTIALS_EMBEDDED` impedirà a Microsoft Identity SDK di chiamare il broker.
 
 #### <a name="step-2-registering-a-url-scheme"></a>Passaggio 2: Registrazione di uno schema URL
-piattaforma di Microsoft Identity Hello Usa broker hello tooinvoke di URL e dell'applicazione tooyour indietro quindi la restituzione di controllo. toofinish di andata e ritorno è necessario uno schema URL registrato per l'applicazione che hello Microsoft Identity conoscenza della piattaforma. Questo può essere inoltre tooany altri schemi app potrebbe aver precedentemente registrato con l'applicazione.
+La piattaforma Microsoft Identity usa gli URL per richiamare il broker e quindi restituire il controllo all'applicazione. Per completare tale round trip, è necessario uno schema URL registrato per l'applicazione, di cui la piattaforma Microsoft Identity verrà a conoscenza e che può andare ad aggiungersi a eventuali altri schemi app già registrati con l'applicazione.
 
 > [!WARNING]
-> È consigliabile apportare hello URL schema toominimize piuttosto univoco hello possibilità che un'altra app hello utilizzando lo stesso schema dell'URL. Apple non garantisce l'univocità hello degli schemi di URL registrati nell'archivio di app hello.
+> È consigliabile rendere il più possibile univoco lo schema URL per ridurre al minimo le possibilità che un'altra app usi lo stesso schema URL. Apple non impone l'univocità degli schemi URL registrati nell'App Store.
 > 
 > 
 
@@ -274,25 +274,25 @@ Ecco un esempio di come appare nella configurazione del progetto. È anche possi
 ```
 
 #### <a name="step-3-establish-a-new-redirect-uri-with-your-url-scheme"></a>Passaggio 3: Stabilire un nuovo URI di reindirizzamento con lo schema URL
-In ordine tooensure che è sempre restituire credenziali hello token toohello corretta applicazione, è necessario toomake che è richiamata tooyour applicazione in modo da hello del sistema operativo iOS è possibile verificare. applicazioni di Service broker di Hello iOS del sistema operativo report toohello Microsoft hello ID Bundle dell'applicazione hello chiamata. di cui un'applicazione non autorizzata non può effettuare lo spoofing. Pertanto, è usato insieme a hello URI del nostro tooensure applicazione Service broker token hello vengono restituiti toohello corretta applicazione. È necessario è tooestablish questo reindirizzamento univoco sia nell'applicazione e set URI come URI di reindirizzamento nel nostro portale per sviluppatori.
+Per assicurarsi che i token delle credenziali vengano sempre restituiti all'applicazione corretta, è necessario verificare che l'applicazione venga richiamata in un modo controllabile dal sistema operativo iOS. Il sistema operativo iOS segnala alle applicazioni broker Microsoft l'ID bundle dell'applicazione chiamante, di cui un'applicazione non autorizzata non può effettuare lo spoofing. Di conseguenza, l'hash del certificato viene usato insieme all'URI dell'applicazione broker per garantire che i token vengano restituiti all'applicazione corretta. È necessario definire questo URI di reindirizzamento univoco nell'applicazione e impostarlo come URI di reindirizzamento nel portale per gli sviluppatori.
 
-L'URI di reindirizzamento deve essere nel formato corretto di hello di:
+L'URI di reindirizzamento deve essere nel formato corretto:
 
 `<app-scheme>://<your.bundle.id>`
 
 Ad esempio: *x-msauth-mytestiosapp://com.myapp.mytestapp*
 
-Questo URI di reindirizzamento deve toobe specificato con la registrazione di app utilizzando hello [portale di Azure](https://portal.azure.com/). Per altre informazioni sulla registrazione di app Azure AD, vedere [Integrazione con Azure Active Directory](active-directory-how-to-integrate.md).
+L'URI di reindirizzamento deve essere specificato nella registrazione dell'app tramite il [portale di Azure](https://portal.azure.com/). Per altre informazioni sulla registrazione di app Azure AD, vedere [Integrazione con Azure Active Directory](active-directory-how-to-integrate.md).
 
-##### <a name="step-3a-add-a-redirect-uri-in-your-app-and-dev-portal-toosupport-certificate-based-authentication"></a>Passaggio 3a: aggiungere un URI di reindirizzamento nell'autenticazione basata su certificati di portale toosupport app e sviluppo
-autenticazione basata sul certificato toosupport secondo "msauth" deve toobe registrato nell'applicazione e hello [portale di Azure](https://portal.azure.com/) toohandle l'autenticazione del certificato se lo si desidera tooadd che supportano l'applicazione.
+##### <a name="step-3a-add-a-redirect-uri-in-your-app-and-dev-portal-to-support-certificate-based-authentication"></a>Passaggio 3a: Aggiungere un URI di reindirizzamento nell'app e nel portale per sviluppatori per supportare l'autenticazione basata su certificati
+Per supportare l'autenticazione basata su certificati è necessario registrare un secondo "msauth" nell'applicazione e nel [portale di Azure](https://portal.azure.com/) per gestire l'autenticazione del certificato, se si vuole aggiungere tale supporto nell'applicazione.
 
 `msauth://code/<broker-redirect-uri-in-url-encoded-form>`
 
 Ad esempio: *msauth://code/x-msauth-mytestiosapp%3A%2F%2Fcom.myapp.mytestapp*
 
-#### <a name="step-4-ios9-add-a-configuration-parameter-tooyour-app"></a>Passaggio 4: iOS9: aggiungere un'app tooyour parametro di configurazione
-Libreria ADAL Usa – canOpenURL: toocheck se broker hello è installato nel dispositivo hello. In iOS 9 Apple ha bloccato gli schemi di cui un'applicazione può effettuare una query. Sarà necessario tooadd "msauth" toohello LSApplicationQueriesSchemes sezione il `info.plist file`.
+#### <a name="step-4-ios9-add-a-configuration-parameter-to-your-app"></a>Passaggio 4: iOS9: Aggiungere un parametro di configurazione all'app
+ADAL usa –canOpenURL: per controllare se il broker è installato nel dispositivo. In iOS 9 Apple ha bloccato gli schemi di cui un'applicazione può effettuare una query. Sarà necessario aggiungere "msauth" alla sezione LSApplicationQueriesSchemes di `info.plist file`.
 
 <key>LSApplicationQueriesSchemes</key>
 
@@ -300,5 +300,5 @@ Libreria ADAL Usa – canOpenURL: toocheck se broker hello è installato nel dis
 </array>
 
 ### <a name="youve-configured-sso"></a>L'SSO è stato configurato!
-Ora hello SDK identità Microsoft verrà automaticamente sia condivide le credenziali tra le applicazioni e richiamare broker hello se è presente sul dispositivo.
+Ora Microsoft Identity SDK condividerà automaticamente le credenziali tra le applicazioni e richiamerà il broker, se presente nel dispositivo.
 

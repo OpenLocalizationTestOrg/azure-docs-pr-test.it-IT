@@ -1,6 +1,6 @@
 ---
-title: aaaAzure il monitoraggio dei contenitori dell'infrastruttura di servizi e diagnostica | Documenti Microsoft
-description: Informazioni su come toomonitor e diagnosticare contenitori orchestrati in Microsoft Azure Service Fabric con soluzioni di contenitori di OMS.
+title: Monitoraggio e diagnostica dei contenitori di Azure Service Fabric | Microsoft Docs
+description: "Informazioni su come eseguire attività di monitoraggio e diagnostica per i contenitori orchestrati in Microsoft Azure Service Fabric con la soluzione Contenitori di OMS."
 services: service-fabric
 documentationcenter: .net
 author: dkkapur
@@ -14,59 +14,59 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 05/10/2017
 ms.author: dekapur
-ms.openlocfilehash: cd79111cf78b9d76a60d489bb9953587aa06186d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 874c1a5c4b399ff2254072b7282f05d83a005cc3
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="monitoring-windows-server-containers-with-oms"></a>Monitoraggio dei contenitori Windows Server con OMS
 
 ## <a name="oms-containers-solution"></a>Soluzione Contenitori di OMS
 
-il team di Operations Management Suite (OMS) Hello ha pubblicato una soluzione di contenitori per la diagnostica e monitoraggio per i contenitori. Con la propria soluzione di infrastruttura del servizio, questa soluzione è le distribuzioni di contenitori un ottimo strumento toomonitor orchestrati nell'infrastruttura del servizio. Ecco un esempio semplice di quale dashboard hello nella soluzione hello il seguente aspetto:
+Il team di Operations Management Suite (OMS) ha pubblicato una soluzione Contenitori per la diagnostica e il monitoraggio dei contenitori. Insieme alla soluzione Service Fabric, questa soluzione è uno strumento straordinario per il monitoraggio delle distribuzioni di contenitori orchestrate in Service Fabric. Ecco un semplice esempio di dashboard della soluzione:
 
 ![Dashboard OMS di base](./media/service-fabric-diagnostics-containers-windowsserver/oms-containers-dashboard.png)
 
-Raccoglie inoltre diversi tipi di registri che è possibile eseguire query nello strumento di OMS Log Analitica hello, e può essere utilizzato toovisualize qualsiasi metriche o gli eventi generati. tipi di log Hello raccolti sono:
+Questo strumento raccoglie anche diversi tipi di log su cui è possibile eseguire query nello strumento Log Analytics di OMS e che è possibile usare per visualizzare le metriche o gli eventi generati. I tipi di log raccolti sono:
 
 1. ContainerInventory: informazioni su posizione, nome e immagini dei contenitori
 2. ContainerImageInventory: informazioni sulle immagini distribuite, inclusi ID o dimensioni
 3. ContainerLog: log degli errori specifici, log Docker (stdout e così via) e altre voci
 4. ContainerServiceLog: comandi del daemon Docker che sono stati eseguiti
-5. Delle prestazioni: contatori incluso contenitore della cpu, memoria, il traffico di rete, i/o del disco e metriche personalizzate da hello ospitano macchine
+5. Perf: contatori delle prestazioni, inclusi cpu, memoria, traffico di rete, I/O del disco e metriche personalizzate dei contenitori dai computer host
 
-Questo articolo descrive tooset necessari passaggi di hello formare il contenitore di monitoraggio per il cluster. ulteriori informazioni sulla soluzione di contenitori di OMS, toolearn estrarre loro [documentazione](../log-analytics/log-analytics-containers.md).
+Questo articolo illustra i passaggi necessari per configurare il monitoraggio dei contenitori per il cluster. Per altre informazioni sulla soluzione Contenitori di OMS, vedere la relativa [documentazione](../log-analytics/log-analytics-containers.md).
 
 ## <a name="1-set-up-a-service-fabric-cluster"></a>1. Configurare un cluster di Service Fabric
 
-Creare un cluster utilizzando il modello di gestione risorse di Azure hello trovato [qui](https://github.com/dkkapur/Service-Fabric/tree/master/ARM%20Templates/SF%20OMS%20Sample). Verificare che tooadd un nome di area di lavoro OMS univoco. Questo modello viene anche impostato toodeploying compilazione di un cluster in anteprima hello di Service Fabric (v255.255), il che significa che non può essere utilizzato nell'ambiente di produzione e non può essere aggiornato tooa diversa versione di Service Fabric. Se si decide di questo modello per toouse a lungo termine o di produzione usare, modificare una versione di hello tooa numero di versione stabile.
+Creare un cluster usando il modello di Azure Resource Manager disponibile [qui](https://github.com/dkkapur/Service-Fabric/tree/master/ARM%20Templates/SF%20OMS%20Sample). Assicurarsi di aggiungere un nome di area di lavoro di OMS univoco. Questo modello per impostazione predefinita distribuisce un cluster nella versione di anteprima di Service Fabric (v255.255), il che significa che non può essere usato nell'ambiente di produzione e non può essere aggiornato a una versione di Service Fabric diversa. Se si decide di usare questo modello a lungo termine o in produzione, modificare la versione impostando un numero di versione stabile.
 
-Una volta configurato il cluster hello, confermare che si installa certificato appropriato hello e assicurarsi che sia in grado di tooconnect toohello cluster.
+Una volta configurato il cluster, verificare di avere installato il certificato appropriato e assicurarsi di potersi connettere al cluster.
 
-Verificare che il gruppo di risorse sia configurato correttamente dall'intestazione toohello [portale di Azure](https://portal.azure.com/) e individuazione di distribuzione hello. gruppo di risorse Hello dovrebbe contenere tutte le risorse di Service Fabric hello e hanno anche una soluzione Analitica di Log, nonché una soluzione di Service Fabric.
+Verificare che il gruppo di risorse sia configurato correttamente passando al [portale di Azure](https://portal.azure.com/) e individuando la distribuzione. Il gruppo di risorse deve contenere tutte le risorse di Service Fabric e anche una soluzione Log Analytics, oltre che la soluzione Service Fabric.
 
 Per la modifica di un cluster di Service Fabric esistente:
-* Verificare che sia abilitata la diagnostica (in caso contrario, abilitarla tramite [l'aggiornamento di set di scalabilità della macchina virtuale hello](/rest/api/virtualmachinescalesets/create-or-update-a-set))
-* Aggiungere un'area di lavoro OMS tramite la creazione di una soluzione di "Servizio Fabric Analitica" tramite hello Azure Marketplace
-* Modifica di origini dati hello di hello Service Fabric soluzione toopick dei dati dalle tabelle di archiviazione di Azure appropriate hello (impostate da WAD) in hello gruppo di risorse che hello cluster si trova in
-* Aggiungi agente hello come un [set di scalabilità della macchina virtuale toohello estensione](/powershell/module/azurerm.compute/add-azurermvmssextension) tramite PowerShell o l'aggiornamento di set di scalabilità della macchina virtuale hello (stesso collegamento sopra, modello di gestione risorse di hello toomodify)
+* Verificare che la soluzione di diagnostica sia abilitata (in caso contrario, abilitarla tramite l'[aggiornamento del set di scalabilità di macchine virtuali](/rest/api/virtualmachinescalesets/create-or-update-a-set))
+* Aggiungere un'area di lavoro di OMS creando una soluzione di "Analisi Service Fabric" tramite Azure Marketplace
+* Modificare le origini dati della soluzione Service Fabric per prelevare dati dalle tabelle di Archiviazione di Azure appropriate (impostate da WAD) nel gruppo di risorse in cui si trova il cluster
+* Aggiungere l'agente come [estensione del set di scalabilità di macchine virtuali](/powershell/module/azurerm.compute/add-azurermvmssextension) tramite PowerShell o aggiornando il set di scalabilità di macchine virtuali (stesso collegamento specificato sopra, per modificare il modello di Resource Manager)
 
 ## <a name="2-deploy-a-container"></a>2. Distribuire un contenitore
 
-Una volta cluster hello è pronto e aver verificato che sia possibile accedervi, è possibile distribuire tooit un contenitore. Se si sceglie di versione di anteprima hello toouse come set dal modello hello, è possibile esplorare anche docker di nuovo di Service Fabric compongono la funzionalità. Tenere presente che hello prima volta che un'immagine contenitore è distribuito tooa cluster, vengono visualizzate più immagini di hello toodownload minuti a seconda delle dimensioni.
+Una volta che il cluster è pronto e si è verificato di potervi accedere, distribuire un contenitore. Se si sceglie di usare la versione di anteprima impostata dal modello, è possibile esaminare anche la nuova funzionalità Docker Compose di Service Fabric. Tenere presente che la prima volta che un'immagine del contenitore viene distribuita in un cluster, sono necessari alcuni minuti per scaricare l'immagine, a seconda delle dimensioni.
 
-## <a name="3-add-hello-containers-solution"></a>3. Aggiungere hello contenitori soluzione
+## <a name="3-add-the-containers-solution"></a>3. Aggiungere la soluzione Contenitori
 
-In hello portale di Azure, creare una risorsa contenitori (in hello monitoraggio + gestione categoria) tramite Azure Marketplace. 
+Nel portale di Azure creare una risorsa Contenitori (nella categoria Monitoraggio e gestione) tramite Azure Marketplace. 
 
 ![Aggiunta della soluzione Contenitori](./media/service-fabric-diagnostics-containers-windowsserver/containers-solution.png)
 
-Nel passaggio della creazione di hello, richiede un'area di lavoro OMS. Selezionare hello ne è stata creata con la distribuzione di hello precedente. Questo passaggio viene aggiunta una soluzione di contenitori all'interno dell'area di lavoro OMS e viene rilevato automaticamente dall'agente OMS hello distribuite dal modello hello. agente di Hello inizierà a raccogliere dati sui processi di contenitori hello cluster hello e circa 10-15 minuti, si dovrebbe essere chiaro backup con i dati come immagine di hello del dashboard hello sopra soluzione di hello.
+Nel passaggio di creazione viene richiesta un'area di lavoro di OMS. Selezionare l'area creata con la distribuzione precedente. Questo passaggio aggiunge una soluzione Contenitori nell'area di lavoro di OMS e viene rilevato automaticamente dall'agente OMS distribuito dal modello. L'agente inizierà a raccogliere dati nei processi dei contenitori nel cluster e, in circa 10-15 minuti, si dovrebbe vedere la soluzione con i dati come nell'immagine del dashboard precedente.
 
 ## <a name="4-next-steps"></a>4. Passaggi successivi
 
-OMS offre vari strumenti in hello dell'area di lavoro toomake se più utili per l'utente. Esplorare hello opzioni toocustomize hello soluzione tooyour esigenze seguenti:
-- Ottenere conoscenza con hello [ricerca e l'esecuzione di query log](../log-analytics/log-analytics-log-searches.md) funzionalità fornite come parte del Log Analitica
-- Configurare hello OMS agent toopick backup specifici contatori delle prestazioni (passare toohello area Home > Impostazioni > dati > i contatori delle prestazioni di Windows)
-- Configurare OMS tooset [automatizzata avvisi](../log-analytics/log-analytics-alerts.md) tooaid regole di rilevamento e di diagnostica
+OMS offre diversi strumenti utili nell'area di lavoro. Esaminare le opzioni seguenti per personalizzare la soluzione in base alle esigenze:
+- Acquisire familiarità con le funzionalità di [ricerca log e query](../log-analytics/log-analytics-log-searches.md) incluse in Log Analytics
+- Configurare l'agente OMS per prelevare contatori delle prestazioni specifici (dalla home page dell'area di lavoro > Impostazioni > Dati > Contatori delle prestazioni di Windows)
+- Configurare OMS per regole di [avvisi automatizzati](../log-analytics/log-analytics-alerts.md) per semplificare il rilevamento e la diagnostica

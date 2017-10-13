@@ -1,6 +1,6 @@
 ---
-title: cluster del servizio di contenitore di Azure aaaScale | Documenti Microsoft
-description: Come nodi di agente tooscale in un cluster di controller di dominio o del sistema operativo, Docker Swarm o Kubernetes nel servizio contenitore di Azure usando hello CLI di Azure o il portale di Azure.
+title: Ridimensionare un cluster del servizio contenitore di Azure | Microsoft Docs
+description: "È possibile ridimensionare il numero di nodi agente in un cluster DC/OS, Docker Swarm o Kubernetes nel servizio contenitore di Azure tramite l'interfaccia della riga di comando o il Portale di Azure."
 services: container-service
 documentationcenter: 
 author: sauryadas
@@ -17,10 +17,10 @@ ms.workload: na
 ms.date: 03/01/2017
 ms.author: saudas
 ms.custom: H1Hack27Feb2017, mvc
-ms.openlocfilehash: 9a0f28f467f95a453078bb2a9498a9033e019645
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3ec2d280188d7cc2eb0b3926cc963b89531b96e5
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 [!INCLUDE [container-service-scale.md](../../../includes/container-service-scale.md)]

@@ -1,6 +1,6 @@
 ---
-title: gestione dei dispositivi IoT con l'hub IOT explorer aaaAzure | Documenti Microsoft
-description: "Utilizzare hello hub IOT Esplora CLI lo strumento per la gestione dei dispositivi Azure IoT Hub, che presenta metodi diretti hello e opzioni di gestione del doppi hello proprietà desiderate."
+title: Gestione dei dispositivi Azure IoT con iothub-explorer | Microsoft Docs
+description: "Usare lo strumento dell'interfaccia della riga di comando iothub-explorer per la gestione di dispositivi dell'hub IoT di Azure, con i metodi diretti e le opzioni di gestione delle proprietà desiderate nei dispositivi gemelli."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/12/2017
 ms.author: xshi
-ms.openlocfilehash: e0a5e6120db5c4fb12f7f8b605a56e0e4aad9217
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5b7a5057bdfb5920fbb5759bed1f5561cfa1d7e0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="use-iothub-explorer-for-azure-iot-hub-device-management"></a>Usare iothub-explorer per la gestione di dispositivi hub IoT di Azure
 
@@ -27,21 +27,21 @@ ms.lasthandoff: 10/06/2017
 
 [!INCLUDE [iot-hub-get-started-note](../../includes/iot-hub-get-started-note.md)]
 
-[l'hub IOT Esplora](https://github.com/azure/iothub-explorer) è uno strumento CLI eseguite su un'identità di dispositivi toomanage computer host nel Registro di sistema hub IoT. È dotato di opzioni di gestione che è possibile utilizzare tooperform diverse attività.
+[iothub-explorer](https://github.com/azure/iothub-explorer) è uno strumento dell'interfaccia della riga di comando eseguito in un computer host che consente di gestire le identità dei dispositivi nel registro dell'hub IoT. Include opzioni di gestione che consentono di eseguire varie attività.
 
 | Opzione di gestione          | Attività                                                                                                                            |
 |----------------------------|---------------------------------------------------------------------------------------------------------------------------------|
-| Metodi diretti             | Rendere un dispositivo di eseguire operazioni quali l'avvio o arresto di invio di messaggi o il riavvio dispositivo hello.                                        |
-| Proprietà desiderate del dispositivo gemello    | Inserire un dispositivo in determinati stati, ad esempio l'impostazione toogreen un LED o impostazione dati di telemetria hello trasmissione interval too30 minuti.         |
-| Proprietà segnalate del dispositivo gemello   | Ottenere hello segnalato lo stato di un dispositivo. Ad esempio, il dispositivo di hello segnala hello che LED è lampeggiante ora.                                    |
-| Tag dei dispositivi gemelli                  | Archiviare i metadati specifici del dispositivo nel cloud hello. Salve, ad esempio, il percorso di distribuzione di una macchina distributore.                         |
-| Messaggi da cloud a dispositivo   | Invio dispositivo tooa notifiche. Ad esempio, "è molto probabile toorain oggi. Non dimenticare toobring un ombrello."              |
-| Query del dispositivo gemello        | Eseguire una query tutti i dispositivi gemelli tooretrieve quelli con condizioni arbitrarie, ad esempio di identificare i dispositivi di hello che sono disponibili per l'utilizzo. |
+| Metodi diretti             | Far eseguire un'attività al dispositivo, quale l'avvio o l'arresto dell'invio di messaggi o il riavvio del dispositivo.                                        |
+| Proprietà desiderate del dispositivo gemello    | Impostare determinati stati di un dispositivo, ad esempio impostare la luce verde per un LED o impostare l'intervallo di invio dei dati di telemetria su 30 minuti.         |
+| Proprietà segnalate del dispositivo gemello   | Ottenere lo stato restituito da un dispositivo. Ad esempio, il dispositivo segnala che il LED sta lampeggiando.                                    |
+| Tag dei dispositivi gemelli                  | Archiviare i metadati specifici del dispositivo nel cloud, ad esempio il percorso di distribuzione di un distributore automatico.                         |
+| Messaggi da cloud a dispositivo   | Inviare notifiche a un dispositivo. Ad esempio "Oggi è molto probabile che piova. Meglio non dimenticare l'ombrello".              |
+| Query del dispositivo gemello        | Eseguire query su tutti i dispositivi gemelli per identificare quelli che si trovano in una determinata condizione, ad esempio i dispositivi disponibili per l'uso. |
 
-Per ulteriori spiegazioni sulle differenze di hello e istruzioni sull'uso di queste opzioni, vedere [materiale sussidiario per la comunicazione da dispositivo a cloud](iot-hub-devguide-d2c-guidance.md) e [indicazioni di comunicazione Cloud a dispositivo](iot-hub-devguide-c2d-guidance.md).
+Per altre informazioni sulle differenze e sull'uso di queste opzioni, vedere [Device-to-cloud communication guidance](iot-hub-devguide-d2c-guidance.md) (Indicazioni sulla comunicazione da dispositivo a cloud) e [Cloud-to-device communication guidance](iot-hub-devguide-c2d-guidance.md) (Indicazioni sulla comunicazione da cloud a dispositivo).
 
 > [!NOTE]
-> I dispositivi gemelli sono documenti JSON nei quali vengono archiviate informazioni sullo stato dei dispositivi (metadati, configurazioni e condizioni). IoT Hub persiste doppi un dispositivo per ogni dispositivo che si connette tooit. Per altre informazioni sui dispositivi gemelli, vedere [Introduzione ai dispositivi gemelli](iot-hub-node-node-twin-getstarted.md).
+> I dispositivi gemelli sono documenti JSON nei quali vengono archiviate informazioni sullo stato dei dispositivi (metadati, configurazioni e condizioni). L'hub IoT rende permanente un dispositivo gemello per ogni dispositivo che si connette. Per altre informazioni sui dispositivi gemelli, vedere [Introduzione ai dispositivi gemelli](iot-hub-node-node-twin-getstarted.md).
 
 ## <a name="what-you-learn"></a>Contenuto dell'esercitazione
 
@@ -53,16 +53,16 @@ Eseguire iothub-explorer con diverse opzioni di gestione.
 
 ## <a name="what-you-need"></a>Elementi necessari
 
-- Esercitazione [configurare il dispositivo](iot-hub-raspberry-pi-kit-node-get-started.md) completato che copre hello seguenti requisiti:
+- Completare l'esercitazione [Configurare il dispositivo](iot-hub-raspberry-pi-kit-node-get-started.md) che prevede i requisiti seguenti:
   - Una sottoscrizione di Azure attiva.
   - Un hub IoT di Azure nella sottoscrizione.
-  - Un'applicazione client che invia l'hub IoT di Azure tooyour messaggi.
-- Verificare che il dispositivo è in esecuzione con un'applicazione client hello durante questa esercitazione.
+  - Un'applicazione client che invia messaggi all'hub IoT di Azure.
+- Verificare che il dispositivo sia in esecuzione con l'applicazione client durante questa esercitazione.
 - iothub-explorer, [Installare iothub-explorer](https://github.com/azure/iothub-explorer) sul computer di sviluppo.
 
-## <a name="connect-tooyour-iot-hub"></a>Collegare tooyour IoT hub
+## <a name="connect-to-your-iot-hub"></a>Accedere all'hub IoT
 
-Connettersi hub IoT tooyour eseguendo hello comando seguente:
+Accedere all'hub IoT eseguendo il comando seguente:
 
 ```bash
 iothub-explorer login <your IoT hub connection string>
@@ -70,13 +70,13 @@ iothub-explorer login <your IoT hub connection string>
 
 ## <a name="use-iothub-explorer-with-direct-methods"></a>Usare iothub-explorer con i metodi diretti
 
-Richiamare hello `start` metodo hello dispositivo app toosend messaggi tooyour IoT hub eseguendo hello comando seguente:
+Chiamare il metodo `start` nell'app per dispositivi per inviare messaggi all'hub IoT eseguendo il comando seguente:
 
 ```bash
 iothub-explorer device-method <your device Id> start
 ```
 
-Richiamare hello `stop` metodo hello dispositivo app toostop invio messaggi hub IoT tooyour eseguendo hello comando seguente:
+Chiamare il metodo `stop` nell'app per dispositivi per interrompere l'invio di messaggi all'hub IoT eseguendo il comando seguente:
 
 ```bash
 iothub-explorer device-method <your device Id> stop
@@ -84,7 +84,7 @@ iothub-explorer device-method <your device Id> stop
 
 ## <a name="use-iothub-explorer-with-twins-desired-properties"></a>Usare iothub-explorer con le proprietà desiderate del dispositivo gemello
 
-Impostare un intervallo di proprietà desiderato = 3000 eseguendo hello comando seguente:
+Impostare l'intervallo di proprietà desiderato su 3000 eseguendo il comando seguente:
 
 ```bash
 iothub-explorer update-twin <your device id> {\"properties\":{\"desired\":{\"interval\":3000}}}
@@ -94,23 +94,23 @@ Questa proprietà può essere letta dal dispositivo.
 
 ## <a name="use-iothub-explorer-with-twins-reported-properties"></a>Usare iothub-explorer con le proprietà segnalate del dispositivo gemello
 
-Ottengano hello segnalato le proprietà del dispositivo hello eseguendo hello comando seguente:
+Ottenere le proprietà segnalate del dispositivo eseguendo il comando seguente:
 
 ```bash
 iothub-explorer get-twin <your device id>
 ```
 
-Una delle proprietà di hello è $metadata. $lastUpdated che mostra hello ultima volta il dispositivo invia o riceve un messaggio.
+Una delle proprietà è $metadata.$lastUpdated, che visualizza l'ora di invio o ricezione dell'ultimo messaggio nel dispositivo.
 
 ## <a name="use-iothub-explorer-with-twins-tags"></a>Usare iothub-explorer con i tag del dispositivo gemello
 
-Visualizzare i tag hello e le proprietà del dispositivo hello eseguendo hello comando seguente:
+Visualizzare i tag e le proprietà del dispositivo eseguendo il comando seguente:
 
 ```bash
 iothub-explorer get-twin <your device id>
 ```
 
-Aggiungere un ruolo di campo = temperatura e umidità dispositivo toohello eseguendo hello comando seguente:
+Aggiungere il campo role = temperature&humidity al dispositivo eseguendo il comando seguente:
 
 ```bash
 iothub-explorer update-twin <your device id> "{\"tags\":{\"role\":\"temperature&humidity\"}}"
@@ -119,23 +119,23 @@ iothub-explorer update-twin <your device id> "{\"tags\":{\"role\":\"temperature&
 
 ## <a name="use-iothub-explorer-with-cloud-to-device-messages"></a>Usare iothub-explorer con i messaggi da cloud a dispositivo
 
-Invio di un dispositivo di toohello messaggio "Hello World" eseguendo hello comando seguente:
+Inviare un messaggio "Hello World" al dispositivo eseguendo il comando seguente:
 
 ```bash
 iothub-explorer send <device-id> "Hello World"
 ```
 
-Vedere [usare hub IOT Esplora toosend e ricevere messaggi tra il dispositivo e l'IoT Hub](iot-hub-explorer-cloud-device-messaging.md) per uno scenario reale di utilizzo del comando.
+Per uno scenario reale dell'uso di questo comando, vedere [Usare iothub-explorer per inviare e ricevere messaggi tra il dispositivo e l'hub IoT](iot-hub-explorer-cloud-device-messaging.md).
 
 ## <a name="use-iothub-explorer-with-device-twins-queries"></a>Usare iothub-explorer con le query del dispositivo gemello
 
-Query di dispositivi con un tag di ruolo = 'temperatura e umidità' eseguendo hello comando seguente:
+Eseguire una query su tutti i dispositivi con il tag role = 'temperature&humidity' eseguendo il comando seguente:
 
 ```bash
 iothub-explorer query-twin "SELECT * FROM devices WHERE tags.role = 'temperature&humidity'"
 ```
 
-Eseguire una query tutti i dispositivi, ad eccezione di quelli con un tag di ruolo = 'temperatura e umidità' eseguendo hello comando seguente:
+Eseguire una query su tutti i dispositivi meno quelli con il tag role = 'temperature&humidity' eseguendo il comando seguente:
 
 ```bash
 iothub-explorer query-twin "SELECT * FROM devices WHERE tags.role != 'temperature&humidity'"
@@ -143,6 +143,6 @@ iothub-explorer query-twin "SELECT * FROM devices WHERE tags.role != 'temperatur
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Si è appreso come toouse hub IOT-Esplora con diverse opzioni di gestione.
+Si è appreso l'uso di iothub-explorer con diverse opzioni di gestione.
 
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]

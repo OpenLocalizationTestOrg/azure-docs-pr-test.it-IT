@@ -1,5 +1,5 @@
 ---
-title: note sulla versione di catalogo dati aaaAzure | Documenti Microsoft
+title: Note sulla versione di Azure Data Catalog | Documentazione Microsoft
 description: Note sulla versione del Catalogo dati di Azure.
 services: data-catalog
 documentationcenter: 
@@ -15,57 +15,57 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/15/2017
 ms.author: maroche
-ms.openlocfilehash: 661826f66020ba72a885c6b14522b53c8b469d20
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d3db9bee0558cac5fb4f5b8fb4ab67a35ce0f141
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="azure-data-catalog-release-notes"></a>Note sulla versione del Catalogo dati di Azure
-## <a name="notes-for-hello-november-20-2015-release-of-azure-data-catalog"></a>Note sulla versione di hello 20 novembre 2015 di Azure Data Catalog
+## <a name="notes-for-the-november-20-2015-release-of-azure-data-catalog"></a>Note per la versione del 20 novembre 2015 del Catalogo dati di Azure
 ### <a name="opening-data-sources-in-power-bi-desktop"></a>Apertura di origini di dati in Power BI Desktop
-Quando si utilizza l'opzione "Apri in Power BI Desktop" hello hello **Azure Data Catalog** portale, gli utenti possono verificarsi uno dei due problemi in hello applicazione Power BI Desktop:
+Quando si utilizza l'opzione "Apri in Power BI Desktop" dal portale **Catalogo dati di Azure** , gli utenti potrebbero rilevare uno dei due problemi dell'applicazione Power BI Desktop:
 
-* Viene visualizzata una finestra di dialogo con titolo hello "Non è possibile tooOpen documento"
-* si apre Hello applicazione Power BI Desktop, ma sembra che file hello toobe vuoto
+* Viene visualizzata una finestra di dialogo con il titolo "Impossibile aprire il documento"
+* L'applicazione Power BI Desktop si apre, ma il file sembra vuoto
 
-Per ogni situazione, è possibile risolvere il problema di hello scaricando e installando l'ultima versione di hello di Power BI Desktop da [PowerBI.com](https://powerbi.com).
+Per ogni situazione, il problema può essere risolto scaricando e installando la versione più recente di Power BI Desktop da [PowerBI.com](https://powerbi.com).
 
-## <a name="notes-for-hello-november-13-2015-release-of-azure-data-catalog"></a>Note sulla versione di hello 13 novembre 2015 di Azure Data Catalog
-### <a name="registering-and-connecting-tooteradata"></a>La registrazione e connessione tooTeradata
-Quando ci si connette a origini dati tooTeradata utenti sia installato il driver ODBC di Teradata corretto di hello che corrispondono ai bit hello (32 bit o 64 bit) del software hello in uso.
+## <a name="notes-for-the-november-13-2015-release-of-azure-data-catalog"></a>Note per la versione del 13 novembre 2015 del Catalogo dati di Azure
+### <a name="registering-and-connecting-to-teradata"></a>Registrazione e connessione a Teradata
+Per la connessione alle origini dati di Teradata, gli utenti devono installare i driver Teradata ODBC corretti che corrispondono al numero di bit (32 bit o 64 bit) del software in uso.
 
-A partire da questo servizio ADC data di rilascio, hello più recente [driver ODBC di Teradata per windows (versione 15.10)](http://downloads.teradata.com/download/connectivity/odbc-driver/windows) è compatibile con Office 2013, ma non con Office 2016.
+A questa data di rilascio di ADC, il più recente [driver Teradata ODBC per windows (versione 15.10)](http://downloads.teradata.com/download/connectivity/odbc-driver/windows) è compatibile con Office 2013, ma non con Office 2016.
 
-## <a name="notes-for-hello-july-13-2015-release-of-azure-data-catalog"></a>Note sulla versione di hello il 13 luglio 2015 di Azure Data Catalog
-### <a name="registering-and-connecting-toooracle-database"></a>La registrazione e la connessione di Database tooOracle
-Quando la connessione degli utenti di origini dati di tooOracle Database deve essere installato driver Oracle corretti hello che corrispondono ai bit hello (32 bit o 64 bit) del software hello in uso.
+## <a name="notes-for-the-july-13-2015-release-of-azure-data-catalog"></a>Note per la versione del 13 luglio 2015 del Catalogo dati di Azure
+### <a name="registering-and-connecting-to-oracle-database"></a>Registrazione e connessione al database Oracle
+Per la connessione alle origini dati del Database Oracle, gli utenti devono installare i driver Oracle corretti che corrispondono al numero di bit (32 bit o 64 bit) del software in uso.
 
-* Verrà utilizzato durante la registrazione di origini dati Oracle in un computer che esegue Windows a 32 bit, driver Oracle a 32 bit hello
-* Verrà utilizzato durante la registrazione di origini dati Oracle in un computer che esegue Windows a 64 bit, driver Oracle a 64 bit hello
-* Quando ci si connette a origini dati tooOracle utilizzando Excel in un computer con una versione a 32 bit hello di Microsoft Office, è incluso in Windows a 64 bit, verrà utilizzato driver Oracle a 32 bit hello
-* Verrà utilizzato durante la connessione a origini dati tooOracle utilizzando Excel in un computer con una versione a 64 bit di Microsoft Office hello, driver Oracle a 64 bit hello
+* Per la registrazione delle origini dati di Oracle in un computer che esegue Windows a 32 bit, verranno usati i driver di Oracle a 32 bit
+* Per la registrazione delle origini dati di Oracle in un computer che esegue Windows a 64 bit, verranno usati i driver di Oracle a 64 bit
+* Per la connessione alle origini dati di Oracle tramite Excel in un computer che esegue la versione a 32 bit di Microsoft Office, incluso in Windows a 64 bit, verranno usati i driver di Oracle a 32 bit
+* Per la connessione alle origini dati di Oracle tramite Excel in un computer che esegue la versione a 64 bit di Microsoft Office, verranno usati i driver di Oracle a 64 bit
 
-### <a name="registering-and-connecting-toosql-server-reporting-services"></a>La registrazione e connessione tooSQL Server Reporting Services
-Il supporto per le origini dati di SQL Server Reporting Services (SSRS) è attualmente limitata tooNative solo i server in modalità. Il supporto per SSRS in modalità SharePoint verrà aggiunto in una versione successiva.
+### <a name="registering-and-connecting-to-sql-server-reporting-services"></a>Registrazione e la connessione a SQL Server Reporting Services
+Attualmente il supporto per le origini dati di SQL Server Reporting Services (SSRS) è limitato al server in modalità nativa. Il supporto per SSRS in modalità SharePoint verrà aggiunto in una versione successiva.
 
 ### <a name="opening-data-assets-in-excel"></a>Apertura degli asset di dati in Excel
-Quando si apre l'asset di dati in Microsoft Excel dal hello **Azure Data Catalog** portale, gli utenti potrebbero essere richieste con un **avviso di protezione di Microsoft Excel** la finestra di dialogo. Si tratta di standard, il comportamento previsto e gli utenti possono selezionare **abilitare** toocontinue.
+Quando si aprono asset di dati in Microsoft Excel dal portale di **Azure Data Catalog**, potrebbe essere visualizzata agli utenti una finestra di dialogo con un **avviso di sicurezza di Microsoft Excel**. È un comportamento standard e previsto e gli utenti possono selezionare **Abilita** per continuare.
 
 Per altre informazioni, vedere [Attivazione o disattivazione degli avvisi di protezione relativi ai collegamenti a siti Web sospetti e a file scaricati da tali siti](https://support.office.com/article/Enable-or-disable-security-alerts-about-links-and-files-from-suspicious-websites-A1AC6AE9-5C4A-4EB3-B3F8-143336039BBE).
 
 ### <a name="proxy-and-policy-configuration-and-data-source-registration"></a>Configurazione di proxy e criteri e registrazione dell'origine dati
-Gli utenti possono riscontrare situazioni in cui possono registrare nel portale di Azure Data Catalog toohello, ma quando tentano di toolog su toohello strumento di registrazione origine dati che viene rilevato un messaggio di errore che ne impedisce l'accesso.
+È possibile che si verifichi una situazione in cui gli utenti possono accedere al portale del Catalogo dati di Azure, ma, quando tentano di accedere allo strumento di registrazione dell'origine dati, viene restituito un messaggio di errore che impedisce l'accesso.
 
 Le possibili cause di questo comportamento problematico sono due:
 
-**Causa 1: Configurazione di Active Directory Federation Services** strumento per la registrazione di origine dati hello utilizza gli accessi utente toovalidate di autenticazione basata su form in Active Directory. Per l'accesso con esito positivo, autenticazione basata su form deve essere abilitato in Criteri di autenticazione globali hello dall'amministratore di Active Directory.
+**Causa 1: la configurazione di Active Directory Federation Services** Lo strumento di registrazione dell'origine dati usa l'autenticazione basata su form per convalidare gli accessi degli utenti in Active Directory. Per accedere, l'autenticazione basata su form deve essere abilitata nei criteri di autenticazione globali da un amministratore di Active Directory.
 
-In alcuni casi, questo errore può verificarsi solo quando l'utente hello è nella rete aziendale hello o solo quando si connette utente hello dalla rete aziendale esterna hello. Criteri di autenticazione globali Hello consente toobe di metodi di autenticazione abilitato separatamente per le connessioni extranet e intranet. Se l'autenticazione basata su form non è abilitato per la rete hello dal quale hello utente si connette, potrebbero verificarsi errori di accesso.
+In alcune situazioni, questo errore si verifica solo quando l'utente è nella rete aziendale o si connette dall'esterno della rete aziendale. I criteri di autenticazione globali consentono di abilitare i metodi di autenticazione separatamente per le connessioni Extranet e Intranet. Se l'autenticazione basata su form non è abilitata per la rete da cui l'utente si connette, è possibile che si verifichino errori di accesso.
 
 Per altre informazioni, vedere [Configurare i criteri di autenticazione](https://technet.microsoft.com/library/dn486781.aspx).
 
-**Causa 2: Configurazione del proxy di rete** se la rete aziendale hello utilizza un server proxy, lo strumento di registrazione hello potrebbe non essere in grado di tooconnect tooAzure Active Directory tramite proxy hello. Gli utenti possono verificare che lo strumento di registrazione hello modificando il file di configurazione dello strumento hello, aggiunta di questo file toohello sezione:
+**Causa 2: la configurazione del proxy di rete** Se la rete aziendale usa un server proxy, lo strumento di registrazione potrebbe non essere in grado di connettersi ad Azure Active Directory tramite il proxy. Gli utenti possono abilitare lo strumento di registrazione modificando il file di configurazione dello strumento e aggiungendo questa sezione al file:
 
       <system.net>
         <defaultProxy useDefaultCredentials="true" enabled="true">
@@ -76,4 +76,4 @@ Per altre informazioni, vedere [Configurare i criteri di autenticazione](https:/
       </system.net>
 
 
-toolocate hello RegistrationTool.exe.config file, avviare lo strumento di registrazione hello e quindi aprire l'utilità Gestione attività Windows hello. Nella scheda dettagli di hello in Gestione attività, fare clic su RegistrationTool.exe e scegliere Apri percorso file dal menu a comparsa hello.
+Per individuare il file RegistrationTool.exe.config, avviare lo strumento di registrazione e quindi aprire l'utilità Gestione attività Windows. Nella scheda Dettagli di Gestione attività, fare clic con il pulsante destro del mouse su RegistrationTool.exe e scegliere Apri percorso file dal menu a comparsa.

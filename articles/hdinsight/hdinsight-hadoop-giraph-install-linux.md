@@ -1,6 +1,6 @@
 ---
-title: aaaInstall e utilizzare Giraph in HDInsight (Hadoop) - Azure | Documenti Microsoft
-description: "Informazioni su come i cluster usando le azioni Script tooinstall Giraph in HDInsight basati su Linux. Azioni script consentono di cluster hello toocustomize durante la creazione, modifica della configurazione del cluster o l'installazione di servizi e le utilità."
+title: Installare e usare Giraph in HDInsight (Hadoop) - Azure | Documentazione Microsoft
+description: "Informazioni su come installare Giraph nei cluster HDInsight basati su Linux utilizzando azioni di Script. Le azioni di script consentono di personalizzare il cluster durante la creazione, modificando la configurazione del cluster o installando servizi e utilità."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,65 +16,65 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/31/2017
 ms.author: larryfr
-ms.openlocfilehash: 0f195b65cebf5e24d1808ef33b95b4d362555521
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6e2f6983e00f874420f7f0907dbc68185f0af713
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="install-giraph-on-hdinsight-hadoop-clusters-and-use-giraph-tooprocess-large-scale-graphs"></a>Installare Giraph nei cluster HDInsight Hadoop e usare i grafici di Giraph tooprocess su larga scala
+# <a name="install-giraph-on-hdinsight-hadoop-clusters-and-use-giraph-to-process-large-scale-graphs"></a>Installare Giraph nei cluster HDInsight Hadoop e usarlo per elaborare grafici su vasta scala
 
-Informazioni su come tooinstall Giraph Apache in un cluster HDInsight. Hello script azione di HDInsight consente toocustomize il cluster eseguendo uno script bash. Gli script possono essere utilizzato toocustomize cluster durante e dopo la creazione del cluster.
+Informazioni su come installare Apache Giraph in un cluster HDInsight. La funzione di azione script di HDInsight consente di personalizzare il cluster eseguendo uno script bash. È possibile usare gli script per personalizzare i cluster sia durante che dopo la creazione del cluster.
 
 > [!IMPORTANT]
-> passaggi di Hello in questo documento richiedono un cluster HDInsight che utilizza Linux. Linux è hello solo sistema operativo utilizzato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> I passaggi descritti in questo documento richiedono un cluster HDInsight che usa Linux. Linux è l'unico sistema operativo usato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 ## <a name="whatis"></a>Che cos'è Giraph?
 
-[Apache Giraph](http://giraph.apache.org/) consente grafico tooperform elaborazione tramite Hadoop e può essere utilizzato con Azure HDInsight. È possibile usare i grafici per modellare le relazioni tra gli oggetti, Ad esempio, le connessioni hello tra i router in una rete di grandi dimensioni come hello Internet o le relazioni tra gli utenti su social network. Elaborazione Graph consente tooreason sulle relazioni hello tra gli oggetti in un grafico, ad esempio:
+[Apache Giraph](http://giraph.apache.org/) consente di elaborare grafici con Hadoop e può essere usato con Azure HDInsight. È possibile usare i grafici per modellare le relazioni tra gli oggetti, ad esempio le connessioni tra router in una rete di grandi dimensioni, come Internet, oppure le relazioni tra persone iscritte a social network. Grazie all'elaborazione del grafico è possibile ottenere informazioni dettagliate sulle relazioni tra gli oggetti in un grafico e in particolare di:
 
 * Identificare possibili amici sulla base delle relazioni correnti.
 
-* Identificazione hello itinerario più breve tra due computer in una rete.
+* Identificare la route più breve tra due computer di una rete.
 
-* Calcolare il numero di dimensioni di hello pagina delle pagine Web.
+* Calcolare la posizione in classifica di pagine Web.
 
 > [!WARNING]
-> I componenti forniti con i cluster di HDInsight hello sono completamente supportati: supporto di Microsoft consente tooisolate e risolvere i problemi correlati toothese componenti.
+> I componenti forniti con il cluster HDInsight sono supportati in modo completo e il supporto tecnico Microsoft contribuirà a isolare e risolvere i problemi correlati a questi componenti.
 >
-> I componenti personalizzati, ad esempio Giraph, ricevano supporto commercialmente ragionevole toohelp toofurther per risolvere il problema di hello. Supporto Microsoft potrebbe essere in grado di tooresolving problema di hello. In caso contrario, è necessario consultare le community open source, da cui è possibile ottenere supporto approfondito per la tecnologia specifica. È ad esempio possibile ricorrere a molti siti di community, come il [forum MSDN per HDInsight](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=hdinsight) o [http://stackoverflow.com](http://stackoverflow.com). Anche per i progetti Apache sono disponibili siti specifici in [http://apache.org](http://apache.org), ad esempio [Hadoop](http://hadoop.apache.org/).
+> I componenti personalizzati, ad esempio Giraph, ricevono supporto commercialmente ragionevole per semplificare la risoluzione dei problemi. È possibile che il supporto tecnico Microsoft sia in grado di risolvere il problema. In caso contrario, è necessario consultare le community open source, da cui è possibile ottenere supporto approfondito per la tecnologia specifica. È ad esempio possibile ricorrere a molti siti di community, come il [forum MSDN per HDInsight](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=hdinsight) o [http://stackoverflow.com](http://stackoverflow.com). Anche per i progetti Apache sono disponibili siti specifici in [http://apache.org](http://apache.org), ad esempio [Hadoop](http://hadoop.apache.org/).
 
 
-## <a name="what-hello-script-does"></a>Quali script hello esegue
+## <a name="what-the-script-does"></a>Funzionalità dello script
 
-Questo script esegue hello seguenti azioni:
+Lo script esegue le azioni seguenti:
 
-* Installa troppo Giraph`/usr/hdp/current/giraph`
+* Installa Giraph in `/usr/hdp/current/giraph`
 
-* Hello copie `giraph-examples.jar` toodefault archiviazione (WASB) per il cluster di file:`/example/jars/giraph-examples.jar`
+* Copia il file `giraph-examples.jar` nell'archivio BLOB di Azure (WASB) predefinito del cluster: `/example/jars/giraph-examples.jar`
 
 ## <a name="install"></a>Installare Giraph mediante azioni script
 
-Un tooinstall di script di esempio Giraph in un cluster HDInsight è disponibile in hello seguente posizione:
+Uno script di esempio per l'installazione di Giraph in un cluster HDInsight è disponibile all'indirizzo seguente:
 
     https://hdiconfigactions.blob.core.windows.net/linuxgiraphconfigactionv01/giraph-installer-v01.sh
 
-In questa sezione vengono fornite istruzioni su come toouse hello script di esempio durante la creazione di cluster hello utilizzando hello portale di Azure.
+Questa sezione fornisce istruzioni su come usare lo script di esempio quando si crea il cluster usando il portale di Azure.
 
 > [!NOTE]
-> Un'azione di script può essere applicata utilizzando uno dei seguenti metodi hello:
+> Un'azione script può essere applicata usando uno dei metodi seguenti:
 > * Azure PowerShell
-> * Hello CLI di Azure
-> * Hello HDInsight .NET SDK
+> * Interfaccia della riga di comando di Azure
+> * HDInsight .NET SDK
 > * Modelli di Gestione risorse di Azure
 > 
-> È inoltre possibile applicare tooalready azioni script i cluster in esecuzione. Per altre informazioni, vedere [Personalizzare cluster HDInsight basati su Linux tramite Azione script](hdinsight-hadoop-customize-cluster-linux.md).
+> È anche possibile applicare azioni script a cluster già in esecuzione. Per altre informazioni, vedere [Personalizzare cluster HDInsight basati su Linux tramite Azione script](hdinsight-hadoop-customize-cluster-linux.md).
 
-1. Avviare la creazione di un cluster attenendosi alla procedura hello in [cluster HDInsight basati su Linux creare](hdinsight-hadoop-create-linux-clusters-portal.md), ma non completare la creazione.
+1. Avviare la creazione di un cluster utilizzando la procedura descritta in [Creazione di cluster HDInsight basati su Linux](hdinsight-hadoop-create-linux-clusters-portal.md), ma non completare la creazione.
 
-2. In hello **configurazione facoltativa** pannello seleziona **azioni Script**e fornire hello le seguenti informazioni:
+2. Nel pannello **Configurazione facoltativa** selezionare **Azioni script** e specificare le informazioni seguenti:
 
-   * **NOME**: immettere un nome descrittivo per l'azione script hello.
+   * **NOME**: immettere un nome descrittivo per l'azione script.
 
    * **URI SCRIPT**: https://hdiconfigactions.blob.core.windows.net/linuxgiraphconfigactionv01/giraph-installer-v01.sh
 
@@ -86,15 +86,15 @@ In questa sezione vengono fornite istruzioni su come toouse hello script di esem
 
    * **PARAMETRI**: lasciare questo campo vuoto
 
-3. Nella parte inferiore di hello di hello **azioni Script**, utilizzare hello **selezionare** configurazione hello toosave dei pulsanti. Infine, utilizzare hello **selezionare** pulsante nella parte inferiore di hello di hello **configurazione facoltativa** informazioni di configurazione facoltativa hello toosave blade.
+3. Nella parte inferiore di **Azioni di script** usare il pulsante **Seleziona** per salvare la configurazione. Usare infine il pulsante **Seleziona** nella parte inferiore del pannello **Configurazione facoltativa** per salvare le informazioni relative alla configurazione facoltativa.
 
-4. Continuare con la creazione di cluster hello come descritto in [cluster HDInsight basati su Linux creare](hdinsight-hadoop-create-linux-clusters-portal.md).
+4. Continuare a creare il cluster come descritto nell'argomento relativo alla [creazione di cluster HDInsight basati su Linux](hdinsight-hadoop-create-linux-clusters-portal.md).
 
 ## <a name="usegiraph"></a>Come si usa Giraph in HDInsight?
 
-Dopo aver creato il cluster hello, utilizzare hello passaggi toorun hello SimpleShortestPathsComputation esempio incluso in Giraph seguente. Questo esempio viene utilizzato basic hello [Pregel](http://people.apache.org/~edwardyoon/documents/pregel.pdf) implementazione per trovare il percorso più breve di hello tra gli oggetti in un grafico.
+Dopo aver creato il cluster, usare la procedura seguente per eseguire l'esempio SimpleShortestPathsComputation incluso in Giraph. Viene usata l'implementazione di base di [Pregel](http://people.apache.org/~edwardyoon/documents/pregel.pdf) per trovare il percorso più breve tra gli oggetti in un grafico.
 
-1. Connettere il cluster di HDInsight toohello tramite SSH:
+1. Connettersi al cluster HDInsight usando SSH:
 
     ```bash
     ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
@@ -102,13 +102,13 @@ Dopo aver creato il cluster hello, utilizzare hello passaggi toorun hello Simple
 
     Per altre informazioni, vedere [Usare SSH con HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-2. Comando che segue hello utilizzare toocreate un file denominato **tiny_graph.txt**:
+2. Usare il comando seguente per creare un file denominato **tiny_graph.txt**:
 
     ```bash
     nano tiny_graph.txt
     ```
 
-    Utilizzare hello segue testo come contenuto di hello di questo file:
+    Usare il testo seguente come contenuto del file:
 
     ```text
     [0,0,[[1,1],[3,3]]]
@@ -118,49 +118,49 @@ Dopo aver creato il cluster hello, utilizzare hello passaggi toorun hello Simple
     [4,0,[[3,4],[2,4]]]
     ```
 
-    Questi dati descrivono una relazione tra gli oggetti in un grafico diretto, utilizzando il formato di hello `[source_id, source_value,[[dest_id], [edge_value],...]]`. Ogni riga rappresenta una relazione tra un oggetto `source_id` e uno o più oggetti `dest_id`. Hello `edge_value` può essere considerato come livello di attendibilità hello o una distanza di connessione hello tra `source_id` e `dest\_id`.
+    Questi dati descrivono una relazione tra gli oggetti in un grafico diretto, usando il formato `[source_id, source_value,[[dest_id], [edge_value],...]]`. Ogni riga rappresenta una relazione tra un oggetto `source_id` e uno o più oggetti `dest_id`. Il valore `edge_value` può essere considerato come la potenza o la distanza della connessione tra `source_id` e `dest\_id`.
 
-    Disegnare out, e utilizza il valore hello (o peso) come distanza hello tra oggetti, dati hello potrebbero essere simile hello seguente diagramma:
+    I dati disegnati usando il valore (o peso) come distanza tra gli oggetti possono essere simili a quelli raffigurati nel diagramma seguente:
 
     ![tiny_graph.txt drawn as circles with lines of varying distance between](./media/hdinsight-hadoop-giraph-install-linux/giraph-graph.png)
 
-3. file hello toosave, usare **Ctrl + X**, quindi **Y**e infine **invio** tooaccept nome del file hello.
+3. Per salvare il file usare **CTRL+X**, quindi **Y** e infine premere **INVIO** per accettare il nome del file.
 
-4. Utilizzare hello seguente dati hello toostore nell'account di archiviazione primario per il cluster HDInsight:
+4. Usare il codice seguente per archiviare i dati nell'archiviazione primaria del cluster HDInsight:
 
     ```bash
     hdfs dfs -put tiny_graph.txt /example/data/tiny_graph.txt
     ```
 
-5. Eseguire l'esempio SimpleShortestPathsComputation hello utilizzando hello comando seguente:
+5. Eseguire l'esempio SimpleShortestPathsComputation con il comando seguente:
 
     ```bash
     yarn jar /usr/hdp/current/giraph/giraph-examples.jar org.apache.giraph.GiraphRunner org.apache.giraph.examples.SimpleShortestPathsComputation -ca mapred.job.tracker=headnodehost:9010 -vif org.apache.giraph.io.formats.JsonLongDoubleFloatDoubleVertexInputFormat -vip /example/data/tiny_graph.txt -vof org.apache.giraph.io.formats.IdWithValueTextOutputFormat -op /example/output/shortestpaths -w 2
     ```
 
-    parametri di Hello utilizzati con questo comando vengono descritti in hello nella tabella seguente:
+    I parametri usati con questo comando sono descritti nella tabella seguente:
 
-   | . | Risultato |
+   | Parametro | Risultato |
    | --- | --- |
-   | `jar` |file jar Hello contenente esempi di hello. |
-   | `org.apache.giraph.GiraphRunner` |classe Hello utilizzato negli esempi di hello toostart. |
-   | `org.apache.giraph.examples.SimpleShortestPathsCoputation` |esempio Hello utilizzato. In questo esempio calcola percorso più breve di hello tra ID 1 e tutti gli altri ID grafico hello. |
-   | `-ca mapred.job.tracker` |nodo head Hello per cluster hello. |
-   | `-vif` |Hello toouse di formato di input per i dati di input hello. |
-   | `-vip` |file di dati di input Hello. |
-   | `-vof` |formato di output di Hello. In questo caso, ID e valore come testo normale. |
-   | `-op` |percorso di output di Hello. |
-   | `-w 2` |numero di Hello di toouse processi di lavoro. In questo esempio, 2. |
+   | `jar` |File JAR contenente gli esempi. |
+   | `org.apache.giraph.GiraphRunner` |Classe usata per avviare gli esempi. |
+   | `org.apache.giraph.examples.SimpleShortestPathsCoputation` |L'esempio usato. In questo esempio, viene calcolato il percorso più breve tra ID 1 e tutti gli altri ID nel grafico. |
+   | `-ca mapred.job.tracker` |Nodo head del cluster. |
+   | `-vif` |Formato di input da usare per i dati di input. |
+   | `-vip` |File di dati di input. |
+   | `-vof` |Formato di output. In questo caso, ID e valore come testo normale. |
+   | `-op` |Percorso di output. |
+   | `-w 2` |Numero di ruoli di lavoro da usare. In questo esempio, 2. |
 
-    Per ulteriori informazioni su questi e altri parametri utilizzati con Giraph esempi, vedere hello [delle Guide rapide Giraph](http://giraph.apache.org/quick_start.html).
+    Per altre informazioni su questi e altri parametri usati con gli esempi di Giraph, vedere la [Guida introduttiva a Giraph](http://giraph.apache.org/quick_start.html).
 
-6. Al termine il processo di hello, risultati di hello vengono archiviati in hello **/example/out/shotestpaths** directory. Hello nomi file di output iniziano con **parte-m -** e terminare con un numero che indica in primo luogo, in secondo luogo, hello file e così via. Utilizzare hello output hello tooview del comando seguente:
+6. Al termine del processo, i risultati vengono archiviati nella directory **/example/out/shortestpaths**. I file di output iniziano con **part-m-** e terminano con un numero che indica il primo file, il secondo e così via. Usare il comando seguente per visualizzare l'output:
 
     ```bash
     hdfs dfs -text /example/output/shortestpaths/*
     ```
 
-    output di Hello risulterà simile toohello seguente testo:
+    L'output sarà simile al testo seguente:
 
         0    1.0
         4    5.0
@@ -168,9 +168,9 @@ Dopo aver creato il cluster hello, utilizzare hello passaggi toorun hello Simple
         1    0.0
         3    1.0
 
-    esempio SimpleShortestPathComputation Hello è hardcoded toostart con ID 1 oggetto e trovare gli oggetti tooother percorso più brevi hello. output di Hello è nel formato hello `destination_id` e `distance`. Hello `distance` è hello valore (o peso), dei bordi hello percorsi compreso tra 1 ID oggetto e hello ID di destinazione.
+    L'esempio SimpleShortestPathComputation è hardcoded in modo da essere avviato con l'ID oggetto 1 e individuare il percorso più breve ad altri oggetti. L'output è in formato `destination_id` e `distance`. In particolare, `distance` rappresenta il valore (o il peso) dei confini attraversati tra l'oggetto ID 1 e l'ID di destinazione.
 
-    Visualizzazione dei dati, è possibile verificare i risultati di hello viaggiando percorsi più brevi hello tra ID 1 e tutti gli altri oggetti. percorso più breve di Hello tra ID 1 e 4 ID è 5. Questo valore è hello totale distanza <span style="color:orange">ID 1 e 3</span>e quindi <span style="color:red">ID 3 e 4</span>.
+    Con questa visualizzazione dei dati è possibile verificare i risultati attraversando i percorsi più brevi tra ID 1 e tutti gli altri oggetti. Osservare come il percorso più breve tra ID 1 e ID 4 sia 5, che corrisponde alla distanza totale tra <span style="color:orange">ID 1 e 3</span> e quindi tra <span style="color:red">ID 3 e 4</span>.
 
     ![Drawing of objects as circles with shortest paths drawn between](./media/hdinsight-hadoop-giraph-install-linux/giraph-graph-out.png)
 

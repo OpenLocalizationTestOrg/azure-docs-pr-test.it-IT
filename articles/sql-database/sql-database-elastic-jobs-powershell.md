@@ -1,6 +1,6 @@
 ---
-title: aaaCreate e gestire processi elastici mediante PowerShell | Documenti Microsoft
-description: Utilizzare PowerShell per il pool di Database SQL di Azure toomanage
+title: Creare e gestire processi elastici con PowerShell | Documentazione Microsoft
+description: PowerShell viene utilizzato per gestire i pool del database SQL di Azure
 services: sql-database
 documentationcenter: 
 manager: jhubbard
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/24/2016
 ms.author: ddove
-ms.openlocfilehash: f6c18aecfa7e8c0b102a3b7cd2f266f5542ae400
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b4c97e8f51581f9a3f7c5a8d8e82562255fe7b48
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="create-and-manage-sql-database-elastic-jobs-using-powershell-preview"></a>Creare e gestire processi elastici del database SQL con PowerShell (anteprima)
 
-Hello APIs di PowerShell per **i processi di Database elastico** (in anteprima), consentono di definire un gruppo di database sul quale script verranno eseguiti. Questo articolo viene illustrato come toocreate e gestire **i processi di Database elastico** utilizzando i cmdlet di PowerShell. Vedere [Panoramica dei processi di database elastici](sql-database-elastic-jobs-overview.md). 
+Le API di PowerShell per i **processi di database elastici** , in anteprima, consentono di definire il gruppo di database sul quale verranno eseguiti gli script. Questo articolo illustra come creare e gestire **processi di database elastici** con i cmdlet di PowerShell. Vedere [Panoramica dei processi di database elastici](sql-database-elastic-jobs-overview.md). 
 
 ## <a name="prerequisites"></a>Prerequisiti
 * Una sottoscrizione di Azure. Per una versione di valutazione gratuita, vedere [Versione di valutazione gratuita di un mese](https://azure.microsoft.com/pricing/free-trial/).
-* Un set di database creati con gli strumenti di Database elastico hello. Vedere [Iniziare a usare gli strumenti di database elastici](sql-database-elastic-scale-get-started.md).
-* Azure PowerShell. Per informazioni dettagliate, vedere [come tooinstall e configurare Azure PowerShell](https://docs.microsoft.com/powershell/azure/overview).
+* Un set di database creato con gli strumenti di database elastici. Vedere [Iniziare a usare gli strumenti di database elastici](sql-database-elastic-scale-get-started.md).
+* Azure PowerShell. Per informazioni dettagliate, vedere [Come installare e configurare Azure PowerShell](https://docs.microsoft.com/powershell/azure/overview).
 * **processi di database elastici** di PowerShell, vedere [Installing processi di database elastici](sql-database-elastic-jobs-service-installation.md)
 
 ### <a name="select-your-azure-subscription"></a>Selezionare la sottoscrizione ad Azure
-sottoscrizione di hello tooselect è necessario l'Id sottoscrizione (**- SubscriptionId**) o nome della sottoscrizione (**- SubscriptionName**). Se si dispone di più sottoscrizioni, è possibile eseguire hello **Get AzureRmSubscription** hello cmdlet e copia desiderato informazioni sulla sottoscrizione dal set di risultati hello. Dopo aver creato le informazioni di sottoscrizione, eseguire hello seguente cmdlet tooset questa sottoscrizione come valore predefinito di hello, vale a dire hello destinazione per la creazione e la gestione dei processi:
+Per selezionare la sottoscrizione, è necessario l'ID sottoscrizione (**-SubscriptionId**) o il nome della sottoscrizione (**-SubscriptionName**). Se sono disponibili più sottoscrizioni, è possibile eseguire il cmdlet **Get-AzureRmSubscription** e copiare le informazioni sulla sottoscrizione desiderata dal set di risultati. Dopo aver ottenuto le informazioni della sottoscrizione, eseguire il commandlet seguente per impostare tale sottoscrizione come predefinita, vale a dire la destinazione per la creazione e la gestione dei processi:
 
     Select-AzureRmSubscription -SubscriptionId {SubscriptionID}
 
-Hello [PowerShell ISE](https://technet.microsoft.com/library/dd315244.aspx) è consigliato per l'utilizzo toodevelop ed eseguire gli script di PowerShell in processi di Database elastico hello.
+L'utilizzo di [PowerShell ISE](https://technet.microsoft.com/library/dd315244.aspx) è consigliato per sviluppare ed eseguire gli script di PowerShell sui processi di database elastici.
 
 ## <a name="elastic-database-jobs-objects"></a>Oggetti dei processi di database elastici
-Hello seguente tabella vengono elencati tutti i tipi di oggetto hello di **i processi di Database elastico** con la descrizione e APIs PowerShell rilevanti.
+La tabella seguente include l'elenco di tutti i tipi di oggetto dei **processi di database elastici** con la relativa descrizione e le API di PowerShell rilevanti.
 
 <table style="width:100%">
   <tr>
@@ -48,14 +48,14 @@ Hello seguente tabella vengono elencati tutti i tipi di oggetto hello di **i pro
   </tr>
   <tr>
     <td>Credenziali</td>
-    <td>Nome utente e password toouse quando ci si connette toodatabases per l'esecuzione di script o applicazione del file dacpac. <p>password Hello viene crittografata prima dell'invio tooand archiviato nel database di processi di Database elastico hello.  password Hello viene decrittografata dal servizio processi di Database elastico tramite credenziali hello creato e caricato da uno script di installazione di hello hello.</td>
+    <td>Nome utente e password da utilizzare per la connessione ai database per l'esecuzione di script o l'applicazione di DACPAC. <p>La password viene crittografata prima dell’invio e archiviata nel database dei processi di database elastici.  La password viene decrittografata dal servizio dai processi di database elastici tramite la credenziale creata e caricata dallo script di installazione.</td>
     <td><p>Get-AzureSqlJobCredential</p>
     <p>New-AzureSqlJobCredential</p><p>Set-AzureSqlJobCredential</p></td></td>
   </tr>
 
   <tr>
     <td>Script</td>
-    <td>Toobe di script Transact-SQL utilizzato per l'esecuzione tra i database.  script Hello dovrebbe essere idempotente toobe creati in quanto hello verrà ritentata l'esecuzione dello script hello al momento di errori.
+    <td>Script Transact-SQL da utilizzare per l'esecuzione nei database.  Lo script deve essere creato per essere idempotente, poiché il servizio ritenterà l'esecuzione dello script quando si verificheranno degli errori.
     </td>
     <td>
     <p>Get-AzureSqlJobContent</p>
@@ -67,7 +67,7 @@ Hello seguente tabella vengono elencati tutti i tipi di oggetto hello di **i pro
 
   <tr>
     <td>DACPAC</td>
-    <td><a href="https://msdn.microsoft.com/library/ee210546.aspx">Applicazione livello dati </a> toobe applicate ai database del pacchetto.
+    <td>Pacchetto dell'<a href="https://msdn.microsoft.com/library/ee210546.aspx">applicazione livello dati </a> da applicare tra i database.
 
     </td>
     <td>
@@ -78,7 +78,7 @@ Hello seguente tabella vengono elencati tutti i tipi di oggetto hello di **i pro
   </tr>
   <tr>
     <td>Destinazione del database</td>
-    <td>Server e database nome puntamento tooan Database SQL di Azure.
+    <td>Nome del database e del server che si riferisce a un Database SQL di Azure.
 
     </td>
     <td>
@@ -88,7 +88,7 @@ Hello seguente tabella vengono elencati tutti i tipi di oggetto hello di **i pro
   </tr>
   <tr>
     <td>Destinazione di partizionamento della mappa</td>
-    <td>Combinazione di un database di destinazione e una credenziale toobe ha usato informazioni toodetermine archiviate all'interno di una mappa partizioni di Database elastico.
+    <td>Combinazione di una destinazione di database e una credenziale da utilizzare per determinare le informazioni archiviate all'interno di una mappa di partizionamento di un database elastico.
     </td>
     <td>
     <p>Get-AzureSqlJobTarget</p>
@@ -98,7 +98,7 @@ Hello seguente tabella vengono elencati tutti i tipi di oggetto hello di **i pro
   </tr>
 <tr>
     <td>Destinazione di una raccolta personalizzata</td>
-    <td>Gruppo definito di toocollectively database utilizzare per l'esecuzione.</td>
+    <td>Gruppo definito di database da utilizzare collettivamente per l'esecuzione.</td>
     <td>
     <p>Get-AzureSqlJobTarget</p>
     <p>New-AzureSqlJobTarget</p>
@@ -116,7 +116,7 @@ Hello seguente tabella vengono elencati tutti i tipi di oggetto hello di **i pro
 <tr>
     <td>Job</td>
     <td>
-    <p>Definizione dei parametri per un processo che può essere utilizzato tootrigger esecuzione o toofulfill una pianificazione.</p>
+    <p>Definizione dei parametri per un processo che possono essere utilizzati per attivare l'esecuzione o per soddisfare una pianificazione.</p>
     </td>
     <td>
     <p>Get-AzureSqlJob</p>
@@ -128,7 +128,7 @@ Hello seguente tabella vengono elencati tutti i tipi di oggetto hello di **i pro
 <tr>
     <td>Esecuzione del processo</td>
     <td>
-    <p>Contenitore di attività toofulfill necessario eseguire uno script o l'applicazione di una destinazione tooa DACPAC utilizzando le credenziali per le connessioni di database a causa di errori gestiti in Criteri di conformità tooan esecuzione.</p>
+    <p>Contenitore di attività necessarie per soddisfare l'esecuzione di uno script o l’applicazione di un DACPAC a una destinazione utilizzando le credenziali per le connessioni di database con gestione degli errori gestiti in base ai criteri di esecuzione.</p>
     </td>
     <td>
     <p>Get-AzureSqlJobExecution</p>
@@ -140,8 +140,8 @@ Hello seguente tabella vengono elencati tutti i tipi di oggetto hello di **i pro
 <tr>
     <td>Esecuzione dell'attività di processo</td>
     <td>
-    <p>Singola unità di lavoro toofulfill un processo.</p>
-    <p>Se un'attività di processo non è in grado di toosuccessfully execute, verrà registrato il messaggio di eccezione risultante hello e una nuova attività di processo corrispondente verrà creata ed eseguite in base toohello specificato criteri di esecuzione.</p></p>
+    <p>Singola unità di lavoro per soddisfare un processo.</p>
+    <p>Se un'attività di processo non è in grado di essere eseguita con successo, verrà registrato il messaggio di eccezione risultante e una nuova attività di processo corrispondente verrà creata ed eseguita in base al criterio di esecuzione specificato.</p></p>
     </td>
     <td>
     <p>Get-AzureSqlJobExecution</p>
@@ -166,7 +166,7 @@ Hello seguente tabella vengono elencati tutti i tipi di oggetto hello di **i pro
 <tr>
     <td>Pianificazione</td>
     <td>
-    <p>Tempo base specifica per l'esecuzione tootake luogo un intervallo ricorrente o su una sola volta.</p>
+    <p>Specifiche relative al tempo utilizzate affinché l'esecuzione avvenga ad intervalli ricorrenti o una sola volta.</p>
     </td>
     <td>
     <p>Get-AzureSqlJobSchedule</p>
@@ -178,7 +178,7 @@ Hello seguente tabella vengono elencati tutti i tipi di oggetto hello di **i pro
 <tr>
     <td>Trigger del processo</td>
     <td>
-    <p>Un mapping tra un processo e l'esecuzione del processo tootrigger una pianificazione in base toohello pianificazione.</p>
+    <p>Un mapping tra un processo e una pianificazione per l'avvio dell’esecuzione del processo in base alla pianificazione.</p>
     </td>
     <td>
     <p>New-AzureSqlJobTrigger</p>
@@ -188,50 +188,50 @@ Hello seguente tabella vengono elencati tutti i tipi di oggetto hello di **i pro
 </table>
 
 ## <a name="supported-elastic-database-jobs-group-types"></a>Tipi di gruppo di processi di database elastici supportati
-processo Hello esegue script Transact-SQL (T-SQL) o un'applicazione di dacpac tra un gruppo di database. Quando un processo viene inviato toobe eseguita in un gruppo di database, il processo di hello "espande" hello in processi figlio in cui ogni esegue hello richiesto l'esecuzione su un singolo database nel gruppo di hello. 
+Il processo esegue script Transact-SQL (T-SQL) o applica DACPAC in un gruppo di database. Quando viene inviato un processo da eseguire in un gruppo di database, il processo si "espande" in processi figlio e ognuno completa l'esecuzione richiesta in un database singolo del gruppo. 
 
 Si possono creare due tipi di gruppi: 
 
-* [Mappa partizioni](sql-database-elastic-scale-shard-map-management.md) gruppo: quando tootarget inviato una mappa partizioni è un processo, processo hello query hello partizioni mappa toodetermine il set di partizioni corrente e quindi crea i processi per ogni partizione figlio nella mappa partizioni hello.
-* Gruppo Raccolta personalizzata: set di database personalizzato. Quando un processo è destinato a una raccolta personalizzata, li crea i processi per ogni database attualmente in una raccolta personalizzata hello.
+* [Mappa partizioni](sql-database-elastic-scale-shard-map-management.md) : quando viene inviato un processo destinato a una mappa partizioni, il processo esegue query sulla mappa partizioni per determinare il set di partizioni corrente e quindi crea processi figlio per ogni partizione nella mappa partizioni.
+* Gruppo Raccolta personalizzata: set di database personalizzato. Quando un processo è destinato a una raccolta personalizzata, crea processi figlio per ogni database attualmente nella raccolta personalizzata.
 
-## <a name="tooset-hello-elastic-database-jobs-connection"></a>hello tooset connessione di processi di Database elastico
-Una connessione è necessario impostare toohello processi di toobe *database del controllo* toousing precedente hello processi API. Esecuzione di questo cmdlet attiva un toopop finestra credential per richiedere nome utente hello e la password creata durante l'installazione di processi di Database elastico. Tutti gli esempi forniti in questo argomento presuppongono che il primo passaggio sia già stato eseguito.
+## <a name="to-set-the-elastic-database-jobs-connection"></a>Per impostare la connessione dei processi di database elastici
+È necessario impostare una connessione al *database di controllo* dei processi prima di usare le API dei processi. L'esecuzione di questo cmdlet attiva la visualizzazione di una finestra delle credenziali che richiede il nome utente e la password creati durante l'installazione dei processi di database elastici. Tutti gli esempi forniti in questo argomento presuppongono che il primo passaggio sia già stato eseguito.
 
-Aprire i processi di Database elastico toohello una connessione:
+Aprire una connessione ai processi di database elastici:
 
     Use-AzureSqlJobConnection -CurrentAzureSubscription 
 
-## <a name="encrypted-credentials-within-hello-elastic-database-jobs"></a>Credenziali crittografate all'interno di processi di Database elastico hello
-Le credenziali del database possono essere inserite nei processi hello *database del controllo* con la password crittografata. È necessario toostore credenziali tooenable processi toobe eseguita in un secondo momento (utilizzando le pianificazioni dei processi).
+## <a name="encrypted-credentials-within-the-elastic-database-jobs"></a>Credenziali crittografate all'interno dei processi di database elastici
+Le credenziali del database possono essere inserite nel *database di controllo* dei processi con la relativa password crittografata. È necessario archiviare le credenziali per abilitare l'esecuzione dei processi in un secondo momento tramite pianificazioni dei processi.
 
-Crittografia tramite un certificato creato come parte dello script di installazione di hello. Crea script di installazione di Hello e caricamenti hello certificato hello servizio Cloud di Azure per la decrittografia di hello archiviate password crittografate. in un secondo momento Hello servizio Cloud di Azure archivia la chiave pubblica hello all'interno di processi hello *database del controllo* che consente di hello API di PowerShell o portale di Azure classico interfaccia tooencrypt una password fornita senza richiedere il certificato di hello toobe installato nel computer locale.
+La crittografia funziona tramite un certificato creato come parte dello script di installazione. Lo script di installazione crea e carica il certificato nel servizio Cloud di Azure per la decrittografia delle password crittografate archiviate. In seguito, il servizio cloud di Azure archivia la chiave pubblica nel *database di controllo* dei processi che consente all'API di PowerShell o all'interfaccia del portale di Azure classico di crittografare una password fornita, senza richiedere l'installazione locale del certificato.
 
-le password delle credenziali di Hello sono crittografati e protetti da utenti accesso in sola lettura tooElastic processi degli oggetti di Database. Ma è possibile che un utente malintenzionato con accesso in lettura-scrittura tooElastic processi Database oggetti tooextract una password. Le credenziali sono progettate toobe riutilizzati tra esecuzioni del processo. Le credenziali vengono passate tootarget database quando si stabiliscono connessioni. Non sono attualmente presenti restrizioni per i database di destinazione hello utilizzati per le credenziali, l'utente malintenzionato aggiunga un database di destinazione per un database nel controllo del codice dell'utente malintenzionato hello. utente Hello successivamente è stato possibile avviare un processo di destinazione password della credenziale in questo database toogain hello.
+Le password delle credenziali vengono crittografate e protette dagli utenti con accesso in sola lettura agli oggetti dei processi di database elastici. È tuttavia possibile che un utente malintenzionato con accesso in lettura e scrittura agli oggetti dei processi di database elastici possa estrarre una password. Le credenziali sono progettate per essere riutilizzate sulle esecuzioni del processo. Le credenziali vengono passate al database di destinazione quando si stabiliscono connessioni. Attualmente non sono previste restrizioni per i database di destinazione usati per le singole credenziali, quindi un utente malintenzionato potrebbe aggiungere una destinazione di database per un database sotto il suo controllo. L'utente potrebbe quindi avviare un processo destinato a questo database per ottenere la password delle credenziali.
 
 Le procedure consigliate per i processi di database elastici includono:
 
-* Limitare l'utilizzo dei singoli utenti di tootrusted API hello.
-* Le credenziali devono avere hello almeno dei privilegi necessari tooperform hello mansione.  Per altre informazioni, vedere l'articolo [Autorizzazioni in SQL Server](https://msdn.microsoft.com/library/bb669084.aspx) di MSDN.
+* Limitare l'utilizzo delle API a utenti attendibili.
+* Le credenziali devono disporre dei privilegi minimi necessari per eseguire l'attività di processo.  Per altre informazioni, vedere l'articolo [Autorizzazioni in SQL Server](https://msdn.microsoft.com/library/bb669084.aspx) di MSDN.
 
-### <a name="toocreate-an-encrypted-credential-for-job-execution-across-databases"></a>toocreate una credenziale per l'esecuzione del processo tra i database crittografata
-toocreate crittografata con una nuova credenziale, hello [ **cmdlet Get-Credential** ](https://technet.microsoft.com/library/hh849815.aspx) richiede un nome utente e una password che può essere passata toohello [ **New AzureSqlJobCredential cmdlet**](/powershell/module/elasticdatabasejobs/new-azuresqljobcredential).
+### <a name="to-create-an-encrypted-credential-for-job-execution-across-databases"></a>Per creare credenziali crittografate per l'esecuzione di processi nei database
+Per creare nuove credenziali crittografate, il [**cmdlet Get-Credential**](https://technet.microsoft.com/library/hh849815.aspx) richiede un nome utente e una password che possono essere passati al [**cmdlet New-AzureSqlJobCredential**](/powershell/module/elasticdatabasejobs/new-azuresqljobcredential).
 
     $credentialName = "{Credential Name}"
     $databaseCredential = Get-Credential
     $credential = New-AzureSqlJobCredential -Credential $databaseCredential -CredentialName $credentialName
     Write-Output $credential
 
-### <a name="tooupdate-credentials"></a>credenziali tooupdate
-Quando si modificano le password, utilizzare hello [ **cmdlet Set-AzureSqlJobCredential** ](/powershell/module/elasticdatabasejobs/set-azuresqljobcredential) e set hello **CredentialName** parametro.
+### <a name="to-update-credentials"></a>Per aggiornare le credenziali
+Quando la password cambia, usare il [**cmdlet Set-AzureSqlJobCredential**](/powershell/module/elasticdatabasejobs/set-azuresqljobcredential) e impostare il parametro **CredentialName**.
 
     $credentialName = "{Credential Name}"
     Set-AzureSqlJobCredential -CredentialName $credentialName -Credential $credential 
 
-## <a name="toodefine-an-elastic-database-shard-map-target"></a>toodefine una destinazione di mappa partizioni di Database elastico
-un processo in tutti i database in un set di partizioni tooexecute (creato utilizzando [libreria client di Database elastico](sql-database-elastic-database-client-library.md)), utilizzare una mappa partizioni come destinazione database hello. In questo esempio richiede un'applicazione partizionata utilizzando la libreria client di Database elastico hello. Vedere l'esempio in [Iniziare a usare gli strumenti di database elastici](sql-database-elastic-scale-get-started.md).
+## <a name="to-define-an-elastic-database-shard-map-target"></a>Per definire la destinazione di una mappa partizioni del database elastico
+Per eseguire un processo su tutti i database in un set di partizioni, creato con la [libreria client dei database elastici](sql-database-elastic-database-client-library.md), usare una mappa partizioni come destinazione del database. Questo esempio richiede un'applicazione partizionata creata con la libreria client dei database elastici. Vedere l'esempio in [Iniziare a usare gli strumenti di database elastici](sql-database-elastic-scale-get-started.md).
 
-database di gestione della mappa partizioni Hello deve essere impostato come database di destinazione e quindi mappa partizioni specifici hello deve essere specificata come destinazione.
+Il database di gestione delle mappe partizioni deve essere impostato come destinazione di database e quindi si dovrà impostare la mappa partizioni specifica come destinazione.
 
     $shardMapCredentialName = "{Credential Name}"
     $shardMapDatabaseName = "{ShardMapDatabaseName}" #example: ElasticScaleStarterKit_ShardMapManagerDb
@@ -242,9 +242,9 @@ database di gestione della mappa partizioni Hello deve essere impostato come dat
     Write-Output $shardMapTarget
 
 ## <a name="create-a-t-sql-script-for-execution-across-databases"></a>Creare uno Script T-SQL per l'esecuzione tra database
-Durante la creazione di script T-SQL per l'esecuzione, è consigliabile toobuild li toobe [idempotente](https://en.wikipedia.org/wiki/Idempotence) e resilienti in caso di errori. I processi di Database elastici ritenterà l'esecuzione di uno script ogni volta che l'esecuzione si verifica un errore, indipendentemente dalla classificazione hello dell'errore hello.
+Quando si creano script T-SQL per l'esecuzione, è consigliabile compilarli in modo che siano [idempotenti](https://en.wikipedia.org/wiki/Idempotence) e resilienti in caso di errori. I processi di database elastici ritenterà l'esecuzione di uno script ogni volta che l'esecuzione rileva un errore, indipendentemente dalla classificazione dell'errore.
 
-Hello utilizzare [ **cmdlet New-AzureSqlJobContent** ](/powershell/module/elasticdatabasejobs/new-azuresqljobcontent) toocreate e salvare uno script per l'esecuzione e impostare hello **- documento ContentName** e **- CommandText**parametri.
+Usare il [**cmdlet New-AzureSqlJobContent**](/powershell/module/elasticdatabasejobs/new-azuresqljobcontent) per creare e salvare uno script per l'esecuzione e impostare i parametri **-ContentName** e **-CommandText**.
 
     $scriptName = "Create a TestTable"
 
@@ -264,21 +264,21 @@ Hello utilizzare [ **cmdlet New-AzureSqlJobContent** ](/powershell/module/elasti
     Write-Output $script
 
 ### <a name="create-a-new-script-from-a-file"></a>Creare un nuovo script da un file
-Se lo script T-SQL hello è definito all'interno di un file, utilizzare questo script hello tooimport:
+Se lo script T-SQL è definito all'interno di un file, usare il codice seguente per importarlo:
 
     $scriptName = "My Script Imported from a File"
-    $scriptPath = "{Path tooSQL File}"
+    $scriptPath = "{Path to SQL File}"
     $scriptCommandText = Get-Content -Path $scriptPath
     $script = New-AzureSqlJobContent -ContentName $scriptName -CommandText $scriptCommandText
     Write-Output $script
 
-### <a name="tooupdate-a-t-sql-script-for-execution-across-databases"></a>script tooupdate T-SQL per l'esecuzione tra database
-L'aggiornamento di script di PowerShell hello testo del comando T-SQL per uno script esistente.
+### <a name="to-update-a-t-sql-script-for-execution-across-databases"></a>Per aggiornare uno script T-SQL per l'esecuzione nei database
+Questo script di PowerShell aggiorna il testo del comando T-SQL per uno script esistente.
 
-Set hello seguente variabili tooreflect hello desiderato script definizione toobe insieme:
+Impostare le seguenti variabili in modo da riflettere la definizione dello script desiderata da impostare:
 
     $scriptName = "Create a TestTable"
-    $scriptUpdateComment = "Adding AdditionalInformation column tooTestTable"
+    $scriptUpdateComment = "Adding AdditionalInformation column to TestTable"
     $scriptCommandText = "
     IF NOT EXISTS (SELECT name FROM sys.tables WHERE name = 'TestTable')
     BEGIN
@@ -299,13 +299,13 @@ Set hello seguente variabili tooreflect hello desiderato script definizione toob
     INSERT INTO TestTable(InsertionTime, AdditionalInformation) VALUES (sysutcdatetime(), 'test');
     GO"
 
-### <a name="tooupdate-hello-definition-tooan-existing-script"></a>script esistente tooan tooupdate hello definizione
+### <a name="to-update-the-definition-to-an-existing-script"></a>Per aggiornare la definizione di uno script esistente
     Set-AzureSqlJobContentDefinition -ContentName $scriptName -CommandText $scriptCommandText -Comment $scriptUpdateComment 
 
-## <a name="toocreate-a-job-tooexecute-a-script-across-a-shard-map"></a>toocreate tooexecute un processo uno script in una mappa partizioni
+## <a name="to-create-a-job-to-execute-a-script-across-a-shard-map"></a>Creare un processo che esegua uno script in una mappa partizioni
 Questo script di PowerShell avvia un processo per l'esecuzione di uno script in ogni partizione di una mappa partizioni di scalabilità elastica.
 
-Hello set seguenti hello tooreflect variabili desiderato script e destinazione:
+Impostare le seguenti variabili in modo da riflettere lo script e la destinazione desiderati:
 
     $jobName = "{Job Name}"
     $scriptName = "{Script Name}"
@@ -317,30 +317,30 @@ Hello set seguenti hello tooreflect variabili desiderato script e destinazione:
     $job = New-AzureSqlJob -ContentName $scriptName -CredentialName $credentialName -JobName $jobName -TargetId $shardMapTarget.TargetId
     Write-Output $job
 
-## <a name="tooexecute-a-job"></a>tooexecute un processo
+## <a name="to-execute-a-job"></a>Per eseguire un processo
 Questo script di PowerShell esegue un processo esistente:
 
-Aggiornare hello toohave nome di variabile tooreflect hello desiderato processo eseguito seguenti:
+Aggiornare la variabile seguente per riflettere il nome del processo desiderato da eseguire:
 
     $jobName = "{Job Name}"
     $jobExecution = Start-AzureSqlJobExecution -JobName $jobName 
     Write-Output $jobExecution
 
-## <a name="tooretrieve-hello-state-of-a-single-job-execution"></a>stato hello tooretrieve una singola esecuzione dei processi
-Hello utilizzare [ **cmdlet Get-AzureSqlJobExecution** ](/powershell/module/elasticdatabasejobs/get-azuresqljobexecution) e set hello **JobExecutionId** stato hello tooview di parametro di esecuzione del processo.
+## <a name="to-retrieve-the-state-of-a-single-job-execution"></a>Per recuperare lo stato di esecuzione di un singolo processo
+Usare il [**cmdlet Get-AzureSqlJobExecution**](/powershell/module/elasticdatabasejobs/get-azuresqljobexecution) e impostare il parametro **JobExecutionId** per visualizzare lo stato di esecuzione del processo.
 
     $jobExecutionId = "{Job Execution Id}"
     $jobExecution = Get-AzureSqlJobExecution -JobExecutionId $jobExecutionId
     Write-Output $jobExecution
 
-Utilizzare hello stesso **Get AzureSqlJobExecution** cmdlet con hello **IncludeChildren** parametro tooview hello stato esecuzioni del processo figlio, vale a dire hello stato specifico per ogni esecuzione del processo su ogni database di destinazione dal processo hello.
+Usare lo stesso cmdlet **Get-AzureSqlJobExecution** con il parametro **IncludeChildren** per visualizzare lo stato delle esecuzioni del processo figlio, ovvero lo stato specifico per ogni esecuzione del processo in ogni database di destinazione del processo.
 
     $jobExecutionId = "{Job Execution Id}"
     $jobExecutions = Get-AzureSqlJobExecution -JobExecutionId $jobExecutionId -IncludeChildren
     Write-Output $jobExecutions 
 
-## <a name="tooview-hello-state-across-multiple-job-executions"></a>stato hello tooview tra più esecuzioni di processo
-Hello [ **cmdlet Get-AzureSqlJobExecution** ](/powershell/module/elasticdatabasejobs/new-azuresqljob) ha più parametri facoltativi che possono essere utilizzati toodisplay più esecuzioni di processo, filtrate tramite parametri hello fornito. esempio Hello vengono illustrate alcune delle possibili modi di hello toouse Get AzureSqlJobExecution:
+## <a name="to-view-the-state-across-multiple-job-executions"></a>Per visualizzare lo stato di più esecuzioni del processo
+Il [**cmdlet Get-AzureSqlJobExecution**](/powershell/module/elasticdatabasejobs/new-azuresqljob) ha più parametri facoltativi che possono essere usati per visualizzare più esecuzioni di processo, filtrate tramite i parametri forniti. Di seguito vengono illustrati alcuni dei possibili modi per utilizzare Get-AzureSqlJobExecution:
 
 Recuperare tutte le esecuzioni attive di processo di primo livello:
 
@@ -375,7 +375,7 @@ Recuperare tutti i processi destinati a una raccolta personalizzata specificata,
     $target = Get-AzureSqlJobTarget -CustomCollectionName $customCollectionName
     Get-AzureSqlJobExecution -TargetId $target.TargetId -IncludeInactive
 
-Recuperare l'elenco di hello di esecuzioni di attività del processo in esecuzione un processo specifico:
+Recuperare l'elenco delle esecuzioni delle attività di processo in una esecuzione di processo specifica:
 
     $jobExecutionId = "{Job Execution Id}"
     $jobTaskExecutions = Get-AzureSqlJobTaskExecution -JobExecutionId $jobExecutionId
@@ -383,14 +383,14 @@ Recuperare l'elenco di hello di esecuzioni di attività del processo in esecuzio
 
 Recuperare i dettagli di esecuzione delle attività di processo:
 
-Hello lo script di PowerShell seguente può essere utilizzato tooview hello dettagli di un'esecuzione di attività di processo, è particolarmente utile quando il debug degli errori di esecuzione.
+Il seguente script PowerShell può essere utilizzato per visualizzare i dettagli di un'esecuzione delle attività di processo, che è particolarmente utile durante il debug degli errori di esecuzione.
 
     $jobTaskExecutionId = "{Job Task Execution Id}"
     $jobTaskExecution = Get-AzureSqlJobTaskExecution -JobTaskExecutionId $jobTaskExecutionId
     Write-Output $jobTaskExecution
 
-## <a name="tooretrieve-failures-within-job-task-executions"></a>errori di tooretrieve all'interno di esecuzioni di attività di processo
-Hello **JobTaskExecution oggetto** include una proprietà per hello del ciclo di vita dell'attività hello insieme a una proprietà del messaggio. Se un'esecuzione di attività del processo non è riuscita, hello del ciclo di vita e verrà impostata troppo*Failed* e verrà impostata la proprietà del messaggio hello toohello messaggio di eccezione risultante e il relativo stack. Se un processo non riuscito, è importante tooview i dettagli di hello delle attività di processo che non è riuscita per un determinato processo.
+## <a name="to-retrieve-failures-within-job-task-executions"></a>Per recuperare gli errori nelle esecuzioni delle attività di processo
+L'oggetto **JobTaskExecution** include una proprietà per il ciclo di vita dell'attività insieme a una proprietà del messaggio. Se l'esecuzione di un'attività di processo non riesce, la proprietà del ciclo di vita verrà impostata su *Non riuscita* e la proprietà del messaggio verrà impostata sul messaggio di eccezione risultante e il relativo stack. Se un processo ha esito negativo, è importante visualizzare i dettagli delle attività di processo che non sono riuscite per un determinato processo.
 
     $jobExecutionId = "{Job Execution Id}"
     $jobTaskExecutions = Get-AzureSqlJobTaskExecution -JobExecutionId $jobExecutionId
@@ -402,8 +402,8 @@ Hello **JobTaskExecution oggetto** include una proprietà per hello del ciclo di
             }
         }
 
-## <a name="toowait-for-a-job-execution-toocomplete"></a>toowait per toocomplete di esecuzione un processo
-Hello lo script di PowerShell seguente può essere utilizzato toowait per un toocomplete attività processo:
+## <a name="to-wait-for-a-job-execution-to-complete"></a>Per attendere il completamento dell'esecuzione del processo
+Il seguente script PowerShell può essere utilizzato per attendere che un’attività di processo venga completata: 
 
     $jobExecutionId = "{Job Execution Id}"
     Wait-AzureSqlJobExecution -JobExecutionId $jobExecutionId 
@@ -413,14 +413,14 @@ I processi di database elastici supportano la creazione di criteri di esecuzione
 
 Criteri di esecuzione che attualmente consentono la definizione di:
 
-* Nome: Identificatore per i criteri di esecuzione hello.
+* Nome: Identificatore del criterio di esecuzione.
 * Timeout del processo: tempo totale prima che un processo venga annullato dai processi di database elastici.
-* Intervallo tra tentativi iniziale: Intervallo toowait prima del primo nuovo tentativo.
-* Intervallo tra tentativi massimo: Limite massimo di tentativi intervalli toouse.
-* Coefficiente di Backoff intervallo tentativi: Coefficiente utilizzato successivo intervallo hello toocalculate tra i tentativi.  Hello formula seguente viene utilizzata: (intervallo di tentativi iniziale) * Math.pow (intervallo Backoff coefficiente (), (numero di tentativi) - 2). 
-* Numero massimo di tentativi: hello massimo di ripetizione tentativi tooperform all'interno di un processo.
+* Intervallo tra tentativi iniziale: intervallo di attesa prima del primo tentativo.
+* Intervallo massimo di tentativi: estremità degli intervalli tra i tentativi da utilizzare.
+* Coefficiente di backoff dell’intervallo tra tentativi: coefficiente utilizzato per calcolare l’intervallo successivo tra i tentativi.  Viene utilizzata la seguente formula: (Intervallo tentativi iniziale) * Math.pow((Coefficiente di backoff dell’intervallo), (Numero di tentativi) - 2). 
+* Numero massimo di tentativi: Il numero massimo di tentativi all'interno di un processo.
 
-criteri di esecuzione predefiniti Hello utilizzano hello seguenti valori:
+Il criterio di esecuzione predefinito utilizza i valori seguenti:
 
 * Nome: Criterio di esecuzione predefinito
 * Timeout del processo: 1 settimana
@@ -429,7 +429,7 @@ criteri di esecuzione predefiniti Hello utilizzano hello seguenti valori:
 * Coefficiente di intervallo tra tentativi: 2
 * Numero massimo di tentativi: 2,147,483,647
 
-Creare criteri di esecuzione hello desiderato:
+Creare il criterio di esecuzione desiderato:
 
     $executionPolicyName = "{Execution Policy Name}"
     $initialRetryInterval = New-TimeSpan -Seconds 10
@@ -442,7 +442,7 @@ Creare criteri di esecuzione hello desiderato:
     Write-Output $executionPolicy
 
 ### <a name="update-a-custom-execution-policy"></a>Aggiornare il criterio di esecuzione personalizzato
-Aggiornare tooupdate criteri di esecuzione hello desiderato:
+Aggiornare l'aggiornamento del criterio di esecuzione desiderato:
 
     $executionPolicyName = "{Execution Policy Name}"
     $initialRetryInterval = New-TimeSpan -Seconds 15
@@ -454,65 +454,65 @@ Aggiornare tooupdate criteri di esecuzione hello desiderato:
     Write-Output $updatedExecutionPolicy
 
 ## <a name="cancel-a-job"></a>Annullare un processo
-I processi di database elastici supportano le richieste di annullamento dei processi.  Se i processi di Database elastico rileva una richiesta di annullamento per un processo in fase di esecuzione, verrà eseguito un tentativo con il processo di hello toostop.
+I processi di database elastici supportano le richieste di annullamento dei processi.  Se i processi di database elastici rilevano una richiesta di annullamento per un processo in fase di esecuzione, verrà effettuato un tentativo di arresto del processo.
 
 E’ possibile cancellare un processo in due modi diversi tramite i processi di database elastici:
 
-1. Annullamento di attività attualmente in esecuzione: se un annullamento viene rilevato durante un'attività è attualmente in esecuzione, verrà tentato un annullamento all'interno di hello aspetto dell'attività hello attualmente in esecuzione.  Ad esempio: se è presente una query a lunga esecuzione viene eseguita quando viene eseguito un tentativo di annullamento, sarà presente una query di hello toocancel tentativo.
-2. Annullamento di tentativi dell'attività: se un annullamento viene rilevato dal thread di controllo hello prima di un'attività viene avviata per l'esecuzione, il thread di controllo hello evitare avvio attività hello e dichiarare richiesta hello come annullata.
+1. Annullare le attività attualmente in esecuzione: se viene rilevato un annullamento mentre un'attività è in esecuzione, l'annullamento verrà eseguito nell'aspetto dell'attività attualmente in esecuzione.  Ad esempio: se viene eseguita una query con esecuzione prolungata quando si tenta di eseguire un annullamento, si verificherà un tentativo di annullare la query.
+2. Annullare i tentativi dell'attività: se viene rilevato un annullamento dal thread di controllo prima che venga avviata un'attività per l'esecuzione, il thread di controllo eviterà di avviare l'attività e dichiarerà annullata la richiesta.
 
-Se è richiesto un annullamento di processo per un processo padre, la richiesta di annullamento hello sarà rispettata per il processo padre hello e per tutti i relativi processi figlio.
+Se viene richiesto un annullamento del processo per un processo padre, tale richiesta verrà rispettata per il processo padre e per tutti i relativi processi figlio.
 
-toosubmit una richiesta di annullamento, utilizzare hello [ **cmdlet Stop-AzureSqlJobExecution** ](/powershell/module/elasticdatabasejobs/stop-azuresqljobexecution) e set hello **JobExecutionId** parametro.
+Per inviare una richiesta di annullamento, usare il [**cmdlet Stop-AzureSqlJobExecution**](/powershell/module/elasticdatabasejobs/stop-azuresqljobexecution) e impostare il parametro **JobExecutionId**.
 
     $jobExecutionId = "{Job Execution Id}"
     Stop-AzureSqlJobExecution -JobExecutionId $jobExecutionId
 
-## <a name="toodelete-a-job-and-job-history-asynchronously"></a>toodelete un processo e la cronologia dei processi in modo asincrono
-I processi di database elastici supportano l'eliminazione asincrona dei processi. Un processo può essere contrassegnato per l'eliminazione e sistema hello eliminerà processo hello e tutta la relativa cronologia processo dopo aver completato tutte le esecuzioni di processo per il processo di hello. sistema Hello non annullerà automaticamente le esecuzioni di processo attivo.  
+## <a name="to-delete-a-job-and-job-history-asynchronously"></a>Per eliminare un processo e la relativa cronologia in modo asincrono
+I processi di database elastici supportano l'eliminazione asincrona dei processi. Un processo può essere contrassegnato per l'eliminazione e il sistema lo eliminerà con tutta la relativa cronologia dopo il completamento di tutte le esecuzioni di processo per tale processo. Il sistema non annullerà automaticamente le esecuzioni di processo attive.  
 
-Richiamare [ **Stop AzureSqlJobExecution** ](/powershell/module/elasticdatabasejobs/stop-azuresqljobexecution) toocancel esecuzioni di processo attivo.
+Richiamare [**Stop-AzureSqlJobExecution**](/powershell/module/elasticdatabasejobs/stop-azuresqljobexecution) per annullare le esecuzioni di processo attive.
 
-l'eliminazione di processo tootrigger, utilizzare hello [ **cmdlet Remove-AzureSqlJob** ](/powershell/module/elasticdatabasejobs/remove-azuresqljob) e set hello **JobName** parametro.
+Per attivare l'eliminazione di processi, usare il [**cmdlet Remove-AzureSqlJob**](/powershell/module/elasticdatabasejobs/remove-azuresqljob) e impostare il parametro **JobName**.
 
     $jobName = "{Job Name}"
     Remove-AzureSqlJob -JobName $jobName
 
-## <a name="toocreate-a-custom-database-target"></a>toocreate una destinazione di database personalizzati
-È possibile definire destinazioni di database personalizzate per l'esecuzione diretta o per l'inclusione in un gruppo di database personalizzato. Ad esempio, in quanto **pool elastici** sono non ancora supportato direttamente tramite APIs di PowerShell, è possibile creare un database personalizzato di destinazione e destinazione della raccolta di database personalizzata che comprende tutti i database nel pool di hello hello.
+## <a name="to-create-a-custom-database-target"></a>Per creare una destinazione di database personalizzata
+È possibile definire destinazioni di database personalizzate per l'esecuzione diretta o per l'inclusione in un gruppo di database personalizzato. Ad esempio, poiché i **pool elastici** non sono ancora supportati direttamente se si usano le API di PowerShell, è possibile creare una destinazione di database personalizzata e una destinazione della raccolta di database personalizzata che comprenda tutti i database nel pool.
 
-Impostare le seguenti variabili tooreflect hello desiderato database informazioni hello:
+Impostare le seguenti variabili in modo da riflettere le informazioni desiderate sul database:
 
     $databaseName = "{Database Name}"
     $databaseServerName = "{Server Name}"
     New-AzureSqlJobDatabaseTarget -DatabaseName $databaseName -ServerName $databaseServerName 
 
-## <a name="toocreate-a-custom-database-collection-target"></a>toocreate una destinazione di raccolta di database personalizzati
-Hello utilizzare [ **New AzureSqlJobTarget** ](/powershell/module/elasticdatabasejobs/new-azuresqljobtarget) toodefine cmdlet un'esecuzione di database personalizzato insieme destinazione tooenable tra più destinazioni definita per il database. Dopo aver creato un gruppo di database, database possono essere associati a una destinazione di una raccolta personalizzata hello.
+## <a name="to-create-a-custom-database-collection-target"></a>Per creare una destinazione per la raccolta di database personalizzata
+Usare il cmdlet [**New-AzureSqlJobTarget**](/powershell/module/elasticdatabasejobs/new-azuresqljobtarget) per definire una destinazione per la raccolta di database personalizzata per abilitare l'esecuzione in più destinazioni di database definite. Dopo aver creato un gruppo di database, è possibile associarli alla destinazione della raccolta personalizzata.
 
-Impostare hello seguente configurazione di destinazione di variabili tooreflect hello raccolta personalizzata desiderata:
+Impostare le seguenti variabili in modo da riflettere la configurazione della destinazione della raccolta personalizzata desiderata:
 
     $customCollectionName = "{Custom Database Collection Name}"
     New-AzureSqlJobTarget -CustomCollectionName $customCollectionName 
 
-### <a name="tooadd-databases-tooa-custom-database-collection-target"></a>destinazione della raccolta tooadd database tooa database personalizzato
-una raccolta personalizzata specifica database tooa tooadd utilizzare hello [ **Aggiungi AzureSqlJobChildTarget** ](/powershell/module/elasticdatabasejobs/add-azuresqljobchildtarget) cmdlet.
+### <a name="to-add-databases-to-a-custom-database-collection-target"></a>Per aggiungere database a una destinazione della raccolta di database personalizzata
+Per aggiungere un database a una raccolta personalizzata specifica, usare il cmdlet [**Add-AzureSqlJobChildTarget**](/powershell/module/elasticdatabasejobs/add-azuresqljobchildtarget).
 
     $databaseServerName = "{Database Server Name}"
     $databaseName = "{Database Name}"
     $customCollectionName = "{Custom Database Collection Name}"
     Add-AzureSqlJobChildTarget -CustomCollectionName $customCollectionName -DatabaseName $databaseName -ServerName $databaseServerName 
 
-#### <a name="review-hello-databases-within-a-custom-database-collection-target"></a>Esaminare i database hello all'interno di una destinazione di raccolta di database personalizzati
-Hello utilizzare [ **Get AzureSqlJobTarget** ](/powershell/module/elasticdatabasejobs/new-azuresqljobtarget) database di cmdlet tooretrieve hello figlio all'interno di una destinazione di raccolta database personalizzato. 
+#### <a name="review-the-databases-within-a-custom-database-collection-target"></a>Verificare i database in una destinazione per la raccolta dei database personalizzata
+Usare il cmdlet [**Get-AzureSqlJobTarget**](/powershell/module/elasticdatabasejobs/new-azuresqljobtarget) per recuperare i database figlio all'interno di una destinazione di una raccolta database personalizzata. 
 
     $customCollectionName = "{Custom Database Collection Name}"
     $target = Get-AzureSqlJobTarget -CustomCollectionName $customCollectionName
     $childTargets = Get-AzureSqlJobTarget -ParentTargetId $target.TargetId
     Write-Output $childTargets
 
-### <a name="create-a-job-tooexecute-a-script-across-a-custom-database-collection-target"></a>Creare un processo tooexecute uno script per una destinazione di raccolta database personalizzato
-Hello utilizzare [ **New AzureSqlJob** ](/powershell/module/elasticdatabasejobs/new-azuresqljob) toocreate cmdlet un processo rispetto a un gruppo di database definiti da una destinazione di raccolta database personalizzato. I processi di Database elastici espanderà processo hello in più processi figlio, ogni database tooa corrispondente associata alla destinazione di raccolta di database personalizzata hello e assicurarsi che viene eseguito lo script di hello in tutti i database. Nuovamente, è importante che gli script siano idempotenti toobe resilienti tooretries.
+### <a name="create-a-job-to-execute-a-script-across-a-custom-database-collection-target"></a>Creare un processo per eseguire uno script in una destinazione di una raccolta database personalizzata
+Usare il cmdlet [**New AzureSqlJob**](/powershell/module/elasticdatabasejobs/new-azuresqljob) per creare un processo rispetto a un gruppo di database definiti da una destinazione della raccolta di database personalizzata. I processi di database elastici espanderanno il processo in più processi figlio, ognuno corrispondente a un database associato alla destinazione di raccolta database personalizzata e eseguiranno lo script in tutti i database. Anche in questo caso, è importante che gli script siano idempotenti per essere flessibili ai tentativi.
 
     $jobName = "{Job Name}"
     $scriptName = "{Script Name}"
@@ -523,13 +523,13 @@ Hello utilizzare [ **New AzureSqlJob** ](/powershell/module/elasticdatabasejobs/
     Write-Output $job
 
 ## <a name="data-collection-across-databases"></a>Raccolta dei dati tra database
-È possibile utilizzare tooexecute un processo una query in un gruppo di database e tabella specifica di hello risultati tooa di trasmissione. è possibile eseguire query di tabella Hello dopo i risultati della query di hello fatti toosee hello da ogni database. In questo modo una query tooexecute un metodo asincrono in numerosi database. I tentativi non riusciti vengono gestiti automaticamente tramite la ripetizione dei tentativi.
+È possibile usare un processo per eseguire una query su un gruppo di database e inviare i risultati a una tabella specifica. E’ possibile eseguire una query sulla tabella dopo aver visualizzato i risultati della query da ciascun database. In questo modo si avrà un metodo asincrono per eseguire una query su molti database. I tentativi non riusciti vengono gestiti automaticamente tramite la ripetizione dei tentativi.
 
-tabella di destinazione specificato Hello verrà creata automaticamente se non esiste ancora. nuova tabella Hello corrisponde allo schema di hello di hello restituito set di risultati. Se uno script restituisce più set di risultati, i processi di Database elastico invierà prima tabella di destinazione toohello hello.
+La tabella di destinazione specificata verrà creata automaticamente, se non esiste già. La nuova tabella corrisponde allo schema del set di risultati restituito. Se uno script restituisce più set di risultati, i processi di database elastici invieranno solo il primo set alla tabella di destinazione.
 
-Hello seguente script di PowerShell esegue uno script e raccoglie i risultati in una tabella specificata. Questo script presuppone che sia stato creato uno script T-SQL che restituisce un singolo set di risultati e che sia stata creata una destinazione della raccolta di database personalizzata.
+Lo script di PowerShell seguente esegue uno script e raccoglie i risultati in una tabella specificata. Questo script presuppone che sia stato creato uno script T-SQL che restituisce un singolo set di risultati e che sia stata creata una destinazione della raccolta di database personalizzata.
 
-Questo script utilizza hello [ **Get AzureSqlJobTarget** ](/powershell/module/elasticdatabasejobs/new-azuresqljobtarget) cmdlet. Impostare i parametri di hello per script, le credenziali e la destinazione di esecuzione:
+Questo script usa il cmdlet [**Get-AzureSqlJobTarget**](/powershell/module/elasticdatabasejobs/new-azuresqljobtarget). Impostare i parametri per lo script, le credenziali e la destinazione di esecuzione:
 
     $jobName = "{Job Name}"
     $scriptName = "{Script Name}"
@@ -542,8 +542,8 @@ Questo script utilizza hello [ **Get AzureSqlJobTarget** ](/powershell/module/el
     $destinationTableName = "{Destination Table Name}"
     $target = Get-AzureSqlJobTarget -CustomCollectionName $customCollectionName
 
-### <a name="toocreate-and-start-a-job-for-data-collection-scenarios"></a>toocreate e avviare un processo per gli scenari di raccolta dati
-Questo script utilizza hello [ **inizio AzureSqlJobExecution** ](/powershell/module/elasticdatabasejobs/start-azuresqljobexecution) cmdlet.
+### <a name="to-create-and-start-a-job-for-data-collection-scenarios"></a>Per creare e avviare un processo per gli scenari di raccolta dati
+Questo script usa il cmdlet [**Start-AzureSqlJobExecution**](/powershell/module/elasticdatabasejobs/start-azuresqljobexecution).
 
     $job = New-AzureSqlJob -JobName $jobName 
     -CredentialName $executionCredentialName 
@@ -558,8 +558,8 @@ Questo script utilizza hello [ **inizio AzureSqlJobExecution** ](/powershell/mod
     $jobExecution = Start-AzureSqlJobExecution -JobName $jobName
     Write-Output $jobExecution
 
-## <a name="tooschedule-a-job-execution-trigger"></a>un trigger di processo esecuzione tooschedule
-Hello lo script di PowerShell seguente può essere utilizzato toocreate a una pianificazione ricorrente. Questo script usa l'intervallo di minuti, ma [**New-AzureSqlJobSchedule**](/powershell/module/elasticdatabasejobs/new-azuresqljobschedule) supporta anche i parametri -DayInterval, -HourInterval, -MonthInterval e -WeekInterval. Le pianificazioni che vengono eseguite una sola volta possono essere create specificando -OneTime.
+## <a name="to-schedule-a-job-execution-trigger"></a>Per pianificare un trigger di esecuzione del processo
+Lo script di PowerShell seguente può essere usato per creare una pianificazione ricorrente. Questo script usa l'intervallo di minuti, ma [**New-AzureSqlJobSchedule**](/powershell/module/elasticdatabasejobs/new-azuresqljobschedule) supporta anche i parametri -DayInterval, -HourInterval, -MonthInterval e -WeekInterval. Le pianificazioni che vengono eseguite una sola volta possono essere create specificando -OneTime.
 
 Creare una nuova pianificazione:
 
@@ -572,10 +572,10 @@ Creare una nuova pianificazione:
     -StartTime $startTime 
     Write-Output $schedule
 
-### <a name="tootrigger-a-job-executed-on-a-time-schedule"></a>un processo eseguito su una pianificazione temporale tootrigger
-Un trigger di processo può essere definito toohave un processo eseguito in base tooa tempo di pianificazione. Hello lo script di PowerShell seguente può essere utilizzato toocreate un trigger di processo.
+### <a name="to-trigger-a-job-executed-on-a-time-schedule"></a>Per attivare l'esecuzione di un processo in una pianificazione temporale
+È possibile definire un trigger di processo per eseguire un processo in base a una pianificazione temporale. Il seguente script di PowerShell può essere utilizzato per creare un trigger di processo.
 
-Utilizzare [New AzureSqlJobTrigger](/powershell/module/elasticdatabasejobs/new-azuresqljobtrigger) e set hello seguendo le variabili toocorrespond toohello desiderato processo e pianificazione:
+Usare [New-AzureSqlJobTrigger](/powershell/module/elasticdatabasejobs/new-azuresqljobtrigger) e impostare le variabili seguenti in modo che corrispondano al processo e alla pianificazione desiderati:
 
     $jobName = "{Job Name}"
     $scheduleName = "{Schedule Name}"
@@ -584,8 +584,8 @@ Utilizzare [New AzureSqlJobTrigger](/powershell/module/elasticdatabasejobs/new-a
     -JobName $jobName
     Write-Output $jobTrigger
 
-### <a name="tooremove-a-scheduled-association-toostop-job-from-executing-on-schedule"></a>tooremove un processo toostop associazione pianificata l'esecuzione su pianificazione
-esecuzione del processo tramite un trigger di processo, il trigger di processo hello ripresenta toodiscontinue può essere rimosso. Rimuovere un toostop trigger di processo un processo venga eseguito secondo pianificazione tooa utilizzando hello [ **cmdlet Remove-AzureSqlJobTrigger**](/powershell/module/elasticdatabasejobs/remove-azuresqljobtrigger).
+### <a name="to-remove-a-scheduled-association-to-stop-job-from-executing-on-schedule"></a>Per rimuovere un'associazione pianificata per arrestare l'esecuzione di un processo in base a una pianificazione
+Per sospendere l'esecuzione del processo ricorrente tramite un trigger di processo, è possibile rimuovere il trigger di processo. Rimuovere un trigger di processo per arrestare l'esecuzione di un processo in base a una pianificazione mediante il [**cmdlet Remove-AzureSqlJobTrigger**](/powershell/module/elasticdatabasejobs/remove-azuresqljobtrigger).
 
     $jobName = "{Job Name}"
     $scheduleName = "{Schedule Name}"
@@ -593,38 +593,38 @@ esecuzione del processo tramite un trigger di processo, il trigger di processo h
     -ScheduleName $scheduleName 
     -JobName $jobName
 
-### <a name="retrieve-job-triggers-bound-tooa-time-schedule"></a>Recuperare la pianificazione di processo trigger associati tooa ora
-Hello lo script di PowerShell seguente può essere utilizzato tooobtain e visualizzare hello processo trigger tooa registrati ora determinata pianificazione.
+### <a name="retrieve-job-triggers-bound-to-a-time-schedule"></a>Recuperare i trigger di processo associati a una pianificazione temporale
+Il seguente script PowerShell è utilizzabile per ottenere e visualizzare i trigger di processo registrati in una particolare pianificazione temporale.
 
     $scheduleName = "{Schedule Name}"
     $jobTriggers = Get-AzureSqlJobTrigger -ScheduleName $scheduleName
     Write-Output $jobTriggers
 
-### <a name="tooretrieve-job-triggers-bound-tooa-job"></a>i trigger di processo tooretrieve associato tooa processo
-Utilizzare [Get AzureSqlJobTrigger](/powershell/module/elasticdatabasejobs/get-azuresqljobtrigger) tooobtain e la visualizzazione di pianificazioni contenente un processo registrato.
+### <a name="to-retrieve-job-triggers-bound-to-a-job"></a>Per recuperare i trigger di processo associati a un processo
+Usare [Get AzureSqlJobTrigger](/powershell/module/elasticdatabasejobs/get-azuresqljobtrigger) per ottenere e visualizzare le pianificazioni che contengono un processo registrato.
 
     $jobName = "{Job Name}"
     $jobTriggers = Get-AzureSqlJobTrigger -JobName $jobName
     Write-Output $jobTriggers
 
-## <a name="toocreate-a-data-tier-application-dacpac-for-execution-across-databases"></a>toocreate un'applicazione livello dati (con estensione DACPAC) per l'esecuzione tra database
-toocreate un file DACPAC, vedere [Data-Tier applications](https://msdn.microsoft.com/library/ee210546.aspx). un file DACPAC, toodeploy utilizzare hello [cmdlet New-AzureSqlJobContent](/powershell/module/elasticdatabasejobs/new-azuresqljobcontent). Hello DACPAC deve essere accessibile toohello servizio. È consigliabile tooupload un tooAzure DACPAC creato, archiviazione e creare un [firma di accesso condiviso](../storage/common/storage-dotnet-shared-access-signature-part-1.md) per hello DACPAC.
+## <a name="to-create-a-data-tier-application-dacpac-for-execution-across-databases"></a>Per creare un'applicazione livello dati (DACPAC) per l'esecuzione sui database
+Per creare un'applicazione DACPAC, vedere [Applicazioni livello dati](https://msdn.microsoft.com/library/ee210546.aspx). Per distribuire un'applicazione DACPAC, usare il [cmdlet New-AzureSqlJobContent](/powershell/module/elasticdatabasejobs/new-azuresqljobcontent). L'applicazione DACPAC deve essere accessibile al servizio. È consigliabile caricare nell'archiviazione di Azure un'applicazione DACPAC creata e creare una [Firma di accesso condiviso](../storage/common/storage-dotnet-shared-access-signature-part-1.md) per DACPAC.
 
     $dacpacUri = "{Uri}"
     $dacpacName = "{Dacpac Name}"
     $dacpac = New-AzureSqlJobContent -DacpacUri $dacpacUri -ContentName $dacpacName 
     Write-Output $dacpac
 
-### <a name="tooupdate-a-data-tier-application-dacpac-for-execution-across-databases"></a>tooupdate un'applicazione livello dati (con estensione DACPAC) per l'esecuzione tra database
-Dacpac esistente registrati all'interno di processi di Database elastico può essere aggiornato toopoint toonew URI. Hello utilizzare [ **cmdlet Set-AzureSqlJobContentDefinition** ](/powershell/module/elasticdatabasejobs/set-azuresqljobcontentdefinition) tooupdate hello URI DACPAC su un oggetto esistente registrato DACPAC:
+### <a name="to-update-a-data-tier-application-dacpac-for-execution-across-databases"></a>Per aggiornare un'applicazione livello dati (DACPAC) per l'esecuzione nei database
+I DACPAC esistenti registrati all’interno dei processi di database elastici possono essere aggiornati in modo da fare riferimento ai nuovo URI. Usare il [**cmdlet Set-AzureSqlJobContentDefinition**](/powershell/module/elasticdatabasejobs/set-azuresqljobcontentdefinition) per aggiornare l'URI DACPAC in una DACPAC registrata esistente:
 
     $dacpacName = "{Dacpac Name}"
     $newDacpacUri = "{Uri}"
     $updatedDacpac = Set-AzureSqlJobDacpacDefinition -ContentName $dacpacName -DacpacUri $newDacpacUri
     Write-Output $updatedDacpac
 
-## <a name="toocreate-a-job-tooapply-a-data-tier-application-dacpac-across-databases"></a>toocreate tooapply un processo un'applicazione livello dati (con estensione DACPAC) tra database
-Dopo aver creato un file DACPAC all'interno di processi di Database elastico, è possibile creare un processo tooapply hello DACPAC in un gruppo di database. Hello lo script di PowerShell seguente può essere utilizzato toocreate un processo con estensione DACPAC in una raccolta personalizzata di database:
+## <a name="to-create-a-job-to-apply-a-data-tier-application-dacpac-across-databases"></a>Per creare un processo per applicare un'applicazione livello dati (DACPAC) nei database
+Dopo aver creato un DACPAC all'interno di processi di database elastici, è possibile creare un processo per applicare il DACPAC su un gruppo di database. Utilizzare il seguente script di PowerShell per creare un processo DACPAC su una raccolta personalizzata di database:
 
     $jobName = "{Job Name}"
     $dacpacName = "{Dacpac Name}"

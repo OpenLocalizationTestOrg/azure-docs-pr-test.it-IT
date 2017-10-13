@@ -1,5 +1,5 @@
 ---
-title: sicurezza aaaContainer contenitore nel servizio di Azure | Documenti Microsoft
+title: Sicurezza del contenitore nel Servizio contenitore di Azure | Microsoft Docs
 description: Considerazioni sulla protezione dei contenitori Docker distribuiti nel servizio contenitore di Azure e nei servizi di Azure correlati.
 services: container-service
 documentationcenter: 
@@ -17,10 +17,10 @@ ms.workload: na
 ms.date: 03/28/2017
 ms.author: saudas
 ms.custom: mvc
-ms.openlocfilehash: 1c01559227ac14d2020c9692ef30aa9752f232c8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5b1f06528f28272b980a13f278f1d22f20f020f6
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 [!INCLUDE [container-service-security.md](../../../includes/container-service-security.md)]

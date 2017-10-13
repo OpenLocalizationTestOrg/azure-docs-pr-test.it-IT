@@ -1,20 +1,20 @@
-## <a name="view-hello-telemetry"></a>Visualizzazione hello telemetria
+## <a name="view-the-telemetry"></a>Visualizzare i dati di telemetria
 
-soluzione di monitoraggio remoto di dati di telemetria toohello ora invia Hello Raspberry Pi. È possibile visualizzare i dati di telemetria hello nel dashboard di soluzione hello. È anche possibile inviare messaggi tooyour Pi Raspberry dal dashboard di soluzione hello.
+Raspberry Pi ora invia i dati di telemetria alla soluzione di monitoraggio remota. È possibile visualizzare i dati di telemetria nel dashboard della soluzione. È anche possibile inviare messaggi a Raspberry Pi dal dashboard della soluzione.
 
-- Passare il dashboard di soluzione toohello.
-- Selezionare il dispositivo in hello **tooView dispositivo** elenco a discesa.
-- telemetria Hello da hello Pi Raspberry vengono visualizzati nel dashboard di hello.
+- Passare al dashboard della soluzione.
+- Selezionare il dispositivo nell'elenco a discesa **Dispositivo da visualizzare**.
+- I dati di telemetria da Raspberry Pi vengono visualizzati nel dashboard.
 
-![Visualizzare i dati di telemetria da hello Raspberry Pi][img-telemetry-display]
+![Visualizzare i dati di telemetria da Raspberry Pi][img-telemetry-display]
 
-## <a name="initiate-hello-firmware-update"></a>Avviare l'aggiornamento del firmware hello
+## <a name="initiate-the-firmware-update"></a>Avviare l'aggiornamento del firmware
 
-processo di aggiornamento del firmware Hello Scarica e installa una versione aggiornata dell'applicazione client di dispositivo hello nel hello Raspberry Pi. Per ulteriori informazioni sul processo di aggiornamento del firmware hello, vedere la descrizione di hello del criterio di aggiornamento del firmware hello in [Panoramica di gestione dei dispositivi con l'IoT Hub][lnk-update-pattern].
+Il processo di aggiornamento del firmware scarica e installa una versione aggiornata dell'applicazione client del dispositivo in Raspberry Pi. Per altre informazioni sul processo di aggiornamento del firmware, vedere la descrizione del modello di aggiornamento del firmware in [Panoramica della gestione dei dispositivi con l'hub IoT][lnk-update-pattern].
 
-Processo di aggiornamento del firmware hello è avviare richiamando un metodo nel dispositivo hello. Questo metodo è asincrono e restituisce appena inizia il processo di aggiornamento hello. utilizza dispositivo Hello segnalate soluzione hello toonotify di proprietà relative stato hello hello aggiornamento.
+Per avviare il processo di aggiornamento del firmware, richiamare un metodo nel dispositivo. Questo metodo è asincrono e viene restituito non appena inizia il processo di aggiornamento. Il dispositivo usa le proprietà segnalate per notificare la soluzione sullo stato dell'aggiornamento.
 
-Per richiamare metodi sulle Pi Raspberry dal dashboard di soluzione hello. Hello Pi Raspberry si connette innanzitutto toohello soluzione di monitoraggio remoto, invia informazioni sui metodi di hello che supporta. 
+I metodi vengono richiamati in Raspberry Pi dal dashboard della soluzione. Quando Raspberry Pi si connette per la prima volta alla soluzione di monitoraggio remoto, invia le informazioni sui metodi supportati. 
 
 [img-telemetry-display]: media/iot-suite-raspberry-pi-kit-view-telemetry-advanced/telemetry.png
 [lnk-update-pattern]: ../articles/iot-hub/iot-hub-device-management-overview.md

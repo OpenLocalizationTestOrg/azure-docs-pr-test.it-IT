@@ -1,7 +1,25 @@
 ---
-titolo: aaa "lezione dell'esercitazione di Azure Analysis Services 3: contrassegna come tabella data | Descrizione di "Microsoft Docs: viene descritto come toomark tabella di una data nel progetto di esercitazione di hello Azure Analysis Services. servizi: documentationcenter di analysis services: ' autore: manager minewiskan: erikre editor: ' tag: '
-
-ms. AssetID: ms. Service: ms. DevLang analysis services: ms. topic NA: ms. tgt_pltfrm get-started-article: Workload NA: ms. date na: author 01/06/2017: owend
+title: 'Esercitazione su Azure Analysis Services - Lezione 3: Contrassegnare come tabella data | Microsoft Docs'
+description: Descrive come contrassegnare una tabella data nel progetto per l'esercitazione su Azure Analysis Services.
+services: analysis-services
+documentationcenter: 
+author: Minewiskan
+manager: erikre
+editor: 
+tags: 
+ms.assetid: 
+ms.service: analysis-services
+ms.devlang: NA
+ms.topic: get-started-article
+ms.tgt_pltfrm: NA
+ms.workload: na
+ms.date: 09/20/2017
+ms.author: owend
+ms.openlocfilehash: 94ea44091c8a7befaf0c82349c47dce7a36c1fd8
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
+ms.contentlocale: it-IT
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="lesson-3-mark-as-date-table"></a>Lezione 3: Contrassegnare come tabella data
 
@@ -11,29 +29,29 @@ Nella lezione 2: Ottenere i dati è stata importata una tabella delle dimensioni
   
 Quando si usano funzioni di Business Intelligence per le gerarchie temporali DAX, è necessario specificare alcune proprietà, tra cui una *tabella data* e una *colonna data* che funge da identificatore univoco nella tabella.
   
-In questa lezione si contrassegna tabella DimDate hello come hello *tabella data* e una colonna di Date hello (nella tabella Date hello) come hello *colonna Data* (identificatore univoco).  
+In questa lezione la tabella DimDate verrà contrassegnata come *tabella data* e la colonna Date (nella tabella Date) come *colonna data* (identificatore univoco).  
 
-Prima di contrassegnare una colonna di tabella e la data di date hello, è un toodo tempestivamente un po' di manutenzione toomake toounderstand di più facile del modello. Si noti che nella tabella DimDate hello una colonna denominata **FullDateAlternateKey**. Questa colonna contiene una riga per ogni giorno in ogni anno di calendario incluso nella tabella hello. Questa colonna viene usata molto spesso nelle formule per le misure e nei report, ma FullDateAlternateKey non è in realtà un buon identificatore per questa colonna. Si rinomina troppo**data**, rendendo più semplice tooidentify e includere nelle formule. Quando possibile, è una buona idea toorename oggetti quali tabelle e colonne toomake li tooidentify più semplice in SSDT e client di creazione report di applicazioni, quali Power BI ed Excel. 
+Prima di contrassegnare la tabella data e la colonna data, è il momento di eseguire alcuni piccoli aggiustamenti per rendere il modello più facile da comprendere. Nella tabella DimDate è presente un colonna denominata **FullDateAlternateKey**, che contiene una riga per ogni giorno di ogni anno di calendario incluso nella tabella. Questa colonna viene usata molto spesso nelle formule per le misure e nei report, ma FullDateAlternateKey non è in realtà un buon identificatore per questa colonna. La colonna viene rinominata **Date** per facilitarne l'identificazione e l'uso nelle formule. Quando possibile, è consigliabile rinominare gli oggetti, come le tabelle e le colonne, in modo che siano più facilmente identificabili in SSDT e in applicazioni client per la creazione di report, come Power BI ed Excel. 
   
-Stimato toocomplete ora questa lezione: **tre minuti**  
+Tempo previsto per il completamento della lezione: **tre minuti**  
   
 ## <a name="prerequisites"></a>Prerequisiti  
-Questo argomento fa parte di un'esercitazione sulla creazione di modelli tabulari, con lezioni che è consigliabile completare nell'ordine indicato. Prima di eseguire attività di hello in questa lezione, è necessario avere completato la lezione precedente hello: [lezione 2: ottenere dati](../tutorials/aas-lesson-2-get-data.md). 
+Questo argomento fa parte di un'esercitazione sulla creazione di modelli tabulari, con lezioni che è consigliabile completare nell'ordine indicato. Prima di eseguire le attività in questa lezione, è necessario avere completato la lezione precedente: [Lezione 2: Ottenere i dati](../tutorials/aas-lesson-2-get-data.md). 
 
-### <a name="toorename-hello-fulldatealternatekey-column"></a>colonna FullDateAlternateKey di hello toorename
+### <a name="to-rename-the-fulldatealternatekey-column"></a>Per rinominare la colonna FullDateAlternateKey
 
-1.  In Progettazione modelli di hello, fare clic su hello **DimDate** tabella.
+1.  Nella finestra di progettazione dei modelli fare clic sula tabella **DimDate**.
 
-2.  Doppio clic sull'intestazione di hello per hello **FullDateAlternateKey** colonna, quindi rinominare troppo**data**.
+2.  Fare doppio clic sull'intestazione della colonna **FullDateAlternateKey** e quindi rinominarla **Date**.
 
   
-### <a name="tooset-mark-as-date-table"></a>tooset contrassegna come tabella data  
+### <a name="to-set-mark-as-date-table"></a>Per impostare Contrassegna come tabella data  
   
-1.  Seleziona hello **data** colonna, quindi nel hello **proprietà** finestra, in **tipo di dati**, assicurarsi che **data** è selezionata.  
+1.  Selezionare la colonna **Date** e quindi nella finestra **Proprietà**, in **Tipo di dati**, assicurarsi che sia selezionato il tipo **Data**.  
   
-2.  Fare clic su hello **tabella** menu, quindi fare clic su **data**, quindi fare clic su **contrassegna come tabella data**.  
+2.  Fare clic sul menu **Tabella**, quindi su **Data** e infine su **Contrassegna come tabella data**.  
   
-3.  In hello **contrassegna come tabella data** della finestra di dialogo hello **data** casella di riepilogo Seleziona hello **data** colonna come identificatore univoco di hello. In genere, è selezionata per impostazione predefinita. Fare clic su **OK**. 
+3.  Nella finestra di dialogo **Contrassegna come tabella data** selezionare la colonna **Date** come identificatore univoco nella casella di riepilogo **Data**. In genere, è selezionata per impostazione predefinita. Fare clic su **OK**. 
 
     ![aas-lesson3-date-table](../tutorials/media/aas-lesson3-date-table.png)
   

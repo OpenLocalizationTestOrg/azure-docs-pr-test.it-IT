@@ -1,6 +1,6 @@
 ---
-title: origini dei dati in Azure Data Catalog aaaHow toodiscover | Documenti Microsoft
-description: "In questo articolo illustra come asset di dati toodiscover registrati con Azure Data Catalog, tra cui la ricerca e filtro e utilizzando hello raggiunge l'evidenziazione di funzionalità del portale di Azure Data Catalog hello."
+title: Come trovare le origini dati in Azure Data Catalog | Microsoft Docs
+description: "Questo articolo illustra le procedure di individuazione degli asset di dati registrati con Azure Data Catalog, inclusi la ricerca, i filtri e l'uso delle funzionalità di evidenziazione dei risultati del portale di Azure Data Catalog."
 services: data-catalog
 documentationcenter: 
 author: steelanddata
@@ -15,54 +15,54 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/15/2017
 ms.author: maroche
-ms.openlocfilehash: 624834b8895dd50c8931c9d3e6f8dc217927c617
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9ff67dcb5ecb00440f73f979fd8d2b79a570c674
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toodiscover-data-sources-in-azure-data-catalog"></a>Come origini dei dati toodiscover in Azure Data Catalog
+# <a name="how-to-discover-data-sources-in-azure-data-catalog"></a>Come trovare le origini dati in Azure Data Catalog
 ## <a name="introduction"></a>Introduzione
-Azure Data Catalog è un servizio cloud completamente gestito che funge da sistema di registrazione e di individuazione per le origini dati aziendali. In altre parole, Data Catalog permette agli utenti di trovare, comprendere e usare le origini dati e consente alle organizzazioni di ottenere maggior valore dai dati esistenti. Dopo aver registrata un'origine dati con Data Catalog, dei metadati sono indicizzato dai servizio hello, in modo che è possibile cercare facilmente toodiscover hello i dati che necessari.
+Azure Data Catalog è un servizio cloud completamente gestito che funge da sistema di registrazione e di individuazione per le origini dati aziendali. In altre parole, Data Catalog permette agli utenti di trovare, comprendere e usare le origini dati e consente alle organizzazioni di ottenere maggior valore dai dati esistenti. Dopo che un'origine dati è stata registrata con Data Catalog, i metadati vengono indicizzati dal servizio, in modo che sia possibile eseguire facilmente ricerche per trovare i dati necessari.
 
 ## <a name="searching-and-filtering"></a>Ricerca e filtri
 L'individuazione in Data Catalog usa due meccanismi principali: ricerca e filtri.
 
-La ricerca è progettato toobe sia intuitiva e potente. Per impostazione predefinita, i termini di ricerca vengono confrontati con qualsiasi proprietà nel catalogo di hello, inclusi le annotazioni fornito dall'utente.
+La ricerca è stata progettata in modo da essere intuitiva ed efficiente. Per impostazione predefinita, i termini di ricerca vengono confrontati con qualsiasi proprietà del catalogo, tra cui le annotazioni indicate dall'utente.
 
-Il filtro è progettato toocomplement la ricerca. È possibile selezionare caratteristiche specifiche, ad esempio esperti, tipo di origine dati, tipo di oggetto e tag. È possibile visualizzare solo le risorse di dati corrispondente e vincolare asset toomatching risultati di ricerca.
+I filtri sono progettati per completare la ricerca. È possibile selezionare caratteristiche specifiche, ad esempio esperti, tipo di origine dati, tipo di oggetto e tag. È possibile visualizzare gli asset di dati corrispondenti e vincolare i risultati della ricerca agli asset corrispondenti.
 
-Utilizzando una combinazione di ricerca e filtro, è possibile passare rapidamente le origini dati hello che sono state registrate con origini dati hello toodiscover catalogo dati che è necessario.
+Usando una combinazione di ricerca e filtri, gli utenti possono spostarsi rapidamente tra le origini dati registrate con Data Catalog per trovare le origini dati di proprio interesse.
 
 ## <a name="search-syntax"></a>Sintassi di ricerca
-Anche se ricerca testo libero hello è intuitiva e semplice, è possibile utilizzare anche la sintassi di ricerca catalogo dati per un maggiore controllo sui risultati di ricerca hello. Dati del catalogo ricerca supporta hello tecniche seguenti:
+Anche se la ricerca di testo libero predefinita è semplice e intuitiva, è possibile usare anche la sintassi di ricerca di Data Catalog per un maggiore controllo sui risultati della ricerca. La ricerca di Data Catalog supporta le tecniche seguenti:
 
 | Tecnica | Uso | Esempio |
 | --- | --- | --- |
-| Ricerca di base |Ricerca di base che usa uno o più termini di ricerca. I risultati sono tutte le risorse che corrispondono a qualsiasi proprietà di uno o più termini hello specificati. |`sales data` |
-| Ambito della proprietà |Restituito solo le origini dati in cui il termine di ricerca hello viene abbinato hello la proprietà specificata. |`name:finance` |
+| Ricerca di base |Ricerca di base che usa uno o più termini di ricerca. I risultati sono gli asset che corrispondono alle proprietà di uno o più termini specificati. |`sales data` |
+| Ambito della proprietà |Restituire solo le origini dati dove il termine di ricerca corrisponde alla proprietà specificata. |`name:finance` |
 | Operatori booleani |Ampliare o restringere una ricerca usando operazioni booleane. |`finance NOT corporate` |
-| Raggruppamento con parentesi |Utilizzare le parentesi toogroup parti di hello query tooachieve isolamento logico, soprattutto in combinazione con gli operatori booleani. |`name:finance AND (tags:Q1 OR tags:Q2)` |
+| Raggruppamento con parentesi |Usare le parentesi per raggruppare parti della query per ottenere l'isolamento logico, soprattutto in combinazione con gli operatori booleani. |`name:finance AND (tags:Q1 OR tags:Q2)` |
 | Operatori di confronto |Usare confronti invece di uguaglianze per le proprietà che hanno dati di tipo numero e data. |`modifiedTime > "11/05/2014"` |
 
-Per ulteriori informazioni su ricerca nel catalogo dati, vedere hello [Azure Data Catalog](https://msdn.microsoft.com/library/azure/mt267594.aspx) articolo.
+Per altre informazioni sulla ricerca di Data Catalog, vedere l'articolo [Azure Data Catalog](https://msdn.microsoft.com/library/azure/mt267594.aspx).
 
 ## <a name="hit-highlighting"></a>Evidenziazione dei risultati
-Quando si visualizzano i risultati della ricerca, qualsiasi visualizzate le proprietà che corrispondono a hello specificato termini di ricerca (ad esempio nome dell'asset hello dati, la descrizione e tag) sono evidenziati toomake è tooidentify più semplice perché un asset di dati specificato è stato restituito da una ricerca specificata.
+Quando si visualizzano i risultati della ricerca, le proprietà visualizzate che corrispondono ai criteri di ricerca specificati (ad esempio, nome di asset di dati, descrizione e tag) vengono evidenziate per semplificare l'identificazione del motivo per cui un asset di dati specificato è stato restituito da una determinata ricerca.
 
 > [!NOTE]
-> tooturn off evidenziazione, utilizzare hello **evidenziare** passare nel portale di hello catalogo dati.
+> Per disattivare l'evidenziazione dei risultati, usare l'opzione **Evidenzia** nel portale di Data Catalog.
 >
 >
 
-Quando si visualizzano i risultati della ricerca, il motivo per cui un asset di dati è incluso potrebbe non essere sempre evidente, anche con l'evidenziazione abilitata. Poiché tutte le proprietà vengono ricercate per impostazione predefinita, un asset di dati potrebbe essere restituito a causa di una corrispondenza con una proprietà a livello di colonna. E poiché più utenti è possono annotare asset di dati registrati con i relativi tag e le descrizioni, non tutti i metadati potrebbero essere visualizzato nell'elenco di hello dei risultati della ricerca.
+Quando si visualizzano i risultati della ricerca, il motivo per cui un asset di dati è incluso potrebbe non essere sempre evidente, anche con l'evidenziazione abilitata. Poiché tutte le proprietà vengono ricercate per impostazione predefinita, un asset di dati potrebbe essere restituito a causa di una corrispondenza con una proprietà a livello di colonna. E poiché più utenti possono annotare gli asset di dati registrati con tag e descrizioni, è possibile che non tutti i metadati vengano visualizzati nell'elenco dei risultati della ricerca.
 
-In visualizzazione affiancata di hello impostazione predefinita, ogni riquadro visualizzato nei risultati di ricerca hello include un **il termine di ricerca di visualizzazione corrisponde** icona, in modo che è possibile visualizzare rapidamente il numero di hello di corrispondenze, il percorso e toojump toothem se si desidera.
+Nella visualizzazione affiancata predefinita ogni riquadro che appare nei risultati della ricerca include un'icona **Visualizza corrispondenze con i termini di ricerca**, per poter visualizzare rapidamente il numero di corrispondenze e il relativo percorso e di passare a esse se necessario.
 
- ![Evidenziazione dei risultati di ricerca ed corrispondenti nel portale di Azure Data Catalog hello](./media/data-catalog-how-to-discover/search-matches.png)
+ ![Evidenziazione dei risultati e corrispondenze di ricerca nel portale catalogo dati di Azure.](./media/data-catalog-how-to-discover/search-matches.png)
 
 ## <a name="summary"></a>Riepilogo
-Poiché la registrazione di un'origine dati con Data Catalog copie strutturale e descrittive metadati dai dati hello origine servizio catalogo toohello, diventa più facile toodiscover hello origine dati e comprendere. Dopo aver registrato un'origine dati, è possibile individuarlo tramite l'applicazione di filtri e cercare nel portale di hello catalogo dati.
+Poiché la registrazione di un'origine dati con Data Catalog copia i metadati strutturali e descrittivi dall'origine dati al servizio catalogo, diventa più facile trovare e comprendere l'origine dati. Dopo avere registrato un'origine dati, è possibile trovarla usando i filtri e la ricerca dal portale di Data Catalog.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per informazioni dettagliate su come toodiscover le origini dati, vedere [Guida introduttiva di Azure Data Catalog](data-catalog-get-started.md).
+* Per istruzioni dettagliate su come trovare le origini dati, vedere [Introduzione ad Azure Data Catalog](data-catalog-get-started.md).

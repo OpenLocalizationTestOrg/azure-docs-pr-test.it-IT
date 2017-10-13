@@ -1,6 +1,6 @@
 ---
-title: applicazione di aaaNode.js utilizzando Socket.io | Documenti Microsoft
-description: "Informazioni su come socket.io toouse in un'applicazione node.js è ospitato in Azure."
+title: Applicazione Node.js con Socket.io | Documentazione Microsoft
+description: Informazioni su come usare socket.io in un'applicazione node.js ospitata in Azure.
 services: cloud-services
 documentationcenter: nodejs
 author: TomArcher
@@ -14,65 +14,65 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 08/17/2017
 ms.author: tarcher
-ms.openlocfilehash: 47c6c4a748938959315b880340f41f31faab4ea9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a85d4348a13b79b5b7542362de9956aa3398375a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="build-a-nodejs-chat-application-with-socketio-on-an-azure-cloud-service"></a>Creazione di un'applicazione di chat Node.js con Socket.IO in un servizio cloud di Azure
 Socket.IO fornisce comunicazioni in tempo reale tra il server node.js e i client. In questa esercitazione verrà illustrato l'hosting di un'applicazione di chat basata su socket.IO in Azure. Per altre informazioni su Socket.IO, vedere <http://socket.io/>.
 
-Di seguito viene riportata una schermata dell'applicazione hello completata:
+Di seguito è riportata una schermata dell'applicazione completata:
 
-![Una finestra del browser visualizzazione servizio hello ospitato in Azure][completed-app]  
+![Finestra del browser con il servizio ospitato in Azure][completed-app]  
 
 ## <a name="prerequisites"></a>Prerequisiti
-Verificare che hello i seguenti prodotti e le versioni sono installate toosuccessfully hello completo esempio in questo articolo:
+Assicurarsi che i seguenti prodotti e versioni siano installati per completare correttamente l'esempio in questo articolo:
 
 * Installare [Visual Studio](https://www.visualstudio.com/en-us/downloads/download-visual-studio-vs.aspx)
 * Installare [Node.js](https://nodejs.org/download/)
 * Installare [Python versione 2.7.10](https://www.python.org/)
 
 ## <a name="create-a-cloud-service-project"></a>Creazione di un progetto di servizio cloud
-Hello i passaggi seguenti Crea progetto di servizio cloud hello che ospiterà l'applicazione Socket.IO hello.
+Eseguire le operazioni seguenti per creare il progetto servizio cloud che ospiterà l'applicazione Socket.IO.
 
-1. Da hello **Menu Start** o **schermata Start**, cercare **Windows PowerShell**. Fare infine clic con il pulsante destro del mouse su **Windows PowerShell** e scegliere **Esegui come amministratore**.
+1. Nel **menu Start** o nella **schermata Start** cercare **Windows PowerShell**. Fare infine clic con il pulsante destro del mouse su **Windows PowerShell** e scegliere **Esegui come amministratore**.
    
     ![Icona di Azure PowerShell][powershell-menu]
 2. Creare una directory denominata **c:\\node**. 
    
         PS C:\> md node
-3. Modificare le directory toohello **c:\\nodo** directory
+3. Passare alla directory **c:\\node**.
    
         PS C:\> cd node
-4. Immettere i seguenti comandi toocreate una nuova soluzione denominata hello **chatapp** e un ruolo di lavoro denominato **WorkerRole1**:
+4. Immettere i comandi seguenti per creare una nuova soluzione denominata **chatapp** e un ruolo di lavoro denominato **WorkerRole1**:
    
         PS C:\node> New-AzureServiceProject chatapp
         PS C:\Node> Add-AzureNodeWorkerRole
    
-    Verrà visualizzato hello seguente risposta:
+    Verrà visualizzata la risposta seguente:
    
-    ![output di Hello del nuovo hello-azureservice e azurenodeworkerrolecmdlets aggiungere](./media/cloud-services-nodejs-chat-app-socketio/socketio-1.png)
+    ![Output dei cmdlet new-azureservice e add-azurenodeworkerrole](./media/cloud-services-nodejs-chat-app-socketio/socketio-1.png)
 
-## <a name="download-hello-chat-example"></a>Scaricare l'esempio Chat hello
-Per questo progetto, si utilizzerà l'esempio di chat hello dalla hello [repository Socket.IO GitHub]. Eseguire l'esempio hello toodownload di passaggi seguente hello e aggiungerla toohello progetto creato in precedenza.
+## <a name="download-the-chat-example"></a>Download dell'esempio di chat
+Per questo progetto, verrà usato l'esempio di chat dell' [archivio GitHub Socket.IO]. Eseguire la procedura seguente per scaricare l'esempio e aggiungerlo al progetto creato in precedenza.
 
-1. Creare una copia locale del repository hello utilizzando hello **Clone** pulsante. È inoltre possibile utilizzare hello **ZIP** progetto hello toodownload di button.
+1. Creare una copia locale dell'archivio usando il pulsante **Clone** . È inoltre possibile usare il pulsante **ZIP** per scaricare il progetto.
    
-   ![Una finestra del browser visualizzazione https://github.com/LearnBoost/socket.io/tree/master/examples/chat, con icona di download ZIP hello evidenziato][chat-example-view]
-2. Esplorare la struttura di directory hello del repository locale hello fino a giungere al hello **esempi\\chat** directory. Copiare il contenuto di hello del toothe directory **c:\\nodo\\chatapp\\WorkerRole1** directory creato in precedenza.
+   ![Finestra del browser con https://github.com/LearnBoost/socket.io/tree/master/examples/chat e l'icona per il download di ZIP evidenziata][chat-example-view]
+2. Spostarsi nella struttura di directory del repository locale fino alla directory **examples\\chat**. Copiare il contenuto di questa directory nella directory **C:\\node\\chatapp\\WorkerRole1** creata in precedenza.
    
-   ![Soluzioni, visualizzazione contenuto hello degli esempi di hello\\directory chat estratti dall'archivio hello][chat-contents]
+   ![Esplora risorse con il contenuto della directory examples\\chat estratto dall'archivio][chat-contents]
    
-   gli elementi evidenziati nella schermata di hello precedente Hello sono file hello copiati dal hello **esempi\\chat** directory
-3. In hello **c:\\nodo\\chatapp\\WorkerRole1** directory, hello di eliminazione **server.js** file e quindi rinominare hello **app.js**file troppo**server.js**. Questa operazione rimuove predefinito hello **server.js** file creato in precedenza da hello **Add-AzureNodeWorkerRole** cmdlet e sostituire con un'applicazione hello file hello esempio chat.
+   Gli elementi evidenziati nello screenshot precedente sono i file copiati dalla directory **examples\\chat**.
+3. Nella directory **C:\\node\\chatapp\\WorkerRole1** eliminare il file **server.js** e quindi rinominare il file **app.js** in **server.js**. Il file **server.js** predefinito creato in precedenza dal cmdlet **Add-AzureNodeWorkerRole** verrà così rimosso e sostituito con il file dell'applicazione dell'esempio di chat.
 
 ### <a name="modify-serverjs-and-install-modules"></a>Modificare Server.js e installare i moduli
-Prima di un'applicazione hello test in hello dell'emulatore di Azure, è necessario apportare alcune modifiche minori. Eseguire i seguenti passaggi toothe server.js file hello:
+Prima di testare l'applicazione nell'emulatore di Azure, è necessario apportare alcune piccole modifiche. Eseguire la procedura seguente per il file server.js:
 
-1. Aprire hello **server.js** file in Visual Studio o qualsiasi editor di testo.
-2. Trovare hello **le dipendenze del modulo** sezione all'inizio di hello di server.js e modificare hello riga contenente **poi = require('.. //.. LIB//socket.IO')** troppo**poi = require('socket.io')** come illustrato di seguito:
+1. Aprire il file **server. js** in Visual Studio o qualsiasi altro editor di testo.
+2. Trovare la sezione **Module dependencies** all'inizio del file server.js e sostituire la riga contenente **sio = require('..//..//lib//socket.io')** con **sio = require('socket.io')**, come illustrato di seguito:
    
        var express = require('express')
          , stylus = require('stylus')
@@ -80,7 +80,7 @@ Prima di un'applicazione hello test in hello dell'emulatore di Azure, è necessa
        //, sio = require('..//..//lib//socket.io'); //Original
          , sio = require('socket.io');                //Updated
          var port = process.env.PORT || 3000;         //Updated
-3. un'applicazione hello tooensure in ascolto sulla porta corretta di hello, aprire server.js in blocco note o l'editor preferito e quindi modificare la riga seguente, sostituendo **3000** con **process.env.port** come illustrato di seguito:
+3. Per assicurarsi che l'applicazione resti in ascolto sulla porta corretta, aprire il file server.js nel Blocco note o in un altro editor di testo e quindi modificare la riga seguente sostituendo **3000** con **process.env.port**, come illustrato di seguito:
    
        //app.listen(3000, function () {            //Original
        app.listen(process.env.port, function () {  //Updated
@@ -88,69 +88,69 @@ Prima di un'applicazione hello test in hello dell'emulatore di Azure, è necessa
          console.log('   app listening on http://' + addr.address + ':' + addr.port);
        });
 
-Dopo aver salvato le modifiche di hello troppo**server.js**, utilizzare hello alla procedura seguente per installare i moduli necessari e quindi testare l'applicazione hello nell'emulatore di Azure:
+Dopo aver salvato le modifiche apportate al file **server.js**, eseguire la procedura seguente per installare i moduli necessari, quindi testare l'applicazione nell'emulatore di Azure:
 
-1. Utilizzando **Azure PowerShell**, modificare le directory toohello **c:\\nodo\\chatapp\\WorkerRole1** hello directory e l'utilizzo successivo comando tooinstall hello moduli necessari per questa applicazione:
+1. Con **Azure PowerShell** passare alla directory **C:\\node\\chatapp\\WorkerRole1** e usare il comando seguente per installare i moduli necessari per l'applicazione:
    
        PS C:\node\chatapp\WorkerRole1> npm install
    
-   Verranno installati i moduli di hello elencati nel file package. JSON hello. Al termine del comando di hello, verrà visualizzato il seguente toothe simili di output:
+   Verranno installati i moduli elencati nel file package.json. Dopo il completamento del comando, l'output dovrebbe essere simile al seguente:
    
-   ![comando di installazione di output di Hello di hello npm][The-output-of-the-npm-install-command]
-2. Poiché in questo esempio è stato originariamente parte di hello repository Socket.IO GitHub e direttamente a cui fa riferimento libreria Socket.IO hello percorso relativo, Socket.IO non esiste alcun riferimento nel file package. JSON hello, pertanto è necessario installarlo eseguendo hello comando seguente:
+   ![Output del comando npm install][The-output-of-the-npm-install-command]
+2. Poiché l'esempio in origine faceva parte dell'archivio GitHub Socket.IO e faceva riferimento direttamente alla libreria Socket.IO mediante percorso relativo, a Socket.IO non viene fatto riferimento nel file package.json, quindi è necessario installarlo immettendo il comando seguente:
    
        PS C:\node\chatapp\WorkerRole1> npm install socket.io --save
 
 ### <a name="test-and-deploy"></a>Test e distribuzione
-1. Avviare l'emulatore hello eseguendo hello comando seguente:
+1. Avviare l'emulatore immettendo il comando seguente:
    
        PS C:\node\chatapp\WorkerRole1> Start-AzureEmulator -Launch
    
    > [!NOTE]
-   > Se si verificano problemi con l'avvio dell'emulatore, ad esempio Start-AzureEmulator: Errore imprevisto.  Dettagli: Rilevato un errore imprevisto hello oggetto di comunicazione System.ServiceModel.Channels.ServiceChannel, non utilizzabile per la comunicazione perché è nello stato Faulted hello.
+   > Se si verificano problemi con l'avvio dell'emulatore, ad esempio Start-AzureEmulator: Errore imprevisto.  Dettagli: Errore imprevisto Impossibile utilizzare l'oggetto di comunicazione, System.ServiceModel.Channels.ServiceChannel per la comunicazione perché è nello stato Faulted.
    
       reinstallare AzureAuthoringTools 2.7.1 e AzureComputeEmulator 2.7 - verificare che la versione corrisponda.
    >
    >
 
 
-2. Aprire un browser e andare troppo**http://127.0.0.1**.
-3. Quando viene visualizzata una finestra hello, immettere un nome alternativo e quindi premere INVIO.
-   In questo modo si toopost messaggi come un nome alternativo specifico. funzionalità multiutente tootest, aprire finestre del browser aggiuntive utilizzando lo stesso URL e immettere i nomi alternativi diversi.
+2. Aprire un browser e passare a **http://127.0.0.1**.
+3. Quando si apre la finestra del browser, immettere un nome alternativo e premere INVIO.
+   In questo modo sarà possibile inviare messaggi con un nome alternativo specifico. Per testare la funzionalità multiutente, aprire altre finestre del browser usando lo stesso URL e immettere nomi alternativi diversi.
    
    ![Due finestre del browser con i messaggi della chat di User1 e User2](./media/cloud-services-nodejs-chat-app-socketio/socketio-8.png)
-4. Dopo l'applicazione hello test, arrestare l'emulatore hello eseguendo il comando seguente:
+4. Dopo aver testato l'applicazione, immettere il comando seguente per interrompere l'emulatore:
    
        PS C:\node\chatapp\WorkerRole1> Stop-AzureEmulator
-5. toodeploy hello applicazione tooAzure, utilizzare il **pubblica AzureServiceProject** cmdlet. ad esempio:
+5. Per distribuire l'applicazione in Azure, usare il cmdlet **Publish-AzureServiceProject**. Ad esempio:
    
        PS C:\node\chatapp\WorkerRole1> Publish-AzureServiceProject -ServiceName mychatapp -Location "East US" -Launch
    
    > [!IMPORTANT]
-   > Essere toouse che un nome univoco, in caso contrario hello processo di pubblicazione avrà esito negativo. Una volta completata la distribuzione di hello, hello browser aprire e passare servizio toohello distribuito.
+   > Assicurarsi di usare un nome univoco, in caso contrario il processo di pubblicazione avrà esito negativo. Al termine della distribuzione, verrà visualizzata una finestra del browser che consente di passare al servizio distribuito.
    > 
-   > Se si riceve un errore indicante che hello fornito nome della sottoscrizione non esiste in hello importato profilo di pubblicazione, è necessario scaricare e importare il profilo di pubblicazione hello per la sottoscrizione prima della distribuzione tooAzure. Vedere hello **distribuzione tooAzure applicazione hello** sezione [compilare e distribuire un tooan applicazione Node.js servizio Cloud di Azure](https://azure.microsoft.com/develop/nodejs/tutorials/getting-started/)
+   > Se viene visualizzato un messaggio di errore indicante che il nome della sottoscrizione specificato non esiste nel profilo di pubblicazione importato, è necessario scaricare e importare il profilo di pubblicazione per la sottoscrizione prima della distribuzione in Azure. Vedere la sezione **Distribuzione dell'applicazione in Azure** dell'argomento [Creazione e distribuzione di un'applicazione Node.js in un servizio cloud di Azure](https://azure.microsoft.com/develop/nodejs/tutorials/getting-started/)
    > 
    > 
    
-   ![Una finestra del browser visualizzazione servizio hello ospitato in Azure][completed-app]
+   ![Finestra del browser con il servizio ospitato in Azure][completed-app]
    
    > [!NOTE]
-   > Se si riceve un errore indicante che hello fornito nome della sottoscrizione non esiste in hello importato profilo di pubblicazione, è necessario scaricare e importare il profilo di pubblicazione hello per la sottoscrizione prima della distribuzione tooAzure. Vedere hello **distribuzione tooAzure applicazione hello** sezione [compilare e distribuire un tooan applicazione Node.js servizio Cloud di Azure](https://azure.microsoft.com/develop/nodejs/tutorials/getting-started/)
+   > Se viene visualizzato un messaggio di errore indicante che il nome della sottoscrizione specificato non esiste nel profilo di pubblicazione importato, è necessario scaricare e importare il profilo di pubblicazione per la sottoscrizione prima della distribuzione in Azure. Vedere la sezione **Distribuzione dell'applicazione in Azure** dell'argomento [Creazione e distribuzione di un'applicazione Node.js in un servizio cloud di Azure](https://azure.microsoft.com/develop/nodejs/tutorials/getting-started/)
    > 
    > 
 
 L'applicazione è ora in esecuzione in Azure ed è in grado di inoltrare i messaggi di chat tra diversi client tramite Socket.IO.
 
 > [!NOTE]
-> Per semplicità, in questo esempio viene limitato toochatting tra gli utenti connessi toohello stessa istanza. Ciò significa che se il servizio cloud hello crea due istanze del ruolo di lavoro, gli utenti potranno solo toochat con altri utenti connessi toohello stessa istanza del ruolo worker. tooscale hello applicazione toowork con più istanze del ruolo, è possibile utilizzare una tecnologia simile Bus di servizio tooshare hello Socket.IO archiviare lo stato tra più istanze. Per esempi, vedere esempi di utilizzo di argomenti e code del Bus di servizio hello in hello [Azure SDK per Node.js GitHub repository](https://github.com/WindowsAzure/azure-sdk-for-node).
+> Per semplicità, in questo esempio viene illustrata solo la chat tra utenti connessi alla stessa istanza. Questo significa che se il servizio cloud crea due istanze del ruolo di lavoro, gli utenti saranno in grado di comunicare solo con altri connessi alla stessa istanza. Per scalare l'applicazione in modo da usare più istanze del ruolo, è possibile usare una tecnologia come il bus di servizio per condividere lo stato dell'archivio Socket.IO tra le istanze. Per alcuni esempi, vedere le apposite sezioni relative a code e argomenti del bus di servizio nel [repository GitHub di Azure SDK per Node.js](https://github.com/WindowsAzure/azure-sdk-for-node).
 > 
 > 
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questa esercitazione è stato descritto come toocreate un'applicazione di chat base ospitato in un servizio Cloud di Azure. toolearn come toohost questa applicazione in un sito Web di Azure, vedere [compilare un'applicazione di Chat Node.js con Socket.IO sul sito Web di Azure][chatwebsite].
+In questa esercitazione è stato illustrato come creare un'applicazione di chat di base ospitata in un servizio cloud di Azure. Per informazioni su come ospitare questa applicazione in un sito Web di Azure, vedere [Creazione di un'applicazione di chat Node.js con Socket.IO in un sito Web di Azure][chatwebsite].
 
-Per ulteriori informazioni, vedere anche hello [Centro per sviluppatori di Node.js](/develop/nodejs/).
+Per ulteriori informazioni, vedere anche il [Centro per sviluppatori di Node.js](/develop/nodejs/).
 
 [chatwebsite]: /develop/nodejs/tutorials/website-using-socketio/
 
@@ -159,9 +159,9 @@ Per ulteriori informazioni, vedere anche hello [Centro per sviluppatori di Node.
 [completed-app]: ./media/cloud-services-nodejs-chat-app-socketio/socketio-10.png
 [Azure SDK for Node.js]: https://www.windowsazure.com/develop/nodejs/
 [Node.js Web Application]: https://www.windowsazure.com/develop/nodejs/tutorials/getting-started/
-[repository Socket.IO GitHub]: https://github.com/LearnBoost/socket.io/tree/0.9.14
+[archivio GitHub Socket.IO]: https://github.com/LearnBoost/socket.io/tree/0.9.14
 [Azure Considerations]: #windowsazureconsiderations
-[Hosting hello Chat Example in a Worker Role]: #hostingthechatexampleinawebrole
+[Hosting the Chat Example in a Worker Role]: #hostingthechatexampleinawebrole
 [Summary and Next Steps]: #summary
 [powershell-menu]: ./media/cloud-services-nodejs-chat-app-socketio/azure-powershell-start.png
 
@@ -171,6 +171,6 @@ Per ulteriori informazioni, vedere anche hello [Centro per sviluppatori di Node.
 
 [chat-contents]: ./media/cloud-services-nodejs-chat-app-socketio/socketio-5.png
 [The-output-of-the-npm-install-command]: ./media/cloud-services-nodejs-chat-app-socketio/socketio-7.png
-[hello output of hello Publish-AzureService command]: ./media/cloud-services-nodejs-chat-app-socketio/socketio-9.png
+[The output of the Publish-AzureService command]: ./media/cloud-services-nodejs-chat-app-socketio/socketio-9.png
 
 

@@ -11,43 +11,43 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/14/2017
 ms.author: billmath
-ms.openlocfilehash: ff07b9954d5c2ce71ab0ffd0db49fde15f323586
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 78dbbe085fca26ad529c6262ba852f3c06ace404
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="claims-mapping-in-azure-active-directory-public-preview"></a>Mapping delle attestazioni in Azure Active Directory (anteprima pubblica)
 
 >[!NOTE]
->Questa funzionalità sostituisce e sostituisce hello [attestazioni personalizzazione](https://docs.microsoft.com/azure/active-directory/develop/active-directory-saml-claims-customization) offerti tramite il portale di hello oggi. Se si personalizzano le attestazioni usando il portale di hello inoltre toohello metodo grafico/PowerShell disponibili in questo documento su hello stessa applicazione, i token emessi per tale applicazione verrà ignorata configurazione hello hello portale.
-Le configurazioni effettuate tramite metodi hello descritti in questo documento non si rifletteranno nel portale di hello.
+>Questa funzionalità sostituisce e prevale sulla funzionalità di [personalizzazione delle attestazioni](https://docs.microsoft.com/azure/active-directory/develop/active-directory-saml-claims-customization) offerta attualmente tramite il portale. Se si personalizzano le attestazioni tramite il portale in aggiunta alla modalità Graph/PowerShell descritta in dettaglio in questo documento nella stessa applicazione, i token emessi per l'applicazione ignoreranno la configurazione nel portale.
+Le configurazioni eseguite nei modi descritti in dettaglio in questo documento non si rifletteranno nel portale.
 
-Questa funzionalità viene usata per le attestazioni hello toocustomize amministratori tenant generate nei token per un'applicazione specifica al proprio tenant. È possibile usare i criteri di mapping delle attestazioni per:
+Questa funzionalità viene usata dagli amministratori tenant per personalizzare le attestazioni generate nei token per un'applicazione specifica nel tenant. È possibile usare i criteri di mapping delle attestazioni per:
 
 - Selezionare le attestazioni che vengono incluse nei token.
 - Creare tipi di attestazione non esistenti.
-- Scegliere o modificare hello origine dei dati generati in attestazioni specifiche.
+- Scegliere o modificare l'origine dei dati generati in attestazioni specifiche.
 
 >[!NOTE]
->Questa funzionalità è attualmente disponibile in anteprima pubblica. Essere preparati toorevert o rimuovere tutte le modifiche. funzionalità di Hello è disponibile in alcuna sottoscrizione di Azure Active Directory (Azure AD) durante l'anteprima pubblica. Tuttavia, quando la funzionalità hello diventa disponibile in genere, alcuni aspetti della funzionalità hello potrebbero richiedere una sottoscrizione di Azure Active Directory premium.
+>Questa funzionalità è attualmente disponibile in anteprima pubblica. Potrebbe essere necessario ripristinare o rimuovere eventuali modifiche. La funzionalità è disponibile in tutte le sottoscrizioni di Azure Active Directory (Azure AD) durante l'anteprima pubblica. Quando la funzionalità sarà disponibile a livello generale, alcuni aspetti potrebbero tuttavia richiedere una sottoscrizione Azure Active Directory Premium.
 
 ## <a name="claims-mapping-policy-type"></a>Tipo di criteri di mapping di attestazioni
-In Azure AD un oggetto **Criteri** rappresenta un set di regole imposto su singole applicazioni o su tutte le applicazioni in un'organizzazione. Ogni tipo di criteri presenta una struttura univoca, con un set di proprietà che vengono quindi applicati toowhich tooobjects che sono assegnati.
+In Azure AD un oggetto **Criteri** rappresenta un set di regole imposto su singole applicazioni o su tutte le applicazioni in un'organizzazione. Ogni tipo di criteri ha una struttura univoca con un set di proprietà che vengono in seguito applicate agli oggetti a cui sono assegnate.
 
-Le attestazioni di un mapping dei criteri è un tipo di **criteri** oggetto che modifica hello attestazioni generato nel token rilasciato per applicazioni specifiche.
+I criteri di mapping delle attestazioni sono un tipo di oggetto **Criteri** che modifica le attestazioni generate nei token emessi per applicazioni specifiche.
 
 ## <a name="claim-sets"></a>Set di attestazioni
 Alcuni set di attestazioni definiscono come e quando vengono utilizzate nei token.
 
 ### <a name="core-claim-set"></a>Set di attestazioni core
-Presenti nel core hello attestazioni set sono presenti in ogni token, indipendentemente dal criterio. Queste attestazioni sono anche considerate limitate e non possono essere modificate.
+Le attestazioni nel set di attestazioni core sono presenti in ogni token, indipendentemente dai criteri. Queste attestazioni sono anche considerate limitate e non possono essere modificate.
 
 ### <a name="basic-claim-set"></a>Set di attestazioni di base
-set di attestazioni di base Hello include le attestazioni di hello generati per impostazione predefinita per i token (nel set di attestazioni core toohello aggiunta). Queste attestazioni possono essere omessa o deve essere modificate mediante attestazioni hello mapping dei criteri.
+Il set di attestazioni di base include le attestazioni generate per impostazione predefinita per i token (oltre al set di attestazioni core). Queste attestazioni possono essere omesse o modificate usando i criteri di mapping delle attestazioni.
 
 ### <a name="restricted-claim-set"></a>Set di attestazioni con restrizioni
-Le attestazioni con restrizioni non possono essere modificate usando i criteri. Impossibile modificare l'origine dati Hello e non viene applicata alcuna trasformazione durante la generazione di queste attestazioni.
+Le attestazioni con restrizioni non possono essere modificate usando i criteri. L'origine dati non può essere modificata e non viene applicata alcuna trasformazione durante la generazione di queste attestazioni.
 
 #### <a name="table-1-json-web-token-jwt-restricted-claim-set"></a>Tabella 1: Set di attestazioni limitate al token JSON Web (JWT)
 |Tipo di attestazione (nome)|
@@ -234,7 +234,7 @@ Le attestazioni con restrizioni non possono essere modificate usando i criteri. 
 |http://schemas.microsoft.com/identity/claims/scope|
 
 ## <a name="claims-mapping-policy-properties"></a>Proprietà di criteri di mapping di attestazioni
-Utilizzare la proprietà hello di mapping toocontrol criteri quali attestazioni vengono generate e in cui i dati hello ha origine da attestazioni. Se non è impostato alcun criterio, sistema hello rilascia token contenente set di attestazioni core hello hello base set di attestazioni e le attestazioni facoltative hello applicazione ha scelto tooreceive.
+Usare le proprietà dei criteri di mapping delle attestazioni per controllare quali attestazioni vengono generate e da quali origini provengono i dati. Se non sono impostati criteri, il sistema emette token contenenti il set di attestazioni core, il set di attestazioni di base ed eventuali attestazioni facoltative che l'applicazione ha scelto di ricevere.
 
 ### <a name="include-basic-claim-set"></a>Includere set di attestazioni di base
 
@@ -242,13 +242,13 @@ Utilizzare la proprietà hello di mapping toocontrol criteri quali attestazioni 
 
 **Tipo di dati:** booleano (True o False)
 
-**Riepilogo:** questa proprietà determina se il set di attestazioni di base di hello è inclusa nei token interessati da questo criterio. 
+**Riepilogo:** questa proprietà specifica se il set di attestazioni di base sia incluso nei token interessati da questo criterio. 
 
-- Se set tooTrue, tutte le attestazioni nel set di attestazioni di base di hello viene generati nei token interessati dai criteri hello. 
-- Se set tooFalse, le attestazioni nel set di attestazioni di base di hello non è nei token hello, a meno che non vengono singolarmente aggiunti nella proprietà di schema hello attestazioni di hello stesso criterio.
+- Se impostata su True, tutte le attestazioni nel set di attestazioni di base verranno generate nei token interessati dal criterio. 
+- Se impostata su False, le attestazioni nel set di attestazioni di base non vengono generate nei token, a meno che non vengano aggiunte singolarmente nella proprietà dello schema delle attestazioni degli stessi criteri.
 
 >[!NOTE] 
->Presenti nel core hello attestazioni presenti in ogni token indipendentemente dalle quali questa proprietà è impostata su set. 
+>Le attestazioni del set di attestazioni core sono presenti in ogni token, indipendentemente dall'impostazione di questa proprietà. 
 
 ### <a name="claims-schema"></a>Schema di attestazioni
 
@@ -256,28 +256,28 @@ Utilizzare la proprietà hello di mapping toocontrol criteri quali attestazioni 
 
 **Tipo di dati:** BLOB JSON con una o più voci dello schema di attestazioni
 
-**Riepilogo:** questa proprietà definisce quali attestazioni sono presenti nei token hello interessati dai criteri di hello, set di attestazioni toohello base inoltre e set di attestazioni core hello.
-Per ogni voce di schema di attestazioni definita in questa proprietà sono necessarie alcune informazioni. È necessario specificare la provenienza dei dati hello (**valore** o **coppia origine/ID**), e di attestazione dati hello viene generato come (**tipo di attestazione**).
+**Riepilogo:** questa proprietà definisce quali attestazioni sono presenti nei token interessati dai criteri, oltre al set di attestazioni di base e al set di attestazioni core.
+Per ogni voce di schema di attestazioni definita in questa proprietà sono necessarie alcune informazioni. È necessario specificare la provenienza dei dati (**Value** o **Coppia Source/ID**) e con quale attestazione vengono emessi i dati (**Tipo di attestazione**).
 
 ### <a name="claim-schema-entry-elements"></a>Elementi di voci dello schema di attestazioni
 
-**Valore:** elemento Value hello definisce un valore statico come toobe dati hello generato nell'attestazione hello.
+**Value:** l'elemento Value definisce un valore statico come dati da generare nell'attestazione.
 
-**Coppia di origine con ID:** hello origine e gli elementi ID definiscono i cui dati hello in hello attestazione proviene da. 
+**Coppia Source/ID:** gli elementi Source e ID definiscono l'origine da cui verranno ricavati i dati nell'attestazione. 
 
-elemento Source Hello deve essere impostata tooone seguenti hello: 
+L'elemento Source deve essere impostato su uno dei valori seguenti: 
 
 
-- "utente": dati di hello hello attestazione è una proprietà sull'oggetto utente hello. 
-- "applicazione": dati di hello hello attestazione è una proprietà di entità servizio dell'applicazione (client) hello. 
-- "resource": dati di hello hello attestazione è una proprietà dell'entità servizio di risorsa hello.
-- "audience": dati hello nell'attestazione hello sono una proprietà dell'entità servizio hello di destinatari hello del token hello (entrambi hello client o la risorsa entità servizio).
-- "company": dati hello in hello è una proprietà sull'oggetto aziendale del tenant di hello risorsa di attestazione.
-- "trasformazione": richiedere dati hello in hello dalla trasformazione delle attestazioni (vedere la sezione hello "trasformazione delle attestazioni" più avanti in questo articolo). 
+- "user": i dati nell'attestazione sono una proprietà dell'oggetto User. 
+- "application": i dati nell'attestazione sono una proprietà dell'entità servizio application (client). 
+- "resource": i dati nell'attestazione sono una proprietà dell'entità servizio resource.
+- "audience": i dati nell'attestazione sono una proprietà dell'entità servizio che corrisponde al destinatario del token (entità servizio resource o client).
+- "company": i dati nell'attestazione sono una proprietà dell'oggetto company del tenant delle risorse.
+- "transformation": i dati nell'attestazione derivano dalla trasformazione delle attestazioni. Vedere la sezione "Trasformazione delle attestazioni" più avanti in questo articolo. 
 
-Se l'origine hello trasformazione, hello **TransformationID** elemento deve essere incluso in questa definizione di attestazione anche.
+Se l'origine è transformation, anche l'elemento **TransformationID** deve essere incluso in questa definizione di attestazione.
 
-elemento ID Hello identifica la proprietà sull'origine hello fornisce il valore di hello per hello attestazione. Hello nella tabella seguente sono elencati i valori hello dell'ID valido per ogni valore di origine.
+L'elemento ID identifica la proprietà dell'origine che indica il valore per l'attestazione. La tabella seguente elenca i valori di ID validi per ogni valore di Source.
 
 #### <a name="table-3-valid-id-values-per-source"></a>Tabella 3: Valori di ID validi per ogni Source
 |Sorgente|ID|Descrizione|
@@ -326,17 +326,17 @@ elemento ID Hello identifica la proprietà sull'origine hello fornisce il valore
 |application, resource, audience|tags|Tag di entità servizio|
 |Azienda|tenantcountry|Paese del tenant|
 
-**TransformationID:** elemento TransformationID hello deve essere disponibile solo se hello elemento di origine è stato impostato troppo "trasformazione".
+**TransformationID:** l'elemento TransformationID è obbligatorio solo se l'elemento Source è impostato su "transformation".
 
-- Questo elemento deve corrispondere elemento ID hello della voce di trasformazione hello in hello **ClaimsTransformation** proprietà che definisce la modalità di generazione dati hello per questa attestazione.
+- Questo elemento deve corrispondere all'elemento ID della voce di trasformazione nella proprietà **ClaimsTransformation** che definisce la modalità di generazione dei dati per questa attestazione.
 
-**Tipo di attestazione:** hello **JwtClaimType** e **SamlClaimType** elementi che definiscono quali attestazioni questa voce di schema richiesta fa riferimento a.
+**Tipo di attestazione:** gli elementi **JwtClaimType** e **SamlClaimType** definiscono l'attestazione a cui questa voce dello schema di attestazioni fa riferimento.
 
-- Hello JwtClaimType deve contenere il nome di hello di hello attestazione toobe generato in Jwt.
-- Hello SamlClaimType deve contenere hello URI di hello attestazione toobe generato nei token SAML.
+- JwtClaimType deve contenere il nome dell'attestazione da generare nel token JWT.
+- SamlClaimType deve contenere l'URI dell'attestazione da generare nei token SAML.
 
 >[!NOTE]
->I nomi e gli URI di attestazioni in hello limitato set non può essere utilizzato per gli elementi di tipo di attestazione hello attestazione. Per ulteriori informazioni, vedere sezione "Restrizioni e le eccezioni" hello, più avanti in questo articolo.
+>Non è possibile utilizzare i nomi e gli URI delle attestazioni nel set di attestazioni con restrizioni per gli elementi dei tipi di attestazioni. Per altre informazioni, vedere la sezione "Eccezioni e restrizioni" più avanti in questo articolo.
 
 ### <a name="claims-transformation"></a>Trasformazione delle attestazioni
 
@@ -344,38 +344,38 @@ elemento ID Hello identifica la proprietà sull'origine hello fornisce il valore
 
 **Tipo di dati:** BLOB JSON con una o più voci di trasformazione 
 
-**Riepilogo:** utilizzare proprietà tooapply comuni trasformazioni toosource i dati, dati di output di hello toogenerate per le attestazioni specificate nelle attestazioni Schema hello.
+**Riepilogo:** questa proprietà consente di applicare trasformazioni comuni ai dati di origine per generare i dati di output per le attestazioni specificate nello schema di attestazioni.
 
-**ID:** utilizzare hello ID elemento tooreference questa voce di trasformazione nella voce di Schema attestazioni TransformationID hello. Questo valore deve essere univoco per ogni voce di trasformazione all'interno di questo criterio.
+**ID:** l'elemento ID viene usato per fare riferimento a questa voce di trasformazione nella voce TransformationID dello schema di attestazioni. Questo valore deve essere univoco per ogni voce di trasformazione all'interno di questo criterio.
 
-**TransformationMethod:** elemento TransformationMethod hello identifica quale operazione viene eseguita toogenerate hello dati di attestazione hello.
+**TransformationMethod:** l'elemento TransformationMethod identifica l'operazione che viene eseguita per generare i dati per l'attestazione.
 
-Basato sul metodo hello scelto, è previsto un set di input e output. Questi vengono definiti utilizzando hello **InputClaims**, **parametri di input** e **OutputClaims** elementi.
+In base al metodo scelto è previsto un set di input e output. Questi vengono definiti usando gli elementi **InputClaims**, **InputParameters** e **OutputClaims**.
 
 #### <a name="table-4-transformation-methods-and-expected-inputs-and-outputs"></a>Tabella 4: Metodi di trasformazione e input/output previsti
 |TransformationMethod|Input previsto|Output previsto|Descrizione|
 |-----|-----|-----|-----|
 |Join|string1, string2, separator|outputClaim|Esegue il join di stringhe di input dividendole con un separatore. Ad esempio: stringa1: "foo@bar.com", stringa2: "sandbox", separatore: "." comporta in outputClaim: "foo@bar.com.sandbox"|
-|ExtractMailPrefix|mail|outputClaim|Estrae parte locale di hello di un indirizzo di posta elettronica. Ad esempio: mail:"foo@bar.com" comporta in outputClaim:"foo". Se non @ segno è presente, stringa di input originale hello viene restituito come è.|
+|ExtractMailPrefix|mail|outputClaim|Estrae la parte locale di un indirizzo di posta elettronica. Ad esempio: mail:"foo@bar.com" comporta in outputClaim:"foo". Se non è presente un segno @, la stringa di input originale viene restituita così come è.|
 
-**InputClaims:** utilizzare un InputClaims elemento toopass hello dati una trasformazione di attestazioni schema voce tooa. Include due attributi: **ClaimTypeReferenceId** e **TransformationClaimType**.
+**InputClaims:** un elemento InputClaims può essere usato per passare i dati da una voce dello schema di attestazioni a una trasformazione. Include due attributi: **ClaimTypeReferenceId** e **TransformationClaimType**.
 
-- **ClaimTypeReferenceId** è unita in join con elemento ID della hello attestazione schema voce toofind hello appropriato attestazione di input. 
-- **TransformationClaimType** è toogive utilizzati come input di toothis un nome univoco. Questo nome deve corrispondere a uno degli input hello previsto per il metodo di trasformazione hello.
+- **ClaimTypeReferenceId** viene unito in join con l'elemento ID della voce dello schema di attestazioni per trovare l'attestazione di input appropriata. 
+- **TransformationClaimType** viene usato per assegnare un nome univoco a questo input. Questo nome deve corrispondere a uno degli input previsti per il metodo di trasformazione.
 
-**Parametri di input:** utilizzare un toopass di elemento di parametri di input una trasformazione tooa valore costante. Include due attributi: **Value** e **ID**.
+**InputParameters:** un elemento InputParameters viene usato per passare un valore costante a una trasformazione. Include due attributi: **Value** e **ID**.
 
-- **Valore** hello effettivo valore costante toobe passato.
-- **ID** è toogive utilizzati come input di toothis un nome univoco. Questo nome deve corrispondere a uno degli input hello previsto per il metodo di trasformazione hello.
+- **Value** è il valore costante effettivo da passare.
+- **ID** viene usato per assegnare un nome univoco a questo input. Questo nome deve corrispondere a uno degli input previsti per il metodo di trasformazione.
 
-**OutputClaims:** utilizzare un OutputClaims elemento toohold hello di dati generati da una trasformazione e ricollegarlo tooa attestazione voce di schema. Include due attributi: **ClaimTypeReferenceId** e **TransformationClaimType**.
+**OutputClaims:** un elemento OutputClaims viene usato per contenere i dati generati da una trasformazione e associarli a una voce dello schema di attestazioni. Include due attributi: **ClaimTypeReferenceId** e **TransformationClaimType**.
 
-- **ClaimTypeReferenceId** è unita in join con ID hello dell'attestazione di output appropriato di hello attestazione schema voce toofind hello.
-- **TransformationClaimType** è toogive usato un output toothis nome univoco. Questo nome deve corrispondere a uno di output di hello previsto per il metodo di trasformazione hello.
+- **ClaimTypeReferenceId** viene unito in join all'elemento ID della voce dello schema di attestazioni per individuare l'attestazione di output appropriata.
+- **TransformationClaimType** viene usato per assegnare un nome univoco a questo output. Questo nome deve corrispondere a uno degli output previsti per il metodo di trasformazione.
 
 ### <a name="exceptions-and-restrictions"></a>Eccezioni e restrizioni
 
-**Elemento NameID di SAML e UPN:** hello gli attributi da cui si hello NameID UPN valori di origine e hello attestazioni trasformazioni che sono consentite, sono limitati.
+**NameID e UPN di SAML:** gli attributi da cui hanno origine i valori NameID e UPN, e le trasformazioni di attestazioni consentite, presentano limitazioni.
 
 #### <a name="table-5-attributes-allowed-as-a-data-source-for-saml-nameid"></a>Tabella 5: Attributi consentiti come origine dati per NameID di SAML
 |Sorgente|ID|Descrizione|
@@ -404,104 +404,104 @@ Basato sul metodo hello scelto, è previsto un set di input e output. Questi ven
 |TransformationMethod|Restrizioni|
 | ----- | ----- |
 |ExtractMailPrefix|Nessuna|
-|Join|suffisso Hello da unire in join deve essere un dominio verificato del tenant di risorsa hello.|
+|Join|Il suffisso da aggiungere deve essere un dominio verificato del tenant delle risorse.|
 
 ### <a name="custom-signing-key"></a>Chiave di firma personalizzata
-Una chiave di firma personalizzata deve essere assegnata toohello oggetto entità di servizio per un effetto tootake criteri di mapping di attestazioni. Tutti i token emessi che sono stati influenzati dal criterio hello vengono firmati con questa chiave. Le applicazioni devono essere configurati tooaccept token firmato con la chiave. In questo modo si garantisce che i token sono stati modificati dall'autore hello di hello riconoscimento criteri di mapping di attestazioni. Le applicazioni vengono protette dai criteri di mapping delle attestazioni creati da attori dannosi.
+È necessario assegnare una chiave di firma personalizzata all'oggetto entità servizio per poter applicare criteri di mapping di attestazioni. Tutti i token emessi interessati dai criteri di accesso vengono firmati con questa chiave. Le applicazioni devono essere configurate per accettare i token firmati con questa chiave. In questo modo si conferma che i token sono stati modificati dall'autore del criterio di mapping delle attestazioni. Le applicazioni vengono protette dai criteri di mapping delle attestazioni creati da attori dannosi.
 
 ### <a name="cross-tenant-scenarios"></a>Scenari tra tenant
-Le attestazioni di mapping dei criteri si applicano agli utenti di tooguest. Se un utente guest tenta tooaccess un'applicazione con attestazioni tooits assegnati criteri di mapping del servizio principale, hello predefinito token viene rilasciato (criteri hello non ha effetto).
+I criteri di mapping delle attestazioni non si applicano agli utenti guest. Se un utente guest tenta di accedere a un'applicazione con criteri di mapping delle attestazioni assegnati all'entità servizio, viene emesso il token predefinito (i criteri non hanno effetto).
 
 ## <a name="claims-mapping-policy-assignment"></a>Assegnazione di criteri di mapping delle attestazioni
-Criteri di mapping possono essere assegnati solo oggetti principal tooservice di attestazioni.
+I criteri di mapping delle attestazioni possono essere assegnati solo a oggetti entità servizio.
 
 ### <a name="example-claims-mapping-policies"></a>Criteri di mapping delle attestazioni di esempio
 
-In molti scenari di Azure AD è possibile personalizzare le attestazioni generate nei token per specifiche entità servizio. In questa sezione vengono illustrate le alcuni scenari comuni che possono aiutarti a comprendere come toouse hello dichiara il tipo di criteri di mapping.
+In molti scenari di Azure AD è possibile personalizzare le attestazioni generate nei token per specifiche entità servizio. In questa sezione vengono illustrati alcuni scenari comuni che permettono di comprendere come usare il tipo di criteri di mapping delle attestazioni.
 
 #### <a name="prerequisites"></a>Prerequisiti
-In hello seguono esempi, creare, aggiornare, collegare ed eliminare i criteri per le entità servizio. Nel caso di nuova tooAzure Active Directory, è consigliabile conoscere la modalità del tenant tooget un Azure AD prima di procedere con questi esempi. 
+Gli esempi seguenti mostrano come creare, aggiornare, collegare ed eliminare criteri per le entità servizio. Se non si ha familiarità con Azure AD, è consigliabile capire come ottenere un tenant di Azure AD prima di procedere con questi esempi. 
 
-hello tooget avviato, alla procedura seguente:
+Per iniziare, seguire questa procedura:
 
 
-1. Download più recenti hello [versione di anteprima pubblica di Azure AD PowerShell modulo](https://www.powershellgallery.com/packages/AzureADPreview/2.0.0.127).
-2.  Eseguire hello Connetti comando toosign tooyour account amministratore di Azure AD. Eseguire questo comando ogni volta che si avvia una nuova sessione.
+1. Scaricare l'ultima [versione di anteprima pubblica del modulo Azure AD PowerShell](https://www.powershellgallery.com/packages/AzureADPreview/2.0.0.127).
+2.  Eseguire il comando Connect per accedere all'account amministratore di Azure AD. Eseguire questo comando ogni volta che si avvia una nuova sessione.
     
      ``` powershell
     Connect-AzureAD -Confirm
     
     ```
-3.  toosee tutti i criteri che sono stati creati all'interno dell'organizzazione, hello esecuzione dopo il comando. È consigliabile eseguire questo comando dopo la maggior parte delle operazioni hello seguenti scenari, toocheck che i criteri vengono creati come previsto.
+3.  Per visualizzare tutti i criteri creati nell'organizzazione, eseguire questo comando. È consigliabile eseguire questo comando dopo la maggior parte delle operazioni negli scenari seguenti per verificare che i criteri siano stati creati come previsto.
    
     ``` powershell
         Get-AzureADPolicy
     
     ```
-#### <a name="example-create-and-assign-a-policy-tooomit-hello-basic-claims-from-tokens-issued-tooa-service-principal"></a>Esempio: Creare e assegnare un criterio tooomit hello attestazioni di base da entità servizio tooa i token emessi.
-In questo esempio, creare un criterio che rimuove il set di attestazioni di base di hello toolinked i token emessi entità servizio.
+#### <a name="example-create-and-assign-a-policy-to-omit-the-basic-claims-from-tokens-issued-to-a-service-principal"></a>Esempio: creare e assegnare un criterio per omettere le attestazioni di base dai token emessi per un'entità servizio.
+In questo esempio si creano criteri che rimuovono il set di attestazioni di base dai token emessi per le entità servizio collegate.
 
 
-1. Creare i criteri di mapping delle attestazioni. Questo criterio, le entità di servizio collegato toospecific, rimuove il set di attestazioni di base di hello dai token.
-    1. criteri di hello toocreate, eseguiti questo comando: 
+1. Creare i criteri di mapping delle attestazioni. Questi criteri, che vengono collegati a specifiche entità servizio, rimuovono il set di attestazioni di base dai token.
+    1. Per creare i criteri, eseguire questo comando: 
     
      ``` powershell
     New-AzureADPolicy -Definition @('{"ClaimsMappingPolicy":{"Version":1,"IncludeBasicClaimSet":"false"}}') -DisplayName "OmitBasicClaims” -Type "ClaimsMappingPolicy"
     ```
-    2. toosee il nuovo criterio e criteri di hello tooget ObjectId, hello esecuzione seguente comando:
+    2. Per visualizzare il nuovo criterio e ottenere il relativo ObjectId, eseguire questo comando:
     
      ``` powershell
     Get-AzureADPolicy
     ```
-2.  Assegnare l'entità di servizio tooyour criteri hello. È inoltre necessario tooget hello ObjectId dell'entità del servizio. 
-    1.  toosee le entità servizio tutti dell'organizzazione, è possibile eseguire query Microsoft Graph. In alternativa, in Azure AD Graph Explorer, eseguire l'accesso tooyour account Azure AD.
-    2.  Quando si dispone di hello ObjectId dell'hello di entità, eseguire servizio comando seguente:  
+2.  Assegnare i criteri all'entità servizio. È necessario ottenere anche l'ObjectId dell'entità servizio. 
+    1.  Per visualizzare tutte le entità servizio dell'organizzazione, è possibile eseguire query in Microsoft Graph. In alternativa, eseguire l'accesso all'account Azure AD dallo strumento Graph Explorer di Azure AD.
+    2.  Dopo aver ottenuto l'ObjectId dell'entità servizio, eseguire questo comando:  
      
      ``` powershell
-    Add-AzureADServicePrincipalPolicy -Id <ObjectId of hello ServicePrincipal> -RefObjectId <ObjectId of hello Policy>
+    Add-AzureADServicePrincipalPolicy -Id <ObjectId of the ServicePrincipal> -RefObjectId <ObjectId of the Policy>
     ```
-#### <a name="example-create-and-assign-a-policy-tooinclude-hello-employeeid-and-tenantcountry-as-claims-in-tokens-issued-tooa-service-principal"></a>Esempio: Creare e assegnare un criterio tooinclude hello EmployeeID e TenantCountry attestazioni nei token emessi tooa entità di servizio.
-In questo esempio, si crea un criterio che aggiunge hello EmployeeID e TenantCountry tootokens emesso toolinked entità servizio. Hello EmployeeID viene generato come tipo di attestazione nome hello in entrambi i token SAML e Jwt. Hello TenantCountry viene generato come paese hello attestazione di tipo sia token SAML e Jwt. In questo esempio, si continuano tooinclude hello base le attestazioni nei token hello impostate.
+#### <a name="example-create-and-assign-a-policy-to-include-the-employeeid-and-tenantcountry-as-claims-in-tokens-issued-to-a-service-principal"></a>Esempio: creare e assegnare un criterio per includere EmployeeID e TenantCountry come attestazioni nei token emessi per un'entità servizio.
+In questo esempio si creano criteri che aggiungono EmployeeID e TenantCountry ai token emessi per le entità servizio collegate. EmployeeID viene emesso come tipo di attestazione nome sia nei token SAML sia nei token JWT. TenantCountry viene emesso come tipo di attestazione paese sia nei token SAML sia nei token JWT. In questo esempio si continua a includere il set di attestazioni di base nei token.
 
-1. Creare i criteri di mapping delle attestazioni. Questo criterio, le entità di servizio collegato toospecific, aggiunge hello EmployeeID e TenantCountry tootokens di attestazioni.
-    1. criteri di hello toocreate, eseguiti questo comando:  
+1. Creare i criteri di mapping delle attestazioni. Questi criteri, che vengono collegati a specifiche entità servizio, aggiungono le attestazioni EmployeeID e TenantCountry ai token.
+    1. Per creare i criteri, eseguire questo comando:  
      
      ``` powershell
     New-AzureADPolicy -Definition @('{"ClaimsMappingPolicy":{"Version":1,"IncludeBasicClaimSet":"true", "ClaimsSchema": [{"Source":"user","ID":"employeeid","SamlClaimType":"http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name","JwtClaimType":"name"},{"Source":"company","ID":" tenantcountry ","SamlClaimType":" http://schemas.xmlsoap.org/ws/2005/05/identity/claims/country ","JwtClaimType":"country"}]}}') -DisplayName "ExtraClaimsExample” -Type "ClaimsMappingPolicy"
     ```
     
-    2. toosee il nuovo criterio e criteri di hello tooget ObjectId, hello esecuzione seguente comando:
+    2. Per visualizzare il nuovo criterio e ottenere il relativo ObjectId, eseguire questo comando:
      
      ``` powershell  
     Get-AzureADPolicy
     ```
-2.  Assegnare l'entità di servizio tooyour criteri hello. È inoltre necessario tooget hello ObjectId dell'entità del servizio. 
-    1.  toosee le entità servizio tutti dell'organizzazione, è possibile eseguire query Microsoft Graph. In alternativa, in Azure AD Graph Explorer, eseguire l'accesso tooyour account Azure AD.
-    2.  Quando si dispone di hello ObjectId dell'hello di entità, eseguire servizio comando seguente:  
+2.  Assegnare i criteri all'entità servizio. È necessario ottenere anche l'ObjectId dell'entità servizio. 
+    1.  Per visualizzare tutte le entità servizio dell'organizzazione, è possibile eseguire query in Microsoft Graph. In alternativa, eseguire l'accesso all'account Azure AD dallo strumento Graph Explorer di Azure AD.
+    2.  Dopo aver ottenuto l'ObjectId dell'entità servizio, eseguire questo comando:  
      
      ``` powershell
-    Add-AzureADServicePrincipalPolicy -Id <ObjectId of hello ServicePrincipal> -RefObjectId <ObjectId of hello Policy>
+    Add-AzureADServicePrincipalPolicy -Id <ObjectId of the ServicePrincipal> -RefObjectId <ObjectId of the Policy>
     ```
-#### <a name="example-create-and-assign-a-policy-that-uses-a-claims-transformation-in-tokens-issued-tooa-service-principal"></a>Esempio: Creare e assegnare un criterio che utilizza una trasformazione di attestazioni nell'entità servizio tooa i token emessi.
-In questo esempio, creare un criterio che genera un'attestazione personalizzata "JoinedData" tooJWTs emesso toolinked le entità di servizio. Questa attestazione contiene un valore creato dall'unione di dati hello archiviati nell'attributo extensionattribute1 hello oggetto user hello con ".sandbox". In questo esempio, Microsoft esclude le attestazioni di base hello impostate nei token hello.
+#### <a name="example-create-and-assign-a-policy-that-uses-a-claims-transformation-in-tokens-issued-to-a-service-principal"></a>Esempio: creare e assegnare i criteri mediante una trasformazione di attestazioni in token emessi per un'entità servizio.
+In questo esempio si creano i criteri che generano un'attestazione personalizzata "JoinedData" nei token JWT emessi per le entità servizio collegate. Questa attestazione contiene un valore creato aggiungendo i dati archiviati nell'attributo extensionattribute1 all'oggetto utente con ".sandbox". In questo esempio si esclude il set di attestazioni di base nei token.
 
 
-1. Creare i criteri di mapping delle attestazioni. Questo criterio, le entità di servizio collegato toospecific, aggiunge hello EmployeeID e TenantCountry tootokens di attestazioni.
-    1. criteri di hello toocreate, eseguiti questo comando: 
+1. Creare i criteri di mapping delle attestazioni. Questi criteri, che vengono collegati a specifiche entità servizio, aggiungono le attestazioni EmployeeID e TenantCountry ai token.
+    1. Per creare i criteri, eseguire questo comando: 
      
      ``` powershell
     New-AzureADPolicy -Definition @('{"ClaimsMappingPolicy":{"Version":1,"IncludeBasicClaimSet":"true", "ClaimsSchema":[{"Source":"user","ID":"extensionattribute1"},{"Source":"transformation","ID":"DataJoin","TransformationId":"JoinTheData","JwtClaimType":"JoinedData"}],"ClaimsTransformation":[{"ID":"JoinTheData","TransformationMethod":"Join","InputClaims":[{"ClaimTypeReferenceId":"extensionattribute1","TransformationClaimType":"string1"}], "InputParameters": [{"Id":"string2","Value":"sandbox"},{"Id":"separator","Value":"."}],"OutputClaims":[{"ClaimTypeReferenceId":"DataJoin","TransformationClaimType":"outputClaim"}]}]}}') -DisplayName "TransformClaimsExample” -Type "ClaimsMappingPolicy"
     ```
     
-    2. toosee il nuovo criterio e criteri di hello tooget ObjectId, hello esecuzione seguente comando: 
+    2. Per visualizzare il nuovo criterio e ottenere il relativo ObjectId, eseguire questo comando: 
      
      ``` powershell
     Get-AzureADPolicy
     ```
-2.  Assegnare l'entità di servizio tooyour criteri hello. È inoltre necessario tooget hello ObjectId dell'entità del servizio. 
-    1.  toosee le entità servizio tutti dell'organizzazione, è possibile eseguire query Microsoft Graph. In alternativa, in Azure AD Graph Explorer, eseguire l'accesso tooyour account Azure AD.
-    2.  Quando si dispone di hello ObjectId dell'hello di entità, eseguire servizio comando seguente: 
+2.  Assegnare i criteri all'entità servizio. È necessario ottenere anche l'ObjectId dell'entità servizio. 
+    1.  Per visualizzare tutte le entità servizio dell'organizzazione, è possibile eseguire query in Microsoft Graph. In alternativa, eseguire l'accesso all'account Azure AD dallo strumento Graph Explorer di Azure AD.
+    2.  Dopo aver ottenuto l'ObjectId dell'entità servizio, eseguire questo comando: 
      
      ``` powershell
-    Add-AzureADServicePrincipalPolicy -Id <ObjectId of hello ServicePrincipal> -RefObjectId <ObjectId of hello Policy>
+    Add-AzureADServicePrincipalPolicy -Id <ObjectId of the ServicePrincipal> -RefObjectId <ObjectId of the Policy>
     ```

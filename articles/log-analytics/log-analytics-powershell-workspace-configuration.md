@@ -1,5 +1,5 @@
 ---
-title: aaaUse PowerShell tooCreate e configurare un'area di lavoro di Log Analitica | Documenti Microsoft
+title: Usare PowerShell per creare e configurare un'area di lavoro di Log Analytics | Documentazione Microsoft
 description: "Log Analytics usa i dati provenienti dai server nell'infrastruttura locale o cloud. È possibile raccogliere i dati del computer dall'archiviazione di Azure quando vengono generati dalla diagnostica di Azure."
 services: log-analytics
 documentationcenter: 
@@ -14,64 +14,64 @@ ms.devlang: powershell
 ms.topic: article
 ms.date: 11/21/2016
 ms.author: richrund
-ms.openlocfilehash: a6d66194204cc58de6aafb687a19fe9611e0c58e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6807ab67e3593da82c147669b29bfdae3b6c967c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="manage-log-analytics-using-powershell"></a>Gestire Log Analytics con PowerShell
-È possibile utilizzare hello [i cmdlet di PowerShell Analitica Log](https://msdn.microsoft.com/library/mt188224\(v=azure.300\).aspx) tooperform le diverse funzioni Log Analitica dalla riga di comando o come parte di uno script.  Esempi di attività hello che è possibile eseguire con PowerShell:
+È possibile usare i [cmdlet di PowerShell per Log Analytics](https://msdn.microsoft.com/library/mt188224\(v=azure.300\).aspx) per eseguire varie funzioni in Log Analytics dalla riga di comando o nell'ambito di uno script.  Esempi di attività che è possibile eseguire con PowerShell:
 
 * Creare un'area di lavoro
 * Aggiungere o rimuovere una soluzione
 * Importare ed esportare ricerche salvate
 * Creare un gruppo di computer
-* Abilitare la raccolta di log di IIS dal computer con installato l'agente di Windows hello
+* Abilitare la raccolta dei log IIS dai computer su cui è stato installato l'agente di Windows
 * Raccogliere i contatori delle prestazioni dai computer Linux e Windows
 * Raccogliere gli eventi dal syslog sui computer Linux 
 * Raccogliere gli eventi dai log eventi di Windows
 * Raccogliere i log eventi personalizzati
-* Aggiungere hello log analitica agente tooan macchina virtuale di Azure
-* Configurare log analitica tooindex dati raccolti tramite diagnostica Azure
+* Aggiungere l'agente Log Analytics a una macchina virtuale di Azure
+* Configurare Log Analytics per indicizzare i dati raccolti tramite Diagnostica di Azure
 
-Questo articolo fornisce due esempi di codice che illustrano alcune delle funzioni hello che è possibile eseguire da PowerShell.  È possibile fare riferimento toohello [riferimento ai cmdlet di PowerShell Analitica Log](https://msdn.microsoft.com/library/mt188224\(v=azure.300\).aspx) per altre funzioni.
+Questo articolo presenta due codici di esempio con cui vengono illustrate alcune delle funzioni che è possibile eseguire da PowerShell.  Per altre funzioni, è possibile fare riferimento all'articolo sui [cmdlet di PowerShell per Log Analytics](https://msdn.microsoft.com/library/mt188224\(v=azure.300\).aspx) .
 
 > [!NOTE]
-> Log Analitica era precedentemente denominato Operational Insights, perché è il nome di hello utilizzato nei cmdlet hello.
+> In precedenza Log Analytics veniva chiamato Operational Insight, motivo per cui nei cmdlet viene usato questo nome.
 > 
 > 
 
 ## <a name="prerequisites"></a>Prerequisiti
-Questi esempi funzionano con la versione 2.3.0 o successiva del modulo AzureRm.OperationalInsights hello.
+Questi esempi funzionano con la versione 2.3.0 o successive del modulo AzureRm.OperationalInsights.
 
 
 ## <a name="create-and-configure-a-log-analytics-workspace"></a>Creare e configurare un'area di lavoro di Log Analytics
-Hello seguente script di esempio viene illustrato come:
+Lo script di esempio seguente illustra come:
 
 1. Creare un'area di lavoro
-2. Elenco hello disponibili soluzioni
-3. Aggiungere soluzioni toohello area di lavoro
+2. Elencare le soluzioni disponibili
+3. Aggiungere soluzioni all'area di lavoro
 4. Importare le ricerche salvate
 5. Esportare le ricerche salvate
 6. Creare un gruppo di computer
-7. Abilitare la raccolta di log di IIS dal computer con installato l'agente di Windows hello
+7. Abilitare la raccolta dei log IIS dai computer su cui è stato installato l'agente di Windows
 8. Raccogliere i dati dei contatori delle prestazioni del disco logico dai computer Linux (% inodi usati; megabyte liberi; % di spazio usato; trasferimenti/sec del disco; letture/sec del disco; scritture/sec del disco)
 9. Raccogliere gli eventi syslog dai computer Linux
-10. Raccogliere gli eventi di errore e avviso da hello registro eventi dell'applicazione dai computer Windows
+10. Raccogliere gli eventi di errore e di avviso dal log eventi dell'applicazione dai computer Windows
 11. Raccogliere i dati del contatore delle prestazioni dei Mbyte di memoria disponibili dai computer Windows
 12. Raccogliere i dati di un log personalizzato 
 
 ```
 
 $ResourceGroup = "oms-example"
-$WorkspaceName = "log-analytics-" + (Get-Random -Maximum 99999) # workspace names need toobe unique - Get-Random helps with this for hello example code
+$WorkspaceName = "log-analytics-" + (Get-Random -Maximum 99999) # workspace names need to be unique - Get-Random helps with this for the example code
 $Location = "westeurope"
 
-# List of solutions tooenable
+# List of solutions to enable
 $Solutions = "Security", "Updates", "SQLAssessment"
 
-# Saved Searches tooimport
+# Saved Searches to import
 $ExportedSearches = @"
 [
     {
@@ -89,7 +89,7 @@ $ExportedSearches = @"
 ]
 "@ | ConvertFrom-Json
 
-# Custom Log toocollect
+# Custom Log to collect
 $CustomLog = @"
 {
     "customLogName": "sampleCustomLog1", 
@@ -127,14 +127,14 @@ $CustomLog = @"
     }
 "@
 
-# Create hello resource group if needed
+# Create the resource group if needed
 try {
     Get-AzureRmResourceGroup -Name $ResourceGroup -ErrorAction Stop
 } catch {
     New-AzureRmResourceGroup -Name $ResourceGroup -Location $Location
 }
 
-# Create hello workspace
+# Create the workspace
 New-AzureRmOperationalInsightsWorkspace -Location $Location -Name $WorkspaceName -Sku Standard -ResourceGroupName $ResourceGroup
 
 # List all solutions and their installation status
@@ -160,7 +160,7 @@ foreach ($search in $ExportedSearches) {
 # Create Computer Group based on a query
 New-AzureRmOperationalInsightsComputerGroup -ResourceGroupName $ResourceGroup -WorkspaceName $WorkspaceName -SavedSearchId "My Web Servers" -DisplayName "Web Servers" -Category "My Saved Searches" -Query "Computer=""web*"" | distinct Computer" -Version 1
 
-# Create a computer group based on names (up too5000)
+# Create a computer group based on names (up to 5000)
 $computerGroup = """servername1.contoso.com"",""servername2.contoso.com"",""servername3.contoso.com"",""servername4.contoso.com"""
 New-AzureRmOperationalInsightsComputerGroup -ResourceGroupName $ResourceGroup -WorkspaceName $WorkspaceName -SavedSearchId "My Named Servers" -DisplayName "Named Servers" -Category "My Saved Searches" -Query $computerGroup -Version 1
 
@@ -186,8 +186,8 @@ New-AzureRmOperationalInsightsCustomLogDataSource -ResourceGroupName $ResourceGr
 
 ```
 
-## <a name="configuring-log-analytics-tooindex-azure-diagnostics"></a>Configurazione di Log Analitica tooindex diagnostica Windows Azure
-Per il monitoraggio senza agenti di risorse di Azure, le risorse di hello devono toohave diagnostica Windows Azure toowrite abilitato e configurato tooa Log Analitica area di lavoro. Questo approccio invia i dati direttamente tooLog Analitica e non richiede dati toobe scritto tooa account di archiviazione. Le risorse supportate includono:
+## <a name="configuring-log-analytics-to-index-azure-diagnostics"></a>Configurazione di Log Analytics per indicizzare Diagnostica di Azure
+Per il monitoraggio senza agenti delle risorse di Azure, in queste ultime la diagnostica di Azure deve essere abilitata e configurata per la scrittura in un'area di lavoro di Log Analytics. Questo approccio permette di inviare i dati direttamente a Log Analytics e non ne richiede la scrittura in un account di archiviazione. Le risorse supportate includono:
 
 | Tipo di risorsa | Log | Metrica |
 | --- | --- | --- |
@@ -210,9 +210,9 @@ Per il monitoraggio senza agenti di risorse di Azure, le risorse di hello devono
 | Microsoft Azure               |     | Sì |
 | Server farm Web        |     | Sì |
 
-Per informazioni dettagliate hello delle metriche disponibili hello, fare riferimento troppo[metriche con Monitor di Azure supportata](../monitoring-and-diagnostics/monitoring-supported-metrics.md).
+Per informazioni dettagliate sulle metriche disponibili, vedere [Metriche supportate con il monitoraggio di Azure](../monitoring-and-diagnostics/monitoring-supported-metrics.md).
 
-Per informazioni dettagliate sulle hello registri disponibili hello, fare riferimento troppo[supportata servizi e lo schema per i log di diagnostica](../monitoring-and-diagnostics/monitoring-diagnostic-logs-schema.md).
+Per informazioni dettagliate sui registri disponibili, vedere [Servizi supportati e schema per i log di diagnostica](../monitoring-and-diagnostics/monitoring-diagnostic-logs-schema.md).
 
 ```
 $workspaceId = "/subscriptions/d2e37fee-1234-40b2-5678-0b2199de3b50/resourcegroups/oi-default-east-us/providers/microsoft.operationalinsights/workspaces/rollingbaskets"
@@ -222,27 +222,27 @@ $resourceId = "/SUBSCRIPTIONS/ec11ca60-1234-491e-5678-0ea07feae25c/RESOURCEGROUP
 Set-AzureRmDiagnosticSetting -ResourceId $resourceId -WorkspaceId $workspaceId -Enabled $true
 ```
 
-È possibile utilizzare anche hello precedente cmdlet toocollect log dalle risorse di cui si trovano in sottoscrizioni diverse. cmdlet di Hello è toowork in grado di nelle sottoscrizioni poiché hello dell'area di lavoro hello log vengono inviati e si desidera fornire id hello della risorsa sia hello creazione di log.
+Il cmdlet precedente può essere usato anche per la raccolta di log da risorse presenti in sottoscrizioni diverse. Il funzionamento del cmdlet in sottoscrizioni diverse è possibile perché vengono specificati sia l'ID della risorsa che crea i log sia l'area di lavoro a cui questi vengono inviati.
 
 
-## <a name="configuring-log-analytics-tooindex-azure-diagnostics-from-storage"></a>Configurazione di Log Analitica tooindex diagnostica da archiviazione di Azure
-dati log toocollect dall'interno di un'istanza di un servizio cloud classico o un cluster di service fabric in esecuzione, è necessario un toofirst scrittura hello dati tooAzure archivio. Log Analitica viene quindi configurato registri hello toocollect dall'account di archiviazione hello. Le risorse supportate includono:
+## <a name="configuring-log-analytics-to-index-azure-diagnostics-from-storage"></a>Configurazione di Log Analytics per indicizzare la diagnostica di Azure dall'Archiviazione
+Per raccogliere dati di log dall'interno di un'istanza in esecuzione di un servizio cloud classico o di un cluster di Service Fabric, è necessario prima scrivere i dati in Archiviazione di Azure. Log Analytics viene quindi configurato per la raccolta dei log dall'account di archiviazione. Le risorse supportate includono:
 
 * Servizi cloud classici (ruoli di lavoro e Web)
 * Cluster di Service Fabric
 
-Hello seguente come esempio per:
+L'esempio seguente illustra come:
 
-1. Elenco di account di archiviazione esistente hello e le posizioni Log Analitica indicizza i dati da
-2. Creare un tooread di configurazione da un account di archiviazione
-3. Hello creati dati di configurazione tooindex da altri percorsi di aggiornamento
-4. Eliminare la configurazione di hello appena creato.
+1. Elencare gli account di archiviazione esistenti e i percorsi da cui Log Analytics eseguirà l'indicizzazione dei dati
+2. Creare una configurazione che possa essere letta da un account di archiviazione
+3. Aggiornare la configurazione appena creata in modo da poter indicizzare i dati anche da altri percorsi
+4. Eliminare la configurazione appena creata
 
 ```
 # validTables = "WADWindowsEventLogsTable", "LinuxsyslogVer2v0", "WADServiceFabric*EventTable", "WADETWEventTable" 
 $workspace = (Get-AzureRmOperationalInsightsWorkspace).Where({$_.Name -eq "your workspace name"})
 
-# Update these two lines with hello storage account resource ID and hello storage account key for hello storage account you want tooLog Analytics too 
+# Update these two lines with the storage account resource ID and the storage account key for the storage account you want to Log Analytics to  
 $storageId = "/subscriptions/ec11ca60-1234-491e-5678-0ea07feae25c/resourceGroups/demo/providers/Microsoft.Storage/storageAccounts/wadv2storage"
 $key = "abcd=="
 
@@ -255,12 +255,12 @@ New-AzureRmOperationalInsightsStorageInsight -ResourceGroupName $workspace.Resou
 # Update existing insight
 Set-AzureRmOperationalInsightsStorageInsight -ResourceGroupName $workspace.ResourceGroupName -WorkspaceName $workspace.Name -Name "newinsight" -Tables @("WADWindowsEventLogsTable", "WADETWEventTable") -Containers @("wad-iis-logfiles")
 
-# Remove hello insight
+# Remove the insight
 Remove-AzureRmOperationalInsightsStorageInsight -ResourceGroupName $workspace.ResourceGroupName -WorkspaceName $workspace.Name -Name "newinsight" 
 
 ```
 
-È anche possibile utilizzare hello precedenti registri toocollect script dagli account di archiviazione in diverse sottoscrizioni. script Hello è in grado di toowork tra sottoscrizioni poiché si desidera fornire l'id di risorsa account di archiviazione hello e una chiave di accesso corrispondente. Quando si modifica la chiave di accesso hello, è necessario tooupdate hello archiviazione insight toohave hello nuova chiave.
+Lo script precedente può essere usato anche per la raccolta di log da account di archiviazione presenti in sottoscrizioni diverse. Il funzionamento dello script in sottoscrizioni diverse è possibile perché vengono specificati sia l'ID risorsa dell'account di archiviazione che la chiave di accesso corrispondente. Quando si modifica la chiave di accesso, è necessario aggiornare le informazioni di archiviazione con la nuova chiave.
 
 
 ## <a name="next-steps"></a>Passaggi successivi

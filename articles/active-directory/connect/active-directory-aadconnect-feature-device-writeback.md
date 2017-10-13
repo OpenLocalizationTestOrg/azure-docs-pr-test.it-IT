@@ -1,6 +1,6 @@
 ---
 title: 'Azure AD Connect: Abilitazione del writeback dei dispositivi | Documentazione Microsoft'
-description: Questo documento come dettagli tooenable writeback dei dispositivi con Azure AD Connect
+description: Questo documento descrive come abilitare il writeback dei dispositivi usando Azure AD Connect
 services: active-directory
 documentationcenter: 
 author: billmath
@@ -12,123 +12,131 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/13/2017
+ms.date: 09/26/2017
 ms.author: billmath
-ms.openlocfilehash: 2566a514137fed85b21929207cf3230e6878ebbe
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7af8fadca15e07e178f12db27fec2467f43c5d36
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-ad-connect-enabling-device-writeback"></a>Azure AD Connect: abilitazione del writeback dei dispositivi
 > [!NOTE]
-> TooAzure una sottoscrizione AD Premium è necessario per il writeback dei dispositivi.
+> Una sottoscrizione di Azure AD Premium è necessaria per il writeback dei dispositivi.
 > 
 > 
 
-Hello seguente documentazione vengono fornite informazioni sulla modalità di funzionalità di writeback dei dispositivi tooenable hello in Azure AD Connect. Writeback dei dispositivi viene utilizzato nei seguenti scenari hello:
+Il documento seguente illustra come abilitare la funzionalità di writeback dei dispositivi in Azure AD Connect. Il writeback dei dispositivi viene usato negli scenari seguenti:
 
-* Abilitare l'accesso condizionale in base a dispositivi tooADFS (2012 R2 o versione successiva) protetti applicazioni (trust della relying party).
+* Per abilitare l'accesso condizionale in base ai dispositivi alle applicazione protette tramite ADFS 2012 R2 o versioni successive (trust della relying party).
 
-Questo offre sicurezza aggiuntiva e garanzia che accedono a tooapplications viene concessa solo ai dispositivi tootrusted. Per altre informazioni sull'accesso condizionale, vedere [Gestione dei rischi con l'accesso condizionale](../active-directory-conditional-access.md) e [Configurazione dell'accesso condizionale locale usando il servizio Registrazione dispositivo di Azure Active Directory](../active-directory-conditional-access-automatic-device-registration-setup.md).
+Questo offre maggiore sicurezza e garantisce che l'accesso alle applicazioni venga concesso solo ai dispositivi attendibili. Per altre informazioni sull'accesso condizionale, vedere [Gestione dei rischi con l'accesso condizionale](../active-directory-conditional-access.md) e [Configurazione dell'accesso condizionale locale usando il servizio Registrazione dispositivo di Azure Active Directory](../active-directory-conditional-access-automatic-device-registration-setup.md).
 
 > [!IMPORTANT]
-> <li>Dispositivi devono essere posizionati nella stessa foresta come utenti hello hello. Poiché i dispositivi devono essere riscritte tooa singola foresta, questa funzionalità non supporta attualmente una distribuzione con più foreste di utente.</li>
-> <li>Oggetti di configurazione di un solo dispositivo registrazione può essere aggiunto toohello foresta di Active Directory locale. Questa funzionalità non è compatibile con una topologia in cui hello locale Active Directory è toomultiple sincronizzato Azure Active Directory.</li>> 
+> <li>I dispositivi devono trovarsi nella stessa foresta degli utenti. Data la necessità di eseguire il writeback dei dispositivi in una singola foresta, attualmente questa funzionalità non supporta una distribuzione con più foreste utente.</li>
+> <li>Solo un oggetto di configurazione della registrazione dispositivi può essere aggiunto alla foresta locale di Active Directory. Questa funzionalità non è compatibile con una topologia in cui l'istanza locale di Active Directory è sincronizzata con più directory di Azure AD.</li>> 
 
 ## <a name="part-1-install-azure-ad-connect"></a>Parte 1: Installare Azure AD Connect
-1. Installare Azure AD Connect usando le impostazioni personalizzate o rapide Microsoft consiglia di toostart con tutti gli utenti e gruppi di sincronizzazione completata prima di abilitare il writeback di dispositivi.
+1. Installare Azure AD Connect usando le impostazioni personalizzate o rapide È consigliabile iniziare sincronizzando correttamente tutti gli utenti e i gruppi prima di abilitare il writeback dei dispositivi.
 
 ## <a name="part-2-prepare-active-directory"></a>Parte 2: Preparare Active Directory
-Utilizzare hello seguendo i passaggi tooprepare per l'utilizzo di writeback dei dispositivi.
+Per preparare il writeback dei dispositivi, seguire questa procedura.
 
-1. Dalla macchina di hello in cui è installato Azure AD Connect, avviare PowerShell con privilegi elevati.
-2. Se il modulo di Active Directory PowerShell hello non è installato, installarlo utilizzando hello comando seguente:
-   
-   `Add-WindowsFeature RSAT-AD-PowerShell`
-3. Se non è installato il modulo di Azure Active Directory PowerShell hello, quindi scaricare e installare da [modulo di Azure Active Directory per Windows PowerShell (versione a 64 bit)](http://go.microsoft.com/fwlink/p/?linkid=236297). Questo componente presenta una dipendenza hello Assistente per l'accesso, che viene installato con Azure AD Connect.
-4. Con credenziali di amministratore dell'organizzazione, eseguire hello i comandi seguenti e quindi uscire da PowerShell.
-   
-   `Import-Module 'C:\Program Files\Microsoft Azure Active Directory Connect\AdPrep\AdSyncPrep.psm1'`
-   
-   `Initialize-ADSyncDeviceWriteback {Optional:–DomainName [name] Optional:-AdConnectorAccount [account]}`
+1. Dal computer in cui è installato Azure AD, avviare PowerShell con privilegi elevati.
+2. Se il modulo Active Directory PowerShell NON è installato, installare Strumenti di amministrazione remota del server, che contiene il modulo AD PowerShell e dsacls.exe, necessario per eseguire lo script.  Eseguire il comando seguente:
+  
+   ``` powershell
+   Add-WindowsFeature RSAT-AD-Tools
+   ```
 
-Credenziali amministratore dell'organizzazione sono necessarie perché lo spazio dei nomi di modifiche toohello configurazione sono necessari. Le autorizzazioni di un amministratore di dominio non sono sufficienti.
+3. Se il modulo di Azure Active Directory per PowerShell NON è installato, scaricarlo e installarlo da [Modulo di Azure Active Directory per Windows PowerShell (versione a 64 bit)](http://go.microsoft.com/fwlink/p/?linkid=236297). Questo componente presenta una dipendenza dall'Assistente per l'accesso, che viene installato con Azure AD Connect.  
+4. Con le credenziali di amministratore dell'organizzazione, eseguire i comandi seguenti e quindi uscire da PowerShell.
+   
+   ``` powershell
+   Import-Module 'C:\Program Files\Microsoft Azure Active Directory Connect\AdPrep\AdSyncPrep.psm1'
+   ```
+
+   ``` powershell
+   Initialize-ADSyncDeviceWriteback {Optional:–DomainName [name] Optional:-AdConnectorAccount [account]}
+   ```
+
+Le credenziali di amministratore dell'organizzazione sono obbligatorie, perché è necessario apportare modifiche allo spazio dei nomi di configurazione. Le autorizzazioni di un amministratore di dominio non sono sufficienti.
 
 ![PowerShell per l'abilitazione del writeback dei dispositivi](./media/active-directory-aadconnect-feature-device-writeback/powershell.png)
+
 
 Descrizione:
 
 * Se non esistono già, crea e configura nuovi contenitori e oggetti in CN=Device Registration Configuration,CN=Services,CN=Configuration,[forest-dn].
 * Se non esistono già, crea e configura nuovi contenitori e oggetti in CN=RegisteredDevices,[domain-dn]. Gli oggetti dispositivo verranno creati in questo contenitore.
-* Imposta le autorizzazioni necessarie su hello account Azure Active Directory Connector, dispositivi toomanage in Active Directory.
-* È sufficiente toorun in una foresta, anche se Azure AD Connect viene installato su più foreste.
+* Imposta le autorizzazioni necessarie nell'account Azure AD Connector per gestire i dispositivi nella propria istanza di Active Directory.
+* Deve essere eseguito in una sola foresta, anche se Azure AD Connect verrà installato in più foreste.
 
 Parametri
 
 * DomainName: dominio di Active Directory in cui verranno creati gli oggetti dispositivo. Nota: tutti i dispositivi per una foresta Active Directory specifica verranno creati in un singolo dominio.
-* AdConnectorAccount: Account di Active Directory che verrà utilizzato da Azure AD Connect toomanage oggetti nella directory hello. Si tratta di account hello utilizzato dal tooAD tooconnect di sincronizzazione Azure AD Connect. Se è stato installato utilizzando le impostazioni express, si tratta di account di hello preceduti MSOL_.
+* AdConnectorAccount: account Active Directory che verrà usato da Azure AD Connect per gestire gli oggetti nella directory. Si tratta dell'account usato dalla sincronizzazione di Azure AD Connect per connettersi ad Active Directory. Se è stata eseguita l'installazione usando le impostazioni rapide, è l'account con prefisso MSOL_.
 
 ## <a name="part-3-enable-device-writeback-in-azure-ad-connect"></a>Parte 3: Abilitare il writeback dei dispositivi in Azure AD Connect
-Utilizzare hello seguendo procedure tooenable writeback dei dispositivi in Azure AD Connect.
+Per abilitare il writeback dei dispositivi in Azure AD Connect, seguire questa procedura.
 
-1. Eseguire nuovamente l'installazione guidata di hello. Selezionare **personalizzare le opzioni di sincronizzazione** dall'attività aggiuntive di hello pagina e fare clic su **Avanti**.
+1. Eseguire nuovamente l'installazione guidata. Selezionare **Personalizzazione delle opzioni di sincronizzazione** dalla pagina Attività aggiuntive e fare clic su **Avanti**.
    ![Installazione personalizzata - Personalizzazione delle opzioni di sincronizzazione](./media/active-directory-aadconnect-feature-device-writeback/devicewriteback2.png)
-2. Nella pagina di funzionalità facoltative hello writeback dei dispositivi non sono disattivati. Si noti che se hello passaggi di preparazione di Azure AD Connect non vengano completati verranno disattivate nella pagina di funzionalità facoltative di hello writeback dei dispositivi. Selezionare la casella hello per il writeback dei dispositivi e fare clic su **Avanti**. Se è ancora disabilitata hello casella di controllo, vedere hello [risoluzione dei problemi di sezione](#the-writeback-checkbox-is-still-disabled).
+2. Nella pagina Funzionalità facoltative l'opzione Writeback dispositivi non sarà più disabilitata. Si noti che se le procedure di preparazione di Azure AD Connect non vengono completate, l'opzione Writeback dispositivi risulterà disabilitata nella pagina Funzionalità facoltative. Selezionare la casella per il writeback dei dispositivi e fare clic su **Avanti**. Se la casella di controllo risulta ancora disattivata, vedere la sezione [Risoluzione dei problemi](#the-writeback-checkbox-is-still-disabled).
    ![Installazione personalizzata - Funzionalità facoltative di writeback dei dispositivi](./media/active-directory-aadconnect-feature-device-writeback/devicewriteback3.png)
-3. Nella pagina di hello writeback, si vedrà dominio hello fornito come insieme di strutture di hello predefinito dispositivo writeback.
+3. Nella pagina Writeback, il dominio specificato verrà visualizzato come la Foresta di writeback dei dispositivi predefinita.
    ![Installazione personalizzata - Foresta di destinazione del writeback dei dispositivi](./media/active-directory-aadconnect-feature-device-writeback/devicewriteback4.png)
-4. Completare l'installazione di hello di hello procedura guidata senza apportare modifiche di configurazione aggiuntive. Se necessario, fare riferimento troppo[installazione personalizzata di Azure AD Connect.](active-directory-aadconnect-get-started-custom.md)
+4. Completare l'installazione guidata senza ulteriori modifiche di configurazione. Se necessario fare riferimento a [Installazione personalizzata di Azure AD Connect](active-directory-aadconnect-get-started-custom.md)
 
 ## <a name="enable-conditional-access"></a>Abilitare l'accesso condizionale
-Istruzioni dettagliate tooenable questo scenario sono disponibili all'interno di [configurare l'accesso condizionale locale con Azure Active Directory Device Registration](../active-directory-conditional-access-automatic-device-registration-setup.md).
+Per informazioni dettagliate su come abilitare questo scenario, vedere [Configurazione dell'accesso condizionale locale usando il servizio Registrazione dispositivo di Azure Active Directory](../active-directory-conditional-access-automatic-device-registration-setup.md).
 
-## <a name="verify-devices-are-synchronized-tooactive-directory"></a>Verificare che i dispositivi siano sincronizzati tooActive Directory
-Il writeback dei dispositivi dovrebbe funzionare correttamente. Tenere presente che può richiedere ore too3 dispositivo oggetti toobe writeback tooAD.  tooverify che i dispositivi da sincronizzare correttamente, hello seguente dopo il completamento di regole di sincronizzazione hello:
+## <a name="verify-devices-are-synchronized-to-active-directory"></a>Verificare che i dispositivi siano sincronizzati con Active Directory
+Il writeback dei dispositivi dovrebbe funzionare correttamente. Tenere presente che l'esecuzione del writeback degli oggetti dispositivo in Active Directory può richiedere fino a 3 ore.  Per verificare che i dispositivi siano sincronizzati correttamente, al termine dell'esecuzione delle regole di sincronizzazione seguire questa procedura:
 
 1. Avviare il Centro di amministrazione di Active Directory.
-2. Espandere RegisteredDevices, all'interno di hello dominio viene federato.
+2. Espandere RegisteredDevices all'interno del dominio che verrà federato.
    ![Interfaccia di amministrazione di Active Directory - Dispositivi registrati](./media/active-directory-aadconnect-feature-device-writeback/devicewriteback5.png)
 3. I dispositivi attualmente registrati saranno visualizzati in questo elenco.
    ![Interfaccia di amministrazione di Active Directory - Elenco dei dispositivi registrati](./media/active-directory-aadconnect-feature-device-writeback/devicewriteback6.png)
 
 ## <a name="troubleshooting"></a>Risoluzione dei problemi
-### <a name="hello-writeback-checkbox-is-still-disabled"></a>Hello writeback checkbox rimane disabilitato.
-Se la casella di controllo di hello per writeback dei dispositivi non è abilitato, anche se sono state eseguite operazioni hello precedente, hello alla procedura seguente consentirà di tramite installazione quali hello verifica in corso prima casella hello è abilitata.
+### <a name="the-writeback-checkbox-is-still-disabled"></a>La casella di controllo del writeback è ancora disabilitata
+Se la casella di controllo per il writeback dei dispositivi non è ancora abilitata anche se sono stati seguiti i passaggi precedenti, la procedura seguente consentirà di verificare le caratteristiche dell'installazione guidata prima dell'abilitazione della casella.
 
 Attività iniziali:
 
-* Assicurarsi che almeno una foresta disponga di Windows Server 2012 R2. tipo di oggetto dispositivo Hello deve essere presente.
-* Se l'installazione guidata di hello è già in esecuzione, le modifiche non venga rilevate. In questo caso, completare l'installazione guidata di hello ed eseguirlo nuovamente.
-* Assicurarsi che l'account hello fornito nello script di inizializzazione hello è effettivamente hello corretto utente utilizzato da Active Directory Connector hello. tooverify, seguire questi passaggi:
-  * Dal menu di avvio hello, aprire **servizio di sincronizzazione**.
-  * Aprire hello **connettori** scheda.
-  * Trovare hello connettore con tipo di servizi di dominio Active Directory e selezionarlo.
+* Assicurarsi che almeno una foresta disponga di Windows Server 2012 R2. Il tipo di oggetto del dispositivo deve essere presente.
+* Se l'installazione guidata è già in esecuzione, non verranno rilevate tutte le modifiche. In questo caso, completare l'installazione guidata ed eseguirla nuovamente.
+* Assicurarsi che l'account specificato nello script di inizializzazione sia effettivamente l'utente corretto usato da Active Directory Connector. A questo scopo, seguire questa procedura:
+  * Avviare **Servizio di sincronizzazione**dal menu Start.
+  * Aprire la scheda **Connettori** .
+  * Trovare il connettore con il tipo Servizi di dominio di Active Directory e selezionarlo.
   * In **Azioni** selezionare **Proprietà**.
-  * Andare troppo**connettersi foresta Directory tooActive**. Verificare che hello dominio e il nome utente specificato sullo schermo corrispondenza hello account fornito toohello script.
+  * Passare a **Connetti a Foresta Active Directory**. Verificare che il dominio e il nome utente specificati in questa schermata corrispondano all'account specificato per lo script.
     ![Account connettore in Synchronization Service Manager](./media/active-directory-aadconnect-feature-device-writeback/connectoraccount.png)
 
 Verificare la configurazione in Active Directory:
 
-* Verificare che hello Device Registration Service si trova nel percorso di hello seguente (CN DeviceRegistrationService, CN = = dispositivo registrazione Services, CN = Device Registration Configuration, CN = Services, CN = Configuration) nel contesto dei nomi di configurazione.
+* Verificare che il servizio Registrazione dispositivo si trovi nel percorso seguente (CN=DeviceRegistrationService,CN=Device Registration Services,CN=Device Registration Configuration,CN=Services,CN=Configuration) nel contesto dei nomi di configurazione.
 
 ![Risoluzione dei problemi, DeviceRegistrationService nello spazio dei nomi di configurazione](./media/active-directory-aadconnect-feature-device-writeback/troubleshoot1.png)
 
-* Verificare sia presente un solo oggetto di configurazione eseguendo una ricerca di spazio dei nomi di configurazione hello. Se è presente più di uno, eliminare duplicato hello.
+* Verificare che sia presente un solo oggetto di configurazione cercando lo spazio dei nomi di configurazione. Se sono presenti più oggetti, eliminare il duplicato.
 
-![Risoluzione dei problemi, eseguire la ricerca di oggetti duplicati hello](./media/active-directory-aadconnect-feature-device-writeback/troubleshoot2.png)
+![Risoluzione dei problemi, cercare gli oggetti duplicati](./media/active-directory-aadconnect-feature-device-writeback/troubleshoot2.png)
 
-* Oggetto servizio Registrazione dispositivi di hello, assicurarsi che hello attributo msDS-DeviceLocation è presente e ha un valore. Ricerca il percorso e assicurarsi che è presente con hello objectType msDS-DeviceContainer.
+* Assicurarsi che nell'oggetto Device Registration Service sia presente l'attributo msDS-DeviceLocation con un valore associato. Cercare la posizione e assicurarsi che sia presente con il tipo di oggetto msDS-DeviceContainer.
 
 ![Risoluzione dei problemi, msDS-DeviceLocation](./media/active-directory-aadconnect-feature-device-writeback/troubleshoot3.png)
 
 ![Risoluzione dei problemi, classe di oggetti RegisteredDevices](./media/active-directory-aadconnect-feature-device-writeback/troubleshoot4.png)
 
-* Verificare l'account hello utilizzato da hello che Active Directory Connector dispone delle autorizzazioni necessarie per il contenitore di dispositivi registrati hello trovato dal passaggio precedente hello. Si tratta delle autorizzazioni di hello previsto per questo contenitore:
+* Verificare che l'account usato da Active Directory Connector disponga delle autorizzazioni necessarie per il contenitore Dispositivi registrati trovato nel passaggio precedente. Si tratta delle autorizzazioni previste per questo contenitore:
 
 ![Risoluzione dei problemi, verificare le autorizzazioni per il contenitore](./media/active-directory-aadconnect-feature-device-writeback/troubleshoot5.png)
 
-* Verificare hello account Active Directory disponga delle autorizzazioni su hello CN = Device Registration Configuration, CN = Services, CN = oggetto di configurazione.
+* Verificare che l'account Active Directory disponga delle autorizzazioni nell'oggetto CN=Device Registration Configuration,CN=Services,CN=Configuration.
 
 ![Risoluzione dei problemi, verificare le autorizzazioni per la configurazione della registrazione dispositivo](./media/active-directory-aadconnect-feature-device-writeback/troubleshoot6.png)
 

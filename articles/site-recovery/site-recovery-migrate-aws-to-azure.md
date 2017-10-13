@@ -1,6 +1,6 @@
 ---
-title: aaaMigrate macchine virtuali da AWS tooAzure | Documenti Microsoft
-description: In questo articolo viene descritto come toomigrate virtuale dei computer in esecuzione in tooAzure Amazon Web Services (AWS) usando Azure Site Recovery.
+title: Eseguire la migrazione di macchine virtuali da AWS in Azure | Documentazione Microsoft
+description: Questo articolo descrive come eseguire la migrazione di macchine virtuali in esecuzione in Amazon Web Services (AWS) ad Azure usando Azure Site Recovery.
 services: site-recovery
 documentationcenter: 
 author: bsiva
@@ -14,23 +14,23 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 05/31/2017
 ms.author: bsiva
-ms.openlocfilehash: c99b781ec9cca5b8f9a847d3fc48408062b120b1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: b3c0727a279649f4f7dae30d41027129ce5b04ee
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="migrate-virtual-machines-in-amazon-web-services-aws-tooazure-with-azure-site-recovery"></a>Eseguire la migrazione di macchine virtuali in tooAzure Amazon Web Services (AWS) con Azure Site Recovery
+# <a name="migrate-virtual-machines-in-amazon-web-services-aws-to-azure-with-azure-site-recovery"></a>Eseguire la migrazione delle macchine virtuali in Amazon Web Services (AWS) ad Azure con Azure Site Recovery
 
-In questo articolo viene descritto come toomigrate Windows AWS istanze tooAzure le macchine virtuali con hello [Azure Site Recovery](site-recovery-overview.md) servizio.
+Questo articolo descrive come eseguire la migrazione di istanze di Windows per AWS in macchine virtuali di Azure con il servizio [Azure Site Recovery](site-recovery-overview.md).
 
-La migrazione è in realtà un failover da AWS tooAzure. Non è possibile eseguire il failback macchine tooAWS e non vi è alcuna replica in corso. In questo articolo vengono descritti i passaggi hello per la migrazione in hello portale di Azure e sono basati su istruzioni hello per [la replica di un computer fisico di tooAzure](site-recovery-vmware-to-azure.md).
+La migrazione è in realtà un failover da AWS in Azure. Non è possibile eseguire il failback di computer in AWS e non è presente alcuna replica in corso. Questo articolo descrive i passaggi per la migrazione nel portale di Azure ed è basato sulle istruzioni per la [replica di una macchina fisica di Azure](site-recovery-vmware-to-azure.md).
 
-Inviare eventuali commenti o domande nella parte inferiore di hello di questo articolo, o di hello [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)
+Per inviare commenti o domande è possibile usare la parte inferiore di questo articolo oppure il [forum su Servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)
 
 ## <a name="supported-operating-systems"></a>Sistemi operativi supportati
 
-Il ripristino del sito può essere utilizzato toomigrate EC2 istanze in esecuzione uno dei seguenti sistemi operativi hello:
+Site Recovery può essere usato per eseguire la migrazione delle istanze di EC2 in esecuzione in uno dei sistemi operativi seguenti:
 
 - Windows (solo versione a 64 bit)
     - Windows Server 2008 R2 SP1+ (solo driver Citrix PV o driver AWS PV: **le istanze con driver RedHat PV non sono supportate**) Windows Server 2012 Windows Server 2012 R2
@@ -41,42 +41,42 @@ Il ripristino del sito può essere utilizzato toomigrate EC2 istanze in esecuzio
 
 Per la distribuzione è necessario quanto segue:
 
-* **Server di configurazione**: una macchina virtuale di EC2 Amazon che esegue Windows Server 2012 R2 viene distribuito come server di configurazione hello. Per impostazione predefinita, hello altri componenti di Azure Site Recovery (server di elaborazione e il server di destinazione master) vengono installati quando si distribuisce il server di configurazione hello. In questo articolo vengono descritti i passaggi hello per la migrazione in hello portale di Azure e sono basati su istruzioni hello per [maggiori informazioni](site-recovery-components.md)
+* **Server di configurazione**: una macchina virtuale Amazon EC2 che esegue Windows Server 2012 R2 viene distribuita come server di configurazione. Per impostazione predefinita, gli altri componenti di Azure Site Recovery (server di elaborazione e server di destinazione master) vengono installati quando si distribuisce il server di configurazione. Questo articolo descrive i passaggi per la migrazione nel portale di Azure in base alle istruzioni indicate in [Altre informazioni](site-recovery-components.md)
 
-* **Le istanze di EC2**: hello Amazon EC2 le istanze di macchine virtuali che si desidera toomigrate.
+* **Istanze EC2**: istanze delle macchine virtuali Amazon EC2 da migrare.
 
 ## <a name="deployment-steps"></a>Passaggi di distribuzione
 
 1. Creare un insieme di credenziali dei servizi di ripristino.
-2. Gruppo di sicurezza delle istanze EC2 Hello deve disporre di regole configurate tooallow comunicazione tra l'istanza di EC2 hello che si desidera toomigrate e hello istanza su cui si prevede di toodeploy hello del Server di configurazione.
+2. Il gruppo di sicurezza delle istanze di EC2 deve avere regole configurate per consentire la comunicazione tra l'istanza EC2 di cui si desidera eseguire la migrazione e l'istanza in cui si prevede di distribuire il server di configurazione.
 
-3. In hello stesso Amazon di Cloud privato virtuale come le istanze di EC2, distribuire un server di configurazione di ripristino automatico di sistema. Fare riferimento hello VMware / fisici tooAzure prerequisiti per i requisiti di distribuzione server di configurazione.
+3. Nello stesso cloud privato virtuale di Amazon delle istanze EC2 distribuire un server di configurazione di ripristino automatico di sistema. Per i requisiti di distribuzione del server di configurazione, fare riferimento ai prerequisiti per la migrazione da server VMware/fisici in Azure.
 
     ![DeployCS](./media/site-recovery-migrate-aws-to-azure/migration_pic2.png)
 
-4.  Dopo che il server di configurazione è distribuito in AWS e registrato con l'insieme di credenziali di servizi di ripristino, verrà visualizzato il server di configurazione di hello e server di elaborazione in dell'infrastruttura di Site Recovery come illustrato di seguito:
+4.  Dopo che il server di configurazione è stato distribuito in AWS e registrato con l'insieme di credenziali di Servizi di ripristino, il server di configurazione e quello di elaborazione vengono visualizzati nell'infrastruttura di Site Recovery, come illustrato nella figura seguente:
 
     ![CSinVault](./media/site-recovery-migrate-aws-to-azure/migration_pic3.png)
 
-5. Dopo aver distribuito il server di configurazione di hello (operazione può richiedere per tale too15 minustes tooappear), convalidare in grado di comunicare con le macchine virtuali hello che si desidera toomigrate.
+5. Dopo avere distribuito il server di configurazione (la visualizzazione potrebbe richiedere fino a 15 minuti), verificare che possa comunicare con le macchine virtuali di cui si vuole eseguire la migrazione.
 
 6. [Configurare le impostazioni di replica](site-recovery-setup-replication-settings-vmware.md).
 
-7. Abilitare la replica: abilitare la replica per le macchine virtuali desiderate toomigrate hello. È possibile individuare le istanze di EC2 hello utilizzando indirizzi IP privati hello, che è possibile ottenere dalla console EC2 hello.
+7. Abilitare la replica per le macchine virtuali di cui eseguire la migrazione. È possibile individuare le istanze EC2 usando l'indirizzo IP privato che è possibile ottenere dalla console EC2.
 
     ![SelectVM](./media/site-recovery-migrate-aws-to-azure/migration_pic4.png)
 
-8. Dopo che sono stati protetti istanze hello EC2 e hello tooAzure di replica è stata completata, [eseguire un Failover di Test](site-recovery-test-failover-to-azure.md) toovalidate le prestazioni dell'applicazione in Azure.
+8. Dopo che le istanze EC2 sono state protette e la replica in Azure è stata completata, [eseguire un failover di test](site-recovery-test-failover-to-azure.md) per convalidare le prestazioni dell'applicazione in Azure.
 
     ![TFI](./media/site-recovery-migrate-aws-to-azure/migration_pic5.png)
 
-9. Eseguire un Failover da AWS tooAzure per ogni macchina virtuale. Facoltativamente, è possibile creare un piano di ripristino ed eseguire un Failover, toomigrate più macchine virtuali da AWS tooAzure. [Ulteriori informazioni](site-recovery-create-recovery-plans.md) sui piani di ripristino.
+9. Eseguire un failover da AWS in Azure per ogni macchina virtuale. Facoltativamente, è possibile creare un piano di ripristino ed eseguire un failover per migrare più macchine virtuali da AWS ad Azure. [Ulteriori informazioni](site-recovery-create-recovery-plans.md) sui piani di ripristino.
 
-10. Per la migrazione, non è necessario toocommit un failover. Invece si seleziona l'opzione di completare la migrazione di hello per ogni computer si desidera toomigrate. Hello azione di completare la migrazione termina il processo di migrazione hello, rimuove la replica per macchina hello e interrompe il ripristino del sito per la macchina hello di fatturazione.
+10. Per la migrazione, non è necessario eseguire il commit di un failover. Si seleziona invece l'opzione Completa la migrazione per ogni computer di cui si vuole eseguire la migrazione. Tale opzione consente di completare il processo di migrazione e di rimuovere la replica e interrompere la fatturazione di Site Recovery per il computer.
 
-    ![Migrazione](./media/site-recovery-migrate-aws-to-azure/migration_pic6.png)
+    ![Eseguire la migrazione](./media/site-recovery-migrate-aws-to-azure/migration_pic6.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- [Preparare la migrazione di macchine tooenable replica](site-recovery-azure-to-azure-after-migration.md) tooanother area per esigenze di ripristino di emergenza.
+- [Preparare le macchine sottoposte a migrazione per abilitare la replica](site-recovery-azure-to-azure-after-migration.md) in un'altra area per il ripristino di emergenza.
 - Iniziare a proteggere i carichi di lavoro [replicando le macchine virtuali di Azure](site-recovery-azure-to-azure.md).

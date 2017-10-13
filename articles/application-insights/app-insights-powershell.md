@@ -1,5 +1,5 @@
 ---
-title: aaaAutomate Azure Application Insights con PowerShell | Documenti Microsoft
+title: Automatizzare Azure Application Insights con PowerShell | Microsoft Docs
 description: "Automatizzare la creazione di risorse, avvisi e test di disponibilità in PowerShell usando un modello di Azure Resource Manager."
 services: application-insights
 documentationcenter: 
@@ -13,24 +13,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/02/2017
 ms.author: bwren
-ms.openlocfilehash: ebd336eafba58a690a0e8ffbd1c74f7e93dbb682
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 88dbb9515300f847789bc889911cdeff5f5bdb53
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 #  <a name="create-application-insights-resources-using-powershell"></a>Creazione di risorse Application Insights con PowerShell
-Questo articolo illustra come tooautomate hello creazione e l'aggiornamento di [Application Insights](app-insights-overview.md) risorse automaticamente, usando Gestione risorse di Azure. Questo procedimento potrebbe, ad esempio, essere utilizzato come parte di un processo di compilazione. Insieme a risorsa di Application Insights hello base, è possibile creare [test web disponibilità](app-insights-monitor-web-app-availability.md), impostare i [avvisi](app-insights-alerts.md), hello impostare [prezzi schema](app-insights-pricing.md)e creare altre Azure risorse.
+L'articolo descrive come automatizzare la creazione e l'aggiornamento di risorse di [Application Insights](app-insights-overview.md) usando Azure Resource Manager. Questo procedimento potrebbe, ad esempio, essere utilizzato come parte di un processo di compilazione. Insieme alla risorsa di base di Application Insights, è possibile creare [test Web di disponibilità](app-insights-monitor-web-app-availability.md), configurare [avvisi](app-insights-alerts.md), impostare lo [schema dei prezzi](app-insights-pricing.md) e creare altre risorse di Azure.
 
-Hello toocreating chiave queste risorse è modelli JSON per [Azure Resource Manager](../azure-resource-manager/powershell-azure-resource-manager.md). In breve, la procedura hello è: scaricare le definizioni di JSON hello di risorse esistente. parametrizzare determinati valori, ad esempio nomi; e quindi eseguire il modello di hello ogni volta che si desidera toocreate una nuova risorsa. È possibile distribuire contemporaneamente più risorse, toocreate che tutti in uno proseguire, ad esempio, un monitoraggio di app con i test di disponibilità, avvisi e archiviazione per l'esportazione continua. Esistono alcuni toosome sfumature parametrizzazioni hello, che verrà illustrato di seguito.
+La chiave per la creazione di queste risorse è rappresentata dai modelli JSON per [Gestione risorse di Azure](../azure-resource-manager/powershell-azure-resource-manager.md). In breve, la procedura consiste in: scaricare le definizioni JSON delle risorse esistenti; impostare i parametri per determinati valori, come ad esempio nomi; ed eseguire il modello ogni volta che si desidera creare una nuova risorsa. È possibile raggruppare diverse risorse per crearle tutte in un’unica volta - ad esempio, un monitoraggio app con test di disponibilità, avvisi e risorsa di archiviazione per l'esportazione continua. Esistono alcune sottigliezze di alcuni parametri, che verranno illustrate di seguito.
 
 ## <a name="one-time-setup"></a>Installazione singola
-Se non si è mai usato PowerShell con la sottoscrizione di Azure:
+Se non si è utilizzato prima PowerShell con la sottoscrizione di Azure:
 
-Installare il modulo di Azure Powershell hello computer hello in cui si desidera script hello toorun:
+Installare il modulo Azure Powershell nel computer in cui si desidera eseguire gli script:
 
 1. Installare [Installazione guidata piattaforma Web Microsoft (v5 o versione successiva)](http://www.microsoft.com/web/downloads/platform.aspx).
-2. Usarlo tooinstall Microsoft Azure Powershell.
+2. Usarla per installare Microsoft Azure Powershell.
 
 ## <a name="create-an-azure-resource-manager-template"></a>Creare un modello di Azure Resource Manager
 Creare un nuovo file con estensione .json - definirlo `template1.json` in questo esempio. Copiare questo contenuto al suo interno:
@@ -43,7 +43,7 @@ Creare un nuovo file con estensione .json - definirlo `template1.json` in questo
             "appName": {
                 "type": "string",
                 "metadata": {
-                    "description": "Enter hello application name."
+                    "description": "Enter the application name."
                 }
             },
             "appType": {
@@ -56,7 +56,7 @@ Creare un nuovo file con estensione .json - definirlo `template1.json` in questo
                     "other"
                 ],
                 "metadata": {
-                    "description": "Enter hello application type."
+                    "description": "Enter the application type."
                 }
             },
             "appLocation": {
@@ -69,7 +69,7 @@ Creare un nuovo file con estensione .json - definirlo `template1.json` in questo
                     "North Europe"
                 ],
                 "metadata": {
-                    "description": "Enter hello application location."
+                    "description": "Enter the application location."
                 }
             },
             "priceCode": {
@@ -95,7 +95,7 @@ Creare un nuovo file con estensione .json - definirlo `template1.json` in questo
                 "type": "int",
                 "defaultValue": 24,
                 "metadata": {
-                    "description": "Enter daily quota reset hour in UTC (0 too23). Values outside hello range will get a random reset hour."
+                    "description": "Enter daily quota reset hour in UTC (0 to 23). Values outside the range will get a random reset hour."
                 }
             },
             "warningThreshold": {
@@ -104,7 +104,7 @@ Creare un nuovo file con estensione .json - definirlo `template1.json` in questo
                 "minValue": 1,
                 "maxValue": 100,
                 "metadata": {
-                    "description": "Enter hello % value of daily quota after which warning mail toobe sent. "
+                    "description": "Enter the % value of daily quota after which warning mail to be sent. "
                 }
             }
         },
@@ -153,7 +153,7 @@ Creare un nuovo file con estensione .json - definirlo `template1.json` in questo
 
 
 ## <a name="create-application-insights-resources"></a>Creare risorse di Application Insights
-1. In PowerShell, eseguire l'accesso tooAzure:
+1. In PowerShell accedere ad Azure:
    
     `Login-AzureRmAccount`
 2. Eseguire un comando simile al seguente:
@@ -166,14 +166,14 @@ Creare un nuovo file con estensione .json - definirlo `template1.json` in questo
 
     ``` 
    
-   * `-ResourceGroupName`è il gruppo di hello in cui si desidera nuove risorse di toocreate hello.
-   * `-TemplateFile`deve essere precedente parametri personalizzati hello.
-   * `-appName`nome Hello di hello risorsa toocreate.
+   * `-ResourceGroupName` è il gruppo in cui si vogliono creare le nuove risorse.
+   * `-TemplateFile` deve precedere i parametri personalizzati.
+   * `-appName` è il nome della risorsa da creare.
 
-È possibile aggiungere altri parametri, le relative descrizioni sono disponibili nella sezione parametri hello del modello di hello.
+È possibile aggiungere altri parametri le cui descrizioni sono disponibili nella sezione del modello dedicata ai parametri.
 
-## <a name="tooget-hello-instrumentation-key"></a>chiave di strumentazione hello tooget
-Dopo la creazione di una risorsa dell'applicazione, è necessario che la chiave di strumentazione hello: 
+## <a name="to-get-the-instrumentation-key"></a>Per impostare la chiave di strumentazione
+Dopo la creazione di una risorsa applicazione, è necessaria la chiave di strumentazione: 
 
 ```PS
     $resource = Find-AzureRmResource -ResourceNameEquals "<YOUR APP NAME>" -ResourceType "Microsoft.Insights/components"
@@ -183,11 +183,11 @@ Dopo la creazione di una risorsa dell'applicazione, è necessario che la chiave 
 
 
 <a id="price"></a>
-## <a name="set-hello-price-plan"></a>Piano di prezzo hello set
+## <a name="set-the-price-plan"></a>Impostare il piano tariffario
 
-È possibile impostare hello [piano prezzo](app-insights-pricing.md).
+È possibile impostare il [piano tariffario](app-insights-pricing.md).
 
-toocreate una risorsa app hello Enterprise prezzo piano, utilizzando hello modello precedente:
+Per creare una risorsa app con il piano tariffario Enterprise, usando il modello precedente:
 
 ```PS
         New-AzureRmResourceGroupDeployment -ResourceGroupName Fabrikam `
@@ -201,16 +201,16 @@ toocreate una risorsa app hello Enterprise prezzo piano, utilizzando hello model
 |1|Basic|
 |2|Enterprise|
 
-* Se si desidera solo il piano toouse hello predefinito prezzo di base, è possibile omettere risorsa CurrentBillingFeatures hello dal modello hello.
-* Se si vuole piano di prezzo hello toochange dopo risorse componente hello sono stata creata, è possibile utilizzare un modello che include risorse "microsoft.insights/components" hello. Inoltre, omettere hello `dependsOn` nodo da hello fatturazione delle risorse. 
+* Se si intende usare solo il piano tariffario Basic predefinito, è possibile omettere la risorsa CurrentBillingFeatures dal modello.
+* Se si vuole modificare il piano tariffario dopo la creazione della risorsa dei componenti, è possibile usare un modello non contenente la risorsa "microsoft.insights/components". Omettere anche il nodo `dependsOn` nella risorsa della fatturazione. 
 
-tooverify hello piano prezzo aggiornato, esaminare il pannello hello "Funzionalità + prezzi" nel browser hello. **Aggiorna visualizzazione esplorazione hello** toomake che sia possibile visualizzare lo stato più recente di hello.
+Per verificare il piano tariffario aggiornato, esaminare il pannello "Funzionalità + prezzi" nel browser. **Aggiornare la visualizzazione nel browser** per assicurarsi che venga visualizzato lo stato più recente.
 
 
 
 ## <a name="add-a-metric-alert"></a>Aggiungere un avviso per la metrica
 
-tooset di un avviso di metriche in hello stesso tempo come risorsa app, codice di tipo merge simile al seguente nel file di modello hello:
+Per configurare un avviso per la metrica contemporaneamente alla risorsa app, unire il codice seguente nel file modello:
 
 ```JSON
 {
@@ -236,7 +236,7 @@ tooset di un avviso di metriche in hello stesso tempo come risorsa app, codice d
       "type": "Microsoft.Insights/alertrules",
       "apiVersion": "2014-04-01",
       "location": "[parameters('appLocation')]",
-      // Ensure this resource is created after hello app resource:
+      // Ensure this resource is created after the app resource:
       "dependsOn": [
         "[resourceId('Microsoft.Insights/components', parameters('appName'))]"
       ],
@@ -272,22 +272,22 @@ tooset di un avviso di metriche in hello stesso tempo come risorsa app, codice d
 }
 ```
 
-Quando si richiama il modello di hello, è possibile aggiungere facoltativamente questo parametro:
+Quando si richiama il modello, se si vuole, è possibile aggiungere questo parametro:
 
     `-responseTime 2`
 
 È possibile impostare parametri anche per altri campi. 
 
-toofind nomi di tipo hello e i dettagli di configurazione di altre regole di avviso, creare manualmente una regola e quindi controllare in [Azure Resource Manager](https://resources.azure.com/). 
+Per trovare i nomi dei tipi e i dettagli di configurazione di altre regole di avviso, creare una regola manualmente e quindi esaminarla in [Azure Resource Manager](https://resources.azure.com/). 
 
 
 ## <a name="add-an-availability-test"></a>Aggiungere un test di disponibilità
 
-Questo esempio è per un test di ping (tootest una singola pagina).  
+Questo esempio è relativo a un test di ping (per testare una singola pagina).  
 
-**Esistono due parti** in un test di disponibilità: test di hello e avviso hello di notifica di errori.
+**Sono due le parti** di un test di disponibilità: il test stesso e l'avviso che notifica gli errori.
 
-Merge hello seguente codice nel file di modello hello che crea l'applicazione hello.
+Unire il codice seguente nel file modello che crea l'app.
 
 ```JSON
 {
@@ -301,13 +301,13 @@ Merge hello seguente codice nel file di modello hello che crea l'applicazione he
     },
     resources: { ... // existing resources here ...
     { //
-      // Availability test: part 1 configures hello test
+      // Availability test: part 1 configures the test
       //
       "name": "[variables('pingTestName')]",
       "type": "Microsoft.Insights/webtests",
       "apiVersion": "2014-04-01",
       "location": "[parameters('appLocation')]",
-      // Ensure this is created after hello app resource:
+      // Ensure this is created after the app resource:
       "dependsOn": [
         "[resourceId('Microsoft.Insights/components', parameters('appName'))]"
       ],
@@ -334,7 +334,7 @@ Merge hello seguente codice nel file di modello hello che crea l'applicazione he
           }
         ],
         "Configuration": {
-          "WebTest": "[concat('<WebTest   Name=\"', variables('pingTestName'), '\"   Enabled=\"True\"         CssProjectStructure=\"\"    CssIteration=\"\"  Timeout=\"120\"  WorkItemIds=\"\"         xmlns=\"http://microsoft.com/schemas/VisualStudio/TeamTest/2010\"         Description=\"\"  CredentialUserName=\"\"  CredentialPassword=\"\"         PreAuthenticate=\"True\"  Proxy=\"default\"  StopOnError=\"False\"         RecordedResultFile=\"\"  ResultsLocale=\"\">  <Items>  <Request Method=\"GET\"    Version=\"1.1\"  Url=\"', parameters('Url'),   '\" ThinkTime=\"0\"  Timeout=\"300\" ParseDependentRequests=\"True\"         FollowRedirects=\"True\" RecordResult=\"True\" Cache=\"False\"         ResponseTimeGoal=\"0\"  Encoding=\"utf-8\"  ExpectedHttpStatusCode=\"200\"         ExpectedResponseUrl=\"\" ReportingName=\"\" IgnoreHttpStatusCode=\"False\" />        </Items>  <ValidationRules> <ValidationRule  Classname=\"Microsoft.VisualStudio.TestTools.WebTesting.Rules.ValidationRuleFindText, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a\" DisplayName=\"Find Text\"         Description=\"Verifies hello existence of hello specified text in hello response.\"         Level=\"High\"  ExectuionOrder=\"BeforeDependents\">  <RuleParameters>        <RuleParameter Name=\"FindText\" Value=\"',   parameters('pingText'), '\" />  <RuleParameter Name=\"IgnoreCase\" Value=\"False\" />  <RuleParameter Name=\"UseRegularExpression\" Value=\"False\" />  <RuleParameter Name=\"PassIfTextFound\" Value=\"True\" />  </RuleParameters> </ValidationRule>  </ValidationRules>  </WebTest>')]"
+          "WebTest": "[concat('<WebTest   Name=\"', variables('pingTestName'), '\"   Enabled=\"True\"         CssProjectStructure=\"\"    CssIteration=\"\"  Timeout=\"120\"  WorkItemIds=\"\"         xmlns=\"http://microsoft.com/schemas/VisualStudio/TeamTest/2010\"         Description=\"\"  CredentialUserName=\"\"  CredentialPassword=\"\"         PreAuthenticate=\"True\"  Proxy=\"default\"  StopOnError=\"False\"         RecordedResultFile=\"\"  ResultsLocale=\"\">  <Items>  <Request Method=\"GET\"    Version=\"1.1\"  Url=\"', parameters('Url'),   '\" ThinkTime=\"0\"  Timeout=\"300\" ParseDependentRequests=\"True\"         FollowRedirects=\"True\" RecordResult=\"True\" Cache=\"False\"         ResponseTimeGoal=\"0\"  Encoding=\"utf-8\"  ExpectedHttpStatusCode=\"200\"         ExpectedResponseUrl=\"\" ReportingName=\"\" IgnoreHttpStatusCode=\"False\" />        </Items>  <ValidationRules> <ValidationRule  Classname=\"Microsoft.VisualStudio.TestTools.WebTesting.Rules.ValidationRuleFindText, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a\" DisplayName=\"Find Text\"         Description=\"Verifies the existence of the specified text in the response.\"         Level=\"High\"  ExectuionOrder=\"BeforeDependents\">  <RuleParameters>        <RuleParameter Name=\"FindText\" Value=\"',   parameters('pingText'), '\" />  <RuleParameter Name=\"IgnoreCase\" Value=\"False\" />  <RuleParameter Name=\"UseRegularExpression\" Value=\"False\" />  <RuleParameter Name=\"PassIfTextFound\" Value=\"True\" />  </RuleParameters> </ValidationRule>  </ValidationRules>  </WebTest>')]"
         },
         "SyntheticMonitorId": "[variables('pingTestName')]"
       }
@@ -342,7 +342,7 @@ Merge hello seguente codice nel file di modello hello che crea l'applicazione he
 
     {
       //
-      // Availability test: part 2, hello alert rule
+      // Availability test: part 2, the alert rule
       //
       "name": "[variables('pingAlertRuleName')]",
       "type": "Microsoft.Insights/alertrules",
@@ -384,39 +384,39 @@ Merge hello seguente codice nel file di modello hello che crea l'applicazione he
 }
 ```
 
-codici di hello toodiscover per altre posizioni di test o la creazione di hello tooautomate di test web più complesse, creare manualmente un esempio e quindi parametrizzare codice hello da [Azure Resource Manager](https://resources.azure.com/).
+Per trovare i codici per altre posizioni di test o per automatizzare la creazione di test Web più complessi, creare un esempio manualmente e quindi impostare i parametri per il codice da [Azure Resource Manager](https://resources.azure.com/).
 
 ## <a name="add-more-resources"></a>Aggiungere altre risorse
 
-creazione di hello tooautomate di qualsiasi altra risorsa di qualsiasi tipo, creare un esempio in modo manuale e quindi copiare e parametrizzare il codice da [Azure Resource Manager](https://resources.azure.com/). 
+Per automatizzare la creazione di altre risorse di qualsiasi tipo, creare un esempio manualmente e quindi copiare il codice e impostarne i parametri da [Azure Resource Manager](https://resources.azure.com/). 
 
-1. Aprire [Gestione risorse di Azure](https://resources.azure.com/). Scorrere verso il basso `subscriptions/resourceGroups/<your resource group>/providers/Microsoft.Insights/components`, tooyour risorsa dell'applicazione. 
+1. Aprire [Gestione risorse di Azure](https://resources.azure.com/). Scorrere verso il basso `subscriptions/resourceGroups/<your resource group>/providers/Microsoft.Insights/components` fino alla risorsa dell'applicazione. 
    
     ![Navigare in Esplora risorse di Azure](./media/app-insights-powershell/01.png)
    
-    *Componenti* è hello base risorse di Application Insights per la visualizzazione di applicazioni. Sono disponibili risorse separate per le regole di avviso e i test web disponibilità di hello associati.
-2. Hello copia JSON del componente hello nella posizione appropriata hello in `template1.json`.
+    *Componenti* sono le risorse base di Application Insights per la visualizzazione di applicazioni. Sono disponibili risorse separate per le regole di avviso associate e i test web di disponibilità.
+2. Copiare i JSON del componente nella posizione appropriata in `template1.json`.
 3. Eliminare queste proprietà:
    
    * `id`
    * `InstrumentationKey`
    * `CreationDate`
    * `TenantId`
-4. Aprire le sezioni utilizzata e alertrules hello e copiare hello JSON per i singoli elementi nel modello. (Non la si copia da hello utilizzata o alertrules nodi: passare elementi hello sottostanti.)
+4. Aprire le sezioni webtests e alertrules e copiare i JSON per i singoli elementi nel modello. (Non copiare dai nodi webtests e alertrules: passare agli elementi sotto ad essi.)
    
-    Ciascun test web dispone di una regola di avviso associata, in modo che sia toocopy due di essi.
+    Ciascun test web dispone di una regola di avviso associata, perciò è necessario copiarli entrambi.
    
     È possibile includere anche avvisi nelle metriche. [Nomi delle metriche](app-insights-powershell-alerts.md#metric-names).
 5. Inserire questa riga in ciascuna risorsa:
    
     `"apiVersion": "2015-05-01",`
 
-### <a name="parameterize-hello-template"></a>Parametri di modello hello
-Ora si dispone di nomi specifici di hello tooreplace con parametri. troppo[un modello di parametrizzare](../azure-resource-manager/resource-group-authoring-templates.md), si scrivono espressioni utilizzando un [set di funzioni di supporto](../azure-resource-manager/resource-group-template-functions.md). 
+### <a name="parameterize-the-template"></a>Impostazione dei parametri per il modello
+È necessario sostituire i nomi specifici con i parametri. Per [impostare i parametri di un modello](../azure-resource-manager/resource-group-authoring-templates.md), si scrivono espressioni mediante un [set di funzioni di supporto](../azure-resource-manager/resource-group-template-functions.md). 
 
-Non è possibile parametrizzare solo una parte di una stringa, pertanto utilizzare `concat()` toobuild stringhe.
+È Impossibile impostare i parametri per una sola parte di una stringa, quindi utilizzare `concat()` per compilare stringhe.
 
-Ecco alcuni esempi di sostituzioni hello è opportuno toomake. Sono presenti più occorrenze di ogni sostituzione. Potrebbero esserne necessarie altre nel modello. Questi esempi utilizzano parametri di hello e le variabili che sono definite nella parte superiore di hello del modello di hello.
+Di seguito sono riportati esempi delle sostituzioni che si possono apportare. Sono presenti più occorrenze di ogni sostituzione. Potrebbero esserne necessarie altre nel modello. Questi esempi utilizzano i parametri e le variabili definite nella parte superiore del modello.
 
 | find | sostituire con |
 | --- | --- |
@@ -429,13 +429,13 @@ Ecco alcuni esempi di sostituzioni hello è opportuno toomake. Sono presenti pi�
 | `"myappname"` (minuscolo) |`"[toLower(parameters('appName'))]"` |
 | `"<WebTest Name=\"myWebTest\" ...`<br/>` Url=\"http://fabrikam.com/home\" ...>"` |`[concat('<WebTest Name=\"',` <br/> `parameters('webTestName'),` <br/> `'\" ... Url=\"', parameters('Url'),` <br/> `'\"...>')]"`<br/>Eliminare GUID e ID. |
 
-### <a name="set-dependencies-between-hello-resources"></a>Set di dipendenze tra le risorse di hello
-Azure è necessario impostare le risorse di hello in stretto ordine. toomake che un programma di installazione venga completata prima di hello inizia successivamente, aggiungere righe di dipendenze:
+### <a name="set-dependencies-between-the-resources"></a>Impostazione di dipendenze tra le risorse
+Azure deve configurare le risorse in ordine fisso. Per assicurarsi che un programma di installazione venga completato prima che inizi il successivo, aggiungere le righe delle dipendenze:
 
-* La disponibilità di hello testare risorsa:
+* Nella risorsa del test di disponibilità:
   
     `"dependsOn": ["[resourceId('Microsoft.Insights/components', parameters('appName'))]"],`
-* Nella risorsa di avviso hello per un test di disponibilità:
+* Nella risorsa avviso per un test di disponibilità:
   
     `"dependsOn": ["[resourceId('Microsoft.Insights/webtests', variables('testName'))]"],`
 
@@ -447,7 +447,7 @@ Altri articoli di automazione:
 * [Creare una risorsa di Application Insights](app-insights-powershell-script-create-resource.md) : metodo rapido che esclude l'uso di un modello.
 * [Configurare avvisi](app-insights-powershell-alerts.md)
 * [Creare test Web](https://azure.microsoft.com/blog/creating-a-web-test-alert-programmatically-with-application-insights/)
-* [Inviare informazioni di diagnostica Azure tooApplication](app-insights-powershell-azure-diagnostics.md)
-* [Distribuire tooAzure da GitHub](http://blogs.msdn.com/b/webdev/archive/2015/09/16/deploy-to-azure-from-github-with-application-insights.aspx)
+* [Inviare i dati del servizio Diagnostica di Azure ad Application Insights](app-insights-powershell-azure-diagnostics.md)
+* [Deploy to Azure from GitHub](http://blogs.msdn.com/b/webdev/archive/2015/09/16/deploy-to-azure-from-github-with-application-insights.aspx) (Distribuire in Azure da GitHub)
 * [Creare annotazioni di rilascio](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/API/CreateReleaseAnnotation.ps1)
 

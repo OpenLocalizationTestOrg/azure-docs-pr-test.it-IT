@@ -1,6 +1,6 @@
 ---
-title: disco rigido virtuale aaaUpload file tooAzure DevTest Labs con AzCopy | Documenti Microsoft
-description: Caricare l'account di archiviazione del toolab file disco rigido virtuale con AzCopy
+title: Caricare un file VHD in Azure DevTest Labs usando AzCopy | Microsoft Docs
+description: Caricare un file VHD nell'account di archiviazione del lab usando AzCopy
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/10/2017
 ms.author: tarcher
-ms.openlocfilehash: 14f9e933b0bd27451f6bcb94841ecc381213e578
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a4f43354740d9f17570932b0b9c753f46d67dc33
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="upload-vhd-file-toolabs-storage-account-using-azcopy"></a>Caricare l'account di archiviazione del toolab file disco rigido virtuale con AzCopy
+# <a name="upload-vhd-file-to-labs-storage-account-using-azcopy"></a>Caricare un file VHD nell'account di archiviazione del lab usando AzCopy
 
 [!INCLUDE [devtest-lab-upload-vhd-selector](../../includes/devtest-lab-upload-vhd-selector.md)]
 
-In Azure DevTest Labs, i file VHD possono essere utilizzato toocreate immagini personalizzate, che sono utilizzati tooprovision le macchine virtuali. Hello alla procedura seguente fornisce indicazioni tooupload utilità della riga di comando di AzCopy hello utilizzando account di archiviazione del laboratorio di tooa file disco rigido virtuale. Dopo aver caricato il file VHD, hello [passaggi successivi sezione](#next-steps) elenca alcuni articoli che illustrano come un'immagine personalizzata da hello toocreate caricamento del file di disco rigido virtuale. Per altre informazioni sui dischi e sui dischi rigidi virtuali in Azure, vedere [Informazioni sui dischi e sui dischi rigidi virtuali per le macchine virtuali](../virtual-machines/linux/about-disks-and-vhds.md)
+In Azure DevTest Labs è possibile usare i file VHD per creare immagini personalizzate da utilizzare per il provisioning di macchine virtuali. La procedura seguente illustra come usare l'utilità della riga di comando AzCopy per caricare un file VHD nell'account di archiviazione di un lab. Dopo avere caricato il file VHD, vedere la [sezione Passaggi successivi](#next-steps) per un elenco di articoli che illustrano come creare un'immagine personalizzata dal file VHD caricato. Per altre informazioni sui dischi e sui dischi rigidi virtuali in Azure, vedere [Informazioni sui dischi e sui dischi rigidi virtuali per le macchine virtuali](../virtual-machines/linux/about-disks-and-vhds.md)
 
 > [!NOTE] 
 >  
@@ -32,47 +32,47 @@ In Azure DevTest Labs, i file VHD possono essere utilizzato toocreate immagini p
 
 ## <a name="step-by-step-instructions"></a>Istruzioni dettagliate
 
-Hello seguenti passaggi percorso di caricamento di un disco rigido virtuale del file tooAzure DevTest Labs utilizzando [AzCopy](http://aka.ms/downloadazcopy). 
+La procedura seguente illustra come caricare un file VHD in Azure DevTest Labs usando [AzCopy](http://aka.ms/downloadazcopy). 
 
-1. Ottenere il nome di hello dell'account di archiviazione dell'ambiente di test di hello utilizzando hello portale di Azure:
+1. Ottenere il nome dell'account di archiviazione del lab tramite il portale di Azure:
 
-1. Accedi toohello [portale di Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+1. Accedere al [portale di Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
 
-1. Selezionare **più servizi**, quindi selezionare **DevTest Labs** dall'elenco di hello.
+1. Selezionare **Altri servizi** e quindi **DevTest Labs** dall'elenco.
 
-1. Elenco dei laboratori hello selezionare lab desiderato hello.  
+1. Nell'elenco dei lab selezionare il lab desiderato.  
 
-1. Nel pannello del lab hello, selezionare **configurazione**. 
+1. Nel pannello del lab selezionare **Configurazione**. 
 
-1. Lab hello **configurazione** pannello seleziona **immagini personalizzate (VHD)**.
+1. Nel pannello **Configurazione** del lab selezionare **Immagini personalizzate (dischi rigidi virtuali)**.
 
-1. In hello **immagini personalizzate** pannello selezionare **+ Aggiungi**. 
+1. Nel pannello **Immagini personalizzate** selezionare **+Aggiungi**. 
 
-1. In hello **immagine personalizzata** pannello seleziona **VHD**.
+1. Nel pannello **Immagine personalizzata** selezionare **VHD**.
 
-1. In hello **VHD** pannello seleziona **caricare un disco rigido virtuale con PowerShell**.
+1. Nel pannello **VHD** selezionare l'opzione **Carica un file VHD con PowerShell**.
 
     ![Carica un file VHD con PowerShell](./media/devtest-lab-upload-vhd-using-azcopy/upload-image-using-psh.png)
 
-1. Hello **carica un'immagine con PowerShell** pannello viene visualizzato un toohello chiamata **Add-AzureVhd** cmdlet. primo parametro Hello (*destinazione*) contiene hello URI per un contenitore blob (*Carica*) in hello seguente formato:
+1. Nel pannello **Carica un'immagine con PowerShell** è visualizzata una chiamata al cmdlet **Add-AzureVhd**. Il primo parametro (*Destination*) contiene l'URI per un contenitore BLOB (*uploads*) nel formato seguente:
 
     ```
     https://<STORAGE-ACCOUNT-NAME>.blob.core.windows.net/uploads/...
     ``` 
 
-1. Prendere nota di hello completo URI usato nei passaggi successivi.
+1. Prendere nota dell'URI completo in quanto verrà usato nei passaggi successivi.
 
-1. Caricare file VHD hello tramite AzCopy:
+1. Caricare il file VHD usando AzCopy:
  
-1. [Scaricare e installare una versione più recente di hello di AzCopy](http://aka.ms/downloadazcopy).
+1. [Scaricare e installare la versione più recente di AzCopy](http://aka.ms/downloadazcopy).
 
-1. Aprire una finestra di comando e passare toohello AzCopy directory di installazione. Facoltativamente, è possibile aggiungere hello AzCopy tooyour sistema percorso di installazione. Per impostazione predefinita, AzCopy è installato toohello seguente directory:
+1. Aprire una finestra di comando e passare alla directory di installazione di AzCopy. Se lo si desidera, è possibile aggiungere il percorso di installazione di AzCopy al percorso di sistema. Per impostazione predefinita, AzCopy viene installato nella directory seguente:
 
     ```command-line
     %ProgramFiles(x86)%\Microsoft SDKs\Azure\AzCopy
     ```
 
-1. Per eseguire hello comando al prompt dei comandi di hello seguente utilizzando hello storage account chiave e del blob URI del contenitore. Hello *vhdFileName* . il valore deve toobe racchiuso tra virgolette. processo Hello di caricamento di un file VHD può essere lungo a seconda delle dimensioni di hello del file VHD hello e la velocità della connessione.   
+1. Usando la chiave dell'account di archiviazione e l'URI del contenitore BLOB, eseguire il comando seguente nel prompt dei comandi. Il valore *vhdFileName* deve essere racchiuso tra virgolette. Il processo di caricamento di un file VHD può richiedere molto tempo a seconda delle dimensioni del file VHD e della velocità della connessione.   
 
     ```command-line
     AzCopy /Source:<sourceDirectory> /Dest:<blobContainerUri> /DestKey:<storageAccountKey> /Pattern:"<vhdFileName>" /BlobType:page
@@ -80,5 +80,5 @@ Hello seguenti passaggi percorso di caricamento di un disco rigido virtuale del 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- [Creare un'immagine personalizzata in Azure DevTest Labs da un file VHD utilizzando hello portale di Azure](devtest-lab-create-template.md)
+- [Creare un'immagine personalizzata in Azure DevTest Labs da un file VHD usando il portale di Azure](devtest-lab-create-template.md)
 - [Creare un'immagine personalizzata in Azure DevTest Labs da un file VHD usando PowerShell](devtest-lab-create-custom-image-from-vhd-using-powershell.md)

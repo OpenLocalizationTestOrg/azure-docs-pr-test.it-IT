@@ -1,6 +1,6 @@
 ---
-title: aaaOverview dei log di diagnostica di Azure | Documenti Microsoft
-description: "Informazioni su quali sono i log di diagnostica Azure e come è possibile usarli toounderstand eventi che si verificano all'interno di una risorsa di Azure."
+title: Panoramica dei log di diagnostica di Azure | Microsoft Docs
+description: Informazioni sui log di diagnostica di Azure e su come usarli per comprendere gli eventi che si verificano all'interno di una risorsa di Azure.
 author: johnkemnetz
 manager: orenr
 editor: 
@@ -14,36 +14,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/21/2017
 ms.author: johnkem; magoedte
-ms.openlocfilehash: e38991c540626b4bb5b5b9a995276881ee58f368
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d59abde29fc7b73a799e5bf3659b02f824b693de
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="collect-and-consume-log-data-from-your-azure-resources"></a>Raccogliere e usare i dati dei log dalle risorse di Azure
 
 ## <a name="what-are-azure-resource-diagnostic-logs"></a>Definizione di log di diagnostica di risorse di Azure
-**I log di diagnostica a livello di risorse Azure** sono registri generati da una risorsa che forniscono dati completo e frequenti sull'operazione di hello di tale risorsa. contenuto Hello di questi log varia in base al tipo di risorsa. I contatori delle regole di gruppo di sicurezza di rete e i controlli di insieme di credenziali delle chiavi, ad esempio, sono due categorie di log di risorsa.
+I **log di diagnostica a livello di risorsa di Azure** sono log generati da una risorsa che presentano dati completi e frequenti sull'attività di tale risorsa. Il contenuto di questi log varia in base al tipo di risorsa. I contatori delle regole di gruppo di sicurezza di rete e i controlli di insieme di credenziali delle chiavi, ad esempio, sono due categorie di log di risorsa.
 
-I log di diagnostica a livello di risorse diversi da hello [Log attività](monitoring-overview-activity-logs.md). Log attività Hello fornisce informazioni approfondite operazioni hello eseguite sulle risorse nella sottoscrizione tramite Gestione risorse, ad esempio, la creazione di una macchina virtuale o l'eliminazione di un'app di logica. Log attività Hello è un log a livello di sottoscrizione. I log di diagnostica a livello di risorsa includono informazioni sulle operazioni eseguite all'interno della risorsa stessa, ad esempio, il recupero di un segreto da un insieme di credenziali delle chiavi.
+I log di diagnostica a livello di risorsa differiscono dal [Log attività](monitoring-overview-activity-logs.md). Il log attività fornisce informazioni approfondite sulle operazioni eseguite sulle risorse nella sottoscrizione tramite Resource Manager, ad esempio, la creazione di una macchina virtuale o l'eliminazione di un'app per la logica. Il log attività è un log a livello di sottoscrizione. I log di diagnostica a livello di risorsa includono informazioni sulle operazioni eseguite all'interno della risorsa stessa, ad esempio, il recupero di un segreto da un insieme di credenziali delle chiavi.
 
-I log di diagnostica a livello di risorsa differiscono anche dal log di diagnostica a livello del sistema operativo guest. I log di diagnostica del sistema operativo guest vengono compilati da un agente in esecuzione all'interno di una macchina virtuale o di un altro tipo di risorsa supportato. I log di diagnostica a livello di risorsa è richiesto alcun agente e acquisire dati specifici delle risorse da hello piattaforma Azure stesso, i log di diagnostica a livello del sistema operativo guest acquisiscono i dati dal sistema operativo hello e applicazioni in esecuzione in una macchina virtuale.
+I log di diagnostica a livello di risorsa differiscono anche dal log di diagnostica a livello del sistema operativo guest. I log di diagnostica del sistema operativo guest vengono compilati da un agente in esecuzione all'interno di una macchina virtuale o di un altro tipo di risorsa supportato. I log di diagnostica a livello di risorsa non richiedono l'uso di un agente e acquisiscono i dati specifici della risorsa dalla piattaforma di Azure stessa, mentre i log di diagnostica a livello del sistema operativo guest acquisiscono i dati dal sistema operativo e dalle applicazioni in esecuzione in una macchina virtuale.
 
-Non tutte le risorse supportano hello nuovo tipo di log di diagnostica risorse descritte di seguito. Questo articolo contiene un elenco di sezione, quali tipi di risorse supportano hello nuovi a livello di risorsa log di diagnostica.
+Non tutte le risorse supportano il nuovo tipo di log di diagnostica di risorsa descritto di seguito. Questo articolo contiene una sezione che elenca i tipi di risorsa che supportano i nuovi log di diagnostica a livello di risorsa.
 
 ![Log di diagnostica di risorsa e altri tipi di log ](./media/monitoring-overview-of-diagnostic-logs/Diagnostics_Logs_vs_other_logs_v5.png)
 
 ## <a name="what-you-can-do-with-resource-level-diagnostic-logs"></a>Possibili operazioni con i log di diagnostica a livello di risorsa
-Ecco alcune delle operazioni di hello che è possibile eseguire con i log di diagnostica di risorse:
+Ecco alcune delle attività che è possibile eseguire con i log di diagnostica di risorsa:
 
 ![Posizionamento logico dei log di diagnostica di risorsa](./media/monitoring-overview-of-diagnostic-logs/Diagnostics_Logs_Actions.png)
 
 
-* Salvarli tooa [ **Account di archiviazione** ](monitoring-archive-diagnostic-logs.md) per un controllo di controllo o manuale. È possibile specificare hello memorizzazione tempo (in giorni) utilizzando **le impostazioni di diagnostica di risorse**.
-* [Trasmessi troppo**hub eventi** ](monitoring-stream-diagnostic-logs-to-event-hubs.md) per l'inserimento di un servizio di terze parti o di una soluzione analitica personalizzato, ad esempio Power BI.
+* Salvarli in un [**account di archiviazione**](monitoring-archive-diagnostic-logs.md) per il controllo o l'ispezione manuale. È possibile specificare il tempo di conservazione in giorni tramite le **impostazioni di diagnostica di risorsa**.
+* [Trasmetterli a **Hub eventi**](monitoring-stream-diagnostic-logs-to-event-hubs.md) per l'inserimento da parte di un servizio di terze parti o una soluzione di analisi personalizzata come Power BI.
 * Analizzarli con [OMS Log Analytics](../log-analytics/log-analytics-azure-storage.md)
 
-È possibile utilizzare un account di archiviazione o dello spazio dei nomi degli hub di eventi che non si trova in hello stessa sottoscrizione come hello una creazione di log. utente di Hello che configura l'impostazione di hello deve disporre di sottoscrizioni di hello appropriate RBAC accesso tooboth.
+È possibile usare un account di archiviazione o uno spazio dei nomi di Hub eventi che non si trovi nella stessa sottoscrizione della risorsa che crea i log. L'utente che configura l'impostazione deve disporre dell'accesso RBAC appropriato a entrambe le sottoscrizioni.
 
 ## <a name="resource-diagnostic-settings"></a>Impostazioni di diagnostica di risorsa
 I log di diagnostica per le non di calcolo vengono configurati tramite le impostazioni di diagnostica di risorsa. Le **impostazioni di diagnostica di risorsa** permettono di controllare quanto segue:
@@ -51,131 +51,131 @@ I log di diagnostica per le non di calcolo vengono configurati tramite le impost
 * Destinazione dei log di diagnostica di risorsa e delle metriche, ad esempio un account di archiviazione, un Hub eventi e/o OMS Log Analytics.
 * Categorie di log e metriche da inviare.
 * Periodo di tempo in cui ogni log di categoria deve essere mantenuto nell'account di archiviazione
-    - Un periodo di conservazione di zero giorni significa che i log vengono conservati all'infinito. In caso contrario, il valore di hello può essere qualsiasi numero di giorni compreso tra 1 e 2147483647.
-    - Se i criteri di conservazione sono impostati, ma l'archiviazione dei log in un Account di archiviazione è disabilitata (ad esempio, se solo le opzioni di hub eventi o OMS sono selezionate), i criteri di conservazione hello non hanno alcun effetto.
-    - Criteri di conservazione vengono applicati al giorno, vengono eliminati in modo a hello fine di un giorno (UTC), i log da giorno hello che si trova ora oltre i criteri di conservazione hello. Ad esempio, se si dispone di un criterio di conservazione di un giorno, all'inizio di hello del giorno hello oggi hello registri hello ieri dovrebbero essere eliminati.
+    - Un periodo di conservazione di zero giorni significa che i log vengono conservati all'infinito. Se impostato su zero giorni, i log vengono conservati all'infinito.
+    - Se i criteri di conservazione sono impostati, ma la memorizzazione dei log in un account di archiviazione è disabilitata, ad esempio se sono selezionate solo le opzioni Hub eventi o OMS, i criteri di conservazione non hanno alcun effetto.
+    - I criteri di conservazione vengono applicati su base giornaliera. Al termine della giornata (UTC), i log relativi a tale giornata che non rientrano più nei criteri di conservazione verranno eliminati. Se, ad esempio, è presente un criterio di conservazione di un giorno, all'inizio della giornata vengono eliminati i log relativi al giorno precedente.
 
-Queste impostazioni vengono configurate facilmente tramite impostazioni di diagnostica per una risorsa nel portale di Azure hello hello, tramite i comandi di PowerShell di Azure e CLI o hello [API REST di Azure monitoraggio](https://msdn.microsoft.com/library/azure/dn931943.aspx).
+È possibile configurare facilmente queste impostazioni usando le impostazioni diagnostica di risorsa nel portale di Azure, i comandi di Azure PowerShell e dell'interfaccia della riga di comando di Azure oppure l'[API REST di Monitoraggio di Azure](https://msdn.microsoft.com/library/azure/dn931943.aspx).
 
 > [!WARNING]
-> I log di diagnostica e le metriche per dal livello di sistema operativo guest hello calcolo (ad esempio, le macchine virtuali o Service Fabric) sull'utilizzo delle risorse [un meccanismo separato per la selezione di output e di configurazione](../azure-diagnostics.md).
+> Le metriche e i log di diagnostica per il livello di sistema operativo guest delle risorse di calcolo, ad esempio le macchine virtuali o Service Fabric, usano un [meccanismo distinto per la configurazione e la selezione degli output](../azure-diagnostics.md).
 >
 >
 
-## <a name="how-tooenable-collection-of-resource-diagnostic-logs"></a>Come tooenable raccolta dei log di diagnostica di risorse
-Raccolta dei log di diagnostica di risorse può essere abilitata [durante la creazione di una risorsa in un modello di gestione risorse di](./monitoring-enable-diagnostic-logs-using-template.md) o dopo la creazione di una risorsa dalla pagina della risorsa nel portale di hello. È anche possibile abilitare insieme in qualsiasi momento mediante i comandi di Azure PowerShell o l'interfaccia CLI o hello API REST di monitoraggio di Azure.
+## <a name="how-to-enable-collection-of-resource-diagnostic-logs"></a>Come abilitare la raccolta dei log di diagnostica di risorsa
+La raccolta dei log di diagnostica di risorsa può essere abilitata [durante la creazione di una risorsa in un modello di Resource Manager](./monitoring-enable-diagnostic-logs-using-template.md) o successivamente usando la pagina della risorsa nel portale. È possibile abilitare la raccolta anche in qualsiasi momento usando i comandi di Azure PowerShell o l'interfaccia della riga di comando oppure l'API REST di Monitoraggio di Azure.
 
 > [!TIP]
-> Queste istruzioni potrebbero non essere applicabili direttamente tooevery risorse. Vedere i collegamenti dello schema hello nella parte inferiore di hello di questa pagina toounderstand speciali i passaggi che possono applicare i tipi di risorsa toocertain.
+> Le istruzioni riportate di seguito potrebbero non essere direttamente applicabili a tutte le risorse. Vedere i collegamenti dello schema nella parte inferiore della pagina per comprendere i possibili passaggi speciali per determinati tipi di risorse.
 >
 >
 
-### <a name="enable-collection-of-resource-diagnostic-logs-in-hello-portal"></a>Abilitare la raccolta dei log di diagnostica di risorsa nel portale di hello
-È possibile abilitare una raccolta di log di diagnostica di risorsa nel hello Azure portal dopo aver creata una risorsa da passare di risorsa specifico tooa o passando tooAzure Monitor. tooenable questo tramite il monitoraggio di Azure:
+### <a name="enable-collection-of-resource-diagnostic-logs-in-the-portal"></a>Abilitare la raccolta dei log di diagnostica di risorsa nel portale
+È possibile abilitare la raccolta dei log di diagnostica di risorsa nel portale di Azure dopo avere creato una risorsa passando a una risorsa specifica o usando Monitoraggio di Azure. Per abilitare questa raccolta tramite Monitoraggio di Azure:
 
-1. In hello [portale di Azure](http://portal.azure.com)passare tooAzure Monitor e fare clic su **le impostazioni di diagnostica**
+1. Nel [portale di Azure](http://portal.azure.com) passare a Monitoraggio di Azure e fare clic su **Impostazioni di diagnostica**
 
     ![Sezione relativa al monitoraggio di Monitoraggio di Azure](media/monitoring-overview-of-diagnostic-logs/diagnostic-settings-blade.png)
 
-2. Se lo si desidera filtrare l'elenco hello in base al tipo di risorsa o gruppo di risorse, fare clic sul risorse hello per il quale si desidera tooset un'impostazione di diagnostica.
+2. Facoltativamente filtrare l'elenco in base al tipo di risorsa o al gruppo di risorse, quindi fare clic sulla risorsa per cui si vuole specificare un'impostazione di diagnostica.
 
-3. Se nessuna impostazione esistano nella risorsa hello selezionata, verrà richiesta toocreate un'impostazione. Fare clic su "Attiva diagnostica".
+3. Se non esiste un'impostazione sulla risorsa selezionata, viene chiesto di creare un'impostazione. Fare clic su "Attiva diagnostica".
 
    ![Aggiungi impostazione di diagnostica - Nessuna impostazione esistente](media/monitoring-overview-of-diagnostic-logs/diagnostic-settings-none.png)
 
-   Se sono presenti le impostazioni esistenti sulla risorsa hello, vedrai un elenco di impostazioni già configurato per questa risorsa. Fare clic su "Add diagnostic setting" (Aggiungi impostazione di diagnostica).
+   Se esistono già impostazioni sulla risorsa, verrò visualizzato un elenco di impostazioni già configurate per questa risorsa. Fare clic su "Add diagnostic setting" (Aggiungi impostazione di diagnostica).
 
    !["Add diagnostic setting" (Aggiungi impostazione di diagnostica) - impostazioni esistenti](media/monitoring-overview-of-diagnostic-logs/diagnostic-settings-multiple.png)
 
-3. Assegnare un nome dell'impostazione, hello caselle di controllo per ogni toowhich destinazione desideri toosend dati e configurare la risorsa viene utilizzato per ogni destinazione. Facoltativamente, impostare il numero di giorni tooretain questi log tramite hello **conservazione (giorni)** cursori (solo toohello applicabile account destinazione di archiviazione). La riserva di zero giorni registri hello vengono archiviati per un periodo illimitato.
+3. Assegnare un nome all'impostazione, selezionare le caselle per ogni destinazione a cui si vuole inviare i dati e configurare la risorsa che verrà usata per ogni destinazione. Facoltativamente, impostare un numero di giorni per la conservazione di questi log usando i dispositivi di scorrimento **Conservazione (giorni)** (applicabile solo alla destinazione dell'account di archiviazione). Se il valore di conservazione è zero giorni, i log vengono conservati all'infinito.
    
    !["Add diagnostic setting" (Aggiungi impostazione di diagnostica) - impostazioni esistenti](media/monitoring-overview-of-diagnostic-logs/diagnostic-settings-configure.png)
     
 4. Fare clic su **Salva**.
 
-Dopo alcuni istanti, hello nuova impostazione è visualizzata nell'elenco delle impostazioni per questa risorsa e i log di diagnostica vengono inviati toohello specificato destinazioni appena nuovi dati di evento viene generati.
+Dopo qualche istante, la nuova impostazione viene visualizzata nell'elenco delle impostazioni per questa risorsa e i log di diagnostica vengono inviati alle destinazioni specifiche non appena vengono generati nuovi dati di eventi.
 
 ### <a name="enable-collection-of-resource-diagnostic-logs-via-powershell"></a>Abilitare la raccolta dei log di diagnostica di risorsa con PowerShell
-raccolta di tooenable dei log di diagnostica di risorse tramite Azure PowerShell, hello di utilizzare i comandi seguenti:
+Per abilitare la raccolta dei log di diagnostica di risorsa tramite Azure PowerShell, usare i comandi seguenti:
 
-tooenable archiviazione dei log di diagnostica in un account di archiviazione, usare questo comando:
+Per abilitare la memorizzazione dei log di diagnostica in un account di archiviazione, usare questo comando:
 
 ```powershell
 Set-AzureRmDiagnosticSetting -ResourceId [your resource id] -StorageAccountId [your storage account id] -Enabled $true
 ```
 
-archiviazione Hello ID dell'account è hello ID di risorsa per i registri hello toowhich di account di archiviazione desiderato toosend hello.
+L'ID account di archiviazione è l'ID risorsa per l'account di archiviazione a cui devono essere inviati i log.
 
-tooenable lo streaming di hub di eventi di log di diagnostica tooan, usare questo comando:
+Per abilitare lo streaming dei log di diagnostica a un Hub eventi, usare questo comando:
 
 ```powershell
 Set-AzureRmDiagnosticSetting -ResourceId [your resource id] -ServiceBusRuleId [your Service Bus rule id] -Enabled $true
 ```
 
-ID regola bus di servizio Hello è una stringa con questo formato: `{Service Bus resource ID}/authorizationrules/{key name}`.
+L'ID regola del bus di servizio è una stringa nel formato seguente: `{Service Bus resource ID}/authorizationrules/{key name}`.
 
-tooenable l'invio di log di diagnostica tooa Log Analitica dell'area di lavoro, usare questo comando:
+Per consentire l'invio dei log di diagnostica a un'area di lavoro di Log Analytics, usare questo comando:
 
 ```powershell
-Set-AzureRmDiagnosticSetting -ResourceId [your resource id] -WorkspaceId [resource id of hello log analytics workspace] -Enabled $true
+Set-AzureRmDiagnosticSetting -ResourceId [your resource id] -WorkspaceId [resource id of the log analytics workspace] -Enabled $true
 ```
 
-È possibile ottenere l'ID di risorsa hello dell'area di lavoro Log Analitica utilizzando hello comando seguente:
+È possibile ottenere l'ID risorsa dell'area di lavoro di Log Analytics usando il comando seguente:
 
 ```powershell
 (Get-AzureRmOperationalInsightsWorkspace).ResourceId
 ```
 
-È possibile combinare queste tooenable parametri più opzioni di output.
+È possibile combinare questi parametri per abilitare più opzioni di output.
 
 ### <a name="enable-collection-of-resource-diagnostic-logs-via-cli"></a>Abilitare la raccolta dei log di diagnostica di risorsa con l'interfaccia della riga di comando
-raccolta tooenable dei log di diagnostica di risorse tramite hello CLI di Azure, utilizzare hello seguenti comandi:
+Per abilitare la raccolta dei log di diagnostica di risorsa tramite l'interfaccia della riga di comando di Azure, usare i comandi seguenti:
 
-tooenable archiviazione dei log di diagnostica in un Account di archiviazione, usare questo comando:
+Per abilitare la memorizzazione dei log di diagnostica in un account di archiviazione, usare questo comando:
 
 ```azurecli
 azure insights diagnostic set --resourceId <resourceId> --storageId <storageAccountId> --enabled true
 ```
 
-archiviazione Hello ID dell'account è hello ID di risorsa per i registri hello toowhich di account di archiviazione desiderato toosend hello.
+L'ID account di archiviazione è l'ID risorsa per l'account di archiviazione a cui devono essere inviati i log.
 
-tooenable lo streaming di hub di eventi di log di diagnostica tooan, usare questo comando:
+Per abilitare lo streaming dei log di diagnostica a un Hub eventi, usare questo comando:
 
 ```azurecli
 azure insights diagnostic set --resourceId <resourceId> --serviceBusRuleId <serviceBusRuleId> --enabled true
 ```
 
-ID regola bus di servizio Hello è una stringa con questo formato: `{Service Bus resource ID}/authorizationrules/{key name}`.
+L'ID regola del bus di servizio è una stringa nel formato seguente: `{Service Bus resource ID}/authorizationrules/{key name}`.
 
-tooenable l'invio di log di diagnostica tooa Log Analitica dell'area di lavoro, usare questo comando:
+Per consentire l'invio dei log di diagnostica a un'area di lavoro di Log Analytics, usare questo comando:
 
 ```azurecli
-azure insights diagnostic set --resourceId <resourceId> --workspaceId <resource id of hello log analytics workspace> --enabled true
+azure insights diagnostic set --resourceId <resourceId> --workspaceId <resource id of the log analytics workspace> --enabled true
 ```
 
-È possibile combinare queste tooenable parametri più opzioni di output.
+È possibile combinare questi parametri per abilitare più opzioni di output.
 
 ### <a name="enable-collection-of-resource-diagnostic-logs-via-rest-api"></a>Abilitare la raccolta dei log di diagnostica di risorsa con l'API REST
-le impostazioni di diagnostica toochange utilizzando hello API REST di monitoraggio di Azure, vedere [questo documento](https://msdn.microsoft.com/library/azure/dn931931.aspx).
+Per modificare le impostazioni di diagnostica usando l'API REST di Monitoraggio di Azure, vedere [questo documento](https://msdn.microsoft.com/library/azure/dn931931.aspx).
 
-## <a name="manage-resource-diagnostic-settings-in-hello-portal"></a>Gestire le impostazioni di diagnostica di risorse nel portale di hello
-Verificare che tutte le risorse siano configurate con le impostazioni di diagnostica. Passare troppo**monitoraggio** in hello portale e aprire **le impostazioni di diagnostica**.
+## <a name="manage-resource-diagnostic-settings-in-the-portal"></a>Gestire le impostazioni di diagnostica di risorsa nel portale
+Verificare che tutte le risorse siano configurate con le impostazioni di diagnostica. Passare a **Monitoraggio** nel portale e aprire **Impostazioni di diagnostica**.
 
-![Pannello log diagnostico nel portale di hello](./media/monitoring-overview-of-diagnostic-logs/diagnostic-settings-nav.png)
+![Pannello Log di diagnostica nel portale](./media/monitoring-overview-of-diagnostic-logs/diagnostic-settings-nav.png)
 
-È possibile tooclick sezione di monitoraggio hello toofind "Più servizi".
+Potrebbe essere necessario fare clic su "Altri servizi" per individuare la sezione Monitoraggio.
 
-Qui è possibile visualizzare e filtrare tutte le risorse che supportano le impostazioni di diagnostica toosee se dispongono di diagnostica è abilitata. È possibile eseguire il drill-down toosee se più vengono impostati su una risorsa e controllare quale account di archiviazione, spazio dei nomi di hub eventi, e/o area di lavoro Log Analitica per i dati vengono trasmessi.
+Qui è possibile visualizzare e filtrare tutte le risorse che supportano le impostazioni di diagnostica per verificare se la diagnostica è abilitata. È possibile anche eseguire il drill-down per verificare se sono definite più impostazioni per una risorsa e controllare in quale account di archiviazione, spazio dei nomi di Hub eventi e/o area di lavoro di Log Analytics vengono trasmessi i dati.
 
 ![Risultati di Log di diagnostica nel portale](./media/monitoring-overview-of-diagnostic-logs/diagnostic-settings-blade.png)
 
-Aggiunta di che un'impostazione di diagnostica consente di visualizzare hello Visualizza impostazioni di diagnostica, in cui è possibile abilitare, disabilitare o modificare le impostazioni di diagnostica per hello selezionato risorse.
+Aggiungendo un'impostazione di diagnostica verrà visualizzata la vista Impostazioni di diagnostica in cui è possibile abilitare, disabilitare o modificare le impostazioni di diagnostica per la risorsa selezionata.
 
 ## <a name="supported-services-categories-and-schemas-for-resource-diagnostic-logs"></a>Servizi, categorie e schemi supportati per i log di diagnostica di risorsa
-[Vedere l'articolo](monitoring-diagnostic-logs-schema.md) per un elenco completo dei servizi supportati e categorie log hello e schemi utilizzati da tali servizi.
+[Vedere questo articolo](monitoring-diagnostic-logs-schema.md) per un elenco completo di servizi, categorie di log e schemi supportati usati da questi servizi.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* [I log di diagnostica di risorse di flusso troppo**hub eventi**](monitoring-stream-diagnostic-logs-to-event-hubs.md)
-* [Modificare le impostazioni di diagnostica di risorse utilizzando l'API REST di Azure Monitor hello](https://msdn.microsoft.com/library/azure/dn931931.aspx)
+* [Trasmettere log di diagnostica di Azure a **Hub eventi**](monitoring-stream-diagnostic-logs-to-event-hubs.md)
+* [Modificare le impostazioni di diagnostica di risorsa usando l'API REST di Monitoraggio di Azure](https://msdn.microsoft.com/library/azure/dn931931.aspx)
 * [Analizzare i log di Archiviazione di Azure con Log Analytics](../log-analytics/log-analytics-azure-storage.md)

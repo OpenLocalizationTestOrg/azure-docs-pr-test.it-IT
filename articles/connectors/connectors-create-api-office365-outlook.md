@@ -1,6 +1,6 @@
 ---
-title: connettore di Office 365 Outlook hello aaaAdd nelle App logica | Documenti Microsoft
-description: Creare App per la logica con l'interazione di tooenable connettore di Office 365 con Office 365. Ad esempio, per creare, modificare e aggiornare contatti ed elementi del calendario.
+title: Aggiungere il connettore Office 365 Outlook nelle app per la logica | Microsoft Docs
+description: Creare app per la logica con il connettore Office 365 per consentire l'interazione con Office 365. Ad esempio, per creare, modificare e aggiornare contatti ed elementi del calendario.
 services: 
 documentationcenter: 
 author: MandiOhlinger
@@ -15,85 +15,85 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 10/18/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: 86a573c9c54701de3d3f0500d19eaf545e0710ad
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5335dae62e61659b68e8befb4ed0d404dffb800c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="get-started-with-hello-office-365-outlook-connector"></a>Iniziare con il connettore di Office 365 Outlook hello
-connettore di Office 365 Outlook Hello consente l'interazione con Outlook per Office 365. Utilizzare questo connettore toocreate, modificare e Aggiorna contatti e gli elementi del calendario e anche ottenere, inviare e rispondere tooemail.
+# <a name="get-started-with-the-office-365-outlook-connector"></a>Guida introduttiva al connettore Outlook di Office 365
+Il connettore Office 365 Outlook consente l'interazione con Outlook in Office 365. Usare questo connettore per creare, modificare e aggiornare i contatti e gli elementi del calendario e anche per ottenere, inviare e rispondere ai messaggio di posta elettronica.
 
 Con Office 365 Outlook è possibile:
 
-* Compilare il flusso di lavoro utilizzando le funzionalità di posta elettronica e al calendario hello in Office 365. 
-* Utilizzare trigger toostart il flusso di lavoro quando si verifica un nuovo indirizzo e-mail, quando viene aggiornato un elemento del calendario e altro ancora.
-* Utilizzare azioni toosend un messaggio di posta elettronica, creare un nuovo evento del calendario e altro ancora. Ad esempio, quando è presente un nuovo oggetto in Salesforce (trigger), inviare un messaggio di posta elettronica tooyour Outlook di Office 365 (azione). 
+* Creare il flusso di lavoro usando le funzionalità di posta elettronica e calendario in Office 365. 
+* Usare i trigger per avviare il flusso di lavoro quando è presente un nuovo messaggio di posta elettronica, quando viene aggiornato un elemento del calendario e altro ancora.
+* Usare azioni per inviare un messaggio di posta elettronica, creare un nuovo evento del calendario e altro ancora. Ad esempio, quando è presente un nuovo oggetto in Salesforce (trigger), inviare un messaggio di posta elettronica a Office 365 Outlook (azione). 
 
-Questo argomento viene illustrato come toouse hello connettore Outlook di Office 365 in un'app per la logica e anche gli elenchi di hello azioni e trigger.
+Questo argomento illustra come usare il connettore Office 365 Outlook in un'app per la logica ed elenca i trigger e le azioni.
 
 > [!NOTE]
-> Questa versione di hello articolo applica tooLogic disponibilità generale di App (GA).
+> Questa versione dell'articolo si applica alla la disponibilità generale delle app per la logica.
 > 
 > 
 
-toolearn informazioni sulle App per la logica, vedere [quali sono le app logica](../logic-apps/logic-apps-what-are-logic-apps.md) e [creare un'app di logica](../logic-apps/logic-apps-create-a-logic-app.md).
+Per altre informazioni sulle app per la logica, vedere [Cosa sono le app per la logica](../logic-apps/logic-apps-what-are-logic-apps.md) e [Creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="connect-toooffice-365"></a>Connettersi tooOffice 365
-Prima che la logica app possa accedere a qualsiasi servizio, creare innanzitutto un *connessione* toohello servizio. Una connessione fornisce la connettività tra un'app per la logica e un altro servizio. Ad esempio, tooconnect tooOffice 365 Outlook, è necessario innanzitutto Office 365 *connessione*. toocreate una connessione, immettere le credenziali di hello utilizzato normalmente il servizio di hello tooaccess desiderato tooconnect per. Così con Outlook di Office 365, immettere le credenziali di hello tooyour connessione hello toocreate dell'account Office 365.
+## <a name="connect-to-office-365"></a>Connettersi a Office 365
+Prima che l'app per la logica possa accedere a qualsiasi servizio, è necessario creare una *connessione* al servizio. Una connessione fornisce la connettività tra un'app per la logica e un altro servizio. Ad esempio, per connettersi a Office 365 Outlook, è necessaria prima di tutto una *connessione* a Office 365. Per creare una connessione, immettere le credenziali che si usano normalmente per accedere al servizio a cui si vuole connettersi. Pertanto, per creare la connessione a Office 365 Outlook, immettere le credenziali dell'account Office 365 Outlook.
 
-## <a name="create-hello-connection"></a>Creare una connessione hello
-> [!INCLUDE [Steps toocreate a connection tooOffice 365](../../includes/connectors-create-api-office365-outlook.md)]
+## <a name="create-the-connection"></a>Creare la connessione
+> [!INCLUDE [Steps to create a connection to Office 365](../../includes/connectors-create-api-office365-outlook.md)]
 > 
 > 
 
 ## <a name="use-a-trigger"></a>Usare un trigger
-Un trigger è un evento che può essere utilizzato toostart flusso di lavoro hello definito in un'app di logica. I trigger "polling" servizio hello in corrispondenza di un intervallo e la frequenza desiderata. [Altre informazioni sui trigger](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).
+Un trigger è un evento che può essere usato per avviare il flusso di lavoro definito in un'app per la logica. I trigger eseguono il "polling" del servizio agli intervalli e con la frequenza desiderati. [Altre informazioni sui trigger](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).
 
-1. Nell'app logica hello, digitare "office 365" tooget un elenco dei trigger hello:  
+1. Nell'app per la logica digitare "office 365" per ottenere l'elenco dei trigger:  
    
     ![](./media/connectors-create-api-office365-outlook/office365-trigger.png)
-2. Selezionare **Office 365 Outlook - All'avvio imminente di un prossimo evento**. Se esiste già una connessione, quindi selezionare un calendario dall'elenco a discesa hello.
+2. Selezionare **Office 365 Outlook - All'avvio imminente di un prossimo evento**. Se esiste già una connessione, selezionare un calendario dall'elenco a discesa.
    
     ![](./media/connectors-create-api-office365-outlook/sample-calendar.png)
    
-    Nel caso di richiesta toosign in, quindi immettere hello sign in connessione hello toocreate di dettagli. [Creare una connessione hello](connectors-create-api-office365-outlook.md#create-the-connection) in questo argomento vengono elencati i passaggi di hello. 
+    Se viene chiesto di effettuare l'accesso, immettere i dettagli di accesso per creare la connessione. La sezione [Creare la connessione](connectors-create-api-office365-outlook.md#create-the-connection) di questo argomento elenca i passaggi necessari. 
    
    > [!NOTE]
-   > In questo esempio hello logica app viene eseguita quando viene aggiornato un evento del calendario. risultati di hello toosee del trigger, aggiungere un'altra azione che invia un messaggio di testo. Ad esempio, aggiungere hello Twilio *Send message* azione testi quando hello calendario eventi in fase di avvio in 15 minuti. 
+   > In questo esempio l'app per la logica viene eseguita quando viene aggiornato un evento del calendario. Per vedere i risultati del trigger, aggiungere un'altra azione che invia un SMS al proprio cellulare. Ad esempio, aggiungere l'azione di Twilio *Send message* (Invia messaggio) che invia un SMS 15 minuti prima dell'avvio dell'evento del calendario. 
    > 
    > 
-3. Seleziona hello **modifica** pulsante e impostare hello **frequenza** e **intervallo** valori. Ad esempio, se si desidera hello trigger toopoll ogni 15 minuti, quindi impostare hello **frequenza** troppo**minuto**e set hello **intervallo** troppo**15**. 
+3. Selezionare il pulsante **Modifica** e impostare i valori **Frequenza** e **Intervallo**. Ad esempio, se si vuole che il trigger esegua il poll ogni 15 minuti, impostare **Frequenza** su **Minuto** e **Intervallo** su **15**. 
    
     ![](./media/connectors-create-api-office365-outlook/calendar-settings.png)
-4. **Salvare** le modifiche (angolo superiore sinistro della barra degli strumenti hello). L'app per la logica viene salvata e può essere attivata automaticamente.
+4. Scegliere **Salva** nell'angolo in alto a sinistra della barra degli strumenti per salvare le modifiche. L'app per la logica viene salvata e può essere attivata automaticamente.
 
 ## <a name="use-an-action"></a>Usare un'azione
-Un'azione è un'operazione effettuata dal flusso di lavoro hello definito in un'app di logica. [Altre informazioni sulle azioni](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).
+Un'azione è un'operazione eseguita dal flusso di lavoro e definita in un'app per la logica. [Altre informazioni sulle azioni](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).
 
-1. Selezionare hello sul segno più. Vedrai diverse opzioni: **aggiungere un'azione**, **aggiungere una condizione**, o uno dei hello **più** opzioni.
+1. Selezionare il segno più. Sono disponibili varie opzioni: **Aggiungi un'azione**, **Aggiungi una condizione** e le opzioni in **Altro**.
    
     ![](./media/connectors-create-api-office365-outlook/add-action.png)
 2. Selezionare **Aggiungi un'azione**.
-3. Nella casella di testo hello, digitare "office 365" tooget un elenco di tutte le azioni disponibili hello.
+3. Nella casella di testo digitare "office 365" per ottenere l'elenco di tutte le azioni disponibili.
    
     ![](./media/connectors-create-api-office365-outlook/office365-actions.png) 
-4. Nell'esempio scegliere **Office 365 Outlook - Crea contatto**. Se esiste già una connessione, quindi scegliere hello **ID cartella**, **nome**e altre proprietà:  
+4. Nell'esempio scegliere **Office 365 Outlook - Crea contatto**. Se esiste già una connessione, scegliere l'**ID cartella**, il **nome** e le altre proprietà:  
    
     ![](./media/connectors-create-api-office365-outlook/office365-sampleaction.png)
    
-    Se viene chiesto di hello informazioni di connessione, quindi immettere connessione hello toocreate dettagli di hello. [Creare una connessione hello](connectors-create-api-office365-outlook.md#create-the-connection) in questo argomento vengono descritte queste proprietà. 
+    Se viene richiesto di inserire le informazioni di connessione, immettere i dettagli per creare la connessione. La sezione [Creare la connessione](connectors-create-api-office365-outlook.md#create-the-connection) di questo argomento descrive queste proprietà. 
    
    > [!NOTE]
-   > In questo esempio si crea un nuovo contatto in Office 365 Outlook. È possibile utilizzare l'output dal contatto di un altro trigger toocreate hello. Ad esempio, aggiungere hello SalesForce *quando viene creato un oggetto* trigger. Aggiungere quindi hello Outlook di Office 365 *creare contatto* azione che utilizza hello SalesForce campi toocreate hello nuovo nuovo contatto in Office 365. 
+   > In questo esempio si crea un nuovo contatto in Office 365 Outlook. Per creare il contatto è possibile usare l'output di un altro trigger. Ad esempio, aggiungere il trigger di SalesForce *When an object is created* (Quando viene creato un oggetto). Aggiungere quindi l'azione di Office 365 Outlook *Crea contatto* che usa i campi di SalesForce per creare il nuovo contatto in Office 365. 
    > 
    > 
-5. **Salvare** le modifiche (angolo superiore sinistro della barra degli strumenti hello). L'app per la logica viene salvata e può essere attivata automaticamente.
+5. Scegliere **Salva** nell'angolo in alto a sinistra della barra degli strumenti per salvare le modifiche. L'app per la logica viene salvata e può essere attivata automaticamente.
 
 ## <a name="connector-specific-details"></a>Dettagli specifici del connettore
 
-Visualizzare tutti i trigger e azioni definite in swagger hello e anche eventuali limiti di hello [dettagli connettore](/connectors/office365connector/). 
+Per visualizzare eventuali azioni e trigger definiti in Swagger ed eventuali limiti, vedere i [dettagli del connettore](/connectors/office365connector/). 
 
 ## <a name="next-steps"></a>Passaggi successivi
-[Creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md). Esplorare hello altri connettori disponibile in App per la logica nel nostro [elenco API](apis-list.md).
+[Creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md). Esplorare gli altri connettori disponibili nelle app per la logica nell' [elenco delle API](apis-list.md).
 

@@ -1,6 +1,6 @@
 ---
-title: tasti di scelta rapida aaaKeyboard per Azure Data Catalog | Documenti Microsoft
-description: Questo articolo illustra i tasti di scelta rapida di hello per Azure Data Catalog.
+title: Scelte rapide da tastiera per Azure Data Catalog | Documentazione Microsoft
+description: Questo articolo illustra le scelte rapide da tastiera per Catalogo dati di Azure.
 services: data-catalog
 documentationcenter: 
 author: spelluru
@@ -15,18 +15,18 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/17/2017
 ms.author: spelluru
-ms.openlocfilehash: 58511a27e9b4e7bf5ab0a38b13b1132ec6467512
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d498eac2d0dfe7d271bdb5e47159faa113545ab4
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="keyboard-shortcuts-for-azure-data-catalog"></a>Scelte rapide da tastiera per Catalogo dati di Azure
-## <a name="keyboard-shortcuts-for-hello-data-catalog-data-source-registration-tool"></a>Tasti di scelta rapida per hello dati del catalogo dati di origine dello strumento di registrazione
+## <a name="keyboard-shortcuts-for-the-data-catalog-data-source-registration-tool"></a>Tasti di scelta rapida per il tool di registrazione delle origini dati di Azure Data Catalog
 ### <a name="general-keyboard-shortcuts"></a>Scelte rapide da tastiera generali
 | Operazione | Premere |
 | --- | --- |
-| Scheda controllo tooeach in una pagina |TAB |
+| Passare da un controllo a un altro in una pagina |TAB |
 | Scegliere un'opzione |INVIO o BARRA SPAZIATRICE |
 | Ingrandire la pagina. |Tasto WINDOWS+Freccia SU |
 | Ripristinare o ridurre a icona la pagina. |Tasto WINDOWS+Freccia GIÙ |
@@ -40,13 +40,13 @@ ms.lasthandoff: 10/06/2017
 ### <a name="data-source-selection-page"></a>Pagina di selezione dell'origine dati
 | Operazione | Premere |
 | --- | --- |
-| Vai a pagina toonext (se abilitati) |ALT+N |
-| Modificare il tipo selezionato quando hello attivo è su un riquadro |Freccia SINISTRA, freccia SU, freccia DESTRA o freccia GIÙ |
+| Passare alla pagina successiva (se abilitata) |ALT+N |
+| Cambiare il tipo selezionato quando lo stato attivo è su un riquadro |Freccia SINISTRA, freccia SU, freccia DESTRA o freccia GIÙ |
 
 ### <a name="data-source-connection-page"></a>Pagina di connessione all'origine dati
 | Operazione | Premere |
 | --- | --- |
-| Vai a pagina tooprevious (se abilitati) |ALT+P |
+| Passare alla pagina precedente (se abilitata) |ALT+P |
 | Scegliere il pulsante Connetti. |ALT+C |
 
 ### <a name="connection-context-page"></a>Pagina di contesto della connessione
@@ -55,9 +55,9 @@ ms.lasthandoff: 10/06/2017
 | Scegliere il pulsante Registra (se abilitato) |ALT+R |
 | Selezionare la casella di controllo Includi anteprima (se disponibile) |ALT+P |
 | Selezionare la casella di controllo Includi profilo dati (se disponibile) |ALT+D |
-| Passare l'elemento di elenco tooeach |Freccia SU o freccia GIÙ |
+| Passare da un elemento all'altro dell'elenco |Freccia SU o freccia GIÙ |
 | Espandere un nodo della visualizzazione albero nella gerarchia server. |Freccia DESTRA |
-| Spostare gli elementi selezionati per **oggetti disponibili** o **toobe oggetti registrati** |BARRA SPAZIATRICE |
+| Spostare gli elementi selezionati per **Oggetti disponibili** oppure **Oggetti da registrare** |BARRA SPAZIATRICE |
 
 ### <a name="publish-progress-page"></a>Pagina di stato della pubblicazione
 | Operazione | Premere |
@@ -72,7 +72,7 @@ ms.lasthandoff: 10/06/2017
 | Scegliere il pulsante Salva (se abilitato). |ALT+S |
 | Scegliere il pulsante Annulla. |ALT+C |
 
-## <a name="keyboard-shortcuts-for-hello-data-catalog-portal"></a>Tasti di scelta rapida per il portale di catalogo dati hello
+## <a name="keyboard-shortcuts-for-the-data-catalog-portal"></a>Scelte rapide da tastiera per il portale di Azure Data Catalog
 | Operazione | Premere |
 | --- | --- |
 | Esplorare |TAB e MAIUSC+TAB |
@@ -80,9 +80,9 @@ ms.lasthandoff: 10/06/2017
 | Drill-down in una sezione |BARRA SPAZIATRICE o INVIO |
 | Uscire da una sezione |ESC |
 | Aggiungere/rimuovere un asset |ALT+P |
-| In hello individuare pagina, quando un asset è attivo, selezionare asset |BARRA SPAZIATRICE o INVIO |
+| Selezionare un asset con stato attivo nella pagina di ricerca |BARRA SPAZIATRICE o INVIO |
 | Aggiungere o rimuovere asset da una selezione multipla |CTRL+BARRA SPAZIATRICE o INVIO |
-| Ricerca di hello attiva/disattiva corrisponde a menu |ALT+S |
+| Attiva/Disattiva il menu delle corrispondenze con i termini di ricerca |ALT+S |
 | Attiva/Disattiva il menu **Apri In** |ALT + O |
-| Esplorare contenitore, se hello asset è un contenitore |ALT+L |
+| Esplorare il contenitore, se l'asset è un contenitore |ALT+L |
 

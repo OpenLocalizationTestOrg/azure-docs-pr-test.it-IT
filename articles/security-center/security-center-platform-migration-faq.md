@@ -1,6 +1,6 @@
 ---
-title: domande frequenti sulla migrazione di piattaforma aaaSecurity Center | Documenti Microsoft
-description: Questo risposte alle domande su hello migrazione della piattaforma Centro protezione di Azure.
+title: Domande frequenti sulla migrazione della piattaforma del Centro sicurezza | Microsoft Docs
+description: Questa pagina fornisce risposte alle domande relative alla migrazione della piattaforma del Centro sicurezza.
 services: security-center
 documentationcenter: na
 author: TerryLanfear
@@ -12,143 +12,177 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 08/15/2017
+ms.date: 09/14/2017
 ms.author: terrylan
-ms.openlocfilehash: fcb14ae83167ef79a60371e4fcb625cf99bee6c9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4b88b5015fcf44e8979b8b1a3aa1eb26f0fbb704
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="security-center-platform-migration-faq"></a>Domande frequenti sulla migrazione della piattaforma del Centro sicurezza
-A giugno 2017 anticipata, Centro sicurezza di Azure iniziato a utilizzare toocollect e l'archivio dati di Microsoft Monitoring Agent di hello. vedere, più toolearn [migrazione della piattaforma Azure sicurezza Center](security-center-platform-migration.md). Questo risposte alle domande sulla migrazione di piattaforma hello.
+All'inizio di giugno 2017 il Centro sicurezza di Azure ha iniziato a usare Microsoft Monitoring Agent per la raccolta e l'archiviazione dei dati. Per altre informazioni, vedere [Migrazione della piattaforma del Centro sicurezza di Azure](security-center-platform-migration.md). Questa pagina fornisce risposte alle domande relative alla migrazione della piattaforma.
 
 ## <a name="data-collection-agents-and-workspaces"></a>Raccolta di dati, agenti e aree di lavoro
 
 ### <a name="how-is-data-collected"></a>In che modo vengono raccolti i dati?
-Centro sicurezza PC utilizza dati di hello Microsoft Monitoring Agent toocollect protezione dalle macchine virtuali. Hello protezione dati includono informazioni sulle configurazioni di sicurezza, che sono utilizzati tooidentify vulnerabilità, e gli eventi di sicurezza sono utilizzati toodetect minacce. Dati raccolti dall'agente hello viene archiviati in un toohello di area di lavoro collegato Log Analitica VM esistente o in una nuova area di lavoro creati dal Centro sicurezza PC. Quando il centro di sicurezza crea una nuova area di lavoro, hello geolocation di hello VM viene preso in considerazione.
+Il Centro sicurezza usa Microsoft Monitoring Agent per raccogliere dati di sicurezza dalle VM, ad esempio informazioni sulle configurazioni di sicurezza, usate per identificare le vulnerabilità, ed eventi di sicurezza, usati per rilevare le minacce. I dati raccolti dall'agente vengono archiviati in un'area di lavoro esistente di Log Analytics connessa alla VM o in una nuova area di lavoro creata dal Centro sicurezza. Quando il Centro sicurezza crea una nuova area di lavoro, viene presa in considerazione l'area geografica della VM.
 
 > [!NOTE]
-> Microsoft Monitoring Agent Hello è hello stesso agente usato da hello Operations Management Suite (OMS), il servizio Registro Analitica e System Center Operations Manager (SCOM).
+> Microsoft Monitoring Agent è lo stesso agente usato da Operations Management Suite (OMS), dal servizio Log Analytics e da System Center Operations Manager (SCOM).
 >
 >
 
-Quando la raccolta dei dati è abilitata per hello prima volta o quando vengono eseguita la migrazione delle sottoscrizioni, il Centro sicurezza PC controlla toosee se hello Microsoft Monitoring Agent è già installato come un'estensione di Azure su tutte le macchine virtuali. Se non è installato Microsoft Monitoring Agent hello, quindi verranno Centro sicurezza:
+Quando la raccolta di dati viene abilitata per la prima volta o quando viene eseguita la migrazione delle sottoscrizioni, il Centro sicurezza verifica se Microsoft Monitoring Agent è già installato come estensione di Azure in ogni VM. Se Microsoft Monitoring Agent non è installato, il Centro sicurezza eseguirà queste operazioni:
 
-- installare Microsoft Monitoring agent di hello in hello VM
-   - Se un'area di lavoro creato dal Centro protezione già esiste in hello geolocation stesso come macchina virtuale, hello hello agent viene connesso toothis dell'area di lavoro
-   - Se un'area di lavoro non esiste, Centro sicurezza PC crea un nuovo gruppo di risorse predefinito dell'area di lavoro in tale posizione geografica e la connessione dell'area di lavoro di hello agente toothat. convenzione di denominazione per il gruppo di risorse e dell'area di lavoro hello Hello sono:
+- Installazione di Microsoft Monitoring Agent nella VM.
+   - Se esiste già un'area di lavoro creata dal Centro sicurezza nella stessa area geografica della VM, l'agente viene connesso a tale area di lavoro.
+   - Se non esiste alcuna area di lavoro, il Centro sicurezza crea un nuovo gruppo di risorse e un'area di lavoro predefinita in tale area geografica e quindi connette l'agente all'area di lavoro. Ecco le convenzioni di denominazione per l'area di lavoro e il gruppo di risorse:
 
        Area di lavoro: DefaultWorkspace-[subscription-ID]-[geo]
 
        Gruppo di risorse: DefaultResouceGroup-[geo]
-- installare una soluzione di centro di sicurezza nell'area di lavoro hello
+- Installazione di una soluzione del Centro sicurezza nell'area di lavoro
 
-percorso di Hello dell'area di lavoro hello è basato sulla posizione hello di hello macchina virtuale. vedere, più toolearn [la protezione dei dati](security-center-data-security.md).
-
-> [!NOTE]
-> Migrazione tooplatform precedente, il Centro sicurezza PC raccolte dati di protezione dalle macchine virtuali utilizzando hello Azure Monitoring Agent e sono stati memorizzati nell'account di archiviazione. Dopo la migrazione di piattaforma hello, centro di sicurezza Usa hello Microsoft Monitoring Agent e archivio e dell'area di lavoro toocollect hello stessi dati. account di archiviazione Hello può essere rimossa dopo la migrazione di hello.
->
->
-
-### <a name="am-i-billed-for-log-analytics-or-oms-on-hello-workspaces-created-by-security-center"></a>Viene addebitato il costo per Log Analitica o OMS in aree di lavoro hello create dal centro di sicurezza?
-No. Le aree di lavoro create dal Centro sicurezza non comportano addebiti di OMS, benché siano configurate per OMS per la fatturazione per nodo. Fatturazione Centro sicurezza PC è sempre basata sul Centro sicurezza PC hello e criteri di soluzioni di protezione installate in un'area di lavoro:
-
-- **Livello gratuito** -Centro sicurezza PC installa soluzione 'SecurityCenterFree' hello nell'area di lavoro predefinito hello. La fatturazione per il livello gratuito hello.
-- **Livello standard** : Centro sicurezza PC installa hello 'SecurityCenterFree' e soluzioni 'Security' su hello area di lavoro predefinita.
-
-Per altre informazioni sui prezzi, vedere [Prezzi di Centro sicurezza](https://azure.microsoft.com/pricing/details/security-center/). Hello prezzi indirizzi della pagina Modifica toosecurity archiviazione dei dati e ripartito fatturazione a partire da giugno 2017.
+La posizione dell'area di lavoro dipende dalla posizione della VM. Per altre informazioni, vedere [Sicurezza dei dati](security-center-data-security.md).
 
 > [!NOTE]
-> Hello OMS piano tariffario di aree di lavoro creati dal Centro sicurezza PC non influisce sulla fatturazione Centro sicurezza PC.
+> Prima della migrazione della piattaforma, il Centro sicurezza raccoglie i dati di sicurezza dalle VM usando l'Agente di monitoraggio di Azure e archivia i dati nell'account di archiviazione. Dopo la migrazione della piattaforma, il Centro sicurezza usa Microsoft Monitoring Agent e l'area di lavoro per raccogliere e archiviare gli stessi dati. L'account di archiviazione può essere rimosso dopo la migrazione.
 >
 >
 
-### <a name="can-i-delete-hello-default-workspaces-created-by-security-center"></a>È possibile eliminare le aree di lavoro di hello predefinito creati dal centro di sicurezza?
-**L'area di lavoro predefinita hello di eliminazione non è consigliata.** Centro sicurezza PC utilizza dati hello predefiniti aree di lavoro toostore protezione dalle macchine virtuali.  Se si elimina un'area di lavoro, il Centro sicurezza PC è Impossibile toocollect questi dati e alcune raccomandazioni sulla sicurezza e gli avvisi non sono disponibili
+### <a name="am-i-billed-for-log-analytics-or-oms-on-the-workspaces-created-by-security-center"></a>Vengono addebitati costi per Log Analytics oppure OMS nelle aree di lavoro create dal Centro sicurezza?
+No. Le aree di lavoro create dal Centro sicurezza non comportano addebiti di OMS, benché siano configurate per OMS per la fatturazione per nodo. La fatturazione del Centro sicurezza è sempre basata sui criteri di sicurezza del Centro sicurezza e sulle soluzioni installate in un'area di lavoro:
 
-toorecover, hello rimuovere Microsoft Monitoring Agent nell'area di lavoro collegati toohello eliminato hello macchine virtuali. Centro sicurezza PC consente di reinstallare agente hello e crea nuove aree di lavoro predefinito.
+- **Livello Gratuito**: il Centro sicurezza installa la soluzione 'SecurityCenterFree' nell'area di lavoro predefinita. Non viene applicato alcun addebito per il livello Gratuito.
+- **Livello Standard**: il Centro sicurezza installa le soluzioni 'SecurityCenterFree' e 'Security' nell'area di lavoro predefinita.
 
-### <a name="what-if-hello-microsoft-monitoring-agent-was-already-installed-as-an-extension-on-hello-vm"></a>Cosa accade se hello Microsoft Monitoring Agent è già stato installato come estensione nelle VM hello?
-Centro sicurezza PC non esegue l'override di aree di lavoro toouser con le connessioni esistenti. Centro sicurezza PC archivia i dati di protezione da macchine Virtuali nell'area di lavoro hello hello è già connesso.
+Per altre informazioni sui prezzi, vedere [Prezzi di Centro sicurezza](https://azure.microsoft.com/pricing/details/security-center/). La pagina relativa ai prezzi illustra le modifiche apportate alla fatturazione per l'archiviazione dei dati di sicurezza e alla fatturazione ripartita a partire da giugno 2017.
 
-### <a name="what-if-i-had-a-microsoft-monitoring-agent-installed-on-hello-machine-but-not-as-an-extension"></a>Cosa accade se ha un agente di monitoraggio di Microsoft installato sul computer hello ma non come un'estensione?
-Se hello Microsoft Monitoring Agent è installato direttamente in hello VM (non come un'estensione di Azure), il Centro sicurezza PC non installerà hello Microsoft Monitoring Agent e il monitoraggio della protezione sarà limitato.
+> [!NOTE]
+> Il piano tariffario di OMS per le aree di lavoro create dal Centro sicurezza non influisce sulla fatturazione del Centro sicurezza.
+>
+>
 
-### <a name="what-is-hello-impact-of-removing-these-extensions"></a>Qual è hello impatto della rimozione di queste estensioni?
-Se si rimuove l'estensione Microsoft Monitoring hello, Centro sicurezza PC non è di tipo dati di sicurezza in grado di toocollect da hello VM e alcuni consigli sulla sicurezza e gli avvisi non sono disponibili. Entro 24 ore, il Centro sicurezza PC determina che hello VM manca estensione hello e reinstalla hello estensione.
+### <a name="can-i-delete-the-default-workspaces-created-by-security-center"></a>È possibile eliminare le aree di lavoro predefinite create dal Centro sicurezza?
+**L'eliminazione dell'area di lavoro predefinita non è consigliata.** Il Centro sicurezza usa le aree di lavoro predefinite per archiviare i dati di sicurezza dalle macchine virtuali.  Se si elimina un'area di lavoro, il Centro sicurezza non potrà raccogliere tali dati e alcune raccomandazioni e alcuni avvisi di sicurezza non saranno disponibili.
 
-### <a name="how-do-i-stop-hello-automatic-agent-installation-and-workspace-creation"></a>Come interrompere l'installazione dell'agente automatico hello e la creazione dell'area di lavoro?
-È possibile disattivare la raccolta dei dati per le sottoscrizioni nei criteri di sicurezza hello ma questa operazione è sconsigliata. La disattivazione della raccolta di dati limita le raccomandazioni e gli avvisi del Centro sicurezza. Raccolta dati è obbligatorio per le sottoscrizioni nel piano tariffario Standard hello. raccolta dei dati toodisable:
+Per il ripristino, rimuovere Microsoft Monitoring Agent dalle VM connesse all'area di lavoro eliminata. Il Centro sicurezza reinstalla l'agente e crea nuove aree di lavoro predefinite.
 
-1. Se la sottoscrizione è configurata per il livello Standard hello, aprire hello i criteri di protezione per la sottoscrizione e selezionare hello **libero** livello.
+### <a name="how-can-i-use-my-existing-log-analytics-workspace"></a>Come usare l'area di lavoro di Log Analytics esistente
+
+È possibile selezionare un'area di lavoro di Log Analytics esistente per archiviare i dati raccolti dal Centro sicurezza. Per usare l'area di lavoro di Log Analytics esistente:
+
+- L'area di lavoro deve essere associata alla sottoscrizione di Azure selezionata.
+- È necessario avere almeno le autorizzazioni di lettura per accedere all'area di lavoro.
+
+Per selezionare l'area di lavoro di Log Analytics esistente:
+
+1. In **Security policy – Data Collection** (Criteri di sicurezza - Raccolta dati) selezionare **Use another workspace** (Usare un'altra area di lavoro).
+
+   ![Usare un'altra area di lavoro][5]
+
+2. Nel menu a discesa selezionare un'area di lavoro dove archiviare i dati raccolti.
+
+   > [!NOTE]
+   > Nel menu a discesa vengono visualizzate solo le aree di lavoro a cui si ha accesso e che si trovano nella sottoscrizione di Azure.
+   >
+   >
+
+3. Selezionare **Salva**.
+4. Dopo aver selezionato **Salva**, verrà richiesto se si desidera riconfigurare le macchine virtuali monitorate.
+
+   - Selezionare **No** se si desidera che le nuove impostazioni dell'area di lavoro si **applichino solo alle nuove macchine virtuali**. Le nuove impostazioni dell'area di lavoro si applicano solo alle nuove installazioni dell'agente, ovvero alle macchine virtuali da poco rilevate che non hanno installato Microsoft Monitoring Agent.
+   - Selezionare **Sì** se si desidera che le nuove impostazioni dell'area di lavoro si **applichino a tutte le macchine virtuali**. In aggiunta, ogni macchina virtuale connessa a un'area di lavoro creata dal Centro sicurezza viene ricollegata alla nuova area di lavoro di destinazione.
+
+   > [!NOTE]
+   > Se si seleziona Sì, non è necessario eliminare le aree di lavoro create dal Centro sicurezza fino a quando tutte le macchine virtuali vengono ricollegate alla nuova area di lavoro di destinazione. Questa operazione non riesce se un'area di lavoro viene eliminata troppo presto.
+   >
+   >
+
+   - Selezionare **Annulla** per annullare l'operazione.
+
+      ![Riconfigurare le macchine virtuali monitorate][6]
+
+### <a name="what-if-the-microsoft-monitoring-agent-was-already-installed-as-an-extension-on-the-vm"></a>Cosa accade se Microsoft Monitoring Agent è già stato installato come estensione nella VM?
+Il Centro sicurezza non esegue l'override delle connessioni esistenti alle aree di lavoro degli utenti. Il Centro sicurezza archivia i dati di sicurezza dalla VM nell'area di lavoro già connessa.
+
+### <a name="what-if-i-had-a-microsoft-monitoring-agent-installed-on-the-machine-but-not-as-an-extension"></a>Cosa accade se Microsoft Monitoring Agent è installato nella macchina virtuale ma non come estensione?
+Se Microsoft Monitoring Agent è installato direttamente sulla macchina virtuale, non come estensione di Azure, il Centro sicurezza non lo installerà e il monitoraggio della sicurezza sarà limitato.
+
+### <a name="what-is-the-impact-of-removing-these-extensions"></a>Qual è l'impatto della rimozione delle estensioni?
+Se si rimuove l'estensione Microsoft Monitoring, il Centro sicurezza non potrà raccogliere i dati di sicurezza dalla VM e alcune raccomandazioni e alcuni avvisi di sicurezza non saranno disponibili. Entro 24 ore il Centro sicurezza determina che nella VM non è presente l'estensione e la reinstalla.
+
+### <a name="how-do-i-stop-the-automatic-agent-installation-and-workspace-creation"></a>Come si interrompono l'installazione automatica dell'agente e la creazione automatica dell'area di lavoro?
+È possibile disattivare il provisioning automatico per le sottoscrizioni nei criteri di sicurezza, ma questa opzione non è consigliata. La disattivazione del provisioning automatico limita le raccomandazioni e gli avvisi del Centro sicurezza. Il provisioning automatico è obbligatorio per le sottoscrizioni con piano tariffario Standard. Per disabilitare il provisioning automatico:
+
+1. Se la sottoscrizione è configurata per il livello Standard, aprire i criteri di sicurezza per tale sottoscrizione e selezionare il livello **Gratuito**.
 
    ![Piano tariffario ][1]
 
-2. Successivamente, disattivare la raccolta di dati selezionando **Off** su hello **criteri di sicurezza: la raccolta dei dati** blade.
-
-   ![Raccolta dei dati][2]
+2. Disattivare quindi il provisioning automatico selezionando **Disattivato** nel pannello **Security policy – Data collection** (Criteri di sicurezza - Raccolta dati).
+   ![Raccolta di dati][2]
 
 ### <a name="how-do-i-remove-oms-extensions-installed-by-security-center"></a>Come si rimuovono le estensioni di OMS installate dal Centro sicurezza?
-È possibile rimuovere manualmente hello Microsoft Monitoring Agent. Questa operazione non è consigliata perché limita le raccomandazioni e gli avvisi del Centro sicurezza.
+È possibile rimuovere manualmente Microsoft Monitoring Agent. Questa operazione non è consigliata perché limita le raccomandazioni e gli avvisi del Centro sicurezza.
 
 > [!NOTE]
-> Se la raccolta dei dati è abilitata, il Centro sicurezza PC reinstallerà agente hello dopo averlo rimosso.  È necessario toodisable di raccolta dati prima di rimuovere manualmente l'agente di hello. Vedere [come evitare la creazione di area di lavoro e l'installazione automatica di agenti hello?](#how-do-i-stop-the-automatic-agent-installation-and-workspace-creation?) per istruzioni su come disabilitare la raccolta dei dati.
+> Se la raccolta di dati è abilitata, il Centro sicurezza reinstallerà l'agente dopo la rimozione.  È necessario disabilitare la raccolta di dati prima di rimuovere manualmente l'agente. Per istruzioni sulla disabilitazione della raccolta di dati, vedere [Come si interrompono l'installazione automatica dell'agente e la creazione automatica dell'area di lavoro?](#how-do-i-stop-the-automatic-agent-installation-and-workspace-creation?).
 >
 >
 
-toomanually rimuovere agente hello:
+Per rimuovere manualmente l'agente:
 
-1.  Nel portale di hello aprire **Analitica Log**.
-2.  Nel pannello Log Analitica hello, selezionare un'area di lavoro:
-3.  Selezionare ogni macchina virtuale che non desiderati toomonitor e selezionare **Disconnect**.
+1.  Nel portale aprire **Log Analytics**.
+2.  Nel pannello di Log Analytics selezionare un'area di lavoro:
+3.  Selezionare ogni VM da escludere dal monitoraggio, quindi selezionare **Disconnetti**.
 
-   ![Rimuovere l'agente di hello][3]
+   ![Rimuovere l'agente][3]
 
 > [!NOTE]
-> Se una VM Linux dispone già di un agente OMS non di estensione, la rimozione di estensione hello comporta anche l'agente hello e cliente hello tooreinstall è.
+> Se una VM Linux include già un agente OMS non dell'estensione, la rimozione dell'estensione comporta anche la rimozione dell'agente e il cliente dovrà reinstallarlo.
 >
 >
 
 ## <a name="existing-oms-customers"></a>Clienti di OMS esistenti
 
 ### <a name="does-security-center-override-any-existing-connections-between-vms-and-workspaces"></a>Il Centro sicurezza esegue l'override di eventuali connessioni esistenti tra le macchine virtuali e le aree di lavoro?
-Se una macchina virtuale già hello Microsoft Monitoring Agent installato come un'estensione di Azure, il Centro sicurezza PC non esegue l'override connessione hello all'area di lavoro esistente. Centro sicurezza PC utilizza invece l'area di lavoro esistente hello.
+Se in una VM è già installato Microsoft Monitoring Agent come estensione di Azure, il Centro sicurezza non esegue l'override della connessione all'area di lavoro esistente. Il Centro sicurezza usa l'area di lavoro esistente.
 
-Una soluzione di Centro sicurezza PC è installato nell'area di lavoro hello se non già presente e soluzione hello è applicato toohello solo le macchine virtuali pertinenti. Quando si aggiunge una soluzione, viene distribuito automaticamente da tooall Windows e Linux gli agenti connessi tooyour Log Analitica area di lavoro predefinita. [Soluzione Targeting](../operations-management-suite/operations-management-suite-solution-targeting.md), che è una funzionalità OMS, consente un ambito tooapply tooyour soluzioni.
+Una soluzione del Centro sicurezza viene installata nell'area di lavoro, se non è già presente, e la soluzione viene applicata solo alle VM rilevanti. Quando viene aggiunta, la soluzione viene automaticamente distribuita per impostazione predefinita a tutti gli agenti di Windows e Linux connessi all'area di lavoro di Log Analytics. Il [targeting della soluzione](../operations-management-suite/operations-management-suite-solution-targeting.md), una funzionalità di OMS, consente di applicare un ambito alle soluzioni.
 
-Se hello Microsoft Monitoring Agent è installato direttamente in hello VM (non come un'estensione di Azure), il Centro sicurezza PC non installerà hello Microsoft Monitoring Agent e il monitoraggio della protezione è limitato.
+Se Microsoft Monitoring Agent è installato direttamente sulla macchina virtuale, non come estensione di Azure, il Centro sicurezza non lo installerà e il monitoraggio della sicurezza sarà limitato.
 
-### <a name="what-should-i-do-if-i-suspect-that-hello-data-platform-migration-broke-hello-connection-between-one-of-my-vms-and-my-workspace"></a>Cosa fare se si sospetta che la migrazione di piattaforma dati hello annullino connessione hello tra una delle macchine virtuali e l'area di lavoro?
-Questo problema non si dovrebbe verificare. Se verificano, quindi [creare una richiesta di supporto tecnico di Azure](../azure-supportability/how-to-create-azure-support-request.md) e includono i seguenti dettagli hello:
+### <a name="what-should-i-do-if-i-suspect-that-the-data-platform-migration-broke-the-connection-between-one-of-my-vms-and-my-workspace"></a>Che cosa si deve fare se si sospetta che la migrazione della piattaforma di dati abbia interrotto la connessione tra una delle VM e l'area di lavoro?
+Questo problema non si dovrebbe verificare. Nel caso in cui si verifichi, [creare una richiesta di supporto tecnico di Azure](../azure-supportability/how-to-create-azure-support-request.md) e includere i dettagli seguenti:
 
-- ID di risorsa di Azure Hello di hello interessati VM
-- ID di risorsa di Azure Hello dell'area di lavoro hello configurato sull'estensione hello prima hello connessione è stata interrotta
-- agente Hello e la versione installata in precedenza
+- ID della risorsa di Azure della VM interessata
+- ID della risorsa di Azure dell'area di lavoro configurata nell'estensione prima dell'interruzione della connessione
+- Agente e versione installata in precedenza
 
-### <a name="does-security-center-install-solutions-on-my-existing-oms-workspaces-what-are-hello-billing-implications"></a>Il Centro sicurezza installa soluzioni nelle aree di lavoro di OMS esistenti? Quali sono i costi di fatturazione hello?
-Quando il Centro sicurezza PC identifica una macchina virtuale è già connesso tooa dell'area di lavoro che è stato creato, il Centro sicurezza PC consente alle soluzioni in questa area di lavoro in base a livello di prezzo tooyour. Hello soluzioni viene applicato toohello solo macchine virtuali di Azure pertinenti, tramite [soluzione destinazione](https://docs.microsoft.com/azure/operations-management-suite/operations-management-suite-solution-targeting), pertanto rimane fatturazione hello hello stesso.
+### <a name="does-security-center-install-solutions-on-my-existing-oms-workspaces-what-are-the-billing-implications"></a>Il Centro sicurezza installa soluzioni nelle aree di lavoro di OMS esistenti? Quali solo le implicazioni relative alla fatturazione?
+Quando il Centro sicurezza rileva che una VM è già connessa a un'area di lavoro creata, il Centro sicurezza abilita soluzioni in questa area di lavoro in base al piano tariffario specifico. Le soluzioni vengono applicate solo alle macchine virtuali rilevanti di Azure tramite il [targeting della soluzione](https://docs.microsoft.com/azure/operations-management-suite/operations-management-suite-solution-targeting), quindi la fatturazione rimane invariata.
 
-- **Livello gratuito** -Centro sicurezza PC installa soluzione 'SecurityCenterFree' hello nell'area di lavoro hello. La fatturazione per il livello gratuito hello.
-- **Livello standard** : Centro sicurezza PC installa hello 'SecurityCenterFree' e soluzioni 'Security' su hello dell'area di lavoro.
+- **Livello Gratuito**: il Centro sicurezza installa la soluzione 'SecurityCenterFree' nell'area di lavoro. Non viene applicato alcun addebito per il livello Gratuito.
+- **Livello Standard**: il Centro sicurezza installa le soluzioni 'SecurityCenterFree' e 'Security' nell'area di lavoro.
 
    ![Soluzioni nell'area di lavoro predefinita][4]
 
 > [!NOTE]
-> soluzione 'Security' in Log Analitica Hello è hello sicurezza & soluzione di controllo in OMS.
+> La soluzione 'Security' in Log Analytics è la soluzione Sicurezza e controllo in OMS.
 >
 >
 
-### <a name="i-already-have-workspaces-in-my-environment-can-i-use-them-toocollect-security-data"></a>Si dispone già di aree di lavoro nell'ambiente, è possibile utilizzare tali dati di protezione toocollect?
-Se una macchina virtuale già hello Microsoft Monitoring Agent installato come un'estensione di Azure, il Centro sicurezza PC utilizza hello connesso area di lavoro esistente. Una soluzione di Centro sicurezza PC è installato nell'area di lavoro hello se non già presente e soluzione hello è applicato toohello solo macchine virtuali pertinenti tramite [soluzione destinazione](https://docs.microsoft.com/azure/operations-management-suite/operations-management-suite-solution-targeting).
+### <a name="i-already-have-workspaces-in-my-environment-can-i-use-them-to-collect-security-data"></a>Nell'ambiente sono già presenti aree di lavoro. È possibile usarle per raccogliere i dati di sicurezza?
+Se in una VM è già installato Microsoft Monitoring Agent come estensione di Azure, il Centro sicurezza usa l'area di lavoro connessa esistente. Una soluzione del Centro sicurezza viene installata nell'area di lavoro, se non è già presente, e la soluzione viene applicata solo alle VM rilevanti tramite il [targeting della soluzione](https://docs.microsoft.com/azure/operations-management-suite/operations-management-suite-solution-targeting).
 
-Centro sicurezza PC installa Microsoft Monitoring Agent hello in macchine virtuali, Usa hello aree di lavoro predefinito creato dal Centro sicurezza PC. Non appena i clienti saranno in grado di tooconfigure vengono utilizzate le aree di lavoro.
+Quando il Centro sicurezza installa Microsoft Monitoring Agent nelle VM, usa le aree di lavoro predefinite create dal Centro sicurezza. I clienti potranno presto configurare le aree di lavoro usate.
 
-### <a name="i-already-have-security-solution-on-my-workspaces-what-are-hello-billing-implications"></a>Nelle aree di lavoro è già presente una soluzione di sicurezza. Quali sono i costi di fatturazione hello?
-soluzione di sicurezza e controllo Hello è tooenable utilizzate funzionalità di livello Standard di centro di sicurezza per le macchine virtuali di Azure. Se soluzione di sicurezza e controllo hello è già installato in un'area di lavoro, il Centro sicurezza PC utilizza soluzione esistente hello. La fatturazione rimane invariata.
+### <a name="i-already-have-security-solution-on-my-workspaces-what-are-the-billing-implications"></a>Nelle aree di lavoro è già presente una soluzione di sicurezza. Quali solo le implicazioni relative alla fatturazione?
+La soluzione Sicurezza e controllo viene usata per abilitare le funzionalità Standard del Centro sicurezza per le VM di Azure. Se la soluzione Sicurezza e controllo è già installata in un'area di lavoro, il Centro sicurezza usa la soluzione esistente. La fatturazione rimane invariata.
 
 ## <a name="next-steps"></a>Passaggi successivi
-toolearn informazioni sulla migrazione della piattaforma hello Centro sicurezza PC, vedere
+Per altre informazioni sulla migrazione della piattaforma del Centro sicurezza, vedere:
 
 - [Migrazione della piattaforma del Centro sicurezza di Azure](security-center-platform-migration.md)
 - [Guida alla risoluzione dei problemi del Centro sicurezza di Azure](security-center-troubleshooting-guide.md)
@@ -158,3 +192,5 @@ toolearn informazioni sulla migrazione della piattaforma hello Centro sicurezza 
 [2]: ./media/security-center-platform-migration-faq/data-collection.png
 [3]: ./media/security-center-platform-migration-faq/remove-the-agent.png
 [4]: ./media/security-center-platform-migration-faq/solutions.png
+[5]: ./media/security-center-platform-migration-faq/use-another-workspace.png
+[6]: ./media/security-center-platform-migration-faq/reconfigure-monitored-vm.png

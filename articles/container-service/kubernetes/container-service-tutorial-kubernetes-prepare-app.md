@@ -1,5 +1,5 @@
 ---
-title: esercitazione per il servizio contenitore aaaAzure - preparare App | Documenti Microsoft
+title: Esercitazione sul servizio contenitore di Azure - Preparare un'app | Microsoft Docs
 description: Esercitazione sul servizio contenitore di Azure - App di preparazione
 services: container-service
 documentationcenter: 
@@ -14,65 +14,73 @@ ms.devlang: azurecli
 ms.topic: tutorial
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 07/25/2017
+ms.date: 09/14/2017
 ms.author: nepeters
 ms.custom: mvc
-ms.openlocfilehash: b537ecc9ff50358fb65b128bfe6eb894dd088cc4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d09f59715ac4dac1482e6ca5f79e8426f1f01ced
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="create-container-images-toobe-used-with-azure-container-service"></a>Crea contenitore immagini toobe utilizzato con il servizio contenitore di Azure
+# <a name="create-container-images-to-be-used-with-azure-container-service"></a>Creare immagini del contenitore da usare con il servizio contenitore di Azure
 
 In questa esercitazione, parte uno di sette, si prepara un'applicazione multi-contenitore per l'uso in Kubernetes. I passaggi completati comprendono:  
 
 > [!div class="checklist"]
 > * Clonazione dell'origine applicazione da GitHub  
-> * Creazione di un'immagine contenitore dall'origine di applicazione hello
-> * Test di un'applicazione hello in un ambiente locale in Docker
+> * Creazione di un'immagine del contenitore dall'origine applicazione
+> * Test dell'applicazione in un ambiente Docker locale
 
-Una volta completato, dopo l'applicazione hello è accessibile in ambiente di sviluppo locale.
+Al termine, l'applicazione seguente sarà accessibile nell'ambiente di sviluppo locale.
 
 ![Immagine del cluster Kubernetes in Azure](media/container-service-kubernetes-tutorials/azure-vote.png)
 
-Nelle esercitazioni successive, immagine contenitore hello è caricato tooan del Registro di sistema di Azure contenitore e quindi eseguiti in un Azure ospitati Kubernetes cluster.
+Nelle esercitazioni successive, l'immagine del contenitore verrà caricata in un'istanza di Registro contenitori di Azure e quindi eseguita in un cluster Kubernetes ospitato in Azure.
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
 Questa esercitazione presuppone una conoscenza di base dei concetti principali di Docker, come contenitori, immagini dei contenitore e comandi essenziali. Se necessario, vedere [Introduzione a Docker]( https://docs.docker.com/get-started/) per una panoramica sui concetti fondamentali relativi al contenitore. 
 
-toocomplete questa esercitazione, è necessario un ambiente di sviluppo di Docker. Docker offre pacchetti che consentono di configurare facilmente Docker in qualsiasi sistema [Mac](https://docs.docker.com/docker-for-mac/), [Windows](https://docs.docker.com/docker-for-windows/) o [Linux](https://docs.docker.com/engine/installation/#supported-platforms).
+Per completare questa esercitazione è necessario un ambiente di sviluppo Docker. Docker offre pacchetti che consentono di configurare facilmente Docker in qualsiasi sistema [Mac](https://docs.docker.com/docker-for-mac/), [Windows](https://docs.docker.com/docker-for-windows/) o [Linux](https://docs.docker.com/engine/installation/#supported-platforms).
+
+Azure Cloud Shell non include i componenti di Docker necessari per completare ogni passaggio di questa esercitazione. È pertanto consigliabile usare un ambiente di sviluppo completo di Docker.
 
 ## <a name="get-application-code"></a>Ottenere il codice dell'applicazione
 
-applicazione di esempio Hello utilizzata in questa esercitazione è un'app di voto base. un'applicazione Hello è costituito da un componente front-end web e un'istanza di Redis back-end. il componente web Hello viene compresso in un'immagine contenitore personalizzato. istanza di Redis Hello utilizza un'immagine dall'Hub Docker non modificata.  
+L'applicazione di esempio utilizzata in questa esercitazione è un'app di voto base. L'applicazione è costituita da un componente Web front-end e un'istanza Redis back-end. Viene creato un pacchetto del componente Web in un'immagine del contenitore personalizzata. L'istanza di Redis usa un'immagine non modificata dell'hub Docker.  
 
-Usare git toodownload una copia dell'ambiente di sviluppo tooyour applicazione hello.
+Usare git per scaricare una copia dell'applicazione per l'ambiente di sviluppo.
 
 ```bash
 git clone https://github.com/Azure-Samples/azure-voting-app-redis.git
 ```
 
-Un creato in precedenza Docker compose di file e un file manifesto Kubernetes interno hello clonato directory è codice sorgente dell'applicazione hello. Questi file sono utilizzati toocreate asset nel set di esercitazione hello. 
+Cambiare directory in modo da usare la directory clonata.
+
+```
+cd azure-voting-app-redis
+```
+
+All'interno della directory sono disponibili il codice sorgente dell'applicazione, un file Docker Compose creato in precedenza e un file manifesto Kubernetes. Questi file vengono usati in tutta la serie di esercitazioni. 
 
 ## <a name="create-container-images"></a>Creare immagini del contenitore
 
-[Docker Compose](https://docs.docker.com/compose/) può essere utilizzato tooautomate hello compilazione fuori immagini contenitore e la distribuzione di hello di applicazioni multi-contenitore.
+[Docker Compose](https://docs.docker.com/compose/) può essere usato per automatizzare la creazione di immagini del contenitore e la distribuzione di applicazioni multi-contenitore.
 
-Eseguire l'immagine di docker compose.yml file toocreate hello contenitore hello, hello download Redis immagine e avviare un'applicazione hello.
+Eseguire il file `docker-compose.yml` per creare l'immagine del contenitore, scaricare l'immagine Redis e avviare l'applicazione.
 
 ```bash
-docker-compose -f ./azure-voting-app-redis/docker-compose.yml up -d
+docker-compose up -d
 ```
 
-Al termine, utilizzare hello [immagini docker](https://docs.docker.com/engine/reference/commandline/images/) comando immagini hello creato toosee.
+Al termine usare il comando [docker images](https://docs.docker.com/engine/reference/commandline/images/) per vedere le immagini create.
 
 ```bash
 docker images
 ```
 
-Si noti che sono state scaricate o create tre immagini. Hello *azure voto-anteriore* immagine contiene un'applicazione hello. È stata derivata da hello *nginx pallone* immagine. immagine di Redis Hello è stato scaricato dall'Hub Docker.
+Si noti che sono state scaricate o create tre immagini. L'immagine `azure-vote-front` contiene l'applicazione e usa l'immagine `nginx-flask` come base. L'immagine `redis` viene usata per avviare un'istanza di Redis.
 
 ```bash
 REPOSITORY                   TAG        IMAGE ID            CREATED             SIZE
@@ -81,7 +89,7 @@ redis                        latest     a1b99da73d05        7 days ago          
 tiangolo/uwsgi-nginx-flask   flask      788ca94b2313        9 months ago        694MB
 ```
 
-Eseguire hello [docker ps](https://docs.docker.com/engine/reference/commandline/ps/) comando toosee hello contenitori in esecuzione.
+Eseguire il comando [docker ps](https://docs.docker.com/engine/reference/commandline/ps/) per vedere i contenitori in esecuzione.
 
 ```bash
 docker ps
@@ -97,38 +105,38 @@ b68fed4b66b6        redis             "docker-entrypoint..."   57 seconds ago   
 
 ## <a name="test-application-locally"></a>Testare l'applicazione in locale
 
-Sfoglia toohttp://localhost:8080 toosee hello in esecuzione dell'applicazione.
+Passare a http://localhost:8080 per vedere l'applicazione in esecuzione.
 
 ![Immagine del cluster Kubernetes in Azure](media/container-service-kubernetes-tutorials/azure-vote.png)
 
 ## <a name="clean-up-resources"></a>Pulire le risorse
 
-Ora che la funzionalità dell'applicazione è stata convalidata, hello contenitori in esecuzione può essere arrestato e rimosso. Non eliminare le immagini contenitore hello. Hello *azure voto-anteriore* immagine è l'istanza del Registro di sistema di Azure contenitore tooan caricato nella prossima esercitazione hello.
+Ora che le funzionalità dell'applicazione sono state verificate, i contenitori in esecuzione possono essere arrestati e rimossi. Non eliminare le immagini del contenitore. L'immagine `azure-vote-front` verrà caricata in un'istanza del Registro contenitori di Azure nella prossima esercitazione.
 
-Eseguire hello seguente hello toostop contenitori in esecuzione.
-
-```bash
-docker-compose -f ./azure-voting-app-redis/docker-compose.yml stop
-```
-
-Eliminare i contenitori di hello arrestato con hello comando seguente.
+Eseguire questo comando per arrestare i contenitori in esecuzione.
 
 ```bash
-docker-compose -f ./azure-voting-app-redis/docker-compose.yml rm
+docker-compose stop
 ```
 
-Al termine, si dispone di un'immagine contenitore che contiene un'applicazione hello Azure voto.
+Eliminare le risorse e i contenitori arrestati con il comando seguente.
+
+```bash
+docker-compose down
+```
+
+Al termine si avrà un'immagine del contenitore con l'applicazione Azure Vote.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-In questa esercitazione, un'applicazione è stata testata e le immagini contenitore creato per un'applicazione hello. sono stata completata Hello alla procedura seguente:
+In questa esercitazione è stata testata un'applicazione e sono state create le immagini del contenitore per l'applicazione stessa. Sono stati completati i passaggi seguenti:
 
 > [!div class="checklist"]
-> * La clonazione di origine dell'applicazione hello da GitHub  
+> * Clonazione dell'origine applicazione da GitHub  
 > * Creazione di un'immagine del contenitore dall'origine applicazione
-> * Applicazione hello testata in un ambiente locale in Docker
+> * Test dell'applicazione in un ambiente Docker locale
 
-Spostare toohello Avanti toolearn esercitazione sull'archiviazione di immagini contenitore in un registro di sistema di contenitore di Azure.
+Passare alla prossima esercitazione per apprendere informazioni sull'archiviazione delle immagini del contenitore in un Registro contenitori di Azure.
 
 > [!div class="nextstepaction"]
-> [Push tooAzure immagini contenitore del Registro di sistema](./container-service-tutorial-kubernetes-prepare-acr.md)
+> [Eseguire il push delle immagini nel Registro contenitori di Azure](./container-service-tutorial-kubernetes-prepare-acr.md)

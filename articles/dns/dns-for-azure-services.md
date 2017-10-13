@@ -1,6 +1,6 @@
 ---
-title: aaaUsing DNS di Azure con altri servizi di Azure | Documenti Microsoft
-description: Comprendere come toouse DNS di Azure tooresolve denominati per altri servizi di Azure
+title: Uso del servizio DNS di Azure con altri servizi di Azure | Documentazione Microsoft
+description: Informazioni su come usare il servizio DNS di Azure per risolvere la questione dei nomi degli altri servizi di Azure
 services: dns
 documentationcenter: na
 author: georgewallace
@@ -16,27 +16,27 @@ ms.custom: H1Hack27Feb2017
 ms.workload: infrastructure-services
 ms.date: 09/21/2016
 ms.author: gwallace
-ms.openlocfilehash: 791f93d6aff2c638c08518e9f1e8ab89ac8de3f2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a286508fe445208b6bb348d07434b5722cc3f11e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="how-azure-dns-works-with-other-azure-services"></a>Funzionamento del servizio DNS di Azure con altri servizi di Azure
 
-Il servizio DNS di Azure è un servizio ospitato di risoluzione nomi e di gestione DNS, In questo modo si toocreate pubblici nomi DNS per hello altre applicazioni e servizi che è stato distribuito in Azure. Creazione di un nome per un servizio di Azure nel dominio personalizzato è semplice come l'aggiunta di un record di tipo corretto di hello per il servizio.
+Il servizio DNS di Azure è un servizio ospitato di risoluzione nomi e di gestione DNS, che consente di creare i nomi DNS pubblici per le altre applicazioni e gli altri servizi distribuiti in Azure. Creare un nome per un servizio di Azure in un dominio personalizzato è semplice come aggiungere un record del tipo corretto per il servizio.
 
-* Per gli indirizzi IP allocati dinamicamente, è necessario creare un record DNS CNAME nome DNS toohello mappe Azure creato per il servizio. Standard DNS impedire l'utilizzo di un record CNAME per vertice zona hello.
-* Per indirizzi IP statici, è possibile creare un record A DNS utilizzando un nome qualsiasi, incluso un *dominio naked* nome al vertice zona hello.
+* Per gli indirizzi IP allocati dinamicamente, è necessario creare un record DNS CNAME che viene associato al nome DNS creato da Azure per il servizio. Gli standard DNS impediscono l'uso di un record CNAME per il vertice della zona.
+* Per indirizzi IP statici, è possibile creare un record DNS A usando un nome qualsiasi, incluso un nome *dominio naked* al vertice della zona.
 
-Hello seguente tabella vengono illustrati hello supportati i tipi di record che possono essere utilizzati per diversi servizi di Azure. Come si può vedere nella tabella, il servizio DNS di Azure supporta soltanto i record DNS per le risorse di rete con connessione Internet. Il servizio DNS di Azure non può essere usato per la risoluzione nomi degli indirizzi interni e privati.
+Nella tabella seguente vengono illustrati i tipi di record supportati che è possibile usare per i vari servizi di Azure. Come si può vedere nella tabella, il servizio DNS di Azure supporta soltanto i record DNS per le risorse di rete con connessione Internet. Il servizio DNS di Azure non può essere usato per la risoluzione nomi degli indirizzi interni e privati.
 
 | Servizio di Azure | Interfaccia di rete | Descrizione |
 | --- | --- | --- |
 | gateway applicazione |[IP pubblico front-end](dns-custom-domain.md#public-ip-address) |È possibile creare un record DNS A o CNAME. |
 | Bilanciamento del carico |[IP pubblico front-end](dns-custom-domain.md#public-ip-address)  |È possibile creare un record DNS A o CNAME. Al servizio di bilanciamento del carico può essere assegnato dinamicamente un indirizzo PI pubblico IPv6. Di conseguenza, è necessario creare un record CNAME per un indirizzo IPv6. |
-| Gestione traffico |Nome pubblico |È possibile creare solo un record CNAME che esegue il mapping al nome trafficmanager.net toohello assegnato tooyour profilo di gestione traffico. Per altre informazioni, vedere [Funzionamento di Gestione traffico](../traffic-manager/traffic-manager-overview.md#traffic-manager-example). |
-| Servizio cloud |[IP pubblico](dns-custom-domain.md#public-ip-address) |Per gli indirizzi IP allocati staticamente, è possibile creare un record DNS A. Per gli indirizzi IP allocati dinamicamente, è necessario creare un record CNAME che esegue il mapping toohello *cloudapp.net* nome. Questa regola si applica tooVMs creato nel portale classico hello perché vengono distribuiti come un servizio cloud. Per altre informazioni, vedere [Configurare un nome di dominio personalizzato nei servizi cloud](../cloud-services/cloud-services-custom-domain-name-portal.md). |
-| Servizio app | [IP esterno](dns-custom-domain.md#app-service-web-apps) |Per gli indirizzi IP esterni, è possibile creare un record DNS A. In caso contrario, è necessario creare un record CNAME che esegue il mapping nome azurewebsites.net toohello. Per ulteriori informazioni, vedere [mappare un tooan di nome di dominio personalizzato dell'app di Azure](../app-service-web/web-sites-custom-domain-name.md) |
-| VM di Resource Manager |[IP pubblico](dns-custom-domain.md#public-ip-address) |Le VM di Resource Manager possono avere indirizzi IP pubblici. Una VM con un indirizzo IP pubblico può essere anche dietro a un servizio di bilanciamento del carico. È possibile creare un record DNS A o CNAME per hello indirizzo pubblico. Questo nome personalizzato può essere utilizzato toobypass hello VIP sul bilanciamento del carico hello. |
+| Gestione traffico |Nome pubblico |È possibile creare solo un record CNAME che si associa al nome trafficmanager.net assegnato al profilo di Gestione traffico. Per altre informazioni, vedere [Funzionamento di Gestione traffico](../traffic-manager/traffic-manager-overview.md#traffic-manager-example). |
+| Servizio cloud |[IP pubblico](dns-custom-domain.md#public-ip-address) |Per gli indirizzi IP allocati staticamente, è possibile creare un record DNS A. Per gli indirizzi IP allocati dinamicamente, è necessario creare un record CNAME che si associa al nome *cloudapp.net* . Questa regola si applica alle VM create nel portale classico poiché vengono distribuite come un servizio cloud. Per altre informazioni, vedere [Configurare un nome di dominio personalizzato nei servizi cloud](../cloud-services/cloud-services-custom-domain-name-portal.md). |
+| Servizio app | [IP esterno](dns-custom-domain.md#app-service-web-apps) |Per gli indirizzi IP esterni, è possibile creare un record DNS A. In caso contrario, è necessario creare un record CNAME che viene associato al nome di azurewebsites.net. Per maggiori informazioni, vedere [Eseguire il mapping di un nome di dominio personalizzato in un'app Azure](../app-service/app-service-web-tutorial-custom-domain.md) |
+| VM di Resource Manager |[IP pubblico](dns-custom-domain.md#public-ip-address) |Le VM di Resource Manager possono avere indirizzi IP pubblici. Una VM con un indirizzo IP pubblico può essere anche dietro a un servizio di bilanciamento del carico. È possibile creare un record DNS A o CNAME per l'indirizzo pubblico. Il nome personalizzato può essere usato per aggirare l'indirizzo VIP sul bilanciamento del carico. |
 | Macchine virtuali classiche |[IP pubblico](dns-custom-domain.md#public-ip-address) |Le VM classiche create con PowerShell o l'interfaccia della riga di comando possono essere configurate con un indirizzo virtuale (riservato) dinamico o statico. È possibile creare rispettivamente un record DNS A o CNAME. |

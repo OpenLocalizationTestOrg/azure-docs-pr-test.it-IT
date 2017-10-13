@@ -9,15 +9,15 @@ editor: jasonwhowell
 ms.service: postgresql
 ms.topic: article
 ms.date: 06/05/2017
-ms.openlocfilehash: 5fb8797f3304289e3ef51f8101dc9c896fc2bcf4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c5d4b85755750f3c06320ac623601ff155b2a704
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="azure-database-for-postgresql-videos"></a>Video su Database di Azure per PostgreSQL
-[Modalità di avvio tooget con hello Nuovo Database di Azure per il servizio PostgreSQL](https://channel9.msdn.com/events/Build/2017/B8046)
+[Come iniziare a usare il nuovo servizio Database di Azure per PostgreSQL](https://channel9.msdn.com/events/Build/2017/B8046)
 
 <iframe src="https://channel9.msdn.com/Events/Build/2017/B8046/player" width="800" height="450" allowFullScreen frameBorder="0"></iframe>
 
-In questo video conferenza hello 2017 Microsoft //Build informazioni dai due clienti l'adozione anticipati come hai utilizzati Database di Azure per tooinnovate servizio PostgreSQL più veloce. Abbiamo altre modalità di migrazione del servizio toohello e parlare dei prossimi passaggi relativi allo sviluppo di applicazioni. Si analizzerà alcune delle funzionalità di servizi chiave hello e discutere le modalità come sviluppatore può eseguire la migrazione delle applicazioni esistenti o sviluppare nuove applicazioni che utilizzano questo servizio PostgreSQL gestito in Azure.
+In questo video della conferenza 2017 Microsoft //Build, leggere informazioni su due clienti che hanno usato il servizio Database di Azure per PostgreSQL per un'innovazione più veloce. Informazioni su come hanno eseguito la migrazione al servizio e sui prossimi passaggi relativi allo sviluppo di applicazioni. Vengono analizzate alcune delle funzionalità chiave del servizio e, come sviluppatore, vengono trattate le modalità di migrazione delle applicazioni esistenti o lo sviluppo di nuove applicazioni che usano questo servizio PostgreSQL gestito in Azure.

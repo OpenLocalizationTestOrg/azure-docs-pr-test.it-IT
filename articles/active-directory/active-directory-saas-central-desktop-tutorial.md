@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con Central Desktop | Documentazione Microsoft'
-description: Informazioni su come toouse Central Desktop con Azure Active Directory tooenable single sign-on, il provisioning automatizzato e molto altro!
+description: Informazioni su come usare Central Desktop con Azure Active Directory per abilitare l'accesso Single Sign-On, il provisioning automatizzato e altro ancora.
 services: active-directory
 author: jeevansd
 documentationcenter: na
@@ -13,119 +13,119 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 02/10/2017
 ms.author: jeedes
-ms.openlocfilehash: 93036ae801c446ce476288c00579931ba10a843b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: fe32c1d68040ceb9d9de2ad6c4a6dc9ea93f5aef
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-central-desktop"></a>Esercitazione: Integrazione di Azure Active Directory con Central Desktop
-obiettivo di Hello di questa esercitazione è l'integrazione di hello tooshow di Azure e Central Desktop. scenario Hello descritto in questa esercitazione si presuppone che si disponga già di hello seguenti elementi:
+Questa esercitazione descrive l'integrazione di Azure e Central Desktop. Per lo scenario descritto in questa esercitazione si presuppone che l'utente disponga di quanto segue:
 
 * Sottoscrizione di Azure valida
 * Sottoscrizione di Central Desktop abilitata per l'accesso Single Sign-On e tenant di Central Desktop
 
-scenario di Hello descritto in questa esercitazione è costituito da hello seguenti blocchi predefiniti:
+Lo scenario descritto in questa esercitazione include i blocchi predefiniti seguenti:
 
-* Abilitazione hello di integrazione dell'applicazione per Central Desktop
+* Abilitazione dell'integrazione dell'applicazione per Central Desktop
 * Configurazione dell'accesso Single Sign-On (SSO)
 * Configurazione del provisioning utente
 * Assegnazione degli utenti
 
 ![Scenario](./media/active-directory-saas-central-desktop-tutorial/IC769558.png "Scenario")
 
-## <a name="enable-hello-application-integration-for-central-desktop"></a>Abilitare l'integrazione dell'applicazione hello per Central Desktop
-obiettivo di Hello di questa sezione è toooutline come integrazione dell'applicazione hello tooenable per Central Desktop.
+## <a name="enable-the-application-integration-for-central-desktop"></a>Abilitare l'integrazione dell'applicazione per Central Desktop
+Questa sezione descrive come abilitare l'integrazione dell'applicazione per Central Desktop.
 
-**integrazione dell'applicazione hello tooenable per Central Desktop, eseguire hello alla procedura seguente:**
+**Per abilitare l'integrazione dell'applicazione per Central Desktop, seguire questa procedura:**
 
-1. Nel portale di Azure classico, nel riquadro di spostamento sinistro hello hello fare clic su **Active Directory**.
+1. Nel portale di Azure classico fare clic su **Active Directory**nel riquadro di spostamento sinistro.
    
    ![Active Directory](./media/active-directory-saas-central-desktop-tutorial/IC700993.png "Active Directory")
-2. Da hello **Directory** elenco, directory hello selezionare per il quale si desidera l'integrazione di directory tooenable.
-3. visualizzazione di applicazioni hello tooopen, nella visualizzazione directory hello, fare clic su **applicazioni** nel menu superiore hello.
+2. Nell'elenco **Directory** selezionare la directory per la quale si desidera abilitare l'integrazione delle directory.
+3. Per aprire la visualizzazione applicazioni, nella visualizzazione directory fare clic su **Applications** nel menu superiore.
    
    ![Applicazioni](./media/active-directory-saas-central-desktop-tutorial/IC700994.png "Applicazioni")
-4. Fare clic su **Aggiungi** nella parte inferiore di hello della pagina hello.
+4. Fare clic su **Add** nella parte inferiore della pagina.
    
    ![Aggiungere un'applicazione](./media/active-directory-saas-central-desktop-tutorial/IC749321.png "Aggiungere un'applicazione")
-5. In hello **cosa si desidera toodo** finestra di dialogo, fare clic su **aggiungere un'applicazione dalla raccolta di hello**.
+5. Nella finestra di dialogo **Come procedere** fare clic su **Aggiungere un'applicazione dalla raccolta**.
    
    ![Aggiungere un'applicazione dalla raccolta](./media/active-directory-saas-central-desktop-tutorial/IC749322.png "Aggiungere un'applicazione dalla raccolta")
-6. In hello **casella di ricerca**, tipo **Central Desktop**.
+6. Nella **casella di ricerca** digitare **Central Desktop**.
    
    ![Raccolta di applicazioni](./media/active-directory-saas-central-desktop-tutorial/IC769559.png "Raccolta di applicazioni")
-7. Nel riquadro risultati hello selezionare **Central Desktop**, quindi fare clic su **completa** tooadd un'applicazione hello.
+7. Nel riquadro dei risultati selezionare **Central Desktop** e quindi fare clic su **Completa** per aggiungere l'applicazione.
    
    ![Central Desktop](./media/active-directory-saas-central-desktop-tutorial/IC769560.png "Central Desktop")
    
 ## <a name="configure-single-sign-on"></a>Configura accesso Single Sign-On
 
-obiettivo di Hello di questa sezione è toooutline come tooenable utenti tooauthenticate tooCentral Desktop con il proprio account in Azure AD usando la federazione basata sul protocollo SAML hello.
+Questa sezione descrive come consentire agli utenti di eseguire l'autenticazione a Central Desktop tramite il proprio account in Azure AD usando la federazione basata sul protocollo SAML.
 
-Come parte di questa procedura, è necessario tooupload un tenant di Central Desktop tooyour certificato con codifica base 64.  
-Se non si ha familiarità con questa procedura, vedere [come tooconvert certificato di un file binario in un file di testo](http://youtu.be/PlgrzUZ-Y1o).
+Come parte di questa procedura, verrà richiesto di caricare un file di certificato con codifica Base 64 nel tenant di Central Desktop.  
+Se non si ha familiarità con questa procedura, vedere il video che illustra [come convertire un certificato binario in un file di testo](http://youtu.be/PlgrzUZ-Y1o).
 
-**tooconfigure accesso single sign-on, eseguire hello alla procedura seguente:**
+**Per configurare l'accesso Single Sign-On, seguire questa procedura:**
 
-1. Nel portale di Azure classico, in hello hello **Central Desktop** pagina di integrazione dell'applicazione, fare clic su **configurare single sign-on** hello tooopen * * configurare Single Sign-On * * finestra di dialogo.
+1. Nel portale di Azure classico, nel **Central Desktop** pagina di integrazione dell'applicazione, fare clic su **configurare single sign-on** per aprire il * * configurare Single Sign-On * * finestra di dialogo.
    
    ![Configurare l'accesso Single Sign-On](./media/active-directory-saas-central-desktop-tutorial/IC749323.png "Configurare l'accesso Single Sign-On")
-2. In hello **come si sarebbe ad esempio utenti toosign su tooCentral Desktop** selezionare **Microsoft Azure AD Single Sign-On**, quindi fare clic su **Avanti**.
+2. Nella pagina **Stabilire come si desidera che gli utenti accedano a Central Desktop** selezionare **Single Sign-On di Microsoft Azure AD** e quindi fare clic su **Avanti**.
    
    ![Configurare l'accesso Single Sign-On](./media/active-directory-saas-central-desktop-tutorial/IC777628.png "Configurare l'accesso Single Sign-On")
-3. In hello **Configura URL App** pagina, eseguire hello alla procedura seguente e quindi fare clic su **Avanti**: 
+3. Nella pagina **Configura URL app** seguire questa procedura e quindi fare clic su **Avanti**: 
    
-   1. In hello **Central Desktop Sign In URL** casella di testo, hello digitare l'URL del tenant di Central Desktop (ad esempio: *http://contoso.centraldesktop.com*).
-   2. Nella casella di testo URL di risposta Central Desktop hello, digitare l'URL AssertionConsumerService di Central Desktop (ad esempio: https://contoso.centraldesktop.com/saml2-assertion.php).
+   1. Nella casella di testo **URL accesso Central Desktop** digitare l'URL del tenant di Central Desktop, ad esempio *http://contoso.centraldesktop.com*.
+   2. Nella casella di testo URL di risposta Central Desktop digitare l'URL AssertionConsumerService di Central Desktop, ad esempio https://contoso.centraldesktop.com/saml2-assertion.php.
    
    >[!NOTE]
-   >È possibile ottenere il valore di hello dai metadati desktop centrale hello (ad esempio: *http://contoso.centraldesktop.com*).
+   >È possibile ottenere il valore dai metadati di Central Desktop, ad esempio *http://contoso.centraldesktop.com*.
    >  
    
    ![Configurare l'URL dell'app](./media/active-directory-saas-central-desktop-tutorial/IC769561.png "Configurare l'URL dell'app")
-4. In hello **Configura accesso single sign-on in Central Desktop** pagina, toodownload il certificato, fare clic su **Scarica certificato**e quindi salvare il file di certificato hello nel computer in uso.
+4. Nella pagina **Configura accesso Single Sign-On in Central Desktop** fare clic su **Scarica certificato** per scaricare il file di certificato e quindi salvarlo nel computer.
    
   ![Configurare l'accesso Single Sign-On](./media/active-directory-saas-central-desktop-tutorial/IC769562.png "Configurare l'accesso Single Sign-On")
-5. Accedi tooyour **Central Desktop** tenant.
-6. Andare troppo**impostazioni**, fare clic su **avanzate**, quindi fare clic su **Single Sign-On**.
+5. Accedere al tenant di **Central Desktop** .
+6. Passare a **Settings** (Impostazioni), fare clic su **Advanced** (Avanzate) e quindi su **Single Sign On**.
    
   ![Installazione - Avanzate](./media/active-directory-saas-central-desktop-tutorial/IC769563.png "Installazione - Avanzate")
-7. In hello **Single Sign On Settings** eseguire hello alla procedura seguente:
+7. Nella pagina **Single Sign-On Settings** seguire questa procedura:
    
   ![Single Sign On Settings](./media/active-directory-saas-central-desktop-tutorial/IC769564.png "Single Sign On Settings")
    
   1. Selezionare **Enable SAML v2 Single Sign On**.
-  2. Nel portale di Azure classico, in hello hello **Configura accesso single sign-on in Central Desktop** pagina, hello copia **URL autorità di certificazione** valore e quindi incollarlo hello **URL SSO** casella di testo.
-  3. Nel portale di Azure classico, in hello hello **Configura accesso single sign-on in Central Desktop** pagina, hello copia **URL accesso remoto** valore e quindi incollarlo hello **SSO Login URL**casella di testo.
-  4. Nel portale di Azure classico, in hello hello **Configura accesso single sign-on in Central Desktop** pagina, hello copia **URL del servizio Single Sign-Out** valore e quindi incollarlo hello **URL disconnessione SSO** casella di testo.
-8. In hello **metodo verifica della firma del messaggio** seguire hello alla procedura seguente:
+  2. Nella pagina **Configura accesso Single Sign-On in Central Desktop** del portale di Azure classico copiare il valore di **URL autorità di certificazione** e incollarlo nella casella di testo **URL SSO**.
+  3. Nella pagina **Configura accesso Single Sign-On in Central Desktop** del portale di Azure classico copiare il valore di **URL accesso remoto** e incollarlo nella casella di testo **SSO Login URL** (URL di accesso SSO).
+  4. Nella pagina **Configura accesso Single Sign-On in Central Desktop** del portale di Azure classico copiare il valore di **URL servizio Single Sign-Out** e incollarlo nella casella di testo **SSO Logout URL** (URL disconnessione SSO).
+8. Nella sezione **Message Signature Verification Method** seguire questa procedura:
    
    ![Message Signature Verification Method](./media/active-directory-saas-central-desktop-tutorial/IC769565.png "Message Signature Verification Method")
    
   1. Selezionare **Certificate**.
-  2. Da hello **certificato SSO** elenco, selezionare **RSH SHA256**.
-  3. Creare un file di testo dal certificato scaricato hello, hello copia del contenuto del file di testo hello e quindi incollarlo hello **certificato SSO** campo.  
+  2. Nell'elenco **SSO Certificate** (Certificato SSO) selezionare **RSH SHA256**.
+  3. Creare un file di testo dal certificato scaricato, copiare il contenuto del file di testo e quindi incollarlo nel campo **SSO Certificate** .  
      >[!TIP]
-     >Per ulteriori informazioni, vedere [come tooconvert certificato di un file binario in un file di testo](http://youtu.be/PlgrzUZ-Y1o)
+     >Per informazioni dettagliate, vedere [come convertire un certificato binario in un file di testo](http://youtu.be/PlgrzUZ-Y1o)
       >  
-   4. Selezionare **visualizzare una pagina di accesso di SAMLv2 tooyour collegamento**.
-9. Fare clic su **Update**.
-10. Nel portale di Azure classico hello, selezionare hello conferma della configurazione di single sign-on e quindi fare clic su **completa** tooclose hello **configurare Single Sign-On** finestra di dialogo.
+   4. Selezionare **Display a link to your SAMLv2 login page**.
+9. Fare clic su **Aggiorna**.
+10. Nel portale di Azure classico selezionare la conferma della configurazione dell'accesso Single Sign-On e quindi fare clic su **Complete** per chiudere la finestra di dialogo **Configura accesso Single Sign-On**.
     
     ![Configurare l'accesso Single Sign-On](./media/active-directory-saas-central-desktop-tutorial/IC769566.png "Configurare l'accesso Single Sign-On")
     
 ## <a name="configure-user-provisioning"></a>Configura provisioning utenti
 
-Per AAD utenti toobe in grado di toosign in devono essere sottoposte a provisioning toohello applicazione Central Desktop. In questa sezione viene descritto come degli account utente AAD toocreate in Central Desktop.
+Per consentire agli utenti di AAD di accedere, è necessario eseguirne il provisioning nell'applicazione Central Desktop. Questa sezione descrive come creare account utente di AAD in Central Desktop.
 
-**gli account utente tooprovision tooCentral Desktop:**
-1. Accedi tooyour tenant di Central Desktop.
-2. Andare troppo**persone \> membri interni**.
+**Per eseguire il provisioning degli account utente in Central Desktop:**
+1. Accedere al tenant di Central Desktop.
+2. Passare a **People \> Internal Members** (Persone > Membri interni).
 3. Fare clic su **Add Internal Members**.
    
   ![Persone](./media/active-directory-saas-central-desktop-tutorial/IC781051.png "Persone")
-4. In hello **Email Address of New Members** casella di testo, digitare un account AAD, si desidera tooprovision e quindi fare clic su **Avanti**.
+4. Nella casella di testo **Email Address of New Members** (Indirizzo posta elettronica nuovi membri) digitare un account AAD di cui si vuole eseguire il provisioning e quindi fare clic su **Next** (Avanti).
    
   ![Email Addresses of New Members](./media/active-directory-saas-central-desktop-tutorial/IC781052.png "Email Addresses of New Members")
 5. Fare clic su **Add Internal member(s)**.
@@ -133,25 +133,25 @@ Per AAD utenti toobe in grado di toosign in devono essere sottoposte a provision
   ![Add Internal Member](./media/active-directory-saas-central-desktop-tutorial/IC781053.png "Add Internal Member")
    
    >[!NOTE]
-   >gli utenti di Hello aggiunti riceveranno un messaggio di posta elettronica che include un collegamento di conferma account hello di tooclick tooactivate.
+   >Gli utenti aggiunti riceveranno un messaggio di posta elettronica che include un collegamento di conferma su cui dovranno fare clic per attivare l'account.
    > 
 
 >[!NOTE]
->È possibile usare qualsiasi altro Central Desktop utente account strumento di creazione o le API fornite da Central Desktop tooprovision account utente di AAD
+>È possibile usare qualsiasi altro strumento o API di creazione di account utente fornita da Central Desktop per eseguire il provisioning degli account utente di Azure AD.
 >  
 
 ## <a name="assign-users"></a>Assegna utenti
-tootest della configurazione, è necessario toogrant hello Azure AD utenti tooallow utilizzando il tooit di accesso dell'applicazione tramite l'assegnazione.
+Per testare la configurazione, è necessario concedere l'accesso all'applicazione agli utenti di Azure AD a cui si vuole consentirne l'uso, assegnando tali utenti all'applicazione.
 
-**gli utenti di tooassign tooCentral Desktop, eseguire hello alla procedura seguente:**
+**Per assegnare gli utenti a Central Desktop, seguire questa procedura:**
 
-1. Nel portale di Azure classico hello, creare un account di prova.
-2. In hello **Central Desktop** pagina di integrazione dell'applicazione, fare clic su **assegnare gli utenti**.
+1. Nel portale di Azure classico creare un account di test.
+2. Nella pagina di integrazione dell'applicazione **Central Desktop** fare clic su **Assegna utenti**.
    
    ![Assegnare utenti](./media/active-directory-saas-central-desktop-tutorial/IC769567.png "Assegnare utenti")
-3. Selezionare l'utente test, fare clic su **assegnare**, quindi fare clic su **Sì** tooconfirm l'assegnazione.
+3. Selezionare l'utente di test, fare clic su **Assegna** e quindi su **Sì** per confermare l'assegnazione.
    
    ![Sì](./media/active-directory-saas-central-desktop-tutorial/IC767830.png "Sì")
 
-Se si desiderano tootest le impostazioni di single sign-on, aprire Pannello di accesso hello. Per ulteriori dettagli su hello Pannello di accesso, vedere [introduzione toohello Pannello di accesso](active-directory-saas-access-panel-introduction.md).
+Per testare le impostazioni di Single Sign-On, aprire il pannello di accesso. Per altre informazioni sul pannello di accesso, vedere [Introduzione al Pannello di accesso](active-directory-saas-access-panel-introduction.md).
 

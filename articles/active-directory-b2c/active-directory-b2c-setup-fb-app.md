@@ -1,6 +1,6 @@
 ---
 title: 'Azure Active Directory B2C: configurazione di Facebook | Documentazione Microsoft'
-description: Fornire tooconsumers iscrizione e Accedi con Facebook account nelle applicazioni che sono protetti da Azure Active Directory B2C.
+description: "Fornire la registrazione e l’accesso agli utenti con account su Facebook nelle applicazioni protette da Azure Active Directory B2C."
 services: active-directory-b2c
 documentationcenter: 
 author: sromeroz
@@ -14,57 +14,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 8/7/2017
 ms.author: sromeroz
-ms.openlocfilehash: 4c3b79c7248bd1e789bf33fc467abb27d0170edd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8c2154fcf33537358b549395d15b4ba937371cd0
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="azure-active-directory-b2c-provide-sign-up-and-sign-in-tooconsumers-with-facebook-accounts"></a>Azure Active B2C di Directory: Fornire tooconsumers iscrizione e Accedi con account Facebook
+# <a name="azure-active-directory-b2c-provide-sign-up-and-sign-in-to-consumers-with-facebook-accounts"></a>Azure Active Directory B2C: fornire l'iscrizione e l'accesso agli utenti con account Facebook
 ## <a name="create-a-facebook-application"></a>Creare un'applicazione Facebook
-toouse Facebook come provider di identità in Azure Active Directory (Azure AD) B2C, è necessario toocreate un'applicazione Facebook e fornirlo con i parametri corretti hello. Necessaria una toodo account Facebook. Se non si ha un account, è possibile crearlo nel sito [https://www.facebook.com/](https://www.facebook.com/).
+Per utilizzare Facebook come provider di identità in Azure Active Directory (Azure AD) B2C, è necessario creare un'applicazione Facebook e inserire i parametri corretti. Per eseguire questa operazione è necessario disporre di un account Facebook. Se non si ha un account, è possibile crearlo nel sito [https://www.facebook.com/](https://www.facebook.com/).
 
-1. Passare toohello [Facebook per gli sviluppatori](https://developers.facebook.com/) sito Web e accedere con il Facebook delle credenziali dell'account.
-2. Se non è già stato fatto, è necessario tooregister gli sviluppatori Facebook. toodo, fare clic su **registrare** (su hello angolo superiore destro della pagina hello), accettare i criteri di Facebook e completare i passaggi di registrazione hello.
+1. Passare al [sito Web Facebook for developers](https://developers.facebook.com/) e accedere con le credenziali dell'account Facebook.
+2. Se non è ancora stato fatto, è necessario registrarsi come sviluppatore Facebook. A tale scopo, fare clic su **Registrati** nell'angolo in alto a destra della pagina, accettare le condizioni di Facebook e completare la procedura di registrazione.
 3. Fare clic su **My Apps** (App personali) e quindi su **Add a new App** (Aggiungi una nuova app). 
-4. Nel modulo hello, fornire un **nome visualizzato** e valido **Contact Email**.
-5. Fare clic su **Crea ID app**. Questo potrebbe richiede i criteri della piattaforma Facebook tooaccept e completare una verifica di protezione in linea.
-6. Nella colonna sinistra hello, fare clic su **impostazioni** e quindi selezionare **base** se non è già selezionata.
+4. Nel modulo fornire un **nome visualizzato** e una **email di contatto** valida.
+5. Fare clic su **Crea ID app**. Potrebbe essere necessario accettare i criteri della piattaforma Facebook e completare un controllo di sicurezza online.
+6. Nella colonna di sinistra fare clic su **Impostazioni** e quindi selezionare **Base**, se non è già selezionata.
 7. Selezionare una **categoria**. 
 8. Fare clic su **+Add Platform** (+Aggiungi piattaforma) e selezionare **Website** (Sito Web).
    
     ![Facebook - Impostazioni](./media/active-directory-b2c-setup-fb-app/fb-settings.png)
    
     ![Facebook - Impostazioni - sito Web](./media/active-directory-b2c-setup-fb-app/fb-website.png)
-9. Immettere `https://login.microsoftonline.com/` in hello **URL del sito** campo e quindi fare clic su **Salva modifiche** nella parte inferiore di hello della pagina hello.
+9. Immettere `https://login.microsoftonline.com/` nel campo **URL sito** e quindi fare clic su **Salva modifiche** nella parte inferiore della pagina.
    
     ![Facebook - URL del sito](./media/active-directory-b2c-setup-fb-app/fb-site-url.png)
 
-10. Copiare il valore di hello di **ID App**. Fare clic su **Mostra** e copiare il valore di hello di **segreto dell'applicazione**. Sarà necessario entrambi tooconfigure Facebook come provider di identità nel tenant. **App Segreta** è una credenziale di sicurezza importante.
+10. Copiare il valore di **ID App**. Fare clic su **Show** (Mostra) e copiare il valore **App Secret** (Segreto app). Sono necessari entrambi per configurare Facebook come provider di identità nel tenant. **App Segreta** è una credenziale di sicurezza importante.
    
     ![Facebook - ID app e segreto app](./media/active-directory-b2c-setup-fb-app/fb-app-id-app-secret.png)
-11. Fare clic su **+ Aggiungi prodotto** hello spostamento a sinistra e quindi hello **Set Up** pulsante **account Facebook**.
+11. Fare clic su **Aggiungi prodotto** nel riquadro di spostamento sinistro, quindi fare clic sul pulsante **Configurazione** per **Account di accesso di Facebook**.
    
     ![Facebook - Accesso a Facebook](./media/active-directory-b2c-setup-fb-app/fb-login.png)
-12. Fare clic su **impostazioni** in esplorazione hello in **account Facebook**
+12. Fare clic su **Impostazioni** nel riquadro di spostamento destro in **Account di accesso di Facebook**
 
     ![Facebook - Impostazioni Account di accesso di Facebook](./media/active-directory-b2c-setup-fb-app/fb-login-settings.png)
-13. Immettere `https://login.microsoftonline.com/te/{tenant}/oauth2/authresp` in hello **URI di reindirizzamento di OAuth valido** campo hello **impostazioni OAuth Client** sezione. Sostituire **{tenant}** con il nome del tenant, ad esempio contosob2c.onmicrosoft.com. Fare clic su **Salva modifiche** nella parte inferiore di hello della pagina hello.
+13. Immettere `https://login.microsoftonline.com/te/{tenant}/oauth2/authresp` nel campo **Valid OAuth redirect URIs** (URI di reindirizzamento OAuth validi) nella sezione **Client OAuth Settings** (Impostazioni OAuth client). Sostituire **{tenant}** con il nome del tenant, ad esempio contosob2c.onmicrosoft.com. Fare clic su **Salva le modifiche** nella parte inferiore della pagina.
     
     ![Facebook - URI di reindirizzamento OAuth](./media/active-directory-b2c-setup-fb-app/fb-oauth-redirect-uri.png)
-14. toomake applicazione Facebook utilizzabile da Azure Active Directory B2C, è necessario toomake pubblicamente disponibile. È possibile farlo facendo **revisione di App** nel riquadro di spostamento sinistro hello e attivazione hello passare nella parte superiore di hello della pagina hello troppo**Sì** e facendo clic su **conferma**.
+14. Per rendere l'applicazione Facebook utilizzabile da AD B2C di Azure, è necessario renderla pubblicamente disponibile. A questo scopo, fare clic su **App Review** (Controllo app) nel riquadro di spostamento sinistro, impostare l'opzione nella parte superiore della pagina su **SÌ** e quindi fare clic su **Confirm** (Conferma).
     
     ![Facebook - App pubblica](./media/active-directory-b2c-setup-fb-app/fb-app-public.png)
 
 ## <a name="configure-facebook-as-an-identity-provider-in-your-tenant"></a>Configurare Facebook come provider di identità nel tenant
-1. Seguire questi passaggi troppo[passare pannello funzionalità toohello B2C](active-directory-b2c-app-registration.md#navigate-to-b2c-settings) su hello portale di Azure.
-2. Nel Pannello di hello B2C funzionalità, fare clic su **provider di identità**.
-3. Fare clic su **+ Aggiungi** nella parte superiore di hello del pannello hello.
-4. Fornire un nome **nome** per la configurazione del provider di identità hello. Ad esempio, immettere "Facebook".
+1. Seguire questa procedura per [passare al pannello delle funzionalità B2C](active-directory-b2c-app-registration.md#navigate-to-b2c-settings) nel portale di Azure.
+2. Nel pannello delle funzionalità di B2C, fare clic su **Provider di identità**.
+3. Fare clic su **+Aggiungi** nella parte superiore del pannello.
+4. Fornire un **Nome** per la configurazione del provider di identità. Ad esempio, immettere "Facebook".
 5. Fare clic su **Identity provider type** (Tipo di provider di identità), selezionare **Facebook** e scegliere **OK**.
-6. Fare clic su **impostare il provider di identità** e immettere hello ID e app segreto dell'applicazione (di hello applicazione Facebook creato in precedenza) in hello **ID Client** e **segreto Client**campi rispettivamente.
-7. Fare clic su **OK**, quindi fare clic su **crea** toosave la configurazione di Facebook.
+6. Fare clic su **Set up this identity provider** (Configura questo provider di identità), immettere l'ID app e il segreto app dell'applicazione Facebook creata in precedenza rispettivamente nei campi **ID client** e **Segreto client**.
+7. Fare clic su **OK** e quindi su **Create** (Crea) per salvare la configurazione di Facebook.
 
 > [!NOTE]
-> Aggiunta di un **provider di identità** tooyour tenant non modifica i criteri esistenti. Tenere presente tooupdate i criteri includendo i provider di identità hello che appena creato.
+> L'aggiunta di un **provider di identità** al tenant non modifica i criteri esistenti. Ricordare di aggiornare i criteri includendo il provider di identità appena creato.
 >

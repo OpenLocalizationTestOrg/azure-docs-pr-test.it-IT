@@ -1,5 +1,5 @@
 ---
-title: esercitazione per il servizio contenitore aaaAzure - l'applicazione di aggiornamento | Documenti Microsoft
+title: Esercitazione per il servizio contenitore di Azure - Aggiornare un'applicazione | Microsoft Docs
 description: Esercitazione per il servizio contenitore di Azure - Aggiornare un'applicazione
 services: container-service
 documentationcenter: 
@@ -14,50 +14,48 @@ ms.devlang: aurecli
 ms.topic: tutorial
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 07/26/2017
+ms.date: 09/14/2017
 ms.author: nepeters
 ms.custom: mvc
-ms.openlocfilehash: c467498bab7952926a18e45ffbb21051a98739d5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 081f36c975c4a2d137fa20e346d6b6739b6997fe
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="update-an-application-in-kubernetes"></a>Aggiornare un'applicazione in Kubernetes
 
-Dopo aver distribuito un'applicazione in Kubernetes, è possibile aggiornarla specificando una nuova immagine del contenitore o una nuova versione dell'immagine. Quando si aggiorna un'applicazione, implementazione di update hello viene gestita in modo che solo una parte della distribuzione hello verrà aggiornata contemporaneamente. Questo aggiornamento per la gestione temporanea consente tookeep applicazione hello in esecuzione durante l'aggiornamento di hello e fornisce un meccanismo di rollback se si verifica un errore di distribuzione. 
+Dopo la distribuzione di un'applicazione in Kubernetes, è possibile aggiornarla specificando una nuova immagine del contenitore o una nuova versione dell'immagine. A questo scopo, l'aggiornamento viene eseguito a fasi in modo che solo una parte della distribuzione venga aggiornata contemporaneamente. Questo aggiornamento a fasi consente all'applicazione di rimanere in esecuzione durante l'aggiornamento. Fornisce inoltre un meccanismo di ripristino dello stato precedente se si verifica un errore di distribuzione. 
 
-In questa esercitazione, parte 6 di sette, app di Azure voto esempio hello viene aggiornato. Le attività da completare comprendono:
+In questa esercitazione, parte sei di sette, viene aggiornata l'app Azure Vote di esempio. Le attività da completare comprendono:
 
 > [!div class="checklist"]
-> * Aggiornamento del codice dell'applicazione front-end hello
+> * Aggiornamento del codice dell'applicazione front-end
 > * Creazione di un'immagine del contenitore aggiornata
-> * Push hello contenitore immagine tooAzure contenitore del Registro di sistema
-> * Distribuzione immagine contenitore aggiornato hello
+> * Push dell'immagine del contenitore in Registro contenitori di Azure
+> * Distribuzione di un'immagine del contenitore aggiornata
 
-Nelle esercitazioni successive, Operations Management Suite è cluster Kubernetes di hello toomonitor configurato.
+Nelle esercitazioni successive, Operations Management Suite verrà configurato per monitorare il cluster Kubernetes.
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
-Nelle esercitazioni precedenti, un'applicazione è stata distribuita in un'immagine contenitore, immagine hello caricato tooAzure contenitore del Registro di sistema e un cluster Kubernetes creato. un'applicazione Hello quindi è stata eseguita nel cluster Kubernetes hello. 
+Nelle esercitazioni precedenti è stato creato un pacchetto di un'applicazione in un'immagine del contenitore, caricata poi in Registro contenitori di Azure, ed è stato creato un cluster Kubernetes. L'applicazione è stata quindi eseguita nel cluster Kubernetes. 
 
-Se non sono state completate le operazioni di toofollow lungo, restituire troppo[esercitazione 1: creare le immagini contenitore](./container-service-tutorial-kubernetes-prepare-app.md). 
+È stato clonato anche un repository di applicazione che include il codice sorgente dell'applicazione e un file Docker Compose creato in precedenza usato in questa esercitazione. Verificare che sia stato creato un clone del repository e che si abbia cambiato le directory nella directory clonata. All'interno si trova una directory denominata `azure-vote` e un file denominato `docker-compose.yml`.
+
+Se questi passaggi non sono stati ancora eseguiti e si vuole procedere, tornare a [Esercitazione 1 - Creare immagini del contenitore](./container-service-tutorial-kubernetes-prepare-app.md). 
 
 ## <a name="update-application"></a>Aggiornare l'applicazione
 
-passaggi di hello toocomplete in questa esercitazione, deve avere una copia clonata di hello applicazione Azure voto. Se necessario, creare la copia clonata con hello comando seguente:
+Per questa esercitazione, viene apportata una modifica all'applicazione e l'applicazione aggiornata viene distribuita nel cluster Kubernetes. 
+
+Il codice sorgente dell'applicazione è disponibile nella directory `azure-vote`. Aprire il file `config_file.cfg` con qualsiasi editor di testo o codice. In questo esempio viene usato `vi` .
 
 ```bash
-git clone https://github.com/Azure-Samples/azure-voting-app-redis.git
+vi azure-vote/azure-vote/config_file.cfg
 ```
 
-Aprire hello `config_file.cfg` file con qualsiasi editor di testo o codice. È possibile trovare questo file nella seguente directory di repository clonato hello hello.
-
-```bash
- /azure-voting-app-redis/azure-vote/azure-vote/config_file.cfg
-```
-
-Modificare i valori hello per `VOTE1VALUE` e `VOTE2VALUE`e quindi salvare il file hello.
+Cambiare i valori per `VOTE1VALUE` e `VOTE2VALUE`, quindi salvare il file.
 
 ```bash
 # UI Configurations
@@ -67,35 +65,39 @@ VOTE2VALUE = 'Purple'
 SHOWHOST = 'false'
 ```
 
-Utilizzare [comporre docker](https://docs.docker.com/compose/) toore-creare immagine front-end hello e un'applicazione hello esecuzione aggiornato.
+Salvare e chiudere il file.
+
+## <a name="update-container-image"></a>Aggiornare l'immagine del contenitore
+
+Usare [docker-compose](https://docs.docker.com/compose/) per ricreare l'immagine front-end ed eseguire l'applicazione aggiornata. L'argomento `--build` viene usato per indicare a Docker Compose di ricreare l'immagine dell'applicazione.
 
 ```bash
-docker-compose -f ./azure-voting-app-redis/docker-compose.yml up --build -d
+docker-compose up --build -d
 ```
 
 ## <a name="test-application-locally"></a>Testare l'applicazione in locale
 
-Sfoglia troppo`http://localhost:8080` toosee hello applicazione aggiornata.
+Passare a http://localhost:8080 per vedere l'applicazione aggiornata.
 
 ![Immagine del cluster Kubernetes in Azure](media/container-service-kubernetes-tutorials/vote-app-updated.png)
 
 ## <a name="tag-and-push-images"></a>Applicare tag ed eseguire il push delle immagini
 
-Hello tag *azure voto-anteriore* immagine con loginServer hello del Registro di sistema di hello contenitore.
+Applicare il tag loginServer del registro contenitori all'immagine `azure-vote-front`. 
 
-Se si usa Azure del Registro di sistema contenitore, ottenere il nome di server di accesso di hello con hello [elenco acr az](/cli/azure/acr#list) comando.
+Ottenere il nome del server di accesso con il comando [az acr list](/cli/azure/acr#list).
 
 ```azurecli
 az acr list --resource-group myResourceGroup --query "[].{acrLoginServer:loginServer}" --output table
 ```
 
-Utilizzare [tag docker](https://docs.docker.com/engine/reference/commandline/tag/) immagine hello tootag. Sostituire `<acrLoginServer>` con il nome di accesso del server del Registro contenitori di Azure o un nome host di un registro pubblico.
+Usare [docker tag](https://docs.docker.com/engine/reference/commandline/tag/) per assegnare il tag all'immagine. Sostituire `<acrLoginServer>` con il nome di accesso del server del Registro contenitori di Azure o un nome host di un registro pubblico. Si noti anche che la versione dell'immagine viene aggiornata a `redis-v2`.
 
 ```bash
 docker tag azure-vote-front <acrLoginServer>/azure-vote-front:redis-v2
 ```
 
-Utilizzare [push di docker](https://docs.docker.com/engine/reference/commandline/push/) Registro di sistema tooupload hello immagine tooyour. Sostituire `<acrLoginServer>` con il nome di accesso del server del Registro contenitori di Azure o un nome host di un registro pubblico.
+Usare [docker push](https://docs.docker.com/engine/reference/commandline/push/) per caricare l'immagine nel registro. Sostituire `<acrLoginServer>` con il nome del server di accesso del Registro contenitori di Azure.
 
 ```bash
 docker push <acrLoginServer>/azure-vote-front:redis-v2
@@ -103,7 +105,7 @@ docker push <acrLoginServer>/azure-vote-front:redis-v2
 
 ## <a name="deploy-update-application"></a>Distribuire l'aggiornamento dell'applicazione
 
-tempi tooensure più istanze di pod applicazione hello devono essere in esecuzione. Verificare la configurazione con hello [kubectl ottenere pod](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#get) comando.
+Per garantire il tempo di attività massimo, è necessario eseguire più istanze del pod dell'applicazione. Verificare questa configurazione con il comando [kubectl get pod](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#get).
 
 ```bash
 kubectl get pod
@@ -119,20 +121,20 @@ azure-vote-front-233282510-dhrtr   1/1       Running   0          10m
 azure-vote-front-233282510-pqbfk   1/1       Running   0          10m
 ```
 
-Se non si dispone di più POD che esegue l'immagine di azure-anteriore voto hello, applicare la scalabilità hello *azure voto-anteriore* distribuzione.
+Se non si dispone di più pod che eseguono l'immagine azure-vote-front, ridimensionare la distribuzione di `azure-vote-front`.
 
 
 ```azurecli-interactive
 kubectl scale --replicas=3 deployment/azure-vote-front
 ```
 
-un'applicazione hello tooupdate, utilizzare hello [set kubectl](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#set) comando. Aggiornamento `<acrLoginServer>` con hello account di accesso server o il nome host contenitore del Registro di sistema.
+Per aggiornare l'applicazione, usare il comando [kubectl set](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#set). Aggiornare `<acrLoginServer>` con il server di accesso o il nome host del registro contenitori.
 
 ```azurecli-interactive
 kubectl set image deployment azure-vote-front azure-vote-front=<acrLoginServer>/azure-vote-front:redis-v2
 ```
 
-distribuzione di hello toomonitor, utilizzare hello [kubectl ottenere pod](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#get) comando. Come un'applicazione hello aggiornato viene distribuita, le unità vengono terminate e ricreato con nuova immagine contenitore di hello.
+Per monitorare la distribuzione, utilizzare il comando [kubectl get pod](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#get). Quando l'applicazione aggiornata viene distribuita, le unità vengono terminate e ricreate con la nuova immagine del contenitore.
 
 ```azurecli-interactive
 kubectl get pod
@@ -150,27 +152,27 @@ azure-vote-front-1297194256-zktw9   1/1       Terminating   0         1m
 
 ## <a name="test-updated-application"></a>Testare l'applicazione aggiornata
 
-Ottenere l'indirizzo IP esterno hello di hello *azure voto-anteriore* servizio.
+Ottenere l'indirizzo IP esterno del servizio `azure-vote-front`.
 
 ```azurecli-interactive
 kubectl get service azure-vote-front
 ```
 
-Sfoglia toohello IP indirizzo toosee hello applicazione aggiornata.
+Passare all'indirizzo IP per vedere l'applicazione aggiornata.
 
 ![Immagine del cluster Kubernetes in Azure](media/container-service-kubernetes-tutorials/vote-app-updated-external.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-In questa esercitazione, si aggiornata un'applicazione e il cluster di aggiornamento tooa Kubernetes di implementazione. sono stata completata Hello seguenti attività:
+In questa esercitazione è stata aggiornata un'applicazione e l'aggiornamento è stato distribuito in un cluster Kubernetes. Sono state completate le attività seguenti:
 
 > [!div class="checklist"]
-> * Codice dell'applicazione front-end hello aggiornato
+> * Aggiornamento del codice dell'applicazione front-end
 > * Creazione di un'immagine del contenitore aggiornata
-> * Inserito hello contenitore immagine tooAzure contenitore del Registro di sistema
-> * Applicazione distribuita hello aggiornato
+> * Push dell'immagine del contenitore in Registro contenitori di Azure
+> * Distribuzione dell'applicazione aggiornata
 
-Toohello Avanti toolearn esercitazione su come spostare toomonitor Kubernetes con Operations Management Suite.
+Passare alla prossima esercitazione per apprendere come monitorare Kubernetes con Operations Management Suite.
 
 > [!div class="nextstepaction"]
 > [Monitorare Kubernetes con OMS](./container-service-tutorial-kubernetes-monitor.md)

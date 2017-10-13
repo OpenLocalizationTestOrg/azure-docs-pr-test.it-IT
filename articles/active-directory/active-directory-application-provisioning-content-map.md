@@ -1,6 +1,6 @@
 ---
-title: aaaProblems configurazione e provisioning utenti tooan applicazione"
-description: Problemi di configurazione e provisioning utenti tooan applicazione"
+title: Problemi di configurazione e provisioning degli utenti in un'applicazione"
+description: Problemi di configurazione e provisioning degli utenti in un'applicazione"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -12,24 +12,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: bc8465ff3d1b706ce752def5f3d999bddbdf6e48
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 55c5abccb2472d653a4e355e39a19a224b979b85
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="problems-configuring-and-provisioning-users-tooan-application"></a>Problemi di configurazione e provisioning utenti tooan applicazione
+# <a name="problems-configuring-and-provisioning-users-to-an-application"></a>Problemi di configurazione e provisioning degli utenti in un'applicazione
 
 
 
-## <a name="i-want-tooknow-when-provisioning-will-finish"></a>Voglio tooknow durante il provisioning verrà terminata
-  Hello documenti elencati di seguito consentono di tooresolve alcuni dei problemi più comuni di hello in questa categoria.
-  * [Non so come toofind out quando un utente specifico saranno in grado di tooaccess un'applicazione](https://docs.microsoft.com/azure/active-directory/application-provisioning-when-will-provisioning-finish-specific-user/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
-  * [Provisioning dell'applicazione raccolta toomy AD Azure funziona, ma il processo di provisioning hello è tenuto ore o più](https://docs.microsoft.com/azure/active-directory/application-provisioning-when-will-provisioning-finish/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
+## <a name="i-want-to-know-when-provisioning-will-finish"></a>Come sapere quando terminerà il provisioning
+  I documenti seguenti possono aiutare a risolvere alcuni dei problemi più comuni in questa categoria.
+  * [I don't know how to find out when a specific user will be able to access an application](https://docs.microsoft.com/azure/active-directory/application-provisioning-when-will-provisioning-finish-specific-user/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav) (Come identificare quando un utente specifico è in grado di accedere a un'applicazione)
+  * [Provisioning to my Azure AD Gallery application is working, but the provisioning process is taking hours or more](https://docs.microsoft.com/azure/active-directory/application-provisioning-when-will-provisioning-finish/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav) (Il processo di provisioning nell'applicazione della raccolta di Azure AD impiega diverse ore o ancora più tempo)
 
-## <a name="im-having-problems-configuring-user-provisioning-tooan-application"></a>Si verificano problemi durante la configurazione dell'applicazione tooan di provisioning dell'utente
-  Hello documenti elencati di seguito consentono di tooresolve alcuni dei problemi più comuni di hello in questa categoria.
-  * [Non so come utente tooconfigure provisioning applicazione raccolta tooan Azure AD](https://docs.microsoft.com/azure/active-directory/application-provisioning-config-how-to/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
-  * [Verificato un problema durante la configurazione dell'applicazione raccolta tooan Azure AD di provisioning dell'utente](https://docs.microsoft.com/azure/active-directory/application-provisioning-config-problem/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
-  * [Ho configurato provisioning toomy applicazione raccolta AD Azure, ma nessun utente provisioning in corso](https://docs.microsoft.com/azure/active-directory/application-provisioning-config-problem-no-users-provisioned/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
-  * [Provisioning dell'applicazione Azure AD raccolta toomy funziona, ma hello errato set di utenti sono in corso il provisioning](https://docs.microsoft.com/azure/active-directory/application-provisioning-config-problem-wrong-users-provisioned/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav)
+## <a name="im-having-problems-configuring-user-provisioning-to-an-application"></a>Si sono verificati problemi di configurazione del provisioning utenti in un'applicazione
+  I documenti seguenti possono aiutare a risolvere alcuni dei problemi più comuni in questa categoria.
+  * [I don't know how to configure user provisioning to an Azure AD Gallery application](https://docs.microsoft.com/azure/active-directory/application-provisioning-config-how-to/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav) (Come configurare il provisioning degli utenti in un'applicazione della raccolta di Azure AD)
+  * [I encountered a problem when configuring user provisioning to an Azure AD Gallery application](https://docs.microsoft.com/azure/active-directory/application-provisioning-config-problem/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav) (Problema durante la configurazione del provisioning degli utenti in un'applicazione della raccolta di Azure AD)
+  * [I've set up provisioning to my Azure AD Gallery application, but no users are being provisioned](https://docs.microsoft.com/azure/active-directory/application-provisioning-config-problem-no-users-provisioned/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav) (Dopo aver configurato il provisioning nell'applicazione della raccolta Azure AD non viene effettuato il provisioning di alcun utente)
+  * [Provisioning to my Azure AD Gallery application is working, but the wrong set of users are being provisioned](https://docs.microsoft.com/azure/active-directory/application-provisioning-config-problem-wrong-users-provisioned/?/?WT.mc_id=DMC_AAD_Manage_Apps_Troubleshooting_Nav) (Viene effettuato il provisioning di un set di utenti non corretto nell'applicazione della raccolta Azure AD)

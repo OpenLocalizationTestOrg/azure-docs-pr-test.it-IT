@@ -1,6 +1,6 @@
 ---
-title: modello di hello aaaDownload per una macchina virtuale di Azure | Documenti Microsoft
-description: Scaricare hello templatefor toohelp una macchina virtuale con l'automazione delle distribuzioni nel modello di distribuzione di gestione risorse di hello
+title: Scaricare il modello per una macchina virtuale di Azure | Microsoft Docs
+description: Scaricare il modello per una macchina virtuale per facilitare l'automazione delle distribuzioni nel modello di distribuzione di Resource Manager
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -15,22 +15,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/22/2017
 ms.author: cynthn
-ms.openlocfilehash: 86fd05f67409019b5e5c9023881745047860eee1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9e4c0c3cf0e233447369a24b1d5fe27495abd1cf
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="download-hello-template-for-a-vm"></a>Scaricare il modello di hello per una macchina virtuale
-Quando si crea una macchina virtuale in Azure mediante portale hello o PowerShell, gestione delle risorse di modello viene creato automaticamente. È possibile utilizzare questo duplicato di tooquickly una distribuzione modello. modello di Hello contiene informazioni su tutte le risorse di hello in un gruppo di risorse. Per una macchina virtuale, ciò significa modello hello contiene tutto ciò che viene creato per supportare hello macchina virtuale in tale gruppo di risorse, tra cui le risorse di rete hello.
+# <a name="download-the-template-for-a-vm"></a>Scaricare il modello per una VM
+Quando si crea una macchina virtuale in Azure con il portale o con PowerShell, viene creato automaticamente un modello di Resource Manager. È possibile usare questo modello per duplicare rapidamente una distribuzione. Il modello contiene informazioni su tutte le risorse in un gruppo di risorse. Per una macchina virtuale, questo significa che il modello contiene tutto ciò che viene creato in supporto della macchina virtuale all'interno del gruppo di risorse, comprese le risorse di rete.
 
-## <a name="download-hello-template-using-hello-portal"></a>Scaricare il modello di hello tramite il portale di hello
-1. Accedi toohello [portale di Azure](https://portal.azure.com/).
-2. Un hello hub dal menu **macchine virtuali**.
-3. Selezionare macchina virtuale hello hello elenco.
+## <a name="download-the-template-using-the-portal"></a>Scaricare il modello usando il portale
+1. Accedere al [Portale di Azure](https://portal.azure.com/).
+2. Selezionare **Macchine virtuali** nel menu dell'hub.
+3. Selezionare la macchina virtuale dall'elenco.
 4. Selezionare **Script di automazione**.
-5. Selezionare **scaricare** e salvare computer tooyour di file con estensione zip hello locale.
-6. Aprire il file con estensione zip hello ed estrarre cartella tooa hello. file con estensione zip Hello conterrà:
+5. Selezionare **Scarica** e salvare il file .zip nel computer locale.
+6. Aprire il file .zip ed estrarne i file in una cartella. Il file .zip contiene:
    
    * deploy.ps1
    * deploy.sh 
@@ -39,15 +39,15 @@ Quando si crea una macchina virtuale in Azure mediante portale hello o PowerShel
    * parameters.json
    * template.json
 
-file template.json Hello è il modello di hello.
+Il file template.json è il modello.
 
-## <a name="download-hello-template-using-powershell"></a>Scaricare il modello di hello tramite PowerShell
-È inoltre possibile scaricare i file di modello con estensione JSON hello utilizzando hello [esportazione AzureRMResourceGroup](https://msdn.microsoft.com/library/mt715427.aspx) cmdlet. È possibile utilizzare hello `-path` parametro tooprovide hello filename e il percorso di file con estensione JSON hello. Questo esempio viene illustrato come modello hello toodownload per il gruppo di risorse hello denominati **myResourceGroup** toohello **C:\users\public\downloads** cartella nel computer locale.
+## <a name="download-the-template-using-powershell"></a>Scaricare il modello con PowerShell
+È anche possibile scaricare il file di modello .json usando il cmdlet [Export-AzureRMResourceGroup](https://msdn.microsoft.com/library/mt715427.aspx). È possibile usare il parametro `-path` per fornire il nome file e il percorso per il file .json. In questo esempio viene illustrato come scaricare il modello per il gruppo di risorse denominato **myResourceGroup** nella cartella **C:\users\public\downloads** del computer locale.
 
 ```powershell
     Export-AzureRmResourceGroup -ResourceGroupName "myResourceGroup" -Path "C:\users\public\downloads"
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-toolearn più sulla distribuzione di risorse utilizzando i modelli, vedere [procedura dettagliata di modello di gestione risorse](../../azure-resource-manager/resource-manager-template-walkthrough.md).
+Per altre informazioni sulla distribuzione di risorse usando i modelli, vedere [Procedura dettagliata del modello di Resource Manager](../../azure-resource-manager/resource-manager-template-walkthrough.md).
 

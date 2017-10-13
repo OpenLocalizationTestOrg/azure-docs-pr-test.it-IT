@@ -1,6 +1,6 @@
 ---
-title: Azure AD Connect Health per la sincronizzazione aaaUsing | Documenti Microsoft
-description: "Questo è hello Azure AD Connect Health pagina verrà illustrate le modalità di sincronizzazione toomonitor Azure AD Connect."
+title: Uso di Azure AD Connect Health per la sincronizzazione | Documentazione Microsoft
+description: "Questa è la pagina di Azure AD Connect Health in cui viene descritto come monitorare  il Servizio di sincronizzazione Azure AD Connect."
 services: active-directory
 documentationcenter: 
 author: karavar
@@ -14,97 +14,97 @@ ms.topic: get-started-article
 ms.date: 07/18/2017
 ms.author: billmath
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 56f0582be30e664026cedf15350bc23501998bfd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4b06338cb62cc458e7b097db36023f0746d4e969
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="monitor-azure-ad-connect-sync-with-azure-ad-connect-health"></a>Monitorare la sincronizzazione di Azure AD Connect con Azure AD Connect Health
-Hello seguente documentazione è specifico toomonitoring Azure AD Connect (sincronizzazione) con Azure AD Connect Health.  Per informazioni sul monitoraggio di AD FS con Azure AD Connect Health, vedere [Uso di Azure AD Connect Health con AD FS](active-directory-aadconnect-health-adfs.md). Per informazioni sul monitoraggio di Servizi di dominio Active Directory con Azure AD Connect Health, vedere [Uso di Azure AD Connect Health con Servizi di dominio Active Directory](active-directory-aadconnect-health-adds.md).
+La documentazione seguente è specifica per il monitoraggio di Azure Active Directory Connect (Sincronizzazione) con Azure AD Connect Health.  Per informazioni sul monitoraggio di AD FS con Azure AD Connect Health, vedere [Uso di Azure AD Connect Health con AD FS](active-directory-aadconnect-health-adfs.md). Per informazioni sul monitoraggio di Servizi di dominio Active Directory con Azure AD Connect Health, vedere [Uso di Azure AD Connect Health con Servizi di dominio Active Directory](active-directory-aadconnect-health-adds.md).
 
 ![Azure AD Connect Health per la sincronizzazione](./media/active-directory-aadconnect-health-sync/sync-blade.png)
 
 ## <a name="alerts-for-azure-ad-connect-health-for-sync"></a>Avvisi per Azure AD Connect Health per la sincronizzazione
-Hello Azure AD Connect gli avvisi di integrità per la sezione di sincronizzazione fornisce che si hello elenco degli avvisi attivi. Ogni avviso include informazioni pertinenti, procedure di risoluzione e collegamenti toorelated documentazione. Selezionando un avviso attivo o risolto verrà visualizzato un nuovo pannello con informazioni aggiuntive, nonché i passaggi da eseguire avviso hello tooresolve e collegamenti tooadditional documentazione. Inoltre, è possibile visualizzare i dati cronologici avvisi risolti in hello precedente.
+La sezione Avvisi di Azure AD Connect Health contiene l'elenco degli avvisi attivi. Ogni avviso include informazioni pertinenti, la procedura di risoluzione e collegamenti alla documentazione correlata. Selezionando un avviso attivo o risolto, verrà visualizzato un nuovo pannello con altre informazioni, oltre ai passaggi che è possibile eseguire per risolvere l'avviso e i collegamenti ad altri documenti. È anche possibile visualizzare dati storici sugli avvisi risolti in passato.
 
-Selezionando un avviso che all'utente verrà fornito con informazioni aggiuntive, nonché i passaggi sono disponibili i collegamenti e avviso hello tooresolve tooadditional documentazione.
+Selezionando un avviso, vengono fornite informazioni aggiuntive, nonché la procedura per risolvere l'avviso e collegamenti ad altra documentazione.
 
 ![Errore del servizio di sincronizzazione Azure AD Connect](./media/active-directory-aadconnect-health-sync/alert.png)
 
 ### <a name="limited-evaluation-of-alerts"></a>Valutazione limitata degli avvisi
-Se Azure AD Connect non usa la configurazione predefinita di hello (ad esempio, se il filtro di attributi viene modificato da configurazione personalizzata tooa di hello configurazione predefinita), quindi l'agente hello Azure AD Connect Health non caricherà hello errore eventi correlati tooAzure AD Connect.
+Se Azure AD Connect NON usa la configurazione predefinita (ad esempio, se il filtro attributi è passato dalla configurazione predefinita a una configurazione personalizzata), l'agente Azure AD Connect Health non caricherà gli eventi di errore correlati ad Azure AD Connect.
 
-Questo limita la valutazione hello degli avvisi dal servizio hello. Si verrà visualizzato un messaggio che indica la condizione nel file hello portale di Azure con il servizio.
+La valutazione degli avvisi da parte del servizio è quindi soggetta a limiti. Verrà visualizzato un banner indicante questa condizione nel portale di Azure sotto il servizio.
 
 ![Azure AD Connect Health per la sincronizzazione](./media/active-directory-aadconnect-health-sync/banner.png)
 
-È possibile modificare questo facendo clic su "Impostazioni" e consentendo tooupload agente di Azure AD Connect Health tutti i log degli errori.
+Per modificare questa condizione, fare clic su "Impostazioni" e consentire all'agente Azure AD Connect Health di caricare tutti i log degli errori.
 
 ![Azure AD Connect Health per la sincronizzazione](./media/active-directory-aadconnect-health-sync/banner2.png)
 
 ## <a name="sync-insight"></a>Informazioni dettagliate sulla sincronizzazione
-Gli amministratori spesso desidera tooknow su hello tempo toosync modifiche tooAzure Active Directory e la quantità di hello di modifiche in corso. Questa funzionalità fornisce un modo semplice di toovisualize questo utilizzando hello sotto grafici:   
+Gli amministratori in genere vogliono conoscere il tempo richiesto per sincronizzare le modifiche in Azure AD e la quantità di modifiche apportate. Questa funzionalità consente di visualizzare facilmente queste informazioni usando i grafici seguenti:   
 
 * Latenza delle operazioni di sincronizzazione
 * Tendenza nelle modifiche agli oggetti
 
 ### <a name="sync-latency"></a>Latenza della sincronizzazione
-Questa funzionalità fornisce una tendenza grafica della latenza operazioni hello sincronizzazione (importazione, esportazione e così via) per i connettori.  Fornisce una rapida e semplice toounderstand hello non solo latenza delle operazioni (maggiore se si dispone di un ampio set di modifiche che si verificano), ma anche eventuali anomalie toodetect un modo latenza hello che potrebbero richiedere un'ulteriore analisi.
+Questa funzionalità fornisce una tendenza grafica della latenza delle operazioni di sincronizzazione, importazione, esportazione e così via, per i connettori.  È così disponibile un modo semplice e rapido per conoscere non solo la latenza delle operazioni (che è superiore in caso di set di modifiche esteso), ma anche per rilevare le anomalie a livello di latenza che potrebbero richiedere approfondimenti.
 
 ![Latenza della sincronizzazione](./media/active-directory-aadconnect-health-sync/synclatency02.png)
 
-Per impostazione predefinita, solo la latenza di hello dell'operazione di hello 'Export' per il connettore Azure AD hello viene visualizzata.  toosee altre operazioni sul connettore hello o tooview da altri connettori, fare clic sul grafico hello, selezionare Modifica grafico o fare clic sul pulsante "Modifica grafico latenza" hello e scegliere l'operazione specifica hello e connettori.
+Per impostazione predefinita, viene visualizzata solo la latenza dell'operazione di esportazione per il connettore Azure AD.  Per visualizzare altre operazioni nel connettore o le operazioni di altri connettori, fare clic con il pulsante destro del mouse sul grafico e scegliere Modifica grafico oppure fare clic sul pulsante "Modifica il grafico sulla latenza" e scegliere l'operazione e i connettori specifici.
 
 ### <a name="sync-object-changes"></a>Sincronizzazione delle modifiche agli oggetti
-Questa funzionalità fornisce una tendenza con interfaccia grafica di hello numerose modifiche che vengono valutati ed esportato tooAzure Active Directory.  Oggi, durante il tentativo di toogather le informazioni dal log di sincronizzazione hello sono difficile.  grafico Hello offre, non solo un modo più semplice di monitoraggio numero hello di modifiche che si sono verificati nell'ambiente in uso, ma anche una visualizzazione di errori di hello che si sono verificati.
+Questa funzionalità fornisce una tendenza grafica del numero di modifiche valutate ed esportate in Azure AD.  Attualmente, è difficile provare a raccogliere informazioni dai log di sincronizzazione.  Il grafico fornisce non solo un modo più semplice per monitorare il numero di modifiche in corso nell'ambiente, ma anche una panoramica visiva degli errori che si sono verificati.
 
 ![Latenza della sincronizzazione](./media/active-directory-aadconnect-health-sync/syncobjectchanges02.png)
 
 ## <a name="object-level-synchronization-error-report-preview"></a>Report degli errori di sincronizzazione a livello di oggetto (anteprima)
 Questa funzionalità offre un report sugli errori di sincronizzazione che possono verificarsi durante la sincronizzazione dei dati relativi alle identità tra Active Directory di Windows Server e Azure AD con Azure AD Connect.
 
-* report Hello descrive errori registrati da client di sincronizzazione hello (Azure AD Connect versione 1.1.281.0 o versione successiva)
-* Include gli errori di hello hello ultima sincronizzazione operazione nel motore di sincronizzazione hello. ("Esporta" in Azure Active Directory Connector hello.)
-* Agente di Azure AD Connect Health per la sincronizzazione deve disporre di connettività in uscita toohello necessarie di punti di fine per i dati più recenti di hello report tooinclude hello.
-* report Hello è **aggiornato ogni 30 minuti** utilizzando dati hello caricato dall'agente di Azure AD Connect Health per la sincronizzazione. Fornisce hello seguenti funzionalità principali
+* Il report contiene gli errori registrati dal client di sincronizzazione (Azure AD Connect versione 1.1.281.0 o successiva).
+* Include gli errori verificatisi nell'ultima operazione di sincronizzazione nel motore di sincronizzazione (operazione di esportazione nel connettore Azure AD).
+* Affinché il report includa i dati più recenti, l'agente di Azure AD Connect Health per la sincronizzazione deve avere la connettività in uscita agli endpoint necessari.
+* Il report viene **aggiornato ogni 30 minuti** usando i dati caricati dall'agente di Azure AD Connect Health per la sincronizzazione. Offre le funzionalità chiave seguenti:
 
   * Categorizzazione degli errori
   * Elenco degli oggetti con errore per categoria
-  * Tutti i dati di hello sugli errori di hello in un'unica posizione
-  * Lato dal confronto di oggetti con errore a causa di conflitti tooa
-  * Scaricare il report di errore hello come un CVS (presto disponibile)
+  * Tutti i dati sugli errori in un'unica posizione
+  * Confronto affiancato degli oggetti con errore a causa di un conflitto
+  * Download del report degli errori in formato CSV (presto disponibile)
 
 ### <a name="categorization-of-errors"></a>Categorizzazione degli errori
-report Hello classifica hello esistente gli errori di sincronizzazione in hello seguenti categorie:
+Il report suddivide gli errori di sincronizzazione esistenti nelle categorie seguenti:
 
 | Categoria | Descrizione |
 | --- | --- |
 | Attributo duplicato |Errori che si verificano quando Azure AD Connect prova a creare o aggiornare oggetti con valori duplicati per uno o più attributi di Azure AD che devono essere univoci in un tenant, come proxyAddresses o UserPrincipalName. |
-| Dati non corrispondenti |Errori quando hello soft-corrispondenza ha esito negativo toomatch oggetti che generano errori di sincronizzazione. |
-| Errore di convalida dei dati |Gli errori a causa di dati tooinvalid, ad esempio i caratteri non supportati in attributi importanti, ad esempio UserPrincipalName, formattare gli errori che non superano la convalida prima di essere scritte in Azure AD. |
-| Attributo di grandi dimensioni |Gli errori quando uno o più attributi sono maggiori di hello consentito dimensioni, lunghezza o al conteggio. |
-| Altre |Tutti gli altri errori che non rientrano nel hello sopra le categorie. Questa categoria verrà suddivisa in sottocategorie in base ai commenti e suggerimenti. |
+| Dati non corrispondenti |Errori di sincronizzazione che si verificano quando la funzionalità di corrispondenza flessibile non riesce a trovare una corrispondenza con l'oggetto. |
+| Errore di convalida dei dati |Errori causati da dati non validi, ad esempio caratteri non supportati in attributi critici come UserPrincipalName o errori di formato che non superano la convalida prima della scrittura in Azure AD. |
+| Attributo di grandi dimensioni |Errori che si verificano quando uno o più attributi superano le dimensioni, la lunghezza o il numero consentito. |
+| Altri |Tutti gli altri errori che non rientrano nelle categorie precedenti. Questa categoria verrà suddivisa in sottocategorie in base ai commenti e suggerimenti. |
 
 ![Riepilogo del report degli errori di sincronizzazione](./media/active-directory-aadconnect-health-sync/errorreport01.png)
 ![Categorie del report degli errori di sincronizzazione](./media/active-directory-aadconnect-health-sync/errorreport02.png)
 
 ### <a name="list-of-objects-with-error-per-category"></a>Elenco degli oggetti con errore per categoria
-Drill-down ogni categoria fornirà elenco hello di oggetti con errore hello in tale categoria.
+Analizzando ogni categoria, verrà visualizzato l'elenco degli oggetti interessati dall'errore della categoria.
 ![Elenco del report degli errori di sincronizzazione](./media/active-directory-aadconnect-health-sync/errorreport03.png)
 
 ### <a name="error-details"></a>Dettagli errore
-Dati è disponibile in hello visualizzazione per ogni errore dettagliata
+Nella visualizzazione dettagliata relativa a ogni errore sono disponibili i dati seguenti:
 
-* Gli identificatori per hello *oggetto Active Directory* coinvolti
-* Gli identificatori per hello *oggetto AD Azure* coinvolti (se applicabile)
-* Descrizione dell'errore e come toofix
+* Identificatori dell'*oggetto AD* coinvolto
+* Identificatori dell'*oggetto Azure AD* coinvolto (a seconda dei casi)
+* Descrizione dell'errore e istruzioni per la risoluzione
 * Articoli correlati
 
 ![Dettagli del report degli errori di sincronizzazione](./media/active-directory-aadconnect-health-sync/errorreport04.png)
 
-### <a name="download-hello-error-report-as-csv"></a>Scaricare il report di errore hello in formato CSV
-Selezionando hello "" pulsante Esporta è possibile scaricare un file CSV con tutti i dettagli di hello tutti gli errori di hello.
+### <a name="download-the-error-report-as-csv"></a>Download del report degli errori in formato CSV
+La selezione del pulsante "Esporta" consente di scaricare un file CSV con tutti i dettagli relativi a tutti gli errori.
 
 ## <a name="related-links"></a>Collegamenti correlati
 * [Risoluzione degli errori durante la sincronizzazione](../connect/active-directory-aadconnect-troubleshoot-sync-errors.md)

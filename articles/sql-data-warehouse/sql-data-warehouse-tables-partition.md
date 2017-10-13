@@ -1,5 +1,5 @@
 ---
-title: aaaPartitioning nelle tabelle SQL Data Warehouse | Documenti Microsoft
+title: Tabelle di partizionamento in SQL Data Warehouse | Documentazione Microsoft
 description: Introduzione al partizionamento delle tabelle di SQL Data Warehouse di Azure.
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: tables
 ms.date: 10/31/2016
 ms.author: shigu;barbkess
-ms.openlocfilehash: aa63c51562f3e6f83063320860b195e135a721e1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3edfd34d368228be32afef48688739639a3b03ed
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="partitioning-tables-in-sql-data-warehouse"></a>Tabelle di partizionamento in SQL Data Warehouse
 > [!div class="op_single_selector"]
@@ -33,28 +33,28 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Il partizionamento è supportato in tutti i tipi di tabella di SQL Data Warehouse, tra cui columnstore cluster, indice cluster e heap.  Il partizionamento è supportato anche in tutti i tipi di distribuzione, sia hash che round robin.  Partizionamento consente toodivide i dati in gruppi più piccoli dei dati e nella maggior parte dei casi, il partizionamento viene effettuati su una colonna di date.
+Il partizionamento è supportato in tutti i tipi di tabella di SQL Data Warehouse, tra cui columnstore cluster, indice cluster e heap.  Il partizionamento è supportato anche in tutti i tipi di distribuzione, sia hash che round robin.  Il partizionamento consente di dividere i dati in gruppi di dati più piccoli e nella maggior parte dei casi il partizionamento viene effettuato su una colonna relativa alla data.
 
 ## <a name="benefits-of-partitioning"></a>Vantaggi del partizionamento
-Il partizionamento può recare vantaggio alle prestazioni di query e di conservazione dei dati.  Se si avvantaggia entrambi o solo uno è dipendono dalla modalità di caricamento di dati e se hello stessa colonna può essere utilizzata per entrambi gli scopi, poiché il partizionamento può essere eseguito solo in una colonna.
+Il partizionamento può recare vantaggio alle prestazioni di query e di conservazione dei dati.  Il fatto di recare vantaggio a entrambi i tipi di prestazioni o solo a uno dei due dipende dalla modalità di caricamento dei dati e dalla possibilità di usare la stessa colonna per entrambi gli scopi, poiché il partizionamento può essere eseguito solo su una colonna.
 
-### <a name="benefits-tooloads"></a>Vantaggi tooloads
-Il vantaggio principale Hello di partizionamento in SQL Data Warehouse è migliorare hello efficienza e prestazioni di caricamento dati da utilizzare dell'eliminazione di una partizione, passaggio e unione.  Nella maggior parte dei casi i dati sono partizionati in una data colonna che è strettamente legata sequenza toohello quali dati hello sono caricato toohello database.  Uno dei principali vantaggi di hello dell'utilizzo di partizioni toomaintain dati hello prevenzione di registrazione delle transazioni.  Mentre semplicemente l'inserimento, aggiornamento o eliminazione di dati può essere l'approccio più semplice di hello, con una piccola pensiero e impegno, tramite il partizionamento durante il processo di caricamento può migliorare notevolmente le prestazioni.
+### <a name="benefits-to-loads"></a>Vantaggi in termini di caricamento
+Il vantaggio principale del partizionamento in SQL Data Warehouse è aumentare l'efficienza e le prestazioni di caricamento dei dati usando l'eliminazione, il cambio e l'unione delle partizioni.  Nella maggior parte dei casi viene eseguito il partizionamento dei dati in una colonna di date strettamente legata alla sequenza in cui i dati vengono caricati nel database.  Uno dei principali vantaggi dell'uso di partizioni per conservare i dati è che evita la registrazione delle transazioni.  Mentre le semplici operazioni di inserimento, aggiornamento o eliminazione dei dati possono rappresentare l'approccio più semplice, con un po' di impegno e di ragionamento, l'uso del partizionamento durante il processo di caricamento può migliorare notevolmente le prestazioni.
 
-Cambio della partizione, è possibile rimuovere tooquickly usato o sostituire una sezione di una tabella.  Ad esempio, una tabella dei fatti vendite potrebbe contenere solo i dati per hello ultimi 36 mesi.  Alla fine di hello di ogni mese, hello mese meno recente dei dati di vendita viene eliminato dalla tabella hello.  È stato possibile eliminare i dati utilizzando una data di hello toodelete istruzione delete per hello mese meno recente.  Tuttavia, l'eliminazione di una grande quantità di dati riga per riga con un'istruzione delete può richiedere molto tempo, nonché creare rischio hello di transazioni di grandi dimensioni può richiedere un toorollback molto tempo se si verificano problemi.  Un approccio più appropriato è toosimply partizione meno recente hello rilascio dei dati.  In cui le singole righe hello di eliminazione potrebbe richiedere ore, l'eliminazione di un'intera partizione potrebbe richiedere secondi.
+Il cambio di partizioni consente di rimuovere o sostituire rapidamente una sezione di tabella.  Ad esempio, una tabella dei fatti delle vendite potrebbe contenere solo i dati relativi agli ultimi 36 mesi.  Alla fine di ogni mese, il mese dei dati di vendita meno recenti viene eliminato dalla tabella.  Questi dati potrebbero essere eliminati tramite un'istruzione delete per eliminare i dati relativi al mese meno recente.  Tuttavia, l'eliminazione di una grande quantità di dati riga per riga con un'istruzione delete può richiedere molto tempo e inoltre creare il rischio di transazioni di grandi dimensioni il cui rollback potrebbe richiedere molto tempo nel caso in cui qualcosa andasse storto.  Un approccio più appropriato consiste semplicemente nel rilasciare la partizione dei dati meno recente.  Nei casi in cui l'eliminazione delle singole righe arrivasse a richiedere alcune ore, l'eliminazione di un'intera partizione potrebbe richiedere pochi secondi.
 
-### <a name="benefits-tooqueries"></a>Vantaggi tooqueries
-Partizionamento può essere anche usato tooimprove le prestazioni delle query.  Se una query che applica un filtro in una colonna di partizionamento, si può limitare hello tooonly di analisi hello qualificazione di partizioni che possono essere un subset molto più piccolo di dati di hello, evitando un'analisi completa della tabella.  Con l'introduzione di hello degli indici columnstore cluster, prestazioni hello come predicato di eliminazione sono meno utile, ma in alcuni casi può essere tooqueries un vantaggio.  Ad esempio, se nella tabella dei fatti di vendita hello è suddiviso in mesi 36 mediante il campo di data di vendita hello, quindi query per filtrare nella data di vendita hello possibile ignorare la ricerca in partizioni che non corrispondono a filtro hello.
+### <a name="benefits-to-queries"></a>Vantaggi in termini di query
+Il partizionamento può essere usato anche per aumentare le prestazioni delle query.  Se una query applica un filtro in una colonna con partizionamento, questo può limitare l'analisi solo alle partizioni idonee che potrebbero rappresentare un sottoinsieme di dati molto più ridotto, evitando un'analisi completa della tabella.  Con l'introduzione di indici columnstore cluster, i vantaggi delle prestazioni di eliminazione del predicato sono meno utili, ma in alcuni casi possono esserci vantaggi per le query.  Ad esempio, se la tabella dei fatti delle vendite è suddivisa in 36 mesi tramite il campo della data di vendita, le query che filtrano la data di vendita possono ignorare la ricerca nelle partizioni che non corrispondono al filtro.
 
 ## <a name="partition-sizing-guidance"></a>Indicazioni sul dimensionamento delle partizioni
-Durante il partizionamento possono essere utilizzato tooimprove prestazioni alcuni scenari, la creazione di una tabella con **troppi** partizioni possono influire negativamente sulle prestazioni in alcune circostanze.  Questi problemi valgono soprattutto per le tabelle columnstore cluster.  Per il partizionamento toobe utile, è importante toounderstand quando toouse partizionamento e hello il numero di partizioni toocreate.  Vi è alcuna regola disco rigido veloce come toohow molte partizioni sono troppi, dipende dai dati e il numero di partizioni si sta caricando toosimultaneously.  Ma come una regola empirica generale, considerare l'aggiunta di 10s too100s di partizioni, non 1000s.
+Mentre il partizionamento può essere usato per aumentare le prestazioni di alcuni scenari, in alcune circostanze la creazione di una tabella con **troppe** partizioni può influire negativamente sulle prestazioni.  Questi problemi valgono soprattutto per le tabelle columnstore cluster.  Affinché il partizionamento sia utile, per un amministratore di database è importante capire quando usare il partizionamento e il numero di partizioni da creare.  Non esiste una regola assoluta che chiarisca cosa si intende per troppe partizioni, perché dipende dai dati e dal numero di partizioni caricate contemporaneamente.  Tuttavia, come regola empirica generale, è consigliabile aggiungere alcune decine o centinaia di partizioni, non migliaia.
 
-Durante la creazione di partizionamento in **columnstore cluster** tabelle, è importante tooconsider quante righe verranno inserite in ogni partizione.  Per ottenere risultati ottimali in termini di compressione e prestazioni delle tabelle columnstore cluster, è necessario almeno 1 milione di righe per distribuzione e partizione.  Prima della creazione delle partizioni, SQL Data Warehouse divide già ogni tabella in 60 database distribuiti.  Qualsiasi tabella aggiunta tooa partizionamento è inoltre distribuzioni toohello create background hello.  Utilizzo di questo esempio, se nella tabella dei fatti di vendita hello contenuto 36 partizioni mensili e dato che SQL Data Warehouse è 60 distribuzioni, quindi hello dei fatti di vendita nella tabella deve contenere 60 milioni di righe al mese o 2.1 miliardi di righe quando vengono popolati tutti i mesi.  Se una tabella contiene molto meno righe rispetto al hello consigliato numero minimo di righe per partizione, utilizzare un minor numero di partizioni in ordine toomake aumento hello numerose righe per partizione.  Vedere anche hello [indicizzazione] [ Index] articolo che include le query che possono essere eseguite in qualità di hello tooassess SQL Data Warehouse di indici columnstore cluster.
+Quando si crea il partizionamento in tabelle **columnstore cluster** , è importante tenere in considerazione il numero di righe visualizzate in ogni partizione.  Per ottenere risultati ottimali in termini di compressione e prestazioni delle tabelle columnstore cluster, è necessario almeno 1 milione di righe per distribuzione e partizione.  Prima della creazione delle partizioni, SQL Data Warehouse divide già ogni tabella in 60 database distribuiti.  Eventuali partizionamenti aggiunti a una tabella sono in più rispetto alle distribuzioni create in background.  Utilizzando questo esempio, se la tabella dei fatti delle vendite contenesse 36 partizioni mensili e dato che SQL Data Warehouse dispone di 60 distribuzioni, la tabella dei fatti delle vendite dovrebbe contenere 60 milioni di righe al mese o 2,1 milioni di righe quando tutti i mesi sono popolati.  Se una tabella contiene un numero di righe significativamente inferiore a quello minimo consigliato per partizione, è necessario prendere in considerazione l'uso di un minor numero di partizioni per aumentare il numero di righe per partizione.  Vedere anche l'articolo sull'[indicizzazione][Index], che include le query che possono essere eseguite in SQL Data Warehouse per valutare la qualità degli indici columnstore cluster.
 
 ## <a name="syntax-difference-from-sql-server"></a>Differenze di sintassi rispetto a SQL Server
-SQL Data Warehouse introduce una definizione semplificata delle partizioni, leggermente diversa da SQL Server.  Le funzioni e gli schemi di partizionamento non vengono usati in SQL Data Warehouse come in SQL Server.  Invece, è sufficiente toodo è identificare i punti di limite di colonna e hello partizionati.  Sintassi di hello di partizionamento può essere leggermente diversa da SQL Server, i concetti di base hello sono hello stesso.  SQL Server e SQL Data Warehouse supportano una colonna di partizione per tabella, che può essere il partizionamento con intervallo.  toolearn più informazioni sul partizionamento, vedere [tabelle e indici partizionati][Partitioned Tables and Indexes].
+SQL Data Warehouse introduce una definizione semplificata delle partizioni, leggermente diversa da SQL Server.  Le funzioni e gli schemi di partizionamento non vengono usati in SQL Data Warehouse come in SQL Server.  Piuttosto, è necessario identificare la colonna partizionata e le delimitazioni.  Mentre la sintassi del partizionamento può essere leggermente diversa da quella di SQL Server, i concetti di base sono gli stessi.  SQL Server e SQL Data Warehouse supportano una colonna di partizione per tabella, che può essere il partizionamento con intervallo.  Per altre informazioni sul partizionamento, vedere [Tabelle e indici partizionati][Partitioned Tables and Indexes].
 
-Hello di sotto di esempio di un Data Warehouse di SQL partizionato [CREATE TABLE] [ CREATE TABLE] istruzione, le partizioni nella tabella FactInternetSales hello nella colonna OrderDateKey hello:
+Il seguente esempio di istruzione [CREATE TABLE][CREATE TABLE] con partizionamento di SQL Data Warehouse esegue il partizionamento della tabella FactInternetSales nella colonna OrderDateKey:
 
 ```sql
 CREATE TABLE [dbo].[FactInternetSales]
@@ -81,12 +81,12 @@ WITH
 ```
 
 ## <a name="migrating-partitioning-from-sql-server"></a>Migrazione del partizionamento da SQL Server
-definizioni tooSQL Data Warehouse di partizione semplicemente toomigrate SQL Server:
+Per eseguire la migrazione delle definizioni delle partizioni di SQL Server a SQL Data Warehouse, è necessario semplicemente:
 
-* Eliminare il Server SQL hello [lo schema di partizione][partition scheme].
-* Aggiungere hello [funzione di partizione] [ partition function] tooyour definizione creazione tabella.
+* Eliminare lo [schema di partizione][partition scheme] di SQL Server.
+* Aggiungere la definizione di [funzione di partizione][partition function] all'istruzione CREATE TABLE.
 
-Se si esegue la migrazione di una tabella partizionata da un hello di istanza di SQL Server di sotto di SQL consentono numero hello toointerrogate di righe in ogni partizione.  Tenere presente che se hello stessa granularità di partizionamento viene utilizzata in SQL Data Warehouse, il numero di hello di righe per partizione comporterà la riduzione di un fattore di 60.  
+Se si sta migrando una tabella con partizionamento da un'istanza di SQL Server, l'SQL di seguito è utile per interrogare il numero di righe in ogni partizione.  È necessario tenere presente che se viene usata la stessa granularità di partizionamento in SQL Data Warehouse, il numero di righe per partizione diminuirà di un fattore pari a 60.  
 
 ```sql
 -- Partition information for a SQL Server Database
@@ -123,9 +123,9 @@ GROUP BY    s.[name]
 ```
 
 ## <a name="workload-management"></a>Gestione del carico di lavoro
-È un toofactor di considerazione finale nella decisione di partizione di tabella toohello [del carico di lavoro][workload management].  Gestione del carico di lavoro in SQL Data Warehouse è principalmente la gestione di hello di memoria e concorrenza.  In hello SQL Data Warehouse memoria massima allocata tooeach distribuzione durante l'esecuzione di query è classi di risorse gestite.  In teoria le partizioni verranno ridimensionate in considerazione altri fattori quali i requisiti di memoria hello della compilazione degli indici columnstore cluster.  Gli indici columnstore cluster traggono importanti vantaggi quando la memoria allocata è maggiore.  Pertanto, si desidererà tooensure che ricompila un indice di partizione non richieda ulteriori di memoria. Aumento hello quantità di memoria disponibile tooyour query può essere ottenuto passaggio dal ruolo predefinito di hello, smallrc, tooone di hello altri ruoli, ad esempio largerc.
+Un'ultima considerazione da tenere presente nella decisione relativa alla partizione della tabella riguarda la [gestione del carico di lavoro][workload management].  La gestione del carico di lavoro in SQL Data Warehouse è principalmente la gestione di memoria e concorrenza.  In SQL Data Warehouse la memoria massima allocata a ogni distribuzione durante l'esecuzione della query è controllata dalle classi di risorse.  In teoria le dimensioni delle partizioni devono tenere in considerazione altri fattori come la memoria necessaria per creare indici columnstore cluster.  Gli indici columnstore cluster traggono importanti vantaggi quando la memoria allocata è maggiore.  È quindi opportuno verificare che la ricompilazione dell'indice della partizione non esaurisca la memoria. Per ottenere l'aumento della memoria disponibile per la query, è possibile passare dal ruolo predefinito, smallrc, a uno degli altri ruoli, ad esempio largerc.
 
-Eseguendo una query su viste a gestione dinamica hello resource governor sono disponibili informazioni sull'allocazione di hello di memoria per ogni distribuzione. In realtà la concessione di memoria sarà minore di nelle figure hello seguenti. Fornisce tuttavia un livello di indicazioni che è possibile usare durante il dimensionamento delle partizioni per le operazioni di gestione dati.  Provare a tooavoid partizioni oltre hello concessione di memoria fornito dalla classe di risorse molto grande hello di ridimensionamento. Se le partizioni di crescere oltre questo valore si corre il rischio di hello pressione della memoria che a sua volta comporta la compressione ottimale tooless.
+Le informazioni sull'allocazione di memoria per ogni distribuzione sono disponibili mediante l'esecuzione di una query sulle viste a gestione dinamica di Resource Governor. In realtà la concessione di memoria sarà inferiore rispetto alle cifre seguenti. Fornisce tuttavia un livello di indicazioni che è possibile usare durante il dimensionamento delle partizioni per le operazioni di gestione dati.  Evitare se possibile di dimensionare le partizioni oltre la concessione di memoria fornita dalla classe di risorse molto grande. Se le partizioni aumentano oltre questa cifra, si rischia un utilizzo elevato di memoria che a sua volta determina una compressione non ottimale.
 
 ```sql
 SELECT  rp.[name]                                AS [pool_name]
@@ -144,12 +144,12 @@ AND     rp.[name]    = 'SloDWPool'
 ```
 
 ## <a name="partition-switching"></a>Cambio di partizione
-SQL Data Warehouse supporta la suddivisione, l'unione e il cambio di partizioni. Ognuna di queste funzioni è excuted utilizzando hello [ALTER TABLE] [ ALTER TABLE] istruzione.
+SQL Data Warehouse supporta la suddivisione, l'unione e il cambio di partizioni. Ognuna di queste funzioni viene eseguita usando l'istruzione [ALTER TABLE][ALTER TABLE].
 
-partizioni tooswitch tra due tabelle, che è necessario assicurarsi che le partizioni hello allineate sui loro rispettivi limiti e che le definizioni di tabella hello corrispondano. Come i vincoli check non sono disponibili intervallo hello tooenforce di valori in una tabella di origine di tabella hello deve contenere hello stessi limiti di partizione come tabella di destinazione hello. In caso non hello, quindi il cambio di partizione hello avrà esito negativo non verranno quindi sincronizzati i metadati della partizione hello.
+Per il cambio di partizione tra due tabelle, è necessario verificare che le partizioni siano allineate sui rispettivi limiti e che le definizioni delle tabelle corrispondano. Poiché non sono disponibili vincoli CHECK per imporre l'intervallo di valori in una tabella, la tabella di origine deve contenere gli stessi limiti di partizione della tabella di destinazione. In caso contrario, il cambio di partizione non riuscirà, perché i metadati della partizione non verranno sincronizzati.
 
-### <a name="how-toosplit-a-partition-that-contains-data"></a>Come toosplit una partizione contenente dati
-più efficiente metodo toosplit una partizione che contiene già dati Hello è toouse un `CTAS` istruzione. Se la tabella partizionata hello è un indice columnstore cluster quindi hello tabella partizione deve essere vuota prima che possa essere suddiviso.
+### <a name="how-to-split-a-partition-that-contains-data"></a>Come suddividere una partizione che contiene dati
+Il metodo più efficiente per suddividere una partizione che contiene già dati, consiste nell'usare un'istruzione `CTAS` . Se la tabella partizionata è un columnstore cluster, la partizione della tabella deve essere vuota per poterla suddividere.
 
 Di seguito è riportato un esempio di tabella columnstore contenente una riga in ogni partizione:
 
@@ -185,11 +185,11 @@ CREATE STATISTICS Stat_dbo_FactInternetSales_OrderDateKey ON dbo.FactInternetSal
 ```
 
 > [!NOTE]
-> Creazione dell'oggetto statistic hello è di assicurare che i metadati di tabella sono più accurato. Se si omette la creazione di statistiche, SQL Data Warehouse userà i valori predefiniti. Per altre informazioni, vedere l'articolo relativo alla gestione delle [statistiche][statistics].
+> Con la creazione dell'oggetto Statistic, si assicura una maggiore accuratezza dei metadati della tabella. Se si omette la creazione di statistiche, SQL Data Warehouse userà i valori predefiniti. Per altre informazioni, vedere l'articolo relativo alla gestione delle [statistiche][statistics].
 > 
 > 
 
-È quindi possibile eseguire una query per il numero di riga hello utilizzando hello `sys.partitions` vista del catalogo:
+È quindi possibile eseguire una query per il conteggio delle righe usando la vista del catalogo `sys.partitions` :
 
 ```sql
 SELECT  QUOTENAME(s.[name])+'.'+QUOTENAME(t.[name]) as Table_name
@@ -206,15 +206,15 @@ WHERE t.[name] = 'FactInternetSales'
 ;
 ```
 
-Se si tenta di toosplit questa tabella, si otterrà un errore:
+Se si tenta di suddividere questa tabella, verrà restituito un errore:
 
 ```sql
 ALTER TABLE FactInternetSales SPLIT RANGE (20010101);
 ```
 
-Msg 35346, livello 15, stato 1, riga 44 divisa clausola dell'istruzione ALTER PARTITION non riuscita perché la partizione hello non è vuota.  Solo partizioni vuote possono essere suddivise presenza di un indice columnstore sulla tabella hello. Provare a disabilitare l'indice columnstore hello prima di eseguire l'istruzione ALTER PARTITION hello, quindi ricompilare l'indice columnstore hello al termine dell'istruzione ALTER PARTITION.
+Messaggio 35346, livello 15, stato 1, riga 44 Clausola SPLIT dell'istruzione ALTER PARTITION non riuscita perché la partizione non è vuota.  Solo le partizioni vuote possono essere suddivise quando nella tabella è presente un indice columnstore. Provare a disabilitare l'indice columnstore prima di eseguire l'istruzione ALTER PARTITION, quindi ricompilare l'indice columnstore dopo il completamento di ALTER PARTITION.
 
-Tuttavia, è possibile utilizzare `CTAS` toocreate un nuovo toohold tabella dati.
+È tuttavia possibile usare `CTAS` per creare una nuova tabella per contenere i dati.
 
 ```sql
 CREATE TABLE dbo.FactInternetSales_20000101
@@ -232,15 +232,15 @@ WHERE   1=2
 ;
 ```
 
-Come vengono allineati dei limiti delle partizioni hello è consentito un commutatore. Tabella di origine hello questo lascerà con una partizione vuota che è possibile successivamente divisa.
+Poiché i limiti della partizione sono allineati, il cambio è consentito. In questo modo la tabella di origine avrà una partizione vuota che in seguito si potrà suddividere.
 
 ```sql
-ALTER TABLE FactInternetSales SWITCH PARTITION 2 too FactInternetSales_20000101 PARTITION 2;
+ALTER TABLE FactInternetSales SWITCH PARTITION 2 TO  FactInternetSales_20000101 PARTITION 2;
 
 ALTER TABLE FactInternetSales SPLIT RANGE (20010101);
 ```
 
-Tutto ciò che viene lasciato toodo è tooalign toohello i dati di partizione nuovi limiti utilizzando `CTAS` e passare i dati nella tabella principale toohello
+A questo punto è sufficiente allineare i dati ai nuovi limiti di partizione usando `CTAS` e ritrasferire i dati nella tabella principale.
 
 ```sql
 CREATE TABLE [dbo].[FactInternetSales_20000101_20010101]
@@ -258,19 +258,19 @@ WHERE   [OrderDateKey] >= 20000101
 AND     [OrderDateKey] <  20010101
 ;
 
-ALTER TABLE dbo.FactInternetSales_20000101_20010101 SWITCH PARTITION 2 toodbo.FactInternetSales PARTITION 2;
+ALTER TABLE dbo.FactInternetSales_20000101_20010101 SWITCH PARTITION 2 TO dbo.FactInternetSales PARTITION 2;
 ```
 
-Dopo aver completato lo spostamento di hello dei dati hello è statistiche buona toorefresh hello in tooensure tabella di destinazione hello che indichino nuova distribuzione di hello dei dati di hello in partizioni i rispettivi:
+Dopo aver completato lo spostamento dei dati, è consigliabile aggiornare le statistiche nella tabella di destinazione per assicurare che riflettano accuratamente la nuova distribuzione dei dati nelle rispettive partizioni:
 
 ```sql
 UPDATE STATISTICS [dbo].[FactInternetSales];
 ```
 
 ### <a name="table-partitioning-source-control"></a>Controllo del codice sorgente del partizionamento della tabella
-tooavoid la definizione della tabella da **rusting** nel sistema di controllo del codice sorgente è hello tooconsider approccio:
+Per evitare che la definizione della tabella si **stabilisca** nel sistema di controllo del codice sorgente, è possibile considerare l'approccio seguente:
 
-1. Creare la tabella hello come una tabella partizionata, ma senza valori di partizione
+1. Creare la tabella come tabella partizionata, ma senza valori di partizione.
 
 ```sql
 CREATE TABLE [dbo].[FactInternetSales]
@@ -294,10 +294,10 @@ WITH
 ;
 ```
 
-1. `SPLIT`tabella Hello come parte del processo di distribuzione hello:
+1. `SPLIT` per suddividere la tabella come parte del processo di distribuzione:
 
 ```sql
--- Create a table containing hello partition boundaries
+-- Create a table containing the partition boundaries
 
 CREATE TABLE #partitions
 WITH
@@ -321,7 +321,7 @@ FROM    (
         ) a
 ;
 
--- Iterate over hello partition boundaries and split hello table
+-- Iterate over the partition boundaries and split the table
 
 DECLARE @c INT = (SELECT COUNT(*) FROM #partitions)
 ,       @i INT = 1                                 --iterator for while loop
@@ -347,10 +347,10 @@ END
 DROP TABLE #partitions;
 ```
 
-Con questo hello approccio rimane statico codice nel controllo del codice sorgente e hello partizionamento sono consentiti limiti toobe dinamico; evoluzione con warehouse hello nel tempo.
+Con questo approccio, il codice nel controllo del codice sorgente rimane statico, mentre i valori dei limiti del partizionamento possono essere dinamici, evolvendo con il warehouse nel tempo.
 
 ## <a name="next-steps"></a>Passaggi successivi
-toolearn, vedere gli articoli di hello in [Cenni preliminari su tabella][Overview], [tipi di dati tabella][Data Types], [la distribuzione di una tabella] [ Distribute], [L'indicizzazione di una tabella][Index], [gestione delle statistiche sulla tabella] [ Statistics] e [ Tabelle temporanee][Temporary].  Per altre informazioni sulle procedure consigliate, vedere [Procedure consigliate per SQL Data Warehouse][SQL Data Warehouse Best Practices].
+Per altre informazioni, vedere gli articoli su [panoramica delle tabelle][Overview], [tipi di dati delle tabelle][Data Types], [distribuzione di una tabella][Distribute], [indicizzazione di una tabella][Index], [conservazione delle statistiche delle tabelle][Statistics] e [tabelle temporanee][Temporary].  Per altre informazioni sulle procedure consigliate, vedere [Procedure consigliate per SQL Data Warehouse][SQL Data Warehouse Best Practices].
 
 <!--Image references-->
 

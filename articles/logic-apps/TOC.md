@@ -7,7 +7,7 @@
 ## [Creare la prima app per la logica](logic-apps-create-a-logic-app.md)
 ## [Modelli per le app per la logica](logic-apps-use-logic-app-templates.md)
 ## [Creare app per la logica dai modelli](logic-apps-arm-provision.md)
-## [Spostare MABS App toologic App](logic-apps-move-from-mabs.md)
+## [Spostare app MABS in app per la logica](logic-apps-move-from-mabs.md)
 
 # Procedure
 ## Compilare
@@ -19,8 +19,19 @@
 ### [Messaggi dei processi batch](logic-apps-batch-process-send-receive-messages.md)
 ### [Creare definizioni di app per la logica](logic-apps-author-definitions.md)
 ### [Chiamare, attivare o annidare app per la logica](logic-apps-http-endpoint.md)
-### [Creare API personalizzate per app per la logica](logic-apps-create-api-app.md)
-### [Chiamare API personalizzate per app per la logica](logic-apps-custom-hosted-api.md)
+### Sviluppare connettori personalizzati
+#### [Panoramica dei connettori personalizzati](custom-connector-overview.md)
+#### [Creare i connettori dalle API Web](custom-connector-build-web-api-app-tutorial.md)
+#### [Proteggere i connettori con Azure AD](custom-connector-azure-active-directory-authentication.md)
+#### [Descrivere le API con Postman](custom-connector-api-postman-collection.md)
+#### [Estendere OpenAPI per i connettori personalizzati](custom-connector-openapi-extensions.md)
+#### [Registrare il connettore](logic-apps-custom-connector-register.md)
+#### [Certificare il connettore](custom-connector-submit-certification.md)
+#### [Domande frequenti sui connettori personalizzati](custom-connector-faq.md)
+### Sviluppare le API personalizzate
+#### [Creare API personalizzate per app per la logica](logic-apps-create-api-app.md)
+#### [Chiamate protette ad API personalizzate](logic-apps-custom-api-authentication.md)
+#### [Distribuire e chiamare le API personalizzate](logic-apps-custom-api-host-deploy-call.md)
 ### [Gestire errori ed eccezioni](logic-apps-exception-handling.md)
 ### [Gestire i tipi di contenuti](logic-apps-content-type.md)
 ### [Proteggere le app per la logica](logic-apps-securing-a-logic-app.md)
@@ -32,6 +43,7 @@
 ### [Partner](logic-apps-enterprise-integration-partners.md)
 ### [Contratti](logic-apps-enterprise-integration-agreements.md)
 ### [Elaborazione B2B](logic-apps-enterprise-integration-b2b.md)
+### [Inviare messaggi EDI come batch](logic-apps-scenario-edi-send-batch-messages.md)
 ### [Elaborazione XML](logic-apps-enterprise-integration-xml.md)
 ### [Elaborazione file flat](logic-apps-enterprise-integration-flatfile.md)
 ### [Convalidare XML](logic-apps-enterprise-integration-xml-validation.md)
@@ -46,7 +58,7 @@
 ### [Integrazione aziendale EDIFACT](logic-apps-enterprise-integration-edifact.md)
 ### [Codifica EDIFACT](logic-apps-enterprise-integration-edifact-encode.md)
 ### [Decodifica EDIFACT](logic-apps-enterprise-integration-edifact-decode.md)
-### [Come i documenti con un segmento UNH 2.5 toohandle EDIFACT](logic-apps-enterprise-integration-edifact_inputfile_unh2.5.md)
+### [Come gestire documenti EDIFACT con un segmento UNH2.5](logic-apps-enterprise-integration-edifact_inputfile_unh2.5.md)
 ### [Integrazione aziendale X12](logic-apps-enterprise-integration-x12.md)
 ### [Codifica X12](logic-apps-enterprise-integration-x12-encode.md)
 ### [Decodifica X12](logic-apps-enterprise-integration-x12-decode.md)
@@ -54,7 +66,7 @@
 ### [Errori e soluzioni](logic-apps-enterprise-integration-b2b-list-errors-solutions.md)
 
 ## Accedere ai dati locali
-### [La connessione dati tooon locali](logic-apps-gateway-connection.md)
+### [Connettersi ai dati locali](logic-apps-gateway-connection.md)
 ### [Installare il gateway dati](logic-apps-gateway-install.md)
 
 ## Automatizzare e distribuire
@@ -73,12 +85,11 @@
 #### [Schema di rilevamento X12](logic-apps-track-integration-account-x12-tracking-schema.md)
 #### [Schema di rilevamento personalizzato](logic-apps-track-integration-account-custom-tracking-schema.md)
 
-## Esempi, scenari e procedure dettagliate
-### [Panoramica](logic-apps-examples-and-scenarios.md)
+## [Esempi, scenari e procedure dettagliate](logic-apps-examples-and-scenarios.md)
 ### [Creare un dashboard social senza server](logic-apps-scenario-social-serverless.md)
 ### [Chiamare le app per la logica con Funzioni di Azure](logic-apps-scenario-function-sb-trigger.md)
 ### [Aggiungere la gestione di errori ed eccezioni](logic-apps-scenario-error-and-exception-handling.md)
-### [Elaborazione B2B](logic-apps-enterprise-integration-b2b.md)
+### [Elaborazione B2B](logic-apps-enterprise-integration-b2b.md) 
 
 ## Prezzi e fatturazione
 ### [Prezzi](https://azure.microsoft.com/pricing/details/logic-apps/)
@@ -98,7 +109,7 @@
 ## [Linguaggio di definizione del flusso di lavoro](logic-apps-workflow-definition-language.md)
 ## [Azioni e trigger del flusso di lavoro](logic-apps-workflow-actions-triggers.md)
 ## [API REST](/rest/api/logic/)
-## [PowerShell](/powershell/module/azurerm.logicapp)
+## [Azure PowerShell](/powershell/module/azurerm.logicapp)
 ## Connettori: argomenti dettagliati
 ### [AS2](logic-apps-enterprise-integration-as2.md)
 ### [Archiviazione BLOB di Azure](../connectors/connectors-create-api-azureblobstorage.md)

@@ -1,6 +1,6 @@
 ---
-title: "Considerazioni sulla progettazione di aaaAzure Active Directory ibrido identità - determinare i requisiti di autenticazione a più fattori"
-description: "Con il controllo di accesso condizionale, Azure Active Directory verifica specifiche condizioni hello selezionate per l'autenticazione utente hello e prima di consentire l'accesso toohello applicazione. Quando queste condizioni sono soddisfatte, l'utente di hello è autenticato e accesso toohello applicazione consentita."
+title: "Considerazioni di progettazione dell'identità ibrida di Azure Active Directory - Determinare i requisiti di Multi-factor Authentication"
+description: Il controllo di accesso condizionale consente ad Azure Active Directory di controllare le condizioni specifiche definite durante l'autenticazione dell'utente e prima di consentire l'accesso all'applicazione. Se tali condizioni vengono soddisfatte, l'utente viene autenticato e gli viene consentito l'accesso all'applicazione.
 documentationcenter: 
 services: active-directory
 author: femila
@@ -14,47 +14,47 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/18/2017
 ms.author: billmath
-ms.openlocfilehash: 49fa7b43772fb3a2d6664747477c60a34cddde2b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5b3a8ce6e4203dfb3700f324e32687dd910118af
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="determine-multi-factor-authentication-requirements-for-your-hybrid-identity-solution"></a>Determinare i requisiti dell'autenticazione a più fattori per la soluzione di identità ibrida
-In questo mondo di mobilità, con utenti che accedono ai dati e applicazioni nel cloud hello e da qualsiasi dispositivo, è diventato fondamentale proteggere queste informazioni.  Ogni giorno viene data notizia di una nuova violazione della sicurezza.  Tuttavia, non c'è garanzia contro tali violazioni della sicurezza, autenticazione a più fattori, offre un ulteriore livello di sicurezza toohelp evitare tali violazioni.
-Avviare la valutazione dei requisiti delle organizzazioni hello multi-factor Authentication. Che cos'è toosecure durante il tentativo di hello dell'organizzazione.  Questa valutazione è requisiti tecnici di hello toodefine importanti per la configurazione e consentire agli utenti di organizzazioni hello multi-factor Authentication.
+Nell'era della mobilità, in cui gli utenti accedono a dati e applicazioni nel cloud con qualsiasi dispositivo, proteggere queste informazioni è diventata un'esigenza assoluta.  Ogni giorno viene data notizia di una nuova violazione della sicurezza.  Sebbene non esista una soluzione in grado di fornire una protezione assoluta contro tali violazioni, l'autenticazione a più fattori fornisce un livello aggiuntivo di sicurezza nel tentativo di contrastarle.
+In primo luogo, quindi, è opportuno valutare i requisiti aziendali per l'autenticazione a più fattori, ovvero stabilire gli elementi che l'azienda desidera proteggere.  Questa valutazione è importante per definire i requisiti tecnici a cui attenersi per configurare e abilitare gli utenti aziendali per l'autenticazione a più fattori.
 
 > [!NOTE]
-> Se non si ha familiarità con l'autenticazione a più fattori e funzionalità, è consigliabile leggere l'articolo hello [che cos'è Azure multi-Factor Authentication?](../multi-factor-authentication/multi-factor-authentication.md) precedente toocontinue leggere questa sezione.
+> Se non si ha familiarità con l'autenticazione a più fattori, è consigliabile leggere l'articolo [Informazioni su Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md) prima di andare avanti.
 > 
 > 
 
-Verificare i seguenti hello tooanswer che:
+Accertarsi che venga fornita una risposta alle domande seguenti:
 
-* L'azienda sta tentando toosecure Microsoft App? 
+* L'azienda desidera proteggere anche app Microsoft? 
 * Come sono state pubblicate queste app?
-* La società fornisce accesso remoto tooallow dipendenti tooaccess locale App?
+* L'azienda consente ai dipendenti di accedere alle app locali anche in remoto?
 
-In caso affermativo, il tipo di accesso remoto? È inoltre necessario tooevaluate in cui gli utenti di hello che accedono a tali applicazioni verranno memorizzati. Questa valutazione è un'altra strategia di autenticazione a più fattori corretta hello di toodefine passaggio importante. Verificare che hello tooanswer seguenti domande:
+In caso affermativo, che tipo di accesso remoto offre? È necessario stabilire, infatti, dove si trovano gli utenti che eseguono l'accesso a tali applicazioni. Questa valutazione costituisce un altro elemento di grande importanza per definire una strategia di autenticazione a più fattori appropriata. Rispondere alle domande seguenti:
 
-* Dove si trovano toobe utenti hello?
+* Dove si troveranno gli utenti?
 * Potrebbero trovarsi ovunque?
-* L'azienda vuole tooestablish restrizioni in base della posizione dell'utente toohello?
+* L'azienda desidera imporre delle limitazioni in base alla posizione degli utenti?
 
-Dopo aver appreso questi requisiti, è importante tooalso valutare i requisiti dell'utente hello multi-factor Authentication. Questa valutazione è importante perché definirà i requisiti di hello per l'implementazione di multi-factor authentication. Verificare che hello tooanswer seguenti domande:
+Dopo aver identificato questi requisiti, è importante valutare anche i requisiti degli utenti relativamente all'autenticazione a più fattori. Questa valutazione è importante poiché consente di definire i requisiti da soddisfare per implementare l'autenticazione a più fattori. Rispondere alle domande seguenti:
 
-* Si ha familiarità con l'autenticazione a più fattori utenti hello?
-* Alcuni utilizzi sarà l'autenticazione aggiuntiva tooprovide necessarie?  
-  * In caso affermativo, tutti hello tempo, quando provenienti da reti esterne o accesso alle applicazioni specifiche o in altre condizioni?
-* Gli utenti di hello dovranno come toosetup e implementare l'autenticazione a più fattori?
-* Quali sono gli scenari principali di hello che la società decide tooenable multi-factor authentication per gli utenti?
+* Gli utenti hanno già familiarità con l'autenticazione a più fattori?
+* Per alcuni utilizzi verrà prevista una procedura di autenticazione aggiuntiva?  
+  * In caso affermativo, verrà prevista in tutti i casi, solo se provenienti da reti esterne, se accedono ad applicazioni specifiche o in quali altre condizioni?
+* Sarà necessario prevedere sessioni di formazione degli utenti sulle modalità per impostare e implementare l'autenticazione a più fattori?
+* Quali sono gli scenari principali in cui l'azienda desidera abilitare l'autenticazione a più fattori per gli utenti?
 
-Dopo aver rispondere alle domande precedenti hello, si sarà in grado di toounderstand se esistono già implementata l'autenticazione a più fattori locale. Questa valutazione è requisiti tecnici di hello toodefine importanti per la configurazione e consentire agli utenti di organizzazioni hello multi-factor Authentication. Verificare che hello tooanswer seguenti domande:
+Dopo aver risposto a queste domande, sarà possibile capire se l'autenticazione a più fattori è già stata implementata in locale. Questa valutazione è importante per definire i requisiti tecnici a cui attenersi per configurare e abilitare gli utenti aziendali per l'autenticazione a più fattori. Rispondere alle domande seguenti:
 
-* L'azienda necessita di account con privilegi tooprotect con autenticazione a più fattori?
-* L'azienda necessita tooenable autenticazione a più fattori per alcune applicazioni per motivi di conformità?
-* L'azienda necessita tooenable autenticazione a più fattori per tutti gli utenti idonei di queste applicazioni o solo gli amministratori?
-* È necessario sono sempre abilitati con autenticazione a più fattori o solo quando sono connessi utenti hello all'esterno della rete aziendale?
+* L'azienda desidera proteggere account privilegiati con l'autenticazione a più fattori?
+* L'azienda intende abilitare l'autenticazione a più fattori in alcune applicazioni per motivi di conformità?
+* L'azienda prevede di abilitare l'autenticazione a più fattori per tutti gli utenti di queste applicazioni o solo per gli amministratori?
+* È necessario che l'autenticazione a più fattori sia costantemente abilitata o solo quando gli utenti sono collegati da una posizione esterna alla rete aziendale?
 
 ## <a name="next-steps"></a>Passaggi successivi
 [Definire una strategia di adozione della soluzione ibrida di gestione delle identità](active-directory-hybrid-identity-design-considerations-identity-adoption-strategy.md)

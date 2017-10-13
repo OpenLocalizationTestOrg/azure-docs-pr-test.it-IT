@@ -1,6 +1,6 @@
 ---
-title: "database cloud di scalabilità orizzontale aaaManaging | Documenti Microsoft"
-description: Vengono illustrate servizio processo di database elastico hello
+title: "Gestione dei database cloud con scalabilità orizzontale | Documentazione Microsoft"
+description: Viene illustrato il servizio processo di database elastico
 metakeywords: azure sql database elastic databases
 services: sql-database
 documentationcenter: 
@@ -15,26 +15,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/24/2016
 ms.author: ddove
-ms.openlocfilehash: b6d330cd712421b8cba781e835830772e6e5b77e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8e84562115a866c0df5e0dee6c7f66c036a74737
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="managing-scaled-out-cloud-databases"></a>Gestione dei database cloud con scalabilità orizzontale
-database partizionati di scalabilità orizzontale toomanage, hello **i processi di Database elastico** funzionalità Abilita (anteprima) è tooreliably eseguire uno script Transact-SQL (T-SQL) in un gruppo di database, tra cui:
+Per la gestione dei database cloud con scalabilità orizzontale, la funzionalità **Processi di database elastico** (in anteprima) consente di eseguire uno script Transact-SQL (T-SQL) in modo affidabile, ad esempio:
 
 * una raccolta personalizzata di database (illustrata di seguito)
 * tutti i database in un [pool elastico](sql-database-elastic-pool.md)
 * un set di partizioni, creato con la [libreria client dei database elastici](sql-database-elastic-database-client-library.md). 
 
 ## <a name="documentation"></a>Documentazione
-* [Installare componenti dei processi di Database elastico hello](sql-database-elastic-jobs-service-installation.md). 
+* [Installare i componenti di Processi di database elastico](sql-database-elastic-jobs-service-installation.md). 
 * [Introduzione a Processi di database elastico](sql-database-elastic-jobs-getting-started.md).
 * [Creare e gestire processi tramite PowerShell](sql-database-elastic-jobs-powershell.md).
 * [Creare e gestire database SQL di Azure con scalabilità orizzontale](sql-database-elastic-jobs-getting-started.md)
 
-**I processi di Database elastici** è attualmente un servizio Cloud Azure ospitati cliente che rende possibile l'esecuzione di ad hoc e attività amministrative pianificate, dette hello **processi**. I processi, si può facilmente e gestire in modo affidabile i gruppi di grandi dimensioni di database di SQL Azure mediante l'esecuzione di operazioni amministrative tooperform gli script di Transact-SQL. 
+**Processi database elastici** è attualmente un servizio cloud di Azure ospitato dal cliente che consente l'esecuzione di attività amministrative ad hoc e pianificate, dette **processi**. Con i processi è possibile gestire facilmente e in modo affidabile gruppi estesi di database SQL di Azure tramite l'esecuzione di script Transact-SQL per eseguire operazioni amministrative. 
 
 ![Servizio processo di database elastico][1]
 
@@ -49,49 +49,49 @@ Aggregare i dati di una raccolta di database SQL di Azure in una singola tabella
 
 **Ridurre il sovraccarico**
 
-In genere, è necessario connettersi tooeach database in modo indipendente in istruzioni Transact-SQL toorun di ordine o eseguire altre attività amministrative. Un processo gestisce attività hello registrazione nel database tooeach nel gruppo di destinazione hello. Anche definire, gestire e mantenere toobe script Transact-SQL eseguita in un gruppo di database SQL di Azure.
+In genere, è necessario connettersi a ciascun database in modo indipendente per eseguire istruzioni T-SQL o effettuare altre attività amministrative. Un processo gestisce le attività di accesso a ogni database nel gruppo di destinazione. È anche necessario definire, gestire e mantenere gli script T-SQL da eseguire su un gruppo di database SQL di Azure.
 
 **Accounting**
 
-I processi eseguiti hello script e log hello lo stato di esecuzione per ogni database. È anche disponibile la ripetizione automatica in caso di errori.
+I processi eseguono lo script e registrano lo stato di esecuzione per ogni database. È anche disponibile la ripetizione automatica in caso di errori.
 
 **Flessibilità**
 
 Definire gruppi personalizzati di database SQL di Azure e pianificazioni per l'esecuzione di un processo.
 
 > [!NOTE]
-> Nel portale di Azure hello, solo un set ridotto di funzioni limitate tooSQL Azure elastico pool è disponibile. Utilizzare hello PowerShell APIs tooaccess hello completo delle funzionalità corrente.
+> Nel portale di Azure è disponibile solo un set ridotto di funzioni limitate ai pool elastici di SQL di Azure. Utilizzare le API di PowerShell per accedere alla serie completa delle funzionalità correnti.
 > 
 > 
 
 ## <a name="applications"></a>Applicazioni
 * Eseguire attività amministrative, quali la distribuzione di un nuovo schema.
 * Aggiornare i dati di riferimento, ad esempio informazioni di prodotto comuni tra tutti i database. Pianificare aggiornamenti automatici ogni giorno della settimana, dopo l'orario di lavoro.
-* Ricompilare le prestazioni delle query tooimprove indici. Hello la ricompilazione può essere tooexecute configurata tra una raccolta di database su base periodica, ad esempio durante le fasce orarie.
-* Raccogliere i risultati di query da un set di database in una tabella centrale su base costante. Le query di prestazioni possono essere eseguite continuamente e configurate tootrigger toobe di attività aggiuntive eseguite.
-* Eseguire query di elaborazione dei dati con esecuzione prolungata in un set di database di grandi dimensioni, ad esempio hello raccolta di dati di telemetria di cliente. I risultati vengono raccolti in una tabella di destinazione singola per ulteriori analisi.
+* Ricompilazione degli indici per migliorare le prestazioni delle query. La ricompilazione può essere configurata per essere eseguita in una raccolta di database su base periodica, ad esempio durante le fasce orarie non di punta.
+* Raccogliere i risultati di query da un set di database in una tabella centrale su base costante. Le query di prestazione possono essere eseguite continuamente e configurate per l'esecuzione di attività aggiuntive di trigger.
+* Eseguire query di elaborazione dei dati più lunghe per una vasta serie di database, ad esempio la raccolta della telemetria del cliente. I risultati vengono raccolti in una tabella di destinazione singola per ulteriori analisi.
 
 ## <a name="elastic-database-jobs-end-to-end"></a>Processi di database elastici: end-to-end
-1. Installare hello **i processi di Database elastico** componenti. Per altre informazioni, vedere [Installazione dei processi di database elastici](sql-database-elastic-jobs-service-installation.md). Se si verifica un errore di installazione di hello, vedere [come toouninstall](sql-database-elastic-jobs-uninstall.md).
-2. Utilizzare PowerShell APIs tooaccess hello ulteriori funzionalità, ad esempio la creazione di raccolte di database personalizzati, aggiungendo le pianificazioni e/o la raccolta di set di risultati. Portale di hello utilizzare per l'installazione semplice e creazione/monitoraggio dei processi limitato tooexecution contro un **pool elastico**. 
-3. Creare le credenziali crittografate per l'esecuzione del processo e [aggiungere database tooeach utente (o ruolo) di hello hello gruppo](sql-database-security-overview.md).
-4. Creare un script T-SQL che possono essere eseguite in ogni database nel gruppo hello idempotente. 
-5. Seguire questi processi toocreate passaggi utilizzando hello portale di Azure: [creazione e gestione dei processi di Database elastico](sql-database-elastic-jobs-create-and-manage.md). 
+1. Installare i componenti dei **processi di database elastici** . Per altre informazioni, vedere [Installazione dei processi di database elastici](sql-database-elastic-jobs-service-installation.md). Se l'installazione non riesce, vedere [come disinstallare](sql-database-elastic-jobs-uninstall.md).
+2. Utilizzare le API di PowerShell per accedere a ulteriori funzionalità, ad esempio la creazione di raccolte di database personalizzati, l’aggiunta di pianificazioni e/o la raccolta di set di risultati. Usare il portale per un'installazione semplice e la creazione o il monitoraggio dei processi limitati all'esecuzione in un **pool elastico**. 
+3. Creare credenziali crittografate per l'esecuzione del processo e [aggiungere l'utente (o il ruolo) a ogni database nel gruppo](sql-database-security-overview.md).
+4. Creare uno script T-SQL idempotente che può essere eseguito su ogni database nel gruppo. 
+5. Seguire questi passaggi per creare processi tramite il portale di Azure: [Creazione e gestione di processi di database elastici](sql-database-elastic-jobs-create-and-manage.md) 
 6. In alternativa, usare script di PowerShell: [Creare e gestire processi di database elastici del database SQL tramite PowerShell (anteprima)](sql-database-elastic-jobs-powershell.md).
 
 ## <a name="idempotent-scripts"></a>Script idempotenti
-deve essere script Hello [idempotente](https://en.wikipedia.org/wiki/Idempotence). In altre parole, "idempotente" significa che se script hello ha esito positivo e viene eseguito di nuovo, hello stesso risultato si verifica. Uno script potrebbe non riuscire a causa di problemi di rete tootransient. In tal caso, il processo di hello tenterà automaticamente di ripetere script hello in esecuzione un numero di volte prima di desisting preimpostato. Uno script idempotente ha hello stesso risultato anche se è stato correttamente eseguito due volte. 
+Gli script devono essere [idempotenti](https://en.wikipedia.org/wiki/Idempotence). In altre parole, "idempotente" significa che se lo script riesce e viene eseguito di nuovo, si ottiene lo stesso risultato. Uno script potrebbe non riuscire a causa di problemi di rete temporanei. In tal caso, il processo ritenterà automaticamente l'esecuzione dello script per un numero di volte predefinito prima di desistere. Uno script idempotente ha lo stesso risultato anche se è stato eseguito correttamente due volte. 
 
-Una semplice strategia è tootest esistenza hello di un oggetto prima di averlo creato.  
+Una semplice strategia consiste nel verificare l'esistenza di un oggetto prima di crearlo.  
 
     IF NOT EXIST (some_object)
-    -- Create hello object 
-    -- If it exists, drop hello object before recreating it.
+    -- Create the object 
+    -- If it exists, drop the object before recreating it.
 
-Analogamente, uno script deve essere in grado di tooexecute correttamente eseguendo i test in modo logico per e tutte le condizioni di fronteggiare rileva.
+Analogamente, uno script deve poter essere eseguito correttamente verificando in modo logico e risolvendo qualsiasi condizione trovata.
 
 ## <a name="failures-and-logs"></a>Errori e log
-Se uno script non riesce dopo diversi tentativi, il processo di hello registra l'errore hello e continua. Termine di un processo, ovvero un'esecuzione in tutti i database nel gruppo di hello, è possibile controllare l'elenco dei tentativi non riusciti. i file di registro Hello dettagli script difettoso toodebug. 
+Se uno script non riesce dopo diversi tentativi, il processo registra l'errore e continua. Dopo il termine di un processo, ovvero un'esecuzione in tutti i database nel gruppo, è possibile controllare l'elenco dei tentativi non riusciti. I log forniscono informazioni dettagliate per il debug degli script difettosi. 
 
 ## <a name="group-types-and-creation"></a>Tipi di gruppo e creazione
 Esistono due tipi di gruppi: 
@@ -99,43 +99,43 @@ Esistono due tipi di gruppi:
 1. Set di partizioni
 2. Gruppi personalizzati
 
-Gruppi di set di partizioni vengono creati utilizzando hello [strumenti di Database elastico](sql-database-elastic-scale-introduction.md). Quando si crea un gruppo di set di partizioni, i database vengono aggiunti o rimossi dal gruppo hello automaticamente. Ad esempio, una nuova partizione verrà automaticamente nel gruppo di hello quando si aggiunge mappa partizioni toohello. Un processo può quindi essere eseguito su gruppo di hello.
+I gruppi di set di partizioni vengono creati usando gli [strumenti di database elastici](sql-database-elastic-scale-introduction.md). Quando si crea un gruppo di set di partizioni, i database vengono aggiunti o rimossi automaticamente dal gruppo. Ad esempio, una nuova partizione viene creata automaticamente nel gruppo quando viene aggiunta alla mappa partizioni. Quindi è possibile eseguire un processo sul gruppo.
 
-Gruppi personalizzati, in hello invece, sono definiti rigidamente. È necessario aggiungere o rimuovere i database in modo esplicito dai gruppi personalizzati. Se viene eliminato un database nel gruppo di hello, processo hello tenterà script hello toorun database hello risultante in un eventuale errore. Gruppi creati mediante hello portale di Azure attualmente sono gruppi personalizzati. 
+I gruppi personalizzati, d'altra parte, sono definiti rigidamente. È necessario aggiungere o rimuovere i database in modo esplicito dai gruppi personalizzati. Se viene eliminato un database nel gruppo, il processo tenterà di eseguire lo script sul database, generando infine un errore. I gruppi creati tramite il portale di Azure attualmente sono gruppi personalizzati. 
 
 ## <a name="components-and-pricing"></a>Componenti e prezzi
-Hello seguenti componenti interagiscono toocreate un servizio Cloud di Azure che consente l'esecuzione ad hoc di processi di amministrazione. componenti Hello installati e configurati automaticamente durante l'installazione, nella sottoscrizione. È possibile identificare i servizi di hello come essi hanno hello stesso generato automaticamente nome. nome Hello è univoco, è costituito da prefisso "edj hello" seguito da caratteri generate in modo casuale 21.
+I seguenti componenti interagiscono per creare un servizio Cloud di Azure che consente l'esecuzione ad hoc dei processi di amministrazione. I componenti vengono installati e configurati automaticamente durante la configurazione, nella sottoscrizione. È possibile identificare i servizi poiché hanno tutti lo stesso nome generato automaticamente. Il nome è univoco ed è costituito dal prefisso "edj" seguito da 21 caratteri generati casualmente.
 
-* **Servizio Cloud di Azure**: i processi di database elastico (anteprima) viene recapitato come un Cloud di Azure ospitati cliente tooperform esecuzione del servizio di hello attività richieste. Dal portale di hello, servizio hello è distribuito e ospitato nella sottoscrizione di Microsoft Azure. servizio predefinito distribuito Hello viene eseguito con almeno hello due ruoli di lavoro per la disponibilità elevata. dimensioni predefinite Hello di ogni ruolo di lavoro (ElasticDatabaseJobWorker) viene eseguito in un'istanza di A0. Per informazioni sui prezzi, vedere [Servizi cloud Prezzi](https://azure.microsoft.com/pricing/details/cloud-services/). 
-* **Database SQL di Azure**: servizio di hello utilizza un Database di SQL Azure noto come hello **database del controllo** toostore tutti i metadati del processo hello. livello di servizio predefinito Hello è un S0. Per informazioni sui prezzi, vedere [Database SQL Prezzi](https://azure.microsoft.com/pricing/details/sql-database/).
-* **Azure Service Bus**: è un Bus di servizio di Azure per il coordinamento di hello lavoro all'interno di hello servizio Cloud di Azure. Vedere [Bus di servizio Prezzi](https://azure.microsoft.com/pricing/details/service-bus/).
-* **Archiviazione di Azure**: viene utilizzato un account di archiviazione Azure toostore diagnostica output di registrazione nell'evento hello che un problema richiede un'ulteriore debug (vedere [abilitazione di diagnostica in servizi Cloud di Azure e macchine virtuali](../cloud-services/cloud-services-dotnet-diagnostics.md)). Per informazioni sui prezzi, vedere [Prezzi di Archiviazione di Azure](https://azure.microsoft.com/pricing/details/storage/).
+* **Servizio cloud di Azure**: i processi di database elastica (anteprima) vengono recapitati come servizio cloud di Azure ospitato dal cliente per l'esecuzione delle attività richieste. Dal portale, il servizio viene distribuito e ospitato nella sottoscrizione Microsoft Azure. Il servizio predefinito distribuito viene eseguito con un numero minimo di due ruoli di lavoro per la disponibilità elevata. La dimensione predefinita di ogni ruolo di lavoro (ElasticDatabaseJobWorker) viene eseguita in un'istanza A0. Per informazioni sui prezzi, vedere [Servizi cloud Prezzi](https://azure.microsoft.com/pricing/details/cloud-services/). 
+* **Database SQL di Azure**: il servizio usa un database SQL di Azure noto come **database di controllo** per archiviare tutti i metadati del processo. Il livello di servizio predefinito è S0. Per informazioni sui prezzi, vedere [Database SQL Prezzi](https://azure.microsoft.com/pricing/details/sql-database/).
+* **Bus di servizio di Azure**: è destinato alla coordinazione del lavoro all'interno del servizio cloud di Azure. Vedere [Bus di servizio Prezzi](https://azure.microsoft.com/pricing/details/service-bus/).
+* **Archiviazione di Azure**: viene usato un account di Archiviazione di Azure per archiviare la registrazione dell'output di diagnostica, nel caso in cui un problema richieda un ulteriore debugging. Vedere [Abilitazione di Diagnostica in servizi cloud e macchine virtuali di Azure](../cloud-services/cloud-services-dotnet-diagnostics.md). Per informazioni sui prezzi, vedere [Prezzi di Archiviazione di Azure](https://azure.microsoft.com/pricing/details/storage/).
 
 ## <a name="how-elastic-database-jobs-work"></a>Funzionano dei processi di database elastico
 1. Un database SQL di Azure viene designato come **database di controllo** per l'archiviazione di tutti i dati di stato e i metadati.
-2. database del controllo Hello avviene mediante hello **servizio processi** tooexecute processi toolaunch e tenere traccia.
-3. Due diversi ruoli comunicano con i database di controllo hello: 
-   * Controller: Determina quali processi richiedono hello tooperform attività richiesta di processo e i processi non riusciti di tentativi tramite la creazione di nuove attività di processo.
-   * Esecuzione dell'attività di processo: Esegue attività di processo hello.
+2. Il **servizio processi** accede al database di controllo per avviare e tenere traccia dei processi da eseguire.
+3. Due diversi ruoli comunicano con il database di controllo: 
+   * Controller: Determina quali processi richiedono attività per eseguire il processo richiesto e ritenta di eseguire i processi non riusciti tramite la creazione di nuove attività di processo.
+   * Esecuzione dell'attività di processo: Esegue le attività di processo.
 
 ### <a name="job-task-types"></a>Tipi di attività di processo
 Sono disponibili più tipi di attività di processo che eseguono l'esecuzione di processi:
 
-* ShardMapRefresh: Query hello toodetermine mappa partizioni tutti i database hello utilizzati come partizioni
-* ScriptSplit: Script di hello divisioni tra le istruzioni 'Vai' in batch
+* ShardMapRefresh: Esegue una query del mapping della partizione per determinare tutti i database utilizzati come partizioni
+* ScriptSplit: Divide lo script tra le istruzioni ‘GO’ in batch
 * ExpandJob: Crea processi figlio per ogni database da un processo destinato a un gruppo di database
 * ScriptExecution: Esegue uno script su un particolare database utilizzando le credenziali definite
-* Dacpac: Si applica un file DACPAC tooa particolare database utilizzando le credenziali specifiche
+* Dacpac: Applica un DACPAC a un determinato database utilizzando determinate credenziali
 
 ## <a name="end-to-end-job-execution-work-flow"></a>Flusso di lavoro completo di esecuzione del processo
-1. Utilizza hello portale o API di PowerShell hello, un processo viene inserito un hello **database del controllo**. processo Hello ha richiesto l'esecuzione di uno script Transact-SQL rispetto a un gruppo di database utilizzando le credenziali specifiche.
-2. controller Hello identifica il nuovo processo di hello. Attività di processo vengono create ed eseguito script hello toosplit e database del gruppo di toorefresh hello. Infine, un nuovo processo creato ed eseguito tooexpand hello processo e crea di nuovo figlio processi in cui ogni processo figlio è hello tooexecute specificato uno script Transact-SQL per un singolo database nel gruppo di hello.
-3. controller Hello identifica hello creato i processi figlio. Per ogni processo, il controller hello crea e genera uno script di hello tooexecute attività processo in un database. 
-4. Dopo aver completato tutte le attività di processo, controller hello Aggiorna lo stato di completamento tooa processi hello. 
-   In qualsiasi momento durante l'esecuzione del processo, hello API PowerShell può essere utilizzato tooview hello stato corrente dell'esecuzione del processo. Sempre restituito da hello APIs di PowerShell sono rappresentati in UTC. Se si desidera, una richiesta di annullamento può essere toostop avviato da un processo. 
+1. Un processo viene inserito nel **database di controllo** tramite il portale o l'API di PowerShell. Il processo richiede l'esecuzione di uno script Transact-SQL su un gruppo di database che utilizza credenziali specifiche.
+2. Il controller identifica il nuovo processo. Le attività di processo vengono create ed eseguite per suddividere lo script e per aggiornare i database del gruppo. Infine, un nuovo processo viene creato ed eseguito per espandere il processo e creare nuovi processi figlio in cui ogni processo figlio è specificato per eseguire lo script Transact-SQL su un singolo database nel gruppo.
+3. Il controller identifica i processi figlio creati. Per ogni processo, il controller crea e avvia un'attività di processo per eseguire lo script su un database. 
+4. Dopo aver completato tutte le attività di processo, il controller aggiorna i processi nello stato ‘completato’. 
+   In qualsiasi momento durante l'esecuzione del processo, l'API di PowerShell può essere utilizzata per visualizzare lo stato corrente dell'esecuzione del processo. Tutte le volte restituite dalle API PowerShell sono rappresentate in formato UTC. Se si desidera, è possibile avviare una richiesta di annullamento per interrompere un processo. 
 
 ## <a name="next-steps"></a>Passaggi successivi
-[Installare i componenti di hello](sql-database-elastic-jobs-service-installation.md), quindi [creare e aggiungere un log nel database tooeach nel gruppo di hello di database](sql-database-manage-logins.md). toofurther della creazione del processo e gestione delle informazioni, vedere [la creazione e gestione dei processi di database elastico](sql-database-elastic-jobs-create-and-manage.md). Vedere anche [Introduzione a Processi di database elastico](sql-database-elastic-jobs-getting-started.md).
+[Installare i componenti](sql-database-elastic-jobs-service-installation.md), quindi [creare e aggiungere un log a ciascun database nel gruppo di database](sql-database-manage-logins.md). Per comprendere la creazione e la gestione del processo, vedere [Creazione e gestione di processi elastici di database](sql-database-elastic-jobs-create-and-manage.md). Vedere anche [Introduzione a Processi di database elastico](sql-database-elastic-jobs-getting-started.md).
 
 [!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
 

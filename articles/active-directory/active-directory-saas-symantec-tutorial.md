@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con Symantec Web Security Service (WSS) | Microsoft Docs'
-description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e servizio di sicurezza Web Symantec (WSS).
+description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e Symantec Web Security Service (WSS).
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,187 +14,187 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/27/2017
 ms.author: jeedes
-ms.openlocfilehash: 9f02b3d4ce2073110c55af4b567b0e3b5a88404f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 61576d3a915d209e7355e04432e586dcf66e7c5a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-symantec-web-security-service-wss"></a>Esercitazione: Integrazione di Azure Active Directory con Symantec Web Security Service (WSS)
 
-In questa esercitazione si apprenderà come toointegrate il servizio di sicurezza Web Symantec (WSS) account con il proprio account Azure Active Directory (Azure AD) in modo da WSS può autenticare un utente finale il provisioning in hello Azure AD utilizzando l'autenticazione SAML e applicare l'utente o regole di livello dei criteri di gruppo.
+Questa esercitazione descrive come integrare l'account Symantec Web Security Service con l'account Azure Active Directory (Azure AD) in modo che WSS possa autenticare un utente finale di cui è stato effettuato il provisioning in Azure AD usando l'autenticazione SAML e applicare regole dei criteri a livello di utente o gruppo.
 
-Integrazione del servizio di sicurezza Web Symantec (WSS) con Azure AD fornisce hello seguenti vantaggi:
+L'integrazione di Symantec Web Security Service (WSS) con Azure AD offre i vantaggi seguenti:
 
-- Gestire tutti gli utenti finali di hello e i gruppi utilizzati per l'account WSS dal portale di Azure AD. 
+- Gestire tutti gli utenti finali e i gruppi usati dall'account WSS dal portale di Azure AD. 
 
-- Consentire tooauthenticate gli utenti finali di hello WSS utilizzando le proprie credenziali di Azure AD.
+- Consentire agli utenti finali di autenticarsi in WSS usando le credenziali di Azure AD.
 
-- Abilitare l'applicazione hello di utente e gruppo di regole di livello dei criteri definite nell'account di WSS.
+- Abilitare l'applicazione delle regole dei criteri a livello di utente e gruppo definite nell'account WSS.
 
-Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-tooconfigure integrazione di Azure AD con Symantec Web Security Service (WSS), è necessario hello seguenti elementi:
+Per configurare l'integrazione di Azure AD con Symantec Web Security Service (WSS), sono necessari gli elementi seguenti:
 
 - Sottoscrizione di Azure AD.
 - Account Symantec Web Security Service (WSS)
 
 > [!NOTE]
-> hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un account WSS utilizzato a scopo di produzione.
+> Non è consigliabile usare un account WSS attualmente in uso nell'ambiente di produzione per testare i passaggi di questa esercitazione.
 
-passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:
+A questo scopo, è consigliabile seguire le indicazioni seguenti:
 
 - Non usare per i test un account WSS attualmente in uso nell'ambiente di produzione, a meno che ciò non sia necessario.
 - Se non è disponibile un ambiente di valutazione di Azure AD, è possibile [ottenere una versione di valutazione di un mese](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Descrizione dello scenario
-In questa esercitazione, configurare il AD Azure tooenable single sign-on tooWSS utilizzando le credenziali utente finale di hello definite nell'account di Azure AD.
-scenario di Hello descritto in questa esercitazione è composto da due componenti principali:
+In questa esercitazione si configurerà Azure AD per abilitare l'accesso Single Sign-On a WSS usando le credenziali dell'utente finale definite nell'account Azure AD.
+Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:
 
-1. Aggiunta di applicazione di servizio di sicurezza Web Symantec (WSS) hello dalla raccolta hello
+1. Aggiunta dell'app Symantec Web Security Service (WSS) dalla raccolta
 2. Configurazione e test dell'accesso Single Sign-On di Azure AD
 
-## <a name="adding-symantec-web-security-service-wss-from-hello-gallery"></a>Aggiunta del servizio di sicurezza Web Symantec (WSS) dalla raccolta hello
-integrazione di hello di tooconfigure Symantec Web Security Service (WSS) in Azure AD, è necessario tooadd Symantec Web Security Service (WSS) dall'elenco di tooyour hello raccolta di App SaaS gestite.
+## <a name="adding-symantec-web-security-service-wss-from-the-gallery"></a>Aggiunta di Symantec Web Security Service (WSS) dalla raccolta
+Per configurare l'integrazione di Symantec Web Security Service (WSS) in Azure AD, è necessario aggiungere Symantec Web Security Service (WSS) dalla raccolta all'elenco di app SaaS gestite.
 
-**tooadd Symantec Web Security Service (WSS) dalla raccolta di hello, eseguire hello alla procedura seguente:**
+**Per aggiungere Symantec Web Security Service (WSS) dalla raccolta, seguire questa procedura:**
 
-1. In hello  **[portale di Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona. 
+1. Nel **[portale di Azure](https://portal.azure.com)** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro. 
 
-    ![pulsante di Hello Azure Active Directory][1]
+    ![Pulsante Azure Active Directory][1]
 
-2. Passare troppo**applicazioni aziendali**. Quindi andare troppo**tutte le applicazioni**.
+2. Passare ad **Applicazioni aziendali**. Andare quindi a **Tutte le applicazioni**.
 
-    ![Pannello di applicazioni Enterprise Hello][2]
+    ![Pannello Applicazioni aziendali][2]
     
-3. tooadd nuova applicazione, fare clic su **nuova applicazione** pulsante nella parte superiore di hello della finestra di dialogo.
+3. Fare clic sul pulsante **Nuova applicazione** nella parte superiore della finestra di dialogo per aggiungere una nuova applicazione.
 
-    ![Nuovo pulsante dell'applicazione Hello][3]
+    ![Pulsante Nuova applicazione][3]
 
-4. Nella casella di ricerca hello, digitare **Symantec Web Security Service (WSS)**selezionare **Symantec Web Security Service (WSS)** dal pannello risultati quindi fare clic su **Aggiungi** hello tooadd pulsante applicazione.
+4. Nella casella di ricerca digitare **Symantec Web Security Service (WSS)**, selezionare **Symantec Web Security Service (WSS)** nel pannello dei risultati e quindi fare clic sul pulsante **Aggiungi** per aggiungere l'applicazione.
 
-    ![Symantec Web Security Service (WSS) nell'elenco risultati hello](./media/active-directory-saas-symantec-tutorial/tutorial_symantecwebsecurityservicewss_addfromgallery.png)
+    ![Symantec Web Security Service (WSS) nell'elenco risultati](./media/active-directory-saas-symantec-tutorial/tutorial_symantecwebsecurityservicewss_addfromgallery.png)
 
 ## <a name="configure-and-test-azure-ad-single-sign-on"></a>Configurare e testare l'accesso Single Sign-On di Azure AD
 
 In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con Symantec Web Security Service (WSS) usando un utente di test di nome "Britta Simon".
 
-Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello Symantec Web Security Service (WSS) è tooa utente in Azure AD. In altre parole, una relazione di collegamento tra un utente di Azure Active Directory e l'utente correlato hello Symantec Web Security Service (WSS) richiede toobe stabilita.
+Per il funzionamento dell'accesso Single Sign-On, Azure AD deve conoscere l'utente controparte di Symantec Web Security Service (WSS) corrispondente a un utente di Azure AD. In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in Symantec Web Security Service (WSS).
 
-In Symantec Web Security Service (WSS), assegnare il valore di hello di hello **nome utente** in Azure AD come valore hello hello **Username** tooestablish relazione di collegamento hello.
+Per stabilire la relazione di collegamento, in Symantec Web Security Service (WSS) assegnare il valore del **nome utente** in Azure AD come valore di **Username** (Nome utente).
 
-tooconfigure e test di Azure AD single sign-on con Symantec Web Security Service (WSS), è necessario hello toocomplete seguenti blocchi predefiniti:
+Per configurare e testare l'accesso Single Sign-On di Azure AD con Symantec Web Security Service (WSS), è necessario completare le procedure di base seguenti:
 
-1. **[Configurare Azure Active Directory Single Sign-On](#configure-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.
-2. **[Creare un utente prova AD Azure](#create-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.
-3. **[Creare un utente di test del servizio di sicurezza Web Symantec (WSS)](#create-a-symantec-web-security-service-wss-test-user)**  -toohave un equivalente di Britta Simon in Symantec Web Security Service (WSS) che è la rappresentazione toohello collegato Azure AD dell'utente.
-4. **[Assegnare l'utente test hello Azure AD](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.
-5. **[Testare single sign-on](#test-single-sign-on)**  -tooverify hello se funzionamento della configurazione.
+1. **[Configurare l'accesso Single Sign-On di Azure AD](#configure-azure-ad-single-sign-on)**: per consentire agli utenti di usare questa funzionalità.
+2. **[Creare un utente di test di Azure AD](#create-an-azure-ad-test-user)**: per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.
+3. **[Creare un utente di test di Symantec Web Security Service (WSS)](#create-a-symantec-web-security-service-wss-test-user)**: per avere una controparte di Britta Simon in Symantec Web Security Service (WSS) collegata alla rappresentazione dell'utente in Azure AD.
+4. **[Assegnare l'utente test di Azure AD](#assign-the-azure-ad-test-user)**: per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.
+5. **[Testare l'accesso Single Sign-On](#test-single-sign-on)** per verificare se la configurazione funziona.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Configurare l'accesso Single Sign-On di Azure AD
 
-In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure e configurare l'accesso single sign-on nell'applicazione del servizio di sicurezza Web Symantec (WSS).
+In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di Azure e viene configurato l'accesso Single Sign-On nell'applicazione Symantec Web Security Service (WSS).
 
-**tooconfigure AD Azure single sign-on con Symantec Web Security Service (WSS), eseguire hello alla procedura seguente:**
+**Per configurare l'accesso Single Sign-On di Azure AD con Symantec Web Security Service (WSS), seguire questa procedura:**
 
-1. Nel portale di Azure su hello hello **Symantec Web Security Service (WSS)** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.
+1. Nella pagina di integrazione dell'applicazione **Symantec Web Security Service (WSS)** del portale di Azure fare clic su **Single Sign-On**.
 
-    ![Collegamento per la configurazione dell'accesso Single Sign-On][4]
+    ![Collegamento Configura accesso Single Sign-On][4]
 
-2. In hello **Single sign-on** finestra di dialogo Seleziona **modalità** come **basato su SAML Sign-on** tooenable single sign-on.
+2. Nella finestra di dialogo **Single Sign-On** selezionare **Accesso basato su SAML** per **Modalità** per abilitare l'accesso Single Sign-On.
  
     ![Finestra di dialogo Single Sign-On](./media/active-directory-saas-symantec-tutorial/tutorial_symantecwebsecurityservicewss_samlbase.png)
 
-3. In hello **URL e dominio del servizio (WSS) sicurezza Web Symantec** seguire hello alla procedura seguente:
+3. Nella sezione **URL e dominio Symantec Web Security Service (WSS)** seguire questa procedura:
 
     ![Informazioni su URL e dominio per l'accesso Single Sign-On di Symantec Web Security Service (WSS)](./media/active-directory-saas-symantec-tutorial/tutorial_symantecwebsecurityservicewss_url.png)
 
-    a. In hello **identificatore** casella di testo, digitare l'URL hello:`https://saml.threatpulse.net:8443/saml/saml_realm`
+    a. Nella casella di testo **Identificatore** digitare l'URL: `https://saml.threatpulse.net:8443/saml/saml_realm`
 
-    b. In hello **URL di risposta** casella di testo, digitare l'URL hello:`https://saml.threatpulse.net:8443/saml/saml_realm/bcsamlpost`
+    b. Nella casella di testo **URL di risposta** digitare l'URL: `https://saml.threatpulse.net:8443/saml/saml_realm/bcsamlpost`
 
     > [!NOTE]
-    > Contattare hello [team di supporto Client di servizio di sicurezza Web Symantec (WSS)](https://www.symantec.com/contact-us) se i valori hello per hello **identificatore** e **URL di risposta** non funzionano per qualche motivo.
+    > Contattare il [team di supporto clienti di Symantec Web Security Service (WSS)](https://www.symantec.com/contact-us) se per qualche motivo i valori **Identificatore** e **URL di risposta** non funzionano.
 
-4. In hello **certificato di firma SAML** fare clic su **Metadata XML** e quindi salvare il file di metadati hello nel computer in uso.
+4. Nella sezione **Certificato di firma SAML** fare clic su **XML di metadati** e quindi salvare il file dei metadati nel computer.
 
-    ![collegamento al download del certificato Hello](./media/active-directory-saas-symantec-tutorial/tutorial_symantecwebsecurityservicewss_certificate.png) 
+    ![Collegamento di download del certificato](./media/active-directory-saas-symantec-tutorial/tutorial_symantecwebsecurityservicewss_certificate.png) 
 
 5. Fare clic sul pulsante **Salva** .
 
-    ![Pulsante Salva di Configura accesso Single Sign-On](./media/active-directory-saas-symantec-tutorial/tutorial_general_400.png)
+    ![Pulsante Salva per la configurazione dell'accesso Single Sign-On](./media/active-directory-saas-symantec-tutorial/tutorial_general_400.png)
     
-6. tooconfigure single sign-on sul hello lato servizio di sicurezza Web Symantec (WSS), consultare la documentazione online di toohello WSS. Hello scaricato **Metadata XML** file sarà necessario toobe importati nel portale WSS hello. Contatto hello [team di supporto del servizio di sicurezza Web Symantec (WSS)](https://www.symantec.com/contact-us) assistenza con la configurazione nel portale WSS hello hello.
+6. Per configurare l'accesso Single Sign-On sul lato Symantec Web Security Service (WSS), fare riferimento alla documentazione online di WSS. Il file **XML metadati** scaricato dovrà essere importato nel portale di WSS. Per assistenza per la configurazione nel portale di WSS, contattare il [team di supporto di Symantec Web Security Service (WSS)](https://www.symantec.com/contact-us).
 
 > [!TIP]
-> È ora possibile leggere una versione di queste istruzioni all'interno di hello concisa [portale di Azure](https://portal.azure.com), mentre si stanno impostando app hello!  Dopo l'aggiunta di questa app da hello **Active Directory > applicazioni aziendali** fare semplicemente clic su hello **Single Sign-On** scheda e l'accesso hello incorporato documentazione tramite hello  **Configurazione** sezione nella parte inferiore di hello. È possibile leggere altre informazioni sulla funzionalità di documentazione embedded hello qui: [AD Azure incorporato documentazione]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Un riepilogo delle istruzioni è disponibile all'interno del [portale di Azure](https://portal.azure.com) durante la configurazione dell'app.  Dopo aver aggiunto l'app dalla sezione **Active Directory > Applicazioni aziendali** è sufficiente fare clic sulla scheda **Single Sign-On** e accedere alla documentazione incorporata tramite la sezione **Configurazione** nella parte inferiore. Altre informazioni sulla funzione di documentazione incorporata sono disponibili in [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985) (Documentazione incorporata di Azure AD).
 
 ### <a name="create-an-azure-ad-test-user"></a>Creare un utente test di Azure AD
 
-obiettivo di Hello di questa sezione è un utente di test nel portale di Azure chiamato Britta Simon hello toocreate.
+Questa sezione descrive come creare un utente test denominato Britta Simon nel portale di Azure.
 
    ![Creare un utente test di Azure AD][100]
 
-**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**
+**Per creare un utente test in Azure AD, eseguire la procedura seguente:**
 
-1. Nel portale di Azure, nel riquadro di sinistra hello, hello fare clic su hello **Azure Active Directory** pulsante.
+1. Nel portale di Azure fare clic sul pulsante **Azure Active Directory** nel riquadro sinistro.
 
-    ![pulsante di Hello Azure Active Directory](./media/active-directory-saas-symantec-tutorial/create_aaduser_01.png)
+    ![Pulsante Azure Active Directory](./media/active-directory-saas-symantec-tutorial/create_aaduser_01.png)
 
-2. elenco di hello toodisplay di utenti, andare troppo**utenti e gruppi**, quindi fare clic su **tutti gli utenti**.
+2. Per visualizzare l'elenco di utenti, passare a **Utenti e gruppi** e quindi fare clic su **Tutti gli utenti**.
 
-    ![Hello "Utenti e gruppi" e i collegamenti di "Tutti gli utenti"](./media/active-directory-saas-symantec-tutorial/create_aaduser_02.png)
+    ![Collegamenti "Utenti e gruppi" e "Tutti gli utenti"](./media/active-directory-saas-symantec-tutorial/create_aaduser_02.png)
 
-3. hello tooopen **utente** la finestra di dialogo, fare clic su **Aggiungi** nella parte superiore di hello di hello **tutti gli utenti** la finestra di dialogo.
+3. Per aprire la finestra di dialogo **Utente** fare clic su **Aggiungi** nella parte superiore della finestra di dialogo **Tutti gli utenti**.
 
-    ![pulsante Aggiungi Hello](./media/active-directory-saas-symantec-tutorial/create_aaduser_03.png)
+    ![Pulsante Aggiungi](./media/active-directory-saas-symantec-tutorial/create_aaduser_03.png)
 
-4. In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:
+4. Nella finestra di dialogo **Utente** seguire questa procedura:
 
-    ![finestra di dialogo utente Hello](./media/active-directory-saas-symantec-tutorial/create_aaduser_04.png)
+    ![Finestra di dialogo Utente](./media/active-directory-saas-symantec-tutorial/create_aaduser_04.png)
 
-    a. In hello **nome** digitare **BrittaSimon**.
+    a. Nella casella **Nome** digitare **BrittaSimon**.
 
-    b. In hello **nome utente** casella Tipo hello di indirizzo di posta elettronica dell'utente Britta Simon.
+    b. Nella casella **Nome utente** digitare l'indirizzo di posta elettronica dell'utente Britta Simon.
 
-    c. Seleziona hello **Show Password** casella di controllo e quindi annotare i valori hello visualizzati in hello **Password** casella.
+    c. Selezionare la casella di controllo **Mostra password** e quindi prendere nota del valore visualizzato nella casella **Password**.
 
     d. Fare clic su **Crea**.
  
 ### <a name="create-a-symantec-web-security-service-wss-test-user"></a>Creare un utente di test di Symantec Web Security Service (WSS)
 
-In questa sezione viene creato un utente di nome Britta Simon in Symantec Web Security Service (WSS). nome utente di fine corrispondente Hello può essere creato manualmente nel portale WSS hello o è possibile attendere hello utenti o gruppi è stato eseguito il provisioning nel portale di hello Azure AD sincronizzati toobe toohello WSS dopo pochi minuti (~ 15 minuti). Gli utenti devono essere creati e attivati prima di usare l'accesso Single Sign-On. indirizzo IP pubblico di Hello del computer di utenti hello, che sarà siti Web toobrowse usato è inoltre necessario toobe il provisioning nel portale di hello Symantec Web Security Service (WSS).
+In questa sezione viene creato un utente di nome Britta Simon in Symantec Web Security Service (WSS). Il nome utente corrispondente può essere creato manualmente nel portale di WSS oppure è possibile attendere alcuni minuti (circa 15) affinché venga eseguita la sincronizzazione con il portale di WSS degli utenti/gruppi di cui è stato effettuato il provisioning in Azure AD. Gli utenti devono essere creati e attivati prima di usare l'accesso Single Sign-On. È anche necessario effettuare il provisioning nel portale di Symantec Web Security Service (WSS) dell'indirizzo IP pubblico del computer dell'utente finale che verrà usato per esplorare i siti Web.
 
 > [!NOTE]
-> . [Fare clic qui](http://www.bing.com/search?q=my+ip+address&qs=AS&pq=my+ip+a&sc=8-7&cvid=29A720C95C78488CA3F9A6BA0B3F98C5&FORM=QBLH&sp=1) tooget del computer pubblico IPaddress.
+> [Fare clic qui](http://www.bing.com/search?q=my+ip+address&qs=AS&pq=my+ip+a&sc=8-7&cvid=29A720C95C78488CA3F9A6BA0B3F98C5&FORM=QBLH&sp=1) per ottenere l'indirizzo IP pubblico del computer.
 
-### <a name="assign-hello-azure-ad-test-user"></a>Assegnare l'utente test hello Azure AD
+### <a name="assign-the-azure-ad-test-user"></a>Assegnare l'utente test di Azure AD
 
-In questa sezione per abilitare Britta Simon toouse single sign-on Azure concessione dell'accesso tooSymantec Web Security Service (WSS).
+In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sign-On di Azure concedendole l'accesso a Symantec Web Security Service (WSS).
 
-![Assegnazione del ruolo utente hello][200] 
+![Assegnare il ruolo utente][200] 
 
-**tooassign Britta Simon tooSymantec Web Security Service (WSS), eseguire hello alla procedura seguente:**
+**Per assegnare Britta Simon a Symantec Web Security Service (WSS), seguire questa procedura:**
 
-1. Nel portale di Azure hello, aprire la visualizzazione di applicazioni hello, quindi selezionare Visualizza directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.
+1. Nel portale di Azure aprire la visualizzazione delle applicazioni e quindi la visualizzazione delle directory e passare ad **Applicazioni aziendali**, quindi fare clic su **Tutte le applicazioni**.
 
     ![Assegna utente][201] 
 
-2. Nell'elenco di applicazioni hello, selezionare **Symantec Web Security Service (WSS)**.
+2. Nell'elenco delle applicazioni selezionare **Symantec Web Security Service (WSS)**.
 
-    ![collegamento di Hello Symantec Web Security Service (WSS) nell'elenco delle applicazioni hello](./media/active-directory-saas-symantec-tutorial/tutorial_symantecwebsecurityservicewss_app.png)  
+    ![Collegamento di Symantec Web Security Service (WSS) nell'elenco delle applicazioni](./media/active-directory-saas-symantec-tutorial/tutorial_symantecwebsecurityservicewss_app.png)  
 
-3. Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.
+3. Scegliere **Utenti e gruppi** dal menu a sinistra.
 
-    ![collegamento di "Utenti e gruppi" Hello][202]
+    ![Collegamento "Utenti e gruppi"][202]
 
 4. Fare clic sul pulsante **Aggiungi**. Selezionare quindi **Utenti e gruppi** nella finestra di dialogo **Aggiungi assegnazione**.
 
-    ![riquadro assegnazione aggiungere Hello][203]
+    ![Riquadro Aggiungi assegnazione][203]
 
-5. In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.
+5. Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco Utenti.
 
 6. Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.
 
@@ -202,13 +202,13 @@ In questa sezione per abilitare Britta Simon toouse single sign-on Azure concess
     
 ### <a name="test-single-sign-on"></a>Testare l'accesso Single Sign-On
 
-In questa sezione verrà testato funzionalità hello single sign-on dopo aver configurato il toouse account WSS Azure AD per l'autenticazione SAML.
+In questa sezione verrà testata la funzionalità Single Sign-On dopo aver configurato l'account WSS per l'uso di Azure AD per l'autenticazione SAML.
 
-Dopo aver configurato il traffico tooproxy del browser web tooWSS, quando si apre il browser e prova toobrowse tooa sito, quindi si verrà reindirizzati pagina toohello Azure sign-on. Immettere le credenziali di hello dell'utente finale di prova hello che è stato eseguito il provisioning in hello Azure AD (vale a dire BrittaSimon) e la password associata. Una volta autenticato, sarà in grado di toobrowse sito Web di toohello scelto. È necessario creare una regola dei criteri in hello WSS lato tooblock BrittaSimon dal sito tooa particolare è possibile vedere hello WSS blocco pagina quando si tenta di toobrowse toothat sito come utente BrittaSimon.
+Dopo aver configurato il Web browser per inoltrare il traffico a WSS, quando si apre il Web browser e si prova a esplorare un sito, si viene reindirizzati alla pagina di accesso di Azure. Immettere le credenziali dell'utente finale di test di cui è stato effettuato il provisioning in Azure AD (ovvero BrittaSimon) e la password associata. Una volta eseguita l'autenticazione, sarà possibile esplorare il sito Web scelto. Se si crea una regola dei criteri sul lato WSS per impedire a BrittaSimon l'esplorazione di un sito specifico, quando si prova a esplorare tale sito come utente BrittaSimon viene visualizzata la pagina di blocco di WSS.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

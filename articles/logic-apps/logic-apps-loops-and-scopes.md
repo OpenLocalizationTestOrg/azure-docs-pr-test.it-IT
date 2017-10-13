@@ -1,6 +1,6 @@
 ---
-title: cicli e gli ambiti o debatch dati nei flussi di lavoro - App Azure per la logica aaaCreate | Documenti Microsoft
-description: "Creare cicli tooiterate tra i dati, le azioni in ambiti, gruppo o debatch toostart dati più flussi di lavoro in Azure App per la logica."
+title: Creare cicli e ambiti o suddividere i dati nei flussi di lavoro - App per la logica di Azure | Documenti di Microsoft
+description: "Creare cicli per eseguire iterazioni sui dati, raggruppare le azioni in ambiti o suddividere i dati per avviare più flussi di lavoro logica nelle app per la logica di Azure."
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: jeffhollan
@@ -14,19 +14,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/29/2016
 ms.author: LADocs; jehollan
-ms.openlocfilehash: e612ec2e83541f028916a07bf12c44e7b1f57ad1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 413a2ba9107ca259ed577825bf0a17ff5622f1ac
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="logic-apps-loops-scopes-and-debatching"></a>Cicli, ambiti e debatching delle app per la logica
   
-Logica App offre una serie di modi toowork con matrici, raccolte, batch e cicli all'interno di un flusso di lavoro.
+Le app per la logica offrono una serie di metodi per usare matrici, raccolte, batch e cicli all'interno di un flusso di lavoro.
   
 ## <a name="foreach-loop-and-arrays"></a>Matrici e cicli ForEach
   
-Logica App consente tooloop su un set di dati ed eseguire un'azione per ogni elemento.  Ciò è possibile tramite hello `foreach` azione.  Nella finestra di progettazione hello, è possibile specificare tooadd una per ogni ciclo.  Dopo aver selezionato una matrice di hello desiderato tooiterate tramite, è possibile iniziare l'aggiunta di azioni.  Sono attualmente limitate tooonly un'azione per ogni ciclo foreach, ma questa limitazione verrà rimossa in hello in arrivo settimane.  Una volta all'interno di ciclo hello è possibile iniziare toospecify cosa dovrebbe accadere in ogni valore di matrice hello.
+App per la logica consente di eseguire un ciclo su un set di dati e di eseguire un'azione per ogni elemento.  Per queste operazioni viene usata l'azione `foreach` .  Nella finestra di progettazione è possibile specificare l'aggiunta di un loop ForEach.  Dopo aver selezionato la matrice su cui si vuole eseguire un'iterazione, è possibile iniziare ad aggiungere azioni.  Attualmente è possibile eseguire solo un'azione per ogni loop ForEach, ma questa limitazione verrà rimossa nelle prossime settimane.  All'interno del loop è possibile iniziare a specificare cosa deve avvenire in corrispondenza di ogni valore della matrice.
 
 Se si usa la visualizzazione del codice, è possibile specificare un loop ForEach come nell'illustrazione che segue.  In questo esempio di loop ForEach viene inviato un messaggio di posta elettronica per ogni indirizzo di posta elettronica che contiene "microsoft.com":
 
@@ -66,11 +66,11 @@ Se si usa la visualizzazione del codice, è possibile specificare un loop ForEac
 }
 ```
   
-  Oggetto `foreach` azione possibile scorrere le matrici di too5, 000 righe.  Per impostazione predefinita, ogni iterazione verrà eseguita in parallelo alle altre.  
+  Un'azione `foreach` è in grado di eseguire l'iterazione su matrici con fino a 5.000 righe.  Per impostazione predefinita, ogni iterazione verrà eseguita in parallelo alle altre.  
 
 ### <a name="sequential-foreach-loops"></a>Cicli ForEach sequenziali
 
-tooenable un tooexecute ciclo foreach in sequenza, hello `Sequential` deve essere aggiunta l'opzione di operazione.
+Per abilitare l'esecuzione sequenziale di un ciclo ForEach è necessario aggiungere l'opzione di operazione `Sequential`.
 
 ``` json
 "forEach_email": {
@@ -83,9 +83,9 @@ tooenable un tooexecute ciclo foreach in sequenza, hello `Sequential` deve esser
   
 ## <a name="until-loop"></a>Ciclo Until
   
-  È possibile eseguire un'azione o una serie di azioni finché non viene soddisfatta una condizione.  Hello scenario più comune per questo consiste nel chiamare un endpoint fino a ottenere una risposta hello che si sta cercando.  Nella finestra di progettazione hello, è possibile specificare tooadd un fino al ciclo.  Dopo l'aggiunta di azioni all'interno di ciclo hello, è possibile impostare la condizione di uscita hello, nonché hello i limiti di ciclo.  Si verifica un ritardo di 1 minuto tra i cicli del loop.
+  È possibile eseguire un'azione o una serie di azioni finché non viene soddisfatta una condizione.  Lo scenario più comune è quello in cui si chiama un endpoint fino a ottenere la risposta desiderata.  Nella finestra di progettazione è possibile specificare l'aggiunta di un loop Until.  Dopo avere aggiunto le azioni nel loop, è possibile impostare la condizione di uscita, nonché i limiti del loop.  Si verifica un ritardo di 1 minuto tra i cicli del loop.
   
-  Se si usa la visualizzazione del codice, è possibile specificare un loop Until come nell'illustrazione che segue.  Questo è un esempio di chiamata di un endpoint HTTP finché il corpo della risposta hello è il valore di hello 'Completato'.  Ciò avviene in presenza di una di queste condizioni: 
+  Se si usa la visualizzazione del codice, è possibile specificare un loop Until come nell'illustrazione che segue.  Questo è un esempio di chiamata a un endpoint HTTP finché nel corpo della risposta è presente il valore "Completed".  Ciò avviene in presenza di una di queste condizioni: 
   
   * Lo stato della risposta HTTP è "Completed"
   * Sono stati fatti tentativi per 1 ora
@@ -117,9 +117,9 @@ tooenable un tooexecute ciclo foreach in sequenza, hello `Sequential` deve esser
   
 ## <a name="spliton-and-debatching"></a>SplitOn e scomposizione batch
 
-In alcuni casi un trigger può ricevere una matrice di elementi desiderati toodebatch e avviare un flusso di lavoro per ogni elemento.  Questo può essere eseguito tramite hello `spliton` comando.  Per impostazione predefinita, se lo swagger del trigger specifica un payload che è una matrice, viene aggiunto `spliton` e viene avviata un'esecuzione per ogni elemento.  SplitOn possono essere aggiunti solo tooa trigger.  L'operazione può essere configurata manualmente o sottoposta a override nella visualizzazione del codice di definizione.  Attualmente è possibile SplitOn debatch matrici backup too5, gli elementi 000.  Non è possibile avere un `spliton` e inoltre implementare il modello di risposta sincrona hello.  Qualsiasi flusso di lavoro denominato che ha un `response` azione inoltre troppo`spliton` verrà eseguito in modo asincrono e inviare immediatamente `202 Accepted` risposta.  
+In alcuni casi un trigger può ricevere una matrice di elementi che si preferisce separare per avviare un flusso di lavoro per ogni elemento.  Questa operazione può essere eseguita con il comando `spliton` .  Per impostazione predefinita, se lo swagger del trigger specifica un payload che è una matrice, viene aggiunto `spliton` e viene avviata un'esecuzione per ogni elemento.  SplitOn può essere aggiunto solo a un trigger.  L'operazione può essere configurata manualmente o sottoposta a override nella visualizzazione del codice di definizione.  Attualmente SplitOn è in grado di suddividere matrici con al massimo 5.000 elementi.  Non è possibile usare `spliton` e implementare anche il modello di risposta sincrona.  Qualsiasi flusso di lavoro chiamato che ha un'azione `response` oltre a `spliton` verrà eseguito in modo asincrono e invierà immediatamente una risposta `202 Accepted`.  
 
-SplitOn può essere specificato nella visualizzazione codice come hello di esempio seguente.  In questo caso viene ricevuta una matrice di elementi e la scomposizione dei batch avviene su ogni riga.
+SplitOn può essere specificato nella visualizzazione del codice, come nell'esempio seguente.  In questo caso viene ricevuta una matrice di elementi e la scomposizione dei batch avviene su ogni riga.
 
 ```
 {
@@ -139,7 +139,7 @@ SplitOn può essere specificato nella visualizzazione codice come hello di esemp
 
 ## <a name="scopes"></a>Ambiti
 
-È possibile toogroup una serie di azioni tra loro tramite un ambito.  Ciò è particolarmente utile per implementare la gestione delle eccezioni.  Nella finestra di progettazione hello è possibile aggiungere un nuovo ambito e iniziare ad aggiungere le azioni all'interno.  È possibile definire gli ambiti nella visualizzazione di codice hello seguente:
+È possibile raggruppare una serie di azioni tra loro usando un ambito.  Ciò è particolarmente utile per implementare la gestione delle eccezioni.  Nella finestra di progettazione è possibile aggiungere un nuovo ambito e iniziare ad aggiungere tutte le azioni all'interno di esso.  È possibile definire gli ambiti nella visualizzazione del codice come nell'esempio che segue:
 
 
 ```

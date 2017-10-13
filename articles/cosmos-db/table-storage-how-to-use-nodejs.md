@@ -1,6 +1,6 @@
 ---
-title: aaaHow toouse archiviazione tabelle di Azure da Node.js | Documenti Microsoft
-description: Archiviare dati strutturati in un cloud di hello tramite l'archiviazione tabelle di Azure, un archivio dati NoSQL.
+title: Come usare l'archiviazione tabelle di Azure da Node.js | Microsoft Docs
+description: Archiviare dati non strutturati nel cloud con il servizio di archiviazione tabelle di Azure, ovvero un archivio dati NoSQL.
 services: cosmos-db
 documentationcenter: nodejs
 author: mimig1
@@ -14,35 +14,34 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: mimig
-ms.openlocfilehash: 21022491a9a21a5365628de93582ea3a325ed869
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e8b22dad84e89be6051041e60ca9d72ec4aa3c56
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toouse-azure-table-storage-from-nodejs"></a>Come toouse archiviazione tabelle di Azure da Node.js
+# <a name="how-to-use-azure-table-storage-from-nodejs"></a>Come usare l'archiviazione tabelle di Azure da Node.js
 [!INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)]
 [!INCLUDE [storage-table-cosmos-db-langsoon-tip-include](../../includes/storage-table-cosmos-db-langsoon-tip-include.md)]
 
 ## <a name="overview"></a>Panoramica
-Questo argomento viene illustrato come gli scenari comuni di tooperform utilizzando hello tabelle di Azure del servizio in un'applicazione Node.js.
+Questo argomento illustra come eseguire scenari comuni usando il servizio tabelle di Azure in un'applicazione Node.js.
 
-esempi di codice Hello in questo argomento si presume che un'applicazione Node.js. Per informazioni su come toocreate un'applicazione Node.js in Azure, vedere uno degli argomenti seguenti:
+Negli esempi di codice illustrati in questo argomento si suppone che sia già stata ottenuta un'applicazione Node.js. Per informazioni su come creare un'applicazione Node.js in Azure, vedere uno qualsiasi degli argomenti seguenti:
 
-* [Creare un'app Web Node.js nel servizio app di Azure](../app-service-web/app-service-web-get-started-nodejs.md)
-* [Compilare e distribuire un tooAzure di app web Node. js con WebMatrix](../app-service-web/web-sites-nodejs-use-webmatrix.md)
-* [Compilare e distribuire un tooan di applicazione del servizio Cloud di Azure Node.js](../cloud-services/cloud-services-nodejs-develop-deploy-app.md) (tramite Windows PowerShell)
+* [Creare un'app Web Node.js nel servizio app di Azure](../app-service/app-service-web-get-started-nodejs.md)
+* [Creare e distribuire un'applicazione Node.js in un servizio cloud di Azure](../cloud-services/cloud-services-nodejs-develop-deploy-app.md) (usando Windows PowerShell)
 
 [!INCLUDE [storage-table-concepts-include](../../includes/storage-table-concepts-include.md)]
 
 [!INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
 
-## <a name="configure-your-application-tooaccess-azure-storage"></a>Configurare l'archiviazione di Azure di tooaccess applicazione
-toouse archiviazione di Azure, è necessario hello Azure Storage SDK per Node.js, che include un set di librerie di praticità che comunicano con servizi REST di archiviazione hello.
+## <a name="configure-your-application-to-access-azure-storage"></a>Configurare l'applicazione per l'accesso all'archiviazione di Azure
+Per usare Archiviazione di Azure, è necessario disporre di Azure Storage SDK per Node.js, che comprende un set di pratiche librerie che comunicano con i servizi di archiviazione REST.
 
-### <a name="use-node-package-manager-npm-tooinstall-hello-package"></a>Utilizzare un pacchetto di hello tooinstall nodo Package Manager (NPM)
-1. Utilizzare un'interfaccia della riga di comando, ad esempio **PowerShell** (Windows), **Terminal** (Mac), o **Bash** (Unix) e passare toohello cartella in cui viene creata l'applicazione.
-2. Tipo **npm installare archiviazione di azure** nella finestra di comando hello. Output del comando hello è simile toohello esempio seguente.
+### <a name="use-node-package-manager-npm-to-install-the-package"></a>Usare Node Package Manager (NPM) per installare il pacchetto
+1. Usare un'interfaccia della riga di comando come **PowerShell** (Windows), **Terminale** (Mac) o **Bash** (Unix) e passare alla cartella in cui è stata creata l'applicazione.
+2. Digitare **npm install azure-storage** nella finestra di comando. L'output da questo comando sarà simile al seguente esempio:
 
        azure-storage@0.5.0 node_modules\azure-storage
        +-- extend@1.2.1
@@ -54,28 +53,26 @@ toouse archiviazione di Azure, è necessario hello Azure Storage SDK per Node.js
        +-- readable-stream@1.0.33 (string_decoder@0.10.31, isarray@0.0.1, inherits@2.0.1, core-util-is@1.0.1)
        +-- xml2js@0.2.7 (sax@0.5.2)
        +-- request@2.57.0 (caseless@0.10.0, aws-sign2@0.5.0, forever-agent@0.6.1, stringstream@0.0.4, oauth-sign@0.8.0, tunnel-agent@0.4.1, isstream@0.1.2, json-stringify-safe@5.0.1, bl@0.9.4, combined-stream@1.0.5, qs@3.1.0, mime-types@2.0.14, form-data@0.2.0, http-signature@0.11.0, tough-cookie@2.0.0, hawk@2.3.1, har-validator@1.8.0)
-3. È possibile eseguire manualmente hello **ls** comando tooverify che un **nodo\_moduli** cartella è stata creata. Questa cartella si troverà hello **archiviazione di azure** pacchetto che contiene le librerie di hello tooaccess archiviazione necessarie.
+3. È possibile eseguire manualmente il comando **ls** per verificare che sia stata creata una cartella **node\_modules**. All'interno di questa cartella si trova il pacchetto **azure-storage** , che contiene le librerie necessarie per accedere all'archiviazione.
 
-### <a name="import-hello-package"></a>Importa pacchetto di hello
-Aggiungere i seguenti hello cima toohello codice hello **server.js** file dell'applicazione:
+### <a name="import-the-package"></a>Importare il pacchetto
+Aggiungere il codice seguente all'inizio del file **server.js** nell'applicazione:
 
 ```nodejs
 var azure = require('azure-storage');
 ```
 
 ## <a name="set-up-an-azure-storage-connection"></a>Configurare una connessione di archiviazione di Azure
-modulo Hello azure verrà lette le variabili di ambiente hello AZURE\_archiviazione\_ACCOUNT e AZURE\_archiviazione\_accesso\_chiave o AZURE\_archiviazione\_connessione \_Stringa per le informazioni necessarie tooconnect tooyour account di archiviazione di Azure. Se non vengono impostate queste variabili di ambiente, è necessario specificare le informazioni sull'account hello quando si chiama **TableService**.
-
-Per un esempio di impostazione delle variabili di ambiente hello in hello [portale di Azure](https://portal.azure.com) per un sito Web di Azure, vedere [app web Node. js utilizzando hello del servizio tabelle di Azure](../app-service-web/storage-nodejs-use-table-storage-web-site.md).
+I modulo di Azure leggerà le variabili di ambiente AZURE\_STORAGE\_ACCOUNT e AZURE\_STORAGE\_ACCESS\_KEY, o AZURE\_STORAGE\_CONNECTION\_STRING per ottenere le informazioni necessarie per la connessione all'account di archiviazione di Azure. Se queste variabili di ambiente non sono impostate, sarà necessario specificare le informazioni relative all'account quando si chiama **TableService**.
 
 ## <a name="create-a-table"></a>Creare una tabella
-Hello codice seguente viene creata una **TableService** dell'oggetto e lo usa toocreate una nuova tabella. Aggiungere il seguente hello parte superiore di hello di **server.js**.
+Il codice seguente consente di creare un oggetto **TableService** e di utilizzarlo per creare una nuova tabella. Aggiungere il codice seguente nella parte superiore di **server.js**.
 
 ```nodejs
 var tableSvc = azure.createTableService();
 ```
 
-Hello chiamata troppo**createTableIfNotExists** creerà una nuova tabella con il nome specificato hello se non esiste già. Hello esempio seguente viene creata una nuova tabella denominata "mytable" Se non esiste già:
+La chiamata a **createTableIfNotExists** crea una nuova tabella con il nome specificato, se non è già presente. Nell'esempio seguente viene creata una nuova tabella denominata "mytable" se questa non esiste ancora:
 
 ```nodejs
 tableSvc.createTableIfNotExists('mytable', function(error, result, response){
@@ -85,45 +82,45 @@ tableSvc.createTableIfNotExists('mytable', function(error, result, response){
 });
 ```
 
-Hello `result.created` sarà `true` se viene creata una nuova tabella, e `false` hello tabella esiste già. Hello `response` contengono informazioni sulla richiesta di hello.
+`result.created` sarà `true` se viene creata una nuova tabella e sarà `false` se la tabella è già presente. `response` conterrà le informazioni sulla richiesta.
 
 ### <a name="filters"></a>Filtri
-Operazioni di filtro facoltative possono essere applicato toooperations eseguita utilizzando **TableService**. Le operazioni di filtro possono includere la registrazione, la ripetizione automatica dei tentativi e così via. I filtri sono oggetti che implementano un metodo con firma hello:
+Le operazioni di filtro facoltative possono essere applicate alle operazioni eseguite usando **TableService**. Le operazioni di filtro possono includere la registrazione, la ripetizione automatica dei tentativi e così via. I filtri sono oggetti che implementano un metodo con la firma:
 
 ```nodejs
 function handle (requestOptions, next)
 ```
 
-Dopo aver eseguito il pre-elaborazione sulle opzioni di richiesta di hello, metodo hello deve toocall "Avanti", il passaggio di un callback con hello seguente firma:
+Dopo aver eseguito la pre-elaborazione sulle opzioni della richiesta, il metodo deve chiamare "next" passando un callback con la firma seguente:
 
 ```nodejs
 function (returnObject, finalCallback, next)
 ```
 
-In questo callback e dopo l'elaborazione di hello returnObject (risposta hello dal server di hello richiesta toohello), il callback di hello richiede tooeither richiamare successivamente se esiste l'elaborazione di altri filtri toocontinue o semplicemente richiamare finalCallback hello tooend in caso contrario chiamata del servizio.
+In questo callback, e dopo l'elaborazione di returnObject (la risposta della richiesta al server), il callback deve richiamare "next", se questo esiste, per continuare a elaborare altri filtri oppure semplicemente richiamare finalCallback per concludere la chiamata al servizio.
 
-Due filtri, che implementano la logica di ripetizione sono inclusi in Azure SDK per Node.js, hello **ExponentialRetryPolicyFilter** e **LinearRetryPolicyFilter**. Hello seguito creato un **TableService** oggetto che utilizza hello **ExponentialRetryPolicyFilter**:
+In Azure SDK per Node.js sono inclusi due filtri che implementano la logica di ripetizione dei tentativi. Sono **ExponentialRetryPolicyFilter** e **LinearRetryPolicyFilter**. Il codice seguente consente di creare un oggetto **TableService** che usa **ExponentialRetryPolicyFilter**:
 
 ```nodejs
 var retryOperations = new azure.ExponentialRetryPolicyFilter();
 var tableSvc = azure.createTableService().withFilter(retryOperations);
 ```
 
-## <a name="add-an-entity-tooa-table"></a>Aggiungere una tabella tooa entità
-tooadd un'entità, creare innanzitutto un oggetto che definisce le proprietà dell'entità. Tutte le entità devono contenere un **PartitionKey** e **RowKey**, che sono identificatori univoci per l'entità hello.
+## <a name="add-an-entity-to-a-table"></a>Aggiungere un'entità a una tabella
+Per aggiungere un'entità, creare prima un oggetto che definisca le proprietà dell'entità. Tutte le entità devono contenere **PartitionKey** e **RowKey** che sono gli identificatori univoci dell'entità.
 
-* **PartitionKey** -determina partizione hello archiviati in entità hello
-* **RowKey** : in modo univoco identifica hello entità all'interno della partizione hello
+* **PartitionKey** : determina la partizione in cui è archiviata l'entità.
+* **RowKey** : identifica in modo univoco l'entità all'interno della partizione.
 
-Sia **PartitionKey** che **RowKey** devono essere valori stringa. Per ulteriori informazioni, vedere [hello comprensione modello di dati del servizio tabelle](http://msdn.microsoft.com/library/azure/dd179338.aspx).
+Sia **PartitionKey** che **RowKey** devono essere valori stringa. Per altre informazioni, vedere [Informazioni sul modello di dati del servizio tabelle](http://msdn.microsoft.com/library/azure/dd179338.aspx).
 
-Hello Ecco un esempio di definizione di un'entità. **dueDate** è definito come tipo di **Edm.DateTime**. Specifica il tipo hello è facoltativo e tipi verranno dedotto se non specificati.
+Nell'esempio seguente viene definita un'entità. **dueDate** è definito come tipo di **Edm.DateTime**. La specifica del tipo è facoltativa e si presuppone che i tipi non siano specificati.
 
 ```nodejs
 var task = {
   PartitionKey: {'_':'hometasks'},
   RowKey: {'_': '1'},
-  description: {'_':'take out hello trash'},
+  description: {'_':'take out the trash'},
   dueDate: {'_':new Date(2015, 6, 20), '$':'Edm.DateTime'}
 };
 ```
@@ -133,19 +130,19 @@ var task = {
 >
 >
 
-È inoltre possibile utilizzare hello **entityGenerator** toocreate entità. esempio Hello crea hello stessa entità di attività utilizzando hello **entityGenerator**.
+È anche possibile usare **entityGenerator** per creare le entità. Nell'esempio seguente viene creata la stessa entità Task tramite **entityGenerator**.
 
 ```nodejs
 var entGen = azure.TableUtilities.entityGenerator;
 var task = {
   PartitionKey: entGen.String('hometasks'),
   RowKey: entGen.String('1'),
-  description: entGen.String('take out hello trash'),
+  description: entGen.String('take out the trash'),
   dueDate: entGen.DateTime(new Date(Date.UTC(2015, 6, 20))),
 };
 ```
 
-una tabella, tooyour entità tooadd passare hello entità oggetto toohello **insertEntity** metodo.
+Per aggiungere un'entità alla tabella, passare l'oggetto entità al metodo **insertEntity** .
 
 ```nodejs
 tableSvc.insertEntity('mytable',task, function (error, result, response) {
@@ -155,7 +152,7 @@ tableSvc.insertEntity('mytable',task, function (error, result, response) {
 });
 ```
 
-Se ha esito positivo, operazione hello `result` conterrà hello [ETag](http://en.wikipedia.org/wiki/HTTP_ETag) di hello inserire record e `response` conterrà informazioni sull'operazione hello.
+Se l'operazione ha esito positivo, `result` conterrà l'[ETag](http://en.wikipedia.org/wiki/HTTP_ETag) del record inserito e `response` conterrà le informazioni sull'operazione.
 
 Esempio di risposta:
 
@@ -164,21 +161,21 @@ Esempio di risposta:
 ```
 
 > [!NOTE]
-> Per impostazione predefinita, **insertEntity** non restituisce entità hello inserito come parte di hello `response` informazioni. Se si prevede di eseguire altre operazioni su questa entità o si desiderano informazioni hello toocache, può essere utile toohave restituita come parte di hello `result`. A tale scopo, abilitare **echoContent** come segue:
+> Per impostazione predefinita, **insertEntity** non restituisce l'entità inserita come parte delle informazioni di `response`. Se si prevede di eseguire altre operazioni su questa entità o si intende memorizzare le informazioni nella cache, è opportuno che l'entità venga restituita insieme a `result`. A tale scopo, abilitare **echoContent** come segue:
 >
 > `tableSvc.insertEntity('mytable', task, {echoContent: true}, function (error, result, response) {...}`
 >
 >
 
 ## <a name="update-an-entity"></a>Aggiornare un'entità
-Esistono più tooupdate disponibili di metodi un'entità esistente:
+Esistono vari metodi per aggiornare un'entità esistente:
 
 * **replaceEntity** : aggiorna un'entità esistente sostituendola
-* **mergeEntity** -aggiorna un'entità esistente unendo nuovi valori della proprietà di entità esistente hello
+* **mergeEntity** : aggiorna un'entità esistente unendovi i nuovi valori delle proprietà.
 * **insertOrReplaceEntity** : aggiorna un'entità esistente sostituendola. Se non esiste alcuna entità, ne verrà inserita una nuova.
-* **insertOrMergeEntity** -aggiorna un'entità esistente mediante l'unione di nuovi valori della proprietà in hello esistente. Se non esiste alcuna entità, ne verrà inserita una nuova.
+* **insertOrMergeEntity** : aggiorna un'entità esistente unendovi i nuovi valori delle proprietà. Se non esiste alcuna entità, ne verrà inserita una nuova.
 
-Hello esempio seguente viene illustrato l'aggiornamento di un'entità mediante **replaceEntity**:
+Nell'esempio seguente viene illustrato l'aggiornamento di un'entità mediante **replaceEntity**:
 
 ```nodejs
 tableSvc.replaceEntity('mytable', updatedTask, function(error, result, response){
@@ -189,36 +186,36 @@ tableSvc.replaceEntity('mytable', updatedTask, function(error, result, response)
 ```
 
 > [!NOTE]
-> Per impostazione predefinita, l'aggiornamento di un'entità non verifica toosee se i dati di hello in corso l'aggiornamento sono stati modificati in precedenza da un altro processo. toosupport aggiornamenti simultanei:
+> Per impostazione predefinita, l'aggiornamento di un'entità non comporta la verifica dei dati per controllare se siano stati modificati da altri processi. Per supportare gli aggiornamenti simultanei:
 >
-> 1. Ottenere hello ETag dell'oggetto hello in corso l'aggiornamento. Viene restituito come parte di hello `response` per qualsiasi operazione associati all'entità e possono essere recuperati tramite `response['.metadata'].etag`.
-> 2. Quando si esegue un'operazione di aggiornamento su un'entità, aggiungere le informazioni di ETag hello precedentemente recuperati toohello nuova entità. ad esempio:
+> 1. Recuperare il valore ETag dell'oggetto da aggiornare. Questo valore viene restituito insieme a `response` per qualsiasi operazione associata all'entità e può essere recuperato tramite `response['.metadata'].etag`.
+> 2. Quando si esegue un'operazione di aggiornamento su un'entità, aggiungere le informazioni ETag precedentemente recuperate alla nuova entità. Ad esempio:
 >
 >       entity2['.metadata'].etag = currentEtag;
-> 3. Eseguire l'operazione di aggiornamento hello. Se l'entità di hello è stata modificata poiché è stato recuperato valore ETag hello, ad esempio un'altra istanza dell'applicazione, un `error` verranno restituite che informa che condizione aggiornamento hello specificato nella richiesta di hello non è stata soddisfatta.
+> 3. Eseguire l'operazione di aggiornamento. Se l'entità è stata modificata dall'ultimo recupero del valore di ETag, ad esempio da un'altra istanza dell'applicazione, viene restituito un `error` che indica che la condizione di aggiornamento specificata nella richiesta non è stata soddisfatta.
 >
 >
 
-Con **replaceEntity** e **mergeEntity**, se l'entità hello in corso di aggiornamento non esiste, l'operazione di aggiornamento hello avrà esito negativo. Pertanto se si desidera toostore un'entità indipendentemente dal fatto se esiste già, utilizzare **insertOrReplaceEntity** o **insertOrMergeEntity**.
+Con **replaceEntity** e **mergeEntity**, se l'entità da aggiornare non esiste, l'operazione di aggiornamento non riesce. Se pertanto si desidera archiviare un'entità indipendentemente dal fatto che esista o meno, usare **insertOrReplaceEntity** oppure **insertOrMergeEntity**.
 
-Hello `result` per l'aggiornamento ha esito positivo operazioni conterrà hello **Etag** di hello aggiornato l'entità.
+In `result` per le operazioni di aggiornamento riuscite correttamente sarà incluso l' **Etag** dell'entità aggiornata.
 
 ## <a name="work-with-groups-of-entities"></a>Usare i gruppi di entità
-A volte risulta più toosubmit senso più operazioni contemporaneamente in un batch tooensure atomica elaborazione dal server hello. tooaccomplish utilizzati, hello **TableBatch** classe toocreate un batch e quindi utilizzare hello **executeBatch** metodo **TableService** tooperform hello operazioni in batch.
+È talvolta consigliabile inviare più operazioni in un batch per garantire l'elaborazione atomica da parte del server. A questo scopo, usare la classe **TableBatch** per creare un batch e quindi usare il metodo **executeBatch** di **TableService** per eseguire le operazioni in batch.
 
- Hello di esempio seguente viene illustrato l'invio di due entità in un batch:
+ Nell'esempio seguente viene dimostrato l'invio di due entità in un batch:
 
 ```nodejs
 var task1 = {
   PartitionKey: {'_':'hometasks'},
   RowKey: {'_': '1'},
-  description: {'_':'Take out hello trash'},
+  description: {'_':'Take out the trash'},
   dueDate: {'_':new Date(2015, 6, 20)}
 };
 var task2 = {
   PartitionKey: {'_':'hometasks'},
   RowKey: {'_': '2'},
-  description: {'_':'Wash hello dishes'},
+  description: {'_':'Wash the dishes'},
   dueDate: {'_':new Date(2015, 6, 20)}
 };
 
@@ -234,41 +231,41 @@ tableSvc.executeBatch('mytable', batch, function (error, result, response) {
 });
 ```
 
-Per le operazioni batch ha esito positivo, `result` conterrà informazioni per ogni operazione nel batch hello.
+Per le operazioni in batch riuscite, `result` conterrà le informazioni relative a ogni operazione del batch.
 
 ### <a name="work-with-batched-operations"></a>Uso delle operazioni in batch
-Aggiungere le operazioni batch tooa può essere controllato da visualizzazione hello `operations` proprietà. È inoltre possibile utilizzare hello toowork metodi con le operazioni seguenti:
+Le operazioni aggiunte a un batch possono essere esaminate visualizzando la proprietà `operations` . Per usare le operazioni sono disponibili anche i metodi seguenti:
 
 * **clear** : cancella tutte le operazioni da un batch.
-* **getOperations** -Ottiene un'operazione batch hello
-* **hasOperations** -restituisce true se il batch hello contiene operazioni
+* **getOperations** : recupera un'operazione dal batch.
+* **hasOperations** : restituisce true se il batch contiene operazioni.
 * **removeOperations** : rimuove un'operazione.
-* **dimensioni** -restituisce hello numero di operazioni in batch hello
+* **size** : restituisce il numero di operazioni nel batch.
 
 ## <a name="retrieve-an-entity-by-key"></a>Recuperare un'entità in base alla chiave
-un'entità specifica in base a hello tooreturn **PartitionKey** e **RowKey**, utilizzare hello **retrieveEntity** metodo.
+Per restituire un'entità specifica in base a **PartitionKey** e **RowKey**, usare il metodo **retrieveEntity**.
 
 ```nodejs
 tableSvc.retrieveEntity('mytable', 'hometasks', '1', function(error, result, response){
   if(!error){
-    // result contains hello entity
+    // result contains the entity
   }
 });
 ```
 
-Dopo aver completata questa operazione `result` conterrà entità hello.
+Al termine di questa operazione, `result` conterrà l'entità.
 
 ## <a name="query-a-set-of-entities"></a>Eseguire query su un set di entità
-tooquery una tabella, utilizzare hello **TableQuery** oggetto toobuild di un'espressione di query utilizzando hello clausole seguenti:
+Per eseguire una query su una tabella, usare l'oggetto **TableQuery** per creare un'espressione di query con queste clausole:
 
-* **Selezionare** -hello campi toobe restituito dalla query hello
-* **dove** : hello dove clausola
+* **select** : i campi che la query deve restituire.
+* **where** : la clausola where.
 
   * **and**: una condizione where`and`.
   * **or**: una condizione where `or`.
-* **inizio** -numero di elementi toofetch hello
+* **top** : il numero di elementi da recuperare.
 
-Hello esempio seguente viene compilata una query che verrà restituiti hello primi cinque elementi con un PartitionKey di 'hometasks'.
+L'esempio seguente crea una query che restituisce i primi cinque elementi con PartitionKey 'hometasks'.
 
 ```nodejs
 var query = new azure.TableQuery()
@@ -276,7 +273,7 @@ var query = new azure.TableQuery()
   .where('PartitionKey eq ?', 'hometasks');
 ```
 
-Poiché **select** non viene usato, vengono restituiti tutti i campi. una tabella, utilizzare query hello tooperform **queryEntities**. Hello seguente viene utilizzata questa entità tooreturn query da "mytable".
+Poiché **select** non viene usato, vengono restituiti tutti i campi. Per eseguire la query su una tabella, usare **queryEntities**. Nell'esempio seguente viene usata questa query per restituire entità da 'mytable'.
 
 ```nodejs
 tableSvc.queryEntities('mytable',query, null, function(error, result, response) {
@@ -286,11 +283,11 @@ tableSvc.queryEntities('mytable',query, null, function(error, result, response) 
 });
 ```
 
-Se ha esito positivo, `result.entries` conterrà una matrice di entità che soddisfano la query hello. Se non è possibile tooreturn query hello tutte le entità, `result.continuationToken` sarà non*null* e può essere utilizzato come terzo parametro del hello **queryEntities** tooretrieve altri risultati. Per le query iniziale hello, utilizzare *null* per terzo parametro hello.
+Se la query ha esito positivo, `result.entries` conterrà una matrice delle entità che corrispondono alla query. Se la query non è in grado di restituire tutte le entità, `result.continuationToken` sarà un valore diverso da -*null* e potrà essere usato come terzo parametro di **queryEntities** per recuperare più risultati. Per la query iniziale, utilizzare *null* per il terzo parametro.
 
 ### <a name="query-a-subset-of-entity-properties"></a>Eseguire query su un subset di proprietà di entità
-Una tabella di tooa query è possibile recuperare un numero ridotto di campi da un'entità.
-Questa tecnica permette di ridurre la larghezza di banda e di migliorare le prestazioni della query, in particolare per entità di grandi dimensioni. Hello utilizzare **selezionare** clausola e passare i nomi di hello campi toobe hello restituiti. Ad esempio, hello query seguente restituirà solo hello **descrizione** e **dueDate** campi.
+Una query su una tabella può recuperare solo alcuni campi da un'entità.
+Questa tecnica permette di ridurre la larghezza di banda e di migliorare le prestazioni della query, in particolare per entità di grandi dimensioni. Usare la clausola **select** e passare i nomi dei campi da restituire. Ad esempio, la query seguente restituisce solo i campi **description** e **dueDate**.
 
 ```nodejs
 var query = new azure.TableQuery()
@@ -300,7 +297,7 @@ var query = new azure.TableQuery()
 ```
 
 ## <a name="delete-an-entity"></a>Eliminare un'entità
-È possibile eliminare un'entità utilizzando le relative chiavi di riga e di partizione. In questo esempio hello **Attività1** oggetto contiene hello **RowKey** e **PartitionKey** valori di hello entità toobe eliminato. L'oggetto hello è passato toohello **deleteEntity** metodo.
+È possibile eliminare un'entità utilizzando le relative chiavi di riga e di partizione. In questo esempio, l'oggetto **task1** contiene i valori **RowKey** e **PartitionKey** dell'entità da eliminare. L'oggetto viene quindi passato al metodo **deleteEntity** .
 
 ```nodejs
 var task = {
@@ -316,12 +313,12 @@ tableSvc.deleteEntity('mytable', task, function(error, response){
 ```
 
 > [!NOTE]
-> È consigliabile utilizzare valori eTag durante l'eliminazione di elementi, tooensure che hello elemento non è stato modificato da un altro processo. Vedere [Aggiornare un'entità](#update-an-entity) per informazioni sull'uso di ETag.
+> Quando si eliminano elementi, è bene valutare l'uso di ETag per assicurarsi che l'elemento non sia stato modificato da un altro processo. Vedere [Aggiornare un'entità](#update-an-entity) per informazioni sull'uso di ETag.
 >
 >
 
 ## <a name="delete-a-table"></a>Eliminare una tabella
-Hello di codice seguente elimina una tabella da un account di archiviazione.
+Nell'esempio di codice seguente viene illustrato come eliminare una tabella da un account di archiviazione.
 
 ```nodejs
 tableSvc.deleteTable('mytable', function(error, response){
@@ -331,14 +328,14 @@ tableSvc.deleteTable('mytable', function(error, response){
 });
 ```
 
-Se non si è certi se la tabella hello esiste, utilizzare **deleteTableIfExists**.
+Se non si è certi dell'esistenza della tabella, usare **deleteTableIfExists**.
 
 ## <a name="use-continuation-tokens"></a>Utilizzare i token di continuazione
-Quando si esegue una query di tabelle di grandi quantità di risultati, ricercare i token di continuazione. Potrebbero essere disponibili per la query che si potrebbero non essere consapevoli se toorecognize non compilato quando è presente un token di continuazione grandi quantità di dati.
+Quando si esegue una query di tabelle di grandi quantità di risultati, ricercare i token di continuazione. Potrebbero essere disponibili grandi quantità di dati per la query di cui si potrebbe non essere consapevoli se non si compila il riconoscimento della presenza di un token di continuazione.
 
-risultati Hello restituiti durante l'esecuzione di query su set di entità dell'oggetto un `continuationToken` proprietà quando è presente un token di questo tipo. È quindi possibile utilizzare questo durante l'esecuzione di un toomove toocontinue query tra le entità di partizione e la tabella hello.
+L'oggetto results restituito quando si esegue una query sulle entità imposta una proprietà `continuationToken` se è presente un token di questo tipo. È possibile quindi utilizzarlo quando si esegue una query per continuare a spostarsi tra le entità della partizione e della tabella.
 
-Quando si eseguono query, è possibile specificare un parametro continuationToken tra l'istanza dell'oggetto query hello e funzione di callback hello:
+Quando si esegue una query, è possibile specificare un parametro continuationToken tra l'istanza dell'oggetto della query e la funzione di richiamata:
 
 ```nodejs
 var nextContinuationToken = null;
@@ -357,16 +354,16 @@ dc.table.queryEntities(tableName,
     });
 ```
 
-Se si analizza hello `continuationToken` oggetto, sono disponibili le proprietà, ad esempio `nextPartitionKey`, `nextRowKey` e `targetLocation`, che può essere utilizzato tooiterate tramite tutti i risultati di hello.
+Se si osserva l'oggetto `continuationToken`, si troveranno proprietà come `nextPartitionKey`, `nextRowKey` e `targetLocation` che possono essere usate per eseguire l'iterazione di tutti i risultati.
 
-È inoltre disponibile un esempio di continuazione in repository di hello Azure Storage Node.js su GitHub. Cercare `examples/samples/continuationsample.js`.
+È inoltre disponibile un esempio di continuazione all'interno del repository Node.js di Archiviazione di Azure su GitHub. Cercare `examples/samples/continuationsample.js`.
 
 ## <a name="work-with-shared-access-signatures"></a>Usare le firme di accesso condiviso di Azure
-Firme di accesso condiviso (SAS) sono un tootables di accesso granulare tooprovide in modo sicuro senza fornire il nome account di archiviazione o chiavi. Firma di accesso condiviso è spesso i dati tooyour di accesso utilizzato tooprovide limitate, ad esempio per consentire a un'app mobile tooquery record.
+Le firme di accesso condiviso rappresentano un modo sicuro per fornire accesso granulare alle tabelle senza specificare il nome o le chiavi dell'account di archiviazione. Le firme di accesso condiviso vengono spesso usate per fornire accesso limitato ai dati, ad esempio per consentire a un'app per dispositivi mobili di eseguire query sui record.
 
-Un'applicazione attendibile, ad esempio un servizio basato su cloud genera una firma di accesso condiviso utilizzando hello **generateSharedAccessSignature** di hello **TableService**e fornisce tooan applicazione non attendibile o semi-trusted ad esempio un'app per dispositivi mobili. Hello firma di accesso condiviso viene generato utilizzando un criterio, che descrive l'avvio di hello e fine in cui hello firma di accesso condiviso è valido, nonché hello titolare SAS toohello concesso livello di accesso.
+Un'applicazione attendibile, ad esempio un servizio basato sul cloud, genera una firma di accesso condiviso tramite il metodo **generateSharedAccessSignature** dell'oggetto **TableService** e la fornisce a un'applicazione non attendibile o parzialmente attendibile, ad esempio a un'app per dispositivi mobili. La firma di accesso condiviso viene generata tramite un criterio che indica le date di inizio e di fine del periodo di validità della firma, nonché il livello di accesso concesso al titolare della firma di accesso condiviso.
 
-Hello esempio seguente genera un nuovo criterio di accesso condiviso che consentirà di hello tabella hello SAS titolare tooquery ("r") e scade 100 minuti dopo il tempo di hello che viene creato.
+Nell'esempio seguente viene generato un nuovo criterio di accesso condiviso che consentirà al titolare della firma di accesso condiviso di eseguire una query ('r') per la tabella e che scadrà 100 minuti dopo la data di creazione.
 
 ```nodejs
 var startDate = new Date();
@@ -386,9 +383,9 @@ var tableSAS = tableSvc.generateSharedAccessSignature('mytable', sharedAccessPol
 var host = tableSvc.host;
 ```
 
-Si noti che le informazioni sull'host hello deve essere fornito, come richiesto quando titolare SAS hello tenta anche tabella hello tooaccess.
+Si noti che è necessario fornire anche le informazioni sull'host, in quanto sono necessarie quando il titolare della firma di accesso condiviso tenta di accedere alla tabella.
 
-Hello applicazione client, quindi Usa hello SAS con **TableServiceWithSAS** tooperform operazioni sulla tabella hello. Hello di esempio seguente si connette toohello tabella ed esegue una query.
+L'applicazione client usa quindi la firma di accesso condiviso con il metodo **TableServiceWithSAS** per eseguire operazioni sulla tabella. Nell'esempio seguente viene eseguita la connessione alla tabella e viene eseguita una query.
 
 ```nodejs
 var sharedTableService = azure.createTableServiceWithSas(host, tableSAS);
@@ -397,17 +394,17 @@ var query = azure.TableQuery()
 
 sharedTableService.queryEntities(query, null, function(error, result, response) {
   if(!error) {
-    // result contains hello entities
+    // result contains the entities
   }
 });
 ```
 
-Poiché hello firma di accesso condiviso è stato generato con il solo accesso query, se un tentativo sono stato apportato tooinsert, aggiornare o eliminare le entità, verrà restituito un errore.
+Poiché la firma di accesso condiviso è stata generata con accesso solo query, se si tentasse di inserire, aggiornare o eliminare le entità verrebbe restituito un errore.
 
 ### <a name="access-control-lists"></a>Elenchi di controllo di accesso
-È inoltre possibile utilizzare un criterio di accesso hello tooset elenco di controllo di accesso (ACL) per una firma di accesso condiviso. Ciò è utile se si desiderano tooallow più tabelle di hello tooaccess client, ma forniscono criteri di accesso diversi per ogni client.
+Per impostare i criteri di accesso per una firma di accesso condiviso è anche possibile usare un elenco di controllo di accesso. Questa soluzione è utile quando si vuole consentire a più client di accedere alla tabella, impostando tuttavia criteri di accesso diversi per ogni client.
 
-Un elenco di controllo di accesso viene implementato usando una matrice di criteri di accesso, con un ID associato a ogni criterio. Hello di esempio seguente definisce due criteri, uno per "user1" e uno per 'Utente2':
+Un elenco di controllo di accesso viene implementato usando una matrice di criteri di accesso, con un ID associato a ogni criterio. L'esempio seguente definisce due criteri, uno per 'user1' e uno per 'user2':
 
 ```nodejs
 var sharedAccessPolicy = {
@@ -424,7 +421,7 @@ var sharedAccessPolicy = {
 };
 ```
 
-Hello seguente esempio ottiene hello gli ACL per hello **hometasks** tabella e quindi aggiunge nuovi criteri hello utilizzando **setTableAcl**. Risultato:
+L'esempio seguente recupera l'elenco di controllo di accesso corrente per la tabella **hometasks** e quindi aggiunge i nuovi criteri tramite **setTableAcl**. Risultato:
 
 ```nodejs
 var extend = require('extend');
@@ -440,16 +437,16 @@ if(!error){
 });
 ```
 
-Una volta hello che ACL è stato impostato, è quindi possibile creare una firma di accesso condiviso in base all'ID di hello per un criterio. Hello di esempio seguente crea una nuova firma di accesso condiviso per 'Utente2':
+Dopo avere impostato l'elenco di controllo di accesso, è possibile creare una firma di accesso condiviso in base all'ID di un criterio. Nell'esempio seguente viene creata una nuova firma di accesso condiviso per 'user2':
 
 ```nodejs
 tableSAS = tableSvc.generateSharedAccessSignature('hometasks', { Id: 'user2' });
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per ulteriori informazioni, vedere hello seguenti risorse.
+Per altre informazioni, vedere le risorse seguenti:
 
-* [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md) è un'app autonoma, disponibile da Microsoft che consente di toowork visivamente i dati di archiviazione di Azure in Windows, macOS e Linux.
+* [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md) è un'app autonoma gratuita di Microsoft che consente di rappresentare facilmente dati di Archiviazione di Azure in Windows, macOS e Linux.
 * [Azure Storage SDK per Node](https://github.com/Azure/azure-storage-node) su GitHub.
-* [Centro per sviluppatori di Node. js](/develop/nodejs/)
-* [Creare e distribuire un tooan applicazione Node.js sito Web di Azure](../app-service-web/app-service-web-get-started-nodejs.md)
+* [Centro per sviluppatori di Node.js](/develop/nodejs/)
+* [Creare e distribuire un'applicazione Node.js in un sito Web di Azure](../app-service/app-service-web-get-started-nodejs.md)

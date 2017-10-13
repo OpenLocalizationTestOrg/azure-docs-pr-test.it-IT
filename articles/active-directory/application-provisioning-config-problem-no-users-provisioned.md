@@ -1,6 +1,6 @@
 ---
-title: gli utenti aaaNo vengono applicazione raccolta tooan provisioning Azure AD | Documenti Microsoft
-description: "Come i problemi comuni tootroubleshoot riscontrate quando non vengono visualizzati gli utenti visualizzati in una Azure Active Directory dell'applicazione di raccolta è stato configurato per il provisioning utente con Azure AD"
+title: "Nessun utente è sottoposto a provisioning per un'applicazione della raccolta di Azure AD | Microsoft Docs"
+description: Come risolvere i problemi comuni riscontrati quando in un'applicazione della raccolta di Azure AD non vengono visualizzati utenti configurati per il provisioning utenti con Azure AD
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,55 +13,55 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/04/2017
 ms.author: asteen
-ms.openlocfilehash: 4d9693a202ed657e1de5571b50e5d499bef1bb3f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 30db71c0706de1dcc0d48fb72fa5d62475a14ba7
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="no-users-are-being-provisioned-tooan-azure-ad-gallery-application"></a>Nessun utente vengono applicazione raccolta tooan provisioning Azure AD
+# <a name="no-users-are-being-provisioned-to-an-azure-ad-gallery-application"></a>Nessun utente è sottoposto a provisioning per un'applicazione della raccolta di Azure AD
 
-Il provisioning automatico di una volta configurato per un'applicazione (inclusa la verifica che le credenziali di app hello fornito AD tooAzure tooconnect toohello app sono validi). Gli utenti e/o i gruppi sono app toohello provisioning ed è determinato dal hello seguenti operazioni:
+Dopo aver configurato il provisioning automatico per un'applicazione (e dopo aver verificato la validità delle credenziali fornite ad Azure AD per connettersi all'app), gli utenti e/o i gruppi vengono sottoposti a provisioning per l'app in base a quanto segue:
 
--   Cui utenti e gruppi sono state **assegnato** toohello applicazione. Per ulteriori informazioni sull'assegnazione, vedere [assegnare un'applicazione aziendale tooan utente o gruppo in Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal).
+-   Utenti e gruppi **assegnati** all'applicazione. Per altre informazioni sull'assegnazione, vedere [Assegnare un utente o un gruppo a un'app aziendale di Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal).
 
--   O meno **attributo mapping** sono gli attributi validi toosync abilitato e configurato da Azure AD toohello app. Per altre informazioni sui mapping degli attributi, vedere [Personalizzazione dei mapping degli attributi del provisioning degli utenti per le applicazioni SaaS in Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-saas-customizing-attribute-mappings).
+-   Abilitazione o meno dei **mapping degli attributi** ed eventuale configurazione per la sincronizzazione degli attributi validi da Azure AD all'app. Per altre informazioni sui mapping degli attributi, vedere [Personalizzazione dei mapping degli attributi del provisioning degli utenti per le applicazioni SaaS in Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-saas-customizing-attribute-mappings).
 
 -   Presenza o meno di un **filtro per la definizione dell'ambito** che filtri gli utenti in base a specifici valori di attributo. Per altre informazioni sui filtri di ambito, vedere [Provisioning dell'applicazione basato su attributi con filtri per la definizione dell'ambito](https://docs.microsoft.com/azure/active-directory/active-directory-saas-scoping-filters).
 
-Quando si osserva che gli utenti non provisioning in corso, consultare i log di controllo hello in Azure AD e cercare le voci di log per un utente specifico.
+Se gli utenti non sono sottoposti a provisioning, vedere i log di controllo in Azure AD e cercare le voci per un utente specifico.
 
-Hello provisioning i log di controllo sono accessibili nel portale di Azure in hello hello **Azure Active Directory &gt; le app aziendali &gt; \[nome applicazione\] &gt; log di controllo**scheda. Hello filtro accede hello **Provisioning Account** tooonly categoria vedere hello provisioning gli eventi per tale applicazione. È possibile cercare utenti basati su hello "corrispondenti all'ID" che è stato configurato per tali mapping degli attributi di hello. Ad esempio, se è stato configurato hello "nome dell'entità utente" o "indirizzo di posta elettronica" come hello corrispondenti all'attributo sul lato di hello Azure AD, e non da il provisioning degli utenti hello ha un valore di "audrey@contoso.com". Quindi eseguire ricerche nei log di controllo hello per "audrey@contoso.com" e rivedere quindi voci restituite.
+I log di controllo di provisioning sono accessibili nella scheda **Azure Active Directory &gt; App aziendali &gt; \[Nome applicazione\] &gt; Log di controllo** del Portale di Azure. Filtrare i log nella categoria **Provisioning account** per visualizzare solo gli eventi di provisioning per l'app specifica. È possibile cercare gli utenti in base all'ID di abbinamento configurato nel mapping degli attributi. Ad esempio, se è stato configurato il nome dell'entità utente o l'indirizzo di posta elettronica come attributo di abbinamento sul lato Azure AD e l'utente non sottoposto a provisioning presenta un valore "audrey@contoso.com", cercare "audrey@contoso.com" nei log di controllo ed esaminare le voci restituite.
 
-Hello provisioning controllo Registra record di che tutte le operazioni eseguite dal servizio di provisioning di hello, inclusi l'interrogazione di Azure AD per gli utenti assegnati che rientrano nell'ambito per il provisioning, applicazione di destinazione hello esistenza hello di tali utenti l'esecuzione di query, il confronto hello di hello oggetti utente tra il sistema hello. Aggiungere, aggiornare o disabilitare l'account utente di hello nel sistema di destinazione hello in base a confronto hello.
+I log di controllo di provisioning registrano tutte le operazioni eseguite dal servizio di provisioning, ad esempio l'esecuzione in Azure AD di query sugli utenti assegnati che rientrano nell'ambito del provisioning, l'esecuzione nell'app di destinazione di query sull'esistenza di tali utenti, il confronto degli oggetti utente tra i sistemi e quindi l'aggiunta, l'aggiornamento o la disabilitazione dell'account utente nel sistema di destinazione in base al confronto.
 
-## <a name="general-problem-areas-with-provisioning-tooconsider"></a>Aree problematiche generali relativi al Provisioning tooconsider
+## <a name="general-problem-areas-with-provisioning-to-consider"></a>Aree problematiche generali con provisioning da considerare
 
-Di seguito è riportato un elenco di hello aree di problemi generali che è possibile analizzare se si dispone di un'idea toostart.
+Di seguito è riportato un elenco delle aree problematiche generali che è possibile analizzare se si ha un'idea del punto da cui iniziare.
 
-* [Provisioning del servizio non viene visualizzato toostart](#provisioning-service-does-not-appear-to-start)
+* [Avvio non riuscito del servizio di provisioning](#provisioning-service-does-not-appear-to-start)
 * [I log di controllo indicano che gli utenti vengono ignorati e non sottoposti a provisioning, anche se assegnati](#audit-logs-say-users-are-skipped-and-not-provisioned-even-though-they-are-assigned)
 
-## <a name="provisioning-service-does-not-appear-toostart"></a>Provisioning del servizio non viene visualizzato toostart
+## <a name="provisioning-service-does-not-appear-to-start"></a>Avvio non riuscito del servizio di provisioning
 
-Se si imposta hello **lo stato di Provisioning** toobe **su** in hello **Azure Active Directory &gt; le app aziendali &gt; \[nomedell'applicazione\] &gt;Provisioning** sezione di hello portale di Azure. Tuttavia nessun altro stato dettagli vengono visualizzati nella pagina dopo Ricarica successive, è probabile che il servizio di hello è in esecuzione ma non è stata completata una sincronizzazione iniziale è ancora. Controllare hello **log di controllo** descritto in precedenza toodetermine sta eseguendo il tipo di servizio operazioni hello e se sono presenti errori.
+Se si imposta **Stato provisioning** su **Attivato** nella sezione **Azure Active Directory &gt; App aziendali &gt; \[Nome applicazione\] &gt;Provisioning** del Portale di Azure, ma in seguito a successivi ricaricamenti non vengono visualizzati altri dettagli nella pagina, il servizio potrebbe essere in esecuzione senza aver ancora completato una sincronizzazione iniziale. Esaminare i **log di controllo** descritti in precedenza per individuare le operazioni in esecuzione nel servizio e verificare la presenza di eventuali errori.
 
 >[!NOTE]
->Una sincronizzazione iniziale può richiedere ore tooseveral 20 minuti, a seconda delle dimensioni di hello della directory di Azure AD hello e il numero di hello di utenti nell'ambito per il provisioning. Le sincronizzazioni successive dopo la sincronizzazione iniziale di hello sono più veloci, come hello provisioning servizio archivia le soglie che rappresentano lo stato di hello di entrambi i sistemi dopo la sincronizzazione iniziale di hello. migliorando le prestazioni delle sincronizzazioni successive.
+>Una sincronizzazione iniziale può richiedere da 20 minuti a diverse ore, a seconda delle dimensioni della directory di Azure AD e del numero di utenti inclusi nell'ambito del provisioning. Le sincronizzazioni successive a quella iniziale risultano più veloci, poiché il servizio di provisioning archivia i limiti che rappresentano lo stato di entrambi i sistemi dopo la sincronizzazione iniziale, migliorando le prestazioni delle sincronizzazioni successive.
 >
 >
 
 ## <a name="audit-logs-say-users-are-skipped-and-not-provisioned-even-though-they-are-assigned"></a>I log di controllo indicano che gli utenti vengono ignorati e non sottoposti a provisioning, anche se assegnati
 
-Quando un utente viene visualizzata come "ignorato" nei log di controllo di hello, è molto importante tooread hello dettagli nel motivo di hello log messaggio toodetermine hello estesi. Di seguito sono elencati i motivi e le risoluzioni comuni:
+Quando un utente viene visualizzato come "ignorato" nei log di controllo, è essenziale leggere i dettagli estesi nel messaggio di log per determinarne il motivo. Di seguito sono elencati i motivi e le risoluzioni comuni:
 
--   **È stato configurato un filtro di ambito** **che impediscano l'utente hello basata su un valore di attributo**. Per altre informazioni sui filtri di definizione dell'ambito, vedere <https://docs.microsoft.com/azure/active-directory/active-directory-saas-scoping-filters>.
+-   **È stato configurato un filtro di definizione dell'ambito** **che esclude l'utente in base a un valore di attributo**. Per altre informazioni sui filtri di definizione dell'ambito, vedere <https://docs.microsoft.com/azure/active-directory/active-directory-saas-scoping-filters>.
 
--   **utente Hello è "non in modo efficace il diritto".** Se viene visualizzato questo messaggio di errore specifico, è perché si è verificato un problema con record di hello assegnazione utente archiviati in Azure AD. toofix questo problema, annullare l'assegnazione hello (utente o gruppo) da app hello e riassegnarlo nuovamente. Per altre informazioni sull'assegnazione, vedere <https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal>.
+-   **L'utente "non è autorizzato in modo efficiente".** Se viene visualizzato questo messaggio di errore specifico, si è verificato un problema con il record di assegnazione degli utenti archiviato in Azure AD. Per risolvere il problema, annullare l'assegnazione dell'utente (o del gruppo) dall'app e riassegnarla. Per altre informazioni sull'assegnazione, vedere <https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal>.
 
--   **Attributo obbligatorio mancante o non popolato per un utente.** Tooconsider una cosa importante quando l'impostazione di provisioning essere tooreview e configurare i mapping degli attributi hello e flussi di lavoro che definiscono quale flusso di proprietà utente (o gruppo) dall'applicazione toohello Azure AD. Ciò include l'impostazione di hello "proprietà corrispondente" che toouniquely utilizzati da identificare e corrisponde agli utenti o i gruppi tra i sistemi di hello due. Per altre informazioni su questo importante processo, vedere [Personalizzazione dei mapping degli attributi del provisioning degli utenti per le applicazioni SaaS in Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-saas-customizing-attribute-mappings).
+-   **Attributo obbligatorio mancante o non popolato per un utente.** Un aspetto importante da considerare quando si configura il provisioning è quello di esaminare e configurare il mapping degli attributi e i flussi di lavoro che definiscono il tipo di flusso di proprietà utente (o gruppo) da Azure AD all'applicazione. Rientra in questo ambito anche l'impostazione della "proprietà di abbinamento" che può essere usata per identificare e abbinare in modo univoco utenti/gruppi tra i due sistemi. Per altre informazioni su questo importante processo, vedere [Personalizzazione dei mapping degli attributi del provisioning degli utenti per le applicazioni SaaS in Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-saas-customizing-attribute-mappings).
 
-  * **Attributo di mapping per i gruppi:** Provisioning di hello gruppo dettagli nomi e gruppi, membri toohello inoltre, se supportato per alcune applicazioni. È possibile abilitare o disabilitare questa funzionalità abilitando o disabilitando hello **Mapping** per oggetti di gruppo visualizzati nelle hello **Provisioning** scheda. Se è abilitato il provisioning di gruppi, prestare attenzione tooreview hello attributo mapping tooensure un campo appropriato viene utilizzato per hello "corrispondente di ID". Può trattarsi di alias di posta elettronica o nome visualizzato hello), come gruppo hello e i relativi membri non eseguirne il provisioning se hello corrispondente alla proprietà è vuoto o non è popolata per un gruppo in Azure AD.
+  * **Mapping degli attributi per gruppi:** provisioning dei dettagli del gruppo e del nome del gruppo, oltre ai membri, se supportato per alcune applicazioni. È possibile abilitare o disabilitare questa funzionalità abilitando o disabilitando il **mapping** per gli oggetti di gruppo visualizzati nella scheda **Provisioning**. Se il provisioning di gruppi è abilitato, verificare di controllare i mapping degli attributi per garantire che venga usato un campo appropriato per l'ID di abbinamento. Può trattarsi del nome visualizzato o dell'alias di posta elettronica, poiché il provisioning del gruppo e dei relativi membri non viene eseguito se la proprietà di abbinamento è vuota o non popolata per un gruppo in Azure AD.
 
 ## <a name="next-steps"></a>Passaggi successivi
 [Servizio di sincronizzazione Azure AD Connect: informazioni sul provisioning dichiarativo](active-directory-aadconnectsync-understanding-declarative-provisioning.md)

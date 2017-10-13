@@ -1,6 +1,6 @@
 ---
-title: sostituzione dei componenti hardware aaaStorSimple | Documenti Microsoft
-description: "Viene descritto come toosafely sostituire hello PCM, batteria, i moduli controller, controller di EBOD, unità disco e chassis di un dispositivo StorSimple."
+title: Sostituzione di componenti hardware StorSimple | Microsoft Docs
+description: "Viene descritto come sostituire in modo sicuro i PCM, la batteria, i moduli controller, i controller EBOD, le unità disco e chassis di un dispositivo StorSimple."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -15,28 +15,28 @@ ms.workload: TBD
 ms.date: 02/27/2017
 ms.author: alkohli
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 472d9dc1c31b61550fe079cc9b9419510487db3d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ae37f49916445a9486457af61aa9bf8bc1d7eb87
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="replace-a-hardware-component-on-your-storsimple-8000-series-device"></a>Sostituire un componente hardware sul dispositivo StorSimple serie 8000
 
 ## <a name="overview"></a>Panoramica
-esercitazioni di sostituzione componente hardware Hello vengono descritti i componenti hardware hello del Microsoft Azure StorSimple 8000 series dispositivo e hello passaggi necessari tooremove e sostituiscono. In questo articolo vengono descritte le icone di sicurezza hello, vengono forniti i puntatori toohello dettagliate esercitazioni e gli elenchi di hello componenti che possono essere sostituiti.
+Le esercitazioni di sostituzione dei componenti hardware descrivono i componenti hardware del dispositivo Microsoft Azure StorSimple serie 8000 e i passaggi necessari per rimuovere e sostituire i componenti. In questo articolo vengono descritte le icone di sicurezza, vengono forniti dei collegamenti alle esercitazioni dettagliate e vengono elencati i componenti che possono essere sostituiti.
 
 > [!IMPORTANT]
-> Prima di tentare di tooremove o sostituire qualsiasi componente di StorSimple, verificare che hello [convenzioni delle icone di sicurezza](#safety-icon-conventions) e altri [precauzioni di sicurezza](storsimple-safety.md).
+> Prima di tentare di rimuovere o sostituire qualsiasi componente di StorSimple, leggere le [convenzioni di sicurezza](#safety-icon-conventions) e altre [precauzioni di sicurezza](storsimple-safety.md).
 > 
 > 
 
 ### <a name="safety-icon-conventions"></a>Convenzioni di sicurezza
-Hello nella tabella seguente descrive le icone di sicurezza hello utilizzati in queste esercitazioni. Prestare particolare attenzione icone toothese quando si attraversano tooremove passaggi hello e sostituiscono i componenti del dispositivo.
+Nella tabella seguente vengono descritte le icone di sicurezza utilizzate in queste esercitazioni. Prestare particolare attenzione a queste icone di sicurezza quando si eseguono i passaggi per rimuovere e sostituire i componenti del dispositivo.
 
 | Icona | Text | Informazioni aggiuntive |
 |:--- |:--- |:--- |
-| ![Icona di avviso](./media/storsimple-hardware-component-replacement/Warning.png) |**PERICOLO!** |Indica una situazione di pericolo che, se non viene evitato, comporterà morte o gravi ferite. Questo segnale è limitato toohello situazioni più estreme. |
+| ![Icona di avviso](./media/storsimple-hardware-component-replacement/Warning.png) |**PERICOLO!** |Indica una situazione di pericolo che, se non viene evitato, comporterà morte o gravi ferite. Questa parola deve essere limitata a situazioni più estreme. |
 | ![Icona di avviso](./media/storsimple-hardware-component-replacement/Warning.png) |**AVVISO!** |Indica una situazione di pericolo che, se non viene evitata, può comportare morte o gravi ferite. |
 | ![Icona di attenzione](./media/storsimple-hardware-component-replacement/Caution.png) |**ATTENZIONE!** |Indica una situazione di pericolo che, se non viene evitato, comporterà ferite lievi o limitate. |
 | ![Icona di notifica](./media/storsimple-hardware-component-replacement/NoticeIcon.png) |**NOTIFICA:** |Indica le informazioni considerate importanti, ma non correlate al rischio. |
@@ -47,60 +47,60 @@ Hello nella tabella seguente descrive le icone di sicurezza hello utilizzati in 
 | ![Icona suggerimento di pericolo](./media/storsimple-hardware-component-replacement/TipHazard.png) |**Suggerimento di pericolo** | |
 
 ### <a name="before-you-begin"></a>Prima di iniziare
-Acquisire familiarità con le informazioni di sicurezza hello le icone di sicurezza e di dispositivi utilizzati in questa esercitazione. Andare troppo[installazione in modo sicuro e il funzionamento del dispositivo StorSimple](storsimple-safety.md) per informazioni complete. Essere certi hello tooreview [precauzioni di sicurezza](storsimple-safety.md#handling-precautions) prima di gestire il dispositivo StorSimple. 
+Acquisire familiarità con le informazioni di sicurezza relative al dispositivo e alle icone di sicurezza utilizzate in questa esercitazione. Andare a [Installazione sicura e funzionamento del dispositivo StorSimple](storsimple-safety.md) per informazioni più dettagliate. Rivedere le [precauzioni di sicurezza](storsimple-safety.md#handling-precautions) prima di gestire il dispositivo StorSimple. 
 
-Prima di tentare tooreplace un componente, prendere in considerazione le seguenti informazioni hello.
+Prima di tentare di sostituire un componente, considerare le seguenti informazioni.
 
-![Icona di avviso](./media/storsimple-hardware-component-replacement/Warning.png)![Icona di scossa elettrica](./media/storsimple-hardware-component-replacement/Electric.png)**AVVISO!** 
+![Warning Icon](./media/storsimple-hardware-component-replacement/Warning.png) ![Electrical Shock Icon](./media/storsimple-hardware-component-replacement/Electric.png) **AVVISO!** 
 
 * Collegarsi a terra correttamente usando un elettrostatica o passepartout antistatiche durante la gestione di moduli e i componenti del dispositivo StorSimple.
-* Non toccare nessun circuito. Utilizzare hello fornito maniglie e guide durante la gestione di componenti che possono essere esposto un circuito.
+* Non toccare nessun circuito. Utilizzare maniglie e guide specificate durante la gestione di componenti che possono avere circuiti esposti.
 
-![Warning Icon](./media/storsimple-hardware-component-replacement/Warning.png)![Notice Icon](./media/storsimple-hardware-component-replacement/NoticeIcon.png)**NOTIFICA:**
+![Warning Icon](./media/storsimple-hardware-component-replacement/Warning.png) ![Notice Icon](./media/storsimple-hardware-component-replacement/NoticeIcon.png) **NOTIFICA:**
 
-Quando si sostituisce un modulo, **non lasciare mai vuoto un alloggiamento nella parte posteriore di hello dell'enclosure hello**. Ottenere una sostituzione o un modulo vuoto prima di rimuovere parte difettosa hello.
+Quando si sostituisce un modulo, **non lasciare MAI un alloggiamento vuoto nella sporgenza dell’enclosure**. Procurarsi un ricambio o un modulo vuoto prima di rimuovere la parte del problema.
 
 ## <a name="hardware-component-replacement-procedures"></a>Procedure di sostituzione di componenti hardware
-Il dispositivo StorSimple serie 8000 è costituito da diversi moduli plug-in hello primario e/o l'enclosure EBOD. Hello 8100 ha una sola enclosure principale, mentre hello 8600 è un dispositivo con enclosure doppia con una enclosure principale e una EBOD.
+Il dispositivo Microsoft Azure StorSimple serie 8000 è costituito da diversi moduli plug-in negli chassis primari e/o EBOD. Il modello 8100 ha un solo chassis principale, mentre il 8600 è un dispositivo a chassis doppio con un chassis principale e uno EBOD.
 
-Hello principali componenti hardware del dispositivo sono riepilogati nella hello le tabelle seguenti. Fare clic sul collegamento hello in hello **la procedura di sostituzione** toohello toogo colonna associata esercitazione.
+Nelle tabelle seguenti vengono riepilogati i componenti hardware principali nel dispositivo. Fare clic sul collegamento nella colonna della **Procedura di sostituzione** per passare all'esercitazione associata.
 
 | Componenti | # Presente | Modulo plug-in? | Procedura di sostituzione |
 |:--- |:--- |:--- |:--- |
-| Chassis |1 |No |[Sostituzione dello chassis hello nel dispositivo StorSimple](storsimple-chassis-replacement.md) |
+| Chassis |1 |No |[Sostituire lo chassis sul dispositivo StorSimple](storsimple-chassis-replacement.md) |
 | Controller primari |2 |Sì |[Sostituire un modulo controller nel dispositivo StorSimple](storsimple-controller-replacement.md) |
 | Power and Cooling Modules (PCM) da 764W |2 |Sì |[Sostituire un PCM sul dispositivo StorSimple](storsimple-power-cooling-module-replacement.md) |
-| Batteria di backup |2 |Sì |[Sostituire il modulo batteria di backup hello nel dispositivo StorSimple](storsimple-battery-replacement.md) |
+| Batteria di backup |2 |Sì |[Sostituire il modulo batteria di backup nel dispositivo StorSimple](storsimple-battery-replacement.md) |
 | Unità disco |12 |Sì |[Sostituire un'unità disco del dispositivo StorSimple](storsimple-disk-drive-replacement.md) |
 
-**Tabella 1** enclosure principale hello i componenti Hardware
+**Tabella 1** Componenti Hardware nel chassis principale
 
-enclosure principale Hello ed enclosure EBOD hello si differenziano per i propri moduli i/o. Inoltre, hello PCM hanno un wattaggio diverso. Hello PCM nell'enclosure principale hello sono a 764 W, mentre quelli hello enclosure EBOD sono a 580 w. PCM hello in hello primario enclosure includere anche un modulo batteria di backup.
+Lo chassis principale e lo chassis EBOD sono diversi nei moduli I/O. Inoltre, i PCM hanno diverse potenze elettriche. I PCM nello chassis principale sono di 764 W, mentre quelli nello chassis EBOD sono di 580 W. I PCM nello chassis principale contengono anche un modulo batteria di backup.
 
 | Componenti | # Presente | Modulo plug-in? | Procedura di sostituzione |
 |:--- |:--- |:--- |:--- |
-| Chassis |1 |No |[Sostituzione dello chassis hello nel dispositivo StorSimple](storsimple-chassis-replacement.md) |
+| Chassis |1 |No |[Sostituire lo chassis sul dispositivo StorSimple](storsimple-chassis-replacement.md) |
 | Controller EBOD |2 |Sì |[Sostituire un controller EBOD sul dispositivo StorSimple](storsimple-ebod-controller-replacement.md) |
 | Power and Cooling Modules (PCM) da 580W |2 |Sì |[Sostituire un PCM sul dispositivo StorSimple](storsimple-power-cooling-module-replacement.md) |
 | Unità disco |12 |Sì |[Sostituire un'unità disco del dispositivo StorSimple](storsimple-disk-drive-replacement.md) |
 
-**Tabella 2** i componenti Hardware hello enclosure EBOD
+**Tabella 2** componenti Hardware nell'enclosure EBOD
 
-i moduli plug-in Hello nel dispositivo hello vengono evidenziati in hello seguenti diagrammi anteriori e posteriori. È possibile utilizzare questi diagrammi toodetermine hello ha sede hello diversi moduli plug-in se è necessaria una sostituzione. Hello anteriore illustrata hello le unità disco e i diagrammi posteriore hello di hello EBOD hello enclosure principale ed Mostra hello moduli plug-in.
+I moduli plug-in nel dispositivo sono evidenziati nei seguenti diagrammi anteriori e posteriori. È possibile utilizzare questi diagrammi per determinare la posizione dei diversi moduli plug-in se è necessaria una sostituzione. Il diagramma anteriore mostra le unità disco e i diagrammi posteriori dello chassis EBOD e dello chassis principale mostrano i moduli plug-in.
 
 ![Piano anteriore del dispositivo con unità disco](./media/storsimple-hardware-component-replacement/IC741028.png)
 
-**Figura 1** parte anteriore del dispositivo hello
+**Figura 1** Parte anteriore del dispositivo
 
 | Etichetta | Description |
 |:--- |:--- |
 | 0 - 11 |Unità di dischi (totale pari a 12) |
 
-Le enclosure principale hello e hello EBOD estraibili delle unità. chassis di Hello alloggia 12 unità disco 3,5" disposte in un formato 3 x 4.
+Sia lo chassis principale sia quello EBOD hanno moduli unità carrier. Lo chassis ospita dodici unità disco da 3,5" disposte in un formato 3 da 4.
 
 ![Backplane dei moduli dello chassis principale del dispositivo](./media/storsimple-hardware-component-replacement/IC740994.png)
 
-**Figura 2** parte posteriore dell'enclosure principale hello
+**Figura 2** Pannello posteriore dello chassis principale
 
 | Etichetta | Descrizione |
 |:--- |:--- |
@@ -111,7 +111,7 @@ Le enclosure principale hello e hello EBOD estraibili delle unità. chassis di H
 
 ![Piano posteriore dei moduli plug-in dell'enclosure EBOD del dispositivo](./media/storsimple-hardware-component-replacement/IC769599.png)
 
-**Figura 3** parte posteriore dell'enclosure EBOD hello
+**Figura 3** pannello posteriore dell’enclosure EBOD
 
 | Etichetta | Descrizione |
 |:--- |:--- |
@@ -121,9 +121,9 @@ Le enclosure principale hello e hello EBOD estraibili delle unità. chassis di H
 | 4 |Controller 1 EBOD |
 
 ## <a name="field-replaceable-units"></a>Unità sostituibile sul campo 
-Hello seguenti unità sostituibili sul campo (FRU) sono disponibile per il dispositivo StorSimple:
+Le seguenti unità sostituibili sul campo (FRU) sono disponibili per il dispositivo StorSimple:
 
-* Chassis (incluso pannello operativo integrato hello)
+* Chassis (incluso il pannello operativo integrato)
 * PCM con AC da 764 W
 * PCM con AC da 580 W
 * Unità disco rigido con modulo unità carrier
@@ -132,8 +132,8 @@ Hello seguenti unità sostituibili sul campo (FRU) sono disponibile per il dispo
 * Modulo batteria di backup
 * Kit per il montaggio su rack
 
-. [Contattare il supporto Microsoft](storsimple-contact-microsoft-support.md) tooorder una di queste unità sostitutive.
+[Contattare il supporto Microsoft](storsimple-contact-microsoft-support.md) per ordinare una di queste unità sostitutive.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Rivedere tutte [informazioni sulla sicurezza](storsimple-safety.md) prima di tentare di tooreplace un componente hardware di StorSimple.
+Rivedere tutte le [informazioni sulla sicurezza](storsimple-safety.md) prima di tentare di sostituire un componente hardware StorSimple.
 

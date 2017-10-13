@@ -1,6 +1,6 @@
 ---
 title: Progettare il primo Database di Azure per PostgreSQL tramite il portale di Azure | Documentazione Microsoft
-description: In questa esercitazione viene illustrato come tooDesign di Azure prima di Database per PostgreSQL utilizzando hello portale di Azure.
+description: In questa esercitazione viene illustrato come progettare il primo Database di Azure per PostgreSQL tramite il portale di Azure.
 services: postgresql
 author: SaloniSonpal
 ms.author: salonis
@@ -10,21 +10,21 @@ ms.service: postgresql
 ms.custom: tutorial, mvc
 ms.topic: tutorial
 ms.date: 05/10/2017
-ms.openlocfilehash: fde7e9d1ae2bad4291d18bebd3356f4f8a2ac86a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2aa9d10749b54537495ad3e09566c43718f67a9e
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="design-your-first-azure-database-for-postgresql-using-hello-azure-portal"></a>Progettazione di un Database di Azure per PostgreSQL utilizzando hello portale di Azure
+# <a name="design-your-first-azure-database-for-postgresql-using-the-azure-portal"></a>Progettare il primo Database di Azure per PostgreSQL tramite il portale di Azure
 
-Il Database di Azure per PostgreSQL è un servizio gestito che consente di toorun, gestire e scalare database PostgreSQL a disponibilità elevata nel cloud hello. Utilizza hello portale di Azure, è possibile facilmente gestire il server e progettare un database.
+Il Database di Azure per PostgreSQL è un servizio gestito che consente di eseguire, gestire e scalare i database PostgreSQL a disponibilità elevata nel cloud. Tramite il portale di Azure, è possibile gestire facilmente il server e progettare un database.
 
-In questa esercitazione, utilizzare la modalità hello toolearn portale Azure per:
+In questa esercitazione si userà il portale di Azure per imparare a:
 > [!div class="checklist"]
 > * Creare un database di Azure per PostgreSQL
-> * Configurare firewall hello del server
-> * Utilizzare [ **psql** ](https://www.postgresql.org/docs/9.6/static/app-psql.html) toocreate utilità un database
+> * Configurare il firewall del server
+> * Usare l'utilità [**psql**](https://www.postgresql.org/docs/9.6/static/app-psql.html) per creare un database
 > * Caricare dati di esempio
 > * Eseguire query sui dati
 > * Aggiornare i dati
@@ -33,110 +33,110 @@ In questa esercitazione, utilizzare la modalità hello toolearn portale Azure pe
 ## <a name="prerequisites"></a>Prerequisiti
 Se non si ha una sottoscrizione di Azure, creare un account [gratuito](https://azure.microsoft.com/free/) prima di iniziare.
 
-## <a name="log-in-toohello-azure-portal"></a>Accedi toohello portale di Azure
-Accedi toohello [portale di Azure](https://portal.azure.com).
+## <a name="log-in-to-the-azure-portal"></a>Accedere al Portale di Azure.
+Accedere al [Portale di Azure](https://portal.azure.com).
 
 ## <a name="create-an-azure-database-for-postgresql"></a>Creare un database di Azure per PostgreSQL
 
-Verrà creato un database di Azure per il server PostgreSQL con un set definito di [risorse di calcolo e di archiviazione](./concepts-compute-unit-and-storage.md). Hello server viene creato all'interno di un [gruppo di risorse](../azure-resource-manager/resource-group-overview.md).
+Verrà creato un database di Azure per il server PostgreSQL con un set definito di [risorse di calcolo e di archiviazione](./concepts-compute-unit-and-storage.md). Il server viene creato all'interno di un [gruppo di risorse di Azure](../azure-resource-manager/resource-group-overview.md).
 
-Seguire questi toocreate passaggi un Database di Azure per PostgreSQL server:
-1.  Fare clic su hello **+ nuovo** pulsante disponibile nella hello angolo superiore sinistro del portale di Azure hello.
-2.  Selezionare **database** da hello **New** pagina e selezionare **Database di Azure per PostgreSQL** da hello **database** pagina.
- ![Il Database di Azure per PostgreSQL - creare database hello](./media/tutorial-design-database-using-azure-portal/1-create-database.png)
+Seguire questi passaggi per creare un database di Azure per il server PostgreSQL:
+1.  Fare clic sul pulsante **+ Nuovo** nell'angolo superiore sinistro del portale di Azure.
+2.  Selezionare **Database** nella pagina **Nuovo** e selezionare il **Database di Azure per PostgreSQL** nella pagina **Database**.
+ ![Database di Azure per PostgreSQL - Creare il database](./media/tutorial-design-database-using-azure-portal/1-create-database.png)
 
-3.  Compilare hello nuovi server Dettagli modulo con hello le seguenti informazioni, come mostrato nella precedente immagine hello:
-    - Nome del server: **mypgserver 20170401** (nome di un server esegue il mapping nome tooDNS ed è pertanto necessario toobe univoco globale) 
-    - Sottoscrizione: Se si dispone di più sottoscrizioni, scegliere la sottoscrizione appropriata di hello in cui esistano risorse hello o viene fatturata per.
+3.  Compilare il modulo per i dettagli del nuovo server con le informazioni seguenti, come illustrato nell'immagine precedente:
+    - Nome server: **mypgserver-20170401** (il nome di un server esegue il mapping al nome DNS e quindi deve essere univoco a livello globale) 
+    - Sottoscrizione: se si hanno più sottoscrizioni, scegliere la sottoscrizione appropriata in cui si trova o viene fatturata la risorsa.
     - Gruppo di risorse: **myresourcegroup**
     - L'accesso dell'amministratore del server e la password scelta
     - Località
     - Versione di PostgreSQL
 
   > [!IMPORTANT]
-  > account di accesso amministratore server Hello e una password che è possibile specificare sono necessari toolog toohello server e i relativi database più avanti in questa Guida introduttiva. Prendere nota di queste informazioni per usarle in seguito.
+  > L'account di accesso amministratore server e la password qui specificati sono necessari per accedere al server e ai relativi database più avanti in questa guida introduttiva. Prendere nota di queste informazioni per usarle in seguito.
 
-4.  Fare clic su **tariffario** toospecify hello servizio livello di prestazioni e per il nuovo database. Per questa guida di avvio rapido, selezionare il livello **Basic**, **50 unità di calcolo** e **50 GB** di spazio di archiviazione incluso.
- ![Database di Azure per PostgreSQL - livello di servizio hello selezione](./media/tutorial-design-database-using-azure-portal/2-service-tier.png)
+4.  Fare clic su **Piano tariffario** per specificare il livello di servizio e il livello delle prestazioni per il nuovo database. Per questa guida di avvio rapido, selezionare il livello **Basic**, **50 unità di calcolo** e **50 GB** di spazio di archiviazione incluso.
+ ![Database di Azure per PostgreSQL - Selezionare il livello del servizio](./media/tutorial-design-database-using-azure-portal/2-service-tier.png)
 5.  Fare clic su **OK**.
-6.  Fare clic su **crea** server hello tooprovision. Il provisioning richiede alcuni minuti.
+6.  Fare clic su **Crea** per eseguire il provisioning del server. Il provisioning richiede alcuni minuti.
 
   > [!TIP]
-  > Controllare hello **toodashboard Pin** rilevamento semplice di opzione tooallow delle distribuzioni.
+  > Selezionare l'opzione **Aggiungi al dashboard** per tenere facilmente traccia delle distribuzioni.
 
-7.  Sulla barra degli strumenti hello, fare clic su **notifiche** toomonitor processo di distribuzione hello.
+7.  Sulla barra degli strumenti fare clic su **Notifiche** per monitorare il processo di distribuzione.
  ![Database di Azure per PostgreSQL - Vedere le notifiche](./media/tutorial-design-database-using-azure-portal/3-notifications.png)
    
-  Per impostazione predefinita, il database **postgres** viene creato nel server. Hello [postgres](https://www.postgresql.org/docs/9.6/static/app-initdb.html) database è un database predefinito può essere utilizzata per gli utenti, utilità e applicazioni di terze parti. 
+  Per impostazione predefinita, il database **postgres** viene creato nel server. Il database [postgres](https://www.postgresql.org/docs/9.6/static/app-initdb.html) è un database predefinito che può essere usato da utenti, utilità e applicazioni di terze parti. 
 
 ## <a name="configure-a-server-level-firewall-rule"></a>Configurare una regola del firewall a livello di server
 
-Hello Azure Database PostgreSQL servizio consente di creare un firewall a livello di server hello. Questo firewall impedisce la applicazioni esterne e gli strumenti connessione toohello server e tutti i database nel server di hello solo una regola del firewall creata firewall hello tooopen per indirizzi IP specifici. 
+Il database di Azure per il servizio PostgreSQL crea un firewall a livello di server. Questo firewall impedisce alle applicazioni e agli strumenti esterni di connettersi al server e ai database nel server, a meno che non venga creata una regola del firewall per aprire il firewall per indirizzi IP specifici. 
 
-1.  Al termine della distribuzione di hello, fare clic su **tutte le risorse** dal menu a sinistra hello e digitare il nome di hello **mypgserver 20170401** toosearch per il server appena creato. Fare clic su un nome server hello elencato nei risultati di ricerca hello. Hello **Panoramica** pagina per il server viene aperto e offre opzioni per un'ulteriore configurazione.
+1.  Al termine della distribuzione, fare clic su **Tutte le risorse** nel menu a sinistra e digitare il nome **mypgserver-20170401** per la ricerca del server appena creato. Fare clic sul nome del server elencato nei risultati della ricerca. Si apre la pagina **Panoramica** del server in cui vengono fornite le opzioni per una configurazione aggiuntiva.
  
  ![Database di Azure per PostgreSQL - Cercare il server ](./media/tutorial-design-database-using-azure-portal/4-locate.png)
 
-2.  Nel Pannello di hello server, selezionare **sicurezza della connessione**. 
-3.  Fare clic nella casella di testo hello in **nome della regola,** e aggiungere un nuovo firewall regola toowhitelist hello intervallo IP per la connettività. Per questa esercitazione, consentire tutti gli indirizzi IP digitando **Rule Name = AllowAllIps**, **IP iniziale = 0.0.0.0** e **IP finale = 255.255.255.255** e quindi fare clic su **Salva**. È possibile impostare una regola del firewall che copre un intervallo IP toobe tooconnect in grado di dalla rete.
+2.  Nel pannello del server, selezionare **Sicurezza connessione**. 
+3.  Fare clic nella casella di testo in **Nome regola** e aggiungere una nuova regola firewall alla whitelist dell'intervallo IP per la connettività. Per questa esercitazione, consentire tutti gli indirizzi IP digitando **Rule Name = AllowAllIps**, **IP iniziale = 0.0.0.0** e **IP finale = 255.255.255.255** e quindi fare clic su **Salva**. È possibile impostare una regola firewall che copra un intervallo IP che sia in grado di connettersi dalla rete.
  
  ![Database di Azure per PostgreSQL - Creare una regola del firewall](./media/tutorial-design-database-using-azure-portal/5-firewall-2.png)
 
-4.  Fare clic su **salvare** e quindi fare clic su hello **X** tooclose hello **sicurezza connessioni** pagina.
+4.  Fare clic su **Salva** e quindi fare clic su **X** per chiudere la pagina **Sicurezza connessione**.
 
   > [!NOTE]
-  > Il server PostgreSQL Azure comunica sulla porta 5432. Se si sta tentando di tooconnect da una rete aziendale, il traffico in uscita sulla porta 5432 può non essere consentito dal firewall della rete. In questo caso, non sarà server di Database SQL di Azure in grado di tooconnect tooyour, a meno che il reparto IT apre la porta 5432.
+  > Il server PostgreSQL Azure comunica sulla porta 5432. Se si sta cercando di connettersi da una rete aziendale, il traffico in uscita sulla porta 5432 potrebbe non essere consentito dal firewall della rete. In tal caso, non sarà possibile connettersi al server del database SQL di Azure, a meno che il reparto IT non apra la porta 5432.
   >
 
 
-## <a name="get-hello-connection-information"></a>Ottenere informazioni sulla connessione hello
+## <a name="get-the-connection-information"></a>Ottenere le informazioni di connessione
 
-Quando abbiamo creato il Database di Azure per server PostgreSQL, hello predefinito **postgres** database viene inoltre creato. server di database tooyour tooconnect, sono necessarie credenziali di accesso e le informazioni di host tooprovide.
+Quando si crea il database di Azure per il server PostgreSQL, viene creato anche il database **postgres** predefinito. Per connettersi al server del database, è necessario fornire le informazioni sull'host e le credenziali di accesso.
 
-1. Dal menu a sinistra di hello nel portale di Azure, fare clic su **tutte le risorse** cercare hello server appena creato e **mypgserver 20170401**.
+1. Nel menu a sinistra nel portale di Azure fare clic su **Tutte le risorse** e cercare il server appena creato, **mypgserver-20170401**.
 
   ![Database di Azure per PostgreSQL - Cercare il server ](./media/tutorial-design-database-using-azure-portal/4-locate.png)
 
-3. Fare clic sul nome di server hello **mypgserver 20170401**.
-4. Server di selezionare hello **Panoramica** pagina. Prendere nota di hello **nome Server** e **nome account di accesso di amministratore Server**.
+3. Fare clic sul nome del server **mypgserver-20170401**.
+4. Selezionare la pagina **Panoramica** del server. Annotare il **Nome server** e il **nome di accesso dell'amministratore del server**.
 
  ![Database di Azure per PostgreSQL - Accesso dell'amministratore del server](./media/tutorial-design-database-using-azure-portal/6-server-name.png)
 
 
-## <a name="connect-toopostgresql-database-using-psql-in-cloud-shell"></a>La connessione a database tooPostgreSQL utilizzando psql nella Shell di Cloud
+## <a name="connect-to-postgresql-database-using-psql-in-cloud-shell"></a>Connettersi al database PostgreSQL tramite psql in Cloud Shell
 
-Verrà ora utilizzare hello psql utilità della riga di comando tooconnect toohello Azure Database PostgreSQL server. 
-1. Avviare hello Shell di Cloud di Azure tramite l'icona di terminal hello nel riquadro di spostamento superiore hello.
+Si usi ora l'utilità della riga di comando psql per connettersi al Database di Azure per il server PostgreSQL. 
+1. Avviare Azure Cloud Shell tramite l'icona del terminale nel riquadro di spostamento in alto.
 
    ![Database di Azure per PostgreSQL - Icona del terminale di Azure Cloud Shell](./media/tutorial-design-database-using-azure-portal/7-cloud-shell.png)
 
-2. Hello Azure Cloud Shell apre nel browser, consentendo tootype bash comandi.
+2. Azure Cloud Shell si apre nel browser, consentendo di digitare i comandi bash.
 
    ![Database di Azure per PostgreSQL - Prompt Bash di Azure Cloud Shell](./media/tutorial-design-database-using-azure-portal/8-bash.png)
 
-3. Al prompt della Shell Cloud hello connettersi tooyour Database di Azure per server PostgreSQL utilizzando i comandi psql hello. il formato seguente Hello è tooan tooconnect utilizzati Database di Azure per server PostgreSQL con hello [psql](https://www.postgresql.org/docs/9.6/static/app-psql.html) utilità:
+3. Al prompt di Cloud Shell connettersi al database di Azure per il server PostgreSQL usando i comandi psql. Il formato seguente è usato per connettersi a un Database di Azure per il server PostgreSQL con l'utilità [psql](https://www.postgresql.org/docs/9.6/static/app-psql.html):
    ```bash
    psql --host=<myserver> --port=<port> --username=<server admin login> --dbname=<database name>
    ```
 
-   Ad esempio, hello comando seguente si connette a database predefinito toohello chiamato **postgres** sul server PostgreSQL **mypgserver 20170401.postgres.database.azure.com** utilizzando le credenziali di accesso. Quando richiesto, immettere la password di amministratore del server.
+   Ad esempio, il comando seguente consente di connettersi al database predefinito denominato **postgres** nel server PostgreSQL **mypgserver-20170401.postgres.database.azure.com** usando le credenziali di accesso. Immettere la password dell'amministratore del server quando viene richiesto.
 
    ```bash
    psql --host=mypgserver-20170401.postgres.database.azure.com --port=5432 --username=mylogin@mypgserver-20170401 --dbname=postgres
    ```
 
 ## <a name="create-a-new-database"></a>Creare un nuovo database
-Dopo aver connesso toohello server, è possibile creare un database vuoto al prompt dei comandi hello.
+Dopo aver eseguito la connessione al server, creare un database vuoto al prompt.
 ```bash
 CREATE DATABASE mypgsqldb;
 ```
 
-Al prompt dei comandi hello, eseguire hello seguente database toohello appena creato di comando tooswitch connessione **mypgsqldb**.
+Nel prompt, eseguire il comando seguente per cambiare la connessione nel database appena creato **mypgsqldb**.
 ```bash
 \c mypgsqldb
 ```
-## <a name="create-tables-in-hello-database"></a>Creare tabelle nel database di hello
-Ora che è stato appreso come tooconnect toohello Database di Azure per PostgreSQL, possiamo andare come toocomplete alcune attività di base.
+## <a name="create-tables-in-the-database"></a>Creare tabelle nel database
+Dopo aver appreso come connettersi al Database di Azure per PostgreSQL, si può passare al completamento di alcune attività di base.
 
 In primo luogo, è possibile creare una tabella e caricarla con alcuni dati. Creare una tabella che tiene traccia delle informazioni riguardanti l'inventario.
 ```sql
@@ -147,59 +147,59 @@ CREATE TABLE inventory (
 );
 ```
 
-È possibile visualizzare hello appena creato tabella nell'elenco di hello di tabvles ora digitando:
+È possibile visualizzare ora la tabella appena creata nell'elenco di tabelle digitando:
 ```sql
 \dt
 ```
 
-## <a name="load-data-into-hello-tables"></a>Caricamento dei dati nelle tabelle di hello
-Ora che abbiamo una tabella, possiamo inserire alcuni dati al suo interno. Nella finestra del prompt dei comandi aperta hello eseguire hello seguente query tooinsert alcune righe di dati
+## <a name="load-data-into-the-tables"></a>Caricare i dati nelle tabelle
+Ora che abbiamo una tabella, possiamo inserire alcuni dati al suo interno. Nella finestra del prompt dei comandi aperta, eseguire la query seguente per inserire alcune righe di dati
 ```sql
 INSERT INTO inventory (id, name, quantity) VALUES (1, 'banana', 150); 
 INSERT INTO inventory (id, name, quantity) VALUES (2, 'orange', 154);
 ```
 
-È ora due righe di dati di esempio nella tabella hello creato in precedenza.
+A questo punto, sono presenti due righe di dati di esempio nella tabella creata in precedenza.
 
-## <a name="query-and-update-hello-data-in-hello-tables"></a>Eseguire una query e aggiornare i dati nelle tabelle di hello hello
-Eseguire le seguenti query tooretrieve informazioni dalla tabella di database hello hello. 
+## <a name="query-and-update-the-data-in-the-tables"></a>Eseguire una query e aggiornare i dati nelle tabelle
+Eseguire la query seguente per recuperare informazioni dalla tabella del database. 
 ```sql
 SELECT * FROM inventory;
 ```
 
-È inoltre possibile aggiornare i dati di hello nelle tabelle di hello
+Si possono anche aggiornare i dati nelle tabelle
 ```sql
 UPDATE inventory SET quantity = 200 WHERE name = 'banana';
 ```
 
-la riga Hello Ottiene aggiornata di conseguenza quando si recuperano dati.
+La riga viene aggiornata di conseguenza quando si recuperano dati.
 ```sql
 SELECT * FROM inventory;
 ```
 
-## <a name="restore-data-tooa-previous-point-in-time"></a>Dati tooa precedente punto di ripristino temporizzato
-Si supponga di aver eliminato accidentalmente questa tabella. Questa situazione non è facile da ripristinare. Il Database di Azure per PostgreSQL consente toogo tooany indietro punto nel tempo (in hello ultimo backup too7 giorni (Basic) e 35 giorni (Standard)) e il ripristino di questo nuovo server tooa punto nel tempo. È possibile utilizzare questo nuovo toorecover server i dati eliminati. Hello seguente punto di ripristino hello campione server tooa passaggi prima tabella hello è stato aggiunto.
+## <a name="restore-data-to-a-previous-point-in-time"></a>Ripristinare i dati a un punto precedente nel tempo
+Si supponga di aver eliminato accidentalmente questa tabella. Questa situazione non è facile da ripristinare. Il Database di Azure per PostgreSQL consente di tornare in qualsiasi punto nel tempo (negli ultimi 7 giorni (Basic) e 35 giorni (Standard)) e ripristinare questo punto nel tempo in un nuovo server. È possibile usare questo nuovo server per ripristinare i dati eliminati. La procedura seguente consente di ripristinare il server di esempio in un punto precedente all'aggiunta della tabella.
 
-1.  Hello Azure Database PostgreSQL pagina per il server, scegliere **ripristinare** sulla barra degli strumenti hello. Hello **ripristinare** verrà visualizzata la pagina.
+1.  Nel Database di Azure per la pagina PostgreSQL del server, fare clic su **Ripristina** sulla barra degli strumenti. Si apre la pagina **Ripristina** .
   ![Portale di Azure - Opzioni del modulo di ripristino](./media/tutorial-design-database-using-azure-portal/9-azure-portal-restore.png)
-2.  Compilare hello **ripristinare** form con le informazioni necessarie hello:
+2.  Compilare il modulo **Ripristina** con le informazioni obbligatorie:
 
   ![Portale di Azure - Opzioni del modulo di ripristino](./media/tutorial-design-database-using-azure-portal/10-azure-portal-restore.png)
-  - **Punto di ripristino**: selezionare un punto nel tempo che si verifica prima che il server di hello è stato modificato
-  - **Server di destinazione**: fornire un nuovo nome del server desiderato toorestore per
-  - **Percorso**: non è possibile selezionare l'area di hello, per impostazione predefinita è uguale al server di origine hello
-  - **Piano tariffario**: non è possibile modificare questo valore quando si ripristina un server. È uguale al server di origine hello. 
-3.  Fare clic su **OK** toorestore hello server troppo[tooa momento di ripristinare](./howto-restore-server-portal.md) prima tabelle hello è stato eliminato. Ripristino di un punto diverso di server tooa nel tempo crea un duplicato nuovo server come server originale hello come hello punto nel tempo specificato, purché tale valore entro il periodo di memorizzazione hello per le [livello di servizio](./concepts-service-tiers.md).
+  - **Punto di ripristino**: selezionare un punto nel tempo precedente alla modifica del server
+  - **Server di destinazione**: fornire un nuovo nome del server che si desidera ripristinare
+  - **Posizione**: non è possibile selezionare l'area, per impostazione predefinita è la stessa del server di origine
+  - **Piano tariffario**: non è possibile modificare questo valore quando si ripristina un server. È uguale al server di origine. 
+3.  Fare clic su **OK** per ripristinare il server per [ripristinare in un punto nel tempo](./howto-restore-server-portal.md) precedente all'eliminazione delle tabelle. Il ripristino di un server in un altro punto nel tempo crea un duplicato del nuovo server come il server originale nel punto nel tempo specificato, purché sia entro il periodo di conservazione per il [livello di servizio](./concepts-service-tiers.md) applicato.
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questa esercitazione, si è appreso come toouse hello portale di Azure e altre utilità per:
+In questa esercitazione si apprenderà come usare il portale di Azure e altre utilità per:
 > [!div class="checklist"]
 > * Creare un database di Azure per PostgreSQL
-> * Configurare firewall hello del server
-> * Utilizzare [ **psql** ](https://www.postgresql.org/docs/9.6/static/app-psql.html) toocreate utilità un database
+> * Configurare il firewall del server
+> * Usare l'utilità [**psql**](https://www.postgresql.org/docs/9.6/static/app-psql.html) per creare un database
 > * Caricare dati di esempio
 > * Eseguire query sui dati
 > * Aggiornare i dati
 > * Ripristinare i dati
 
-Per ulteriori informazioni come attività simili toodo CLI di Azure toouse, rivedere l'esercitazione: [di progettazione di un Database di Azure per PostgreSQL mediante Azure CLI](tutorial-design-database-using-azure-cli.md)
+Successivamente, per informazioni su come usare l'Interfaccia della riga di comando di Azure per eseguire attività simili, esaminare questa esercitazione: [Progettare il primo Database di Azure per PostgreSQL tramite l'Interfaccia della riga di comando di Azure](tutorial-design-database-using-azure-cli.md)

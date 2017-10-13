@@ -9,10 +9,7 @@
 ## [Gestire le impostazioni](multi-factor-authentication-end-user-manage-settings.md)
 ## [Risoluzione dei problemi](multi-factor-authentication-end-user-troubleshoot.md)
 ## [Configurare le password per le app](multi-factor-authentication-end-user-app-passwords.md)
-## Usare l'app Microsoft Authenticator hello
-### [Introduzione hello app](microsoft-authenticator-app-how-to.md)
+## Usare l'app Microsoft Authenticator
+### [Introduzione all'app](microsoft-authenticator-app-how-to.md)
 ### [Accedere tramite il telefono](microsoft-authenticator-app-phone-signin-faq.md)
 ### [Domande frequenti](microsoft-authenticator-app-faq.md)
-# Risorse
-## [Roadmap per Azure](https://azure.microsoft.com/roadmap/?category=security-identity)
-## [Calcolatore prezzi](https://azure.microsoft.com/pricing/calculator/)

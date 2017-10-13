@@ -1,22 +1,22 @@
 <!--author=alkohli last changed: 9/17/15-->
 
-#### <a name="tooget-hello-storsimple-service-registration-key"></a>chiave di registrazione del servizio StorSimple hello tooget
-1. In hello **servizio StorSimple Manager** pagina, fare clic su servizio hello creato. L'operazione richiederà toohello **avvio rapido** pagina. (È possibile fare clic sull'icona di avvio rapido di hello ![icona avvio rapido di StorSimple ](./media/storsimple-get-service-registration-key/HCS_QuickStartIcon-include.png) tooaccess hello **avvio rapido** pagina in qualsiasi momento.)
+#### <a name="to-get-the-storsimple-service-registration-key"></a>Per ottenere la chiave di registrazione del servizio StorSimple.
+1. Nella pagina del **servizio StorSimple Manager** , fare clic sul servizio creato. Verrà visualizzata la pagina **Avvio rapido** . È possibile fare clic sull'icona di avvio rapido ![Icona di avvio rapido di StorSimple](./media/storsimple-get-service-registration-key/HCS_QuickStartIcon-include.png) per accedere alla pagina **Avvio rapido** in qualsiasi momento.
    
      ![Pagina di avvio rapido di StorSimple](./media/storsimple-get-service-registration-key/HCS_ServiceQuickStart-include.png)
-2. Fare clic su **Ottenere la chiave di registrazione del servizio**. È anche possibile fare clic su **chiave di registrazione** nella parte inferiore di hello della pagina hello. Sarà necessario toowait per alcuni minuti mentre viene recuperata la chiave hello. Hello **chiave di registrazione del servizio** viene visualizzata la finestra di dialogo.
+2. Fare clic su **Ottenere la chiave di registrazione del servizio**. È inoltre possibile fare clic su **Chiave di registrazione** nella parte inferiore della pagina. Sarà necessario attendere alcuni minuti che la chiave venga recuperata. Viene visualizzata la finestra di dialogo **Chiave di registrazione del servizio** .
    
      ![Finestra di dialogo Chiave di registrazione del servizio](./media/storsimple-get-service-registration-key/HCS_GetServiceRegistrationKey-include.png)
-3. Individuare una chiave di registrazione del servizio hello.
-4. Fare clic sull'icona di copia hello ![Icona di copia di StorSimple](./media/storsimple-get-service-registration-key/HCS_CopyIcon-include.png) toocopy hello chiave e salvarlo per un uso successivo.
-5. Fare clic sull'icona di controllo hello ![icona controllo StorSimple](./media/storsimple-get-service-registration-key/HCS_CheckIcon-include.png) tooclose questa finestra di dialogo e restituito toohello **avvio rapido** pagina.
+3. Individuare la chiave di registrazione del servizio.
+4. Fare clic sull'icona di copia  ![Icona di copia di StorSimple](./media/storsimple-get-service-registration-key/HCS_CopyIcon-include.png) per copiare la chiave e salvarla per un utilizzo successivo.
+5. Fare clic sull'icona del segno di spunta ![Icona del segno di spunta di StorSimple](./media/storsimple-get-service-registration-key/HCS_CheckIcon-include.png) per chiudere questa finestra di dialogo e tornare alla pagina **Avvio rapido** .
 
 > [!NOTE]
-> chiave di registrazione Hello è usato tooregister tutti hello dispositivi che richiedono tooregister con il servizio StorSimple Manager.
+> La chiave di registrazione del servizio viene utilizzata per registrare tutti i dispositivi che è necessario registrare con il servizio StorSimple Manager.
 > 
 > 
 
-![Video disponibile](./media/storsimple-get-service-registration-key/Video_icon.png)**Video disponibile**
+![Video disponibile](./media/storsimple-get-service-registration-key/Video_icon.png) **Video disponibile**
 
-Fare clic su un video che illustra come tooget hello chiave di registrazione del servizio, toowatch [qui](https://azure.microsoft.com/documentation/videos/get-the-service-registration-key/).
+Per guardare un video che illustra come ottenere la chiave di registrazione di servizio, fare clic [qui](https://azure.microsoft.com/documentation/videos/get-the-service-registration-key/).
 

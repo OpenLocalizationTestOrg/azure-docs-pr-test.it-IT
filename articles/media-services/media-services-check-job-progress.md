@@ -1,6 +1,6 @@
 ---
-title: lo stato del processo aaaMonitor usando .NET
-description: Informazioni su come toouse evento gestore codice tootrack lo stato di avanzamento del processo e inviare gli aggiornamenti di stato. Nell'esempio di codice Hello viene scritto in c# e utilizza hello Media Services SDK per .NET.
+title: Monitorare lo stato dei processi mediante .NET
+description: "Informazioni su come usare il codice del gestore eventi per tenere traccia dello stato dei processi e inviare aggiornamenti di stato. L'esempio di codice è scritto in C# e usa l'SDK di Servizi multimediali per .NET."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,11 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: 530aa1d78437cd7c41b4d9a895f9a0e9de0ad49d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 851981b291115ba31dc40535f8bcc71cdb475717
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="monitor-job-progress-using-net"></a>Monitorare lo stato dei processi mediante .NET
 > [!div class="op_single_selector"]
@@ -28,10 +28,10 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Quando si eseguono i processi, spesso richiedono un avanzamento del processo tootrack modo. È possibile verificare lo stato di hello definendo un gestore dell'evento StateChanged (come descritto in questo argomento) o tramite toomonitor di archiviazione della coda di Azure Media Services processo notifiche (come descritto in [questo](media-services-dotnet-check-job-progress-with-queues.md) argomento).
+Quando si esegue un processo, spesso è necessario monitorarne l'avanzamento. È possibile controllare l'avanzamento definendo un gestore eventi StateChanged (come descritto in questo argomento) o usando l'archiviazione code di Azure per monitorare le notifiche dei processi di Servizi multimediali (come descritto in [questo](media-services-dotnet-check-job-progress-with-queues.md) argomento).
 
-## <a name="define-statechanged-event-handler-toomonitor-job-progress"></a>Definire lo stato del processo StateChanged evento gestore toomonitor
-esempio di codice seguente Hello definisce gestore dell'evento StateChanged hello. Questo gestore rileva lo stato del processo e fornisce lo stato aggiornato, a seconda dello stato di hello. codice Hello definisce anche il metodo LogJobStop hello. che registra i dettagli degli errori.
+## <a name="define-statechanged-event-handler-to-monitor-job-progress"></a>Definire un gestore eventi StateChanged per monitorare lo stato di un processo
+Nell'esempio di codice seguente viene definito il gestore dell'evento StateChanged, che monitora l'avanzamento del processo e ne indica lo stato aggiornato. Il codice consente inoltre di definire il metodo helper LogJobStop, che registra i dettagli degli errori.
 
     private static void StateChanged(object sender, JobStateChangedEventArgs e)
     {
@@ -73,7 +73,7 @@ esempio di codice seguente Hello definisce gestore dell'evento StateChanged hell
         StringBuilder builder = new StringBuilder();
         IJob job = GetJob(jobId);
 
-        builder.AppendLine("\nThe job stopped due toocancellation or an error.");
+        builder.AppendLine("\nThe job stopped due to cancellation or an error.");
         builder.AppendLine("***************************");
         builder.AppendLine("Job ID: " + job.Id);
         builder.AppendLine("Job Name: " + job.Name);
@@ -96,7 +96,7 @@ esempio di codice seguente Hello definisce gestore dell'evento StateChanged hell
             }
         }
         builder.AppendLine("***************************\n");
-        // Write hello output tooa local file and toohello console. hello template 
+        // Write the output to a local file and to the console. The template 
         // for an error output file is:  JobStop-{JobId}.txt
         string outputFile = _outputFilesFolder + @"\JobStop-" + JobIdAsFileName(job.Id) + ".txt";
         WriteToFile(outputFile, builder.ToString());

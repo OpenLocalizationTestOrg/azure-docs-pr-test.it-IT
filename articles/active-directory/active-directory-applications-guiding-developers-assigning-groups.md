@@ -1,6 +1,6 @@
 ---
-title: aaaAssign gruppi tooAzure AD App | Microsoft documenti
-description: "La modalità di assegnazione per le applicazioni Azure gruppo tooimplement."
+title: Assegnare gruppi alle app Azure AD | Documentazione Microsoft
+description: Come implementare l'assegnazione di gruppo per le applicazioni Azure.
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -16,26 +16,26 @@ ms.date: 05/07/2017
 ms.author: kgremban
 ms.custom: H1Hack27Feb2017
 robots: noindex
-ms.openlocfilehash: 086619df09c13bf259afc3128d45ed804b99e519
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e0b0b87a454db96747f024e81882fe83d62fdbe2
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="assign-azure-active-directory-groups-tooan-application"></a>Assegnare gruppi di Azure Active Directory dell'applicazione tooan
-Prima di poter assegnare gli utenti e applicazioni tooan gruppi, è necessario richiedere assegnazione utente. toolearn come toorequire assegnazione utente, vedere hello [che richiedono l'assegnazione utente](active-directory-applications-guiding-developers-requiring-user-assignment.md) articolo.
+# <a name="assign-azure-active-directory-groups-to-an-application"></a>Assegnare gruppi di Azure Active Directory a un'applicazione
+Prima di assegnare utenti e gruppi a un'applicazione, è necessario richiedere l'assegnazione dell’utente. Per informazioni su come richiedere l'assegnazione dell'utente, vedere l'articolo [Richiedere l'assegnazione utente](active-directory-applications-guiding-developers-requiring-user-assignment.md) .
 
-Questo articolo si presuppone che si sono già creati gruppi di active directory hello in uso per questa applicazione.
+In questo articolo si presuppone che siano già stati creati gruppi nella active directory che si utilizza per questa applicazione.
 
-## <a name="assigning-groups-tooan-application"></a>L'assegnazione di gruppi tooan applicazione
-1. Accedi toohello portale di Azure con un account amministratore.
-2. Fare clic su hello **tutti gli elementi** elemento nel menu principale di hello.
-3. Scelta di una directory hello in uso per un'applicazione hello.
-4. Fare clic su hello **applicazioni** scheda.
-5. Selezionare un'applicazione hello hello elenco di applicazioni associato a questa directory.
-6. Fare clic su hello **utenti e gruppi** scheda.
-7. Elenco di filtri hello dei gruppi in active directory utilizzando hello **gruppi** elenco a discesa.
-8. Selezionare il gruppo di hello.
+## <a name="assigning-groups-to-an-application"></a>Assegnazione dei gruppi a un'applicazione
+1. Accedere al portale di Azure con un account amministratore.
+2. Fare clic sulla voce **Tutti gli elementi** del menu principale.
+3. Scegliere la directory utilizzata per l'applicazione.
+4. Fare clic sulla scheda **APPLICAZIONI** .
+5. Selezionare l'applicazione dall'elenco di applicazioni associate a questa directory.
+6. Fare clic sulla scheda **UTENTI E GRUPPI** .
+7. Filtrare l'elenco dei gruppi nella active directory utilizzando l’elenco a discesa **Gruppi** .
+8. Selezionare il gruppo.
 9. Fare clic su **ASSEGNARE**.
 10. Fare clic su **sì** quando richiesto.
 

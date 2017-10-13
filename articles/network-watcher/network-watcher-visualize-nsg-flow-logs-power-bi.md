@@ -1,9 +1,9 @@
 ---
-title: flusso di Azure Network Security Group aaaVisualizing registra con Power BI | Documenti Microsoft
-description: Questa pagina vengono descritti come flusso NSG toovisualize registra con Power BI.
+title: Visualizzare i log dei flussi dei gruppi di sicurezza di rete di Azure con Power BI | Microsoft Docs
+description: Questo articolo illustra come visualizzare i log dei flussi dei gruppi di sicurezza di rete con Power BI.
 services: network-watcher
 documentationcenter: na
-author: georgewallace
+author: jimdial
 manager: timlt
 editor: 
 ms.assetid: 1e4f95fa-f5f0-4e03-bc25-008fbfc4934c
@@ -13,24 +13,24 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
-ms.author: gwallace
-ms.openlocfilehash: d9adcf256df8fed68c39be1a026ca64cc6b5c6d5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.author: jdial
+ms.openlocfilehash: f32c8cd6e32e99bc34d62435bcd1883ba957e716
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="visualizing-network-security-group-flow-logs-with-power-bi"></a>Visualizzare i log dei flussi dei gruppi di sicurezza di rete con Power BI
 
-I registri del flusso di gruppo di sicurezza di rete consentono di tooview informazioni sul traffico IP in ingresso e uscita sui gruppi di sicurezza di rete. Questi log flusso mostrano in uscita e i flussi in ingresso per ogni regola, hello flusso hello NIC applica, 5 tuple informazioni flusso hello (origine/destinazione IP, porta di origine/destinazione, Protocol), e se il traffico hello consentito o negato.
+I log dei flussi dei gruppi di sicurezza di rete permettono di visualizzare le informazioni sul traffico IP in ingresso e in uscita nei gruppi di sicurezza di rete. Questi log mostrano i flussi in ingresso e in uscita in base a regole, la scheda di rete a cui si applica il flusso, informazioni a 5 tuple sul flusso, ad esempio l'indirizzo IP di origine/destinazione, la porta di origine/destinazione o il protocollo, e se il traffico è stato consentito o negato.
 
-Può essere difficile toogain approfondite del flusso di registrazione dei dati tramite la ricerca di file di log hello manualmente. In questo articolo è fornire una soluzione toovisualize più recente del flusso di log e apprendere il traffico di rete.
+Cercando manualmente nei file di log può essere difficile ottenere informazioni dettagliate sui dati di log dei flussi. Questo articolo offre una soluzione per visualizzare i log dei flussi più recenti e ottenere informazioni sul traffico di rete.
 
 ## <a name="scenario"></a>Scenario
 
-Connessione è hello seguente scenario, è stato configurato come sink hello per i dati di flusso di registrazione NSG account di archiviazione di Power BI desktop toohello. Dopo la connessione di account di archiviazione tooour, Power BI Scarica e analizza hello registri tooprovide una rappresentazione visiva del traffico hello che viene registrato tramite gruppi di sicurezza di rete.
+Nello scenario seguente Power BI Desktop viene connesso all'account di archiviazione configurato come sink per i dati di registrazione dei flussi dei gruppi di sicurezza di rete. Dopo la connessione all'account di archiviazione, Power BI scarica e analizza i log per fornire una rappresentazione visiva del traffico registrato dai gruppi di sicurezza di rete.
 
-Utilizzo di oggetti visivi hello forniti nel modello di hello che è possibile esaminare:
+Usando gli oggetti visivi inclusi nel modello è possibile esaminare quanto segue:
 
 * Talker principali
 * Dati di flusso della serie temporale in base alla direzione e alla regola decisa
@@ -38,88 +38,88 @@ Utilizzo di oggetti visivi hello forniti nel modello di hello che è possibile e
 * Flussi in base al gruppo di sicurezza di rete e alla regola
 * Flussi in base alla porta di destinazione
 
-modello di Hello fornito non è modificabile in modo è possibile modificarlo tooadd nuovi dati, gli oggetti visivi, o modificare query toosuit le proprie esigenze.
+Il modello incluso è modificabile. È quindi possibile aggiungervi nuovi dati e oggetti visivi o modificare le query in base alle esigenze.
 
 ## <a name="setup"></a>Configurazione
 
-Prima di iniziare, è necessario abilitare la registrazione dei flussi dei gruppi di sicurezza di rete in uno o più gruppi di sicurezza di rete nell'account usato. Flusso di log per istruzioni sull'abilitazione di sicurezza di rete, consultare l'articolo seguente toohello: [registrazione tooflow introduzione per gruppi di sicurezza di rete](network-watcher-nsg-flow-logging-overview.md).
+Prima di iniziare, è necessario abilitare la registrazione dei flussi dei gruppi di sicurezza di rete in uno o più gruppi di sicurezza di rete nell'account usato. Per istruzioni in proposito, vedere [Introduzione alla registrazione dei flussi per i gruppi di sicurezza di rete](network-watcher-nsg-flow-logging-overview.md).
 
-È inoltre necessario il client di Power BI Desktop hello installato nel computer in uso e sufficiente spazio libero nel computer toodownload e carico hello log dati che è presente nell'account di archiviazione.
+È necessario che il client di Power BI Desktop sia installato nel computer e che lo spazio disponibile nel computer sia sufficiente per scaricare e caricare i dati di log presenti nell'account di archiviazione.
 
 ![Diagramma di Visio][1]
 
 ### <a name="steps"></a>Passi
 
-1. Scaricare e aprire hello segue il modello di Power BI in Power BI Desktop applicazione hello [flusso PowerBI Watcher di rete registri modello](https://aka.ms/networkwatcherpowerbiflowlogstemplate)
-1. Immettere i parametri di Query hello richiesto
-    1. **StorageAccountName** – toohello specifica il nome dell'account di archiviazione hello contenente il flusso NSG hello log che si desideri tooload e visualizzare.
-    1. **NumberOfLogFiles** : Specifica il numero di hello del file di log che desideri toodownload e visualizzare in Power BI. Ad esempio, se si specifica 50, hello 50 file di log più recenti. Abbiamo 2 NSGs FF abilitata e configurata toosend NSG flusso registri toothis account, quindi hello nelle ultime 25 ore dei log possono essere visualizzate.
+1. Scaricare e aprire il [modello di log dei flussi Power BI di Network Watcher](https://aka.ms/networkwatcherpowerbiflowlogstemplate) nell'applicazione Power BI Desktop.
+1. Immettere i parametri di query obbligatori.
+    1. **StorageAccountName**: specifica il nome dell'account di archiviazione contenente i log dei flussi dei gruppi di sicurezza di rete da caricare e visualizzare.
+    1. **NumberOfLogFiles**: specifica il numero di file di log da scaricare e visualizzare in Power BI. Ad esempio, se si specifica 50, vengono scaricati e visualizzati i 50 file di log più recenti. Se vengono abilitati e configurati due gruppi di sicurezza di rete per l'invio di log dei flussi dei gruppi di sicurezza di rete a questo account, è possibile visualizzare i log corrispondenti alle ultime 25 ore.
 
     ![schermata principale di Power BI][2]
 
-1. Immettere la chiave di accesso dell'account di archiviazione hello. È possibile trovare le chiavi di accesso valido passando tooyour account di archiviazione in Azure nel portale e selezionando hello **chiavi di accesso** dal menu Impostazioni hello. Fare clic su **Connetti** e quindi applicare le modifiche.
+1. Immettere la chiave di accesso per l'account di archiviazione. Per trovare le chiavi di accesso valide, accedere all'account di archiviazione nel portale di Azure e selezionare **Chiavi di accesso** dal menu Impostazioni. Fare clic su **Connetti** e quindi applicare le modifiche.
 
     ![chiavi di accesso][3]
 
     ![chiave di accesso 2][4]
 
-4.  I log sono scaricare e analizzato e ora è possibile utilizzare gli oggetti visivi creati in precedenza hello.
+4.  I log vengono scaricati e analizzati ed è quindi possibile usare gli oggetti visivi creati in precedenza.
 
-## <a name="understanding-hello-visuals"></a>Comprendere gli oggetti visivi hello
+## <a name="understanding-the-visuals"></a>Informazioni sugli oggetti visivi
 
-Condizione in hello modello sono un set di oggetti visivi che consentono di senso di hello dati gruppo flusso di Log. Hello immagini seguenti mostrano un esempio dell'aspetto quando popolata con dati quale dashboard hello. Di seguito vengono esaminati in dettaglio i singoli oggetti visivi 
+Il modello include un set di oggetti visivi che aiutano a comprendere i dati dei registri dei flussi dei gruppi di sicurezza di rete. Le immagini seguenti mostrano un esempio dell'aspetto del dashboard popolato con i dati. Di seguito vengono esaminati in dettaglio i singoli oggetti visivi 
 
 ![Power BI][5]
  
-Talkers Top Hello Mostra visual hello gli indirizzi IP che hanno avviato hello la maggior parte delle connessioni su hello periodo specificato. dimensioni di Hello delle caselle hello corrispondono toohello numero di connessioni. 
+L'oggetto visivo Top Talkers (Talker principali) mostra gli indirizzi IP che hanno avviato il maggior numero di connessioni nel periodo specificato. La dimensione delle caselle corrisponde al relativo numero di connessioni. 
 
 ![Top Talkers][6]
 
-Hello grafici di serie temporali seguente mostrano il numero di hello di flussi periodo hello. grafico superiore Hello è segmentata per la direzione di flusso hello e hello inferiore è segmentata per decisione hello (Consenti o Nega). Con questo oggetto visivo è possibile esaminare le tendenze relative al traffico nel tempo e identificare eventuali cali o picchi anomali nel traffico o nella sua segmentazione.
+I grafici di serie temporali riportati di seguito mostrano il numero dei flussi nel periodo specificato. Il grafico superiore è segmentato in base alla direzione del flusso, mentre quello inferiore è segmentato in base alla decisione presa, ovvero consenso o negazione. Con questo oggetto visivo è possibile esaminare le tendenze relative al traffico nel tempo e identificare eventuali cali o picchi anomali nel traffico o nella sua segmentazione.
 
 ![flussi nel periodo][7]
 
-Hello seguenti grafici mostrano flussi hello per ogni interfaccia di rete, con segmentate per la direzione di flusso hello superiore e inferiore hello segmentate per decisione presa. Con queste informazioni, è possibile ottenere informazioni approfondite che delle macchine virtuali comunicate hello tooothers relativo la maggior parte delle e se il traffico tooa macchina virtuale specifica viene consentito o negato.
+I grafici seguenti mostrano i flussi per ogni interfaccia di rete. Il grafico superiore è segmentato in base alla direzione dei flussi, mentre quello inferiore è segmentato in base alla decisione presa. Questi dati permettono di ottenere informazioni dettagliate sulla macchina virtuale che ha comunicato di più rispetto alle altre e sul traffico consentito o negato verso una determinata macchina virtuale.
 
 ![flussi per scheda di rete][8]
 
-Hello seguente grafico rotellina ad anello mostri una suddivisione di flussi dalla porta di destinazione. Con queste informazioni, è possibile visualizzare le porte di destinazione hello usato più comunemente utilizzate all'interno di hello specificato periodo.
+Il grafico ad anello riportato di seguito mostra una suddivisione dei flussi in base alla porta di destinazione. Con queste informazioni è possibile visualizzare le porte di destinazione più usate nel periodo specificato.
 
 ![grafico ad anello][9]
 
-Hello seguente grafico a barre mostra hello flusso dal gruppo e regola. Con queste informazioni, è possibile vedere hello NSGs responsabile hello la maggior parte del traffico e suddivisione hello del traffico in un gruppo dalla regola.
+Il grafico a barre riportato di seguito mostra i flussi in base ai gruppi di sicurezza di rete e alle regole. Con queste informazioni è possibile visualizzare i gruppi di sicurezza di rete responsabili della maggior parte del traffico e la suddivisione del traffico in un gruppo di sicurezza di rete in base alle regole.
 
 ![grafico a barre][10]
  
-Hello seguenti grafici informativo visualizzato informazioni sulla NSGs hello presenti nei registri hello, hello numero di flussi acquisite nel periodo di hello e data hello del log primo di hello acquisiti. Queste informazioni consentono un'idea dei quali NSGs vengono registrate e hello intervallo di date di flussi.
+I grafici informativi riportati di seguito mostrano i gruppi di sicurezza di rete presenti nei log, il numero di flussi acquisiti nel periodo specificato e la data del log acquisito più di recente. Queste informazioni permettono di capire quali gruppi di sicurezza di rete vengono registrati e l'intervallo di date dei flussi.
 
 ![grafico informativo 1][11]
 
 ![grafico informativo 2][12]
 
-Questo modello include hello tooallow i filtri dei dati in seguito si tooview solo hello i dati è interessati. È possibile applicare filtri ai gruppi di risorse, ai gruppi di sicurezza di rete e alle regole. È anche possibile filtrare informazioni 5 tuple, delle decisioni e ora di hello log hello è stato scritto.
+Questo modello include i filtri dei dati indicati di seguito, che permettono di visualizzare solo i dati rilevanti. È possibile applicare filtri ai gruppi di risorse, ai gruppi di sicurezza di rete e alle regole. È anche possibile applicare filtri alle informazioni a 5 tuple, alle decisioni e all'orario di scrittura del log.
 
 ![filtri dei dati][13]
 
-## <a name="conclusion"></a>Conclusioni
+## <a name="conclusion"></a>Conclusione
 
-Abbiamo anche mostrato in questo scenario che utilizzando i registri di gruppo di sicurezza di rete flusso forniti da Watcher di rete e di Power BI, è sono in grado di toovisualize e comprendere il traffico di hello. Power BI usando il modello di hello fornito, il download dei log hello direttamente dall'archivio e li elabora in locale. Modello di tempo impiegato tooload hello varia a seconda numero hello di file richiesti e le dimensioni totali dei file scaricati.
+Questo scenario ha permesso di dimostrare come l'uso dei registri dei flussi dei gruppi di sicurezza di rete inclusi in Network Watcher e Power BI permetta di visualizzare e comprendere il traffico. Usando il modello incluso, Power BI scarica i log direttamente dall'archivio e li elabora in locale. Il tempo necessario a caricare il modello varia a seconda del numero di file richiesti e della dimensione totale dei file scaricati.
 
-È gratuito toocustomize questo modello per le proprie esigenze. Power BI e i log dei flussi dei gruppi di sicurezza di rete possono essere usati in molti modi diversi. 
+È possibile personalizzare il modello in base alle esigenze. Power BI e i log dei flussi dei gruppi di sicurezza di rete possono essere usati in molti modi diversi. 
 
 ## <a name="notes"></a>Note
 
 * Per impostazione predefinita, i log vengono archiviati in `https://{storageAccountName}.blob.core.windows.net/insights-logs-networksecuritygroupflowevent/`
 
-    * Se esistono altri dati in un'altra directory sono hello toopull query e dati hello processo devono essere modificati.
+    * Se esistono altri dati in un'altra directory, è necessario modificare le query per il pull e l'elaborazione dei dati.
 
-* modello Hello fornito non è consigliabile usare con più di 1 GB di log.
+* Non è consigliabile usare il modello incluso con più di 1 GB di log.
 
 * In presenza di una grande quantità di log, è consigliabile prendere in considerazione una soluzione con un altro archivio dati, come Data Lake o SQL Server.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Informazioni su come toovisualize il flusso di gruppo Registra con hello Elastick Stack visitando [visualizzare tooand di modelli di traffico di rete dalle macchine virtuali utilizzando strumenti open source](network-watcher-using-open-source-tools.md)
+Per informazioni su come visualizzare i log dei flussi dei gruppi di sicurezza di rete con Elastick Stack, vedere [Visualize network traffic patterns to and from your VMs using open source tools](network-watcher-using-open-source-tools.md) (Visualizzare i modelli di traffico di rete da e verso le macchine virtuali con strumenti open source)
 
 [1]: ./media/network-watcher-visualize-nsg-flow-logs-power-bi/figure1.png
 [2]: ./media/network-watcher-visualize-nsg-flow-logs-power-bi/figure2.png

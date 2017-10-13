@@ -1,5 +1,5 @@
 ---
-title: 'aaaAzure esempio DMZ: compilare una semplice rete Perimetrale con NSGs | Documenti Microsoft'
+title: 'Esempio di rete perimetrale di Azure: Creare una rete perimetrale semplice con gruppi di sicurezza di rete | Microsoft Docs'
 description: Creare una rete perimetrale con gruppi di sicurezza di rete
 services: virtual-network
 documentationcenter: na
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/03/2017
 ms.author: jonor
-ms.openlocfilehash: 11c5c6026da30fbc9c5e585f5c16e2d411d6fd80
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ec29e6b250f927a3a4a94ffdf83d6c7c0e325722
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="example-1--build-a-simple-dmz-using-nsgs-with-an-azure-resource-manager-template"></a>Esempio 1: Creare una rete perimetrale semplice usando gruppi di sicurezza di rete con un modello di Azure Resource Manager
-[Restituire la pagina sicurezza limite Best Practices toohello][HOME]
+[Tornare alla pagina relativa alle procedure consigliate sui limiti di sicurezza][HOME]
 
 > [!div class="op_single_selector"]
 > * [Modello di Resource Manager](virtual-networks-dmz-nsg.md)
@@ -29,61 +29,61 @@ ms.lasthandoff: 10/06/2017
 > 
 >
 
-Questo esempio descrive come creare una rete perimetrale primitiva con quattro server Windows e gruppi di sicurezza di rete. In questo esempio viene descritto ciascun hello modello pertinenti sezioni tooprovide una comprensione più approfondita di ogni passaggio. È inoltre disponibile un tooprovide sezione Scenario traffico dettagliate approfondimenti sulla modalità di prosecuzione di traffico tramite i livelli di difesa hello DMZ hello. Infine, nella sezione dei riferimenti hello è toobuild di codice e le istruzioni modello completa hello questo ambiente tootest e sperimentare vari scenari. 
+Questo esempio descrive come creare una rete perimetrale primitiva con quattro server Windows e gruppi di sicurezza di rete. Per comprendere in modo approfondito ogni passaggio, questo esempio descrive tutte le sezioni del modello pertinenti. È disponibile anche una sezione sugli scenari di traffico con istruzioni dettagliate sul percorso seguito dal traffico attraverso i livelli di difesa della rete perimetrale. La sezione Riferimenti, infine, include le istruzioni e il codice del modello completi per creare l'ambiente per testare e sperimentare vari scenari. 
 
 [!INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)] 
 
 ![Rete perimetrale in ingresso con gruppo di sicurezza di rete][1]
 
 ## <a name="environment-description"></a>Descrizione dell'ambiente
-In questo esempio una sottoscrizione contiene hello seguenti risorse:
+Una sottoscrizione in questo esempio include le risorse seguenti:
 
 * Un unico gruppo di risorse
 * Una rete virtuale con due subnet: front-end e back-end
-* Un gruppo di sicurezza di rete che viene applicato tooboth subnet
-* Un server Windows che rappresenta un server Web applicazioni ("IIS01").
+* Un gruppo di sicurezza di rete applicato a entrambe le subnet
+* Un server Windows che rappresenta un server Web applicazioni ("IIS01")
 * Due server Windows che rappresentano i server applicazioni back-end ("AppVM01", "AppVM02")
 * Un server Windows che rappresenta un server DNS ("DNS01")
-* Un indirizzo IP pubblico associato hello applicazione web server
+* Un indirizzo IP pubblico associato al server Web applicazioni
 
-Nella sezione dei riferimenti, hello è un modello di gestione risorse di Azure tooan collegamento che consente di creare ambiente hello descritta in questo esempio. Macchine virtuali hello di compilazione e le reti virtuali, anche se l'operazione eseguita dal modello di esempio hello, non sono descritti in dettaglio in questo documento. 
+Un collegamento nella sezione Riferimenti a un modello di Azure Resource Manager compila l'ambiente descritto in questo esempio. La creazione di VM e reti virtuali, anche se eseguita dal modello di esempio, non è descritta in dettaglio in questo documento. 
 
-**toobuild questo ambiente** (istruzioni dettagliate sono nella sezione dei riferimenti hello di questo documento);
+**Per compilare questo ambiente**. Istruzioni dettagliate sono disponibili nella sezione Riferimenti di questo documento;
 
-1. Distribuire hello modello di gestione risorse di Azure in: [modelli di avvio rapido di Azure][Template]
-2. Installare l'applicazione di esempio hello in: [Script dell'applicazione di esempio][SampleApp]
+1. Distribuire il modello di Azure Resource Manager in [Modelli di avvio rapido di Azure][Template]
+2. Installare l'applicazione di esempio in: [Script di applicazione di esempio][SampleApp]
 
 >[!NOTE]
->server di back-end tooany tooRDP in questo caso, il server IIS hello viene utilizzato come una "salto casella." Primo server IIS toohello RDP e quindi dal server di hello IIS Server RDP toohello back-end. In alternativa è possibile associare un indirizzo IP alla scheda di interfaccia di rete di ogni server per semplificare la connessione tramite RDP.
+>Per eseguire la connessione tramite RDP ai server back-end in questa istanza, il server IIS viene usato come "jumpbox". Eseguire prima la connessione tramite RDP al server IIS e, quindi, dal server IIS eseguire la connessione tramite RDP al server back-end. In alternativa è possibile associare un indirizzo IP alla scheda di interfaccia di rete di ogni server per semplificare la connessione tramite RDP.
 > 
 >
 
-Hello sezioni seguenti forniscono una descrizione dettagliata di hello il gruppo di sicurezza di rete e il funzionamento di questo esempio, illustrando le righe di chiave di hello il modello di gestione risorse di Azure.
+Le sezioni seguenti descrivono in modo dettagliato il gruppo di sicurezza di rete e il relativo funzionamento per questo esempio spiegando le righe principali del modello di Azure Resource Manager.
 
 ## <a name="network-security-groups-nsg"></a>Gruppi di sicurezza di rete (NGS)
 Per questo esempio viene creato un gruppo di sicurezza di rete, in cui vengono caricate sei regole. 
 
 >[!TIP]
->In genere, si deve creare regole "Consenti" specifiche prima e quindi hello ultima più generico "Deny" regole. Hello assegnata la priorità determina quali regole vengono valutate per prime. Una volta traffico trovato tooapply tooa specifica regola, non vengono valutate altre regole. Possono essere applicate regole di gruppo in hello nella direzione in ingresso o in uscita (dalla prospettiva di hello della subnet hello).
+>In genere, è consigliabile creare prima di tutto le regole specifiche di tipo "Consenti" e infine le regole di tipo "Nega" più generiche. La priorità assegnata determina quali regole vengono valutate per prime. Quando si rileva che al traffico è applicabile una determinata regola, non vengono valutate altre regole. Le regole del gruppo di sicurezza di rete possono essere applicate nella direzione in ingresso o in uscita, dal punto di vista della subnet.
 >
 >
 
-In modo dichiarativo, hello segue le regole è compilato per il traffico in ingresso:
+A livello dichiarativo, per il traffico in ingresso vengono create le righe seguenti:
 
 1. Il traffico DNS interno (porta 53) è consentito.
-2. È consentito il traffico RDP (porta 3389) da hello Internet tooany VM
-3. È consentito il traffico HTTP (porta 80) dal server di tooweb Internet hello (IIS01)
-4. È consentito qualsiasi tipo di traffico (tutte le porte) da IIS01 tooAppVM1
-5. Qualsiasi tipo di traffico (tutte le porte) da hello Internet toohello viene negato l'intera rete virtuale (entrambi subnet)
-6. Qualsiasi tipo di traffico (tutte le porte) dalla subnet di back-end toohello subnet front-end hello negato
+2. Il traffico RDP (porta 3389) da Internet a qualsiasi macchina virtuale è consentito.
+3. Il traffico HTTP (porta 80) da Internet al server Web (IIS01) è consentito.
+4. Tutto il traffico (tutte le porte) da IIS01 ad AppVM1 è consentito.
+5. Tutto il traffico (tutte le porte) da Internet all'intera rete virtuale (entrambe le subnet) viene bloccato.
+6. Tutto il traffico (tutte le porte) dalla subnet front-end alla subnet back-end viene bloccato.
 
-Con queste subnet associata tooeach regole, se una richiesta HTTP in ingresso dal server web toohello Internet hello entrambi regole 3 (Consenti) e 5 (Nega) verrà applicata, ma poiché la regola 3 ha una priorità più alta solo esso viene applicato e regola 5 sarebbe non entrano in gioco. Richiesta HTTP hello sarebbe è pertanto a server web toohello. Se il traffico stesso cercava server DNS01 di hello tooreach, regola 5 (Nega) sarebbe hello prima tooapply hello il traffico e non sarebbe consentito toopass toohello server. Regola 6 (Nega) Blocca subnet front-end hello dalla conversazione toohello subnet di back-end (ad eccezione di traffico consentito nelle regole 1 e 4), il set di regole protegge rete back-end hello nel caso in cui un'utente malintenzionato compromette hello applicazione web sul front-end hello autore dell'attacco hello sarebbe non dispongono di accesso toohello back-end "protetto" rete (solo tooresources esposte nel server AppVM01 hello).
+Con queste regole associate a ogni subnet, se una richiesta HTTP proviene da Internet ed è diretta verso il server Web, le regole 3 (consenti) e 5 (nega) saranno applicabili, ma poiché la regola 3 ha una priorità maggiore, verrà applicata solo tale regola e la regola 5 non verrà presa in considerazione. La richiesta HTTP verrà quindi consentita sul server Web. Se lo stesso traffico prova a raggiungere il server DNS01, la regola 5 (nega) sarà la prima applicabile e il traffico non sarà autorizzato a passare al server. La regola 6 (nega) impedisce alla subnet front-end di comunicare con la subnet back-end, ad eccezione del traffico consentito nelle regole 1 e 4; questo set di regole protegge la rete back-end nel caso in cui un utente malintenzionato comprometta l'applicazione Web sul front-end. L'utente malintenzionato avrà infatti accesso limitato alla rete "protetta" back-end, ovvero solo alle risorse esposte nel server AppVM01.
 
-Una regola in uscita predefinito che consente il traffico in uscita toohello internet. Per questo esempio si consente il traffico in uscita e non si modificano le regole in uscita. tooapply tootraffic criteri di sicurezza in entrambe le direzioni, Routing definito dall'utente è obbligatorio e viene esaminata in "Esempio 3" in hello [pagina migliori procedure consigliate di sicurezza limite][HOME].
+Esiste una regola in uscita predefinita che consente il traffico in uscita verso Internet. Per questo esempio si consente il traffico in uscita e non si modificano le regole in uscita. Per applicare criteri di sicurezza al traffico in entrambe le direzioni, è obbligatorio il routing definito dall'utente, descritto nell'"Esempio 3" della [pagina relativa alle procedure consigliate sui limiti di sicurezza][HOME].
 
 Ogni regola viene illustrata in dettaglio nel modo seguente:
 
-1. Una risorsa del gruppo di sicurezza di rete deve essere stata creata un'istanza toohold hello regole:
+1. È necessario creare l'istanza della risorsa gruppo di sicurezza di rete per inserire le regole:
 
     ```JSON
     "resources": [
@@ -97,10 +97,10 @@ Ogni regola viene illustrata in dettaglio nel modo seguente:
     ]
     ``` 
 
-2. prima regola di Hello in questo esempio consente il traffico DNS tra tutti i server DNS di toohello reti interne nella subnet back-end hello. regola di Hello include alcuni parametri importanti:
-  * Questi tag sono identificatori forniti dal sistema che consentono di tooaddress un modo semplice una categoria di dimensioni maggiore di prefissi di indirizzo "destinationAddressPrefix" - regole di possono utilizzare un tipo speciale di prefisso dell'indirizzo denominato "Tag predefinito". Questa regola utilizza hello Tag predefinito "Internet" toosignify qualche indirizzo di fuori di hello rete virtuale. Altre etichette di prefisso sono VirtualNetwork e AzureLoadBalancer.
-  * "Direction" indica la direzione del flusso di traffico a cui verrà applicata questa regola direzione Hello è dal punto di vista di hello di subnet hello o macchina virtuale (in base a cui è associato questo gruppo). In questo modo se direzione è "Inbound" e il traffico sta entrando in subnet hello, verrà applicata la regola hello e traffico lasciando subnet hello potrebbe non essere interessato da questa regola.
-  * "Priority" imposta hello l'ordine in cui viene valutato un flusso di traffico. Hello hello numero hello superiore hello priorità inferiore. Quando il flusso di traffico specifico tooa si applica una regola, non vengono elaborate ulteriori regole. Pertanto se una regola con priorità 1 consente il traffico e una regola con priorità 2 impedisca il traffico, entrambe le regole si applicano tootraffic quindi sia possibile usare il traffico hello tooflow (poiché la regola 1 ha una priorità più alta da cui ha effetto e non altre regole sono state applicate).
+2. La prima regola in questo esempio consente il traffico DNS fra tutte le reti interne al server DNS nella subnet back-end. Nella regola sono inclusi alcuni parametri importanti:
+  * Questi tag sono identificatori forniti dal sistema che consentono di gestire in modo semplice una categoria più ampia di prefissi di indirizzi; "destinationAddressPrefix": le regole possono usare un tipo speciale di prefisso denominato "Tag predefinito". Questa regola usa il tag predefinito "Internet" per indicare qualsiasi indirizzo all'esterno della rete virtuale. Altre etichette di prefisso sono VirtualNetwork e AzureLoadBalancer.
+  * "Direction" indica la direzione del flusso di traffico a cui verrà applicata questa regola dal punto di vista della subnet o della macchina virtuale, a seconda della posizione a cui è associato il gruppo di sicurezza di rete. Se Direction è impostato su "Inbound", la regola verrà applicata al traffico in ingresso nella subnet, ma non al traffico in uscita da essa.
+  * "Priority" consente di impostare l'ordine in base al quale viene valutato un flusso di traffico. Più è basso il numero, maggiore sarà la priorità. Quando un flusso di traffico specifico è applicabile a una determinata regola, non vengono elaborate altre regole. Se quindi una regola con priorità 1 consente il traffico e una regola con priorità 2 lo blocca ed entrambe le regole sono applicabili, il passaggio del traffico viene consentito perché viene applicata la regola 1 con priorità più alta e non vengono considerate altre regole.
   * "Access" indica se il traffico a cui si applica la regola viene bloccato ("Deny") o consentito ("Allow").
 
     ```JSON
@@ -122,7 +122,7 @@ Ogni regola viene illustrata in dettaglio nel modo seguente:
       },
     ```
 
-3. Questa regola consente di tooflow il traffico RDP da hello internet toohello la porta RDP in qualsiasi server in hello associato subnet. 
+3. Questa regola consente il flusso del traffico RDP da Internet alla porta RDP su qualsiasi server sulla subnet associata. 
 
     ```JSON
     {
@@ -141,13 +141,13 @@ Ogni regola viene illustrata in dettaglio nel modo seguente:
     },
     ```
 
-4. Questa regola consente di server web in ingresso internet traffico toohit hello. Questa regola non modifica il comportamento di routing hello. regola di Hello consente solo il traffico destinato IIS01 toopass. Pertanto se il traffico proveniente da Internet hello disponesse di server web hello come destinazione di questa regola consente e arrestare l'elaborazione di altre regole. (Regola hello priorità 140 tutte le altre traffico in ingresso internet è bloccato). Se si sta elaborando solo il traffico HTTP, questa regola può essere ulteriormente limitato tooonly Consenti destinazione la porta 80.
+4. Questa regola consente al traffico Internet in ingresso di raggiungere il server Web. Il comportamento di routing rimane invariato, ma il traffico destinato a IIS01 può transitare. Se quindi il traffico proveniente da Internet ha come destinazione il server Web, viene consentito e non vengono elaborate altre regole (nella regola con priorità 140 viene bloccato qualsiasi altro tipo di traffico Internet in ingresso). Se si elabora soltanto traffico HTTP, questa regola può essere limitata ulteriormente in modo da consentire esclusivamente la porta di destinazione 80.
 
     ```JSON
     {
       "name": "enable_web_rule",
       "properties": {
-        "description": "Enable Internet too[variables('VM01Name')]",
+        "description": "Enable Internet to [variables('VM01Name')]",
         "protocol": "Tcp",
         "sourcePortRange": "*",
         "destinationPortRange": "80",
@@ -160,13 +160,13 @@ Ogni regola viene illustrata in dettaglio nel modo seguente:
       },
     ```
 
-5. Questa regola consente il traffico toopass dal server IIS01 hello toohello AppVM01 server, una regola successiva blocca tutto il traffico tooBackend altri server front-end. tooimprove questa regola, se la porta hello è noto che deve essere aggiunti. Ad esempio, se il server IIS hello sta impegnando solo SQL Server in AppVM01, hello intervallo di porte di destinazione deve essere modificato da "*" (Any) too1433 (porta SQL Buongiorno) consentendo in tal modo una superficie di attacco in ingresso più piccola in AppVM01 deve hello web applicazione dovesse essere compromessa.
+5. Questa regola consente il passaggio del traffico dal server IIS01 al server AppVM01 e una regola successiva blocca tutto il resto del traffico dal front-end al back-end. Per migliorare la regola, è consigliabile aggiungere la porta, se è nota. Ad esempio, se il server IIS ha necessità di raggiungere solo SQL Server in AppVM01, l'impostazione dell'intervallo delle porte di destinazione (DestinationPortRange) deve essere modificata da "*" (qualsiasi) a 1433 (porta SQL), in modo da esporre una superficie di attacco più limitata in AppVM01 nel caso l'applicazione Web venisse compromessa.
 
     ```JSON
     {
       "name": "enable_app_rule",
       "properties": {
-        "description": "Enable [variables('VM01Name')] too[variables('VM02Name')]",
+        "description": "Enable [variables('VM01Name')] to [variables('VM02Name')]",
         "protocol": "*",
         "sourcePortRange": "*",
         "destinationPortRange": "*",
@@ -179,13 +179,13 @@ Ogni regola viene illustrata in dettaglio nel modo seguente:
     },
      ```
 
-6. Questa regola impedisce il traffico da hello internet tooany server hello rete. Con regole di hello priorità 110 e 120, effetto hello è tooallow solo internet traffico toohello firewall in entrata e le porte RDP nel server e blocca tutto il resto. Questa regola è "alternativo" regola tooblock tutti i flussi imprevisti.
+6. Questa regola blocca il traffico da Internet a qualsiasi server della rete. Insieme alla regola con priorità 110 e 120, consente esclusivamente il traffico Internet in ingresso diretto al firewall e alle porte RDP sui server e blocca tutto il traffico restante. Questa regola è di tipo fail-safe per bloccare tutti i flussi imprevisti.
 
     ```JSON
     {
       "name": "deny_internet_rule",
       "properties": {
-        "description": "Isolate hello [variables('VNetName')] VNet from hello Internet",
+        "description": "Isolate the [variables('VNetName')] VNet from the Internet",
         "protocol": "*",
         "sourcePortRange": "*",
         "destinationPortRange": "*",
@@ -198,13 +198,13 @@ Ogni regola viene illustrata in dettaglio nel modo seguente:
     },
      ```
 
-7. regola finale Hello impedisca il traffico dalla subnet di back-end toohello subnet front-end hello. Poiché questa regola è una regola sola in ingresso, è consentito traffico inverso (da hello back-end toohello front-end).
+7. La regola finale blocca il traffico dalla subnet front-end alla subnet back-end. Poiché si tratta di una regola solo di tipo Inbound, il traffico in direzione opposta è consentito (dal back-end al front-end).
 
     ```JSON
     {
       "name": "deny_frontend_rule",
       "properties": {
-        "description": "Isolate hello [variables('Subnet1Name')] subnet from hello [variables('Subnet2Name')] subnet",
+        "description": "Isolate the [variables('Subnet1Name')] subnet from the [variables('Subnet2Name')] subnet",
         "protocol": "*",
         "sourcePortRange": "*",
         "destinationPortRange": "*",
@@ -218,143 +218,143 @@ Ogni regola viene illustrata in dettaglio nel modo seguente:
     ```
 
 ## <a name="traffic-scenarios"></a>Scenari di traffico
-#### <a name="allowed-internet-tooweb-server"></a>(*Consentito*) server tooweb Internet
-1. Un utente internet richiede una pagina HTTP da indirizzo IP pubblico hello di hello che NIC associato hello IIS01 NIC
-2. indirizzo IP pubblico Hello passa toohello il traffico tra reti virtuali verso IIS01 (server web hello)
+#### <a name="allowed-internet-to-web-server"></a>(*Consentito*) Da Internet al server Web
+1. Un utente su Internet richiede una pagina HTTP dall'indirizzo IP pubblico della scheda di interfaccia di rete associata alla scheda di interfaccia di rete di IIS01
+2. L'indirizzo IP pubblico passa il traffico alla rete virtuale verso IIS01 (il server Web)
 3. La subnet front-end inizia l'elaborazione delle regole in ingresso:
-  1. GRUPPO regola 1 (DNS) non è applicabile, spostare toonext regola
-  2. GRUPPO regola 2 (RDP) non è applicabile, spostare toonext regola
-  3. Applicare NSG regola 3 (tooIIS01 Internet), il traffico è l'elaborazione della regola consentita, arresto
-4. Traffico raggiunge l'indirizzo IP interno del server web hello IIS01 (10.0.1.5)
-5. Iis01 è in ascolto per il traffico web, riceve la richiesta e avvia l'elaborazione richiesta hello
-6. Iis01 richiede SQL Server hello su AppVM01 per informazioni
+  1. Regola gruppo di sicurezza di rete 1 (DNS) non applicabile, passa alla regola successiva.
+  2. Regola gruppo di sicurezza di rete 2 (RDP) non applicabile, passa alla regola successiva.
+  3. Regola gruppo di sicurezza di rete 3 (da Internet a IIS01) applicabile, il traffico è consentito, l'elaborazione delle regole si arresta.
+4. Il traffico raggiunge l'indirizzo IP interno del server Web IIS01 (10.0.1.5).
+5. IIS01 è in ascolto del traffico Web, riceve la richiesta e ne avvia l'elaborazione.
+6. IIS01 chiede informazioni a SQL Server in AppVM01.
 7. Non sono impostate regole in uscita sulla subnet front-end, il traffico è consentito.
-8. subnet di back-end Hello inizia l'elaborazione della regola in ingresso:
-  1. GRUPPO regola 1 (DNS) non è applicabile, spostare toonext regola
-  2. GRUPPO regola 2 (RDP) non è applicabile, spostare toonext regola
-  3. GRUPPO regola 3 (tooFirewall Internet) non è applicabile, spostare toonext regola
-  4. Applicare la regola gruppo 4 (IIS01 tooAppVM01), il traffico è l'elaborazione della regola consentita, arresto
-9. AppVM01 riceve hello Query SQL e risponde
-10. Poiché non esistono regole in uscita nella subnet back-end hello, risposta hello è consentito
+8. La subnet back-end inizia l'elaborazione delle regole in ingresso:
+  1. Regola gruppo di sicurezza di rete 1 (DNS) non applicabile, passa alla regola successiva.
+  2. Regola gruppo di sicurezza di rete 2 (RDP) non applicabile, passa alla regola successiva.
+  3. Regola gruppo di sicurezza di rete 3 (da Internet a firewall), non applicabile, passa alla regola successiva.
+  4. Regola gruppo di sicurezza di rete 4 (da IIS01 ad AppVM01) applicabile, il traffico è consentito, l'elaborazione delle regole si arresta.
+9. AppVM01 riceve la query SQL e risponde.
+10. Non essendoci regole in uscita sulla subnet back-end, la risposta è consentita
 11. La subnet front-end inizia l'elaborazione delle regole in ingresso:
-  1. Nessuna regola di gruppo che si applica tooInbound traffico dalla subnet front-end toohello di subnet back-end di hello, pertanto nessuna delle regole NSG hello applicabile
-  2. regola di sistema predefinito Hello consenta il traffico tra subnet consente il traffico in modo hello traffico è consentito.
-12. server IIS Hello riceve risposta SQL hello e completa di risposta HTTP hello e invia toohello richiedente
-13. Poiché non esistono regole in uscita nella subnet front-end hello, risposta hello è consentito e hello utente Internet riceve hello web pagina richiesta.
+  1. Non sono presenti regole del gruppo di sicurezza di rete applicabili al traffico in ingresso dalla subnet back-end alla subnet front-end, quindi nessuna regola del gruppo di sicurezza di rete è applicabile.
+  2. La regola di sistema predefinita che consente il traffico tra le subnet consentirebbe questo tipo di traffico, perciò è consentito.
+12. Il server IIS riceve la risposta SQL, completa la risposta HTTP e la invia al richiedente.
+13. Non essendoci regole in uscita sulla subnet front-end, la risposta è consentita e l'utente su Internet riceve la pagina Web richiesta.
 
-#### <a name="allowed-rdp-tooiis-server"></a>(*Consentito*) server tooIIS RDP
-1. Un amministratore del Server su internet richiede un tooIIS01 sessione RDP in indirizzo IP pubblico hello di hello che NIC associato hello NIC IIS01 (questo indirizzo IP pubblico è disponibile tramite hello portale o PowerShell)
-2. indirizzo IP pubblico Hello passa toohello il traffico tra reti virtuali verso IIS01 (server web hello)
+#### <a name="allowed-rdp-to-iis-server"></a>(*Consentito*) Traffico RDP al server IIS
+1. L'amministratore del server su Internet richiede una sessione RDP a IIS01 sull'indirizzo IP pubblico della scheda di interfaccia di rete associata alla scheda di interfaccia di rete di IIS01; questo indirizzo IP pubblico è disponibile tramite il portale o PowerShell.
+2. L'indirizzo IP pubblico passa il traffico alla rete virtuale verso IIS01 (il server Web)
 3. La subnet front-end inizia l'elaborazione delle regole in ingresso:
-  1. GRUPPO regola 1 (DNS) non è applicabile, spostare toonext regola
+  1. Regola gruppo di sicurezza di rete 1 (DNS) non applicabile, passa alla regola successiva.
   2. Regola gruppo di sicurezza di rete 2 (RDP) applicabile, il traffico è consentito, l'elaborazione delle regole si arresta.
 4. Senza regole in uscita, sono applicabili le regole predefinite e il traffico restituito è consentito.
 5. La sessione RDP è abilitata.
-6. Iis01 chiesta la password e il nome utente hello
+6. IIS01 richiede il nome utente e la password
 
 >[!NOTE]
->server di back-end tooany tooRDP in questo caso, il server IIS hello viene utilizzato come una "salto casella." Primo server IIS toohello RDP e quindi dal server di hello IIS Server RDP toohello back-end.
+>Per eseguire la connessione tramite RDP ai server back-end in questa istanza, il server IIS viene usato come "jumpbox". Eseguire prima la connessione tramite RDP al server IIS e, quindi, dal server IIS eseguire la connessione tramite RDP al server back-end.
 >
 >
 
 #### <a name="allowed-web-server-dns-look-up-on-dns-server"></a>(*Consentito*) Ricerca DNS del server Web sul server DNS
-1. Web Server, IIS01, necessita di un feed di dati in www.data.gov, ma è necessario tooresolve hello indirizzo.
-2. Hello configurazione di rete per gli elenchi di rete virtuale hello DNS01 (10.0.2.4 nella subnet back-end hello) come server DNS primario hello, IIS01 invia hello DNS richiesta tooDNS01
+1. Il server Web, IIS01, richiede un feed di dati all'indirizzo www.data.gov, ma deve risolvere l'indirizzo.
+2. La configurazione di rete per la rete virtuale elenca DNS01 (10.0.2.4 nella subnet back-end) come server DNS primario, IIS01 invia la richiesta DNS a DNS01.
 3. Non sono impostate regole in uscita sulla subnet front-end, il traffico è consentito.
 4. La subnet back-end inizia l'elaborazione delle regole in ingresso:
   * Regola gruppo di sicurezza di rete 1 (DNS) applicabile, il traffico è consentito, l'elaborazione delle regole si arresta.
-5. Server DNS riceve una richiesta di hello
-6. Server DNS non dispone di indirizzo hello memorizzati nella cache e richiede un server radice DNS su hello internet
+5. Il server DNS riceve la richiesta.
+6. Il server DNS non ha l'indirizzo memorizzato nella cache e invia la richiesta a un server DNS radice su Internet.
 7. Non sono impostate regole in uscita sulla subnet back-end, il traffico è consentito.
-8. Server DNS Internet risponde, poiché questa sessione è stata avviata internamente, la risposta hello è consentita
-9. Server DNS memorizza nella cache la risposta hello e risponde toohello richiesta iniziale indietro tooIIS01
+8. Il server DNS Internet risponde perché la sessione è stata avviata internamente, la risposta è consentita.
+9. Il server DNS memorizza la risposta nella cache e restituisce a IIS01 la risposta alla richiesta iniziale.
 10. Non sono impostate regole in uscita sulla subnet back-end, il traffico è consentito.
 11. La subnet front-end inizia l'elaborazione delle regole in ingresso:
-  1. Nessuna regola di gruppo che si applica tooInbound traffico dalla subnet front-end toohello di subnet back-end di hello, pertanto nessuna delle regole NSG hello applicabile
-  2. regola di sistema predefinito Hello consenta il traffico tra subnet consente il traffico in modo hello traffico è consentito
-12. Iis01 riceve risposta hello da DNS01
+  1. Non sono presenti regole del gruppo di sicurezza di rete applicabili al traffico in ingresso dalla subnet back-end alla subnet front-end, quindi nessuna regola del gruppo di sicurezza di rete è applicabile.
+  2. La regola di sistema predefinita che consente il traffico tra le subnet consentirebbe questo tipo di traffico, perciò è consentito.
+12. IIS01 riceve la risposta da DNS01.
 
 #### <a name="allowed-web-server-access-file-on-appvm01"></a>(*Consentito*) Il server Web richiede l'accesso a un file in AppVM01
 1. IIS01 richiede un file in AppVM01.
 2. Non sono impostate regole in uscita sulla subnet front-end, il traffico è consentito.
-3. subnet di back-end Hello inizia l'elaborazione della regola in ingresso:
-  1. GRUPPO regola 1 (DNS) non è applicabile, spostare toonext regola
-  2. GRUPPO regola 2 (RDP) non è applicabile, spostare toonext regola
-  3. GRUPPO regola 3 (tooIIS01 Internet) non è applicabile, spostare toonext regola
-  4. Applicare la regola gruppo 4 (IIS01 tooAppVM01), il traffico è l'elaborazione della regola consentita, arresto
-4. AppVM01 riceve la richiesta di hello e risponde con il file (presupponendo che l'accesso è autorizzato)
-5. Poiché non esistono regole in uscita nella subnet back-end hello, risposta hello è consentito
+3. La subnet back-end inizia l'elaborazione delle regole in ingresso:
+  1. Regola gruppo di sicurezza di rete 1 (DNS) non applicabile, passa alla regola successiva.
+  2. Regola gruppo di sicurezza di rete 2 (RDP) non applicabile, passa alla regola successiva.
+  3. Regola gruppo di sicurezza di rete 3 (da Internet a IIS01) non applicabile, passa alla regola successiva.
+  4. Regola gruppo di sicurezza di rete 4 (da IIS01 ad AppVM01) applicabile, il traffico è consentito, l'elaborazione delle regole si arresta.
+4. AppVM01 riceve la richiesta e risponde con il file (presupponendo che l'accesso sia autorizzato).
+5. Non essendoci regole in uscita sulla subnet back-end, la risposta è consentita
 6. La subnet front-end inizia l'elaborazione delle regole in ingresso:
-  1. Nessuna regola di gruppo che si applica tooInbound traffico dalla subnet front-end toohello di subnet back-end di hello, pertanto nessuna delle regole NSG hello applicabile
-  2. regola di sistema predefinito Hello consenta il traffico tra subnet consente il traffico in modo hello traffico è consentito.
-7. server IIS Hello riceve file hello
+  1. Non sono presenti regole del gruppo di sicurezza di rete applicabili al traffico in ingresso dalla subnet back-end alla subnet front-end, quindi nessuna regola del gruppo di sicurezza di rete è applicabile.
+  2. La regola di sistema predefinita che consente il traffico tra le subnet consentirebbe questo tipo di traffico, perciò è consentito.
+7. Il server IIS riceve il file.
 
-#### <a name="denied-rdp-toobackend"></a>(*Negato*) toobackend RDP
-1. Un utente internet tenta tooRDP tooserver AppVM01
-2. Poiché non sono indirizzi IP pubblici associati a questa scheda di rete server, il traffico mai immettere hello rete virtuale e non raggiunga il server di hello
+#### <a name="denied-rdp-to-backend"></a>(*Negato*) Traffico RDP al back-end
+1. Un utente su Internet tenta di eseguire la connessione tramite RDP al server AppVM01.
+2. Non essendoci indirizzi IP pubblici associati alla scheda di interfaccia di rete dei server, il traffico non entra nella rete virtuale e non raggiunge il server.
 3. Se tuttavia per qualunque motivo è stato abilitato un indirizzo IP pubblico, la regola del gruppo di sicurezza di rete 2 (RDP) consentirà questo traffico.
 
 >[!NOTE]
->server di back-end tooany tooRDP in questo caso, il server IIS hello viene utilizzato come una "salto casella." Primo server IIS toohello RDP e quindi dal server di hello IIS Server RDP toohello back-end.
+>Per eseguire la connessione tramite RDP ai server back-end in questa istanza, il server IIS viene usato come "jumpbox". Eseguire prima la connessione tramite RDP al server IIS e, quindi, dal server IIS eseguire la connessione tramite RDP al server back-end.
 >
 >
 
-#### <a name="denied-web-toobackend-server"></a>(*Negato*) server toobackend Web
-1. Un utente internet tenta un file in AppVM01 tooaccess
-2. Poiché non sono indirizzi IP pubblici associati a questa scheda di rete server, il traffico mai immettere hello rete virtuale e non raggiunga il server di hello
-3. Se un indirizzo IP pubblico è stato abilitato per qualche motivo, la regola gruppo 5 (Internet tooVNet) bloccano il traffico
+#### <a name="denied-web-to-backend-server"></a>(*Negato*) Traffico Web al server back-end
+1. Un utente su Internet tenta di accedere a un file su AppVM01
+2. Non essendoci indirizzi IP pubblici associati alla scheda di interfaccia di rete dei server, il traffico non entra nella rete virtuale e non raggiunge il server.
+3. Se per qualunque motivo è stato abilitato un indirizzo IP pubblico, la regola del gruppo di sicurezza di rete 5 (da Internet a rete virtuale) bloccherà questo traffico.
 
 #### <a name="denied-web-dns-look-up-on-dns-server"></a>(*Negato*) Ricerca DNS Web sul server DNS
-1. Un utente internet tenta toolook di un record DNS interno nella DNS01
-2. Poiché non sono indirizzi IP pubblici associati a questa scheda di rete server, il traffico mai immettere hello rete virtuale e non raggiunga il server di hello
-3. Se un indirizzo IP pubblico è stato abilitato per qualche motivo, la regola gruppo 5 (Internet tooVNet) bloccano il traffico (Nota: che regola 1 (DNS) potrebbero non applicarsi perché hello richiede l'indirizzo di origine è hello internet e regola 1 si applica solo a toohello rete locale virtuale come origine di hello)
+1. Un utente su Internet tenta di cercare un record DNS interno su DNS01
+2. Non essendoci indirizzi IP pubblici associati alla scheda di interfaccia di rete dei server, il traffico non entra nella rete virtuale e non raggiunge il server.
+3. Se per qualunque motivo è stato abilitato un indirizzo IP pubblico, la regola del gruppo di sicurezza di rete 5 (da Internet a rete virtuale) bloccherà il traffico. Nota: la regola 1 (DNS) potrebbe non essere applicabile perché l'indirizzo di origine della richieste è Internet e la regola 1 si applica solo alla rete locale virtuale come origine.
 
-#### <a name="denied-sql-access-on-hello-web-server"></a>(*Negato*) l'accesso a SQL Server web hello
+#### <a name="denied-sql-access-on-the-web-server"></a>(*Negato*) Accesso SQL nel server Web
 1. Un utente su Internet richiede dati SQL da IIS01
-2. Poiché non sono indirizzi IP pubblici associati a questa scheda di rete server, il traffico mai immettere hello rete virtuale e non raggiunga il server di hello
-3. Se un indirizzo IP pubblico è stato abilitato per qualche motivo, subnet front-end hello inizia l'elaborazione della regola in ingresso:
-  1. GRUPPO regola 1 (DNS) non è applicabile, spostare toonext regola
-  2. GRUPPO regola 2 (RDP) non è applicabile, spostare toonext regola
-  3. Applicare NSG regola 3 (tooIIS01 Internet), il traffico è l'elaborazione della regola consentita, arresto
-4. Traffico raggiunge l'indirizzo IP interno di hello IIS01 (10.0.1.5)
-5. Non è in ascolto sulla porta 1433, che non è più richiesta toohello risposta iis01
+2. Non essendoci indirizzi IP pubblici associati alla scheda di interfaccia di rete dei server, il traffico non entra nella rete virtuale e non raggiunge il server.
+3. Se per qualunque motivo è stato abilitato un indirizzo IP pubblico, la subnet front-end inizia l'elaborazione delle regole in ingresso:
+  1. Regola gruppo di sicurezza di rete 1 (DNS) non applicabile, passa alla regola successiva.
+  2. Regola gruppo di sicurezza di rete 2 (RDP) non applicabile, passa alla regola successiva.
+  3. Regola gruppo di sicurezza di rete 3 (da Internet a IIS01) applicabile, il traffico è consentito, l'elaborazione delle regole si arresta.
+4. Il traffico raggiunge l'indirizzo IP interno di IIS01 (10.0.1.5).
+5. IIS01 non è in ascolto sulla porta 1433, pertanto la richiesta non ottiene risposta.
 
 ## <a name="conclusion"></a>Conclusioni
-Questo esempio è un modo semplice e relativamente semplice isolare subnet back-end hello dal traffico in ingresso.
+Questo esempio consente di isolare la subnet back-end dal traffico in ingresso in un modo relativamente semplice e diretto.
 
 Altri esempi e una panoramica dei limiti di sicurezza della rete sono disponibili [qui][HOME].
 
 ## <a name="references"></a>Riferimenti
 ### <a name="azure-resource-manager-template"></a>Modello di Azure Resource Manager
-In questo esempio viene utilizzato un modello di gestione risorse di Azure predefinito in un repository GitHub gestito da Microsoft e aprire toohello community. Questo modello può essere distribuito direttamente da GitHub, o scaricati e modificati toofit le proprie esigenze. 
+Questo esempio usa un modello di Azure Resource Manager predefinito in un repository GitHub gestito da Microsoft e lo rende disponibile alla community. Il modello può essere distribuito immediatamente da GitHub o scaricato e modificato in base alle specifiche esigenze. 
 
-modello principale Hello è nel file hello denominato "azuredeploy.json". Questo modello può essere inviato tramite PowerShell o CLI (con file associato "azuredeploy.parameters.json" hello) toodeploy questo modello. È possibile individuare hello più semplice consiste nel toouse hello pulsante "Distribuisci tooAzure" nella pagina README.md hello in GitHub.
+Il modello principale è presente nel file denominato "azuredeploy.json". Questo modello può essere inviato tramite PowerShell o l'interfaccia della riga di comando (con il file "azuredeploy.parameters.json associato") per la distribuzione. Il modo più semplice è usare il pulsante "Deploy to Azure" nella pagina README.md in GitHub.
 
-modello di hello toodeploy che si basa questo esempio da GitHub e hello portale di Azure, seguire questi passaggi:
+Per distribuire il modello che usa questo esempio da GitHub e il portale di Azure, seguire questi passaggi:
 
-1. Da un browser, passare toohello [modello][Template]
-2. Fare clic su pulsante "Distribuisci tooAzure" hello (o toosee di pulsante "Visualizza" hello una rappresentazione grafica del modello)
-3. Immettere hello Account di archiviazione, nome utente e Password nel Pannello di hello parametri, quindi fare clic su **OK**
+1. Da un browser passare a [Template][Template]
+2. Fare clic sul pulsante "Deploy to Azure" oppure su "View" per visualizzare una rappresentazione grafica del modello.
+3. Immettere l'account di archiviazione, il nome utente e la password nel pannello dei parametri, quindi fare clic su **OK**
 5. Creare un gruppo di risorse per questa distribuzione. È possibile usarne uno esistente, ma è consigliabile creare una nuova istanza per risultati ottimali.
-6. Se necessario, modificare le impostazioni di sottoscrizione e posizione hello per la rete virtuale.
-7. Fare clic su **esaminare le note legali**, leggere le condizioni di hello e fare clic su **acquisto** tooagree.
-8. Fare clic su **crea** distribuzione hello toobegin del modello.
-9. Al termine della distribuzione hello correttamente, è possibile passare toohello che gruppo di risorse creato per le risorse di hello toosee questa distribuzione configurata all'interno.
+6. Se necessario, modificare le impostazioni relative a Sottoscrizione e Località per la rete virtuale.
+7. Fare clic su **Rivedere le note legali**, leggere le condizioni e fare clic su **Acquista** per accettare.
+8. Fare clic su **Crea** per iniziare la distribuzione di questo modello.
+9. Dopo il corretto completamento della distribuzione, passare al gruppo di risorse creato per questa distribuzione per esaminare le risorse configurate in esso.
 
 >[!NOTE]
->Questo modello consente RDP toohello IIS01 solo server (ricerca hello, indirizzo IP pubblico per IIS01 su hello portale). server di back-end tooany tooRDP in questo caso, il server IIS hello viene utilizzato come una "salto casella." Primo server IIS toohello RDP e quindi dal server di hello IIS Server RDP toohello back-end.
+>Questo modello consente di eseguire la connessione tramite RDP solo al server IIS01; l'indirizzo IP pubblico per IIS01 è reperibile nel portale. Per eseguire la connessione tramite RDP ai server back-end in questa istanza, il server IIS viene usato come "jumpbox". Eseguire prima la connessione tramite RDP al server IIS e, quindi, dal server IIS eseguire la connessione tramite RDP al server back-end.
 >
 >
 
-tooremove questa distribuzione, hello di eliminazione gruppo di risorse e tutte le risorse figlio saranno eliminate.
+Per rimuovere questa distribuzione, eliminare il gruppo di risorse; verranno eliminate anche tutte le risorse figlio.
 
 #### <a name="sample-application-scripts"></a>Script di applicazione di esempio
-Una volta modello hello viene eseguito correttamente, è possibile impostare server web hello e server di applicazioni con un tooallow di applicazione web semplice test con questa configurazione di rete Perimetrale. tooinstall un'applicazione di esempio per questo e altri esempi di rete Perimetrale, ne è stato fornito al collegamento hello: [Script dell'applicazione di esempio][SampleApp]
+Dopo la corretta esecuzione del modello è possibile configurare il server Web e il server applicazioni con un'applicazione Web di esempio per consentire l'esecuzione di test con questa configurazione della rete perimetrale. Per installare un'applicazione di esempio per questo e altri esempi di rete perimetrale, è possibile trovarne una in [Script di applicazione di esempio][SampleApp]
 
 ## <a name="next-steps"></a>Passaggi successivi
 
 * Distribuire questo esempio
-* Compilare l'applicazione di esempio hello
+* Compilare l'applicazione di esempio
 * Testare diversi flussi di traffico attraverso la rete perimetrale
 
 <!--Image References-->

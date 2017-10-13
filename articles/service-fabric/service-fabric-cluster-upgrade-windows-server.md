@@ -1,6 +1,6 @@
 ---
-title: aaaUpgrade autonoma Azure Service Fabric del cluster in Windows Server | Documenti Microsoft
-description: "Aggiornare il codice di Azure Service Fabric hello e/o di configurazione che esegue un cluster di Service Fabric autonomo, inclusa l'impostazione di modalità di aggiornamento di cluster hello."
+title: Aggiornare un cluster autonomo di Azure Service Fabric in Windows Server | Microsoft Docs
+description: "Aggiornare il codice di Azure Service Fabric e/o della configurazione che esegue un cluster autonomo di Service Fabric e impostare la modalità di aggiornamento del cluster."
 services: service-fabric
 documentationcenter: .net
 author: dkkapur
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/30/2017
 ms.author: dekapur
-ms.openlocfilehash: 5132795e544b6f0185accedbf5092dcaafd66df0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f141c3d22275ff04d7161415e9c9f879d85dbc08
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="upgrade-your-standalone-azure-service-fabric-on-windows-server-cluster"></a>Aggiornare il cluster autonomo di Azure Service Fabric in Windows Server
 > [!div class="op_single_selector"]
@@ -27,39 +27,39 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-Per qualsiasi sistema moderna, hello possibilità tooupgrade è un successo a lungo termine toohello chiave del prodotto. Un cluster di Azure Service Fabric è una risorsa di cui si è proprietari. Questo articolo descrive come è possibile assicurarsi che cluster hello viene sempre eseguito versioni supportate di codice dell'infrastruttura di servizio e configurazioni.
+La possibilità di aggiornare un sistema moderno è fondamentale per il successo a lungo termine del prodotto. Un cluster di Azure Service Fabric è una risorsa di cui si è proprietari. Questo articolo descrive in che modo è possibile verificare che il cluster esegua sempre versioni supportate del codice e delle configurazioni di Service Fabric.
 
-## <a name="control-hello-service-fabric-version-that-runs-on-your-cluster"></a>Versione di Service Fabric hello di controllo che esegue il cluster
-tooset Aggiorna toodownload il cluster di Service Fabric quando Microsoft rilascia una nuova versione, set hello **fabricClusterAutoupgradeEnabled** tootrue di configurazione del cluster. una versione supportata di Service Fabric che si desidera il toobe cluster sul set hello tooselect **fabricClusterAutoupgradeEnabled** toofalse di configurazione del cluster.
+## <a name="control-the-service-fabric-version-that-runs-on-your-cluster"></a>Controllare la versione di Service Fabric eseguita nel cluster
+Per impostare il cluster per il download di aggiornamenti di Service Fabric quando Microsoft rilascia una nuova versione, impostare la configurazione cluster **fabricClusterAutoupgradeEnabled** su true. Per selezionare una versione supportata di Service Fabric per il cluster, impostare la configurazione cluster **fabricClusterAutoupgradeEnabled** su false.
 
 > [!NOTE]
-> Verificare che il cluster esegua sempre una versione di Service Fabric supportata. Quando Microsoft annuncia versione hello di una nuova versione di Service Fabric, la versione precedente di hello viene contrassegnata per la fine del supporto dopo un minimo di 60 giorni dalla data di hello annuncio hello. Le nuove versioni vengono annunciate [sul blog del team di Service Fabric hello](https://blogs.msdn.microsoft.com/azureservicefabric/). nuova versione di Hello è toochoose disponibili a questo punto.
+> Verificare che il cluster esegua sempre una versione di Service Fabric supportata. Quando Microsoft annuncia il rilascio di una nuova versione di Service Fabric, viene segnalato il termine del periodo di supporto per la versione precedente dopo un minimo di 60 giorni dalla data dell'annuncio. Le nuove versioni vengono annunciate nel [blog del team di Service Fabric](https://blogs.msdn.microsoft.com/azureservicefabric/). A questo punto è possibile scegliere la nuova versione.
 >
 >
 
-È possibile aggiornare la nuova versione di toohello cluster solo se si utilizza una configurazione di nodi di stile di produzione, in cui ogni nodo di Service Fabric è allocato in una macchina virtuale o fisico separato. Se si dispone di un cluster di sviluppo, più di un nodo di Service Fabric in cui è in un unico computer fisico o macchina virtuale, è necessario creare nuovamente il cluster hello con la nuova versione di hello.
+È possibile aggiornare il cluster alla nuova versione solo se si usa una configurazione del nodo di tipo produzione, in cui ogni nodo di Service Fabric viene allocato in una macchina virtuale o fisica separata. Se si usa un cluster di sviluppo in cui sono presenti più nodi di Service Fabric in un'unica macchina virtuale o computer fisico, è necessario creare di nuovo il cluster con la nuova versione.
 
-Due flussi di lavoro distinti è possibile aggiornare la versione più recente di toohello cluster o una versione supportata di Service Fabric. Un flusso di lavoro è per i cluster con versione più recente di connettività toodownload hello automaticamente. Hello altro flusso di lavoro è per i cluster che non dispone di connettività toodownload hello Service Fabric più recente.
+Due flussi di lavoro distinti possono aggiornare il cluster alla versione di Service Fabric più recente o a una versione supportata. Un flusso di lavoro è per i cluster con connettività che scaricano automaticamente la versione più recente. L'altro flusso di lavoro è per i cluster senza connettività che quindi non scaricano la versione più recente di Service Fabric.
 
-### <a name="upgrade-clusters-that-have-connectivity-toodownload-hello-latest-code-and-configuration"></a>Aggiornare i cluster con configurazione e il codice più recente di connettività toodownload hello
-Utilizzare la versione di tooa supportato cluster tooupgrade questi passaggi se i nodi del cluster dispongono di connettività Internet troppo[http://download.microsoft.com](http://download.microsoft.com).
+### <a name="upgrade-clusters-that-have-connectivity-to-download-the-latest-code-and-configuration"></a>Aggiornare i cluster con la connettività per scaricare il codice e la configurazione più recenti
+Seguire questa procedura per aggiornare il cluster a una versione supportata se i nodi del cluster hanno la connettività Internet a [http://download.microsoft.com](http://download.microsoft.com).
 
-Per i cluster che dispone della connettività troppo[http://download.microsoft.com](http://download.microsoft.com), Microsoft controlla periodicamente per la disponibilità di nuove versioni di Service Fabric hello.
+Per i cluster che hanno la connettività a [http://download.microsoft.com](http://download.microsoft.com), Microsoft verifica periodicamente la disponibilità di nuove versioni di Service Fabric.
 
-Quando una nuova versione di Service Fabric è disponibile, il pacchetto di hello venga scaricato localmente toohello cluster e il provisioning per l'aggiornamento. Inoltre, cliente di hello tooinform di questa nuova versione, sistema hello Mostra cluster esplicita integrità di un avviso è simile toohello seguenti:
+Quando è disponibile una nuova versione di Service Fabric, il pacchetto viene scaricato localmente nel cluster e ne viene eseguito il provisioning per l'aggiornamento. Inoltre, per informare il cliente di questa nuova versione, il sistema visualizza un avviso esplicito di integrità del cluster simile al seguente:
 
-"supporto della versione [versione #] cluster corrente hello termina [Date]".
+"Il supporto per la versione corrente del cluster [versione] termina il [Data]."
 
-Dopo che il cluster hello è in esecuzione la versione più recente di hello, avviso hello è stata risolta.
+Quando il cluster inizia a eseguire la versione più recente, l'avviso non viene più visualizzato.
 
 #### <a name="cluster-upgrade-workflow"></a>Flusso di lavoro per l'aggiornamento del cluster
-Dopo aver visualizzato l'avviso di integrità del cluster di hello, hello seguenti:
+Quando viene visualizzato l'avviso di integrità del cluster, seguire questa procedura:
 
-1. Connettere il cluster di toohello da qualsiasi computer che dispone di amministratore accesso tooall hello computer elencati come nodi cluster hello. macchina Hello che questo script viene eseguito in non è una parte del cluster hello toobe.
+1. Connettersi al cluster da qualsiasi macchina con accesso amministrativo a tutte le macchine elencate come nodi nel cluster. La macchina in cui viene eseguito lo script non deve necessariamente far parte del cluster.
 
     ```powershell
 
-    ###### connect toohello secure cluster using certs
+    ###### connect to the secure cluster using certs
     $ClusterName= "mysecurecluster.something.com:19000"
     $CertThumbprint= "70EF5E22ADB649799DA3C8B6A6BF7FG2D630F8F3"
     Connect-serviceFabricCluster -ConnectionEndpoint $ClusterName -KeepAliveIntervalInSec 10 `
@@ -71,18 +71,18 @@ Dopo aver visualizzato l'avviso di integrità del cluster di hello, hello seguen
         -StoreName My
     ```
 
-2. Ottenere l'elenco di hello delle versioni di Service Fabric che è possibile eseguire l'aggiornamento.
+2. Ottenere l'elenco delle versioni di Service Fabric a cui è possibile eseguire l'aggiornamento.
 
     ```powershell
 
-    ###### Get hello list of available Service Fabric versions
+    ###### Get the list of available Service Fabric versions
     Get-ServiceFabricRegisteredClusterCodeVersion
     ```
 
-    È necessario ottenere un toothis simili di output:
+    L'output dovrebbe essere simile al seguente:
 
     ![ottenere versioni di Fabric][getfabversions]
-3. Avviare una versione di cluster tooan aggiornamento disponibile tramite il [inizio ServiceFabricClusterUpgrade](https://msdn.microsoft.com/library/mt125872.aspx) cmd di PowerShell.
+3. Avviare un aggiornamento del cluster a una versione disponibile usando il comando [Start-ServiceFabricClusterUpgrade](https://msdn.microsoft.com/library/mt125872.aspx) di PowerShell.
 
     ```Powershell
 
@@ -93,45 +93,45 @@ Dopo aver visualizzato l'avviso di integrità del cluster di hello, hello seguen
     Start-ServiceFabricClusterUpgrade -Code -CodePackageVersion 5.3.301.9590 -Monitored -FailureAction Rollback
 
     ```
-   toomonitor hello lo stato di avanzamento dell'aggiornamento di hello, è possibile utilizzare Service Fabric Explorer o hello esecuzione comando di Windows PowerShell seguente.
+   Per monitorare lo stato di avanzamento dell'aggiornamento, è possibile usare Service Fabric Explorer o eseguire il comando di Windows PowerShell seguente.
 
     ```powershell
 
     Get-ServiceFabricClusterUpgrade
     ```
 
-    Se non vengono soddisfatti i criteri di integrità del cluster di hello, viene eseguito il rollback di aggiornamento hello. criteri di integrità personalizzato toospecify per hello **inizio ServiceFabricClusterUpgrade** command, vedere la documentazione per [inizio ServiceFabricClusterUpgrade](https://msdn.microsoft.com/library/mt125872.aspx).
+    Se i criteri di integrità del cluster non vengono soddisfatti, viene eseguito il rollback dell'aggiornamento. Per specificare criteri di integrità personalizzati per il comando **Start-ServiceFabricClusterUpgrade**, vedere la documentazione relativa a [Start-ServiceFabricClusterUpgrade](https://msdn.microsoft.com/library/mt125872.aspx).
 
-Dopo aver risolto i problemi di hello che ha comportato il rollback di hello, avviare nuovamente l'aggiornamento di hello hello seguente procedura come descritto in precedenza.
+Dopo aver risolto i problemi che hanno determinato il ripristino dello stato precedente, avviare di nuovo l'aggiornamento ripetendo la procedura descritta prima.
 
-### <a name="upgrade-clusters-that-have-uno-connectivityu-toodownload-hello-latest-code-and-configuration"></a>Aggiornare i cluster che presentano <U>nessuna connettività</u> codice più recente di toodownload hello e la configurazione
-Utilizzare la versione di tooa supportato cluster tooupgrade questi passaggi se i nodi del cluster non dispongono di connettività Internet troppo[http://download.microsoft.com](http://download.microsoft.com).
+### <a name="upgrade-clusters-that-have-uno-connectivityu-to-download-the-latest-code-and-configuration"></a>Aggiornare i cluster <U>senza la connettività</u> per scaricare il codice e la configurazione più recenti
+Seguire questa procedura per aggiornare il cluster a una versione supportata se i nodi del cluster non hanno la connettività Internet a [http://download.microsoft.com](http://download.microsoft.com).
 
 > [!NOTE]
-> Se si utilizza un cluster che non è connesso toohello Internet, sarà necessario toolearn toomonitor hello Service Fabric team blog su una nuova versione. sistema di Hello non viene visualizzato un tooalert di avviso di integrità del cluster di una nuova versione.  
+> Se si esegue un cluster non connesso a Internet, è necessario monitorare il blog del team di Service Fabric per informazioni sulla nuova versione. Il sistema non visualizza alcun avviso di integrità del cluster per informare l'utente di una nuova versione.  
 >
 >
 
 #### <a name="auto-provisioning-vs-manual-provisioning"></a>Confronto tra provisioning automatico e provisioning manuale
-tooenable il download automatico e la registrazione per la versione del codice più recente hello, configurare l'aggiornamento dell'infrastruttura del servizio. Fare riferimento toohello Tools\ServiceFabricUpdateService.zip\Readme_InstructionsAndHowTos.txt all'interno di hello [pacchetto autonomo](service-fabric-cluster-standalone-package-contents.md) per le istruzioni.
-Per un processo manuale, istruzioni hello riportato di seguito.
+Per consentire il download e la registrazione automatici per la versione più recente del codice, impostare il servizio di aggiornamento di Service Fabric. Per istruzioni, vedere Tools\ServiceFabricUpdateService.zip\Readme_InstructionsAndHowTos.txt nel [pacchetto autonomo](service-fabric-cluster-standalone-package-contents.md).
+Per il processo manuale, seguire le istruzioni riportate di seguito.
 
-Modificare il hello tooset configurazione di cluster seguendo toofalse proprietà prima di avviare un aggiornamento della configurazione.
+Modificare la configurazione del cluster per impostare la proprietà seguente su false prima di avviare un aggiornamento della configurazione.
 
         "fabricClusterAutoupgradeEnabled": false,
 
-Fare riferimento troppo[cmd PS inizio ServiceFabricClusterConfigurationUpgrade ](https://msdn.microsoft.com/en-us/library/mt788302.aspx) per informazioni dettagliate sull'utilizzo. Verificare che tooupdate 'clusterConfigurationVersion' nel file JSON prima di iniziare l'aggiornamento della configurazione hello.
+Per informazioni dettagliate sull'utilizzo, fare riferimento a [Start-ServiceFabricClusterConfigurationUpgrade PS cmd (File CMD di PowerShell Start-ServiceFabricClusterConfigurationUpgrade)](https://msdn.microsoft.com/en-us/library/mt788302.aspx). Prima di avviare l'aggiornamento della configurazione, verificare di aggiornare "clusterConfigurationVersion" nel file JSON.
 
 ```powershell
 
-    Start-ServiceFabricClusterConfigurationUpgrade -ClusterConfigPath <Path tooConfiguration File>
+    Start-ServiceFabricClusterConfigurationUpgrade -ClusterConfigPath <Path to Configuration File>
 
 ```
 
 #### <a name="cluster-upgrade-workflow"></a>Flusso di lavoro per l'aggiornamento del cluster
 
-1. Eseguire Get-ServiceFabricClusterUpgrade da uno dei nodi cluster hello hello e prendere nota di hello TargetCodeVersion.
-2. Seguente hello esecuzione da un toolist computer connesso internet tutti aggiornare le versioni compatibili con la versione corrente di hello e scaricare hello pacchetto dai collegamenti di download associati hello corrispondente.
+1. Eseguire Get-ServiceFabricClusterUpgrade da uno dei nodi del cluster e annotare il valore di TargetCodeVersion.
+2. Eseguire il comando seguente da un computer connesso a Internet per elencare tutte le versioni compatibili di l'aggiornamento con la versione corrente e scaricare il pacchetto corrispondente dai collegamenti di download associati.
 
     ```powershell
 
@@ -139,31 +139,31 @@ Fare riferimento troppo[cmd PS inizio ServiceFabricClusterConfigurationUpgrade ]
     Get-ServiceFabricRuntimeUpgradeVersion -BaseVersion <TargetCodeVersion as noted in Step 1> 
     ```
 
-3. Connettere il cluster di toohello da qualsiasi computer che dispone di amministratore accesso tooall hello computer elencati come nodi cluster hello. macchina Hello che questo script viene eseguito in non è una parte del cluster di hello toobe
+3. Connettersi al cluster da qualsiasi macchina con accesso amministrativo a tutte le macchine elencate come nodi nel cluster. La macchina in cui viene eseguito lo script non deve necessariamente far parte del cluster
 
     ```powershell
 
-   ###### Get hello list of available Service Fabric versions
-    Copy-ServiceFabricClusterPackage -Code -CodePackagePath <name of hello .cab file including hello path tooit> -ImageStoreConnectionString "fabric:ImageStore"
+   ###### Get the list of available Service Fabric versions
+    Copy-ServiceFabricClusterPackage -Code -CodePackagePath <name of the .cab file including the path to it> -ImageStoreConnectionString "fabric:ImageStore"
 
    ###### Here is a filled-out example
     Copy-ServiceFabricClusterPackage -Code -CodePackagePath .\MicrosoftAzureServiceFabric.5.3.301.9590.cab -ImageStoreConnectionString "fabric:ImageStore"
 
     ```
-4. Copiare il pacchetto scaricato hello nell'archivio di immagini cluster hello.
+4. Copiare il pacchetto scaricato nell'archivio immagini del cluster.
 
-5. Registrare il pacchetto copiato hello.
+5. Registrare il pacchetto copiato.
 
     ```powershell
 
-    ###### Get hello list of available Service Fabric versions
-    Register-ServiceFabricClusterPackage -Code -CodePackagePath <name of hello .cab file>
+    ###### Get the list of available Service Fabric versions
+    Register-ServiceFabricClusterPackage -Code -CodePackagePath <name of the .cab file>
 
     ###### Here is a filled-out example
     Register-ServiceFabricClusterPackage -Code -CodePackagePath MicrosoftAzureServiceFabric.5.3.301.9590.cab
 
      ```
-6. Avviare una versione di cluster tooan aggiornamento disponibile.
+6. Avviare un aggiornamento del cluster a una versione disponibile.
 
     ```Powershell
 
@@ -173,56 +173,57 @@ Fare riferimento troppo[cmd PS inizio ServiceFabricClusterConfigurationUpgrade ]
     Start-ServiceFabricClusterUpgrade -Code -CodePackageVersion 5.3.301.9590 -Monitored -FailureAction Rollback
 
     ```
-   È possibile monitorare lo stato di avanzamento hello dell'aggiornamento hello in Service Fabric Explorer o è possibile eseguire il comando PowerShell seguente hello.
+   È possibile monitorare lo stato di avanzamento dell'aggiornamento in Service Fabric Explorer oppure è possibile eseguire questo comando di PowerShell.
 
     ```powershell
 
     Get-ServiceFabricClusterUpgrade
     ```
 
-    Se non vengono soddisfatti i criteri di integrità del cluster di hello, viene eseguito il rollback di aggiornamento hello. criteri di integrità personalizzato toospecify per hello **inizio ServiceFabricClusterUpgrade** command, vedere la documentazione di hello per [inizio ServiceFabricClusterUpgrade](https://msdn.microsoft.com/library/mt125872.aspx).
+    Se i criteri di integrità del cluster non vengono soddisfatti, viene eseguito il rollback dell'aggiornamento. Per specificare criteri di integrità personalizzati per il comando **Start-ServiceFabricClusterUpgrade**, vedere la documentazione relativa a [Start-ServiceFabricClusterUpgrade](https://msdn.microsoft.com/library/mt125872.aspx).
 
-Dopo aver risolto i problemi di hello che ha comportato il rollback di hello, avviare nuovamente l'aggiornamento di hello hello seguente procedura come descritto in precedenza.
+Dopo aver risolto i problemi che hanno determinato il ripristino dello stato precedente, avviare di nuovo l'aggiornamento ripetendo la procedura descritta prima.
 
 
-## <a name="upgrade-hello-cluster-configuration"></a>Aggiorna la configurazione del cluster hello
-Prima di iniziare l'aggiornamento della configurazione hello, è possibile testare il nuovo json di configurazione del cluster eseguendo uno script di powershell hello in pacchetto autonomo hello.
+## <a name="upgrade-the-cluster-configuration"></a>Aggiornare la configurazione del cluster
+Prima di avviare l'aggiornamento della configurazione, è possibile testare il nuovo file JSON di configurazione cluster eseguendo lo script di PowerShell nel pacchetto autonomo.
 
 ```powershell
 
-    TestConfiguration.ps1 -ClusterConfigFilePath <Path toohello new Configuration File> -OldClusterConfigFilePath <Path toohello old Configuration File>
+    TestConfiguration.ps1 -ClusterConfigFilePath <Path to the new Configuration File> -OldClusterConfigFilePath <Path to the old Configuration File>
 
 ```
 oppure
 
 ```powershell
 
-    TestConfiguration.ps1 -ClusterConfigFilePath <Path toohello new Configuration File> -OldClusterConfigFilePath <Path toohello old Configuration File> -FabricRuntimePackagePath <Path toohello .cab file which you want tootest hello configuration against>
+    TestConfiguration.ps1 -ClusterConfigFilePath <Path to the new Configuration File> -OldClusterConfigFilePath <Path to the old Configuration File> -FabricRuntimePackagePath <Path to the .cab file which you want to test the configuration against>
 
 ```
 
-Alcune configurazioni non possono essere aggiornate, ad esempio gli endpoint, il nome del cluster, l'IP del nodo e così via. Questo test hello nuovo cluster configurazione json rispetto hello precedente e generano errori nella finestra di Powershell hello se è presente alcun problema.
+Alcune configurazioni non possono essere aggiornate, ad esempio gli endpoint, il nome del cluster, l'IP del nodo e così via. Il nuovo file JSON di configurazione cluster verrà testato confrontandolo con quello precedente e, in caso di problemi, verranno generati errori nella finestra di Powershell.
 
-l'aggiornamento della configurazione cluster hello tooupgrade, eseguire **inizio ServiceFabricClusterConfigurationUpgrade**. l'aggiornamento della configurazione Hello è elaborato aggiornamento del dominio dal dominio di aggiornamento.
+Per aggiornare la configurazione del cluster, eseguire **Start-ServiceFabricClusterConfigurationUpgrade**. L'aggiornamento della configurazione viene eseguito per dominio di aggiornamento.
 
 ```powershell
 
-    Start-ServiceFabricClusterConfigurationUpgrade -ClusterConfigPath <Path tooConfiguration File>
+    Start-ServiceFabricClusterConfigurationUpgrade -ClusterConfigPath <Path to Configuration File>
 
 ```
 
 ### <a name="cluster-certificate-config-upgrade"></a>Aggiornamento della configurazione del certificato del cluster  
-Il certificato del cluster viene utilizzato per l'autenticazione tra i nodi del cluster, in modo rollover del certificato hello deve essere eseguita con prestare particolare attenzione perché verrà bloccata la comunicazione hello tra i nodi del cluster.  
+Il certificato del cluster viene usato per l'autenticazione tra i nodi del cluster; il rollover del certificato deve quindi essere eseguito con particolare attenzione perché un eventuale errore bloccherà la comunicazione tra i nodi del cluster.  
 Tecnicamente, sono supportate tre opzioni:  
 
-1. Aggiornamento singolo certificato: percorso di aggiornamento hello ' certificato (primaria) -> B certificato (primaria) -> C certificato (primaria) ->... '.   
-2. Double aggiornamento certificati: percorso di aggiornamento hello ' certificato -> (principale) del certificato (primaria) e B (secondario) -> B certificato (primaria) -> B certificato (primaria) e C (secondario) -> C certificato (primaria) ->... '.
+1. Aggiornamento certificato singolo: il percorso di aggiornamento è 'Certificato (primario)-> Certificato B (primario)-> Certificato C (primario)->...'.   
+2. Aggiornamento certificato doppio: il percorso di aggiornamento è "Certificato A (primario) -> Certificato A (primario) e B (secondario) -> Certificato B (primario) -> Certificato B (primario) e C (secondario) -> Certificato C (primario) -> ...".
 3. Aggiornamento del tipo di certificato: configurazione dei certificati basati su identificazione personale <-> configurazione dei certificati basati su CommonName. Ad esempio, identificazione personale del certificato A (primario) e identificazione personale B (secondario) -> CommonName del certificato C.
+4. Aggiornamento dell'identificazione personale dell'autorità di certificazione: il percorso di aggiornamento è "Certificato CN=A,IssuerThumbprint=IT1 (primario) -> Certificato CN=A,IssuerThumbprint=IT1,IT2 (primario) -> Certificato CN=A,IssuerThumbprint=IT2 (primario)"
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Informazioni su come toocustomize alcuni [impostazioni cluster di Service Fabric](service-fabric-cluster-fabric-settings.md).
-* Informazioni su come troppo[aumentare e ridurre il cluster](service-fabric-cluster-scale-up-down.md).
+* Informazioni su come personalizzare alcune [impostazioni dei cluster di Service Fabric](service-fabric-cluster-fabric-settings.md).
+* Informazioni su come [aumentare o ridurre le istanze del cluster](service-fabric-cluster-scale-up-down.md).
 * Informazioni su come eseguire [aggiornamenti dell'applicazione](service-fabric-application-upgrade.md).
 
 <!--Image references-->

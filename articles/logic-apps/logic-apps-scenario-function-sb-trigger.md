@@ -1,6 +1,6 @@
 ---
-title: aaaScenario - App per la logica Trigger con le funzioni di Azure e Azure Service Bus | Documenti Microsoft
-description: Creare un'app di logica di tootrigger una funzione tramite le funzioni di Azure e Azure Service Bus
+title: Scenario - Attivare app per la logica con Funzioni di Azure e il bus di servizio di Azure | Documentazione Microsoft
+description: Creare una funzione per attivare un'app per la logica usando Funzioni di Azure e il bus di servizio di Azure
 services: logic-apps,functions
 documentationcenter: .net,nodejs,java
 author: jeffhollan
@@ -14,35 +14,35 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 05/23/2016
 ms.author: LADocs; jehollan
-ms.openlocfilehash: a7b78ebcfe492eee2e08ceeae6b9c5f8ed4717bb
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 088f10bc32dd492f82f0a10a7e5829e76f588758
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="scenario-trigger-a-logic-app-with-azure-functions-and-azure-service-bus"></a>Scenario: Attivare app per la logica con Funzioni di Azure e il bus di servizio di Azure
 
-Quando è necessario toodeploy un listener con esecuzione prolungata o attività, è possibile utilizzare funzioni di Azure toocreate un trigger per un'app di logica. Ad esempio, è possibile creare una funzione che sia in ascolto su una coda e attivi immediatamente un'app per la logica come trigger di push.
+È possibile utilizzare Funzioni di Azure per creare un trigger per un'app per la logica quando è necessario distribuire un listener o un'attività con esecuzione prolungata. Ad esempio, è possibile creare una funzione che sia in ascolto su una coda e attivi immediatamente un'app per la logica come trigger di push.
 
-## <a name="build-hello-logic-app"></a>Compilare hello logica app
-In questo esempio si dispone di una funzione in esecuzione per ogni app per la logica che deve toobe attivato. Per prima cosa, creare un'app per la logica con un trigger di richiesta HTTP. funzione Hello tale endpoint viene chiamato ogni volta che viene ricevuto un messaggio nella coda.  
+## <a name="build-the-logic-app"></a>Compilare l'app per la logica
+In questo esempio si ha una funzione in esecuzione per ogni app per la logica da attivare. Per prima cosa, creare un'app per la logica con un trigger di richiesta HTTP. La funzione chiamerà tale endpoint ogniqualvolta venga ricevuto un messaggio in coda.  
 
 1. Creare un'app per la logica.
-2. Seleziona hello **manuale - quando viene ricevuta una richiesta HTTP** trigger.
-   Facoltativamente, è possibile specificare un toouse schema JSON con un messaggio di coda hello utilizzando uno strumento come [jsonschema.net](http://jsonschema.net). Incollare schema hello trigger hello. Gli schemi per comprendere la progettazione hello forma hello delle proprietà di dati e il flusso hello più facilmente tramite flusso di lavoro di hello.
-2. Aggiungere eventuali passaggi aggiuntivi che si desidera toooccur dopo aver ricevuto un messaggio nella coda. Ad esempio, inviare un messaggio di posta elettronica tramite Office 365.  
-3. Salvare hello logica toogenerate hello callback URL dell'app per app per la logica toothis hello trigger. URL di Hello viene visualizzato nella scheda trigger hello.
+2. Selezionare il trigger **Manual - When an HTTP request is received** (Manuale - Quando si riceve una richiesta HTTP).
+   Facoltativamente, è possibile specificare uno schema JSON da utilizzare con il messaggio della coda utilizzando uno strumento come [jsonschema.net](http://jsonschema.net). Incollare lo schema nel trigger. Grazie agli schemi, la finestra di progettazione potrà riconoscere la forma dei dati e trasferire più facilmente le proprietà nel flusso di lavoro.
+2. Aggiungere eventuali ulteriori passaggi che si desidera vengano eseguiti dopo la ricezione di un messaggio in coda. Ad esempio, inviare un messaggio di posta elettronica tramite Office 365.  
+3. Salvare l'app per la logica per generare l'URL di callback per il trigger di questa app per la logica. L'URL è visualizzato nella scheda del trigger.
 
-![callback Hello URL viene visualizzato nella scheda trigger hello][1]
+![L'URL callback è visualizzato nella scheda del trigger][1]
 
-## <a name="build-hello-function"></a>Compilare la funzione hello
-Successivamente, è necessario creare una funzione che funge da trigger hello e in ascolto sulla coda toohello.
+## <a name="build-the-function"></a>Compilare la funzione
+A questo punto è necessario creare una funzione che fungerà da trigger e sarà in ascolto sulla coda.
 
-1. In hello [portale di Azure funzioni](https://functions.azure.com/signin)selezionare **nuova funzione**, quindi selezionare hello **ServiceBusQueueTrigger - c#** modello.
+1. Nel [portale di Funzioni di Azure](https://functions.azure.com/signin) selezionare **Nuova funzione** e quindi il modello **ServiceBusQueueTrigger - C#**.
    
     ![portale di Funzioni di Azure][2]
-2. Configurare hello connessione toohello coda di Service Bus, che usa hello Azure Service Bus SDK `OnMessageReceive()` listener.
-3. Scrivere un funzione di base toocall hello logica app dell'endpoint (creato in precedenza) utilizzando il messaggio di coda hello come trigger. Quello che segue è l'esempio completo di una funzione. esempio Hello viene utilizzato un `application/json` tipo di contenuto di messaggio, ma è possibile modificare questo tipo in base alle esigenze.
+2. Configurare la connessione alla coda del bus di servizio, che userà il listener `OnMessageReceive()` dell'SDK del bus di servizio di Azure.
+3. Scrivere una semplice funzione per chiamare l'endpoint dell'app per la logica usando il messaggio nella coda come trigger. Quello che segue è l'esempio completo di una funzione. Nell'esempio viene usato il tipo di contenuto di messaggio `application/json`, ma è possibile modificare questo elemento se necessario.
    
    ```
    using System;
@@ -63,7 +63,7 @@ Successivamente, è necessario creare una funzione che funge da trigger hello e 
    }
    ```
 
-tootest, aggiungere un messaggio nella coda tramite uno strumento quale [Service Bus Explorer](https://github.com/paolosalvatori/ServiceBusExplorer). Vedere hello logica app attivati immediatamente dopo la funzione hello riceve il messaggio hello.
+Per effettuare una prova, aggiungere un messaggio in coda tramite uno strumento quale [Service Bus Explorer](https://github.com/paolosalvatori/ServiceBusExplorer). L'app per la logica verrà attivata subito dopo che la funzione riceverà il messaggio.
 
 <!-- Image References -->
 [1]: ./media/logic-apps-scenario-function-sb-trigger/manualtrigger.png

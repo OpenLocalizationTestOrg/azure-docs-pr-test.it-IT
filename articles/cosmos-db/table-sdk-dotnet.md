@@ -1,6 +1,6 @@
 ---
-title: aaaAzure CosmosDB tabella API .NET SDK e risorse | Documenti Microsoft
-description: Tutte le informazioni su hello Azure API di tabella CosmosDB tra date di rilascio, date di ritiro e le modifiche apportate tra ogni versione.
+title: SDK e risorse .NET dell'API di tabella di CosmosDB di Azure | Documentazione Microsoft
+description: Informazioni sull'API di tabella di CosmosDB di Azure, incluse le date di rilascio, le date di ritiro e le modifiche apportate nelle diverse versioni.
 services: cosmos-db
 documentationcenter: .net
 author: rnagpal
@@ -14,11 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: mimig
-ms.openlocfilehash: 5217f53274874489d3f10ed1ccae3330fdf91678
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7d641d4089f8bce86633b7c476f10617bc642e2b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-cosmos-db-table-net-api-download-and-release-notes"></a>API .NET di tabella di CosmosDB di Azure: download e note sulla versione
 
@@ -27,8 +27,8 @@ ms.lasthandoff: 10/06/2017
 |---|---|
 |**Download dell'SDK**|[NuGet](https://aka.ms/acdbtablenuget)|
 |**Documentazione sull'API**|[Documentazione di riferimento API .NET](https://aka.ms/acdbtableapiref)|
-|**Guida introduttiva**|[Azure Cosmos DB: Compilare un'app con .NET e hello API tabelle](https://aka.ms/acdbtnetqs)|
-|**Esercitazione**|[Azure CosmosDB: Creare un contenitore con hello API Graph](tutorial-develop-graph-dotnet.md)|
+|**Guida introduttiva**|[Azure Cosmos DB: Build an app with .NET and the Table API](https://aka.ms/acdbtnetqs) (Cosmos DB di Azure: compilare un'app con .NET e l'API di tabella)|
+|**Esercitazione**|[Azure CosmosDB: Create a container with the Graph API](tutorial-develop-graph-dotnet.md) (CosmosDB di Azure: creare un contenitore con l'API Graph)|
 |**Framework attualmente supportato**|[Microsoft .NET Framework 4.5](https://www.microsoft.com/download/details.aspx?id=30653)|
 
 ## <a name="release-notes"></a>Note sulla versione
@@ -36,12 +36,12 @@ ms.lasthandoff: 10/06/2017
 * Versione di anteprima iniziale.
 
 ## <a name="release--retirement-dates"></a>Date di rilascio e di ritiro
-Microsoft invierà una notifica almeno **12 mesi** prima di ritirare un SDK in ordine toosmooth hello transizione tooa più recente/supportata versione.
+Microsoft invierà una notifica almeno **12 mesi** prima del ritiro di un SDK per agevolare la transizione a una versione più recente o supportata.
 
-Nuove caratteristiche e funzionalità e le ottimizzazioni vengono aggiunti solo toohello corrente SDK, pertanto è consigliabile che è sempre aggiornamento toohello SDK più recente non appena possibile. 
+Le nuove caratteristiche e funzionalità e le ottimizzazioni vengono aggiunte solo all'SDK corrente. È quindi consigliabile eseguire sempre l'aggiornamento alla versione più recente dell'SDK quanto prima. 
 
-Qualsiasi tooAzure richiesta DB Cosmos utilizzando un SDK ritirato verrà rifiutati dal servizio hello.
+Qualsiasi richiesta inviata a Cosmos DB di Azure con un SDK ritirato verrà rifiutata dal servizio.
 
 
 ## <a name="see-also"></a>Vedere anche
-toolearn ulteriori informazioni su hello Azure Cosmos DB tabella API, vedere [tooAzure introduzione DB Cosmos: tabella API](table-introduction.md). 
+Per altre informazioni sull'API Table di Azure Cosmos DB, vedere [Introduction to Azure Cosmos DB: Table API](table-introduction.md) (Introduzione a Azure Cosmos DB: API di tabella). 

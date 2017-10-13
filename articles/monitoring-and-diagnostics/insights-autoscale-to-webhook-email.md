@@ -1,6 +1,6 @@
 ---
-title: "notifiche di avviso tramite posta elettronica toosend azioni di scalabilità automatica aaaUse e webhook. | Microsoft Docs"
-description: "Vedere come toocall azioni di scalabilità automatica toouse URL web o inviare notifiche tramite posta elettronica in Monitor di Azure. "
+title: "Usare le azioni di scalabilità automatica per inviare notifiche di avviso di webhook e posta elettronica. | Microsoft Docs"
+description: "Informazioni su come usare le azioni di scalabilità automatica per chiamare URL Web o inviare notifiche di posta elettronica in Monitoraggio di Azure. "
 author: anirudhcavale
 manager: orenr
 editor: 
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/03/2017
 ms.author: ancav
-ms.openlocfilehash: f611a18f5a808412fbdd0c89e3addb36437064c4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 16caf14028494800e9259f0296c292b606d0210a
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="use-autoscale-actions-toosend-email-and-webhook-alert-notifications-in-azure-monitor"></a>Utilizzare scalabilità automatica azioni toosend posta elettronica e ai webhook notifiche di avviso in Monitoraggio di Azure
+# <a name="use-autoscale-actions-to-send-email-and-webhook-alert-notifications-in-azure-monitor"></a>Usare le azioni di scalabilità automatica per inviare notifiche di avviso di webhook e posta elettronica in Monitoraggio di Azure
 Questo articolo illustra come configurare i trigger per poter chiamare URL Web specifici o inviare messaggi di posta elettronica in base alle azioni di scalabilità automatica in Azure.  
 
 ## <a name="webhooks"></a>Webhook
-Webhook consentono di sistemi di tooother tooroute hello Azure notifiche di avviso per le notifiche di post-elaborazione o personalizzate. Ad esempio, routing tooservices avviso hello in grado di gestire un in ingresso web richiesta toosend SMS, i bug di log, inviare una notifica di un team utilizzando chat o servizi di messaggistica, e così via hello webhook URI deve essere un endpoint HTTP o HTTPS valido.
+I webhook consentono di instradare le notifiche di avviso di Azure ad altri sistemi per la post-elaborazione o le notifiche personalizzate. È possibile, ad esempio, eseguire il routing degli avvisi a servizi che possono gestire una richiesta Web in ingresso per inviare SMS, registrare bug, inviare notifiche a un team usando servizi di messaggistica o chat e così via. L'URI del webhook deve essere un endpoint HTTP o HTTPS valido.
 
 ## <a name="email"></a>Email
-È possibile inviare tramite posta elettronica tooany indirizzo di posta elettronica valido. Gli amministratori e i coamministratori della sottoscrizione hello in cui è in esecuzione regola hello anche essere avvisati.
+È possibile inviare un messaggio di posta elettronica a qualsiasi indirizzo di posta elettronica valido. Verrà inviata una notifica anche agli amministratori e ai coamministratori della sottoscrizione in cui viene eseguita la regola.
 
 ## <a name="cloud-services-and-web-apps"></a>Servizi cloud e app Web
-È possibile acconsentire esplicitamente dal portale di Azure hello per servizi Cloud e la Server farm (app Web).
+È possibile acconsentire esplicitamente dal portale di Azure ai servizi cloud e alle server farm (app Web).
 
-* Scegliere hello **scalare** metrica.
+* Scegliere la metrica **Ridimensiona di** .
 
 ![Ridimensiona di](./media/insights-autoscale-to-webhook-email/insights-autoscale-notify.png)
 
 ## <a name="virtual-machine-scale-sets"></a>Set di scalabilità di macchine virtuali
 Per le macchine virtuali più recenti create con Resource Manager (set di scalabilità di macchine virtuali), è possibile configurare questa opzione tramite l'API REST, i modelli di Resource Manager, PowerShell e l'interfaccia della riga di comando. Un'interfaccia del portale non è ancora disponibile.
-Quando si utilizza l'API REST hello o un modello di gestione risorse, includere l'elemento notifiche hello con hello le opzioni seguenti.
+Quando si usa l'API REST o il modello di Resource Manager, includere l'elemento Notifiche con le opzioni seguenti.
 
 ```
 "notifications": [
@@ -75,10 +75,10 @@ Quando si utilizza l'API REST hello o un modello di gestione risorse, includere 
 | properties |sì |Il valore deve essere vuoto {} o può contenere coppie chiave-valore |
 
 ## <a name="authentication-in-webhooks"></a>Autenticazione nei webhook
-Hello webhook autenticazione utilizzando l'autenticazione basata su token, in cui vengono salvati hello webhook URI con un ID token come un parametro di query. Ad esempio, https://mysamplealert/webcallback?tokenid=sometokenid&someparameter=somevalue
+È possibile autenticare il webhook usando l'autenticazione basata su token, che prevede il salvataggio dell'URI del webhook con un ID token come parametro di query. Ad esempio, https://mysamplealert/webcallback?tokenid=sometokenid&someparameter=somevalue
 
 ## <a name="autoscale-notification-webhook-payload-schema"></a>Schema di payload del webhook di notifica di scalabilità automatica
-Quando viene generata la notifica di scalabilità automatica hello, hello metadati seguenti sono incluse nel payload webhook hello:
+Quando viene generata la notifica di scalabilità automatica, nel payload del webhook vengono inclusi i metadati seguenti:
 
 ```
 {
@@ -89,7 +89,7 @@ Quando viene generata la notifica di scalabilità automatica hello, hello metada
                 "timestamp": "2016-03-11T07:31:04.5834118Z",
                 "id": "/subscriptions/s1/resourceGroups/rg1/providers/microsoft.insights/autoscalesettings/myautoscaleSetting",
                 "name": "myautoscaleSetting",
-                "details": "Autoscale successfully started scale operation for resource 'MyCSRole' from capacity '3' toocapacity '2'",
+                "details": "Autoscale successfully started scale operation for resource 'MyCSRole' from capacity '3' to capacity '2'",
                 "subscriptionId": "s1",
                 "resourceGroupName": "rg1",
                 "resourceName": "MyCSRole",
@@ -109,19 +109,19 @@ Quando viene generata la notifica di scalabilità automatica hello, hello metada
 
 | Campo | Obbligatorio? | Descrizione |
 | --- | --- | --- |
-| status |sì |stato Hello che indica che un'azione di scalabilità automatica è stata generata |
+| status |sì |Stato che indica che è stata generata un'azione di scalabilità automatica |
 | operation |sì |Per un aumento delle istanze, sarà "Scale Out", mentre per una riduzione delle istanze, sarà "Scale In" |
-| context |sì |contesto dell'azione di scalabilità automatica Hello |
-| timestamp |sì |Timestamp relativo all'azione di scalabilità automatica hello è stata attivata |
-| id |Sì |Gestione risorse di ID dell'impostazione di scalabilità automatica hello |
-| name |Sì |nome Hello dell'impostazione di scalabilità automatica hello |
-| informazioni dettagliate |Sì |Descrizione dell'azione hello che ha richiesto il servizio di scalabilità automatica hello e hello viene modificato il numero di istanze di hello |
-| subscriptionId |Sì |ID di sottoscrizione della risorsa di destinazione hello che viene ridimensionato |
-| resourceGroupName |Sì |Nome gruppo di risorse della risorsa di destinazione hello che viene ridimensionato |
-| resourceName |Sì |Nome della risorsa di destinazione hello che viene ridimensionato |
-| resourceType |Sì |Hello tre valori supportati: "microsoft.classiccompute/domainnames/slots/roles" - ruoli servizio Cloud, "microsoft.compute/virtualmachinescalesets" - set di scalabilità di macchine virtuali e "Web/serverfarms" - App Web |
-| resourceId |Sì |Gestione risorse di ID della risorsa di destinazione hello che viene ridimensionato |
-| portalLink |Sì |Pagina Riepilogo di collegamento del portale Azure toohello della risorsa di destinazione hello |
-| oldCapacity |Sì |Hello (precedente) numero di istanze correnti quando scalabilità automatica ha richiesto un'azione di scalabilità |
-| newCapacity |Sì |Hello nuovo numero di istanze di scalabilità automatica ridimensionato risorse hello troppo|
-| Proprietà |No |Facoltativo. Set di coppie <chiave, valore> (ad esempio Dizionario <Stringa, Stringa>). campo di proprietà Hello è facoltativo. In un'interfaccia utente personalizzata o un flusso di lavoro di logica app in base, è possibile immettere le chiavi e valori che possono essere passati usando payload hello. Un modo alternativo di proprietà personalizzate toopass nuovamente chiamata webhook in uscita toohello è toouse hello webhook URI stesso (come parametri di query) |
+| context |sì |Contesto dell'azione di scalabilità automatica |
+| timestamp |sì |Timestamp in cui è stata attivata l'azione di scalabilità automatica |
+| id |sì |ID di Resource Manager dell'impostazione di scalabilità automatica |
+| name |sì |Nome dell'impostazione di scalabilità automatica |
+| informazioni dettagliate |sì |Spiegazione dell'azione eseguita dal servizio di scalabilità automatica e della modifica al conteggio delle istanze |
+| subscriptionId |sì |ID sottoscrizione della risorsa di destinazione da ridimensionare |
+| resourceGroupName |sì |Nome del gruppo di risorse della risorsa di destinazione da ridimensionare |
+| resourceName |sì |Nome della risorsa di destinazione da ridimensionare |
+| resourceType |Sì |I tre valori supportati: "microsoft.classiccompute/domainnames/slots/roles" (ruoli dei servizi cloud), "microsoft.compute/virtualmachinescalesets" (set di scalabilità di macchine virtuali) e "Microsoft.Web/serverfarms" (app Web) |
+| resourceId |sì |ID di Resource Manager della risorsa di destinazione da ridimensionare |
+| portalLink |sì |Collegamento del portale di Azure alla pagina di riepilogo della risorsa di destinazione |
+| oldCapacity |sì |Conteggio delle istanze corrente (precedente) quando la scalabilità automatica ha eseguito un'azione di scalabilità |
+| newCapacity |sì |Nuovo conteggio delle istanze in base al quale la scalabilità automatica ha ridimensionato la risorsa |
+| properties |No |Facoltativo. Set di coppie <chiave, valore> (ad esempio Dizionario <Stringa, Stringa>). Il campo properties è facoltativo. In un flusso di lavoro basato su un'interfaccia utente personalizzata o un'app per la logica, è possibile immettere chiavi e valori che possono essere passati usando il payload. Un metodo alternativo per passare le proprietà personalizzate alla chiamata al webhook in uscita è di usare l'URI del webhook stesso (sotto forma di parametri di query) |

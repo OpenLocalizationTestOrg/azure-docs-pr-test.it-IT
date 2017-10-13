@@ -1,6 +1,6 @@
 ---
-title: origini dati di profilo tooData aaaHow
-description: Come-tooarticle evidenziazione come dati a livello di tabella e di colonna tooinclude profili per la registrazione delle origini dati in Azure Data Catalog e come dati toouse profili toounderstand origini di dati.
+title: 'Procedura: Eseguire il profiling dati delle origini dati'
+description: Articolo sulle procedure che illustra come includere profili dati a livello di tabella e di colonna durante la registrazione delle origini dati in Azure Data Catalog e come usare i profili dati per comprendere le origini dati.
 services: data-catalog
 documentationcenter: 
 author: spelluru
@@ -15,24 +15,24 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/03/2017
 ms.author: spelluru
-ms.openlocfilehash: 12c9f38501cdaee903d0dcbbdd0b82395f35a187
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8f4174f0ed74706b8275c8b1f0a62753f2834fa2
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="data-profile-data-sources"></a>Eseguire il profiling dati delle origini dati
 ## <a name="introduction"></a>Introduzione
-**Microsoft Azure Data Catalog** è un servizio cloud completamente gestito che funge da sistema di registrazione e di individuazione per origini dati aziendali. In altre parole, **Azure Data Catalog** è tutte sulle persone assistenza individuare, comprendere e utilizzare origini dati e aiutare le organizzazioni tooget più valore dai dati esistenti. Quando un'origine dati è registrata con **Azure Data Catalog**, i relativi metadati viene copiato e indicizzato dal servizio hello, ma storia hello non finisce qui.
+**Catalogo dati di Microsoft Azure** è un servizio cloud completamente gestito che funge da sistema di registrazione e di individuazione per origini dati aziendali. In altre parole, il **Catalogo dati di Azure** consente agli utenti di individuare, comprendere e usare origini dati e aiuta le organizzazioni a ottenere maggior valore dai dati esistenti. Quando un'origine dati viene registrata con **Azure Data Catalog**, i relativi metadati vengono copiati e indicizzati dal servizio, ma non è tutto.
 
-Hello **Profiling dati** funzionalità di **Azure Data Catalog** esamina hello dati da origini dati supportate nel catalogo e raccoglie le statistiche e informazioni relativi a tali dati. È facile tooinclude un profilo di asset di dati. Quando si registra un asset di dati, scegliere **includono dati profilo** nello strumento di registrazione origine dati hello.
+La funzione di **profiling dati** di **Azure Data Catalog** esamina i dati delle origini dati supportate nel catalogo e raccoglie statistiche e informazioni sui dati. È facile includere un profilo degli asset di dati. Quando si registra un asset di dati, scegliere **Includi profilo dati** nello strumento di registrazione delle origini dati.
 
 ## <a name="what-is-data-profiling"></a>Informazioni sul profiling dati
-Profiling dati esamina hello dati nell'origine dati hello in corso la registrazione e raccoglie le statistiche e informazioni relativi a tali dati. Durante l'individuazione di origine dati, queste statistiche consentono di determinare idoneità hello di hello dati toosolve il problema aziendale.
+Il profiling dati esamina i dati nell'origine dati di cui è in corso la registrazione e raccoglie statistiche e informazioni sui dati. Durante l'individuazione delle origini dati, le statistiche consentono di determinare l'idoneità dei dati per la risoluzione del problema aziendale.
 
-<!-- In [How toodiscover data sources](data-catalog-how-to-discover.md), you learn about **Azure Data Catalog's** extensive search capabilities including searching for data assets that have a profile. See [How tooinclude a data profile when registering a data source](#howto). -->
+<!-- In [How to discover data sources](data-catalog-how-to-discover.md), you learn about **Azure Data Catalog's** extensive search capabilities including searching for data assets that have a profile. See [How to include a data profile when registering a data source](#howto). -->
 
-Hello origini dati seguenti supportano dati di profilatura:
+Le origini dati seguenti supportano il profiling dati:
 
 * Viste e tabelle di SQL Server, inclusi database SQL di Azure e Azure SQL Data Warehouse.
 * Viste e tabelle di Oracle
@@ -41,35 +41,35 @@ Hello origini dati seguenti supportano dati di profilatura:
 
 Includendo i profili dati durante la registrazione degli asset di dati gli utenti possono rispondere a domande sulle origini dati, ad esempio:
 
-* Può essere utilizzato toosolve il problema aziendale?
-* Dati hello rispetta gli standard tooparticular o modelli?
-* Quali sono alcune delle anomalie hello dell'origine dati hello?
+* Può essere usata per risolvere il problema aziendale?
+* I dati sono conformi a standard o modelli particolari?
+* Quali sono alcune delle anomalie dell'origine dati?
 * Quali sono i possibili problemi legati all'integrazione di questi dati nell'applicazione?
 
 > [!NOTE]
-> È anche possibile aggiungere documentazione tooan asset toodescribe come è possibile integrare i dati in un'applicazione. Vedere [come origini dati toodocument](data-catalog-how-to-documentation.md).
+> È anche possibile aggiungere della documentazione a un asset per descrivere come integrare i dati in un'applicazione. Vedere l'articolo relativo alla [documentazione delle origini dati](data-catalog-how-to-documentation.md).
 >
 >
 
 <a name="howto"/>
 
-## <a name="how-tooinclude-a-data-profile-when-registering-a-data-source"></a>Come tooinclude un tipo di dati del profilo quando si registra un'origine dati
-È facile tooinclude un profilo dell'origine dati. Quando si registra un'origine dati, in hello **toobe oggetti registrati** pannello della registrazione dell'origine dati hello strumento, scegliere **includono dati profilo**.
+## <a name="how-to-include-a-data-profile-when-registering-a-data-source"></a>Come includere un profilo dati durante la registrazione di un'origine dati
+È facile includere un profilo dell'origine dati. Quando si registra un'origine dati, nel pannello **Oggetti da registrare** dello strumento di registrazione delle origini dati scegliere **Includi profilo dati**.
 
 ![](media/data-catalog-data-profile/data-catalog-register-profile.png)
 
-altre informazioni sulle toolearn tooregister le origini dati, vedere [come origini dati tooregister](data-catalog-how-to-register.md) e [Guida introduttiva di Azure Data Catalog](data-catalog-get-started.md).
+Per altre informazioni su come registrare le origini dati, vedere [Come registrare le origini dati](data-catalog-how-to-register.md) e [Introduzione ad Azure Data Catalog](data-catalog-get-started.md).
 
 ## <a name="filtering-on-data-assets-that-include-data-profiles"></a>Applicazione di filtri su asset di dati che includono profili dati
-toodiscover gli asset di dati che includono un profilo dati, è possibile includere `has:tableDataProfiles` o `has:columnsDataProfiles` come uno dei termini di ricerca.
+Per trovare asset di dati che includono un profilo dati, è possibile specificare `has:tableDataProfiles` o `has:columnsDataProfiles` come termini di ricerca.
 
 > [!NOTE]
-> Selezione **includono dati profilo** di hello dati strumento di registrazione di origine include sia la tabella informazioni sul profilo a livello di colonna. Tuttavia, hello API di catalogo dati consente dati asset toobe registrato con un solo set di informazioni sul profilo inclusi.
+> Selezionando **Includi profilo dati** nello strumento di registrazione dell'origine dati, è possibile includere le informazioni del profilo a livello di tabella e a livello di colonna. Tuttavia, l'API del catalogo dati consente la registrazione degli asset di dati con un solo set di informazioni sul profilo.
 >
 >
 
 ## <a name="viewing-data-profile-information"></a>Visualizzazione delle informazioni sul profilo dati
-Dopo aver individuato l'origine dati appropriata con un profilo, è possibile visualizzare i dettagli del profilo dati hello. dati hello tooview del profilo, selezionare un asset di dati e scegliere **profilo dati** nella finestra del portale di hello catalogo dati.
+Dopo aver individuato un'origine dati adatta con un profilo, è possibile visualizzare i dettagli relativi al profilo dati. Per visualizzare il profilo dati, selezionare un asset di dati e scegliere **Profilo dati** nella finestra del portale di Azure Data Catalog.
 
 ![](media/data-catalog-data-profile/data-catalog-view.png)
 
@@ -78,7 +78,7 @@ Un profilo dati in **Azure Data Catalog** include informazioni sul profilo a liv
 ### <a name="object-data-profile"></a>Profilo dati dell'oggetto
 * Numero di righe
 * Dimensioni della tabella
-* Ultimo aggiornamento dell'oggetto hello
+* Ultimo aggiornamento dell'oggetto
 
 ### <a name="column-data-profile"></a>Profilo dati della colonna
 * Tipo di dati della colonna
@@ -87,8 +87,8 @@ Un profilo dati in **Azure Data Catalog** include informazioni sul profilo a liv
 * Deviazione minima, massima, media e standard per i valori di colonna
 
 ## <a name="summary"></a>Riepilogo
-Profiling dati fornisce le statistiche e informazioni registrate toohelp asset di dati è determinare l'idoneità hello di problemi di hello dati toosolve aziendali. Oltre che annotare e documentare le origini dati, i profili dati permettono agli utenti di comprendere meglio i dati.
+Il profiling dati fornisce statistiche e informazioni sugli asset di dati registrati per consentire di determinare l'idoneità dei dati per la risoluzione di problemi aziendali. Oltre che annotare e documentare le origini dati, i profili dati permettono agli utenti di comprendere meglio i dati.
 
 ## <a name="see-also"></a>Vedere anche
-* [Come origini dati tooregister](data-catalog-how-to-register.md)
+* [Come registrare le origini dati](data-catalog-how-to-register.md)
 * [Introduzione ad Azure Data Catalog](data-catalog-get-started.md)

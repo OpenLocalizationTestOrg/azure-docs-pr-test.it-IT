@@ -1,6 +1,6 @@
 ---
-title: aaaHow toouse AMQP 1.0 con hello API del Bus di servizio Java | Documenti Microsoft
-description: Come toouse hello Java Message Service (JMS) con Service Bus di Azure e Advanced Message Queuing Protodol (AMQP) 1.0.
+title: Come usare AMQP 1.0 con l'API del bus di servizio Java | Microsoft Docs
+description: Come usare JMS (Java Message Service ) con il bus di servizio di Azure e il protocollo AMQP (Advanced Message Queuing Protocol) 1.0.
 services: service-bus-messaging
 documentationcenter: java
 author: sethmanheim
@@ -14,31 +14,31 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: sethm
-ms.openlocfilehash: 3e1d0329f2675a2273e12bb7389d3ce38b156a5e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0848facd764c4fb0d7f95c1ae89ecb02a32257e1
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="how-toouse-hello-java-message-service-jms-api-with-service-bus-and-amqp-10"></a>Come toouse hello Java Message Service (JMS) API con il Bus di servizio e AMQP 1.0
-Hello Advanced Message Queuing Protocol (AMQP) 1.0 è un protocollo di messaggistica efficiente, affidabile e a livello di rete che è possibile utilizzare toobuild affidabile tra piattaforme diverse applicazioni di messaggistica.
+# <a name="how-to-use-the-java-message-service-jms-api-with-service-bus-and-amqp-10"></a>Come usare l'API JMS (Java Message Service) con il bus di servizio e AMQP 1.0
+AMQP (Advanced Message Queuing Protocol) 1.0 è un protocollo di messaggistica wire-level efficiente e affidabile che può essere utilizzato per creare potenti applicazioni di messaggistica multipiattaforma.
 
-Supporto per AMQP 1.0 nel Bus di servizio, significa che è possibile utilizzare hello Accodamento messaggi e pubblicazione/sottoscrizione funzionalità di messaggistica negoziata da una vasta gamma di piattaforme usando un protocollo binario efficiente. Inoltre, è possibile creare applicazioni costituite da componenti creati con un insieme di linguaggi, framework e sistemi operativi.
+Grazie al supporto per AMQP 1.0 nel bus di servizio, è ora possibile utilizzare le funzionalità di accodamento e di messaggistica negoziata di pubblicazione/sottoscrizione da numerose piattaforme, tramite un efficiente protocollo binario. Inoltre, è possibile creare applicazioni costituite da componenti creati con un insieme di linguaggi, framework e sistemi operativi.
 
-Questo articolo spiega come toouse Bus di servizio le funzionalità di messaggistica (code e pubblicazione/sottoscrizione argomenti) da applicazioni Java tramite hello diffusi Java Message Service (JMS) API standard. È presente un [articolo complementare](service-bus-amqp-dotnet.md) che spiega come toodo hello stesso utilizzando hello API .NET del Bus di servizio. È possibile utilizzare questi toolearn contemporaneamente due guide sulle piattaforme di messaggistica tramite AMQP 1.0.
+Questo articolo illustra come usare le funzionalità di messaggistica del bus di servizio, ad esempio code e pubblicazione/sottoscrizione di argomenti, da applicazioni Java usando l'API standard JMS più richiesta (Java Message Service). È disponibile un [articolo complementare](service-bus-amqp-dotnet.md) che illustra come eseguire le stesse procedure usando l'API . NET del bus di servizio. È possibile consultare queste due guide per acquisire informazioni sulla messaggistica multipiattaforma con AMQP 1.0.
 
 ## <a name="get-started-with-service-bus"></a>Introduzione al bus di servizio
-In questa guida si presuppone di avere già uno spazio dei nomi del bus di servizio contenente una coda denominata **coda1**. Se non fosse possibile, è quindi possibile [creare lo spazio dei nomi hello e coda](service-bus-create-namespace-portal.md) utilizzando hello [portale di Azure](https://portal.azure.com). Per ulteriori informazioni su spazi dei nomi Service Bus toocreate e code, vedere [iniziare con le code del Bus di servizio](service-bus-dotnet-get-started-with-queues.md).
+In questa guida si presuppone di avere già uno spazio dei nomi del bus di servizio contenente una coda denominata **coda1**. In caso contrario, è necessario [creare lo spazio dei nomi e la coda](service-bus-create-namespace-portal.md) tramite il [portale di Azure](https://portal.azure.com). Per altre informazioni su come creare spazi dei nomi e code del bus di servizio, vedere [Introduzione alle code del bus di servizio](service-bus-dotnet-get-started-with-queues.md).
 
 > [!NOTE]
 > Le code e gli argomenti partizionati supportano anche AMQP. Per altre informazioni, vedere le [entità di messaggistica partizionate](service-bus-partitioning.md) e [Supporto di AMQP 1.0 per code e argomenti partizionati del bus di servizio](service-bus-partitioned-queues-and-topics-amqp-overview.md).
 > 
 > 
 
-## <a name="downloading-hello-amqp-10-jms-client-library"></a>Libreria client di download hello AMQP 1.0 JMS
-Per informazioni su dove toodownload hello versione più recente della libreria client hello AMQP 1.0 di Apache Qpid JMS, visitare [https://qpid.apache.org/download.html](https://qpid.apache.org/download.html).
+## <a name="downloading-the-amqp-10-jms-client-library"></a>Download della libreria client JMS basata su AMQP 1.0
+Per informazioni su dove scaricare l'ultima versione della libreria client JMS basata su AMQP 1.0 di Apache Qpid, visitare la pagina [https://qpid.apache.org/download.html](https://qpid.apache.org/download.html).
 
-È necessario aggiungere hello seguenti quattro file JAR dagli hello AMQP 1.0 di Apache Qpid JMS distribuzione archivio toohello CLASSPATH Java durante la compilazione e l'esecuzione di applicazioni JMS con il Bus di servizio:
+È necessario aggiungere i seguenti quattro file JAR dall'archivio di distribuzione AMQP 1.0 di Apache Qpid al CLASSPATH Java durante la compilazione e l'esecuzione di applicazioni JMS con il bus di servizio:
 
 * geronimo-jms\_1.1\_spec-1.0.jar
 * qpid-amqp-1-0-client-[version].jar
@@ -47,51 +47,51 @@ Per informazioni su dove toodownload hello versione più recente della libreria 
 
 ## <a name="coding-java-applications"></a>Compilazione di applicazioni Java
 ### <a name="java-naming-and-directory-interface-jndi"></a>Java Naming and Directory Interface (JNDI)
-JMS Usa hello Java Naming and Directory Interface (JNDI) toocreate una separazione tra i nomi logici e fisici. Con JNDI vengono risolti due tipi di oggetti JMS: ConnectionFactory e Destination. JNDI Usa un modello di provider in cui è possibile collegare i compiti di risoluzione nome di directory diversi servizi toohandle. Hello Apache Qpid JMS AMQP 1.0 libreria dotata di una proprietà semplice Provider JNDI basato su file che viene configurato usando un file delle proprietà seguenti hello formato:
+JMS usa l'interfaccia JNDI (Java Naming and Directory Interface) per creare una separazione tra i nomi logici e i nomi fisici. Con JNDI vengono risolti due tipi di oggetti JMS: ConnectionFactory e Destination. JNDI utilizza un modello di provider in cui è possibile inserire diversi servizi directory per gestire le attività di risoluzione dei nomi. La libreria JMS basata su AMQP 1.0 di Apache Qpid viene fornita con un semplice provider JNDI, basato su un file delle proprietà, che viene configurato mediante un file di testo:
 
 ```
 # servicebus.properties - sample JNDI configuration
 
-# Register a ConnectionFactory in JNDI using hello form:
+# Register a ConnectionFactory in JNDI using the form:
 # connectionfactory.[jndi_name] = [ConnectionURL]
 connectionfactory.SBCF = amqps://[SASPolicyName]:[SASPolicyKey]@[namespace].servicebus.windows.net
 
-# Register some queues in JNDI using hello form
+# Register some queues in JNDI using the form
 # queue.[jndi_name] = [physical_name]
 # topic.[jndi_name] = [physical_name]
 queue.QUEUE = queue1
 ```
 
-#### <a name="configure-hello-connectionfactory"></a>Configurare hello ConnectionFactory
-Hello toodefine voce utilizzata una **ConnectionFactory** in hello Qpid provider JNDI delle proprietà del file è di hello seguente formato:
+#### <a name="configure-the-connectionfactory"></a>Configurare ConnectionFactory
+La voce usata per definire un oggetto **ConnectionFactory** nel provider JNDI basato sul file delle proprietà Qpid è nel formato seguente:
 
 ```
 connectionfactory.[jndi_name] = [ConnectionURL]
 ```
 
-Dove **[jndi_name]** e **[ConnectionURL]** hanno hello seguenti significati:
+Dove **[jndi_name]** e **[ConnectionURL]** hanno i significati seguenti:
 
-* **[jndi_name] **: nome logico di hello di hello ConnectionFactory. Si tratta hello nome che verrà risolto in un'applicazione Java hello utilizzando il metodo JNDI Intialcontext hello.
-* **[ConnectionURL] **: Un URL che fornisce informazioni di hello libreria JMS hello necessario gestore AMQP toohello.
+* **[jndi_name]**: nome logico dell'oggetto ConnectionFactory. Tale nome viene risolto nell'applicazione Java mediante l'utilizzo del metodo JNDI IntialContext.lookup().
+* **[ConnectionURL]**: URL che comunica alla libreria JMS le informazioni necessarie per il broker AMQP.
 
-formato Hello di hello **ConnectionURL** è indicato di seguito:
+Il formato di **ConnectionURL** è il seguente:
 
 ```
 amqps://[SASPolicyName]:[SASPolicyKey]@[namespace].servicebus.windows.net
 ```
-Dove **[spazio dei nomi]**, **[SASPolicyName]** e **[SASPolicyKey]** hanno hello seguenti significati:
+Dove **[namespace]**, **[SASPolicyName]** e **[SASPolicyKey]** hanno i significati seguenti:
 
-* **[spazio dei nomi] **: hello dello spazio dei nomi Service Bus.
-* **[SASPolicyName] **: nome del criterio di firma di accesso condiviso della coda di hello.
-* **[SASPolicyKey] **: chiave dei criteri di firma di accesso condiviso della coda hello.
+* **[namespace]**: spazio dei nomi del bus di servizio.
+* **[SASPolicyName]**: nome del criterio della firma di accesso condiviso relativa alla coda.
+* **[SASPolicyKey]**: chiave del criterio della firma di accesso condiviso relativa alla coda.
 
 > [!NOTE]
-> È necessario applicare la codifica URL password hello manualmente. Sul sito [http://www.w3schools.com/tags/ref_urlencode.asp](http://www.w3schools.com/tags/ref_urlencode.asp) è disponibile un'utilità per codificare facilmente l'URL.
+> è necessario applicare manualmente la codifica URL alla password. Sul sito [http://www.w3schools.com/tags/ref_urlencode.asp](http://www.w3schools.com/tags/ref_urlencode.asp) è disponibile un'utilità per codificare facilmente l'URL.
 > 
 > 
 
 #### <a name="configure-destinations"></a>Configurare le destinazioni
-usare l'immissione di Hello toodefine che è una destinazione presente nel provider JNDI del file delle proprietà Qpid hello di hello seguente formato:
+La voce usata per definire una destinazione nel provider JNDI basato sul file delle proprietà Qpid è nel formato seguente:
 
 ```
 queue.[jndi_name] = [physical_name]
@@ -103,21 +103,21 @@ oppure
 topic.[jndi_name] = [physical_name]
 ```
 
-Dove **[jndi\_nome]** e **[fisico\_nome]** hanno hello seguenti significati:
+Dove **[jndi\_name]** e **[physical\_name]** hanno i significati seguenti:
 
-* **[jndi_name] **: nome logico di hello della destinazione hello. Si tratta hello nome che verrà risolto in un'applicazione Java hello utilizzando il metodo JNDI Intialcontext hello.
-* **[physical_name] **: nome hello di hello applicazione hello del Bus di servizio entità toowhich invia o riceve messaggi.
+* **[jndi_name]**: nome logico della destinazione. Tale nome viene risolto nell'applicazione Java mediante l'utilizzo del metodo JNDI IntialContext.lookup().
+* **[physical_name]**: nome dell'entità del bus di servizio a cui l'applicazione invia messaggi o da cui l'applicazione riceve messaggi.
 
 > [!NOTE]
-> Quando si riceve da una sottoscrizione di argomento del Bus di servizio, il nome fisico hello specificato in JNDI deve essere il nome di hello di argomento hello. nome della sottoscrizione Hello viene fornito quando sottoscrizione durevoli hello viene creato nel codice dell'applicazione JMS hello. Hello [Guida per gli sviluppatori di Service Bus AMQP 1.0](service-bus-amqp-dotnet.md) vengono fornite informazioni dettagliate sull'utilizzo di argomenti del Bus di servizio da JMS.
+> In caso di ricezione da una sottoscrizione a un argomento del bus di servizio, il nome fisico specificato in JNDI deve essere il nome dell'argomento. Il nome della sottoscrizione viene fornito al momento della creazione della sottoscrizione durevole nel codice dell'applicazione JMS. La [guida per sviluppatori di AMQP 1.0 per il bus di servizio](service-bus-amqp-dotnet.md) include istruzioni dettagliate sull'uso di argomenti del bus di servizio di JMS.
 > 
 > 
 
-### <a name="write-hello-jms-application"></a>Scrivere un'applicazione hello JMS
-Non esistono API speciali oppure opzioni obbligatorie quando si utilizza JMS con il bus di servizio. Tuttavia, esistono alcune limitazioni che verranno illustrate più avanti. Come per qualsiasi applicazione JMS, hello in primo luogo necessario configurazione dell'ambiente JNDI hello, tooresolve in grado di toobe un **ConnectionFactory** e destinazioni.
+### <a name="write-the-jms-application"></a>Scrivere l'applicazione JMS
+Non esistono API speciali oppure opzioni obbligatorie quando si utilizza JMS con il bus di servizio. Tuttavia, esistono alcune limitazioni che verranno illustrate più avanti. Come per qualsiasi applicazione JMS, la prima operazione da eseguire è la configurazione dell'ambiente JNDI, in modo da poter risolvere gli oggetti di tipo **ConnectionFactory** e le destinazioni.
 
-#### <a name="configure-hello-jndi-initialcontext"></a>Configurare hello InitialContext JNDI
-ambiente JNDI Hello è configurata per il passaggio di una tabella hash delle informazioni di configurazione al costruttore hello della classe javax.naming.InitialContext hello. due elementi obbligatori Hello nella hashtable hello sono hello nome della classe di Factory del contesto iniziale hello e hello URL del Provider. Hello codice seguente viene illustrato come tooconfigure hello JNDI ambiente toouse hello Qpid file delle proprietà del Provider JNDI basato su con un file di proprietà denominato **ServiceBus**.
+#### <a name="configure-the-jndi-initialcontext"></a>Configurare il contesto JNDI iniziale
+La configurazione dell'ambiente JNDI viene eseguita passando una tabella hash di informazioni di configurazione al costruttore della classe javax.naming.InitialContext. I due elementi necessari nella tabella hash sono il nome della classe della factory del contesto iniziale e l'URL del provider. Nel codice seguente viene illustrato come configurare l'ambiente JNDI per usare il provider JNDI basato sul file delle proprietà Qpid con un file delle proprietà denominato **servicebus.properties**.
 
 ```java
 Hashtable<String, String> env = new Hashtable<String, String>(); 
@@ -127,7 +127,7 @@ InitialContext context = new InitialContext(env);
 ``` 
 
 ### <a name="a-simple-jms-application-using-a-service-bus-queue"></a>Semplice applicazione JMS che usa la coda del bus di servizio
-Hello programma di esempio seguente invia JMS TextMessages tooa della coda del Bus di servizio con nome logico di hello JNDI della coda e riceve messaggi hello nuovamente.
+L'applicazione di esempio seguente consente di inviare e ricevere messaggi di testo JMS verso e da una coda del bus di servizio con il nome JNDI logico QUEUE.
 
 ```java
 // SimpleSenderReceiver.java
@@ -185,7 +185,7 @@ public class SimpleSenderReceiver implements MessageListener {
             }
 
             SimpleSenderReceiver simpleSenderReceiver = new SimpleSenderReceiver();
-            System.out.println("Press [enter] toosend a message. Type 'exit' + [enter] tooquit.");
+            System.out.println("Press [enter] to send a message. Type 'exit' + [enter] to quit.");
             BufferedReader commandLine = new java.io.BufferedReader(new InputStreamReader(System.in));
 
             while (true) {
@@ -226,12 +226,12 @@ public class SimpleSenderReceiver implements MessageListener {
 }    
 ```
 
-### <a name="run-hello-application"></a>Eseguire un'applicazione hello
-L'esecuzione di un'applicazione hello produce l'output del modulo hello:
+### <a name="run-the-application"></a>Eseguire l'applicazione
+L'esecuzione dell'applicazione produce un output nel formato seguente:
 
 ```
 > java SimpleSenderReceiver
-Press [enter] toosend a message. Type 'exit' + [enter] tooquit.
+Press [enter] to send a message. Type 'exit' + [enter] to quit.
 
 Sent message with JMSMessageID = ID:2867600614942270318
 Received message with JMSMessageID = ID:2867600614942270318
@@ -245,22 +245,22 @@ exit
 ```
 
 ## <a name="cross-platform-messaging-between-jms-and-net"></a>Messaggistica multipiattaforma tra JMS e .NET
-Questa guida è stata illustrata come toosend e ricevere messaggi tooand dal Bus di servizio con JMS. Tuttavia, uno dei vantaggi principali di hello del protocollo AMQP 1.0 è che consente applicazioni toobe compilata da componenti scritti in linguaggi diversi, con i messaggi scambiati in modo affidabile e alla massima fedeltà.
+In questa guida è stato illustrato come inviare e ricevere messaggi verso e dal bus di servizio utilizzando JMS. Tuttavia, uno dei principali vantaggi di AMQP 1.0 è che consente di creare applicazioni da componenti scritti in linguaggi diversi, con i messaggi scambiati in modo affidabile e con la massima fedeltà.
 
-Utilizzo di un'applicazione hello esempio JMS descritto in precedenza e un'applicazione .NET simile eseguita da un altro articolo, [tramite il Bus di servizio da .NET con AMQP 1.0](service-bus-amqp-dotnet.md), è possibile scambiare messaggi tra .NET e Java. Leggere questo articolo per ulteriori informazioni sui dettagli hello di tramite AMQP 1.0 e Bus di servizio di messaggistica multipiattaforma.
+Con l'uso dell'applicazione JMS di esempio descritta in precedenza e un'applicazione .NET simile presa dall'articolo complementare [Come usare AMQP 1.0 con l'API .NET del bus di servizio](service-bus-amqp-dotnet.md), è possibile scambiare messaggi tra .NET e Java. Leggere questo articolo per altre informazioni sulla messaggistica multipiattaforma che usa il bus di servizio e AMQP 1.0.
 
-### <a name="jms-toonet"></a>Too.NET JMS
-toodemonstrate JMS too.NET messaggistica:
+### <a name="jms-to-net"></a>Da JMS a .NET
+Per verificare la messaggistica da JMS a .NET, eseguire la procedura seguente:
 
-* Avviare l'applicazione di esempio .NET hello senza argomenti della riga di comando.
-* Avviare l'applicazione di esempio Java hello con argomento della riga di comando di hello "sendonly". In questa modalità, hello applicazione non riceve i messaggi dalla coda di hello, questo invierà.
-* Premere **invio** più volte nella console di applicazioni Java hello, causando toobe i messaggi inviati.
-* Questi messaggi vengono ricevuti dal hello applicazione .NET.
+* Avviare l'applicazione di esempio .NET senza argomenti della riga di comando.
+* Avviare l'applicazione di esempio Java con l'argomento della riga di comando "sendonly". In questa modalità l'applicazione non riceverà messaggi dalla coda, ma potrà solo inviarne.
+* Premere alcune volte **INVIO** nella console dell'applicazione Java per inviare i messaggi.
+* Questi messaggi vengono ricevuti dall'applicazione .NET.
 
 #### <a name="output-from-jms-application"></a>Output dell'applicazione JMS
 ```
 > java SimpleSenderReceiver sendonly
-Press [enter] toosend a message. Type 'exit' + [enter] tooquit.
+Press [enter] to send a message. Type 'exit' + [enter] to quit.
 Sent message with JMSMessageID = ID:4364096528752411591
 Sent message with JMSMessageID = ID:459252991689389983
 Sent message with JMSMessageID = ID:1565011046230456854
@@ -270,25 +270,25 @@ exit
 #### <a name="output-from-net-application"></a>Output dell'applicazione .NET
 ```
 > SimpleSenderReceiver.exe    
-Press [enter] toosend a message. Type 'exit' + [enter] tooquit.
+Press [enter] to send a message. Type 'exit' + [enter] to quit.
 Received message with MessageID = 4364096528752411591
 Received message with MessageID = 459252991689389983
 Received message with MessageID = 1565011046230456854
 exit
 ```
 
-### <a name="net-toojms"></a>TooJMS .NET
-toodemonstrate tooJMS di .NET di messaggistica:
+### <a name="net-to-jms"></a>Da .NET a JMS
+Per verificare la messaggistica da .NET a JMS, eseguire la procedura seguente:
 
-* Avviare l'applicazione di esempio .NET hello con argomento della riga di comando di hello "sendonly". In questa modalità, hello applicazione non riceve i messaggi dalla coda di hello, questo invierà.
-* Avviare l'applicazione di esempio Java hello senza argomenti della riga di comando.
-* Premere **invio** più volte nella console di application hello .NET, causando toobe i messaggi inviati.
-* Questi messaggi vengono ricevuti dal hello applicazione Java.
+* Avviare l'applicazione di esempio .NET con l'argomento "sendonly" della riga di comando. In questa modalità l'applicazione non riceverà messaggi dalla coda, ma potrà solo inviarne.
+* Avviare l'applicazione di esempio Java senza argomenti della riga di comando.
+* Premere alcune volte **INVIO** nella console dell'applicazione .NET per inviare i messaggi.
+* Questi messaggi vengono ricevuti dall'applicazione Java.
 
 #### <a name="output-from-net-application"></a>Output dell'applicazione .NET
 ```
 > SimpleSenderReceiver.exe sendonly
-Press [enter] toosend a message. Type 'exit' + [enter] tooquit.
+Press [enter] to send a message. Type 'exit' + [enter] to quit.
 Sent message with MessageID = d64e681a310a48a1ae0ce7b017bf1cf3    
 Sent message with MessageID = 98a39664995b4f74b32e2a0ecccc46bb
 Sent message with MessageID = acbca67f03c346de9b7893026f97ddeb
@@ -298,7 +298,7 @@ exit
 #### <a name="output-from-jms-application"></a>Output dell'applicazione JMS
 ```
 > java SimpleSenderReceiver    
-Press [enter] toosend a message. Type 'exit' + [enter] tooquit.
+Press [enter] to send a message. Type 'exit' + [enter] to quit.
 Received message with JMSMessageID = ID:d64e681a310a48a1ae0ce7b017bf1cf3
 Received message with JMSMessageID = ID:98a39664995b4f74b32e2a0ecccc46bb
 Received message with JMSMessageID = ID:acbca67f03c346de9b7893026f97ddeb
@@ -306,22 +306,22 @@ exit
 ```
 
 ## <a name="unsupported-features-and-restrictions"></a>Funzionalità non supportate e restrizioni
-Hello seguenti restrizioni esiste quando si usa JMS tramite AMQP 1.0 con il Bus di servizio, vale a dire:
+Quando si utilizza JMS su AMQP 1.0 con il bus di servizio esistono le seguenti restrizioni:
 
-* È consentito solo un oggetto **MessageProducer** o **MessageConsumer** per **sessione**. Se è necessario toocreate più **MessageProducers** o **MessageConsumers** in un'applicazione, creare una dedicata **sessione** per ognuno di essi.
+* È consentito solo un oggetto **MessageProducer** o **MessageConsumer** per **sessione**. Se si vuole creare più oggetti **MessageProducers** o **MessageConsumers** in un'applicazione, creare una **sessione** dedicata per ognuno di essi.
 * Le sottoscrizioni a un argomento volatile non sono attualmente supportate.
 * Gli oggetti**MessageSelectors** non sono attualmente supportati.
-* Destinazioni temporanee; ad esempio, **TemporaryQueue**, **TemporaryTopic** non sono attualmente supportati, insieme a hello **QueueRequestor** e **TopicRequestor**API che li utilizzano.
+* Le destinazioni temporanee, ad esempio **TemporaryQueue** e **TemporaryTopic**, non sono attualmente supportate, così come le API **QueueRequestor** e **TopicRequestor** da cui vengono usate.
 * Le sessioni transazionali non sono supportate e le transazioni distribuite non sono supportate.
 
 ## <a name="summary"></a>Riepilogo
-Questa procedura-tooguide è stato illustrato come toouse negoziata di Service Bus le funzionalità di messaggistica (code e pubblicazione/sottoscrizione argomenti) da Java tramite hello API JMS più diffusi e AMQP 1.0.
+Questa guida dettagliata ha illustrato come accedere alle funzionalità di messaggistica negoziata (code e pubblicazione/sottoscrizione di argomenti) del bus di servizio da Java usando la diffusa API JMS e AMQP 1.0.
 
-È anche possibile utilizzare AMQP 1.0 per il bus di servizio da altri linguaggi, tra cui .NET, C, Python e PHP. I componenti compilati con questi linguaggi diversi possono scambiare messaggi in modo affidabile e alla massima fedeltà utilizzando il supporto di hello AMQP 1.0 nel Bus di servizio.
+È anche possibile utilizzare AMQP 1.0 per il bus di servizio da altri linguaggi, tra cui .NET, C, Python e PHP. I componenti creati con questi linguaggi possono scambiare messaggi in modo affidabile e con la massima fedeltà grazie al supporto per AMQP 1.0 nel bus di servizio.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * [Supporto per il protocollo AMQP 1.0 nel bus di servizio di Azure](service-bus-amqp-overview.md)
-* [Come toouse AMQP 1.0 con hello API .NET del Bus di servizio](service-bus-dotnet-advanced-message-queuing.md)
+* [Come usare AMQP 1.0 con l'API .NET del bus di servizio](service-bus-dotnet-advanced-message-queuing.md)
 * [Guida per sviluppatori di AMQP 1.0 per il bus di servizio](service-bus-amqp-dotnet.md)
 * [Introduzione alle code del bus di servizio](service-bus-dotnet-get-started-with-queues.md)
 * [Java Developer Center](https://azure.microsoft.com/develop/java/)

@@ -1,6 +1,6 @@
 ---
-title: domande frequenti di Active Directory aaaAzure | Documenti Microsoft
-description: "Azure Active Directory le risposte alle domande relative alla modalità di accesso tooaccess Azure e Azure Active Directory, la gestione delle password e dell'applicazione."
+title: Domande frequenti su Azure Active Directory | Microsoft Docs
+description: Domande frequenti su Azure Active Directory offre risposte a domande relative all'accesso ad Azure e Azure Active Directory, alla gestione delle password e all'accesso alle applicazioni.
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/16/2017
 ms.author: markvi
-ms.openlocfilehash: 63c30c4aeda4551bf02c6b968f98cded5a3b2c16
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8d4460b3059558de2253c6f6a2d2fc8e7564d6d9
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="azure-active-directory-faq"></a>Domande frequenti su Azure Active Directory
 Azure Active Directory (Azure AD) è una soluzione IDaaS (Identity as a Service) completa che si estende a tutti gli aspetti relativi a identità, gestione degli accessi e sicurezza.
@@ -27,36 +27,36 @@ Per altre informazioni, vedere [Informazioni su Azure Active Directory](active-d
 
 
 ## <a name="access-azure-and-azure-active-directory"></a>Accedere ad Azure e Azure Active Directory
-**D: Perché ricevo "non trovata alcuna sottoscrizione" quando si tenta di tooaccess AD Azure nel portale di Azure classico hello?**
+**D: Perché viene visualizzato il messaggio "Non sono state trovate sottoscrizioni" quando si prova ad accedere ad Azure AD nel portale di Azure classico?**
 
-**R:** tooaccess hello portale di Azure classico, ogni utente deve avere le autorizzazioni con una sottoscrizione di Azure. Se si dispone di una sottoscrizione a pagamento di Office 365 o Azure AD, andare troppo[http://aka.ms/accessAAD](http://aka.ms/accessAAD) per un passaggio di attivazione unica. In caso contrario, sarà necessario tooactivate gratuito [account Azure](https://azure.microsoft.com/pricing/free-trial/) o una sottoscrizione a pagamento.
+**A:** Per accedere al portale di Azure classico, ogni utente deve avere autorizzazioni per una sottoscrizione di Azure. Se si ha una sottoscrizione di Office 365 o Azure AD a pagamento, accedere a [http://aka.ms/accessAAD](http://aka.ms/accessAAD) per un passaggio di attivazione una tantum. In caso contrario sarà necessario attivare un [account Azure](https://azure.microsoft.com/pricing/free-trial/) gratuito o una sottoscrizione a pagamento.
 
 Per altre informazioni, vedere:
 
 * [Associare le sottoscrizioni di Azure ad Azure Active Directory](active-directory-how-subscriptions-associated-directory.md)
-* [Gestire directory hello per la sottoscrizione di Office 365 in Azure](active-directory-manage-o365-subscription.md)
+* [Gestire la directory per la sottoscrizione di Office 365 in Azure](active-directory-manage-o365-subscription.md)
 
 - - -
-**D: qual è la relazione hello tra AD Azure, Office 365 e Azure?**
+**D: Qual è la relazione tra Azure AD, Office 365 e Azure?**
 
-**R:** Azure AD fornisce funzionalità comuni di identità e accessi tooall i servizi web. Se si utilizza Office 365, Microsoft Azure, Intune, o altri utenti, si sta già usando Azure AD toohelp attivare la gestione sign-on e l'accesso per tutti questi servizi.
+**R:** Azure AD offre funzionalità comuni di gestione delle identità e dell'accesso in tutti i servizi Web. Se si usa Office 365, Microsoft Azure, Intune o altri servizi, si usa già Azure AD per abilitare la gestione dell'accesso per tutti questi servizi.
 
-Tutti gli utenti vengono impostati i servizi web toouse sono definiti come account utente in una o più istanze di Azure AD. È possibile configurare questi account per funzionalità di Azure AD gratuite come l'accesso alle applicazioni cloud.
+Tutti gli utenti abilitati all'uso dei servizi Web sono definiti come account utente in una o più istanze di Azure AD. È possibile configurare questi account per funzionalità di Azure AD gratuite come l'accesso alle applicazioni cloud.
 
 I servizi a pagamento di Azure AD, ad esempio Enterprise Mobility + Security, sono complementari ad altri servizi Web come Office 365 e Microsoft Azure, con soluzioni di gestione e di sicurezza complete di scala aziendale.
 - - -
-**D: perché è possibile accedere toohello portale di Azure ma non hello portale di Azure classico?**
+**D: Perché è possibile accedere al portale di Azure, ma non al portale di Azure classico?**
 
-**R:** hello portale di Azure non richiede una sottoscrizione valida e portale classico hello richiede una sottoscrizione valida.  Se non si dispone di una sottoscrizione, è possibile accedere nel portale classico toohello.
+**R:** Per il portale di Azure non è necessaria una sottoscrizione valida, che è invece necessaria per il portale classico.  Senza una sottoscrizione non è possibile accedere al portale classico.
 - - -
-**D: quali sono le differenze di hello tra l'amministratore della sottoscrizione e l'amministratore di Directory?**
+**D: Qual è la differenza tra Amministratore della sottoscrizione e Amministratore directory?**
 
-**R:** per impostazione predefinita, è assegnato il ruolo di amministratore della sottoscrizione hello quando effettua l'iscrizione per Azure. Un amministratore della sottoscrizione è possibile utilizzare un account Microsoft o un lavoro o scuola account dalla directory hello che hello sottoscrizione di Azure è associato.  Questo ruolo è servizi autorizzati toomanage hello portale di Azure.
+**R:** Per impostazione predefinita, al momento dell'iscrizione ad Azure all'utente viene assegnato il ruolo di Amministratore della sottoscrizione. L'amministratore della sottoscrizione può usare un account Microsoft oppure un account aziendale o dell'istituto di istruzione della directory a cui è associata la sottoscrizione di Azure.  Questo ruolo è autorizzato a gestire i servizi nel portale di Azure.
 
-Se altri necessario toosign in e accedere ai servizi da utilizzando hello stessa sottoscrizione, è possibile aggiungerli come coamministratori. Questo ruolo hello dispone di privilegi di accesso come servizio salve, ma non è possibile modificare l'associazione di hello delle directory tooAzure sottoscrizioni.  Per ulteriori informazioni su amministratori della sottoscrizione, vedere [come tooadd o modificare i ruoli di amministratore di Azure](../billing-add-change-azure-subscription-administrator.md) e [delle sottoscrizioni Azure sono associate con Azure Active Directory](active-directory-how-subscriptions-associated-directory.md).
+Se altri utenti devono accedere ai servizi con la stessa sottoscrizione, è possibile aggiungerli come coamministratori. Questo ruolo ha gli stessi privilegi di accesso dell'amministratore del servizio, ma non può modificare l'associazione di sottoscrizioni alle directory di Azure.  Per altre informazioni sugli amministratori della sottoscrizione, vedere [How to add or change Azure administrator roles](../billing-add-change-azure-subscription-administrator.md) (Come aggiungere o modificare i ruoli Amministratore di Azure) e [Associare le sottoscrizioni di Azure ad Azure Active Directory](active-directory-how-subscriptions-associated-directory.md).
 
 
-Azure AD include un set diverso di amministrazione ruoli toomanage hello directory e le funzionalità relative alle identità.  Questi amministratori saranno le funzionalità di accesso toovarious nel portale di Azure hello o hello portale di Azure classico. ruolo dell'amministratore di Hello determina le operazioni consentite, come creare o modificare gli utenti, assegnare ruoli amministrativi tooothers, reimpostare le password utente, gestire le licenze utente o gestire i domini.  Per altre informazioni sugli amministratori della directory di AD e i loro ruoli, vedere [Assegnazione dei ruoli di amministratore in Azure Active Directory](active-directory-assign-admin-roles.md).
+In Azure AD è invece disponibile un set di ruoli amministrativi diverso per gestire la directory e le funzionalità relative alle identità.  Questi amministratori avranno accesso a diverse funzionalità nel portale di Azure o nel portale di Azure classico. Il ruolo dell'amministratore determina le operazioni consentite, ad esempio creare o modificare gli utenti, assegnare ruoli amministrativi ad altri, reimpostare le password utente, gestire le licenze utente o gestire i domini.  Per altre informazioni sugli amministratori della directory di AD e i loro ruoli, vedere [Assegnazione dei ruoli di amministratore in Azure Active Directory](active-directory-assign-admin-roles.md).
 
 I servizi a pagamento di Azure AD, ad esempio Enterprise Mobility + Security, sono complementari ad altri servizi Web come Office 365 e Microsoft Azure, con soluzioni di gestione e di sicurezza complete di scala aziendale.
 
@@ -72,45 +72,45 @@ I servizi a pagamento di Azure AD, ad esempio Enterprise Mobility + Security, so
 
 **D: Come si abbandona un tenant quando si viene aggiunti come collaboratore?**
 
-**R:** quando vengono aggiunti tenant dell'organizzazione tooanother come un collaboratore, è possibile utilizzare hello "tenant selezione" in tooswitch destra superiore hello tra tenant.  Attualmente, non vi è alcun hello di tooleave modo si invitano organizzazione e Microsoft sta lavorando tale funzionalità.  Fino a quando questa funzionalità è disponibile, è possibile chiedere hello si invitano tooremove organizzazione dal tenant.
+**R:** Quando si viene aggiunti a un altro tenant dell'organizzazione come collaboratore, è possibile usare la "selezione tenant" in alto a destra per passare da un tenant all'altro.  Non è attualmente possibile abbandonare l'organizzazione che ha emesso l'invito, ma Microsoft prevede di offrire questa funzionalità in futuro.  Fino a quando questa funzionalità non sarà disponibile, è possibile rivolgersi all'organizzazione che ha emesso l'invito per chiedere di essere rimossi dal tenant.
 - - -
-**D: come è possibile collegare il tooAzure di directory Active Directory locale?**
+**D: Come si può connettere la directory locale ad Azure AD?**
 
-**R:** è possibile connettersi il tooAzure di directory Active Directory locale con Azure AD Connect.
+**R:** È possibile connettere la directory locale ad Azure AD usando Azure AD Connect.
 
 Per altre informazioni, vedere [Integrazione delle identità locali con Azure Active Directory](active-directory-aadconnect.md).
 
 - - -
 **D: Come si configura l'accesso Single Sign-On tra la directory locale e le applicazioni cloud?**
 
-**R:** è solo necessario tooset di single sign-on (SSO) tra la directory locale e Azure AD. Purché si accedere alle applicazioni cloud tramite Azure AD, servizio hello unità automaticamente gli utenti toocorrectly l'autenticazione con le credenziali locali.
+**R:** È sufficiente configurare l'accesso Single Sign-On (SSO) tra la directory locale e Azure AD. Se si accede alle applicazioni cloud tramite Azure AD, il servizio richiederà automaticamente agli utenti di eseguire l'autenticazione corretta con le credenziali locali.
 
-L'implementazione dell'accesso Single Sign-On dall'ambiente locale può essere ottenuta facilmente con soluzioni di federazione come Active Directory Federation Services (AD FS) o con la configurazione della sincronizzazione dell'hash delle password. È possibile distribuire facilmente entrambe le opzioni utilizzando Configurazione guidata di hello Azure AD Connect.
+L'implementazione dell'accesso Single Sign-On dall'ambiente locale può essere ottenuta facilmente con soluzioni di federazione come Active Directory Federation Services (AD FS) o con la configurazione della sincronizzazione dell'hash delle password. È possibile distribuire con facilità entrambe le opzioni usando la configurazione guidata di Azure AD Connect.
 
 Per altre informazioni, vedere [Integrazione delle identità locali con Azure Active Directory](active-directory-aadconnect.md).
 
 - - -
 **D: Azure AD offre un portale self-service per gli utenti dell'organizzazione?**
 
-**R:** Sì, Azure AD fornisce hello [Pannello di accesso AD Azure](http://myapps.microsoft.com) per l'accesso alle applicazioni e utente self-service. Nel caso di un cliente di Office 365, sono disponibili numerosi hello stesse funzionalità nel portale di Office 365 hello.
+**R:** Sì, in Azure AD è disponibile il [pannello di accesso di Azure AD](http://myapps.microsoft.com) per l'accesso degli utenti alle funzionalità self-service e alle applicazioni. I clienti di Office 365 possono trovare molte funzionalità analoghe nel portale di Office 365.
 
-Per ulteriori informazioni, vedere [introduzione toohello Pannello di accesso](active-directory-saas-access-panel-introduction.md).
+Per altre informazioni, vedere [Introduzione al Pannello di accesso](active-directory-saas-access-panel-introduction.md).
 
 - - -
 **D: Azure AD semplifica la gestione dell'infrastruttura locale?**
 
-**R:** Sì. edizione di Azure AD Premium Hello fornisce con Azure AD Connect Health. Azure AD Connect Health consente di monitorare e approfondire la propria identità locale hello e l'infrastruttura servizi di sincronizzazione.  
+**R:** Sì. Azure AD Premium Edition include Azure AD Connect Health. Azure AD Connect Health consente di monitorare e ottenere informazioni dettagliate sull'infrastruttura di gestione delle identità locale e sui servizi di sincronizzazione.  
 
-Per ulteriori informazioni, vedere [monitorare l'identità dell'infrastruttura e sincronizzazione servizi locali nel cloud hello](active-directory-aadconnect-health.md).  
+Per altre informazioni, vedere [Monitorare l'infrastruttura di gestione delle identità locale e i servizi di sincronizzazione nel cloud](active-directory-aadconnect-health.md).  
 
 - - -
 ## <a name="password-management"></a>Gestione delle password
-**D: È possibile usare il writeback delle password di Azure AD senza la sincronizzazione password? (In questo scenario, è possibile toouse Azure AD la reimpostazione della password self-service (SSPR) con password writeback e non archiviare password nel cloud hello?)**
+**D: È possibile usare il writeback delle password di Azure AD senza la sincronizzazione password? In questo scenario è possibile usare la reimpostazione della password self-service (SSPR) di Azure AD con writeback delle password senza memorizzare le password nel cloud?**
 
-**R:** non è necessario toosynchronize l'Active Directory password tooAzure AD tooenable writeback. In un ambiente federato, Azure AD single sign-on (SSO) si basa su hello locale directory tooauthenticate hello di utenti. Questo scenario non richiede hello locale password toobe registrato in Azure AD.
+**R:** Non è necessario sincronizzare le password di Active Directory con Azure AD per abilitare il writeback. In un ambiente federato, l'accesso Single Sign-On (SSO) di Azure AD si basa sulla directory locale per autenticare l'utente. Questo scenario non richiede la verifica della password locale in Azure AD.
 
 - - -
-**D: come tempo occorre per toobe una password riscritti tooActive Directory in locale?**
+**D: Quanto tempo è necessario per il writeback di una password nell'istanza locale di Active Directory?**
 
 **R:** Il writeback delle password viene eseguito in tempo reale.
 
@@ -119,30 +119,30 @@ Per altre informazioni, vedere [Introduzione alla gestione delle password](activ
 - - -
 **D: È possibile usare il writeback delle password con password gestite da un amministratore?**
 
-**R:** Sì, se si dispone di writeback delle password abilitato, le operazioni di password hello eseguite da un amministratore vengono scritte tooyour nell'ambiente locale.  
+**R:** Sì. Se il writeback delle password è abilitato, le operazioni relative alle password eseguite da un amministratore vengono sottoposte a writeback nell'ambiente locale.  
 
-Per ulteriori domande toopassword, vedere [domande frequenti sulla gestione delle Password](active-directory-passwords-faq.md).
+Per altre risposte a domande relative alle password, vedere [Domande frequenti sulla gestione delle password](active-directory-passwords-faq.md).
 - - -
-**D: che cosa può fare se non si ricorda password Office 365 o Azure Active Directory esistente durante il tentativo di toochange password?**
+**D: Cosa si può fare se non si ricorda la password di Office 365/Azure AD esistente durante il tentativo di modificare la password?**
 
-**R:** In situazioni di questo tipo è possibile procedere in due modi.  Usare la reimpostazione password self-service (SSPR), se disponibile.  La disponibilità della funzione SSPR dipende dalla sua configurazione.  Per ulteriori informazioni, vedere [come password hello reimpostare lavoro portale](active-directory-passwords-best-practices.md).
+**R:** In situazioni di questo tipo è possibile procedere in due modi.  Usare la reimpostazione password self-service (SSPR), se disponibile.  La disponibilità della funzione SSPR dipende dalla sua configurazione.  Per altre informazioni, vedere [Funzionamento del portale di reimpostazione delle password](active-directory-passwords-best-practices.md).
 
-Per gli utenti di Office 365, l'amministratore può reimpostare password hello utilizzando i passaggi descritti nella procedura hello [reimpostare le password utente](https://support.office.com/en-us/article/Admins-Reset-user-passwords-7A5D073B-7FAE-4AA5-8F96-9ECD041ABA9C?ui=en-US&rs=en-US&ad=US).
+Per gli utenti di Office 365, l'amministratore può reimpostare la password seguendo la procedura descritta in [Reimpostare le password degli utenti](https://support.office.com/en-us/article/Admins-Reset-user-passwords-7A5D073B-7FAE-4AA5-8F96-9ECD041ABA9C?ui=en-US&rs=en-US&ad=US).
 
-Per gli account di Azure AD, gli amministratori possono reimpostare le password utilizzando uno dei seguenti hello:
+Per gli account Azure AD, gli amministratori possono reimpostare le password in uno dei modi seguenti:
 
-- [Reimpostare gli account nel portale di Azure hello](active-directory-users-reset-password-azure-portal.md)
-- [Reimpostare gli account nel portale classico hello](active-directory-create-users-reset-password.md)
-- [Tramite PowerShell](/powershell/module/msonline/set-msoluserpassword?view=azureadps-1.0)
+- [Reimpostare gli account nel portale di Azure](active-directory-users-reset-password-azure-portal.md)
+- [Reimpostare gli account nel portale classico](active-directory-create-users-reset-password.md)
+- [Uso di PowerShell](/powershell/module/msonline/set-msoluserpassword?view=azureadps-1.0)
 
 
 - - -
 ## <a name="security"></a>Sicurezza
 **D: Gli account vengono bloccati dopo un numero specifico di tentativi non riusciti o la strategia usata è più sofisticata?**</br>
-Viene usato un account di toolock strategia più sofisticate.  Si basa sulla hello IP della richiesta di hello e password hello immesse. durata Hello del blocco di hello aumenta anche in base alle probabilità hello è costituito da un attacco.  
+La strategia usata per bloccare gli account è più sofisticata e  si basa sull'indirizzo IP della richiesta e le password immesse. La durata del blocco aumenta anche in base alla probabilità che sia in corso un attacco.  
 
-**D: determinati password (comune) rifiutate con hello messaggi 'questa password è stata utilizzata toomany volte', questo riferimento toopasswords utilizzato in active directory corrente hello?**</br>
-Si riferisce toopasswords globale comuni, ad esempio tutte le varianti di "Password" e "123456".
+**Q: Alcune password (comuni) vengono rifiutate con messaggi indicanti che la password è stata usata molte volte; si fa riferimento alle password usate nell'istanza corrente di Active Directory?**</br>
+Si fa riferimento alle password comuni a livello globale, ad esempio tutte le varianti di "Password" e "123456".
 
 **D: Una richiesta di accesso proveniente da origini sospette (botnet, endpoint tor) sarà bloccata in un tenant B2C o è necessario un tenant della Basic Edition o della Premium Edition?**</br>
 Esiste un gateway che filtra le richieste e fornisce un livello di protezione da botnet e che viene applicato per tutti i tenant B2C.
@@ -150,34 +150,34 @@ Esiste un gateway che filtra le richieste e fornisce un livello di protezione da
 ## <a name="application-access"></a>Accesso all'applicazione
 **D: Dove si può trovare un elenco di applicazioni preintegrate con Azure AD e delle rispettive funzionalità?**
 
-**D:** Azure AD include più di 2.600 applicazioni preintegrate di Microsoft, application service provider o partner. Tutte le applicazioni preintegrate supportano l'accesso Single Sign-On, SSO consente di utilizzare le credenziali aziendali di tooaccess le app. Alcune applicazioni hello supportano anche automatizzati provisioning e deprovisioning.
+**D:** Azure AD include più di 2.600 applicazioni preintegrate di Microsoft, application service provider o partner. Tutte le applicazioni preintegrate supportano l'accesso Single Sign-On, che consente di usare le credenziali aziendali per accedere alle app. Alcune applicazioni supportano anche il provisioning e il deprovisioning automatici.
 
-Per un elenco completo di applicazioni preintegrate hello, vedere hello [Active Directory Marketplace](https://azure.microsoft.com/marketplace/active-directory/).
+Per un elenco completo delle applicazioni preintegrate, vedere il [Marketplace di Active Directory](https://azure.microsoft.com/marketplace/active-directory/).
 
 - - -
-**D: cosa accade se hello applicazione che è necessario non è in marketplace di Azure AD hello?**
+**D: Che cosa accade se l'applicazione cercata non è disponibile nel Marketplace di Azure AD?**
 
 **R:** Azure AD Premium consente di aggiungere e configurare qualsiasi applicazione. In base alle funzionalità dell'applicazione e alle preferenze dell'utente, è possibile configurare l'accesso Single Sign-On e il provisioning automatico.  
 
 Per altre informazioni, vedere:
 
-* [Configurazione di single sign-on tooapplications non presenti nella raccolta di hello Azure Active Directory dell'applicazione](active-directory-saas-custom-apps.md)
-* [Utilizzando SCIM tooenable il provisioning automatico degli utenti e gruppi da Azure Active Directory tooapplications](active-directory-scim-provisioning.md)
+* [Configurazione del servizio Single Sign-On in applicazioni non presenti nella raccolta di applicazioni di Azure Active Directory](active-directory-saas-custom-apps.md)
+* [Uso di SCIM per abilitare il provisioning automatico di utenti e gruppi da Azure Active Directory alle applicazioni](active-directory-scim-provisioning.md)
 
 - - -
-**D: come utenti Accedi tooapplications grazie ad Azure AD?**
+**D: In che modo gli utenti possono accedere alle applicazioni tramite Azure AD?**
 
-**R:** Azure AD sono disponibili diversi metodi per gli utenti tooview e accedere alle applicazioni, ad esempio:
+**R:** Azure AD consente agli utenti di visualizzare e accedere alle applicazioni in molti modi, ad esempio:
 
-* Pannello di accesso Hello Azure AD
-* avvio applicazione Hello Office 365
-* App toofederated accesso diretto
-* Toofederated di collegamenti diretti, basato su password, o le app di esistenti
+* Pannello di accesso di Azure AD
+* Applicazione di avvio di Office 365
+* Accesso diretto alle applicazioni federate
+* Collegamenti diretti per applicazioni federate, basate su password o esistenti
 
-Per ulteriori informazioni, vedere [integrato di distribuzione di Azure AD applicazioni toousers](active-directory-appssoaccess-whatis.md#deploying-azure-ad-integrated-applications-to-users).
+Per altre informazioni, vedere [Distribuzione di applicazioni integrate di Azure AD agli utenti](active-directory-appssoaccess-whatis.md#deploying-azure-ad-integrated-applications-to-users).
 
 - - -
-**D: quali sono i modi hello Azure AD consente l'autenticazione e single sign-on tooapplications?**
+**D: Quali sono le diverse modalità usate da Azure AD per abilitare l'autenticazione e l'accesso Single Sign-On alle applicazioni?**
 
 **R:** Azure AD supporta molti protocolli standardizzati per l'autenticazione e l'autorizzazione, ad esempio SAML 2.0, OpenID Connect, OAuth 2.0 e WS-Federation. Azure AD supporta anche funzionalità relative all'insieme di credenziali delle password e all'accesso automatico per le app che supportano solo l'autenticazione basata su form.  
 
@@ -190,25 +190,25 @@ Per altre informazioni, vedere:
 - - -
 **D: È possibile aggiungere applicazioni in esecuzione in locale?**
 
-**R:** Proxy dell'applicazione Azure AD offre un accesso facile e sicuro applicazioni web locali tooon in cui si scelgono. È possibile accedere a queste applicazioni in hello allo stesso modo di accedere il software come un servizio (SaaS) app di Azure AD. Non è necessario per una VPN o toochange l'infrastruttura di rete.  
+**R:** Il proxy di applicazione di Azure AD offre un accesso semplice e sicuro alle applicazioni Web locali scelte. È possibile accedere a queste applicazioni in modo analogo all'accesso alle app SaaS in Azure AD. Non è necessario avere una VPN o modificare l'infrastruttura di rete.  
 
-Per ulteriori informazioni, vedere [come tooprovide proteggere l'accesso remoto applicazioni locali tooon](active-directory-application-proxy-get-started.md).
+Per altre informazioni, vedere [Come fornire l'accesso remoto sicuro alle applicazioni locali](active-directory-application-proxy-get-started.md).
 
 - - -
 **D: Come si richiede l'autenticazione Multi-Factor Authentication per gli utenti che accedono a un'applicazione specifica?**
 
-**R:** L'accesso condizionale di Azure AD consente di assegnare criteri di accesso univoci per ogni applicazione. Nei criteri, è possibile richiedere sempre l'autenticazione a più fattori, oppure quando gli utenti non sono connessi toohello rete locale.  
+**R:** L'accesso condizionale di Azure AD consente di assegnare criteri di accesso univoci per ogni applicazione. Nel criterio è possibile richiedere sempre l'autenticazione Multi-Factor Authentication o solo quando gli utenti non sono connessi alla rete locale.  
 
-Per ulteriori informazioni, vedere [protezione dell'accesso tooOffice 365 e altre App connessa tooAzure Active Directory](active-directory-conditional-access.md).
+Per altre informazioni, vedere [Protezione dell'accesso a Office 365 e ad altre app connesse ad Azure Active Directory](active-directory-conditional-access.md).
 
 - - -
 **D: Che cos'è il provisioning utenti automatizzato per le app SaaS?**
 
-**R:** creazione hello tooautomate usano Azure AD, la manutenzione e la rimozione delle identità utente in molte applicazioni SaaS di cloud più diffusi.
+**R:** Azure AD consente di automatizzare la creazione, la manutenzione e la rimozione delle identità utente in molte app cloud SaaS comuni.
 
-Per ulteriori informazioni, vedere [automatizzare provisioning e deprovisioning tooSaaS applicazioni con Azure Active Directory](active-directory-saas-app-provisioning.md).
+Per altre informazioni, vedere [Automatizzare il provisioning e il deprovisioning utenti in applicazioni SaaS con Azure Active Directory](active-directory-saas-app-provisioning.md).
 
 - - -
 **D: È possibile configurare una connessione LDAP sicura con Azure AD?**
 
-**R:** No. Azure AD non supporta il protocollo LDAP hello.
+**R:** No. Azure AD non supporta il protocollo LDAP.

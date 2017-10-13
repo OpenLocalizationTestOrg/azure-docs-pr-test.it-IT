@@ -1,8 +1,8 @@
 ---
-title: aaaAzure logica App documentazione, esercitazioni, riferimenti alle API | Documenti Microsoft
-description: Informazioni su come toodevelop logica App automatizzare e semplificare i flussi di lavoro aziendali in locale e hello cloud. Esercitazioni, modelli e informazioni di riferimento sulle API.
+title: Documentazione di App per la logica di Azure - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
+description: Informazioni su come sviluppare app per la logica in grado di automatizzare e semplificare i flussi di lavoro aziendali nel cloud e in locale. Esercitazioni, modelli e informazioni di riferimento sulle API.
 services: logic-apps
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 5cc3a730b1b6abcb3ec0132f6e8ebf2e54775836
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: ff3f9ba6c225294e7570c5204701dd2f6b927318
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="logic-apps-documentation"></a>Documentazione di App per la logica
 
-Informazioni su come toodevelop logica App che semplificano e integrare i flussi di lavoro scalabile in hello cloud. Esercitazioni, modelli e API fa riferimento a consentono di progettare e distribuire i flussi di lavoro di business automatizzati in locale e hello cloud.
+Informazioni su come sviluppare app per la logica in grado di semplificare e integrare flussi di lavoro scalabili nel cloud. Esercitazioni, modelli e informazioni di riferimento sulle API in cui viene illustrato come progettare e distribuire flussi di lavoro aziendali automatizzati, nel cloud e in locale.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -106,7 +106,7 @@ Informazioni su come toodevelop logica App che semplificano e integrare i flussi
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Introduzione alla creazione di un esempio di API personalizzata toouse con logica App</h3>
+                        <h3>Introduzione alla creazione di un'API personalizzata da usare con le app per la logica</h3>
                     </div>
                 </div>
             </div>
@@ -117,7 +117,7 @@ Informazioni su come toodevelop logica App che semplificano e integrare i flussi
 
 ---
 
-<h2>riferimento</h2>
+<h2>Riferimenti</h2>
 <ul class="panelContent cardsW">
     <li>
         <div class="cardSize">

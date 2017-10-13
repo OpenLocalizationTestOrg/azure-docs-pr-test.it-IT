@@ -1,5 +1,5 @@
 ---
-title: aaaRestore Azure SQL Data Warehouse (portale di Azure) | Documenti Microsoft
+title: Ripristinare Azure SQL Data Warehouse (portale di Azure) | Documentazione Microsoft
 description: "Attività del portale di Azure per il ripristino di Azure SQL Data Warehouse."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: backup-restore
 ms.date: 09/21/2016
 ms.author: lakshmir;barbkess
-ms.openlocfilehash: cb225d2a21b61acab70a51b69c266f8d3ffacc9a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f6bc8671410dc7015a8d2a4bea1ba11f9ae526c3
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="restore-azure-sql-data-warehouse-portal"></a>Ripristinare Azure SQL Data Warehouse (portale)
 > [!div class="op_single_selector"]
@@ -29,71 +29,71 @@ ms.lasthandoff: 10/06/2017
 > * [REST][REST]
 >
 >
-In questo articolo si apprenderà come toorestore Azure SQL Data Warehouse utilizzando hello portale di Azure.
+Questo articolo illustra come ripristinare Azure SQL Data Warehouse usando il portale di Azure.
 
 ## <a name="before-you-begin"></a>Prima di iniziare
-**Verificare la capacità in DTU.** Ogni istanza di SQL Data Warehouse è ospitata in un server SQL (ad esempio mioserver.database.windows.net), che ha una quota di unità elaborate di dati (DTU) predefinita. Prima di poter ripristinare SQL Data Warehouse, verificare che SQL server disponga di sufficiente rimanente quota DTU per database hello che si esegue il ripristino. toolearn quota DTU toocalculate o toorequest più Dtu, vedere [richiedere una modifica della quota DTU][Request a DTU quota change].
+**Verificare la capacità in DTU.** Ogni istanza di SQL Data Warehouse è ospitata in un server SQL (ad esempio mioserver.database.windows.net), che ha una quota di unità elaborate di dati (DTU) predefinita. Per poter ripristinare SQL Data Warehouse, verificare che la quota DTU rimanente nel server SQL sia sufficiente per il database da ripristinare. Per informazioni su come calcolare la quota DTU o per richiedere altre DTU, vedere [Richiedere una modifica della quota DTU][Request a DTU quota change].
 
 ## <a name="restore-an-active-or-paused-database"></a>Ripristinare un database attivo o sospeso
-toorestore un database:
+Per ripristinare un database:
 
-1. Accedi toohello [portale di Azure][Azure portal].
-2. Nel riquadro sinistro hello selezionare **Sfoglia**, quindi selezionare **istanze di SQL Server**.
+1. Accedere al [portale di Azure][Azure portal].
+2. Nel riquadro sinistro fare clic su **Esplora** e quindi su **Server SQL**.
 
     ![Selezionare Esplora > SQL Server](./media/sql-data-warehouse-restore-database-portal/01-browse-for-sql-server.png)
 3. Trovare il server e selezionarlo.
 
     ![Selezionare il server](./media/sql-data-warehouse-restore-database-portal/01-select-server.png)
-4. Trovare l'istanza di hello di SQL Data Warehouse che si desidera toorestore da e selezionarlo.
+4. Trovare l'istanza di SQL Data Warehouse da ripristinare e selezionarla.
 
-    ![Selezionare l'istanza hello toorestore SQL Data Warehouse](./media/sql-data-warehouse-restore-database-portal/01-select-active-dw.png)
-5. Nella parte superiore di hello del Pannello di hello del Data Warehouse, selezionare **ripristinare**.
+    ![Selezionare l'istanza di SQL Data Warehouse da ripristinare](./media/sql-data-warehouse-restore-database-portal/01-select-active-dw.png)
+5. Nella parte superiore del pannello del data warehouse selezionare **Ripristina**.
 
     ![Selezionare Ripristina](./media/sql-data-warehouse-restore-database-portal/01-select-restore-from-active.png)
 6. Specificare un nuovo **nome database**.
-7. Versione più recente hello seleziona **punto di ripristino**.
+7. Selezionare il **punto di ripristino** più recente.
 
-   Assicurarsi di scegliere il punto di ripristino più recente di hello. Poiché i punti di ripristino sono visibili in Coordinated Universal Time (UTC), opzione predefinita hello potrebbe non essere il punto di ripristino più recente di hello.
+   Assicurarsi di selezionare il punto di ripristino più recente. Poiché i punti di ripristino vengono visualizzati in formato UTC (Coordinated Universal Time), l'opzione predefinita potrebbe non corrispondere al punto di ripristino più recente.
 
       ![Selezionare un punto di ripristino](./media/sql-data-warehouse-restore-database-portal/01-restore-blade-from-active.png)
 8. Selezionare **OK**.
-9. processo di ripristino del database Hello verrà avviata ed è possibile utilizzare **notifiche** processo hello toomonitor.
+9. Viene avviato il processo di ripristino del database che sarà possibile monitorare usando le **NOTIFICHE**.
 
 > [!NOTE]
-> Al termine di ripristino di hello, è possibile configurare il database ripristinato seguendo [configura il database dopo il ripristino][Configure your database after recovery].
+> Al termine del ripristino sarà possibile configurare il database ripristinato seguendo le istruzioni disponibili in [Configurare il database dopo il ripristino][Configure your database after recovery].
 >
 >
 
 ## <a name="restore-a-deleted-database"></a>Ripristino di un database eliminato
-un database eliminato toorestore:
+Per ripristinare un database eliminato:
 
-1. Accedi toohello [portale di Azure][Azure portal].
-2. Nel riquadro sinistro hello selezionare **Sfoglia**, quindi selezionare **istanze di SQL Server**.
+1. Accedere al [portale di Azure][Azure portal].
+2. Nel riquadro sinistro fare clic su **Esplora** e quindi su **Server SQL**.
 
     ![Selezionare Esplora > SQL Server](./media/sql-data-warehouse-restore-database-portal/01-browse-for-sql-server.png)
 3. Trovare il server e selezionarlo.
 
     ![Selezionare il server](./media/sql-data-warehouse-restore-database-portal/02-select-server.png)
-4. Scorrere verso il basso toohello **operazioni** sezione nel pannello del server.
-5. Seleziona hello **database eliminati** riquadro.
+4. Scorrere fino alla sezione **Operazioni** nel pannello del server.
+5. Selezionare il riquadro **Database eliminati**.
 
-    ![Selezionare hello eliminati database riquadro](./media/sql-data-warehouse-restore-database-portal/02-select-deleted-dws.png)
-6. Selezionare il database di hello eliminato che si desidera toorestore.
+    ![Selezionare il riquadro Database eliminati](./media/sql-data-warehouse-restore-database-portal/02-select-deleted-dws.png)
+6. Selezionare il database eliminato che si vuole ripristinare.
 
-    ![Selezionare un database toorestore](./media/sql-data-warehouse-restore-database-portal/02-select-deleted-dw.png)
+    ![Selezionare un database da ripristinare](./media/sql-data-warehouse-restore-database-portal/02-select-deleted-dw.png)
 7. Specificare un nuovo **nome database**.
 
-    ![Aggiungere un nome per il database hello](./media/sql-data-warehouse-restore-database-portal/02-restore-blade-from-deleted.png)
+    ![Aggiungere un nome per il database](./media/sql-data-warehouse-restore-database-portal/02-restore-blade-from-deleted.png)
 8. Selezionare **OK**.
-9. processo di ripristino del database Hello verrà avviata ed è possibile utilizzare **notifiche** processo hello toomonitor.
+9. Viene avviato il processo di ripristino del database che sarà possibile monitorare usando le **NOTIFICHE**.
 
 > [!NOTE]
-> vedere il database al termine, il ripristino di hello tooconfigure [configura il database dopo il ripristino][Configure your database after recovery].
+> Per configurare il database al termine del ripristino, vedere [Configurare il database dopo il ripristino][Configure your database after recovery].
 >
 >
 
 ## <a name="next-steps"></a>Passaggi successivi
-toolearn sulle funzionalità di continuità aziendale hello delle edizioni di Database SQL di Azure, leggere hello [Panoramica di continuità aziendale di Database SQL di Azure][Azure SQL Database business continuity overview].
+Per altre informazioni sulle funzionalità di continuità aziendale delle edizioni del database SQL di Azure, vedere [Panoramica sulla continuità aziendale del database SQL][Azure SQL Database business continuity overview].
 
 <!--Image references-->
 

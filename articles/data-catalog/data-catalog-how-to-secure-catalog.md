@@ -1,6 +1,6 @@
 ---
-title: aaaHow toosecure accesso tooAzure catalogo dati | Documenti Microsoft
-description: In questo articolo viene illustrato come toosecure catalogo dati e i dati aziendali.
+title: Come proteggere l'accesso ad Azure Data Catalog | Microsoft Docs
+description: Questo articolo descrive come proteggere il catalogo dati e gli asset corrispondenti.
 services: data-catalog
 documentationcenter: 
 author: steelanddata
@@ -14,45 +14,45 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/17/2017
 ms.author: maroche
-ms.openlocfilehash: d7c35fd57d8add1cdc152b75f111879288e1548f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9664a7bc8493b08c8e0797ac6f1b212079829833
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toosecure-access-toodata-catalog-and-data-assets"></a>Modalità di accesso di asset di dati e di catalogo toodata toosecure
+# <a name="how-to-secure-access-to-data-catalog-and-data-assets"></a>Come proteggere l'accesso al catalogo dati e agli asset di dati
 > [!IMPORTANT]
-> Questa funzionalità è disponibile solo nell'edizione standard di hello di Azure Data Catalog.
+> Questa funzionalità è disponibile solo nell'edizione Standard di Azure Data Catalog.
 
-Azure Data Catalog consente toospecify chi può accedere al catalogo dati hello e quali operazioni (registrare, annotare, diventare proprietario) possono eseguire sui metadati nel catalogo di hello. 
+Azure Data Catalog consente di specificare chi può accedere al catalogo dati e quali operazioni può eseguire sui metadati del catalogo (registrazione, annotazione, assunzione della proprietà del catalogo). 
 
 ## <a name="catalog-users-and-permissions"></a>Utenti e autorizzazioni del catalogo
-toogive un utente o un hello gruppo accedere catalogo dati tooa e impostare le autorizzazioni:
+Per assegnare a un utente o un gruppo l'accesso a un catalogo dati e impostare le autorizzazioni:
 
-1. In hello [home page del catalogo dati](http://www.azuredatacatalog.com), fare clic su **impostazioni** sulla barra degli strumenti hello.
+1. Nella [home page del catalogo dati](http://www.azuredatacatalog.com) fare clic su **Impostazioni** sulla barra degli strumenti.
 
     ![Catalogo dati - Impostazioni](media/data-catalog-how-to-secure-catalog/data-catalog-settings.png)
-2. Nella pagina delle impostazioni di hello, espandere hello **utenti catalogo** sezione.
+2. Nella pagina delle impostazioni espandere la sezione **Utenti del catalogo**.
     ![Utenti del catalogo - Aggiungi](media/data-catalog-how-to-secure-catalog/data-catalog-add-button.png)
 3. Fare clic su **Aggiungi**.
-4. Immettere hello completo **nome utente** o nome di hello **gruppo di sicurezza** in Azure Active Directory (AAD) associata a catalogo hello hello. Se si aggiungono più utenti o gruppi usare la virgola (',') come separatore.
+4. Immettere il **nome utente** completo o il nome del **gruppo di sicurezza** di Azure Active Directory (AAD) associato al catalogo. Se si aggiungono più utenti o gruppi usare la virgola (',') come separatore.
     ![Utenti del catalogo - Utenti o gruppi](media/data-catalog-how-to-secure-catalog/data-catalog-users-groups.png)
-5. Premere **invio** o **scheda** dalla casella di testo hello. 
-6.  Verificare che tutte le autorizzazioni (**Annota**, **registrare**, e **Take Ownership**) assegnati toothese utenti o gruppi per impostazione predefinita. Vale a dire hello utente o gruppo può [registrare asset di dati]( data-catalog-how-to-register.md), [annotare asset di dati]( data-catalog-how-to-annotate.md), e [diventare proprietario dell'asset di dati]( data-catalog-how-to-manage.md). 
+5. Premere **INVIO** o **TAB** per uscire dalla casella di testo. 
+6.  Verificare che tutte le autorizzazioni (**Annota**, **Registra** e **Diventa proprietario**) siano assegnate per impostazione predefinita a tali utenti o gruppi. In tal modo l'utente o il gruppo potrà [registrare asset di dati]( data-catalog-how-to-register.md), [annotare asset di dati]( data-catalog-how-to-annotate.md) e [diventare proprietario di asset di dati]( data-catalog-how-to-manage.md). 
     ![Utenti del catalogo - Autorizzazioni predefinite](media/data-catalog-how-to-secure-catalog/data-catalog-default-permissions.png)
-7.  toogive un utente o gruppo solo hello leggere catalogo toohello di accesso, cancellare hello **annotare** opzione per l'utente o gruppo. Quando si esegue questa operazione, hello utente o gruppo non è possibile annotare asset di dati nel catalogo di hello ma possono visualizzarli. 
-8.  toodeny un utente o gruppo tramite la registrazione di asset di dati, cancellare hello **registrare** opzione per l'utente o gruppo.
-9.  un utente di assunzione di proprietà di un asset di dati crittografato hello toodeny **assumere la proprietà** opzione per l'utente o gruppo. 
-10. Fare clic su un utente/gruppo di utenti del catalogo, toodelete **x** per hello utente/gruppo nella parte inferiore di hello dell'elenco di hello. 
+7.  Per assegnare a un utente o un gruppo solo l'accesso in lettura al catalogo, disattivare l'opzione **Annota** per l'utente o il gruppo. In questo modo l'utente o il gruppo non può aggiungere annotazioni agli asset di dati del catalogo, ma può visualizzarli. 
+8.  Per impedire a un utente o un gruppo di registrare asset di dati, disattivare l'opzione **Registra** per l'utente o il gruppo.
+9.  Per impedire a un utente o un gruppo di diventare proprietario di un asset di dati, disattivare l'opzione **Diventa proprietario** per l'utente o il gruppo. 
+10. Per eliminare un utente o un gruppo dagli utenti del catalogo, fare clic su **x** in corrispondenza dell'utente o del gruppo nella parte inferiore dell'elenco. 
     ![Utenti del catalogo - Elimina utente](media/data-catalog-how-to-secure-catalog/data-catalog-delete-user.png)
 
     > [!IMPORTANT]
-    > Si consiglia di aggiungere direttamente utenti toocatalog gruppi di sicurezza anziché l'aggiunta di utenti e assegnare le autorizzazioni. Quindi, aggiungere gruppi di sicurezza toohello gli utenti che corrispondono ai loro catalogo toohello diritti di accesso e i relativi ruoli.
+    > È consigliabile aggiungere gruppi di sicurezza come utenti del catalogo, anziché aggiungere direttamente singoli utenti e assegnare loro le autorizzazioni. Aggiungere quindi a ogni gruppo di sicurezza gli utenti che corrispondono ai ruoli e ai diritti di accesso al catalogo del gruppo.
 
 ## <a name="special-considerations"></a>Considerazioni speciali
 
-- le autorizzazioni di Hello assegnate toosecurity gruppi sono additive. Si supponga ad esempio che un utente appartenga a due gruppi. Un gruppo ha l'autorizzazione di annotazione e l'altro gruppo non ha tale autorizzazione. L'utente avrà dell'autorizzazione di annotazione. 
-- assegnare le autorizzazioni di Hello in modo esplicito hello di override utente tooa le autorizzazioni assegnate toogroups toowhich hello utente appartiene. Nell'esempio precedente hello, ad esempio, aggiunte in modo esplicito gli utenti di toocatalog utente hello e non si assegnano autorizzazioni annotare. utente Hello non è possibile annotare asset di dati, anche se l'utente di hello è un membro di un gruppo che dispone di annotare le autorizzazioni.
+- Le autorizzazioni assegnate ai gruppi di sicurezza sono cumulative. Si supponga ad esempio che un utente appartenga a due gruppi. Un gruppo ha l'autorizzazione di annotazione e l'altro gruppo non ha tale autorizzazione. L'utente avrà dell'autorizzazione di annotazione. 
+- Le autorizzazioni assegnate in modo esplicito a un utente eseguono l'override delle autorizzazioni assegnate ai gruppi a cui appartiene l'utente. Nell'esempio precedente, si supponga di aver aggiunto in modo esplicito l'utente agli utenti del catalogo e di non aver assegnato a tale utente l'autorizzazione di annotazione. L'utente non può aggiungere annotazioni agli asset di dati, anche se è membro di un gruppo che dispone dell'autorizzazione di annotazione.
 
 ## <a name="next-steps"></a>Passaggi successivi
 - [Introduzione ad Azure Data Catalog](data-catalog-get-started.md)

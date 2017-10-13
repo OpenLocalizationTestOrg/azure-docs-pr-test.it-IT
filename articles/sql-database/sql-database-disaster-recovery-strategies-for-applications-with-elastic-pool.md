@@ -1,6 +1,6 @@
 ---
-title: soluzioni di ripristino di emergenza aaaDesign - Database SQL di Azure | Documenti Microsoft
-description: Informazioni su come toodesign la soluzione di cloud di ripristino di emergenza scegliendo il criterio di failover destra hello.
+title: Progettare soluzioni per il ripristino di emergenza - Database SQL di Azure | Microsoft Docs
+description: Informazioni su come progettare la soluzione cloud per il ripristino di emergenza scegliendo il modello di failover appropriato.
 services: sql-database
 documentationcenter: 
 author: anosov1960
@@ -15,160 +15,160 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 04/07/2017
 ms.author: sashan;carlrab
-ms.openlocfilehash: 9d9eca7570c7a01c992d0b33d449721709b471c3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4f5131fdd2ca83e7a0a2f986a2fa1e3551814c6e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="disaster-recovery-strategies-for-applications-using-sql-database-elastic-pools"></a>Strategie di ripristino di emergenza per applicazioni che usano i pool elastici del database SQL
-Negli anni hello è abbiamo appreso che i servizi cloud non sono infallibile e il verificarsi di eventi imprevisti irreversibili. Database SQL fornisce diverse funzionalità tooprovide per la continuità aziendale hello dell'applicazione quando si verificano gli eventi imprevisti. [Pool elastici](sql-database-elastic-pool.md) e singoli database supportano hello stesso tipo di ripristino di emergenza. Questo articolo illustra alcune strategie di ripristino di emergenza per i pool elastici che sfruttano i vantaggi di queste funzionalità per la continuità aziendale del database SQL.
+Nel corso degli anni è stato riscontrato che i servizi cloud non sono infallibili e che si verificano incidenti catastrofici. Il database SQL offre diverse funzionalità utili per la continuità aziendale dell'applicazione in caso di eventi imprevisti. [Pool elastici](sql-database-elastic-pool.md) e i database singoli supportano lo stesso tipo di funzionalità per il ripristino di emergenza. Questo articolo illustra alcune strategie di ripristino di emergenza per i pool elastici che sfruttano i vantaggi di queste funzionalità per la continuità aziendale del database SQL.
 
-In questo articolo Usa hello seguente modello di applicazione SaaS ISV canonico:
+In questo articolo viene usato il modello classico di applicazione ISV SaaS:
 
-<i>Un'applicazione web basato su cloud moderne esegue il provisioning di un database SQL per ogni utente finale. Hello ISV ha molti clienti e pertanto Usa numerosi database, noti come database tenant. Poiché i database tenant hello dispongono in genere di modelli di attività imprevedibili, hello ISV utilizza un pool elastico toomake hello costo del database molto stimabile per periodi prolungati di tempo. pool elastico Hello semplifica anche la gestione delle prestazioni hello quando picchi di attività utente hello. Inoltre un'applicazione hello database tenant toohello utilizza diversi database profili utente mobili toomanage, sicurezza, raccolgono di modelli di utilizzo e così via. Disponibilità di singoli tenant hello non influisce sulla disponibilità dell'applicazione hello nel suo complesso. Tuttavia, hello disponibilità e prestazioni di database di gestione è critici per la funzione dell'applicazione hello e se il database di gestione di hello intera applicazione hello offline è offline.</i>  
+<i>Un'applicazione Web moderna basata sul cloud effettua il provisioning di un database SQL per ogni utente finale. L'ISV ha un numero elevato di clienti e usa quindi molti database, definiti database tenant. Poiché i database tenant presentano in genere modelli di attività imprevedibili, l'ISV usa un pool elastico per rendere molto prevedibili i costi del database in periodi estesi di tempo. Il pool elastico semplifica anche la gestione delle prestazioni in caso di picchi dell'attività degli utenti. Oltre ai database tenant, l'applicazione usa anche alcuni database per gestire i profili utente e la sicurezza e per raccogliere i modelli di utilizzo e altro ancora. La disponibilità dei singoli tenant non influisce sulla disponibilità complessiva dell'applicazione. La disponibilità e le prestazioni dei database di gestione, tuttavia, sono essenziali per il funzionamento dell'applicazione e se i database di gestione sono offline, l'intera applicazione è offline.</i>  
 
-In questo articolo vengono illustrate le strategie di ripristino di emergenza che coprono una gamma di scenari dal costo sensibili avvio applicazioni tooones con requisiti rigorosi di disponibilità.
+Questo articolo illustra le strategie di ripristino di emergenza in diversi scenari, dalle applicazioni per start-up attente ai costi a quelle con requisiti di disponibilità rigorosi.
 
 ## <a name="scenario-1-cost-sensitive-startup"></a>Scenario 1. Start-up attente ai costi
-<i>Una start-up estremamente attenta ai costi  Desidero toosimplify distribuzione e gestione di un'applicazione hello e ho è un contratto di servizio limitato per i singoli clienti. Ma si desidera un'applicazione hello tooensure mai è offline.</i>
+<i>Una start-up estremamente attenta ai costi  vuole semplificare la distribuzione e la gestione dell'applicazione e può avere un contratto di servizio limitato per singoli clienti. Vuole tuttavia assicurarsi che l'applicazione nel suo complesso non sia mai offline.</i>
 
-requisito di semplicità toosatisfy hello, distribuire tutti i database tenant in un pool elastico in hello Azure regione di propria scelta e i database di gestione come replica geografica singoli database. Per il ripristino di emergenza hello di tenant, usare il ripristino a livello geografico, viene fornito senza alcun costo aggiuntivo. disponibilità di hello tooensure di hello i database di gestione, abilitare la replica geografica li area tooanother usando un gruppo con failover automatico (in anteprima) (passaggio 1). costo Hello della configurazione di ripristino di emergenza hello in questo scenario è toohello uguale costo totale dei database secondari hello. Questa configurazione è illustrata nel diagramma successivo hello.
+Per rispettare il requisito relativo alla semplicità, distribuire tutti i database tenant in un pool elastico nell'area di Azure scelta e quindi distribuire i database di gestione come database singoli con replica geografica. Per il ripristino di emergenza dei tenant, usare il ripristino geografico, disponibile senza costi aggiuntivi. Per assicurare la disponibilità dei database di gestione, configurarne la replica geografica in un'altra area usando un gruppo di failover automatico (in anteprima), come illustrato nel passaggio 1. In questo scenario, i costi di esercizio della configurazione per il ripristino di emergenza equivalgono al costo totale dei database secondari. Questa configurazione è illustrata nel diagramma seguente.
 
 ![Figura 1](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-1.png)
 
-Se si verifica un'interruzione nell'area primaria hello, hello toobring passaggi di ripristino in linea l'applicazione vengono illustrato nel diagramma seguente hello.
+In caso di interruzione nell'area primaria, la procedura di ripristino per riportare online l'applicazione è illustrata nel diagramma seguente.
 
-* gruppo di failover Hello avvia il failover automatico dell'area del ripristino di emergenza toohello hello gestione database. un'applicazione Hello è toohello riconnessa automaticamente nuovi primario e tutti i nuovi account e i database tenant vengono creati nell'area di ripristino di emergenza hello. i clienti esistenti di Hello di visualizzare i dati temporaneamente non disponibili.
-* Creare il pool elastico di hello con hello stessa configurazione di pool originale hello (2).
-* Utilizzare il ripristino geografico toocreate copie dei database tenant hello (3). È possibile prendere in considerazione l'attivazione di ripristini singoli hello per le connessioni dell'utente finale di hello o utilizzare altri schemi di priorità specifico dell'applicazione.
+* Il gruppo di failover avvia il failover automatico del database di gestione per l'area di ripristino di emergenza. L'applicazione viene riconnessa automaticamente al nuovo account primario e a tutti i nuovi account e vengono creati i database tenant nell'area di ripristino di emergenza. I dati risultano temporaneamente non disponibili per i clienti esistenti.
+* Creare il pool elastico con la stessa configurazione del pool originale (2).
+* Usare il ripristino geografico per creare copie dei database tenant (3). È possibile prendere in considerazione l'attivazione dei singoli ripristini in base alle connessioni degli utenti finali oppure l'uso di un altro schema di priorità specifico dell'applicazione.
 
 
-A questo punto l'applicazione è in modalità online nell'area di ripristino di emergenza hello, ma alcuni clienti ritardo durante l'accesso ai dati.
+A questo punto l'applicazione è di nuovo online nell'area di ripristino di emergenza, ma alcuni clienti riscontrano un ritardo nell'accesso ai dati.
 
 ![Figura 2](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-2.png)
 
-Se l'interruzione di hello è temporanea, è possibile che tale area primaria hello viene recuperato da Azure prima del completamento tutti i ripristini di database hello in area hello ripristino di emergenza. In questo caso, orchestrare lo spostamento hello applicazione back-toohello area primaria. il processo di Hello richiede passaggi hello illustrati nel diagramma successivo hello.
+Se l'interruzione è stata temporanea, l'area primaria potrebbe essere ripristinata da Azure prima del completamento di tutti i ripristini dei database nell'area di ripristino di emergenza. In questo caso, orchestrare il ritorno dell'applicazione all'area primaria. Il processo esegue la procedura illustrata nel diagramma seguente.
 
 * Annullare tutte le richieste di ripristino geografico in sospeso.   
-* Eseguire il failover hello management database toohello area primaria (5). Dopo il ripristino dell'area di hello, primari precedente hello diventate automaticamente i database secondari. Ora i ruoli vengono nuovamente invertiti. 
-* Modificare l'area geografica primaria dell'applicazione hello connessione stringa toopoint toohello indietro. Ora tutti i nuovi account e i database tenant vengono creati nell'area primaria hello. I dati risultano temporaneamente non disponibili per alcuni clienti esistenti.   
-* Impostare tutti i database in hello ripristino di emergenza pool solo tooread tooensure che non possono essere modificate nell'area di ripristino di emergenza hello (6). 
-* Per ogni database nel pool di ripristino di emergenza che è stato modificato dopo il recupero di hello hello, rinominare o eliminare i database corrispondenti hello in pool primario hello (7). 
-* Hello copia aggiornato i database da hello pool primario di toohello pool ripristino di emergenza (8). 
-* Eliminare il pool di ripristino di emergenza hello (9)
+* Effettuare il failover dei database di gestione nell'area primaria (5). Dopo il ripristino dell'area, gli elementi primari precedenti sono diventati automaticamente secondari. Ora i ruoli vengono nuovamente invertiti. 
+* Modificare la stringa di connessione dell'applicazione in modo che faccia di nuovo riferimento all'area primaria. Tutti i nuovi account e database tenant verranno ora creati nell'area primaria. I dati risultano temporaneamente non disponibili per alcuni clienti esistenti.   
+* Impostare tutti i database nel pool di ripristino di emergenza su sola lettura, per assicurare che non possano essere modificati nell'area di ripristino di emergenza (6). 
+* Per ogni database nel pool di ripristino di emergenza modificato dopo il ripristino, rinominare o eliminare i database corrispondenti nel pool primario (7). 
+* Copiare i database aggiornati dal pool di ripristino di emergenza al pool primario (8). 
+* Eliminare il pool di ripristino di emergenza (9).
 
-A questo punto l'applicazione è online nell'area primaria di hello con tutti i tenant database disponibili nel pool primario hello.
+A questo punto l'applicazione è online nell'area primaria con tutti i database tenant disponibili nel pool primario.
 
 ![Figura 3](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-3.png)
 
-chiave Hello **vantaggio** di questa strategia è basso costo per la ridondanza del livello dati. I backup vengono eseguiti automaticamente dal servizio di Database SQL con nessun riscrittura dell'applicazione e senza alcun costo aggiuntivo hello.  costo Hello si verifica solo quando vengono ripristinati i database elastici hello. Hello **compromesso** ripristino completo di hello di tutti i database di tenant accettati molto tempo. Hello periodo di tempo dipende dal numero totale di hello di ripristini si avvia in hello ripristino di emergenza area e la dimensione complessiva di hello tenant di database. Anche se è la priorità ripristini alcuni tenant rispetto alle altre, sono in competizione con hello tutti gli altri ripristini avviati in hello stessa area come servizio hello regola e limita toominimize hello impatto complessivo sui database hello clienti esistenti. Inoltre, ripristino hello del database tenant hello non è possibile avviare fino a quando non viene creato nuovo pool elastico hello nell'area di ripristino di emergenza hello.
+Il **vantaggio** principale di questa strategia è costituito dai costi di esercizio ridotti per la ridondanza a livello dati. I backup vengono eseguiti automaticamente dal servizio database SQL, senza riscrittura di applicazioni e senza costi aggiuntivi.  I costi vengono addebitati solo quando i database elastici vengono ripristinati. Lo **svantaggio** consiste nel fatto che il ripristino completo di tutti i database tenant richiede molto tempo, in base al numero totale di ripristini avviati nell'area di ripristino di emergenza e alle dimensioni complessive dei database tenant. Anche se si attribuisce priorità maggiore ai ripristini di alcuni tenant rispetto ad altri, si verificano conflitti con tutti gli altri ripristini avviati nella stessa area, perché il servizio esegue l'arbitraggio e applica la limitazione per ridurre al minimo l'impatto complessivo sui database dei clienti esistenti. Il ripristino dei database tenant, inoltre, può essere avviato solo dopo la creazione del nuovo pool elastico nell'area di ripristino di emergenza.
 
 ## <a name="scenario-2-mature-application-with-tiered-service"></a>Scenario 2. Applicazione matura con più livelli di servizio
-<i>Un'applicazione SaaS matura con più livelli di offerte del servizio e diversi contratti di servizio per i clienti delle versioni di valutazione e i clienti delle versioni a pagamento Per i clienti di valutazione di hello, è necessario tooreduce hello costo quanto possibile. I clienti di valutazione possono richiedere tempi di inattività, ma si desidera tooreduce relativa probabilità. Per i clienti paganti di hello, eventuali tempi di inattività implica un rischio di volo. Pertanto si desidera che i clienti paganti siano sempre in grado di tooaccess toomake i propri dati.</i> 
+<i>Un'applicazione SaaS matura con più livelli di offerte del servizio e diversi contratti di servizio per i clienti delle versioni di valutazione e i clienti delle versioni a pagamento deve ridurre il più possibile i costi per i clienti delle versioni di valutazione. Questi clienti possono accettare i tempi di inattività, ma si vuole ridurne la probabilità. Per i clienti delle versioni a pagamento, i tempi di inattività possono costituire un rischio inaccettabile. Si vuole quindi assicurare che i clienti delle versioni a pagamento siano sempre in grado di accedere ai propri dati.</i> 
 
-toosupport questo scenario, separato hello tenant da pagamento tenant inserendole in pool elastici separato. i clienti di valutazione di Hello hanno inferiore eDTU per ogni tenant e un contratto di servizio inferiore con un tempo di ripristino. per i clienti paganti Hello sono in un pool con maggiore eDTU per ogni tenant e un contratto di servizio superiore. tooguarantee hello minimo tempo di recupero, i database tenant dei clienti paganti hello vengono replicati geograficamente. Questa configurazione è illustrata nel diagramma successivo hello. 
+Per supportare questo scenario, separare i tenant delle versioni di valutazione dai tenant delle versioni a pagamento, inserendoli in pool elastici separati. I clienti delle versioni di valutazione avranno valori di eDTU per tenant inferiori e un contratto di servizio inferiore con tempi di ripristino più lunghi. I clienti delle versioni a pagamento saranno inclusi in un pool con valori di eDTU per tenant superiori e un contratto di servizio superiore. Per garantire tempi di ripristino minimi, i database tenant dei clienti delle versioni a pagamento sono sottoposti a replica geografica. Questa configurazione è illustrata nel diagramma seguente. 
 
 ![Figura 4](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-4.png)
 
-Come primo scenario hello, i database di gestione di hello sono piuttosto attivi in modo da utilizzare un singolo database di replica geografica per tale (1). In questo modo si garantisce prestazioni prevedibili di hello per le nuove sottoscrizioni dei clienti, aggiornamenti a un profilo e altre operazioni di gestione. area in cui risiedono i colori hello del database di gestione di hello Hello è area primaria hello e hello l'area in cui risiedono i database secondari hello del database di gestione di hello è area di hello ripristino di emergenza.
+Come nel primo scenario, i database di gestione sono abbastanza attivi, quindi si usa allo scopo un database singolo con replica geografica (1). In questo modo si assicurano prestazioni prevedibili per le sottoscrizioni dei nuovi clienti, gli aggiornamenti dei profili e altre operazioni di gestione. L'area in cui risiedono gli elementi primari dei database di gestione è l'area primaria e quella in cui si trovano gli elementi secondari dei database di gestione è l'area di ripristino di emergenza.
 
-Hello tenant database i clienti paganti dispongono di un database attivo in pool, il provisioning nell'area primaria hello "pagamento" hello. Eseguire il provisioning di un pool con stesso nome nell'area di ripristino di emergenza hello hello secondario. Ogni tenant è toohello replica geografica secondaria pool (2). Ciò consente un ripristino rapido di tutti i database tenant con il failover. 
+I database tenant dei clienti delle versioni a pagamento hanno database attivi nel pool "a pagamento" sottoposto a provisioning nell'area primaria. Effettuare il provisioning di un pool secondario con lo stesso nome nell'area di ripristino di emergenza. Ogni tenant viene sottoposto a replica geografica nel pool secondario (2). Ciò consente un ripristino rapido di tutti i database tenant con il failover. 
 
-Se si verifica un'interruzione nell'area primaria hello, hello toobring passaggi di ripristino in linea l'applicazione sono illustrati nel diagramma successivo hello:
+In caso di interruzione nell'area primaria, la procedura di ripristino per riportare online l'applicazione è illustrata nel diagramma seguente.
 
 ![Figura 5](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-5.png)
 
-* Failover immediatamente l'area del ripristino di emergenza toohello database Gestione hello (3).
-* Modificare l'area del ripristino di emergenza toohello toopoint stringa connessione dell'applicazione hello. Ora tutti i nuovi account e i database tenant vengono creati nell'area di ripristino di emergenza hello. i clienti esistenti valutazione Hello di visualizzare i dati temporaneamente non disponibili.
-* Eseguire il failover a pagamento database toohello pool del tenant hello ripristino di emergenza area tooimmediately hello ripristinare la disponibilità (4). Poiché il failover hello è una modifica del livello di metadati rapido, prendere in considerazione un'ottimizzazione in cui i failover singoli hello vengono attivati su richiesta per le connessioni dell'utente finale di hello. 
-* Se la dimensione di eDTU del pool secondario era inferiore a quello primario hello perché i database secondari di hello solo hello necessarie capacità tooprocess hello Modifica log durante la sono stati di database secondari immediatamente aumenta la capacità del pool di hello ora tooaccommodate hello completo carico di lavoro di tutti i tenant (5). 
-* Creare pool elastico nuova hello con hello stesso nome e hello stessa configurazione nell'area di hello ripristino di emergenza per i database dei clienti valutazione hello (6). 
-* Una volta creato il pool di hello valutazione dei clienti, utilizzare i database di ripristino a livello geografico toorestore hello singoli tenant di prova nel nuovo pool di hello (7). Attivazione di ripristini singoli hello per le connessioni dell'utente finale di hello oppure usare altri schemi di priorità specifico dell'applicazione.
+* Effettuare immediatamente il failover dei database di gestione nell'area di ripristino di emergenza (3).
+* Modificare la stringa di connessione dell'applicazione in modo che faccia riferimento all'area di ripristino di emergenza. Tutti i nuovi account e database tenant verranno ora creati nell'area di ripristino di emergenza. I dati risulteranno temporaneamente non disponibili per i clienti esistenti delle versioni di valutazione.
+* Effettuare il failover dei database tenant a pagamento nel pool nell'area di ripristino di emergenza per ripristinarne immediatamente la disponibilità (4). Dato che il failover è una rapida modifica a livello di metadati, prendere in considerazione un'ottimizzazione con attivazione su richiesta dei singoli failover da parte delle connessioni degli utenti finali. 
+* Se le dimensioni eDTU del pool secondario sono inferiori a quelle del pool primario perché i database secondari richiedevano solo le funzionalità necessarie per elaborare i log delle modifiche durante l'impostazione come secondari, aumentare immediatamente la capacità del pool per adeguarla all'intero carico di lavoro di tutti i tenant (5). 
+* Creare il nuovo pool elastico con lo stesso nome e la stessa configurazione nell'area di ripristino di emergenza per i database dei clienti della versione di valutazione (6). 
+* Dopo la creazione del pool dei clienti della versione di valutazione, usare il ripristino geografico per ripristinare i singoli database tenant della versione di valutazione nel nuovo pool (7). Prendere in considerazione l'attivazione dei singoli ripristini in base alle connessioni degli utenti finali oppure l'uso di un altro schema di priorità specifico dell'applicazione.
 
-A questo punto l'applicazione è in modalità online nell'area di ripristino di emergenza hello. Tutti i clienti paganti dispongono di accesso ai dati tootheir mentre i clienti di valutazione di hello ritardo durante l'accesso ai dati.
+A questo punto l'applicazione è di nuovo online nell'area di ripristino di emergenza. Tutti i clienti delle versioni a pagamento possono accedere ai propri dati, mentre i clienti delle versioni di valutazione riscontrano un ritardo nell'accesso ai dati.
 
-Quando verrà ripristinato area primaria hello Azure *dopo* è stato ripristinato di un'applicazione hello in area hello ripristino di emergenza è possibile continuare l'esecuzione di un'applicazione hello in tale area oppure è possibile decidere area primaria di toofail toohello indietro. Se viene ripristinato l'area primaria hello *prima* completamento del processo di failover hello, si consiglia di non superati back immediatamente. il failback Hello esegue i passaggi di hello illustrati nel diagramma successivo hello: 
+Quando l'area primaria viene ripristinata da Azure *dopo* il ripristino dell'applicazione nell'area di ripristino di emergenza, è possibile continuare a eseguire l'applicazione in tale area oppure eseguire il failback nell'area primaria. Se l'area primaria viene ripristinata *prima* che il processo di failover sia completato, valutare la possibilità di effettuare immediatamente il failback. Il failback prevede la procedura illustrata nel diagramma seguente: 
 
 ![Figura 6](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-6.png)
 
 * Annullare tutte le richieste di ripristino geografico in sospeso.   
-* Il failover dei database di gestione di hello (8). Dopo il ripristino dell'area di hello, hello primario precedente diventa automaticamente hello secondario. Ora diventa hello nuovo primario.  
-* Eseguire il failover hello a pagamento database tenant (9). Analogamente, dopo il ripristino dell'area di hello, primari precedente hello diventano automaticamente repliche secondarie hello. Ora diventano primari hello nuovamente. 
-* Set hello ripristinato i database di prova che sono state modificate nell'area di ripristino di emergenza hello solo tooread (10).
-* Per ogni database nel pool di ripristino di emergenza di clienti valutazione hello modificato dopo il recupero di hello, rinominare o eliminare database corrispondente di hello in pool primario clienti valutazione hello (11). 
-* Hello copia aggiornato i database da hello pool primario di toohello pool ripristino di emergenza (12). 
-* Eliminare il pool di ripristino di emergenza hello (13) 
+* Effettuare il failover dei database di gestione (8). Dopo il ripristino dell'area, l'elemento primario precedente diventa automaticamente l'elemento secondario. Ora diventa di nuovo primario.  
+* Effettuare il failover dei database tenant delle versioni a pagamento (9). Analogamente, dopo il ripristino dell'area, gli elementi primari precedenti diventano automaticamente secondari. Ora diventano di nuovo primari. 
+* Impostare su sola lettura i database della versione di valutazione ripristinati che hanno subito modifiche nell'area di ripristino di emergenza (10).
+* Per ogni database nel pool di ripristino di emergenza dei clienti della versione di valutazione modificato dopo il ripristino, rinominare o eliminare il database corrispondente nel pool primario dei clienti della versione di valutazione (11). 
+* Copiare i database aggiornati dal pool di ripristino di emergenza al pool primario (12). 
+* Eliminare il pool di ripristino di emergenza (13). 
 
 > [!NOTE]
-> l'operazione di failover Hello è asincrona. tempo di recupero hello toominimize che è importante eseguire il comando di failover dei database tenant hello in batch di almeno 20 database. 
+> L'operazione di failover è asincrona. Per ridurre al minimo il tempo necessario per il ripristino, è importante eseguire il comando di failover dei database tenant in batch di almeno 20 database. 
 > 
 > 
 
-chiave Hello **vantaggio** di questa strategia è quello di fornire hello contratto di servizio più elevata per i clienti paganti hello. Garantisce inoltre che le versioni di valutazione nuovo hello sono bloccati non appena viene creato hello valutazione pool di ripristino di emergenza. Hello **compromesso** è che il programma di installazione aumento hello del costo totale del database tenant hello dal costo hello del pool di ripristino di emergenza secondario di hello per a pagamento di clienti. Inoltre, se pool secondario hello è di dimensioni diverse, i clienti paganti hello prestazioni inferiore dopo il failover fino a quando non hello pool nell'area di ripristino di emergenza hello completato l'aggiornamento. 
+Il **vantaggio** principale di questa strategia consiste nel fatto che offre il Contratto di servizio migliore per i clienti a pagamento. Garantisce anche che le nuove versioni di valutazione vengano sbloccate non appena viene creato il pool di ripristino di emergenza della versione di valutazione. Lo **svantaggio** consiste nel fatto che questa configurazione aumenta il costo totale dei database tenant in base al costo del pool di ripristino di emergenza secondario per i clienti a pagamento. Se il pool secondario ha dimensioni diverse, inoltre, i clienti delle versioni a pagamento riscontrano prestazioni inferiori dopo il failover fino al completamento dell'aggiornamento del pool nell'area di ripristino di emergenza. 
 
 ## <a name="scenario-3-geographically-distributed-application-with-tiered-service"></a>Scenario 3. Applicazione geograficamente distribuita con più livelli di servizio
-<i>Un'applicazione SaaS matura con offerte di più livelli di servizio Si desidera toooffer un aggressivo toomy contratto di servizio a pagamento di clienti e ridurre al minimo il rischio di hello di impatto quando si verificano interruzioni poiché anche breve interruzione può causare l'insoddisfazione dei clienti. È fondamentale che i clienti paganti di hello può accedere sempre ai dati. sono disponibili le versioni di valutazione di Hello e un contratto di servizio non è disponibile durante il periodo di valutazione di hello.</i> 
+<i>Un'applicazione SaaS matura con offerte di più livelli di servizio vuole offrire un Contratto di servizio molto aggressivo ai clienti della versione a pagamento e vuole ridurre al minimo il rischio di impatto di eventuali interruzioni, perché anche una breve interruzione può causare l'insoddisfazione dei clienti. È essenziale che i clienti della versione a pagamento possano accedere sempre ai propri dati. Le versioni di valutazione sono gratuite e non è disponibile alcun Contratto di servizio durante il periodo di valutazione. </i> 
 
-toosupport questo scenario, utilizzare tre separato elastico pool. Eseguire il provisioning due pool di uguale dimensione con elevato numero di Edtu per ogni database di hello di toocontain due aree diverse a pagamento database tenant dei clienti. pool di terzo Hello contenente tenant hello può avere inferiore Edtu per database ed eseguirne il provisioning in uno dei due aree hello.
+Per supportare questo scenario, usare tre pool elastici separati. È necessario effettuare il provisioning di due pool di dimensioni uguali con valori eDTU elevati per ogni database in due aree diverse per includere i database tenant dei clienti della versione a pagamento. Il terzo pool contenente i tenant delle versioni di valutazione può avere valori eDTU inferiori per ogni database e viene sottoposto a provisioning in una delle due aree.
 
-tooguarantee hello minimo tempo di recupero durante le interruzioni, i database tenant dei clienti paganti hello vengono replicati geograficamente con il 50% dei database primari di hello in ognuna delle aree di hello due. Analogamente, ogni regione è 50% dei database secondari hello. In questo modo, se un'area è offline, solo il 50% di hello a pagamento database dei clienti sono interessati e abbia toofail. Hello altri database rimangono invariato. Questa configurazione è illustrata nel seguente diagramma hello:
+Per garantire tempi di ripristino minimi durante le interruzioni, i database tenant dei clienti della versione a pagamento sono sottoposti a replica geografica con il 50% dei database primari in ognuna delle due aree. Analogamente, ogni area include il 50% dei database secondari. In questo modo, lo stato offline di un'area influisce solo sul 50% dei database dei clienti a pagamento, di cui viene effettuato il failover. Gli altri database rimangono inalterati. Questa configurazione è illustrata nel diagramma seguente:
 
 ![Figura 4](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-7.png)
 
-Come negli scenari precedenti hello, i database di gestione di hello attivi piuttosto quindi configurarli come singolo database di replica geografica (1). In questo modo si garantisce prestazioni prevedibili di hello di nuove sottoscrizioni di cliente hello, aggiornamenti a un profilo e altre operazioni di gestione. Area è area primaria di hello per il database di gestione di hello e area hello B viene utilizzata per il ripristino dei database di gestione di hello.
+Come nello scenario precedente, i database di gestione sono abbastanza attivi, quindi devono essere configurati come database singoli con replica geografica (1). In questo modo si assicurano prestazioni prevedibili per le sottoscrizioni dei nuovi clienti, gli aggiornamenti dei profili e altre operazioni di gestione. L'area A è l'area primaria per i database di gestione e l'area B viene usata per il ripristino dei database di gestione.
 
-i database tenant dei clienti paganti Hello inoltre vengono replicati geograficamente, ma con colori primari e secondari suddivisa tra paese e area B (2). In questo modo, il database primario di hello tenant interessato dall'interruzione hello possono eseguire il failover toohello altre aree e rese disponibili. Hello altri metà del database tenant hello non sono interessati affatto. 
+I database tenant dei clienti della versione a pagamento vengono sottoposti anche a replica geografica, ma con suddivisione degli elementi primari e secondari tra area A e area B (2). In questo modo, i database tenant primari interessati dall'interruzione possono essere sottoposti a failover nell'altra area e risultare disponibili. Sull'altra metà dei database tenant non si verifica alcun impatto. 
 
-nel diagramma seguente Hello illustra hello ripristino passaggi tootake se si verifica un'interruzione nell'area A.
+Il diagramma seguente illustra la procedura di ripristino da eseguire in caso di interruzione nell'area A.
 
 ![Figura 5](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-8.png)
 
-* Il failover immediatamente hello management database tooregion B (3).
-* Modifica connessione stringa toopoint toohello i database di gestione dell'applicazione hello nell'area B. modifica hello management database toomake che hello nuovi account e i database tenant vengono creati nell'area B e sono presenti database tenant esistenti hello come e. i clienti esistenti valutazione Hello di visualizzare i dati temporaneamente non disponibili.
-* Eseguire il failover a pagamento toopool di database di tenant 2 nell'area B tooimmediately hello ripristinare la disponibilità (4). Poiché il failover hello è una modifica del livello di metadati rapido, è possibile considerare un'ottimizzazione in cui i failover singoli hello vengono attivati su richiesta per le connessioni dell'utente finale di hello. 
-* Poiché ora pool 2 contiene solo i database primari, hello totale del carico di lavoro di hello pool aumenta e immediatamente possibile aumentarne le dimensioni di eDTU (5). 
-* Creare pool elastico nuova hello con hello stesso nome e hello stessa configurazione nell'area di hello B per i database dei clienti valutazione hello (6). 
-* Una volta hello viene creato pool Usa ripristino a livello geografico toorestore hello tenant di prova singoli database nel pool di hello (7). È possibile prendere in considerazione l'attivazione di ripristini singoli hello per le connessioni dell'utente finale di hello o utilizzare altri schemi di priorità specifico dell'applicazione.
+* Eseguire immediatamente il failover dei database di gestione nell'area B (3).
+* Modificare la stringa di connessione dell'applicazione in modo che faccia riferimento ai database di gestione nell'area B. Modificare i database di gestione affinché i nuovi account e database tenant vengano creati nell'area B e i database tenant esistenti siano disponibili in tale area. I dati risulteranno temporaneamente non disponibili per i clienti esistenti delle versioni di valutazione.
+* Effettuare il failover dei database tenant a pagamento nel pool 2 nell'area B per ripristinarne immediatamente la disponibilità (4). Dato che il failover è una rapida modifica a livello di metadati, è possibile prendere in considerazione un'ottimizzazione con attivazione su richiesta dei singoli failover da parte delle connessioni degli utenti finali. 
+* Dato che il pool 2 ora contiene solo database primari, il carico di lavoro totale nel pool aumenta ed è possibile incrementarne immediatamente le dimensioni eDTU (5). 
+* Creare il nuovo pool elastico con lo stesso nome e la stessa configurazione nell'area B per i database dei clienti della versione di valutazione (6). 
+* Dopo la creazione del pool, usare il ripristino geografico per ripristinare il singolo database tenant della versione di valutazione nel pool (7). È possibile prendere in considerazione l'attivazione dei singoli ripristini in base alle connessioni degli utenti finali oppure l'uso di un altro schema di priorità specifico dell'applicazione.
 
 > [!NOTE]
-> l'operazione di failover Hello è asincrona. tempo di recupero hello toominimize, è importante eseguire il comando di failover dei database tenant hello in batch di almeno 20 database. 
+> L'operazione di failover è asincrona. Per ridurre al minimo i tempi di ripristino, è importante eseguire il comando di failover dei database tenant in batch di almeno 20 database. 
 > 
 
-A questo punto l'applicazione è in modalità online nell'area B. Tutti i clienti paganti dispongono di accesso ai dati tootheir mentre i clienti di valutazione di hello ritardo durante l'accesso ai dati.
+A questo punto l'applicazione è di nuovo online nell'area B. Tutti i clienti a pagamento possono accedere ai propri dati, mentre i clienti delle versioni di valutazione riscontrano un ritardo nell'accesso ai dati.
 
-Quando viene recuperato l'area A toodecide è necessario se si desidera che l'area B toouse per i clienti di valutazione o un pool di failback toousing hello valutazione clienti nell'area A. Un criterio potrebbe essere hello % dei database di tenant di prova modificato dopo il ripristino di hello. Indipendentemente dal fatto di tale decisione, è necessario tenant hello a pagamento toore bilanciamento tra due pool. nel diagramma seguente Hello illustra il processo di hello quando i database tenant di prova hello non riescono A. tooregion indietro  
+Al termine del ripristino dell'area A, è necessario decidere se si vuole usare l'area B per i clienti della versione di valutazione o eseguire il failback e usare di nuovo il pool dei clienti della versione di valutazione nell'area A. Un criterio per la decisione potrebbe essere rappresentato dalla percentuale di database tenant della versione di valutazione modificati dopo il ripristino. Indipendentemente da questa decisione, è necessario ribilanciare i tenant della versione a pagamento tra i due pool. Il diagramma seguente illustra il processo di failback dei database tenant della versione di valutazione nell'area A.  
 
 ![Figura 6](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-9.png)
 
-* Annullare tutti i pool di tootrial ripristino di emergenza richieste ripristino a livello geografico in sospeso.   
-* Eseguire il failover del database di gestione di hello (8). Dopo il ripristino dell'area di hello, primario precedente hello è diventato automaticamente hello secondario. Ora diventa hello nuovo primario.  
-* Selezionare i database tenant a pagamento di esito negativo toopool back-1 e avviare il failover tootheir secondari (9). Dopo il ripristino dell'area di hello, tutti i database nel pool 1 è stato reso automaticamente le repliche secondarie. Ora il 50% dei database diventa di nuovo primario. 
-* Ridurre le dimensioni di hello toohello 2 originale eDTU del (10).
-* Tutti i set ripristinato i database di prova nell'area di hello B solo tooread (11).
-* Per ogni database nel pool di ripristino di emergenza valutazione hello che è stato modificato dopo il recupero di hello, rinominare o eliminare database corrispondente di hello in pool primario valutazione hello (12). 
-* Hello copia aggiornato i database da hello pool primario di toohello pool ripristino di emergenza (13). 
-* Eliminare il pool di ripristino di emergenza hello (14) 
+* Annullare tutte le richieste di ripristino geografico in sospeso verso il pool di ripristino di emergenza della versione di valutazione.   
+* Effettuare il failover del database di gestione (8). Dopo il ripristino dell'area, l'elemento primario precedente è diventato automaticamente l'elemento secondario. Ora diventa di nuovo primario.  
+* Selezionare i database tenant della versione a pagamento di cui verrà effettuato il failback nel pool 1 e avviare il failover negli elementi secondari (9). Dopo il ripristino dell'area, tutti i database nel pool 1 sono diventati automaticamente secondari. Ora il 50% dei database diventa di nuovo primario. 
+* Ridurre le dimensioni del pool 2 al valore eDTU originale (10).
+* Impostare su sola lettura tutti i database della versione di valutazione ripristinati nell'area B (11).
+* Per ogni database nel pool di ripristino di emergenza delle versioni di valutazione modificato dopo il ripristino, rinominare o eliminare il database corrispondente nel pool primario delle versioni di valutazione (12). 
+* Copiare i database aggiornati dal pool di ripristino di emergenza al pool primario (13). 
+* Eliminare il pool di ripristino di emergenza (14). 
 
-chiave Hello **vantaggi** di questa strategia sono:
+Ecco i **vantaggi** principali di questa strategia:
 
-* I clienti paganti poiché garantisce che un'interruzione del servizio in grado di influire più del 50% dei database tenant hello hello supporta il contratto di servizio più stringenti hello. 
-* Garantisce che le versioni di valutazione nuovo hello sono bloccati appena creata durante il ripristino di hello trail hello pool di ripristino di emergenza. 
-* Consente l'uso più efficiente della capacità del pool di hello al 50% di database secondari in un pool di applicazioni 1 e 2 pool vengono garantiti toobe meno attivi rispetto ai database primari hello.
+* Supporta il Contratto di servizio più aggressivo per i clienti della versione a pagamento, perché assicura che un'interruzione non possa influire su oltre il 50% dei database tenant. 
+* Garantisce che le nuove versioni di valutazione vengano sbloccate non appena viene creato il pool di ripristino di emergenza della versione di valutazione durante il ripristino. 
+* Consente un uso più efficiente della capacità dei pool, perché il 50% dei database secondari nel pool 1 e nel pool 2 risulta sicuramente meno attiva rispetto ai database primari.
 
-Hello principale **compromessi** sono:
+Ecco gli **svantaggi** principali:
 
-* le operazioni CRUD Hello nei database di gestione di hello abbia una latenza inferiore per hello gli utenti finali connessi tooregion A rispetto a per gli utenti finali connessi di hello tooregion B come essi vengono eseguite hello primario del database di gestione di hello.
-* Richiede la progettazione più complessa hello del database di gestione. Ad esempio, ogni record tenant contiene un tag di percorso che deve toobe modificato durante il failover e failback.  
-* i clienti paganti Hello prestazioni inferiore superiore al normale fino a quando non hello pool nell'area B completato l'aggiornamento. 
+* Le operazioni CRUD sui database di gestione hanno una latenza minore per gli utenti finali connessi all'area A rispetto agli utenti finali connessi all'area B, perché verranno eseguite sui database di gestione primari.
+* Richiede una progettazione più complessa per il database di gestione. Ogni record dei tenant, ad esempio, ha un tag di posizione che deve essere modificato durante il failover e il failback.  
+* I clienti della versione a pagamento potrebbero notare prestazioni inferiori al consueto fino al completamento dell'aggiornamento del pool nell'area B. 
 
 ## <a name="summary"></a>Riepilogo
-In questo articolo è incentrato sulle strategie di ripristino di emergenza hello per hello livello di database utilizzati da un'applicazione multi-tenant SaaS ISV. Hello strategia scelta è in base alle esigenze di hello dell'applicazione hello, ad esempio modello di business hello, Service Level AGREEMENT hello desiderati toooffer tooyour clienti, budget vincolo e così via. Vantaggi di strategia contorni hello e compromesso descritti in modo è possibile prendere una decisione consapevole. È anche probabile che l'applicazione specifica includa altri componenti di Azure. Per esaminare le informazioni sulla continuità aziendale e orchestrare ripristino hello del livello di database hello con essi. toolearn informazioni su gestione del ripristino di applicazioni di database in Azure, fare riferimento troppo[progettazione di soluzioni cloud per il ripristino di emergenza](sql-database-designing-cloud-solutions-for-disaster-recovery.md).  
+Questo articolo illustra le strategie di ripristino di emergenza per il livello database usato da un'applicazione multi-tenant ISV SaaS. La scelta della strategia si basa sulle esigenze dell'applicazione, ad esempio il modello aziendale, il contratto di servizio da offrire ai clienti, i vincoli di budget e così via. Ogni strategia descritta illustra i vantaggi e gli svantaggi, per consentire una decisione consapevole. È anche probabile che l'applicazione specifica includa altri componenti di Azure. Esaminare quindi le rispettive indicazioni relative alla continuità aziendale e orchestrare il ripristino del livello database con tali componenti. Per altre informazioni sulla gestione del ripristino di applicazioni di database in Azure, vedere l'articolo relativo alla [progettazione di soluzioni cloud per il ripristino di emergenza](sql-database-designing-cloud-solutions-for-disaster-recovery.md).  
 
 ## <a name="next-steps"></a>Passaggi successivi
-* toolearn sui backup di Database di SQL Azure automatizzati, vedere [backup automatici di Database SQL](sql-database-automated-backups.md).
+* Per informazioni sui backup automatici del database SQL di Azure, vedere [Backup automatici del database SQL](sql-database-automated-backups.md).
 * Per la panoramica e gli scenari della continuità aziendale, vedere [Continuità aziendale del database SQL di Azure](sql-database-business-continuity.md).
-* toolearn sull'utilizzo di backup automatico per il ripristino, vedere [ripristinare un database dai backup avviate dal servizio hello](sql-database-recovery-using-backups.md).
-* toolearn sulle opzioni di ripristino più veloce, vedere [replica geografica attiva](sql-database-geo-replication-overview.md).
-* toolearn sull'utilizzo di backup automatico per l'archiviazione, vedere [copia del database](sql-database-copy.md).
+* Per altre informazioni sull'uso dei backup automatici per il ripristino, vedere l'articolo relativo al [ripristino di un database dai backup avviati dal servizio](sql-database-recovery-using-backups.md).
+* Per altre informazioni sulle opzioni di ripristino più veloci, vedere l'articolo relativo alla [replica geografica attiva](sql-database-geo-replication-overview.md).
+* Per altre informazioni sull'uso dei backup automatici per l'archiviazione, vedere [Copiare un database SQL di Azure](sql-database-copy.md).
 

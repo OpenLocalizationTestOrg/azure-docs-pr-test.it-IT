@@ -1,6 +1,6 @@
 ---
-title: i flussi di lavoro aaaCreate dai modelli - App Azure per la logica | Documenti Microsoft
-description: 'Introduzione: creare rapidamente flussi di lavoro usando le app di Azure logica App modelli tooconnect e integrare i dati.'
+title: Creare flussi di lavoro da modelli - App per la logica di Azure | Documentazione Microsoft
+description: Per iniziare, creare rapidamente flussi di lavoro usando i modelli di app per la logica di Azure per connettere le app e integrare i dati.
 author: kevinlam1
 manager: anneta
 editor: 
@@ -15,58 +15,58 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: LADocs; klam
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 0127523662a12076772b52968f1e2f9cbad72a1b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 89272869f7dfaa34cbd2ad32d67dca0955e6158b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="configure-a-workflow-using-a-pre-built-template-or-pattern-tooget-started-quickly"></a>Configurare un flusso di lavoro utilizzando un modello predefinito o un modello tooget in tempi brevi
+# <a name="configure-a-workflow-using-a-pre-built-template-or-pattern-to-get-started-quickly"></a>Configurare un flusso di lavoro usando un modello predefinito o un modello per iniziare rapidamente
 
 ## <a name="what-are-logic-app-templates"></a>Informazioni sui modelli di app per la logica
-Un modello di applicazione logica è un'applicazione preesistente logica che è possibile utilizzare tooquickly iniziare a creare il proprio flusso di lavoro. 
+Un modello di app per la logica è un'app per la logica predefinita che è possibile usare per iniziare subito a creare il proprio flusso di lavoro. 
 
-Questi modelli sono toodiscover un buon metodo vari modelli che possono essere compilate tramite App per la logica. È possibile utilizzare questi modelli come-è o modificarle toofit lo scenario.
+Questi modelli rappresentano un ottimo modo per individuare diversi schemi che possono essere compilati tramite le app per la logica. È possibile usare questi modelli così come sono oppure modificarli per adattarli a uno scenario specifico.
 
 ## <a name="overview-of-available-templates"></a>Panoramica dei modelli disponibili
-Sono disponibili numerosi modelli disponibili attualmente pubblicati in hello logica app della piattaforma. Alcune categorie di esempio, come tipo hello di connettori utilizzati in esse, è elencato di seguito.
+Esistono molti modelli disponibili attualmente pubblicati nella piattaforma di app per la logica. Alcune categorie di esempio, nonché i tipi di connettori usati, sono elencati di seguito.
 
 ### <a name="enterprise-cloud-templates"></a>Modelli cloud dell'organizzazione
 Modelli che si integrano Dynamics CRM, Salesforce, Box, BLOB di Azure e altri connettori per le esigenze cloud dell'organizzazione. Alcuni esempi di operazioni eseguibili con questi modelli includono l'organizzazione dei lead e il backup dei dati di file aziendali.
 
 ### <a name="enterprise-integration-pack-templates"></a>Modelli di Enterprise Integration Pack
-Configurazioni di VETER (convalidare, estrarre, trasformare, arricchire, indirizzare) pipeline, ricezione X12 EDI tramite AS2 del documento e trasformandolo tooXML, come il messaggio X12 e AS2 gestione.
+Configurazioni di pipeline VETER (convalida, estrazione, trasformazione, arricchimento, routing), ricezione di un documento X12 EDI tramite AS2 e conversione in formato XML, nonché gestione di messaggi X12 e AS2.
 
 ### <a name="protocol-pattern-templates"></a>Modelli di schema di protocollo
 Questi modelli sono costituiti da app per la logica che contengono schemi di protocollo, ad esempio richiesta-risposta HTTP e integrazioni tra FTP e SFTP. È possibile usarli senza apportare modifiche oppure come base per creare schemi di protocollo più complessi.  
 
 ### <a name="personal-productivity-templates"></a>Modelli per la produttività personale
-Modelli toohelp migliorare la produttività personale includono modelli che impostare promemoria giornalieri, trasformare gli elementi di lavoro importanti in elenchi di attività e automatizzare le attività di lunga durata verso il basso tooa passaggio di approvazione singolo utente.
+Gli schemi per migliorare la produttività personale includono modelli che impostano promemoria giornalieri, trasformano importanti elementi di lavoro in elenchi di attività e automatizzano le attività di lunga durata fino a un passaggio di approvazione di un singolo utente.
 
 ### <a name="consumer-cloud-templates"></a>Modelli cloud di livello consumer
 Modelli semplici che si integrano con servizi di social media come Twitter, Slack e posta elettronica, in grado di potenziare le iniziative di marketing sui social media. Includono anche modelli di copia per il cloud, che consentono di aumentare la produttività risparmiando il tempo necessario per attività tradizionalmente ripetitive. 
 
-## <a name="how-toocreate-a-logic-app-using-a-template"></a>Come toocreate un'app di logica utilizzando un modello
-tooget avviato utilizzando un modello di applicazione logica, andare nella finestra di progettazione di hello logica app. Se si immette progettazione hello aprendo un'app esistente di logica, hello logica app carica automaticamente nella visualizzazione della finestra di progettazione. Tuttavia, se si crea una nuova app di logica, vedrai schermata hello riportata di seguito.  
+## <a name="how-to-create-a-logic-app-using-a-template"></a>Come creare un'app per la logica usando un modello
+Per iniziare a usare i modelli di app per la logica, accedere alla finestra di progettazione delle app per la logica. Se si accede alla finestra di progettazione aprendo un'app per la logica esistente, l'app per la logica viene caricata automaticamente nella visualizzazione di progettazione. Se tuttavia si crea una nuova app per la logica, verrà visualizzata la schermata seguente.  
  ![](../../includes/media/app-service-logic-templates/template7.png)  
 
-In questa schermata è possibile scegliere toostart con un'app logica vuoto o un modello predefinito. Se si seleziona uno dei modelli di hello, vengono fornite informazioni aggiuntive. In questo esempio, si usa hello *quando viene creato un nuovo file in Dropbox, copiarlo tooOneDrive* modello.  
+In questa schermata è possibile scegliere di iniziare con un'app per la logica vuota o con un modello predefinito. Se si seleziona uno dei modelli, vengono fornite informazioni aggiuntive. In questo esempio viene usato lo schema *Quando un nuovo file viene creato in Dropbox, copialo in OneDrive* .  
  ![](../../includes/media/app-service-logic-templates/template2.png)  
 
-Se si sceglie toouse hello modello, è sufficiente selezionare hello *utilizzare questo modello* pulsante. Verrà chiesto toosign tooyour conti in base a quale modello di hello connettori utilizza. Se è stata precedentemente stabilita una connessione con questi connettori, è anche possibile selezionare Continua come illustrato di seguito.  
+Se si sceglie di usare il modello, è sufficiente fare clic sul pulsante *Usa questo modello* . Verrà chiesto di accedere agli account in base ai connettori usati dal modello. Se è stata precedentemente stabilita una connessione con questi connettori, è anche possibile selezionare Continua come illustrato di seguito.  
  ![](../../includes/media/app-service-logic-templates/template3.png)  
 
-Dopo avere stabilito la connessione hello e selezionando *continuare*, hello logica app viene aperto in visualizzazione progettazione.  
+Dopo avere stabilito la connessione e aver selezionato *Continua*, l'app per la logica verrà aperta nella visualizzazione di progettazione.  
  ![](../../includes/media/app-service-logic-templates/template4.png)  
 
-Nell'esempio hello sopra, come accade hello con molti modelli, alcuni hello obbligatorio dei campi delle proprietà possono essere compilati all'interno di connettori hello; alcuni, tuttavia, potrebbe essere necessario un valore prima di poter tooproperly distribuire app per la logica hello. Se si tenta di toodeploy senza dover immettere alcuni dei campi mancanti hello, riceve una notifica con un messaggio di errore.
+Nell'esempio precedente, come nel caso di molti modelli, alcuni dei campi di proprietà obbligatori possono essere compilati all'interno dei connettori. Alcuni potrebbero comunque richiedere un valore prima di poter distribuire correttamente l'app per la logica. Se si prova a distribuire senza immettere alcuni dei campi mancanti, verrà visualizzato un messaggio di errore.
 
-Se si desidera visualizzatore modello di tooreturn toohello, selezionare hello *modelli* pulsante nella barra di spostamento superiore hello. Passando visualizzatore modello di toohello indietro, si perde alcun progresso non salvato. Tooswitching precedenti nel Visualizzatore di modello, si verrà visualizzato un messaggio di avviso di notifica di questo oggetto.  
+Se si vuole tornare al visualizzatore dei modelli, fare clic sul pulsante *Modelli* nella barra di spostamento superiore. Tornando al visualizzatore dei modelli, eventuali modifiche non salvate andranno perse. Prima di tornare al visualizzatore dei modelli verrà visualizzato un messaggio di avviso a questo riguardo.  
  ![](../../includes/media/app-service-logic-templates/template5.png)  
 
-## <a name="how-toodeploy-a-logic-app-created-from-a-template"></a>Come toodeploy una logica app è stato creato da un modello
-Dopo aver caricato il modello e apportate le modifiche desiderate, selezionare hello pulsante Salva nell'angolo superiore sinistro di hello. In questo modo, l'app per la logica verrà salvata e pubblicata.  
+## <a name="how-to-deploy-a-logic-app-created-from-a-template"></a>Come distribuire un'app per la logica creata da un modello
+Dopo aver caricato il modello e apportato le modifiche necessarie, fare clic sul pulsante Salva nell'angolo superiore sinistro. In questo modo, l'app per la logica verrà salvata e pubblicata.  
  ![](../../includes/media/app-service-logic-templates/template6.png)  
 
-Se ad esempio informazioni su come tooadd più passaggi in un modello di app logica esistente oppure apportare modifiche in generale, leggere informazioni, vedere [creare un'app di logica](../logic-apps/logic-apps-create-a-logic-app.md).
+Per altre informazioni su come aggiungere altri passaggi in un modello di app per la logica esistente o apportare modifiche in generale, vedere [Creare una nuova app per la logica](../logic-apps/logic-apps-create-a-logic-app.md).
 

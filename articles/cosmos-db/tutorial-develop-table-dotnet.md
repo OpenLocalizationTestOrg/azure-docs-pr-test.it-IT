@@ -1,6 +1,6 @@
 ---
-title: 'Azure Cosmos DB: Sviluppare con API di tabelle in .NET hello | Documenti Microsoft'
-description: Informazioni su come toodevelop con API di tabelle del database di Azure Cosmos usando .NET
+title: 'Azure Cosmos DB: sviluppare con l''API Table in .NET | Documentazione Microsoft'
+description: Informazioni su come sviluppare con l'API Table di Azure Cosmos DB usando .NET
 services: cosmos-db
 documentationcenter: 
 author: mimig1
@@ -11,27 +11,27 @@ ms.service: cosmos-db
 ms.workload: 
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
-ms.topic: article
+ms.topic: tutorial
 ms.date: 05/10/2017
 ms.author: arramac
 ms.custom: mvc
-ms.openlocfilehash: 70c6985a1dffdbcdb07e377f8ad10355bb97712a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5322fa5cc8e841ecea97a69d15cf130a4426ad95
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="azure-cosmos-db-develop-with-hello-table-api-in-net"></a>Cosmos Azure DB: Attività di sviluppo hello tabella API in .NET
+# <a name="azure-cosmos-db-develop-with-the-table-api-in-net"></a>Azure Cosmos DB: sviluppare con l'API Table in .NET
 
-Azure Cosmos DB è il servizio di database multimodello distribuito a livello globale di Microsoft. Creare rapidamente e query chiave/valore, il documento e database grafico, ognuno dei quali trarre vantaggio dalla distribuzione globale hello e funzionalità di scalabilità orizzontale di base di Azure Cosmos DB hello.
+Azure Cosmos DB è il servizio di database di Microsoft multimodello distribuito a livello globale. È possibile creare ed eseguire rapidamente query su database di documenti, coppie chiave-valore e grafi, sfruttando in ognuno dei casi i vantaggi offerti dalle funzionalità di scalabilità orizzontale e distribuzione globale alla base di Azure Cosmos DB.
 
-Questa esercitazione sono trattati hello seguenti attività: 
+Questa esercitazione illustra le attività seguenti: 
 
 > [!div class="checklist"] 
 > * Creare un account Azure Cosmos DB 
-> * Abilitare la funzionalità nel file app. config hello 
-> * Creare una tabella utilizzando hello [tabella API](table-introduction.md) (anteprima)
-> * Aggiungere una tabella tooa entità 
+> * Abilitare la funzionalità nel file app.config 
+> * Creare una tabella usando l'[API Table](table-introduction.md) (anteprima)
+> * Aggiungere un'entità a una tabella 
 > * Inserire un batch di entità 
 > * Recuperare una singola entità 
 > * Eseguire query su entità tramite indici secondari automatici 
@@ -41,116 +41,116 @@ Questa esercitazione sono trattati hello seguenti attività:
  
 ## <a name="tables-in-azure-cosmos-db"></a>Tabelle in Azure Cosmos DB 
 
-DB Cosmos Azure fornisce hello [tabella API](table-introduction.md) (anteprima) per applicazioni che richiedono un archivio chiave-valore con una progettazione senza schema. [Archiviazione tabelle di Azure](../storage/common/storage-introduction.md) SDK e API REST possono essere utilizzati toowork con Azure Cosmos DB. È possibile utilizzare le tabelle di Azure Cosmos DB toocreate con requisiti di velocità effettiva elevata. Azure Cosmos DB supporta le tabelle ottimizzate per la velocità effettiva, chiamate in modo informale "tabelle Premium", attualmente disponibili in anteprima pubblica. 
+Azure Cosmos DB fornisce l'[API Table](table-introduction.md) (anteprima) per le applicazioni che necessitano di un archivio di coppie chiave-valore con una struttura senza schema. È possibile usare gli SDK e le API REST di [archiviazione tabelle di Azure](../storage/common/storage-introduction.md) insieme ad Azure Cosmos DB. È possibile usare Azure Cosmos DB per creare tabelle con requisiti di velocità effettiva elevata. Azure Cosmos DB supporta le tabelle ottimizzate per la velocità effettiva, chiamate in modo informale "tabelle Premium", attualmente disponibili in anteprima pubblica. 
 
-È possibile continuare toouse archiviazione tabelle di Azure per le tabelle con archiviazione elevate e minori requisiti di velocità effettiva. Azure DB Cosmos introduce anche il supporto per le tabelle con ottimizzazione per la memoria in un aggiornamento futuro e tabelle di Azure di nuove ed esistenti saranno facilmente gli account di archiviazione aggiornato tooAzure DB Cosmos.
+È possibile continuare a usare l'archiviazione tabelle di Azure per le tabelle con requisiti di archiviazione elevati e di velocità effettiva inferiori. Azure Cosmos DB introdurrà il supporto per le tabelle ottimizzate per l'archiviazione in uno dei prossimi aggiornamenti e gli account di archiviazione tabelle di Azure nuovi ed esistenti verranno aggiornati facilmente ad Azure Cosmos DB.
 
-Se si utilizza archiviazione tabelle di Azure, si otterranno i seguenti vantaggi con anteprima di "tabella premium" hello hello:
+Se attualmente si usa l'archiviazione tabelle di Azure, è possibile ottenere i vantaggi seguenti con "tabella Premium" in anteprima:
 
 - [Distribuzione globale](distribute-data-globally.md) chiavi in mano con multihosting e [failover automatici e manuali](regional-failover.md)
 - Supporto per l'indicizzazione automatica indipendente dallo schema su tutte le proprietà ("indici secondari") e query rapide 
 - Supporto per la [scalabilità indipendente di archiviazione e velocità effettiva](partition-data.md) in un numero qualsiasi di aree
-- Supporto per [velocità effettiva dedicata per ogni tabella](request-units.md) che possono essere scalati da centinaia toomillions di richieste al secondo
-- Supporto per [cinque livelli di coerenza ottimizzabili](consistency-levels.md) tootrade off disponibilità, latenza e la coerenza in base alle esigenze dell'applicazione
-- disponibilità del 99,99% all'interno di una singola area e possibilità tooadd altre aree per una maggiore disponibilità, e [SLA completi leader del settore](https://azure.microsoft.com/support/legal/sla/cosmos-db/) sulla disponibilità generale
-- Utilizzo di archiviazione di Azure esistente hello .NET SDK e nessuna applicazione tooyour modifiche di codice
+- Supporto per la [velocità effettiva dedicata per ogni tabella](request-units.md) scalabile da centinaia a milioni di richieste al secondo
+- Supporto per [cinque livelli di coerenza perfezionabili](consistency-levels.md) per ottenere un compromesso ottimale tra disponibilità, latenza e coerenza in base alle esigenze dell'applicazione
+- Disponibilità al 99,99% all'interno di una singola area, possibilità di aggiungere altre aree per aumentare la disponibilità e [contratti di servizio completi leader nel settore](https://azure.microsoft.com/support/legal/sla/cosmos-db/) sulla disponibilità generale
+- Usare la versione esistente di .NET SDK di Archiviazione di Azure senza apportare modifiche al codice dell'applicazione
 
-Durante l'anteprima di hello, Azure Cosmos DB supporta hello API tabelle utilizzando hello .NET SDK. È possibile scaricare hello [anteprima di Azure Storage SDK](https://aka.ms/premiumtablenuget) da NuGet, che ha hello stesse classi e le firme del metodo come hello [Azure Storage SDK](https://www.nuget.org/packages/WindowsAzure.Storage), ma anche possibile connettersi tooAzure DB Cosmos account utilizzando hello Tabella API.
+Nella fase di anteprima Azure Cosmos DB supporta l'API Table usando .NET SDK. È possibile scaricare [Azure Storage Preview SDK](https://aka.ms/premiumtablenuget) da NuGet, che include le stesse classi e firme di metodi disponibili in [Azure Storage SDK](https://www.nuget.org/packages/WindowsAzure.Storage), ma che permette anche di connettersi agli account Azure Cosmos DB tramite l'API Table.
 
-toolearn sulle attività di archiviazione Azure Table complesse, vedere:
+Per altre informazioni sulle attività complesse di archiviazione tabelle di Azure, vedere:
 
-* [Introduzione tooAzure DB Cosmos: API di tabella](table-introduction.md)
-* la documentazione di riferimento del servizio di tabella per informazioni dettagliate sulle API disponibili Hello [libreria Client di archiviazione per il riferimento di .NET](http://go.microsoft.com/fwlink/?LinkID=390731&clcid=0x409)
+* [Introduzione ad Azure Cosmos DB: API Table](table-introduction.md)
+* Vedere la documentazione di riferimento del servizio tabelle per informazioni dettagliate sulle API disponibili nella[libreria client di archiviazione di Azure per .NET](http://go.microsoft.com/fwlink/?LinkID=390731&clcid=0x409).
 
 ### <a name="about-this-tutorial"></a>Informazioni sull'esercitazione
-Per gli sviluppatori che hanno familiarità con hello archiviazione tabelle di Azure SDK e si desiderano toouse hello premium le funzionalità disponibili in questa esercitazione è utilizzando Azure Cosmos DB. È basato su [Introduzione all'archiviazione tabelle di Azure usando .NET](table-storage-how-to-use-dotnet.md) e Mostra come tootake sfruttare le funzionalità aggiuntive come indici secondari, velocità effettiva di provisioning e multihoming. Viene illustrata la modalità toouse hello toocreate portale Azure un account Azure Cosmos DB, quindi compilare e distribuire un'applicazione di tabella. Verranno esaminati anche esempi .NET per la creazione e l'eliminazione di una tabella, l'inserimento, l'aggiornamento, l'eliminazione e l'esecuzione di query per i dati delle tabelle. 
+Questa esercitazione è rivolta agli sviluppatori con familiarità con l'SDK di archiviazione tabelle di Azure e che intendono usare le funzionalità Premium disponibili usando Azure Cosmos DB. È basata su [Introduzione all'archiviazione tabelle di Azure con .NET](table-storage-how-to-use-dotnet.md) e illustra come sfruttare le funzionalità aggiuntive, come gli indici secondari, la velocità effettiva con provisioning e il multihosting. Verrà illustrato come usare il portale di Azure per creare un account Azure Cosmos DB e quindi come compilare e distribuire un'applicazione di tabelle. Verranno esaminati anche esempi .NET per la creazione e l'eliminazione di una tabella, l'inserimento, l'aggiornamento, l'eliminazione e l'esecuzione di query per i dati delle tabelle. 
 
-Se si dispone già di Visual Studio 2017, che installata, è possibile scaricare e utilizzare hello **libero** [2017 di Visual Studio Community Edition](https://www.visualstudio.com/downloads/). Assicurarsi di abilitare **lo sviluppo di Azure** durante l'installazione di Visual Studio hello.
+Se Visual Studio 2017 non è ancora installato, è possibile scaricare e usare la versione **gratuita** di [Visual Studio 2017 Community Edition](https://www.visualstudio.com/downloads/). Durante l'installazione di Visual Studio abilitare **Sviluppo di Azure**.
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
 ## <a name="create-a-database-account"></a>Creare un account di database
 
-Iniziamo mediante la creazione di un account Azure Cosmos DB in hello portale di Azure.  
+Si inizia creando un account Azure Cosmos DB nel portale di Azure.  
 
 > [!TIP]
-> * È stato già creato un account Azure Cosmos DB? In caso affermativo, andare troppo[configurazione della soluzione di Visual Studio](#SetupVS).
-> * Si dispone di un account Azure DocumentDB? Se in tal caso, l'account è un account Azure Cosmos DB ed è possibile andare troppo[configurazione della soluzione di Visual Studio](#SetupVS).  
-> * Se si utilizza hello Azure Cosmos DB emulatore, eseguire le operazioni di hello in [emulatore di Azure Cosmos DB](local-emulator.md) toosetup hello emulatore e andare troppo[configurare la soluzione di Visual Studio](#SetupVS).
-<!---Loc Comment: Please, check link [Set up your Visual Studio solution] since it's not redirecting tooany location.---> 
+> * È stato già creato un account Azure Cosmos DB? In questo caso passare a [Configurare la soluzione di Visual Studio](#SetupVS).
+> * Si dispone di un account Azure DocumentDB? In questo caso l'account è ora un account Azure Cosmos DB ed è possibile passare a [Configurare la soluzione di Visual Studio](#SetupVS).  
+> * Se si usa l'emulatore Azure Cosmos DB, seguire i passaggi descritti nell'articolo [Azure Cosmos DB Emulator](local-emulator.md) (Emulatore Azure Cosmos DB) per configurare l'emulatore e proseguire con il passaggio [Configurare la soluzione di Visual Studio](#SetupVS).
+<!---Loc Comment: Please, check link [Set up your Visual Studio solution] since it's not redirecting to any location.---> 
 >
 >
 
 [!INCLUDE [cosmosdb-create-dbaccount-table](../../includes/cosmos-db-create-dbaccount-table.md)] 
 
-## <a name="clone-hello-sample-application"></a>Applicazione di esempio hello clonare
+## <a name="clone-the-sample-application"></a>Clonare l'applicazione di esempio
 
-Ora si clonare un'app di tabella da github, impostare la stringa di connessione hello ed eseguirlo.
+A questo punto è possibile clonare un'app Table da GitHub, impostare la stringa di connessione ed eseguirla.
 
-1. Aprire una finestra terminale git, ad esempio git bash, e `cd` tooa directory di lavoro.  
+1. Aprire una finestra del terminale Git, ad esempio Git Bash ed eseguire il comando `cd` per passare a una directory di lavoro.  
 
-2. Eseguire hello seguenti repository di esempio di comando tooclone hello. 
+2. Eseguire il comando seguente per clonare l'archivio di esempio. 
 
     ```bash
     git clone https://github.com/Azure-Samples/azure-cosmos-db-table-dotnet-getting-started
     ```
 
-3. Aprire quindi il file di soluzione hello in Visual Studio.
+3. Aprire quindi il file della soluzione in Visual Studio.
 
 ## <a name="update-your-connection-string"></a>Aggiornare la stringa di connessione
 
-Tornare toohello tooget portale Azure le informazioni sulla stringa di connessione e copiarla in app hello.
+Tornare ora al portale di Azure per recuperare le informazioni sulla stringa di connessione e copiarle nell'app.
 
-1. In hello [portale di Azure](http://portal.azure.com/)il Cosmos Azure DB account, nel riquadro di spostamento sinistro hello fare clic su **chiavi**, quindi fare clic su **le chiavi di lettura / scrittura**. Si userà pulsanti copia hello sul lato destro hello hello schermata toocopy hello della stringa di connessione nel file app. config hello nel passaggio successivo hello.
+1. Nell'account Azure Cosmos DB nel [portale di Azure](http://portal.azure.com/) fare clic su **Chiavi** nel riquadro di spostamento a sinistra e quindi su **Chiavi di lettura/scrittura**. Usare i pulsanti di copia sul lato destro dello schermo per copiare la stringa di connessione nel file app.config nel passaggio seguente.
 
-2. In Visual Studio, aprire il file app. config hello. 
+2. In Visual Studio aprire il file app.config. 
 
-3. Copiare il valore dell'URI dal portale di hello (con il pulsante di copia hello) e renderlo hello valore della chiave account hello in App. config. Utilizzare il nome di account hello creato in precedenza per il nome di account in App. config.
+3. Copiare il valore di URI dal portale usando il pulsante di copia e impostarlo come valore della chiave dell'account in app.config. Usare il nome dell'account creato in precedenza per il nome dell'account in app.config.
   
 ```
 <add key="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=account-name;AccountKey=account-key;TableEndpoint=https://account-name.documents.azure.com" />
 ```
 
 > [!NOTE]
-> toouse questa app con l'archiviazione tabelle di Azure standard, è necessario toochange hello stringa di connessione `app.config file`. Usa il nome di account di hello come nome dell'account di tabella e la chiave come chiave primaria di archiviazione di Azure. <br>
+> Per usare questa app con archiviazione tabelle di Azure standard, è necessario modificare la stringa di connessione in `app.config file`. Usare il nome dell'account come nome dell'account Table e la chiave come chiave primaria di Archiviazione di Azure. <br>
 >`<add key="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=account-name;AccountKey=account-key;EndpointSuffix=core.windows.net" />`
 > 
 >
 
-## <a name="build-and-deploy-hello-app"></a>Compilare e distribuire l'applicazione hello
-1. In Visual Studio, fare clic su progetto hello in **Esplora** e quindi fare clic su **Gestisci pacchetti NuGet**. 
+## <a name="build-and-deploy-the-app"></a>Compilare e distribuire l'app
+1. In Visual Studio fare clic con il pulsante destro del mouse sul progetto in **Esplora soluzioni** e scegliere **Gestisci pacchetti NuGet**. 
 
-2. In hello NuGet **Sfoglia** digitare ***Windowsazure PremiumTable***. Selezionare **Includi versione preliminare**.
+2. Nella casella **Sfoglia** di NuGet digitare ***WindowsAzure.Storage-PremiumTable***. Selezionare **Includi versione preliminare**.
 
-3. Dai risultati di hello, installare hello **Windowsazure PremiumTable** e scegliere una build di anteprima hello `0.0.1-preview`. Questa azione Installa pacchetto di archiviazione Azure Table hello e tutte le dipendenze.
+3. Dai risultati installare **WindowsAzure.Storage-PremiumTable** e scegliere la compilazione di anteprima `0.0.1-preview`. Questa azione consente di installare il pacchetto di archiviazione tabelle di Azure e tutte le dipendenze.
 
-4. Premere CTRL + F5 applicazione hello toorun. 
+4. Premere CTRL + F5 per eseguire l'applicazione. 
 
-È ora possibile tornare tooData Explorer e vedere query, modificare e lavorare con i dati nella tabella. 
+È ora possibile tornare a Esplora dati ed esaminare, eseguire query, modificare e lavorare con i dati di tabella. 
 
 > [!NOTE]
-> toouse toochange hello stringa di connessione è necessario che l'app con un emulatore DB Cosmos di Azure, è sufficiente `app.config file`. Hello utilizzare sotto il valore per l'emulatore. <br>
+> Per usare questa app con un emulatore Azure Cosmos DB, è sufficiente modificare la stringa di connessione in `app.config file`. Usare il valore seguente per l'emulatore. <br>
 >`<add key="StorageConnectionString" value=DefaultEndpointsProtocol=https;AccountName=localhost;AccountKey=<insertkey>==;TableEndpoint=https://localhost -->`
 > 
 >
 
 ## <a name="azure-cosmos-db-capabilities"></a>Funzionalità di Azure Cosmos DB
-DB Cosmos Azure supporta un numero di funzionalità che non sono disponibili nell'API di archiviazione Azure Table hello. Hello nuova funzionalità può essere abilitata tramite il seguente hello `appSettings` i valori di configurazione. Non si introdurre qualsiasi nuovo firme di overload toohello anteprima o Azure Storage SDK. In questo modo si tooconnect tooboth standard e premium tabelle e lavoro con altri servizi di archiviazione di Azure come BLOB e code. 
+Azure Cosmos DB supporta numerose funzionalità non disponibili nell'API di archiviazione tabelle di Azure. La nuova funzionalità può essere abilitata tramite i valori di configurazione di `appSettings` seguenti. Non sono stati introdotti nuovi overload o firme nell'SDK di Archiviazione in anteprima. È quindi possibile connettersi alle tabelle sia Standard sia Premium e usare gli altri servizi di Archiviazione di Azure, come BLOB e code. 
 
 
 | Chiave | Descrizione |
 | --- | --- |
-| TableConnectionMode  | Azure Cosmos DB supporta due modalità di connettività. In `Gateway` modalità, le richieste vengono inviate sempre toohello DB Cosmos Azure gateway, che inoltra toohello partizioni di dati corrispondente. In `Direct` modalità di connettività client hello recupera i mapping di hello di toopartitions di tabelle e le richieste vengono effettuate direttamente per le partizioni di dati. È consigliabile `Direct`, hello predefinito.  |
-| TableConnectionProtocol | Azure Cosmos DB supporta due protocolli di connessione: `Https` e `Tcp`. `Tcp`hello predefinito e consigliato perché è più semplice. |
-| TablePreferredLocations | Elenco delimitato da virgole dei percorsi (multihosting) preferiti per le letture. Ogni account Azure Cosmos DB può essere associato a 1-30+ aree. Ogni istanza del client è possibile specificare un subset di queste aree nell'ordine preferito hello per le letture di bassa latenza. aree Hello devono essere denominate con i relativi [i nomi visualizzati](https://msdn.microsoft.com/library/azure/gg441293.aspx), ad esempio, `West US`. Vedere anche [API multihosting](tutorial-global-distribution-table.md).
-| TableConsistencyLevel | È possibile ottenere un compromesso ottimale tra disponibilità, coerenza e latenza scegliendo tra cinque livelli di coerenza ben definiti: `Strong`, `Session`, `Bounded-Staleness`, `ConsistentPrefix` ed `Eventual`. Il valore predefinito è `Session`. scelta di Hello del livello di coerenza rende una differenza significativa nelle installazioni con più aree. Per i dettagli, vedere [Livelli di coerenza](consistency-levels.md). |
-| TableThroughput | Velocità effettiva riservati per la tabella hello espressa in unità di richiesta (RU) al secondo. Le singole tabelle possono supportare centinaia di milioni di UR/s. Vedere [Unità richiesta](request-units.md). Il valore predefinito è `400` |
-| TableIndexingPolicy | Indicizzazione secondaria coerente e automatica di tutte le colonne all'interno di tabelle | JSON stringa conforme toohello specifica di criteri di indicizzazione. Vedere [criteri di indicizzazione](indexing-policies.md) toosee come è possibile modificare l'indicizzazione di colonne specifiche dei criteri di tooinclude/exclude. | Indicizzazione automatica di tutte le proprietà (hash per le stringhe e range per i numeri) |
-| TableQueryMaxItemCount | Configurare hello il numero massimo di elementi restituiti per ogni query di tabella in un unico round trip. Valore predefinito è `-1`, che consente di determinare in modo dinamico il valore di hello in fase di esecuzione Azure Cosmos DB. |
-| TableQueryEnableScan | Se query hello non è possibile utilizzare indice hello per qualsiasi filtro, quindi eseguirlo comunque tramite un'analisi. Il valore predefinito è `false`.|
-| TableQueryMaxDegreeOfParallelism | Hello grado di parallelismo per l'esecuzione di una query tra partizioni. `0`seriale con nessun recupero preliminare, `1` seriale con la prelettura e i valori più elevati di velocità di aumento hello di parallelismo. Valore predefinito è `-1`, che consente di determinare in modo dinamico il valore di hello in fase di esecuzione Azure Cosmos DB. |
+| TableConnectionMode  | Azure Cosmos DB supporta due modalità di connettività. Nella modalità `Gateway` le richieste vengono sempre eseguite al gateway di Azure Cosmos DB, che le inoltra alle partizioni di dati corrispondenti. Nella modalità di connettività `Direct` il client recupera il mapping delle tabelle alle partizioni e le richieste vengono eseguite direttamente nelle partizioni di dati. È consigliabile usare il valore predefinito `Direct`.  |
+| TableConnectionProtocol | Azure Cosmos DB supporta due protocolli di connessione: `Https` e `Tcp`. `Tcp` è il valore predefinito e consigliato perché si tratta di un protocollo più leggero. |
+| TablePreferredLocations | Elenco delimitato da virgole dei percorsi (multihosting) preferiti per le letture. Ogni account Azure Cosmos DB può essere associato a 1-30+ aree. Ogni istanza del client può specificare un sottoinsieme di queste aree nell'ordine preferito per le letture a bassa latenza. Le aree devono essere denominate usando i [nomi visualizzati](https://msdn.microsoft.com/library/azure/gg441293.aspx), ad esempio, `West US`. Vedere anche [API multihosting](tutorial-global-distribution-table.md).
+| TableConsistencyLevel | È possibile ottenere un compromesso ottimale tra disponibilità, coerenza e latenza scegliendo tra cinque livelli di coerenza ben definiti: `Strong`, `Session`, `Bounded-Staleness`, `ConsistentPrefix` ed `Eventual`. Il valore predefinito è `Session`. La scelta del livello di coerenza implica una differenza significativa a livello di prestazioni nelle installazioni con più aree. Per i dettagli, vedere [Livelli di coerenza](consistency-levels.md). |
+| TableThroughput | Velocità effettiva riservata per la tabella espressa in unità di richiesta (UR) al secondo. Le singole tabelle possono supportare centinaia di milioni di UR/s. Vedere [Unità richiesta](request-units.md). Il valore predefinito è `400` |
+| TableIndexingPolicy | Indicizzazione secondaria coerente e automatica di tutte le colonne all'interno di tabelle | Conformazione delle stringhe JSON alla specifica dei criteri di indicizzazione. Vedere [Criteri di indicizzazione](indexing-policies.md) per informazioni su come modificare i criteri di indicizzazione in modo da includere o escludere colonne specifiche. | Indicizzazione automatica di tutte le proprietà (hash per le stringhe e range per i numeri) |
+| TableQueryMaxItemCount | Configurare il numero massimo di elementi restituiti per ogni query di tabella in un unico round trip. Il valore predefinito è `-1`, che consente ad Azure Cosmos DB di determinare in modo dinamico il valore in fase di runtime. |
+| TableQueryEnableScan | Se la query non può usare l'indice per tutti i filtri, eseguirla comunque tramite un'analisi. Il valore predefinito è `false`.|
+| TableQueryMaxDegreeOfParallelism | Il grado di parallelismo per l'esecuzione di una query tra partizioni. `0` è seriale senza prelettura, `1` è seriale con prelettura e valori più alti aumentano il grado di parallelismo. Il valore predefinito è `-1`, che consente ad Azure Cosmos DB di determinare in modo dinamico il valore in fase di runtime. |
 
-valore predefinito di hello toochange, aprire hello `app.config` file da Esplora soluzioni in Visual Studio. Aggiungere contenuto hello di hello `<appSettings>` elemento riportato di seguito. Sostituire `account-name` con nome hello dell'account di archiviazione, e `account-key` con la chiave di accesso di account. 
+Per cambiare il valore predefinito, aprire il file `app.config` da Esplora soluzioni in Visual Studio. Aggiungere il contenuto dell'elemento `<appSettings>` illustrato di seguito. Sostituire `account-name` con il nome dell'account di archiviazione e `account-key` con la chiave di accesso dell'account. 
 
 ```xml
 <configuration>
@@ -179,18 +179,18 @@ valore predefinito di hello toochange, aprire hello `app.config` file da Esplora
 </configuration>
 ```
 
-Questo punto, eseguire una rapida panoramica delle operazioni eseguite nell'applicazione hello. Aprire hello `Program.cs` file si scopre che le righe di codice creano hello risorse tabella. 
+Ecco una breve panoramica delle operazioni eseguire nell'app. Aprire il file `Program.cs`. Come si noterà, queste righe di codice creano le risorse di tabella. 
 
-## <a name="create-hello-table-client"></a>Creare hello tabella client
-Inizializzare un `CloudTableClient` conto tabella di tooconnect toohello.
+## <a name="create-the-table-client"></a>Creare il client di tabella
+Inizializzare `CloudTableClient` per connettersi all'account di tabella.
 
 ```csharp
 CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
 ```
-Questo client viene inizializzato con hello `TableConnectionMode`, `TableConnectionProtocol`, `TableConsistencyLevel`, e `TablePreferredLocations` i valori di configurazione se è specificato nelle impostazioni dell'app hello.
+Questo client viene inizializzato usando i valori di configurazione `TableConnectionMode`, `TableConnectionProtocol`, `TableConsistencyLevel` e `TablePreferredLocations`, se specificato nelle impostazioni dell'app.
     
 ## <a name="create-a-table"></a>Creare una tabella
-Creare quindi una tabella usando `CloudTable`. Le tabelle nel database di Azure Cosmos possono aumentare in modo indipendente in termini di archiviazione e la velocità effettiva e il partizionamento viene gestito automaticamente dal servizio hello. Azure Cosmos DB supporta le tabelle sia senza limitazioni sia con dimensioni fisse. Vedere [Partizionamento in Azure Cosmos DB](partition-data.md) per informazioni dettagliate. 
+Creare quindi una tabella usando `CloudTable`. La scalabilità delle tabelle in Azure Cosmos DB può essere indipendente in termini di archiviazione e velocità effettiva e il partizionamento viene gestito automaticamente dal servizio. Azure Cosmos DB supporta le tabelle sia senza limitazioni sia con dimensioni fisse. Vedere [Partizionamento in Azure Cosmos DB](partition-data.md) per informazioni dettagliate. 
 
 ```csharp
 CloudTable table = tableClient.GetTableReference("people");
@@ -198,22 +198,22 @@ CloudTable table = tableClient.GetTableReference("people");
 table.CreateIfNotExists();
 ```
 
-Esiste una differenza importante nella creazione delle tabelle. Azure Cosmos DB riserva la velocità effettiva, a differenza del modello in base al consumo di Archiviazione di Azure per le transazioni. modello di prenotazione Hello presenta due vantaggi principali:
+Esiste una differenza importante nella creazione delle tabelle. Azure Cosmos DB riserva la velocità effettiva, a differenza del modello in base al consumo di Archiviazione di Azure per le transazioni. Il modello di prenotazione offre due vantaggi principali:
 
 * La velocità effettiva è dedicata/riservata e quindi non viene mai limitata, se la frequenza di richiesta è pari o inferiore alla velocità effettiva con provisioning
-* modello di prenotazione Hello è più [economicamente conveniente per carichi di lavoro elevati in termini di velocità effettiva](key-value-store-cost.md)
+* Il modello di prenotazione è più [conveniente economicamente per carichi di lavoro elevati in termini di velocità effettiva](key-value-store-cost.md)
 
-È possibile configurare la velocità effettiva di hello predefinito configurando l'impostazione di hello per `TableThroughput` in termini di UR (unità di richiesta) al secondo. 
+È possibile configurare la velocità effettiva predefinita configurando l'impostazione per `TableThroughput` in termini di UR (unità di richiesta) al secondo. 
 
-Una lettura di un'entità di 1 KB viene normalizzata come 1 UR e altre operazioni vengono normalizzato tooa UR valore in base al loro consumo di CPU, memoria e IOPS fissato. Altre informazioni sulle [unità richiesta in Azure Cosmos DB](request-units.md).
+La lettura di un'entità di 1 KB viene normalizzata come 1 UR e le altre operazioni vengono normalizzate in una UR a valore fisso in base al consumo di CPU, memoria e IOPS. Altre informazioni sulle [unità richiesta in Azure Cosmos DB](request-units.md).
 
 > [!NOTE]
-> Durante l'archiviazione tabelle SDK attualmente non supporta la modifica della velocità effettiva, è possibile modificare la velocità effettiva hello immediatamente in qualsiasi momento usando hello portale di Azure o CLI di Azure.
+> Anche se l'SDK di archiviazione tabelle non supporta attualmente la modifica della velocità effettiva, è possibile modificare questo valore in qualsiasi momento tramite il portale di Azure o l'interfaccia della riga di comando di Azure.
 
-Successivamente, si analizzerà lettura semplice hello operazioni e scrittura (CRUD) utilizza hello l'archiviazione tabelle di Azure SDK. Questa esercitazione illustra le latenze pari a singole unità di millisecondi e le query rapide fornite da Azure Cosmos DB.
+Verranno quindi illustrate le semplici operazioni di lettura e scrittura (CRUD) usando questo SDK. Questa esercitazione illustra le latenze pari a singole unità di millisecondi e le query rapide fornite da Azure Cosmos DB.
 
-## <a name="add-an-entity-tooa-table"></a>Aggiungere una tabella tooa entità
-Entità nell'archiviazione tabelle di Azure si estendono da hello `TableEntity` classe e deve avere `PartitionKey` e `RowKey` proprietà. Di seguito è riportata una definizione di esempio per un'entità cliente.
+## <a name="add-an-entity-to-a-table"></a>Aggiungere un'entità a una tabella
+Le entità in archiviazione tabelle di Azure si estendono dalla classe `TableEntity` e devono avere le proprietà `PartitionKey` e `RowKey`. Di seguito è riportata una definizione di esempio per un'entità cliente.
 
 ```csharp
 public class CustomerEntity : TableEntity
@@ -232,11 +232,11 @@ public class CustomerEntity : TableEntity
 }
 ```
 
-Hello frammento di codice seguente viene illustrato come tooinsert un'entità con hello Azure storage SDK. Azure DB Cosmos è progettato per garantito a bassa latenza la scala, tutto il mondo hello.
+Il frammento di codice seguente illustra come inserire un'entità con l'SDK di Archiviazione di Azure. Azure Cosmos DB è progettato per garantire una latenza ridotta su qualsiasi unità di scala, in tutto il mondo.
 
-Completamento di scritture < 15 ms p99 e ms ~ 6 in p50 per le applicazioni in esecuzione in hello hello account Azure Cosmos DB stessa area. E questa durata gli account per il fatto di hello che scrive vengano riconosciuti toohello indietro client solo dopo che vengono replicati in modo sincrono, in modo durevole committed, e tutto il contenuto viene indicizzato.
+Le scritture vengono completate in < 15 ms a p99 e ms ~ 6 a p50 per le applicazioni in esecuzione nella stessa area dell'account Azure Cosmos DB. Questa durata tiene conto del fatto che le scritture vengono confermate al client solo dopo la relativa replica sincrona, il commit permanente e l'indicizzazione di tutto il contenuto.
 
-API di tabelle di Azure Cosmos DB Hello è in anteprima. Al momento della disponibilità generale, le garanzie di latenza p99 hello sono supportate da contratti di servizio come altre API DB Cosmos di Azure. 
+L'API Table di Azure Cosmos DB è disponibile in anteprima. A livello di disponibilità generale, le garanzia di latenza p99 sono supportate dai contratti di servizio, come per le altre API di Azure Cosmos DB. 
 
 ```csharp
 // Create a new customer entity.
@@ -244,47 +244,47 @@ CustomerEntity customer1 = new CustomerEntity("Harp", "Walter");
 customer1.Email = "Walter@contoso.com";
 customer1.PhoneNumber = "425-555-0101";
 
-// Create hello TableOperation object that inserts hello customer entity.
+// Create the TableOperation object that inserts the customer entity.
 TableOperation insertOperation = TableOperation.Insert(customer1);
 
-// Execute hello insert operation.
+// Execute the insert operation.
 table.Execute(insertOperation);
 ```
 
 ## <a name="insert-a-batch-of-entities"></a>Inserire un batch di entità
-Archiviazione tabella Azure supporta un'API di operazione batch, che consente di combina aggiornamenti, eliminazioni e inserimenti in hello stessa singola operazione batch. Azure Cosmos DB non è disponibile alcune delle limitazioni di hello in batch hello API come archiviazione tabelle di Azure. Ad esempio, è possibile eseguire più operazioni di lettura in un batch, è possibile eseguire più operazioni di scrittura toohello stessa entità all'interno di un batch, e non vi sono limiti su 100 operazioni per ogni batch. 
+Archiviazione tabelle di Azure supporta un'API di operazioni batch che consente di combinare gli aggiornamenti, le eliminazioni e gli inserimenti nella stessa singola operazione batch. Azure Cosmos DB non prevede alcune limitazioni all'API batch come archiviazione tabelle di Azure. Ad esempio, è possibile eseguire più letture all'interno di un batch, più scritture nella stessa entità all'interno di un batch e non esiste il limite di 100 operazioni per ogni batch. 
 
 ```csharp
-// Create hello batch operation.
+// Create the batch operation.
 TableBatchOperation batchOperation = new TableBatchOperation();
 
-// Create a customer entity and add it toohello table.
+// Create a customer entity and add it to the table.
 CustomerEntity customer1 = new CustomerEntity("Smith", "Jeff");
 customer1.Email = "Jeff@contoso.com";
 customer1.PhoneNumber = "425-555-0104";
 
-// Create another customer entity and add it toohello table.
+// Create another customer entity and add it to the table.
 CustomerEntity customer2 = new CustomerEntity("Smith", "Ben");
 customer2.Email = "Ben@contoso.com";
 customer2.PhoneNumber = "425-555-0102";
 
-// Add both customer entities toohello batch insert operation.
+// Add both customer entities to the batch insert operation.
 batchOperation.Insert(customer1);
 batchOperation.Insert(customer2);
 
-// Execute hello batch operation.
+// Execute the batch operation.
 table.ExecuteBatch(batchOperation);
 ```
 ## <a name="retrieve-a-single-entity"></a>Recuperare una singola entità
-Recupera (ottiene) nel database di Azure Cosmos completo < 10 ms p99 e ~ 1 ms in p50 in hello stessa area di Azure. È possibile aggiungere account di tooyour tante aree per le letture di bassa latenza e distribuire applicazioni tooread da loro area locale ("multihomed") tramite l'impostazione `TablePreferredLocations`. 
+I recuperi (GET) in Azure Cosmos DB vengono completati in < 10 ms a p99 e ~ 1 ms a p50 nella stessa area di Azure. È possibile aggiungere il numero desiderato di aree al proprio account per le letture a bassa latenza e distribuire le applicazioni da leggere dall'area locale ("multihosting") impostando `TablePreferredLocations`. 
 
-È possibile recuperare una singola entità utilizzando hello frammento di codice seguente:
+È possibile recuperare una singola entità tramite il frammento seguente:
 
 ```csharp
 // Create a retrieve operation that takes a customer entity.
 TableOperation retrieveOperation = TableOperation.Retrieve<CustomerEntity>("Smith", "Ben");
 
-// Execute hello retrieve operation.
+// Execute the retrieve operation.
 TableResult retrievedResult = table.Execute(retrieveOperation);
 ```
 > [!TIP]
@@ -292,7 +292,7 @@ TableResult retrievedResult = table.Execute(retrieveOperation);
 >
 
 ## <a name="query-entities-using-automatic-secondary-indexes"></a>Eseguire query su entità tramite indici secondari automatici
-Le tabelle possono essere eseguite utilizzando hello `TableQuery` classe. Azure Cosmos DB dispone di un motore di database con ottimizzazione per la scrittura che indicizza automaticamente tutte le colonne all'interno della tabella. L'indicizzazione nel database di Azure Cosmos è tooschema agnostico. Pertanto, anche se lo schema è diverso tra le righe o schema hello si evolve nel tempo, viene automaticamente indicizzato. Poiché Azure Cosmos DB supporta gli indici secondari automatico, le query su qualsiasi proprietà possono utilizzare l'indice di hello e fornite in modo efficiente.
+È possibile eseguire query sulle tabelle usando la classe `TableQuery`. Azure Cosmos DB dispone di un motore di database con ottimizzazione per la scrittura che indicizza automaticamente tutte le colonne all'interno della tabella. L'indicizzazione in Azure Cosmos DB è indipendente dallo schema. Anche se lo schema è diverso da una riga all'altra o se lo schema cambia nel tempo, l'indicizzazione viene eseguita automaticamente. Poiché Azure Cosmos DB supporta gli indici secondari automatici, le query su qualsiasi proprietà possono usare l'indice e possono essere gestite in modo efficiente.
 
 ```csharp
 CloudTable table = tableClient.GetTableReference("people");
@@ -308,10 +308,10 @@ foreach (CustomerEntity entity in table.ExecuteQuery(emailQuery))
 }
 ```
 
-Nell'anteprima di Azure Cosmos DB supporta hello stessa funzionalità dell'archiviazione tabelle di Azure per hello tabella API di query. Azure Cosmos DB supporta anche l'ordinamento, le aggregazioni, le query geospaziali, la gerarchia e un'ampia gamma di funzioni predefinite. funzionalità aggiuntive di Hello verrà fornita in hello API tabelle in un futuro aggiornamento del servizio. Vedere [Query in Azure Cosmos DB](documentdb-sql-query.md) per una panoramica di queste funzionalità. 
+In anteprima Azure Cosmos DB supporta le stesse funzionalità relative alle query di archiviazione tabelle di Azure per l'API Table. Azure Cosmos DB supporta anche l'ordinamento, le aggregazioni, le query geospaziali, la gerarchia e un'ampia gamma di funzioni predefinite. La funzionalità aggiuntiva verrà fornita nell'API Table in un aggiornamento futuro del servizio. Vedere [Query in Azure Cosmos DB](documentdb-sql-query.md) per una panoramica di queste funzionalità. 
 
 ## <a name="replace-an-entity"></a>Sostituire un'entità
-tooupdate un'entità, recuperarlo dal servizio tabelle hello, modificare l'oggetto entità hello e quindi salvare le modifiche apportate hello eseguire il servizio tabelle toohello. Hello codice seguente modifica il numero di telefono del cliente esistente. 
+Per aggiornare un'entità, recuperarla dal servizio tabelle, modificare l'oggetto entità e quindi salvare le modifiche nel servizio tabelle. Il codice seguente consente di modificare il numero di telefono di un cliente esistente. 
 
 ```csharp
 TableOperation updateOperation = TableOperation.Replace(updateEntity);
@@ -320,7 +320,7 @@ table.Execute(updateOperation);
 Analogamente, è possibile eseguire operazioni `InsertOrMerge` o `Merge`.  
 
 ## <a name="delete-an-entity"></a>Eliminare un'entità
-È possibile eliminare un'entità facilmente dopo avere recuperato utilizzando hello stesso modello visualizzato per l'aggiornamento di un'entità. Hello seguente codice recupera ed elimina un'entità customer.
+Per eliminare facilmente un'entità dopo averla recuperata, è possibile usare lo stesso modello illustrato per aggiornare un'entità. Il codice seguente consente di recuperare ed eliminare un'entità customer.
 
 ```csharp
 TableOperation deleteOperation = TableOperation.Delete(deleteEntity);
@@ -328,7 +328,7 @@ table.Execute(deleteOperation);
 ```
 
 ## <a name="delete-a-table"></a>Eliminare una tabella
-Infine, hello esempio di codice seguente elimina una tabella da un account di archiviazione. È possibile eliminare e ricreare una tabella immediatamente con Azure Cosmos DB.
+L'esempio di codice seguente consente infine di eliminare una tabella dall'account di archiviazione. È possibile eliminare e ricreare una tabella immediatamente con Azure Cosmos DB.
 
 ```csharp
 CloudTable table = tableClient.GetTableReference("people");
@@ -337,20 +337,20 @@ table.DeleteIfExists();
 
 ## <a name="clean-up-resources"></a>Pulire le risorse 
 
-Se non si ha intenzione toocontinue toouse questa app, utilizzare hello seguendo i passaggi toodelete tutte le risorse create da questa esercitazione in hello portale di Azure.   
+Se non si prevede di continuare a usare questa app, seguire questa procedura per eliminare tutte le risorse create da questa esercitazione nel portale di Azure.   
 
-1. Dal menu a sinistra di hello in hello portale di Azure, fare clic su **gruppi di risorse** e quindi fare clic su nome hello della risorsa di hello è stato creato.  
-2. Nella pagina di gruppo di risorse, fare clic su **eliminare**, digitare il nome di hello di hello risorsa toodelete nella casella di testo hello e quindi fare clic su **eliminare**. 
+1. Scegliere **Gruppi di risorse** dal menu a sinistra del portale di Azure e quindi fare clic sul nome della risorsa creata.  
+2. Nella pagina del gruppo di risorse fare clic su **Elimina**, digitare il nome della risorsa da eliminare nella casella di testo e quindi fare clic su **Elimina**. 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-In questa esercitazione, trattati come tooget iniziare con Azure Cosmos DB hello tabella API e aver eseguito l'esempio hello: 
+In questa esercitazione è stato illustrato come iniziare a usare Azure Cosmos DB con l'API Table e sono state eseguite le operazioni seguenti: 
 
 > [!div class="checklist"] 
 > * Creazione di un account Azure Cosmos DB 
-> * Funzionalità abilitata nel file app. config hello 
+> * Abilitazione della funzionalità nel file app.config 
 > * Creazione di una tabella 
-> * Aggiunta di una tabella tooa entità 
+> * Aggiunta di un'entità a una tabella 
 > * Inserimento di un batch di entità 
 > * Recupero di una singola entità 
 > * Esecuzione di query di entità tramite indici secondari automatici 
@@ -358,7 +358,7 @@ In questa esercitazione, trattati come tooget iniziare con Azure Cosmos DB hello
 > * Eliminazione di un'entità 
 > * Eliminazione di una tabella  
 
-È possibile continuare l'esercitazione successiva toohello e altre informazioni su come eseguire query di dati della tabella. 
+È ora possibile passare all'esercitazione successiva per altre informazioni sull'esecuzione di query sui dati di tabelle. 
 
 > [!div class="nextstepaction"]
-> [Eseguire una query con hello tabella API](tutorial-query-table.md)
+> [Eseguire query con l'API Table](tutorial-query-table.md)

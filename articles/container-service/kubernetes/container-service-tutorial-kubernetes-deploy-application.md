@@ -1,5 +1,5 @@
 ---
-title: esercitazione per il servizio contenitore aaaAzure - distribuire applicazioni | Documenti Microsoft
+title: Esercitazione sul servizio contenitore di Azure - Distribuire un'applicazione | Microsoft Docs
 description: Esercitazione sul servizio contenitore di Azure - Distribuire un'applicazione
 services: container-service
 documentationcenter: 
@@ -14,14 +14,14 @@ ms.devlang: aurecli
 ms.topic: tutorial
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 07/25/2017
+ms.date: 09/14/2017
 ms.author: nepeters
 ms.custom: mvc
-ms.openlocfilehash: 7e2fa06d359caf83e684df3966624a6e9a8e7efa
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: b8f747b15bf491b7221a71b5beaa595aa7f1b49b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="run-applications-in-kubernetes"></a>Eseguire applicazioni in Kubernetes
 
@@ -30,45 +30,37 @@ In questa esercitazione, parte quattro di sette, verrà distribuita un'applicazi
 > [!div class="checklist"]
 > * Scaricare i file manifesto Kubernetes
 > * Eseguire un'applicazione in Kubernetes
-> * Testare l'applicazione hello
+> * Test dell'applicazione
 
-Nelle esercitazioni successive, questa applicazione viene ampliata, aggiornato, e Operations Management Suite sono configurati cluster di Kubernetes toomonitor hello.
+Nelle esercitazioni successive, l'applicazione viene aggiornata e ne vengono aumentate le istanze e Operations Management Suite viene configurato per monitorare il cluster Kubernetes.
 
-In questa esercitazione si presuppone una conoscenza di base dei concetti Kubernetes, per informazioni dettagliate sul Kubernetes vedere hello [Kubernetes documentazione](https://kubernetes.io/docs/home/).
+Questa esercitazione presuppone una conoscenza di base dei concetti relativi a Kubernetes. Per informazioni dettagliate su Kubernetes, vedere la [documentazione di Kubernetes](https://kubernetes.io/docs/home/).
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
-Nelle esercitazioni precedenti, un'applicazione è stata distribuita in un'immagine contenitore, questa immagine è stato caricato tooAzure contenitore del Registro di sistema e un cluster Kubernetes è stato creato. Se si è già questi passaggi e si desidera toofollow lungo, restituire troppo[esercitazione 1: creare le immagini contenitore](./container-service-tutorial-kubernetes-prepare-app.md). 
+Nelle esercitazioni precedenti è stato creato un pacchetto di un'applicazione in un'immagine del contenitore, caricata poi nel Registro contenitori di Azure, ed è stato creato un cluster Kubernetes. 
 
-Il requisito minimo per questa esercitazione è un cluster Kubernetes.
+Per completare questa esercitazione, è necessario il file manifesto Kubernetes `azure-vote-all-in-one-redis.yml` creato in precedenza. Questo file è stato scaricato con il codice sorgente dell'applicazione in un'esercitazione precedente. Verificare che sia stato clonato il repository e che si siano state cambiate le directory nel repository clonato.
 
-## <a name="get-manifest-file"></a>Ottenere il file manifesto
-
-Per questa esercitazione, gli [oggetti Kubernetes](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/) vengono distribuiti con un manifesto Kubernetes. Un manifesto Kubernetes è un file in formato YAML o JSON contenente le istruzioni sulla distribuzione e la configurazione degli oggetti.
-
-file di manifesto dell'applicazione Hello per questa esercitazione è disponibile nel repository di applicazione di hello voto di Azure, è stato clonato in un'esercitazione precedente. Se non è già stato fatto, è possibile clonare il repository di hello con hello comando seguente: 
-
-```bash
-git clone https://github.com/Azure-Samples/azure-voting-app-redis.git
-```
-
-file manifesto di Hello si trova nella seguente directory di repository clonato hello hello.
-
-```bash
-/azure-voting-app-redis/kubernetes-manifests/azure-vote-all-in-one-redis.yml
-```
+Se questi passaggi non sono stati ancora eseguiti e si vuole procedere, tornare a [Tutorial 1 – Create container images](./container-service-tutorial-kubernetes-prepare-app.md) (Esercitazione 1: Creare immagini del contenitore). 
 
 ## <a name="update-manifest-file"></a>Aggiornare il file manifesto
 
-Se si usa le immagini contenitore di Azure del Registro di sistema contenitore toostore hello, hello toobe esigenze manifesto aggiornato con hello ACR loginServer nome.
+In questa esercitazione, il Registro contenitori di Azure è stato usato per archiviare un'immagine del contenitore. Prima di eseguire l'applicazione, è necessario aggiornare il nome del server di accesso del Registro contenitori di Azure nel file manifesto Kubernetes.
 
-Ottenere il nome del server accesso ACR hello con hello [elenco acr az](/cli/azure/acr#list) comando.
+Ottenere il nome del server di accesso del Registro contenitori di Azure con il comando [az acr list](/cli/azure/acr#list).
 
 ```azurecli-interactive
 az acr list --resource-group myResourceGroup --query "[].{acrLoginServer:loginServer}" --output table
 ```
 
-Hello esempio manifesto è stato creato in precedenza con un nome di repository di *microsoft*. Aprire il file hello con qualsiasi editor di testo e sostituire hello *microsoft* valore con il nome di server hello account di accesso dell'istanza del record.
+Il file manifesto è stato creato in precedenza con un nome di server di accesso `microsoft`. Aprire il file con qualsiasi editor di testo. In questo esempio il file viene aperto con `vi`.
+
+```bash
+vi azure-vote-all-in-one-redis.yml
+```
+
+Sostituire `microsoft` con il nome del server di accesso del Registro contenitori di Azure. Questo valore è presente nella riga **47** del file manifesto.
 
 ```yaml
 containers:
@@ -76,12 +68,14 @@ containers:
   image: microsoft/azure-vote-front:redis-v1
 ```
 
+Salvare e chiudere il file.
+
 ## <a name="deploy-application"></a>Distribuire un'applicazione
 
-Hello utilizzare [kubectl creare](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#create) comando applicazione hello toorun. Questo comando analizza hello file manifesto e creare oggetti Kubernetes hello definito.
+Usare il comando [kubectl create](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#create) per eseguire l'applicazione. Questo comando analizza il file manifesto e creare gli oggetti Kubernetes definiti.
 
 ```azurecli-interactive
-kubectl create -f ./azure-voting-app-redis/kubernetes-manifests/azure-vote-all-in-one-redis.yml
+kubectl create -f azure-vote-all-in-one-redis.yml
 ```
 
 Output:
@@ -95,15 +89,15 @@ service "azure-vote-front" created
 
 ## <a name="test-application"></a>Testare l'applicazione
 
-Oggetto [Kubernetes servizio](https://kubernetes.io/docs/concepts/services-networking/service/) viene creato che espone toohello applicazione hello internet. Il processo potrebbe richiedere alcuni minuti. 
+Viene creato un [servizio di Kubernetes](https://kubernetes.io/docs/concepts/services-networking/service/) che espone l'applicazione a Internet. Il processo potrebbe richiedere alcuni minuti. 
 
-lo stato di avanzamento toomonitor, utilizzare hello [kubectl ottenere servizio](https://review.docs.microsoft.com/en-us/azure/container-service/container-service-kubernetes-walkthrough?branch=pr-en-us-17681) con hello `--watch` argomento.
+Per monitorare lo stato, usare il comando [kubectl get service](https://review.docs.microsoft.com/en-us/azure/container-service/container-service-kubernetes-walkthrough?branch=pr-en-us-17681) con l'argomento `--watch`.
 
 ```azurecli-interactive
 kubectl get service azure-vote-front --watch
 ```
 
-Inizialmente, hello **esterno IP** per hello *azure voto-anteriore* servizio viene visualizzato come *in sospeso*. Una volta che l'indirizzo IP esterno hello è stato modificato da *in sospeso* tooan *indirizzo IP*, utilizzare `CTRL-C` processo di controllo kubectl toostop hello.
+**EXTERNAL-IP** per il servizio `azure-vote-front` viene visualizzato inizialmente come `pending`. Dopo che l'indirizzo EXTERNAL-IP passa da `pending` a `IP address`, usare `CTRL-C` per arrestare il processo kubectl watch.
 
 ```bash
 NAME               CLUSTER-IP    EXTERNAL-IP   PORT(S)        AGE
@@ -111,20 +105,20 @@ azure-vote-front   10.0.42.158   <pending>     80:31873/TCP   1m
 azure-vote-front   10.0.42.158   52.179.23.131 80:31873/TCP   2m
 ```
 
-applicazione hello toosee, Sfoglia toohello l'indirizzo IP esterno.
+Per vedere l'applicazione, passare all'indirizzo IP esterno.
 
 ![Immagine del cluster Kubernetes in Azure](media/container-service-kubernetes-tutorials/azure-vote.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-In questa esercitazione, hello applicazione voto Azure è stato distribuito tooan Kubernetes servizio contenitore di Azure cluster. Le attività completate comprendono:  
+In questa esercitazione è stata distribuita un'applicazione Azure Vote in un cluster Kubernetes del servizio contenitore di Azure. Le attività completate comprendono:  
 
 > [!div class="checklist"]
 > * Scaricare i file manifesto Kubernetes
-> * Eseguire un'applicazione hello in Kubernetes
-> * Applicazione hello testata
+> * Eseguire l'applicazione in Kubernetes
+> * Testare l'applicazione
 
-Spostare toohello toolearn esercitazione successiva sulla scalabilità di un applicazione Kubernetes e hello Kubernetes infrastruttura sottostante. 
+Passare all'esercitazione successiva per informazioni sulla scalabilità sia di un'applicazione Kubernetes sia dell'infrastruttura Kubernetes sottostante. 
 
 > [!div class="nextstepaction"]
 > [Scalare l'applicazione e l'infrastruttura Kubernetes](./container-service-tutorial-kubernetes-scale.md)

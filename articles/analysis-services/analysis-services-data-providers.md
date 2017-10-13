@@ -1,6 +1,6 @@
 ---
-title: librerie aaaClient necessarie per la connessione di Analysis Services di tooAzure | Documenti Microsoft
-description: Descrive le librerie client necessarie per client tooconnect di strumenti e applicazioni Azure Analysis Services
+title: Librerie client necessarie per la connessione ad Azure Analysis Services | Microsoft Docs
+description: Vengono illustrate le librerie client necessarie per la connessione di applicazioni e strumenti client ad Azure Analysis Services
 services: analysis-services
 documentationcenter: 
 author: minewiskan
@@ -15,24 +15,24 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 08/15/2017
 ms.author: owend
-ms.openlocfilehash: 74ba5c05ba76c6587c5aed38f200a1ba469aa4f3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a96e7fe671dc051da35168fa7b49ecba53b4c4a5
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="client-libraries-for-connecting-tooazure-analysis-services"></a>Librerie client per la connessione tooAzure Analysis Services
+# <a name="client-libraries-for-connecting-to-azure-analysis-services"></a>Librerie client per la connessione ad Azure Analysis Services
 
-Le librerie client sono necessari per le applicazioni client e server di servizi tooAnalysis tooconnect strumenti. 
+Le librerie client sono necessarie per la connessione di applicazioni e strumenti client ai server di Analysis Services. 
 
-Analysis Services usa tre librerie client. ADOMD.NET e Analysis Services Management Objects (AMO) sono librerie client gestite. provider OLE DB per Analysis Services Hello (MSOLAP DLL) è una libreria client nativa. In genere, in cui sono installati tutti e tre in hello contemporaneamente. Azure Analysis Services richiede versioni più recenti di hello. 
+Analysis Services usa tre librerie client. ADOMD.NET e Analysis Services Management Objects (AMO) sono librerie client gestite. Il provider Analysis Services OLE DB (MSOLAP DLL) è una libreria client nativa. In genere, vengono installate tutte e tre nello stesso momento. Azure Analysis Services richiede le versioni più recenti. 
 
-Le applicazioni client di Microsoft, come ad esempio Power BI Desktop ed Excel, installano tutte e tre le librerie client. Tuttavia, a seconda della versione di hello o frequenza degli aggiornamenti, le librerie client potrebbero non essere versioni più recenti di hello richieste da Azure Analysis Services. Hello vale toocustom applicazioni o altre interfacce, ad esempio AsCmd, TOM, ADOMD.NET. Queste applicazioni richiedono l'installazione manuale di librerie hello. le librerie client Hello per l'installazione manuale sono inclusi nel feature pack di SQL Server come pacchetti distribuibili. Tuttavia, le librerie client sono toohello legati versione di SQL Server e hello potrebbero non essere più recente.  
+Le applicazioni client di Microsoft, come ad esempio Power BI Desktop ed Excel, installano tutte e tre le librerie client. A seconda della versione o della frequenza degli aggiornamenti, le librerie client potrebbero tuttavia non essere le versioni più recenti richieste da Azure Analysis Services. Lo stesso vale per le applicazioni personalizzate o per le altre interfacce come AsCmd, TOM e ADOMD.NET. Queste applicazioni richiedono l'installazione manuale delle librerie. Le librerie client per l'installazione manuale sono incluse nei Feature Pack di SQL Server come pacchetti distribuibili. Queste librerie client sono tuttavia collegate alla versione di SQL Server e potrebbero non essere le più recenti.  
 
-Le librerie client per le connessioni client sono diverse dalle tooconnect necessari i provider di dati da un'origine di dati tooa server Azure Analysis Services. toolearn più sulle connessioni di origine dati, vedere [connessioni origine dati](analysis-services-datasource.md).
+Le librerie client per le connessioni client sono diverse dai provider di dati necessari per connettersi da un server di Azure Analysis Services a un'origine dati. Per ulteriori informazioni sulle connessioni alle origini dati, vedere [Connessioni alle origini dati](analysis-services-datasource.md).
 
-## <a name="download-hello-latest-client-libraries"></a>Scaricare le librerie client più recente di hello  
-Utilizzare hello seguendo le librerie client se si dispone di un ambiente di produzione e richiedono versioni completamente rilasciate e supportate.
+## <a name="download-the-latest-client-libraries"></a>Scaricare le librerie client più recenti  
+Usare le librerie client seguenti se ci si trova in un ambiente di produzione e sono richieste versioni completamente rilasciate e supportate.
 
 [MSOLAP (amd64)](https://go.microsoft.com/fwlink/?linkid=829576)</br>
 [MSOLAP (x86)](https://go.microsoft.com/fwlink/?linkid=829575)</br>

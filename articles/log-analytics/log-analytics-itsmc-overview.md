@@ -1,6 +1,6 @@
 ---
-title: Connettore del servizio di gestione in OMS aaaIT | Documenti Microsoft
-description: Utilizzare monitor di toocentrally hello connettore di gestione del servizio IT e gestire gli elementi di lavoro ITSM hello in OMS e risolvere rapidamente eventuali problemi.
+title: IT Service Management Connector in Azure Log Analytics | Microsoft Docs
+description: Usare IT Service Management Connector per monitorare e gestire centralmente gli elementi di lavoro di ITSM in Azure Log Analytics e risolvere rapidamente eventuali problemi.
 services: log-analytics
 documentationcenter: 
 author: JYOTHIRMAISURI
@@ -14,60 +14,51 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/19/2017
 ms.author: v-jysur
-ms.openlocfilehash: 33ed5d432591b836eb41ba982c66c96f22879444
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 411d6103852cbf534d3c420d5ea7b2146df5164e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="centrally-manage-itsm-work-items-using-it-service-management-connector-preview"></a>Gestire centralmente gli elementi di lavoro ITSM con IT Service Management Connector (anteprima)
 
 ![Simbolo di IT Service Management Connector](./media/log-analytics-itsmc/itsmc-symbol.png)
 
-È possibile utilizzare hello IT servizio Gestione connettore (ITSMC) in OMS Log Analitica toocentrally monitoraggio e gestione degli elementi di lavoro tra i prodotti o servizi ITSM.
-
-Connettore di gestione del servizio IT Hello integra i prodotti di Gestione servizio IT (ITSM) esistente e i servizi con Analitica di Log di OMS.  soluzione hello è bidirezionale l'integrazione con prodotti e servizi ITSM, dove fornisce hello gli utenti di OMS eventi imprevisti toocreate un'opzione, gli avvisi o eventi nella soluzione ITSM. connettore Hello Importa anche i dati, ad esempio eventi imprevisti e richieste di modifica da soluzione ITSM in OMS Log Analitica.
+IT Service Management Connector offre un'integrazione bidirezionale tra un prodotto/ servizio IT Service Management (ITSM) supportato e Log Analytics.  Grazie a questa connessione, è possibile creare eventi imprevisti, avvisi o eventi in un prodotto ITSM in base ad avvisi di Log Analytics o record di log. Il connettore importa anche dati, ad esempio eventi imprevisti e richieste di modifica dal prodotto ITSM in Log Analytics di OMS.
 
 Con IT Service Management Connector è possibile:
 
-  - Monitorare e gestire centralmente gli elementi di lavoro per i prodotti e i servizi ITSM usati nell'organizzazione.
-  - Creare elementi di lavoro ITSM, ad esempio avvisi, eventi, eventi imprevisto, in ITSM dagli avvisi OMS e tramite la ricerca log.
-  - Leggere gli eventi imprevisti e richieste di modifica dalla soluzione ITSM e correlare i dati di log rilevanti nell'area di lavoro di Log Analytics.
-  - Individuare eventuali eventi imprevisti e non comuni e risolverli, anche prima che gli utenti finali di hello chiamare e li segnala toohello helpdesk.
-  - Importare i dati degli elementi di lavoro in Log Analytics e creare report indicatori di prestazioni chiave.  Grazie all'uso di questi report, è possibile individuare, valutare e agire su diversi elementi importanti, ad esempio la valutazione della presenza di malware.
-  - Visualizzare i dashboard curati per ottenere informazioni approfondite su eventi imprevisti, richieste di modifica e sistemi interessati.
-  - Risolvere i problemi più velocemente, è possibile correlare con altre soluzioni di gestione nell'area di lavoro Log Analitica hello.
+  - Integrare la creazione di avvisi operativi con le procedure di gestione degli eventi imprevisti nello strumento ITSM di propria scelta.
+    - Creare elementi di lavoro, ad esempio avvisi, eventi, eventi imprevisti, in ITSM dagli avvisi OMS e tramite la ricerca log.
+    - Creare elementi di lavoro basati sugli avvisi del log attività di Azure tramite un'azione ITSM nei gruppi di azioni. 
+  
+  - Unificare i dati di monitoraggio, dei log e di gestione dei servizi usati nell'organizzazione.
+    - Correlare i dati degli eventi imprevisti e delle richieste di modifica dagli strumenti ITSM con i dati di log rilevanti nell'area di lavoro di Log Analytics.   
+    - Visualizzare i dashboard di primo livello per una panoramica di eventi imprevisti, richieste di modifica e sistemi interessati.
+    - Scrivere query di Log Analytics per ottenere informazioni dettagliate sui dati di gestione dei servizi.
+      
+## <a name="adding-the-it-service-management-connector-solution"></a>Aggiunta della soluzione IT Service Management Connector
 
+Aggiungere la soluzione IT Service Management Connector all'area di lavoro di Log Analytics usando la procedura descritta in [Aggiungere soluzioni di Log Analytics dalla raccolta soluzioni](log-analytics-add-solutions.md).
 
-## <a name="prerequisites"></a>Prerequisiti
-
-tooimport hello ITSM gli elementi di lavoro in OMS Log Analitica soluzione hello richiede una connessione tra hello connettore di gestione del servizio IT in OMS hello e hello SM IT prodotti o servizi da cui importare gli elementi di lavoro hello.
-
-
-## <a name="configuration"></a>Configurazione
-
-Aggiungi hello area di lavoro OMS tooyour soluzione connettore di gestione del servizio IT, hello processo descritto in [soluzioni aggiungere Log Analitica da hello Solutions Gallery](log-analytics-add-solutions.md).
-
-Connettore di gestione del servizio IT riquadro come può vedere nella raccolta di soluzioni hello:
+Riquadro di IT Service Management Connector come appare nella raccolta soluzioni:
 
 ![riquadro connettore](./media/log-analytics-itsmc/itsmc-solutions-tile.png)
 
-Dopo l'aggiunta di esito positivo, verrà visualizzato hello connettore di gestione del servizio IT in **OMS** > **impostazioni** > **Connected Sources.**
+Dopo averlo aggiunto correttamente, IT Service Management Connector viene visualizzato in **OMS** > **Impostazioni** > **Origini connesse.**
 
 ![ITSMC connessi](./media/log-analytics-itsmc/itsmc-overview-solution-in-connected-sources.png)
 
 > [!NOTE]
 
-> Per impostazione predefinita, hello connettore di gestione del servizio IT Aggiorna i dati della connessione hello una volta in ogni 24 ore. toorefresh immediatamente per qualsiasi modello di modifiche o gli della connessione aggiornamenti dei dati apportate, fare clic su connessione tooyour avanti di hello aggiornamento pulsante visualizzato.
+> Per impostazione predefinita, IT Service Management Connector aggiorna i dati della connession ogni 24 ore. Per aggiornare i dati della connessione immediatamente in caso di eventuali modifiche o aggiornamenti del modello, fare clic sul pulsante di aggiornamento posto accanto alla connessione.
 
  ![Aggiornamento di ITSMC refresh](./media/log-analytics-itsmc/itsmc-connection-refresh.png)
 
-## <a name="management-packs"></a>Management Pack
-Questa soluzione non richiede alcun pacchetto di gestione.
 
-## <a name="connected-sources"></a>Origini connesse
+## <a name="configuring-the-connection-with-your-itsm-software"></a>Configurazione della connessione con il software ITSM
 
-Hello ITSM seguenti prodotti e servizi sono supportati dal connettore di gestione del servizio IT hello:
+La soluzione IT Service Management Connector supporta le connessioni a **System Center Service Manager**, **ServiceNow**, **Provance** e **Cherwell**. Configurare la connessione con:
 
 - [System Center Service Manager (SCSM)](log-analytics-itsmc-connections.md#connect-system-center-service-manager-to-it-service-management-connector-in-oms)
 
@@ -77,21 +68,19 @@ Hello ITSM seguenti prodotti e servizi sono supportati dal connettore di gestion
 
 - [Cherwell](log-analytics-itsmc-connections.md#connect-cherwell-to-it-service-management-connector-in-oms)
 
-## <a name="using-hello-solution"></a>Utilizzo di soluzione hello
+## <a name="using-the-solution"></a>Uso della soluzione
 
-Una volta che ci si connette hello connettore di gestione del servizio IT OMS con il servizio ITSM, servizi Log Analitica hello avvia la raccolta dati hello da hello connesso ITSM prodotti o servizi.
-
-> [!NOTE]
-> - I dati importati dalla soluzione IT Service Management Connector vengono visualizzati in Log Analytics come eventi denominati **ServiceDesk_CL**.
-- L'evento contiene un campo denominato **ServiceDeskWorkItemType_s**. che il relativo valore come eventi imprevisti, richiedere o richiesta di modifica, a seconda di hello di elemento di lavoro dati contenuti in hello **ServiceDesk_CL** evento.
-
-## <a name="input-data"></a>Dati di input
-Gli elementi di lavoro importati da hello ITSM prodotti e servizi.
-
-Hello informazioni riportate di seguito vengono illustrati esempi di dati raccolti dal connettore di gestione dei servizi IT hello:
+Dopo che IT Service Management Connector è stato configurato con i dettagli del software ITSM, il connettere avvia la raccolta dei dati dal prodotto/servizio ITSM connesso. A seconda del numero di eventi imprevisti e di richieste di modifica nel prodotto/servizio ITSM, la sincronizzazione iniziale verrà completata entro pochi minuti. 
 
 > [!NOTE]
-> A seconda di hello tipo elemento di lavoro importato nel Log Analitica, **ServiceDesk_CL** contiene hello seguenti campi:
+> - I dati importati dal prodotto ITSM con la soluzione IT Service Management Connector vengono visualizzati in Log Analytics come record di log di tipo **ServiceDesk_CL**.
+> - Un record di log contiene un campo denominato **ServiceDeskWorkItemType_s**, che è un evento imprevisto o una richiesta di modifica, i due tipi di dati importati dal prodotto ITSM
+
+## <a name="data-synced-from-itsm-product"></a>Dati sincronizzati dal prodotto ITSM
+La sincronizzazione di eventi imprevisti e richieste di modifica viene eseguita dal prodotto ITSM all'area di lavoro di Log Analytics. Le informazioni seguenti mostrano esempi di dati raccolti da IT Service Management Connector:
+
+> [!NOTE]
+> A seconda del tipo di elemento di lavoro importato in Log Analytics, **ServiceDesk_CL** contiene i campi seguenti:
 
 **Elemento di lavoro:** **Eventi imprevisti**  
 ServiceDeskWorkItemType_s="Incident"
@@ -166,7 +155,7 @@ ServiceDeskWorkItemType_s="ChangeRequest"
 | ResolvedBy_s | Risolto da|
 | ClosedBy_s  | Chiuso da |
 | Source_s| Tipo di contatto |
-| AssignedTo_s | Troppo assegnato |
+| AssignedTo_s | Assegnato a  |
 | Category_s | Categoria |
 | Title_s|  Breve descrizione |
 | Description_s|  Note |
@@ -182,7 +171,7 @@ ServiceDeskWorkItemType_s="ChangeRequest"
 | ServiceDeskId_s| Number |
 | CreatedBy_s | Richiesto da |
 | ClosedBy_s | Chiuso da |
-| AssignedTo_s | Troppo assegnato |
+| AssignedTo_s | Assegnato a  |
 | Title_s|  Breve descrizione |
 | Type_s|  Tipo |
 | Category_s|  Categoria |
@@ -206,83 +195,114 @@ ServiceDeskWorkItemType_s="ChangeRequest"
 
 ## <a name="it-service-management-connector--integration-with-other-oms-solutions"></a>IT Service Management connector: integrazione con altre soluzioni OMS
 
-Connettore di gestione del servizio IT, attualmente supporta l'integrazione con hello soluzione mappa del servizio.
+IT Service Management Connector supporta attualmente l'integrazione con la soluzione Mapping dei servizi.
 
-Mappa del servizio individua automaticamente i componenti dell'applicazione in Windows hello e mappe e i sistemi Linux hello la comunicazione tra servizi. Consente di tooview i server come si immaginano – come sistemi interconnessi che offrono servizi critici. L'elenco dei servizi mostra le connessioni fra i server, i processi e le porte di tutte le architetture connesse via TCP senza il bisogno di alcuna configurazione a parte l'installazione di un agente. Altre informazioni: [Elenco dei servizi](../operations-management-suite/operations-management-suite-service-map.md).
+Elenco dei servizi individua automaticamente i componenti delle applicazioni nei sistemi Windows e Linux ed esegue la mappatura della comunicazione fra i servizi. Consente di visualizzare i server nel modo in cui si pensa a essi, ovvero come sistemi interconnessi che forniscono servizi critici. L'elenco dei servizi mostra le connessioni fra i server, i processi e le porte di tutte le architetture connesse via TCP senza il bisogno di alcuna configurazione a parte l'installazione di un agente. Altre informazioni: [Elenco dei servizi](../operations-management-suite/operations-management-suite-service-map.md).
 
-L'integrazione, è possibile visualizzare hello service desk gli elementi creati in soluzioni ITSM hello come illustrato nell'esempio seguente hello:
+Se si usa anche la soluzione Mapping dei servizi, è possibile visualizzare gli elementi del service desk creati nelle soluzioni ITSM come illustrato nell'esempio seguente:
 
-![Soluzione integrata ](./media/log-analytics-itsmc/itsmc-overview-integrated-solutions.png)
+![Integrazione di Mapping dei servizi](./media/log-analytics-itsmc/itsmc-overview-integrated-solutions.png)
 ## <a name="create-itsm-work-items-for-oms-alerts"></a>Creare elementi di lavoro ITSM per avvisi di OMS
 
-Per gli avvisi OMS hello, è possibile creare elementi di lavoro associati in origini ITSM hello connesso.  toodo hello, questo uso seguente procedura:
+Con la soluzione ITSM Connector disponibile, è possibile configurare Avvisi OMS per attivare la creazione di elementi di lavoro nello strumento connesso, come segue:
 
-1. Da **ricerca nei Log** finestra, eseguire una ricerca di log query tooview dati. Risultati della query sono l'origine hello per gli elementi di lavoro.
-2. In **ricerca nei Log**, fare clic su **avviso** tooopen hello **Aggiungi regola di avviso** pagina.
+1. Dalla finestra **Ricerca Log** eseguire una query di ricerca log per visualizzare i dati. I risultati della query sono l'origine degli elementi di lavoro.
+2. In **Ricerca Log** fare clic su **Avviso** per aprire la pagina **Aggiungi regola di avviso**.
 
     ![Schermata di Log Analytics](./media/log-analytics-itsmc/itsmc-work-items-for-oms-alerts.png)
 
-3. In hello **Aggiungi regola di avviso** finestra, fornire dettagli hello necessario per **nome**, **gravità**, **query di ricerca**, e  **Criteri di avviso** (misurazione finestra/metrica tempo).
+3. Nella finestra **Aggiungi regola di avviso**, inserire i dettagli necessari per **Nome**, **Gravità**,  **Query di ricerca** e **Criteri avvisi** (misurazione dell'intervallo di tempo/metrica).
 4. Selezionare **Sì** per **Azioni ITSM**.
-5. Selezionare la connessione ITSM hello **Seleziona connessione** elenco.
-6. Fornire dettagli hello come richiesto.
-7. un elemento di lavoro separata per ogni voce di log di hello questo avviso, seleziona toocreate **creare singoli elementi di lavoro per ogni voce di log** casella di controllo.
+5. Selezionare la connessione ITSM dall'elenco **Selezionare una connessione**.
+6. Specificare i dettagli richiesti.
+7. Per creare un elemento di lavoro separato per ogni voce di log dell'avviso, selezionare la casella di controllo **Crea elementi di lavoro singoli per ogni voce di log**.
 
-    Or
+    oppure
 
-    lasciare questa casella di controllo deselezionata toocreate solo un elemento di lavoro per qualsiasi numero di voci di log in questo avviso.
+    non selezionare questa casella di controllo per creare un solo elemento di lavoro per il numero di voci di log in questo avviso.
 
 7. Fare clic su **Salva**.
 
-verrà creata nell'avviso OMS Hello **avvisi**. Hello lavoro della connessione corrispondente ITSM gli elementi vengono creati quando viene soddisfatta la condizione dell'avviso di hello specificato.
+L'avviso OMS creato può essere visualizzato in **Impostazioni**>**Avvisi**. Gli elementi di lavoro della connessione ITSM corrispondente vengono creati quando viene soddisfatta la condizione dell'avviso specificata.
 
 ## <a name="create-itsm-work-items-from-oms-logs"></a>Creare elementi di lavoro ITSM da log di OMS
 
-È possibile creare elementi di lavoro nelle origini ITSM hello connesso tramite una ricerca nei Log di OMS. toodo hello, questo uso seguente procedura:
+È anche possibile creare elementi di lavoro nelle origini ITSM connesse direttamente da un record di log, come segue:
 
-1. Da **ricerca nei Log**, cercare i dati di hello richiesto, selezionare dettagli hello e fare clic su **Crea elemento di lavoro**.
+1. Da **Ricerca Log** cercare i dati richiesti, selezionare i dettagli e fare clic su **Crea elemento di lavoro**.
 
-    Hello **elemento di lavoro di ITSM creare** verrà visualizzata la finestra:
+    Viene visualizzata la finestra **Crea elemento di lavoro ITSM**:
 
     ![Schermata di Log Analytics](media/log-analytics-itsmc/itsmc-work-items-from-oms-logs.png)
 
-2.   Aggiungere i seguenti dettagli hello:
+2.   Aggiungere i dettagli seguenti:
 
-  - **Titolo elemento di lavoro**: titolo dell'elemento di lavoro hello.
-  - **Descrizione elemento di lavoro**: descrizione per il nuovo elemento di lavoro hello.
-  - **Computer interessati**: nome del computer hello in cui è stati trovati i dati di log.
-  - **Selezionare connessione**: connessione ITSM in cui si desidera toocreate questo elemento di lavoro.
+  - **Titolo elemento di lavoro**: il titolo dell'elemento di lavoro.
+  - **Descrizione elemento di lavoro**: descrizione per il nuovo elemento di lavoro.
+  - **Computer interessato**: nome del computer in cui sono stati trovati i dati del log.
+  - **Selezionare una connessione**: connessione ITSM in cui si desidera creare questo elemento di lavoro.
   - **Elemento di lavoro**: tipo di elemento di lavoro.
 
-3. Fare clic su un modello di elemento di lavoro esistente per un evento imprevisto, toouse **Sì** in **elemento di lavoro genera basato sul modello di hello** opzione e quindi fare clic su **crea**.
+3. Per usare un modello di elemento di lavoro esistente per un evento imprevisto, fare clic su **Sì** nell'opzione **Generate work item based on the template** (Genera elemento di lavoro in base al modello) e quindi fare clic su **Crea**.
 
     Oppure
 
-    Fare clic su **n** se si desiderano tooprovide i valori personalizzati.
+    Fare clic su **No** se si desidera specificare valori personalizzati.
 
-4. Specificare i valori appropriati di hello in hello **tipo contatto**, **impatto**, **urgenza**, **categoria**, e **Sub Category**  caselle di testo e quindi fare clic su **crea**.
+4. Inserire i valori appropriati nelle caselle di testo **Tipo di contatto**, **Impatto**, **Urgenza**, **Categoria** e **Sottocategoria** e quindi fare clic su **Crea**.
 
-verrà creato l'elemento di lavoro Hello in hello ITSM, che è anche possibile visualizzare in OMS.
+## <a name="create-itsm-work-items-from-azure-alerts"></a>Creare elementi di lavoro ITSM da avvisi di Azure
+ITSM Connector è ora integrato con i gruppi di azioni. I [gruppi di azioni](../monitoring-and-diagnostics/monitoring-action-groups.md) consentono di attivare azioni modulari e riutilizzabili per gli avvisi di Azure. L'azione ITSM nei gruppi di azioni crea elementi di lavoro nel prodotto ITSM usando una soluzione ITSM Connector esistente.
+
+1. Nel portale di Azure fare clic su **Monitoraggio**
+2. Nel riquadro sinistro fare clic su **Gruppi di azioni**
+
+    ![Gruppi di azioni](media/log-analytics-itsmc/ActionGroups.png)
+
+3. Specificare il **nome** e il **nome breve** per il gruppo di azioni. Selezionare il **gruppo di risorse** e la **sottoscrizione** in cui si vuole creare il gruppo di azioni.
+
+    ![Dettaglio dei gruppi di azioni](media/log-analytics-itsmc/ActionGroupsDetail.png)
+
+4. Nell'elenco Azioni selezionare **ITSM** dall'elenco a discesa **Tipo di azione**. Specificare un **nome** per l'azione e fare clic su **Modifica dettagli**.
+
+
+5. Selezionare la **sottoscrizione** in cui si trova l'area di lavoro di Log Analytics. Selezionare la **connessione**, ovvero il nome del connettore ITSM seguito dal nome dell'area di lavoro, ad esempio "MyITSMMConnector(MyWorkspace)".
+
+    ![Informazioni dettagliate sulle azioni ITSM](./media/log-analytics-itsmc/ITSMActionDetails.png)
+
+6. Selezionare il tipo di **elemento di lavoro** dall'elenco a discesa.
+7. Scegliere di usare un modello esistente o compilare i campi necessari per il prodotto ITSM.
+8. Fare clic su **OK**
+
+Quando si crea/modifica una regola di avviso di Azure, usare un gruppo di azioni con un'azione ITSM. Quando l'avviso viene attivato, nello strumento ITSM viene creato l'elemento di lavoro. 
+
+>[!NOTE]
+>Attualmente solo gli avvisi del log attività supportano l'azione ITSM. Per gli altri avvisi di Azure, questa azione è no-op.
+>
+
 
 ## <a name="troubleshoot-itsm-connections-in-oms"></a>Risolvere i problemi delle connessioni ITSM in OMS
-1.  Se si verifica un errore di connessione nell'interfaccia utente dell'origine connesso e viene visualizzato hello **errore durante il salvataggio di connessione** dei messaggi, hello seguenti:
- - In caso di connessioni a ServiceNow, Cherwell e Provance, assicurarsi di segreto di hello correttamente immesso nome utente/password e il client ID e client per ciascuna delle connessioni hello. Se l'errore hello persiste, controllare se si dispone di privilegi sufficienti nella connessione di hello corrispondente ITSM prodotto toomake hello.
- - In caso di Service Manager, verificare che hello Web app è stata distribuita correttamente e viene creata la connessione ibrida. connessione di hello tooverify è stata stabilita con il computer di Service Manager locale hello, visitare l'URL dell'app Web hello come descritto nella documentazione di hello per rendere hello [connessione ibrida](log-analytics-itsmc-connections.md#configure-the-hybrid-connection).
-
-2.  Se i dati da ServiceNow non sono recupero sincronizzati in OMS, verificare che tale istanza di ServiceNow hello non è sospeso. In questo momento potrebbe verificarsi in hello ServiceNow Dev casi, quando è inattivo. Else, segnala un problema di hello.
-3.  Se gli avvisi vengono recupero generati da OMS ma non sono recupero creati elementi di lavoro nel prodotto ITSM o elementi di configurazione non ricevono gli elementi creati collegato toowork o per qualsiasi informazioni generiche, hello seguenti:
- -  Soluzione di connettore di gestione del servizio IT nel portale OMS è possibile tooget usato un riepilogo delle connessioni/lavoro gli elementi e i computer e così via. Scegliere il messaggio di errore hello nel pannello stato hello, passare troppo**ricerca nei Log** e visualizzare connessione hello con errore hello utilizzando i dettagli di hello nel messaggio di errore hello.
- - è possibile visualizzare direttamente le informazioni relative a errori/hello in hello **ricerca nei Log** pagina *tipo = ServiceDeskLog_CL*.
+1.  Se si verifica un errore di connessione nell'interfaccia utente dell'origine connessa con un messaggio **Errore durante il salvataggio della connessione**, seguire questa procedura:
+ - Per le connessioni ServiceNow, Cherwell e Provance,
+    - assicurarsi di immettere correttamente il nome utente, la password, l'ID client e il segreto client per ognuna delle connessioni.
+    - controllare se si hanno privilegi sufficienti nel prodotto ITSM corrispondente per stabilire la connessione.
+ - Per le connessioni Service Manager,
+     - verificare che l'app Web sia stata distribuita correttamente e che la connessione ibrida sia stata creata. Per verificare che la connessione sia stata stabilita con il computer Service Manager on-premises, visitare l'URL dell'app Web come descritto nella documentazione per la creazione della [connessione ibrida](log-analytics-itsmc-connections.md#configure-the-hybrid-connection).
+     
+2.  Se i dati provenienti da ServiceNow non vengono sincronizzati con Log Analytics, assicurarsi che l'istanza del servizio ServiceNow non sia sospesa. Le istanze di sviluppo di ServiceNow a volte vanno in sospensione se rimangono inattive a lungo. In caso contrario, segnalare il problema.
+3.  Se gli avvisi OMS vengono generati, ma gli elementi di lavoro non vengono creati nel prodotto ITSM o gli elementi di configurazione non vengono creati/collegati a elementi di lavoro o per qualsiasi altra informazione generica, esaminare le posizioni seguenti:
+ -  **Soluzione IT Service Management Connector**: la soluzione visualizza un riepilogo delle connessioni/elementi di lavoro/computer e così via. Fare clic sul riquadro contenente **Stato connettore** per passare a **Ricerca log** con la query pertinente. Esaminare i record di log con ERROR LogType_S per altre informazioni.
+ - In alternativa visualizzare gli errori o le informazioni correlate direttamente nella pagina **Ricerca log** usando la query *Type = ServiceDeskLog_CL*.
 
 ## <a name="troubleshoot-service-manager-web-app-deployment"></a>Risolvere i problemi di distribuzione dell’app Web Service Manager
-1.  In caso di problemi con la distribuzione di app web, assicurarsi di disporre di autorizzazioni sufficienti nella sottoscrizione hello indicato toocreate/distribuire le risorse.
-2.  Se **riferimento all'oggetto non impostato tooinstance di un oggetto** viene visualizzato il messaggio di errore durante l'esecuzione di hello [script](log-analytics-itsmc-service-manager-script.md) verificare di avere immesso i valori validi in **configurazione utente**sezione.
-3.  Se non si toocreate service bus inoltro dello spazio dei nomi, verificare che hello necessarie a provider di risorse è registrato nella sottoscrizione hello. Se non è registrato, crearla manualmente dal portale di Azure hello. È inoltre possibile creare mentre [creazione connessione ibrida hello](log-analytics-itsmc-connections.md#configure-the-hybrid-connection) da hello portale di Azure.
+1.  Se si verificano problemi con la distribuzione dell'app Web, assicurarsi di avere autorizzazioni sufficienti nella sottoscrizione indicata per creare/distribuire risorse.
+2.  Se viene visualizzato un errore **"Riferimento a oggetto non impostato sull'istanza di un oggetto"** quando si esegue lo [script](log-analytics-itsmc-service-manager-script.md), assicurarsi di aver immesso valori validi nella sezione **Configurazione utente**.
+3.  Se non è possibile creare lo spazio dei nomi di inoltro del bus di servizio, assicurarsi che il provider di risorse richiesto sia registrato nella sottoscrizione. Qualora non fosse registrato, creare manualmente lo spazio dei nomi di inoltro del bus di servizio dal portale di Azure. È inoltre possibile crearlo durante [la creazione della connessione ibrida](log-analytics-itsmc-connections.md#configure-the-hybrid-connection) dal portale di Azure.
 
 
 ## <a name="contact-us"></a>Contatti
 
-Per qualsiasi query o i commenti e suggerimenti su hello connettore di gestione del servizio IT, contattare Microsoft all'indirizzo [ omsitsmfeedback@microsoft.com ](mailto:omsitsmfeedback@microsoft.com).
+Per eventuali domande o commenti e suggerimenti su IT Service Management Connector, è possibile contattare [omsitsmfeedback@microsoft.com](mailto:omsitsmfeedback@microsoft.com).
 
 ## <a name="next-steps"></a>Passaggi successivi
-[Aggiungere ITSM prodotti e servizi tooIT connettore del servizio di gestione](log-analytics-itsmc-connections.md).
+[Aggiungere prodotti o servizi ITSM a IT Service Management Connector](log-analytics-itsmc-connections.md).

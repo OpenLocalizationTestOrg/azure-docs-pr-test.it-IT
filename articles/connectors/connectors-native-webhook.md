@@ -1,6 +1,6 @@
 ---
-title: connettore aaaWebhook per le app di logica di Azure | Documenti Microsoft
-description: Le azioni webhook toouse e le azioni di trigger tooperform come matrice di filtro da logica App
+title: Connettori webhook per App per la logica di Azure | Microsoft Docs
+description: Come usare azioni e trigger webhook per eseguire azioni come Filtra matrice da app per la logica
 services: logic-apps
 author: jeffhollan
 manager: anneta
@@ -15,93 +15,93 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/21/2016
 ms.author: jehollan; LADocs
-ms.openlocfilehash: b2dee12750f3f20f10e7b257da05a79f28f90f43
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: fbfef291334109c6dcfcde80741874549fb7929f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="get-started-with-hello-webhook-connector"></a>Iniziare con connettore webhook hello
+# <a name="get-started-with-the-webhook-connector"></a>Introduzione al connettore webhook
 
-Con l'azione webhook hello e trigger, è possibile avviare, sospendere e riprendere i flussi tooperform queste attività:
+Con l'azione e il trigger webhook è possibile attivare, sospendere e riprendere flussi per eseguire queste attività:
 
 * Eseguire l'attivazione da un [Hub eventi di Azure](https://github.com/logicappsio/EventHubAPI) alla ricezione di un elemento
 * Attendere l'approvazione prima di continuare un flusso di lavoro
 
-Altre informazioni, vedere [come toocreate API personalizzate che supportano un webhook](../logic-apps/logic-apps-create-api-app.md).
+Altre informazioni su [come creare API personalizzate che supportano un webhook](../logic-apps/logic-apps-create-api-app.md).
 
-## <a name="use-hello-webhook-trigger"></a>Utilizzare trigger webhook hello
+## <a name="use-the-webhook-trigger"></a>Usare il trigger webhook
 
-Un [*trigger*](connectors-overview.md) è un evento che avvia un flusso di lavoro nell'app per la logica. Un trigger webhook è basato su eventi e non si basa sul polling per nuovi elementi. Ad esempio hello [trigger richiesta](connectors-native-reqres.md), hello logica app genera hello immediato che si verifica un evento. trigger webhook Hello registra un *URL callback* tooa servizio e viene utilizzato tale URL toofire hello app per la logica come necessario.
+Un [*trigger*](connectors-overview.md) è un evento che avvia un flusso di lavoro nell'app per la logica. Un trigger webhook è basato su eventi e non si basa sul polling per nuovi elementi. Come il [trigger di richiesta](connectors-native-reqres.md), l'app per la logica viene attivata nel momento in cui si verifica un evento. Il trigger webhook registra un *URL di callback* a un servizio e usa l'URL per attivare l'app per la logica in base alle esigenze.
 
-Di seguito è riportato un esempio che illustra come trigger tooset backup HTTP hello progettazione applicazione logica. Hello passaggi presuppongono che si hanno già distribuito o se si accede a un'API che segue hello [webhook sottoscrivere e annullare la sottoscrizione di modello di App per la logica](../logic-apps/logic-apps-create-api-app.md#webhook-triggers). Hello sottoscrizione chiamata viene eseguita ogni volta che un'app logica viene salvata con un nuovo webhook o passa da tooenabled disabilitato. annullare la sottoscrizione Hello chiamata viene eseguita quando un trigger di logica app webhook viene rimosso e salvato o passa da toodisabled abilitato.
+Ecco un esempio che mostra come configurare un trigger HTTP in Progettazione app per la logica. I passaggi presuppongono che un'API sia già stata distribuita o che si stia accedendo all'API che segue il [modello di "subscribe" e "unsubscribe" del webhook nelle app per la logica](../logic-apps/logic-apps-create-api-app.md#webhook-triggers). La chiamata "subscribe" viene eseguita ogni volta che un'app per la logica viene salvata con un nuovo webhook o che passa da uno stato disabilitato ad abilitato. La chiamata "unsubscribe" viene eseguita quando un trigger webhook dell'app per la logica viene rimosso e salvato o passa dallo stato abilitato a disabilitato.
 
-**trigger di tooadd hello webhook**
+**Per aggiungere il trigger webhook**
 
-1. Aggiungere hello **HTTP Webhook** trigger come primo passaggio di hello in un'app di logica.
-2. Specificare i parametri di hello per hello webhook sottoscrivere e annullare la sottoscrizione di chiamate.
+1. Aggiungere il trigger **HTTP Webhook** come primo passaggio in un'app per la logica.
+2. Specificare i parametri per le chiamate "subscribe" e "unsubscribe" del webhook.
 
-   Questo passaggio segue hello stesso schema come hello [azione HTTP](connectors-native-http.md) formato.
+   Questo passaggio segue lo stesso modello del formato dell'[azione HTTP](connectors-native-http.md).
 
      ![Trigger HTTP](./media/connectors-native-webhook/using-trigger.png)
 
 3. Aggiungere almeno un'azione.
-4. Fare clic su **salvare** toopublish hello logica app. Questo hello chiamate passaggio sottoscrizione endpoint con hello callback URL necessario tootrigger questa app per la logica.
-5. Ogni volta che hello servizio rende un `HTTP POST` toohello URL callback, hello logica app generato e include tutti i dati passati richiesta hello.
+4. Fare clic su **Salva** per pubblicare l'app per la logica. Questo passaggio chiama l'endpoint "subscribe" con l'URL di callback necessario per attivare questa app per la logica.
+5. Ogni volta che il servizio esegue un `HTTP POST` all'URL di callback, viene attivata l'app per la logica, inclusi i dati passati nella richiesta.
 
-## <a name="use-hello-webhook-action"></a>Utilizzare l'azione di hello webhook
+## <a name="use-the-webhook-action"></a>Usare l'azione webhook
 
-Un [ *azione* ](connectors-overview.md) viene eseguita un'operazione dal flusso di lavoro hello definito in un'app di logica. Un'azione webhook registra un *URL callback* con un servizio e attende fino a quando viene chiamato hello URL prima di riprendere. Hello ["Invio di posta elettronica di approvazione"](connectors-create-api-office365-outlook.md) è riportato un esempio di un connettore che segue questo modello. È possibile estendere questo modello in qualsiasi servizio tramite un'azione di hello webhook. 
+Un'[*azione*](connectors-overview.md) è un'operazione eseguita dal flusso di lavoro e definita in un'app per la logica. Un'azione webhook registra un *URL di callback* con un servizio e attende che l'URL venga chiamato prima di riprendere le operazioni. ["Send Approval Email"](connectors-create-api-office365-outlook.md) è un esempio di connettore che segue questo modello. È possibile estendere questo modello in qualsiasi servizio tramite l'azione webhook. 
 
-Di seguito è riportato un esempio che illustra come tooset un webhook di azione in hello progettazione applicazione logica. Questa procedura si presuppone che si hanno già distribuito o se si accede a un'API che segue hello [webhook sottoscrivere e annullare la sottoscrizione criterio usato nell'App per la logica](../logic-apps/logic-apps-create-api-app.md#webhook-actions). Hello sottoscrizione chiamata viene eseguita quando un'app per la logica esegue azioni webhook hello. annullare la sottoscrizione Hello chiamata viene eseguita quando un'esecuzione è stata annullata durante l'attesa di una risposta, o prima della logica di hello app timeout.
+Ecco un esempio che mostra come configurare un azione webhook in Progettazione app per la logica. I passaggi presuppongono che un'API sia già stata distribuita o che si stia accedendo a un'API che segue il [modello di "subscribe" e "unsubscribe" del webhook usato nelle app per la logica](../logic-apps/logic-apps-create-api-app.md#webhook-actions). Quando un'app per la logica esegue l'azione webhook, viene eseguita la chiamata "subscribe". Quando un'esecuzione viene annullata in attesa di una risposta o prima che si verifichi il timeout dell'app per la logica, viene eseguita la chiamata "unsubscribe".
 
-**tooadd un'azione webhook**
+**Per aggiungere un'azione webhook**
 
 1. Scegliere **Nuovo passaggio** > **Aggiungi un'azione**.
 
-2. Nella casella di ricerca hello, digitare "webhook" toofind hello **HTTP Webhook** azione.
+2. Nella casella di ricerca digitare "webhook" per trovare l'azione **HTTP Webhook**.
 
     ![Selezionare l'azione di query](./media/connectors-native-webhook/using-action-1.png)
 
-3. Specificare i parametri di hello per hello webhook sottoscrivere e annullare la sottoscrizione di chiamate
+3. Specificare i parametri per le chiamate "subscribe" e "unsubscribe" del webhook
 
-   Questo passaggio segue hello stesso schema come hello [azione HTTP](connectors-native-http.md) formato.
+   Questo passaggio segue lo stesso modello del formato dell'[azione HTTP](connectors-native-http.md).
 
      ![Completare l'azione di query](./media/connectors-native-webhook/using-action-2.png)
    
-   In fase di esecuzione, hello logica app chiamate hello sottoscrizione endpoint dopo il raggiungimento di tale passaggio.
+   In fase di esecuzione, l'app per la logica chiama l'endpoint "subscribe" dopo il raggiungimento di tale passaggio.
 
-4. Fare clic su **salvare** toopublish hello logica app.
+4. Fare clic su **Salva** per pubblicare l'app per la logica.
 
 ## <a name="technical-details"></a>Dettagli tecnici
 
-Ecco altri dettagli sulle azioni e trigger hello supporta tale webhook.
+Di seguito altre informazioni sui trigger e sulle azioni che supporta webhook.
 
 ## <a name="webhook-triggers"></a>Trigger webhook
 
 | Azione | Descrizione |
 | --- | --- |
-| HTTP Webhook |Effettuare la sottoscrizione di un servizio di tooa URL callback che può chiamare URL toofire logica app hello in base alle esigenze. |
+| HTTP Webhook |Sottoscrivere un URL callback a un servizio in grado di chiamare l'URL per attivare l'app per la logica in base alle esigenze. |
 
 ### <a name="trigger-details"></a>Dettagli del trigger
 
 #### <a name="http-webhook"></a>HTTP Webhook
 
-Effettuare la sottoscrizione di un servizio di tooa URL callback che può chiamare URL toofire logica app hello in base alle esigenze.
+Sottoscrivere un URL callback a un servizio in grado di chiamare l'URL per attivare l'app per la logica in base alle esigenze.
 L'asterisco (*) indica che il campo è obbligatorio.
 
 | Nome visualizzato | Nome proprietà | Descrizione |
 | --- | --- | --- |
-| Subscribe Method* |statico |Metodo HTTP toouse per la richiesta di sottoscrizione |
-| Subscribe URI* |Uri |Toouse URI HTTP per la richiesta di sottoscrizione |
-| Unsubscribe Method* |statico |Toouse metodo HTTP per la richiesta di annullamento della sottoscrizione |
-| Unsubscribe URI* |Uri |Toouse URI HTTP per la richiesta di annullamento della sottoscrizione |
+| Subscribe Method* |statico |Metodo HTTP da usare per la richiesta di sottoscrizione |
+| Subscribe URI* |Uri |URI HTTP da usare per la richiesta di sottoscrizione |
+| Unsubscribe Method* |statico |Metodo HTTP da usare per annullare la richiesta di sottoscrizione |
+| Unsubscribe URI* |Uri |URI HTTP da usare per annullare la richiesta di sottoscrizione |
 | Subscribe Body |body |Request body HTTP per la sottoscrizione |
 | Subscribe Headers |headers |Intestazioni della richiesta HTTP per la sottoscrizione |
-| Subscribe Authentication |authentication |Toouse di autenticazione HTTP per la sottoscrizione. Vedere [Connettore HTTP](connectors-native-http.md#authentication) per informazioni dettagliate |
+| Subscribe Authentication |authentication |Autenticazione HTTP da usare per la sottoscrizione. Vedere [Connettore HTTP](connectors-native-http.md#authentication) per informazioni dettagliate |
 | Unsubscribe Body |body |Request body HTTP per annullare la sottoscrizione |
 | Unsubscribe Headers |headers |Intestazioni della richiesta HTTP per annullare la sottoscrizione |
-| Unsubscribe Authentication |authentication |Toouse di autenticazione HTTP per l'annullamento della sottoscrizione. Vedere [Connettore HTTP](connectors-native-http.md#authentication) per informazioni dettagliate |
+| Unsubscribe Authentication |authentication |Autenticazione HTTP da usare per annullare la sottoscrizione. Vedere [Connettore HTTP](connectors-native-http.md#authentication) per informazioni dettagliate |
 
 **Dettagli dell'output**
 
@@ -117,27 +117,27 @@ Richiesta Webhook
 
 | Azione | Descrizione |
 | --- | --- |
-| HTTP Webhook |Effettuare la sottoscrizione di un servizio di tooa URL callback che può chiamare hello URL tooresume un passaggio del flusso di lavoro in base alle esigenze. |
+| HTTP Webhook |Sottoscrivere un URL callback a un servizio in grado di chiamare l'URL per riprendere un passaggio del flusso di lavoro in base alle esigenze. |
 
 ### <a name="action-details"></a>Informazioni dettagliate sulle azioni
 
 #### <a name="http-webhook"></a>HTTP Webhook
 
-Effettuare la sottoscrizione di un servizio di tooa URL callback che può chiamare hello URL tooresume un passaggio del flusso di lavoro in base alle esigenze.
+Sottoscrivere un URL callback a un servizio in grado di chiamare l'URL per riprendere un passaggio del flusso di lavoro in base alle esigenze.
 L'asterisco (*) indica che il campo è obbligatorio.
 
 | Nome visualizzato | Nome proprietà | Descrizione |
 | --- | --- | --- |
-| Subscribe Method* |statico |Metodo HTTP toouse per la richiesta di sottoscrizione |
-| Subscribe URI* |Uri |Toouse URI HTTP per la richiesta di sottoscrizione |
-| Unsubscribe Method* |statico |Toouse metodo HTTP per la richiesta di annullamento della sottoscrizione |
-| Unsubscribe URI* |Uri |Toouse URI HTTP per la richiesta di annullamento della sottoscrizione |
+| Subscribe Method* |statico |Metodo HTTP da usare per la richiesta di sottoscrizione |
+| Subscribe URI* |Uri |URI HTTP da usare per la richiesta di sottoscrizione |
+| Unsubscribe Method* |statico |Metodo HTTP da usare per annullare la richiesta di sottoscrizione |
+| Unsubscribe URI* |Uri |URI HTTP da usare per annullare la richiesta di sottoscrizione |
 | Subscribe Body |body |Request body HTTP per la sottoscrizione |
 | Subscribe Headers |headers |Intestazioni della richiesta HTTP per la sottoscrizione |
-| Subscribe Authentication |authentication |Toouse di autenticazione HTTP per la sottoscrizione. Vedere [Connettore HTTP](connectors-native-http.md#authentication) per informazioni dettagliate |
+| Subscribe Authentication |authentication |Autenticazione HTTP da usare per la sottoscrizione. Vedere [Connettore HTTP](connectors-native-http.md#authentication) per informazioni dettagliate |
 | Unsubscribe Body |body |Request body HTTP per annullare la sottoscrizione |
 | Unsubscribe Headers |headers |Intestazioni della richiesta HTTP per annullare la sottoscrizione |
-| Unsubscribe Authentication |authentication |Toouse di autenticazione HTTP per l'annullamento della sottoscrizione. Vedere [Connettore HTTP](connectors-native-http.md#authentication) per informazioni dettagliate |
+| Unsubscribe Authentication |authentication |Autenticazione HTTP da usare per annullare la sottoscrizione. Vedere [Connettore HTTP](connectors-native-http.md#authentication) per informazioni dettagliate |
 
 **Dettagli dell'output**
 

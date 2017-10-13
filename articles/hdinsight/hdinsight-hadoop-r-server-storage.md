@@ -1,6 +1,6 @@
 ---
-title: soluzioni di archiviazione aaaAzure per Server di R in HDInsight - Azure | Documenti Microsoft
-description: Informazioni su hello archiviazione diverse opzioni disponibili toousers con R Server in HDInsight
+title: Soluzioni di Archiviazione di Azure per R Server in HDInsight - Azure | Documentazione Microsoft
+description: Informazioni sulle diverse opzioni di archiviazione disponibili per gli utenti con R Server in HDInsight
 services: HDInsight
 documentationcenter: 
 author: bradsev
@@ -15,52 +15,52 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 06/19/2017
 ms.author: bradsev
-ms.openlocfilehash: ff5e80fee14d5e74cbc22e873e6bc1439a3b6037
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: aef9c15636ccaecce07d4fa218a40ed26ebad9df
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-storage-solutions-for-r-server-on-hdinsight"></a>Soluzioni di Archiviazione di Azure per R Server su HDInsight
 
-Microsoft R Server in HDInsight presenta una serie di dati toopersist soluzioni di archiviazione, codice o gli oggetti che contengono risultati dall'analisi. Tra cui hello le opzioni seguenti:
+Microsoft R Server in HDInsight offre un'ampia gamma di soluzioni di archiviazione per rendere persistenti i dati, i codici o gli oggetti che contengono risultati di analisi. Di seguito sono indicate alcune opzioni disponibili:
 
 - [BLOB di Azure](https://azure.microsoft.com/services/storage/blobs/)
 - [Archiviazione di Azure Data Lake](https://azure.microsoft.com/services/data-lake-store/)
 - [Archiviazione file di Azure](https://azure.microsoft.com/services/storage/files/)
 
-È anche possibile hello dell'accesso a più account di archiviazione Azure o i contenitori con il cluster HDI. Archiviazione di File di Azure è un'opzione di archiviazione di dati ideale per l'utilizzo nel nodo edge hello che consente di toomount una condivisione di file di archiviazione di Azure, ad esempio, hello Linux file System. Tuttavia, le condivisioni File di Azure possono essere montate e usate in qualsiasi sistema dotato di un sistema operativo supportato, ad esempio Windows o Linux. 
+È possibile anche accedere a più account di archiviazione o contenitori di Azure con il cluster HDI. Archiviazione di File di Azure è un'opzione di archiviazione di dati ideale per l'uso nel nodo perimetrale che consente di montare ad esempio una condivisione di file di Archiviazione di Azure sul file system di Linux. Tuttavia, le condivisioni File di Azure possono essere montate e usate in qualsiasi sistema dotato di un sistema operativo supportato, ad esempio Windows o Linux. 
 
-Quando si crea un cluster Hadoop in HDInsight, si specifica un account di **Archiviazione di Azure** o un **archivio Data Lake**. Un contenitore di archiviazione specifico da tale account contiene hello file system per i cluster hello creato (ad esempio, hello Hadoop Distributed File System). Per altre informazioni e istruzioni, vedere:
+Quando si crea un cluster Hadoop in HDInsight, si specifica un account di **Archiviazione di Azure** o un **archivio Data Lake**. Un contenitore di archiviazione specifico dell'account include il file system del cluster creato, ad esempio Hadoop Distributed File System. Per altre informazioni e istruzioni, vedere:
 
 - [Usare l'Archiviazione di Azure con HDInsight](hdinsight-hadoop-use-blob-storage.md)
 - [Usare Data Lake Store con cluster Azure HDInsight](hdinsight-hadoop-use-data-lake-store.md). 
 
-Per ulteriori informazioni sulle soluzioni di archiviazione di Azure hello, vedere [tooMicrosoft introduzione di archiviazione di Azure](../storage/common/storage-introduction.md). 
+Per altre informazioni sulle soluzioni di Archiviazione di Azure, vedere [Introduzione ad Archiviazione di Microsoft Azure](../storage/common/storage-introduction.md). 
 
-Per istruzioni sulla selezione di hello più appropriato archiviazione opzione toouse per lo scenario, vedere [determinazione quando toouse BLOB di Azure, i file di Azure o i dischi dati di Azure](../storage/common/storage-decide-blobs-files-disks.md) 
+Per visualizzare del materiale sussidiario sulla selezione dell'opzione di archiviazione più appropriata per uno scenario specifico, vedere [Quando usare BLOB di Azure, File di Azure o Dischi dati di Azure](../storage/common/storage-decide-blobs-files-disks.md) 
 
 
 ## <a name="use-azure-blob-storage-accounts-with-r-server"></a>Usare gli account di archiviazione BLOB di Azure con R Server
 
-Se necessario, è possibile accedere a più account di archiviazione o contenitori di Azure con il cluster HDI. toodo in tal caso, è necessario l'account di archiviazione aggiuntivi toospecify hello in hello dell'interfaccia utente quando si crea cluster hello e quindi seguire questi passaggi toouse con R Server.
+Se necessario, è possibile accedere a più account di archiviazione o contenitori di Azure con il cluster HDI. A tale scopo è necessario specificare gli account di archiviazione aggiuntivi nell'interfaccia utente al momento della creazione del cluster e quindi seguire questa procedura per usarli in R Server.
 
 > [!WARNING]
-> Per motivi di prestazioni, hello cluster HDInsight viene creato in hello stesso data center dell'account di archiviazione primaria hello specificato. Non è supportato l'utilizzo di un account di archiviazione in un percorso diverso da quello del cluster HDInsight hello.
+> Per motivi di prestazioni, il cluster HDInsight viene creato nello stesso data center dell'account di archiviazione primario specificato. L'uso di un account di archiviazione in una località diversa rispetto al cluster HDInsight non è supportato.
 
 1. Creare un cluster HDInsight con un nome di account di archiviazione **storage1** e un contenitore predefinito denominato **container1**.
 2. Si specifica anche un account di archiviazione aggiuntivo denominato **storage2**.  
-3. Copiare la directory /share hello mycsv.csv file toohello ed eseguire analisi su tale file.  
+3. Copiare il file mycsv.csv nella directory /share ed eseguire analisi su tale file.  
 
         hadoop fs –mkdir /share
         hadoop fs –copyFromLocal myscsv.scv /share  
 
-4. Nel codice R, impostare il nodo di nome hello troppo**impostazione predefinita,** e impostare il tooprocess file e directory.  
+4. Nel codice R il nodo del nome è stato impostato su **default** e sono stati specificati la directory e il file da elaborare.  
 
         myNameNode <- "default"
         myPort <- 0
 
-        #Location of hello data:  
+        #Location of the data:  
         bigDataDirRoot <- "/share"  
 
         #Define Spark compute context:
@@ -69,23 +69,23 @@ Se necessario, è possibile accedere a più account di archiviazione o contenito
         #Set compute context:
         rxSetComputeContext(mySparkCluster)
 
-        #Define hello Hadoop Distributed File System (HDFS) file system:
+        #Define the Hadoop Distributed File System (HDFS) file system:
         hdfsFS <- RxHdfsFileSystem(hostName=myNameNode, port=myPort)
 
-        #Specify hello input file tooanalyze in HDFS:
+        #Specify the input file to analyze in HDFS:
         inputFile <-file.path(bigDataDirRoot,"mycsv.csv")
 
-Tutti hello account di archiviazione punto toohello riferimenti a file e directory wasb://container1@storage1.blob.core.windows.net. Si tratta di hello **account di archiviazione predefinito** che è associato il cluster di HDInsight hello.
+Tutti i riferimenti a file e directory puntano all'account di archiviazione wasb://container1@storage1.blob.core.windows.net. Si tratta dell'**account di archiviazione predefinito** associato al cluster HDInsight.
 
-A questo punto, si supponga che si desidera tooprocess un file denominato mySpecial.csv che si trova in /private hello directory di **container2** in **storage2**.
+Si supponga ora di voler elaborare un file denominato mySpecial.csv che si trova nella directory /private di **container2** in **storage2**.
 
-Nel codice R, scegliere hello nome nodo riferimento toohello **storage2** account di archiviazione.
+Nel codice R puntare il nome del riferimento al nodo sull'account di archiviazione **storage2** .
 
 
     myNameNode <- "wasb://container2@storage2.blob.core.windows.net"
     myPort <- 0
 
-    #Location of hello data:
+    #Location of the data:
     bigDataDirRoot <- "/private"
 
     #Define Spark compute context:
@@ -97,12 +97,12 @@ Nel codice R, scegliere hello nome nodo riferimento toohello **storage2** accoun
     #Define HDFS file system:
     hdfsFS <- RxHdfsFileSystem(hostName=myNameNode, port=myPort)
 
-    #Specify hello input file tooanalyze in HDFS:
+    #Specify the input file to analyze in HDFS:
     inputFile <-file.path(bigDataDirRoot,"mySpecial.csv")
 
-Tutti hello file e directory riferimenti ora toohello punto dell'account di archiviazione wasb://container2@storage2.blob.core.windows.net. Si tratta di hello **nome nodo** che sono stati specificati.
+Tutti i riferimenti a file e directory ora puntano all'account di archiviazione wasb://container2@storage2.blob.core.windows.net. Questo è il **nodo del nome** specificato.
 
-Hai tooconfigure hello /user RevoShare/<SSH username> directory **storage2** come indicato di seguito:
+È necessario configurare la directory /user/RevoShare/<SSH username> in **storage2** come indicato di seguito:
 
 
     hadoop fs -mkdir wasb://container2@storage2.blob.core.windows.net/user
@@ -113,33 +113,33 @@ Hai tooconfigure hello /user RevoShare/<SSH username> directory **storage2** com
 
 ## <a name="use-an-azure-data-lake-store-with-r-server"></a>Usare un Archivio Azure Data Lake con R Server
 
-toouse Data Lake vengono archiviati con l'account di HDInsight, è necessario toogive l'archivio di Azure Data Lake tooeach di accesso del cluster che si desidera toouse. Per istruzioni sulla modalità toouse hello toocreate portale Azure un HDInsight cluster con un account archivio Azure Data Lake come spazio di archiviazione predefinito hello o un archivio aggiuntivo, vedere [creare un cluster HDInsight con archivio Data Lake tramite il portale di Azure](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md).
+Per usare archivi Data Lake con l'account HDInsight, è necessario concedere al cluster l'accesso a ogni Archivio Azure Data Lake che si vuole usare. Per istruzioni su come usare il portale di Azure per creare un cluster HDInsight con Azure Data Lake Store come risorsa di archiviazione predefinita o archivio aggiuntivo, vedere [Create an HDInsight cluster with Data Lake Store using Azure portal](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md) (Creare un cluster HDInsight con Data Lake Store tramite il portale di Azure).
 
-È quindi utilizzare hello archivio nello script R Analogamente a come descritto nella procedura precedente hello, si ha un account di archiviazione secondaria di Azure.
+Usare quindi l'archivio nello script R come si usa un account di archiviazione Azure secondario, descritto nella procedura precedente.
 
-### <a name="add-cluster-access-tooyour-azure-data-lake-stores"></a>Aggiungere tooyour accesso cluster che vengono archiviati in Azure Data Lake
+### <a name="add-cluster-access-to-your-azure-data-lake-stores"></a>Aggiungere l'accesso del cluster agli archivi Azure Data Lake
 Per accedere a un Archivio Azure Data Lake, usare un'entità servizio di Azure Active Directory (AAD) associata al cluster HDInsight.
 
-tooadd un'entità servizio di Azure Active Directory:
+Aggiungere un'entità servizio Azure AD:
 
-1. Quando si crea il cluster HDInsight, selezionare **identità AAD Cluster** da hello **origine dati** scheda.
+1. Quando si crea il cluster HDInsight, selezionare **Identità AAD del cluster** nella scheda **Origine dati**.
 
-2. In hello **identità AAD Cluster** nella finestra di dialogo **selezionare entità servizio Active Directory**selezionare **Crea nuovo**.
+2. Nella finestra di dialogo **Identità AAD del cluster** selezionare **Crea nuova** in **Selezionare l'entità servizio di Active Directory**.
 
-Dopo aver creare una password per assegnare un nome di hello dell'entità servizio, fare clic su **Gestisci accesso ADLS** hello tooassociate archivia dell'entità servizio con il Data Lake.
+Dopo aver assegnato un nome all'entità servizio, creare una password per tale entità e fare clic su **Gestisci l'accesso ad Archivio Azure Data Lake** per associare l'entità servizio agli archivi Data Lake.
 
-È inoltre possibile tooadd cluster accesso tooone o altre Data Lake archivi dopo la creazione del cluster. Aprire hello voce portale Azure per un archivio Data Lake e passare troppo**Esplora dati > accesso > Aggiungi**. 
+Dopo la creazione del cluster è anche possibile aggiungere l'accesso tramite cluster a uno o più archivi Data Lake. Aprire la voce portale di Azure per un archivio Data Lake e passare a **Esplora dati > Accesso > Aggiungi**. 
 
-### <a name="how-tooaccess-hello-data-lake-store-from-r-server"></a>Come tooaccess hello archivio Data Lake da R Server
+### <a name="how-to-access-the-data-lake-store-from-r-server"></a>Come accedere all'archivio Data Lake da R Server
 
-Una volta che è stato concesso l'archivio Data Lake tooa di accesso, è possibile utilizzare l'archivio di hello in R Server su HDInsight hello si trattasse di un account di archiviazione secondaria di Azure. Hello solo differenza è il prefisso hello **wasb: / /** cambia troppo**adl: / /** come indicato di seguito:
+Una volta che è stato concesso l'accesso a un Archivio Data Lake, è possibile usarlo in R Server in HDInsight come con un account di archiviazione di Azure secondario. L'unica differenza è che il prefisso **wasb://** cambia in **adl://** come indicato di seguito:
 
 
-    # Point toohello ADL store (e.g. ADLtest)
+    # Point to the ADL store (e.g. ADLtest)
     myNameNode <- "adl://rkadl1.azuredatalakestore.net"
     myPort <- 0
 
-    # Location of hello data (assumes a /share directory on hello ADL account)
+    # Location of the data (assumes a /share directory on the ADL account)
     bigDataDirRoot <- "/share"  
 
     # Define Spark compute context
@@ -151,15 +151,15 @@ Una volta che è stato concesso l'archivio Data Lake tooa di accesso, è possibi
     # Define HDFS file system
     hdfsFS <- RxHdfsFileSystem(hostName=myNameNode, port=myPort)
 
-    # Specify hello input file in HDFS tooanalyze
+    # Specify the input file in HDFS to analyze
     inputFile <-file.path(bigDataDirRoot,"AirlineDemoSmall.csv")
 
-    # Create factors for days of hello week
+    # Create factors for days of the week
     colInfo <- list(DayOfWeek = list(type = "factor",
                levels = c("Monday", "Tuesday", "Wednesday", "Thursday",
                           "Friday", "Saturday", "Sunday")))
 
-    # Define hello data source
+    # Define the data source
     airDS <- RxTextData(file = inputFile, missingValueString = "M",
                     colInfo  = colInfo, fileSystem = hdfsFS)
 
@@ -167,7 +167,7 @@ Una volta che è stato concesso l'archivio Data Lake tooa di accesso, è possibi
     model <- rxLinMod(ArrDelay~CRSDepTime+DayOfWeek, data = airDS)
 
 
-Hello comandi riportati di seguito vengono utilizzati tooconfigure hello account archivio Data Lake con directory RevoShare hello e aggiungere file CSV di esempio hello hello precedente esempio:
+I comandi seguenti sono usati per configurare l'account di archiviazione di Data Lake con la directory RevoShare e aggiungere il file CSV di esempio dall'esempio precedente:
 
 
     hadoop fs -mkdir adl://rkadl1.azuredatalakestore.net/user
@@ -183,20 +183,20 @@ Hello comandi riportati di seguito vengono utilizzati tooconfigure hello account
 
 ## <a name="use-azure-file-storage-with-r-server"></a>Usare Archiviazione file di Azure con R Server
 
-È inoltre disponibile un'opzione di archiviazione di dati ideale per l'utilizzo nel nodo edge hello chiamato [file di Azure] ((https://azure.microsoft.com/services/storage/files/). Consente di toomount un toohello di condivisione file di archiviazione di Azure il sistema di file Linux. Questa opzione può essere utile per l'archiviazione dei file di dati, gli script R e gli oggetti risultato che potrebbero essere necessario in un secondo momento, soprattutto quando si rende il senso toouse hello del file system native sul nodo del bordo hello anziché HDFS. 
+È disponibile anche una pratica opzione di archiviazione dei dati da usare nel nodo perimetrale denominata [File di Azure]((https://azure.microsoft.com/services/storage/files/). Consente di montare una condivisione file di Archiviazione di Azure nel file system Linux. Questa opzione può essere utile per l'archiviazione di file di dati, script R e oggetti risultato che potrebbero essere necessari in seguito, soprattutto quando sarà opportuno usare il file system nativo nel nodo perimetrale invece di HDFS. 
 
-Dei principali vantaggi dei file di Azure è il file hello condivisioni possono essere montate e utilizzate da qualsiasi sistema che dispone di un sistema operativo supportato, ad esempio Windows o Linux. Ad esempio, può essere usato da un altro cluster HDInsight disponibile all'utente o a un membro del team, da una macchina virtuale di Azure o anche da un sistema locale. Per altre informazioni, vedere:
+Un vantaggio importante di File di Azure riguarda la possibilità di montare e usare le condivisioni file in qualsiasi sistema dotato di un sistema operativo supportato, ad esempio Windows o Linux. Ad esempio, può essere usato da un altro cluster HDInsight disponibile all'utente o a un membro del team, da una macchina virtuale di Azure o anche da un sistema locale. Per altre informazioni, vedere:
 
-- [Come toouse archiviazione di File di Azure con Linux](../storage/files/storage-how-to-use-files-linux.md)
-- [Come toouse archiviazione di File di Azure in Windows](../storage/files/storage-dotnet-how-to-use-files.md)
+- [Come usare Archiviazione file di Azure con Linux](../storage/files/storage-how-to-use-files-linux.md)
+- [Come usare Archiviazione file di Azure su Windows](../storage/files/storage-dotnet-how-to-use-files.md)
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Ora che si conoscono le opzioni di archiviazione di Azure hello, seguente hello utilizzare collegamenti toodiscover modalità di acquisizione di attività di analisi scientifica dei dati eseguita con il Server di R in HDInsight.
+Ora che si conoscono le opzioni di archiviazione per Azure, usare i collegamenti seguenti per scoprire altre modalità di esecuzione delle attività di data science con R Server in HDInsight.
 
 * [Panoramica: R Server su HDInsight (anteprima)](hdinsight-hadoop-r-server-overview.md)
 * [Articolo introduttivo relativo a Server R su Hadoop.](hdinsight-hadoop-r-server-get-started.md)
-* [Aggiungere RStudio Server tooHDInsight (se non è aggiunto durante la creazione del cluster)](hdinsight-hadoop-r-server-install-r-studio.md)
+* [Aggiungere RStudio Server a HDInsight (se non è stato aggiunto durante la creazione del cluster)](hdinsight-hadoop-r-server-install-r-studio.md)
 * [Opzioni del contesto di calcolo per R Server su HDInsight (anteprima)](hdinsight-hadoop-r-server-compute-contexts.md)
 

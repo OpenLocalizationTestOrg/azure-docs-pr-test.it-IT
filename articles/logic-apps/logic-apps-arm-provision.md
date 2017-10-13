@@ -1,6 +1,6 @@
 ---
-title: aaaCreate un'app di logica utilizzando un modello in Azure | Documenti Microsoft
-description: Utilizzare un toodeploy modello di gestione risorse di Azure un'app per la logica per la definizione di flussi di lavoro.
+title: Creare un'app per la logica usando un modello di Azure | Microsoft Docs
+description: Usare un modello di Azure Resource Manager per distribuire un'app per la logica per la definizione dei flussi di lavoro.
 services: logic-apps
 documentationcenter: 
 author: MandiOhlinger
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/27/2016
 ms.author: LADocs; mandia
-ms.openlocfilehash: efbacb534fc7f11e9b593aae4383480ce3a1752f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 161adeacd6da2b15225c8a4ddae171e19e539967
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-a-logic-app-using-a-template"></a>Creare un'app per la logica usando un modello
-I modelli offrono toouse un modo rapido connettori diversi all'interno di un'app di logica. Logica App include modelli di gestione risorse di Azure per si toocreate un'app di logica che può essere utilizzati toodefine flussi di lavoro aziendali. È possibile definire le risorse vengono distribuite e come parametri toodefine quando si distribuisce l'app logica. È possibile utilizzare questo modello per i propri scenari di business o personalizzarlo toomeet esigenze.
+I modelli rappresentano un modo rapido per usare diversi connettori nell'app per la logica. Le app per la logica comprendono i modelli di Azure Resource Manager utili per creare un'app per la logica che può essere utilizzata per definire i flussi di lavoro aziendali. Questo consente di definire le risorse da distribuire e le modalità di definizione dei parametri specificati durante l'esecuzione della distribuzione. È possibile usare questo modello per il proprio scenario aziendale o personalizzarlo in base alle esigenze.
 
-Per ulteriori informazioni sulle proprietà dell'app hello logica, vedere [API di gestione del flusso di lavoro logica App](https://msdn.microsoft.com/library/azure/mt643788.aspx). 
+Per informazioni dettagliate sulle proprietà delle app per la logica, vedere [API di gestione del flusso di lavoro delle app per la logica](https://msdn.microsoft.com/library/azure/mt643788.aspx). 
 
-Per esempi di definizione hello, vedere [definizioni autore logica App](logic-apps-author-definitions.md). 
+Per esempi della definizione stessa, vedere [Creare definizioni dell'app per la logica](logic-apps-author-definitions.md). 
 
 Per altre informazioni sulla creazione dei modelli, vedere [Creazione di modelli di Gestione risorse di Azure](../azure-resource-manager/resource-group-authoring-templates.md).
 
-Per il modello di hello completo, vedere [modello logica App](https://github.com/Azure/azure-quickstart-templates/blob/master/101-logic-app-create/azuredeploy.json).
+Per il modello completo, vedere [Modello di app per la logica](https://github.com/Azure/azure-quickstart-templates/blob/master/101-logic-app-create/azuredeploy.json).
 
 ## <a name="what-you-deploy"></a>Cosa viene distribuito
 Con questo modello si distribuisce un'app per la logica.
 
-distribuzione di hello toorun automaticamente, selezionare hello seguente pulsante:  
+Per eseguire automaticamente la distribuzione, fare clic sul pulsante seguente:  
 
-[![Distribuire tooAzure](media/logic-apps-arm-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-logic-app-create%2Fazuredeploy.json)
+[![Distribuzione in Azure](media/logic-apps-arm-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-logic-app-create%2Fazuredeploy.json)
 
-## <a name="parameters"></a>parameters
+## <a name="parameters"></a>Parametri
 [!INCLUDE [app-service-logic-deploy-parameters](../../includes/app-service-logic-deploy-parameters.md)]
 
 ### <a name="testuri"></a>testUri
@@ -47,13 +47,13 @@ distribuzione di hello toorun automaticamente, selezionare hello seguente pulsan
         "defaultValue": "http://azure.microsoft.com/en-us/status/feed/"
       }
 
-## <a name="resources-toodeploy"></a>Risorse toodeploy
+## <a name="resources-to-deploy"></a>Risorse da distribuire
 ### <a name="logic-app"></a>App per la logica
-Crea app logica hello.
+Crea l'app per la logica.
 
-modelli di Hello utilizza un valore di parametro per nome dell'applicazione hello logica. Imposta percorso hello di hello logica app toohello stesso percorso del gruppo di risorse hello. 
+Il modello usa un valore di parametro per il nome dell'app per la logica. Imposta la località dell'app per la logica sulla stessa località del gruppo di risorse. 
 
-Questa definizione particolare viene eseguito una volta all'ora e ping hello posizione specificata in hello **testUri** parametro. 
+Questa particolare definizione viene eseguita una volta ogni ora e consente di eseguire il ping del percorso specificato nel parametro **testUri** . 
 
     {
       "type": "Microsoft.Logic/workflows",
@@ -99,7 +99,7 @@ Questa definizione particolare viene eseguito una volta all'ora e ping hello pos
     }
 
 
-## <a name="commands-toorun-deployment"></a>Comandi toorun distribuzione
+## <a name="commands-to-run-deployment"></a>Comandi per eseguire la distribuzione
 [!INCLUDE [app-service-deploy-commands](../../includes/app-service-deploy-commands.md)]
 
 ### <a name="powershell"></a>PowerShell

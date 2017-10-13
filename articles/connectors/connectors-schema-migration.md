@@ -1,6 +1,6 @@
 ---
-title: aaaHow toomigrate logica App tooschema versione 2015-08-01-preview | Documenti Microsoft
-description: "È possibile migrare facilmente la versione di schema più recente logica App toohello. seguendo questa procedura."
+title: Come eseguire la migrazione di app per la logica alla versione dello schema 2015-08-01-preview | Documentazione Microsoft
+description: "È possibile eseguire facilmente la migrazione di app per la logica alla versione più recente dello schema, seguendo questa procedura."
 services: logic-apps
 documentationcenter: 
 author: MSFTMAN
@@ -15,33 +15,33 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/23/2016
 ms.author: deonhe
-ms.openlocfilehash: c7b42aaec547eddd28b0c649a3c0625047f9f805
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a5a73a9f124e5339b61dbc49021444a208a471f0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toomigrate-logic-apps-tooschema-version-2015-08-01-preview"></a>Come toomigrate logica App tooschema versione 2015-08-01-preview
-toomove logica App toohello nuovo schema esistente, hello seguenti:  
+# <a name="how-to-migrate-logic-apps-to-schema-version-2015-08-01-preview"></a>Come eseguire la migrazione di app per la logica alla versione dello schema 2015-08-01-preview
+Per spostare le app per la logica esistenti nel nuovo schema, seguire questa procedura:  
 
-1. Apri l'app logica in hello portale di Azure  
+1. Aprire l'app per la logica nel portale di Azure.  
 2. Fare clic su Aggiorna schema:
    
    ![Icona API][step1]   
-   pagina Aggiorna Schema Hello Visualizza e fornisce un collegamento tooa documento che forniscono informazioni dettagliate sui miglioramenti di hello nel nuovo schema hello: ![icona API][step2]
+   Viene visualizzata la pagina Aggiorna schema, con un collegamento a un documento che fornisce dettagli sui miglioramenti disponibili nel nuovo schema: ![Icona API][step2]
 
 > [!NOTE]
-> Quando si seleziona **Aggiorna Schema**, è di eseguire automaticamente i passaggi della migrazione hello e fornire output di hello codice per l'utente. È possibile utilizzare questo tooupdate la propria definizione, tuttavia, attenersi alle procedure di codifica ottimale, ad esempio quelli descritti nella hello **consigliate** sezione riportata di seguito.
+> Quando si seleziona **Aggiorna schema**, vengono eseguiti automaticamente i passaggi della migrazione e viene generato l'output del codice. È possibile usare questi elementi per aggiornare la definizione. Assicurarsi, tuttavia, di seguire le procedure di codifica consigliate, ad esempio quelle indicate nella **sezione seguente**.
 > 
 > 
 
-## <a name="best-practices-when-migrating-your-logic-apps-toohello-latest-schema-version"></a>Procedure consigliate per la migrazione la versione di schema più recente logica App toohello:
-* Script di migrazione hello copia tooa nuova logica di App - non sovrascrivere hello precedente uno finché non vengono completati l'app migrato hello confermata e test funziona come previsto.
+## <a name="best-practices-when-migrating-your-logic-apps-to-the-latest-schema-version"></a>Procedure consigliate durante la migrazione di app per la logica alla versione più recente dello schema
+* Copiare lo script di cui è stata eseguita la migrazione in una nuova app per la logica. Non sovrascrivere l'app precedente fino a quando non è stato completato il test ed è stato confermato il corretto funzionamento dell'app di cui è stata eseguita la migrazione.
 * Testare l'app per la logica **prima** di passare alla fase di produzione.
-* Al termine della migrazione, avviare l'aggiornamento del hello di logica App toouse [API gestite](apis-list.md) laddove possibile. Ad esempio, si può iniziare a usare Dropbox 2 anziché Dropbox 1.
+* Al termine della migrazione, avviare l'aggiornamento delle app per la logica per usare le [API gestite](apis-list.md), quando è possibile. Ad esempio, si può iniziare a usare Dropbox 2 anziché Dropbox 1.
 
 ## <a name="whats-next"></a>Passaggi successivi
-* [Informazioni su come toomanually migrare le app di logica](../logic-apps/logic-apps-schema-2015-08-01.md)
+* [Informazioni su come eseguire manualmente la migrazione delle app per la logica](../logic-apps/logic-apps-schema-2015-08-01.md)
 
 <!--Icon references-->
 [step1]: ./media/connectors-schema-migration/migrateschema1.png

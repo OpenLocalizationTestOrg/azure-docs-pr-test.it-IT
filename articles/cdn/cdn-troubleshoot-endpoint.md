@@ -1,5 +1,5 @@
 ---
-title: gli endpoint rete CDN di Azure aaaTroubleshooting restituzione di stato 404 | Documenti Microsoft
+title: Risoluzione dei problemi degli endpoint di rete CDN di Azure che restituiscono stati di tipo 404 | Documentazione Microsoft
 description: Risolvere i problemi relativi ai codici di risposta 404 con endpoint della rete CDN.
 services: cdn
 documentationcenter: 
@@ -14,87 +14,87 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: 450bfbd641c869cfd88169a12c4b69819eaa7c26
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f59fbd18413fb44026d8c92b7f6940ed2f8a00a8
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="troubleshooting-cdn-endpoints-returning-404-statuses"></a>Risoluzione dei problemi degli endpoint della rete CDN che restituiscono stati 404
 Questo articolo consente di risolvere i problemi relativi agli [endpoint della rete CDN](cdn-create-new-endpoint.md) che restituiscono errori 404.
 
-Se è necessario ulteriore assistenza in qualsiasi punto in questo articolo, è possibile contattare hello Azure esperti in [hello MSDN di Azure e forum di Overflow dello Stack di hello](https://azure.microsoft.com/support/forums/). In alternativa, è anche possibile archiviare un evento imprevisto di supporto tecnico di Azure. Passare toohello [sito del supporto tecnico di Azure](https://azure.microsoft.com/support/options/) e fare clic su **supporto**.
+Se in qualsiasi punto dell'articolo sono necessarie altre informazioni, è possibile contattare gli esperti di Azure nei [forum MSDN e Stack Overflow dedicati ad Azure](https://azure.microsoft.com/support/forums/). In alternativa, è anche possibile archiviare un evento imprevisto di supporto tecnico di Azure. Passare al [sito di supporto per Azure](https://azure.microsoft.com/support/options/) e fare clic su **Ottenere supporto**.
 
 ## <a name="symptom"></a>Sintomo
-Creato un profilo di rete CDN e un endpoint, ma il contenuto non sembra toobe disponibile in rete CDN hello.  Utenti che tentano di tooaccess il contenuto tramite URL CDN hello ricevere i codici di stato HTTP 404. 
+Si crea un profilo di rete CDN e un endpoint, ma sembra che il contenuto non sia disponibile nella rete CDN.  Gli utenti che provano ad accedere ai contenuti tramite l'URL della rete CDN ricevono codici di stato HTTP 404. 
 
 ## <a name="cause"></a>Causa
 Le cause possono essere diverse, ad esempio:
 
-* Hello origine file non è visibile toohello rete CDN
-* endpoint Hello è configurato in modo errato, causando hello CDN toolook nella posizione sbagliata hello
-* host Hello sta rifiutando intestazione host hello da hello rete CDN
-* endpoint di Hello non sono state toopropagate tempo in tutto hello rete CDN
+* L'origine del file non è visibile per la rete CDN
+* L'endpoint non è configurato correttamente e causa la ricerca in una posizione errata da parte della rete CDN
+* L'host rifiuta l'intestazione host dalla rete CDN
+* L'endpoint non ha avuto tempo per propagarsi in tutta la rete CDN
 
 ## <a name="troubleshooting-steps"></a>Passaggi per la risoluzione dei problemi
 > [!IMPORTANT]
-> Dopo aver creato un endpoint rete CDN, non immediatamente sarà disponibile per l'utilizzo, come il tempo per hello registrazione toopropagate tramite hello CDN.  La propagazione dei profili della <b>rete CDN di Azure fornita da Akamai</b> di solito dura meno di un minuto.  Per i profili della <b>rete CDN di Azure fornita da Verizon</b>, la propagazione in genere viene completata entro 90 minuti, ma in alcuni casi può richiedere più tempo.  Se si completano i passaggi di hello in questo documento e si sta ancora ottenere 404 risposte, prendere in considerazione in attesa di poche ore toocheck nuovamente prima di aprire un ticket di supporto.
+> Dopo aver creato un endpoint della rete CDN, questo non sarà disponibile immediatamente per l'uso, perché la propagazione della registrazione nella rete CDN richiede tempo.  La propagazione dei profili della <b>rete CDN di Azure fornita da Akamai</b> di solito dura meno di un minuto.  Per i profili della <b>rete CDN di Azure fornita da Verizon</b>, la propagazione in genere viene completata entro 90 minuti, ma in alcuni casi può richiedere più tempo.  Se si completa la procedura in questo documento e si ricevono comunque risposte 404, è consigliabile attendere alcune ore e controllare nuovamente prima di aprire un ticket di supporto.
 > 
 > 
 
-### <a name="check-hello-origin-file"></a>Controllare il file di origine hello
-È necessario verificare innanzitutto hello file hello si vuole memorizzare nella cache è disponibile l'origine ed è accessibile pubblicamente.  Hello toodo modo più rapido che è un browser tooopen in una sessione In privato o Incognito e passare direttamente a file toohello.  Solo digitare o incollare hello URL nella casella Indirizzo hello e visualizzare se risultante nel file hello desiderato.  In questo esempio verrà toouse un file che contiene un account di archiviazione di Azure, accessibile `https://cdndocdemo.blob.core.windows.net/publicblob/lorem.txt`.  Come si può notare, passa correttamente test hello.
+### <a name="check-the-origin-file"></a>Controllare il file di origine
+Prima di tutto, è necessario verificare che il file che si vuole memorizzare nella cache sia disponibile nell'origine e accessibile pubblicamente.  Il modo più rapido per eseguire questa operazione consiste nell'aprire un browser in una sessione InPrivate o anonima e passare direttamente al file.  Digitare o incollare semplicemente l'URL nella casella dell'indirizzo e verificare se il file previsto è disponibile.  Per questo esempio si userà un file disponibile in un account di archiviazione di Azure, accessibile all'indirizzo `https://cdndocdemo.blob.core.windows.net/publicblob/lorem.txt`.  Come si può notare, il test viene superato.
 
 ![Completamento della procedura](./media/cdn-troubleshoot-endpoint/cdn-origin-file.png)
 
 > [!WARNING]
-> Mentre questo è più rapido hello e tooverify modo più semplice il file è disponibile pubblicamente, può fornire alcune configurazioni di rete nell'organizzazione si hello illusione che questo file è disponibile pubblicamente quando è, infatti, solo visibile toousers di (la rete anche se è ospitato in Azure).  Se si dispone di un browser esterno da cui è possibile verificare, ad esempio un dispositivo mobile che non è connesso in rete dell'organizzazione tooyour o una macchina virtuale in Azure, che potrebbe essere più appropriata.
+> Anche se questo è il modo più rapido e semplice per verificare che il file sia disponibile pubblicamente, alcune configurazioni di rete dell'organizzazione potrebbero creare l'illusione che il file sia disponibile pubblicamente mentre, in effetti, è visibile solo agli utenti della rete, anche se è ospitato in Azure.  Avere un browser esterno da cui è eseguire il test, ad esempio un dispositivo mobile non connesso alla rete dell'organizzazione oppure una macchina virtuale in Azure, sarebbe la scelta ottimale.
 > 
 > 
 
-### <a name="check-hello-origin-settings"></a>Controllare le impostazioni dell'origine hello
-È stata verificata file hello è disponibile pubblicamente su internet di hello, è necessario verificare le impostazioni di origine.  In hello [portale Azure](https://portal.azure.com), individuare il profilo CDN tooyour e fare clic sull'endpoint hello si sta cercando di risolvere.  Nella finestra hello **Endpoint** pannello, fare clic su origine hello.  
+### <a name="check-the-origin-settings"></a>Controllare le impostazioni dell'origine
+Dopo avere verificato che il file è disponibile pubblicamente su Internet, è necessario verificare le impostazioni dell'origine.  Nel [portale di Azure](https://portal.azure.com)passare al profilo della rete CDN e fare clic sull'endpoint di cui si stanno risolvendo i problemi.  Nel pannello **Endpoint** risultante fare clic sull'origine.  
 
 ![Pannello Endpoint con origine evidenziata](./media/cdn-troubleshoot-endpoint/cdn-endpoint.png)
 
-Hello **origine** pannello viene visualizzato. 
+Verrà visualizzato il pannello **Origine** . 
 
 ![Pannello Origine](./media/cdn-troubleshoot-endpoint/cdn-origin-settings.png)
 
 #### <a name="origin-type-and-hostname"></a>Tipo di origine e nome host
-Verificare hello **tipo di origine** sia corretto e verificare hello **nome host dell'origine**.  In questo esempio, `https://cdndocdemo.blob.core.windows.net/publicblob/lorem.txt`, porzione hostname di hello di hello URL `cdndocdemo.blob.core.windows.net`.  Come si può vedere nella schermata di hello, il valore è corretto.  Per l'archiviazione di Azure, App Web e le origini di servizio Cloud, hello **nome host dell'origine** campo è un elenco a discesa, è necessario tooworry su cui stato digitato correttamente.  Tuttavia, se si usa un'origine personalizzata, è *assolutamente fondamentale* che l'ortografia del nome host sia corretta.
+Verificare che il **tipo di origine** sia corretto e il **nome host dell'origine**.  Nell'esempio `https://cdndocdemo.blob.core.windows.net/publicblob/lorem.txt`, la parte nome host dell'URL è `cdndocdemo.blob.core.windows.net`.  Come si può vedere nello screenshot, è corretto.  Per le origini Archiviazione di Azure, App Web e Servizio Cloud, il campo **Nome host dell'origine** è un elenco a discesa, quindi non è necessario preoccuparsi di digitarlo correttamente.  Tuttavia, se si usa un'origine personalizzata, è *assolutamente fondamentale* che l'ortografia del nome host sia corretta.
 
 #### <a name="http-and-https-ports"></a>Porte HTTP e HTTPS
-è Hello altri toocheck cosa qui il **HTTP** e **porte HTTPS**.  Nella maggior parte dei casi, 80 e 443 sono corrette e non saranno necessarie modifiche.  Tuttavia, se il server di origine hello è in ascolto su una porta diversa, che sarà necessario toobe rappresentato qui.  Se non si è certi, osservare hello URL per il file di origine.  specifiche di HTTPS e HTTP Hello specificano porte 80 e 443 come impostazioni predefinite di hello. L'URL, `https://cdndocdemo.blob.core.windows.net/publicblob/lorem.txt`, una porta non è specificata, in modo hello 443 predefinita è e le impostazioni sono corrette.  
+Un altro elemento da controllare sono le porte **HTTP** e **HTTPS**.  Nella maggior parte dei casi, 80 e 443 sono corrette e non saranno necessarie modifiche.  Tuttavia, se il server di origine è in ascolto su una porta diversa, dovrà essere rappresentata qui.  Se non si è certi, esaminato solo l'URL del file di origine.  Le specifiche per HTTP e HTTPS indicano le porte 80 e 443 come impostazioni predefinite. Nell'URL, `https://cdndocdemo.blob.core.windows.net/publicblob/lorem.txt`, una porta non è specificata, quindi viene presupposto il valore predefinito 443 e le impostazioni sono corrette.  
 
-Tuttavia, ad esempio hello URL per il file di origine che verificato in precedenza è `http://www.contoso.com:8080/file.txt`.  Hello nota `:8080` alla fine di hello del segmento hostname hello.  Che indica la porta di hello browser toouse `8080` tooconnect toohello server web `www.contoso.com`, pertanto sarà necessario tooenter 8080 in hello **porta HTTP** campo.  È importante toonote che queste impostazioni porta influiscono solo sull'endpoint di hello quale porta utilizza le informazioni tooretrieve origine hello.
+Si supponga tuttavia che l'URL per il file di origine testato in precedenza sia `http://www.contoso.com:8080/file.txt`.  Si noti `:8080` alla fine del segmento del nome host.  Indica al browser di usare la porta `8080` per connettersi al server Web `www.contoso.com` e sarà quindi necessario immettere 8080 nel campo **Porta HTTP**.  È importante notare che queste impostazioni della porta hanno effetto solo sulla porta usata dall'endpoint per recuperare informazioni dall'origine.
 
 > [!NOTE]
-> **Rete CDN di Azure da Akamai** endpoint non consentano hello completo TCP intervallo di porte per le origini.  Per un elenco delle porte di origine non consentite, vedere l'articolo relativo ai [Azure CDN from Akamai Allowed Origin Ports](https://msdn.microsoft.com/library/mt757337.aspx)(Porte di origine consentite in Rete CDN di Azure da Akamai).  
+> **rete CDN di Azure fornita da Akamai** non consentono l'intera gamma di porte TCP per le origini.  Per un elenco delle porte di origine non consentite, vedere [Azure CDN from Akamai Allowed Origin Ports](https://msdn.microsoft.com/library/mt757337.aspx)(Porte di origine consentite in Rete CDN di Azure da Akamai).  
 > 
 > 
 
-### <a name="check-hello-endpoint-settings"></a>Controllare le impostazioni di endpoint hello
-In hello **Endpoint** pannello, fare clic su hello **configura** pulsante.
+### <a name="check-the-endpoint-settings"></a>Controllare le impostazioni dell'endpoint
+Nel pannello **Endpoint** fare clic sul pulsante **Configura**.
 
 ![Pannello Endpoint con il pulsante Configura evidenziato](./media/cdn-troubleshoot-endpoint/cdn-endpoint-configure-button.png)
 
-Hello dell'endpoint **configura** pannello viene visualizzato.
+Verrà visualizzato il pannello **Configura** dell'endpoint.
 
 ![Pannello Configura](./media/cdn-troubleshoot-endpoint/cdn-configure.png)
 
 #### <a name="protocols"></a>Protocolli
-Per **protocolli**, verificare che sia selezionato il protocollo di hello utilizzato dai client hello.  Hello stesso protocollo utilizzato dal client hello sarà utilizzato uno origine hello tooaccess, pertanto è importante toohave hello origine le porte configurate correttamente nella sezione precedente hello hello.  endpoint Hello in ascolto solo su hello predefinito porte HTTP e HTTPS (80 e 443), indipendentemente dalle porte di origine hello.
+In **Protocolli**verificare che sia selezionato il protocollo usato dai client.  Lo stesso protocollo usato dal client sarà quello usato per accedere all'origine, quindi è importante che le porte di origine siano configurate correttamente nella sezione precedente.  L'endpoint sarà in ascolto solo sulle porte HTTP e HTTPS (80 e 443) predefinite, indipendentemente dalle porte di origine.
 
-Torniamo tooour esempio ipotetico con `http://www.contoso.com:8080/file.txt`.  Come si ricorderà, per Contoso è stato specificato `8080` come porta HTTP, ma si supponga anche che sia stato specificato `44300` come porta HTTPS.  Se è stato creato un endpoint denominato `contoso`, il nome host dell'endpoint di rete CDN sarà `contoso.azureedge.net`.  Una richiesta per `http://contoso.azureedge.net/file.txt` è una richiesta HTTP, endpoint hello potrebbe usare HTTP sulla porta 8080 tooretrieve dall'origine hello.  Una richiesta protetta tramite HTTPS, `https://contoso.azureedge.net/file.txt`, causerebbe hello endpoint toouse HTTPS sulla porta 44300 quando durante il recupero della hello file dall'origine hello.
+Tornare all'esempio ipotetico con `http://www.contoso.com:8080/file.txt`.  Come si ricorderà, per Contoso è stato specificato `8080` come porta HTTP, ma si supponga anche che sia stato specificato `44300` come porta HTTPS.  Se è stato creato un endpoint denominato `contoso`, il nome host dell'endpoint di rete CDN sarà `contoso.azureedge.net`.  Una richiesta per `http://contoso.azureedge.net/file.txt` è una richiesta HTTP, quindi l'endpoint userà HTTP sulla porta 8080 per recuperarlo dall'origine.  Una richiesta sicura tramite HTTPS, `https://contoso.azureedge.net/file.txt`, farà sì che l'endpoint usi HTTPS sulla porta 44300 quando recupera il file dall'origine.
 
 #### <a name="origin-host-header"></a>Intestazione host di origine
-Hello **intestazione host di origine** è il valore di intestazione host hello inviato origine toohello con ogni richiesta.  Nella maggior parte dei casi, questo deve essere hello stesso come hello **nome host dell'origine** abbiamo verificato in precedenza.  Un valore non corretto in questo campo non è in genere provocheranno 404 stati, ma è probabile toocause altri Stati 4xx, a seconda di quale origine hello prevista.
+L'opzione **Intestazione host di origine** è il valore dell'intestazione host inviato all'origine con ogni richiesta.  Nella maggior parte dei casi deve essere identico al valore di **Nome host dell'origine** verificato in precedenza.  Un valore non corretto in questo campo non causa in genere stati 404, ma può causare altri stati 4xx, a seconda di quanto previsto dall'origine.
 
 #### <a name="origin-path"></a>Percorso dell'origine
-Infine è necessario verificare il **Percorso dell'origine**.  Per impostazione predefinita è vuoto.  È consigliabile utilizzare questo campo solo se si desidera toonarrow hello ambito delle risorse basati su origine hello desiderato toomake disponibile in rete CDN hello.  
+Infine è necessario verificare il **Percorso dell'origine**.  Per impostazione predefinita è vuoto.  Usare questo campo solo se si vuole limitare l'ambito delle risorse ospitate dall'origine da rendere disponibili nella rete CDN.  
 
-Ad esempio, l'endpoint, vorrei tutte le risorse in my toobe di account di archiviazione disponibile, pertanto lasciato **il percorso di origine** vuoto.  Ciò significa che una richiesta troppo`https://cdndocdemo.azureedge.net/publicblob/lorem.txt` risultati in una connessione da my endpoint troppo`cdndocdemo.core.windows.net` che richiede `/publicblob/lorem.txt`.  Analogamente, una richiesta per `https://cdndocdemo.azureedge.net/donotcache/status.png` comporta la richiesta di hello endpoint `/donotcache/status.png` dall'origine hello.
+Ad esempio, nell'endpoint di esempio si vuole che tutte le risorse nell'account di archiviazione siano disponibili, quindi **Percorso dell'origine** è stato lasciato vuoto.  Di conseguenza, una richiesta a `https://cdndocdemo.azureedge.net/publicblob/lorem.txt` determina una connessione dall'endpoint a `cdndocdemo.core.windows.net` che richiede `/publicblob/lorem.txt`.  Analogamente, una richiesta per `https://cdndocdemo.azureedge.net/donotcache/status.png` genera la richiesta di `/donotcache/status.png` da parte dell'endpoint all'origine.
 
-Ma cosa accade se si desidera toouse hello CDN per ogni percorso l'origine?  Ad esempio I voleva solo hello tooexpose `publicblob` percorso.  Se immette */publicblob* in my **il percorso di origine** campo, che causa hello endpoint tooinsert */publicblob* prima di ogni richiesta effettuata toohello origine.  Ciò significa che la richiesta di hello per `https://cdndocdemo.azureedge.net/publicblob/lorem.txt` effettivamente visualizzata parte richiesta hello dell'URL di hello, `/publicblob/lorem.txt`e aggiungere `/publicblob` toohello inizio. Di conseguenza, una richiesta per `/publicblob/publicblob/lorem.txt` dall'origine hello.  Se tale percorso non viene risolto tooan effettive del file, origine hello verrà restituito uno stato 404.  Hello corretto URL tooretrieve lorem.txt in questo esempio sarebbe effettivamente `https://cdndocdemo.azureedge.net/lorem.txt`.  Si noti che non includono hello */publicblob* percorso, in quanto parte richiesta hello di hello URL è `/lorem.txt` e consente di aggiungere endpoint hello `/publicblob`, con conseguente `/publicblob/lorem.txt` richiesta hello passati toohello origine .
+Cosa accade se si vuole usare la rete CDN per ogni percorso nell'origine?  Si supponga di voler esporre solo il percorso `publicblob` .  Se si immette */publicblob* nel campo **Percorso dell'origine**, l'endpoint inserirà */publicblob* prima di ogni richiesta all'origine.  Di conseguenza, la richiesta per `https://cdndocdemo.azureedge.net/publicblob/lorem.txt` userà di fatto la parte della richiesta dell'URL, `/publicblob/lorem.txt`, aggiungendo `/publicblob` all'inizio. Ciò comporta una richiesta per `/publicblob/publicblob/lorem.txt` dall'origine.  Se tale percorso non viene risolto in un file effettivo, l'origine restituirà uno stato 404.  L'URL corretto per recuperare lorem.txt in questo esempio sarà in effetti `https://cdndocdemo.azureedge.net/lorem.txt`.  Si noti che non è incluso il percorso */publicblob*, perché la parte della richiesta dell'URL è `/lorem.txt` e l'endpoint aggiunge `/publicblob`, con il conseguente passaggio della richiesta `/publicblob/lorem.txt` all'origine.
 

@@ -1,5 +1,5 @@
 ---
-title: aaaOverview di messaggistica code, argomenti e sottoscrizioni di Azure Service Bus | Documenti Microsoft
+title: Panoramica delle code di messaggi, argomenti e sottoscrizioni del bus di servizio di Azure | Documentazione Microsoft
 description: "Panoramica delle entità di messaggistica del bus di servizio."
 services: service-bus-messaging
 documentationcenter: na
@@ -14,27 +14,27 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/28/2017
 ms.author: sethm
-ms.openlocfilehash: 73135d2658e341c14dbb114ab938faed91578ff1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 00f9f38fbae028486270053dedb4df580a3f1a44
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="service-bus-queues-topics-and-subscriptions"></a>Code, argomenti e sottoscrizioni del bus di servizio
 
-Il bus di servizio di Microsoft Azure supporta un set di tecnologie middleware orientate ai messaggi e basate sul cloud, incluso l'accodamento dei messaggi affidabile e la messaggistica di pubblicazione e sottoscrizione permanente. Queste funzionalità di messaggistica "negoziate" possono essere considerate separato funzionalità che supportano la pubblicazione-sottoscrizione di messaggistica, temporale disaccoppiamento e scenari con l'infrastruttura di messaggistica di hello Bus di servizio di bilanciamento del carico. La comunicazione disaccoppiata presenta molti vantaggi, ad esempio client e server possono connettersi quando necessario ed eseguire le relative operazioni in modo asincrono.
+Il bus di servizio di Microsoft Azure supporta un set di tecnologie middleware orientate ai messaggi e basate sul cloud, incluso l'accodamento dei messaggi affidabile e la messaggistica di pubblicazione e sottoscrizione permanente. Queste funzionalità di messaggistica "negoziata" possono essere considerate come funzionalità di messaggistica asincrone o disaccoppiate che supportano scenari di pubblicazione e sottoscrizione, disaccoppiamento temporale e bilanciamento del carico tramite l'infrastruttura di messaggistica del bus di servizio. La comunicazione disaccoppiata presenta molti vantaggi, ad esempio client e server possono connettersi quando necessario ed eseguire le relative operazioni in modo asincrono.
 
-le entità di messaggistica Hello che costituiscono il nucleo di hello del hello funzionalità nel Bus di servizio di messaggistica sono code, argomenti e sottoscrizioni e regole/azioni.
+Le entità di messaggistica che costituiscono le funzionalità di messaggistica di base nel bus di servizio sono code, argomenti e sottoscrizioni e regole/azioni.
 
 ## <a name="queues"></a>Code
 
-Le code consentono *First In, First Out* tooone di recapito messaggi (FIFO) o più consumer concorrenti. Ovvero, i messaggi sono toobe previsto in genere ricevuti ed elaborati dai ricevitori hello in hello ordine in cui sono stati aggiunti toohello coda e ogni messaggio viene ricevuto ed elaborato da un solo consumer di messaggi. Un vantaggio chiave nell'utilizzo delle code è tooachieve "disaccoppiamento temporale" dei componenti dell'applicazione. Hello in altre parole, i producer (mittenti) e i consumer (ricevitori) non dispongono di toobe l'invio e ricezione di messaggi in hello stesso tempo, in quanto i messaggi vengono archiviati nella coda di hello. Inoltre, producer hello non ha toowait per una risposta dal consumer hello in ordine toocontinue tooprocess e inviare messaggi.
+Le code consentono un recapito dei messaggi di tipo *FIFO (First In, First Out)* a uno o più consumer concorrenti. In altri termini, i messaggi in genere vengono ricevuti ed elaborati dai ricevitori secondo l'ordine temporale in cui sono stati aggiunti alla coda e ogni messaggio viene ricevuto ed elaborato da un solo consumer. Il vantaggio principale derivante dall'uso delle code è quello di ottenere un "disaccoppiamento temporale" dei componenti applicativi, ovvero non è necessario che i producer e i consumer inviino e ricevano i messaggi contemporaneamente perché i messaggi restano archiviati nella coda. Il producer inoltre non deve attendere la risposta del consumer per continuare a elaborare e inviare messaggi.
 
-Un vantaggio correlato è "livellamento del carico," che consente di toosend producer e consumer e ricezione messaggi con ritmi diversi. In molte applicazioni, il carico del sistema hello varia nel tempo; Tuttavia, il tempo di elaborazione di hello necessario per ogni unità di lavoro è in genere costante. Interposizione messaggio producer e consumer una coda significa che hello utilizzano solo l'applicazione ha toobe toobe provisioning toohandle in grado di carico medio anziché il carico massimo. profondità Hello della coda di hello aumentano e i contratti in base alla variazione carico in ingresso hello. Direttamente, ciò consente di risparmiare denaro con quantità toohello considerare infrastruttura richiesto tooservice hello carico dell'applicazione. Aumento del carico come hello, altri processi di lavoro possono essere aggiunto tooread dalla coda hello. Ogni messaggio viene elaborato da un solo hello di processi di lavoro. Inoltre, il bilanciamento del carico basato su pull consente un uso ottimale dei computer di lavoro hello anche se il computer di lavoro hello differiscono con la potenza di tooprocessing, considerare come verrà estraggono i messaggi alla propria velocità massima. Questo modello viene spesso definito modello "consumer concorrente" hello.
+Un vantaggio correlato è quello del "livellamento del carico", che permette ai producer e ai consumer di inviare e ricevere i messaggi con frequenze diverse. In molte applicazioni, il carico del sistema varia nel tempo, tuttavia, il tempo di elaborazione necessario per ogni unità è in genere costante. L'interposizione di una coda tra producer e consumer di messaggi implica che è necessario solo eseguire il provisioning dell'applicazione consumer per gestire un carico medio invece di un carico massimo. In base alla variazione del carico in ingresso, si verificherà un incremento o una riduzione della profondità della coda, con un risparmio diretto in termini economici rispetto alle risorse infrastrutturali richieste per gestire il carico dell'applicazione. Con l'aumento del carico, è possibile aggiungere altri processi di lavoro per la lettura della coda. Ciascun messaggio viene elaborato da un solo processo di lavoro. Inoltre, il bilanciamento del carico di tipo pull permette un uso ottimale dei computer di lavoro anche quando questi presentano una potenza di elaborazione diversa.Ogni computer effettuerà infatti il pull dei messaggi in base alla propria velocità massima. Questo modello viene spesso definito modello del "consumer concorrente".
 
-Utilizzo di code toointermediate tra messaggio producer e consumer fornisce un accoppiamento inerente tra i componenti di hello. Poiché producer e consumer non sono consapevoli di altra, è possibile aggiornare un consumer senza causare alcun effetto sul producer hello.
+L'uso di code da interporre tra producer e consumer di messaggi fornisce un accoppiamento intrinseco di tipo regime di controllo libero tra i componenti. Poiché producer e consumer sono indipendenti gli uni dagli altri, è possibile aggiornare un consumer senza causare alcun effetto sul producer.
 
-La creazione di una coda è un processo che prevede più passaggi.  Eseguire operazioni di gestione per le entità (code e argomenti) tramite hello di messaggistica del Bus di servizio [Microsoft.ServiceBus.NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager) (classe), che viene creato fornendo l'indirizzo di base hello di hello Bus di servizio spazio dei nomi e hello credenziali utente. [NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager) fornisce i metodi toocreate, enumerare ed eliminare entità di messaggistica. Dopo aver creato un [Microsoft.ServiceBus.TokenProvider](/dotnet/api/microsoft.servicebus.tokenprovider#microsoft_servicebus_tokenprovider) oggetto oggetto dal nome hello e chiave e una gestione dello spazio dei nomi del servizio, è possibile utilizzare hello [Microsoft.ServiceBus.NamespaceManager.CreateQueue](/dotnet/api/microsoft.servicebus.namespacemanager#Microsoft_ServiceBus_NamespaceManager_CreateQueue_System_String_) coda hello toocreate di metodo. ad esempio:
+La creazione di una coda è un processo che prevede più passaggi.  Le operazioni di gestione per le entità di messaggistica del bus di servizio (code e argomenti) vengono eseguite tramite la classe [Microsoft.ServiceBus.NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager) che viene costruita specificando l'indirizzo di base dello spazio dei nomi e le credenziali utente del bus di servizio. [NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager) specifica i metodi per creare, enumerare ed eliminare le entità di messaggistica. Dopo aver creato un oggetto [Microsoft.ServiceBus.TokenProvider](/dotnet/api/microsoft.servicebus.tokenprovider#microsoft_servicebus_tokenprovider) da un nome e una chiave di firma di accesso condiviso e un oggetto di gestione dello spazio dei nomi servizio, è possibile usare il metodo [Microsoft.ServiceBus.NamespaceManager.CreateQueue](/dotnet/api/microsoft.servicebus.namespacemanager#Microsoft_ServiceBus_NamespaceManager_CreateQueue_System_String_) per creare la coda. Ad esempio:
 
 ```csharp
 // Create management credentials
@@ -43,7 +43,7 @@ TokenProvider credentials = TokenProvider.CreateSharedAccessSignatureTokenProvid
 NamespaceManager namespaceClient = new NamespaceManager(ServiceBusEnvironment.CreateServiceUri("sb", ServiceNamespace, string.Empty), credentials);
 ```
 
-È quindi possibile creare un oggetto coda e una factory di messaggistica con hello URI del Bus di servizio come argomento. ad esempio:
+È quindi possibile creare un oggetto coda e una factory di messaggistica usando l'URI del bus di servizio come argomento. Ad esempio:
 
 ```csharp
 QueueDescription myQueue;
@@ -52,7 +52,7 @@ MessagingFactory factory = MessagingFactory.Create(ServiceBusEnvironment.CreateS
 QueueClient myQueueClient = factory.CreateQueueClient("TestQueue");
 ```
 
-È quindi possibile inviare messaggi toohello coda. Ad esempio, se si dispone di un elenco di messaggi negoziati denominato `MessageList`, codice di hello sembra simile toohello seguenti:
+È quindi possibile inviare messaggi alla coda. Se ad esempio si ha un elenco di messaggi negoziati denominato `MessageList`, sarà possibile usare un codice simile al seguente:
 
 ```csharp
 for (int count = 0; count < 6; count++)
@@ -63,7 +63,7 @@ for (int count = 0; count < 6; count++)
 }
 ```
 
-Quindi ricevere messaggi dalla coda hello come indicato di seguito:
+È possibile quindi ricevere messaggi dalla coda, come indicato nell'esempio seguente:
 
 ```csharp
 while ((message = myQueueClient.Receive(new TimeSpan(hours: 0, minutes: 0, seconds: 5))) != null)
@@ -76,20 +76,20 @@ while ((message = myQueueClient.Receive(new TimeSpan(hours: 0, minutes: 0, secon
     }
 ```
 
-In hello [ReceiveAndDelete](/dotnet/api/microsoft.servicebus.messaging.receivemode) ricezione hello modalità, l'operazione è l'unica; vale a dire quando Bus di servizio riceve una richiesta di hello, contrassegna il messaggio hello come usato e lo restituisce toohello applicazione. **ReceiveAndDelete** modalità modello più semplice di hello ed è adatta per scenari in cui hello un'applicazione può tollerare non elabora un messaggio di evento hello di un errore. toounderstand, si consideri uno scenario in cui problemi relativi ai consumer hello hello di ricezione richiesta e quindi si blocca prima dell'elaborazione. Poiché il Bus di servizio contrassegna il messaggio hello come usato, quando un'applicazione hello viene riavviata e inizia a usare nuovamente i messaggi, risulterà perso messaggio hello che è stato consumato toohello precedente arresto anomalo del sistema.
+Quando si usa la modalità [ReceiveAndDelete](/dotnet/api/microsoft.servicebus.messaging.receivemode), la ricezione è un'operazione a un'unica fase. Quando il bus di servizio riceve la richiesta, contrassegna il messaggio come usato e lo restituisce all'applicazione. La modalità **ReceiveAndDelete** rappresenta il modello più semplice ed è adatta per scenari in cui un'applicazione può tollerare la mancata elaborazione di un messaggio in caso di errore. Per comprendere meglio questo meccanismo, si consideri uno scenario in cui il consumer invia la richiesta di ricezione e viene arrestato in modo anomalo prima dell'elaborazione. Poiché il bus di servizio contrassegna il messaggio come consumato, quando l'applicazione viene riavviata e inizia a consumare nuovamente i messaggi, il messaggio consumato prima dell'arresto anomalo risulterà perso.
 
-In [PeekLock](/dotnet/api/microsoft.servicebus.messaging.receivemode) hello di modalità di ricezione diventa un'operazione in due fasi, che rende possibile toosupport applicazioni che non sono in grado di tollerare messaggi mancanti. Quando Service Bus riceve una richiesta di hello, trova hello successivo messaggio toobe utilizzata, blocca tooprevent altri consumer di ricezione e lo restituisce quindi toohello applicazione. Dopo l'applicazione hello completa l'elaborazione messaggio hello o archiviarlo in modo affidabile per l'elaborazione futura, completa hello seconda fase di hello ricevere processo chiamando [completa](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Complete) nel messaggio ricevuto. Quando il Bus di servizio rileva hello **completa** chiamata, contrassegna il messaggio hello come usato.
+Con la modalità [PeekLock](/dotnet/api/microsoft.servicebus.messaging.receivemode) il processo di ricezione diventa un'operazione in due fasi, che rende possibile il supporto di applicazioni che non riescono a tollerare messaggi mancanti. Quando il bus di servizio riceve la richiesta, individua il messaggio successivo da consumare, lo blocca per impedirne la ricezione da parte di altri consumer e lo restituisce quindi all'applicazione. Dopo aver elaborato il messaggio o averlo archiviato in modo affidabile per una successiva elaborazione, l'applicazione esegue la seconda fase del processo di ricezione chiamando [Complete](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Complete) sul messaggio ricevuto. Quando il bus di servizio vede la chiamata **Complete**, contrassegna il messaggio come usato.
 
-Se è in grado di un'applicazione hello tooprocess hello messaggio per qualche motivo, è possibile chiamare hello [abbandonare](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Abandon) metodo sul messaggio ricevuto (invece di [completa](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Complete)). In questo modo messaggio hello toounlock del Bus di servizio e renderlo disponibile toobe nuovamente ricevuto, tramite hello stesso consumer o da un altro consumer concorrente. In secondo luogo, vi è un timeout associato blocco hello e se un'applicazione hello avrà esito negativo tooprocess hello messaggio prima che il timeout di blocco hello scade (ad esempio, se si blocca l'applicazione hello), quindi Sblocca messaggio hello e rende disponibili toobe Service Bus ricevuto nuovo (esecuzione essenzialmente un [abbandonare](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Abandon) operazione per impostazione predefinita).
+Se per qualche motivo l’applicazione non è in grado di elaborare il messaggio, può chiamare il metodo [Abandon](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Abandon), invece di [Complete](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Complete), per il messaggio ricevuto. In questo modo, il bus di servizio sbloccherà il messaggio che sarà disponibile per essere nuovamente ricevuto dallo stesso consumer o da un altro consumer concorrente. Al blocco è associato anche un timeout. Se l'applicazione non riesce a elaborare il messaggio prima della scadenza del timeout, ad esempio a causa di un arresto anomalo, il bus di servizio sblocca il messaggio rendendolo nuovamente disponibile per la ricezione (eseguendo essenzialmente un'operazione [Abandon](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Abandon) per impostazione predefinita).
 
-Si noti che in hello evento hello applicazione si blocca dopo l'elaborazione messaggio hello, ma prima di hello **completa** richiesta viene eseguita, il messaggio hello è applicazione toohello consegnati nuovamente dopo il riavvio. Questo processo di elaborazione viene spesso definito di tipo *At-Least-Once*, per indicare che ogni messaggio viene elaborato almeno una volta. Tuttavia, in determinati hello situazioni stesso potrà essere recapitato. Se hello scenario non tollera la doppia elaborazione, sarà necessaria logica aggiuntiva dei duplicati di toodetect applicazione hello che può essere raggiunto in base al hello **MessageId** proprietà del messaggio hello, che rimane costante tra i tentativi di recapito. Questo tipo di elaborazione viene definito di tipo *Exactly Once*.
+Si noti che in caso di arresto anomalo dell'applicazione dopo l'elaborazione del messaggio ma prima dell'emissione della richiesta **Complete**, il messaggio verrà nuovamente recapitato all'applicazione al riavvio. Questo processo di elaborazione viene spesso definito di tipo *At-Least-Once*, per indicare che ogni messaggio viene elaborato almeno una volta. ma che in determinate situazioni potrà essere recapitato una seconda volta. Se lo scenario non tollera la doppia elaborazione, sarà necessaria una logica aggiuntiva nell'applicazione per il rilevamento dei duplicati in base alla proprietà **MessageId** del messaggio, che rimane costante per tutti i tentativi di recapito. Questo tipo di elaborazione viene definito di tipo *Exactly Once*.
 
 ## <a name="topics-and-subscriptions"></a>Argomenti e sottoscrizioni
-In contrasto tooqueues, in cui ogni messaggio viene elaborato da un singolo consumer *argomenti* e *sottoscrizioni* forniscono una comunicazione, forma uno-a-molti un *dipubblicazione/sottoscrizione* modello. Utile per la scalabilità toovery un numero elevato di destinatari, ogni messaggio pubblicato viene reso disponibile tooeach sottoscrizione registrata con argomento hello. I messaggi vengono inviati tooa argomento e recapitati tooone o più sottoscrizioni associate, a seconda delle regole di filtro che possono essere impostate su una base per ogni sottoscrizione. le sottoscrizioni di Hello è possono utilizzare messaggi hello toorestrict di filtri aggiuntivi che desiderano tooreceive. I messaggi vengono inviati tooa argomento nella hello stesso modo vengono inviati tooa coda, ma i messaggi non vengono ricevuti direttamente dall'argomento hello. Vengono ricevuti dalle sottoscrizioni. Una sottoscrizione dell'argomento è simile a una coda virtuale che riceve copie dei messaggi hello inviati toohello argomento. I messaggi vengono ricevuti da una sottoscrizione in modo identico modo toohello vengono ricevuti da una coda.
+Diversamente dalle code, in cui ogni messaggio viene elaborato da un unico consumer, gli *argomenti* e le *sottoscrizioni* offrono una forma di comunicazione di tipo uno-a-molti, in un modello di *pubblicazione/sottoscrizione*. Particolarmente utile per la comunicazione con un numero molto elevato di destinatari, ogni messaggio pubblicato è reso disponibile per ogni sottoscrizione registrata con l'argomento. I messaggi vengono inviati a un argomento e recapitati a una o più sottoscrizioni associate, a seconda delle regole di filtro che possono essere impostate per ogni sottoscrizione. Per limitare i messaggi da ricevere, le sottoscrizioni possono usare filtri aggiuntivi. I messaggi vengono inviati a un argomento nello stesso modo in cui vengono inviati a una coda, con la differenza che i messaggi non vengono ricevuti direttamente dall'argomento. Vengono ricevuti dalle sottoscrizioni. La sottoscrizione di un argomento è simile a una coda virtuale che riceve copie dei messaggi inviati all'argomento. La procedura di ricezione dei messaggi da parte di una sottoscrizione è identica a quella usata per la ricezione da parte di una coda.
 
-A scopo di confronto, hello funzionalità di invio di una coda viene eseguito il mapping direttamente tooa argomento e la relativa funzionalità di ricezione del messaggio mappe tooa sottoscrizione. Tra le altre cose, ciò significa che le sottoscrizioni supportano hello stessi modelli descritti in precedenza in questa sezione con considerare tooqueues: consumer concorrente, disaccoppiamento temporale, livellamento del carico e bilanciamento del carico.
+Ai fini di un confronto, la funzionalità di invio dei messaggi di una coda esegue il mapping direttamente a un argomento e la funzionalità di ricezione dei messaggi esegue il mapping a una sottoscrizione. Questo significa anche che le sottoscrizioni supportano gli stessi modelli descritti prima in questa sezione in merito alle code: consumer concorrente, disaccoppiamento temporale, livellamento del carico e bilanciamento del carico.
 
-Creazione di un argomento è simile toocreating una coda, come illustrato nell'esempio hello nella sezione precedente hello. Creare l'URI del servizio hello e quindi utilizzare hello [NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager) client dello spazio dei nomi di classe toocreate hello. È quindi possibile creare un argomento utilizzando hello [CreateTopic](/dotnet/api/microsoft.servicebus.namespacemanager#Microsoft_ServiceBus_NamespaceManager_CreateTopic_System_String_) metodo. ad esempio:
+La procedura per la creazione di un argomento è simile a quella per la creazione di una coda, come illustrato nell'esempio della sezione precedente. Creare l'URI del servizio e usare la classe [NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager) per creare il client dello spazio dei nomi. È quindi possibile creare un argomento usando il metodo [CreateTopic](/dotnet/api/microsoft.servicebus.namespacemanager#Microsoft_ServiceBus_NamespaceManager_CreateTopic_System_String_). Ad esempio:
 
 ```csharp
 TopicDescription dataCollectionTopic = namespaceClient.CreateTopic("DataCollectionTopic");
@@ -102,14 +102,14 @@ SubscriptionDescription myAgentSubscription = namespaceClient.CreateSubscription
 SubscriptionDescription myAuditSubscription = namespaceClient.CreateSubscription(myTopic.Path, "Dashboard");
 ```
 
-Sarà quindi possibile creare un client dell'argomento. ad esempio:
+Sarà quindi possibile creare un client dell'argomento. Ad esempio:
 
 ```csharp
 MessagingFactory factory = MessagingFactory.Create(serviceUri, tokenProvider);
 TopicClient myTopicClient = factory.CreateTopicClient(myTopic.Path)
 ```
 
-Utilizza mittente del messaggio hello, è possibile inviare e ricevere messaggi tooand dall'argomento hello, come illustrato nella sezione precedente hello. ad esempio:
+Usando il mittente del messaggio, è possibile inviare messaggi all'argomento e riceverli, come illustrato nella sezione precedente. Ad esempio:
 
 ```csharp
 foreach (BrokeredMessage message in messageList)
@@ -120,10 +120,10 @@ foreach (BrokeredMessage message in messageList)
 }
 ```
 
-Tooqueues simile, i messaggi vengono ricevuti da una sottoscrizione tramite un [SubscriptionClient](/dotnet/api/microsoft.servicebus.messaging.subscriptionclient) oggetto anziché un [QueueClient](/dotnet/api/microsoft.servicebus.messaging.queueclient) oggetto. Creare hello sottoscrizione client, passando il nome di hello di argomento hello, nome hello di sottoscrizione hello e (facoltativamente) hello modalità di ricezione come parametri. Ad esempio, con hello **inventario** sottoscrizione:
+Come accade per le code, i messaggi vengono ricevuti da una sottoscrizione usando un oggetto [SubscriptionClient](/dotnet/api/microsoft.servicebus.messaging.subscriptionclient) invece di un oggetto [QueueClient](/dotnet/api/microsoft.servicebus.messaging.queueclient). Creare il client della sottoscrizione, passando il nome dell'argomento, il nome della sottoscrizione e (facoltativamente) la modalità di ricezione come parametri. Ad esempio, con la sottoscrizione **Inventory**:
 
 ```csharp
-// Create hello subscription client
+// Create the subscription client
 MessagingFactory factory = MessagingFactory.Create(serviceUri, tokenProvider); 
 
 SubscriptionClient agentSubscriptionClient = factory.CreateSubscriptionClient("IssueTrackingTopic", "Inventory", ReceiveMode.PeekLock);
@@ -145,20 +145,20 @@ while ((message = auditSubscriptionClient.Receive(TimeSpan.FromSeconds(5))) != n
 ```
 
 ### <a name="rules-and-actions"></a>Regole e azioni
-In molti scenari, i messaggi con caratteristiche specifiche devono essere elaborati in modi specifici. tooenable, si possono configurare sottoscrizioni toofind messaggi che presentano le proprietà desiderate e quindi eseguono determinate proprietà toothose modifiche. Mentre le sottoscrizioni del Bus di servizio vedere tutti i messaggi inviati toohello argomento, è possibile copiare solo un subset della coda di sottoscrizione virtuale toohello tali messaggi. Questa operazione viene eseguita usando i filtri della sottoscrizione. Queste modifiche sono chiamate *azioni di filtro*. Quando viene creata una sottoscrizione, è possibile fornire un'espressione di filtro che opera sulle proprietà hello del messaggio hello, entrambi hello le proprietà di sistema (ad esempio, **etichetta**) e le proprietà personalizzate dell'applicazione (ad esempio, **StoreName**.) hello espressione di filtro SQL è facoltativa. senza un'espressione di filtro SQL, verrà eseguita alcuna azione di filtro definita in una sottoscrizione in tutti i messaggi hello per la sottoscrizione.
+In molti scenari, i messaggi con caratteristiche specifiche devono essere elaborati in modi specifici. A questo scopo, è possibile configurare le sottoscrizioni in modo che trovino i messaggi che presentano le proprietà desiderate e apportare quindi alcune modifiche a tali proprietà. Mentre nelle sottoscrizioni del bus di servizio tutti i messaggi vengono inviati all'argomento, l'utente può copiare solo un subset di tali messaggi nella coda virtuale delle sottoscrizioni. Questa operazione viene eseguita usando i filtri della sottoscrizione. Queste modifiche sono chiamate *azioni di filtro*. Quando viene creata una sottoscrizione, è possibile specificare un'espressione di filtro che agisce sulle proprietà del messaggio, sulle proprietà del sistema, ad esempio **Label**, e sulle proprietà dell'applicazione personalizzata, ad esempio **StoreName**. In questo caso l'espressione di filtro SQL è facoltativa. Senza un'espressione di filtro SQL, qualsiasi azione di filtro definita in una sottoscrizione verrà eseguita in tutti i messaggi di tale sottoscrizione.
 
-Utilizzando hello esempio precedente, i messaggi toofilter provenienti solo da **Store1**, è necessario creare una sottoscrizione di hello Dashboard come indicato di seguito:
+Facendo riferimento all'esempio precedente, per filtrare solo i messaggi provenienti da **Store1**, è necessario creare la sottoscrizione Dashboard come indicato nella procedura seguente:
 
 ```csharp
 namespaceManager.CreateSubscription("IssueTrackingTopic", "Dashboard", new SqlFilter("StoreName = 'Store1'"));
 ```
 
-Con questo filtro di sottoscrizione sul posto, solo i messaggi hello `StoreName` impostata troppo`Store1` vengono copiati toohello coda virtuale hello `Dashboard` sottoscrizione.
+Dopo aver creato questo filtro della sottoscrizione, solo i messaggi con la proprietà `StoreName` impostata su `Store1` vengono copiati nella coda virtuale per la sottoscrizione `Dashboard`.
 
-Per ulteriori informazioni sui valori di filtro possibili, vedere la documentazione di hello per hello [SqlFilter](/dotnet/api/microsoft.servicebus.messaging.sqlfilter) e [SqlRuleAction](/dotnet/api/microsoft.servicebus.messaging.sqlruleaction) classi. Vedere anche hello [messaggistica negoziata: Advanced Filters](http://code.msdn.microsoft.com/Brokered-Messaging-6b0d2749) e [argomento filtri](https://github.com/Azure-Samples/azure-servicebus-messaging-samples/tree/master/TopicFilters) esempi.
+Per altre informazioni sui valori di filtro possibili, vedere la documentazione relativa alle classi [SqlFilter](/dotnet/api/microsoft.servicebus.messaging.sqlfilter) e [SqlRuleAction](/dotnet/api/microsoft.servicebus.messaging.sqlruleaction). Vedere anche gli esempi [Brokered Messaging: Advanced Filters](http://code.msdn.microsoft.com/Brokered-Messaging-6b0d2749) (Messaggistica negoziata: filtri avanzati) e [Topic Filters](https://github.com/Azure-Samples/azure-servicebus-messaging-samples/tree/master/TopicFilters) (Filtri di argomento).
 
 ## <a name="next-steps"></a>Passaggi successivi
-Vedere di seguito hello avanzata per ulteriori informazioni ed esempi di utilizzo di messaggistica del Bus di servizio.
+Per altri esempi e informazioni sull'uso della messaggistica del bus di servizio, vedere gli argomenti avanzati seguenti.
 
 * [Panoramica della messaggistica del bus di servizio](service-bus-messaging-overview.md)
 * [Esercitazione sulla messaggistica negoziata del bus di servizio - .NET](service-bus-brokered-tutorial-dotnet.md)

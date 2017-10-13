@@ -1,22 +1,22 @@
 <!--author=SharS last changed: 9/17/15-->
 
-#### <a name="toocreate-a-volume-container"></a>toocreate un contenitore di volumi
-1. Nel dispositivo hello **avvio rapido** pagina, fare clic su **aggiungere un contenitore del volume**. Hello **crea contenitore del Volume** viene visualizzata la finestra di dialogo.
+#### <a name="to-create-a-volume-container"></a>Per creare un contenitore di volumi
+1. Nella pagina **Avvio rapido** del dispositivo fare clic su **Aggiungere un contenitore di volumi**. Verrà visualizzata la finestra di dialogo **Crea contenitore di volumi** .
    
     ![Crea contenitore di volumi](./media/storsimple-create-volume-container/HCS_CreateVolumeContainerM-include.png)
-2. In hello **crea contenitore di volumi** la finestra di dialogo:
+2. Nella finestra di dialogo **Crea contenitore di volumi** :
    
-   1. Fornire un **Nome** per il contenitore di volumi. nome di Hello deve essere 3 too32 caratteri.
-   2. Selezionare un **Account di archiviazione** tooassociate con questo contenitore del volume. È possibile scegliere l'account predefinito hello che viene generato in fase di hello della creazione del servizio. È inoltre possibile utilizzare hello **Aggiungi nuovo** opzione toospecify un account di archiviazione che non è collegato toothis sottoscrizione al servizio.
-   3. Selezionare **Abilita crittografia archiviazione Cloud** tooenable crittografia dei dati di hello inviati dal cloud di toohello dispositivo hello.
-   4. Specificare e confermare una **chiave di crittografia archiviazione Cloud** ovvero 8 too32 caratteri. Questa chiave viene usata dai dati di tooaccess crittografato hello dispositivo.
-   5. Selezionare **Unlimited** in hello **specificare la larghezza di banda** elenco a discesa se si desidera tooconsume larghezza di banda disponibile hello tutti. È inoltre possibile impostare questa opzione troppo**personalizzato** tooemploy i controlli della larghezza di banda e specificare un valore compreso tra 1 e 1.000 Mbps. 
-      Se si dispone, le informazioni sull'utilizzo della larghezza di banda disponibile, potrebbe essere in grado di tooallocate larghezza di banda in base a una pianificazione specificando **selezionare un modello di larghezza di banda**. Per una procedura dettagliata, vedere troppo[aggiungere un modello di larghezza di banda](../articles/storsimple/storsimple-manage-bandwidth-templates.md#add-a-bandwidth-template).
-   6. Fare clic sull'icona di controllo hello ![icona del segno di spunta](./media/storsimple-create-volume-container/HCS_CheckIcon-include.png) toosave questo contenitore e uscita hello Creazione guidata volume. 
+   1. Fornire un **Nome** per il contenitore di volumi. Il nome deve essere lungo da 3 a 32 caratteri.
+   2. Selezionare un **Account di archiviazione** da associare a questo contenitore di volumi. È possibile scegliere l'account predefinito generato al momento della creazione del servizio. È inoltre possibile utilizzare l’opzione **Aggiungi nuovo** per specificare un account di archiviazione non collegato a questa sottoscrizione al servizio.
+   3. Selezionare **Abilita crittografia archiviazione cloud** per attivare la crittografia dei dati inviati dal dispositivo al cloud.
+   4. Fornire e confermare una **Chiave di crittografia archiviazione cloud** lunga da 8 a 32 caratteri. Questa chiave viene utilizzata dal dispositivo per accedere ai dati crittografati.
+   5. Selezionare **Illimitata** nell'elenco a discesa **Specifica larghezza di banda** se si desidera utilizzare tutta la larghezza di banda disponibile. È inoltre possibile impostare questa opzione su **Personalizzata** per utilizzare i controlli della larghezza di banda e specificare un valore compreso tra 1 e 1.000 Mbps. 
+      Se si dispone delle informazioni sulla larghezza di banda, è possibile allocare la larghezza di banda in base a una pianificazione specificando **Seleziona un modello di larghezza di banda**. Per una procedura dettagliata, vedere [Aggiunta di un modello di larghezza di banda](../articles/storsimple/storsimple-manage-bandwidth-templates.md#add-a-bandwidth-template).
+   6. Fare clic sull'icona del segno di spunta  ![icona del segno di spunta](./media/storsimple-create-volume-container/HCS_CheckIcon-include.png) per salvare questo contenitore di volumi e chiudere la procedura guidata. 
    
-   contenitore del volume Hello appena creato verrà elencato nella hello **contenitori di volumi** pagina.
+   Il contenitore di volumi appena creato verrà elencato nella pagina **Contenitori di volumi** .
 
-![Video disponibile](./media/storsimple-create-volume-container/Video_icon.png)**Video disponibile**
+![Video disponibile](./media/storsimple-create-volume-container/Video_icon.png) **Video disponibile**
 
-un video che illustra come toocreate un contenitore del volume nella soluzione StorSimple, fare clic su toowatch [qui](https://azure.microsoft.com/documentation/videos/create-a-volume-container-in-your-storsimple-solution/).
+Per guardare un video che illustra come creare un nuovo contenitore di volumi per la soluzione StorSimple, fare clic [qui](https://azure.microsoft.com/documentation/videos/create-a-volume-container-in-your-storsimple-solution/).
 

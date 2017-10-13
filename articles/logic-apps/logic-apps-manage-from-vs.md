@@ -1,5 +1,5 @@
 ---
-title: aaaManage logica App in Visual Studio - App Azure per la logica | Documenti Microsoft
+title: Gestire le app per la logica in Visual Studio - App per la logica di Azure | Microsoft Docs
 description: Gestire le app per la logica e altri asset di Azure con Visual Studio Cloud Explorer
 author: klam
 manager: anneta
@@ -15,15 +15,15 @@ ms.topic: article
 ms.custom: H1Hack27Feb2017
 ms.date: 12/19/2016
 ms.author: LADocs; klam
-ms.openlocfilehash: 419f83eb062b56e4ac2642dea4de1a025f747521
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a5bf24de1a7a2b6d4c1ae6416c95d83ef7506da3
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="manage-your-logic-apps-with-visual-studio-cloud-explorer"></a>Gestire le app per la logica con Visual Studio Cloud Explorer
 
-Sebbene hello [portale di Azure](https://portal.azure.com/) offre un modo eccellente per si toodesign e gestire le app di logica di Azure, è possibile utilizzare Visual Studio Cloud Explorer per la gestione di numerose risorse di Azure, incluse le app di logica. Visual Studio Cloud Explorer consente di esplorare, gestire, modificare e scaricare app per la logica pubblicate. Le attività di gestione includono l'abilitazione, la disabilitazione e la visualizzazione della cronologia delle esecuzioni. 
+Sebbene il [portale di Azure](https://portal.azure.com/) rappresenti un ottimo modo per progettare e gestire le app per la logica di Azure, esiste anche Visual Studio Cloud Explorer per gestire le risorse di Azure, incluse le app per la logica. Visual Studio Cloud Explorer consente di esplorare, gestire, modificare e scaricare app per la logica pubblicate. Le attività di gestione includono l'abilitazione, la disabilitazione e la visualizzazione della cronologia delle esecuzioni. 
 
 Prima di poter accedere alle app per la logica e gestirle in Visual Studio, installare e configurare questi strumenti di Visual Studio per App per la logica di Azure. 
 
@@ -32,54 +32,54 @@ Prima di poter accedere alle app per la logica e gestirle in Visual Studio, inst
 * [Visual Studio 2015 o Visual Studio 2017](https://www.visualstudio.com/downloads/download-visual-studio-vs.aspx)
 * [Versione più recente di Azure SDK](https://azure.microsoft.com/downloads/) (2.9.1 o versione successiva)
 * [Visual Studio Cloud Explorer](https://marketplace.visualstudio.com/items?itemName=MicrosoftCloudExplorer.CloudExplorerforVisualStudio2015)
-* Web toohello Access quando si utilizza Progettazione incorporato hello
+* Accesso al Web mentre viene usata la finestra di progettazione incorporata
 
 ## <a name="install-visual-studio-tools-for-logic-apps"></a>Installare gli strumenti di Visual Studio per le app per la logica
 
-Dopo aver installato i prerequisiti di hello, scaricare e installare hello Azure logica App Tools per Visual Studio.
+Dopo avere installato i prerequisiti, scaricare e installare Strumenti App per la logica di Azure per Visual Studio.
 
-1. Aprire Visual Studio. In hello **strumenti** dal menu **estensioni e aggiornamenti**.
-2. Espandere hello **Online** categoria, eseguire la ricerca online in hello Visual Studio Gallery.
+1. Aprire Visual Studio. Scegliere **Estensioni e aggiornamenti** dal menu **Strumenti**.
+2. Espandere la categoria **Online** per poter eseguire le ricerche in Visual Studio Gallery.
 3. Sfogliare o cercare **App per la logica** per visualizzare **Azure Logic Apps Tools for Visual Studio** (Strumenti per app per la logica di Azure per Visual Studio).
-4. toodownload e l'estensione di hello installazione, fare clic su **scaricare**.
+4. Fare clic sul pulsante **Scarica** per scaricare e installare l'estensione.
 5. Al termine dell'installazione riavviare Visual Studio.
 
 > [!NOTE]
-> hello toodownload Azure logica App Tools per Visual Studio passare direttamente, toohello [Visual Studio Marketplace](https://visualstudiogallery.msdn.microsoft.com/e25ad307-46cf-412e-8ba5-5b555d53d2d9).
+> Per scaricare Strumenti App per la logica di Azure per Visual Studio direttamente, accedere al [Visual Studio Marketplace](https://visualstudiogallery.msdn.microsoft.com/e25ad307-46cf-412e-8ba5-5b555d53d2d9).
 
 ## <a name="browse-for-logic-apps-in-cloud-explorer"></a>Cercare App per la logica in Cloud Explorer
 
-1.  tooopen Cloud Explorer, in hello **vista** menu, scegliere **Cloud Explorer**.
+1.  Per aprire Cloud Explorer, scegliere **Cloud Explorer** nel menu **Visualizza**.
 2.  Cercare l'app per la logica, in base al gruppo di risorse o al tipo di risorsa. 
 
-    * Se si passa dal tipo di risorsa, selezionare la sottoscrizione di Azure, espandere hello **logica app** sezione e selezionare l'app logica. 
-    * Se si passa dal gruppo di risorse, espandere gruppo di risorse hello con l'app per la logica e selezionare l'app logica.
+    * In caso di esplorazione per tipo di risorsa, selezionare la sottoscrizione di Azure, espandere la sezione **App per la logica** e selezionare un'app per la logica. 
+    * Se si esplora in base al gruppo di risorse, espandere il gruppo di risorse che contiene l'app per la logica desiderata e selezionarla.
 
-    tooview comandi per l'app di logica, fare doppio clic su app logica, o nella parte inferiore di hello del Cloud Explorer, scegliere hello **azioni** menu.
+    Per visualizzare i comandi per l'app per la logica, fare clic con il pulsante destro del mouse sull'app per la logica oppure, nella parte inferiore di Cloud Explorer, scegliere un comando dal menu **Azioni**.
 
     ![Cercare l'app per la logica](./media/logic-apps-manage-from-vs/browse.png)
 
 ## <a name="edit-your-logic-app-with-logic-apps-designer"></a>Modificare l'app per la logica con Progettazione app per la logica
 
-In Cloud Explorer, è possibile aprire un'app logica attualmente distribuito in hello stessa finestra di progettazione utilizzati in hello portale di Azure. 
+In Cloud Explorer è possibile aprire un'app per la logica attualmente distribuita nella stessa finestra di progettazione che si usa nel portale di Azure. 
 
-* tooedit app logica, in Cloud Explorer, l'app per la logica e scegliere **aperto con la logica App Editor**. 
+* Per modificare l'app per la logica, in Cloud Explorer fare clic con il pulsante destro del mouse sull'app per la logica e selezionare **Apri con Editor app per la logica**. 
 
-* toopublish il toohello aggiornamenti cloud, scegliere **pubblica**. 
+* Per pubblicare gli aggiornamenti al cloud, scegliere **Pubblica**. 
 
-* Scegliere una nuova esecuzione toostart **eseguire Trigger**.
+* Per avviare una nuova esecuzione, scegliere **Esegui trigger**.
 
 ![Progettazione app per la logica](./media/logic-apps-manage-from-vs/designer.png)
 
-Da Progettazione hello, è anche possibile **scaricare** un'app di logica. Questa azione automaticamente Parametrizza definizione dell'app logica hello e Salva definizione hello come un modello di distribuzione Azure Resource Manager. È possibile aggiungere questo progetto di distribuzione modello tooyour il gruppo di risorse di Azure.
+Dalla finestra di progettazione è anche possibile **scaricare** un'app per la logica. Questa azione parametrizza automaticamente la definizione dell'app per la logica e salva la definizione come modello di distribuzione di Azure Resource Manager. Questo modello può essere aggiunto al progetto Gruppo di risorse di Azure.
 
 ## <a name="browse-your-logic-app-run-history"></a>Esplorare la cronologia di esecuzione dell'app per la logica
 
-hello tooview cronologia per l'app, la logica di esecuzione delle app logica e scegliere **cronologia di esecuzione aprire**. tooreorder alla cronologia di esecuzione basato su qualsiasi intestazione di colonna hello indicato, selezionare proprietà hello.
+Per visualizzare la cronologia di esecuzione per l'app per la logica, fare clic con il pulsante destro del mouse sull'app per la logica e selezionare **Apri cronologia di esecuzione**. Per riordinare la cronologia di esecuzione in base a una delle proprietà visualizzate, selezionare l'intestazione di colonna.
 
 ![Cronologia di esecuzione](media/logic-apps-manage-from-vs/runs.png)
 
-hello tooshow cronologia per un'istanza di esecuzione, pertanto è possibile esaminare i risultati, comprese hello input e output di ogni passaggio, eseguire hello fare doppio clic su uno dei hello eseguire istanze.
+Per visualizzare la cronologia di esecuzione di un'istanza ed esaminare i risultati dell'esecuzione, inclusi gli input e gli output di ogni passaggio, fare doppio clic su una delle istanze di esecuzione.
 
 ![Risultati della cronologia di esecuzione, input e output dei passaggi](./media/logic-apps-manage-from-vs/history.png)
 

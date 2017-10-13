@@ -1,6 +1,6 @@
 ---
 title: "Fare riferimento a una rete virtuale esistente in un modello di set di scalabilità di Azure | Microsoft Docs"
-description: "Informazioni su come tooadd un virtuale rete tooan modello di Set di scalabilità macchina virtuale di Azure esistente"
+description: "Informazioni su come aggiungere una rete virtuale in un modello di set di scalabilità di macchine virtuali di Azure esistente"
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: gatneil
@@ -15,21 +15,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: negat
-ms.openlocfilehash: c3034b577e17abc4643dc26d7c38ad643fa26322
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 28117d467b491704aed8d45e5eba42530579dfa2
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="add-reference-tooan-existing-virtual-network-in-an-azure-scale-set-template"></a>Aggiungere la rete virtuale di riferimento tooan esistente in un modello di set di scalabilità di Azure
+# <a name="add-reference-to-an-existing-virtual-network-in-an-azure-scale-set-template"></a>Aggiungere un riferimento a una rete virtuale esistente in un modello di set di scalabilità di Azure
 
-Questo articolo viene illustrato come hello toomodify [scala valida minima Imposta modello](./virtual-machine-scale-sets-mvss-start.md) toodeploy in una rete virtuale esistente anziché crearne uno nuovo.
+Questo articolo illustra come modificare il [modello di set di scalabilità minimo valido](./virtual-machine-scale-sets-mvss-start.md) per eseguire la distribuzione in una rete virtuale esistente anziché crearne uno nuovo.
 
-## <a name="change-hello-template-definition"></a>Modificare la definizione di modello hello
+## <a name="change-the-template-definition"></a>Modificare la definizione del modello
 
-Può essere visualizzato il modello di set di scala valida minima [qui](https://raw.githubusercontent.com/gatneil/mvss/minimum-viable-scale-set/azuredeploy.json), e il modello per la distribuzione di scala hello impostato in una rete virtuale esistente può essere visto [qui](https://raw.githubusercontent.com/gatneil/mvss/existing-vnet/azuredeploy.json). Questo modello si esamineranno hello diff utilizzato toocreate (`git diff minimum-viable-scale-set existing-vnet`), elemento per elemento:
+Il modello di set di scalabilità minimo valido è disponibile [qui](https://raw.githubusercontent.com/gatneil/mvss/minimum-viable-scale-set/azuredeploy.json), mentre il modello per la distribuzione del set di scalabilità in una rete virtuale esistente è disponibile [qui](https://raw.githubusercontent.com/gatneil/mvss/existing-vnet/azuredeploy.json). Viene ora esaminato il diff usato per creare questo modello, `git diff minimum-viable-scale-set existing-vnet`, passo per passo:
 
-Prima di tutto si aggiunge un parametro `subnetId`. Verrà passata hello la configurazione di set di scalabilità, consentendo di set di scalabilità di hello subnet creato in precedenza di hello tooidentify toodeploy le macchine virtuali in questa stringa. Questa stringa deve essere formato hello: `/subscriptions/<subscription-id>resourceGroups/<resource-group-name>/providers/Microsoft.Network/virtualNetworks/<virtual-network-name>/subnets/<subnet-name>`. Ad esempio, di set di scalabilità di hello toodeploy in una rete virtuale esistente con nome `myvnet`, subnet `mysubnet`, gruppo di risorse `myrg`, sottoscrizione e `00000000-0000-0000-0000-000000000000`, sarebbe struttura hello: `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myrg/providers/Microsoft.Network/virtualNetworks/myvnet/subnets/mysubnet`.
+Prima di tutto si aggiunge un parametro `subnetId`. Questa stringa viene passata nella configurazione del set di scalabilità e permette di identificare la subnet, creata in precedenza, in cui distribuire le macchine virtuali. La stringa deve essere nel formato seguente: `/subscriptions/<subscription-id>resourceGroups/<resource-group-name>/providers/Microsoft.Network/virtualNetworks/<virtual-network-name>/subnets/<subnet-name>`. Ad esempio, per distribuire il set di scalabilità in una rete virtuale esistente denominata `myvnet`, subnet `mysubnet`, gruppo di risorse `myrg` e sottoscrizione`00000000-0000-0000-0000-000000000000`, l'ID subnet sarebbe il seguente: `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myrg/providers/Microsoft.Network/virtualNetworks/myvnet/subnets/mysubnet`.
 
 ```diff
      },
@@ -42,7 +42,7 @@ Prima di tutto si aggiunge un parametro `subnetId`. Verrà passata hello la conf
    },
 ```
 
-Successivamente, è possibile eliminare la risorsa di rete virtuale hello da hello `resources` matrice, poiché si utilizza una rete virtuale esistente e non è necessario toodeploy uno nuovo.
+Dal momento che si usa una rete virtuale esistente e non è necessario distribuirne una nuova, è possibile eliminare la risorsa rete virtuale dalla matrice `resources`.
 
 ```diff
    "variables": {},
@@ -70,7 +70,7 @@ Successivamente, è possibile eliminare la risorsa di rete virtuale hello da hel
 -    },
 ```
 
-esiste già la rete virtuale Hello prima di distribuita il modello di hello, pertanto non c'è alcuna necessità toospecify una clausola di dependsOn dalla scala hello imposta toohello di rete virtuale. Vengono quindi eliminate le righe seguenti:
+La rete virtuale esiste già prima della distribuzione del modello, non è quindi necessario specificare una clausola dependsOn dal set di scalabilità alla rete virtuale. Vengono quindi eliminate le righe seguenti:
 
 ```diff
      {
@@ -86,7 +86,7 @@ esiste già la rete virtuale Hello prima di distribuita il modello di hello, per
          "capacity": 2
 ```
 
-Infine, viene passata in hello `subnetId` parametro impostato dall'utente hello (anziché `resourceId` id hello tooget di una rete virtuale nella stessa distribuzione, ovvero quali scala valida minima hello Imposta modello hello).
+Infine, si passa il parametro `subnetId` impostato dall'utente, anziché usare `resourceId` per ottenere l'ID di una rete virtuale nella stessa distribuzione, perché questa operazione viene eseguita dal modello di set di scalabilità minimo valido.
 
 ```diff
                        "name": "myIpConfig",

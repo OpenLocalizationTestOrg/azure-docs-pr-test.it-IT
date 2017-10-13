@@ -1,6 +1,6 @@
 ---
-title: failover aaaStorSimple, il ripristino di emergenza per i dispositivi 8000 serie | Documenti Microsoft
-description: Informazioni su come toofail tramite il toohello dispositivo StorSimple stesso dispositivo.
+title: Failover e ripristino di emergenza di StorSimple per dispositivi serie 8000| Microsoft Docs
+description: Informazioni su come effettuare il failover di un dispositivo StorSimple sullo stesso dispositivo.
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,65 +14,65 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/23/2017
 ms.author: alkohli
-ms.openlocfilehash: b0b4216c7af6745ff68b85ca3d655691b43b4334
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: acc8929dc3476e9590e8e4d9526b38b7c0719570
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="fail-over-your-storsimple-physical-device-toosame-device"></a>Eseguire il failover del dispositivo di toosame dispositivo fisico StorSimple
+# <a name="fail-over-your-storsimple-physical-device-to-same-device"></a>Effettuare il failover di un dispositivo fisico StorSimple sullo stesso dispositivo
 
 ## <a name="overview"></a>Panoramica
 
-In questa esercitazione descrive hello passaggi necessari toofail su un tooitself di dispositivo fisico StorSimple 8000 series se si verifica un'emergenza. StorSimple Usa dati toomigrate funzionalità hello dispositivo failover da un dispositivo fisico di origine nel dispositivo fisico di hello datacenter tooanother. materiale sussidiario Hello in questa esercitazione si applica a dispositivi fisici serie 8000 tooStorSimple con le versioni di software Update 3 e successive.
+Questa esercitazione descrive i passaggi necessari per effettuare il failover di un dispositivo fisico StorSimple serie 8000 sul dispositivo stesso in caso di emergenza. StorSimple usa la funzionalità di failover del dispositivo per eseguire la migrazione dei dati da un dispositivo fisico di origine nel data center a un altro dispositivo fisico. Le indicazioni fornite in questa esercitazione si applicano ai dispositivi fisici StorSimple serie 8000 in cui sono installate le versioni software Update 3 e successive.
 
-toolearn ulteriori informazioni su failover del dispositivo e la modalità di toorecover utilizzato da un'emergenza, andare troppo[Failover e ripristino di emergenza per i dispositivi della serie StorSimple 8000](storsimple-8000-device-failover-disaster-recovery.md).
+Per altre informazioni sul failover dei dispositivi e su come viene usato per il ripristino di emergenza, vedere [Failover and disaster recovery for StorSimple 8000 series devices](storsimple-8000-device-failover-disaster-recovery.md) (Failover e ripristino di emergenza per dispositivi StorSimple serie 8000).
 
-toofail su un dispositivo fisico tooanother dispositivo fisico, andare troppo[failover toohello stesso dispositivo fisico StorSimple](storsimple-8000-device-failover-physical-device.md). toofail su un tooa dispositivo fisico StorSimple Appliance di Cloud di StorSimple, andare troppo[failover tooa StorSimple Appliance di Cloud](storsimple-8000-device-failover-cloud-appliance.md).
+Per effettuare il failover di un dispositivo fisico su un altro dispositivo fisico, vedere [Fail over to the same StorSimple physical device](storsimple-8000-device-failover-physical-device.md) (Failover sullo stesso dispositivo fisico StorSimple). Per effettuare il failover di un dispositivo fisico StorSimple su un'appliance cloud StorSimple, vedere [Fail over to a StorSimple Cloud Appliance](storsimple-8000-device-failover-cloud-appliance.md) (Failover su un'appliance cloud StorSimple).
 
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-- Assicurarsi di aver esaminato considerazioni hello per failover del dispositivo. Per ulteriori informazioni, visitare troppo[considerazioni comuni per il failover dispositivo](storsimple-8000-device-failover-disaster-recovery.md).
+- Assicurarsi di aver esaminato le considerazioni relative al failover dei dispositivi. Per altre informazioni, vedere [Common considerations for device failover](storsimple-8000-device-failover-disaster-recovery.md) (Considerazioni comuni per il failover dei dispositivi).
 
 
-## <a name="steps-toofail-over-toohello-same-device"></a>Passaggi toofail su toohello stesso dispositivo
+## <a name="steps-to-fail-over-to-the-same-device"></a>Procedura per il failover sullo stesso dispositivo
 
-Eseguire operazioni se è necessario toofail su toohello hello stesso dispositivo.
+Per effettuare il failover sullo stesso dispositivo, seguire questa procedura.
 
-1. Creare snapshot cloud di tutti i volumi di hello nel dispositivo. Per ulteriori informazioni, visitare troppo[toocreate i backup del servizio di utilizzare Gestione periferiche di StorSimple](storsimple-8000-manage-backup-policies-u2.md).
-2. Reimpostare le impostazioni predefinite del dispositivo toofactory. Seguire hello dettagliate in [come impostazioni predefinite tooreset un toofactory dispositivo StorSimple](storsimple-8000-manage-device-controller.md#reset-the-device-to-factory-default-settings).
-3. Il servizio di gestione di dispositivi StorSimple toohello go e quindi selezionare **dispositivi**. In hello **dispositivi** pannello dispositivo precedente hello dovrebbe risultare **Offline**.
+1. Acquisire snapshot nel cloud di tutti i volumi nel dispositivo. Per altre informazioni, vedere [Use StorSimple Device Manager service to create backups](storsimple-8000-manage-backup-policies-u2.md) (Usare il servizio Gestione dispositivi StorSimple per creare backup).
+2. Ripristinare le impostazioni predefinite del dispositivo. Seguire le istruzioni dettagliate in [come ripristinare le impostazioni predefinite di un dispositivo StorSimple](storsimple-8000-manage-device-controller.md#reset-the-device-to-factory-default-settings).
+3. Passare al servizio Gestione dispositivi StorSimple e selezionare **Dispositivi**. Nel pannello **Dispositivi** il dispositivo precedente dovrebbe essere visualizzato come **Offline**.
 
     ![Dispositivo di origine offline](./media/storsimple-8000-device-failover-disaster-recovery/failover-single-dev2.png)
 
-4. Configurare il dispositivo e registrarlo di nuovo nel servizio Gestione dispositivi StorSimple. Hello dispositivo appena registrato dovrebbe risultare **pronto tooset backup**. nome del dispositivo per il nuovo dispositivo di hello Hello è hello stesso dispositivo precedente hello ma aggiunto con una numerazione tooindicate dispositivo hello stato reimpostazione toofactory predefinito e registrati nuovamente.
+4. Configurare il dispositivo e registrarlo di nuovo nel servizio Gestione dispositivi StorSimple. Il dispositivo appena registrato verrà visualizzato come **Pronto per la configurazione**. Il nuovo dispositivo avrà lo stesso nome del dispositivo precedente, ma con l'aggiunta di un valore numerico per indicare il ripristino delle impostazioni predefinite e la nuova registrazione.
 
-    ![Dispositivo appena registrato tooset pronto backup](./media/storsimple-8000-device-failover-disaster-recovery/failover-single-dev3.png)
-5. Per una nuova periferica hello, completare la configurazione di dispositivo hello. Per ulteriori informazioni, visitare troppo[passaggio 4: completare l'installazione minima del dispositivo](storsimple-8000-deployment-walkthrough-u2.md#step-4-complete-minimum-device-setup). In hello **dispositivi** pannello stato hello del dispositivo hello diventa troppo**Online**.
+    ![Dispositivo appena registrato pronto per la configurazione](./media/storsimple-8000-device-failover-disaster-recovery/failover-single-dev3.png)
+5. Completare la configurazione del nuovo dispositivo. Per altre informazioni, vedere [Passaggio 4: Completare la configurazione minima del dispositivo](storsimple-8000-deployment-walkthrough-u2.md#step-4-complete-minimum-device-setup). Nel pannello **Dispositivi** lo stato del dispositivo passa a **Online**.
 
    > [!IMPORTANT]
-   > **Completare la configurazione minima di hello prima o il ripristino di emergenza potrebbe non riuscire.**
+   > **Completare prima la configurazione minima, altrimenti il ripristino di emergenza potrebbe non riuscire.**
 
     ![Dispositivo appena registrato online](./media/storsimple-8000-device-failover-disaster-recovery/failover-single-dev7.png)
 
-6. Selezionare il dispositivo precedente hello (stato non in linea) e dalla barra dei comandi di hello, fare clic su **failover**. In hello **failover** pannello selezionare dispositivo precedente come origine di hello e specificare il dispositivo di destinazione hello hello appena registrato dispositivo.
+6. Selezionare il dispositivo precedente (stato offline) e dalla barra dei comandi fare clic su **Failover**. Nel pannello **Failover** selezionare il dispositivo precedente come origine e specificare come dispositivo di destinazione il dispositivo appena registrato.
 
     ![Riepilogo del failover](./media/storsimple-8000-device-failover-disaster-recovery/failover-single-dev11.png)
 
-    Per istruzioni dettagliate, vedere troppo[failover dispositivo fisico tooanother](#fail-over-to-another-physical-device).
+    Per istruzioni dettagliate, fare riferimento a [Failover su un altro dispositivo fisico](#fail-over-to-another-physical-device).
 
-7. Viene creato un processo di ripristino di dispositivo che è possibile monitorare da hello **processi** blade.
+7. Verrà creato un processo di ripristino del dispositivo che è possibile monitorare dal pannello **Processi**.
 
-8. Al termine il processo di hello, accedere di nuovo dispositivo hello e passare toohello **contenitori di volumi** blade. Verificare che tutti i contenitori di volumi di hello dispositivo precedente hello siano stati migrati toohello nuovo dispositivo.
+8. Al termine del processo, accedere al nuovo dispositivo e passare al pannello **Contenitori dei volumi**. Verificare che sia stata eseguita la migrazione di tutti i contenitori dei volumi dal dispositivo precedente al nuovo dispositivo.
 
    ![Migrazione dei contenitori dei volumi eseguita](./media/storsimple-8000-device-failover-disaster-recovery/failover-single-dev13.png)
 
-9. Al termine del failover hello, è possibile disattivare ed eliminare dispositivo precedente hello dal portale hello. Selezionare hello precedente dispositivo (offline), pulsante destro del mouse, quindi **disattiva**. Dopo la disattivazione di dispositivo hello, hello del dispositivo hello viene aggiornato.
+9. Al termine del failover, è possibile disattivare ed eliminare il dispositivo precedente dal portale. Selezionare il dispositivo precedente (offline), fare clic con il pulsante destro del mouse e quindi selezionare **Disattiva**. Dopo la disattivazione, lo stato del dispositivo verrà aggiornato.
 
      ![Dispositivo di origine disattivato](./media/storsimple-8000-device-failover-disaster-recovery/failover-single-dev14.png)
 
-10. Seleziona hello disattivato dispositivo pulsante destro del mouse e quindi selezionare **eliminare**. Ciò elimina dispositivo hello dall'elenco di hello dei dispositivi.
+10. Selezionare il dispositivo disattivato, fare clic con il pulsante destro del mouse e quindi selezionare **Elimina**. Il dispositivo verrà eliminato dall'elenco di dispositivi.
 
     ![Dispositivo di origine eliminato](./media/storsimple-8000-device-failover-disaster-recovery/failover-single-dev15.png)
 
@@ -80,6 +80,6 @@ Eseguire operazioni se è necessario toofail su toohello hello stesso dispositiv
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* Dopo aver eseguito un failover, potrebbe essere troppo[disattivare o eliminare il dispositivo StorSimple](storsimple-8000-deactivate-and-delete-device.md).
-* Per informazioni su come toouse hello dispositivo StorSimple Manager service, andare troppo[utilizzare hello tooadminister servizio di gestione di dispositivi StorSimple dispositivo StorSimple](storsimple-8000-manager-service-administration.md).
+* Dopo aver eseguito un failover, può essere necessario [disattivare o eliminare il dispositivo StorSimple](storsimple-8000-deactivate-and-delete-device.md).
+* Per informazioni sull'uso del servizio Gestione dispositivi StorSimple, vedere [Use the StorSimple Device Manager service to administer your StorSimple device](storsimple-8000-manager-service-administration.md) (Usare il servizio Gestione dispositivi StorSimple per amministrare il dispositivo StorSimple).
 

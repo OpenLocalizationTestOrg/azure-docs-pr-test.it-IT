@@ -1,8 +1,8 @@
 ---
-title: aaaAzure documentazione del bilanciamento del carico - esercitazioni, riferimenti alle API | Documenti Microsoft
-description: Informazioni su come toouse bilanciamento del carico delle prestazioni di rete delle applicazioni. Gestione del traffico per macchine virtuali e risorse cloud, anche in reti virtuali cross-premise.
+title: Documentazione di Azure Load Balancer - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
+description: Informazioni sull'utilizzo del servizio di bilanciamento del carico per le prestazioni di rete delle app. Gestione del traffico per macchine virtuali e risorse cloud, anche in reti virtuali cross-premise.
 services: load-balancer
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 877aef347f9d6f97da1562944676c2e95ddba470
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 169ca89ccd80e5a70f3e9ab07b3c34358c154be7
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 #<a name="load-balancer-documentation"></a>Documentazione sul servizio di bilanciamento del carico
 
-Informazioni su come tooconfigure bilanciamento del carico toodeliver elevata disponibilità e la rete tooyour applicazioni prestazioni. Documentazione viene illustrato come tooload bilanciare il traffico tooand dalle macchine virtuali e alle risorse cloud e in reti virtuali cross-premise.
+Informazioni su come configurare il servizio di bilanciamento del carico per offrire elevati livelli di disponibilità e prestazioni di rete per le applicazioni. La documentazione illustra come bilanciare il carico del traffico da e verso le macchine virtuali e le risorse cloud, anche in reti virtuali cross-premise.
 
 <ul class="panelContent cardsFTitle">
     <li>

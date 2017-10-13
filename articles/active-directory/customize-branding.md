@@ -1,9 +1,9 @@
 ---
-title: aaaCustomize accesso pagina hello Azure Active Directory | Documenti Microsoft
-description: Informazioni su come tooadd una pagina toohello Accedi Azure branding aziendale
+title: Personalizzare la pagina di accesso in Azure Active Directory | Microsoft Docs
+description: Informazioni su come aggiungere informazioni personalizzate distintive dell'azienda alla pagina di accesso di Azure
 services: active-directory
 documentationcenter: 
-author: jeffgilb
+author: curtand
 manager: femila
 editor: 
 ms.assetid: f8b932bc-8b4f-42b5-a2d3-f2c076234a78
@@ -12,104 +12,105 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/11/2017
-ms.author: jeffgilb
+ms.date: 09/06/2017
+ms.author: curtand
+ms.reviewer: kexia
 custom: it-pro
-ms.openlocfilehash: 7a7ccdeef0764f6cf9e9e224acd4350983031fe0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6bfce3d4ec243779229cc4f39e1c22149229a66a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="quickstart-add-company-branding-tooyour-sign-in-page-in-azure-ad"></a>Guida introduttiva: Aggiungere informazioni personalizzate distintive tooyour nella pagina di accesso di Azure AD della società
-tooavoid confusione, molte società desidera tooapply un aspetto coerente in tutti i siti Web di hello e i servizi gestiti. Azure Active Directory (Azure AD) offre questa funzionalità, consentendo l'aspetto di hello toocustomize di hello nella pagina di accesso con il logo della società e combinazioni di colori personalizzati. pagina di accesso Hello è hello pagina viene visualizzata quando si accede tooOffice 365 o altre applicazioni basate su web che usano Azure AD come provider di identità. Si interagiscono con tooenter questa pagina delle credenziali.
+# <a name="quickstart-add-company-branding-to-your-sign-in-page-in-azure-ad"></a>Avvio rapido: Aggiungere informazioni personalizzate distintive dell'azienda alla pagina di accesso in Azure AD
+Per evitare confusione, molte aziende vogliono applicare un aspetto coerente a tutti i siti Web e servizi che gestiscono. Azure Active Directory (Azure AD) offre questa funzionalità consentendo di personalizzare l'aspetto della pagina di accesso, in modo da includere il logo e le combinazioni colori personalizzate dell'azienda. La pagina di accesso è la pagina visualizzata quando si accede a Office 365 o ad altre applicazioni basate sul Web che usano Azure AD come provider di identità. Interagire con questa pagina per immettere le credenziali.
 
 > [!NOTE]
-> * Branding aziendale è disponibile solo se è stato aggiornato toohello Premium o Edizione Basic di Azure Active Directory o avere una licenza di Office 365. toolearn se una funzionalità è supportata dal tipo di licenza, controllare hello [pagina informazioni sui prezzi di Azure Active Directory](https://azure.microsoft.com/pricing/details/active-directory/).
+> * La possibilità di aggiungere informazioni personalizzate distintive dell'azienda è disponibile solo se è stato eseguito l'aggiornamento all'edizione Premium o Basic di Azure AD o se si possiede una licenza di Office 365. Per determinare se una funzionalità sia o meno supportata da un tipo di licenza specifico, vedere la pagina [Prezzi di Azure Active Directory](https://azure.microsoft.com/pricing/details/active-directory/).
 > 
-> * Azure Active Directory Premium e le edizioni Basic sono disponibili per i clienti in Cina tramite hello istanza globale di Azure Active Directory. Azure Active Directory Premium e le edizioni Basic non sono attualmente supportate nel servizio di Microsoft Azure hello gestito da 21Vianet in Cina. Per ulteriori informazioni, contattare Microsoft in hello [Forum di Azure Active Directory](https://feedback.azure.com/forums/169401-azure-active-directory/).
+> * Le edizioni Premium e Basic di Azure Active Directory sono disponibili per i clienti in Cina che usano l'istanza globale di Azure Active Directory. Azure Active Directory Premium e le edizioni Basic non sono attualmente supportati nel servizio di Microsoft Azure gestito da 21Vianet in Cina. Per altre informazioni, è possibile contattare Microsoft attraverso il [forum di Azure Active Directory](https://feedback.azure.com/forums/169401-azure-active-directory/).
 
-## <a name="customizing-hello-sign-in-page"></a>Personalizzazione pagina di accesso hello
+## <a name="customizing-the-sign-in-page"></a>Personalizzazione della pagina di accesso
 
-<!--You can customize hello following elements on hello sign-in page: <attach image>-->
+<!--You can customize the following elements on the sign-in page: <attach image>-->
 
-Le personalizzazioni di personalizzazione sono disponibili nella pagina di accesso hello Azure AD quando gli utenti accedono un URL specifico del tenant, ad esempio società [ *https://outlook.com/contoso.com*](https://outlook.com/contoso.com).
+Le personalizzazioni distintive dell'azienda vengono visualizzate nella pagina di accesso di Azure AD quando gli utenti accedono a un URL specifico del tenant, ad esempio [*https://outlook.com/contoso.com*](https://outlook.com/contoso.com).
 
-Quando gli utenti visitano un URL generico, ad esempio www.office.com, hello nella pagina di accesso non contiene marchio personalizzazioni perché il sistema di hello non riconosce l'identità utente hello della società. Le informazioni personalizzate distintive dell'azienda vengono visualizzate non appena gli utenti immettono l'ID utente o selezionano un riquadro utente.
+Quando gli utenti visitano un URL generico, ad esempio www.office.com, la pagina di accesso non contiene personalizzazioni distintive dell'azienda perché il sistema non riconosce l'utente. Le informazioni personalizzate distintive dell'azienda vengono visualizzate non appena gli utenti immettono l'ID utente o selezionano un riquadro utente.
 
 > [!NOTE]
-> * Il nome di dominio deve risultare "Attivo" nella hello **domini** hello di parte del portale di Azure in cui è stata configurata la personalizzazione. Per altre informazioni, vedere [Add a custom domain name](add-custom-domain.md) (Aggiungere un nome di dominio personalizzato).
-> * Personalizzazione pagina di accesso non trasferiti toohello-pagina di accesso per gli account Microsoft personale. Se ai dipendenti o agli utenti guest aziendali accedere con un account Microsoft personale, la pagina di accesso non riflette hello personalizzazione dell'organizzazione.
+> * Il nome di dominio deve essere visualizzato come "Attivo" nella sezione **Domini** del portale di Azure in cui è stata configurata la personalizzazione. Per altre informazioni, vedere [Add a custom domain name](add-custom-domain.md) (Aggiungere un nome di dominio personalizzato).
+> * La personalizzazione della pagina di accesso non si applica alla pagina di accesso dell'account Microsoft personale. Se i dipendenti o gli utenti guest aziendali accedono con un account Microsoft personale, la pagina di accesso non rifletterà le personalizzazioni distintive dell'azienda.
 
 
 ### <a name="banner-logo"></a>Logo banner 
 
 Descrizione | Vincoli | Raccomandazioni
 ------- | ------- | ----------
-logo banner Hello viene visualizzato nella Accedi hello e pagine del Pannello di accesso hello.<br>In hello-pagina di accesso, vengono visualizzati una volta determinato organizzazione dell'utente hello, in genere dopo l'immissione di nome utente hello.  | JPG o PNG trasparente<br>Altezza massima: 36 pixel<br>Larghezza massima: 245 pixel | Usare il logo dell'organizzazione in questa posizione.<br>Usare un'immagine trasparente. Non presupporre che background hello sarà bianco.<br>Non aggiungere spaziatura interna del logo nell'immagine hello o il logo avrà un aspetto estremamente piccolo.
+Il logo del banner viene visualizzato nella pagina di accesso e nelle pagine del pannello di accesso.<br>Nella pagina di accesso viene visualizzato una volta determinata l'organizzazione dell'utente, in genere dopo l'immissione del nome utente.  | JPG o PNG trasparente<br>Altezza massima: 36 pixel<br>Larghezza massima: 245 pixel | Usare il logo dell'organizzazione in questa posizione.<br>Usare un'immagine trasparente. Non dare per scontato che lo sfondo sarà bianco.<br>Non aggiungere spaziatura interna intorno al logo nell'immagine o il logo apparirà sproporzionatamente piccolo.
 
 ### <a name="username-hint"></a>Suggerimento per il nome utente   
 Descrizione | Vincoli | Raccomandazioni
 ------- | ------- | ----------
-Consente di personalizzare il testo di suggerimento hello nel campo nome utente hello. | Testo Unicode dei caratteri too64<br>Solo testo normale | È consigliabile non impostarla se si prevede che gli utenti guest di fuori del toosign organizzazione nell'app tooyour.
+Consente di personalizzare il testo di suggerimento nel campo relativo al nome utente. | Testo Unicode contenente fino a 64 caratteri<br>Solo testo normale | Si consiglia di non impostare questo elemento se si prevede che utenti guest esterni all'organizzazione accedano all'app.
             
 ### <a name="sign-in-page-text"></a>Testo della pagina di accesso   
 Descrizione | Vincoli | Raccomandazioni
 ------- | ------- | ----------
-Questo verrà visualizzato nella parte inferiore di hello del modulo di accesso hello e può essere utilizzato toocommunicate informazioni aggiuntive, ad esempio hello phone numero tooyour help desk o una nota legale. | Testo Unicode dei caratteri too256<br>Solo testo normale, senza collegamenti o tag HTML 
+Questo testo viene visualizzato nella parte inferiore del modulo di accesso e può essere usato per comunicare informazioni aggiuntive, ad esempio il numero di telefono dell'help desk o una nota legale. | Testo Unicode fino a 256 caratteri<br>Solo testo normale, senza collegamenti o tag HTML   
 
 ### <a name="sign-in-page-image"></a>Immagine della pagina di accesso  
 Descrizione | Vincoli | Raccomandazioni
 ------- | ------- | ----------
-Questo valore viene visualizzato in background hello di hello-pagina di accesso, è ancorata toohello centro di spazio visualizzabile hello e scalare e ritagliare toofill finestra del browser hello.  <br>Negli schermi stretti, come quelli dei telefoni cellulari, l'immagine non viene visualizzata.<br>Una maschera nera con opacità 0,55 verrà applicata su questa immagine dal codice quando viene caricata la pagina hello. | JPG o PNG<br>Dimensioni immagine: 1920 x 1080 pixel<br>Dimensioni del file: &gt; 300 KB | <br>Usare le immagini nei casi in cui non è necessario richiamare l'attenzione sull'argomento. Hello opaco Accedi form viene visualizzato il centro di hello di questa immagine e possono coprire qualsiasi parte dell'immagine di hello in base alle dimensioni di hello hello finestra del browser.<br>Mantenere i tempi di caricamento rapido tooensure possibili assuma dimensioni del file hello. 
+Questa immagine viene visualizzata sullo sfondo della pagina di accesso, è ancorata al centro dell'area visualizzabile e viene ridimensionata e ritagliata per riempire la finestra del browser.    <br>Negli schermi stretti, come quelli dei telefoni cellulari, l'immagine non viene visualizzata.<br>Quando la pagina viene caricata, il codice applica una maschera nera con opacità 0,55 sopra all'immagine. | JPG o PNG<br>Dimensioni immagine: 1920 x 1080 pixel<br>Dimensioni del file: &lt; 300 KB | <br>Usare le immagini nei casi in cui non è necessario richiamare l'attenzione sull'argomento. Il modulo di accesso opaco viene visualizzato sopra la parte centrale dell'immagine e può coprire qualsiasi parte dell'immagine, a seconda delle dimensioni della finestra del browser.<br>Mantenere le dimensioni del file quanto più piccole possibile per garantire tempi di caricamento rapidi. 
 
 ### <a name="background-color"></a>Colore di sfondo
 Descrizione | Vincoli | Raccomandazioni
 ------- | ------- | ----------
-Questo colore è usato al posto di immagine di sfondo hello per le connessioni a larghezza di banda ridotta. |   Colore RGB in formato esadecimale (esempio: #FFFFFF) | È consigliabile utilizzare il colore primario hello del logo banner hello o il colore dell'organizzazione.
+Questo colore viene usato al posto dell'immagine di sfondo con le connessioni con larghezza di banda ridotta. | Colore RGB in formato esadecimale (esempio: #FFFFFF) | È consigliabile usare il colore primario del logo del banner o il colore dell'organizzazione.
 
-### <a name="show-option-tooremain-signed-in"></a>Mostra l'opzione tooremain effettuato l'accesso
+### <a name="show-option-to-remain-signed-in"></a>Impostazione Mostra l'opzione per mantenere l'accesso
 Descrizione | Vincoli | Raccomandazioni
 ------- | ------- | ----------
-Accesso AD Azure offre hello utente hello opzione tooremain connesso quando viene chiuso e riaprire il browser. Utilizzare questo toohide tale opzione.<br>Impostare questo troppo "No" toohide questa opzione agli utenti. | &nbsp; | Questa impostazione non influisce sulla durata della sessione.<br>Alcune funzionalità di SharePoint Online e Office 2010 dipendono dagli utenti in grado di toochoose tooremain effettuato l'accesso. Se si imposta questo toobe nascosta, gli utenti potrebbero notare aggiuntive e impreviste prompt toosign-in.
+La pagina di accesso di Azure AD include un'opzione che consente a un utente di rimanere connesso quando chiude e riapre il browser. Usare questa impostazione per nascondere tale opzione.<br>Impostare il valore su "No" per nascondere l'opzione agli utenti. | &nbsp; | Questa impostazione non influisce sulla durata della sessione.<br>Alcune funzionalità di SharePoint Online e di Office 2010 dipendono dal fatto che gli utenti possano o meno scegliere se restare connessi. Se si configura questa impostazione come nascosta, gli utenti potrebbero visualizzare prompt aggiuntivi e imprevisti con una richiesta di accesso.
 
 > [!NOTE]
-> Tutti gli elementi sono facoltativi. Ad esempio, se si specifica un logo banner con alcuna immagine di sfondo, hello nella pagina di accesso mostrerà immagine di sfondo del logo e hello per il sito di destinazione hello (ad esempio, Office 365).
+> Tutti gli elementi sono facoltativi. Se, ad esempio, si specifica un logo del banner senza immagine di sfondo, la pagina di accesso mostrerà il logo e l'immagine di sfondo per il sito di destinazione, ad esempio Office 365.
 
-## <a name="add-company-branding-tooyour-directory"></a>Aggiungere informazioni personalizzate distintive tooyour directory della società
+## <a name="add-company-branding-to-your-directory"></a>Aggiungere informazioni personalizzate distintive dell'azienda alla directory
 
-1. Accedi troppo[hello Azure portal](https://portal.azure.com) con un account che sia un amministratore globale per la directory di hello.
-2. Selezionare **più servizi**, immettere **utenti e gruppi** nella casella di testo hello e quindi selezionare **invio**.
+1. Accedere al [portale di Azure](https://portal.azure.com) con un account di amministratore globale per la directory.
+2. Selezionare **Altri servizi**, immettere **Utenti e gruppi** nella casella di testo e quindi premere **INVIO**.
 
    ![Apertura di Gestione utenti](./media/active-directory-branding-custom-signon-azure-portal/user-management.png)
-3. In hello **utenti e gruppi** pannello seleziona **personalizzazione specifica della società**.
-4. In hello **utenti e gruppi - personalizzazione specifica della società** blade, seleziona hello **modifica** comando.
+3. Nel pannello **Utenti e gruppi** selezionare **Informazioni personalizzate distintive dell'azienda**.
+4. Nel pannello **Utenti e gruppi - Informazioni personalizzate distintive dell'azienda** selezionare il comando **Modifica**.
 
     ![Modificare le informazioni personalizzate](./media/active-directory-branding-custom-signon-azure-portal/edit-branding.png)
-5. Modificare gli elementi di hello desiderati toocustomize. Tutti gli elementi sono facoltativi.
-6. Fare clic su **Salva**.
+5. Modificare gli elementi da personalizzare. Tutti gli elementi sono facoltativi.
+6. Fare clic su **Save**.
 
-Potrebbe essere necessaria fino tooan ora per tutte le modifiche apportate toohello Accedi pagina tooappear personalizzazione.
+Può trascorrere fino a un'ora prima che qualsiasi modifica apportata per la personalizzazione della pagina di accesso venga visualizzata.
 
-## <a name="add-language-specific-company-branding-tooyour-directory"></a>Aggiungere personalizzazione tooyour directory della società specifiche della lingua
+## <a name="add-language-specific-company-branding-to-your-directory"></a>Per aggiungere alla directory informazioni personalizzate distintive dell'azienda specifiche di una lingua
 
-1. Accedi toohello [centro di amministrazione di Azure AD](https://aad.portal.azure.com) con un account che sia un amministratore globale per la directory di hello.
-2. Selezionare **utenti e gruppi** nella casella di testo hello e quindi selezionare **invio**.
+1. Accedere all'[interfaccia di amministrazione di Azure AD](https://aad.portal.azure.com) con un account amministratore globale per la directory.
+2. Selezionare **Utenti e gruppi** nella casella di testo e quindi premere **INVIO**.
 
    ![Apertura di Gestione utenti](./media/active-directory-branding-localize-azure-portal/user-management.png)
-3. In hello **utenti e gruppi** pannello seleziona **personalizzazione specifica della società**.
-4. In hello **utenti e gruppi - personalizzazione specifica della società** blade, seleziona hello **Aggiungi lingua** comando.
+3. Nel pannello **Utenti e gruppi** selezionare **Informazioni personalizzate distintive dell'azienda**.
+4. Nel pannello **Utenti e gruppi - Informazioni personalizzate distintive dell'azienda** selezionare il comando **Aggiungi lingua**.
 
     ![Aggiungere elementi personalizzati distintivi dell'azienda specifiche della lingua](./media/active-directory-branding-localize-azure-portal/add-language.png)
-5. Modificare gli elementi di hello desiderati toocustomize. Tutti gli elementi sono facoltativi.
-6. Fare clic su **Salva**.
+5. Modificare gli elementi da personalizzare. Tutti gli elementi sono facoltativi.
+6. Fare clic su **Save**.
 
-Potrebbe essere necessaria fino tooan ora per tutte le modifiche apportate toohello Accedi pagina tooappear personalizzazione.
+Può trascorrere fino a un'ora prima che qualsiasi modifica apportata per la personalizzazione della pagina di accesso venga visualizzata.
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questa Guida rapida, si è appreso come tooadd aziendale personalizzazione tooyour Azure Active directory. 
+In questa guida introduttiva si è appreso come aggiungere informazioni personalizzate distintive dell'azienda alla directory di Azure AD. 
 
-È possibile utilizzare hello seguente collegamento tooconfigure azienda di branding di Azure AD da hello portale di Azure.
+È possibile usare il collegamento seguente per aggiungere informazioni personalizzate distintive dell'azienda in Azure AD dal portale di Azure.
 
 > [!div class="nextstepaction"]
 > [Configurare la personalizzazione aziendale](https://aad.portal.azure.com/#blade/Microsoft_AAD_IAM/LoginTenantBrandingBlade) 

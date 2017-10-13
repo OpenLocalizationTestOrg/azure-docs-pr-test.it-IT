@@ -1,6 +1,6 @@
 ---
-title: aaaHow tooconfigure toouse di app un inizializzatore di avvio Spring Cache Redis
-description: Informazioni su come tooconfigure un'applicazione di avvio molla creata con hello Spring Initializr toouse Cache Redis di Azure.
+title: Come configurare un'app Spring Boot Initializer per l'uso della cache Redis
+description: Informazioni su come configurare un'applicazione Spring Boot creata con Spring Initializr per l'uso di Cache Redis di Azure.
 services: redis-cache
 documentationcenter: java
 author: rmcmurray
@@ -13,25 +13,25 @@ ms.workload: tbd
 ms.tgt_pltfrm: cache-redis
 ms.devlang: java
 ms.topic: article
-ms.date: 7/21/2017
+ms.date: 08/31/2017
 ms.author: robmcm;zhijzhao;yidon
-ms.openlocfilehash: ad532c88d2d67b97079eeb0e0e392add29ac365b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7a6ec549654d00975494bac8594a6777af5ec415
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-tooconfigure-a-spring-boot-initializer-app-toouse-redis-cache"></a>Come tooconfigure toouse di app un inizializzatore di avvio Spring Cache Redis
+# <a name="how-to-configure-a-spring-boot-initializer-app-to-use-redis-cache"></a>Come configurare un'app Spring Boot Initializer per l'uso della cache Redis
 
 ## <a name="overview"></a>Panoramica
 
-Hello  **[Spring Framework]**  è una soluzione open source che consente agli sviluppatori Java di creare applicazioni di livello aziendale. Uno dei progetti comuni a più di hello che viene compilato in cui piattaforma è [avvio Spring], che fornisce un approccio semplificato per la creazione di applicazioni Java autonome. gli sviluppatori toohelp iniziare con l'avvio della primavera, sono disponibili in diversi pacchetti di esempio Spring avvio <https://github.com/spring-guides/>. Inoltre toochoosing dall'elenco di hello di avvio di base Spring progetti, hello  **[Spring Initializr]**  consente agli sviluppatori di iniziare a utilizzare la creazione di applicazioni Spring avvio personalizzate.
+**[Spring Framework]** è una soluzione open source che consente agli sviluppatori Java di creare applicazioni di livello enterprise. Uno dei progetti più comuni che si basa su questa piattaforma è [Spring Boot], che fornisce un approccio semplificato per la creazione di applicazioni Java autonome. Per semplificare le operazioni iniziali con Spring Boot per gli sviluppatori, alcuni pacchetti Spring Boot di esempio sono disponibili all'indirizzo <https://github.com/spring-guides/>. Oltre a consentire di scegliere dall'elenco di progetti Spring Boot di base, **[Spring Initializr]** semplifica le operazioni iniziali degli sviluppatori per la creazione di applicazioni Spring Boot personalizzate.
 
-Questo articolo vengono illustrati la creazione di una cache Redis tramite hello portale Azure, quindi usando hello **Spring Initializr** toocreate un'applicazione personalizzata e quindi la creazione di un linguaggio ' applicazione web che archivia e recupera i dati tramite il Cache redis.
+Questo articolo illustra in modo dettagliato come creare una cache Redis usando il portale di Azure, quindi usare **Spring Initializr** per creare un'applicazione personalizzata e infine creare un'applicazione Web Java che archivia e recupera i dati tramite la cache Redis.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Hello seguenti prerequisiti è necessari nei passaggi di hello ordine toofollow in questo articolo:
+I prerequisiti seguenti sono necessari per seguire le procedure disponibili in questo articolo:
 
 * Sottoscrizione di Azure; se non si ha una sottoscrizione di Azure, è possibile attivare i [vantaggi per i sottoscrittori di MSDN] oppure iscriversi per ottenere un [account Azure gratuito].
 
@@ -41,7 +41,7 @@ Hello seguenti prerequisiti è necessari nei passaggi di hello ordine toofollow 
 
 ## <a name="create-a-redis-cache-on-azure"></a>Creare una cache Redis in Azure
 
-1. Sfoglia toohello Azure portale in <https://portal.azure.com/> e fare clic su elemento hello per **+ nuovo**.
+1. Passare al portale di Azure all'indirizzo <https://portal.azure.com/> e fare clic sulla voce **+Nuovo**.
 
    ![Portale di Azure][AZ01]
 
@@ -49,67 +49,83 @@ Hello seguenti prerequisiti è necessari nei passaggi di hello ordine toofollow 
 
    ![Portale di Azure][AZ02]
 
-1. In hello **nuova Cache Redis** pagina, immettere hello **nome DNS** per la cache, quindi specificare il **sottoscrizione**, **gruppo di risorse**,  **Percorso**, e **tariffario**. Dopo aver specificato queste opzioni, fare clic su **crea** toocreate la cache.
+1. Nella pagina **Nuova cache Redis** specificare le informazioni seguenti:
+
+   * Immettere **Nome DNS** per la cache.
+   * Specificare **Sottoscrizione**, **Gruppo di risorse**, **Posizione** e **Piano tariffario**.
+   * Per questa esercitazione, scegliere **Sblocca la porta 6379**.
+
+   > [!NOTE]
+   >
+   > È possibile usare SSL con le cache Redis, ma è necessario usare un client Redis diverso, come Jedis. Per altre informazioni, vedere [Come usare Cache Redis di Azure con Java][Redis Cache with Java].
+   >
+
+   Dopo avere specificato queste opzioni, fare clic su **Crea** per creare la cache.
 
    ![Portale di Azure][AZ03]
 
-1. Una volta completata la cache, si verrà visualizzato solo nella finestra di Azure **Dashboard**, nonché nel hello **tutte le risorse**, e **cache Redis** pagine. È possibile fare clic nella cache in qualsiasi tali percorsi tooopen hello pagina delle proprietà per la cache.
+1. Al termine, la cache verrà elencata nel **dashboard** di Azure, nonché nelle pagine **Tutte le risorse** e **Caches Redis**. È possibile fare clic sulla cache in una di queste posizioni per aprire la pagina delle proprietà per la cache.
 
    ![Portale di Azure][AZ04]
 
-1. Quando viene visualizzata la pagina hello contenente hello elenco di proprietà per la cache, fare clic su **le chiavi di accesso** e copiare le chiavi di accesso per la cache.
+1. Quando viene visualizzata la pagina contenente l'elenco delle proprietà della cache, fare clic su **Chiavi di accesso** e copiare le chiavi di accesso per la cache.
 
    ![Portale di Azure][AZ05]
 
-## <a name="create-a-custom-application-using-hello-spring-initializr"></a>Creare un'applicazione personalizzata utilizzando hello Spring Initializr
+## <a name="create-a-custom-application-using-the-spring-initializr"></a>Creare un'applicazione personalizzata tramite Spring Initializr
 
-1. Sfoglia troppo<https://start.spring.io/>.
+1. Passare a <https://start.spring.io/>.
 
-1. Specifica che si desidera toogenerate un **Maven** il progetto con **Java**, immettere hello **gruppo** e **Aritifact** nomi per l'applicazione, e quindi fare clic su collegamento hello troppo**versione completa di commutatore toohello** di hello Initializr molla.
+1. Specificare che si vuole generare un progetto **Maven** con **Java**, immettere i nomi di **Group** (Gruppo) e **Artifact** (Elemento) per l'applicazione e quindi fare clic sul collegamento relativo a **Switch to the full version** (Passa alla versione completa) di Spring Initializr.
 
    ![Opzioni di base di Spring Initializr][SI01]
 
    > [!NOTE]
    >
-   > Hello Spring Initializr utilizzerà hello **gruppo** e **Aritifact** nome del pacchetto hello toocreate nomi, ad esempio: *com.contoso.myazuredemo*.
+   > Spring Initializr userà i valori di **Group** (Gruppo) e **Artifact** (Elemento) per creare il nome del pacchetto, ad esempio *com.contoso.myazuredemo*.
    >
 
-1. Scorrere verso il basso toohello **Web** sezione e selezionare la casella di hello per **Web**, quindi scorrere verso il basso toohello **NoSQL** sezione e selezionare la casella di hello per **Redis**, quindi scorrere toohello parte inferiore della pagina hello e fare clic su pulsante hello troppo**generare progetto**.
+1. Scorrere verso il basso fino alla sezione **Web** e selezionare la casella relativa a **Web**, quindi scorrere verso il basso fino alla sezione **NoSQL** e selezionare la casella **Redis**. Scorrere infine fino alla parte inferiore della pagina e fare clic sul pulsante **Generate Project** (Genera progetto).
 
    ![Opzioni complete di Spring Initializr][SI02]
 
-1. Quando richiesto, scaricare percorso tooa del progetto hello nel computer locale.
+1. Quando richiesto, scaricare il progetto in un percorso nel computer locale.
 
-   ![Scaricare il progetto Spring Boot personalizzato][SI03]
+   ![Scaricare il progetto Spring Boot][SI03]
 
-1. Dopo che sono stati estratti i file hello nel sistema locale, l'applicazione di avvio Spring personalizzata sarà pronto per la modifica.
+1. Dopo l'estrazione dei file nel sistema locale, l'applicazione Spring Boot personalizzata sarà pronta per la modifica.
 
-   ![File del progetto Spring Boot personalizzato][SI04]
+   ![File di progetto Spring Boot personalizzati][SI04]
 
-## <a name="configure-your-custom-spring-boot-toouse-your-redis-cache"></a>Configurare il toouse Spring avvio personalizzato la Cache Redis
+## <a name="configure-your-custom-spring-boot-to-use-your-redis-cache"></a>Configurare il progetto Spring Boot personalizzato per l'uso della cache Redis
 
-1. Individuare hello *application.properties* file hello *risorse* directory dell'app, o se non esiste già, creare file hello.
+1. Individuare il file *application.properties* nella directory *resources* dell'app o creare il file se non esiste già.
 
-   ![Individuare il file application.properties hello][RE01]
+   ![Individuare il file application.properties][RE01]
 
-1. Aprire hello *application.properties* file in un editor di testo e aggiungere i seguenti file toohello righe hello e sostituire i valori di esempio hello con le proprietà appropriate hello dalla cache:
+1. Aprire il file *application.properties* in un editor di testo, quindi aggiungere le righe seguenti al file e sostituire i valori di esempio con le proprietà appropriate dalla cache:
 
    ```yaml
-   # Specify hello DNS URI of your Redis cache.
+   # Specify the DNS URI of your Redis cache.
    spring.redis.host=myspringbootcache.redis.cache.windows.net
 
-   # Specify hello port for your Redis cache.
-   spring.redis.port=6380
+   # Specify the port for your Redis cache.
+   spring.redis.port=6379
 
-   # Specify hello access key for your Redis cache.
+   # Specify the access key for your Redis cache.
    spring.redis.password=57686f6120447564652c2049495320526f636b73=
    ```
 
-   ![Modifica file application.properties hello][RE02]
+   ![Modifica del file application.properties][RE02]
 
-1. Salvare e chiudere hello *application.properties* file.
+   > [!NOTE]
+   >
+   > Se si usa un client Redis diverso, come Jedis che consente l'uso di SSL, specificare la porta 6380 nel file *application.properties*. Per altre informazioni, vedere [Come usare Cache Redis di Azure con Java][Redis Cache with Java].
+   >
 
-1. Creare una cartella denominata *controller* nella cartella di origine hello per il pacchetto; ad esempio:
+1. Salvare e chiudere il file *application.properties*.
+
+1. Creare una cartella denominata *controller* nella cartella di origine del pacchetto, ad esempio:
 
    `C:\SpringBoot\myazuredemo\src\main\java\com\contoso\myazuredemo\controller`
 
@@ -117,55 +133,46 @@ Hello seguenti prerequisiti è necessari nei passaggi di hello ordine toofollow 
 
    `/users/example/home/myazuredemo/src/main/java/com/contoso/myazuredemo/controller`
 
-1. Creare un nuovo file denominato *HelloController.java* in hello *controller* cartella. Aprire il file hello in un editor di testo e aggiungere hello tooit di codice seguente:
+1. Creare un nuovo file denominato *HelloController.java* nella cartella *controller*. Aprire il file in un editor di testo e aggiungere il codice seguente:
 
    ```java
    package com.contoso.myazuredemo;
 
    import org.springframework.web.bind.annotation.RequestMapping;
    import org.springframework.web.bind.annotation.RestController;
-   import org.springframework.beans.factory.annotation.Value;
-   import redis.clients.jedis.Jedis;
-   import redis.clients.jedis.JedisShardInfo;
+   import org.springframework.beans.factory.annotation.Autowired;
+   import org.springframework.boot.SpringApplication;
+   import org.springframework.boot.autoconfigure.SpringBootApplication;
+   import org.springframework.data.redis.core.StringRedisTemplate;
+   import org.springframework.data.redis.core.ValueOperations;
 
    @RestController
    public class HelloController {
    
-      // Retrieve hello DNS name for your cache.
-      @Value("${spring.redis.host}")
-      private String redisHost;
-
-      // Retrieve hello port for your cache.
-      @Value("${spring.redis.port}")
-      private int redisPort;
-
-      // Retrieve hello access key for your cache.
-      @Value("${spring.redis.password}")
-      private String redisPassword;
+      @Autowired
+      private StringRedisTemplate template;
 
       @RequestMapping("/")
-      // Define hello Hello World controller.
+      // Define the Hello World controller.
       public String hello() {
       
-         // Create a JedisShardInfo object tooconnect tooyour Redis cache.
-         JedisShardInfo jedisShardInfo = new JedisShardInfo(redisHost, redisPort, true);
-         // Specify your access key.
-         jedisShardInfo.setPassword(redisPassword);
-         // Create a Jedis object toostore/retrieve information from your cache.
-         Jedis jedis = new Jedis(jedisShardInfo);
+         ValueOperations<String, String> ops = this.template.opsForValue();
 
-         // Add a Hello World string tooyour cache.
-         jedis.set("greeting", "Hello World!");
+         // Add a Hello World string to your cache.
+         String key = "greeting";
+         if (!this.template.hasKey(key)) {
+             ops.set(key, "Hello World!");
+         }
 
-         // Return hello string from your cache.
-         return jedis.get("greeting");
+         // Return the string from your cache.
+         return ops.get(key);
       }
    }
    ```
    
-   In cui è necessario tooreplace `com.contoso.myazuredemo` con nome hello del pacchetto per il progetto.
+   Sarà necessario sostituire `com.contoso.myazuredemo` con il nome del pacchetto per il progetto.
 
-1. Salvare e chiudere hello *HelloController.java* file.
+1. Salvare e chiudere il file *HelloController.java*.
 
 1. Compilare l'applicazione Spring Boot con Maven ed eseguirla, ad esempio:
 
@@ -174,33 +181,33 @@ Hello seguenti prerequisiti è necessari nei passaggi di hello ordine toofollow 
    mvn spring-boot:run
    ```
 
-1. Testare l'app web hello esplorando toohttp://localhost:8080 mediante un web browser o utilizzare sintassi hello come hello di esempio seguente, se si dispone di curl disponibili:
+1. Testare l'app Web passando a http://localhost:8080 tramite un Web browser o usare una sintassi simile all'esempio seguente, se si hanno curl disponibili:
 
    ```shell
    curl http://localhost:8080
    ```
 
-   Dovrebbe essere hello "Hello World!" dal controller di esempio, recuperato dinamicamente dalla cache Redis.
+   Dovrebbe essere visualizzato il messaggio "Hello World!" dal controller di esempio, recuperato dinamicamente dalla cache Redis.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per ulteriori informazioni sull'utilizzo di applicazioni di avvio Spring in Azure, vedere hello seguenti articoli:
+Per altre informazioni sull'uso delle applicazioni Spring Boot in Azure, vedere gli articoli seguenti:
 
-* [Distribuire un servizio App di Azure di toohello Spring avvio applicazione](../app-service/app-service-deploy-spring-boot-web-app-on-azure.md)
+* [Distribuire un'applicazione Spring Boot nel servizio app di Azure](../app-service/app-service-deploy-spring-boot-web-app-on-azure.md)
 
-* [Esegue un'applicazione di avvio molla su un Kubernetes Cluster in hello servizio contenitore di Azure](../container-service/container-service-deploy-spring-boot-app-on-kubernetes.md)
+* [Eseguire un'applicazione Spring Boot in un cluster Kubernetes nel servizio contenitore di Azure](../container-service/container-service-deploy-spring-boot-app-on-kubernetes.md)
 
-Per ulteriori informazioni sull'uso di Azure con Java, vedere hello [Centro per sviluppatori Java di Azure] hello e [Java Tools per Visual Studio Team Services].
+Per altre informazioni su come usare Azure con Java, vedere il [Centro per sviluppatori Java di Azure] e gli [strumenti Java per Visual Studio Team Services].
 
-Per ulteriori informazioni sull'utilizzo di Cache Redis con Java in Azure, vedere [come toouse Cache Redis di Azure con Java][Redis Cache with Java].
+Per altre informazioni sulle operazioni iniziali nella cache Redis con Java in Azure, vedere [Come usare Cache Redis di Azure con Java][Redis Cache with Java].
 
 <!-- URL List -->
 
 [Centro per sviluppatori Java di Azure]: https://azure.microsoft.com/develop/java/
 [account Azure gratuito]: https://azure.microsoft.com/pricing/free-trial/
-[Java Tools per Visual Studio Team Services]: https://java.visualstudio.com/
+[strumenti Java per Visual Studio Team Services]: https://java.visualstudio.com/
 [vantaggi per i sottoscrittori di MSDN]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/
-[avvio Spring]: http://projects.spring.io/spring-boot/
+[Spring Boot]: http://projects.spring.io/spring-boot/
 [Spring Initializr]: https://start.spring.io/
 [Spring Framework]: https://spring.io/
 [Redis Cache with Java]: cache-java-get-started.md

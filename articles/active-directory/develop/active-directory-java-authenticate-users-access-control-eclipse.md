@@ -1,6 +1,6 @@
 ---
-title: aaaHow toouse il controllo di accesso (linguaggio) | Documenti Microsoft
-description: Informazioni su come toodevelop e l'utilizzo di controllo di accesso con Java in Azure.
+title: Come usare il Controllo di accesso (Java) | Documentazione Microsoft
+description: Informazioni su come sviluppare e usare Controllo di accesso con Java in Azure.
 services: active-directory
 documentationcenter: java
 author: rmcmurray
@@ -15,163 +15,163 @@ ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
 ms.custom: aaddev
-ms.openlocfilehash: cbbce3b1a05eabf3b86a8cb91db1bde92dbb8960
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 698403d181e1fee09bb4692290c92203ded97ba4
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-tooauthenticate-web-users-with-azure-access-control-service-using-eclipse"></a>Come tooAuthenticate utenti Web con accesso controllo servizio Azure usando Eclipse
-Questa guida illustra come toouse hello servizio Azure Access Control (ACS) all'interno di hello Azure Toolkit per Eclipse. Per ulteriori informazioni su ACS, vedere hello [passaggi successivi](#next_steps) sezione.
+# <a name="how-to-authenticate-web-users-with-azure-access-control-service-using-eclipse"></a>Come autenticare gli utenti Web con il Servizio di controllo di accesso di Azure usando Eclipse
+In questa guida verrà descritto come usare il Servizio di controllo di accesso di Azure (ACS) nel plug-nel Toolkit di Azure per Eclipse. Per altre informazioni su ACS, vedere la sezione [Passaggi successivi](#next_steps) .
 
 > [!NOTE]
-> Hello filtro di controllo di Azure Access Services è una versione community technology preview. Come versione preliminare, non è formalmente supportata da Microsoft.
+> Il filtro dei Servizi di controllo di accesso di Azure è una Community Technology Preview. Come versione preliminare, non è formalmente supportata da Microsoft.
 > 
 > 
 
 ## <a name="what-is-acs"></a>Informazioni su ACS
-La maggior parte degli sviluppatori non ha esperienza nell'ambito delle identità e in genere non desidera dedicare tempo a sviluppare meccanismi di autenticazione e autorizzazione per le applicazioni e i servizi. ACS è un servizio di Azure che fornisce un metodo semplice per l'autenticazione degli utenti che necessitano di tooaccess le applicazioni web e servizi senza la necessità di logica di autenticazione complessa toofactor nel codice.
+La maggior parte degli sviluppatori non ha esperienza nell'ambito delle identità e in genere non desidera dedicare tempo a sviluppare meccanismi di autenticazione e autorizzazione per le applicazioni e i servizi. ACS è un servizio di Azure tramite cui viene fornito un metodo semplice per autenticare gli utenti che devono accedere alle applicazioni e ai servizi Web, senza dover includere nel codice una logica di autenticazione complessa.
 
-Hello seguenti caratteristiche sono disponibile in ACS:
+In ACS sono disponibili le funzionalità seguenti:
 
 * Integrazione con Windows Identity Foundation (WIF).
 * Supporto per i provider di identità Web più diffusi, tra cui Windows Live ID, Google, Yahoo! e Facebook.
 * Supporto per Active Directory Federation Services (ADFS) 2.0.
-* Un Open Data Protocol (OData)-servizio di gestione che fornisce l'accesso programmatico tooACS impostazioni di base.
-* Portale di gestione che consente l'accesso amministrativo toohello le impostazioni di ACS.
+* Un servizio di gestione basato sul protocollo OData che offre accesso programmatico alle impostazioni di ACS.
+* Un portale di gestione che consente l'accesso amministrativo alle impostazioni di ACS.
 
 Per altre informazioni sul servizio di controllo di accesso, vedere [Servizio di controllo di accesso 2.0][Access Control Service 2.0].
 
 ## <a name="concepts"></a>Concetti
-ACS di Azure è basato su entità hello dell'identità basata sulle attestazioni, un approccio coerente toocreating i meccanismi di autenticazione per le applicazioni in esecuzione in locale o nel cloud hello. Identità basata sulle attestazioni fornisce un modo comune per le applicazioni e servizi tooacquire le informazioni di identità necessarie sugli utenti all'interno dell'azienda, in altre organizzazioni e su Internet hello.
+Il servizio ACS di Azure usa l'identità basata sulle attestazioni, un approccio coerente alla creazione di meccanismi di autenticazione per le applicazioni in esecuzione locale o nel cloud. L'identità basata sulle attestazioni offre un metodo comune che le applicazioni e i servizi possono usare per acquisire le informazioni di identità necessarie sugli utenti interni o esterni all'organizzazione oppure su Internet.
 
-attività di hello toocomplete in questa Guida, è necessario comprendere hello seguenti concetti:
+Per completare le attività in questa guida è necessario comprendere i concetti illustrati di seguito:
 
-**Client** -nel contesto di hello di questa procedura-tooguide, si tratta di un browser che sta tentando l'applicazione web di toogain accesso tooyour.
+**Client** : nel contesto di questa guida alle procedure si tratta di un browser che tenta di ottenere l'accesso a un'applicazione Web.
 
-**Applicazione relying party (RP)** -applicazione un relying Party è un sito Web o servizio che usano l'outsourcing autorità di autenticazione tooone esterno. Nella terminologia di identità, diciamo che hello RP considera attendibile l'autorità. Questa guida illustra come tooconfigure il tootrust applicazione ACS.
+**Applicazione relying party (RP)** : un'applicazione relying party è un sito Web o un servizio che affida l'autenticazione a un'autorità esterna. In gergo tecnico, si dice che considera attendibile tale autorità. In questa guida viene illustrato come configurare un'applicazione per considerare attendibile ACS.
 
-**Token** : un token è una raccolta di dati di sicurezza rilasciata quando un utente viene autenticato. Contiene un set di *attestazioni*, gli attributi di hello utente autenticato. Un'attestazione può corrispondere al nome dell'utente, a un identificatore del ruolo svolto dall'utente, alla sua età e così via. Un token è firmato digitalmente in genere, il che significa può sempre essere tooits indietro origine dell'autorità di certificazione e il relativo contenuto non possa essere manomessa. Un'utente guadagni accesso tooa applicazione relying Party presentando un token valido emesso da un'autorità che considera attendibile l'applicazione relying Party hello.
+**Token** : un token è una raccolta di dati di sicurezza rilasciata quando un utente viene autenticato. Contiene un set di *attestazioni*, attributi dell'utente autenticato. Un'attestazione può corrispondere al nome dell'utente, a un identificatore del ruolo svolto dall'utente, alla sua età e così via. I token sono di norma firmati digitalmente, pertanto è sempre possibile risalire all'emittente e non è possibile alterarne il contenuto. Un utente ottiene accesso a un'applicazione relying party presentando un token valido, rilasciato da un'autorità che l'applicazione RP considera attendibile.
 
-**Provider di identità (IP)** : un provider di identità è un'autorità che autentica le identità degli utenti e rilascia token di sicurezza. lavoro effettivo di Hello del rilascio di token è implementato anche se un servizio speciale denominato la servizio Token di sicurezza (STS). Esempi tipici di provider di identità comprendono Windows Live ID, Facebook, archivi di utenti business (come Active Directory) e così via.
-Una volta ACS tootrust configurato un indirizzo IP, sistema hello verrà accettati e convalidati i token emessi da tale IP. ACS può consentire a più indirizzi IP in una sola volta, che significa che, quando l'applicazione considera attendibile ACS, è possibile offrire immediatamente il hello tooall applicazione autenticati da hello tutti gli indirizzi IP che ACS considera attendibile per conto dell'utente.
+**Provider di identità (IP)** : un provider di identità è un'autorità che autentica le identità degli utenti e rilascia token di sicurezza. L'effettivo rilascio di token è implementato tramite un servizio speciale denominato Servizio token di sicurezza (STS). Esempi tipici di provider di identità comprendono Windows Live ID, Facebook, archivi di utenti business (come Active Directory) e così via.
+Quando ACS viene configurato in modo da considerare attendibile un provider di identità, il sistema accetta e convalida i token rilasciati da tale provider. ACS può considerare attendibili più provider di identità contemporaneamente, quindi se un'applicazione considera attendibile ACS è possibile consentire agli utenti di eseguire l'autenticazione tramite uno qualsiasi degli IP considerati attendibili da ACS.
 
 **Provider di federazione (FP)** : i provider di identità (IP) hanno una conoscenza diretta degli utenti, li autenticano usando le relative credenziali e rilasciano attestazioni sulle informazioni disponibili sugli utenti. Un provider di federazione è un'autorità di tipo diverso, in quanto anziché autenticare gli utenti direttamente, funge da intermediario di autenticazione tra una relying party e uno o più indirizzi IP. Provider di identità e provider di federazione rilasciano token di sicurezza, quindi usano entrambi il Servizio token di sicurezza (STS). ACS è un provider di federazione.
 
-**Il motore regole di ACS** -logica hello tootransform utilizzati i token in ingresso da tootokens gli indirizzi IP attendibili devono toobe utilizzati da hello RP viene codificato nel modulo di semplice le regole di trasformazione di attestazioni. ACS è dotato di un motore di regole che applica qualsiasi logica di trasformazione specificata per la relying party.
+**Motore di regole ACS** : la logica adottata per trasformare i token in ingresso da IP attendibili a token destinati all'utilizzo da parte dell'applicazione relying party è codificata sotto forma di semplici regole di trasformazione delle attestazioni. ACS è dotato di un motore di regole che applica qualsiasi logica di trasformazione specificata per la relying party.
 
-**Spazio dei nomi ACS** : lo spazio dei nomi costituisce la partizione di primo livello di ACS da usare per organizzare le impostazioni. Uno spazio dei nomi contiene un elenco di indirizzi IP attendibili, applicazioni relying Party hello desiderato tooserve, che si prevede che le regole di hello hello regola motore tooprocess i token in ingresso con e così via. Uno spazio dei nomi espone vari endpoint che verrà utilizzato da un'applicazione hello e il tooperform tooget ACS sviluppatore relativa funzione.
+**Spazio dei nomi ACS** : lo spazio dei nomi costituisce la partizione di primo livello di ACS da usare per organizzare le impostazioni. Lo spazio dei nomi contiene un elenco di provider di identità attendibili, le applicazioni RP da servire, le regole con cui il motore delle regole elaborerà i token in arrivo e così via. Lo spazio dei nomi espone vari endpoint che verranno usati dall'applicazione e dallo sviluppatore affinché ACS svolga la sua funzione.
 
-Hello figura riportata di seguito viene illustrato l'autenticazione ACS con un'applicazione web.
+Nella figura seguente viene illustrato il funzionamento dell'autenticazione ACS con un'applicazione Web:
 
 ![Diagramma di flusso di ACS][acs_flow]
 
-1. Hello client (in questo caso un browser) richiede una pagina hello RP.
-2. Poiché hello richiesta non è ancora autenticato, hello relying Party reindirizza l'autorità di toohello utente hello che considera attendibili, ovvero ACS. Hello ACS presenta hello scelta hello degli indirizzi IP che sono state specificate per questa relying Party. l'utente Hello seleziona IP appropriato hello.
-3. Hello client esamina la pagina di autenticazione toohello indirizzi IP e richiede toolog utente hello in.
-4. Dopo l'autenticazione client hello (ad esempio, l'identità hello immissione delle credenziali), hello IP rilascia un token di sicurezza.
-5. Dopo aver emesso un token di sicurezza, hello IP reindirizza hello client tooACS e client hello invia il token di sicurezza hello emesso da hello tooACS IP.
-6. ACS convalida i token di sicurezza hello emesso da hello IP, gli input hello identità delle attestazioni nel token nel motore regole di hello ACS, calcola le attestazioni di identità output di hello e genera un nuovo token di sicurezza che contiene tali attestazioni di output.
-7. ACS reindirizza hello client toohello RP. client Hello invia hello nuovo token di sicurezza rilasciato da ACS toohello RP. Hello RP convalida firma hello hello token di sicurezza rilasciato da ACS, hello attestazioni nel token di convalida e restituisce una pagina hello richiesto originariamente.
+1. Il client, in questo caso un browser, richiede una pagina dalla relying party.
+2. Poiché la richiesta non è stata ancora autenticata, l'applicazione RP reindirizza l'utente all'autorità che considera attendibile, ovvero ACS. ACS presenta all'utente l'elenco dei provider di identità specificati per questa applicazione RP. L'utente seleziona il provider di identità appropriato.
+3. Il client passa alla pagina di autenticazione del provider di identità e chiede all'utente di eseguire l'accesso.
+4. Dopo l'autenticazione del client, ad esempio dopo l'immissione delle credenziali di identità, il provider di identità rilascia un token di sicurezza.
+5. Dopo il rilascio del token di sicurezza, il provider di identità reindirizza il client ad ACS e il client invia ad ACS il token di sicurezza rilasciato dal provider di identità.
+6. ACS convalida il token di sicurezza rilasciato dal provider di identità, inserisce le attestazioni di identità contenute nel motore regole ACS, calcola le attestazioni di identità di output e rilascia un nuovo token di sicurezza che contiene tali attestazioni di identità di output.
+7. ACS reindirizza il client all'applicazione RP. Il client invia il nuovo token di sicurezza rilasciato da ACS all'applicazione relying party. L'applicazione relying party convalida la firma nel token di sicurezza rilasciato da ACS, convalida le attestazioni contenute nel token e restituisce la pagina richiesta.
 
 ## <a name="prerequisites"></a>Prerequisiti
-attività di hello toocomplete in questa Guida, è necessario seguente hello:
+Per completare le attività in questa guida è necessario quanto segue:
 
 * Java Developer Kit (JDK) v 1.6 o versione successiva.
 * IDE Eclipse per sviluppatori Java EE, Indigo o versione successiva. È possibile scaricare il pacchetto all'indirizzo <http://www.eclipse.org/downloads/>. 
 * La distribuzione di un server Web basato su Java o un server applicazioni, come Apache Tomcat, GlassFish, JBoss Application Server o Jetty.
 * Una sottoscrizione di Azure, che può essere ottenuta all'indirizzo <http://www.microsoft.com/windowsazure/offers/>.
-* Aprile 2014 Hello Azure Toolkit per Eclipse, rilasciare o versione successiva. Per ulteriori informazioni, vedere [installazione hello Azure Toolkit per Eclipse](http://msdn.microsoft.com/library/windowsazure/hh690946.aspx).
-* Un certificato x. 509 viene toouse con l'applicazione. Questo certificato è necessario in entrambi i formati di certificato pubblico (.cer) e certificato di scambio di informazioni personali (.PFX). Le opzioni per la creazione di questo certificato verranno descritte più avanti in questa esercitazione.
-* Conoscenza hello Azure compute emulatore e la distribuzione tecniche descritte in [la creazione di un'applicazione Hello World per Azure in Eclipse](http://msdn.microsoft.com/library/windowsazure/hh690944.aspx).
+* Il Toolkit di Azure per Eclipse, versione di aprile 2014 o successive. Per altre informazioni, vedere [Installazione di Azure Toolkit per Eclipse](http://msdn.microsoft.com/library/windowsazure/hh690946.aspx).
+* Un certificato X.509 da usare con l'applicazione. Questo certificato è necessario in entrambi i formati di certificato pubblico (.cer) e certificato di scambio di informazioni personali (.PFX). Le opzioni per la creazione di questo certificato verranno descritte più avanti in questa esercitazione.
+* Familiarità con l'emulatore di calcolo di Azure e le tecniche di distribuzione illustrate in [Creazione di un'applicazione Hello World per Azure in Eclipse](http://msdn.microsoft.com/library/windowsazure/hh690944.aspx).
 
 ## <a name="create-an-acs-namespace"></a>Creare uno spazio dei nomi ACS
-toobegin utilizzando il servizio di controllo di accesso (ACS) in Azure, è necessario creare uno spazio dei nomi ACS. spazio dei nomi Hello fornisce un ambito univoco per l'indirizzamento di risorse ACS all'interno dell'applicazione.
+Per iniziare a usare il Servizio di controllo di accesso (ACS) in Azure, è necessario creare uno spazio dei nomi ACS. Lo spazio dei nomi offre un ambito univoco per fare riferimento alle risorse di ACS dall'interno dell'applicazione.
 
-1. Accedere al hello [il portale di gestione di Azure][Azure Management Portal].
+1. Accedere al [portale di gestione di Azure][Azure Management Portal].
 2. Fare clic su **Active Directory**. 
-3. toocreate un nuovo spazio dei nomi di controllo di accesso, fare clic su **New**, fare clic su **servizi App**, fare clic su **controllo di accesso**, quindi fare clic su **creazione rapida** . 
-4. Immettere un nome per lo spazio dei nomi hello. Azure consente di verificare che il nome hello sia univoco.
-5. Selezionare l'area di hello in cui hello viene utilizzato lo spazio dei nomi. Per prestazioni ottimali hello, utilizzare l'area di hello in cui si distribuisce l'applicazione.
-6. Se si dispone di più di una sottoscrizione, selezionare una sottoscrizione di hello che si desidera toouse per spazio dei nomi ACS hello.
-7. Fare clic su **Crea**.
+3. Per creare un nuovo spazio dei nomi di Controllo di accesso, fare clic su **Nuovo**, **Servizi app**, **Controllo di accesso** e quindi su **Creazione rapida**. 
+4. Immettere un nome per lo spazio dei nomi. Azure verificherà che il nome sia univoco.
+5. Selezionare l'area in cui viene usato lo spazio dei nomi. Per prestazioni ottimali, usare l'area in cui si sta distribuendo l'applicazione.
+6. Se sono disponibili più sottoscrizioni, selezionare quella che si vuole usare per lo spazio dei nomi ACS.
+7. Fare clic su **Create**.
 
-Azure crea e attiva hello dello spazio dei nomi. Attendere fino a quando non è stato hello del nuovo spazio dei nomi hello **Active** prima di continuare. 
+Azure creerà e attiverà lo spazio dei nomi. Prima di continuare, attendere che lo stato del nuovo spazio dei nomi sia **Active** . 
 
 ## <a name="add-identity-providers"></a>Aggiunta di un provider di identità
-In questa attività, aggiungere gli indirizzi IP toouse con l'applicazione relying Party per l'autenticazione. A scopo dimostrativo, questa attività viene illustrato come tooadd Windows Live come un indirizzo IP, ma è possibile usare uno qualsiasi di indirizzi IP elencati nel portale di gestione ACS hello hello.
+In questa attività si aggiungeranno provider di identità da usare con l'applicazione relying party per l'autenticazione. A scopo dimostrativo, questa attività illustra come aggiungere Windows Live come provider di identità, ma è possibile usare uno qualsiasi dei provider di identità elencati nel portale di gestione ACS.
 
-1. In hello [il portale di gestione di Azure][Azure Management Portal], fare clic su **Active Directory**, selezionare uno spazio dei nomi di controllo di accesso e quindi fare clic su **Gestisci**. verrà visualizzata la finestra di Hello portale di gestione ACS.
-2. Nel riquadro di spostamento a sinistra hello di hello portale di gestione ACS, fare clic su **provider di identità**.
-3. Windows Live ID è abilitato per impostazione predefinita e non può essere eliminato. Ai fini di questa esercitazione, verrà usato solo Windows Live ID. Questa schermata è, tuttavia, in cui è possibile aggiungere altri indirizzi IP, fare clic su hello **Aggiungi** pulsante.
+1. Nel [portale di gestione di Azure][Azure Management Portal] fare clic su **Active Directory**, scegliere uno spazio dei nomi di Controllo di accesso e quindi fare clic su **Gestisci**. Verrà visualizzato il portale di gestione ACS.
+2. Nel riquadro di spostamento sinistro del portale di gestione ACS fare clic su **Identity providers**.
+3. Windows Live ID è abilitato per impostazione predefinita e non può essere eliminato. Ai fini di questa esercitazione, verrà usato solo Windows Live ID. In questa schermata è tuttavia possibile aggiungere altri provider di identità, facendo clic sul pulsante **Add** .
 
-Windows Live ID è abilitato come provider di identità per lo spazio dei nomi ACS. Specificare quindi l'applicazione web Java (toobe creato in un secondo momento) come relying Party.
+Windows Live ID è abilitato come provider di identità per lo spazio dei nomi ACS. Nel passaggio successivo verrà specificata l'applicazione Web Java (che verrà creata in seguito) come applicazione relying party.
 
 ## <a name="add-a-relying-party-application"></a>Aggiungere un'applicazione relying party
-In questa attività è configurare ACS toorecognize alle applicazioni web Java come un'applicazione relying Party valida.
+In questa attività, ACS verrà configurato affinché riconosca l'applicazione Web Java come applicazione relying party valida.
 
-1. Nel portale di gestione ACS hello, fare clic su **le applicazioni Relying party**.
-2. In hello **Relying Party Applications** pagina, fare clic su **Aggiungi**.
-3. In hello **Aggiungi applicazione Relying Party** pagina, hello seguenti:
+1. Nel portale di gestione ACS fare clic su **Relying party applications**.
+2. Nella pagina **Relying Party Applications** (Applicazioni relying party) fare clic su **Add** (Aggiungi).
+3. Nella pagina **Add Relying Party Application** eseguire le operazioni seguenti:
    
-   1. In **nome**, nome del tipo hello di hello RP. Ai fini di questa esercitazione, digitare **Azure Web App**.
+   1. Nel campo **Name**digitare il nome dell'applicazione relying party. Ai fini di questa esercitazione, digitare **Azure Web App**.
    2. In **Mode** (Modalità) selezionare **Enter settings manually** (Immettere le informazioni manualmente).
-   3. In **dell'area di autenticazione**, si applica tipo hello URI toowhich hello token di sicurezza rilasciato da ACS. Per questa attività digitare **http://localhost:8080/**.
+   3. In **Realm**digitare l'URI cui si riferisce il token di sicurezza rilasciato da ACS. Per questa attività digitare **http://localhost:8080/**.
       ![Area di autenticazione dell'applicazione relying party nell'emulatore di calcolo][relying_party_realm_emulator]
-   4. In **Return URL** tipo hello URL toowhich ACS restituisce il token di sicurezza di hello. Per questa attività, digitare **http://localhost:8080/MyACSHelloWorld/index.jsp**
+   4. In **Return URL** digitare l'URL a cui ACS restituisce il token di sicurezza. Per questa attività, digitare **http://localhost:8080/MyACSHelloWorld/index.jsp**
       ![URL restituito dell'applicazione relying party nell'emulatore di calcolo][relying_party_return_url_emulator]
-   5. Accettare i valori predefiniti di hello resto hello dei campi di hello.
+   5. Accettare i valori predefiniti nei campi rimanenti.
 4. Fare clic su **Salva**.
 
-È stato correttamente configurato l'applicazione web Java quando viene eseguita nell'emulatore di calcolo di Azure hello (in http://localhost:8080 /) toobe relying Party nello spazio dei nomi ACS. Successivamente, creare regole hello ACS Usa le attestazioni tooprocess per hello RP.
+L'applicazione Web Java è configurata correttamente quando viene eseguita nell'emulatore di calcolo di Azure (all'indirizzo http://localhost:8080/) e costituisce un'applicazione relying party nello spazio dei nomi ACS. Il passaggio successivo prevede la creazione di regole usate da ACS per elaborare attestazioni per l'applicazione relying party.
 
 ## <a name="create-rules"></a>Creazione di regole
-In questa attività si definiscono regole di hello che determinano come attestazioni vengono passate da indirizzi IP tooyour RP. A scopo di hello di questa Guida, verrà semplicemente configurato valori e tipi di attestazione di input di ACS toocopy hello direttamente nel token di output di hello, senza il filtro o modificarli.
+In questa attività verranno definite le regole in base alle quali le attestazioni vengono passate dai provider di identità all'applicazione relying party. Ai fini di questa guida, ACS verrà semplicemente configurato per copiare i tipi di attestazione e i valori in ingresso direttamente nella categoria token di output senza filtrarli o modificarli.
 
-1. Nella pagina principale del portale di gestione ACS hello, fare clic su **gruppi di regole**.
-2. In hello **gruppi di regole** pagina, fare clic su **Default Rule Group for App Web di Azure**.
-3. In hello **Edit Rule Group** pagina, fare clic su **genera**.
-4. In hello **generare regole: Default Rule Group for App Web di Azure** pagina, verificare che sia selezionata Windows Live ID e quindi fare clic su **genera**.    
-5. In hello **Edit Rule Group** pagina, fare clic su **salvare**.
+1. Nella pagina principale del portale di gestione ACS fare clic su **Rule groups**.
+2. Nella pagina **Rule groups** (Gruppi di regole) fare clic su **Default Rule Group for Azure Web App** (Gruppo di regole predefinito per app Web di Azure).
+3. Nella pagina **Edit Rule Group** (Modifica gruppo di regole) fare clic su **Generate** (Genera).
+4. Nella pagina **Generate Rules: Default Rule Group for Azure Web App** (Generazione regole: gruppo di regole predefinito per app Web di Azure) assicurarsi che l'opzione Windows Live ID sia selezionata e quindi fare clic su **Generate** (Genera).    
+5. Nella pagina **Edit Rule Group** (Modifica gruppo di regole) fare clic su **Save** (Salva).
 
-## <a name="upload-a-certificate-tooyour-acs-namespace"></a>Caricare uno spazio dei nomi ACS tooyour certificato
-In questa attività si carica una. Certificato PFX che verrà utilizzato toosign le richieste di token create da spazio dei nomi ACS.
+## <a name="upload-a-certificate-to-your-acs-namespace"></a>Caricamento di un certificato nello spazio dei nomi ACS
+In questa attività verrà caricato un certificato .PFX che verrà utilizzato per firmare le richieste di token create dallo spazio dei nomi ACS.
 
-1. Nella pagina principale del portale di gestione ACS hello, fare clic su **certificati e chiavi**.
-2. In hello **certificati e chiavi** pagina, fare clic su **Aggiungi** sopra **la firma di Token**.
-3. In hello **aggiungere Token Signing Certificate or Key** pagina:
-   1. In hello **utilizzato per** fare clic su **Relying Party Application** e selezionare **App Web di Azure** (che deve essere impostato in precedenza come nome hello dell'applicazione relying party).
-   2. In hello **tipo** selezionare **certificato x. 509**.
-   3. In hello **certificato** sezione, fare clic sul pulsante Sfoglia hello e passare i file del certificato x. 509 toohello che si desidera toouse. Si tratta di un file .PFX. Selezionare il file hello, fare clic su **aprire**, quindi immettere la password del certificato hello in hello **Password** casella di testo. Si noti che a fini di test è possibile utilizzare un certificato autofirmato. toocreate un certificato autofirmato, utilizzare hello **New** pulsante hello **libreria filtro ACS** (descritta più avanti), finestra di dialogo oppure utilizzare hello **encutil.exe** utilità da hello [sito Web del progetto] [ project website] di hello Azure Starter Kit per Java.
-   4. Assicurarsi che **Make Primary** sia selezionato. Il **aggiungere Token Signing Certificate or Key** pagina dovrebbe essere simile toohello seguente.
-       ![Aggiunta di un certificato di firma di token][add_token_signing_cert]
-   5. Fare clic su **salvare** toosave le impostazioni e chiudere hello **aggiungere Token Signing Certificate or Key** pagina.
+1. Nella pagina principale del portale di gestione ACS fare clic su **Certificates and keys**.
+2. Nella pagina **Certificates and keys** (Chiavi e certificati) fare clic su **Add** (Aggiungi) sopra **Token Signing** (Firma di token).
+3. Nella pagina **Add Token-Signing Certificate or Key** :
+   1. Nella sezione **Used for** (Usato per) fare clic su **Relying Party Application** (Applicazione relying party) e selezionare **Azure Web App** (App Web di Azure), impostato in precedenza come nome dell'applicazione relying party.
+   2. Nella sezione **Type** (Tipo) selezionare **X.509 Certificate** (Certificato X.509).
+   3. Nella sezione **Certificate** fare clic sul pulsante Browse e passare al file del certificato X.509 che si intende usare. Si tratta di un file .PFX. Selezionare il file, fare clic su **Open** (Apri) e quindi immettere la password del certificato nella casella di testo **Password**. Si noti che a fini di test è possibile utilizzare un certificato autofirmato. Per creare un certificato autofirmato, fare clic sul pulsante **New** (Nuovo) nella finestra di dialogo **ACS Filter Library** (Libreria di filtri ACS) illustrata più avanti oppure usare l'utilità **encutil.exe** dal [sito Web del progetto][project website] di Azure Starter Kit per Java.
+   4. Assicurarsi che **Make Primary** sia selezionato. La pagina **Add Token-Signing Certificate or Key** dovrebbe essere simile alla seguente.
+       ![Aggiungere un certificato di firma di token][add_token_signing_cert]
+   5. Fare clic su **Save** (Salva) per salvare le impostazioni e chiudere la pagina **Add Token-Signing Certificate or Key** (Aggiungi certificato o chiave di firma token).
 
-Esaminare le informazioni di hello hello integrazione dell'applicazione pagina e copia hello URI che sarà necessario tooconfigure il toouse di applicazione web Java ACS.
+A questo punto, rivedere le informazioni nella pagina di integrazione applicazioni e copiare l'URI necessario per configurare l'applicazione Web Java per l'uso di ACS.
 
-## <a name="review-hello-application-integration-page"></a>Pagina di integrazione dell'applicazione hello revisione
-È possibile trovare tutte le informazioni di hello e hello codice necessario tooconfigure l'applicazione (applicazione relying Party Buongiorno) toowork web Java con ACS nella pagina di integrazione dell'applicazione hello di hello portale di gestione ACS. Queste informazioni sono necessarie per la configurazione dell'applicazione Web Java per l'autenticazione federata.
+## <a name="review-the-application-integration-page"></a>Rivedere la pagina di integrazione applicazioni
+Nella pagina di integrazione applicazioni del portale di gestione ACS è possibile trovare tutte le informazioni e il codice necessario per configurare l'applicazione Web Java (applicazione relying party) in modo che funzioni con ACS. Queste informazioni sono necessarie per la configurazione dell'applicazione Web Java per l'autenticazione federata.
 
-1. Nel portale di gestione ACS hello, fare clic su **integrazione dell'applicazione**.  
-2. In hello **integrazione dell'applicazione** pagina, fare clic su **pagine di accesso**.
-3. In hello **Login Page Integration** pagina, fare clic su **App Web di Azure**.
+1. Nel portale di gestione ACS fare clic su **Application integration**.  
+2. Nella pagina **Application Integration** (Integrazione applicazioni) fare clic su **Login Pages** (Pagine di accesso).
+3. Nella pagina **Login Page Integration** (Integrazione pagine di accesso) fare clic su **Azure Web App** (App Web di Azure).
 
-In hello **Login Page Integration: App Web di Azure** URL hello elencato nella pagina **opzione 1: pagina di accesso ospitata ACS tooan collegamento** verrà utilizzato nell'applicazione web Java. Questo valore sarà necessario quando si aggiunge hello Azure Access Control Services Filter libreria tooyour applicazione Java.
+Nella pagina **Login Page Integration: Azure Web App** (Integrazione pagine di accesso: App Web di Azure), per l'applicazione Web Java verrà usato l'URL visualizzato in **Option 1: Link to an ACS-hosted login page** (Opzione 1: Collegamento a una pagina di accesso ospitata in ACS). Questo valore è necessario per aggiungere la libreria dei filtri dei Servizi di controllo di accesso di Azure all'applicazione Java.
 
 ## <a name="create-a-java-web-application"></a>Creazione di un'applicazione Web Java
-1. Nel menu hello in Eclipse fare clic su **File**, fare clic su **New**, quindi fare clic su **progetto Web dinamico**. (Se non viene visualizzato **progetto Web dinamico** elencati tra i progetti disponibili dopo aver fatto clic **File**, **New**, quindi hello seguente: fare clic su **File**, fare clic su **New**, fare clic su **progetto**, espandere **Web**, fare clic su **progetto Web dinamico**, fare clic su  **Successivamente**.) Ai fini di questa esercitazione, denominare il progetto di hello **MyACSHelloWorld**. (Assicurarsi usare questo nome, i passaggi successivi in questa esercitazione prevedono il toobe file WAR denominato MyACSHelloWorld). Verrà visualizzata una schermata simile toohello seguenti:
+1. Nel menu di Eclipse fare clic su **File**, **New** (Nuovo) e quindi su **Dynamic Web Project** (Progetto Web dinamico). Se **Dynamic Web Project** (Progetto Web dinamico) non è elencato tra i progetti disponibili dopo aver fatto clic su **File**, **New** (Nuovo), fare clic su **File**, **New** (Nuovo), **Project** (Progetto), espandere **Web**, fare clic su **Dynamic Web Project** (Progetto Web dinamico) e su **Next** (Avanti). Ai fini di questa esercitazione, denominare il progetto **MyACSHelloWorld**. Assicurarsi di usare questo nome, poiché i passaggi successivi dell'esercitazione prevedono che il file WAR sia denominato MyACSHelloWorld. L'aspetto della schermata sarà simile al seguente:
    
     ![Creazione di un progetto Hello World a titolo di esempio per ACS][create_acs_hello_world]
    
     Fare clic su **Finish**.
 2. Nella visualizzazione Project Explorer di Eclipse espandere **MyACSHelloWorld**. Fare clic con il pulsante destro del mouse su **WebContent**, scegliere **New** e quindi fare clic su **JSP File**.
-3. In hello **New JSP File** finestra di dialogo, il nome file di hello **index.jsp**. Mantenere cartella padre hello MyACSHelloWorld/WebContent, come illustrato nell'esempio hello:
+3. Nella finestra di dialogo **New JSP File** (Nuovo file JSP) assegnare al file il nome **index.jsp**. Mantenere il nome MyACSHelloWorld/WebContent per la cartella padre, come illustrato di seguito:
    
     ![Aggiunta di un file JSP a titolo di esempio per ACS][add_jsp_file_acs]
    
     Fare clic su **Avanti**.
-4. In hello **Select JSP Template** selezionare **New JSP File (html)** e fare clic su **fine**.
-5. All'apertura di file di hello index.jsp in Eclipse, aggiungere testo toodisplay **ACS Hello World!** all'interno di hello esistente `<body>` elemento. L'aggiornamento `<body>` contenuto deve essere visualizzato come riportato di seguito hello:
+4. Nella finestra di dialogo **Select JSP Template** (Seleziona modello JSP) selezionare **New JSP File (html)** (Nuovo file JSP (html)) e fare clic su **Finish** (Fine).
+5. Quando in Eclipse viene aperto il file index.jsp, aggiungere il testo in modo da visualizzare **Hello ACS World!** all'interno dell'elemento `<body>` esistente. Il contenuto `<body>` aggiornato risulterà simile al seguente:
    
         <body>
           <b><% out.println("Hello ACS World!"); %></b>
@@ -179,87 +179,87 @@ In hello **Login Page Integration: App Web di Azure** URL hello elencato nella p
    
     Salvare index.jsp.
 
-## <a name="add-hello-acs-filter-library-tooyour-application"></a>Aggiungere l'applicazione di filtro ACS libreria tooyour hello
+## <a name="add-the-acs-filter-library-to-your-application"></a>Aggiungere una libreria di filtri ACS all'applicazione
 1. In Project Explorer di Eclipse fare clic con il pulsante destro del mouse su **MyACSHelloWorld**, scegliere **Build Path** (Percorso di compilazione) e quindi fare clic su **Configure Build Path** (Configura il percorso di compilazione).
-2. In hello **Java Build Path** finestra di dialogo, fare clic su hello **librerie** scheda.
+2. Nella finestra di dialogo **Java Build Path** (Percorso compilazione Java) fare clic sulla scheda **Libraries** (Librerie).
 3. Fare clic su **Add Library**.
-4. Fare clic su **Azure Access Control Services Filter (by MS Open Tech)** (Filtro servizi di controllo di accesso di Azure - di MS Open Tech) e quindi su **Next** (Avanti). Hello **Azure Access Control Services Filter** viene visualizzata una finestra di dialogo.  (hello **percorso** campo potrebbe essere un percorso diverso, a seconda di dove è stato installato, Eclipse e il numero di versione di hello potrebbe essere diverso, a seconda degli aggiornamenti software.)
+4. Fare clic su **Azure Access Control Services Filter (by MS Open Tech)** (Filtro servizi di controllo di accesso di Azure - di MS Open Tech) e quindi su **Next** (Avanti). Verrà visualizzata la finestra di dialogo **Azure Access Control Services Filter** .  Il campo **Location** può avere un percorso diverso, a seconda del percorso in cui è stato installato Eclipse e il numero della versione potrebbe variare a seconda degli aggiornamenti del software.
    
     ![Aggiunta di una libreria di filtri ACS][add_acs_filter_lib]
-5. Utilizzando un browser aprire toohello **Login Page Integration** pagina di hello portale di gestione, elencati in hello copia hello URL **opzione 1: pagina di accesso ospitata ACS tooan collegamento** campo e incollarlo in hello **Endpoint di autenticazione ACS** campo della finestra di dialogo Eclipse hello.
-6. Utilizzando un browser aprire toohello **Edit Relying Party Application** pagina di hello portale di gestione, elencati in hello copia hello URL **dell'area di autenticazione** campo e incollarlo in hello **area di autenticazione della Relying Party**  campo della finestra di dialogo Eclipse hello.
-7. All'interno di hello **sicurezza** sezione della finestra dialogo Eclipse hello, se si desidera toouse un certificato esistente, fare clic su **Sfoglia**, passare toohello certificato desiderato toouse, selezionarla, fare clic su  **Aprire**. Oppure, se si desidera toocreate un nuovo certificato, fare clic su **New** toodisplay hello **nuovo certificato** finestra di dialogo, quindi specificare nome del file con estensione pfx hello hello nuova password hello e nome del file con estensione cer hello certificato.
-8. Controllare **certificato hello incorpora nel file WAR hello**. Incorporamento certificato hello in questo modo incluso nella distribuzione senza dover toomanually aggiungerlo come componente. (Se è invece necessario archiviare esternamente il certificato dal file WAR, è possibile aggiungere il certificato di hello come un componente del ruolo e deselezionare **certificato hello incorpora nel file WAR hello**.)
-9. [Facoltativo] Mantenere l'opzione **Require HTTPS connections** selezionata. Se si imposta questa opzione, è necessario tooaccess l'applicazione utilizzando il protocollo HTTPS hello. Se non si desidera toorequire le connessioni HTTPS, deselezionare questa opzione.
-10. Per una distribuzione emulatore di calcolo toohello il **filtro ACS di Azure** impostazioni avrà un aspetto simile toohello seguente.
+5. Con il browser aperto alla pagina **Login Page Integration** (Integrazione pagine di accesso) del portale di gestione, copiare l'URL riportato nel campo **Option 1: Link to an ACS-hosted login page** (Opzione 1: Collegamento a una pagina di accesso ospitata in ACS) e incollarlo nel campo **ACS Authentication Endpoint** (Endpoint di autenticazione ACS) della finestra di dialogo di Eclipse.
+6. Con il browser aperto alla pagina **Edit Relying Party Application** (Modifica applicazione relying party) del portale di gestione, copiare l'URL riportato nel campo **Realm** (Area autenticazione) e incollarlo nel campo **Relying Party Realm** (Area autenticazione relying party) della finestra di dialogo di Eclipse.
+7. Per usare un certificato esistente, nella sezione **Security** (Sicurezza) della finestra di dialogo di Eclipse fare clic su **Browse** (Sfoglia), passare al certificato che si intende usare, selezionarlo e fare clic su **Open** (Apri). In caso contrario, se si intende creare un certificato nuovo, fare clic su **New** (Nuovo) per visualizzare la finestra di dialogo **New Certificate** (Nuovo certificato) e quindi specificare la password, il nome del file CER e il nome del file PFX per il nuovo certificato.
+8. Selezionare **Embed the certificate in the WAR file**. Quando si incorpora il certificato in questo modo, viene incluso nella distribuzione senza che sia necessario aggiungerlo manualmente come un componente. Se invece è necessario archiviare il certificato all'esterno del file WAR, è possibile aggiungere il certificato come componente del ruolo e deselezionare **Embed the certificate in the WAR file**.
+9. [Facoltativo] Mantenere l'opzione **Require HTTPS connections** selezionata. Se viene visualizzata questa opzione, è necessario accedere all'applicazione utilizzando il protocollo HTTPS. Se non si desidera richiedere connessioni HTTPS, deselezionare questa opzione.
+10. Per la distribuzione nell'emulatore di calcolo, le impostazioni di **Azure ACS Filter** avranno un aspetto simile a quanto illustrato di seguito.
     
-    ![Impostazioni di filtro ACS di Azure per un toohello distribuzione emulatore di calcolo][add_acs_filter_lib_emulator]
+    ![Impostazioni del filtro ACS di Azure per una distribuzione nell'emulatore di calcolo.][add_acs_filter_lib_emulator]
 11. Fare clic su **Finish**.
 12. Fare clic su **Yes** nella finestra di dialogo che conferma la creazione di un file web.xml.
-13. Fare clic su **OK** tooclose hello **Java Build Path** finestra di dialogo.
+13. Fare clic su **OK** per chiudere la finestra di dialogo **Java Build Path** (Percorso compilazione Java).
 
-## <a name="deploy-toohello-compute-emulator"></a>Distribuire l'emulatore di calcolo toohello
+## <a name="deploy-to-the-compute-emulator"></a>Distribuire l'emulatore di calcolo
 1. In Project Explorer di Eclipse fare clic con il pulsante destro del mouse su **MyACSHelloWorld**, scegliere **Azure** e quindi fare clic su **Package for Azure** (Pacchetto per Azure).
 2. In **Project name** (Nome progetto) digitare **MyAzureACSProject** e fare clic su **Next** (Avanti).
-3. Selezionare un JDK e un server applicazioni. (Questi passaggi vengono descritti in dettaglio in hello [la creazione di un'applicazione Hello World per Azure in Eclipse](http://msdn.microsoft.com/library/windowsazure/hh690944.aspx) esercitazione).
+3. Selezionare un JDK e un server applicazioni. Questi passaggi vengono descritti in dettaglio nell'esercitazione [Creazione di un'applicazione Hello World per Azure in Eclipse](http://msdn.microsoft.com/library/windowsazure/hh690944.aspx) .
 4. Fare clic su **Finish**.
-5. Fare clic su hello **Run in Azure Emulator** pulsante.
-6. Verrà avviata l'applicazione web Java nell'emulatore di calcolo hello, chiudere tutte le istanze del browser (in modo che tutte le sessioni del browser corrente non interferiscono con il test di account di accesso ACS).
-7. Eseguire l'applicazione aprendo nel browser <http://localhost:8080/MyACSHelloWorld/> o <https://localhost:8080/MyACSHelloWorld/>, se è stata selezionata l'opzione **Require HTTPS connections** (Richiedi connessioni HTTPS). Verrà richiesto per un account di accesso di Windows Live ID, quindi è opportuno tenere toohello URL restituito specificato per l'applicazione relying party.
-8. Al termine dell'operazione di visualizzazione dell'applicazione, fare clic su hello **Reimposta emulatore di Azure** pulsante.
+5. Fare clic sul pulsante **Run in Azure Emulator** .
+6. Dopo l'avvio dell'applicazione Web Java nell'emulatore di calcolo, chiudere tutte le istanze del browser (per evitare che sessioni correnti del browser interferiscano con il test di accesso di ACS.
+7. Eseguire l'applicazione aprendo nel browser <http://localhost:8080/MyACSHelloWorld/> o <https://localhost:8080/MyACSHelloWorld/>, se è stata selezionata l'opzione **Require HTTPS connections** (Richiedi connessioni HTTPS). Verrà richiesto di immettere un account di accesso Windows Live ID, quindi si verrà reindirizzati all'URL restituito specificato per l'applicazione relying party.
+8. Terminata la visualizzazione dell'applicazione, fare clic sul pulsante **Reset Azure Emulator** .
 
-## <a name="deploy-tooazure"></a>Distribuire tooAzure
-tooAzure toodeploy, è necessario toochange hello relying party dell'area di autenticazione e URL restituito per lo spazio dei nomi ACS.
+## <a name="deploy-to-azure"></a>Distribuzione in Azure
+Per la distribuzione in Azure è necessario modificare l'area di autenticazione dell'applicazione relying party e dell'URL restituito per lo spazio dei nomi ACS.
 
-1. All'interno di hello portale di gestione di Azure, in hello **Edit Relying Party Application** , modificare **dell'area di autenticazione** toobe hello URL del sito distribuito. Sostituire **esempio** con nome DNS di hello specificato per la distribuzione.
+1. Nella pagina **Edit Relying Party Application** (Modifica applicazione relying party) del portale di gestione di Azure modificare **Realm** (Area autenticazione) per far sì che corrisponda all'URL del sito distribuito. Sostituire **example** con il nome DNS specificato per la distribuzione.
    
     ![Area di autenticazione dell'applicazione relying party da utilizzare in produzione][relying_party_realm_production]
-2. Modificare **URL restituito** toobe hello URL dell'applicazione. Sostituire **esempio** con nome DNS di hello specificato per la distribuzione.
+2. Modificare **Return URL** affinché corrisponda all'URL dell'applicazione. Sostituire **example** con il nome DNS specificato per la distribuzione.
    
     ![URL restituito dell'applicazione relying party da usare in produzione][relying_party_return_url_production]
-3. Fare clic su **salvare** toosave l'aggiornata parte delle relying party dell'area di autenticazione e URL restituito cambia.
-4. Mantenere hello **Login Page Integration** pagina Apri nel browser, sarà necessario toocopy da quest'ultimo a breve.
+3. Fare clic su **Save** per salvare le modifiche apportate all'area di autenticazione dell'applicazione relying party e all'URL restituito.
+4. Tenere aperta la pagina **Login Page Integration** nel browser poiché in seguito verrà richiesto di copiare alcuni dati.
 5. In Project Explorer di Eclipse fare clic con il pulsante destro del mouse su **MyACSHelloWorld**, scegliere **Build Path** (Percorso di compilazione) e quindi fare clic su **Configure Build Path** (Configura il percorso di compilazione).
-6. Fare clic su hello **librerie** scheda, fare clic su **Azure Access Control Services Filter**, quindi fare clic su **modifica**.
-7. Utilizzando un browser aprire toohello **Login Page Integration** pagina di hello portale di gestione, elencati in hello copia hello URL **opzione 1: pagina di accesso ospitata ACS tooan collegamento** campo e incollarlo in hello **Endpoint di autenticazione ACS** campo della finestra di dialogo Eclipse hello.
-8. Utilizzando un browser aprire toohello **Edit Relying Party Application** pagina di hello portale di gestione, elencati in hello copia hello URL **dell'area di autenticazione** campo e incollarlo in hello **area di autenticazione della Relying Party**  campo della finestra di dialogo Eclipse hello.
-9. All'interno di hello **sicurezza** sezione della finestra dialogo Eclipse hello, se si desidera toouse un certificato esistente, fare clic su **Sfoglia**, passare toohello certificato desiderato toouse, selezionarla, fare clic su  **Aprire**. Oppure, se si desidera toocreate un nuovo certificato, fare clic su **New** toodisplay hello **nuovo certificato** finestra di dialogo, quindi specificare nome del file con estensione pfx hello hello nuova password hello e nome del file con estensione cer hello certificato.
-10. Mantenere **certificato hello incorpora nel file WAR hello** selezionata, presupponendo che si desidera tooembed hello certificato nel file WAR hello.
-11. [Facoltativo] Mantenere l'opzione **Require HTTPS connections** selezionata. Se si imposta questa opzione, è necessario tooaccess l'applicazione utilizzando il protocollo HTTPS hello. Se non si desidera toorequire le connessioni HTTPS, deselezionare questa opzione.
-12. Per una distribuzione tooAzure, le impostazioni del filtro ACS di Azure avrà un aspetto simile toohello seguente.
+6. Fare clic sulla scheda **Libraries** (Librerie), su **Azure Access Control Services Filter** (Filtro servizi di controllo di accesso di Azure ) e quindi su **Edit** (Modifica).
+7. Con il browser aperto alla pagina **Login Page Integration** (Integrazione pagine di accesso) del portale di gestione, copiare l'URL riportato nel campo **Option 1: Link to an ACS-hosted login page** (Opzione 1: Collegamento a una pagina di accesso ospitata in ACS) e incollarlo nel campo **ACS Authentication Endpoint** (Endpoint di autenticazione ACS) della finestra di dialogo di Eclipse.
+8. Con il browser aperto alla pagina **Edit Relying Party Application** (Modifica applicazione relying party) del portale di gestione, copiare l'URL riportato nel campo **Realm** (Area autenticazione) e incollarlo nel campo **Relying Party Realm** (Area autenticazione relying party) della finestra di dialogo di Eclipse.
+9. Per usare un certificato esistente, nella sezione **Security** (Sicurezza) della finestra di dialogo di Eclipse fare clic su **Browse** (Sfoglia), passare al certificato che si intende usare, selezionarlo e fare clic su **Open** (Apri). In caso contrario, se si intende creare un certificato nuovo, fare clic su **New** (Nuovo) per visualizzare la finestra di dialogo **New Certificate** (Nuovo certificato) e quindi specificare la password, il nome del file CER e il nome del file PFX per il nuovo certificato.
+10. Mantenere l'opzione **Embed the certificate in the WAR file** selezionata, nel caso in cui si intenda incorporare il certificato nel file WAR.
+11. [Facoltativo] Mantenere l'opzione **Require HTTPS connections** selezionata. Se viene visualizzata questa opzione, è necessario accedere all'applicazione utilizzando il protocollo HTTPS. Se non si desidera richiedere connessioni HTTPS, deselezionare questa opzione.
+12. Per la distribuzione in Azure, le impostazioni del filtro ACS di Azure avranno un aspetto simile a quelle illustrate di seguito.
     
     ![Impostazioni del filtro ACS di Azure per la distribuzione in produzione][add_acs_filter_lib_production]
-13. Fare clic su **fine** tooclose hello **Modifica libreria** finestra di dialogo.
-14. Fare clic su **OK** tooclose hello **le proprietà per MyACSHelloWorld** finestra di dialogo.
-15. In Eclipse, fare clic su hello **pubblicare tooAzure Cloud** pulsante. Rispondere a richieste toohello, analogamente a come fatto in hello **toodeploy tooAzure l'applicazione** sezione di hello [la creazione di un'applicazione Hello World per Azure in Eclipse](http://msdn.microsoft.com/library/windowsazure/hh690944.aspx) argomento. 
+13. Fare clic su **Finish** (Fine) per chiudere la finestra di dialogo **Edit Library** (Modifica libreria).
+14. Fare clic su **OK** per chiudere la finestra di dialogo **Properties for MyACSHelloWorld** (Proprietà per MyACSHelloWorld).
+15. In Eclipse fare clic sul pulsante **Publish to Azure Cloud** . Rispondere alle richieste visualizzate, come nella sezione **Per distribuire l'applicazione in Azure** dell'argomento [Creazione di un'applicazione Hello World per Azure in Eclipse](http://msdn.microsoft.com/library/windowsazure/hh690944.aspx) . 
 
-Dopo l'applicazione web è stata distribuita, chiudere tutte le sessioni del browser di aprire, eseguire l'applicazione web e verrà richiesto l'URL dell'applicazione relying party toosign con le credenziali Windows Live ID, seguito da inviati toohello restituito.
+Dopo la distribuzione dell'applicazione Web, chiudere le sessioni del browser aperte ed eseguire l'applicazione Web. Verrà richiesto di accedere con le credenziali di Windows Live ID e si verrà reindirizzati all'URL restituito dell'applicazione relying party.
 
-Al termine utilizzando l'applicazione Hello World di ACS, memorizzare distribuzione hello toodelete (è possibile ottenere informazioni come una distribuzione in hello toodelete [la creazione di un'applicazione Hello World per Azure in Eclipse](http://msdn.microsoft.com/library/windowsazure/hh690944.aspx) argomento).
+Al termine dell'utilizzo dell'applicazione ACS Hello World, ricordare di eliminare la distribuzione (per ulteriori informazioni sull'eliminazione di una distribuzione, vedere l'esercitazione [Creazione di un'applicazione Hello World per Azure in Eclipse](http://msdn.microsoft.com/library/windowsazure/hh690944.aspx) ).
 
 ## <a name="next_steps"></a>Passaggi successivi
-Per un esame di hello Security asserzione Markup Language (SAML) restituita da un'applicazione tooyour ACS, vedere [come tooview SAML restituito dal servizio di controllo di accesso di Azure hello][How tooview SAML returned by hello Azure Access Control Service]. toofurther esplorare funzionalità ACS e tooexperiment con scenari più sofisticati, vedere [Access Control Service 2.0][Access Control Service 2.0].
+Per un esame del linguaggio Security Assertion Markup Language (SAML) restituito da ACS all'applicazione, vedere [Come visualizzare il codice SAML restituito dal Servizio di controllo di accesso di Azure][How to view SAML returned by the Azure Access Control Service]. Per continuare a esplorare le funzionalità di ACS ed esercitarsi con scenari più complessi, vedere [Servizio di controllo di accesso 2.0][Access Control Service 2.0].
 
-Inoltre, questo hello di esempio utilizzato **certificato hello incorpora nel file WAR hello** opzione. Questa opzione rende il certificato di hello toodeploy semplice. Se invece si desidera tookeep certificato di firma separato dal file WAR, è possibile utilizzare hello tecnica seguente:
+In questo esempio è stata usata l'opzione **Embed the certificate in the WAR file** . Questa opzione semplifica la distribuzione del certificato. Se invece si desidera mantenere il certificato di firma separato dal file WAR, è possibile applicare la tecnica seguente:
 
-1. All'interno di hello **sicurezza** sezione di hello **Azure Access Control Services Filter** finestra di dialogo digitare **${env. JAVA_HOME}/mycert.cer** e deselezionare **certificato hello incorpora nel file WAR hello**. Se il nome del certificato in uso è diverso, modificare il nome del file mycert.cer di conseguenza. Fare clic su **fine** finestra di dialogo tooclose hello.
-2. Certificato di hello copia come un componente nella distribuzione: In Project Explorer di Eclipse, espandere **MyAzureACSProject**, fare doppio clic su **WorkerRole1**, fare clic su **proprietà** , espandere **ruolo Azure**, fare clic su **componenti**.
+1. Nella sezione **Security** (Sicurezza) della finestra di dialogo **Azure Access Control Services Filter** (Filtro servizi di controllo di accesso di Azure) digitare **${env.JAVA_HOME}/mycert.cer** e deselezionare **Embed the certificate in the WAR file** (Incorpora il certificato nel file WAR). Se il nome del certificato in uso è diverso, modificare il nome del file mycert.cer di conseguenza. Fare clic su **Finish** (Fine) per chiudere la finestra di dialogo.
+2. Copiare il certificato come componente nella distribuzione: in Project Explorer di Eclipse espandere **MyAzureACSProject**, fare clic con il pulsante destro del mouse su **WorkerRole1**, scegliere **Properties** (Proprietà), espandere **Azure Role** (Ruolo di Azure), quindi fare clic su **Components** (Componenti).
 3. Fare clic su **Aggiungi**.
-4. All'interno di hello **Add Component** finestra di dialogo:
+4. Nella finestra di dialogo **Add Component** :
    
-   1. In hello **importazione** sezione:
-      1. Hello utilizzare **File** pulsante toonavigate toohello certificato toouse. 
+   1. Nella sezione **Import** :
+      1. usare il pulsante **File** per passare al certificato che si intende usare. 
       2. In **Method** (Metodo) selezionare **copy** (Copia).
-   2. Per **come nome**, fare clic sulla casella di testo hello e accettare il nome di predefinito hello.
-   3. In hello **Distribuisci** sezione:
+   2. In **As Name**fare clic sulla casella di testo e accettare il nome predefinito.
+   3. Nella sezione **Deploy** :
       1. In **Method** (Metodo) selezionare **copy** (Copia).
-      2. Per **toodirectory**, tipo **JAVA_HOME %**.
-   4. Il **Add Component** finestra di dialogo dovrebbe essere simile toohello seguente.
+      2. In **To directory** (Directory di destinazione) digitare **%JAVA_HOME%**.
+   4. La finestra di dialogo **Add Component** avrà un aspetto analogo al seguente:
       
        ![Aggiunta di un componente certificato][add_cert_component]
    5. Fare clic su **OK**.
 
-A questo punto, il certificato verrà incluso nella distribuzione. Si noti che incorporare certificato hello in file WAR hello o aggiungerlo come distribuzione tooyour componente, è necessario tooupload hello certificato tooyour spazio dei nomi come descritto in hello [caricare uno spazio dei nomi ACS tooyour certificato] [ Upload a certificate tooyour ACS namespace] sezione.
+A questo punto, il certificato verrà incluso nella distribuzione. Si noti che a prescindere dal fatto che il certificato sia incorporato nel file WAR o aggiunto alla distribuzione come componente, è necessario caricare il certificato nello spazio dei nomi come descritto nella sezione [Caricamento di un certificato nello spazio dei nomi ACS][Upload a certificate to your ACS namespace].
 
 [What is ACS?]: #what-is
 [Concepts]: #concepts
@@ -269,15 +269,15 @@ A questo punto, il certificato verrà incluso nella distribuzione. Si noti che i
 [Add Identity Providers]: #add-IP
 [Add a Relying Party Application]: #add-RP
 [Create Rules]: #create-rules
-[Upload a certificate tooyour ACS namespace]: #upload-certificate
-[Review hello Application Integration Page]: #review-app-int
+[Upload a certificate to your ACS namespace]: #upload-certificate
+[Review the Application Integration Page]: #review-app-int
 [Configure Trust between ACS and Your ASP.NET Web Application]: #config-trust
-[Add hello ACS Filter library tooyour application]: #add_acs_filter_library
-[Deploy toohello compute emulator]: #deploy_compute_emulator
-[Deploy tooAzure]: #deploy_azure
+[Add the ACS Filter library to your application]: #add_acs_filter_library
+[Deploy to the compute emulator]: #deploy_compute_emulator
+[Deploy to Azure]: #deploy_azure
 [Next steps]: #next_steps
 [project website]: http://wastarterkit4java.codeplex.com/releases/view/61026
-[How tooview SAML returned by hello Azure Access Control Service]: active-directory-java-view-saml-returned-by-access-control.md
+[How to view SAML returned by the Azure Access Control Service]: active-directory-java-view-saml-returned-by-access-control.md
 [Access Control Service 2.0]: http://go.microsoft.com/fwlink/?LinkID=212360
 [Windows Identity Foundation]: http://www.microsoft.com/download/en/details.aspx?id=17331
 [Windows Identity Foundation SDK]: http://www.microsoft.com/download/en/details.aspx?id=4451

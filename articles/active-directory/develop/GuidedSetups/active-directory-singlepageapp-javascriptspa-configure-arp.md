@@ -1,5 +1,5 @@
 ---
-title: aaaAzure AD v2 JS SPA impostazione guidata - configurare ARP () | Documenti Microsoft
+title: Impostazione guidata di JS SPA per Azure AD v2 - Configurazione (ARP) | Microsoft Docs
 description: Illustra in che modo le applicazioni SPA di JavaScript possono chiamare un'API che richiede token di accesso dall'endpoint di Azure Active Directory v2 (ARP)
 services: active-directory
 documentationcenter: dev-center-name
@@ -13,41 +13,41 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 06/01/2017
 ms.author: andret
-ms.openlocfilehash: 157f4e342cd684294e24da6ee1fad8a7c2fc266a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 708f4ff606d79639de979918a9cacd4ed75db311
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-## <a name="add-hello-applications-registration-information-tooyour-app"></a>Aggiungere tooyour informazioni di registrazione dell'applicazione hello App
+## <a name="add-the-applications-registration-information-to-your-app"></a>Aggiungere le informazioni di registrazione dell'applicazione all'app
 
-In questo passaggio, è necessario l'URL di reindirizzamento hello tooconfigure delle informazioni di registrazione dell'applicazione e quindi aggiungere un'applicazione hello Id applicazione tooyour SPA JavaScript.
+In questo passaggio è necessario configurare l'URL di reindirizzamento delle informazioni di registrazione dell'applicazione e quindi aggiungere l'ID dell'applicazione per l'applicazione SPA di JavaScript.
 
 ### <a name="configure-redirect-url"></a>Configurare l'URL di reindirizzamento
 
-Configurare hello `Redirect URL` campo sopra con hello URL della pagina index basato sul server web, quindi fare clic su *aggiornamento*.
+Configurare il campo `Redirect URL` in alto con l'URL della pagina index.html basata sul server Web, quindi fare clic su *Aggiorna*.
 
 
 > #### <a name="visual-studio-instructions-for-obtaining-redirect-url"></a>Istruzioni di Visual Studio per ottenere l'URL di reindirizzamento
-> tooobtain l'URL di reindirizzamento, seguire le istruzioni di hello riportato di seguito:
-> 1.    In *Esplora*, selezionare il progetto hello e analizzare hello `Properties` finestra (se non viene visualizzato una finestra delle proprietà, premere `F4`)
-> 2.    Copiare il valore di hello da `URL` toohello Appunti:<br/> ![Proprietà del progetto](media/active-directory-singlepageapp-javascriptspa-configure/vs-project-properties-screenshot.png)<br />
-> 3.    Incollare il valore di hello come un `Redirect URL` nella parte superiore di hello di questa pagina, quindi fare clic su`Update`
+> Per ottenere l'URL di reindirizzamento, seguire queste istruzioni:
+> 1.    In *Esplora soluzioni* selezionare il progetto e controllare la finestra `Properties`. Se non viene visualizzata una finestra delle proprietà, premere `F4`.
+> 2.    Copiare il valore da `URL` negli Appunti:<br/> ![Proprietà del progetto](media/active-directory-singlepageapp-javascriptspa-configure/vs-project-properties-screenshot.png)<br />
+> 3.    Incollare il valore come `Redirect URL` nella parte superiore della pagina, quindi fare clic su `Update`
 
 <p/>
 
 > #### <a name="setting-redirect-url-for-python"></a>Configurazione dell'URL di reindirizzamento per Python
-> Per Python, è possibile impostare una porta del server web hello tramite riga di comando. Il programma di installazione guidata utilizza hello la porta 8080 per riferimento, ma è gratuita toouse qualsiasi porta disponibile. In ogni caso, attenersi alle istruzioni di hello seguenti tooset un URL di reindirizzamento nelle informazioni di registrazione applicazione hello:<br/>
-> Impostare `http://localhost:8080/` come un `Redirect URL` hello inizio di questa pagina, o utilizzare `http://localhost:[port]/` se si utilizza una porta TCP personalizzata (dove *[porta]* numero di porta TCP personalizzata hello) e quindi fare clic su 'Aggiorna'
+> Per Python è possibile configurare la porta del server Web tramite la riga di comando. Questa configurazione guidata usa la porta 8080 come riferimento, ma è possibile usare qualsiasi altra porta disponibile. In ogni caso, seguire le istruzioni riportate di seguito per configurare un URL di reindirizzamento nelle informazioni di registrazione dell'applicazione:<br/>
+> Impostare `http://localhost:8080/` come `Redirect URL` nella parte superiore della pagina o usare `http://localhost:[port]/` se si usa un una porta TCP personalizzata, dove *[port]* è il numero di porta TCP', quindi fare clic su 'Update' (Aggiorna).
 
 ### <a name="configure-your-javascript-spa-application"></a>Configurare l'applicazione JavaScript SPA
 
-1.  Creare un file denominato `msalconfig.js` contenente le informazioni di registrazione applicazione hello. Se si utilizza Visual Studio, progetto selezionare hello (cartella radice di progetto), mouse e scegliere: `Add`  >  `New Item`  >  `JavaScript File`. Assegnare il nome `msalconfig.js`
-2.  Aggiungere i seguenti tooyour codice hello `msalconfig.js` file:
+1.  Creare un file denominato `msalconfig.js` contenente le informazioni di registrazione dell'applicazione. Se si usa Visual Studio, selezionare il progetto (cartella radice del progetto), fare clic con il pulsante destro del mouse e scegliere `Add` > `New Item` > `JavaScript File`. Assegnare il nome `msalconfig.js`
+2.  Aggiungere il codice seguente al file `msalconfig.js`:
 
 ```javascript
 var msalconfig = {
-    clientID: "[Enter hello application Id here]",
+    clientID: "[Enter the application Id here]",
     redirectUri: location.origin
 };
 ``` 

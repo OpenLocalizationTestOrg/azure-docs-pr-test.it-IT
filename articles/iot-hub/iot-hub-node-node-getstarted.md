@@ -1,6 +1,6 @@
 ---
-title: aaaGet avviato con l'IoT Hub Azure (nodo) | Documenti Microsoft
-description: Informazioni su come toosend dispositivo a cloud messaggi tooAzure IoT Hub tramite IoT SDK per Node.js. Creare dispositivo simulato e servizio App tooregister il dispositivo, inviare messaggi e leggere messaggi da hub IoT.
+title: Introduzione all'hub IoT di Azure per Node.js | Microsoft Docs
+description: Informazioni su come inviare messaggi da dispositivo a cloud all'hub IoT di Azure usando IoT SDK per Node.js. Creare un dispositivo simulato e app di servizio per registrare il dispositivo, inviare messaggi e leggere messaggi dall'hub IoT.
 services: iot-hub
 documentationcenter: nodejs
 author: dominicbetts
@@ -12,69 +12,74 @@ ms.devlang: javascript
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 05/22/2017
+ms.date: 08/31/2017
 ms.author: dobett
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: d0747895365f2359a9c38ea1e85a5881d6efec0b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f3398e38cf7d3d28d9ca4edef5a9bca96aeaf2ab
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="connect-your-simulated-device-tooyour-iot-hub-using-node"></a>Connessione hub IoT tooyour dispositivo simulato utilizzando nodo
+# <a name="connect-your-simulated-device-to-your-iot-hub-using-node"></a>Connettere il dispositivo simulato all'hub IoT usando Node
+
 [!INCLUDE [iot-hub-selector-get-started](../../includes/iot-hub-selector-get-started.md)]
 
-Alla fine di hello di questa esercitazione, si dispongono di tre applicazioni di console Node.js:
+Al termine di questa esercitazione si avranno tre app console Node.js:
 
-* **CreateDeviceIdentity.js**, che consente di creare un'identità del dispositivo e protezione della chiave tooconnect app dispositivo simulato.
-* **ReadDeviceToCloudMessages.js**, che consente di visualizzare dati di telemetria hello inviati dall'app dispositivo simulato.
-* **SimulatedDevice.js**, che collega l'hub IoT tooyour con l'identità del dispositivo hello creato in precedenza e invia un messaggio di dati di telemetria ogni secondo utilizzando hello protocollo MQTT.
+* **CreateDeviceIdentity.js**, che crea un'identità del dispositivo e la chiave di sicurezza associata per connettere l'app per dispositivo simulato.
+* **ReadDeviceToCloudMessages.js**, che visualizza i dati di telemetria inviati dall'app per dispositivo simulato.
+* **SimulatedDevice.js**, che si connette all'hub IoT con l'identità del dispositivo creata in precedenza e invia un messaggio di telemetria ogni secondo usando il protocollo MQTT.
 
 > [!NOTE]
-> articolo Hello [Azure IoT SDK] [ lnk-hub-sdks] vengono fornite informazioni hello Azure IoT SDK che è possibile utilizzare toobuild toorun entrambe le applicazioni in dispositivi e la soluzione di back-end.
-> 
-> 
+> L'articolo [Azure IoT SDK][lnk-hub-sdks] offre informazioni sui vari Azure IoT SDK che è possibile usare per compilare applicazioni da eseguire nei dispositivi e il backend della soluzione.
 
-toocomplete questa esercitazione, è necessario hello seguenti:
+Per completare l'esercitazione, sono necessari gli elementi seguenti:
 
-* Node.js 0.10.x o versione successiva.
+* Node.js 4.0.x o versione successiva.
 * Un account Azure attivo. Se non si ha un account, è possibile creare un [account gratuito][lnk-free-trial] in pochi minuti.
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
-L'hub IoT è stato creato. È necessario hello nome host dell'IoT Hub e hello stringa di connessione IoT Hub che è necessario rest hello toocomplete di questa esercitazione.
+L'hub IoT è stato creato. Ora sono disponibili il nome host e la stringa di connessione dell'hub IoT necessari per completare il resto di questa esercitazione.
 
 ## <a name="create-a-device-identity"></a>Creare un'identità del dispositivo
-In questa sezione si crea un'applicazione console Node.js che crea un'identità del dispositivo nel Registro di sistema di hello identità nell'hub IoT. Un dispositivo può connettersi solo hub tooIoT se dispone di una voce del Registro di sistema di hello identità. Per ulteriori informazioni, vedere hello **Registro di sistema di identità** sezione di hello [Guida per sviluppatori di IoT Hub][lnk-devguide-identity]. Quando si esegue questa app console, viene generato un ID univoco del dispositivo e chiave che il dispositivo può usare tooidentify stesso quando vengono inviati al dispositivo a cloud messaggi tooIoT Hub.
 
-1. Creare una nuova cartella vuota denominata **createdeviceidentity**. In hello **createdeviceidentity** cartella, creare un file di package. JSON usando hello seguente comando al prompt dei comandi. Accettare tutte le impostazioni predefinite hello:
-   
-    ```
+In questa sezione si scriverà un'app console Node.js che crea un'identità del dispositivo nel registro delle identità dell'hub IoT. Un dispositivo può connettersi all'hub IoT solo se ha una voce nel registro delle identità. Per altre informazioni, vedere la sezione **Registro di identità** della [Guida per gli sviluppatori dell'hub IoT][lnk-devguide-identity]. Eseguire questa app per generare l'ID dispositivo univoco e la chiave usati dal dispositivo per identificarsi quando invia messaggi da dispositivo a cloud.
+
+1. Creare una nuova cartella vuota denominata `createdeviceidentity`. Nella cartella `createdeviceidentity` creare un file package.json eseguendo questo comando al prompt dei comandi. Accettare tutte le impostazioni predefinite:
+
+    ```cmd/sh
     npm init
     ```
-2. Al prompt dei comandi in hello **createdeviceidentity** cartella, eseguire hello successivo comando tooinstall hello **hub IOT di azure** pacchetto SDK del servizio:
-   
-    ```
+
+2. Eseguire questo comando al prompt dei comandi nella cartella `createdeviceidentity` per installare il pacchetto SDK del servizio `azure-iothub`:
+
+    ```cmd/sh
     npm install azure-iothub --save
     ```
-3. Utilizzando un editor di testo, creare un **CreateDeviceIdentity.js** file hello **createdeviceidentity** cartella.
-4. Aggiungere il seguente hello `require` istruzione all'inizio di hello di hello **CreateDeviceIdentity.js** file:
-   
-    ```
+
+3. Con un editor di testo creare un file **CreateDeviceIdentity.js** nella cartella `createdeviceidentity`.
+
+4. Aggiungere l'istruzione `require` seguente all'inizio del file **CreateDeviceIdentity.js** :
+
+    ```nodejs
     'use strict';
-   
+
     var iothub = require('azure-iothub');
     ```
-5. Aggiungere i seguenti toohello codice hello **CreateDeviceIdentity.js** file e sostituire il valore di segnaposto hello con la stringa di connessione IoT Hub hub hello creato nella sezione precedente hello hello: 
-   
-    ```
+
+5. Aggiungere il codice seguente al file **CreateDeviceIdentity.js**. Sostituire il valore del segnaposto con la stringa di connessione dell'hub IoT creato nella sezione precedente:
+
+    ```nodejs
     var connectionString = '{iothub connection string}';
-   
+
     var registry = iothub.Registry.fromConnectionString(connectionString);
     ```
-6. Aggiungere hello seguente codice toocreate una definizione di dispositivo nel Registro di sistema di hello identità nell'hub IoT. Questo codice crea un dispositivo se l'ID dispositivo hello non esiste nel Registro di sistema di hello identità, in caso contrario restituisce chiave hello del dispositivo esistente hello:
-   
-    ```
+
+6. Aggiungere il codice seguente per creare una definizione di dispositivo nel registro di identità dell'hub IoT. .Se l'ID del dispositivo non esiste nel registro delle identità dei dispositivi il codice crea un dispositivo, in caso contrario restituisce la chiave di quello esistente:
+
+    ```nodejs
     var device = {
       deviceId: 'myFirstNodeDevice'
     }
@@ -86,7 +91,7 @@ In questa sezione si crea un'applicazione console Node.js che crea un'identità 
         printDeviceInfo(err, deviceInfo, res)
       }
     });
-   
+
     function printDeviceInfo(err, deviceInfo, res) {
       if (deviceInfo) {
         console.log('Device ID: ' + deviceInfo.deviceId);
@@ -94,69 +99,75 @@ In questa sezione si crea un'applicazione console Node.js che crea un'identità 
       }
     }
     ```
+
    [!INCLUDE [iot-hub-pii-note-naming-device](../../includes/iot-hub-pii-note-naming-device.md)]
 
 7. Salvare e chiudere il file **CreateDeviceIdentity.js** .
-8. hello toorun **createdeviceidentity** applicazione, eseguire hello comando al prompt dei comandi di hello nella cartella createdeviceidentity hello seguente:
-   
-    ```
+
+8. Per eseguire l'applicazione `createdeviceidentity`, eseguire questo comando al prompt dei comandi nella cartella `createdeviceidentity`:
+
+    ```cmd/sh
     node CreateDeviceIdentity.js 
     ```
-9. Prendere nota di hello **ID dispositivo** e **chiave dispositivo**. Questi valori è necessario in un secondo momento quando si crea un'applicazione che si connette tooIoT Hub come un dispositivo.
+
+9. Prendere nota dei valori di **Device ID** e **Device key**, che saranno necessari più avanti quando si creerà un'applicazione che si connette all'hub IoT come dispositivo.
 
 > [!NOTE]
-> Hello del Registro di sistema di IoT Hub identità archivia solo hub IoT toohello di dispositivo identità tooenable proteggere l'accesso. Archivia toouse di chiavi e l'ID dispositivo come credenziali di sicurezza e un flag di abilitazione/disabilitazione che è possibile utilizzare toodisable accesso per un singolo dispositivo. Se l'applicazione deve toostore altri metadati specifici del dispositivo, deve utilizzare un archivio specifici dell'applicazione. Per ulteriori informazioni, vedere hello [Guida per sviluppatori di IoT Hub][lnk-devguide-identity].
-> 
-> 
+> Il registro di identità dell'hub IoT archivia solo le identità del dispositivo per abilitare l'accesso sicuro all'hub. Archivia le chiavi e gli ID dispositivo da usare come credenziali di sicurezza e un flag di abilitazione/disabilitazione che consente di disabilitare l'accesso per un singolo dispositivo. Se l'applicazione deve archiviare altri metadati specifici del dispositivo, dovrà usare un archivio specifico dell'applicazione. Per altre informazioni, vedere la [Guida per gli sviluppatori dell'hub IoT][lnk-devguide-identity].
 
 <a id="D2C_node"></a>
 ## <a name="receive-device-to-cloud-messages"></a>Ricezione di messaggi da dispositivo a cloud
-In questa sezione si creerà un'app console di Node.js che legge i messaggi da dispositivo a cloud dall'hub IoT. Un hub IoT espone un [hub eventi][lnk-event-hubs-overview]-tooenable endpoint compatibile per i messaggi da dispositivo a cloud tooread. cose tookeep semplice, in questa esercitazione consente di creare un lettore di base che non è adatto per una distribuzione di velocità effettiva elevata. Hello [elaborare i messaggi da dispositivo a cloud] [ lnk-process-d2c-tutorial] esercitazione viene illustrato come tooprocess dispositivo a cloud messaggi su larga scala. Hello [Introduzione agli hub di eventi] [ lnk-eventhubs-tutorial] esercitazione fornisce ulteriori informazioni su come tooprocess messaggi dagli hub eventi ed è applicabile toohello gli endpoint Hub IoT Hub eventi compatibile.
+
+In questa sezione si creerà un'app console di Node.js che legge i messaggi da dispositivo a cloud dall'hub IoT. L'hub IoT espone un endpoint compatibile con l'[hub eventi][lnk-event-hubs-overview] per abilitare la lettura dei messaggi dispositivo a cloud. Per semplicità, questa esercitazione crea un lettore di base non adatto per una distribuzione con velocità effettiva elevata. L'esercitazione [Elaborare messaggi dispositivo a cloud][lnk-process-d2c-tutorial] illustra come elaborare i messaggi dispositivo a cloud su vasta scala. L'esercitazione [Introduzione all'hub eventi][lnk-eventhubs-tutorial] offre altre informazioni applicabili agli endpoint compatibili con l'hub eventi dell'hub IoT.
 
 > [!NOTE]
-> Hello Hub eventi compatibile con l'endpoint per la lettura dei messaggi da dispositivo a cloud sempre Usa protocollo AMQP hello.
-> 
-> 
+> L'endpoint compatibile con Hub eventi per la lettura di messaggi da dispositivo a cloud usa sempre il protocollo AMQP.
 
-1. Creare una cartella vuota denominata **readdevicetocloudmessages**. In hello **readdevicetocloudmessages** cartella, creare un file di package. JSON usando hello seguente comando al prompt dei comandi. Accettare tutte le impostazioni predefinite hello:
-   
-    ```
+1. Creare una cartella vuota denominata `readdevicetocloudmessages`. Nella cartella `readdevicetocloudmessages` creare un file package.json eseguendo questo comando al prompt dei comandi. Accettare tutte le impostazioni predefinite:
+
+    ```cmd/sh
     npm init
     ```
-2. Al prompt dei comandi in hello **readdevicetocloudmessages** cartella, eseguire hello successivo comando tooinstall hello **hub di eventi di azure** pacchetto:
-   
-    ```
+
+2. Eseguire questo comando al prompt dei comandi nella cartella `readdevicetocloudmessages` per installare il pacchetto **azure-event-hubs**:
+
+    ```cmd/sh
     npm install azure-event-hubs --save
     ```
-3. Utilizzando un editor di testo, creare un **ReadDeviceToCloudMessages.js** file hello **readdevicetocloudmessages** cartella.
-4. Aggiungere il seguente hello `require` istruzioni hello iniziano hello **ReadDeviceToCloudMessages.js** file:
-   
-    ```
+
+3. Con un editor di testo creare un file **ReadDeviceToCloudMessages.js** nella cartella `readdevicetocloudmessages`.
+
+4. Aggiungere le istruzioni `require` seguenti all'inizio del file **ReadDeviceToCloudMessages.js** :
+
+    ```nodejs
     'use strict';
-   
+
     var EventHubClient = require('azure-event-hubs').Client;
     ```
-5. Aggiungere hello seguente dichiarazione di variabile e sostituire il valore di segnaposto hello con stringa di connessione IoT Hub per l'hub hello:
-   
-    ```
+
+5. Aggiungere la dichiarazione di variabile seguente e sostituire il valore del segnaposto con la stringa di connessione per l'hub IoT:
+
+    ```nodejs
     var connectionString = '{iothub connection string}';
     ```
-6. Aggiungere i seguenti due funzioni della console di output toohello stampa hello:
-   
-    ```
+
+6. Aggiungere le due funzioni seguenti che stampano l'output nella console:
+
+    ```nodejs
     var printError = function (err) {
       console.log(err.message);
     };
-   
+
     var printMessage = function (message) {
       console.log('Message received: ');
       console.log(JSON.stringify(message.body));
       console.log('');
     };
     ```
-7. Aggiungere i seguenti hello toocreate codice hello **EventHubClient**, aprire hello connessione tooyour IoT Hub e creare un ricevitore per ogni partizione. L'applicazione utilizza un filtro durante la creazione di un destinatario in modo che hello ricevitore legge solo i messaggi inviati tooIoT Hub dopo ricevitore hello viene avviata l'esecuzione. Questo filtro è utile in un ambiente di test in modo che solo hello set corrente di messaggi. In un ambiente di produzione, il codice deve verificare che vengano elaborati tutti i messaggi hello. Per ulteriori informazioni, vedere hello [come i messaggi da dispositivo a cloud IoT Hub tooprocess] [ lnk-process-d2c-tutorial] esercitazione:
-   
-    ```
+
+7. Aggiungere il codice seguente per creare **EventHubClient**, aprire la connessione all'hub IoT e creare un ricevitore per ogni partizione. Questa applicazione usa un filtro quando crea un ricevitore, in modo che il ricevitore legga i messaggi inviati all'hub IoT soltanto dopo l'avvio dell'esecuzione del ricevitore. Questo filtro è utile in un ambiente di test perché consente di visualizzare solo il set di messaggi corrente. In un ambiente di produzione, il codice deve verificare di avere elaborato tutti i messaggi. Per altre informazioni, vedere l'esercitazione [Elaborare messaggi da dispositivo a cloud dell'hub IoT][lnk-process-d2c-tutorial]:
+
+    ```nodejs
     var client = EventHubClient.fromConnectionString(connectionString);
     client.open()
         .then(client.getPartitionIds.bind(client))
@@ -171,40 +182,47 @@ In questa sezione si creerà un'app console di Node.js che legge i messaggi da d
         })
         .catch(printError);
     ```
-8. Salvare e chiudere hello **ReadDeviceToCloudMessages.js** file.
+
+8. Salvare e chiudere il file **ReadDeviceToCloudMessages.js** .
 
 ## <a name="create-a-simulated-device-app"></a>Creare un'app di dispositivo simulato
-In questa sezione si crea un'applicazione console Node. js che simula un dispositivo che invia l'hub IoT tooan messaggi da dispositivo a cloud.
 
-1. Creare una cartella vuota denominata **simulateddevice**. In hello **simulateddevice** cartella, creare un file di package. JSON usando hello seguente comando al prompt dei comandi. Accettare tutte le impostazioni predefinite hello:
-   
-    ```
+In questa sezione si creerà un'app console Node.js che simula un dispositivo che invia messaggi da dispositivo a cloud a un hub IoT.
+
+1. Creare una cartella vuota denominata `simulateddevice`. Nella cartella `simulateddevice` creare un file package.json eseguendo questo comando al prompt dei comandi. Accettare tutte le impostazioni predefinite:
+
+    ```cmd/sh
     npm init
     ```
-2. Al prompt dei comandi in hello **simulateddevice** cartella, eseguire hello successivo comando tooinstall hello **dispositivi iot di azure** pacchetto SDK di dispositivo e **azure-iot-dispositivo-mqtt**pacchetto:
-   
-    ```
+
+2. Eseguire questo comando al prompt dei comandi nella cartella `simulateddevice` per installare il pacchetto SDK per dispositivi **azure-iot-device** e il pacchetto **azure-iot-device-mqtt**:
+
+    ```cmd/sh
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
-3. Utilizzando un editor di testo, creare un **SimulatedDevice.js** file hello **simulateddevice** cartella.
-4. Aggiungere il seguente hello `require` istruzioni hello iniziano hello **SimulatedDevice.js** file:
-   
-    ```
+
+3. Con un editor di testo creare un file **SimulatedDevice.js** nella cartella `simulateddevice`.
+
+4. Aggiungere le istruzioni `require` seguenti all'inizio del file **SimulatedDevice.js** :
+
+    ```nodejs
     'use strict';
-   
+
     var clientFromConnectionString = require('azure-iot-device-mqtt').clientFromConnectionString;
     var Message = require('azure-iot-device').Message;
     ```
-5. Aggiungere un **connectionString** variabile e usarlo toocreate un **Client** istanza. Sostituire **{youriothostname}** con nome hello dell'hub IoT hello creato hello *creare un IoT Hub* sezione. Sostituire **{yourdevicekey}** con il valore della chiave di hello dispositivo è stato generato in hello *creare un'identità del dispositivo* sezione:
-   
-    ```
+
+5. Aggiungere una variabile `connectionString` e usarla per creare un'istanza **Client**. Sostituire il valore di `{youriothostname}` con il nome dell'hub IoT creato nella sezione *Creare un hub IoT*. Sostituire `{yourdevicekey}` con il valore della chiave del dispositivo generato nella sezione *Creare un'identità del dispositivo*:
+
+    ```nodejs
     var connectionString = 'HostName={youriothostname};DeviceId=myFirstNodeDevice;SharedAccessKey={yourdevicekey}';
-   
+
     var client = clientFromConnectionString(connectionString);
     ```
-6. Aggiungere i seguenti output toodisplay funzione da un'applicazione hello hello:
-   
-    ```
+
+6. Aggiungere la funzione seguente per visualizzare l'output dell'applicazione:
+
+    ```nodejs
     function printResultFor(op) {
       return function printResult(err, res) {
         if (err) console.log(op + ' error: ' + err.toString());
@@ -212,16 +230,17 @@ In questa sezione si crea un'applicazione console Node. js che simula un disposi
       };
     }
     ```
-7. Creare un callback e utilizzare hello **setInterval** funzione toosend un hub IoT tooyour di messaggi al secondo:
-   
-    ```
+
+7. Creare un callback e usare la funzione **setInterval** per inviare un messaggio all'hub IoT ogni secondo:
+
+    ```nodejs
     var connectCallback = function (err) {
       if (err) {
         console.log('Could not connect: ' + err);
       } else {
         console.log('Client connected');
-   
-        // Create a message and send it toohello IoT Hub every second
+
+        // Create a message and send it to the IoT Hub every second
         setInterval(function(){
             var temperature = 20 + (Math.random() * 15);
             var humidity = 60 + (Math.random() * 20);            
@@ -234,51 +253,54 @@ In questa sezione si crea un'applicazione console Node. js che simula un disposi
       }
     };
     ```
-8. Aprire hello connessione tooyour IoT Hub e avviare l'invio di messaggi:
-   
-    ```
+
+8. Aprire la connessione all'hub IoT e iniziare a inviare messaggi:
+
+    ```nodejs
     client.open(connectCallback);
     ```
-9. Salvare e chiudere hello **SimulatedDevice.js** file.
+
+9. Salvare e chiudere il file **SimulatedDevice.js** .
 
 > [!NOTE]
-> cose tookeep semplice, in questa esercitazione non implementa alcun criterio di tentativo. Nel codice di produzione, è necessario implementare criteri di ripetizione (ad esempio un backoff esponenziale), come indicato nell'articolo MSDN hello [gestione degli errori temporanei][lnk-transient-faults].
-> 
-> 
+> Per semplicità, in questa esercitazione non si implementa alcun criterio di ripetizione dei tentativi. Nel codice di produzione è consigliabile implementare criteri per i tentativi, ad esempio un backoff esponenziale, come illustrato nell'articolo di MSDN [Transient Fault Handling][lnk-transient-faults] (Gestione degli errori temporanei).
 
-## <a name="run-hello-apps"></a>Eseguire App hello
-Si è ora pronto toorun hello app.
+## <a name="run-the-apps"></a>Eseguire le app
 
-1. Al prompt dei comandi in hello **readdevicetocloudmessages** cartella, eseguire hello monitoraggio l'hub IoT toobegin di comando seguente:
-   
-    ```
+A questo punto è possibile eseguire le app.
+
+1. Al prompt dei comandi nella cartella `readdevicetocloudmessages` eseguire questo comando per iniziare a monitorare l'hub IoT:
+
+    ```cmd/sh
     node ReadDeviceToCloudMessages.js 
     ```
-   
-    ![Messaggi da dispositivo a cloud toomonitor di Node.js IoT Hub del servizio app][7]
-2. Al prompt dei comandi in hello **simulateddevice** cartella, eseguire hello toobegin comando invio hub IoT tooyour dati di telemetria seguenti:
-   
-    ```
+
+    ![App del servizio hub IoT per Node.js per monitorare i messaggi dispositivo a cloud][7]
+
+2. Eseguire questo comando al prompt dei comandi nella cartella `simulateddevice` per iniziare a inviare dati di telemetria all'hub IoT:
+
+    ```cmd/sh
     node SimulatedDevice.js
     ```
-   
-    ![Messaggi da dispositivo a cloud di Node.js IoT Hub dispositivo app toosend][8]
-3. Hello **utilizzo** riquadro in hello [portale di Azure] [ lnk-portal] Mostra hello numero di messaggi inviati toohello hub IoT:
-   
-    ![Azure portale utilizzo riquadro mostra il numero di messaggi inviati tooIoT Hub][43]
+
+    ![App del dispositivo hub IoT per Node.js per inviare i messaggi da dispositivo a cloud][8]
+
+3. Il riquadro **Utilizzo** nel [portale di Azure][lnk-portal] mostra il numero di messaggi inviati all'hub IoT:
+
+    ![Riquadro Utilizzo del portale di Azure con il numero dei messaggi inviati all'hub IoT][43]
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questa esercitazione, è configurato un nuovo hub IoT in hello portale di Azure e quindi creata un'identità del dispositivo nel Registro di sistema dell'hub IoT hello identità. È stato utilizzato questo dispositivo identità tooenable hello simulato dispositivo app toosend messaggi da dispositivo a cloud toohello hub IoT. È stato creato anche un'applicazione che consente di visualizzare i messaggi hello ricevuti dall'hub IoT hello. 
 
-Guida introduttiva toocontinue con IoT Hub e tooexplore altri scenari IoT, vedere:
+In questa esercitazione è stato configurato un nuovo hub IoT nel Portale di Azure ed è stata quindi creata un'identità del dispositivo nel registro di identità dell'hub IoT. Questa identità del dispositivo è stata usata per consentire all'app per dispositivo simulato di inviare all'hub IoT messaggi dispositivo a cloud. È stata anche creata un'app che visualizza i messaggi ricevuti dall'hub IoT.
+
+Per altre informazioni sulle attività iniziali con l'hub IoT e per esplorare altri scenari IoT, vedere:
 
 * [Connessione del dispositivo][lnk-connect-device]
 * [Introduzione alla gestione dei dispositivi][lnk-device-management]
 * [Introduzione ad Azure IoT Edge][lnk-iot-edge]
 
-toolearn tooextend vedere i messaggi di dispositivo a cloud processo e di soluzione IoT su larga scala, hello [elaborare i messaggi da dispositivo a cloud] [ lnk-process-d2c-tutorial] esercitazione.
+Per informazioni sull'estensione della soluzione IoT e l'elaborazione di messaggi dispositivo a cloud su vasta scala, vedere l'esercitazione [Elaborare messaggi dispositivo a cloud][lnk-process-d2c-tutorial].
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]
-
 
 <!-- Images. -->
 [7]: ./media/iot-hub-node-node-getstarted/runapp1.png

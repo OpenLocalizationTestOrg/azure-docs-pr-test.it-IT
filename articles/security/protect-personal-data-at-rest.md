@@ -1,106 +1,87 @@
----
-title: Proteggere i dati personali inattivi con crittografia aaaAzure | Documenti Microsoft
-description: Questo articolo fa parte di una serie consentono di utilizzare i dati personali tooprotect Azure
-services: security
-documentationcenter: na
-author: Barclayn
-manager: MBaldwin
-editor: TomSh
-ms.assetid: 
-ms.service: security
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
-ms.date: 08/22/2017
-ms.author: barclayn
-ms.custom: 
-ms.openlocfilehash: 9af182b4897f1d04f5f519e6671f53b85073bae1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+titolo: Azure - Proteggere i dati personali inattivi con la crittografia | Microsoft Docs descrizione: Questo articolo fa parte di una serie che descrive come usare Azure per proteggere i dati personali servizi: sicurezza documentationcenter: ND autore: Barclayn responsabile: MBaldwin editor: TomSh
+
+ms.assetid: ms.service: security ms.devlang: na ms.topic: article ms.tgt_pltfrm: na ms.workload: na ms.date: 08/22/2017 ms.author: barclayn ms.custom: 
+
 ---
 # <a name="azure-encryption-technologies-protect-personal-data-at-rest-with-encryption"></a>Tecnologie di crittografia di Azure: proteggere i dati personali inattivi con la crittografia
 
-In questo articolo consente di comprendere e utilizzare dati toosecure tecnologie di crittografia Azure inattivi.
+Questo articolo aiuta a comprendere e usare le tecnologie di crittografia di Azure per proteggere i dati inattivi.
 
-Crittografia dei dati inattivi è essenziale come best practice tooprotect riservate o personali dati e conformità toomeet e requisiti sulla privacy dei dati.
-Crittografia inattivi è l'autore dell'attacco hello tooprevent progettato l'accesso ai dati di non crittografato hello garantendo hello dati vengono crittografati quando nel disco.
+La crittografia dei dati inattivi è una procedura consigliata essenziale per proteggere dati sensibili o personali e per soddisfare la conformità e i requisiti di privacy dei dati.
+La crittografia dei dati inattivi è progettata per impedire a un utente malintenzionato di accedere ai dati non crittografati, garantendo che i dati siano crittografati quando sono su disco.
 
 ## <a name="scenario"></a>Scenario 
 
-Una società crociera di grandi dimensioni, sede hello negli Stati Uniti, all'espansione relativo itinerari toooffer operazioni Mediterraneo, hello e mare Baltico, nonché hello isole britannico. toosupport tali attività, che è stato acquisito più righe crociera inferiori basate in Italia, Germania, Danimarca e hello Regno Unito
+Un'importante compagnia di viaggi in crociera, con sede negli Stati Uniti, sta espandendo le proprie operazioni per offrire itinerari nel Mar Mediterraneo e nel Mar Baltico, nonché nelle isole britanniche. Per supportare questo progetto, ha acquistato diverse linee minori con sede in Italia, Germania, Danimarca e Regno Unito.
 
-la società Hello utilizza i dati aziendali di Microsoft Azure toostore nel cloud hello. Può trattarsi di dipendente e/o informazioni sul cliente, ad esempio:
+La società usa Microsoft Azure per archiviare i dati aziendali nel cloud. I dati possono includere informazioni su clienti e/o dipendenti, tra cui:
 
 - Indirizzi
 - Numeri di telefono
 - Codici fiscali
-- informazioni mediche
 - Dati delle carte di credito
 
-società Hello necessario proteggere la privacy hello di dati dipendenti e clienti durante la creazione di servizi accessibili toothose dati che ne hanno necessità. ad esempio quelli che si occupano di retribuzioni e prenotazioni.
+La società deve proteggere la privacy dei dati dei propri clienti e dipendenti rendendoli accessibili ai reparti che ne hanno bisogno, ad esempio quelli che si occupano di retribuzioni e prenotazioni.
 
-riga crociera Hello gestisce anche un database di grandi dimensioni di benefici e la fedeltà dei membri del programma che include informazioni personali tootrack relazioni con i clienti correnti e precedenti.
+La linea di crociere gestisce anche un database di grandi dimensioni dei membri dei programmi fedeltà e premi, che include informazioni personali per tenere traccia delle relazioni con i clienti attuali e del passato.
 
 ### <a name="problem-statement"></a>Presentazione del problema
 
-società Hello necessario proteggere la privacy hello dei dati personali dei dipendenti e clienti durante la creazione di reparti toothose accessibile dati che ne hanno necessità (ad esempio, retribuzioni e le prenotazioni reparti). Questi dati personali viene archiviati all'esterno di centro dati aziendale controllati hello e non sono incluso nel controllo fisico dell'azienda hello.
+La società deve proteggere la privacy dei dati personali di clienti e dipendenti rendendoli accessibili ai reparti che ne hanno bisogno, ad esempio quelli che si occupano di retribuzioni e prenotazioni. Questi dati personali vengono archiviati esternamente al data center controllato dall'azienda e non vengono controllati fisicamente dalla società.
 
 ### <a name="company-goal"></a>Obiettivo dell'azienda
 
-Come parte di una strategia di sicurezza a più livelli di difesa in profondità, è un tooensure obiettivo aziendale che tutte le origini dati che contengono dati personali vengono crittografate, inclusi quelli che risiedono nell'archiviazione cloud. Se non è autorizzato toohello persone guadagno accedere ai dati personali, deve essere in un formato che verrà eseguito il rendering illeggibile. L'applicazione della crittografia deve essere facile, o trasparente, per utenti e amministratori.
+Come parte di una strategia di sicurezza con difesa avanzata a più livelli, l'obiettivo della società è garantire che tutte le origini dati che contengono dati personali siano crittografate, incluse quelle che si trovano nello spazio di archiviazione cloud. Se utenti non autorizzati ottengono l'accesso a dati personali, questi devono essere in forma illeggibile. L'applicazione della crittografia deve essere facile, o trasparente, per utenti e amministratori.
 
 ## <a name="solutions"></a>Soluzioni
 
-Servizi di Azure forniscono più toohelp strumenti e tecnologie proteggere i dati personali rest crittografandola.
+I servizi di Azure offrono più strumenti e tecnologie per semplificare la protezione dei dati personali inattivi tramite la crittografia.
 
 ### <a name="azure-key-vault"></a>Insieme di credenziali chiave Azure
 
-[Insieme di credenziali chiave di Azure](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-whatis) fornisce l'archiviazione sicura per le chiavi di hello utilizzate tooencrypt dati inattivi nei servizi di Azure e hello consigliata principali soluzioni di archiviazione e la gestione. Gestire la chiave di crittografia è essenziale toosecuring archiviati dati.
+[Azure Key Vault](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-whatis) offre archiviazione sicura per le chiavi usate per crittografare dati inattivi nei servizi di Azure ed è la soluzione di gestione e archiviazione delle chiavi consigliata. La gestione delle chiavi di crittografia è essenziale per proteggere i dati archiviati.
 
-#### <a name="how-do-i-use-azure-key-vault-tooprotect-keys-that-encrypt-personal-data"></a>Utilizzo di chiavi di tooprotect Azure insieme di credenziali chiave di crittografia dati personali
+#### <a name="how-do-i-use-azure-key-vault-to-protect-keys-that-encrypt-personal-data"></a>Come si usa Azure Key Vault per proteggere le chiavi che crittografano i dati personali?
 
-toouse insieme di credenziali chiave di Azure, è necessario un account di Azure di tooan sottoscrizione. Deve essere installato anche Azure PowerShell. Con PowerShell cmdlet toodo hello seguenti passaggi:
+Per usare Azure Key Vault, è necessaria la sottoscrizione di un account Azure. Deve essere installato anche Azure PowerShell. I passaggi includono l'uso dei cmdlet di PowerShell per eseguire le operazioni seguenti:
 
-1. Connettersi tooyour sottoscrizioni
+1. Connettersi alle sottoscrizioni
 
 2. Creare un insieme di credenziali delle chiavi
 
-3. Aggiungere una chiave o un insieme di credenziali chiave segreta toohello
+3. Aggiungere una chiave o un segreto all'insieme di credenziali delle chiavi
 
-4. Registrare le applicazioni che verranno utilizzato l'insieme di credenziali chiave hello con Azure Active Directory
+4. Registrare le applicazioni che useranno l'insieme di credenziali delle chiavi con Azure Active Directory
 
-5. Autorizzare hello applicazioni toouse hello chiave o il segreto
+5. Autorizzare le applicazioni a usare la chiave o il segreto
 
-toocreate un insieme di credenziali chiave, utilizzare i cmdlet di PowerShell New-AzureRmKeyVault hello. È necessario assegnare un nome dell'insieme di credenziali, un nome del gruppo di risorse e una posizione geografica. Si utilizzerà il nome di archivio hello quando la gestione delle chiavi tramite altri cmdlet. Le applicazioni che utilizzano l'insieme di credenziali di hello tramite API REST hello utilizzerà l'URI dell'insieme di credenziali hello.
+Per creare un insieme di credenziali, usare il cmdlet di PowerShell New-AzureRmKeyVault. È necessario assegnare un nome dell'insieme di credenziali, un nome del gruppo di risorse e una posizione geografica. Il nome dell'insieme di credenziali verrà usato per la gestione delle chiavi con altri cmdlet. Le applicazioni che usano l'insieme di credenziali tramite l'API REST devono usare questo URI.
 
-Azure Key Vault può fornire una chiave protetta tramite software oppure è possibile importare una chiave esistente in un file PFX. È anche possibile archiviare i segreti (password) nell'insieme di credenziali hello.
+Azure Key Vault può fornire una chiave protetta tramite software oppure è possibile importare una chiave esistente in un file PFX. È anche possibile archiviare segreti (password) nell'insieme di credenziali.
 
-È anche possibile generare una chiave nel modulo di protezione hardware locale e trasferirlo nel servizio insieme di credenziali chiave, hello tooHSMs senza chiave hello lasciando limite HSM hello.
+È infine possibile generare una chiave nel modulo HSM locale e trasferirla nei moduli HSM nel servizio Azure Key Vault, senza che la chiave oltrepassi i confini del modulo HSM.
 
-Per istruzioni dettagliate sull'utilizzo di credenziali chiave di Azure, seguire i passaggi hello [introduzione insieme credenziali chiavi Azure.](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-get-started)
+Per istruzioni dettagliate sull'uso di Azure Key Vault, seguire i passaggi inclusi in [Introduzione ad Azure Key Vault](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-get-started)
 
 Per un elenco dei cmdlet di PowerShell usati con Azure Key Vault, vedere [AzureRM.KeyVault](https://docs.microsoft.com/en-us/powershell/module/azurerm.keyvault/?view=azurermps-4.2.0).
 
 ### <a name="azure-disk-encryption-for-windows"></a>Crittografia dischi di Azure per Windows
 
-[Crittografia dischi di Azure per macchine virtuali IaaS Windows e Linux](https://docs.microsoft.com/en-us/azure/security/azure-security-disk-encryption) protegge i dati personali inattivi nelle macchine virtuali di Azure e si integra con Azure Key Vault. La crittografia del disco di Azure Usa [BitLocker](https://technet.microsoft.com/library/cc732774.aspx) in Windows e [DM Crypt](https://en.wikipedia.org/wiki/Dm-crypt) in Linux tooencrypt entrambi hello del sistema operativo e hello dischi dati. Crittografia dischi di Azure è supportata in Windows Server 2008 R2, Windows Server 2012, Windows Server 2012 R2, Windows Server 2016 e nei client Windows 8 e Windows 10.
+[Crittografia dischi di Azure per macchine virtuali IaaS Windows e Linux](https://docs.microsoft.com/en-us/azure/security/azure-security-disk-encryption) protegge i dati personali inattivi nelle macchine virtuali di Azure e si integra con Azure Key Vault. Crittografia dischi di Azure usa [BitLocker](https://technet.microsoft.com/library/cc732774.aspx) in Windows e [DM-Crypt](https://en.wikipedia.org/wiki/Dm-crypt) in Linux per crittografare i dischi del sistema operativo e dei dati. Crittografia dischi di Azure è supportata in Windows Server 2008 R2, Windows Server 2012, Windows Server 2012 R2, Windows Server 2016 e nei client Windows 8 e Windows 10.
 
-#### <a name="how-do-i-use-azure-disk-encryption-tooprotect-personal-data"></a>Utilizzo di dati personali tooprotect di crittografia del disco di Azure
+#### <a name="how-do-i-use-azure-disk-encryption-to-protect-personal-data"></a>Come si usa Crittografia dischi di Azure per proteggere i dati personali?
 
-toouse crittografia del disco di Azure, è necessario un account di Azure di tooan sottoscrizione. tooenable Azure disco crittografia per Windows e le macchine virtuali Linux, hello seguenti:
+Per usare Crittografia dischi di Azure, è necessaria la sottoscrizione di un account Azure. Per abilitare Crittografia dischi di Azure per macchine virtuali Windows e Linux, eseguire le operazioni seguenti:
 
-1. Utilizzare il modello di gestione risorse di Azure disco crittografia hello, PowerShell o crittografia del disco tooenable hello interfaccia della riga di comando (CLI) e specificare la configurazione di crittografia. 
+1. Usare il modello di Resource Manager per Crittografia dischi di Azure, PowerShell o l'interfaccia della riga di comando per abilitare la crittografia dei dischi e specificare la configurazione della crittografia. 
 
-2. Concedere accesso toohello materiale della piattaforma Azure tooread hello crittografia di credenziali delle chiavi.
+2. Concedere l'accesso alla piattaforma Azure per leggere il materiale di crittografia dall'insieme di credenziali delle chiavi.
 
-3. Fornire un Azure Active Directory (AAD) applicazione identità toowrite hello crittografia chiave tooyour materiale chiave insieme di credenziali.
+3. Specificare l'identità di un'applicazione di Azure Active Directory (AAD) per scrivere il materiale della chiave di crittografia nell'insieme di credenziali delle chiavi.
 
-Azure Aggiorna hello macchina virtuale e la configurazione dell'insieme di credenziali chiave hello e impostare la macchina virtuale crittografata.
+Azure aggiorna la configurazione della macchina virtuale e dell'insieme di credenziali delle chiavi e configura la macchina virtuale crittografata.
 
-Quando si configura il toosupport insieme di credenziali chiave crittografia del disco di Azure, è possibile aggiungere una chiave di crittografia della chiave (KEK) per maggiore sicurezza e toosupport backup di macchine virtuali crittografati.
+Quando si configura l'insieme di credenziali delle chiavi per supportare Crittografia dischi di Azure, è possibile aggiungere una chiave di crittografia della chiave per fornire ulteriore sicurezza e supportare il backup delle macchine virtuali crittografate.
 
 ![](media/protect-personal-data-at-rest/create-key.png)
 
@@ -108,65 +89,65 @@ Le istruzioni dettagliate per esperienze utente e scenari di distribuzione speci
 
 ### <a name="azure-storage-service-encryption"></a>Crittografia del servizio di archiviazione di Azure
 
-[Azure Storage Service crittografia (SSE) per i dati inattivi](https://docs.microsoft.com/en-us/azure/storage/storage-service-encryption) consente di proteggere e salvaguardare i propri impegni di sicurezza e conformità organizzativi toomeet i dati. Archiviazione di Azure crittografa i dati utilizzando toostorage di toopersisting precedente la crittografia AES a 256 bit automaticamente e lo decrittografa tooretrieval precedente. Questo servizio è disponibile per BLOB di Azure e File di Azure.
+[Crittografia del servizio di archiviazione di Azure per dati inattivi](https://docs.microsoft.com/en-us/azure/storage/storage-service-encryption) consente di proteggere e salvaguardare i dati, in modo da soddisfare i criteri di sicurezza e conformità dell'organizzazione. Archiviazione di Azure crittografa automaticamente i dati usando crittografia AES a 256 bit prima della persistenza nella risorsa di archiviazione e li decrittografa prima del recupero. Questo servizio è disponibile per BLOB di Azure e File di Azure.
 
-#### <a name="how-do-i-use-storage-service-encryption-tooprotect-personal-data"></a>Utilizzo di dati personali di tooprotect la crittografia del servizio di archiviazione
+#### <a name="how-do-i-use-storage-service-encryption-to-protect-personal-data"></a>Come si usa Crittografia del servizio di archiviazione per proteggere i dati personali?
 
-la crittografia del servizio di archiviazione, tooenable hello seguenti:
+Per abilitare Crittografia del servizio di archiviazione, eseguire le operazioni seguenti:
 
-1. Accedere hello portale di Azure.
+1. Accedere al portale di Azure.
 
 2. Selezionare un account di archiviazione.
 
-3. In impostazioni, nella sezione del servizio Blob hello, selezionare la crittografia.
+3. Nella sezione Servizio BLOB in Impostazioni selezionare Crittografia.
 
-4. In hello sezione servizio File, selezionare la crittografia.
+4. Nella sezione Servizio file selezionare Crittografia.
 
-Dopo aver selezionato l'impostazione di crittografia hello, è possibile abilitare o disabilitare la crittografia del servizio di archiviazione.
+Dopo avere selezionato l'impostazione Crittografia, è possibile abilitare o disabilitare Crittografia del servizio di archiviazione.
 
 ![](media/protect-personal-data-at-rest/storage-service-encryption.png)
 
 I nuovi dati verranno crittografati. I dati presenti nei file esistenti in questo account di archiviazione resteranno non crittografati.
 
-Dopo l'abilitazione della crittografia, copiare account di archiviazione dati toohello utilizzando uno dei seguenti metodi hello:
+Dopo aver abilitato la crittografia, copiare i dati nell'account di archiviazione usando uno dei metodi seguenti:
 
-1. Copiare BLOB o i file con hello [utilità della riga di comando AzCopy](https://docs.microsoft.com/en-us/azure/storage/storage-use-azcopy).
+1. Copiare i BLOB o i file con l'[utilità della riga di comando AzCopy](https://docs.microsoft.com/en-us/azure/storage/storage-use-azcopy).
 
-2. [Montare una condivisione file SMB tramite](https://docs.microsoft.com/en-us/azure/storage/storage-file-how-to-use-files-windows) pertanto è possibile utilizzare un'utilità, ad esempio file toocopy Robocopy.
+2. [Montare una condivisione di file con SMB](https://docs.microsoft.com/en-us/azure/storage/storage-file-how-to-use-files-windows), per poter usare un'utilità come Robocopy per copiare i file.
 
-3. Copiare blob o file di dati tooand dall'archiviazione blob o tra gli account di archiviazione tramite [le librerie Client di archiviazione, ad esempio .NET](https://docs.microsoft.com/en-us/azure/storage/storage-dotnet-how-to-use-blobs).
+3. Copiare dati di BLOB o file da e verso l'archiviazione BLOB o tra account di archiviazione usando [librerie client di archiviazione come .NET](https://docs.microsoft.com/en-us/azure/storage/storage-dotnet-how-to-use-blobs).
 
-4.  Utilizzare un [Esplora archivi](https://docs.microsoft.com/en-us/azure/storage/storage-explorers) tooupload tooyour account di archiviazione di BLOB con la crittografia attivata.
+4.  Usare uno [strumento di esplorazione di archiviazione](https://docs.microsoft.com/en-us/azure/storage/storage-explorers) per caricare BLOB nell'account di archiviazione con la crittografia abilitata.
 
 ### <a name="transparent-data-encryption"></a>Transparent Data Encryption
 
-Transparent Data Encryption (TDE) è una funzionalità di SQL Azure mediante il quale è possibile crittografare i dati in entrambi i livelli di hello database e server. La tecnologia TDE è ora abilitata per impostazione predefinita in tutti i nuovi database creati. TDE consente di eseguire la crittografia dei / o e la decrittografia dei file di dati e log hello in tempo reale.
+Transparent Data Encryption (TDE) è una funzionalità inclusa in SQL Azure che permette di crittografare i dati a livello di database e di server. La tecnologia TDE è ora abilitata per impostazione predefinita in tutti i nuovi database creati. TDE esegue la crittografia e la decrittografia delle operazioni di I/O di file di dati e log in tempo reale.
 
-#### <a name="how-do-i-use-tde-tooprotect-personal-data"></a>Utilizzo di dati personali tooprotect di Transparent Data Encryption
+#### <a name="how-do-i-use-tde-to-protect-personal-data"></a>Come si usa TDE per proteggere i dati personali?
 
-È possibile configurare Transparent Data Encryption tramite il portale di Azure, hello utilizzando hello API REST o PowerShell. tooenable TDE in un database esistente tramite il portale di Azure, hello hello seguenti:
+È possibile configurare TDE tramite il portale di Azure, con l'API REST o con PowerShell. Per abilitare TDE in un database esistente usando il portale di Azure, eseguire le operazioni seguenti:
 
-1. Visitare hello Azure portale in <https://portal.azure.com> e Accedi con l'account amministratore di Azure o collaboratore.
+1. Accedere al portale di Azure all'indirizzo <https://portal.azure.com> con l'account di amministratore o collaboratore di Azure.
 
-2. Nel banner sinistro hello, fare clic su tooBROWSE e quindi fare clic su database SQL.
+2. Nel banner a sinistra fare clic su SFOGLIA e quindi su Database SQL.
 
-3. Con il database SQL selezionati nel riquadro di sinistra hello, fare clic sul proprio database utente.
+3. Con Database SQL selezionato nel riquadro a sinistra, fare clic sul database utente.
 
-4. Nel pannello database hello, fare clic su tutte le impostazioni.
+4. Nel pannello del database fare clic su Tutte le impostazioni.
 
-5. Nel pannello impostazioni hello, fare clic su Pannello di Transparent data encryption parte tooopen hello Transparent data encryption.
+5. Nel riquadro Impostazioni fare clic sulla parte Transparent Data Encryption per aprire il riquadro Transparent Data Encryption.
 
-6. Nel Pannello di crittografia dati hello, spostare hello dati crittografia pulsante tooOn e quindi fare clic su Salva (in alto hello pagina hello) impostazione hello tooapply. lo stato di crittografia Hello indicherà approssimativamente lo stato di avanzamento hello di hello transparent data encryption.
+6. Nel riquadro Crittografia dati spostare il pulsante Crittografia dati su Sì e quindi fare clic su Salva (nella parte superiore della pagina) per applicare l'impostazione. Lo stato di crittografia indicherà approssimativamente lo stato di Transparent Data Encryption.
 
 ![Abilitazione della crittografia dei dati](media/protect-personal-data-at-rest/turn-data-encryption-on.png)
 
-Istruzioni su come tooenable Transparent Data Encryption e informazioni su come decrittografare i database protetti da Transparent Data Encryption e altro ancora sono disponibili nell'articolo hello [Transparent Data Encryption con il Database SQL di Azure.](https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/transparent-data-encryption-with-azure-sql-database)
+Le istruzioni su come abilitare TDE e le informazioni sulla decrittografia di database protetti con TDE sono disponibili nell'articolo [Transparent Data Encryption con il database SQL di Azure ](https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/transparent-data-encryption-with-azure-sql-database).
 
 ## <a name="summary"></a>Riepilogo
 
-Per eseguire l'obiettivo di crittografare i dati personali archiviati nel cloud di Azure hello società Hello. È possibile farlo mediante la crittografia del disco di Azure troppo proteggere volumi completi. Questo può includere i file del sistema operativo hello e file di dati che contengono informazioni personali e altri dati sensibili. È possibile tooprotect utilizzati i dati personali che viene archiviati in file di BLOB e crittografia del servizio di archiviazione di Azure. Per i dati archiviati in database SQL di Azure, Transparent Data Encryption offre protezione dall'esposizione non autorizzata delle informazioni personali.
+La società può realizzare il proprio obiettivo di crittografare i dati personali archiviati nel cloud di Azure. A questo scopo, può usare Crittografia dischi di Azure per proteggere interi volumi. Possono essere inclusi i file del sistema operativo e i file di dati che contengono informazioni personali e altri dati sensibili. È possibile usare Crittografia del servizio di archiviazione di Azure per proteggere dati personali archiviati in BLOB e file. Per i dati archiviati in database SQL di Azure, Transparent Data Encryption offre protezione dall'esposizione non autorizzata delle informazioni personali.
 
-tooprotect hello chiavi di dati tooencrypt usato in Azure, è possibile utilizzare insieme credenziali chiavi Azure aziendale hello. Questo semplifica il processo di gestione delle chiavi hello e Abilita hello controllo toomaintain aziendale delle chiavi per l'accesso e crittografare i dati personali.
+Per proteggere le chiavi usate per crittografare dati in Azure, la società può usare Azure Key Vault. Questo servizio semplifica il processo di gestione delle chiavi e permette alla società di mantenere il controllo delle chiavi che accedono ai dati personali e li crittografano.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

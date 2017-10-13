@@ -1,6 +1,6 @@
 ---
-title: i backup di distribuzione di gestione risorse di macchina virtuale aaaManage | Documenti Microsoft
-description: Informazioni su come toomanage e monitorare i backup distribuito Gestione risorse di macchina virtuale
+title: Gestire i backup delle macchine virtuali distribuite con Resource Manager | Microsoft Docs
+description: Informazioni su come gestire e monitorare i backup delle macchine virtuali distribuite con Resource Manager
 services: backup
 documentationcenter: 
 author: trinadhk
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/28/2016
 ms.author: trinadhk;markgal
-ms.openlocfilehash: 241fc4b2a29c5cd8b8b0ee8efbf8ba4e96c6a7ea
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 35a21cb99ca4bad124a9f764cef9da453e1fe47f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="manage-azure-virtual-machine-backups"></a>Gestire i backup delle macchine virtuali di Azure
 > [!div class="op_single_selector"]
@@ -27,67 +27,67 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-In questo articolo vengono fornite indicazioni sulla gestione dei backup di macchine Virtuali e vengono illustrate le informazioni di avvisi di backup hello disponibili nel dashboard del portale hello. linee guida di Hello in questo articolo si applicano le macchine virtuali toousing con gli insiemi di credenziali di servizi di ripristino. In questo articolo non viene illustrata la creazione di hello di macchine virtuali, né spiegano come tooprotect le macchine virtuali. Per una panoramica sulla protezione di macchine virtuali distribuite di gestione risorse di Azure in Azure con un insieme di credenziali di servizi di ripristino, vedere [innanzitutto: eseguire il backup di macchine virtuali tooa insieme di credenziali di servizi di ripristino](backup-azure-vms-first-look-arm.md).
+Questo articolo contiene indicazioni sulla gestione dei backup delle VM e illustra le informazioni degli avvisi relativi al backup disponibili nel dashboard del portale. Le informazioni aggiuntive incluse in questo articolo si applicano all'uso di macchine virtuali con gli insiemi di credenziali di Servizi di ripristino. Questo articolo non illustra la creazione di macchine virtuali, né come proteggerle. Per una panoramica della protezione di macchine virtuali distribuite tramite Azure Resource Manager con un insieme di credenziali di Servizi di ripristino, vedere [Primi passi: eseguire il backup di VM di Azure Resource Manager in un insieme di credenziali dei servizi di ripristino](backup-azure-vms-first-look-arm.md).
 
 ## <a name="manage-vaults-and-protected-virtual-machines"></a>Gestire gli insiemi di credenziali e le macchine virtuali protette
-Nel portale di Azure hello, dashboard dell'insieme di credenziali di servizi di ripristino hello fornisce accesso tooinformation sull'inclusione di hello insieme di credenziali:
+Nel portale di Azure il dashboard dell'insieme di credenziali di Servizi di ripristino consente di accedere alle informazioni relative all'insieme di credenziali, quali:
 
-* Hello backup più recente dello snapshot, che è anche il punto di ripristino più recente di hello < br\>
-* criteri di backup Hello < br\>
+* Snapshot di backup più recente, che corrisponde anche al punto di ripristino più recente <br\>
+* Criteri di backup <br\>
 * Dimensioni totali di tutti gli snapshot di backup <br\>
-* numero di macchine virtuali che sono protetti con insieme di credenziali hello < br\>
+* Numero di macchine virtuali protette con l'insieme di credenziali <br\>
 
-Molte attività di gestione con un backup della macchina virtuale iniziano con l'apertura di insieme di credenziali hello in dashboard hello. Tuttavia, poiché gli insiemi di credenziali possono essere utilizzati tooprotect tooview i dettagli relativi a una determinata macchina virtuale, aprire più elementi (o più macchine virtuali), dashboard di elemento di insieme di credenziali hello. Hello procedura riportata di seguito illustra come hello tooopen *dashboard dell'insieme di credenziali* e quindi continuare toohello *dashboard elemento dell'insieme di credenziali*. In entrambe le procedure che segnalano come tooadd hello insieme di credenziali e credenziali toohello elemento dashboard di Azure tramite hello Pin toodashboard comando sono disponibili "suggerimenti per la". PIN toodashboard è una modalità di creazione di un insieme di credenziali di scelta rapida toohello o un elemento. È inoltre possibile eseguire comandi comuni da collegamento hello.
+Molte attività di gestione per il backup di una macchina virtuale iniziano con l'apertura dell'insieme di credenziali nel dashboard. Dato che gli insiemi di credenziali possono essere usati per proteggere più elementi (o più VM), tuttavia, per visualizzare i dettagli relativi a una determinata VM aprire il dashboard dell'elemento dell'insieme di credenziali. La procedura seguente illustra come aprire il *dashboard dell'insieme di credenziali* per poi passare al *dashboard dell'elemento dell'insieme di credenziali*. Entrambe le procedure includono "suggerimenti" che indicano come aggiungere l'insieme di credenziali e l'elemento dell'insieme di credenziali al dashboard di Azure tramite il comando Aggiungi al dashboard. L'aggiunta al dashboard è un modo per creare un collegamento all'insieme di credenziali o a un elemento. Dal collegamento è anche possibile eseguire comandi comuni.
 
 > [!TIP]
-> Se si dispone di più dashboard e aprire pannelli, utilizzare il dispositivo di scorrimento di hello-blu scuro nella parte inferiore di hello di hello di tooslide finestra hello Azure dashboard e viceversa.
+> Se sono aperti più dashboard e pannelli, usare il dispositivo di scorrimento blu nella parte inferiore della finestra per scorrere in modo bidirezionale il dashboard di Azure.
 >
 >
 
 ![Visualizzazione completa con il dispositivo di scorrimento](./media/backup-azure-manage-vms/bottom-slider.png)
 
-### <a name="open-a-recovery-services-vault-in-hello-dashboard"></a>Aprire un insieme di credenziali di servizi di ripristino nel dashboard di hello:
-1. Accedi toohello [portale di Azure](https://portal.azure.com/).
-2. Nel menu Hub hello, fare clic su **Sfoglia** e nell'elenco di hello delle risorse, digitare **servizi di ripristino**. Si inizia a digitare, hello filtri di elenco in base all'input. Fare clic su **Insiemi di credenziali dei servizi di ripristino**.
+### <a name="open-a-recovery-services-vault-in-the-dashboard"></a>Aprire un insieme di credenziali di Servizi di ripristino nel dashboard:
+1. Accedere al [portale di Azure](https://portal.azure.com/).
+2. Scegliere **Sfoglia** dal menu Hub e digitare **Servizi di ripristino** nell'elenco di risorse. Non appena si inizia a digitare, l'elenco viene filtrato in base all'input. Fare clic su **Insieme di credenziali dei servizi di ripristino**.
 
     ![Creare un insieme di credenziali dei servizi di ripristino - Passaggio 1](./media/backup-azure-manage-vms/browse-to-rs-vaults.png) <br/>
 
-    viene visualizzato l'elenco di Hello degli insiemi di credenziali di servizi di ripristino.
+    Viene visualizzato l'elenco di insiemi di credenziali dei servizi di ripristino.
 
     ![Elenco di insiemi di credenziali dei Servizi di ripristino ](./media/backup-azure-manage-vms/list-o-vaults.png) <br/>
 
    > [!TIP]
-   > Se si aggiunge un toohello insieme di credenziali per il Dashboard di Azure, che insieme di credenziali è immediatamente accessibili quando si apre hello portale di Azure. un dashboard toohello insieme di credenziali, nell'elenco dell'insieme di credenziali hello toopin insieme di credenziali hello e scegliere **toodashboard Pin**.
+   > Se si aggiunge un insieme di credenziali al dashboard di Azure, sarà immediatamente accessibile quando si apre il portale di Azure. Per aggiungere un insieme di credenziali al dashboard, nell'elenco di insiemi di credenziali fare clic con il pulsante destro del mouse sull'insieme desiderato e scegliere **Aggiungi al dashboard**.
    >
    >
-3. Hello elenco degli insiemi di credenziali, selezionare hello insieme di credenziali tooopen relativo dashboard. Quando si seleziona insieme di credenziali hello, dashboard dell'insieme di credenziali hello e hello **impostazioni** pannello aperto. Nella seguente immagine di hello, hello **Contoso insieme di credenziali** dashboard è quello evidenziato.
+3. Nell'elenco di insiemi di credenziali selezionare quello per cui si vuole aprire il dashboard. Quando si seleziona l'insieme di credenziali, vengono aperti il dashboard corrispondente e il relativo pannello **Impostazioni** . Nella figura seguente è evidenziato il dashboard **Contoso-vault** .
 
     ![Aprire il dashboard dell'insieme di credenziali e il pannello Impostazioni](./media/backup-azure-manage-vms/full-view-rs-vault.png)
 
 ### <a name="open-a-vault-item-dashboard"></a>Aprire il dashboard di un elemento dell'insieme di credenziali
-Nella procedura precedente hello è aperto il dashboard di insieme di credenziali hello. dashboard di elemento dell'insieme di credenziali hello tooopen:
+Nella procedura precedente è stato aperto il dashboard dell'insieme di credenziali. Per aprire il dashboard di un elemento dell'insieme di credenziali:
 
-1. Dashboard dell'insieme di credenziali hello in hello **elementi Backup** riquadro, fare clic su **macchine virtuali di Azure**.
+1. Nel riquadro **Elementi di backup** del dashboard dell'insieme di credenziali fare clic su **Macchine virtuali di Azure**.
 
     ![Aprire il riquadro Elementi di backup](./media/backup-azure-manage-vms/contoso-vault-1606.png)
 
-    Hello **gli elementi di Backup** blade sono elencati l'ultimo processo backup di hello per ogni elemento. In questo esempio è presente una sola macchina virtuale, demovm-markgal, protetta da questo insieme di credenziali.  
+    Il pannello **Macchine virtuali di Azure** elenca l'ultimo processo di backup per ogni elemento. In questo esempio è presente una sola macchina virtuale, demovm-markgal, protetta da questo insieme di credenziali.  
 
     ![Riquadro Elementi di backup](./media/backup-azure-manage-vms/backup-items-blade.png)
 
    > [!TIP]
-   > Per facilitare l'accesso, è possibile aggiungere un toohello di elemento di insieme di credenziali del Dashboard di Azure. un elemento dell'insieme di credenziali, nell'elenco di elementi dell'insieme di credenziali di hello, elemento hello pulsante destro del mouse e scegliere toopin **toodashboard Pin**.
+   > Per facilitare l'accesso, è possibile aggiungere un elemento dell'insieme di credenziali al dashboard di Azure. Per aggiungere un elemento dell'insieme di credenziali, nell'elenco di insiemi di credenziali fare clic con il pulsante destro del mouse sull'elemento desiderato e scegliere **Aggiungi al dashboard**.
    >
    >
-2. In hello **elementi Backup** pannello, fare clic su elemento dashboard di hello elemento tooopen hello insieme di credenziali.
+2. Nel pannello **Elementi di backup** fare clic sull'elemento per aprire il dashboard dell'elemento dell'insieme di credenziali.
 
     ![Riquadro Elementi di backup](./media/backup-azure-manage-vms/backup-items-blade-select-item.png)
 
-    dashboard di elemento di insieme di credenziali Hello e il relativo **impostazioni** pannello aperto.
+    Verranno visualizzati il dashboard dell'elemento dell'insieme di credenziali e il relativo pannello **Impostazioni** .
 
     ![Dashboard degli elementi di backup con il pannello Impostazioni](./media/backup-azure-manage-vms/item-dashboard-settings.png)
 
-    Dal dashboard di elemento di insieme di credenziali hello, è possibile eseguire molte attività di gestione delle chiavi, ad esempio:
+    Dal dashboard dell'elemento dell'insieme di credenziali è possibile eseguire molte attività di gestione importanti, ad esempio:
 
    * Modificare i criteri o creare nuovi criteri di backup<br\>
    * Visualizzare i punti di ripristino e vedere il relativo stato di coerenza <br\>
@@ -97,21 +97,21 @@ Nella procedura precedente hello è aperto il dashboard di insieme di credenzial
    * Eliminare i dati di un backup o un punto di ripristino <br\>
    * [ripristinare i dischi di backup](backup-azure-arm-restore-vms.md#restore-backed-up-disks)  <br\>
 
-Per hello seguire le procedure seguenti, hello punto di partenza è dashboard elemento dell'insieme di credenziali di hello.
+Per le procedure seguenti, il punto di partenza è il dashboard dell'elemento dell'insieme di credenziali.
 
 ## <a name="manage-backup-policies"></a>Gestire i criteri di backup
-1. In hello [dashboard elemento dell'insieme di credenziali](backup-azure-manage-vms.md#open-a-vault-item-dashboard), fare clic su **tutte le impostazioni** tooopen hello **impostazioni** blade.
+1. Nel [dashboard dell'elemento dell'insieme di credenziali](backup-azure-manage-vms.md#open-a-vault-item-dashboard) fare clic su **All Settings** (Tutte le impostazioni) per aprire il pannello **Impostazioni**.
 
     ![Pannello Criteri di backup](./media/backup-azure-manage-vms/all-settings-button.png)
-2. In hello **impostazioni** pannello, fare clic su **criteri di Backup** tooopen tale pannello.
+2. Nel pannello **Impostazioni** fare clic su **Criteri di backup** per aprire il pannello corrispondente.
 
-    Nel Pannello di hello, vengono visualizzati dettagli intervallo frequenza e conservazione dei backup hello.
+    Nel pannello vengono visualizzati i dettagli relativi a intervallo di conservazione e frequenza di backup.
 
     ![Pannello Criteri di backup](./media/backup-azure-manage-vms/backup-policy-blade.png)
-3. Da hello **scegliere Criteri di backup** menu:
+3. Dal menu **Scegliere i criteri di backup** :
 
-   * toochange criteri, selezionare un criterio diverso e fare clic su **salvare**. nuovo criterio di Hello viene applicata immediatamente toohello insieme di credenziali. <br\>
-   * Selezionare un criterio, toocreate **Crea nuovo**.
+   * Per modificare i criteri, selezionare criteri diversi e fare clic su **Salva**. Il nuovo criterio verrà immediatamente applicato all'insieme di credenziali. <br\>
+   * Per creare i criteri, selezionare **Crea nuovo**.
 
      ![Backup di una macchina virtuale](./media/backup-azure-manage-vms/backup-policy-create-new.png)
 
@@ -120,108 +120,108 @@ Per hello seguire le procedure seguenti, hello punto di partenza è dashboard el
 [!INCLUDE [backup-create-backup-policy-for-vm](../../includes/backup-create-backup-policy-for-vm.md)]
 
 > [!NOTE]
-> Durante la gestione dei criteri di backup, verificare che hello toofollow [consigliate](backup-azure-vms-introduction.md#best-practices) per ottimizzare le prestazioni di backup
+> Durante la gestione dei criteri di backup, assicurarsi di seguire le [procedure consigliate](backup-azure-vms-introduction.md#best-practices) per garantire prestazioni di backup ottimali
 >
 >
 
 ## <a name="on-demand-backup-of-a-virtual-machine"></a>Backup su richiesta di una macchina virtuale
-È possibile eseguire il backup su richiesta di una macchina virtuale dopo averla configurata per la protezione. Se il backup iniziale hello è in sospeso, il backup su richiesta crea una copia completa della macchina virtuale hello in hello che insieme di credenziali di servizi di ripristino. Se il backup iniziale di hello è completato, un backup su richiesta invierà le modifiche apportate dallo snapshot precedente hello, insieme di credenziali di servizi di ripristino toohello. I backup successivi sono sempre incrementali.
+È possibile eseguire il backup su richiesta di una macchina virtuale dopo averla configurata per la protezione. Se il backup iniziale è in sospeso, il backup su richiesta crea una copia completa della macchina virtuale nell'insieme di credenziali dei servizi di ripristino. Se il backup iniziale è stato completato, un backup su richiesta invierà all'insieme di credenziali dei servizi di ripristino solo le modifiche rispetto allo snapshot precedente. I backup successivi sono sempre incrementali.
 
 > [!NOTE]
-> periodo di mantenimento Hello per un backup su richiesta è il valore di conservazione hello specificato per il punto di backup giornaliero hello nei criteri di hello. Se non è selezionato alcun punto di backup giornaliero, viene utilizzato il punto di backup settimanale di hello.
+> L'intervallo di conservazione per un backup su richiesta è il valore di conservazione specificato nei criteri per il punto di backup giornaliero. Se il punto di backup giornaliero non è selezionato, verrà usato quello settimanale.
 >
 >
 
-backup tootrigger una richiesta di una macchina virtuale:
+Per attivare un backup su richiesta di una macchina virtuale:
 
-* In hello [dashboard elemento dell'insieme di credenziali](backup-azure-manage-vms.md#open-a-vault-item-dashboard), fare clic su **Backup ora**.
+* Nel [dashboard dell'elemento dell'insieme di credenziali](backup-azure-manage-vms.md#open-a-vault-item-dashboard)fare clic su **Esegui backup ora**.
 
     ![Pulsante Esegui backup ora](./media/backup-azure-manage-vms/backup-now-button.png)
 
-    portale Hello assicura che si desidera toostart un processo di backup su richiesta. Fare clic su **Sì** toostart processo di backup hello.
+    Il portale richiede di confermare l'avvio del processo di backup su richiesta. Per avviarlo, fare clic su **Sì** .
 
     ![Pulsante Esegui backup ora](./media/backup-azure-manage-vms/backup-now-check.png)
 
-    processo di backup Hello crea un punto di ripristino. periodo di mantenimento Hello hello del punto di ripristino è hello uguale al periodo di conservazione specificato nei criteri di hello associato a una macchina virtuale hello. stato di avanzamento hello tootrack per il processo di hello, nel dashboard dell'insieme di credenziali hello, fare clic su hello **i processi di Backup** riquadro.  
+    Il processo di backup crea un punto di ripristino. L'intervallo di conservazione del punto di ripristino è uguale a quello specificato nei criteri associati alla macchina virtuale. Per tenere traccia dello stato di avanzamento del processo, nel dashboard dell'insieme di credenziali fare clic sul riquadro **Processi di backup** .  
 
 ## <a name="stop-protecting-virtual-machines"></a>Arrestare la protezione delle macchine virtuali
-Se si sceglie toostop protezione di una macchina virtuale, viene chiesto se si desidera che i punti di ripristino hello tooretain. Esistono due modi toostop proteggono le macchine virtuali:
+Se si sceglie di arrestare la protezione di una macchina virtuale, viene chiesto se si vogliono mantenere i punti di ripristino. Per arrestare la protezione delle macchine virtuali è possibile procedere in due modi:
 
 * interrompere tutti i processi di backup futuri ed eliminare tutti i punti di ripristino oppure
-* arrestare tutti i processi di backup futuri, ma lasciare hello punti di ripristino <br/>
+* interrompere tutti i processi di backup futuri mantenendo però i punti di ripristino. <br/>
 
-È un costo associato lasciando hello punti di ripristino nel servizio di archiviazione. Il vantaggio di hello di lasciare hello punti di ripristino è tuttavia che è possibile ripristinare una macchina virtuale hello in un secondo momento, se lo si desidera. Per informazioni sul costo di hello di lasciare hello punti di ripristino, vedere hello [prezzi](https://azure.microsoft.com/pricing/details/backup/). Se si sceglie toodelete tutti i punti di ripristino, è possibile ripristinare una macchina virtuale hello.
+Al mantenimento dei punti di ripristino nella risorsa di archiviazione è associato un costo. Tuttavia, la possibilità di mantenere i punti di ripristino per ripristinare la macchina virtuale in un secondo momento, se necessario, costituisce un vantaggio. Per informazioni sul costo associato al mantenimento dei punti di ripristino, vedere [Dettagli prezzi](https://azure.microsoft.com/pricing/details/backup/). Se si sceglie di eliminare tutti i punti di ripristino, non sarà possibile ripristinare la macchina virtuale.
 
-protezione toostop per una macchina virtuale:
+Per arrestare la protezione per una macchina virtuale:
 
-1. In hello [dashboard elemento dell'insieme di credenziali](backup-azure-manage-vms.md#open-a-vault-item-dashboard), fare clic su **Interrompi backup**.
+1. Nel [dashboard dell'elemento dell'insieme di credenziali](backup-azure-manage-vms.md#open-a-vault-item-dashboard)fare clic su **Interrompi backup**.
 
     ![Pulsante Arresta backup](./media/backup-azure-manage-vms/stop-backup-button.png)
 
-    verrà visualizzata la finestra di blade Interrompi Backup Hello.
+    Verrà visualizzato il pannello Arresta backup.
 
     ![Pannello Arresta backup](./media/backup-azure-manage-vms/stop-backup-blade.png)
-2. In hello **Interrompi Backup** pannello, scegliere se tooretain o delete hello dati di backup. casella di Hello informazioni dettagliate sul prescelto.
+2. Nel pannello **Interrompi backup** scegliere se mantenere o eliminare i dati di backup. La casella delle informazioni include i dettagli sulla scelta effettuata.
 
     ![Arresta protezione](./media/backup-azure-manage-vms/retain-or-delete-option.png)
-3. Se si sceglie di dati di backup hello tooretain, ignorare toostep 4. Se si sceglie toodelete dati di backup, verificare i processi di backup hello toostop desiderato e quindi eliminare i punti di ripristino hello - Nome hello del tipo di elemento di hello.
+3. Se si è scelto di mantenere i dati di backup, andare al passaggio 4. Se si è scelto di eliminare i dati di backup, confermare l'arresto dei processi di backup ed eliminare i punti di ripristino, digitando il nome dell'elemento.
 
     ![Arresta verifica](./media/backup-azure-manage-vms/item-verification-box.png)
 
-    Se non si è certi del nome dell'elemento hello, passare il mouse sul nome di hello punto esclamativo tooview hello. Inoltre, in nome hello dell'elemento di hello **Interrompi Backup** nella parte superiore di hello del pannello hello.
+    Se non si è certi del nome dell'elemento, passare il puntatore sul punto esclamativo per visualizzarlo. Il nome dell'elemento si trova anche nella parte superiore del pannello **Interrompi backup** .
 4. L'aggiunta di un **motivo** o **commento** è facoltativa.
-5. processo di backup hello toostop per l'elemento corrente hello, fare clic su ![backup pulsante di arresto](./media/backup-azure-manage-vms/stop-backup-button-blue.png)
+5. Per arrestare il processo di backup per l'elemento corrente, fare clic su ![backup pulsante di arresto](./media/backup-azure-manage-vms/stop-backup-button-blue.png)
 
-    Un messaggio di notifica consentono di conoscere i processi di backup hello siano stati arrestati.
+    Un messaggio di notifica informa che i processi di backup sono stati arrestati.
 
     ![Conferma arresto protezione](./media/backup-azure-manage-vms/stop-message.png)
 
 ## <a name="resume-protection-of-a-virtual-machine"></a>Riprendere la protezione di una macchina virtuale
-Se hello **Mantieni dati di Backup** opzione scelto durante la protezione per la macchina virtuale hello è stata arrestata, è possibile tooresume protezione. Se hello **Elimina dati di Backup** è stata scelta l'opzione, quindi non è possibile riprendere la protezione per la macchina virtuale hello.
+Se quando è stata arrestata la protezione della macchina virtuale è stata scelta l'opzione **Conserva i dati di backup** , è possibile riprendere la protezione. Se è stata scelta l'opzione **Elimina dati di backup** , la protezione della macchina virtuale non può essere ripresa.
 
-protezione per la macchina virtuale hello tooresume
+Per riprendere la protezione della macchina virtuale
 
-1. In hello [dashboard elemento dell'insieme di credenziali](backup-azure-manage-vms.md#open-a-vault-item-dashboard), fare clic su **Riprendi backup**.
+1. Nel [dashboard dell'elemento dell'insieme di credenziali](backup-azure-manage-vms.md#open-a-vault-item-dashboard)fare clic su **Riprendi backup**.
 
     ![Riprendere la protezione](./media/backup-azure-manage-vms/resume-backup-button.png)
 
-    Apre il pannello di criteri di Backup Hello.
+    Verrà visualizzato il pannello Criteri di backup.
 
    > [!NOTE]
-   > Quando si proteggono nuovamente macchina virtuale hello, è possibile scegliere un criterio diverso rispetto a criterio hello con cui è stato inizialmente protetto macchina virtuale.
+   > Quando si riattiva la protezione della macchina virtuale, è possibile scegliere un criterio diverso rispetto ai criteri con cui la macchina virtuale è stata protetta inizialmente.
    >
    >
-2. Seguire i passaggi di hello in [gestire criteri di backup](backup-azure-manage-vms.md#manage-backup-policies) criteri hello tooassign per la macchina virtuale hello.
+2. Per assegnare i criteri della macchina virtuale, seguire la procedura descritta in [Gestire i criteri di backup](backup-azure-manage-vms.md#manage-backup-policies).
 
-    Una volta macchina virtuale toohello applicati criteri di backup hello, vedrai segue messaggio hello.
+    Dopo l'applicazione dei criteri di backup alla macchina virtuale, verrà visualizzato il messaggio seguente.
 
     ![Macchina virtuale protetta correttamente](./media/backup-azure-manage-vms/success-message.png)
 
-## <a name="delete-backup-data"></a>Eliminare i dati di backup
-È possibile eliminare i dati di backup hello associati a una macchina virtuale durante hello **Interrompi backup** processo, o in qualsiasi momento dopo hello processo di backup è stata completata. Potrebbe essere utile toowait giorni o settimane prima di eliminare i punti di ripristino hello. A differenza di ripristino dei punti di ripristino, durante l'eliminazione di dati di backup, è possibile scegliere toodelete punti di ripristino specifico. Se si scelgono toodelete ai dati di backup, eliminare tutti i punti di ripristino associati a elementi hello.
+## <a name="delete-backup-data"></a>Elimina dati di backup
+È possibile eliminare i dati di backup associati a una macchina virtuale durante il processo **Interrompi backup** o in qualsiasi momento dopo il completamento del backup. Attendere settimane o mesi prima di eliminare i punti di ripristino potrebbe anche essere utile. A differenza del recupero dei punti di ripristino, quando si eliminano i dati di backup, non è possibile scegliere di eliminare punti di ripristino specifici. Se si sceglie di eliminare i dati di backup, vengono eliminati tutti i punti di ripristino associati all'elemento.
 
-Hello procedura riportata di seguito si presuppone che il processo di Backup hello per la macchina virtuale hello è stato arrestato o disabilitato. Dopo aver disabilitato il processo di Backup di hello, hello **Riprendi backup** e **Elimina backup** opzioni sono disponibili nel dashboard di elemento di insieme di credenziali hello.
+Nella procedura seguente si presuppone che il processo di backup per la macchina virtuale sia stato arrestato o disabilitato. Dopo che è stato disabilitato il processo di backup, nel dashboard dell'elemento dell'insieme di credenziali sono disponibili le opzioni **Riprendi backup** ed **Elimina backup**.
 
 ![Pulsanti Riprendi ed Elimina](./media/backup-azure-manage-vms/resume-delete-buttons.png)
 
-dati di backup in una macchina virtuale con hello toodelete *Backup disabilitato*:
+Per eliminare i dati di backup in una macchina virtuale con il *backup disabilitato*:
 
-1. In hello [dashboard elemento dell'insieme di credenziali](backup-azure-manage-vms.md#open-a-vault-item-dashboard), fare clic su **Elimina backup**.
+1. Nel [dashboard dell'elemento dell'insieme di credenziali](backup-azure-manage-vms.md#open-a-vault-item-dashboard)fare clic su **Elimina dati di backup**.
 
     ![Tipo macchina virtuale](./media/backup-azure-manage-vms/delete-backup-buttom.png)
 
-    Hello **Elimina dati di Backup** apre blade.
+    Verrà visualizzato il pannello **Elimina dati di backup** .
 
     ![Tipo macchina virtuale](./media/backup-azure-manage-vms/delete-backup-blade.png)
-2. Nome del tipo hello di hello elemento tooconfirm desiderato punti di ripristino toodelete hello.
+2. È necessario digitare il nome dell'elemento per confermare l'eliminazione dei punti di ripristino.
 
     ![Arresta verifica](./media/backup-azure-manage-vms/item-verification-box.png)
 
-    Se non si è certi del nome dell'elemento hello, passare il mouse sul nome di hello punto esclamativo tooview hello. Inoltre, in nome hello dell'elemento di hello **Elimina dati di Backup** nella parte superiore di hello del pannello hello.
+    Se non si è certi del nome dell'elemento, passare il puntatore sul punto esclamativo per visualizzarlo. Il nome dell'elemento si trova anche nella parte superiore del pannello **Elimina dati backup** .
 3. L'aggiunta di un **motivo** o **commento** è facoltativa.
-4. Fare clic su dati di backup hello toodelete per l'elemento corrente hello, ![backup pulsante di arresto](./media/backup-azure-manage-vms/delete-button.png)
+4. Per eliminare i dati di backup per l'elemento corrente, fare clic su ![backup pulsante di arresto](./media/backup-azure-manage-vms/delete-button.png)
 
-    Un messaggio di notifica consente di verificare i dati di backup hello sono stati eliminati.
+    Un messaggio di notifica informa che i dati di backup sono stati eliminati.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per informazioni su come ricreare una macchina virtuale da un punto di ripristino, vedere [Ripristinare macchine virtuali in Azure](backup-azure-restore-vms.md). Per ulteriori informazioni sulla protezione di macchine virtuali, vedere [innanzitutto: eseguire il backup di macchine virtuali tooa insieme di credenziali di servizi di ripristino](backup-azure-vms-first-look-arm.md). Per informazioni sul monitoraggio degli eventi, vedere [Monitor alerts for Azure virtual machine backups](backup-azure-monitor-vms.md)(Monitorare gli avvisi per i backup delle macchine virtuali di Azure).
+Per informazioni su come ricreare una macchina virtuale da un punto di ripristino, vedere [Ripristinare macchine virtuali in Azure](backup-azure-restore-vms.md). Per informazioni sulla protezione delle macchine virtuali, vedere [Primo approccio: Proteggere le VM di Azure con un insieme di credenziali dei servizi di ripristino](backup-azure-vms-first-look-arm.md). Per informazioni sul monitoraggio degli eventi, vedere [Monitor alerts for Azure virtual machine backups](backup-azure-monitor-vms.md)(Monitorare gli avvisi per i backup delle macchine virtuali di Azure).

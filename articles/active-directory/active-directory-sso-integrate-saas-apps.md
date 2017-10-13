@@ -1,6 +1,6 @@
 ---
-title: aaaIntegrate Azure Active Directory single sign-on con le app SaaS | Documenti Microsoft
-description: "Abilitare l'autenticazione Single Sign-On e la gestione dell’accesso centralizzata per il provisioning degli utenti delle app SaaS in Azure Active Directory. Cenni preliminari sull'app di tooSaaS toointegrate Azure Active Directory."
+title: Integrare i servizi Single Sign-On di Azure Active Directory nelle app SaaS | Microsoft Docs
+description: "Abilitare l'autenticazione Single Sign-On e la gestione dell’accesso centralizzata per il provisioning degli utenti delle app SaaS in Azure Active Directory. Cenni preliminari sull'integrazione di Azure Active Directory alle App SaaS."
 services: active-directory
 keywords: Integrare Azure AD con app SaaS
 documentationcenter: 
@@ -16,11 +16,11 @@ ms.workload: identity
 ms.date: 08/17/2017
 ms.author: curtand
 ms.reviewer: aaronsm
-ms.openlocfilehash: fe621a30429c81c32470635d105ae3e95184efa1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: fc0d297598c334ca8f6f8a2bd3ae948c87956342
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="integrate-azure-active-directory-single-sign-on-with-saas-apps"></a>Integrare i servizi Single Sign-On di Azure Active Directory nelle app SaaS
 > [!div class="op_single_selector"]
@@ -31,49 +31,49 @@ ms.lasthandoff: 10/06/2017
 
 [!INCLUDE [active-directory-sso-use-case-intro](../../includes/active-directory-sso-use-case-intro.md)]
 
-tooget avviato l'impostazione di single sign-on per un'applicazione che sta rendere l'organizzazione, si utilizzerà una directory esistente in Azure Active Directory (Azure AD). È possibile usare una directory di Azure AD ottenuta tramite Microsoft Azure, Office 365 o Windows Intune. Se si dispone di due o più di questi, vedere [amministrare la directory di Azure AD](active-directory-administer.md) toodetermine quali uno toouse.
+Per iniziare a configurare Single Sign-On per un'applicazione che si desidera introdurre nella propria organizzazione, sarà necessario usare una directory esistente in Azure Active Directory (Azure AD). È possibile usare una directory di Azure AD ottenuta tramite Microsoft Azure, Office 365 o Windows Intune. Se si dispone di due o più directory di questo tipo, vedere [Amministrare la directory di Azure AD](active-directory-administer.md) per determinare quale usare.
 
 > [!IMPORTANT]
-> Si consiglia di gestire Azure AD usando la hello [centro di amministrazione di Azure AD](https://aad.portal.azure.com) in hello portale di Azure anziché hello portale di Azure classico a cui fa riferimento in questo articolo. Per modalità tooassign i ruoli di amministratore in Azure AD salve center, vedere [l'assegnazione di ruoli di amministratore in Azure Active Directory](active-directory-enterprise-apps-manage-sso.md).
+> Microsoft consiglia di gestire Azure AD usando l'[interfaccia di amministrazione di Azure AD](https://aad.portal.azure.com) nel portale di Azure invece di usare il portale di Azure classico citato nel presente articolo. Per informazioni su come assegnare i ruoli amministratore nell'interfaccia di amministrazione di Azure AD, vedere [Assegnazione dei ruoli di amministratore in Azure Active Directory](active-directory-enterprise-apps-manage-sso.md).
 
 ## <a name="authentication"></a>Autenticazione
-Per le applicazioni che supportano hello SAML 2.0, WS-Federation, o i protocolli di OpenID Connect, Azure Active Directory utilizza le relazioni di trust tooestablish certificati di firma. Per altre informazioni su questo aspetto, vedere [Gestione dei certificati per Single Sign-On federato](active-directory-sso-certs.md).
+Per le applicazioni che supportano i protocolli SAML 2.0, WS-Federation o OpenID Connect, Azure Active Directory usa i certificati di firma per stabilire relazioni di trust. Per altre informazioni su questo aspetto, vedere [Gestione dei certificati per Single Sign-On federato](active-directory-sso-certs.md).
 
-Per le applicazioni che supportano solo HTML basata su form Accedi, tooestablish 'archiviazione password' di Azure Active Directory utilizza le relazioni di trust. Questo consente agli utenti di hello in toobe l'organizzazione automaticamente connesso tooa applicazione SaaS da Azure AD con informazioni sull'account utente di hello da hello applicazione SaaS. Azure AD raccoglie e archivia in modo sicuro informazioni sull'account utente di hello e la password correlata hello. Per altre informazioni, vedere [Single Sign-On basato su password](active-directory-appssoaccess-whatis.md#password-based-single-sign-on).
+Per le applicazioni che supportano solo l'accesso basato su moduli HTML, Azure Active Directory usa gli insiemi di credenziali per stabilire relazioni di trust. Ciò consente agli utenti dell'organizzazione di accedere automaticamente a un'applicazione SaaS tramite Azure AD utilizzando le informazioni dell'account utente dall'applicazione SaaS. Azure AD raccoglie e archivia in modo sicuro le informazioni sull'account utente e la relativa password. Per altre informazioni, vedere [Single Sign-On basato su password](active-directory-appssoaccess-whatis.md#password-based-single-sign-on).
 
-## <a name="authorization"></a>Authorization
-Un account di provisioning consente un toouse toobe autorizzato utente un'applicazione dopo che sono autenticati tramite l'accesso single sign-on. Il provisioning dell'utente può essere eseguito manualmente o in alcuni casi è possibile aggiungere e rimuovere le informazioni utente da app SaaS hello in base alle modifiche apportate in Azure Active Directory. Per altre informazioni sull'uso dei connettori di Azure AD esistenti per il provisioning automatico, vedere [Automatizzare il provisioning e il deprovisioning utenti in applicazioni SaaS con Azure Active Directory](active-directory-saas-app-provisioning.md).
+## <a name="authorization"></a>Autorizzazione
+Un account con provisioning consente all'utente di essere autorizzato a usare un'applicazione, dopo l'autenticazione tramite Single Sign-On. Il provisioning dell'utente può essere eseguito manualmente o in alcuni casi è possibile aggiungere e rimuovere le informazioni utente dall'applicazione SaaS in base alle modifiche apportate in Azure Active Directory. Per altre informazioni sull'uso dei connettori di Azure AD esistenti per il provisioning automatico, vedere [Automatizzare il provisioning e il deprovisioning utenti in applicazioni SaaS con Azure Active Directory](active-directory-saas-app-provisioning.md).
 
-In caso contrario, è possibile manualmente aggiungere app tooan di informazioni utente, o usare altre soluzioni di provisioning che sono disponibili in marketplace hello.
+In caso contrario, è possibile aggiungere manualmente le informazioni sull'utente a un'applicazione o usare altre soluzioni di provisioning disponibili sul mercato.
 
 ## <a name="access"></a>Accesso
-Azure AD fornisce diversi modi personalizzabili toodeploy applicazioni tooend utenti dell'organizzazione. Non è obbligatorio usare soluzioni specifiche per la distribuzione o l'accesso. È possibile utilizzare [hello soluzione più adatta alle proprie esigenze](active-directory-appssoaccess-whatis.md#deploying-azure-ad-integrated-applications-to-users).
+Azure AD fornisce diverse soluzioni personalizzabili per distribuire le applicazioni agli utenti finali all'interno dell'organizzazione: Non è obbligatorio usare soluzioni specifiche per la distribuzione o l'accesso. È possibile usare [la soluzione più adatta alle proprie esigenze](active-directory-appssoaccess-whatis.md#deploying-azure-ad-integrated-applications-to-users).
 
 ## <a name="additional-considerations-for-applications-already-in-use"></a>Considerazioni aggiuntive per le applicazioni già in uso.
-Configurando l'accesso single sign in un'applicazione che usa già l'organizzazione è un processo diverso dal processo di hello di creazione di nuovi account per una nuova applicazione. Esistono un paio di passaggi preliminari tra cui: mapping delle identità utente nell'identità di tooAzure AD applicazione hello e di comprendere come gli utenti otterranno la registrazione nell'applicazione tooan dopo l'integrazione.
+L'impostazione di Single Sign-On per un'applicazione in uso nell'organizzazione è un processo diverso rispetto alla creazione di nuovi account per una nuova applicazione. Esistono un paio di passaggi preliminari tra cui il mapping di identità utente nell'applicazione alle identità di Azure AD e le informazioni sull'esperienza utente durante l'accesso a un'applicazione dopo la relativa integrazione.
 
 > [!NOTE]
-> tooset di SSO per un'applicazione esistente, è necessario disporre di diritti di amministratore globale toohave in entrambi Azure AD e hello applicazione SaaS.
+> Per configurare SSO per un'applicazione esistente, è necessario disporre dei diritti di amministratore globale sia per Azure AD sia per l'applicazione SaaS.
 >
 >
 
 ### <a name="mapping-user-accounts"></a>Mapping degli account utente
-Un'identità utente ha in genere un identificatore univoco che può essere un indirizzo di posta elettronica o un nome dell'entità utente (UPN). Sarà necessario toolink (map) ogni applicazione identità tootheir AD Azure rispettive identità utente. Esistono un paio di modi tooaccomplish questo a seconda di come requisito hello dell'autenticazione dell'applicazione.
+Un'identità utente ha in genere un identificatore univoco che può essere un indirizzo di posta elettronica o un nome dell'entità utente (UPN). Sarà necessario collegare (mappare) ciascuna identità utente dell'applicazione alla rispettiva identità di Azure AD. Per eseguire questa operazione è possibile procedere in due modi, a seconda dei requisiti di autenticazione dell'applicazione.
 
-Per ulteriori informazioni sull'esecuzione del mapping identità di applicazione con le identità di Azure AD, vedere [personalizzazione di attestazioni rilasciate nel token SAML hello](http://social.technet.microsoft.com/wiki/contents/articles/31257.azure-active-directory-customizing-claims-issued-in-the-saml-token-for-pre-integrated-apps.aspx) e [personalizzazione dei mapping degli attributi per il provisioning](active-directory-saas-customizing-attribute-mappings.md).
+Per altre informazioni sul mapping delle identità delle applicazioni alle identità di Azure AD, vedere l'articolo relativo alla [personalizzazione delle attestazioni rilasciate nel token SAML](http://social.technet.microsoft.com/wiki/contents/articles/31257.azure-active-directory-customizing-claims-issued-in-the-saml-token-for-pre-integrated-apps.aspx) e alla [personalizzazione dei mapping degli attributi per il provisioning](active-directory-saas-customizing-attribute-mappings.md).
 
-### <a name="understanding-hello-users-log-in-experience"></a>Informazioni di accesso dell'utente hello esperienza
-Quando si integra SSO per un'applicazione che è già in uso, è importante toorealize che hello esperienza utente sarà interessate. Per tutte le applicazioni, gli utenti inizieranno con loro toosign le credenziali di Azure AD in. È possibile che usano un'applicazione hello tooaccess portale diverso.
+### <a name="understanding-the-users-log-in-experience"></a>Informazioni sull'esperienza utente all'accesso
+Quando si integra SSO per un'applicazione già in uso, è importante tenere presente che ci saranno effetti sull'esperienza utente. Per tutte le applicazioni, gli utenti inizieranno a usare le credenziali di Azure AD per l'accesso. Inoltre, potrebbero dover usare un portale diverso per accedere alle applicazioni.
 
-SSO per alcune applicazioni può essere eseguita nell'interfaccia di accesso dell'applicazione hello, ma per altre applicazioni, hello utente disporrà toogo tramite un portale centrale, ad esempio ([My Apps](http://myapps.microsoft.com) o [Office365](http://portal.office.com/myapps)) toosign in. Ulteriori informazioni sui tipi diversi di hello di SSO e l'esperienza utente in [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).
+L'accesso SSO per alcune applicazioni può essere eseguito nell'interfaccia di accesso dell'applicazione, ma per accedere ad altre applicazioni l'utente dovrà passare attraverso un portale centrale, ad esempio [App personali](http://myapps.microsoft.com) o [Office365](http://portal.office.com/myapps). Per altre informazioni sui diversi tipi di SSO e le relative esperienze utente, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
-È un'altra risorsa preziosa *eliminazione consenso dell'utente* in hello [orientamenti sviluppatori](active-directory-applications-guiding-developers-for-lob-applications.md) articolo.
+Vedere anche la sezione relativa all' *eliminazione dell'autorizzazione utente* nella pagina della [guida per gli sviluppatori](active-directory-applications-guiding-developers-for-lob-applications.md) .
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per le app SaaS che trova nella raccolta di App hello, Azure AD fornisce una serie di [esercitazioni sull'App SaaS toointegrate](active-directory-saas-tutorial-list.md).
+Per le applicazioni SaaS disponibili nella raccolta delle app, Azure AD offre varie [esercitazioni pratiche su come integrare delle app SaaS](active-directory-saas-tutorial-list.md).
 
-Se l'applicazione non è presente nella raccolta di App, è possibile [aggiungerlo toohello raccolta di App di Azure AD come applicazione personalizzata](http://blogs.technet.com/b/ad/archive/2015/06/17/bring-your-own-app-with-azure-ad-self-service-saml-configuration-gt-now-in-preview.aspx).
+Se l'app non è presente nella raccolta, è possibile [aggiungerla alla raccolta delle app di Azure AD come applicazione personalizzata](http://blogs.technet.com/b/ad/archive/2015/06/17/bring-your-own-app-with-azure-ad-self-service-saml-configuration-gt-now-in-preview.aspx).
 
-È molto più dettagli su tutti questi problemi nella libreria Azure.com hello, a partire da [novità di accesso alle applicazioni e single sign-on con Azure Active Directory?](active-directory-appssoaccess-whatis.md).
+La libreria di Azure.com include molti altri dettagli su tutti questi aspetti, a partire da [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
-Inoltre, non perdete hello [articolo indice per la gestione delle applicazioni in Azure Active Directory](active-directory-apps-index.md).
+Vedere anche [Indice di articoli per la gestione di applicazioni in Azure Active Directory](active-directory-apps-index.md).

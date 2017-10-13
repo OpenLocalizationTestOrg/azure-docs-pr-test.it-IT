@@ -1,6 +1,6 @@
 ---
-title: aaaGet introduttiva gemelli dispositivi Azure IoT Hub (linguaggio) | Documenti Microsoft
-description: "Modalità toouse IoT Hub Azure dispositivo gemelli tooadd tag e quindi utilizzare una query di IoT Hub. Utilizzare dispositivi Azure IoT hello SDK per Java tooimplement hello dispositivo app e il servizio di IoT di Azure SDK per Java tooimplement un'applicazione di servizio che consente di aggiungere tag hello ed esegue query IoT Hub hello hello."
+title: Introduzione ai dispositivi gemelli dell'hub IoT di Azure (Java) | Microsoft Docs
+description: Come usare i dispositivi gemelli dell'hub IoT di Azure per aggiungere tag e quindi usare una query dell'hub IoT. Usare Azure IoT SDK per dispositivi per Java per implementare l'app per i dispositivi e Azure IoT SDK per servizi per Java per implementare un'app di servizio che aggiunge i tag ed esegue la query dell'hub IoT.
 services: iot-hub
 documentationcenter: java
 author: dominicbetts
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/04/2017
 ms.author: dobett
-ms.openlocfilehash: 25f6fc81471d59c62bcdc3766bb5c33f5733c930
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6d306d4742a53789d8e69c80d7fbdfc4e1ade4bf
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-with-device-twins-java"></a>Introduzione ai dispositivi gemelli (Java)
 
@@ -26,14 +26,14 @@ ms.lasthandoff: 10/06/2017
 In questa esercitazione vengono create due app console Java:
 
 * **add-tags-query**, un'app back-end .Java che aggiunge tag ed effettua query sui dispositivi gemelli.
-* **dispositivo simulato**, un'app di dispositivo Java che che si connette l'hub IoT tooyour e i report utilizzando una proprietà segnalata la condizione di connettività.
+* **simulated-device**, un'app per dispositivi Java che si connette all'hub IoT e segnala la condizione di connettività usando una proprietà segnalata.
 
 > [!NOTE]
-> articolo Hello [Azure IoT SDK](iot-hub-devguide-sdks.md) fornisce informazioni su Azure IoT SDK hello che è possibile utilizzare toobuild applicazioni back-end sia sul dispositivo.
+> L'articolo [Azure IoT SDK](iot-hub-devguide-sdks.md) contiene informazioni sui componenti Azure IoT SDK che consentono di compilare le app back-end e per dispositivi.
 
-toocomplete questa esercitazione, è necessario:
+Per completare questa esercitazione, sono necessari:
 
-* versione più recente Hello [Java SE Development Kit 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+* [Java SE Development Kit 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) più recente
 * [Maven 3](https://maven.apache.org/install.html)
 * Un account Azure attivo. Se non si dispone di un account, è possibile crearne uno [gratuito](http://azure.microsoft.com/pricing/free-trial/) in pochi minuti.
 
@@ -41,21 +41,21 @@ toocomplete questa esercitazione, è necessario:
 
 [!INCLUDE [iot-hub-get-started-create-device-identity-portal](../../includes/iot-hub-get-started-create-device-identity-portal.md)]
 
-Se si preferisce l'identità del dispositivo hello toocreate a livello di codice, leggere una sezione corrispondente di hello in hello [connessione hub IoT tooyour dispositivo utilizzando Java](iot-hub-java-java-getstarted.md#create-a-device-identity) articolo.
+Se si preferisce creare l'identità del dispositivo a livello di programmazione, leggere la sezione corrispondente nell'articolo [Connettere il dispositivo all'hub IoT usando Java](iot-hub-java-java-getstarted.md#create-a-device-identity).
 
-## <a name="create-hello-service-app"></a>Creare l'applicazione di servizio hello
+## <a name="create-the-service-app"></a>Creare l'app di servizio
 
-In questa sezione si crea un'applicazione Java che aggiunge metadati percorso come una coppia di dispositivo toohello tag nell'IoT Hub è associata a **myDeviceId**. app Hello innanzitutto eseguita una query hub IoT per dispositivi che si trovano in hello Stati Uniti, quindi per i dispositivi che sono una connessione di rete cellulare.
+In questa sezione si crea a un'app Java che aggiunge i metadati della posizione come tag al dispositivo gemello nell'hub IoT associato a **myDeviceId**. L'app esegue innanzitutto una query dell'hub IoT per i dispositivi che si trovano negli Stati Uniti, quindi per i dispositivi che segnalano una connessione di rete tramite cellulare.
 
 1. Nel computer di sviluppo creare una cartella vuota denominata `iot-java-twin-getstarted`.
 
-1. In hello `iot-java-twin-getstarted` cartella, creare un progetto di Maven denominato **aggiungere-tag-query** utilizzando hello seguente comando al prompt dei comandi. Si noti che si tratta di un lungo comando singolo:
+1. Nella cartella `iot-java-twin-getstarted` creare un progetto Maven denominato **add-tags-query** eseguendo questo comando al prompt dei comandi. Si noti che si tratta di un lungo comando singolo:
 
     `mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=add-tags-query -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false`
 
-1. Al prompt dei comandi, passare toohello `add-tags-query` cartella.
+1. Al prompt dei comandi passare alla cartella `add-tags-query`.
 
-1. Utilizzando un editor di testo, aprire hello `pom.xml` file hello `add-tags-query` cartella e aggiungere hello seguente dipendenza toohello **dipendenze** nodo. Questa dipendenza consente hello toouse **client di servizi iot** pacchetto in toocommunicate l'app con l'hub IoT:
+1. In un editor di testo aprire il file `pom.xml` nella cartella `add-tags-query` e aggiungere la dipendenza seguente al nodo **dependencies**. Questa dipendenza consente di usare il pacchetto **iot-service-client** nell'app per comunicare con l'hub IoT:
 
     ```xml
     <dependency>
@@ -67,9 +67,9 @@ In questa sezione si crea un'applicazione Java che aggiunge metadati percorso co
     ```
 
     > [!NOTE]
-    > È possibile verificare la versione più recente di hello di **client di servizi iot** utilizzando [ricerca Maven](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22iot-service-client%22%20g%3A%22com.microsoft.azure.sdk.iot%22).
+    > È possibile cercare la versione più recente di **iot-service-client** usando la [ricerca di Maven](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22iot-service-client%22%20g%3A%22com.microsoft.azure.sdk.iot%22).
 
-1. Aggiungere il seguente hello **compilare** nodo dopo hello **dipendenze** nodo. Questa configurazione indica Maven toouse Java toobuild 1.8 hello app:
+1. Aggiungere il nodo **build** seguente dopo il nodo **dependencies**. Questa configurazione indica a Maven di usare Java 1.8 per compilare l'app:
 
     ```xml
     <build>
@@ -87,11 +87,11 @@ In questa sezione si crea un'applicazione Java che aggiunge metadati percorso co
     </build>
     ```
 
-1. Salvare e chiudere hello `pom.xml` file.
+1. Salvare e chiudere il file `pom.xml`.
 
-1. Utilizzando un editor di testo, aprire hello `add-tags-query\src\main\java\com\mycompany\app\App.java` file.
+1. Aprire il file `add-tags-query\src\main\java\com\mycompany\app\App.java` in un editor di testo.
 
-1. Aggiungere il seguente hello **importare** file toohello istruzioni:
+1. Aggiungere al file le istruzioni **import** seguenti:
 
     ```java
     import com.microsoft.azure.sdk.iot.service.devicetwin.*;
@@ -102,7 +102,7 @@ In questa sezione si crea un'applicazione Java che aggiunge metadati percorso co
     import java.util.Set;
     ```
 
-1. Aggiungere hello seguenti variabili a livello di classe toohello **App** classe. Sostituire `{youriothubconnectionstring}` con la stringa di connessione hub IoT è stata annotata nella hello *creare un IoT Hub* sezione:
+1. Aggiungere le variabili a livello di classe seguenti alla classe **App** . Sostituire `{youriothubconnectionstring}` con la stringa di connessione dell'hub IoT indicata nella sezione *Creare un hub IoT*:
 
     ```java
     public static final String iotHubConnectionString = "{youriothubconnectionstring}";
@@ -112,21 +112,21 @@ In questa sezione si crea un'applicazione Java che aggiunge metadati percorso co
     public static final String plant = "Redmond43";
     ```
 
-1. Hello aggiornamento **principale** seguente hello tooinclude firma di metodo `throws` clausola:
+1. Aggiornare la firma del metodo **main** affinché includa la clausola `throws`:
 
     ```java
     public static void main( String[] args ) throws IOException
     ```
 
-1. Aggiungere i seguenti toohello codice hello **principale** hello toocreate metodo **DeviceTwin** e **DeviceTwinDevice** oggetti. Hello **DeviceTwin** oggetto gestisce la comunicazione con l'hub IoT hello. Hello **DeviceTwinDevice** oggetto rappresenta un doppio dispositivo hello con le proprietà e i tag:
+1. Aggiungere il codice seguente al metodo **main** per creare gli oggetti **DeviceTwin** e **DeviceTwinDevice**. L'oggetto **DeviceTwin** gestisce la comunicazione con l'hub IoT. L'oggetto **DeviceTwinDevice** rappresenta un dispositivo gemello con le relative proprietà e tag:
 
     ```java
-    // Get hello DeviceTwin and DeviceTwinDevice objects
+    // Get the DeviceTwin and DeviceTwinDevice objects
     DeviceTwin twinClient = DeviceTwin.createFromConnectionString(iotHubConnectionString);
     DeviceTwinDevice device = new DeviceTwinDevice(deviceId);
     ```
 
-1. Aggiungere il seguente hello `try/catch` blocco toohello **principale** metodo:
+1. Aggiungere il blocco `try/catch` seguente al metodo **main**:
 
     ```java
     try {
@@ -138,45 +138,45 @@ In questa sezione si crea un'applicazione Java che aggiunge metadati percorso co
     }
     ```
 
-1. hello tooupdate **area** e **impianto** tag doppi dispositivo doppi del dispositivo, aggiungere hello seguente di codice hello `try` blocco:
+1. Per aggiornare i tag del dispositivo gemello **region** e **plant** nel dispositivo gemello, aggiungere il codice seguente nel blocco `try`:
 
     ```java
-    // Get hello device twin from IoT Hub
+    // Get the device twin from IoT Hub
     System.out.println("Device twin before update:");
     twinClient.getTwin(device);
     System.out.println(device);
 
     // Update device twin tags if they are different
-    // from hello existing values
+    // from the existing values
     String currentTags = device.tagsToString();
     if ((!currentTags.contains("region=" + region) && !currentTags.contains("plant=" + plant))) {
-      // Create hello tags and attach them toohello DeviceTwinDevice object
+      // Create the tags and attach them to the DeviceTwinDevice object
       Set<Pair> tags = new HashSet<Pair>();
       tags.add(new Pair("region", region));
       tags.add(new Pair("plant", plant));
       device.setTags(tags);
 
-      // Update hello device twin in IoT Hub
+      // Update the device twin in IoT Hub
       System.out.println("Updating device twin");
       twinClient.updateTwin(device);
     }
 
-    // Retrieve hello device twin with hello tag values from IoT Hub
+    // Retrieve the device twin with the tag values from IoT Hub
     System.out.println("Device twin after update:");
     twinClient.getTwin(device);
     System.out.println(device);
     ```
 
-1. gemelli di dispositivo hello tooquery nell'hub IoT, aggiungere hello seguente codice toohello `try` blocco dopo il codice hello aggiunto nel passaggio precedente hello. codice Hello esegue due query. Ogni query restituisce un massimo di 100 dispositivi:
+1. Per eseguire una query sui dispositivi gemelli nell'hub IoT, aggiungere il codice seguente al blocco `try` dopo il codice aggiunto nel passaggio precedente. Il codice esegue due query. Ogni query restituisce un massimo di 100 dispositivi:
 
     ```java
-    // Query hello device twins in IoT Hub
+    // Query the device twins in IoT Hub
     System.out.println("Devices in Redmond:");
 
-    // Construct hello query
+    // Construct the query
     SqlQuery sqlQuery = SqlQuery.createSqlQuery("*", SqlQuery.FromType.DEVICES, "tags.plant='Redmond43'", null);
 
-    // Run hello query, returning a maximum of 100 devices
+    // Run the query, returning a maximum of 100 devices
     Query twinQuery = twinClient.queryTwin(sqlQuery.getQuery(), 100);
     while (twinClient.hasNextDeviceTwin(twinQuery)) {
       DeviceTwinDevice d = twinClient.getNextDeviceTwin(twinQuery);
@@ -185,10 +185,10 @@ In questa sezione si crea un'applicazione Java che aggiunge metadati percorso co
 
     System.out.println("Devices in Redmond using a cellular network:");
 
-    // Construct hello query
+    // Construct the query
     sqlQuery = SqlQuery.createSqlQuery("*", SqlQuery.FromType.DEVICES, "tags.plant='Redmond43' AND properties.reported.connectivityType = 'cellular'", null);
 
-    // Run hello query, returning a maximum of 100 devices
+    // Run the query, returning a maximum of 100 devices
     twinQuery = twinClient.queryTwin(sqlQuery.getQuery(), 3);
     while (twinClient.hasNextDeviceTwin(twinQuery)) {
       DeviceTwinDevice d = twinClient.getNextDeviceTwin(twinQuery);
@@ -196,23 +196,23 @@ In questa sezione si crea un'applicazione Java che aggiunge metadati percorso co
     }
     ```
 
-1. Salvare e chiudere hello `add-tags-query\src\main\java\com\mycompany\app\App.java` file
+1. Salvare e chiudere il file `add-tags-query\src\main\java\com\mycompany\app\App.java`
 
-1. Compilare hello **aggiungere-tag-query** app e correggere eventuali errori. Al prompt dei comandi, passare toohello `add-tags-query` cartella e hello esecuzione comando seguente:
+1. Compilare l'app **add-tags-query** e correggere eventuali errori. Al prompt dei comandi passare alla cartella `add-tags-query` ed eseguire il comando seguente:
 
     `mvn clean package -DskipTests`
 
 ## <a name="create-a-device-app"></a>Creare un'app per dispositivi
 
-In questa sezione si crea un'applicazione console Java che imposta un valore di proprietà restituito che viene inviato tooIoT Hub.
+In questa sezione si crea un'app console Java che imposta un valore di proprietà restituito che viene inviato all'IoT Hub.
 
-1. In hello `iot-java-twin-getstarted` cartella, creare un progetto di Maven denominato **dispositivo simulato** utilizzando hello seguente comando al prompt dei comandi. Si noti che si tratta di un lungo comando singolo:
+1. Nella cartella `iot-java-twin-getstarted` creare un progetto Maven denominato **simulated-device** usando il comando seguente nel prompt dei comandi. Si noti che si tratta di un lungo comando singolo:
 
     `mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=simulated-device -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false`
 
-1. Al prompt dei comandi, passare toohello `simulated-device` cartella.
+1. Al prompt dei comandi passare alla cartella `simulated-device`.
 
-1. Utilizzando un editor di testo, aprire hello `pom.xml` file hello `simulated-device` cartella e aggiungere hello seguente dipendenze toohello **dipendenze** nodo. Questa dipendenza consente hello toouse **client di dispositivi iot** pacchetto in toocommunicate l'app con l'hub IoT:
+1. In un editor di testo aprire il file `pom.xml` nella cartella `simulated-device` e aggiungere le dipendenze seguenti al nodo **dependencies**. Questa dipendenza consente di usare il pacchetto **iot-device-client** nell'app per comunicare con l'hub IoT:
 
     ```xml
     <dependency>
@@ -223,9 +223,9 @@ In questa sezione si crea un'applicazione console Java che imposta un valore di 
     ```
 
     > [!NOTE]
-    > È possibile verificare la versione più recente di hello di **client di dispositivi iot** utilizzando [ricerca Maven](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22iot-device-client%22%20g%3A%22com.microsoft.azure.sdk.iot%22).
+    > È possibile cercare la versione più recente di **iot-device-client** usando la [ricerca di Maven](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22iot-device-client%22%20g%3A%22com.microsoft.azure.sdk.iot%22).
 
-1. Aggiungere il seguente hello **compilare** nodo dopo hello **dipendenze** nodo. Questa configurazione indica Maven toouse Java toobuild 1.8 hello app:
+1. Aggiungere il nodo **build** seguente dopo il nodo **dependencies**. Questa configurazione indica a Maven di usare Java 1.8 per compilare l'app:
 
     ```xml
     <build>
@@ -243,11 +243,11 @@ In questa sezione si crea un'applicazione console Java che imposta un valore di 
     </build>
     ```
 
-1. Salvare e chiudere hello `pom.xml` file.
+1. Salvare e chiudere il file `pom.xml`.
 
-1. Utilizzando un editor di testo, aprire hello `simulated-device\src\main\java\com\mycompany\app\App.java` file.
+1. Aprire il file `simulated-device\src\main\java\com\mycompany\app\App.java` in un editor di testo.
 
-1. Aggiungere il seguente hello **importare** file toohello istruzioni:
+1. Aggiungere al file le istruzioni **import** seguenti:
 
     ```java
     import com.microsoft.azure.sdk.iot.device.*;
@@ -258,7 +258,7 @@ In questa sezione si crea un'applicazione console Java che imposta un valore di 
     import java.util.Scanner;
     ```
 
-1. Aggiungere hello seguenti variabili a livello di classe toohello **App** classe. Sostituzione di `{youriothubname}` con il nome di hub IoT, e `{yourdevicekey}` con il valore della chiave di hello dispositivo è stato generato in hello *creare un'identità del dispositivo* sezione:
+1. Aggiungere le variabili a livello di classe seguenti alla classe **App** . Sostituzione di `{youriothubname}` con il nome dell'hub IoT e di `{yourdevicekey}` con il valore della chiave del dispositivo generato nella sezione *Creare un'identità del dispositivo*:
 
     ```java
     private static String connString = "HostName={youriothubname}.azure-devices.net;DeviceId=myDeviceID;SharedAccessKey={yourdevicekey}";
@@ -266,34 +266,34 @@ In questa sezione si crea un'applicazione console Java che imposta un valore di 
     private static String deviceId = "myDeviceId";
     ```
 
-    Questa app di esempio utilizza hello **protocollo** variabile quando si crea un'istanza di un **DeviceClient** oggetto. Attualmente, toouse doppi le funzionalità del dispositivo è necessario utilizzare il protocollo MQTT hello.
+    Questa app di esempio usa la variabile **protocol** quando crea un'istanza di un oggetto **DeviceClient**. 
 
-1. Aggiungere i seguenti toohello codice hello **principale** metodo:
-    * Creare un toocommunicate di client del dispositivo con l'IoT Hub.
-    * Creare un **dispositivo** toostore hello dispositivo due proprietà dell'oggetto.
+1. Al metodo **main** aggiungere il codice seguente:
+    * Creare un client del dispositivo per comunicare con l'IoT Hub.
+    * Creare un **Device** oggetto per archiviare le proprietà dispositivi gemelli.
 
     ```java
     DeviceClient client = new DeviceClient(connString, protocol);
 
-    // Create a Device object toostore hello device twin properties
+    // Create a Device object to store the device twin properties
     Device dataCollector = new Device() {
       // Print details when a property value changes
       @Override
       public void PropertyCall(String propertyKey, Object propertyValue, Object context) {
-        System.out.println(propertyKey + " changed too" + propertyValue);
+        System.out.println(propertyKey + " changed to " + propertyValue);
       }
     };
     ```
 
-1. Aggiungere hello seguente codice toohello **principale** toocreate metodo un **connectivityType** segnalati proprietà e inviarlo tooIoT Hub:
+1. Aggiungere il codice seguente al metodo **main** per creare una proprietà segnalata **connectivityType** e inviarla all'IoT Hub:
 
     ```java
     try {
-      // Open hello DeviceClient and start hello device twin services.
+      // Open the DeviceClient and start the device twin services.
       client.open();
       client.startDeviceTwin(new DeviceTwinStatusCallBack(), null, dataCollector, null);
 
-      // Create a reported property and send it tooyour IoT hub.
+      // Create a reported property and send it to your IoT hub.
       dataCollector.setReportedProp(new Property("connectivityType", "cellular"));
       client.sendReportedProperties(dataCollector.getReportedProp());
     }
@@ -305,10 +305,10 @@ In questa sezione si crea un'applicazione console Java che imposta un valore di 
     }
     ```
 
-1. Aggiungere hello successivo toohello codice alla fine di hello **principale** metodo. In attesa di hello **invio** chiave consente ora per lo stato di hello tooreport IoT Hub di operazioni di doppi hello dispositivo:
+1. Alla fine del metodo **main** aggiungere il codice seguente. Attendere che il tasto **Invio** consenta all'IoT Hub di segnalare lo stato delle operazioni del dispositivo gemello:
 
     ```java
-    System.out.println("Press any key tooexit...");
+    System.out.println("Press any key to exit...");
 
     Scanner scanner = new Scanner(System.in);
     scanner.nextLine();
@@ -317,46 +317,46 @@ In questa sezione si crea un'applicazione console Java che imposta un valore di 
     client.close();
     ```
 
-1. Salvare e chiudere hello `simulated-device\src\main\java\com\mycompany\app\App.java` file.
+1. Salvare e chiudere il file `simulated-device\src\main\java\com\mycompany\app\App.java`.
 
-1. Compilare hello **dispositivo simulato** app e correggere eventuali errori. Al prompt dei comandi, passare toohello `simulated-device` cartella e hello esecuzione comando seguente:
+1. Compilare l'app **simulated-device** e correggere eventuali errori. Al prompt dei comandi passare alla cartella `simulated-device` ed eseguire il comando seguente:
 
     `mvn clean package -DskipTests`
 
-## <a name="run-hello-apps"></a>Eseguire App hello
+## <a name="run-the-apps"></a>Eseguire le app
 
-Si è ora pronto toorun hello console app.
+A questo punto è possibile eseguire le app console.
 
-1. Al prompt dei comandi in hello `add-tags-query` cartella, eseguire hello successivo comando toorun hello **aggiungere-tag-query** del servizio app:
-
-    `mvn exec:java -Dexec.mainClass="com.mycompany.app.App"`
-
-    ![IoT Hub Java servizio app tooupdate contrassegnare valori ed eseguire query di dispositivo](media/iot-hub-java-java-twin-getstarted/service-app-1.png)
-
-    È possibile visualizzare hello **impianto** e **area** tag aggiunto toohello gemelli di dispositivo. Hello prima query restituisce il dispositivo, ma hello in secondo luogo non.
-
-1. Al prompt dei comandi in hello `simulated-device` cartella, eseguire hello successivo comando tooadd hello **connectivityType** segnalati due dispositivi di proprietà toohello:
+1. Al prompt dei comandi nella cartella `add-tags-query` eseguire il comando seguente per eseguire l'app del servizio **add-tags-query**:
 
     `mvn exec:java -Dexec.mainClass="com.mycompany.app.App"`
 
-    ![client del dispositivo Hello aggiunge hello * * connectivityType * * segnalati proprietà](media/iot-hub-java-java-twin-getstarted/device-app-1.png)
+    ![App del servizio hub IoT Java per aggiornare i valori dei tag ed eseguire query di dispositivo](media/iot-hub-java-java-twin-getstarted/service-app-1.png)
 
-1. Al prompt dei comandi in hello `add-tags-query` cartella, eseguire hello successivo comando toorun hello **aggiungere-tag-query** una seconda volta del servizio app:
+    È possibile visualizzare i tag **plant** e **region** aggiunti al dispositivo gemello. Solo la prima query restituisce il dispositivo, non la seconda.
+
+1. Al prompt dei comandi nella cartella `simulated-device` eseguire il comando seguente per aggiungere la proprietà segnalata **connectivityType** al dispositivo gemello:
 
     `mvn exec:java -Dexec.mainClass="com.mycompany.app.App"`
 
-    ![IoT Hub Java servizio app tooupdate contrassegnare valori ed eseguire query di dispositivo](media/iot-hub-java-java-twin-getstarted/service-app-2.png)
+    ![Il client del dispositivo aggiunge la proprietà segnalata **connectivityType**](media/iot-hub-java-java-twin-getstarted/device-app-1.png)
 
-    Ora che il dispositivo ha inviato hello **connectivityType** tooIoT proprietà Hub, seconda query hello restituisce il dispositivo.
+1. Al prompt dei comandi nella cartella `add-tags-query` eseguire il comando seguente per eseguire l'app del servizio **add-tags-query** una seconda volta:
+
+    `mvn exec:java -Dexec.mainClass="com.mycompany.app.App"`
+
+    ![App del servizio hub IoT Java per aggiornare i valori dei tag ed eseguire query di dispositivo](media/iot-hub-java-java-twin-getstarted/service-app-2.png)
+
+    Ora che il dispositivo ha inviato la proprietà **connectivityType** all'hub IoT, la seconda query restituisce il dispositivo.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-In questa esercitazione, è configurato un nuovo hub IoT in hello portale di Azure e quindi creata un'identità del dispositivo nel Registro di sistema dell'hub IoT hello identità. Aggiunti i metadati del dispositivo come tag da un'app di back-end e ha scritto informazioni di connettività un dispositivo app tooreport dispositivo in un doppio dispositivo hello. È stato inoltre descritto come tooquery hello informazioni doppi dispositivo usando il linguaggio di query di hello IoT Hub simile a SQL.
+In questa esercitazione è stato configurato un nuovo hub IoT nel Portale di Azure ed è stata quindi creata un'identità del dispositivo nel registro di identità dell'hub IoT. Sono stati aggiunti i metadati del dispositivo come tag da un'app back-end ed è stata scritta un'app per dispositivo per segnalare le informazioni sulla connettività del dispositivo nel dispositivo gemello. Si è anche appreso come effettuare una query delle informazioni del dispositivo gemello usando il linguaggio di query simile a SQL dell'hub IoT.
 
-Hello utilizzare seguenti come risorse toolearn per:
+Per altre informazioni, vedere le risorse seguenti:
 
-* Inviare i dati di telemetria dai dispositivi con hello [iniziare con l'IoT Hub](iot-hub-java-java-getstarted.md) esercitazione.
-* Controllare i dispositivi in modo interattivo (ad esempio l'attivazione di una ventola da un'app controllata dall'utente) con hello [utilizzare metodi diretti](iot-hub-java-java-direct-methods.md) esercitazione.
+* Per inviare dati di telemetria dai dispositivi, vedere l'esercitazione [Introduzione all'hub IoT](iot-hub-java-java-getstarted.md).
+* Per controllare i dispositivi in modo interattivo, ad esempio per attivare un ventilatore da un'app controllata dall'utente, vedere l'esercitazione [Usare metodi diretti](iot-hub-java-java-direct-methods.md).
 
 <!-- Images. -->
 [7]: ./media/iot-hub-java-java-twin-getstarted/invoke-method.png

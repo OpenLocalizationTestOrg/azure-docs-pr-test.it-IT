@@ -1,9 +1,9 @@
 ---
-title: un runbook di automazione di Azure con un webhook aaaStarting | Documenti Microsoft
-description: Un webhook che consente a un client toostart un runbook in automazione di Azure da una chiamata HTTP.  Questo articolo viene descritto come toocreate un webhook e come toocall uno toostart un runbook.
+title: Avvio di un runbook di Automazione di Azure con un webhook | Documentazione Microsoft
+description: Un webhook che consente a un client di avviare un Runbook in Automazione di Azure da una chiamata HTTP.  Questo articolo descrive come creare un webhook e come chiamarne uno per avviare un Runbook.
 services: automation
 documentationcenter: 
-author: mgoedtel
+author: eslesar
 manager: jwhit
 editor: tysonn
 ms.assetid: 9b20237c-a593-4299-bbdc-35c47ee9e55d
@@ -14,111 +14,111 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: magoedte;bwren;sngun
-ms.openlocfilehash: ca6cde66b3784ceb5d0bc5921cee87aea74cb150
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d384a1f6e0f6bf49cf94020265fe5675ffc0029d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="starting-an-azure-automation-runbook-with-a-webhook"></a>Avviare un runbook di Automazione di Azure con un webhook
-Oggetto *webhook* consente toostart un determinato runbook in automazione di Azure tramite una singola richiesta HTTP. In questo modo i servizi esterni, ad esempio Visual Studio Team Services, GitHub, Microsoft Operations Management Suite Log Analitica o applicazioni personalizzate toostart runbook senza implementare una soluzione completa utilizzando hello API di automazione di Azure.  
+Un *webhook* consente di avviare un Runbook specifico in Automazione di Azure tramite una singola richiesta HTTP. In questo modo, i servizi esterni come Visual Studio Team Services, GitHub o Microsoft Operations Management Suite Log Analytics o le applicazioni personalizzate possono avviare i runbook senza implementare una soluzione completa usando l'API di Automazione di Azure.  
 ![Panoramica dei webhook](media/automation-webhooks/webhook-overview-image.png)
 
-È possibile confrontare webhook tooother metodi di avvio di un runbook in [avvio di un runbook in automazione di Azure](automation-starting-a-runbook.md)
+È possibile confrontare i webhook con altre modalità di avvio di un Runbook nell'articolo relativo all' [avvio di un Runbook in Automazione di Azure](automation-starting-a-runbook.md)
 
 ## <a name="details-of-a-webhook"></a>Informazioni dettagliate sui webhook
-Hello nella tabella seguente vengono descritte hello proprietà che devono essere configurati per un webhook.
+La tabella seguente descrive le proprietà che devono essere configurate per un webhook.
 
 | Proprietà | Descrizione |
 |:--- |:--- |
-| Nome |È possibile specificare qualsiasi nome desiderato per un webhook poiché si tratta di non esposti toohello client.  Viene utilizzato solo per si tooidentify hello runbook in automazione di Azure. <br>  Come procedura consigliata, è necessario assegnare un nome toohello correlati client che verrà usato hello webhook. |
-| URL |URL Hello del webhook hello è l'indirizzo di hello univoco che un client chiama con un runbook di hello toostart HTTP POST collegata toohello webhook.  Viene generato automaticamente quando si crea hello webhook.  Non è possibile specificare un URL personalizzato. <br> <br>  Hello URL contiene un token di sicurezza che consente di hello runbook toobe richiamato da un sistema di terze parti con alcuna ulteriore autenticazione. Per questo motivo, deve essere considerato come una password.  Per motivi di sicurezza, è possibile solo hello di visualizzazione che URL nel portale di Azure all'indirizzo hello ora hello webhook hello viene creato. Si noti hello URL in un luogo sicuro per un utilizzo futuro. |
-| Expiration date |Analogamente a un certificato, un webhook ha una data di scadenza oltre la quale non può più essere usato.  Dopo aver creato il webhook hello, è possibile modificare la data di scadenza. |
-| Enabled |Un webhook viene abilitato per impostazione predefinita nel momento in cui viene creato.  Se si imposta la proprietà tooDisabled, quindi nessun client sarà in grado di toouse è.  È possibile impostare hello **abilitato** proprietà quando si creano hello webhook o in qualsiasi momento una volta viene creata. |
+| Nome |È possibile specificare un nome qualsiasi per un webhook dal momento che non viene esposto al client.  Viene usato solo per consentire all'utente di identificare il Runbook in Automazione di Azure. <br>  Come procedura consigliata, è opportuno assegnare al webhook un nome correlato al client in cui verrà usato. |
+| URL |L'URL del webhook è l'indirizzo univoco che viene chiamato da un client con HTTP POST per avviare il Runbook collegato al webhook.  Viene generato automaticamente al momento della creazione del webhook.  Non è possibile specificare un URL personalizzato. <br> <br>  L'URL contiene un token di sicurezza che consente al Runbook di essere richiamato da un sistema di terze parti senza un'autenticazione aggiuntiva. Per questo motivo, deve essere considerato come una password.  Per motivi di sicurezza, è possibile visualizzare l'URL solo nel portale di Azure al momento della creazione del webhook. È consigliabile prendere nota dell'URL e conservarlo in un luogo sicuro per usi futuri. |
+| Expiration date |Analogamente a un certificato, un webhook ha una data di scadenza oltre la quale non può più essere usato.  La data di scadenza può essere modificata dopo la creazione del webhook. |
+| Enabled |Un webhook viene abilitato per impostazione predefinita nel momento in cui viene creato.  Se viene impostato su Disabled, nessun client sarà in grado di usarlo.  È possibile impostare la proprietà **Enabled** quando si crea il webhook o in qualsiasi momento successivo. |
 
-### <a name="parameters"></a>parameters
-Un webhook è possibile definire i valori per parametri del runbook vengono utilizzati quando runbook hello viene avviata da quel webhook. Hello webhook deve includere i valori per eventuali parametri obbligatori di hello runbook e possono includere valori per i parametri facoltativi. Un webhook tooa valore configurato di parametro può essere modificato anche dopo aver creato webhoook hello. Più webhook collegati tooa singolo runbook può utilizzare valori di parametro diversi.
+### <a name="parameters"></a>Parametri
+Un webhook può definire valori per parametri di Runbook usati quando il Runbook viene avviato dal webhook. Il webhook deve includere valori per tutti i parametri obbligatori del Runbook e può includere valori per i parametri facoltativi. Un valore di parametro configurato per un webhook può essere modificato anche dopo aver creato il webhoook. Se esistono più webhook collegati a un singolo Runbook, ognuno di essi potrà usare valori di parametri diversi.
 
-Quando un client avvia un runbook tramite un webhook, è possibile eseguire l'override di valori di parametro hello definiti in webhook hello.  dati tooreceive dal client di hello, hello runbook può accettare un singolo parametro chiamato **$WebhookData** di tipo [object] contenenti dati che il client hello include nella richiesta POST hello.
+Quando avvia un Runbook con un webhook, un client non può eseguire l'override dei valori di parametri definiti nel webhook.  Per ricevere dati dal client, il Runbook può accettare un singolo parametro denominato **$WebhookData** di tipo [object] che conterrà i dati inclusi dal client nella richiesta POST.
 
 ![Proprietà Webhookdata](media/automation-webhooks/webhook-data-properties.png)
 
-Hello **$WebhookData** oggetto avrà hello le proprietà seguenti:
+L'oggetto **$WebhookData** disporrà delle proprietà seguenti:
 
 | Proprietà | Descrizione |
 |:--- |:--- |
-| WebhookName |nome Hello del webhook hello. |
-| RequestHeader |Tabella hash contenente hello intestazioni della richiesta POST in arrivo hello. |
-| RequestBody |corpo Hello della richiesta POST in arrivo hello.  Manterrà tutta la formattazione, ad esempio stringa, JSON, XML o dati codificati in un form. Hello runbook deve essere scritto toowork con formato dati hello previsto. |
+| WebhookName |Nome del webhook. |
+| RequestHeader |Tabella hash contenente le intestazioni della richiesta POST in ingresso. |
+| RequestBody |Corpo della richiesta POST in ingresso.  Manterrà tutta la formattazione, ad esempio stringa, JSON, XML o dati codificati in un form. Il Runbook deve essere scritto in modo che funzioni con il formato di dati previsto. |
 
-Nessuna configurazione di prova webhook obbligatorio toosupport prova **$WebhookData** parametro e hello runbook non è necessario tooaccept è.  Se il runbook hello non definisce il parametro hello, i dettagli della richiesta di hello inviati dal client hello viene ignorato.
+Non è richiesta alcuna configurazione del webhook per supportare il parametro **$WebhookData** e il Runbook non deve necessariamente accettarlo.  Se il Runbook non definisce il parametro, gli eventuali dettagli della richiesta inviata dal client verranno ignorati.
 
-Se si specifica un valore per $WebhookData quando si crea il webhook hello, tale valore sarà sottoposta a override all'avvio hello webhook hello runbook con i dati hello richiesta POST di hello del client, anche se hello client non include tutti i dati nel corpo della richiesta hello.  Se si avvia un runbook con $WebhookData utilizzando un metodo diverso da un webhook, è possibile fornire un valore per $Webhookdata che verrà riconosciuto dal runbook hello.  Questo valore deve essere un oggetto con hello stesso [proprietà](#details-of-a-webhook) come $Webhookdata runbook hello poter lavorare correttamente con esso, come se ha lavorato con WebhookData effettivo passato da un webhook.
+Se si specifica un valore per $WebhookData quando si crea il webhook, viene eseguito l'override di tale valore quando il webhook avvia il Runbook con i dati della richiesta POST del client, anche se il client non include dati nel corpo della richiesta.  Se si avvia un Runbook con l'oggetto $WebhookData che usa un metodo diverso da un webhook, è possibile specificare un valore per $Webhookdata che verrà riconosciuto dal Runbook.  Questo valore deve essere un oggetto con le stesse [proprietà](#details-of-a-webhook) di $Webhookdata in modo che il Runbook possa usarlo correttamente come se stesse usando con il WebhookData effettivo passato da un webhook.
 
-Ad esempio, se si inizia hello seguente runbook dal portale di Azure hello e si desidera toopass alcuni WebhookData di esempio per test, perché WebhookData è un oggetto, deve essere passata come JSON in hello dell'interfaccia utente.
+Ad esempio, se si inizia il seguente runbook dal portale di Azure e si desidera passare alcuni esempi WebhookData per testarli, poiché WebhookData è un oggetto, deve essere passato come JSON nell'interfaccia utente.
 
 ![Parametro WebhookData dall'interfaccia utente](media/automation-webhooks/WebhookData-parameter-from-UI.png)
 
-Per hello sopra runbook, se si dispone delle seguenti proprietà per il parametro WebhookData hello hello:
+Per il runbook riportato sopra, se si hanno le seguenti proprietà per il parametro WebhookData:
 
 1. WebhookName: *MyWebhook*
 2. RequestHeader: *From=Test User*
 3. RequestBody: *[“VM1”, “VM2”]*
 
-Passare quindi hello il valore JSON in hello dell'interfaccia utente per il parametro WebhookData hello seguente:  
+Passare quindi il seguente valore JSON nell'interfaccia utente per il parametro WebhookData:  
 
 * {"WebhookName":"MyWebhook", "RequestHeader":{"From":"Test User"}, "RequestBody":"[\"VM1\",\"VM2\"]"}
 
 ![Parametro WebhookData Start dall'interfaccia utente](media/automation-webhooks/Start-WebhookData-parameter-from-UI.png)
 
 > [!NOTE]
-> i valori Hello di tutti i parametri di input vengono registrati con il processo di runbook hello.  Ciò significa che qualsiasi input fornito dal client hello nella richiesta webhook hello sarà tooanyone registrati e disponibili con il processo di automazione toohello di accesso.  Per questo motivo è consigliabile procedere con cautela quando si includono dati sensibili nelle chiamate di webhook.
+> I valori di tutti i parametri di input vengono registrati con il processo di Runbook.  Qualsiasi input fornito dal client nella richiesta del webhook verrà quindi registrato e sarà disponibile per chiunque abbia accesso al processo di automazione.  Per questo motivo è consigliabile procedere con cautela quando si includono dati sensibili nelle chiamate di webhook.
 >
 
 ## <a name="security"></a>Sicurezza
-sicurezza di Hello di un webhook si basa su privacy hello del relativo URL che contiene un token di sicurezza che ne consenta toobe richiamato. Automazione di Azure non esegue alcuna autenticazione sulla richiesta di hello fino a quando viene reso toohello URL sia corretto. Per questo motivo, webhook non devono essere utilizzati per i runbook che eseguono funzioni estremamente riservate senza utilizzare un metodo alternativo di convalida richiesta hello.
+La sicurezza di un webhook si basa sulla privacy dell'URL che contiene un token di sicurezza che consente di richiamarlo. Automazione di Azure non esegue alcuna autenticazione per la richiesta, purché venga inviata all'URL corretto. Per questo motivo, non è consigliabile usare i webhook per i Runbook che eseguono funzioni sensibili senza usare una modalità alternativa di convalida della richiesta.
 
-È possibile includere logica all'interno di hello toodetermine di runbook che è stato chiamato da un webhook controllando hello **WebhookName** proprietà del parametro hello $WebhookData. Hello runbook potrebbe eseguire un'ulteriore convalida mediante la ricerca di particolari informazioni di hello **RequestHeader** o **RequestBody** proprietà.
+È possibile includere nel Runbook la logica per determinare che è stato chiamato da un webhook selezionando la proprietà **WebhookName** del parametro $WebhookData. Il runbook può eseguire altre convalide cercando informazioni specifiche nella proprietà **RequestHeader** o **RequestBody**.
 
-Un'altra strategia consiste toohave hello runbook eseguire una convalida di una condizione di esterna quando ricevuta una richiesta di webhook.  Ad esempio, si consideri un runbook che viene chiamato da GitHub tutte le volte che un nuovo repository GitHub tooa di commit.  Hello runbook potrebbero connettersi toovalidate tooGitHub che il commit di una nuova semplicemente si è verificato prima di continuare.
+Un'altra strategia consiste nel fare in modo che il Runbook esegua la convalida di una condizione esterna quando riceve una richiesta da un webhook.  Si consideri ad esempio un Runbook chiamato da GitHub ogni volta che si verifica un nuovo commit in un repository di GitHub.  Il Runbook può connettersi a GitHub per convalidare che si sia effettivamente verificato un nuovo commit prima di continuare.
 
 ## <a name="creating-a-webhook"></a>Creazione di un webhook
-Utilizzare hello seguendo procedure toocreate un nuovo runbook tooa webhook collegati in hello portale di Azure.
+Seguire questa procedura per creare un nuovo webhook collegato a un Runbook nel portale di Azure.
 
-1. Da hello **pannello runbook** hello portale di Azure, fare clic su runbook hello hello webhook inizierà tooview il pannello di dettaglio.
-2. Fare clic su **Webhook** nella parte superiore di hello di hello di hello pannello tooopen **Webhook aggiungere** blade. <br>
+1. Nel pannello **Runbook** nel portale di Azure fare clic sul Runbook che verrà avviato dal webhook per visualizzare il pannello dei dettagli.
+2. Fare clic su **Webhook** nella parte superiore del pannello per aprire il pannello **Aggiungi webhook**. <br>
    ![Pulsante Webhook](media/automation-webhooks/webhooks-button.png)
-3. Fare clic su **creare nuovo webhook** tooopen hello **crea webhook pannello**.
-4. Specificare un **nome**, **data di scadenza** per webhook hello e se deve essere abilitata. Per altre informazioni su queste proprietà, vedere [Informazioni dettagliate sui webhook](#details-of-a-webhook) .
-5. Fare clic sull'icona di copia hello e premere Ctrl + C toocopy hello URL del webhook hello.  Annotarlo in un luogo sicuro.  **Dopo aver creato il webhook hello, è possibile recuperare nuovamente hello URL.** <br>
+3. Fare clic su **Creare un nuovo webhook** per aprire il pannello **Create webhook (Crea webhook)**.
+4. Specificare un valore per **Nome** e **Data scadenza** per il webhook e indicare se deve essere abilitato. Per altre informazioni su queste proprietà, vedere [Informazioni dettagliate sui webhook](#details-of-a-webhook) .
+5. Fare clic sull'icona di copia e premere CTRL+C per copiare l'URL del webhook.  Annotarlo in un luogo sicuro.  **Dopo aver creato il webhook, non è possibile recuperare di nuovo l'URL.** <br>
    ![URL webhook](media/automation-webhooks/copy-webhook-url.png)
-6. Fare clic su **parametri** tooprovide valori per parametri del runbook hello.  Se il runbook di hello include i parametri obbligatori, quindi non sarà in grado di toocreate hello webhook a meno che non vengono forniti i valori.
-7. Fare clic su **crea** toocreate hello webhook.
+6. Fare clic su **Parameters** per specificare i valori per i parametri del Runbook.  Se il Runbook ha parametri obbligatori, non sarà possibile creare il webhook a meno che non vengano messi a disposizione i valori.
+7. Fare clic su **Create** per creare il webhook.
 
 ## <a name="using-a-webhook"></a>Uso di un webhook
-toouse un webhook dopo che è stato creato, l'applicazione client deve eseguire un POST HTTP con hello URL per il webhook hello.  sintassi di Hello del webhook hello sarà nel seguente formato hello.
+Per usare un webhook dopo averlo creato, l'applicazione client deve inviare una richiesta HTTP POST con l'URL del webhook.  La sintassi del webhook sarà nel formato seguente.
 
     http://<Webhook Server>/token?=<Token Value>
 
-Hello client riceverà uno dei seguenti codici restituiti da una richiesta POST hello hello.  
+Il client riceverà uno dei codici restituiti seguenti dalla richiesta POST.  
 
 | Codice | Testo | Descrizione |
 |:--- |:--- |:--- |
-| 202 |Accepted |è stata accettata la richiesta di Hello e hello runbook è stato accodato correttamente. |
-| 400 |Bad Request |richiesta di Hello non è stata accettata per uno dei seguenti motivi hello. <ul> <li>Hello webhook è scaduto.</li> <li>Hello webhook è disabilitata.</li> <li>token Hello hello URL è valido.</li>  </ul> |
-| 404 |Non trovato |richiesta di Hello non è stata accettata per uno dei seguenti motivi hello. <ul> <li>Hello webhook non è stato trovato.</li> <li>Hello runbook non è stato trovato.</li> <li>Impossibile trovare l'account di Hello.</li>  </ul> |
-| 500 |Internal Server Error |Hello URL è valido, ma si è verificato un errore.  Inviare nuovamente la richiesta hello. |
+| 202 |Accepted |La richiesta è stata accettata e il Runbook è stato accodato. |
+| 400 |Bad Request |La richiesta non è stata accettata per uno dei motivi seguenti. <ul> <li>Il webhook è scaduto.</li> <li>Il webhook è disabilitato.</li> <li>Il token nell'URL non è valido.</li>  </ul> |
+| 404 |Non trovato |La richiesta non è stata accettata per uno dei motivi seguenti. <ul> <li>Il webhook non è stato trovato.</li> <li>Il runbook non è stato trovato.</li> <li>L'account non è stato trovato.</li>  </ul> |
+| 500 |Internal Server Error |L'URL è valido, ma si è verificato un errore.  Inviare di nuovo la richiesta. |
 
-Supponendo che hello richiesta ha esito positivo, hello webhook risposta contiene come indicato di seguito id processo hello in formato JSON. Contiene un id di processo, ma il formato JSON hello consente per possibili miglioramenti futuri.
+Presupponendo che la richiesta riesca, la risposta del webhook conterrà l'ID processo in formato JSON come indicato di seguito. Conterrà un singolo ID processo, ma il formato JSON consente potenziali miglioramenti futuri.
 
     {"JobIds":["<JobId>"]}  
 
-Hello client non può determinare quando viene completato il processo di runbook hello o lo stato di completamento da hello webhook.  È possibile determinare queste informazioni utilizzando l'id di processo hello con un altro metodo, ad esempio [Windows PowerShell](http://msdn.microsoft.com/library/azure/dn690263.aspx) o hello [API di automazione di Azure](https://msdn.microsoft.com/library/azure/mt163826.aspx).
+Il client non è in grado di determinare quando viene completato il processo del Runbook o lo stato di avanzamento dal webhook.  Può determinare queste informazioni usando l'ID processo con un altro metodo, ad esempio [Windows PowerShell](http://msdn.microsoft.com/library/azure/dn690263.aspx) o l'[API di Automazione di Azure](https://msdn.microsoft.com/library/azure/mt163826.aspx).
 
 ### <a name="example"></a>Esempio
-Hello di esempio seguente viene utilizzato Windows PowerShell toostart un runbook con un webhook.  Si noti che qualsiasi linguaggio in grado di creare una richiesta HTTP può usare un webhook. Windows PowerShell viene usato qui solo come esempio.
+L'esempio seguente usa Windows PowerShell per avviare un Runbook con un webhook.  Si noti che qualsiasi linguaggio in grado di creare una richiesta HTTP può usare un webhook. Windows PowerShell viene usato qui solo come esempio.
 
-runbook Hello è previsto un elenco di macchine virtuali in formato JSON nel corpo di hello di hello richiesta. È inoltre incluso informazioni che è l'avvio di runbook hello e hello data e l'ora viene avviato nell'intestazione hello hello richiesta.      
+Il Runbook prevede un elenco di macchine virtuali in formato JSON nel corpo della richiesta. Nell'intestazione della richiesta vengono incluse anche informazioni sull'utente che avvia il Runbook e la data e l'ora di avvio.      
 
     $uri = "https://s1events.azure-automation.net/webhooks?token=8ud0dSrSo%2fvHWpYbklW%3c8s0GrOKJZ9Nr7zqcS%2bIQr4c%3d"
     $headers = @{"From"="user@contoso.com";"Date"="05/28/2015 15:47:00"}
@@ -133,19 +133,19 @@ runbook Hello è previsto un elenco di macchine virtuali in formato JSON nel cor
     $jobid = ConvertFrom-Json $response
 
 
-Hello figura seguente vengono illustrate le informazioni di intestazione hello (utilizzando un [Fiddler](http://www.telerik.com/fiddler) traccia) dalla richiesta. Sono incluse le intestazioni standard di una richiesta HTTP in aggiunta toohello data personalizzato e da intestazioni che è stato aggiunto.  Ognuno di questi valori è runbook toohello disponibile in hello **RequestHeaders** proprietà di **WebhookData**.
+L'immagine seguente illustra le informazioni di intestazione (usando una traccia di [Fiddler](http://www.telerik.com/fiddler) ) dalla richiesta. Sono incluse le intestazioni standard di una richiesta HTTP, oltre alla data personalizzata e le intestazioni DA aggiunte.  Ognuno di questi valori è disponibile per il runbook nella proprietà **RequestHeaders** di **WebhookData**.
 
 ![Pulsante Webhooks](media/automation-webhooks/webhook-request-headers.png)
 
-Hello immagine seguente viene illustrato hello corpo della richiesta di hello (utilizzando un [Fiddler](http://www.telerik.com/fiddler) traccia) che è disponibile toohello runbook hello **RequestBody** proprietà di **WebhookData**. Questo è formattato come JSON, perché questo è il formato hello che è stato incluso nel corpo di hello di hello richiesta.     
+L'immagine seguente mostra il corpo della richiesta (usando una traccia di [Fiddler](http://www.telerik.com/fiddler)) disponibile per il runbook nella proprietà **RequestBody** di **WebhookData**. Viene formattata come JSON perché questo era il formato incluso nel corpo della richiesta.     
 
 ![Pulsante Webhooks](media/automation-webhooks/webhook-request-body.png)
 
-Hello immagine seguente mostra la richiesta di hello inviata da Windows PowerShell e la risposta risultante hello.  id di processo Hello viene estratto dalla risposta hello e stringa tooa convertito.
+L'immagine seguente mostra la richiesta inviata da Windows PowerShell e la risposta risultante.  L'ID processo viene estratto dalla risposta e convertito in una stringa.
 
 ![Pulsante Webhooks](media/automation-webhooks/webhook-request-response.png)
 
-Hello runbook di esempio seguente accetta una richiesta di esempio precedente hello e avvia le macchine virtuali hello specificate nel corpo della richiesta hello.
+Il Runbook di esempio seguente accetta la richiesta di esempio precedente e avvia le macchine virtuali specificate nel corpo della richiesta.
 
     workflow Test-StartVirtualMachinesFromWebhook
     {
@@ -166,7 +166,7 @@ Hello runbook di esempio seguente accetta una richiesta di esempio precedente he
             $VMList = ConvertFrom-Json -InputObject $WebhookBody
             Write-Output "Runbook started from webhook $WebhookName by $From."
 
-            # Authenticate tooAzure resources
+            # Authenticate to Azure resources
             $Cred = Get-AutomationPSCredential -Name 'MyAzureCredential'
             Add-AzureAccount -Credential $Cred
 
@@ -179,27 +179,27 @@ Hello runbook di esempio seguente accetta una richiesta di esempio precedente he
             }
         }
         else {
-            Write-Error "Runbook mean toobe started only from webhook."
+            Write-Error "Runbook mean to be started only from webhook."
         }
     }
 
 
-## <a name="starting-runbooks-in-response-tooazure-alerts"></a>A partire da runbook avvisi tooAzure risposta
-Abilitato Webhook runbook può essere utilizzato tooreact troppo[gli avvisi di Azure](../monitoring-and-diagnostics/insights-receive-alert-notifications.md). Le risorse in Azure possono essere monitorate tramite la raccolta di statistiche hello come prestazioni, disponibilità e utilizzo con l'aiuto di hello degli avvisi di Azure. È possibile ricevere avvisi basati su metriche o eventi di monitoraggio per i servizi di Azure, attualmente gli account di automazione supportano solo le metriche. Quando il valore di hello di una specifica metrica supera la soglia di hello assegnata o se hello configurato evento viene generato una notifica viene inviata toohello servizio amministratore o co-amministratori tooresolve hello avviso, per ulteriori informazioni sulle metriche e gli eventi, vedere troppo[ Gli avvisi di Azure](../monitoring-and-diagnostics/insights-receive-alert-notifications.md).
+## <a name="starting-runbooks-in-response-to-azure-alerts"></a>Avvio di runbook in risposta agli avvisi di Azure
+I runbook abilitati per i webhook possono essere usati in risposta agli [avvisi di Azure](../monitoring-and-diagnostics/insights-receive-alert-notifications.md). È possibile monitorare le risorse in Azure grazie alla raccolta di statistiche relative, ad esempio, a prestazioni, disponibilità e uso con l'aiuto degli avvisi di Azure. È possibile ricevere avvisi basati su metriche o eventi di monitoraggio per i servizi di Azure, attualmente gli account di automazione supportano solo le metriche. Quando il valore di una metrica specifica supera la soglia assegnata o se l'evento configurato viene attivato quando una notifica viene inviata all'amministratore o ai coamministratori del servizio per risolvere l'avviso, per altre informazioni sulle metriche e sugli eventi, vedere gli [avvisi di Azure](../monitoring-and-diagnostics/insights-receive-alert-notifications.md).
 
-Oltre a utilizzare gli avvisi di Azure come un sistema di notifica, è possibile anche avviare i runbook in risposta tooalerts. Automazione di Azure fornisce hello funzionalità toorun abilitato webhook runbook con gli avvisi di Azure. Quando una metrica supera hello configurato il valore di soglia hello regola di avviso diventa attiva e trigger hello webhook di automazione che a sua volta esegue hello runbook.
+Oltre a usare gli avvisi di Azure come sistema di notifica, è anche possibile avviare i runbook in risposta agli avvisi. Automazione di Azure offre la possibilità di eseguire runbook abilitati per i webhook con gli avvisi di Azure. Quando una metrica supera il valore di soglia configurato, la regola dell'avviso viene abilitata e attiva il webhook di automazione che a sua volta esegue il runbook.
 
 ![Webhook](media/automation-webhooks/webhook-alert.jpg)
 
 ### <a name="alert-context"></a>Contesto dell'avviso
-Si consideri una risorsa di Azure, ad esempio una macchina virtuale, utilizzo della CPU del computer è uno della metrica di prestazioni chiave hello. Utilizzo della CPU hello è 100% o più di una certa quantità per lunghi periodi di tempo, è possibile problema hello toofix di toorestart hello macchina virtuale. Questo può essere risolto configurando una macchina virtuale toohello di regola di avviso e questa regola ha la percentuale di CPU come la metrica. Percentuale CPU qui viene eseguita solo come esempio, ma sono disponibili molte altre metriche che è possibile configurare tooyour Azure risorse e riavvio della macchina virtuale hello è un'azione che viene eseguita toofix questo problema, è possibile configurare hello runbook tootake altre azioni.
+Se si considera una risorsa di Azure, ad esempio una macchina virtuale, l'uso della CPU del computer rappresenta una delle metriche fondamentali relative alle prestazioni. Se l'uso della CPU è pari al 100% o più di una certa quantità per un lungo periodo di tempo, si potrebbe voler riavviare la macchina virtuale per risolvere il problema. Questo problema può essere risolto tramite la configurazione di una regola di avviso per la macchina virtuale. Tale regola userà la percentuale di CPU come metrica. La percentuale di CPU viene usata solo come esempio. È tuttavia possibile configurare numerose altre metriche per le risorse di Azure e riavviare la macchina virtuale per risolvere il problema. È comunque possibile configurare il runbook per eseguire altre operazioni.
 
-Quando la regola di avviso hello diventa attiva e trigger hello abilitato webhook runbook, invia hello al contesto dell'avviso toohello runbook. [Contesto dell'avviso](../monitoring-and-diagnostics/insights-receive-alert-notifications.md) contiene i dettagli inclusi **SubscriptionID**, **ResourceGroupName**, **ResourceName**, **ResourceType**, **ResourceId** e **Timestamp** che sono necessari per la risorsa di hello runbook tooidentify hello in cui in corso azione. Avviso di contesto è incorporato nella parte corpo hello di hello **WebhookData** oggetto runbook toohello inviato e sono accessibili con **Webhook.RequestBody** proprietà
+Quando la regola di avviso viene abilitata e attiva il runbook abilitato per i webhook, la regola invia il contesto dell'avviso al runbook. Il [contesto dell'avviso](../monitoring-and-diagnostics/insights-receive-alert-notifications.md) contiene dettagli, tra cui i valori di **SubscriptionID**, **ResourceGroupName**, **ResourceName**, **ResourceType**, **ResourceId** e **Timestamp** richiesti dal runbook per identificare la risorsa in cui verrà eseguita l'azione. Il contesto dell'avviso è incorporato nel corpo del contesto dell'oggetto **WebhookData** inviato al runbook, a cui è possibile accedere con la proprietà **Webhook.RequestBody**.
 
 ### <a name="example"></a>Esempio
-Creare una macchina virtuale di Azure nella sottoscrizione e associare un [avviso metriche Percentuale CPU toomonitor](../monitoring-and-diagnostics/insights-receive-alert-notifications.md). Durante la creazione avviso hello assicurarsi che inserire hello webhook campo hello URL del webhook hello generato durante la creazione del webhook hello.
+Creare una macchina virtuale di Azure nella sottoscrizione corrente e associare un [avviso per monitorare la metrica relativa alla percentuale della CPU](../monitoring-and-diagnostics/insights-receive-alert-notifications.md). Durante la creazione dell'avviso assicurarsi di popolare il campo del webhook con l'URL del webhook generato durante la creazione del webhook stesso.
 
-runbook di esempio seguente Hello viene generato quando la regola di avviso hello diventa attiva e raccoglie i parametri di contesto dell'avviso hello che sono necessari per la risorsa di hello runbook tooidentify hello in cui in corso azione.
+Il seguente runbook di esempio viene attivato quando la regola dell'avviso diventa attiva e raccoglie i parametri del contesto dell'avviso. Tali parametri consentono al runbook di identificare la risorsa in cui verrà eseguita l'azione.
 
     workflow Invoke-RunbookUsingAlerts
     {
@@ -214,17 +214,17 @@ runbook di esempio seguente Hello viene generato quando la regola di avviso hell
             $WebhookBody    =   $WebhookData.RequestBody
             $WebhookHeaders =   $WebhookData.RequestHeader
 
-            # Outputs information on hello webhook name that called This
+            # Outputs information on the webhook name that called This
             Write-Output "This runbook was started from webhook $WebhookName."
 
 
-            # Obtain hello WebhookBody containing hello AlertContext
+            # Obtain the WebhookBody containing the AlertContext
             $WebhookBody = (ConvertFrom-Json -InputObject $WebhookBody)
             Write-Output "`nWEBHOOK BODY"
             Write-Output "============="
             Write-Output $WebhookBody
 
-            # Obtain hello AlertContext     
+            # Obtain the AlertContext     
             $AlertContext = [object]$WebhookBody.context
 
             # Some selected AlertContext information
@@ -238,31 +238,31 @@ runbook di esempio seguente Hello viene generato quando la regola di avviso hell
             Write-Output $AlertContext.resourceId
             Write-Output $AlertContext.timestamp
 
-            # Act on hello AlertContext data, in our case restarting hello VM.
-            # Authenticate tooyour Azure subscription using Organization ID toobe able toorestart that Virtual Machine.
+            # Act on the AlertContext data, in our case restarting the VM.
+            # Authenticate to your Azure subscription using Organization ID to be able to restart that Virtual Machine.
             $cred = Get-AutomationPSCredential -Name "MyAzureCredential"
             Add-AzureAccount -Credential $cred
             Select-AzureSubscription -subscriptionName "Visual Studio Ultimate with MSDN"
 
-            #Check hello status property of hello VM
+            #Check the status property of the VM
             Write-Output "Status of VM before taking action"
             Get-AzureVM -Name $AlertContext.resourceName -ServiceName $AlertContext.resourceName
             Write-Output "Restarting VM"
 
-            # Restart hello VM by passing VM name and Service name which are same in this case
+            # Restart the VM by passing VM name and Service name which are same in this case
             Restart-AzureVM -ServiceName $AlertContext.resourceName -Name $AlertContext.resourceName
             Write-Output "Status of VM after alert is active and takes action"
             Get-AzureVM -Name $AlertContext.resourceName -ServiceName $AlertContext.resourceName
         }
         else  
         {
-            Write-Error "This runbook is meant tooonly be started from a webhook."  
+            Write-Error "This runbook is meant to only be started from a webhook."  
         }  
     }
 
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per informazioni su modi toostart un runbook, vedere [avvio di un Runbook](automation-starting-a-runbook.md).
-* Per informazioni sulla visualizzazione hello stato di un Runbook Job, vedere troppo[esecuzione di Runbook in automazione di Azure](automation-runbook-execution.md).
-* toolearn toouse azione tootake di automazione di Azure per gli avvisi di Azure, vedere [correggere gli avvisi di macchina virtuale di Azure con i runbook di automazione](automation-azure-vm-alert-integration.md).
+* Per informazioni dettagliate sulle diverse modalità disponibili per l'avvio dei runbook, vedere [Avvio di un runbook](automation-starting-a-runbook.md).
+* Per informazioni sulla visualizzazione dello stato di un processo del runbook, vedere [Esecuzione di runbook in Automazione di Azure](automation-runbook-execution.md).
+* Per informazioni su come usare Automazione di Azure per agire sugli avvisi di Azure, vedere [Soluzione di Automazione di Azure: risolvere gli avvisi delle macchine virtuali di Azure](automation-azure-vm-alert-integration.md).

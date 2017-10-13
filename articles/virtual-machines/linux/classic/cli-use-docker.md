@@ -1,6 +1,6 @@
 ---
-title: hello aaaUsing estensione della macchina virtuale Docker per Linux in Azure
-description: Descrive Docker ed estensioni di macchine virtuali di Azure hello e tooprogrammatically per la creazione di macchine virtuali in Azure che sono host docker dalla riga di comando di hello tramite hello CLI di Azure.
+title: Uso dell'estensione della VM Docker per Linux in Azure
+description: Descrive Docker e le estensioni di Macchine virtuali di Azure e mostra come creare a livello di codice le macchine virtuali in Azure che siano host Docker dalla riga di comando usando l'interfaccia della riga di comando di Azure.
 services: virtual-machines-linux
 documentationcenter: 
 author: squillace
@@ -15,57 +15,57 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 08/29/2016
 ms.author: rasquill
-ms.openlocfilehash: 1e192ad7c273aa9c997ea7bfa53b7de0b41a43c6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a542332c921862241f1f000e6a8f0a0ae0e8a934
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="using-hello-docker-vm-extension-from-hello-azure-command-line-interface-azure-cli"></a>Utilizzo di hello estensione della macchina virtuale Docker da hello interfaccia della riga di comando di Azure (Azure CLI)
+# <a name="using-the-docker-vm-extension-from-the-azure-command-line-interface-azure-cli"></a>Uso dell’estensione della VM Docker dall’interfaccia della riga di comando di Azure (Azure CLI)
 > [!IMPORTANT] 
-> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md). In questo articolo viene illustrato l'utilizzo del modello di distribuzione classica hello. Si consiglia di utilizzano il modello di gestione risorse hello più nuove distribuzioni. Per informazioni sull'utilizzo di estensione della macchina virtuale Docker hello con modello di gestione risorse di hello, vedere [qui](../dockerextension.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md). Questo articolo illustra l'uso del modello di distribuzione classica. Microsoft consiglia di usare il modello di Gestione risorse per le distribuzioni più recenti. Per informazioni sull'uso dell'estensione della VM Docker personalizzata con il modello di Resource Manager, vedere [qui](../dockerextension.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
-In questo argomento viene descritto come una macchina virtuale con hello estensione della macchina virtuale Docker da hello toocreate servizio la modalità di gestione (asm) in Azure CLI su qualsiasi piattaforma. [Docker](https://www.docker.com/) è uno dei hello approcci di virtualizzazione più diffusi che utilizza [contenitori di Linux](http://en.wikipedia.org/wiki/LXC) anziché le macchine virtuali come modalità di isolamento dei dati e di elaborazione per le risorse condivise. È possibile utilizzare l'estensione della macchina virtuale Docker hello e hello [agente Linux di Azure](../agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) toocreate una macchina virtuale Docker che ospita qualsiasi numero di contenitori per le applicazioni in Azure. toosee una descrizione di alto livello dei contenitori e i relativi vantaggi, vedere hello [Docker elevato livello di lavagna](http://channel9.msdn.com/Blogs/Regular-IT-Guy/Docker-High-Level-Whiteboard).
+Questo argomento descrive come creare una VM con l'estensione della VM Docker dalla modalità di gestione dei servizi (asm) nell'interfaccia della riga di comando di Azure su qualsiasi piattaforma. [Docker](https://www.docker.com/) è uno dei più popolari approcci alla virtualizzazione che usa [contenitori Linux](http://en.wikipedia.org/wiki/LXC) invece di macchine virtuali allo scopo di isolare i dati ed eseguire i calcoli su risorse condivise. È possibile usare l'estensione della macchina virtuale Docker per l'[Agente Linux di Azure](../agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) per creare una VM Docker che ospiti un numero qualsiasi di contenitori per le applicazioni su Azure. Per assistere a una discussione di alto livello sui contenitori e i relativi vantaggi, guardare questa [sessione con lavagna condivisa relativa a Docker](http://channel9.msdn.com/Blogs/Regular-IT-Guy/Docker-High-Level-Whiteboard).
 
-## <a name="how-toouse-hello-docker-vm-extension-with-azure"></a>Come toouse hello estensione della macchina virtuale Docker con Azure
-estensione della macchina virtuale Docker toouse hello con Azure, è necessario installare una versione di hello [interfaccia della riga di comando di Azure](https://github.com/Azure/azure-sdk-tools-xplat) (Azure CLI) superiore 0.8.6 (come di questo hello scrittura corrente versione 0.10.0). È possibile installare hello CLI di Azure in Windows, Mac e Linux.
+## <a name="how-to-use-the-docker-vm-extension-with-azure"></a>Come usare l'estensione della VM Docker con Azure
+Per usare l'estensione della VM Docker con Azure è necessario installare una versione dell'[interfaccia della riga di comando di Azure](https://github.com/Azure/azure-sdk-tools-xplat) successiva alla versione 0.8.6 (al momento della stesura di questo articolo, la versione corrente è la 0.10.0). È possibile installare l’interfaccia della riga di comando di Azure su Mac, Linux e Windows.
 
-processo completo di Hello toouse Docker in Azure è semplice:
+Il processo completo di utilizzo di Docker su Azure è semplice:
 
-* Installare hello CLI di Azure e le relative dipendenze nel computer di hello da cui si desidera toocontrol Azure (in Windows, questa è una distribuzione di Linux in esecuzione come macchina virtuale)
-* Utilizzare toocreate i comandi di Docker CLI di Azure hello un host macchina virtuale Docker in Azure
-* Utilizzare hello locale Docker comandi toomanage ai contenitori di Docker nella macchina virtuale Docker in Azure.
+* Installare l’interfaccia della riga di comando di Azure e le relative dipendenze sul computer dal quale si intende controllare Azure (su Windows, si tratterà di una distribuzione Linux in esecuzione come macchina virtuale)
+* Usare i comandi di Docker per l’interfaccia della riga di comando di Azure per creare un host Docker della VM in Azure
+* Usare i comandi locali di Docker per gestire i contenitori Docker nella VM Docker in Azure.
 
-### <a name="install-hello-azure-command-line-interface-azure-cli"></a>Installare hello interfaccia della riga di comando di Azure (Azure CLI)
-tooinstall e configurare hello CLI di Azure, vedere [come tooinstall hello interfaccia della riga di comando di Azure](../../../cli-install-nodejs.md). installazione di hello tooconfirm, tipo `azure` al prompt dei comandi di hello e dopo un breve istante dovrebbe hello Azure CLI ASCII art, in cui sono elencati hello basic comandi tooyou disponibili. Se l'installazione hello funzionava correttamente, dovrebbe essere in grado di tootype `azure help vm` e verificare che uno dei comandi elencato hello è "docker".
-
-> [!NOTE]
-> Docker include strumenti per Windows, [Docker macchina](https://docs.docker.com/installation/windows/), che è anche possibile usare la creazione di hello tooautomate di un client di docker che è possibile utilizzare toowork con macchine virtuali di Azure come host docker.
-> 
-> 
-
-### <a name="connect-hello-azure-cli-tootooyour-azure-account"></a>Connettersi hello Azure CLI tootooyour Account di Azure
-Prima di poter usare hello CLI di Azure è necessario associare le credenziali dell'account Azure hello CLI di Azure sulla piattaforma. Hello sezione [come tooconnect tooyour sottoscrizione di Azure](../../../xplat-cli-connect.md) illustra tooeither scaricare e importare il **publishsettings** file o associare la CLI di Azure con un id organizzazione.
+### <a name="install-the-azure-command-line-interface-azure-cli"></a>Installare l'interfaccia della riga di comando di Azure 
+Per installare e configurare l’interfaccia della riga di comando di Azure, vedere [Come installare e configurare l'interfaccia della riga di comando di Azure](../../../cli-install-nodejs.md). Per confermare l'installazione, digitare `azure` nel prompt dei comandi. Dopo pochi secondi verrà visualizzata la grafica ASCII dell’interfaccia della riga di comando di Azure, in cui sono elencati i comandi di base disponibili. Se l'installazione è andata a buon fine, sarà possibile digitare `azure help vm` e verificare che uno dei comandi elencati corrisponda a "docker".
 
 > [!NOTE]
-> Esistono alcune differenze nel comportamento quando si utilizza uno o hello altri metodi di autenticazione, pertanto essere certi tooread hello documento sopra toounderstand funzionalità diverse di hello.
+> Docker include strumenti per Windows, ovvero [Docker Machine](https://docs.docker.com/installation/windows/), che consentono anche di automatizzare la creazione di un client Docker da usare per gestire macchine virtuali di Azure come host Docker.
 > 
 > 
 
-### <a name="install-docker-and-use-hello-docker-vm-extension-for-azure"></a>Installare Docker e utilizzare hello estensione della macchina virtuale Docker per Azure
-Seguire hello [le istruzioni di installazione di Docker](https://docs.docker.com/installation/#installation) tooinstall Docker in locale nel computer.
+### <a name="connect-the-azure-cli-to-to-your-azure-account"></a>Connettere l'interfaccia della riga di comando di Azure al proprio account Azure
+Prima di poter usare l'interfaccia della riga di comando di Azure è necessario associare alla stessa le credenziali del proprio account Azure sulla propria piattaforma. La sezione [Come connettersi alla sottoscrizione di Azure](../../../xplat-cli-connect.md) spiega come scaricare e importare il file **.publishsettings** o associare l'interfaccia della riga di comando di Azure a un ID organizzazione.
 
-toouse Docker con una macchina virtuale di Azure, immagine di Linux hello utilizzata per hello macchina virtuale deve avere hello [agente VM Linux di Azure](../agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) installato. Al momento esistono solo due tipi di immagine che offrono queste funzionalità:
+> [!NOTE]
+> Ci sono alcune differenze di comportamento quando si usa l'uno o l'altro metodo di autenticazione, perciò assicurarsi di leggere il documento sopra riportato per comprendere le diverse funzionalità.
+> 
+> 
 
-* Un'immagine Ubuntu da hello raccolta immagini di Azure o
-* Un'immagine personalizzata di Linux che è stato creato con l'agente VM Linux di Azure hello installato e configurato. Vedere [agente VM Linux di Azure](../agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) per ulteriori informazioni su come toobuild una VM Linux personalizzato con hello agente VM di Azure.
+### <a name="install-docker-and-use-the-docker-vm-extension-for-azure"></a>Installare Docker e usare l'estensione della VM Docker per Azure
+Per installare Docker in locale sul proprio computer seguire le [istruzioni di installazione di Docker](https://docs.docker.com/installation/#installation) .
 
-### <a name="using-hello-azure-image-gallery"></a>Utilizzo di hello raccolta immagini di Azure
-Da una sessione Terminal o Bash, utilizzare il comando CLI di Azure toolocate hello immagine Ubuntu più recente in hello VM raccolta toouse digitando seguente hello
+Per usare Docker con una macchina virtuale di Azure, l'immagine Linux usata per la VM deve avere installato l'[agente VM Linux Azure](../agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Al momento esistono solo due tipi di immagine che offrono queste funzionalità:
+
+* un'immagine Ubuntu dalla raccolta immagini di Azure o
+* un'immagine Linux personalizzata creata con l'agente VM Linux Azure installato e configurato. Per altre informazioni su come costruire una VM Linux con l'agente VM di Azure, vedere [Agente VM Linux di Azure](../agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+
+### <a name="using-the-azure-image-gallery"></a>Uso della raccolta immagini di Azure
+Da una sessione Bash o Terminal, usare il seguente comando dell’interfaccia della riga di comando di Azure per trovare l'immagine più recente di Ubuntu nella raccolta di VM da usare digitando
 
 `azure vm image list | grep Ubuntu-14_04`
 
-e selezionare uno dei nomi di immagine hello, ad esempio `b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04_4-LTS-amd64-server-20160516-en-us-30GB`, e il comando che segue hello utilizzare toocreate una nuova macchina virtuale utilizzando tale immagine.
+e selezionare uno dei nomi di immagine, ad esempio `b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04_4-LTS-amd64-server-20160516-en-us-30GB`, quindi usare il comando seguente per creare una nuova macchina virtuale usando tale immagine.
 
 ```
 azure vm docker create -e 22 -l "West US" <vm-cloudservice name> "b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_04_4-LTS-amd64-server-20160516-en-us-30GB" <username> <password>
@@ -73,31 +73,31 @@ azure vm docker create -e 22 -l "West US" <vm-cloudservice name> "b39f27a8b8c64d
 
 dove:
 
-* *&lt;nome VM cloudservice&gt;*  nome hello di hello VM che verranno configurati come computer di host contenitore Docker hello in Azure
-* *&lt;nome utente&gt;*  hello nomeutente dell'utente di radice predefinito hello di hello VM
-* *&lt;password&gt;*  password hello di hello *username* account conforme agli standard di hello di complessità per Azure
+* *&lt;vm-cloudservice name&gt;* è il nome della VM che diventerà il computer host del contenitore Docker in Azure
+* *&lt;username&gt;* è il nome utente dell'utente ROOT predefinito della VM
+* *&lt;password&gt;* è la password dell'account *username* che soddisfa gli standard di complessità per Azure
 
 > [!NOTE]
-> Attualmente, una password deve essere di almeno 8 caratteri e contenere una lettera minuscola e una lettera maiuscola, un numero e un carattere speciale, ad esempio uno dei seguenti caratteri hello: `!@#$%^&+=`. No, il periodo di hello alla fine hello hello prima frase non è un carattere speciale.
+> Attualmente, una password deve contenere almeno 8 caratteri, un carattere minuscolo e uno maiuscolo, un numero e un carattere speciale, ad esempio uno dei seguenti: `!@#$%^&+=` Il punto alla fine della frase precedente NON è un carattere speciale.
 > 
 > 
 
-Se il comando hello ha esito positivo, dovrebbe essere simile alla seguente hello, a seconda di argomenti di preciso hello e le opzioni utilizzate:
+Se il comando ha avuto esito positivo, verrà visualizzato un output simile al seguente, a seconda degli argomenti e delle opzioni precisi usati:
 
 ![](media/cli-use-docker/dockercreateresults.png)
 
 > [!NOTE]
-> La creazione di una macchina virtuale può richiedere alcuni minuti, ma dopo è stato eseguito il provisioning (il valore di stato hello è `ReadyRole`) hello avvio di Docker daemon (Buongiorno servizio Docker) ed è possibile connettersi toohello host del contenitore Docker.
+> La creazione di una macchina virtuale può richiedere alcuni minuti, ma dopo che ne è stato effettuato il provisioning (il valore dello stato è `ReadyRole`) viene avviato il daemon Docker ed è possibile connettersi all'host contenitore Docker.
 > 
 > 
 
-hello tootest macchina virtuale Docker è stato creato in Azure, tipo
+Per testare la VM Docker creata in Azure, digitare
 
 `docker --tls -H tcp://<vm-name-you-used>.cloudapp.net:2376 info`
 
-dove  *&lt;vm-name--utilizzati&gt;*  hello nome della macchina virtuale hello utilizzato nella chiamata troppo`azure vm docker create`. Dovrebbe essere simile toohello seguenti, che indica che la macchina virtuale Host Docker sia attivo e in esecuzione in Azure e in attesa per i comandi. 
+dove *&lt;vm-name-you-used&gt;* è il nome della macchina virtuale usata nella chiamata a `azure vm docker create`. Viene visualizzato codice simile al seguente, che indica che la VM host di Docker è in fase di elaborazione in Azure ed è in attesa dei comandi dell'utente. 
 
-Ora è possibile provare tooconnect utilizzando le informazioni di tooobtain client docker (in alcune installazioni di client Docker, ad esempio che nel Mac, è possibile toouse `sudo`):
+Ora è possibile provare a connettersi utilizzando il client docker per ottenere informazioni (in alcune configurazioni del client Docker, ad esempio nei Mac, è necessario utilizzare `sudo`):
 
     sudo docker --tls -H tcp://testsshasm.cloudapp.net:2376 info
     Password:
@@ -129,7 +129,7 @@ Ora è possibile provare tooconnect utilizzando le informazioni di tooobtain cli
     Name: testsshasm
     WARNING: No swap limit support
 
-Solo toobe assicurarsi che sia di funzionare, è possibile esaminare hello macchina virtuale per l'estensione Docker hello:
+Per essere certi che tutto funzioni, è possibile esaminare la macchina virtuale per l'estensione Docker:
 
     azure vm extension get testsshasm
     info: Executing command vm extension get
@@ -140,25 +140,25 @@ Solo toobe assicurarsi che sia di funzionare, è possibile esaminare hello macch
     info: vm extension get command OK
 
 ### <a name="docker-host-vm-authentication"></a>Autenticazione della VM host di Docker
-Inoltre toocreating hello VM Docker, hello `azure vm docker create` comando crea automaticamente anche tooallow certificati necessari hello client computer tooconnect toohello Azure contenitore host Docker con HTTPS e i certificati di hello vengono archiviati sia Hello computer client e host, come appropriato. Durante i successivi tentativi, i certificati esistenti hello vengono riutilizzati e condivise con nuovo host hello.
+Oltre a creare la VM di Docker, il comando `azure vm docker create` crea automaticamente anche i certificati necessari che consentono al computer client Docker di connettersi all'host contenitore di Azure con il protocollo HTTPS. I certificati saranno archiviati sulle macchine client e host, secondo le esigenze. Nei tentativi  successivi, i certificati esistenti verranno riutilizzati e condivisi con il nuovo host.
 
-Per impostazione predefinita, i certificati vengono inseriti nella `~/.docker`, e Docker sarà toorun configurato sulla porta **2376**. Se si desidera toouse una porta diversa o una directory, quindi è possibile utilizzare uno dei seguenti hello `azure vm docker create` tooconfigure opzioni della riga di comando del Docker contenitore host VM toouse una porta diversa o certificati diversi per la connessione client:
+Per impostazione predefinita, i certificati vengono inseriti in `~/.docker`e Docker verrà configurato per l'esecuzione sulla porta **2376**. Per scegliere una porta o una directory differente, usare una delle seguenti opzioni della riga di comando `azure vm docker create` per configurare la VM host del contenitore Docker in modo da usare una porta differente o certificati differenti per connettere i client:
 
 ```
--dp, --docker-port [port]              Port toouse for docker [2376]
+-dp, --docker-port [port]              Port to use for docker [2376]
 -dc, --docker-cert-dir [dir]           Directory containing docker certs [.docker/]
 ```
 
-è configurato toolisten per Hello daemon Docker nell'host di hello e autenticare le connessioni sul hello specificato porta tramite hello certificati generati da hello client `azure vm docker create` comando. computer client Hello deve disporre di questi host Docker toohello di certificati toogain accesso.
+Il daemon Docker sull'host è configurato per restare in ascolto delle connessioni client e autenticarle sulla porta specificata usando i certificati generati dal comando `azure vm docker create` . La macchina client deve avere questi certificati per poter accedere all'host Docker.
 
 > [!NOTE]
-> Un host di rete in esecuzione senza questi certificati sarà vulnerabile tooanyone che può essere tooconnect toohello macchina. Prima di modificare una configurazione predefinita di hello, assicurarsi di aver compreso hello rischi tooyour computer e applicazioni.
+> Un host di rete in esecuzione senza questi certificati sarà vulnerabile a chiunque possa connettersi alla macchina. Prima di modificare la configurazione predefinita, assicurarsi di aver compreso i rischi a cui si sottopongono i computer e le applicazioni.
 > 
 > 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Si è pronti toogo toohello [manuale dell'utente Docker] e usare la macchina virtuale Docker. toocreate una macchina virtuale Docker abilitati nel nuovo portale di hello, vedere [come toouse hello estensione della macchina virtuale Docker con hello portale].
-* Hello estensione della macchina virtuale Docker di Azure supporta Docker Compose, che utilizza un dichiarativa YAML file tootake, un'applicazione modellata sviluppatore in qualsiasi ambiente e generare una distribuzione uniforme. Vedere [Introduzione a Docker e comporre toodefine e di eseguire un'applicazione multi-contenitore in una macchina virtuale Azure].  
+* È ora possibile passare alla [guida dell'utente di Docker] e usare la VM Docker. Per creare una VM abilitata per Docker incorporata nel nuovo portale, vedere l'articolo su [come usare l'estensione della VM Docker con il portale].
+* L'estensione della VM Docker di Azure supporta anche Docker Compose, che usa un file YAML dichiarativo per eseguire un'applicazione modellata dallo sviluppatore in qualsiasi ambiente e generare una distribuzione coerente. Vedere [Introduzione a Docker e Compose per definire ed eseguire un'applicazione multi-contenitore in una macchina virtuale di Azure].  
 
 <!--Anchors-->
 [Subheading 1]:#subheading-1
@@ -166,18 +166,18 @@ Per impostazione predefinita, i certificati vengono inseriti nella `~/.docker`, 
 [Subheading 3]:#subheading-3
 [Next steps]:#next-steps
 
-[How toouse hello Docker VM Extension with Azure]:#How-to-use-the-Docker-VM-Extension-with-Azure
+[How to use the Docker VM Extension with Azure]:#How-to-use-the-Docker-VM-Extension-with-Azure
 [Virtual Machine Extensions for Linux and Windows]:#Virtual-Machine-Extensions-For-Linux-and-Windows
 [Container and Container Management Resources for Azure]:#Container-and-Container-Management-Resources-for-Azure
 
 
 
 <!--Link references-->
-[Link 1 tooanother azure.microsoft.com documentation topic]:../../virtual-machines-windows-hero-tutorial.md
-[Link 2 tooanother azure.microsoft.com documentation topic]:../../../app-service-web/web-sites-custom-domain-name.md
-[Link 3 tooanother azure.microsoft.com documentation topic]:../storage-whatis-account.md
-[come toouse hello estensione della macchina virtuale Docker con hello portale]:http://azure.microsoft.com/documentation/articles/virtual-machines-docker-with-portal/
+[Link 1 to another azure.microsoft.com documentation topic]:../../virtual-machines-windows-hero-tutorial.md
+[Link 2 to another azure.microsoft.com documentation topic]:../../../app-service-web/web-sites-custom-domain-name.md
+[Link 3 to another azure.microsoft.com documentation topic]:../storage-whatis-account.md
+[come usare l'estensione della VM Docker con il portale]:http://azure.microsoft.com/documentation/articles/virtual-machines-docker-with-portal/
 
-[manuale dell'utente Docker]:https://docs.docker.com/userguide/
+[guida dell'utente di Docker]:https://docs.docker.com/userguide/
 
-[Introduzione a Docker e comporre toodefine e di eseguire un'applicazione multi-contenitore in una macchina virtuale Azure]:../docker-compose-quickstart.md
+[Introduzione a Docker e Compose per definire ed eseguire un'applicazione multi-contenitore in una macchina virtuale di Azure]:../docker-compose-quickstart.md

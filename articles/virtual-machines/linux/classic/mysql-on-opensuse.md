@@ -1,6 +1,6 @@
 ---
-title: aaaInstall MySQL in una VM OpenSUSE | Documenti Microsoft
-description: Informazioni su tooinstall MySQL in un computer OpenSUSE VMirtual di Linux in Azure.
+title: Installare MySQL in una macchina virtuale OpenSUSE | Microsoft Docs
+description: Informazioni su come installare MySQL in una macchina virtuale OpenSUSE Linux in Azure.
 services: virtual-machines-linux
 documentationcenter: 
 author: cynthn
@@ -15,28 +15,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2016
 ms.author: cynthn
-ms.openlocfilehash: 8f96d29f29cb9c466dd7fdaf92b378783fdaacd6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 01b798a25575b66f89057315ce80d6cc0cde53b5
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="install-mysql-on-a-virtual-machine-running-opensuse-linux-in-azure"></a>Installazione di MySQL in una macchina virtuale che esegue OpenSUSE Linux in Azure
-[MySQL][MySQL] è un database SQL open source molto diffuso. Questa esercitazione viene illustrato come toocreate una macchina virtuale che esegue OpenSUSE Linux, quindi installare MySQL.
+[MySQL][MySQL] è un database SQL open source molto diffuso. Questa esercitazione illustra come creare una macchina virtuale che esegue OpenSUSE Linux, poi installa MySQL.
 
 > [!IMPORTANT] 
-> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md). In questo articolo viene illustrato l'utilizzo del modello di distribuzione classica hello. Si consiglia di utilizzano il modello di gestione risorse hello più nuove distribuzioni.
+> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md). Questo articolo illustra l'uso del modello di distribuzione classica. Microsoft consiglia di usare il modello di Gestione risorse per le distribuzioni più recenti.
 
 <br>
 
 ## <a name="create-a-virtual-machine-running-opensuse-linux"></a>Creare una macchina virtuale che esegue OpenSUSE Linux
 [!INCLUDE [create-and-configure-opensuse-vm-in-portal](../../../../includes/create-and-configure-opensuse-vm-in-portal.md)]
 
-## <a name="install-and-run-mysql-on-hello-virtual-machine"></a>Installare ed eseguire MySQL nella macchina virtuale hello
+## <a name="install-and-run-mysql-on-the-virtual-machine"></a>Installare ed eseguire MySQL nella macchina virtuale
 [!INCLUDE [install-and-run-mysql-on-opensuse-vm](../../../../includes/install-and-run-mysql-on-opensuse-vm.md)]
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per informazioni dettagliate su MySQL, vedere hello [documentazione di MySQL][MySQLDocs].
+Per informazioni su MySQL, vedere la [documentazione di MySQL][MySQLDocs].
 
 [MySQLDocs]:http://dev.mysql.com/doc/index-topic.html
 [MySQL]:http://www.mysql.com

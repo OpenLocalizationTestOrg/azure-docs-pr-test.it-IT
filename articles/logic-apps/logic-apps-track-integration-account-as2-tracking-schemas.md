@@ -1,6 +1,6 @@
 ---
-title: gli schemi di rilevamento aaaAS2 per il monitoraggio B2B - App Azure per la logica | Documenti Microsoft
-description: Utilizzare AS2 rilevamento dei messaggi B2B toomonitor schemi dalle transazioni nell'Account di integrazione di Azure.
+title: Schemi di rilevamento AS2 per il monitoraggio B2B - App per la logica di Azure | Documenti di Microsoft
+description: Utilizzare gli schemi di rilevamento AS2 per il monitoraggio dei messaggi B2B dalle transazioni nell'account di integrazione di Azure.
 author: padmavc
 manager: anneta
 editor: 
@@ -15,14 +15,14 @@ ms.topic: article
 ms.date: 01/27/2017
 ms.author: LADocs; padmavc
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: fe3c5845e2e80160d6857d8c308d836e88af7331
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 31bd296dc5ed5ac6998a6c05ee80fd38b12d662c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="start-or-enable-tracking-of-as2-messages-and-mdns-toomonitor-success-errors-and-message-properties"></a>Avviare o abilitare il rilevamento di messaggi AS2 e MDN toomonitor successo, errori e le proprietà del messaggio
-È possibile utilizzare questi schemi di rilevamento AS2 in toohelp di account l'integrazione di Azure è monitorare le transazioni di business-to-business (B2B):
+# <a name="start-or-enable-tracking-of-as2-messages-and-mdns-to-monitor-success-errors-and-message-properties"></a>Avviare o attivare il rilevamento dei messaggi AS2 e di MDN per monitorare il completamento dell'operazione, gli errori e le proprietà dei messaggi
+È possibile utilizzare questi schemi di rilevamento AS2 nell'account di integrazione di Azure per monitorare le transazioni business-to-business (B2B):
 
 * Schema di rilevamento messaggi AS2
 * Schema di rilevamento MDN AS2
@@ -63,22 +63,22 @@ ms.lasthandoff: 10/06/2017
 | --- | --- | --- |
 | senderPartnerName | String | Nome partner del mittente del messaggio AS2. Facoltativa |
 | receiverPartnerName | String | Nome partner del destinatario del messaggio AS2. Facoltativa |
-| as2To | String | Nome del destinatario del messaggio AS2, dalle intestazioni hello del messaggio AS2. Obbligatoria |
-| as2From | String | Nome del mittente del messaggio AS2, dalle intestazioni hello del messaggio AS2. Obbligatoria |
-| agreementName | String | Nome dei messaggi di hello toowhich contratto AS2 hello vengono risolti. Facoltativa |
-| direction | String | Direzione del flusso di messaggi hello, ricezione o trasmissione. Obbligatoria |
-| messageId | String | ID del messaggio AS2, dalle intestazioni hello del messaggio hello AS2 (facoltativo) |
+| as2To | String | Nome del destinatario del messaggio AS2, dalle intestazioni del messaggio AS2. Obbligatoria |
+| as2From | String | Nome del mittente del messaggio AS2, dalle intestazioni del messaggio AS2. Obbligatoria |
+| agreementName | String | Nome del contratto AS2 in base al quale vengono risolti i messaggi. Facoltativa |
+| direction | String | Direzione del flusso dei messaggi, ricezione o invio. Obbligatoria |
+| messageId | String | ID del messaggio AS2, dalle intestazioni del messaggio AS2. Facoltativa |
 | dispositionType |String | Valore del tipo di notifica sulla ricezione del messaggio (MDN). Facoltativa |
-| fileName | String | Nome di file, dall'intestazione hello del messaggio AS2. Facoltativa |
-| isMessageFailed |Boolean | Se il messaggio hello AS2 non è riuscita. Obbligatoria |
-| isMessageSigned | Boolean | Se è stato firmato il messaggio hello AS2. Obbligatoria |
-| isMessageEncrypted | Boolean | Indica se il messaggio hello AS2 è stato crittografato. Obbligatoria |
-| isMessageCompressed |Boolean | Se è stata compressa messaggio hello AS2. Obbligatoria |
-| correlationMessageId | String | ID del messaggio AS2, toocorrelate messaggi MDN. Facoltativa |
+| fileName | String | Nome di file, dall'intestazione del messaggio AS2. Facoltativa |
+| isMessageFailed |Boolean | Se il messaggio AS2 non è riuscito. Obbligatoria |
+| isMessageSigned | Boolean | Se il messaggio AS2 era firmato. Obbligatoria |
+| isMessageEncrypted | Boolean | Se il messaggio AS2 era crittografato. Obbligatoria |
+| isMessageCompressed |Boolean | Se il messaggio AS2 era compresso. Obbligatoria |
+| correlationMessageId | String | ID del messaggio AS2 per la correlazione dei messaggi con le notifiche MDN. Facoltativa |
 | incomingHeaders |Dizionario di JToken | Dettagli dell'intestazione del messaggio AS2 in arrivo. Facoltativa |
 | outgoingHeaders |Dizionario di JToken | Dettagli dell'intestazione del messaggio AS2 in uscita. Facoltativa |
-| isNrrEnabled | Boolean | Utilizzare il valore predefinito se non è noto il valore di hello. Obbligatoria |
-| isMdnExpected | Boolean | Utilizzare il valore predefinito se non è noto il valore di hello. Obbligatoria |
+| isNrrEnabled | Boolean | Usare il valore predefinito se questo valore è sconosciuto. Obbligatoria |
+| isMdnExpected | Boolean | Usare il valore predefinito se questo valore è sconosciuto. Obbligatoria |
 | mdnType | Enum | I valori consentiti sono **NotConfigured**, **Sync** e **Async**. Obbligatoria |
 
 ## <a name="as2-mdn-tracking-schema"></a>Schema di rilevamento MDN AS2
@@ -115,25 +115,25 @@ ms.lasthandoff: 10/06/2017
 | --- | --- | --- |
 | senderPartnerName | String | Nome partner del mittente del messaggio AS2. Facoltativa |
 | receiverPartnerName | String | Nome partner del destinatario del messaggio AS2. Facoltativa |
-| as2To | String | Nome del partner che riceve il messaggio hello AS2. Obbligatoria |
-| as2From | String | Nome del partner che invia il messaggio hello AS2. Obbligatoria |
-| agreementName | String | Nome dei messaggi di hello toowhich contratto AS2 hello vengono risolti. Facoltativa |
-| direction |String | Direzione del flusso di messaggi hello, ricezione o trasmissione. Obbligatoria |
+| as2To | String | Nome partner che riceve il messaggio AS2. Obbligatoria |
+| as2From | String | Nome partner che invia il messaggio AS2. Obbligatoria |
+| agreementName | String | Nome del contratto AS2 in base al quale vengono risolti i messaggi. Facoltativa |
+| direction |String | Direzione del flusso dei messaggi, ricezione o invio. Obbligatoria |
 | messageId | String | ID del messaggio AS2. Facoltativa |
 | originalMessageId |String | ID del messaggio originale AS2. Facoltativa |
 | dispositionType | String | Valore del tipo di gestione MDN. Facoltativa |
-| isMessageFailed |Boolean | Se il messaggio hello AS2 non è riuscita. Obbligatoria |
-| isMessageSigned |Boolean | Se è stato firmato il messaggio hello AS2. Obbligatoria |
-| isNrrEnabled | Boolean | Utilizzare il valore predefinito se non è noto il valore di hello. Obbligatoria |
+| isMessageFailed |Boolean | Se il messaggio AS2 non è riuscito. Obbligatoria |
+| isMessageSigned |Boolean | Se il messaggio AS2 era firmato. Obbligatoria |
+| isNrrEnabled | Boolean | Usare il valore predefinito se questo valore è sconosciuto. Obbligatoria |
 | statusCode | Enum | I valori consentiti sono **Accepted**, **Rejected** e **AcceptedWithErrors**. Obbligatoria |
 | micVerificationStatus | Enum | I valori consentiti sono **NotApplicable**, **Succeeded** e **Failed**. Obbligatoria |
-| correlationMessageId | String | ID correlazione. ID di messaggi Hello originale (ID del messaggio hello per cui è configurata il MDN hello). Facoltativa |
+| correlationMessageId | String | ID correlazione. ID del messaggio originale, ovvero ID del messaggio per cui è configurata la notifica MDN. Facoltativa |
 | incomingHeaders | Dizionario di JToken | Indica i dettagli dell'intestazione del messaggio in arrivo. Facoltativa |
 | outgoingHeaders |Dizionario di JToken | Indica i dettagli dell'intestazione del messaggio in uscita. Facoltativa |
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Altre informazioni su hello [Enterprise Integration Pack](../logic-apps/logic-apps-enterprise-integration-overview.md).    
+* Altre informazioni su [Enterprise Integration Pack](../logic-apps/logic-apps-enterprise-integration-overview.md).    
 * Altre informazioni sul [monitoraggio dei messaggi B2B](logic-apps-monitor-b2b-message.md).   
 * Altre informazioni sugli [schemi di rilevamento B2B personalizzati](logic-apps-track-integration-account-custom-tracking-schema.md).   
 * Altre informazioni sugli [schemi di rilevamento X12](logic-apps-track-integration-account-x12-tracking-schema.md).   
-* Informazioni su [rilevamento dei messaggi B2B nel portale di Operations Management Suite hello](../logic-apps/logic-apps-track-b2b-messages-omsportal.md).
+* Altre informazioni sul [rilevamento dei messaggi B2B nel portale di Operations Management Suite](../logic-apps/logic-apps-track-b2b-messages-omsportal.md).

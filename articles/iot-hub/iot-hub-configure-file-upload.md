@@ -1,6 +1,6 @@
 ---
-title: caricamento del file hello tooconfigure portale Azure aaaUse | Documenti Microsoft
-description: Come toouse hello Azure tooconfigure portale il file di IoT hub tooenable caricamenti da dispositivi connessi. Include informazioni sulla configurazione di account di archiviazione di Azure di destinazione hello.
+title: Usare il portale di Azure per configurare il caricamento dei file | Microsoft Docs
+description: Come usare il portale di Azure per configurare l'hub IoT per abilitare i caricamenti di file da dispositivi connessi. Include informazioni sulla configurazione dell'account di archiviazione di Azure di destinazione.
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -14,51 +14,51 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/03/2017
 ms.author: dobett
-ms.openlocfilehash: b90c3fbed47b4eb144d3cb7480068b7cfc776ba6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 149dd84d7d8f4ff9cd30f9fc649ced3cb364cfb7
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="configure-iot-hub-file-uploads-using-hello-azure-portal"></a>Configurare il caricamento di file di IoT Hub mediante hello portale di Azure
+# <a name="configure-iot-hub-file-uploads-using-the-azure-portal"></a>Configurare i caricamenti dei file nell'hub IoT con il portale di Azure
 
 [!INCLUDE [iot-hub-file-upload-selector](../../includes/iot-hub-file-upload-selector.md)]
 
 ## <a name="file-upload"></a>Caricamento di file
 
-hello toouse [funzionalità di caricamento del file nell'IoT Hub][lnk-upload], è innanzitutto necessario associare un account di archiviazione di Azure con l'hub. Selezionare **caricamento del File** toodisplay un elenco di proprietà di caricamento di file per l'hub IoT hello che è stato modificato.
+Per usare la [funzionalità di caricamento di file nell'hub IoT][lnk-upload], è prima di tutto necessario associare un account di archiviazione di Azure all'hub. Selezionare **Caricamento del file** per visualizzare un elenco di proprietà di caricamento del file per l'hub IoT da modificare.
 
-![Visualizza file IoT Hub caricare le impostazioni nel portale di hello][13]
+![Visualizzare le impostazioni di caricamento di file dell'hub IoT nel portale][13]
 
-**Contenitore di archiviazione**: utilizzare un contenitore blob in un account di archiviazione di Azure nel tooassociate sottoscrizione Azure corrente con l'IoT Hub di Azure tooselect portale hello. Se necessario, è possibile creare un account di archiviazione di Azure su hello **gli account di archiviazione** contenitore blob e blade in hello **contenitori** blade. IoT Hub genera automaticamente gli URI di firma di accesso condiviso con le autorizzazioni scrittura di toothis il contenitore blob per i dispositivi toouse durante il caricamento del file.
+**Contenitore di archiviazione**: usare il portale di Azure per selezionare il contenitore BLOB in un account di archiviazione di Azure nella sottoscrizione corrente da associare all'hub IoT. Se necessario, è possibile creare un account di archiviazione di Azure nel pannello **Account di archiviazione** e un nuovo contenitore BLOB nel pannello **Contenitori**. L'hub IoT genera automaticamente URI di firma di accesso condiviso con autorizzazioni di scrittura per questo contenitore BLOB che possono essere usati dai dispositivi durante il caricamento di file.
 
-![Visualizzare i contenitori di archiviazione per il caricamento di file nel portale di hello][14]
+![Visualizzare i contenitori di archiviazione per il caricamento di file nel portale][14]
 
-**Ricevere notifiche per i file caricati**: abilitare o disabilitare le notifiche di caricamento di file tramite attiva/disattiva hello.
+**Receive notifications for uploaded files**(Ricezione di notifiche per i file caricati): abilitare o disabilitare le notifiche di caricamento del file mediante l'apposita opzione.
 
-**TTL SAS**: questa impostazione è hello time-to-live di hello SAS URI restituito toohello dispositivo dall'IoT Hub. Tooone ora l'impostazione predefinita, ma possono essere valori tooother personalizzato con dispositivo di scorrimento hello.
+**SAS TTL**(TTL di firma di accesso condiviso): questa impostazione indica la durata degli URI di firma di accesso condiviso restituiti dal dispositivo tramite l’hub IoT. Per impostazione predefinita è impostato su un'ora, ma può essere personalizzato con altri valori tramite il dispositivo di scorrimento.
 
-**Notifica di impostazioni predefinite di durata (TTL) del file**: hello time-to-live di una notifica di caricamento file prima di scadere. Impostare tooone giorno per impostazione predefinita, ma possono essere valori tooother personalizzato con dispositivo di scorrimento hello.
+**File notification settings default TTL**(TTL predefinito per le impostazioni di notifica dei file): durata di una notifica di caricamento del file. Per impostazione predefinita è impostato su un giorno, ma può essere personalizzato con altri valori tramite il dispositivo di scorrimento.
 
-**Conteggio distribuzione massimo notifica file**: hello numero di volte in cui l'IoT Hub tentativi toodeliver una notifica di caricamento file hello. Too10 l'impostazione predefinita, ma possono essere valori tooother personalizzato con dispositivo di scorrimento hello.
+**File notification maximum delivery count**(Numero massimo di recapiti per le notifiche dei file): numero di tentativi che verranno eseguiti dall'hub IoT per distribuire una notifica di caricamento del file. Per impostazione predefinita è impostato su 10, ma può essere personalizzato con altri valori tramite il dispositivo di scorrimento.
 
-![Configurare il caricamento di file IoT Hub nel portale di hello][15]
+![Configurare il caricamento di file dell'hub IoT nel portale][15]
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per ulteriori informazioni sulle funzionalità di caricamento file hello dell'IoT Hub, vedere [caricare i file da un dispositivo] [ lnk-upload] nella Guida per sviluppatori di IoT Hub hello.
+Per altre informazioni sulle funzionalità di caricamento dei file dell'hub IoT, vedere [Caricare file da un dispositivo][lnk-upload] nella Guida per gli sviluppatori dell'hub IoT.
 
-Seguire questi toolearn collegamenti ulteriori informazioni sulla gestione di Azure IoT Hub:
+Per ulteriori informazioni sulla gestione dell'hub IoT di Azure, consultare questi collegamenti:
 
 * [Gestire in blocco i dispositivi IoT][lnk-bulk]
 * [Metriche di Hub IoT][lnk-metrics]
 * [Monitoraggio delle operazioni][lnk-monitor]
 
-toofurther esplorare le funzionalità di hello di IoT Hub, vedere:
+Per altre informazioni sulle funzionalità dell'hub IoT, vedere:
 
 * [Guida per gli sviluppatori dell'hub IoT][lnk-devguide]
 * [Simulazione di un dispositivo con IoT Edge][lnk-iotedge]
-* [Soluzione IoT da hello la messa a terra sicura][lnk-securing]
+* [Proteggere la soluzione IoT sin dall'inizio][lnk-securing]
 
 [13]: ./media/iot-hub-configure-file-upload/file-upload-settings.png
 [14]: ./media/iot-hub-configure-file-upload/file-upload-container-selection.png

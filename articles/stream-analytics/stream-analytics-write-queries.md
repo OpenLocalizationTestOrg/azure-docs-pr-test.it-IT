@@ -1,10 +1,10 @@
 ---
-title: le query toowrite aaaHow nel flusso Analitica | Documenti Microsoft
+title: Come scrivere query in Analisi di flusso | Documentazione Microsoft
 description: Scrivere query in Analisi di flusso ed eseguire query sui dati | segmento del percorso di apprendimento.
-keywords: "la modalità query toowrite, eseguire query sui dati, scrivere una query, la scrittura di query"
+keywords: come scrivere query, eseguire query sui dati, scrivere una query, scrittura di query
 documentationcenter: 
 services: stream-analytics
-author: jeffstokes72
+author: samacha
 manager: jhubbard
 editor: cgronlun
 ms.assetid: 0e9cdadd-0ee0-4bee-b65b-4a06fb863c95
@@ -14,49 +14,49 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
-ms.author: jeffstok
-ms.openlocfilehash: b943c34f10afd2b21789afbd341c471a5f168729
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.author: samacha
+ms.openlocfilehash: 215b774c20d80a67b1cefa2634131bd44860c692
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toowrite-queries-in-stream-analytics"></a>La modalità di query toowrite in flusso Analitica
-Scrittura di query per il flusso di elaborazione logica Analitica di flusso di Azure viene implementata come un "query in esecuzione" definito prima di avvia e raggiunge il processo di hello eseguite sui dati di un processo. la trasformazione dei dati Hello è espresso in un linguaggio di query simile a SQL, che è sostanzialmente un subset di T-SQL con alcune aggiunte estensioni del linguaggio come [Windowing](https://msdn.microsoft.com/library/azure/dn835019.aspx) utilizzato tooexpress temporale semantica.
+# <a name="how-to-write-queries-in-stream-analytics"></a>Come scrivere query in Analisi di flusso
+La scrittura di query per la logica di elaborazione del flusso in Analisi di flusso di Azure viene implementata come una "query in esecuzione" definita prima che un processo venga avviato ed eseguita sui dati nel momento in cui raggiunge il processo. La trasformazione dei dati è espressa in un linguaggio di query di tipo SQL, che è sostanzialmente un sottoinsieme di T-SQL con alcune estensioni di linguaggio aggiunte come [Windowing](https://msdn.microsoft.com/library/azure/dn835019.aspx) usato per esprimere la semantica temporale.
 
 ## <a name="writing-queries"></a>Scrittura di query:
-1. Nel processo flusso Analitica nel portale di gestione di Azure hello, fare clic su **Query**.
+1. Nel processo di Analisi di flusso di Azure nel portale di Azure fare clic su **Query**.
    
     ![Query di selezione](./media/stream-analytics-write-queries/1-stream-analytics-write-queries.png)  
    
-    Nel portale di Azure hello, fare clic su **Query**.
+    Nel portale di Azure fare clic su **Query**.
    
     ![Selezionare l'anteprima della query](./media/stream-analytics-write-queries/query-preview-portal.png)  
-2. I nuovi processi hanno un toohelp modello di query consentono di iniziare. query Hello modello esegue "pass-through" eseguire una query che viene proiettato tutti i campi da eventi di input nell'output di hello.  
+2. I nuovi processi dispongono di un modello di query per rendere più semplice l’inizio. Il modello di query esegue una query "pass-through" che proietta tutti i campi dagli eventi di input nell'output.  
    
-   * Se è stato definito almeno un input e output per il processo, è possibile sostituire i segnaposto hello "[YourOutputAlias]" e "[YourInputAlias]" campi con alias hello di hello di input e output che si desidera utilizzare prima. È inoltre possibile creare e testare la query nel portale di Azure classico hello senza definire l'input e output per il processo di hello.
-   * Se si desidera tooperform maggiore elaborazione rispetto a un semplice pass-through, è possibile modificare la definizione della query hello. tooget introduttiva alla creazione di query, esaminare alcune query comuni, vengono acquisiti i modelli [qui](stream-analytics-stream-analytics-query-patterns.md).  
+   * Se sono stati definiti almeno un input e un output per il processo, è possibile sostituire i campi segnaposto "[YourOutputAlias]" e "[YourInputAlias]" con gli alias dell’input e dell’output che si desidera utilizzare per primi. È inoltre possibile creare e testare la query nel portale di Azure classico senza la definizione di input e output del processo.
+   * Se si desidera eseguire un'elaborazione più complessa rispetto a un semplice pass-through, è possibile modificare la definizione della query. Per iniziare a usare la creazione di query, esaminiamo alcuni modelli di query comuni [qui](stream-analytics-stream-analytics-query-patterns.md).  
    
    ![Eseguire query sui dati, finestra](./media/stream-analytics-write-queries/2-stream-analytics-write-queries.png)  
 
-## <a name="toovalidate-query-data-is-working"></a>dati di query toovalidate funzioni:
-È possibile verificare che la query si comporti come previsto eseguendo nel browser hello su uno o più file JSON locali contenente i dati di test. Questo non verrà avviato il processo di hello né quindi alcuna implicazione di fatturazione.
+## <a name="to-validate-query-data-is-working"></a>Per verificare se le query sui dati funzionano:
+È possibile verificare che la query funzioni come previsto eseguendola nel browser su uno o più file JSON locali contenenti i dati di test. Il test non avvia il processo e non ha implicazioni relative alla fatturazione.
 
 > [!NOTE]
-> Attualmente il test delle query nel browser non è supportato nel portale di Azure hello.  
+> Attualmente il test delle query nel browser non è supportato nel portale di Azure.  
 > 
 > 
 
-1. Assicurarsi che non siano presenti errori nella query hello (in caso contrario hello Test pulsante sarà disabilitato) e quindi fare clic su pulsante Test hello.  
+1. Assicurarsi che non siano presenti errori nella query (in caso contrario il pulsante Test verrà disabilitato) e quindi fare clic sul pulsante Test.  
    
    ![Eseguire query sui dati, test](./media/stream-analytics-write-queries/3-stream-analytics-write-queries.png)  
-2. Sarà richiesta toospecify file per ogni input hello a cui fa riferimento nella query hello. In questo esempio, query modello hello viene lasciata come-è, quindi finestra di dialogo hello è richiesta per un input denominato "yourinputalias".  
+2. Verrà chiesto di specificare i file per ognuno degli input cui si fa riferimento nella query. In questo esempio, la query del modello viene lasciata come è, pertanto è richiesto l’input denominato "yourinputalias".
    
    ![Verificare query sui dati](./media/stream-analytics-write-queries/4-stream-analytics-write-queries.png)  
-3. Individuare il file di test tooa. Sono disponibili in diversi file di esempio [github](https://github.com/Azure/azure-stream-analytics/tree/master/Sample Data) ed è anche possibile recuperare i dati di esempio dal proprio input flusso di dati tramite una funzione di dati di esempio nella scheda input hello hello.  
+3. Passare a un file di test. Diversi file di esempio sono disponibili su [GitHub](https://github.com/Azure/azure-stream-analytics/tree/master/Sample Data) ed è anche possibile recuperare dati di esempio dai propri input del flusso di dati tramite la funzione Dati di esempio disponibile nella scheda Input.
    
    ![Input della query](./media/stream-analytics-write-queries/5-stream-analytics-write-queries.png)  
-4. Dopo la chiusura di finestra di dialogo hello, verrà eseguita la query sui dati di test hello e verranno visualizzati risultati hello nella parte inferiore di hello della pagina di Query hello.  
+4. Dopo aver chiuso la finestra di dialogo, verrà eseguita la query sui dati di test e i risultati saranno visualizzati nella parte inferiore della pagina  Query.
    
    ![Riepilogo della query](./media/stream-analytics-write-queries/6-stream-analytics-write-queries.png)  
 
@@ -64,7 +64,7 @@ Scrittura di query per il flusso di elaborazione logica Analitica di flusso di A
 Per assistenza, provare il [Forum di Analisi di flusso di Azure](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Introduzione tooAzure flusso Analitica](stream-analytics-introduction.md)
+* [Introduzione ad Analisi dei flussi di Azure](stream-analytics-introduction.md)
 * [Introduzione all'uso di Analisi dei flussi di Azure](stream-analytics-real-time-fraud-detection.md)
 * [Ridimensionare i processi di Analisi dei flussi di Azure](stream-analytics-scale-jobs.md)
 * [Informazioni di riferimento sul linguaggio di query di Analisi dei flussi di Azure](https://msdn.microsoft.com/library/azure/dn834998.aspx)

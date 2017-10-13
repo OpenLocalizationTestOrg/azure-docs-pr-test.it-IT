@@ -1,5 +1,5 @@
 ---
-title: aaaAzure avanzate di rilevamento minacce | Documenti Microsoft
+title: Rilevamento delle minacce avanzato in Azure | Microsoft Docs
 description: "Informazioni sulla protezione delle identità e le relative funzionalità."
 services: security
 documentationcenter: na
@@ -14,75 +14,75 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 04/27/2017
 ms.author: TomSh
-ms.openlocfilehash: 63e2c541fd4ce2c571af9d5845c9a9bd4b03b2a8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a7a1179f815395028c4d0324e2bfb6fbed77229c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-advanced-threat-detection"></a>Rilevamento delle minacce avanzato in Azure
 ## <a name="introduction"></a>Introduzione
 
 ### <a name="overview"></a>Panoramica
 
-Microsoft ha sviluppato una serie di White paper, sicurezza panoramiche, procedure consigliate e gli elenchi di controllo tooassist Azure clienti riguardo hello varie funzionalità correlate alla sicurezza disponibili in e hello circostante piattaforma Azure. intervallo di argomenti in termini di dimensioni e della complessità Hello e vengono aggiornate periodicamente. Questo documento fa parte della serie, come riepilogato nella seguente sezione astratta hello.
+Microsoft ha sviluppato una serie di white paper, panoramiche sulla sicurezza, procedure consigliate ed elenchi di controllo per assistere i clienti di Azure con le diverse funzionalità correlate alla sicurezza disponibili nel contesto della piattaforma Azure. Gli argomenti variano per ampiezza e livello di approfondimento e vengono aggiornati periodicamente. Questo documento fa parte di tale serie come descritto nella sezione Sintesi di seguito.
 
 ### <a name="azure-platform"></a>Piattaforma Azure
 
-Azure è una piattaforma cloud pubblico del servizio che supporta hello selezione più ampia di sistemi operativi, linguaggi di programmazione, Framework, strumenti, i database e i dispositivi.
-Supporta i seguenti linguaggi di programmazione hello:
+Azure è una piattaforma di servizi cloud pubblici che supporta la più grande selezione di sistemi operativi, linguaggi di programmazione, framework, strumenti, database e dispositivi.
+Supporta i linguaggi di programmazione seguenti per:
 -   Eseguire i contenitori Linux con l'integrazione Docker.
 -   Compilare le app con JavaScript, Python, .NET, PHP, Java e Node.js.
 -   Compilare back-end per dispositivi iOS, Android e Windows.
 
-Servizi cloud pubblico di Azure supportano hello stesse tecnologie milioni di sviluppatori e professionisti IT si basano su già e attendibile.
+I servizi cloud pubblici di Azure supportano le stesse tecnologie già considerate affidabili e usate da milioni di sviluppatori e professionisti IT.
 
-Quando si esegue la migrazione tooa cloud pubblico con un'organizzazione, questa organizzazione è tooprotect responsabile dei dati e fornire una protezione e governance intorno sistema hello.
+Quando si esegue la migrazione a un cloud pubblico con un'organizzazione, quest'ultima è responsabile della protezione dei dati, della sicurezza e della governance di tutto il sistema.
 
-Infrastruttura di Azure è progettato da hello tooapplications di funzionalità per l'hosting contemporaneamente milioni di clienti e fornisce una base attendibile in cui le aziende grado di soddisfare le esigenze di sicurezza. Azure offre un'ampia gamma di opzioni tooconfigure e personalizzare i requisiti di sicurezza toomeet hello delle distribuzioni di app. Questo documento consente di soddisfare questi requisiti.
+L'infrastruttura di Azure è stata progettata, dalla struttura fino alle applicazioni, per ospitare milioni di clienti contemporaneamente e fornisce alle aziende una solida base per poter soddisfare le esigenze di sicurezza. Azure offre una vasta gamma di opzioni per configurare e personalizzare la sicurezza e soddisfare i requisiti delle distribuzioni di app. Questo documento consente di soddisfare questi requisiti.
 
 ### <a name="abstract"></a>Sunto
 
-Microsoft Azure offre funzionalità predefinite di rilevamento delle minacce avanzato attraverso servizi quali Azure Active Directory, Azure Operations Management Suite (OMS) e Centro sicurezza di Azure. Questa raccolta di funzionalità e i servizi di sicurezza fornisce toounderstand un modo semplice e rapido cosa avviene all'interno di distribuzioni di Azure.
+Microsoft Azure offre funzionalità predefinite di rilevamento delle minacce avanzato attraverso servizi quali Azure Active Directory, Azure Operations Management Suite (OMS) e Centro sicurezza di Azure. Questa raccolta di servizi e funzionalità di sicurezza offre un modo semplice e veloce per comprendere ciò che accade all'interno delle distribuzioni di Azure.
 
-Questo white paper guiderà l'utente hello "Microsoft Azure approcci" verso vulnerabilità minaccia diagnostica e analisi dei rischi hello associati con le attività dannose di hello assegnate in base al server e altre risorse di Azure. In questo modo è tooidentify hello metodi di identificazione e gestione delle vulnerabilità con con ottimizzazione per la soluzione hello piattaforma Azure e servizi di sicurezza che riguardano il cliente e le tecnologie.
+Questo white paper illustra gli approcci di Microsoft Azure alla diagnostica della vulnerabilità alle minacce e all'analisi dei rischi associati alle attività dannose nei confronti di server e altre risorse di Azure. Questo permette di determinare i metodi di identificazione e gestione delle vulnerabilità con soluzioni ottimizzate tramite la piattaforma Azure e tecnologie e servizi di sicurezza per i clienti.
 
-Questo white paper è incentrato sulla tecnologia hello della piattaforma Azure e i controlli che riguardano il cliente e non tooaddress i contratti di servizio, i modelli dei prezzi e considerazioni sulle procedure consigliate di DevOps.
+Questo white paper è incentrato sulla tecnologia della piattaforma Azure e sui controlli per i clienti e non tratta contratti di servizio, modelli tariffari e attività DevOps.
 
 ## <a name="azure-active-directory-identity-protection"></a>Azure Active Directory Identity Protection
 
 ![Azure Active Directory Identity Protection](./media/azure-threat-detection/azure-threat-detection-fig1.png)
 
 
-[Azure Active Directory Identity Protection](https://docs.microsoft.com/azure/active-directory/active-directory-identityprotection) è una funzionalità di hello [Azure AD Premium P2](https://docs.microsoft.com/azure/active-directory/active-directory-editions) edition che fornisce una panoramica degli eventi di rischio hello e potenziali vulnerabilità che interessano l'organizzazione identità. Microsoft è stato protezione identità basate su cloud per oltre un decennio e con Azure AD Identity Protection, Microsoft sta questi stessi sistemi di protezione disponibili tooenterprise clienti. Identity Protection si avvale delle funzionalità di rilevamento anomalie di Azure AD, disponibili tramite i [report di Anomalie dell'attività di Azure AD](https://docs.microsoft.com/azure/active-directory/active-directory-view-access-usage-reports#anomalous-activity-reports), e introduce nuovi tipi di eventi di rischio che permettono di rilevare le anomalie in tempo reale.
+[Azure Active Directory Identity Protection](https://docs.microsoft.com/azure/active-directory/active-directory-identityprotection) è una funzionalità di [Azure AD Premium P2](https://docs.microsoft.com/azure/active-directory/active-directory-editions) che offre una panoramica degli eventi di rischio e delle potenziali vulnerabilità che interessano le identità dell'organizzazione. Microsoft protegge le identità basate sul cloud da oltre dieci anni. Con Azure AD Identity Protection, questi stessi sistemi di protezione sono ora a disposizione dei clienti aziendali. Identity Protection si avvale delle funzionalità di rilevamento anomalie di Azure AD, disponibili tramite i [report di Anomalie dell'attività di Azure AD](https://docs.microsoft.com/azure/active-directory/active-directory-view-access-usage-reports#anomalous-activity-reports), e introduce nuovi tipi di eventi di rischio che permettono di rilevare le anomalie in tempo reale.
 
-La protezione dell'identità utilizza algoritmi di apprendimento automatico adattivo e anomalie toodetect euristica e gli eventi di rischio che potrebbero indicare che un'identità sia stato compromesso. Con questi dati, la protezione dell'identità genera i report e avvisi che consentono di tooinvestigate questi eventi di rischio e intraprendere l'azione di correzione o riduzione appropriata.
+Identity Protection usa l'euristica e algoritmi di apprendimento automatico adattivi per rilevare anomalie ed eventi di rischio che possono indicare la compromissione di un'identità. Sulla base di tali dati, Identity Protection genera report e avvisi che consentono di analizzare gli eventi di rischio e adottare le azioni di correzione o mitigazione appropriate.
 
-Azure Active Directory Identity Protection è, del resto, ben più di un semplice strumento di monitoraggio e reporting. Basato su eventi di rischio, la protezione dell'identità calcola un livello di rischio utente per ogni utente, consentendo di criteri basati sul rischio tooconfigure tooautomatically proteggere hello identità dell'organizzazione.
+Azure Active Directory Identity Protection è, del resto, ben più di un semplice strumento di monitoraggio e reporting. In base agli eventi di rischio, Identity Protection calcola un livello di rischio utente per ogni utente e permette di configurare criteri basati sul rischio per proteggere automaticamente le identità dell'organizzazione.
 
-Questi criteri basati sui rischi, in aggiunta tooother [i controlli di accesso condizionale](https://docs.microsoft.com/azure/active-directory/active-directory-conditional-access) forniti da Azure Active Directory e [EMS](https://docs.microsoft.com/azure/active-directory/active-directory-conditional-access), automaticamente possono bloccare o offrono le azioni di correzione adattivo che includono la reimpostazione della password e l'applicazione multi-factor authentication.
+I criteri basati sul rischio, insieme ad altri [controlli di accesso condizionale](https://docs.microsoft.com/azure/active-directory/active-directory-conditional-access) disponibili in Azure Active Directory ed [EMS](https://docs.microsoft.com/azure/active-directory/active-directory-conditional-access), possono eseguire il blocco automatico o proporre azioni di correzione adattive, incluse la reimpostazione della password e l'applicazione dell'autenticazione a più fattori.
 
 ### <a name="identity-protections-capabilities"></a>Funzionalità di Identity Protection
 
-Azure Active Directory Identity Protection è ben più di un semplice strumento di monitoraggio e reporting. tooprotect identità dell'organizzazione, è possibile configurare criteri basati sui rischi di rispondere automaticamente toodetected problemi quando viene raggiunto un livello di rischio specificato. Questi criteri, inoltre tooother condizionale accedere ai controlli forniti da Azure Active Directory ed EMS, può bloccare automaticamente oppure avviare azioni di correzione adattivo inclusi la reimpostazione della password e l'applicazione multi-factor authentication.
+Azure Active Directory Identity Protection è ben più di un semplice strumento di monitoraggio e reporting. Per proteggere le identità dell'organizzazione, è possibile configurare criteri basati sul rischio che rispondano automaticamente ai problemi rilevati quando viene raggiunto un livello di rischio specificato. Questi criteri, con altri controlli di accesso condizionale forniti da Azure Active Directory e da EMS, possono eseguire il blocco automatico o avviare azioni di correzione adattive, incluse la reimpostazione della password e l'applicazione dell'autenticazione a più fattori.
 
-Esempi di alcuni dei modi hello che la protezione dell'identità di Azure consentono di proteggere gli account e le identità includono:
+Di seguito sono riportati esempi di alcuni dei modi in cui Azure Identity Protection consente di proteggere gli account e le identità:
 
 [Rilevamento di eventi di rischio e account rischiosi:](https://docs.microsoft.com/azure/active-directory/active-directory-identityprotection#detection)
 -   Rilevamento di sei tipi di eventi di rischio tramite regole euristiche e apprendimento automatico.
 -   Calcolo dei livelli di rischio utente.
--   Fornire consigli personalizzati tooimprove generali di sicurezza, evidenziando le vulnerabilità
+-   Raccomandazioni personalizzate per migliorare il comportamento di sicurezza in generale evidenziando le vulnerabilità.
 
 [Analisi degli eventi di rischio:](https://docs.microsoft.com/azure/active-directory/active-directory-identityprotection#investigation)
 -   Invio di notifiche per gli eventi di rischio.
 -   Analisi degli eventi di rischio con informazioni rilevanti e contestuali.
--   Fornisce i flussi di lavoro di base indagini tootrack
--   Fornendo un accesso semplice tooremediation azioni, ad esempio la reimpostazione della password
+-   Flussi di lavoro di base per tenere traccia delle analisi.
+-   Accesso semplificato ad azioni di correzione come la reimpostazione della password.
 
 [Criteri di accesso condizionale basati sul rischio:](https://docs.microsoft.com/azure/active-directory/active-directory-identityprotection#risky-sign-ins)
--   Criteri toomitigate rischiosi accessi da accessi di blocco o la richiesta di richieste di autenticazione a più fattori.
--   Criteri tooblock o gli account utente di rischiosa sicura
--   Criteri toorequire utenti tooregister multi-factor Authentication
+-   Criteri per mitigare gli accessi rischiosi con il blocco degli accessi o le richieste di autenticazione a più fattori.
+-   Criteri per bloccare o proteggere gli account utente rischiosi.
+-   Criteri per richiedere la registrazione degli utenti per l'autenticazione a più fattori
 
 ### <a name="azure-ad-privileged-identity-management-pim"></a>Azure AD Privileged Identity Management (PIM)
 
@@ -90,205 +90,205 @@ Con [Azure Active Directory (AD) Privileged Identity Management](https://docs.mi
 
 ![Gestione identità con privilegi di Azure AD](./media/azure-threat-detection/azure-threat-detection-fig2.png)
 
-è possibile gestire, controllare e monitorare l'accesso all'interno dell'organizzazione. Ciò include tooresources di accesso di Azure AD e altri Microsoft online services quali Office 365 o Microsoft Intune.
+è possibile gestire, controllare e monitorare l'accesso all'interno dell'organizzazione. È incluso l'accesso alle risorse in Azure AD e altri Microsoft Online Services, ad esempio Office 365 o Microsoft Intune.
 
 Azure AD Privileged Identity Management consente di effettuare le operazioni seguenti:
 
--   Ricevere un avviso e di segnalare gli amministratori di Azure AD e "just in time" accesso amministrativo tooMicrosoft Online Services quali Office 365 e Intune
+-   Ricevere avvisi e report sugli amministratori di Azure AD e accesso JIT come amministratore ai Microsoft Online Services, ad esempio Office 365 e Intune
 
 -   Ottenere report sulla cronologia degli accessi degli amministratori e sulle modifiche alle assegnazioni degli amministratori
 
--   Ottenere avvisi relativi al ruolo con privilegi di accesso tooa
+-   Ricevere avvisi relativi all'accesso a un ruolo con privilegi
 
 ## <a name="microsoft-operations-management-suite-oms"></a>Microsoft Operations Management Suite (OMS)
 
 [Microsoft Operations Management Suite](https://docs.microsoft.com/azure/operations-management-suite/operations-management-suite-overview) è la soluzione Microsoft per la gestione IT basata sul cloud che consente di gestire e proteggere l'infrastruttura locale e cloud. Poiché OMS viene implementato come servizio basato sul cloud, è possibile renderlo operativo rapidamente con un investimento minimo nei servizi di infrastruttura. Le nuove funzionalità di sicurezza sono disponibili automaticamente, evitando così i costi di manutenzione e aggiornamento continui.
 
-È inoltre possono integrare tooproviding importanti servizi nel proprio OMS con componenti di System Center, ad esempio [System Center Operations Manager](https://blogs.technet.microsoft.com/cbernier/2013/10/23/monitoring-windows-azure-with-system-center-operations-manager-2012-get-me-started/) tooextend protezione gestione investimenti esistenti in hello cloud. System Center e OMS possono essere usati insieme tooprovide esperienza di una gestione ibrida completa.
+Oltre a offrire importanti servizi in sé, OMS può essere integrato con i componenti di System Center, come [System Center Operations Manager](https://blogs.technet.microsoft.com/cbernier/2013/10/23/monitoring-windows-azure-with-system-center-operations-manager-2012-get-me-started/), per estendere al cloud gli investimenti per la gestione della sicurezza già esistenti. System Center e OMS possono essere usati insieme per offrire un'esperienza di gestione ibrida completa.
 
 ### <a name="holistic-security-and-compliance-posture"></a>Approccio olistico a sicurezza e conformità
 
-Hello [dashboard OMS Security and Audit](https://docs.microsoft.com/azure/operations-management-suite/oms-security-getting-started) fornisce un quadro completo dell'organizzazione condizioni di sicurezza IT con query di ricerca predefinite relative a problemi rilevanti che richiedono attenzione. dashboard di sicurezza e controllo Hello è schermata iniziale di hello per tutti gli elementi correlati toosecurity in OMS. Fornisce ad alto livello comprendere hello stato di protezione dei computer. Include inoltre hello possibilità tooview tutti gli eventi da hello ultime 24 ore, 7 giorni, o qualsiasi altro intervallo di tempo personalizzato.
+Il [dashboard Sicurezza e controllo di OMS](https://docs.microsoft.com/azure/operations-management-suite/oms-security-getting-started) consente di ottenere una panoramica completa dell'infrastruttura di sicurezza IT dell'organizzazione, grazie alla disponibilità di query di ricerca predefinite per i problemi rilevanti che richiedono l'attenzione dell'utente. Il dashboard Sicurezza e controllo è la schermata iniziale per tutti gli elementi correlati alla sicurezza in OMS. Fornire una visione generale lo stato di sicurezza dei computer. Consente anche di visualizzare tutti gli eventi delle ultime 24 ore, di 7 giorni o di qualsiasi altro intervallo di tempo personalizzato.
 
-Consente di dashboard OMS di comprendere rapidamente e facilmente hello generali di sicurezza di un ambiente, tutti nel contesto di hello delle operazioni IT, tra cui: valutazione di aggiornamento software antimalware assessment e linee di base di configurazione. Inoltre, sono facilmente accessibili i dati del Registro di sicurezza toostreamline hello sicurezza e conformità dei processi di controllo.
+I dashboard OMS permettono di comprendere rapidamente e facilmente l'approccio complessivo alla sicurezza di qualsiasi ambiente, tutto nel contesto delle operazioni IT, tra cui: valutazione dell'aggiornamento software, valutazione antimalware e linee di base di configurazione. I dati del log di sicurezza sono facilmente accessibili per semplificare i processi di controllo di sicurezza e conformità.
 
-dashboard di OMS Security and Audit Hello è organizzata in quattro categorie principali:
+Il dashboard Sicurezza e controllo di OMS è organizzato in quattro categorie principali:
 
 ![Dashboard di Sicurezza e controllo di OMS](./media/azure-threat-detection/azure-threat-detection-fig3.jpg)
 
--   **Domini di sicurezza:** in questa area, si sarà in grado di toofurther esplorare i record di sicurezza nel tempo, accedere alla valutazione del malware, aggiornare valutazione, la protezione della rete, le informazioni di identità e accessi, i computer con gli eventi di sicurezza e rapidamente dashboard di Centro sicurezza PC tooAzure di accesso.
+-   **Domini di sicurezza**: in questa area si possono esplorare ulteriormente i record di sicurezza nel tempo, accedere alla valutazione della presenza di malware, aggiornare la valutazione, verificare la sicurezza della rete, controllare identità e accesso alle informazioni, visualizzare i computer con eventi di sicurezza e accedere rapidamente al dashboard del Centro sicurezza di Azure.
 
--   **Problemi rilevanti:** questa opzione consente di tooquickly identificare il numero di problemi attivi hello e hello gravità di questi problemi.
+-   **Errori rilevanti**: questa opzione consente di identificare rapidamente il numero di problemi attivi e la relativa gravità.
 
--   **Rilevamenti (anteprima):** consente schemi di attacco tooidentify visualizzando gli avvisi di sicurezza come che si verificano rispetto alle risorse.
+-   **Rilevamenti (anteprima)**: consente di identificare i modelli di attacco visualizzando gli avvisi di sicurezza non appena vengono generati per le risorse.
 
--   **Informazioni sulle minacce:** consente schemi di attacco tooidentify dalla visualizzazione del numero totale di hello del server con traffico IP dannoso in uscita, il tipo di minaccia intenzionale hello e una mappa che mostra provenienza questi indirizzi IP.
+-   **Intelligence per le minacce**: consente di identificare i modelli di attacco visualizzando il numero totale di server con traffico IP dannoso in uscita, il tipo di minaccia e una mappa che mostra la provenienza di questi indirizzi IP.
 
--   **Query comuni di sicurezza:** questa opzione offre è un elenco di sicurezza più comune di hello esegue una query che è possibile utilizzare toomonitor l'ambiente. Quando si fa clic in uno di tali query, viene aperto il pannello di ricerca hello con risultati hello per tale query.
+-   **Query comuni sulla sicurezza**: questa opzione fornisce un elenco delle query di sicurezza più comuni che è possibile usare per monitorare l'ambiente. Quando si fa clic in una di queste query, viene aperto il pannello Ricerca con i risultati della query.
 
 ### <a name="insight-and-analytics"></a>Insight & Analytics
-Nella parte centrale della hello [Log Analitica](https://docs.microsoft.com/azure/log-analytics/log-analytics-overview) è il repository OMS hello, che è ospitato in hello cloud di Azure.
+Al centro di [Log Analytics](https://docs.microsoft.com/azure/log-analytics/log-analytics-overview) c'è l'archivio OMS, ospitato nel cloud di Azure.
 
 ![Insight & Analytics](./media/azure-threat-detection/azure-threat-detection-fig4.png)
 
-Raccolta dei dati nel repository di hello dai origini connesse, la configurazione delle origini dati e Aggiunta sottoscrizione tooyour di soluzioni.
+I dati vengono raccolti nel repository da origini connesse configurando le origini dati e aggiungendo soluzioni alla sottoscrizione.
 
 ![sottoscrizione](./media/azure-threat-detection/azure-threat-detection-fig5.png)
 
-Origini dati e soluzioni ogni creare tipi di record diversi possono ancora essere analizzati insieme nel repository di query toohello ma il proprio set di proprietà. In questo modo hello toouse stesso toowork strumenti e i metodi con diversi tipi di dati raccolti da diverse origini.
+Le origini dati e le soluzioni creeranno diversi tipi di record con uno specifico set di proprietà, ma che possono comunque essere analizzati insieme nelle query al repository. In questo modo è possibile usare gli stessi strumenti e metodi per lavorare con diversi tipi di dati raccolti da diverse origini.
 
 
-La maggior parte dell'interazione con i Log Analitica è tramite il portale OMS hello, che viene eseguita in qualsiasi browser e fornisce le impostazioni di accesso tooconfiguration e più strumenti tooanalyze e agire sui dati raccolti. Dal portale di hello, è possibile utilizzare [log ricerche](https://docs.microsoft.com/azure/log-analytics/log-analytics-log-searches) in cui si creano query tooanalyze raccolti dati, [dashboard](https://docs.microsoft.com/azure/log-analytics/log-analytics-dashboards), che è possibile personalizzare i grafici di ricerche utili e [soluzioni](https://docs.microsoft.com/azure/log-analytics/log-analytics-add-solutions), che forniscono gli strumenti di analisi e funzionalità aggiuntivi.
+La maggior parte delle interazioni con Log Analytics avviene attraverso il portale OMS che viene eseguito in qualsiasi browser e fornisce all'utente l'accesso alle impostazioni e a più strumenti di configurazione per analizzare e agire in base ai dati raccolti. Dal portale è possibile usare le [ricerche nei log](https://docs.microsoft.com/azure/log-analytics/log-analytics-log-searches) in cui si creano query per analizzare i dati raccolti, i [dashboard](https://docs.microsoft.com/azure/log-analytics/log-analytics-dashboards) che è possibile personalizzare con rappresentazioni grafiche delle ricerche più importanti e le [soluzioni](https://docs.microsoft.com/azure/log-analytics/log-analytics-add-solutions) che forniscono funzionalità e strumenti di analisi aggiuntivi.
 
 ![strumenti di analisi](./media/azure-threat-detection/azure-threat-detection-fig6.png)
 
-Le soluzioni aggiungono funzionalità tooLog Analitica. Sono principalmente eseguiti nel cloud hello e fornire un'analisi dei dati raccolti nel repository OMS hello. Possono anche definire raccolti nuovo toobe tipi di record che può essere analizzati con ricerche nei Log o tramite l'interfaccia utente aggiuntive fornite dalla soluzione hello nel dashboard OMS hello.
-Hello Security and Audit è riportato un esempio di questi tipi di soluzioni.
+Le soluzioni aggiungono funzionalità a Log Analytics. Vengono eseguite principalmente nel cloud e forniscono un'analisi dei dati raccolti nel repository OMS. Possono anche definire nuovi tipi di record da raccogliere, che possono essere analizzati con ricerche di log o con l'interfaccia utente aggiuntiva fornita dalla soluzione nel dashboard di OMS.
+Sicurezza e controllo è un esempio di questo tipo di soluzioni.
 
 
 
 ### <a name="automation--control-alert-on-security-configuration-drifts"></a>Automazione e controllo: avvisi di deviazione dalla configurazione di sicurezza
 
-Automazione di Azure automatizza i processi amministrativi con i runbook che sono basati su PowerShell ed eseguiti nel cloud di Azure hello. I runbook possono inoltre essere eseguiti in un server delle risorse locali di center toomanage dati locali. Automazione di Azure consente la gestione della configurazione con PowerShell DSC (Desired State Configuration).
+Automazione di Azure consente di automatizzare i processi amministrativi con runbook basati su PowerShell ed eseguiti nel cloud di Azure. I runbook possono inoltre essere eseguiti in un server nel data center locale per gestire le risorse locali. Automazione di Azure consente la gestione della configurazione con PowerShell DSC (Desired State Configuration).
 
 ![Automazione di Azure](./media/azure-threat-detection/azure-threat-detection-fig7.png)
 
-È possibile creare e gestire risorse DSC ospitate in Azure e applicarle toodefine sistemi locali e toocloud e automaticamente applicare loro configurazione o ottenere i report in caso di deviazione toohelp assicurare che le configurazioni di sicurezza rimangono all'interno dei criteri.
+È possibile creare e gestire risorse DSC ospitate in Azure e applicarle a sistemi cloud e locali per definire e implementare automaticamente la loro configurazione o ricevere report sulle deviazioni per garantire il rispetto dei criteri nelle configurazioni di sicurezza.
 
 ## <a name="azure-security-center"></a>Centro sicurezza di Azure
 
-Il Centro sicurezza di Azure consente di proteggere le risorse di Azure. Integra il monitoraggio della sicurezza e la gestione dei criteri in tutte le sottoscrizioni di Azure. All'interno del servizio di hello, si è in grado di toodefine criteri non solo per le sottoscrizioni di Azure, ma anche contro [gruppi di risorse](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-portal), in modo da essere più granulare.
+Il Centro sicurezza di Azure consente di proteggere le risorse di Azure. Integra il monitoraggio della sicurezza e la gestione dei criteri in tutte le sottoscrizioni di Azure. Nell'ambito del servizio, è possibile definire criteri non solo per le sottoscrizioni di Azure, ma anche per i [gruppi di risorse](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-portal), in modo da ottenere una maggiore granularità.
 
 ![Centro sicurezza di Azure](./media/azure-threat-detection/azure-threat-detection-fig8.png)
 
-I ricercatori di sicurezza di Microsoft sono costantemente in lookout hello per le minacce. Hanno accesso tooan ampi di set di dati di telemetria acquisita dalla presenza di globale di Microsoft nel cloud hello e locale. Questa raccolta vasto e diverse dei set di dati consente Microsoft toodiscover nuovo attacco modelli e tendenze nei propri prodotti consumer ed enterprise di on-premise, nonché i servizi online.
+I ricercatori Microsoft nell'ambito della sicurezza sono costantemente impegnati nella ricerca delle minacce. Hanno accesso a un ampio set di dati di telemetria acquisiti grazie alla presenza globale di Microsoft nel cloud e in locale. Questa raccolta di set di dati di vasta portata e diversificata consente a Microsoft di individuare nuovi modelli di attacco e tendenze nei propri prodotti consumer e aziendali locali, nonché nei servizi online.
 
 Di conseguenza, il Centro sicurezza può aggiornare rapidamente gli algoritmi di rilevamento a fronte del rilascio di exploit nuovi e sofisticati da parte di utenti malintenzionati. Questo approccio consente di tenere il passo con un ambiente caratterizzato da minacce in rapida evoluzione.
 
 ![Centro sicurezza](./media/azure-threat-detection/azure-threat-detection-fig9.jpg)
 
-Rilevamento minacce del Centro sicurezza PC funziona automaticamente la raccolta di informazioni di sicurezza da risorse di Azure, rete hello e soluzioni partner connesso.  Viene avviata l'analisi di queste informazioni, la correlazione di informazioni da più origini, tooidentify minacce.
-Avvisi di sicurezza sono classificati in Centro sicurezza PC insieme ai consigli su come tooremediate hello minaccia.
+Il sistema di rilevamento delle minacce del Centro sicurezza funziona mediante la raccolta automatica di informazioni sulla sicurezza dalle risorse di Azure, dalla rete e dalle soluzioni dei partner connessi.  Per identificare le minacce, analizza queste informazioni, correlando quelle raccolte da più origini.
+Gli avvisi di sicurezza sono classificati in ordine di priorità nel Centro sicurezza insieme a indicazioni su come su correggere la minaccia.
 
-Il Centro sicurezza si avvale di analisi della sicurezza avanzate, che vanno ben oltre gli approcci basati sulle firme. Successi nei dati di grandi dimensioni e [machine learning](https://azure.microsoft.com/blog/machine-learning-in-azure-security-center/) tecnologie sono utilizzati tooevaluate eventi attraverso l'infrastruttura di cloud intera hello: rilevamento minacce che sarebbero Impossibile tooidentify approcci manuali e utilizzato per stimare hello evoluzione di attacchi. Questi analitica di sicurezza include seguente hello.
+Il Centro sicurezza si avvale di analisi della sicurezza avanzate, che vanno ben oltre gli approcci basati sulle firme. Le ultime innovazioni sul piano delle tecnologie per i Big Data e l'[apprendimento automatico](https://azure.microsoft.com/blog/machine-learning-in-azure-security-center/) vengono usate per valutare gli eventi in tutta l'infrastruttura cloud, rilevando minacce impossibili da identificare con approcci manuali e prevedendo l'evoluzione degli attacchi. Le analisi della sicurezza includono quanto illustrato di seguito.
 
 ### <a name="threat-intelligence"></a>Intelligence per le minacce
 
 Microsoft vanta un'enorme quantità di dati di intelligence per le minacce globali.
-Flussi di dati di telemetria da più origini, ad esempio Azure, Office 365, Microsoft CRM online, Microsoft Dynamics AX, outlook.com, MSN.com, hello Microsoft Digital Crimes Unit (DCU) e Microsoft Security Response Center (MSRC).
+Il flusso di dati di telemetria proviene da più origini, ad esempio Azure, Office 365, Microsoft CRM Online, Microsoft Dynamics AX, outlook.com, MSN.com, Microsoft Digital Crimes Unit (DCU) e Microsoft Security Response Center (MSRC).
 
 ![Intelligence per le minacce](./media/azure-threat-detection/azure-threat-detection-fig10.jpg)
 
-I ricercatori inoltre ricevano informazioni relative a minacce intelligence che viene condiviso tra i provider di servizi cloud principali e sottoscrive toothreat intelligence feed da terze parti. Centro sicurezza di Azure è possibile utilizzare questo tooalert informazioni si toothreats da noti cattivi attori. Di seguito sono riportati alcuni esempi:
+I ricercatori ricevono anche informazioni di intelligence per le minacce condivise tra i principali provider di servizi cloud e sottoscrivono i feed di terze parti di intelligence per le minacce. Il Centro sicurezza di Azure usa queste informazioni per avvisare gli utenti nel caso di minacce provenienti da attori dannosi noti. Di seguito sono riportati alcuni esempi:
 
--   **Sfruttando hello Power di Machine Learning -** Centro sicurezza di Azure dispone di accesso tooa grande quantità di dati sulle attività di rete cloud, che può essere utilizzato toodetect minacce per le distribuzioni di Azure. ad esempio:
+-   **Uso della potenza di Machine Learning**: il Centro sicurezza di Azure ha accesso a una grande quantità di dati sulle attività di rete nel cloud, che può usare per rilevare le minacce alle distribuzioni di Azure. Ad esempio:
 
--   **Rilevamenti di forza bruti -** Machine learning è toocreate utilizzato un modello cronologico di tentativi di accesso remoto, che consente la toodetect attacchi di forza bruta contro le porte SQL, RDP e SSH.
+-   **Rilevamento di attacchi di forza bruta**: Machine Learning viene usato per creare un modello cronologico dei tentativi di accesso remoto, che consente di rilevare gli attacchi di forza bruta contro porte SQL, RDP e SSH.
 
--   **In uscita DDoS e rilevamento Botnet** -un obiettivo comune di attacchi di risorse cloud di destinazione è toouse di potenza di calcolo di tooexecute queste risorse hello altri attacchi.
+-   **Rilevamento di attacchi DDoS in uscita e Botnet**: un obiettivo comune agli attacchi alle risorse cloud è sfruttare la potenza di calcolo di queste risorse per eseguire altri attacchi.
 
--   **Nuovo comportamento Analitica server e le macchine virtuali -** dopo che una macchina virtuale o il server è compromesso, aggressori un'ampia gamma di codice dannoso di tecniche tooexecute in tale sistema evitando di rilevamento, assicurandosi di persistenza e non dovranno controlli di sicurezza.
+-   **Nuovi server e macchine virtuali per l'analisi del comportamento**: se una macchina virtuale o un server è compromesso, gli utenti malintenzionati usano un'ampia gamma di tecniche per eseguire codice dannoso in tale sistema evitando il rilevamento, garantendo la persistenza e contrastando i controlli di sicurezza.
 
--   **Rilevamento minacce del Database SQL Azure -** rilevamento minacce per il Database di SQL Azure, che identifica l'attività del database anomale che indica di non comuni e potenzialmente dannoso tenta tooaccess o exploit database.
+-   **Rilevamento delle minacce per il database SQL Azure**: il rilevamento delle minacce per il database di SQL Azure identifica le attività di database anomale che indicano tentativi insoliti e potenzialmente dannosi di accedere ai database o sfruttarli.
 
 ### <a name="behavioral-analytics"></a>Analisi del comportamento
 
-Comportamento analitica è una tecnica che consente di analizzare e confrontare tooa raccolta dei dati di schemi noti. Tuttavia, questi modelli non sono semplici firme. Sono determinati tramite gli algoritmi di apprendimento machine complessi sono applicati toomassive set di dati.
+L'analisi del comportamento è una tecnica che analizza e confronta i dati con una raccolta di modelli noti. Tuttavia, questi modelli non sono semplici firme. Sono determinati usando algoritmi di Machine Learning complessi applicati a set di dati di grandi dimensioni.
 
 ![Analisi del comportamento](./media/azure-threat-detection/azure-threat-detection-fig11.jpg)
 
 
-Sono anche definiti tramite l'attento esame di comportamenti dannosi da parte di analisti esperti. Centro sicurezza di Azure è possibile utilizzare le risorse tooidentify compromesso analitica comportamentali in base all'analisi dei log di macchina virtuale, i registri di dispositivi di rete virtuale, i log dell'infrastruttura, dump di arresto anomalo e altre origini.
+Sono anche definiti tramite l'attento esame di comportamenti dannosi da parte di analisti esperti. Il Centro sicurezza di Azure può usare le analisi del comportamento per identificare le risorse compromesse in base all'analisi dei log delle macchine virtuali, dei dispositivi di rete virtuale, dell'infrastruttura, nonché dei dump di arresto anomalo del sistema e di altre origini.
 
-Inoltre, è la correlazione con altri toocheck segnali per il supporto di prova di una campagna generalizzata. Questa correlazione consente eventi tooidentify coerenti con stabiliti indicatori di compromissione.
+Esiste inoltre una correlazione con altri segnali per verificare la presenza di elementi a riprova di una campagna su larga scala. La correlazione consente di identificare gli eventi che risultano coerenti con gli indicatori di violazione stabiliti.
 
 Di seguito sono riportati alcuni esempi:
--   **Esecuzione del processo sospette:** aggressori diversi software dannoso in tooexecute tecniche senza il rilevamento. Ad esempio, un utente malintenzionato potrebbe fornire malware hello stessi nomi dei file di sistema legittimo ma posizionare i file in una posizione alternativa, utilizzare un nome che è molto simile a un file non grave, o maschera hello true estensione di file. Monitoraggi e i comportamenti di processi di Centro sicurezza PC modelli elaborare outlier toodetect esecuzioni come i seguenti.
+-   **Esecuzione di processi sospetti**: gli utenti malintenzionati usano diverse tecniche per eseguire software dannoso senza che venga rilevato. Ad esempio, un utente malintenzionato potrebbe assegnare al malware gli stessi nomi di file di sistema legittimi, inserendo però questi file in percorsi alternativi, usare un nome molto simile a un file innocuo o mascherare la vera estensione del file. I modelli del Centro sicurezza elaborano i comportamenti e monitorano l'esecuzione dei processi per rilevare outlier come questi.
 
--   **Tentativi di malware e sfruttamento delle vulnerabilità nascosto:** sofisticato malware può eludere prodotti antimalware tradizionale mai toodisk scrittura o la crittografia dei componenti software archiviati su disco. Tuttavia, il malware può essere rilevato tramite l'analisi della memoria, come malware hello necessario lasciare tracce in memoria toofunction. Quando si blocca software, un dump di arresto anomalo del sistema acquisisce una parte della memoria in fase di arresto anomalo di hello di hello. Analizzando memoria hello nel dump di arresto anomalo di hello, Centro sicurezza di Azure può rilevare le tecniche utilizzate tooexploit vulnerabilità nel software, accedere a dati riservati e furtivamente rende persistenti all'interno di un computer compromesso senza influenzare le prestazioni di hello di computer in uso.
+-   **Malware nascosto e tentativi di exploit**: il malware sofisticato può eludere i prodotti antimalware tradizionali, non scrivendo mai su disco o crittografando i componenti software archiviati su disco. Tuttavia, il malware può essere rilevato tramite l'analisi della memoria, perché per funzionare il malware deve lasciare tracce in memoria. Quando il software si arresta in modo anomalo, un dump di arresto anomalo acquisisce una porzione della memoria al momento dell'arresto. Analizzando la memoria nel dump di arresto anomalo, il Centro sicurezza di Azure può rilevare le tecniche usate per sfruttare le vulnerabilità del software, accedere ai dati riservati e rimanere permanentemente all'interno di un computer infetto in modo furtivo senza influire sulle relative prestazioni.
 
--   **Laterali lo spostamento e l'esplorazione interno:** toopersist in un compromesso di rete e individuare/raccolto importante dei dati, spesso i pirati toomove lateralmente da hello compromesso tooothers computer all'interno di hello stessa rete. Centro sicurezza PC esegue il monitoraggio di processo e toodiscover le attività di accesso prova tooexpand di mercato rete hello, ad esempio l'esecuzione del comando remoto, rete sondaggio e di enumerazione di account all'interno di un utente malintenzionato.
+-   **Spostamento laterale e ricognizione interna**: per rimanere permanentemente all'interno di una rete compromessa e individuare/raccogliere dati importanti, gli utenti malintenzionati provano spesso a muoversi lateralmente dal computer compromesso spostandosi in altri computer all'interno della stessa rete. Il Centro sicurezza consente di monitorare le attività di elaborazione e accesso per individuare i tentativi di espansione del punto di appoggio di un utente malintenzionato all'interno della rete, ad esempio il probing della rete per individuare l'esecuzione di comandi remoti e l'enumerazione di account.
 
--   **Script di PowerShell dannosi:** PowerShell è utilizzabile da codice dannoso di utenti malintenzionati tooexecute nelle macchine virtuali di destinazione per un diversi scopi. Il Centro sicurezza ispeziona l'attività di PowerShell alla ricerca di prove di attività sospette.
+-   **Script PowerShell dannosi**: PowerShell può essere usato da utenti malintenzionati per eseguire codice dannoso in macchine virtuali di destinazione per molteplici scopi. Il Centro sicurezza ispeziona l'attività di PowerShell alla ricerca di prove di attività sospette.
 
--   **In uscita attacchi:** gli utenti malintenzionati spesso le risorse di cloud con scopo hello dell'utilizzo di tali attacchi aggiuntive toomount di risorse di destinazione. Compromesse macchine virtuali, ad esempio, potrebbe essere dagli attacchi di forza bruta toolaunch utilizzate altre macchine virtuali, inviare posta indesiderata o analisi aprire le porte e altri dispositivi hello Internet. Tramite l'applicazione di machine learning toonetwork traffico, il Centro sicurezza PC in grado di rilevare quando le comunicazioni di rete in uscita superano la norma hello. Quando inviare posta indesiderata, Centro sicurezza PC correla anche il traffico di posta elettronica insolito con Business intelligence da Office 365 toodetermine se posta elettronica hello è probabile che nefandi o hello risultato di una campagna di posta elettronica legittimi.
+-   **Attacchi in uscita**: gli utenti malintenzionati attaccano spesso le risorse cloud con l'obiettivo di usarle per organizzare altri attacchi. Le macchine virtuali compromesse, ad esempio, possono essere usate per sferrare attacchi di forza bruta contro altre macchine virtuali, inviare posta indesiderata o analizzare le porte aperte e altri dispositivi su Internet. Applicando le tecniche di apprendimento automatico al traffico di rete, il Centro sicurezza può rilevare quando le comunicazioni di rete in uscita superano la norma. Nel caso di posta indesiderata, il Centro sicurezza correla anche il traffico di posta elettronica insolito con le informazioni di Office 365 per determinare se la posta elettronica è probabilmente dannosa o il risultato di una campagna di posta elettronica legittima.
 
 ### <a name="anomaly-detection"></a>Anomaly Detection
 
-Centro sicurezza di Azure Usa anche minacce tooidentify rilevamento di anomalie. In analitica di toobehavioral contrasto (che dipende noti modelli che derivano dal set di dati di grandi dimensioni), il rilevamento di anomalie più "personalizzato" e si concentra su linee di base sono distribuzioni tooyour specifico. Machine learning è applicato toodetermine normale attività per le distribuzioni e quindi le regole sono le condizioni di outlier toodefine generato che potrebbe rappresentare un evento di protezione. Ecco un esempio:
+Il Centro sicurezza di Azure usa inoltre il rilevamento anomalie per identificare le minacce. A differenza dell'analisi del comportamento, che dipende da modelli noti derivati da set di dati di grandi dimensioni, il rilevamento anomalie è più "personalizzato" e incentrato sulle baseline specifiche delle distribuzioni. Le tecniche di apprendimento automatico vengono applicate per determinare la normale attività per le distribuzioni dei clienti e quindi vengono generate regole per definire le condizioni degli outlier che possono rappresentare un evento di sicurezza. Ecco un esempio:
 
--   **Attacchi di forza bruta RDP/SSH in ingresso**: nelle distribuzioni dei clienti possono essere presenti macchine virtuali occupate da molti accessi ogni giorno e altre con pochi o nessun accesso. Centro sicurezza di Azure è possibile determinare l'attività di accesso di base per le macchine virtuali e utilizzare machine learning toodefine intorno attività normale accesso hello. Se è presente una discrepanza con definita per la previsione hello correlate all'accesso alle caratteristiche, quindi può essere generato un avviso. Anche in questo caso, le tecniche di apprendimento automatico determinano gli eventi significativi.
+-   **Attacchi di forza bruta RDP/SSH in ingresso**: nelle distribuzioni dei clienti possono essere presenti macchine virtuali occupate da molti accessi ogni giorno e altre con pochi o nessun accesso. Il Centro sicurezza di Azure può determinare l'attività di accesso di base per queste macchine virtuali e usare le tecniche di apprendimento automatico per definire gli eventi attorno alle normali attività di accesso. In caso di discrepanza con la baseline definita per le caratteristiche relative all'accesso, potrebbe essere generato un avviso. Anche in questo caso, le tecniche di apprendimento automatico determinano gli eventi significativi.
 
 ### <a name="continuous-threat-intelligence-monitoring"></a>Monitoraggio continuo dell'intelligence per le minacce
 
-Centro sicurezza di Azure funziona con protezione dati dell'analisi scientifica dei team di ricerca e in tutto il mondo hello che monitoraggio continuo per le modifiche minacce hello. Ad esempio hello iniziative di seguito:
+Il Centro sicurezza di Azure opera insieme a team dedicati alle ricerche sulla sicurezza e all'analisi scientifica dei dati a livello mondiale che monitorano costantemente le modifiche che avvengono nel panorama delle minacce. Sono incluse le iniziative seguenti:
 
--   **Monitoraggio dell'intelligence per le minacce**: questo tipo di intelligence include meccanismi, indicatori, implicazioni e consigli utili sulle minacce esistenti o emergenti. Queste informazioni sono condiviso nella community di sicurezza hello e Microsoft monitora costantemente threat intelligence feed da origini interne ed esterne.
+-   **Monitoraggio dell'intelligence per le minacce**: questo tipo di intelligence include meccanismi, indicatori, implicazioni e consigli utili sulle minacce esistenti o emergenti. Queste informazioni sono condivise nella community sulla sicurezza e Microsoft monitora costantemente i feed di intelligence per le minacce da origini interne ed esterne.
 
 -   **Condivisione dei segnali**: le informazioni dettagliate dai team della sicurezza nell'ampio portfolio di servizi, server e dispositivi endpoint client locali e cloud di Microsoft vengono condivise e analizzate.
 
 -   **Specialisti della sicurezza Microsoft**: in contatto costante con i team Microsoft che operano in ambiti di sicurezza specializzati, ad esempio analisi scientifiche e rilevamento di attacchi Web.
 
--   **Ottimizzazione di rilevamento:** algoritmi vengono eseguiti sul set di dati reali di clienti e ricercatori di sicurezza utilizzano clienti toovalidate hello risultati. Veri e falsi positivi sono algoritmi utilizzati toorefine machine learning.
+-   **Ottimizzazione del rilevamento**: gli algoritmi vengono eseguiti su set di dati reali del cliente e ricercatori dedicati alla sicurezza collaborano con i clienti per convalidare i risultati. Per perfezionare gli algoritmi di Machine Learning vengono usati veri e falsi positivi.
 
-Queste attività combinata concludere rilevamenti nuovi e migliorati, è possibile trarre vantaggio da immediatamente: nessuna azione per si tootake.
+Questi sforzi combinati convergono in rilevamenti nuovi e migliorati, da cui è possibile trarre vantaggio immediatamente, senza che sia richiesta alcuna azione.
 
 ## <a name="advanced-threat-detection-features---other-azure-services"></a>Funzionalità di rilevamento delle minacce avanzato: altri servizi di Azure
 
 ### <a name="virtual-machine-microsoft-antimalware"></a>Macchina virtuale: Microsoft Antimalware
 
-[Microsoft Antimalware](https://docs.microsoft.com/azure/security/azure-security-antimalware) per Azure è una soluzione single-agent per le applicazioni e gli ambienti di tenant, progettato toorun in background hello senza intervento umano. È possibile distribuire la protezione in base alle esigenze di hello i carichi di lavoro dell'applicazione, con una base sicura-per impostazione predefinita o configurazione personalizzata, ad esempio il monitoraggio antimalware avanzata. Antimalware Azure è un'opzione di sicurezza per macchine virtuali di Azure e viene installato automaticamente in tutte le macchine virtuali PaaS di Azure.
+[Microsoft Antimalware](https://docs.microsoft.com/azure/security/azure-security-antimalware) per Azure è una soluzione con un agente singolo per applicazioni e ambienti tenant, progettata per l'esecuzione in background senza intervento da parte dell'utente. È possibile distribuire la protezione in base alle esigenze dei carichi di lavoro dell'applicazione, con una configurazione sicura per impostazione predefinita o avanzata personalizzata, incluso il monitoraggio antimalware. Antimalware Azure è un'opzione di sicurezza per macchine virtuali di Azure e viene installato automaticamente in tutte le macchine virtuali PaaS di Azure.
 
-**Funzionalità di Azure toodeploy e abilitare Microsoft Antimalware per le applicazioni**
+**Funzionalità di Azure per distribuire e abilitare Microsoft Antimalware per le applicazioni**
 
 #### <a name="microsoft-antimalware-core-features"></a>Funzionalità principali di Microsoft Antimalware
 
--   **Protezione in tempo reale -** monitora attività nei servizi Cloud e macchine virtuali toodetect e blocco di esecuzione di malware.
+-   **Protezione in tempo reale**: monitora l'attività in Servizi cloud e Macchine virtuali per rilevare e bloccare l'esecuzione di malware.
 
--   **Pianificate analisi -** esegue periodicamente destinazione analisi malware toodetect, inclusi i programmi in esecuzione.
+-   **Analisi pianificata**: esegue periodicamente un'analisi mirata per rilevare il malware, inclusi i programmi in esecuzione attiva.
 
 -   **Correzione del malware**: interviene automaticamente sul malware rilevato, ad esempio eliminando o mettendo in quarantena i file dannosi e pulendo le voci dannose del Registro di sistema.
 
--   **Aggiornamenti firma -** automaticamente installa hello più recente protezione firme (definizioni di virus) tooensure dati sia aggiornato sulla frequenza predeterminata.
+-   **Aggiornamenti delle firme**: installa automaticamente le firme di protezione più recenti (definizioni di virus) per garantire che la protezione sia aggiornata in base a una frequenza predeterminata.
 
--   **Gli aggiornamenti del motore antimalware -** automaticamente gli aggiornamenti hello motore Antimalware Microsoft.
+-   **Aggiornamenti del motore antimalware**: aggiorna automaticamente il motore di Microsoft Antimalware.
 
--   **Gli aggiornamenti della piattaforma antimalware –** automaticamente gli aggiornamenti hello piattaforma Microsoft Antimalware.
+-   **Aggiornamenti della piattaforma antimalware**: aggiorna automaticamente la piattaforma di Microsoft Antimalware.
 
--   **Attiva la protezione dati -** indica i metadati di dati di telemetria sulle minacce e le risorse sospette tooMicrosoft tooensure Azure rapidi tempi di risposta toohello evoluzione panorama delle minacce e l'abilitazione di recapito firma sincrono in tempo reale tramite Hello Microsoft Active Protection System (MAPS).
+-   **Protezione attiva**: segnala a Microsoft Azure i metadati di telemetria sulle minacce rilevate e sulle risorse sospette per garantire una risposta rapida al mutevole panorama delle minacce, oltre ad abilitare la distribuzione di firme sincrone in tempo reale tramite Microsoft Active Protection System (MAPS).
 
--   **Esempi di creazione report -** fornisce e segnala gli esempi toohello Microsoft Antimalware service toohelp perfezionare servizio hello e abilitare la risoluzione dei problemi.
+-   **Creazione di report di esempio**: raccoglie e segnala al servizio Microsoft Antimalware esempi che consentono di perfezionare il servizio e risolvere i problemi.
 
--   **Esclusioni:** consente l'applicazione e servizio amministratori tooconfigure determinati file, i processi e unità tooexclude di protezione e l'analisi delle prestazioni e/o altri motivi.
+-   **Esclusioni**: consente agli amministratori dell'applicazione e del servizio di configurare alcuni file, processi e unità per escluderli dalla protezione e dall'analisi per motivi di prestazioni e/o di altro tipo.
 
--   **Raccolta di eventi antimalware -** registra l'integrità del servizio antimalware hello, le attività sospette e azioni di correzione nel registro eventi di sistema operativo hello e li raccoglie in account di archiviazione di Azure del cliente hello.
+-   **Raccolta di eventi antimalware**: registra l'integrità del servizio antimalware, le attività sospette e le azioni di correzione eseguite nel registro eventi del sistema operativo e le raccoglie nell'account di archiviazione di Azure del cliente.
 
 ### <a name="azure-sql-database-threat-detection"></a>Rilevamento delle minacce per il database SQL di Azure
 
-[Rilevamento minacce del Database SQL Azure](https://azure.microsoft.com/blog/azure-sql-database-threat-detection-your-built-in-security-expert/) è una nuova funzionalità di business intelligence di sicurezza incorporate hello servizio Database SQL di Azure. Risolvere hello clock toolearn, profilo e rilevare attività del database anomale, identifica di rilevamento minacce del Database SQL Azure database toohello di minacce potenziali.
+Il [rilevamento delle minacce per il database SQL di Azure](https://azure.microsoft.com/blog/azure-sql-database-threat-detection-your-built-in-security-expert/) è una nuova funzionalità di intelligence sulla sicurezza incorporata nel database SQL di Azure. Il rilevamento delle minacce per il database SQL di Azure è sempre in funzione per apprendere, profilare e rilevare attività di database anomale e identificare potenziali minacce per il database.
 
-I responsabili della sicurezza o altri amministratori designati possono ricevere una notifica immediata sulle attività di database sospette non appena si verificano. Ogni notifica fornisce i dettagli dell'attività sospette hello e suggerisce come toofurther analizzare e ridurre il rischio di hello.
+I responsabili della sicurezza o altri amministratori designati possono ricevere una notifica immediata sulle attività di database sospette non appena si verificano. Ogni notifica contiene dettagli sulle attività sospette e consigli su come eseguire ulteriori indagini e mitigare la minaccia.
 
 Attualmente, il rilevamento delle minacce per il database SQL di Azure rileva vulnerabilità potenziali, attacchi SQL injection e modelli anomali di accesso ai database.
 
-Alla ricezione di notifica tramite posta elettronica di rilevamento minacce, gli utenti sono in grado di toonavigate e visualizzazione hello controllo rilevanti record con collegamento diretto hello messaggio hello che apre un controllo visualizzatore e/o il preconfigurati controllo modello di Excel che Mostra controllo rilevanti hello record intorno hello ora di hello sospette evento in base toohello seguenti:
--   Archiviazione di controllo per hello/server di database con l'attività del database anomale hello
+Quando ricevono la notifica tramite posta elettronica della minaccia rilevata, gli utenti possono trovare e visualizzare i record di controllo pertinenti tramite il collegamento diretto nel messaggio di posta elettronica, che consente di aprire un visualizzatore di controllo e/o un modello di controllo di Excel preconfigurato che mostra i record di controllo relativi all'orario dell'evento sospetto in base a quanto segue:
+-   Archiviazione di controllo per il database/server con le attività di database anomale.
 
--   Tabella di archiviazione di controllo pertinente che è stata utilizzata in fase di hello del log di controllo di hello evento toowrite
+-   Tabella di archiviazione di controllo pertinente usata al momento dell'evento per la scrittura del log di controllo.
 
--   Record di hello segue ora poiché hello evento si verifica di controllo.
+-   Record di controllo dell'ora successiva all'evento.
 
--   Record di controllo con ID di evento simili in fase di hello dell'evento hello (facoltativo per alcuni rilevatori)
+-   Record di controllo con ID evento simile al momento dell'evento (facoltativo per alcuni rilevatori).
 
-SQL Database minaccia rilevatori utilizzare uno dei hello seguendo le metodologie di rilevamento:
+I rilevatori di minacce per il database SQL fanno uso di una delle metodologie di rilevamento riportate di seguito:
 
--   **Rilevamento deterministico –** rilevare modelli sospetti (basato su regole) in query del client SQL di hello corrispondenti attacchi noti. Questa metodologia è rilevamento alto e bassa falso positivo, è tuttavia limitata coverage perché rientra in una categoria di hello di "rilevamenti atomici".
+-   **Rilevamento deterministico:** rileva modelli sospetti (in base a regole) nelle query del client SQL corrispondenti ad attacchi noti. Questa metodologia offre prestazioni elevate di rilevamento e falsi positivi ridotti, tuttavia ha una copertura limitata perché rientra nella categoria dei "rilevamenti atomici".
 
--   **Rilevamento comportamento:** difetti anomalie dell'attività, ovvero un comportamento anomalo per i database hello che non è stato individuato durante hello ultimi 30 giorni.  Un esempio di attività anomale del client SQL può essere un picco di accessi non riuscite/query, volumi elevati di dati vengono estratti, insolita query canonica e familiarità IP indirizzi utilizzati tooaccess hello database
+-   **Rilevamento del comportamento:** rileva le attività anomale, vale a dire comportamenti anomali per il database non rilevati negli ultimi 30 giorni.  Un esempio di attività anomala per il client SQL può essere un picco di accessi non riusciti/query, l'estrazione di un volume elevato di dati, query canoniche insolite e l'uso di indirizzi IP sconosciuti per accedere al database.
 
 ### <a name="application-gateway-web-application-firewall"></a>Web application firewall del gateway applicazione
 
-[Web Application Firewall](https://docs.microsoft.com/azure/app-service-web/app-service-app-service-environment-web-application-firewall) è una funzionalità di [Gateway applicazione Azure](https://docs.microsoft.com/azure/application-gateway/application-gateway-webapplicationfirewall-overview) tooweb applicazioni che usano gateway applicazione standard che fornisce la protezione [controllo recapito dell'applicazione](https://kemptechnologies.com/in/application-delivery-controllers) funzioni. Firewall applicazione Web esegue questa operazione di protezione contro la maggior parte delle hello [OWASP le prime 10 vulnerabilità web comuni](https://www.owasp.org/index.php/Top_10_2010-Main)
+[Web application firewall](../app-service/environment/app-service-app-service-environment-web-application-firewall.md) è una funzionalità del [gateway applicazione di Azure](https://docs.microsoft.com/azure/application-gateway/application-gateway-webapplicationfirewall-overview) che consente di proteggere le applicazioni Web che usano il gateway applicazione per funzioni standard di [controller per la distribuzione di applicazioni](https://kemptechnologies.com/in/application-delivery-controllers). Web application firewall protegge infatti le applicazioni dalla maggior parte delle [10 vulnerabilità Web OWASP più diffuse](https://www.owasp.org/index.php/Top_10_2010-Main).
 
 ![Web application firewall del gateway applicazione](./media/azure-threat-detection/azure-threat-detection-fig13.png)
 
@@ -306,80 +306,80 @@ SQL Database minaccia rilevatori utilizzare uno dei hello seguendo le metodologi
 
 -   Rilevamento di errori di configurazione dell'applicazione comuni (ad esempio, Apache, IIS e così via)
 
-Configurazione WAF al Gateway applicazione fornisce hello tooyou vantaggio seguenti:
+La configurazione del WAF nel gateway applicazione offre i vantaggi seguenti:
 
--   Proteggere l'applicazione web da attacchi senza codice toobackend modifica e vulnerabilità di web.
+-   Protezione dell'applicazione Web dalle vulnerabilità e dagli attacchi del Web, senza alcuna modifica al codice di back-end.
 
--   Web più proteggere le applicazioni di hello stesso tempo dietro un gateway applicazione. Gateway applicazione supporta l'hosting di siti Web too20 dietro un singolo gateway che possono essere protette da attacchi di web.
+-   Protezione contemporanea di più applicazioni Web con un gateway applicazione. Il gateway applicazione può ospitare e proteggere dagli attacchi Web fino a 20 siti Web su un singolo gateway.
 
 -   Monitoraggio dell'applicazione Web contro gli attacchi tramite report in tempo reale generati dai log del WAF del gateway applicazione.
 
--   Alcuni controlli di conformità richiedono tutti i punti finali toobe protetto da una soluzione WAF è connessa a internet. Grazie al gateway applicazione con WAF abilitato è possibile soddisfare questi requisiti di conformità.
+-   Alcuni controlli di conformità richiedono che tutti gli endpoint comunicanti con Internet siano protetti da una soluzione WAF. Grazie al gateway applicazione con WAF abilitato è possibile soddisfare questi requisiti di conformità.
 
 ### <a name="anomaly-detection--an-api-built-with-azure-machine-learning"></a>API di rilevamento delle anomalie integrata in Azure Machine Learning
 
-L'API di rilevamento delle anomalie è integrata in Azure Machine Learning e permette di rilevare i diversi tipi di modelli anomali nei dati delle serie temporali. Hello API assegna un'anomalia punteggio tooeach dati punto nella serie temporale hello, che può essere utilizzato per la generazione di avvisi, monitoraggio tramite Dashboard o la connessione con i sistemi di emissione di ticket.
+L'API di rilevamento delle anomalie è integrata in Azure Machine Learning e permette di rilevare i diversi tipi di modelli anomali nei dati delle serie temporali. L'API assegna un punteggio di anomalia a ogni punto dati della serie temporale, che può essere usato per la creazione di avvisi, il monitoraggio tramite dashboard o la connessione con i sistemi di generazione dei ticket.
 
-Hello [API di rilevamento di anomalie](https://docs.microsoft.com/azure/machine-learning/machine-learning-apps-anomaly-detection-api) consente di rilevare i seguenti tipi di anomalie in dati della serie temporale hello:
+L'[API di rilevamento delle anomalie](https://docs.microsoft.com/azure/machine-learning/machine-learning-apps-anomaly-detection-api) può rilevare i seguenti tipi di anomalie nei dati delle serie temporali:
 
--   **Picchi e DIP:** , ad esempio, durante il monitoraggio hello numero di account di accesso errori tooa servizio o un numero di estrazioni eseguite in un sito di e-commerce, picchi anomali o DIP potrebbe indicare gli attacchi alla sicurezza o interruzioni del servizio.
+-   **Picchi e flessioni**: ad esempio, quando si monitora il numero di errori di accesso a un servizio o il numero di transazioni completate in un sito di e-commerce, i picchi o le flessioni possono indicare attacchi alla sicurezza o interruzioni del servizio.
 
 -   **Tendenze positive e negative:** durante il monitoraggio dell'utilizzo della memoria per l'elaborazione, ad esempio, una riduzione delle dimensioni della memoria disponibile può indicare una possibile perdita di memoria. Durante il monitoraggio della lunghezza della coda del servizio, una tendenza persistente verso l'alto può indicare un problema software sottostante.
 
--   **Livello di modifiche e le modifiche in un intervallo dinamico di valori:** , ad esempio, di modifica di livello delle latenze di un servizio dopo l'aggiornamento di un servizio o ridurre i livelli di eccezioni dopo l'aggiornamento può essere interessante toomonitor.
+-   **Cambi di livello e le modifiche all'intervallo dinamico dei valori:** i cambi di livello nelle latenze di un servizio dopo un aggiornamento o livelli ridotti di eccezioni dopo un aggiornamento possono essere interessanti da monitorare.
 
-apprendimento Hello basato su API che supporta:
+L'API basata sull'apprendimento automatico offre:
 
--   **Rilevamento flessibile e robusta:** modelli di rilevamento di anomalie hello consentono agli utenti di impostazioni di sensibilità tooconfigure e rilevare le anomalie tra set di dati stagionali e non stagionali. Gli utenti possano regolare hello rilevamento modello toomake hello il rilevamento di anomalie API meno o per esigenze più sensibili tootheir secondo. Ciò significa rilevamento hello maggiore o minore visibile eventuali anomalie nei dati con e senza modelli stagionali.
+-   **Rilevamento flessibile e affidabile:** i modelli di rilevamento delle anomalie consentono agli utenti di configurare le impostazioni di sensibilità e rilevare anomalie tra set di dati stagionali e non stagionali. Gli utenti possono modificare il modello di rilevamento delle anomalie per rendere l'API più o meno sensibile in base alle esigenze. Ciò significa poter rilevare le anomalie più o meno visibili nei dati con e senza modelli stagionali.
 
--   **Rilevamento scalabile e tempestivo:** utilizzo tradizionale di hello di monitoraggio con soglie presente l'impostazione di conoscenza degli esperti sono costosi e non scalabile toomillions di modificare dinamicamente i set di dati. i modelli di rilevamento di anomalie Hello in questa API vengono acquisiti e i modelli vengono ottimizzati automaticamente dai dati in tempo reale e cronologici.
+-   **Rilevamento ridimensionabile e tempestivo:** il monitoraggio tradizionale con soglie impostate in base alle competenze degli esperti è costosi e non offre scalabilità per milioni di set di dati che cambiano continuamente. I modelli di rilevamento delle anomalie in questa API vengono acquisiti e i modelli vengono ottimizzati automaticamente in base a dati in tempo reale e cronologici.
 
--   **Rilevamento proattivo ed eseguibile:** è possibile applicare il rilevamento di tendenze lente e cambi di livello per rilevare in anticipo le anomalie. segnali anomala di Hello anticipata rilevati possono essere utilizzato toodirect comprensibile tooinvestigate e agire su aree problematiche hello.  Inoltre, è possibile sviluppare modelli di analisi della causa radice e gli strumenti di avviso sull'API di rilevamento delle anomalie.
+-   **Rilevamento proattivo ed eseguibile:** è possibile applicare il rilevamento di tendenze lente e cambi di livello per rilevare in anticipo le anomalie. Il rilevamento dei primi segni di anomalia permette di indirizzare gli utenti verso l'analisi e la risoluzione delle aree problematiche.  Inoltre, è possibile sviluppare modelli di analisi della causa radice e gli strumenti di avviso sull'API di rilevamento delle anomalie.
 
-rilevamento di anomalie Hello API è una soluzione efficace ed efficiente per un'ampia gamma di scenari come l'integrità del servizio e indicatori KPI di monitoraggio, IoT, il monitoraggio delle prestazioni e monitoraggio del traffico di rete. Di seguito sono riportati alcuni scenari comuni in cui questa API può risultare utile:
-- I reparti IT necessario eventi tootrack strumenti, codice di errore, log di utilizzo e prestazioni (CPU, memoria e così via) in modo tempestivo.
+L'API rappresenta una soluzione efficace ed efficiente per un'ampia gamma di scenari, come il monitoraggio dell'integrità del servizio e dei KPI, l'IoT, il monitoraggio delle prestazioni e del traffico di rete. Di seguito sono riportati alcuni scenari comuni in cui questa API può risultare utile:
+- Reparti IT che hanno bisogno di strumenti per tenere traccia di eventi, codici di errore, log di utilizzo e prestazioni (CPU, memoria e così via) in modo tempestivo.
 
--   Siti commerce online desiderano tootrack cliente attività, visualizzazioni di pagina, fa clic su e così via.
+-   Siti di e-commerce che vogliono tenere traccia delle attività dei clienti, delle visualizzazioni di pagine dei clic e così via.
 
--   Utilità società si tootrack consumo di acqua, gas, energia elettrica e altre risorse.
+-   Aziende di pubblici servizi che vogliono tenere traccia dei consumi di acqua, gas, elettricità e altre risorse.
 
--   Funzione/creazione di servizi di gestione desidera toomonitor temperatura, umidità, traffico e così via.
+-   Servizi di gestione di strutture/edifici che vogliono monitorare temperatura, umidità, traffico e così via.
 
--   IoT/produttori desidera toouse sensore dati toomonitor serie tempo il flusso di lavoro, qualità e così via.
+-   Produttori/IoT che vogliono usare i dati dei sensori nelle serie temporali per monitorare il flusso di lavoro, la qualità e così via.
 
--   Provider di servizi, ad esempio call center tendenza di richiesta di servizio toomonitor, volume di eventi imprevisti, è necessario attendere lunghezza della coda e così via.
+-   Provider di servizi, ad esempio call center, che vogliono monitorare le tendenze della domanda di servizi, il volume di eventi imprevisti, la lunghezza delle code di attesa e così via.
 
--   Gruppi di attività analitica desidera toomonitor business degli indicatori KPI (ad esempio, il volume delle vendite, i rispettivi clienti, prezzi) spostamento anomalo in tempo reale.
+-   Gruppi di analisi business che vogliono monitorare in tempo reale i movimenti anomali dei KPI aziendali, ad esempio il volume delle vendite, il sentiment dei clienti o i prezzi.
 
 ### <a name="cloud-app-security"></a>Cloud App Security
 
-[Cloud App Security](https://docs.microsoft.com/cloud-app-security/what-is-cloud-app-security) è un componente fondamentale dello stack di Microsoft Cloud Security hello. È una soluzione completa che consente all'organizzazione quando si sposta tootake sfruttare appieno il potenziale hello delle applicazioni cloud, ma può rimanere in controllo mediante una migliore visibilità nelle attività. Consente inoltre di aumentare la protezione dei dati critici di hello tutte le applicazioni cloud.
+[Cloud App Security](https://docs.microsoft.com/cloud-app-security/what-is-cloud-app-security) è un componente fondamentale dello stack di sicurezza di Microsoft Cloud. Si tratta di una soluzione completa che consente all'organizzazione di sfruttare appieno il potenziale delle applicazioni cloud, mantenendo il controllo grazie a una maggiore visibilità nelle attività. Consente inoltre di migliorare la protezione dei dati critici nelle applicazioni cloud.
 
-Con strumenti che consentono di rilevare shadow IT, valutare il rischio, imporre criteri, esaminare le attività e arrestare le minacce, l'organizzazione in modo più sicuro possibile spostare toohello cloud mantenendo il controllo dei dati critici.
+Grazie a strumenti che permettono di scoprire shadow IT, valutare i rischi, applicare i criteri, analizzare le attività e arrestare le minacce, l'organizzazione può passare al cloud in piena sicurezza mantenendo il controllo dei dati critici.
 
 <table style="width:100%">
  <tr>
    <td>Scoprire</td>
-   <td>Scoprire shadow IT con Cloud App Security. Ottenere visibilità tramite l'identificazione di app, attività, utenti, dati e file nell'ambiente cloud. Rilevare le app di terze parti connesse tooyour cloud.</td>
+   <td>Scoprire shadow IT con Cloud App Security. Ottenere visibilità tramite l'identificazione di app, attività, utenti, dati e file nell'ambiente cloud. Trovare app di terze parti connesse al cloud.</td>
  </tr>
  <tr>
    <td>Analisi dei problemi</td>
-   <td>Esaminare le app cloud mediante gli strumenti di analisi forense cloud toodeep-approfondimento in App rischiose, specifici utenti e i file nella rete. Trovare i modelli nei dati hello raccolti dal cloud. Generare report toomonitor del cloud.</td>
+   <td>Analizzare i problemi delle app cloud tramite strumenti forensi di approfondimento in app rischiose, utenti specifici e file nella rete. Trovare i modelli nei dati raccolti dal cloud. Generare report per monitorare il cloud.</td>
 
  </tr>
  <tr>
    <td>Controllo</td>
-   <td>Ridurre il rischio impostando criteri e avvisi tooachieve il massimo controllo sul traffico di rete cloud. Usare Cloud App Security toomigrate il toosafe gli utenti, alternative di app cloud approvate.</td>
+   <td>Mitigare il rischio tramite l'impostazione di criteri e avvisi per ottenere il massimo controllo sul traffico di rete nel cloud. Usare Cloud App Security per eseguire la migrazione degli utenti verso app cloud alternative sicure e approvate.</td>
 
  </tr>
  <tr>
    <td>Proteggere</td>
-   <td>Usare Cloud App Security toosanction o impedire alle applicazioni, applicare la prevenzione della perdita di dati, le autorizzazioni di controllo e la condivisione e generare avvisi e report personalizzati.</td>
+   <td>Usare Cloud App Security per approvare o vietare applicazioni, applicare misure di prevenzione contro la perdita di dati, controllare autorizzazioni e condivisioni e generare avvisi e report personalizzati.</td>
 
  </tr>
  <tr>
    <td>Controllo</td>
-   <td>Ridurre il rischio impostando criteri e avvisi tooachieve il massimo controllo sul traffico di rete cloud. Usare Cloud App Security toomigrate il toosafe gli utenti, alternative di app cloud approvate.</td>
+   <td>Mitigare il rischio tramite l'impostazione di criteri e avvisi per ottenere il massimo controllo sul traffico di rete nel cloud. Usare Cloud App Security per eseguire la migrazione degli utenti verso app cloud alternative sicure e approvate.</td>
 
  </tr>
 </table>
@@ -389,7 +389,7 @@ Con strumenti che consentono di rilevare shadow IT, valutare il rischio, imporre
 
 Cloud App Security integra la visibilità con il cloud tramite:
 
--   Utilizzo di Cloud Discovery toomap e identificare l'ambiente cloud e hello App cloud, l'organizzazione utilizza.
+-   Uso di Cloud Discovery per eseguire il mapping e identificare l'ambiente cloud e le app cloud usate dall'organizzazione.
 
 
 -   Approvazione e divieto di app nel cloud.
@@ -400,33 +400,33 @@ Cloud App Security integra la visibilità con il cloud tramite:
 
 -   Controllo continuo grazie all'impostazione e all'ottimizzazione costante di criteri.
 
-Nella raccolta di dati da queste origini, Cloud App Security esegue un'analisi sofisticata sui dati hello. Viene immediatamente avvisa l'utente tooanomalous attività e fornisce la visibilità completa dell'ambiente cloud. È possibile configurare un criterio di Cloud App Security e usarlo tooprotect tutto nell'ambiente cloud.
+Durante la raccolta di dati da queste origini, Cloud App Security esegue analisi complesse sui dati. Segnala immediatamente le attività anomale e offre una visibilità dettagliata nell'ambiente cloud. È possibile configurare criteri in Cloud App Security e usarli per proteggere tutti i dati nell'ambiente cloud.
 
 ## <a name="third-party-atd-capabilities-through-azure-marketplace"></a>Funzionalità ATD di terze parti tramite Azure Marketplace
 
 ### <a name="web-application-firewall"></a>Web application firewall
 
-Web application firewall controlla il traffico Web in ingresso e blocca SQL injection, attacchi tramite script da altri siti, caricamenti di malware, DDoS di applicazioni e altri attacchi destinati alle applicazioni Web. Inoltre analizza le risposte hello dai server back-end web hello per la prevenzione della perdita di dati (DLP). motore di controllo di accesso integrato Hello Abilita criteri di controllo di accesso granulare toocreate amministratori per l'autenticazione, autorizzazione e Accounting (AAA), che fornisce l'autenticazione avanzata alle organizzazioni e un controllo utente.
+Web application firewall controlla il traffico Web in ingresso e blocca SQL injection, attacchi tramite script da altri siti, caricamenti di malware, DDoS di applicazioni e altri attacchi destinati alle applicazioni Web. Esamina anche le risposte provenienti dai server Web back-end per la prevenzione della perdita dei dati. Il motore di controllo di accesso integrato consente agli amministratori di creare criteri di controllo di accesso granulari per l'autenticazione, l'autorizzazione e la contabilità e garantisce alle organizzazioni un'autenticazione e un controllo utente affidabili.
 
 **In evidenza:**
 -   Rileva e blocca SQL injection, attacchi tramite script da altri siti, caricamenti di malware, DDoS di applicazioni e altri attacchi destinati alle applicazioni.
 
 -   Offre autenticazione e controllo di accesso.
 
--   Analisi di dati sensibili toodetect di traffico in uscita e in grado di mascherare o bloccare le informazioni di hello dalla perdita.
+-   Analizza il traffico in uscita per rilevare i dati sensibili e può mascherare o bloccare la divulgazione di informazioni.
 
--   Accelera la consegna di hello del contenuto dell'applicazione web, utilizzando funzionalità quali la memorizzazione nella cache, la compressione e altre ottimizzazioni di traffico.
+-   Accelera la distribuzione dei contenuti delle applicazioni Web con funzionalità quali la memorizzazione nella cache, la compressione e altre funzioni di ottimizzazione del traffico.
 
 Di seguito sono riportati alcuni esempi di Web application firewall disponibili in Azure Marketplace:
 
-[Barracuda Web Application Firewall Brocade virtuale Web Application Firewall (Brocade vWAF), Imperva SecureSphere & hello ThreatSTOP IP Firewall.](https://azure.microsoft.com/marketplace/partners/brocade_communications/brocade-virtual-web-application-firewall-templatevtmcluster/)
+[Barracuda Web Application Firewall, Brocade Virtual Web Application Firewall (Brocade vWAF), Imperva SecureSphere e The ThreatSTOP IP Firewall.](https://azure.microsoft.com/marketplace/partners/brocade_communications/brocade-virtual-web-application-firewall-templatevtmcluster/)
 
 ## <a name="next-steps"></a>Passaggi successivi
 
 - [Funzionalità di rilevamento del Centro sicurezza di Azure](https://docs.microsoft.com/azure/security-center/security-center-detection-capabilities)
 
-Funzionalità avanzate di rilevamento del Centro sicurezza di Azure consente tooidentify minacce attive per le risorse di Microsoft Azure e fornisce informazioni dettagliate hello necessari toorespond rapidamente.
+Le funzionalità di rilevamento avanzate del Centro sicurezza di Azure consentono di identificare le minacce attive rivolte alle risorse di Microsoft Azure e forniscono le informazioni dettagliate necessarie per rispondere rapidamente a tali minacce.
 
 - [Rilevamento delle minacce per il database SQL di Azure](https://azure.microsoft.com/blog/azure-sql-database-threat-detection-your-built-in-security-expert/)
 
-Rilevamento minacce del Database SQL Azure consente di risolvere i problemi riguardanti il database di tootheir minacce potenziali.
+Il rilevamento delle minacce per il database SQL di Azure consente di risolvere i problemi relativi a potenziali minacce per i database.

@@ -1,6 +1,6 @@
 ---
-title: aaaAuthentication e l'autorizzazione in App mobili di Azure | Documenti Microsoft
-description: "Riferimento concettuale e panoramica di hello autenticazione / autorizzazione funzionalità per App mobili di Azure"
+title: Autenticazione e autorizzazione in App per dispositivi mobili di Azure | Documentazione Microsoft
+description: "Riferimento concettuale e panoramica della funzionalità di autenticazione / autorizzazione nelle app per dispositivi mobili di Azure"
 services: app-service\mobile
 documentationcenter: 
 author: mattchenderson
@@ -14,95 +14,95 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 10/01/2016
 ms.author: mahender
-ms.openlocfilehash: 5255734481ada11afb65982aebe45c2a349402fe
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4105392f58eaf37e88c1d9ffb74f3f4133fa5482
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="authentication-and-authorization-in-azure-mobile-apps"></a>Autenticazione e autorizzazione in App per dispositivi mobili di Azure
 ## <a name="what-is-app-service-authentication--authorization"></a>Informazioni sull’autenticazione / autorizzazione di servizio app
 > [!NOTE]
-> In questo argomento sarà migrato tooa consolidato [l'autenticazione del servizio App / autorizzazione](../app-service/app-service-authentication-overview.md) argomento riguardante Web, dispositivi mobili e App per le API.
+> Questo argomento verrà trasferito in un unico argomento [Autenticazione/autorizzazione del servizio app](../app-service/app-service-authentication-overview.md) , che illustra l'autenticazione e l'autorizzazione per app Web, app per dispositivi mobili e app per le API.
 > 
 > 
 
-L'autenticazione del servizio App / autorizzazione è una funzionalità che consente l'applicazione toolog gli utenti senza modifiche del codice necessario nel back-end app hello. Fornisce un modo semplice di tooprotect dell'applicazione e il lavoro con i dati per ogni utente.
+L'autenticazione / autorizzazione del servizio App è una funzionalità che consente all'applicazione di far accedere utenti senza necessità di apportare modifiche al codice nel back-end dell’app. Fornisce un modo semplice per proteggere l'applicazione e utilizzare dati per-utente.
 
-Servizio App Usa identità federate, in cui un parti 3rd **provider di identità** ("IDP") archivia gli account autentica gli utenti, e un'applicazione hello utilizza questa identità anziché il proprio. Servizio App supporta cinque provider di identità predefinito hello: *Azure Active Directory*, *Facebook*, *Google*, *Account Microsoft*, e *Twitter*. È anche possibile espandere il supporto per le app integrando un altro provider di identità o una soluzione di identità personalizzata.
+Il servizio App usa identità federate, in cui un **provider di identità** di terze parti ("IDP") archivia account e autentica utenti e l'applicazione utilizza questa identità anziché la propria. Il servizio app supporta cinque provider di identità predefiniti: *Azure Active Directory*, *Facebook*, *Google*, *Microsoft Account* e *Twitter*. È anche possibile espandere il supporto per le app integrando un altro provider di identità o una soluzione di identità personalizzata.
 
 L’app può utilizzare un numero qualsiasi di questi provider di identità, pertanto è possibile offrire agli utenti finali diverse opzioni di modalità di accesso.
 
-Se si desidera tooget adesso, vedere una delle seguenti esercitazioni hello:
+Se si desidera iniziare subito, vedere una delle esercitazioni seguenti:
 
-* [Aggiungere app per iOS tooyour autenticazione]
-* [Aggiungere app xamarin tooyour di autenticazione]
-* [Aggiungere app xamarin tooyour di autenticazione]
-* [Aggiungere app di Windows Authentication tooyour]
+* [Aggiungere l'autenticazione all'app iOS]
+* [Aggiungere l'autenticazione all'app Xamarin.iOS]
+* [Aggiungere l'autenticazione all'app Xamarin.Android]
+* [Aggiungere l'autenticazione all'app Windows]
 
 ## <a name="how-authentication-works"></a>Funzionamento dell'autenticazione
-In ordine tooauthenticate utilizzando uno dei provider di identità hello, è necessario innanzitutto tooconfigure hello identity provider tooknow sull'applicazione. provider di identità Hello quindi fornirà gli ID e i segreti di fornire applicazioni toohello indietro. Questo completa la relazione di trust hello e tooit identità fornite toovalidate di servizio App.
+Per l'autenticazione tramite uno dei provider di identità, è necessario innanzitutto configurare il provider di identità per l'applicazione. Il provider di identità quindi fornirà gli ID e i segreti da rimandare all'applicazione. Questo completa la relazione di trust e consente al servizio App di convalidare l'identità fornita.
 
-Questi passaggi vengono descritti in dettaglio in hello seguenti argomenti:
+Questi passaggi vengono descritti negli argomenti seguenti:
 
-* [Come tooconfigure l'accesso di Azure Active Directory toouse app]
-* [Come tooconfigure l'account di accesso Facebook toouse app]
-* [Come tooconfigure l'account di accesso Google toouse app]
-* [Come tooconfigure l'account di accesso di app toouse Account Microsoft]
-* [Come tooconfigure l'account di accesso Twitter toouse app]
+* [Come configurare un'applicazione per usare l'account di accesso di Azure Active Directory]
+* [Come configurare un'applicazione per usare l'account di accesso di Facebook]
+* [Come configurare un'applicazione per usare l'account di accesso di Google]
+* [Come configurare un'applicazione per usare l'account di accesso Microsoft]
+* [Come configurare un'applicazione per usare l'account di accesso di Twitter]
 
-Dopo aver configurato tutti gli elementi nel back-end hello, è possibile modificare il toolog client in. Di seguito, sono disponibili due approcci:
+Dopo che sono state effettuate tutte le configurazioni nel back-end, è possibile modificare il client per l’accesso. Di seguito, sono disponibili due approcci:
 
-* Usando una singola riga di codice, consentire hello App per dispositivi mobili client SDK accedere gli utenti.
-* Sfruttare un SDK pubblicato da un'identità tooestablish provider di identità specificata e quindi ottenere accesso tooApp servizio.
+* Utilizzo di una singola riga di codice che consentire all’SDK del client di App per dispositivi mobili di fare accedere gli utenti.
+* Utilizzo di un SDK pubblicato da un provider di identità specificata per stabilire l'identità e quindi accedere al servizio App.
 
 > [!TIP]
-> La maggior parte delle applicazioni devono utilizzare un tooget SDK provider un'esperienza di accesso più nativo-sensazione e supporto dell'aggiornamento tooleverage e altri vantaggi specifici del provider.
+> La maggior parte delle applicazioni devono utilizzare un provider SDK per ottenere un'esperienza di accesso più nativa e sfruttare il supporto dell’aggiornamento e altri vantaggi specifici del provider.
 > 
 > 
 
 ### <a name="how-authentication-without-a-provider-sdk-works"></a>Funzionamento dell'autenticazione senza un SDK del provider
-Se non si desidera tooset di un provider SDK, è possibile consentire l'accesso hello tooperform di App per dispositivi mobili per l'utente. il client di App per dispositivi mobili Hello SDK verrà aperto un provider di toohello visualizzazione web l'accesso hello scelta e completo. Occasionalmente su blog e forum che verrà visualizzato questo cui tooas hello "flusso server" o "indirizzate al server di flusso" perché il server di hello gestisce accesso hello e client hello SDK non riceve mai il token provider hello.
+Se non si desidera configurare un SDK del provider, è possibile consentire ad App per dispositivi mobili di eseguire l'accesso per l'utente. L'SDK client delle app per dispositivi mobili aprirà una visualizzazione web per il provider scelto e completerà l'accesso. In alcuni casi su blog e forum questo verrà definito "flusso server" o "flusso verso il server", perché il server gestisce l'accesso e l'SDK del client non riceve mai il token del provider.
 
-codice Hello necessario toostart che questo flusso è coperto nell'esercitazione di autenticazione hello per ogni piattaforma. Alla fine hello flusso hello, hello client SDK dispone di un token di servizio App e token hello viene automaticamente collegato tooall back-end toohello di richieste.
+Il codice necessario per avviare questo flusso è illustrato nell'esercitazione di autenticazione per ogni piattaforma. Alla fine del flusso, l’SDK del client dispone di un token del servizio App e il token viene associato automaticamente a tutte le richieste per il back-end.
 
 ### <a name="how-authentication-with-a-provider-sdk-works"></a>Funzionamento dell'autenticazione con un SDK del provider
-Utilizzo di un provider SDK consente hello esperienza log toointeract più rigoroso con piattaforma hello app hello del sistema operativo è in esecuzione in. Inoltre, offre un token del provider e alcune informazioni utente sul client hello, che rende molto più semplice grafico tooconsume API e personalizzare l'esperienza utente hello. Occasionalmente su blog e forum verrà visualizzato questo hello tooas denominata "flusso client" o "diretta dal client flusso" dal codice client hello è gestione degli account di accesso hello e token di accesso tooa provider dispone di codice hello del client.
+L'uso di un SDK del provider consente all'esperienza di accesso di interagire più strettamente con la piattaforma del sistema operativo su cui è in esecuzione l'app. Inoltre, offre un token del provider e alcune informazioni utente sul client, che rende molto più semplice utilizzare le API Graph e personalizzare l'esperienza utente. In alcuni casi su blog e forum questo verrà definito come “flusso client" o "flusso verso il client" poichè il codice sul client gestisce l'accesso e il codice client ha accesso a un token del provider.
 
-Dopo aver ottenuto un token del provider, è necessario che toobe inviati tooApp servizio per la convalida. Alla fine hello flusso hello, hello client SDK dispone di un token di servizio App e token hello viene automaticamente collegato tooall back-end toohello di richieste. sviluppatore Hello può inoltre includere un token di riferimento toohello provider, se richiesto.
+Dopo aver ottenuto un token del provider, deve essere inviato al servizio App per la convalida. Alla fine del flusso, l’SDK del client dispone di un token del servizio App e il token viene associato automaticamente a tutte le richieste per il back-end. Lo sviluppatore, se vuole, può anche memorizzare un riferimento al token del provider:
 
 ## <a name="how-authorization-works"></a>Funzionamento dell’autorizzazione
-L'autenticazione del servizio App / autorizzazione espone diverse opzioni per **tootake azione quando la richiesta non è autenticata**. Prima che il codice riceva una determinata richiesta, possono avere toosee controllo servizio App se hello richiesta è autenticata e in caso contrario, Rifiuta e tentare di toohave hello accesso degli utenti prima di riprovare.
+L'autenticazione / autorizzazione del servizio App espone diverse opzioni relative all’ **Azione da intraprendere quando la richiesta non è autenticata**. Prima che il codice ricevi una richiesta specifica, è possibile verificare il servizio App per vedere se la richiesta viene autenticata e se non, rifiutarla e tentare di richiedere all'utente di accedere prima di riprovare.
 
-Un'opzione è tooone hello del provider di identità di reindirizzare le richieste autenticate toohave. In un web browser, questa operazione richiederebbe effettivamente nuova pagina tooa utente hello. Tuttavia, in questo modo il client per dispositivi mobili non può essere reindirizzato e le risposte non autenticate riceveranno una risposta HTTP *401 - Non autorizzato*. Detto questo, il client effettua la richiesta prima hello deve essere sempre toohello endpoint di accesso e apportare quindi chiama tooany altre API. Se si tenta un'altra API toocall prima di accedere, il client riceverà un errore.
+Una possibilità consiste nel reindirizzare le richieste non autenticate a uno dei provider di identità. In un browser web, questa operazione porterebbe effettivamente l'utente in una nuova pagina. Tuttavia, in questo modo il client per dispositivi mobili non può essere reindirizzato e le risposte non autenticate riceveranno una risposta HTTP *401 - Non autorizzato*. Detto questo, la prima richiesta che il client esegue dovrebbe sempre essere diretta all'endpoint di accesso e successivamente sarà possibile effettuare chiamate a qualsiasi altra API. Se si tenta di chiamare un'altra API prima dell'accesso, il client riceverà un errore.
 
-Se si desidera più granulare toohave controllare su quali endpoint richiede l'autenticazione, è anche possibile selezionare "Nessuna azione (Consenti richiesta)" per le richieste non autenticate. In questo caso, tutte le decisioni di autenticazione vengono posticipate tooyour codice dell'applicazione. Ciò consente inoltre agli utenti di toospecific tooallow accesso in base alle regole di autorizzazione personalizzato.
+Se si desidera avere un controllo più granulare su quali endpoint richiedono l'autenticazione, è inoltre possibile selezionare "Nessuna azione (consentire richiesta)" per le richieste non autenticate. In questo caso, tutte le decisioni relative all’autenticazione vengono rinviate al codice dell'applicazione. Ciò consente anche di consentire l'accesso a utenti specifici in base a regole di autorizzazione personalizzate.
 
 ## <a name="documentation"></a>Documentazione
-Hello seguenti esercitazioni Mostra come tooadd autenticazione tooyour client mobili tramite il servizio App:
+Le esercitazioni seguenti illustrano come aggiungere l’autenticazione ai client mobili mediante il servizio app:
 
-* [Aggiungere app per iOS tooyour autenticazione]
-* [Aggiungere app xamarin tooyour di autenticazione]
-* [Aggiungere app xamarin tooyour di autenticazione]
-* [Aggiungere app di Windows Authentication tooyour]
+* [Aggiungere l'autenticazione all'app iOS]
+* [Aggiungere l'autenticazione all'app Xamarin.iOS]
+* [Aggiungere l'autenticazione all'app Xamarin.Android]
+* [Aggiungere l'autenticazione all'app Windows]
 
-Hello seguenti esercitazioni Mostra come provider di autenticazione diversi tooleverage tooconfigure servizio App:
+Le esercitazioni seguenti illustrano come configurare il servizio App per sfruttare provider di autenticazione diversi:
 
-* [Come tooconfigure l'accesso di Azure Active Directory toouse app]
-* [Come tooconfigure l'account di accesso Facebook toouse app]
-* [Come tooconfigure l'account di accesso Google toouse app]
-* [Come tooconfigure l'account di accesso di app toouse Account Microsoft]
-* [Come tooconfigure l'account di accesso Twitter toouse app]
+* [Come configurare un'applicazione per usare l'account di accesso di Azure Active Directory]
+* [Come configurare un'applicazione per usare l'account di accesso di Facebook]
+* [Come configurare un'applicazione per usare l'account di accesso di Google]
+* [Come configurare un'applicazione per usare l'account di accesso Microsoft]
+* [Come configurare un'applicazione per usare l'account di accesso di Twitter]
 
-Se si desidera toouse un sistema di identità diverso da hello quelle fornite in questo caso, è anche possibile sfruttare hello [anteprima supporto dell'autenticazione personalizzata hello .NET Server SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#custom-auth).
+Se si desidera utilizzare un sistema di identità diverso da quelli qui forniti, è anche possibile sfruttare l’ [Anteprima supporto per l'autenticazione personalizzata nell’SDK del server .NET](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#custom-auth).
 
-[Aggiungere app per iOS tooyour autenticazione]: app-service-mobile-ios-get-started-users.md
-[Aggiungere app xamarin tooyour di autenticazione]: app-service-mobile-xamarin-ios-get-started-users.md
-[Aggiungere app xamarin tooyour di autenticazione]: app-service-mobile-xamarin-android-get-started-users.md
-[Aggiungere app di Windows Authentication tooyour]: app-service-mobile-windows-store-dotnet-get-started-users.md
+[Aggiungere l'autenticazione all'app iOS]: app-service-mobile-ios-get-started-users.md
+[Aggiungere l'autenticazione all'app Xamarin.iOS]: app-service-mobile-xamarin-ios-get-started-users.md
+[Aggiungere l'autenticazione all'app Xamarin.Android]: app-service-mobile-xamarin-android-get-started-users.md
+[Aggiungere l'autenticazione all'app Windows]: app-service-mobile-windows-store-dotnet-get-started-users.md
 
-[Come tooconfigure l'accesso di Azure Active Directory toouse app]: app-service-mobile-how-to-configure-active-directory-authentication.md
-[Come tooconfigure l'account di accesso Facebook toouse app]: app-service-mobile-how-to-configure-facebook-authentication.md
-[Come tooconfigure l'account di accesso Google toouse app]: app-service-mobile-how-to-configure-google-authentication.md
-[Come tooconfigure l'account di accesso di app toouse Account Microsoft]: app-service-mobile-how-to-configure-microsoft-authentication.md
-[Come tooconfigure l'account di accesso Twitter toouse app]: app-service-mobile-how-to-configure-twitter-authentication.md
+[Come configurare un'applicazione per usare l'account di accesso di Azure Active Directory]: ../app-service/app-service-mobile-how-to-configure-active-directory-authentication.md
+[Come configurare un'applicazione per usare l'account di accesso di Facebook]: ../app-service/app-service-mobile-how-to-configure-facebook-authentication.md
+[Come configurare un'applicazione per usare l'account di accesso di Google]: ../app-service/app-service-mobile-how-to-configure-google-authentication.md
+[Come configurare un'applicazione per usare l'account di accesso Microsoft]: ../app-service/app-service-mobile-how-to-configure-microsoft-authentication.md
+[Come configurare un'applicazione per usare l'account di accesso di Twitter]: ../app-service/app-service-mobile-how-to-configure-twitter-authentication.md

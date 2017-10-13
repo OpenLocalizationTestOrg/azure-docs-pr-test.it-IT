@@ -1,6 +1,6 @@
 ---
-title: aaaDebug l'applicazione dell'infrastruttura del servizio di Azure in Eclipse | Documenti Microsoft
-description: "Migliorare hello affidabilità e prestazioni dei servizi, sviluppo e il debug in Eclipse in un cluster di sviluppo locale."
+title: Eseguire il debug dell'applicazione Azure Service Fabric in Eclipse | Microsoft Docs
+description: "Migliorare l'affidabilità e le prestazioni dei servizi sviluppandoli ed eseguendone il debug in Eclipse in un cluster di sviluppo locale."
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/10/2017
 ms.author: vturecek;mikhegn
-ms.openlocfilehash: ab86254a5c312db40fd631746c89aab0bbb9d1a4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f3bcee3794de35005bd387ecfae7e6707f3cb5ee
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="debug-your-java-service-fabric-application-using-eclipse"></a>Eseguire il debug dell'applicazione Service Fabric di Java con Eclipse
 > [!div class="op_single_selector"]
@@ -26,26 +26,26 @@ ms.lasthandoff: 10/06/2017
 > * [Eclipse/Java](service-fabric-debugging-your-application-java.md)
 > 
 
-1. Avviare un cluster di sviluppo locale seguendo i passaggi di hello in [impostazione dell'ambiente di sviluppo di Service Fabric](service-fabric-get-started-linux.md).
+1. Avviare un cluster di sviluppo locale seguendo la procedura descritta nell'articolo [Configurazione dell'ambiente di sviluppo di Service Fabric](service-fabric-get-started-linux.md).
 
-2. Aggiornare entryPoint.sh del servizio hello desiderato toodebug, in modo che inizi il processo di java hello con i parametri di eseguire il debug remoto. Questo file è reperibile in hello seguente posizione: ``ApplicationName\ServiceNamePkg\Code\entrypoint.sh``. In questo esempio la porta 8001 è impostata per il debug.
+2. Aggiornare l'elemento entryPoint.sh del servizio di cui eseguire il debug in modo che avvii il processo Java con i parametri di debug remoto. Questo file si trova nel percorso seguente: ``ApplicationName\ServiceNamePkg\Code\entrypoint.sh``. In questo esempio la porta 8001 è impostata per il debug.
 
     ```sh
     java -Xdebug -Xrunjdwp:transport=dt_socket,address=8001,server=y,suspend=y -Djava.library.path=$LD_LIBRARY_PATH -jar myapp.jar
     ```
-3. Aggiornare il manifesto dell'applicazione hello impostando il numero di istanze di hello o hello conteggio di replica per il servizio di hello che è in corso il debug too1. Questa impostazione consente di evitare conflitti per la porta hello che viene utilizzato per il debug. Ad esempio, per i servizi senza stati, impostare ``InstanceCount="1"`` e per i servizi con stati replica di destinazione e min hello set too1 dimensioni nel seguente modo: `` TargetReplicaSetSize="1" MinReplicaSetSize="1"``.
+3. Aggiornare il manifesto dell'applicazione impostando il numero di istanze o di repliche per il servizio di cui eseguire il debug su 1. Questa impostazione evita che si verifichino conflitti per la porta usata per il debug. Per i servizi senza stato, ad esempio, impostare ``InstanceCount="1"``, mentre per i servizi con stato impostare la destinazione e le dimensioni minime del set di repliche su 1 nel modo seguente: `` TargetReplicaSetSize="1" MinReplicaSetSize="1"``.
 
-4. Distribuire un'applicazione hello.
+4. Distribuire l'applicazione.
 
-5. Nell'IDE di Eclipse hello, selezionare **esecuzione -> Debug Configurations -> applicazione Java remota e le proprietà di connessione di input** e impostare le proprietà di hello come indicato di seguito:
+5. Nell'IDE di Eclipse selezionare **Run (Esegui) -> Debug Configurations (Configurazioni di debug) -> Remote Java Application (Applicazione Java remota) e le proprietà di connessione di input** e impostare le proprietà come segue:
 
    ```
    Host: ipaddress
    Port: 8001
    ```
-6.  Impostare punti di interruzione in punti desiderati ed eseguire il debug di un'applicazione hello.
+6.  Impostare punti di interruzione nei punti desiderati ed eseguire il debug dell'applicazione.
 
-Se un'applicazione hello è arrestato in modo anomalo, è inoltre possibile tooenable coredumps. Eseguire ``ulimit -c`` in una shell e, se viene restituito 0, gli elementi core dump non sono abilitati. tooenable coredumps illimitato, eseguire hello comando seguente: ``ulimit -c unlimited``. È inoltre possibile verificare lo stato di hello utilizzando il comando hello ``ulimit -a``.  Se si desidera percorso di generazione tooupdate hello coredump, eseguire ``echo '/tmp/core_%e.%p' | sudo tee /proc/sys/kernel/core_pattern``. 
+Se l'applicazione si arresta in modo anomalo, è possibile abilitare elementi core dump. Eseguire ``ulimit -c`` in una shell e, se viene restituito 0, gli elementi core dump non sono abilitati. Per abilitare elementi core dump illimitati, eseguire questo comando: ``ulimit -c unlimited``. È anche possibile verificare lo stato usando il comando ``ulimit -a``.  Se si vuole aggiornare il percorso di generazione degli elementi core dump, eseguire ``echo '/tmp/core_%e.%p' | sudo tee /proc/sys/kernel/core_pattern``. 
 
 ### <a name="next-steps"></a>Passaggi successivi
 

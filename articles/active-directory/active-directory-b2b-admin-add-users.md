@@ -1,6 +1,6 @@
 ---
-title: aaaHow fare admins aggiungere Azure Active Directory gli utenti di collaborazione B2B? | Microsoft Docs
-description: "Un amministratore può aggiungere tooyour utenti guest Azure AD da un'organizzazione partner utilizzando collaborazione B2B di Azure Active Directory."
+title: Procedura di aggiunta di utenti di Collaborazione B2B ad Azure Active Directory da parte degli amministratori | Microsoft Docs
+description: "Un amministratore può aggiungere utenti guest ad Azure AD da un'organizzazione partner usando la Collaborazione B2B di Azure Active Directory."
 services: active-directory
 documentationcenter: 
 author: sasubram
@@ -15,40 +15,40 @@ ms.tgt_pltfrm: NA
 ms.workload: identity
 ms.date: 03/15/2017
 ms.author: sasubram
-ms.openlocfilehash: 7bf9906bcb0e1aad67187a67ae61127b8ce4cdec
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7f33165141f31c1b495313f2da0d6e4681bdf8f2
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="how-do-azure-active-directory-admins-add-b2b-collaboration-users"></a>Procedura di aggiunta di utenti di Collaborazione B2B ad Azure Active Directory da parte degli amministratori
 
-Gli amministratori globali e limitato gli amministratori possono utilizzare hello [portale di Azure](https://portal.azure.com) tooinvite B2B directory toohello di collaborazione agli utenti, gruppo tooany o tooany applicazione.
+Gli amministratori globali e gli amministratori con limitazioni possono usare il [portale di Azure](https://portal.azure.com) per invitare gli utenti di Collaborazione B2B alla directory, a un gruppo o a un'applicazione.
 
-## <a name="admins-adding-guest-users-toohello-directory"></a>Directory toohello gli utenti amministratori aggiunta guest
-Aggiungere directory toohello users di collaborazione B2B come amministratore di Azure AD, come illustrato nell'esempio hello video:
+## <a name="admins-adding-guest-users-to-the-directory"></a>Aggiunta di utenti guest alla directory da parte degli amministratori
+Aggiungere utenti di Collaborazione B2B alla directory come amministratore di Azure AD, come illustrato nel video seguente:
 
 >[!VIDEO https://channel9.msdn.com/Blogs/Azure/Admin-adding-guests-for-B2B-collaboration-to-Azure-AD-tenant/Player]
 
 
-## <a name="admins-adding-guest-users-tooa-group"></a>Gruppo di amministratori aggiungendo guest utenti tooa
-Aggiungi gruppo tooa agli utenti di collaborazione B2B come amministratore AD Azure, come illustrato nell'esempio hello video:
+## <a name="admins-adding-guest-users-to-a-group"></a>Aggiunta di utenti guest a un gruppo da parte degli amministratori
+Aggiungere utenti di Collaborazione B2B a un gruppo come amministratore di Azure AD, come illustrato nel video seguente:
 
 >[!VIDEO https://channel9.msdn.com/Blogs/Azure/admin-adding-guests-to-a-group/Player]
 
 
-## <a name="admins-adding-guest-users-tooan-application"></a>Aggiunta di applicazione di tooan utenti guest Admins
+## <a name="admins-adding-guest-users-to-an-application"></a>Aggiunta di utenti guest a un'applicazione da parte degli amministratori
 
-Aggiungere l'applicazione tooan utenti di collaborazione B2B come amministratore di Azure AD, come illustrato nell'esempio hello video:
+Aggiungere utenti di Collaborazione B2B a un'applicazione come amministratore di Azure AD, come illustrato nel video seguente:
 
 >[!VIDEO https://channel9.msdn.com/Blogs/Azure/admin-assign-b2b-to-apps/Player]
 
-## <a name="admins-resending-invitations-tooguest-users"></a>Nuovo invio di inviti tooguest utenti amministratori
-È possibile passare pagina profilo dell'utente collaborazione B2B di tooa e inviare nuovamente gli utenti di inviti tooany guest non ancora recuperato:
+## <a name="admins-resending-invitations-to-guest-users"></a>Amministratori che inviano un nuovo invito agli utenti guest
+È possibile passare alla pagina del profilo di un utente di Collaborazione B2B e inviare nuovamente gli inviti a utenti guest non ancora riscattati:
 
 ![nuovo invio dell'invito](./media/active-directory-b2b-admin-add-users/resend-invitation.png)
 
-> ! [NOTA] Se si invia di nuovo inviti, invito hello viene inviato hello utente connesso tooindividual utenti anche se è stato inviato invito originale hello tooa specifica app o un gruppo.
+> ![NOTA] In caso di nuovo invio, l'invito viene inviato all'utente connesso a singoli utenti anche se l'invito originale è stato inviato a un'app o a un gruppo specifico.
 
 
 ## <a name="related-articles"></a>Articoli correlati
@@ -56,8 +56,8 @@ Aggiungere l'applicazione tooan utenti di collaborazione B2B come amministratore
 Vedere gli altri articoli su Azure AD B2B Collaboration.
 
 * [Che cos'è Azure AD B2B Collaboration?](active-directory-b2b-what-is-azure-ad-b2b.md)
-* [Procedura per aggiungere utenti di Collaborazione B2B da parte di Information Worker](active-directory-b2b-iw-add-users.md)
-* [elementi Hello di posta elettronica di invito collaborazione B2B di hello](active-directory-b2b-invitation-email.md)
+* [Procedura di aggiunta di utenti di Collaborazione B2B da parte di information worker](active-directory-b2b-iw-add-users.md)
+* [Elementi del messaggio di posta elettronica di invito per la Collaborazione B2B](active-directory-b2b-invitation-email.md)
 * [Riscatto dell'invito di Collaborazione B2B](active-directory-b2b-redemption-experience.md)
 * [Licenze per la Collaborazione B2B di Azure AD](active-directory-b2b-licensing.md)
 * [Risoluzione dei problemi di Collaborazione B2B di Azure Active Directory](active-directory-b2b-troubleshooting.md)

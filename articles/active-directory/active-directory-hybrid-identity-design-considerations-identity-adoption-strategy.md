@@ -1,6 +1,6 @@
 ---
-title: "Considerazioni di progettazione identità ibrida Active Directory aaaAzure - definire una strategia di adozione di identità ibrida | Documenti Microsoft"
-description: "Con il controllo di accesso condizionale, Azure Active Directory verifica specifiche condizioni hello selezionate per l'autenticazione utente hello e prima di consentire l'accesso toohello applicazione. Quando queste condizioni sono soddisfatte, l'utente di hello è autenticato e accesso toohello applicazione consentita."
+title: "Considerazioni di progettazione per la soluzione ibrida di gestione delle identità di Azure Active Directory: definire la strategia di adozione della soluzione ibrida di gestione delle identità | Documentazione Microsoft"
+description: Il controllo di accesso condizionale consente ad Azure Active Directory di controllare le condizioni specifiche definite durante l'autenticazione dell'utente e prima di consentire l'accesso all'applicazione. Se tali condizioni vengono soddisfatte, l'utente viene autenticato e gli viene consentito l'accesso all'applicazione.
 documentationcenter: 
 services: active-directory
 author: billmath
@@ -14,54 +14,54 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/18/2017
 ms.author: billmath
-ms.openlocfilehash: 9ffca675d0c714392adfcbbc4dcfad12fccbac78
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 2c57b394beb6382807a4c8c83de975a0ae68d726
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="define-a-hybrid-identity-adoption-strategy"></a>Definire una strategia di adozione della soluzione ibrida di gestione delle identità
-In questa attività verranno definite strategia di adozione identità ibrida hello ai ibrida identità soluzione toomeet hello requisiti aziendali che sono stati descritti in:
+In questa attività verrà definita la strategia di adozione della soluzione ibrida di gestione delle identità in modo che soddisfi i requisiti aziendali definiti in:
 
 * [Determinare le esigenze aziendali](active-directory-hybrid-identity-design-considerations-business-needs.md)
 * [Determinare i requisiti di sincronizzazione della directory](active-directory-hybrid-identity-design-considerations-directory-sync-requirements.md)
 * [Determinare i requisiti di autenticazione a più fattori](active-directory-hybrid-identity-design-considerations-multifactor-auth-requirements.md)
 
 ## <a name="define-business-needs-strategy"></a>Definire la strategia in base alle esigenze aziendali
-prima attività Hello indirizzi determinare le esigenze aziendali organizzazioni hello.  È necessario prestare particolare attenzione per non correre il rischio di ampliare eccessivamente l'ambito.  In inizio hello mantenerla semplice, ma è sempre necessario tooplan per una progettazione che verrà contenere e semplificarne la modifica in hello future.  Indipendentemente dal fatto che si tratti di una struttura semplice o uno estremamente complesso, Azure Active Directory è piattaforma di Microsoft Identity hello che supporta Office 365, Microsoft Online Services e applicazioni cloud.
+Questa prima attività prevede la determinazione delle esigenze aziendali dell'organizzazione.  È necessario prestare particolare attenzione per non correre il rischio di ampliare eccessivamente l'ambito.  Iniziare da un progetto semplice che possa tuttavia essere adattato e modificato con facilità in futuro.  Indipendentemente dal tipo di progetto, semplice o estremamente complesso, Azure Active Directory è la piattaforma di gestione delle identità Microsoft che supporta Office 365, Microsoft Online Services e applicazioni compatibili con il cloud.
 
 ## <a name="define-an-integration-strategy"></a>Definire una strategia di integrazione
-Microsoft ha previsto tre principali scenari di integrazione, ovvero identità cloud, identità sincronizzate e identità federate.  È necessario valutare l'adozione di una di queste strategie di integrazione.  Hello strategia scelta può variare e includere le decisioni di hello nella scelta di uno, il tipo dell'esperienza utente di cui si desidera tooprovide, si dispone di alcuni dell'infrastruttura esistente di hello già sul posto e novità hello conveniente.  
+Microsoft ha previsto tre principali scenari di integrazione, ovvero identità cloud, identità sincronizzate e identità federate.  È necessario valutare l'adozione di una di queste strategie di integrazione.  La strategia scelta può variare e le decisioni che intervengono nel processo decisionale possono basarsi sul tipo di esperienza utente che si vuole offrire, sull'eventuale infrastruttura esistente e sulla soluzione più conveniente in termini di costi.  
 
 ![](./media/hybrid-id-design-considerations/integration-scenarios.png)
 
-gli scenari di Hello definiti nelle hello sopra figura sono:
+Gli scenari definiti nella figura precedente sono:
 
-* **Identità cloud**: si tratta di identità che esiste solo nel cloud di hello.  Nel caso di hello di Azure AD, sarebbe risiedono in particolare in directory di Azure AD.
-* **Sincronizzato**: si tratta di identità che esistono in locale e nel cloud hello.  Grazie ad Azure AD Connect, questi utenti vengono creati o associati ad account Azure AD esistenti.  Hello hash della password dell'utente sincronizzati dal cloud di toohello ambiente locale hello in quello che viene definito un hash della password.  Durante la sincronizzazione con un'avvertenza hello è che se un utente è disabilitato in hello nell'ambiente locale, può richiedere ore too3 per tale tooshow stato account in Azure AD.  Ciò è dovuto toohello intervallo di tempo di sincronizzazione.
-* **Federati**: queste identità esistono sia in locale e nel cloud hello.  Grazie ad Azure AD Connect, questi utenti vengono creati o associati ad account Azure AD esistenti.  
+* **Identità cloud**: si tratta di identità che esistono solo nel cloud.  Nel caso di Azure AD, risiedono nella directory di Azure AD dell'organizzazione.
+* **Identità sincronizzate**: si tratta di identità che esistono sia in locale che nel cloud.  Grazie ad Azure AD Connect, questi utenti vengono creati o associati ad account Azure AD esistenti.  L'hash della password dell'utente viene sincronizzato dall'ambiente locale al cloud in ciò che viene chiamato un hash della password.  Lo svantaggio di questa soluzione è che se un utente viene disabilitato nell'ambiente locale, la visualizzazione dello stato dell'account aggiornato in Azure AD può richiedere fino a 3 ore.  Questo è dovuto all'intervallo di tempo del processo di sincronizzazione.
+* **Identità federate**: si tratta di identità che esistono sia in locale che nel cloud.  Grazie ad Azure AD Connect, questi utenti vengono creati o associati ad account Azure AD esistenti.  
 
 > [!NOTE]
-> Per ulteriori informazioni sulle opzioni di sincronizzazione hello leggere [integrazione delle identità locali con Azure Active Directory](connect/active-directory-aadconnect.md).
+> Per altre informazioni sulle opzioni di sincronizzazione, vedere [Integrazione delle identità locali con Azure Active Directory](connect/active-directory-aadconnect.md).
 > 
 > 
 
-Consente di determinare hello vantaggi e svantaggi di ognuna delle seguenti strategie hello Hello nella tabella seguente:
+La tabella seguente consente di determinare i vantaggi e gli svantaggi di ognuna delle strategie seguenti:
 
 | Strategia | Vantaggi | Svantaggi: |
 | --- | --- | --- |
-| **Identità cloud** |Toomanage più semplice per l'organizzazione di piccole dimensioni. <br> Non è necessario disporre di hardware aggiuntive di tooinstall No in locale<br>Se l'utente hello lascia la società hello facilmente disabilitata |Gli utenti dovranno toosign-in quando si accede a carichi di lavoro nel cloud hello <br> Le password possono o non sia uguale hello per le identità cloud e locali |
-| **Identità sincronizzate** |La password locale consente di eseguire l'autenticazione sia alla directory locale che alla directory cloud  <br>Toomanage più semplice per le organizzazioni di piccole, medie o grandi dimensioni <br>Gli utenti possono usufruire dell'accesso Single Sign-On per alcune risorse <br> Metodo preferito di Microsoft per la sincronizzazione <br> Toomanage semplice |Alcuni clienti potrebbero essere riluttanti toosynchronize le directory con hello cloud a causa di polizia specifico della società |
-| **Federato** |Gli utenti possono usufruire dell'accesso Single Sign-On  <br>Se un utente viene terminato o si lascia, hello account può essere disabilitato immediatamente e revocato l'accesso,<br> Supporta scenari avanzati che non sono disponibili con le identità sincronizzate |I passaggi più toosetup e configurare <br> Manutenzioni superiori <br> Potrebbe essere necessario hardware aggiuntivo infrastruttura STS hello <br> Può richiedere server federativo di hello tooinstall hardware aggiuntivo. Se si utilizza ADFS, è necessario software aggiuntivo <br> È richiesta una configurazione estesa per SSO <br> Punto di errore critico di errore se il server federativo hello è attivo, gli utenti non saranno in grado di tooauthenticate |
+| **Identità cloud** |Più facile da gestire per le organizzazioni di piccole dimensioni. <br> Niente da installare in locale, nessun hardware aggiuntivo necessario<br>Facile da disabilitare se l'utente lascia la società |Gli utenti devono eseguire l'accesso per usare i carichi di lavoro nel cloud  <br> Le password per le identità cloud e locale possono essere uguali oppure no |
+| **Identità sincronizzate** |La password locale consente di eseguire l'autenticazione sia alla directory locale che alla directory cloud  <br>Più facile da gestire per le organizzazioni di piccole, medie o grandi dimensioni <br>Gli utenti possono usufruire dell'accesso Single Sign-On per alcune risorse <br> Metodo preferito di Microsoft per la sincronizzazione <br> Più facile da gestire |Alcuni clienti possono essere riluttanti a sincronizzare le directory con il cloud a causa di criteri specifici della società |
+| **Federato** |Gli utenti possono usufruire dell'accesso Single Sign-On  <br>Se un utente cessa di lavorare in azienda, l'account viene disabilitato immediatamente e l'accesso revocato,<br> Supporta scenari avanzati che non sono disponibili con le identità sincronizzate |Altri passaggi di configurazione <br> Manutenzioni superiori <br> Può richiedere hardware aggiuntivo per l'infrastruttura del servizio token di sicurezza <br> Può richiedere hardware aggiuntivo per installare il server federativo. Se si usa AD FS è necessario software aggiuntivo <br> È richiesta una configurazione estesa per SSO <br> Punto critico di errore se il server federativo è inattivo, gli utenti non potranno eseguire l'autenticazione |
 
 ### <a name="client-experience"></a>Esperienza client
-strategia di Hello utilizzate determineranno l'esperienza di accesso utente hello.  Hello tabelle seguenti forniscono informazioni su quali utenti hello dovrebbero loro Accedi riscontrarsi toobe.  Si noti che non tutti i provider di identità federate supportano l'accesso Single Sign-On in tutti gli scenari.
+La strategia scelta determinerà l'esperienza di accesso per gli utenti.  Le tabelle seguenti forniscono informazioni su ciò che gli utenti dovranno aspettarsi dall'esperienza di accesso.  Si noti che non tutti i provider di identità federate supportano l'accesso Single Sign-On in tutti gli scenari.
 
 **Applicazioni di rete privata e aggiunte a un dominio**:
 
 |  | Identità sincronizzata | Identità federata |
 | --- | --- | --- |
-| Web browser |Autenticazione basata su form |l'accesso Single sign in, a volte necessari l'ID organizzazione toosupply |
+| Web browser |Autenticazione basata su form |Single Sign-On, potrebbe essere richiesto di fornire l'ID aziendale |
 | Outlook |Richiesta di credenziali |Richiesta di credenziali |
 | Skype for Business (Lync) |Richiesta di credenziali |Single Sign-On per Lync, richiesta di credenziali per Exchange |
 | OneDrive for Business |Richiesta di credenziali |Single Sign-On |
@@ -76,41 +76,41 @@ strategia di Hello utilizzate determineranno l'esperienza di accesso utente hell
 | Exchange ActiveSync |Richiesta di credenziali |Single Sign-On per Lync, richiesta di credenziali per Exchange |
 | App per dispositivi mobili |Richiesta di credenziali |Richiesta di credenziali |
 
-Se si è stabilito dall'attività 1 di disporre di un 3rd party toouse corso IdP o sono una tooprovide federazione con Azure AD, sono necessarie funzionalità toobe comunicata hello seguenti supportati:
+Se nel corso dell'attività 1 è stato determinato che è in uso un provider di identità di terze parti o che ne verrà usato uno per la federazione con Azure AD, è necessario essere a conoscenza delle funzionalità supportate seguenti:
 
-* Può supportare qualsiasi provider SAML 2.0 che è conforme a hello profilo SP-Lite tooAzure autenticazione Active Directory e le applicazioni associate
-* Supporta passivo l'autenticazione, che facilita l'autenticazione tooOWA, Simulato, e così via.
-* I client di Exchange Online possono essere supportati tramite hello Enhanced Client profilo (ECP di SAML 2.0)
+* Qualsiasi provider SAML 2.0 conforme per il profilo SP-Lite può supportare l'autenticazione ad Azure AD e alle applicazioni associate
+* Supporta l'autenticazione passiva che semplifica l'autenticazione a Outlook Web App, SharePoint Online e così via
+* I client di Exchange Online possono essere supportati usando il profilo Enhanced Client Profile per SAML 2.0
 
 È anche importante conoscere quali funzionalità non saranno disponibili:
 
 * Senza WS-Trust/Federation tutti gli altri client attivi verranno interrotti
-  * Che indica che nessun client Lync, i client OneDrive, Office Subscription, Office Mobile precedente tooOffice 2016
-* Transizione di autenticazione toopassive Office consentiranno toosupport pure SAML 2.0 IdPs, ma il supporto sarà comunque in modo da client a
+  * Questo significa che non sarà possibile usare le versioni del client Lync, del client OneDrive, dell'abbonamento a Office e di Office Mobile precedenti a Office 2016
+* La transizione di Office all'autenticazione passiva consentirà di supportare solo provider di identità SAML 2.0, ma il supporto sarà garantito esclusivamente client per client
 
 > [!NOTE]
-> Per hello hello articolo http://aka.ms/ssoproviders leggere l'elenco più aggiornato.
+> Per l'elenco più aggiornato, vedere l'articolo http://aka.ms/ssoproviders.
 > 
 > 
 
 ## <a name="define-synchronization-strategy"></a>Definire la strategia di sincronizzazione
-In questa attività si definirà strumenti hello che verranno locale dati toohello nel cloud utilizzati toosynchronize hello organizzazione e quali topologia, è necessario utilizzare.  Poiché, la maggior parte delle organizzazioni di utilizzare Active Directory, informazioni sull'utilizzo di Azure AD Connect tooaddress hello domande viene fornite in modo dettagliato.  Per gli ambienti che non dispongono di Active Directory, informazioni sull'uso di FIM 2010 R2 oppure toohelp MIM 2016 pianificare questa strategia.  Tuttavia, nelle versioni future di Azure AD Connect supporterà directory LDAP, pertanto a seconda dell'indicatore cronologico, queste informazioni potrebbero essere in grado di tooassist.
+Questa attività permette di definire gli strumenti che verranno usati per sincronizzare i dati locali dell'organizzazione con il cloud e la topologia da adottare.  Poiché la maggior parte delle organizzazioni usa Active Directory, vengono fornite informazioni più dettagliate su come usare Azure AD Connect per rispondere alle domande precedenti.  Per gli ambienti in cui non è presente Active Directory, vengono fornite informazioni sull'uso di FIM 2010 R2 o MIM 2016 per poter pianificare questa strategia.  Tuttavia, le versioni future di Azure AD Connect supporteranno le directory LDAP, quindi, a seconda dei tempi previsti per l'adozione, è possibile che queste informazioni risultino utili.
 
 ### <a name="synchronization-tools"></a>Strumenti di sincronizzazione
-Negli anni hello, diversi strumenti di sincronizzazione sono esisteva ed è utilizzata per vari scenari.  Attualmente Azure AD Connect è hello passare tootool ideale per tutti gli scenari supportati.  Anche AAD Sync e DirSync sono ancora in circolazione e potrebbero ancora essere presenti nell'ambiente in uso. 
+Negli anni sono stati creati numerosi strumenti di sincronizzazione per diversi scenari.  Al momento, Azure AD Connect è lo strumento preferito per tutti gli scenari supportati.  Anche AAD Sync e DirSync sono ancora in circolazione e potrebbero ancora essere presenti nell'ambiente in uso. 
 
 > [!NOTE]
-> Per hello informazioni più recenti relative hello supportata funzionalità di ogni strumento, vedere [confronto degli strumenti di integrazione Directory](active-directory-hybrid-identity-design-considerations-tools-comparison.md) articolo.  
+> Per le informazioni più recenti relative alle funzionalità supportate per ogni strumento, vedere l'articolo [Confronto degli strumenti di integrazione directory](active-directory-hybrid-identity-design-considerations-tools-comparison.md) .  
 > 
 > 
 
 ### <a name="supported-topologies"></a>Topologie supportate
-Quando si definisce una strategia di sincronizzazione, deve essere determinata topologia hello utilizzata. A seconda di hello informazioni che è state definite nel passaggio 2, è possibile determinare la topologia sono uno toouse appropriato hello. Hello singola foresta, singolo topologia di Active Directory di Azure è hello più comune ed è costituito da una singola foresta di Active Directory e una singola istanza di Azure AD.  Si sta toobe utilizzato nella maggior parte degli scenari di hello e topologia hello previsto quando si utilizza l'installazione di Express la connessione AD Azure, come illustrato nella figura che segue hello.
+Quando si definisce una strategia di sincronizzazione, è necessario determinare la topologia da usare. A seconda delle informazioni definite nel passaggio 2, è possibile stabilire la topologia corretta da usare. La topologia singola di Azure AD a foresta singola è quella più comune ed è costituita da una singola foresta Active Directory e una singola istanza di Azure AD.  Questa topologia verrà usata nella maggior parte degli scenari ed è la topologia prevista quando si usa l'installazione rapida di Azure AD Connect come illustrato nella figura seguente.
 
-![](./media/hybrid-id-design-considerations/single-forest.png)Singola foresta Scenario è molto comune per toohave anche piccole e grandi organizzazioni più insiemi di strutture, come illustrato nella figura 5.
+![](./media/hybrid-id-design-considerations/single-forest.png) Scenario a foresta singola Le organizzazioni di grandi e piccole dimensioni hanno spesso più foreste, come illustrato nella figura 5.
 
 > [!NOTE]
-> Per ulteriori informazioni su hello locale diversi e topologie di Azure Active Directory con sincronizzazione di Azure AD Connect leggere l'articolo hello [topologie per Azure AD Connect](connect/active-directory-aadconnect-topologies.md).
+> Per altre informazioni sulle diverse topologie locali e di Azure AD con il servizio di sincronizzazione Azure AD Connect, vedere l'articolo [Topologie per Azure AD Connect](connect/active-directory-aadconnect-topologies.md).
 > 
 > 
 
@@ -118,92 +118,92 @@ Quando si definisce una strategia di sincronizzazione, deve essere determinata t
 
 Scenario a più foreste
 
-Se in questo caso hello hello quindi multi-forest-singola topologia di Active Directory di Azure è necessario considerare se hello gli elementi seguenti sono vere:
+In questo caso, se le affermazioni seguenti sono vere, sarà necessario valutare la topologia singola di Azure AD a più foreste:
 
-* Gli utenti dispongono solo 1 identità in tutte le foreste: hello sezione gli utenti che identifica univocamente questa procedura viene descritta più dettagliatamente.
-* autenticazione dell'utente Hello toohello foresta in cui si trova la propria identità
+* Gli utenti hanno una sola identità in tutte le foreste. La sezione relativa all'identificazione univoca degli utenti riportata di seguito descrive in dettaglio questo aspetto.
+* L'utente esegue l'autenticazione alla foresta in cui risiede la propria identità
 * Il nome dell'entità utente e l'ancoraggio di origine (ID immutabile) provengono da questa foresta
-* Tutte le foreste sono accessibili da Azure AD Connect – ciò significa non è necessario toobe di dominio e può essere inserito in una rete Perimetrale, se ciò facilita questo.
+* Azure AD Connect può accedere a tutte le foreste. Questo significa che non è necessario che venga aggiunto a un dominio e che può essere collocato in una rete perimetrale, se risulta più semplice
 * Gli utenti hanno una sola cassetta postale
-* insieme di strutture di Hello che ospita postale una cassetta ha hello migliore qualità dei dati per gli attributi visibili in hello Exchange elenco (globale)
-* Se non vi è alcuna cassetta postale per utente hello e qualsiasi foresta può essere utilizzati toocontribute questi valori
-* Se si dispone di una cassetta postale collegata, è anche un altro account in toosign un diverso insieme di strutture utilizzato in.
+* La foresta che ospita la cassetta postale dell'utente garantisce la migliore qualità dei dati per gli attributi visibili nell'Elenco indirizzi globale di Exchange
+* Se non è presente una cassetta postale per l'utente, è possibile usare qualsiasi foresta per recuperare questi valori
+* Se è disponibile una cassetta postale collegata, è presente anche un altro account in una foresta diversa usato per l'accesso.
 
 > [!NOTE]
-> Gli oggetti che esistono in sia in locale e nel cloud hello "connessi" tramite un identificatore univoco. Nel contesto di hello della sincronizzazione della Directory, questo identificatore univoco è hello di cui viene fatto riferimento tooas SourceAnchor. Nel contesto di hello di Single Sign-On, si tratta di cui viene fatto riferimento tooas hello ImmutableId. [Concetti di progettazione per Azure AD Connect](connect/active-directory-aadconnect-design-concepts.md#sourceanchor) per altre considerazioni relative hello uso di SourceAnchor.
+> Gli oggetti presenti sia in locale sia nel cloud sono "connessi" tramite un identificatore univoco. Nel contesto della sincronizzazione della directory questo identificatore univoco viene indicato come SourceAnchor. Nel contesto del servizio Single Sign-On invece questo identificatore viene indicato come ImmutableId. [Concetti di progettazione per Azure AD Connect](connect/active-directory-aadconnect-design-concepts.md#sourceanchor) .
 > 
 > 
 
-Se hello precedente non sono true e si dispone di più di un account attivo o più cassette postali, Azure AD Connect verrà scegliere uno e ignorare hello altri.  Se sono stati collegati alle cassette postali ma nessun altro account, questi account non sarà esportato tooAzure Active Directory e che l'utente non sarà un membro di tutti i gruppi.  Questo comportamento è diverso da come si trovava hello precedenti con DirSync ed è il supporto intenzionale toobetter questi scenari a più foreste. Uno scenario con più foreste è illustrato nella figura hello riportato di seguito.
+Se le affermazioni precedenti non sono vere e sono presenti più account attivi o più cassette postali, Azure AD Connect selezionerà un account o una cassetta postale e ignorerà gli altri.  Se sono presenti cassette postali collegate ma non sono presenti altri account, gli account non verranno esportati in Azure AD e l'utente non sarà membro di alcun gruppo.  Questo comportamento è diverso da quanto accadeva in passato con DirSync ed è intenzionale, al fine di garantire un supporto migliore degli scenari con più foreste. La figura seguente mostra uno scenario con più foreste.
 
 ![](./media/hybrid-id-design-considerations/multiforest-multipleAzureAD.png) 
 
 **Topologia multipla di Azure AD a più foreste**
 
-È consigliabile toohave che solo una singola directory di Azure AD per un'organizzazione, ma è supportata, che viene mantenuta una relazione 1:1 tra un server di sincronizzazione di Azure AD Connect e una directory di Azure AD.  Per ogni istanza di Azure AD, sarà necessaria un'installazione di Azure AD Connect.  Inoltre, Azure AD, per impostazione predefinita è isolato e gli utenti in un'istanza di Azure Active Directory non saranno in grado di toosee gli utenti in un'altra istanza.
+È opportuno che in Azure AD sia presente una singola directory per ogni organizzazione ma è supportato lo scenario multiplo se si mantiene una relazione 1:1 tra il server del servizio di sincronizzazione Azure AD Connect e una directory Azure AD.  Per ogni istanza di Azure AD, sarà necessaria un'installazione di Azure AD Connect.  Per impostazione predefinita, Azure AD è isolato e gli utenti in una istanza di Azure AD non potranno visualizzare gli utenti in un'altra istanza.
 
-È possibile e supportati tooconnect una istanza di directory di Azure AD toomultiple di Active Directory come illustrato nella figura che segue hello in locale:
+È invece consentita e supportata la connessione di un'istanza locale di Active Directory a più directory di Azure AD, come illustrato nella figura seguente:
 
 ![](./media/hybrid-id-design-considerations/single-forest-flitering.png) 
 
 **Scenario di filtro a singola foresta**
 
-In ordine toodo seguito hello deve essere vere:
+Per questo scenario, devono essere vere le affermazioni seguenti:
 
-* I server del servizio di sincronizzazione Azure AD Connect devono essere configurati per l'applicazione di filtri, in modo che ogni server includa un set di oggetti che si escludono a vicenda su cui operare,  L'operazione viene eseguita, ad esempio, da ambito di ogni server tooa dominio o l'unità Organizzativa.
-* È possibile registrare solo un dominio DNS in una singola directory di Azure AD in modo hello UPN degli utenti hello in hello locale Active Directory è necessario utilizzare spazi dei nomi distinti
-* Gli utenti in un'istanza di Azure Active Directory saranno solo gli utenti in grado di toosee dalla relativa istanza.  Questo non essere in grado di toosee utenti hello altre istanze
-* Solo una delle directory hello Azure AD possa abilitare Exchange ibrido con hello AD locale
-* Esclusione reciproca si applica anche toowrite-back.  Alcune funzionalità di writeback non sono quindi supportate con questa topologia, perché presuppongono una singola configurazione locale.  Sono inclusi:
+* I server del servizio di sincronizzazione Azure AD Connect devono essere configurati per l'applicazione di filtri, in modo che ogni server includa un set di oggetti che si escludono a vicenda su cui operare,  ad esempio definendo l'ambito di ogni server in modo che corrisponda a un dominio o a una unità organizzativa specifica.
+* Un dominio DNS può essere registrato solo in una singola directory di Azure AD, in modo che anche i nomi dell'entità utente (UPN) degli utenti nell'istanza locale di AD possano usare spazi dei nomi separati
+* Gli utenti in un'istanza di Azure AD potranno visualizzare solo gli utenti inclusi nella stessa istanza,  ma non quelli in altre istanze
+* Solo una delle directory di Azure AD può abilitare la distribuzione ibrida di Exchange con l'istanza locale di Active Directory
+* L'esclusione reciproca si applica anche al writeback.  Alcune funzionalità di writeback non sono quindi supportate con questa topologia, perché presuppongono una singola configurazione locale.  Sono inclusi:
   * Writeback dei gruppi con la configurazione predefinita
   * Writeback dei dispositivi
 
-Tenere presente che segue hello non è supportata e non deve essere scelta come un'implementazione:
+Tenere presente che le funzionalità seguenti non sono supportate e non devono essere scelte come implementazione:
 
-* Non è supportato toohave più server di sincronizzazione di Azure AD Connect connessione directory toohello stesso Azure Active Directory, anche se sono configurati toosynchronize si escludono a vicenda set dell'oggetto
-* È supportato toosync hello directory toomultiple Azure AD dell'utente stesso. 
-* È inoltre supportato toomake una modifica alla configurazione toomake gli utenti in uno tooappear di Azure AD come contatti in un'altra directory di Azure AD. 
-* È inoltre tooconnect toomultiple Azure Active Directory di toomodify non supportato Azure AD Connect sincronizzazione.
-* Come previsto da progettazione, le directory di Azure AD sono isolate. Configurazione di hello toochange non supportato di Azure AD Connect sincronizzare tooread i dati da un'altra directory di Azure AD in toobuild un tentativo di un elenco indirizzi globale comune e unificato tra le directory hello è. È inoltre gli utenti di tooexport non supportato come contatti tooanother AD usando la sincronizzazione di Azure AD Connect on-premise.
+* Non è supportato lo scenario che prevede più server del servizio di sincronizzazione Azure AD Connect connessi alla stessa directory di Azure AD, anche se sono configurati per sincronizzare set di oggetti che si escludono a vicenda
+* Non è supportata la sincronizzazione dello stesso utente in più directory di Azure AD. 
+* Non è inoltre supportata la modifica della configurazione per fare in modo che gli utenti di un'istanza di Azure AD vengano visualizzati come contatti in un'altra directory di Azure AD. 
+* Non è consentito modificare il servizio di sincronizzazione Azure AD Connect per la connessione a più directory di Azure AD.
+* Come previsto da progettazione, le directory di Azure AD sono isolate. Non è supportata la modifica della configurazione del servizio di sincronizzazione Azure AD Connect in modo da leggere dati da un'altra directory di Azure AD nel tentativo di creare un elenco di indirizzi globale comune e unificato tra le directory. Non è inoltre supportata l'esportazione di utenti come contatti in un'altra istanza locale di AD mediante il servizio di sincronizzazione Azure AD Connect.
 
 > [!NOTE]
-> Se l'organizzazione limita computer della rete di connettersi a Internet toohello, questo articolo vengono elencati gli endpoint di hello (FQDN, IPv4 e gli intervalli di indirizzi IPv6) che è necessario includere nella consentono l'uscita elenchi e l'area siti attendibili di Internet Explorer di tooensure i computer client i computer possono utilizzare correttamente Office 365. Per altre informazioni, vedere [URL e intervalli di indirizzi IP per Office 365](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2?ui=en-US&rs=en-US&ad=US).
+> Se l'organizzazione impedisce ai computer inclusi nella rete di connettersi a Internet, questo articolo elenca gli endpoint (FQDN e intervalli di indirizzi IPv4 e IPv6) da includere nell'elenco delle connessioni in uscita e nell'area siti attendibili di Internet Explorer dei computer client per garantire che i computer possano usare Office 365. Per altre informazioni, vedere [URL e intervalli di indirizzi IP per Office 365](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2?ui=en-US&rs=en-US&ad=US).
 > 
 > 
 
 ## <a name="define-multi-factor-authentication-strategy"></a>Definire la strategia di autenticazione a più fattori
-In questa attività che si definirà hello toouse strategia multi-factor authentication.  Azure Multi-Factor Authentication è disponibile in due diverse versioni.  Uno è basato su cloud e altri hello è locale con Azure MFA Server hello.  In base a hello valutazione che è sopra riportato è possibile determinare quale soluzione è hello quello corretto per la strategia.  Utilizzare la tabella hello sotto toodetermine opzione di progettazione più soddisfare il requisito di sicurezza della società:
+In questa attività verrà definita la strategia di autenticazione a più fattori da usare.  Azure Multi-Factor Authentication è disponibile in due diverse versioni.  Una è basata sul cloud mentre l'altra è locale e usa il server Azure MFA.  In base alla valutazione effettuata in precedenza, è possibile stabilire qual è la soluzione corretta per la strategia scelta.  Usare la tabella seguente per determinare l'opzione di progettazione che meglio soddisfa i requisiti di sicurezza della società:
 
 Opzioni di progettazione per l'autenticazione a più fattori:
 
-| Toosecure Asset | Autenticazione a più fattori nel cloud hello | MFA in locale |
+| Asset da proteggere | Autenticazione a più fattori nel cloud | MFA in locale |
 | --- | --- | --- |
 | App Microsoft |sì |sì |
-| App SaaS nella raccolta di app hello |sì |sì |
+| App SaaS nella Raccolta di app |sì |sì |
 | Le applicazioni IIS pubblicate tramite proxy app per Azure AD |sì |sì |
-| Applicazioni di IIS non pubblicate tramite hello Proxy App di Azure AD |no |sì |
+| Applicazioni IIS non pubblicate tramite il proxy applicazione Azure AD |no |sì |
 | Accesso remoto, ad esempio VPN, Gateway Desktop remoto |no |sì |
 
-Anche se potrebbe scelto in una soluzione per la strategia, è comunque necessario valutazione di hello toouse dall'alto in cui si trovano gli utenti.  Ciò potrebbe causare toochange soluzione hello.  Utilizzare tabella hello seguente tooassist è determinare questo valore:
+Anche se è già stata scelta una soluzione per la strategia, è comunque necessario riesaminare la valutazione riportata in precedenza a seconda di dove risiedono gli utenti  ed eventualmente cambiare il tipo di soluzione.  A questo scopo, usare la tabella seguente:
 
 | Posizione degli utenti | Opzione di progettazione preferita |
 | --- | --- |
-| Azure Active Directory |Multi-FactorAuthentication nel cloud hello |
+| Azure Active Directory |Multi-Factor Authentication nel cloud |
 | Azure AD e AD locale usando la federazione con AD FS |Entrambi |
 | Azure AD e Active Directory locale con Azure AD Connect, senza sincronizzazione delle password |Entrambi |
 | Azure AD e Active Directory locale con Azure AD Connect, con sincronizzazione delle password |Entrambi |
 | Active Directory locale |Server Multi-Factor Authentication |
 
 > [!NOTE]
-> È inoltre necessario assicurarsi che hello multi-factor authentication progettazione l'opzione selezionata supporta le funzionalità di hello necessari per la progettazione.  Per altre informazioni vedere [scegliere una soluzione di sicurezza di multi-factor hello è](../multi-factor-authentication/multi-factor-authentication-get-started.md#what-am-i-trying-to-secure).
+> È anche necessario assicurarsi che l'opzione di progettazione per l'autenticazione a più fattori selezionata supporti le funzionalità richieste.  Per altre informazioni, leggere [Scegliere la soluzione di sicurezza a più fattori più adatta](../multi-factor-authentication/multi-factor-authentication-get-started.md#what-am-i-trying-to-secure).
 > 
 > 
 
 ## <a name="multi-factor-auth-provider"></a>Provider di Multi-Factor Authentication
-La modalità Multi-Factor Authentication è disponibile per impostazione predefinita per gli amministratori globali che dispongono di un tenant Azure Active Directory. Tuttavia, se si desidera tooextend multi-factor authentication tooall degli utenti e/o tooyour gli amministratori globali toobe tootake in grado di sfruttare funzionalità quali il portale di gestione di hello, messaggi di saluto personalizzati e i report, quindi è necessario acquistare e configurare Provider di multi-Factor Authentication.
+La modalità Multi-Factor Authentication è disponibile per impostazione predefinita per gli amministratori globali che dispongono di un tenant Azure Active Directory. Tuttavia, se si intende estendere l'autenticazione a più fattori a tutti gli utenti e/o si vuole consentire agli amministratori globali di sfruttare i vantaggi offerti da funzionalità quali il portale di gestione, i messaggi di saluto personalizzati e i report, sarà necessario acquistare e configurare un provider Multi-Factor Authentication.
 
 > [!NOTE]
-> È inoltre necessario assicurarsi che hello multi-factor authentication progettazione l'opzione selezionata supporta le funzionalità di hello necessari per la progettazione. 
+> È anche necessario assicurarsi che l'opzione di progettazione per l'autenticazione a più fattori selezionata supporti le funzionalità richieste. 
 > 
 > 
 

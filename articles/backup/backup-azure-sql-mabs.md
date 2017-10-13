@@ -1,6 +1,6 @@
 ---
-title: aaaAzure Backup per i carichi di lavoro di SQL Server tramite il Server di Backup di Azure | Documenti Microsoft
-description: Toobacking un'introduzione dei database di SQL Server tramite il Server di Backup di Azure
+title: Backup di Azure per carichi di lavoro SQL Server con il server di Backup di Azure | Documentazione Microsoft
+description: Introduzione al backup dei database SQL Server tramite il server di Backup di Azure
 services: backup
 documentationcenter: 
 author: pvrk
@@ -14,145 +14,145 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: pullabhk
-ms.openlocfilehash: 3a94338e8aca3f9d8611a72bcd223397ffb96f3c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2af9ebaa8f52690ed63406cbd85b77544d2d900d
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="back-up-sql-server-tooazure-with-azure-backup-server"></a>Eseguire il backup di SQL Server tooAzure con Server di Backup di Azure
-In questo articolo vengono descritti i passaggi di configurazione hello per il backup dei database di SQL Server utilizzando Microsoft Azure Backup Server (MABS).
+# <a name="back-up-sql-server-to-azure-with-azure-backup-server"></a>Eseguire il backup di SQL Server in Azure con il server di Backup di Azure
+Questo articolo descrive la procedura di configurazione per il backup dei database SQL Server mediante il server di Backup di Microsoft Azure (MABS).
 
-gestione di Hello tooAzure di backup del database di SQL Server e il ripristino da Azure prevede tre passaggi:
+La gestione delle operazioni di backup del database SQL server in Azure e di ripristino da Azure prevede tre passaggi:
 
-1. Creare un database tooAzure di criteri di backup tooprotect SQL Server.
-2. Creare copie di backup su richiesta tooAzure.
-3. Ripristinare il database di hello da Azure.
+1. Creare un criterio di backup per proteggere i database SQL Server in Azure.
+2. Creare copie di backup su richiesta in Azure.
+3. Ripristinare il database da Azure.
 
 ## <a name="before-you-start"></a>Prima di iniziare
-Prima di iniziare, assicurarsi di aver [installati e preparati hello Azure Backup Server](backup-azure-microsoft-azure-backup.md).
+Prima di iniziare, assicurarsi di avere [installato e preparato il server di Backup di Azure](backup-azure-microsoft-azure-backup.md).
 
-## <a name="create-a-backup-policy-tooprotect-sql-server-databases-tooazure"></a>Creare un database tooAzure di criteri di backup tooprotect SQL Server
-1. Scegliere hello hello Azure Backup Server UI, **protezione** dell'area di lavoro.
-2. Sulla barra multifunzione dello strumento di hello, fare clic su **New** toocreate un nuovo gruppo protezione dati.
+## <a name="create-a-backup-policy-to-protect-sql-server-databases-to-azure"></a>Creare un criterio di backup per proteggere i database SQL Server in Azure.
+1. Nell'interfaccia utente del server di Backup di Azure fare clic sull'area di lavoro **Protezione**.
+2. Nella barra degli strumenti, fare clic su **Nuovo** per creare un nuovo gruppo di protezione.
 
     ![Creazione di un gruppo di protezione](./media/backup-azure-backup-sql/protection-group.png)
-3. MABS Mostra una schermata iniziale di hello indicazioni hello sulla creazione di un **gruppo protezione dati**. Fare clic su **Avanti**.
+3. MABS mostra la schermata iniziale con le istruzioni per creare un **gruppo protezione dati**. Fare clic su **Avanti**.
 4. Selezione dei **Server**.
 
     ![Selezione del tipo di gruppo di protezione "Server"](./media/backup-azure-backup-sql/pg-servers.png)
-5. Espandere il computer di SQL Server hello in cui sono presenti toobe database hello eseguito il backup. MABS mostra diverse origini dati di cui è possibile eseguire il backup in quel server. Espandere hello **tutte le condivisioni SQL** e selezionare il database di hello (in questo caso è selezionato ReportServer$ MSDPM2012 e ReportServer$ MSDPM2012TempDB) toobe il backup. Fare clic su **Avanti**.
+5. Espandere la macchina del server SQL in cui sono presenti i database da includere nel backup. MABS mostra diverse origini dati di cui è possibile eseguire il backup in quel server. Espandere **Tutti i server SQL** e selezionare i database (in questo caso sono stati selezionati ReportServer$MSDPM2012 e ReportServer$MSDPM2012TempDB) di cui eseguire il backup. Fare clic su **Avanti**.
 
     ![Selezione del database SQL](./media/backup-azure-backup-sql/pg-databases.png)
-6. Specificare un nome per il gruppo di protezione dati hello e selezionare hello **protezione dati online** casella di controllo.
+6. Specificare un nome per il gruppo di protezione e selezionare la casella di controllo **Desidero la protezione dati online** .
 
     ![Metodo di protezione dei dati - disco a breve termine e online in Azure](./media/backup-azure-backup-sql/pg-name.png)
-7. In hello **Specifica obiettivi a breve termine** schermata, includere hello input necessario toocreate punti backup toodisk.
+7. Nella schermata **Specifica obiettivi a breve termine** includere gli input necessari per creare punti di backup sul disco.
 
-    Qui è possibile vedere che **mantenimento** è troppo*5 giorni*, **frequenza di sincronizzazione** è impostato tooonce ogni *15 minuti* ovvero hello frequenza con cui viene creato il backup. **Backup completo rapido** è troppo*8:00 formato*.
+    Come si può vedere nell'immagine, il **Periodo di mantenimento dati** è impostato su *5 giorni* e la **Frequenza di sincronizzazione** è impostata su una volta ogni *15 minuti*, che corrisponde alla frequenza con cui viene eseguito il backup. **Backup completo rapido** è impostato su *8.00 PM*.
 
     ![Obiettivi a breve termine](./media/backup-azure-backup-sql/pg-shortterm.png)
 
    > [!NOTE]
-   > 8:00 PM (in base a input schermata toohello) viene creato un punto di backup ogni giorno trasferendo dati hello che sono stati modificati da hello punto di backup ore 8:00 del giorno precedente. Questo processo è detto **Backup completo rapido**. Mentre i log delle transazioni hello vengono sincronizzati ogni 15 minuti, se è presente un database di hello toorecover necessario al 21:00:00: hello punto viene creato mediante la riproduzione registri hello hello express ultimo punto di backup completo (alle 20.00 in questo caso).
+   > Alle 8.00 PM (secondo la schermata di input) viene creato un punto di backup ogni giorno con il trasferimento dei dati modificati rispetto al punto di backup delle 8.00 PM del giorno precedente. Questo processo è detto **Backup completo rapido**. Mentre i log delle transazioni vengono sincronizzati ogni 15 minuti, se è necessario ripristinare il database alle 9.00 PM, il punto viene creato riproducendo i log dall'ultimo backup completo rapido (in questo caso le 8.00 PM).
    >
    >
 
 8. Fare clic su **Avanti**
 
-    Mostra MABS hello complessiva dello spazio di archiviazione disponibile e hello potenziali spazio su disco.
+    MABS mostra lo spazio di archiviazione complessivo e il potenziale utilizzo dello spazio su disco.
 
     ![Allocazione dei dischi](./media/backup-azure-backup-sql/pg-storage.png)
 
-    Per impostazione predefinita, MABS crea un volume per ogni origine dati (database di SQL Server) che viene utilizzato per la copia di backup iniziale di hello. Questo approccio, hello disco Manager LOGICI limita origini di dati too300 protezione MABS (database di SQL Server). toowork risolvere questa limitazione, seleziona hello **Condividi percorso dati nel Pool di archiviazione DPM**, opzione. Se si utilizza questa opzione, MABS utilizza un singolo volume per più origini dati, che consente di tooprotect MABS dei database SQL too2000.
+    Per impostazione predefinita, MABS crea un volume per origine dati (database SQL Server) che viene usato per la creazione della copia di backup iniziale. Con questo approccio, il gestore dischi logici (LDM) limita la protezione MABS a 300 origini dati (database SQL Server). Per porre rimedio a questa limitazione, selezionare l'opzione **Condividi percorso dati nel pool di archiviazione DPM**. Grazie a questa opzione, MABS usa un singolo volume per più origini dati, il che consente a MABS di proteggere fino a 2000 database SQL.
 
-    Se **Espandi automaticamente i volumi di hello** opzione è selezionata, MABS può tenere conto per il volume di backup hello aumentato man mano che aumenta il dati di produzione hello. Se **Espandi automaticamente i volumi di hello** opzione non è selezionata, MABS limita hello origini dati toohello di archiviazione di backup utilizzata nel gruppo protezione dati hello.
-9. Gli amministratori possibile scegliere di hello del trasferimento di questa congestione della larghezza di banda iniziale tooavoid backup manualmente (fuori rete) o tramite rete hello. È inoltre possibile configurare ora hello in cui hello può verificarsi trasferimento iniziale. Fare clic su **Avanti**.
+    Selezionando l'opzione **Aumenta automaticamente i volumi**, si consente a MABS di adeguare l'aumento del volume di backup all'aumento dei dati di produzione. Deselezionando l'opzione **Aumenta automaticamente i volumi**, MABS limiterà lo spazio di archiviazione di backup utilizzato per le origini dati nel gruppo protezione dati.
+9. Gli amministratori possono scegliere di trasferire manualmente il backup iniziale (fuori rete) per evitare la congestione della larghezza di banda oppure di trasferirlo in rete. Possono anche configurare la data e l'ora di inizio del trasferimento. Fare clic su **Avanti**.
 
     ![Metodo di replica iniziale](./media/backup-azure-backup-sql/pg-manual.png)
 
-    copia di backup iniziale Hello è necessario trasferire hello intera origine dei dati (database di SQL Server) da tooMABS (computer di SQL Server) di server di produzione. Tali dati potrebbero essere elevati e trasferimento dei dati di hello in rete hello può superare la larghezza di banda. Per questo motivo, gli amministratori possono scegliere di backup iniziale di hello tootransfer: **manualmente** (utilizzando supporti rimovibili) tooavoid congestione di larghezza di banda, o **automaticamente tramite rete hello** (in un oggetto specificato ora).
+    La copia di backup iniziale richiede il trasferimento dell'intera origine dati (database SQL Server) dal server di produzione (macchina SQL Server) a MABS. Tali dati potrebbero essere di grandi dimensioni e trasferimento dei dati sulla rete potrebbe superare la larghezza di banda. Per questo motivo, gli amministratori possono scegliere di trasferire il backup iniziale: **manualmente** (usando supporti rimovibili) per evitare la congestione della larghezza di banda o **automaticamente tramite la rete** (ad un orario specificato).
 
-    Al termine del backup iniziale hello, hello altri backup hello sono backup incrementali sulla copia di backup iniziale hello. I backup incrementali tendono toobe piccola e facilmente vengono trasferiti in rete di hello.
-10. Scegliere quando si desidera toorun di controllo di coerenza hello e fare clic su **Avanti**.
+    Una volta completato il backup iniziale, quelli successivi saranno backup incrementali della copia di backup iniziale. I backup incrementali tendono a essere di piccole dimensioni e facilmente trasferibili sulla rete.
+10. Scegliere quando si vuole eseguire la verifica della coerenza e fare clic su **Avanti**.
 
     ![Verifica coerenza](./media/backup-azure-backup-sql/pg-consistent.png)
 
-    MABS è possibile eseguire un integrità di hello toocheck controllo coerenza del punto di backup hello. Viene calcolato il checksum hello hello del file di backup nel server di produzione hello (computer di SQL Server in questo scenario) e i dati di backup hello per tale file in MABS. In caso di hello di un conflitto, si presuppone che hello in MABS file di backup è danneggiato. MABS corregge i dati di backup hello inviando blocchi hello corrispondente toohello mancata corrispondenza del checksum. Verifica di coerenza hello è un'operazione di prestazioni, gli amministratori hanno il possibilità di hello di pianificazione di coerenza hello o eseguirla automaticamente.
-11. toospecify protezione di origini dati hello online, selezionare hello database toobe protetti tooAzure e fare clic su **Avanti**.
+    MABS può eseguire una verifica di coerenza per controllare l'integrità del punto di backup. Calcola il checksum del file di backup nel server di produzione (macchina SQL Server in questo scenario) e i dati di cui è stato eseguito il backup per quel file in MABS. In caso di conflitto si presuppone che il file di backup in MABS sia danneggiato. MABS corregge i dati di backup inviando i blocchi che equivalgono alla mancata corrispondenza del checksum. Poiché verifica coerenza è un'operazione con esigenze di prestazioni elevate, gli amministratori hanno la possibilità di scegliere se pianificarla o eseguirla automaticamente.
+11. Per specificare la protezione online delle origini dati, selezionare i database da proteggere in Azure e fare clic su **Avanti**.
 
     ![Selezione delle origini dati](./media/backup-azure-backup-sql/pg-sqldatabases.png)
 12. Gli amministratori possono scegliere le pianificazioni di backup e i criteri di conservazione adatti a soddisfare i criteri dell'organizzazione.
 
     ![Pianificazione e conservazione](./media/backup-azure-backup-sql/pg-schedule.png)
 
-    In questo esempio, i backup vengono eseguiti una volta al giorno alle 12:00 e alle 20.00 (parte inferiore della schermata Ciao)
+    In questo esempio i backup vengono eseguiti una volta al giorno alle 12.00 PM e alle 8.00 PM (parte in basso della schermata)
 
     > [!NOTE]
-    > È una buona norma toohave alcuni punti di ripristino a breve termine su disco, per un ripristino veloce. Questi punti di ripristino vengono usati per il "ripristino operativo". Azure è una posizione esterna ottimale con contratti di servizio più elevati e disponibilità garantita.
+    > È consigliabile avere sul disco alcuni punti di ripristino a breve termine per un ripristino rapido. Questi punti di ripristino vengono usati per il "ripristino operativo". Azure è una posizione esterna ottimale con contratti di servizio più elevati e disponibilità garantita.
     >
     >
 
-    **Procedura consigliata**: assicurarsi che i backup di Azure vengono programmati dopo il completamento di hello del backup del disco locale utilizzando Data Protection Manager. In questo modo tooAzure toobe backup copiati su disco più recente di hello.
+    **Procedura consigliata**: verificare che i backup di Azure siano pianificati dopo il completamento dei backup su disco locali con DPM. Ciò consente di copiare in Azure il backup su disco più recente.
 
-13. Scegliere la pianificazione dei criteri di conservazione hello. vengono forniti i dettagli di Hello sul funzionamento di criteri di conservazione hello in [tooreplace utilizzare Azure Backup l'articolo di infrastruttura nastro](backup-azure-backup-cloud-as-tape.md).
+13. Scegliere la pianificazione per i criteri di conservazione. Per informazioni dettagliate sul funzionamento dei criteri di conservazione, vedere l'articolo [Usare Backup di Azure per sostituire l'infrastruttura basata su nastro](backup-azure-backup-cloud-as-tape.md).
 
     ![Criteri di conservazione](./media/backup-azure-backup-sql/pg-retentionschedule.png)
 
-    Esempio:
+    In questo esempio:
 
-    * I backup vengono eseguiti una volta al giorno alle 12:00 e alle 20.00 (parte inferiore della schermata Ciao) e vengono mantenuti per 180 giorni.
-    * backup di Hello sabato alle ore 12:00. viene conservato per 104 settimane
-    * backup di Hello ultimo sabato alle ore 12:00. viene conservato per 60 mesi
-    * backup di Hello ultimo sabato di marzo alle ore 12:00. viene conservato per 10 anni
-14. Fare clic su **Avanti** e selezionare hello opzione appropriata per il trasferimento di hello tooAzure di copia di backup iniziale. È possibile scegliere **automaticamente tramite rete hello** o **Backup Offline**.
+    * I backup vengono eseguiti una volta al giorno alle 12.00 PM e alle 8.00 PM (parte in basso della schermata) e vengono conservati per 180 giorni.
+    * Il backup di sabato alle ore 12:00 P.M. viene conservato per 104 settimane
+    * Il backup dell'ultimo sabato alle 12.00 P.M. viene conservato per 60 mesi
+    * Il backup dell'ultimo sabato di marzo alle 12.00 P.M. viene conservato per 10 anni
+14. Fare clic su **Avanti** e selezionare l'opzione appropriata per il trasferimento in Azure della copia di backup iniziale. È possibile scegliere **Automaticamente tramite la rete** o **Backup offline**.
 
-    * **Automaticamente tramite rete hello** trasferimenti hello tooAzure dati di backup in base alla pianificazione di hello scelto per il backup.
+    * **automaticamente tramite la rete** i dati di backup vengono trasferiti in Azure in base alla pianificazione scelta per il backup.
     * Il funzionamento di **Backup offline** è descritto in [Flusso di lavoro di Backup offline in Backup di Azure](backup-azure-backup-import-export.md).
 
-    Scegliere trasferimento rilevanti hello meccanismo toosend hello copia di backup iniziale tooAzure fare clic su **Avanti**.
-15. Una volta è esaminare i dettagli di criteri hello in hello **riepilogo** schermata, fare clic su hello **Crea gruppo** flusso di lavoro hello toocomplete pulsante. È possibile fare clic su hello **Chiudi** pulsante e monitorare l'avanzamento del processo hello nell'area di lavoro di monitoraggio.
+    Scegliere il meccanismo di trasferimento pertinente per l'invio ad Azure della copia di backup iniziale e fare clic su **Avanti**.
+15. Dopo aver esaminato i dettagli dei criteri nella schermata **Riepilogo**, fare clic sul pulsante **Crea gruppo** per completare il flusso di lavoro. È possibile fare clic sul pulsante **Chiudi** e monitorare l'avanzamento del processo nell'area di lavoro Monitoraggio.
 
     ![Creazione di un gruppo di protezione in corso](./media/backup-azure-backup-sql/pg-summary.png)
 
 ## <a name="on-demand-backup-of-a-sql-server-database"></a>Backup su richiesta di un database SQL Server
-Anche se i passaggi precedenti hello creano un criterio di backup, viene creato un punto di ripristino"" solo quando si verifica il primo backup di hello. Anziché attendere che tookick dell'utilità di pianificazione hello in, i passaggi di hello di sotto di creazione di trigger hello del ripristino di un punto manualmente.
+Mentre nei passaggi precedenti sono stati creati i criteri di backup, un "punto di ripristino" viene creato solo quando si verifica il primo backup. Anziché attendere l'avvio dell'Utilità di pianificazione, i passaggi seguenti attivano la creazione manuale di un punto di ripristino.
 
-1. Attendere finché non viene visualizzato lo stato gruppo di protezione hello **OK** per database hello prima di creare il punto di ripristino hello.
+1. Prima di creare il punto di ripristino, attendere finché nello stato del gruppo di protezione non viene visualizzato **OK** per il database.
 
     ![Membri del gruppo di protezione](./media/backup-azure-backup-sql/sqlbackup-recoverypoint.png)
-2. Fare clic sul database hello e selezionare **Crea punto di ripristino**.
+2. Fare clic con il pulsante destro del mouse sul database e scegliere **Crea punto di ripristino**.
 
     ![Creazione di un punto di ripristino online](./media/backup-azure-backup-sql/sqlbackup-createrp.png)
-3. Scegliere **Online Protection** nel menu di scelta rapida hello e fare clic su **OK**. Verrà avviata la creazione di hello di un punto di ripristino in Azure.
+3. Nel menu a discesa scegliere **Protezione dati online** e fare clic su **OK**. Si avvia la creazione di un punto di ripristino in Azure.
 
     ![Crea punto di ripristino](./media/backup-azure-backup-sql/sqlbackup-azure.png)
-4. È possibile visualizzare lo stato del processo hello in hello **monitoraggio** dell'area di lavoro in cui è disponibile un in corso del processo come hello uno illustrata nella figura che segue hello.
+4. È possibile visualizzare l'avanzamento del processo nell'area di lavoro **Monitoraggio** , dove si vedrà un processo in corso come quello illustrato nella figura seguente.
 
     ![Console di monitoraggio](./media/backup-azure-backup-sql/sqlbackup-monitoring.png)
 
 ## <a name="recover-a-sql-server-database-from-azure"></a>Ripristinare un database SQL Server da Azure
-Hello passaggi seguenti sono necessari toorecover un'entità protetta (database di SQL Server) da Azure.
+I passaggi seguenti sono necessari per ripristinare un'entità protetta (database SQL Server) da Azure.
 
-1. Aprire il server DPM hello Console di gestione. Passare troppo**ripristino** dell'area di lavoro in cui è possibile visualizzare i server hello backup da Data Protection Manager. Esplorare database richiesti di hello (in questo caso ReportServer$ MSDPM2012). In **Ripristino da** selezionare un orario che termina con **Online**.
+1. Aprire la console di gestione del server DPM. Passare all'area di lavoro **Ripristino** dove si vedono i server di cui DPM ha eseguito il backup. Passare al database necessario (in questo caso ReportServer$MSDPM2012). In **Ripristino da** selezionare un orario che termina con **Online**.
 
     ![Selezione di un punto di ripristino](./media/backup-azure-backup-sql/sqlbackup-restorepoint.png)
-2. Nome del database hello destro e fare clic su **ripristinare**.
+2. Fare clic con il pulsante destro del mouse sul nome del database e scegliere **Ripristina**.
 
     ![Ripristino da Azure](./media/backup-azure-backup-sql/sqlbackup-recover.png)
-3. DPM vengono visualizzati i dettagli di hello hello del punto di ripristino. Fare clic su **Avanti**. database hello toooverwrite, il tipo di ripristino selezionare hello **Ripristina toooriginal istanza di SQL Server**. Fare clic su **Avanti**.
+3. DPM mostra i dettagli del punto di ripristino. Fare clic su **Avanti**. Per sovrascrivere il database, selezionare il tipo di ripristino **Ripristina nell'istanza originale di SQL Server**. Fare clic su **Avanti**.
 
-    ![Ripristinare tooOriginal percorso](./media/backup-azure-backup-sql/sqlbackup-recoveroriginal.png)
+    ![Ripristino nel percorso originale](./media/backup-azure-backup-sql/sqlbackup-recoveroriginal.png)
 
-    In questo esempio, DPM consente un ripristino dell'istanza di SQL Server tooanother hello database o una cartella di rete tooa autonomo.
-4. In hello **opzioni di ripristino specificare** schermata, è possibile selezionare opzioni di ripristino hello come l'utilizzo della larghezza di banda di rete della limitazione della larghezza di banda di hello toothrottle utilizzata da un ripristino. Fare clic su **Avanti**.
-5. In hello **riepilogo** dello schermo, vedrai tutte le configurazioni di ripristino hello fornite finora. Fare clic su **Ripristina**.
+    In questo esempio DPM consente il ripristino del database in un'altra istanza di SQL server o in una cartella di rete autonoma.
+4. Nella schermata **Specifica opzioni di ripristino** è possibile selezionare le opzioni di ripristino, ad esempio Limitazione all'utilizzo della larghezza di banda per controllare la larghezza di banda usata dal processo di ripristino. Fare clic su **Avanti**.
+5. Nella schermata **Riepilogo** vengono visualizzate le configurazioni di ripristino impostate finora. Fare clic su **Ripristina**.
 
-    Hello dello stato di ripristino Mostra database hello da recuperare. È possibile fare clic su **Chiudi** tooclose hello procedura guidata e visualizzare hello lo stato di avanzamento in hello **monitoraggio** dell'area di lavoro.
+    In Stato ripristino è visualizzato il database in corso di ripristino. È possibile fare clic **Chiudi** per chiudere la procedura guidata e visualizzare lo stato di avanzamento nell'area di lavoro **Monitoraggio**.
 
     ![Avvio del processo di ripristino](./media/backup-azure-backup-sql/sqlbackup-recoverying.png)
 
-    Una volta completato il ripristino di hello, il database ripristinato hello è coerenti con l'applicazione.
+    Al termine del ripristino, il database ripristinato sarà coerente con l'applicazione.
 
 ### <a name="next-steps"></a>Passaggi successivi:
 [Domande frequenti su Backup di Azure](backup-azure-backup-faq.md)

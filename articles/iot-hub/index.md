@@ -1,8 +1,8 @@
 ---
-title: aaaAzure IoT Hub documentazione, esercitazioni, riferimenti alle API | Documenti Microsoft
-description: Informazioni su come toouse tooconnect IoT Hub, monitorare e controllare anche su miliardi di risorse di Internet delle cose. Esercitazioni, informazioni di riferimento sulle API, video e altri documenti.
+title: Documentazione di Hub IoT di Azure - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
+description: Informazioni su come usare hub IoT per connettersi a miliardi di asset IoT (Internet of Things) per monitorarli e controllarli. Esercitazioni, informazioni di riferimento sulle API, video e altri documenti.
 services: iot-hub
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: b4d9e66dad55417cff6b9252379cf7265fb542fb
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 270d1aec5855ee3bb9cc121526d311ab78d989c9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="iot-hub-documentation"></a>Documentazione sull'hub IoT 
 
-Informazioni su come toouse tooconnect IoT Hub, monitorare e controllare anche su miliardi di risorse di Internet delle cose. Esercitazioni, informazioni di riferimento sulle API, video e altri documenti in cui viene illustrato come distribuire comunicazioni affidabili e bidirezionali tra dispositivi IoT e un backend di soluzione. 
+Informazioni su come usare hub IoT per connettersi a miliardi di asset IoT (Internet of Things) per monitorarli e controllarli. Esercitazioni, informazioni di riferimento sulle API, video e altri documenti in cui viene illustrato come distribuire comunicazioni affidabili e bidirezionali tra dispositivi IoT e un backend di soluzione. 
 
 <ul class="panelContent cardsFTitle">
      <li>
@@ -106,7 +106,7 @@ Informazioni su come toouse tooconnect IoT Hub, monitorare e controllare anche s
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Guida per sviluppatori di hello lettura</h3>
+                        <h3>Guida per sviluppatori</h3>
                     </div>
                 </div>
             </div>
@@ -117,7 +117,7 @@ Informazioni su come toouse tooconnect IoT Hub, monitorare e controllare anche s
 
 ---
  
-<h2>riferimento</h2>
+<h2>Riferimento</h2>
 <ul class="panelContent cardsW">
     <li>
         <div class="cardSize">

@@ -1,6 +1,6 @@
 ---
-title: Controllo di accesso basato su aaaRole nel portale di Azure hello | Documenti Microsoft
-description: Guida introduttiva nella gestione degli accessi in base al ruolo di controllo di accesso in hello portale di Azure. Utilizzare le risorse tooyour le autorizzazioni di ruolo assegnazioni tooassign.
+title: Controllo degli accessi in base al ruolo nel portale di Azure | Microsoft Docs
+description: Introduzione alla gestione degli accessi con il Controllo degli accessi in base al ruolo nel portale di Azure. Usare le assegnazioni di ruolo per assegnare autorizzazioni alle risorse.
 services: active-directory
 documentationcenter: 
 author: andredm7
@@ -14,62 +14,62 @@ ms.workload: identity
 ms.date: 07/17/2017
 ms.author: andredm
 ms.reviewer: rqureshi
-ms.openlocfilehash: b87e00089b0fc93fb212b318330a6f22bfbf59e2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9df7f7851ef1fc6b4ed03b981aa5062d6b0913ad
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="use-role-based-access-control-toomanage-access-tooyour-azure-subscription-resources"></a>Utilizzo delle risorse di controllo di accesso basato sui ruoli toomanage accesso tooyour sottoscrizione di Azure
+# <a name="use-role-based-access-control-to-manage-access-to-your-azure-subscription-resources"></a>Usare il controllo degli accessi in base al ruolo per gestire l'accesso alle risorse della sottoscrizione di Azure
 > [!div class="op_single_selector"]
 > * [Gestire l'accesso per utente o gruppo](role-based-access-control-manage-assignments.md)
 > * [Gestire l'accesso per risorsa](role-based-access-control-configure.md)
 
-Il Controllo degli accessi in base al ruolo di Azure (RBAC) consente la gestione specifica degli accessi per Azure. Usa tale controllo, è possibile concedere solo quantità di hello di accesso che gli utenti devono tooperform i processi. In questo articolo consente di ottenere attivo e in esecuzione con RBAC in hello portale di Azure. Per altri dettagli sulla gestione degli accessi, vedere l'articolo relativo al [Controllo degli accessi in base al ruolo](role-based-access-control-what-is.md).
+Il Controllo degli accessi in base al ruolo di Azure (RBAC) consente la gestione specifica degli accessi per Azure. L'uso del Controllo degli accessi in base al ruolo permette di concedere agli utenti solo il livello di accesso necessario per lavorare. Questo articolo permette di iniziare subito a usare il Controllo degli accessi in base al ruolo nel portale di Azure. Per altri dettagli sulla gestione degli accessi, vedere l'articolo relativo al [Controllo degli accessi in base al ruolo](role-based-access-control-what-is.md).
 
-All'interno di ogni sottoscrizione, è possibile concedere le assegnazioni di ruolo too2000. 
+In ogni sottoscrizione è possibile concedere fino a 2000 assegnazioni di ruolo. 
 
 ## <a name="view-access"></a>Visualizzare l'accesso
-È possibile vedere chi ha accesso tooa risorsa, gruppo di risorse o sottoscrizione dal pannello principale in hello [portale di Azure](https://portal.azure.com). Ad esempio, è necessario toosee che dispone di accesso tooone i gruppi di risorse:
+È possibile visualizzare chi ha accesso a una risorsa, a un gruppo di risorse o a una sottoscrizione dal relativo pannello principale nel [portale di Azure](https://portal.azure.com). Ad esempio, si vuole vedere chi ha accesso a uno dei gruppi di risorse:
 
-1. Selezionare **gruppi di risorse** hello sinistra sulla barra di navigazione hello.  
+1. Selezionare **Gruppi di risorse** nella barra di spostamento a sinistra.  
     ![Gruppi di risorse, icona](./media/role-based-access-control-configure/resourcegroups_icon.png)
-2. Nome hello selezionare hello del gruppo di risorse da hello **gruppi di risorse** blade.
-3. Selezionare **Access control (IAM)** dal menu a sinistra di hello.  
-4. Pannello di controllo di accesso Hello Elenca tutti gli utenti, gruppi e le applicazioni che sono state concesse gruppo di risorse toohello di accesso.  
+2. Selezionare il nome del gruppo di risorse nel pannello **Gruppi di risorse** .
+3. Selezionare **Controllo di accesso (IAM)** dal menu a sinistra.  
+4. Il pannello Controllo di accesso elenca tutti gli utenti, i gruppi e le applicazioni a cui è stato concesso l'accesso al gruppo di risorse.  
    
     ![Screenshot del pannello Utenti: accesso ereditato e assegnato](./media/role-based-access-control-configure/view-access.png)
 
-Si noti che l'ambito di alcuni ruoli sono troppo**questa risorsa** mentre altri sono **Inherited** da un altro ambito. L'accesso è assegnato in modo specifico il gruppo di risorse toohello o ereditato da una sottoscrizione di assegnazione toohello padre.
+Si noti che l'ambito di alcuni ruoli è **Questa risorsa**, mentre quello di altri è **Ereditato** da un altro ambito. L'accesso viene assegnato in modo specifico al gruppo di risorse oppure ereditato da un'assegnazione nella sottoscrizione padre.
 
 > [!NOTE]
-> Gli amministratori delle sottoscrizioni classico e coamministratori sono considerati proprietari della sottoscrizione hello nel nuovo modello di RBAC hello.
+> Gli utenti con i ruoli Amministratore sottoscrizione classico e Coamministratore sono considerati proprietari della sottoscrizione nel nuovo modello Controllo degli accessi in base al ruolo.
 
 ## <a name="add-access"></a>Aggiungere un accesso
-È concedere accesso dall'interno sottoscrizione ambito hello hello assegnazione di ruolo, gruppo di risorse o risorse hello.
+Si concede l'accesso dalla risorsa, dal gruppo di risorse o dalla sottoscrizione che costituisce l'ambito dell'assegnazione di ruolo.
 
-1. Selezionare **Aggiungi** nel Pannello di controllo di accesso hello.  
-2. Ruolo selezionare hello che si desidera tooassign da hello **selezionare un ruolo** blade.
-3. Selezionare hello utente, gruppo o dell'applicazione nella directory che si desidera toogrant accesso a. È possibile cercare la directory hello con i nomi visualizzati, indirizzi di posta elettronica e gli identificatori di oggetto.  
+1. Selezionare **Aggiungi** nel pannello Controllo di accesso.  
+2. Selezionare il ruolo da assegnare nel pannello **Selezionare un ruolo** .
+3. Selezionare l'utente, il gruppo o l'applicazione nella directory a cui si vuole concedere l'accesso. È possibile cercare nella directory usando nomi visualizzati, indirizzi di posta elettronica e identificatori di oggetto.  
    
     ![Screenshot del pannello Aggiungi utenti: casella di ricerca](./media/role-based-access-control-configure/grant-access2.png)
-4. Selezionare **OK** assegnazione hello toocreate. Hello **aggiunta utente** popup tiene traccia dell'avanzamento di hello.  
+4. Selezionare **OK** per creare l'assegnazione. Il popup **Aggiunta dell'utente in corso** tiene traccia dello stato.  
     ![Indicatore di stato dell'aggiunta di utenti, schermata](./media/role-based-access-control-configure/addinguser_popup.png)
 
-Dopo aver aggiunto correttamente un'assegnazione di ruolo, che verrà visualizzata nella hello **utenti** blade.
+Dopo aver aggiunto un'assegnazione di ruolo, viene visualizzato il pannello **Utenti** .
 
 ## <a name="remove-access"></a>Rimuovere un accesso
-1. Posiziona il cursore sul nome hello di assegnazione di hello che si desidera tooremove. Una casella di controllo viene visualizzato il nome toohello successivo.
-2. Utilizzare hello caselle di controllo tooselect uno o più assegnazioni di ruolo.
+1. Passare il puntatore del mouse sul nome dell'assegnazione da rimuovere. Accanto al nome verrà visualizzata una casella di controllo.
+2. Usare le caselle di controllo per selezionare una o più assegnazioni di ruolo.
 2. Selezionare **Rimuovi**.  
-3. Selezionare **Sì** rimozione hello tooconfirm.
+3. Selezionare **Sì** per confermare la rimozione.
 
-Le assegnazioni ereditate non possono essere rimosse. Se è necessario tooremove un'assegnazione ereditata, è necessario toodo in hello ambito in cui è stato creato l'assegnazione di ruolo hello. In hello **ambito** colonna, accanto troppo**Inherited** è presente un collegamento che consente di passare toohello risorse in cui è stato assegnato questo ruolo. Passare toohello risorse elencate assegnazione di ruolo tooremove hello.
+Le assegnazioni ereditate non possono essere rimosse. Se si desidera rimuovere un'assegnazione ereditata, è necessario eseguire questa operazione laddove è stata creata l'assegnazione di ruolo. Nella colonna **Ambito**, accanto a **Ereditato** è presente un collegamento che consente di visualizzare le risorse in cui è stato assegnato questo ruolo. Passare alla risorsa inclusa nell'elenco per rimuovere l'assegnazione di ruolo.
 
 ![Screenshot del pannello Utenti: l'accesso ereditato disabilita il pulsante Rimuovi](./media/role-based-access-control-configure/remove-access2.png)
 
-## <a name="other-tools-toomanage-access"></a>Accesso toomanage altri strumenti
-È possibile assegnare i ruoli e gestire l'accesso con i comandi di Azure RBAC in strumenti diversi da hello portale di Azure.  Seguire hello collegamenti toolearn informazioni sui prerequisiti hello e iniziare a utilizzare i comandi di Azure RBAC hello.
+## <a name="other-tools-to-manage-access"></a>Altri strumenti per gestire l'accesso
+È possibile assegnare i ruoli e gestire l'accesso con i comandi del Controllo degli accessi in base al ruolo di Azure in strumenti diversi dal portale di Azure.  Per altre informazioni sui prerequisiti e iniziare a usare i comandi del Controllo degli accessi in base al ruolo di Azure, usare i collegamenti seguenti.
 
 * [Azure PowerShell](role-based-access-control-manage-access-powershell.md)
 * [Interfaccia della riga di comando di Azure](role-based-access-control-manage-access-azure-cli.md)
@@ -77,6 +77,6 @@ Le assegnazioni ereditate non possono essere rimosse. Se è necessario tooremove
 
 ## <a name="next-steps"></a>Passaggi successivi
 * [Creare un report della cronologia delle modifiche relative all'accesso](role-based-access-control-access-change-history-report.md)
-* Vedere hello [ruoli predefiniti RBAC](role-based-access-built-in-roles.md)
+* Vedere [Controllo degli accessi in base al ruolo: ruoli predefiniti](role-based-access-built-in-roles.md)
 * Definire i [ruoli personalizzati nel Controllo degli accessi in base al ruolo di Azure](role-based-access-control-custom-roles.md)
 

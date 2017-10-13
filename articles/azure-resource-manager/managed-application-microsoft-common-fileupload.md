@@ -1,9 +1,9 @@
 ---
-title: elemento gestita dell'interfaccia utente dell'applicazione FileUpload aaaAzure | Documenti Microsoft
-description: Descrive l'elemento dell'interfaccia utente Microsoft.Common.FileUpload hello per le applicazioni gestite di Azure
+title: Elemento FileUpload dell'interfaccia utente di Applicazione gestita di Azure | Microsoft Docs
+description: Illustra l'elemento Microsoft.Common.FileUpload dell'interfaccia utente per le applicazioni gestite di Azure
 services: azure-resource-manager
 documentationcenter: na
-author: tabrezm
+author: tfitzmac
 manager: timlt
 editor: tysonn
 ms.service: azure-resource-manager
@@ -12,15 +12,15 @@ ms.topic: reference
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/12/2017
-ms.author: tabrezm;tomfitz
-ms.openlocfilehash: 7af5bec992e3f120afb1bdf56d8b4c19a8e5e834
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.author: tomfitz
+ms.openlocfilehash: bd5bae5678e2ec12fd1ddd2a81e63acca08da2c5
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="microsoftcommonfileupload-ui-element"></a>Elemento Microsoft.Common.FileUpload dell'interfaccia utente
-Un controllo che consente a un utente toospecify uno o più file tooupload. Usare questo elemento quando si [crea un'applicazione Azure gestita](managed-application-publishing.md).
+Controllo che consente a un utente di specificare uno o più file da caricare. Usare questo elemento quando si [crea un'applicazione Azure gestita](managed-application-publishing.md).
 
 ## <a name="ui-sample"></a>Esempio di interfaccia utente
 ![Microsoft.Common.FileUpload](./media/managed-application-elements/microsoft.common.fileupload.png)
@@ -47,21 +47,21 @@ Un controllo che consente a un utente toospecify uno o più file tooupload. Usar
 ```
 
 ## <a name="remarks"></a>Osservazioni
-- `constraints.accept`Specifica i tipi di file vengono visualizzati nella finestra di dialogo del browser hello file hello. Vedere hello [specifica HTML5](http://www.w3.org/TR/html5/forms.html#attr-input-accept) per i valori consentiti. valore predefinito di Hello è **null**.
-- Se `options.multiple` è troppo**true**, hello autorizzato tooselect più di un file nella finestra di dialogo del browser hello file. valore predefinito di Hello è **false**.
-- Questo elemento consente di caricare file in due modalità in base al valore di hello di `options.uploadMode`. Se **file** viene specificato, l'output di hello hello contenuto del file hello come blob. Se **url** viene specificato, il file hello è percorso temporaneo tooa caricato e output di hello contiene hello URL del blob hello. I BLOB temporanei verranno eliminati dopo 24 ore. valore predefinito di Hello è **file**.
-- valore di Hello `options.openMode` determina la modalità di lettura file hello. Se il file hello è testo normale previsto toobe, specificare **testo**; in caso contrario, specificare **binario**. valore predefinito di Hello è **testo**.
-- Se `options.uploadMode` è troppo**file** e `options.openMode` è troppo**binario**, output di hello è con codifica base64.
-- `options.encoding`Specifica toouse codifica hello durante la lettura del file hello. valore predefinito di Hello è **UTF-8**e viene utilizzato solo quando `options.openMode` è troppo**testo**.
+- `constraints.accept` specifica i tipi di file visualizzati nella finestra di dialogo del browser relativa ai file. Per informazioni sui valori consentiti, vedere la [specifica HTML5](http://www.w3.org/TR/html5/forms.html#attr-input-accept). Il valore predefinito è **null**.
+- Se la proprietà `options.multiple` è impostata su **true**, l'utente è autorizzato a selezionare più di un file nella finestra di dialogo del browser relativa ai file. Il valore predefinito è **false**.
+- Questo elemento supporta il caricamento dei file in due modalità in base al valore di `options.uploadMode`. Se il valore **file** è specificato, l'output include i contenuti del file sotto forma di BLOB. Se il valore **url** è specificato, il file viene caricato in una posizione temporanea e l'output contiene l'URL del BLOB. I BLOB temporanei verranno eliminati dopo 24 ore. Il valore predefinito è **file**.
+- Il valore di `options.openMode` determina la modalità di lettura del file. Se si prevede che il file sia in testo normale, specificare **text**. In caso contrario, specificare **binary**. Il valore predefinito è **text**.
+- Se la proprietà `options.uploadMode` è impostata su **file** e `options.openMode` su **binary**, l'output avrà una codifica Base64.
+- `options.encoding` specifica la codifica da usare per la lettura del file. Il valore predefinito è **UTF-8** e viene usato solo quando la proprietà `options.openMode` è impostata su **text**.
 
 ## <a name="sample-output"></a>Output di esempio
-Se è false options.multiple e options.uploadMode è file, l'output contiene contenuto hello del file hello come una stringa JSON:
+Se options.multiple è false e options.uploadMode è file, l'output include i contenuti del file sotto forma di stringa JSON:
 
 ```json
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 ```
 
-Se è true options.multiple and'options.uploadMode è file, quindi l'output contiene contenuto hello del file hello come matrice JSON:
+Se options.multiple è true e options.uploadMode è file, l'output include i contenuti del file sotto forma di matrice JSON:
 
 ```json
 [
@@ -87,10 +87,10 @@ Se options.multiple è true e options.uploadMode è url, l'output include un ele
 ]
 ```
 
-Quando si testa un CreateUiDefinition, alcuni browser (ad esempio Google Chrome) troncare URL generati dall'elemento Microsoft.Common.FileUpload hello nella console del browser hello. Potrebbe essere URL completi di clic tooright singoli collegamenti toocopy hello.
+Durante il test di CreateUiDefinition, alcuni browser, ad esempio Google Chrome, troncano gli URL generati dall'elemento Microsoft.Common.FileUpload nella console del browser. Potrebbe essere necessario fare clic con il pulsante destro del mouse sui singoli collegamenti per copiare gli URL completi.
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per le applicazioni toomanaged un'introduzione, vedere [Panoramica applicazione gestita di Azure](managed-application-overview.md).
-* Le definizioni di interfaccia utente toocreating un'introduzione, vedere [introduzione CreateUiDefinition](managed-application-createuidefinition-overview.md).
+* Per un'introduzione alle applicazioni gestite, vedere [Panoramica di Applicazione gestita di Azure](managed-application-overview.md).
+* Per un'introduzione alla creazione delle definizioni dell'interfaccia utente, vedere [Introduzione a CreateUiDefinition](managed-application-createuidefinition-overview.md).
 * Per una descrizione delle proprietà comuni negli elementi dell'interfaccia utente, vedere [Elementi di CreateUiDefinition](managed-application-createuidefinition-elements.md).

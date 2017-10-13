@@ -1,6 +1,6 @@
 ---
-title: "un'applicazione di SharePoint a più livelli usando Azure Site Recovery aaaReplicate | Documenti Microsoft"
-description: "Questo articolo viene descritto come tooreplicate un'applicazione di SharePoint a più livelli con funzionalità di Azure Site Recovery."
+title: Eseguire la replica di un'applicazione di SharePoint multilivello con Azure Site Recovery | Microsoft Docs
+description: "Questo articolo descrive come eseguire la replica di un'applicazione di SharePoint multilivello usando le funzionalità di Azure Site Recovery."
 services: site-recovery
 documentationcenter: 
 author: sujayt
@@ -12,48 +12,48 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/10/2017
+ms.date: 08/31/2017
 ms.author: sutalasi
-ms.openlocfilehash: d856034ac2a3c95b0c1f0cf85e62c4e7a5a3210f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 55323df68715c80d5e8535199cd739921a3baad9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="replicate-a-multi-tier-sharepoint-application-for-disaster-recovery-using-azure-site-recovery"></a>Eseguire la replica di un'applicazione di SharePoint multilivello per il ripristino di emergenza con Azure Site Recovery
 
-In questo articolo descrive in dettaglio come un'applicazione di SharePoint con tooprotect [Azure Site Recovery](site-recovery-overview.md).
+Questo articolo descrive dettagliatamente come proteggere un'applicazione di SharePoint usando [Azure Site Recovery](site-recovery-overview.md).
 
 
 ## <a name="overview"></a>Panoramica
 
-Microsoft SharePoint è una potente applicazione che può aiutare un gruppo o un reparto a organizzare e condividere informazioni collaborando. SharePoint offre portali Intranet, gestione di documenti e file, collaborazione, social network, reti Extranet, siti Web, ricerca di livello aziendale e business intelligence. Include inoltre funzionalità di integrazione dei sistemi, integrazione dei processi e automazione dei flussi di lavoro. In genere, le organizzazioni viene considerano come una livello 1 applicazione riservata toodowntime e perdita di dati.
+Microsoft SharePoint è una potente applicazione che può aiutare un gruppo o un reparto a organizzare e condividere informazioni collaborando. SharePoint offre portali Intranet, gestione di documenti e file, collaborazione, social network, reti Extranet, siti Web, ricerca di livello aziendale e business intelligence. Include inoltre funzionalità di integrazione dei sistemi, integrazione dei processi e automazione dei flussi di lavoro. In genere, le organizzazioni considerano SharePoint un'applicazione di livello 1 sensibile al tempo di inattività e alla perdita dei dati.
 
-Oggi Microsoft SharePoint non include funzionalità di ripristino di emergenza predefinite. Indipendentemente dal tipo hello e la scala di una situazione di emergenza, ripristino prevede l'uso di hello di un centro dati di standby che è possibile ripristinare la farm hello. Standby data center sono necessari per gli scenari in cui i sistemi di archiviazione con ridondanza locali e backup ingestibile interruzione hello in hello data center principale.
+Oggi Microsoft SharePoint non include funzionalità di ripristino di emergenza predefinite. Indipendentemente dal tipo e dall'entità di un evento di emergenza, il ripristino comporta l'uso di un data center di standby in cui ripristinare la farm. I data center di standby sono necessari per gli scenari in cui sistemi ridondanti locali e backup non sono in grado di eseguire il ripristino da interruzioni nel data center primario.
 
-Una soluzione di ripristino di emergenza valida deve consentire la modellazione di piani di ripristino intorno architetture di applicazioni complesse hello, ad esempio SharePoint. Deve inoltre essere hello possibilità tooadd personalizzato passaggi toohandle applicazione mapping tra i vari livelli e fornendo un failover con clic singolo con un RTO inferiore nell'evento hello un'emergenza.
+Una buona soluzione di ripristino di emergenza deve consentire la modellazione di piani di ripristino basati su architetture di applicazioni complesse, come SharePoint. Deve anche permettere di aggiungere passaggi personalizzati per gestire i mapping delle applicazioni tra diversi livelli e quindi fornire il failover con un solo clic e un RTO inferiore nel caso di un evento di emergenza.
 
-In questo articolo descrive in dettaglio come un'applicazione di SharePoint con tooprotect [Azure Site Recovery](site-recovery-overview.md). In questo articolo verrà illustrate le procedure consigliate per la replica di un tooAzure di applicazione di SharePoint a tre livelli, come è possibile eseguire un'analisi di ripristino di emergenza e come è possibile tooAzure applicazione hello di failover.
+Questo articolo descrive dettagliatamente come proteggere un'applicazione di SharePoint usando [Azure Site Recovery](site-recovery-overview.md). Questo articolo descrive le procedure consigliate per la replica di un'applicazione di SharePoint in Azure, l'esecuzione di un'esercitazione sul ripristino di emergenza e il failover dell'applicazione in Azure.
 
-È possibile controllare hello seguito video sul ripristino di un tooAzure di applicazione di livello più.
+È possibile guardare il video di seguito sul ripristino di un'applicazione multilivello in Azure.
 
 > [!VIDEO https://channel9.msdn.com/Series/Azure-Site-Recovery/Disaster-Recovery-of-load-balanced-multi-tier-applications-using-Azure-Site-Recovery/player]
 
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Prima di iniziare, assicurarsi di che aver compreso l'esempio hello:
+Prima di iniziare, è necessario comprendere i concetti illustrati di seguito:
 
-1. [La replica tooAzure una macchina virtuale](site-recovery-vmware-to-azure.md)
-2. Come troppo[progettare una rete di ripristino](site-recovery-network-design.md)
-3. [Esegue un tooAzure di failover di test](site-recovery-test-failover-to-azure.md)
-4. [Eseguire un failover tooAzure](site-recovery-failover.md)
-5. Come troppo[replicare un controller di dominio](site-recovery-active-directory.md)
-6. Come troppo[la replica di SQL Server](site-recovery-sql.md)
+1. [Replica di una macchina virtuale in Azure](site-recovery-vmware-to-azure.md)
+2. Come [progettare una rete di ripristino](site-recovery-network-design.md)
+3. [Esecuzione di un failover di test in Azure](site-recovery-test-failover-to-azure.md)
+4. [Esecuzione di un failover in Azure](site-recovery-failover.md)
+5. Come [replicare un controller di dominio](site-recovery-active-directory.md)
+6. Come [replicare SQL Server](site-recovery-sql.md)
 
 ## <a name="sharepoint-architecture"></a>Architettura di SharePoint
 
-SharePoint può essere distribuito in uno o più server usando topologie a livelli e ruoli di server tooimplement una progettazione di farm che soddisfi gli obiettivi e obiettivi specifici. Una tipica server farm di SharePoint con esigenze e dimensioni elevate che supporta molti utenti simultanei ed elementi di contenuto usa il raggruppamento dei servizi come parte della strategia di scalabilità. Questo approccio prevede l'esecuzione di servizi su server dedicati, raggruppare questi servizi e la scalabilità orizzontale server hello come gruppo. Hello topologia seguente viene illustrato il servizio di hello e server per una server farm di SharePoint a tre livelli di raggruppamento. Per indicazioni dettagliate sulle diverse topologie di SharePoint, vedere tooSharePoint documentazione e le architetture di riga del prodotto. Altre informazioni sulla distribuzione di SharePoint 2013 sono disponibili in [questo documento](https://technet.microsoft.com/en-us/library/cc303422.aspx).
+SharePoint può essere distribuito in uno o più server usando topologie a livelli e ruoli del server per implementare una progettazione di farm in grado di soddisfare finalità e obiettivi specifici. Una tipica server farm di SharePoint con esigenze e dimensioni elevate che supporta molti utenti simultanei ed elementi di contenuto usa il raggruppamento dei servizi come parte della strategia di scalabilità. Questo approccio comporta l'esecuzione di servizi su server dedicati, il raggruppamento dei servizi e quindi la scalabilità orizzontale dei server come gruppi. La topologia seguente mostra il raggruppamento di servizi e server per una server farm di SharePoint a tre livelli. Per indicazioni dettagliate sulle diverse topologie di SharePoint, fare riferimento alla documentazione e alle architetture delle linee di prodotti di SharePoint. Altre informazioni sulla distribuzione di SharePoint 2013 sono disponibili in [questo documento](https://technet.microsoft.com/en-us/library/cc303422.aspx).
 
 
 
@@ -62,154 +62,154 @@ SharePoint può essere distribuito in uno o più server usando topologie a livel
 
 ## <a name="site-recovery-support"></a>Supporto di Site Recovery
 
-Ai fini di questo articolo sono state usate macchine virtuali VMware con Windows Server 2012 R2 Enterprise. Sono stati usati SharePoint 2013 Enterprise Edition e SQL Server 2014 Enterprise Edition. Replica di Site Recovery è indipendente dall'applicazione, indicazioni hello forniti sono toohold previsto in negli scenari seguenti.
+Ai fini di questo articolo sono state usate macchine virtuali VMware con Windows Server 2012 R2 Enterprise. Sono stati usati SharePoint 2013 Enterprise Edition e SQL Server 2014 Enterprise Edition. Poiché la replica di Site Recovery è indipendente dall'applicazione, i consigli inclusi in questo articolo saranno validi anche per gli scenari seguenti.
 
 ### <a name="source-and-target"></a>Origine e destinazione
 
-**Scenario** | **sito secondario tooa** | **tooAzure**
+**Scenario** | **In un sito secondario** | **In Azure**
 --- | --- | ---
 **Hyper-V** | Sì | Sì
 **VMware** | Sì | Sì
 **Server fisico** | Sì | Sì
 
 ### <a name="sharepoint-versions"></a>Versioni di SharePoint
-Hello seguenti versioni di SharePoint server è supportata.
+Sono supportate le versioni di SharePoint Server seguenti.
 
 * SharePoint Server 2013 Standard
 * SharePoint Server 2013 Enterprise
 * SharePoint Server 2016 Standard
 * SharePoint Server 2016 Enterprise
 
-### <a name="things-tookeep-in-mind"></a>Operazioni tookeep presente
+### <a name="things-to-keep-in-mind"></a>Aspetti da considerare
 
-Se si utilizza un cluster basato su disco condiviso come qualsiasi livello dell'applicazione, non sarà possibile toouse in grado di Site Recovery replica tooreplicate tali macchine virtuali. È possibile utilizzare la replica nativa fornita da un'applicazione hello e quindi utilizzare un [piano di ripristino](site-recovery-create-recovery-plans.md) toofailover tutti i livelli.
+Se si usa un cluster basato su dischi condivisi come qualsiasi livello nell'applicazione, non sarà possibile usare Site Recovery per eseguire la replica delle macchine virtuali. È possibile usare la replica nativa fornita dall'applicazione e quindi un [piano di ripristino](site-recovery-create-recovery-plans.md) per eseguire il failover di tutti i livelli.
 
 ## <a name="replicating-virtual-machines"></a>Replica di macchine virtuali
 
-Seguire [questa Guida](site-recovery-vmware-to-azure.md) toostart hello tooAzure di macchina virtuale di replica.
+Seguire [queste linee guida](site-recovery-vmware-to-azure.md) per avviare la replica delle macchine virtuali in Azure.
 
-* Una volta completata la replica di hello, assicurarsi di passare tooeach di macchina virtuale di ogni livello e selezionare stesso set di disponibilità in ' articolo replicato > Impostazioni > Proprietà > calcolo e rete ". Ad esempio, se il livello web dispone di 3 macchine virtuali, verificare hello tutte le macchine 3 virtuali sono configurate toobe parte della stesso set di disponibilità in Azure.
+* Al termine della replica, in ogni macchina virtuale di ogni livello assicurarsi di selezionare lo stesso set di disponibilità in "Elementi replicati > Impostazioni > Proprietà > Calcolo e rete". Ad esempio, se il livello Web include tre VM, assicurarsi che le tre VM siano tutte configurate per fare parte dello stesso set di disponibilità in Azure.
 
     ![Impostazione del set di disponibilità](./media/site-recovery-sharepoint/select-av-set.png)
 
-* Per ulteriori informazioni sulla protezione di Active Directory e DNS, fare riferimento troppo[proteggere Active Directory e DNS](site-recovery-active-directory.md) documento.
+* Per le linee guida sulla protezione di Active Directory e DNS, fare riferimento al documento [Proteggere Active Directory e DNS con Azure Site Recovery](site-recovery-active-directory.md).
 
-* Per ulteriori informazioni sulla protezione a livello di database in esecuzione in SQL server, vedere troppo[proteggere SQL Server](site-recovery-active-directory.md) documento.
+* Per le linee guida sulla protezione del livello database in esecuzione in SQL Server, fare riferimento al documento [Proteggere SQL Server](site-recovery-active-directory.md).
 
 ## <a name="networking-configuration"></a>Configurazione delle impostazioni di rete
 
 ### <a name="network-properties"></a>Proprietà di rete
 
-* Per App hello e livello Web le macchine virtuali, configurare le impostazioni di rete nel portale di Azure in modo che le macchine virtuali hello ottenere toohello collegato corretto ripristino di emergenza rete dopo il failover.
+* Per le VM di livello app e Web, configurare le impostazioni di rete nel portale di Azure in modo che le VM siano collegate alla rete di ripristino di emergenza corretta dopo il failover.
 
     ![Selezione della rete](./media/site-recovery-sharepoint/select-network.png)
 
 
-* Se si utilizza un indirizzo IP statico, quindi specificare hello IP che si desidera hello tootake macchina virtuale in hello **indirizzo IP di destinazione** campo
+* Se si usa un indirizzo IP statico, specificare l'indirizzo IP che dovrà essere usato dalla macchina virtuale nel campo **IP di destinazione**
 
     ![Impostazione dell'IP statico](./media/site-recovery-sharepoint/set-static-ip.png)
 
 ### <a name="dns-and-traffic-routing"></a>DNS e routing del traffico
 
-Per i siti per internet [creare un profilo di gestione traffico di tipo 'Priority'](../traffic-manager/traffic-manager-create-profile.md) in hello sottoscrizione di Azure. E quindi configurare il DNS e gestione traffico il profilo nel seguente modo hello.
+Per i siti con connessione Internet, [creare un profilo di Gestione traffico di tipo "Priorità"](../traffic-manager/traffic-manager-create-profile.md) nella sottoscrizione di Azure. Configurare quindi il DNS e il profilo di Gestione traffico nel modo seguente.
 
 
-| **Where** | **Origine** | **Destinazione**|
+| **Dove** | **Origine** | **Destinazione**|
 | --- | --- | --- |
 | DNS pubblico | DNS pubblico per siti di SharePoint <br/><br/> Esempio: sharepoint.contoso.com | Gestione traffico <br/><br/> contososharepoint.trafficmanager.net |
-| DNS locale | sharepointonprem.contoso.com | Indirizzo IP pubblico nella farm locale hello |
+| DNS locale | sharepointonprem.contoso.com | IP pubblico nella farm locale |
 
 
-Nel profilo di gestione traffico, hello [creare hello endpoint primario e di ripristino](../traffic-manager/traffic-manager-configure-priority-routing-method.md). Utilizzare l'endpoint esterno hello per endpoint locale e l'indirizzo IP pubblico per l'endpoint di Azure. Verificare che la priorità hello sia impostata endpoint locale tooon più elevata.
+Nel profilo di Gestione traffico [creare gli endpoint primario e di ripristino](../traffic-manager/traffic-manager-configure-priority-routing-method.md). Usare l'endpoint esterno per l'endpoint locale e l'indirizzo IP pubblico per l'endpoint di Azure. Assicurarsi che la priorità sia impostata come più alta per l'endpoint locale.
 
-Host di una pagina di prova su una porta specifica (ad esempio 800) nel livello web di SharePoint hello affinché tooautomatically Traffic Manager di rilevare disponibilità post failover. Questa è una soluzione alternativa per i casi in cui non è possibile abilitare l'autenticazione anonima in uno dei siti di SharePoint.
+Ospitare una pagina di test su una porta specifica, ad esempio la porta 800, nel livello Web di SharePoint in modo che Gestione traffico possa rilevare automaticamente la disponibilità dopo il failover. Questa è una soluzione alternativa per i casi in cui non è possibile abilitare l'autenticazione anonima in uno dei siti di SharePoint.
 
-[Configurare il profilo di gestione traffico hello](../traffic-manager/traffic-manager-configure-priority-routing-method.md) con hello sotto le impostazioni.
+[Configurare il profilo di Gestione traffico](../traffic-manager/traffic-manager-configure-priority-routing-method.md) con le impostazioni seguenti.
 
 * Metodo di routing: "Priorità"
-* DNS ora toolive (TTL) - 30 ' secondi'
+* Durata DNS: "30 secondi"
 * Impostazioni di monitoraggio degli endpoint: se l'autenticazione anonima può essere abilitata, è possibile fornire l'endpoint di un sito Web specifico. In alternativa, è possibile usare una pagina di test su una porta specifica, ad esempio la porta 800.
 
 ## <a name="creating-a-recovery-plan"></a>Creazione di un piano di ripristino
 
-Un piano di ripristino consente di sequenziazione failover hello di vari livelli di un'applicazione multilivello, di conseguenza, mantenendo la coerenza delle applicazioni. Seguire hello passaggi seguenti durante la creazione di un piano di ripristino per un'applicazione web a più livelli. [Altre informazioni sulla creazione di un piano di ripristino](site-recovery-runbook-automation.md#customize-the-recovery-plan).
+Un piano di ripristino consente di definire la sequenza di failover di vari livelli in un'applicazione multilivello, conservando la coerenza dell'applicazione. Seguire questa procedura durante la creazione di un piano di ripristino per un'applicazione Web multilivello. [Altre informazioni sulla creazione di un piano di ripristino](site-recovery-runbook-automation.md#customize-the-recovery-plan).
 
-### <a name="adding-virtual-machines-toofailover-groups"></a>Aggiunta di gruppi toofailover macchine virtuali
+### <a name="adding-virtual-machines-to-failover-groups"></a>Aggiunta di macchine virtuali a gruppi di failover
 
-1. Creare un piano di ripristino da hello aggiunta App e il livello Web le macchine virtuali.
-2. Fare clic su 'Personalizza' toogroup hello macchine virtuali. Per impostazione predefinita, tutte le VM fanno parte di "Gruppo 1".
+1. Creare un piano di ripristino aggiungendo le VM di livello app e Web.
+2. Fare clic su "Personalizza" per raggruppare le VM. Per impostazione predefinita, tutte le VM fanno parte di "Gruppo 1".
 
     ![Personalizzazione del piano di ripristino](./media/site-recovery-sharepoint/rp-groups.png)
 
-3. Creare un altro gruppo (gruppo 2) e spostare il livello Web hello macchine virtuali nel nuovo gruppo di hello. Le VM di livello app devono fare parte di "Gruppo 1", mentre le VM di livello Web devono fare parte di "Gruppo 2". Si tratta di tooensure che hello macchine virtuali di livello avviano prima seguita dalle macchine virtuali di livello Web App.
+3. Creare un altro gruppo (Gruppo 2) e spostare le VM di livello Web nel nuovo gruppo. Le VM di livello app devono fare parte di "Gruppo 1", mentre le VM di livello Web devono fare parte di "Gruppo 2". In questo modo, le VM di livello app vengono avviate per prime, seguite dalle VM di livello Web.
 
 
-### <a name="adding-scripts-toohello-recovery-plan"></a>Aggiunta di script toohello piano di ripristino
+### <a name="adding-scripts-to-the-recovery-plan"></a>Aggiunta di script al piano di ripristino
 
-È possibile distribuire script di Azure Site Recovery hello più comunemente usato nell'account di automazione pulsante hello 'Distribuire tooAzure' riportata di seguito. Quando si utilizza uno script pubblicato, attenersi alle linee guida hello nello script hello.
+È possibile distribuire gli script di Azure Site Recovery usate più comunemente nell'account di Automazione facendo clic sul pulsante "Distribuisci in Azure" di seguito. Quando si usa uno script pubblicato, assicurarsi di seguire le istruzioni nello script.
 
-[![Distribuire tooAzure](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/c4803408-340e-49e3-9a1f-0ed3f689813d.png)](https://aka.ms/asr-automationrunbooks-deploy)
+[![Distribuzione in Azure](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/c4803408-340e-49e3-9a1f-0ed3f689813d.png)](https://aka.ms/asr-automationrunbooks-deploy)
 
-1. Aggiungere un script di pre-azione too'Group 1' toofailover gruppo di disponibilità SQL. Utilizzare lo script 'SQL ripristino automatico di sistema-FailoverAG' hello pubblicato negli script di esempio hello. Assicurarsi di seguire indicazioni hello nello script hello e apportare modifiche hello necessario nello script hello in modo appropriato.
+1. Aggiungere uno script precedente all'azione a "Gruppo 1" per il gruppo di disponibilità SQL. Usare lo script "ASR-SQL-FailoverAG" pubblicato negli script di esempio. Assicurarsi di seguire le istruzioni nello script e apportare le modifiche necessarie nello script nel modo appropriato.
 
     ![Aggiunta dello script per il gruppo di disponibilità - Passaggio 1](./media/site-recovery-sharepoint/add-ag-script-step1.png)
 
     ![Aggiunta dello script per il gruppo di disponibilità - Passaggio 2](./media/site-recovery-sharepoint/add-ag-script-step2.png)
 
-2. Aggiungere un tooattach script azione di post di un servizio di bilanciamento del carico hello failover le macchine virtuali del livello Web (gruppo 2). Utilizzare lo script 'Ripristino automatico di sistema-AddSingleLoadBalancer' hello pubblicato negli script di esempio hello. Assicurarsi di seguire indicazioni hello nello script hello e apportare modifiche hello necessario nello script hello in modo appropriato.
+2. Aggiungere uno script successivo all'azione per collegare un servizio di bilanciamento del carico nelle macchine virtuali sottoposte a failover di livello Web (Gruppo 2). Usare lo script "ASR-AddSingleLoadBalancer" pubblicato negli script di esempio. Assicurarsi di seguire le istruzioni nello script e apportare le modifiche necessarie nello script nel modo appropriato.
 
     ![Aggiunta dello script per il bilanciamento del carico - Passaggio 1](./media/site-recovery-sharepoint/add-lb-script-step1.png)
 
     ![Aggiunta dello script per il bilanciamento del carico - Passaggio 2](./media/site-recovery-sharepoint/add-lb-script-step2.png)
 
-3. Aggiungere una passaggio manuale tooupdate hello DNS record toopoint toohello nuova farm in Azure.
+3. Aggiungere un passaggio manuale per aggiornare i record DNS perché puntino alla nuova farm in Azure.
 
-    * Per i siti con connessione Internet, non è necessario alcun aggiornamento dei record DNS dopo il failover. Seguire i passaggi di hello descritti in tooconfigure di sezione 'Informazioni aggiuntive sulla rete' hello Traffic Manager. Se hello profilo di gestione traffico è stato impostato come descritto nella sezione precedente di hello, aggiungere una porta di script tooopen fittizio (800 nell'esempio hello) in hello macchina virtuale di Azure.
+    * Per i siti con connessione Internet, non è necessario alcun aggiornamento dei record DNS dopo il failover. Seguire i passaggi descritti nella sezione delle linee guida per le impostazioni di rete per configurare Gestione traffico. Se il profilo di Gestione traffico è stato configurato come descritto nella sezione precedente, aggiungere uno script per aprire una porta fittizia (porta 800 nell'esempio) nella VM di Azure.
 
-    * Per siti Web interni, aggiungere l'IP del servizio di bilanciamento carico di un passaggio manuale tooupdate hello DNS record toopoint toohello nuova Web livello della macchina virtuale.
+    * Per i siti interni, aggiungere un passaggio manuale per aggiornare il record DNS perché punti al nuovo indirizzo IP del servizio di bilanciamento del carico della VM di livello Web.
 
-4. Aggiungere un'applicazione di ricerca toorestore passaggio manuale da un backup oppure avviare un nuovo servizio di ricerca.
+4. Aggiungere un passaggio manuale per ripristinare l'applicazione di ricerca da un backup o avviare un nuovo servizio di ricerca.
 
 5. Per il ripristino dell'applicazione del servizio di ricerca da un backup, seguire i passaggi seguenti.
 
-    * Questo metodo presuppone che un backup di hello applicazione di servizio di ricerca è stato eseguito prima dell'evento irreversibile hello e tale backup hello è disponibile nel sito di ripristino di emergenza hello.
-    * Può essere ottenuta facilmente pianificando backup hello (ad esempio, una volta al giorno) e usando un backup di copia procedure tooplace hello nel sito di ripristino di emergenza hello. Le procedure di copia possono includere programmi basati su script come AzCopy (Azure Copy) o la configurazione di DFSR (Distributed File Services Replication).
-    * Ora che hello SharePoint farm è in esecuzione, passare hello Amministrazione centrale, 'Backup e ripristino' e selezionare il ripristino. ripristino Hello interroga il percorso di backup hello specificato (valore hello tooupdate potrebbe essere necessario). Selezionare il backup di applicazione di servizio di ricerca hello toorestore desiderato.
-    * La ricerca viene ripristinata. Tenere presente che hello ripristino prevede toofind hello stessa topologia (stesso numero di server) e le stesse unità disco rigido lettere assegnate toothose server. Per altre informazioni, vedere il documento [Ripristinare le applicazioni del servizio di ricerca in SharePoint 2013](https://technet.microsoft.com/library/ee748654.aspx).
+    * Questo metodo presuppone che sia stato eseguito un backup dell'applicazione del servizio di ricerca prima dell'evento di emergenza e che il backup sia disponibile nel sito di ripristino di emergenza.
+    * A questo scopo, è possibile pianificare in tutta semplicità il backup (ad esempio, una volta al giorno) e usare una procedura di copia per spostare il backup nel sito di ripristino di emergenza. Le procedure di copia possono includere programmi basati su script come AzCopy (Azure Copy) o la configurazione di DFSR (Distributed File Services Replication).
+    * Quando la farm di SharePoint è in esecuzione, passare ad Amministrazione centrale, quindi a "Backup e ripristino" e selezionare Ripristina. Il ripristino interroga il percorso di backup specificato. Potrebbe essere necessario aggiornare il valore. Selezionare il backup dell'applicazione del servizio di ricerca che si vuole ripristinare.
+    * La ricerca viene ripristinata. Tenere presente che l'operazione di ripristino si aspetta di trovare la stessa topologia, ovvero lo stesso numero di server, e le stesse lettere di unità assegnate ai server. Per altre informazioni, vedere il documento [Ripristinare le applicazioni del servizio di ricerca in SharePoint 2013](https://technet.microsoft.com/library/ee748654.aspx).
 
 
 6. Per avviare il sistema con una nuova applicazione del servizio di ricerca, seguire i passaggi seguenti.
 
-    * Questo metodo presuppone che nel sito di ripristino di emergenza hello è disponibile un backup del database "Di amministrazione della ricerca" hello.
-    * Poiché hello altri database di applicazione di servizio di ricerca non vengono replicati, è necessario che toobe creato nuovamente. toodo consente pertanto di passare tooCentral amministrazione e di eliminare hello applicazione di servizio di ricerca. In tutti i server cui hello host indice di ricerca, eliminare i file di indice hello.
-    * Ricreare hello applicazione di servizio di ricerca e si ricrea database hello. È consigliabile toohave uno script preparato che consente di ricreare questa applicazione del servizio perché non è possibile tooperform tutte le azioni tramite hello GUI. Posizione dell'indice unità hello e configurazione della topologia di ricerca hello sono, ad esempio, possibile solo tramite i cmdlet PowerShell di SharePoint. Utilizzare il cmdlet di Windows PowerShell hello SPEnterpriseSearchServiceApplication di ripristino e specificare hello soggetti a log Shipping e replica di database di amministrazione della ricerca, Search_Service__DB. Questo cmdlet consente la configurazione della ricerca hello, schema, proprietà gestite, regole e le origini e crea un set predefinito di hello altri componenti.
-    * Dopo l'applicazione di servizio di ricerca sia hello creare di nuovo, è necessario avviare una ricerca per indicizzazione completa per ogni hello toorestore di origine di contenuto servizio di ricerca. Alcuni dati analitica dalla farm locale hello, ad esempio suggerimenti di ricerca andranno persi.
+    * Questo metodo presuppone che nel sito di ripristino di emergenza sia disponibile un backup del database di amministrazione della ricerca.
+    * Poiché gli altri database dell'applicazione del servizio di ricerca non vengono replicati, devono essere ricreati. A questo scopo, passare ad Amministrazione centrale ed eliminare l'applicazione del servizio di ricerca. Eliminare i file di indice in tutti i server che ospitano l'indice di ricerca.
+    * Ricreare l'applicazione del servizio di ricerca perché vengano ricreati i database. È consigliabile aver preparato uno script che ricrea questa applicazione di servizio, perché non è possibile eseguire tutte le operazioni tramite l'interfaccia utente grafica. Ad esempio, l'impostazione del percorso dell'unità degli indici e la configurazione della topologia di ricerca sono possibili solo usando i cmdlet di PowerShell per SharePoint. Usare il cmdlet di Windows PowerShell Restore-SPEnterpriseSearchServiceApplication e specificare il database di amministrazione della ricerca Search_Service__DB fornito dal log e replicato. Questo cmdlet fornisce la configurazione, lo schema, le proprietà gestite, le regole e le origini della ricerca e crea un set predefinito degli altri componenti.
+    * Una volta ricreata l'applicazione del servizio di ricerca, è necessario avviare una ricerca per indicizzazione completa per ogni origine di contenuto per ripristinare il servizio di ricerca. Verranno perse alcune informazioni di analisi dalla farm locale, ad esempio i suggerimenti per la ricerca.
 
-7. Una volta completati tutti i passaggi di hello, salvare il piano di ripristino hello e piano di ripristino finale hello avrà un aspetto simile riportato di seguito.
+7. Al termine di tutti i passaggi, salvare il piano di ripristino. Il piano di ripristino finale avrà un aspetto simile al seguente.
 
     ![Piano di ripristino salvato](./media/site-recovery-sharepoint/saved-rp.png)
 
 ## <a name="doing-a-test-failover"></a>Esecuzione di un failover di test
-Seguire [questa Guida](site-recovery-test-failover-to-azure.md) toodo un failover di test.
+Seguire [queste linee guida](site-recovery-test-failover-to-azure.md) per eseguire un failover di test.
 
-1.  Passare tooAzure portale e selezionare l'insieme di credenziali del servizio di ripristino.
-2.  Fare clic sul piano di ripristino hello creato per l'applicazione di SharePoint.
+1.  Accedere al portale di Azure e selezionare l'insieme di credenziali di Servizi di ripristino.
+2.  Fare clic sul piano di ripristino creato per l'applicazione di SharePoint.
 3.  Fare clic su 'Failover di test'.
-4.  Selezionare un punto di ripristino e il processo di failover di test di rete virtuale di Azure toostart hello.
-5.  Una volta ambiente secondario hello è attivo, è possibile eseguire le convalide.
-6.  Dopo aver complete le convalide hello, è possibile fare clic su 'Failover di test di pulizia' nel piano di ripristino hello e ambiente di failover di test hello verrà eliminate.
+4.  Selezionare il punto di recupero e la rete virtuale di Azure per avviare il processo di failover di test.
+5.  Quando l'ambiente secondario è disponibile, è possibile eseguire le convalide.
+6.  Al termine delle convalide, è possibile fare clic su "Pulizia failover di test" nel piano di ripristino perché l'ambiente di failover di test venga pulito.
 
-Per informazioni aggiuntive sull'esecuzione di test del failover per Active Directory e DNS, fare riferimento troppo[Test considerazioni sul failover per Active Directory e DNS](site-recovery-active-directory.md#test-failover-considerations) documento.
+Per le linee guida su come eseguire il failover di test per Active Directory e DNS, fare riferimento al documento [Considerazioni sul failover di test per Active Directory e DNS](site-recovery-active-directory.md#test-failover-considerations).
 
-Per informazioni aggiuntive sull'esecuzione di test del failover di SQL nei gruppi di disponibilità, fare riferimento troppo[esegue Test del failover per SQL Server Always On](site-recovery-sql.md#steps-to-do-a-test-failover) documento.
+Per le linee guida su come eseguire il failover di test per gruppi di disponibilità SQL AlwaysOn, fare riferimento al documento [Esecuzione di un failover di test per SQL AlwaysOn](site-recovery-sql.md#steps-to-do-a-test-failover).
 
 ## <a name="doing-a-failover"></a>Esecuzione di un failover
 Seguire [queste linee guida](site-recovery-failover.md) per eseguire un failover.
 
-1.  Passare tooAzure portale e selezionare l'insieme di credenziali di servizi di ripristino.
-2.  Fare clic sul piano di ripristino hello creato per l'applicazione di SharePoint.
+1.  Accedere al portale di Azure e selezionare l'insieme di credenziali di Servizi di ripristino.
+2.  Fare clic sul piano di ripristino creato per l'applicazione di SharePoint.
 3.  Fare clic su 'Failover'.
-4.  Seleziona processo di failover hello toostart punto di ripristino.
+4.  Selezionare il punto di recupero per avviare il processo di failover.
 
 ## <a name="next-steps"></a>Passaggi successivi
 Altre informazioni sulla [replica di altre applicazioni](site-recovery-workload.md) con Site Recovery.

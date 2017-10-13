@@ -1,6 +1,6 @@
 ---
-title: "attività di gestione aaaAutomate nelle macchine virtuali di SQL (gestione delle risorse) | Documenti Microsoft"
-description: "In questo argomento viene descritto come toomanage hello estensione agente SQL Server, che consente di automatizzare attività di amministrazione di SQL Server specifiche. Queste includono il backup automatizzato, l'applicazione automatica delle patch e l'integrazione dell'insieme di credenziali delle chiavi di Azure. In questo argomento Usa la modalità di distribuzione di gestione risorse hello."
+title: "Automatizzare le attività di gestione in macchine virtuali SQL (Resource Manager) | Microsoft Docs"
+description: "Questo argomento descrive come gestire l'estensione di SQL Server Agent, che consente di automatizzare attività di amministrazione di SQL Server specifiche. Queste includono il backup automatizzato, l'applicazione automatica delle patch e l'integrazione dell'insieme di credenziali delle chiavi di Azure. Questo argomento usa il modello di distribuzione Resource Manager."
 services: virtual-machines-windows
 documentationcenter: 
 author: rothja
@@ -16,38 +16,38 @@ ms.workload: iaas-sql-server
 ms.date: 08/07/2017
 ms.author: jroth
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: ae917612c4af59f12c0b083440673bdc555e9d56
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7152d184bb6d1d4b81aeb47e2c7c9160ada36023
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="automate-management-tasks-on-azure-virtual-machines-with-hello-sql-server-agent-extension-resource-manager"></a>Automatizzare le attività di gestione in macchine virtuali di Azure con hello estensione di SQL Server Agent (gestione delle risorse)
+# <a name="automate-management-tasks-on-azure-virtual-machines-with-the-sql-server-agent-extension-resource-manager"></a>Automatizzare le attività di gestione in macchine virtuali SQL con l'estensione SQL Server Agent (Resource Manager)
 > [!div class="op_single_selector"]
 > * [Gestione risorse](virtual-machines-windows-sql-server-agent-extension.md)
 > * [Classico](../classic/sql-server-agent-extension.md)
 > 
 > 
 
-Hello estensione agente IaaS di SQL Server (SQLIaaSExtension) viene eseguito su macchine virtuali di Azure tooautomate attività di amministrazione. In questo argomento viene fornita una panoramica di servizi di hello supportati dall'estensione hello, nonché istruzioni per l'installazione, stato e rimozione.
+L'Estensione Agente IaaS di SQL Server (SQLIaaSExtension) viene eseguita su macchine virtuali di Azure per automatizzare le attività di amministrazione. Questo argomento fornisce una panoramica dei servizi supportati dall'estensione e delle istruzioni per l'installazione, lo stato e la rimozione.
 
 [!INCLUDE [learn-about-deployment-models](../../../../includes/learn-about-deployment-models-rm-include.md)]
 
-versione classica di hello tooview di questo articolo, vedere [estensione di SQL Server Agent per le macchine virtuali classiche di SQL Server](../classic/sql-server-agent-extension.md).
+Per visualizzare la versione classica di questo articolo, vedere [Estensione Agente IaaS di SQL Server (distribuzione classica)](../classic/sql-server-agent-extension.md).
 
 ## <a name="supported-services"></a>Servizi supportati
-Estensione di SQL Server IaaS Agent Hello supporta hello seguenti attività di amministrazione:
+L'Estensione Agente IaaS di SQL Server supporta le attività di amministrazione seguenti:
 
 | Funzionalità di amministrazione | Descrizione |
 | --- | --- |
-| **Backup automatico di SQL** |Consente di automatizzare hello pianificazione dei backup per tutti i database per l'istanza predefinita di hello di SQL Server in VM hello. Per altre informazioni, vedere [Backup automatico per SQL Server nelle macchine virtuali di Azure (Resource Manager)](virtual-machines-windows-sql-automated-backup.md). |
-| **Applicazione automatica delle patch di SQL** |Configura una finestra di manutenzione durante gli aggiornamenti inserisce tooyour macchina virtuale può richiedere, pertanto è possibile evitare gli aggiornamenti durante le ore di punta per il carico di lavoro. Per altre informazioni, vedere [Applicazione automatica delle patch per SQL Server nelle macchine virtuali di Azure (Resource Manager)](virtual-machines-windows-sql-automated-patching.md). |
-| **Integrazione di Azure Key Vault** |Abilita è tooautomatically installare e configurare l'insieme di credenziali chiave di Azure nella VM SQL Server. Per altre informazioni, vedere [Configurare l'integrazione dell'insieme di credenziali delle chiavi di Azure per SQL Server in Macchine virtuali di Azure (Resource Manager)](virtual-machines-windows-ps-sql-keyvault.md). |
+| **Backup automatico di SQL** |Consente di automatizzare la pianificazione delle operazioni di backup per tutti i database correlati all'istanza predefinita di SQL Server nella VM. Per altre informazioni, vedere [Backup automatico per SQL Server nelle macchine virtuali di Azure (Resource Manager)](virtual-machines-windows-sql-automated-backup.md). |
+| **Applicazione automatica delle patch di SQL** |Consente di configurare una finestra di manutenzione durante la quale eseguire gli aggiornamenti della VM, evitandone l'esecuzione durante i periodi di picco del carico di lavoro. Per altre informazioni, vedere [Applicazione automatica delle patch per SQL Server nelle macchine virtuali di Azure (Resource Manager)](virtual-machines-windows-sql-automated-patching.md). |
+| **Integrazione dell'insieme di credenziali delle chiavi di Azure** |Consente di installare e configurare automaticamente l'insieme di credenziali delle chiavi di Azure nella VM di SQL Server. Per altre informazioni, vedere [Configurare l'integrazione dell'insieme di credenziali delle chiavi di Azure per SQL Server in Macchine virtuali di Azure (Resource Manager)](virtual-machines-windows-ps-sql-keyvault.md). |
 
-Dopo aver installato e in esecuzione, hello estensione di SQL Server IaaS Agent disponibili queste funzionalità di amministrazione nel Pannello di SQL Server hello di hello macchina virtuale nel portale di Azure hello e tramite Azure PowerShell per le immagini di SQL Server marketplace e tramite Azure PowerShell per le installazioni manuali dell'estensione hello. 
+Dopo averlo installato e messo in esecuzione, l'estensione dell'agente IaaS di SQL Server rende disponibili queste funzionalità di amministrazione nel pannello SQL Server della macchina virtuale nel portale di Azure e tramite Azure PowerShell per le immagini del marketplace di SQL Server e Azure PowerShell per le installazioni manuali dell'estensione. 
 
 ## <a name="prerequisites"></a>Prerequisiti
-Requisiti toouse hello estensione agente IaaS di SQL Server nella VM:
+Requisiti per l'uso dell'Estensione Agente IaaS di SQL Server nella VM:
 
 **Sistema operativo**:
 
@@ -63,46 +63,46 @@ Requisiti toouse hello estensione agente IaaS di SQL Server nella VM:
 
 **Azure PowerShell**:
 
-* [Scaricare e configurare i comandi di PowerShell di Azure più recenti hello](/powershell/azure/overview)
+* [Scaricare e configurare i comandi di Azure PowerShell più recenti](/powershell/azure/overview)
 
-## <a name="installation"></a>Installazione
-Hello estensione agente IaaS di SQL Server viene installato automaticamente quando si esegue il provisioning di una delle immagini della raccolta di macchine virtuali SQL Server hello. Se è necessario estensione hello tooreinstall manualmente su una di queste macchine virtuali di SQL Server, utilizzare hello comando PowerShell seguente:
+## <a name="installation"></a>Installare
+L'Estensione Agente IaaS di SQL Server viene installata automaticamente quando si esegue il provisioning di una delle immagini della galleria di macchine virtuali SQL Server. Se è necessario reinstallare manualmente l'estensione in una di queste macchine virtuali di SQL Server, usare il comando PowerShell seguente:
 
 ```powershell
 Set-AzureRmVMSqlServerExtension -ResourceGroupName "resourcegroupname" -VMName "vmname" -Name "SQLIaasExtension" -Version "1.2" -Location "East US 2"
 ```
 
-È inoltre possibile tooinstall hello estensione agente IaaS di SQL Server in una macchina virtuale del sistema operativo Windows Server. Questa soluzione è supportata solo se SQL Server è stato installato manualmente sul computer. Quindi installare hello estensione manualmente utilizzando hello stesso **Set AzureVMSqlServerExtension** cmdlet di PowerShell.
+È possibile anche installare l'estensione SQL Server IaaS Agent in una macchina virtuale Windows Server con il solo sistema operativo. Questa soluzione è supportata solo se SQL Server è stato installato manualmente sul computer. Installare quindi l'estensione manualmente usando lo stesso cmdlet di PowerShell **Set-AzureVMSqlServerExtension**.
 
 > [!NOTE]
-> Se si installa manualmente hello estensione agente IaaS di SQL Server in una VM solo sistema operativo Windows Server, è possibile gestire non le impostazioni di configurazione di SQL Server hello tramite hello portale di Azure. In questo scenario è necessario eseguire tutte le modifiche con PowerShell.
+> Se si installa manualmente l'estensione Agente IaaS di SQL Server in una macchina virtuale Windows Server con il solo sistema operativo, non è possibile gestire le impostazioni di configurazione di SQL Server tramite il portale di Azure. In questo scenario è necessario eseguire tutte le modifiche con PowerShell.
 
 ## <a name="status"></a>Stato
-Tooverify un modo che sia installato l'estensione hello è lo stato dell'agente hello tooview in hello portale di Azure. Selezionare **tutte le impostazioni** in hello pannello macchine virtuali e quindi fare clic su **estensioni**. Dovrebbe essere hello **SQLIaaSExtension** estensione elencati.
+Un modo per verificare che l'estensione sia installata consiste nel visualizzare lo stato dell'agente nel portale di Azure. Selezionare **Tutte le impostazioni** nel pannello della macchina virtuale e quindi fare clic su **Estensioni**. Verrà elencata l'estensione **SQLIaaSExtension** .
 
 ![Estensione Agente IaaS di SQL Server nel portale di Azure](./media/virtual-machines-windows-sql-server-agent-extension/azure-rm-sql-server-iaas-agent-portal.png)
 
-È inoltre possibile utilizzare hello **Get AzureVMSqlServerExtension** cmdlet Powershell di Azure.
+È anche possibile usare il cmdlet di Azure PowerShell **Get-AzureVMSqlServerExtension** .
 
     Get-AzureRmVMSqlServerExtension -VMName "vmname" -ResourceGroupName "resourcegroupname"
 
-comando precedente Hello conferma agente hello viene installato e fornisce informazioni sullo stato generale. È anche possibile ottenere informazioni specifiche sullo stato Backup automatizzato e l'applicazione di patch con hello i comandi seguenti.
+Il comando precedente conferma l'installazione dell'agente e ne fornisce informazioni generali sullo stato. È inoltre possibile ottenere informazioni specifiche sullo stato del backup e dell'applicazione di patch in modalità automatizzata con i comandi seguenti.
 
     $sqlext = Get-AzureRmVMSqlServerExtension -VMName "vmname" -ResourceGroupName "resourcegroupname"
     $sqlext.AutoPatchingSettings
     $sqlext.AutoBackupSettings
 
 ## <a name="removal"></a>Rimozione
-Nel portale di Azure hello, è possibile disinstallare l'estensione hello facendo clic sui puntini di sospensione hello in hello **estensioni** pannello delle proprietà di macchina virtuale. Fare quindi clic su **Elimina**.
+Nel portale di Azure è possibile disinstallare l'estensione facendo clic sui puntini di sospensione nel pannello **Estensioni** delle proprietà della macchina virtuale. Fare quindi clic su **Elimina**.
 
-![Disinstallare hello estensione agente IaaS di SQL Server nel portale di Azure](./media/virtual-machines-windows-sql-server-agent-extension/azure-rm-sql-server-iaas-agent-uninstall.png)
+![Disinstallare l'Estensione Agente IaaS di SQL Server nel portale di Azure](./media/virtual-machines-windows-sql-server-agent-extension/azure-rm-sql-server-iaas-agent-uninstall.png)
 
-È inoltre possibile utilizzare hello **Remove AzureRmVMSqlServerExtension** cmdlet di Powershell.
+È anche possibile usare il cmdlet di PowerShell **Remove-AzureRmVMSqlServerExtension** .
 
     Remove-AzureRmVMSqlServerExtension -ResourceGroupName "resourcegroupname" -VMName "vmname" -Name "SQLIaasExtension"
 
 ## <a name="next-steps"></a>Passaggi successivi
-Iniziare a utilizzare uno dei servizi di hello supportati dall'estensione hello. Per ulteriori informazioni, vedere gli argomenti di hello elencati in hello [servizi supportati](#supported-services) sezione di questo articolo.
+Iniziare a usare uno dei servizi supportati dall'estensione. Per altre informazioni, vedere gli argomenti citati nella sezione [Servizi supportati](#supported-services) di questo articolo.
 
 Per altre informazioni sull'esecuzione di SQL Server in Macchine virtuali di Azure, vedere [Panoramica di SQL Server in Macchine virtuali di Azure](virtual-machines-windows-sql-server-iaas-overview.md).
 

@@ -1,6 +1,6 @@
 ---
-title: aaaNotification hub localizzata ultime notizie esercitazione per iOS
-description: Informazioni su come toouse hub di notifica di Azure Service Bus toosend localizzata notifiche sulle ultime notizie (iOS).
+title: Esercitazione sull'invio di ultime notizie localizzate per iOS mediante Hub di notifica
+description: Informazioni su come usare Hub di notifica del bus di servizio di Azure per inviare notifiche relative alle ultime notizie localizzate (iOS).
 services: notification-hubs
 documentationcenter: ios
 author: ysxu
@@ -14,13 +14,13 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 10/03/2016
 ms.author: yuaxu
-ms.openlocfilehash: 9fe88c0440e93b72d349574160ddcd85a7ba0be0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: fd2b7d9dfd4f432bbcbaa3ed76f8bec0b9677e17
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="use-notification-hubs-toosend-localized-breaking-news-tooios-devices"></a>Usare gli hub di notifica toosend localizzata rilievo notizie tooiOS dispositivi
+# <a name="use-notification-hubs-to-send-localized-breaking-news-to-ios-devices"></a>Uso di Hub di notifica per inviare le ultime notizie localizzate ai dispositivi iOS
 > [!div class="op_single_selector"]
 > * [Windows Store C#](notification-hubs-windows-store-dotnet-xplat-localized-wns-push-notification.md)
 > * [iOS](notification-hubs-ios-xplat-localized-apns-push-notification.md)
@@ -28,26 +28,26 @@ ms.lasthandoff: 10/06/2017
 > 
 
 ## <a name="overview"></a>Panoramica
-In questo argomento illustra come hello toouse [modelli](notification-hubs-templates-cross-platform-push-messages.md) funzionalità di hub di notifica di Azure toobroadcast importanti notifiche di notizie che sono state localizzate per lingua e dispositivo. In questa esercitazione si comincia con app iOS hello creato in [toosend gli hub di notifica di utilizzare le ultime notizie]. Al termine, che si sarà in grado di tooregister per le categorie che si è interessati, specificare una lingua in cui le notifiche hello tooreceive e ricevere notifiche di push solo per le categorie di hello selezionata in tale lingua.
+In questo argomento viene illustrato come utilizzare la funzionalità relativa ai [modelli](notification-hubs-templates-cross-platform-push-messages.md) di Hub di notifica di Azure per trasmettere notifiche relative alle ultime notizie localizzate in base alla lingua e al dispositivo. In questa esercitazione verrà utilizzata l'app di iOS creata in [Utilizzo di Hub di notifica per inviare le e ultime notizie]. Al termine, sarà possibile effettuare la registrazione per le categorie di proprio interesse, specificare la lingua in cui ricevere le notifiche e ricevere solo notifiche push per le categorie selezionate nella lingua scelta.
 
-Esistono due parti toothis scenario:
+Lo scenario è composto da due parti:
 
-* app per iOS consente client dispositivi toospecify una lingua e toodifferent toosubscribe importanti categorie di notizie.
-* back-end Hello trasmette hello le notifiche, hello **tag** e **modello** funzionalità di Azure degli hub di notifica.
+* l'app per iOS consente ai dispositivi client di specificare una lingua e di sottoscrivere categorie diverse di ultime notizie;
+* il back-end trasmette le notifiche usando le funzionalità relative ai **tag** e ai **modelli** di Hub di notifica di Azure.
 
 ## <a name="prerequisites"></a>Prerequisiti
-È necessario aver già completato hello [toosend gli hub di notifica di utilizzare le ultime notizie] esercitazione e dispone di codice hello disponibile, poiché in questa esercitazione si basa direttamente su tale codice.
+È necessario aver completato l'esercitazione [Utilizzo di Hub di notifica per inviare le e ultime notizie] e disporre del relativo codice, in quanto questa esercitazione è basata direttamente su tale codice.
 
 Visual Studio 2012 o versione successiva è facoltativo.
 
 ## <a name="template-concepts"></a>Concetti relativi ai modelli
-In [toosend gli hub di notifica di utilizzare le ultime notizie] è stata compilata un'applicazione che utilizzato **tag** toonotifications toosubscribe per le categorie di notizie diverso.
-Molte app, tuttavia, sono destinate a più mercati ed è necessario localizzarle. Ciò significa che contenuto hello di notifiche di hello stessi toobe localizzato e recapitato toohello correggere set di dispositivi.
-In questo argomento viene illustrato come hello toouse **modello** funzionalità degli hub di notifica tooeasily recapitare localizzata notifiche sulle ultime notizie.
+In [Utilizzo di Hub di notifica per inviare le e ultime notizie] è stata creata un'app che utilizza i **tag** per sottoscrivere le notifiche per diverse categorie di notizie.
+Molte app, tuttavia, sono destinate a più mercati ed è necessario localizzarle. Questo significa che il contenuto delle notifiche deve essere localizzato e inviato al set di dispositivi corretto.
+In questo argomento verrà illustrato come usare la funzionalità relativa ai **modelli** di Hub di notifica per inviare facilmente notifiche relative alle ultime notizie localizzate.
 
-Nota: un modo toosend localizzata notifiche è toocreate più versioni di ogni tag. Ad esempio, toosupport in lingua inglese, francese e Mandarino, sarà necessaria e tre i tag diversi per notizie world: "world_en", "world_fr" e "world_ch". È quindi necessario toosend una versione localizzata di hello world news tooeach dei tag. In questo argomento vengono utilizzati modelli tooavoid hello aumentare del numero di tag e il requisito di hello di inviare più messaggi.
+Nota: un possibile modo per inviare notifiche localizzate consiste nel creare più versioni di ogni tag. Per supportare l'inglese, il francese e il mandarino, ad esempio, sono necessari tre tag diversi per le ultime notizie internazionali: "world_en", "world_fr" e "world_ch". È quindi necessario inviare una versione localizzata delle ultime notizie internazionali a ogni tag. In questo argomento verranno utilizzati i modelli per evitare la proliferazione di tag e la necessità di inviare più messaggi.
 
-A un livello elevato, i modelli sono un modo toospecify come un dispositivo specifico deve ricevere una notifica. modello Hello specifica il formato di payload esatta hello riferendosi tooproperties che fanno parte di messaggio hello inviato dal back-end di app. In questo caso verrà inviato un messaggio indipendente dalle impostazioni locali, che contiene tutte le lingue supportate:
+In linea generale, i modelli consentono di specificare in che modo uno specifico dispositivo deve ricevere una notifica. Il modello definisce lo specifico formato di payload da utilizzare, facendo riferimento alle proprietà del messaggio inviato dal back-end dell'app. In questo caso verrà inviato un messaggio indipendente dalle impostazioni locali, che contiene tutte le lingue supportate:
 
     {
         "News_English": "...",
@@ -55,7 +55,7 @@ A un livello elevato, i modelli sono un modo toospecify come un dispositivo spec
         "News_Mandarin": "..."
     }
 
-Quindi si garantisce che i dispositivi è registrato con un modello che fa riferimento la proprietà corretta toohello. Ad esempio, un'app iOS che vuole tooregister per francese notizie registrerà seguente hello:
+Si procederà quindi a verificare che i dispositivi effettuino la registrazione con un modello che faccia riferimento alla proprietà corretta. Per un'app per iOS che deve essere registrata per le notizie in francese, ad esempio, si effettuerà la registrazione nel modo seguente:
 
     {
         aps:{
@@ -65,19 +65,19 @@ Quindi si garantisce che i dispositivi è registrato con un modello che fa rifer
 
 I modelli rappresentano uno strumento particolarmente efficace. Per altre informazioni, vedere l'articolo [Modelli](notification-hubs-templates-cross-platform-push-messages.md).
 
-## <a name="hello-app-user-interface"></a>interfaccia utente di app Hello
-Si modificherà ora hello delle ultime notizie app creata nell'argomento hello [toosend gli hub di notifica di utilizzare le ultime notizie] toosend localizzata aggiornate utilizzando i modelli.
+## <a name="the-app-user-interface"></a>Interfaccia utente dell'app
+L'app Breaking News creata nell'argomento [Utilizzo di Hub di notifica per inviare le e ultime notizie] verrà ora modificata in modo da inviare notizie localizzate mediante modelli.
 
-Nel MainStoryboard_iPhone.storyboard, aggiungere un controllo segmentata con linguaggi hello tre che saranno supportati: inglese, francese e mandarino.
+In MainStoryboard_iPhone.storyboard aggiungere un controllo Segmented con le tre lingue che saranno supportate: inglese, francese e mandarino.
 
 ![][13]
 
-Quindi apportare tooadd che un IBOutlet il ViewController.h come illustrato di seguito:
+Assicurarsi quindi di aggiungere un elemento IBOutlet in ViewController.h come illustrato di seguito:
 
 ![][14]
 
-## <a name="building-hello-ios-app"></a>App iOS hello di compilazione
-1. Aggiungere il Notification.h hello *retrieveLocale* (metodo) e la modifica dell'archivio di hello e sottoscrivere metodi, come illustrato di seguito:
+## <a name="building-the-ios-app"></a>Compilazione dell'app per iOS
+1. In Notification.h aggiungere il metodo *retrieveLocale* , quindi modificare i metodi store e subscribe come illustrato di seguito:
    
         - (void) storeCategoriesAndSubscribeWithLocale:(int) locale categories:(NSSet*) categories completion: (void (^)(NSError* error))completion;
    
@@ -87,7 +87,7 @@ Quindi apportare tooadd che un IBOutlet il ViewController.h come illustrato di s
    
         - (int) retrieveLocale;
    
-    Nel Notification.m, modificare hello *storeCategoriesAndSubscribe* (metodo), aggiungendo il parametro delle impostazioni locali hello e archiviarla in hello impostazioni predefinite dell'utente:
+    In Notification.m modificare il metodo *storeCategoriesAndSubscribe* aggiungendo il parametro relativo alle impostazioni locali e archiviandolo nelle impostazioni predefinite dell'utente:
    
         - (void) storeCategoriesAndSubscribeWithLocale:(int) locale categories:(NSSet *)categories completion:(void (^)(NSError *))completion {
             NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
@@ -98,7 +98,7 @@ Quindi apportare tooadd che un IBOutlet il ViewController.h come illustrato di s
             [self subscribeWithLocale: locale categories:categories completion:completion];
         }
    
-    Modificare quindi hello *sottoscrizione* internazionali di hello tooinclude metodo:
+    Modificare quindi il metodo *subscribe* in modo da includere le impostazioni locali:
    
         - (void) subscribeWithLocale: (int) locale categories:(NSSet *)categories completion:(void (^)(NSError *))completion{
             SBNotificationHub* hub = [[SBNotificationHub alloc] initWithConnectionString:@"<connection string>" notificationHubPath:@"<hub name>"];
@@ -121,9 +121,9 @@ Quindi apportare tooadd che un IBOutlet il ViewController.h come illustrato di s
             [hub registerTemplateWithDeviceToken:self.deviceToken name:@"localizednewsTemplate" jsonBodyTemplate:template expiryTemplate:@"0" tags:categories completion:completion];
         }
    
-    Si noti come ora viene usato il metodo hello *registerTemplateWithDeviceToken*, invece di *registerNativeWithDeviceToken*. Quando si registra per un modello abbiamo modello json di tooprovide hello e anche un nome per il modello di hello (come l'app potrebbe essere necessario tooregister diversi modelli). Verificare tooregister che le categorie come tag, dal momento che toomake che tooreceive hello notifciations per le notizie.
+    Si noti che si sta ora usando il metodo *registerTemplateWithDeviceToken* anziché *registerNativeWithDeviceToken*. Quando si effettua la registrazione per un modello, è necessario fornire il modello json e un nome per il modello. Questo perché l'app potrebbe richiedere la registrazione di modelli diversi. Assicurarsi di registrare le categorie come tag, poiché è necessario ricevere notifiche per le notizie.
    
-    Aggiungere le impostazioni locali hello tooretrieve metodo rispetto alle impostazioni predefinite di hello utente:
+    Aggiungere un metodo per recuperare le impostazioni locali dalle impostazioni predefinite dell'utente:
    
         - (int) retrieveLocale {
             NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
@@ -132,11 +132,11 @@ Quindi apportare tooadd che un IBOutlet il ViewController.h come illustrato di s
    
             return locale < 0?0:locale;
         }
-2. Ora che la classe delle notifiche modificato, è necessario assicurarsi che il nostro ViewController rende toomake utilizzare hello UISegmentControl nuovo. Aggiungere hello seguente riga hello *viewDidLoad* metodo toomake che tooshow hello delle impostazioni locali attualmente selezionato:
+2. Ora che è stata modificata la classe Notifications, è necessario assicurarsi che ViewController utilizzi il nuovo UISegmentControl. Aggiungere la riga seguente nel metodo *viewDidLoad* per assicurarsi che vengano mostrate le impostazioni locali attualmente selezionate:
    
         self.Locale.selectedSegmentIndex = [notifications retrieveLocale];
    
-    Quindi, nel *sottoscrizione* (metodo), modificare la chiamata toohello *storeCategoriesAndSubscribe* toohello seguente:
+    Nel metodo *subscribe* modificare quindi la chiamata a *storeCategoriesAndSubscribe* come segue:
    
         [notifications storeCategoriesAndSubscribeWithLocale: self.Locale.selectedSegmentIndex categories:[NSSet setWithArray:categories] completion: ^(NSError* error) {
             if (!error) {
@@ -148,7 +148,7 @@ Quindi apportare tooadd che un IBOutlet il ViewController.h come illustrato di s
                 NSLog(@"Error subscribing: %@", error);
             }
         }];
-3. Infine, si dispone di hello tooupdate *didRegisterForRemoteNotificationsWithDeviceToken* metodo gli appdelegate. M, in modo che è possibile aggiornare correttamente la registrazione all'avvio dell'app. Modificare la chiamata toohello *sottoscrizione* metodo delle notifiche con seguenti hello:
+3. Aggiornare infine il metodo *didRegisterForRemoteNotificationsWithDeviceToken* in AppDelegate.m, affinché sia possibile aggiornare correttamente la registrazione all'avvio dell'applicazione. Modificare la chiamata al metodo *subscribe* delle notifiche come segue:
    
         NSSet* categories = [self.notifications retrieveCategories];
         int locale = [self.notifications retrieveLocale];
@@ -161,8 +161,8 @@ Quindi apportare tooadd che un IBOutlet il ViewController.h come illustrato di s
 ## <a name="optional-send-localized-template-notifications-from-net-console-app"></a>(facoltativo) Invio di notifiche modello localizzate dall’app console .NET.
 [!INCLUDE [notification-hubs-localized-back-end](../../includes/notification-hubs-localized-back-end.md)]
 
-## <a name="optional-send-localized-template-notifications-from-hello-device"></a>(facoltativo) Inviare notifiche modello localizzato dal dispositivo hello
-Se si non dispongono di accesso tooVisual Studio o desidera test toojust l'invio di notifiche di modello hello localizzata direttamente dall'app hello sul dispositivo hello.  È possibile semplice aggiungere toohello parametri di modello hello localizzata `SendNotificationRESTAPI` metodo è definito nell'esercitazione precedente hello.
+## <a name="optional-send-localized-template-notifications-from-the-device"></a>(facoltativo) Invio di notifiche modello localizzato dal dispositivo
+Se non si ha accesso a Visual Studio o si desidera solo l'invio di notifiche modello localizzato direttamente dall'app sul dispositivo.  È possibile aggiungere semplicemente i parametri di modello localizzato per il metodo `SendNotificationRESTAPI` definito nell'esercitazione precedente.
 
         - (void)SendNotificationRESTAPI:(NSString*)categoryTag
         {
@@ -171,18 +171,18 @@ Se si non dispongono di accesso tooVisual Studio o desidera test toojust l'invio
 
             NSString *json;
 
-            // Construct hello messages REST endpoint
+            // Construct the messages REST endpoint
             NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/messages/%@", HubEndpoint,
                                                HUBNAME, API_VERSION]];
 
-            // Generated hello token toobe used in hello authorization header.
+            // Generated the token to be used in the authorization header.
             NSString* authorizationToken = [self generateSasToken:[url absoluteString]];
 
-            //Create hello request tooadd hello template notification message toohello hub
+            //Create the request to add the template notification message to the hub
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
             [request setHTTPMethod:@"POST"];
 
-            // Add hello category as a tag
+            // Add the category as a tag
             [request setValue:categoryTag forHTTPHeaderField:@"ServiceBusNotification-Tags"];
 
             // Template notification
@@ -201,13 +201,13 @@ Se si non dispongono di accesso tooVisual Studio o desidera test toojust l'invio
             // JSON Content-Type
             [request setValue:@"application/json;charset=utf-8" forHTTPHeaderField:@"Content-Type"];
 
-            //Authenticate hello notification message POST request with hello SaS token
+            //Authenticate the notification message POST request with the SaS token
             [request setValue:authorizationToken forHTTPHeaderField:@"Authorization"];
 
-            //Add hello notification message body
+            //Add the notification message body
             [request setHTTPBody:[json dataUsingEncoding:NSUTF8StringEncoding]];
 
-            // Send hello REST request
+            // Send the REST request
             NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request
                        completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
                {
@@ -248,7 +248,7 @@ Per altre informazioni sull'uso dei modelli, vedere:
 
 <!-- URLs. -->
 [How To: Service Bus Notification Hubs (iOS Apps)]: http://msdn.microsoft.com/library/jj927168.aspx
-[toosend gli hub di notifica di utilizzare le ultime notizie]: /manage/services/notification-hubs/breaking-news-ios
+[Utilizzo di Hub di notifica per inviare le e ultime notizie]: /manage/services/notification-hubs/breaking-news-ios
 [Mobile Service]: /develop/mobile/tutorials/get-started
 [Usare Hub di notifica per inviare notifiche agli utenti: ASP.NET]: /manage/services/notification-hubs/notify-users-aspnet
 [Usare Hub di notifica per inviare notifiche agli utenti: Servizi mobili]: /manage/services/notification-hubs/notify-users
@@ -259,11 +259,11 @@ Per altre informazioni sull'uso dei modelli, vedere:
 [Get started with data]: /develop/mobile/tutorials/get-started-with-data-ios
 [Get started with authentication]: /develop/mobile/tutorials/get-started-with-users-ios
 [Get started with push notifications]: /develop/mobile/tutorials/get-started-with-push-ios
-[Push notifications tooapp users]: /develop/mobile/tutorials/push-notifications-to-users-ios
+[Push notifications to app users]: /develop/mobile/tutorials/push-notifications-to-users-ios
 [Authorize users with scripts]: /develop/mobile/tutorials/authorize-users-in-scripts-ios
 [JavaScript and HTML]: ../get-started-with-push-js.md
 
 [Windows Developer Preview registration steps for Mobile Services]: ../mobile-services-windows-developer-preview-registration.md
 [wns object]: http://go.microsoft.com/fwlink/p/?LinkId=260591
 [Notification Hubs Guidance]: http://msdn.microsoft.com/library/jj927170.aspx
-[Notification Hubs How-toofor iOS]: http://msdn.microsoft.com/library/jj927168.aspx
+[Notification Hubs How-To for iOS]: http://msdn.microsoft.com/library/jj927168.aspx

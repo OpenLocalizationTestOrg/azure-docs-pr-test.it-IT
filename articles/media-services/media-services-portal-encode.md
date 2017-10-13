@@ -1,6 +1,6 @@
 ---
-title: aaaEncode un asset con Media Encoder Standard hello portale di Azure | Documenti Microsoft
-description: In questa esercitazione vengono illustrati i passaggi hello di codifica un asset con Media Encoder Standard hello portale di Azure.
+title: Codificare un asset mediante Media Encoder Standard sul portale di Azure | Documentazione Microsoft
+description: Questa esercitazione descrive le operazioni di codifica di un asset mediante Media Encoder Standard sul portale di Azure.
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,46 +14,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/07/2017
 ms.author: juliako
-ms.openlocfilehash: 0d118bbbe1fa9f4ba0bfa3ea3b10fb541d1d6379
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: ae5f4fd391cbf62b41d1a65f1d8107cefe3a5df3
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="encode-an-asset-using-media-encoder-standard-with-hello-azure-portal"></a>Codificare un asset con Media Encoder Standard hello portale di Azure
+# <a name="encode-an-asset-by-using-media-encoder-standard-in-the-azure-portal"></a>Codificare un asset mediante Media Encoder Standard sul portale di Azure
+
 > [!NOTE]
-> toocomplete questa esercitazione, è necessario un account di Azure. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/). 
+> Per completare l'esercitazione, è necessario un account Azure. Per informazioni dettagliate, vedere la pagina relativa alla [versione di prova gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/). 
 > 
 > 
 
-Quando si lavora con servizi multimediali di Azure offre uno degli scenari più comuni di hello client tooyour streaming velocità in bit adattiva. Servizi multimediali supporta hello velocità in bit adattive tecnologie seguente: HTTP Live Streaming (HLS), Smooth Streaming, MPEG DASH. tooprepare i video per lo streaming a velocità in bit adattiva, è necessario tooencode l'origine video in file più velocità in bit. È consigliabile utilizzare hello **Media Encoder Standard** tooencode codificatore video.  
+Quando si usa Servizi multimediali di Azure, uno degli scenari più frequenti consiste nella distribuzione di contenuti in streaming a velocità in bit adattiva ai client. Servizi multimediali supporta le tecnologie di streaming a bitrate adattivo seguenti: Apple HTTP Live Streaming (HLS), Microsoft Smooth Streaming e DASH (Dynamic Adaptive Streaming over HTTP, denominato anche MPEG-DASH). Per preparare i video per lo streaming a bitrate adattivo, codificare prima il video di origine in file a più bitrate. È possibile usare Azure Media Encoder Standard per codificare i video.  
 
-Servizi multimediali offre anche creazione dinamica dei pacchetti che consente di toodeliver MP4s l'asset MP4 in hello seguenti formati di streaming: MPEG DASH, HLS, Smooth Streaming, senza che sia necessario toore-package in questi formati di streaming. Con creazione dinamica dei pacchetti è necessario solo toostore e pagare per i file hello in unico formato di archiviazione e servizi multimediali creerà e fornirà hello risposta appropriata in base alle richieste da un client.
+Servizi multimediali consente la creazione dinamica dei pacchetti. Con creazione dinamica dei pacchetti, è possibile recapitare MP4s a più bitrate in HLS, Smooth Streaming e MPEG-DASH, senza riassemblaggio in tali formati di streaming. Quando si usa la creazione dinamica dei pacchetti consente di archiviare e pagare i file in un solo formato di archiviazione. Servizi multimediali creerà e fornirà la risposta appropriata in base alle richieste del client.
 
-Il vantaggio di tootake creazione dinamica dei pacchetti, è necessario tooencode il file di origine in un set di file MP4 a più velocità in bit (hello codifica passaggi sono illustrati più avanti in questa sezione).
+Per sfruttare i vantaggi della creazione dinamica dei pacchetti è necessario codificare il file di origine in un set di file MP4 a bitrate multipli. I passaggi della codifica vengono illustrati più avanti in questo articolo.
 
-supporto tooscale l'elaborazione, vedere [questo](media-services-portal-scale-media-processing.md) argomento.
+Per informazioni su come ridimensionare l'elaborazione di contenuti multimediali, vedere [Ridimensionare l'elaborazione di contenuti multimediali tramite il portale di Azure](media-services-portal-scale-media-processing.md).
 
-## <a name="encode-with-hello-azure-portal"></a>Codifica con hello portale di Azure
-In questa sezione descrive i passaggi di hello è possibile eseguire tooencode il contenuto con Media Encoder Standard.
+## <a name="encode-in-the-azure-portal"></a>Codifica nel portale di Azure
 
-1. In hello [portale di Azure](https://portal.azure.com/), selezionare l'account di servizi multimediali di Azure.
-2. In hello **impostazioni** selezionare **asset**.  
-3. In hello **asset** finestra, che si desidera tooencode asset di hello selezionare.
-4. Hello premere **Encode** pulsante.
-5. In hello **codificare un asset** finestra e processore "Media Encoder Standard" hello selezionare un set di impostazioni. Per informazioni sui set di impostazioni, vedere [Generare automaticamente un bitrate ladder](media-services-autogen-bitrate-ladder-with-mes.md) e [Set di impostazioni delle attività MES](media-services-mes-presets-overview.md). Se si prevede di toocontrol viene utilizzato il set di impostazioni di codifica, questo tenere presenti: è importante hello tooselect set di impostazioni che è più appropriato per il video di input. Ad esempio, se si conosce il video di input dispone di una risoluzione di 1920x1080 pixel, è possibile utilizzare hello "H264 bitrate multiplo con risoluzione 1080p" predefinito. Se il video disponibile è a bassa risoluzione (640x360), non usare il set di impostazioni "Codec video H.264 a bitrate multiplo con risoluzione 1080p".
+Per codificare il contenuto tramite Media Encoder Standard:
+
+1. Nel [portale di Azure ](https://portal.azure.com/) selezionare l'account Servizi multimediali di Azure.
+2. Selezionare **Impostazioni** > **Asset**. Selezionare l'asset da codificare.
+3. Selezionare il pulsante **Codifica**.
+4. Nel riquadro **Codifica un asset** selezionare il processore **Media Encoder Standard** e un set di impostazioni. Per informazioni sui set di impostazioni, vedere [Generare automaticamente una tabella di coppie bitrate-risoluzione](media-services-autogen-bitrate-ladder-with-mes.md) e [Set di impostazioni delle attività MES (Media Encoder Standard)](media-services-mes-presets-overview.md). È importante scegliere il set di impostazioni più idoneo per i video di input. Se ad esempio è noto che il video di input ha una risoluzione di 1920 × 1080 pixel, è possibile scegliere il set di impostazioni **Codec video H.264 a bitrate multiplo con risoluzione 1080p**. Se il video disponibile è a bassa risoluzione (640 × 360), non usare il set di impostazioni **Codec video H.264 a bitrate multiplo con risoluzione 1080p**.
    
-   Per facilitare la gestione, è un'opzione di modifica nome hello dell'asset di output di hello e nome hello del processo di hello.
+   Per una gestione più semplice delle risorse è possibile modificare il nome dell'asset di output e il nome del processo.
    
    ![Codificare gli asset](./media/media-services-portal-vod-get-started/media-services-encode1.png)
-6. Fare clic su **Crea**.
-
-## <a name="next-step"></a>Passaggio successivo
-È possibile monitorare lo stato del processo codifica con hello portale di Azure, come descritto in [questo](media-services-portal-check-job-progress.md) articolo.  
+5. Selezionare **Crea**.
 
 ## <a name="media-services-learning-paths"></a>Percorsi di apprendimento di Servizi multimediali
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
 ## <a name="provide-feedback"></a>Fornire commenti e suggerimenti
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
+
+## <a name="next-steps"></a>Passaggi successivi
+* [Monitorare lo stato di avanzamento del processo di codifica](media-services-portal-check-job-progress.md) nel portale di Azure.  
 

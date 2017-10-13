@@ -1,6 +1,6 @@
 ---
-title: "elenco di compatibilità di federazione aaaAzure AD"
-description: "Microsoft non dispone di questa pagina provider di identità che può essere utilizzato tooimplement accesso single sign-on."
+title: "Elenco di compatibilità di federazione di Azure AD"
+description: "Questa pagina include provider di identità non Microsoft che possono essere usati per implementare l'accesso Single Sign-On."
 services: active-directory
 documentationcenter: 
 author: billmath
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: billmath
-ms.openlocfilehash: ac2f9ad324c8ca6b587b73ea465426ad6b074b03
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: bce5867017647764546d872d97943d5d4f01f2d2
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="azure-ad-federation-compatibility-list"></a>Elenco di compatibilità di federazione di Azure AD
-Azure Active Directory offre la sicurezza di accesso Single Sign-On e di applicazione avanzata per Office 365 e altri Microsoft Online Services per implementazioni ibride o solo cloud senza richiedere alcuna soluzione non Microsoft. Analogamente alla maggior parte dei Microsoft Online Services, Office 365 è integrato con Azure Active Directory per i servizi di directory, l'autenticazione e l'autorizzazione. Azure Active Directory fornisce inoltre toothousands single sign-on di applicazioni SaaS e applicazioni web locali. Vedere la raccolta di hello Azure Active Directory dell'applicazione per applicazioni SaaS supportate.
+Azure Active Directory offre la sicurezza di accesso Single Sign-On e di applicazione avanzata per Office 365 e altri Microsoft Online Services per implementazioni ibride o solo cloud senza richiedere alcuna soluzione non Microsoft. Analogamente alla maggior parte dei Microsoft Online Services, Office 365 è integrato con Azure Active Directory per i servizi di directory, l'autenticazione e l'autorizzazione. Azure Active Directory offre anche l'accesso Single Sign-On a migliaia di applicazioni SaaS e di applicazioni Web locali. Per le applicazioni SaaS supportate, vedere la raccolta di applicazioni Azure Active Directory.
 
-Per le organizzazioni che hanno investito nelle soluzioni di federazione non Microsoft, questo argomento contiene informazioni per la configurazione di single sign-on per gli utenti di Windows Server Active Directory con Microsoft Online services tramite il provider di identità non Microsoft hello "Azure Active Directory federation compatibilità elenco" seguente. 
+Per le organizzazioni che hanno investito in soluzioni di federazione non Microsoft, questo argomento include le istruzioni per la configurazione dell'accesso Single Sign-On per gli utenti Active Directory di Windows Server con Microsoft Online Services tramite i provider di identità non Microsoft inclusi nell'elenco di compatibilità di federazione di Azure Active Directory riportato di seguito. 
 
 ![](./media/active-directory-aadconnect-federation-compatibility/oxford2.jpg)   
 [Oxford Computer Group](http://oxfordcomputergroup.com/), una terza parte, ha testato per conto di Microsoft queste esperienze di accesso Single Sign-On usando provider di identità non Microsoft in più casi d'uso comuni con Azure Active Directory.
@@ -31,9 +31,9 @@ Per le organizzazioni che hanno investito nelle soluzioni di federazione non Mic
 Per informazioni su come ottenere il provider di identità di terze parti elencato di seguito, contattare Oxford Computer Group all'indirizzo [idp@oxfordcomputergroup.com](mailto:idp@oxfordcomputergroup.com).
 
 > [!IMPORTANT]
-> Gruppo di Computer Oxford testata solo la funzionalità federazione hello di questi scenari single sign-on. Gruppo di Computer Oxford non eseguire il testing di sincronizzazione hello, autenticazione a due fattori, altri componenti di questi scenari single sign-on.
+> Oxford Computer Group si è limitata a testare la funzionalità di federazione di questi scenari di accesso Single Sign-On. Oxford Computer Group, in questi scenari di accesso Single Sign-On, non ha eseguito alcun test sui componenti di sincronizzazione, autenticazione a due fattori e così via.
 > 
-> Uso di accesso da ID alternativo tooUPN inoltre non è stato testato in questo programma.
+> Anche l'uso dell'accesso tramite ID alternativo all'UPN non è stato testato in questo programma.
 > 
 > 
 
@@ -57,22 +57,22 @@ Per informazioni su come ottenere il provider di identità di terze parti elenca
 * [RadiantOne CFS 3.0](#radiantone-cfs-30) 
 * [Sailpoint IdentityNow](#sailpoint-identitynow)
 * [SecureAuth IdP 7.2.0](#secureauth-idp-720) 
-* [Sign&amp;go 5.3](#signgo-53) 
+* [Sign&go 5.3](#signgo-53) 
 * [Online Service Gate di SoftBank Technology](#softbank)
 * [VMware Workspace One](#vmware-workspace-one)
 
 
 
 > [!IMPORTANT]
-> Poiché questi sono prodotti di terze parti, Microsoft non fornisce supporto per la distribuzione hello, configurazione, risoluzione dei problemi, procedure consigliate, problemi e così via e domande relative a questi provider di identità. Per il supporto e domande relative a questi provider di identità, contattare direttamente le terze parti hello è supportato.
+> Poiché si tratta di prodotti di terze parti, Microsoft non fornisce alcun supporto per la distribuzione, la configurazione, la risoluzione dei problemi, le procedure consigliate, nonché informazioni su problemi e domande su questi provider di identità. Per supporto e domande relative ai provider di identità, contattare direttamente le terze parti supportate.
 > 
-> Per testare l'interoperabilità di questi provider di terze parti con i servizi cloud Microsoft sono stati usati solo i protocolli WS-Federation e WS-Trust. Test non prevedeva uso del protocollo SAML hello.
+> Per testare l'interoperabilità di questi provider di terze parti con i servizi cloud Microsoft sono stati usati solo i protocolli WS-Federation e WS-Trust. Il test non prevedeva l'uso del protocollo SAML.
 > 
 
 
 ## <a name="azure-active-directory"></a>Azure Active Directory
 
-di seguito Hello è una matrice di supporto scenario hello per questa esperienza sign-on: 
+Di seguito è riportata la matrice di supporto dello scenario per questa esperienza di accesso: 
 
 | Client | Supporto | Eccezioni |
 | --- | --- | --- |
@@ -87,7 +87,7 @@ Per altre informazioni sull'uso di Azure Active Directory con la sincronizzazion
 
 ## <a name="authanvil-single-sign-on-45"></a>AuthAnvil Single Sign On 4.5
 
-di seguito Hello è una matrice di supporto scenario hello per questa esperienza single sign-on:
+Di seguito è riportata la matrice di supporto dello scenario per questa esperienza di accesso Single Sign-On:
 
 | Client | Supporto | Eccezioni |
 | --- | --- | --- |
@@ -100,7 +100,7 @@ Per altre informazioni, vedere [AuthAnvil Single Sign On.](https://help.scorpion
 
 ## <a name="big-ip-with-access-policy-manager-big-ip-ver-113x--116x"></a>BIG-IP con Access Policy Manager BIG-IP versione 11.3x – 11.6x
 
-di seguito Hello è una matrice di supporto scenario hello per questa esperienza single sign-on: 
+Di seguito è riportata la matrice di supporto dello scenario per questa esperienza di accesso Single Sign-On: 
 
 | Client | Supporto | Eccezioni |
 | --- | --- | --- |
@@ -110,11 +110,11 @@ di seguito Hello è una matrice di supporto scenario hello per questa esperienza
 
 Per altre informazioni su BIG-IP Access Policy Manager, vedere [BIG-IP Access Policy Manager](https://f5.com/products/modules/access-policy-manager) 
 
-Per istruzioni BIG-IP Access Policy Manager hello in modo tooconfigure questo tooyour esperienza single sign-on di hello tooprovide servizio token di sicurezza Active Directory Users, scaricare hello pdf [BIG-IP](http://www.f5.com/pdf/deployment-guides/microsoft-office-365-idp-dg.pdf).
+Per ottenere le istruzioni di BIG-IP Access Policy Manager relative alla configurazione di questo servizio token di sicurezza per offrire l'accesso Single Sign-On agli utenti di Active Directory, scaricare il file con estensione pdf da [BIG-IP](http://www.f5.com/pdf/deployment-guides/microsoft-office-365-idp-dg.pdf).
 
 ## <a name="bitglass"></a>BitGlass
 
-di seguito Hello è una matrice di supporto scenario hello per questa esperienza single sign-on:
+Di seguito è riportata la matrice di supporto dello scenario per questa esperienza di accesso Single Sign-On:
 
 | Client | Supporto | Eccezioni |
 | --- | --- | --- |
@@ -126,7 +126,7 @@ Per altre informazioni su BitGlass, vedere [BitGlass](http://www.bitglass.com).
 
 ## <a name="ca-secure-cloud"></a>CA Secure Cloud
 
-di seguito Hello è una matrice di supporto scenario hello per questa esperienza single sign-on:
+Di seguito è riportata la matrice di supporto dello scenario per questa esperienza di accesso Single Sign-On:
 
 | Client | Supporto | Eccezioni |
 | --- | --- | --- |
@@ -138,7 +138,7 @@ Per altre informazioni su CA Secure Cloud, vedere il sito [CA Secure Cloud](http
 
 ## <a name="ca-siteminder-1252-sp1-cumulative-release-4"></a>CA SiteMinder 12.52 SP1 cumulativo versione 4
 
-di seguito Hello è una matrice di supporto scenario hello per questa esperienza single sign-on: 
+Di seguito è riportata la matrice di supporto dello scenario per questa esperienza di accesso Single Sign-On: 
 
 | Client | Supporto | Eccezioni |
 | --- | --- | --- |
@@ -150,7 +150,7 @@ Per altre informazioni su CA SiteMinder, vedere [CA SiteMinder Federation](http:
 
 ## <a name="centrify"></a>Centrify
 
-di seguito Hello è una matrice di supporto scenario hello per questa esperienza single sign-on:
+Di seguito è riportata la matrice di supporto dello scenario per questa esperienza di accesso Single Sign-On:
 
 | Client | Supporto | Eccezioni |
 | --- | --- | --- |
@@ -162,7 +162,7 @@ Per altre informazioni su Centrify, vedere [Centrify](http://www.centrify.com/cl
 
 ## <a name="dell-one-identity-cloud-access-manager-v71"></a>Dell One Identity Cloud Access Manager v7.1
 
-di seguito Hello è una matrice di supporto scenario hello per questa esperienza single sign-on:
+Di seguito è riportata la matrice di supporto dello scenario per questa esperienza di accesso Single Sign-On:
 
 | Client | Supporto | Eccezioni |
 | --- | --- | --- |
@@ -172,11 +172,11 @@ di seguito Hello è una matrice di supporto scenario hello per questa esperienza
 
 Per altre informazioni su Dell One Identity Cloud Access Manager, vedere [Dell One Identity Cloud Access Manager](http://software.dell.com/products/cloud-access-manager).
 
- Per istruzioni hello su come tooconfigure questo tooyour esperienza single sign-on di STS tooprovide hello gli utenti di Office 365, vedere [configurare gli utenti di Office 365](http://documents.software.dell.com/dell-one-identity-cloud-access-manager/7.1/how-to-configure-microsoft-office-365). 
+ Per istruzioni su come configurare questo servizio token di sicurezza per offrire l'accesso Single Sign-On agli utenti di Office 365, vedere [How To Configure Microsoft Office 365](http://documents.software.dell.com/dell-one-identity-cloud-access-manager/7.1/how-to-configure-microsoft-office-365) (Come configurare Microsoft Office 365). 
 
 ## <a name="digitalpersona-composite-authentication"></a>Autenticazione composita di DigitalPersona  
 
-di seguito Hello è una matrice di supporto scenario hello per questa esperienza single sign-on:
+Di seguito è riportata la matrice di supporto dello scenario per questa esperienza di accesso Single Sign-On:
 
 | Client | Supporto | Eccezioni |
 | --- | --- | --- |
@@ -189,7 +189,7 @@ Per altre informazioni, vedere [DigitalPersona Composite Authentication](http://
 
 ## <a name="ibm-tivoli-federated-identity-manager-622"></a>IBM Tivoli Federated Identity Manager 6.2.2
 
-di seguito Hello è una matrice di supporto scenario hello per questa esperienza single sign-on: 
+Di seguito è riportata la matrice di supporto dello scenario per questa esperienza di accesso Single Sign-On: 
 
 | Client | Supporto | Eccezioni |
 | --- | --- | --- |
@@ -201,7 +201,7 @@ Per altre informazioni su IBM Tivoli Federated Identity Manager, vedere [IBM Sec
 
 ## <a name="icewall-federation-version-30"></a>IceWall Federation versione 3.0
 
-di seguito Hello è una matrice di supporto scenario hello per questa esperienza single sign-on:
+Di seguito è riportata la matrice di supporto dello scenario per questa esperienza di accesso Single Sign-On:
 
 | Client | Supporto | Eccezioni |
 | --- | --- | --- |
@@ -213,7 +213,7 @@ Per altre informazioni su IceWall Federation, vedere [IceWall Federation Version
 
 ## <a name="memority"></a>Memority
 
-di seguito Hello è una matrice di supporto scenario hello per questa esperienza sign-on: 
+Di seguito è riportata la matrice di supporto dello scenario per questa esperienza di accesso: 
 
 | Client | Supporto | Eccezioni |
 | --- | --- | --- |
@@ -226,7 +226,7 @@ Per altre informazioni sull'uso di Memority, vedere [Memority](http://www.memori
 
 ## <a name="netiq-access-manager-4x"></a>NetIQ Access Manager 4.x
 
-di seguito Hello è una matrice di supporto scenario hello per questa esperienza single sign-on:
+Di seguito è riportata la matrice di supporto dello scenario per questa esperienza di accesso Single Sign-On:
 
 | Client | Supporto | Eccezioni |
 | --- | --- | --- |
@@ -238,7 +238,7 @@ Per altre informazioni, vedere [NetIQ Access Manager](https://www.netiq.com/docu
 
 ## <a name="okta"></a>Okta
 
-di seguito Hello è una matrice di supporto scenario hello per questa esperienza single sign-on: 
+Di seguito è riportata la matrice di supporto dello scenario per questa esperienza di accesso Single Sign-On: 
 
 | Client | Supporto | Eccezioni |
 | --- | --- | --- |
@@ -250,7 +250,7 @@ Per altre informazioni su Okta, vedere [Okta](https://www.okta.com/).
 
 ## <a name="onelogin"></a>OneLogin
 
-di seguito Hello è una matrice di supporto scenario hello per questa esperienza single sign-on: 
+Di seguito è riportata la matrice di supporto dello scenario per questa esperienza di accesso Single Sign-On: 
 
 | Client | Supporto | Eccezioni |
 | --- | --- | --- |
@@ -262,7 +262,7 @@ Per altre informazioni su OneLogin, vedere [OneLogin](https://www.onelogin.com/)
 
 ## <a name="optimal-idm-virtual-identity-server-federation-services"></a>Virtual Identity Server Federation Services di Optimal IDM
 
-esempio Hello è hello matrice del supporto scenario questa esperienza single sign-on:
+Di seguito è riportata la matrice di supporto dello scenario per questa esperienza di accesso Single Sign-On:
 
 | Client | Supporto | Eccezioni |
 | --- | --- | --- |
@@ -270,7 +270,7 @@ esempio Hello è hello matrice del supporto scenario questa esperienza single si
 | Applicazioni rich client, ad esempio Lync, Sottoscrizione Office, CRM |Supportato |Autenticazione integrata di Windows |
 | Client di posta elettronica, ad esempio Outlook e ActiveSync |Supportato |
 
-Per ulteriori informazioni sul client Vedere criteri di accesso [tooOffice limitazione dell'accesso 365 Services dipende dal percorso di hello Client hello](https://technet.microsoft.com/library/hh526961.aspx).
+Per altre informazioni sui criteri di accesso client, vedere [Limiting Access to Office 365 Services Based on the Location of the Client](https://technet.microsoft.com/library/hh526961.aspx) (Limitare l'accesso ai servizi di Office 365 in base alla posizione del client).
 
 
 
@@ -278,15 +278,15 @@ Per ulteriori informazioni sul client Vedere criteri di accesso [tooOffice limit
 
 ## <a name="pingfederate-611-72-8x"></a>PingFederate 6.11, 7.2, 8.x
 
-di seguito Hello è una matrice di supporto scenario hello per questa esperienza single sign-on:
+Di seguito è riportata la matrice di supporto dello scenario per questa esperienza di accesso Single Sign-On:
 
 | Client | Supporto | Eccezioni |
 | --- | --- | --- |
 | Client basati sul Web, ad esempio Exchange Web Access e SharePoint Online |Supportato |None |
 | Applicazioni rich client, ad esempio Lync, Sottoscrizione Office, CRM |Supportato |None |
-| Client di posta elettronica, ad esempio Outlook e ActiveSync |Supportato |Nessuno |
+| Client di posta elettronica, ad esempio Outlook e ActiveSync |Supportato |None |
 
-Per istruzioni di PingFederate hello su come tooconfigure questo servizio token di sicurezza tooprovide hello accesso single sign-on verificano tooyour agli utenti di Active Directory, vedere uno dei seguenti hello: 
+Per le istruzioni di PingFederate sulla configurazione di questo servizio token di sicurezza per offrire l'accesso Single Sign-On agli utenti di Active Directory, vedere uno dei seguenti articoli: 
 
 - [PingFederate 6.11](http://go.microsoft.com/fwlink/?LinkID=266321)
 - [PingFederate 7.2](http://documentation.pingidentity.com/display/PF72/PingFederate+7.2)
@@ -294,7 +294,7 @@ Per istruzioni di PingFederate hello su come tooconfigure questo servizio token 
 
 ## <a name="radiantone-cfs-30"></a>RadiantOne CFS 3.0
 
-di seguito Hello è una matrice di supporto scenario hello per questa esperienza single sign-on: 
+Di seguito è riportata la matrice di supporto dello scenario per questa esperienza di accesso Single Sign-On: 
 
 | Client | Supporto | Eccezioni |
 | --- | --- | --- |
@@ -306,7 +306,7 @@ Per altre informazioni su RadiantOne CFS, vedere il sito [RadiantOne CFS](http:/
 
 ## <a name="sailpoint-identitynow"></a>Sailpoint IdentityNow
 
-di seguito Hello è una matrice di supporto scenario hello per questa esperienza single sign-on:
+Di seguito è riportata la matrice di supporto dello scenario per questa esperienza di accesso Single Sign-On:
 
 | Client | Supporto | Eccezioni |
 | --- | --- | --- |
@@ -318,7 +318,7 @@ Per altre informazioni, vedere [Sailpoint IdentityNow](https://www.sailpoint.com
 
 ## <a name="secureauth-idp-720"></a>SecureAuth IdP 7.2.0
 
-di seguito Hello è una matrice di supporto scenario hello per questa esperienza single sign-on: 
+Di seguito è riportata la matrice di supporto dello scenario per questa esperienza di accesso Single Sign-On: 
 
 | Client | Supporto | Eccezioni |
 | --- | --- | --- |
@@ -343,7 +343,7 @@ Per altre informazioni su SecureAuth, vedere il sito di [SecureAuth IdP](http://
 
 ## <a name="signgo-53"></a>Sign&go 5.3
 
-di seguito Hello è una matrice di supporto scenario hello per questa esperienza single sign-on:
+Di seguito è riportata la matrice di supporto dello scenario per questa esperienza di accesso Single Sign-On:
 
 | Client | Supporto | Eccezioni |
 | --- | --- | --- |
@@ -351,11 +351,11 @@ di seguito Hello è una matrice di supporto scenario hello per questa esperienza
 | Applicazioni rich client, ad esempio Lync, Sottoscrizione Office, CRM |Supportato |None |
 | Client di posta elettronica, ad esempio Outlook e ActiveSync |Supportato |None |
 
-Sign&go 5.3 supporta l'autenticazione Kerberos tramite la configurazione di un contratto Kerberos.  Per assistenza con questa configurazione, contattare Llex o della vista manuale di installazione di hello [Sign & go](http://www.ilex-international.com/docs/sign&go_wsfederation_en.pdf)
+Sign&go 5.3 supporta l'autenticazione Kerberos tramite la configurazione di un contratto Kerberos.  Per ottenere assistenza su questa configurazione, contattare Ilex o visualizzare la guida all'installazione [Sign&go](http://www.ilex-international.com/docs/sign&go_wsfederation_en.pdf)
 
 ## <a name="softbank-technology-online-service-gate"></a>Online Service Gate di SoftBank Technology
 
-di seguito Hello è una matrice di supporto scenario hello per questa esperienza single sign-on:
+Di seguito è riportata la matrice di supporto dello scenario per questa esperienza di accesso Single Sign-On:
 
 | Client | Supporto | Eccezioni |
 | --- | --- | --- |
@@ -367,7 +367,7 @@ Per altre informazioni su Online Service Gate di SoftBank Technology, vedere [So
 
 ## <a name="vmware-workspace-one"></a>VMware Workspace One
 
-di seguito Hello è una matrice di supporto scenario hello per questa esperienza single sign-on:
+Di seguito è riportata la matrice di supporto dello scenario per questa esperienza di accesso Single Sign-On:
 
 | Client | Supporto | Eccezioni |
 | --- | --- | --- |

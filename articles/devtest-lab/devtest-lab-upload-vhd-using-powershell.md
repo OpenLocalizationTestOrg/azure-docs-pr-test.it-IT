@@ -1,6 +1,6 @@
 ---
-title: disco rigido virtuale aaaUpload file tooAzure DevTest Labs tramite PowerShell | Documenti Microsoft
-description: Caricare l'account di archiviazione del toolab file disco rigido virtuale con PowerShell
+title: Caricare un file VHD in Azure DevTest Labs usando PowerShell | Microsoft Docs
+description: Caricare un file VHD nell'account di archiviazione del lab usando PowerShell
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,51 +14,51 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/10/2017
 ms.author: tarcher
-ms.openlocfilehash: 9c3ee96e212457b0ef8203714b419350cb97f895
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3c43ef77b8fa10cd6dbd726968264f32f7a3dd0f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="upload-vhd-file-toolabs-storage-account-using-powershell"></a>Caricare l'account di archiviazione del toolab file disco rigido virtuale con PowerShell
+# <a name="upload-vhd-file-to-labs-storage-account-using-powershell"></a>Caricare un file VHD nell'account di archiviazione del lab usando PowerShell
 
 [!INCLUDE [devtest-lab-upload-vhd-selector](../../includes/devtest-lab-upload-vhd-selector.md)]
 
-In Azure DevTest Labs, i file VHD possono essere utilizzato toocreate immagini personalizzate, che sono utilizzati tooprovision le macchine virtuali. Hello passaggi seguenti consentono l'utilizzo di PowerShell tooupload account di archiviazione del laboratorio di tooa file disco rigido virtuale. Dopo aver caricato il file VHD, hello [passaggi successivi sezione](#next-steps) elenca alcuni articoli che illustrano come un'immagine personalizzata da hello toocreate caricamento del file di disco rigido virtuale. Per altre informazioni sui dischi e sui dischi rigidi virtuali in Azure, vedere [Informazioni sui dischi e sui dischi rigidi virtuali per le macchine virtuali](../virtual-machines/linux/about-disks-and-vhds.md)
+In Azure DevTest Labs è possibile usare i file VHD per creare immagini personalizzate da utilizzare per il provisioning di macchine virtuali. La procedura seguente illustra come usare PowerShell per caricare un file VHD nell'account di archiviazione di un lab. Dopo avere caricato il file VHD, vedere la [sezione Passaggi successivi](#next-steps) per un elenco di articoli che illustrano come creare un'immagine personalizzata dal file VHD caricato. Per altre informazioni sui dischi e sui dischi rigidi virtuali in Azure, vedere [Informazioni sui dischi e sui dischi rigidi virtuali per le macchine virtuali](../virtual-machines/linux/about-disks-and-vhds.md)
 
 ## <a name="step-by-step-instructions"></a>Istruzioni dettagliate
 
-esempio Hello passaggi di percorso di caricamento di un disco rigido virtuale del file tooAzure DevTest Labs tramite PowerShell. 
+La procedura seguente illustra come caricare un file VHD in Azure DevTest Labs usando PowerShell. 
 
-1. Accedi toohello [portale di Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+1. Accedere al [portale di Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
 
-1. Selezionare **più servizi**, quindi selezionare **DevTest Labs** dall'elenco di hello.
+1. Selezionare **Altri servizi** e quindi **DevTest Labs** dall'elenco.
 
-1. Elenco dei laboratori hello selezionare lab desiderato hello.  
+1. Nell'elenco dei lab selezionare il lab desiderato.  
 
-1. Nel pannello del lab hello, selezionare **configurazione**. 
+1. Nel pannello del lab selezionare **Configurazione**. 
 
-1. Lab hello **configurazione** pannello seleziona **immagini personalizzate (VHD)**.
+1. Nel pannello **Configurazione** del lab selezionare **Immagini personalizzate (dischi rigidi virtuali)**.
 
-1. In hello **immagini personalizzate** pannello selezionare **+ Aggiungi**. 
+1. Nel pannello **Immagini personalizzate** selezionare **+Aggiungi**. 
 
-1. In hello **immagine personalizzata** pannello seleziona **VHD**.
+1. Nel pannello **Immagine personalizzata** selezionare **VHD**.
 
-1. In hello **VHD** pannello seleziona **caricare un disco rigido virtuale con PowerShell**.
+1. Nel pannello **VHD** selezionare l'opzione **Carica un file VHD con PowerShell**.
 
     ![Carica un file VHD con PowerShell](./media/devtest-lab-upload-vhd-using-powershell/upload-image-using-psh.png)
 
-1. In hello **carica un'immagine con PowerShell** blade, editor di testo tooa PowerShell script copia hello generato.
+1. Nel pannello **Carica un'immagine con PowerShell** copiare in un editor di testo lo script di PowerShell generato.
 
-1. Modificare hello **LocalFilePath** parametro di hello **Add-AzureVhd** cmdlet toopoint toohello percorso del file di disco rigido virtuale che si desidera tooupload hello.
+1. Modificare il parametro **LocalFilePath** del cmdlet **Add-AzureVhd** in modo che punti al percorso del file VHD che si vuole caricare.
 
-1. Al prompt di PowerShell, eseguire hello **Add-AzureVhd** cmdlet (con hello modificato **LocalFilePath** parametro).
+1. Al prompt di PowerShell eseguire il cmdlet **Add-AzureVhd** (con il parametro **LocalFilePath** modificato).
 
 > [!WARNING] 
 > 
-> processo Hello di caricamento di un file VHD può essere lungo a seconda delle dimensioni di hello del file VHD hello e la velocità della connessione.
+> Il processo di caricamento di un file VHD può richiedere molto tempo a seconda delle dimensioni del file VHD e della velocità della connessione.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- [Creare un'immagine personalizzata in Azure DevTest Labs da un file VHD utilizzando hello portale di Azure](devtest-lab-create-template.md)
+- [Creare un'immagine personalizzata in Azure DevTest Labs da un file VHD usando il portale di Azure](devtest-lab-create-template.md)
 - [Creare un'immagine personalizzata in Azure DevTest Labs da un file VHD usando PowerShell](devtest-lab-create-custom-image-from-vhd-using-powershell.md)

@@ -1,6 +1,6 @@
 ---
-title: Migrazione della piattaforma Centro protezione aaaAzure | Documenti Microsoft
-description: "Questo documento illustra un modo toohello modifiche dati Centro sicurezza di Azure verrà raccolti."
+title: Migrazione della piattaforma del Centro sicurezza di Azure | Microsoft Docs
+description: "Questo documento illustra alcune delle modifiche che sono state apportate alla modalità di raccolta dati nel Centro sicurezza di Azure."
 services: security-center
 documentationcenter: na
 author: YuriDio
@@ -14,53 +14,53 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/24/2017
 ms.author: yurid
-ms.openlocfilehash: 28cb8d85912a3f62941cf113da51070081b5eda2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5ddf71dcd9c5a2b03e3b1441d8c9b4d91b6bad12
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="azure-security-center-platform-migration"></a>Migrazione della piattaforma del Centro sicurezza di Azure
 
-A partire da anticipata giugno 2017, Centro sicurezza di Azure presenta una importante modifica toohello modo sicurezza i dati vengono raccolti e archiviati.  Queste modifiche nuove funzionalità, come dati di protezione ricerca tooeasily hello possibilità di sbloccare e meglio allineata con altri servizi di gestione Azure e monitoraggio dei servizi.
+A partire dall'inizio di giugno 2017, il Centro sicurezza di Azure ha apportato modifiche importanti alle modalità di raccolta e archiviazione dei dati di protezione.  Queste modifiche garantiscono nuove funzionalità come la possibilità di eseguire facilmente ricerche nei dati di protezione e assicurano un migliore allineamento con gli altri servizi di gestione e monitoraggio di Azure.
 
 > [!NOTE]
-> migrazione della piattaforma Hello dovrebbe influire le risorse di produzione e non sono necessarie da parte degli azioni.
+> La migrazione della piattaforma non dovrebbe influire sulle risorse di produzione e non richiede alcun intervento da parte dell'utente.
 
 
 ## <a name="whats-happening-during-this-platform-migration"></a>Cosa succede durante la migrazione della piattaforma?
 
-Centro sicurezza PC utilizzato in precedenza, dati di hello Azure Monitoring Agent toocollect protezione dalle macchine virtuali. Sono incluse informazioni sulle configurazioni di sicurezza, che sono utilizzati tooidentify vulnerabilità, e gli eventi di sicurezza sono utilizzati toodetect minacce. Questi dati venivano archiviati negli account di archiviazione in Azure.
+In precedenza, il Centro sicurezza usava l'agente di monitoraggio di Azure per raccogliere i dati di protezione dalle macchine virtuali, tra cui informazioni sulle configurazioni di sicurezza, usate per identificare le vulnerabilità, ed eventi di sicurezza, usati per rilevare le minacce. Questi dati venivano archiviati negli account di archiviazione in Azure.
 
-In futuro, che il Centro sicurezza PC utilizza hello Microsoft Monitoring Agent: si tratta di hello stesso agente usato dal servizio di Log Analitica e hello Operations Management Suite. Dati raccolti dall'agente vengono archiviati in un esistente *Log Analitica* [dell'area di lavoro](../log-analytics/log-analytics-manage-access.md) associato alla sottoscrizione di Azure o di un nuovo aree di lavoro, tenendo conto hello geolocation di hello VM .
+Attualmente, il Centro sicurezza usa Microsoft Monitoring Agent, lo stesso agente usato da Operations Management Suite e dal servizio Log Analytics. I dati raccolti dall'agente vengono archiviati in un'*area di lavoro* di [Log Analytics](../log-analytics/log-analytics-manage-access.md) esistente associata alla sottoscrizione di Azure o in una o più aree di lavoro nuove, a seconda della georilevazione della macchina virtuale.
 
 ## <a name="agent"></a>Agente
 
-Come parte della transizione hello, hello Microsoft Monitoring Agent (per [Windows](../log-analytics/log-analytics-windows-agents.md) o [Linux](../log-analytics/log-analytics-linux-agents.md)) è installato in tutte le macchine virtuali di Azure da cui viene attualmente raccolto dati.  Se si avvale di hello che VM dispone già di hello Microsoft Monitoring Agent installato, il Centro sicurezza PC hello corrente installato l'agente.
+Nel corso della transizione, Microsoft Monitoring Agent (per [Windows](../log-analytics/log-analytics-windows-agents.md) o [Linux](../log-analytics/log-analytics-linux-agents.md)) viene installato in tutte le VM di Azure da cui vengono attualmente raccolti i dati.  Se la macchina virtuale ha già installato Microsoft Monitoring Agent, il Centro sicurezza usa l'agente installato corrente.
 
-Per un periodo di tempo (in genere pochi giorni), entrambi gli agenti verranno eseguito side-by tooensure transizione senza alcuna perdita di dati. In questo modo Microsoft toovalidate che hello nuova pipeline di dati sia operativo prima della sospensione di utilizzo della pipeline corrente hello. Una volta verificato, hello Azure Monitoring Agent verrà rimossa dalle macchine virtuali. senza che sia richiesto alcun intervento da parte dell'utente. Verrà inviato un messaggio e-mail quando tutti i clienti sono stati migrati.
+Per un periodo di tempo (in genere alcuni giorni), entrambi gli agenti verranno eseguiti contemporaneamente per agevolare la transizione senza alcuna perdita di dati. In questo modo, Microsoft sarà in grado di garantire che la nuova pipeline di dati sia operativa prima di sospendere l'uso di quella corrente. Al termine della verifica, l'agente di monitoraggio di Azure verrà rimosso dalle macchine virtuali, senza che sia richiesto alcun intervento da parte dell'utente. Verrà inviato un messaggio e-mail quando tutti i clienti sono stati migrati.
  
-Non è consigliabile disinstallazione manuale di hello Azure Monitoring Agent durante la migrazione di hello come potrebbe comportare gap nei dati di sicurezza. Contattare il [Servizio Supporto Tecnico Clienti Microsoft](https://support.microsoft.com/contactus/) per ulteriore assistenza. 
+Non è consigliabile disinstallare manualmente l'agente di monitoraggio di Azure durante la migrazione perché potrebbe comportare interruzioni nei dati di protezione. Contattare il [Servizio Supporto Tecnico Clienti Microsoft](https://support.microsoft.com/contactus/) per ulteriore assistenza. 
 
-Microsoft Monitoring Agent per Windows Hello è necessario utilizzare la porta TCP 443, leggere [Centro protezione Azure Troubleshooting Guide](security-center-troubleshooting-guide.md) per ulteriori informazioni.
+Microsoft Monitoring Agent per Windows richiede l'uso della porta TCP 443. Per altre informazioni, vedere [Guida alla risoluzione dei problemi del Centro sicurezza di Azure](security-center-troubleshooting-guide.md).
 
 
 > [!NOTE] 
-> Poiché hello Microsoft Monitoring Agent può essere utilizzato da altri management di Azure e monitoraggio dei servizi, agente hello non verrà disinstallato automaticamente quando si disattiva la raccolta dei dati del Centro sicurezza PC. Tuttavia, è possibile disinstallare agente hello manualmente se necessario.
+> Poiché Microsoft Monitoring Agent può essere usato da altri servizi di gestione e monitoraggio di Azure, l'agente non sarà disinstallato automaticamente quando si disattiva la raccolta dati nel Centro sicurezza. Tuttavia, è possibile disinstallare manualmente l'agente se necessario.
 
 ## <a name="workspace"></a>Area di lavoro
 
-Come descritto in precedenza, dati raccolti da Microsoft Monitoring Agent (per conto di centro di sicurezza) vengono archiviati in entrambi un Analitica Log esistente hello aree di lavoro associato alla sottoscrizione di Azure o di un nuovo aree di lavoro, tenendo hello account georilevazione di hello macchina virtuale.
+Come descritto in precedenza, i dati raccolti da Microsoft Monitoring Agent (per conto del Centro sicurezza) vengono archiviati in una o più aree di lavoro di Log Analytics esistenti associate alla sottoscrizione di Azure o in una o più aree di lavoro nuove, a seconda della georilevazione della macchina virtuale.
 
-In hello portale di Azure, è possibile visualizzare un elenco delle aree di lavoro Log Analitica, inclusi quelli creati dal Centro sicurezza PC toosee. Per le nuove aree di lavoro verrà creato un gruppo di risorse correlato. Entrambi seguono questa convenzione di denominazione:
+Nel portale di Azure è possibile visualizzare un elenco delle aree di lavoro di Log Analytics, incluse quelle create dal Centro sicurezza. Per le nuove aree di lavoro verrà creato un gruppo di risorse correlato. Entrambi seguono questa convenzione di denominazione:
 
 - Area di lavoro: *DefaultWorkspace-[subscription-ID]-[geo]*
 - Gruppo di risorse: *DefaultResouceGroup-[geo]* 
  
-Per le aree di lavoro create dal Centro sicurezza, i dati vengono conservati per 30 giorni. Per aree di lavoro esistente, memorizzazione si basa sull'area di lavoro hello tariffario.
+Per le aree di lavoro create dal Centro sicurezza, i dati vengono conservati per 30 giorni. Per le aree di lavoro esistenti, il periodo di memorizzazione dipende dal piano tariffario dell'area di lavoro.
 
 > [!NOTE]
-> I dati raccolti in precedenza dal Centro sicurezza rimangono negli account di archiviazione. Al termine della migrazione hello, è possibile eliminare questi account di archiviazione.
+> I dati raccolti in precedenza dal Centro sicurezza rimangono negli account di archiviazione. Al termine della migrazione, è possibile eliminare questi account di archiviazione.
 
 ### <a name="oms-security-solution"></a>Soluzione di sicurezza di OMS 
 
@@ -69,12 +69,12 @@ Per i clienti esistenti che non dispongono della soluzione di sicurezza di OMS, 
 
 ## <a name="other-updates"></a>Altri aggiornamenti
 
-In combinazione con la migrazione di piattaforma hello, stiamo rollout altri aggiornamenti secondari:
+In combinazione con la migrazione della piattaforma, sono in corso di distribuzione alcuni aggiornamenti secondari aggiuntivi:
 
-- Saranno supportate altre versioni del sistema operativo. Vedere l'elenco di hello [qui](security-center-faq.md#virtual-machines).
-- verrà espanso l'elenco di Hello delle vulnerabilità del sistema operativo. Vedere l'elenco di hello [qui](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335).
+- Saranno supportate altre versioni del sistema operativo. Vedere l'elenco [qui](security-center-faq.md#virtual-machines).
+- L'elenco delle vulnerabilità del sistema operativo verrà esteso. Vedere l'elenco [qui](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335).
 - I [prezzi](https://azure.microsoft.com/pricing/details/security-center/) verranno ripartiti su base oraria (in precedenza la ripartizione era su base giornaliera), con conseguente risparmio sui costi per alcuni clienti.
-- Verrà richiesto e abilitata automaticamente per i clienti nel piano tariffario Standard hello la raccolta dei dati.
+- La raccolta dei dati verrà richiesta e abilitata automaticamente per i clienti nel piano tariffario Standard.
 - Il Centro sicurezza di Azure avvierà l'individuazione di soluzioni antimalware che non sono state distribuite tramite le estensioni di Azure. L'individuazione di Symantec Endpoint Protection e Defender per Windows 2016 sarà disponibile per prima.
-- Criteri di prevenzione e le notifiche sono configurabili in hello solo *sottoscrizione* livello, ma prezzi può ancora essere impostato su hello *gruppo di risorse* livello
+- I criteri di prevenzione e le notifiche sono configurabili solo a livello di *sottoscrizione*, mentre i prezzi possono ancora essere impostati a livello di *gruppo di risorse*.
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaH264 SD 4x3 velocità in bit più | Documenti Microsoft"
-description: Hello argomento viene fornita una panoramica di hello * * H264 bitrate multiplo con risoluzione 4x3 SD * * set di impostazioni.
+title: Codec video H.264 a bitrate multipli con risoluzione 4x3 SD | Documentazione Microsoft
+description: "Questo argomento offre una panoramica del set di impostazioni di attività **Codec video H.264 a bitrate multipli con risoluzione 4x3 SD**."
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: cc8f42e147f0332acd3bbb91fdb2a866e9a0875e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f8d342b0c317c31af0e02effbf8b8c1849e0bf1a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="h264-multiple-bitrate-4x3-sd"></a>Codec video H.264 a bitrate multipli con risoluzione 4x3 SD
-`Media Encoder Standard` definisce un set di impostazioni di codifica che è possibile usare per la creazione di processi di codifica. È possibile utilizzare un `preset name` toospecify in formato di cui si desidera tooencode nel file multimediale. oppure creare set di impostazioni basati su JSON o XML personalizzati, con codifica UTF-8 o UTF-16. È quindi necessario passare codificatore personalizzato toohello preimpostato hello. Per elenco hello di hello tutti nomi supportati da questo set di impostazioni `Media Encoder Standard` codificatore, vedere [set di impostazioni di attività per supporti codificatore Standard](media-services-mes-presets-overview.md).  
+`Media Encoder Standard` definisce un set di impostazioni di codifica che è possibile usare per la creazione di processi di codifica. È possibile usare un `preset name` per specificare il formato in cui codificare il file multimediale oppure creare set di impostazioni basati su JSON o XML personalizzati, con codifica UTF-8 o UTF-16. Dopodiché, occorre trasmettere il set di impostazioni personalizzato al codificatore. Per un elenco di tutti i nomi dei set di impostazioni supportati dal codificatore `Media Encoder Standard`, vedere [Task Presets for Media Encoder Standard](media-services-mes-presets-overview.md) (Set di impostazioni di attività per Media Encoder Standard).  
   
- In questo argomento viene hello `H264 Multiple Bitrate 4x3 SD` predefinito in formato XML e JSON.  
+ Questo argomento illustra il set di impostazioni `H264 Multiple Bitrate 4x3 SD` nei formati XML e JSON.  
   
- Questa impostazione produce un set di 5 file MP4 allineati GOP, compreso tra 1600 kbps too400 kbps e audio AAC stereo. Per informazioni dettagliate sul profilo, velocità in bit, il campionamento di velocità e così via di questo set di impostazioni, esaminare hello XML o JSON definita di seguito. Per una spiegazione di ogni elemento in tali mezzi predefiniti e i valori validi di hello per ogni elemento, vedere hello [schema Media Encoder Standard](media-services-mes-schema.md) argomento.  
+ Il set di impostazioni genera un set di 5 file MP4 con audio AAC stereo e allineamento GOP, con velocità compresa tra 1600 e 400 kbps. Per informazioni dettagliate su profilo, velocità in bit, frequenza di campionamento e così via di questo set di impostazioni, esaminare il codice XML o JSON definito di seguito. Per informazioni sul significato di ogni elemento in questi set di impostazioni e sui valori possibili per ciascuno, vedere lo [schema di Media Encoder Standard](media-services-mes-schema.md).  
   
 > [!NOTE]
->  Quando si modifica hello `Width` e `Height` valori tra i livelli, assicurarsi che le proporzioni hello rimanga coerente. Ad esempio: 1920x1080, 1280x720, 1080x576, 640x360. Non è consigliabile usare una combinazione di proporzioni, ad esempio: 1280x720, 720x480, 640x360.  
+>  Quando si modificano i valori `Width` e `Height` nei livelli, assicurarsi che le proporzioni rimangano coerenti. Ad esempio: 1920x1080, 1280x720, 1080x576, 640x360. Non è consigliabile usare una combinazione di proporzioni, ad esempio: 1280x720, 720x480, 640x360.  
   
  XML  
   

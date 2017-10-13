@@ -1,5 +1,5 @@
 ---
-title: "aaaVirtual computer estensioni e funzionalità per Linux | Documenti Microsoft"
+title: "Estensioni della macchina virtuale e funzionalità per Linux | Documentazione Microsoft"
 description: "Informazioni sulle estensioni disponibili per le macchine virtuali di Azure, raggruppate in base a ciò che forniscono o migliorano."
 services: virtual-machines-linux
 documentationcenter: 
@@ -15,43 +15,43 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 04/26/2017
 ms.author: nepeters
-ms.openlocfilehash: e0d2ce794c76815ccc6743e8788ee5d9d931e9a4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 8a5b39351f665c51ae7d83f755329e54ff3cf786
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="virtual-machine-extensions-and-features-for-linux"></a>Estensioni della macchina virtuale e funzionalità per Linux
 
-Le estensioni della macchina virtuale di Azure sono piccole applicazioni che eseguono attività di configurazione e automazione post-distribuzione sulle macchine virtuali di Azure. Ad esempio, se una macchina virtuale richiede l'installazione del software, protezione antivirus o configurazione di Docker, un'estensione della macchina virtuale può essere utilizzato toocomplete queste attività. Le estensioni VM di Azure possono essere eseguite tramite hello CLI di Azure PowerShell, i modelli, Gestione risorse di Azure e hello portale di Azure. Le estensioni possono essere unite in bundle con una nuova distribuzione di macchina virtuale o eseguite su un sistema esistente.
+Le estensioni della macchina virtuale di Azure sono piccole applicazioni che eseguono attività di configurazione e automazione post-distribuzione nelle macchine virtuali di Azure. Ad esempio, se una macchina virtuale richiede l'installazione di software, la protezione antivirus o la configurazione di Docker, è possibile usare un'estensione di questo tipo per completare queste attività. Le estensioni della macchina virtuale di Azure possono essere eseguite tramite l'interfaccia della riga di comando di Azure, PowerShell, i modelli di Azure Resource Manager e il portale di Azure. Le estensioni possono essere unite in bundle con una nuova distribuzione di macchina virtuale o eseguite su un sistema esistente.
 
-Questo documento fornisce una panoramica delle estensioni di macchina virtuale, i prerequisiti per l'utilizzo di estensioni di macchina virtuale di Azure e indicazioni su come gestire toodetect e rimuovere estensioni di macchina virtuale. Questo documento fornisce informazioni generali perché sono disponibili molte estensioni della macchina virtuale, ognuna con una configurazione potenzialmente univoca. Dettagli specifici dell'estensione sono disponibili in ogni estensione singoli toohello specifico di documento.
+Questo documento fornisce una panoramica delle estensioni della macchina virtuale, i prerequisiti per l'uso di queste estensioni di Azure e indicazioni su come rilevare, gestire e rimuovere le estensioni. Questo documento contiene informazioni generali perché sono disponibili molte estensioni della macchina virtuale, ognuna con una configurazione potenzialmente univoca. I dettagli sono disponibili nel documento specifico della singola estensione.
 
 ## <a name="use-cases-and-samples"></a>Casi d'uso ed esempi
 
 Sono disponibili numerose estensioni della macchina virtuale di Azure, ognuna con uno specifico caso d'uso. Di seguito sono riportati alcuni esempi:
 
-- Applicare una macchina virtuale tooa configurazioni dello stato desiderato di PowerShell utilizzando hello estensione DSC per Linux. Per altre informazioni, vedere l'argomento relativo all'[Estensione DSC (Desired State Configuration) di Azure](https://github.com/Azure/azure-linux-extensions/tree/master/DSC).
-- Configurare il monitoraggio di una macchina virtuale con hello estensione di macchina virtuale di Microsoft Monitoring Agent. Per ulteriori informazioni, vedere [come toomonitor una VM Linux](tutorial-monitoring.md).
-- Configurare il monitoraggio dell'infrastruttura di Azure con estensione Datadog hello. Per ulteriori informazioni, vedere hello [Datadog blog](https://www.datadoghq.com/blog/introducing-azure-monitoring-with-one-click-datadog-deployment/).
-- Configurare un host Docker nella macchina virtuale di Azure utilizzando l'estensione della macchina virtuale Docker hello. Per altre informazioni, vedere [Estensione macchina virtuale per Docker](dockerextension.md).
+- Applicare le configurazioni dello stato desiderato tramite PowerShell a una macchina virtuale usando l'estensione DSC per Linux. Per altre informazioni, vedere l'argomento relativo all'[Introduzione al gestore dell'estensione DSC (Desired State Configuration) di Azure](https://github.com/Azure/azure-linux-extensions/tree/master/DSC).
+- Configurare il monitoraggio di una macchina virtuale con l'estensione macchina virtuale di Microsoft Monitoring Agent. Per altre informazioni, vedere [Come monitorare una macchina virtuale Linux in Azure](tutorial-monitoring.md).
+- Configurare il monitoraggio dell'infrastruttura di Azure con l'estensione Datadog. Per altre informazioni, vedere il [blog Datadog](https://www.datadoghq.com/blog/introducing-azure-monitoring-with-one-click-datadog-deployment/).
+- Configurare un host Docker in una macchina virtuale di Azure usando l'estensione macchina virtuale Docker. Per altre informazioni, vedere [Estensione macchina virtuale per Docker](dockerextension.md).
 
-Inoltre estensioni specifiche di tooprocess, un'estensione Script personalizzato è disponibile per le macchine virtuali Windows e Linux. estensione Script personalizzato per Linux Hello consente qualsiasi toobe script Bash eseguire in una macchina virtuale. Gli script personalizzati sono utili per la progettazione di distribuzioni di Azure che richiedono una configurazione in aggiunta a quella offerta dagli strumenti nativi di Azure. Per altre informazioni, vedere [Estensione di script personalizzata per le VM Linux](extensions-customscript.md).
+Oltre alle estensioni specifiche del processo, è disponibile un'estensione dello script personalizzata per le macchine virtuali Linux e Windows. L'estensione dello script personalizzata per Linux consente l'esecuzione di qualsiasi script Bash su una macchina virtuale. Gli script personalizzati sono utili per la progettazione di distribuzioni di Azure che richiedono una configurazione in aggiunta a quella offerta dagli strumenti nativi di Azure. Per altre informazioni, vedere [Estensione di script personalizzata per le VM Linux](extensions-customscript.md).
 
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Ogni estensione macchina virtuale può avere un insieme specifico di prerequisiti. Ad esempio, hello estensione della macchina virtuale Docker è un prerequisito di una distribuzione di Linux supportata. Requisiti di singole estensioni vengono descritti in dettaglio nella documentazione di hello specifiche dell'estensione.
+Ogni estensione macchina virtuale può avere un insieme specifico di prerequisiti. Ad esempio, un prerequisito dell'estensione macchina virtuale per Docker è una distribuzione Linux supportata. La documentazione specifica dell'estensione illustra in dettaglio i requisiti delle singole estensioni.
 
 ### <a name="azure-vm-agent"></a>Agente VM di Azure
 
-agente VM di Azure Hello gestisce le interazioni tra una macchina virtuale di Azure e il controller di infrastruttura di Azure hello. agente VM Hello è responsabile per molti aspetti funzionali di distribuzione e gestione di macchine virtuali di Azure, incluse l'esecuzione di estensioni di macchina virtuale. agente VM di Azure Hello è preinstallato in immagini di Azure Marketplace e può essere installato manualmente su sistemi operativi supportati.
+L'agente VM di Azure gestisce le interazioni tra una macchina virtuale di Azure e il controller di infrastruttura di Azure. L'agente VM è responsabile di molti aspetti funzionali della distribuzione e della gestione delle macchine virtuali di Azure, tra cui l'esecuzione delle estensioni della macchina virtuale. L'agente VM di Azure è preinstallato nelle immagini di Azure Marketplace e può essere installato manualmente nei sistemi operativi supportati.
 
-Per informazioni sui sistemi operativi supportati e per le istruzioni di installazione, vedere [Agente delle macchine virtuali di Azure](../windows/classic/agents-and-extensions.md).
+Per informazioni sui sistemi operativi supportati e per le istruzioni di installazione, vedere l'[agente VM di Azure](../windows/classic/agents-and-extensions.md).
 
 ## <a name="discover-vm-extensions"></a>Individuare le estensioni della macchina virtuale
 
-Molte estensioni delle macchine virtuali di diverso tipo sono disponibili per l'uso con macchine virtuali di Azure. toosee un elenco completo, eseguire hello comando con hello CLI di Azure seguente, sostituendo il percorso di esempio hello con hello nel percorso desiderato.
+Molte estensioni della macchina virtuale di diverso tipo sono disponibili per l'uso con le macchine virtuali di Azure. Per visualizzare un elenco completo, eseguire il comando seguente con l'interfaccia della riga di comando di Azure, sostituendo il percorso di esempio con quello scelto.
 
 ```azurecli
 az vm extension image list --location westus -o table
@@ -59,13 +59,13 @@ az vm extension image list --location westus -o table
 
 ## <a name="run-vm-extensions"></a>Eseguire le estensioni della macchina virtuale
 
-Estensioni di macchina virtuale di Azure possono essere eseguite nelle macchine virtuali esistenti, sono utili quando è necessario toomake modifiche di configurazione o ripristinare la connessione in una macchina virtuale già distribuita. Le estensioni della macchina virtuale possono essere anche unite in bundle con le distribuzioni del modello di Azure Resource Manager. L'uso delle estensioni con i modelli di Resource Manager consente di distribuire e configurare le macchine virtuali di Azure senza l'intervento post-distribuzione.
+Le estensioni della macchina virtuale di Azure possono essere eseguite nelle macchine virtuali esistenti e sono utili quando è necessario apportare modifiche alla configurazione o ripristinare la connettività in una macchina virtuale già distribuita. Le estensioni della macchina virtuale possono essere anche unite in bundle con le distribuzioni del modello di Azure Resource Manager. L'uso delle estensioni con i modelli di Resource Manager consente di distribuire e configurare le macchine virtuali di Azure senza l'intervento post-distribuzione.
 
-Hello dei seguenti metodi può essere utilizzati toorun un'estensione in una macchina virtuale esistente.
+Per eseguire un'estensione in una macchina virtuale esistente, è possibile usare i metodi seguenti.
 
 ### <a name="azure-cli"></a>Interfaccia della riga di comando di Azure
 
-Estensioni di macchina virtuale di Azure possono essere eseguite su una macchina virtuale esistente con hello `az vm extension set` comando. In questo esempio esegue l'estensione script personalizzata hello su una macchina virtuale.
+Le estensioni della macchina virtuale di Azure possono essere eseguite in una macchina virtuale esistente usando il comando `az vm extension set`. Questo esempio esegue l'estensione script personalizzata in una macchina virtuale.
 
 ```azurecli
 az vm extension set `
@@ -76,28 +76,28 @@ az vm extension set `
   --settings '{"fileUris": ["https://gist.github.com/ahmetalpbalkan/b5d4a856fe15464015ae87d5587a4439/raw/466f5c30507c990a4d5a2f5c79f901fa89a80841/hello.sh"],"commandToExecute": "./hello.sh"}'
 ```
 
-Hello script genera output simile toohello seguente testo:
+Lo script genera un output simile al testo seguente:
 
 ```azurecli
 info:    Executing command vm extension set
-+ Looking up hello VM "myVM"
++ Looking up the VM "myVM"
 + Installing extension "CustomScript", VM: "mvVM"
 info:    vm extension set command OK
 ```
 
 ### <a name="azure-portal"></a>Portale di Azure
 
-Estensioni di macchina virtuale possono essere applicato tooan macchina virtuale esistente tramite hello portale di Azure. toodo in tal caso, selezionare hello macchina virtuale, scegliere **estensioni**, fare clic su **Aggiungi**. Selezionare l'estensione di hello desiderato dall'elenco di hello delle estensioni disponibili e seguire le istruzioni di hello nella procedura guidata hello.
+Le estensioni della macchina virtuale possono essere applicate a una macchina virtuale esistente tramite il portale di Azure. A tale scopo, selezionare la macchina virtuale, scegliere **Estensioni**, fare clic su **Aggiungi**. Selezionare l'estensione desiderata dall'elenco di quelle disponibili e quindi seguire le istruzioni della procedura guidata.
 
-Hello immagine seguente mostra installazione hello di hello estensione Script personalizzato Linux da hello portale di Azure.
+L'immagine seguente illustra l'installazione dell'estensione di script personalizzata per Linux dal portale di Azure.
 
 ![Installare l'estensione di script personalizzata](./media/extensions-features/installscriptextensionlinux.png)
 
 ### <a name="azure-resource-manager-templates"></a>Modelli di Gestione risorse di Azure
 
-Estensioni di macchina virtuale possono essere aggiunto tooan modello di gestione risorse di Azure ed eseguita con la distribuzione di hello del modello di hello. Quando si distribuisce un'estensione con un modello, è possibile creare distribuzioni di Azure completamente configurate. Ad esempio, hello che JSON seguente viene eseguita da un modello di gestione risorse. modello Hello distribuisce un insieme di macchine virtuali di bilanciamento del carico e un database SQL di Azure e quindi installa un'applicazione .NET Core su ogni macchina virtuale. estensione della macchina virtuale Hello occupa hello dell'installazione del software.
+Le estensioni della macchina virtuale possono essere aggiunte a un modello di Azure Resource Manager ed eseguite con la distribuzione del modello. Quando si distribuisce un'estensione con un modello, è possibile creare distribuzioni di Azure completamente configurate. Il codice JSON seguente, ad esempio, è tratto da un modello di Resource Manager. Il modello distribuisce un set di macchine virtuali con carico bilanciato e un database SQL di Azure, quindi installa un'applicazione .NET Core in ogni macchina virtuale. L'estensione della macchina virtuale gestisce l'installazione del software.
 
-Per ulteriori informazioni, vedere hello completo [modello di gestione risorse](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-linux).
+Per altre informazioni, vedere il [modello di Resource Manager](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-linux) completo.
 
 ```json
 {
@@ -132,9 +132,9 @@ Per altre informazioni, vedere [Creazione di modelli di Azure Resource Manager](
 
 ## <a name="secure-vm-extension-data"></a>Proteggere i dati dell'estensione della macchina virtuale
 
-Quando si esegue un'estensione della macchina virtuale, potrebbe essere necessario tooinclude informazioni riservate, ad esempio le credenziali e i nomi degli account di archiviazione chiavi di accesso di account di archiviazione. Molte estensioni VM includono una configurazione protetta, che crittografa i dati e lo decrittografa solo all'interno di hello macchina virtuale di destinazione. Ogni estensione dispone di uno schema di configurazione protetta specifico, descritto in dettaglio nella documentazione specifica dell'estensione.
+Quando si esegue un'estensione macchina virtuale, potrebbe essere necessario includere informazioni riservate, ad esempio le credenziali, i nomi degli account di archiviazione e le chiavi di accesso dell'account di archiviazione. Molte estensioni della macchina virtuale includono una configurazione protetta che crittografa i dati e li decrittografa solo all'interno della macchina virtuale di destinazione. Ogni estensione dispone di uno schema di configurazione protetta specifico, descritto in dettaglio nella documentazione specifica dell'estensione.
 
-Hello di esempio seguente mostra un'istanza di hello estensione Script personalizzato per Linux. Si noti che tooexecute comando hello include un set di credenziali. In questo esempio hello comando tooexecute non verrà crittografati.
+L'esempio seguente illustra un'istanza dell'estensione script personalizzata per Linux. Si noti che il comando da eseguire include un insieme di credenziali. In questo esempio, il comando da eseguire non verrà crittografato.
 
 
 ```json
@@ -164,7 +164,7 @@ Hello di esempio seguente mostra un'istanza di hello estensione Script personali
 }
 ```
 
-Hello mobile **comando tooexecute** proprietà toohello **protetti** configurazione consente di proteggere la stringa di esecuzione hello.
+Lo spostamento della proprietà del **comando da eseguire** nella configurazione **protetta** consente di proteggere la stringa di esecuzione.
 
 ```json
 {
@@ -197,19 +197,19 @@ Hello mobile **comando tooexecute** proprietà toohello **protetti** configurazi
 
 ## <a name="troubleshoot-vm-extensions"></a>Risoluzione dei problemi relativi alle estensioni della macchina virtuale
 
-Ogni estensione della macchina virtuale abbia estensione toohello specifici passaggi di risoluzione dei problemi. Ad esempio, quando si utilizza l'estensione Custom Script hello, dettagli sull'esecuzione di script è reperibile in locale nella macchina virtuale hello in cui è stata eseguita l'estensione hello. Tutti i passaggi per la risoluzione dei problemi specifici dell'estensione sono descritti in dettaglio nella documentazione specifica dell'estensione.
+Ogni estensione macchina virtuale può richiedere passaggi per la risoluzione dei problemi specifici per l'estensione. Ad esempio, quando si usa l'estensione di script personalizzata, i dettagli sull'esecuzione dello script sono disponibili in locale nella macchina virtuale in cui è stata eseguita l'estensione. Tutti i passaggi per la risoluzione dei problemi specifici dell'estensione sono descritti in dettaglio nella documentazione specifica dell'estensione.
 
-Hello risoluzione dei problemi relativi alla procedura seguente si applica tooall estensioni delle macchine virtuali.
+I passaggi per la risoluzione dei problemi seguenti si applicano a tutte le estensioni macchina virtuale.
 
 ### <a name="view-extension-status"></a>Visualizzare lo stato dell'estensione
 
-Dopo l'esecuzione di un'estensione della macchina virtuale in una macchina virtuale, utilizzare hello seguente lo stato dell'estensione tooreturn comando CLI di Azure. Sostituire i nomi dei parametri di esempio con i valori desiderati.
+Dopo l'esecuzione di un'estensione macchina virtuale in una macchina virtuale, usare il comando dell'interfaccia della riga di comando seguente di Azure per ottenere lo stato dell'estensione. Sostituire i nomi dei parametri di esempio con i valori desiderati.
 
 ```azurecli
 az vm extension list --resource-group myResourceGroup --vm-name myVM -o table
 ```
 
-output di Hello è simile hello seguente testo:
+L'output ha un aspetto simile al testo seguente:
 
 ```azurecli
 AutoUpgradeMinorVersion    Location    Name          ProvisioningState    Publisher                   ResourceGroup      TypeHandlerVersion  VirtualMachineExtensionType
@@ -217,28 +217,28 @@ AutoUpgradeMinorVersion    Location    Name          ProvisioningState    Publis
 True                       westus      customScript  Succeeded            Microsoft.Azure.Extensions  exttest                             2  customScript
 ```
 
-Lo stato dell'esecuzione di estensione può essere rilevata anche in hello portale di Azure. stato hello tooview di un'estensione, hello selezionare macchina virtuale, scegliere **estensioni**, e selezionare hello estensione desiderata.
+Lo stato di esecuzione dell'estensione è disponibile anche nel portale di Azure. Per visualizzare lo stato di un'estensione, selezionare la macchina virtuale, scegliere **Estensioni** e selezionare l'estensione desiderata.
 
 ### <a name="rerun-a-vm-extension"></a>Rieseguire un'estensione macchina virtuale
 
-Potrebbero essere presenti i casi in cui un'estensione della macchina virtuale deve toobe eseguire di nuovo. È possibile eseguire nuovamente un'estensione rimuovendola e quindi eseguire nuovamente estensione hello con un metodo di esecuzione di propria scelta. tooremove un'estensione, eseguire hello comando con hello CLI di Azure seguente. Sostituire i nomi dei parametri di esempio con i valori desiderati.
+In alcuni casi potrebbe essere necessario rieseguire un'estensione della macchina virtuale. È possibile eseguire tale operazione rimuovendo l'estensione e quindi eseguendola di nuovo con il metodo scelto. Per rimuovere un'estensione, eseguire il comando seguente con l'interfaccia della riga di comando di Azure. Sostituire i nomi dei parametri di esempio con i valori desiderati.
 
 ```azurecli
 az vm extension delete --name customScript --resource-group myResourceGroup --vm-name myVM
 ```
 
-È possibile rimuovere un'estensione tramite hello in hello portale di Azure come segue:
+È possibile rimuovere un'estensione usando i passaggi seguenti nel portale di Azure:
 
 1. Selezionare una macchina virtuale.
 2. Scegliere **Estensioni**.
-3. Selezionare l'estensione hello desiderato.
+3. Selezionare l'estensione desiderata.
 4. Scegliere **Disinstalla**.
 
 ## <a name="common-vm-extension-reference"></a>Riferimento alle estensioni della macchina virtuale comuni
 | Nome estensione | Descrizione | Altre informazioni |
 | --- | --- | --- |
 | Estensione script personalizzata per Linux |Eseguire gli script in una macchina virtuale di Azure |[Estensione script personalizzata per Linux](extensions-customscript.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) |
-| Estensione per Docker |Installare hello Docker daemon toosupport comandi Docker remoti. |[Estensione macchina virtuale per Docker](dockerextension.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) |
-| Estensione dell'accesso alle macchine virtuali |Ripristinare l'accesso tooan macchina virtuale di Azure |[Estensione dell'accesso alle macchine virtuali](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess) |
+| Estensione per Docker |Installare il daemon Docker per supportare i comandi Docker remoti. |[Estensione macchina virtuale per Docker](dockerextension.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) |
+| Estensione dell'accesso alle macchine virtuali |Ripristinare l'accesso a una macchina virtuale di Azure |[Estensione dell'accesso alle macchine virtuali](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess) |
 | Estensione di Diagnostica di Azure |Gestisce Diagnostica di Azure. |[Estensione di Diagnostica di Azure](https://azure.microsoft.com/blog/windows-azure-virtual-machine-monitoring-with-wad-extension/) |
 | Estensione dell'accesso alla VM di Azure |Gestire gli utenti e le credenziali |[Estensione dell'accesso alla VM per Linux](https://azure.microsoft.com/en-us/blog/using-vmaccess-extension-to-reset-login-credentials-for-linux-vm/) |

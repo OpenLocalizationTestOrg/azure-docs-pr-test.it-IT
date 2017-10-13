@@ -1,5 +1,5 @@
 ---
-title: dati del documento per un database NoSQL aaaModeling | Documenti Microsoft
+title: Modellazione dei dati di un documento per un database NoSQL | Microsoft Docs
 description: Informazioni sulla modellazione dei dati per i database NoSQL
 keywords: modellazione di dati
 services: cosmos-db
@@ -15,37 +15,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/29/2016
 ms.author: arramac
-ms.openlocfilehash: 2e388c833f204287896dfa8e6f79c88073731b6b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 16c387fe574243544cf54cf283c7713ddcaa1942
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="modeling-document-data-for-nosql-databases"></a>Modellazione dei dati di un documento per un database NoSQL
-Database privi di schema, come Azure Cosmos DB, semplificano super tooembrace modello di dati tooyour modifiche ancora dedicare alcuni tempo concepire i dati. 
+Anche se con i database privi di schema, come Azure Cosmos DB, è facilissimo accettare le modifiche apportate al modello di dati, è consigliabile valutare bene tutto ciò che riguarda i dati. 
 
-Dati modalità toobe archiviati? Quali sono i dati dell'applicazione continua tooretrieve e query? L'applicazione esegue un'intensa attività di lettura o un'intensa attività di scrittura? 
+Come verranno archiviati i dati? In che modo l'applicazione recupererà i dati e ne eseguirà la query? L'applicazione esegue un'intensa attività di lettura o un'intensa attività di scrittura? 
 
-Dopo aver letto questo articolo, sarà in grado di tooanswer hello seguenti domande:
+Dopo la lettura di questo articolo, si potrà rispondere alle domande seguenti:
 
 * Come si deve considerare un documento in un database di documenti?
 * Cos'è la modellazione dei dati e perché è importante? 
-* Come viene modellare i dati in un database relazionale di database diversi tooa documento?
+* Come si distingue la modellazione dei dati in un database di documenti da quella in un database relazionale?
 * Come si esprimono le relazioni tra i dati in un database non relazionale?
-* Quando si incorporano dati e quando si collega toodata?
+* Quando si incorporano i dati e quando si creano i collegamenti ai dati?
 
 ## <a name="embedding-data"></a>Incorporamento dei dati
-Quando si avvia modellazione dei dati in un archivio di documento, ad esempio Azure Cosmos DB, provare a tootreat le entità come **documenti indipendenti** rappresentato in JSON.
+Quando si inizia a modellare i dati in un archivio documenti, ad esempio Cosmos DB, cercare di considerare le entità come **documenti autosufficienti** rappresentati in JSON.
 
-Prima di proseguire, è meglio fare un passo indietro e pensare a come sia possibile modellare qualcosa in un database relazionale, un argomento con cui molti hanno già familiarità. Hello esempio seguente viene illustrato come una persona potrebbe essere archiviata in un database relazionale. 
+Prima di proseguire, è meglio fare un passo indietro e pensare a come sia possibile modellare qualcosa in un database relazionale, un argomento con cui molti hanno già familiarità. L'esempio seguente mostra come una persona possa essere archiviata in un database relazionale. 
 
 ![Database relazionale](./media/documentdb-modeling-data/relational-data-model.png)
 
-Quando si lavora con i database relazionali, è state illustrate per toonormalize anni, la normalizzazione, normalizzare.
+Quando si lavora con i database relazionali, tutti hanno imparato ormai da anni a normalizzare, normalizzare, normalizzare.
 
-Normalizzazione dei dati in genere implica l'esecuzione di un'entità, ad esempio una persona, nonché suddividere in toodiscrete porzioni di dati. Nell'esempio hello sopra, una persona può disporre di più record di informazioni di contatto, nonché di più record di indirizzo. È possibile andare oltre e suddividere i dettagli contatto estraendo anche i campi comuni come tipo. Lo stesso per l'indirizzo: ogni record qui ha un tipo, ad esempio *Abitazione* o *Ufficio* 
+Di solito nella normalizzazione dei dati si prende un'entità, ad esempio una persona, e la si suddivide in porzioni di dati distinte. Nell'esempio precedente, una persona può avere più record di dettagli contatto e più record di indirizzi. È possibile andare oltre e suddividere i dettagli contatto estraendo anche i campi comuni come tipo. Lo stesso per l'indirizzo: ogni record qui ha un tipo, ad esempio *Abitazione* o *Ufficio* 
 
-Guida locale quando normalizzazione dei dati è troppo Hello**evitare di archiviare dati ridondanti** in ogni record e invece fare riferimento toodata. In questo esempio, tooread una persona, con tutti i relativi dettagli di contatto e gli indirizzi, è necessario toouse join tooeffectively aggregare i dati in fase di esecuzione.
+Il presupposto principale quando si normalizzano i dati è **evitare di archiviare i dati ridondanti** in ogni record e fare invece riferimento ai dati. In questo esempio, per leggere una persona, con tutti i dettagli contatto e gli indirizzi, è necessario usare i JOIN per aggregare in modo efficace i dati in fase di esecuzione.
 
     SELECT p.FirstName, p.LastName, a.City, cd.Detail
     FROM Person p
@@ -55,7 +55,7 @@ Guida locale quando normalizzazione dei dati è troppo Hello**evitare di archivi
 
 Per aggiornare una singola persona con i dettagli contatto e gli indirizzi, è necessario eseguire operazioni di scrittura in più tabelle. 
 
-Ora è possibile osservare come si sarebbe modello hello stessi dati come entità indipendenti in un database di documenti.
+Ora si esaminerà come si modellano gli stessi dati come entità autosufficiente in un database di documenti.
 
     {
         "id": "1",
@@ -76,39 +76,39 @@ Ora è possibile osservare come si sarebbe modello hello stessi dati come entit�
         ] 
     }
 
-Approccio hello precedente abbiamo ora **denormalizzati** hello record utente in cui è **incorporato** tutti hello informazioni relative a toothis persona, ad esempio le informazioni di contatto e indirizzi in tooa singolo Documento JSON.
-Inoltre, poiché non ci stiamo limitati tooa uno schema fisso che abbiamo hello flessibilità toodo quali con i dettagli di contatto di diverse forme completamente. 
+Con questo approccio ora è stato **denormalizzato** il record della persona, in cui sono state **incorporate** tutte le informazioni relative a questa persona, ad esempio i dettagli di contatto e gli indirizzi, in un singolo documento JSON.
+Inoltre, dal momento che non esistono limiti imposti da uno schema fisso, abbiamo la flessibilità necessaria, ad esempio, per avere dettagli contatto di forme completamente diverse. 
 
-Il recupero di un record utente completo dal database hello è ora una singola operazione su una singola raccolta e di un singolo documento di lettura. Anche l'aggiornamento del record di una persona, con i dettagli contatto e gli indirizzi, richiede una sola operazione di scrittura in un solo documento.
+Il recupero del record completo di una persona dal database richiede ora una sola operazione di lettura in una sola raccolta e per un solo documento. Anche l'aggiornamento del record di una persona, con i dettagli contatto e gli indirizzi, richiede una sola operazione di scrittura in un solo documento.
 
-Da denormalizzazione dei dati, l'applicazione potrebbe essere necessario tooissue meno query e aggiornamenti toocomplete operazioni comuni. 
+Denormalizzando i dati, è possibile che l'applicazione debba eseguire meno query e aggiornamenti per completare le comuni operazioni. 
 
-### <a name="when-tooembed"></a>Quando tooembed
+### <a name="when-to-embed"></a>Quando eseguire l'incorporamento
 In generale, usare i modelli di dati incorporati quando:
 
 * Esistono relazioni **contains** tra le entità.
 * Esistono relazioni **one-to-few** tra le entità.
 * Esistono dati incorporati che **cambiano raramente**.
 * Esistono dati incorporati che non aumenteranno **senza limiti**.
-* Non ci sono dati incorporati che sono **integrale** toodata in un documento.
+* Esistono dati incorporati che sono parte **integrante** dei dati in un documento.
 
 > [!NOTE]
 > I modelli di dati denormalizzati garantiscono di solito prestazioni di **lettura** più elevate.
 > 
 > 
 
-### <a name="when-not-tooembed"></a>Quando non tooembed
-Mentre hello regola empirica in un database di documenti è toodenormalize tutto quello che incorpora tutti i dati nel documento singolo tooa, ciò può comportare situazioni toosome che dovrebbero essere evitate.
+### <a name="when-not-to-embed"></a>Quando non eseguire l'incorporamento
+Anche se in linea generale in un database di documenti si denormalizza tutto e si incorporano tutti i dati in un solo documento, questo può creare situazioni che sarebbe meglio evitare.
 
 Consideriamo questo frammento JSON.
 
     {
         "id": "1",
-        "name": "What's new in hello coolest Cloud",
+        "name": "What's new in the coolest Cloud",
         "summary": "A blog post by someone real famous",
         "comments": [
             {"id": 1, "author": "anon", "comment": "something useful, I'm sure"},
-            {"id": 2, "author": "bob", "comment": "wisdom from hello interwebs"},
+            {"id": 2, "author": "bob", "comment": "wisdom from the interwebs"},
             …
             {"id": 100001, "author": "jane", "comment": "and on we go ..."},
             …
@@ -118,20 +118,20 @@ Consideriamo questo frammento JSON.
         ]
     }
 
-Questo potrebbe essere l'aspetto di un'entità post con commenti incorporati, se si modellasse un tipico sistema di blog, o CMS. problema con questo esempio Hello è tale hello matrice commenti è **unbounded**, non ovvero non esiste alcun toohello (pratiche) limitazione del numero dei commenti può avere qualsiasi singolo post. Dimensioni di hello del documento hello potrebbero aumentare notevolmente diventerà un problema.
+Questo potrebbe essere l'aspetto di un'entità post con commenti incorporati, se si modellasse un tipico sistema di blog, o CMS. Il problema di questo esempio è che la matrice di commenti non è **limitata**, vale a dire che non esiste in pratica un limite al numero di commenti per i singoli post. Questo sarà un problema qualora le dimensioni del documento aumentassero considerevolmente.
 
-Come dimensione hello di hello documento aumenta dati hello tootransmit possibilità di hello in transito hello, nonché la lettura e aggiornamento documento hello, su larga scala, sarà interessato.
+Quando le dimensioni del documento aumentano, diventa più difficile trasmettere i dati nella rete come anche leggere e aggiornare il documento.
 
-In questo caso sarebbe migliore hello tooconsider seguente modello.
+In questo caso, sarebbe meglio prendere in considerazione il modello seguente.
 
     Post document:
     {
         "id": "1",
-        "name": "What's new in hello coolest Cloud",
+        "name": "What's new in the coolest Cloud",
         "summary": "A blog post by someone real famous",
         "recentComments": [
             {"id": 1, "author": "anon", "comment": "something useful, I'm sure"},
-            {"id": 2, "author": "bob", "comment": "wisdom from hello interwebs"},
+            {"id": 2, "author": "bob", "comment": "wisdom from the interwebs"},
             {"id": 3, "author": "jane", "comment": "....."}
         ]
     }
@@ -141,7 +141,7 @@ In questo caso sarebbe migliore hello tooconsider seguente modello.
         "postId": "1"
         "comments": [
             {"id": 4, "author": "anon", "comment": "more goodness"},
-            {"id": 5, "author": "bob", "comment": "tails from hello field"},
+            {"id": 5, "author": "bob", "comment": "tails from the field"},
             ...
             {"id": 99, "author": "angry", "comment": "blah angry blah angry"}
         ]
@@ -155,9 +155,9 @@ In questo caso sarebbe migliore hello tooconsider seguente modello.
         ]
     }
 
-Questo modello contiene i commenti più recente di hello tre incorporati in hello post stessa, ovvero una matrice con un limite fisso in questo momento. Hello altri commenti vengono raggruppati in toobatches dei 100 commenti e archiviate in documenti distinti. dimensioni di Hello di hello batch è stato scelto come 100 perché l'applicazione fittizia consente hello 100 commenti tooload dell'utente alla volta.  
+Questo modello ha i tre commenti più recenti incorporati nel post, che questa volta è una matrice con un limite fisso. Gli altri commenti sono raggruppati in batch di 100 commenti e archiviati in documenti separati. La dimensione scelta per il batch è 100 perché l'applicazione fittizia consente all'utente di caricare 100 commenti per volta.  
 
-Un altro caso in cui incorporare i dati non sono una buona idea è quando hello incorporato dati vengono utilizzati spesso in documenti e verranno modificati di frequente. 
+Un altro caso in cui non è consigliabile ricorrere all'incorporamento dei dati è quando i dati incorporati vengono usati spesso nei documenti e cambiano spesso. 
 
 Consideriamo questo frammento JSON.
 
@@ -177,16 +177,16 @@ Consideriamo questo frammento JSON.
         ]
     }
 
-Questo potrebbe essere il portafoglio azionario di una persona. Informazioni sui titoli di hello tooembed scelto nel documento portfolio tooeach. Incorporamento di dati che cambiano frequentemente in un ambiente in cui i dati correlati cambia di frequente, ad esempio un'applicazione che, in corso toomean che si sta aggiornando ogni documento portfolio costantemente ogni volta che vengono scambiate un azioni.
+Questo potrebbe essere il portafoglio azionario di una persona. Abbiamo scelto di incorporare le informazioni sulle azioni in ogni documento del portafoglio. In un ambiente in cui i dati correlati cambieranno spesso, come in un'applicazione per le contrattazioni azionarie, l'incorporamento di dati che cambiano spesso obbligherà ad aggiornare continuamente ogni documento del portafoglio ogni volta che viene scambiata un'azione.
 
-Il titolo *zaza* potrebbe essere scambiato diverse centinaia di volte in un solo giorno e migliaia di utenti potrebbero avere *zaza* nel portafoglio. Con un modello di dati come hello sopra sono tooupdate molte migliaia di documenti portfolio molte volte ogni giorno tooa sistema che non verrà ridimensionato molto bene. 
+Il titolo *zaza* potrebbe essere scambiato diverse centinaia di volte in un solo giorno e migliaia di utenti potrebbero avere *zaza* nel portafoglio. Con un modello di dati come quello sopra sarebbe necessario aggiornare diverse migliaia di documenti del portfolio più volte al giorno e la scalabilità del sistema non sarebbe efficiente. 
 
 ## <a id="Refer"></a>Dati di riferimento
 L'incorporamento dei dati quindi funziona senza problemi in molti casi, ma è evidente che in altri scenari la denormalizzazione dei dati è più che altro causa di problemi. Cosa si può fare dunque? 
 
-Database relazionali non sono unico luogo hello in cui è possibile creare relazioni tra entità. In un database di documenti è possibile disporre di informazioni in un documento che effettivamente si riferisce toodata in altri documenti. A questo punto, sono non, promuovendo anche un minuto è creare sistemi che sarebbero migliori tooa adatto di database relazionale nel database di Azure Cosmos o qualsiasi altro database di documento, ma relazioni semplici sono supportate e possono essere molto utili. 
+Le relazioni tra entità non devono essere necessariamente create in un database relazionale. In un database di documenti è possibile tenere in un documento informazioni che sono effettivamente correlate ai dati in altri documenti. Non si consiglia di creare sistemi che sarebbero più appropriati per un database relazionale in Azure Cosmos DB o in qualsiasi altro database di documenti, tuttavia le relazioni semplici vanno bene e possono essere molto utili. 
 
-In hello JSON seguente è stato scelto toouse hello ad esempio un portafoglio di titoli da versioni precedenti ma questa volta che viene fatto riferimento toohello magazzino nel portfolio di hello anziché incorporarlo. In questo modo, quando in magazzino hello cambiano frequentemente in tutta hello giorno hello solo documento toobe aggiornato è documento azionari singolo hello. 
+Nel codice JSON seguente abbiamo scelto di usare l'esempio del portafoglio di azioni di prima, ma questa volta facciamo riferimento all'elemento titolo nel portafoglio invece di incorporarlo. In questo modo, anche se l'elemento titolo cambia più volte nel corso della giornata, il solo documento da aggiornare è il documento del titolo. 
 
     Person document:
     {
@@ -222,17 +222,17 @@ In hello JSON seguente è stato scelto toouse hello ad esempio un portafoglio di
     }
 
 
-Un approccio toothis immediato svantaggio, tuttavia è se l'applicazione è necessario tooshow informazioni ogni titolo che viene mantenuto per la visualizzazione di raccolte di progetti di una persona; In questo caso sarà necessario toomake più trip toohello tooload hello informazioni sul database per ogni documento predefinita. Di seguito sono stati apportati efficienza di hello tooimprove una decisione di operazioni di scrittura, che si verifica frequentemente durante il giorno hello, ma anche a sua volta su hello operazioni potenzialmente con un impatto minore sulle prestazioni di hello questo particolare sistema di lettura.
+L'aspetto negativo di questo approccio diventa però immediatamente evidente se l'applicazione deve mostrare informazioni su ogni titolo disponibile quando si visualizza il portafoglio di una persona. In questo caso, sarebbe necessario accedere più volte al database per caricare le informazioni del documento di ogni titolo. Qui è stata presa la decisione di aumentare l'efficienza delle operazioni di scrittura, che vengono eseguite spesso durante la giornata, compromettendo però le operazioni di lettura che hanno un impatto potenzialmente minore sulle prestazioni di questo particolare sistema.
 
 > [!NOTE]
-> I modelli di dati normalizzato **può richiedere più round trip** toohello server.
+> I modelli di dati normalizzati **possono richiedere più round trip** al server.
 > 
 > 
 
 ### <a name="what-about-foreign-keys"></a>Chiavi esterne
-Poiché attualmente non è disponibile alcun concetto di un vincolo, chiave esterna o in caso contrario, tutte le relazioni tra i documenti contenenti nei documenti sono effettivamente "punti deboli" e non verranno verificate dal database hello stesso. Se si desidera tooensure che hello dati che fa riferimento un documento tooactually esista, quindi è necessario toodo questo nell'applicazione o tramite l'utilizzo di hello del lato server trigger o stored procedure nel database di Azure Cosmos.
+Poiché attualmente non esiste alcun vincolo, chiave esterna o altro, le relazioni esistenti tra i documenti sono di fatto "collegamenti deboli" e non verranno verificate dal database. Per essere certi che i dati a cui un documento fa riferimento esistano davvero, è eseguire questa operazione nell'applicazione oppure tramite trigger lato server o stored procedure in Azure Cosmos DB.
 
-### <a name="when-tooreference"></a>Quando tooreference
+### <a name="when-to-reference"></a>Quando fare riferimento
 In generale, usare i modelli di dati denormalizzati quando:
 
 * Si rappresentano relazioni **uno a molti** .
@@ -245,10 +245,10 @@ In generale, usare i modelli di dati denormalizzati quando:
 > 
 > 
 
-### <a name="where-do-i-put-hello-relationship"></a>Posizionamento di relazione hello
-aumento delle dimensioni Hello di relazione hello consentono di determinare in quale riferimento hello toostore del documento.
+### <a name="where-do-i-put-the-relationship"></a>Dove inserire le relazioni
+La crescita della relazione aiuterà a determinare in quale documento archiviare il riferimento.
 
-Se si esamina hello JSON seguente che modella i server di pubblicazione e la documentazione.
+Il codice JSON seguente modella editori e libri.
 
     Publisher document:
     {
@@ -260,15 +260,15 @@ Se si esamina hello JSON seguente che modella i server di pubblicazione e la doc
     Book documents:
     {"id": "1", "name": "Azure Cosmos DB 101" }
     {"id": "2", "name": "Azure Cosmos DB for RDBMS Users" }
-    {"id": "3", "name": "Taking over hello world one JSON doc at a time" }
+    {"id": "3", "name": "Taking over the world one JSON doc at a time" }
     ...
     {"id": "100", "name": "Learn about Azure Cosmos DB" }
     ...
-    {"id": "1000", "name": "Deep Dive in tooAzure Cosmos DB" }
+    {"id": "1000", "name": "Deep Dive in to Azure Cosmos DB" }
 
-Se il numero di hello di libri hello al server di pubblicazione è ridotto con crescita limitata, può risultare utile la memorizzazione dei hello libro di riferimento interno hello publisher documento. Tuttavia, se il numero di hello di documentazione per ogni server di pubblicazione è non associato, questo modello di dati potrebbe causare toomutable, aumento delle dimensioni di matrici, come hello esempio server di pubblicazione nel documento precedente. 
+Se il numero di libri per editore è piccolo e ha una crescita limitata, può essere utile archiviare il riferimento ai libri nel documento dell'editore. Se invece il numero di libri per editore è illimitato, questo modello di dati darà origine a matrici modificabili e in costante crescita, come nel documento dell'editore di esempio precedente. 
 
-Cambio di diversi elementi un bit sarebbe risultato in un modello che rappresenta ancora hello stessi dati ma ora consente di evitare questi grandi raccolte modificabile.
+Cambiando un po' le cose, si ottiene un modello che rappresenta sempre gli stessi dati, ma che ora evita queste grandi raccolte modificabili.
 
     Publisher document: 
     {
@@ -279,20 +279,20 @@ Cambio di diversi elementi un bit sarebbe risultato in un modello che rappresent
     Book documents: 
     {"id": "1","name": "Azure Cosmos DB 101", "pub-id": "mspress"}
     {"id": "2","name": "Azure Cosmos DB for RDBMS Users", "pub-id": "mspress"}
-    {"id": "3","name": "Taking over hello world one JSON doc at a time"}
+    {"id": "3","name": "Taking over the world one JSON doc at a time"}
     ...
     {"id": "100","name": "Learn about Azure Cosmos DB", "pub-id": "mspress"}
     ...
-    {"id": "1000","name": "Deep Dive in tooAzure Cosmos DB", "pub-id": "mspress"}
+    {"id": "1000","name": "Deep Dive in to Azure Cosmos DB", "pub-id": "mspress"}
 
-In hello esempio precedente, è stato eliminato hello unbounded insieme nel documento di publisher hello. Invece è disponibile solo un server di pubblicazione di toohello riferimento nel documento di ciascun libro.
+Nell'esempio precedente, abbiamo eliminato la raccolta illimitata nel documento dell'editore. Ora abbiamo un solo riferimento all'editore nel documento di ogni libro.
 
 ### <a name="how-do-i-model-manymany-relationships"></a>Come modellare le relazioni many:many?
 In un database relazionale le relazioni *molti a molti* vengono spesso modellate con le tabelle join, che creano un join dei record delle altre tabelle. 
 
 ![Unione di tabelle](./media/documentdb-modeling-data/join-table.png)
 
-Potrebbe essere tentati tooreplicate hello stessa operazione usando i documenti e producono un modello di dati che sembra simile toohello seguente.
+Si potrebbe essere tentati di replicare la stessa cosa con i documenti e di generare un modello di dati simile al seguente.
 
     Author documents: 
     {"id": "a1", "name": "Thomas Andersen" }
@@ -301,9 +301,9 @@ Potrebbe essere tentati tooreplicate hello stessa operazione usando i documenti 
     Book documents:
     {"id": "b1", "name": "Azure Cosmos DB 101" }
     {"id": "b2", "name": "Azure Cosmos DB for RDBMS Users" }
-    {"id": "b3", "name": "Taking over hello world one JSON doc at a time" }
+    {"id": "b3", "name": "Taking over the world one JSON doc at a time" }
     {"id": "b4", "name": "Learn about Azure Cosmos DB" }
-    {"id": "b5", "name": "Deep Dive in tooAzure Cosmos DB" }
+    {"id": "b5", "name": "Deep Dive in to Azure Cosmos DB" }
 
     Joining documents: 
     {"authorId": "a1", "bookId": "b1" }
@@ -311,10 +311,10 @@ Potrebbe essere tentati tooreplicate hello stessa operazione usando i documenti 
     {"authorId": "a1", "bookId": "b2" }
     {"authorId": "a1", "bookId": "b3" }
 
-Funzionerebbe, Tuttavia, il caricamento di entrambi un autore e la documentazione o il caricamento di un libro con autore, sempre richiede almeno due query aggiuntive hello database. Unione di documenti e quindi un'altra query toofetch hello documento effettivo da unire in join toohello di una query. 
+Funzionerebbe, ma, per caricare un autore con i suoi libri o un libro con il suo autore, sarebbero sempre necessarie almeno altre due query sul database; una query per creare un join del documento e quindi un'altra query per recuperare il documento effettivo di cui viene creato il join. 
 
 Se la tabella join si limita a incollare insieme due gruppi di dati, allora perché non eliminarla del tutto?
-Prendere in considerazione i seguenti hello.
+Tenere in considerazione quanto segue.
 
     Author documents:
     {"id": "a1", "name": "Thomas Andersen", "books": ["b1, "b2", "b3"]}
@@ -324,18 +324,18 @@ Prendere in considerazione i seguenti hello.
     {"id": "b1", "name": "Azure Cosmos DB 101", "authors": ["a1", "a2"]}
     {"id": "b2", "name": "Azure Cosmos DB for RDBMS Users", "authors": ["a1"]}
     {"id": "b3", "name": "Learn about Azure Cosmos DB", "authors": ["a1"]}
-    {"id": "b4", "name": "Deep Dive in tooAzure Cosmos DB", "authors": ["a2"]}
+    {"id": "b4", "name": "Deep Dive in to Azure Cosmos DB", "authors": ["a2"]}
 
-A questo punto, se ci fosse un autore, posso sapere immediatamente quali libri che hanno scritto e viceversa se è stato caricato un documento di libro SO ID hello degli autori hello. Ciò consente di risparmiare intermediario query sulla tabella di join hello riducendo il numero di hello del server dell'applicazione è toomake di round trip. 
+Se avessimo un autore, sapremmo immediatamente quali libri ha scritto e, al contrario, se avessimo caricato un documento relativo ai libri, conosceremmo gli ID degli autori. Questo evita la query intermedia sulla tabella join riducendo il numero di round trip al server che l'applicazione deve eseguire. 
 
 ## <a id="WrapUp"></a>Modelli di dati ibridi
 Come si è visto, sia l'incorporamento (o denormalizzazione) che il riferimento (o normalizzazione) ai dati presentano vantaggi e compromessi. 
 
-L'operazione non sempre disporre di un toobe o, non essere toomix impaurito operazioni backup a breve. 
+Ma non è sempre necessario scegliere uno dei due. È anche possibile mischiare un po' le cose. 
 
-In base a modelli di utilizzo specifico e i carichi di lavoro può accadere in combinazione incorporata dell'applicazione e dati di riferimento ha senso e Impossibile logica dell'applicazione responsabile toosimpler con server meno round trip pur mantenendo un buon livello di prestazioni .
+In base ai modelli di utilizzo e ai carichi di lavoro specifici dell'applicazione, in certi casi può avere senso unire i dati incorporati e quelli a cui si fa riferimento per ottenere una logica dell'applicazione più semplice con meno round trip al server, mantenendo ugualmente un buon livello di prestazioni.
 
-Prendere in considerazione hello seguente JSON. 
+Si consideri il codice JSON seguente. 
 
     Author documents: 
     {
@@ -378,21 +378,21 @@ Prendere in considerazione hello seguente JSON.
         ]
     }
 
-Qui è stata seguita (principalmente) modello incorporato hello, in cui i dati da altre entità sono incorporati nel documento di primo livello hello, ma fa riferimento ad altri dati. 
+Qui abbiamo per lo più seguito il modello incorporato, in cui i dati delle altre entità vengono incorporati nel documento di primo livello, ma viene fatto riferimento agli altri dati. 
 
-Se si esamina il documento di libro hello, possiamo vedere alcuni interessanti campi quando si esamina la matrice hello degli autori. È presente un *id* campo campo hello utilizziamo documento di autore di toorefer tooan indietro, procedura standard in un modello normalizzato, ma è anche avere *nome* e *thumbnailUrl*. È possibile avere solo bloccato con *id* e ha lasciato tooget applicazione hello eventuali informazioni aggiuntive necessarie dal documento di autore rispettivi hello utilizzando hello "collegamento", ma poiché l'applicazione consente di visualizzare il nome dell'autore hello e un immagine di anteprima con ogni libro visualizzato per salvare un server di andata e ritorno toohello per ogni libro in un elenco da denormalizzazione **alcuni** dati da un autore hello.
+Se si osserva il documento dei libri, si possono vedere alcuni campi interessanti quando si considera la matrice degli autori. È presente un campo *id*che viene usato per fare riferimento al documento di un autore, che è una procedura standard in un modello normalizzato, ma poi sono presenti anche *name* e *thumbnailUrl*. Avremmo potuto limitarci a *id* e lasciare che l'applicazione recuperasse le altre informazioni necessarie dal relativo documento dell'autore usando il "collegamento", ma, dal momento che l'applicazione visualizza il nome e un'immagine di anteprima dell'autore con ogni libro visualizzato, è possibile evitare un round trip al server per ogni libro di un elenco denormalizzando **alcuni** dati dall'autore.
 
-Assicurarsi che, se il nome dell'autore hello modificato o volevano tooupdate le foto sono toogo un aggiornamento ogni libro viene sempre la pubblicazione, ma per l'applicazione, in base a ipotesi di hello che gli autori di non modificare i relativi nomi, molto spesso, si tratta di una progettazione accettabile decisione.  
+Ovviamente, se l'autore cambiasse nome o se volesse aggiornare la foto, sarebbe necessario eseguire un aggiornamento per ogni libro pubblicato, ma per la nostra applicazione, che si basa sul presupposto che gli autori non cambino nome molto spesso, questa è una decisione di progettazione accettabile.  
 
-Nell'esempio hello esistono **pre-calcolate aggregazioni** valori toosave costosa l'elaborazione in un'operazione di lettura. Nell'esempio hello, alcuni dati hello incorporati nel documento di autore hello sono dati che viene calcolati in fase di esecuzione. Ogni volta che un nuovo libro viene pubblicato, viene creato un documento di libro **e** campo countOfBooks hello è impostato un valore tooa calcolato in base al numero di hello libro di documenti esistenti per un determinato autore. Questa ottimizzazione sono utili nei sistemi pesanti letti in cui che possiamo permetterci toodo calcoli su operazioni di scrittura in ordine toooptimize legge.
+Nell'esempio ci sono valori di **aggregati precalcolati** per evitare la costosa elaborazione di un'operazione di lettura. Nell'esempio, alcuni dati incorporati nel documento dell'autore vengono calcolati in fase di esecuzione. Ogni volta che viene pubblicato un nuovo libro, viene creato un documento per il libro **e** il campo countOfBooks viene impostato su un valore calcolato in base al numero di documenti dei libri esistenti per un determinato autore. Questa ottimizzazione andrebbe bene nei sistemi che eseguono un'intensa attività di lettura, in cui si è disposti a effettuare calcoli nelle scritture per ottimizzare le letture.
 
-Hello toohave possibilità è reso possibile un modello con campi pre-calcolati perché supporta Azure Cosmos DB **transazioni più documenti**. Molti archivi NoSQL non possono eseguire transazioni in tutti i documenti e pertanto sostenere decisioni di progettazione, ad esempio "sempre incorpora tutti gli elementi", a causa di limitazione toothis. Con Azure Cosmos DB è possibile usare trigger lato server, o stored procedure, che inseriscono i libri e aggiornano gli autori in una sola transazione ACID. Ora non sono presenti **hanno** tooembed tutti gli elementi di tooone documento toobe sufficiente Assicurarsi che i dati rimangono coerenti.
+Azure Cosmos DB supporta le transazioni in più documenti e consente quindi di usare **transazioni su più documenti**. Molti archivi NoSQL non possono eseguire le transazioni nei documenti e, a causa di questa limitazione, inducono a prendere decisioni di progettazione, ad esempio "incorporare sempre tutto". Con Azure Cosmos DB è possibile usare trigger lato server, o stored procedure, che inseriscono i libri e aggiornano gli autori in una sola transazione ACID. Ora non è **necessario** incorporare tutto in un documento solo per essere sicuri che i dati rimangano coerenti.
 
 ## <a name="NextSteps"></a>Passaggi successivi
-informazioni chiave più grande di Hello in questo articolo è toounderstand che modellazione dei dati in un mondo privi di schema sono importanti che mai. 
+Il concetto principale espresso in questo articolo è che la modellazione dei dati in un ambiente senza schema è più importante che mai. 
 
-Come non è presente alcun toorepresent modo solo una parte dei dati in una schermata, non è toomodel alcun modo singolo i dati. È necessario toounderstand l'applicazione e come verrà generato, utilizzare ed elaborare dati hello. Quindi, applicando alcune hello linee guida riportate qui è possono impostare sulla creazione di un modello che risponde alle esigenze immediate hello dell'applicazione. Quando le applicazioni devono toochange, è possibile sfruttare la flessibilità di hello di un tooembrace privi di schema di database che modificano ed evolvere facilmente il modello di dati. 
+Come non esiste un solo modo per rappresentare i dati in una schermata, così non esiste un solo modo per modellare i dati. È necessario conoscere l'applicazione e come genererà, userà ed elaborerà i dati. Quindi, applicando alcune delle linee guida presentate qui, è possibile iniziare a creare un modello che risponda alle esigenze immediate dell'applicazione. Quando le applicazioni devono essere modificate, è possibile sfruttare la flessibilità di un database senza schema per accettare la modifica e far evolvere facilmente il modello di dati. 
 
-toolearn ulteriori informazioni su Azure Cosmos DB, fare riferimento del servizio toohello [documentazione](https://azure.microsoft.com/documentation/services/cosmos-db/) pagina. 
+Per altre informazioni su Azure Cosmos DB, vedere la pagina della [documentazione](https://azure.microsoft.com/documentation/services/cosmos-db/) del servizio. 
 
-toounderstand come tooshard i dati tra più partizioni, fare riferimento troppo[partizionamento dei dati nel database di Azure Cosmos](documentdb-partition-data.md). 
+Per informazioni su come suddividere i dati in più partizioni, vedere [Partizionamento dei dati in Azure Cosmos DB](documentdb-partition-data.md). 

@@ -1,8 +1,8 @@
 ---
-title: aaaAzure Active Directory B2C documentazione, esercitazioni, riferimenti alle API | Documenti Microsoft
-description: "Informazioni su come toodeploy consumer completa gestione delle identità hello cloud. Mostra documentazione come tooprotect per consumatori web e App per dispositivi mobili."
+title: Documentazione di Azure Active Directory B2C - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
+description: "Informazioni su come distribuire una gestione completa delle identità dei consumatori nel cloud. La documentazione illustra come proteggere le app Web e per dispositibi mobili rivolte ai clienti."
 services: active-directory-b2c
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: f9f6939d4d5bbe49533cad037a9085ce3da63155
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e36baddffd634cb7d601d09ccebaf40b27798c7b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 #<a name="active-directory-b2c-documentation"></a>Documentazione di Active Directory B2C
 
-Informazioni su come tooset configurare e gestire gestione delle identità consumer completa nel cloud hello con Active Directory B2C. Esercitazioni, riferimenti e altra documentazione illustrano come tooprotect per consumatori web e applicazioni per dispositivi mobili con protezione accesso.
+Informazioni su come impostare e gestire una gestione completa delle identità dei consumatori nel cloud con Active Directory B2C. Esercitazioni, riferimenti e altri documenti in cui viene illustrato come proteggere le applicazioni Web e per dispositivi mobili rivolte agli utenti finali grazie all'accesso sicuro.
 
 <ul class="panelContent cardsFTitle">
     <li>

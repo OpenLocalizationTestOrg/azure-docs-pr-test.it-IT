@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 5/06/2017
 ms.author: parakhj
-ms.openlocfilehash: 28a39f282488b81fc9e2ab7841b5f2cb4cd58715
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: cb7a9f01e43d41eb7315cb37a41e69f044ce5566
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-active-directory-b2c-sign-up-and-sign-in-consumers-in-your-applications-using-custom-policies"></a>Azure Active Directory B2C: iscrizione e accesso degli utenti alle applicazioni tramite criteri personalizzati
-Criteri personalizzati sono file di configurazione che definiscono il comportamento di hello del tenant di Azure Active Directory B2C. Possono essere completamente modificato da un toocomplete developer identità un numero illimitato vicino di attività.
+I criteri personalizzati sono file di configurazione che definiscono il comportamento del tenant di Azure Active Directory B2C. Questi criteri possono essere modificati completamente da uno sviluppatore di identità per completare un numero praticamente illimitato di attività.
 
-## <a name="how-tooarticles"></a>Come tooarticles
-Informazioni su come toouse funzionalità specifiche di Azure Active Directory B2C:
+## <a name="how-to-articles"></a>Procedure
+Informazioni su come usare funzionalità specifiche di Azure Active Directory B2C:
 
 * [esercitazione introduttiva](active-directory-b2c-overview-custom.md)
 * Configurare provider OIDC come [Azure AD](active-directory-b2c-setup-aad-custom.md).
@@ -39,7 +39,7 @@ Informazioni su come toouse funzionalità specifiche di Azure Active Directory B
 * Risoluzione dei problemi tramite la [raccolta di log con Application Insights](active-directory-b2c-troubleshoot-custom.md).
 
 ## <a name="whats-new"></a>Novità
-Controllare di nuovo questa pagina spesso toolearn sulle modifiche future toohello Azure Active Directory B2C. Gli aggiornamenti saranno anche resi noti su Twitter con @AzureAD.
+Visitare spesso questa pagina per rimanere aggiornati sulle future modifiche apportate ad Azure Active Directory B2C. Gli aggiornamenti saranno anche resi noti su Twitter con @AzureAD.
 
 
 

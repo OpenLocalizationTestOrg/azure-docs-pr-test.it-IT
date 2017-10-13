@@ -1,6 +1,6 @@
 ---
-title: schema di sottoscrizione evento griglia aaaAzure
-description: "Descrive le proprietà di hello per la sottoscrizione dell'evento tooan con griglia di eventi di Azure."
+title: Schema di sottoscrizione per Griglia di eventi di Azure
+description: "Descrive le proprietà per la sottoscrizione a un evento con Griglia di eventi di Azure."
 services: event-grid
 author: banisadr
 manager: timlt
@@ -8,49 +8,49 @@ ms.service: event-grid
 ms.topic: article
 ms.date: 08/17/2017
 ms.author: babanisa
-ms.openlocfilehash: 6a96d67975a5a733c5ea3c56ea54501f94ea4cd2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: eff2352066a76010d6d882a7b7e1961870cd2d46
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="event-grid-subscription-schema"></a>Schema di sottoscrizione per Griglia di eventi
 
-una sottoscrizione di evento griglia toocreate, si invia un toohello richiesta operazione sottoscrizione Create Event. Utilizzare hello seguente formato:
+Per creare una sottoscrizione di Griglia di eventi, si invia una richiesta all'operazione di sottoscrizione Crea evento. Utilizzare il seguente formato:
 
 ```
 PUT /subscriptions/{subscription-id}/resourceGroups/{group-name}/providers/{resource-provider}/{resource-type}/{resource-name}/Microsoft.EventGrid/eventSubscriptions/{event-type-definitions}?api-version=2017-06-15-preview
 ``` 
 
-Ad esempio, toocreate una sottoscrizione di eventi per un account di archiviazione denominato `examplestorage` in un gruppo di risorse denominato `examplegroup`, utilizzare hello seguente formato:
+Ad esempio, per creare una sottoscrizione eventi per un account di archiviazione denominato `examplestorage` in un gruppo di risorse denominato `examplegroup`, usare il formato seguente:
 
 ```
 PUT /subscriptions/{subscription-id}/resourceGroups/examplegroup/providers/Microsoft.Storage/storageaccounts/examplestorage/Microsoft.EventGrid/eventSubscriptions/{event-type-definitions}?api-version=2017-06-15-preview
 ``` 
 
-Hello descritti proprietà hello e sullo schema per il corpo della richiesta di hello hello.
+L'articolo descrive le proprietà e lo schema per il corpo della richiesta.
  
 ## <a name="event-subscription-properties"></a>Proprietà delle sottoscrizioni eventi
 
 | Proprietà | Tipo | Descrizione |
 | -------- | ---- | ----------- |
-| destination | object | oggetto Hello che definisce l'endpoint di hello. |
-| filter | object | Un campo facoltativo per filtrare hello tipi di eventi. |
+| destination | object | Oggetto che definisce l'endpoint. |
+| filter | object | Campo facoltativo per il filtro dei tipi di eventi. |
 
 ### <a name="destination-object"></a>oggetto destination
 
 | Proprietà | Tipo | Descrizione |
 | -------- | ---- | ----------- |
-| endpointType | string | tipo di Hello di endpoint per la sottoscrizione di hello (webhook/HTTP, Hub eventi o coda). | 
+| endpointType | string | Tipo di endpoint per la sottoscrizione (webhook/HTTP, hub eventi o coda). | 
 | endpointUrl | string |  | 
 
 ### <a name="filter-object"></a>oggetto filter
 
 | Proprietà | Tipo | Descrizione |
 | -------- | ---- | ----------- |
-| includedEventTypes | array | Corrispondenza quando il tipo di evento hello nel messaggio di evento hello tooone una corrispondenza esatta dei seguenti nomi di tipo di evento. Genera un errore quando il nome di evento non corrisponde a nomi di tipi di evento hello registrato per l'origine evento hello. Il valore predefinito corrisponde a tutti i tipi di evento. |
-| subjectBeginsWith | string | Corrispondenza di prefisso filtro toohello soggetto campo nel messaggio di evento hello. valore predefinito di Hello o stringa vuota corrisponde a tutti. | 
-| subjectEndsWith | string | Suffisso corrispondenza filtro toohello soggetto campo nel messaggio di evento hello. valore predefinito di Hello o stringa vuota corrisponde a tutti. |
+| includedEventTypes | array | Corrisponde se il tipo di evento nel messaggio di evento è una corrispondenza esatta a uno di questi nomi di tipo di evento. Genera un errore se il nome dell'evento non corrisponde ad alcuno dei nomi di tipo di evento registrati per l'origine evento. Il valore predefinito corrisponde a tutti i tipi di evento. |
+| subjectBeginsWith | string | Filtro di corrispondenza del prefisso per il campo dell'oggetto nel messaggio dell'evento. La stringa predefinita o una stringa vuota corrisponde sempre. | 
+| subjectEndsWith | string | Filtro di corrispondenza del suffisso per il campo dell'oggetto nel messaggio dell'evento. La stringa predefinita o una stringa vuota corrisponde sempre. |
 | subjectIsCaseSensitive | string | Controlla la corrispondenza tra maiuscole e minuscole per i filtri. |
 
 
@@ -77,4 +77,4 @@ Hello descritti proprietà hello e sullo schema per il corpo della richiesta di 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* Per un'introduzione tooEvent griglia, vedere [che cos'è una griglia di eventi?](overview.md)
+* Per un'introduzione a Griglia di eventi, vedere [Informazioni su Griglia di eventi](overview.md)

@@ -1,5 +1,5 @@
 ---
-title: criteri di aaaConfigure Hive in HDInsight dominio - Azure | Documenti Microsoft
+title: Configurare criteri Hive in HDInsight aggiunto al dominio - Azure | Microsoft Docs
 description: Informazioni su...
 services: hdinsight
 documentationcenter: 
@@ -16,45 +16,45 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 10/25/2016
 ms.author: saurinsh
-ms.openlocfilehash: 56f2bf9d872abc5f772b886fcf91c2e2422092f4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: de537d5e39dd0d3f75ff802948c7372e4d65d127
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="configure-hive-policies-in-domain-joined-hdinsight-preview"></a>Configurare criteri Hive in HDInsight aggiunto al dominio (anteprima)
-Informazioni su come criteri cane Apache tooconfigure per l'Hive. In questo articolo, creare due cane criteri toorestrict accesso toohello hivesampletable. Hello hivesampletable viene fornito con i cluster HDInsight. Dopo aver configurato i criteri di hello, utilizzare Excel e ODBC driver tooconnect tooHive le tabelle in HDInsight.
+Informazioni su come configurare i criteri di Apache Ranger per Hive. In questo articolo vengono creati due criteri di Ranger per limitare l'accesso a hivesampletable. La tabella hivesampletable è disponibile con i cluster HDInsight. Dopo aver configurato i criteri, usare Excel e il driver ODBC per connettersi alle tabelle Hive in HDInsight.
 
 ## <a name="prerequisites"></a>Prerequisiti
 * Un cluster HDInsight aggiunto al dominio. Vedere [Configure Domain-joined HDInsight clusters](hdinsight-domain-joined-configure.md) (Configurare i cluster HDInsight aggiunti al dominio).
 * Una workstation con Office 2016, Office 2013 Professional Plus, Office 365 Pro Plus, Excel 2013 Standalone oppure Office 2010 Professional Plus.
 
-## <a name="connect-tooapache-ranger-admin-ui"></a>Connettersi tooApache cane interfaccia utente di amministrazione
-**tooconnect tooRanger Admin UI**
+## <a name="connect-to-apache-ranger-admin-ui"></a>Connettersi all'interfaccia utente di amministrazione di Apache Ranger
+**Per connettersi all'interfaccia utente di amministrazione di Ranger**
 
-1. Da un browser, connettersi tooRanger Admin UI. Hello URL è https://&lt;ClusterName >.azurehdinsight.net/Ranger/.
+1. Da un browser, connettersi all'interfaccia utente di amministrazione di Ranger. L'URL è https://&lt;ClusterName>.azurehdinsight.net/Ranger/.
 
    > [!NOTE]
-   > Ranger usa credenziali diverse da quelle del cluster Hadoop. tooprevent browser utilizzando credenziali memorizzate nella cache di Hadoop, utilizzare toohello tooconnect finestra del browser inprivate nuova interfaccia utente di amministrazione cane.
+   > Ranger usa credenziali diverse da quelle del cluster Hadoop. Per evitare che i browser usino credenziali memorizzate nella cache di Hadoop, connettersi all'interfaccia utente di amministrazione di Ranger da una nuova finestra del browser anonima.
    >
    >
-2. Accedere con la password e nome utente di dominio amministratore cluster hello:
+2. Eseguire l'accesso usando il nome utente e la password di amministratore cluster:
 
     ![Home page di Ranger con dominio aggiunto a HDInsight](./media/hdinsight-domain-joined-run-hive/hdinsight-domain-joined-ranger-home-page.png)
 
     Attualmente, Ranger è compatibile solo con Yarn e Hive.
 
 ## <a name="create-domain-users"></a>Creazione di utenti del dominio
-In [Configure Domain-joined HDInsight clusters](hdinsight-domain-joined-configure.md#create-and-configure-azure-ad-ds-for-your-azure-ad) (Configurare i cluster HDInsight aggiunti al dominio) sono stati creati hiveruser1 e hiveuser2. Si utilizzerà l'account utente due hello in questa esercitazione.
+In [Configure Domain-joined HDInsight clusters](hdinsight-domain-joined-configure.md#create-and-configure-azure-ad-ds-for-your-azure-ad) (Configurare i cluster HDInsight aggiunti al dominio) sono stati creati hiveruser1 e hiveuser2. In questa esercitazione verranno usati i due account utente.
 
 ## <a name="create-ranger-policies"></a>Creazione dei criteri di Ranger
-In questa sezione verranno creati due criteri di Ranger per accedere a hivesampletable. Vengono concesse autorizzazioni di selezione su diversi set di colonne. Entrambi gli utenti sono stati creati nella procedura [Configure Domain-joined HDInsight clusters](hdinsight-domain-joined-configure.md#create-and-configure-azure-ad-ds-for-your-azure-ad) (Configurare i cluster HDInsight aggiunti al dominio).  Nella sezione successiva hello, verranno testati due criteri di hello in Excel.
+In questa sezione verranno creati due criteri di Ranger per accedere a hivesampletable. Vengono concesse autorizzazioni di selezione su diversi set di colonne. Entrambi gli utenti sono stati creati nella procedura [Configure Domain-joined HDInsight clusters](hdinsight-domain-joined-configure.md#create-and-configure-azure-ad-ds-for-your-azure-ad) (Configurare i cluster HDInsight aggiunti al dominio).  Nella sezione successiva verranno verificati i due criteri in Excel.
 
-**criteri cane toocreate**
+**Per creare criteri di Ranger**
 
-1. Aprire l'interfaccia utente di amministrazione di Ranger. Vedere [connettersi tooApache dell'interfaccia utente amministrazione cane](#connect-to-apache-ranager-admin-ui).
+1. Aprire l'interfaccia utente di amministrazione di Ranger. Vedere [Connettersi all'interfaccia utente di amministrazione di Apache Ranger](#connect-to-apache-ranager-admin-ui).
 2. Fare clic su **&lt;ClusterName>_hive** in **Hive**. Verranno visualizzati due criteri preconfigurati.
-3. Fare clic su **Aggiungi nuovo criterio**, quindi immettere hello seguenti valori:
+3. Fare clic su **Aggiungi nuovo criterio**, quindi immettere i valori seguenti:
 
    * Nome criterio: read-hivesampletable-all
    * Database Hive: predefinito
@@ -66,11 +66,11 @@ In questa sezione verranno creati due criteri di Ranger per accedere a hivesampl
      ![Configurazione dei criteri di Hive Ranger con dominio aggiunto a HDInsight](./media/hdinsight-domain-joined-run-hive/hdinsight-domain-joined-configure-ranger-policy.png).
 
      > [!NOTE]
-     > Se un utente di dominio non viene popolato in Seleziona utente, attendere alcuni istanti per cane toosync con AAD.
+     > Se l'utente di un dominio non compare in Seleziona utente, attendere alcuni istanti per la sincronizzazione di Ranger con AAD.
      >
      >
-4. Fare clic su **Aggiungi** criteri hello toosave.
-5. Ripetere l'operazione hello ultimi due passaggi toocreate un altro criterio con hello le proprietà seguenti:
+4. Fare clic su **Aggiungi** per salvare il criterio.
+5. Ripetere gli ultimi due passaggi per creare un altro criterio con le proprietà seguenti:
 
    * Nome criterio: read-hivesampletable-devicemake
    * Database Hive: predefinito
@@ -80,54 +80,54 @@ In questa sezione verranno creati due criteri di Ranger per accedere a hivesampl
    * Autorizzazioni: selezionare
 
 ## <a name="create-hive-odbc-data-source"></a>Creare un'origine dati Hive ODBC
-istruzioni di Hello sono reperibile [origine dati ODBC di Hive creare](hdinsight-connect-excel-hive-odbc-driver.md).  
+Le istruzioni sono disponibili in [Creare un'origine dati Hive ODBC](hdinsight-connect-excel-hive-odbc-driver.md).  
 
     Proprietà|Descrizione
     ---|---
-    Data Source Name|Fornire un'origine dati di nome tooyour
+    Data Source Name|Assegnare un nome all'origine dati
     Host|Immettere &lt;HDInsightClusterName>.azurehdinsight.net. Ad esempio, myHDICluster.azurehdinsight.net
-    Porta|Utilizzare <strong>443</strong>. (Questa porta è stata modificata da too443 563).
+    Porta|Utilizzare <strong>443</strong>. Questa porta è passata da 563 a 443.
     Database|Usare l'<strong>impostazione predefinita</strong>.
     Hive Server Type|Selezionare <strong>Hive Server 2</strong>
     Mechanism|Selezionare <strong>Azure HDInsight Service</strong>
     HTTP Path|Lasciare vuoto.
-    User Name|Immettere hiveuser1@contoso158.onmicrosoft.com. Aggiornare il nome di dominio hello se è diverso.
-    Password|Immettere la password di hello per hiveuser1.
+    User Name|Immettere hiveuser1@contoso158.onmicrosoft.com. Se diverso, aggiornare il nome di dominio.
+    Password|Immettere la password per hiveuser1.
     </table>
 
-Verificare che tooclick **Test** prima di salvare l'origine dati hello.
+Assicurarsi di fare clic su **Test** prima di salvare l'origine dati.
 
 ## <a name="import-data-into-excel-from-hdinsight"></a>Importazione di dati in Excel da HDInsight
-Nell'ultima sezione hello, è stato configurato due criteri.  hiveuser1 hello selezionare autorizzazione su tutte le colonne di hello, che hiveuser2 ha hello selezionare l'autorizzazione per due colonne. In questa sezione è rappresentare hello due utenti tooimport dati in Excel.
+Nell'ultima sezione, sono stati configurati due criteri.  hiveuser1 dispone dell'autorizzazione di selezione in tutte le colonne, mentre hiveuser2 solo in due di loro. In questa sezione vengono rappresentati due utenti che importano dati in Excel.
 
 1. Aprire una cartella di lavoro nuova o esistente in Excel.
-2. Da hello **dati** scheda, fare clic su **da altre origini dati**, quindi fare clic su **da connessione guidata dati** toolaunch hello **connessione guidata dati**.
+2. Nella scheda **Dati** fare clic su **From Other Data Sources** (Da altre origini dati) e quindi su **From Data Connection Wizard** (Da Connessione guidata dati) per avviare la **Connessione guidata dati**.
 
     ![Aprire Connessione guidata dati][img-hdi-simbahiveodbc.excel.dataconnection]
-3. Selezionare **DSN ODBC** come origine dati hello e quindi fare clic su **Avanti**.
-4. Origini dati ODBC, creato nel passaggio precedente hello il nome dell'origine dati selezionare hello e quindi fare clic su **Avanti**.
-5. Immettere nuovamente la password hello per cluster hello nella procedura guidata hello e quindi fare clic su **OK**. Attendere hello **seleziona Database e tabella** tooopen finestra di dialogo. Questa operazione potrebbe richiedere alcuni secondi.
+3. Selezionare **Nome origine dati ODBC DSN** come origine dati e quindi fare clic su **Avanti**.
+4. Nelle origini dati ODBC selezionare il nome dell'origine dati creato nel passaggio precedente e quindi fare clic su **Avanti**.
+5. Immettere nuovamente la password per il cluster nella procedura guidata e quindi fare clic su **OK**. Attendere l'apertura della finestra di dialogo **Seleziona database e tabella** . Questa operazione potrebbe richiedere alcuni secondi.
 6. Selezionare **hivesampletable**, quindi fare clic su **Avanti**.
-7. Fare clic su **Finish**.
-8. In hello **l'importazione dei dati** finestra di dialogo, è possibile modificare o specificare query hello. Questa operazione, scegliere toodo **proprietà**. Questa operazione potrebbe richiedere alcuni secondi.
-9. Fare clic su hello **definizione** scheda hello testo del comando è:
+7. Fare clic su **Fine**.
+8. Nella finestra di dialogo **Importa dati** è possibile modificare o specificare la query. A questo scopo, fare clic su **Proprietà**. Questa operazione potrebbe richiedere alcuni secondi.
+9. Fare clic sulla scheda **Definizione**. Il testo del comando è:
 
        SELECT * FROM "HIVE"."default"."hivesampletable"
 
-   Criteri di cane hello che è definito, hiveuser1 dispone dell'autorizzazione select per tutte le colonne di hello.  Pertanto, questa query funziona con le credenziali di hiveuser1, ma non con quelle di hiveuser2.
+   In base ai criteri di Ranger che sono stati definiti, hiveuser1 dispone dell'autorizzazione di selezione su tutte le colonne.  Pertanto, questa query funziona con le credenziali di hiveuser1, ma non con quelle di hiveuser2.
 
    ![Proprietà di connessione][img-hdi-simbahiveodbc-excel-connectionproperties]
-10. Fare clic su **OK** tooclose finestra di dialogo Proprietà connessione hello.
-11. Fare clic su **OK** tooclose hello **l'importazione dei dati** finestra di dialogo.  
-12. Digitare nuovamente la password di hello per hiveuser1 e quindi fare clic su **OK**. Alcuni secondi prima del recupero dei dati importati tooExcel necessario. Al termine, verranno visualizzate 11 colonne di dati.
+10. Fare clic su **OK** per chiudere la finestra di dialogo Proprietà connessione.
+11. Fare clic su **OK** per chiudere la finestra di dialogo **Importa dati**.  
+12. Reimmettere la password per hiveuser1, quindi fare clic su **OK**. L'importazione dei dati in Excel potrebbe richiedere alcuni secondi. Al termine, verranno visualizzate 11 colonne di dati.
 
-tootest hello secondo criteri (read-hivesampletable-devicemake) creati nell'ultima sezione hello
+Per il test del secondo criterio (read-hivesampletable-devicemake) creato nell'ultima sezione
 
 1. Aggiungere un nuovo foglio in Excel.
-2. Seguire i dati hello tooimport hello ultima procedura.  modifica solo del Hello che si apporterà è credenziali del hiveuser2 toouse invece del hiveuser1. L'operazione non riuscirà perché hiveuser2 ha solo due colonne di autorizzazione toosee. Si deve ottenere hello errore seguente:
+2. Seguire l'ultima procedura per importare i dati.  L'unica differenza è che verranno usate le credenziali di hiveuser2 anziché quelle di hiveuser1. L'esito sarà negativo perché hiveuser2 dispone solo dell'autorizzazione per visualizzare due colonne. Verrà visualizzato l'errore seguente:
 
         [Microsoft][HiveODBC] (35) Error from Hive: error code: '40000' error message: 'Error while compiling statement: FAILED: HiveAccessControlException Permission denied: user [hiveuser2] does not have [SELECT] privilege on [default/hivesampletable/clientid,country ...]'.
-3. Seguire hello stesso dati tooimport stored procedure. Questa volta, utilizzare le credenziali del hiveuser2 e inoltre modificare hello from dell'istruzione select:
+3. Seguire la stessa procedura per importare i dati. Questa volta usare le credenziali di hiveuser2 e modificare l'istruzione di selezione da:
 
         SELECT * FROM "HIVE"."default"."hivesampletable"
 
@@ -141,6 +141,6 @@ tootest hello secondo criteri (read-hivesampletable-devicemake) creati nell'ulti
 * Per configurare un cluster HDInsight aggiunto al dominio, vedere [Configure Domain-joined HDInsight clusters](hdinsight-domain-joined-configure.md) (Configurare i cluster HDInsight aggiunti al dominio).
 * Per gestire cluster HDInsight aggiunti al dominio, vedere [Manage Domain-joined HDInsight clusters](hdinsight-domain-joined-manage.md) (Gestire i cluster HDInsight aggiunti al dominio).
 * Per eseguire query Hive usando SSH nei cluster HDInsight aggiunti al dominio, vedere [Usare SSH con HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md#domainjoined).
-* Per la connessione Hive tramite Hive JDBC, vedere [connettersi tooHive in Azure HDInsight utilizza hello Hive JDBC driver](hdinsight-connect-hive-jdbc-driver.md)
-* Per l'utilizzo di ODBC Hive connessione tooHadoop di Excel, vedere [tooHadoop Excel connettersi con unità di Microsoft ODBC Hive hello](hdinsight-connect-excel-hive-odbc-driver.md)
-* Per la connessione tooHadoop di Excel tramite Power Query, vedere [tooHadoop Excel connettersi tramite Power Query](hdinsight-connect-excel-power-query.md)
+* Per connettere Hive usando JDBC, vedere [Connettersi a Hive in Azure HDInsight con il driver Hive JDBC](hdinsight-connect-hive-jdbc-driver.md).
+* Per connettere Excel a Hadoop usando ODBC, vedere [Connettere Excel a Hadoop mediante Microsoft Hive ODBC Driver](hdinsight-connect-excel-hive-odbc-driver.md).
+* Per connettere Excel a Hadoop usando Power Query, vedere [Connettere Excel a Hadoop mediante Power Query](hdinsight-connect-excel-power-query.md).

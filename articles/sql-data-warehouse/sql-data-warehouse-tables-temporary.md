@@ -1,5 +1,5 @@
 ---
-title: aaaTemporary nelle tabelle SQL Data Warehouse | Documenti Microsoft
+title: Tabelle temporanee in SQL Data Warehouse | Documentazione Microsoft
 description: Introduzione alle tabelle temporanee di SQL Data Warehouse di Azure.
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: tables
 ms.date: 10/31/2016
 ms.author: shigu;barbkess
-ms.openlocfilehash: 2e8b122eb6d71d5bc0a99ce8a2ecab5dbe2d1b49
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: fd8c31a727dae3b011aa8294a81f005bad72a278
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="temporary-tables-in-sql-data-warehouse"></a>Tabelle temporanee in SQL Data Warehouse
 > [!div class="op_single_selector"]
@@ -33,9 +33,9 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Tabelle temporanee sono molto utili durante l'elaborazione dati, soprattutto durante la trasformazione in cui i risultati intermedi hello sono temporanei. In SQL Data Warehouse le tabelle temporanee esistono a livello di sessione hello.  Sono solo toohello visibile sessione in cui sono stati creati e vengono eliminati automaticamente quando si disconnette tale sessione.  Tabelle temporanee offrono un miglioramento delle prestazioni in quanto i relativi risultati vengono scritti toolocal anziché come archiviazione remota.  Tabelle temporanee sono leggermente diverse in Azure SQL Data Warehouse di Database SQL di Azure sono accessibili da un punto qualsiasi all'interno di sessione hello, inclusi all'interno e all'esterno di una stored procedure.
+Le tabelle temporanee sono molto utili durante l'elaborazione dati, soprattutto durante la trasformazione in cui i risultati intermedi sono temporanei. In SQL Data Warehouse le tabelle temporanee esistono a livello di sessione.  Sono visibili solo per la sessione in cui sono stati creati e vengono eliminati automaticamente quando si disconnette tale sessione.  Le tabelle temporanee offrono un miglioramento delle prestazioni, perché i loro risultati vengono scritti in locale anziché nell'archiviazione remota.  Le tabelle temporanee sono leggermente diverse in SQL Data Warehouse di Azure rispetto al database SQL di Azure, poiché è possibile accedervi da un punto qualsiasi della sessione, sia dall'interno che dall'esterno di una stored procedure.
 
-In questo articolo contiene informazioni essenziali per l'utilizzo di tabelle temporanee ed evidenzia i principi di hello delle tabelle temporanee livello di sessione. Utilizzando le informazioni di hello in questo articolo consente di modularizzare codice, migliorando sia riusabilità e facilità di manutenzione del codice.
+Questo articolo contiene le linee guida fondamentali per l'uso delle tabelle temporanee ed evidenzia i principi delle tabelle temporanee a livello di sessione. Usando le informazioni in questo articolo è possibile modularizzare il codice, aumentando le possibilità di riutilizzo e la facilità di manutenzione del codice.
 
 ## <a name="create-a-temporary-table"></a>Creazione di una tabella temporanea
 Le tabelle temporanee vengono create aggiungendo semplicemente un prefisso al nome di una tabella con `#`.  ad esempio:
@@ -58,7 +58,7 @@ WITH
 )
 ```
 
-Tabelle temporanee possono anche essere create con un `CTAS` utilizzando esattamente hello stesso approccio:
+Le tabelle temporanee possono essere create anche con `CTAS` adottando esattamente lo stesso approccio:
 
 ```sql
 CREATE TABLE #stats_ddl
@@ -112,12 +112,12 @@ FROM    t1
 ``` 
 
 > [!NOTE]
-> `CTAS`è un comando molto potente e hello è aggiunto il vantaggio di essere molto efficiente nell'utilizzo di spazio log delle transazioni. 
+> `CTAS` è un comando molto efficace e offre l'ulteriore vantaggio di essere molto efficiente nell'uso dello spazio dei log delle transazioni. 
 > 
 > 
 
 ## <a name="dropping-temporary-tables"></a>Eliminazione delle tabelle temporanee
-Quando viene creata una nuova sessione, non deve esistere alcuna tabella temporanea.  Tuttavia, se si chiama hello stessa stored procedure, che crea una password temporanea con hello stesso nome, tooensure che il `CREATE TABLE` istruzioni hanno esito positivo un semplice controllo pre-esistenza con un `DROP` può essere utilizzato come hello di esempio seguente:
+Quando viene creata una nuova sessione, non deve esistere alcuna tabella temporanea.  Tuttavia, se si richiama la stessa stored procedure che crea una variabile temporanea con lo stesso nome, per garantire che le istruzioni `CREATE TABLE` abbiano esito positivo è possibile eseguire un controllo di pre-esistenza con `DROP`, come nel seguente esempio:
 
 ```sql
 IF OBJECT_ID('tempdb..#stats_ddl') IS NOT NULL
@@ -126,14 +126,14 @@ BEGIN
 END
 ```
 
-Per la codifica di coerenza, è una buona pratica toouse questo modello per le tabelle e le tabelle temporanee.  È anche una buona idea toouse `DROP TABLE` tooremove tabelle temporanee quando è stato completato nel codice.  In fase di sviluppo di stored procedure è piuttosto comune toosee hello comandi drop collegati tra loro alla fine hello tooensure una procedura che questi oggetti vengono eliminati.
+Una procedura consigliata per la coerenza della codifica è usare questo modello per le tabelle e le tabelle temporanee.  È inoltre consigliabile usare `DROP TABLE` per rimuovere le tabelle temporanee quando non sono più necessarie.  Nello sviluppo delle stored procedure è abbastanza comune visualizzare i comandi di eliminazione raggruppati in bundle alla fine di una procedura per garantire che questi oggetti vengano puliti.
 
 ```sql
 DROP TABLE #stats_ddl
 ```
 
 ## <a name="modularizing-code"></a>Modularizzazione del codice
-Poiché le tabelle temporanee possono verificarsi in qualsiasi punto in una sessione utente, può essere sfruttata toohelp si modularizzare il codice dell'applicazione.  Ad esempio, hello stored procedura riportata di seguito riunisce hello consigliata di sopra del toogenerate DDL che aggiornerà tutte le statistiche nel database di hello in base al nome delle statistiche.
+Dal momento che le tabelle temporanee sono visibili in qualsiasi punto di una sessione utente, questo può essere sfruttato per modularizzare il codice dell'applicazione.  Ad esempio, la stored procedure seguente riunisce le procedure consigliate riportate sopra per generare un DDL che aggiorna tutte le statistiche nel database in base al nome della statistica.
 
 ```sql
 CREATE PROCEDURE    [dbo].[prc_sqldw_update_stats]
@@ -207,7 +207,7 @@ FROM    t1
 GO
 ```
 
-In questa fase hello sola azione che si è verificato è creazione hello di una stored procedure che verrà generato semplicemente una tabella temporanea, #stats_ddl, con le istruzioni DDL.  Questa stored procedure eliminerà #stats_ddl se esiste già tooensure che non avrà esito negativo se eseguita più di una volta all'interno di una sessione.  Tuttavia, poiché non esiste alcun `DROP TABLE` al fine di hello di hello stored procedure, al termine hello stored procedure, verrà eliminato tabella hello creato in modo che possa essere letto all'esterno di procedure hello archiviato.  In SQL Data Warehouse, a differenza di altri database di SQL Server, è possibile toouse tabella temporanea di hello all'esterno di procedure hello che li ha creati.  Tabelle temporanee di SQL Data Warehouse possono essere usate **ovunque** all'interno di sessione hello. Questo può causare codice modulare e gestibile di toomore come hello di esempio seguente:
+In questa fase l'unica azione che si è verificata è la creazione di una stored procedure che genererà semplicemente una tabella temporanea, #stats_ddl, con le istruzioni DDL.  Questa stored procedure eliminerà #stats_ddl se esiste già per garantire che non avrà esito negativo se eseguita più volte all'interno di una sessione.  Tuttavia, poiché non esiste `DROP TABLE` alla fine della stored procedure, al termine della stored procedure, la tabella creata verrà conservata in modo che possa essere letta all'esterno della stored procedure.  A differenza che negli altri server di database SQL, in SQL Data Warehouse è possibile usare la tabella temporanea all'esterno della procedura che l'ha creata.  Le tabelle temporanee di SQL Data Warehouse possono essere usate **ovunque** all'interno della sessione. In questo modo è possibile ottenere codice più modulare e gestibile come nel seguente esempio:
 
 ```sql
 EXEC [dbo].[prc_sqldw_update_stats] @update_type = 1, @sample_pct = NULL;
@@ -232,7 +232,7 @@ DROP TABLE #stats_ddl;
 SQL Data Warehouse impone un paio di limitazioni quando si implementano tabelle temporanee.  Attualmente sono supportate solo le tabelle temporanee nell'ambito della sessione.  Le tabelle temporanee globali non sono supportate.  Inoltre, non è possibile creare visualizzazioni nelle tabelle temporanee.
 
 ## <a name="next-steps"></a>Passaggi successivi
-toolearn, vedere gli articoli di hello in [Cenni preliminari su tabella][Overview], [tipi di dati tabella][Data Types], [la distribuzione di una tabella] [ Distribute], [L'indicizzazione di una tabella][Index], [il partizionamento di una tabella] [ Partition] e [ Gestione delle statistiche sulla tabella][Statistics].  Per altre informazioni sulle procedure consigliate, vedere [Procedure consigliate per SQL Data Warehouse][SQL Data Warehouse Best Practices].
+Per altre informazioni, vedere gli articoli [Panoramica delle tabelle][Overview], [Tipi di dati per le tabelle][Data Types], [Distribuzione di una tabella][Distribute], [Indicizzazione di una tabella][Index], [Partizionamento di una tabella][Partition] [Gestione delle statistiche nelle tabelle][Statistics].  Per altre informazioni sulle procedure consigliate, vedere [Procedure consigliate per SQL Data Warehouse][SQL Data Warehouse Best Practices].
 
 <!--Image references-->
 

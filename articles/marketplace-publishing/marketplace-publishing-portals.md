@@ -1,6 +1,6 @@
 ---
-title: aaaOverview di hello vari portali necessari toocreate un'offerta per hello Marketplace | Documenti Microsoft
-description: Panoramica di hello vari portali necessari toocreate un'offerta per hello Marketplace
+title: Panoramica dei vari portali necessari per creare un'offerta per Marketplace | Documentazione Microsoft
+description: Panoramica dei vari portali necessari per creare un'offerta per Marketplace
 services: marketplace-publishing
 documentationcenter: 
 author: HannibalSII
@@ -14,20 +14,20 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/27/2016
 ms.author: hascipio
-ms.openlocfilehash: 6fbd7ecbbd873445f01f0ac4e1e5fee59e08c033
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 093d3ee3ecce89c86a12e7e216072ece57f82f9d
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="portals-you-will-need"></a>Portali necessari
-Prima di avviare il processo di hello della pubblicazione di un'offerta, iniziamo introdotte toohello vari portali che sarà necessario. Di seguito è breve riepilogo di hello su hello portali - Centro per sviluppatori, portale di pubblicazione di Azure e il portale di Azure, in ordine di hello che interagisce con essi.                                                                            
+Prima di iniziare il processo di pubblicazione di un’offerta, è necessario fornire alcune informazioni sui diversi portali che saranno necessari. Di seguito sono riepilogati i portali (centro per sviluppatori, portale di pubblicazione di Azure e portale di Azure) nell'ordine in cui si interagirà con loro.                                                                            
 
 ## <a name="developer-center"></a>Centro per sviluppatori
 [http://dev.windows.com/registration?accountprogram=azure](http://dev.windows.com/registration?accountprogram=azure)
 
 ### <a name="description"></a>Descrizione
-La creazione dell'account del Centro per sviluppatori Microsoft è un'attività una-tantum. Assicurarsi che la società hello non già disponibile un centro per sviluppatori account prima di tentare toocreate uno. Durante il processo di hello, Microsoft raccoglie informazioni conto bancario, informazioni fiscali e informazioni sull'indirizzo della società.
+La creazione dell'account del Centro per sviluppatori Microsoft è un'attività una-tantum. Assicurarsi che la società non possieda già un account per il Centro per sviluppatori prima di tentare di crearne uno. Durante il processo, Microsoft raccoglie le informazioni sul conto bancario, i dati fiscali e le informazioni sull'indirizzo dell'azienda.
 
 > [!NOTE]
 > Se si intende pubblicare solo offerte gratuite (oppure offerte Bring Your Own License), le informazioni fiscali e bancarie non sono necessarie.
@@ -35,10 +35,10 @@ La creazione dell'account del Centro per sviluppatori Microsoft è un'attività 
 > 
 
 ### <a name="identityaccount-used"></a>Identità/account usato
-In teoria, si tratta di una lista di distribuzione o un gruppo di sicurezza (ad esempio, azurepublishing @*partnercompany*. com). gruppo di protezione o l'elenco di distribuzione Hello **deve** essere registrato come un account Microsoft.
+In teoria, si tratta di una lista di distribuzione o un gruppo di sicurezza (ad esempio, azurepublishing @*partnercompany*. com). La lista di distribuzione o il gruppo di sicurezza **devono** essere registrati come un account Microsoft.
 
 > [!TIP]
-> È consigliabile utilizzare una lista di distribuzione o un gruppo di sicurezza perché elimina la dipendenza hello su qualsiasi singolo, anche se un singolo account può essere utilizzato anche.
+> È consigliabile usare una lista di distribuzione o un gruppo di sicurezza perché in questo modo si elimina la dipendenza da una singola persona. È comunque possibile usare anche un singolo account.
 > 
 > 
 
@@ -46,20 +46,20 @@ In teoria, si tratta di una lista di distribuzione o un gruppo di sicurezza (ad 
 [https://publish.windowsazure.com](https://publish.windowsazure.com)
 
 ### <a name="description"></a>Descrizione
-Si tratta di portale hello utilizzare toowork toopublish e offerta hello (marketing, prezzi, pubblicazione, di certificazione, se applicabile, ecc.).
+Questo è il portale per lavorare sull'offerta e pubblicarla (marketing, prezzi, pubblicazione, eventuale certificazione e così via).
 
 ### <a name="identityaccount-used"></a>Identità/account usato
-Hello di sopra di distribuzione elenco o gruppo di protezione deve essere utilizzato per hello prima ora toosign nel portale di pubblicazione toohello. Successivamente, altri utenti possono essere aggiunti come coamministratori. Si tratta di come viene mappato toohello Centro per sviluppatori dati di registrazione.
+Il gruppo di protezione o l’elenco distribuzione precedente devono essere utilizzati per la prima volta che si accede al portale di pubblicazione. Successivamente, altri utenti possono essere aggiunti come coamministratori. In questo modo viene eseguita l'associazione ai dati di registrazione del Centro per sviluppatori.
 
 ## <a name="azure-portal"></a>Portale di Azure
 [https://portal.azure.com](https://portal.azure.com)
 
 ### <a name="description"></a>Descrizione
-Si tratta hello portale in cui è possibile visualizzare le offerte di gestione temporanea e pubblicate in hello Azure Marketplace (applicabile per le macchine virtuali, modelli di soluzioni e servizi per sviluppatori basati su Azure Resource Manager).
+Questo è il portale in cui è possibile visualizzare le proprie offerte in gestione temporanea e pubblicate in Azure Marketplace (applicabile per VM, modelli di soluzioni e servizi per gli sviluppatori basati su Gestione risorse di Azure)
 
 ### <a name="identityaccount-used"></a>Identità/account usato
-Mentre si esegue Gestione temporanea di un'offerta dal portale di pubblicazione hello, un ID sottoscrizione deve toobe consentito. Hello stessa sottoscrizione (è disponibile un nome utente e password associati) deve toobe utilizzata per la firma nell'offerta di toothis tootest portale hello gestione temporanea.
+Durante la gestione temporanea dell'offerta dal portale di pubblicazione, deve essere consentito un ID di sottoscrizione. La stessa sottoscrizione (sono associati un nome utente e una password) deve essere usata durante l'accesso a questo portale per testare l'offerta in gestione temporanea.
 
 ## <a name="see-also"></a>Vedere anche
-* [Guida introduttiva: come toopublish un'offerta per hello Azure Marketplace](marketplace-publishing-getting-started.md)
+* [Guida introduttiva: Come pubblicare un'offerta in Azure Marketplace](marketplace-publishing-getting-started.md)
 

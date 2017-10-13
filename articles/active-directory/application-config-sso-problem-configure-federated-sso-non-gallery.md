@@ -1,6 +1,6 @@
 ---
-title: configurazione di single sign-on federato per un'applicazione non raccolta aaaProblem | Documenti Microsoft
-description: "Risolvere alcuni dei problemi di hello comuni che riscontrabili durante la configurazione federata single sign-on tooyour personalizzata SAML dell'applicazione che non è elencato nella raccolta di applicazioni Azure AD hello"
+title: Problema nella configurazione dell'accesso Single Sign-On federato per un'applicazione non inclusa nella raccolta di Azure AD | Microsoft Docs
+description: Informazioni sui problemi comuni che si possono incontrare durante la configurazione dell'accesso Single Sign-On federato per un'applicazione SAML personalizzata non inclusa nella raccolta delle applicazioni di Azure AD
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,59 +13,59 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 8c80f0001de01cbc9930ef0441cd804082ee8578
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4eb2c04c940dd6ad15a491a331aed76c237f0387
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="problem-configuring-federated-single-sign-on-for-a-non-gallery-application"></a>Problema nella configurazione dell'accesso Single Sign-On federato per un'applicazione non inclusa nella raccolta di Azure AD
 
-Se si verifica un problema durante la configurazione di un'applicazione. Verificare di aver seguito tutti i passaggi nell'articolo hello hello [configurazione single sign-on tooapplications non presenti nella raccolta di hello Azure Active Directory dell'applicazione.](https://docs.microsoft.com/azure/active-directory/active-directory-saas-custom-apps)
+Se si verifica un problema durante la configurazione di un'applicazione. Verificare di avere seguito tutti i passaggi indicati nell'articolo [Configurazione del servizio Single Sign-On in applicazioni non presenti nella raccolta di applicazioni di Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-saas-custom-apps).
 
-## <a name="cant-add-another-instance-of-hello-application"></a>Non è possibile aggiungere un'altra istanza di un'applicazione hello
+## <a name="cant-add-another-instance-of-the-application"></a>Impossibile aggiungere un'altra istanza dell'applicazione
 
-tooadd una seconda istanza di un'applicazione, è necessario poter toobe:
+Per aggiungere una seconda istanza di un'applicazione, è necessario:
 
--   Configurare un identificatore univoco per la seconda istanza hello. Non sarà in grado di tooconfigure hello stesso identificatore utilizzato per la prima istanza hello.
+-   Configurare un identificatore univoco per la seconda istanza. Non è possibile configurare lo stesso identificatore usato per la prima istanza.
 
--   Configurare un certificato diverso da hello di hello prima istanza.
+-   Configurare un certificato diverso da quello usato per la prima istanza.
 
-Se hello applicazione non supporta i hello precedente. Quindi, non sarà in grado di tooconfigure una seconda istanza.
+Se l'applicazione non supporta alcuna delle operazioni sopra indicate, non è possibile configurare una seconda istanza.
 
-## <a name="where-do-i-set-hello-entityid-user-identifier-format"></a>In cui è possibile impostare il formato di EntityID (ID utente) hello
+## <a name="where-do-i-set-the-entityid-user-identifier-format"></a>Dove impostare il formato di EntityID (Identificatore utente)
 
-Sarà formato EntityID (ID utente) di hello tooselect in grado di Azure AD invia toohello applicazione in risposta hello dopo l'autenticazione utente.
+Non è possibile selezionare il formato di EntityID (identificatore utente) che Azure AD invia all'applicazione in risposta all'autenticazione dell'utente.
 
-Azure AD selezionare hello formato attributo NameID hello (ID utente) in base al valore di hello selezionato o per hello formato richiesto da un'applicazione hello in hello AuthRequest SAML. Per ulteriori informazioni visitare articolo hello [protocollo Single Sign-On SAML](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest) nella sezione hello NameIDPolicy,
+Azure AD seleziona il formato per l'attributo NameID (identificatore utente) in base al valore selezionato o al formato richiesto dall'applicazione nell'oggetto AuthRequest SAML. Per altre informazioni, vedere l'articolo relativo al [protocollo SAML per Single Sign-On](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#authnrequest) sotto la sezione NameIDPolicy.
 
-## <a name="where-do-i-get-hello-application-metadata-or-certificate-from-azure-ad"></a>Dove ottenere i metadati dell'applicazione hello o un certificato da Azure AD
+## <a name="where-do-i-get-the-application-metadata-or-certificate-from-azure-ad"></a>Dove scaricare il certificato o i metadati dell'applicazione da Azure AD
 
-i metadati dell'applicazione hello toodownload o un certificato da Azure AD, procedura hello riportata di seguito:
+Per scaricare il certificato o i metadati dell'applicazione da Azure AD, seguire questa procedura:
 
-1.  Aprire hello [ **portale Azure** ](https://portal.azure.com/) e accedere come un **amministratore globale** o **Co-amministratore.**
+1.  Aprire il [**portale di Azure**](https://portal.azure.com/) e accedere come **Amministratore globale** o **Coamministratore**.
 
-2.  Aprire hello **estensione di Azure Active Directory** facendo **più servizi** nella parte inferiore di hello del menu di navigazione a sinistra principale hello.
+2.  Aprire l'**estensione Azure Active Directory** facendo clic su **Altri servizi** nella parte inferiore del menu di navigazione principale a sinistra.
 
-3.  Digitare **"Azure Active Directory**" nella casella di ricerca di filtro hello e seleziona hello **Azure Active Directory** elemento.
+3.  Digitare "**Azure Active Directory**" nella casella di ricerca filtro e selezionare l'elemento **Azure Active Directory**.
 
-4.  Fare clic su **applicazioni aziendali** dal menu di navigazione a sinistra di hello Azure Active Directory.
+4.  Fare clic su **Applicazioni aziendali** nel menu di navigazione a sinistra di Azure Active Directory.
 
-5.  Fare clic su **tutte le applicazioni** tooview un elenco di tutte le applicazioni.
+5.  Fare clic su **Tutte le applicazioni** per visualizzare un elenco di tutte le applicazioni.
 
-   * Se non viene visualizzata l'applicazione hello da visualizzare qui, utilizzare hello **filtro** controllo nella parte superiore di hello di hello **elenco di tutte le applicazioni** e set hello **Mostra** opzione troppo **Tutte le applicazioni.**
+   * Se l'applicazione non è inclusa nell'elenco, usare il controllo **Filtro** all'inizio dell'elenco **Tutte le applicazioni** e impostare l'opzione **Mostra** su **Tutte le applicazioni**.
 
-6.  Selezionare un'applicazione hello è stato configurato single sign-on.
+6.  Selezionare l'applicazione per cui è stato configurato l'accesso Single Sign-On.
 
-7.  Una volta che un'applicazione hello caricato, fare clic su hello **Single sign-on** dal menu di navigazione a sinistra dell'applicazione hello.
+7.  Dopo il caricamento dell'applicazione, fare clic su **Single Sign-On** nel menu di navigazione a sinistra dell'applicazione.
 
-8.  Andare troppo**certificato di firma SAML** sezione, quindi fare clic su **scaricare** valore della colonna. A seconda di quale applicazione hello richiede la configurazione di single sign-on, vedere uno toodownload opzione hello hello Metadata XML o hello certificato.
+8.  Passare alla sezione **Certificato di firma SAML** e quindi fare clic sul valore della colonna **Download**. A seconda di quale applicazione richiede la configurazione dell'accesso Single Sign-On, è visibile l'opzione per scaricare il codice XML dei metadati o l'opzione per scaricare il certificato.
 
-Azure AD non fornisce i metadati hello tooget URL. Hello metadati possono essere recuperati solo come un file XML.
+Azure AD non fornisce URL per ottenere i metadati. I metadati possono essere recuperati solo come file XML.
 
-## <a name="dont-know-how-toocustomize-saml-claims-sent-tooan-application"></a>Non conosce la modalità di invio applicazione tooan attestazioni SAML toocustomize
+## <a name="dont-know-how-to-customize-saml-claims-sent-to-an-application"></a>Informazioni sulla personalizzazione delle attestazioni SAML inviate a un'applicazione
 
-toolearn come le attestazioni degli attributi toocustomize hello SAML inviato tooyour applicazione, vedere [attestazioni mapping in Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-claims-mapping) per ulteriori informazioni.
+Per informazioni su come personalizzare le attestazioni degli attributi SAML inviate all'applicazione, vedere [Claims mapping in Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-claims-mapping) (Mapping di attestazioni in Azure Active Directory).
 
 ## <a name="next-steps"></a>Passaggi successivi
 [Gestione di applicazioni con Azure Active Directory](active-directory-enable-sso-scenario.md)

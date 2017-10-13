@@ -1,6 +1,6 @@
 ---
-title: note sulla versione di .NET insieme di credenziali 2. x API aaaKey | Documenti Microsoft
-description: Gli sviluppatori .NET utilizzeranno questo toocode API per insieme credenziali chiavi Azure
+title: Note sulla versione dell'API .NET 2.x per l'insieme di credenziali delle chiavi | Microsoft Docs
+description: Gli sviluppatori .NET useranno questa API per scrivere il codice dell'insieme di credenziali delle chiavi di Azure
 services: key-vault
 author: BrucePerlerMS
 manager: mbaldwin
@@ -13,63 +13,63 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/02/2017
 ms.author: bruceper
-ms.openlocfilehash: d95b84cf73c155f117f37e93893f27b02a75855c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: c5b5fd7f16faf17d16ecc82269fb1264adf4dd06
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-key-vault-net-20---release-notes-and-migration-guide"></a>Guida alla migrazione e note sulla versione .NET 2.0 per l'insieme di credenziali delle chiavi di Azure
-Hello note e linee guida seguenti sono per gli sviluppatori che utilizzano .NET insieme di credenziali chiave di Azure / libreria di c#. In fase di transizione hello dalla versione di hello 1.0 versione toohello 2.0, un numero di aggiornamenti è stato apportato che richiedono operazioni di migrazione del codice affinché toobenefit dai miglioramenti funzionali hello e funzionalità aggiunte come **insieme di credenziali chiave i certificati** supportano.
+Le note e le linee guida seguenti sono destinate agli sviluppatori che usano la libreria .NET / C# di Azure Key Vault. Nel passaggio dalla versione 1.0 alla versione 2.0 sono state apportate alcune modifiche. Per poter però usufruire dei miglioramenti funzionali e delle nuove funzionalità, ad esempio la funzionalità **Certificati Key Vault**, è necessaria un'operazione di migrazione nel codice.
 
 ## <a name="key-vault-certificates"></a>Certificati Key Vault
 
-Fornisce il supporto di certificati di chiave dell'insieme di credenziali per la gestione del x509 certificati e hello comportamenti seguenti:  
+La funzionalità Certificati dell'insieme di credenziali delle chiavi supporta la gestione di certificati X509 e consente di eseguire le operazioni seguenti:  
 
-* Consente un toocreate di proprietario del certificato a un certificato tramite un processo di creazione dell'insieme di credenziali chiave o importazione di hello di un certificato esistente. Sono inclusi i certificati autofirmati e i certificati generati dall'autorità di certificazione.
-* Consente il proprietario di un certificato di chiave dell'insieme di credenziali di archiviazione protetta tooimplement e la gestione di X509 certificati senza l'interazione con materiale della chiave privata.  
-* Consente un toocreate di proprietario del certificato di un criterio che indirizza l'insieme di credenziali chiave toomanage hello del ciclo di vita di un certificato.  
-* Consente ai proprietari di certificato tooprovide informazioni di contatto per la notifica sugli eventi del ciclo di vita di scadenza e il rinnovo del certificato.  
+* Il proprietario di un certificato può creare un certificato tramite un processo di creazione dell'insieme di credenziali delle chiavi o tramite l'importazione di un certificato esistente. Sono inclusi i certificati autofirmati e i certificati generati dall'autorità di certificazione.
+* Il proprietario di un certificato dell'insieme di credenziali delle chiavi può implementare l'archiviazione sicura e la gestione di certificati X509 senza interagire con materiale della chiave privata.  
+* Il proprietario di un certificato può creare criteri che guidano l'insieme di credenziali delle chiavi nella gestione del ciclo di vita di un certificato.  
+* I proprietari di un certificato possono specificare informazioni sul contatto per notificare eventi sul ciclo di vita di un certificato, come la scadenza e il rinnovo.  
 * Viene supportato il rinnovo automatico con autorità di certificazione selezionate, ad esempio provider di certificati X509 / Autorità di certificazione partner dell'insieme di credenziali delle chiavi.
   
-  * Nota: Non collaborato provider/autorità sono inoltre consentite ma non supporta funzionalità di rinnovo automatico hello.
+  * NOTA: sono ammessi anche i provider e le autorità di certificazione senza partnership, ma non supportano la funzionalità di rinnovo automatico.
 
 ## <a name="net-support"></a>Supporto .NET
 
-* **.NET 4.0** non è supportata dalla versione di hello 2.0 di .NET insieme credenziali chiavi Azure hello / libreria di c#
-* **.NET core** è supportata dalla versione di hello 2.0 di .NET insieme credenziali chiavi Azure hello / libreria di c#
+* **.NET 4.0** non è supportata dalla versione 2.0 della libreria .NET/C# dell'insieme di credenziali delle chiavi di Azure
+* **.NET Core** è supportata dalla versione 2.0 della libreria .NET/C# dell'insieme di credenziali delle chiavi di Azure
 
 ## <a name="namespaces"></a>Spazi dei nomi
 
-* spazio dei nomi per Hello **modelli** viene modificato da **Microsoft.Azure.KeyVault** troppo**Microsoft.Azure.KeyVault.Models**.
-* Hello **Microsoft.Azure.KeyVault.Internal** dello spazio dei nomi viene eliminato.
-* spazio dei nomi di Hello Azure SDK le dipendenze vengono modificate da **Hyak.Common** e **Hyak.Common.Internals** troppo**Microsoft.Rest** e  **Microsoft.Rest.Serialization**
+* Lo spazio dei nomi per i **modelli** viene cambiato da **Microsoft.Azure.KeyVault** a **Microsoft.Azure.KeyVault.Models**.
+* Lo spazio dei nomi **Microsoft.Azure.KeyVault.Internal** viene rimosso.
+* Lo spazio dei nomi delle dipendenze di Azure SDK viene modificato da **Hyak.Common** e **Hyak.Common.Internals** in **Microsoft.Rest** e **Microsoft.Rest.Serialization**
 
 ## <a name="type-changes"></a>Modifiche del tipo
 
-* *Segreto* modificato troppo*SecretBundle*
-* *Dizionario* modificato troppo*IDictionary*
-* *Elenco<T>, string []* modificato troppo*IList<T>*
-* *NextList* modificato troppo *NextPageLink*
+* *Secret* modificato in *SecretBundle*
+* *Dictionary* modificato in *IDictionary*
+* *List<T>, string []* modificato in *IList<T>*
+* *NextList* modificato in *NextPageLink*
 
 ## <a name="return-types"></a>Tipi restituiti
 
 * **KeyList** e **SecretList** restituiranno *IPage<T>* anziché *ListKeysResponseMessage*
-* Hello generato **BackupKeyAsync** restituirà *BackupKeyResult* contenente *valore* (blob di backup). Prima di hello metodo è stato sottoposto a wrapping e restituire unico valore hello.
+* L'oggetto **BackupKeyAsync** generato restituirà *BackupKeyResult* che contiene *Value* (BLOB di backup). Prima veniva eseguito il wrapping del metodo e veniva restituito solo il valore.
 
 ## <a name="exceptions"></a>Eccezioni
 
-* *KeyVaultClientException* è stato modificato anche*KeyVaultErrorException*
-* Errore del servizio Hello viene modificato da *eccezione. Errore* troppo*eccezione. Body.Error.Message*.
-* Rimuovere informazioni aggiuntive nel messaggio di errore hello per **[JsonExtensionData]**.
+* *KeyVaultClientException* viene modificato in *KeyVaultErrorException*
+* L'errore del servizio viene modificato da *exception.Error* in *exception.Body.Error.Message*.
+* Le informazioni aggiuntive sono rimosse dal messaggio di errore per **[JsonExtensionData]**.
 
 ## <a name="constructors"></a>Costruttori
 
-* Invece di accettare un *HttpClient* come un argomento del costruttore, hello costruttore accetta solo *HttpClientHandler* o *DelegatingHandler []*.
+* Invece di accettare *HttpClient* come argomento del costruttore, il costruttore accetta solo *HttpClientHandler* o *DelegatingHandler[]*.
 
 ## <a name="downloaded-packages"></a>Pacchetti scaricati
 
-Quando un client viene elaborata una dipendenza in seguito hello insieme di credenziali chiave sono stati scaricati
+Durante l'elaborazione di una dipendenza dall'insieme di credenziali delle chiavi da parte del client, venivano scaricati i pacchetti seguenti
 
 ### <a name="previous-package-list"></a>Elenco dei pacchetti precedenti
 
@@ -91,19 +91,19 @@ Quando un client viene elaborata una dipendenza in seguito hello insieme di cred
 ## <a name="class-changes"></a>Modifiche alle classi
 
 * La **UnixEpoch** è stata rimossa
-* **Base64UrlConverter** classe viene rinominata troppo**Base64UrlJsonConverter**
+* La classe **Base64UrlConverter** viene rinominata in **Base64UrlJsonConverter**
 
 ## <a name="other-changes"></a>Altre modifiche
 
-* È stato aggiunto supporto per la configurazione di hello del criterio di ripetizione KV operazione nel caso di errori temporanei versione toothis di hello API.
+* A questa versione dell'API è stato aggiunto il supporto per la configurazione dei criteri per i tentativi dell'operazione insieme di credenziali delle chiavi su errori temporanei.
 
 ## <a name="microsoftazuremanagementkeyvault-nuget"></a>Microsoft.Azure.Management.KeyVault NuGet
 
-* Per le operazioni di hello che ha restituito un *insieme di credenziali*, tipo restituito di hello è una classe che contiene una proprietà dell'insieme di credenziali. Hello tipo restituito è ora *insieme di credenziali*.
+* Per le operazioni che restituivano un *insieme di credenziali*, il tipo restituito era una classe che conteneva una proprietà Vault. Il tipo restituito è ora *Vault*.
 * *PermissionsToKeys* e *PermissionsToSecrets* ora sono *Permissions.Keys* e *Permissions.Secrets*
-* Alcune di hello restituiscono toohello Pannello di controllo anche di applicare le modifiche di tipi.
+* Alcune delle modifiche che riguardano i tipi restituiti si applicano anche al piano di controllo.
 
 ## <a name="microsoftazurekeyvaultextensions-nuget"></a>Microsoft.Azure.KeyVault.Extensions NuGet
 
-* pacchetto di Hello viene suddivisa in troppo**Microsoft.Azure.KeyVault.Extensions** e **Microsoft.Azure.KeyVault.Cryptography** per le operazioni di crittografia hello.
+* Il pacchetto viene interrotto a **Microsoft.Azure.KeyVault.Extensions** e **Microsoft.Azure.KeyVault.Cryptography** per le operazioni di crittografia.
 

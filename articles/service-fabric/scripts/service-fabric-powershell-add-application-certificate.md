@@ -1,6 +1,6 @@
 ---
-title: Esempio di Script di PowerShell - aaaAzure aggiungere applicazione cert tooa cluster | Documenti Microsoft
-description: Script di Azure PowerShell di esempio - aggiunta di un cluster di Service Fabric application tooa certificato.
+title: Esempio di script di Azure PowerShell - Aggiungere la certificazione dell'applicazione a un cluster | Microsoft Docs
+description: Esempio di script di Azure PowerShell - Aggiungere la certificazione dell'applicazione a un cluster di Service Fabric.
 services: service-fabric
 documentationcenter: 
 author: rwike77
@@ -11,36 +11,36 @@ ms.assetid:
 ms.service: service-fabric
 ms.workload: multiple
 ms.devlang: na
-ms.topic: article
-ms.date: 06/20/2017
+ms.topic: sample
+ms.date: 09/29/2017
 ms.author: ryanwi
 ms.custom: mvc
-ms.openlocfilehash: aba62598e2e4775012f89b5070bef5e61aec64f6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 8a000d797c3bd10606d297ed8da67229fe0c8a86
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="add-an-application-certificate-tooa-service-fabric-cluster"></a>Aggiungere un cluster di Service Fabric application tooa certificato
+# <a name="add-an-application-certificate-to-a-service-fabric-cluster"></a>Aggiungere la certificazione dell'applicazione a un cluster di Service Fabric.
 
-Questo script di esempio crea un certificato autofirmato nell'insieme di credenziali chiave di Azure specificato hello e lo installa tooall i nodi del cluster di Service Fabric hello. certificato Hello scarica anche tooa di cartella locale. nome di Hello del certificato scaricata hello è hello corrisponde al nome hello del certificato hello nell'insieme di credenziali chiave hello. Personalizzare i parametri di hello in base alle esigenze.
+Questo script di esempio crea un certificato autofirmato nell'insieme di credenziali delle chiavi di Azure e lo installa in tutti i nodi del cluster di Service Fabric. Il certificato viene scaricato anche in una cartella locale. Il nome del certificato scaricato è identico al nome del certificato nell'insieme di credenziali delle chiavi. Personalizzare i parametri in base alle esigenze.
 
-Se necessario, installare Azure PowerShell utilizzando l'istruzione hello trovato in hello hello [Guida di Azure PowerShell](/powershell/azure/overview) e quindi eseguire `Login-AzureRmAccount` toocreate una connessione con Azure. 
+Se necessario, installare Azure PowerShell usando l'istruzione presente nella [Guida di Azure PowerShell](/powershell/azure/overview) e quindi eseguire `Login-AzureRmAccount` per creare una connessione con Azure. 
 
 ## <a name="sample-script"></a>Script di esempio
 
-[!code-powershell[main](../../../powershell_scripts/service-fabric/add-application-certificate/add-new-application-certificate.ps1 "Add an application certificate tooa cluster")]
+[!code-powershell[main](../../../powershell_scripts/service-fabric/add-application-certificate/add-new-application-certificate.ps1 "Add an application certificate to a cluster")]
 
 ## <a name="script-explanation"></a>Spiegazione dello script
 
-Questo script utilizza hello seguenti comandi: ogni comando in una tabella di hello collega la documentazione specifica toocommand.
+Lo script usa i seguenti comandi: ogni comando della tabella include collegamenti alla documentazione specifica del comando.
 
 | Comando | Note |
 |---|---|
-| [Add-AzureRmServiceFabricApplicationCertificate](/powershell/module/azurerm.servicefabric/Add-AzureRmServiceFabricApplicationCertificate) | Aggiungere che set di scalabilità della macchina virtuale toohello una nuova applicazione certificato che costituiscono il cluster hello.  |
+| [Add-AzureRmServiceFabricApplicationCertificate](/powershell/module/azurerm.servicefabric/Add-AzureRmServiceFabricApplicationCertificate) | Aggiungere un nuovo certificato di applicazione al set di scalabilità di macchine virtuali che costituisce il cluster.  |
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per ulteriori informazioni sul modulo di Azure PowerShell hello, vedere [documentazione di Azure PowerShell](/powershell/azure/overview).
+Per altre informazioni sul modulo Azure PowerShell, vedere la [documentazione di Azure PowerShell](/powershell/azure/overview).
 
-Esempi aggiuntivi di Azure Powershell per Azure Service Fabric sono reperibile in hello [esempi di Azure PowerShell](../service-fabric-powershell-samples.md).
+Altri esempi di Azure PowerShell per Azure Service Fabric sono disponibili in [Esempi di Azure PowerShell](../service-fabric-powershell-samples.md).

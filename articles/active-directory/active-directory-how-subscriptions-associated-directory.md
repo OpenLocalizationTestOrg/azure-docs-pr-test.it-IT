@@ -1,6 +1,6 @@
 ---
-title: aaaHow Azure sottoscrizioni associate con Azure Active Directory | Documenti Microsoft
-description: Accesso tooMicrosoft Azure e problemi, ad esempio relazione hello tra una sottoscrizione di Azure e Azure Active Directory.
+title: Associare le sottoscrizioni di Azure ad Azure Active Directory | Microsoft Docs
+description: Accesso a Microsoft Azure e problemi correlati, come la relazione tra una sottoscrizione di Azure e Azure Active Directory.
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -16,62 +16,63 @@ ms.date: 08/24/2017
 ms.author: curtand
 ms.reviewer: jeffsta
 ms.custom: oldportal;it-pro;
-ms.openlocfilehash: 4f831cfb972efec57083fcaa63adb43fde7b2faf
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 081cf2bde44a0b55508cc7f0197fa7f8e378189b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="how-azure-subscriptions-are-associated-with-azure-active-directory"></a>Associare le sottoscrizioni di Azure ad Azure Active Directory
-In questo articolo vengono fornite informazioni sulla relazione hello tra una sottoscrizione di Azure e Azure Active Directory (Azure AD) e come tooadd una directory di Azure AD tooyour sottoscrizione esistente.
+Questo articolo contiene informazioni sulla relazione tra una sottoscrizione di Azure e Azure Active Directory (Azure AD) e su come aggiungere una sottoscrizione esistente alla directory di Azure AD.
 
-## <a name="your-azure-subscriptions-relationship-tooazure-ad"></a>TooAzure relazione della sottoscrizione di Azure AD
-La sottoscrizione di Azure ha una relazione di trust con Azure AD, il che significa che considera attendibili i dispositivi, servizi e utenti tooauthenticate hello. Più sottoscrizioni possono considerare attendibile hello stessa directory, ma ogni sottoscrizione considera attendibile solo una directory. 
+## <a name="your-azure-subscriptions-relationship-to-azure-ad"></a>Relazione della sottoscrizione di Azure con Azure AD
+La sottoscrizione di Azure ha una relazione di trust con Azure AD, ovvero considera attendibile la directory per autenticare gli utenti, i servizi e i dispositivi. Più sottoscrizioni possono considerare attendibile la stessa directory, ma ogni sottoscrizione considera attendibile una sola directory. 
 
-relazione di trust Hello che dispone di una sottoscrizione con una directory è diversa dalla relazione hello che con altre risorse in Azure (siti Web, database e così via). Se una sottoscrizione scade, l'accesso toohello arresta anche altre risorse associate alla sottoscrizione hello. Rimane una directory di Azure AD in Azure, ma è possibile associare una sottoscrizione diversa a tale directory e gestire directory hello usando hello nuova sottoscrizione.
+La relazione di trust tra la sottoscrizione e la directory è diversa dalla relazione con le altre risorse in Azure, ad esempio siti Web, database e così via. Se la sottoscrizione scade, non sarà più possibile accedere alle altre risorse associate alla sottoscrizione. La directory di Azure AD rimane però in Azure, sarà quindi possibile associarla a una sottoscrizione diversa e continuare a gestire la directory con la nuova sottoscrizione.
 
 ![Diagramma che illustra come vengono associate le sottoscrizioni](./media/active-directory-how-subscriptions-associated-directory/WAAD_OrgAccountSubscription.png)
 
-Tutti gli utenti dispongono di una singola home directory che li autentica, ma poi possono essere utenti guest in altre directory. In Azure AD, è possibile visualizzare le directory hello di cui l'account utente è un membro o guest.
+Tutti gli utenti dispongono di una singola home directory che li autentica, ma poi possono essere utenti guest in altre directory. In Azure AD è possibile visualizzare solo le directory di cui l'account utente è membro o guest.
 
 ## <a name="azure-ad-and-cloud-service-subscriptions"></a>Azure AD e sottoscrizioni di servizi cloud
-Azure Active Directory fornisce identità e directory principale di hello funzionalità di gestione dietro la maggior parte dei servizi cloud Microsoft, tra cui:
+Azure AD fornisce le principali funzionalità di gestione delle identità e di directory alla base della maggior parte dei servizi cloud Microsoft, tra cui:
 
 * Azure
 * Microsoft Office 365
 * Microsoft Dynamics CRM Online
 * Microsoft Intune
 
-Quando effettua l'iscrizione per uno di questi servizi cloud Microsoft, si ottiene hello servizio Azure AD gratuito. Se si desidera tooadd una directory tooan Azure AD altra sottoscrizione di Azure, è necessario essere connessi con un account Microsoft. Se si Accedi tooAzure con un lavoro o scuola account, è possibile aggiungere una directory esistente tooan di sottoscrizione di Azure perché l'account aziendale o dell'istituto di istruzione non può essere autenticato direttamente da Azure. 
+Quando si effettua l'iscrizione a uno di questi servizi cloud Microsoft, si ottiene gratuitamente il servizio Azure AD. Per aggiungere un'altra sottoscrizione di Azure a una directory di Azure AD, è necessario eseguire l'accesso con un account Microsoft. Se si esegue l'accesso ad Azure con un account aziendale o dell'istituto di istruzione, non è possibile aggiungere una sottoscrizione di Azure a una directory esistente perché tale account non può essere autenticato direttamente da Azure. 
 
-## <a name="tooadd-an-existing-subscription-tooyour-azure-ad-directory"></a>tooadd una directory di Azure AD tooyour sottoscrizione esistente
-È necessario accedere con un account esistente in entrambe le directory corrente hello con cui hello è associata la sottoscrizione e nella directory hello desiderato tooadd a. 
+## <a name="to-add-an-existing-subscription-to-your-azure-ad-directory"></a>Per aggiungere una sottoscrizione esistente alla directory di Azure AD
+È necessario eseguire l'accesso con un account che esiste sia nella directory corrente a cui è associata la sottoscrizione che nella directory a cui la si vuole aggiungere. 
 
-1. Accedi toohello [centro Account Azure](https://account.windowsazure.com/Home/Index) con un account che è hello amministratore dell'Account di sottoscrizione hello la cui proprietà si desidera tootransfer.
-2. Verificare che tale utente hello indicato come proprietario della sottoscrizione hello toobe si trova nella directory di destinazione hello.
+1. Accedere al [Centro account di Azure](https://account.azure.com/Subscriptions) con un account amministratore della sottoscrizione di cui si vuole trasferire la proprietà.
+2. Assicurarsi che l'utente che si vuole impostare come proprietario della sottoscrizione sia incluso nella directory di destinazione.
 3. Fare clic su **Trasferisci sottoscrizione**.
-4. Consente di specificare il destinatario di hello. destinatario Hello ottiene automaticamente un messaggio di posta elettronica con un collegamento di accettazione.
-5. destinatario Hello fa clic sul collegamento hello e segue le istruzioni di hello, inclusi immettendo le relative informazioni di pagamento. Quando il destinatario hello ha esito positivo, viene trasferita sottoscrizione hello. 
-6. directory predefinita Hello di sottoscrizione hello viene modificato toohello directory utente hello è.
+4. Specificare il destinatario. Il destinatario riceve automaticamente un messaggio e-mail con un link per l'accettazione.
+5. Il destinatario deve fare clic sul link e seguire le istruzioni, inclusa l'immissione delle informazioni sul pagamento. Quando il destinatario ha esito positivo, la sottoscrizione viene trasferita. 
+6. La directory predefinita della sottoscrizione viene modificata nella directory in cui si trova l'utente.
 
+Per altre informazioni, vedere [Trasferimento della proprietà di una sottoscrizione di Azure a un altro account](../billing/billing-subscription-transfer.md)
 
-## <a name="suggestions-toomanage-both-a-subscription-and-a-directory"></a>Suggerimenti toomanage una sottoscrizione e una directory
-i ruoli amministrativi di Hello per una sottoscrizione di Azure di gestire le risorse collegate toohello sottoscrizione di Azure. Questa sezione illustra le differenze di hello tra amministratori della sottoscrizione di Azure e Azure AD amministratori di directory. Ruoli amministrativi e altri suggerimenti per l'utilizzo di toomanage la sottoscrizione sono illustrati nel [l'assegnazione di ruoli di amministratore in Azure Active Directory](active-directory-assign-admin-roles.md).
+## <a name="suggestions-to-manage-both-a-subscription-and-a-directory"></a>Suggerimenti per gestire sia una sottoscrizione che una directory
+Le risorse associate a una sottoscrizione di Azure vengono gestite dai ruoli amministrativi della sottoscrizione stessa. Questa sezione illustra le differenze tra gli amministratori di una sottoscrizione di Azure e gli amministratori di una directory di Azure AD. I ruoli amministrativi e gli altri suggerimenti su come usarli per gestire la sottoscrizione sono descritti in [Assegnazione dei ruoli di amministratore in Azure Active Directory](active-directory-assign-admin-roles.md).
 
-Per impostazione predefinita, è stato assegnato il ruolo di amministratore del servizio hello quando effettua l'iscrizione. Se altri utenti necessario toosign in e accedere ai servizi utilizzando hello stessa sottoscrizione, è possibile aggiungerli come coamministratori. 
+Per impostazione predefinita, al momento dell'iscrizione all'utente viene assegnato il ruolo di amministratore del servizio. Se altri utenti devono accedere ai servizi con la stessa sottoscrizione, è possibile aggiungerli come coamministratori. 
 
-Azure AD include un set diverso di directory di ruoli amministrativi toomanage hello e funzionalità correlate alle identità. Messaggio per l'amministratore globale di una directory può, ad esempio, aggiungere utenti e directory toohello gruppi oppure richiedere l'autenticazione a più fattori per gli utenti. Un utente che crea una directory è assegnato il ruolo di amministratore globale toohello e ruoli amministrativi possono assegnare gli utenti tooother. I ruoli amministrativi di Azure AD vengono anche usati da altri servizi, ad esempio Office 365 e Microsoft Intune. 
+In Azure AD è invece disponibile un set di ruoli amministrativi diverso per gestire la directory e le funzionalità relative alle identità. Ad esempio, l'amministratore globale di una directory può aggiungere utenti e gruppi alla directory o richiedere l'autenticazione a più fattori per gli utenti. All'utente che crea una directory viene assegnato il ruolo di amministratore globale, che, a sua volta, potrà assegnare ruoli amministrativi ad altri utenti. I ruoli amministrativi di Azure AD vengono anche usati da altri servizi, ad esempio Office 365 e Microsoft Intune. 
 
 Gli amministratori della sottoscrizione di Azure e gli amministratori della directory di Azure AD sono due ruoli distinti. 
-* Gli amministratori delle sottoscrizioni di Azure possono gestire le risorse in Azure e possono usare Azure AD nel portale di Azure hello (poiché hello portale Azure è una risorsa di Azure). 
-* Gli amministratori di directory possono gestire le proprietà solo nella directory di Azure AD hello.
+* Gli amministratori della sottoscrizione di Azure possono gestire le risorse in Azure e usare Azure AD nel portale di Azure, perché il portale di Azure stesso è una risorsa di Azure. 
+* Gli amministratori della directory possono gestire le proprietà solo nella directory di Azure AD.
 
-Una persona può rivestire entrambi i ruoli, ma non è obbligatorio. Non è possibile assegnare a un amministratore globale della directory un ruolo di amministratore del servizio o di coamministratore di una sottoscrizione di Azure e viceversa. Senza essere amministratore della sottoscrizione di hello, utente hello toohello portale di Azure per poter accedere, ma non è possibile gestire directory hello per la sottoscrizione nel portale di hello. Tuttavia, questo utente può gestire directory utilizzando altri strumenti, ad esempio Azure AD PowerShell o hello centro di amministrazione di Office 365.
+Una persona può rivestire entrambi i ruoli, ma non è obbligatorio. Non è possibile assegnare a un amministratore globale della directory un ruolo di amministratore del servizio o di coamministratore di una sottoscrizione di Azure e viceversa. Senza essere un amministratore della sottoscrizione, l'utente può accedere al portale di Azure, ma non può gestire le directory per tale sottoscrizione nel portale. Tuttavia, l'utente può gestire le directory con altri strumenti, ad esempio Azure AD PowerShell o l'interfaccia di amministrazione di Office 365.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* toolearn ulteriori informazioni sugli amministratori toochange per una sottoscrizione di Azure, vedere [trasferire la proprietà di un account di sottoscrizione di Azure tooanother](../billing/billing-subscription-transfer.md)
-* toolearn ulteriori informazioni sulla modalità di controllo di accesso alle risorse in Microsoft Azure, vedere [informazioni di accesso alle risorse di Azure](active-directory-understanding-resource-access.md)
-* Per ulteriori informazioni su come tooassign ruoli in Azure AD, vedere [l'assegnazione di ruoli di amministratore in Azure Active Directory](active-directory-assign-admin-roles-azure-portal.md)
+* Per altre informazioni su come cambiare gli amministratori per una sottoscrizione di Azure, vedere [Trasferire la proprietà di una sottoscrizione di Azure a un altro account](../billing/billing-subscription-transfer.md)
+* Per altre informazioni sul modo in cui l'accesso alle risorse viene controllato in Microsoft Azure, vedere [Informazioni sull'accesso alle risorse in Azure](active-directory-understanding-resource-access.md)
+* Per altre informazioni su come assegnare i ruoli in Azure AD, vedere [Assegnazione dei ruoli di amministratore in Azure Active Directory](active-directory-assign-admin-roles-azure-portal.md)
 
 <!--Image references-->
 [1]: ./media/active-directory-how-subscriptions-associated-directory/WAAD_PassThruAuth.png

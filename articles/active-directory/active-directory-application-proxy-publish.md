@@ -1,6 +1,6 @@
 ---
-title: App aaaPublish con Proxy dell'applicazione Azure AD | Documenti Microsoft
-description: Pubblicare cloud toohello di applicazioni on-premise con Proxy dell'applicazione Azure Active Directory nel portale classico hello.
+title: Pubblicare app con il proxy di applicazione di Azure AD | Documentazione Microsoft
+description: Pubblicare applicazioni locali nel cloud con il proxy di applicazione di Azure AD nel portale classico.
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -15,84 +15,84 @@ ms.date: 07/14/2017
 ms.author: kgremban
 ms.reviewer: harshja
 ms.custom: it-pro; oldportal
-ms.openlocfilehash: 7926998314c65521ae48aebcceb33cb0c67e0b87
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 96490c0d060fe5486a7235a5aa76380c8d9b5d4f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="publish-applications-using-azure-ad-application-proxy"></a>Pubblicare applicazioni mediante il proxy di applicazione AD Azure
 
 > [!div class="op_single_selector"]
 > * [Portale di Azure](application-proxy-publish-azure-portal.md)
-> * [portale di Azure classico](active-directory-application-proxy-publish.md)
+> * [Portale di Azure classico](active-directory-application-proxy-publish.md)
 
-Proxy dell'applicazione Azure Active Directory consente di supportare gli utenti remoti mediante la pubblicazione toobe applicazioni locale accessibili tramite hello internet. A questo punto si dovrebbe già disporre [abilitato Proxy dell'applicazione nel portale di Azure classico hello](active-directory-application-proxy-enable.md). In questo articolo illustra hello passaggi toopublish le applicazioni in esecuzione nella rete locale e fornire l'accesso remoto sicuro dall'esterno della rete. Dopo aver completato questo articolo, sarà un'applicazione hello tooconfigure pronto con informazioni personalizzate o requisiti di sicurezza.
+Il proxy di applicazione di Azure AD consente di supportare lavoratori remoti pubblicando applicazioni locali in modo che siano accessibili tramite Internet. A questo punto dovrebbe essere già stato [abilitato il proxy di applicazione nel portale di Azure classico](active-directory-application-proxy-enable.md). Questo articolo illustra i passaggi per pubblicare le applicazioni in esecuzione nella rete locale e fornire un accesso remoto sicuro dall'esterno della rete. Al termine di questo articolo, sarà possibile configurare l'applicazione con informazioni o requisiti di sicurezza personalizzati.
 
 > [!NOTE]
-> Proxy dell'applicazione è una funzionalità che è disponibile solo se è stato aggiornato toohello Premium o Edizione Basic di Azure Active Directory. Per altre informazioni, vedere [Edizioni di Azure Active Directory](active-directory-editions.md). Se si desidera toouse Proxy dell'applicazione, è possibile [pubblicare applicazioni nel portale di Azure hello](application-proxy-publish-azure-portal.md).
+> Il proxy dell’applicazione di Azure AD è una funzionalità disponibile solo se è stato eseguito l'aggiornamento all'edizione Premium o Basic di Azure Active Directory. Per altre informazioni, vedere [Edizioni di Azure Active Directory](active-directory-editions.md). Se si vuole usare il proxy dell'applicazione, è possibile [pubblicare applicazioni nel portale di Azure](application-proxy-publish-azure-portal.md).
 
-## <a name="publish-an-app-using-hello-wizard"></a>Pubblicare un'app usando la procedura guidata hello
-1. Accedere come amministratore in hello [portale di Azure classico](https://manage.windowsazure.com/).
-2. TooActive Directory scegliere directory hello in cui è abilitato il Proxy di applicazione.
+## <a name="publish-an-app-using-the-wizard"></a>Pubblicare un'applicazione utilizzando la procedura guidata
+1. Accedere come amministratore al [portale di Azure classico](https://manage.windowsazure.com/).
+2. Passare ad Active Directory e selezionare la directory in cui è stato abilitato il proxy di applicazione.
    
     ![Active Directory - Icona](./media/active-directory-application-proxy-publish/ad_icon.png)
-3. Fare clic su hello **applicazioni** scheda e quindi fare clic su hello **Aggiungi** pulsante in basso hello hello
+3. Fare clic sulla scheda **Applicazioni** e quindi sul pulsante **Aggiungi** nella parte inferiore della schermata.
    
     ![Aggiungi applicazione](./media/active-directory-application-proxy-publish/aad_appproxy_selectdirectory.png)
 4. Selezionare **Pubblica un'applicazione che sarà accessibile dall'esterno della rete**.
    
     ![Pubblica un'applicazione che sarà accessibile dall'esterno della rete](./media/active-directory-application-proxy-publish/aad_appproxy_addapp.png)
-5. Fornire le seguenti informazioni sull'applicazione hello:
+5. Specificare le informazioni relative all'applicazione elencate di seguito.
    
-   * **Nome**: nome descrittivo di hello per l'applicazione. Deve essere univoco all'interno della directory.
-   * **URL interno**: indirizzo hello hello connettore Proxy dell'applicazione utilizza un'applicazione hello tooaccess dall'interno della rete privata. È possibile fornire un percorso specifico in hello toopublish di server back-end, mentre il resto di hello del server hello è pubblicato. In questo modo, è possibile pubblicare i siti diversi hello nello stesso server e assegnare a ognuno di essi proprie regole di accesso e nome.
+   * **Nome**: nome descrittivo dell'applicazione. Deve essere univoco all'interno della directory.
+   * **URL interno**: indirizzo usato dal connettore proxy di applicazione per accedere all'applicazione dall'interno della rete privata. È possibile indicare un percorso specifico nel server back-end per la pubblicazione, mentre il resto del server non è pubblicato. In questo modo, si possono pubblicare siti diversi nello stesso server assegnando a ognuno un nome e regole di accesso specifici.
      
      > [!TIP]
-     > Se si pubblica un percorso, assicurarsi che includa tutte le immagini necessarie hello, script e fogli di stile per l'applicazione. Ad esempio, se l'app in https://yourapp/app e Usa le immagini che si trova in https://yourapp/media, è necessario pubblicare https://yourapp/ come percorso di hello.
+     > Se si pubblica un percorso, verificare che includa tutte le immagini, gli script e i fogli di stile necessari per l'applicazione. Se l'app si trova in https://yourapp/app e usa immagini che si trovano in https://yourapp/media, si dovrà pubblicare come percorso https://yourapp/.
      > 
      > 
-   * **Metodo di preautenticazione**: come Proxy di applicazione verifica gli utenti prima di concedere loro accesso tooyour applicazione. Scegliere una delle opzioni di hello dal menu a discesa hello.
+   * **Metodo di autenticazione preliminare**: come il proxy di applicazione verifica gli utenti prima di concedere loro l'accesso all'applicazione. Scegliere una delle opzioni nel menu a discesa.
      
-     * Azure Active Directory: Proxy applicazione reindirizza toosign gli utenti con Azure AD, che autentica le autorizzazioni per directory hello e applicazione.
-     * Pass-through: Gli utenti non sono un'applicazione hello tooaccess tooauthenticate.
+     * Azure Active Directory: il proxy di applicazione reindirizza gli utenti in modo che eseguano l'accesso con Azure AD, che ne autentica le autorizzazioni per la directory e l'applicazione.
+     * Passthrough: gli utenti non devono eseguire l'autenticazione per accedere all'applicazione.
      
      ![Proprietà dell'applicazione](./media/active-directory-application-proxy-publish/aad_appproxy_appproperties.png)  
-6. procedura guidata hello toofinish, fare clic su hello segno di spunta in basso hello hello. un'applicazione Hello è ora definita in Azure AD.
+6. Per completare la procedura guidata, fare clic sul segno di spunta nella parte inferiore della schermata. L'applicazione ora è definita in Azure AD.
 
-## <a name="assign-users-and-groups-toohello-application"></a>Assegnare gli utenti e gruppi toohello applicazione
-In ordine per gli utenti tooaccess l'applicazione pubblicata, è necessario tooassign li singolarmente o in gruppi. (Tenere presente tooassign manualmente, accesso troppo accedere.) Ogni utente assegnato deve avere una licenza Azure Basic o superiore. È possibile assegnare licenze singolarmente o toogroups. Per ulteriori informazioni, vedere [l'assegnazione di utenti applicazione tooan](active-directory-applications-guiding-developers-assigning-users.md). 
+## <a name="assign-users-and-groups-to-the-application"></a>Assegnazione di utenti e gruppi all'applicazione
+Per l'accesso degli utenti all'applicazione pubblicata, è necessario eseguirne l'assegnazione singolarmente o in gruppi (ricordando di assegnare l'accesso anche a se stessi). Ogni utente assegnato deve avere una licenza Azure Basic o superiore. È possibile assegnare le licenze singolarmente o a gruppi. Per altre informazioni, vedere [Assegnazione di utenti a un'applicazione](active-directory-applications-guiding-developers-assigning-users.md). 
 
-Per le applicazioni che richiedono la preautenticazione, assegnazione di un utente concede un'applicazione hello toouse autorizzazione. Per le app che non richiedono la preautenticazione, assegnazione di un utente significa che tale utente di hello può accedere a un'applicazione hello tramite il pannello di accesso di hello.
+Per le app che richiedono l'autenticazione preliminare, con l'assegnazione di un utente viene concessa l'autorizzazione per usare l'applicazione. Per le app che non richiedono l'autenticazione preliminare, l'assegnazione di un utente consente all'utente di accedere all'applicazione tramite il pannello di accesso.
 
-1. Dopo il completamento procedura guidata Aggiungi App di hello, vedrai hello pagina per l'applicazione di avvio rapido. toomanage che dispone di accesso toohello app, selezionare **utenti e gruppi**.
+1. Al termine della procedura guidata Aggiungi app, verrà visualizzata la pagina Avvio rapido dell'applicazione. Per gestire gli utenti che avranno accesso all'app, selezionare **Utenti e gruppi**.
    
     ![Assegnazione degli utenti nella pagina Avvio rapido per il proxy di applicazione - Screenshot](./media/active-directory-application-proxy-publish/aad_appproxy_usersgroups.png)
-2. Cercare gruppi specifici nella propria directory oppure visualizzare tutti gli utenti. risultati della ricerca hello toodisplay, fare clic su hello segno di spunta.
+2. Cercare gruppi specifici nella propria directory oppure visualizzare tutti gli utenti. Fare clic sul segno di spunta per visualizzare i risultati della ricerca.
    
       ![Ricerca di gruppi o utenti - Screenshot](./media/active-directory-application-proxy-publish/aad_appproxy_search.png)
-3. Selezionare ogni utente o gruppo tooassign toothis app desiderata, quindi scegliere **assegnare**. Si è richiesto tooconfirm questa azione.
+3. Selezionare ogni utente o gruppo che si desidera assegnare a questa app e fare clic su **Assegna**. Viene chiesto di confermare l'azione.
 
 > [!NOTE]
-> Per le app con autenticazione integrata di Windows, è possibile assegnare solo utenti e gruppi sincronizzati da Active Directory locale. Non è possibile assegnare utenti che accedono con account Microsoft e guest per le app pubblicate con il proxy di applicazione di Azure Active Directory. Assicurarsi che gli utenti l'accesso con credenziali che fanno parte di hello nello stesso dominio applicazione hello si esegue la pubblicazione.
+> Per le app con autenticazione integrata di Windows, è possibile assegnare solo utenti e gruppi sincronizzati da Active Directory locale. Non è possibile assegnare utenti che accedono con account Microsoft e guest per le app pubblicate con il proxy di applicazione di Azure Active Directory. Verificare che gli utenti accedano con credenziali che fanno parte dello stesso dominio dell'app che viene pubblicata.
 > 
 > 
 
 ## <a name="test-your-published-application"></a>Testare l'applicazione pubblicata
-Dopo aver pubblicato l'applicazione, è possibile eseguirne il test out passando toohello URL che è stato pubblicato. Verificare che sia possibile accedervi, che il rendering venga eseguito correttamente e che tutto funzioni come previsto. Se si riscontrano problemi o ottiene un messaggio di errore, provare a hello [risoluzione dei problemi guida](active-directory-application-proxy-troubleshoot.md).
+Dopo che è stata pubblicata, è possibile testare l'applicazione passando all'URL pubblicato. Verificare che sia possibile accedervi, che il rendering venga eseguito correttamente e che tutto funzioni come previsto. In caso di problemi o se viene visualizzato un messaggio di errore, vedere la [guida alla risoluzione dei problemi](active-directory-application-proxy-troubleshoot.md).
 
 ## <a name="configure-your-application"></a>Configurare l'applicazione
-È possibile modificare le app pubblicate o impostare le opzioni avanzate nella pagina Configurazione hello. In questa pagina, è possibile personalizzare l'applicazione modifica nome hello oppure caricare un logo. È inoltre possibile gestire le regole di accesso come hello metodo di preautenticazione o multi-factor authentication.
+Nella pagina Configura è possibile modificare le app pubblicate o configurare opzioni avanzate. In questa pagina si può personalizzare l'app modificando il nome o caricando un logo. È anche possibile gestire regole di accesso come il metodo di autenticazione preliminare o l'autenticazione a più fattori.
 
 ![Configurazione avanzata](./media/active-directory-application-proxy-publish/aad_appproxy_configure.png)
 
-Dopo la pubblicazione di applicazioni mediante il Proxy applicazione di Azure Active Directory, vengono visualizzati nell'elenco delle applicazioni hello in Azure AD ed è possibile gestirle.
+Dopo la pubblicazione di applicazioni mediante il proxy dell’applicazione di Azure Active Directory, queste vengono visualizzate nell'elenco delle applicazioni in Azure AD ed è possibile gestirle.
 
-Se si disabilitino servizi Proxy dell'applicazione dopo la pubblicazione delle applicazioni, applicazioni hello non sono più accessibili dall'esterno della rete privata. Gli utenti possono accesso hello applicazioni locale come di consueto.
+Se si disabilitano i servizi proxy dell'applicazione dopo la pubblicazione delle applicazioni, queste non sono più accessibili dall'esterno della rete privata. Gli utenti possono comunque accedere alle applicazioni in locale come di consueto.
 
-Fare doppio clic sul nome di hello dell'applicazione hello tooview un'applicazione e apportare garantire che sia accessibile. Se il servizio Proxy di applicazione hello è disabilitato e applicazione hello non è disponibile, viene visualizzato un messaggio di avviso in alto hello hello.
+Per visualizzare un'applicazione e verificare che sia accessibile, fare doppio clic sul nome dell'applicazione. Se il servizio proxy dell’applicazione è disabilitato e l'applicazione non è disponibile, viene visualizzato un messaggio di avviso nella parte superiore della schermata.
 
-toodelete un'applicazione, selezionare un'applicazione nell'elenco di hello e quindi fare clic su **eliminare**.
+Per eliminare un'applicazione, selezionare un'applicazione nell'elenco e fare clic su **Elimina**.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * [Pubblicare applicazioni mediante il proprio nome di dominio](active-directory-application-proxy-custom-domains.md)
@@ -100,5 +100,5 @@ toodelete un'applicazione, selezionare un'applicazione nell'elenco di hello e qu
 * [Abilitare l'accesso condizionale](active-directory-application-proxy-conditional-access.md)
 * [Lavorare con applicazioni grado di riconoscere attestazioni](active-directory-application-proxy-claims-aware-apps.md)
 
-Per informazioni più recenti hello e gli aggiornamenti, consultare hello [blog del Proxy dell'applicazione](http://blogs.technet.com/b/applicationproxyblog/)
+Per le notizie e gli aggiornamenti più recenti, vedere [Application Proxy blog](http://blogs.technet.com/b/applicationproxyblog/)
 

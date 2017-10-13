@@ -1,6 +1,6 @@
 ---
-title: "supporto aaaScale elaborazione mediante l'aggiunta di unità di codifica - Azure |  Documenti Microsoft"
-description: "Informazioni su come unità di codifica tooadd toohow con .NET"
+title: "Ridimensionare l'elaborazione multimediale aggiungendo unità di codifica - Azure | Documentazione Microsoft"
+description: "Informazioni su come aggiungere unità di codifica mediante .NET"
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: juliako;milangada;
-ms.openlocfilehash: b9f71a6487c5d136319a38a1598d60edfaa81b9e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 72a8729d22a9e76c8076d7a3347619a2163e4f09
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-tooscale-encoding-with-net-sdk"></a>Come tooscale codifica con .NET SDK
+# <a name="how-to-scale-encoding-with-net-sdk"></a>Come scalare la codifica con .NET SDK
 > [!div class="op_single_selector"]
 > * [Portale](media-services-portal-scale-media-processing.md)
 > * [.NET](media-services-dotnet-encoding-units.md)
@@ -30,16 +30,16 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-## <a name="overview"></a>Panoramica
+## <a name="overview"></a>Overview
 > [!IMPORTANT]
-> Verificare che hello tooreview [Panoramica](media-services-scale-media-processing-overview.md) tooget argomento ulteriori informazioni sulla scalabilità supporti l'elaborazione di argomento.
+> Per altre informazioni sul ridimensionamento dell'elaborazione multimediale, vedere questo argomento di [panoramica](media-services-scale-media-processing-overview.md) .
 > 
 > 
 
-hello toochange hello riservato hello tipo e il numero di unità mediante .NET SDK, di unità riservate di codifica seguenti:
+Per cambiare il tipo di unità riservata e il numero di unità riservate di codifica mediante l'SDK per .NET, seguire questa procedura:
 
     IEncodingReservedUnit encodingS1ReservedUnit = _context.EncodingReservedUnits.FirstOrDefault();
-    encodingS1ReservedUnit.ReservedUnitType = ReservedUnitType.Basic; // Corresponds tooS1
+    encodingS1ReservedUnit.ReservedUnitType = ReservedUnitType.Basic; // Corresponds to S1
     encodingS1ReservedUnit.Update();
     Console.WriteLine("Reserved Unit Type: {0}", encodingS1ReservedUnit.ReservedUnitType);
 
@@ -49,20 +49,20 @@ hello toochange hello riservato hello tipo e il numero di unità mediante .NET S
     Console.WriteLine("Number of reserved units: {0}", encodingS1ReservedUnit.CurrentReservedUnits);
 
 ## <a name="opening-a-support-ticket"></a>Apertura di un ticket di supporto
-Per impostazione predefinita, ogni account di servizi multimediali possono essere ridimensionati tooup too25 5 e codifica su richiesta unità riservate di Streaming. È possibile richiedere l'applicazione di un limite superiore mediante l'apertura di un ticket di supporto.
+Per impostazione predefinita, ogni account di Media Services può includere fino a 25 unità di codifica riservate e cinque unità riservate di streaming on demand. È possibile richiedere l'applicazione di un limite superiore mediante l'apertura di un ticket di supporto.
 
 ### <a name="open-a-support-ticket"></a>Aprire un ticket di supporto
-hello tooopen un ticket di supporto seguenti:
+Per aprire un ticket di supporto, seguire questa procedura:
 
-1. Fare clic su [Ottieni supporto](https://manage.windowsazure.com/?getsupport=true). Se non si è connessi, è necessario essere tooenter richieste le credenziali.
+1. Fare clic su [Ottieni supporto](https://manage.windowsazure.com/?getsupport=true). Se non si è ancora connessi, verrà richiesto di immettere le credenziali.
 2. Selezionare la propria sottoscrizione.
 3. Come tipo di supporto, selezionare "Tecnico".
 4. Fare clic su "Create Ticket".
-5. Selezionare "Servizi multimediali di Azure" nell'elenco di prodotti hello presentate nella pagina successiva di hello.
+5. Selezionare "Servizi multimediali di Azure" dall'elenco dei prodotti visualizzato nella pagina successiva.
 6. Selezionare un tipo di problema appropriato per la situazione specifica.
 7. Fare clic su Continue.
 8. Seguire le istruzioni nella pagina successiva e quindi immettere i dettagli relativi al problema.
-9. Fare clic su Invia il ticket hello tooopen.
+9. Fare clic su Invia per aprire il ticket.
 
 ## <a name="media-services-learning-paths"></a>Percorsi di apprendimento di Servizi multimediali
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

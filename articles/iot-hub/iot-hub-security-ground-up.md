@@ -1,6 +1,6 @@
 ---
-title: soluzione Azure IoT da hello messa a terra backup aaaSecure | Documenti Microsoft
-description: "Toouse hello come funzionalità di protezione incorporata di Microsoft Azure IoT Hub e gruppi di test."
+title: Proteggere la soluzione Azure IoT sin dall'inizio | Documentazione Microsoft
+description: "Come usare le funzionalità di sicurezza integrate nell'hub IoT di Microsoft Azure e in Microsoft Azure IoT Suite."
 services: iot-hub
 documentationcenter: 
 author: YuriDio
@@ -14,22 +14,22 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: yurid
-ms.openlocfilehash: 8009b19cf3cdff0507158513097a0709bbac06e6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6a0ac22e85a85dca9bad06aa2c722523d3086537
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 [!INCLUDE [iot-security-ground-up](../../includes/iot-security-ground-up.md)]
 
 ## <a name="see-also"></a>Vedere anche
-toolearn più sulla protezione soluzione IoT, vedere:
+Per altre informazioni sulla protezione della soluzione IoT, vedere:
 
 * [Procedure consigliate per la sicurezza IoT][lnk-security-best-practices]
 * [Architettura della sicurezza IoT][lnk-security-architecture]
 * [Proteggere la distribuzione di IoT][lnk-security-deployment]
 
-toofurther esplorare le funzionalità di hello di IoT Hub, vedere:
+Per altre informazioni sulle funzionalità dell'hub IoT, vedere:
 
 * [Simulazione di un dispositivo con Azure IoT Edge][lnk-iotedge]
 

@@ -1,6 +1,6 @@
 ---
-title: aaaConnect tooAzure Analysis Services | Documenti Microsoft
-description: Informazioni su come tooconnect tooand ottenere dati da un server Analysis Services in Azure.
+title: Connettersi ad Azure Analysis Services | Microsoft Docs
+description: Informazioni su come connettersi e ottenere dati da un server di Analysis Services in Azure.
 services: analysis-services
 documentationcenter: 
 author: minewiskan
@@ -15,42 +15,42 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 08/15/2017
 ms.author: owend
-ms.openlocfilehash: 5df94492feb48034f156b72e83e1009683988fc8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: deb3ef28d20decef01826450bd6091f87dd069de
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="connect-tooan-azure-analysis-services-server"></a>Connettere il server di Azure Analysis Services tooan
+# <a name="connect-to-an-azure-analysis-services-server"></a>Connettersi a un server di Azure Analysis Services
 
-Questo articolo descrive la connessione server tooa tramite la modellazione dei dati e applicazioni di gestione come SQL Server Management Studio (SSMS) o SQL Server Data Tools (SSDT). In alternativa, con applicazioni reporting client come Microsoft Excel, Power BI Desktop o applicazioni personalizzate. Connessioni tooAzure Analysis Services utilizzano HTTPS.
+In questo articolo viene descritta la connessione a un server tramite modellazione di dati e applicazioni di gestione come SQL Server Management Studio (SSMS) o SQL Server Data Tools (SSDT). In alternativa, con applicazioni reporting client come Microsoft Excel, Power BI Desktop o applicazioni personalizzate. Le connessioni ad Azure Analysis Services usano HTTPS.
 
 ## <a name="client-libraries"></a>Librerie client
-[Recuperare le librerie Client più recente di hello](analysis-services-data-providers.md)
+[Ottenere le librerie client più recenti](analysis-services-data-providers.md)
 
-Tutti i server tooa connessioni, indipendentemente dal tipo, richiedono aggiornato AMO, ADOMD.NET e OLEDB librerie tooconnect tooand interfaccia client con un server Analysis Services. Per SQL Server Management Studio, SSDT, Excel 2016 e Power BI, le librerie client più recente di hello installazione o l'aggiornamento con le versioni mensile. Tuttavia, in alcuni casi, è possibile che un'applicazione potrebbe non essere hello più recente. Ad esempio, quando viene aggiornato il ritardo di criteri o aggiornamenti di Office 365 sono su hello canale posticipata.
+Tutte le connessioni a qualunque tipo di server richiedono le librerie client AMO, ADOMD.NET e OLEDB aggiornate per connettersi e interagire con un server di Analysis Services. Per SSMS, SSDT, Excel 2016 e Power BI, le librerie client più recenti vengono installate o aggiornate con le versioni mensili. In alcuni casi, tuttavia, è possibile che un'applicazione non abbia la versione più recente. Ad esempio, quando alcuni criteri ritardano gli aggiornamenti o quando gli aggiornamenti di Office 365 sono su Deferred Channel.
 
 ## <a name="server-name"></a>Nome server
 
-Quando si crea un server Analysis Services in Azure, specificare un univoco nome e hello regione in cui il server di hello toobe creato. Quando si specifica il nome di server hello in una connessione, lo schema di denominazione di hello server è:
+Quando si crea un server di Analysis Services in Azure, si specifica un nome univoco e l'area in cui il server deve essere creato. Quando si specifica il nome del server in una connessione, lo schema di denominazione del server è il seguente:
 
 ```
 <protocol>://<region>/<servername>
 ```
- In protocollo è stringa **asazure**, area è hello Uri in cui è stato creato il server di hello (ad esempio, westus.asazure.windows.net) e nome hello del server univoco all'interno di area hello servername.
+ Dove protocol è la stringa **asazure**, region è l'Uri in cui è stato creato il server, ad esempio westus.asazure.windows.net, e servername è il nome del server univoco all'interno dell'area.
 
-### <a name="get-hello-server-name"></a>Ottenere il nome del server hello
-In **portale di Azure** > server > **Panoramica** > **nome Server**, nome del server intera hello copia. Se altri utenti nell'organizzazione si connette troppo toothis server, è possibile condividere il nome del server con essi. Quando si specifica un nome di server, è necessario utilizzare intero percorso hello.
+### <a name="get-the-server-name"></a>Ottenere il nome del server
+Nel **portale di Azure** > server > **Panoramica** > **Nome server** copiare l'intero nome del server. Se anche altri utenti nell'organizzazione si connettono a questo server, è opportuno condividere il nome del server. Quando si specifica un nome di server, è necessario usare l'intero percorso.
 
 ![Ottenere il nome del server in Azure](./media/analysis-services-deploy/aas-deploy-get-server-name.png)
 
 
 ## <a name="connection-string"></a>Stringa di connessione
 
-Quando ci si connette tooAzure Analysis Services utilizzando hello modello a oggetti tabulare hello utilizzare formati di stringa di connessione seguente:
+Quando ci si connette a Azure Analysis Services usando il modello a oggetti tabulare, usare i formati seguenti per la stringa di connessione:
 
 ###### <a name="integrated-azure-active-directory-authentication"></a>Autenticazione integrata di Azure Active Directory
-L'autenticazione integrata di preleva hello nella cache delle credenziali di Azure Active Directory, se disponibile. In caso contrario, finestra di accesso di Azure hello viene visualizzato.
+L'autenticazione integrata seleziona la cache delle credenziali di Azure Active Directory, se disponibile. In caso contrario, viene visualizzata la finestra di accesso di Azure.
 
 ```
 "Provider=MSOLAP;Data Source=<Azure AS instance name>;"
@@ -64,7 +64,7 @@ L'autenticazione integrata di preleva hello nella cache delle credenziali di Azu
 ```
 
 ###### <a name="windows-authentication-integrated-security"></a>Autenticazione di Windows (sicurezza integrata)
-Utilizzare account di Windows hello in esecuzione il processo corrente di hello.
+Usare l'account di Windows su cui è in esecuzione il processo corrente.
 
 ```
 "Provider=MSOLAP;Data Source=<Azure AS instance name>; Integrated Security=SSPI;Persist Security Info=True;"
@@ -73,7 +73,7 @@ Utilizzare account di Windows hello in esecuzione il processo corrente di hello.
 
 
 ## <a name="connect-using-an-odc-file"></a>Connettersi usando un file con estensione odc
-Con le versioni precedenti di Excel, gli utenti possono connettersi ai server di Azure Analysis Services tooan utilizzando un file Office Data Connection (odc). vedere, più toolearn [creare un file Office Data Connection (odc)](analysis-services-odc.md).
+Con le versioni precedenti di Excel, gli utenti possono connettersi a un server di Azure Analysis Services usando un file Office Data Connection, con estensione odc. Per altre informazioni, vedere [Creare un file Office Data Connection (con estensione odc)](analysis-services-odc.md).
 
 
 ## <a name="next-steps"></a>Passaggi successivi

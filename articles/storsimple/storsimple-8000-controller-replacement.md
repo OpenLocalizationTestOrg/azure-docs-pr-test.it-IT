@@ -1,6 +1,6 @@
 ---
-title: controller del dispositivo aaaReplace un StorSimple 8000 series | Documenti Microsoft
-description: Viene illustrato come tooremove e sostituire uno o entrambi i moduli controller sul dispositivo serie StorSimple 8000.
+title: Sostituire un controller di dispositivo StorSimple serie 8000 | Microsoft Docs
+description: Viene illustrato come rimuovere e sostituire uno o entrambi i moduli controller nel dispositivo StorSimple serie 8000.
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,76 +14,76 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 06/05/2017
 ms.author: alkohli
-ms.openlocfilehash: 76d42529da42dff2a214fb840a52392a7f1a97ee
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 849eccff114c2fd6d952e44d095d0cc89a238675
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="replace-a-controller-module-on-your-storsimple-device"></a>Sostituire un modulo controller nel dispositivo StorSimple
 ## <a name="overview"></a>Panoramica
-In questa esercitazione viene illustrato come tooremove e sostituire uno o entrambi i moduli controller in un dispositivo StorSimple. Viene inoltre hello sottostante la logica per scenari di sostituzione dei controller singolo e doppio hello.
+In questa esercitazione viene illustrato come rimuovere e sostituire uno o entrambi i moduli controller in un dispositivo StorSimple. Viene inoltre illustrata la logica sottostante per gli scenari di sostituzione controller singoli e doppi.
 
 > [!NOTE]
-> Sostituzione di un controller di tooperforming precedente, è consigliabile aggiornare sempre la versione più recente di firmware toohello controller.
+> Prima di eseguire una sostituzione del controller, è consigliabile aggiornare sempre il firmware del controller alla versione più recente.
 > 
-> tooprevent danneggiare il dispositivo di StorSimple tooyour, non rimuovere controller hello fino a quando i LED hello hello seguenti:
+> Per evitare danni al dispositivo StorSimple, non rimuovere il controller fino a quando non vengono visualizzati i LED come in un uno dei seguenti modi:
 > 
 > * Tutte le luci sono impostate su OFF.
 > * LED 3, ![icona segno di spunta verde](./media/storsimple-controller-replacement/HCS_GreenCheckIcon.png) e ![icona segno di spunta rossa](./media/storsimple-controller-replacement/HCS_RedCrossIcon.png) lampeggiano e LED 0 e LED 7 sono **ON**.
 
 
-Hello nella tabella seguente illustra gli scenari di sostituzione controller hello è supportato.
+Nella tabella seguente vengono illustrati gli scenari di sostituzione del controller supportato.
 
 | Caso | Scenario di sostituzione | Procedura applicabile |
 |:--- |:--- |:--- |
-| 1 |Un controller è in uno stato di errore, hello altro controller è integro e operativo. |[Singola sostituzione dei controller](#replace-a-single-controller), che descrive hello [logica alla base di sostituzione di un singolo controller](#single-controller-replacement-logic), nonché hello [procedura per la sostituzione](#single-controller-replacement-steps). |
-| 2 |Entrambi i controller hello non riuscite e devono essere sostituiti. chassis Hello, dischi ed enclosure per dischi sono integri. |[Sostituzione di entrambi i controller](#replace-both-controllers), che descrive hello [logica alla base di una sostituzione di entrambi i controller](#dual-controller-replacement-logic), nonché hello [procedura per la sostituzione](#dual-controller-replacement-steps). |
-| 3 |Controller da hello stesso dispositivo o da diversi dispositivi vengono scambiati. chassis Hello, dischi ed enclosure per dischi sono integri. |Verrà visualizzato un messaggio di avviso di mancata corrispondenza dello slot. |
-| 4 |Un controller è manca e hello ha esito negativo altri controller. |[Sostituzione di entrambi i controller](#replace-both-controllers), che descrive hello [logica alla base di una sostituzione di entrambi i controller](#dual-controller-replacement-logic), nonché hello [procedura per la sostituzione](#dual-controller-replacement-steps). |
-| 5 |Uno o entrambi i controller hanno avuto esito negativo. Dispositivo hello è possibile accedere tramite la console seriale hello o la comunicazione remota di Windows PowerShell. |[Contattare il supporto tecnico Microsoft](storsimple-8000-contact-microsoft-support.md) per una procedura di sostituzione manuale. |
-| 6 |controller Hello dispone di una versione di build diverso, che potrebbe essere dovuto a:<ul><li>I controller hanno una versione diversa del software.</li><li>I controller hanno una versione diversa del firmware.</li></ul> |Se le versioni di software di hello controller sono diverse, la logica di sostituzione hello rileva che e aggiornamenti hello versione del software sul controller sostitutivo hello.<br><br>Se sono diverse versioni del firmware dei controller hello e versione vecchia hello è **non** aggiornabile automaticamente, verrà visualizzato un messaggio di avviso in hello portale di Azure. Si deve cercare gli aggiornamenti e installare gli aggiornamenti del firmware hello.</br></br>Se sono diverse versioni del firmware dei controller hello e hello versione vecchia è aggiornabile automaticamente, logica di sostituzione controller hello rileverà la situazione e dopo l'avvio del controller hello, firmware hello verrà aggiornato automaticamente. |
+| 1 |Un controller è in stato di errore, l’altro controller è integro e attivo. |[Sostituzione di un singolo controller](#replace-a-single-controller), che descrive la [logica alla base della sostituzione di un singolo controller](#single-controller-replacement-logic), nonché la [procedura per la sostituzione](#single-controller-replacement-steps). |
+| 2 |Entrambi i controller hanno avuto esito negativo e richiedono la sostituzione. Lo chassis, i dischi, e lo chassis del disco sono integri. |[Sostituzione di un controller doppio](#replace-both-controllers), che descrive la [logica alla base della sostituzione di un controller doppio](#dual-controller-replacement-logic), nonché la [procedura per la sostituzione](#dual-controller-replacement-steps). |
+| 3 |I controller dallo stesso dispositivo o da diversi dispositivi vengono invertiti. Lo chassis, i dischi e l’enclosure del disco sono integri. |Verrà visualizzato un messaggio di avviso di mancata corrispondenza dello slot. |
+| 4 |Un controller non è presente e l'altro controller ha avuto esito negativo. |[Sostituzione di un controller doppio](#replace-both-controllers), che descrive la [logica alla base della sostituzione di un controller doppio](#dual-controller-replacement-logic), nonché la [procedura per la sostituzione](#dual-controller-replacement-steps). |
+| 5 |Uno o entrambi i controller hanno avuto esito negativo. Non è possibile accedere al dispositivo tramite la console seriale o Windows PowerShell in remoto. |[Contattare il supporto tecnico Microsoft](storsimple-8000-contact-microsoft-support.md) per una procedura di sostituzione manuale. |
+| 6 |I controller dispongono di una versione di build diverse, e questo potrebbe essere dovuto a:<ul><li>I controller hanno una versione diversa del software.</li><li>I controller hanno una versione diversa del firmware.</li></ul> |Se le versioni del software del controller sono diverse, la logica di sostituzione rileva e aggiorna la versione del software sul controller di sostituzione.<br><br>Se le versioni del firmware del controller sono diverse e la precedente versione del firmware **non** è automaticamente aggiornabile, nel portale di Azure viene visualizzato un messaggio di avviso. È necessario analizzare gli aggiornamenti e installare gli aggiornamenti firmware.</br></br>Se le precedenti versioni del firmware sono diverse e la versione precedente del firmware del controller è aggiornabile automaticamente, la logica di sostituzione del controller lo rileverà e dopo che il controller viene avviato, il firmware viene aggiornato automaticamente. |
 
-È necessario un modulo controller tooremove se non è riuscito. Uno o entrambi i moduli controller hello possono avere esito negativo, che possono portare a una sostituzione di un singolo controller o sostituzione di entrambi i controller. Per procedure sostitutive e logica hello su cui si basano, vedere l'esempio hello:
+È necessario rimuovere un modulo controller se non funziona. Uno o entrambi i moduli controller possono avere esito negativo, ciò potrebbe comportare una sostituzione di un singolo controller o una sostituzione di entrambi i controller. Per le procedure di sostituzione e la logica su cui si basano, vedere gli argomenti seguenti:
 
 * [Sostituire un singolo controller](#replace-a-single-controller)
 * [Sostituire entrambi i controller](#replace-both-controllers)
 * [Rimuovere un controller](#remove-a-controller)
 * [Aggiungere un controller.](#insert-a-controller)
-* [Identificare hello controller attivo sul dispositivo](#identify-the-active-controller-on-your-device)
+* [Identificare il controller attivo sul dispositivo](#identify-the-active-controller-on-your-device)
 
 > [!IMPORTANT]
-> Prima di rimozione e sostituzione di un controller, esaminare le informazioni di sicurezza hello in [sostituzione dei componenti hardware StorSimple](storsimple-8000-hardware-component-replacement.md).
+> Prima di rimuovere e sostituire un controller, esaminare le informazioni di sicurezza descritte in [Sostituzione dei componenti hardware di StorSimple](storsimple-8000-hardware-component-replacement.md).
 > 
 > 
 
 ## <a name="replace-a-single-controller"></a>Sostituire un singolo controller
-Quando uno dei controller hello due dispositivi di Microsoft Azure StorSimple hello non è riuscita, non funziona correttamente o è mancante, è necessario tooreplace un singolo controller.
+Quando uno dei due controller nel dispositivo Microsoft Azure StorSimple non è riuscita, non funziona correttamente o è mancante, è necessario sostituire un unico controller.
 
 ### <a name="single-controller-replacement-logic"></a>Logica di sostituzione del singolo controller
-La sostituzione di un singolo controller, è necessario rimuovere il servizio controller non funzionante hello. (controller rimanente hello dispositivo hello è controller attivo hello). Quando si inserisce controller sostitutivo hello, hello seguenti azioni:
+In una sostituzione di un controller singolo, è necessario rimuovere prima il controller che ha avuto esito negativo. (Il controller rimanente nel dispositivo è il controller attivo). Quando si inserisce il controller di sostituzione, si verificano le azioni seguenti:
 
-1. controller sostitutivo Hello inizia immediatamente a comunicare con il dispositivo di StorSimple hello.
-2. Uno snapshot di hello disco virtuale (VHD) per il controller attivo hello viene copiato nel controller sostitutivo hello.
-3. snapshot Hello viene modificato in modo che quando il controller sostitutivo hello viene avviato da questo disco rigido virtuale, venga riconosciuto come controller in standby.
-4. Una volta completate le modifiche di hello, controller sostitutivo hello verrà avviato come controller in standby hello.
-5. Quando si eseguono entrambi i controller hello, hello cluster passa alla modalità online.
+1. Il controller di sostituzione avvia immediatamente la comunicazione con il dispositivo StorSimple.
+2. Uno snapshot del disco rigido virtuale (VHD) per il controller attivo viene copiato nel controller sostitutivo.
+3. Lo snapshot viene modificato in modo che quando il controller sostitutivo viene avviato dal disco rigido virtuale, verrà riconosciuto come un controller in standby.
+4. Dopo aver completato le modifiche, il controller sostitutivo verrà avviato come controller in standby.
+5. Quando entrambi i controller sono in esecuzione, il cluster è online.
 
 ### <a name="single-controller-replacement-steps"></a>Procedura per la sostituzione di un singolo controller
-Completare hello procedura seguente se uno dei controller hello nel dispositivo StorSimple di Microsoft Azure ha esito negativo. (hello altro controller deve essere attivo e in esecuzione. Se entrambi i controller guasto o di malfunzionamento, andare troppo[procedura di sostituzione di entrambi i controller](#dual-controller-replacement-steps).)
+Completare i passaggi seguenti se uno dei controller del dispositivo Microsoft Azure StorSimple ha esito negativo. (L’altro controller deve essere attivo e in esecuzione. Se entrambi i controller hanno esito negativo o non funzionano, passare alla [Procedura per la sostituzione doppia del controller](#dual-controller-replacement-steps).
 
 > [!NOTE]
-> Può richiedere 30 a 45 minuti per toorestart controller hello e recuperare completamente dalla procedura di sostituzione hello singolo controller. durata totale Hello hello intera procedura, incluso il collegamento hello cavi, è di circa 2 ore.
+> Il riavvio e il ripristino completo del controller dalla procedura di sostituzione può richiedere 30 - 45 minuti. Il tempo totale richiesto per l'intera procedura, incluso il collegamento dei cavi, è di circa 2 ore.
 
 
-#### <a name="tooremove-a-single-failed-controller-module"></a>tooremove un modulo singolo controller non funzionante
-1. In hello Azure toohello portale, visita il servizio di gestione di dispositivi StorSimple, fare clic su **dispositivi**, quindi fare clic su nome hello del dispositivo di hello che si desidera toomonitor.
-2. Andare troppo**monitoraggio > stato di Hardware**. stato Hello del Controller 0 o Controller 1 deve essere rosso, che indica un errore.
+#### <a name="to-remove-a-single-failed-controller-module"></a>Per rimuovere un singolo modulo del controller che ha avuto esito negativo
+1. Nel portale di Azure passare al servizio Gestione dispositivi StorSimple, fare clic sulla scheda **Dispositivi** e quindi sul nome del dispositivo da monitorare.
+2. Passare a **Monitoraggio > Integrità hardware**. Lo stato del Controller 0 o Controller 1 deve essere rosso, ad indicare un errore.
    
    > [!NOTE]
-   > controller non funzionante Hello in sostituzione di un singolo controller è sempre un controller in standby.
+   > Il controller che ha avuto esito negativo in una sostituzione di un singolo controller è sempre un controller in standby.
    
-3. Utilizzare la figura 1 e hello modulo controller non di hello toolocate nella tabella seguente.
+3. Usare la figura 1 e la tabella seguente per individuare il modulo del controller che ha avuto esito negativo.
    
     ![Backplane dei moduli dello chassis principale del dispositivo](./media/storsimple-controller-replacement/IC740994.png)
    
@@ -95,136 +95,136 @@ Completare hello procedura seguente se uno dei controller hello nel dispositivo 
    | 2 |PCM 1 |
    | 3 |Controller 0 |
    | 4 |Controller 1 |
-4. In hello controller non funzionante, rimuovere tutti i cavi di rete connessa hello di hello porte dati. Se si utilizza un modello 8600, rimuovere anche i cavi SAS che si connettono i controller EBOD toohello controller hello hello.
-5. Seguire i passaggi di hello in [rimuovere un controller](#remove-a-controller) tooremove hello Impossibile controller.
-6. Sostituzione di factory installazione hello in hello stesso slot da cui controller non funzionante hello è stato rimosso. In questo modo viene attivata la logica di sostituzione di hello singolo controller. Per altre informazioni, vedere [Logica di sostituzione di un singolo controller](#single-controller-replacement-logic).
-7. Mentre la logica di sostituzione di hello singolo controller viene eseguita in background hello, ricollegare i cavi di hello. Richiedere l'attenzione tooconnect che tutti i cavi hello hello esattamente allo stesso modo con cui erano collegati prima della sostituzione hello.
-8. Una volta riavviato il controller di hello, controllare hello **lo stato del Controller** hello e **lo stato del Cluster** in hello Azure tooverify portale che hello controller tooa indietro lo stato è integro e in modalità standby.
+4. Nel controller che ha avuto esito negativo, rimuovere tutti i cavi di rete connessi dalle porte dati. Se si utilizza un modello 8600, rimuovere anche i cavi SAS che connettono il controller al controller EBOD.
+5. Seguire la procedura [Rimuovere un controller](#remove-a-controller) per rimuovere il controller che ha avuto esito negativo.
+6. Installare la sostituzione della factory nello stesso slot da cui è stato rimosso il controller che ha avuto esito negativo. In questo modo viene attivata la logica di sostituzione di un singolo controller. Per altre informazioni, vedere [Logica di sostituzione di un singolo controller](#single-controller-replacement-logic).
+7. Mentre la logica di sostituzione del singolo controller viene eseguita in background, riconnettere i cavi. Prestare attenzione a collegare tutti i cavi esattamente allo stesso modo i cui erano connessi prima della sostituzione.
+8. Dopo aver riavviato il controller, controllare lo **stato del controller** e lo **stato del cluster** nel Portale di Azure per verificare che il controller sia tornato a uno stato integro e si trovi in modalità standby.
 
 > [!NOTE]
-> Se si sta monitorando dispositivo hello tramite la console seriale hello, si verifichino più riavvii durante il ripristino dalla procedura di sostituzione hello hello. Quando viene presentato menu della console seriale hello, si saprà che hello di sostituzione è completata. Se il menu di hello non viene visualizzato entro 2 ore dall'inizio hello sostituzione dei controller, [contattare il supporto Microsoft](storsimple-8000-contact-microsoft-support.md).
+> Se si sta monitorando il dispositivo tramite la console seriale, è possibile riscontrare più riavvii mentre il controller effettua il ripristino dalla procedura di sostituzione. Quando viene visualizzato il menu della console seriale, si saprà che la sostituzione è completata. Se il menu non viene visualizzato entro due ore dall’inizio della sostituzione del controller, [contattare il supporto Microsoft](storsimple-8000-contact-microsoft-support.md).
 >
-> A partire da Update 4, è inoltre possibile utilizzare i cmdlet di hello `Get-HCSControllerReplacementStatus` nell'interfaccia di Windows PowerShell hello hello toomonitor hello dello stato dei dispositivi del processo di sostituzione del controller hello.
+> A partire dall'aggiornamento 4, è inoltre possibile usare il cmdlet `Get-HCSControllerReplacementStatus` nell'interfaccia di Windows PowerShell del dispositivo per monitorare lo stato del processo di sostituzione dei controller.
 > 
 
 ## <a name="replace-both-controllers"></a>Sostituire entrambi i controller
-Quando entrambi i controller sul dispositivo Microsoft Azure StorSimple hello non sono riuscita, malfunzionamento o sono mancanti, è necessario tooreplace entrambi i controller. 
+Quando entrambi i controller del dispositivo Microsoft Azure StorSimple hanno avuto esito negativo, non funzionano o mancano, è necessario sostituire entrambi i controller. 
 
 ### <a name="dual-controller-replacement-logic"></a>Logica di sostituzione doppia del controller
-In una doppia sostituzione di controller, rimuovere prima entrambi i controller che hanno avuto esito negativo e quindi inserire le sostituzioni. Quando vengono inseriti due controller di sostituzione hello, hello seguenti azioni:
+In una doppia sostituzione di controller, rimuovere prima entrambi i controller che hanno avuto esito negativo e quindi inserire le sostituzioni. Quando vengono inseriti i due controller sostitutivi, si verificano le azioni seguenti:
 
-1. il controller sostitutivo Hello nell'alloggiamento 0 controlla seguente hello:
+1. Il controller sostitutivo nello slot 0 verifica quanto segue:
    
-   1. Sta utilizzando le versioni correnti di software e firmware hello?
-   2. Si tratta di una parte del cluster hello?
-   3. Controller peer hello in esecuzione ed è in cluster?
+   1. Si stanno utilizzando le versioni correnti del firmware e software?
+   2. Si tratta di una parte del cluster?
+   3. Il controller peer è in esecuzione ed è in funzione cluster?
       
-      Se nessuna di queste condizioni sono vere, controller hello ricerca per il backup giornaliero più recente di hello (si trova in hello **nonDOMstorage** sull'unità S). Hello controller copie hello allo snapshot più recente di hello disco rigido virtuale da un backup hello.
-2. controller Hello nello slot 0 usa hello snapshot tooimage stesso.
-3. Nel frattempo, controller hello nello slot 1 rimane in attesa per la creazione dell'immagine di controller 0 toocomplete hello e avvio.
-4. Dopo l'avvio del controller 0, il controller 1 rileva cluster hello creato dal controller 0, che attiva la logica di sostituzione di hello singolo controller. Per altre informazioni, vedere [Logica di sostituzione di un singolo controller](#single-controller-replacement-logic).
-5. Successivamente, verranno eseguito entrambi i controller e hello cluster passerà online.
+      Se nessuna di queste condizioni sono true, il controller cerca il backup giornaliero più recente (all'interno di **nonDOMstorage** sull'unità S). Il controller copia lo snapshot più recente del file VHD dal backup.
+2. Il controller nello slot 0 utilizza lo snapshot per la sua stessa immagine.
+3. Nel frattempo, il controller nello slot 1 attende che il controller 0 completi la creazione dell'immagine e si avvii.
+4. Dopo l'avvio del controller 0, il controller 1 rileva il cluster creato dal controller 0, che attiva la logica di sostituzione del singolo controller. Per altre informazioni, vedere [Logica di sostituzione di un singolo controller](#single-controller-replacement-logic).
+5. Successivamente, verranno eseguiti entrambi i controller e il cluster verrà portato online.
 
 > [!IMPORTANT]
-> In seguito alla sostituzione di due controller, dopo aver configurato il dispositivo di StorSimple hello, è essenziale eseguire manuale di un backup del dispositivo hello. I backup giornalieri di configurazione dispositivo non vengono attivati fino a che non sono trascorse 24 ore. Lavorare con [supporto Microsoft](storsimple-8000-contact-microsoft-support.md) toomake un backup manuale del dispositivo.
+> Dopo la sostituzione doppia dei controller, dopo aver configurato il dispositivo StorSimple, è essenziale eseguire un backup manuale del dispositivo. I backup giornalieri di configurazione dispositivo non vengono attivati fino a che non sono trascorse 24 ore. Lavorare con [il supporto tecnico Microsoft](storsimple-8000-contact-microsoft-support.md) per eseguire un backup manuale del dispositivo.
 
 
 ### <a name="dual-controller-replacement-steps"></a>Procedura per la sostituzione doppia del controller
-Questo flusso di lavoro è obbligatorio quando entrambi i controller di hello nel dispositivo StorSimple di Microsoft Azure non è riuscita. Questo problema può verificarsi in un Data Center nel quale sistema di raffreddamento hello smette di funzionare e di conseguenza, non di entrambi i controller hello entro un breve periodo di tempo. A seconda se il dispositivo di StorSimple hello è attivato o disattivato, se si utilizza un 8600 o un modello 8100, un set diverso di passaggi è obbligatorio.
+Questo flusso di lavoro è necessario quando entrambi i controller del dispositivo Microsoft Azure StorSimple hanno avuto esito negativo. Questo problema può verificarsi in un Data Center in cui il sistema di raffreddamento smette di funzionare e di conseguenza, entrambi i controller non riescono in un breve periodo di tempo. A seconda se il dispositivo StorSimple è attivato o disattivato e se si utilizza un modello 8600 o un modello 8100, è necessaria una serie diversa di passaggi.
 
 > [!IMPORTANT]
-> Può richiedere 45 minuti too1 ora toorestart controller hello e recuperare completamente da una routine di sostituzione di entrambi i controller. durata totale Hello hello intera procedura, incluso il collegamento hello cavi, è di circa 2,5 ore.
+> Il riavvio e il ripristino completo del controller dalla procedura di sostituzione può richiedere da 45 minuti fino a 1 ora. Il tempo totale richiesto per l'intera procedura, incluso il collegamento dei cavi, è di circa 2.5 ore.
 
-#### <a name="tooreplace-both-controller-modules"></a>tooreplace entrambi i moduli controller
-1. Se il dispositivo hello è disattivato, ignorare questo passaggio e continuare toohello successivo. Se il dispositivo hello è attivato, disattivare dispositivo hello.
+#### <a name="to-replace-both-controller-modules"></a>Per sostituire entrambi i moduli del controller
+1. Se il dispositivo è disattivato, ignorare questo passaggio e passare al passaggio successivo. Se il dispositivo è acceso, disattivare il dispositivo.
    
-   1. Se si utilizza un modello 8600, disattivare enclosure principale hello e quindi disattivare hello enclosure EBOD.
-   2. Attendere che il dispositivo hello arresto completo. Tutti i LED di hello in hello parte posteriore dispositivo hello è disattivata.
-2. Rimuovere tutti i cavi di rete hello sono porte dati toohello connesso. Se si utilizza un modello 8600, rimuovere anche i cavi SAS che connettono l'enclosure EBOD di hello enclosure principale toohello hello.
-3. Rimuovere entrambi i controller dal dispositivo StorSimple hello. Per altre informazioni, vedere [Rimuovere un controller](#remove-a-controller).
-4. Inserire prima sostituzione factory hello per Controller 0 e quindi inserire Controller 1. Per altre informazioni, vedere [Inserire un controller](#insert-a-controller). In questo modo viene attivata la logica di sostituzione di hello entrambi i controller. Per altre informazioni, vedere [Logica di sostituzione doppia del controller](#dual-controller-replacement-logic).
-5. Mentre la logica di sostituzione di hello controller viene eseguita in background hello, ricollegare i cavi di hello. Richiedere l'attenzione tooconnect che tutti i cavi hello hello esattamente allo stesso modo con cui erano collegati prima della sostituzione hello. Vedere hello indicazioni dettagliate per il modello in hello cavo sezione dispositivo di [installare il dispositivo StorSimple 8100](storsimple-8100-hardware-installation.md) o [installare del dispositivo 8600 StorSimple](storsimple-8600-hardware-installation.md).
-6. Accendere il dispositivo di StorSimple hello. Se si usa un modello 8600:
+   1. Se si utilizza un modello 8600, disattivare prima l'enclosure principale e poi disattivare l'enclosure EBOD.
+   2. Attendere che la periferica sia chiusa completamente. Tutti i LED nella parte posteriore del dispositivo saranno spenti.
+2. Rimuovere tutti i cavi di rete connessi alle porte dati. Se si utilizza un modello 8600, rimuovere anche i cavi SAS che collegano l'enclosure principale all'enclosure EBOD.
+3. Rimuovere entrambi i controller dal dispositivo StorSimple. Per altre informazioni, vedere [Rimuovere un controller](#remove-a-controller).
+4. Inserire la sostituzione della factory prima per il Controller 0 e quindi inserire il Controller 1. Per altre informazioni, vedere [Inserire un controller](#insert-a-controller). In questo modo viene attivata la logica di sostituzione doppia del controller. Per altre informazioni, vedere [Logica di sostituzione doppia del controller](#dual-controller-replacement-logic).
+5. Mentre la logica di sostituzione del controller viene eseguita in background, riconnettere i cavi. Prestare attenzione a collegare tutti i cavi esattamente allo stesso modo i cui erano connessi prima della sostituzione. Vedere le istruzioni dettagliate per il modello in uso nella sezione Cablare il dispositivo di [Installare il dispositivo StorSimple 8100](storsimple-8100-hardware-installation.md) o [Installare il dispositivo StorSimple 8600](storsimple-8600-hardware-installation.md).
+6. Accendere il dispositivo StorSimple. Se si usa un modello 8600:
    
-   1. Verificare che tale hello enclosure EBOD è accesa per prima.
-   2. Attendere fino a quando non è in esecuzione hello enclosure EBOD.
-   3. Accendere l'enclosure principale hello.
-   4. Dopo il primo controller di hello riavviato e in uno stato integro, verrà eseguito il sistema hello.
+   1. Assicurarsi che l’enclosure EBOD sia accesa per prima.
+   2. Attendere che l’enclosure EBOD sia in esecuzione.
+   3. Accendere l'enclosure principale.
+   4. Dopo che il primo controller viene riavviato e si trova in uno stato integro, il sistema sarà in esecuzione.
       
       > [!NOTE]
-      > Se si sta monitorando dispositivo hello tramite la console seriale hello, si verifichino più riavvii durante il ripristino dalla procedura di sostituzione hello hello. Quando viene visualizzato il menu di console seriale hello, si saprà che hello di sostituzione è completata. Se il menu di hello non viene visualizzato entro 2 ore e mezzo dall'inizio hello sostituzione dei controller, [contattare il supporto Microsoft](storsimple-8000-contact-microsoft-support.md).
+      > Se si sta monitorando il dispositivo tramite la console seriale, è possibile riscontrare più riavvii mentre il controller effettua il ripristino dalla procedura di sostituzione. Quando viene visualizzato il menu della console seriale, si sa che la sostituzione è completata. Se il menu non viene visualizzato entro 2.5 ore dall’inizio della sostituzione del controller, [contattare il supporto Microsoft](storsimple-8000-contact-microsoft-support.md).
      
 ## <a name="remove-a-controller"></a>Rimuovere un controller
-Utilizzare hello seguendo procedure tooremove un modulo controller danneggiato dal dispositivo StorSimple.
+Utilizzare la procedura seguente per rimuovere un modulo controller danneggiato dal dispositivo StorSimple.
 
 > [!NOTE]
-> Hello illustrazioni seguenti è per il controller 0. Per il controller 1, questi potrebbe essere annullati.
+> Le illustrazioni seguenti riguardano il controller 0. Per il controller 1, questi potrebbe essere annullati.
 
 
-#### <a name="tooremove-a-controller-module"></a>tooremove un modulo controller
-1. Afferrare hello linguetta del modulo tra il pollice e l'indice.
-2. Stringere delicatamente il pollice e l'indice toorelease insieme hello latch del controller.
+#### <a name="to-remove-a-controller-module"></a>Per rimuovere un modulo controller
+1. Afferrare la linguetta del modulo tra il pollice e l'indice.
+2. Stringere delicatamente il pollice e l'indice per rilasciare la linguetta del controller.
    
     ![Rilascio della linguetta](./media/storsimple-controller-replacement/IC741047.png)
    
     **Figura 2** Rilascio della linguetta
-3. Utilizzare latch hello come controller di hello handle tooslide esterno dello chassis hello.
+3. Utilizzare la linguetta come appiglio per estrarre il controller dallo chassis.
    
     ![Scorrimento del Controller all'esterno dello Chassis](./media/storsimple-controller-replacement/IC741048.png)
    
-    **Figura 3** controller hello estendibile esterno dello chassis hello
+    **Figura 3** Estrazione del controller dallo chassis
 
 ## <a name="insert-a-controller"></a>Aggiungere un controller.
-Utilizzare hello seguendo procedure tooinstall un modulo controller fornito dal produttore dopo la rimozione di un modulo non funzionante dal dispositivo StorSimple.
+Utilizzare la procedura seguente per installare un modulo controller factory fornito dopo la rimozione di un modulo difettoso dal dispositivo StorSimple.
 
-#### <a name="tooinstall-a-controller-module"></a>tooinstall un modulo controller
-1. Controllare la toosee toohello eventuali danni connettori di interfaccia. Se uno qualsiasi dei pin dei connettori hello sono piegato o danneggiato, non installare il modulo di hello.
-2. Diapositiva modulo controller hello nello chassis hello mentre hello fermo completamente aperto.
+#### <a name="to-install-a-controller-module"></a>Per installare un modulo controller
+1. Verificare che non ci siano eventuali danni ai connettori di interfaccia. Non installare il modulo se uno qualsiasi dei perni del connettore è danneggiato oppure si piega.
+2. Far scorrere il modulo controller nello chassis mentre la linguetta viene completamente rilasciata.
    
     ![Scorrimento del Controller all'interno dello Chassis](./media/storsimple-controller-replacement/IC741053.png)
    
-    **Figura 4** inserimento del controller nello chassis hello
-3. Con modulo controller hello inserito, iniziare chiusura del latch hello mentre continua toopush hello nello chassis hello. Hello fermo scatterà, controller hello tooguide nella posizione desiderata.
+    **Figura 4** Inserire il controller nello chassis
+3. Con il modulo controller inserito, inizia a chiudere la linguetta pur continuando a spingere il modulo del controller nello chassis. La linguetta guiderà il controller nella posizione corretta.
    
     ![Chiusura della linguetta del Controller](./media/storsimple-controller-replacement/IC741054.png)
    
-    **Figura 5** chiusura del latch del controller hello
-4. Quando si posiziona il latch hello correttamente completato. Hello **OK** LED dovrebbe ora essere in.
+    **Figura 5** Chiusura della linguetta
+4. Quando la linguetta è posizionata correttamente la procedura è terminata. Il LED **OK** dovrebbe ora essere acceso.
    
    > [!NOTE]
-   > Potrebbe essere necessaria fino too5 minuti per il controller di hello e hello tooactivate LED.
+   > La riattivazione del controller e del LED potrebbe richiedere fino a 5 minuti.
   
-5. tooverify che sostituzione hello ha esito positivo, nel portale di Azure hello passare tooyour dispositivo e quindi passare troppo**monitoraggio** > **lo stato di Hardware**e assicurarsi che entrambi i controller 0 e controller 1 siano integri (lo stato sia verde).
+5. Per verificare che la sostituzione abbia avuto esito positivo, nel Portale di Azure andare su **Monitoraggio** > **Integrità hardware** e assicurarsi che sia il controller 0 che il controller 1 siano integri (lo stato deve essere verde).
 
-## <a name="identify-hello-active-controller-on-your-device"></a>Identificare hello controller attivo sul dispositivo
-Esistono molte situazioni, ad esempio primo dispositivo registrazione o la sostituzione controller, che richiedono il controller attivo di hello toolocate in un dispositivo StorSimple. controller attivo Hello elabora tutti hello operazioni su disco del firmware e rete. È possibile utilizzare uno qualsiasi dei seguenti controller attivo di metodi tooidentify hello hello:
+## <a name="identify-the-active-controller-on-your-device"></a>Identificare il controller attivo sul dispositivo
+Esistono molte situazioni, ad esempio la prima registrazione del dispositivo o sostituzione del controller, che richiedono di  individuare il controller attivo in un dispositivo StorSimple. Il controller attivo elabora tutti le operazioni del firmware del disco e di rete. Per identificare il controller attivo, è possibile utilizzare uno dei metodi seguenti:
 
-* [Utilizzare hello tooidentify portale Azure hello active controller](#use-the-azure-portal-to-identify-the-active-controller)
-* [Utilizzo di Windows PowerShell per il controller attivo hello tooidentify di StorSimple](#use-windows-powershell-for-storsimple-to-identify-the-active-controller)
-* [Controllare i controller attivo hello tooidentify dispositivo fisico hello](#check-the-physical-device-to-identify-the-active-controller)
+* [Usare il portale di Azure per identificare il controller attivo](#use-the-azure-portal-to-identify-the-active-controller)
+* [Utilizzare Windows PowerShell per StorSimple per identificare il controller attivo](#use-windows-powershell-for-storsimple-to-identify-the-active-controller)
+* [Controllare il dispositivo fisico per identificare il controller attivo](#check-the-physical-device-to-identify-the-active-controller)
 
 Ognuna di queste procedure è descritta di seguito.
 
-### <a name="use-hello-azure-portal-tooidentify-hello-active-controller"></a>Utilizzare hello tooidentify portale Azure hello active controller
-Nel portale di Azure hello, passare tooyour dispositivo e quindi troppo**monitoraggio** > **lo stato di Hardware**e scorrere toohello **controller** sezione. Qui è possibile verificare quale controller è attivo.
+### <a name="use-the-azure-portal-to-identify-the-active-controller"></a>Usare il portale di Azure per identificare il controller attivo
+Nel portale di Azure, passare al dispositivo e quindi a **Monitoraggio** > **Integrità hardware**e scorrere fino alla sezione **Controller**. Qui è possibile verificare quale controller è attivo.
 
 ![Identificare il controller attivo nel portale di Azure](./media/storsimple-controller-replacement/IC752072.png)
 
-**Figura 6** controller attivo hello di visualizzazione del portale di Azure
+**Figura 6** Portale di Azure che visualizza il controller attivo
 
-### <a name="use-windows-powershell-for-storsimple-tooidentify-hello-active-controller"></a>Utilizzo di Windows PowerShell per il controller attivo hello tooidentify di StorSimple
-Quando si accede a un dispositivo tramite la console seriale hello, viene visualizzato un messaggio banner. messaggio banner contiene informazioni sul dispositivo, ad esempio modello hello, nome, versione del software installata e stato del controller hello che si accede. Hello seguente immagine mostra un esempio di un messaggio banner:
+### <a name="use-windows-powershell-for-storsimple-to-identify-the-active-controller"></a>Utilizzare Windows PowerShell per StorSimple per identificare il controller attivo
+Quando il dispositivo si accede tramite la console seriale, viene visualizzato un messaggio di intestazione. Il messaggio di intestazione contiene informazioni base sul dispositivo come ad esempio modello, nome, versione del software installato e stato del controller a cui si vuole accede. Nella figura seguente viene illustrato un esempio di messaggio di intestazione:
 
 ![Messaggio di intestazione seriale](./media/storsimple-controller-replacement/IC741098.png)
 
 **Figura 7** Messaggio di intestazione che mostra il controller 0 come attivo
 
-È possibile utilizzare hello intestazione messaggio toodetermine se hello controller si è connessi toois attivo o passivo.
+È possibile utilizzare il messaggio di intestazione per determinare se il controller a cui si è connessi è attivo o passivo.
 
-### <a name="check-hello-physical-device-tooidentify-hello-active-controller"></a>Controllare i controller attivo hello tooidentify dispositivo fisico hello
-controller attivo di hello tooidentify sul dispositivo, individuare il LED di hello blu sopra la porta dati 5 hello in hello parte posteriore dell'enclosure principale hello.
+### <a name="check-the-physical-device-to-identify-the-active-controller"></a>Controllare il dispositivo fisico per identificare il controller attivo
+Per identificare il controller attivo sul dispositivo, individuare il LED blu sopra la porta DATI 5 nella parte posteriore dell’enclosure primario.
 
-Se il LED è lampeggiante, hello controller è attivo e hello altro controller è in modalità standby. Tabella come ausilio utilizzare hello seguente diagramma.
+Se il LED lampeggia, il controller è attivo e l'altro controller è in modalità standby. Come ausilio, utilizzare il diagramma e la tabella seguente.
 
 ![Piano posteriore dell'enclosure principale del dispositivo con porte dati](./media/storsimple-controller-replacement/IC741055.png)
 

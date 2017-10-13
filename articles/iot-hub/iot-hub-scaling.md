@@ -1,6 +1,6 @@
 ---
-title: "scalabilità Hub IoT aaaAzure | Documenti Microsoft"
-description: "Come tooscale il toosupport hub IoT la velocità effettiva dei messaggi previsti. Include un riepilogo delle opzioni per il partizionamento orizzontale e velocità effettiva di hello è supportato per ogni livello."
+title: Ridimensionamento dell'hub IoT di Azure | Microsoft Docs
+description: "Come ridimensionare l'hub IoT per supportare la velocità effettiva dei messaggi prevista. Include un riepilogo della velocità effettiva supportata per ogni livello e le opzioni per il partizionamento orizzontale."
 services: iot-hub
 documentationcenter: 
 author: fsautomata
@@ -15,44 +15,44 @@ ms.workload: na
 ms.date: 08/25/2017
 ms.author: elioda
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 3b8bf6c44631c65b34b69752d9043c21db24bb01
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 2cb263103da05b10c24aab71d81c43eb25987565
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="scale-your-iot-hub-solution"></a>Ridimensionare la soluzione hub IoT
-IoT Hub Azure può supportare i dispositivi connessi contemporaneamente milioni tooa. Per altre informazioni, vedere i [prezzi dell'hub IoT][lnk-pricing]. Ogni unità hub IoT mette a disposizione un certo numero di messaggi giornalieri.
+Hub IoT di Azure può supportare fino a un milione di dispositivi connessi contemporaneamente. Per altre informazioni, vedere i [prezzi dell'hub IoT][lnk-pricing]. Ogni unità hub IoT mette a disposizione un certo numero di messaggi giornalieri.
 
-tooproperly ampliamento della soluzione, considerare l'utilizzo dell'IoT Hub in questione. In particolare, valutare una velocità effettiva di picco hello necessario per hello categorie delle operazioni seguenti:
+Per il ridimensionamento corretto della soluzione, considerare l'uso specifico che viene fatto dell'hub IoT. In particolare, considerare la velocità effettiva di picco richiesta per le categorie di operazioni seguenti:
 
 * Messaggi da dispositivo a cloud
 * Messaggi da cloud a dispositivo
 * Operazioni del registro delle identità
 
-Nelle informazioni di velocità effettiva di addizione toothis, vedere [IoT Hub quote e velocità] [ IoT Hub quotas and throttles] e progettare di conseguenza la soluzione.
+Oltre alle informazioni sulla velocità effettiva, vedere le [quote e limitazioni dell'hub IoT][IoT Hub quotas and throttles] e progettare la propria soluzione di conseguenza.
 
 ## <a name="device-to-cloud-and-cloud-to-device-message-throughput"></a>Velocità effettiva dei messaggi da dispositivo a cloud e da cloud a dispositivo.
-Hello migliore modo toosize una soluzione di IoT Hub è traffico hello tooevaluate singolo per unità.
+Il modo migliore per definire le dimensioni di una soluzione hub IoT consiste nel valutare il traffico per unità.
 
 I messaggi da dispositivo a cloud seguono queste linee guida in caso di velocità effettiva sostenuta
 
 | Livello | Velocità effettiva sostenuta | Frequenza di invio sostenuta |
 | --- | --- | --- |
-| S1 |Backup too1111 KB al minuto per unità<br/>(1,5 GB al giorno per unità) |Una media di 278 messaggi al minuto per unità<br/>(400.000 messaggi al giorno per unità) |
-| S2 |Backup too16 MB al minuto per unità<br/>(22,8 GB al giorno per unità) |Una media di 4.167 messaggi al minuto per unità<br/>(6 milioni di messaggi al giorno per unità) |
-| S3 |Backup too814 MB al minuto per unità<br/>(1144,4 GB al giorno per unità) |Una media di 208,333 messaggi al minuto per unità<br/>(300 milioni di messaggi al giorno per unità) |
+| S1 |Fino a 1.111 KB al minuto per unità<br/>(1,5 GB al giorno per unità) |Una media di 278 messaggi al minuto per unità<br/>(400.000 messaggi al giorno per unità) |
+| S2 |Fino a 16 MB al minuto per unità<br/>(22,8 GB al giorno per unità) |Una media di 4.167 messaggi al minuto per unità<br/>(6 milioni di messaggi al giorno per unità) |
+| S3 |Fino a 814 MB al minuto per unità<br/>(1144,4 GB al giorno per unità) |Una media di 208,333 messaggi al minuto per unità<br/>(300 milioni di messaggi al giorno per unità) |
 
 ## <a name="identity-registry-operation-throughput"></a>Velocità effettiva delle operazioni del registro delle identità
-Le operazioni del Registro di sistema di identità IoT Hub non dovrebbero toobe operazioni di runtime, come se fossero principalmente provisioning toodevice correlati.
+Le operazioni del registro delle identità dell'hub IoT non sono considerate operazioni di runtime perché sono per lo più correlate al provisioning dei dispositivi.
 
 Per i dati specifici sulle prestazioni in modalità burst, vedere le [quote e limitazioni dell'hub IoT][IoT Hub quotas and throttles].
 
 ## <a name="sharding"></a>Partizionamento orizzontale
-Mentre un singolo hub IoT adattabile toomillions dei dispositivi, in alcuni casi la soluzione richiede caratteristiche di prestazioni specifiche che non può garantire un singolo hub IoT. In tal caso, è consigliabile partizionare i dispositivi in più hub IoT. Hub IoT più uniformare i picchi di traffico e ottenere throughput necessario hello o tassi di operazione sono necessari.
+Mentre un hub IoT può essere ridimensionato fino a milioni di dispositivi, a volte la soluzione richiede caratteristiche di prestazioni specifiche che un singolo hub IoT non può garantire. In tal caso, è consigliabile partizionare i dispositivi in più hub IoT. Più hub IoT appianano i picchi di traffico e ottengono il throughput necessario o i tassi di operazione richiesti.
 
 ## <a name="next-steps"></a>Passaggi successivi
-toofurther esplorare le funzionalità di hello di IoT Hub, vedere:
+Per altre informazioni sulle funzionalità dell'hub IoT, vedere:
 
 * [Guida per gli sviluppatori dell'hub IoT][lnk-devguide]
 * [Simulazione di un dispositivo con Azure IoT Edge][lnk-iotedge]

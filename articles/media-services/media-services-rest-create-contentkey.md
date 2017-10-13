@@ -1,6 +1,6 @@
 ---
-title: aaaCreate chiavi simmetriche con REST | Documenti Microsoft
-description: Informazioni su come accedono a tooAssets chiavi simmetriche toocreate che forniscono protezione.
+title: "Creazione di entità ContentKey mediante REST | Microsoft Docs"
+description: Informazioni su come creare chiavi simmetriche che forniscono l'accesso sicuro agli asset.
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: juliako
-ms.openlocfilehash: cb3b74bdb72c43ab5b375c0376b6704f4a93bb8b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: ece09277d26fafb7c0eebf62730031c4dc01bfe0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-content-keys-with-rest"></a>Creazione di entità ContentKey mediante REST
 > [!div class="op_single_selector"]
@@ -27,26 +27,26 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Servizi multimediali consente toocreate nuovo e recapitare gli asset crittografati. Oggetto **ContentKey** fornisce l'accesso sicuro tooyour **Asset**s. 
+Servizi multimediali consente di creare nuovi asset crittografati e distribuirli. Un'entità **ContentKey** consente l'accesso sicuro alle entità **Asset**. 
 
-Quando si crea un nuovo asset (ad esempio, prima di [caricare file](media-services-rest-upload-files.md)), è possibile specificare le opzioni di crittografia seguenti hello: **StorageEncrypted**, **CommonEncryptionProtected**, o **EnvelopeEncryptionProtected**. 
+Quando si crea un nuovo asset, ad esempio prima di [caricare file](media-services-rest-upload-files.md), è possibile specificare le seguenti opzioni di crittografia: **StorageEncrypted**, **CommonEncryptionProtected** o **EnvelopeEncryptionProtected**. 
 
-Quando si consegna asset tooyour client, è possibile [configurare per toobe asset crittografati in modo dinamico](media-services-rest-configure-asset-delivery-policy.md) con uno dei seguenti due crittografie hello: **DynamicEnvelopeEncryption** o  **DynamicCommonEncryption**.
+Quando si distribuiscono asset ai client, è possibile [configurarli per la crittografia dinamica](media-services-rest-configure-asset-delivery-policy.md) con una delle due seguenti opzioni: **DynamicEnvelopeEncryption** o **DynamicCommonEncryption**.
 
-Gli asset crittografati sono associati toobe **ContentKey**s. Questo articolo viene descritto come toocreate una chiave simmetrica.
+Gli asset crittografati devono essere associati alle entità **ContentKey**. Questo articolo descrive come creare una chiave simmetrica.
 
-Hello seguenti sono passaggi generali per la generazione di chiavi simmetriche che si assoceranno le risorse che si desidera toobe crittografati. 
+Di seguito sono descritti i passaggi generali per la generazione di chiavi simmetriche da associare agli asset che si desidera crittografare. 
 
 1. Generare in modo casuale una chiave AES a 16 byte (per la crittografia common e envelope) o a 32 byte (per la crittografia di archiviazione). 
    
-    Questo sarà una chiave simmetrica di hello dell'asset, ovvero tutti i file associati con asset sarà necessario toouse hello stessa chiave simmetrica durante la decrittografia. 
-2. Chiamare hello [GetProtectionKeyId](https://docs.microsoft.com/rest/api/media/operations/rest-api-functions#getprotectionkeyid) e [GetProtectionKey](https://msdn.microsoft.com/library/azure/jj683097.aspx#getprotectionkey) tooget metodi hello corretto certificato x. 509 che deve essere utilizzato tooencrypt la chiave simmetrica.
-3. Crittografare la chiave simmetrica con la chiave pubblica hello di hello certificato x. 509. 
+    Questa sarà la chiave simmetrica dell'asset. Ciò significa che tutti i file associati all'asset dovranno usare la stessa chiave simmetrica durante la decrittografia. 
+2. Chiamare i metodi [GetProtectionKeyId](https://docs.microsoft.com/rest/api/media/operations/rest-api-functions#getprotectionkeyid) e [GetProtectionKey](https://msdn.microsoft.com/library/azure/jj683097.aspx#getprotectionkey) per ottenere il certificato X.509 corretto da usare per crittografare la chiave simmetrica.
+3. Crittografare la chiave simmetrica con la chiave pubblica del certificato X.509. 
    
-   Quando si esegue la crittografia di hello, Media Services .NET SDK Usa RSA con OAEP.  È possibile vedere un esempio in hello [EncryptSymmetricKeyData funzione](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.FileEncryption/EncryptionUtils.cs).
-4. Creare un valore di checksum (basato su hello algoritmo di checksum chiave AES PlayReady) calcolato usando l'identificatore di chiave hello e chiave simmetrica. Per ulteriori informazioni, vedere la sezione "Algoritmo di Checksum chiave AES PlayReady" del documento oggetto intestazione PlayReady hello hello trova [qui](http://www.microsoft.com/playready/documents/).
+   L'SDK di Servizi multimediali per .NET usa RSA con OAEP durante l'esecuzione della crittografia.  È disponibile un esempio nella funzione [EncryptSymmetricKeyData](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.FileEncryption/EncryptionUtils.cs).
+4. Creare un valore di checksum (basato sull'algoritmo checksum della chiave AES PlayReady) calcolato usando l'identificatore chiave e la chiave simmetrica. Per altre informazioni, vedere la sezione sull'algoritmo checksum della chiave AES PlayReady nel documento relativo all'oggetto intestazione di PlayReady disponibile [qui](http://www.microsoft.com/playready/documents/).
    
-   Hello seguito è riportato un esempio di .NET che consente di calcolare il checksum hello usando hello GUID parte dell'identificatore di chiave hello e hello deselezionare la chiave simmetrica.
+   Il seguente esempio .NET calcola il checksum usando la parte GUID dell'identificatore chiave e la chiave simmetrica non crittografata.
 
          public static string CalculateChecksum(byte[] contentKey, Guid keyId)
          {
@@ -65,24 +65,24 @@ Hello seguenti sono passaggi generali per la generazione di chiavi simmetriche c
             Array.Copy(array, array2, 8);
             return Convert.ToBase64String(array2);
          }
-5. Creare la chiave simmetrica hello con hello **proprietà EncryptedContentKey** (convertito stringa codificata in formato toobase64), **ProtectionKeyId**, **ProtectionKeyType**,  **ContentKeyType**, e **Checksum** valori ricevuti nei passaggi precedenti.
-6. Associare hello **ContentKey** entità con la **Asset** entità tramite l'operazione di hello $links.
+5. Creare la chiave simmetrica con i valori **EncryptedContentKey** (convertito in stringa con codifica Base64), **ProtectionKeyId**, **ProtectionKeyType**, **ContentKeyType** e **Checksum** ricevuti nei passaggi precedenti.
+6. Associare l'entità **ContentKey** all'entità **Asset** tramite l'operazione $links.
 
-Si noti che in questo argomento Mostra come toogenerate una chiave AES, crittografare la chiave hello e calcolo del checksum hello. 
+Si noti che questo argomento non illustra come generare una chiave AES, eseguire la crittografia e calcolare il checksum. 
 
 >[!NOTE]
 
 >Quando si accede alle entità in Servizi multimediali, è necessario impostare valori e campi di intestazione specifici nelle richieste HTTP. Per altre informazioni, vedere [Panoramica dell'API REST di Servizi multimediali](media-services-rest-how-to-use.md).
 
-## <a name="connect-toomedia-services"></a>Connessione dei servizi tooMedia
+## <a name="connect-to-media-services"></a>Connettersi a Servizi multimediali
 
-Per informazioni su come tooconnect toohello AMS API, vedere [hello accesso API di servizi multimediali di Azure con autenticazione di Azure AD](media-services-use-aad-auth-to-access-ams-api.md). 
+Per informazioni su come connettersi all'API AMS, vedere [Accedere all'API di Servizi multimediali di Azure con l'autenticazione di Azure AD](media-services-use-aad-auth-to-access-ams-api.md). 
 
 >[!NOTE]
->Dopo avere stabilito la connessione toohttps://media.windows.net, si riceverà un reindirizzamento 301 specificando un altro URI di servizi multimediali. È necessario effettuare le chiamate successive toohello nuovo URI.
+>Dopo avere stabilito la connessione a https://media.windows.net, si riceverà un reindirizzamento 301 che indica un altro URI di Servizi multimediali. Le chiamate successive dovranno essere effettuate al nuovo URI.
 
-## <a name="retrieve-hello-protectionkeyid"></a>Recuperare ProtectionKeyId hello
-Hello di esempio seguente viene illustrato come tooretrieve hello ProtectionKeyId, un'identificazione personale del certificato, per il certificato di hello è necessario utilizzare per crittografare la chiave simmetrica. Eseguire questo passaggio toomake di avere già certificato appropriato hello nel computer.
+## <a name="retrieve-the-protectionkeyid"></a>Recuperare l'entità ProtectionKeyId
+Il seguente esempio mostra come recuperare l'entità ProtectionKeyId, un'identificazione personale del certificato da usare per la crittografia della chiave simmetrica. Eseguire questo passaggio per assicurarsi di avere già il certificato appropriato nel computer.
 
 Richiesta:
 
@@ -113,8 +113,8 @@ Risposta:
 
     {"odata.metadata":"https://wamsbayclus001rest-hs.cloudapp.net/api/$metadata#Edm.String","value":"7D9BB04D9D0A4A24800CADBFEF232689E048F69C"}
 
-## <a name="retrieve-hello-protectionkey-for-hello-protectionkeyid"></a>Recuperare ProtectionKey di hello per hello ProtectionKeyId
-Hello esempio seguente viene illustrato come tooretrieve hello x. 509 usando ProtectionKeyId hello ottenuto nel passaggio precedente hello.
+## <a name="retrieve-the-protectionkey-for-the-protectionkeyid"></a>Recuperare l'entità ProtectionKey per ProtectionKeyId
+Il seguente esempio mostra come recuperare il certificato X.509 usando l'entità ProtectionKeyId ricevuta nel passaggio precedente.
 
 Richiesta:
 
@@ -149,17 +149,17 @@ Risposta:
     {"odata.metadata":"https://wamsbayclus001rest-hs.cloudapp.net/api/$metadata#Edm.String",
     "value":"MIIDSTCCAjGgAwIBAgIQqf92wku/HLJGCbMAU8GEnDANBgkqhkiG9w0BAQQFADAuMSwwKgYDVQQDEyN3YW1zYmx1cmVnMDAxZW5jcnlwdGFsbHNlY3JldHMtY2VydDAeFw0xMjA1MjkwNzAwMDBaFw0zMjA1MjkwNzAwMDBaMC4xLDAqBgNVBAMTI3dhbXNibHVyZWcwMDFlbmNyeXB0YWxsc2VjcmV0cy1jZXJ0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzR0SEbXefvUjb9wCUfkEiKtGQ5Gc328qFPrhMjSo+YHe0AVviZ9YaxPPb0m1AaaRV4dqWpST2+JtDhLOmGpWmmA60tbATJDdmRzKi2eYAyhhE76MgJgL3myCQLP42jDusWXWSMabui3/tMDQs+zfi1sJ4Ch/lm5EvksYsu6o8sCv29VRwxfDLJPBy2NlbV4GbWz5Qxp2tAmHoROnfaRhwp6WIbquk69tEtu2U50CpPN2goLAqx2PpXAqA+prxCZYGTHqfmFJEKtZHhizVBTFPGS3ncfnQC9QIEwFbPw6E5PO5yNaB68radWsp5uvDg33G1i8IT39GstMW6zaaG7cNQIDAQABo2MwYTBfBgNVHQEEWDBWgBCOGT2hPhsvQioZimw8M+jOoTAwLjEsMCoGA1UEAxMjd2Ftc2JsdXJlZzAwMWVuY3J5cHRhbGxzZWNyZXRzLWNlcnSCEKn/dsJLvxyyRgmzAFPBhJwwDQYJKoZIhvcNAQEEBQADggEBABcrQPma2ekNS3Wc5wGXL/aHyQaQRwFGymnUJ+VR8jVUZaC/U/f6lR98eTlwycjVwRL7D15BfClGEHw66QdHejaViJCjbEIJJ3p2c9fzBKhjLhzB3VVNiLIaH6RSI1bMPd2eddSCqhDIn3VBN605GcYXMzhYp+YA6g9+YMNeS1b+LxX3fqixMQIxSHOLFZ1G/H2xfNawv0VikH3djNui3EKT1w/8aRkUv/AAV0b3rYkP/jA1I0CPn0XFk7STYoiJ3gJoKq9EMXhit+Iwfz0sMkfhWG12/XO+TAWqsK1ZxEjuC9OzrY7pFnNxs4Mu4S8iinehduSpY+9mDd3dHynNwT4="}
 
-## <a name="create-hello-contentkey"></a>Creare hello ContentKey
-Dopo aver recuperato certificato x. 509 hello e utilizzato relativo tooencrypt chiave pubblica della chiave simmetrica, creare un **ContentKey** entità e set di conseguenza i valori delle relative proprietà.
+## <a name="create-the-contentkey"></a>Creare l'entità ContentKey
+Dopo aver recuperato il certificato X.509 e usato la chiave pubblica per crittografare la chiave simmetrica, creare un'entità **ContentKey** e impostare i valori delle proprietà di conseguenza.
 
-Uno dei valori hello che è necessario impostare quando creare hello contenuto chiave è di tipo hello. Scegliere uno dei seguenti valori hello.
+Uno dei valori che è necessario impostare quando si crea la chiave simmetrica è quello relativo al tipo. È possibile scegliere uno dei seguenti valori.
 
     public enum ContentKeyType
     {
         /// <summary>
         /// Specifies a content key for common encryption.
         /// </summary>
-        /// <remarks>This is hello default value.</remarks>
+        /// <remarks>This is the default value.</remarks>
         CommonEncryption = 0,
 
         /// <summary>
@@ -179,7 +179,7 @@ Uno dei valori hello che è necessario impostare quando creare hello contenuto c
     }
 
 
-Hello seguente esempio viene illustrato come toocreate un **ContentKey** con un **ContentKeyType** impostato per la crittografia di archiviazione ("1") e hello **ProtectionKeyType** impostare troppo "0" tooindicate che hello Id chiave di protezione è l'identificazione personale del certificato x. 509 di hello.  
+L'esempio seguente mostra come creare un'entità **ContentKey** con l'entità **ContentKeyType** impostata per la crittografia di archiviazione ("1") e l'entità **ProtectionKeyType** impostata su "0" per indicare che l'ID della chiave di protezione è l'identificazione personale del certificato X.509.  
 
 Richiesta
 
@@ -229,8 +229,8 @@ Risposta:
     "ProtectionKeyType":0,
     "Checksum":"calculated checksum"}
 
-## <a name="associate-hello-contentkey-with-an-asset"></a>Associare hello ContentKey a un Asset
-Dopo la creazione di hello ContentKey, associarlo all'Asset usando l'operazione di hello $links, come illustrato nell'esempio seguente hello:
+## <a name="associate-the-contentkey-with-an-asset"></a>Associare l'entità ContentKey a un asset
+Dopo aver creato l'entità ContentKey, associarla all'asset mediante l'operazione $links, come mostrato nel seguente esempio:
 
 Richiesta:
 

@@ -1,6 +1,6 @@
 ---
-title: aaaProtect un back-end Web API con Azure Active Directory e gestione API | Documenti Microsoft
-description: Informazioni su come tooprotect un back-end Web API con Azure Active Directory e gestione API.
+title: Proteggere il back-end di un'API Web con Azure Active Directory e Gestione API | Documentazione Microsoft
+description: Informazioni su come proteggere il back-end di un'API Web con Azure Active Directory e Gestione API.
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,79 +14,79 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
-ms.openlocfilehash: f4b323034354aa09579c643bade47257fbf1e5c3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 0dfb4102904c2e972e6617fd3851fb1c50147357
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-tooprotect-a-web-api-backend-with-azure-active-directory-and-api-management"></a>Come tooprotect un back-end Web API con Azure Active Directory e gestione API
-Hello seguente video viene illustrato come toobuild un back-end Web API e proteggerla mediante il protocollo OAuth 2.0 con Azure Active Directory e gestione API.  In questo articolo viene fornita una panoramica e informazioni aggiuntive per hello i passaggi nel video hello. Il video della durata di 24 minuti mostra come fare per:
+# <a name="how-to-protect-a-web-api-backend-with-azure-active-directory-and-api-management"></a>Come proteggere il back-end di un'API Web con Azure Active Directory e Gestione API
+Il video che segue illustra come compilare il back-end di un'API Web e proteggerlo usando il protocollo OAuth 2.0 con Azure Active Directory e Gestione API.  Questo articolo fornisce una panoramica e informazioni aggiuntive per le procedure illustrate nel video. Il video della durata di 24 minuti mostra come fare per:
 
 * Compilare il back-end di un'API Web e proteggerlo con AAD - iniziando all’1:30
-* Importare l'API hello in Gestione API, a partire da 7:10
-* Configurare hello Developer toocall portale hello API, a partire da 9:09
-* Configurare un hello toocall applicazione desktop API, a partire da 18:08
-* Configurare un toopre di criteri di convalida JWT-autorizzare richieste - a partire da 20:47
+* Importare l'API in Gestione API - iniziando alle 7:10
+* Configurare il portale per sviluppatori per chiamare l'API - iniziando alle 9:09
+* Configurare un'applicazione desktop per chiamare l'API - iniziando alle 18:08
+* Configurare criteri di convalida JWT per preautorizzare le richieste - iniziando alle 20:47
 
 > [!VIDEO https://channel9.msdn.com/Blogs/AzureApiMgmt/Protecting-Web-API-Backend-with-Azure-Active-Directory-and-API-Management/player]
 > 
 > 
 
 ## <a name="create-an-azure-ad-directory"></a>Creare una directory di Azure AD
-toosecure l'API Web eseguito tramite Azure Active Directory è necessario disporre di un un tenant di AAD. Questo video usa un tenant denominato **APIMDemo** . toocreate un tenant di AAD, accedi toohello [portale di Azure classico](https://manage.windowsazure.com) e fare clic su **New**->**servizi App**->**Active Directory**->**Directory**->**creazione personalizzata**. 
+Per proteggere il back-end dell'API Web con Azure Active Directory, si deve avere prima di tutto un tenant AAD. Questo video usa un tenant denominato **APIMDemo** . Per creare un tenant AAD, accedere al [portale di Azure classico](https://manage.windowsazure.com) e fare clic su **Nuovo**->**Servizi app**->**Active Directory**->**Directory**->**Creazione personalizzata**. 
 
 ![Azure Active Directory][api-management-create-aad-menu]
 
-In questo esempio viene creata una directory denominata **APIMDemo** con un dominio predefinito denominato **DemoAPIM.onmicrosoft.com**. Questa directory viene utilizzata in tutto il video hello.
+In questo esempio viene creata una directory denominata **APIMDemo** con un dominio predefinito denominato **DemoAPIM.onmicrosoft.com**. Questa directory viene usata in tutto il video.
 
 ![Azure Active Directory][api-management-create-aad]
 
 ## <a name="create-a-web-api-service-secured-by-azure-active-directory"></a>Creare un servizio API Web protetto da Azure Active Directory
-In questo passaggio viene creato il back-end di un'API Web con Visual Studio 2013. Questo passaggio di hello video inizia da 1:30. progetto di back-end Web API toocreate in fare clic su Visual Studio **File**->**New**->**progetto**e scegliere **Web ASP.NET Applicazione** da hello **Web** elenco di modelli. In questo video hello progetto viene denominato **APIMAADDemo**. Fare clic su **OK** progetto hello toocreate. 
+In questo passaggio viene creato il back-end di un'API Web con Visual Studio 2013. Questo passaggio del video inizia da 1:30 minuti. Per creare un progetto back-end dell'API Web in Visual Studio, fare clic su **File**->**Nuovo**->**Progetto** e scegliere **Applicazione Web ASP.NET** dall'elenco di modelli **Web**. In questo video il progetto è denominato **APIMAADDemo**. Fare clic su **OK** per creare il progetto. 
 
 ![Visual Studio][api-management-new-web-app]
 
-Fare clic su **API Web** da hello **selezionare un modello di elenco** toocreate un progetto di API Web. Fare clic su autenticazione di Azure Directory tooconfigure **Modifica autenticazione**.
+Fare clic su **API Web** nell'elenco **Selezionare un modello** per creare un progetto API Web. Per configurare l'autenticazione di Azure Active Directory fare clic su **Modifica autenticazione**.
 
 ![Nuovo progetto][api-management-new-project]
 
-Fare clic su **account aziendali**e specificare hello **dominio** del tenant di AAD. In hello in questo esempio è dominio **DemoAPIM.onmicrosoft.com**. dominio hello di directory può essere ottenuto dalla hello **domini** della directory.
+Fare clic su **Account aziendali** e specificare il **Dominio** del tenant AAD. In questo esempio il dominio è **DemoAPIM.onmicrosoft.com**. Il dominio della directory può essere rilevato dalla scheda **Domini** della stessa directory.
 
 ![Domini][api-management-aad-domains]
 
-Configurare le impostazioni di hello desiderato in hello **Modifica autenticazione** la finestra di dialogo e fare clic su **OK**.
+Configurare le impostazioni nella finestra di dialogo **Modifica autenticazione** e fare clic su **OK**.
 
 ![Modifica autenticazione][api-management-change-authentication]
 
-Quando fa clic su **OK** Visual Studio tenterà tooregister l'applicazione con la directory di Azure AD e potrebbe essere richiesta toosign in Visual Studio. Accedere con un account amministrativo per la directory.
+Quando si fa clic su **OK** , Visual Studio prova a registrare l'applicazione con la directory di Azure AD e all'utente potrebbe essere richiesto di accedere da Visual Studio. Accedere con un account amministrativo per la directory.
 
-![Accedi tooVisual Studio][api-management-sign-in-vidual-studio]
+![Accesso a Visual Studio][api-management-sign-in-vidual-studio]
 
-Questo progetto come un hello controllo API Web di Azure di tooconfigure casella per **Host nel cloud hello** e quindi fare clic su **OK**.
+Per configurare questo progetto come un'API Web di Azure, selezionare la casella **Ospita nel cloud**, quindi fare clic su **OK**.
 
 ![Nuovo progetto][api-management-new-project-cloud]
 
-Potrebbe essere richiesta toosign in tooAzure e quindi è possibile configurare hello App Web.
+Potrebbe venire richiesto di accedere ad Azure, dopo di che si potrà configurare l'app Web.
 
 ![Configurare][api-management-configure-web-app]
 
 In questo esempio viene specificato un nuovo **Piano di servizio app** denominato **APIMAADDemo**.
 
-Fare clic su **OK** tooconfigure hello Web App e creare il progetto di hello.
+Fare clic su **OK** per configurare l'app Web e creare il progetto.
 
-## <a name="add-hello-code-toohello-web-api-project"></a>Aggiungere il progetto API Web di hello codice toohello
-passaggio successivo Hello video hello aggiunge il progetto hello codice toohello API Web. Questo passaggio inizia da 4:35 minuti.
+## <a name="add-the-code-to-the-web-api-project"></a>Aggiungere il codice al progetto API Web
+Il passaggio successivo del video aggiunge il codice al progetto API Web API. Questo passaggio inizia da 4:35 minuti.
 
-Hello API Web in questo esempio implementa un servizio di calcolatrice di base usando un modello e un controller. modello di hello tooadd per il servizio di hello, fare doppio clic su **modelli** in **Esplora** e scegliere **Aggiungi**, **classe**. Nome classe hello `CalcInput` e fare clic su **Aggiungi**.
+L'API Web in questo esempio implementa un servizio calcolatrice di base usando un modello e un controller. Per aggiungere il modello al servizio, fare clic con il pulsante destro del mouse su **Modelli** in **Esplora soluzioni** e scegliere **Aggiungi**, **Classe**. Assegnare alla classe il nome `CalcInput` e fare clic su **Aggiungi**.
 
-Aggiungere il seguente hello `using` hello cima toohello istruzione `CalcInput.cs` file.
+Aggiungere l'istruzione `using` seguente all'inizio del file `CalcInput.cs`.
 
 ```c#
 using Newtonsoft.Json;
 ```
 
-Sostituire la classe hello generato con hello seguente codice.
+Sostituire la classe generata con il codice seguente.
 
 ```c#
 public class CalcInput
@@ -99,11 +99,11 @@ public class CalcInput
 }
 ```
 
-Fare clic con il pulsante destro del mouse su **Controller** in **Esplora soluzioni** e scegliere **Aggiungi**->**Controller**. Scegliere **Web API 2 Controller - Empty** e fare clic su **Aggiungi**. Tipo **CalcController** per hello Controller e fare clic su **Aggiungi**.
+Fare clic con il pulsante destro del mouse su **Controller** in **Esplora soluzioni** e scegliere **Aggiungi**->**Controller**. Scegliere **Web API 2 Controller - Empty** e fare clic su **Aggiungi**. Digitare **CalcController** come nome del controller e fare clic su **Aggiungi**.
 
 ![Aggiungi controller][api-management-add-controller]
 
-Aggiungere il seguente hello `using` hello cima toohello istruzione `CalcController.cs` file.
+Aggiungere l'istruzione `using` seguente all'inizio del file `CalcController.cs`.
 
 ```c#
 using System.IO;
@@ -111,7 +111,7 @@ using System.Web;
 using APIMAADDemo.Models;
 ```
 
-Sostituire classe controller hello generato con hello seguente codice. Questo codice implementa hello `Add`, `Subtract`, `Multiply`, e `Divide` operazioni di base API Calculator hello.
+Sostituire la classe controller generata con il codice seguente. Questo codice implementa le operazioni `Add`, `Subtract`, `Multiply` e `Divide` dell'API Calculator di base.
 
 ```c#
 [Authorize]
@@ -159,41 +159,41 @@ public class CalcController : ApiController
 }
 ```
 
-Premere **F6** toobuild e verificare la soluzione hello.
+Premere **F6** per compilare e verificare la soluzione.
 
-## <a name="publish-hello-project-tooazure"></a>Pubblicare hello progetto tooAzure
-In questo hello passaggio Visual Studio progetto è tooAzure pubblicato. Questo passaggio di hello video inizia in corrispondenza di 5:45.
+## <a name="publish-the-project-to-azure"></a>Pubblicare il progetto in Azure
+In questo passaggio il progetto di Visual Studio viene pubblicato in Azure. Questo passaggio del video inizia da 5:45 minuti.
 
-toopublish hello progetto tooAzure destro del mouse su hello **APIMAADDemo** sul progetto in Visual Studio e scegliere **pubblica**. Mantenere le impostazioni predefinite di hello in hello **pubblica sul Web** la finestra di dialogo e fare clic su **pubblica**.
+Per pubblicare il progetto in Azure, fare clic con il pulsante destro del mouse sul progetto **APIMAADDemo** in Visual Studio e scegliere **Pubblica**. Mantenere le impostazioni predefinite nella finestra di dialogo **Pubblica sul Web** e fare clic su **Pubblica**.
 
 ![Pubblicazione sul Web][api-management-web-publish]
 
-## <a name="grant-permissions-toohello-azure-ad-backend-service-application"></a>Concedere le autorizzazioni applicazione del servizio back-end toohello Azure AD
-Viene creata una nuova applicazione per il servizio back-end hello nella directory di Azure AD come parte della configurazione hello e processo di pubblicazione del progetto API Web. In questo passaggio di hello video a partire da 6:13, le autorizzazioni vengono concesse back-end Web API toohello.
+## <a name="grant-permissions-to-the-azure-ad-backend-service-application"></a>Concedere autorizzazioni all'applicazione del servizio back-end di Azure AD
+Nella directory di Azure AD viene creata una nuova applicazione per il servizio back-end come parte del processo di configurazione e pubblicazione del progetto API Web. In questo passaggio del video, che inizia da 6:13 minuti, vengono concesse autorizzazioni al back-end dell'API Web.
 
 ![Applicazione][api-management-aad-backend-app]
 
-Fare clic su nome hello di autorizzazioni di hello applicazione tooconfigure hello necessario. Passare toohello **configura** scheda e scorrere verso il basso toohello **autorizzazioni tooother applicazioni** sezione. Fare clic su hello **autorizzazioni applicazione** elenco a discesa accanto a **Windows** **Azure Active Directory**, casella hello per **lettura dati directory**, fare clic su **salvare**.
+Fare clic sul nome dell'applicazione per configurare le autorizzazioni necessarie. Passare alla scheda **Configura** e scorrere verso il basso fino alla sezione **Autorizzazioni per altre applicazioni**. Fare clic sull'elenco a discesa **Autorizzazioni applicazione** accanto a **Microsoft** **Azure Active Directory**, selezionare la casella **Lettura dati directory** e fare clic su **Salva**.
 
 ![Aggiungere autorizzazioni][api-management-aad-add-permissions]
 
 > [!NOTE]
-> Se **Windows** **Azure Active Directory** non è elencato nel autorizzazioni tooother applicazioni, fare clic su **aggiungere applicazione** e aggiungere l'elenco di hello.
+> Se **Microsoft** **Azure Active Directory** non è nell'elenco in Autorizzazioni per altre applicazioni, fare clic su **Aggiungi applicazione** e aggiungere la voce all'elenco.
 > 
 > 
 
-Prendere nota di hello **URI Id App** per l'utilizzo in un passaggio successivo, quando un'applicazione Azure AD è configurata per portale per sviluppatori di hello gestione API.
+Prendere nota dell' **URI ID app** che verrà usato in un passaggio successivo durante la configurazione di un'applicazione Azure AD per il portale per sviluppatori di Gestione API.
 
 ![URI ID app][api-management-aad-sso-uri]
 
-## <a name="import-hello-web-api-into-api-management"></a>Importare hello API Web in Gestione API
-Le API vengono configurate dal portale di pubblicazione di hello API, è possibile accedervi tramite hello portale di Azure. tooreach, fare clic su **portale di pubblicazione** dalla barra degli strumenti hello del servizio Gestione API. Se non è ancora stato creato un'istanza del servizio Gestione API, vedere [creare un'istanza del servizio Gestione API] [ Create an API Management service instance] in hello [gestione API prima] [ Manage your first API] esercitazione.
+## <a name="import-the-web-api-into-api-management"></a>Importare l'API Web in Gestione API
+Le API vengono configurate dal relativo portale di pubblicazione, accessibile dal Portale di Azure. Per accedervi, fare clic su **Publisher portal** (Portale di pubblicazione) nella barra degli strumenti del servizio Gestione API. Se non è ancora stata creata un'istanza del servizio Gestione API, vedere [Creare un'istanza di Gestione API][Create an API Management service instance] nell'esercitazione [Gestire la prima API][Manage your first API].
 
 ![Portale di pubblicazione][api-management-management-console]
 
-Le operazioni possono essere [aggiunti manualmente tooAPIs](api-management-howto-add-operations.md), o possono essere importati. In questo video le operazioni vengono importante in formato Swagger a partire da 6:40 minuti.
+Le operazioni possono essere [aggiunte alle API manualmente](api-management-howto-add-operations.md)o possono essere importate. In questo video le operazioni vengono importante in formato Swagger a partire da 6:40 minuti.
 
-Creare un file denominato `calcapi.json` con contenuto seguente e salvarlo tooyour computer. Verificare che hello `host` attributo punta back-end Web API tooyour. In questo esempio viene usato `"host": "apimaaddemo.azurewebsites.net"` .
+Creare un file denominato `calcapi.json` con il contenuto seguente e salvarlo nel computer. Assicurarsi che l'attributo `host` punti al back-end dell'API Web. In questo esempio viene usato `"host": "apimaaddemo.azurewebsites.net"` .
 
 ```json
 {
@@ -337,29 +337,29 @@ Creare un file denominato `calcapi.json` con contenuto seguente e salvarlo tooyo
 }
 ```
 
-Calcolatrice hello tooimport API, fare clic su **API** da hello **gestione API** menu hello a sinistra e quindi fare clic su **importazione API**.
+Per importare l'API Calculator, fare clic su **API** nel menu **Gestione API** sulla sinistra e quindi scegliere **Importa API**.
 
 ![Pulsante Importa API][api-management-import-api]
 
-Eseguire hello seguendo i passaggi tooconfigure hello calcolatrice API.
+Per configurare l'API di calcolatrice, eseguire la procedura seguente:
 
-1. Fare clic su **dal file**, Sfoglia toohello `calculator.json` file salvato e fare clic su hello **Swagger** pulsante di opzione.
-2. Tipo **calc** in hello **suffisso URL di Web API** casella di testo.
-3. Fare clic nella hello **prodotti (facoltativi)** e scegliere **Starter**.
-4. Fare clic su **salvare** tooimport hello API.
+1. Fare clic su **Da file**, passare al file `calculator.json` salvato e fare clic sul pulsante di opzione **Swagger**.
+2. Digitare **calc** nella casella di testo **Suffisso URL API Web**.
+3. Fare clic sulla casella **Products (optional)** (Prodotti - facoltativo) e scegliere **Starter**.
+4. Fare clic su **Salva** per importare l'API.
 
 ![Add new API][api-management-import-new-api]
 
-Una volta importato, hello API hello pagina Riepilogo per l'API di hello viene visualizzato nel portale di pubblicazione hello.
+Una volta importata l'API, la pagina di riepilogo dell'API viene visualizzata nel portale di pubblicazione.
 
-## <a name="call-hello-api-unsuccessfully-from-hello-developer-portal"></a>Chiamare API hello correttamente dal portale per sviluppatori hello
-A questo punto, hello API è stata importata in Gestione API, ma può ancora essere chiamato correttamente dal portale per sviluppatori hello perché il servizio back-end hello è protetto con autenticazione di Azure AD. Come illustrato nel video hello a partire da 7:40 utilizzando hello alla procedura seguente.
+## <a name="call-the-api-unsuccessfully-from-the-developer-portal"></a>Chiamare l'API con esito negativo dal portale per sviluppatori
+A questo punto, l'API è stata importata in Gestione API, ma la chiamata dal portale per sviluppatori non può ancora essere completata perché il servizio back-end è protetto con l'autenticazione di Azure AD. Questa operazione è illustrata nel video a partire da 7:40 minuti usando i passaggi seguenti.
 
-Fare clic su **portale per sviluppatori** dalla parte superiore destra hello del portale di pubblicazione hello.
+Fare clic su **Portale per sviluppatori** sul lato in alto a destra del portale di pubblicazione.
 
 ![Portale per sviluppatori][api-management-developer-portal-menu]
 
-Fare clic su **API** e fare clic su hello **Calcolatrice** API.
+Fare clic su **API** e sull'API **Calculator**.
 
 ![Portale per sviluppatori][api-management-dev-portal-apis]
 
@@ -367,43 +367,43 @@ Fare clic su **Prova**.
 
 ![Prova][api-management-dev-portal-try-it]
 
-Fare clic su **inviare** e prendere nota di stato della risposta hello **401 non autorizzato**.
+Fare clic su **Invia** e prendere nota dello stato della risposta **401 Unauthorized**.
 
 ![Invio][api-management-dev-portal-send-401]
 
-non è autorizzato richiesta Hello poiché API back-end hello è protetto da Azure Active Directory. Prima di esito positivo della chiamata API hello portale per sviluppatori hello deve essere configurato tooauthorize sviluppatori mediante OAuth 2.0. Questo processo è descritto nelle seguenti sezioni hello.
+La richiesta non è autorizzata perché l'API back-end è protetta da Azure Active Directory. Prima di poter chiamare l'API correttamente, è necessario configurare il portale per sviluppatori impostando l'autorizzazione per l'uso di OAuth 2.0 da parte degli sviluppatori. Questo processo è descritto nelle sezioni seguenti.
 
-## <a name="register-hello-developer-portal-as-an-aad-application"></a>Registrare il portale per sviluppatori di hello come un'applicazione AAD
-primo passaggio di Hello nella configurazione gli sviluppatori di tooauthorize portale per sviluppatori hello mediante OAuth 2.0 è portale per sviluppatori di hello tooregister come un'applicazione AAD. A partire da 8:27 video hello illustrato.
+## <a name="register-the-developer-portal-as-an-aad-application"></a>Registrare il portale per sviluppatori come un'applicazione AAD
+Il primo passaggio per configurare il portale per sviluppatori con l'autorizzazione per l'uso di OAuth 2.0 consiste nel registrare il portale come un'applicazione AAD. Nel video questa operazione è illustrata a partire da 8:27 minuti.
 
-Passare a tenant di Azure AD toohello innanzitutto hello del video, in questo esempio **APIMDemo** e passare toohello **applicazioni** scheda.
+Passare al tenant di Azure AD dal primo passaggio di questo video, in questo esempio **APIMDemo**, e quindi alla scheda **Applicazioni**.
 
 ![Nuova applicazione][api-management-aad-new-application-devportal]
 
-Fare clic su hello **Aggiungi** toocreate una nuova applicazione Azure Active Directory e scegliere **Aggiungi un'applicazione che l'organizzazione sta sviluppando**.
+Fare clic sul pulsante **Aggiungi** per creare una nuova applicazione Azure Active Directory e scegliere **Aggiungi un'applicazione che l'organizzazione sta sviluppando**.
 
 ![Nuova applicazione][api-management-new-aad-application-menu]
 
-Scegliere **Web dell'applicazione e/o API Web**, immettere un nome e fare clic sulla freccia avanti hello. In questo esempio viene usato **APIMDeveloperPortal** .
+Scegliere **Applicazione Web e/o API Web**, immettere un nome e fare clic sulla freccia avanti. In questo esempio viene usato **APIMDeveloperPortal** .
 
 ![Nuova applicazione][api-management-aad-new-application-devportal-1]
 
-Per **Sign-on URL** immettere hello URL del servizio Gestione API e aggiungere `/signin`. In questo esempio viene usato `https://contoso5.portal.azure-api.net/signin` .
+Per **URL accesso** immettere l'URL del servizio Gestione API e aggiungere `/signin`. In questo esempio viene usato `https://contoso5.portal.azure-api.net/signin` .
 
-Per **URL Id App** immettere hello URL del servizio Gestione API e aggiungere alcuni caratteri univoci. Si può usare qualsiasi carattere. In questo esempio vengono usati `https://contoso5.portal.azure-api.net/dp`. Quando lo si desidera hello **proprietà App** sono configurate, fare clic su un'applicazione hello toocreate hello segno di spunta.
+Per **URI ID app** immettere l'URL del servizio Gestione API e aggiungere alcuni caratteri univoci. Si può usare qualsiasi carattere. In questo esempio vengono usati `https://contoso5.portal.azure-api.net/dp`. Dopo aver completato la configurazione delle **Proprietà dell'app**, fare clic sul segno di spunta per creare l'applicazione.
 
 ![Nuova applicazione][api-management-aad-new-application-devportal-2]
 
 ## <a name="configure-an-api-management-oauth-20-authorization-server"></a>Configurare un server autorizzazione OAuth 2.0 in Gestione API
-passaggio successivo Hello è tooconfigure un server di autorizzazione OAuth 2.0 in Gestione API. Questo passaggio è illustrato in hello video a partire da 9:43.
+Il passaggio successivo consiste nel configurare un server autorizzazione OAuth 2.0 in Gestione API. Questo passaggio è illustrato nel video a partire da 9:43 minuti.
 
-Fare clic su **sicurezza** hello gestione API scegliere dal menu a sinistra di hello **OAuth 2.0**, quindi fare clic su **aggiungere autorizzazione** server.
+Fare clic su **Sicurezza** dal menu Gestione API a sinistra, scegliere **OAuth 2.0** e fare clic su **Add authorization** server.
 
 ![Add authorization server][api-management-add-authorization-server]
 
-Immettere un nome e una descrizione facoltativa in hello **nome** e **descrizione** campi. Questi campi sono server di autorizzazione OAuth 2.0 hello tooidentify utilizzati nell'istanza del servizio Gestione API di hello. In questo esempio viene usato **Authorization server demo** . In un secondo momento quando si specifica un toobe server OAuth 2.0 utilizzata per l'autenticazione per un'API, si selezionerà il nome specificato.
+Immettere un nome ed eventualmente una descrizione nei campi **Nome** e **Descrizione**. Questi campi vengono usati per identificare il server autorizzazione OAuth 2.0 all'interno dell'istanza del servizio Gestione API corrente. In questo esempio viene usato **Authorization server demo** . In un secondo momento quando si specifica un server di OAuth 2.0 da usare per l'autenticazione per un'API, si selezionerà questo nome.
 
-Per hello **URL pagina di registrazione Client** immettere un valore segnaposto, ad esempio `http://localhost`.  Hello **URL pagina di registrazione Client** punti toohello pagina che gli utenti possono utilizzare toocreate e configurare i propri account per i provider di OAuth 2.0 che supportano la gestione degli account utente. In questo esempio gli utenti non creano e configurano i propri account, quindi si usa un segnaposto.
+Per **Client registration page URL** immettere un valore segnaposto, ad esempio `http://localhost`.  **Client registration page URL** fa riferimento alla pagina che gli utenti possono usare per creare e configurare i propri account per i provider OAuth 2.0 che supportano la gestione degli account da parte degli utenti. In questo esempio gli utenti non creano e configurano i propri account, quindi si usa un segnaposto.
 
 ![Add authorization server][api-management-add-authorization-server-1]
 
@@ -411,92 +411,92 @@ Successivamente, specificare un valore per **Authorization endpoint URL** e **To
 
 ![Serve autorizzazione][api-management-add-authorization-server-1a]
 
-Questi valori possono essere recuperati da hello **endpoint dell'App** pagina dell'applicazione AAD creato per il portale per sviluppatori di hello hello. gli endpoint hello tooaccess passare toohello **configura** per un'applicazione hello AAD scheda e fare clic su **visualizzare endpoint**.
+Questi valori possono essere recuperati dalla pagina **Endpoint dell'app** dell'applicazione AAD creata per il portale per sviluppatori. Per accedere agli endpoint passare alla scheda **Configura** per l'applicazione di AAD e fare clic su **Visualizza endpoint**.
 
 ![Applicazione][api-management-aad-devportal-application]
 
 ![Visualizza endpoint][api-management-aad-view-endpoints]
 
-Hello copia **endpoint di autorizzazione OAuth 2.0** e incollarlo in hello **autorizzazione URL dell'endpoint** casella di testo.
+Copiare il valore di **Endpoint di autorizzazione OAuth 2.0** e incollarlo nella casella di testo **Authorization endpoint URL**.
 
 ![Add authorization server][api-management-add-authorization-server-2]
 
-Hello copia **endpoint token OAuth 2.0** e incollarlo in hello **URL dell'endpoint del Token** casella di testo.
+Copiare il valore di **Endpoint token OAuth 2.0** e incollarlo nella casella di testo **Token endpoint URL**.
 
 ![Add authorization server][api-management-add-authorization-server-2a]
 
-Inoltre toopasting nell'endpoint token hello, aggiungere un parametro aggiuntivo corpo denominato **risorse** e per valore hello utilizzare hello **URI Id App** da hello applicazione AAD per il servizio back-end hello che è stato Quando è stato pubblicato il progetto di Visual Studio hello creata.
+Oltre a incollare il valore nell'endpoint del token, aggiungere un altro parametro del corpo denominato **resource** e come valore usare l'**URI ID App** dell'applicazione AAD per il servizio back-end creato durante la pubblicazione del progetto di Visual Studio.
 
 ![URI ID app][api-management-aad-sso-uri]
 
-Successivamente, specificare le credenziali di hello del client. Queste sono le credenziali di hello per risorsa hello da tooaccess, in questo caso hello portale per sviluppatori.
+Specificare quindi le credenziali del client. Queste sono le credenziali per la risorsa a cui si vuole accedere, in questo caso il portale per gli sviluppatori.
 
 ![Credenziali del client][api-management-client-credentials]
 
-hello tooget **Id Client**, passare toohello **configura** scheda di hello applicazione AAD per hello di portale e copia developer hello **Id Client**.
+Per ottenere il valore di **ID client** passare alla scheda **Configura** dell'applicazione AAD per il portale per gli sviluppatori e copiare il valore di **ID client**.
 
-hello tooget **segreto Client** fare clic su hello **Seleziona durata** menu a discesa hello **chiavi** sezione e specificare un intervallo. In questo esempio viene usato 1 anno.
+Per ottenere il **Segreto client** fare clic sull'elenco a discesa **Seleziona durata** nella sezione **Chiavi** e specificare un intervallo. In questo esempio viene usato 1 anno.
 
-![ID client][api-management-aad-client-id]
+![ID Client][api-management-aad-client-id]
 
-Fare clic su **salvare** chiave hello configurazione e la visualizzazione toosave hello. 
+Fare clic su **Salva** per salvare la configurazione e visualizzare la chiave. 
 
 > [!IMPORTANT]
-> Annotare il valore relativo alla chiave. Quando si chiude una finestra di configurazione di hello Azure Active Directory, non è più visualizzata chiave hello.
+> Annotare il valore relativo alla chiave. Una volta chiusa la finestra di configurazione di Azure Active Directory, la chiave non potrà più essere visualizzata.
 > 
 > 
 
-Chiave hello toohello chiave negli Appunti Copia hello portale di pubblicazione toohello indietro di commutatore, incollare hello **segreto Client** casella di testo, fare clic su **salvare**.
+Copiare la chiave negli Appunti, tornare al portale di pubblicazione, incollare la chiave nella casella di testo **Segreto client** e fare clic su **Salva**.
 
 ![Add authorization server][api-management-add-authorization-server-3]
 
-Subito dopo le credenziali del client hello è una concessione del codice di autorizzazione. Copiare questo codice di autorizzazione e switch back tooyour dell'applicazione del portale di Azure AD per sviluppatori pagina di configurazione e incollare la concessione di autorizzazione hello hello **URL di risposta** campo e fare clic su **salvare** nuovamente.
+Subito dopo le credenziali del client è presente una concessione del codice di autorizzazione. Copiare questo codice di autorizzazione e tornare all'applicazione del portale per sviluppatori Azure AD e incollare la concessione di autorizzazione nel campo **URL di risposta**, quindi fare di nuovo clic su **Salva**.
 
 ![URL di risposta][api-management-aad-reply-url]
 
-passaggio successivo Hello è autorizzazioni hello tooconfigure per il portale per sviluppatori hello applicazione AAD. Fare clic su **autorizzazioni applicazione** e casella hello per **lettura dati directory**. Fare clic su **salvare** toosave questa modifica e quindi fare clic su **aggiungere applicazione**.
+Il passaggio successivo consiste nel configurare le autorizzazioni per l'applicazione AAD nel portale per sviluppatori. Fare clic su **Autorizzazioni applicazione** e selezionare la casella per **Lettura dati directory**. Fare clic su **Salva** per salvare la modifica e quindi scegliere **Aggiungi applicazione**.
 
 ![Aggiungere autorizzazioni][api-management-add-devportal-permissions]
 
-Fare clic sull'icona di ricerca di hello, tipo **ruoli** in hello a partire dalla casella, selezionare **APIMAADDemo**, fare clic su hello toosave di segno di spunta.
+Fare clic sull'icona di ricerca digitare **APIM** nella casella Che inizia con, selezionare **APIMAADDemo** e fare clic sul segno di spunta per salvare.
 
 ![Aggiungere autorizzazioni][api-management-aad-add-app-permissions]
 
-Fare clic su **autorizzazioni delegate** per **APIMAADDemo** e casella hello per **accesso APIMAADDemo**, fare clic su **salvare**. In questo modo developer hello servizio back-end di hello tooaccess dell'applicazione del portale.
+Fare clic su **Autorizzazioni delegate** per **APIMAADDemo**, selezionare la casella **Accedi a APIMAADDemo** e fare clic su **Salva**. Questa impostazione consente all'applicazione nel portale per sviluppatori di accedere al servizio back-end.
 
 ![Aggiungere autorizzazioni][api-management-aad-add-delegated-permissions]
 
-## <a name="enable-oauth-20-user-authorization-for-hello-calculator-api"></a>Attivare l'autorizzazione utente OAuth 2.0 per hello API calcolatrice
-Ora che hello OAuth 2.0 server è configurato, è possibile specificarla nelle impostazioni di sicurezza hello per le API. Questo passaggio è illustrato in hello video a partire da 14:30.
+## <a name="enable-oauth-20-user-authorization-for-the-calculator-api"></a>Abilitare l'autorizzazione utente OAuth 2.0 per l'API Calculator
+Dopo aver configurato il server OAuth 2.0, è possibile specificarlo nelle impostazioni di sicurezza per l'API. Questo passaggio è illustrato nel video a partire da 14:30 minuti.
 
-Fare clic su **API** in hello menu a sinistra, quindi fare clic su **Calcolatrice** tooview e configurare le impostazioni.
+Fare clic su **API** nel menu a sinistra, quindi fare clic su **Calculator** per visualizzarne e configurarne le impostazioni.
 
 ![API Calculator][api-management-calc-api]
 
-Passare toohello **sicurezza** scheda, controllare hello **OAuth 2.0** casella di controllo, il server di autorizzazione desiderato selezionare hello da hello **server autorizzazione** elenco a discesa e fare clic su **Salvare**.
+Passare alla scheda **Sicurezza**, selezionare la casella di controllo **OAuth 2.0**, selezionare il server di autorizzazione specifico dall'elenco a discesa **Authorization server** e fare clic su **Salva**.
 
 ![API Calculator][api-management-enable-aad-calculator]
 
-## <a name="successfully-call-hello-calculator-api-from-hello-developer-portal"></a>Chiamare correttamente hello calcolatrice API dal portale per sviluppatori hello
-Ora che l'autorizzazione di OAuth 2.0 hello è configurata su hello API, le operazioni possono essere chiamate correttamente dal centro per sviluppatori hello. Questo passaggio è illustrato in hello video a partire da 15:00.
+## <a name="successfully-call-the-calculator-api-from-the-developer-portal"></a>Chiamare correttamente l'API Calculator dal portale per sviluppatori
+Dopo avere configurato l'autorizzazione OAuth 2.0 nell'API, le relative operazioni possono essere chiamate correttamente dal centro per sviluppatori. Questo passaggio è illustrato nel video a partire da 15:00 minuti.
 
-Spostarsi indietro toohello **aggiungere due numeri interi** operazione del servizio di calcolatrice hello nel portale per sviluppatori hello e fare clic su **provarla**. Nuovo elemento hello nota in hello **autorizzazione** sezione appena aggiunto un server di autorizzazione toohello corrispondente.
+Tornare all'operazione **Aggiungere due Integer** del servizio calcolatrice nel portale per sviluppatori e fare clic su **Prova**. Si noti il nuovo elemento nella sezione **Autorizzazione** corrispondente al server autorizzazione appena aggiunto.
 
 ![API Calculator][api-management-calc-authorization-server]
 
-Selezionare **codice di autorizzazione** dall'autorizzazione hello elenco a discesa elenco e immettere le credenziali di hello di hello account toouse. Se già eseguito l'accesso con account hello potrebbero non essere richieste.
+Selezionare **Authorization code** dall'elenco a discesa dell'autorizzazione e immettere le credenziali dell'account da usare. Se si è già eseguito l'accesso con l'account, è possibile che non venga richiesto.
 
 ![API Calculator][api-management-devportal-authorization-code]
 
-Fare clic su **inviare** e hello nota **stato della risposta** di **200 OK** e hello risultati dell'operazione di hello nel contenuto della risposta hello.
+Fare clic su **Invia** e prendere nota del valore **200 OK** in **Stato della risposta** e dei risultati dell'operazione nel contenuto della risposta.
 
 ![API Calculator][api-management-devportal-response]
 
-## <a name="configure-a-desktop-application-toocall-hello-api"></a>Configurare un hello toocall applicazione desktop API
-procedura Hello in hello video inizia in corrispondenza di 16:30 e configura hello di toocall API una semplice applicazione desktop. primo passaggio Hello è tooregister applicazione desktop di hello in Azure AD e assegnargli accesso toohello directory e toohello back-end del servizio. 18:25 è una dimostrazione di un'applicazione desktop hello richiamare un'operazione su Calcolatrice hello API.
+## <a name="configure-a-desktop-application-to-call-the-api"></a>Configurare un'applicazione desktop per chiamare l'API
+La procedura successiva del video inizia da 16:30 minuti e configura una semplice applicazione desktop per chiamare l'API. Il primo passaggio consiste nel registrare l'applicazione desktop in Azure AD e nel concedere l'accesso alla directory e al servizio back-end. Da 18:25 minuti è presente una dimostrazione dell'applicazione desktop che chiama un'operazione nell'API Calculator.
 
-## <a name="configure-a-jwt-validation-policy-toopre-authorize-requests"></a>Configurare un toopre di criteri di convalida JWT-autorizzare richieste
-inizia da 20:48 Hello procedura finale nel video hello e illustra come hello toouse [convalidare JWT](https://msdn.microsoft.com/library/azure/034febe3-465f-4840-9fc6-c448ef520b0f#ValidateJWT) toopre criteri-autorizzare richieste convalidando i token di accesso hello di ogni richiesta in ingresso. Se è richiesta hello non vengono convalidato dai criteri di convalida JWT hello, richiesta hello è bloccato da Gestione API e viene passato non toohello di back-end.
+## <a name="configure-a-jwt-validation-policy-to-pre-authorize-requests"></a>Configurare criteri di convalida JWT per preautorizzare le richieste
+L'ultima procedura dei video inizia dal minuto 20:48 e illustra come usare i criteri di [convalida JWT](https://msdn.microsoft.com/library/azure/034febe3-465f-4840-9fc6-c448ef520b0f#ValidateJWT) per preautorizzare le richieste con la convalida dei token di accesso di ogni richiesta in ingresso. Se la richiesta non viene convalidata dai criteri di convalida JWT, viene bloccata da Gestione API e non viene passata al back-end.
 
 ```xml
 <validate-jwt header-name="Authorization" failed-validation-httpcode="401" failed-validation-error-message="Unauthorized. Access token is missing or invalid.">
@@ -509,11 +509,11 @@ inizia da 20:48 Hello procedura finale nel video hello e illustra come hello too
 </validate-jwt>
 ```
 
-Per un altro dimostrazione della configurazione e l'utilizzo di questo criterio, vedere [Cloud coprire episodio 177: più le funzionalità di gestione API](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) e far avanzare rapidamente too13:50. Avanzamento rapido too15:00 criteri hello toosee configurati nell'editor Criteri di hello e quindi too18:50 per una dimostrazione di chiamata di un'operazione dal portale per sviluppatori di hello con e senza hello necessari token di autorizzazione.
+Per un'altra dimostrazione relativa alla configurazione e all'uso di questi criteri, vedere l' [episodio 177 di Cloud Cover su altre funzionalità di Gestione API](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) e passare direttamente al minuto 13:50. Passare a 15:00 minuti per vedere i criteri configurati nell'editor dei criteri e quindi a 18:50 minuti per una dimostrazione della chiamata di un'operazione dal portale per sviluppatori, con e senza il token di autorizzazione richiesto.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Altre informazioni sui [video](https://azure.microsoft.com/documentation/videos/index/?services=api-management) relativi a Gestione API.
-* Per altri modi toosecure servizio back-end, vedere [autenticazione reciproca del certificato](api-management-howto-mutual-certificates.md).
+* Per altri metodi di protezione del servizio back-end, vedere [Come proteggere i servizi back-end usando l'autenticazione reciproca dei certificati](api-management-howto-mutual-certificates.md).
 
 [api-management-management-console]: ./media/api-management-howto-protect-backend-with-aad/api-management-management-console.png
 

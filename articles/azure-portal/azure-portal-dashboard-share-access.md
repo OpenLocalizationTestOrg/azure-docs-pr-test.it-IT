@@ -1,6 +1,6 @@
 ---
-title: aaaShare Azure dashboard del portale tramite RBAC | Documenti Microsoft
-description: Questo articolo spiega come tooshare un dashboard in hello portale di Azure usando il controllo di accesso basato sui ruoli.
+title: Condividere i dashboard del portale di Azure tramite l'uso di RBAC | Microsoft Docs
+description: Questo articolo illustra come condividere un dashboard nel portale di Azure tramite il Controllo degli accessi in base al ruolo.
 services: azure-portal
 documentationcenter: 
 author: tfitzmac
@@ -14,66 +14,66 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 08/01/2016
 ms.author: tomfitz
-ms.openlocfilehash: b12f9f8582596ee14aa8bfdfb4772cc139e3bf45
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: ea0cf7ad074f95c2b49a92f9a8e32270a1d39b3a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="share-azure-dashboards-by-using-role-based-access-control"></a>Condividere i dashboard di Azure tramite il Controllo degli accessi in base al ruolo
-Dopo aver configurato un dashboard, è possibile pubblicarlo e condividerlo con altri utenti nell'organizzazione. Consentire ad altri utenti tooview dashboard mediante Azure [Role-Based Access Control](../active-directory/role-based-access-control-configure.md). Assegnare un utente o gruppo di ruolo tooa utenti, e tale ruolo definisce se tali utenti di visualizzare o modificare dashboard pubblicati hello. 
+Dopo aver configurato un dashboard, è possibile pubblicarlo e condividerlo con altri utenti nell'organizzazione. Si consente ad altri utenti di visualizzare il proprio dashboard tramite il [Controllo degli accessi in base al ruolo](../active-directory/role-based-access-control-configure.md) di Azure. Si assegna un utente o gruppo di utenti a un ruolo e questo ruolo definisce se gli utenti possono visualizzare o modificare il dashboard pubblicato. 
 
 Tutti i dashboard pubblicati vengono implementati come risorse di Azure, di conseguenza costituiscono elementi gestibili all'interno della sottoscrizione e sono contenuti in un gruppo di risorse.  Dal punto di vista del controllo di accesso, i dashboard non sono diversi da altre risorse, ad esempio una macchina virtuale o un account di archiviazione.
 
 > [!TIP]
-> Singoli riquadri nei dashboard hello imporre i propri requisiti di controllo di accesso in base alle risorse di hello che vengano visualizzate.  Pertanto, è possibile progettare un dashboard condiviso su vasta scala, proteggendo al contempo i dati di hello nei singoli riquadri.
+> I singoli riquadri del dashboard applicano requisiti di controllo di accesso personalizzati in base alle risorse che visualizzano.  Perciò è possibile progettare un dashboard condiviso più ampiamente, continuando comunque a proteggere i dati nei singoli riquadri.
 > 
 > 
 
 ## <a name="understanding-access-control-for-dashboards"></a>Informazioni sul controllo di accesso per i dashboard
-Con Role-Based Access controllo (RBAC), è possibile assegnare gli utenti tooroles tre diversi livelli di ambito:
+Con il Controllo degli accessi in base al ruolo è possibile assegnare utenti ai ruoli a tre diversi livelli di ambito:
 
 * sottoscrizione
 * gruppo di risorse
 * resource
 
-Hello assegnate vengono ereditate dalla sottoscrizione di risorse toohello verso il basso. dashboard pubblicati Hello è una risorsa. Pertanto, potrebbe essere già tooroles gli utenti assegnati per la sottoscrizione di hello che funzionano anche per dashboard pubblicati hello. 
+Le autorizzazioni assegnate vengono ereditate dalla sottoscrizione fino alla risorsa. Il dashboard pubblicato è una risorsa. È quindi possibile che esistano già utenti assegnati a ruoli per la sottoscrizione, che funzionano anche con il dashboard pubblicato. 
 
-Di seguito è fornito un esempio.  Si supponga di avere una sottoscrizione di Azure e vari membri del team assegnati ruoli hello del **proprietario**, **collaboratore**, o **lettore** per sottoscrizione hello. Gli utenti che sono proprietari o i collaboratori sono in grado di toolist, visualizzare, creare, modificare o eliminare i dashboard in sottoscrizione hello.  Gli utenti che sono i visualizzatori sono in grado di toolist e visualizzare i dashboard, ma non è possibile modificarli o eliminarli.  Gli utenti con accesso in lettura sono in grado di toomake le modifiche locali tooa pubblicato dashboard (ad esempio, quando un problema di risoluzione dei problemi), ma non è possibile toopublish tali server back-toohello modifiche.  Avranno hello opzione toomake una copia privata di dashboard hello per se stessi
+Di seguito è fornito un esempio.  Si supponga di avere una sottoscrizione di Azure e che ai vari membri del team siano stati assegnati i ruoli di **proprietario**, **collaboratore** o **lettore** della sottoscrizione. Gli utenti con il ruolo di proprietario o collaboratore possono elencare, visualizzare, creare, modificare o eliminare dashboard nella sottoscrizione.  Gli utenti con il ruolo di lettore possono elencare e visualizzare i dashboard, ma non modificarli o eliminarli.  Gli utenti con accesso in lettura possono apportare modifiche locali a un dashboard pubblicato, ad esempio per la risoluzione di un problema, ma non pubblicarle nel server.  Hanno comunque la possibilità di creare una copia privata del dashboard per se.
 
-Tuttavia, è possibile assegnare anche autorizzazioni toohello gruppo contenente più dashboard o tooan singolo dashboard. Ad esempio, si potrebbe decidere che un gruppo di utenti deve disporre di autorizzazioni limitate in sottoscrizione hello ma maggiore particolare dashboard tooa accesso. Assegnare il ruolo di tali tooa gli utenti per i dashboard. 
+È tuttavia possibile assegnare autorizzazioni anche al gruppo di risorse che contiene diversi dashboard o a un singolo dashboard. Ad esempio, si potrebbe decidere che un gruppo di utenti deve avere autorizzazioni limitate per la sottoscrizione, ma un accesso più ampio per un determinato dashboard. Assegnare gli utenti a un ruolo per il dashboard. 
 
 ## <a name="publish-dashboard"></a>Pubblicare dashboard
-Si supponga di che aver completato la configurazione di un dashboard che si desidera tooshare con un gruppo di utenti nella sottoscrizione. passaggi Hello riportati di seguito illustrano un gruppo personalizzato denominato gestioni di archiviazione, ma è possibile denominare il gruppo di qualsiasi modo desiderato. Per informazioni sulla creazione di un gruppo di Active Directory e aggiunta di utenti toothat gruppo, vedere [la gestione dei gruppi in Azure Active Directory](../active-directory/active-directory-accessmanagement-manage-groups.md).
+Si supponga di che aver completato la configurazione di un dashboard che si vuole condividere con un gruppo di utenti nella sottoscrizione. I passaggi seguenti illustrano un gruppo personalizzato denominato Storage Managers, o gestori di archiviazione, ma è possibile assegnare al gruppo qualsiasi altro nome. Per informazioni sulla creazione di un gruppo di Active Directory e sull'aggiunta di utenti a tale gruppo, vedere [Gestione dei gruppi in Azure Active Directory](../active-directory/active-directory-accessmanagement-manage-groups.md).
 
-1. Nel dashboard di hello, selezionare **condivisione**.
+1. Nel dashboard selezionare **Condividi**.
    
      ![Selezionare Condividi](./media/azure-portal-dashboard-share-access/select-share.png)
-2. Prima di assegnare l'accesso, è necessario pubblicare dashboard hello. Per impostazione predefinita, il dashboard di hello sarà pubblicato tooa gruppo di risorse denominato **dashboard**. Selezionare **Pubblica**.
+2. Prima di assegnare l'accesso, è necessario pubblicare il dashboard. Per impostazione predefinita, il dashboard verrà pubblicato in un gruppo di risorse denominato **dashboard**. Selezionare **Pubblica**.
    
      ![Pubblica](./media/azure-portal-dashboard-share-access/publish.png)
 
-Il dashboard viene pubblicato. Se le autorizzazioni di hello ereditate dalla sottoscrizione hello sono adatti, non è necessario toodo.. Gli altri utenti dell'organizzazione verranno in grado di tooaccess e modificare il dashboard di hello in base al proprio ruolo di livello di sottoscrizione. Tuttavia, per questa esercitazione, si assegnare un gruppo del ruolo di tooa gli utenti per i dashboard.
+Il dashboard viene pubblicato. Se le autorizzazioni ereditate dalla sottoscrizione sono appropriate, non è necessario eseguire altre operazioni. Altri utenti nell'organizzazione potranno accedere e modificare il dashboard in base al proprio ruolo a livello di sottoscrizione. Tuttavia, per questa esercitazione è possibile assegnare un gruppo di utenti a un ruolo per quel dashboard.
 
-## <a name="assign-access-tooa-dashboard"></a>Assegnare l'accesso tooa dashboard
-1. Dopo la pubblicazione dashboard hello, selezionare **Gestisci utenti**.
+## <a name="assign-access-to-a-dashboard"></a>Assegnare l'accesso a un dashboard
+1. Dopo aver pubblicato il dashboard, selezionare **Gestisci utenti**.
    
-     ![gestione utenti](./media/azure-portal-dashboard-share-access/manage-users.png)
-2. Verrà visualizzato un elenco di utenti esistenti già stati assegnati a un ruolo per questo dashboard. L'elenco di utenti esistenti sarà diverso da immagine hello riportata di seguito. È probabile che le assegnazioni di hello vengono ereditate dalla sottoscrizione hello. tooadd un nuovo utente o gruppo, selezionare **Aggiungi**.
+     ![Gestisci utenti](./media/azure-portal-dashboard-share-access/manage-users.png)
+2. Verrà visualizzato un elenco di utenti esistenti già stati assegnati a un ruolo per questo dashboard. L'elenco di utenti esistenti è diverso da quello nell'immagine seguente. È probabile che le assegnazioni vengono ereditate dalla sottoscrizione. Per aggiungere un nuovo utente o gruppo, selezionare **Aggiungi**.
    
      ![Aggiungi utente](./media/azure-portal-dashboard-share-access/existing-users.png)
-3. Selezionare il ruolo hello che rappresenta le autorizzazioni di hello toogrant desiderato. Per questo esempio selezionare **Collaboratore**.
+3. Selezionare il ruolo che rappresenta le autorizzazioni da concedere. Per questo esempio selezionare **Collaboratore**.
    
      ![selezionare il ruolo](./media/azure-portal-dashboard-share-access/select-role.png)
-4. Selezionare utente hello o un gruppo che si desidera tooassign toohello ruolo. Se non è possibile visualizzare hello utente o un gruppo che si sta cercando nell'elenco di hello, utilizzare la casella di ricerca hello. L'elenco dei gruppi disponibili dipenderanno gruppi hello creati in Active Directory.
+4. Selezionare l'utente o il gruppo che si vuole assegnare al ruolo. Se l'utente o il gruppo desiderato non è visualizzato nell'elenco, usare la casella di ricerca. L'elenco dei gruppi disponibili dipenderà dai gruppi creati in Active Directory.
    
      ![Seleziona utente](./media/azure-portal-dashboard-share-access/select-user.png) 
 5. Al termine dell'operazione di aggiunta di utenti o gruppi, scegliere **OK**. 
-6. nuova assegnazione Hello viene aggiunto toohello elenco di utenti. Si noti che il relativo **Accesso** è elencato come **Assegnato** anziché **Ereditato**.
+6. La nuova assegnazione viene aggiunta all'elenco di utenti. Si noti che il relativo **Accesso** è elencato come **Assegnato** anziché **Ereditato**.
    
      ![Ruoli assegnati](./media/azure-portal-dashboard-share-access/assigned-roles.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Per un elenco di ruoli, vedere [Controllo degli accessi in base al ruolo: ruoli predefiniti](../active-directory/role-based-access-built-in-roles.md).
-* toolearn sulla gestione delle risorse, vedere [le risorse di gestione di Azure tramite il portale](resource-group-portal.md).
+* Per altre informazioni sulla gestione delle risorse, vedere [Gestire le risorse di Azure mediante il portale](resource-group-portal.md).
 

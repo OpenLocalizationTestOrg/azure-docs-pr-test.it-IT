@@ -1,6 +1,6 @@
 ---
-title: aaaHow toouse Azure Service Bus argomenti e sottoscrizioni con Node.js | Documenti Microsoft
-description: Informazioni su come toouse Bus di servizio di argomenti e sottoscrizioni in Azure da un'app Node.js.
+title: Usare argomenti e sottoscrizioni del bus di servizio di Azure con Node.js | Microsoft Docs
+description: Informazioni su come usare le sottoscrizioni e gli argomenti del bus di servizio in Azure da un'app Node.js.
 services: service-bus-messaging
 documentationcenter: nodejs
 author: sethmanheim
@@ -14,29 +14,29 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: sethm
-ms.openlocfilehash: e8f6e7ad6ed16d844c408337ac9e50f990e3fafd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5e758e831765ba2762b7efe7c3a10f10e59a5ddc
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toouse-service-bus-topics-and-subscriptions-with-nodejs"></a>Il Bus di servizio tooUse argomenti e sottoscrizioni con Node.js
+# <a name="how-to-use-service-bus-topics-and-subscriptions-with-nodejs"></a>Come usare gli argomenti e le sottoscrizioni del bus di servizio con Node.js
 
 [!INCLUDE [service-bus-selector-topics](../../includes/service-bus-selector-topics.md)]
 
-Questa guida viene descritto come toouse Bus di servizio di argomenti e sottoscrizioni dalle applicazioni Node.js. Hello scenari trattati includono **la creazione di argomenti e sottoscrizioni**, **creazione filtri di sottoscrizione**, **l'invio di messaggi** tooa argomento **ricezione i messaggi da una sottoscrizione**, e **l'eliminazione di argomenti e sottoscrizioni**. Per ulteriori informazioni su argomenti e sottoscrizioni, vedere hello [passaggi successivi](#next-steps) sezione.
+Questa guida descrive come usare gli argomenti e le sottoscrizioni del bus di servizio da applicazioni Node.js. Gli scenari presentati includono la **creazione di argomenti e sottoscrizioni**, la **creazione di filtri per le sottoscrizioni**, l'**invio di messaggi** a un argomento, la **ricezione di messaggi da una sottoscrizione** e l'**eliminazione di argomenti e sottoscrizioni**. Per altre informazioni su argomenti e sottoscrizioni, vedere la sezione [Passaggi successivi](#next-steps).
 
 [!INCLUDE [howto-service-bus-topics](../../includes/howto-service-bus-topics.md)]
 
 ## <a name="create-a-nodejs-application"></a>Creare un'applicazione Node.js
-Creare un'applicazione Node.js vuota. Per istruzioni sulla creazione di un'applicazione Node.js, vedere [creare e distribuire un tooan di applicazione del sito Web di Azure Node.js], [servizio Cloud Node.js] [ Node.js Cloud Service] utilizzando Windows PowerShell o il sito Web con WebMatrix.
+Creare un'applicazione Node.js vuota. Per istruzioni sulla creazione di un'applicazione Node.js, vedere [Creare un'app Web Node.js nel servizio app di Azure] oppure [Creazione e distribuzione di un'applicazione Node.js a un servizio cloud di Azure][Node.js Cloud Service] con Windows PowerShell o Sito Web con WebMatrix.
 
-## <a name="configure-your-application-toouse-service-bus"></a>Configurare il toouse applicazione Bus di servizio
-toouse Service Bus, scaricare il pacchetto di Node.js Azure hello. Il pacchetto include un set di librerie che comunicano con servizi di Service Bus REST hello.
+## <a name="configure-your-application-to-use-service-bus"></a>Configurare l'applicazione per l'uso del bus di servizio
+Per usare il bus di servizio, scaricare il pacchetto Azure Node.js, che include un set di librerie di riferimento che comunicano con i servizi REST del bus di servizio.
 
-### <a name="use-node-package-manager-npm-tooobtain-hello-package"></a>Utilizzare un pacchetto di hello tooobtain nodo Package Manager (NPM)
-1. Utilizzare un'interfaccia della riga di comando, ad esempio **PowerShell** (Windows), **Terminal** (Mac), o **Bash** (Unix), passare toohello cartella in cui è stato creato l'applicazione di esempio.
-2. Tipo **npm installare azure** nella finestra di comando hello, che dovrebbe restituire hello seguente output:
+### <a name="use-node-package-manager-npm-to-obtain-the-package"></a>Usare Node Package Manager (NPM) per ottenere il pacchetto
+1. Usare un'interfaccia della riga di comando come **PowerShell** (Windows,) **Terminal** (Mac,) o **Bash** (Unix) e spostarsi nella cartella in cui è stata creata l'applicazione di esempio.
+2. Digitare **npm install azure** nella finestra di comando, che dovrebbe restituire l'output seguente:
 
    ```
        azure@0.7.5 node_modules\azure
@@ -51,30 +51,30 @@ toouse Service Bus, scaricare il pacchetto di Node.js Azure hello. Il pacchetto 
    ├── xml2js@0.2.7 (sax@0.5.2)
    └── request@2.21.0 (json-stringify-safe@4.0.0, forever-agent@0.5.0, aws-sign@0.3.0, tunnel-agent@0.3.0, oauth-sign@0.3.0, qs@0.6.5, cookie-jar@0.3.0, node-uuid@1.4.0, http-signature@0.9.11, form-data@0.0.8, hawk@0.13.1)
    ```
-3. È possibile eseguire manualmente hello **ls** comando tooverify che un **nodo\_moduli** cartella è stata creata. All'interno di tale cartella è possibile trovare il **azure** pacchetto che contiene le librerie di hello necessarie tooaccess argomenti del Bus di servizio.
+3. È possibile eseguire manualmente il comando **ls** per verificare che sia stata creata una cartella **node\_modules**. In tale cartella trovare il pacchetto **azure**, che contiene le librerie necessarie per accedere agli argomenti del bus di servizio.
 
-### <a name="import-hello-module"></a>Modulo di importazione hello
-Utilizzando blocco note o un altro editor di testo, aggiungere hello seguente toohello cima hello **server.js** file dell'applicazione hello:
+### <a name="import-the-module"></a>Importare il modulo
+Usando il Blocco note o un altro editor di testo, aggiungere quanto segue alla parte superiore del file **server.js** dell'applicazione:
 
 ```javascript
 var azure = require('azure');
 ```
 
 ### <a name="set-up-a-service-bus-connection"></a>Configurare una stringa di connessione per il bus di servizio
-Hello Azure modulo legge le variabili di ambiente hello `AZURE_SERVICEBUS_NAMESPACE` e `AZURE_SERVICEBUS_ACCESS_KEY` per le informazioni necessarie tooconnect tooService Bus. Se non vengono impostate queste variabili di ambiente, è necessario specificare le informazioni sull'account hello quando si chiama `createServiceBusService`.
+Il modulo di Azure legge le variabile di ambiente `AZURE_SERVICEBUS_NAMESPACE` e `AZURE_SERVICEBUS_ACCESS_KEY` per ottenere le informazioni necessarie per la connessione al bus di servizio. Se queste variabili di ambiente non sono impostate, è necessario specificare le informazioni relative all'account durante la chiamata di `createServiceBusService`.
 
-Per un esempio di impostazione delle variabili di ambiente hello per un servizio Cloud di Azure, vedere [servizio Cloud Node.js con archiviazione][Node.js Cloud Service with Storage].
+Per un esempio di impostazione delle variabili di ambiente per un servizio cloud di Azure, vedere [Servizio cloud Node.js con Archiviazione][Node.js Cloud Service with Storage].
 
-Per un esempio di impostazione delle variabili di ambiente hello per un sito Web di Azure, vedere [applicazione Web Node.js con archiviazione][Node.js Web Application with Storage].
+Per un esempio di impostazione delle variabili di ambiente per un sito Web di Azure, vedere [Creazione di un'applicazione Web Node.js con Archiviazione][Node.js Web Application with Storage].
 
 ## <a name="create-a-topic"></a>Creare un argomento
-Hello **ServiceBusService** consente toowork con argomenti. Il codice seguente consente di creare un oggetto **ServiceBusService**. Aggiungerlo nella parte superiore di hello **server.js** file, dopo il modulo di hello istruzione tooimport hello azure:
+L'oggetto **ServiceBusService** consente di usare gli argomenti. Il codice seguente consente di creare un oggetto **ServiceBusService**. Aggiungerlo nella parte superiore del file **server.js** dopo l'istruzione per l'importazione del modulo azure:
 
 ```javascript
 var serviceBusService = azure.createServiceBusService();
 ```
 
-Chiamando `createTopicIfNotExists` su hello **ServiceBusService** oggetto, verrà creato un nuovo argomento con il nome specificato hello o hello specificato verrà restituito l'argomento (se presente). codice Hello seguente usa `createTopicIfNotExists` toocreate o connettersi toohello argomento denominato `MyTopic`:
+Chiamando `createTopicIfNotExists` nell'oggetto **ServiceBusService**, verrà restituito l'argomento specificato, se esistente, oppure verrà creato un nuovo argomento con il nome specificato. Il codice seguente usa `createTopicIfNotExists` per connettersi all'argomento denominato `MyTopic` o crearlo:
 
 ```javascript
 serviceBusService.createTopicIfNotExists('MyTopic',function(error){
@@ -85,7 +85,7 @@ serviceBusService.createTopicIfNotExists('MyTopic',function(error){
 });
 ```
 
-Hello `createServiceBusService` metodo supporta inoltre opzioni aggiuntive, che consentono di determinare le impostazioni dell'argomento predefinito toooverride, ad esempio durata messaggio o la dimensione massima dell'argomento. Hello esempio seguente imposta too5GB di dimensione massima dell'argomento hello con un tempo toolive di 1 minuto:
+Il metodo `createServiceBusService` supporta anche opzioni aggiuntive che consentono di eseguire l'override delle impostazioni predefinite degli argomenti, come la durata (TTL) dei messaggi o le dimensioni massime dell'argomento. L'esempio seguente illustra come impostare la dimensione massima dell'argomento su 5 GB con una durata di 1 minuto:
 
 ```javascript
 var topicOptions = {
@@ -101,21 +101,21 @@ serviceBusService.createTopicIfNotExists('MyTopic', topicOptions, function(error
 ```
 
 ### <a name="filters"></a>Filtri
-Operazioni di filtro facoltative possono essere applicato toooperations eseguita utilizzando **ServiceBusService**. Le operazioni di filtro possono includere la registrazione, la ripetizione automatica dei tentativi e così via. I filtri sono oggetti che implementano un metodo con firma hello:
+Le operazioni di filtro facoltative possono essere applicate alle operazioni eseguite usando **ServiceBusService**. Le operazioni di filtro possono includere la registrazione, la ripetizione automatica dei tentativi e così via. I filtri sono oggetti che implementano un metodo con la firma:
 
 ```javascript
 function handle (requestOptions, next)
 ```
 
-Dopo l'esecuzione di pre-elaborazione sulle opzioni di richiesta di hello, hello chiamate al metodo `next`, passando un callback con hello seguente firma:
+Dopo aver eseguito la pre-elaborazione sulle opzioni della richiesta, il metodo chiama `next` passando un callback con la firma seguente:
 
 ```javascript
 function (returnObject, finalCallback, next)
 ```
 
-In questo callback e dopo l'elaborazione hello `returnObject` (hello risposta dal server di hello richiesta toohello), il callback di hello richiede tooeither richiamare successivamente se esiste l'elaborazione di altri filtri toocontinue o richiamare `finalCallback` hello tooend in caso contrario, chiamata del servizio.
+Dopo l'elaborazione di `returnObject` (ossia della risposta della richiesta al server), questo callback deve richiamare next, se esistente, per continuare a elaborare altri filtri o in caso contrario richiamare `finalCallback` per terminare la chiamata al servizio.
 
-Due filtri, che implementano la logica di ripetizione sono inclusi in Azure SDK per Node.js, hello **ExponentialRetryPolicyFilter** e **LinearRetryPolicyFilter**. Hello seguito creato un **ServiceBusService** oggetto che utilizza hello **ExponentialRetryPolicyFilter**:
+In Azure SDK per Node.js sono inclusi due filtri che implementano la logica di ripetizione dei tentativi. Sono **ExponentialRetryPolicyFilter** e **LinearRetryPolicyFilter**. Il codice seguente consente di creare un oggetto **ServiceBusService** che usa **ExponentialRetryPolicyFilter**:
 
 ```javascript
 var retryOperations = new azure.ExponentialRetryPolicyFilter();
@@ -123,15 +123,15 @@ var serviceBusService = azure.createServiceBusService().withFilter(retryOperatio
 ```
 
 ## <a name="create-subscriptions"></a>Creare sottoscrizioni
-Le sottoscrizioni dell'argomento vengono inoltre create con hello **ServiceBusService** oggetto. Le sottoscrizioni sono denominate e possono avere un filtro facoltativo che limita il set di hello di messaggi recapitati coda virtuale toohello della sottoscrizione.
+È possibile creare le sottoscrizioni di un argomento anche con l'oggetto **ServiceBusService**. Le sottoscrizioni sono denominate e possono includere un filtro facoltativo che limita il set di messaggi recapitati alla coda virtuale della sottoscrizione.
 
 > [!NOTE]
-> Le sottoscrizioni sono permanenti e continueranno tooexist finché uno non o hello argomento sono associati, vengono eliminati. Se l'applicazione contiene la logica toocreate una sottoscrizione, deve verificare se hello sottoscrizione esiste già con il `getSubscription` metodo.
+> Le sottoscrizioni sono persistenti e continueranno a esistere fintanto che esse, o l'argomento a cui sono associate, non vengono eliminate. Se l'applicazione contiene la logica per la creazione di una sottoscrizione, è prima di tutto necessario verificare se la sottoscrizione esiste già usando il metodo `getSubscription`.
 >
 >
 
-### <a name="create-a-subscription-with-hello-default-matchall-filter"></a>Creare una sottoscrizione con filtro predefinito (MatchAll) hello
-Hello **MatchAll** filtro è hello predefinito che viene utilizzato se viene specificato alcun filtro quando viene creata una nuova sottoscrizione. Quando hello **MatchAll** filtro viene utilizzato, l'argomento di toohello pubblicati tutti i messaggi vengono inseriti nella coda virtuale della sottoscrizione. esempio Hello crea una sottoscrizione denominata 'AllMessages' e utilizza hello predefinito **MatchAll** filtro.
+### <a name="create-a-subscription-with-the-default-matchall-filter"></a>Creare una sottoscrizione con il filtro (MatchAll) predefinito
+Il filtro **MatchAll** è il filtro predefinito e viene usato se non vengono specificati altri filtri durante la creazione di una nuova sottoscrizione. Quando si usa il filtro **MatchAll**, tutti i messaggi pubblicati nell'argomento vengono inseriti nella coda virtuale della sottoscrizione. Nell'esempio seguente viene creata una sottoscrizione denominata "AllMessages" e viene usato il filtro predefinito **MatchAll**.
 
 ```javascript
 serviceBusService.createSubscription('MyTopic','AllMessages',function(error){
@@ -142,18 +142,18 @@ serviceBusService.createSubscription('MyTopic','AllMessages',function(error){
 ```
 
 ### <a name="create-subscriptions-with-filters"></a>Creare sottoscrizioni con i filtri
-È anche possibile creare filtri che consentono di tooscope cui i messaggi inviati tooa argomento visualizzati all'interno di una sottoscrizione di argomento specifico.
+È anche possibile creare filtri che consentono di definire l'ambito dei messaggi inviati a un argomento che devono essere visualizzati in una specifica sottoscrizione dell'argomento.
 
-Hello più flessibile il tipo di filtro supportato dalle sottoscrizioni è il **SqlFilter**, che implementa un subset di SQL92. I filtri SQL operano sulle proprietà hello dei messaggi hello argomento toohello pubblicato. Per ulteriori informazioni sulle espressioni hello che possono essere utilizzate con un filtro SQL, vedere hello [SqlFilter.SqlExpression] [ SqlFilter.SqlExpression] sintassi.
+Il tipo di filtro più flessibile tra quelli supportati dalle sottoscrizioni è **SqlFilter**, che implementa un subset di SQL92. I filtri SQL agiscono sulle proprietà dei messaggi pubblicati nell'argomento. Per altri dettagli sulle espressioni che è possibile usare con un filtro SQL, esaminare la sintassi di [SqlFilter.SqlExpression][SqlFilter.SqlExpression].
 
-È possibile aggiungere filtri tooa sottoscrizione utilizzando hello `createRule` metodo hello **ServiceBusService** oggetto. Questo metodo consente di aggiungere nuovi filtri tooan sottoscrizione.
+È possibile aggiungere filtri a una sottoscrizione con il metodo `createRule` dell'oggetto **ServiceBusService**. Questo metodo consente di aggiungere nuovi filtri a una sottoscrizione esistente.
 
 > [!NOTE]
-> Poiché il filtro predefinito hello viene applicato automaticamente tooall nuove sottoscrizioni, è necessario innanzitutto rimuovere filtro predefinito hello o **MatchAll** sostituirà gli altri filtri che è possibile specificare. È possibile rimuovere una regola predefinita hello utilizzando hello `deleteRule` metodo il **ServiceBusService** oggetto.
+> Poiché il filtro predefinito viene applicato automaticamente a tutte le nuove sottoscrizioni, è necessario prima di tutto rimuovere il filtro predefinito, altrimenti **MatchAll** eseguirà l'override di qualsiasi altro filtro specificato. È possibile rimuovere la regola predefinita con il metodo `deleteRule` dell'oggetto **ServiceBusService**.
 >
 >
 
-esempio Hello crea una sottoscrizione denominata `HighMessages` con un **SqlFilter** che seleziona solo i messaggi con un oggetto personalizzato `messagenumber` maggiore di 3:
+L'esempio seguente crea una sottoscrizione denominata `HighMessages` con un filtro **SqlFilter** che seleziona solo i messaggi che hanno una proprietà `messagenumber` personalizzata con valore maggiore di 3:
 
 ```javascript
 serviceBusService.createSubscription('MyTopic', 'HighMessages', function (error){
@@ -188,7 +188,7 @@ var rule={
 }
 ```
 
-Analogamente, hello esempio seguente viene creata una sottoscrizione denominata `LowMessages` con un **SqlFilter** che seleziona solo i messaggi che hanno un `messagenumber` proprietà minore o uguale too3:
+Analogamente, l'esempio seguente crea una sottoscrizione denominata `LowMessages` con un filtro **SqlFilter** che seleziona solo i messaggi che hanno una proprietà `messagenumber` con valore minore o uguale a 3:
 
 ```javascript
 serviceBusService.createSubscription('MyTopic', 'LowMessages', function (error){
@@ -223,14 +223,14 @@ var rule={
 }
 ```
 
-Quando viene inviato un messaggio ora troppo`MyTopic`, sempre essere recapitato ricevitori sottoscritti toohello `AllMessages` sottoscrizione dell'argomento e recapitati in modo selettivo tooreceivers sottoscritto toohello `HighMessages` e `LowMessages` le sottoscrizioni dell'argomento (in base al contenuto del messaggio hello).
+Un messaggio inviato a `MyTopic` verrà sempre recapitato ai ricevitori con sottoscrizione all'argomento `AllMessages` e recapitato selettivamente ai ricevitori con sottoscrizioni agli argomenti `HighMessages` e `LowMessages` (a seconda del contenuto del messaggio).
 
-## <a name="how-toosend-messages-tooa-topic"></a>La modalità toosend dei messaggi tooa argomento
-un argomento del Bus di servizio tooa messaggio toosend, l'applicazione deve usare il `sendTopicMessage` metodo hello **ServiceBusService** oggetto.
-I messaggi inviati sono argomenti del Bus tooService **BrokeredMessage** oggetti.
-**BrokeredMessage** oggetti dispongono di un set di proprietà standard (ad esempio `Label` e `TimeToLive`), un dizionario di proprietà specifiche dell'applicazione personalizzate usate toohold e un corpo di dati di tipo stringa. Un'applicazione può impostare il corpo di hello del messaggio hello passando un valore di stringa a messaggi hello `sendTopicMessage` e le necessarie proprietà standard verranno popolate dai valori predefiniti.
+## <a name="how-to-send-messages-to-a-topic"></a>Come inviare messaggi a un argomento
+Per inviare un messaggio a un argomento del bus di servizio, l'applicazione deve usare il metodo `sendTopicMessage` dell'oggetto **ServiceBusService**.
+I messaggi inviati ad argomenti del bus di servizio sono oggetti **BrokeredMessage**.
+Gli oggetti **BrokeredMessage** includono un set di proprietà standard, ad esempio `Label` e `TimeToLive`, un dizionario usato per contenere le proprietà personalizzate specifiche dell'applicazione e un corpo di dati di tipo stringa. Un'applicazione può impostare il corpo del messaggio passando un valore stringa a `sendTopicMessage` e popolare le proprietà standard necessarie con i valori predefiniti.
 
-Hello esempio seguente viene illustrato come toosend cinque messaggi di prova per `MyTopic`. Si noti che hello `messagenumber` valore della proprietà di ogni messaggio varia iterazione hello del ciclo di hello (per stabilire le sottoscrizioni che ricevano):
+Il seguente esempio illustra come inviare cinque messaggi di test a `MyTopic`. Si noti che il valore della proprietà `messagenumber` di ogni messaggio varia nell'iterazione del ciclo, determinando quali sottoscrizioni lo riceveranno:
 
 ```javascript
 var message = {
@@ -251,17 +251,17 @@ for (i = 0;i < 5;i++) {
 }
 ```
 
-Argomenti del Bus di servizio supportano una dimensione massima di 256 KB in hello [livello Standard](service-bus-premium-messaging.md) hello a 1 MB e [livello Premium](service-bus-premium-messaging.md). intestazione Hello, che include standard hello e le proprietà personalizzate dell'applicazione, può avere una dimensione massima di 64 KB. Non è previsto alcun limite per il numero di hello di messaggi contenuti in un argomento, ma è un limite alla dimensione totale di hello di messaggi hello utilizzate da un argomento. Questa dimensione dell'argomento viene definita al momento della creazione, con un limite massimo di 5 GB.
+Gli argomenti del bus di servizio supportano messaggi di dimensioni massime fino a 256 KB nel [livello Standard](service-bus-premium-messaging.md) e fino a 1 MB nel [livello Premium](service-bus-premium-messaging.md). Le dimensioni massime dell'intestazione, che include le proprietà standard e personalizzate dell'applicazione, non possono superare 64 KB. Non esiste alcun limite al numero di messaggi mantenuti in un argomento, mentre è prevista una limitazione alla dimensione totale dei messaggi di un argomento. Questa dimensione dell'argomento viene definita al momento della creazione, con un limite massimo di 5 GB.
 
 ## <a name="receive-messages-from-a-subscription"></a>Ricevere messaggi da una sottoscrizione
-I messaggi vengono ricevuti da una sottoscrizione tramite il `receiveSubscriptionMessage` metodo hello **ServiceBusService** oggetto. Per impostazione predefinita, i messaggi vengono eliminati dalla sottoscrizione hello quando vengono letti; Tuttavia, è possibile leggere (anteprima) e bloccare il messaggio hello senza eliminarla dalla sottoscrizione hello dal parametro facoltativo hello impostazione `isPeekLock` troppo**true**.
+I messaggi vengono ricevuti da una sottoscrizione usando il metodo `receiveSubscriptionMessage` nell'oggetto **ServiceBusService**. Per impostazione predefinita, i messaggi vengono eliminati dalla sottoscrizione non appena vengono letti. È tuttavia possibile leggere (visualizzare) e bloccare il messaggio senza eliminarlo dalla sottoscrizione impostando il parametro facoltativo `isPeekLock` su **true**.
 
-comportamento predefinito di Hello di lettura e l'eliminazione del messaggio hello come parte dell'operazione di ricezione è il modello più semplice di hello ed è ideale per scenari in cui un'applicazione in grado di tollerare non elabora un messaggio di evento hello di un errore. toounderstand, si consideri uno scenario in cui il hello problemi consumer di ricezione richiesta e quindi si blocca prima dell'elaborazione. Poiché verrà contrassegnato messaggio come usato, quindi quando un'applicazione hello viene riavviata e inizia a usare nuovamente i messaggi hello del Bus di servizio, risulterà perso messaggio hello che è stato consumato toohello precedente arresto anomalo del sistema.
+Il comportamento predefinito di lettura ed eliminazione del messaggio nell'ambito dell'operazione di ricezione costituisce il modello più semplice ed è adatto per scenari in cui un'applicazione può tollerare la mancata elaborazione di un messaggio in caso di errore. Per comprendere meglio questo meccanismo, si consideri uno scenario in cui il consumer invia la richiesta di ricezione e viene arrestato in modo anomalo prima dell'elaborazione. Poiché il bus di servizio contrassegna il messaggio come utilizzato, quando l'applicazione viene riavviata e inizia a utilizzare nuovamente i messaggi, il messaggio utilizzato prima dell'arresto anomalo risulterà perso.
 
-Se hello `isPeekLock` parametro è impostato troppo**true**, hello ricezione diventa un'operazione in due fasi, che rende possibile toosupport applicazioni che non sono in grado di tollerare messaggi mancanti. Quando il Bus di servizio riceve una richiesta, individua hello successivo messaggio toobe utilizzati Blocca tooprevent altri consumer di ricezione e lo restituisce quindi toohello applicazione.
-Dopo l'applicazione hello completa l'elaborazione messaggio hello o archiviarlo in modo affidabile per l'elaborazione futura, completa hello seconda fase del processo di ricezione chiamando **deleteMessage** (metodo) e fornendo il toobe messaggio eliminato come parametro. Hello **deleteMessage** metodo contrassegna il messaggio hello come usato, ma verrà rimosso dalla sottoscrizione hello.
+Se il parametro `isPeekLock` è impostato su **true**, l'operazione di ricezione viene suddivisa in due fasi, in modo da consentire il supporto di applicazioni che non possono tollerare messaggi mancanti. Quando il bus di servizio riceve una richiesta, individua il messaggio successivo da usare, lo blocca per impedirne la ricezione da parte di altri consumer e quindi lo restituisce all'applicazione.
+Dopo aver elaborato il messaggio, o averlo archiviato in modo affidabile per una successiva elaborazione, l'applicazione esegue la seconda fase del processo di ricezione chiamando il metodo **deleteMessage** e specificando il messaggio da eliminare come parametro. Il metodo **deleteMessage** contrassegna il messaggio come usato e lo rimuove dalla sottoscrizione.
 
-Hello esempio seguente viene illustrato come è possibile ricevere messaggi e trasformati utilizzando `receiveSubscriptionMessage`. Hello esempio riceve Elimina un messaggio dalla sottoscrizione 'LowMessages' hello e viene ricevuto un messaggio dalla sottoscrizione di 'HighMessages' hello utilizzando `isPeekLock` impostare tootrue. Elimina quindi il messaggio hello utilizzando `deleteMessage`:
+L'esempio seguente illustra come ricevere ed elaborare messaggi tramite `receiveSubscriptionMessage`. L'esempio prima di tutto riceve ed elimina un messaggio dalla sottoscrizione "LowMessages" e quindi riceve un messaggio dalla sottoscrizione "HighMessages" con il parametro `isPeekLock` impostato su true. Elimina infine il messaggio usando `deleteMessage`:
 
 ```javascript
 serviceBusService.receiveSubscriptionMessage('MyTopic', 'LowMessages', function(error, receivedMessage){
@@ -279,21 +279,21 @@ serviceBusService.receiveSubscriptionMessage('MyTopic', 'HighMessages', { isPeek
                 // Message deleted
                 console.log('message has been deleted.');
             }
-        }
+        })
     }
 });
 ```
 
-## <a name="how-toohandle-application-crashes-and-unreadable-messages"></a>Come si blocca toohandle applicazione e i messaggi illeggibili
-Bus di servizio offre funzionalità toohelp che normalmente possibile correggere gli errori nell'applicazione o problemi di elaborazione di un messaggio. Se un'applicazione ricevente è in grado di tooprocess hello messaggio per qualche motivo, quindi è possibile chiamare hello `unlockMessage` metodo il **ServiceBusService** oggetto. Ciò causerà Bus di servizio toounlock il messaggio all'interno di sottoscrizione hello e renderlo disponibile toobe nuovamente ricevuto, sia da hello stesso consumo dell'applicazione o da un'altra applicazione consumer.
+## <a name="how-to-handle-application-crashes-and-unreadable-messages"></a>Come gestire arresti anomali e messaggi illeggibili dell'applicazione
+Il bus di servizio fornisce funzionalità per il ripristino gestito automaticamente in caso di errori nell'applicazione o di problemi di elaborazione di un messaggio. Se un'applicazione ricevente non riesce a elaborare il messaggio per qualsiasi motivo, può chiamare il metodo `unlockMessage` nell'oggetto **ServiceBusService**. In questo modo, il bus di servizio sbloccherà il messaggio nella sottoscrizione rendendolo nuovamente disponibile per la ricezione da parte della stessa applicazione consumer o da un'altra.
 
-È inoltre disponibile un timeout associato a un messaggio bloccato all'interno della sottoscrizione, e se un'applicazione hello ha esito negativo messaggio hello tooprocess prima il timeout di blocco hello scade (ad esempio, se si blocca l'applicazione hello), quindi il Bus di servizio Sblocca messaggio hello automaticamente e lo rende disponibile toobe nuovamente ricevuto.
+Al messaggio bloccato nella sottoscrizione è anche associato un timeout. Se l'applicazione non riesce a elaborare il messaggio prima della scadenza del timeout, ad esempio a causa di un arresto anomalo, il bus di servizio sbloccherà automaticamente il messaggio rendendolo nuovamente disponibile per la ricezione.
 
-In hello evento hello applicazione si blocca dopo l'elaborazione messaggio hello ma prima di hello `deleteMessage` metodo viene chiamato, quindi il messaggio hello sarà applicazione toohello consegnati nuovamente quando si riavvia. Spesso si tratta di *almeno una volta elaborazione*, vale a dire, ogni messaggio verrà elaborato almeno una volta ma in hello determinate situazioni potrebbe essere recapitato nuovamente stesso messaggio. Se hello scenario non tollera la doppia elaborazione, gli sviluppatori di applicazioni devono aggiungere logica aggiuntiva tootheir applicazione toohandle duplicato il recapito dei messaggi. Questa operazione viene spesso eseguita mediante il **MessageId** proprietà di messaggio hello che rimangono costante tra i tentativi di recapito.
+In caso di arresto anomalo dell'applicazione dopo l'elaborazione del messaggio ma prima della chiamata del metodo `deleteMessage`, il messaggio verrà nuovamente recapitato all'applicazione al riavvio. Questo processo di elaborazione viene spesso definito di tipo *At-Least-Once*, per indicare che ogni messaggio verrà elaborato almeno una volta ma che in determinate situazioni potrà essere recapitato una seconda volta. Se lo scenario non tollera la doppia elaborazione, gli sviluppatori dovranno aggiungere logica aggiuntiva all'applicazione per gestire il secondo recapito del messaggio. A tale scopo viene spesso usata la proprietà **MessageId** del messaggio, che rimane costante in tutti i tentativi di recapito.
 
 ## <a name="delete-topics-and-subscriptions"></a>Eliminare argomenti e sottoscrizioni
-Argomenti e sottoscrizioni sono persistenti e deve essere in modo esplicito tramite hello eliminato [portale di Azure] [ Azure portal] o a livello di codice.
-Hello esempio seguente viene illustrato come argomento di hello toodelete denominati `MyTopic`:
+Gli argomenti e le sottoscrizioni sono persistenti e devono essere eliminati in modo esplicito nel [portale di Azure][Azure portal] oppure a livello di codice.
+L'esempio seguente illustra come eliminare l'argomento denominato `MyTopic`:
 
 ```javascript
 serviceBusService.deleteTopic('MyTopic', function (error) {
@@ -303,7 +303,7 @@ serviceBusService.deleteTopic('MyTopic', function (error) {
 });
 ```
 
-L'eliminazione di un argomento eliminerà anche le sottoscrizioni che sono registrate con l'argomento hello. Le sottoscrizioni possono essere eliminate anche in modo indipendente. Nell'esempio seguente viene illustrato come toodelete una sottoscrizione denominata `HighMessages` da hello `MyTopic` argomento:
+Se si elimina un argomento, verranno eliminate anche tutte le sottoscrizioni registrate con l'argomento. Le sottoscrizioni possono essere eliminate anche in modo indipendente. L'esempio seguente illustra come eliminare una sottoscrizione denominata `HighMessages` dall'argomento `MyTopic`:
 
 ```javascript
 serviceBusService.deleteSubscription('MyTopic', 'HighMessages', function (error) {
@@ -314,11 +314,11 @@ serviceBusService.deleteSubscription('MyTopic', 'HighMessages', function (error)
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-Ora che si è appreso i concetti di base di hello di argomenti del Bus di servizio, seguire questi ulteriori toolearn di collegamenti.
+A questo punto, dopo aver appreso le nozioni di base degli argomenti del bus di servizio, usare i seguenti collegamenti per altre informazioni.
 
 * Vedere [Code, argomenti e sottoscrizioni del bus di servizio][Queues, topics, and subscriptions].
 * Informazioni di riferimento sulle API per [SqlFilter][SqlFilter].
-* Visitare hello [Azure SDK per nodo] [ Azure SDK for Node] repository in GitHub.
+* Visitare il repository [Azure SDK per Node][Azure SDK for Node] su GitHub.
 
 [Azure SDK for Node]: https://github.com/Azure/azure-sdk-for-node
 [Azure portal]: https://portal.azure.com
@@ -326,6 +326,6 @@ Ora che si è appreso i concetti di base di hello di argomenti del Bus di serviz
 [Queues, topics, and subscriptions]: service-bus-queues-topics-subscriptions.md
 [SqlFilter]: /dotnet/api/microsoft.servicebus.messaging.sqlfilter
 [Node.js Cloud Service]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md
-[Creare e distribuire un tooan applicazione Node.js sito Web di Azure]: ../app-service-web/app-service-web-get-started-nodejs.md
+[Creare un'app Web Node.js nel servizio app di Azure]: ../app-service/app-service-web-get-started-nodejs.md
 [Node.js Cloud Service with Storage]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md
 [Node.js Web Application with Storage]:../cosmos-db/table-storage-cloud-service-nodejs.md

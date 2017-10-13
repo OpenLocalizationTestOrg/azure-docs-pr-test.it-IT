@@ -1,6 +1,6 @@
 ---
-title: soluzione di insieme di credenziali chiave nel registro Analitica aaaAzure | Documenti Microsoft
-description: "È possibile utilizzare soluzioni insieme credenziali chiavi Azure hello in tooreview Analitica Log che registra insieme credenziali chiavi Azure."
+title: Soluzione Insieme di credenziali delle chiavi di Azure in Log Analytics | Documentazione Microsoft
+description: "È possibile usare la soluzione Insieme di credenziali delle chiavi di Azure in Log Analytics per esaminare i log dell'Insieme di credenziali delle chiavi di Azure."
 services: log-analytics
 documentationcenter: 
 author: richrundmsft
@@ -14,48 +14,48 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/09/2017
 ms.author: richrund
-ms.openlocfilehash: 1c6eae26ded7ad55b0159a3be09cdc9901596298
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 651586e0846ffb22a23e64b73c2cc614980d9b92
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-key-vault-analytics-solution-in-log-analytics"></a>Soluzione di Azure Key Vault Analytics in Log Analytics
 
 ![Simbolo di Key Vault](./media/log-analytics-azure-keyvault/key-vault-analytics-symbol.png)
 
-È possibile utilizzare soluzioni insieme credenziali chiavi Azure hello in tooreview Analitica Log che registra AuditEvent insieme di credenziali chiave di Azure.
+È possibile usare la soluzione Insieme di credenziali delle chiavi di Azure in Log Analytics per esaminare i log AuditEvent dell'Insieme di credenziali delle chiavi di Azure.
 
-soluzione hello toouse, è necessario tooenable registrazione di diagnostica Azure insieme di credenziali chiave e dell'area di lavoro di hello diretto diagnostica tooa Analitica di Log. Non è necessario toowrite nell'archiviazione Blob tooAzure hello registri.
+Per usare la soluzione, è necessario abilitare la registrazione diagnostica di Azure Key Vault e indirizzare la diagnostica a un'area di lavoro di Log Analytics. Non è necessario inserire i log nell'Archiviazione BLOB di Azure.
 
 > [!NOTE]
-> Nel gennaio January 2017, hello supportate consentono di inviare i log dall'insieme di credenziali chiave tooLog che Analitica modificato. Mostra se soluzione insieme di credenziali chiave hello utilizza *(obsoleto)* nel titolo hello, fare riferimento troppo[la migrazione da una soluzione di insieme di credenziali chiave precedente hello](#migrating-from-the-old-key-vault-solution) per la procedura è necessario toofollow.
+> Nel gennaio 2017, il metodo supportato per l'invio dei log da Key Vault a Log Analytics è cambiato. Se per la soluzione Key Vault in uso è indicato *(obsoleto)* nel titolo, fare riferimento alla sezione [Migrazione dalla soluzione Key Vault precedente](#migrating-from-the-old-key-vault-solution) per i passaggi da seguire.
 >
 >
 
-## <a name="install-and-configure-hello-solution"></a>Installare e configurare la soluzione hello
-Utilizzare hello seguendo le istruzioni tooinstall e configurare la soluzione insieme credenziali chiavi Azure hello:
+## <a name="install-and-configure-the-solution"></a>Installare e configurare la soluzione
+Usare le istruzioni seguenti per installare e configurare la soluzione Insieme di credenziali delle chiavi di Azure:
 
-1. Abilitare soluzioni insieme credenziali chiavi Azure hello [Azure marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.KeyVaultAnalyticsOMS?tab=Overview) o tramite il processo di hello descritto in [soluzioni aggiungere Log Analitica da hello Solutions Gallery](log-analytics-add-solutions.md).
-2. Abilitare la diagnostica per toomonitor risorse di hello insieme di credenziali chiave di registrazione, utilizzando entrambi hello [portale](#enable-key-vault-diagnostics-in-the-portal) o [PowerShell](#enable-key-vault-diagnostics-using-powershell)
+1. Abilitare la soluzione Azure Key Vault da [Azure Marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.KeyVaultAnalyticsOMS?tab=Overview) o seguendo la procedura illustrata in [Aggiungere soluzioni di Log Analytics dalla Raccolta soluzioni](log-analytics-add-solutions.md).
+2. Abilitare la registrazione diagnostica per le risorse di Key Vault da monitorare, usando il [portale](#enable-key-vault-diagnostics-in-the-portal) o [PowerShell](#enable-key-vault-diagnostics-using-powershell)
 
-### <a name="enable-key-vault-diagnostics-in-hello-portal"></a>Abilitare la diagnostica di insieme di credenziali chiave nel portale di hello
+### <a name="enable-key-vault-diagnostics-in-the-portal"></a>Abilitare la diagnostica di Key Vault nel portale
 
-1. Nel portale di Azure hello, spostarsi toohello insieme di credenziali chiave risorsa toomonitor
-2. Selezionare *log di diagnostica* hello tooopen dopo
+1. Nel portale di Azure passare alla risorsa Key Vault da monitorare
+2. Selezionare *Log di diagnostica* per aprire la pagina seguente
 
    ![Immagine del riquadro Insieme di credenziali delle chiavi di Azure](./media/log-analytics-azure-keyvault/log-analytics-keyvault-enable-diagnostics01.png)
-3. Fare clic su *attivare la diagnostica* hello tooopen dopo
+3. Fare clic su *Attiva diagnostica* per aprire la pagina seguente
 
    ![Immagine del riquadro Insieme di credenziali delle chiavi di Azure](./media/log-analytics-azure-keyvault/log-analytics-keyvault-enable-diagnostics02.png)
-4. tooturn sulla diagnostica, fare clic su *su* in *stato*
-5. Fare clic sulla casella di controllo hello *inviare tooLog Analitica*
+4. Per attivare la diagnostica, fare clic su *Attivato* in *Stato*
+5. Selezionare la casella di controllo *Send to Log Analytics* (Invia a Log Analytics)
 6. Selezionare un'area di lavoro Log Analytics esistente o creare una
-7. tooenable *AuditEvent* log, fare clic su casella di controllo hello in Log
-8. Fare clic su *salvare* registrazione hello tooenable di diagnostica tooLog Analitica
+7. Per abilitare i log *AuditEvent*, fare clic sulla casella di controllo in Log
+8. Fare clic su *Salva* per abilitare la registrazione della diagnostica per Log Analytics
 
 ### <a name="enable-key-vault-diagnostics-using-powershell"></a>Abilitare la diagnostica di Key Vault utilizzando PowerShell
-Hello lo script di PowerShell seguente viene fornito un esempio di come toouse `Set-AzureRmDiagnosticSetting` tooenable registrazione diagnostica per l'insieme di credenziali chiave:
+Il seguente script PowerShell contiene un esempio su come utilizzare `Set-AzureRmDiagnosticSetting` per abilitare la registrazione della diagnostica per Key Vault:
 ```
 $workspaceId = "/subscriptions/d2e37fee-1234-40b2-5678-0b2199de3b50/resourcegroups/oi-default-east-us/providers/microsoft.operationalinsights/workspaces/rollingbaskets"
 
@@ -67,88 +67,88 @@ Set-AzureRmDiagnosticSetting -ResourceId $kv.ResourceId  -WorkspaceId $workspace
 
 
 ## <a name="review-azure-key-vault-data-collection-details"></a>Esaminare i dettagli della raccolta di dati dell'Insieme di credenziali delle chiavi di Azure
-Soluzione insieme di credenziali chiave di Azure raccoglie i log di diagnostica direttamente da hello insieme di credenziali chiave.
-Non è necessario toowrite hello registri tooAzure nell'archiviazione Blob e non è richiesto per la raccolta dati.
+La soluzione Azure Key Vault raccoglie i log di diagnostica direttamente da Key Vault.
+Non è necessario inserire i log in Archiviazione BLOB di Azure né è necessario alcun agente per la raccolta dati.
 
-Hello nella tabella seguente illustra i metodi di raccolta dati e altri dettagli sulla modalità di raccolta dati per insieme credenziali chiavi Azure.
+La tabella seguente illustra i metodi di raccolta dei dati e altri dettagli sulla modalità di raccolta dei dati per l'Insieme di credenziali delle chiavi di Azure.
 
 | Piattaforma | Agente diretto | Agente di Systems Center Operations Manager | Azure | È necessario Operations Manager? | Dati dell'agente Operations Manager inviati con il gruppo di gestione | Frequenza della raccolta |
 | --- | --- | --- | --- | --- | --- | --- |
 | Azure |  |  |&#8226; |  |  | all'arrivo |
 
 ## <a name="use-azure-key-vault"></a>Usare l'Insieme di credenziali delle chiavi di Azure
-Dopo aver [installare la soluzione hello](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.KeyVaultAnalyticsOMS?tab=Overview), visualizzare i dati di insieme di credenziali chiave hello facendo hello **insieme credenziali chiavi Azure** riquadro da hello **Panoramica** pagina del Log Analitica.
+Dopo aver [installato la soluzione](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.KeyVaultAnalyticsOMS?tab=Overview), è possibile visualizzare i dati Key Vault facendo clic sul riquadro **Azure Key Vault** dalla pagina **Panoramica** di Log Analytics.
 
 ![Immagine del riquadro Insieme di credenziali delle chiavi di Azure](./media/log-analytics-azure-keyvault/log-analytics-keyvault-tile.png)
 
-Dopo aver fatto clic hello **Panoramica** riquadro, è possibile visualizzare i riepiloghi dei log e quindi drill in toodetails per hello seguenti categorie:
+Dopo avere selezionato il riquadro **Panoramica**, è possibile visualizzare i riepiloghi dei log e quindi analizzare i dettagli per le categorie seguenti:
 
 * Volume di tutte le operazioni dell'insieme di credenziali delle chiavi nel tempo
 * Volumi di operazioni non riuscite nel tempo
 * Latenza operativa media per operazione
-* Qualità del servizio per le operazioni con il numero di hello delle operazioni che richiedono più di 1000 ms e un elenco delle operazioni che richiedono più di 1000 ms
+* Qualità del servizio per operazioni con numero delle operazioni che richiedono più di 1000 ms ed elenco di operazioni che richiedono più di 1000 ms
 
 ![Immagine del dashboard dell'Insieme di credenziali delle chiavi di Azure](./media/log-analytics-azure-keyvault/log-analytics-keyvault01.png)
 
 ![Immagine del dashboard dell'Insieme di credenziali delle chiavi di Azure](./media/log-analytics-azure-keyvault/log-analytics-keyvault02.png)
 
-### <a name="tooview-details-for-any-operation"></a>Dettagli tooview per qualsiasi operazione
-1. In hello **Panoramica** pagina, fare clic su hello **insieme credenziali chiavi Azure** riquadro.
-2. In hello **insieme credenziali chiavi Azure** dashboard, esaminare le informazioni di riepilogo hello in uno dei pannelli hello e quindi fare clic su uno tooview dettagliate le informazioni nella pagina di ricerca log hello.
+### <a name="to-view-details-for-any-operation"></a>Per visualizzare i dettagli per un'operazione
+1. Nella pagina **Panoramica** fare clic sul riquadro **Insieme di credenziali delle chiavi di Azure**.
+2. Nel dashboard **Insieme di credenziali delle chiavi di Azure** esaminare le informazioni di riepilogo in uno dei pannelli, quindi fare clic su un pannello per visualizzare le informazioni dettagliate corrispondenti nella pagina di ricerca di log.
 
-    In qualsiasi pagina di ricerca log hello di, è possibile visualizzare i risultati dal tempo, i risultati dettagliati e alla cronologia di ricerca. È inoltre possibile filtrare dai risultati di hello toonarrow facet.
+    In una pagina di ricerca di log qualsiasi è possibile visualizzare i risultati in base all'ora, ai dettagli e alla cronologia di ricerca. È anche possibile filtrare per facet in modo da limitare i risultati.
 
 ## <a name="log-analytics-records"></a>Record di Log Analytics
-Hello soluzione insieme credenziali chiavi Azure analizza i record che hanno un tipo di **KeyVaults** che vengono raccolti da [AuditEvent registri](../key-vault/key-vault-logging.md) in diagnostica di Azure.  Le proprietà per tali record sono in hello nella tabella seguente:  
+La soluzione Insieme di credenziali delle chiavi di Azure analizza i record con tipo **KeyVaults**, raccolti dai [log AuditEvent](../key-vault/key-vault-logging.md) in Diagnostica di Azure.  Le proprietà per questi record sono disponibili nella tabella seguente:  
 
 | Proprietà | Descrizione |
 |:--- |:--- |
 | Tipo |*AzureDiagnostics* |
 | SourceSystem |*Azzurro* |
-| CallerIpAddress |Indirizzo IP del client hello che ha effettuato la richiesta hello |
+| CallerIpAddress |Indirizzo IP del client che ha eseguito la richiesta |
 | Categoria | *AuditEvent* |
-| CorrelationId |Un GUID facoltativo che hello client può passare toocorrelate log lato client con i registri dal lato del servizio (insieme di credenziali chiave). |
-| DurationMs |Tempo impiegato richiesta dell'API REST hello tooservice, in millisecondi. Questa volta non include la latenza di rete, pertanto ora hello in cui si esegue una misurazione sul lato client hello potrebbe non corrispondere a questo momento. |
-| httpStatusCode_d |Codice di stato HTTP restituito dalla richiesta hello (ad esempio, *200*) |
-| id_s |ID univoco della richiesta di hello |
-| identity_claim_appid_g | GUID per l'id applicazione hello |
-| OperationName |Nome dell'operazione di hello, come documentato [la registrazione dell'insieme di credenziali chiave di Azure](../key-vault/key-vault-logging.md) |
-| OperationVersion |Versione dell'API REST richiesto da hello client (ad esempio *2015-06-01*) |
-| requestUri_s |URI della richiesta di hello |
-| Risorsa |Nome dell'insieme di credenziali chiave hello |
-| ResourceGroup |Gruppo di risorse dell'insieme di credenziali chiave hello |
-| ResourceId |ID della risorsa Gestione risorse di Azure. Per i registri di insieme di credenziali chiave, si tratta di ID di risorsa hello insieme di credenziali chiave. |
+| CorrelationId |GUID facoltativo che il client può passare per correlare i log sul lato client con quelli sul lato servizio (insieme di credenziali delle chiavi). |
+| DurationMs |Tempo impiegato per soddisfare la richiesta API REST, in millisecondi. Il tempo non include la latenza di rete, quindi il tempo misurato sul lato client potrebbe non corrispondere a questo valore. |
+| httpStatusCode_d |Codice di stato HTTP restituito dalla richiesta (ad esempio *200*) |
+| id_s |ID univoco della richiesta |
+| identity_claim_appid_g | GUID per l'ID applicazione |
+| OperationName |Nome dell'operazione, come illustrato in [Registrazione dell'Insieme di credenziali delle chiavi di Azure](../key-vault/key-vault-logging.md) |
+| OperationVersion |Versione dell'API REST richiesta dal client (ad esempio *2015-06-01*) |
+| requestUri_s |URI della richiesta |
+| Risorsa |Nome dell'insieme di credenziali delle chiavi |
+| ResourceGroup |Gruppo di risorse dell'insieme di credenziali delle chiavi |
+| ResourceId |ID della risorsa Gestione risorse di Azure. Per i log di Key Vault, questo è l'ID della risorsa Key Vault. |
 | ResourceProvider |*MICROSOFT.KEYVAULT* |
 | ResourceType | *VAULTS* |
 | ResultSignature |Stato HTTP (ad esempio *OK*) |
 | ResultType |Risultato della richiesta dell'API REST (ad esempio *Operazione completata*) |
-| SubscriptionId |ID sottoscrizione di Azure della sottoscrizione hello contenente hello insieme di credenziali chiave |
+| SubscriptionId |ID sottoscrizione di Azure della sottoscrizione che include l'insieme di credenziali delle chiavi |
 
-## <a name="migrating-from-hello-old-key-vault-solution"></a>La migrazione da una soluzione di insieme di credenziali chiave precedente hello
-Nel gennaio January 2017, hello supportate consentono di inviare i log dall'insieme di credenziali chiave tooLog che Analitica modificato. Queste modifiche consentono hello seguenti vantaggi:
-+ I log vengono scritti direttamente tooLog Analitica senza hello necessario toouse un account di archiviazione
-+ Minore latenza dall'ora di hello quando i registri sono generati toothem disponibile nel Log Analitica
+## <a name="migrating-from-the-old-key-vault-solution"></a>Migrazione dalla soluzione Key Vault precedente
+Nel gennaio 2017, il metodo supportato per l'invio dei log da Key Vault a Log Analytics è cambiato. In questo modo si otterranno i vantaggi seguenti:
++ I log vengono scritti direttamente in Log Analytics senza la necessità di utilizzare un account di archiviazione
++ Minore latenza dal momento in cui i log vengono generati essendo immediatamente disponibili in Log Analytics
 + Meno passaggi di configurazione
 + Un formato comune per tutti i tipi di diagnostica di Azure
 
-soluzione hello aggiornato toouse:
+Per utilizzare la soluzione aggiornata:
 
-1. [Configurare diagnostica toobe inviato tooLog Analitica direttamente dall'insieme di credenziali chiave](#enable-key-vault-diagnostics-in-the-portal)  
-2. Per abilitare soluzioni insieme credenziali chiavi Azure hello hello processo descritto in [soluzioni aggiungere Log Analitica da hello Solutions Gallery](log-analytics-add-solutions.md)
-3. Aggiornare le query salvate, dashboard o avvisi toouse hello nuovo tipo di dati
-  + È di tipo di modifica da: KeyVaults tooAzureDiagnostics. È possibile utilizzare hello ResourceType toofilter tooKey insieme di credenziali di log.
+1. [Configurare la diagnostica in modo che venga inviata direttamente a Log Analytics da Key Vault](#enable-key-vault-diagnostics-in-the-portal)  
+2. Abilitare la soluzione Azure Key Vault seguendo la procedura illustrata in [Aggiungere soluzioni di Log Analytics dalla Raccolta soluzioni](log-analytics-add-solutions.md)
+3. Aggiornare tutte le query salvate, i dashboard o gli avvisi per utilizzare il nuovo tipo di dati
+  + Il tipo è cambiato da KeyVaults a AzureDiagnostics. È possibile utilizzare ResourceType per filtrare i log di Key Vault.
   - Invece di: `Type=KeyVaults`, utilizzare i campi `Type=AzureDiagnostics ResourceType=VAULTS`:
   + I nomi dei campi distinguono tra maiuscole e minuscole
-  - Per qualsiasi campo che contiene un suffisso di \_s, \_d, o \_g in nome hello cambia hello primo carattere toolower maiuscole/minuscole
-  - Per qualsiasi campo che contiene un suffisso di \_o nel nome, i dati di hello è suddiviso in singoli campi in base ai nomi di campo hello annidato. Ad esempio, hello UPN del chiamante hello viene archiviato in un campo`identity_claim_http_schemas_xmlsoap_org_ws_2005_05_identity_claims_upn_s`
-   - TooCallerIPAddress CallerIpAddress campo modificato
+  - Per ogni campo con suffisso \_s, \_d o \_g nel nome, modificare il primo carattere in lettere minuscole
+  - Per ogni campo con suffisso \_o nel nome, i dati sono suddivisi in singoli campi in base ai nomi dei campi nidificati. Ad esempio, il nome UPN del chiamante viene archiviato in un campo `identity_claim_http_schemas_xmlsoap_org_ws_2005_05_identity_claims_upn_s`
+   - Il campo CallerIpAddress viene modificato in CallerIPAddress
    - Il campo RemoteIPCountry non è più presente
-4. Rimuovere hello *chiave dell'insieme di credenziali Analitica (obsoleto)* soluzione. Se si utilizza PowerShell, usare `Set-AzureOperationalInsightsIntelligencePack -ResourceGroupName <resource group that hello workspace is in> -WorkspaceName <name of hello log analytics workspace> -IntelligencePackName "KeyVault" -Enabled $false`
+4. Rimuovere la soluzione *Key Vault Analytics (obsoleta)*. Se si utilizza PowerShell, usare `Set-AzureOperationalInsightsIntelligencePack -ResourceGroupName <resource group that the workspace is in> -WorkspaceName <name of the log analytics workspace> -IntelligencePackName "KeyVault" -Enabled $false`
 
-I dati raccolti prima modifica hello non è visibile nella nuova soluzione hello. È possibile continuare tooquery per questa operazione utilizzando dati hello vecchio tipo e i nomi dei campi.
+I dati raccolti prima della modifica non sono visibili nella nuova soluzione. È possibile continuare a eseguire query per questi dati utilizzando i nomi di campo e il tipo vecchi.
 
 ## <a name="troubleshooting"></a>Risoluzione dei problemi
 [!INCLUDE [log-analytics-troubleshoot-azure-diagnostics](../../includes/log-analytics-troubleshoot-azure-diagnostics.md)]
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Utilizzare [Accedi ricerche Log Analitica](log-analytics-log-searches.md) tooview in dettaglio i dati insieme credenziali chiavi Azure.
+* Usare le [Ricerche nei log in Log Analytics](log-analytics-log-searches.md) per visualizzare i dati dettagliati per l'Insieme di credenziali delle chiavi di Azure.

@@ -1,5 +1,5 @@
 ---
-title: aaaIntegrate automazione di Azure con controllo del codice sorgente di Visual Studio Team Services | Documenti Microsoft
+title: Integrazione di Automazione di Azure con controllo del codice sorgente di Visual Studio Team Services | Microsoft Docs
 description: Questo scenario illustra l'impostazione dell'integrazione con un account di Automazione di Azure e controllo del codice sorgente di Visual Studio Team Services.
 services: automation
 documentationcenter: 
@@ -14,89 +14,89 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 01/24/2017
-ms.openlocfilehash: 8f6faa596a5ad1f8b72e820ca320b3e103d83579
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 01f9c01c9e04e02dbb548b68cf99684ba6ddd57e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-automation-scenario---automation-source-control-integration-with-visual-studio-team-services"></a>Scenario di Automazione di Azure - Integrazione del controllo del codice sorgente con Visual Studio Team Services
 
-In questo scenario, è necessario un progetto di Visual Studio Team Services che si utilizza toomanage runbook di automazione di Azure o le configurazioni DSC nel controllo del codice sorgente.
-Questo articolo viene descritto come toointegrate VSTS con l'ambiente di automazione di Azure in modo che l'integrazione continua venga eseguita per ogni archiviazione.
+In questo scenario, è presente un progetto di Visual Studio Team Services che si usa per gestire i runbook di Automazione di Azure o le configurazioni DSC nel controllo del codice sorgente.
+Questo articolo descrive come integrare VSTS con l'ambiente di Automazione di Azure in modo che venga eseguita l'integrazione continuata per ogni archiviazione.
 
-## <a name="getting-hello-scenario"></a>Scenario di recupero hello
+## <a name="getting-the-scenario"></a>Come ottenere lo scenario
 
-Questo scenario è costituito da due runbook PowerShell che è possibile importare direttamente da hello [raccolta Runbook](automation-runbook-gallery.md) hello portale di Azure o scaricare da hello [PowerShell Gallery](https://www.powershellgallery.com).
+Questo scenario è costituito da due runbook di PowerShell che è possibile importare direttamente dalla [raccolta di runbook](automation-runbook-gallery.md) nel portale di Azure o scaricare da [PowerShell Gallery](https://www.powershellgallery.com).
 
 ### <a name="runbooks"></a>Runbook
 
 Runbook | Descrizione| 
 --------|------------|
-Sincronizzazione VSTS | Importare runbook o configurazioni dal controllo del codice sorgente VSTS al termine di un'archiviazione. Se eseguito manualmente, sarà importare e pubblicare tutti i runbook o configurazioni in hello account di automazione.| 
-Sincronizzazione VSTSGit | Importare runbook o configurazioni da VSTS nel controllo del codice sorgente Git al termine di un'archiviazione. Se eseguito manualmente, sarà importare e pubblicare tutti i runbook o configurazioni in hello account di automazione.|
+Sincronizzazione VSTS | Importare runbook o configurazioni dal controllo del codice sorgente VSTS al termine di un'archiviazione. Se eseguito manualmente, importerà e pubblicherà tutti i runbook o le configurazioni nell'account di automazione.| 
+Sincronizzazione VSTSGit | Importare runbook o configurazioni da VSTS nel controllo del codice sorgente Git al termine di un'archiviazione. Se eseguito manualmente, importerà e pubblicherà tutti i runbook o le configurazioni nell'account di automazione.|
 
-### <a name="variables"></a>variables
+### <a name="variables"></a>Variabili
 
 Variabile | Descrizione|
 -----------|------------|
-VSToken | Proteggere asset della variabile verrà creato che contiene i token di accesso personale VSTS hello. È possibile ottenere informazioni di modalità di accesso personale VSTS di toocreate token su hello [pagina autenticazione VSTS](https://www.visualstudio.com/en-us/docs/integrate/get-started/auth/overview). 
+VSToken | Protegge l'asset della variabile creato che contiene il token di accesso personale VSTS. È possibile imparare a creare un token di accesso personale VSTS nella [pagina di autenticazione VSTS](https://www.visualstudio.com/en-us/docs/integrate/get-started/auth/overview). 
 ## <a name="installing-and-configuring-this-scenario"></a>Installazione e configurazione dello scenario
 
-Creare un [token di accesso personale](https://www.visualstudio.com/en-us/docs/integrate/get-started/auth/overview) in VSTS che si utilizzeranno i runbook hello toosync o configurazioni nell'account di automazione.
+Creare un [token di accesso personale](https://www.visualstudio.com/en-us/docs/integrate/get-started/auth/overview) in VSTS, che verrà usato per sincronizzare i runbook o le configurazioni nell'account di automazione.
 
 ![](media/automation-scenario-source-control-integration-with-VSTS/VSTSPersonalToken.png) 
 
-Creare un [variabile secure](automation-variables.md) nel hello toohold account di automazione di accesso personale token in modo che i runbook hello può autenticarsi tooVSTS e sincronizzazione runbook hello o configurazioni in hello account di automazione. È possibile denominare questo token VSToken. 
+Creare una [variabile protetta](automation-variables.md) nell'account di automazione per contenere il token di accesso personale in modo che il runbook possa eseguire l'autenticazione in VSTS e sincronizzare i runbook o le configurazioni nell'account di automazione. È possibile denominare questo token VSToken. 
 
 ![](media/automation-scenario-source-control-integration-with-VSTS/VSTSTokenVariable.png)
 
-Importare runbook hello che verrà eseguita la sincronizzazione del runbook o configurazioni nell'account di automazione hello. È possibile utilizzare hello [runbook di esempio VSTS](https://www.powershellgallery.com/packages/Sync-VSTS/1.0/DisplayScript) o hello [Visual Studio Team Services con i runbook di esempio Git] (https://www.powershellgallery.com/packages/Sync-VSTSGit/1.0/DisplayScript) da hello PowerShellGallery.com a seconda se si utilizza Visual Studio Team Services controllo o VSTS con Git di origine e distribuire tooyour account di automazione.
+Importare il runbook che sincronizzerà i runbook o le configurazioni nell'account di automazione. È possibile usare il [runbook di esempio VSTS](https://www.powershellgallery.com/packages/Sync-VSTS/1.0/DisplayScript) oppure il [runbook di esempio VSTS con Git] (https://www.powershellgallery.com/packages/Sync-VSTSGit/1.0/DisplayScript) da PowerShellGallery.com a seconda se si usa il controllo del codice sorgente VSTS o VSTS con Git ed eseguire la distribuzione al proprio account di automazione.
 
 ![](media/automation-scenario-source-control-integration-with-VSTS/VSTSPowerShellGallery.png)
 
 È ora possibile [pubblicare](automation-creating-importing-runbook.md#publishing-a-runbook) questo runbook in modo da creare un webhook. 
 ![](media/automation-scenario-source-control-integration-with-VSTS/VSTSPublishRunbook.png)
 
-Creare un [webhook](automation-webhooks.md) per questo runbook VSTS di sincronizzazione e inserire parametri hello, come illustrato di seguito. Assicurarsi di copiare url del webhook hello perché sarà necessaria per una funzione hook del servizio in Visual Studio Team Services. Hello VSAccessTokenVariableName è il nome di hello (VSToken) della variabile di hello sicura creata dal token di accesso personale hello toohold precedenti. 
+Creare un [webhook](automation-webhooks.md) per questo runbook di sincronizzazione VSTS e inserire i parametri come illustrato di seguito. Assicurarsi di copiare l'url del webhook, poiché sarà necessario per un hook del servizio in VSTS. VSAccessTokenVariableName è il nome (VSToken) della variabile protetta creata in precedenza per contenere il token di accesso personale. 
 
-L'integrazione con Visual Studio Team Services (Sync-VSTS.ps1) richiederà hello seguenti parametri.
+L'integrazione con VSTS (Sync-VSTS.ps1) richiederà i parametri seguenti.
 ### <a name="sync-vsts-parameters"></a>Parametri di sincronizzazione VSTS
 
 . | Descrizione| 
 --------|------------|
-WebhookData | Questa conterrà le informazioni sull'archiviazione hello inviati da hello VSTS servizio hook. È necessario lasciare vuoto questo parametro.| 
-ResourceGroup | Questo è il nome di hello hello risorsa del gruppo di account di automazione hello in.|
-AutomationAccountName | nome Hello dell'account di automazione hello che verrà eseguita la sincronizzazione con Visual Studio Team Services.|
-VSFolder | Il nome della cartella hello in Visual Studio Team Services in cui sono presenti runbook hello e configurazioni.|
-VSAccount | nome Hello di hello account Visual Studio Team Services.| 
-VSAccessTokenVariableName | nome di Hello di hello sicura variabile (VSToken) che contiene i token di accesso personale VSTS hello.| 
+WebhookData | Questo file conterrà le informazioni di archiviazione inviate dall'hook del servizio VSTS. È necessario lasciare vuoto questo parametro.| 
+ResourceGroup | Nome del gruppo di risorse in cui si trova l'account di automazione.|
+AutomationAccountName | Nome dell'account di automazione che verrà sincronizzato con VSTS.|
+VSFolder | Nome della cartella in VSTS, in cui sono presenti i runbook e le configurazioni.|
+VSAccount | Nome dell'account di Visual Studio Team Services.| 
+VSAccessTokenVariableName | Nome della variabile protetta (VSToken) che contiene il token di accesso personale VSTS.| 
 
 
 ![](media/automation-scenario-source-control-integration-with-VSTS/VSTSWebhook.png)
 
-Se si utilizza Visual Studio Team Services con GIT (Sync-VSTSGit.ps1) richiederà hello seguenti parametri.
+Se si usa VSTS con GIT (Sync-VSTSGit.ps1), saranno necessari i parametri seguenti.
 
 . | Descrizione|
 --------|------------|
-WebhookData | Questa conterrà le informazioni sull'archiviazione hello inviati da hello VSTS servizio hook. È necessario lasciare vuoto questo parametro.| ResourceGroup | Questo nome hello hello risorsa del gruppo di account di automazione hello in.|
-AutomationAccountName | nome Hello dell'account di automazione hello che verrà eseguita la sincronizzazione con Visual Studio Team Services.|
-VSAccount | nome Hello di hello account Visual Studio Team Services.|
-VSProject | nome di Hello del progetto hello in Visual Studio Team Services in cui sono presenti runbook hello e configurazioni.|
-GitRepo | nome Hello del repository Git hello.|
-GitBranch | nome di Hello di hello ramo nel repository Git di Visual Studio Team Services.|
-Cartella | nome di Hello della cartella hello in ramo Git di Visual Studio Team Services.|
-VSAccessTokenVariableName | nome di Hello di hello sicura variabile (VSToken) che contiene i token di accesso personale VSTS hello.|
+WebhookData | Questo file conterrà le informazioni di archiviazione inviate dall'hook del servizio VSTS. È necessario lasciare vuoto questo parametro.| ResourceGroup | Nome del gruppo di risorse in cui si trova l'account di automazione.|
+AutomationAccountName | Nome dell'account di automazione che verrà sincronizzato con VSTS.|
+VSAccount | Nome dell'account di Visual Studio Team Services.|
+VSProject | Nome del progetto in VSTS, in cui sono presenti i runbook e le configurazioni.|
+GitRepo | Nome del repository Git.|
+GitBranch | Nome del branch nel repository Git VSTS.|
+Cartella | Nome della cartella nel branch Git VSTS.|
+VSAccessTokenVariableName | Nome della variabile protetta (VSToken) che contiene il token di accesso personale VSTS.|
 
 ![](media/automation-scenario-source-control-integration-with-VSTS/VSTSGitWebhook.png)
 
-Creare un hook del servizio in Visual Studio Team Services per la cartella toohello archiviazioni che attiva il webhook check-in codice. Selezionare Web hook come hello servizio toointegrate con quando si crea una nuova sottoscrizione. È possibile acquisire familiarità con gli hook del servizio nella [documentazione relativa agli hook del servizio VSTS](https://www.visualstudio.com/en-us/docs/marketplace/integrate/service-hooks/get-started).
+Creare un hook del servizio in VSTS per le archiviazioni alla cartella che attiva il webhook all'archiviazione del codice. Selezionare Web hook come servizio con cui eseguire l'integrazione quando si crea una nuova sottoscrizione. È possibile acquisire familiarità con gli hook del servizio nella [documentazione relativa agli hook del servizio VSTS](https://www.visualstudio.com/en-us/docs/marketplace/integrate/service-hooks/get-started).
 ![](media/automation-scenario-source-control-integration-with-VSTS/VSTSServiceHook.png)
 
-Deve essere in grado di toodo tutte le archiviazioni dei runbook e le configurazioni in VSTS e sono automaticamente sincronizzati era nell'account di automazione.
+A questo punto si sarà in grado di eseguire tutte le archiviazioni dei runbook e delle configurazioni in VSTS e di sincronizzarle automaticamente nell'account di automazione.
 
 ![](media/automation-scenario-source-control-integration-with-VSTS/VSTSSyncRunbookOutput.png)
 
-Se si esegue manualmente il runbook senza avviato da Visual Studio Team Services, è possibile lasciare vuoto il parametro webhookdata hello e eseguirà una sincronizzazione completa dalla cartella VSTS hello specificata.
+Se si esegue manualmente questo runbook senza che sia attivato da VSTS, è possibile lasciare vuoto il parametro webhookdata in modo che sia eseguita una sincronizzazione completa dalla cartella VSTS specificata.
 
-Se si desidera scenario hello toouninstall, rimuovere hello servizio hook da Visual Studio Team Services, eliminare runbook hello e hello VSToken variabile.
+Se si desidera disinstallare lo scenario, rimuovere l'hook del servizio da VSTS, eliminare il runbook e la variabile VSToken.

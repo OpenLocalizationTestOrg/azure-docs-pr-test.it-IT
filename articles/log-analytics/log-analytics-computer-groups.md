@@ -1,6 +1,6 @@
 ---
-title: ricerche di gruppi aaaComputer Log Analitica log | Documenti Microsoft
-description: "I gruppi di computer nel Log Analitica consentono tooscope log ricerche tooa particolare set di computer.  Questo articolo descrive i diversi metodi hello è possibile utilizzare gruppi di computer toocreate e come toouse in un log di ricerca."
+title: Gruppi di computer nelle ricerche nei log in Log Analytics | Documentazione Microsoft
+description: I gruppi di computer in Log Analytics consentono di limitare l'ambito delle ricerche nei log a uno specifico set di computer.  Questo articolo descrive i diversi metodi disponibili per creare gruppi di computer e come usare tali gruppi in una ricerca nei log.
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -12,41 +12,41 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/26/2017
+ms.date: 09/15/2017
 ms.author: bwren
-ms.openlocfilehash: 7dafea9829e541f5582a1d855fafb82aa4d94430
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3cc8b5c5394a031575ad0a840f57ee5e97012c17
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="computer-groups-in-log-analytics-log-searches"></a>Gruppi di computer nelle ricerche nei log in Log Analytics
 
 >[!NOTE]
-> Questo articolo descrive utilizzare hello di gruppi di Computer usando il linguaggio di query hello corrente Anayltics Log.    Se l'area di lavoro è stato aggiornato toohello [Analitica Log nuovo linguaggio di query](log-analytics-log-search-upgrade.md), quindi i gruppi di Computer di lavoro in modo diverso.  Note vengono fornite in questo articolo con una sintassi diversa hello e il comportamento per il nuovo linguaggio di query hello.  
+> Questo articolo descrive l'uso di gruppi di computer che impiegano il linguaggio di query corrente di Log Anayltics.    Se l'area di lavoro è stata aggiornata al [nuovo linguaggio di query di Log Analytics](log-analytics-log-search-upgrade.md), i gruppi di computer funzionano in modo diverso.  L'articolo include alcune note con la diversa sintassi e comportamento per il nuovo linguaggio di query.  
 
 
-Gruppi di computer in Analitica Log consentono di tooscope [log ricerche](log-analytics-log-searches.md) tooa particolare set di computer.  Ogni gruppo viene popolato con i computer usando una query definita dall'utente oppure importando gruppi da diverse origini.  Quando il gruppo di hello è inclusa in una ricerca log, i risultati di hello sono toorecords limitato che corrispondono a computer hello hello gruppo.
+I gruppi di computer in Log Analytics consentono di limitare l'ambito delle [ricerche nei log](log-analytics-log-searches.md) a uno specifico set di computer.  Ogni gruppo viene popolato con i computer usando una query definita dall'utente oppure importando gruppi da diverse origini.  Quando il gruppo viene incluso in una ricerca nei log, i risultati sono limitati ai record corrispondenti ai computer del gruppo.
 
 ## <a name="creating-a-computer-group"></a>Creazione di un gruppo di computer
-È possibile creare un gruppo di computer nel Log Analitica utilizzando uno dei metodi di hello in hello nella tabella seguente.  Nelle sezioni hello riportato di seguito vengono forniti dettagli su ogni metodo. 
+È possibile creare un gruppo di computer in Log Analytics usando uno dei metodi riportati nella tabella seguente.  Informazioni dettagliate su ogni metodo sono disponibili nelle sezioni successive. 
 
 | Metodo | Descrizione |
 |:--- |:--- |
-| Ricerca log |Creare una ricerca di log che restituisce un elenco di computer e salvare i risultati di hello di un gruppo di computer. |
-| API di ricerca nei log |Utilizzare hello API di ricerca Log tooprogrammatically creare un gruppo di computer in base ai risultati di hello di una ricerca di log. |
-| Active Directory |Analizza automaticamente l'appartenenza al gruppo hello dei computer agente che sono membri di un dominio Active Directory e creare un gruppo in Analitica di Log per ogni gruppo di sicurezza. |
+| Ricerca log |Creare una ricerca nei log che restituisca un elenco di computer e salvare i risultati come gruppo di computer. |
+| API di ricerca nei log |Usare l'API di ricerca nei log per creare un gruppo di computer a livello di codice in base ai risultati di una ricerca nei log. |
+| Active Directory |Analizzare automaticamente l'appartenenza a gruppi di tutti i computer degli agenti che sono membri di un dominio di Active Directory e creare un gruppo in Log Analytics per ogni gruppo di sicurezza. |
 | WSUS |Analizzare automaticamente i server o i client WSUS per rilevare i gruppi di destinazione e creare in Log Analytics un gruppo per ognuno. |
 
 ### <a name="log-search"></a>Ricerca log
-Gruppi di computer creati da una ricerca di Log contengono tutti i computer hello restituiti da una query di ricerca definiti.  Questa query viene eseguita ogni volta che viene utilizzato il gruppo di computer hello in modo da rispecchiare le modifiche perché è stato creato il gruppo di hello.
+I gruppi di computer creati da una ricerca log contengono tutti i computer restituiti da una query di ricerca definita dall'utente.  Questa query viene eseguita ogni volta che viene usato il gruppo di computer, in modo da riflettere le modifiche successive alla creazione del gruppo.
 
-Utilizzare hello seguendo procedure toocreate un gruppo di computer da una ricerca di log.
+Per creare un gruppo di computer da una ricerca nei log, seguire questa procedura.
 
-1. [Creare una ricerca nei log](log-analytics-log-searches.md) che restituisca un elenco di computer.  Hello ricerca deve restituire un set distinto di computer con un risultato simile **Computer distinti** o **measure Count () dal Computer** nella query hello.  
-2. Fare clic su hello **salvare** pulsante in alto hello hello.
-3. Selezionare **Sì** troppo**salvare la query come un gruppo di computer**.
-4. Digitare un **nome** e **categoria** per il gruppo di hello.  Se una ricerca con hello stesso nome e la categoria già esiste, sono toooverwrite richiesto è.  È possibile avere più ricerche con hello stesso nome in categorie diverse. 
+1. [Creare una ricerca nei log](log-analytics-log-searches.md) che restituisca un elenco di computer.  La ricerca deve restituire un set distinto di computer usando ad esempio **distinct Computer** o **measure count() by Computer** nella query.  
+2. Fare clic sul pulsante **Salva** nella parte superiore della schermata.
+3. Selezionare **Sì** per impostare l'opzione **Salva questa query come gruppo di computer**.
+4. Digitare **Nome** e **Categoria** del gruppo.  Se esiste già una ricerca con lo stesso nome e la stessa categoria, viene richiesto se la si vuole sovrascrivere.  È possibile avere più ricerche con lo stesso nome in categorie diverse. 
 
 Di seguito sono riportate ricerche di esempio che è possibile salvare come gruppo di computer.
 
@@ -54,72 +54,72 @@ Di seguito sono riportate ricerche di esempio che è possibile salvare come grup
     Computer=*srv* | measure count() by Computer
 
 >[!NOTE]
-> Se l'area di lavoro è stato aggiornato toohello [Analitica Log nuovo linguaggio di query](log-analytics-log-search-upgrade.md) quindi hello sono modifiche seguenti apportate toohello procedura toocreate un nuovo gruppo di computer.
+> Se l'area di lavoro è stata aggiornata al [nuovo linguaggio di query di Log Analytics](log-analytics-log-search-upgrade.md), vengono eseguite le seguenti modifiche alla procedura per creare un nuovo gruppo di computer.
 >  
-> - Hello toocreate query deve includere un gruppo di computer `distinct Computer`.  Ecco un esempio di un toocreate query un gruppo di computer.<br>`Heartbeat | where Computer contains "srv" `
-> - Quando si crea un nuovo gruppo di computer, è necessario specificare un alias nel nome toohello aggiunta.  Utilizzare alias di hello quando si utilizza il gruppo di computer hello in una query, come descritto di seguito.  
+> - La query per creare un gruppo di computer deve includere `distinct Computer`.  Ecco un esempio di query per creare un gruppo di computer.<br>`Heartbeat | where Computer contains "srv" | distinct Computer `
+> - Quando si crea un nuovo gruppo di computer, è necessario specificare un alias oltre al nome.  L'alias si usa quando si specifica il gruppo di computer in una query, come descritto di seguito.  
 
 ### <a name="log-search-api"></a>API di ricerca nei log
-Gruppi di computer creati con l'API di ricerca Log vengono hello hello stesso come ricerche create con una ricerca di Log.
+I gruppi di computer creati con l'API di ricerca nei log sono uguali alle ricerche create con una ricerca nei log.
 
-Per ulteriori informazioni sulla creazione di un gruppo di computer utilizzando l'API di ricerca Log hello vedere [API REST di ricerca di gruppi di Computer nel registro eventi di Log Analitica](log-analytics-log-search-api.md#computer-groups).
+Per informazioni dettagliate sulla creazione di un gruppo di computer con l'API di ricerca nei log, vedere la sezione [Gruppi di computer in API REST di Log Analytics per la ricerca nei log](log-analytics-log-search-api.md#computer-groups).
 
 ### <a name="active-directory"></a>Active Directory
-Quando si configura l'appartenenza al gruppo Active Directory di Log Analitica tooimport, analizza l'appartenenza al gruppo hello di qualsiasi computer aggiunto a un dominio con l'agente OMS hello.  Viene creato un gruppo di computer in Analitica di Log per ogni gruppo di sicurezza in Active Directory, e ogni computer viene aggiunto toohello gruppi di computer sono membri di gruppi di sicurezza di toohello corrispondente.  L'appartenenza viene aggiornata continuamente ogni 4 ore.  
+Quando si configura Log Analytics per importare le appartenenze ai gruppi di Active Directory, viene analizzata l'appartenenza ai gruppi di tutti i computer aggiunti a un dominio con l'agente OMS.  Viene creato un gruppo di computer in Log Analytics per ogni gruppo di sicurezza in Active Directory e ogni computer viene aggiunto ai gruppi di computer corrispondenti ai gruppi di sicurezza di cui è membro.  L'appartenenza viene aggiornata continuamente ogni 4 ore.  
 
-Configurare gruppi di sicurezza di Active Directory Log Analitica tooimport da hello **gruppi di Computer** dal menu Registro Analitica **impostazioni**.  Selezionare **Automazione** e quindi **Importa le appartenenze a gruppi di Active Directory dai computer**.  Non è richiesta alcuna ulteriore configurazione.
+È possibile configurare Log Analytics per l'importazione dei gruppi di sicurezza di Active Directory dal menu **Gruppi di computer** di **Impostazioni** in Log Analytics.  Selezionare **Automazione** e quindi **Importa le appartenenze a gruppi di Active Directory dai computer**.  Non è richiesta alcuna ulteriore configurazione.
 
 ![Gruppi di computer da Active Directory](media/log-analytics-computer-groups/configure-activedirectory.png)
 
-Quando i gruppi siano stati importati, hello menu elenchi hello numero di computer con l'appartenenza al gruppo rilevato e numero di gruppi importati hello.  È possibile fare clic su uno di questi hello tooreturn collegamenti **ComputerGroup** i record con queste informazioni.
+Al termine dell'importazione dei gruppi, nel menu vengono elencati il numero dei computer di cui sono state rilevate le appartenenze a gruppi e il numero dei gruppi importati.  È possibile fare clic su uno di questi collegamenti per ottenere i record **ComputerGroup** con tali informazioni.
 
 ### <a name="windows-server-update-service"></a>Windows Server Update Service
-Quando si configura Log Analitica tooimport WSUS appartenenza ai gruppi, che analizza hello come destinazione l'appartenenza al gruppo di qualsiasi computer con l'agente OMS hello.  Se si utilizza sul lato client come destinazione, qualsiasi computer connesso tooOMS e fa parte di qualsiasi WSUS gruppi di destinazione è l'appartenenza al gruppo importato tooLog Analitica. Se si utilizza sul lato server come destinazione, hello OMS deve essere installato l'agente hello WSUS server affinché toobe informazioni l'appartenenza al gruppo di hello importati tooOMS.  L'appartenenza viene aggiornata continuamente ogni 4 ore. 
+Quando si configura Log Analytics per importare le appartenenze a gruppi di WSUS, viene analizzata l'appartenenza a gruppi di destinazione di tutti i computer con l'agente OMS.  Se si usa la destinazione lato client, vengono importate in Log Analytics le appartenenze a gruppi di tutti i computer connessi a OMS che fanno parte di qualsiasi gruppo di destinazione di WSUS. Se si usa la destinazione lato server, per poter importare le informazioni relative all'appartenenza a gruppi in OMS è necessario che l'agente OMS sia installato nel server WSUS.  L'appartenenza viene aggiornata continuamente ogni 4 ore. 
 
-Configurare gruppi di sicurezza di Active Directory Log Analitica tooimport da hello **gruppi di Computer** dal menu Registro Analitica **impostazioni**.  Selezionare **Active Directory** e quindi **Importa le appartenenze a gruppi di Active Directory dai computer**.  Non è richiesta alcuna ulteriore configurazione.
+È possibile configurare Log Analytics per l'importazione dei gruppi di sicurezza di Active Directory dal menu **Gruppi di computer** di **Impostazioni** in Log Analytics.  Selezionare **Active Directory** e quindi **Importa le appartenenze a gruppi di Active Directory dai computer**.  Non è richiesta alcuna ulteriore configurazione.
 
 ![Gruppi di computer da Active Directory](media/log-analytics-computer-groups/configure-wsus.png)
 
-Quando i gruppi siano stati importati, hello menu elenchi hello numero di computer con l'appartenenza al gruppo rilevato e numero di gruppi importati hello.  È possibile fare clic su uno di questi hello tooreturn collegamenti **ComputerGroup** i record con queste informazioni.
+Al termine dell'importazione dei gruppi, nel menu vengono elencati il numero dei computer di cui sono state rilevate le appartenenze a gruppi e il numero dei gruppi importati.  È possibile fare clic su uno di questi collegamenti per ottenere i record **ComputerGroup** con tali informazioni.
 
 ## <a name="managing-computer-groups"></a>Gestione dei gruppi di computer
-È possibile visualizzare i gruppi di computer creati da una ricerca di log o hello API di ricerca Log da hello **gruppi di Computer** dal menu Registro Analitica **impostazioni**.  Fare clic su hello **x** in hello **rimuovere** gruppo di computer hello toodelete di colonna.  Fare clic su hello **visualizzare membri** icona per la ricerca di log del gruppo di hello toorun gruppo che restituisce i relativi membri. 
+È possibile visualizzare i gruppi di computer creati da una ricerca nei log o dall'API di ricerca nei log dal menu **Gruppi di computer** di **Impostazioni** in Log Analytics.  Fare clic sulla **x** nella colonna **Rimuovi** per eliminare il gruppo di computer.  Fare clic sull'icona **Visualizza membri** in corrispondenza di un gruppo per eseguire la ricerca nei log del gruppo che ne restituisce i membri. 
 
 ![Gruppi di computer salvati](media/log-analytics-computer-groups/configure-saved.png)
 
-hello toomodify gruppo, creare un nuovo gruppo con hello stesso **categoria** e **nome** toooverwrite gruppo originale di hello.
+Per modificare il gruppo, creare un nuovo gruppo con la stessa **categoria** e lo stesso **nome** per sovrascrivere il gruppo originale.
 
 ## <a name="using-a-computer-group-in-a-log-search"></a>Uso di un gruppo di computer in una ricerca nei log
-Utilizzare hello seguente gruppo di computer tooa toorefer sintassi in una ricerca di log.  Se si specifica hello **categoria** è facoltativo e solo obbligatorio se si dispone di gruppi di computer con hello stesso nome in categorie diverse. 
+Per fare riferimento a un gruppo di computer in una ricerca nei log, usare la sintassi riportata di seguito.  Specificare **Category** è facoltativo ed è necessario solo se sono presenti gruppi di computer con lo stesso nome in categorie diverse. 
 
     $ComputerGroups[Category: Name]
 
-Quando viene eseguita una ricerca, vengono risolte innanzitutto i membri di gruppi di computer inclusi nella ricerca hello hello.  Se il gruppo di hello è basato su una ricerca log, la ricerca viene eseguita membri hello tooreturn del gruppo di hello prima di eseguire una ricerca nei log di primo livello hello.
+Quando viene eseguita una ricerca, per prima cosa vengono risolti i membri di tutti i gruppi di computer inclusi nella ricerca.  Se il gruppo è basato su una ricerca log, viene eseguita tale ricerca per ottenere i membri del gruppo prima di eseguire la ricerca log di livello superiore.
 
-Gruppi di computer sono in genere utilizzati con hello **IN** clausola nella ricerca nei log hello come hello di esempio seguente:
+Nella ricerca log, i gruppi di computer vengono in genere usati con la clausola **IN**, come nell'esempio seguente:
 
     Type=UpdateSummary Computer IN $ComputerGroups[My Computer Group]
 
 >[!NOTE]
-> Se l'area di lavoro è stato aggiornato toohello [Analitica Log nuovo linguaggio di query](log-analytics-log-search-upgrade.md), utilizzare un gruppo di Computer in una query per trattare il relativo alias come una funzione come hello di esempio seguente:
+> Se l'area di lavoro è stata aggiornata al [nuovo linguaggio di query di Log Analytics](log-analytics-log-search-upgrade.md), è possibile usare un gruppo di computer in una query trattando il suo alias come una funzione, come nell'esempio seguente:
 > 
->  `UpdateSummary | where Computer IN (MyComputerGroup)`
+>  `UpdateSummary | where Computer in (mycomputergroup)`
 
 ## <a name="computer-group-records"></a>Record dei gruppi di computer
-Viene creato un record nel repository OMS hello ogni appartenenza al gruppo di computer creato da Active Directory o Windows Server Update Services.  Questi record dispongono di un tipo di **ComputerGroup** e dispone di proprietà hello in hello nella tabella seguente.  Per i gruppi di computer basati su ricerche nei log non vengono creati record.
+Per ogni appartenenza a gruppi di computer creata da Active Directory o WSUS viene creato un record nel repository OMS.  Il tipo di questi record è **ComputerGroup** e le proprietà sono elencate nella tabella seguente.  Per i gruppi di computer basati su ricerche nei log non vengono creati record.
 
 | Proprietà | Descrizione |
 |:--- |:--- |
 | Tipo |*ComputerGroup* |
 | SourceSystem |*SourceSystem* |
-| Computer |Nome del computer membro di hello. |
-| Gruppo |Nome del gruppo di hello. |
-| GroupFullName |Gruppo toohello percorso completo incluso origine hello e il nome di origine. |
+| Computer |Nome del computer membro. |
+| Group |Nome del gruppo. |
+| GroupFullName |Percorso completo del gruppo, con origine e nome dell'origine. |
 | GroupSource |Origine da cui il gruppo è stato raccolto. <br><br>ActiveDirectory<br>WSUS<br>WSUSClientTargeting |
-| GroupSourceName |Nome dell'origine hello che hello gruppo sono stati raccolti da.  Per Active Directory, questo è il nome di dominio di hello. |
-| ManagementGroupName |Nome del gruppo di gestione di hello per gli agenti SCOM.  Per gli altri agenti, corrisponde ad AOI-\<ID area di lavoro\> |
-| TimeGenerated |Gruppo di computer hello data e ora è stato creato o aggiornato. |
+| GroupSourceName |Nome dell'origine da cui il gruppo è stato raccolto.  Per Active Directory, corrisponde al nome del dominio. |
+| ManagementGroupName |Nome del gruppo di gestione per gli agenti SCOM.  Per gli altri agenti, corrisponde ad AOI-\<ID area di lavoro\> |
+| TimeGenerated |Data e ora in cui il gruppo di computer è stato creato o aggiornato. |
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Informazioni su [log ricerche](log-analytics-log-searches.md) tooanalyze hello dati raccolti da origini dati e le soluzioni.  
+* Informazioni sulle [ricerche nei log](log-analytics-log-searches.md) per analizzare i dati raccolti dalle origini dati e dalle soluzioni.  
 

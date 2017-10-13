@@ -1,6 +1,6 @@
 ---
-title: aaaInstall Update 3 nel dispositivo StorSimple | Documenti Microsoft
-description: Viene illustrato come tooinstall StorSimple 8000 Series Update 3 sul dispositivo serie StorSimple 8000.
+title: Installare l'aggiornamento 3 nel dispositivo StorSimple | Microsoft Docs
+description: Illustra come installare l'aggiornamento 3 di StorSimple serie 8000 in un dispositivo StorSimple serie 8000.
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -15,68 +15,68 @@ ms.workload: TBD
 ms.date: 02/27/2017
 ms.author: alkohli
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: a156b8919639f1c7afb0fdef3d882d40d48f1c48
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 72b004a6c2604e0fc20b71b4b69217622f8f9ea0
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="install-update-3-on-your-storsimple-8000-series-device"></a>Installare l'aggiornamento 3 nel dispositivo StorSimple serie 8000
 
 ## <a name="overview"></a>Panoramica
 
-In questa esercitazione viene illustrato come tooinstall Update 3 in un dispositivo StorSimple in esecuzione una versione precedente di software tramite hello portale di Azure classico e utilizzando il metodo di aggiornamento rapido hello. metodo di aggiornamento rapido Hello viene utilizzato quando un gateway è configurato su un'interfaccia di rete diverse da DATA 0 del dispositivo StorSimple hello e si sta tentando di tooupdate da una versione del software pre-aggiornamento 1.
+Questa esercitazione illustra come installare l'aggiornamento 3 in un dispositivo StorSimple dove è in esecuzione una versione precedente del software tramite il portale di Azure classico e usando il metodo hotfix. Il metodo hotfix è usato quando viene configurato un gateway su un'interfaccia di rete diversa da DATA 0 del dispositivo StorSimple e si sta tentando di aggiornare da una versione del software precedente all'aggiornamento 1.
 
-L'aggiornamento 3 include gli aggiornamenti del software della periferica, di driver e firmware LSI, di Storport e Spaceport. Se l'aggiornamento da Update 2 o versione precedente, verrà anche essere necessario tooapply iSCSI, WMI e in alcuni casi, gli aggiornamenti del firmware del disco. Hello software del dispositivo, WMI, iSCSI, i driver LSI, Spaceport e Storport correzioni sono aggiornamenti non comportano interruzioni del servizio e possono essere applicate tramite hello portale di Azure classico. aggiornamenti del firmware di Hello disco sono gli aggiornamenti che possono causare interruzioni e possono essere applicati solo tramite l'interfaccia di Windows PowerShell hello del dispositivo hello. 
+L'aggiornamento 3 include gli aggiornamenti del software della periferica, di driver e firmware LSI, di Storport e Spaceport. Se si proviene dall'aggiornamento 2 o da una versione precedente, è necessario anche applicare iSCSI, WMI e, in alcuni casi, gli aggiornamenti del firmware del disco. Gli aggiornamenti del software del dispositivo, WMI, iSCSI, del driver LSI, Spaceport, e le correzioni Storport non sono problematici e possono essere applicati tramite il portale di Azure classico. Gli aggiornamenti del firmware del disco sono problematici e possono essere applicati solo tramite l'interfaccia di Windows PowerShell del dispositivo. 
 
 > [!IMPORTANT]
-> * Un set di controlli preliminari su automatici e manuali, vengono effettuati toohello precedente installazione toodetermine hello integrità del dispositivo in termini di connettività di rete e di stato dell'hardware. Questi controlli preliminari vengono eseguiti solo se si applicano gli aggiornamenti di hello dal portale di Azure classico hello.
-> * Si consiglia di installare software hello e aggiornamenti di driver tramite hello portale di Azure classico. Interfaccia di Windows PowerShell toohello del dispositivo hello (tooinstall aggiornamenti) devono essere inviate solo se si verifica un errore di controllo pre-aggiornamento gateway hello nel portale di hello. A seconda che si sta aggiornando dalla versione di hello, hello aggiornamenti possono richiedere tooinstall 1.5-2,5 ore. gli aggiornamenti in modalità manutenzione Hello devono essere installati tramite l'interfaccia di Windows PowerShell hello del dispositivo hello. Dal momento che si tratta di aggiornamenti problematici, comporteranno un periodo di inattività per il dispositivo.
-> * Se in esecuzione hello facoltativo StorSimple Snapshot Manager, assicurarsi di aver aggiornato il dispositivo di gestione Snapshot versione tooUpdate 2 precedente tooupdating hello.
+> * Si esegue una serie di controlli preliminari automatici e manuali prima dell'installazione per determinare l'integrità del dispositivo in termini di connettività di stato e di rete hardware. Questi controlli preliminari vengono eseguiti solo se si applicano gli aggiornamenti dal portale di Azure classico.
+> * Si consiglia di installare gli aggiornamenti software e driver tramite il portale di Azure classico. Passare all'interfaccia di Windows PowerShell del dispositivo (per installare gli aggiornamenti) solo se il gateway di pre-aggiornamento ha esito negativo nel portale. A seconda della versione da cui viene eseguito l'aggiornamento, gli aggiornamenti possono richiedere 1,5 - 2,5 ore per essere installati. Gli aggiornamenti in modalità di manutenzione devono essere installati tramite l'interfaccia di Windows PowerShell del dispositivo. Dal momento che si tratta di aggiornamenti problematici, comporteranno un periodo di inattività per il dispositivo.
+> * Se StorSimple Snapshot Manager facoltativo è in esecuzione, assicurarsi di aver aggiornato la versione di Snapshot Manager con l'aggiornamento 2 prima di aggiornare il dispositivo.
 > 
 > 
 
 [!INCLUDE [storsimple-preparing-for-update](../../includes/storsimple-preparing-for-updates.md)]
 
-## <a name="install-update-3-via-hello-azure-classic-portal"></a>Installare l'aggiornamento 3 tramite hello portale di Azure classico
-Eseguire hello seguendo i passaggi tooupdate dispositivo troppo[Update 3](storsimple-update3-release-notes.md).
+## <a name="install-update-3-via-the-azure-classic-portal"></a>Installare l'aggiornamento 3 tramite il portale di Azure classico
+Seguire questa procedura per aggiornare il dispositivo all' [aggiornamento 3](storsimple-update3-release-notes.md).
 
 > [!NOTE]
-> Se si desidera applicare l'aggiornamento 2 o versione successiva (comprese Update 2.1), Microsoft sarà in grado di toopull informazioni diagnostiche aggiuntive dal dispositivo hello. Di conseguenza, quando il team operativo identifica i dispositivi che si sono verificati problemi, siamo migliori informazioni toocollect forniti dal dispositivo hello e diagnosticare i problemi. Accettando Update 2 o versione successiva, ci Consenti tooprovide questo supporto attiva.
+> Se si sta applicando l'aggiornamento 2 o una versione successiva (compreso l'aggiornamento 2.1), Microsoft è in grado di estrarre le informazioni di diagnostica aggiuntive dal dispositivo. Di conseguenza, quando il team addetto alle operazioni identifica i dispositivi che presentano problemi, sono disponibili più modi di raccogliere informazioni dal dispositivo e diagnosticare i problemi. Accettando l'aggiornamento 2, si acconsente a partecipare al supporto proattivo.
 > 
 > 
 
 [!INCLUDE [storsimple-install-update2-via-portal](../../includes/storsimple-install-update2-via-portal.md)]
 
-Verificare che nel dispositivo sia in esecuzione l' **aggiornamento 3 della serie 8000 di StorSimple (6.3.9600.17759)**. Hello **data dell'ultimo aggiornamento** deve inoltre essere modificato. 
-   - Se si sta aggiornando un tooUpdate precedente versione 2, si verifica anche che sono disponibili aggiornamenti in modalità manutenzione hello (questo messaggio potrebbe continuare toobe visualizzato per backup too24 ore dopo l'installazione di hello aggiornamenti).
-     Gli aggiornamenti in modalità manutenzione sono aggiornamenti comportano interruzioni e causare tempi di inattività di dispositivo e possono essere applicati solo tramite l'interfaccia di Windows PowerShell hello del dispositivo. In alcuni casi, nel qual caso non è necessario tooinstall Aggiorna qualsiasi modalità di manutenzione quando si esegue l'aggiornamento 1.2, il firmware del disco potrebbe già essere aggiornato.
-   - Se si parte dall'aggiornamento 2 o versione successiva, ora il dispositivo dovrebbe essere aggiornato. È possibile ignorare il passaggio di hello.
+Verificare che nel dispositivo sia in esecuzione l' **aggiornamento 3 della serie 8000 di StorSimple (6.3.9600.17759)**. Inoltre, è necessario modificare la **data dell'ultimo aggiornamento** . 
+   - Se si sta eseguendo l'aggiornamento da una versione precedente all'aggiornamento 2, è possibile vedere che sono disponibili anche gli aggiornamenti in modalità manutenzione. Questo messaggio potrebbe essere visualizzato fino a 24 ore dopo l'installazione degli aggiornamenti.
+     Gli aggiornamenti in modalità manutenzione sono aggiornamenti problematici che comportano tempi di inattività del dispositivo e possono essere applicati solo tramite l'interfaccia di Windows PowerShell del dispositivo. In alcuni casi quando si esegue l'Aggiornamento 1.2, il firmware del disco potrebbe essere già aggiornato, nel qual caso non è necessario installare eventuali aggiornamenti in modalità manutenzione.
+   - Se si parte dall'aggiornamento 2 o versione successiva, ora il dispositivo dovrebbe essere aggiornato. È possibile omettere il passaggio successivo.
 
-Scaricare gli aggiornamenti in modalità manutenzione hello attenendosi alla procedura hello elencata in [toodownload hotfix](#to-download-hotfixes) toosearch per e scaricare KB3121899, che consente di installare gli aggiornamenti del firmware del disco (hello altri aggiornamenti devono essere già installati a questo punto). Seguire i passaggi di hello elencati [installare e verificare l'hotfix in modalità manutenzione](#to-install-and-verify-maintenance-mode-hotfixes) tooinstall hello aggiornamenti in modalità manutenzione. 
+Scaricare gli aggiornamenti in modalità di manutenzione utilizzando la procedura indicata in [Scaricare gli aggiornamenti rapidi](#to-download-hotfixes) per cercare e scaricare KB3121899, che installa gli aggiornamenti del firmware del disco (gli altri aggiornamenti devono essere già installati a questo punto). Seguire i passaggi elencati nella sezione [Installare e verificare gli aggiornamenti rapidi in modalità di manutenzione](#to-install-and-verify-maintenance-mode-hotfixes) per installare gli aggiornamenti in modalità manutenzione. 
 
 ## <a name="install-update-3-as-a-hotfix"></a>Installare l'aggiornamento 3 come un hotfix
-Utilizzare questa procedura se si esegue il controllo gateway hello durante gli aggiornamenti di hello tooinstall tramite hello portale di Azure classico. controllo di Hello non riesce quando si dispone di un gateway assegnato tooa dati non interfaccia di rete 0 e il dispositivo è in esecuzione un software versione preliminare tooUpdate 1.
+Usare questa procedura se la verifica del gateway non riesce quando si cerca di installare gli aggiornamenti tramite il portale di Azure classico. La verifica non riesce quando un gateway è assegnato a un'interfaccia di rete non DATA 0e sul dispositivo è in esecuzione una versione del software precedente all'aggiornamento 1.
 
-versioni di software Hello che possono essere aggiornate tramite il metodo di aggiornamento rapido hello sono:
+Le versioni software che possono essere aggiornate usando il metodo hotfix sono:
 
 * Aggiornamento 0.1, 0.2, 0.3
 * Aggiornamento 1, 1.1, 1.2
 * Aggiornamento 2, 2.1, 2.2 
 
 > [!IMPORTANT]
-> * Se il dispositivo sta eseguendo una versione di rilascio (GA), contattare [supporto Microsoft](storsimple-contact-microsoft-support.md) tooassist con hello aggiornare.
+> * Se il dispositivo esegue la versione finale (GA), contattare [il supporto tecnico Microsoft](storsimple-contact-microsoft-support.md) per assistenza relativa all'aggiornamento.
 > 
 > 
 
-metodo di aggiornamento rapido Hello prevede hello tre passaggi:
+Il metodo hotfix prevede i tre passaggi seguenti:
 
-1. Scaricare gli aggiornamenti rapidi hello da Microsoft Update Catalog hello.
-2. Installare e verificare gli aggiornamenti rapidi di hello modalità normale.
-3. Installare e verificare l'hotfix di modalità di manutenzione hello (solo durante l'aggiornamento da pre-aggiornamento software di 2).
+1. Scaricare gli hotfix da Microsoft Update Catalog.
+2. Installare e verificare gli hotfix in modalità normale.
+3. Installare e verificare l'hotfix di modalità di manutenzione (solo durante l'aggiornamento dal software precedente all'aggiornamento 2).
 
 #### <a name="download-updates-for-your-device"></a>Scaricare gli aggiornamenti per il dispositivo
-**Se il dispositivo è in esecuzione Update 2.1 o 2.2**, è necessario scaricare e installare hello dopo gli aggiornamenti rapidi nel hello prescritte ordine:
+**Se il dispositivo esegue l'aggiornamento 2.1 o 2.2**, è necessario scaricare e installare gli hotfix seguenti nell'ordine indicato:
 
 | Ordine | KB | Descrizione | Tipo di aggiornamento | Tempo dell'installazione |
 | --- | --- | --- | --- | --- |
@@ -84,9 +84,9 @@ metodo di aggiornamento rapido Hello prevede hello tre passaggi:
 | 2. |KB3186859 |Driver e firmware LSI |Regolare  <br></br>Senza interruzioni |~ 20 min. |
 | 3. |KB3121261 |Correzione Storport e Spaceport  </br> Windows Server 2012 R2 |Regolare  <br></br>Senza interruzioni |~ 20 min. |
 
-&#42;  *Nota che gli aggiornamenti software hello è costituito da due file binari: l'aggiornamento software del dispositivo preceduti da `all-hcsmdssoftwareupdate` hello gli elementi di configurazione e dell'agente di Mds preceduti da `all-cismdsagentupdatebundle`. l'aggiornamento del software hello dispositivo deve essere installato prima hello gli elementi di configurazione e Mds agente. È necessario riavviare il controller attivo di hello mediante hello `Restart-HcsController` cmdlet dopo l'applicazione hello gli elementi di configurazione e aggiornamento dell'agente di Mds (e prima di applicare gli aggiornamenti rimanenti hello).* 
+&#42;  *Si noti che l'aggiornamento del software è costituito da due file binari: l'aggiornamento del software del dispositivo preceduto da `all-hcsmdssoftwareupdate` e gli elementi di configurazione e l'aggiornamento dell'agente MDS preceduti da `all-cismdsagentupdatebundle`. L'aggiornamento del software del dispositivo deve essere installato prima degli elementi di configurazione e dell'agente MDS. Inoltre, è necessario riavviare il controller attivo tramite il cmdlet `Restart-HcsController` dopo aver applicato l'aggiornamento dell'agente Cis e Mds (e prima di applicare i restanti aggiornamenti).* 
 
-**Se il dispositivo sta eseguendo l'aggiornamento 0,1, 0,2, 0,3, 1.0, 1.1, 1.2 o 2.0**, è necessario scaricare e installare i seguenti hotfix nel software dei driver LSI toohello aggiunta hello e (Buongiorno illustrato nella tabella precedente), gli aggiornamenti del firmware in hello prescritte ordine:
+**Se il dispositivo esegue l'aggiornamento 0.1, 0.2, 0.3, 1.0, 1.1, 1.2 o 2.0**, è necessario scaricare e installare i seguenti hotfix oltre agli aggiornamenti del software, del driver LSI e del firmware (indicati nella tabella precedente), nell'ordine prescritto:
 
 | Ordine | KB | Descrizione | Tipo di aggiornamento | Tempo dell'installazione |
 | --- | --- | --- | --- | --- |
@@ -95,7 +95,7 @@ metodo di aggiornamento rapido Hello prevede hello tre passaggi:
 
 <br></br>
 
-**Se il dispositivo è in esecuzione versioni 0,2, 0,3, 1.0, 1.1 e 1.2**, è necessario anche gli aggiornamenti del firmware di disco tooinstall sopra tutti gli aggiornamenti di hello nella hello tabelle precedenti. È possibile verificare se è necessario hello aggiornamenti del firmware del disco eseguendo hello `Get-HcsFirmwareVersion` cmdlet. Se si eseguono queste versioni del firmware: `XMGG`, `XGEG`, `KZ50`, `F6C2`, `VR08`, quindi non è necessario tooinstall questi aggiornamenti.
+**Se il dispositivo esegue le versioni 0.2, 0.3, 1.0, 1.1 e 1.2**, potrebbe essere necessario anche installare gli aggiornamenti del firmware del disco sopra tutti gli aggiornamenti indicati nelle tabelle precedenti. È possibile verificare se sono necessari gli aggiornamenti del firmware del disco eseguendo il cmdlet `Get-HcsFirmwareVersion` . Se si stanno eseguendo le versioni del firmware `XMGG`, `XGEG`, `KZ50`, `F6C2`, `VR08` non è quindi necessario installare questi aggiornamenti.
 
 | Ordine | KB | Descrizione | Tipo di aggiornamento | Tempo dell'installazione |
 | --- | --- | --- | --- | --- |
@@ -104,18 +104,18 @@ metodo di aggiornamento rapido Hello prevede hello tre passaggi:
 <br></br>
 
 > [!IMPORTANT]
-> * Questo toobe esigenze procedura eseguita solo una volta tooapply Update 3. È possibile utilizzare gli aggiornamenti successivi di hello Azure tooapply portale classico.
-> * Se l'aggiornamento dall'aggiornamento 2.2, il tempo di installazione totale hello è too1.1 Chiudi ore.
-> * Prima di utilizzare questo hello tooapply procedure aggiornamento, assicurarsi che entrambi i controller dei dispositivi hello siano online e tutti i componenti hardware hello siano integri.
+> * Questa procedura deve essere eseguita solo una volta per applicare l'aggiornamento 3. È possibile utilizzare il portale di Azure classico per applicare gli aggiornamenti successivi.
+> * Se si parte dall'aggiornamento 2.2, il tempo totale richiesto per l'installazione è di circa 1,1 ore.
+> * Prima di usare questa procedura per applicare l'aggiornamento, assicurarsi che entrambi i controller del dispositivo siano online e che tutti i componenti hardware siano integri.
 > 
 > 
 
-Eseguire hello seguente toodownload passaggi e installare gli aggiornamenti rapidi hello.
+Eseguire i passaggi seguenti per scaricare e importare gli hotfix.
 
 [!INCLUDE [storsimple-install-update3-hotfix](../../includes/storsimple-install-update3-hotfix.md)]
 
 [!INCLUDE [storsimple-install-troubleshooting](../../includes/storsimple-install-troubleshooting.md)]
 
 ## <a name="next-steps"></a>Passaggi successivi
-Altre informazioni su hello [Update 3 release](storsimple-update3-release-notes.md).
+Altre informazioni sulla [versione dell'aggiornamento 3](storsimple-update3-release-notes.md).
 

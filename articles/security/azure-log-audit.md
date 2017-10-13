@@ -1,6 +1,6 @@
 ---
-title: aaaAzure di registrazione e controllo | Documenti Microsoft
-description: Informazioni sull'utilizzo di approfondite di registrazione dati toogain sull'applicazione.
+title: Registrazione e controllo di Azure | Microsoft Docs
+description: Informazioni sull'uso dei dati di registrazione per ottenere informazioni approfondite sull'applicazione.
 services: security
 documentationcenter: na
 author: UnifyCloud
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 04/27/2017
 ms.author: TomSh
-ms.openlocfilehash: d0e817b071962ad9bef6250267092b5f9282bc7a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9e5c929251259a86944121e504dc033bc99e3bc4
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-logging-and-auditing"></a>Registrazione e controllo di Azure
 ## <a name="introduction"></a>Introduzione
 ### <a name="overview"></a>Panoramica
-tooassist e potenziali Azure i clienti comprendere e usare hello disponibile in varie funzionalità correlate alla sicurezza e che circonda hello piattaforma Azure, Microsoft ha sviluppato una serie di white paper, una panoramica di sicurezza, le procedure consigliate, e gli elenchi di controllo. intervallo di argomenti in termini di dimensioni e della complessità Hello e vengono aggiornate periodicamente. Questo documento fa parte della serie, come riepilogato nella seguente sezione astratta hello.
+Per consentire ai clienti attuali e potenziali di Azure di comprendere e usare le diverse funzionalità correlate alla sicurezza disponibili nel contesto della piattaforma Azure, Microsoft ha sviluppato una serie di white paper, panoramiche sulla sicurezza, procedure consigliate ed elenchi di controllo. Gli argomenti, che variano nei contenuti e negli approfondimenti, vengono aggiornati periodicamente. Il presente documento fa parte di questa serie, come riepilogato nella sezione Sunto di seguito.
 ### <a name="azure-platform"></a>Piattaforma Azure
-Azure è una piattaforma cloud aperta e flessibile del servizio che supporta hello selezione più ampia di sistemi operativi, linguaggi di programmazione, Framework, strumenti, i database e i dispositivi.
+Azure è una piattaforma aperta e flessibile di servizi cloud che supporta la più ampia gamma di sistemi operativi, linguaggi di programmazione, framework, strumenti, database e dispositivi.
 
 Ad esempio, è possibile:
 -   Eseguire i contenitori Linux con l'integrazione Docker.
@@ -34,85 +34,85 @@ Ad esempio, è possibile:
 
 -   Compilare i back-end per dispositivi iOS, Android e Windows.
 
-Servizi cloud pubblico di Azure supportano hello stesse tecnologie milioni di sviluppatori e professionisti IT si basano su già e attendibile.
+I servizi cloud pubblici di Azure supportano le stesse tecnologie già considerate affidabili e usate da milioni di sviluppatori e professionisti IT.
 
-Quando si compila, o eseguire la migrazione di risorse IT a, un provider di cloud, ci si basa sul tooprotect capacità dell'organizzazione che le applicazioni e dati con controlli hello e servizi di hello assicurano toomanage hello delle risorse basati su cloud.
+Quando si compilano asset IT o se ne esegue la migrazione in un provider di servizi cloud, si dipende dalla capacità di tale organizzazione di proteggere le applicazioni e i dati con i servizi e i controlli forniti per gestire la sicurezza degli asset basati sul cloud.
 
-Infrastruttura di Azure è progettato da hello tooapplications di funzionalità per l'hosting contemporaneamente milioni di clienti e fornisce una base attendibile in cui le aziende grado di soddisfare le esigenze di sicurezza. Inoltre, Azure offre un'ampia gamma di toocontrol possibilità hello e opzioni di protezione configurabili loro in modo che sia possibile personalizzare sicurezza toomeet hello requisiti delle distribuzioni. Grazie a questo documento è possibile soddisfare tali requisiti.
+L'infrastruttura di Azure è stata progettata, dalla struttura fino alle applicazioni, per ospitare milioni di clienti contemporaneamente e fornisce alle aziende una solida base per poter soddisfare le esigenze di sicurezza. Azure offre anche un'ampia gamma di opzioni di sicurezza configurabili, con la possibilità di controllarle per poter personalizzare la sicurezza e soddisfare così i requisiti univoci di ogni distribuzione. Grazie a questo documento è possibile soddisfare tali requisiti.
 
 ### <a name="abstract"></a>Sunto
-Il controllo e la registrazione di eventi relativi alla sicurezza e di avvisi correlati, sono componenti importanti di una strategia di protezione dei dati efficace. Registri di protezione e i report offrono un record di attività sospette e la Guida è rilevare modelli che possono indicare l'esito positivo o tentativi penetrazione esterno della rete di hello, nonché gli attacchi interni elettronico. È possibile utilizzare l'attività degli utenti toomonitor controllo, conformità alle normative di documento, eseguire analisi forensi e altro ancora. Tramite gli avvisi si ottiene la notifica immediata quando si verificano eventi che riguardano la sicurezza.
+Il controllo e la registrazione di eventi relativi alla sicurezza e di avvisi correlati, sono componenti importanti di una strategia di protezione dei dati efficace. I report e i log di sicurezza offrono un record elettronico delle attività sospette e aiutano a rilevare modelli che possono segnalare tentativi esterni di penetrazione nella rete e attacchi interni. È possibile usare la funzione di controllo per monitorare l'attività dell'utente, documentare la conformità alle normative, eseguire analisi forensi e altro ancora. Tramite gli avvisi si ottiene la notifica immediata quando si verificano eventi che riguardano la sicurezza.
 
-Prodotti e servizi di Microsoft Azure offrono il controllo della sicurezza configurabile e registrazione toohelp opzioni identificare i gap nei criteri di sicurezza e meccanismi e risolvere tali toohelp gap impedire violazioni della sicurezza. I servizi Microsoft offrono alcune (e in alcuni casi, tutte) di hello le opzioni seguenti: centralizzato di monitoraggio, registrazione e analisi sistemi tooprovide continua visibilità; avvisi tempestivi; e toohelp i report gestiti hello numerose informazioni generate da dispositivi e servizi.
+I prodotti e servizi di Microsoft Azure offrono opzioni di controllo e registrazione di sicurezza configurabili che consentono di identificare e correggere i gap nei meccanismi e nei criteri di sicurezza per evitare violazioni. I servizi di Microsoft offrono alcune (e in alcuni casi, tutte) delle opzioni seguenti: sistemi centralizzati di monitoraggio, registrazione e analisi per una visibilità continua; avvisi tempestivi; report che consentono di gestire i grandi volumi di informazioni provenienti da dispositivi e servizi.
 
-Dati del log di Microsoft Azure possono essere esportato tooSecurity sistemi di gestione di eventi (SIEM) ed eventi imprevisti per l'analisi e si integrano con soluzioni di controllo di terze parti.
+I dati di log di Microsoft Azure possono essere esportati in sistemi SIEM per l'analisi e si integrano con le soluzioni di controllo di terze parti.
 
-Questo white paper offre un'introduzione alle operazioni di creazione, raccolta e analisi dei log di sicurezza dai servizi ospitati in Azure, oltre ad aiutare i clienti a ottenere informazioni più approfondite sulla sicurezza nelle proprie distribuzioni di Azure. ambito Hello di questo white paper è limitato tooapplications e servizi compilato e distribuito in Azure.
+Questo white paper offre un'introduzione alle operazioni di creazione, raccolta e analisi dei log di sicurezza dai servizi ospitati in Azure, oltre ad aiutare i clienti a ottenere informazioni più approfondite sulla sicurezza nelle proprie distribuzioni di Azure. L'ambito di questo white paper è limitato alle applicazioni e servizi creati e distribuiti in Azure.
 
 > [!Note]
 > Alcune indicazioni contenute in questo documento possono comportare un maggior consumo delle risorse di calcolo, di rete o dei dati, con un aumento dei costi di licenza o sottoscrizione.
 
 ## <a name="types-of-logs-in-azure"></a>Tipi di log in Azure
-Le applicazioni cloud sono complesse e hanno molte parti mobili. I file registro tooensure dati che l'applicazione resta alto e in esecuzione in uno stato integro. Consente inoltre toostave è impostata su off problemi potenziali o risolvere i problemi oltre quelle. Inoltre, è possibile utilizzare approfondite di registrazione dati toogain sull'applicazione. Tali informazioni possono consentono di prestazioni dell'applicazione tooimprove o manutenibilità o automatizzare le operazioni che altrimenti richiederebbero un intervento manuale.
+Le applicazioni cloud sono complesse e hanno molte parti mobili. I log offrono la possibilità di garantire il funzionamento e l'integrità dell'applicazione. Consente anche di prevenire i problemi potenziali o di risolvere quelli precedenti. Inoltre, è possibile usare i dati di registrazione per ottenere informazioni approfondite sull'applicazione. utili per migliorarne le prestazioni o la manutenibilità oppure per automatizzare azioni che altrimenti richiederebbero un intervento manuale.
 
 Azure produce registrazioni complete per ogni servizio di Azure. I log sono classificati nei seguenti tipi principali:
--   **I registri di controllo/gestione** ottenere visibilità in hello operazioni di gestione risorse di Azure CREATE, UPDATE e DELETE. [I log attività di Azure](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-activity-logs) sono un esempio di questo tipo di log.
+-   **Log di gestione/controllo**, che offrono visibilità sulle operazioni CREATE, UPDATE e DELETE di Azure Resource Manager. [I log attività di Azure](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-activity-logs) sono un esempio di questo tipo di log.
 
--   **Dati piano registri** ottenere visibilità in eventi hello generato nell'ambito di utilizzo di hello di una risorsa di Azure. Esempi di questo tipo di log sono eventi di Windows del sistema, sicurezza, hello e log applicazioni in una macchina virtuale e hello [log di diagnostica](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs) configurato tramite Monitor di Azure
+-   **Log del piano dati**, che offrono visibilità sugli eventi generati come parte dell'uso di una risorsa di Azure. Sono esempi di questo tipo il log eventi di sistema di Windows, il log di sicurezza, il log applicazioni di una macchina virtuale e i [log di diagnostica](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs) configurati tramite Monitoraggio di Azure.
 
 
 -   **Eventi elaborati**, che offrono informazioni sugli eventi o avvisi analizzati dopo essere stati elaborati per conto dell'utente. Esempi di questo tipo sono i brevi [avvisi emessi dal Centro sicurezza di Azure](https://docs.microsoft.com/azure/security-center/security-center-managing-and-responding-alerts) dopo aver eseguito l'[elaborazione e l'analisi della sottoscrizione](https://docs.microsoft.com/azure/security-center/security-center-intro).
 
-la tabella seguente Hello più importante tipo di elenco di registri disponibili in Azure.
+La tabella seguente elenca i più importanti tipi di log disponibili in Azure.
 
 | Categoria di log | Tipo di log | Usi | Integrazione |
 | ------------ | -------- | ------ | ----------- |
-|[Log attività](https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/monitoring-overview-activity-logs)|Gli eventi del piano di controllo sulle risorse di Azure Resource Manager| Forniscono informazioni sulle operazioni hello eseguite sulle risorse nella sottoscrizione.|   API REST e [Monitoraggio di Azure](https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/monitoring-overview-activity-logs)|
-|[Log di diagnostica di Azure](https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs)|frequenti dei dati sull'operazione di hello delle risorse di gestione risorse di Azure nella sottoscrizione| Offrono informazioni approfondite sulle operazioni eseguite dalla risorsa stessa| Monitoraggio di Azure, [Stream](https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs)|
+|[Log attività](https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/monitoring-overview-activity-logs)|Gli eventi del piano di controllo sulle risorse di Azure Resource Manager| Offrono informazioni approfondite sulle operazioni eseguite sulle risorse nella sottoscrizione.| API REST e [Monitoraggio di Azure](https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/monitoring-overview-activity-logs)|
+|[Log di diagnostica di Azure](https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs)|dati frequenti sul funzionamento delle risorse di Azure Resource Manager nella sottoscrizione|   Offrono informazioni approfondite sulle operazioni eseguite dalla risorsa stessa| Monitoraggio di Azure, [Stream](https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs)|
 |[Creazione di report in AAD](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-reporting-azure-portal)|Log e report|Attività di accesso dell'utente e informazioni sulle attività di sistema riguardo alla gestione di utenti e gruppi|[API Graph](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-graph-api-quickstart)|
-|[Macchine virtuali e servizi cloud](https://docs.microsoft.com/en-us/azure/cloud-services/cloud-services-dotnet-diagnostics-storage)|Log eventi di Windows e Syslog Linux|  Acquisisce i dati di sistema e i dati di registrazione nelle macchine virtuali hello e trasferisce i dati in un account di archiviazione di propria scelta.| Windows tramite [WAD](https://docs.microsoft.com/en-us/azure/azure-diagnostics) (archiviazione di diagnostica di Windows Azure) e Linux in Monitoraggio di Azure|
-|[Analisi dell'archiviazione](https://docs.microsoft.com/en-us/rest/api/storageservices/fileservices/storage-analytics)|Esegue la registrazione di archiviazione e offre i dati delle metriche per un account di archiviazione.|Offre informazioni approfondite per tenere traccia delle richieste, analizzare le tendenze d'uso e diagnosticare i problemi relativi al proprio account di archiviazione.|  API REST o hello [libreria client](https://msdn.microsoft.com/en-us/library/azure/mt347887.aspx)|
+|[Macchine virtuali e servizi cloud](https://docs.microsoft.com/en-us/azure/cloud-services/cloud-services-dotnet-diagnostics-storage)|Log eventi di Windows e Syslog Linux|  Acquisisce i dati di sistema e i dati di registrazione nelle macchine virtuali e li trasferisce all'account di archiviazione desiderato.|   Windows tramite [WAD](https://docs.microsoft.com/en-us/azure/azure-diagnostics) (archiviazione di diagnostica di Windows Azure) e Linux in Monitoraggio di Azure|
+|[Analisi dell'archiviazione](https://docs.microsoft.com/en-us/rest/api/storageservices/fileservices/storage-analytics)|Esegue la registrazione di archiviazione e offre i dati delle metriche per un account di archiviazione.|Offre informazioni approfondite per tenere traccia delle richieste, analizzare le tendenze d'uso e diagnosticare i problemi relativi al proprio account di archiviazione.|  API REST o [libreria client](https://msdn.microsoft.com/en-us/library/azure/mt347887.aspx)|
 |[Log dei flussi del gruppo di sicurezza di rete (NSG)](https://docs.microsoft.com/en-us/azure/network-watcher/network-watcher-nsg-flow-logging-overview)|Formato JSON e mostra i flussi in ingresso e in uscita in base a ciascuna regola|Visualizzare le informazioni sul traffico IP in entrata e in uscita tramite un gruppo di sicurezza di rete|[Network Watcher](https://docs.microsoft.com/en-us/azure/network-watcher/network-watcher-monitoring-overview)|
 |[Application Insights](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-overview)|Log, eccezioni e diagnostica personalizzata|  Servizio APM di gestione delle prestazioni delle applicazioni per sviluppatori Web su più piattaforme.| API REST, [Power BI](https://powerbi.microsoft.com/en-us/documentation/powerbi-azure-and-power-bi/)|
 |Dati di elaborazione/avvisi di sicurezza| Avviso del Centro sicurezza di Azure, avviso OMS| Informazioni e avvisi sulla sicurezza.|   API REST, JSON|
 
 ### <a name="activity-log"></a>Log attività
-Hello [Log attività Azure](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-activity-logs), fornisce informazioni approfondite operazioni hello eseguite sulle risorse nella sottoscrizione. Hello Log attività è stata precedentemente noto come "Registri di controllo" o "I registri operativi", poiché fornisce [Pannello di controllo eventi](https://driftboatdave.com/2016/10/13/azure-auditing-options-for-your-custom-reporting-needs/) per le sottoscrizioni. Hello registro attività, consentono di determinare hello "cosa, chi e quando" per le operazioni (PUT, POST, DELETE) eseguite su risorse hello nella sottoscrizione di scrittura. È anche possibile comprendere lo stato di hello dell'operazione di hello e altre proprietà pertinenti. Log attività Hello non include le operazioni di lettura (GET).
+Il [log attività di Azure](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-activity-logs) offre informazioni approfondite in merito alle operazioni eseguite sulle risorse nella sottoscrizione. Il log attività era noto in precedenza come "log di controllo" o "log operativi", perché segnala [eventi del piano di controllo](https://driftboatdave.com/2016/10/13/azure-auditing-options-for-your-custom-reporting-needs/) per le sottoscrizioni dell'utente. L'uso del log attività permette di acquisire informazioni dettagliate su qualsiasi operazione di scrittura (PUT, POST, DELETE) eseguita sulle risorse nella sottoscrizione. Consente inoltre di comprendere lo stato dell'operazione e altre proprietà specifiche. Il log attività non include le operazioni di lettura (GET)
 
-Qui PUT, POST, DELETE si riferisce a operazioni di scrittura hello tooall log attività contiene risorse hello. Ad esempio, è possibile utilizzare hello attività registri toofind un errore durante la risoluzione dei problemi o toomonitor come un utente nell'organizzazione di modifica una risorsa.
+I termini PUT, POST, DELETE si riferiscono a tutte le operazioni di scrittura sulle risorse contenute nel log attività. Ad esempio, è possibile usare i log attività per trovare un errore durante la risoluzione dei problemi o monitorare il modo in cui un utente dell'organizzazione ha modificato una risorsa.
 
 ![Log attività](./media/azure-log-audit/azure-log-audit-fig1.png)
 
 
-È possibile recuperare gli eventi dal Log attività tramite il portale di Azure, hello [CLI](https://docs.microsoft.com/azure/storage/storage-azure-cli), i cmdlet di PowerShell e [API REST di Azure monitoraggio](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-rest-api-walkthrough). Il periodo di conservazione dei dati per i log attività è di 19 giorni.
+Per recuperare eventi dal log attività è possibile usare il portale di Azure, l'[interfaccia della riga di comando](https://docs.microsoft.com/azure/storage/storage-azure-cli), i cmdlet di PowerShell e l'[API REST di Monitoraggio di Azure](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-rest-api-walkthrough). Il periodo di conservazione dei dati per i log attività è di 19 giorni.
 
 Scenari di integrazione
 -   [Creare un avviso di posta elettronica o webhook che attiva un evento del log attività.](https://docs.microsoft.com/azure/monitoring-and-diagnostics/insights-auditlog-to-webhook-email)
 
--   [Flusso di Hub eventi tooan](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-stream-activity-logs-event-hubs) per l'inserimento di un servizio di terze parti o di una soluzione analitica personalizzato, ad esempio Power BI.
+-   [Trasmetterlo a un hub eventi](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-stream-activity-logs-event-hubs) per l'inserimento da parte di un servizio di terze parti o di una soluzione di analisi personalizzata come Power BI.
 
--   Analizzare in Power BI usando hello [pacchetto di contenuto Power BI.](https://powerbi.microsoft.com/documentation/powerbi-content-pack-azure-audit-logs/)
+-   Analizzarlo in Power BI usando il [pacchetto di contenuto di Power BI](https://powerbi.microsoft.com/documentation/powerbi-content-pack-azure-audit-logs/).
 
--   [Salvare il file tooa Account di archiviazione per l'ispezione dell'archivio o manuale.](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-archive-activity-log) È possibile specificare hello memorizzazione ora (in giorni) usando i profili di Log.
+-   [Salvarlo in un account di archiviazione per l'archiviazione o l'ispezione manuale](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-archive-activity-log). È possibile specificare il tempo di conservazione in giorni tramite i profili di log.
 
--   Eseguire una query e visualizzarlo nel portale di Azure hello.
+-   Eseguire query e visualizzarla nel portale di Azure.
 
 -   Eseguire query tramite l'API REST, i cmdlet di PowerShell o l'interfaccia della riga di comando.
 
--   Esportare hello Log attività con i profili di Log troppo[log Analitica](https://docs.microsoft.com/azure/log-analytics/log-analytics-overview).
+-   Esportare il log attività con i profili di log in [Log Analytics](https://docs.microsoft.com/azure/log-analytics/log-analytics-overview).
 
-È possibile utilizzare un account di archiviazione o [spazio dei nomi di hub eventi](https://docs.microsoft.com/azure/event-hubs/event-hubs-resource-manager-namespace-event-hub-enable-archive) che non si trova in hello stessa sottoscrizione come hello un log di creazione. utente di Hello che configura l'impostazione di hello deve avere hello appropriato [RBAC](https://docs.microsoft.com/azure/active-directory/role-based-access-control-configure) tooboth sottoscrizioni
+È possibile usare un account di archiviazione o lo [spazio dei nomi dell'hub eventi](https://docs.microsoft.com/azure/event-hubs/event-hubs-resource-manager-namespace-event-hub-enable-archive) che non sia nella stessa sottoscrizione di quello che crea il log. L'utente che configura l'impostazione deve disporre dell'accesso [RBAC](https://docs.microsoft.com/azure/active-directory/role-based-access-control-configure) appropriato a entrambe le sottoscrizioni.
 ### <a name="azure-diagnostic-logs"></a>Log di diagnostica di Azure
-I log di diagnostica Azure vengono creati da una risorsa che forniscono dati completo e frequenti sull'operazione di hello di tale risorsa. contenuto Hello di questi log varia in base al tipo di risorsa (ad esempio, [log eventi del sistema Windows](https://docs.microsoft.com/azure/log-analytics/log-analytics-data-sources-windows-events)sono una categoria di Log di diagnostica per le macchine virtuali e [blob, tabella e coda registri](https://docs.microsoft.com/azure/storage/storage-monitor-storage-account) sono le categorie di log di diagnostica per gli account di archiviazione) e diversi da hello registro attività, che fornisce informazioni approfondite operazioni hello eseguite sulle risorse nella sottoscrizione.
+I log di diagnostica di Azure sono generati da una risorsa che offre dati completi e frequenti sul suo funzionamento. Il contenuto di questi log varia in base al tipo di risorsa. Ad esempio, i [log eventi del sistema di Windows](https://docs.microsoft.com/azure/log-analytics/log-analytics-data-sources-windows-events) sono una categoria di log di diagnostica per le VM, mentre i[ log delle code, delle tabelle e dei BLOB](https://docs.microsoft.com/azure/storage/storage-monitor-storage-account) sono categorie di log di diagnostica per gli account di archiviazione. I log di diagnostica sono diversi dal log attività, che offre informazioni approfondite sulle operazioni eseguite sulle risorse nella sottoscrizione.
 
 ![Log di diagnostica di Azure](./media/azure-log-audit/azure-log-audit-fig2.png)
 
 I log di diagnostica di Azure offrono più opzioni di configurazione, vale a dire che il portale di Azure può usare l'API REST, PowerShell e l'interfaccia della riga di comando (CLI).
 
 **Scenari di integrazione**
--   Salvarli tooa [Account di archiviazione](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-archive-diagnostic-logs) per un controllo di controllo o manuale. È possibile specificare hello memorizzazione ora (in giorni) utilizzando le impostazioni di diagnostica hello.
+-   Salvarli in un [account di archiviazione](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-archive-diagnostic-logs) per il controllo o l'ispezione manuale. È possibile specificare il tempo di conservazione in giorni tramite le Impostazioni di diagnostica.
 
--   [Flusso di hub tooEvent](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-stream-diagnostic-logs-to-event-hubs) per l'inserimento di un servizio di terze parti o di una soluzione analitica personalizzato, ad esempio [Power BI.](https://powerbi.microsoft.com/documentation/powerbi-azure-and-power-bi/)
+-   [Trasmetterli a ](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-stream-diagnostic-logs-to-event-hubs)Hub eventi per l'inserimento da parte di un servizio di terze parti o una soluzione di analisi personalizzata come [Power BI](https://powerbi.microsoft.com/documentation/powerbi-azure-and-power-bi/).
 
 -   Analizzarli con [OMS Log Analytics](https://docs.microsoft.com/azure/log-analytics/log-analytics-overview)
 
@@ -146,9 +146,9 @@ I log di diagnostica di Azure offrono più opzioni di configurazione, vale a dir
 |Bus di servizio|[Log di diagnostica del bus di servizio di Azure](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-diagnostic-logs)|Microsoft.ServiceBus/namespaces|OperationalLogs|
 
 ### <a name="azure-active-directory-reporting"></a>Creazione di report in Azure Active Directory
-Azure Active Directory (Azure AD) include la sicurezza, l’attività e i report di controllo per la directory. Hello [Report di controllo di Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-reporting-guide) consentono ai clienti con privilegiata tooidentify azioni che si sono verificati in Azure Active Directory. Le azioni con privilegi includono modifiche elevazione (ad esempio, creazione del ruolo o la reimpostazione della password), modificare le configurazioni di criteri (ad esempio criteri password) o configurazione toodirectory modifiche (ad esempio, le modifiche toodomain impostazioni di federazione).
+Azure Active Directory (Azure AD) include la sicurezza, l’attività e i report di controllo per la directory. La [Guida alla creazione di report in Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-reporting-guide) consente ai clienti di identificare le azioni con privilegi che si sono verificate nella propria istanza di Azure Active Directory. Le azioni con privilegi includono modifiche di elevazione dei privilegi, ad esempio la creazione dei ruoli o le reimpostazioni delle password, la modifica delle configurazioni dei criteri, ad esempio i criteri delle password o le modifiche alla configurazione della directory, ad esempio le modifiche alle impostazioni di federazione del dominio.
 
-report di Hello forniscono record di controllo hello per nome dell'evento hello, attore hello che ha eseguito l'azione di hello, risorse di destinazione hello interessata dalla modifica hello e hello data e ora (UTC). I clienti sono elenco hello tooretrieve in grado di eventi di controllo per Azure Active Directory tramite hello [portale di Azure](https://portal.azure.com/), come descritto in [consente di visualizzare il log di controllo](https://docs.microsoft.com/azure/active-directory/active-directory-reporting-azure-portal). Di seguito è riportato un elenco di report hello inclusi:
+Nei report è incluso il record di controllo per il nome dell'evento, l'attore che ha eseguito l'azione, la risorsa di destinazione interessata dalla modifica e la data e l'ora (UTC). I clienti possono recuperare l'elenco degli eventi di controllo per la propria istanza di Azure Active Directory tramite il [portale di Azure](https://portal.azure.com/), come descritto in [Visualizzare i log di controllo](https://docs.microsoft.com/azure/active-directory/active-directory-reporting-azure-portal). Di seguito è riportato un elenco dei report compresi:
 
 | Report sulla sicurezza | Report sull’attività | Report di controllo |
 | :--------------- | :--------------- | :------------ |
@@ -162,17 +162,17 @@ report di Hello forniscono record di controllo hello per nome dell'evento hello,
 ||Report attività di registrazione per la reimpostazione password||
 ||Attività di reimpostazione password|||
 
-dati di Hello di questi report possono essere applicazioni tooyour utile, ad esempio i sistemi SIEM, controllo e strumenti di business intelligence. Hello Azure AD reporting che API forniscono dati toohello accesso a livello di codice tramite un set di API basata su REST. È possibile chiamare queste [API](https://docs.microsoft.com/azure/active-directory/active-directory-reporting-api-getting-started) da numerosi strumenti e linguaggi di programmazione.
+I dati di questi report possono essere molto utili per le applicazioni, ad esempio i sistemi SIEM e gli strumenti di controllo e business intelligence. L'API di creazione report di Azure AD fornisce l'accesso ai dati dal codice tramite un set di API basate su REST. È possibile chiamare queste [API](https://docs.microsoft.com/azure/active-directory/active-directory-reporting-api-getting-started) da numerosi strumenti e linguaggi di programmazione.
 
-Gli eventi in hello report di controllo di Azure AD vengono mantenuti per 180 giorni.
+Gli eventi nel report di controllo di Azure Active Directory vengono conservati per 180 giorni.
 
 > [!Note]
 > Per altre informazioni sulla conservazione dei report, vedere la pagina [Criteri di conservazione dei report di Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-reporting-retention).
 
-Per i clienti che desiderano archiviare gli eventi di controllo per lunghi periodi di conservazione, hello Reporting API può essere utilizzato pull tooregularly [eventi di controllo](https://docs.microsoft.com/azure/active-directory/active-directory-reporting-audit-events) in un archivio dati separato.
+Per i clienti interessati alla conservazione gli eventi di controllo per periodi più lunghi, l'API di creazione report consente di eseguire regolarmente il pull degli [eventi di controllo](https://docs.microsoft.com/azure/active-directory/active-directory-reporting-audit-events) in un archivio dati separato.
 
 ### <a name="virtual-machine-logs-using-azure-diagnostics"></a>i log delle macchine virtuali con Diagnostica di Azure
-[Diagnostica di Azure](https://docs.microsoft.com/azure/azure-diagnostics) hello funzionalità all'interno di Azure che consente la raccolta hello dei dati di diagnostica in un'applicazione distribuita. È possibile utilizzare l'estensione diagnostica hello da diverse origini. Sono attualmente supportati i [ruoli di lavoro e Web del servizio cloud di Azure](https://docs.microsoft.com/azure/cloud-services/cloud-services-choose-me) e
+[Diagnostica di Azure](https://docs.microsoft.com/azure/azure-diagnostics) è la funzionalità integrata in Azure che consente la raccolta di dati di diagnostica in un'applicazione distribuita. È possibile usare l'estensione di diagnostica da alcune origini differenti. Sono attualmente supportati i [ruoli di lavoro e Web del servizio cloud di Azure](https://docs.microsoft.com/azure/cloud-services/cloud-services-choose-me) e
 
 ![i log delle macchine virtuali con Diagnostica di Azure](./media/azure-log-audit/azure-log-audit-fig3.png)
 
@@ -180,24 +180,24 @@ Per i clienti che desiderano archiviare gli eventi di controllo per lunghi perio
 
 È possibile abilitare la funzionalità Diagnostica di Azure in una macchina virtuale nei modi seguenti:
 
--   Utilizzo di Visual Studio, vedere [tootrace usare Visual Studio macchine virtuali di Azure](https://docs.microsoft.com/azure/vs-azure-tools-debug-cloud-services-virtual-machines)
+-   Usando Visual Studio (vedere [Debug di un servizio cloud o di una macchina virtuale di Azure in Visual Studio)](https://docs.microsoft.com/azure/vs-azure-tools-debug-cloud-services-virtual-machines)
 
 -   [Configurare Diagnostica di Azure in una macchina virtuale Azure da remoto](https://docs.microsoft.com/azure/virtual-machines-dotnet-diagnostics)
 
--   [Utilizzare PowerShell tooset di diagnostica nelle macchine virtuali di Azure](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-ps-extensions-diagnostics?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+-   [Usare PowerShell per abilitare Diagnostica di Azure nelle macchine virtuali di Azure](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-ps-extensions-diagnostics?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 -   [Creare una macchina virtuale Windows con monitoraggio e diagnostica con un modello di Azure Resource Manager](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-extensions-diagnostics-template?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 ### <a name="storage-analytics"></a>di Analisi archiviazione
-L'[Analisi archiviazione di Azure](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics) esegue la registrazione e restituisce i dati delle metriche per un account di archiviazione. È possibile usare questo richieste tootrace dati, analizzare le tendenze di utilizzo e diagnosticare i problemi con l'account di archiviazione. La registrazione Analitica di archiviazione è disponibile per hello [servizi Blob, coda e tabella.](https://docs.microsoft.com/azure/storage/storage-introduction) Archiviazione Analitica registra informazioni dettagliate sul servizio di archiviazione tooa richieste riuscite e non riuscite.
+L'[Analisi archiviazione di Azure](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics) esegue la registrazione e restituisce i dati delle metriche per un account di archiviazione. È possibile utilizzare questi dati per tenere traccia delle richieste, analizzare le tendenze d'uso e diagnosticare i problemi relativi al proprio account di archiviazione. La registrazione di Analisi archiviazione è disponibile per i [servizi BLOB, di accodamento e tabelle](https://docs.microsoft.com/azure/storage/storage-introduction). Analisi archiviazione registra informazioni dettagliate sulle richieste riuscite e non a un servizio di archiviazione.
 
-Queste informazioni possono essere utilizzati toomonitor singole richieste e toodiagnose problemi con un servizio di archiviazione. Le richieste vengono registrate in base al massimo sforzo. Le voci di log vengono create solo se esistono richieste effettuate per l'endpoint del servizio hello. Ad esempio, se un account di archiviazione dispone di attività nel relativo endpoint Blob ma non nel relativo endpoint accodamento o tabelle, solo registra riguardano toohello servizio Blob viene creato.
+Queste informazioni possono essere utilizzate per monitorare le singole richieste e per diagnosticare problemi relativi a un servizio di archiviazione. Le richieste vengono registrate in base al massimo sforzo. Le voci di registro vengono create solo se esistono richieste effettuate per l'endpoint di servizio. Se, ad esempio, un account di archiviazione presenta un'attività nell'endpoint BLOB ma non negli endpoint di tabelle o di accodamento, saranno creati solo log relativi al servizio BLOB.
 
-toouse Analitica di archiviazione, è necessario abilitarla singolarmente per ogni servizio desiderato toomonitor. È possibile abilitarla in hello [portale di Azure](https://portal.azure.com/); per informazioni dettagliate, vedere [monitorare un account di archiviazione nel portale di Azure hello.](https://docs.microsoft.com/azure/storage/storage-monitor-storage-account) È anche possibile abilitare Analitica di archiviazione a livello di programmazione tramite hello API REST o libreria client hello. Utilizzare hello Set Service Properties operazione tooenable archiviazione Analitica singolarmente per ogni servizio.
+Per utilizzare Analisi archiviazione, è necessario abilitarla singolarmente per ciascun servizio che si desidera monitorare. È possibile abilitarla nel [portale di Azure](https://portal.azure.com/); per informazioni dettagliate, vedere [Monitorare un account di archiviazione nel portale di Azure](https://docs.microsoft.com/azure/storage/storage-monitor-storage-account). È inoltre possibile abilitare Analisi archiviazione a livello di codice tramite l'API REST o la libreria client. Per abilitare l'Analisi archiviazione per ogni servizio, usare le operazioni che consentono di impostare le proprietà dei servizi.
 
-dati aggregati Hello viene archiviati in un noto blob (per la registrazione) e in tabelle note (per la metrica), che sono accessibili tramite il servizio Blob di hello e API del servizio tabelle.
+I dati aggregati vengono archiviati in un BLOB noto (per la registrazione) e in tabelle note (per le metriche), a cui è possibile accedere tramite le API del servizio BLOB e del servizio tabelle.
 
-Archiviazione Analitica pone un limite di 20 TB sulla quantità hello di dati archiviati che sia indipendenti dal limite totale di hello dell'account di archiviazione. Tutti i log vengono archiviati in [BLOB in blocchi](https://docs.microsoft.com/azure/storage/storage-analytics) all'interno di un contenitore denominato $logs, che viene creato automaticamente quando viene abilitata l'Analisi archiviazione per un account di archiviazione.
+L'Analisi archiviazione può archiviare fino a un massimo di 20 TB di dati. Tale limite è indipendente dal limite totale dell'account di archiviazione. Tutti i log vengono archiviati in [BLOB in blocchi](https://docs.microsoft.com/azure/storage/storage-analytics) all'interno di un contenitore denominato $logs, che viene creato automaticamente quando viene abilitata l'Analisi archiviazione per un account di archiviazione.
 
 > [!Note]
 > Per altre informazioni sulla fatturazione e sui criteri di conservazione dei dati, vedere [Analisi archiviazione e fatturazione](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics-and-billing).
@@ -205,7 +205,7 @@ Archiviazione Analitica pone un limite di 20 TB sulla quantità hello di dati ar
 > [!Note]
 > Per informazioni sui limiti dell'account di archiviazione, vedere [Obiettivi di scalabilità e prestazioni per Archiviazione di Azure](https://docs.microsoft.com/azure/storage/storage-scalability-targets).
 
-viene registrato i seguenti tipi di richieste autenticate e anonime Hello.
+Vengono registrati i tipi seguenti di richieste autenticate e anonime.
 
 
 
@@ -214,33 +214,33 @@ viene registrato i seguenti tipi di richieste autenticate e anonime Hello.
 | Richieste riuscite | Richieste riuscite |
 |Richieste non riuscite, tra cui errori di timeout, limitazione, rete, autorizzazione e di altro tipo | Richieste tramite una firma di accesso condiviso (SAS), incluse le richieste riuscite e non riuscite |
 | Richieste tramite una firma di accesso condiviso (SAS), incluse le richieste riuscite e non riuscite |Errori di timeout per client e server |
-|   Richiede i dati tooanalytics |    Richieste GET non riuscite con codice di errore 304 (non modificate) |
-| Le richieste eseguite dalla stessa Analisi archiviazione, ad esempio, la creazione oppure l'eliminazione di log, non vengono registrate. Un elenco completo dei dati hello registrato è documentato in hello [archiviazione Analitica registrazione minima delle operazioni e messaggi di stato](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics-logged-operations-and-status-messages) e [formato di archiviazione Analitica Log](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics-log-format) argomenti. | Tutte le altre richieste anonime non riuscite non vengono registrate. Un elenco completo dei dati hello registrato è documentato in hello [archiviazione Analitica registrazione minima delle operazioni e messaggi di stato](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics-logged-operations-and-status-messages) e [formato di archiviazione Analitica Log](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics-log-format). |
+|   Richieste ai dati di analisi |    Richieste GET non riuscite con codice di errore 304 (non modificate) |
+| Le richieste eseguite dalla stessa Analisi archiviazione, ad esempio, la creazione oppure l'eliminazione di log, non vengono registrate. Un elenco completo dei dati registrati è documentato negli argomenti [Operazioni registrate in Analisi archiviazione e messaggi di stato](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics-logged-operations-and-status-messages) e [Formato log Analisi archiviazione](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics-log-format). | Tutte le altre richieste anonime non riuscite non vengono registrate. Un elenco completo dei dati registrati è documentato negli argomenti [Storage Analytics Logged Operations and Status Messages](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics-logged-operations-and-status-messages) (Operazioni registrate e messaggi di stato nell'Analisi archiviazione ) e [Storage Analytics Log Format](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics-log-format) (Formato dei registri di Analisi archiviazione). |
 
 ### <a name="azure-networking-logs"></a>Log di rete di Azure
 Il monitoraggio e la registrazione di rete in Azure comprende due categorie generali:
 
--   [Controllo di rete](https://docs.microsoft.com/azure/network-watcher/network-watcher-monitoring-overview#network-watcher) -monitoraggio di rete basata su Scenario viene fornito con funzionalità di hello Watcher di rete. Il servizio include l'acquisizione pacchetti, l'hop successivo, la verifica del flusso IP, la visualizzazione dei gruppi di sicurezza e i registri dei flussi dei gruppi di sicurezza di rete. Monitoraggio a livello di scenario è inclusa una visualizzazione di tooend finale delle risorse di rete in Monitoraggio risorse di rete di contrasto tooindividual.
+-   [Network Watcher](https://docs.microsoft.com/azure/network-watcher/network-watcher-monitoring-overview#network-watcher): tra le funzionalità di questo servizio è incluso il monitoraggio di rete basato su scenari. Il servizio include l'acquisizione pacchetti, l'hop successivo, la verifica del flusso IP, la visualizzazione dei gruppi di sicurezza e i registri dei flussi dei gruppi di sicurezza di rete. A differenza del monitoraggio a livello di singole risorse di rete, il monitoraggio a livello di scenario consente una visualizzazione completa delle risorse di rete.
 
--   [Monitoraggio delle risorse](https://docs.microsoft.com/azure/network-watcher/network-watcher-monitoring-overview#network-resource-level-monitoring): il monitoraggio a livello di risorsa include funzionalità di log di diagnostica, metriche, risoluzione dei problemi e integrità delle risorse. Tutte queste funzionalità vengono compilate a livello di risorse di rete hello.
+-   [Monitoraggio delle risorse](https://docs.microsoft.com/azure/network-watcher/network-watcher-monitoring-overview#network-resource-level-monitoring): il monitoraggio a livello di risorsa include funzionalità di log di diagnostica, metriche, risoluzione dei problemi e integrità delle risorse. Tutte queste funzionalità vengono compilate a livello di risorsa di rete.
 
 ![Log di rete di Azure](./media/azure-log-audit/azure-log-audit-fig4.png)
 
-Watcher di rete è un servizio internazionale che consente di toomonitor e diagnosticare le condizioni di livello rete scenario, a e da Azure. Diagnostica di rete e gli strumenti di visualizzazione disponibili con Watcher di rete consentono di comprendere, diagnosticare e ottenere rete tooyour insights in Azure.
+Network Watcher è un servizio a livello di area che permette di monitorare e diagnosticare le condizioni al livello di scenario di rete da, verso e all'interno di Azure. Gli strumenti di visualizzazione e diagnostica di rete disponibili in Network Watcher permettono di comprendere, diagnosticare e ottenere informazioni dettagliate sulla rete in Azure.
 
-**Flusso di NSG registrazione** -flusso di log per i gruppi di sicurezza di rete consentono di toocapture registri tootraffic correlati che vengono concesse o negate le regole di sicurezza hello gruppo hello. Questi registri di flusso sono scritti in formato JSON e mostrano in uscita e i flussi in ingresso per ogni regola, hello flusso hello NIC applicato, 5 tuple informazioni sul flusso hello (origine/destinazione IP, porta di origine/destinazione, Protocol) e se hello traffico è stato consentito o negato.
+**Registrazione dei flussi del gruppo di sicurezza di rete**: la registrazione dei flussi del gruppo di sicurezza di rete permette di acquisire i log relativi al traffico consentito o negato dalle regole di sicurezza nel gruppo. Sono scritti in formato JSON e mostrano i flussi in ingresso e in uscita in base a regole, scheda di rete a cui si applica il flusso, informazioni su 5 tuple relative al flusso (IP di origine/destinazione, porta di origine/destinazione, protocollo), e se il traffico è consentito o meno.
 
 ### <a name="network-security-group-flow-logging"></a>Registrazione dei flussi del gruppo di sicurezza di rete
 
-[I registri del flusso di gruppo di sicurezza di rete](https://docs.microsoft.com/azure/network-watcher/network-watcher-nsg-flow-logging-overview) sono una funzionalità del controllo di rete che consente di tooview informazioni sul traffico IP in entrata e in uscita tramite un gruppo di sicurezza di rete. Questi registri di flusso sono scritti in formato JSON e mostrano in uscita e i flussi in ingresso per ogni regola, hello flusso hello NIC applicato, 5 tuple informazioni sul flusso hello (origine/destinazione IP, porta di origine/destinazione, Protocol) e se hello traffico è stato consentito o negato.
+I [log dei flussi del gruppo di sicurezza di rete](https://docs.microsoft.com/azure/network-watcher/network-watcher-nsg-flow-logging-overview) sono una funzionalità di Network Watcher che consente di visualizzare le informazioni sul traffico IP in entrata e in uscita tramite un gruppo di sicurezza di rete. Sono scritti in formato JSON e mostrano i flussi in ingresso e in uscita in base a regole, scheda di rete a cui si applica il flusso, informazioni su 5 tuple relative al flusso (IP di origine/destinazione, porta di origine/destinazione, protocollo), e se il traffico è consentito o meno.
 
-Mentre il flusso di log di gruppi di sicurezza di rete di destinazione, non vengono visualizzati hello stesso come hello altri log. I log dei flussi vengono archiviati solo all'interno di un account di archiviazione.
+Anche se i log dei flussi specificano come destinazione gruppi di sicurezza di rete, non vengono visualizzati come gli altri log. I log dei flussi vengono archiviati solo all'interno di un account di archiviazione.
 
-Hello stesso log tooflow di applicare i criteri di conservazione in altri log. Registri di disporre di criteri di conservazione che possono essere impostato da giorni too365 1 giorno. Se non è impostato un criterio di conservazione, hello registri vengono mantenuti sempre.
+Ai log dei flussi si applicano gli stessi criteri di conservazione degli altri log. Il criterio di conservazione dei log può essere impostato su un valore compreso tra 1 giorno e 365 giorni. Se non viene impostato alcun criterio di conservazione, i log vengono conservati per sempre.
 
 **Log di diagnostica**
 
-Eventi periodici e spontanei vengono creati dalle risorse di rete e registrati negli account di archiviazione, inviate tooan Hub eventi o Analitica di Log. Questi log forniscono informazioni dettagliate sui integrità hello di una risorsa. e possono essere visualizzati con strumenti quali Power BI e Log Analytics. come i log di diagnostica tooview, visitare toolearn [Analitica di Log.](https://docs.microsoft.com/azure/log-analytics/log-analytics-azure-networking-analytics)
+Le risorse di rete creano eventi periodici e spontanei, che vengono registrati negli account di archiviazione e inviati a un hub eventi oppure a Log Analytics. Questi log contengono informazioni dettagliate sull'integrità delle singole risorse e possono essere visualizzati con strumenti quali Power BI e Log Analytics. Per informazioni su come visualizzare i log di diagnostica, vedere l'articolo relativo a [Log Analytics](https://docs.microsoft.com/azure/log-analytics/log-analytics-azure-networking-analytics).
 
 ![Log di diagnostica](./media/azure-log-audit/azure-log-audit-fig5.png)
 
@@ -249,38 +249,38 @@ Sono disponibili log di diagnostica per il [servizio di bilanciamento del carico
 Network Watcher offre una visualizzazione dei log di diagnostica contenente tutte le risorse di rete che supportano la registrazione diagnostica. Da questa visualizzazione è possibile abilitare e disabilitare le risorse di rete in modo facile e veloce.
 
 
-Le funzionalità di registrazione toopreceding addizione, Watcher di rete presenta attualmente hello seguenti funzionalità:
-- [Topologia](https://docs.microsoft.com/azure/network-watcher/network-watcher-topology-overview) -fornisce un hello con visualizzazione a livello di rete diversi interconnessioni e le associazioni tra le risorse di rete in un gruppo di risorse.
+Oltre alle precedenti funzionalità di registrazione, Network Watcher dispone attualmente delle funzionalità seguenti:
+- [Topologia](https://docs.microsoft.com/azure/network-watcher/network-watcher-topology-overview): offre una visualizzazione a livello di rete che mostra le varie interconnessioni e le associazioni tra le risorse di rete in un gruppo di risorse.
 
-- [Acquisizione pacchetti variabile](https://docs.microsoft.com/azure/network-watcher/network-watcher-packet-capture-overview): acquisisce i dati dei pacchetti all'interno e all'esterno di una macchina virtuale. Gestione avanzata delle opzioni di filtro e ottimizzare i controlli, ad esempio si trova in grado di tooset limitazioni di dimensione e tempo forniscono versatility.hello pacchetto possono essere archiviati in un archivio blob o su disco locale di hello in formato CAP.
+- [Acquisizione pacchetti variabile](https://docs.microsoft.com/azure/network-watcher/network-watcher-packet-capture-overview): acquisisce i dati dei pacchetti all'interno e all'esterno di una macchina virtuale. La versatilità è data dalle opzioni di filtro avanzato e dai controlli ottimizzati, come la possibilità di impostare l'ora e il limite di dimensioni. I dati dei pacchetti possono essere archiviati in un'archiviazione BLOB o in un disco locale nel formato .cap.
 
--   [Verifica flusso IP](https://docs.microsoft.com/azure/network-watcher/network-watcher-ip-flow-verify-overview): verifica se un pacchetto viene accettato o rifiutato in base ai relativi parametri sul flusso di informazioni, costituiti da informazioni a 5 tuple, ovvero l'indirizzo IP di destinazione, l'indirizzo IP di origine, la porta di destinazione, la porta di origine e il protocollo. Se i pacchetti hello viene negato da un gruppo di sicurezza, hello regola e gruppo di pacchetti hello negato.
+-   [Verifica flusso IP](https://docs.microsoft.com/azure/network-watcher/network-watcher-ip-flow-verify-overview): verifica se un pacchetto viene accettato o rifiutato in base ai relativi parametri sul flusso di informazioni, costituiti da informazioni a 5 tuple, ovvero l'indirizzo IP di destinazione, l'indirizzo IP di origine, la porta di destinazione, la porta di origine e il protocollo. Se il pacchetto viene rifiutato da un gruppo di sicurezza, vengono restituiti la regola e il gruppo che hanno rifiutato il pacchetto.
 
--   [Hop successivo](https://docs.microsoft.com/azure/network-watcher/network-watcher-next-hop-overview) -determina hello hop successivo per i pacchetti hello infrastruttura di rete di Azure, consentendo di route definite dall'utente non è configurato correttamente qualsiasi toodiagnose indirizzato.
+-   [Hop successivo](https://docs.microsoft.com/azure/network-watcher/network-watcher-next-hop-overview): determina l'hop successivo per i pacchetti indirizzati nell'infrastruttura di rete di Azure, permettendo così di diagnosticare eventuali route definite dall'utente non configurate in modo corretto.
 
--   [Visualizzazione del gruppo di sicurezza](https://docs.microsoft.com/azure/network-watcher/network-watcher-security-group-view-overview) -Ottiene le regole di sicurezza efficace e applicato hello che vengono applicate in una macchina virtuale.
+-   [Visualizzazione dei gruppi di sicurezza](https://docs.microsoft.com/azure/network-watcher/network-watcher-security-group-view-overview): ottiene le regole di sicurezza valide e applicate in una macchina virtuale.
 
--   [Gateway di rete virtuale e la risoluzione dei problemi di connessione](https://docs.microsoft.com/azure/network-watcher/network-watcher-troubleshoot-manage-rest) -fornisce hello possibilità tootroubleshoot gateway di rete virtuale e le connessioni.
+-   [Risoluzione dei problemi di connessione e gateway di rete virtuale](https://docs.microsoft.com/azure/network-watcher/network-watcher-troubleshoot-manage-rest): permette di risolvere i problemi relativi al gateway di rete virtuale e alle connessioni.
 
--   [Limiti della sottoscrizione di rete](https://docs.microsoft.com/azure/network-watcher/network-watcher-monitoring-overview#network-subscription-limits) -consente l'utilizzo delle risorse di rete tooview rispetto ai limiti.
+-   [Limite sottoscrizioni di rete](https://docs.microsoft.com/azure/network-watcher/network-watcher-monitoring-overview#network-subscription-limits): permette di visualizzare l'uso delle risorse di rete rispetto ai limiti.
 
 ### <a name="application-insight"></a>Application Insights
 
-[Application Insights](https://docs.microsoft.com/azure/application-insights/app-insights-overview) è un servizio estendibile di gestione delle prestazioni delle applicazioni per sviluppatori Web su più piattaforme, Utilizzarlo toomonitor l'applicazione web in tempo reale. Il servizio rileva automaticamente le anomalie nelle prestazioni Include toohelp di analitica potenti strumenti per la diagnosi di problemi e toounderstand gli utenti che effettivamente svolgono con l'app.
+[Application Insights](https://docs.microsoft.com/azure/application-insights/app-insights-overview) è un servizio estendibile di gestione delle prestazioni delle applicazioni per sviluppatori Web su più piattaforme, che consente di monitorare un'applicazione Web live. Il servizio rileva automaticamente le anomalie nelle prestazioni e include avanzati strumenti di analisi che consentono di diagnosticare i problemi e conoscere come viene effettivamente usata l'app dagli utenti.
 
- È progettato toohelp è migliorare continuamente le prestazioni e usabilità.
+ Il servizio è progettato per supportare il miglioramento continuo delle prestazioni e dell'usabilità.
 
- Funziona per le app su una vasta gamma di piattaforme, tra cui .NET, Node.js e J2EE, ospitato in locale o nel cloud hello. Si integra con il processo di devOps e con gli strumenti di sviluppo toovarious punti di connessione.
+ Funziona per le app su un'ampia gamma di piattaforme, tra cui .NET o J2EE, ospitate in locale o nel cloud. Si integra con il processo DevOps e offre punti di connessione per diversi strumenti di sviluppo.
 
 ![Application Insights](./media/azure-log-audit/azure-log-audit-fig6.png)
 
-Application Insights è destinato a team di sviluppo hello, toohelp è comprendere le prestazioni dell'app e modalità di utilizzo. Esegue il monitoraggio di:
+Application Insights è destinato al team di sviluppo, a cui consente di comprendere le prestazioni e le modalità d'uso dell'app. Esegue il monitoraggio di:
 
 -   **Frequenza delle richieste, tempi di risposta e percentuali di errore**: trovare le pagine più visitate, gli orari di visita e la posizione degli utenti.  Vedere quali pagine abbiano prestazioni migliori. Se i tempi di risposta e le percentuali di errore aumentano di pari passo con le richieste, è probabile che ci sia un problema di assegnazione delle risorse.
 
 -   **Tassi di dipendenza, tempi di risposta e percentuali di errore**: trovare quali servizi esterni causino un rallentamento.
 
--   **Eccezioni** : analizzare le statistiche aggregata hello, o selezionare istanze specifiche e approfondire l'analisi dello stack hello e le richieste correlate. Vengono segnalate eccezioni di server e browser.
+-   **Eccezioni**: analizzare le statistiche aggregate o selezionare istanze specifiche e approfondire l'analisi dello stack e le richieste correlate. Vengono segnalate eccezioni di server e browser.
 
 -   **Visualizzazioni pagina e prestazioni di carico**, segnalate dai browser degli utenti.
 
@@ -294,68 +294,68 @@ Application Insights è destinato a team di sviluppo hello, toohelp è comprende
 
 -   **Log di traccia di diagnostica** dall'app, in modo da poter correlare gli eventi di traccia con le richieste.
 
--   **Eventi personalizzati e le metriche** scrivere manualmente nei hello client o server codice tootrack eventi aziendali, ad esempio gli articoli venduti o giochi acquisite.
+-   **Eventi e metriche personalizzati** scritti dall'utente stesso nel codice del client o del server per tracciare eventi aziendali come gli articoli venduti o le partite vinte.
 
 **Elenco degli scenari di integrazione e relative descrizioni:**
 
 | Scenari di integrazione | Descrizione |
 | --------------------- | :---------- |
-|[Mappa delle applicazioni](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-app-map)|componenti di Hello dell'app, con le metriche principali e avvisi.||
+|[Mappa delle applicazioni](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-app-map)|I componenti dell'applicazione, con le metriche e gli avvisi chiave.||
 |[Ricerca diagnostica dei dati dell'istanza](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-diagnostic-search)| Cercare e filtrare eventi come richieste, eccezioni, chiamate a dipendenze, tracce di log e visualizzazioni di pagina.||
 |[Esplora metriche per i dati aggregati](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-metrics-explorer)|Esaminare, filtrare e segmentare dati aggregati come frequenza delle richieste, errori, eccezioni, tempi di risposta e tempi di caricamento delle pagine.||
-|[Dashboard](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-dashboards#dashboards)|Combinare dati di più risorse e condividerli con altri utenti. Ideale per applicazioni con più componenti e continui vengono visualizzati nella chat team hello.||
-|[Flusso di metriche live](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-live-stream)|Quando si distribuisce una nuova compilazione, è possibile controllare queste toomake indicatori di prestazioni in tempo quasi reale che tutto funziona come previsto.||
+|[Dashboard](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-dashboards#dashboards)|Combinare dati di più risorse e condividerli con altri utenti. Ideale per le applicazioni multi-componente e per la visualizzazione continua negli spazi del team.||
+|[Flusso di metriche live](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-live-stream)|Quando si distribuisce una nuova build, controllare questi indicatori delle prestazioni in tempo quasi reale per verificare che tutto funzioni come previsto.||
 |[Analisi](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-analytics)|Questo avanzato linguaggio di query consente di trovare risposta a domande approfondite sull'utilizzo e sulle prestazioni dell'app.||
-|[Avvisi automatici e manuali](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-alerts)|Avvisi automatici adattano i modelli di normale dell'app tooyour di telemetria e trigger quando ci sono di fuori di modello comune di hello. È anche possibile impostare avvisi su livelli particolari delle metriche standard o personalizzate.||
-|[Visual Studio](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-visual-studio)|Vedere i dati sulle prestazioni nel codice hello. Vai toocode dalle tracce dello stack.||
+|[Avvisi automatici e manuali](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-alerts)|Gli avvisi automatici si adattano ai modelli normali di telemetria dell'app e si attivano quando i dati si discostano dal modello consueto. È anche possibile impostare avvisi su livelli particolari delle metriche standard o personalizzate.||
+|[Visual Studio](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-visual-studio)|Vedere i dati sulle prestazioni nel codice. Passare al codice dall'analisi dello stack.||
 |[Power BI](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-export-power-bi)|Integrare le metriche di uso con altra business intelligence.||
-|[API REST](https://dev.applicationinsights.io/)|Scrivere codice toorun query su dati non elaborati e le metriche.||
-|[Esportazione continua](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-export-telemetry)|Esportazione bulk di dati non elaborati toostorage quando arriva.||
+|[API REST](https://dev.applicationinsights.io/)|Scrivere codice per eseguire query su metriche e dati non elaborati.||
+|[Esportazione continua](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-export-telemetry)|Eseguire l'esportazione bulk dei dati non elaborati nell'archivio quando arrivano.||
 
 ### <a name="azure-security-center-alerts"></a>Avvisi del Centro sicurezza di Azure
-[Centro sicurezza di Azure](https://docs.microsoft.com/azure/security-center/security-center-intro) automaticamente raccoglie analizza e consente di integrare dati di log da risorse di Azure, rete hello e soluzioni partner connesso, ad esempio soluzioni di protezione firewall ed endpoint, minacce reali toodetect e ridurre falsi positivi. Viene visualizzato un elenco di avvisi di sicurezza in ordine di priorità del Centro sicurezza PC insieme hello informazioni necessarie tooquickly analizzare problema hello e indicazioni sul tooremediate un attacco.
+Il [Centro sicurezza di Azure](https://docs.microsoft.com/azure/security-center/security-center-intro) raccoglie, analizza e integra automaticamente i dati di log delle risorse di Azure, della rete e delle soluzioni dei partner connesse, come soluzioni di protezione endpoint e firewall, per rilevare le minacce reali e ridurre i falsi positivi. Il Centro sicurezza visualizza un elenco degli avvisi di sicurezza in ordine di priorità, nonché le informazioni necessarie per analizzare rapidamente il problema e indicazioni per risolvere un attacco.
 
-Rilevamento minacce del Centro sicurezza PC funziona automaticamente la raccolta di informazioni di sicurezza da risorse di Azure, rete hello e soluzioni partner connesso. Viene avviata l'analisi di queste informazioni, correlazione spesso informazioni provenienti da più origini, tooidentify minacce. Avvisi di sicurezza sono classificati in Centro sicurezza PC insieme ai consigli su come tooremediate hello minaccia.
+Il sistema di rilevamento delle minacce del Centro sicurezza funziona mediante la raccolta automatica di informazioni sulla sicurezza dalle risorse di Azure, dalla rete e dalle soluzioni dei partner connessi. Per identificare le minacce, analizza queste informazioni, correlando spesso quelle raccolte da più origini. Gli avvisi di sicurezza sono classificati in ordine di priorità nel Centro sicurezza insieme a indicazioni su come su correggere la minaccia.
 
 ![Centro sicurezza di Azure](./media/azure-log-audit/azure-log-audit-fig7.png)
 
-Il Centro sicurezza si avvale di analisi della sicurezza avanzate, che vanno ben oltre gli approcci basati sulle firme. Successi in dati di grandi dimensioni e [machine learning](https://azure.microsoft.com/blog/machine-learning-in-azure-security-center/) tecnologie sono applicati tooevaluate eventi attraverso l'infrastruttura di cloud intera hello: rilevamento minacce che sarebbero Impossibile tooidentify approcci manuali e utilizzato per stimare hello evoluzione di attacchi. Queste analisi della sicurezza includono:
+Il Centro sicurezza si avvale di analisi della sicurezza avanzate, che vanno ben oltre gli approcci basati sulle firme. I progressi tecnologici in ambito Big Data e [Machine Learning](https://azure.microsoft.com/blog/machine-learning-in-azure-security-center/) vengono applicati per valutare gli eventi nell'intera l'infrastruttura cloud, rilevando minacce che sarebbe impossibile identificare con approcci manuali e stimando l'evoluzione degli attacchi. Queste analisi della sicurezza includono:
 
--   **Integrato sulle minacce:** ha un aspetto per noti cattivi attori applicando globale sulle minacce prodotti e servizi, Microsoft hello Microsoft Digital Crimes Unit (DCU), hello Microsoft Security Response Center (MSRC) ed esterne i feed.
+-   **Intelligence per le minacce integrata**: cerca gli attori dannosi noti ricorrendo alle informazioni sulle minacce globali da prodotti e servizi Microsoft, Microsoft Digital Crimes Unit (DCU) e Microsoft Security Response Center (MSRC), nonché da feed esterni.
 
--   **Comportamento analitica:** applica il comportamento di schemi noti toodiscover dannoso.
+-   **Analisi del comportamento**: applica i modelli noti per individuare comportamenti dannosi.
 
--   **Rilevamento di anomalie:** Usa statistiche di profiling toobuild una linea di base cronologico. Avvisa sulle deviazioni dalle linee di base stabilite conformi tooa potenziali attacchi.
+-   **Rilevamento anomalie**: usa la tecnica di profilatura statistica per creare una baseline cronologica. Genera avvisi sulle deviazioni dalle baseline stabilite che risultano conformi a un potenziale vettore di attacco .
 
 
-Molte operazioni di sicurezza e i team di risposta agli eventi imprevisti si basano su una soluzione di informazioni di sicurezza e gestione di eventi (SIEM) come punto di partenza per la valutazione e analisi degli avvisi di sicurezza hello. Con l'integrazione dei log di Azure, i clienti possono sincronizzare gli avvisi del Centro sicurezza e gli eventi di sicurezza delle macchine virtuali, raccolti da Diagnostica di Azure e dai log di controllo di Azure, con la propria soluzione SIEM o di analisi dei log quasi in tempo reale.
+Molti team dedicati alle operazioni di sicurezza e alla risposta ai problemi fanno affidamento su una soluzione SIEM (Security Information and Event Management) come punto di partenza per la valutazione e l'analisi degli avvisi di sicurezza. Con l'integrazione dei log di Azure, i clienti possono sincronizzare gli avvisi del Centro sicurezza e gli eventi di sicurezza delle macchine virtuali, raccolti da Diagnostica di Azure e dai log di controllo di Azure, con la propria soluzione SIEM o di analisi dei log quasi in tempo reale.
 
 
 ## <a name="log-analytics"></a>Log Analytics
 
-Log Analytics è un servizio di [Operations Management Suite (OMS)](https://docs.microsoft.com/azure/operations-management-suite/operations-management-suite-overview) che consente di raccogliere e analizzare i dati generati dalle risorse nel cloud e negli ambienti locali. Fornisce informazioni in tempo reale tramite la ricerca integrata e dashboard personalizzati tooreadily analizzare milioni di record in tutti i carichi di lavoro e i server indipendentemente dalla loro posizione fisica.
+Log Analytics è un servizio di [Operations Management Suite (OMS)](https://docs.microsoft.com/azure/operations-management-suite/operations-management-suite-overview) che consente di raccogliere e analizzare i dati generati dalle risorse nel cloud e negli ambienti locali. Offre informazioni in tempo reale usando la ricerca integrata e i dashboard personalizzati per analizzare rapidamente milioni di record in tutti i carichi di lavoro e i server, indipendentemente dalla loro posizione fisica.
 
 ![Log Analytics](./media/azure-log-audit/azure-log-audit-fig8.png)
 
-Centro di Log Analitica hello è repository OMS hello, che è ospitato in hello cloud di Azure. Raccolta dei dati nel repository di hello dai origini connesse, la configurazione delle origini dati e Aggiunta sottoscrizione tooyour di soluzioni. Origini dati e soluzioni ogni creare tipi di record diversi possono ancora essere analizzati insieme nel repository di query toohello ma il proprio set di proprietà. In questo modo hello toouse stesso toowork strumenti e i metodi con diversi tipi di dati raccolti da diverse origini.
+Al centro di Log Analytics è presente l'archivio OMS, ospitato nel cloud di Azure. I dati vengono raccolti nel repository da origini connesse configurando le origini dati e aggiungendo soluzioni alla sottoscrizione. Le origini dati e le soluzioni creeranno diversi tipi di record con uno specifico set di proprietà, ma che possono comunque essere analizzati insieme nelle query al repository. In questo modo è possibile usare gli stessi strumenti e metodi per lavorare con diversi tipi di dati raccolti da diverse origini.
 
-Origini collegate sono computer hello e altre risorse che generano dati raccolti da Log Analitica. Sono inclusi gli agenti installati nei computer [Windows](https://docs.microsoft.com/azure/log-analytics/log-analytics-windows-agents) e [Linux](https://docs.microsoft.com/azure/log-analytics/log-analytics-linux-agents) che si connettono direttamente o gli agenti in un [gruppo di gestione di System Center Operations Manager connesso](https://docs.microsoft.com/azure/log-analytics/log-analytics-om-agents). Log Analytics può anche raccogliere dati da [Archiviazione di Azure](https://docs.microsoft.com/azure/log-analytics/log-analytics-azure-storage).
+Le origini connesse sono i computer e altre risorse che generano dati raccolti da Log Analytics. Sono inclusi gli agenti installati nei computer [Windows](https://docs.microsoft.com/azure/log-analytics/log-analytics-windows-agents) e [Linux](https://docs.microsoft.com/azure/log-analytics/log-analytics-linux-agents) che si connettono direttamente o gli agenti in un [gruppo di gestione di System Center Operations Manager connesso](https://docs.microsoft.com/azure/log-analytics/log-analytics-om-agents). Log Analytics può anche raccogliere dati da [Archiviazione di Azure](https://docs.microsoft.com/azure/log-analytics/log-analytics-azure-storage).
 
-[Origini dati](https://docs.microsoft.com/azure/log-analytics/log-analytics-data-sources) sono hello diversi tipi di dati raccolti da ogni origine connessa. Questo include gli eventi e [dati sulle prestazioni](https://docs.microsoft.com/azure/log-analytics/log-analytics-data-sources-performance-counters) da [Windows](https://docs.microsoft.com/azure/log-analytics/log-analytics-data-sources-windows-events) e gli agenti Linux in toosources aggiunta, ad esempio [registri IIS](https://docs.microsoft.com/azure/log-analytics/log-analytics-data-sources-iis-logs), e [registri di testo personalizzato.](https://docs.microsoft.com/azure/log-analytics/log-analytics-data-sources-custom-logs) Configurare ogni origine dati che si desidera toocollect e configurazione di hello è origine connessa tooeach recapitato automaticamente.
+[origini dati](https://docs.microsoft.com/azure/log-analytics/log-analytics-data-sources) sono i diversi tipi di dati raccolti da ogni origine connessa. Sono inclusi gli eventi e i [dati sulle prestazioni](https://docs.microsoft.com/azure/log-analytics/log-analytics-data-sources-performance-counters) ricavati dagli agenti [Windows](https://docs.microsoft.com/azure/log-analytics/log-analytics-data-sources-windows-events) e Linux, oltre alle origini quali [log di IIS](https://docs.microsoft.com/azure/log-analytics/log-analytics-data-sources-iis-logs) e [log di testo personalizzati](https://docs.microsoft.com/azure/log-analytics/log-analytics-data-sources-custom-logs). È possibile configurare ciascuna origine dati che si vuole raccogliere e la configurazione viene inviata automaticamente a ogni origine connessa.
 
 Esistono quattro diversi modi per [raccogliere log e metriche per i servizi di Azure](https://docs.microsoft.com/azure/log-analytics/log-analytics-azure-storage):
-1.  Diagnostica di Azure diretto tooLog Analitica (diagnostica di hello nella tabella seguente)
+1.  Da Diagnostica di Azure direttamente a Log Analytics (Diagnostica nella tabella seguente)
 
-2.  Diagnostica di Azure tooAzure archiviazione tooLog Analitica (archiviazione in hello nella tabella seguente)
+2.  Da Diagnostica di Azure ad Archiviazione di Azure a Log Analytics (Archiviazione nella tabella seguente)
 
-3.  Connettori per servizi di Azure (connettori hello nella tabella seguente)
+3.  Connettori per i servizi di Azure (Connettori nella tabella seguente)
 
-4.  Script di toocollect e, successivamente, i dati post in Log Analitica (vuote nella tabella seguente hello e per i servizi che non sono elencati)
+4.  Script per raccogliere e inviare i dati a Log Analytics (spazi vuoti nella tabella seguente e per i servizi non elencati)
 
 | Service | Tipo di risorsa | Log | Metrica | Soluzione |
 | :------ | :------------ | :--- | :------ | :------- |
 |Gateway di applicazione|  Microsoft.Network/<br>applicationGateways|  Diagnostica|Diagnostica|    [Analisi dei ](https://docs.microsoft.com/en-us/azure/log-analytics/log-analytics-azure-networking-analytics#azure-application-gateway-analytics-solution-in-log-analytics)gateway applicazione[ di Azure](https://docs.microsoft.com/en-us/azure/log-analytics/log-analytics-azure-networking-analytics#azure-application-gateway-analytics-solution-in-log-analytics)|
-|Application Insights||     Connettore|  Connettore|  [Application Insights](https://blogs.technet.microsoft.com/msoms/2016/09/26/application-insights-connector-in-oms/)[Connector (Anteprima)](https://blogs.technet.microsoft.com/msoms/2016/09/26/application-insights-connector-in-oms/)|
+|Application Insights||     Connettore|  Connettore|  [Application Insights](https://blogs.technet.microsoft.com/msoms/2016/09/26/application-insights-connector-in-oms/) [Connector (Anteprima)](https://blogs.technet.microsoft.com/msoms/2016/09/26/application-insights-connector-in-oms/)|
 |Account di Automazione|   Microsoft.Automation/<br>AutomationAccounts|    Diagnostica||       [Altre informazioni](https://docs.microsoft.com/en-us/azure/automation/automation-manage-send-joblogs-log-analytics)|
 |Account Batch|    Microsoft.Batch/<br>batchAccounts|  Diagnostica|    Diagnostica||
 |Servizi cloud classici||       Archiviazione||       [Altre informazioni](https://docs.microsoft.com/en-us/azure/log-analytics/log-analytics-azure-storage-iis-table)|
@@ -386,11 +386,11 @@ Esistono quattro diversi modi per [raccogliere log e metriche per i servizi di A
 
 
 ## <a name="log-integration-with-on-premises-siem-systems"></a>Integrazione dei log con i sistemi SIEM locali
-[Integrazione di log di Azure](https://www.microsoft.com/download/details.aspx?id=53324) consente toointegrate registri raw dalle risorse di Azure in tooyour locale **sistemi di informazione di sicurezza e gestione di eventi (SIEM)**.
+L'[integrazione dei log di Azure](https://www.microsoft.com/download/details.aspx?id=53324) consente di integrare i log non elaborati delle risorse di Azure nei sistemi **SIEM di gestione degli eventi e delle informazioni di sicurezza locali**.
 
 ![Integrazione dei log](./media/azure-log-audit/azure-log-audit-fig9.png)
 
-L'integrazione dei log di Azure raccoglie i dati di Diagnostica di Azure dalle macchine virtuali Windows (WAD), i log attività di Azure, gli avvisi del Centro sicurezza di Azure e i log dei provider di risorse di Azure. Questa integrazione rappresenta un dashboard unificato di tutte le risorse, locale o cloud hello, in modo che è possibile aggregare, correlare, analizzare e avviso per gli eventi di sicurezza.
+L'integrazione dei log di Azure raccoglie i dati di Diagnostica di Azure dalle macchine virtuali Windows (WAD), i log attività di Azure, gli avvisi del Centro sicurezza di Azure e i log dei provider di risorse di Azure. Questa integrazione fornisce un dashboard unificato per tutti gli asset, locali o su cloud, consentendo di aggregare, correlare, analizzare e inviare avvisi per gli eventi di sicurezza.
 
 
 
@@ -405,34 +405,34 @@ L'integrazione dei log di Azure supporta attualmente l'integrazione dei log di a
 |Log VM|   Sì, tramite Eventi inoltrati e non attraverso JSON|
 
 
-Hello nella tabella seguente illustra la categoria di Log hello e i dettagli di integrazione con SIEM.
+La tabella seguente illustra la categoria Log e i dettagli dell'integrazione SIEM.
 
 [Introduzione all'integrazione dei log di Azure](https://docs.microsoft.com/azure/security/security-azure-log-integration-get-started) - L'esercitazione illustra come installare l'integrazione dei log di Azure e integrare i log dall'archiviazione di Azure WAD, i log attività di Azure, gli avvisi del Centro sicurezza di Azure e i log di controllo di Azure Active Directory.
 
 Scenari di integrazione
 
--   [Passaggi di configurazione di partner](https://blogs.msdn.microsoft.com/azuresecurity/2016/08/23/azure-log-siem-configuration-steps/) – questo post di blog viene illustrato come tooconfigure Azure log toowork integrazione con soluzioni di partner Splunk e ArcSight HP, IBM QRadar.
+-   [Passaggi per la configurazione dei partner](https://blogs.msdn.microsoft.com/azuresecurity/2016/08/23/azure-log-siem-configuration-steps/) – Questo post di blog mostra come configurare l'integrazione dei log di Azure per lavorare con le soluzioni partner Splunk, HP ArcSight e IBM QRadar.
 
 -   [Domande frequenti sull'integrazione dei log di Azure](https://docs.microsoft.com/azure/security/security-azure-log-integration-faq) - Queste domande frequenti riguardano l'integrazione dei log di Azure.
 
--   [L'integrazione di Centro sicurezza PC avvisi con Azure log integrazione](https://docs.microsoft.com/azure/security-center/security-center-integrating-alerts-with-log-integration) : questo documento viene illustrato come centro di sicurezza toosync avvisi, insieme agli eventi di sicurezza di macchina virtuale raccolti da diagnostica di Azure e i log di controllo di Azure con analitica il log o Soluzione SIEM.
+-   [Integrazione degli avvisi del Centro sicurezza con l'integrazione dei log di Azure](https://docs.microsoft.com/azure/security-center/security-center-integrating-alerts-with-log-integration) - Questo documento mostra come sincronizzare gli avvisi del Centro sicurezza di Azure, insieme agli eventi di sicurezza delle macchine virtuali raccolti da Diagnostica di Azure e dai log di controllo di Azure, con la propria soluzione SIEM o di analisi dei log.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
 - [Controllo e registrazione](https://www.microsoft.com/trustcenter/security/auditingandlogging)
 
-Proteggere i dati dalla gestione della visibilità e rispondere rapidamente tootimely degli avvisi di sicurezza
+Proteggere i dati mantenendo la visibilità e rispondendo rapidamente agli avvisi di sicurezza tempestivi
 
 - [Raccolta dei log di controllo e di registrazione di sicurezza all'interno di Azure](https://azure.microsoft.com/resources/videos/security-logging-and-audit-log-collection/)
 
-Quali impostazioni è necessario che la raccolta di istanze di Azure con tooenforce toomake hello sicurezza corrette e i log di controllo.
+Le impostazioni da applicare per assicurarsi che le istanze di Azure raccolgano i log di controllo e di sicurezza corretti.
 
 - [Configurare le impostazioni di controllo per una raccolta di siti](https://support.office.com/article/Configure-audit-settings-for-a-site-collection-A9920C97-38C0-44F2-8BCB-4CF1E2AE22D2?ui=&rs=&ad=US)
 
-Come un amministratore della raccolta siti, uno può recuperare la cronologia della hello delle azioni eseguite da un utente specifico e può inoltre recuperare la cronologia hello delle azioni eseguite durante un intervallo di date specifico. 
+In qualità di amministratore della raccolta di siti, si può recuperare la cronologia delle azioni eseguite da un utente specifico e la cronologia delle azioni eseguite durante un particolare intervallo di date. 
 
-- [Log di controllo di ricerca hello in Office 365 sicurezza hello & centro conformità](https://support.office.com/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=&rs=&ad=US)
+- [Cercare il log di controllo nel Centro sicurezza e conformità di Office 365](https://support.office.com/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=&rs=&ad=US)
 
-Una possibile utilizzare hello centro di conformità e sicurezza di Office 365 toosearch hello unificata audit log tooview utente e attività dell'amministratore dell'organizzazione a Office 365.
+È possibile ricorrere al Centro sicurezza e conformità di Office 365 per cercare il log di controllo unificato per visualizzare l'attività dell'utente e dell'amministratore nell'organizzazione di Office 365.
 
 

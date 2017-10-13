@@ -1,6 +1,6 @@
 ---
-title: limiti per le richieste di gestione delle risorse aaaAzure | Documenti Microsoft
-description: Viene descritto come toouse la limitazione delle richieste con Gestione risorse di Azure richiede quando sono stati raggiunti i limiti della sottoscrizione.
+title: Limiti di richieste di Azure Resource Manager | Microsoft Docs
+description: Viene descritto come usare la limitazione con le richieste di Azure Resource Manager quando sono stati raggiunti i limiti di sottoscrizioni.
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,25 +14,25 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/11/2017
 ms.author: tomfitz
-ms.openlocfilehash: ea274f3145af36aac753730e1f280d8a8b59c3bf
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6d7eeaf460674c3ab98425a5412ffa465b9ffd1d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="throttling-resource-manager-requests"></a>Limitazione delle richieste di Resource Manager
-Per ogni sottoscrizione e tenant, i limiti di gestione risorse richieste too15, 000 all'ora di lettura e scrittura richieste too1, 200 all'ora. Questi limiti si applicano tooeach istanza di gestione risorse di Azure. sono presenti più istanze in ogni area di Azure e Gestione risorse di Azure viene distribuito tooall Azure aree.  Pertanto, in pratica, i limiti sono effettivamente molto superiori a quelli elencati in precedenza, poiché le richieste utente sono in genere gestite da molte istanze diverse.
+Per ogni sottoscrizione e tenant, Resource Manager definisce un limite di 15.000 richieste di lettura e 1.200 richieste di scrittura al giorno. Questi limiti si applicano a ogni istanza di Azure Resource Manager; sono presenti più istanze in ogni area di Azure e Azure Resource Manager viene distribuito a tutte le aree di Azure.  Pertanto, in pratica, i limiti sono effettivamente molto superiori a quelli elencati in precedenza, poiché le richieste utente sono in genere gestite da molte istanze diverse.
 
-Se l'applicazione o script raggiunge questi limiti, è necessario toothrottle le richieste. Questo argomento viene illustrato come le richieste di hello toodetermine rimanente è prima di raggiungere il limite di hello e come toorespond quando è stato raggiunto il limite di hello.
+Se l'applicazione o script raggiunge questi limiti, è necessario restringere le richieste. In questo argomento viene illustrato come determinare il numero di richieste rimanenti prima di raggiungere il limite e come rispondere in caso di raggiungimento.
 
-Quando si raggiunge il limite di hello, viene visualizzato il codice di stato HTTP hello **429 troppe richieste molti**.
+Quando si raggiunge il limite, viene visualizzato il codice di stato HTTP **429 Too many requests** (429 Troppe richieste).
 
-numero di richieste di Hello è tooeither con ambito la sottoscrizione o il tenant. Se si dispone di più, applicazioni simultanee effettua richieste nella sottoscrizione, le richieste di hello da tali applicazioni vengono sommate numero hello toodetermine delle richieste rimanenti.
+Il numero di richieste ha come ambito la sottoscrizione o il tenant. Se si dispone di più applicazioni simultanee che effettuano richieste nella sottoscrizione, le richieste da tali applicazioni vengono aggiunte insieme in modo da determinare il numero di richieste rimanenti.
 
-Le richieste di sottoscrizione con ambito sono quelli hello comportano passando l'id sottoscrizione, ad esempio il recupero dei gruppi di risorse hello nella sottoscrizione. Le richieste nell'ambito del tenant non includono l'ID sottoscrizione, ad esempio il recupero delle posizioni di Azure valide.
+Per le richieste nell'ambito della sottoscrizione occorre la trasmissione dell'ID sottoscrizione, ad esempio il recupero del gruppo di risorse nella sottoscrizione. Le richieste nell'ambito del tenant non includono l'ID sottoscrizione, ad esempio il recupero delle posizioni di Azure valide.
 
 ## <a name="remaining-requests"></a>Richieste rimanenti
-È possibile determinare il numero di hello delle richieste rimanenti esaminando le intestazioni di risposta. Ogni richiesta include i valori per il numero di hello delle richieste di scrittura e lettura rimanente. Hello nella tabella seguente vengono descritte le intestazioni di risposta hello che è possibile esaminare per i valori:
+È possibile determinare il numero di richieste rimanenti esaminando le intestazioni di risposta. Ogni richiesta include i valori per il numero di richieste di scrittura e lettura rimanenti. Nella tabella seguente vengono descritte le intestazioni di risposta che è possibile esaminare per tali valori:
 
 | Intestazione risposta | Descrizione |
 | --- | --- |
@@ -40,34 +40,34 @@ Le richieste di sottoscrizione con ambito sono quelli hello comportano passando 
 | x-ms-ratelimit-remaining-subscription-writes |Richieste di scrittura rimanenti nell'ambito della sottoscrizione |
 | x-ms-ratelimit-remaining-tenant-reads |Richieste di lettura rimanenti nell'ambito del tenant |
 | x-ms-ratelimit-remaining-tenant-writes |Richieste di scrittura rimanenti nell'ambito del tenant |
-| x-ms-ratelimit-remaining-subscription-resource-requests |Richieste di tipo di risorsa rimanenti nell'ambito della sottoscrizione.<br /><br />Il valore dell'intestazione viene restituito solo se un servizio ha eseguito l'override di limite predefinito di hello. Gestione risorse aggiunge questo valore anziché hello sottoscrizione letture o scritture. |
-| x-ms-ratelimit-remaining-subscription-resource-entities-read |Richieste di raccolta di tipo di risorsa rimanenti nell'ambito della sottoscrizione.<br /><br />Il valore dell'intestazione viene restituito solo se un servizio ha eseguito l'override di limite predefinito di hello. Questo valore fornisce il numero di hello di richieste di raccolta rimanenti (risorse elenco). |
-| x-ms-ratelimit-remaining-tenant-resource-requests |Richieste di tipo di risorsa rimanenti nell'ambito del tenant.<br /><br />Questa intestazione viene aggiunto solo per le richieste a livello di tenant, e solo se un servizio ha eseguito l'override limite predefinito di hello. Gestione risorse aggiunge questo valore anziché hello tenant letture o scritture. |
-| x-ms-ratelimit-remaining-tenant-resource-entities-read |Richieste di raccolta di tipo di risorsa rimanenti nell'ambito del tenant.<br /><br />Questa intestazione viene aggiunto solo per le richieste a livello di tenant, e solo se un servizio ha eseguito l'override limite predefinito di hello. |
+| x-ms-ratelimit-remaining-subscription-resource-requests |Richieste di tipo di risorsa rimanenti nell'ambito della sottoscrizione.<br /><br />Questo valore di intestazione viene restituito solo se un servizio ha superato il limite predefinito. Resource Manager aggiunge questo valore invece delle richieste di lettura o scrittura per la sottoscrizione. |
+| x-ms-ratelimit-remaining-subscription-resource-entities-read |Richieste di raccolta di tipo di risorsa rimanenti nell'ambito della sottoscrizione.<br /><br />Questo valore di intestazione viene restituito solo se un servizio ha superato il limite predefinito. Questo valore fornisce il numero di richieste di raccolta rimanenti (elenco di risorse). |
+| x-ms-ratelimit-remaining-tenant-resource-requests |Richieste di tipo di risorsa rimanenti nell'ambito del tenant.<br /><br />Questa intestazione viene aggiunta solo per le richieste a livello di tenant e solo se un sevizio ha superato il limite predefinito. Resource Manager aggiunge questo valore invece delle richieste di lettura o scrittura per il tenant. |
+| x-ms-ratelimit-remaining-tenant-resource-entities-read |Richieste di raccolta di tipo di risorsa rimanenti nell'ambito del tenant.<br /><br />Questa intestazione viene aggiunta solo per le richieste a livello di tenant e solo se un sevizio ha superato il limite predefinito. |
 
-## <a name="retrieving-hello-header-values"></a>Il recupero dei valori di intestazione hello
+## <a name="retrieving-the-header-values"></a>Recupero dei valori di intestazione
 Il recupero di questi valori di intestazione nel codice o nello script non è diverso rispetto al recupero di qualsiasi valore di intestazione. 
 
-Ad esempio, in **c#**, si recupera il valore di intestazione hello da un **HttpWebResponse** oggetto denominato **risposta** con hello seguente codice:
+Ad esempio, in **C#** viene recuperato il valore di intestazione da un oggetto **HttpWebResponse** di nome **response** con il codice seguente:
 
 ```cs
 response.Headers.GetValues("x-ms-ratelimit-remaining-subscription-reads").GetValue(0)
 ```
 
-In **PowerShell**, recuperare il valore dell'intestazione hello un'operazione Invoke-WebRequest.
+In **PowerShell** viene recuperato il valore di intestazione da un'operazione Invoke-WebRequest.
 
 ```powershell
 $r = Invoke-WebRequest -Uri https://management.azure.com/subscriptions/{guid}/resourcegroups?api-version=2016-09-01 -Method GET -Headers $authHeaders
 $r.Headers["x-ms-ratelimit-remaining-subscription-reads"]
 ```
 
-In alternativa, se desidera toosee hello rimanenti richieste per il debug, è possibile fornire hello **-Debug** parametro il **PowerShell** cmdlet.
+In alternativa, se desidera visualizzare le richieste rimanenti per il debug, è possibile fornire il parametro **-Debug** nel cmdlet **PowerShell**.
 
 ```powershell
 Get-AzureRmResourceGroup -Debug
 ```
 
-Restituisce molti valori, inclusi hello il valore di risposta seguente:
+Tale parametro restituisce molti valori, incluso il valore di risposta seguente:
 
 ```powershell
 ...
@@ -82,13 +82,13 @@ x-ms-ratelimit-remaining-subscription-reads: 14999
 ...
 ```
 
-In **CLI di Azure**, si recupera il valore dell'intestazione hello utilizzando hello opzione più dettagliato.
+In **Interfaccia della riga di comando di Azure** il valore di intestazione viene recuperato tramite l'opzione più dettagliata.
 
 ```azurecli
 azure group list -vv --json
 ```
 
-Restituisce molti valori, inclusi hello seguente oggetto:
+Tale opzione restituisce numerosi valori, inclusi l'oggetto seguente:
 
 ```azurecli
 ...
@@ -105,9 +105,9 @@ silly: returnObject
 ```
 
 ## <a name="waiting-before-sending-next-request"></a>Attesa prima dell'invio della richiesta successiva
-Quando si raggiunge il limite di richieste di hello, Gestione risorse restituisce hello **429** codice di stato HTTP e un **Retry-After** valore nell'intestazione di hello. Hello **Retry-After** valore specifica il numero di hello di secondi di attesa dell'applicazione (o sospensione) prima di inviare la richiesta successiva hello. Se si invia una richiesta prima che sia trascorso il valore di retry hello, non è possibile elaborare la richiesta e viene restituito un nuovo valore dei tentativi.
+Quando si raggiunge il limite di richieste, Resource Manager restituisce il codice di stato HTTP **429** e un valore **Retry-After** nell'intestazione. Il valore **Retry-After** specifica il numero di secondi durante i quali l'applicazione deve attendere (o restare in sospensione) prima di inviare la richiesta successiva. Se si invia una richiesta prima che sia trascorso il valore per la ripetizione del tentativo, la richiesta non viene elaborata e viene restituito un nuovo valore per la ripetizione del tentativo.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
 * Per altre informazioni sui limiti e quote, vedere [Sottoscrizione di Azure e limiti, quote e vincoli dei servizi](../azure-subscription-service-limits.md).
-* toolearn sulla gestione di richieste REST asincrone, vedere [tenere traccia delle operazioni asincrone di Azure](resource-manager-async-operations.md).
+* Per altre informazioni sulla gestione delle richieste REST asincrone, vedere [Track asynchronous Azure operations](resource-manager-async-operations.md) (Tenere traccia delle operazioni asincrone di Azure).

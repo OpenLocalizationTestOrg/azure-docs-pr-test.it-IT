@@ -1,6 +1,6 @@
 ---
-title: webhook aaaConfigure avvisi metrica Azure | Documenti Microsoft
-description: Reindirizza i sistemi non Azure tooother gli avvisi di Azure.
+title: Configurare webhook negli avvisi relativi alle metriche di Azure | Microsoft Docs
+description: Reindirizzare gli avvisi di Azure ad altri sistemi non Azure
 author: johnkemnetz
 manager: carmonm
 editor: 
@@ -14,29 +14,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/03/2017
 ms.author: johnkem
-ms.openlocfilehash: bc4153ccdcff41c5b9d3c081e59a1bf260d8a283
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 1a885166e5c71f13da222bfc22b0fc579096c52f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="configure-a-webhook-on-an-azure-metric-alert"></a>Configurare un webhook in un avviso relativo alle metriche di Azure
-Webhook consentono di Azure tooroute sistemi tooother di notifica per le azioni di post-elaborazione o personalizzati di avviso. È possibile utilizzare un webhook su un avviso tooroute è tooservices che invia SMS, registrare i bug, inviare una notifica di un team tramite servizi di chat o messaggistica o eseguire un numero qualsiasi di altre azioni. Questo articolo viene descritto come tooset un webhook su un avviso di metriche di Azure e il payload di hello per hello HTTP POST tooa webhook è simile. Per informazioni sull'installazione di hello e dello schema per un avviso di Log attività di Azure (avviso sugli eventi), [questa pagina viene visualizzata invece](insights-auditlog-to-webhook-email.md).
+I webhook consentono di instradare le notifiche di avviso di Azure ad altri sistemi per la post-elaborazione o le azioni personalizzate. È possibile usare un webhook in un avviso per instradarlo a servizi che inviano SMS, registrano bug, inviano notifiche a un team tramite servizi di messaggistica/chat o eseguono un numero qualsiasi di altre azioni. Questo articolo descrive come impostare un webhook in un avviso relativo alle metriche di Azure e illustra il payload per l'esecuzione di un'azione HTTP POST in un webhook. Per informazioni sulla configurazione e lo schema di un avviso del registro attività di Azure (avvisi per eventi), [vedere invece questa pagina](insights-auditlog-to-webhook-email.md).
 
-Contenuto di avviso hello HTTP POST in formato JSON, gli avvisi di Azure schema definito di sotto, tooa webhook URI fornito durante la creazione di avviso hello. L'URI deve essere un endpoint HTTP o HTTPS valido. Azure inserisce una voce per ogni richiesta quando viene attivato un avviso.
+Gli avvisi di Azure eseguono l'azione HTTP POST per il contenuto degli avvisi in formato JSON, con lo schema definito di seguito, in un URI webhook specificato durante la creazione dell'avviso. L'URI deve essere un endpoint HTTP o HTTPS valido. Azure inserisce una voce per ogni richiesta quando viene attivato un avviso.
 
-## <a name="configuring-webhooks-via-hello-portal"></a>Configurazione dei webhook tramite il portale di hello
-È possibile aggiungere o aggiornare hello webhook URI nella schermata di creazione/aggiornamento avvisi hello in hello [portale](https://portal.azure.com/).
+## <a name="configuring-webhooks-via-the-portal"></a>Configurazione di webhook tramite il portale
+È possibile aggiungere o aggiornare l'URI del webhook nella schermata di creazione/aggiornamento degli avvisi nel [portale](https://portal.azure.com/).
 
 ![Aggiungere una regola di avviso](./media/insights-webhooks-alerts/Alertwebhook.png)
 
-È inoltre possibile configurare un webhook tooa toopost avviso URI utilizzando hello [i cmdlet di PowerShell Azure](insights-powershell-samples.md#create-metric-alerts), [CLI multipiattaforma](insights-cli-samples.md#work-with-alerts), o [API REST di Azure monitoraggio](https://msdn.microsoft.com/library/azure/dn933805.aspx).
+È anche possibile configurare un avviso da inserire nell'URI di un webhook usando i [cmdlet di Azure PowerShell](insights-powershell-samples.md#create-metric-alerts), l'[interfaccia della riga di comando multipiattaforma](insights-cli-samples.md#work-with-alerts) o l'[API REST di Monitoraggio di Azure](https://msdn.microsoft.com/library/azure/dn933805.aspx).
 
-## <a name="authenticating-hello-webhook"></a>L'autenticazione hello webhook
-Hello webhook autenticazione utilizzando l'autorizzazione basata su token. Hello webhook URI viene salvato con un ID del token, ad esempio. `https://mysamplealert/webcallback?tokenid=sometokenid&someparameter=somevalue`
+## <a name="authenticating-the-webhook"></a>Autenticazione del webhook
+È possibile autenticare il webhook usando l'autorizzazione basata su token. L'URI del webhook viene salvato con un ID token, ad esempio `https://mysamplealert/webcallback?tokenid=sometokenid&someparameter=somevalue`
 
 ## <a name="payload-schema"></a>Schema del payload
-operazione POST Hello contiene hello seguito payload JSON e lo schema per gli avvisi basati sulla metrica.
+L'operazione POST contiene il seguente payload e schema JSON per tutti gli avvisi basati su metriche.
 
 ```JSON
 {
@@ -74,38 +74,38 @@ operazione POST Hello contiene hello seguito payload JSON e lo schema per gli av
 
 | Campo | Mandatory | Set fisso di valori | Note |
 |:--- |:--- |:--- |:--- |
-| status |S |"Activated", "Resolved" |Stato di avviso hello in base alle condizioni di hello è stata impostata. |
-| context |S | |contesto dell'avviso Hello. |
-| timestamp |S | |ora di Hello in cui hello è stato generato l'avviso. |
+| status |S |"Activated", "Resolved" |Stato dell'avviso in base alle condizioni impostate. |
+| context |S | |Contesto dell'avviso. |
+| timestamp |S | |Ora in cui è stato attivato l'avviso. |
 | id |S | |Ogni regola di avviso ha un ID univoco. |
-| name |S | |nome dell'avviso Hello. |
-| description |S | |Descrizione dell'avviso hello. |
-| conditionType |S |"Metric", "Event" |Sono supportati due tipi di avviso, Uno basato su una condizione di metrica e hello quella basata su un evento nel registro attività hello. Utilizzare toocheck questo valore se avviso hello è basato su eventi o di metrica. |
-| condition |S | |Hello toocheck campi specifici per in base alle proprietà conditionType hello. |
-| metricName |Per avvisi relativi alle metriche | |Controlla nome Hello della metrica di hello che definisce la regola di hello. |
-| metricUnit |Per avvisi relativi alle metriche |"Bytes", "BytesPerSecond", "Count", "CountPerSecond", "Percent", "Seconds" |unità di Hello consentito nella metrica hello. [I valori consentiti sono elencati qui](https://msdn.microsoft.com/library/microsoft.azure.insights.models.unit.aspx). |
-| metricValue |Per avvisi relativi alle metriche | |valore effettivo di Hello della metrica hello che ha causato hello avviso. |
-| threshold |Per avvisi relativi alle metriche | |valore di soglia Hello in cui hello viene attivato l'avviso. |
-| windowSize |Per avvisi relativi alle metriche | |periodo di Hello di tempo in cui viene utilizzato toomonitor dell'attività degli avvisi in base alla soglia hello. Deve essere compreso tra 5 minuti e 1 giorno. Il formato della durata è conforme a ISO 8601. |
-| timeAggregation |Per avvisi relativi alle metriche |"Average", "Last", "Maximum", "Minimum", "None", "Total" |Come hello i dati raccolti devono essere combinati nel tempo. valore predefinito di Hello è Media. [I valori consentiti sono elencati qui](https://msdn.microsoft.com/library/microsoft.azure.insights.models.aggregationtype.aspx). |
-| operator |Per avvisi relativi alle metriche | |Utilizzare l'operatore di Hello toocompare hello dati di metrica toohello set soglia corrente. |
+| name |S | |Nome dell'avviso. |
+| description |S | |Descrizione dell'avviso. |
+| conditionType |S |"Metric", "Event" |Sono supportati due tipi di avviso, uno basato su una condizione di metrica e l'altro basato su un evento nel registro attività. Usare questo valore per verificare se l'avviso si basa sulla metrica o sull'evento. |
+| condition |S | |Campi specifici da verificare in base al valore di conditionType. |
+| metricName |Per avvisi relativi alle metriche | |Nome della metrica che definisce l'oggetto monitorato dalla regola. |
+| metricUnit |Per avvisi relativi alle metriche |"Bytes", "BytesPerSecond", "Count", "CountPerSecond", "Percent", "Seconds" |Unità consentita nella metrica. [I valori consentiti sono elencati qui](https://msdn.microsoft.com/library/microsoft.azure.insights.models.unit.aspx). |
+| metricValue |Per avvisi relativi alle metriche | |Valore effettivo della metrica che ha generato l'avviso. |
+| threshold |Per avvisi relativi alle metriche | |Valore soglia al quale viene attivato l'avviso. |
+| windowSize |Per avvisi relativi alle metriche | |Periodo di tempo usato per monitorare l'attività degli avvisi in base alla soglia. Deve essere compreso tra 5 minuti e 1 giorno. Il formato della durata è conforme a ISO 8601. |
+| timeAggregation |Per avvisi relativi alle metriche |"Average", "Last", "Maximum", "Minimum", "None", "Total" |Definisce come i dati raccolti devono essere combinati nel tempo. Il valore predefinito è "Average". [I valori consentiti sono elencati qui](https://msdn.microsoft.com/library/microsoft.azure.insights.models.aggregationtype.aspx). |
+| operator |Per avvisi relativi alle metriche | |Operatore usato per confrontare i dati metrici attuali con la soglia impostata. |
 | subscriptionId |S | |ID sottoscrizione di Azure. |
-| resourceGroupName |S | |Nome del gruppo di risorse hello per hello influisce sulle risorse. |
-| resourceName |S | |Nome di risorsa di hello influisce sulle risorse. |
-| resourceType |S | |Tipo di risorsa di hello influisce sulle risorse. |
-| resourceId |S | |ID di risorsa di hello influisce sulle risorse. |
-| resourceRegion |S | |Area o un percorso di hello influisce sulle risorse. |
-| portalLink |S | |Pagina Riepilogo risorse portale toohello collegamento diretto. |
-| properties |N |Facoltativo |Set di `<Key, Value>` coppie (ad esempio `Dictionary<String, String>`) che include i dettagli sull'evento hello. campo di proprietà Hello è facoltativo. Personalizzata dell'interfaccia utente o la logica basata su app del flusso di lavoro, gli utenti possono immettere chiave/valore che può essere passati tramite payload hello. Hello alternativa toopass proprietà personalizzate toohello indietro webhook è tramite hello webhook uri stesso (come parametri di query) |
+| resourceGroupName |S | |Nome del gruppo di risorse della risorsa interessata. |
+| resourceName |S | |Nome della risorsa interessata. |
+| resourceType |S | |Tipo della risorsa interessata. |
+| resourceId |S | |ID risorsa della risorsa interessata. |
+| resourceRegion |S | |Area o posizione della risorsa interessata. |
+| portalLink |S | |Collegamento diretto alla pagina di riepilogo delle risorse del portale. |
+| properties |N |Facoltativo |Set di coppie `<Key, Value>`, ad esempio `Dictionary<String, String>`, contenente i dettagli relativi all'evento. Il campo properties è facoltativo. In un flusso di lavoro basato su un'interfaccia utente personalizzata o un'app per la logica, gli utenti possono immettere una coppia chiave/valori che può essere passata tramite il payload. Il metodo alternativo per passare le proprietà personalizzate al webhook è rappresentato dall'URI del webhook stesso (sotto forma di parametri di query) |
 
 > [!NOTE]
-> campo di proprietà Hello può essere impostato solo tramite hello [API REST di Azure monitoraggio](https://msdn.microsoft.com/library/azure/dn933805.aspx).
+> Il campo properties può essere impostato solo usando l'[API REST di Monitoraggio di Azure](https://msdn.microsoft.com/library/azure/dn933805.aspx).
 >
 >
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Altre informazioni su avvisi di Azure e ai webhook video hello [integrare gli avvisi di Azure con PagerDuty](http://go.microsoft.com/fwlink/?LinkId=627080)
+* Per altre informazioni sugli avvisi di Azure e sui webhook, vedere il video sull' [integrazione degli avvisi di Azure con PagerDuty](http://go.microsoft.com/fwlink/?LinkId=627080)
 * [Eseguire gli script di Automazione di Azure (runbook) sugli avvisi di Azure](http://go.microsoft.com/fwlink/?LinkId=627081)
-* [Utilizzare la logica App toosend un SMS tramite Twilio da un avviso di Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-text-message-with-logic-app)
-* [Utilizzare la logica App toosend un margine di flessibilità messaggio da un avviso di Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-slack-with-logic-app)
-* [Utilizzare la logica App toosend tooan un messaggio della coda di Azure da un avviso di Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-queue-with-logic-app)
+* [Usare l'app per la logica per inviare SMS tramite Twilio da un avviso di Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-text-message-with-logic-app)
+* [Usare l'app per la logica per inviare un messaggio Slack da un avviso di Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-slack-with-logic-app)
+* [Usare l'app per la logica per inviare un messaggio a una coda di Azure da un avviso di Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-queue-with-logic-app)

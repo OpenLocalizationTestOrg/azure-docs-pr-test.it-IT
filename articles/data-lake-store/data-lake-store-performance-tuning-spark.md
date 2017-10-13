@@ -1,5 +1,5 @@
 ---
-title: aaaAzure Data Lake archivio Spark ottimizzazione linee guida | Documenti Microsoft
+title: Linee guida per l'ottimizzazione delle prestazioni di Spark in Azure Data Lake Store | Documentazione Microsoft
 description: Linee guida per l'ottimizzazione delle prestazioni di Spark in Azure Data Lake Store
 services: data-lake-store
 documentationcenter: 
@@ -14,99 +14,99 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 12/19/2016
 ms.author: stewu
-ms.openlocfilehash: da1d172e9cb1199ad95605ea1718e78559f79650
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 2109744fb7ffdfafb7a86bbea355e119718af099
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="performance-tuning-guidance-for-spark-on-hdinsight-and-azure-data-lake-store"></a>Linee guida per l'ottimizzazione delle prestazioni di Spark in HDInsight e di Azure Data Lake Store
 
-Quando l'ottimizzazione delle prestazioni in Spark, è necessario numero hello tooconsider di App che verranno eseguiti nel cluster.  Per impostazione predefinita, è possibile eseguire 4 App contemporaneamente nel cluster HDI (Nota: hello impostazione predefinita è soggetto toochange).  È possibile decidere toouse meno App in modo è possibile eseguire l'override delle impostazioni predefinite di hello e utilizzare altri cluster hello per le app.  
+Per l'ottimizzazione delle prestazioni in Spark, è necessario considerare il numero di applicazioni che verranno eseguite nel cluster.  Per impostazione predefinita, nel cluster HDI è possibile eseguire 4 app simultaneamente (nota: l'impostazione predefinita è soggetta a modifiche).  È possibile decidere di usare un numero inferiore di app in modo da sostituire le impostazioni predefinite e usare una parte più ampia del cluster per tali applicazioni.  
 
 ## <a name="prerequisites"></a>Prerequisiti
 
 * **Una sottoscrizione di Azure**. Vedere [Ottenere una versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/).
-* **Un account Azure Data Lake Store**. Per istruzioni su come toocreate uno, vedere [introduzione archivio Azure Data Lake](data-lake-store-get-started-portal.md)
-* **Cluster di Azure HDInsight** con accesso tooa account archivio Data Lake. Vedere [Creare un cluster HDInsight con Data Lake Store tramite il portale di Azure](data-lake-store-hdinsight-hadoop-use-portal.md). Assicurarsi di abilitare Desktop remoto per il cluster hello.
-* **Esecuzione di cluster Spark in Azure Data Lake Store**.  Per ulteriori informazioni, vedere [usare HDInsight Spark cluster tooanalyze dati archivio Data Lake](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-apache-spark-use-with-data-lake-store)
+* **Un account di Archivio Data Lake di Azure**. Per istruzioni su come crearne uno, vedere [Introduzione ad Archivio Data Lake di Azure](data-lake-store-get-started-portal.md)
+* **Cluster Azure HDInsight** con accesso a un account di Archivio Data Lake. Vedere [Creare un cluster HDInsight con Data Lake Store tramite il portale di Azure](data-lake-store-hdinsight-hadoop-use-portal.md). Assicurarsi di abilitare il Desktop remoto per il cluster.
+* **Esecuzione di cluster Spark in Azure Data Lake Store**.  Per altre informazioni, vedere [Usare il cluster Spark di HDInsight per analizzare i dati in Data Lake Store](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-apache-spark-use-with-data-lake-store).
 * **Linee guida per l'ottimizzazione delle prestazioni in ADLS**.  Per i concetti generali relativi alle prestazioni, vedere [Linee guida per l'ottimizzazione delle prestazioni in Data Lake Store](https://docs.microsoft.com/en-us/azure/data-lake-store/data-lake-store-performance-tuning-guidance) 
 
 ## <a name="parameters"></a>parameters
 
-Quando si eseguono Spark processi, ecco le impostazioni più importanti hello che possono essere le prestazioni ottimizzate tooincrease ADLS:
+Si riportano di seguito le impostazioni più importanti che possono essere ottimizzate per migliorare le prestazioni in ADLS durante l'esecuzione di processi Spark:
 
-* **Num executor** -hello numero di attività simultanee che possono essere eseguite.
+* **Num-executors**: numero di attività che è possibile eseguire simultaneamente.
 
-* **Memoria esecutore** -quantità hello di memoria allocata dell'executor tooeach.
+* **Executor-memory**: quantità di memoria allocata per ogni executor.
 
-* **Executor core** -numero hello di core allocati tooeach executor.                     
+* **Executor-cores**: numero di core allocati per ogni executor.                     
 
-**Num executor** Num executor imposta il numero massimo di hello delle attività eseguibili in parallelo.  numero effettivo di Hello di attività che possono eseguire in parallelo è vincolata dalla memoria hello e le risorse di CPU disponibili nel cluster.
+**Num-executors**. I Num-executors impostano il numero massimo di attività che è possibile eseguire in parallelo.  Il numero effettivo di attività che possono essere eseguite in parallelo è limitato dalle risorse di memoria e CPU disponibili nel cluster.
 
-**Memoria esecutore** è hello quantità di memoria allocata dell'executor tooeach.  memoria Hello necessaria per ogni esecutore dipende dal processo hello.  Per operazioni complesse, della memoria hello deve toobe superiore.  Per operazioni semplici come la lettura e la scrittura, la quantità di memoria richiesta è inferiore.  Hello quantità di memoria per ogni esecutore possono essere visualizzati in Ambari.  In Ambari, passare tooSpark e visualizzarle scheda configurazioni hello.  
+**Executor-memory**. Si tratta della quantità di memoria che viene allocata per ogni executor.  La memoria necessaria per ogni executor dipende dal processo.  Per operazioni complesse, la quantità di memoria deve essere maggiore.  Per operazioni semplici come la lettura e la scrittura, la quantità di memoria richiesta è inferiore.  La quantità di memoria necessaria per ogni executor è disponibile in Ambari.  In Ambari passare a Spark e visualizzare la scheda Configs (Configurazioni).  
 
-**Executor core** Imposta quantità hello di core utilizzati per l'esecutore, che determina il numero di hello di thread paralleli che può essere eseguita ogni executor.  Ad esempio, se executor Core = 2, quindi ogni esecutore è possibile eseguire attività in parallelo 2 in executor hello.  executor Hello-core necessarie saranno dipende dal processo hello.  I processi I/O intensivi non richiedono una grande quantità di memoria per ogni attività. In questo modo, ogni executor può gestire più attività in parallelo.
+**Executor-cores**. Definisce la quantità di core usati dall'executor predefinito, che determina il numero di thread paralleli che è possibile eseguire su ogni executor.  Ad esempio, se executor-cores = 2, ogni executor può eseguire 2 attività parallele nell'executor.  Gli executor-cores necessari dipendono dal processo.  I processi I/O intensivi non richiedono una grande quantità di memoria per ogni attività. In questo modo, ogni executor può gestire più attività in parallelo.
 
 Per impostazione predefinita, durante l'esecuzione di Spark in HDInsight, vengono definiti due core YARN virtuali per ogni core fisico.  Questo numero fornisce un buon bilanciamento tra concorrenza e quantità di contesto nel passaggio tra più thread.  
 
 ## <a name="guidance"></a>Indicazioni
 
-Durante l'esecuzione di carichi di lavoro analitici toowork Spark con i dati in archivio Data Lake, è consigliabile utilizzare hello più recente HDInsight versione tooget hello migliori prestazioni con archivio Data Lake. Quando il processo è più elevato utilizzo dei / o, determinati parametri possono essere configurato tooimprove prestazioni.  Azure Data Lake Store è una piattaforma di archiviazione altamente scalabile in grado di gestire un'elevata velocità effettiva.  Se il processo di hello è principalmente costituito da lettura o scrittura, quindi aumentare la concorrenza per tooand dei / o dall'archivio Azure Data Lake di migliorare le prestazioni.
+Durante l'esecuzione di carichi di lavoro analitici di Spark per l'elaborazione dei dati in Data Lake Store, si consiglia di usare la versione più recente del cluster HDInsight per ottenere prestazioni ottimali con Data Lake Store. Quando il processo prevede un I/O più intensivo, è possibile configurare alcuni parametri per migliorare le prestazioni.  Azure Data Lake Store è una piattaforma di archiviazione altamente scalabile in grado di gestire un'elevata velocità effettiva.  Se il processo è costituito principalmente da lettura o scrittura, l'aumento della concorrenza di I/O da e verso Azure Data Lake Store potrebbe migliorare le prestazioni.
 
-Esistono alcuni concorrenza di tooincrease metodi generali per i processi con utilizzo intensivo dei / o.
+Esistono alcuni modi generali per aumentare la concorrenza per i processi con I/O intensivo.
 
-**Passaggio 1: Determinare quante applicazioni sono in esecuzione nel cluster** : È necessario conoscere il numero di applicazioni sono in esecuzione nel cluster di hello inclusi hello corrente.  valori predefiniti Hello per ogni Spark impostazione dà per scontato che sono presenti 4 App in esecuzione contemporaneamente.  Pertanto, sarà necessario solo il 25% del cluster di hello disponibili per ogni app.  tooget ottenere prestazioni migliori, è possibile sostituire i valori predefiniti di hello modificando il numero di hello di executor.  
+**Passaggio 1: Determinare il numero di app in esecuzione nel cluster**. È necessario conoscere il numero di applicazioni in esecuzione nel cluster, inclusa quella corrente.  I valori predefiniti per ogni impostazione Spark presumono che siano presenti 4 applicazioni in esecuzione contemporanea.  Pertanto, si disporrà solo del 25% del cluster per ogni applicazione.  Per ottenere prestazioni migliori, è possibile sostituire le impostazioni predefinite modificando il numero di executor.  
 
-**Passaggio 2: Impostare l'executor memoria** : hello in primo luogo tooset è hello executor di memoria.  memoria Hello sarà dipende dal processo hello siano toorun continua.  È possibile aumentare la concorrenza allocando una quantità inferiore di memoria per ogni executor.  Se viene visualizzato eccezioni di memoria insufficiente quando si esegue il processo, è necessario aumentare il valore di hello per questo parametro.  Uno alternativo è tooget maggiore quantità di memoria utilizzando un cluster con una maggiore quantità di memoria o aumento delle dimensioni di hello del cluster.  Quantità di memoria consentirà toobe executor più utilizzato, il che significa maggiore concorrenza.
+**Passaggio 2: Impostare executor-memory**. La prima cosa da impostare è la memoria dell'executor.  La memoria dipende dal processo da eseguire.  È possibile aumentare la concorrenza allocando una quantità inferiore di memoria per ogni executor.  Se vengono visualizzate eccezioni di memoria insufficiente quando si esegue il processo, è necessario aumentare il valore di questo parametro.  In alternativa è possibile ottenere una maggiore quantità di memoria usando un cluster con maggiore memoria oppure aumentando le dimensioni del cluster.  Una maggiore quantità di memoria consentirà di usare più executor, ottenendo così più concorrenza.
 
-**Passaggio 3: Impostare l'executor core** : i/o intensivo carichi di lavoro che non dispongono di operazioni complesse, è buona toostart con un numero elevato di core di executor tooincrease hello svariate attività in parallelo per ogni executor.  L'impostazione too4 esecutore core è un buon inizio.   
+**Passaggio 3: Impostare executor-cores**. Per carichi di lavoro I/O intensivi che non prevedono operazioni complesse, è consigliabile iniziare con un numero elevato di core per ogni executor al fine di aumentare il numero di attività parallele per ognuno di essi.  Per iniziare, è consigliabile impostare executor-cores su 4.   
 
     executor-cores = 4
-Aumentare il numero di hello executor core offrirà parallelismo in modo è possibile sperimentare diversi executor-Core.  Per i processi che includono operazioni più complesse, è necessario ridurre il numero di hello di core per l'esecutore.  Se executor-cores viene impostato su un valore superiore a 4, la Garbage Collection può diventare inefficiente e incidere negativamente sulle prestazioni.
+L'aumento del numero di core dell'executor offrirà maggior parallelismo in modo che sia possibile sperimentare diversi core dell'executor.  Per i processi che includono operazioni più complesse, è necessario ridurre il numero di core per ogni executor.  Se executor-cores viene impostato su un valore superiore a 4, la Garbage Collection può diventare inefficiente e incidere negativamente sulle prestazioni.
 
-**Passaggio 4: Determinare la quantità di memoria YARN nel cluster**. Queste informazioni sono disponibili in Ambari.  Passare tooYARN e visualizzare scheda configurazioni hello.  memoria YARN Hello viene visualizzato in questa finestra.  
-Nota: quando si è nella finestra di hello, è possibile visualizzare anche dimensioni predefinite del contenitore YARN hello.  dimensione del contenitore YARN Hello è hello stesso come memoria per ogni parametro dell'executor.
+**Passaggio 4: Determinare la quantità di memoria YARN nel cluster**. Queste informazioni sono disponibili in Ambari.  Passare a YARN e visualizzare la scheda Configs (Configurazioni).  La memoria YARN è visualizzata in questa finestra.  
+Nota: nella finestra è possibile anche visualizzare anche le dimensioni predefinite del contenitore YARN.  Le dimensioni del contenitore YARN sono uguali alle dimensioni della memoria per ogni parametro executor.
 
     Total YARN memory = nodes * YARN memory per node
 **Passaggio 5: Calcolare num-executors**
 
-**Calcolare il vincolo di memoria** -parametro num executor hello è vincolato dalla memoria o CPU.  limitazione della memoria Hello è determinato dalla quantità di hello di memoria YARN disponibile per l'applicazione.  Prendere il valore della memoria totale di YARN e dividerlo per il valore executor-memory.  vincolo Hello deve toobe deallocare dimensionate per numero hello di App in modo che verrà diviso per il numero di hello di App.
+**Calcolare il vincolo della memoria**. Il parametro num-executors è vincolato dalla memoria o dalla CPU.  Il vincolo di memoria è determinato dalla quantità di memoria YARN disponibile per l'applicazione.  Prendere il valore della memoria totale di YARN e dividerlo per il valore executor-memory.  Il vincolo deve essere diviso per il numero di applicazioni.
 
     Memory constraint = (total YARN memory / executor memory) / # of apps   
-**Calcolare il vincolo di CPU** -hello vincolo relativo alla CPU viene calcolato come totale core virtuali divisi hello numero di core per l'esecutore di hello.  Per ogni core fisico sono presenti 2 core virtuali.  Limitazione della memoria toohello simile, abbiamo divisione dal numero di hello di App.
+**Calcolare il vincolo della CPU**. Il vincolo della CPU viene calcolato come il numero totale dei core virtuali diviso per il numero di core per ogni executor.  Per ogni core fisico sono presenti 2 core virtuali.  Come per il vincolo di memoria, questo valore viene diviso per il numero di applicazioni.
 
     virtual cores = (nodes in cluster * # of physical cores in node * 2)
     CPU constraint = (total virtual cores / # of cores per executor) / # of apps
-**Impostare l'executor di num** – parametro num executor hello è determinato tenendo hello minimo hello vincoli di memoria e CPU hello. 
+**Impostare num-executors**. Il parametro num-executors viene determinato dal valore minimo del vincolo della memoria e del vincolo della CPU. 
 
     num-executors = Min (total virtual Cores / # of cores per executor, available YARN memory / executor-memory)   
-Impostare un numero maggiore di num-executors non si traduce necessariamente in un miglioramento delle prestazioni.  Si noti che l'aggiunta di esecutori può comportare un carico extra per ciascuno di questi ultimi, con una potenziale diminuzione delle prestazioni.  Num executor è limitato da risorse cluster hello.    
+Impostare un numero maggiore di num-executors non si traduce necessariamente in un miglioramento delle prestazioni.  Si noti che l'aggiunta di esecutori può comportare un carico extra per ciascuno di questi ultimi, con una potenziale diminuzione delle prestazioni.  I num-executors sono limitati dalle risorse del cluster.    
 
 ## <a name="example-calculation"></a>Calcolo di esempio
 
-Si supponga che si dispone di un cluster costituito da 8 nodi D4v2 2 in esecuzione le applicazioni inclusi hello quello che si sta toorun.  
+Si supponga di disporre di un cluster costituito da 8 nodi D4v2 che eseguono 2 applicazioni, inclusa quella che si è in procinto di eseguire.  
 
-**Passaggio 1: Determinare quante applicazioni sono in esecuzione nel cluster** : è possibile sapere che si dispone di 2 app nel cluster, inclusi hello uno sarà toorun.  
+**Passaggio 1: Determinare il numero di app in esecuzione nel cluster**. L'utente sa di avere 2 app nel cluster, inclusa quella corrente.  
 
 **Passaggio 2: Impostare executor-memory**. Per questo esempio, si stabilisce che 6 GB di memoria per executor saranno sufficienti per il processo I/O intensivo.  
 
     executor-memory = 6GB
-**Passaggio 3: Impostare l'executor core** : poiché si tratta di un processo con utilizzo intensivo dei / o, è possibile impostare il numero di hello di core per ogni too4 executor.  L'impostazione di core per toolarger executor di 4 può causare problemi di garbage collection.  
+**Passaggio 3: Impostare executor-cores**. Poiché si tratta di un processo I/O intensivo, è possibile impostare su 4 il numero di core per ogni executor.  L'impostazione di un numero di core per executor superiore a 4 può causare problemi alla Garbage Collection.  
 
     executor-cores = 4
-**Passaggio 4: Determinare le quantità di memoria YARN cluster** : esplorazione toofind tooAmbari out che ogni D4v2 è 25 GB di memoria YARN.  Poiché sono presenti 8 nodi, memoria YARN hello viene moltiplicata per 8.
+**Passaggio 4: Determinare la quantità di memoria YARN nel cluster**. Aprendo Ambari, si scopre che ogni D4v2 dispone di 25 GB di memoria YARN.  Poiché sono presenti 8 nodi, la memoria di YARN disponibile viene moltiplicata per 8.
 
     Total YARN memory = nodes * YARN memory* per node
     Total YARN memory = 8 nodes * 25GB = 200GB
-**Passaggio 5: Calcolare num executor** – parametro num executor hello è determinato tenendo hello minima di memoria hello e il vincolo di CPU hello diviso hello n. di App in esecuzione su Spark.    
+**Passaggio 5: Impostare num-executors**. Il parametro num-executors viene determinato dal valore minimo del vincolo della memoria e del vincolo della CPU, divisi per il numero di app in esecuzione su Spark.    
 
-**Calcolare il vincolo di memoria** : vincolo memoria hello viene calcolato come memoria YARN totale hello divisa per la memoria hello per executor.
+**Calcolare il vincolo della memoria**. Il vincolo della memoria viene calcolato come la memoria totale di YARN divisa per la memoria di ogni executor.
 
     Memory constraint = (total YARN memory / executor memory) / # of apps   
     Memory constraint = (200GB / 6GB) / 2   
     Memory constraint = 16 (rounded)
-**Calcolare il vincolo di CPU** -hello vincolo relativo alla CPU viene calcolato come hello core yarn totale divisi hello numero di core per l'esecutore.
+**Calcolare il vincolo della CPU**. Il vincolo della CPU viene calcolato come il numero totale dei core di YARN diviso per il numero di core per ogni executor.
     
     YARN cores = nodes in cluster * # of cores per node * 2   
     YARN cores = 8 nodes * 8 cores per D14 * 2 = 128

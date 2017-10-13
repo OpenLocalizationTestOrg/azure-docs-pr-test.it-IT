@@ -1,12 +1,12 @@
 ---
-title: aaaRaspberry Pi toocloud (Python) - connessione Pi Raspberry tooAzure IoT Hub | Documenti Microsoft
-description: Informazioni su come toosetup e connettersi Pi Raspberry tooAzure IoT Hub per la piattaforma cloud di Azure Pi Raspberry toosend dati toohello in questa esercitazione.
+title: Da Raspberry Pi al cloud (Python) - Connettere Raspberry Pi all'hub IoT di Azure | Microsoft Docs
+description: "In questa esercitazione è possibile scoprire come configurare e connettere Raspberry Pi all'hub IoT di Azure perché Raspberry Pi invii i dati alla piattaforma cloud di Azure."
 services: iot-hub
 documentationcenter: 
 author: shizn
 manager: timlt
 tags: 
-keywords: Azure iot al lampone pi greco, al lampone pi iot hub, al lampone pi trasmissione dati toocloud, al lampone pi toocloud
+keywords: azure iot raspberry pi, raspberry pi iot hub, raspberry pi invio dati al cloud, da raspberry pi al cloud
 ms.service: iot-hub
 ms.devlang: python
 ms.topic: article
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 7/31/2017
 ms.author: xshi
-ms.openlocfilehash: 86f5c91ab9dd4e23c563437827fb7d2d06916d2e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 1b1a9dc960846cbc15ce09d0fd106e1492937439
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="connect-raspberry-pi-tooazure-iot-hub-python"></a>Connettersi Pi Raspberry tooAzure IoT Hub (Python)
+# <a name="connect-raspberry-pi-to-azure-iot-hub-python"></a>Connettere Raspberry Pi all'hub IoT di Azure (Python)
 
 [!INCLUDE [iot-hub-get-started-device-selector](../../includes/iot-hub-get-started-device-selector.md)]
 
-In questa esercitazione, è necessario innanzitutto apprendimento hello nozioni fondamentali sulle operazioni con Pi Raspberry Raspbian in esecuzione. Si apprenderà quindi la modalità di connessione cloud toohello dispositivi utilizzando tooseamlessly [IoT Hub Azure](iot-hub-what-is-iot-hub.md). Per esempi di Windows 10 IoT Core, vedere toohello [Windows Dev Center](http://www.windowsondevices.com/).
+Questa esercitazione illustra le nozioni di base sull'uso di Raspberry Pi con il sistema operativo Raspbian. Viene poi illustrato come connettere i dispositivi al cloud usando l'[hub IoT di Azure](iot-hub-what-is-iot-hub.md). Per esempi di Windows 10 IoT Core, vedere [Windows Dev Center](http://www.windowsondevices.com/).
 
 Se non si ha ancora un kit, Provare il [simulatore online Raspberry Pi](iot-hub-raspberry-pi-web-simulator-get-started.md). In alternativa, acquistare un nuovo kit [qui](https://azure.microsoft.com/develop/iot/starter-kits).
 
@@ -33,31 +33,31 @@ Se non si ha ancora un kit, Provare il [simulatore online Raspberry Pi](iot-hub-
 * Creare un hub IoT.
 * Registrare un dispositivo per Pi nel proprio hub IoT.
 * Installare Raspberry Pi.
-* Eseguire un'applicazione di esempio nell'hub IoT di pi greco toosend sensore dati tooyour.
+* Eseguire un'applicazione di esempio in Pi per inviare i dati del sensore all'hub IoT.
 
-Connettersi Pi Raspberry tooan l'hub IoT creati. Quindi eseguire un'applicazione di esempio in dati di temperatura e umidità toocollect Pi da un sensore BME280. Infine, si invia l'hub IoT hello sensore dati tooyour.
+Connettere Raspberry Pi a un hub IoT creato dall'utente. Dopodiché, eseguire un'applicazione di esempio in Pi per raccogliere i dati di temperatura e umidità da un sensore BME280. Infine inviare i dati del sensore all'hub IoT.
 
 ## <a name="what-you-learn"></a>Contenuto dell'esercitazione
 
-* Come toocreate un hub IoT di Azure e ottenere la stringa di connessione nuovo dispositivo.
-* Come tooconnect Pi con un sensore BME280.
-* Come dati del sensore toocollect mediante l'esecuzione di un'applicazione di esempio su Pi.
-* Come l'hub IoT toosend sensore dati tooyour.
+* Come creare un hub IoT di Azure e ottenere la stringa di connessione del nuovo dispositivo.
+* Come connettere Pi con un sensore BME280.
+* Come raccogliere i dati del sensore eseguendo un'applicazione di esempio in Pi.
+* Come inviare i dati del sensore all'hub IoT.
 
 ## <a name="what-you-need"></a>Elementi necessari
 
 ![Elementi necessari](media/iot-hub-raspberry-pi-kit-c-get-started/0_starter_kit.jpg)
 
-* Hello Raspberry Pi 2 o 3 Pi Raspberry Lavagna.
-* Una sottoscrizione di Azure attiva. Se non si ha un account Azure, [creare un account Azure gratuito](https://azure.microsoft.com/free/) in pochi minuti.
-* Un monitoraggio, una tastiera e mouse che si connettono tooPi.
+* La scheda di Raspberry Pi 2 o di Raspberry Pi 3.
+* Una sottoscrizione di Azure attiva. Se non si ha un account di Azure, [creare un account di Azure gratuito](https://azure.microsoft.com/free/) in pochi minuti.
+* Un monitor, una tastiera USB e un mouse da collegare a Pi.
 * Un Mac o PC che esegue Windows o Linux.
 * Una connessione Internet.
 * Una scheda microSD da 16 GB o più.
-* Un USB SD adapter o microSD card tooburn hello immagine del sistema operativo nella scheda microSD hello.
-* Alimentatore di 2 amp 5 volt con il cavo USB micro di hello 6 piedi.
+* Una scheda microSD o un adattatore USB-SD con cui masterizzare l'immagine del sistema operativo nella scheda microSD.
+* Un alimentatore da 5 V/2 A con cavo micro USB da 1,8 metri circa.
 
-Hello seguenti elementi è facoltativo:
+Gli elementi seguenti sono opzionali:
 
 * Un sensore Adafruit BME280 assemblato per rilevare umidità, temperatura e pressione.
 * Una basetta sperimentale.
@@ -66,51 +66,51 @@ Hello seguenti elementi è facoltativo:
 
 
 > [!NOTE] 
-Poiché il supporto di esempio di codice hello simulati i dati del sensore, questi elementi sono facoltativi.
+Questi elementi sono opzionali, poiché l'esempio di codice supporta i dati del sensore simulati.
 
 
 [!INCLUDE [iot-hub-get-started-create-hub-and-device](../../includes/iot-hub-get-started-create-hub-and-device.md)]
 
 ## <a name="set-up-raspberry-pi"></a>Installare Raspberry Pi
 
-### <a name="install-hello-raspbian-operating-system-for-pi"></a>Installazione del sistema operativo di hello Raspbian per Pi
+### <a name="install-the-raspbian-operating-system-for-pi"></a>Installare il sistema operativo Raspbian per Pi
 
-Preparare una scheda microSD hello per l'installazione dell'immagine Raspbian hello.
+Preparare la scheda microSD per l'installazione dell'immagine di Raspbian.
 
 1. Scaricare Raspbian.
-   1. [Scaricare Raspbian Jessie con Desktop](https://www.raspberrypi.org/downloads/raspbian/) (file con estensione zip hello).
-   1. Estrarre la cartella di hello Raspbian immagine tooa nel computer in uso.
-1. Installare una scheda microSD di Raspbian toohello.
-   1. [Scaricare e installare hello Etcher SD card masterizzatore utilità](https://etcher.io/).
-   1. Eseguire Etcher e selezionare l'immagine Raspbian hello estratta nel passaggio 1.
-   1. Selezionare un'unità scheda microSD hello. Si noti che Etcher potrebbe essere stata già selezionata unità corretta hello.
-   1. Fare clic sulla scheda microSD toohello Raspbian di tooinstall Flash.
-   1. Rimuovi scheda microSD hello dal computer al termine dell'installazione. Scheda microSD di hello tooremove provvisoria è direttamente perché Etcher Smonta scheda microSD hello dopo il completamento o rimuove automaticamente.
-   1. Inserire scheda microSD hello Pi.
+   1. [Scaricare Raspbian Jessie with Desktop](https://www.raspberrypi.org/downloads/raspbian/) (file ZIP).
+   1. Estrarre l'immagine di Raspbian in una cartella nel computer.
+1. Installare Raspbian nella scheda microSD.
+   1. [Scaricare e installare l'utilità di masterizzazione Etcher per schede SD](https://etcher.io/).
+   1. Eseguire Etcher e selezionare l'immagine di Raspbian estratta nel passaggio 1.
+   1. Selezionare l'unità della scheda microSD. Si noti che Etcher potrebbe avere già selezionato l'unità corretta.
+   1. Fare clic su Flash per installare Raspbian nella scheda microSD.
+   1. Rimuovere la scheda microSD dal computer al termine dell'installazione. È possibile rimuovere direttamente la scheda microSD perché viene espulsa o smontata automaticamente da Etcher al termine dell'operazione.
+   1. Inserire la scheda microSD in Pi.
 
 ### <a name="enable-ssh-and-i2c"></a>Abilitare SSH e I2C
 
-1. Collegare monitor toohello Pi, tastiera e mouse, avviare l'installazione guidata piattaforma e l'accesso Raspbian utilizzando `pi` come nome utente hello e `raspberry` come password hello.
-1. Fare clic sull'icona al lampone hello > **preferenze** > **Raspberry Pi configurazione**.
+1. Collegare Pi al monitor, alla tastiera e al mouse, avviare Pi e accedere a Raspbian usando `pi` come nome utente e `raspberry` come password.
+1. Fare clic sull'icona di Raspberry > **Preferenze** > **Raspberry Pi Configuration** (Configurazione di Raspberry Pi).
 
-   ![menu Preferenze Raspbian Hello](media/iot-hub-raspberry-pi-kit-c-get-started/1_raspbian-preferences-menu.png)
+   ![Il menu Preferenze di Raspbian](media/iot-hub-raspberry-pi-kit-c-get-started/1_raspbian-preferences-menu.png)
 
-1. In hello **interfacce** scheda, impostare **I2C** e **SSH** troppo**abilitare**, quindi fare clic su **OK**. Se non hai sensori fisici e desidera toouse simulato sensore dati, questo passaggio è facoltativo.
+1. Nella scheda **Interfacce** impostare **I2C** e **SSH** su **Abilita**, quindi fare clic su **OK**. Se non si hanno sensori fisici e si vogliono usare i dati di sensori simulati, questo passaggio è facoltativo.
 
    ![Abilitare I2C e SSH su Raspberry Pi](media/iot-hub-raspberry-pi-kit-c-get-started/2_enable-spi-ssh-on-raspberry-pi.png)
 
 > [!NOTE] 
-tooenable SSH e I2C, è possibile trovare più documenti di riferimento su [raspberrypi.org](https://www.raspberrypi.org/documentation/remote-access/ssh/) e [RASPI-CONFIG](https://www.raspberrypi.org/documentation/configuration/raspi-config.md).
+Per abilitare SSH e I2C è possibile trovare più documenti di riferimento su [raspberrypi.org](https://www.raspberrypi.org/documentation/remote-access/ssh/) e [RASPI-CONFIG](https://www.raspberrypi.org/documentation/configuration/raspi-config.md).
 
-### <a name="connect-hello-sensor-toopi"></a>Connettersi hello sensore tooPi
+### <a name="connect-the-sensor-to-pi"></a>Connettere il sensore a Pi
 
-Utilizzare hello breadboard e ponticelli cavi tooconnect un LED e un tooPi BME280 come indicato di seguito. Se non si dispone di sensore hello, [ignorare questa sezione](#connect-pi-to-the-network).
+Usare i cavi ponticello e la basetta sperimentale per connettere un LED e un sensore BME280 a Pi, come indicato di seguito. In assenza di un sensore, [ignorare questa sezione](#connect-pi-to-the-network).
 
-![Hello Raspberry Pi e sensore connessione](media/iot-hub-raspberry-pi-kit-node-get-started/3_raspberry-pi-sensor-connection.png)
+![La connessione di Raspberry Pi e del sensore](media/iot-hub-raspberry-pi-kit-node-get-started/3_raspberry-pi-sensor-connection.png)
 
-sensore Hello BME280 possibile raccogliere dati di temperatura e umidità. E hello LED lampeggia se esiste una comunicazione tra i dispositivi e hello cloud. 
+Il sensore BME280 può raccogliere i dati relativi a temperatura e umidità. Il LED sarà intermittente se viene stabilita una comunicazione tra il dispositivo e il cloud. 
 
-Per i codici PIN sensore, utilizzare hello seguente collegamento:
+Per i pin dei sensori usare i collegamenti seguenti:
 
 | Inizio (sensore e LED)     | Fine (scheda)            | Colore del cavo   |
 | -----------------------  | ---------------------- | ------------: |
@@ -121,91 +121,91 @@ Per i codici PIN sensore, utilizzare hello seguente collegamento:
 | LED VDD (Pin 18F)        | GPIO 24 (Pin 18)       | Cavo bianco   |
 | LED GND (Pin 17F)        | GND (Pin 20)           | Cavo nero   |
 
-Fare clic su tooview [Raspberry Pi 2 e 3 mapping Pin](https://developer.microsoft.com/windows/iot/docs/pinmappingsrpi) per riferimento.
+Fare clic per visualizzare i [mapping Pin di Raspberry Pi 2 e 3](https://developer.microsoft.com/windows/iot/docs/pinmappingsrpi) come riferimento.
 
-Dopo aver collegato correttamente BME280 tooyour Raspberry Pi, dovrebbe essere sotto l'immagine.
+Dopo aver correttamente collegato BME280 a Raspberry Pi, dovrebbe apparire come mostrato nell'immagine di seguito.
 
 ![Pi e BME280 connessi](media/iot-hub-raspberry-pi-kit-node-get-started/4_connected-pi.jpg)
 
-### <a name="connect-pi-toohello-network"></a>Connessione di rete toohello Pi
+### <a name="connect-pi-to-the-network"></a>Connettere Pi alla rete
 
-Attivare Pi tramite cavo USB micro hello e alimentatore hello. Utilizzare hello Ethernet via cavo tooconnect Pi tooyour cablate di rete o seguire hello [istruzioni hello Foundation Pi Raspberry](https://www.raspberrypi.org/learning/software-guide/wifi/) tooconnect Pi tooyour rete. Dopo l'installazione guidata piattaforma toohello connessione rete, è necessario annotare hello tootake [indirizzo IP del pi greco](https://learn.adafruit.com/adafruits-raspberry-pi-lesson-3-network-setup/finding-your-pis-ip-address).
+Accendere Pi usando il cavo micro USB e l'alimentatore. Usare il cavo Ethernet per connettere Pi alla rete cablata oppure seguire le [istruzioni riportate nella Guida di Raspberry Pi](https://www.raspberrypi.org/learning/software-guide/wifi/) per connettere Pi alla rete wireless. Dopo aver connesso Pi alla rete, è necessario annotarne [l'indirizzo IP](https://learn.adafruit.com/adafruits-raspberry-pi-lesson-3-network-setup/finding-your-pis-ip-address).
 
-![Rete toowired connesso](media/iot-hub-raspberry-pi-kit-node-get-started/5_power-on-pi.jpg)
+![Connesso alla rete cablata](media/iot-hub-raspberry-pi-kit-node-get-started/5_power-on-pi.jpg)
 
 > [!NOTE]
-> Assicurarsi che l'installazione guidata piattaforma sia connesso toohello stessa rete del computer. Ad esempio, se il computer è connesso tooa rete wireless mentre Pi è connesso tooa rete cablata, si potrebbe visualizzare non hello IP indirizzo nell'output di hello devdisco.
+> Verificare che Pi sia connesso alla stessa rete del computer. Se il computer è connesso a una rete wireless mentre il dispositivo Pi è connesso a una rete cablata, ad esempio, l'indirizzo IP potrebbe non essere incluso nell'output di devdisco.
 
 ## <a name="run-a-sample-application-on-pi"></a>Eseguire un'applicazione di esempio in Pi
 
-### <a name="install-hello-prerequisite-packages"></a>Installare i pacchetti dei prerequisiti hello
+### <a name="install-the-prerequisite-packages"></a>Installare i pacchetti prerequisiti
 
-Utilizzare uno dei seguenti client SSH dagli tooyour di tooconnect computer host Pi Raspberry hello.
+Per connettersi a Raspberry Pi, usare uno dei client SSH seguenti dal computer host.
    
    **Utenti Windows**
    1. Scaricare e installare [PuTTY](http://www.putty.org/) per Windows. 
-   1. Copiare l'indirizzo IP hello della sezione Pi in nome Host di hello (o indirizzo IP) e selezionare il tipo di connessione hello SSH.
+   1. Copiare l'indirizzo IP di Pi nella sezione del nome host (o indirizzo IP) e selezionare SSH come tipo di connessione.
    
    
-   **Utenti Mac e Ubuntu**
+   **Utenti di Mac e Ubuntu**
    
-   Utilizzare client SSH incorporato hello in Ubuntu o macOS. Potrebbe essere necessario toorun `ssh pi@<ip address of pi>` tooconnect Pi via SSH.
+   Usare il client SSH predefinito in Ubuntu o macOS. Per connettere Pi tramite SSH potrebbe essere necessario eseguire `ssh pi@<ip address of pi>`.
    > [!NOTE] 
-   nome utente predefinito Hello `pi` , e la password di hello è `raspberry`.
+   Il nome utente predefinito è `pi` e la password è `raspberry`.
 
 
-### <a name="configure-hello-sample-application"></a>Configurare l'applicazione di esempio hello
+### <a name="configure-the-sample-application"></a>Configurare l'applicazione di esempio
 
-1. Clonare l'applicazione di esempio hello eseguendo hello comando seguente:
+1. Clonare l'applicazione di esempio eseguendo il comando seguente:
 
    ```bash
    cd ~
    git clone https://github.com/Azure-Samples/iot-hub-python-raspberrypi-client-app.git
    ```
-1. Aprire il file di configurazione hello eseguendo hello seguenti comandi:
+1. Aprire il file di configurazione eseguendo i comandi seguenti:
 
    ```bash
    cd iot-hub-python-raspberrypi-client-app
    nano config.py
    ```
 
-   Questo file contiene 5 macro configurabili. Hello prima uno è `MESSAGE_TIMESPAN`, che definisce l'intervallo di tempo hello (in millisecondi) tra i due messaggi che inviano toocloud. Hello secondo `SIMULATED_DATA`, ovvero un valore booleano per se toouse sensore dati simulati o non. `I2C_ADDRESS`è in indirizzo hello I2C che è connesso il sensore BME280. `GPIO_PIN_ADDRESS`è l'indirizzo GPIO hello per il LED. Hello ultimo uno è `BLINK_TIMESPAN`, cui definito timespan hello quando il LED è attivata in millisecondi.
+   Questo file contiene 5 macro configurabili. La prima è `MESSAGE_TIMESPAN`, che definisce l'intervallo di tempo (in millisecondi) tra due messaggi inviati al cloud. La seconda è `SIMULATED_DATA`, ossia un valore booleano che indica se usare o no i dati del sensore simulato. `I2C_ADDRESS` è l'indirizzo I2C a cui è connesso il sensore BME280. `GPIO_PIN_ADDRESS` è l'indirizzo GPIO per il LED. L'ultima è `BLINK_TIMESPAN`, che definisce l'intervallo di tempo di attivazione del LED in millisecondi.
 
-   Se si **non dispone di sensore hello**, hello impostare `SIMULATED_DATA` valore troppo`True` applicazione di esempio hello toomake creare e utilizzare dati del sensore simulato.
+   Se **non si dispone del sensore**, impostare il valore `SIMULATED_DATA` su `True` per permettere all'applicazione di esempio di creare e usare i dati del sensore simulati.
 
 1. Salvare e uscire premendo CTRL-O > Invio > CTRL-X.
 
-### <a name="build-and-run-hello-sample-application"></a>Compilare ed eseguire l'applicazione di esempio hello
+### <a name="build-and-run-the-sample-application"></a>Compilare ed eseguire l'applicazione di esempio
 
-1. Compilare l'applicazione di esempio hello eseguendo hello comando seguente. Poiché hello Azure IoT SDK per Python sono wrapper su hello Azure IoT dispositivo C SDK, sarà necessario librerie hello C toocompile se è preferibile o necessario toogenerate hello Python di librerie da codice sorgente.
+1. Compilare l'applicazione di esempio eseguendo il comando seguente. Dato che gli Azure IoT SDK per Python sono wrapper per Azure IoT Device C SDK, è necessario compilare le librerie C, se si vuole o è necessario generare le librerie Python dal codice sorgente.
 
    ```bash
    sudo chmod u+x setup.sh
    sudo ./setup.sh
    ```
    > [!NOTE] 
-   È inoltre possibile specificare la versione di hello da eseguendo `sudo ./setup.sh [--python-version|-p] [2.7|3.4|3.5]`. Se si esegue uno script senza parametri, script hello rileverà automaticamente versione hello di python installato (sequenza di ricerca 2.7 -> 3.4 -> 3.5). Assicurarsi che la versione di Python rimanga coerente durante la compilazione e l'esecuzione. 
+   È anche possibile specificare la versione desiderata eseguendo `sudo ./setup.sh [--python-version|-p] [2.7|3.4|3.5]`. Se si esegue uno script senza parametri, lo script rileva automaticamente la versione di Python installata (sequenza di ricerca 2.7 -> 3.4 -> 3.5). Assicurarsi che la versione di Python rimanga coerente durante la compilazione e l'esecuzione. 
    
    > [!NOTE] 
-   Sulla compilazione libreria client Python di hello (iothub_client.so) nei dispositivi Linux con meno di 1GB di RAM, può vedere compilare accumulano durante la compilazione iothub_client_python.cpp, come illustrato di seguito al 98% `[ 98%] Building CXX object python/src/CMakeFiles/iothub_client_python.dir/iothub_client_python.cpp.o`. Se si esegue questo problema, controllare il consumo di memoria hello di hello dispositivo utilizzando `free -m command` in un'altra finestra terminal questo periodo di tempo. Se si utilizza memoria insufficiente durante la compilazione di file iothub_client_python.cpp, potrebbe essere tootemporarily aumentare tooget spazio di swapping hello è più disponibile memoria toosuccessfully compilare libreria SDK del dispositivo hello del client Python.
+   Durante la compilazione della libreria client Python (iothub_client.so) nei dispositivi Linux con meno di 1 GB di RAM, il processo potrebbe bloccarsi al 98% durante la compilazione di iothub_client_python.cpp, come illustrato di seguito `[ 98%] Building CXX object python/src/CMakeFiles/iothub_client_python.dir/iothub_client_python.cpp.o`. Se si verifica questo problema, controllare l'utilizzo della memoria del dispositivo tramite `free -m command` in un'altra finestra terminale nello stesso periodo di tempo. Se la memoria risulta insufficiente durante la compilazione del file iothub_client_python.cpp, potrebbe essere necessario aumentare temporaneamente lo spazio di swapping per ottenere maggiore memoria disponibile per compilare correttamente la libreria SDK per il dispositivo sul lato client Python.
    
-1. Eseguire l'applicazione di esempio hello eseguendo hello comando seguente:
+1. Eseguire l'applicazione di esempio tramite il comando seguente:
 
    ```bash
    python app.py '<your Azure IoT hub device connection string>'
    ```
 
    > [!NOTE] 
-   Assicurarsi copiare e incollare stringa di connessione del dispositivo hello in virgolette hello. E, se si usa python hello 3, è possibile utilizzare hello comando `python3 app.py '<your Azure IoT hub device connection string>'`.
+   Assicurarsi di copiare e incollare la stringa di connessione del dispositivo tra virgolette singole. Se si usa python 3, è possibile usare il comando `python3 app.py '<your Azure IoT hub device connection string>'`.
 
 
-   Verrà visualizzato l'output seguente hello che mostra hello sensore dati e hello i messaggi vengono inviati tooyour IoT hub.
+   Dovrebbe essere visibile l'output seguente che mostra i dati del sensore e i messaggi inviati all'hub IoT.
 
-   ![Output - sensore dati vengono inviati da tooyour Raspberry Pi hub IoT](media/iot-hub-raspberry-pi-kit-c-get-started/success.png
+   ![Output - dati del sensore inviati da Raspberry Pi all'hub IoT](media/iot-hub-raspberry-pi-kit-c-get-started/success.png
 )
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-È stato eseguito dati sensore toocollect di applicazione di esempio e inviarlo tooyour IoT hub. messaggi hello toosee che l'installazione guidata piattaforma Raspberry ha inviato IoT tooyour hub o trasmissione tooyour messaggi Pi Raspberry in un'interfaccia della riga di comando, vedere hello [dispositivo cloud Gestione messaggistica esercitazione hub IOT Esplora](https://docs.microsoft.com/en-gb/azure/iot-hub/iot-hub-explorer-cloud-device-messaging).
+È stata eseguita un'applicazione di esempio per raccogliere i dati del sensore da inviare all'hub IoT. Per visualizzare i messaggi inviati da Raspberry Pi all'hub IoT o per inviare messaggi a Raspberry Pi in un'interfaccia della riga di comando, vedere l'[esercitazione sulla gestione della messaggistica tra cloud e dispositivo con iothub-explorer](https://docs.microsoft.com/en-gb/azure/iot-hub/iot-hub-explorer-cloud-device-messaging).
 
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]

@@ -1,6 +1,6 @@
 ---
-title: connettori Proxy di Azure AD App del portale aaaClassic | Documenti Microsoft
-description: Include informazioni su come toocreate e gestire gruppi di connettori Proxy di applicazione di Azure AD.
+title: Connettori del proxy app di Azure AD nel portale classico | Microsoft Docs
+description: Illustra come creare e gestire i gruppi di connettori nel proxy di applicazione di Azure AD.
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -15,11 +15,11 @@ ms.date: 07/23/2017
 ms.author: kgremban
 ms.reviewer: harshja
 ms.custom: it-pro; oldportal
-ms.openlocfilehash: 43559b0f4ffc3c7dbbf00901e89ac276d01796e2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: fc65c4053c45d9c16c62ee0fe65924133a4bb94a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="publish-applications-on-separate-networks-and-locations-using-connector-groups"></a>Pubblicare applicazioni in reti e posizioni separate tramite i gruppi di connettori
 > [!div class="op_single_selector"]
@@ -30,36 +30,36 @@ ms.lasthandoff: 10/06/2017
 
 I gruppi di connettori sono utili in varie situazioni, ad esempio:
 
-* Siti con più data center interconnessi. In questo caso, si desidera tookeep come quantità di traffico in Data Center di hello possibile poiché i collegamenti tra Data Center sono lente e costoso. È possibile distribuire i connettori in ogni Data Center tooserve solo hello le applicazioni che risiedono all'interno di hello datacenter. Questo approccio riduce al minimo i collegamenti tra Data Center e offre un'esperienza completamente trasparente agli utenti di tooyour.
-* La gestione delle applicazioni installate in reti isolate che non fanno parte della rete aziendale principale hello. È possibile utilizzare i connettori di connettore gruppi tooinstall dedicato nella rete di toohello reti isolate tooalso isolare le applicazioni.
-* Per le applicazioni installate in IaaS per l'accesso cloud, i gruppi di connettori forniscono un servizio toosecure hello accesso tooall hello le applicazioni comuni. Gruppi di connettori non creare una dipendenza aggiuntiva nella rete aziendale, o frammento esperienza app hello. I connettori possono essere installati in ogni data center nel cloud e gestire solo le applicazioni che si trovano nella rete. È possibile installare i diversi connettori tooachieve la disponibilità elevata.
-* Supporto per gli ambienti con più foreste in cui i connettori specifici possono essere distribuiti per ogni foresta e impostare tooserve specifiche applicazioni.
-* Connettore gruppi possono essere utilizzati nei siti di ripristino di emergenza tooeither rileva il failover o come backup per hello principale sito.
-* Gruppi di connettori possono inoltre essere utilizzati tooserve più società da un singolo tenant.
+* Siti con più data center interconnessi. In questo caso è preferibile mantenere la maggior quantità di traffico possibile all'interno del data center, perché i collegamenti tra data center sono lenti e dispendiosi. È possibile distribuire connettori in ogni data center per rendere disponibili solo le applicazioni che risiedono all'interno del data center. Questo approccio riduce al minimo i collegamenti tra data center e offre un'esperienza completamente trasparente agli utenti.
+* Gestione delle applicazioni installate in reti isolate che non fanno parte della rete aziendale principale. È possibile usare gruppi di connettori per installare connettori dedicati in reti isolate, in modo da isolare anche le applicazioni per la rete.
+* Per le applicazioni installate in IaaS per l'accesso al cloud, i gruppi di connettori offrono un servizio comune per proteggere l'accesso a tutte le app. I gruppi di connettori non creano dipendenza aggiuntiva dalla rete aziendale o non frammentano l'esperienza delle app. I connettori possono essere installati in ogni data center nel cloud e gestire solo le applicazioni che si trovano nella rete. È possibile installare più connettori per ottenere una disponibilità elevata.
+* Supporto per gli ambienti a più foreste in cui è possibile distribuire connettori specifici per ogni foresta e impostarli per gestire applicazioni specifiche.
+* I gruppi di connettori possono essere usati nei siti di ripristino di emergenza per il rilevamento del failover o come backup per il sito principale.
+* I gruppi di connettori possono essere anche usati per offrire i servizi a più società da un singolo tenant.
 
 ## <a name="prerequisite-create-your-connectors"></a>Prerequisito: creare i connettori
-toogroup i connettori, [installare più connettori](active-directory-application-proxy-enable.md), quindi assegnare un nome e li raggruppa. Infine è tooassign li toospecific app.
+Per raggruppare i connettori, [installare più connettori](active-directory-application-proxy-enable.md), quindi assegnarvi un nome e raggrupparli. Infine, è necessario assegnali ad applicazioni specifiche.
 
 ## <a name="step-1-create-connector-groups"></a>Passaggio 1: Creare gruppi di connettori
-È possibile creare tutti i gruppi di connettori desiderati. Mediante la creazione del connettore gruppo hello portale di Azure classico.
+È possibile creare tutti i gruppi di connettori desiderati. La creazione di un gruppo di connettori viene eseguita nel portale di Azure classico.
 
 1. Selezionare la directory e fare clic su **Configura**.  
-    ![Schermata di configurazione del proxy dell'applicazione: fare clic su Gestisci gruppi di connettori](./media/active-directory-application-proxy-connectors/app_proxy_connectors_creategroup.png)
-2. Proxy dell'applicazione, selezionare **gestire gruppi di connettori** e creare un gruppo di connettori, assegnando un nome di gruppo hello.  
+    ![Screenshot di configurazione del proxy dell'applicazione: fare clic su Gestisci gruppi di connettori](./media/active-directory-application-proxy-connectors/app_proxy_connectors_creategroup.png)
+2. In Proxy dell'applicazione fare clic su **Gestisci gruppi di connettori** e creare un gruppo di connettori assegnando un nome al gruppo.  
     ![Screenshot dei gruppi del connettore del proxy dell'applicazione: assegnare un nome al gruppo](./media/active-directory-application-proxy-connectors/app_proxy_connectors_namegroup.png)
 
-## <a name="step-2-assign-connectors-tooyour-groups"></a>Passaggio 2: Assegnare connettori tooyour gruppi
-Una volta creati i gruppi di connettori hello, Sposta gruppo appropriato di hello connettori toohello.
+## <a name="step-2-assign-connectors-to-your-groups"></a>Passaggio 2: Assegnare i connettori ai gruppi
+Una volta creati i gruppi di connettori, spostare i connettori nel gruppo appropriato.
 
 1. In **Proxy dell'applicazione** fare clic su **Gestisci connettori**.
-2. In **gruppo**, selezionare il gruppo di hello desiderato per ogni connettore. Connettori hello backup too10 minuti toobecome potrebbe richiedere attivi nel nuovo gruppo di hello.  
+2. In **Gruppo**selezionare il gruppo desiderato per ogni connettore. Potrebbero essere richiesti fino a 10 minuti per l'attivazione dei connettori nel nuovo gruppo.  
     ![Screenshot dei connettori proxy dell'applicazione: selezionare il gruppo dal menu a discesa](./media/active-directory-application-proxy-connectors/app_proxy_connectors_connectorlist.png)
 
-## <a name="step-3-assign-applications-tooyour-connector-groups"></a>Passaggio 3: Assegnare gruppi di connettori tooyour le applicazioni
-ultimo passaggio Hello è tooset ogni gruppo di connettori toohello applicazione che gestisce.
+## <a name="step-3-assign-applications-to-your-connector-groups"></a>Passaggio 3: Assegnare applicazioni ai gruppi di connettori
+L'ultimo passaggio prevede l'assegnazione di ogni applicazione al gruppo di connettori da cui viene gestita.
 
-1. Nel portale di Azure classico, nella directory, hello selezionare hello applicazione che si desidera tooassign toohello gruppo e fare clic su **configura**.
-2. In **gruppo connettore**, selezionare il gruppo di hello desiderato hello toouse applicazione. Questa modifica viene applicata immediatamente.  
+1. Nel portale di Azure classico selezionare nella directory l'applicazione che si vuole assegnare al gruppo e fare clic su **Configura**.
+2. In **Gruppo di connettori**selezionare il gruppo che si desidera venga usato dall'applicazione. Questa modifica viene applicata immediatamente.  
     ![Screenshot dei gruppi del connettore proxy dell'applicazione: selezionare il gruppo dal menu a discesa](./media/active-directory-application-proxy-connectors/app_proxy_connectors_newgroup.png)
 
 ## <a name="see-also"></a>Vedere anche
@@ -68,4 +68,4 @@ ultimo passaggio Hello è tooset ogni gruppo di connettori toohello applicazione
 * [Abilitare l'accesso condizionale](active-directory-application-proxy-conditional-access.md)
 * [Risolvere i problemi che si verificano con il proxy di applicazione](active-directory-application-proxy-troubleshoot.md)
 
-Per informazioni più recenti hello e gli aggiornamenti, consultare hello [blog del Proxy dell'applicazione](http://blogs.technet.com/b/applicationproxyblog/)
+Per le notizie e gli aggiornamenti più recenti, vedere [Application Proxy blog](http://blogs.technet.com/b/applicationproxyblog/)

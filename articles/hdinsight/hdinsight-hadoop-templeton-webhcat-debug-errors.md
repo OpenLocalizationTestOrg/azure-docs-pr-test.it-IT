@@ -1,6 +1,6 @@
 ---
-title: aaaUnderstand e risolvere gli errori di WebHCat in HDInsight - Azure | Documenti Microsoft
-description: "Informazioni su come gli errori più comuni di tooabout restituito da WebHCat in HDInsight e come tooresolve li."
+title: Comprendere e risolvere gli errori di WebHCat in HDInsight - Azure | Microsoft Docs
+description: Informazioni sugli errori comuni restituiti da WebHCat in HDInsight e su come risolverli.
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -14,43 +14,43 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 06/26/2017
+ms.date: 09/20/2017
 ms.author: larryfr
-ms.openlocfilehash: 0071a1e9ed448ae146b93c8f4f518e31b95d27c9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 1e4d72540a44f3b1838b6ed4dfad47dbe84489dc
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="understand-and-resolve-errors-received-from-webhcat-on-hdinsight"></a>Comprendere e risolvere gli errori ricevuti da WebHCat in HDInsight
 
-Informazioni sugli errori ricevuti quando si utilizza WebHCat con HDInsight e come tooresolve li. WebHCat viene utilizzata internamente dagli strumenti sul lato client, ad esempio Azure PowerShell e hello Data Lake Tools per Visual Studio.
+Informazioni sugli errori che si ricevono durante l'utilizzo di WebHCat con HDInsight e su come risolverli. WebHCat viene usato internamente dagli strumenti sul lato client, ad esempio Azure PowerShell e Strumenti Data Lake per Visual Studio.
 
 ## <a name="what-is-webhcat"></a>Che cos'è WebHCat
 
-[WebHCat](https://cwiki.apache.org/confluence/display/Hive/WebHCat) è un'API REST per [HCatalog](https://cwiki.apache.org/confluence/display/Hive/HCatalog), un livello di gestione tabelle e risorse di archiviazione per Hadoop. WebHCat è abilitata per impostazione predefinita nei cluster HDInsight e viene utilizzato dai processi di toosubmit vari strumenti, ottenere lo stato del processo e così via senza registrazione toohello cluster.
+[WebHCat](https://cwiki.apache.org/confluence/display/Hive/WebHCat) è un'API REST per [HCatalog](https://cwiki.apache.org/confluence/display/Hive/HCatalog), un livello di gestione tabelle e risorse di archiviazione per Hadoop. WebHCat è abilitato per impostazione predefinita nei cluster HDInsight e viene usato da vari strumenti per inviare processi, recuperare lo stato dei processi e così via, senza effettuare l'accesso al cluster.
 
 ## <a name="modifying-configuration"></a>Modifica della configurazione
 
 > [!IMPORTANT]
-> Numerosi errori hello elencati in questo documento si verificano perché è stato superato un numero massimo configurato. Quando la procedura di risoluzione hello viene indicato che è possibile modificare un valore, è necessario utilizzare uno di seguito modifica hello tooperform hello:
+> Alcuni degli errori elencati in questo documento si verificano perché è stato superato un valore massimo configurato. La procedura di risoluzione indica che è possibile modificare un valore, per eseguire la modifica è necessario usare uno dei seguenti passaggi:
 
-* Per **Windows** cluster: usare un valore di hello tooconfigure azione script durante la creazione del cluster. Per altre informazioni, vedere [Sviluppare azioni di script](hdinsight-hadoop-script-actions.md).
+* Per cluster **Windows** : usare un'azione di script per configurare il valore durante la creazione del cluster. Per altre informazioni, vedere [Sviluppare azioni di script](hdinsight-hadoop-script-actions.md).
 
-* Per **Linux** cluster: valore di hello toomodify utilizzare Ambari (web o l'API REST). Per altre informazioni, vedere [Gestire HDInsight tramite Ambari](hdinsight-hadoop-manage-ambari.md)
+* Per cluster **Linux** : usare Ambari (web o API REST) per modificare il valore. Per altre informazioni, vedere [Gestire HDInsight tramite Ambari](hdinsight-hadoop-manage-ambari.md)
 
 > [!IMPORTANT]
-> Linux è hello solo sistema operativo utilizzato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> Linux è l'unico sistema operativo usato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 ### <a name="default-configuration"></a>Configurazione predefinita
 
-Se viene superato hello seguente i valori predefiniti, può influire negativamente sulle prestazioni WebHCat o causare errori:
+Il superamento dei valori predefiniti seguenti può determinare una riduzione delle prestazioni di WebHCat o la generazione di errori:
 
 | Impostazione | Risultato | Valore predefinito |
 | --- | --- | --- |
-| [yarn.scheduler.capacity.maximum-applications][maximum-applications] |numero massimo di processi che possono essere attive contemporaneamente Hello (in sospeso o in esecuzione) |10.000 |
-| [templeton.exec.max-procs][max-procs] |numero massimo di Hello di richieste che possono essere serviti contemporaneamente |20 |
-| [mapreduce.jobhistory.max-age-ms][max-age-ms] |Hello numero di giorni per cui la cronologia dei processi di conservazione |7 giorni |
+| [yarn.scheduler.capacity.maximum-applications][maximum-applications] |Il numero massimo di processi che possono essere attivi contemporaneamente (in sospeso o in esecuzione) |10.000 |
+| [templeton.exec.max-procs][max-procs] |Il numero massimo di richieste che possono essere gestite contemporaneamente |20 |
+| [mapreduce.jobhistory.max-age-ms][max-age-ms] |Il numero di giorni durante i quali verrà mantenuta la cronologia del processo |7 giorni |
 
 ## <a name="too-many-requests"></a>Numero eccessivo di richieste
 
@@ -58,7 +58,7 @@ Se viene superato hello seguente i valori predefiniti, può influire negativamen
 
 | Causa | Risoluzione |
 | --- | --- |
-| È stato superato hello massimo di richieste simultanee gestite da WebHCat al minuto (impostazione predefinita 20) |Ridurre tooensure il carico di lavoro che non presenta più di hello numero massimo di richieste simultanee o aumentare il limite di richieste simultanee hello modificando `templeton.exec.max-procs`. Per altre informazioni, vedere [Modifica della configurazione](#modifying-configuration) |
+| È stato superato il numero massimo di richieste contemporanee gestite da WebHCat al minuto (il valore predefinito è 20) |Ridurre il carico di lavoro per garantire che non venga inviato più del numero massimo di richieste contemporanee o aumentare il limite di richieste contemporanee modificando `templeton.exec.max-procs`. Per altre informazioni, vedere [Modifica della configurazione](#modifying-configuration) |
 
 ## <a name="server-unavailable"></a>Server non disponibile
 
@@ -66,7 +66,7 @@ Se viene superato hello seguente i valori predefiniti, può influire negativamen
 
 | Causa | Risoluzione |
 | --- | --- |
-| Questo codice di stato si verifica in genere durante il failover tra hello primari e secondari nodo head per cluster hello |Attendere due minuti, quindi ripetere l'operazione di hello |
+| Questo codice di stato si verifica in genere durante il failover tra il nodo head primario e secondario per il cluster |Attendere due minuti, quindi ripetere l'operazione |
 
 ## <a name="bad-request-content-could-not-find-job"></a>Contenuto richiesta non valido: impossibile trovare il processo
 
@@ -74,9 +74,9 @@ Se viene superato hello seguente i valori predefiniti, può influire negativamen
 
 | Causa | Risoluzione |
 | --- | --- |
-| I dettagli dei processi sono stati rimossi in base alla cronologia processo hello pulitura |periodo di memorizzazione Hello predefinito per la cronologia processo è 7 giorni. periodo di memorizzazione predefinito Hello può essere cambiato modificando `mapreduce.jobhistory.max-age-ms`. Per altre informazioni, vedere [Modifica della configurazione](#modifying-configuration) |
-| Processo è stato terminato a causa di failover tooa |Ripetere l'invio di processi di backup tootwo minuti |
-| È stato utilizzato un ID processo non valido |Controllare se l'id di processo hello è corretto |
+| I dettagli dei processi sono stati rimossi dalla pulitura della cronologia dei processi |Il periodo di conservazione predefinito per la cronologia dei processi è 7 giorni. Il periodo di conservazione predefinito può essere cambiato modificando `mapreduce.jobhistory.max-age-ms`. Per altre informazioni, vedere [Modifica della configurazione](#modifying-configuration) |
+| Il processo è stato terminato a causa di un failover |Ripetere l'invio del processo per due minuti |
+| È stato utilizzato un ID processo non valido |Controllare se l'ID processo è corretto |
 
 ## <a name="bad-gateway"></a>Gateway non valido
 
@@ -84,10 +84,10 @@ Se viene superato hello seguente i valori predefiniti, può influire negativamen
 
 | Causa | Risoluzione |
 | --- | --- |
-| Interno operazione di garbage collection in hello WebHCat processo |Attendere che l'operazione di garbage collection toofinish o riavviare servizio WebHCat hello |
-| Timeout in attesa di una risposta dal servizio ResourceManager hello. Questo errore può verificarsi quando il numero di hello delle applicazioni attive esce massimo configurato di hello (impostazione predefinita a 10.000) |Attende attualmente in esecuzione processi toocomplete o aumentare il limite di processi simultanei di hello modificando `yarn.scheduler.capacity.maximum-applications`. Per ulteriori informazioni, vedere hello [Modifica configurazione](#modifying-configuration) sezione. |
-| Il tentativo di tutti i processi tramite hello tooretrieve [GET /jobs](https://cwiki.apache.org/confluence/display/Hive/WebHCat+Reference+Jobs) chiamata durante `Fields` è troppo`*` |Non recuperare i dettagli di *tutti* i processi. Usare invece `jobid` tooretrieve dettagli per i processi di maggiori solo a determinati id di processo. Oppure, non utilizzare `Fields` |
-| servizio WebHCat Hello è inattivo durante il failover del nodo head |Attendere per due minuti e ripetere l'operazione hello |
+| Operazione interna di Garbage Collection nel processo WebHCat |Attendere che l’operazione di Garbage Collection venga completata o riavviare il servizio WebHCat |
+| Timeout in attesa di una risposta dal servizio Resource Manager. Questo errore può verificarsi quando il numero di applicazioni attive supera il numero massimo configurato (il valore predefinito è 10.000) |Attendere che i processi attualmente in esecuzione vengano completati o aumentare il limite di processi simultanei modificando `yarn.scheduler.capacity.maximum-applications`. Per altre informazioni, vedere la sezione [Modifica della configurazione](#modifying-configuration). |
+| Quando si tenta di recuperare tutti i processi tramite la chiamata [GET /jobs](https://cwiki.apache.org/confluence/display/Hive/WebHCat+Reference+Jobs) mentre `Fields`è impostato su `*` |Non recuperare i dettagli di *tutti* i processi. Usare invece `jobid` per recuperare i dettagli solo dei processi successivi a un determinato ID processo. Oppure, non utilizzare `Fields` |
+| Il servizio WebHCat è inattivo durante il failover del nodo head |Attendere due minuti e ripetere l'operazione |
 | Sono presenti più di 500 processi in sospeso inviati tramite WebHCat |Attendere il completamento dei processi attualmente in sospeso prima di inviare altri processi |
 
 [maximum-applications]: http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.1.3/bk_system-admin-guide/content/setting_application_limits.html

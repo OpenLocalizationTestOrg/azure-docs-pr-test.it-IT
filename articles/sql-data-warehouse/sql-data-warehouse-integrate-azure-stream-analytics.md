@@ -1,5 +1,5 @@
 ---
-title: aaaUse Analitica di flusso di Azure con SQL Data Warehouse | Documenti Microsoft
+title: Usare Analisi di flusso di Azure con SQL Data Warehouse | Documentazione Microsoft
 description: Suggerimenti per l'uso di Analisi di flusso di Azure con Azure SQL Data Warehouse per lo sviluppo di soluzioni.
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,19 +15,19 @@ ms.workload: data-services
 ms.custom: integrate
 ms.date: 10/31/2016
 ms.author: cakarst;barbkess
-ms.openlocfilehash: 1278197a6764864124fd92fc672de00b83ec343f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 14783f0464764a11d7f03a5db1c2d63728a4cb50
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="use-azure-stream-analytics-with-sql-data-warehouse"></a>Usare Analisi di flusso di Azure con SQL Data Warehouse
-Analitica di flusso di Azure è un servizio completamente gestito che fornisce l'elaborazione a bassa latenza, elevata disponibilità e scalabile di eventi complessi nel flusso di dati nel cloud hello. È possibile nozioni di base hello leggendo [tooAzure introduzione Analitica flusso][Introduction tooAzure Stream Analytics]. Sarà possibile apprendere come una soluzione end-to-end con flusso Analitica seguendo toocreate hello [iniziare a usare Azure flusso Analitica] [ Get started using Azure Stream Analytics] esercitazione.
+Analisi di flusso di Azure è un servizio completamente gestito che consente l'elaborazione di eventi complessi con bassa latenza, elevata disponibilità e scalabilità per lo streaming di dati nel cloud. Per informazioni di base, vedere [Introduzione ad Analisi di flusso di Azure][Introduction to Azure Stream Analytics]. È possibile apprendere come creare una soluzione end-to-end con Analisi di flusso seguendo l'esercitazione [Introduzione all'uso di Analisi di flusso di Azure][Get started using Azure Stream Analytics].
 
-In questo articolo si apprenderà come toouse database Azure SQL Data Warehouse come sink di output per i processi di flusso Analitica.
+In questo articolo si apprenderà come usare il database di Azure SQL Data Warehouse come un sink di output per i processi di Analisi di flusso.
 
 ## <a name="prerequisites"></a>Prerequisiti
-In primo luogo, eseguire i passaggi hello hello [iniziare a usare Azure flusso Analitica] [ Get started using Azure Stream Analytics] esercitazione.  
+Eseguire prima di tutto questa procedura nell'esercitazione [Introduzione all'uso di Analisi di flusso di Azure][Get started using Azure Stream Analytics].  
 
 1. Creare un input dell'hub eventi
 2. Configurare e avviare l'applicazione di generazione di eventi
@@ -38,7 +38,7 @@ Creare quindi un database di Azure SQL Data Warehouse
 
 ## <a name="specify-job-output-azure-sql-data-warehouse-database"></a>Specificare l'output del processo: database di Azure SQL Warehouse
 ### <a name="step-1"></a>Passaggio 1
-Selezionare il processo di flusso Analitica **OUTPUT** dall'alto hello della pagina hello e quindi fare clic su **Aggiungi OUTPUT**.
+Nel processo di Analisi di flusso fare clic su **OUTPUT** nella parte superiore della pagina e quindi scegliere **AGGIUNGI OUTPUT**.
 
 ### <a name="step-2"></a>Passaggio 2
 Selezionare il Database SQL e fare clic su Avanti.
@@ -46,29 +46,29 @@ Selezionare il Database SQL e fare clic su Avanti.
 ![][add-output]
 
 ### <a name="step-3"></a>Passaggio 3
-Immettere i seguenti valori nella pagina successiva hello hello:
+Immettere i valori seguenti nella pagina successiva:
 
 * *Alias di output*: immettere un nome descrittivo per l'output del processo.
 * *Sottoscrizione*
-  * Se il database di SQL Data Warehouse è in hello stessa sottoscrizione come processo di flusso Analitica hello, selezionare Usa Database SQL dalla sottoscrizione corrente.
+  * Se il database SQL Data Warehouse esiste nella stessa sottoscrizione del processo di analisi di flusso, selezionare Usare il database SQL dalla sottoscrizione corrente.
   * Se il database è in una sottoscrizione diversa, selezionare Usare il database SQL da un'altra sottoscrizione.
-* *Database*: specificare il nome di hello di un database di destinazione.
-* *Nome del server*: specificare il nome di server hello per database hello è stato specificato. È possibile utilizzare hello portale di Azure classico toofind questo.
+* *Database*: specificare il nome di un database di destinazione.
+* *Nome server*: specificare il nome del server per il database specificato. Per trovarlo, è possibile usare il portale di Azure classico.
 
 ![][server-name]
 
-* *Nome utente*: specificare il nome utente hello di un account che disponga di autorizzazioni di scrittura per il database di hello.
-* *Password*: specificare la password di hello per hello l'account utente specificato.
-* *Tabella*: specificare il nome di hello della tabella di destinazione hello nel database di hello.
+* *Nome utente*: digitare il nome utente di un account con autorizzazioni di scrittura nel database.
+* *Password*: fornire la password per l'account utente specificato.
+* *Tabella*: specificare il nome della tabella di destinazione nel database.
 
 ![][add-database]
 
 ### <a name="step-4"></a>Passaggio 4
-Fare clic su hello controllo pulsante tooadd l'output del processo e tooverify Analitica di flusso che può connettersi toohello database.
+Fare clic sul pulsante con il segno di spunta per aggiungere l'output del processo e per verificare che Analisi di flusso possa connettersi al database.
 
 ![][test-connection]
 
-Quando il database di toohello hello connessione ha esito positivo, si vedrà una notifica nella parte inferiore di hello del portale hello. È possibile fare clic su Verifica connessione nel database di hello inferiore tootest hello connessione toohello.
+Quando la connessione al database riesce, verrà visualizzata una notifica nella parte inferiore del portale. È possibile scegliere Test connessione nella parte inferiore per testare la connessione al database.
 
 ## <a name="next-steps"></a>Passaggi successivi
 Per una panoramica dell'integrazione, vedere [Panoramica dell'integrazione di SQL Data Warehouse][SQL Data Warehouse integration overview].
@@ -84,7 +84,7 @@ Per altri suggerimenti sullo sviluppo, vedere [Panoramica sullo sviluppo per SQL
 
 <!--Article references-->
 
-[Introduction tooAzure Stream Analytics]: ../stream-analytics/stream-analytics-introduction.md
+[Introduction to Azure Stream Analytics]: ../stream-analytics/stream-analytics-introduction.md
 [Get started using Azure Stream Analytics]: ../stream-analytics/stream-analytics-real-time-fraud-detection.md
 [SQL Data Warehouse development overview]:  ./sql-data-warehouse-overview-develop.md
 [SQL Data Warehouse integration overview]:  ./sql-data-warehouse-overview-integrate.md

@@ -1,5 +1,5 @@
 ---
-title: aaaAzure telemetria di servizi multimediali | Documenti Microsoft
+title: Telemetria di Servizi multimediali di Azure | Documentazione Microsoft
 description: Questo articolo offre una panoramica sulla telemetria di Servizi multimediali di Azure.
 services: media-services
 documentationcenter: 
@@ -14,27 +14,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/29/2017
 ms.author: juliako
-ms.openlocfilehash: 659e1c947a77aad0e4acacb541d95714da4775ee
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 1b26d7925fe5bd39905d9f51d22433b1eea43af6
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-media-services-telemetry"></a>Telemetria di Servizi multimediali di Azure
 
-Azure Media Services (AMS) permette di dati di telemetria/metrica tooaccess per i propri servizi. versione corrente di Hello del sistema AMS consente di raccogliere in tempo reale dati di telemetria per **canale**, **StreamingEndpoint**e in tempo reale **archivio** entità. 
+Tramite Servizi multimediali di Azure è possibile accedere ai dati di telemetria e delle metriche relativi ai servizi. La versione corrente di AMS consente di raccogliere i dati di telemetria relativi alle entità **Channel** live, **StreamingEndpoint** e **Archive** live. 
 
-Dati di telemetria è scritto tooa tabella di archiviazione in un account di archiviazione di Azure specificato (in genere, utilizzare account di archiviazione hello associato all'account di sistema AMS). 
+I dati di telemetria vengono scritti in una tabella di archiviazione all'interno di un account di Archiviazione di Azure specificato dall'utente (in genere quello associato all'account di AMS). 
 
-sistema di telemetria Hello non gestisce la conservazione dei dati. È possibile rimuovere i vecchi dati di telemetria hello mediante l'eliminazione di tabelle di archiviazione hello.
+Il sistema di telemetria non gestisce la conservazione dei dati. È possibile rimuovere i vecchi dati di telemetria eliminando le tabelle di archiviazione.
 
-Questo argomento viene illustrato come tooconfigure e utilizzare dati di telemetria hello AMS.
+Questo argomento illustra come configurare e usare i dati di telemetria di AMS.
 
 ## <a name="configuring-telemetry"></a>Configurare la telemetria
 
-È possibile configurare i dati di telemetria con granularità a livello di componente. Esistono due livelli di dettaglio: "Normal" e "Verbose". Attualmente, entrambi i livelli di restituiscono hello stesse informazioni. È consigliabile toouse "normale. 
+È possibile configurare i dati di telemetria con granularità a livello di componente. Esistono due livelli di dettaglio: "Normal" e "Verbose". Attualmente, entrambi i livelli restituiscono le stesse informazioni. Si consiglia di usare "Normal". 
 
-Hello seguente mostra gli argomenti come dati di telemetria tooenable:
+Gli argomenti seguenti illustrano come abilitare la telemetria:
 
 [Abilitare la telemetria con .NET](media-services-dotnet-telemetry.md) 
 
@@ -42,47 +42,47 @@ Hello seguente mostra gli argomenti come dati di telemetria tooenable:
 
 ## <a name="consuming-telemetry-information"></a>Uso delle informazioni di telemetria
 
-Dati di telemetria viene scritto tooan tabella di archiviazione di Azure nell'account di archiviazione hello specificato durante la configurazione di telemetria per hello account di servizi multimediali. Questa sezione vengono descritte le tabelle di archiviazione hello per le metriche di hello.
+I dati di telemetria vengono scritti in una tabella di archiviazione di Azure nell'account di archiviazione specificato dall'utente al momento di configurare la telemetria per l'account di Servizi multimediali. Questa sezione descrive le tabelle di archiviazione relative alle metriche.
 
-È possibile utilizzare i dati di telemetria in uno dei seguenti modi hello:
+I dati di telemetria possono essere usati in uno dei modi seguenti:
 
-- Leggere i dati direttamente da Archiviazione tabelle di Azure (ad esempio tramite hello Azure Storage SDK). Per una descrizione di hello di tabelle di archiviazione di dati di telemetria, vedere hello **utilizzo delle informazioni di telemetria** in [questo](https://msdn.microsoft.com/library/mt742089.aspx) argomento.
+- Leggere i dati direttamente da Archiviazione tabelle di Azure tramite, ad esempio, Storage SDK. Per la descrizione delle tabelle di archiviazione di dati di telemetria, vedere **Uso delle informazioni di telemetria** in [questo](https://msdn.microsoft.com/library/mt742089.aspx) argomento.
 
 Or
 
-- Usare il supporto di hello hello Media Services .NET SDK per la lettura dei dati di archiviazione, come descritto in [questo](media-services-dotnet-telemetry.md) argomento. 
+- Usare il supporto presente nel .NET SDK di Servizi multimediali per leggere i dati di archiviazione, come descritto in [questo](media-services-dotnet-telemetry.md) argomento. 
 
 
-schema di dati di telemetria Hello descritto di seguito è progettato toogive buone prestazioni entro i limiti di hello tabella di archiviazione di Azure:
+Lo schema telemetrico descritto di seguito è pensato per assicurare buone prestazioni entro i limiti dell'archiviazione tabelle di Azure:
 
-- I dati sono partizionati dall'account ID e l'ID del servizio dati di telemetria tooallow da ogni toobe servizio eseguire una query in modo indipendente.
-- Le partizioni contenere hello data toogive un ragionevole limite superiore per la dimensione della partizione hello.
-- Nella fase inversa ordine tooallow hello più recente telemetria elementi toobe chiavi di riga vengono interrogate per un determinato servizio.
+- I dati vengono partizionati per ID account e ID di servizio, per consentire di eseguire query sulla telemetria di ogni servizio in modo indipendente.
+- Le partizioni contengono la data per assegnare un ragionevole limite superiore alle dimensioni delle partizioni.
+- Le chiavi di riga sono in ordine cronologico inverso per consentire di eseguire query sugli ultimi elementi di telemetria di un determinato servizio.
 
-In questo modo molti toobe query comuni hello efficiente:
+Ciò dovrebbe garantire l'efficienza di molte query comuni:
 
 - Download parallelo e indipendente dei dati da destinare ad altri servizi.
 - Recupero di tutti i dati relativi a un servizio in un certo intervallo di date.
-- Il recupero dei dati più recenti di hello per un servizio.
+- Recupero degli ultimi dati relativi a un servizio.
 
 ### <a name="telemetry-table-storage-output-schema"></a>Schema di output dell'archiviazione tabelle di telemetria
 
-Dati di telemetria vengono archiviati nella funzione di aggregazione in una tabella, "TelemetryMetrics20160321" dove "20160321" è data della tabella hello creato. Il sistema di telemetria crea una nuova tabella per ogni giornata alle ore 00:00 UTC. viene utilizzata la tabella Hello valori ricorrenti toostore di inserimento, ad esempio velocità in bit a un determinato intervallo di tempo byte inviati, e così via. 
+I dati di telemetria sono archiviati tutti insieme nella tabella "TelemetryMetrics20160321" dove "20160321" è la data di creazione della tabella. Il sistema di telemetria crea una nuova tabella per ogni giornata alle ore 00:00 UTC. In questa tabella vengono archiviati i valori ricorrenti, come la velocità in bit delle operazioni di inserimento in un determinato intervallo di tempo, i byte inviati e così via. 
 
 Proprietà|Valore|Esempi/note
 ---|---|---
-PartitionKey|{ID account}_{ID entità}|e49bef329c29495f9b9570989682069d_64435281c50a4dd8ab7011cb0f4cdf66<br/<br/>Hello account ID è incluso in hello partizione toosimplify chiave dei flussi di lavoro in più account di servizi multimediali scrive toohello stesso account di archiviazione.
-RowKey|{secondi toomidnight} _ {valore casuale}|01688_00199<br/><br/>chiave di riga Hello inizia con il numero di hello di secondi toomidnight tooallow top n le query all'interno di una partizione. Per altre informazioni, vedere [questo](../cosmos-db/table-storage-design-guide.md#log-tail-pattern) articolo. 
-Timestamp|Data/ora|Auto timestamp da tabelle di Azure 2016 hello-09-09T22:43:42.241Z
-Tipo|tipo di Hello di entità che hello fornisce i dati di telemetria|Channel/StreamingEndpoint/Archive<br/><br/>Il tipo di evento è semplicemente un valore stringa.
-Nome|nome di Hello dell'evento di telemetria hello|ChannelHeartbeat/StreamingEndpointRequestLog
-ObservedTime|si è verificato Hello ora hello telemetria evento (UTC)|2016-09-09T22:42:36.924Z<br/><br/>Hello osservata l'ora viene fornita dalla telemetria hello entità mittente hello (ad esempio un canale). Poiché possono esserci problemi di sincronizzazione tra i componenti, questo valore è approssimativo
+PartitionKey|{ID account}_{ID entità}|e49bef329c29495f9b9570989682069d_64435281c50a4dd8ab7011cb0f4cdf66<br/<br/>L'ID dell'account viene incluso nella chiave di partizione per semplificare i flussi di lavoro in quei casi in cui nello stesso account di archiviazione scrivono più account di Servizi multimediali.
+RowKey|{secondi a mezzanotte}_{valore casuale}|01688_00199<br/><br/>La chiave di riga inizia con il numero di secondi che mancano alla mezzanotte per consentire le principali query di stile all'interno di una partizione. Per altre informazioni, vedere [questo](../cosmos-db/table-storage-design-guide.md#log-tail-pattern) articolo. 
+Timestamp|Data/ora|Timestamp automatico della tabella di Azure 2016-09-09T22:43:42.241Z
+Tipo|Tipo di entità che fornisce i dati di telemetria|Channel/StreamingEndpoint/Archive<br/><br/>Il tipo di evento è semplicemente un valore stringa.
+Nome|Nome dell'evento di telemetria|ChannelHeartbeat/StreamingEndpointRequestLog
+ObservedTime|L'ora (UTC) in cui si è verificato l'evento di telemetria|2016-09-09T22:42:36.924Z<br/><br/>L'ora osservata è fornita dall'entità che invia i dati di telemetria (ad esempio un canale). Poiché possono esserci problemi di sincronizzazione tra i componenti, questo valore è approssimativo
 ServiceID|{ID servizio}|f70bd731-691d-41c6-8f2d-671d0bdc9c7e
-Proprietà specifiche di entità|Come definito dall'evento hello|NomeFlusso: flusso1, bitrate 10123, ...<br/><br/>proprietà rimanenti Hello vengono definite per il tipo di evento specificato hello. Il contenuto della tabella di Azure corrisponde a coppie valore-chiave.  (ovvero, diverse righe di tabella hello hanno diversi set di proprietà).
+Proprietà specifiche di entità|Come definito dall'evento|NomeFlusso: flusso1, bitrate 10123, ...<br/><br/>Vengono definite le proprietà rimanenti per il tipo di evento specificato. Il contenuto della tabella di Azure corrisponde a coppie valore-chiave.  (ovvero a diverse righe della tabella corrispondono diversi set di proprietà).
 
 ### <a name="entity-specific-schema"></a>Schema specifico di entità
 
-Esistono tre tipi specifici di entità telemetric di voci di dati che ogni inseriti con hello seguente frequenza:
+Esistono tre tipi di dati di telemetria specifici di entità inseriti con la seguente frequenza:
 
 - Endpoint di streaming: ogni 30 secondi
 - Canali live: ogni minuto
@@ -99,10 +99,10 @@ Tipo|Tipo|StreamingEndpoint
 Nome|Nome|StreamingEndpointRequestLog
 ObservedTime|ObservedTime|2016-09-09T22:42:36.924Z
 ServiceID|ID del servizio|f70bd731-691d-41c6-8f2d-671d0bdc9c7e
-HostName|Nome host dell'endpoint hello|builddemoserver.Origin.mediaservices.Windows.NET
+HostName|Nome host dell'endpoint|builddemoserver.Origin.mediaservices.Windows.NET
 StatusCode|Stato dei record HTTP|200
 ResultCode|Dettagli del codice risultato|S_OK
-RequestCount|Totale richieste nell'aggregazione hello|3
+RequestCount|Totale delle richieste nell'aggregazione|3
 BytesSent|Insieme dei byte inviati|2987358
 ServerLatency|Latenza media del server (inclusa l'archiviazione)|129
 E2ELatency|Latenza end-to-end media|250
@@ -113,24 +113,24 @@ Proprietà|Valore|Esempi/note
 ---|---|---
 PartitionKey|PartitionKey|e49bef329c29495f9b9570989682069d_64435281c50a4dd8ab7011cb0f4cdf66
 RowKey|RowKey|01688_00199
-Timestamp|Timestamp|Auto timestamp da tabelle di Azure 2016 hello-09-09T22:43:42.241Z
+Timestamp|Timestamp|Timestamp automatico della tabella di Azure 2016-09-09T22:43:42.241Z
 Tipo|Tipo|canale
 Nome|Nome|ChannelHeartbeat
 ObservedTime|ObservedTime|2016-09-09T22:42:36.924Z
 ServiceID|ID del servizio|f70bd731-691d-41c6-8f2d-671d0bdc9c7e
 TrackType|Tipo di testo traccia di testo/video/audio|video/audio
-TrackName|Nome della traccia hello|video/audio_1
+TrackName|Nome della traccia|video/audio_1
 Bitrate|Velocità in bit della traccia|785000
 CustomAttributes||   
 IncomingBitrate|Velocità in bit in ingresso effettiva|784548
-OverlapCount|Inserimento di sovrapposizione hello|0
+OverlapCount|Sovrapposizione nell'inserimento|0
 DiscontinuityCount|Discontinuità di traccia|0
 LastTimestamp|Timestamp degli ultimi dati inseriti|1800488800
-NonincreasingCount|Numero di frammenti scartati a causa l'aumento toonon timestamp|2
+NonincreasingCount|Numero di frammenti scartati a causa del timestamp invariato|2
 UnalignedKeyFrames|Eventuali frammenti (con vari livelli di qualità) ricevuti con fotogrammi chiave non allineati |True
 UnalignedPresentationTime|Eventuali frammenti (con vari livelli/tracce di qualità) ricevuti con l'ora di presentazione non allineata|True
 UnexpectedBitrate|True, se la frequenza in bit audio/video calcolata/effettiva è > 40.000 bps e IncomingBitrate è = = 0 O i valori IncomingBitrate e actualBitrate sono diversi del 50% |True
-Healthy|True, se <br/>overlapCount, <br/>DiscontinuityCount, <br/>NonIncreasingCount, <br/>UnalignedKeyFrames, <br/>UnalignedPresentationTime, <br/>UnexpectedBitrate<br/> sono tutti pari a 0|True <br/><br/>Integro è una funzione composita che restituisce false quando una delle seguenti condizioni attesa hello:<br/><br/>- OverlapCount > 0<br/>- DiscontinuityCount > 0<br/>- NonincreasingCount > 0<br/>- UnalignedKeyFrames == True<br/>- UnalignedPresentationTime == True<br/>- UnexpectedBitrate == True
+Healthy|True, se <br/>overlapCount, <br/>DiscontinuityCount, <br/>NonIncreasingCount, <br/>UnalignedKeyFrames, <br/>UnalignedPresentationTime, <br/>UnexpectedBitrate<br/> sono tutti pari a 0|True<br/><br/>Healthy è una funzione composita che restituisce il valore false in presenza di una delle seguenti condizioni:<br/><br/>- OverlapCount > 0<br/>- DiscontinuityCount > 0<br/>- NonincreasingCount > 0<br/>- UnalignedKeyFrames == True<br/>- UnalignedPresentationTime == True<br/>- UnexpectedBitrate == True
 
 **Archivio live**
 
@@ -138,44 +138,44 @@ Proprietà|Valore|Esempi/note
 ---|---|---
 PartitionKey|PartitionKey|e49bef329c29495f9b9570989682069d_64435281c50a4dd8ab7011cb0f4cdf66
 RowKey|RowKey|01688_00199
-Timestamp|Timestamp|Auto timestamp da tabelle di Azure 2016 hello-09-09T22:43:42.241Z
+Timestamp|Timestamp|Timestamp automatico della tabella di Azure 2016-09-09T22:43:42.241Z
 Tipo|Tipo|Archiviazione
 Nome|Nome|ArchiveHeartbeat
 ObservedTime|ObservedTime|2016-09-09T22:42:36.924Z
 ServiceID|ID del servizio|f70bd731-691d-41c6-8f2d-671d0bdc9c7e
 ManifestName|URL del programma|asset-eb149703-ed0a-483c-91c4-e4066e72cce3/a0a5cfbf-71ec-4bd2-8c01-a92a2b38c9ba.ism
-TrackName|Nome della traccia hello|audio_1
-TrackType|Tipo di traccia hello|Audio/video
+TrackName|Nome della traccia|audio_1
+TrackType|Tipo di traccia|Audio/video
 CustomAttribute|Stringa esadecimale che opera la distinzione fra tracce diverse con lo stesso nome e la stessa velocità in bit (diverse angolazioni)|
 Bitrate|Velocità in bit della traccia|785000
-Healthy|True, se FragmentDiscardedCount == 0 e ArchiveAcquisitionError == False|True (questi due valori non sono presenti nella metrica hello ma sono presenti nell'evento di origine hello)<br/><br/>Integro è una funzione composita che restituisce false quando una delle seguenti condizioni attesa hello:<br/><br/>- FragmentDiscardedCount > 0<br/>- ArchiveAcquisitionError == True
+Healthy|True, se FragmentDiscardedCount == 0 e ArchiveAcquisitionError == False|True (questi due valori non sono presenti nella metrica, ma lo sono nell'evento di origine)<br/><br/>Healthy è una funzione composita che restituisce il valore false in presenza di una delle seguenti condizioni:<br/><br/>- FragmentDiscardedCount > 0<br/>- ArchiveAcquisitionError == True
 
 ## <a name="general-qa"></a>Domande generali
 
-### <a name="how-tooconsume-metrics-data"></a>Come dati di metrica tooconsume?
+### <a name="how-to-consume-metrics-data"></a>Come si usano i dati di metrica?
 
-Dati di metrica vengono archiviati come una serie di tabelle di Azure nell'account di archiviazione del cliente hello. Questi dati possono essere utilizzati con hello seguenti strumenti:
+I dati di metrica vengono archiviati come una serie di tabelle di Azure nell'account di archiviazione del cliente. Questi dati possono essere usati con gli strumenti seguenti:
 
 - SDK DI AMS
-- Microsoft Azure Storage Explorer (supporta il formato di esportazione toocomma delimitati da virgole e trasformati in Excel)
+- Microsoft Azure Storage Explorer (supporta l'esportazione in valori con formato delimitato da virgole ed elaborati in Excel)
 - API REST
 
-### <a name="how-toofind-average-bandwidth-consumption"></a>Come toofind medio di larghezza di banda?
+### <a name="how-to-find-average-bandwidth-consumption"></a>Come si fa a risalire al consumo medio della larghezza di banda?
 
-il consumo di larghezza di banda media Hello è Media hello di BytesSent un intervallo di tempo.
+Il consumo medio della larghezza di banda è la media del valore BytesSent in un determinato intervallo di tempo.
 
-### <a name="how-toodefine-streaming-unit-count"></a>Come numero di unità di streaming toodefine?
+### <a name="how-to-define-streaming-unit-count"></a>Come si fa a definire il numero delle unità di streaming?
 
-numero di unità di streaming Hello può essere definita come velocità effettiva di picco hello dall'endpoint di streaming del servizio hello diviso velocità effettiva di picco hello di un endpoint di streaming. Hello utilizzabile velocità effettiva di picco di un endpoint di streaming è 160 Mbps.
-Si supponga, ad esempio, velocità effettiva di picco hello dal servizio di un cliente è 40 MBps (hello massimo valore BytesSent in un intervallo di tempo). Quindi, numero di unità di streaming hello è uguale too(40 MBps) * /(160 Mbps) (8 bit/byte) = 2 unità di streaming.
+Il numero delle unità di streaming può essere definito come la velocità effettiva massima dagli endpoint di streaming del servizio, divisa per la velocità effettiva massima di un endpoint di streaming. La velocità effettiva massima utilizzabile di un endpoint di streaming è 160 Mbps.
+Si supponga, ad esempio, che la velocità effettiva massima del servizio di un cliente sia 40 MBps (il valore BytesSent massimo in un determinato intervallo di tempo). In questo caso il numero delle unità di streaming è uguale a (40 MBps)*(8 bit/byte)/(160 Mbps) = 2 unità di streaming.
 
-### <a name="how-toofind-average-requestssecond"></a>Come toofind Media richieste al secondo?
+### <a name="how-to-find-average-requestssecond"></a>Come si fa a risalire alla media delle richieste al secondo?
 
-numero medio di hello toofind di richieste al secondo, calcola il numero medio di hello delle richieste (RequestCount) in un intervallo di tempo.
+Per trovare il numero medio di richieste al secondo, calcolare il numero medio di richieste (RequestCount) in un determinato intervallo di tempo.
 
-### <a name="how-toodefine-channel-health"></a>Come toodefine canale integrità?
+### <a name="how-to-define-channel-health"></a>Come si fa a definire l'integrità del canale?
 
-Integrità del canale può essere definita come un funzione booleana composito in modo che sia false quando una delle seguenti condizioni hello:
+L'integrità del canale può essere definita come una funzione booleana composita, che risulta false in presenza di una delle seguenti condizioni:
 
 - OverlapCount > 0
 - DiscontinuityCount > 0
@@ -185,21 +185,21 @@ Integrità del canale può essere definita come un funzione booleana composito i
 - UnexpectedBitrate == True
 
 
-### <a name="how-toodetect-discontinuities"></a>La modalità delle discontinuità toodetect?
+### <a name="how-to-detect-discontinuities"></a>Come si fa a rilevare discontinuità?
 
-discontinuità toodetect, trovare tutte le voci di dati di canale in cui DiscontinuityCount > 0. Hello corrispondente ObservedTime timestamp indica le ore hello in corrispondenza del quale si è verificato discontinuità hello.
+Per individuare eventuali discontinuità, risalire a tutte le voci di dati del canale dove DiscontinuityCount > 0. Il timestamp ObservedTime corrispondente indica le ore in cui si sono verificate le discontinuità.
 
-### <a name="how-toodetect-timestamp-overlaps"></a>Come si sovrappone toodetect timestamp?
+### <a name="how-to-detect-timestamp-overlaps"></a>Come si fa a rilevare le sovrapposizioni del timestamp?
 
-sovrapposizioni di timestamp toodetect, trovare tutte le voci di dati di canale in cui OverlapCount > 0. Hello corrispondente ObservedTime timestamp indica hello volte in cui hello si sovrappone timestamp si è verificati.
+Per rilevare le sovrapposizioni del timestamp, individuare tutte le voci di dati del canale dove OverlapCount > 0. Il timestamp ObservedTime corrispondente indica le ore in cui si è verificata la sovrapposizione del timestamp.
 
-### <a name="how-toofind-streaming-request-failures-and-reasons"></a>Streaming toofind richiesta come errori e motivi?
+### <a name="how-to-find-streaming-request-failures-and-reasons"></a>Come si fa a risalire agli errori nelle richieste di streaming e alle relative cause?
 
-toofind flusso degli errori delle richieste e motivi, trovare tutte le voci di dati di Endpoint di Streaming in cui ResultCode non è uguale tooS_OK. campo StatusCode corrispondente Hello indica hello causa un errore di richiesta di hello.
+Per trovare gli errori nelle richieste di streaming e le relative cause, cercare tutti i dati Streaming Endpoint in cui ResultCode è diverso da S_OK. Il campo StatusCode corrispondente indica il motivo dell'errore della richiesta.
 
-### <a name="how-tooconsume-data-with-external-tools"></a>Come dati tooconsume con strumenti esterni?
+### <a name="how-to-consume-data-with-external-tools"></a>Come faccio a usare i dati con strumenti esterni?
 
-Dati telemetric possono essere elaborati e visualizzati con i seguenti strumenti hello:
+I dati di telemetria possono essere elaborati e visualizzati con gli strumenti seguenti:
 
 - PowerBI
 - Application Insights
@@ -207,9 +207,9 @@ Dati telemetric possono essere elaborati e visualizzati con i seguenti strumenti
 - Dashboard in tempo reale di AMS
 - Portale di Azure (in attesa di rilascio)
 
-### <a name="how-toomanage-data-retention"></a>La conservazione dei dati toomanage?
+### <a name="how-to-manage-data-retention"></a>Come si fa a gestire la conservazione dei dati?
 
-sistema di telemetria Hello non fornisce gestione della conservazione dei dati o l'eliminazione automatica dei vecchi record. Pertanto, è necessario toomanage ed eliminare manualmente i record obsoleti dalla tabella di archiviazione hello. È possibile fare riferimento a SDK toostorage come toodo è.
+Il sistema di telemetria non consente di gestire la conservazione dei dati o l'eliminazione automatica dei vecchi record. Pertanto, i record obsoleti devono essere gestiti ed eliminati manualmente dalla tabella di archiviazione. Consultare l'SDK dell'archiviazione per sapere come fare.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

@@ -1,6 +1,6 @@
 ---
-title: web Array virtuale aaaStorSimple amministrazione dell'interfaccia utente | Documenti Microsoft
-description: "Viene descritto come l'attività di amministrazione di base del dispositivo di tooperform tramite l'interfaccia utente web Array virtuale StorSimple di hello."
+title: Amministrazione dell'interfaccia utente Web dell'array virtuale StorSimple | Microsoft Docs
+description: "Viene illustrato come eseguire attività di amministrazione di base del dispositivo tramite l'interfaccia utente Web dell'array virtuale StorSimple."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,100 +14,100 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 12/1/2016
 ms.author: alkohli
-ms.openlocfilehash: 31a20a587c4302231f027fcf772a50df33b23407
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 989e7b697f9b527df549fb32be18edd1d3c8d224
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-hello-web-ui-tooadminister-your-storsimple-virtual-array"></a>Utilizzare hello dell'interfaccia utente Web tooadminister l'Array virtuale StorSimple
+# <a name="use-the-web-ui-to-administer-your-storsimple-virtual-array"></a>Usare l'interfaccia utente Web per amministrare StorSimple Virtual Array
 ![flusso del processo di installazione](./media/storsimple-ova-web-ui-admin/manage4.png)
 
 ## <a name="overview"></a>Panoramica
-esercitazioni di Hello in questo articolo si applicano versione di disponibilità generale (GA) di toohello Microsoft Azure StorSimple Virtual Array (noto anche come hello StorSimple nel dispositivo virtuale locale) in esecuzione marzo 2016. Questo articolo descrive alcuni dei flussi di lavoro complessi hello e attività di gestione che possono essere eseguite su hello Array virtuale StorSimple. È possibile gestire hello StorSimple Array virtuale utilizzando l'interfaccia utente (tooas cui hello interfaccia utente del portale) del servizio StorSimple Manager hello e interfaccia utente web locale per il dispositivo hello hello. Questo articolo è incentrato sulle attività hello che è possibile eseguire tramite interfaccia utente web hello.
+Le esercitazioni in questo articolo si applicano a Microsoft Azure StorSimple Virtual Array (noto anche come dispositivo virtuale locale StorSimple) che esegue la versione di disponibilità generale (GA) di marzo 2016. Questo articolo illustra una parte dei flussi di lavoro e delle attività di gestione complessi eseguibili sull'array virtuale StorSimple. È possibile gestire StorSimple Virtual Array usando l'interfaccia utente del servizio StorSimple Manager (interfaccia utente del portale) e l'interfaccia utente Web locale per il dispositivo. Questo articolo è incentrato sulle attività che è possibile eseguire con l'interfaccia utente Web.
 
-In questo articolo include hello seguenti esercitazioni:
+L'articolo include le esercitazioni seguenti:
 
-* Ottenere la chiave di crittografia di hello servizio dati
+* Ottenere la chiave DEK del servizio
 * Risolvere i problemi relativi agli errori di installazione dell'interfaccia utente Web
 * Generare un pacchetto di log
 * Arrestare o riavviare il dispositivo
 
-## <a name="get-hello-service-data-encryption-key"></a>Ottenere la chiave di crittografia di hello servizio dati
-Una chiave DEK del servizio viene generata quando si registra il primo dispositivo con hello servizio StorSimple Manager. Questa chiave è quindi necessario con hello servizio registrazione tooregister chiave ulteriori dispositivi con hello servizio StorSimple Manager.
+## <a name="get-the-service-data-encryption-key"></a>Ottenere la chiave DEK del servizio
+Una chiave DEK del servizio viene generata quando si registra il primo dispositivo con il servizio StorSimple Manager. Questa chiave viene richiesta con la chiave di registrazione del servizio per registrare altri dispositivi con il servizio StorSimple Manager.
 
-Se è stato smarrito la chiave DEK del servizio e tooretrieve necessario, eseguire l'esempio hello passaggi hello interfaccia web locale del dispositivo hello registrato con il servizio.
+Se la chiave DEK del servizio è stata smarrita ed è necessario recuperarla, eseguire i passaggi seguenti nell'interfaccia utente Web locale del dispositivo registrato con il servizio.
 
-#### <a name="tooget-hello-service-data-encryption-key"></a>chiave di crittografia tooget hello servizio dati
-1. Connettere l'interfaccia utente web locale toohello. Andare troppo**configurazione** > **le impostazioni del Cloud**.
-2. Nella parte inferiore di hello della pagina hello, fare clic su **chiave DEK del servizio Get**. Viene visualizzata una chiave. Copiare e salvare questa chiave.
+#### <a name="to-get-the-service-data-encryption-key"></a>Per ottenere la chiave DEK del servizio
+1. Connettersi all'interfaccia utente Web locale. Passare a **Configurazione** > **Impostazioni cloud**.
+2. Nella parte inferiore della pagina fare clic su **Ottieni chiave DEK del servizio**. Viene visualizzata una chiave. Copiare e salvare questa chiave.
    
     ![ottenere la chiave DEK del servizio 1](./media/storsimple-ova-web-ui-admin/image27.png)
 
 ## <a name="troubleshoot-web-ui-setup-errors"></a>Risolvere i problemi relativi agli errori di installazione dell'interfaccia utente Web
-In alcuni casi quando si configura il dispositivo di hello tramite web locale hello dell'interfaccia utente, verifichino errori. toodiagnose e risolvere questi errori, è possibile eseguire il test di diagnostica hello.
+In alcuni casi, quando si configura il dispositivo tramite l'interfaccia utente Web locale, è possibile riscontrare alcuni errori. Per diagnosticare e risolvere questi errori, è possibile eseguire i test di diagnostica.
 
-#### <a name="toorun-hello-diagnostic-tests"></a>test diagnostici hello toorun
-1. In hello interfaccia utente web locale, andare troppo**Troubleshooting** > **test diagnostici**.
+#### <a name="to-run-the-diagnostic-tests"></a>Per eseguire i test di diagnostica
+1. Nell'interfaccia utente Web locale passare a **Risoluzione dei problemi** > **Test diagnostici**.
    
     ![eseguire diagnostica 1](./media/storsimple-ova-web-ui-admin/image29.png)
-2. Nella parte inferiore di hello della pagina hello, fare clic su **eseguire i test diagnostici**. Verrà avviata test toodiagnose qualsiasi possibili problemi di rete, dispositivi, proxy web, ora o le impostazioni del cloud. Si riceverà una notifica che il dispositivo hello è in esecuzione di test.
-3. Dopo aver completato il test di hello, hello risultati verranno visualizzati. Hello seguente esempio vengono illustrati hello risultati test di diagnostica. Si noti che le impostazioni di proxy web hello non sono state configurate su questo dispositivo, e di conseguenza, i test di proxy web hello non è stato eseguito. Tutti gli altri test per le impostazioni di rete, server DNS, di hello e le impostazioni dell'ora hanno avuto esito positivo.
+2. Nella parte inferiore della pagina fare clic su **Esegui test diagnostici**. Si avviano così i test per diagnosticare eventuali problemi con la rete, il dispositivo, il proxy Web, l'ora o le impostazioni cloud. Si riceve una notifica in cui si comunica che il dispositivo sta eseguendo dei test.
+3. Al termine dei test, vengono visualizzati i risultati. L'esempio seguente mostra i risultati dei test di diagnostica. Notare che le impostazioni del proxy Web non sono state configurate in questo dispositivo, quindi il test del proxy Web non è stato eseguito. Tutti gli altri test per le impostazioni di rete, il server DNS e le impostazioni ora sono stati completati correttamente.
    
     ![eseguire diagnostica 2](./media/storsimple-ova-web-ui-admin/image30.png)
 
 ## <a name="generate-a-log-package"></a>Generare un pacchetto di log
-Un pacchetto di log è costituito da tutti i log rilevanti hello che consentono di supporto alla risoluzione dei problemi qualsiasi dispositivo. In questa versione, è possibile generare un pacchetto di log tramite l'interfaccia utente web locale hello.
+Un pacchetto di log è costituito da tutti i log rilevanti utili al supporto tecnico Microsoft nella risoluzione dei problemi del dispositivo. In questa versione, un pacchetto di log può essere generato tramite l'interfaccia utente Web locale.
 
-#### <a name="toogenerate-hello-log-package"></a>pacchetto di log hello toogenerate
-1. In hello interfaccia utente web locale, andare troppo**Troubleshooting** > **i registri di sistema**.
+#### <a name="to-generate-the-log-package"></a>Per generare il pacchetto di log
+1. Nell'interfaccia utente Web locale passare a **Risoluzione dei problemi** > **Log di sistema**.
    
     ![generare pacchetto di log 1](./media/storsimple-ova-web-ui-admin/image31.png)
-2. Nella parte inferiore di hello della pagina hello, fare clic su **creare il pacchetto di log**. Verrà creato un pacchetto di hello i registri di sistema. L'operazione richiede alcuni minuti.
+2. Nella parte inferiore della pagina fare clic su **Crea pacchetto di log**. Viene creato un pacchetto di log del sistema. L'operazione richiede alcuni minuti.
    
     ![generare pacchetto di log 2](./media/storsimple-ova-web-ui-admin/image32.png)
    
-    Dopo che viene creato correttamente i pacchetti hello e hello pagina verrà aggiornata ora hello tooindicate e data di creazione pacchetto hello si riceverà la notifica.
+    Se il pacchetto è stato creato correttamente, si riceve una notifica e la pagina viene aggiornata per indicare l'ora e la data di creazione del pacchetto.
    
     ![generare pacchetto di log 3](./media/storsimple-ova-web-ui-admin/image33.png)
 3. Fare clic su **Scarica pacchetto di log**. Un pacchetto compresso viene scaricato nel sistema.
    
     ![generare pacchetto di log 4](./media/storsimple-ova-web-ui-admin/image34.png)
-4. È possibile decomprimere il pacchetto di log scaricati hello e visualizzare i file di registro di sistema hello.
+4. È possibile decomprimere il pacchetto di log scaricato e visualizzare i file di log del sistema.
 
 ## <a name="shut-down-and-restart-your-device"></a>Arrestare e riavviare il dispositivo
-È possibile arrestare o riavviare il dispositivo virtuale utilizzando l'interfaccia utente web locale hello. È consigliabile che prima di riavviare, richiedere hello volumi o condivisioni a offline nell'host di hello e quindi hello dispositivo. Questa operazione consente di eliminare qualsiasi  rischio di danneggiamento dei dati. 
+È possibile arrestare o riavviare il dispositivo virtuale tramite l'interfaccia utente Web locale. Prima di riavviare, si consiglia di portare offline i volumi o le condivisioni sull'host e quindi sul dispositivo. Questa operazione consente di eliminare qualsiasi  rischio di danneggiamento dei dati. 
 
-#### <a name="tooshut-down-your-virtual-device"></a>tooshut verso il basso il dispositivo virtuale
-1. In hello interfaccia utente web locale, andare troppo**manutenzione** > **impostazioni di risparmio energia**.
-2. Nella parte inferiore di hello della pagina hello, fare clic su **arresto**.
+#### <a name="to-shut-down-your-virtual-device"></a>Per arrestare il dispositivo virtuale
+1. Nell'interfaccia utente Web locale passare a **Manutenzione** > **Impostazioni di risparmio energia**.
+2. Nella parte inferiore della pagina fare clic su **Arresto**.
    
     ![arresto del dispositivo 1](./media/storsimple-ova-web-ui-admin/image36.png)
-3. Verrà visualizzato un avviso che informa che un arresto del dispositivo hello interromperà tutti i/o in corso, risultante in un tempo di inattività. Fare clic sull'icona di controllo hello ![icona del segno di spunta](./media/storsimple-ova-web-ui-admin/image3.png).
+3. Verrà visualizzato un avviso per segnalare che l'arresto del dispositivo interromperà ogni IO in corso, causando un periodo di inattività. Fare clic sull’icona del segno di spunta  ![icona del segno di spunta](./media/storsimple-ova-web-ui-admin/image3.png).
    
     ![avviso di arresto del dispositivo](./media/storsimple-ova-web-ui-admin/image37.png)
    
-    Si riceverà una notifica che è stata avviata la chiusura hello.
+    Si riceve una notifica in cui si comunica che l'arresto è stato avviato.
    
     ![arresto del dispositivo avviato](./media/storsimple-ova-web-ui-admin/image38.png)
    
-    dispositivo Hello verrà arrestato. Se si desidera toostart il dispositivo, è necessario toodo che tramite hello Hyper-V Manager.
+    Il dispositivo viene ora arrestato. Se si desidera avviare il dispositivo, è necessario farlo tramite la console di gestione Hyper-V.
 
-#### <a name="toorestart-your-virtual-device"></a>toorestart del dispositivo virtuale
-1. In hello interfaccia utente web locale, andare troppo**manutenzione** > **impostazioni di risparmio energia**.
-2. Nella parte inferiore di hello della pagina hello, fare clic su **riavviare**.
+#### <a name="to-restart-your-virtual-device"></a>Per riavviare il dispositivo virtuale
+1. Nell'interfaccia utente Web locale passare a **Manutenzione** > **Impostazioni di risparmio energia**.
+2. Nella parte inferiore della pagina fare clic su **Riavvia**.
    
     ![riavvio del dispositivo](./media/storsimple-ova-web-ui-admin/image36.png)
-3. Verrà visualizzato un avviso che informa che il dispositivo hello riavviare interromperà qualsiasi IOs in corso, risultante in un tempo di inattività. Fare clic sull'icona di controllo hello ![icona del segno di spunta](./media/storsimple-ova-web-ui-admin/image3.png).
+3. Viene visualizzato un avviso in cui si informa che il riavvio del dispositivo interromperà ogni IO in corso, causando un tempo di inattività. Fare clic sull’icona del segno di spunta  ![icona del segno di spunta](./media/storsimple-ova-web-ui-admin/image3.png).
    
     ![avviso di riavvio](./media/storsimple-ova-web-ui-admin/image37.png)
    
-    Si riceverà una notifica che il riavvio hello è stato avviato.
+    Si riceve una notifica in cui si comunica che il riavvio è iniziato.
    
     ![riavvio iniziato](./media/storsimple-ova-web-ui-admin/image39.png)
    
-    Durante il riavvio di hello è in corso, si perderà hello connessione toohello dell'interfaccia utente. È possibile monitorare il riavvio di hello aggiornando periodicamente hello dell'interfaccia utente. In alternativa, è possibile monitorare lo stato di riavvio del dispositivo hello tramite hello Hyper-V Manager.
+    Durante il riavvio, si perde la connessione all'interfaccia utente. È possibile monitorare il riavvio aggiornando periodicamente l'interfaccia utente. In alternativa, è possibile monitorare lo stato di riavvio del dispositivo tramite la console di gestione Hyper-V.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Informazioni su come troppo[utilizzare hello toomanage servizio StorSimple Manager dispositivo](storsimple-virtual-array-manager-service-administration.md).
+Informazioni su come [Utilizzare il servizio StorSimple Manager per amministrare il dispositivo StorSimple](storsimple-virtual-array-manager-service-administration.md).
 

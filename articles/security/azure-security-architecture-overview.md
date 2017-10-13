@@ -1,6 +1,6 @@
 ---
-title: Panoramica dell'architettura aaaSecurity | Documenti Microsoft
-description: articolo Hello fornisce una panoramica dell'architettura di sicurezza di Azure e un elenco curato di articoli correlati.
+title: Panoramica dell'architettura della sicurezza | Documentazione Microsoft
+description: L'articolo fornisce una panoramica dell'architettura della sicurezza di Azure e un elenco dettagliato di articoli correlati.
 services: security
 documentationcenter: na
 author: TomShinder
@@ -14,16 +14,16 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/04/2017
 ms.author: yurid
-ms.openlocfilehash: 74f24c6169642c45e2f141e1b1b1d9b20385904f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: efb0cfa4b7950a2d9418282965a23498a67cbffc
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="security-architecture-overview"></a>Panoramica dell'architettura della sicurezza
-Con una solida architettura è uno dei hello chiavi toosuccess per quanto riguarda le distribuzioni di soluzioni toosecure in Azure. Con queste informazioni si è in grado di toobetter comprendere i requisiti conoscendo tooask domande corrette hello e più completa toofind hello risposte corrette tooyour domande. Ottenere risposte destra domande corrette toohello può risultare molto utile per l'ottimizzazione di sicurezza hello delle distribuzioni.
+Una solida architettura è uno degli elementi fondamentali per poter distribuire soluzioni sicure in Azure. Con questo obiettivo in mente, sarà possibile determinare più facilmente i requisiti necessari rispondendo in modo appropriato a domande mirate. Rispondere correttamente alle domande appropriate consente di ottimizzare la sicurezza delle distribuzioni.
 
-In questa sezione sono disponibili articoli sull'architettura della sicurezza di Azure che consentono di creare soluzioni sicure. È anche inclusa una raccolta di ampia diffusione delle procedure consigliate e dei modelli per la sicurezza di Azure. In questo momento, ci sono i seguenti articoli hello: rendere toovisit che il sito e hello blog del Team di sicurezza di Azure per gli aggiornamenti a intervalli regolari:
+In questa sezione sono disponibili articoli sull'architettura della sicurezza di Azure che consentono di creare soluzioni sicure. È anche inclusa una raccolta di ampia diffusione delle procedure consigliate e dei modelli per la sicurezza di Azure. Attualmente sono disponibili gli articoli seguenti. Per gli aggiornamenti, visitare periodicamente il sito e il blog del team di sicurezza di Azure:
 
 * [Classificazione dei dati in preparazione al cloud](azure-security-data-classification.md)
 * [Architettura delle applicazioni in Microsoft Azure](security-application-architecture-on-azure.md)

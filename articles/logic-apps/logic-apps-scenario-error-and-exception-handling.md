@@ -1,5 +1,5 @@
 ---
-title: aaaException Gestione & dello scenario di registrazione errore - App Azure per la logica | Documenti Microsoft
+title: Scenario di gestione delle eccezioni e registrazione degli errori - App per la logica di Azure | Microsoft Docs
 description: "Viene descritto un caso d'uso reale riguardo a modalità avanzate di gestione delle eccezioni e registrazione degli errori per le app per la logica di Azure"
 keywords: 
 services: logic-apps
@@ -16,51 +16,51 @@ ms.topic: article
 ms.custom: H1Hack27Feb2017
 ms.date: 07/29/2016
 ms.author: LADocs; b-hoedid
-ms.openlocfilehash: e893a7b652254dca7b8a82398e8afd571f6ccd25
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 044de27c75da93c95609110d2b73336c42f746fe
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="scenario-exception-handling-and-error-logging-for-logic-apps"></a>Scenario: Gestione delle eccezioni e registrazione degli errori per le app per la logica
 
-In questo scenario viene illustrato come estendere una logica app toobetter supporto delle eccezioni. È stata utilizzata una domanda di uso reale tooanswer case hello: "App per la logica di Azure supporta eccezione e la gestione degli errori?"
+Questo scenario descrive come è possibile estendere un'app per la logica per supportare al meglio la gestione delle eccezioni. Si tratta di un caso d'uso reale che risponde alla domanda "Le app per la logica di Azure supportano la gestione di errori ed eccezioni?".
 
 > [!NOTE]
-> schema delle app di Azure logica corrente Hello fornisce un modello standard per le risposte di azione. che include le risposte per gli errori e la convalida interna restituite da un'app per le API.
+> Lo schema corrente delle app per la logica di Azure offre un modello standard per le risposte alle azioni, che include le risposte per gli errori e la convalida interna restituite da un'app per le API.
 
 ## <a name="scenario-and-use-case-overview"></a>Panoramica su scenario e caso d'uso
 
-Ecco storia hello come caso d'uso hello per questo scenario: 
+Questa è la storia riportata nel caso d'uso per lo scenario: 
 
-Un'organizzazione sanitaria nota dovrà us toodevelop una soluzione di Azure che creerebbe un portale del paziente con Microsoft Dynamics CRM Online. Sono necessari i record di un appuntamento toosend tra portale paziente Dynamics CRM Online hello e Salesforce. Ci siamo richiesto hello toouse [HL7 FHIR](http://www.hl7.org/implement/standards/fhir/) standard per tutti i pazienti.
+Una nota organizzazione sanitaria ha richiesto lo sviluppo di una soluzione di Azure per creare un portale per i pazienti con Microsoft Dynamics CRM Online, con invio dei record degli appuntamenti tra il portale per i pazienti Dynamics CRM Online e Salesforce. È stato richiesto di usare lo standard [HL7 FHIR](http://www.hl7.org/implement/standards/fhir/) per tutti i record dei pazienti.
 
-progetto Hello ha due requisiti principali:  
+Il progetto prevedeva due requisiti principali:  
 
-* Un record di toolog metodo inviati da hello portale Dynamics CRM Online
-* Un modo tooview eventuali errori che si sono verificati all'interno del flusso di lavoro hello
+* Un metodo per registrare i record inviati dal portale Dynamics CRM Online
+* Un modo per visualizzare gli eventuali errori verificatisi nel flusso di lavoro
 
 > [!TIP]
-> Per un video di alto livello su questo progetto, vedere [gruppo utente Integration](http://www.integrationusergroup.com/logic-apps-support-error-handling/ "gruppo utente Integration").
+> Per un video dettagliato su questo progetto, andare alla pagina di [Integration User Group](http://www.integrationusergroup.com/logic-apps-support-error-handling/ "Integration User Group").
 
-## <a name="how-we-solved-hello-problem"></a>Come abbiamo risolto il problema di hello
+## <a name="how-we-solved-the-problem"></a>Come è stato risolto il problema
 
-Abbiamo scelto [Azure Cosmos DB](https://azure.microsoft.com/services/documentdb/ "Azure Cosmos DB") come repository per i record di log e di errore hello (toorecords come documenti Cosmos DB fa riferimento). Poiché le app di logica di Azure dispone di un modello standard per tutte le risposte, non sono toocreate uno schema personalizzato. È stato possibile creare un'app per le API troppo**inserire** e **Query** per i record di errore e di log. È inoltre possibile definire uno schema per ognuna all'interno di app per le API hello.  
+Come repository per i record di log e di errore è stato scelto [Azure Cosmos DB](https://azure.microsoft.com/services/documentdb/ "Azure Cosmos DB"), in cui i record sono definiti documenti. Dato che le app per la logica di Azure includono un modello standard per tutte le risposte, non è stato necessario creare uno schema personalizzato. È stato possibile creare un'app per le API per l'**inserimento** e la **query** per i record di errore e di log. È stato anche possibile definire uno schema per ognuno all'interno dell'app per le API.  
 
-Un altro requisito è stato record toopurge dopo una certa data. COSMOS DB è una proprietà denominata [ora tooLive](https://azure.microsoft.com/blog/documentdb-now-supports-time-to-live-ttl/ "ora tooLive") (TTL), che ha consentito tooset un **ora tooLive** valore per ogni record o una raccolta. Questa funzionalità eliminate hello necessità toomanually eliminare i record nel database Cosmos.
+Un altro requisito era ripulire i record dopo una certa data. Cosmos DB include una proprietà denominata [durata (TTL)](https://azure.microsoft.com/blog/documentdb-now-supports-time-to-live-ttl/ "durata (TTL)") che ha consentito di impostare un valore di **durata (TTL)** per ogni record o raccolta. Questa funzionalità ha evitato di dover eliminare manualmente i record in Cosmos DB.
 
 > [!IMPORTANT]
-> toocomplete questa esercitazione, è necessario un database DB Cosmos toocreate e due raccolte (registrazione e gli errori).
+> Per completare questa esercitazione, è necessario creare un database Cosmos DB e due raccolte, per la registrazione e gli errori.
 
-## <a name="create-hello-logic-app"></a>Creare app per la logica hello
+## <a name="create-the-logic-app"></a>Creare l'app per la logica
 
-primo passaggio Hello è toocreate hello logica app e app hello aperto nella finestra di progettazione logica App. In questo esempio vengono usate app per la logica padre-figlio. Si supponga che è già stato creato il padre di hello e verranno toocreate uno figlio logica app.
+Il primo passaggio consiste nel creare l'app per la logica e aprirla nella finestra di progettazione di app per la logica. In questo esempio vengono usate app per la logica padre-figlio. Partendo dal presupposto di aver già creato l'elemento padre, si procederà alla creazione di un'app per la logica figlio.
 
-Poiché verrà record hello toolog provengano da Dynamics CRM Online, iniziamo nella parte superiore di hello. È necessario utilizzare un **richiesta** trigger hello padre logica app attiva l'elemento figlio.
+Dato che si prevede di registrare il record proveniente da Dynamics CRM Online, si inizierà dal principio. È necessario usare un trigger di **richiesta**, perché l'app per la logica padre attiva questo elemento figlio.
 
 ### <a name="logic-app-trigger"></a>Trigger dell'app per la logica
 
-Si sta usando un **richiesta** trigger come illustrato nell'esempio seguente hello:
+Viene usato un trigger di **richiesta** come illustrato nell'esempio seguente:
 
 ```` json
 "triggers": {
@@ -100,14 +100,14 @@ Si sta usando un **richiesta** trigger come illustrato nell'esempio seguente hel
 
 ## <a name="steps"></a>Passi
 
-È necessario eseguire l'accesso di origine hello (request) del record paziente hello dal portale di Dynamics CRM Online hello.
+È necessario registrare l'origine (richiesta) del record del paziente dal portale Dynamics CRM Online.
 
 1. È necessario ottenere un nuovo record di appuntamento da Dynamics CRM Online.
 
-   trigger Hello provenienti da CRM ci offre hello **CRM PatentId**, **tipo di record**, **nuovo o aggiornato Record** (nuovo o aggiornare un valore booleano), e  **SalesforceId**. Hello **SalesforceId** può essere null, poiché viene utilizzato solo per un aggiornamento.
-   Record CRM hello si ottiene utilizzando hello CRM **PatientID** hello e **tipo di Record**.
+   Il trigger proveniente da CRM fornisce il **PatientID CRM**, il **tipo di record**, un **valore booleano new o update** che indica un record nuovo o aggiornato e **SalesforceId**. **SalesforceId** può essere Null perché viene usato solo per un aggiornamento.
+   Per ottenere il record CRM si userà il **PatientID** di CRM e il **tipo di record**.
 
-2. È quindi necessario tooadd l'app per le API DocumentDB **InsertLogEntry** operazione, come illustrato di seguito in Progettazione applicazione logica.
+2. È quindi necessario aggiungere l'operazione **InsertLogEntry** dell'app per le API DocumentDB, come illustrato qui in Progettazione app per la logica.
 
    **Inserire una voce di log**
 
@@ -124,15 +124,15 @@ Si sta usando un **richiesta** trigger come illustrato nell'esempio seguente hel
 ## <a name="logic-app-source-code"></a>Codice sorgente dell'app per la logica
 
 > [!NOTE]
-> seguono esempi Hello è solo gli esempi. Poiché in questa esercitazione si basa sull'implementazione di un'ora nell'ambiente di produzione, hello valore di un **nodo di origine** potrebbe non visualizzare le proprietà correlate tooscheduling un appuntamento. > 
+> Quelli riportati di seguito sono solo esempi. Dato che l'esercitazione è basata su un'implementazione attualmente in produzione, il valore di un **nodo di origine** potrebbe non mostrare le proprietà correlate alla pianificazione di un appuntamento.> 
 
 ### <a name="logging"></a>Registrazione
 
-Hello seguendo la logica app codice di esempio viene illustrata la modalità registrazione toohandle.
+L'esempio di codice dell'app per la logica seguente illustra come gestire la registrazione.
 
 #### <a name="log-entry"></a>Voce di log
 
-Ecco il codice sorgente di hello logica app per l'inserimento di una voce di log.
+Questo è il codice sorgente dell'app per la logica per l'inserimento di una voce di log.
 
 ``` json
 "InsertLogEntry": {
@@ -160,7 +160,7 @@ Ecco il codice sorgente di hello logica app per l'inserimento di una voce di log
 
 #### <a name="log-request"></a>Richiesta di log
 
-Di seguito è registrata l'app per le API toohello messaggio di richiesta di hello log.
+Questo è il messaggio di richiesta di log inviato all'app per le API.
 
 ``` json
     {
@@ -180,7 +180,7 @@ Di seguito è registrata l'app per le API toohello messaggio di richiesta di hel
 
 #### <a name="log-response"></a>Risposta di log
 
-Di seguito è hello log messaggio di risposta app hello per le API.
+Questo è il messaggio di risposta di log proveniente dall'app per le API.
 
 ``` json
 {
@@ -214,15 +214,15 @@ Di seguito è hello log messaggio di risposta app hello per le API.
 
 ```
 
-Ora esaminiamo i passaggi di gestione degli errori di hello.
+Verranno ora esaminati i passaggi della gestione degli errori.
 
 ### <a name="error-handling"></a>Gestione degli errori
 
-Hello logica app esempio seguente viene illustrato come è possibile implementare la gestione degli errori.
+L'esempio di codice di app per la logica seguente illustra come è possibile implementare la gestione degli errori.
 
 #### <a name="create-error-record"></a>Creare record di errore
 
-Ecco il codice sorgente di hello logica app per la creazione di un record di errore.
+Questo è il codice sorgente dell'app per la logica per la creazione di un record di errore.
 
 ``` json
 "actions": {
@@ -269,7 +269,7 @@ Ecco il codice sorgente di hello logica app per la creazione di un record di err
         "isError": true,
         "crmId": "6b115f6d-a7ee-e511-80f5-3863bb2eb2d0",
         "patientId": "6b115f6d-a7ee-e511-80f5-3863bb2eb2d0",
-        "message": "Salesforce failed toocomplete task: Message: duplicate value found: Account_ID_MED__c duplicates value on record with id: 001U000001c83gK",
+        "message": "Salesforce failed to complete task: Message: duplicate value found: Account_ID_MED__c duplicates value on record with id: 001U000001c83gK",
         "providerId": "",
         "severity": 4,
         "salesforceId": "",
@@ -307,7 +307,7 @@ Ecco il codice sorgente di hello logica app per la creazione di un record di err
         "action": "New_Patient",
         "salesforceId": "",
         "update": false,
-        "body": "CRM failed toocomplete task: Message: duplicate value found: CRM_HUB_ID__c duplicates value on record with id: 001U000001c83gK",
+        "body": "CRM failed to complete task: Message: duplicate value found: CRM_HUB_ID__c duplicates value on record with id: 001U000001c83gK",
         "source": "{/"Account_Class_vod__c/":/"PRAC/",/"Account_Status_MED__c/":/"I/",/"CRM_HUB_ID__c/":/"6b115f6d-a7ee-e511-80f5-3863bb2eb2d0/",/"Credentials_vod__c/":/"DO - Degree level is DO/",/"DTC_ID_MED__c/":/"/",/"Fax/":/"/",/"FirstName/":/"A/",/"Gender_vod__c/":/"/",/"IMS_ID__c/":/"/",/"LastName/":/"BAILEY/",/"MterID_mp__c/":/"/",/"Medicis_ID_MED__c/":/"851588/",/"Middle_vod__c/":/"/",/"NPI_vod__c/":/"/",/"PDRP_MED__c/":false,/"PersonDoNotCall/":false,/"PersonEmail/":/"/",/"PersonHasOptedOutOfEmail/":false,/"PersonHasOptedOutOfFax/":false,/"PersonMobilePhone/":/"/",/"Phone/":/"/",/"Practicing_Specialty__c/":/"FM - FAMILY MEDICINE/",/"Primary_City__c/":/"/",/"Primary_State__c/":/"/",/"Primary_Street_Line2__c/":/"/",/"Primary_Street__c/":/"/",/"Primary_Zip__c/":/"/",/"RecordTypeId/":/"012U0000000JaPWIA0/",/"Request_Date__c/":/"2016-06-10T22:31:55.9647467Z/",/"XXXXXXX/":/"/",/"Specialty_1_vod__c/":/"/",/"Suffix_vod__c/":/"/",/"Website/":/"/"}",
         "code": 400,
         "errors": null,
@@ -340,7 +340,7 @@ Ecco il codice sorgente di hello logica app per la creazione di un record di err
     },
     "body": {
         "status": 400,
-        "message": "Salesforce failed toocomplete task: Message: duplicate value found: Account_ID_MED__c duplicates value on record with id: 001U000001c83gK",
+        "message": "Salesforce failed to complete task: Message: duplicate value found: Account_ID_MED__c duplicates value on record with id: 001U000001c83gK",
         "source": "Salesforce.Common",
         "errors": []
     }
@@ -348,11 +348,11 @@ Ecco il codice sorgente di hello logica app per la creazione di un record di err
 
 ```
 
-### <a name="return-hello-response-back-tooparent-logic-app"></a>Restituire hello risposta tooparent indietro logica app
+### <a name="return-the-response-back-to-parent-logic-app"></a>Restituire la risposta all'app per la logica padre
 
-Dopo avere ottenuto una risposta di hello, è possibile passare risposta hello toohello indietro padre logica app.
+Dopo aver ottenuto la risposta, è possibile trasmetterla all'app per la logica padre.
 
-#### <a name="return-success-response-tooparent-logic-app"></a>App per la logica tooparent risposta restituito esito positivo
+#### <a name="return-success-response-to-parent-logic-app"></a>Restituire la risposta di esito positivo all'app per la logica padre
 
 ``` json
 "SuccessResponse": {
@@ -374,7 +374,7 @@ Dopo avere ottenuto una risposta di hello, è possibile passare risposta hello t
 }
 ```
 
-#### <a name="return-error-response-tooparent-logic-app"></a>Errore restituito risposta tooparent logica app
+#### <a name="return-error-response-to-parent-logic-app"></a>Restituire la risposta di errore all'app per la logica padre
 
 ``` json
 "ErrorResponse": {
@@ -404,12 +404,12 @@ In questa soluzione sono state aggiunte funzionalità con [Cosmos DB](https://az
 
 ### <a name="error-management-portal"></a>Portale di gestione degli errori
 
-errori di hello tooview, è possibile creare un record di errore MVC web app toodisplay hello da DB Cosmos. Hello **elenco**, **dettagli**, **modifica**, e **eliminare** sono incluse le operazioni nella versione corrente di hello.
+Per consultare gli errori, è possibile creare un'app Web MVC per visualizzare i record di errore da Cosmos DB. Nella versione corrente sono incluse operazioni di tipo **Elenco**, **Dettagli**, **Modifica** ed **Elimina**.
 
 > [!NOTE]
-> Operazione di modifica: Cosmos DB sostituisce l'intero documento hello. Hello record visualizzati in hello **elenco** e **dettaglio** le visualizzazioni sono solo gli esempi. Non si tratta di record effettivi di appuntamenti dei pazienti.
+> Con l'operazione di modifica, Cosmos DB sostituisce l'intero documento. I record contenuti nelle visualizzazioni **elenco** e **dettagli** sono solo esempi. Non si tratta di record effettivi di appuntamenti dei pazienti.
 
-Ecco alcuni esempi di applicazione MVC vengono descritti i dettagli creati in precedenza con hello approccio.
+Questi sono esempi dei dettagli dell'app MVC creati con l'approccio precedentemente descritto.
 
 #### <a name="error-management-list"></a>Elenco di gestione degli errori
 ![Elenco errori](media/logic-apps-scenario-error-and-exception-handling/errorlist.png)
@@ -419,7 +419,7 @@ Ecco alcuni esempi di applicazione MVC vengono descritti i dettagli creati in pr
 
 ### <a name="log-management-portal"></a>Portale di gestione dei log
 
-log hello tooview, è inoltre creata un'applicazione web MVC. Ecco alcuni esempi di applicazione MVC vengono descritti i dettagli creati in precedenza con hello approccio.
+È stata creata un'app Web MVC anche per visualizzare i log. Questi sono esempi dei dettagli dell'app MVC creati con l'approccio precedentemente descritto.
 
 #### <a name="sample-log-detail-view"></a>Visualizzazione di dettagli dei log di esempio
 ![Visualizzare i dettagli dei log](media/logic-apps-scenario-error-and-exception-handling/samplelogdetail.png)
@@ -434,14 +434,14 @@ L'app per le API di gestione delle eccezioni delle App per la logica di Azure of
 * **LogController** inserisce un record di log (documento) in una raccolta di DocumentDB.
 
 > [!TIP]
-> Utilizzano entrambi i controller `async Task<dynamic>` operazioni, consentendo operazioni tooresolve in fase di esecuzione, affinché sia possibile creare hello schema DocumentDB nel corpo di hello dell'operazione di hello. 
+> Entrambi i controller usano operazioni `async Task<dynamic>`, che consentono la risoluzione in fase di runtime, per poter creare lo schema di DocumentDB nel corpo dell'operazione. 
 > 
 
-Ogni documento in DocumentDB deve avere un ID univoco. Si sta usando `PatientId` e l'aggiunta di timestamp tooa Unix timestamp valore convertito (double). Valore frazionario dei hello valore tooremove hello è troncato.
+Ogni documento in DocumentDB deve avere un ID univoco. Viene usato `PatientId` e viene aggiunto un timestamp che sarà convertito in un valore di timestamp Unix (double). Il valore viene troncato per rimuovere il valore frazionario.
 
-È possibile visualizzare il codice sorgente hello del nostro controller Errore API [da GitHub](https://github.com/HEDIDIN/LogicAppsExceptionManagementApi/blob/master/Logic App Exception Management API/Controllers/ErrorController.cs).
+È possibile visualizzare il codice sorgente dell'API del controller degli errori [da GitHub](https://github.com/HEDIDIN/LogicAppsExceptionManagementApi/blob/master/Logic App Exception Management API/Controllers/ErrorController.cs).
 
-Viene chiamato hello API da un'app logica tramite hello la seguente sintassi:
+L'API viene chiamata da un'app per la logica usando la sintassi seguente:
 
 ``` json
  "actions": {
@@ -474,17 +474,17 @@ Viene chiamato hello API da un'app logica tramite hello la seguente sintassi:
  }
 ```
 
-espressione nel precedente esempio di codice cerca hello hello Hello *Create_NewPatientRecord* stato **Failed**.
+L'espressione nell'esempio di codice precedente verifica la presenza dello stato **Non riuscito** di *Create_NewPatientRecord*.
 
 ## <a name="summary"></a>Riepilogo
 
 * È possibile implementare facilmente la registrazione e la gestione degli errori in un'app per la logica.
-* È possibile utilizzare DocumentDB come repository di hello per i record di log e di errore (documenti).
-* È possibile utilizzare MVC toocreate un log toodisplay portale e i record degli errori.
+* È possibile usare DocumentDB come repository per i record di log e di errore (documenti).
+* È possibile usare MVC per creare un portale per la visualizzazione dei record di log e di errore.
 
 ### <a name="source-code"></a>Codice sorgente
 
-è disponibile in questo codice di sorgente Hello per la gestione delle eccezioni App per la logica dell'applicazione API hello [repository GitHub](https://github.com/HEDIDIN/LogicAppsExceptionManagementApi "API di gestione delle eccezioni di logica App").
+Il codice sorgente dell'applicazione per le API di gestione delle eccezioni di app per la logica è disponibile in questo [repository GitHub](https://github.com/HEDIDIN/LogicAppsExceptionManagementApi "API di gestione delle eccezioni dell'app per la logica").
 
 ## <a name="next-steps"></a>Passaggi successivi
 

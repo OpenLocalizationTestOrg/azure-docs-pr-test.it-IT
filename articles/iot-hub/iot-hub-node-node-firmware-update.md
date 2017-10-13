@@ -1,6 +1,6 @@
 ---
-title: aggiornamento del firmware aaaDevice con l'IoT Hub Azure (nodo) | Documenti Microsoft
-description: "Come aggiornare la gestione dei dispositivi toouse su Azure IoT Hub tooinitiate un firmware del dispositivo. È consigliabile utilizzare hello Azure IoT SDK per Node.js tooimplement un'app dispositivo simulato e un'applicazione di servizio che attiva l'aggiornamento del firmware hello."
+title: Aggiornamento firmware del dispositivo con l'hub IoT di Azure (Node) | Documentazione Microsoft
+description: Come usare la gestione dei dispositivi nell'hub IoT di Azure per avviare un aggiornamento del firmware del dispositivo. Usare Azure IoT SDK per Node.js per implementare un'app per dispositivo simulato e un'app di servizio che attiva l'aggiornamento del firmware.
 services: iot-hub
 documentationcenter: .net
 author: juanjperez
@@ -12,57 +12,56 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/06/2017
+ms.date: 09/07/2017
 ms.author: juanpere
-ms.openlocfilehash: 99d4b369e7aba334bf713e0c657e6e5d227fb691
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e169367592b25ea45c3d1017937316a3b3b538b8
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="use-device-management-tooinitiate-a-device-firmware-update-nodenode"></a>Usare Gestione di dispositivi tooinitiate un aggiornamento del firmware del dispositivo (nodo)
+# <a name="use-device-management-to-initiate-a-device-firmware-update-nodenode"></a>Usare la gestione dei dispositivi per avviare un aggiornamento del firmware del dispositivo (Node/Node)
 [!INCLUDE [iot-hub-selector-firmware-update](../../includes/iot-hub-selector-firmware-update.md)]
 
-## <a name="introduction"></a>Introduzione
-In hello [iniziare con la gestione dei dispositivi] [ lnk-dm-getstarted] esercitazione, si è visto come hello toouse [doppi dispositivo] [ lnk-devtwin] e [diretto metodi] [ lnk-c2dmethod] tooremotely primitive riavviare un dispositivo. Questa esercitazione viene utilizzato hello stesse primitive IoT Hub e vengono fornite informazioni aggiuntive e Mostra come toodo un end-to-end simulato l'aggiornamento del firmware.  Questo modello è usato nell'implementazione di aggiornamento del firmware hello per: esempio hello Intel Edison dispositivo.
+Nell'esercitazione [Introduzione alla gestione dei dispositivi][lnk-dm-getstarted] è stato illustrato come usare il [dispositivo gemello][lnk-devtwin] e le primitive dei [metodi diretti][lnk-c2dmethod] per riavviare un dispositivo in modalità remota. Questa esercitazione usa le stesse primitive dell'hub IoT, offre indicazioni e illustra come eseguire un aggiornamento del firmware simulato completo.  Questo schema viene usato nell'implementazione dell'aggiornamento del firmware per il dispositivo di esempio Intel Edison.
 
 Questa esercitazione illustra come:
 
-* Creare un'applicazione console Node. js che chiama hello firmwareUpdate dirette del metodo nell'app dispositivo simulato hello tramite l'hub IoT.
-* Creare un'app di dispositivo simulato che implementa un metodo diretto **firmwareUpdate**. Questo metodo avvia un processo a più fasi che attende l'immagine di firmware hello toodownload, scarica l'immagine del firmware hello e infine applica immagine del firmware hello. Durante ogni fase dell'aggiornamento hello hello dispositivo utilizza hello segnalato tooreport proprietà sullo stato di avanzamento.
+* Creare un'app console Node.js che chiama il metodo diretto firmwareUpdate nell'app per dispositivo simulato tramite l'hub IoT.
+* Creare un'app di dispositivo simulato che implementa un metodo diretto **firmwareUpdate**. Questo metodo avvia un processo in più fasi che attende di scaricare l'immagine del firmware, quindi la scarica e infine la applica. Durante l'esecuzione di ogni fase, il dispositivo usa le proprietà segnalate per aggiornare lo stato.
 
-Alla fine di hello di questa esercitazione, si dispongono di due applicazioni di console Node.js:
+Al termine di questa esercitazione si avranno due app console Node.js:
 
-**dmpatterns_fwupdate_service.js**, che chiama un metodo diretto in app hello dispositivo simulato, Visualizza la risposta hello e periodicamente (ogni 500ms) consente di visualizzare hello aggiornato segnalati proprietà.
+**dmpatterns_fwupdate_service.js**, che chiama un metodo diretto nell'app per dispositivo simulato, visualizza la risposta e visualizza regolarmente (ogni 500 ms) le proprietà segnalate aggiornate.
 
-**dmpatterns_fwupdate_device.js**, che connette l'hub IoT tooyour con l'identità del dispositivo hello creato in precedenza, riceve un metodo diretto firmwareUpdate, viene eseguito tramite un processo più stati di toosimulate un aggiornamento del firmware tra: in attesa di hello immagine di scaricare, download hello nuova immagine e infine applica immagine hello.
+**dmpatterns_fwupdate_device.js**, che connette all'hub IoT con l'identità del dispositivo creata prima, riceve un metodo diretto firmwareUpdate, esegue un processo in più stati per simulare un aggiornamento del firmware, inclusi l'attesa del download dell'immagine, il download della nuova immagine e infine l'applicazione dell'immagine.
 
-toocomplete questa esercitazione, è necessario hello seguenti:
+Per completare l'esercitazione, sono necessari gli elementi seguenti:
 
-* Node.js 0.12.x o versione successiva. <br/>  [Preparare l'ambiente di sviluppo] [ lnk-dev-setup] viene descritto come tooinstall Node.js per questa esercitazione su Windows o Linux.
+* Node.js 4.0.x o versione successiva. <br/>  [Prepare your development environment][lnk-dev-setup] (Preparare l'ambiente di sviluppo) descrive come installare Node.js per questa esercitazione in Windows o Linux.
 * Un account Azure attivo. Se non si ha un account, è possibile creare un [account gratuito][lnk-free-trial] in pochi minuti.
 
-Seguire hello [iniziare con la gestione dei dispositivi](iot-hub-node-node-device-management-get-started.md) articolo toocreate l'hub IoT e ottenere la stringa di connessione IoT Hub.
+Vedere l'articolo [Introduzione alla gestione dei dispositivi](iot-hub-node-node-device-management-get-started.md) per creare l'hub IoT e ottenere la stringa di connessione relativa.
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
 [!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity.md)]
 
-## <a name="trigger-a-remote-firmware-update-on-hello-device-using-a-direct-method"></a>Attivare un aggiornamento del firmware remota sul dispositivo hello utilizzando un metodo diretto
-In questa sezione viene creata un'app console Node.js che avvia un aggiornamento del firmware remoto in un dispositivo. utilizza dispositivo doppi query tooperiodically ottenere lo stato di hello dell'aggiornamento del firmware active hello app Hello utilizza un aggiornamento di hello tooinitiate dirette del metodo.
+## <a name="trigger-a-remote-firmware-update-on-the-device-using-a-direct-method"></a>Attivare un aggiornamento del firmware remoto nel dispositivo con un metodo diretto
+In questa sezione viene creata un'app console Node.js che avvia un aggiornamento del firmware remoto in un dispositivo. L'applicazione usa un metodo diretto per avviare l'aggiornamento e usa le query di dispositivo gemello per ottenere periodicamente lo stato di aggiornamento del firmware attivo.
 
-1. Creare una cartella vuota denominata **triggerfwupdateondevice**.  In hello **triggerfwupdateondevice** cartella, creare un file di package. JSON usando hello seguente comando al prompt dei comandi.  Accettare tutte le impostazioni predefinite hello:
+1. Creare una cartella vuota denominata **triggerfwupdateondevice**.  Nella cartella **triggerfwupdateondevice** creare un file package.json eseguendo questo comando al prompt dei comandi.  Accettare tutte le impostazioni predefinite:
    
     ```
     npm init
     ```
-2. Al prompt dei comandi in hello **triggerfwupdateondevice** cartella, eseguire hello successivo comando tooinstall hello **hub iot di azure** e **mqtt azure-iot-dispositivo** dispositivo Pacchetti SDK:
+2. Eseguire questo comando al prompt dei comandi nella cartella **triggerfwupdateondevice** per installare il pacchetto **azure-iot-hub**:
    
     ```
     npm install azure-iothub --save
     ```
-3. Utilizzando un editor di testo, creare un **dmpatterns_getstarted_service.js** file hello **triggerfwupdateondevice** cartella.
-4. Aggiungere i seguenti hello 'richiedono' istruzioni all'inizio di hello di hello **dmpatterns_getstarted_service.js** file:
+3. Con un editor di testo creare un file **dmpatterns_getstarted_service.js** nella cartella **triggerfwupdateondevice**.
+4. Aggiungere le istruzioni "require" seguenti all'inizio del file **dmpatterns_getstarted_service.js**:
    
     ```
     'use strict';
@@ -70,7 +69,7 @@ In questa sezione viene creata un'app console Node.js che avvia un aggiornamento
     var Registry = require('azure-iothub').Registry;
     var Client = require('azure-iothub').Client;
     ```
-5. Aggiungere hello dopo le dichiarazioni di variabili e sostituire i valori segnaposto hello:
+5. Aggiungere le dichiarazioni di variabile seguenti e sostituire i valori segnaposto:
    
     ```
     var connectionString = '{device_connectionstring}';
@@ -78,7 +77,7 @@ In questa sezione viene creata un'app console Node.js che avvia un aggiornamento
     var client = Client.fromConnectionString(connectionString);
     var deviceToUpdate = 'myDeviceId';
     ```
-6. Aggiungere i seguenti hello funzionano toofind e visualizzare il valore di hello di hello firmwareUpdate segnalati proprietà.
+6. Aggiungere la funzione seguente per trovare e visualizzare il valore della proprietà segnalata da firmwareUpdate.
    
     ```
     var queryTwinFWUpdateReported = function() {
@@ -91,7 +90,7 @@ In questa sezione viene creata un'app console Node.js che avvia un aggiornamento
         });
     };
     ```
-7. Aggiungere hello seguente funzione tooinvoke hello firmwareUpdate metodo tooreboot hello dispositivo di destinazione:
+7. Aggiungere la funzione seguente per richiamare il metodo firmwareUpdate per riavviare il dispositivo di destinazione:
    
     ```
     var startFirmwareUpdateDevice = function() {
@@ -110,40 +109,40 @@ In questa sezione viene creata un'app console Node.js che avvia un aggiornamento
    
       client.invokeDeviceMethod(deviceToUpdate, methodParams, function(err, result) {
         if (err) {
-          console.error('Could not start hello firmware update on hello device: ' + err.message)
+          console.error('Could not start the firmware update on the device: ' + err.message)
         } 
       });
     };
     ```
-8. Infine, seguente hello Aggiungi funzione sequenza di aggiornamento del firmware toocode toostart hello e visualizzazione periodicamente hello segnalati proprietà:
+8. Aggiungere infine la funzione seguente al codice per avviare la sequenza di aggiornamento del firmware e la visualizzazione periodica delle proprietà segnalate:
    
     ```
     startFirmwareUpdateDevice();
     setInterval(queryTwinFWUpdateReported, 500);
     ```
-9. Salvare e chiudere hello **dmpatterns_fwupdate_service.js** file.
+9. Salvare e chiudere il file **dmpatterns_fwupdate_service.js**.
 
 [!INCLUDE [iot-hub-device-firmware-update](../../includes/iot-hub-device-firmware-update.md)]
 
-## <a name="run-hello-apps"></a>Eseguire App hello
-Si è ora pronto toorun hello app.
+## <a name="run-the-apps"></a>Eseguire le app
+A questo punto è possibile eseguire le app.
 
-1. Al prompt dei comandi di hello in hello **manageddevice** cartella, eseguire hello successivo comando toobegin in attesa di hello riavvio dirette del metodo.
+1. Al prompt dei comandi nella cartella **manageddevice** eseguire questo comando per iniziare l'ascolto del metodo diretto di riavvio.
    
     ```
     node dmpatterns_fwupdate_device.js
     ```
-2. Al prompt dei comandi di hello in hello **triggerfwupdateondevice** cartella, eseguire hello successivo comando tootrigger hello remoto riavviare il computer ed eseguire query per hello toofind gemelli di hello dispositivo riavviare ultima volta.
+2. Al prompt dei comandi nella cartella **triggerfwupdateondevice** eseguire questo comando per attivare il riavvio remoto e cercare il dispositivo gemello per trovare l'ora dell'ultimo riavvio.
    
     ```
     node dmpatterns_fwupdate_service.js
     ```
-3. Vedrai hello dispositivo risposta toohello metodo diretto nella console di hello.
+3. Nella console viene visualizzata la risposta del dispositivo al metodo diretto.
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questa esercitazione, è stato utilizzato un tootrigger dirette del metodo remota aggiornamento del firmware su un dispositivo e hello utilizzato nel report di stato di hello toofollow le proprietà di aggiornamento del firmware hello.
+In questa esercitazione è stato usato un metodo diretto per attivare un aggiornamento del firmware remoto in un dispositivo e sono state usate le proprietà segnalate per conoscere lo stato del processo di aggiornamento del firmware.
 
-toolearn come tooextend il metodo di pianificazione e di soluzione IoT chiama su più dispositivi, vedere hello [pianificazione e i processi di broadcast] [ lnk-tutorial-jobs] esercitazione.
+Per informazioni su come estendere la soluzione IoT e pianificare le chiamate al metodo su più dispositivi, vedere l'esercitazione [Pianificare e trasmettere processi][lnk-tutorial-jobs].
 
 [lnk-devtwin]: iot-hub-devguide-device-twins.md
 [lnk-c2dmethod]: iot-hub-devguide-direct-methods.md

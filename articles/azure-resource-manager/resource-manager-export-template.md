@@ -1,6 +1,6 @@
 ---
-title: modello di Azure Resource Manager aaaExport | Documenti Microsoft
-description: Utilizzare Gestione risorse di Azure tooexport un modello da un gruppo di risorse esistente.
+title: Esportare il modello di Azure Resource Manager | Documentazione Microsoft
+description: Usare Azure Resource Manager per esportare un modello da un gruppo di risorse esistente.
 services: azure-resource-manager
 documentationcenter: 
 author: tfitzmac
@@ -11,32 +11,32 @@ ms.service: azure-resource-manager
 ms.workload: multiple
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: get-started-article
+ms.topic: article
 ms.date: 07/06/2017
 ms.author: tomfitz
-ms.openlocfilehash: 94daa4812da2fec705044ca31c8e74e6d59bd53f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: c8f19a4f0aadbee2de97bb3ec85c2c85b493a394
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="export-an-azure-resource-manager-template-from-existing-resources"></a>Esportare un modello di Azure Resource Manager da risorse esistenti
-In questo articolo viene illustrato come tooexport un modello di gestione risorse da risorse esistenti nella sottoscrizione. È possibile utilizzare tale toogain modello generato una migliore comprensione della sintassi dei modelli.
+Questo articolo illustra come esportare un modello di Resource Manager dalle risorse esistenti della sottoscrizione. Il modello generato può essere usato per comprendere meglio la sintassi del modello.
 
-Esistono due modi tooexport un modello:
+Per esportare un modello sono disponibili due modi:
 
-* È possibile esportare hello **modello effettivo utilizzato per la distribuzione**. modello esportato Hello include tutti i parametri di hello e variabili, esattamente come appaiono nel modello originale hello. Questo approccio è utile per la distribuzione di risorse tramite il portale di hello e desidera toosee hello modello toocreate tali risorse. Il modello è immediatamente utilizzabile. 
-* È possibile esportare un **generato modello che rappresenta lo stato corrente di hello hello del gruppo di risorse**. modello esportato Hello non è basato su qualsiasi modello utilizzato per la distribuzione. Al contrario, viene creato un modello che è uno snapshot hello del gruppo di risorse. modello esportato Hello molti valori hardcoded e probabilmente non tutti i parametri in genere è possibile definire. Questo approccio è utile quando è stato modificato il gruppo di risorse hello dopo la distribuzione. Il modello richiede in genere modifiche prima di poter essere usato.
+* È possibile esportare il **modello effettivo usato per la distribuzione**. Il modello esportato include tutti i parametri e le variabili uguali a quelli visualizzati nel modello originale. Questo approccio è utile quando si sono distribuite risorse tramite il portale e si vuole visualizzare il modello con cui sono state create. Il modello è immediatamente utilizzabile. 
+* È possibile esportare un **modello generato che rappresenta lo stato corrente del gruppo di risorse**. Il modello esportato non si basa su un modello qualsiasi usato per la distribuzione, ma crea un modello che è uno snapshot del gruppo di risorse. Il modello esportato ha diversi valori hardcoded e probabilmente meno parametri di quelli che si definiscono in genere. Questo approccio è utile quando il gruppo di risorse è stato modificato dopo la distribuzione. Il modello richiede in genere modifiche prima di poter essere usato.
 
-Questo argomento vengono illustrati entrambi gli approcci tramite il portale di hello.
+Questo argomento illustra entrambi gli approcci tramite il portale.
 
 ## <a name="deploy-resources"></a>Distribuire le risorse
-Iniziamo distribuendo tooAzure risorse che è possibile utilizzare per l'esportazione come modello. Se si dispone già di un gruppo di risorse nella sottoscrizione che si desidera tooexport tooa modello, è possibile ignorare questa sezione. resto Hello di questo articolo si presuppone che è stato distribuito hello web app e soluzioni di database SQL illustrate in questa sezione. Se si utilizza una soluzione diversa, l'esperienza potrebbe essere leggermente diversa, ma i passaggi di hello tooexport un modello sono hello stesso. 
+Per iniziare, distribuire in Azure risorse utilizzabili per l'esportazione come modello. Se la sottoscrizione include già un gruppo di risorse che si vuole esportare in un modello, è possibile ignorare questa sezione. Il resto di questo articolo presuppone che sia stata distribuita la soluzione di app Web e database SQL illustrata in questa sezione. Se si usa un'altra soluzione, l'esperienza potrebbe essere leggermente diversa, ma i passaggi per esportare un modello saranno gli stessi. 
 
-1. In hello [portale di Azure](https://portal.azure.com)selezionare **New**.
+1. Nel [portale di Azure](https://portal.azure.com) selezionare **Nuovo**.
    
       ![Selezionare Nuovo](./media/resource-manager-export-template/new.png)
-2. Cercare **web app + SQL** e selezionare le opzioni disponibili hello.
+2. Cercare **App Web e SQL** e selezionare tale voce nelle opzioni disponibili.
    
       ![Cercare App Web e SQL](./media/resource-manager-export-template/webapp-sql.png)
 
@@ -44,83 +44,83 @@ Iniziamo distribuendo tooAzure risorse che è possibile utilizzare per l'esporta
 
       ![Selezionare Crea](./media/resource-manager-export-template/create.png)
 
-4. Fornire valori hello necessario per hello web app e il database SQL. Selezionare **Crea**.
+4. Specificare i valori necessari per l'app Web e il database SQL. Selezionare **Crea**.
 
       ![Specificare i valori per Web e SQL](./media/resource-manager-export-template/provide-web-values.png)
 
-distribuzione di Hello potrebbe richiedere un minuto. Al termine della distribuzione di hello, la sottoscrizione contiene la soluzione hello.
+La distribuzione può richiedere un minuto. Al termine della distribuzione, la sottoscrizione conterrà la soluzione.
 
 ## <a name="view-template-from-deployment-history"></a>Visualizzare il modello dalla cronologia delle distribuzioni
-1. Andare a pannello di gruppo di risorse toohello per il nuovo gruppo di risorse. Si noti che pannello hello illustra il risultato di hello dell'ultima distribuzione hello. Selezionare questo collegamento.
+1. Passare al pannello Gruppo di risorse per il nuovo gruppo di risorse. Si noti che il pannello visualizza il risultato dell'ultima distribuzione. Selezionare questo collegamento.
    
       ![pannello Gruppo di risorse](./media/resource-manager-export-template/select-deployment.png)
-2. Visualizzare una cronologia delle distribuzioni per il gruppo di hello. Il caso, il pannello hello Elenca probabilmente solo una distribuzione. Selezionare questa distribuzione.
+2. Viene visualizzata la cronologia delle distribuzioni per il gruppo. In questo caso il pannello probabilmente elenca solo una distribuzione. Selezionare questa distribuzione.
    
      ![ultima distribuzione](./media/resource-manager-export-template/select-history.png)
-3. Pannello Hello Visualizza un riepilogo della distribuzione hello. Hello riepilogo include stato hello della distribuzione di hello e relativi valori di hello forniti per i parametri e operazioni. modello di hello toosee utilizzato per la distribuzione di hello, seleziona **modello di visualizzazione**.
+3. Il pannello visualizza un riepilogo della distribuzione. Il riepilogo include lo stato della distribuzione e le relative operazioni e i valori specificati per i parametri. Per visualizzare il modello usato per la distribuzione, selezionare **Visualizza modello**.
    
      ![visualizzare il riepilogo della distribuzione](./media/resource-manager-export-template/view-template.png)
-4. Gestione risorse recupera hello i seguenti sette file automaticamente:
+4. Resource Manager recupera i sette file seguenti.
    
-   1. **Modello** -modello hello che definisce l'infrastruttura di hello per la soluzione. Durante la creazione di account di archiviazione hello tramite il portale di hello, Gestione risorse utilizzato toodeploy un modello e salvato il modello per riferimento futuro.
-   2. **I parametri** -un file di parametri che è possibile usare nei valori toopass durante la distribuzione. Contiene valori hello forniti durante la distribuzione prima di hello. È possibile modificare questi valori quando si ridistribuisce il modello di hello.
-   3. **CLI** -file script di Azure un'interfaccia di riga comando (CLI) che è possibile utilizzare il modello di hello toodeploy.
-   3. **2.0 CLI** -file script di Azure un'interfaccia di riga comando (CLI) che è possibile utilizzare il modello di hello toodeploy.
-   4. **PowerShell** -file di script di PowerShell di Azure che è possibile utilizzare il modello di hello toodeploy.
-   5. **.NET** -classe di oggetto .NET che è possibile utilizzare il modello di hello toodeploy.
-   6. **Ruby** -classe A Ruby che è possibile utilizzare il modello di hello toodeploy.
+   1. **Modello** : modello che definisce l'infrastruttura per la soluzione. Quando è stato creato l'account di archiviazione tramite il portale, Resource Manager ha usato un modello per distribuirlo e ha salvato tale modello come riferimento futuro.
+   2. **Parametri** : file dei parametri che può essere usato per passare i valori durante la distribuzione. Contiene i valori specificati durante la prima distribuzione. Quando si ridistribuisce il modello è possibile modificare qualsiasi valore.
+   3. **Interfaccia della riga di comando** : file di script dell'interfaccia della riga di comando di Azure che può essere usato per distribuire il modello.
+   3. **Interfaccia della riga di comando 2.0**: file di script dell'interfaccia della riga di comando di Azure che può essere usato per distribuire il modello.
+   4. **PowerShell** : file di script di Azure PowerShell che può essere usato per distribuire il modello.
+   5. **.NET** : classe .NET che può essere usata per distribuire il modello.
+   6. **Ruby** : classe Ruby che può essere usata per distribuire il modello.
       
-      file Hello sono disponibili tramite i collegamenti tra blade hello. Per impostazione predefinita, il pannello hello Visualizza modello hello.
+      I file sono disponibili mediante collegamenti nel pannello. Per impostazione predefinita, il pannello visualizza il modello.
       
        ![Visualizza modello](./media/resource-manager-export-template/see-template.png)
       
-Questo modello è modello effettivo hello utilizzato toocreate l'app web e database SQL. Si noti che contiene i parametri che consentono di valori diversi tooprovide durante la distribuzione. toolearn ulteriori informazioni su struttura hello di un modello, vedere [modelli Authoring Azure Resource Manager](resource-group-authoring-templates.md).
+Questo è il modello effettivo usato per creare l'app Web e il database SQL. Si noti che contiene parametri che consentono di specificare diversi valori durante la distribuzione. Per altre informazioni sulla struttura del modello, vedere [Creazione di modelli di Azure Resource Manager](resource-group-authoring-templates.md).
 
-## <a name="export-hello-template-from-resource-group"></a>Esportare il modello di hello dal gruppo di risorse
-Se si manualmente hanno modificato le risorse o aggiunta di risorse in più distribuzioni, il recupero di un modello dalla cronologia della distribuzione di hello non riflette lo stato corrente di hello hello del gruppo di risorse. In questa sezione viene illustrato come un modello che rispecchia tooexport hello stato corrente del gruppo di risorse hello. 
+## <a name="export-the-template-from-resource-group"></a>Esportare il modello da un gruppo di risorse
+Se le risorse sono state modificate manualmente o aggiunte in più distribuzioni, il modello recuperato dalla cronologia delle distribuzioni non riflette lo stato corrente del gruppo di risorse. Questa sezione illustra come esportare un modello che rispecchia tale stato. 
 
 > [!NOTE]
 > Non è possibile esportare un modello per un gruppo di risorse con più di 200 risorse.
 > 
 > 
 
-1. modello di hello tooview per un gruppo di risorse, seleziona **script di automazione**.
+1. Per visualizzare il modello per un gruppo di risorse, selezionare **Script di automazione**.
    
       ![esportare un gruppo di risorse](./media/resource-manager-export-template/select-automation.png)
    
-     Gestione risorse analizza hello le risorse nel gruppo di risorse hello e genera un modello per tali risorse. Non tutti i tipi di risorse supportano la funzione di modello di esportazione hello. Potrebbe essere visualizzato un errore che informa che si è verificato un problema con l'esportazione di hello. Si apprenderà come toohandle tali problemi nel hello [esportazione problemi](#fix-export-issues) sezione.
-2. Vedrai nuovamente sei file hello che è possibile utilizzare soluzioni hello tooredeploy. Tuttavia, questo modello in fase di hello è leggermente diverso. Si noti che il modello hello generato contiene meno parametri di modello hello nella sezione precedente. Inoltre, molti dei valori di hello (ad esempio, percorso e i valori di SKU) sono hardcoded in questo modello, piuttosto che accetta un valore di parametro. Prima di riutilizzare questo modello, è opportuno tooedit hello modello toomake migliorare l'utilizzo di parametri. 
+     Resource Manager valuta le risorse nel gruppo di risorse e genera un modello per tali risorse. Non tutti i tipi di risorse supportano la funzione di esportazione del modello. Potrebbe essere visualizzato un errore che informa di un problema con l'esportazione. Per informazioni su come gestire tali problemi, vedere la sezione [Risolvere i problemi di esportazione](#fix-export-issues) .
+2. Vengono visualizzati di nuovo i sei file che è possibile usare per ridistribuire la soluzione. Questa volta, tuttavia, il modello è leggermente diverso. Si noti che il modello generato contiene un numero inferiore di parametri rispetto al modello della sezione precedente. Inoltre, molti di questi valori (come i valori relativi a località e SKU) sono hardcoded nel modello e non accettano un valore di parametro. Prima di riusare il modello, può essere opportuno modificarlo per usare meglio i parametri. 
    
-3. Sono disponibili due opzioni per la continuazione toowork con questo modello. È possibile scaricare il modello di hello e lavorare localmente su di esso con un editor di JSON. In alternativa, è possibile salvare hello modello tooyour raccolta e il lavoro tramite il portale di hello.
+3. Per continuare a usare questo modello, sono disponibili due opzioni. È possibile scaricare il modello e usare un editor JSON per lavorare in locale. In alternativa, è possibile salvare il modello nella libreria e lavorare tramite il portale.
    
-     Se si ha familiarità con un editor di JSON come [Visual Studio Code](https://code.visualstudio.com/) o [Visual Studio](vs-azure-tools-resource-groups-deployment-projects-create-deploy.md), è preferibile scaricare modello hello in locale e utilizzare tale editor. toowork in locale, selezionare **scaricare**.
+     Se si ha familiarità con un editor di JSON come [Visual Studio Code](https://code.visualstudio.com/) o [Visual Studio](vs-azure-tools-resource-groups-deployment-projects-create-deploy.md), è preferibile scaricare il modello in locale e usare l'editor. Per lavorare in locale, selezionare **Scarica**.
    
       ![scaricare il modello](./media/resource-manager-export-template/download-template.png)
    
-     Se non è configurato con un editor di JSON, è preferibile modificare hello modello tramite il portale di hello. resto Hello di questo argomento si presuppone che è stato salvato libreria tooyour di hello modelli nel portale di hello. Tuttavia, si apportano hello stesso modello toohello modifiche di sintassi se si lavora in locale con un editor di JSON o tramite il portale di hello. Selezionare toowork tramite il portale di hello **aggiungere toolibrary**.
+     Se non si ha familiarità con un editor JSON, è preferibile modificare il modello tramite il portale. Nelle sezioni successive di questo argomento si presuppone che il modello sia stato salvato nella libreria nel portale. Tuttavia, si apportano le stesse modifiche di sintassi al modello lavorando tramite il portale o in locale con un editor di JSON. Per usare il portale, selezionare **Aggiungi a raccolta**.
    
-      ![aggiungere toolibrary](./media/resource-manager-export-template/add-to-library.png)
+      ![aggiungere alla libreria](./media/resource-manager-export-template/add-to-library.png)
    
-     Quando si aggiunge una raccolta di modelli di toohello, assegnare il modello di hello un nome e una descrizione. Selezionare quindi **Salva**.
+     Quando si aggiunge un modello alla libreria, assegnare un nome e una descrizione al modello. Selezionare quindi **Salva**.
    
      ![impostare i valori di modello](./media/resource-manager-export-template/save-library-template.png)
-4. tooview un modello salvato nella libreria, selezionare **più servizi**, tipo **modelli** toofilter risultati, selezionare **modelli**.
+4. Per visualizzare un modello salvato nella libreria, selezionare **Altri servizi**, digitare **Modelli** per filtrare i risultati, quindi selezionare **Modelli**.
    
       ![trovare i modelli](./media/resource-manager-export-template/find-templates.png)
-5. Selezionare il modello di hello con nome hello che è stato salvato.
+5. Selezionare il modello con il nome salvato.
    
       ![selezionare modello](./media/resource-manager-export-template/select-saved-template.png)
 
-## <a name="customize-hello-template"></a>Personalizzare il modello di hello
-funzionamento del modello Hello esportata correttamente che se si desidera toocreate hello stesso web app e il database SQL per ogni distribuzione. Le opzioni disponibili in Resource Manager consentono, tuttavia, di distribuire modelli con maggiore flessibilità. Questo articolo illustra come parametri tooadd per hello database password e nome di amministratore. È possibile utilizzare questo stesso tooadd approccio una maggiore flessibilità per gli altri valori nel modello di hello.
+## <a name="customize-the-template"></a>Personalizzare il modello
+Il modello esportato funziona correttamente se si vuole creare la stessa app Web e lo stesso database SQL per ogni distribuzione. Le opzioni disponibili in Resource Manager consentono, tuttavia, di distribuire modelli con maggiore flessibilità. Questo articolo illustra come aggiungere parametri per il nome e la password di amministratore del database. Questo stesso approccio può essere usato per aggiungere maggiore flessibilità per altri valori del modello.
 
-1. modello di hello toocustomize, selezionare **modifica**.
+1. Per personalizzare il modello, selezionare **Modifica**.
    
      ![visualizzare il modello](./media/resource-manager-export-template/select-edit.png)
-2. Selezionare il modello di hello.
+2. Selezionare il modello.
    
      ![modificare un modello](./media/resource-manager-export-template/select-added-template.png)
-3. i valori hello in grado di toopass toobe che è possibile toospecify durante la distribuzione, aggiungere hello seguenti due parametri toohello **parametri** sezione nel modello hello:
+3. Per poter passare i valori da specificare durante la distribuzione, aggiungere i due parametri seguenti nella sezione **parameters** del modello:
 
    ```json
    "administratorLogin": {
@@ -131,7 +131,7 @@ funzionamento del modello Hello esportata correttamente che se si desidera toocr
    },
    ```
 
-4. nuovi parametri hello toouse, sostituire la definizione di hello SQL server in hello **risorse** sezione. Si noti che in **administratorLogin** e **administratorLoginPassword** vengono ora usati valori di parametro.
+4. Per usare i nuovi parametri, sostituire la definizione dell'istanza di SQL Server nella sezione **resources**. Si noti che in **administratorLogin** e **administratorLoginPassword** vengono ora usati valori di parametro.
 
    ```json
    {
@@ -151,28 +151,28 @@ funzionamento del modello Hello esportata correttamente che se si desidera toocr
    },
    ```
 
-6. Selezionare **OK** al termine modifica modello hello.
-7. Selezionare **salvare** modello toohello di toosave hello le modifiche.
+6. Selezionare **OK** una volta terminata la modifica del modello.
+7. Selezionare **Salva** per salvare le modifiche al modello.
    
      ![salvare il modello](./media/resource-manager-export-template/save-template.png)
-8. modello di hello aggiornato tooredeploy, selezionare **Distribuisci**.
+8. Per ridistribuire il modello aggiornato, selezionare **Distribuisci**.
    
      ![distribuire un modello](./media/resource-manager-export-template/redeploy-template.png)
-9. Fornire i valori dei parametri e selezionare un gruppo toodeploy hello di risorse per.
+9. Specificare i valori dei parametri e selezionare un gruppo di risorse in cui distribuire le risorse.
 
 
 ## <a name="fix-export-issues"></a>Risolvere i problemi di esportazione
-Non tutti i tipi di risorse supportano la funzione di modello di esportazione hello. Questo problema, manualmente tooresolve aggiungere risorse mancanti hello nuovamente nel modello. messaggio di errore Hello include i tipi di risorsa hello che non possono essere esportati. Trovare il tipo di risorsa nelle [informazioni di riferimento sui modelli](/azure/templates/). Ad esempio, di aggiungere un gateway di rete virtuale, vedere toomanually [riferimento a un modello Microsoft.Network/virtualNetworkGateways](/azure/templates/microsoft.network/virtualnetworkgateways).
+Non tutti i tipi di risorse supportano la funzione di esportazione del modello. Per risolvere il problema, aggiungere manualmente le risorse mancanti al modello. Il messaggio di errore include i tipi di risorsa che non possono essere esportati. Trovare il tipo di risorsa nelle [informazioni di riferimento sui modelli](/azure/templates/). Per aggiungere manualmente un gateway di rete virtuale, ad esempio, vedere le [informazioni di riferimento sul modello Microsoft.Network/virtualNetworkGateways](/azure/templates/microsoft.network/virtualnetworkgateways).
 
 > [!NOTE]
-> Si verificano problemi di esportazione solo quando si esporta da un gruppo di risorse invece che dalla cronologia della distribuzione. Se l'ultima distribuzione in modo accurato rappresenta lo stato corrente di hello hello del gruppo di risorse, è necessario esportare il modello di hello dalla cronologia della distribuzione hello anziché dal gruppo di risorse hello. Esportare solo da un gruppo di risorse quando sono state apportate gruppo di risorse toohello modifiche che non sono definiti in un unico modello.
+> Si verificano problemi di esportazione solo quando si esporta da un gruppo di risorse invece che dalla cronologia della distribuzione. Se la distribuzione più recente rappresenta con precisione lo stato corrente del gruppo di risorse, è consigliabile esportare il modello dalla cronologia della distribuzione invece che dal gruppo di risorse. Eseguire l'esportazione da un gruppo di risorse solo quando sono state apportate al gruppo di risorse modifiche non definite in un singolo modello.
 > 
 > 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Si è appreso come tooexport un modello dalle risorse di cui è stato creato nel portale di hello.
+Si è appreso come esportare un modello da risorse create nel portale.
 
 * È possibile distribuire un modello tramite [PowerShell](resource-group-template-deploy.md), l'[interfaccia della riga di comando di Azure](resource-group-template-deploy-cli.md) o l'[API REST](resource-group-template-deploy-rest.md).
-* toosee tooexport un modello tramite PowerShell, vedere [tramite Azure PowerShell con Azure Resource Manager](powershell-azure-resource-manager.md).
-* toosee tooexport un modello tramite l'interfaccia CLI di Azure, vedere [hello utilizzare CLI di Azure per Mac, Linux e Windows con Gestione risorse di Azure](xplat-cli-azure-resource-manager.md).
+* Per informazioni su come esportare un modello tramite PowerShell, vedere [Uso di Azure PowerShell con Azure Resource Manager](powershell-azure-resource-manager.md).
+* Per informazioni su come esportare un modello tramite l'interfaccia della riga di comando di Azure, vedere [Usare l'interfaccia della riga di comando di Azure per Mac, Linux e Windows con Azure Resource Manager](xplat-cli-azure-resource-manager.md).
 

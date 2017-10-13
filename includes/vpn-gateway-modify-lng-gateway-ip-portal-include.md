@@ -1,32 +1,32 @@
-### <a name="gwipnoconnection"></a>indirizzo IP gateway di rete locale di hello di toomodify - alcuna connessione gateway
+### <a name="gwipnoconnection"></a> Per modificare l'indirizzo IP del gateway di rete locale senza connessione gateway
 
-Utilizzare toomodify esempio hello un gateway di rete locale che non dispone di un gateway di connessione. Quando si modifica questo valore, è inoltre possibile modificare i prefissi di indirizzo hello in hello contemporaneamente.
+Usare l'esempio per modificare un gateway di rete locale privo di connessione gateway. Quando si modifica questo valore, è anche possibile modificare contemporaneamente i prefissi degli indirizzi.
 
-1. Nella risorsa di Gateway di rete locale, in hello hello **impostazioni** fare clic su **configurazione**.
-2. In hello **indirizzo IP** modificare l'indirizzo IP hello.
-3. Fare clic su **salvare** impostazioni hello toosave.
+1. Nella risorsa Gateway di rete locale, nella sezione **Impostazioni** fare clic su **Configurazione**.
+2. Nella casella **Indirizzo IP** modificare l'indirizzo IP.
+3. Fare clic su **Salva** per salvare le impostazioni.
 
-### <a name="gwipwithconnection"></a>toomodify hello locale gateway gateway indirizzo IP di rete - connessione gateway esistente
+### <a name="gwipwithconnection"></a> Per modificare l'indirizzo IP del gateway di rete locale con una connessione gateway esistente
 
-toomodify un gateway di rete locale che dispone di una connessione, è necessario toofirst rimuove la connessione di hello. Dopo la rimozione di connessione hello, è possibile modificare l'indirizzo IP del gateway hello e ricreare una nuova connessione. È inoltre possibile modificare i prefissi di indirizzo hello in hello contemporaneamente. Questo comporterà periodi di inattività per la connessione VPN. Quando si modifica l'indirizzo IP del gateway hello, non è necessario gateway VPN di hello toodelete. È necessario solo connessione hello tooremove.
+Per modificare un gateway di rete locale con una connessione, è necessario in primo luogo rimuovere la connessione. Dopo aver rimosso la connessione sarà possibile modificare l'indirizzo IP del gateway e ricreare una nuova connessione. È anche possibile modificare contemporaneamente i prefissi di indirizzo. Questo comporterà periodi di inattività per la connessione VPN. Quando si modifica l'indirizzo IP del gateway, non è necessario eliminare il gateway VPN. Occorre rimuovere solo la connessione.
  
-#### <a name="1-remove-hello-connection"></a>1. Rimuovere la connessione di hello.
+#### <a name="1-remove-the-connection"></a>1. Rimuovere la connessione.
 
-1. Nella risorsa di Gateway di rete locale, in hello hello **impostazioni** fare clic su **connessioni**.
-2. Fare clic su hello **...**  hello per connessione hello, quindi fare clic sulla riga **eliminare**.
-3. Fare clic su **salvare** toosave le impostazioni.
+1. Nella risorsa Gateway di rete locale, nella sezione **Impostazioni** fare clic su **Connessioni**.
+2. Fare clic su **...** nella riga della connessione e quindi fare clic su **Elimina**.
+3. Per salvare le impostazioni, fare clic su **Save** .
 
-#### <a name="2-modify-hello-ip-address"></a>2. Modificare l'indirizzo IP hello.
+#### <a name="2-modify-the-ip-address"></a>2. Modificare l'indirizzo IP.
 
-È inoltre possibile modificare i prefissi di indirizzo hello in hello contemporaneamente.
+È anche possibile modificare contemporaneamente i prefissi di indirizzo.
 
-1. In hello **indirizzo IP** modificare l'indirizzo IP hello.
-2. Fare clic su **salvare** impostazioni hello toosave.
+1. Nella casella **Indirizzo IP** modificare l'indirizzo IP.
+2. Fare clic su **Salva** per salvare le impostazioni.
 
-#### <a name="3-recreate-hello-connection"></a>3. Ricreare la connessione hello.
+#### <a name="3-recreate-the-connection"></a>3. Ricreare la connessione.
 
-1. Passare toohello Gateway della rete virtuale per la rete virtuale. (Non hello Gateway di rete locale.)
-2. Nel Gateway di rete virtuale Ciao hello **impostazioni** fare clic su **connessioni**.
-3. Fare clic su hello **+ Aggiungi** tooopen hello **Aggiungi connessione** blade.
+1. Passare al gateway di rete virtuale relativo alla rete virtuale (non al gateway di rete locale).
+2. Nella risorsa Gateway di rete virtuale, nella sezione **Impostazioni** fare clic su **Connessioni**.
+3. Fare clic su **+Aggiungi** per aprire il pannello **Aggiungi connessione**.
 4. Ricreare la connessione.
-5. Fare clic su **OK** connessione hello toocreate.
+5. Fare clic su **OK** per creare la connessione.

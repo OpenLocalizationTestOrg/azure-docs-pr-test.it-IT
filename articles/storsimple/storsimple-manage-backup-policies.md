@@ -1,6 +1,6 @@
 ---
-title: aaaManage i criteri di backup di StorSimple | Documenti Microsoft
-description: Viene illustrato come utilizzare toocreate servizio StorSimple Manager di hello e gestire i backup manuali, pianificazioni di backup e conservazione dei backup.
+title: Gestire i criteri di backup di StorSimple | Microsoft Docs
+description: "Viene illustrato come è possibile utilizzare il servizio StorSimple Manager per creare e gestire backup manuali, pianificazioni di backup e conservazione dei backup."
 services: storsimple
 documentationcenter: NA
 author: SharS
@@ -14,33 +14,33 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 05/10/2016
 ms.author: v-sharos
-ms.openlocfilehash: 710cbe54d14031b4de43e9da292ed169085d5af9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c1e9d5d0450bab5d371aafb40fd7c5920d39dfdb
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-hello-storsimple-manager-service-toomanage-backup-policies"></a>Utilizzare criteri toomanage del servizio StorSimple Manager hello backup
+# <a name="use-the-storsimple-manager-service-to-manage-backup-policies"></a>Per gestire i criteri di backup, è possibile usare il servizio StorSimple Manager.
 [!INCLUDE [storsimple-version-selector-manage-backup-policies](../../includes/storsimple-version-selector-manage-backup-policies.md)]
 
 ## <a name="overview"></a>Panoramica
-In questa esercitazione viene illustrato come toouse hello servizio StorSimple Manager **criteri di Backup** pagina toocontrol i processi di backup e conservazione dei backup per i volumi StorSimple. Viene inoltre descritto come toocomplete un backup manuale.
+In questa esercitazione viene illustrato come utilizzare il servizio StorSimple Manager **criteri di Backup** pagina per controllare i processi di backup e memorizzazione dei backup per i volumi StorSimple. Viene inoltre descritto come eseguire un backup manuale.
 
-Hello **criteri di Backup** pagina permette di toomanage criteri di backup e di pianificazione locale e di snapshot nel cloud. (Criteri di backup sono pianificazioni di backup utilizzato tooconfigure e conservazione dei backup per una raccolta di volumi). Criteri di backup consentono di tootake uno snapshot di più volumi contemporaneamente. Ciò significa che i backup hello creati da un criterio di backup sarà copie coerenti con l'arresto anomalo del sistema. Questa pagina sono elencati i criteri di backup hello, tipi, i volumi associato hello, numero hello di backup conservati e hello tooenable opzione questi criteri.
+Il **criteri di Backup** pagina consente di gestire i criteri di backup e pianificare locale e gli snapshot cloud. (Criteri di backup vengono utilizzati per configurare pianificazioni di backup e memorizzazione dei backup per un insieme di volumi). I criteri di backup consentono di creare uno snapshot di più volumi contemporaneamente. Questo significa che i backup creati con un criterio di backup saranno copie coerenti con l'arresto anomalo. Questa pagina vengono elencati i criteri di backup, i relativi tipi, i volumi associati, il numero di backup conservati e l'opzione per abilitare questi criteri.
 
-Hello **criteri di Backup** pagina consente inoltre toofilter hello criteri di backup esistenti da uno o più dei seguenti campi hello:
+Il **criteri di Backup** pagina consente inoltre di filtrare i criteri di backup esistenti da una o più dei seguenti campi:
 
-* **Nome criterio** : hello nome associato a criteri hello. Hello diversi tipi di criteri includono:
+* **Nome criterio** : il nome associato al criterio. I diversi tipi di criteri includono:
   
-  * Criteri pianificati, creati esplicitamente dall'utente hello.
-  * Criteri automatici che vengono creati quando il backup di hello predefinito per questa opzione di volume è stato abilitato in fase di hello della creazione del volume. Questi criteri vengono denominati Nomevolume_default in cui il nome del Volume fa riferimento a nome toohello del volume StorSimple configurato dall'utente hello nel portale di Azure classico hello hello. criteri automatici di Hello generano snapshot nel cloud giornalieri a partire dall'ora del dispositivo 22:30.
-  * Importare i criteri che sono stati originariamente creati in hello gestione Snapshot StorSimple. Questi disponga di un tag che descrive l'host di gestione Snapshot StorSimple hello che sono stati importati criteri hello da.
-* **Volumi** : hello volumi associati criteri hello. Tutti i volumi di hello associati a un criterio di backup vengono raggruppati quando vengono creati i backup.
-* **Ultimo backup riuscito** : hello data e l'ora di hello ultimo backup completato che è stato creato con questo criterio.
-* **Backup successivo** : hello data e l'ora di hello backup pianificato successivo che verrà avviato da questo criterio.
-* **Le pianificazioni** : numero di pianificazioni associate al criterio di backup hello hello.
+  * Criteri pianificati, vengono creati esplicitamente dall'utente.
+  * Criteri automatici, che vengono creati quando il backup predefinito per questa opzione è stato abilitato al momento della creazione del volume. Questi criteri sono denominati VolumeName_Default dove nome Volume si riferisce al nome del volume StorSimple configurato dall'utente nel portale di Azure classico. I criteri automatici generare gli snapshot cloud giornalieri a partire da 22:30 ora del dispositivo.
+  * Criteri importati, che sono stati originariamente creati in Gestione Snapshot StorSimple. Hanno un tag che descrive l'host di gestione Snapshot StorSimple che i criteri sono stati importati da.
+* **Volumi** – i volumi associati al criterio. Tutti i volumi associati a un criterio di backup vengono raggruppati quando vengono creati i backup.
+* **Ultimo backup completato** : la data e l'ora dell'ultimo backup riuscito è stato creato con questo criterio.
+* **Backup successivo** : data e ora del successivo backup pianificato verrà avviato da questo criterio.
+* **Pianificazioni** – il numero di pianificazioni associate al criterio di backup.
 
-Hello utilizzato di frequente operazioni che è possibile eseguire in questa pagina sono:
+Le operazioni utilizzate di frequente che è possibile eseguire da questa pagina sono:
 
 * Aggiungere un criterio di backup 
 * Aggiungere o modificare una pianificazione 
@@ -49,34 +49,34 @@ Hello utilizzato di frequente operazioni che è possibile eseguire in questa pag
 * Creare un criterio di backup personalizzato con più volumi e pianificazioni 
 
 ## <a name="add-a-backup-policy"></a>Aggiungere un criterio di backup
-Aggiungere una pianificazione di criteri di backup tooautomatically i backup. Eseguire i passaggi hello Azure tooadd portale classico un criterio di backup per il dispositivo StorSimple hello. Dopo aver aggiunto i criteri di hello, è possibile definire una pianificazione (vedere [aggiungere o modificare una pianificazione](#add-or-modify-a-schedule)).
+Aggiungere un criterio di backup per la pianificazione automatica dei backup. Eseguire i passaggi seguenti nel portale di Azure classico per aggiungere un criterio di backup per il dispositivo StorSimple. Dopo aver aggiunto i criteri, è possibile definire una pianificazione (vedere [Aggiungere o modificare una pianificazione](#add-or-modify-a-schedule)).
 
 [!INCLUDE [storsimple-add-backup-policy](../../includes/storsimple-add-backup-policy.md)]
 
-![Video disponibile](./media/storsimple-manage-backup-policies/Video_icon.png)**Video disponibile**
+![Video disponibile](./media/storsimple-manage-backup-policies/Video_icon.png) **Video disponibile**
 
-Fare clic su un video che illustra la modalità di toocreate locale o cloud, criteri di backup toowatch [qui](https://azure.microsoft.com/documentation/videos/create-storsimple-backup-policies/).
+Per guardare un video che illustra come creare un criterio di backup cloud o locale, fare clic [qui](https://azure.microsoft.com/documentation/videos/create-storsimple-backup-policies/).
 
 ## <a name="add-or-modify-a-schedule"></a>Aggiungere o modificare una pianificazione
-È possibile aggiungere o modificare una pianificazione che viene collegato tooan criteri di backup esistenti nel dispositivo StorSimple. Eseguire i passaggi hello Azure tooadd portale classico hello o modificare una pianificazione.
+È possibile aggiungere o modificare una pianificazione che è collegata a un criterio di backup nel dispositivo StorSimple. Eseguire i passaggi seguenti nel portale di Azure classico per aggiungere o modificare un backup pianificato.
 
 [!INCLUDE [storsimple-add-modify-backup-schedule](../../includes/storsimple-add-modify-backup-schedule.md)]
 
 ## <a name="delete-a-backup-policy"></a>Eliminare un criterio di backup
-Eseguire i passaggi hello Azure toodelete portale classico un criterio di backup nel dispositivo StorSimple hello.
+Eseguire i passaggi seguenti nel portale di Azure classico per eliminare un criterio di backup nel dispositivo StorSimple.
 
 [!INCLUDE [storsimple-delete-backup-policy](../../includes/storsimple-delete-backup-policy.md)]
 
 ## <a name="take-a-manual-backup"></a>Creazione di un backup manuale
-Eseguire i passaggi backup (manuale) di hello Azure toocreate portale classico una richiesta per un singolo volume hello.
+Eseguire i passaggi seguenti nel portale di Azure classico per creare un backup manuale su richiesta per un singolo volume.
 
 [!INCLUDE [storsimple-create-manual-backup](../../includes/storsimple-create-manual-backup.md)]
 
 ## <a name="create-a-custom-backup-policy-with-multiple-volumes-and-schedules"></a>Creare un criterio di backup personalizzato con più volumi e pianificazioni
-Eseguire i passaggi hello Azure toocreate portale classico criteri di backup personalizzati con più volumi e pianificazioni hello.
+Eseguire i passaggi seguenti nel portale di Azure classico per creare un criterio di backup personalizzato che dispone di più volumi e pianificazioni.
 
 [!INCLUDE [storsimple-create-custom-backup-policy](../../includes/storsimple-create-custom-backup-policy.md)]
 
 ## <a name="next-steps"></a>Passaggi successivi
-Altre informazioni, vedere [utilizzando hello tooadminister servizio StorSimple Manager dispositivo StorSimple](storsimple-manager-service-administration.md).
+Ulteriori informazioni sull’ [utilizzo del servizio StorSimple Manager per amministrare il dispositivo StorSimple](storsimple-manager-service-administration.md).
 

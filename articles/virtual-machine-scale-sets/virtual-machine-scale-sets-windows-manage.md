@@ -1,5 +1,5 @@
 ---
-title: "macchine virtuali in un Set di scalabilità della macchina virtuale aaaManage | Documenti Microsoft"
+title: "Gestire VM in un set di scalabilità di macchine virtuali | Microsoft Docs"
 description: "Gestire le macchine virtuali in un set di scalabilità di macchine virtuali tramite Azure PowerShell."
 services: virtual-machine-scale-sets
 documentationcenter: 
@@ -15,23 +15,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: adegeo
-ms.openlocfilehash: 7d848729c0fc708bd596b61feb528cf4bf4bafd4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d09a020b903e5f43afe03b86c675bcc1eb536cbc
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="manage-virtual-machines-in-a-virtual-machine-scale-set"></a>Gestire le macchine virtuali in un set di scalabilità di macchine virtuali
-Usare le attività di hello in questo macchine virtuali di toomanage articolo nel set di scalabilità di macchine virtuali.
+Usare le attività descritte in questo articolo per gestire le macchine virtuali nel set di scalabilità.
 
-La maggior parte delle attività hello che implicano la gestione di una macchina virtuale in un set di scalabilità è necessario conoscere hello ID di istanza di macchina hello che si desidera toomanage. È possibile utilizzare [Esplora inventario risorse di Azure](https://resources.azure.com) toofind hello istanza ID di una macchina virtuale in un set di scalabilità. È anche possibile usare Esplora inventario risorse tooverify hello stato attività hello da completare.
+La maggior parte delle attività che implicano la gestione di una macchina virtuale in un set di scalabilità richiede di conoscere l'ID dell'istanza della macchina virtuale che si vuole gestire. È possibile usare [Esplora risorse di Azure](https://resources.azure.com) per trovare l'ID dell'istanza di una macchina virtuale in un set di scalabilità. È anche possibile usare Esplora risorse per verificare lo stato delle attività da completare.
 
-Vedere [come tooinstall e configurare Azure PowerShell](/powershell/azure/overview) per informazioni sull'installazione hello la versione più recente di Azure PowerShell, selezionando la sottoscrizione e la firma nell'account tooyour.
+Per informazioni su come installare la versione più recente di Azure PowerShell, selezionare la sottoscrizione e accedere all'account, vedere [Come installare e configurare Azure PowerShell](/powershell/azure/overview).
 
 ## <a name="display-information-about-a-scale-set"></a>Visualizzare informazioni relative a un set di scalabilità
-È possibile ottenere informazioni generali su un set di scalabilità, è anche la visualizzazione dell'istanza hello tooas cui viene fatto riferimento. In alternativa, è possibile ottenere informazioni più specifiche, ad esempio informazioni sulle risorse hello in set di scalabilità hello.
+È possibile ottenere informazioni generali su un set di scalabilità, ovvero una visualizzazione delle istanze. In alternativa, è possibile ottenere informazioni più specifiche, ad esempio informazioni sulle risorse nel set di scalabilità.
 
-Sostituire hello racchiuso tra virgolette i valori con nome hello o il gruppo di risorse e scala, impostare e quindi eseguire il comando hello:
+Sostituire i valori tra virgolette con il nome del gruppo di risorse e il set di scalabilità, quindi eseguire il comando:
 
     Get-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name"
 
@@ -91,7 +91,7 @@ Verrà visualizzata una schermata simile alla seguente:
         Settings                                : {"xmlCfg":"...","storageAccount":"astore"}
     ProvisioningState                           : Succeeded
 
-Sostituire hello racchiuso tra virgolette i valori con nome hello del set di risorse gruppo e la scala. Sostituire  *#*  con identificatore hello dell'istanza di macchina virtuale di hello che si desiderano tooget informazioni e quindi eseguirlo:
+Sostituire i valori tra virgolette con il nome del gruppo di risorse e il set di scalabilità. Sostituire *#* con l'identificatore dell'istanza della macchina virtuale di cui si desidera ottenere informazioni, quindi eseguirlo:
 
     Get-AzureRmVmssVM -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" -InstanceId #
 
@@ -145,11 +145,11 @@ Verrà visualizzata una schermata simile a all'esempio seguente:
       ProvisioningState           : Succeeded
 
 ## <a name="start-a-virtual-machine-in-a-scale-set"></a>Avviare una macchina virtuale in un set di scalabilità
-Sostituire hello racchiuso tra virgolette i valori con nome hello del set di risorse gruppo e la scala. Sostituire  *#*  con identificatore hello della macchina virtuale di hello toostart desiderati e quindi eseguirlo:
+Sostituire i valori tra virgolette con il nome del gruppo di risorse e il set di scalabilità. Sostituire *#* con l'identificatore della macchina virtuale che si desidera avviare, quindi eseguirlo:
 
     Start-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" -InstanceId #
 
-In Esplora inventario risorse, possiamo vedere che è stato hello dell'istanza di hello **esecuzione**:
+In Esplora risorse è possibile vedere che lo stato dell'istanza è **running**:
 
     "statuses": [
       {
@@ -165,14 +165,14 @@ In Esplora inventario risorse, possiamo vedere che è stato hello dell'istanza d
       }
     ]
 
-È possibile avviare tutte le macchine virtuali hello in scala di hello impostata se non si utilizza il parametro - InstanceId hello.
+È possibile avviare tutte le macchine virtuali nel set di scalabilità senza usare il parametro - InstanceId.
 
 ## <a name="stop-a-virtual-machine-in-a-scale-set"></a>Arrestare una macchina virtuale in un set di scalabilità
-Sostituire hello racchiuso tra virgolette i valori con nome hello del set di risorse gruppo e la scala. Sostituire  *#*  con identificatore hello della macchina virtuale di hello toostop desiderati e quindi eseguirlo:
+Sostituire i valori tra virgolette con il nome del gruppo di risorse e il set di scalabilità. Sostituire *#* con l'identificatore della macchina virtuale che si desidera arrestare, quindi eseguirlo:
 
     Stop-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" -InstanceId #
 
-In Esplora inventario risorse, possiamo vedere che è stato hello dell'istanza di hello **deallocato**:
+In Esplora risorse è possibile vedere che lo stato dell'istanza è **deallocated**:
 
     "statuses": [
       {
@@ -188,28 +188,28 @@ In Esplora inventario risorse, possiamo vedere che è stato hello dell'istanza d
       }
     ]
 
-toostop una macchina virtuale e non deallocarlo, usare il parametro - StayProvisioned hello. È possibile arrestare tutte le macchine virtuali hello in un'impostazione non si utilizza il parametro - InstanceId hello hello.
+Per arrestare una macchina virtuale e non deallocarla, usare il parametro -StayProvisioned. È possibile arrestare tutte le macchine virtuali nel set senza usare il parametro - InstanceId.
 
 ## <a name="restart-a-virtual-machine-in-a-scale-set"></a>Riavviare una macchina virtuale in un set di scalabilità
-Sostituire hello racchiuso tra virgolette i valori con nome hello del set di scalabilità hello e di gruppo di risorse. Sostituire  *#*  con identificatore hello della macchina virtuale di hello toorestart desiderati e quindi eseguirlo:
+Sostituire i valori tra virgolette con il nome del gruppo di risorse e il set di scalabilità. Sostituire *#* con l'identificatore della macchina virtuale che si desidera riavviare, quindi eseguirlo:
 
     Restart-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" -InstanceId #
 
-È possibile riavviare tutte le macchine virtuali hello in un'impostazione non si utilizza il parametro - InstanceId hello hello.
+È possibile riavviare tutte le macchine virtuali nel set senza usare il parametro - InstanceId.
 
 ## <a name="remove-a-virtual-machine-from-a-scale-set"></a>Rimuovere una macchina virtuale da un set di scalabilità
-Sostituire hello racchiuso tra virgolette i valori con nome hello del set di scalabilità hello e di gruppo di risorse. Sostituire  *#*  con identificatore hello della macchina virtuale di hello tooremove desiderati e quindi eseguirlo:  
+Sostituire i valori tra virgolette con il nome del gruppo di risorse e il set di scalabilità. Sostituire *#* con l'identificatore della macchina virtuale che si desidera rimuovere, quindi eseguirlo:  
 
     Remove-AzureRmVmss -ResourceGroupName "resource group name" –VMScaleSetName "scale set name" -InstanceId #
 
-È possibile rimuovere contemporaneamente tutti i set di scalabilità macchina virtuale hello non si usa il parametro - InstanceId hello.
+Per rimuovere il set di scalabilità di macchine virtuali tutto in una volta, non usare il parametro - InstanceId.
 
-## <a name="change-hello-capacity-of-a-scale-set"></a>Capacità di hello modifica di un set di scalabilità
-È possibile aggiungere o rimuovere le macchine virtuali modificando la capacità di hello del set di hello. Ottiene il set di scalabilità hello che si desidera toochange, set hello capacità toowhat desiderato toobe e quindi aggiornare il set di scalabilità di hello con nuova capacità di hello. In questi comandi, sostituire hello racchiuso tra virgolette i valori con nome hello del set di scalabilità hello e di gruppo di risorse.
+## <a name="change-the-capacity-of-a-scale-set"></a>Modificare la capacità di un set di scalabilità
+È possibile aggiungere o rimuovere le macchine virtuali modificando la capacità del set. Ottenere il set di scalabilità che si desidera modificare, impostare il valore di capacità desiderato, quindi aggiornare il set di scalabilità con la nuova capacità. Nei comandi riportati sotto, sostituire i valori tra virgolette con il nome del gruppo di risorse e il set di scalabilità.
 
     $vmss = Get-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name"
     $vmss.sku.capacity = 5
     Update-AzureRmVmss -ResourceGroupName "resource group name" -Name "scale set name" -VirtualMachineScaleSet $vmss 
 
-Se si desidera rimuovere le macchine virtuali dal set di scalabilità di hello, hello le macchine virtuali con ID più alto hello verranno rimosse per prime.
+Se si rimuovono le macchine virtuali dal set di scalabilità, per prime verranno rimosse le macchine virtuali con gli ID più elevati.
 

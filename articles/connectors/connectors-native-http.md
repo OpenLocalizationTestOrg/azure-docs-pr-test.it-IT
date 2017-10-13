@@ -1,5 +1,5 @@
 ---
-title: aaaCommunicate con qualsiasi endpoint su HTTP, le app di logica di Azure | Documenti Microsoft
+title: Comunicare con qualsiasi endpoint su HTTP - App per la logica di Azure | Microsoft Docs
 description: Creare app per la logica in grado di comunicare con qualsiasi endpoint su HTTP
 services: logic-apps
 author: jeffhollan
@@ -15,39 +15,39 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/15/2016
 ms.author: jehollan; LADocs
-ms.openlocfilehash: 9793601839437a2b880bdb81e15881270cacc963
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d422a07a27ffa62a673bd2d471ae4fc837251dee
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="get-started-with-hello-http-action"></a>Introduzione a hello azione HTTP
+# <a name="get-started-with-the-http-action"></a>Introduzione all'azione HTTP
 
-Con hello azione HTTP, è possibile estendere i flussi di lavoro per l'organizzazione e comunicare tooany endpoint su HTTP.
+Con l'azione HTTP è possibile estendere i flussi di lavoro per l'organizzazione e comunicare con qualsiasi endpoint su HTTP.
 
 È possibile:
 
 * Creare flussi di lavoro con app per la logica che si attivano (trigger) quando un sito Web gestito diventa inattivo.
-* Comunicare tooany endpoint tramite HTTP tooextend i flussi di lavoro ad altri servizi.
+* Comunicare con qualsiasi endpoint su HTTP per estendere i flussi di lavoro ad altri servizi.
 
-tooget avviato utilizzando l'azione di hello HTTP in un'app di logica, vedere [creare un'app di logica](../logic-apps/logic-apps-create-a-logic-app.md).
+Per informazioni su come iniziare a usare un'azione HTTP in un'app per la logica, vedere [Creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="use-hello-http-trigger"></a>Utilizzare trigger hello HTTP
-Un trigger è un evento che può essere utilizzato toostart hello flusso di lavoro che è definito in un'app di logica. [Altre informazioni sui trigger](connectors-overview.md).
+## <a name="use-the-http-trigger"></a>Usare un trigger HTTP
+Un trigger è un evento che può essere usato per avviare il flusso di lavoro definito in un'app per la logica. [Altre informazioni sui trigger](connectors-overview.md).
 
-Di seguito è riportata una sequenza di esempio di come trigger tooset backup hello HTTP hello progettazione applicazione logica.
+Ecco una sequenza di esempio di come configurare un trigger HTTP nella finestra di progettazione dell'app per la logica.
 
-1. Aggiungere trigger di hello HTTP nell'app logica.
-2. Specificare i parametri di hello per endpoint hello HTTP che si desidera toopoll.
-3. Modificare l'intervallo di ricorrenza hello sulla frequenza con cui deve eseguire il polling.
+1. Aggiungere il trigger HTTP all'app per la logica.
+2. Specificare i parametri per l'endpoint HTTP di cui si vuole eseguire il polling.
+3. Modificare l'intervallo di ricorrenza che stabilisce la frequenza del polling.
 
-   Hello logica app viene ora attivato con il contenuto restituito durante ogni controllo.
+   L'app per la logica ora si attiva con il contenuto restituito durante ogni controllo.
 
    ![Trigger HTTP](./media/connectors-native-http/using-trigger.png)
 
-### <a name="how-hello-http-trigger-works"></a>Funzionamento di trigger HTTP hello
+### <a name="how-the-http-trigger-works"></a>Come funziona il trigger HTTP
 
-trigger di Hello HTTP invia un endpoint tooHTTP chiamata su un intervallo di ricorrenza. Per impostazione predefinita, il codice di risposta HTTP che è inferiore a 300 provoca un toorun app logica. toospecify se deve generare hello logica app, è possibile modificare hello logica app nella visualizzazione codice e aggiungere una condizione che restituisce hello dopo la chiamata HTTP. Di seguito è riportato un esempio di un trigger HTTP che viene generato quando hello restituito codice di stato è maggiore o uguale a troppo`400`.
+Il trigger HTTP invia una chiamata a un endpoint HTTP a intervalli ricorrenti. Per impostazione predefinita, il codice di risposta HTTP inferiore a 300 genera l'esecuzione di un'app per la logica. Per specificare se deve essere attivata l'app per la logica, è possibile modificare l'app per la logica nella visualizzazione del codice e aggiungere una condizione che verrà valutata dopo la chiamata HTTP. Di seguito è riportato un esempio di trigger HTTP che viene attivato quando il codice di stato restituito è maggiore di o uguale a `400`.
 
 ```javascript
 "Http":
@@ -72,57 +72,57 @@ trigger di Hello HTTP invia un endpoint tooHTTP chiamata su un intervallo di ric
 }
 ```
 
-Per maggiori informazioni sui parametri trigger hello HTTP, disponibile in [MSDN](https://msdn.microsoft.com/library/azure/mt643939.aspx#HTTP-trigger).
+Tutti i dettagli sui parametri dei trigger HTTP sono disponibili in [MSDN](https://msdn.microsoft.com/library/azure/mt643939.aspx#HTTP-trigger).
 
-## <a name="use-hello-http-action"></a>Utilizzare l'azione di hello HTTP
+## <a name="use-the-http-action"></a>Usare l'azione HTTP
 
-Un'azione è un'operazione che viene eseguita dal flusso di lavoro hello è definito in un'app di logica. 
+Un'azione è un'operazione eseguita dal flusso di lavoro e definita in un'app per la logica. 
 [Altre informazioni sulle azioni](connectors-overview.md).
 
 1. Scegliere **Nuovo passaggio** > **Aggiungi un'azione**.
-3. Nella casella di ricerca azione hello, digitare **http** azioni hello HTTP toolist.
+3. Nella casella di ricerca dell'azione digitare **http** per elencare le azioni HTTP.
    
-    ![Selezionare l'azione di hello HTTP](./media/connectors-native-http/using-action-1.png)
+    ![Selezionare l'azione HTTP](./media/connectors-native-http/using-action-1.png)
 
-4. Aggiungere i parametri richiesti per la chiamata hello HTTP.
+4. Aggiungere i parametri richiesti per la chiamata HTTP.
    
-    ![Hello completo azione HTTP](./media/connectors-native-http/using-action-2.png)
+    ![Completare l'azione HTTP](./media/connectors-native-http/using-action-2.png)
 
-5. Sulla barra degli strumenti della finestra di progettazione hello, fare clic su **salvare**. L'app logica viene salvato e pubblicato (attivato) hello contemporaneamente.
+5. Fare clic su **Salva** nella barra degli strumenti della finestra di progettazione. L'app per la logica viene salvata e pubblicata (attivata) nello stesso momento.
 
 ## <a name="http-trigger"></a>Trigger HTTP
-Ecco i dettagli di hello per trigger hello che supporta il connettore. Connettore HTTP Hello include un trigger.
+Ecco i dettagli per il trigger supportato da questo connettore. Il connettore HTTP supporta un solo trigger.
 
 | Trigger | Descrizione |
 | --- | --- |
-| HTTP |Effettua una chiamata HTTP e restituisce contenuto della risposta hello. |
+| http |Esegue una chiamata HTTP e restituisce il contenuto della risposta. |
 
 ## <a name="http-action"></a>Azione HTTP
-Ecco hello dettagli per l'azione di hello che supporta questo connettore. Connettore HTTP Hello è un'opzione possibile.
+Ecco i dettagli per l'azione supportata da questo connettore. Il connettore HTTP supporta una sola azione possibile.
 
 | Azione | Descrizione |
 | --- | --- |
-| HTTP |Effettua una chiamata HTTP e restituisce contenuto della risposta hello. |
+| http |Esegue una chiamata HTTP e restituisce il contenuto della risposta. |
 
 ## <a name="http-details"></a>Dettagli di HTTP
-Hello nelle tabelle seguenti vengono descritti hello necessarie e i campi di input facoltativi per azione di hello e i dettagli di output corrispondenti hello associati mediante l'azione di hello.
+La tabella seguente descrive i campi di input obbligatori e facoltativi per l'azione e i dettagli di output corrispondenti associati all'uso dell'azione.
 
 #### <a name="http-request"></a>Richiesta HTTP
-di seguito Hello sono campi di input per l'azione di hello, che esegue una richiesta HTTP in uscita.
+Di seguito sono riportati campi di input per l'azione, che esegue una richiesta HTTP in uscita.
 Un asterisco (*) indica che è un campo obbligatorio.
 
 | Nome visualizzato | Nome proprietà | Descrizione |
 | --- | --- | --- |
-| Metodo* |statico |toouse verbo HTTP Hello |
-| URI* |Uri |Hello URI per la richiesta HTTP hello |
-| Headers |headers |Un oggetto JSON di tooinclude intestazioni HTTP |
-| Corpo |body |Hello corpo della richiesta HTTP |
-| Autenticazione |authentication |Dettagli hello [autenticazione](#authentication) sezione |
+| Metodo* |statico |Verbo HTTP da usare |
+| URI* |Uri |URI per la richiesta HTTP |
+| Headers |Headers |Un oggetto JSON delle intestazioni HTTP da includere |
+| Corpo |Corpo |Il corpo della richiesta HTTP |
+| Autenticazione |Autenticazione |Dettagli nella sezione [Autenticazione](#authentication) . |
 
 <br>
 
 #### <a name="output-details"></a>Dettagli dell'output
-di seguito Hello sono i dettagli di output per hello risposta HTTP.
+Di seguito sono riportati i dettagli di output per la risposta HTTP.
 
 | Nome proprietà | Tipo di dati | Descrizione |
 | --- | --- | --- |
@@ -131,7 +131,7 @@ di seguito Hello sono i dettagli di output per hello risposta HTTP.
 | Codice di stato |int |Stato codice HTTP |
 
 ## <a name="authentication"></a>Autenticazione
-funzionalità di App per la logica di Hello consente toouse diversi tipi di autenticazione a fronte di endpoint HTTP. È possibile utilizzare l'autenticazione con hello **HTTP**,  **[HTTP + Swagger](connectors-native-http-swagger.md)**, e  **[HTTP Webhook](connectors-native-webhook.md)**  connettori. Hello seguenti tipi di autenticazione possono essere configurata:
+La funzionalità App per la logica permette di usare diversi tipi di autenticazione per gli endpoint HTTP. Questo tipo di autenticazione può essere usato con i connettori **HTTP**, **[HTTP e Swagger](connectors-native-http-swagger.md)** e **[Webhook HTTP](connectors-native-webhook.md)**. È possibile configurare i seguenti tipi di autenticazione:
 
 * [Autenticazione di base](#basic-authentication)
 * [Autenticazione con certificato client](#client-certificate-authentication)
@@ -139,20 +139,20 @@ funzionalità di App per la logica di Hello consente toouse diversi tipi di aute
 
 #### <a name="basic-authentication"></a>Autenticazione di base
 
-Hello segue l'oggetto di autenticazione è necessaria l'autenticazione di base.
+Per l'autenticazione di base è necessario l'oggetto di autenticazione seguente.
 Un asterisco (*) indica che è un campo obbligatorio.
 
 | Nome proprietà | Tipo di dati | Descrizione |
 | --- | --- | --- |
 | Type* |type |Tipo di autenticazione (deve essere `Basic` per l'autenticazione di base) |
-| Username* |username |Tooauthenticate nome utente |
-| Password* |password |Password tooauthenticate |
+| Username* |username |Nome utente da autenticare |
+| Password* |password |Password da autenticare |
 
 > [!TIP]
-> Se si desidera toouse una password che non può essere recuperata dalla definizione di hello, utilizzare un `securestring` parametro e hello `@parameters()`  
->  [funzione di definizione del flusso di lavoro](http://aka.ms/logicappdocs).
+> Se si desidera usare una password che non può essere recuperata dalla definizione, usare un parametro `securestring` e la `@parameters()` 
+> [funzione di definizione del flusso di lavoro](http://aka.ms/logicappdocs).
 
-ad esempio:
+Ad esempio:
 
 ```javascript
 {
@@ -164,19 +164,19 @@ ad esempio:
 
 #### <a name="client-certificate-authentication"></a>Autenticazione con certificato client
 
-oggetto di autenticazione seguenti Hello è necessaria per l'autenticazione del certificato client. Un asterisco (*) indica che è un campo obbligatorio.
+Per l'autenticazione con certificato client è necessario l'oggetto di autenticazione seguente. Un asterisco (*) indica che è un campo obbligatorio.
 
 | Nome proprietà | Tipo di dati | Descrizione |
 | --- | --- | --- |
-| Type* |type |tipo di autenticazione Hello (deve essere `ClientCertificate` per i certificati client SSL) |
-| PFX* |pfx |contenuto con codifica Base64 Hello del file di scambio di informazioni personali (PFX) hello |
-| Password* |password |Hello password tooaccess hello file PFX |
+| Type* |type |Tipo di autenticazione (deve essere `ClientCertificate` per i certificati client SSL) |
+| PFX* |pfx |Contenuto con codifica Base 64 del file di scambio di informazioni personali (PFX, Personal Information Exchange) |
+| Password* |password |La password per accedere al file PFX |
 
 > [!TIP]
-> un parametro che non sarà leggibile nella definizione di hello dopo il salvataggio di hello logica app toouse, è possibile utilizzare un `securestring` parametro e hello `@parameters()`  
->  [funzione di definizione del flusso di lavoro](http://aka.ms/logicappdocs).
+> Per usare un parametro che non sarà leggibile nella definizione dopo il salvataggio dell'app per la logica, è possibile usare un parametro `securestring` e la `@parameters()` 
+> [funzione di definizione del flusso di lavoro](http://aka.ms/logicappdocs).
 
-ad esempio:
+Ad esempio:
 
 ```javascript
 {
@@ -187,22 +187,22 @@ ad esempio:
 ```
 
 #### <a name="azure-ad-oauth-authentication"></a>Autenticazione OAuth di Azure AD
-Hello segue l'oggetto di autenticazione è necessaria per l'autenticazione OAuth di Active Directory di Azure. Un asterisco (*) indica che è un campo obbligatorio.
+Per l'autenticazione OAuth di Azure Ad è necessario l'oggetto di autenticazione seguente. Un asterisco (*) indica che è un campo obbligatorio.
 
 | Nome proprietà | Tipo di dati | Descrizione |
 | --- | --- | --- |
-| Type* |type |tipo di autenticazione Hello (deve essere `ActiveDirectoryOAuth` per OAuth di Active Directory di Azure) |
-| Tenant* |tenant |Identificatore del tenant Hello per tenant hello Azure AD |
-| Pubblico* |audience |risorsa Hello toouse autorizzazione richiesta. Ad esempio: `https://management.core.windows.net/` |
-| ID cliente* |clientId |Hello identificatore client per un'applicazione hello Azure AD |
-| Segreto* |secret |segreto Hello del client hello che sta richiedendo hello token |
+| Type* |type |Tipo di autenticazione (deve essere `ActiveDirectoryOAuth` per OAuth di Azure AD) |
+| Tenant* |tenant |L'identificatore del tenant di Azure AD |
+| Pubblico* |audience |La risorsa per cui si sta richiedendo l'autorizzazione per l'uso. Ad esempio: `https://management.core.windows.net/` |
+| ID cliente* |clientId |Identificatore client per l'applicazione Azure AD |
+| Segreto* |secret |Segreto del client che richiede il token |
 
 > [!TIP]
-> È possibile utilizzare un `securestring` parametro e hello `@parameters()` [funzione di definizione del flusso di lavoro](http://aka.ms/logicappdocs) toouse un parametro che non sarà leggibile nella definizione di hello dopo il salvataggio.
+> È possibile usare un parametro `securestring` e la [funzione di definizione del flusso di lavoro](http://aka.ms/logicappdocs) `@parameters()` per usare un parametro che non sarà leggibile nella definizione dopo il salvataggio.
 > 
 > 
 
-ad esempio:
+Ad esempio:
 
 ```javascript
 {
@@ -215,5 +215,5 @@ ad esempio:
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-A questo punto, provare a piattaforma hello e [creare un'app di logica](../logic-apps/logic-apps-create-a-logic-app.md). È possibile esplorare altri connettori disponibile in App per la logica di hello esaminando il nostro [elenco API](apis-list.md).
+Provare ora a usare la piattaforma e [creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md). È possibile esplorare gli altri connettori disponibili nelle app per la logica esaminando l' [elenco di API](apis-list.md).
 

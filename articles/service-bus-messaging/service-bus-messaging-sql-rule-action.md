@@ -1,5 +1,5 @@
 ---
-title: riferimento alla sintassi aaaSQLRuleAction in Azure | Documenti Microsoft
+title: Informazioni di riferimento sulla sintassi di SQLRuleAction in Azure | Documentazione Microsoft
 description: Informazioni dettagliate sulla grammatica di SQLRuleAction.
 services: service-bus-messaging
 documentationcenter: na
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/28/2017
 ms.author: sethm
-ms.openlocfilehash: 8ef281f942847bcc535b83a5ffb30d03539734f9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7379b7f58563675f28d77928d933c0d9c7992e71
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="sqlruleaction-syntax"></a>Sintassi di SQLRuleAction
 
-Oggetto *SqlRuleAction* è un'istanza di hello [SqlRuleAction](/dotnet/api/microsoft.servicebus.messaging.sqlruleaction) classe e rappresenta set di azioni scritto nel linguaggio SQL basato su sintassi che viene eseguita in un [BrokeredMessage](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage).   
+*SqlRuleAction* è un'istanza della [classe SqlRuleAction](/dotnet/api/microsoft.servicebus.messaging.sqlruleaction) e rappresenta un set di azioni scritto in una sintassi basata sul linguaggio SQL ed eseguito su una [classe BrokeredMessage](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage).   
   
-In questo argomento elenca i dettagli sui hello la grammatica SQL di azione regola.  
+Questo argomento offre informazioni dettagliate sulla grammatica delle azioni regola SQL.  
   
 ```  
 <statements> ::=
@@ -64,11 +64,11 @@ In questo argomento elenca i dettagli sui hello la grammatica SQL di azione rego
   
 ## <a name="arguments"></a>Argomenti  
   
--   `<scope>`stringa facoltativa che indica di ambito hello di hello `<property_name>`. I valori validi sono `sys` o `user`. Hello `sys` valore indica l'ambito del sistema in cui `<property_name>` è un nome di proprietà pubblica di hello [classe BrokeredMessage](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage). `user`indica l'ambito di utente in cui `<property_name>` è una chiave di hello [classe BrokeredMessage](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage) dizionario. `user`ambito è l'ambito predefinito hello se `<scope>` non è specificato.  
+-   `<scope>` è una stringa facoltativa che indica l'ambito di `<property_name>`. I valori validi sono `sys` o `user`. Il valore `sys` indica l'ambito del sistema. In questo caso, `<property_name>` sarà il nome di una proprietà pubblica della [classe BrokeredMessage](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage). `user` indica l'ambito dell'utente. In questo caso, `<property_name>` sarà una chiave del dizionario della [classe BrokeredMessage](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage). Se l'argomento `<scope>` non è specificato, l'ambito predefinito è `user`.  
   
 ### <a name="remarks"></a>Osservazioni  
 
-Tooaccess un tentativo di una proprietà di sistema inesistente è un errore, mentre una proprietà di utente tooaccess inesistente un tentativo non è un errore. Una proprietà utente inesistente viene invece valutata internamente come valore sconosciuto. Un valore sconosciuto viene gestito in modo speciale durante la valutazione degli operatori.  
+Il tentativo di accedere a una proprietà di sistema inesistente costituisce un errore, mentre il tentativo di accedere a una proprietà utente inesistente non è un errore. Una proprietà utente inesistente viene invece valutata internamente come valore sconosciuto. Un valore sconosciuto viene gestito in modo speciale durante la valutazione degli operatori.  
   
 ## <a name="propertyname"></a>property_name  
   
@@ -83,7 +83,7 @@ Tooaccess un tentativo di una proprietà di sistema inesistente è un errore, me
 ```  
   
 ### <a name="arguments"></a>Argomenti  
- `<regular_identifier>`è una stringa rappresentata dall'hello seguenti espressioni regolari:  
+ `<regular_identifier>` è una stringa rappresentata dall'espressione regolare seguente:  
   
 ```  
 [[:IsLetter:]][_[:IsLetter:][:IsDigit:]]*  
@@ -97,7 +97,7 @@ Tooaccess un tentativo di una proprietà di sistema inesistente è un errore, me
   
  `<regular_identifier>` non può essere una parola chiave riservata.  
   
- `<delimited_identifier>` è qualsiasi stringa racchiusa tra parentesi quadra aperta e parentesi quadra chiusa ([]). Una parentesi quadra chiusa è rappresentata con due parentesi quadre chiuse. Hello negli esempi seguenti vengono `<delimited_identifier>`:  
+ `<delimited_identifier>` è qualsiasi stringa racchiusa tra parentesi quadra aperta e parentesi quadra chiusa ([]). Una parentesi quadra chiusa è rappresentata con due parentesi quadre chiuse. Di seguito sono riportati esempi di `<delimited_identifier>`:  
   
 ```  
 [Property With Space]  
@@ -105,7 +105,7 @@ Tooaccess un tentativo di una proprietà di sistema inesistente è un errore, me
   
 ```  
   
- `<quoted_identifier>` è qualsiasi stringa racchiusa tra virgolette doppie. Le virgolette doppie nell'identificatore sono rappresentate con due virgolette doppie. Non è consigliabile toouse identificatori tra virgolette perché può facilmente essere confuso con una costante di stringa. Usare se possibile un identificatore delimitato. Hello seguito è riportato un esempio di `<quoted_identifier>`:  
+ `<quoted_identifier>` è qualsiasi stringa racchiusa tra virgolette doppie. Le virgolette doppie nell'identificatore sono rappresentate con due virgolette doppie. Non è consigliabile usare identificatori racchiusi tra virgolette perché possono essere facilmente confusi con una costante di tipo stringa. Usare se possibile un identificatore delimitato. Di seguito è riportato un esempio di `<quoted_identifier>`:  
   
 ```  
 "Contoso & Northwind"  
@@ -120,7 +120,7 @@ Tooaccess un tentativo di una proprietà di sistema inesistente è un errore, me
   
 ### <a name="remarks"></a>Osservazioni
   
- `<pattern>` deve essere un'espressione valutata come stringa. Viene utilizzato come modello per hello operatore LIKE.      Può contenere i caratteri jolly hello:  
+ `<pattern>` deve essere un'espressione valutata come stringa. Viene usato come modello per l'operatore LIKE      e può contenere i caratteri jolly seguenti.  
   
 -   `%`: qualsiasi stringa di zero o più caratteri.  
   
@@ -135,7 +135,7 @@ Tooaccess un tentativo di una proprietà di sistema inesistente è un errore, me
   
 ### <a name="remarks"></a>Osservazioni
   
- `<escape_char>` deve essere un'espressione valutata come stringa di lunghezza 1. È utilizzato come un carattere di escape per hello operatore LIKE.  
+ `<escape_char>` deve essere un'espressione valutata come stringa di lunghezza 1. Viene usato come carattere di escape per l'operatore LIKE.  
   
  Ad esempio, `property LIKE 'ABC\%' ESCAPE '\'` corrisponde a `ABC%` anziché a una stringa che inizia con `ABC`.  
   
@@ -148,27 +148,27 @@ Tooaccess un tentativo di una proprietà di sistema inesistente è un errore, me
   
 ### <a name="arguments"></a>Argomenti  
   
--   `<integer_constant>` è una stringa di numeri non racchiusi tra virgolette e non contenenti separatori decimali. i valori Hello vengono archiviati come `System.Int64` internamente, e seguire hello stesso intervallo.  
+-   `<integer_constant>` è una stringa di numeri non racchiusi tra virgolette e non contenenti separatori decimali. I valori sono archiviati internamente come `System.Int64` e seguono lo stesso intervallo.  
   
-     di seguito Hello sono esempi di costanti lungo:  
+     Di seguito sono riportati esempi di costanti di tipo long:  
   
     ```  
     1894  
     2  
     ```  
   
--   `<decimal_constant>` è una stringa di numeri non racchiusi tra virgolette e contenente un separatore decimale. i valori Hello vengono archiviati come `System.Double` internamente e seguire hello stesso intervallo/precisione.  
+-   `<decimal_constant>` è una stringa di numeri non racchiusi tra virgolette e contenente un separatore decimale. I valori sono archiviati internamente come `System.Double` e seguono lo stesso intervallo e la stessa precisione.  
   
-     In una versione futura, questo numero potrebbe essere archiviato in un dati diversi toosupport esatto numero la semantica dei tipi, è consigliabile non fare affidamento hello fatti hello sottostante è di tipo di dati `System.Double` per `<decimal_constant>`.  
+     In una versione futura, questo numero potrebbe essere archiviato in un tipo di dati diverso per supportare una semantica numerica esatta e non dover quindi fare affidamento sul fatto che il tipo di dati sottostante per `<decimal_constant>` sia `System.Double`.  
   
-     Hello di seguito è riportati esempi di costanti decimali:  
+     Di seguito sono riportati esempi di costanti decimali:  
   
     ```  
     1894.1204  
     2.0  
     ```  
   
--   `<approximate_number_constant>` è un numero scritto in notazione scientifica. i valori Hello vengono archiviati come `System.Double` internamente e seguire hello stesso intervallo/precisione. di seguito Hello sono esempi di costanti numero approssimative di:  
+-   `<approximate_number_constant>` è un numero scritto in notazione scientifica. I valori sono archiviati internamente come `System.Double` e seguono lo stesso intervallo e la stessa precisione. Di seguito sono riportati esempi di costanti numeriche approssimative:  
   
     ```  
     101.5E5  
@@ -184,7 +184,7 @@ Tooaccess un tentativo di una proprietà di sistema inesistente è un errore, me
   
 ### <a name="remarks"></a>Osservazioni
   
-Costanti booleane sono rappresentate dalle parole chiave hello `TRUE` o `FALSE`. i valori Hello vengono archiviati come `System.Boolean`.  
+Le costanti booleane sono rappresentate dalle parole chiave `TRUE` e `FALSE`. I valori sono archiviati come `System.Boolean`.  
   
 ## <a name="stringconstant"></a>string_constant  
   
@@ -206,18 +206,18 @@ Le costanti di tipo stringa sono racchiuse tra virgolette singole e includono qu
   
 ### <a name="remarks"></a>Osservazioni  
 
-Hello `newid()` restituisce un **GUID** generati da hello `System.Guid.NewGuid()` metodo.  
+La funzione `newid()` restituisce un **System.Guid** generato dal metodo `System.Guid.NewGuid()`.  
   
-Hello `property(name)` funzione restituisce il valore di hello della proprietà hello a cui fa riferimento `name`. Hello `name` valore può essere qualsiasi espressione valida che restituisce un valore stringa.  
+La funzione `property(name)` restituisce il valore della proprietà a cui viene fatto riferimento con `name`. Il valore di `name` può essere qualsiasi espressione valida che restituisce un valore stringa.  
   
 ## <a name="considerations"></a>Considerazioni
 
-- SET è utilizzato toocreate un nuovo valore di hello proprietà o l'aggiornamento di una proprietà esistente.
-- Rimuovi sono tooremove utilizzata una proprietà.
-- SET esegue la conversione implicita se possibile, quando il tipo di espressione hello e il tipo di proprietà esistente hello sono diversi.
+- L'azione SET viene usata per creare una nuova proprietà o aggiornare il valore di una proprietà esistente.
+- L'azione REMOVE viene usata per rimuovere una proprietà.
+- SET esegue la conversione implicita, se possibile, quando il tipo dell'espressione e il tipo della proprietà esistente sono diversi.
 - Se viene fatto riferimento a proprietà di sistema inesistenti, l'azione ha esito negativo.
 - L'azione non ha invece esito negativo se viene fatto riferimento a proprietà utente inesistenti.
-- Una proprietà inesistente utente viene valutata come "Sconosciuto" internamente, seguente hello stessa semantica [SQLFilter](/dotnet/api/microsoft.servicebus.messaging.sqlfilter) durante la valutazione degli operatori.
+- Una proprietà utente inesistente viene valutata internamente come valore sconosciuto, seguendo la stessa semantica di [SQLFilter](/dotnet/api/microsoft.servicebus.messaging.sqlfilter) nella valutazione degli operatori.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

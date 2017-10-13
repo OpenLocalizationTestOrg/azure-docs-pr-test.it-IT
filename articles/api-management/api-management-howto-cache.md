@@ -1,6 +1,6 @@
 ---
-title: la memorizzazione nella cache le prestazioni di tooimprove in Gestione API di Azure aaaAdd | Documenti Microsoft
-description: Informazioni su come caricare il servizio web, il consumo di larghezza di banda e latenza hello tooimprove per le chiamate al servizio Gestione API.
+title: Aggiungere il caching per migliorare le prestazioni in Gestione API di Azure | Microsoft Docs
+description: Informazioni su come migliorare la latenza, il consumo della larghezza di banda e il carico del servizio Web per le chiamate del servizio Gestione API.
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: 056ab7cf788218327e30bd5c028b76e3b1977fb0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 59c595f0d5ce849f44c46fdb6cab0b44d35fffa0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="add-caching-tooimprove-performance-in-azure-api-management"></a>Aggiungere la memorizzazione nella cache delle prestazioni tooimprove in Gestione API di Azure
+# <a name="add-caching-to-improve-performance-in-azure-api-management"></a>Aggiungere il caching per migliorare le prestazioni in Gestione API di Azure
 Le operazioni in Gestione API possono essere configurate per la memorizzazione nella cache della risposta. La memorizzazione nella cache della risposta può ridurre significativamente la latenza delle API, il consumo di larghezza di banda e il carico del servizio Web per i dati che non vengono modificati di frequente.
 
-Questa guida illustra come risposta tooadd la memorizzazione nella cache per l'API e configurare i criteri per le operazioni dell'API di Echo esempio hello. È quindi possibile chiamare l'operazione di hello dalla hello memorizzazione nella cache tooverify portale per sviluppatori in azione.
+Questa Guida illustra come aggiungere la memorizzazione delle risposte nella cache per l'API e configurare i criteri per le operazioni API Echo di esempio. Per verificare il funzionamento della memorizzazione della cache, è possibile chiamare l'operazione dal portale per sviluppatori.
 
 > [!NOTE]
 > Per informazioni sul caching degli elementi in base alla chiave usando espressioni di criteri, vedere [Caching personalizzato in Gestione API di Azure](api-management-sample-cache-by-key.md).
@@ -31,54 +31,54 @@ Questa guida illustra come risposta tooadd la memorizzazione nella cache per l'A
 > 
 
 ## <a name="prerequisites"></a>Prerequisiti
-Prima di hello seguente passaggi in questa Guida, è necessario disporre di un'istanza del servizio Gestione API con un'API e un prodotto configurato. Se non è ancora stato creato un'istanza del servizio Gestione API, vedere [creare un'istanza del servizio Gestione API] [ Create an API Management service instance] in hello [Introduzione a gestione API di Azure] [ Get started with Azure API Management] esercitazione.
+Prima di eseguire i passaggi di questa guida, è necessario avere un'istanza del servizio Gestione API con un'API e un prodotto configurati. Se non è stata creata un'istanza del servizio Gestione API, vedere [Creare un'istanza di Gestione API][Create an API Management service instance] nell'esercitazione [Introduzione a Gestione API di Azure][Get started with Azure API Management].
 
-## <a name="configure-caching"></a>Configurare un'operazione per la memorizzazione nella cache
-In questo passaggio si esamineranno hello la memorizzazione nella cache le impostazioni di hello **ottenere risorse (cache)** operazione dell'esempio hello Echo API.
+## <a name="configure-caching"> </a>Configurare un'operazione per la memorizzazione nella cache
+In questo passaggio vengono riviste le impostazioni di caching dell'operazione **GET su risorsa (memorizzata nella cache)** dell'API Echo di esempio.
 
 > [!NOTE]
-> Ogni istanza del servizio Gestione API preconfigurato con un'API Echo che possono essere tooexperiment utilizzati con e acquisire informazioni su gestione API. Per altre informazioni, vedere [Introduzione a Gestione API di Azure][Get started with Azure API Management].
+> Ogni istanza del servizio Gestione API è preconfigurata con un'API Echo utilizzabile per sperimentare e ottenere altre informazioni su Gestione API. Per altre informazioni, vedere [Introduzione a Gestione API di Azure][Get started with Azure API Management].
 > 
 > 
 
-tooget avviato, fare clic su **portale di pubblicazione** in hello portale di Azure per il servizio Gestione API. Consente di procedere toohello portale di pubblicazione di gestione API.
+Per iniziare, fare clic sul **portale di pubblicazione** nel Portale di Azure relativo al servizio Gestione API. Verrà visualizzato il portale di pubblicazione di Gestione API.
 
 ![Portale di pubblicazione][api-management-management-console]
 
-Fare clic su **API** da hello **gestione API** menu hello a sinistra e quindi fare clic su **API Echo**.
+Scegliere **API** dal menu **Gestione API** a sinistra, quindi fare clic su **Echo API** (API Echo).
 
 ![API Echo][api-management-echo-api]
 
-Fare clic su hello **operazioni** scheda e quindi fare clic su hello **ottenere risorse (cache)** operazione hello **operazioni** elenco.
+Fare clic sulla scheda **Operazioni**, quindi sull'operazione **GET Resource (cached)** (GET su risorsa - memorizzata nella cache) nell'elenco **Operazioni**.
 
 ![Operazioni dell'API Echo][api-management-echo-api-operations]
 
-Fare clic su hello **la memorizzazione nella cache** hello tooview scheda Impostazioni per l'operazione di memorizzazione nella cache.
+Fare clic sulla scheda **Caching** per visualizzare le impostazioni di caching per l'operazione.
 
 ![Scheda Memorizzazione nella cache][api-management-caching-tab]
 
-tooenable la memorizzazione nella cache per un'operazione, seleziona hello **abilitare** casella di controllo. In questo esempio, il caching è abilitato.
+Per abilitare il caching per un'operazione, selezionare la casella di controllo **Abilita** . In questo esempio, il caching è abilitato.
 
-Ogni risposta di operazione con chiave, in base ai valori hello hello **possono variare dai parametri di stringa di query** e **possono variare dalle intestazioni** campi. Se si desidera toocache più risposte in base a parametri di stringa di query o le intestazioni, è possibile configurare loro questi due campi.
+La risposta di ogni operazione è associata a una chiave in base ai valori dei campi **Variabile in base a parametri stringa query** e **Vary by headers** (Variabile in base a intestazioni). Per memorizzare nella cache più risposte in base ai parametri delle stringhe di query o alle intestazioni, è possibile configurarle in questi due campi.
 
-**Durata** specifica l'intervallo di scadenza hello delle risposte hello memorizzati nella cache. In questo esempio, è l'intervallo hello **3600** secondi, ovvero ora tooone equivalente.
+**durata** specifica l'intervallo di scadenza delle risposte memorizzate nella cache. In questo esempio l'intervallo è di **3600** secondi, equivalente a un'ora.
 
-Utilizza la memorizzazione nella cache di configurazione in questo esempio hello, hello prima richiesta toohello **ottenere risorse (cache)** operazione restituisce una risposta dal servizio back-end hello. Questa risposta nella cache, con chiave fornita da hello specificato parametri di stringa di query e le intestazioni. Le chiamate successive operazione toohello, con i corrispondenti parametri, sarà necessario hello memorizzati nella cache di risposta restituito, fino a quando l'intervallo di durata della cache di hello è scaduto.
+Nella configurazione di esempio del caching la prima richiesta all'operazione **GET su risorsa (memorizzata nella cache)** restituisce una risposta dal servizio back-end. Questa risposta viene memorizzata nella cache, associata a una chiave mediante le intestazioni e i parametri delle stringhe di query specificati. Le chiamate successive all'operazione, con i parametri corrispondenti, riceveranno la risposta memorizzata nella cache finché non scade l'intervallo di durata della cache.
 
-## <a name="caching-policies"></a>Hello rivedere i criteri di memorizzazione nella cache
-In questo passaggio è esaminare la memorizzazione nella cache le impostazioni per hello hello **ottenere risorse (cache)** operazione dell'esempio hello Echo API.
+## <a name="caching-policies"> </a>Rivedere i criteri di memorizzazione nella cache
+In questo passaggio vengono riviste le impostazioni di caching dell'operazione **GET su risorsa** (memorizzata nella cache) dell'API Echo di esempio.
 
-Quando le impostazioni della cache sono configurate per un'operazione su hello **la memorizzazione nella cache** scheda, la memorizzazione nella cache vengono aggiunti i criteri per l'operazione di hello. Questi criteri possono essere visualizzati e modificati nell'editor Criteri di hello.
+Quando le impostazioni di memorizzazione nella cache vengono configurate per un'operazione nella scheda **Memorizzazione nella cache** , vengono aggiunti i criteri di memorizzazione nella cache per l'operazione. Questi criteri possono essere visualizzati e modificati nell'editor dei criteri.
 
-Fare clic su **criteri** da hello **gestione API** menu hello a sinistra e quindi seleziona **API Echo / ottenere una risorsa (cache)** da hello **operazione**elenco a discesa.
+Fare clic su **Criteri** dal menu **Gestione API** a sinistra, quindi selezionare **Echo API / GET Resource (cached)** (API Echo/GET su risorsa - memorizzata nella cache) dall'elenco a discesa **Operazione**.
 
 ![Operazione nell'ambito dei criteri][api-management-operation-dropdown]
 
-Consente di visualizzare i criteri per questa operazione hello editor Criteri di hello.
+Visualizza i criteri per l'operazione nell'editor dei criteri.
 
 ![Editor dei criteri di Gestione API][api-management-policy-editor]
 
-definizione dei criteri Hello per questa operazione include hello criteri che definiscono una configurazione di cache di hello e che sono stati controllati tramite hello **la memorizzazione nella cache** scheda nel passaggio precedente hello.
+La definizione dei criteri per questa operazione include i criteri che definiscono la configurazione della memorizzazione nella cache rivisti usando la scheda **Memorizzazione nella cache** nel passaggio precedente.
 
 ```xml
 <policies>
@@ -98,49 +98,49 @@ definizione dei criteri Hello per questa operazione include hello criteri che de
 ```
 
 > [!NOTE]
-> Toohello le modifiche apportate nell'editor Criteri di hello i criteri di memorizzazione nella cache verrà riflesse nella hello **la memorizzazione nella cache** scheda di un'operazione e viceversa.
+> Le modifiche apportate ai criteri di caching nell'editor dei criteri si rifletteranno nella scheda **Caching** di un'operazione e viceversa.
 > 
 > 
 
-## <a name="test-operation"></a>Chiamare un'operazione e verificare la memorizzazione nella cache di hello
-hello toosee la memorizzazione nella cache in azione, è possibile chiamare operazione hello dal portale per sviluppatori hello. Fare clic su **portale per sviluppatori** nel menu in alto destra hello.
+## <a name="test-operation"> </a>Chiamare un'operazione e testare la memorizzazione nella cache
+Per vedere il funzionamento della memorizzazione nella cache, l'operazione viene chiamata dal portale per sviluppatori. Fare clic su **Developer portal** nel menu in alto a destra.
 
 ![Portale per sviluppatori][api-management-developer-portal-menu]
 
-Fare clic su **API** in hello menu superiore e quindi selezionare **API Echo**.
+Fare clic su **API** dal menu in alto e quindi scegliere **Echo API** (API Echo).
 
 ![API Echo][api-management-apis-echo-api]
 
-> Se si dispone di un solo API configurata o account tooyour visibile, quindi fare clic su API consente di passare direttamente toohello operazioni dell'API.
+> Se è stata configurata una sola API o se ne è visibile solo una per l'account, facendo clic sulle API vengono visualizzate le operazioni per l'API.
 > 
 > 
 
-Seleziona hello **ottenere risorse (cache)** operazione e quindi fare clic su **aprire la Console di**.
+Selezionare l'operazione **GET Resource (cached)** (GET su risorsa - memorizzata nella cache), quindi fare clic su **Apri console**.
 
 ![Open console][api-management-open-console]
 
-console Hello consente operazioni di tooinvoke direttamente dal portale per sviluppatori hello.
+La console consente di richiamare le operazioni direttamente dal portale per sviluppatori.
 
 ![Console][api-management-console]
 
-Mantenere i valori predefiniti di hello per **param1** e **param2**.
+Mantenere i valori predefiniti per **param1** e **param2**.
 
-Selezionare hello chiave desiderato da hello **chiave di sottoscrizione** elenco a discesa. Se l'account ha una sola sottoscrizione, sarà già selezionata automaticamente.
+Selezionare la chiave desiderata dall'elenco a discesa **subscription-key** . Se l'account ha una sola sottoscrizione, sarà già selezionata automaticamente.
 
-Immettere **sampleheader:value1** in hello **le intestazioni di richiesta** casella di testo.
+Immettere **sampleheader:value1** nella casella di testo **Intestazioni della richiesta**.
 
-Fare clic su **HTTP Get** e prendere nota di hello intestazioni di risposta.
+Fare clic su **GET HTTP** e annotare le intestazioni di risposta.
 
-Immettere **sampleheader:value2** in hello **le intestazioni di richiesta** casella di testo e quindi fare clic su **HTTP Get**.
+Immettere **sampleheader:value2** nella casella di testo **Intestazioni della richiesta** e quindi fare clic su **GET HTTP**.
 
-Si noti il valore di hello di **sampleheader** è ancora **value1** in risposta hello. Provare alcuni valori diversi e viene restituito si noti che la risposta memorizzata nella cache dalla prima chiamata hello hello.
+Il valore di **sampleheader** nella risposta è ancora **value1**. Provare altri valori diversi e notare che viene restituita la risposta memorizzata nella cache della prima chiamata.
 
-Immettere **25** in hello **param2** campo e quindi fare clic su **HTTP Get**.
+Immettere **25** nel campo **param2**, quindi fare clic su **GET HTTP**.
 
-Si noti il valore di hello di **sampleheader** in hello risposta è ora **value2**. Poiché i risultati dell'operazione hello vengono codificati dalla stringa di query, risposta memorizzata nella cache di hello precedente non è stato restituito.
+Il valore di **sampleheader** nella risposta ora è **value2**. I risultati dell'operazione vengono associati a una chiave in base alla stringa di query, quindi non viene restituita la risposta memorizzata nella cache precedente.
 
-## <a name="next-steps"></a>Passaggi successivi
-* Per ulteriori informazioni sulla memorizzazione nella cache i criteri, vedere [criteri di memorizzazione nella cache] [ Caching policies] in hello [riferimento ai criteri di gestione API][API Management policy reference].
+## <a name="next-steps"> </a>Passaggi successivi
+* Per altre informazioni sui criteri di caching, vedere [Caching policies][Caching policies] (Criteri di caching) nell'argomento [API Management policy reference][API Management policy reference] (Riferimento ai criteri di Gestione API).
 * Per informazioni sul caching degli elementi in base alla chiave usando espressioni di criteri, vedere [Caching personalizzato in Gestione API di Azure](api-management-sample-cache-by-key.md).
 
 [api-management-management-console]: ./media/api-management-howto-cache/api-management-management-console.png
@@ -155,10 +155,10 @@ Si noti il valore di hello di **sampleheader** in hello risposta è ora **value2
 [api-management-console]: ./media/api-management-howto-cache/api-management-console.png
 
 
-[How tooadd operations tooan API]: api-management-howto-add-operations.md
-[How tooadd and publish a product]: api-management-howto-add-products.md
+[How to add operations to an API]: api-management-howto-add-operations.md
+[How to add and publish a product]: api-management-howto-add-products.md
 [Monitoring and analytics]: api-management-monitoring.md
-[Add APIs tooa product]: api-management-howto-add-products.md#add-apis
+[Add APIs to a product]: api-management-howto-add-products.md#add-apis
 [Publish a product]: api-management-howto-add-products.md#publish-product
 [Get started with Azure API Management]: api-management-get-started.md
 
@@ -168,6 +168,6 @@ Si noti il valore di hello di **sampleheader** in hello risposta è ora **value2
 [Create an API Management service instance]: api-management-get-started.md#create-service-instance
 
 [Configure an operation for caching]: #configure-caching
-[Review hello caching policies]: #caching-policies
-[Call an operation and test hello caching]: #test-operation
+[Review the caching policies]: #caching-policies
+[Call an operation and test the caching]: #test-operation
 [Next steps]: #next-steps

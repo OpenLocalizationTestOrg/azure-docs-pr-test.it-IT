@@ -14,45 +14,45 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/29/2017
 ms.author: vturecek
-ms.openlocfilehash: 4a8f941c1e8e641384a9ee3a1149dabaaf9983cc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c182cc2062ada40029504de5b2b64b021c614ce6
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="service-fabric-testability-scenarios-service-communication"></a>Scenari di Testabilità di Service Fabric: comunicazione tra servizi
-Gli stili dell'architettura orientata ai microservizi e ai servizi vengono visualizzati naturalmente in Azure Service Fabric. In questi tipi di architetture distribuite, microservizio componenti applicazioni sono in genere composti da più servizi necessari tootalk tooeach altri. In casi più semplici anche hello, è in genere almeno un servizio web senza stato e un servizio di archiviazione di dati con stato che richiedono toocommunicate.
+Gli stili dell'architettura orientata ai microservizi e ai servizi vengono visualizzati naturalmente in Azure Service Fabric. In questi tipi di architetture distribuite, le applicazioni di microservizi con componenti sono in genere costituite da più servizi che devono comunicare tra loro. Anche nei casi più semplici, in genere si ha almeno un servizio Web senza stato e un servizio di archiviazione dei dati con stato che devono comunicare.
 
-Comunicazione da servizio a servizio è un punto di integrazione critici di un'applicazione, perché ogni servizio espone un servizi tooother API remoto. L'uso di un set di limiti di API che coinvolgono l'I/O richiede in genere particolare attenzione e diverse operazioni di test e di convalida.
+La comunicazione da servizio a servizio è un punto di integrazione critico di un'applicazione, in quanto ogni servizio espone un'API remota ad altri servizi. L'uso di un set di limiti di API che coinvolgono l'I/O richiede in genere particolare attenzione e diverse operazioni di test e di convalida.
 
-Esistono numerosi toomake considerazioni quando questi limiti di servizio sono collegati in un sistema distribuito:
+Quando questi limiti di servizio sono raggruppati in un sistema distribuito, è necessario fare numerose considerazioni:
 
 * *Protocollo di trasporto*. Si userà HTTP per una maggiore interoperabilità o un protocollo binario personalizzato per la velocità effettiva massima?
-* *Gestione degli errori*. Come vengono gestiti gli errori permanenti e temporanei? Cosa succede quando un servizio sposta nodo diverso tooa?
-* *Timeout e latenza*. Nelle applicazioni multilivello, la modalità di ogni livello di servizio Gestione latenza attraverso l'utente di stack e toohello hello?
+* *Gestione degli errori*. Come vengono gestiti gli errori permanenti e temporanei? Cosa succede quando un servizio viene spostato in un nodo diverso?
+* *Timeout e latenza*. Nelle applicazioni a più livelli in che modo ogni livello di servizio gestirà la latenza nello stack e all'utente?
 
-Se si utilizza uno dei componenti di comunicazione servizio integrato hello forniti dall'infrastruttura di servizio o si compila la propria, il test di interazioni hello tra i servizi è critico tooensuring resilienza nell'applicazione.
+Sia che venga usato uno dei componenti integrati di comunicazione tra servizi forniti da Service Fabric, sia che ne venga creato uno personalizzato, testare le interazioni tra i servizi è essenziale per garantire resilienza nell'applicazione.
 
-## <a name="prepare-for-services-toomove"></a>Preparare servizi toomove
-Le istanze del servizio possono spostarsi nel tempo. Ciò vale soprattutto se vengono configurate con la metrica di caricamento per il bilanciamento delle risorse ottimizzato personalizzato. Service Fabric Sposta toomaximize di istanze del servizio alla disponibilità anche durante gli aggiornamenti, i failover, scalabilità orizzontale e altre situazioni che si verificano nel corso della durata di un sistema distribuito hello.
+## <a name="prepare-for-services-to-move"></a>Preparare lo spostamento dei servizi
+Le istanze del servizio possono spostarsi nel tempo. Ciò vale soprattutto se vengono configurate con la metrica di caricamento per il bilanciamento delle risorse ottimizzato personalizzato. Service Fabric sposta le istanze del servizio per ottimizzare la disponibilità anche durante aggiornamenti, failover, scalabilità e altre situazioni che si verificano nel corso della durata di un sistema distribuito.
 
-Come spostare i servizi cluster hello, i client e altri servizi devono essere preparata toohandle due scenari quando dibattito tooa servizio:
+Dal momento che i servizi si spostano all'interno del cluster, i client e gli altri servizi devono essere preparati a gestire due scenari durante la comunicazione con un servizio:
 
-* replica del servizio Hello istanza o una partizione è stata spostata dall'ultima volta che è parlato tooit hello. Questa è una parte di un ciclo di vita del servizio normale e deve essere toohappen previsto nel corso della durata hello dell'applicazione.
-* replica partizione o l'istanza del servizio Hello è in corso di hello dello spostamento. Anche se si verifica il failover di un servizio da un nodo tooanother molto rapidamente nell'infrastruttura del servizio, si potrebbe verificarsi un ritardo nella disponibilità se il componente di comunicazione hello del servizio è toostart lento.
+* L’istanza del servizio o la replica della partizione si è spostata dall’ultima volta in cui si è stabilita una comunicazione. Si tratta della parte normale del ciclo di vita di un servizio e deve essere prevista nel corso della durata dell'applicazione.
+* L’istanza del servizio o la replica della partizione è in fase di spostamento. Sebbene in Infrastruttura di servizi il failover di un servizio da un nodo a un altro si verifichi molto rapidamente, potrebbe esserci un ritardo nella disponibilità se il componente di comunicazione del servizio è lento ad avviarsi.
 
-La gestione normale di questi scenari è importante per garantire che il sistema funzioni senza problemi. toodo in tal caso, tenere presente che:
+La gestione normale di questi scenari è importante per garantire che il sistema funzioni senza problemi. A tale scopo, tenere presente quanto segue:
 
-* Ogni servizio che può essere connesso toohas un *indirizzo* che è in ascolto (ad esempio, HTTP o WebSocket). Quando un'istanza o una partizione del servizio si sposta, il relativo endpoint dell'indirizzo cambia. (Sposta tooa nodo diverso con un indirizzo IP diverso). Se si utilizzano i componenti di comunicazione predefiniti hello, gestiscono nuovamente risoluzione indirizzi del servizio per l'utente.
-* Potrebbe esserci un aumento della latenza di servizio come servizio hello istanza viene avviato il listener del temporaneo nuovamente. Dipende dal servizio hello apre rapidamente come listener hello dopo lo spostamento di istanza del servizio hello.
-* Tutte le connessioni esistenti necessario toobe chiuso e riaperto dopo l'apertura di servizio hello in un nuovo nodo. Riavvio o arresto normale nodo consente di tempo per arrestare normalmente esistente toobe di connessioni.
+* Ogni servizio a cui è possibile connettersi ha un *indirizzo* sul quale è in ascolto, ad esempio HTTP o WebSocket. Quando un'istanza o una partizione del servizio si sposta, il relativo endpoint dell'indirizzo cambia. Si sposta in un altro nodo con un indirizzo IP diverso. Se si utilizzano componenti di comunicazione integrati, questi gestiranno automaticamente la nuova risoluzione degli indirizzi del servizio.
+* Potrebbe esserci un aumento temporaneo della latenza del servizio quando l'istanza del servizio avvia nuovamente il listener. Ciò dipende dalla rapidità con cui il servizio apre il listener dopo lo spostamento dell'istanza del servizio.
+* Tutte le connessioni esistenti devono essere chiuse e riaperte dopo l'apertura del servizio in un nuovo nodo. Un arresto o un riavvio normale del nodo consente di attendere che le connessioni esistenti siano arrestate normalmente.
 
 ### <a name="test-it-move-service-instances"></a>Test: spostare istanze del servizio
-Tramite strumenti testabilità dell'infrastruttura servizio, è possibile creare un tootest uno scenario di test queste situazioni in modi diversi:
+Grazie agli strumenti di testabilità di Service Fabric, è possibile creare uno scenario di test per testare queste situazioni in modi diversi:
 
 1. Spostare la replica primaria di un servizio con stato.
    
-    Hello replica primaria di una partizione di servizio con stato può essere spostato per diversi motivi. Utilizzare questa replica primaria di hello tootarget di toosee una partizione specifica come il toohello react servizi vengono spostati in modo molto controllato.
+    La replica primaria di una partizione del servizio con stato può essere spostata per diversi motivi. Utilizzare questa procedura per la replica primaria di una partizione specifica, per osservare in che modo reagiscono i servizi allo spostamento in modo molto controllato.
    
     ```powershell
    
@@ -61,9 +61,9 @@ Tramite strumenti testabilità dell'infrastruttura servizio, è possibile creare
     ```
 2. Arrestare un nodo.
    
-    Quando un nodo viene arrestato, Service Fabric passa tutti hello service istanze o le partizioni presenti tooone tale nodo di hello altri nodi disponibili nel cluster hello. Utilizzare questa situazione in cui un nodo viene perduto dal cluster e tutte le istanze del servizio hello e delle repliche su tale nodo hanno toomove tootest.
+    Quando un nodo viene arrestato, Service Fabric sposta tutte le istanze o le partizioni del servizio che erano presenti in quel nodo in uno degli altri nodi disponibili nel cluster. Usare questa procedura per testare una situazione in cui un nodo viene perso dal cluster e tutte le repliche e le istanze del servizio in tale nodo devono essere spostate.
    
-    È possibile arrestare un nodo utilizzando hello PowerShell **Stop ServiceFabricNode** cmdlet:
+    È possibile arrestare un nodo tramite il cmdlet di PowerShell **Stop-ServiceFabricNode** :
    
     ```powershell
    
@@ -72,14 +72,14 @@ Tramite strumenti testabilità dell'infrastruttura servizio, è possibile creare
     ```
 
 ## <a name="maintain-service-availability"></a>Mantenere la disponibilità del servizio
-Come piattaforma, Service Fabric è progettato tooprovide elevata disponibilità dei servizi. In casi estremi, tuttavia, i problemi dell'infrastruttura sottostante possono comunque causare indisponibilità. È importante tootest per questi scenari, troppo.
+Service Fabric è una piattaforma progettata per garantire elevata disponibilità dei servizi. In casi estremi, tuttavia, i problemi dell'infrastruttura sottostante possono comunque causare indisponibilità. È importante testare anche questi scenari.
 
-Stato servizi utilizzano uno stato di sistema basato su quorum tooreplicate per la disponibilità elevata. Ciò significa che un quorum di repliche necessita di operazioni di scrittura toobe tooperform disponibile. In rari casi, ad esempio nel caso di errore hardware diffuso, potrebbe non essere disponibile un quorum di repliche. In questi casi, non sarà in grado di tooperform operazioni di scrittura, ma sarà comunque in grado di tooperform le operazioni di lettura.
+I servizi con stato usano un sistema basato su quorum per la replica dello stato per l'elevata disponibilità. Ciò significa che per eseguire le operazioni di scrittura deve essere disponibile un quorum di repliche. In rari casi, ad esempio nel caso di errore hardware diffuso, potrebbe non essere disponibile un quorum di repliche. In questi casi non sarà possibile eseguire operazioni di scrittura, ma sarà possibile eseguire operazioni di lettura.
 
 ### <a name="test-it-write-operation-unavailability"></a>Test: mancata disponibilità delle operazioni di scrittura
-Tramite gli strumenti di testabilità hello nell'infrastruttura del servizio, è possibile inserire un errore che causa la perdita di quorum di un test. Sebbene tale scenario è poco frequente, è importante che i client e servizi che dipendono da un servizio con stato siano preparati toohandle situazioni in cui non sarà possibile prendere tooit le richieste di scrittura. È inoltre importante hello con stato servizio consapevole di questa possibilità che sia possano normalmente comunica toocallers.
+Grazie agli strumenti di testabilità di Service Fabric, è possibile inserire come test un errore che provoca la perdita di quorum. Sebbene si tratti di uno scenario raro, è importante che i client e i servizi che dipendono da un servizio con stato siano preparati a gestire le situazioni in cui non possono eseguire richieste di scrittura al servizio. È importante anche che il servizio con stato sia a conoscenza di questa possibilità e sia in grado di comunicarla normalmente ai chiamanti.
 
-Si può provocare perdita del quorum utilizzando hello PowerShell **Invoke ServiceFabricPartitionQuorumLoss** cmdlet:
+La perdita di quorum può essere indotta mediante il cmdlet di PowerShell **Invoke-ServiceFabricPartitionQuorumLoss** :
 
 ```powershell
 
@@ -87,7 +87,7 @@ PS > Invoke-ServiceFabricPartitionQuorumLoss -ServiceName fabric:/Myapplication/
 
 ```
 
-In questo esempio viene impostato in modo `QuorumLossMode` troppo`QuorumReplicas` tooindicate da perdita del quorum tooinduce senza chiudere tutte le repliche. In questo modo è comunque possibile eseguire le operazioni di lettura. tootest uno scenario in cui un'intera partizione non è disponibile, è possibile impostare questa opzione troppo`AllReplicas`.
+In questo esempio `QuorumLossMode` viene impostato su `QuorumReplicas`, per indicare che si vuole causare la perdita di quorum senza interrompere tutte le repliche. In questo modo è comunque possibile eseguire le operazioni di lettura. Per testare uno scenario in cui un'intera partizione non è disponibile, è possibile impostare questa opzione su `AllReplicas`.
 
 ## <a name="next-steps"></a>Passaggi successivi
 [Azioni di Testabilità](service-fabric-testability-actions.md)

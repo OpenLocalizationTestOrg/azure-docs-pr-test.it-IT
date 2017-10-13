@@ -1,6 +1,6 @@
 ---
-title: App aaaDevelop per Azure AD | Microsoft documenti
-description: Scritto per professionisti IT di hello, questo articolo fornisce le linee guida per l'integrazione di applicazioni Azure con Active Directory.
+title: Sviluppare app per Azure AD | Documentazione Microsoft
+description: Scritto per i professionisti IT, questo articolo include linee guida per l'integrazione delle applicazioni di Azure in Active Directory.
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -15,69 +15,69 @@ ms.topic: article
 ms.date: 05/07/2017
 ms.author: kgremban
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: d2924be752af0be2843b1d9b74d9ec446d3fe1ea
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6b119be9c06d8c1ccc8e747168429e6c2d2e7a8f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="develop-line-of-business-apps-for-azure-active-directory"></a>Sviluppare app line-of-business per Azure Active Directory
-Questa guida fornisce una panoramica dello sviluppo di applicazioni di line-of-business (LoB) per Azure Active Directory (AD) .hello destinati destinatari sono gli amministratori globali di Active Directory o Office 365.
+Questa guida offre una panoramica dello sviluppo di applicazioni line-of-business (LoB) per Azure Active Directory (AD) ed è rivolta agli amministratori globali di Active Directory/Office 365.
 
-## <a name="overview"></a>Panoramica
-La creazione di applicazioni integrate con Azure AD offre agli utenti dell'organizzazione servizi Single Sign-On per Office 365. Con un'applicazione hello in consente di Azure AD, che controllare i criteri di autenticazione hello per un'applicazione hello. altre informazioni sull'accesso condizionale e vedere App tooprotect con multi-factor authentication (MFA) toolearn [le regole di accesso di configurazione](active-directory-conditional-access-azuread-connected-apps.md).
+## <a name="overview"></a>Overview
+La creazione di applicazioni integrate con Azure AD offre agli utenti dell'organizzazione servizi Single Sign-On per Office 365. La disponibilità dell'applicazione in Azure AD consente di avere il controllo dei criteri di autenticazione impostati per l'applicazione. Per altre informazioni sull'accesso condizionale e su come proteggere le applicazioni con l'autenticazione a più fattori (MFA), vedere [Configurare le regole di accesso](active-directory-conditional-access-azuread-connected-apps.md).
 
-Registrare il toouse applicazione Azure Active Directory. Registrazione di un'applicazione hello significa che gli sviluppatori possono utilizzare Azure AD tooauthenticate utenti e richiedere toouser di accedere alle risorse, ad esempio posta elettronica, calendario e documenti.
+Registrare l'applicazione per l'uso di Azure Active Directory. Registrando l'applicazione, gli sviluppatori possono usare Azure AD per autenticare gli utenti e richiedere l'accesso a risorse degli utenti come posta elettronica, calendario e documenti.
 
 Qualsiasi membro della directory (non guest) può registrare un'applicazione, operazione nota anche come *creazione di un oggetto applicazione*.
 
-Registrazione di un'applicazione consente qualsiasi esempio di hello toodo utente:
+La registrazione di un'applicazione consente a qualsiasi utente di eseguire le operazioni seguenti:
 
 * Ottenere un'identità per l'applicazione riconosciuta da Azure AD
-* Ottenere uno o più segreti/tasti hello applicazione può utilizzare tooauthenticate stesso tooAD
-* Applicazione hello del marchio in hello portale di Azure con un nome personalizzato, logo, e così via.
-* Applicare app tootheir funzionalità di Azure AD autorizzazioni, tra cui:
+* Ottenere uno o più segreti/chiavi utilizzabili dall'applicazione per l'autenticazione in AD
+* Personalizzare l'applicazione con nome, logo e altri elementi nel portale di Azure
+* Applicare le funzionalità di autorizzazione di Azure AD per la propria app, tra cui:
 
   * Controllo degli accessi in base al ruolo
-  * Azure Active Directory come server di autorizzazione oAuth (un'API esposta da un'applicazione hello protetto)
-* Dichiarare necessarie per toofunction applicazione hello delle autorizzazioni necessarie come previsto, tra cui:
+  * Azure Active Directory come server di autorizzazione oAuth (proteggere un'API esposta dall'applicazione)
+* Dichiarare le autorizzazioni necessarie per il funzionamento dell'applicazione nel modo previsto, tra cui:
 
-      - Autorizzazioni per l'app (solo amministratori globali). Ad esempio: un altro Azure AD applicazione o un ruolo di appartenenza relativo tooan Azure, risorsa gruppo di risorse, l'appartenenza al ruolo o una sottoscrizione
+      - Autorizzazioni per l'app (solo amministratori globali). Ad esempio: appartenenza ai ruoli in un'altra appartenenza di ruolo o applicazione Azure AD relativa a una risorsa, un gruppo di risorse o una sottoscrizione di Azure
       - Autorizzazioni delegate (qualsiasi utente). Ad esempio: Azure AD, Profilo di accesso e lettura
 
 > [!NOTE]
-> Per impostazione predefinita, qualsiasi membro può registrare un'applicazione. toolearn toorestrict le autorizzazioni per la registrazione di membri toospecific applicazioni, vedere [come le applicazioni vengono aggiunti AD tooAzure](develop/active-directory-how-applications-are-added.md#who-has-permission-to-add-applications-to-my-azure-ad-instance).
+> Per impostazione predefinita, qualsiasi membro può registrare un'applicazione. Per informazioni su come limitare le autorizzazioni per la registrazione delle applicazioni per membri specifici, vedere [Procedura per l'aggiunta delle applicazioni ad Azure AD](develop/active-directory-how-applications-are-added.md#who-has-permission-to-add-applications-to-my-azure-ad-instance).
 >
 >
 
-Ecco cosa ne, amministratore globale di hello, è necessario toodo toohelp gli sviluppatori effettuano le applicazioni di produzione:
+Ecco cosa deve fare l'amministratore globale per aiutare gli sviluppatori a rendere le loro applicazioni pronte per la produzione:
 
 * Configurare regole di accesso (criteri di accesso/autenticazione a più fattori)
-* Configurare l'assegnazione di hello app toorequire utente e assegnare gli utenti
-* Esclusione di esperienza di consenso utente hello predefinito
+* Configurare l'app per richiedere l'assegnazione di utenti e assegnare gli utenti
+* Evitare l'esperienza di autorizzazione utente predefinita
 
 ## <a name="configure-access-rules"></a>Configurare regole di accesso
-Configurare App SaaS tooyour regole di accesso per applicazione. Ad esempio, è possibile richiedere l'autenticazione a più fattori o consentire solo l'accesso toousers su reti attendibili. Dettagli Hello per questo sono disponibili nel documento hello [le regole di accesso di configurazione](active-directory-conditional-access-azuread-connected-apps.md).
+Configurare regole di accesso per ogni applicazione nelle app SaaS. Ad esempio, è possibile richiedere l'autenticazione a più fattori oppure solo di consentire l'accesso agli utenti connessi a reti attendibili. I dettagli a questo scopo sono disponibili nel documento [Configurazione di regole di accesso](active-directory-conditional-access-azuread-connected-apps.md).
 
-## <a name="configure-hello-app-toorequire-user-assignment-and-assign-users"></a>Configurare l'assegnazione di hello app toorequire utente e assegnare gli utenti
-Per impostazione predefinita, gli utenti possono accedere alle applicazioni senza esservi assegnati. Tuttavia, se un'applicazione hello espone i ruoli o se si desidera tooappear applicazione hello nel Pannello di accesso dell'utente, è necessario che l'assegnazione utente.
+## <a name="configure-the-app-to-require-user-assignment-and-assign-users"></a>Configurare l'app per richiedere l'assegnazione di utenti e assegnare gli utenti
+Per impostazione predefinita, gli utenti possono accedere alle applicazioni senza esservi assegnati. Tuttavia, se l'applicazione espone ruoli o si desidera che venga visualizzata nel pannello di accesso dell'utente, l'assegnazione degli utenti dovrebbe essere richiesta.
 
 [Richiedere l'assegnazione degli utenti](active-directory-applications-guiding-developers-requiring-user-assignment.md)
 
-Per gli abbonati ad Azure AD Premium o Enterprise Mobility Suite (EMS), è consigliabile usare i gruppi. Assegnazione di gruppi di applicazioni toohello consente toodelegate accesso continuativo gestione toohello proprietario hello del gruppo di. È possibile creare il gruppo di hello o chiedere responsabile hello del gruppo di hello toocreate organizzazione utilizzando le funzionalità di gestione di gruppo.
+Per gli abbonati ad Azure AD Premium o Enterprise Mobility Suite (EMS), è consigliabile usare i gruppi. L'assegnazione di gruppi per l'applicazione consente di delegare le attività di gestione continuativa degli accessi al proprietario del gruppo. È possibile creare il gruppo oppure richiedere al responsabile dell'organizzazione di creare il gruppo con gli strumenti per la gestione dei gruppi.
 
-[Assegnazione di utenti applicazione tooan](active-directory-applications-guiding-developers-assigning-users.md)  
-[Assegnazione di gruppi di applicazioni tooan](active-directory-applications-guiding-developers-assigning-groups.md)
+[Assegnazione di utenti a un'applicazione](active-directory-applications-guiding-developers-assigning-users.md)  
+[Assegnazione di gruppi a un'applicazione](active-directory-applications-guiding-developers-assigning-groups.md)
 
 ## <a name="suppress-user-consent"></a>Rimuovere l'esperienza di consenso dell'utente
-Per impostazione predefinita, ogni utente passa attraverso un toosign esperienza di consenso in. esperienza di consenso Hello, che richiede agli utenti le autorizzazioni di toogrant tooan applicazione, può essere aggiunto agli utenti che hanno familiarità con tali decisioni.
+Per impostazione predefinita, ogni utente è sottoposto a un'esperienza di consenso per poter accedere. L'esperienza di consenso, in cui viene chiesto di concedere le autorizzazioni per un'applicazione, può creare confusione per gli utenti che non hanno familiarità con questo tipo di decisioni.
 
-Per le applicazioni attendibili, è possibile semplificare esperienza utente hello applicando toohello il consenso per conto dell'organizzazione.
+Per le applicazioni attendibili, è possibile semplificare l'esperienza utente dando il consenso per l'applicazione per conto dell'organizzazione.
 
-Per ulteriori informazioni sul consenso dell'utente e consenso hello in Azure, vedere [integrazione di applicazioni con Azure Active Directory](active-directory-integrating-applications.md).
+Per altre informazioni sul consenso dell'utente e l'esperienza di consenso in Azure, vedere [Integrazione di applicazioni con Azure Active Directory](active-directory-integrating-applications.md).
 
 ## <a name="related-articles"></a>Articoli correlati
-* [Consentire alle applicazioni di accesso remoto sicuro tooon locale con Proxy dell'applicazione Azure AD](active-directory-application-proxy-get-started.md)
+* [Consentire l'accesso remoto sicuro ad applicazioni locali con il proxy di applicazione di Azure AD](active-directory-application-proxy-get-started.md)
 * [Anteprima dell'accesso condizionale di Azure per app SaaS](active-directory-conditional-access-azuread-connected-apps.md)
-* [La gestione di accesso tooapps con Azure AD](active-directory-managing-access-to-apps.md)
+* [Gestione dell'accesso alle app tramite Azure AD](active-directory-managing-access-to-apps.md)
 * [Indice di articoli per la gestione di applicazioni in Azure Active Directory](active-directory-apps-index.md)

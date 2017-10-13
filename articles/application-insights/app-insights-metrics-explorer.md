@@ -1,6 +1,6 @@
 ---
-title: aaaExploring metriche in Azure Application Insights | Documenti Microsoft
-description: Come Esplora metrica dai grafici toointerpret e come toocustomize pannelli di Esplora metriche.
+title: Esaminare le metriche in Azure Application Insights | Microsoft Docs
+description: Come interpretare i grafici in Esplora metriche e come personalizzare i pannelli di Esplora metriche.
 services: application-insights
 documentationcenter: 
 author: CFreemanwa
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/08/2017
 ms.author: bwren
-ms.openlocfilehash: b77ae227ae61e800ad6f3af8a05cd123ea1d69e1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a13500284caab79bbe221060ccf3d925ffb1fab5
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="exploring-metrics-in-application-insights"></a>Esaminare le metriche in Application Insights
 Le metriche in [Application Insights][start] sono valori e conteggi di eventi misurati, inviati nei dati di telemetria dall'applicazione. Consentono di rilevare problemi di prestazioni e osservare le tendenze nella modalità di uso dell'applicazione. Esiste una vasta gamma di metriche standard ed è anche possibile creare metriche ed eventi personalizzati.
@@ -28,147 +28,147 @@ Ecco un esempio di set di grafici:
 
 ![](./media/app-insights-metrics-explorer/01-overview.png)
 
-Disponibili ovunque grafici delle metriche nel portale Application Insights hello. Nella maggior parte dei casi, possono essere personalizzate ed è possibile aggiungere ulteriori pannello toohello di grafici. Dal pannello della panoramica hello, fare clic sulle toomore dettagliate grafici (che dispone di titoli, ad esempio "Server"), oppure fare clic su **Esplora metriche** tooopen un nuovo pannello in cui è possibile creare grafici personalizzati.
+I grafici delle metriche sono disponibili ovunque nel portale di Application Insights. Nella maggior parte dei casi possono essere personalizzati ed è possibile aggiungere altri grafici al pannello. Nel pannello Panoramica fare clic per visualizzare grafici più dettagliati (con titoli come "Server") oppure fare clic su **Esplora metriche** per aprire un nuovo pannello in cui è possibile creare grafici personalizzati.
 
 ## <a name="time-range"></a>Intervallo di tempo
-È possibile modificare l'intervallo di tempo coperto da grafici hello o griglie in qualsiasi pannello hello.
+È possibile modificare l'intervallo di tempo coperto dai grafici o dalle griglie in tutti i pannelli.
 
-![Pannello della panoramica hello aperti dell'applicazione nel portale di Azure hello](./media/app-insights-metrics-explorer/03-range.png)
+![Aprire il pannello Panoramica dell'applicazione nel portale di Azure](./media/app-insights-metrics-explorer/03-range.png)
 
-Se si è in attesa di alcuni dati non ancora visualizzati, fare clic su Aggiorna. Aggiornamento grafici a intervalli, ma sono più tempi per intervalli di tempo più ampi intervalli hello. Può richiedere un po' di tempo per dati toocome tramite pipeline di analisi hello in un grafico.
+Se si è in attesa di alcuni dati non ancora visualizzati, fare clic su Aggiorna. I grafici si aggiornano a intervalli regolari, ma gli intervalli sono più lunghi per gli intervalli di tempo maggiori. Ai dati potrebbe essere necessario un po' di tempo per superare la pipeline di analisi in un grafico.
 
-toozoom nella parte di un grafico, trascinare su di essa:
+Per ingrandire una parte di un grafico, trascinare sulla parte:
 
 ![Trascinare il puntatore su una parte di un grafico.](./media/app-insights-metrics-explorer/12-drag.png)
 
-Fare clic su toorestore di pulsante Annulla Zoom hello è.
+Fare clic sul pulsante Annulla zoom per ripristinarlo.
 
 ## <a name="granularity-and-point-values"></a>Granularità e valori dei punti
-A questo punto, posiziona il mouse su valori hello toodisplay di hello del grafico delle metriche hello.
+Posizionare il mouse sul grafico per visualizzare i valori delle metriche in quel punto.
 
-![Posizionare il mouse di hello su un grafico](./media/app-insights-metrics-explorer/02-focus.png)
+![Posizionare il mouse su un grafico](./media/app-insights-metrics-explorer/02-focus.png)
 
-valore di Hello della metrica hello in un particolare punto è aggregato in hello precedente intervallo di campionamento.
+Il valore della metrica in un punto particolare viene aggregato in base all'intervallo di campionamento precedente.
 
-intervallo di campionamento Hello o "granularità" viene visualizzata nella parte superiore di hello del pannello hello.
+L'intervallo di campionamento o "granularità" è visibile nella parte superiore del pannello.
 
-![intestazione Hello di un pannello.](./media/app-insights-metrics-explorer/11-grain.png)
+![Intestazione di un pannello.](./media/app-insights-metrics-explorer/11-grain.png)
 
-È possibile regolare la granularità hello nel Pannello di intervallo di tempo hello:
+È possibile modificare la granularità nel pannello Intervallo di tempo:
 
-![intestazione Hello di un pannello.](./media/app-insights-metrics-explorer/grain.png)
+![Intestazione di un pannello.](./media/app-insights-metrics-explorer/grain.png)
 
-granularità Hello disponibili dipendono dall'intervallo di tempo hello selezionato. granularità esplicita Hello sono alternative toohello la granularità "automatico" per l'intervallo di tempo hello.
+Le granularità disponibili dipendono dall'intervallo di tempo selezionato. Le granularità esplicite costituiscono alternative alla granularità "automatica" per l'intervallo di tempo.
 
 
 ## <a name="editing-charts-and-grids"></a>Modifica di grafici e griglie
-tooadd un nuovo pannello toohello grafico:
+Per aggiungere un nuovo grafico al pannello:
 
 ![In Esplora metriche scegliere Aggiungi grafico](./media/app-insights-metrics-explorer/04-add.png)
 
-Selezionare **modificare** in tooedit un grafico esistente o nuovo cosa viene illustrato:
+Selezionare **Modifica** su un grafico nuovo o esistente per modificare il contenuto visualizzato:
 
 ![Selezionare una o più metriche](./media/app-insights-metrics-explorer/08-select.png)
 
-È possibile visualizzare più di una metrica in un grafico, anche se sono presenti restrizioni sulle combinazioni di hello che possono essere visualizzate insieme. Non appena si sceglie una metrica, alcune delle hello che altri è disabilitata.
+È possibile visualizzare più metriche in un grafico, anche se sono presenti restrizioni sulle combinazioni che è possibile visualizzare insieme. Non appena si sceglie una metrica, alcune vengono disabilitate.
 
-Se è stata codificata [metriche personalizzate] [ track] nell'app (chiamate tooTrackMetric e TrackEvent) questi verranno elencati di seguito.
+Eventuali [metriche personalizzate][track] codificate nell'app (chiamate a TrackMetric e TrackEvent) vengono elencate qui.
 
 ## <a name="segment-your-data"></a>Segmentare i dati
-È possibile dividere una metrica dalla proprietà, ad esempio, le visualizzazioni pagina toocompare nei client con sistemi operativi diversi.
+È possibile suddividere una metrica per la proprietà, ad esempio eseguire un confronto delle visualizzazioni di una pagina sui client con sistemi operativi differenti.
 
-Selezionare un diagramma o griglia, attivare il raggruppamento e scegliere un toogroup di proprietà da:
+Selezionare un grafico o una griglia, attivare il raggruppamento e scegliere una proprietà in base a cui eseguire il raggruppamento:
 
 ![Attivare il raggruppamento e poi selezionare una proprietà in Raggruppa per](./media/app-insights-metrics-explorer/15-segment.png)
 
 > [!NOTE]
-> Quando si utilizza il raggruppamento, i tipi di Area e di grafico a barre hello forniscono una visualizzazione in pila. È adatto in cui il metodo di aggregazione hello è Sum. Tuttavia, in cui il tipo di aggregazione hello Media, scegliere tipi di visualizzazione di riga o una griglia hello.
+> Quando si utilizza la funzione di raggruppamento, i grafici ad area e a barre forniscono una visualizzazione in pila, che risulta ottimale se il metodo di aggregazione selezionato è Somma. Ma se il tipo di aggregazione selezionato è Media, è consigliabile scegliere i tipi di visualizzazione a righe o a griglia.
 >
 >
 
-Se è stata codificata [metriche personalizzate] [ track] nell'app e includono i valori delle proprietà, sarà in grado di tooselect proprietà hello nell'elenco di hello.
+Se si codificano [metriche personalizzate][track] nell'app e si includono valori di proprietà, sarà possibile selezionare le proprietà da questo elenco.
 
-È troppo piccolo per i dati segmentati grafico hello? modificarne l'altezza:
+Il grafico è troppo piccolo per dati segmentati? modificarne l'altezza:
 
-![Regolare il dispositivo di scorrimento hello](./media/app-insights-metrics-explorer/18-height.png)
+![Regolare il dispositivo di scorrimento](./media/app-insights-metrics-explorer/18-height.png)
 
 ## <a name="aggregation-types"></a>Tipi di aggregazione
-legenda Hello sul lato di hello per impostazione predefinita in genere viene visualizzato il valore aggregato hello periodo hello del grafico hello. Se si passa il mouse sopra il grafico di hello, verrà visualizzato il valore di hello a questo punto.
+La legenda sul lato mostra di solito per impostazione predefinita il valore aggregato per il periodo del grafico. Se si passa il mouse sul grafico, viene visualizzato il valore in questo punto.
 
-Ogni punto dati nel grafico hello è un'aggregazione di valori di dati hello ricevuti nel precedente intervallo di campionamento "granularità" hello. viene visualizzata nella parte superiore di hello del pannello hello granularità Hello e varia in base alla hello complessiva della scala cronologica del grafico hello.
+Ogni punto dati del grafico è una funzione di aggregazione dei valori di dati ricevuti nell'intervallo di campionamento o nella "granularità" precedente. La granularità viene visualizzata nella parte superiore del pannello e varia in base alla scala cronologica complessiva del grafico.
 
 Le metriche possono essere aggregate in modi diversi:
 
-* **Conteggio** è un numero di eventi di hello ricevuti nell'intervallo di campionamento hello. Viene utilizzato per gli eventi come le richieste. Variazioni del grafico hello altezza hello indica le variazioni nel numero hello che si verificano gli eventi di hello. Ma si noti che il valore numerico di hello cambia quando si modifica l'intervallo di campionamento hello.
-* **Somma** aggiunge i valori hello di tutti i punti dati hello ricevuti tramite l'intervallo di campionamento hello o periodo hello del grafico hello.
-* **Media** divide hello somma tramite un numero di punti dati ricevuti in intervallo hello hello.
-* **Unica** : i conteggi vengono usati per contare gli utenti e gli account. Intervallo di campionamento hello o periodo hello del grafico hello, hello figura conteggio hello dei diversi utenti visualizzati in quel momento.
-* **%** - le versioni in percentuale di ogni aggregazione vengono utilizzate solo con i grafici segmentati. Totale Hello aggiunge sempre % too100 grafico hello Mostra contributo relativo di hello dei diversi componenti di un totale.
+* **Conteggio** è un conteggio degli eventi ricevuti nell'intervallo di campionamento. Viene utilizzato per gli eventi come le richieste. Le variazioni in altezza del grafico indicano variazioni della frequenza con cui si verificano gli eventi. Ma si noti che il valore numerico cambia quando si modifica l'intervallo di campionamento.
+* **Somma** : esegue la somma dei valori dei punti dati ricevuti tramite l'intervallo di campionamento o il periodo del grafico.
+* **Media** : divide la somma per il numero di punti dati ricevuti tramite l'intervallo.
+* **Unica** : i conteggi vengono usati per contare gli utenti e gli account. Per tutto l'intervallo di campionamento, o per il periodo del grafico, la cifra mostra il numero di utenti diversi visualizzato in quel momento.
+* **%** - le versioni in percentuale di ogni aggregazione vengono utilizzate solo con i grafici segmentati. Il totale raggiunge sempre il 100% e il grafico mostra il contributo relativo dei diversi componenti di un totale.
 
     ![Aggregazione in percentuale](./media/app-insights-metrics-explorer/percentage-aggregation.png)
 
-### <a name="change-hello-aggregation-type"></a>Modificare il tipo di aggregazione hello
+### <a name="change-the-aggregation-type"></a>Modificare il tipo di aggregazione
 
-![Modificare il grafico hello e quindi selezionare aggregazione](./media/app-insights-metrics-explorer/05-aggregation.png)
+![Modificare il grafico, quindi selezionare Aggregazione](./media/app-insights-metrics-explorer/05-aggregation.png)
 
-il metodo predefinito Hello per ogni metrica viene visualizzato quando si crea un nuovo grafico o quando vengono deselezionate tutte le metriche:
+Il metodo predefinito per ciascuna metrica viene visualizzato quando si crea un nuovo grafico o quando si deselezionano tutte le metriche:
 
-![Deselezionare tutte le metriche toosee hello le impostazioni predefinite](./media/app-insights-metrics-explorer/06-total.png)
+![Deselezionare tutte le metriche per visualizzare le impostazioni predefinite](./media/app-insights-metrics-explorer/06-total.png)
 
 ## <a name="pin-y-axis"></a>Bloccare l'asse Y 
-Per impostazione predefinita un grafico mostra i valori dell'asse Y a partire da zero fino a: i valori massimi nell'intervallo di dati hello, toogive una rappresentazione visiva del quantum di valori hello. Ma in alcuni casi più quantum hello potrebbe essere interessante toovisually controllare piccole modifiche nei valori. Per le personalizzazioni come questo utilizzo hello asse y intervallo modifica funzionalità toopin hello valore dell'asse y minimo o massimo nella posizione desiderata.
-Fare clic su "Impostazioni" casella di controllo toobring backup hello intervallo dell'asse y impostazioni
+Per impostazione predefinita, in un grafico i valori dell'asse Y sono visualizzati a partire da zero fino ai valori massimi dell'intervallo di dati, per offrire una rappresentazione visiva del quantum dei valori. In alcuni casi tuttavia, più che il quantum, può essere interessante esaminare le modifiche secondarie ai valori. Per personalizzazioni di questo tipo, usare la funzionalità di modifica dell'intervallo dell'asse Y per bloccare il valore minimo o massimo dell'asse Y nel punto desiderato.
+Fare clic sulla casella di controllo "Impostazioni avanzate" per visualizzare le impostazioni dell'intervallo dell'asse Y.
 
 ![Fare clic su Impostazioni avanzate, selezionare l'intervallo Personalizzato e specificare i valori minino e massimo](./media/app-insights-metrics-explorer/y-axis-range.png)
 
 ## <a name="filter-your-data"></a>Filtrare i dati
-metrica di toosee hello solo per un set di valori di proprietà selezionato:
+Per visualizzare solo le metriche per un set di valori di proprietà selezionati:
 
 ![Fare clic su Filtro, espandere una proprietà e selezionare alcuni valori](./media/app-insights-metrics-explorer/19-filter.png)
 
-Se non si seleziona tutti i valori per una particolare proprietà, dispone di hello stesso come selezionarle tutte: non sono presenti filtri su questa proprietà.
+Se non si seleziona alcun valore per una determinata proprietà, è come se si selezionassero tutti i valori, ovvero alla proprietà non verrà applicato alcun filtro.
 
-Hello notare i conteggi di eventi insieme a ogni valore della proprietà. Quando si selezionano i valori di una proprietà, hello conta insieme ad altre proprietà vengono modificati i valori.
+Si noti il numero di eventi vicino a ogni valore della proprietà. Quando si selezionano i valori di una proprietà, i conteggi vicino ad altri valori di proprietà vengono modificati.
 
-I filtri vengono applicati i grafici di hello tooall in un pannello. Se si desidera grafici toodifferent filtri diversi, creare e salvare blade metriche. Se si desidera, è possibile aggiungere grafici dal dashboard toohello diversi pannelli, in modo che possano vederli uno accanto a altro.
+I filtri si applicano a tutti i grafici in un pannello. Se si desidera applicare filtri diversi a grafici differenti, creare e salvare pannelli di metriche diversi. Se si desidera, è possibile aggiungere sul dashboard grafici di pannelli diversi, in modo da visualizzarli uno accanto all'altro.
 
 ### <a name="remove-bot-and-web-test-traffic"></a>Rimuovere il traffico di bot e test Web
-Usa filtro hello **traffico reale o sintetico** e controllare **reale**.
+Usare il filtro **Traffico reale o sintetico** e selezionare **Reale**.
 
 È possibile anche filtrare in base a **Origine del traffico sintetico**.
 
-### <a name="tooadd-properties-toohello-filter-list"></a>elenco di filtri tooadd proprietà toohello
-Si desidera telemetria toofilter su una categoria di propria scelta. Ad esempio, è possibile che si dividano gli utenti in categorie diverse e si voglia segmentare i dati in base a queste categorie.
+### <a name="to-add-properties-to-the-filter-list"></a>Per aggiungere proprietà all'elenco di filtri
+È possibile che si voglia filtrare i dati di telemetria in base a una categoria personalizzata. Ad esempio, è possibile che si dividano gli utenti in categorie diverse e si voglia segmentare i dati in base a queste categorie.
 
-[Creare proprietà personalizzate](app-insights-api-custom-events-metrics.md#properties). Impostare la proprietà in un [telemetria inizializzatore](app-insights-api-custom-events-metrics.md#defaults) toohave appare in tutti i dati di telemetria, inclusi i dati di telemetria standard hello inviato da diversi moduli SDK.
+[Creare proprietà personalizzate](app-insights-api-custom-events-metrics.md#properties). Impostazione in un [Inizializzatore di telemetria](app-insights-api-custom-events-metrics.md#defaults) affinché venga visualizzato in tutti i dati di telemetria - compresa la telemetria standard inviata dai diversi moduli SDK.
 
-## <a name="edit-hello-chart-type"></a>Modificare il tipo di grafico hello
+## <a name="edit-the-chart-type"></a>Modificare il tipo di grafico
 Si noti che è possibile passare dalle griglie ai grafici e viceversa:
 
 ![Selezionare una griglia o un grafico e quindi scegliere un tipo di grafico](./media/app-insights-metrics-explorer/16-chart-grid.png)
 
 ## <a name="save-your-metrics-blade"></a>Salvare il pannello delle metriche
-Dopo aver creato alcuni grafici, è possibile salvarli come preferiti. È possibile scegliere se tooshare con altri membri del team, se si utilizza un account aziendale.
+Dopo aver creato alcuni grafici, è possibile salvarli come preferiti. È possibile scegliere se condividerlo con altri membri del team, se si usa un account aziendale.
 
 ![Scegliere Preferito](./media/app-insights-metrics-explorer/21-favorite-save.png)
 
-nuovo pannello con hello toosee **pannello della panoramica passare toohello** e aprire Preferiti:
+Per visualizzare nuovamente il pannello, **andare al pannello** e aprire Preferiti:
 
-![Nel pannello della panoramica hello, scegliere Preferiti](./media/app-insights-metrics-explorer/22-favorite-get.png)
+![Nel pannello Panoramica scegliere Preferiti](./media/app-insights-metrics-explorer/22-favorite-get.png)
 
-Se si sceglie l'intervallo di tempo relativo al momento del salvataggio, pannello hello verrà aggiornato con le metriche più recente di hello. Se si sceglie l'intervallo di tempo assoluto, verrà visualizzato hello stessi dati ogni volta.
+Se si è scelto l'intervallo di tempo Relativo al momento del salvataggio, il pannello verrà aggiornato con le metriche più recenti. Se si è scelto l'intervallo di tempo Assoluto, verranno visualizzati gli stessi dati ogni volta.
 
-## <a name="reset-hello-blade"></a>Reimpostazione hello pannello
-Se si modifica un pannello ma quindi cui si desidera che i set di backup toohello originale salvato tooget, semplicemente fare clic su Reimposta.
+## <a name="reset-the-blade"></a>Reimpostare il pannello
+Se si modifica un pannello ma poi si vuole tornare a quello salvato in origine, fare clic su Reimposta.
 
-![Nei pulsanti di hello nella parte superiore di hello di Esplora metriche](./media/app-insights-metrics-explorer/17-reset.png)
+![Nei pulsanti nella parte superiore di Esplora metriche](./media/app-insights-metrics-explorer/17-reset.png)
 
 ## <a name="live-metrics-stream"></a>Flusso metriche attive
 
-Per una visualizzazione molto più immediata dei dati di telemetria, aprire [flusso live](app-insights-live-stream.md). La maggior parte delle metriche accettano pochi minuti tooappear, a causa del processo di hello di aggregazione. Al contrario, le metriche attive sono ottimizzate per bassa latenza. 
+Per una visualizzazione molto più immediata dei dati di telemetria, aprire [flusso live](app-insights-live-stream.md). La visualizzazione della maggior parte delle metriche richiede alcuni minuti, a causa del processo di aggregazione. Al contrario, le metriche attive sono ottimizzate per bassa latenza. 
 
 ## <a name="set-alerts"></a>Impostazione di avvisi
-toobe una notifica tramite posta elettronica di valori insoliti per le metriche, aggiungere un avviso. È possibile scegliere gli amministratori degli account toohello toosend hello posta elettronica o toospecific indirizzi di posta elettronica.
+Per ricevere tramite posta elettronica una notifica relativa a valori insoliti di una metrica, aggiungere un avviso. È possibile scegliere di inviare il messaggio di posta elettronica agli amministratori di account o a indirizzi di posta elettronica specifici.
 
 ![In Esplora metriche scegliere Regole di avviso, Aggiungi avviso](./media/app-insights-metrics-explorer/appinsights-413setMetricAlert.png)
 
@@ -179,20 +179,20 @@ toobe una notifica tramite posta elettronica di valori insoliti per le metriche,
 Se si vuole che i dati vengano esportati in modo continuo per poterli elaborare esternamente, considerare la possibilità di usare l' [esportazione continua](app-insights-export-telemetry.md).
 
 ### <a name="power-bi"></a>Power BI
-Se si desidera arricchire la visualizzazione dei dati, è possibile [esportare tooPower BI](http://blogs.msdn.com/b/powerbi/archive/2015/11/04/explore-your-application-insights-data-with-power-bi.aspx).
+Per visualizzazione dei dati ancora più avanzate, è possibile [esportare in Power BI](http://blogs.msdn.com/b/powerbi/archive/2015/11/04/explore-your-application-insights-data-with-power-bi.aspx).
 
 ## <a name="analytics"></a>Analytics
-[Analitica](app-insights-analytics.md) è un esempio di modalità più versatile tooanalyze dati di telemetria utilizzando un linguaggio di query avanzate. Usarlo se si desidera toocombine risultati di metriche di calcolo o eseguire un'analisi approfondita del prestazioni recente dell'app. 
+[Analytics](app-insights-analytics.md) è un modo più versatile per analizzare i dati di telemetria usando un linguaggio di query avanzato. Usare l'opzione per combinare o calcolare i risultati delle metriche oppure per eseguire un'analisi approfondita delle prestazioni recenti dell'applicazione. 
 
-In un grafico di metrica, è possibile scegliere hello Analitica icona tooget direttamente toohello Analitica query equivalente.
+Da un grafico di metriche è possibile fare clic sull'icona di Analytics per passare direttamente alla query di Analytics equivalente.
 
 ## <a name="troubleshooting"></a>Risoluzione dei problemi
 *All'interno del grafico non vengono visualizzati dati.*
 
-* I filtri vengono applicati i grafici di hello tooall nel pannello hello. Assicurarsi che, mentre sta porre l'attenzione su un grafico, non è stato impostato un filtro che escluda tutti i dati di hello in un altro.
+* I filtri si applicano a tutti i grafici del pannello. Assicurarsi che, mentre ci si concentra su un grafico, non sia stato impostato un filtro che escluda tutti i dati di un altro grafico.
 
-    Se si desidera tooset filtri diversi nei grafici diversi, crearli in diversi pannelli, salvare i Preferiti come separate. Se si desidera, è possibile aggiungerli toohello dashboard in modo che possano vederli uno accanto a altro.
-* Se si raggruppa un grafico da una proprietà che non è definita nella metrica hello, quindi verrà nulla sul grafico hello. Provare a lasciare il campo "Raggruppa in base a" vuoto o scegliere una proprietà di raggruppamento diversa.
+    Se si desidera impostare filtri diversi nei vari grafici, creare grafici in diversi pannelli e salvarli come Preferiti separati. Se si desidera, è possibile impostarli sul dashboard in modo da visualizzarli uno accanto all'altro.
+* Se si raggruppa un grafico per una proprietà non definita sulla metrica, il grafico sarà vuoto. Provare a lasciare il campo "Raggruppa in base a" vuoto o scegliere una proprietà di raggruppamento diversa.
 * I dati sulle prestazioni (CPU, velocità di IO e così via) sono disponibili per servizi Web Java, app desktop di Windows, [app Web IIS se si installa Status Monitor](app-insights-monitor-performance-live-website-now.md) e [servizi cloud di Azure](app-insights-azure.md). I dati non sono disponibili per i siti Web di Azure.
 
 ## <a name="video"></a>Video

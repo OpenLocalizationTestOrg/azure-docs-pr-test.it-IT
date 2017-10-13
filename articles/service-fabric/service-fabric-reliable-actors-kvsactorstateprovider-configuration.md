@@ -1,5 +1,5 @@
 ---
-title: le impostazioni di KVSActorStateProvider aaaChange in Azure microservizi | Documenti Microsoft
+title: Modificare le impostazioni di KVSActorStateProvider nei microservizi di Azure | Documentazione Microsoft
 description: Informazioni sulla configurazione di attori con stato di tipo KVSActorStateProvider in Service Fabric di Azure.
 services: Service-Fabric
 documentationcenter: .net
@@ -12,34 +12,34 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 6/29/2017
+ms.date: 10/2/2017
 ms.author: sumukhs
-ms.openlocfilehash: e003512678556e68a8926b1b9c6c28d9ae3979d2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d3424aa7a8e0f6011bbef4aa61274c1f598f5c86
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="configuring-reliable-actors--kvsactorstateprovider"></a>Configurare KVSActorStateProvider di Reliable Actors
-È possibile modificare configurazione predefinita di hello di KVSActorStateProvider modificando hello Settings file che viene generato nella directory principale del pacchetto di Microsoft Visual Studio hello nella cartella Config hello per attore specificato hello.
+È possibile modificare la configurazione predefinita di KVSActorStateProvider cambiando il file settings.xml generato nella radice del pacchetto di Microsoft Visual Studio all'interno della cartella Config per l'attore specificato.
 
-Hello Azure Service Fabric runtime cerca i nomi di sezione predefinita nel file Settings hello e utilizza i valori di configurazione hello durante la creazione di componenti di runtime sottostante hello.
+Il runtime di Service Fabric di Azure cerca i nomi di sezione predefiniti nel file settings.xml e utilizza i valori di configurazione durante la creazione dei componenti di runtime sottostanti.
 
 > [!NOTE]
-> Eseguire **non** eliminare o modificare i nomi di sezione hello di hello seguendo le configurazioni nel file Settings hello che viene generato in hello soluzione di Visual Studio.
+> **Non** eliminare o modificare i nomi di sezione delle configurazioni seguenti nel file settings.xml generato nella soluzione Visual Studio.
 > 
 > 
 
 ## <a name="replicator-security-configuration"></a>Configurazione della sicurezza del replicatore
-Le configurazioni di sicurezza Replicator sono canale di comunicazione utilizzati toosecure hello utilizzato durante la replica. Ciò significa che i servizi non è possibile vedere di altro traffico di replica, assicurandosi che i dati hello resi altamente disponibili anche siano sicuri.
+Le configurazioni della sicurezza del replicatore consentono di proteggere il canale di comunicazione usato durante la replica. Questo significa che i servizi non potranno visualizzare l'uno il traffico di replica dell'altro, garantendo la sicurezza dei dati a disponibilità elevata.
 Per impostazione predefinita, una sezione di configurazione della sicurezza vuota non abilita la sicurezza della replica.
 
 ### <a name="section-name"></a>Nome della sezione
 &lt;ActorName&gt;ServiceReplicatorSecurityConfig
 
 ## <a name="replicator-configuration"></a>Configurazione del replicatore
-Le configurazioni di Replicator configurare replicator hello che è responsabile di garantire lo stato del Provider di stato attore hello altamente affidabile.
-configurazione predefinita di Hello viene generato dal modello di Visual Studio hello e dovrebbe essere sufficiente. In questa sezione si indica ulteriori configurazioni replicator hello tootune disponibili.
+Le configurazioni del replicatore riguardano il replicatore responsabile di garantire l'elevata affidabilità dello stato del provider di stato degli attori.
+La configurazione predefinita viene generata dal modello di Visual Studio e dovrebbe essere sufficiente. Questa sezione descrive le configurazioni aggiuntive che sono disponibili per ottimizzare il replicatore.
 
 ### <a name="section-name"></a>Nome della sezione
 &lt;ActorName&gt;ServiceReplicatorConfig
@@ -47,16 +47,16 @@ configurazione predefinita di Hello viene generato dal modello di Visual Studio 
 ### <a name="configuration-names"></a>Nomi delle configurazioni
 | Nome | Unità | Valore predefinito | Osservazioni |
 | --- | --- | --- | --- |
-| BatchAcknowledgementInterval |Secondi |0,015 |Periodo di tempo per cui replicator hello in attese secondario di hello dopo la ricezione di un'operazione prima di inviare nuovamente un toohello acknowledgement primario. Altri toobe acknowledgement inviato per le operazioni di elaborazione all'interno dell'intervallo vengono inviati come una risposta. |
-| ReplicatorEndpoint |N/D |Nessun valore predefinito: parametro obbligatorio |Indirizzo IP e porta hello primario o secondario. replicator utilizzerà toocommunicate con altri i servizi di replica nel set di repliche hello. Si deve fare riferimento a un endpoint TCP risorse di manifesto del servizio hello. Fare riferimento troppo[risorse manifesto del servizio](service-fabric-service-manifest-resources.md) tooread ulteriori informazioni sulla definizione delle risorse di endpoint nel manifesto del servizio hello. |
-| RetryInterval |Secondi |5 |Periodo di tempo dopo replicator quali hello nuovamente trasmette un messaggio se non viene ricevuto un acknowledgement per un'operazione. |
+| BatchAcknowledgementInterval |Secondi |0,015 |Periodo di tempo per cui il replicatore, dopo aver ricevuto un'operazione, attende presso il replicatore secondario prima di inviare un acknowledgement al replicatore principale. Gli altri acknowledgement relativi alle operazioni elaborate all'interno di questo intervallo vengono inviati come risposta unica. |
+| ReplicatorEndpoint |N/D |Nessun valore predefinito: parametro obbligatorio |Indirizzo IP e porta che il replicatore principale/secondario userà per comunicare con altri replicatori nel set di repliche. Deve fare riferimento a un endpoint di risorsa TCP nel manifesto del servizio. Per sapere di più sulla definizione delle risorse dell'endpoint nel manifesto del servizio, vedere [Specificare le risorse in un manifesto del servizio](service-fabric-service-manifest-resources.md) . |
+| RetryInterval |Secondi |5 |Periodo di tempo dopo il quale il replicatore trasmette nuovamente un messaggio se non riceve l'acknowledgement di un'operazione. |
 | MaxReplicationMessageSize |Byte |50 MB |Dimensione massima dei dati di replica che è possibile trasmettere in un singolo messaggio. |
-| MaxPrimaryReplicationQueueSize |Numero di operazioni |1024 |Numero massimo di operazioni in coda primaria hello. Un'operazione viene liberata dopo la replica primaria hello riceverà un acknowledgement da tutti i Replicator secondario hello. Questo valore deve essere maggiore di 64 ed essere una potenza di 2. |
-| MaxSecondaryReplicationQueueSize |Numero di operazioni |2048 |Numero massimo di operazioni nella coda secondaria hello. Un'operazione viene liberata quando il relativo stato viene reso altamente disponibile tramite persistenza. Questo valore deve essere maggiore di 64 ed essere una potenza di 2. |
+| MaxPrimaryReplicationQueueSize |Numero di operazioni |1024 |Numero massimo di operazioni nella coda principale. Un'operazione viene liberata quando il replicatore principale riceve un acknowledgement da tutti i replicatori secondari. Questo valore deve essere maggiore di 64 ed essere una potenza di 2. |
+| MaxSecondaryReplicationQueueSize |Numero di operazioni |2048 |Numero massimo di operazioni nella coda secondaria. Un'operazione viene liberata quando il relativo stato viene reso altamente disponibile tramite persistenza. Questo valore deve essere maggiore di 64 ed essere una potenza di 2. |
 
 ## <a name="store-configuration"></a>Configurazione dell'archivio
-Le configurazioni di archivio sono utilizzati tooconfigure hello archivio locale che è stato hello toopersist utilizzati che viene replicato.
-configurazione predefinita di Hello viene generato dal modello di Visual Studio hello e dovrebbe essere sufficiente. In questa sezione si indica ulteriori configurazioni archivio locale di hello tootune disponibili.
+Le configurazioni dell'archivio vengono usate per configurare l'archivio locale che consente di rendere persistente lo stato replicato.
+La configurazione predefinita viene generata dal modello di Visual Studio e dovrebbe essere sufficiente. Questa sezione descrive le configurazioni aggiuntive che sono disponibili per ottimizzare l'archivio locale.
 
 ### <a name="section-name"></a>Nome della sezione
 &lt;ActorName&gt;ServiceLocalStoreConfig
@@ -64,8 +64,8 @@ configurazione predefinita di Hello viene generato dal modello di Visual Studio 
 ### <a name="configuration-names"></a>Nomi delle configurazioni
 | Nome | Unità | Valore predefinito | Osservazioni |
 | --- | --- | --- | --- |
-| MaxAsyncCommitDelayInMilliseconds |Millisecondi |200 |Imposta massimo hello intervallo per l'archivio locale durevole commit di batch. |
-| MaxVerPages |Numero di pagine |16384 |numero massimo di Hello di pagine della versione di hello locale archiviazione i database. Determina il numero massimo di hello di transazioni in sospeso. |
+| MaxAsyncCommitDelayInMilliseconds |Millisecondi |200 |Intervallo massimo di invio in batch per i commit durevoli nell'archivio locale. |
+| MaxVerPages |Numero di pagine |16384 |Numero massimo di pagine della versione nel database dell'archivio locale. Determina il numero massimo di transazioni in sospeso. |
 
 ## <a name="sample-configuration-file"></a>File di configurazione di esempio
 ```xml
@@ -90,6 +90,6 @@ configurazione predefinita di Hello viene generato dal modello di Visual Studio 
 </Settings>
 ```
 ## <a name="remarks"></a>Osservazioni
-parametro BatchAcknowledgementInterval Hello controlla la latenza di replica. Il valore '0' comporterà hello latenza più bassa possibile, al costo di hello di velocità effettiva (come ulteriori messaggi di riconoscimento devono essere inviati e l'elaborazione, ognuno dei quali contiene un numero inferiore di riconoscimenti).
-Hello valore più grande di hello per BatchAcknowledgementInterval, hello hello superiore complessiva velocità effettiva della replica, al costo di hello di latenza più elevata di operazione. Questo si traduce direttamente toohello latenza del commit delle transazioni.
+Il parametro BatchAcknowledgementInterval controlla la latenza di replica. Il valore '0' determina la latenza più bassa possibile a scapito della velocità effettiva, in quanto è necessario inviare ed elaborare una maggiore quantità di messaggi di acknowledgement, ciascuno dei quali contenente un numero minore di acknowledgement.
+Più alto è il valore di BatchAcknowledgementInterval, maggiore sarà la velocità effettiva di replica complessiva, ma con una latenza delle operazioni più elevata. Questo ha un impatto diretto sulla latenza dei commit delle transazioni.
 

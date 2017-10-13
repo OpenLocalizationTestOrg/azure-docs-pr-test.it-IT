@@ -1,6 +1,6 @@
 ---
 title: 'Azure Active Directory B2C: configurazione di Twitter | Documentazione Microsoft'
-description: Fornire tooconsumers iscrizione e Accedi con Twitter account nelle applicazioni che sono protetti da Azure Active Directory B2C.
+description: Fornire l'iscrizione e l'accesso agli utenti con account Twitter nelle applicazioni protette da Azure Active Directory B2C.
 services: active-directory-b2c
 documentationcenter: 
 author: parakhj
@@ -14,35 +14,35 @@ ms.devlang: na
 ms.topic: article
 ms.date: 4/06/2017
 ms.author: parakhj
-ms.openlocfilehash: 275c5c73fd5e8e5075e77fee942cbc1b5e1586cf
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 82a001dd53cdddcf3b360090f3250af593c96fbb
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="azure-active-directory-b2c-provide-sign-up-and-sign-in-tooconsumers-with-twitter-accounts"></a>Azure Active B2C di Directory: Fornire tooconsumers iscrizione e Accedi con account Twitter
+# <a name="azure-active-directory-b2c-provide-sign-up-and-sign-in-to-consumers-with-twitter-accounts"></a>Azure Active Directory B2C: fornire l'iscrizione e l'accesso agli utenti con account Twitter
 
 > [!NOTE]
 > Questa funzionalità è in anteprima.
 > 
 
 ## <a name="create-a-twitter-application"></a>Creare un'applicazione Twitter
-toouse Twitter come provider di identità in Azure Active Directory (Azure AD) B2C, è necessario toocreate un'applicazione di Twitter e fornirlo con i parametri corretti hello. Necessaria una toodo account sviluppatore di Twitter. Se non si ha un account, è possibile crearlo sul sito [https://dev.twitter.com/](https://dev.twitter.com/).
+Per usare Twitter come provider di identità in Azure Active Directory (Azure AD) B2C, si deve creare un'applicazione Twitter e inserire i parametri corretti. Per eseguire questa operazione è necessario un account sviluppatore di Twitter. Se non si ha un account, è possibile crearlo sul sito [https://dev.twitter.com/](https://dev.twitter.com/).
 
-1. Passare toohello [sito Web per gli sviluppatori di Twitter](https://dev.twitter.com/) e accedere con le credenziali.
+1. Passare al [sito Web per sviluppatori di Twitter](https://dev.twitter.com/) e accedere con le proprie credenziali.
 2. Fare clic su **My apps** (App personali) in **Tools & Support** (Strumenti e supporto) e quindi fare clic su **Create New App** (Crea nuova app). 
-3. Nel modulo hello, fornire un valore per hello **nome**, **descrizione**, e **sito Web**.
-4. Per hello **URL Callback**, immettere `https://login.microsoftonline.com/te/{tenant}/oauth2/authresp`. Verificare che tooreplace **{tenant}** con il nome del tenant (ad esempio, contosob2c.onmicrosoft.com).
-5. Controllare hello casella tooagree toohello **contratto per gli sviluppatori** e fare clic su **creare un'applicazione Twitter**.
-6. Una volta creato l'applicazione hello, fare clic su **chiavi e i token di accesso**.
-7. Copiare il valore di hello di **chiave Consumer** e **segreto del cliente**. Sarà necessario entrambi tooconfigure Twitter come provider di identità nel tenant.
+3. Nel modulo immettere i valori desiderati per **Nome**, **Descrizione** e **Sito Web**.
+4. Per **URL callback** immettere `https://login.microsoftonline.com/te/{tenant}/oauth2/authresp`. Accertarsi di sostituire **{tenant}** con il nome del tenant, ad esempio contosob2c.onmicrosoft.com.
+5. Selezionare la casella per accettare il **contratto per gli sviluppatori** e fare clic su **Create your Twitter application** (Crea applicazione Twitter).
+6. Quando l'app viene creata, fare clic su **Keys and Access Tokens** (Chiavi e token di accesso).
+7. Copiare il valore di **Chiave utente** e **Segreto consumer**. Sono necessari entrambi per configurare Twitter come provider di identità nel tenant.
 
 ## <a name="configure-twitter-as-an-identity-provider-in-your-tenant"></a>Configurare Twitter come provider di identità nel tenant,
-1. Seguire questi passaggi troppo[passare pannello funzionalità toohello B2C](active-directory-b2c-app-registration.md#navigate-to-b2c-settings) su hello portale di Azure.
-2. Nel Pannello di hello B2C funzionalità, fare clic su **provider di identità**.
-3. Fare clic su **+ Aggiungi** nella parte superiore di hello del pannello hello.
-4. Fornire un nome **nome** per la configurazione del provider di identità hello. ad esempio, immettere "Twitter".
+1. Seguire questa procedura per [passare al pannello delle funzionalità B2C](active-directory-b2c-app-registration.md#navigate-to-b2c-settings) nel portale di Azure.
+2. Nel pannello delle funzionalità di B2C, fare clic su **Provider di identità**.
+3. Fare clic su **+Aggiungi** nella parte superiore del pannello.
+4. Fornire un **Nome** per la configurazione del provider di identità. ad esempio, immettere "Twitter".
 5. Fare clic su **Tipo di provider di identità**, selezionare **Twitter** e fare clic su **OK**.
-6. Fare clic su **impostare il provider di identità** e immettere hello Twitter **chiave Consumer** per hello **id Client** e hello Twitter **segreto del cliente**per hello **segreto Client**.
-7. Fare clic su **OK**, quindi fare clic su **crea** toosave la configurazione di Twitter.
+6. Fare clic su **Configura questo provider di identità** e immettere la **Chiave utente** di Twitter per **ID client** e il **Segreto consumer** di Twitter per **Segreto client**.
+7. Fare clic su **OK** e su **Crea** per salvare la configurazione di Twitter.
 

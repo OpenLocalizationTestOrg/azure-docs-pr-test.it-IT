@@ -1,6 +1,6 @@
 ---
-title: dispositivo serie StorSimple 8000 aaaUse riepilogo | Documenti Microsoft
-description: "Descrive dispositivo del servizio di gestione di dispositivi StorSimple hello riepilogo e in che modo toouse è tooview metriche di archiviazione e gli iniziatori connessi e trova hello numero di serie e IQN."
+title: Usare il riepilogo per dispositivi StorSimple serie 8000 | Microsoft Docs
+description: Descrive il riepilogo del dispositivo del servizio Gestione dispositivi StorSimple e illustra come usarlo per visualizzare le metriche di archiviazione e gli iniziatori connessi e trovare il numero di serie e il nome qualificato iSCSI.
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,85 +14,85 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 07/03/2017
 ms.author: alkohli
-ms.openlocfilehash: b45ffc6ec52ebb6549c25a00c68c62460b208b7a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 784d3ce9d8f926b00ac1c6fbf48a05c0b04f900a
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-hello-device-summary-in-storsimple-device-manager-service"></a>Usare dispositivo hello riepilogo nel servizio di gestione di dispositivi StorSimple
+# <a name="use-the-device-summary-in-storsimple-device-manager-service"></a>Usare il riepilogo del dispositivo nel servizio Gestione dispositivi StorSimple
 
 ## <a name="overview"></a>Panoramica
-Pannello riepilogo dispositivo StorSimple di Hello viene fornita una panoramica delle informazioni per un dispositivo StorSimple specifico, al contrario toohello servizio Pannello di riepilogo, che fornisce informazioni su tutti i dispositivi di hello inclusi nella soluzione StorSimple di Microsoft Azure.
+Il pannello di riepilogo del dispositivo StorSimple offre una panoramica delle informazioni per un determinato dispositivo StorSimple, a differenza del pannello di riepilogo del servizio, che fornisce informazioni su tutti i dispositivi inclusi nella soluzione Microsoft Azure StorSimple.
 
-Pannello riepilogo di Hello dispositivo fornisce un riepilogo di un dispositivo StorSimple serie 8000 registrato con un determinato StorSimple Manager di dispositivi, evidenziando i problemi dei dispositivi che richiedono attenzione da parte dell'amministratore di sistema. In questa esercitazione presenta Pannello di riepilogo dispositivo hello, spiega (funzione) e il contenuto di hello e vengono descritte le attività di hello che è possibile eseguire questo pannello.
+Il pannello di riepilogo del dispositivo offre una vista di riepilogo di un dispositivo StorSimple serie 8000 registrato con un servizio Gestione dispositivi StorSimple, in modo da evidenziare eventuali problemi del dispositivo che richiedono attenzione da parte dell'amministratore di sistema. Questa esercitazione introduce il pannello di riepilogo del dispositivo, illustra il contenuto e la funzione e descrive le attività che è possibile eseguire da questo pannello.
 
-Pannello riepilogo di Hello dispositivo Visualizza hello le seguenti informazioni:
+Il pannello di riepilogo dispositivo contiene le informazioni seguenti:
 
 ![Pannello di riepilogo del dispositivo](./media/storsimple-8000-device-dashboard/device-summary1.png)
 
 ## <a name="management-command-bar"></a>Barra dei comandi di gestione
 
-Nel pannello dispositivo di StorSimple hello, vedrai opzioni hello per la gestione del dispositivo StorSimple. Verranno visualizzati i comandi di gestione hello in alto di hello del pannello hello e sul lato sinistro di hello. Usare queste opzioni tooadd condivisioni o volumi, aggiornare o eseguire il failover del dispositivo.
+Il pannello del dispositivo StorSimple contiene le opzioni per la gestione del dispositivo StorSimple in uso. I comandi per la gestione vengono visualizzati nella parte superiore del pannello e sul lato sinistro. Usare queste opzioni per aggiungere condivisioni o volumi o per aggiornare o eseguire il failover del dispositivo.
 
 ![Barra dei comandi di gestione](./media/storsimple-8000-device-dashboard/device-summary2.png)
 
 ## <a name="essentials"></a>Informazioni di base
 
-area essentials Hello acquisisce alcune delle proprietà importanti di hello, ad esempio, stato hello, modello, nome qualificato iSCSI di destinazione e versione del software hello. 
+L'area relativa alle informazioni di base riporta alcune proprietà importanti, ad esempio lo stato, il modello, il nome qualificato iSCSI del dispositivo di destinazione e la versione del software. 
 
 ![Informazioni di base sui dispositivi](./media/storsimple-8000-device-dashboard/device-summary3.png)
 
 ## <a name="monitoring"></a>Monitoraggio
 
-* Hello **avvisi** riquadro fornisce uno snapshot di tutti gli avvisi attivi hello per il dispositivo, raggruppato in base alla gravità dell'avviso.
+* Il riquadro **Avvisi** offre uno snapshot di tutti gli avvisi attivi per il dispositivo, raggruppati in base alla gravità.
 
     ![Riquadro avvisi](./media/storsimple-8000-device-dashboard/device-summary4.png)
 
-    Fare clic su hello di hello riquadro tooopen **avvisi** blade e quindi fare clic su un singolo avviso tooview ulteriori dettagli sull'avviso, inclusi eventuali azioni consigliate. È inoltre possibile cancellare avviso hello se hello problema è stato risolto.
+    Fare clic sul riquadro per aprire il pannello **Avvisi**, quindi fare clic su un singolo avviso per visualizzare altri dettagli specifici, incluse tutte le operazioni consigliate. È inoltre possibile cancellare l'avviso se il problema è stato risolto.
 
     ![Fare clic sul riquadro degli avvisi](./media/storsimple-8000-device-dashboard/device-summary10.png)
 
-* Hello **stato e l'integrità** riquadro offre informazioni approfondite integrità hello del componente hardware per un dispositivo, inclusi lo stato del dispositivo hello. stato del dispositivo Hello può essere disattivato, pronto, online o offline tooset up.
+* Il riquadro **Stato e integrità** offre informazioni dettagliate sull'integrità dei componenti hardware di un dispositivo, oltre allo stato del dispositivo. Lo stato del dispositivo può essere offline, online, disattivato o pronto per la configurazione.
 
     ![Riquadro Stato e integrità](./media/storsimple-8000-device-dashboard/device-summary5.png)
 
-* Hello **volumi** riquadro fornisce un riepilogo del numero di hello di volumi nel dispositivo raggruppati per stato.
+* Il riquadro **Volumi** offre un riepilogo del numero di volumi nel dispositivo, raggruppati per stato.
 
     ![Riquadro Volumi](./media/storsimple-8000-device-dashboard/device-summary6.png)
 
-    Fare clic su hello di hello riquadro tooopen **volumi** elenco pannello, quindi fare clic su un singolo volume di tooview o modificarne le proprietà.
+    Fare clic sul riquadro per aprire il pannello di elenco **Volumi** e quindi fare clic su un singolo volume per visualizzarne o modificarne le proprietà.
     
     ![Fare clic sul riquadro Volumi](./media/storsimple-8000-device-dashboard/device-summary9.png)
     
-    Per ulteriori informazioni, vedere come troppo[gestire volumi](storsimple-8000-manage-volumes-u2.md).
+    Per altre informazioni, vedere come [gestire i volumi](storsimple-8000-manage-volumes-u2.md).
 
-* In hello **utilizzo** grafico, è possibile visualizzare l'archiviazione primaria di hello usata tra il dispositivo e archiviazione cloud hello consumata in hello ultimi 7 giorni, il periodo di tempo predefinito di hello.
+* Nel grafico **Utilizzo** è possibile visualizzare l'archiviazione primaria usata nel dispositivo e l'archiviazione cloud usata negli ultimi sette giorni, che corrispondono al periodo di tempo predefinito.
 
      ![Riquadro Utilizzo](./media/storsimple-8000-device-dashboard/device-summary7.png)
     
-     toochoose una scala temporale diverso, utilizzare hello **modifica** opzione nell'angolo superiore destro di hello del grafico hello.
+     Per scegliere una diversa scala cronologica, usare l'opzione **Modifica** nell'angolo superiore destro del grafico.
 
      ![Modificare il grafico sull'utilizzo](./media/storsimple-8000-device-dashboard/device-summary12.png)
 
-     In questo grafico, è possibile visualizzare le metriche di archiviazione primaria totale hello (quantità hello dei dati scritti dal dispositivo tooyour host) e hello totale usata dal dispositivo in un periodo di tempo di archiviazione cloud.
+     In questo grafico, è possibile visualizzare le metriche per l'archiviazione primaria totale (la quantità di dati scritti dall'host per il dispositivo) e l'archiviazione cloud totale utilizzata dal dispositivo in un periodo di tempo.
   
-     In questo contesto, *archiviazione primaria* fa riferimento toohello quantità totale di dati scritti dall'host hello e possono essere suddivisi per tipo di volume: *primario a livelli di archiviazione* include sia archiviati localmente i dati e i dati cloud toohello a più livelli. mentre *archiviazione primaria aggiunta in locale* include solo i dati archiviati in locale. *Archiviazione cloud*, in hello invece, è una misura della quantità totale di hello dei dati archiviati nel cloud hello. Questo tipo di archiviazione include i backup e i dati a più livelli. dati Hello archiviati nel cloud hello sono deduplicati e compresso, mentre l'archiviazione primaria indica la quantità hello spazio di archiviazione utilizzato prima che i dati di hello sono deduplicati e compressi. (È possibile confrontare questi tooget due numeri un'idea del tasso di compressione hello). Per entrambi primario e l'archiviazione, hello importi basati su rilevamento frequenza configurata hello cloud. Ad esempio, se si sceglie una frequenza di una settimana, il grafico hello Mostra i dati per ogni giorno hello settimana precedente.
+     In questo contesto, *archiviazione primaria* fa riferimento alla quantità totale di dati scritti dall'host e può essere suddivisa in base al tipo di volume: *archiviazione primaria a livelli* include sia i dati archiviati in locale sia quelli archiviati a livelli nel cloud, mentre *archiviazione primaria aggiunta in locale* include solo i dati archiviati in locale. L’*Archiviazione cloud*d'altra parte, è una misura della quantità totale di dati archiviati nel cloud. Questo tipo di archiviazione include i backup e i dati a più livelli. I dati archiviati nel cloud sono deduplicati e compressi, mentre l'archiviazione primaria indica la quantità di spazio di archiviazione usato prima che i dati vengano deduplicati e compressi. (È possibile confrontare i due numeri per avere un'idea del tasso di compressione). Per entrambe le archiviazioni, primaria e cloud, gli importi mostrati si basano sulla frequenza di rilevamento configurata. Se, ad esempio, si sceglie una frequenza settimanale, il grafico mostrerà i dati per ogni giorno della settimana precedente.
 
-     quantità di hello toosee di archiviazione cloud usato nel corso del tempo, seleziona hello **archiviazione CLOUD usata** opzione. toosee hello spazio di archiviazione totale scritta dall'host di hello, seleziona hello **primario utilizzato archiviazione a livelli** e **primario locale aggiunto spazio di archiviazione usato** opzioni. 
-     Per ulteriori informazioni, vedere [utilizzare hello toomonitor servizio di gestione di dispositivi StorSimple dispositivo StorSimple](storsimple-monitor-device.md).
+     Per visualizzare la quantità di archiviazione cloud usata nel corso del tempo, selezionare l'opzione **SPAZIO DI ARCHIVIAZIONE CLOUD UTILIZZATO**. Per visualizzare l'archiviazione totale scritta dall'host, selezionare le opzioni **PRIMARY TIERED STORAGE USED** (ARCHIVIAZIONE PRIMARIA A LIVELLI USATA) e **PRIMARY LOCALLY PINNED STORAGE USED** (ARCHIVIAZIONE PRIMARIA AGGIUNTA IN LOCALE USATA). 
+     Per ulteriori informazioni, vedere [Utilizzare il servizio StorSimple Manager per monitorare il dispositivo StorSimple](storsimple-monitor-device.md).
 
 
-* Hello **capacità** riquadro Visualizza hello primario spazio di archiviazione viene eseguito il provisioning e rimanente in hello dispositivo toohello relativo spazio di archiviazione totale disponibile per hello stesso. **Il provisioning** fa riferimento toohello quantità di spazio di archiviazione preparata e allocata per l'utilizzo, **rimanente** fa riferimento toohello residua che è possibile effettuare il provisioning in questo dispositivo. 
+* Il riquadro **Capacità** mostra l'archiviazione primaria di cui è stato eseguito il provisioning e quella rimanente nel dispositivo rispetto all'archiviazione totale disponibile per lo stesso dispositivo. **Provisioning** fa riferimento alla quantità di spazio di archiviazione preparata e allocata per l'uso; **Rimanente** fa riferimento alla capacità rimanente di cui è possibile eseguire il provisioning in questo dispositivo. 
 
     ![Riquadro Utilizzo](./media/storsimple-8000-device-dashboard/device-summary8.png)
 
-    Fare clic su questo tooview riquadro come viene eseguito il provisioning della capacità di hello tra i volumi aggiunti in locale e a più livelli. Hello **a livelli rimanenti** capacità sia hello disponibile una capacità che è possibile effettuare il provisioning inclusi cloud, mentre hello **rimanenti locale** capacità hello rimanente su dischi hello collegato toothis dispositivo.
+    Fare clic su questo riquadro per visualizzare come viene effettuato il provisioning della capacità tra i volumi a livelli e i volumi aggiunti in locale. **Rimanente a livelli** è la capacità disponibile di cui è possibile effettuare il provisioning, incluso cloud, mentre **Rimanente locale** è la capacità rimanente sui dischi collegati a questo dispositivo.
 
     ![Fare clic sul grafico Utilizzo](./media/storsimple-8000-device-dashboard/device-summary13.png)
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Altre informazioni su hello [Pannello di riepilogo del servizio StorSimple](storsimple-8000-service-dashboard.md).
-* Altre informazioni, vedere [utilizzando hello tooadminister servizio di gestione di dispositivi StorSimple dispositivo StorSimple](storsimple-8000-manager-service-administration.md).
+* Altre informazioni sul [pannello di riepilogo del servizio StorSimple](storsimple-8000-service-dashboard.md).
+* Altre informazioni sull'[utilizzo del servizio Gestione dispositivi StorSimple per amministrare il dispositivo StorSimple](storsimple-8000-manager-service-administration.md).
 

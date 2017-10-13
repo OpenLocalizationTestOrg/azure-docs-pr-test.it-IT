@@ -1,5 +1,5 @@
 ---
-title: prezzi di IoT Hub Azure aaaUnderstand | Documenti Microsoft
+title: Informazioni sui prezzi dell'hub IoT di Azure | Microsoft Docs
 description: Guida per sviluppatori - Informazioni sulle misurazioni e sui prezzi nell'hub IoT ed esempi reali.
 services: iot-hub
 documentationcenter: 
@@ -12,17 +12,17 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/12/2016
+ms.date: 08/29/2017
 ms.author: elioda
-ms.openlocfilehash: e294c0b7f483e042ca3f63e93c14e0c2d773ae7f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 05006a78cc7d82bc048ec5706465f7140eb40e94
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-iot-hub-pricing-information"></a>Informazioni sui prezzi dell'hub IoT di Azure
 
-[IoT Hub Azure prezzi] [ lnk-pricing] vengono fornite informazioni generali hello su diverse SKU e prezzi per l'IoT Hub. In questo articolo contiene informazioni più dettagliate su come hello che varie funzionalità di IoT Hub sono misurate come messaggi dall'IoT Hub.
+[Prezzi di Azure IoT Hub][lnk-pricing] fornisce informazioni generali su diversi SKU e sui prezzi per l'hub IoT. Questo articolo contiene dettagli aggiuntivi sul modo in cui le diverse funzionalità dell'hub IoT vengono misurate come messaggi dall'hub IoT.
 
 ## <a name="charges-per-operation"></a>Addebiti per ogni operazione
 
@@ -31,31 +31,31 @@ ms.lasthandoff: 10/06/2017
 | Operazioni del registro delle identità <br/> (creazione, recupero, elenco, aggiornamento, eliminazione) | Nessun addebito. |
 | Messaggi da dispositivo a cloud | Per i messaggi inviati correttamente è previsto un addebito in base a blocchi di 4 KB in ingresso nell'hub IoT, ad esempio un messaggio di 6 KB viene addebitato come 2 messaggi. |
 | Messaggi da cloud a dispositivo | Per i messaggi inviati correttamente è previsto un addebito in base a blocchi di 4 KB, ad esempio un messaggio di 6 KB viene addebitato come 2 messaggi. |
-| Caricamenti di file | Trasferimento di file tooAzure archiviazione non è a consumo dall'IoT Hub. I messaggi di avvio e di completamento del trasferimento di file vengono addebitati come messaggi misurati in incrementi di 4 KB. Trasferimento di un file di 10 MB, ad esempio, viene addebitato due messaggi in aggiunta toohello i costi di archiviazione di Azure. |
-| Metodi diretti | Le richieste di metodo completate vengono addebitate in blocchi di 4 KB, le risposte con corpi non vuoti vengono addebitate in blocchi di 4 KB, come messaggi aggiuntivi. I dispositivi toodisconnected le richieste vengono addebitati come messaggi suddivisi in blocchi a 4 KB. Ad esempio, un metodo con un corpo 6 KB che comporta una risposta senza il corpo dal dispositivo hello, viene addebitato come due messaggi. un metodo con un corpo 6 KB che comporta una risposta di 1 KB dal dispositivo hello viene addebitato come due messaggi di richiesta di hello più di un altro messaggio di risposta hello. |
-| Letture del dispositivo gemello | Un doppio dispositivo legge dal dispositivo hello e dalla soluzione hello nuovamente fine vengono addebitate come messaggi suddivisi in blocchi a 512 byte. Ad esempio, la lettura di un messaggio di 6 KB del dispositivo gemello viene addebitata come 12 messaggi. |
-| Aggiornamenti del dispositivo gemello (tag e proprietà) | Aggiornamenti del dispositivo doppi da dispositivi hello e hello vengono addebitati come messaggi suddivisi in blocchi a 512 byte. Ad esempio, la lettura di un messaggio di 6 KB del dispositivo gemello viene addebitata come 12 messaggi. |
-| Query del dispositivo gemello | Le query vengono addebitate come messaggi a seconda delle dimensioni del risultato hello in blocchi a 512 byte. |
+| Caricamenti di file | Il trasferimento di file in Archiviazione di Azure non viene misurato dall'hub IoT. I messaggi di avvio e di completamento del trasferimento di file vengono addebitati come messaggi misurati in incrementi di 4 KB. Ad esempio, il trasferimento di un file di 10 MB viene addebitato come due messaggi, oltre al costo di Archiviazione di Azure. |
+| Metodi diretti | Le richieste di metodo completate vengono addebitate in blocchi di 4 KB, le risposte con corpi non vuoti vengono addebitate in blocchi di 4 KB, come messaggi aggiuntivi. Le richieste ai dispositivi disconnessi vengono addebitate come messaggi in blocchi di 4 KB. Ad esempio, un metodo con un corpo di 6 KB che produce una risposta senza corpo dal dispositivo viene addebitato come due messaggi. Un metodo con un corpo di 6 KB che produce una risposta di 1 KB dal dispositivo viene addebitato come due messaggi per la richiesta e un messaggio aggiuntivo per la risposta. |
+| Letture del dispositivo gemello | Le letture del dispositivo gemello dal dispositivo e dal back-end della soluzione vengono addebitate come messaggi in blocchi di 512 byte. Ad esempio, la lettura di un messaggio di 6 KB del dispositivo gemello viene addebitata come 12 messaggi. |
+| Aggiornamenti del dispositivo gemello (tag e proprietà) | Gli aggiornamenti del dispositivo gemello dal dispositivo e dal back-end della soluzione vengono addebitati come messaggi in blocchi di 512 byte. Ad esempio, la lettura di un messaggio di 6 KB del dispositivo gemello viene addebitata come 12 messaggi. |
+| Query del dispositivo gemello | Le query vengono addebitate come messaggi in base alle dimensioni del risultato in blocchi di 512 byte. |
 | Operazioni dei processi <br/> (creazione, aggiornamento, elenco, eliminazione) | Nessun addebito. |
 | Operazioni dei processi per ogni dispositivo | Le operazioni dei processi, ad esempio gli aggiornamenti del dispositivo gemello e i metodi, vengono addebitati come messaggi normali. Ad esempio, un processo che provoca 1000 chiamate del metodo con richieste di 1 KB e risposte con corpo vuoto viene addebitato come 1000 messaggi. |
 
 > [!NOTE]
-> Tutte le dimensioni vengono calcolate considerando dimensioni del payload hello in byte (il frame di protocollo viene ignorato). In caso di messaggi, che hanno proprietà e corpo, dimensioni hello viene calcolata in modo indipendente dal protocollo, come descritto in hello [IoT Hub Guida per gli sviluppatori di messaggistica][lnk-message-size].
+> Tutte le dimensioni vengono calcolate considerando le dimensioni del payload in byte. Il frame del protocollo viene ignorato. Nel caso dei messaggi, che hanno proprietà e corpo, le dimensioni vengono calcolate in modo indipendente dal protocollo, come illustrato nella [Guida per gli sviluppatori della messaggistica dell'hub IoT][lnk-message-size].
 
 ## <a name="example-1"></a>Esempio 1
 
-Un dispositivo invia un messaggio da dispositivo a cloud 1 KB al minuto tooIoT Hub, che viene letto da Analitica di flusso di Azure. back-end di Hello soluzione richiama un metodo (con payload di 512 byte) nel dispositivo hello ogni tootrigger di dieci minuti un'azione specifica. dispositivo Hello risponde toohello metodo con un risultato 200 byte.
+Un dispositivo invia all'hub IoT un messaggio da 1 KB dal dispositivo al cloud al minuto e il messaggio viene quindi letto da Analisi di flusso di Azure. Il back-end della soluzione chiama un metodo, con payload di 512 byte, sul dispositivo ogni dieci minuti per attivare un'azione specifica. Il dispositivo risponde al metodo con un risultato di 200 byte.
 
-dispositivo Hello utilizza 1 messaggio * 60 minuti * 24 ore = 1440 messaggi al giorno per la richiesta e risposta di messaggi da dispositivo a cloud hello e 2 * 6 volte all'ora * 24 ore = 288 messaggi per i metodi di hello, per un totale di messaggi 1728 al giorno.
+Il dispositivo usa 1 messaggio * 60 minuti * 24 ore = 1440 messaggi al giorno per i messaggi da dispositivo a cloud e 2 richieste più risposta * 6 volte all'ora * 24 ore = 288 messaggi per i metodi, per un totale di 1728 messaggi al giorno.
 
 ## <a name="example-2"></a>Esempio n. 2
 
-Un dispositivo invia un messaggio da dispositivo a cloud di 100 KB ogni ora. Aggiorna anche il relativo dispositivo gemello con payload di 1 KB ogni 4 ore. soluzione Hello nuovamente terminare letture hello 14 KB dispositivo doppi, una volta al giorno e viene aggiornato con le configurazioni toochange payload a 512 byte.
+Un dispositivo invia un messaggio da dispositivo a cloud di 100 KB ogni ora. Aggiorna anche il relativo dispositivo gemello con payload di 1 KB ogni 4 ore. Il back-end della soluzione legge una volta al giorno il dispositivo gemello di 14 KB e lo aggiorna con payload di 512 byte per modificare le configurazioni.
 
-dispositivo Hello utilizza messaggi (100KB / 4KB) 25 * 24 ore per i messaggi da dispositivo a cloud, oltre a 1 messaggio * 6 volte al giorno per gli aggiornamenti, doppi per un totale di 156 messaggi al giorno.
-Hello soluzione back-end Usa un doppio dispositivo di hello tooread 28 messaggi (KB 14/0,5 KB), più 1 messaggio tooupdate che, per un totale di messaggi di 29.
+Il dispositivo usa 25 messaggi, ovvero 100 KB/4 KB, * 24 ore per messaggi dal dispositivo al cloud, più 2 messaggi (1 KB/0,5 KB) * 6 volte al giorno per gli aggiornamenti del dispositivo gemello, per un totale di 612 messaggi al giorno.
+Il back-end della soluzione usa 28 messaggi (14 KB/0,5 KB) per leggere il dispositivo gemello più 1 messaggio per aggiornarlo, per un totale di 29 messaggi.
 
-In totale, dispositivo hello e hello soluzione back-end utilizzare 185 messaggi al giorno.
+In totale il dispositivo e il back-end della soluzione usano 641 messaggi al giorno.
 
 
 [lnk-pricing]: https://azure.microsoft.com/pricing/details/iot-hub

@@ -9,16 +9,16 @@ editor: jasonwhowell
 ms.service: mysql-database
 ms.topic: article
 ms.date: 06/05/2017
-ms.openlocfilehash: 28b9c2a5ab879e2b160d4cd22b2c61f5afa19927
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 49d81c5b449b9af7ac025296982aa5ff82aa8b09
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-database-for-mysql-videos"></a>Video su Database di Azure per MySQL
 
-[Modalità di avvio tooget con hello Nuovo Database di Azure per il servizio MySQL](https://channel9.msdn.com/events/Build/2017/B8045)
+[Come iniziare a usare il nuovo servizio Database di Azure per MySQL](https://channel9.msdn.com/events/Build/2017/B8045)
 
 <iframe src="https://channel9.msdn.com/Events/Build/2017/B8045/player" width="800" height="450" allowFullScreen frameBorder="0"></iframe>
 
-In questo video da hello potrebbe 2017 Microsoft //Build conference, informazioni sull'offerta MySQL gestito di Microsoft in Azure. Al suo interno viene illustrata la strategia Microsoft per il supporto dei sistemi di database open source in Azure ed Per discutere cosa significa tooyou come toodevelop un sviluppatore o distribuire le applicazioni che usano MySQL in Azure. Si mostra una panoramica dell'architettura di hello del servizio hello e illustrano che i Database di Azure per MySQL è integrato con altri servizi di Azure, ad esempio le applicazioni Web.
+In questo video tratto dalla conferenza Microsoft Build svoltasi nel maggio 2017, è possibile conoscere più da vicino la soluzione MySQL gestita offerta da Microsoft in Azure. Al suo interno viene illustrata la strategia Microsoft per il supporto dei sistemi di database open source in Azure ed esaminato il significato che riveste per coloro che sviluppano o distribuiscono applicazioni che usano MySQL in Azure. Viene inoltre fornita una panoramica dell'architettura del servizio e mostrato come Database di Azure per MySQL sia integrato con altri servizi di Azure, ad esempio con App Web.

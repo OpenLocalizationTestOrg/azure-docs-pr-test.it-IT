@@ -1,6 +1,6 @@
 ---
-title: esempio di azione di allarme aaaWebhook in OMS Log Analitica | Documenti Microsoft
-description: "Una delle azioni di hello è possibile eseguire in risposta tooa Log Analitica avviso è un * webhook *, che consente di tooinvoke un processo esterno tramite una singola richiesta HTTP. Questo articolo illustra un esempio di creazione di un'azione webhook in un avviso di Log Analytics tramite Slack."
+title: Esempio di azione di allarme webhook in Log Analytics di OMS | Documentazione Microsoft
+description: "Una delle azioni che è possibile eseguire in risposta a un avviso di Log Analytics è la creazione di un *webhook*, che consente di richiamare un processo esterno tramite una singola richiesta HTTP. Questo articolo illustra un esempio di creazione di un'azione webhook in un avviso di Log Analytics tramite Slack."
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -14,63 +14,63 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/27/2017
 ms.author: bwren
-ms.openlocfilehash: e60bdc4922347073d572c2e4719461b13e8e7d1c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 55b66132f7ec5c26c0a7cac1ec0a5c403dbd1082
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="create-an-alert-webhook-action-in-oms-log-analytics-toosend-message-tooslack"></a>Creare un'azione webhook avviso in OMS Log Analitica toosend messaggio tooSlack
-Una delle azioni di hello è possibile eseguire in risposta tooa [avviso Analitica Log](log-analytics-alerts.md) è un *webhook*, che consente di tooinvoke un processo esterno tramite una singola richiesta HTTP.  Per informazioni dettagliate su avvisi e webhook, vedere [Avvisi in Log Analytics](log-analytics-alerts.md)
+# <a name="create-an-alert-webhook-action-in-oms-log-analytics-to-send-message-to-slack"></a>Creare un'azione di avviso webhook in Log Analytics di OMS per inviare messaggi a Slack
+Una delle azioni che è possibile eseguire in risposta a un [avviso di Log Analytics](log-analytics-alerts.md) è la creazione di un *webhook*, che consente di richiamare un processo esterno tramite una singola richiesta HTTP.  Per informazioni dettagliate su avvisi e webhook, vedere [Avvisi in Log Analytics](log-analytics-alerts.md)
 
 Questo articolo illustra un esempio di creazione di un'azione webhook in un avviso di Log Analytics tramite il servizio di messaggistica Slack.
 
 > [!NOTE]
-> È necessario un account Slack di toocomplete in questo esempio.  È possibile iscriversi per ottenere un account gratuito nel sito Web [slack.com](http://slack.com).
+> Per completare l'esempio è necessario disporre di un account Slack.  È possibile iscriversi per ottenere un account gratuito nel sito Web [slack.com](http://slack.com).
 > 
 > 
 
 ## <a name="step-1---enable-webhooks-in-slack"></a>Passaggio 1: Abilitare gli webhook in Slack
-1. Accedi tooSlack in [slack.com](http://slack.com).
-2. Selezionare un canale in hello **canali** sezione nel riquadro di sinistra hello.  Questo è il canale hello verrà inviato al messaggio hello.  È possibile selezionare uno dei canali di hello predefinito, ad esempio **generale** o **casuale**.  In uno scenario di produzione sarà probabilmente necessario creare un canale speciale, ad esempio **criticalservicealerts**. <br>
+1. Accedere al sito Web Slack all'indirizzo [slack.com](http://slack.com).
+2. Selezionare un canale nella sezione **Channels** (Canali) del riquadro a sinistra,  che costituirà il canale a cui verrà inviato il messaggio.  È possibile selezionare uno dei canali predefiniti, ad esempio **general** o **random**.  In uno scenario di produzione sarà probabilmente necessario creare un canale speciale, ad esempio **criticalservicealerts**. <br>
    
    ![Canali Slack](media/log-analytics-alerts-webhooks/oms-webhooks01.png)
-3. Fare clic su **aggiungere un'applicazione o integrazione personalizzati** tooopen hello Directory dell'applicazione.
-4. Tipo *webhook* nella casella di ricerca hello e quindi selezionare **Webhook in ingresso**. <br>
+3. Fare clic su **Add an app or custom integration** (Aggiungi un'app o l'integrazione personalizzata) per aprire la directory dell'app.
+4. Digitare *webhooks* nella casella di ricerca e quindi selezionare **Incoming WebHooks**(Webhook in ingresso). <br>
    
    ![Canali Slack](media/log-analytics-alerts-webhooks/oms-webhooks02.png)
-5. Fare clic su **installare** nome del team tooyour successivo.
+5. Fare clic su **Install** (Installa) vicino al nome del proprio team.
 6. Fare clic su **Add Configuration**(Aggiungi configurazione).
-7. Canale di hello hello selezionare archivieranno toouse per questo esempio e quindi fare clic su **integrazione aggiungere Webhook in ingresso**.  
-8. Hello copia **URL del Webhook**.  Si sarà incollare questa in configurazione dell'avviso hello. <br>
+7. Selezionare il canale che si intende usare in questo esempio e quindi fare clic su **Add Incoming WebHooks integration**(Aggiungi integrazione webhook in ingresso).  
+8. Copiare l'indirizzo contenuto in **Webhook URL** (URL webhook),  che dovrà essere incollato nella configurazione dell'avviso. <br>
    
     ![Canali Slack](media/log-analytics-alerts-webhooks/oms-webhooks05.png)
 
 ## <a name="step-2---create-alert-rule-in-log-analytics"></a>Passaggio 2: Creare una regola di avviso in Log Analytics
-1. [Creare una regola di avviso](log-analytics-alerts.md) con hello seguenti impostazioni.
+1. [Creare una regola di avviso](log-analytics-alerts.md) con le impostazioni seguenti.
    * Query: ```    Type=Event EventLevelName=error ```
    * Check for this alert every: 5 minutes (Verifica la presenza di questo avviso ogni: 5 minuti)
-   * numero di risultati di Hello: maggiore di 10
+   * The number of results is: greater than 10 (Il numero di risultati è: maggiore di 10)
    * Over this time window: 60 minutes (Finestra temporale: 60 minuti)
-   * Selezionare **Sì** per **Webhook** e **n** per hello altre azioni.
-2. Hello Incolla Slack URL in hello **URL del Webhook** campo.
-3. L'opzione hello troppo**includono un payload JSON personalizzato**.
-4. Slack prevede un payload in formato JSON con un parametro denominato *text*.  Questo è il testo hello che verrà visualizzato il messaggio hello che viene creato.  È possibile utilizzare uno o più parametri di avviso hello utilizzando hello  *#*  tale simbolo come hello di esempio seguente.
+   * Selezionare **Yes** (Sì) per **Webhook** e **No** per le altre azioni.
+2. Incollare l'URL del sito Slack nel campo **Webhook URL** (URL webhook).
+3. Selezionare l'opzione che consente di **includere un payload JSON personalizzato**.
+4. Slack prevede un payload in formato JSON con un parametro denominato *text*.  che costituisce il testo visualizzato nel messaggio che verrà creato.  Usando il simbolo *#* è possibile includere più di un parametro di avviso.
    
     ```
     {
-    "text":"#alertrulename fired with #searchresultcount records which exceeds hello over threshold of #thresholdvalue ."
+    "text":"#alertrulename fired with #searchresultcount records which exceeds the over threshold of #thresholdvalue ."
     }
     ```
    
     ![payload JSON di esempio](media/log-analytics-alerts-webhooks/oms-webhooks07.png)
-5. Fare clic su **salvare** toosave regola di avviso hello.
-6. Attendere un tempo sufficiente per un avviso toobe creato e quindi controllare il margine di flessibilità di un messaggio che sarà simile toohello seguente.
+5. Fare clic su **Save** (Salva) per salvare la regola di avviso.
+6. Attendere il tempo necessario alla creazione dell'avviso. In Slack apparirà un messaggio simile al seguente.
    
    ![webhook di esempio in Slack](media/log-analytics-alerts-webhooks/oms-webhooks08.png)
 
 ### <a name="advanced-webhook-payload-for-slack"></a>Payload di un webhook avanzato per Slack
-Con Slack è possibile personalizzare in maniera significativa i messaggi in ingresso. Per ulteriori informazioni, vedere [Webhook in ingresso](https://api.slack.com/incoming-webhooks) nel sito Web di Slack hello. Di seguito è un toocreate payload più complessa di un messaggio con la formattazione RTF:
+Con Slack è possibile personalizzare in maniera significativa i messaggi in ingresso. Per altre informazioni, vedere la sezione [Incoming Webhooks](https://api.slack.com/incoming-webhooks) (Webhook in ingresso) del sito Web Slack. Di seguito è riportato un payload complesso che consente la creazione di un messaggio avanzato con formattazione:
 
     {
         "attachments": [
@@ -81,7 +81,7 @@ Con Slack è possibile personalizzare in maniera significativa i messaggi in ing
                         "title": "Alert Rule Name",
                         "value": "#alertrulename"},
                     {
-                        "title": "Link tooSearchResults",
+                        "title": "Link To SearchResults",
                         "value": "<#linktosearchresults|OMS Search Results>"},
                     {
                         "title": "Search Interval",
@@ -99,14 +99,14 @@ Con Slack è possibile personalizzare in maniera significativa i messaggi in ing
     }
 
 
-Questo genera un messaggio di margine di flessibilità seguenti toohello simile.
+In Slack viene visualizzato un messaggio simile al seguente.
 
 ![messaggio di esempio in Slack](media/log-analytics-alerts-webhooks/oms-webhooks09.png)
 
 ## <a name="summary"></a>Riepilogo
-Con questa regola di avviso, è necessario tooSlack un messaggio inviato ogni volta che viene soddisfatto il criterio di hello.  
+Con l'attivazione di questa regola, ogni volta che vengono soddisfatti determinati criteri viene inviato un messaggio a Slack.  
 
-Questo è solo un esempio di un'azione che è possibile creare nell'avviso tooan di risposta.  È possibile creare un'azione webhook che chiama un runbook in automazione di Azure o un toosend di azione del messaggio di posta elettronica di un altro servizio esterno, un toostart azione runbook un tooyourself di posta elettronica o altri destinatari.   
+Questo è solo un esempio delle varie azioni che è possibile creare in risposta a un avviso.  È possibile ad esempio creare un'azione webhook per chiamare un altro servizio esterno, un'azione runbook per avviare un runbook in Automazione di Azure o un'azione di posta elettronica per inviare un messaggio di posta a se stessi o ad altri destinatari.   
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Altre informazioni sulle [azioni di avviso in Log Analytics](log-analytics-alerts-actions.md) e su altre azioni.

@@ -1,6 +1,6 @@
 ---
-title: monitoraggio remoto aaaIoT e notifiche con Azure logica App | Documenti Microsoft
-description: Usare le app di logica di Azure per il monitoraggio della temperatura l'hub IoT e automaticamente inviare cassetta postale tooyour di notifiche di posta elettronica eventuali anomalie rilevato IoT.
+title: Monitoraggio remoto e notifiche di IoT con App per la logica di Azure | Microsoft Docs
+description: Usare le app per la logica di Azure per il monitoraggio della temperatura IoT sull'hub IoT e inviare automaticamente notifiche tramite e-mail alla cassetta postale per eventuali anomalie rilevate.
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/25/2017
 ms.author: xshi
-ms.openlocfilehash: 89396528ed63c37258e1b49f342f0723e686ecb3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7a611912ae55eb22103539dbba9f1a06aaa543b7
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="iot-remote-monitoring-and-notifications-with-azure-logic-apps-connecting-your-iot-hub-and-mailbox"></a>Monitoraggio remoto e notifiche di IoT con App per la logica di Azure tramite la connessione all'hub IoT e alla cassetta postale
 
@@ -27,148 +27,148 @@ ms.lasthandoff: 10/06/2017
 
 [!INCLUDE [iot-hub-get-started-note](../../includes/iot-hub-get-started-note.md)]
 
-Le app di logica di Azure fornisce un modo tooautomate processi come una serie di passaggi. Un'app per la logica può connettersi tramite diversi servizi e protocolli. Inizia con un trigger, ad esempio "When an account is added" (Quando si aggiunge un account), seguito da una combinazione di azioni, come "sending a push notification" (invio di una notifica push). Questa caratteristica rende App per la logica una soluzione IoT perfetta per il monitoraggio IoT, ad esempio per stare in allerta in caso di anomalie, tra altri scenari di uso.
+App per la logica di Azure offre un modo per automatizzare i processi come una serie di passaggi. Un'app per la logica può connettersi tramite diversi servizi e protocolli. Inizia con un trigger, ad esempio "When an account is added" (Quando si aggiunge un account), seguito da una combinazione di azioni, come "sending a push notification" (invio di una notifica push). Questa caratteristica rende App per la logica una soluzione IoT perfetta per il monitoraggio IoT, ad esempio per stare in allerta in caso di anomalie, tra altri scenari di uso.
 
 ## <a name="what-you-learn"></a>Contenuto dell'esercitazione
 
-Si apprenderà come toocreate un'app di logica che si connette l'hub IoT e cassetta postale per il monitoraggio della temperatura e notifiche. Quando la temperatura hello è superiore a 30 C, hello client applicazione segni `temperatureAlert = "true"` invia il messaggio hello tooyour IoT hub. il messaggio Hello trigger hello logica app toosend è una notifica di posta elettronica.
+Informazioni su come creare un'app per la logica che connette l'hub IoT e la cassetta postale per il monitoraggio della temperatura e le notifiche. Quando la temperatura è superiore a 30°C, l'applicazione client contrassegna `temperatureAlert = "true"` nel messaggio inviato all'hub IoT. Il messaggio attiva l'app per la logica per l'invio di notifiche di posta elettronica.
 
 ## <a name="what-you-do"></a>Operazioni da fare
 
-* Creare uno spazio dei nomi di service bus e aggiungere tooit una coda.
-* Aggiungere un endpoint e un hub IoT di routing regola tooyour.
+* Creare uno spazio dei nomi del bus di servizio e aggiungere una coda.
+* Aggiungere un endpoint e una regola di routing all'hub IoT.
 * Creare, configurare e testare un'app per la logica.
 
 ## <a name="what-you-need"></a>Elementi necessari
 
-* Esercitazione [configurare il dispositivo](iot-hub-raspberry-pi-kit-node-get-started.md) completato che copre hello seguenti requisiti:
+* Completare l'esercitazione [Configurare il dispositivo](iot-hub-raspberry-pi-kit-node-get-started.md) che prevede i requisiti seguenti:
   * Una sottoscrizione di Azure attiva.
   * Un hub IoT di Azure nella sottoscrizione.
-  * Un'applicazione client che invia l'hub IoT di Azure tooyour messaggi.
+  * Un'applicazione client che invia messaggi ad Azure IoT hub.
 
-## <a name="create-service-bus-namespace-and-add-a-queue-tooit"></a>Creare lo spazio dei nomi di service bus e aggiungere un tooit coda
+## <a name="create-service-bus-namespace-and-add-a-queue-to-it"></a>Creare uno spazio dei nomi del bus di servizio e aggiungere una coda
 
 ### <a name="create-a-service-bus-namespace"></a>Creare uno spazio dei nomi del bus di servizio
 
-1. In hello [portale di Azure](https://portal.azure.com/), fare clic su **New** > **Enterprise Integration** > **Bus di servizio**.
-1. Fornire hello le seguenti informazioni:
+1. Nel [portale di Azure](https://portal.azure.com/), fare clic su **Nuovo** > **Integrazione aziendale** > **Bus di servizio**.
+1. Specificare le informazioni seguenti:
 
-   **Nome**: nome hello del bus di servizio hello.
+   **Nome**: il nome del bus di servizio.
 
-   **Piano tariffario**: fare clic su **Base** > **Seleziona**. livello Basic Hello è sufficiente per questa esercitazione.
+   **Piano tariffario**: fare clic su **Base** > **Seleziona**. Il livello Base è sufficiente per questa esercitazione.
 
-   **Gruppo di risorse**: utilizzare hello stesso gruppo di risorse che usa l'hub IoT.
+   **Gruppo di risorse**: usare lo stesso gruppo di risorse usato da hub IoT.
 
-   **Percorso**: utilizzare hello stesso percorso utilizzato per l'hub IoT.
+   **Posizione**: usare la stessa posizione che usa l'hub IoT.
 1. Fare clic su **Crea**.
 
-   ![Creare uno spazio dei nomi di service bus in hello portale di Azure](media/iot-hub-monitoring-notifications-with-azure-logic-apps/1_create-service-bus-namespace-azure-portal.png)
+   ![Creare uno spazio dei nomi del bus di servizio nel portale di Azure](media/iot-hub-monitoring-notifications-with-azure-logic-apps/1_create-service-bus-namespace-azure-portal.png)
 
 ### <a name="add-a-service-bus-queue"></a>Aggiungere una coda del bus di servizio
 
-1. Aprire lo spazio dei nomi di hello service bus e quindi fare clic su **+ coda**.
-1. Immettere un nome per la coda hello e quindi fare clic su **crea**.
-1. Aprire una coda del bus di servizio hello e quindi fare clic su **criteri di accesso condiviso** > **+ Aggiungi**.
-1. Immettere un nome per i criteri di hello, controllo **Gestisci**, quindi fare clic su **crea**.
+1. Aprire lo spazio dei nomi del bus di servizio e quindi fare clic su **+ Queue** (+ coda).
+1. Immettere un nome per la coda e quindi fare clic su **Crea**.
+1. Aprire la coda del bus di servizio e fare clic su **Criteri di accesso condiviso** > **+ Add** (+ Aggiungi).
+1. Inserire un nome al criterio e selezionare **Gestisci** e quindi fare clic su **Crea**.
 
-   ![Aggiungere una coda del bus di servizio nel portale di Azure hello](media/iot-hub-monitoring-notifications-with-azure-logic-apps/2_add-service-bus-queue-azure-portal.png)
+   ![Aggiungere una coda del bus di servizio nel portale di Azure](media/iot-hub-monitoring-notifications-with-azure-logic-apps/2_add-service-bus-queue-azure-portal.png)
 
-## <a name="add-an-endpoint-and-a-routing-rule-tooyour-iot-hub"></a>Aggiungere un endpoint e un hub IoT di routing regola tooyour
+## <a name="add-an-endpoint-and-a-routing-rule-to-your-iot-hub"></a>Aggiungere un endpoint e una regola di routing all'hub IoT
 
 ### <a name="add-an-endpoint"></a>Aggiungere un endpoint
 
 1. Aprire l'hub IoT, fare clic su Endpoint > + Add (+ Aggiungi).
-1. Immettere hello le seguenti informazioni:
+1. Immettere le seguenti informazioni:
 
-   **Nome**: nome hello dell'endpoint di hello.
+   **Nome**: nome dell'endpoint.
 
    **Tipo di endpoint**: selezionare **Coda del bus di servizio**.
 
-   **Spazio dei nomi Service Bus**: selezionare spazio dei nomi hello è stato creato.
+   **Spazio dei nomi del bus di servizio**: selezionare lo spazio dei nomi creato.
 
-   **Coda di Service Bus**: coda hello selezionare creata.
+   **Coda del bus di servizio**: selezionare la coda creata.
 1. Fare clic su **OK**.
 
-   ![Aggiungere un hub IoT tooyour di endpoint in hello portale di Azure](media/iot-hub-monitoring-notifications-with-azure-logic-apps/3_add-iot-hub-endpoint-azure-portal.png)
+   ![Aggiungere un endpoint all'hub IoT nel portale di Azure](media/iot-hub-monitoring-notifications-with-azure-logic-apps/3_add-iot-hub-endpoint-azure-portal.png)
 
 ### <a name="add-a-routing-rule"></a>Aggiungere una regola di routing
 
 1. Nell'hub IoT fare clic su **Route**  > **+ Add** (+ Aggiungi).
-1. Immettere hello le seguenti informazioni:
+1. Immettere le seguenti informazioni:
 
-   **Nome**: nome hello della regola di routing hello.
+   **Nome**: il nome della regola di routing.
 
    **Origine dati**: selezionare **DeviceMessages**.
 
-   **Endpoint**: selezionare hello endpoint creato.
+   **Endpoint**: selezionare l'endpoint creato.
 
    **Stringa di query**: inserire `temperatureAlert = "true"`.
-1. Fare clic su **Salva**.
+1. Fare clic su **Save**.
 
-   ![Aggiungere una regola di routing in hello portale di Azure](media/iot-hub-monitoring-notifications-with-azure-logic-apps/4_add-routing-rule-azure-portal.png)
+   ![Aggiungere una regola di routing nel portale di Azure](media/iot-hub-monitoring-notifications-with-azure-logic-apps/4_add-routing-rule-azure-portal.png)
 
 ## <a name="create-and-configure-a-logic-app"></a>Creare e configurare un'app per la logica
 
 ### <a name="create-a-logic-app"></a>Creare un'app per la logica
 
-1. In hello [portale di Azure](https://portal.azure.com/), fare clic su **New** > **Enterprise Integration** > **logica App**.
-1. Immettere hello le seguenti informazioni:
+1. Nel [portale di Azure](https://portal.azure.com/), fare clic su **Nuovo** > **Integrazione aziendale** > **App per la logica**.
+1. Immettere le seguenti informazioni:
 
-   **Nome**: nome hello di hello logica app.
+   **Nome**: il nome dell'app per la logica.
 
-   **Gruppo di risorse**: utilizzare hello stesso gruppo di risorse che usa l'hub IoT.
+   **Gruppo di risorse**: usare lo stesso gruppo di risorse usato da hub IoT.
 
-   **Percorso**: utilizzare hello stesso percorso utilizzato per l'hub IoT.
+   **Posizione**: usare la stessa posizione che usa l'hub IoT.
 1. Fare clic su **Crea**.
 
-### <a name="configure-hello-logic-app"></a>Configurare hello logica app
+### <a name="configure-the-logic-app"></a>Configurare l'app per la logica
 
-1. Aprire hello logica app che viene aperta in hello logica di progettazione di App.
-1. Nella finestra di progettazione logica App hello, fare clic su **App vuota per la logica**.
+1. Aprire l'app per la logica che viene visualizzata nella finestra di progettazione di App per la logica.
+1. Nella finestra di progettazione di App per la logica, fare clic su **App per la logica vuota**.
 
-   ![Iniziare con un'applicazione logica vuoto in hello portale di Azure](media/iot-hub-monitoring-notifications-with-azure-logic-apps/5_start-with-blank-logic-app-azure-portal.png)
+   ![Nel portale di Azure iniziare con un'app per la logica vuota](media/iot-hub-monitoring-notifications-with-azure-logic-apps/5_start-with-blank-logic-app-azure-portal.png)
 
 1. Fare clic su **Bus di servizio**.
 
-   ![Selezionare il Bus di servizio toostart creazione dell'applicazione la logica nel portale di Azure hello](media/iot-hub-monitoring-notifications-with-azure-logic-apps/6_select-service-bus-when-creating-blank-logic-app-azure-portal.png)
+   ![Selezionare il bus di servizio per avviare la creazione dell'app per la logica nel portale di Azure](media/iot-hub-monitoring-notifications-with-azure-logic-apps/6_select-service-bus-when-creating-blank-logic-app-azure-portal.png)
 
 1. Fare clic su **Service Bus – When one or more messages arrive in a queue (auto-complete)** (Bus di servizio: all'arrivo di uno o più messaggi in una coda, completamento automatico).
 1. Creare una connessione per il bus di servizio.
    1. Immettere un nome di connessione.
-   1. Fare clic su hello service bus namespace > hello criteri bus di servizio > **crea**.
+   1. Fare clic sullo spazio dei nomi del bus di servizio > sul criterio del bus di servizio > **Crea**.
 
-      ![Creare una connessione di bus di servizio per l'app logica in hello portale di Azure](media/iot-hub-monitoring-notifications-with-azure-logic-apps/7_create-service-bus-connection-in-logic-app-azure-portal.png)
+      ![Creare una connessione del bus di servizio per l'app per la logica nel portale di Azure](media/iot-hub-monitoring-notifications-with-azure-logic-apps/7_create-service-bus-connection-in-logic-app-azure-portal.png)
 
-   1. Fare clic su **continua** dopo la creazione di connessione del bus di servizio hello.
-   1. Selezionare una coda hello creata e immettere `175` per **numero massimo di messaggi**
+   1. Fare clic su **Continua** dopo aver creato la connessione del bus di servizio.
+   1. Selezionare la coda creata e immettere `175` per **Numero massimo di messaggi**
 
-      ![Specificare il conteggio massima del messaggio hello per la connessione del bus di servizio hello nell'app logica](media/iot-hub-monitoring-notifications-with-azure-logic-apps/8_specify-maximum-message-count-for-service-bus-connection-logic-app-azure-portal.png)
-   1. Fare clic su "Salva" pulsante toosave hello cambia.
+      ![Specificare il numero massimo di messaggi per la connessione del bus di servizio nell'app per la logica](media/iot-hub-monitoring-notifications-with-azure-logic-apps/8_specify-maximum-message-count-for-service-bus-connection-logic-app-azure-portal.png)
+   1. Fare clic sul pulsante "Salva" per salvare le modifiche apportate.
 
 1. Creare una connessione del servizio SMTP.
    1. Fare clic su **Nuovo passaggio** > **Aggiungi un'azione**.
-   1. Tipo `SMTP`, fare clic su hello **SMTP** nei risultati di ricerca hello del servizio e quindi fare clic su **SMTP - invio di posta elettronica**.
+   1. Tipo `SMTP`, fare clic sul servizio **SMTP** nei risultati della ricerca e quindi fare clic su **SMTP - Send Email** (SMTP: inviare un'email).
 
-      ![Creare una connessione SMTP nell'app logica in hello portale di Azure](media/iot-hub-monitoring-notifications-with-azure-logic-apps/9_create-smtp-connection-logic-app-azure-portal.png)
+      ![Creare una connessione SMTP nell'app per la logica nel portale di Azure](media/iot-hub-monitoring-notifications-with-azure-logic-apps/9_create-smtp-connection-logic-app-azure-portal.png)
 
-   1. Immettere le informazioni della cassetta postale SMTP hello e quindi fare clic su **crea**.
+   1. Immettere le informazioni SMTP della cassetta postale e quindi fare clic su **Crea**.
 
-      ![Immettere le informazioni di connessione SMTP nell'app logica in hello portale di Azure](media/iot-hub-monitoring-notifications-with-azure-logic-apps/10_enter-smtp-connection-info-logic-app-azure-portal.png)
+      ![Inserire le informazioni sulla connessione SMTP nell'app per la logica nel portale di Azure](media/iot-hub-monitoring-notifications-with-azure-logic-apps/10_enter-smtp-connection-info-logic-app-azure-portal.png)
 
-      Ottenere informazioni hello SMTP per [Hotmail/Outlook.com](https://support.office.com/en-us/article/Add-your-Outlook-com-account-to-another-mail-app-73f3b178-0009-41ae-aab1-87b80fa94970), [Gmail](https://support.google.com/a/answer/176600?hl=en), e [Yahoo Mail](https://help.yahoo.com/kb/SLN4075.html).
+      Ottenere le informazioni di SMTP per [Hotmail/Outlook.com](https://support.office.com/en-us/article/Add-your-Outlook-com-account-to-another-mail-app-73f3b178-0009-41ae-aab1-87b80fa94970), [Gmail](https://support.google.com/a/answer/176600?hl=en) e [Yahoo Mail](https://help.yahoo.com/kb/SLN4075.html).
    1. Immettere l'indirizzo di posta elettronica per **From** (Da) e **To** (A)e `High temperature detected` per **Oggetto** e **Corpo**.
-   1. Fare clic su **Salva**.
+   1. Fare clic su **Save**.
 
-Quando si salva, Hello logica app è in ordine di lavoro.
+L'app per la logica è in funzionamento durante il salvataggio.
 
-## <a name="test-hello-logic-app"></a>Test hello logica app
+## <a name="test-the-logic-app"></a>Testare l'app per la logica
 
-1. Avviare un'applicazione hello client che si distribuisce il dispositivo tooyour in [tooAzure ESP8266 connessione IoT Hub](iot-hub-arduino-huzzah-esp8266-get-started.md).
-1. Aumentare la temperatura ambiente hello intorno hello SensorTag toobe sopra c di 30. Ad esempio chiaro una candela intorno il SensorTag.
-1. Dovresti ricevere una notifica di posta elettronica inviata da hello logica app.
+1. Avviare l'applicazione client che si distribuisce nel dispositivo in [Connect ESP8266 to Azure IoT Hub](iot-hub-arduino-huzzah-esp8266-get-started.md) (Connettere ESP8266 all'Hub IoT di Azure).
+1. Aumentare la temperatura dell'ambiente attorno a SensorTag affinché superi i 30°C. Ad esempio accendere una candela intorno a SensorTag.
+1. Si dovrebbe ricevere una notifica tramite posta elettronica inviata dall'app per la logica.
 
    > [!NOTE]
-   > Il provider di servizi di posta elettronica potrebbe essere necessario che sia utenti che invia un messaggio e-mail hello toomake identità mittente hello tooverify.
+   > Il provider di servizi di posta elettronica potrebbe dover verificare l'identità del mittente per verificare che sia l'invio del messaggio di posta elettronica viene eseguito dall'utente.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

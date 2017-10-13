@@ -1,5 +1,5 @@
 ---
-title: compilazione di soluzioni di Batch con modelli di progetto di Visual Studio - Azure aaaStart | Documenti Microsoft
+title: Avviare la creazione di soluzioni Batch con i modelli di progetto di Visual Studio - Azure | Documentazione Microsoft
 description: Informazioni su come questi modelli di progetto di Visual Studio consentono di implementare ed eseguire carichi di lavoro a elevato utilizzo di calcolo in Azure Batch.
 services: batch
 documentationcenter: .net
@@ -15,136 +15,136 @@ ms.workload: big-compute
 ms.date: 02/27/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: a61c480ddc4dffd66c01220a137a3e852e39c338
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: da77ce827c65deb18d9d84ce5cf768d89788e205
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="use-visual-studio-project-templates-toojump-start-batch-solutions"></a>Utilizzare soluzioni di Visual Studio project modelli toojump avvio Batch
+# <a name="use-visual-studio-project-templates-to-jump-start-batch-solutions"></a>Usare i modelli di progetto di Visual Studio per avviare rapidamente le soluzioni Batch
 
-Hello **il gestore di processi** e **modelli di Visual Studio di attività del processore** per Batch fornire codice toohelp è tooimplement ed eseguire i carichi di lavoro con utilizzo intensivo di calcolo in Batch con hello meno impegnativo. Questo documento vengono descritti questi modelli e fornisce indicazioni per il toouse li.
+I modelli di Visual Studio **Gestore di processi** e **Task Processor** (Elaboratore di attività) per Batch forniscono il codice per implementare ed eseguire i carichi di lavoro a elevato utilizzo di calcolo in Batch con il minimo sforzo. Questo documento illustra tali modelli e fornisce le linee guida per usarli.
 
 > [!IMPORTANT]
-> In questo articolo vengono illustrati solo i modelli applicabili toothese due informazioni e si presuppone che si ha familiarità con il servizio di Batch hello e concetti chiave correlati tooit: pool, calcolare i nodi, processi e attività, attività di processo di gestione, le variabili di ambiente e altri informazioni rilevanti. È possibile trovare altre informazioni, vedere [nozioni di base di Azure Batch](batch-technical-overview.md), [Cenni preliminari sulla funzionalità di Batch per gli sviluppatori](batch-api-basics.md), e [Introduzione alla libreria di Azure Batch hello per .NET](batch-dotnet-get-started.md).
+> Questo articolo illustra solo le informazioni applicabili a questi due modelli e presuppone che si abbia familiarità con il servizio Batch e con i concetti chiave correlati: pool, nodi di calcolo, processi e attività, attività del gestore di processi, variabili di ambiente e altre informazioni pertinenti. È possibile trovare altre informazioni in [Nozioni di base su Azure Batch](batch-technical-overview.md), [Panoramica delle funzionalità di Batch per sviluppatori](batch-api-basics.md) e [Introduzione alla libreria di Azure Batch per .NET](batch-dotnet-get-started.md).
 > 
 > 
 
 ## <a name="high-level-overview"></a>Panoramica generale
-modelli di gestore di processi e attività processore Hello possono essere utilizzato toocreate due componenti utili:
+I modelli Job Manager (Gestore di processi) e Task Processor (Elaboratore di attività) possono essere usati per creare due utili componenti:
 
 * Un'attività del gestore di processi che implementa un componente di suddivisione dei processi per suddividere un processo in più attività eseguibili in modo indipendente e parallelo.
-* Un processore di attività che può essere utilizzati tooperform pre-elaborazione e post-elaborazione intorno a una riga di comando dell'applicazione.
+* Un elaboratore di attività che può essere usato per eseguire la pre-elaborazione e la post-elaborazione in una riga di comando dell'applicazione.
 
-Ad esempio, in uno scenario per il rendering di film, barra di divisione processo hello sarebbe trasformare un processo unico filmato in centinaia o migliaia di attività separate che elabora singoli frame separatamente. Di conseguenza, processore task hello sarebbe richiamare hello il rendering dell'applicazione e tutti i processi di dipendenti che sono necessari toorender ogni frame, nonché eseguire azioni aggiuntive (ad esempio, la copia hello rendering frame tooa percorso di archiviazione).
+Ad esempio, in uno scenario di rendering di un filmato, il componente di suddivisione dei processi convertirà un unico processo in centinaia o migliaia di attività distinte che elaboreranno i singoli fotogrammi separatamente. Di conseguenza, l'elaboratore di attività richiamerà l'applicazione di rendering e tutti i processi dipendenti necessari per eseguire il rendering di ogni fotogramma, oltre che per eseguire eventuali azioni aggiuntive, ad esempio la copia del fotogramma sottoposto a rendering in una posizione di archiviazione.
 
 > [!NOTE]
-> modelli di gestore di processi e attività processore Hello sono indipendenti tra loro, quindi è possibile scegliere toouse entrambi o solo uno di essi, a seconda dei requisiti di hello del processo di calcolo e alle preferenze.
+> I modelli Job Manager (Gestore di processi) e Task Processor (Elaboratore di attività) sono indipendenti tra loro e quindi è possibile scegliere di usarli entrambi o solo uno, in base ai requisiti del processo di calcolo e alle preferenze.
 > 
 > 
 
-Come illustrato nel diagramma hello riportato di seguito, un processo di calcolo che utilizza questi modelli passa attraverso tre fasi:
+Come illustrato nel diagramma seguente, un processo di calcolo che usa questi modelli prevede tre fasi:
 
-1. il codice client Hello (ad esempio, applicazione, il servizio web, e così via) Invia toohello un processo del servizio Batch in Azure, che specifica come il programma di gestione processo Gestione attività hello processo.
-2. servizio Batch Hello esegue attività di gestione di processi hello in un nodo di calcolo e hello hello avvia barra di divisione di processo specificato numero di attività del processore di attività, alle molti nodi di calcolo in base alle esigenze, in base alle specifiche nel codice di divisione processo hello e parametri hello.
-3. attività del processore di Hello attività eseguire in modo indipendente, in parallelo, tooprocess dati di input hello e generare dati di output di hello.
+1. Un codice client (ad esempio, un'applicazione, un servizio Web e così via) invia un processo al servizio Batch in Azure, specificando come attività del gestore di processi il programma del gestore di processi.
+2. Il servizio Batch esegue l'attività del gestore di processi in un nodo di calcolo e il componente di suddivisione dei processi avvia il numero specificato di attività dell'elaboratore di attività, in tutti i nodi di calcolo necessari, in base ai parametri e alle specifiche del codice del componente di suddivisione dei processi.
+3. Le attività dell'elaboratore di attività vengono eseguite in modo indipendente, in parallelo, per elaborare i dati di input e generare i dati di output.
 
-![Diagramma che illustra come il codice client interagisce con il servizio Batch hello][diagram01]
+![Diagramma che illustra come il codice client interagisce con il servizio Batch][diagram01]
 
 ## <a name="prerequisites"></a>Prerequisiti
-modelli di Batch hello toouse, sarà necessario seguente hello:
+Per usare i modelli di Batch, sarà necessario quanto segue:
 
 * Un computer in cui è installato Visual Studio 2015. I modelli di Batch sono attualmente supportati solo per Visual Studio 2015.
-* modelli di Batch Hello, che sono disponibili da hello [Visual Studio Gallery] [ vs_gallery] come estensioni di Visual Studio. Esistono due modi tooget hello modelli:
+* I modelli di Batch, disponibili in [Visual Studio Gallery][vs_gallery] come estensioni di Visual Studio. È possibile ottenere i modelli in due modi:
   
-  * Installare i modelli di hello utilizzando hello **estensioni e aggiornamenti** la finestra di dialogo in Visual Studio (per ulteriori informazioni, vedere [ricerca e uso delle estensioni di Visual Studio][vs_find_use_ext]). In hello **estensioni e aggiornamenti** della finestra di dialogo ricerca e download hello due estensioni seguenti:
+  * Installare i modelli usando la finestra di dialogo **Estensioni e aggiornamenti** in Visual Studio. Per altre informazioni, vedere [Ricerca e uso delle estensioni di Visual Studio][vs_find_use_ext]. Nella finestra di dialogo **Estensioni e aggiornamenti** cercare e scaricare le due estensioni seguenti:
     
     * Azure Batch Job Manager with Job Splitter (Gestore di processi di Azure Batch con componente di suddivisione dei processi)
     * Azure Batch Task Processor (Elaboratore di attività di Azure Batch)
-  * Scaricare i modelli di hello dalla raccolta online hello per Visual Studio: [modelli di progetto di Microsoft Azure Batch][vs_gallery_templates]
-* Se si prevede di hello toouse [pacchetti di applicazioni](batch-application-packages.md) il gestore di processi hello toodeploy di funzionalità e attività del processore toohello Batch nodi di calcolo, è necessario toolink un tooyour di account di archiviazione account Batch.
+  * Scaricare i modelli dalla raccolta online per Visual Studio: [Microsoft Azure Batch Project Templates][vs_gallery_templates] (Modelli di progetto di Microsoft Azure Batch).
+* Se si prevede di usare la funzionalità [Pacchetti dell'applicazione](batch-application-packages.md) per distribuire il gestore di processi e l'elaboratore di attività nei nodi di calcolo di Batch, è necessario collegare un account di archiviazione all'account Batch.
 
 ## <a name="preparation"></a>Operazioni preliminari
-È consigliabile creare una soluzione destinata a contenga il gestore di processi, nonché il processore di attività, perché ciò può rendere più semplice codice tooshare tra il gestore di processi e i programmi di attività del processore. toocreate questa soluzione, seguire questi passaggi:
+Si consiglia di creare una soluzione che possa contenere il gestore di processi oltre all'elaboratore di attività, perché può semplificare la condivisione del codice tra i programmi del gestore di processi e dell'elaboratore di attività. Per creare la soluzione, seguire questi passaggi:
 
 1. Aprire Visual Studio e selezionare **File** > **Nuovo** > **Progetto**.
 2. In **Modelli** espandere **Altri tipi di progetti**, fare clic su **Soluzioni di Visual Studio** e selezionare **Soluzione vuota**.
-3. Digitare un nome che descriva lo scopo dell'applicazione e hello di questa soluzione (ad esempio, "LitwareBatchTaskPrograms").
-4. toocreate hello nuova soluzione, fare clic su **OK**.
+3. Digitare un nome che descriva l'applicazione e lo scopo di questa soluzione, ad esempio "ProgrammiAttivitàBatchLitware".
+4. Per creare la nuova soluzione, fare clic su **OK**.
 
 ## <a name="job-manager-template"></a>Modello Job Manager (Gestore di processi)
-modello di processo Manager Hello consente si tooimplement un'attività di gestione di processo eseguibili hello seguenti azioni:
+Il modello Job Manager (Gestore di processi) consente di implementare un'attività del gestore di processi che può eseguire queste azioni:
 
 * Dividere un processo in più attività.
-* Inviare toorun tali attività nel Batch.
+* Inviare tali attività per l'esecuzione in Batch.
 
 > [!NOTE]
 > Per altre informazioni sulle attività del gestore di processi, vedere [Panoramica delle funzionalità di Batch per sviluppatori](batch-api-basics.md#job-manager-task).
 > 
 > 
 
-### <a name="create-a-job-manager-using-hello-template"></a>Creare un gestore di processi utilizzando il modello di hello
-tooadd una soluzione di toohello manager processo creato in precedenza, seguire questi passaggi:
+### <a name="create-a-job-manager-using-the-template"></a>Creare un gestore di processi usando il modello
+Per aggiungere un gestore di processi alla soluzione creata prima, seguire questi passaggi:
 
 1. Aprire la soluzione esistente in Visual Studio.
-2. In Esplora soluzioni, Esplora hello pulsante destro del mouse, fare clic su **Aggiungi** > **nuovo progetto**.
+2. In Esplora soluzioni fare clic con il pulsante destro del mouse sulla soluzione e selezionare **Aggiungi** > **Nuovo progetto**.
 3. In **Visual C#** fare clic su **Cloud** e su **Azure Batch Job Manager with Job Splitter** (Gestore di processi di Azure Batch con componente di suddivisione dei processi).
-4. Digitare un nome che descrive l'applicazione e identifica il progetto come gestore di processi hello (ad esempio "GestoreProcessiLitware".
-5. progetto hello toocreate, fare clic su **OK**.
-6. Infine, compilazione hello progetto tooforce Visual Studio tooload tutti i pacchetti NuGet a cui viene fatto riferimento e tooverify che hello progetto sia valido prima di iniziare la modifica.
+4. Digitare un nome che descriva l'applicazione e identifichi questo progetto come gestore di processi, ad esempio "GestoreProcessiLitware".
+5. Per creare il progetto, fare clic su **OK**.
+6. Compilare infine il progetto per fare in modo che Visual Studio carichi tutti i pacchetti NuGet di riferimento e verificare che il progetto sia valido prima di iniziare a modificarlo.
 
 ### <a name="job-manager-template-files-and-their-purpose"></a>File del modello Job Manager (Gestore di processi) e relativo scopo
-Quando si crea un progetto usando il modello di processo Manager hello, genera tre gruppi di file di codice:
+Quando si crea un progetto usando il modello Job Manager (Gestore di processi), questo genera tre gruppi di file di codice:
 
-* file di programma principale Hello (Program.cs). Che contiene il punto di ingresso programma hello e la gestione delle eccezioni di livello superiore. Non deve in genere necessario toomodify.
-* directory del Framework Hello. Contiene file hello responsabili di lavoro 'standard' hello eseguita dal programma di gestione processo hello: installazione del pacchetto di parametri, aggiunta di processo Batch toohello di attività e così via. Non deve in genere toomodify i file necessari.
-* file di divisione del processo Hello (JobSplitter.cs). in cui si inserirà la logica specifica dell'applicazione per suddividere un processo in attività.
+* Il file di programma principale (Program.cs), che contiene il punto di ingresso del programma e la gestione delle eccezioni di primo livello. In genere non è necessario modificarlo.
+* La directory Framework, che contiene i file responsabili delle operazioni del "boilerplate" eseguite dal programma del gestore di processi, ad esempio decompressione dei parametri, aggiunta di attività al processo batch e così via. In genere non è necessario modificare questi file.
+* Il file del componente di suddivisione dei processi (JobSplitter.cs), in cui si inserirà la logica specifica dell'applicazione per suddividere un processo in attività.
 
-Naturalmente è possibile aggiungere ulteriori file come obbligatorio toosupport codice processo barra di divisione, a seconda della complessità hello del processo di hello suddivisione logica.
+Ovviamente è possibile aggiungere altri file, se necessari per supportare il codice del componente di suddivisione dei processi, in base alla complessità della logica di suddivisione dei processi.
 
-modello di Hello genera anche i file di progetto .NET standard, ad esempio un file con estensione csproj app. config, Packages, e così via.
+Il modello genera anche i file di progetto .NET standard, ad esempio un file CSPROJ, app.config, packages.config e così via.
 
-resto Hello di questa sezione vengono descritti diversi file hello e la relativa struttura di codice e le operazioni eseguite da ogni classe.
+La parte restante di questa sezione illustra i diversi file e la struttura del codice e spiega la funzione di ogni classe.
 
-![Esplora soluzioni Visual Studio con una soluzione di modello di processo Manager hello][solution_explorer01]
+![Esplora soluzioni di Visual Studio che illustra la soluzione del modello Job Manager (Gestore di processi)][solution_explorer01]
 
 **File di Framework**
 
-* `Configuration.cs`: Incapsula il caricamento di hello processo dati di configurazione, ad esempio i dettagli dell'account Batch, le credenziali dell'account di archiviazione collegati, informazioni di processo e attività e i parametri del processo. Fornisce inoltre l'accesso delle variabili di ambiente definita tooBatch (vedere le impostazioni di ambiente per le attività, nella documentazione di Batch hello) tramite la classe Configuration.EnvironmentVariable hello.
-* `IConfiguration.cs`: Riassunto hello implementazione della classe di configurazione di hello, in modo che sia possibile unit test divisione del processo utilizzando un oggetto di configurazione fittizi o.
-* `JobManager.cs`: Coordina i componenti del programma di gestione processo di hello hello. Ed è responsabile per l'inizializzazione di divisione processo hello, chiamata divisione processo hello, hello e invio attività hello restituito dal mittente dell'attività toohello di hello processo barra di divisione.
-* `JobManagerException.cs`: Rappresenta un errore che richiede hello processo manager tooterminate. JobManagerException è usato toowrap 'previsto' errori in cui le informazioni di diagnostica specifiche possono essere fornite come parte della terminazione.
-* `TaskSubmitter.cs`: Questa classe è responsabile tooadding attività restituita dal processo Batch toohello di hello processo barra di divisione. classe JobManager Hello aggrega sequenza hello delle operazioni in batch per il processo di aggiunta efficiente ma tempestiva toohello, quindi chiama TaskSubmitter.SubmitTasks su un thread in background per ogni batch.
+* `Configuration.cs`: incapsula il caricamento dei dati di configurazione del processo, ad esempio i dettagli dell'account Batch, le credenziali dell'account di archiviazione collegato, le informazioni sul processo e sulle attività e i parametri del processo. Fornisce anche l'accesso alle variabili di ambiente definite da Batch (vedere Impostazioni di ambiente per le attività nella documentazione di Batch) tramite la classe Configuration.EnvironmentVariable.
+* `IConfiguration.cs`: astrae l'implementazione della classe Configuration, per poter eseguire uno unit test del componente di suddivisione dei processi usando un oggetto di configurazione falso o fittizio.
+* `JobManager.cs`: orchestra i componenti del programma del gestore di processi. È responsabile dell'inizializzazione e della chiamata del componente di suddivisione dei processi e dell'invio delle attività restituite dal componente di suddivisione dei processi al mittente delle attività.
+* `JobManagerException.cs`: rappresenta un errore che obbliga a terminare il gestore di processi. JobManagerException viene usata per eseguire il wrapping degli errori "previsti" dove possono essere fornite informazioni di diagnostica specifiche nell'ambito della terminazione.
+* `TaskSubmitter.cs`: questa classe è responsabile dell'aggiunta delle attività restituite dal componente di suddivisione dei processi al processo batch. La classe JobManager aggrega la sequenza di attività in batch per un'aggiunta efficiente, ma tempestiva, al processo, quindi chiama TaskSubmitter.SubmitTasks in un thread in background per ogni batch.
 
 **Componente di suddivisione dei processi**
 
-`JobSplitter.cs`: Questa classe contiene la logica specifica dell'applicazione per suddividere il processo di hello in attività. framework Hello richiama hello JobSplitter.Split metodo tooobtain una sequenza di attività, che viene aggiunto il processo di toohello come metodo hello li restituisce. Si tratta di classe hello in cui si inserirà logica hello del processo. Implementare hello Split metodo tooreturn una sequenza di istanze di CloudTask che rappresentano attività hello in cui si desidera che toopartition hello.
+`JobSplitter.cs`: questa classe contiene la logica specifica dell'applicazione per la suddivisione del processo in attività. Il framework richiama il metodo JobSplitter.Split per ottenere una sequenza di attività che aggiunge al processo quando il metodo le restituisce. Questa è la classe in cui si inserirà la logica del processo. Implementare il metodo Split per restituire una sequenza di istanze di CloudTask che rappresentano le attività in cui si vuole partizionare il processo.
 
 **File di progetto della riga di comando .NET standard**
 
 * `App.config`: file di configurazione dell'applicazione .NET standard.
 * `Packages.config`: file di dipendenza del pacchetto NuGet standard.
-* `Program.cs`: Contiene il punto di ingresso programma hello e la gestione delle eccezioni di livello superiore.
+* `Program.cs`: contiene il punto di ingresso del programma e la gestione delle eccezioni di primo livello.
 
-### <a name="implementing-hello-job-splitter"></a>Implementazione della barra di divisione processo hello
-Quando si apre il progetto di modello il gestore di processi di hello, progetto hello avrà file JobSplitter.cs hello aperta per impostazione predefinita. È possibile implementare hello suddividere la logica per le attività di hello nel carico di lavoro utilizzando Mostra di metodo Split () hello riportato di seguito:
+### <a name="implementing-the-job-splitter"></a>Implementazione del componente di suddivisione dei processi
+Quando si apre il progetto del modello Job Manager (Gestore di processi), il progetto avrà il file JobSplitter.cs aperto per impostazione predefinita. È possibile implementare la logica di suddivisione per le attività del carico di lavoro usando il metodo Split() illustrato sotto:
 
 ```csharp
 /// <summary>
-/// Gets hello tasks into which toosplit hello job. This is where you inject
-/// your application-specific logic for decomposing hello job into tasks.
+/// Gets the tasks into which to split the job. This is where you inject
+/// your application-specific logic for decomposing the job into tasks.
 ///
-/// hello job manager framework invokes hello Split method for you; you need
-/// only tooimplement it, not toocall it yourself. Typically, your
+/// The job manager framework invokes the Split method for you; you need
+/// only to implement it, not to call it yourself. Typically, your
 /// implementation should return tasks lazily, for example using a C#
-/// iterator and hello "yield return" statement; this allows tasks toobe added
-/// and toostart running while splitting is still in progress.
+/// iterator and the "yield return" statement; this allows tasks to be added
+/// and to start running while splitting is still in progress.
 /// </summary>
-/// <returns>hello tasks toobe added toohello job. Tasks are added automatically
-/// by hello job manager framework as they are returned by this method.</returns>
+/// <returns>The tasks to be added to the job. Tasks are added automatically
+/// by the job manager framework as they are returned by this method.</returns>
 public IEnumerable<CloudTask> Split()
 {
-    // Your code for hello split logic goes here.
+    // Your code for the split logic goes here.
     int startFrame = Convert.ToInt32(_parameters["StartFrame"]);
     int endFrame = Convert.ToInt32(_parameters["EndFrame"]);
 
@@ -156,56 +156,56 @@ public IEnumerable<CloudTask> Split()
 ```
 
 > [!NOTE]
-> Hello annotato sezione hello `Split()` metodo è hello sezione solo hello codice del modello di gestore di processi destinato a si toomodify aggiungendo hello logica toosplit i processi in attività diverse. Se si desidera toomodify un'altra sezione del modello di hello, verificare il funzionamento di Batch, è sono a conoscenza e provare a utilizzare alcune delle hello [Batch esempi di codice][github_samples].
+> La sezione con annotazioni nel metodo `Split()` è la sola del codice del modello Job Manager (Gestore di processi) che può essere modificata dall'utente aggiungendo la logica per suddividere i processi in attività diverse. Per modificare un'altra sezione del modello, assicurarsi di avere familiarità con il funzionamento di Batch e provare a usare alcuni [esempi di codice di Batch][github_samples].
 > 
 > 
 
 L'implementazione di Split() ha accesso a:
 
-* parametri del processo, tramite hello Hello `_parameters` campo.
-* Hello CloudJob dell'oggetto che rappresenta i processi di hello, tramite hello `_job` campo.
-* Hello CloudTask dell'oggetto che rappresenta hello manager mansione, tramite hello `_jobManagerTask` campo.
+* Parametri del processo, tramite il campo `_parameters` .
+* Oggetto CloudJob che rappresenta il processo, tramite il campo `_job` .
+* Oggetto CloudTask che rappresenta l'attività del gestore di processi, tramite il campo `_jobManagerTask` .
 
-Il `Split()` non è necessario implementazione processo toohello di attività tooadd direttamente. Al contrario, il codice deve restituire una sequenza di oggetti CloudTask e verranno aggiunte toohello processo automaticamente dalle classi framework hello che richiamano la barra di divisione processo hello. È comune toouse # iteratore (`yield return`) funzionalità tooimplement separatori di processo, come in questo modo toostart attività hello più breve possibile anziché attendere che tutte le attività toobe calcolato.
+L'implementazione di `Split()` non richiede di aggiungere le attività direttamente al processo. Il codice deve invece restituire una sequenza di oggetti CloudTask che verranno aggiunti automaticamente al processo dalle classi del framework che richiamano il componente di suddivisione dei processi. Di solito si usa la funzionalità dell'iteratore di C# (`yield return`) per implementare i componenti di suddivisione dei processi per poter iniziare a eseguire le attività il prima possibile invece di attendere che tutte le attività vengano calcolate.
 
 **Errore del componente di suddivisione dei processi**
 
 Se il componente di suddivisione dei processi rileva un errore, deve eseguire una di queste due operazioni:
 
-* Terminare hello sequenza utilizzando hello c# `yield break` istruzione, in cui il gestore di processi hello case verrà considerato come esito positivo; o
-* Genera un'eccezione, in cui il gestore di processi hello case verrà considerato come non riuscita e può essere ripetuto a seconda di come è configurato il client hello).
+* Terminare la sequenza usando l'istruzione `yield break` C#, nel qual caso il gestore di processi verrà considerato correttamente eseguito.
+* Generare un'eccezione, nel qual caso il gestore di processi verrà considerato non correttamente eseguito e si potrà riprovare a eseguirlo a seconda di come è stato configurato dal client.
 
-In entrambi i casi, tutte le attività non ha restituito da una barra di divisione processo hello e processo Batch toohello aggiunto saranno toorun idoneo. Se non si desidera questo toohappen, quindi è possibile:
+In entrambi i casi, le attività già restituite dal componente di suddivisione dei processi e aggiunte al processo batch potranno essere eseguite. Per evitare che questo accada, è possibile:
 
-* Terminare il processo di hello prima della restituzione da una barra di divisione processo hello
-* Formulare raccolta intera attività hello prima di restituirlo (ovvero viene restituito un `ICollection<CloudTask>` o `IList<CloudTask>` anziché implementare la divisione di processo mediante un iteratore in c#)
-* Utilizzare l'attività dipendenze toomake che tutte le attività dipendono dal completamento hello del gestore di processi hello
+* Terminare il processo prima della restituzione dal componente di suddivisione dei processi
+* Fomulare l'intera raccolta di attività prima di restituirla, ovvero restituire `ICollection<CloudTask>` o `IList<CloudTask>` instead of implementing your job splitter using a C# iterato)
+* Usare le relazioni tra attività per fare in modo che tutte le attività dipendano dal corretto completamento del gestore di processi
 
 **Tentativi del gestore di processi**
 
-Se il gestore di processi hello non riesce, può essere ripetuto dal servizio Batch hello a seconda delle impostazioni relative ai tentativi hello client. In generale, questa operazione è sicura, perché quando il framework di hello aggiunge processo toohello attività, ignora tutte le attività che esistono già. Tuttavia, se il calcolo delle attività è costoso, si può chiamare non costo hello tooincur di calcolo delle attività che sono già stati aggiunti toohello processo. al contrario, se hello esegue di nuovo è toogenerate non garantita hello stesso ID attività, quindi non consente di avviare il comportamento di 'Ignora i duplicati' hello in. In questi casi è consigliabile progettare il lavoro processo divisione toodetect hello che sia già stato eseguito e non ripeterla, ad esempio eseguendo un CloudJob.ListTasks prima di avviare attività tooyield.
+Se il gestore di processi non riesce, è possibile riprovare con il servizio Batch in base alle impostazioni dei tentativi del client. Questo in genere è sicuro perché, quando il framework aggiunge le attività al processo, ignora quelle già esistenti. Se tuttavia il calcolo delle attività è costoso, è possibile che non si voglia sostenere i costi necessari per ricalcolare le attività già aggiunte al processo. Al contrario, se non esiste garanzia che la nuova esecuzione generi gli stessi ID attività, il comportamento che prevede di ignorare i duplicati non verrà applicato. In questi casi è consigliabile progettare il componente di suddivisione dei processi per rilevare le operazioni già eseguite e non ripeterle, ad esempio eseguendo CloudJob.ListTasks prima di iniziare a restituire le attività.
 
-### <a name="exit-codes-and-exceptions-in-hello-job-manager-template"></a>Uscire da codici e le eccezioni nel modello di processo Manager hello
-Codici di uscita e le eccezioni forniscono un meccanismo toodetermine hello risultato esegue un programma e tooidentify possono consentire eventuali problemi con l'esecuzione di hello del programma hello. modello di processo Manager Hello implementa i codici di uscita hello e le eccezioni descritte in questa sezione.
+### <a name="exit-codes-and-exceptions-in-the-job-manager-template"></a>Codici di uscita ed eccezioni nel modello Job Manager (Gestione di processi)
+I codici di uscita e le eccezioni forniscono un meccanismo per determinare il risultato dell'esecuzione di un programma e consentono di identificare eventuali problemi di esecuzione del programma. Il modello Job Manager (Gestore di processi) implementa i codici di uscita e le eccezioni descritte in questa sezione.
 
-Un'attività di gestione processo che viene implementata con modello di processo Manager hello può restituire tre codici di uscita possibili:
+Un'attività del gestore di processi implementata con il modello Job Manager (Gestore di processi) può restituire tre possibili codici di uscita:
 
 | Codice | Descrizione |
 | --- | --- |
-| 0 |gestore di processi Hello completato. Il codice della barra di divisione processo eseguito toocompletion e tutte le attività sono state aggiunte toohello processo. |
-| 1 |attività di gestione di Hello processo non riuscito con un'eccezione in una parte del programma hello 'prevista'. eccezione Hello è stato tradotto tooa JobManagerException con informazioni di diagnostica e, se possibile, suggerimenti per la risoluzione hello errore. |
-| 2 |attività del gestore Hello processi non riuscito con eccezione 'imprevista'. Hello eccezione era registrati toostandard output, ma il gestore di processi hello tooadd Impossibile le informazioni di diagnostica o di monitoraggio e aggiornamento. |
+| 0 |Il gestore di processi è stato completato. Il codice del componente di suddivisione dei processi è stato eseguito fino al completamento e tutte le attività sono state aggiunte al processo. |
+| 1 |L'attività del gestore di processi non è riuscita con un'eccezione in una parte "prevista" del programma. L'eccezione è stata convertita in JobManagerException con informazioni di diagnostica e, dove possibile, suggerimenti per la risoluzione dell'errore. |
+| 2 |L'attività del gestore di processi non è riuscita con un'eccezione "non prevista". L'eccezione è stata registrata nell'output standard, ma il gestore di processi non è riuscito ad aggiungere altre informazioni di diagnostica o correzione. |
 
-In caso di hello processo manager esito negativo dell'attività, alcune attività possono ancora essere stati aggiunti toohello servizio prima dell'errore di hello. Queste attività verranno eseguite normalmente. Per informazioni su questo percorso del codice, vedere sopra "Errore del componente di suddivisione dei processi".
+In caso di errore dell'attività del gestore di processi, alcune attività potrebbero essere state ugualmente aggiunte al servizio prima che si verificasse l'errore. Queste attività verranno eseguite normalmente. Per informazioni su questo percorso del codice, vedere sopra "Errore del componente di suddivisione dei processi".
 
-Tutte le informazioni restituite da eccezioni hello vengono scritti nel file stdout.txt e stderr.txt. Per altre informazioni, vedere [Gestione degli errori](batch-api-basics.md#error-handling).
+Tutte le informazioni restituite dalle eccezioni vengono scritte nei file stdout.txt e stderr.txt. Per altre informazioni, vedere [Gestione degli errori](batch-api-basics.md#error-handling).
 
 ### <a name="client-considerations"></a>Considerazioni sul client
-Questa sezione illustra alcuni requisiti dell'implementazione client quando si richiama un gestore di processi basato su questo modello. Vedere [come toopass parametri e variabili di ambiente da hello codice client](#pass-environment-settings) per ulteriori informazioni sul passaggio di parametri e le impostazioni di ambiente.
+Questa sezione illustra alcuni requisiti dell'implementazione client quando si richiama un gestore di processi basato su questo modello. Per informazioni dettagliate sul passaggio dei parametri e delle impostazioni di ambiente, vedere [Passare i parametri e le variabili di ambiente dal codice client](#pass-environment-settings) .
 
 **Credenziali obbligatorie**
 
-In tooadd attività toohello Azure batch ordine, attività del gestore processi hello richiede una chiave e l'URL dell'account Azure Batch. È necessario passarli nelle variabili di ambiente denominate YOUR_BATCH_URL e YOUR_BATCH_KEY. È possibile impostare nel gestore di processi hello impostazioni ambiente di attività. Ad esempio, in un client C#:
+Per aggiungere attività al processo di Azure Batch, l'attività del gestore di processi richiede l'URL e la chiave dell'account Azure Batch. È necessario passarli nelle variabili di ambiente denominate YOUR_BATCH_URL e YOUR_BATCH_KEY. È possibile impostarle nelle impostazioni di ambiente dell'attività del gestore di processi. Ad esempio, in un client C#:
 
 ```csharp
 job.JobManagerTask.EnvironmentSettings = new [] {
@@ -215,7 +215,7 @@ job.JobManagerTask.EnvironmentSettings = new [] {
 ```
 **Credenziali di archiviazione**
 
-In genere, hello client non deve tooprovide hello archiviazione collegati account credenziali toohello attività del gestore processi perché (a) la maggior parte dei gestori di processo non è necessario l'account di archiviazione collegato hello accesso tooexplicitly e (b) hello account di archiviazione collegato viene spesso fornita attività tooall come un'impostazione di ambiente comuni per il processo di hello. Se non si desidera fornire hello collegato l'account di archiviazione tramite impostazioni di ambiente hello comuni, il gestore di processi hello richiede accesso toolinked archiviazione, quindi è necessario fornire le credenziali di archiviazione hello collegato come segue:
+In genere, non è necessario che il client fornisca all'attività del gestore di processi le credenziali dell'account di archiviazione collegato perché (a) la maggior parte dei gestori di processi non deve accedere in modo esplicito all'account di archiviazione collegato e (b) l'account di archiviazione collegato viene spesso fornito a tutte le attività come impostazione di ambiente comune per il processo. Se non si specifica l'account di archiviazione collegato tramite le impostazioni di ambiente comuni e il gestore di processi deve accedere alla risorsa di archiviazione collegata, è consigliabile fornire le credenziali di archiviazione collegate, come segue:
 
 ```csharp
 job.JobManagerTask.EnvironmentSettings = new [] {
@@ -227,99 +227,99 @@ job.JobManagerTask.EnvironmentSettings = new [] {
 
 **Impostazioni dell'attività del gestore di processi**
 
-client Hello deve impostare il gestore di processi hello *killJobOnCompletion* flag troppo**false**.
+Il client deve impostare il flag *killJobOnCompletion* del gestore di processi su **false**.
 
-È in genere sicura per hello client tooset *runExclusive* troppo**false**.
+In genere per il client è sicuro impostare *runExclusive* su **false**.
 
-client di Hello deve utilizzare hello *resourceFiles* o *applicationPackageReferences* raccolta toohave hello il gestore di processi eseguibile (e relativa DLL necessarie) distribuito toohello del nodo di calcolo.
+Il client deve usare la raccolta *resourceFiles* o *applicationPackageReferences* per distribuire l'eseguibile del gestore di processi (e le DLL necessarie) nel nodo di calcolo.
 
-Per impostazione predefinita, il gestore di processi hello non verrà ritentato in caso di errore. A seconda la logica di gestione del processo, il client hello può essere tooenable tentativi tramite *vincoli*/*maxTaskRetryCount*.
+Per impostazione predefinita, l'esecuzione del gestore di processi non verrà riprovata in caso di errore. A seconda della logica del gestore di processi, il client può consentire i tentativi tramite *constraints*/*maxTaskRetryCount*.
 
 **Impostazioni del processo**
 
-Se il separatore di processo hello genera attività con dipendenze, il client di hello deve impostare tootrue usesTaskDependencies del processo di hello.
+Se il componente di suddivisione dei processi crea attività con dipendenze, il client deve impostare usesTaskDependencies del processo su true.
 
-Nel modello di divisione hello processo, è insolito per i client toowish tooadd attività toojobs oltre il separatore di processo hello crea. client Hello dovrebbe pertanto impostato del processo di hello *onAllTasksComplete* troppo**terminatejob**.
+Nel modello del componente di suddivisione dei processi in genere i client non aggiungono attività ai processi oltre a quelle create dal componente di suddivisione dei processi. In genere il client deve quindi impostare *onAllTasksComplete* del processo su **terminatejob**.
 
 ## <a name="task-processor-template"></a>Modello Task Processor (Elaboratore di attività)
-Un modello di processore Task consente tooimplement un processore di attività eseguibili hello seguenti azioni:
+Un modello Task Processor (Elaboratore di attività) consente di implementare un elaboratore di attività che può eseguire queste azioni:
 
-* Impostare le informazioni di hello richieste da ogni toorun attività Batch.
+* Configurare le informazioni necessarie per l'esecuzione di ogni attività batch.
 * Eseguire tutte le azioni necessarie per ogni attività batch.
-* Salvare l'output di un'attività toopersistent archiviazione.
+* Salvare l'output di un'attività in una risorsa di archiviazione permanente.
 
-Anche se un processore di attività non è necessario toorun attività nel Batch, hello dei principali vantaggi dell'utilizzo di un processore di attività è che fornisce un wrapper tooimplement tutte le azioni di esecuzione di attività in un'unica posizione. Ad esempio, se è necessario toorun diverse applicazioni nel contesto di hello di ogni attività o se è necessario toocopy archiviazione toopersistent dei dati dopo il completamento di ogni attività.
+Anche se non è necessario un elaboratore di attività per eseguire le attività in Batch, il vantaggio principale di usare un elaboratore di attività è che fornisce un wrapper per implementare tutte le azioni di esecuzione di un'attività in un'unica posizione, ad esempio, se è necessario eseguire più applicazioni nel contesto di ogni attività o se è necessario copiare i dati in una risorsa di archiviazione permanente dopo avere completato ogni attività.
 
-azioni Hello eseguite dal processore task hello possono essere semplice o complesso e il numero o minor, come richiesto dal carico di lavoro. Inoltre, implementando tutte le azioni di attività in un processore di attività, è possibile facilmente aggiornare o aggiungere azioni in base ai requisiti di carico di lavoro o tooapplications le modifiche. Tuttavia, in alcuni casi un processore di attività potrebbe non essere hello ottimale soluzione per l'implementazione come è possibile aggiungere un'inutile complessità, ad esempio quando si esegue i processi che è possibile avviare rapidamente da una semplice riga di comando.
+Le azioni eseguite dall'elaboratore di attività possono essere semplici o complesse e più o meno numerose a seconda del carico di lavoro. Implementando tutte le azioni di un'attività in un unico elaboratore di attività, è anche possibile aggiornare o aggiungere facilmente azioni in base alle modifiche apportate alle applicazioni o ai requisiti del carico di lavoro. In alcuni casi, tuttavia, è meglio non usare un elaboratore di attività per l'implementazione perché può creare inutili difficoltà, ad esempio quando si eseguono processi che possono essere avviati rapidamente da una semplice riga di comando.
 
-### <a name="create-a-task-processor-using-hello-template"></a>Creare un processore di attività utilizzando il modello di hello
-tooadd una soluzione di toohello processore attività creata in precedenza, seguire questi passaggi:
+### <a name="create-a-task-processor-using-the-template"></a>Creare un elaboratore delle attività usando il modello
+Per aggiungere un elaboratore di attività alla soluzione creata prima, seguire questi passaggi:
 
 1. Aprire la soluzione esistente in Visual Studio.
-2. In Esplora soluzioni, Esplora hello pulsante destro del mouse, fare clic su **Aggiungi**, quindi fare clic su **nuovo progetto**.
+2. In Esplora soluzioni fare clic con il pulsante destro del mouse sulla soluzione scegliere **Aggiungi**, quindi fare clic su **Nuovo progetto**.
 3. In **Visual C#** fare clic su **Cloud** e su **Azure Batch Task Processor** (Elaboratore di attività di Azure Batch).
-4. Digitare un nome che descrive l'applicazione e identifica il progetto come hello (ad esempio, il processore di attività "ElaboratoreAttivitàLitware".
-5. progetto hello toocreate, fare clic su **OK**.
-6. Infine, compilazione hello progetto tooforce Visual Studio tooload tutti i pacchetti NuGet a cui viene fatto riferimento e tooverify che hello progetto sia valido prima di iniziare la modifica.
+4. Digitare un nome che descriva l'applicazione e identifichi questo progetto come elaboratore di attività, ad esempio "ElaboratoreAttivitàLitware".
+5. Per creare il progetto, fare clic su **OK**.
+6. Compilare infine il progetto per fare in modo che Visual Studio carichi tutti i pacchetti NuGet di riferimento e verificare che il progetto sia valido prima di iniziare a modificarlo.
 
 ### <a name="task-processor-template-files-and-their-purpose"></a>File del modello Task Processor (Elaboratore di attività) e relativo scopo
-Quando si crea un progetto modello di processore attività hello, genera tre gruppi di file di codice:
+Quando si crea un progetto usando il modello di elaboratore di attività, questo genera tre gruppi di file di codice:
 
-* file di programma principale Hello (Program.cs). Che contiene il punto di ingresso programma hello e la gestione delle eccezioni di livello superiore. Non deve in genere necessario toomodify.
-* directory del Framework Hello. Contiene file hello responsabili di lavoro 'standard' hello eseguita dal programma di gestione processo hello: installazione del pacchetto di parametri, aggiunta di processo Batch toohello di attività e così via. Non deve in genere toomodify i file necessari.
-* file del processore Hello attività (TaskProcessor.cs). Si tratta in cui si inserirà la logica specifica dell'applicazione per l'esecuzione di un'attività (in genere da una chiamata in uscita eseguibile esistente tooan). Anche il codice di pre-elaborazione e post-elaborazione, ad esempio per il download di dati aggiuntivi o il caricamento dei file dei risultati, viene inserito qui.
+* Il file di programma principale (Program.cs), che contiene il punto di ingresso del programma e la gestione delle eccezioni di primo livello. In genere non è necessario modificarlo.
+* La directory Framework, che contiene i file responsabili delle operazioni del "boilerplate" eseguite dal programma del gestore di processi, ad esempio decompressione dei parametri, aggiunta di attività al processo batch e così via. In genere non è necessario modificare questi file.
+* Il file dell'elaboratore di attività (TaskProcessor.cs), in cui si inserirà la logica specifica dell'applicazione per l'esecuzione di un'attività, in genere chiamando un eseguibile esistente. Anche il codice di pre-elaborazione e post-elaborazione, ad esempio per il download di dati aggiuntivi o il caricamento dei file dei risultati, viene inserito qui.
 
-Naturalmente è possibile aggiungere ulteriori file come toosupport richiesto il codice di attività del processore, a seconda della complessità hello del processo di hello suddivisione logica.
+Ovviamente è possibile aggiungere altri file, se necessari per supportare il codice dell'elaboratore di attività, in base alla complessità della logica di suddivisione dei processi.
 
-modello di Hello genera anche i file di progetto .NET standard, ad esempio un file con estensione csproj app. config, Packages, e così via.
+Il modello genera anche i file di progetto .NET standard, ad esempio un file CSPROJ, app.config, packages.config e così via.
 
-resto Hello di questa sezione vengono descritti diversi file hello e la relativa struttura di codice e le operazioni eseguite da ogni classe.
+La parte restante di questa sezione illustra i diversi file e la struttura del codice e spiega la funzione di ogni classe.
 
-![Esplora soluzioni Visual Studio con una soluzione di modello attività processore hello][solution_explorer02]
+![Esplora soluzioni di Visual Studio che illustra la soluzione del modello Task Processor (Elaboratore di attività)][solution_explorer02]
 
 **File di Framework**
 
-* `Configuration.cs`: Incapsula il caricamento di hello processo dati di configurazione, ad esempio i dettagli dell'account Batch, le credenziali dell'account di archiviazione collegati, informazioni di processo e attività e i parametri del processo. Fornisce inoltre l'accesso delle variabili di ambiente definita tooBatch (vedere le impostazioni di ambiente per le attività, nella documentazione di Batch hello) tramite la classe Configuration.EnvironmentVariable hello.
-* `IConfiguration.cs`: Riassunto hello implementazione della classe di configurazione di hello, in modo che sia possibile unit test divisione del processo utilizzando un oggetto di configurazione fittizi o.
-* `TaskProcessorException.cs`: Rappresenta un errore che richiede hello processo manager tooterminate. TaskProcessorException è usato toowrap 'previsto' errori in cui le informazioni di diagnostica specifiche possono essere fornite come parte della terminazione.
+* `Configuration.cs`: incapsula il caricamento dei dati di configurazione del processo, ad esempio i dettagli dell'account Batch, le credenziali dell'account di archiviazione collegato, le informazioni sul processo e sulle attività e i parametri del processo. Fornisce anche l'accesso alle variabili di ambiente definite da Batch (vedere Impostazioni di ambiente per le attività nella documentazione di Batch) tramite la classe Configuration.EnvironmentVariable.
+* `IConfiguration.cs`: astrae l'implementazione della classe Configuration, per poter eseguire uno unit test del componente di suddivisione dei processi usando un oggetto di configurazione falso o fittizio.
+* `TaskProcessorException.cs`: rappresenta un errore che obbliga a terminare il gestore di processi. TaskProcessorException viene usata per eseguire il wrapping degli errori "previsti" dove possono essere fornite informazioni di diagnostica specifiche nell'ambito della terminazione.
 
 **Elaboratore di attività**
 
-* `TaskProcessor.cs`: Esegue l'attività di hello. framework Hello richiama il metodo TaskProcessor.Run hello. Si tratta di classe hello in cui si inserirà logica specifica dell'applicazione hello dell'attività. Implementare il metodo Run hello per:
+* `TaskProcessor.cs`: esegue l'attività. Il framework chiama il metodo TaskProcessor.Run. Questa è la classe in cui si inserirà la logica dell'applicazione dell'attività. Implementare il metodo Run per:
   * Analizzare e convalidare i parametri delle attività
-  * Comporre hello della riga di comando per qualsiasi programma esterno, si desidera tooinvoke
+  * Scrivere la riga di comando per i programmi esterni che si vuole richiamare
   * Registrare le informazioni di diagnostica che potrebbero essere necessarie a scopo di debug
   * Avviare un processo usando tale riga di comando
-  * Attendere hello processo tooexit
-  * Acquisire il codice di uscita hello di hello processo toodetermine se ha avuto esito positivo o non è riuscita
-  * Salvare i file di output desiderato tookeep toopersistent archiviazione
+  * Attendere la chiusura del processo
+  * Acquisire il codice di uscita del processo per determinare se ha avuto esito positivo o negativo
+  * Salvare i file di output che si vuole mantenere in una risorsa di archiviazione permanente
 
 **File di progetto della riga di comando .NET standard**
 
 * `App.config`: file di configurazione dell'applicazione .NET standard.
 * `Packages.config`: file di dipendenza del pacchetto NuGet standard.
-* `Program.cs`: Contiene il punto di ingresso programma hello e la gestione delle eccezioni di livello superiore.
+* `Program.cs`: contiene il punto di ingresso del programma e la gestione delle eccezioni di primo livello.
 
-## <a name="implementing-hello-task-processor"></a>Implementazione del processore attività hello
-Quando si apre il progetto di modello di hello processore Task, progetto hello avrà file TaskProcessor.cs hello aperta per impostazione predefinita. È possibile implementare la logica di eseguire hello per le attività di hello nel carico di lavoro con metodo Run () hello illustrato di seguito:
+## <a name="implementing-the-task-processor"></a>Implementazione dell'elaboratore di attività
+Quando si apre il progetto del modello Task Processor (Elaboratore di attività), il progetto avrà il file TaskProcessor.cs aperto per impostazione predefinita. È possibile implementare la logica di esecuzione per le attività del carico di lavoro usando il metodo Run() illustrato sotto:
 
 ```csharp
 /// <summary>
-/// Runs hello task processing logic. This is where you inject
-/// your application-specific logic for decomposing hello job into tasks.
+/// Runs the task processing logic. This is where you inject
+/// your application-specific logic for decomposing the job into tasks.
 ///
-/// hello task processor framework invokes hello Run method for you; you need
-/// only tooimplement it, not toocall it yourself. Typically, your
+/// The task processor framework invokes the Run method for you; you need
+/// only to implement it, not to call it yourself. Typically, your
 /// implementation will execute an external program (from resource files or
-/// an application package), check hello exit code of that program and
-/// save output files toopersistent storage.
+/// an application package), check the exit code of that program and
+/// save output files to persistent storage.
 /// </summary>
 public async Task<int> Run()
 
 {
     try
     {
-        //Your code for hello task processor goes here.
+        //Your code for the task processor goes here.
         var command = $"compare {_parameters["Frame1"]} {_parameters["Frame2"]} compare.gif";
         using (var process = Process.Start($"cmd /c {command}"))
         {
@@ -347,44 +347,44 @@ public async Task<int> Run()
 }
 ```
 > [!NOTE]
-> Hello annotato nel hello metodo Run () è hello solo sezione di codice del modello attività processore hello destinato si toomodify mediante l'aggiunta di logica eseguire hello per le attività di hello nel carico di lavoro. Se si desidera toomodify un'altra sezione del modello di hello,. prima di tutto acquisire familiarità con la modalità Batch funziona esaminare la documentazione di Batch hello e provare alcuni degli esempi di codice hello Batch.
+> La sezione con annotazioni nel metodo Run() è la sola del codice del modello Task Processor (Elaboratore di attività) che può essere modificata dall'utente aggiungendo la logica di esecuzione per le attività nel carico di lavoro. Per modificare un'altra sezione del modello, leggere prima la documentazione di Batch e provare a usare alcuni esempi di codice di Batch per familiarizzare con il funzionamento di Batch.
 > 
 > 
 
-Hello metodo Run () è responsabile dell'avvio della riga di comando hello, avvio di uno o più processi, in attesa di toocomplete processo tutti, salvataggio dei risultati di hello e infine restituzione con un codice di uscita. Hello metodo Run () è in cui viene implementata hello logica per le attività di elaborazione. framework processore delle attività Hello Richiama metodo Run () hello. non è necessario toocall è manualmente.
+Il metodo Run() è responsabile dell'avvio della riga di comando, dell'avvio di uno o più processi, dell'attesa del completamento di tutti i processi, del salvataggio dei risultati e infine delle restituzione di un codice di uscita. Nel metodo Run() si implementa la logica di elaborazione per le attività. Il framework dell'elaboratore di attività richiama il metodo Run() automaticamente. Non è necessario chiamarlo manualmente.
 
 L'implementazione di Run() ha accesso a:
 
-* i parametri di attività, tramite hello Hello `_parameters` campo.
-* ID attività e processi, tramite hello Hello `_jobId` e `_taskId` campi.
-* configurazione dell'attività Hello, tramite hello `_configuration` campo.
+* Parametri dell'attività tramite il campo `_parameters`.
+* ID processo e attività, tramite i campi `_jobId` e `_taskId`.
+* Configurazione dell'attività, tramite il campo `_configuration` .
 
 **Errore dell'attività**
 
-In caso di errore, è possibile uscire dal metodo Run () hello generando un'eccezione, ma in questo modo, il gestore di eccezioni di livello superiore di hello nel controllo del codice di uscita attività hello. Se è necessario codice di uscita toocontrol hello in modo che sia possibile distinguere i diversi tipi di errore, ad esempio per motivi di diagnostica o perché alcune modalità di errore deve terminare processi hello e altri utenti non dovrebbero, quindi è necessario uscire metodo Run () hello restituendo un codice di uscita diverso da zero. Questo valore diventa codice di uscita attività hello.
+In caso di errore, è possibile uscire dal metodo Run() generando un'eccezione, ma in questo modo il gestore di eccezioni di primo livello rimane sotto il controllo del codice di uscita dell'attività. Se è necessario controllare il codice di uscita per poter distinguere i diversi tipi di errore, ad esempio per finalità di diagnostica o perché alcune modalità di errore devono terminare il processo e altre no, è consigliabile uscire dal metodo Run() restituendo un codice di uscita diverso da zero, che diventa il codice di uscita dell'attività.
 
-### <a name="exit-codes-and-exceptions-in-hello-task-processor-template"></a>Uscire da codici e le eccezioni nel modello di attività processore hello
-Codici di uscita e le eccezioni forniscono un meccanismo toodetermine hello risultato esegue un programma e consentono di identificare eventuali problemi con l'esecuzione di hello del programma hello. modello di attività processore Hello implementa i codici di uscita hello e le eccezioni descritte in questa sezione.
+### <a name="exit-codes-and-exceptions-in-the-task-processor-template"></a>Codici di uscita ed eccezioni nel modello Task Processor (Elaboratore di attività)
+I codici di uscita e le eccezioni forniscono un meccanismo per determinare il risultato dell'esecuzione di un programma e consentono di identificare eventuali problemi di esecuzione del programma. Il modello Task Processor (Elaboratore di attività) implementa i codici di uscita e le eccezioni descritte in questa sezione.
 
-Un'attività del processore attività che viene implementata con modello di attività processore hello può restituire tre codici di uscita possibili:
+Un'attività dell'elaboratore di attività implementata con il modello Task Processor (Elaboratore di attività) può restituire tre possibili codici di uscita:
 
 | Codice | Descrizione |
 | --- | --- |
-| [Process.ExitCode][process_exitcode] |processore task Hello eseguito toocompletion. Si noti che ciò non implica tale programma hello che è stata completata, solo hello attività processore ha eseguito correttamente ed eseguita post-elaborazione senza eccezioni. Hello significato del codice di uscita hello dipende dal programma richiamato hello – codice di uscita 0 significa in genere programma hello ha avuto esito positivo e qualsiasi altro codice di uscita significa hello programma non è riuscito. |
-| 1 |processore task Hello non riuscita con un'eccezione in una parte del programma hello 'prevista'. Hello eccezione è stata tradotta tooa `TaskProcessorException` con informazioni di diagnostica e, se possibile, suggerimenti per la risoluzione hello errore. |
-| 2 |processore task Hello non riuscito con eccezione 'imprevista'. Hello eccezione era registrati toostandard output, ma processore task hello tooadd Impossibile le informazioni di diagnostica o di monitoraggio e aggiornamento. |
+| [Process.ExitCode][process_exitcode] |L'elaboratore di attività è stato eseguito fino al completamento. Si noti che questo non significa che il programma richiamato ha avuto esito positivo, ma solo che l'elaboratore di attività lo ha richiamato correttamente e ha eseguito le operazioni di post-elaborazione senza eccezioni. Il significato del codice di uscita dipende dal programma richiamato: in genere il codice di uscita 0 indica che il programma ha avuto esito positivo, mentre gli altri codici di uscita indicano che il programma ha avuto esito negativo. |
+| 1 |L'elaboratore di attività non è riuscito con un'eccezione in una parte "prevista" del programma. L'eccezione è stata convertita in `TaskProcessorException` con informazioni di diagnostica e, dove possibile, suggerimenti per la risoluzione dell'errore. |
+| 2 |L'elaboratore di attività non è riuscito con un'eccezione "non prevista". L'eccezione è stata registrata nell'output standard, ma l'elaboratore di attività non è riuscito ad aggiungere altre informazioni di diagnostica o correzione. |
 
 > [!NOTE]
-> Se il programma di hello che richiami utilizza modalità di errore specifico di uscita codici 1 e 2 tooindicate, quindi utilizzare i codici di uscita 1 e 2 per gli errori delle attività del processore è ambiguo. È possibile modificare questi codici di uscita attività processore errore codici toodistinctive modificando i casi di eccezione hello nel file Program.cs hello.
+> Se il programma richiamato usa i codici di uscita 1 e 2 per indicare specifiche modalità di errore, l'uso dei codici di uscita 1 e 2 per gli errori dell'elaboratore di attività è ambiguo. È possibile sostituire questi codici di errore dell'elaboratore di attività con codici di uscita distintivi modificando le lettere maiuscole/minuscole delle eccezioni nel file Program.cs.
 > 
 > 
 
-Tutte le informazioni restituite da eccezioni hello vengono scritti nel file stdout.txt e stderr.txt. Per ulteriori informazioni, vedere Gestione di errori, nella documentazione di Batch hello.
+Tutte le informazioni restituite dalle eccezioni vengono scritte nei file stdout.txt e stderr.txt. Per altre informazioni, vedere Gestione degli errori nella documentazione di Batch.
 
 ### <a name="client-considerations"></a>Considerazioni sul client
 **Credenziali di archiviazione**
 
-Se il processore di attività Usa l'output di toopersist archiviazione blob di Azure, ad esempio l'utilizzo della libreria helper di convenzioni file hello, quindi è richiesto l'accesso troppo*entrambi* hello le credenziali dell'account di archiviazione cloud *o* URL del contenitore blob che include una firma di accesso condiviso (SAS). modello Hello include il supporto per fornire le credenziali tramite variabili di ambiente comuni. Il client può passare le credenziali di archiviazione hello come indicato di seguito:
+Se l'elaboratore di attività usa l'archivio BLOB di Azure per rendere persistenti gli output, ad esempio usando la libreria helper File Conventions, deve accedere *o* alle credenziali dell'account di archiviazione cloud *o* all'URL di un contenitore BLOB che include una firma di accesso condiviso. Il modello include il supporto per fornire le credenziali tramite le variabili di ambiente comuni. Il client può passare le credenziali di archiviazione come segue:
 
 ```csharp
 job.CommonEnvironmentSettings = new [] {
@@ -393,53 +393,53 @@ job.CommonEnvironmentSettings = new [] {
 };
 ```
 
-account di archiviazione Hello diventa quindi disponibile nella classe TaskProcessor tramite hello hello `_configuration.StorageAccount` proprietà.
+L'account di archiviazione è quindi disponibile nella classe TaskProcessor tramite la proprietà `_configuration.StorageAccount` .
 
-Se si preferisce toouse un URL del contenitore con firma di accesso condiviso, è anche possibile passare questo tramite un'impostazione di ambiente comuni di processo, ma modello attività hello attualmente non include supporto incorporato per questo.
+Se si preferisce usare l'URL di un contenitore con la firma di accesso condiviso, è anche possibile passarlo tramite un'impostazione di ambiente comune del processo, ma il modello di elaboratore di attività attualmente non include il supporto predefinito a questo scopo.
 
 **Configurazione dell'archiviazione**
 
-È consigliabile hello client o del processo di Gestione attività creare tutti i contenitori necessari per le attività prima dell'aggiunta di hello attività toohello processo. Questo campo è obbligatorio che se si utilizza un URL del contenitore con firma di accesso condiviso, di conseguenza un URL non include autorizzazioni toocreate hello contenitore. Anche se si passa le credenziali dell'account di archiviazione, è consigliabile come Salva tutte le attività con toocall CloudBlobContainer.CreateIfNotExistsAsync nel contenitore hello.
+È consigliabile che il client o l'attività del gestore di processi crei i contenitori richiesti dalle attività prima di aggiungere le attività al processo. Questo è obbligatorio se si usa l'URL di un contenitore con la firma di accesso condiviso, perché un URL di questo tipo non include l'autorizzazione per creare il contenitore. È consigliabile anche se si passano le credenziali dell'account di archiviazione, perché salva ogni attività dovendo chiamare CloudBlobContainer.CreateIfNotExistsAsync sul contenitore.
 
 ## <a name="pass-parameters-and-environment-variables"></a>Passare i parametri e le variabili di ambiente
 ### <a name="pass-environment-settings"></a>Passare le impostazioni di ambiente
-Un client può passare l'attività del gestore processi toohello informazioni sotto forma di hello di impostazioni di ambiente. Queste informazioni possono quindi utilizzabile da attività del gestore processi hello quando il processo di calcolo di generazione hello processore attività che verrà eseguita come parte di hello. Sono esempi di hello informazioni che è possibile passare alle impostazioni di ambiente:
+Un client può passare informazioni all'attività del gestore di processi sotto forma di impostazioni di ambiente. Queste informazioni possono quindi essere usate dall'attività del gestore di processi quando si generano le attività dell'elaboratore di attività che verranno eseguite durante il processo di calcolo. Alcuni esempi di informazioni che è possibile passare come impostazioni di ambiente sono:
 
 * Nome dell'account di archiviazione e chiavi dell'account
 * URL dell'account Batch
 * Chiave dell'account Batch
 
-Hello servizio Batch è un'attività di gestione di un meccanismo semplice toopass ambiente impostazioni tooa processi utilizzando hello `EnvironmentSettings` proprietà [Microsoft.Azure.Batch.JobManagerTask][net_jobmanagertask].
+Il servizio Batch ha un semplice meccanismo per passare le impostazioni di ambiente a un'attività del gestore di processi usando la proprietà `EnvironmentSettings` in [Microsoft.Azure.Batch.JobManagerTask][net_jobmanagertask].
 
-Ad esempio, tooget hello `BatchClient` istanza per un account di Batch, è possibile passare come variabili di ambiente da client hello codice hello URL e credenziali di chiave per l'account Batch hello condivise. Analogamente, account di archiviazione di hello tooaccess è collegato l'account Batch toohello, è possibile passare nome account di archiviazione hello e chiave dell'account di archiviazione hello come variabili di ambiente.
+Ad esempio, per ottenere l'istanza di `BatchClient` per un account Batch, è possibile passare come variabili di ambiente dal codice client l'URL e le credenziali con chiave condivisa per l'account Batch. Analogamente, per accedere all'account di archiviazione collegato all'account Batch, è possibile passare il nome dell'account di archiviazione e la chiave dell'account di archiviazione come variabili di ambiente.
 
-### <a name="pass-parameters-toohello-job-manager-template"></a>Passare parametri toohello processo Gestione modello
-In molti casi, è utile toopass per processo parametri toohello processo Gestione attività, entrambi processo hello toocontrol suddivisione processo o attività hello tooconfigure per hello processo. È possibile farlo caricando un file JSON denominato parameters.json come file di risorse per attività di gestione di processi hello. i parametri di Hello possono poi diventare disponibili in hello `JobSplitter._parameters` campo nel modello di processo Manager hello.
+### <a name="pass-parameters-to-the-job-manager-template"></a>Passare i parametri al modello Job Manager (Gestore di processi)
+In molti casi, è utile passare i parametri per ogni processo all'attività del gestore di processi, per controllare la procedura di suddivisione del processo o per configurare le attività per il processo. A questo scopo, caricare un file JSON denominato parameters.json come file di risorse per l'attività del gestore di processi. I parametri possono quindi essere disponibili nel campo `JobSplitter._parameters` del modello Job Manager (Gestore di processi).
 
 > [!NOTE]
-> il gestore di parametri predefiniti di Hello supporta solo i dizionari per stringa-stringa. Se si desidera valori JSON complessi toopass come valori di parametro, verrà necessità toopass queste informazioni come stringhe e analizzarli nella barra di divisione processo hello o modifica del framework di hello `Configuration.GetJobParameters` metodo.
+> Il gestore di parametri predefinito supporta solo i dizionari da stringa a stringa. Per passare valori JSON complessi come valori di parametri, sarà necessario passarli come stringhe e quindi analizzarli nel componente di suddivisione dei processi o modificare il metodo `Configuration.GetJobParameters` del framework.
 > 
 > 
 
-### <a name="pass-parameters-toohello-task-processor-template"></a>Passare parametri toohello processore attività modello
-È inoltre possibile passare parametri attività tooindividual implementato utilizzando il modello di attività processore hello. Proprio come con modello di gestione processo di hello, hello attività processore modello cerca un file di risorse denominato
+### <a name="pass-parameters-to-the-task-processor-template"></a>Passare i parametri al modello Task Processor (Elaboratore di attività)
+È anche possibile passare i parametri alle singole attività implementate usando il modello Task Processor (Elaboratore di attività). Proprio come il modello di gestore di processi, il modello di elaboratore di attività cerca un file di risorse denominato
 
-Parameters.JSON e se lo trova, viene caricato in formato dizionario di parametri hello. Sono disponibili due opzioni per la modalità toopass parametri toohello attività attività del processore:
+parameters.json e, se lo trova, lo carica come dizionario di parametri. Per passare i parametri alle attività dell'elaboratore di attività, esistono due opzioni:
 
-* Riutilizzare i parametri del processo hello JSON. Ciò funziona perfettamente se hello unici parametri sono quelli a livello di processo (ad esempio, un rendering altezza e larghezza). toodo, quando si crea un CloudTask nella barra di divisione processo hello, aggiungere un oggetto file di risorse di riferimento toohello parameters.json da ResourceFiles hello processo Gestione attività (`JobSplitter._jobManagerTask.ResourceFiles`) insieme ResourceFiles del CloudTask toohello.
-* Generare e caricare un documento parameters.json specifici dell'attività come parte dell'esecuzione del processo con separatore, fare riferimento a tale blob nella raccolta di file di risorse dell'attività hello. Ciò è necessario se i parametri sono diversi per ogni attività. Un esempio potrebbe essere uno scenario di rendering 3D in indice dei fotogrammi hello è toohello attività passata come parametro.
+* Usare di nuovo il file JSON dei parametri del processo. Questa opzione funziona bene se i soli parametri sono quelli a livello di processo, ad esempio un'altezza e una larghezza di rendering. A questo scopo, quando si crea CloudTask nel componente di suddivisione dei processi, aggiungere un riferimento all'oggetto file di risorse parameters.json da ResourceFiles (`JobSplitter._jobManagerTask.ResourceFiles`) dell'attività del gestore di processi alla raccolta ResourceFiles di CloudTask.
+* Generare e caricare un documento parameters.json specifico dell'attività durante l'esecuzione del componente di suddivisione dei processi e fare riferimento a tale BLOB nella raccolta di file di risorse dell'attività. Ciò è necessario se i parametri sono diversi per ogni attività. Come esempio si pensi a uno scenario di rendering 3D dove l'indice dei fotogrammi viene passato all'attività come parametro.
 
 > [!NOTE]
-> il gestore di parametri predefiniti di Hello supporta solo i dizionari per stringa-stringa. Se si desidera valori JSON complessi toopass come valori di parametro, si verrà necessarie toopass come stringhe e analizzarli in processore task hello o modificare del framework hello `Configuration.GetTaskParameters` metodo.
+> Il gestore di parametri predefinito supporta solo i dizionari da stringa a stringa. Per passare valori JSON complessi come valori di parametri, sarà necessario passarli come stringhe e quindi analizzarli nell'elaboratore di attività o modificare il metodo `Configuration.GetTaskParameters` del framework.
 > 
 > 
 
 ## <a name="next-steps"></a>Passaggi successivi
-### <a name="persist-job-and-task-output-tooazure-storage"></a>Processo di persistenza e attività output tooAzure archiviazione
-Un altro strumento utile nello sviluppo di soluzioni Batch è [Azure Batch File Conventions][nuget_package]. Utilizzare questa libreria di classi .NET (attualmente in anteprima) nell'archivio tooeasily applicazioni .NET per Batch e recuperare tooand output attività dall'archiviazione di Azure. [Output di attività e processi Batch di Azure di mantenere](batch-task-output.md) contiene una descrizione completa della libreria hello e sul relativo utilizzo.
+### <a name="persist-job-and-task-output-to-azure-storage"></a>Rendere persistenti l'output di attività e processi in Archiviazione di Azure
+Un altro strumento utile nello sviluppo di soluzioni Batch è [Azure Batch File Conventions][nuget_package]. Usare questa libreria di classi .NET (attualmente in anteprima) nelle applicazioni Batch .NET per archiviare e recuperare facilmente gli output delle attività in e da Archiviazione di Azure. [Salvare in modo permanente l'output dei processi e delle attività di Azure Batch](batch-task-output.md) contiene una descrizione completa della libreria e di come utilizzarla.
 
 ### <a name="batch-forum"></a>Forum di Batch
-Hello [Forum di Azure Batch] [ forum] su MSDN è un ottimo posizionare toodiscuss Batch e porre domande sul servizio hello. Leggere i post contrassegnati e inviare domande durante le procedure di sviluppo delle soluzioni Batch.
+Il [forum di Azure Batch][forum] su MSDN consente di seguire discussioni su Batch e inviare domande sul servizio. Leggere i post contrassegnati e inviare domande durante le procedure di sviluppo delle soluzioni Batch.
 
 [forum]: https://social.msdn.microsoft.com/forums/azure/en-US/home?forum=azurebatch
 [net_jobmanagertask]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.jobmanagertask.aspx

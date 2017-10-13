@@ -1,6 +1,6 @@
 ---
-title: un hub eventi Azure aaaCreate | Documenti Microsoft
-description: Creare uno spazio dei nomi dell'hub eventi di Azure e un hub di eventi utilizzando hello portale di Azure
+title: Creare un hub eventi di Azure | Documentazione Microsoft
+description: Creare uno spazio dei nomi di Hub eventi di Azure e un hub eventi usando il Portale di Azure
 services: event-hubs
 documentationcenter: na
 author: sethmanheim
@@ -14,54 +14,54 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/01/2017
 ms.author: sethm
-ms.openlocfilehash: 9a8b7711e2ca7d112e24be19353d43c365ff6935
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 816bf1426704d3391550e80c0700f1b011683a94
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="create-an-event-hubs-namespace-and-an-event-hub-using-hello-azure-portal"></a>Creare uno spazio dei nomi dell'hub eventi e un hub di eventi utilizzando hello portale di Azure
+# <a name="create-an-event-hubs-namespace-and-an-event-hub-using-the-azure-portal"></a>Creare uno spazio dei nomi di Hub eventi e un hub eventi usando il Portale di Azure
 
 ## <a name="create-an-event-hubs-namespace"></a>Creare uno spazio dei nomi di Hub eventi
-1. Accesso toohello [portale di Azure][Azure portal], fare clic su **New** in hello in alto a sinistra della schermata di hello.
+1. Accedere al [portale di Azure][Azure portal] e fare clic su **Nuovo** nella parte superiore sinistra della schermata.
 1. Fare clic su **Internet delle cose** e quindi su **Hub eventi**.
    
     ![](./media/event-hubs-create/create-event-hub9.png)
-1. In hello **Crea spazio dei nomi** pannello, immettere un nome di spazio dei nomi. sistema di Hello controlla immediatamente toosee se nome hello è disponibile.
+1. Nel pannello **Crea spazio dei nomi** immettere un nome per lo spazio dei nomi. Verrà effettuato immediatamente un controllo sulla disponibilità del nome.
    
     ![](./media/event-hubs-create/create-event-hub1.png)
-1. Dopo il nome di spazio dei nomi che hello è disponibile, scegliere hello tariffario (Standard o Basic). Inoltre, è possibile scegliere una sottoscrizione di Azure, un gruppo di risorse e una posizione nella quale risorsa hello toocreate. 
-1. Fare clic su **crea** dello spazio dei nomi di toocreate hello. È possibile toowait per le risorse hello di effettuare il provisioning di hello sistema toofully qualche minuto.
-2. Hello portale selezionare nell'elenco degli spazi dei nomi hello appena creato spazio dei nomi.
+1. Dopo aver verificato che il nome dello spazio dei nomi sia disponibile, scegliere il piano tariffario (Basic o Standard). Scegliere anche una sottoscrizione, un gruppo di risorse e una località di Azure in cui creare la risorsa. 
+1. Fare clic su **Crea** per creare lo spazio dei nomi. Per il provisioning completo delle risorse da parte del sistema, potrebbero essere necessari alcuni minuti.
+2. Nell'elenco di spazi dei nomi del portale fare clic sullo spazio dei nomi appena creato.
 2. Fare clic su **Criteri di accesso condivisi** e quindi su **RootManageSharedAccessKey**.
     
     ![](./media/event-hubs-create/create-event-hub7.png)
 
-3. Fare clic su hello toocopy pulsante Copia di hello **RootManageSharedAccessKey** Appunti toohello stringa di connessione. Salvare la stringa di connessione in un percorso temporaneo, ad esempio Blocco note, toouse in un secondo momento.
+3. Fare clic sul pulsante di copia per copiare la stringa di connessione **RootManageSharedAccessKey** negli Appunti. Salvare la stringa di connessione in una posizione temporanea, ad esempio il Blocco note, per usarla in seguito.
     
     ![](./media/event-hubs-create/create-event-hub8.png)
 
 ## <a name="create-an-event-hub"></a>Creare un hub eventi
 
-1. Nell'elenco dello spazio dei nomi di hub eventi hello, fare clic su spazio dei nomi hello appena creato.      
+1. Nell'elenco di spazi dei nomi di Hub eventi fare clic sullo spazio dei nomi appena creato.      
    
     ![](./media/event-hubs-create/create-event-hub2.png) 
 
-2. Nel Pannello di hello dello spazio dei nomi, fare clic su **hub eventi**.
+2. Nel pannello dello spazio dei nomi fare clic su **Hub eventi**.
    
     ![](./media/event-hubs-create/create-event-hub3.png)
 
-1. Nella parte superiore di hello del Pannello di hello, fare clic su **aggiungere Hub eventi**.
+1. Nella parte superiore del pannello fare clic su **Aggiungi hub eventi**.
    
     ![](./media/event-hubs-create/create-event-hub4.png)
 1. Digitare un nome per l'hub eventi e quindi fare clic su **Crea**.
    
     ![](./media/event-hubs-create/create-event-hub5.png)
 
-È stato creato l'hub di eventi e disporre le stringhe di connessione hello è necessario toosend eventi e di ricezione.
+L'hub eventi è stato creato e sono disponibili le stringhe di connessione necessarie per inviare e ricevere eventi.
 
 ## <a name="next-steps"></a>Passaggi successivi
-toolearn più sugli hub di eventi, visitare i collegamenti:
+Per altre informazioni sugli Hub eventi, visitare i collegamenti seguenti:
 
 * [Panoramica di Hub eventi](event-hubs-what-is-event-hubs.md)
 * [Panoramica dell'API di Hub eventi](event-hubs-api-overview.md)

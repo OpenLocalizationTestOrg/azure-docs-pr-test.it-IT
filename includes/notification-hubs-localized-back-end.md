@@ -2,7 +2,7 @@
 
 
 
-Quando si inviano notifiche di modello che è necessario solo un set di proprietà tooprovide, in questo caso Microsoft invierà set hello di proprietà contenenti versione localizzata di hello delle news corrente hello, ad esempio:
+Quando si inviano notifiche modello, è necessario solo fornire un set di proprietà. In questo caso verrà inviato il set di proprietà contenente la versione localizzata delle notizie correnti, ad esempio:
 
     {
         "News_English": "World News in English!",
@@ -11,22 +11,22 @@ Quando si inviano notifiche di modello che è necessario solo un set di propriet
     }
 
 
-Questa sezione viene illustrato come le notifiche di toosend tramite un'applicazione console
+In questa sezione viene illustrato come inviare notifiche tramite un’app console
 
-Hello incluso codice trasmissioni tooboth Windows Store e i dispositivi iOS, poiché back-end hello possibile trasmettere tooany dei dispositivi hello è supportato.
+Il codice incluso trasmette le notifiche sia Windows Store che a dispositivi iOS, poiché il back-end è in grado di trasmettere a qualsiasi dispositivo supportato.
 
-### <a name="toosend-notifications-using-a-c-console-app"></a>notifiche di toosend tramite un'applicazione console c#
-Modificare hello `SendTemplateNotificationAsync` metodo nell'applicazione console hello creato in precedenza con hello seguente codice. Si noti come in questo caso esiste alcuna necessità toosend più notifiche per piattaforme e impostazioni locali diverse.
+### <a name="to-send-notifications-using-a-c-console-app"></a>Per inviare notifiche tramite un'app console C#
+Modificare il metodo `SendTemplateNotificationAsync` nell'app console creata in precedenza con il codice seguente. Si noti come in questo caso non sia necessario inviare più notifiche per impostazioni locali e piattaforme diverse.
 
         private static async void SendTemplateNotificationAsync()
         {
-            // Define hello notification hub.
+            // Define the notification hub.
             NotificationHubClient hub = 
                 NotificationHubClient.CreateClientFromConnectionString(
                     "<connection string with full access>", "<hub name>");
 
-            // Sending hello notification as a template notification. All template registrations that contain 
-            // "messageParam" or "News_<local selected>" and hello proper tags will receive hello notifications. 
+            // Sending the notification as a template notification. All template registrations that contain 
+            // "messageParam" or "News_<local selected>" and the proper tags will receive the notifications. 
             // This includes APNS, GCM, WNS, and MPNS template registrations.
             Dictionary<string, string> templateParams = new Dictionary<string, string>();
 
@@ -52,10 +52,10 @@ Modificare hello `SendTemplateNotificationAsync` metodo nell'applicazione consol
         }
 
 
-Si noti che questa chiamata semplice recapiterà troppo dato localizzata hello notizie**tutti** dei dispositivi, indipendentemente dalla piattaforma hello, come l'Hub di notifica si basa e recapita hello corretto i dispositivi di payload native tooall hello sottoscritto tooa tag specifico.
+Si noti che questa semplice chiamata distribuirà la notizia localizzata a **tutti** i dispositivi, indipendentemente dalla piattaforma, in quanto l'Hub di notifica crea il payload nativo corretto e lo distribuisce a tutti i dispositivi che hanno sottoscritto un tag specifico.
 
-### <a name="sending-hello-notification-with-mobile-services"></a>Invia notifica hello con i servizi mobili
-Nell'utilità di pianificazione del servizio Mobile, è possibile utilizzare hello lo script seguente:
+### <a name="sending-the-notification-with-mobile-services"></a>Invio della notifica con Servizi mobili
+Nell'utilità di pianificazione di Servizi mobili, è possibile utilizzare lo script seguente:
 
     var azure = require('azure');
     var notificationHubService = azure.createNotificationHubService('<hub name>', '<connection string with full access>');

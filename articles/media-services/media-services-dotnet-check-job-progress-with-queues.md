@@ -1,6 +1,6 @@
 ---
-title: aaaUse coda di Azure storage toomonitor servizi multimediali notifiche dei processi con .NET | Documenti Microsoft
-description: Informazioni su come le notifiche del processo toouse coda di Azure storage toomonitor servizi multimediali. Nell'esempio di codice Hello viene scritto in c# e utilizza hello Media Services SDK per .NET.
+title: Usare l'archiviazione code di Azure per monitorare le notifiche dei processi di Servizi multimediali con .NET | Microsoft Docs
+description: "Informazioni su come usare l'archiviazione code di Azure per monitorare le notifiche dei processi di Servizi multimediali. L'esempio di codice è scritto in C# e usa l'SDK di Servizi multimediali per .NET."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,56 +14,56 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: juliako
-ms.openlocfilehash: e4068621ada00d763133dc0d01cfc666b53f8b1b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5ee89d0ae4c3c56d164aff4e321ee99f015ba4fb
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="use-azure-queue-storage-toomonitor-media-services-job-notifications-with-net"></a>Utilizzare le notifiche processo della coda di Azure storage toomonitor servizi multimediali con .NET
-Quando si eseguono i processi di codifica, spesso richiedono un avanzamento del processo tootrack modo. È possibile configurare le notifiche di servizi multimediali toodeliver troppo[l'archiviazione delle code di Azure](../storage/storage-dotnet-how-to-use-queues.md). È possibile monitorare lo stato del processo per ottenere notifiche da hello l'archiviazione delle code. 
+# <a name="use-azure-queue-storage-to-monitor-media-services-job-notifications-with-net"></a>Usare l'archiviazione code di Azure per monitorare le notifiche dei processi di Servizi multimediali con .NET
+Quando si eseguono processi di codifica, spesso è necessario monitorarne l'avanzamento. È possibile configurare Servizi multimediali per recapitare le notifiche ad [archiviazione code di Azure](../storage/storage-dotnet-how-to-use-queues.md). È possibile controllare l'avanzamento del processo ottenendo le notifiche da archiviazione code. 
 
-I messaggi recapitati tooQueue archiviazione è possibile accedere da qualsiasi in HelloWorld. architettura di messaggistica di coda archiviazione Hello è altamente scalabile e affidabile. Tra i vari metodi disponibili è preferibile usare il polling dell'archiviazione code per i messaggi.
+È possibile accedere ai messaggi distribuiti al servizio di archiviazione di accodamento da ogni parte del mondo. L'architettura di messaggistica di archiviazione code è affidabile e altamente scalabile. Tra i vari metodi disponibili è preferibile usare il polling dell'archiviazione code per i messaggi.
 
-Uno scenario comune per le notifiche di servizi in ascolto tooMedia è se si sta sviluppando un sistema di gestione dei contenuti che necessita di tooperform completamento alcune attività aggiuntive dopo un processo di codifica (ad esempio, tootrigger hello passaggio successivo, un flusso di lavoro o toopublish contenuto).
+Può essere necessario ascoltare le notifiche di Servizi multimediali quando, ad esempio, si sta sviluppando un sistema di gestione dei contenuti ed è necessario che il sistema effettui alcune attività aggiuntive dopo il completamento di un processo di codifica (ad esempio, deve attivare il passaggio successivo di un flusso di lavoro o pubblicare contenuti).
 
-Questo argomento viene illustrato come i messaggi di notifica tooget dall'archiviazione di Accodamento.  
+Questo argomento illustra come ricevere messaggi di notifica da archiviazione code.  
 
 ## <a name="considerations"></a>Considerazioni
-Considerare i seguenti hello durante lo sviluppo di applicazioni di servizi multimediali che usano l'archiviazione delle code:
+Quando si sviluppano applicazioni di Servizi multimediali che usano l'archiviazione code, tenere presente quanto segue:
 
 * Il servizio di archiviazione code non garantisce un recapito ordinato dei messaggi di tipo FIFO (First-In-First-Out). Per altre informazioni, vedere [Analogie e differenze tra le code di Azure e le code del bus di servizio](https://msdn.microsoft.com/library/azure/hh767287.aspx).
-* Archiviazione code non è un servizio di push. È necessario coda hello toopoll.
+* Archiviazione code non è un servizio di push. È necessario eseguire il polling della coda.
 * È possibile disporre di un qualsiasi numero di code. Per altre informazioni, vedere [API REST del servizio di accodamento](https://docs.microsoft.com/rest/api/storageservices/Queue-Service-REST-API).
-* L'archiviazione delle code con alcune limitazioni e le specifiche toobe comunicata. Queste sono descritte in [Analogie e differenze tra le code di Azure e le code del bus di servizio di Azure](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted).
+* Archiviazione code presenta alcune limitazioni e specifiche da tenere presenti. Queste sono descritte in [Analogie e differenze tra le code di Azure e le code del bus di servizio di Azure](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted).
 
 ## <a name="net-code-example"></a>Esempio di codice .NET
 
-esempio di codice Hello in questa sezione hello seguenti:
+L'esempio di codice contenuto in questa sezione effettua quanto segue:
 
-1. Definisce hello **EncodingJobMessage** classe che esegue il mapping di formato di messaggio di notifica toohello. codice Hello deserializza i messaggi ricevuti dalla coda hello in oggetti di hello **EncodingJobMessage** tipo.
-2. Carica hello servizi multimediali e le informazioni sull'account di archiviazione dal file app. config hello. esempio di codice Hello utilizza questo hello toocreate informazioni **CloudMediaContext** e **CloudQueue** oggetti.
-3. Crea coda hello che riceve i messaggi di notifica su hello processo di codifica.
-4. Crea punto di fine è stato eseguito il mapping di coda toohello notifica di hello.
-5. Allega processo toohello punto finale di notifica hello e invia i processi di codifica hello. È possibile avere più processo tooa punti di fine associati di notifica.
-6. Passa **NotificationJobState.FinalStatesOnly** toohello **AddNew** metodo. (In questo esempio, si intende solo stato finale di elaborazione dei processi di hello.)
+1. Definisce la classe **EncodingJobMessage** che esegue il mapping al formato del messaggio di notifica. Il codice deserializza i messaggi ricevuti dalla coda in oggetti del tipo **EncodingJobMessage** .
+2. Carica informazioni sugli account di Servizi multimediali e di archiviazione dal file app.config La coda di esempio usa queste informazioni per creare gli oggetti **CloudMediaContext** e **CloudQueue**.
+3. Crea la coda che riceve i messaggi di notifica relativi al processo di codifica.
+4. Crea l'endpoint di notifica di cui viene eseguito il mapping alla coda.
+5. Collega l'endpoint di notifica al processo e invia il processo di codifica. A un processo possono essere collegati anche più endpoint di notifica.
+6. Passa **NotificationJobState.FinalStatesOnly** al metodo **AddNew**. (In questo esempio vanno notati solo gli stati finali dell'elaborazione dei processi.)
 
         job.JobNotificationSubscriptions.AddNew(NotificationJobState.FinalStatesOnly, _notificationEndPoint);
-7. Se si passa **NotificationJobState.All**, ottenere tutti hello seguendo le notifiche di modifica dello stato: in coda, pianificato, elaborazione e terminato. Tuttavia, come indicato in precedenza, il servizio di archiviazione code non garantisce un recapito ordinato. i messaggi tooorder, utilizzare hello **Timestamp** proprietà (definito in hello **EncodingJobMessage** tipo nel seguente esempio hello). Sono possibili i messaggi duplicati. toocheck dei duplicati, utilizzare hello **proprietà ETag** (definito in hello **EncodingJobMessage** tipo). È possibile inoltre che alcune notifiche di modifica dello stato vengano ignorate.
-8. Attende hello processo tooget toohello completata stato controllando coda hello ogni 10 secondi. Elimina i messaggi man mano che vengono elaborati.
-9. Elimina coda hello e hello notifica finale.
+7. Se si passa **NotificationJobState.All**, si ricevono tutte le notifiche di modifica dello stato: in coda, pianificate, in elaborazione e completate. Tuttavia, come indicato in precedenza, il servizio di archiviazione code non garantisce un recapito ordinato. Per ordinare i messaggi, usare la proprietà **Timestamp** (definita nel tipo **EncodingJobMessage** nell'esempio seguente). Sono possibili i messaggi duplicati. Per verificare la presenza di duplicati, usare la **proprietà ETag** (definita nel tipo **EncodingJobMessage**). È possibile inoltre che alcune notifiche di modifica dello stato vengano ignorate.
+8. Attende che il processo abbia raggiunto lo stato Completato controllando la coda ogni 10 secondi. Elimina i messaggi man mano che vengono elaborati.
+9. Elimina la coda e l'endpoint di notifica.
 
 > [!NOTE]
-> Hello toomonitor consigliata che dello stato di un processo è in ascolto toonotification messaggi, come illustrato nell'esempio seguente hello.
+> Il modo migliore per monitorare lo stato di un processo è quello di ascoltare i messaggi di notifica, come illustrato nel seguente esempio.
 >
-> In alternativa, è possibile verificare sullo stato di un processo utilizzando hello **IJob.State** proprietà.  Un messaggio di notifica sul completamento di un processo può arrivare prima stato hello in **IJob** è troppo**completato**. Hello **IJob.State** proprietà riflette lo stato di accurate hello con un leggero ritardo.
+> In alternativa, è possibile controllare lo stato di un processo usando la proprietà **IJob.State** .  Un messaggio di notifica relativo al completamento del processo potrebbe essere ricevuto prima che lo stato in **IJob** sia impostato su **Operazione completata**. La proprietà **IJob.State** riflette lo stato esatto con un leggero ritardo.
 >
 >
 
 ### <a name="create-and-configure-a-visual-studio-project"></a>Creare e configurare un progetto di Visual Studio
 
-1. Configurare l'ambiente di sviluppo e di popolare il file app. config hello con informazioni di connessione, come descritto in [lo sviluppo di servizi multimediali con .NET](media-services-dotnet-how-to-use.md). 
-2. Creare una nuova cartella (cartella può essere un punto qualsiasi nell'unità locale) e copiare un file MP4 che si desidera tooencode e flusso o il download progressivo. In questo esempio viene utilizzato il percorso di "C:\Media" hello.
+1. Configurare l'ambiente di sviluppo e popolare il file app.config con le informazioni di connessione, come descritto in [Sviluppo di applicazioni di Servizi multimediali con .NET](media-services-dotnet-how-to-use.md). 
+2. Creare una nuova cartella, in un punto qualsiasi nell'unità locale, e copiare un file con estensione mp4 di cui eseguire codifica e streaming o il download progressivo. In questo esempio viene usato il percorso "C:\Media".
 
 ### <a name="code"></a>Codice
 
@@ -86,30 +86,30 @@ namespace JobNotification
         // MessageVersion is used for version control.
         public String MessageVersion { get; set; }
 
-        // Type of hello event. Valid values are
+        // Type of the event. Valid values are
         // JobStateChange and NotificationEndpointRegistration.
         public String EventType { get; set; }
 
-        // ETag is used toohelp hello customer detect if
-        // hello message is a duplicate of another message previously sent.
+        // ETag is used to help the customer detect if
+        // the message is a duplicate of another message previously sent.
         public String ETag { get; set; }
 
-        // Time of occurrence of hello event.
+        // Time of occurrence of the event.
         public String TimeStamp { get; set; }
 
-        // Collection of values specific toohello event.
+        // Collection of values specific to the event.
 
-        // For hello JobStateChange event hello values are:
-        //     JobId - Id of hello Job that triggered hello notification.
-        //     NewState- hello new state of hello Job. Valid values are:
+        // For the JobStateChange event the values are:
+        //     JobId - Id of the Job that triggered the notification.
+        //     NewState- The new state of the Job. Valid values are:
         //          Scheduled, Processing, Canceling, Cancelled, Error, Finished
-        //     OldState- hello old state of hello Job. Valid values are:
+        //     OldState- The old state of the Job. Valid values are:
         //          Scheduled, Processing, Canceling, Cancelled, Error, Finished
 
-        // For hello NotificationEndpointRegistration event hello values are:
-        //     NotificationEndpointId- Id of hello NotificationEndpoint
-        //          that triggered hello notification.
-        //     State- hello state of hello Endpoint.
+        // For the NotificationEndpointRegistration event the values are:
+        //     NotificationEndpointId- Id of the NotificationEndpoint
+        //          that triggered the notification.
+        //     State- The state of the Endpoint.
         //          Valid values are: Registered and Unregistered.
 
         public IDictionary<string, object> Properties { get; set; }
@@ -118,7 +118,7 @@ namespace JobNotification
     class Program
     {
 
-        // Read values from hello App.config file.
+        // Read values from the App.config file.
         private static readonly string _AADTenantDomain =
             ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -137,16 +137,16 @@ namespace JobNotification
         {
             string endPointAddress = Guid.NewGuid().ToString();
 
-            // Create hello context.
+            // Create the context.
             var tokenCredentials = new AzureAdTokenCredentials(_AADTenantDomain, AzureEnvironments.AzureCloudEnvironment);
             var tokenProvider = new AzureAdTokenProvider(tokenCredentials);
 
             _context = new CloudMediaContext(new Uri(_RESTAPIEndpoint), tokenProvider);
 
-            // Create hello queue that will be receiving hello notification messages.
+            // Create the queue that will be receiving the notification messages.
             _queue = CreateQueue(_StorageConnectionString, endPointAddress);
 
-            // Create hello notification point that is mapped toohello queue.
+            // Create the notification point that is mapped to the queue.
             _notificationEndPoint =
                     _context.NotificationEndPoints.Create(
                     Guid.NewGuid().ToString(), NotificationEndPointType.AzureQueue, endPointAddress);
@@ -168,13 +168,13 @@ namespace JobNotification
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(storageAccountConnectionString);
 
-            // Create hello queue client
+            // Create the queue client
             CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
 
-            // Retrieve a reference tooa queue
+            // Retrieve a reference to a queue
             CloudQueue queue = queueClient.GetQueueReference(endPointAddress);
 
-            // Create hello queue if it doesn't already exist
+            // Create the queue if it doesn't already exist
             queue.CreateIfNotExists();
 
             return queue;
@@ -184,30 +184,30 @@ namespace JobNotification
         public static IJob SubmitEncodingJobWithNotificationEndPoint(string inputMediaFilePath)
         {
             // Declare a new job.
-            IJob job = _context.Jobs.Create("My MP4 tooSmooth Streaming encoding job");
+            IJob job = _context.Jobs.Create("My MP4 to Smooth Streaming encoding job");
 
-            //Create an encrypted asset and upload hello mp4.
+            //Create an encrypted asset and upload the mp4.
             IAsset asset = CreateAssetAndUploadSingleFile(AssetCreationOptions.StorageEncrypted,
                 inputMediaFilePath);
 
-            // Get a media processor reference, and pass tooit hello name of the
-            // processor toouse for hello specific task.
+            // Get a media processor reference, and pass to it the name of the
+            // processor to use for the specific task.
             IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
 
-            // Create a task with hello conversion details, using a configuration file.
+            // Create a task with the conversion details, using a configuration file.
             ITask task = job.Tasks.AddNew("My encoding Task",
                 processor,
                 "Adaptive Streaming",
                 Microsoft.WindowsAzure.MediaServices.Client.TaskOptions.None);
 
-            // Specify hello input asset toobe encoded.
+            // Specify the input asset to be encoded.
             task.InputAssets.Add(asset);
 
-            // Add an output asset toocontain hello results of hello job.
+            // Add an output asset to contain the results of the job.
             task.OutputAssets.AddNew("Output asset",
                 AssetCreationOptions.None);
 
-            // Add a notification point toohello job. You can add multiple notification points.  
+            // Add a notification point to the job. You can add multiple notification points.  
             job.JobNotificationSubscriptions.AddNew(NotificationJobState.FinalStatesOnly,
                 _notificationEndPoint);
 
@@ -227,7 +227,7 @@ namespace JobNotification
 
             while (!jobReachedExpectedState)
             {
-                // Specify how often you want tooget messages from hello queue.
+                // Specify how often you want to get messages from the queue.
                 Thread.Sleep(TimeSpan.FromSeconds(10));
 
                 foreach (var message in _queue.GetMessages(10))
@@ -241,7 +241,7 @@ namespace JobNotification
 
                         Console.WriteLine();
 
-                        // Display hello message information.
+                        // Display the message information.
                         Console.WriteLine("EventType: {0}", encodingJobMsg.EventType);
                         Console.WriteLine("MessageVersion: {0}", encodingJobMsg.MessageVersion);
                         Console.WriteLine("ETag: {0}", encodingJobMsg.ETag);
@@ -276,7 +276,7 @@ namespace JobNotification
                             }
                         }
                     }
-                    // Delete hello message after we've read it.
+                    // Delete the message after we've read it.
                     _queue.DeleteMessage(message);
                 }
 
@@ -326,7 +326,7 @@ namespace JobNotification
     }
 }
 ```
-Hello precedente hello di esempio prodotto dopo l'output. I valori possono variare.
+Il precedente esempio ha prodotto l'output seguente. I valori possono variare.
 
     Created assetFile BigBuckBunny.mp4
     Upload BigBuckBunny.mp4
@@ -346,7 +346,7 @@ Hello precedente hello di esempio prodotto dopo l'output. I valori possono varia
     ETag: 4e381f37c2d844bde06ace650310284d6928b1e50101d82d1b56220cfcb6076c
     TimeStamp: 2013-05-14T20:24:40
         JobId: nb:jid:UUID:526291de-f166-be47-b62a-11ffe6d4be54
-        JobName: My MP4 tooSmooth Streaming encoding job
+        JobName: My MP4 to Smooth Streaming encoding job
         NewState: Finished
         OldState: Processing
         AccountName: westeuropewamsaccount

@@ -1,6 +1,6 @@
 ---
-title: applicazione di esempio aaaAzure per l'utilizzo con le reti perimetrali | Documenti Microsoft
-description: Distribuire l'applicazione web semplice dopo la creazione di scenari di flusso di traffico tootest una rete Perimetrale
+title: Applicazione di esempio di Azure per l'uso con reti perimetrali | Documentazione Microsoft
+description: Distribuire questa semplice applicazione Web dopo aver creato una rete perimetrale per testare gli scenari di flusso del traffico
 services: virtual-network
 documentationcenter: na
 author: tracsman
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/03/2017
 ms.author: jonor
-ms.openlocfilehash: e0d9cf14590f75b50c64b677efce2c5425b83ec6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8506238e41c5d9dac8d76d729d4919b30a0528b9
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="sample-application-for-use-with-dmzs"></a>Applicazione di esempio per l'uso con reti perimetrali
-[Restituire la pagina sicurezza limite Best Practices toohello][HOME]
+[Tornare alla pagina relativa alle procedure consigliate sui limiti di sicurezza][HOME]
 
-Questi script di PowerShell possono essere eseguiti localmente in hello IIS01 e AppVM01 tooinstall di server e configurare un'applicazione web semplice che visualizza una pagina html da server IIS01 front-end hello con contenuto dal server di AppVM01 hello back-end.
+Questi script di PowerShell possono essere eseguiti localmente nei server IIS01 e AppVM01 per installare e configurare una semplice applicazione Web in grado di visualizzare una pagina HTML dal server IIS01 front-end con contenuto del server back-end AppVM01.
 
-Questa applicazione fornisce un ambiente di test semplice per molti degli esempi di rete Perimetrale hello e come le modifiche apportate hello endpoint, NSGs, UDR e regole del Firewall possono influenzare i flussi di traffico.
+Tale applicazione consente di implementare un ambiente di testing per molti esempi di rete perimetrale e per le modalità con cui le modifiche relative a endpoint, gruppi di sicurezza di rete, routing definito dall'utente e regole del firewall possono influire sui flussi di traffico.
 
-## <a name="firewall-rule-tooallow-icmp"></a>Tooallow regola firewall ICMP
-Questa istruzione PowerShell semplice può essere eseguita in tutto il traffico ICMP (Ping) tooallow macchina virtuale di Windows. Questo aggiornamento firewall consente più semplice di test e risoluzione dei problemi, consentendo di hello ping protocollo toopass attraverso il firewall windows hello (per la maggior parte delle distribuzioni di Linux che ICMP è attivata per impostazione predefinita).
+## <a name="firewall-rule-to-allow-icmp"></a>Regola del firewall per consentire il traffico ICMP
+Questa semplice istruzione PowerShell può essere eseguita su qualsiasi macchina virtuale Windows per consentire il traffico ICMP (Ping). Questo aggiornamento del firewall consente di eseguire più facilmente il testing e la risoluzione dei problemi perché il protocollo ping può attraversare Windows Firewall. Per la maggior parte delle distribuzioni Linux, ICMP è attivato per impostazione predefinita.
 
 ```PowerShell
 # Turn On ICMPv4
@@ -36,25 +36,25 @@ New-NetFirewallRule -Name Allow_ICMPv4 -DisplayName "Allow ICMPv4" `
     -Protocol ICMPv4 -Enabled True -Profile Any -Action Allow
 ```
 
-Se si utilizza hello script seguente, l'aggiunta della regola firewall è hello prima istruzione.
+Se si usano gli script seguenti, l'aggiunta di questa regola del firewall corrisponde alla prima istruzione.
 
 ## <a name="iis01---web-application-installation-script"></a>IIS01 - Script di installazione dell'applicazione Web
 Questo script consentirà di:
 
-1. Aprire IMCPv4 (Ping) sul firewall di windows hello server locale per il test più semplice
-2. Installare IIS e hello .net v 4.5 Framework
+1. Aprire IMCPv4 (Ping) in Windows Firewall nel server locale per eseguire più facilmente il testing.
+2. Installare IIS e .Net Framework v4.5.
 3. Creare una pagina Web ASP.NET e un file Web.config.
-4. Modificare hello predefinito applicazione pool toomake accesso ai file semplice
-5. Impostare account di amministratore tooyour utente anonimo hello e una password
+4. Modificare il pool di applicazioni predefinito per semplificare l'accesso ai file.
+5. Impostare l'utente anonimo per l'account amministratore e la relativa password.
 
 Lo script di PowerShell deve essere eseguito localmente mentre viene usata una sessione RDP per accedere a IIS01.
 
 ```PowerShell
 # IIS Server Post Build Config Script
 # Get Admin Account and Password
-    Write-Host "Please enter hello admin account information used toocreate this VM:" -ForegroundColor Cyan
-    $theAdmin = Read-Host -Prompt "hello Admin Account Name (no domain or machine name)"
-    $thePassword = Read-Host -Prompt "hello Admin Password"
+    Write-Host "Please enter the admin account information used to create this VM:" -ForegroundColor Cyan
+    $theAdmin = Read-Host -Prompt "The Admin Account Name (no domain or machine name)"
+    $thePassword = Read-Host -Prompt "The Admin Password"
 
 # Turn On ICMPv4
     Write-Host "Creating ICMP Rule in Windows Firewall" -ForegroundColor Cyan
@@ -89,21 +89,21 @@ Lo script di PowerShell deve essere eseguito localmente mentre viene usata una s
       <form id="frmMain" runat="server">
         <div>
           <h1>Looks like you made it!</h1>
-          This is a page from hello inside (a web server on a private network),<br />
-          and it is making its way toohello outside! (If you are viewing this from hello internet)<br />
+          This is a page from the inside (a web server on a private network),<br />
+          and it is making its way to the outside! (If you are viewing this from the internet)<br />
           <br />
-          hello following sections show:
+          The following sections show:
           <ul style="margin-top: 0px;">
             <li> Local Server Time - Shows if this page is or isnt cached anywhere</li>
-            <li> File Output - Shows that hello web server is reaching AppVM01 on hello backend subnet and successfully returning content</li>
-            <li> Image from hello Internet - Doesnt really show anything, but it made me happy toosee this when hello app worked</li>
+            <li> File Output - Shows that the web server is reaching AppVM01 on the backend subnet and successfully returning content</li>
+            <li> Image from the Internet - Doesnt really show anything, but it made me happy to see this when the app worked</li>
           </ul>
           <div style="border: 2px solid #8AC007; border-radius: 25px; padding: 20px; margin: 10px; width: 650px;">
             <b>Local Web Server Time</b>: <asp:Label runat="server" ID="lblTime" /></div>
           <div style="border: 2px solid #8AC007; border-radius: 25px; padding: 20px; margin: 10px; width: 650px;">
             <b>File Output from AppVM01</b>: <asp:Label runat="server" ID="lblOutput" /></div>
           <div style="border: 2px solid #8AC007; border-radius: 25px; padding: 20px; margin: 10px; width: 650px;">
-            <b>Image File Linked from hello Internet</b>:<br />
+            <b>Image File Linked from the Internet</b>:<br />
             <br />
             <img src="http://sd.keepcalm-o-matic.co.uk/i/keep-calm-you-made-it-7.png" alt="You made it!" width="150" length="175"/></div>
         </div>
@@ -131,13 +131,13 @@ Lo script di PowerShell deve essere eseguito localmente mentre viene usata una s
     $MainPage | Out-File -FilePath "C:\inetpub\wwwroot\Home.aspx" -Encoding ascii
     $WebConfig | Out-File -FilePath "C:\inetpub\wwwroot\Web.config" -Encoding ascii
 
-# Set App Pool tooClasic Pipeline tooremote file access will work easier
+# Set App Pool to Clasic Pipeline to remote file access will work easier
     Write-Host "Updaing IIS Settings" -ForegroundColor Cyan
     c:\windows\system32\inetsrv\appcmd.exe set app "Default Web Site/" /applicationPool:".NET v4.5 Classic"
     c:\windows\system32\inetsrv\appcmd.exe set config "Default Web Site/" /section:system.webServer/security/authentication/anonymousAuthentication /userName:$theAdmin /password:$thePassword /commit:apphost
 
-# Make sure hello IIS settings take
-    Write-Host "Restarting hello W3SVC" -ForegroundColor Cyan
+# Make sure the IIS settings take
+    Write-Host "Restarting the W3SVC" -ForegroundColor Cyan
     Restart-Service -Name W3SVC
 
     Write-Host
@@ -146,24 +146,24 @@ Lo script di PowerShell deve essere eseguito localmente mentre viene usata una s
 ```
 
 ## <a name="appvm01---file-server-installation-script"></a>AppVM01 - Script di installazione del file server
-Questo script consente di impostare hello back-end per questa applicazione. Questo script consentirà di:
+Imposta il back-end per questa semplice applicazione. Questo script consentirà di:
 
-1. Aprire IMCPv4 (Ping) nel firewall hello per semplificare il test
-2. Creare una directory per il sito web hello
-3. Creare un toobe di file di testo in modalità remota accedere dalla pagina web hello
-4. Impostare le autorizzazioni per hello file e directory tooAnonymous tooallow accesso
-5. Disattivare sicurezza avanzata di Internet Explorer tooallow più semplice da questo server 
+1. Aprire IMCPv4 (Ping) nel firewall per eseguire più facilmente il testing.
+2. Creare una directory per il sito Web
+3. Creare un file di testo accessibile in remoto tramite la pagina Web
+4. Impostare su Anonimo le autorizzazioni per la directory e il file in modo da consentire l'accesso.
+5. Disattivare la sicurezza avanzata di Internet Explorer per facilitare l'esplorazione da questo server. 
 
 > [!IMPORTANT]
-> **Procedura consigliata**: mai disattivare sicurezza avanzata di Internet Explorer in un server di produzione e è in genere web hello toosurf consigliati da un server di produzione. Anche l'apertura di condivisioni file per l'accesso anonimo è un'attività da evitare, ma in questo caso viene eseguita per semplificare le operazioni.
+> **Procedure consigliate**: non disattivare mai la sicurezza avanzata di Internet Explorer in un server di produzione, inoltre in genere è opportuno evitare di esplorare il Web da un server di produzione. Anche l'apertura di condivisioni file per l'accesso anonimo è un'attività da evitare, ma in questo caso viene eseguita per semplificare le operazioni.
 > 
 > 
 
-Lo script di PowerShell deve essere eseguito localmente mentre viene usata una sessione RDP per accedere ad AppVM01. PowerShell è obbligatorio toobe Esegui come amministratore tooensure completamento dell'esecuzione.
+Lo script di PowerShell deve essere eseguito localmente mentre viene usata una sessione RDP per accedere ad AppVM01. Per essere certi che la procedura abbia esito positivo, è necessario eseguire PowerShell come amministratori.
 
 ```PowerShell
 # AppVM01 Server Post Build Config Script
-# PowerShell must be run as Administrator for Net Share commands toowork
+# PowerShell must be run as Administrator for Net Share commands to work
 
 # Turn On ICMPv4
     New-NetFirewallRule -Name Allow_ICMPv4 -DisplayName "Allow ICMPv4" -Protocol ICMPv4 -Enabled True -Profile Any -Action Allow
@@ -172,7 +172,7 @@ Lo script di PowerShell deve essere eseguito localmente mentre viene usata una s
     New-Item "C:\WebShare" -ItemType Directory
 
 # Write out Rand.txt
-    $FileContent = "Hello, I'm hello contents of a remote file on AppVM01."
+    $FileContent = "Hello, I'm the contents of a remote file on AppVM01."
     $FileContent | Out-File -FilePath "C:\WebShare\Rand.txt" -Encoding ascii
 
 # Set Permissions on share
@@ -193,12 +193,12 @@ Lo script di PowerShell deve essere eseguito localmente mentre viene usata una s
 ```
 
 ## <a name="dns01---dns-server-installation-script"></a>DNS01 - Script di installazione del server DNS
-Non sussiste alcun script incluso in questo tooset di applicazione di esempio del server DNS hello. Se il test di regole del firewall hello, gruppo o UDR deve tooinclude il traffico DNS, server hello DNS01 deve toobe impostato manualmente. file xml di configurazione di rete Hello e modello di gestione risorse per entrambi gli esempi includono DNS01 come server DNS primario hello e server DNS pubblico hello ospitato da livello 3 come server DNS backup hello. server DNS di livello 3 Hello sarebbe hello effettivo server DNS usato per il traffico non locale e con DNS01 non del programma di installazione, nessuna rete locale si verificherebbe DNS.
+In questa applicazione di esempio non è incluso alcuno script per la configurazione del server DNS. Se il testing delle regole del firewall, del gruppo di sicurezza di rete o del routing definito dall'utente deve includere il traffico DNS, è pertanto necessario configurare il server DNS01 manualmente. Il file XML di configurazione di rete e il modello di Resource Manager per entrambi gli esempi includono DNS01 come server DNS primario e il server DNS pubblico ospitato dal livello 3 come server DNS di backup. Il server DNS del livello 3 sarà il server DNS effettivo usato per il traffico non locale e, se DNS01 non è configurato, non sarà presente alcun DNS di rete locale.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Eseguire script IIS01 hello in un server IIS
+* Eseguire lo script IIS01 in un server IIS
 * Eseguire script del file server in AppVM01
-* Sfoglia toohello IP pubblico in IIS01 toovalidate la compilazione
+* Individuare l'indirizzo IP pubblico in IIS01 per convalidare la compilazione
 
 <!--Link References-->
 [HOME]: ../best-practices-network-security.md

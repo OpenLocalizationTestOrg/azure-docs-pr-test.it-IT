@@ -1,6 +1,6 @@
 ---
-title: pre-approvate tramite il programma di Microsoft Azure Certified hello aaaGet | Documenti Microsoft
-description: Informazioni su Microsoft Azure Certified partner di hello del programma e come toosell tooget l'immagine di macchina virtuale, modello di soluzione, il servizio di sviluppatore o dati del servizio su hello Azure Marketplace
+title: Ottenere la pre-approvazione tramite il programma Microsoft Azure Certified | Microsoft Docs
+description: Informazioni sul programma per i partner Microsoft Azure Certified e su come vendere un'immagine di macchina virtuale, un modello di soluzione, un servizio per sviluppatori o un servizio dati in Azure Marketplace
 services: marketplace-publishing
 documentationcenter: na
 author: HannibalSII
@@ -15,29 +15,29 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 12/05/2016
 ms.author: hascipio
-ms.openlocfilehash: b5741b59435a24125f6ecd55c3e7d934fd012961
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: aadc695b1f07d04f1fcc7f2f2e3ff90fb7f54849
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="get-pre-approved-via-hello-microsoft-azure-certified-program"></a>pre-Un'approvazione tramite il programma di Microsoft Azure Certified hello
-In questo articolo vengono fornite istruzioni su come Microsoft Azure Certified toobecome in modo che è possibile pubblicare la soluzione in hello Azure Marketplace e soddisfano le condizioni per marketing vantaggi. Per una panoramica dettagliata del programma di Microsoft Azure Certified hello e i vantaggi offerti, visitare [http://azure.com/certified](http://azure.com/certified).
+# <a name="get-pre-approved-via-the-microsoft-azure-certified-program"></a>Ottenere la pre-approvazione tramite il programma Microsoft Azure Certified
+Questo articolo contiene istruzioni su come diventare partner Microsoft Azure Certified Azure in modo che sia possibile pubblicare la propria soluzione in Azure Marketplace e ottenere i vantaggi marketing. Per una panoramica dettagliata del programma Microsoft Azure Certified e dei relativi vantaggi, visitare l'indirizzo [http://azure.com/certified](http://azure.com/certified).
 
 > [!IMPORTANT]
-> certificazione di Azure Hello è applicabile solo se si sta toocreate una macchina virtuale o un modello di soluzione hello Azure Marketplace.
+> La certificazione di Azure è disponibile solo se si intende creare una macchina virtuale o un modello di soluzione per Azure Marketplace.
 
 ## <a name="getting-started"></a>introduttiva
-1. innanzitutto Hello in hello percorso toogetting soluzione certificata e caricate toohello Azure Marketplace è toofill modulo applicazione hello in hello [Microsoft Azure Certified](https://createopportunity.azurewebsites.net) pagina Web.
-2. Se si soddisfano i criteri di idoneità hello e l'applicazione è stata approvata, si inizierà a funzionare correttamente con si tooonboard il toohello soluzione Azure Marketplace.
-3. Se si lavora con un Partner Account Manager o un gestore di Partner DX, chiedere loro toonominate la soluzione per hello Azure Certified programma o visitare toohello [Microsoft Azure Certified](http://createopportunity.azurewebsites.net) pagina Web, compilare il modulo di applicazione hello e immettere il messaggio di posta elettronica hello del Partner Account Manager o gestione di Partner DX nel campo contatto Sponsor Microsoft hello.
+1. Il primo passaggio per la certificazione della soluzione in Azure Marketplace consiste nel compilare il modulo di richiesta nella pagina Web [Microsoft Azure Certified](https://createopportunity.azurewebsites.net) .
+2. Se si soddisfano i criteri di idoneità e l'applicazione viene approvata, verrà avviato il caricamento della soluzione in Azure Marketplace.
+3. Se si lavora con un gestore di account partner o con un gestore di partner sviluppatori, chiedere di proporre la soluzione per il programma Azure Certified OPPURE accedere alla pagina Web [Microsoft Azure Certified](http://createopportunity.azurewebsites.net), compilare il modulo di richiesta e immettere l'indirizzo di posta elettronica del gestore di account partner o di partner sviluppatori nel campo relativo al contatto dello sponsor Microsoft.
 
 > [!IMPORTANT]
-> **"Vendere da" paesi** : nell'ordine toosell i servizi in Microsoft Azure Marketplace hello, entità registrato deve toobe da uno dei paesi hello approvato "vendere-from". Questa limitazione viene applicata per motivi legati ai proventi e alla tassazione. Si sta impegnando nella ricerca tooexpand questo elenco di paesi in hello prossimo futuro, pertanto in futuro. Per l'elenco completo di hello, vedere sezione 1b di hello [criteri la partecipazione di Azure Marketplace](http://go.microsoft.com/fwlink/?LinkID=526833).
+> **Paesi di origine della vendita:** per vendere i propri servizi in Microsoft Azure Marketplace, l'entità registrata deve trovarsi in uno dei paesi di origine della vendita approvati. Questa limitazione viene applicata per motivi legati ai proventi e alla tassazione. Questo elenco di paesi verrà ampliato nel prossimo futuro perciò non rimane che attendere. Per l'elenco completo, vedere la sezione 1b delle [politiche di partecipazione ad Azure Marketplace](http://go.microsoft.com/fwlink/?LinkID=526833).
 
 
 ## <a name="next-step"></a>Passaggio successivo
-Dopo aver ricevuto l'approvazione dal programma di Microsoft Azure Certified hello, è possibile procedere troppo[registrare l'account Microsoft come venditore Microsoft](marketplace-publishing-accounts-creation-registration.md).
+Dopo aver ricevuto la pre-approvazione dal programma Microsoft Azure Certified, è possibile [registrare il proprio account Microsoft come venditore Microsoft](marketplace-publishing-accounts-creation-registration.md).
 
 ## <a name="see-also"></a>Vedere anche
-* [Guida introduttiva: come toopublish un toohello offerta Azure Marketplace](marketplace-publishing-getting-started.md)
+* [Guida introduttiva: Come pubblicare un'offerta in Azure Marketplace](marketplace-publishing-getting-started.md)

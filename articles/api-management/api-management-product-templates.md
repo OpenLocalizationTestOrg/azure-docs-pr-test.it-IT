@@ -1,9 +1,9 @@
 ---
-title: modelli aaaProduct in Gestione API di Azure | Documenti Microsoft
-description: Informazioni su come le pagine contenuto hello toocustomize del prodotto hello nel portale per sviluppatori di hello gestione API di Azure.
+title: Modelli di prodotto in Gestione API di Azure | Microsoft Docs
+description: Informazioni su come personalizzare il contenuto delle pagine prodotto nel portale per sviluppatori in Gestione API di Azure.
 services: api-management
 documentationcenter: 
-author: miaojiang
+author: vladvino
 manager: erikre
 editor: 
 ms.assetid: 49f9254c-4c5f-4ed4-9c8d-798f44e805ee
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 60600299287aad87f9b621782ab5ceb866601d03
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: dae757231d8f2ff7fcd8e032d941c0fa9f192796
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="product-templates-in-azure-api-management"></a>Modelli di prodotto in Gestione API di Azure
-Gestione API di Azure fornisce che si hello contenuto hello toocustomize di possibilità di pagine del portale per sviluppatori tramite un set di modelli che consentono di configurare i propri contenuti. Utilizzando [DotLiquid](http://dotliquidmarkup.org/) sintassi e hello editor di propria scelta, ad esempio [DotLiquid per i progettisti](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), e un set specificato di localizzato [risorse di stringa](api-management-template-resources.md#strings), [ Risorse glifo](api-management-template-resources.md#glyphs), e [pagina controlli](api-management-page-controls.md), una grande flessibilità tooconfigure hello alcuni contenuti sono di pagine hello secondo necessità utilizzando questi modelli.  
+In Gestione API di Azure è possibile personalizzare le pagine del portale per sviluppatori usando un set di modelli che ne configurano il contenuto. La sintassi [DotLiquid](http://dotliquidmarkup.org/) usata insieme a un editor di propria scelta, quale [DotLiquid for Designers](https://github.com/dotliquid/dotliquid/wiki/DotLiquid-for-Designers), e a un set di [risorse stringa](api-management-template-resources.md#strings), [risorse Glifo](api-management-template-resources.md#glyphs) e [controlli di pagina](api-management-page-controls.md) offre una grande flessibilità nella configurazione personalizzata del contenuto delle pagine attraverso questi modelli.  
   
- i modelli di Hello in questa sezione consentono di contenuto di hello toocustomize delle pagine di prodotto di hello nel portale per sviluppatori hello.  
+ I modelli in questa sezione consentono di personalizzare il contenuto delle pagine prodotto del portale per sviluppatori.  
   
 -   [Elenco dei prodotti](#ProductList)  
   
 -   [Prodotto](#Product)  
   
 > [!NOTE]
->  Modelli predefiniti di esempio sono inclusi in hello seguente documentazione, ma sono soggetto toochange scadenza toocontinuous miglioramenti. È possibile visualizzare i modelli predefiniti in tempo reale di hello nel portale per sviluppatori di hello passando singoli modelli toohello desiderato. Per ulteriori informazioni sull'utilizzo dei modelli, vedere [come toocustomize hello portale di gestione API per gli sviluppatori utilizzando i modelli](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).  
+>  La documentazione seguente include alcuni modelli predefiniti di esempio. A causa dei continui miglioramenti che vengono apportati, questi modelli sono però soggetti a modifiche. È possibile visualizzare i modelli predefiniti direttamente nel portale per sviluppatori accedendo ai singoli modelli desiderati. Per ulteriori informazioni sull'uso dei modelli, vedere [Come personalizzare il portale per sviluppatori di Gestione API usando i modelli](https://azure.microsoft.com/documentation/articles/api-management-developer-portal-templates/).  
   
 ##  <a name="ProductList"></a> Elenco prodotti  
- Hello **Product list** modello consente il corpo di hello toocustomize della pagina di elenco prodotto hello nel portale per sviluppatori hello.  
+ Il modello **Elenco prodotti** consente di personalizzare il corpo della pagina di elenco prodotti nel portale per sviluppatori.  
   
  ![Elenco prodotti](./media/api-management-product-templates/APIM_ProductsListTemplatePage.png "APIM_ProductsListTemplatePage")  
   
@@ -66,7 +66,7 @@ Gestione API di Azure fornisce che si hello contenuto hello toocustomize di poss
 ```  
   
 ### <a name="controls"></a>Controlli  
- Hello `Product list` modello può utilizzare l'esempio hello [pagina controlli](api-management-page-controls.md).  
+ Il modello `Product list` può usare i [controlli di pagina](api-management-page-controls.md) seguenti.  
   
 -   [paging-control](api-management-page-controls.md#paging-control)  
   
@@ -76,9 +76,9 @@ Gestione API di Azure fornisce che si hello contenuto hello toocustomize di poss
   
 |Proprietà|Tipo|Descrizione|  
 |--------------|----------|-----------------|  
-|Paging|Entità [Paging](api-management-template-data-model-reference.md#Paging).|Hello paging le informazioni per la raccolta di prodotti hello.|  
-|Filtri|Entità [Filtri](api-management-template-data-model-reference.md#Filtering).|Hello informazioni di filtro per i prodotti hello pagina di elenco.|  
-|Prodotti|Raccolta di entità [Prodotto](api-management-template-data-model-reference.md#Product).|utente corrente toohello visibile prodotti Hello.|  
+|Paging|Entità [Paging](api-management-template-data-model-reference.md#Paging).|Le informazioni di paging per la raccolta di prodotti.|  
+|Filtri|Entità [Filtri](api-management-template-data-model-reference.md#Filtering).|Le informazioni dei filtri per la pagina di elenco proodtti.|  
+|Prodotti|Raccolta di entità [Prodotto](api-management-template-data-model-reference.md#Product).|I prodotti visibili all'utente corrente.|  
   
 ### <a name="sample-template-data"></a>Dati del modello di esempio  
   
@@ -99,7 +99,7 @@ Gestione API di Azure fornisce che si hello contenuto hello toocustomize di poss
         {  
             "Id": "56f9445ffaf7560049060001",  
             "Title": "Starter",  
-            "Description": "Subscribers will be able toorun 5 calls/minute up tooa maximum of 100 calls/week.",  
+            "Description": "Subscribers will be able to run 5 calls/minute up to a maximum of 100 calls/week.",  
             "Terms": "",  
             "ProductState": 1,  
             "AllowMultipleSubscriptions": false,  
@@ -108,7 +108,7 @@ Gestione API di Azure fornisce che si hello contenuto hello toocustomize di poss
         {  
             "Id": "56f9445ffaf7560049060002",  
             "Title": "Unlimited",  
-            "Description": "Subscribers have completely unlimited access toohello API. Administrator approval is required.",  
+            "Description": "Subscribers have completely unlimited access to the API. Administrator approval is required.",  
             "Terms": null,  
             "ProductState": 1,  
             "AllowMultipleSubscriptions": false,  
@@ -118,8 +118,8 @@ Gestione API di Azure fornisce che si hello contenuto hello toocustomize di poss
 }  
 ```  
   
-##  <a name="Product"></a>Prodotto  
- Hello **prodotto** modello consente il corpo di hello toocustomize della pagina del prodotto hello nel portale per sviluppatori hello.  
+##  <a name="Product"></a> Prodotto  
+ Il modello **Prodotto** consente di personalizzare il corpo della pagina prodotto nel portale per sviluppatori.  
   
  ![Pagina prodotto nel portale per sviluppatori](./media/api-management-product-templates/APIM_ProductPage.png "APIM_ProductPage")  
   
@@ -193,7 +193,7 @@ Gestione API di Azure fornisce che si hello contenuto hello toocustomize di poss
 ```  
   
 ### <a name="controls"></a>Controlli  
- Hello `Product list` modello può utilizzare l'esempio hello [pagina controlli](api-management-page-controls.md).  
+ Il modello `Product list` può usare i [controlli di pagina](api-management-page-controls.md) seguenti.  
   
 -   [subscribe-button](api-management-page-controls.md#subscribe-button)  
   
@@ -201,17 +201,17 @@ Gestione API di Azure fornisce che si hello contenuto hello toocustomize di poss
   
 |Proprietà|Tipo|Descrizione|  
 |--------------|----------|-----------------|  
-|Prodotto|[Prodotto](api-management-template-data-model-reference.md#Product)|prodotto specificato Hello.|  
-|IsDeveloperSubscribed|boolean|Indica se l'utente corrente hello è prodotto toothis sottoscritti.|  
-|SubscriptionState|number|stato di Hello della sottoscrizione hello. Gli stati possibili sono elencati di seguito:<br /><br /> -   `0 - suspended`: hello sottoscrizione è bloccata e il sottoscrittore hello non è possibile chiamare le API del prodotto hello.<br />-   `1 - active`: hello sottoscrizione è attiva.<br />-   `2 - expired`: hello ha raggiunto la data di scadenza ed è stata disattivata.<br />-   `3 - submitted`: la richiesta di sottoscrizione hello è stata effettuata dallo sviluppatore di hello, ma non è ancora stata approvata o rifiutata.<br />-   `4 - rejected`: hello sottoscrizione richiesta è stata rifiutata da un amministratore.<br />-   `5 - cancelled`-sottoscrizione hello è stata annullata dallo sviluppatore hello o un amministratore.|  
-|Limiti|array|Questa proprietà è deprecata e non deve essere usata.|  
+|Prodotto|[Prodotto](api-management-template-data-model-reference.md#Product)|Il prodotto specificato.|  
+|IsDeveloperSubscribed|boolean|Indica se l'utente corrente è sottoscritto a questo prodotto.|  
+|SubscriptionState|number|Lo stato della sottoscrizione. Gli stati possibili sono elencati di seguito:<br /><br /> -   `0 - suspended`: la sottoscrizione è bloccata e il sottoscrittore non può chiamare le API del prodotto.<br />-   `1 - active`: la sottoscrizione è attiva.<br />-   `2 - expired`: la sottoscrizione ha raggiunto la data di scadenza ed è stata disattivata.<br />-   `3 - submitted`: la richiesta di sottoscrizione è stata eseguita dallo sviluppatore, ma non è ancora stata approvata o rifiutata.<br />-   `4 - rejected`: la richiesta di sottoscrizione è stata rifiutata da un amministratore.<br />-   `5 - cancelled`: la sottoscrizione è stata annullata dallo sviluppatore o dall'amministratore.|  
+|limiti|array|Questa proprietà è deprecata e non deve essere usata.|  
 |DelegatedSubscriptionEnabled|boolean|Indica se sia abilitata la [delega](https://azure.microsoft.com/documentation/articles/api-management-howto-setup-delegation/) per questa sottoscrizione.|  
-|DelegatedSubscriptionUrl|string|Se è abilitata la delega, hello delegata URL di sottoscrizione.|  
-|IsAgreed|boolean|Se il prodotto hello è termini, se hello corrente utente ha accettato i termini di toohello.|  
-|Sottoscrizioni|Raccolta di entità [Riepilogo della sottoscrizione](api-management-template-data-model-reference.md#SubscriptionSummary).|prodotto di toohello Hello sottoscrizioni.|  
-|API|Raccolta di entità [API](api-management-template-data-model-reference.md#API).|Hello API in questo prodotto.|  
-|CannotAddBecauseSubscriptionNumberLimitReached|boolean|Indica se l'utente corrente hello è toosubscribe idonei toothis prodotto con limite della sottoscrizione toohello considerare.|  
-|CannotAddBecauseMultipleSubscriptionsNotAllowed|boolean|Indica se l'utente corrente hello è idoneo toosubscribe toothis prodotto con sottoscrizioni toomultiple considerare consentite o non.|  
+|DelegatedSubscriptionUrl|string|Se è abilitata la delega, indica l'URL della sottoscrizione delegata.|  
+|IsAgreed|boolean|Se il prodotto presenta delle condizioni, indica se l'utente corrente le ha accettate.|  
+|Sottoscrizioni|Raccolta di entità [Riepilogo della sottoscrizione](api-management-template-data-model-reference.md#SubscriptionSummary).|Le sottoscrizioni al prodotto.|  
+|API|Raccolta di entità [API](api-management-template-data-model-reference.md#API).|Le API in questo prodotto.|  
+|CannotAddBecauseSubscriptionNumberLimitReached|boolean|Indica se l'utente corrente è idoneo per la sottoscrizione al prodotto per quanto riguarda il limite delle sottoscrizioni.|  
+|CannotAddBecauseMultipleSubscriptionsNotAllowed|boolean|Indica se l'utente corrente è idoneo per la sottoscrizione al prodotto per quanto riguarda l'autorizzazione a effettuare più sottoscrizioni.|  
   
 ### <a name="sample-template-data"></a>Dati del modello di esempio  
   
@@ -220,7 +220,7 @@ Gestione API di Azure fornisce che si hello contenuto hello toocustomize di poss
     "Product": {  
         "Id": "56f9445ffaf7560049060001",  
         "Title": "Starter",  
-        "Description": "Subscribers will be able toorun 5 calls/minute up tooa maximum of 100 calls/week.",  
+        "Description": "Subscribers will be able to run 5 calls/minute up to a maximum of 100 calls/week.",  
         "Terms": "",  
         "ProductState": 1,  
         "AllowMultipleSubscriptions": false,  
@@ -258,4 +258,4 @@ Gestione API di Azure fornisce che si hello contenuto hello toocustomize di poss
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per ulteriori informazioni sull'utilizzo dei modelli, vedere [come toocustomize hello portale di gestione API per gli sviluppatori utilizzando i modelli](api-management-developer-portal-templates.md).
+Per ulteriori informazioni sull'uso dei modelli, vedere [Come personalizzare il portale per sviluppatori di Gestione API usando i modelli](api-management-developer-portal-templates.md).

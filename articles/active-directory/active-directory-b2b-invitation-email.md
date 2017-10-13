@@ -1,5 +1,5 @@
 ---
-title: aaaThe elementi di posta elettronica di invito collaborazione B2B di Azure Active Directory hello | Documenti Microsoft
+title: Elementi del messaggio di posta elettronica di invito per la collaborazione B2B di Azure Active Directory | Documentazione Microsoft
 description: Modello di messaggio di posta elettronica di invito per la collaborazione B2B di Azure Active Directory
 services: active-directory
 documentationcenter: 
@@ -15,60 +15,60 @@ ms.tgt_pltfrm: NA
 ms.workload: identity
 ms.date: 05/23/2017
 ms.author: sasubram
-ms.openlocfilehash: f4908014d71a63442bbdca2182f54c7a79675a82
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 458a2cab13b7e83f120e0926a95d454070181dfb
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="hello-elements-of-hello-b2b-collaboration-invitation-email"></a>elementi Hello di posta elettronica di invito collaborazione B2B di hello
+# <a name="the-elements-of-the-b2b-collaboration-invitation-email"></a>Elementi del messaggio di posta elettronica di invito per la collaborazione B2B
 
-Messaggi di posta elettronica di invito sono un partner di toobring componente cruciale a bordo come utenti di collaborazione B2B di Azure AD. È possibile utilizzare le attendibilità del destinatario tooincrease hello. è possibile aggiungere legittimità e posta elettronica toohello prova social networking, destinatario hello che toomake abbia dimestichezza con la selezione di hello **iniziare** pulsante invito hello tooaccept. Questa relazione di trust è una chiave tooreduce le forze di attrito di condivisione. E si desidera anche toomake hello posta elettronica aspetto grande!
+I messaggi di posta elettronica di invito sono strumenti fondamentali per entrare in contatto con i partner e introdurli alla funzionalità di collaborazione B2B di Azure AD. È possibile usarli per aumentare l'attendibilità del destinatario. È possibile aggiungere elementi di legittimità e riprova sociale al messaggio di posta elettronica, per assicurarsi che il destinatario scelga di selezionare con tranquillità il pulsante **Get Started** (Inizia) per accettare l'invito. L'attendibilità è uno strumento fondamentale per ridurre i problemi di condivisione. Il messaggio di posta elettronica deva anche avere un aspetto accattivante.
 
 ![Messaggio di posta elettronica di invito per la collaborazione B2B](media/active-directory-b2b-invitation-email/invitation-email.png)
 
-## <a name="explaining-hello-email"></a>Descrivere il messaggio di posta elettronica hello
-Ecco alcuni elementi di posta elettronica hello per sapere come meglio toouse le relative funzionalità.
+## <a name="explaining-the-email"></a>Descrizione del messaggio di posta elettronica
+Per sfruttare al meglio le potenzialità del messaggio di posta elettronica, di seguito ne vengono descritti alcuni elementi.
 
-### <a name="subject"></a>Oggetto
-oggetto del messaggio di posta elettronica hello Hello segue hello seguente motivo: si è invitati toohello &lt;tenantname&gt; organizzazione
+### <a name="subject"></a>Subject
+Il contenuto dell'oggetto del messaggio di posta elettronica è basato su questo modello: Ti invitiamo all'organizzazione &lt;nometenant&gt;
 
 ### <a name="from-address"></a>Indirizzo del mittente.
-Si utilizzano un modello simile LinkedIn per hello dall'indirizzo.  Si dovrebbe essere chiaro che è di mittente dell'invito hello e da cui società e inoltre aiutare a chiarire che posta elettronica hello proviene da un indirizzo di posta elettronica di Microsoft. formato Hello: &lt;nome visualizzato del mittente dell'invito&gt; da &lt;tenantname&gt; (tramite Microsoft) <invites@microsoft.com&gt;
+Per l'indirizzo del mittente si userà un modello simile a quello LinkedIn.  È consigliabile chiarire chi è il mittente dell'invito e a quale azienda appartiene, oltre a mettere in evidenza che il messaggio proviene da un indirizzo di posta elettronica Microsoft. Il formato è: &lt;nome visualizzato del mittente dell'invito&gt; da &lt;nometenant&gt; (tramite Microsoft)invites@microsoft.com&gt;
 
 ### <a name="reply-to"></a>Rispondi a
-risposta Hello-tooemail è impostato posta elettronica del mittente toohello quando è disponibile, in modo da rispondere tramite posta elettronica toohello invia un mittente dell'invito toohello indietro di posta elettronica.
+Se disponibile, viene impostato l'indirizzo di posta elettronica del mittente dell'invito. Un'eventuale risposta all'invito viene quindi inviata al mittente.
 
 ### <a name="branding"></a>Personalizzazione
-invito di Hello messaggi di posta elettronica dal tenant di usare società hello personalizzazione che potrebbero impostati per il tenant. Se si desidera tootake sfruttare questa funzionalità, [qui](https://docs.microsoft.com/azure/active-directory/active-directory-branding-custom-signon-azure-portal) hello dettagli su come tooconfigure è. logo banner Hello viene visualizzato nel messaggio di posta elettronica hello. Dimensioni dell'immagine hello seguire le istruzioni di qualità e [qui](https://docs.microsoft.com/azure/active-directory/active-directory-branding-custom-signon-azure-portal) per ottenere risultati ottimali. Inoltre, il nome di società hello viene visualizzato anche in tooaction chiamata hello.
+Nei messaggi di posta elettronica di invito vengono usate le informazioni personalizzate distintive dell'azienda eventualmente impostate per il tenant. Se si vogliono sfruttare i vantaggi offerti da questa funzionalità, [qui](https://docs.microsoft.com/azure/active-directory/active-directory-branding-custom-signon-azure-portal) sono disponibili i dettagli su come configurarla. Il logo banner viene visualizzato nel messaggio di posta elettronica. Per ottenere risultati ottimali, seguire le istruzioni relative a qualità e dimensioni dell'immagine, disponibili [qui](https://docs.microsoft.com/azure/active-directory/active-directory-branding-custom-signon-azure-portal). Il nome dell'azienda viene anche visualizzato nella chiamata all'azione.
 
-### <a name="call-tooaction"></a>Chiamare tooaction
-Hello chiamata tooaction è costituito da due parti: descrivere il motivo per cui destinatario hello ha ricevuto messaggi hello e viene richiesto il destinatario hello toodo su di esso.
-- Hello "perché" sezione può essere risolti usando hello seguente motivo: già applicazioni tooaccess invitati hello &lt;tenantname&gt; organizzazione
+### <a name="call-to-action"></a>Chiamata all'azione
+La chiamata all'azione è costituita da due parti: la spiegazione del motivo per cui il destinatario ha ricevuto il messaggio e l'indicazione delle successive azioni richieste al destinatario.
+- La sezione relativa al "motivo" può essere basata sul seguente modello: Hai ricevuto l'invito per accedere alle applicazioni nell'organizzazione &lt;nometenant&gt;
 
-- La sezione "cosa vi viene richiesto toodo" è indicata dalla presenza di hello di hello hello e **iniziare** pulsante. Quando il destinatario hello è stato aggiunto senza necessità di hello di inviti, questo pulsante non viene visualizzato.
+- La sezione relativa alle "successive azioni richieste al destinatario" è indicata dalla presenza del pulsante **Get Started** (Inizia). Se per aggiungere il destinatario non è stato necessario inviare inviti, questo pulsante non viene visualizzato.
 
 ### <a name="inviters-information"></a>Informazioni sul mittente dell'invito
-nome visualizzato del mittente Hello è incluso nel messaggio di posta elettronica hello. E, inoltre, se l'installazione di un'immagine del profilo per l'account di Azure AD, hello invito tramite posta elettronica include anche l'immagine. Entrambe è di confidenza del destinatario nel messaggio di posta elettronica hello tooincrease desiderato.
+Il nome visualizzato del mittente dell'invito è incluso nel messaggio di posta elettronica. Nel messaggio di invito verrà inclusa anche l'immagine del profilo per l'account di Azure AD, qualora sia stata impostata. Entrambi consentono di rendere il messaggio di posta elettronica più attendibile per il destinatario.
 
-Se ancora stato impostato l'immagine del profilo, viene visualizzata un'icona con iniziali del mittente hello al posto di immagine hello:
+Se non è ancora stata impostata un'immagine del profilo, al posto dell'immagine viene visualizzata un'icona con le iniziali del mittente dell'invito:
 
-  ![visualizzazione iniziali del mittente hello](media/active-directory-b2b-invitation-email/inviters-initials.png)
+  ![visualizzazione iniziali del mittente dell'invito](media/active-directory-b2b-invitation-email/inviters-initials.png)
 
 ### <a name="body"></a>Corpo
-corpo Hello contiene il messaggio hello che inviter hello compone o viene passato tramite invito hello API. Si tratta di un'area di testo, che quindi non supporta l'elaborazione dei tag HTML per motivi di sicurezza.
+Il corpo contiene il messaggio digitato dal mittente dell'invito oppure passato tramite l'API di invito. Si tratta di un'area di testo, che quindi non supporta l'elaborazione dei tag HTML per motivi di sicurezza.
 
 ### <a name="footer-section"></a>Sezione piè di pagina
-piè di pagina Hello contiene marchio di società Microsoft hello e informa il destinatario hello se posta elettronica hello è stato inviato da un alias non monitorato. Casi speciali:
+Il piè di pagina contiene il marchio aziendale di Microsoft e indica al destinatario se il messaggio di posta elettronica è stato inviato da un alias non monitorato. Casi speciali:
 
-- mittente dell'invito Hello non dispone di un indirizzo di posta elettronica in hello si invitano tenancy
+- Il mittente dell'invito non dispone di un indirizzo di posta elettronica nella tenancy di invito
 
-  ![immagine del mittente dell'invito non dispone di un indirizzo di posta elettronica in hello si invitano tenancy](media/active-directory-b2b-invitation-email/inviter-no-email.png)
+  ![l'immagine del profilo del mittente dell'invito non è associata a un indirizzo di posta elettronica nella tenancy di invito](media/active-directory-b2b-invitation-email/inviter-no-email.png)
 
 
-- destinatario Hello non deve necessariamente invito hello tooredeem
+- Il destinatario non deve riscattare l'invito
 
-  ![Quando i destinatari non necessario tooredeem invito](media/active-directory-b2b-invitation-email/when-recipient-doesnt-redeem.png)
+  ![caso in cui il destinatario non deve riscattare l'invito](media/active-directory-b2b-invitation-email/when-recipient-doesnt-redeem.png)
 
 
 ## <a name="next-steps"></a>Passaggi successivi

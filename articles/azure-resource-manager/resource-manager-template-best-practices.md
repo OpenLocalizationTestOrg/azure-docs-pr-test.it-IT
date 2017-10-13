@@ -1,5 +1,5 @@
 ---
-title: aaaBest procedure consigliate per la creazione di modelli di gestione risorse | Documenti Microsoft
+title: Procedure consigliate per la creazione di modelli di Resource Manager| Microsoft Docs
 description: Linee guida per la semplificazione dei modelli di Azure Resource Manager.
 services: azure-resource-manager
 documentationcenter: 
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: tomfitz
-ms.openlocfilehash: ec9bbe218c4f2c6a92ca44b5e9c9c71029e22151
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a23301ba88279af3f7bf4d353ae808e9eeb0900d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="best-practices-for-creating-azure-resource-manager-templates"></a>Procedure consigliate per la creazione di modelli di Azure Resource Manager
-Queste linee guida consentono di creare modelli di Azure Resource Manager toouse semplice e affidabile. linee guida di Hello sono solo suggerimenti. e non come requisiti assoluti, salvo diversa indicazione. Lo scenario potrebbe richiedere una variante di uno di hello seguenti approcci o esempi.
+Le linee guida seguenti consentono di creare modelli di Azure Resource Manager affidabili e facili da usare; sono quindi da considerare solo come suggerimenti e non come requisiti assoluti, salvo diversa indicazione. I diversi scenari potrebbero richiedere una variazione rispetto agli approcci o esempi seguenti.
 
 ## <a name="resource-names"></a>Nomi di risorse
 In genere vengono usati tre tipi di nomi di risorse in Resource Manager:
 
 * Nomi di risorse che devono essere univoci.
-* I nomi delle risorse che non sono necessari toobe univoco, ma si sceglie un nome che può aiutarti a identificare una risorsa in base al contesto tooprovide.
+* Nomi di risorse che non devono necessariamente essere univoci, ma che si desidera rendano possibile l'identificazione di una risorsa in base al contesto.
 * Nomi di risorse che possono essere generici.
 
  Per informazioni sulle restrizioni relative ai nomi di risorse, vedere [Recommended naming conventions for Azure resources](../guidance/guidance-naming-conventions.md)(Convenzioni di denominazione consigliate per le risorse di Azure).
@@ -47,9 +47,9 @@ In genere vengono usati tre tipi di nomi di risorse in Resource Manager:
 
 <sup>1</sup> I nomi di account di archiviazione devono essere formati da lettere minuscole, un massimo di 24 caratteri e non devono includere alcun segno meno.
 
-Se si fornisce un parametro per un nome di risorsa, è necessario fornire un nome univoco, quando si distribuiscono risorse hello. Facoltativamente, è possibile creare una variabile che utilizza hello [uniqueString()](resource-group-template-functions-string.md#uniquestring) toogenerate un nome di funzione. 
+Se si specifica un parametro per un nome di risorsa, è necessario indicare un nome univoco durante la distribuzione. In alternativa, è possibile creare una variabile che usi la funzione [uniqueString()](resource-group-template-functions-string.md#uniquestring) per generare un nome. 
 
-È anche possibile desidera tooadd un prefisso o suffisso toohello **uniqueString** risultato. Modifica nome univoco di hello può identificare più facilmente il tipo di risorsa hello dal nome hello. Ad esempio, è possibile generare un nome univoco per un account di archiviazione tramite hello segue variabile:
+È spesso opportuno aggiungere un prefisso o un suffisso al risultato di **uniqueString**. La modifica del nome univoco consente di identificare più facilmente il tipo di risorsa in base al nome. Ad esempio, è possibile generare un nome univoco per un account di archiviazione usando la variabile seguente:
 
 ```json
 "variables": {
@@ -58,7 +58,7 @@ Se si fornisce un parametro per un nome di risorsa, è necessario fornire un nom
 ```
 
 ### <a name="resource-names-for-identification"></a>Nomi di risorse per l'identificazione
-Alcuni tipi di risorsa potrebbe essere necessario tooname, ma i relativi nomi non devono toobe univoco. Per questi tipi di risorsa, è possibile fornire un nome che identifica il contesto di risorsa hello sia il tipo di risorsa hello. Specificare un nome descrittivo che consente di identificare risorse hello in un elenco di risorse. Se è necessario un nome di risorsa diverso per distribuzioni diverse toouse, è possibile utilizzare un parametro per il nome di hello:
+Si tratta di risorse cui si desidera attribuire un nome, ma di cui non è necessario garantire l'univocità. Per questi tipi di risorse, è sufficiente indicare un nome che identifichi il contesto e il tipo di risorsa. È opportuno attribuire un nome descrittivo che ne faciliti il riconoscimento in un elenco di risorse. Se è necessario modificare il nome della risorsa durante le distribuzioni, usare un parametro per il nome:
 
 ```json
 "parameters": {
@@ -66,13 +66,13 @@ Alcuni tipi di risorsa potrebbe essere necessario tooname, ma i relativi nomi no
         "type": "string",
         "defaultValue": "demoLinuxVM",
         "metadata": {
-            "description": "hello name of hello VM toocreate."
+            "description": "The name of the VM to create."
         }
     }
 }
 ```
 
-Se non è necessario toopass in un nome durante la distribuzione, è possibile utilizzare una variabile: 
+Se non è necessario modificare il nome durante la distribuzione, usare una variabile: 
 
 ```json
 "variables": {
@@ -91,7 +91,7 @@ In alternativa si può usare un valore hardcoded:
 ```
 
 ### <a name="generic-resource-names"></a>Nomi di risorse generici
-Per i tipi di risorse per lo più accessibile tramite una risorsa diversa, è possibile utilizzare un nome generico che è hardcoded nel modello di hello. Ad esempio, è possibile impostare un nome generico e standard per le regole del firewall in SQL server:
+Per i tipi di risorse in gran parte accessibili tramite un'altra risorsa, è possibile usare un nome generico che sia hardcoded nel modello. Ad esempio, è possibile impostare un nome generico e standard per le regole del firewall in SQL server:
 
 ```json
 {
@@ -102,24 +102,24 @@ Per i tipi di risorse per lo più accessibile tramite una risorsa diversa, è po
 ```
 
 ## <a name="parameters"></a>parameters
-Hello informazioni seguenti possono essere utili quando si utilizzano parametri:
+Le informazioni seguenti possono essere utili quando si usano parametri:
 
 * Ridurre al minimo l'uso di parametri. Se possibile, usare una variabile o un valore letterale. Specificare parametri solo per questi scenari:
    
-   * Impostazioni che si desidera toouse variazioni di base tooenvironment (SKU, dimensioni e dalla capacità).
-   * Nomi delle risorse che si desidera toospecify per facilitare l'identificazione.
-   * Valori di uso frequente toocomplete altre attività (ad esempio, un nome utente di amministratore).
+   * Impostazioni da variare in base all'ambiente (ad esempio SKU, dimensioni o capacità).
+   * Nomi di risorse da specificare per facilitare l'identificazione.
+   * Valori usati spesso per completare altre attività (ad esempio nome utente amministratore).
    * Segreti (ad esempio password).
-   * numero di Hello o una matrice di valori toouse quando si creano più istanze di un tipo di risorsa.
+   * Il numero o la matrice di valori da usare durante la creazione di più istanze di un tipo di risorsa.
 * Usare la notazione Camel per i nomi dei parametri.
-* Fornire una descrizione di ogni parametro nei metadati hello:
+* Indicare una descrizione nei metadati per ogni parametro:
 
    ```json
    "parameters": {
        "storageAccountType": {
            "type": "string",
            "metadata": {
-               "description": "hello type of hello new storage account created toostore hello VM disks."
+               "description": "The type of the new storage account created to store the VM disks."
            }
        }
    }
@@ -133,7 +133,7 @@ Hello informazioni seguenti possono essere utili quando si utilizzano parametri:
             "type": "string",
             "defaultValue": "Standard_GRS",
             "metadata": {
-                "description": "hello type of hello new storage account created toostore hello VM disks."
+                "description": "The type of the new storage account created to store the VM disks."
             }
         }
    }
@@ -146,13 +146,13 @@ Hello informazioni seguenti possono essere utili quando si utilizzano parametri:
        "secretValue": {
            "type": "securestring",
            "metadata": {
-               "description": "hello value of hello secret toostore in hello vault."
+               "description": "The value of the secret to store in the vault."
            }
        }
    }
    ```
 
-* Quando possibile, non utilizzare un percorso di toospecify di parametro. Utilizzare invece hello **percorso** proprietà hello del gruppo di risorse. Utilizzando hello **gruppo di risorse () .location** espressione per tutte le risorse, le risorse nel modello hello vengono distribuite in hello stesso percorso del gruppo di risorse hello:
+* Quando possibile, evitare di usare un parametro per specificare la posizione. Usare invece la proprietà **location** del gruppo di risorse. Usando l'espressione **resourceGroup().location** per tutte le risorse, le risorse nel modello verranno distribuite nella stessa posizione del gruppo di risorse:
    
    ```json
    "resources": [
@@ -166,16 +166,16 @@ Hello informazioni seguenti possono essere utili quando si utilizzano parametri:
    ]
    ```
    
-   Se un tipo di risorsa è supportato in solo un numero limitato di percorsi, è un percorso valido direttamente nel modello di hello toospecify. Se è necessario utilizzare un **percorso** parametro condividere tale valore del parametro quanto possibile con le risorse che sono probabilmente toobe in hello nello stesso percorso. Questo riduce il numero di hello di volte in cui gli utenti vengono richiesto di informazioni sul percorso tooprovide.
-* Evitare di utilizzare un parametro o una variabile per la versione API hello per un tipo di risorsa. I valori e le proprietà delle risorse possono variare in base al numero di versione. In un editor di codice IntelliSense non può determinare schema corretto hello quando è impostato versione API hello tooa parametro o variabile. Livello di codice hello invece la versione API nel modello di hello.
+   Se un tipo di risorsa è supportato solo in un numero limitato di posizioni, provare a specificare una posizione valida direttamente nel modello. Se è necessario usare un parametro **location**, condividere per quanto possibile il relativo valore con le risorse che potrebbero essere nella stessa posizione. Questo approccio permette di ridurre al minimo il numero di volte in cui gli utenti devono dare informazioni sulla posizione.
+* Evitare di usare un parametro o una variabile per la versione dell'API per un tipo di risorsa. I valori e le proprietà delle risorse possono variare in base al numero di versione. Quando la versione dell'API è impostata su un parametro o una variabile, IntelliSense negli editor di codice non può determinare lo schema corretto. Impostare invece la versione dell'API come hardcoded nel modello.
 
 ## <a name="variables"></a>variables
-Hello seguenti informazioni possono essere utili quando si utilizzano variabili:
+Le informazioni seguenti possono essere utili quando si usano variabili:
 
-* Utilizzare le variabili per i valori necessari toouse più volte in un modello. Se un valore viene utilizzato una sola volta, un valore a livello di codice rende il tooread più semplice del modello.
-* Non è possibile utilizzare hello [riferimento](resource-group-template-functions-resource.md#reference) funzione hello **variabili** sezione del modello di hello. Hello **riferimento** funzione deriva il relativo valore dallo stato di runtime della risorsa hello. Tuttavia, le variabili vengono risolti durante l'analisi del modello di hello iniziale hello. Costruire valori che devono hello **riferimento** funzione direttamente in hello **risorse** o **restituisce** sezione del modello di hello.
+* Usare le variabili per i valori da usare più volte in un modello. Se un valore viene usato una sola volta, un valore hardcoded facilita la lettura del modello.
+* Non è possibile usare la funzione [reference](resource-group-template-functions-resource.md#reference) nella sezione **variables** del modello. La funzione **reference** deriva il proprio valore dallo stato di runtime della risorsa, ma le variabili vengono risolte durante l'analisi iniziale del modello. Costruire invece valori che richiedono la funzione **reference** direttamente nella sezione **resources** o **outputs** del modello.
 * Includere le variabili per i nomi di risorse che devono essere univoci, come illustrato in [Nomi di risorse](#resource-names).
-* È possibile raggruppare le variabili in oggetti complessi. Hello utilizzare **variable.subentry** formato tooreference un valore da un oggetto complesso. Il raggruppamento delle variabili consente di tenere traccia delle variabili correlate Inoltre, migliora la leggibilità del modello di hello. Ad esempio:
+* È possibile raggruppare le variabili in oggetti complessi. È possibile fare riferimento a un valore da un oggetto complesso nel formato **variable.subentry**. Il raggruppamento delle variabili consente di tenere traccia delle variabili correlate e migliora la leggibilità del modello. Ad esempio:
    
    ```json
    "variables": {
@@ -206,9 +206,9 @@ Hello seguenti informazioni possono essere utili quando si utilizzano variabili:
      Per esempi avanzati di uso di oggetti complessi come variabili, vedere [Condividere lo stato tra modelli di Azure Resource Manager](best-practices-resource-manager-state.md).
 
 ## <a name="resources"></a>Risorse
-Hello seguenti informazioni possono essere utili quando si lavora con risorse:
+Le informazioni seguenti possono essere utili quando si usano le risorse:
 
-* toohelp altri collaboratori comprendere hello scopo della risorsa hello, specificare **commenti** per ogni risorsa nel modello hello:
+* Specificare **comments** per ogni risorsa nel modello per consentire ad altri collaboratori di comprendere lo scopo della risorsa:
    
    ```json
    "resources": [
@@ -217,14 +217,14 @@ Hello seguenti informazioni possono essere utili quando si lavora con risorse:
          "type": "Microsoft.Storage/storageAccounts",
          "apiVersion": "2016-01-01",
          "location": "[resourceGroup().location]",
-         "comments": "This storage account is used toostore hello VM disks.",
+         "comments": "This storage account is used to store the VM disks.",
          ...
      }
    ]
    ```
 
-* È possibile usare tag tooadd metadati tooresources. Utilizzare i metadati tooadd informazioni sulle risorse. Ad esempio, è possibile aggiungere metadati toorecord i dettagli di fatturazione per una risorsa. Per ulteriori informazioni, vedere [tramite tag tooorganize le risorse di Azure](resource-group-using-tags.md).
-* Se si utilizza un *endpoint pubblico* nel modello (ad esempio, un Blob di Azure storage endpoint pubblico), *eseguire hardcoded* hello dello spazio dei nomi. Hello utilizzare **riferimento** toodynamically funzione recuperare hello dello spazio dei nomi. È possibile utilizzare gli ambienti di spazio dei nomi pubblici questo approccio toodeploy hello modello toodifferent senza modificare manualmente l'endpoint di hello nel modello di hello. Impostare hello API versione toohello stessa versione in uso per l'account di archiviazione hello nel modello:
+* È possibile usare i tag per aggiungere metadati alle risorse. Usare i metadati per aumentare le informazioni sulle risorse. Ad esempio, è possibile aggiungere metadati per registrare i dettagli di fatturazione di una risorsa. Per altre informazioni, vedere [Uso dei tag per organizzare le risorse di Azure](resource-group-using-tags.md).
+* Se si usa un *endpoint pubblico* nel modello, come ad esempio un endpoint pubblico di archiviazione BLOB di Azure, *non impostare come hardcoded* lo spazio dei nomi. Usare la funzione **reference** per recuperare lo spazio dei nomi in modo dinamico. Questo approccio consente di distribuire il modello in ambienti diversi dello spazio dei nomi pubblico senza dover modificare manualmente l'endpoint nel modello. Impostare la versione dell'API sulla stessa versione in uso per l'account di archiviazione nel modello:
    
    ```json
    "osDisk": {
@@ -235,7 +235,7 @@ Hello seguenti informazioni possono essere utili quando si lavora con risorse:
    }
    ```
    
-   Se l'account di archiviazione hello viene distribuito in hello stesso modello che si sta creando, non è necessario spazio dei nomi del provider di hello toospecify quando si fa riferimento a risorse hello. Questa è la sintassi semplificata hello:
+   Se l'account di archiviazione viene distribuito nello stesso modello creato, non è necessario specificare lo spazio dei nomi del provider quando si fa riferimento alla risorsa. La sintassi semplificata è:
    
    ```json
    "osDisk": {
@@ -246,7 +246,7 @@ Hello seguenti informazioni possono essere utili quando si lavora con risorse:
    }
    ```
    
-   Se si dispone di altri valori nel modello toouse configurato uno spazio dei nomi pubblico, modificare questi valori tooreflect hello stesso **riferimento** (funzione). Ad esempio, è possibile impostare hello **storageUri** proprietà del profilo di diagnostica della macchina virtuale hello:
+   Se nel modello sono presenti altri valori configurati per usare uno spazio dei nomi pubblico, modificarli in modo da riflettere la stessa funzione **reference**. Ad esempio, è possibile impostare la proprietà **storageUri** del profilo di diagnostica della macchina virtuale:
    
    ```json
    "diagnosticsProfile": {
@@ -268,16 +268,16 @@ Hello seguenti informazioni possono essere utili quando si lavora con risorse:
    }
    ```
 
-* Assegnare pubblica macchina di virtuale tooa di indirizzi IP solo quando richiesto da un'applicazione. tooconnect tooa macchina virtuale (VM) per il debug o per la gestione o a scopi amministrativi, utilizzare le regole NAT in ingresso, un gateway di rete virtuale o un jumpbox.
+* Assegnare indirizzi IP pubblici a una macchina virtuale solo se richiesto per un'applicazione. Per connettersi a una macchina virtuale (VM) per il debug o per la gestione o a scopi amministrativi, usare le regole NAT in ingresso, un gateway di rete virtuale o un jumpbox.
    
-     Per ulteriori informazioni sulla connessione toovirtual macchine, vedere:
+     Per altre informazioni sulla connessione alle macchine virtuali, vedere:
    
    * [Eseguire macchine virtuali per un'architettura a più livelli in Azure](../guidance/guidance-compute-n-tier-vm.md)
    * [Configurare l'accesso WinRM per le macchine virtuali in Azure Resource Manager](../virtual-machines/windows/winrm.md)
-   * [Consentire l'accesso esterno tooyour VM usando hello portale di Azure](../virtual-machines/windows/nsg-quickstart-portal.md)
-   * [Consentire l'accesso esterno tooyour VM tramite PowerShell](../virtual-machines/windows/nsg-quickstart-powershell.md)
-   * [Consentire l'accesso esterno tooyour VM Linux tramite CLI di Azure](../virtual-machines/virtual-machines-linux-nsg-quickstart.md)
-* Hello **domainNameLabel** proprietà per gli indirizzi IP pubblici devono essere univoci. Hello **domainNameLabel** valore deve essere compresa tra 3 e 63 caratteri e seguire le regole di hello specificate da questa espressione regolare: `^[a-z][a-z0-9-]{1,61}[a-z0-9]$`. Poiché hello **uniqueString** funzione genera una stringa di 13 caratteri, hello **dnsPrefixString** parametro è limitato too50 caratteri:
+   * [Consentire l'accesso esterno alla macchina virtuale tramite il portale di Azure](../virtual-machines/windows/nsg-quickstart-portal.md)
+   * [Consentire l'accesso esterno alla macchina virtuale tramite PowerShell](../virtual-machines/windows/nsg-quickstart-powershell.md)
+   * [Consentire l'accesso esterno alla macchina virtuale Linux tramite l'interfaccia della riga di comando di Azure](../virtual-machines/virtual-machines-linux-nsg-quickstart.md)
+* La proprietà **domainNameLabel** deve essere univoca per gli indirizzi IP pubblici. Il valore **domainNameLabel** deve avere una lunghezza compresa tra 3 e 63 caratteri e seguire le regole specificate dall'espressione regolare seguente: `^[a-z][a-z0-9-]{1,61}[a-z0-9]$`. Dato che la funzione **uniqueString** genera una stringa lunga 13 caratteri, il parametro **dnsPrefixString** non deve superare 50 caratteri:
 
    ```json
    "parameters": {
@@ -285,7 +285,7 @@ Hello seguenti informazioni possono essere utili quando si lavora con risorse:
            "type": "string",
            "maxLength": 50,
            "metadata": {
-               "description": "hello DNS label for hello public IP address. It must be lowercase. It should match hello following regular expression, or it will raise an error: ^[a-z][a-z0-9-]{1,61}[a-z0-9]$"
+               "description": "The DNS label for the public IP address. It must be lowercase. It should match the following regular expression, or it will raise an error: ^[a-z][a-z0-9-]{1,61}[a-z0-9]$"
            }
        }
    },
@@ -294,7 +294,7 @@ Hello seguenti informazioni possono essere utili quando si lavora con risorse:
    }
    ```
 
-* Quando si aggiunge un'estensione di uno script personalizzato tooa password, utilizzare hello **commandToExecute** proprietà hello **protectedSettings** proprietà:
+* Quando si aggiunge una password a un'estensione di script personalizzato, usare la proprietà **commandToExecute** nella proprietà **protectedSettings**:
    
    ```json
    "properties": {
@@ -314,12 +314,12 @@ Hello seguenti informazioni possono essere utili quando si lavora con risorse:
    ```
    
    > [!NOTE]
-   > tooensure che informazioni riservate vengono crittografate quando vengono passati come parametri tooVMs ed estensioni, utilizzare hello **protectedSettings** proprietà delle estensioni di hello pertinente.
+   > Per garantire che i segreti passati come parametri a macchine virtuali ed estensioni siano crittografati, usare la proprietà **protectedSettings** delle estensioni pertinenti.
    > 
    > 
 
 ## <a name="outputs"></a>outputs
-Se si utilizzano un modello toocreate gli indirizzi IP pubblici, includere un **restituisce** sezione che restituisce i dettagli di indirizzo IP hello e il nome di dominio completo hello (FQDN). Dopo la distribuzione, è possibile utilizzare output valori tooeasily recuperare dettagli pubblica gli indirizzi IP e nomi di dominio completi. Quando si fa riferimento a risorse hello, utilizzare una versione di hello API utilizzate toocreate è: 
+Se viene usato un modello per creare indirizzi IP pubblici, deve includere una sezione **outputs** che restituisca i dettagli dell'indirizzo IP e del nome di dominio completo (FQDN). Questi valori di output consentiranno di recuperare facilmente i dettagli sugli indirizzi IP pubblici e sugli FQDN dopo la distribuzione. Quando si fa riferimento alla risorsa, usare la versione dell'API impiegata per crearla: 
 
 ```json
 "outputs": {
@@ -335,25 +335,25 @@ Se si utilizzano un modello toocreate gli indirizzi IP pubblici, includere un **
 ```
 
 ## <a name="single-template-vs-nested-templates"></a>Modello singolo o modelli annidati
-toodeploy la soluzione, è possibile utilizzare un singolo modello o un modello principale con più modelli annidati. I modelli annidati sono comuni per scenari più avanzati. Utilizzo di un consente di modello nidificato hello seguenti vantaggi:
+Per distribuire la soluzione, è possibile usare un modello singolo o un modello principale con più modelli annidati. I modelli annidati sono comuni per scenari più avanzati. L'uso di un modello annidato presenta i vantaggi seguenti:
 
 * È possibile scomporre la soluzione in componenti di destinazione.
 * È possibile riusare i modelli annidati con modelli principali diversi.
 
-Se si sceglie di modelli annidati toouse, hello alle linee guida consentono di standardizzare schema del modello. Queste linee guida si basano sui [criteri di progettazione per modelli di Azure Resource Manager](best-practices-resource-manager-design-templates.md). È consigliabile una progettazione con hello seguenti modelli:
+Quando si decide di scomporre la progettazione del modello in più modelli annidati, le linee guida seguenti ne consentono la standardizzazione. Queste linee guida si basano sui [criteri di progettazione per modelli di Azure Resource Manager](best-practices-resource-manager-design-templates.md). La progettazione consigliata include i modelli seguenti:
 
-* **Modello principale** (azuredeploy.json). Utilizzo per i parametri di input hello.
-* **Modello di risorse condivise**. Le risorse che utilizzano tutte le altre risorse sono condivise toodeploy utilizzare (ad esempio, virtuale rete e la disponibilità set). Hello utilizzare **dependsOn** espressione tooensure che questo modello viene distribuito prima di altri modelli.
-* **Modello di risorse facoltative**. Utilizzare tooconditionally distribuire risorse in base a un parametro (ad esempio, un jumpbox).
-* **Modello di risorse membro**. Ogni tipo di istanza all'interno di un livello di applicazione prevede una propria configurazione. All'interno di un livello, è possibile definire diversi tipi di istanza. (Ad esempio, hello prima istanza di viene creato un cluster e istanze aggiuntive vengono aggiunte cluster esistente toohello.) Ogni tipo di istanza avrà un proprio modello di distribuzione.
-* **Script**. Per ogni tipo di istanza sono applicabili script ampiamente riutilizzabili, come ad esempio quelli di inizializzazione e formattazione di dischi aggiuntivi. Gli script personalizzati creati per uno scopo specifico di personalizzazione sono diversi, in base al tipo di istanza hello.
+* **Modello principale** (azuredeploy.json). Da usare per i parametri di input.
+* **Modello di risorse condivise**. Da usare per distribuire le risorse condivise da tutte le altre risorse (ad esempio, rete virtuale e set di disponibilità). L'espressione **dependsOn** deve essere usata per assicurarsi che questo modello venga distribuito prima degli altri.
+* **Modello di risorse facoltative**. Da usare per distribuire risorse in modo condizionale in base a un parametro, ad esempio un jumpbox.
+* **Modello di risorse membro**. Ogni tipo di istanza all'interno di un livello di applicazione prevede una propria configurazione. All'interno di un livello, è possibile definire diversi tipi di istanza. Ad esempio, la prima istanza crea un cluster mentre le altre vengono aggiunte al cluster esistente. Ogni tipo di istanza avrà un proprio modello di distribuzione.
+* **Script**. Per ogni tipo di istanza sono applicabili script ampiamente riutilizzabili, come ad esempio quelli di inizializzazione e formattazione di dischi aggiuntivi. Gli script personalizzati vengono creati per scopi di personalizzazione specifici e variano in base al tipo di istanza.
 
 ![Modello annidato](./media/resource-manager-template-best-practices/nestedTemplateDesign.png)
 
 Per altre informazioni, vedere [Uso di modelli collegati con Azure Resource Manager](resource-group-linked-templates.md).
 
-## <a name="conditionally-link-toonested-templates"></a>Collegare in modo condizionale toonested modelli
-È possibile utilizzare modelli di toonested un parametro tooconditionally collegamento. il parametro Hello diventa parte di hello URI per il modello di hello:
+## <a name="conditionally-link-to-nested-templates"></a>Collegarsi in modo condizionale al modello annidato
+È possibile collegarsi in modo condizionale ai modelli annidati usando un parametro che diventa parte dell'URI per il modello:
 
 ```json
 "parameters": {
@@ -387,12 +387,12 @@ Per altre informazioni, vedere [Uso di modelli collegati con Azure Resource Mana
 ```
 
 ## <a name="template-format"></a>Formato del modello
-È una buona norma toopass il modello tramite un validator JSON. Un validator può aiutare a rimuovere virgole, parentesi e parentesi quadre estranee che potrebbero causare un errore durante la distribuzione. Provare [JSONlint](http://jsonlint.com/) o un pacchetto linter per l'ambiente di modifica preferito (Visual Studio Code, Atom, Sublime Text, Visual Studio).
+È consigliabile passare il modello tramite un validator JSON. Un validator può aiutare a rimuovere virgole, parentesi e parentesi quadre estranee che potrebbero causare un errore durante la distribuzione. Provare [JSONlint](http://jsonlint.com/) o un pacchetto linter per l'ambiente di modifica preferito (Visual Studio Code, Atom, Sublime Text, Visual Studio).
 
-È anche una buona idea tooformat il file JSON per una migliore leggibilità. È possibile usare un pacchetto formattatore JSON per l'editor locale. In Visual Studio, il documento di hello tooformat, premere **Ctrl + K, Ctrl + D**. In Visual Studio Code, usare **Alt+Shift+F**. Se l'editor locale non Formatta documento hello, è possibile utilizzare un [formattatore online](https://www.bing.com/search?q=json+formatter).
+È anche consigliabile formattare il codice JSON per una migliore leggibilità. È possibile usare un pacchetto formattatore JSON per l'editor locale. In Visual Studio formattare il documento con **Ctrl+K, Ctrl+D**. In Visual Studio Code, usare **Alt+Shift+F**. Se l'editor locale non formatta il documento, è possibile usare un [formattatore online](https://www.bing.com/search?q=json+formatter).
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Per indicazioni sull'architettura della soluzione per le macchine virtuali, vedere [Run a Windows VM in Azure](../guidance/guidance-compute-single-vm.md) (Eseguire una macchina virtuale Windows in Azure) e [Run a Linux VM in Azure](../guidance/guidance-compute-single-vm-linux.md) (Eseguire una macchina virtuale Linux in Azure).
 * Per indicazioni sulla configurazione di un account di archiviazione, vedere l'[elenco di controllo di prestazioni e scalabilità per Archiviazione di Azure](../storage/common/storage-performance-checklist.md).
-* toolearn su come usare un'azienda tooeffectively Gestione risorse di gestione di sottoscrizioni, vedere [lo scaffolding di Azure enterprise: governance sottoscrizione rigorosa](resource-manager-subscription-governance.md).
+* Per indicazioni su come le aziende possono usare Resource Manager per gestire efficacemente le sottoscrizioni, vedere [Scaffold Azure enterprise: governance prescrittiva per le sottoscrizioni](resource-manager-subscription-governance.md).
 

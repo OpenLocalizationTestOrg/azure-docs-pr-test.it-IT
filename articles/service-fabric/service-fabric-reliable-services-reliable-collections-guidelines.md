@@ -1,5 +1,5 @@
 ---
-title: aaaGuidelines & indicazioni per le raccolte affidabile in Azure Service Fabric | Documenti Microsoft
+title: Linee guida e consigli per Reliable Collections in Azure Service Fabric | Microsoft Docs
 description: Linee guida e consigli per l'uso di Reliable Collections in Service Fabric
 services: service-fabric
 documentationcenter: .net
@@ -14,37 +14,37 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 5/3/2017
 ms.author: mcoskun
-ms.openlocfilehash: bcdbc9d013bc044e06c43761e7f515c7e4bf340c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 053a7bca76362035e428fc11806b3e4f83d00946
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="guidelines-and-recommendations-for-reliable-collections-in-azure-service-fabric"></a>Linee guida e consigli per Reliable Collections in Azure Service Fabric
-Questa sezione fornisce le linee guida per l'uso di Reliable State Manager e Reliable Collections. obiettivo di Hello è toohelp utenti evitano trappole comuni.
+Questa sezione fornisce le linee guida per l'uso di Reliable State Manager e Reliable Collections. L'obiettivo è quello di aiutare gli utenti a evitare errori comuni.
 
-linee guida Hello sono organizzate come semplici raccomandazione preceduti termini hello *si*, *provare a*, *evitare* e *non*.
+Le linee guida sono organizzate come semplici consigli*su cosa fare* , *prendere in considerazione* , *evitare* e*non fare*.
 
-* Non modificare un oggetto di tipo personalizzato restituito dalle operazioni di lettura, ad esempio `TryPeekAsync` o `TryGetValueAsync`. Raccolte affidabile, come raccolte concorrenti, restituiscono un oggetto di riferimento toohello e non una copia.
-* Eseguire hello copia completa restituito l'oggetto di un tipo personalizzato prima di modificarla. Poiché le strutture e tipi incorporati sono pass-by-value, non è necessario toodo una copia completa su di essi.
-* Non usare `TimeSpan.MaxValue` per i timeout. Valori di timeout deve essere utilizzato toodetect deadlock.
+* Non modificare un oggetto di tipo personalizzato restituito dalle operazioni di lettura, ad esempio `TryPeekAsync` o `TryGetValueAsync`. Le raccolte Reliable Collections, così come le raccolte Concurrent Collections, restituiscono un riferimento agli oggetti, non una copia.
+* Eseguire una copia completa dell'oggetto di tipo personalizzato restituito prima di modificarlo. Poiché le strutture e i tipi predefiniti vengono passati per valore, non è necessario eseguirne una copia completa.
+* Non usare `TimeSpan.MaxValue` per i timeout. I timeout devono essere usati per rilevare i deadlock.
 * Non usare una transazione dopo che ne è stato eseguito il commit, è stata interrotta o eliminata.
-* Non utilizzare di fuori dell'ambito di transazione hello in che è stata creata un'enumerazione.
+* Non usare un'enumerazione all'esterno dell'ambito di transazione nella quale è stata creata.
 * Non creare una transazione all'interno dell'istruzione `using` di un'altra transazione. Questa operazione può causare deadlock.
-* Verificare che l'implementazione di `IComparable<TKey>` sia corretta. sistema Hello assume una dipendenza dal `IComparable<TKey>` per unire i checkpoint e righe.
-* Utilizzare il blocco di aggiornamento durante la lettura di un elemento con un tooupdate intenzione è tooprevent una determinata classe di deadlock.
-* Si consiglia di conservare gli elementi (ad esempio, TKey + TValue per dizionario affidabile) inferiore a 80 Kbyte: hello più piccolo migliorato. In questo modo si riduce la quantità hello dei requisiti dei / o di utilizzo come disco e rete Heap oggetti grandi. Spesso, si riduce la replica dei dati duplicati quando viene aggiornata solo una piccola parte del valore di hello. Tooachieve modo comune nel dizionario affidabile, si tratta toobreak le righe in toomultiple righe.
-* È consigliabile usare backup e ripristino di emergenza toohave funzionalità.
-* Evitare di utilizzare operazioni di entità singola e a più entità (ad esempio `GetCountAsync`, `CreateEnumerableAsync`) in hello stessa transazione a causa di toohello diversi livelli di isolamento.
-* Gestire InvalidOperationException. Le transazioni utente possono essere interrotta dal sistema hello per diversi motivi. Ad esempio, quando cambia il proprio ruolo fuori primario hello affidabile di gestione dello stato quando una transazione con esecuzione prolungata è bloccato o il troncamento del log delle transazioni hello. In questi casi, l'utente può ricevere un evento InvalidOperationException, che indica che la transazione è già stata terminata. Supponendo che, terminazione hello di transazione hello non è stata richiesta dall'utente hello, toohandle modo migliore questa eccezione è transazione hello toodispose, verificare se è stato segnalato il token di annullamento hello (o è stato modificato il ruolo di hello della replica di hello), e in caso contrario creare una nuova transazione e riprovare.  
+* Verificare che l'implementazione di `IComparable<TKey>` sia corretta. Il sistema presenta dipendenze su `IComparable<TKey>` per l'unione di checkpoint e righe.
+* Usare il blocco di aggiornamento durante la lettura di un elemento con l'intenzione di aggiornarlo in modo da evitare una determinata classe di deadlock.
+* Prendere in considerazione l'opportunità di mantenere gli elementi (ad esempio TKey + TValue per Reliable Dictionary) sotto gli 80 Kbyte: più sono piccoli, meglio è. In questo modo, è possibile ridurre l'uso di heap di oggetti di grandi dimensioni, oltre che i requisiti di dischi e I/O di rete. Spesso si riduce anche la replica dei dati duplicati quando viene aggiornata solo una piccola parte del valore. Un modo comune per ottenere questo in Reliable Dictionary è interrompere le righe in più righe.
+* Prendere in considerazione l'uso della funzionalità di backup e ripristino per il ripristino di emergenza.
+* Evitare di combinare nella stessa transazione le operazioni a singola entità e a più entità, ad esempio `GetCountAsync`, `CreateEnumerableAsync`, a causa dei diversi livelli di isolamento.
+* Gestire InvalidOperationException. Le transazioni utente possono essere interrotte dal sistema per diversi motivi. Ad esempio, quando cambia il Gestore dello stato affidabile cambia il proprio ruolo da ruolo primario o quando una transazione a esecuzione prolungata blocca il troncamento del log delle transazioni. In questi casi, l'utente può ricevere un evento InvalidOperationException, che indica che la transazione è già stata terminata. Supponendo che l'interruzione della transazione non è stata richiesta dall'utente, il modo migliore per gestire questa eccezione è di eliminare la transazione, verificare se il token di annullamento è stato segnalato (o se il ruolo della replica è stato modificato) e in caso contrario creare una nuova transazione e riprovare.  
 
-Ecco alcuni aspetti tookeep presente:
+Occorre tenere presente i concetti seguenti:
 
-* timeout predefinito Hello è 4 secondi per hello tutte le API insieme affidabile. La maggior parte degli utenti devono utilizzare timeout predefinito hello.
-* è Hello token di annullamento predefinito `CancellationToken.None` in tutte le API raccolte affidabile.
-* parametro di tipo chiave Hello (*TKey*) per un dizionario affidabile devono correttamente implementare `GetHashCode()` e `Equals()`. Le chiavi non devono essere modificabili.
-* tooachieve la disponibilità elevata per le raccolte affidabile hello, ogni servizio deve disporre di almeno una destinazione e repliche minimo pari a 3.
-* Le operazioni di lettura su hello secondaria possono leggere le versioni che non è stato eseguito il commit di quorum.
+* Il timeout predefinito di tutte le API Reliable Collections è di quattro secondi. La maggior parte degli utenti deve usare il timeout predefinito.
+* Il token di annullamento predefinito è `CancellationToken.None` in tutte le API di Reliable Collections.
+* Il parametro di tipo di chiave (*TKey*) per un oggetto ReliableDictionary deve implementare correttamente `GetHashCode()` e `Equals()`. Le chiavi non devono essere modificabili.
+* Per ottenere una disponibilità elevata per le raccolte Reliable Collections, ogni servizio deve avere almeno un set di repliche di destinazione costituito da un minimo di 3 repliche.
+* Le operazioni di lettura sul secondario possono leggere le versioni che non sono vincolate a un quorum.
   Ciò significa che una versione dei dati che viene letta da un singolo secondario potrebbe essere elaborata in modo non corretto.
   Le letture della replica primaria sono sempre stabili: non sono mai elaborate in modo non corretto.
 

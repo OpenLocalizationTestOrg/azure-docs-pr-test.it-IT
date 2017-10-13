@@ -1,8 +1,8 @@
 ---
-title: aaaAzure documentazione di Service Bus - esercitazioni, riferimenti alle API | Documenti Microsoft
-description: Informazioni su come tooset di messaggistica che connette le applicazioni e servizi in locale e l'ambiente cloud.  Esercitazioni, video, informazioni di riferimento sulle API e altro ancora.
+title: Documentazione del bus di servizio di Azure - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
+description: Informazioni su come impostare una messaggistica per collegare applicazioni e servici in ambienti locali e cloud.  Esercitazioni, video, informazioni di riferimento sulle API e altro ancora.
 services: service-bus
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 03/14/2017
 ms.author: carolz
-ms.openlocfilehash: 68df38c39d6f5da112b44025aaf393df542ce01a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9651d93f4d29121e561108845ed48558e46e42f5
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 #<a name="service-bus-documentation"></a>Documentazione sul bus di servizio
 
-Informazioni su come tooconnect toouse di inoltro e Service Bus in locale e l'ambiente cloud. Esercitazioni, video, riferimenti ad API e altre Mostra documentazione come tooset di scambio di messaggi tra applicazioni e servizi cloud.
+Informazioni su come usare il bus di servizio e l'inoltro per connettersi ad ambienti locali e cloud. Esercitazioni, video, informazioni di riferimento sulle API e altri documenti in cui viene illustrato come impostare la messaggistica cloud tra applicazioni e servizi.
 
 <ul class="panelContent cardsFTitle">
     <li>

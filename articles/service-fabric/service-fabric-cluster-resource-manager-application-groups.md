@@ -1,6 +1,6 @@
 ---
-title: aaaService gestione delle risorse dell'infrastruttura Cluster - gruppi di applicazioni | Documenti Microsoft
-description: "Panoramica delle funzionalità gruppo di applicazioni nel servizio di gestione delle risorse Cluster dell'infrastruttura di hello hello"
+title: Cluster Resource Manager di Service Fabric - Gruppi di applicazioni | Microsoft Docs
+description: "Informazioni generali sulla funzionalità dei gruppi di applicazioni in Cluster Resource Manager di Service Fabric "
 services: service-fabric
 documentationcenter: .net
 author: masnider
@@ -14,33 +14,33 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/18/2017
 ms.author: masnider
-ms.openlocfilehash: b4f068862d962b53a0b3ea813b89bb13ee395681
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7fc61731c8df2a0c3dc5b77ae718b41c240f9233
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="introduction-tooapplication-groups"></a>Introduzione tooApplication gruppi
-Gestione delle risorse dell'infrastruttura servizio Cluster gestisce in genere le risorse cluster distribuendo il carico hello (rappresentato tramite [metriche](service-fabric-cluster-resource-manager-metrics.md)) in modo uniforme in tutto il cluster hello. Service Fabric gestisce la capacità di hello dei nodi hello hello e hello cluster nel suo complesso tramite [capacità](service-fabric-cluster-resource-manager-cluster-description.md). Metriche e capacità rappresentano un'ottima soluzione per molti tipi di carichi di lavoro, ma i modelli che fanno largo uso di diverse istanze di applicazione di Service Fabric comportano a volte requisiti aggiuntivi. Ad esempio, si può desiderare di:
+# <a name="introduction-to-application-groups"></a>Introduzione ai gruppi di applicazioni
+Cluster Resource Manager di Service Fabric generalmente gestisce le risorse del cluster distribuendo il carico (rappresentato tramite [Metriche](service-fabric-cluster-resource-manager-metrics.md)) in modo uniforme nell'intero cluster. Service Fabric gestisce la capacità dei nodi del cluster e il cluster nel suo complesso tramite la [capacità](service-fabric-cluster-resource-manager-cluster-description.md). Metriche e capacità rappresentano un'ottima soluzione per molti tipi di carichi di lavoro, ma i modelli che fanno largo uso di diverse istanze di applicazione di Service Fabric comportano a volte requisiti aggiuntivi. Ad esempio, si può desiderare di:
 
-- Alcune capacità in nodi hello hello cluster per i servizi all'interno di un'istanza di applicazione denominata hello di riserva
-- Limitare hello il numero totale di nodi che hello all'interno di un'istanza dell'applicazione denominata vengono eseguiti i servizi (anziché distribuirli tramite l'intero cluster hello)
-- Definire le capacità nell'istanza di applicazione denominata hello stesso numero di hello toolimit servizi o totale del consumo della risorsa dei servizi di hello all'interno
+- Riservare alcune capacità sui nodi del cluster per i servizi all'interno di qualche istanza di applicazione denominata
+- Limitare il numero totale di nodi eseguiti dai servizi all'interno di un'istanza dell'applicazione denominata (anziché distribuirli tramite l'intero cluster)
+- Definire le capacità nell'istanza di applicazione stessa denominata per limitare il numero di servizi o il consumo totale delle risorse dei servizi al suo interno
 
-toomeet questi requisiti, hello gestione delle risorse Cluster di Service Fabric supporta una funzionalità denominata gruppi di applicazioni.
+Per soddisfare questi requisiti, Cluster Resource Manager di Service Fabric supporta una funzionalità chiamata Gruppi di applicazioni.
 
-## <a name="limiting-hello-maximum-number-of-nodes"></a>Limitando hello il numero massimo di nodi
-Hello più semplice per la capacità dell'applicazione viene usata quando un'istanza di applicazione deve toobe limitato tooa determinato numero massimo di nodi. Consolida tutti i servizi all'interno di tale istanza dell'applicazione su un numero di set di macchine. Consolidamento è utile quando si sta tentando di toopredict o limitare l'utilizzo delle risorse fisiche da servizi di hello all'interno di tale istanza dell'applicazione denominata. 
+## <a name="limiting-the-maximum-number-of-nodes"></a>Limitazione del numero massimo di nodi
+Il caso d'uso più semplice della capacità dell'applicazione è quando un'istanza di applicazione deve essere limitata a un numero massimo di nodi. Consolida tutti i servizi all'interno di tale istanza dell'applicazione su un numero di set di macchine. Il consolidamento è utile quando si sta cercando di stimare o limitare l'utilizzo delle risorse fisiche da parte dei servizi all'interno di tale istanza dell'applicazione denominata. 
 
-Hello immagine seguente mostra un'istanza dell'applicazione con e senza un numero massimo di nodi definiti:
+Nell'immagine seguente è mostrata un'istanza di applicazione con e senza un numero massimo di nodi definiti.
 
 <center>
 ![Istanza di applicazione che definisce il numero massimo di nodi][Image1]
 </center>
 
-Nell'esempio di sinistra hello, un'applicazione hello non dispone di un numero massimo di nodi definiti e dispone di tre servizi. Gestione delle risorse Cluster Hello è diffondere tutte le repliche tra sei nodi disponibili tooachieve hello equilibrio migliore in cluster hello (comportamento predefinito di hello). Nell'esempio di destra hello, vediamo hello stessa applicazione limitata toothree nodi.
+Nell'esempio a sinistra, l'applicazione non ha un numero massimo di nodi definito, e ha tre servizi. Cluster Resource Manager ha distribuito tutte le repliche tra sei nodi disponibili per ottenere il bilanciamento ottimale nel cluster (il comportamento predefinito). Nell'esempio a destra, notiamo la stessa applicazione limitata a tre nodi.
 
-il parametro Hello che controlla questo comportamento viene chiamato numero massimo di nodi. Questo parametro può essere impostato durante la creazione dell'applicazione oppure può essere aggiornato per un'istanza di applicazione già in esecuzione.
+Il parametro che gestisce questo comportamento è denominato MaximumNodes. Questo parametro può essere impostato durante la creazione dell'applicazione oppure può essere aggiornato per un'istanza di applicazione già in esecuzione.
 
 PowerShell
 
@@ -65,15 +65,15 @@ await fc.ApplicationManager.UpdateApplicationAsync(adUpdate);
 
 ```
 
-In set di nodi hello hello gestione delle risorse Cluster non garantisce gli oggetti per cui ottengano posizionati o ottengano utilizzati i nodi.
+All'interno del set di nodi, Cluster Resource Manager non garantisce quali oggetti di servizio si posizionano insieme o quali nodi vengono usati.
 
 ## <a name="application-metrics-load-and-capacity"></a>Metriche, carico e capacità dell'applicazione
-Gruppi di applicazioni consentono anche metriche toodefine associate a un'istanza dell'applicazione denominata specificato e la capacità del tale istanza applicazione per tali metriche. Le metriche dell'applicazione consentono di tootrack riserva e limitare il consumo di risorse hello dei servizi di hello all'interno di tale istanza dell'applicazione.
+I gruppi di applicazioni consentono anche di definire le metriche associate a una determinata istanza di applicazione denominata, nonché la capacità di quell'istanza dell'applicazione in relazione a tali metriche. Le metriche dell'applicazione consentono di tener traccia del consumo di risorse da parte dei servizi all'interno dell'istanza di applicazione, di riservarlo e di limitarlo.
 
 Per ogni metrica di applicazione, è possibile impostare due valori:
 
-- **Applicazione capacità totale** : questa impostazione rappresenta la capacità totale hello dell'applicazione hello per una determinata metrica. Hello gestione delle risorse Cluster non consente la creazione di hello di eventuali nuovi servizi all'interno di questa istanza di applicazione che fa sì che il carico totale tooexceed questo valore. Si supponga, ad esempio, ha una capacità pari a 10 di istanza dell'applicazione hello e dispone già di carico di cinque. creazione di Hello di un servizio con un carico totale predefinito di 10 sarebbe non consentita.
-- **Capacità massima del nodo** : questa impostazione specifica carico totale massimo di hello per un'applicazione hello in un singolo nodo. Se il carico passa in questa capacità, hello gestione delle risorse Cluster consente di spostare i nodi tooother repliche hello carico diminuisce.
+- **Capacità totale dell'applicazione**: rappresenta la capacità totale dell'applicazione per una particolare metrica. Cluster Resource Manager impedisce di creare nuovi servizi all'interno dell'istanza di applicazione che farebbero superare questo valore di carico totale. Si supponga, ad esempio, che l'istanza di applicazione abbia una capacità pari a 10 e il carico sia già pari a cinque. La creazione di un servizio con un carico totale predefinito di 10 non verrebbe consentita.
+- **Capacità massima del nodo**: specifica il carico totale massimo per l'applicazione in un singolo nodo. Se il carico supera questa capacità, Cluster Resource Manager sposta le repliche in altri nodi in modo che il carico diminuisca.
 
 
 Powershell:
@@ -99,19 +99,19 @@ await fc.ApplicationManager.CreateApplicationAsync(ad);
 ```
 
 ## <a name="reserving-capacity"></a>Riserva della capacità
-Un altro utilizzo comune per gruppi di applicazioni è che le risorse all'interno di hello cluster tooensure sono riservati per un'istanza dell'applicazione specificato. Quando viene creata l'istanza dell'applicazione hello, è sempre riservato Hello uno spazio.
+I gruppi di applicazioni vengono comunemente usati anche per garantire che le risorse all'interno del cluster siano riservate per una determinata istanza di applicazione. Lo spazio viene riservato sempre quando viene creata l'istanza dell'applicazione.
 
-Riserva spazio nel cluster hello per un'applicazione hello avviene immediatamente, anche se:
-- istanza dell'applicazione Hello viene creato ma non dispone ancora di tutti i servizi all'interno di essa
-- numero di Hello dei servizi all'interno di istanza dell'applicazione hello cambia ogni volta 
-- servizi di Hello esistano ma non utilizzano risorse di hello 
+La riserva dello spazio nel cluster per l'applicazione si verifica immediatamente, anche se:
+- l'istanza dell'applicazione viene creata ma non dispone ancora di tutti i servizi all'interno di essa
+- il numero di servizi all'interno dell'istanza dell'applicazione cambia ogni volta 
+- i servizi esistono ma non usano le risorse 
 
 Per prenotare le risorse per un'istanza dell'applicazione è necessario definire due parametri aggiuntivi: *MinimumNodes* e *NodeReservationCapacity*
 
-- **Numero minimo di nodi** -definisce il numero minimo di hello di nodi che hello applicazione istanza deve essere eseguita.  
-- **NodeReservationCapacity** -questa impostazione è per ogni metrica per un'applicazione hello. il valore di Hello è quantità hello di tale metrica riservato per un'applicazione hello su qualsiasi nodo in cui che hello servizi in esecuzione tale applicazione.
+- **MinimumNodes**: definisce il numero minimo di nodi con cui l'istanza dell'applicazione deve essere eseguita.  
+- **NodeReservationCapacity**: questa impostazione è per ogni metrica per l'applicazione. Il valore è la quantità di tale metrica riservata per l'applicazione su ogni nodo in cui si eseguono i servizi dell'applicazione.
 
-La combinazione di **nodi** e **NodeReservationCapacity** garantisce una prenotazione di un carico minimo per un'applicazione hello all'interno di cluster hello. Se si verifica meno rimanenti del cluster di prenotazione di hello totale necessaria capacità di hello, si verifica un errore di creazione di un'applicazione hello. 
+La combinazione di **MinimumNodes** e **NodeReservationCapacity** garantisce una riserva minima del carico per l'applicazione all'interno del cluster. Se si ha meno capacità rimanente nel cluster rispetto al totale della riserva richiesta, la creazione dell'applicazione ha esito negativo. 
 
 Di seguito viene illustrato un esempio di come viene riservata la capacità:
 
@@ -119,11 +119,11 @@ Di seguito viene illustrato un esempio di come viene riservata la capacità:
 ![Istanze di applicazione che definiscono la capacità riservata][Image2]
 </center>
 
-Nell'esempio di sinistra hello, le applicazioni non dispone capacità qualsiasi applicazione definito. Gestione delle risorse Cluster Hello saldi tutti gli elementi in base a regole toonormal.
+Nell'esempio a sinistra, le applicazioni non hanno una capacità definita. Cluster Resource Manager bilancia tutti gli elementi in base alle normali regole.
 
-Nell'esempio hello hello destra, si supponga che Application1 sia stato creato con hello seguenti impostazioni:
+Nell'esempio a destra, si supponga che Applicazione1 sia stata creata con le impostazioni seguenti:
 
-- Numero minimo di nodi set tootwo
+- MinimumNodes impostato su due
 - Una metrica dell'applicazione definita con le impostazioni seguenti:
   - NodeReservationCapacity pari a 20
 
@@ -151,10 +151,10 @@ ad.Metrics.Add(appMetric);
 await fc.ApplicationManager.CreateApplicationAsync(ad);
 ```
 
-Service Fabric riserva capacità in due nodi per /Application1 e non consentono di servizi da Application2 tooconsume tale capacità anche se sono presenti che senza alcun carico non viene consumato da servizi di hello all'interno di Application1 in fase di hello. Questa capacità riservata applicazione è considerata utilizzata e concorre hello residua in tale nodo e all'interno di cluster hello.  prenotazione Hello viene sottratto dal hello residua di cluster immediatamente, ma hello riservato consumo viene sottratto dalla capacità di hello di un nodo specifico solo quando almeno un servizio oggetto viene posizionato su di esso. Questa prenotazione successiva consente un utilizzo ottimale delle risorse e flessibilità, dal momento che le risorse sono riservate nei nodi solo quando necessario.
+Service Fabric riserva la capacità in due nodi per Applicazione1 e non consente ai servizi da Applicazione2 di usare tale capacità, anche se non sono presenti carichi usati dai servizi all'interno di Applicazione1 al momento. Questa capacità riservata dell'applicazione viene considerata usata e conta a fronte della capacità residua del nodo e del cluster.  La riserva viene sottratta immediatamente dalla capacità del cluster rimanente, tuttavia il consumo riservato viene sottratto dalla capacità di un nodo specifico solo quando almeno un oggetto del servizio viene posizionato su di esso. Questa prenotazione successiva consente un utilizzo ottimale delle risorse e flessibilità, dal momento che le risorse sono riservate nei nodi solo quando necessario.
 
-## <a name="obtaining-hello-application-load-information"></a>Ottenere informazioni sul caricamento di applicazione hello
-Per ogni applicazione che ha una capacità di applicazioni definito per una o più metriche è possibile ottenere informazioni di hello sul carico di aggregazione hello segnalato da repliche dei relativi servizi.
+## <a name="obtaining-the-application-load-information"></a>Ottenimento delle informazioni sul carico dell'applicazione
+Per ogni applicazione con una Capacità dell'applicazione definita per una o più metriche è possibile ottenere le informazioni relative al carico aggregato segnalato dalle repliche dei suoi servizi.
 
 Powershell:
 
@@ -175,22 +175,22 @@ foreach (ApplicationLoadMetricInformation metric in metrics)
 }
 ```
 
-query ApplicationLoad Hello restituisce informazioni di base sulla capacità di applicazione che è stato specificato per un'applicazione hello hello. Queste informazioni includono le informazioni di nodi di minimo e massimo hello e numero hello che un'applicazione hello è attualmente occupata. Sono inoltre incluse informazioni su ogni metrica di carico dell'applicazione, tra cui:
+La query ApplicationLoad restituisce le informazioni di base sulla capacità dell'applicazione che è stata specificata. Queste informazioni includono le informazioni sul numero minimo e massimo di nodi e sul numero attualmente occupato dall'applicazione. Sono inoltre incluse informazioni su ogni metrica di carico dell'applicazione, tra cui:
 
-* Il nome della metrica: Nome della metrica hello.
-* Capacità di prenotazione: La capacità Cluster nel cluster hello viene riservata per l'applicazione.
+* Nome della metrica: nome della metrica.
+* Capacità di prenotazione: capacità riservata nel cluster per questa applicazione.
 * Carico dell'applicazione: carico totale delle repliche figlio dell'applicazione.
 * Capacità dell'applicazione: valore massimo consentito di carico dell'applicazione.
 
 ## <a name="removing-application-capacity"></a>Rimozione della capacità dell'applicazione
-Dopo aver impostati i parametri di capacità dell'applicazione hello per un'applicazione, può essere rimosso utilizzando le API di aggiornamento dell'applicazione o i cmdlet PowerShell. ad esempio:
+Dopo aver impostato i parametri di capacità per un'applicazione, questi parametri possono essere rimossi usando le API di aggiornamento dell'applicazione o i cmdlet PowerShell. ad esempio:
 
 ``` posh
 Update-ServiceFabricApplication –Name fabric:/MyApplication1 –RemoveApplicationCapacity
 
 ```
 
-Questo comando rimuove tutti i parametri di gestione della capacità dell'applicazione dall'istanza di applicazione hello. Sono inclusi nodi, numero massimo di nodi e le metriche dell'applicazione hello, se presente. effetto di Hello del comando hello è immediato. Dopo il completamento del comando, hello gestione delle risorse Cluster utilizza il comportamento predefinito di hello per la gestione delle applicazioni. I parametri di capacità dell'applicazione possono essere specificati nuovamente tramite `Update-ServiceFabricApplication`/`System.Fabric.FabricClient.ApplicationManagementClient.UpdateApplicationAsync()`.
+Questo comando rimuove tutti i parametri di gestione della capacità dall'istanza dell'applicazione. Ciò include MinimumNodes, MaximumNodes e le metriche dell'applicazione, se presenti. L'effetto del comando è immediato. Una volta eseguito il comando, Cluster Resource Manager usa il comportamento predefinito per la gestione delle applicazioni. I parametri di capacità dell'applicazione possono essere specificati nuovamente tramite `Update-ServiceFabricApplication`/`System.Fabric.FabricClient.ApplicationManagementClient.UpdateApplicationAsync()`.
 
 ### <a name="restrictions-on-application-capacity"></a>Restrizioni relative alla capacità dell'applicazione
 Esistono diverse restrizioni da rispettare per i parametri di capacità dell'applicazione. Se sono presenti errori di convalida non viene apportata alcuna modifica.
@@ -198,21 +198,21 @@ Esistono diverse restrizioni da rispettare per i parametri di capacità dell'app
 - Tutti i parametri di tipo integer devono essere numeri non negativi.
 - MinimumNodes non deve essere mai maggiore di MaximumNodes.
 - Se definite, le capacità per una metrica di carico devono rispettare queste regole:
-  - La capacità di prenotazione del nodo non deve essere maggiore della capacità massima del nodo. Ad esempio, non è possibile limitare la capacità di hello per la metrica di hello "CPU" in unità di hello nodo tootwo si cerca tooreserve tre unità su ogni nodo.
-  - Se il numero massimo di nodi viene specificato, il prodotto di hello del numero massimo di nodi e capacità massima del nodo non deve essere maggiore rispetto alla capacità totale di applicazione. Si supponga, ad esempio, hello capacità massima di nodo per la metrica di caricamento "CPU" è impostata tooeight. Si supponga inoltre che impostare hello too10 numero massimo di nodi. In questo caso, la capacità totale dell'applicazione deve essere superiore a 80 per la metrica di carico.
+  - La capacità di prenotazione del nodo non deve essere maggiore della capacità massima del nodo. Ad esempio, non è possibile limitare la capacità per la metrica "CPU" nel nodo a due unità e provare a prenotare tre unità in ogni nodo.
+  - Se viene specificato MaximumNodes, il prodotto di MaximumNodes e della capacità massima del nodo non deve essere maggiore della capacità totale dell'applicazione. Si supponga, ad esempio, che la capacità massima del nodo per la metrica di carico "CPU" sia impostata su 8. Si supponga anche che il numero massimo di nodi sia impostato su 10. In questo caso, la capacità totale dell'applicazione deve essere superiore a 80 per la metrica di carico.
 
-Hello restrizioni vengono applicate sia durante la creazione di applicazioni e aggiornamenti.
+Le restrizioni vengono applicate sia durante la creazione dell'applicazione sia durante i suoi aggiornamenti.
 
-## <a name="how-not-toouse-application-capacity"></a>La modalità non toouse capacità di applicazione
-- Non tentare toouse hello gruppo di applicazioni funzionalità tooconstrain hello applicazione tooa _specifico_ subset di nodi. In altre parole, è possibile specificare che un'applicazione hello viene eseguito su al massimo cinque nodi, ma non le cinque nodi specifici cluster hello. Vincolare un toospecific applicazione nodi possono essere ottenuti utilizzando vincoli di posizionamento per i servizi.
-- Non tentare toouse hello applicazione capacità tooensure che due servizi dalla stessa applicazione si trovano in hello hello stessi nodi. Usare invece [affinità](service-fabric-cluster-resource-manager-advanced-placement-rules-affinity.md) o [vincoli di posizionamento](service-fabric-cluster-resource-manager-cluster-description.md#node-properties-and-placement-constraints).
+## <a name="how-not-to-use-application-capacity"></a>Come usare la capacità dell'applicazione
+- Non tentare di usare le funzionalità dei gruppi di applicazioni per vincolare l'applicazione a uno _specifico_ subset di nodi. In altre parole, è possibile specificare che l'applicazione venga eseguita su un massimo di cinque nodi, ma non indicare i cinque nodi del cluster specifici. È possibile vincolare un'applicazione a nodi specifici usando i vincoli di posizionamento per i servizi.
+- Non usare la capacità dell'applicazione per garantire che due servizi della stessa applicazione vengano sempre posizionati sugli stessi nodi. Usare invece [affinità](service-fabric-cluster-resource-manager-advanced-placement-rules-affinity.md) o [vincoli di posizionamento](service-fabric-cluster-resource-manager-cluster-description.md#node-properties-and-placement-constraints).
 
 ## <a name="next-steps"></a>Passaggi successivi
 - Per altre informazioni sulla configurazione dei servizi, [Informazioni sulla configurazione dei servizi](service-fabric-cluster-resource-manager-configure-services.md)
-- toofind out sulla modalità di gestione delle risorse Cluster hello gestisce e bilancia il carico nel cluster hello, controllare l'articolo hello [bilanciamento del carico](service-fabric-cluster-resource-manager-balancing.md)
-- Iniziare dall'inizio hello e [ottenere un servizio di gestione delle risorse Cluster dell'infrastruttura di toohello introduzione](service-fabric-cluster-resource-manager-introduction.md)
+- Per informazioni sul modo in cui Cluster Resource Manager gestisce e bilancia il carico nel cluster, vedere l'articolo relativo al [bilanciamento del carico](service-fabric-cluster-resource-manager-balancing.md)
+- Partire dall'inizio e vedere l' [introduzione a Cluster Resource Manager di Service Fabric](service-fabric-cluster-resource-manager-introduction.md)
 - Per altre informazioni sul funzionamento generale delle metriche, vedere l'articolo sulle [metriche di carico di Service Fabric](service-fabric-cluster-resource-manager-metrics.md)
-- Hello gestione delle risorse Cluster dispone di numerose opzioni per la descrizione del cluster di hello. toofind ulteriori informazioni, consultare questo articolo in [che descrive un cluster di Service Fabric](service-fabric-cluster-resource-manager-cluster-description.md)
+- Cluster Resource Manager dispone di varie opzioni per descrivere il cluster. Per altre informazioni a riguardo vedere l'articolo [Descrivere un cluster di Service Fabric](service-fabric-cluster-resource-manager-cluster-description.md)
 
 [Image1]:./media/service-fabric-cluster-resource-manager-application-groups/application-groups-max-nodes.png
 [Image2]:./media/service-fabric-cluster-resource-manager-application-groups/application-groups-reserved-capacity.png

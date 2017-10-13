@@ -1,6 +1,6 @@
 ---
-title: dati del grafico tooquery aaaHow nel database di Azure Cosmos? | Microsoft Docs
-description: Informazioni su dati del grafico tooquery nel database di Azure Cosmos
+title: Procedura per l'esecuzione di query sui dati grafo in SQL in Azure Cosmos DB | Microsoft Docs
+description: Informazioni sull'esecuzione di query sui dati grafo in Azure Cosmos DB
 services: cosmos-db
 documentationcenter: 
 author: dennyglee
@@ -15,28 +15,28 @@ ms.tgt_pltfrm: na
 ms.workload: 
 ms.date: 05/10/2017
 ms.author: denlee
-ms.openlocfilehash: fdde881edd6c488e2fea51e5c9665e1d736009fa
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 81713c72da037f127e81239d214d7a877247dca1
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="azure-cosmos-db-how-tooquery-with-hello-graph-api-preview"></a>Azure Cosmos DB: Modalità tooquery con hello API Graph (anteprima)?
+# <a name="azure-cosmos-db-how-to-query-with-the-graph-api-preview"></a>Azure Cosmos DB: procedura per l'esecuzione di query con l'API Graph (anteprima)
 
-Hello Azure Cosmos DB [API Graph](graph-introduction.md) (anteprima) supporta [Gremlin](https://docs.mongodb.com/manual/tutorial/query-documents/) query. In questo articolo fornisce documenti di esempio e tooget che è stata avviata una query. Viene fornito un riferimento dettagliato di Gremlin in hello [supporto Gremlin](gremlin-support.md) articolo.
+L'[API Graph](graph-introduction.md) di Azure Cosmos DB (anteprima) supporta le query [Gremlin](https://docs.mongodb.com/manual/tutorial/query-documents/). Questo articolo include esempi di documenti e query per iniziare. L'articolo relativo al [supporto Gremlin](gremlin-support.md) include riferimenti Gremlin dettagliati.
 
-Questo articolo descrive hello seguenti attività: 
+Questo articolo illustra le attività seguenti: 
 
 > [!div class="checklist"]
 > * Esecuzione di query sui dati con Gremlin
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Per toowork queste query, è necessario disporre di un account Azure Cosmos DB e disporre di dati del grafico nel contenitore hello. Questi requisiti non sono disponibili? Hello completo [avvio rapido di 5 minuti](create-graph-dotnet.md) o hello [esercitazione developer](tutorial-query-graph.md) toocreate un account e popolare il database. È possibile eseguire dopo le query che utilizzano hello hello [libreria graph di Azure Cosmos DB .NET](graph-sdk-dotnet.md), [console Gremlin](https://tinkerpop.apache.org/docs/current/reference/#gremlin-console), o il driver Gremlin preferito.
+Per il funzionamento di queste query è necessario disporre di un account Azure Cosmos DB e nel contenitore devono essere presenti dati grafo. Questi requisiti non sono disponibili? Completare la [Guida introduttiva di 5 minuti](create-graph-dotnet.md) o l'[esercitazione per sviluppatori](tutorial-query-graph.md) per creare un account e popolare il database. È possibile eseguire le query seguenti usando la [libreria .NET di grafi di Azure Cosmos DB](graph-sdk-dotnet.md), la [console Gremlin](https://tinkerpop.apache.org/docs/current/reference/#gremlin-console), o il driver Gremlin preferito.
 
-## <a name="count-vertices-in-hello-graph"></a>Numero di vertici nel grafico hello
+## <a name="count-vertices-in-the-graph"></a>Numero di vertici nel grafo
 
-Hello frammento di codice seguente viene illustrato come toocount hello numero di vertici nel grafico hello:
+Il frammento seguente illustra come contare il numero di vertici nel grafo:
 
 ```
 g.V().count()
@@ -44,7 +44,7 @@ g.V().count()
 
 ## <a name="filters"></a>Filtri
 
-È possibile eseguire filtri utilizzando Gremlin `has` e `hasLabel` i passaggi e combinarli con `and`, `or`, e `not` toobuild più complessa di filtri. Per velocizzare le query, Azure DB Cosmos consente l'indicizzazione senza schema di tutte le proprietà all'interno di vertici e gradi.
+È possibile applicare filtri usando i comandi `has` e `hasLabel` di Gremlin e combinarli usando `and`, `or` e `not` per creare filtri più complessi. Per velocizzare le query, Azure DB Cosmos consente l'indicizzazione senza schema di tutte le proprietà all'interno di vertici e gradi.
 
 ```
 g.V().hasLabel('person').has('age', gt(40))
@@ -52,7 +52,7 @@ g.V().hasLabel('person').has('age', gt(40))
 
 ## <a name="projection"></a>Proiezione
 
-È possibile proiettare determinate proprietà nei risultati della query hello utilizzando hello `values` passaggio:
+È possibile proiettare determinate proprietà nei risultati della query usando il comando `values`:
 
 ```
 g.V().hasLabel('person').values('firstName')
@@ -60,28 +60,28 @@ g.V().hasLabel('person').values('firstName')
 
 ## <a name="find-related-edges-and-vertices"></a>Trovare vertici e archi correlati
 
-Finora sono stati esaminati solo gli operatori di query che è possibile usare in qualsiasi database. Grafici sono veloci ed efficienti per le operazioni di attraversamento quando è necessario toonavigate toorelated bordi e i vertici. Verranno ora individuati tutti gli amici di Thomas. Facciamo utilizzando del Gremlin `outE` passaggio toofind hello tutti i bordi in uscita da Thomas, quindi attraversamento toohello in vertici da tali usando del Gremlin `inV` passaggio:
+Finora sono stati esaminati solo gli operatori di query che è possibile usare in qualsiasi database. I grafi sono veloci ed efficienti per le operazioni di attraversamento quando è necessario passare agli archi e ai vertici correlati. Verranno ora individuati tutti gli amici di Thomas. Questa operazione viene eseguita usando il comando `outE` di Gremlin per individuare tutti gli archi in uscita da Thomas, quindi attraversando i vertici in ingresso da tali archi usando il comando `inV` di Gremlin:
 
 ```cs
 g.V('thomas').outE('knows').inV().hasLabel('person')
 ```
 
-la query successiva Hello esegue due hop toofind tutti "agli amici di Thomas di amici", chiamando `outE` e `inV` due volte. 
+La query successiva esegue due passaggi per trovare tutti "gli amici di amici" di Thomas chiamando `outE` e `inV` due volte. 
 
 ```cs
 g.V('thomas').outE('knows').inV().hasLabel('person').outE('knows').inV().hasLabel('person')
 ```
 
-È possibile compilare query più complesse e implementare la logica di attraversamento potente grafico utilizzando Gremlin, tra cui filtro combinazione espressioni, esecuzione di ciclo tramite hello `loop` passaggio e la navigazione condizionale implementazione utilizzando hello `choose` passaggio. Altre informazioni sulle operazioni che è possibile eseguire con il [supporto per Gremlin](gremlin-support.md).
+È possibile creare query più complesse e implementare la potente logica di attraversamento di grafi usando Gremlin, incluse la combinazione di espressioni di filtro, l'esecuzione di cicli con il comando `loop` e l'implementazione dello spostamento condizionale usando il comando `choose`. Altre informazioni sulle operazioni che è possibile eseguire con il [supporto per Gremlin](gremlin-support.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-In questa esercitazione, effettuata seguente hello:
+In questa esercitazione sono state eseguite le operazioni seguenti:
 
 > [!div class="checklist"]
-> * Appreso tooquery mediante Graph 
+> * È stato appreso come eseguire una query usando l'API Graph 
 
-È ora possibile procedere come toolearn esercitazione successiva toohello toodistribute i dati a livello globale.
+È ora possibile passare all'esercitazione successiva per imparare a distribuire i dati a livello globale.
 
 > [!div class="nextstepaction"]
 > [Distribuire i dati a livello globale](tutorial-global-distribution-documentdb.md)

@@ -1,5 +1,5 @@
 ---
-title: aaaAzure Mobile Engagement Troubleshooting Guide - Push/copertura
+title: Guida alla risoluzione dei problemi di Azure Mobile Engagement - Push/Reach
 description: Risoluzione dei problemi relativi all'interazione dell'utente e alle notifiche in Azure Mobile Engagement
 services: mobile-engagement
 documentationcenter: 
@@ -14,65 +14,65 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 4ee0b34b9b753a98ccf24863acb28a5dc76bfb95
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: ef6f34404b97a6972fc136262920a1bdbc4117b0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="troubleshooting-guide-for-push-and-reach-issues"></a>Guida alla risoluzione di problemi relativi a notifiche push e Reach
-di seguito Hello sono possibili problemi che possono verificarsi con la modalità di invio delle informazioni tooyour gli utenti di Azure Mobile Engagement.
+Di seguito sono indicati possibili problemi relativi al modo in cui Azure Mobile Engagement invia informazioni agli utenti.
 
 ## <a name="push-failures"></a>Errori push
 ### <a name="issue"></a>Problema
 * Le notifiche push non funzionano (in-app, all'esterno dell'app o entrambe).
 
 ### <a name="causes"></a>Cause
-* Molte volte un errore di push è un'indicazione che Azure Mobile Engagement Reach o un'altra funzionalità avanzata di Azure Mobile Engagement non correttamente è integrata o che è un aggiornamento obbligatorio hello SDK toofix un problema noto con una nuova piattaforma del sistema operativo o il dispositivo.
-* In caso di un problema nell'App o di test solo un push In App e solo un toodetermine push delle App.
-* Test di hello dell'interfaccia utente e hello API come una risoluzione dei problemi di passaggio toosee quali informazioni aggiuntive sull'errore sono disponibili entrambe le posizioni.
-* All'esterno dell'App push non funzionerà a meno che non sia Azure Mobile Engagement e raggiungere sono integrati in hello SDK.
-* Le notifiche push non funzionano se i certificati non sono validi o se usano la versione di produzione piuttosto che di sviluppo in modo corretto (solo per iOS). (**Nota:** "all'esterno dell'app" notifiche push non possono essere consegnate tooiOS, se si dispone di entrambi development hello (DEV) e versioni di produzione (produzione) di un'applicazione installata hello stesso dispositivo perché il token di sicurezza hello associato con il certificato può essere invalidato da Apple. tooresolve questo problema, disinstallare hello sviluppo e produzione versioni dell'applicazione e installare nuovamente hello solo una versione del dispositivo.)
-* All'esterno dell'App conteggi push vengono gestiti in modo diverso nelle diverse piattaforme (iOS Mostra meno informazioni di Android se push nativo sono disabilitate in un dispositivo, hello API può fornire più informazioni rispetto hello dell'interfaccia utente in statistiche push).
+* Spesso, un errore push indica che Azure Mobile Engagement, Reach o un'altra funzionalità avanzata di Azure Mobile Engagement non è integrata nel modo corretto o che è necessario eseguire un aggiornamento nell'SDK per risolvere un problema noto di un nuovo sistema operativo o della piattaforma di un dispositivo.
+* Eseguire il test di una notifica push in-app e una all'esterno dell'app per determinare se sono presenti problemi relativi a una o all'altra tipologia di notifica.
+* Eseguire il test sia dall'interfaccia utente che dall'API, come procedura di risoluzione dei problemi. In questo modo, sarà possibile visualizzare le altre informazioni sull'errore disponibili in entrambe le posizioni.
+* Le notifiche push all'esterno dell'app non funzionano se Azure Mobile Engagement e Reach non sono integrati nell'SDK.
+* Le notifiche push non funzionano se i certificati non sono validi o se usano la versione di produzione piuttosto che di sviluppo in modo corretto (solo per iOS). (**Nota:** è possibile che le notifiche push "all'esterno dell'app" non possano essere recapitate a iOS se la versione di sviluppo e quella di produzione dell'applicazione sono installate sullo stesso dispositivo, poiché il token di sicurezza associato al certificato può essere invalidato da Apple. Per risolvere questo problema, disinstallare entrambe le versioni di sviluppo e produzione dell'applicazione e installare nuovamente sul dispositivo solo una delle versioni.
+* Il conteggio delle notifiche push all'esterno dell'app viene gestito in modo differente, a seconda della piattaforma. In iOS vengono visualizzate meno informazioni rispetto ad Android, se le notifiche push native sono disattivate su un dispositivo, mentre l'API fornisce più informazioni rispetto all'interfaccia per quanto riguarda le statistiche push.
 * Le notifiche push all'esterno dell'app possono essere bloccate dai clienti a livello di sistema operativo (iOS e Android).
-* All'esterno dell'App push verrà visualizzato come disabilitato nell'interfaccia utente di Azure Mobile Engagement hello se non è integrate correttamente, ma potrebbe non riuscire automaticamente da hello API.
-* Nell'App push non funzionerà a meno che non sia Azure Mobile Engagement e raggiungere sono integrati in hello SDK.
-* Push GCM e ADM non funzionerà a meno che non sono integrati Azure Mobile Engagement e server specifici hello in hello SDK (solo Android).
-* In App e App push deve essere testati separatamente toodetermine se è un problema di Push o Reach.
-* In App push necessario app hello toobe aprire ricevuto.
-* Nell'App push sono spesso toobe installazione filtrati in base a un tag di info app opt-in o opt-out.
-* Se si utilizza una categoria personalizzata nelle notifiche di copertura toodisplay nell'applicazione, è necessario toofollow hello corretto del ciclo di vita della notifica di hello, altrimenti notifica hello potrebbe non essere cancellata quando utente hello ignorarla.
-* Se si avvia una campagna con nessuna data di fine e un dispositivo riceve hello nella notifica dell'app, ma non viene visualizzato ancora, hello utente ancora riceverà hello notifica hello alla successiva che connessione in app hello, anche se si interrompe manualmente la campagna hello.
-* Per problemi relativi alle API Push hello, confermare che si vuole toouse hello API Push anziché hello API Reach (dall'API Reach hello viene utilizzato più frequentemente) e che non si confusione hello "payload" e i parametri "notifica".
-* Test della campagna push con entrambi un dispositivo connesso tramite Wi-Fi e 3G connessione di rete di hello tooeliminate come possibile origine di problemi.
+* Le notifiche push all'esterno dell'app verranno visualizzate come disattivate nell'interfaccia utente di Azure Mobile Engagement, se non sono state integrate correttamente. Tuttavia, potrebbero essere nascoste automaticamente dall'API.
+* Le notifiche push in-app non funzionano se Azure Mobile Engagement e Reach non sono integrati nell'SDK.
+* Le notifiche push GCM e ADM non funzionano, a meno che Azure Mobile Engagement e il server specifico non siano integrati nell'SDK (solo per Android).
+* Le notifiche in-app e all'esterno dell'app devono essere sottoposte a test separatamente, al fine di stabilire se si sia verificato un problema push o Reach.
+* Le notifiche push in-app vengono ricevute soltanto se si apre l'app.
+* Le notifiche push in-app vengono spesso configurate in modo da essere filtrate da un tag dell'app che informa su rifiuti o consensi espliciti.
+* Se in Reach viene usata una categoria personalizzata per visualizzare le notifiche in-app, è necessario attenersi al corretto ciclo di vita della notifica. In caso contrario, la notifica non viene eliminata quando l'utente la ignora.
+* Se si avvia una campagna che non prevede una data di fine e se un dispositivo riceve le notifiche in-app ma non le visualizza, l'utente riceverà la notifica durante il successivo accesso all'app, anche se la campagna è stata interrotta manualmente.
+* Per i problemi relativi all'API Push, è necessario confermare che si intende usare l'API Push anziché quella Reach (l'API Reach viene usata più spesso) e che non si confondono i parametri "payload" e "notifier".
+* Provare a usare la campagna push con un dispositivo connesso sia in modalità Wi-Fi che 3G per escludere che il problema sia causato dalla connessione di rete.
 
 ## <a name="push-testing"></a>Test di elementi push
 ### <a name="issue"></a>Problema
-* Push possono essere inviati tooa dispositivo specifico in base a un ID di periferica.
+* È possibile inviare notifiche push a un dispositivo specifico in base all'ID dispositivo.
 
 ### <a name="causes"></a>Cause
-* Dispositivi di test siano impostati in modo diverso per ogni piattaforma, ma che ha causato un evento nell'app in un dispositivo di test e cercando l'ID dispositivo nel portale di hello dovrebbe funzionare toofind l'ID dispositivo per tutte le piattaforme.
+* I dispositivi di test sono configurati in modo diverso per ogni piattaforma. Tuttavia, se si causa un evento nell'app installata sul dispositivo di test e si cerca l'ID dispositivo nel portale, dovrebbe essere possibile trovare l'informazione indipendentemente dalla piattaforma.
 * I dispositivi di test funzionano diversamente con IDFA e IDFV (solo per iOS).
 
 ## <a name="push-customization"></a>Personalizzazione di elementi push
 ### <a name="issue"></a>Problema
 * Un elemento push avanzato non funziona (badge, suoneria, vibrazione, immagine e così via).
-* Collegamenti da push funzionanti (all'esterno dell'app, app, sito Web tooa, percorso tooa nell'app).
-* Mostra le statistiche di push che un push non è stato inviato tooas molte persone come previsto (un numero eccessivo o insufficiente).
+* I collegamenti da elementi push non funzionano (notifiche all'esterno dell'app, in-app, a siti Web, a un percorso dell'app).
+* Le statistiche push consentono di visualizzare che una notifica non è stata inviata al numero di destinatari previsto (in eccesso o in difetto).
 * Elementi push duplicati e ricevuti due volte.
 * Impossibile registrare il dispositivo di test affinché riceva elementi push di Azure Mobile Engagement (con la propria app di produzione o sviluppo).
 
 ### <a name="causes"></a>Cause
-* posizione specifica di tooa toolink in app richiede "categorie" (solo Android).
-* Completa il collegamento di schemi tooredirect utenti tooan un percorso alternativo dopo la selezione di una notifica push necessario toobe creati in e gestito direttamente dall'applicazione e hello dispositivo del sistema operativo non da Mobile Engagement. (**Nota:** all'esterno dell'app notifiche non è possibile collegare direttamente tooin posizioni app iOS differenza di quanto accade con Android.)
-* Server di immagine esterni devono toobe in grado di toouse HTTP "GET" e "HEAD" per immagine grande inserisce toowork (solo Android).
-* Nel codice, è possibile disattivare l'agente di Azure Mobile Engagement hello quando tastiera hello viene aperto e il codice attivare nuovamente l'agente di Azure Mobile Engagement hello dopo tastiera hello è stato chiuso in modo che hello tastiera non influisce sull'aspetto hello il notifica (solo iOS).
+* Per eseguire il collegamento a un percorso specifico dell'app, sono necessarie le "categorie" (solo per Android).
+* Gli schemi di deep linking per reindirizzare gli utenti a un percorso alternativo dopo aver selezionato una notifica push devono essere creati e gestiti direttamente dall'applicazione e dal sistema operativo del dispositivo non da Mobile Engagement. **Nota:** le notifiche all'esterno dell'app non possono essere collegate direttamente a percorsi in-app con iOS come avviene con Android.
+* I server dell'immagine esterna devono essere in grado di ricorrere ai valori HTTP "GET" e "HEAD" affinché sia possibile usare elementi push di immagini di grandi dimensioni (solo per Android).
+* Nel codice, è possibile disabilitare l'agente di Azure Mobile Engagement quando viene aperta la tastiera e permettere al codice di riattivare l'agente di Azure Mobile Engagement, una volta chiusa la tastiera. In questo modo, la tastiera non altera l'aspetto della notifica (solo per iOS).
 * Alcuni elementi non funzionano in simulazioni di test, ma solo durante le campagne effettive (badge, suoneria, vibrazione, immagine e così via).
-* Nessun lato server vengono registrati i dati quando si utilizza il pulsante hello troppo "test" effettua il push. I dati vengono registrati solo per le campagne reali sugli elementi di push.
-* toohelp isolare il problema, risolvere i problemi: test, simulare e una campagna reale, poiché ogni funzionano in modo leggermente diverso.
-* Hello periodo di tempo che di "app" e campagne "in qualsiasi momento" sono pianificati toorun può influire numeri recapito poiché una campagna verrà recapitata soltanto toousers presenti "app" durante l'esecuzione della campagna hello (e gli utenti che dispongono di impostazioni dispositivo impostare tooreceive notifiche "all'esterno dell'app").
-* differenze di Hello tra come handle di Android e iOS le notifiche di app rende difficile toodirectly confrontare le statistiche sui push tra la versione di Android e iOS hello dell'applicazione. Android fornisce più informazioni di notifica a livello di sistema operativo rispetto a iOS. Android segnala quando una notifica nativa viene ricevuta, selezionata o eliminata nel centro notifiche hello, ma iOS non segnala le informazioni a meno che non si fa clic su notifica hello. 
-* Hello principale motivo per cui i numeri "push" sono diversi rispetto a quelle diverso rispetto a "recapitati" numeri per raggiungono le campagne che "in app" e "all'esterno dell'app" le notifiche vengono calcolate in modo diverso. "In"app notifiche vengono gestite da Engagement Mobile, ma "all'esterno dell'app" notifiche vengono gestite dall'area di notifica hello in hello del sistema operativo del dispositivo.
+* Non vengono registrati dati sul lato server quando si usa il pulsante per eseguire il "test" degli elementi di push. I dati vengono registrati solo per le campagne reali sugli elementi di push.
+* Per individuare il proprio problema, ricorrere a test, simulazioni e a una campagna reale, dal momento che ogni procedura funziona in modo differente.
+* Il periodo di pianificazione "in-app" e "qualsiasi momento" delle campagne può influire sul numero dei recapiti poiché una campagna verrà recapitata solo a utenti "in-app" durante l'esecuzione della campagna e agli utenti che hanno impostato il dispositivo per la ricezione di notifiche "all'esterno dell'app".
+* Le differenze nella modalità di gestione delle notifiche all'esterno dell'app in Android e iOS rende difficile il confronto delle statistiche di push tra la versione Android e iOS dell'applicazione. Android fornisce più informazioni di notifica a livello di sistema operativo rispetto a iOS. Android segnala quando una notifica nativa viene ricevuta, selezionata o eliminata nell'area di notifica, invece iOS non segnala queste informazioni a meno che la notifica non venga selezionata. 
+* Il motivo principale per cui i numeri relativi al "push" sono diversi dai numeri relativi al "recapito" per le campagne di Reach è dovuto al fatto che le notifiche "in-app" e "all'esterno dell'app" vengono calcolate in modo diverso. Le notifiche "in-app" vengono gestite da Mobile Engagement, mentre quelle "all'esterno dell'app" vengono gestite dal centro notifiche nel sistema operativo del dispositivo.
 
 ## <a name="push-targeting"></a>Selezione della destinazione di elementi push
 ### <a name="issue"></a>Problema
@@ -82,21 +82,21 @@ di seguito Hello sono possibili problemi che possono verificarsi con la modalit�
 * Le opzioni della lingua non funzionano come previsto.
 
 ### <a name="causes"></a>Cause
-* Assicurarsi che sia stato caricato tag info app tramite l'interfaccia utente di Azure Mobile Engagement hello o l'API.
-* Limitazione hello velocità o push quota push a livello di applicazione hello o destinatari hello limitazione a livello di hello campagna possono evitare che un utente riceve un push specifici anche se soddisfano i criteri di destinazione altri. 
+* Verificare che i tag relativi alle informazioni dell'app siano stati caricati tramite l'interfaccia utente o l'API di Azure Mobile Engagement.
+* Limitando la velocità o la quota degli elementi push a livello di applicazione oppure limitando il pubblico a livello di campagna, è possibile impedire a una persona di ricevere specifici elementi push anche se soddisfano gli altri criteri di selezione della destinazione. 
 * L'impostazione di una "lingua" rappresenta un'operazione differente rispetto alla selezione della destinazione in base al paese o alle impostazioni locali. Si tratta di un'operazione differente anche rispetto alla selezione della destinazione in base alla georilevazione usando la posizione GPS o del telefono.
-* il messaggio Hello in "lingua predefinita" hello viene inviato tooany i clienti non sono configurate tooone di specificare la lingua alternativa hello di dispositivo.
+* Il messaggio nella lingua "predefinita" viene inviato agli utenti il cui dispositivo non è impostato su una delle lingue alternative specificate.
 
 ## <a name="push-scheduling"></a>Pianificazione di elementi push
 ### <a name="issue"></a>Problema
 * La pianificazione degli elementi push non funziona nel modo previsto (inviati in anticipo o in ritardo).
 
 ### <a name="causes"></a>Cause
-* Fusi orari possono problemi con la pianificazione, soprattutto quando si utilizza fuso orario hello degli utenti finali.
+* I fusi orari possono causare problemi di pianificazione, soprattutto quando si usa il fuso orario degli utenti finali.
 * Le funzionalità push avanzate possono ritardare l'invio di elementi push.
-* Destinazione in base alle impostazioni (anziché App Info tag) possono ritardare phone inserisce poiché Azure Mobile Engagement può includere dati in tempo reale di hello phone toorequest prima di inviare un push.
-* Le campagne create senza una data di fine archiviano hello push localmente nel dispositivo hello e visualizzarlo hello successiva apertura app hello anche se la campagna hello manualmente viene terminata.
-* Avvio di più di una campagna in hello contemporaneamente può richiedere un tooscan di tempo più lungo della base di utenti (ripetere tooonly inizio una campagna in un momento con un massimo di quattro, inoltre come destinazione solo tooyour utenti attivi in modo che gli utenti precedenti non hanno toobe analizzati).
-* Se l'opzione hello "Ignora destinatari push verrà inviato toousers tramite API hello" nella sezione "Campagna" hello di una campagna di copertura, campagna hello non invierà automaticamente, sarà necessario toosend manualmente tramite l'API Reach hello.
-* Se si utilizza una categoria personalizzata nelle notifiche di copertura toodisplay nell'applicazione, è necessario toofollow hello corretto del ciclo di vita di una notifica, altrimenti notifica hello potrebbe non essere cancellata quando utente hello ignorarla.
+* La selezione della destinazione basata sulle impostazioni del telefono (invece che sui tag sulle informazioni dell'app) può provocare un ritardo degli elementi push. Infatti, Azure Mobile Engagement potrebbe richiedere i dati in tempo reale al telefono, prima di inviare un elemento push.
+* Le campagne create senza una data di fine memorizzano la notifica push nel dispositivo e consentono di visualizzare al successivo avvio dell'app, anche se la campagna è stata interrotta manualmente.
+* Quando si avviano più campagne contemporaneamente, l'analisi relativa alla base dell'utente richiede più tempo. Pertanto, avviare una sola campagna alla volta (usarne al massimo 4) e scegliere come destinazione soltanto gli utenti attivi; in questo modo non sarà necessario analizzare gli utenti precedenti.
+* Se si usa l'opzione "Ignora destinatari, il push verrà inviato agli utenti tramite l'API" nella sezione "Campagna" di una campagna di copertura, la campagna NON sarà inviata automaticamente, ma sarà necessario inviarla manualmente tramite l'API Copertura.
+* Se si usa una categoria personalizzata in Reach per visualizzare le notifiche in-app, è necessario correggere il ciclo di vita della notifica. In caso contrario, è possibile che la notifica non venga cancellata quando l'utente la elimina.
 

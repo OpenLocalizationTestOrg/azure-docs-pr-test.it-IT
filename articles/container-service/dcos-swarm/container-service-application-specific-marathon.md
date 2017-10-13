@@ -1,5 +1,5 @@
 ---
-title: aaaApplication o servizio maratona specifiche dell'utente | Documenti Microsoft
+title: Servizio Marathon specifico per un'applicazione o un'utente | Documentazione Microsoft
 description: Creare un servizio Marathon specifico per un'applicazione o un'utente
 services: container-service
 documentationcenter: 
@@ -16,45 +16,45 @@ ms.workload: na
 ms.date: 04/12/2016
 ms.author: rogardle
 ms.custom: mvc
-ms.openlocfilehash: 1e6f69ed64e113a3a059788a71ddb57b6d3ad8da
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b265763fb5dad240edd710cd8d0fb1079e3a7b51
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="create-an-application-or-user-specific-marathon-service"></a>Creare un servizio Marathon specifico per un'applicazione o un'utente
-Il servizio contenitore di Azure fornisce un set di server master in cui vengono preconfigurati Apache Mesos e Marathon. Possono essere utilizzati tooorchestrate le applicazioni in cluster hello, ma ottimale non toouse hello server master a questo scopo. Ad esempio, modifiche di configurazione hello di maratona richiede accesso al server master di hello stessi e per apportare modifiche, questa incoraggia univoco server master che sono leggermente diversi hello standard e toobe necessità di e gestito in modo indipendente. Inoltre, configurazione hello richiesto da un team potrebbe non essere ottimale hello per un altro team.
+Il servizio contenitore di Azure fornisce un set di server master in cui vengono preconfigurati Apache Mesos e Marathon. È possibile usarli per orchestrare le applicazioni nel cluster, ma è consigliabile non usare i server master a questo scopo. La modifica della configurazione di Marathon richiede ad esempio l'accesso ai server master stessi per apportare modifiche. Per questa operazione sono consigliabili server master univoci, che risultano leggermente diversi dai server standard e devono essere gestiti in modo specifico e indipendente. La configurazione necessaria per un team potrebbe non essere ottimale per un altro team.
 
-In questo articolo verrà illustrato come tooadd un servizio maratona specifico dell'utente o applicazione.
+Questo articolo illustra come aggiungere un servizio Marathon specifico per un'applicazione o un'utente.
 
-Poiché questo servizio apparterrà tooa singolo utente o del team, sono tooconfigure disponibile in alcun modo che lo desiderano. Inoltre, il servizio contenitore di Azure verrà garantire il funzionamento di un servizio hello toorun. Se il servizio di hello non riesce, il servizio contenitore di Azure verrà viene riavviato. La maggior parte del tempo di hello non anche noterai che aveva i tempi di inattività.
+Dato che il servizio apparterrà a un singolo utente o team, sarà possibile configurarlo in base alle esigenze specifiche dell'utente o del team. Il servizio contenitore di Azure assicurerà la continuazione dell'esecuzione del servizio. In caso di errore, il servizio verrà riavviato dal servizio contenitore di Azure. Nella maggior parte dei casi il tempo di inattività non verrà percepito dall'utente.
 
 ## <a name="prerequisites"></a>Prerequisiti
-[Distribuire un'istanza del servizio di contenitore di Azure di](container-service-deployment.md) con orchestrator digitare DC/OS e [assicurarsi che i client possano connettersi cluster tooyour](../container-service-connect.md). Inoltre, hello i passaggi seguenti.
+[Distribuire un'istanza del servizio contenitore di Azure](container-service-deployment.md) con un agente di orchestrazione di tipo DC/OS e [assicurarsi che il client possa connettersi al cluster](../container-service-connect.md). Seguire anche questa procedura.
 
-[!INCLUDE [install hello DC/OS CLI](../../../includes/container-service-install-dcos-cli-include.md)]
+[!INCLUDE [install the DC/OS CLI](../../../includes/container-service-install-dcos-cli-include.md)]
 
 ## <a name="create-an-application-or-user-specific-marathon-service"></a>Creare un servizio Marathon specifico per un'applicazione o un'utente
-Iniziare creando un file di configurazione JSON che definisce il nome di hello del servizio di applicazione hello che si desidera toocreate. Nell'esempio si utilizza `marathon-alice` come nome di framework hello. Salvare il file di hello come `marathon-alice.json`:
+Creare prima di tutto un file di configurazione JSON che definisce il nome del servizio dell'applicazione da creare. In questo caso viene usato `marathon-alice` come nome del framework. Salvare il file con un nome analogo a `marathon-alice.json`:
 
 ```json
 {"marathon": {"framework-name": "marathon-alice" }}
 ```
 
-Successivamente, utilizzare l'istanza maratona di hello DC/OS CLI tooinstall hello con le opzioni hello impostate nel file di configurazione:
+Usare quindi l'interfaccia della riga di comando del controller di dominio/sistema operativo per installare l'istanza di Marathon con le opzioni impostate nel file di configurazione:
 
 ```bash
 dcos package install --options=marathon-alice.json marathon
 ```
 
-Verrà visualizzato il `marathon-alice` servizio in esecuzione nella scheda Servizi hello dell'interfaccia utente controller di dominio o del sistema operativo. Hello dell'interfaccia utente sarà `http://<hostname>/service/marathon-alice/` se si desidera tooaccess è direttamente.
+Dovrebbe essere visualizzato il servizio `marathon-alice` in esecuzione nella scheda dei servizi dell'interfaccia della riga di comando del controller di dominio/sistema operativo. L'interfaccia utente sarà `http://<hostname>/service/marathon-alice/` , se si vuole accedere direttamente.
 
-## <a name="set-hello-dcos-cli-tooaccess-hello-service"></a>Impostare hello DC/OS CLI tooaccess servizio hello
-È possibile facoltativamente configurare tooaccess il controller di dominio/OS CLI questo nuovo servizio impostazione hello `marathon.url` proprietà toopoint toohello `marathon-alice` istanza come indicato di seguito:
+## <a name="set-the-dcos-cli-to-access-the-service"></a>Impostare l'interfaccia della riga di comando di DC/OS per accedere al servizio
+Facoltativamente è possibile configurare l'interfaccia della riga di comando del controller di dominio/sistema operativo per accedere a questo nuovo servizio. A tale scopo, impostare la proprietà `marathon.url` in modo che punti all'istanza `marathon-alice`, come illustrato di seguito:
 
 ```bash
 dcos config set marathon.url http://<hostname>/service/marathon-alice/
 ```
 
-È possibile verificare quale istanza di maratona in cui viene usata l'interfaccia CLI con hello `dcos config show` comando. È possibile ripristinare il master del servizio maratona con il comando hello toousing `dcos config unset marathon.url`.
+Per verificare quale istanza di Marathon stia usando l'interfaccia della riga di comando, è possibile usare il comando `dcos config show` . Per ripristinare l'uso del servizio Marathon master, è possibile usare il comando `dcos config unset marathon.url`.
 

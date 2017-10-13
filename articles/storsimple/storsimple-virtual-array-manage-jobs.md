@@ -1,6 +1,6 @@
 ---
-title: aaaView e gestire i processi di Array virtuale StorSimple | Documenti Microsoft
-description: "Viene descritto pagina processi del servizio di gestione di dispositivi StorSimple hello e come toouse è tootrack recenti e corrente dei processi di hello Array virtuale StorSimple."
+title: Visualizzare e gestire i processi dell'array virtuale StorSimple | Documentazione Microsoft
+description: "Descrive la pagina Processi del servizio Gestione dispositivi StorSimple e illustra come è possibile tenere traccia dei processi recenti e correnti per l'array virtuale StorSimple."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,54 +14,54 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 11/11/2016
 ms.author: alkohli
-ms.openlocfilehash: cf3f3e7bcdfff0ff2328b7354db2482286800e93
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3fd1c262a8ce94d8e98f2b066a8028d974b15b1d
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-hello-storsimple-device-manager-service-tooview-jobs-for-hello-storsimple-virtual-array"></a>Utilizzare processi tooview del servizio di gestione di dispositivi StorSimple hello per hello Array virtuale StorSimple
-## <a name="overview"></a>Panoramica
-Hello **processi** pannello fornisce un unico portale centralizzato per visualizzare e gestire i processi avviati su array virtuale che sono connessi tooyour servizio di gestione di dispositivi StorSimple. È possibile visualizzare i processi in esecuzione, completati e non riusciti per più dispositivi virtuali. I risultati vengono presentati in un formato tabulare.
+# <a name="use-the-storsimple-device-manager-service-to-view-jobs-for-the-storsimple-virtual-array"></a>Usare il servizio Gestione dispositivi StorSimple per visualizzare i processi per l'array virtuale StorSimple
+## <a name="overview"></a>Overview
+Il pannello **Processi** fornisce un unico portale centralizzato per la visualizzazione e la gestione dei processi avviati sugli array virtuali connessi al servizio Gestione dispositivi StorSimple. È possibile visualizzare i processi in esecuzione, completati e non riusciti per più dispositivi virtuali. I risultati vengono presentati in un formato tabulare.
 
 ![Pannello Processi](./media/storsimple-virtual-array-manage-jobs/ova-jobs-blade.png)
 
-È possibile trovare rapidamente i processi di hello desiderati applicando filtri ai campi, ad esempio:
+È possibile trovare rapidamente i processi desiderati filtrando i campi, ad esempio:
 
-* **Intervallo di tempo** : i processi possono essere intervallo di filtrato hello in base a data e ora.
-* **Dispositivi** : i processi vengono avviati in un servizio tooyour specifico dispositivo connesso. Hello processi filtrati possono quindi essere caratterizzati in base a hello gli attributi seguenti:
+* **Intervallo di tempo**: i processi possono essere filtrati in base all'intervallo di data e ora.
+* **Dispositivi** : i processi vengono avviati in un dispositivo specifico connesso al servizio. I processi filtrati vengono quindi catalogati in base ai seguenti attributi:
   
-  * **Nome** : nome del processo hello può essere **tutti**, **Backup**, **Clone**, **failover**, **scaricare gli aggiornamenti** , o **installare gli aggiornamenti**.
+  * **Nome**: il nome del processo può essere **Tutto**, **Backup**, **Clona**, **Effettua il failover**, **Scarica aggiornamenti** o **Installa aggiornamenti**.
   * **Stato**: i processi possono essere **Tutto**, **In corso**, **Riuscito**, **Operazione non riuscita** o **Annullato**.
-  * **Entità** – processi hello possono essere associati a un volume, condivisione o dispositivo.
-  * **Dispositivo** : hello nome di dispositivo hello in cui hello processo è stato avviato.
-  * **Avviato su** : ora di hello inizio processo hello.
-  * **Durata** : hello durata per il processo di hello è stata eseguita.
+  * **Entità** : i processi possono essere associati a un volume, una condivisione o un dispositivo.
+  * **Dispositivo** : il nome del dispositivo su cui è stato avviato il processo.
+  * **Avviato alle** : l'ora di inizio del processo.
+  * **Durata**: la durata di esecuzione del processo.
 * **Stato** : è possibile cercare tutti i processi in esecuzione, completati o non riusciti.
-* **Tipo di processo** : tipo di processo hello può essere all, eseguire il backup, ripristino failover, scaricare gli aggiornamenti o installare gli aggiornamenti.
+* **Tipo di processo**: il processo può essere di tipo tutto, backup, ripristino, failover, scarica aggiornamenti o installa aggiornamenti.
 
-elenco di Hello dei processi viene aggiornato ogni 30 secondi.
+L'elenco dei processi viene aggiornato ogni 30 secondi.
 
 ## <a name="view-job-details"></a>Visualizza i dettagli dei processi
-Eseguire i seguenti passaggi tooview hello dettagli di qualsiasi processo hello.
+Eseguire la procedura seguente per visualizzare i dettagli di qualsiasi processo.
 
-#### <a name="tooview-job-details"></a>dettagli dei processi tooview
-1. In hello **processi** blade, visualizzazione hello processi desiderati eseguendo una query con filtri appropriati. È possibile cercare processi completati o in esecuzione.
-2. Selezionare un processo dall'elenco tabulare di hello dei processi.
+#### <a name="to-view-job-details"></a>Per visualizzare i dettagli dei processi
+1. Nel pannello **Processi** visualizzare i processi desiderati eseguendo una query con i filtri appropriati. È possibile cercare processi completati o in esecuzione.
+2. Selezionare un processo nell'elenco tabulare dei processi.
    
     ![Pannello Processi](./media/storsimple-virtual-array-manage-jobs/ova-jobs-blade.png)
-3. Nella parte inferiore di hello della pagina hello, fare clic su **dettagli**.
-4. In hello **dettagli** nella finestra di dialogo è possibile visualizzare lo stato, dettagli e le statistiche temporali. Hello nella figura seguente viene illustrato un esempio di hello **dettagli dei processi di Backup** la finestra di dialogo.
+3. Nella parte inferiore della pagina, fare clic su **Dettagli**.
+4. Nella finestra di dialogo **Dettagli** è possibile visualizzare statistiche temporali, sullo stato e sui dettagli. La figura seguente mostra un esempio della finestra di dialogo relativa ai **dettagli del processo di backup** :
    
     ![Dettagli del processo](./media/storsimple-virtual-array-manage-jobs/ova-jobs-details.png)
 
-#### <a name="job-failures-when-hello-virtual-machine-is-paused-in-hello-hypervisor"></a>Errore del processo quando viene sospesa macchina virtuale hello nell'hypervisor hello
-Quando un processo è in corso nel dispositivo hello (macchina virtuale in hypervisor provisioning) e Array virtuale StorSimple è sospeso per più di 15 minuti, hello processo non riesce. Questa scadenza ora Array virtuale StorSimple tooyour viene sincronizzata con il tempo di Microsoft Azure hello. 
+#### <a name="job-failures-when-the-virtual-machine-is-paused-in-the-hypervisor"></a>Errori di processo quando la macchina virtuale viene sospesa nell'hypervisor
+Se nell'array virtuale StorSimple è in corso un processo e il dispositivo (macchina virtuale con provisioning in hypervisor) viene sospeso per più di 15 minuti, il processo ha esito negativo. Ciò è dovuto al fatto che l'ora dell'array virtuale StorSimple non è più sincronizzata con l'ora di Microsoft Azure. 
 
-Verrà visualizzato il seguente errore hello: "l'ora del dispositivo non è sincronizzato con il tempo di Microsoft Azure hello da più di 15 minuti. Verificare che hello hypervisor e tempi di hello dispositivo siano sincronizzati con un NTP si trova. Assicurarsi che non vi siano problemi di connettività. problemi di connettività tootroubleshoot, eseguire i test diagnostici da hello interfaccia web locale del dispositivo virtuale."
+Verrà visualizzato un errore indicante che l'ora del dispositivo non è sincronizzata con l'ora di Microsoft Azure per un valore superiore a 15 minuti. Verificare che l'hypervisor e il dispositivo siano ora sincronizzati con un server NTP. Assicurarsi che non vi siano problemi di connettività. Per risolvere i problemi di connettività, eseguire i test diagnostici dall'interfaccia utente Web locale del dispositivo virtuale.
 
-Questi errori si applicano i processi toobackup, ripristino, aggiornamento e il failover. Se viene eseguito il provisioning di macchina virtuale in Hyper-V, macchina hello infine Sincronizza ora con l'hypervisor. Quando ciò accade, è possibile riavviare il processo.
+Questi errori possono verificarsi con processi di backup, ripristino, aggiornamento e failover. Se il provisioning della macchina virtuale viene eseguito in Hyper-V, l'ora della macchina virtuale alla fine si sincronizza con l'hypervisor. Quando ciò accade, è possibile riavviare il processo.
 
 ## <a name="next-steps"></a>Passaggi successivi
-[Informazioni su come toouse hello tooadminister dell'interfaccia utente web locale l'Array virtuale StorSimple](storsimple-ova-web-ui-admin.md).
+[Informazioni su come usare l'interfaccia utente Web locale per amministrare l'array virtuale StorSimple](storsimple-ova-web-ui-admin.md).
 

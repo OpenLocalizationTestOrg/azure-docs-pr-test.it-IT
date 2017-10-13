@@ -1,6 +1,6 @@
 ---
-title: aaaAzure AD i metadati della federazione | Documenti Microsoft
-description: Questo articolo descrive documento di metadati di federazione hello pubblica di Azure Active Directory per i servizi che accettano i token di Azure Active Directory.
+title: Metadati della federazione di Azure AD | Documentazione Microsoft
+description: Questo articolo descrive il documento di metadati della federazione pubblicato da Azure Active Directory per i servizi che accettano i token di Azure Active Directory.
 services: active-directory
 documentationcenter: .net
 author: dstrockis
@@ -15,41 +15,41 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: 23535bcd5eeb3e9b2e17d89a9b0420fc98bd3895
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: ecafb02a6ac13d1c3cd1fe77ef710cd8525e32b0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="federation-metadata"></a>Metadati della federazione
-Azure Active Directory (Azure AD) pubblica un documento metadati federazione per servizi che è configurato i token di sicurezza hello tooaccept rilasciati da Azure AD. Hello formato del documento metadati federazione è descritto in hello [Web Services Federation Language (WS-Federation) versione 1.2](http://docs.oasis-open.org/wsfed/federation/v1.2/os/ws-federation-1.2-spec-os.html), che estende [i metadati per hello OASIS Security Assertion Markup Language (SAML) v 2.0](http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf).
+Azure Active Directory (Azure AD) pubblica un documento di metadati della federazione per i servizi configurati per accettare i token di sicurezza rilasciati da Azure AD. Il formato del documento di metadati della federazione è descritto in [Web Services Federation Language (WS-Federation) Version 1.2](http://docs.oasis-open.org/wsfed/federation/v1.2/os/ws-federation-1.2-spec-os.html) (Linguaggio Web Services Federation (WS-Federation) versione 1.2), che estende la pubblicazione [Metadata for the OASIS Security Assertion Markup Language (SAML) v2.0](http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf) (Metadati per il linguaggio SAML (Security Assertion Markup Language) OASIS v 2.0).
 
 ## <a name="tenant-specific-and-tenant-independent-metadata-endpoints"></a>Endpoint dei metadati specifici del tenant e indipendenti dal tenant
 Azure AD pubblica endpoint specifici del tenant e indipendenti dal tenant.
 
-Gli endpoint specifici del tenant sono progettati per un particolare tenant. i metadati di federazione specifici del tenant Hello includono informazioni sul tenant hello, nonché informazioni sull'endpoint emittente specifico del tenant. Le applicazioni che limitano l'accesso tooa single-tenant utilizzano endpoint specifici del tenant.
+Gli endpoint specifici del tenant sono progettati per un particolare tenant. I metadati di federazione specifici del tenant includono informazioni sul tenant, incluse le informazioni specifiche del tenant relative all'autorità emittente e all’endpoint. Le applicazioni che limitano l'accesso a un singolo tenant utilizzano endpoint specifici del tenant.
 
-Endpoint indipendenti dal tenant forniscono informazioni che sono comune tenant di Azure Active Directory tooall. Queste informazioni si applicano tootenants ospitati *login.microsoftonline.com* e viene condiviso da più tenant. Per le applicazioni multi-tenant si consiglia di utilizzare endpoint indipendenti dal tenant, dal momento che non sono associate a un particolare tenant.
+Gli endpoint indipendenti dal tenant forniscono informazioni comuni a tutti i tenant di Azure AD. Queste informazioni si applicano ai tenant ospitati in *login.microsoftonline.com* e vengono condivise tra i tenant. Per le applicazioni multi-tenant si consiglia di utilizzare endpoint indipendenti dal tenant, dal momento che non sono associate a un particolare tenant.
 
 ## <a name="federation-metadata-endpoints"></a>Endpoint dei metadati della federazione
 Azure AD pubblica i metadati della federazione all'indirizzo `https://login.microsoftonline.com/<TenantDomainName>/FederationMetadata/2007-06/FederationMetadata.xml`.
 
-Per **endpoint specifici del tenant**, hello `TenantDomainName` può essere uno dei seguenti tipi di hello:
+Per gli **endpoint specifici del tenant**, `TenantDomainName` può essere uno dei seguenti tipi:
 
 * Un nome di dominio registrato di un tenant di Azure AD, ad esempio: `contoso.onmicrosoft.com`.
-* Hello non modificabile del tenant ID del dominio hello, ad esempio `72f988bf-86f1-41af-91ab-2d7cd011db45`.
+* L'ID tenant non modificabile del dominio, ad esempio `72f988bf-86f1-41af-91ab-2d7cd011db45`.
 
-Per **endpoint indipendenti dal tenant**, hello `TenantDomainName` è `common`. Questo documento elenca solo gli elementi dei metadati di federazione hello che sono comuni tenant di Azure AD tooall vengono ospitati in login.microsoftonline.com.
+Per gli **endpoint indipendenti dal tenant**, `TenantDomainName` è `common`. Questo documento elenca solo gli elementi dei metadati della federazione che sono comuni a tutti i tenant di Azure AD ospitati in login.microsoftonline.com.
 
-Un endpoint specifico del tenant può essere ad esempio `https://login.microsoftonline.com/contoso.onmicrosoft.com/FederationMetadata/2007-06/FederationMetadata.xml`. endpoint indipendente dal tenant Hello è [https://login.microsoftonline.com/common/FederationMetadata/2007-06/FederationMetadata.xml](https://login.microsoftonline.com/common/FederationMetadata/2007-06/FederationMetadata.xml). È possibile visualizzare il documento di metadati federazione hello digitando l'URL in un browser.
+Un endpoint specifico del tenant può essere ad esempio `https://login.microsoftonline.com/contoso.onmicrosoft.com/FederationMetadata/2007-06/FederationMetadata.xml`. L'endpoint indipendente dal tenant è [https://login.microsoftonline.com/common/FederationMetadata/2007-06/FederationMetadata.xml](https://login.microsoftonline.com/common/FederationMetadata/2007-06/FederationMetadata.xml). È possibile visualizzare il documento di metadati della federazione digitando questo URL in un browser.
 
 ## <a name="contents-of-federation-metadata"></a>Contenuto dei metadati della federazione
-Hello seguente sezione vengono fornite informazioni necessarie per i servizi che utilizzano token hello rilasciati da Azure AD.
+Nella sezione seguente vengono fornite le informazioni necessarie per i servizi che utilizzano token emessi da Azure AD.
 
 ### <a name="entity-id"></a>ID entità
-Hello `EntityDescriptor` elemento contiene un `EntityID` attributo. valore di hello Hello `EntityID` attributo rappresenta l'autorità emittente hello, vale a dire hello token di sicurezza (STS) servizio token emesso hello. È importante toovalidate dell'autorità di certificazione hello quando si riceve un token.
+L'elemento `EntityDescriptor` contiene un attributo `EntityID`. Il valore dell'attributo `EntityID` rappresenta l'autorità di certificazione, vale a dire il servizio token di sicurezza che ha rilasciato il token. È importante convalidare l'autorità di certificazione, quando si riceve un token.
 
-Hello metadati seguenti viene illustrato un esempio specifico del tenant `EntityDescriptor` elemento con un `EntityID` elemento.
+I metadati seguenti indicano un elemento `EntityDescriptor` di esempio specifico del tenant con un elemento `EntityID`.
 
 ```
 <EntityDescriptor
@@ -57,9 +57,9 @@ xmlns="urn:oasis:names:tc:SAML:2.0:metadata"
 ID="_b827a749-cfcb-46b3-ab8b-9f6d14a1294b"
 entityID="https://sts.windows.net/72f988bf-86f1-41af-91ab-2d7cd011db45/">
 ```
-È possibile sostituire l'ID tenant hello in endpoint indipendente dal tenant hello toocreate di ID del tenant specifico del tenant `EntityID` valore. valore risultante di Hello verrà hello stesso hello emittente del token. strategia di Hello consente un'autorità emittente hello toovalidate di applicazione multi-tenant per un determinato tenant.
+È possibile sostituire l'ID tenant nell'endpoint indipendente dal tenant con il proprio ID tenant per creare un valore `EntityID` specifico del tenant. Il valore risultante sarà lo stesso dell’autorità emittente del token. La strategia consente a un'applicazione multi-tenant di convalidare l'autorità di certificazione per un tenant specificato.
 
-Hello metadati seguenti viene illustrato un esempio indipendente dal tenant `EntityID` elemento. Tenere presente che hello `{tenant}` è un valore letterale, non è un segnaposto.
+I metadati seguenti indicano un esempio di elemento `EntityID` indipendente dal tenant. Si noti che `{tenant}` è un valore letterale e non un segnaposto.
 
 ```
 <EntityDescriptor
@@ -69,11 +69,11 @@ entityID="https://sts.windows.net/{tenant}/">
 ```
 
 ### <a name="token-signing-certificates"></a>Certificati per la firma di token
-Quando un servizio riceve un token emesso da un tenant di Azure AD, hello firma di token hello deve essere convalidata con una chiave di firma pubblicata nel documento di metadati di federazione hello. metadati di federazione Hello includono parte pubblica di hello dei certificati di hello che i tenant hello utilizzare per la firma di token. byte non elaborati di Hello certificato vengono visualizzati in hello `KeyDescriptor` elemento. certificato di firma di token Hello è valido per la firma solo quando hello valore hello `use` attributo `signing`.
+Quando un servizio riceve un token emesso da un tenant di Azure AD, è necessario convalidare la firma del token con una chiave per la firma che viene pubblicata nel documento dei metadati di federazione. I metadati di federazione includono la parte pubblica dei certificati utilizzati dai tenant per la firma dei token. I byte non elaborati del certificato vengono visualizzati nell'elemento `KeyDescriptor` . Il certificato per la firma di token è valido per la firma solo quando il valore dell'attributo `use` è `signing`.
 
-Un documento di metadati di federazione pubblicato da Azure AD può avere più chiavi di firme, ad esempio quando Azure AD è preparazione hello tooupdate certificato di firma. Quando un documento metadati federazione include più di un certificato, un servizio che convalida i token hello deve supportare tutti i certificati nel documento hello.
+Un documento di metadati della federazione pubblicato da Azure AD può avere più chiavi per la firma, ad esempio quando Azure AD sta per aggiornare il certificato di firma. Quando un documento di metadati di federazione include certificati, un servizio che convalida i token deve supportare tutti i certificati nel documento.
 
-Hello metadati seguenti viene illustrato un esempio `KeyDescriptor` elemento con una chiave di firma.
+I metadati seguenti indicano un esempio di elemento `KeyDescriptor` con una chiave di firma.
 
 ```
 <KeyDescriptor use="signing">
@@ -87,29 +87,29 @@ MIIDPjCCAiqgAwIBAgIQVWmXY/+9RqFA/OG9kFulHDAJBgUrDgMCHQUAMC0xKzApBgNVBAMTImFjY291
 </KeyDescriptor>
   ```
 
-Hello `KeyDescriptor` elemento viene visualizzato in due posizioni nel documento di metadati di federazione hello; sezione hello specifici di WS-Federation e hello specifica SAML. certificati Hello pubblicati in entrambe le sezioni verranno hello a stesso.
+L'elemento `KeyDescriptor` appare in due punti del documento di metadati della federazione: nella sezione specifica di WS-Federation e in quella specifica di SAML. I certificati pubblicati in entrambe le sezioni saranno uguali.
 
-Nella sezione hello specifici di WS-Federation un lettore di metadati WS-Federation leggerà i certificati di hello da un `RoleDescriptor` elemento con hello `SecurityTokenServiceType` tipo.
+Nella sezione specifica di WS-Federation un lettore di metadati di WS-Federation legge i certificati da un elemento `RoleDescriptor` con il tipo `SecurityTokenServiceType`.
 
-Hello metadati seguenti viene illustrato un esempio `RoleDescriptor` elemento.
+I metadati seguenti indicano un esempio di elemento `RoleDescriptor` .
 
 ```
 <RoleDescriptor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fed="http://docs.oasis-open.org/wsfed/federation/200706" xsi:type="fed:SecurityTokenServiceType"protocolSupportEnumeration="http://docs.oasis-open.org/wsfed/federation/200706">
 ```
 
-Nella sezione hello specifiche SAML un lettore di metadati WS-Federation leggerà i certificati di hello da un `IDPSSODescriptor` elemento.
+Nella sezione specifica di SAML, un lettore di metadati di WS-Federation legge i certificati da un elemento `IDPSSODescriptor` .
 
-Hello metadati seguenti viene illustrato un esempio `IDPSSODescriptor` elemento.
+I metadati seguenti indicano un esempio di elemento `IDPSSODescriptor` .
 
 ```
 <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
 ```
-Non esistono differenze nel formato hello di certificati specifici del tenant e indipendenti dal tenant.
+Non esistono differenze nel formato di certificati specifici del tenant e indipendenti dal tenant.
 
 ### <a name="ws-federation-endpoint-url"></a>URL dell'endpoint WS-Federation
-metadati di federazione Hello includono hello viene utilizzato l'URL di Azure Active Directory per single sign-in e single Sign-Out nel protocollo WS-Federation. Questo endpoint viene visualizzato in hello `PassiveRequestorEndpoint` elemento.
+I metadati di federazione includono l'URL utilizzato da Azure AD per il Single Sign-In e il Single Sign-Out nel protocollo WS-Federation. Questo endpoint viene visualizzato nell'elemento `PassiveRequestorEndpoint` .
 
-Hello metadati seguenti viene illustrato un esempio `PassiveRequestorEndpoint` elemento per un endpoint specifico del tenant.
+I metadati seguenti indicano un elemento `PassiveRequestorEndpoint` di esempio per un endpoint specifico del tenant.
 
 ```
 <fed:PassiveRequestorEndpoint>
@@ -120,7 +120,7 @@ https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db45/wsfed
 </EndpointReference>
 </fed:PassiveRequestorEndpoint>
 ```
-Per l'endpoint indipendente dal tenant hello, hello URL di WS-Federation viene visualizzato nell'endpoint hello WS-Federation, come illustrato nel seguente esempio hello.
+Per l'endpoint indipendente dal tenant, l'URL di WS-Federation viene visualizzato nell'endpoint WS-Federation, come illustrato nell'esempio seguente.
 
 ```
 <fed:PassiveRequestorEndpoint>
@@ -133,11 +133,11 @@ https://login.microsoftonline.com/common/wsfed
 ```
 
 ### <a name="saml-protocol-endpoint-url"></a>URL dell'endpoint del protocollo SAML
-metadati di federazione Hello includono hello URL usato da Azure AD per single sign-in e single Sign-Out nel protocollo SAML 2.0. Questi endpoint vengono visualizzati in hello `IDPSSODescriptor` elemento.
+I metadati di federazione includono l'URL utilizzato da Azure AD per il Single Sign-In e il Single Sign-Out nel protocollo SAML 2.0. Questi endpoint vengono visualizzati nell'elemento `IDPSSODescriptor` .
 
-Hello, accesso e disconnessione URL vengono visualizzati in hello `SingleSignOnService` e `SingleLogoutService` elementi.
+Gli URL di accesso e di disconnessione vengono visualizzati negli elementi `SingleSignOnService` e `SingleLogoutService`.
 
-Hello metadati seguenti viene illustrato un esempio `PassiveResistorEndpoint` per un endpoint specifico del tenant.
+I metadati seguenti indicano un `PassiveResistorEndpoint` di esempio per un endpoint specifico del tenant.
 
 ```
 <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
@@ -147,7 +147,7 @@ Hello metadati seguenti viene illustrato un esempio `PassiveResistorEndpoint` pe
   </IDPSSODescriptor>
 ```
 
-Allo stesso modo degli endpoint hello per endpoint del protocollo SAML 2.0 comuni hello vengono pubblicati nei metadati di federazione indipendenti dal tenant hello, come illustrato nel seguente esempio hello.
+Allo stesso modo, gli endpoint per gli endpoint del protocollo SAML 2.0 comune vengono pubblicati nei metadati di federazione indipendenti dal tenant, come illustrato nell'esempio seguente.
 
 ```
 <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">

@@ -1,8 +1,8 @@
 ---
-title: 'Sincronizzazione di Azure AD Connect: come account del servizio toomanage hello Azure AD | Documenti Microsoft'
-description: Questo argomento vengono documentate come account del servizio toorestore hello Azure AD.
+title: 'Servizio di sincronizzazione Azure Active Directory Connect: come gestire l''account del servizio Azure Active Directory | Microsoft Docs'
+description: Questo argomento illustra come ripristinare l'account del servizio Azure AD.
 services: active-directory
-keywords: AADSTS70002, AADSTS50054, come tooreset hello password per hello sincronizzazione di Azure AD Connect account del servizio del connettore
+keywords: AADSTS70002, AADSTS50054, Come reimpostare la password dell'account del servizio di sincronizzazione Azure AD Connect
 documentationcenter: 
 author: andkjell
 manager: femila
@@ -15,31 +15,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: billmath
-ms.openlocfilehash: e563518eae173de42a1d40bb5a76e63f29f9da42
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8e9e8192ee4fcb636b5be91d2616acbc9120c8c0
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="azure-ad-connect-sync-how-toomanage-hello-azure-ad-service-account"></a>Sincronizzazione di Azure AD Connect: come account del servizio toomanage hello Azure AD
-account di servizio Hello utilizzato dal connettore Azure AD hello dovrebbe toobe servizio gratuitamente. Se è necessario tooreset le sue credenziali, in questo argomento è per l'utente. Ad esempio, se dispone di un amministratore globale per errore reimpostazione hello password nell'account di servizio hello tramite PowerShell.
+# <a name="azure-ad-connect-sync-how-to-manage-the-azure-ad-service-account"></a>Servizio di sincronizzazione Azure Active Directory Connect: come gestire l'account del servizio Azure Active Directory
+L'account di servizio utilizzato da Azure Active Directory Connector è progettato per non richiedere manutenzione. Questo argomento descrive come reimpostare le credenziali in caso di necessità, ad esempio se un amministratore globale ha erroneamente reimpostato la password dell'account del servizio con PowerShell.
 
-## <a name="reset-hello-credentials"></a>Reimpostare le credenziali di hello
-Se l'account del servizio hello definito in hello Azure Active Directory Connector non riesce a contattare Azure Active Directory a causa di problemi di tooauthentication, è possibile reimpostare la password di hello.
+## <a name="reset-the-credentials"></a>Reimpostazione delle credenziali
+Se l'account del servizio definito in Azure Active Directory Connector non riesce a contattare Azure Active Directory a causa di problemi di autenticazione, è possibile reimpostare la password.
 
-1. Accedi a server di sincronizzazione di Azure AD Connect toohello e avviare PowerShell.
+1. Effettuare l'accesso al server di sincronizzazione Azure AD Connect e avviare PowerShell.
 2. Eseguire `Add-ADSyncAADServiceAccount`.  
    ![Cmdlet PowerShell addadsyncaadserviceaccount](./media/active-directory-aadconnectsync-howto-azureadaccount/addadsyncaadserviceaccount.png)
 3. Fornire le credenziali di amministratore globale di Azure Active Directory.
 
-Questo cmdlet Reimposta password hello dell'account del servizio hello e aggiornarlo in Azure AD e nel motore di sincronizzazione hello.
+Questo cmdlet reimposta la password dell'account del servizio e la aggiorna sia in Azure AD, sia nel motore di sincronizzazione.
 
 ## <a name="known-issues-these-steps-can-solve"></a>Problemi noti che possono essere risolti con questi passaggi
-In questa sezione è un elenco di errori segnalati dai clienti che sono stati corretti in delle credenziali predefinite nel hello account del servizio Azure AD.
+Questa sezione riporta un elenco di errori segnalati dai clienti che sono stati corretti reimpostando le credenziali nell'account del servizio Azure AD.
 
 - - -
 Evento 6900  
-server di Hello ha rilevato un errore imprevisto durante l'elaborazione di una notifica di modifica password:  
+Il server ha rilevato un errore imprevisto durante l'elaborazione di una notifica di modifica password:  
 AADSTS70002: Errore di convalida delle credenziali. AADSTS50054: Per l'autenticazione verrà usata la password precedente.
 
 - - -

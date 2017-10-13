@@ -1,5 +1,5 @@
 ---
-title: integrazioni di partner monitoraggio aaaAzure | Documenti Microsoft
+title: Integrazioni partner in Monitoraggio di Azure | Microsoft Docs
 description: "Informazioni sui partner del monitoraggio di Azure e sulle modalità di accesso alla documentazione per l'integrazione."
 author: johnkemnetz
 manager: orenr
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 8/16/2017
 ms.author: johnkem
-ms.openlocfilehash: df3af300bff702c49b1ce66216bc44670ac11938
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 46b6ec12655b64b8fce6e103d5d71a4e8021890e
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="azure-monitor-partner-integrations"></a>Integrazioni partner del monitoraggio di Azure
 | Partner |  |  |
@@ -30,83 +30,83 @@ ms.lasthandoff: 10/06/2017
 | [![Partner Logo][sciencelogic-logo]<br/>**ScienceLogic**][sciencelogic-anchor] | [![Partner Logo][splunk-logo]<br/>**Splunk**][splunk-anchor] | [![Partner Logo][sumologic-logo]<br/>**Sumo Logic**][sumologic-anchor] | |
 
 ## <a name="alertlogic-log-manager"></a>Gestione log AlertLogic
-Gestione avvisi Log di logica raccoglie i log di piattaforma VM, l'applicazione e Azure per l'analisi di sicurezza e di memorizzazione, inclusi hello Log attività di Azure tramite API di monitoraggio di Azure hello.  Queste informazioni sono utilizzate toodetect malfeasance e soddisfano i requisiti di conformità.
+Gestione log AlertLogic raccoglie i log della piattaforma di Azure, delle applicazioni e delle VM a fini di analisi di sicurezza e conservazione, incluso il log attività di Azure tramite l'API di Monitoraggio di Azure.  Queste informazioni vengono usate per rilevare eventuali infrazioni e soddisfare i requisiti di conformità.
 
-[Passare toohello documentazione.][alertlogic-doc]
+[Vai alla documentazione.][alertlogic-doc]
 
 ## <a name="appdynamics"></a>AppDynamics
-Toorapidly proprietari dell'applicazione di AppDynamics Application Performance Management (APM) consente di risolvere i problemi relativi a colli di bottiglia delle prestazioni e ottimizzare le prestazioni di hello delle applicazioni in esecuzione nell'ambiente Azure. APM di AppDynamics si integra perfettamente con Azure Marketplace ed è disponibile per monitorare i servizi cloud di Azure (PaaS) (compresi i ruoli Web e di lavoro), le macchine virtuali (IaaS), il rilevamento dei servizi remoti (bus di servizio di Microsoft Azure), i servizi remoti e di accodamento di Microsoft Azure (Azure BLOB), l'accodamento di Azure (service bus di Microsoft), l'archiviazione dei dati e l'archivio BLOB di Microsoft Azure.
+La gestione delle prestazioni delle applicazioni (APM) di AppDynamics consente ai proprietari delle applicazioni di risolvere rapidamente i colli di bottiglia che affliggono le prestazioni, ottimizzando il funzionamento delle applicazioni in esecuzione nell'ambiente di Azure. APM di AppDynamics si integra perfettamente con Azure Marketplace ed è disponibile per monitorare i servizi cloud di Azure (PaaS) (compresi i ruoli Web e di lavoro), le macchine virtuali (IaaS), il rilevamento dei servizi remoti (bus di servizio di Microsoft Azure), i servizi remoti e di accodamento di Microsoft Azure (Azure BLOB), l'accodamento di Azure (service bus di Microsoft), l'archiviazione dei dati e l'archivio BLOB di Microsoft Azure.
 
-[Passare toohello documentazione.][appdynamics-doc]
+[Vai alla documentazione.][appdynamics-doc]
 
 ## <a name="atlassian-jira"></a>Atlassian JIRA
 È possibile creare ticket JIRA sugli avvisi di Monitoraggio di Azure.
 
-[Passare toohello documentazione.][atlassian-doc]
+[Vai alla documentazione.][atlassian-doc]
 
 ## <a name="circonus"></a>Circonus
-Circonus è una piattaforma di monitoraggio e analisi di microservizi per la distribuzione SaaS o locale. La sua piattaforma basata su API completamente automatizzabile è più scalabile e affidabile rispetto ai sistemi monitorati. Sviluppato per requisiti hello di DevOps, Circonus offre gli avvisi basati su percentile, grafici, dashboard e business intelligence di machine learning che attivano l'ottimizzazione del business. Circonus consente di monitorare le risorse cloud di Microsoft Azure e le relative applicazioni in tempo reale. È possibile usare le metriche di Circonus toocollect e tenere traccia per le variabili di hello desiderato toomeasure per le applicazioni e risorse. Con Circonus si ottiene la visibilità a livello di sistema dell'utilizzo delle risorse di Azure, delle prestazioni delle applicazioni e dell'integrità operativa.
+Circonus è una piattaforma di monitoraggio e analisi di microservizi per la distribuzione SaaS o locale. La sua piattaforma basata su API completamente automatizzabile è più scalabile e affidabile rispetto ai sistemi monitorati. Sviluppata per i requisiti di DevOps, Circonus fornisce avvisi basati su percentile, grafi, dashboard e intelligence di machine learning che consentono l'ottimizzazione del business. Circonus consente di monitorare le risorse cloud di Microsoft Azure e le relative applicazioni in tempo reale. È possibile usare Circonus per raccogliere e tenere traccia delle metriche per le variabili da misurare per le applicazioni e le risorse. Con Circonus si ottiene la visibilità a livello di sistema dell'utilizzo delle risorse di Azure, delle prestazioni delle applicazioni e dell'integrità operativa.
 
-[Passare toohello documentazione.][circonus-doc]
+[Vai alla documentazione.][circonus-doc]
 
 ## <a name="cloudhealth"></a>CloudHealth
-Unire e automatizzare il cloud con una piattaforma integrata toosave molto tempo e denaro. Con una visibilità impareggiabile, ottimizzazione intuitiva e procedure di governance solidissime, CloudHealth sta ridefinendo la gestione del cloud. piattaforma Cloudhealth Hello consente alle aziende e i file msp toomaximize ritorno sull'investimento cloud e prendere decisioni certi a costo, utilizzo, prestazioni e sicurezza.
+Unire e automatizzare il cloud con una piattaforma costruita per risparmiare molto tempo e denaro. Con una visibilità impareggiabile, ottimizzazione intuitiva e procedure di governance solidissime, CloudHealth sta ridefinendo la gestione del cloud. La piattaforma Cloudhealth consente alle aziende e ai provider di servizi gestiti di ottenere il massimo ritorno sugli investimenti nel cloud e di prendere decisioni informate su costi, utilizzo, prestazioni e sicurezza.
 
 [Altre informazioni.][cloudhealth-doc]
 
 ## <a name="cloudmonix"></a>CloudMonix
 CloudMonix offre servizi di monitoraggio, automazione e riparazione automatica per la piattaforma Microsoft Azure.
 
-[Passare toohello documentazione.][cloudmonix-doc]
+[Vai alla documentazione.][cloudmonix-doc]
 
 ## <a name="cloudyn"></a>Cloudyn
-Cloudyn gestisce e ottimizza multipiattaforma, le aziende toohelp le distribuzioni di cloud ibrido realizzare completamente il proprio potenziale di cloud. Hello soluzioni SaaS offre visibilità sull'utilizzo, prestazioni e costi, insieme a informazioni e suggerimenti pratici per la governance smart di ottimizzazione e cloud. Cloudyn consente la rendicontazione tramite un chargeback accurato e una gestione gerarchica dell'allocazione dei costi. Cloudyn è integrato con Azure Monitoring in insights tooprovide ordine e suggerimenti pratici in ordine toooptimize la distribuzione di Azure.
+Cloudyn gestisce e ottimizza le distribuzioni di cloud ibrido multi-piattaforma per aiutare le aziende a sfruttare tutto il loro potenziale cloud. La soluzione SaaS offre visibilità sull'uso, sulle prestazioni e sui costi, con l'aggiunta di informazioni e suggerimenti pratici per un'efficace ottimizzazione e governance cloud. Cloudyn consente la rendicontazione tramite un chargeback accurato e una gestione gerarchica dell'allocazione dei costi. Cloudyn è integrato con il monitoraggio di Azure per fornire informazioni e suggerimenti pratici per ottimizzare la distribuzione di Azure.
 
-[Passare toohello documentazione.][cloudyn-doc]
+[Vai alla documentazione.][cloudyn-doc]
 
 ## <a name="datadog"></a>Datadog
-Datadog è leader HelloWorld servizio di monitoraggio per applicazioni a livello di cloud, riunire i dati dal server, database e gli strumenti e servizi toopresent una visualizzazione unificata dell'intero stack. Queste funzionalità sono disponibili su una piattaforma analitica dei dati basata su SaaS che consente di collaborare toowork i team di sviluppo e Ops tooavoid tempi di inattività, risolvere i problemi di prestazioni e garantire che lo sviluppo e distribuzione cicli completate puntualmente. Grazie all'integrazione di Datadog e Azure, è possibile raccogliere e visualizzare le metriche nell'infrastruttura, correlare le metriche delle VM con le metriche a livello di applicazione e ripartire le metriche usando qualsiasi combinazione di proprietà e i tag personalizzati.
+Datadog è il servizio di monitoraggio numero uno al mondo per le applicazioni con scalabilità cloud, che raggruppa i dati da server, database, strumenti e servizi per offrire una visualizzazione unificata dell'intero stack. Queste funzionalità vengono fornite su una piattaforma di analisi dei dati basata su SaaS che consente ai team operativi e di sviluppo di collaborare tra loro per evitare tempi di inattività, risolvere i problemi di prestazione e garantire il completamento puntuale dei cicli di sviluppo e distribuzione. Grazie all'integrazione di Datadog e Azure, è possibile raccogliere e visualizzare le metriche nell'infrastruttura, correlare le metriche delle VM con le metriche a livello di applicazione e ripartire le metriche usando qualsiasi combinazione di proprietà e i tag personalizzati.
 
-[Passare toohello documentazione.][datadog-doc]
+[Vai alla documentazione.][datadog-doc]
 
 ## <a name="dynatrace"></a>Dynatrace
-Hello Dynatrace OneAgent si integra con macchine virtuali di Azure e servizi App tramite hello meccanismo dell'estensione di Azure. In questo modo Dynatrace OneAgent può raccogliere le metriche sulle prestazioni degli host, della rete e dei servizi. Oltre a visualizzare solo le metriche Dynatrace Visualizza ambienti end-to-end, che Mostra transazioni dal livello di database toohello sul lato client hello. La correlazione dei problemi basata sull'IA e l'analisi della causa principale pienamente integrata, incluse le informazioni a livello di metodo nel codice e nel database, agevolano notevolmente le ottimizzazioni delle prestazioni e la risoluzione dei problemi.
+Dynatrace OneAgent si integra con Servizi app e con le VM di Azure per mezzo dei meccanismi di estensione di Azure. In questo modo Dynatrace OneAgent può raccogliere le metriche sulle prestazioni degli host, della rete e dei servizi. Oltre alla semplice visualizzazione delle metriche Dynatrace visualizza gli ambienti end-to-end, mostrando le transazioni dal lato client al livello di database. La correlazione dei problemi basata sull'IA e l'analisi della causa principale pienamente integrata, incluse le informazioni a livello di metodo nel codice e nel database, agevolano notevolmente le ottimizzazioni delle prestazioni e la risoluzione dei problemi.
 
-[Passare toohello documentazione.][dynatrace-doc]
+[Vai alla documentazione.][dynatrace-doc]
 
 ## <a name="newrelic"></a>NewRelic
 [Altre informazioni.][newrelic-doc]
 
 ## <a name="opsgenie"></a>OpsGenie
-OpsGenie funge da un dispatcher per gli avvisi di hello generato da Azure. OpsGenie determina toonotify chi deve esserne informato hello in base alle pianificazioni a richiesta e di escalation, tramite notifica tramite posta elettronica, messaggi di testo (SMS), chiamate telefoniche, le notifiche push. È sufficiente, Azure genera avvisi per i problemi rilevati e OpsGenie assicura chi deve esserne informato hello lavorando.
+OpsGenie agisce come un dispatcher degli avvisi generati da Azure. OpsGenie determina le persone giuste a cui inviare una notifica in base alle pianificazioni su richiesta e alle escalation, usando la posta elettronica, i messaggi di testo (SMS), le chiamate telefoniche e le notifiche push. Azure genera gli avvisi relativi ai problemi rilevati e OpsGenie assicura che tali problemi vengano gestiti dalle persone appropriate.
 
-[Passare toohello documentazione.][opsgenie-doc]
+[Vai alla documentazione.][opsgenie-doc]
 
 ## <a name="pagerduty"></a>PagerDuty
-PagerDuty, hello iniziali soluzione di gestione degli eventi imprevisti, è fornito supporto per gli avvisi di Azure di livello superiore in base a metriche. Oggi, PagerDuty supporta ora le notifiche degli avvisi di monitoraggio di Azure, le notifiche di scalabilità automatica e gli eventi di Log di controllo, toonotifications aggiunta alle metriche a livello di piattaforma per servizi di Azure. Questi miglioramenti di consentire agli utenti una maggiore visibilità core hello piattaforma Azure, consentendo loro tootake sfruttare le funzionalità di gestione degli eventi imprevisti di PagerDuty per la risposta in tempo reale. L'integrazione di Azure estesa è resa possibile tramite i webhook, consentendo una rapida e semplice personalizzazione e configurazione.
+PagerDuty, la soluzione leader per la gestione degli eventi imprevisti, ha fornito un supporto eccellente per gli avvisi relativi alle metriche di Azure. Attualmente PagerDuty supporta le notifiche sugli avvisi di Monitoraggio di Azure, le notifiche di scalabilità automatica e gli eventi del log di controllo, oltre alle notifiche sulle metriche a livello di piattaforma per i servizi di Azure. Questi miglioramenti offrono agli utenti una maggiore visibilità sulla piattaforma Azure principale e, al contempo, li mettono nelle condizioni di sfruttare pienamente le funzionalità di gestione degli eventi imprevisti di PagerDuty per una risposta in tempo reale. L'integrazione di Azure estesa è resa possibile tramite i webhook, consentendo una rapida e semplice personalizzazione e configurazione.
 
-[Passare toohello documentazione.][pagerduty-doc]
+[Vai alla documentazione.][pagerduty-doc]
 
 ## <a name="sciencelogic"></a>ScienceLogic
-ScienceLogic offre hello prossima generazione piattaforma garanzia del servizio IT per la gestione di qualsiasi tecnologia, in qualsiasi punto.  In un'unica piattaforma, ScienceLogic offre scalabilità hello, protezione, automazione e resilienza toosimplify necessarie hello in continua espansione attività di gestione delle risorse, servizi e applicazioni in movimento costante IT.  piattaforma ScienceLogic Hello Usa toointerface API di Azure con Microsoft Azure.  ScienceLogic offre visibilità in tempo reale sui servizi e le risorse di Azure e in questo modo consente di sapere quando qualcosa non funziona e di intervenire per correggerla più rapidamente. È anche possibile gestire Azure insieme ad altri cloud e altri sistemi e servizi di data center.
+ScienceLogic produce la piattaforma per la garanzia dei servizi IT di nuova generazione che consente di gestire qualsiasi tecnologia ovunque.  In una sola piattaforma, ScienceLogic offre la scalabilità, la sicurezza, l'automazione e la flessibilità necessarie per semplificare l'attività in continua espansione di gestione delle risorse, servizi e applicazioni IT in costante evoluzione.  La piattaforma ScienceLogic usa l'API di Azure come interfaccia con Microsoft Azure.  ScienceLogic offre visibilità in tempo reale sui servizi e le risorse di Azure e in questo modo consente di sapere quando qualcosa non funziona e di intervenire per correggerla più rapidamente. È anche possibile gestire Azure insieme ad altri cloud e altri sistemi e servizi di data center.
 
 [Altre informazioni.][sciencelogic-doc]
 
 ## <a name="azure-monitor-add-on-for-splunk"></a>Componente aggiuntivo Monitoraggio di Azure per Splunk
-componente aggiuntivo di monitoraggio di Azure per Splunk Hello è [disponibile in seguito hello Splunkbase](https://splunkbase.splunk.com/app/3534/).
+Il componente aggiuntivo Monitoraggio di Azure per Splunk è [disponibile in Splunkbase qui](https://splunkbase.splunk.com/app/3534/).
 
-[Passare toohello documentazione.][splunk-doc]
+[Vai alla documentazione.][splunk-doc]
 
 ## <a name="sumo-logic"></a>SumoLogic
-Sumo Logic è un servizio di analitica dati di computer protetto nativo, cloud, recapito intelligence continua, in tempo reale dai dati strutturati, semistrutturati e non strutturati in stack e del ciclo di vita di hello intera applicazione. Più di 1.000 clienti mondo hello utilizzano Sumo Logic per analitica hello e approfondimenti toobuild, eseguire e proteggere le proprie applicazioni moderne e infrastrutture cloud. Con Sumo Logic, i clienti ottengono tooaccelerate un vantaggio di multi-tenant, modello di servizio dell'innovazione toocontinuous loro MAIUSC, maggiore vantaggio competitivo, il valore di business e aumento delle dimensioni.
+Sumo Logic è un servizio protetto di analisi dei dati del computer nativo del cloud che offre funzioni di intelligence continue e in tempo reale da dati strutturati, semi-strutturati e non strutturati durante l'intero ciclo di vita dell'applicazione e nello stack. Più di 1.000 clienti in tutto il mondo si affidano a Sumo Logic per eseguire analisi approfondite al fine di creare, eseguire e proteggere le proprie applicazioni e infrastrutture cloud moderne. Grazie a Sumo Logic, i clienti possono sfruttare un modello di servizio multi-tenant per accelerare il percorso verso una continua innovazione e per aumentare il vantaggio competitivo, il valore aziendale e la crescita.
 
 [Altre informazioni.][sumologic-doc]
 
 ## <a name="next-steps"></a>Passaggi successivi
 * [Altre informazioni su Monitoraggio di Azure](monitoring-overview.md)
-* [Metriche di accesso usando hello API REST](monitoring-rest-api-walkthrough.md)
-* [Servizio di terze parti tooa hello Log attività di flusso](monitoring-stream-activity-logs-event-hubs.md)
-* [Diagnostica servizio di terze parti tooa i registri del flusso](monitoring-stream-diagnostic-logs-to-event-hubs.md)
+* [Accedere alle metriche mediante l'API REST](monitoring-rest-api-walkthrough.md)
+* [Trasmettere come flusso il log attività a un servizio di terze parti](monitoring-stream-activity-logs-event-hubs.md)
+* [Trasmettere come flusso i log di diagnostica a un servizio di terze parti](monitoring-stream-diagnostic-logs-to-event-hubs.md)
 
 <!--Partner Anchors-->
 [alertlogic-anchor]: #alertlogic-log-manager "AlertLogic"

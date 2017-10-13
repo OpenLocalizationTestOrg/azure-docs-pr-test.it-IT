@@ -1,5 +1,5 @@
 ---
-title: le variabili aaaAssign in SQL Data Warehouse | Documenti Microsoft
+title: Assegnazione di variabili in SQL Data Warehouse | Documentazione Microsoft
 description: Suggerimenti per l'assegnazione di variabili Transact-SQL in Azure SQL Data Warehouse per lo sviluppo di soluzioni.
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,26 +15,26 @@ ms.workload: data-services
 ms.custom: t-sql
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
-ms.openlocfilehash: 9de48739bb0af80ff2a117704b31512c680f78d1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 045d5148cd3f12dac63c961ccf7c953d355ed725
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="assign-variables-in-sql-data-warehouse"></a>Assegnare variabili in SQL Data Warehouse
-Le variabili in SQL Data Warehouse vengono impostate utilizzando hello `DECLARE` istruzione o hello `SET` istruzione.
+Le variabili in SQL Data Warehouse vengono impostate usando l'istruzione `DECLARE` o `SET`.
 
-Tutti hello seguenti sono validi perfettamente tooset un valore della variabile:
+Tutti modi seguenti sono perfettamente validi per impostare il valore di una variabile:
 
 ## <a name="setting-variables-with-declare"></a>Impostazione delle variabili con DECLARE
-Inizializzazione di variabili con DECLARE è uno dei hello più flessibile modi tooset un valore della variabile in SQL Data Warehouse.
+L'inizializzazione di variabili con DECLARE è uno dei modi più flessibili per impostare un valore della variabile in SQL Data Warehouse.
 
 ```sql
 DECLARE @v  int = 0
 ;
 ```
 
-È inoltre possibile utilizzare DECLARE tooset più di una variabile alla volta. Non è possibile utilizzare `SELECT` o `UPDATE` toodo questo:
+È anche possibile usare DECLARE per impostare più di una variabile contemporaneamente. Non è possibile usare `SELECT` o `UPDATE` per eseguire questa operazione:
 
 ```sql
 DECLARE @v  INT = (SELECT TOP 1 c_customer_sk FROM Customer where c_last_name = 'Smith')
@@ -42,7 +42,7 @@ DECLARE @v  INT = (SELECT TOP 1 c_customer_sk FROM Customer where c_last_name = 
 ;
 ```
 
-Non è possibile inizializzare e utilizzare una variabile in hello stessa istruzione DECLARE. tooillustrate hello punto hello esempio riportato di seguito è **non** consentito come @p1 sia inizializzata e utilizzato in hello stessa istruzione DECLARE. Ciò comporterà un errore.
+Non è possibile inizializzare e usare una variabile nella stessa istruzione DECLARE. Per illustrare il concetto, l'esempio seguente **non** è consentito, perché @p1 viene inizializzato e usato nella stessa istruzione DECLARE. Ciò comporterà un errore.
 
 ```sql
 DECLARE @p1 int = 0
@@ -53,7 +53,7 @@ DECLARE @p1 int = 0
 ## <a name="setting-values-with-set"></a>Impostazione di valori con SET
 Set è un metodo molto comune per l'impostazione di una singola variabile.
 
-Tutti gli esempi di hello riportato di seguito sono validi dell'impostazione di una variabile con SET:
+Tutti gli esempi seguenti sono modi validi per impostare una variabile con SET:
 
 ```sql
 SET     @v = (Select max(database_id) from sys.databases);

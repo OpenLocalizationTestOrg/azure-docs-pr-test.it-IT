@@ -1,6 +1,6 @@
 ---
-title: pacchetti di applicazioni aaaInstall sui nodi di calcolo - Azure Batch | Documenti Microsoft
-description: "Funzionalità di pacchetti dell'applicazione hello uso di Azure Batch tooeasily gestire più applicazioni e nodi di calcolo di versioni per l'installazione nel Batch."
+title: Installare pacchetti dell'applicazione nei nodi di calcolo - Azure Batch | Microsoft Docs
+description: "Usare la funzionalità dei pacchetti dell’applicazione di Azure Batch per gestire facilmente più applicazioni e versioni ed eseguire l'installazione su nodi di calcolo in Batch."
 services: batch
 documentationcenter: .net
 author: tamram
@@ -15,197 +15,197 @@ ms.workload: big-compute
 ms.date: 07/20/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 683be7b7f1bd5db7835332016f6dccb72f45c3b5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: afcc04c80ec15872a22de5d5969a7ef6a583562f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="deploy-applications-toocompute-nodes-with-batch-application-packages"></a>Distribuire i nodi toocompute di applicazioni con pacchetti di applicazione di Batch
+# <a name="deploy-applications-to-compute-nodes-with-batch-application-packages"></a>Distribuire le applicazioni nei nodi di calcolo con i pacchetti dell'applicazione Batch
 
-funzionalità di pacchetti di applicazione Hello del Batch di Azure consente una gestione semplificata delle applicazioni di attività e i relativi toohello distribuzione nodi di calcolo nel pool di. Con i pacchetti di applicazioni, è possibile caricare e gestire più versioni di applicazioni hello che eseguire le attività, inclusi i relativi file di supporto. È possibile quindi distribuire automaticamente uno o più di queste applicazioni toohello nodi di calcolo nel pool di.
+I pacchetti dell'applicazione sono una funzionalità di Azure Batch che consente di gestire e distribuire facilmente le applicazioni per le attività nei nodi di calcolo del pool. I pacchetti dell'applicazione consentono di caricare e gestire più versioni delle applicazioni eseguite dalle attività, inclusi i file di supporto. È quindi possibile di distribuire automaticamente una o più applicazioni nei nodi di calcolo del pool.
 
-In questo articolo si apprenderà come tooupload e gestire i pacchetti di applicazione nel portale di Azure hello. Si apprenderà quindi come tooinstall in un pool nodi di calcolo con hello [.NET per Batch] [ api_net] libreria.
+In questo articolo si apprenderà come caricare e gestire pacchetti dell'applicazione nel portale di Azure. Si apprenderà quindi come installarli nei nodi di calcolo di un pool usando la libreria [Batch .NET][api_net].
 
 > [!NOTE]
 > 
-> I pacchetti dell'applicazione sono supportati in tutti i pool di Batch creati dopo il 5 luglio 2017. Sono supportate nei pool di Batch creato tra 10 marzo 2016 e 5 luglio 2017 solo se il pool di hello è stato creato utilizzando una configurazione del servizio Cloud. Pool di batch creati too10 precedente marzo 2016 non supportano pacchetti di applicazioni.
+> I pacchetti dell'applicazione sono supportati in tutti i pool di Batch creati dopo il 5 luglio 2017. Sono supportati nei pool di Batch creati tra il 10 marzo 2016 e il 5 luglio 2017 solo se il pool è stato creato usando una configurazione del servizio cloud. I pool di Batch creati prima del 10 marzo 2016 non supportano i pacchetti dell'applicazione.
 >
-> API per la creazione e gestione dei pacchetti di applicazione Hello fanno parte di hello [gestione .NET per Batch] [[api_net_mgmt]] libreria. API per l'installazione di pacchetti di applicazioni in un nodo di calcolo Hello fanno parte di hello [.NET per Batch] [ api_net] libreria.  
+> Le API per la creazione e la gestione dei pacchetti dell'applicazione fanno parte della raccolta [Batch Management .NET] [[api_net_mgmt]]. Le API per l'installazione dei pacchetti dell'applicazione in un nodo di calcolo sono parte della raccolta [Batch .NET][api_net].  
 >
-> funzionalità di pacchetti di applicazione Hello descritti di seguito sostituisce funzionalità delle App Batch hello disponibili nelle versioni precedenti del servizio hello.
+> La funzionalità dei pacchetti dell’applicazione descritta di seguito sostituisce la funzionalità App Batch disponibile nelle versioni precedenti del servizio.
 > 
 > 
 
 ## <a name="application-package-requirements"></a>Requisiti dei pacchetti dell'applicazione
-pacchetti di applicazioni toouse, è necessario troppo[collegare un account di archiviazione di Azure](#link-a-storage-account) tooyour account Batch.
+Per usare i pacchetti dell'applicazione, è necessario [collegare un account di archiviazione di Azure](#link-a-storage-account) all'account Batch.
 
-Questa funzionalità è stata introdotta in [API REST di Batch] [ api_rest] versione 2015-12-01.2.2 e hello corrispondente [.NET per Batch] [ api_net] versione della libreria 3.1.0. È consigliabile utilizzare sempre versione API più recente di hello quando si utilizzano Batch.
+Questa funzionalità è stata introdotta nella versione 2015-12-01.2.2 dell'[API REST Batch][api_rest] e nella versione 3.1.0 della libreria [Batch .NET][api_net] corrispondente. È consigliabile usare sempre la versione API più recente quando si usa Batch.
 
 > [!NOTE]
-> I pacchetti dell'applicazione sono supportati in tutti i pool di Batch creati dopo il 5 luglio 2017. Sono supportate nei pool di Batch creato tra 10 marzo 2016 e 5 luglio 2017 solo se il pool di hello è stato creato utilizzando una configurazione del servizio Cloud. Pool di batch creati too10 precedente marzo 2016 non supportano pacchetti di applicazioni.
+> I pacchetti dell'applicazione sono supportati in tutti i pool di Batch creati dopo il 5 luglio 2017. Sono supportati nei pool di Batch creati tra il 10 marzo 2016 e il 5 luglio 2017 solo se il pool è stato creato usando una configurazione del servizio cloud. I pool di batch creati prima del 10 marzo 2016 non supportano i pacchetti dell'applicazione.
 >
 >
 
 ## <a name="about-applications-and-application-packages"></a>Informazioni sulle applicazioni e sui pacchetti dell’applicazione
-All'interno di Batch di Azure, un *applicazione* fa riferimento il set di tooa dei file binari con controllo delle versioni che possono essere nodi di calcolo toohello automaticamente scaricato nel pool di. Un *pacchetto di applicazione* fa riferimento tooa *set specifico* di tali file binari e rappresenta un determinato *versione* dell'applicazione hello.
+Per *applicazione* in Azure Batch si intende un set di file binari con versione che possono essere scaricati automaticamente nei nodi di calcolo del pool. Un *pacchetto dell'applicazione* è invece un *set specifico* di tali file binari e rappresenta una *versione* specifica dell'applicazione.
 
 ![Diagramma di alto livello di applicazioni e pacchetti applicazione][1]
 
 ### <a name="applications"></a>Applicazioni
-Un'applicazione in Batch contiene uno o più applicazioni, pacchetti e specifica le opzioni di configurazione per un'applicazione hello. Ad esempio, un'applicazione può specificare hello predefinito applicazione pacchetto versione tooinstall in nodi di calcolo e se i pacchetti possono essere aggiornati o eliminati.
+Un'applicazione in Batch contiene uno o più pacchetti dell'applicazione e specifica le opzioni di configurazione per l'applicazione. Un'applicazione può ad esempio specificare la versione predefinita del pacchetto dell'applicazione da installare nei nodi di calcolo e se i pacchetti possono essere aggiornati o eliminati.
 
 ### <a name="application-packages"></a>Pacchetti dell'applicazione
-Un pacchetto di applicazione è un file con estensione zip che contiene i file binari dell'applicazione hello e i file di supporto necessari per l'applicazione hello toorun di attività. Ogni pacchetto di applicazione rappresenta una versione specifica di un'applicazione hello.
+Un pacchetto dell'applicazione è un file zip contenente i file binari e i file di supporto dell'applicazione necessari per le attività di esecuzione dell'applicazione. Ogni pacchetto dell’applicazione rappresenta una versione specifica dell'applicazione.
 
-È possibile specificare i pacchetti di applicazioni a livello di pool e attività hello. È possibile specificare uno o più di questi pacchetti ed eventualmente una versione quando si crea un pool o un'attività.
+È possibile specificare i pacchetti dell'applicazione a livello di pool e di attività. È possibile specificare uno o più di questi pacchetti ed eventualmente una versione quando si crea un pool o un'attività.
 
-* **Pacchetti di applicazioni del pool** vengono distribuiti troppo*ogni* nodo nel pool di hello. Le applicazioni vengono distribuite quando un nodo viene aggiunto a un pool e quando viene riavviato o oppure la sua immagine viene ricreata.
+* **pacchetti dell'applicazione del pool** vengono distribuiti in *ogni* nodo del pool. Le applicazioni vengono distribuite quando un nodo viene aggiunto a un pool e quando viene riavviato o oppure la sua immagine viene ricreata.
   
-    I pacchetti dell'applicazione del pool possono essere usati quando tutti i nodi in un pool eseguono le attività di un processo. È possibile specificare uno o più pacchetti dell'applicazione quando si crea un pool e aggiungere o aggiornare i pacchetti di un pool esistente. Se si aggiornano pacchetti di applicazioni del pool esistenti, è necessario riavviare il nuovo pacchetto hello tooinstall nodi.
-* **Attività di pacchetti di applicazioni** vengono distribuiti solo tooa del nodo di calcolo toorun un'attività pianificata, appena prima di eseguire la riga di comando dell'attività hello. Se specificato hello versione e pacchetto dell'applicazione è già presente nel nodo hello, non viene ridistribuito e viene utilizzato un pacchetto esistente hello.
+    I pacchetti dell'applicazione del pool possono essere usati quando tutti i nodi in un pool eseguono le attività di un processo. È possibile specificare uno o più pacchetti dell'applicazione quando si crea un pool e aggiungere o aggiornare i pacchetti di un pool esistente. Se si aggiornano i pacchetti dell'applicazione di un pool esistente, è necessario riavviare i nodi per installare il nuovo pacchetto.
+* **pacchetti dell'applicazione per le attività** vengono distribuiti solo in un nodo di calcolo che dovrà eseguire un'attività, appena prima di eseguire la riga di comando dell'attività. Se il pacchetto dell'applicazione specificato con la versione corrispondente si trova già nel nodo, non verrà ridistribuito e verrà usato il pacchetto esistente.
   
-    Pacchetti di applicazioni di attività sono utili in ambienti pool condiviso, in cui diversi processi vengono eseguiti in un pool e pool hello non viene eliminato quando un processo viene completato. Se il processo è l'attività più o meno di nodi nel pool di hello, pacchetti di applicazioni di attività possono ridurre al minimo il trasferimento dei dati poiché l'applicazione viene distribuita toohello solo i nodi che eseguono attività.
+    I pacchetti dell'applicazione per le attività sono utili in ambienti di pool condivisi, in cui diversi processi vengono eseguiti in un pool e il pool non viene eliminato quando viene completato un processo. Se il processo ha meno attività che nodi nel pool, i pacchetti dell'applicazione di attività possono ridurre il trasferimento dei dati, perché l'applicazione viene distribuita solo nei nodi che eseguono le attività.
   
-    Altri scenari che possono trarre vantaggio dai pacchetti dell'applicazione per le attività sono i processi che usano un'applicazione di dimensioni elevate, ma solo per poche attività. Ad esempio, una fase di pre-elaborazione o un'attività di tipo merge, in cui un'applicazione hello pre-elaborazione o di tipo merge è pesante, potrebbe trarre vantaggio dall'utilizzo di pacchetti di applicazioni di attività.
+    Altri scenari che possono trarre vantaggio dai pacchetti dell'applicazione per le attività sono i processi che usano un'applicazione di dimensioni elevate, ma solo per poche attività. Una fase di pre-elaborazione o un'attività di unione in cui l'applicazione di pre-elaborazione o di unione è pesante possono ad esempio beneficiare dell'uso di pacchetti dell'applicazione per le attività.
 
 > [!IMPORTANT]
-> Esistono limitazioni alle dimensioni di pacchetto di applicazione massimo hello e numero hello di applicazioni e pacchetti di applicazioni all'interno di un account Batch. Vedere [quote e limiti per il servizio Azure Batch hello](batch-quota-limit.md) per informazioni dettagliate su questi limiti.
+> Sono previste restrizioni al numero di applicazioni e di pacchetti dell'applicazione in un account Batch e alle dimensioni massime del pacchetto dell'applicazione. Per informazioni dettagliate su questi limiti, vedere [Quote e limiti per il servizio Azure Batch](batch-quota-limit.md).
 > 
 > 
 
 ### <a name="benefits-of-application-packages"></a>Vantaggi dei pacchetti dell'applicazione
-Pacchetti di applicazioni possono semplificare il codice di hello in Batch soluzione e inferiore hello overhead toomanage obbligatorio hello le applicazioni che eseguono le attività.
+Con i pacchetti dell'applicazione è possibile semplificare il codice nella soluzione Batch e ridurre il sovraccarico richiesto in termini di gestione delle applicazioni eseguite delle attività.
 
-Con i pacchetti di applicazioni, attività di avvio del pool non ha toospecify un lungo elenco di risorse singoli file tooinstall nei nodi hello. Non è necessario toomanually gestire più versioni dei file dell'applicazione nell'archiviazione di Azure o sui nodi di. E non è necessario tooworry sulla generazione di [URL SAS](../storage/common/storage-dotnet-shared-access-signature-part-1.md) tooprovide accedere ai file di toohello nell'account di archiviazione. Batch funziona in background hello con pacchetti di applicazioni di servizio di archiviazione Azure toostore e distribuirli toocompute nodi.
+Con i pacchetti dell'applicazione non è necessario che l'attività di avvio del pool specifichi un lungo elenco di singoli file di risorse da installare nei nodi. Non è necessario gestire manualmente più versioni dei file dell'applicazione in Archiviazione di Azure o nei nodi. Per accedere ai file nell'account di archiviazione non è necessario generare un [URL di firma di accesso condiviso](../storage/common/storage-dotnet-shared-access-signature-part-1.md) . Batch interagisce in background con Archiviazione di Azure per archiviare e distribuire i pacchetti dell'applicazione nei nodi di calcolo.
 
 > [!NOTE] 
-> Hello dimensione totale di un'attività di avvio deve essere minore o uguale too32768 caratteri, inclusi i file di risorse e le variabili di ambiente. Se l'attività di avvio supera questo limite, l'uso di pacchetti dell'applicazione è un'altra opzione. Si può anche creare un archivio compresso contenente i file di risorse, caricare il file come tooAzure un blob Storage e decomprimere dalla riga di comando hello dell'attività di avvio. 
+> La dimensione totale di un'attività di avvio deve essere inferiore o uguale a 32768 caratteri, inclusi i file di risorse e le variabili di ambiente. Se l'attività di avvio supera questo limite, l'uso di pacchetti dell'applicazione è un'altra opzione. Si può inoltre creare un archivio compresso contenente i file di risorse, caricarlo come un BLOB in Archiviazione di Azure e quindi decomprimerlo dalla riga di comando dell'attività di avvio. 
 >
 >
 
 ## <a name="upload-and-manage-applications"></a>Caricare e gestire le applicazioni
-È possibile utilizzare hello [portale di Azure] [ portal] o hello [gestione .NET per Batch](batch-management-dotnet.md) pacchetti di applicazioni di libreria toomanage hello nell'account di Batch. Hello successivamente in sezioni, è innanzitutto illustrano toolink un account di archiviazione, quindi illustrati aggiungendo applicazioni e pacchetti e gestirli con hello portale.
+È possibile usare il [portale di Azure][portal] o la libreria [di gestione .NET per Batch](batch-management-dotnet.md) per gestire i pacchetti dell'applicazione nell'account Batch. Nelle sezioni successive verrà prima di tutto mostrato come collegare un account di archiviazione, quindi verrà descritta l'aggiunta di applicazioni e di pacchetti e la loro gestione con il portale.
 
 ### <a name="link-a-storage-account"></a>Collegare un account di archiviazione
-pacchetti di applicazioni toouse, è innanzitutto necessario collegare un tooyour di account di archiviazione di Azure account Batch. Se non è ancora stato configurato un account di archiviazione, hello portale di Azure consente di visualizzare hello un avviso prima volta che si fa clic su hello **applicazioni** riquadro in hello **account Batch** blade.
+Per usare i pacchetti dell'applicazione, è prima necessario collegare un account di archiviazione di Azure all'account Batch. Se non è stato ancora configurato un account di archiviazione, il portale di Azure visualizza un avviso nel momento in cui si seleziona per la prima volta il riquadro **Applicazioni** nel pannello **account Batch**.
 
 > [!IMPORTANT]
-> Batch attualmente supporta *solo* hello **generica** tipo di account di archiviazione come descritto nel passaggio 5, [creare un account di archiviazione](../storage/common/storage-create-storage-account.md#create-a-storage-account)nella [su Azure gli account di archiviazione](../storage/common/storage-create-storage-account.md). Quando si collega un tooyour di account di archiviazione di Azure account Batch, collegare *solo* un **generica** account di archiviazione.
+> Batch supporta attualmente *solo* account di archiviazione **per uso generico**, come descritto nel passaggio 5, [Creare un account di archiviazione](../storage/common/storage-create-storage-account.md#create-a-storage-account), dell'articolo [Informazioni sugli account di archiviazione di Azure](../storage/common/storage-create-storage-account.md). Quando si collega un account di archiviazione di Azure all'account Batch, collegare *solo* un account di archiviazione **per uso generico**.
 > 
 > 
 
 !['Nessun account di archiviazione configurato' nel portale di Azure][9]
 
-Hello Batch servizio utilizza hello associati toostore account di archiviazione i pacchetti di applicazioni. Dopo avere collegato due account hello, Batch possibile distribuire automaticamente i pacchetti hello archiviati in nodi di calcolo tooyour account archiviazione hello collegato. toolink un tooyour di account di archiviazione account Batch, fare clic su **impostazioni dell'account di archiviazione** su hello **avviso** blade e quindi fare clic su **Account di archiviazione** su hello **Account di archiviazione** blade.
+Il servizio Batch usa l'account di archiviazione associato per archiviare i pacchetti dell'applicazione. Dopo aver collegato i due account, Batch può distribuire automaticamente i pacchetti archiviati nell'account di archiviazione collegato nei nodi di calcolo. Per collegare un account di archiviazione a un account Batch selezionare **Impostazioni account di archiviazione** nel pannello **Avviso** e quindi fare clic su **Account di archiviazione** nel pannello **Account di archiviazione**.
 
 ![Selezionare il pannello Account di archiviazione nel portale di Azure][10]
 
-È consigliabile creare un account di archiviazione da usare *specificamente* con l'account Batch e selezionarlo qui. Per informazioni dettagliate su come toocreate un account di archiviazione, vedere "Creazione di un account di archiviazione" nella [gli account di archiviazione di Azure](../storage/common/storage-create-storage-account.md). Dopo aver creato un account di archiviazione, è possibile quindi collegarlo account Batch tooyour utilizzando hello **Account di archiviazione** blade.
+È consigliabile creare un account di archiviazione da usare *specificamente* con l'account Batch e selezionarlo qui. Per informazioni dettagliate sulla creazione di un account di archiviazione, vedere "Creare un account di archiviazione" in [Informazioni sugli account di archiviazione di Azure](../storage/common/storage-create-storage-account.md). Dopo aver creato un account di archiviazione, è possibile collegarlo all'account Batch tramite il pannello **Account di archiviazione** .
 
 > [!WARNING]
-> Hello servizio Batch utilizza i pacchetti di applicazioni toostore di archiviazione di Azure come BLOB in blocchi. Si è [addebitato come normale] [ storage_pricing] per i dati blob blocco hello. Dimensioni di hello che tooconsider e il numero dei pacchetti di applicazione, quindi periodicamente rimuovere pacchetti deprecati toominimize costi.
+> Il servizio Batch usa Archiviazione di Azure per archiviare i pacchetti dell'applicazione come BLOB in blocchi. L'[importo addebitato] [ storage_pricing] sarà lo stesso calcolato per i dati BLOB in blocchi. Controllare la dimensione e il numero dei pacchetti dell'applicazione e rimuovere periodicamente i pacchetti obsoleti per ridurre al minimo il costo.
 > 
 > 
 
 ### <a name="view-current-applications"></a>Visualizzare le applicazioni correnti
-applicazioni di hello tooview nell'account di Batch, fare clic su hello **applicazioni** voce di menu nel menu a sinistra di hello durante la visualizzazione hello **account Batch** blade.
+Per visualizzare le applicazioni nell'account Batch, fare clic sulla voce **Applicazioni** nel menu di sinistra mentre il pannello **Account Batch** è aperto.
 
 ![Riquadro Applicazioni][2]
 
-Selezionare questa opzione di menu per aprire hello **applicazioni** pannello:
+Selezionando questa opzione di menu viene visualizzato il pannello **Applicazioni**:
 
 ![Elenco applicazioni][3]
 
-Hello **applicazioni** pannello Visualizza hello ID di ogni applicazione nel proprio account e hello le proprietà seguenti:
+Nel pannello **Applicazioni** vengono visualizzati l'ID di ogni applicazione nell'account e le proprietà seguenti:
 
-* **Pacchetti**: hello numero di versioni associate a questa applicazione.
-* **Versione predefinita**: versione dell'applicazione hello installato se non è necessario indicare una versione quando si specifica un'applicazione hello per un pool. Questa impostazione è facoltativa.
-* **Consenti aggiornamenti**: valore hello che specifica se pacchetto aggiornamenti, eliminazioni e aggiunte sono consentiti. Se viene impostato troppo**n**, eliminazioni e aggiornamenti pacchetto sono disabilitate per l'applicazione hello. È possibile aggiungere solo nuove versioni del pacchetto dell'applicazione. valore predefinito di Hello è **Sì**.
+* **Pacchetti**: il numero delle versioni associate a questa applicazione.
+* **Versione predefinita**: la versione dell'applicazione che verrà installata se non si indica una versione quando si specifica l'applicazione per un pool. Questa impostazione è facoltativa.
+* **Consenti aggiornamenti**: il valore che specifica se sono consentiti aggiornamenti, eliminazioni e aggiunte per il pacchetto. Se l'opzione è impostata su **No**, gli aggiornamenti del pacchetto e le eliminazioni sono disabilitate per l'applicazione. È possibile aggiungere solo nuove versioni del pacchetto dell'applicazione. Il valore predefinito è **Sì**.
 
 ### <a name="view-application-details"></a>Visualizzare i dettagli dell'applicazione
-Pannello hello tooopen che include i dettagli di hello per un'applicazione hello dell'applicazione, selezionare in hello **applicazioni** blade.
+Per aprire il pannello che include i dettagli dell'applicazione, selezionare l'applicazione nel pannello **Applicazioni**.
 
 ![Dettagli applicazione][4]
 
-Nel Pannello di dettagli applicazione hello, è possibile configurare hello seguenti impostazioni per l'applicazione.
+Nel pannello dei dettagli dell'applicazione, è possibile configurare le impostazioni seguenti per l'applicazione.
 
 * **Consenti aggiornamenti**: specificare se i pacchetti dell'applicazione possono essere aggiornati o eliminati. Vedere "Aggiornare o eliminare un pacchetto dell'applicazione" più avanti in questo articolo.
-* **Versione predefinita**: specificare un pacchetto di predefinito applicazione toodeploy toocompute nodi.
-* **Nome visualizzato**: specificare un nome descrittivo del Batch soluzione può impiegare quando vengono visualizzate informazioni sull'applicazione hello, ad esempio, nell'interfaccia utente di un servizio fornito ai clienti tooyour tramite Batch hello.
+* **Versione predefinita**: specificare un pacchetto dell'applicazione predefinito da distribuire nei nodi di calcolo.
+* **Nome visualizzato**: si tratta di un nome descrittivo che la soluzione Batch può usare per visualizzare informazioni sull'applicazione, ad esempio nell'interfaccia utente di un servizio offerto ai clienti tramite Batch.
 
 ### <a name="add-a-new-application"></a>Aggiungere un’applicazione nuova
-toocreate una nuova applicazione, aggiungere un pacchetto di applicazione e specificare un ID applicazione di nuovi e univoci. Inoltre, Hello primo pacchetto di applicazione si aggiunge con un nuovo ID applicazione di hello Crea nuova applicazione hello.
+Per creare un'applicazione nuova, aggiungere un pacchetto dell'applicazione usando un ID applicazione nuovo e univoco. Il primo pacchetto dell'applicazione aggiunto usando il nuovo ID applicazione crea anche la nuova applicazione.
 
-Fare clic su **Aggiungi** su hello **applicazioni** hello tooopen pannello **nuova applicazione** blade.
+Fare clic su **Aggiungi** nel pannello **Applicazioni** per aprire il pannello **Nuova applicazione**.
 
 ![Pannello Nuova applicazione nel portale di Azure][5]
 
-Hello **nuova applicazione** pannello fornisce seguente hello campi impostazioni hello toospecify della nuova applicazione e il pacchetto di applicazione.
+Il pannello **Nuova applicazione** contiene i campi seguenti per specificare le impostazioni della nuova applicazione e del pacchetto dell'applicazione.
 
 **ID applicazione**
 
-Questo campo specifica hello ID della nuova applicazione, che è soggetto toohello standard ID Batch di Azure le regole di convalida. le regole per fornire un ID applicazione Hello sono come segue:
+Questo campo specifica l'ID della nuova applicazione, che è soggetto alle regole standard di convalida dell'ID di Azure Batch. Di seguito sono riportate le regole per fornire un ID applicazione:
 
-* I nodi Windows hello ID può contenere qualsiasi combinazione di caratteri alfanumerici, trattini e caratteri di sottolineatura. Nei nodi di Linux, sono consentiti solo caratteri alfanumerici e caratteri di sottolineatura.
+* Nei nodi di Windows, l'ID può contenere qualsiasi combinazione di caratteri alfanumerici, trattini e caratteri di sottolineatura. Nei nodi di Linux, sono consentiti solo caratteri alfanumerici e caratteri di sottolineatura.
 * Non può contenere più di 64 caratteri.
-* Deve essere univoco all'interno di hello account Batch.
+* Deve essere univoco nell’account Batch.
 * Mantiene le maiuscole/minuscole e non fa distinzione tra maiuscole e minuscole.
 
 **Versione**
 
-Questo campo specifica versione di hello hello del pacchetto di applicazione che si sta caricando. Le stringhe di versione sono toohello soggetto alle regole di convalida:
+Questo campo specifica la versione del pacchetto dell'applicazione che si sta caricando. Le stringhe della versione sono soggette alle regole di convalida seguenti:
 
-* Nei nodi di Windows, la stringa di versione hello può contenere qualsiasi combinazione di caratteri alfanumerici, trattini, caratteri di sottolineatura e punti. Nei nodi di Linux, stringa di versione di hello può contenere solo caratteri alfanumerici e caratteri di sottolineatura.
+* Nei nodi di Windows la stringa di versione può contenere qualsiasi combinazione di caratteri alfanumerici, trattini, caratteri di sottolineatura e punti. Nei nodi di Linux, la stringa di versione può contenere solo caratteri alfanumerici e caratteri di sottolineatura.
 * Non può contenere più di 64 caratteri.
-* Deve essere univoco all'interno di un'applicazione hello.
+* Devono essere univoche nell’applicazione.
 * Mantengono le maiuscole/minuscole e non fanno distinzione tra maiuscole e minuscole.
 
 **Pacchetto dell'applicazione**
 
-Questo campo specifica hello con estensione zip che contiene i file binari dell'applicazione hello e i file di supporto dell'applicazione hello tooexecute obbligatorio. Fare clic su hello **selezionare un file** casella o hello tooand toobrowse icona di cartella selezionare un file con estensione zip che contiene i file dell'applicazione.
+Questo campo specifica il file ZIP contenente i file binari e i file di supporto dell'applicazione necessari per l'esecuzione dell'applicazione. Fare clic sulla casella **Selezionare un file** oppure sull'icona della cartella per cercare e selezionare un file ZIP contenente i file dell'applicazione.
 
-Dopo aver selezionato un file, fare clic su **OK** toobegin hello caricamento tooAzure archiviazione. Quando l'operazione di caricamento hello è stata completata, portale hello Visualizza una notifica e chiude il pannello hello. A seconda delle dimensioni di hello del file hello che si sta caricando e hello velocità della connessione di rete, questa operazione potrebbe richiedere alcuni minuti.
+Dopo aver selezionato un file, fare clic su **OK** per avviare il caricamento in Archiviazione di Azure. Una volta completata l'operazione di caricamento, il portale visualizza una notifica e chiude il pannello. A seconda delle dimensioni del file che si sta caricando e della velocità della connessione di rete, l'operazione potrebbe richiedere alcuni minuti.
 
 > [!WARNING]
-> Non chiudere hello **nuova applicazione** pannello prima operazione di caricamento hello è stata completata. In questo modo, il processo di caricamento hello verrà interrotta.
+> Non chiudere il pannello **Nuova applicazione** prima che l'operazione di caricamento sia terminata, altrimenti il processo di caricamento sarà interrotto.
 > 
 > 
 
 ### <a name="add-a-new-application-package"></a>Aggiungere un nuovo pacchetto dell’applicazione
-tooadd una nuova versione del pacchetto dell'applicazione per un'applicazione esistente, selezionare un'applicazione hello **applicazioni** pannello, fare clic su **pacchetti**, quindi fare clic su **Aggiungi** tooopen Hello **Aggiungi pacchetto** blade.
+Per aggiungere una nuova versione del pacchetto dell'applicazione per un'applicazione esistente, selezionare un'applicazione nel pannello **Applicazioni**, fare clic su **Pacchetti** e quindi su **Aggiungi** per visualizzare il pannello **Aggiungi pacchetto**.
 
 ![Pannello per aggiungere un pacchetto dell'applicazione nel portale di Azure][8]
 
-Come si può notare, i campi di hello corrispondono a quelle di hello **nuova applicazione** pannello ma hello **id applicazione** casella è disabilitata. Come per la nuova applicazione hello, specificare hello **versione** per il nuovo pacchetto, visitare tooyour **pacchetto di applicazione** ZIP file, quindi fare clic su **OK** hello tooupload pacchetto.
+Come si può notare, i campi corrispondono a quelli del pannello **Nuova applicazione**, ad eccezione della casella **ID applicazione** che è disabilitata. Come è stato fatto per la nuova applicazione, specificare la **versione** del nuovo pacchetto, scegliere il file ZIP del **pacchetto dell'applicazione** e quindi fare clic su **OK** per caricare il pacchetto.
 
 ### <a name="update-or-delete-an-application-package"></a>Aggiornare o eliminare un pacchetto dell'applicazione
-tooupdate o eliminare un pacchetto di applicazione esistente, il pannello dettagli hello open per un'applicazione hello, fare clic su **pacchetti** tooopen hello **pacchetti** pannello, fare clic su hello **i puntini di sospensione**nella riga hello hello del pacchetto di applicazione che si desidera toomodify e selezionare hello azione che si desidera tooperform.
+Per aggiornare o eliminare un pacchetto dell'applicazione esistente, aprire il pannello dei dettagli relativo all'applicazione, fare clic su **Pacchetti** per visualizzare il pannello **Pacchetti**, fare clic sui **puntini di sospensione** nella riga del pacchetto dell'applicazione che si vuole modificare e quindi selezionare l'azione da eseguire.
 
 ![Aggiornare o eliminare un pacchetto nel portale di Azure][7]
 
 **Aggiornare**
 
-Quando fa clic su **aggiornamento**, hello *pacchetto di aggiornamento* pannello viene visualizzato. Questo pannello è simile toohello *nuovo pacchetto di applicazione* pannello, tuttavia, solo il campo selezione pacchetto hello è abilitato, consente toospecify un nuovo tooupload file ZIP.
+Se si seleziona **Aggiorna**, verrà visualizzato il pannello *Aggiorna pacchetto*. Questo pannello è simile al pannello usato per creare un *nuovo pacchetto dell'applicazione*. In questo caso, però, è abilitato solo il campo di selezione del pacchetto, in cui è possibile specificare un nuovo file ZIP da caricare.
 
 ![Pannello per aggiornare un pacchetto nel portale di Azure][11]
 
 **Eliminazione**
 
-Quando fa clic su **eliminare**, viene richiesto l'eliminazione di hello tooconfirm della versione del pacchetto hello e Batch Elimina pacchetto di hello da archiviazione di Azure. Se si elimina una versione di hello predefinita di un'applicazione, hello **versione predefinita** impostazione è stata rimossa per un'applicazione hello.
+Se si seleziona **Elimina**, verrà chiesto di confermare l'eliminazione della versione del pacchetto e Batch eliminerà il pacchetto da Archiviazione di Azure. Se si elimina la versione predefinita di un'applicazione, verrà rimossa l'impostazione **Versione predefinita** per l'applicazione.
 
 ![Eliminare un'applicazione ][12]
 
 ## <a name="install-applications-on-compute-nodes"></a>Installare le applicazioni su nodi di calcolo
-Ora che si è appreso come applicazione toomanage dei pacchetti con hello portale di Azure, è possibile illustrare come toodeploy tali nodi toocompute ed eseguirli con le attività Batch.
+Dopo aver appreso come gestire i pacchetti dell'applicazione con il portale di Azure, verrà ora descritta la distribuzione dei pacchetti nei nodi di calcolo e la relativa esecuzione con attività di Batch.
 
 ### <a name="install-pool-application-packages"></a>Installare pacchetti dell'applicazione nel pool
-tooinstall un pacchetto dell'applicazione in tutti i nodi di calcolo in un pool, specificare uno o più pacchetti di applicazione *riferimenti* per pool hello. pacchetti di applicazione Hello specificato per un pool vengono installati in ogni nodo di calcolo quando viene aggiunto a tale nodo pool hello e quando il nodo hello viene riavviato o ricreata l'immagine.
+Per installare un pacchetto dell'applicazione in tutti i nodi di calcolo di un pool, specificare uno o più *riferimenti* al pacchetto dell'applicazione per il pool. I pacchetti dell'applicazione specificati per un pool vengono installati su ciascun nodo di calcolo quando tale nodo viene aggiunto al pool e quando il nodo viene riavviato o ne viene ricreata l'immagine.
 
-In Batch .NET specificare uno o più [CloudPool][net_cloudpool].[ApplicationPackageReferences][net_cloudpool_pkgref] quando si crea un nuovo pool oppure aggiungerli al pool esistente. Hello [ApplicationPackageReference] [ net_pkgref] classe specifica un ID applicazione e la versione tooinstall in un pool di nodi di calcolo.
+In Batch .NET specificare uno o più [CloudPool][net_cloudpool].[ApplicationPackageReferences][net_cloudpool_pkgref] quando si crea un nuovo pool oppure aggiungerli al pool esistente. La classe [ApplicationPackageReference][net_pkgref] specifica un ID applicazione e la versione da installare nei nodi di calcolo di un pool.
 
 ```csharp
-// Create hello unbound CloudPool
+// Create the unbound CloudPool
 CloudPool myCloudPool =
     batchClient.PoolOperations.CreatePool(
         poolId: "myPool",
@@ -213,7 +213,7 @@ CloudPool myCloudPool =
         virtualMachineSize: "small",
         cloudServiceConfiguration: new CloudServiceConfiguration(osFamily: "4"));
 
-// Specify hello application and version tooinstall on hello compute nodes
+// Specify the application and version to install on the compute nodes
 myCloudPool.ApplicationPackageReferences = new List<ApplicationPackageReference>
 {
     new ApplicationPackageReference {
@@ -221,20 +221,20 @@ myCloudPool.ApplicationPackageReferences = new List<ApplicationPackageReference>
         Version = "1.1001.2b" }
 };
 
-// Commit hello pool so that it's created in hello Batch service. As hello nodes join
-// hello pool, hello specified application package is installed on each.
+// Commit the pool so that it's created in the Batch service. As the nodes join
+// the pool, the specified application package is installed on each.
 await myCloudPool.CommitAsync();
 ```
 
 > [!IMPORTANT]
-> Se una distribuzione del pacchetto di applicazione non riesce per qualsiasi motivo, i segni di servizio Batch hello hello nodo [inutilizzabile][net_nodestate], e nessuna attività viene pianificata per l'esecuzione in tale nodo. In questo caso, è necessario **riavviare** hello distribuzione dei pacchetti hello tooreinitiate nodo. Nodo hello riavviare consente inoltre di pianificazione delle attività nuovamente nel nodo hello.
+> Se una distribuzione del pacchetto dell'applicazione non riesce, il servizio Batch contrassegna il nodo come [inutilizzabile][net_nodestate] e non vengono pianificate attività per l'esecuzione in tale nodo. In questo caso è necessario **riavviare** il nodo per reinizializzare la distribuzione del pacchetto. Il riavvio del nodo consente anche di pianificarne di nuovo le attività.
 > 
 > 
 
 ### <a name="install-task-application-packages"></a>Installare pacchetti dell'applicazione per le attività
-Pool tooa simile, specificare il pacchetto di applicazione *riferimenti* per un'attività. Quando un'attività è pianificata toorun in un nodo, il pacchetto di hello viene scaricato ed estratto prima riga di comando dell'attività hello venga eseguito. Se un pacchetto specificato e la versione è già installato nel nodo hello, non viene scaricato il pacchetto di hello e viene utilizzato un pacchetto esistente hello.
+Come per un pool, specificare i *riferimenti* del pacchetto dell'applicazione per un'attività. Quando un'attività è pianificata per l'esecuzione su un nodo, il pacchetto viene scaricato ed estratto appena prima dell'esecuzione della riga di comando dell'attività. Se un pacchetto specificato con la versione corrispondente è già installato nel nodo, non verrà scaricato e verrà usato il pacchetto esistente.
 
-tooinstall un pacchetto di applicazione di attività, configurare dell'attività hello [CloudTask][net_cloudtask].[ ApplicationPackageReferences] [ net_cloudtask_pkgref] proprietà:
+Per installare un pacchetto dell'applicazione per le attività, configurare la proprietà [CloudTask][net_cloudtask].[ApplicationPackageReferences][net_cloudtask_pkgref] dell'attività:
 
 ```csharp
 CloudTask task =
@@ -252,44 +252,44 @@ task.ApplicationPackageReferences = new List<ApplicationPackageReference>
 };
 ```
 
-## <a name="execute-hello-installed-applications"></a>Eseguire le applicazioni hello installato
-vengono scaricati Hello pacchetti specificati per un pool o un'attività ed estratti tooa denominato directory all'interno di hello `AZ_BATCH_ROOT_DIR` del nodo hello. Batch Crea inoltre una variabile di ambiente contenente toohello percorso hello denominato directory. Le righe di comando attività usare questa variabile di ambiente quando si fa riferimento a un'applicazione hello nel nodo hello. 
+## <a name="execute-the-installed-applications"></a>Eseguire le applicazioni installate
+I pacchetti specificati per un pool o un'attività vengono scaricati ed estratti in una directory denominata all'interno del nodo `AZ_BATCH_ROOT_DIR` . Batch crea anche una variabile di ambiente che contiene il percorso della directory denominata. Le righe di comando dell'attività usano questa variabile di ambiente quando fanno riferimento all'applicazione nel nodo. 
 
-Variabile hello è nodi Windows in hello seguente formato:
+Nei nodi di Windows la variabile è nel formato seguente:
 
 ```
 Windows:
 AZ_BATCH_APP_PACKAGE_APPLICATIONID#version
 ```
 
-In nodi di Linux, il formato di hello è leggermente diverso. Punti (.), trattini (-) e simboli di cancelletto (#) sono bidimensionali toounderscores nella variabile di ambiente hello. ad esempio:
+Nei nodi di Linux, il formato è leggermente diverso. Punti (.), trattini (-) e simboli di cancelletto (#) vengono convertiti in caratteri di sottolineatura nella variabile di ambiente. ad esempio:
 
 ```
 Linux:
 AZ_BATCH_APP_PACKAGE_APPLICATIONID_version
 ```
 
-`APPLICATIONID`e `version` sono valori che corrispondono toohello applicazione e versione del pacchetto è stato specificato per la distribuzione. Ad esempio, se è stata specificata la versione 2.7 di applicazione *blender* deve essere installata nei nodi di Windows, le righe di comando attività utilizzerà questo tooaccess variabile di ambiente relativi file:
+`APPLICATIONID` e `version` sono valori che corrispondono all'applicazione e alla versione del pacchetto specificati per la distribuzione. Se ad esempio si specifica l'installazione della versione 2.7 dell'applicazione *blender* nei nodi di Windows, le righe di comando dell'attività useranno questa variabile di ambiente per accedere ai file corrispondenti:
 
 ```
 Windows:
 AZ_BATCH_APP_PACKAGE_BLENDER#2.7
 ```
 
-Nei nodi di Linux, specificare la variabile di ambiente hello nel formato seguente:
+Nei nodi di Linux, specificare la variabile di ambiente nel formato seguente:
 
 ```
 Linux:
 AZ_BATCH_APP_PACKAGE_BLENDER_2_7
 ``` 
 
-Quando si carica un pacchetto di applicazione, è possibile specificare un tooyour toodeploy di versione predefinito nodi di calcolo. Se è stata specificata una versione predefinita per un'applicazione, è possibile omettere il suffisso di versione di hello quando si fa riferimento a un'applicazione hello. È possibile specificare una versione di hello predefinito dell'applicazione nel portale di Azure, nel Pannello di applicazioni hello, hello come illustrato nella [caricare e gestire applicazioni](#upload-and-manage-applications).
+Quando si carica un pacchetto dell'applicazione, è possibile specificare una versione predefinita da distribuire ai nodi di calcolo. Se è stata specificata una versione predefinita per un'applicazione, è possibile omettere il suffisso della versione quando si fa riferimento l'applicazione. È possibile specificare la versione predefinita dell'applicazione nel pannello Applicazioni del portale di Azure, come illustrato in [Caricare e gestire le applicazioni](#upload-and-manage-applications).
 
-Ad esempio, se si imposta come versione di hello predefinita per l'applicazione "2.7" *blender*, le attività di riferimento hello seguente variabile di ambiente, quindi i nodi Windows eseguirà versione 2.7:
+Se ad esempio è stata specificata la versione predefinita "2.7" per l'applicazione *blender* e le attività fanno riferimento alla variabile di ambiente seguente, i nodi di Windows eseguiranno la versione 2.7:
 
 `AZ_BATCH_APP_PACKAGE_BLENDER`
 
-Hello frammento di codice seguente viene illustrata una riga di comando di attività di esempio che avvia versione di hello predefinita di hello *blender* applicazione:
+Il frammento di codice seguente mostra una riga di comando dell'attività di esempio che consente di avviare la versione predefinita dell'applicazione *blender* :
 
 ```csharp
 string taskId = "blendertask01";
@@ -299,18 +299,18 @@ CloudTask blenderTask = new CloudTask(taskId, commandLine);
 ```
 
 > [!TIP]
-> Vedere [impostazioni di ambiente per l'attività](batch-api-basics.md#environment-settings-for-tasks) in hello [Cenni preliminari sulle funzionalità di Batch](batch-api-basics.md) per ulteriori informazioni sulle impostazioni di ambiente nodo di calcolo.
+> Per altre informazioni sulle impostazioni dell'ambiente dei nodi di calcolo, vedere [Impostazioni di ambiente per le attività](batch-api-basics.md#environment-settings-for-tasks) in [Panoramica delle funzionalità di Batch per sviluppatori](batch-api-basics.md).
 > 
 > 
 
 ## <a name="update-a-pools-application-packages"></a>Aggiornare i pacchetti dell’applicazione di un pool
-Se un pool esistente è già stato configurato con un pacchetto di applicazione, è possibile specificare un nuovo pacchetto per il pool di hello. Se si specifica un nuovo riferimento pacchetto per un pool, si applicano i seguenti hello:
+Se un pool esistente è già stato configurato con un pacchetto dell’applicazione, è possibile specificare un nuovo pacchetto per il pool. Se si specifica un nuovo riferimento al pacchetto per un pool, si applica quanto segue:
 
-* Hello servizio Batch installa hello appena specificato per il pacchetto in tutti i nuovi nodi che uniscono in join pool hello e su qualsiasi nodo esistente che è stato riavviato oppure ricreata l'immagine.
-* Consente di calcolare i nodi già presenti nel pool di hello quando si aggiorna hello pacchetto fa riferimento non installano automaticamente il nuovo pacchetto di applicazione hello. Questi nodi è necessario riavviare o calcolo tooreceive nuove immagini hello nuovo pacchetto.
-* Quando viene distribuito un nuovo pacchetto, creata variabili di ambiente hello riflettono hello nuova applicazione pacchetto fa riferimento.
+* Il servizio Batch installa il pacchetto appena specificato su tutti i nuovi nodi aggiunti al pool e su tutti i nodi esistenti riavviati o per i quali viene ricreata l'immagine.
+* I nodi di calcolo che si trovano già nel pool quando si aggiornano i riferimenti al pacchetto non installano automaticamente il nuovo pacchetto dell’applicazione. Questi nodi di calcolo devono essere riavviati o ne deve essere ricreata l'immagine per ricevere il nuovo pacchetto.
+* Quando viene distribuito un nuovo pacchetto, le variabili di ambiente create riflettono i riferimenti al nuovo pacchetto dell'applicazione.
 
-In questo esempio, un pool esistente hello è versione 2.7 di hello *blender* applicazione configurata come uno dei relativi [CloudPool][net_cloudpool].[ ApplicationPackageReferences][net_cloudpool_pkgref]. i nodi del pool di hello tooupdate con versione 2.76b, specificare un nuovo [ApplicationPackageReference] [ net_pkgref] con una nuova versione di hello e commit hello modifica.
+In questo esempio il pool esistente ha la versione 2.7 dell'applicazione *blender* configurata come uno dei relativi [CloudPool][net_cloudpool].[ApplicationPackageReferences][net_cloudpool_pkgref]. Per aggiornare i nodi del pool alla versione 2.76b, specificare un nuovo [ApplicationPackageReference][net_pkgref] con la nuova versione ed eseguire il commit della modifica.
 
 ```csharp
 string newVersion = "2.76b";
@@ -324,13 +324,13 @@ boundPool.ApplicationPackageReferences = new List<ApplicationPackageReference>
 await boundPool.CommitAsync();
 ```
 
-Ora che hello nuova versione è stata configurata, hello servizio Batch installa versione 2.76b tooany *nuova* nodi aggiunti al pool di hello. tooinstall 2.76b in hello i nodi *già* nel pool di hello, riavviare o ricreare l'immagine di essi. Si noti che i nodi riavviati mantengono file hello da distribuzioni di pacchetto precedente.
+Ora che è stata configurata la nuova versione, il servizio Batch installa la versione 2.76b su qualsiasi *nuovo* nodo aggiunto al pool. Per installare la versione 2.76b nei nodi *già* presenti nel pool, riavviarli o ricrearne l'immagine. Notare che i nodi riavviati mantengono i file delle distribuzioni precedenti del pacchetto.
 
-## <a name="list-hello-applications-in-a-batch-account"></a>Elenco di applicazioni hello in un account Batch
-È possibile elencare i pacchetti in un account di Batch e applicazioni hello utilizzando hello [ApplicationOperations][net_appops].[ ListApplicationSummaries] [ net_appops_listappsummaries] metodo.
+## <a name="list-the-applications-in-a-batch-account"></a>Elencare le applicazioni in un account Batch
+È possibile elencare le applicazioni e i relativi pacchetti in un account Batch con il metodo [ApplicationOperations][net_appops].[ListApplicationSummaries][net_appops_listappsummaries].
 
 ```csharp
-// List hello applications and their application packages in hello Batch account.
+// List the applications and their application packages in the Batch account.
 List<ApplicationSummary> applications = await batchClient.ApplicationOperations.ListApplicationSummaries().ToListAsync();
 foreach (ApplicationSummary app in applications)
 {
@@ -344,11 +344,11 @@ foreach (ApplicationSummary app in applications)
 ```
 
 ## <a name="wrap-up"></a>Eseguire il wrapping
-Con pacchetti di applicazioni, è possibile aiutare i clienti selezionare applicazioni hello per svolgere il lavoro e specificare hello versione esatta toouse durante l'elaborazione di processi con il servizio Batch abilitata. Potrebbe inoltre offrono possibilità di hello per tooupload i clienti e tenere traccia delle proprie applicazioni del servizio.
+Con i pacchetti dell'applicazione è possibile assistere i clienti nella scelta delle applicazioni per i loro processi e specificare la versione corretta da usare durante l'elaborazione dei processi con il servizio abilitato per Batch. I clienti possono inoltre caricare e monitorare le applicazioni usate nel servizio.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Hello [API REST di Batch] [ api_rest] fornisce inoltre supporto toowork con pacchetti di applicazioni. Ad esempio, vedere hello [applicationPackageReferences] [ rest_add_pool_with_packages] elemento [aggiungere un account del pool di tooan] [ rest_add_pool] per informazioni su come toospecify tooinstall di pacchetti tramite hello API REST. Vedere [applicazioni] [ rest_applications] per informazioni dettagliate su come le informazioni sull'applicazione tooobtain utilizzando hello API REST di Batch.
-* Informazioni su come tooprogrammatically [gestire gli account Azure Batch e le quote con gestione .NET per Batch](batch-management-dotnet.md). Hello [gestione .NET per Batch][api_net_mgmt] libreria è possibile abilitare funzionalità di creazione e l'eliminazione di account per l'applicazione di Batch o di un servizio.
+* L'[API REST Batch][api_rest] consente anche di usare i pacchetti dell'applicazione. Per informazioni su come specificare i pacchetti da installare con l'API REST, vedere ad esempio l'elemento [applicationPackageReferences][rest_add_pool_with_packages] in [Aggiungere un pool a un account][rest_add_pool]. Per dettagli su come ottenere informazioni sull'applicazione con l'API REST Batch, vedere [Applicazioni][rest_applications].
+* È possibile scoprire come [gestire quote e account Azure Batch con la gestione .NET per Batch](batch-management-dotnet.md)a livello di codice. Con la libreria di [gestione .NET per Batch][api_net_mgmt] è possibile abilitare funzionalità di creazione ed eliminazione di account per l'applicazione o il servizio Batch.
 
 [api_net]: https://docs.microsoft.com/dotnet/api/overview/azure/batch/client?view=azure-dotnet
 [api_net_mgmt]: https://docs.microsoft.com/dotnet/api/overview/azure/batch/management?view=azure-dotnet

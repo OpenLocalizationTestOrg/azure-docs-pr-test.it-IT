@@ -1,5 +1,5 @@
 ---
-title: query di elenco efficiente aaaDesign - Azure Batch | Documenti Microsoft
+title: 'Progettare query di tipo elenco efficienti: Azure Batch | Documentazione Microsoft'
 description: "Migliorare le prestazioni filtrando le query quando si chiedono informazioni su risorse di Batch, ad esempio pool, processi, attività e nodi di calcolo."
 services: batch
 documentationcenter: .net
@@ -15,88 +15,88 @@ ms.workload: big-compute
 ms.date: 08/02/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: b7e554119ec9d0e9e8007ccfb1ca80fe142a5e27
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a80b207f591bd888d4749287527013c5e554fb6e
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="create-queries-toolist-batch-resources-efficiently"></a>Creare query in modo efficiente le risorse di Batch toolist
+# <a name="create-queries-to-list-batch-resources-efficiently"></a>Creare query per elencare le risorse di Batch in modo efficiente
 
-Questo articolo si apprenderà come tooincrease prestazioni dell'applicazione Azure Batch riducendo hello di dati restituiti dal servizio hello quando si eseguono query processi, attività e i nodi di calcolo con hello [.NET per Batch] [ api_net] libreria.
+Viene illustrato come migliorare le prestazioni dell'applicazione Azure Batch, riducendo la quantità di dati restituiti dal servizio quando si eseguono query su processi, attività e nodi di calcolo con la libreria [Batch .NET][api_net].
 
-Quasi tutte le applicazioni di Batch necessario tooperform qualche tipo di monitoraggio o un'altra operazione che una query nel servizio Batch hello, spesso a intervalli regolari. Toodetermine, ad esempio, se sono presenti tutte le attività in coda rimanente in un processo, è necessario ottenere dati per ogni attività nel processo di hello. stato di hello toodetermine dei nodi del pool, è necessario ottenere dati in ogni nodo nel pool di hello. Questo articolo viene illustrato come tooexecute ad una query in hello modo più efficiente.
+Quasi tutte le applicazioni Batch devono eseguire un tipo di monitoraggio o un'altra operazione che esegue query sul servizio Batch, spesso a intervalli regolari. Per determinare ad esempio se sono ancora presenti attività in coda in un processo, è necessario ottenere dati per ogni attività nel processo. Per determinare lo stato dei nodi nel pool è necessario ottenere dati in ogni nodo nel pool. Questo articolo illustra come eseguire queste query nel modo più efficiente.
 
 > [!NOTE]
-> Hello servizio Batch offre uno speciale supporto API per uno scenario comune di hello del conteggio delle attività in un processo. Anziché utilizzare una query di elenco per questi, è possibile chiamare hello [Ottieni conteggio attività] [ rest_get_task_counts] operazione. Questa operazione restituisce il numero di attività in sospeso, in esecuzione o completate, nonché di quelle riuscite e non riuscite. L'operazione di recupero dei conteggi delle attività è più efficiente di una query di tipo elenco. Per altre informazioni, vedere [Conteggiare le attività per un processo in base allo stato (anteprima)](batch-get-task-counts.md). 
+> Il servizio Batch fornisce supporto speciale delle API per lo scenario comune di conteggio delle attività in un processo. Invece di usare una query di tipo elenco a questo scopo, è possibile chiamare l'operazione di [recupero del conteggio delle attività][rest_get_task_counts]. Questa operazione restituisce il numero di attività in sospeso, in esecuzione o completate, nonché di quelle riuscite e non riuscite. L'operazione di recupero dei conteggi delle attività è più efficiente di una query di tipo elenco. Per altre informazioni, vedere [Conteggiare le attività per un processo in base allo stato (anteprima)](batch-get-task-counts.md). 
 >
-> in precedenza 2017-06-01.5.1 Hello operazione Ottieni conteggio attività non è disponibile nelle versioni del servizio Batch. Se si utilizza una versione precedente del servizio di hello, quindi utilizzare un'attività di toocount query di elenco in un processo.
+> Questa operazione non è disponibile nelle versioni del servizio Batch precedenti alla 2017-06-01.5.1. Se si usa una versione meno recente del servizio, usare una query di tipo elenco per conteggiare le attività in un processo.
 >
 > 
 
-## <a name="meet-hello-detaillevel"></a>Soddisfare hello DetailLevel
-In un ambiente di produzione dell'applicazione di Batch, hello migliaia possibile numerare entità quali processi, attività e i nodi di calcolo. Quando si richiedono informazioni su queste risorse, una grande quantità di dati deve "attraversare transito hello" da un'applicazione hello Batch servizio tooyour per ogni query. Limitando il numero di hello di elementi e il tipo di informazioni restituite da una query, è possibile aumentare la velocità delle query hello e pertanto hello prestazioni dell'applicazione.
+## <a name="meet-the-detaillevel"></a>Definire livelli di dettaglio
+In un'applicazione Batch di produzione, le entità da elaborare, ad esempio processi, attività e nodi di calcolo, possono essere migliaia. Quando si richiedono informazioni su queste risorse, una grande quantità di dati deve "transitare" dal servizio Batch all'applicazione in ogni query. Limitando il numero di elementi e il tipo di informazioni restituiti da una query, è possibile aumentarne la velocità e quindi migliorare le prestazioni dell'applicazione.
 
-Questo [.NET per Batch] [ api_net] elenchi frammento di codice API *ogni* attività associata a un processo, insieme a *tutti* di proprietà hello di ogni attività:
+Questo frammento di codice dell'API [Batch .NET][api_net] elenca *ogni* attività associata a un processo, insieme a *tutte* le proprietà dell'attività:
 
 ```csharp
-// Get a collection of all of hello tasks and all of their properties for job-001
+// Get a collection of all of the tasks and all of their properties for job-001
 IPagedEnumerable<CloudTask> allTasks =
     batchClient.JobOperations.ListTasks("job-001");
 ```
 
-È possibile eseguire una query di elenco molto più efficiente, tuttavia, tramite l'applicazione di una query di tooyour "livello di dettaglio". A tale scopo, fornire un [ODATADetailLevel] [ odata] oggetto toohello [JobOperations.ListTasks] [ net_list_tasks] metodo. Questo frammento restituisce solo ID hello, riga di comando e proprietà delle informazioni di nodo di calcolo delle attività completate:
+È possibile eseguire una query di tipo elenco molto più efficiente, tuttavia, applicando un "livello di dettaglio" alla query. A questo scopo, indicare un oggetto [ODATADetailLevel][odata] al metodo [JobOperations.ListTasks][net_list_tasks]. Questo frammento restituisce solo l'ID, la riga di comando e informazioni sulle proprietà del nodo di calcolo delle attività completate:
 
 ```csharp
 // Configure an ODATADetailLevel specifying a subset of tasks and
-// their properties tooreturn
+// their properties to return
 ODATADetailLevel detailLevel = new ODATADetailLevel();
 detailLevel.FilterClause = "state eq 'completed'";
 detailLevel.SelectClause = "id,commandLine,nodeInfo";
 
-// Supply hello ODATADetailLevel toohello ListTasks method
+// Supply the ODATADetailLevel to the ListTasks method
 IPagedEnumerable<CloudTask> completedTasks =
     batchClient.JobOperations.ListTasks("job-001", detailLevel);
 ```
 
-In questo scenario di esempio, se sono presenti migliaia di attività nel processo di hello, hello risultati dalla seconda query hello in genere saranno restituite molto più rapidamente rispetto a hello prima. Ulteriori informazioni sull'utilizzo ODATADetailLevel quando si elencano gli elementi con hello API .NET di Batch vengono incluse [sotto](#efficient-querying-in-batch-net).
+Se in questo scenario di esempio il processo include migliaia di attività, il risultato della seconda query viene in genere restituito molto più rapidamente della prima. [Di seguito](#efficient-querying-in-batch-net)sono disponibili altre informazioni sull'uso di ODATADetailLevel quando si elencano elementi con l'API Batch .NET.
 
 > [!IMPORTANT]
-> È consigliabile si *sempre* specificare un elenco di API .NET ODATADetailLevel tooyour oggetto chiama tooensure della massima efficienza e prestazioni dell'applicazione. Se si specifica un livello di dettaglio, consentono di toolower Batch tempi di risposta del servizio, migliorare l'utilizzo della rete e ridurre l'utilizzo di memoria dalle applicazioni client.
+> È consigliabile specificare *sempre* un oggetto ODATADetailLevel per le chiamate di tipo elenco all'API .NET, per assicurare il massimo livello di efficienza e prestazioni dell'applicazione. Specificando un livello di dettaglio è possibile ridurre i tempi di risposta del servizio Batch, migliorare l'utilizzo della rete e ridurre l'utilizzo di memoria da parte delle applicazioni client.
 > 
 > 
 
 ## <a name="filter-select-and-expand"></a>Filtro, selezione ed espansione
-Hello [.NET per Batch] [ api_net] e [Batch REST] [ api_rest] API forniscono hello possibilità tooreduce sia il numero di elementi che vengono restituiti in un elenco, hello nonché hello quantità di informazioni restituite per ogni. A questo scopo, specificare stringhe di **filtro**, **selezione** ed **espansione** quando si eseguono query di tipo elenco.
+Le API [Batch .NET][api_net] e [Batch REST][api_rest] consentono di ridurre sia il numero di elementi restituiti in un elenco sia la quantità di informazioni restituite per ogni elemento. A questo scopo, specificare stringhe di **filtro**, **selezione** ed **espansione** quando si eseguono query di tipo elenco.
 
 ### <a name="filter"></a>Filtro
-stringa di filtro Hello è un'espressione che consente di ridurre il numero di hello di elementi restituiti. Ad esempio, elenco solo hello in esecuzione di attività per un processo o elenco solo nodi di calcolo che sono attività toorun pronto.
+La stringa di filtro è un'espressione che riduce il numero di elementi restituiti. Ad esempio, elencare solo le attività in esecuzione per un processo o solo i nodi di calcolo pronti per eseguire attività.
 
-* stringa di filtro Hello è costituita da una o più espressioni, con un'espressione costituita da un nome di proprietà, un operatore e un valore. proprietà Hello che è possibile specificare sono tooeach specifico tipo di entità che si esegue una query, come gli operatori di hello che sono supportati per ogni proprietà.
-* Più espressioni possono essere combinate utilizzando operatori logici hello `and` e `or`.
-* In questo esempio filtrare gli elenchi di stringa solo hello in esecuzione "eseguire il rendering" attività: `(state eq 'running') and startswith(id, 'renderTask')`.
+* Una stringa di filtro è costituita da una o più espressioni, ciascuna delle quali è composta da un nome di proprietà, un operatore e un valore. Le proprietà che è possibile immettere sono specifiche di ogni tipo di entità su cui viene eseguita la query, come lo sono gli operatori supportati per ogni proprietà.
+* È possibile combinare più espressioni usando gli operatori logici `and` e `or`.
+* Questo esempio di stringa di filtro indica solo le attività di "rendering" in esecuzione: `(state eq 'running') and startswith(id, 'renderTask')`.
 
 ### <a name="select"></a>Selezionare
-Selezionare stringa Hello limita i valori delle proprietà hello restituiti per ogni elemento. Si specifica un elenco di nomi di proprietà e vengono restituiti solo i valori di proprietà per gli elementi di hello nei risultati della query hello.
+La stringa di selezione limita i valori della proprietà restituiti per ogni elemento. Si specifica un elenco di nomi di proprietà e vengono restituiti solo i valori di quelle proprietà per gli elementi nei risultati della query.
 
-* stringa selezionare Hello è costituita da un elenco delimitato da virgole di nomi di proprietà. È possibile specificare qualsiasi proprietà hello per il tipo di entità hello che si esegue la query.
+* La stringa di selezione è costituita da un elenco con valori delimitati da virgole di nomi di proprietà. È possibile specificare qualsiasi proprietà per il tipo di entità su cui si esegue la query.
 * Questa stringa di selezione di esempio specifica che dovranno essere restituiti solo i valori di tre proprietà per ogni attività: `id, state, stateTransitionTime`.
 
 ### <a name="expand"></a>Espandere
-Hello espandere stringa riduce il numero di hello di chiamate API tooobtain necessarie alcune informazioni. Quando si usa una stringa di espansione, si possono ottenere altre informazioni su ogni elemento con una singola chiamata API. Anziché primo recupero hello elenco di entità, quindi la richiesta di informazioni per ogni elemento nell'elenco di hello è utilizzare una stringa di espansione tooobtain hello stesse informazioni in una singola chiamata API. Meno chiamate API significano prestazioni migliori.
+La stringa di espansione riduce il numero di chiamate API richieste per ottenere determinate informazioni. Quando si usa una stringa di espansione, si possono ottenere altre informazioni su ogni elemento con una singola chiamata API. Invece di ottenere prima l'elenco delle entità e quindi richiedere informazioni per ogni elemento nell'elenco, usare una stringa di espansione per ottenere le stesse informazioni in una singola chiamata API. Meno chiamate API significano prestazioni migliori.
 
-* Stringa selezionare toohello simile, hello espandere i controlli di stringa se determinati dati sono inclusa nei risultati di query di elenco.
-* stringa di espandere Hello è supportato solo quando viene utilizzato nell'elenco di processi, le pianificazioni dei processi, attività e i pool. Attualmente supporta solo informazioni statistiche.
-* Quando tutte le proprietà e viene specificata alcuna stringa seleziona, hello espandere stringa *deve* essere tooget utilizzate le informazioni statistiche. Se una stringa di selezione è tooobtain usato un subset delle proprietà, quindi `stats` può essere specificato nella stringa selezionare hello e hello espandere stringa non è necessario toobe specificato.
-* In questo esempio espandere stringa specifica che devono essere restituite le informazioni statistiche per ogni elemento nell'elenco di hello: `stats`.
+* Analogamente alla stringa di selezione, la stringa di espansione controlla se determinati dati sono inclusi nei risultati di una query di tipo elenco.
+* La stringa di espansione è supportata solo quando viene usata nell'elenco di processi, pianificazioni di processi, attività e pool. Attualmente supporta solo informazioni statistiche.
+* Quando tutte le proprietà sono obbligatorie e non è stata specificata alcuna stringa di selezione, è *necessario* usare la stringa di espansione per ottenere informazioni statistiche. Se si usa una stringa di selezione per ottenere un subset di proprietà, è possibile specificare `stats` nella stringa di selezione e non è necessario specificare la stringa di espansione.
+* Questo esempio di stringa di espansione specifica che dovranno essere restituite informazioni statistiche per ogni elemento nell'elenco: `stats`.
 
 > [!NOTE]
-> Quando si crea uno qualsiasi dei hello tre tipi di stringa di query (filtrare, selezionare ed espandere), è necessario assicurarsi che i nomi delle proprietà hello e case corrisponde a quello delle controparti elemento API REST. Ad esempio, quando si lavora con hello .NET [CloudTask](https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudtask) (classe), è necessario specificare **stato** anziché **stato**, anche se è di proprietà .NET hello [ CloudTask.State](https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudtask.state). Vedere tabelle hello seguenti per i mapping di proprietà tra hello .NET e le API REST.
+> Quando si costruisce uno qualsiasi dei tre tipi di stringhe di query, ovvero filtro, selezione ed espansione, è necessario assicurarsi che i nomi delle proprietà e le lettere maiuscole/minuscole corrispondano alle relative controparti nell'API REST. Ad esempio, quando si usa la classe [CloudTask](https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudtask) .NET, è necessario specificare **state** invece di **State**, anche se la proprietà .NET è [CloudTask.State](https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudtask.state). Per i mapping delle proprietà tra le API .NET e REST, vedere le tabelle seguenti.
 > 
 > 
 
 ### <a name="rules-for-filter-select-and-expand-strings"></a>Regole per le stringhe di filtro, selezione ed espansione
-* I nomi di proprietà nel filtro, selezionare ed espandere le stringhe dovrebbe essere visualizzata come avviene in hello [Batch REST] [ api_rest] API, anche quando si utilizza [.NET per Batch] [ api_net] o uno degli altri SDK di Batch di hello.
+* I nomi delle proprietà nelle stringhe di filtro, selezione ed espansione devono corrispondere a quelli presenti nell'API [Batch REST][api_rest] anche quando si usa [Batch .NET][api_net] o uno degli altri SDK di Batch.
 * Per tutti i nomi di proprietà viene fatta distinzione tra maiuscole e minuscole, al contrario di quanto avviene per i valori delle proprietà.
 * Le stringhe relative a data/ora possono essere indicate in uno dei due formati seguenti e devono essere precedute da `DateTime`.
   
@@ -106,68 +106,68 @@ Hello espandere stringa riduce il numero di hello di chiamate API tooobtain nece
 * Se si specifica una proprietà o un operatore non valido, viene generato un errore `400 (Bad Request)` .
 
 ## <a name="efficient-querying-in-batch-net"></a>Esecuzione efficiente di query in Batch .NET
-All'interno di hello [.NET per Batch] [ api_net] API, hello [ODATADetailLevel] [ odata] classe viene utilizzata per fornire filtro, selezionare ed espandere le stringhe operazioni toolist. classe ODataDetailLevel Hello ha tre proprietà pubbliche di stringa che può essere specificata nel costruttore hello o impostare direttamente sull'oggetto hello. Oggetto viene quindi passato hello ODataDetailLevel come un parametro toohello varie operazioni di elenco, ad esempio [ListPools][net_list_pools], [ListJobs][net_list_jobs], e [ListTasks][net_list_tasks].
+Nell'API [Batch .NET][api_net] viene usata la classe [ODATADetailLevel][odata] per specificare le stringhe di filtro, selezione ed espansione alle operazioni di tipo elenco. La classe ODataDetailLevel presenta tre proprietà pubbliche di tipo stringa che possono essere specificate nel costruttore o impostate direttamente: L'oggetto ODataDetailLevel viene quindi passato come parametro alle diverse operazioni di tipo elenco, ad esempio [ListPools][net_list_pools], [ListJobs][net_list_jobs] e [ListTasks][net_list_tasks].
 
-* [ODATADetailLevel][odata].[ FilterClause][odata_filter]: limitare il numero di hello di elementi restituiti.
+* [ODATADetailLevel][odata].[FilterClause][odata_filter]: limita il numero di elementi restituiti.
 * [ODATADetailLevel][odata].[SelectClause][odata_select]: specifica i valori della proprietà restituiti con ogni elemento.
 * [ODATADetailLevel][odata].[ExpandClause][odata_expand]: recupera i dati per tutti gli elementi in una singola chiamata all'API anziché con chiamate separate per ogni elemento.
 
-Hello frammento di codice seguente Usa servizio di Batch hello per la query tooefficiently hello API .NET di Batch per le statistiche di un set specifico di pool di hello. In questo scenario, hello Batch utente dispone di pool di test e di produzione. il pool di test hello gli ID sono precedute dal prefisso "test" e il pool di produzione hello gli ID sono precedute dal prefisso "produzione". Nel frammento di codice hello *myBatchClient* è un'istanza di hello inizializzata correttamente [BatchClient](https://msdn.microsoft.com/library/azure/microsoft.azure.batch.batchclient) classe.
+Il frammento di codice seguente usa l'API Batch .NET per eseguire query efficienti sul servizio Batch per ottenere le statistiche di un set di pool specificato. In questo scenario l'utente Batch ha pool di test e di produzione. Gli ID del pool di test sono preceduti da "test", mentre quelli del pool di produzione sono preceduti da "prod". Nel frammento di codice *myBatchClient* è un'istanza della classe [BatchClient](https://msdn.microsoft.com/library/azure/microsoft.azure.batch.batchclient) inizializzata correttamente.
 
 ```csharp
-// First we need an ODATADetailLevel instance on which tooset hello filter, select,
+// First we need an ODATADetailLevel instance on which to set the filter, select,
 // and expand clause strings
 ODATADetailLevel detailLevel = new ODATADetailLevel();
 
-// We want toopull only hello "test" pools, so we limit hello number of items returned
-// by using a FilterClause and specifying that hello pool IDs must start with "test"
+// We want to pull only the "test" pools, so we limit the number of items returned
+// by using a FilterClause and specifying that the pool IDs must start with "test"
 detailLevel.FilterClause = "startswith(id, 'test')";
 
-// toofurther limit hello data that crosses hello wire, configure hello SelectClause to
-// limit hello properties that are returned on each CloudPool object tooonly
+// To further limit the data that crosses the wire, configure the SelectClause to
+// limit the properties that are returned on each CloudPool object to only
 // CloudPool.Id and CloudPool.Statistics
 detailLevel.SelectClause = "id, stats";
 
-// Specify hello ExpandClause so that hello .NET API pulls hello statistics for the
-// CloudPools in a single underlying REST API call. Note that we use hello pool's
-// REST API element name "stats" here as opposed too"Statistics" as it appears in
-// hello .NET API (CloudPool.Statistics)
+// Specify the ExpandClause so that the .NET API pulls the statistics for the
+// CloudPools in a single underlying REST API call. Note that we use the pool's
+// REST API element name "stats" here as opposed to "Statistics" as it appears in
+// the .NET API (CloudPool.Statistics)
 detailLevel.ExpandClause = "stats";
 
-// Now get our collection of pools, minimizing hello amount of data that is returned
-// by specifying hello detail level that we configured above
+// Now get our collection of pools, minimizing the amount of data that is returned
+// by specifying the detail level that we configured above
 List<CloudPool> testPools =
     await myBatchClient.PoolOperations.ListPools(detailLevel).ToListAsync();
 ```
 
 > [!TIP]
-> Un'istanza di [ODATADetailLevel] [ odata] che viene configurato con l'istruzione Select e clausole di espansione è anche possibile passare metodi Get tooappropriate, ad esempio [PoolOperations.GetPool](https://msdn.microsoft.com/library/azure/microsoft.azure.batch.pooloperations.getpool.aspx) , quantità di hello toolimit di dati restituiti.
+> È anche possibile passare un'istanza di [ODATADetailLevel][odata] configurata con le clausole Select ed Expand ai metodi Get appropriati, ad esempio [PoolOperations.GetPool](https://msdn.microsoft.com/library/azure/microsoft.azure.batch.pooloperations.getpool.aspx), per limitare la quantità di dati restituiti.
 > 
 > 
 
-## <a name="batch-rest-toonet-api-mappings"></a>Mapping REST too.NET API batch
-I nomi delle proprietà nelle stringhe di filtro, selezione ed espansione *devono* riflettere le rispettive controparti dell'API REST, sia a livello di nome che di lettere maiuscole/minuscole. tabelle di Hello riportate di seguito forniscono i mapping tra hello .NET e relative controparti di API REST.
+## <a name="batch-rest-to-net-api-mappings"></a>Mapping di API Batch REST a API .NET
+I nomi delle proprietà nelle stringhe di filtro, selezione ed espansione *devono* riflettere le rispettive controparti dell'API REST, sia a livello di nome che di lettere maiuscole/minuscole. Le tabelle seguenti forniscono i mapping tra l'API .NET e le relative controparti dell'API REST.
 
 ### <a name="mappings-for-filter-strings"></a>Mapping per le stringhe di filtro
-* **Metodi di elenco .NET**: ognuno dei metodi dell'API .NET hello in questa colonna accetta un [ODATADetailLevel] [ odata] oggetto come parametro.
-* **Richieste REST di elenco**: API REST di ogni pagina tooin collegato, questa colonna contiene una tabella che specifica le proprietà di hello e le operazioni che sono consentiti in *filtro* stringhe. Questi nomi di proprietà e queste operazioni verranno usati per costruire una stringa [ODATADetailLevel.FilterClause][odata_filter].
+* **Metodi list .NET**: ogni metodo dell'API .NET in questa colonna accetta un oggetto [ODATADetailLevel][odata] come parametro.
+* **Richieste list REST**: ogni pagina dell'API REST collegata in questa colonna contiene una tabella che specifica le proprietà e le operazioni consentite nelle stringhe di *filtro* . Questi nomi di proprietà e queste operazioni verranno usati per costruire una stringa [ODATADetailLevel.FilterClause][odata_filter].
 
 | Metodi list .NET | Richieste list REST |
 | --- | --- |
-| [CertificateOperations.ListCertificates][net_list_certs] |[Elenco dei certificati hello in un account][rest_list_certs] |
-| [CloudTask.ListNodeFiles][net_list_task_files] |[Elencare i file hello associati a un'attività][rest_list_task_files] |
-| [JobOperations.ListJobPreparationAndReleaseTaskStatus][net_list_jobprep_status] |[Elenca stato hello di preparazione del processo hello e attività di processo di rilascio per un processo][rest_list_jobprep_status] |
-| [JobOperations.ListJobs][net_list_jobs] |[Elencare i processi di hello in un account][rest_list_jobs] |
-| [JobOperations.ListNodeFiles][net_list_nodefiles] |[Elenco di file hello in un nodo][rest_list_nodefiles] |
-| [JobOperations.ListTasks][net_list_tasks] |[Elencare le attività di hello associate a un processo][rest_list_tasks] |
-| [JobScheduleOperations.ListJobSchedules][net_list_job_schedules] |[Pianificazioni dei processi hello elenco in un account][rest_list_job_schedules] |
-| [JobScheduleOperations.ListJobs][net_list_schedule_jobs] |[Elencare i processi di hello associati a una pianificazione di processo][rest_list_schedule_jobs] |
-| [PoolOperations.ListComputeNodes][net_list_compute_nodes] |[Hello elenco nodi di calcolo in un pool][rest_list_compute_nodes] |
-| [PoolOperations.ListPools][net_list_pools] |[Elenco hello pool in un account][rest_list_pools] |
+| [CertificateOperations.ListCertificates][net_list_certs] |[Elencare i certificati in un account][rest_list_certs] |
+| [CloudTask.ListNodeFiles][net_list_task_files] |[Elencare i file associati a un'attività][rest_list_task_files] |
+| [JobOperations.ListJobPreparationAndReleaseTaskStatus][net_list_jobprep_status] |[Elencare lo stato della preparazione e le attività di rilascio per un processo specifico][rest_list_jobprep_status] |
+| [JobOperations.ListJobs][net_list_jobs] |[Elencare i processi in un account][rest_list_jobs] |
+| [JobOperations.ListNodeFiles][net_list_nodefiles] |[Elencare i file in un nodo][rest_list_nodefiles] |
+| [JobOperations.ListTasks][net_list_tasks] |[Elencare le attività associate a un processo][rest_list_tasks] |
+| [JobScheduleOperations.ListJobSchedules][net_list_job_schedules] |[Elencare le pianificazioni di processi in un account][rest_list_job_schedules] |
+| [JobScheduleOperations.ListJobs][net_list_schedule_jobs] |[Elencare i processi associati a una pianificazione di processi][rest_list_schedule_jobs] |
+| [PoolOperations.ListComputeNodes][net_list_compute_nodes] |[Elencare i nodi di calcolo in un pool][rest_list_compute_nodes] |
+| [PoolOperations.ListPools][net_list_pools] |[Elencare i pool in un account][rest_list_pools] |
 
 ### <a name="mappings-for-select-strings"></a>Mapping per le stringhe di selezione
 * **Tipi di Batch .NET**: tipi di API Batch .NET.
-* **Entità API REST**: ogni pagina in questa colonna contiene una o più tabelle in cui sono elencati i nomi delle proprietà di hello API REST per il tipo di hello. Questi nomi di proprietà vengono usati per la costruzione di stringhe di *selezione* . Questi stessi nomi di proprietà verranno usati per costruire una stringa [ODATADetailLevel.SelectClause][odata_select].
+* **Entità di API REST**: ogni pagina di questa colonna contiene una o più tabelle che indicano i nomi delle proprietà dell'API REST per il tipo. Questi nomi di proprietà vengono usati per la costruzione di stringhe di *selezione* . Questi stessi nomi di proprietà verranno usati per costruire una stringa [ODATADetailLevel.SelectClause][odata_select].
 
 | Tipi di Batch .NET | Entità di API REST |
 | --- | --- |
@@ -179,35 +179,35 @@ I nomi delle proprietà nelle stringhe di filtro, selezione ed espansione *devon
 | [CloudTask][net_task] |[Ottenere informazioni su un'attività][rest_get_task] |
 
 ## <a name="example-construct-a-filter-string"></a>Esempio: costruire una stringa di filtro
-Quando si costruisce una stringa di filtro per [ODATADetailLevel.FilterClause][odata_filter], consultare la tabella hello in precedenza nella sezione "Mapping per le stringhe di filtro" toofind hello API REST documentazione pagina corrispondente operazione di elenco toohello che si desidera tooperform. Sono disponibili proprietà filtrabili hello e i relativi operatori supportati nella prima tabella più righe di hello in tale pagina. Se si desiderano tooretrieve tutte le attività il cui codice di uscita è diverso da zero, ad esempio, questa riga in [elenco attività hello associata a un processo] [ rest_list_tasks] specifica stringa della proprietà applicabile hello e operatori consentiti:
+Quando si costruisce una stringa di filtro per un oggetto [ODATADetailLevel.FilterClause][odata_filter], vedere la tabella in "Mapping per le stringhe di filtro" per trovare la pagina di documentazione dell'API REST corrispondente all'operazione di tipo elenco da eseguire. Le proprietà filtrabili e gli operatori supportati sono disponibili nella prima tabella con più righe in quella pagina. Per recuperare ad esempio tutte le attività il cui codice di uscita non è pari a zero, questa riga in [Elencare le attività associate a un processo][rest_list_tasks] specifica la stringa della proprietà applicabile e gli operatori consentiti:
 
 | Proprietà | Operazioni consentite | Tipo |
 |:--- |:--- |:--- |
 | `executionInfo/exitCode` |`eq, ge, gt, le , lt` |`Int` |
 
-Di conseguenza, la stringa di filtro hello per elencare tutte le attività con un codice di uscita diverso da zero sarebbe:
+La stringa di filtro per elencare tutte le attività con un codice di uscita non pari a zero sarà:
 
 `(executionInfo/exitCode lt 0) or (executionInfo/exitCode gt 0)`
 
 ## <a name="example-construct-a-select-string"></a>Esempio: costruire una stringa di selezione
-tooconstruct [ODATADetailLevel.SelectClause][odata_select], consultare la tabella hello sopra in "Mapping per le stringhe selezionare" e passare i codici di API REST di toohello corrispondente toohello tipo di entità che si elencare. Sono disponibili proprietà selezionabile hello e i relativi operatori supportati nella prima tabella più righe di hello in tale pagina. Se si desidera tooretrieve solo hello ID e la riga di comando per ogni attività in un elenco, ad esempio, si troverà queste righe nella tabella applicabile hello in [ottenere informazioni su un'attività][rest_get_task]:
+Per costruire una stringa [ODATADetailLevel.SelectClause][odata_select], vedere la tabella in "Mapping per le stringhe di selezione" e passare alla pagina dell'API REST che corrisponde al tipo di entità da specificare. Le proprietà selezionabili e gli operatori supportati sono disponibili nella prima tabella con più righe in quella pagina. Se ad esempio si desidera recuperare solo l'ID e la riga di comando per ogni attività in un elenco, queste righe si trovano nella tabella applicabile in [Ottenere informazioni su un'attività][rest_get_task]:
 
 | Proprietà | Tipo | Note |
 |:--- |:--- |:--- |
-| `id` |`String` |`hello ID of hello task.` |
-| `commandLine` |`String` |`hello command line of hello task.` |
+| `id` |`String` |`The ID of the task.` |
+| `commandLine` |`String` |`The command line of the task.` |
 
-Selezionare stringa per includere solo hello ID e la riga di comando con ogni attività elencata di Hello sarà quindi:
+La stringa di selezione per includere solo l'ID e la riga di comando con ogni attività elencata sarà:
 
 `id, commandLine`
 
 ## <a name="code-samples"></a>Esempi di codice
 ### <a name="efficient-list-queries-code-sample"></a>Esempio di codice per query di elenco efficienti
-Estrarre hello [EfficientListQueries] [ efficient_query_sample] progetto di esempio in GitHub toosee modo efficiente l'esecuzione di query di elenco in termini di prestazioni in un'applicazione. Questa applicazione console c# Crea e aggiunge un numero elevato di processi tooa di attività. Quindi, rende più chiamate toohello [JobOperations.ListTasks] [ net_list_tasks] metodo e passa [ODATADetailLevel] [ odata] gli oggetti configurato con una quantità di proprietà diversi valori toovary hello di toobe di dati restituito. Produce il seguente toohello simili di output:
+Per verificare il modo in cui una query di tipo elenco può influire efficacemente sulle prestazioni in un'applicazione, vedere il progetto di esempio [EfficientListQueries][efficient_query_sample] in GitHub. Questa applicazione console C# crea e aggiunge un numero elevato di attività a un processo. Esegue quindi più chiamate al metodo [JobOperations.ListTasks][net_list_tasks] e passa gli oggetti [ODATADetailLevel][odata] configurati con valori di proprietà diversi per variare la quantità di dati da restituire. L'output generato sarà simile al seguente:
 
 ```
-Adding 5000 tasks toojob jobEffQuery...
-5000 tasks added in 00:00:47.3467587, hit ENTER tooquery tasks...
+Adding 5000 tasks to job jobEffQuery...
+5000 tasks added in 00:00:47.3467587, hit ENTER to query tasks...
 
 4943 tasks retrieved in 00:00:04.3408081 (ExpandClause:  | FilterClause: state eq 'active' | SelectClause: id,state)
 0 tasks retrieved in 00:00:00.2662920 (ExpandClause:  | FilterClause: state eq 'running' | SelectClause: id,state)
@@ -216,22 +216,22 @@ Adding 5000 tasks toojob jobEffQuery...
 5000 tasks retrieved in 00:00:15.1016127 (ExpandClause:  | FilterClause:  | SelectClause: id,state,environmentSettings)
 5000 tasks retrieved in 00:00:17.0548145 (ExpandClause: stats | FilterClause:  | SelectClause: )
 
-Sample complete, hit ENTER toocontinue...
+Sample complete, hit ENTER to continue...
 ```
 
-Come illustrato in ore trascorso hello, è possibile ridurre notevolmente i tempi di risposta query limitando proprietà hello e numero di hello di elementi restituiti. È possibile trovare questo e altri progetti di esempio in hello [esempi di azure batch] [ github_samples] repository in GitHub.
+Come illustrato nelle informazioni sul tempo trascorso, è possibile ridurre notevolmente i tempi di risposta della query limitando le proprietà e il numero di elementi restituiti. Questo e altri progetti di esempio sono disponibili nel repository [azure-batch-samples][github_samples] in GitHub.
 
 ### <a name="batchmetrics-library-and-code-sample"></a>Libreria BatchMetrics ed esempio di codice
-Inoltre toohello EfficientListQueries codice di esempio precedente, è possibile trovare hello [BatchMetrics] [ batch_metrics] progetto in hello [esempi di azure batch] [ github_samples] Repository di GitHub. progetto di esempio Hello BatchMetrics viene illustrato come tooefficiently monitorare lo stato del processo Batch di Azure utilizzando hello API Batch.
+Oltre all'esempio di codice EfficientListQueries precedente, è possibile trovare il progetto [BatchMetrics][batch_metrics] nel repository [azure-batch-samples][github_samples] in GitHub. Il progetto di esempio BatchMetrics illustra come monitorare in modo efficiente lo stato dei processi di Azure Batch con l'API di Batch.
 
-Hello [BatchMetrics] [ batch_metrics] esempio include un progetto libreria di classi .NET che è possibile incorporare in progetti e una semplice riga di comando tooexercise di programma e illustrare l'utilizzo di hello di hello libreria.
+L'esempio [BatchMetrics][batch_metrics] include un progetto di libreria di classi .NET che è possibile incorporare nei propri progetti e un semplice programma della riga di comando per apprendere l'uso della libreria.
 
-applicazione di esempio Hello all'interno di progetto hello illustra hello seguenti operazioni:
+L'applicazione di esempio nel progetto illustra le operazioni seguenti:
 
-1. Selezione attributi specifici in ordine toodownload solo hello le proprietà necessarie
-2. Il filtro sui tempi di transizione di stato in toodownload ordine solo modifiche dall'ultima query hello
+1. Selezione degli attributi specifici per scaricare solo le proprietà necessarie
+2. Filtro delle ore di transizione allo stato per scaricare solo le modifiche apportate dopo l'ultima query
 
-Ad esempio, hello al metodo nella libreria BatchMetrics hello. Restituisce un ODATADetailLevel che specifica che solo hello `id` e `state` devono ottenere le proprietà per le entità hello che vengono eseguita una query. Specifica inoltre che solo le entità il cui stato è stato modificato dall'hello specificato `DateTime` parametro deve essere restituito.
+Ad esempio, il metodo seguente è presente nella libreria BatchMetrics. Restituisce un elemento ODATADetailLevel che specifica che dovranno essere ottenute solo le proprietà `id` e `state` per le entità sulle quali viene eseguita una query. Specifica anche che dovranno essere restituite solo le entità il cui stato è stato modificato dopo il parametro `DateTime` specificato.
 
 ```csharp
 internal static ODATADetailLevel OnlyChangedAfter(DateTime time)
@@ -245,10 +245,10 @@ internal static ODATADetailLevel OnlyChangedAfter(DateTime time)
 
 ## <a name="next-steps"></a>Passaggi successivi
 ### <a name="parallel-node-tasks"></a>Attività parallele sui nodi
-[Ottimizzare l'utilizzo delle risorse di calcolo di Azure Batch con le attività simultanee nodo](batch-parallel-node-tasks.md) un altro articolo correlato tooBatch le prestazioni dell'applicazione. Alcuni tipi di carichi di lavoro possono trarre vantaggio dall'esecuzione di attività in parallelo su nodi di calcolo più grandi, ma in numero inferiore. Estrarre hello [nello scenario di esempio](batch-parallel-node-tasks.md#example-scenario) nell'articolo hello per informazioni dettagliate su questo scenario.
+[Ottimizzare l'utilizzo delle risorse di calcolo di Azure Batch con attività dei nodi simultanee](batch-parallel-node-tasks.md) è un altro articolo correlato alle prestazioni per l'applicazione Batch. Alcuni tipi di carichi di lavoro possono trarre vantaggio dall'esecuzione di attività in parallelo su nodi di calcolo più grandi, ma in numero inferiore. Vedere lo [scenario di esempio](batch-parallel-node-tasks.md#example-scenario) nell'articolo per informazioni dettagliate su questo scenario.
 
 ### <a name="batch-forum"></a>Forum di Batch
-Hello [Forum di Azure Batch] [ forum] su MSDN è un ottimo posizionare toodiscuss Batch e porre domande sul servizio hello. Leggere i post contrassegnati e inviare domande durante le procedure di sviluppo delle soluzioni Batch.
+Il [forum di Azure Batch][forum] su MSDN consente di seguire discussioni su Batch e inviare domande sul servizio. Leggere i post contrassegnati e inviare domande durante le procedure di sviluppo delle soluzioni Batch.
 
 [api_net]: http://msdn.microsoft.com/library/azure/mt348682.aspx
 [api_net_listjobs]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.joboperations.listjobs.aspx

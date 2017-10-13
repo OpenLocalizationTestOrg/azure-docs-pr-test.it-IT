@@ -1,6 +1,6 @@
 ---
-title: aaaHow tooUse plug-in Cordova Apache per App mobili di Azure
-description: Come tooUse plug-in Cordova Apache per App mobili di Azure
+title: Come usare il plug-in Apache Cordova per le app per dispositivi mobili di Azure
+description: Come usare il plug-in Apache Cordova per le app per dispositivi mobili di Azure
 services: app-service\mobile
 documentationcenter: javascript
 author: ggailey777
@@ -14,19 +14,19 @@ ms.devlang: javascript
 ms.topic: article
 ms.date: 10/30/2016
 ms.author: glenga
-ms.openlocfilehash: d3e0639e6478c409132af25304a2fb0f28401e98
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: ebf0e911eeada0e529f908dd3e3430c94edae763
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toouse-apache-cordova-client-library-for-azure-mobile-apps"></a>La libreria client di Apache Cordova toouse per App mobili di Azure
+# <a name="how-to-use-apache-cordova-client-library-for-azure-mobile-apps"></a>Come usare la libreria client Apache Cordova per App per dispositivi mobili di Azure
 [!INCLUDE [app-service-mobile-selector-client-library](../../includes/app-service-mobile-selector-client-library.md)]
 
-Questa guida illustra tooperform scenari comuni di utilizzo più recenti hello [plug-in Cordova Apache per App mobili di Azure]. Nel caso di nuove app per dispositivi mobili tooAzure, completare innanzitutto [avvio rapido di Azure Mobile app] toocreate un back-end, creare una tabella e scaricare un progetto di Apache Cordova preesistente. In questa Guida, focalizzata sul lato client hello plug-in Apache Cordova.
+Questa guida descrive come eseguire scenari comuni usando il più recente [plug-in Apache Cordova per le app per dispositivi mobili di Azure]. Se non si ha familiarità con le app per dispositivi mobili di Azure, completare prima di tutto l' [esercitazione introduttiva sulle app per dispositivi mobili di Azure] per creare un back-end e una tabella e per scaricare un progetto Apache Cordova predefinito. In questa guida si esaminerà il plug-in Apache Cordova.
 
 ## <a name="supported-platforms"></a>Piattaforme supportate
-Questo SDK supporta Apache Cordova v6.0.0 e versioni successive sui dispositivi iOS, Android e Windows.  supporto della piattaforma Hello è indicato di seguito:
+Questo SDK supporta Apache Cordova v6.0.0 e versioni successive sui dispositivi iOS, Android e Windows.  Il supporto della piattaforma è il seguente:
 
 * API Android 19-24 (KitKat tramite Nougat).
 * iOS versioni 8.0 e successive.
@@ -34,7 +34,7 @@ Questo SDK supporta Apache Cordova v6.0.0 e versioni successive sui dispositivi 
 * Piattaforma UWP (Universal Windows Platform).
 
 ## <a name="Setup"></a>Installazione e prerequisiti
-In questa guida si presuppone che siano stati creati un backend e una tabella. Questa guida si presuppone che la tabella hello è hello stesso schema come tabelle hello in tali esercitazioni. Questa guida si presuppone inoltre che hello plug-in Apache Cordova tooyour codice sia stato aggiunto.  Se non si è connessi, è possibile aggiungere progetto tooyour plug-in Apache Cordova di hello nella riga di comando hello:
+In questa guida si presuppone che siano stati creati un backend e una tabella. In questa guida si presuppone che la tabella abbia lo stesso schema delle tabelle presenti in tali esercitazioni. Si presuppone anche che il plug-in Apache Cordova sia stato aggiunto al codice.  In caso contrario, è possibile aggiungere il plug-in Apache Cordova al progetto nella riga di comando:
 
 ```
 cordova plugin add cordova-plugin-ms-azure-mobile-apps
@@ -44,7 +44,7 @@ Per altre informazioni sulla creazione della [prima app Apache Cordova], vedere 
 
 ## <a name="ionic"></a>Configurazione di un'app Ionic v2
 
-tooproperly configurare un progetto Ionic v2, prima di tutto creare un'app di base e aggiungere plug-in Cordova hello:
+Per configurare correttamente un progetto Ionic v2, innanzitutto creare un'applicazione di base e aggiungere il plug-in Cordova:
 
 ```
 ionic start projectName --v2
@@ -52,78 +52,78 @@ cd projectName
 ionic plugin add cordova-plugin-ms-azure-mobile-apps
 ```
 
-Aggiungere hello seguenti righe troppo`app.component.ts` oggetto client di hello toocreate:
+Aggiungere le seguenti righe a `app.component.ts` per creare l'oggetto client:
 
 ```
 declare var WindowsAzure: any;
 var client = new WindowsAzure.MobileServiceClient("https://yoursite.azurewebsites.net");
 ```
 
-È possibile compilare ed eseguire il progetto hello nel browser hello:
+È ora possibile compilare ed eseguire il progetto nel browser:
 
 ```
 ionic platform add browser
 ionic run browser
 ```
 
-plug-in Cordova le app mobili di Azure Hello supporta entrambe le app di Ionic v1 e v2.  Solo app hello v2 Ionic richiedere che la dichiarazione aggiuntiva hello `WindowsAzure` oggetto.
+Il plug-in Cordova di App per dispositivi mobili di Azure supporta le app Ionic sia v1 che v2.  Solo le app Ionic v2 richiedono la dichiarazione aggiuntiva per l'oggetto `WindowsAzure`.
 
 [!INCLUDE [app-service-mobile-html-js-library.md](../../includes/app-service-mobile-html-js-library.md)]
 
 ## <a name="auth"></a>Procedura: Autenticare gli utenti
-Il servizio app di Azure supporta l'autenticazione e l'autorizzazione degli utenti di app usando diversi provider di identità esterni, a esempio Facebook, Google, account Microsoft e Twitter. È possibile impostare le autorizzazioni di accesso toorestrict tabelle per operazioni specifiche tooonly autenticata users. È inoltre possibile utilizzare identità hello gli utenti autenticati tooimplement delle regole di autorizzazione negli script del server. Per ulteriori informazioni, vedere hello [Introduzione all'autenticazione] esercitazione.
+Il servizio app di Azure supporta l'autenticazione e l'autorizzazione degli utenti di app usando diversi provider di identità esterni, a esempio Facebook, Google, account Microsoft e Twitter. È possibile impostare le autorizzazioni per le tabelle per limitare l'accesso per operazioni specifiche solo agli utenti autenticati. È inoltre possibile utilizzare l'identità degli utenti autenticati per implementare regole di autorizzazione negli script del server. Per ulteriori informazioni, vedere l'esercitazione [Introduzione all'autenticazione] .
 
-Quando si utilizza l'autenticazione in un'app di Apache Cordova, hello seguenti plug-in Cordova devono essere disponibile:
+Quando si usa l'autenticazione in un'app Apache Cordova, devono essere disponibili i plug-in Cordova seguenti:
 
 * [cordova-plugin-device]
 * [cordova-plugin-inappbrowser]
 
-Sono supportati due flussi di autenticazione, ovvero un flusso server e un flusso client.  flusso server Hello fornisce l'esperienza di autenticazione più semplice hello, come si basa sull'interfaccia di autenticazione web del provider di hello. Hello flusso client consente una maggiore integrazione con funzionalità specifiche del dispositivo, ad esempio single sign-on quanto si basa sulla SDK specifici del dispositivo specifico del provider.
+Sono supportati due flussi di autenticazione, ovvero un flusso server e un flusso client.  Il flusso server è il processo di autenticazione più semplice, poiché si basa sull'interfaccia di autenticazione Web del provider. Il flusso client assicura una maggiore integrazione con funzionalità specifiche del dispositivo, ad esempio Single-Sign-On, poiché si basa su SDK specifici del provider e del dispositivo.
 
 [!INCLUDE [app-service-mobile-html-js-auth-library.md](../../includes/app-service-mobile-html-js-auth-library.md)]
 
 ### <a name="configure-external-redirect-urls"></a>Procedura: Configurare il servizio App per dispositivi mobili per URL di reindirizzamento esterni.
-Diversi tipi di applicazioni Apache Cordova usano un toohandle funzionalità loopback che OAuth UI flussi.  Poiché il servizio di autenticazione hello riconosce solo problemi OAuth UI flussi su localhost come tooutilize il servizio per impostazione predefinita.  Alcuni esempi di flussi dell'interfaccia utente di OAuth problematici sono:
+Molti tipi di applicazioni Apache Cordova usano una funzionalità di loopback per gestire i flussi dell’interfaccia utente di OAuth.  I flussi dell'interfaccia utente di OAuth sull'host locale causa problemi in quanto il servizio di autenticazione sa usare il servizio solo con le impostazioni predefinite.  Alcuni esempi di flussi dell'interfaccia utente di OAuth problematici sono:
 
-* emulatore Ripple Hello.
+* L'emulatore Ripple.
 * Live Reload con Ionic.
-* Esecuzione di back-end mobile hello in locale
-* Back-end mobile hello è in esecuzione in Azure App Service diverso rispetto all'autenticazione che fornisce uno hello.
+* L'esecuzione del back-end per dispositivi mobili in locale
+* L'esecuzione del back-end per dispositivi mobili in un Servizio app di Azure diverso rispetto a quello che fornisce l'autenticazione.
 
-Seguire queste istruzioni tooadd configurazione toohello impostazioni locali:
+Per aggiungere le proprie impostazioni locali alla configurazione seguire questa procedura:
 
-1. Accedi toohello [portale di Azure]
-2. Selezionare **tutte le risorse** o **servizi App** quindi hello nome dell'App Mobile.
+1. Accedere al [portale di Azure]
+2. Selezionare **Tutte le risorse** o **Servizi app** e quindi fare clic sul nome dell'app per dispositivi mobili.
 3. Fare clic su **Strumenti**
-4. Fare clic su **Esplora inventario risorse** nel menu NOTERÀ hello, quindi fare clic su **passare**.  Si apre una nuova finestra o una nuova scheda.
-5. Espandere hello **config**, **authsettings** nodi per il sito di navigazione a sinistra di hello.
+4. Fare clic su **Esplora risorse** nel menu OSSERVAZIONE, quindi fare clic su **Vai**.  Si apre una nuova finestra o una nuova scheda.
+5. Espandere i nodi **config**, **authsettings** del sito nel riquadro di spostamento a sinistra.
 6. Fare clic su **Modifica**
-7. Cercare l'elemento "allowedExternalRedirectUrls" hello.  Può essere impostata toonull o una matrice di valori.  Modificare hello valore toohello il valore seguente:
+7. Cercare l’elemento "allowedExternalRedirectUrls".  Può essere impostato su null o su una matrice di valori.  Modificare il valore nel valore seguente:
 
          "allowedExternalRedirectUrls": [
              "http://localhost:3000",
              "https://localhost:3000"
          ],
 
-    Sostituire gli URL di hello con hello URL del servizio.  Ad esempio "http://localhost:3000" (per hello servizio esempio Node. js), o "http://localhost:4400" (per il servizio Ripple hello).  Tuttavia, questi URL sono esempi - situazione attuale, tra cui servizi di hello indicati negli esempi di hello, potrebbero essere diversi.
-8. Fare clic su hello **lettura/scrittura** pulsante nell'angolo superiore destro di hello della schermata di hello.
-9. Fare clic su hello verde **inserire** pulsante.
+    Sostituire gli URL con quelli del servizio.  Ad esempio includere "http://localhost:3000" (per il servizio di esempio Node.js) o "http://localhost:4400" (per il servizio Ripple).  Questi URL sono solo esempi e la situazione reale per i servizi dell'esempio potrebbe essere diversa.
+8. Fare clic sul pulsante **Lettura/scrittura** nell'angolo in alto a destra della schermata.
+9. Fare clic sul pulsante verde **PUT** .
 
-impostazioni di Hello vengono salvate in questa fase.  Non chiudere finestra del browser hello fino a quando non vengono completate le impostazioni di hello salvataggio.
-Aggiungere anche queste impostazioni di CORS loopback toohello gli URL per il servizio App:
+A questo punto le impostazioni vengono salvate.  Non chiudere la finestra del browser finché non è terminato il salvataggio delle impostazioni.
+Aggiungere gli URL di loopback anche alle impostazioni CORS del servizio app:
 
-1. Accedi toohello [portale di Azure]
-2. Selezionare **tutte le risorse** o **servizi App** quindi hello nome dell'App Mobile.
-3. pannello impostazioni Hello viene aperta automaticamente.  In caso contrario fare clic su **Tutte le impostazioni**.
-4. Fare clic su **CORS** nel menu hello API.
-5. Immettere l'URL di hello che si desidera tooadd nell'apposita casella hello e premere INVIO.
+1. Accedere al [portale di Azure]
+2. Selezionare **Tutte le risorse** o **Servizi app** e quindi fare clic sul nome dell'app per dispositivi mobili.
+3. Il pannello Impostazioni si apre automaticamente.  In caso contrario fare clic su **Tutte le impostazioni**.
+4. Fare clic su **CORS** nel menu API.
+5. Immettere l'URL che si desidera aggiungere nella casella apposita e prema INVIO.
 6. Immettere gli altri URL in base alle esigenze.
-7. Fare clic su **salvare** impostazioni hello toosave.
+7. Fare clic su **Salva** per salvare le impostazioni.
 
-Impiegato circa 10-15 secondi per effetto di tootake hello nuove impostazioni.
+Le nuove impostazioni saranno operative in 10-15 secondi.
 
 ## <a name="register-for-push"></a>Procedura: Registrarsi per le notifiche push
-Installare hello [phonegap-plug-in-push] toohandle le notifiche push.  Questo plug-in possono essere aggiunti facilmente mediante la `cordova plugin add` comando nella riga di comando hello o tramite installazione guidata di plug-in Git hello all'interno di Visual Studio.  Il codice seguente nell'app Apache Cordova registra il dispositivo per le notifiche push:
+Installare [phonegap-plugin-push] per gestire le notifiche push.  Questo plug-in può essere facilmente aggiunto usando il comando `cordova plugin add` nella riga di comando o tramite il programma di installazione del plug-in Git in Visual Studio.  Il codice seguente nell'app Apache Cordova registra il dispositivo per le notifiche push:
 
 ```
 var pushOptions = {
@@ -142,8 +142,8 @@ pushHandler = PushNotification.init(pushOptions);
 
 pushHandler.on('registration', function (data) {
     registrationId = data.registrationId;
-    // For cross-platform, you can use hello device plugin toodetermine hello device
-    // Best is toouse device.platform
+    // For cross-platform, you can use the device plugin to determine the device
+    // Best is to use device.platform
     var name = 'gcm'; // For android - default
     if (device.platform.toLowerCase() === 'ios')
         name = 'apns';
@@ -153,7 +153,7 @@ pushHandler.on('registration', function (data) {
 });
 
 pushHandler.on('notification', function (data) {
-    // data is an object and is whatever is sent by hello PNS - check hello format
+    // data is an object and is whatever is sent by the PNS - check the format
     // for your particular PNS
 });
 
@@ -162,7 +162,7 @@ pushHandler.on('error', function (error) {
 });
 ```
 
-Usare le notifiche push di hello SDK hub di notifica toosend dal server hello.  Non inviare mai le notifiche push direttamente dai client. Procedere quindi potrebbe essere tootrigger usato un attacco denial of service contro gli hub di notifica o hello PNS.  Hello PNS Impossibile escludere il traffico in seguito a tali attacchi.
+Usare Notification Hubs SDK per inviare notifiche push dal server.  Non inviare mai le notifiche push direttamente dai client. Questa operazione può essere usata per attivare un attacco denial-of-service agli Hub di notifica o al servizio PNS.  Il servizio PNS potrebbe escludere il traffico come conseguenza di questi attacchi.
 
 ## <a name="more-information"></a>Altre informazioni
 
@@ -170,14 +170,14 @@ Usare le notifiche push di hello SDK hub di notifica toosend dal server hello.  
 
 <!-- URLs. -->
 [portale di Azure]: https://portal.azure.com
-[avvio rapido di Azure Mobile app]: app-service-mobile-cordova-get-started.md
+[esercitazione introduttiva sulle app per dispositivi mobili di Azure]: app-service-mobile-cordova-get-started.md
 [Introduzione all'autenticazione]: app-service-mobile-cordova-get-started-users.md
-[Add authentication tooyour app]: app-service-mobile-cordova-get-started-users.md
+[Add authentication to your app]: app-service-mobile-cordova-get-started-users.md
 
-[plug-in Cordova Apache per App mobili di Azure]: https://www.npmjs.com/package/cordova-plugin-ms-azure-mobile-apps
+[plug-in Apache Cordova per le app per dispositivi mobili di Azure]: https://www.npmjs.com/package/cordova-plugin-ms-azure-mobile-apps
 [prima app Apache Cordova]: http://cordova.apache.org/#getstarted
 [phonegap-facebook-plugin]: https://github.com/wizcorp/phonegap-facebook-plugin
-[phonegap-plug-in-push]: https://www.npmjs.com/package/phonegap-plugin-push
+[phonegap-plugin-push]: https://www.npmjs.com/package/phonegap-plugin-push
 [cordova-plugin-device]: https://www.npmjs.com/package/cordova-plugin-device
 [cordova-plugin-inappbrowser]: https://www.npmjs.com/package/cordova-plugin-inappbrowser
 [Query object documentation]: https://msdn.microsoft.com/en-us/library/azure/jj613353.aspx

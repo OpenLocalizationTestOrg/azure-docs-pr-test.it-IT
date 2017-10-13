@@ -1,6 +1,6 @@
 ---
-title: record di controllo di accesso aaaManage in StorSimple | Documenti Microsoft
-description: Viene descritto come il controllo di accesso toouse registra toodetermine (ACR) quali host possono connettersi tooa volume nel dispositivo StorSimple hello.
+title: Gestire i record di controllo di accesso in StorSimple | Microsoft Docs
+description: In questo articolo vengono descritti i record di controllo di accesso (ACR) che consentono di specificare quali host possono connettersi a un volume nel dispositivo StorSimple.
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,79 +14,79 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/31/2017
 ms.author: alkohli
-ms.openlocfilehash: cf532206e2c0bc49da853663ba34ae993ec2981d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9173e34f889ce1c082b20bb382cb6ca9a03dd797
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-hello-storsimple-manager-service-toomanage-access-control-records"></a>Utilizzare i record di controllo accesso toomanage servizio StorSimple Manager hello
+# <a name="use-the-storsimple-manager-service-to-manage-access-control-records"></a>Utilizzare il servizio StorSimple Manager per gestire li record di controllo di accesso
 
 ## <a name="overview"></a>Panoramica
-Record di controllo di accesso (ACR) consentono di toospecify quali host possono connettersi tooa volume nel dispositivo StorSimple hello. ACR impostati volume specifico tooa e contenere hello iSCSI nomi completi (nomi iqn) degli host hello. Quando un host tenta tooconnect tooa volume, il dispositivo hello controlla hello che ACR associata a tale volume nome IQN hello e, se viene trovata una corrispondenza, hello connessione. record di controllo di accesso in hello Hello **configurazione** sezione del Pannello di servizio gestione di dispositivi StorSimple visualizzare tutti i record di controllo di accesso hello con hello nomi iqn degli host hello corrispondente.
+I record di controllo di accesso (ACR) consentono di specificare quali host possono connettersi a un volume nel dispositivo StorSimple. I record di controllo di accesso vengono impostati su un volume specifico e contengono i nomi completi iSCSI (IQN) degli host. Quando un host prova a connettersi a un volume, il dispositivo controlla il record di controllo di accesso associato a tale volume per l'IQN e, se esiste una corrispondenza, viene stabilita la connessione. I record di controllo di accesso nella sezione **Configurazione** del pannello del servizio Gestione dispositivi StorSimple visualizzano tutti i record di controllo di accesso con gli IQN corrispondenti degli host.
 
-In questa esercitazione illustra hello attività comuni correlate ai record di seguito:
+In questa esercitazione vengono illustrate le seguenti attività comuni correlate ai record di controllo di accesso:
 
 * Aggiungere un record di controllo di accesso
 * Modificare un record di controllo di accesso
 * Eliminare un record di controllo di accesso
 
 > [!IMPORTANT]
-> * Quando si assegna un volume tooa ACR, prestare attenzione che hello volume non è accedano contemporaneamente da più di un host non in cluster perché si potrebbe danneggiare il volume di hello.
-> * Quando si elimina un record da un volume, assicurarsi che tale host corrispondente hello non accedono al volume hello perché hello eliminazione potrebbe comportare un'interruzione di lettura / scrittura.
+> * Quando si assegna un record di controllo di accesso a un volume, fare attenzione che nel volume non abbiano effettuato l'accesso più di un host non cluster perché ciò potrebbe danneggiare il volume.
+> * Quando si elimina un record di controllo di accesso da un volume, assicurarsi che l'host corrispondente non acceda al volume perché l'eliminazione potrebbe comportare un'interruzione di lettura/scrittura.
 
-## <a name="get-hello-iqn"></a>Ottenere hello IQN
+## <a name="get-the-iqn"></a>Ottenere il nome qualificato iSCSI
 
-Eseguire hello seguendo i passaggi tooget hello nome qualificato iSCSI di un host Windows che esegue Windows Server 2012.
+Eseguire i passaggi seguenti per ottenere il nome qualificato iSCSI di un host di Windows che esegue Windows Server 2012.
 
 [!INCLUDE [storsimple-get-iqn](../../includes/storsimple-get-iqn.md)]
 
 
 ## <a name="add-an-access-control-record"></a>Aggiungere un record di controllo di accesso
-Utilizzare hello **configurazione** sezione nel servizio pannello tooadd ACR di hello dispositivo StorSimple Manager. In genere, un record di controllo di accesso verrà associato a un volume.
+Per aggiungere record di controllo di accesso, usare la sezione **Configurazione** del pannello del servizio Gestione dispositivi StorSimple. In genere, un record di controllo di accesso verrà associato a un volume.
 
-Eseguire hello seguendo i passaggi tooadd un record.
+Attenersi alla seguente procedura per aggiungere un record di controllo di accesso.
 
-#### <a name="tooadd-an-acr"></a>un record tooadd
+#### <a name="to-add-an-acr"></a>Per aggiungere un record di controllo di accesso
 
-1. Il servizio di gestione di dispositivi StorSimple tooyour go, fare doppio clic sul servizio hello nome e quindi all'interno di hello **configurazione** fare clic su **record di controllo di accesso**.
-2. In hello **record di controllo di accesso** pannello, fare clic su **+ Aggiungi ACR**.
+1. Nel servizio, fare doppio clic sul nome del servizio e nella sezione **Configurazione** fare clic su **Record di controllo di accesso**.
+2. Nel pannello **Record di controllo di accesso** fare clic su **+ Aggiungi record di controllo di accesso**.
 
     ![Clic su Aggiungi record di controllo di accesso](./media/storsimple-8000-manage-acrs/createacr1.png)
 
-3. In hello **aggiungere ACR** pannello hello i passaggi seguenti:
+3. Nel pannello **Aggiungi record di controllo di accesso** attenersi alla procedura seguente:
 
     1. Fornire un nome per il record di controllo di accesso.
     
-    2. Specificare il nome IQN hello dell'host Windows Server in **nome iniziatore (IQN) iSCSI**.
+    2. In **Nome iniziatore iSCSI**, fornire l'IQN dell'host di Windows Server.
 
-    3. Fare clic su **Aggiungi** toocreate hello ACR.
+    3. Fare clic su **Aggiungi** per creare il record di controllo di accesso.
 
         ![Clic su Aggiungi record di controllo di accesso](./media/storsimple-8000-manage-acrs/createacr2.png)
 
-4.  Hello appena aggiunti che record verrà visualizzato nell'elenco in formato tabulare hello ACR.
+4.  Il record di controllo di accesso appena aggiunto verrà visualizzato nel relativo elenco tabulare.
 
     ![Clic su Aggiungi record di controllo di accesso](./media/storsimple-8000-manage-acrs/createacr5.png)
 
 
 ## <a name="edit-an-access-control-record"></a>Modificare un record di controllo di accesso
-Utilizzare hello **configurazione** sezione nel servizio pannello tooedit ACR di hello dispositivo StorSimple Manager.
+Per modificare i record di controllo di accesso, usare la sezione **Configurazione** del pannello del servizio Gestione dispositivi StorSimple.
 
 > [!NOTE]
-> È consigliabile modificare solo i record di controllo di accesso che non sono attualmente in uso. tooedit che un record associato a un volume che è attualmente in uso, è necessario innanzitutto portare hello volume offline.
+> È consigliabile modificare solo i record di controllo di accesso che non sono attualmente in uso. Per modificare un record di controllo di accesso associato a un volume attualmente in uso, è innanzitutto necessario rendere il volume offline.
 
-Eseguire hello seguendo i passaggi tooedit un record.
+Seguire questa procedura per modificare un record di controllo di accesso.
 
-#### <a name="tooedit-an-access-control-record"></a>tooedit un record di controllo di accesso
-1.  Il servizio di gestione di dispositivi StorSimple tooyour go, fare doppio clic sul servizio hello nome e quindi all'interno di hello **configurazione** fare clic su **record di controllo di accesso**.
+#### <a name="to-edit-an-access-control-record"></a>Per modificare un record di controllo di accesso
+1.  Nel servizio, fare doppio clic sul nome del servizio e nella sezione **Configurazione** fare clic su **Record di controllo di accesso**.
 
-    ![Passare tooaccess record di controllo](./media/storsimple-8000-manage-acrs/createacr1.png)
+    ![Passare ai record di controllo di accesso](./media/storsimple-8000-manage-acrs/createacr1.png)
 
-2. Nell'elenco tabulare di hello dei record di controllo di accesso di hello, fare clic e selezionare i record che si desidera toomodify hello.
+2. Nell'elenco tabulare dei record di controllo di accesso, fare clic e selezionare il record di controllo di accesso da modificare.
 
     ![Modificare i record di controllo di accesso](./media/storsimple-8000-manage-acrs/editacr1.png)
 
-3. In hello **record di controllo di accesso di modifica** pannello, fornire un diverso host tooanother IQN corrispondente.
+3. Nel pannello **Modifica record di controllo di accesso**, fornire un nome IQN diverso, corrispondente a un altro host.
 
     ![Modificare i record di controllo di accesso](./media/storsimple-8000-manage-acrs/editacr2.png)
 
@@ -94,39 +94,39 @@ Eseguire hello seguendo i passaggi tooedit un record.
 
     ![Modificare i record di controllo di accesso](./media/storsimple-8000-manage-acrs/editacr3.png)
 
-5. Ricevono una notifica quando viene aggiornata hello ACR. Elenco tabulare Hello aggiorna anche modifica hello tooreflect.
+5. Quando un record di controllo di accesso viene aggiornato l'utente riceve una notifica. Anche l'elenco tabulare viene aggiornato per riflettere le modifiche.
 
    
 ## <a name="delete-an-access-control-record"></a>Eliminare un record di controllo di accesso
-Utilizzare hello **configurazione** sezione nel servizio pannello toodelete ACR di hello dispositivo StorSimple Manager.
+Per eliminare i record di controllo di accesso, usare la sezione **Configurazione** del pannello del servizio Gestione dispositivi StorSimple.
 
 > [!NOTE]
-> È possibile eliminare solo i record di controllo di acceso che non sono attualmente in uso. toodelete che un record associato a un volume che è attualmente in uso, è necessario innanzitutto portare hello volume offline.
+> È possibile eliminare solo i record di controllo di acceso che non sono attualmente in uso. Per eliminare un record di controllo di accesso associato a un volume attualmente in uso, è innanzitutto necessario rendere il volume offline.
 
-Eseguire hello seguendo i passaggi toodelete un record di controllo di accesso.
+Attenersi alla procedura seguente per eliminare un record di controllo di accesso.
 
-#### <a name="toodelete-an-access-control-record"></a>toodelete un record di controllo di accesso
-1.  Il servizio di gestione di dispositivi StorSimple tooyour go, fare doppio clic sul servizio hello nome e quindi all'interno di hello **configurazione** fare clic su **record di controllo di accesso**.
+#### <a name="to-delete-an-access-control-record"></a>Per eliminare un record di controllo di accesso
+1.  Nel servizio, fare doppio clic sul nome del servizio e nella sezione **Configurazione** fare clic su **Record di controllo di accesso**.
 
-    ![Passare tooaccess record di controllo](./media/storsimple-8000-manage-acrs/createacr1.png)
+    ![Passare ai record di controllo di accesso](./media/storsimple-8000-manage-acrs/createacr1.png)
 
-2. Nell'elenco tabulare di hello dei record di controllo di accesso di hello, fare clic e selezionare i record che si desidera toodelete hello.
+2. Nell'elenco tabulare dei record di controllo di accesso, fare clic e selezionare il record di controllo di accesso da eliminare.
 
-    ![Passare tooaccess record di controllo](./media/storsimple-8000-manage-acrs/deleteacr1.png)
+    ![Passare ai record di controllo di accesso](./media/storsimple-8000-manage-acrs/deleteacr1.png)
 
-3. Menu di scelta rapida tooinvoke hello e scegliere **eliminare**.
+3. Fare clic con il pulsante destro del mouse per richiamare il menu di scelta rapida e quindi selezionare **Elimina**.
 
-    ![Passare tooaccess record di controllo](./media/storsimple-8000-manage-acrs/deleteacr2.png)
+    ![Passare ai record di controllo di accesso](./media/storsimple-8000-manage-acrs/deleteacr2.png)
 
-4. Quando viene richiesta la conferma, esaminare le informazioni di hello e quindi fare clic su **eliminare**.
+4. Quando viene richiesta la conferma, esaminare le informazioni e quindi fare clic su **Elimina**.
 
-    ![Passare tooaccess record di controllo](./media/storsimple-8000-manage-acrs/deleteacr3.png)
+    ![Passare ai record di controllo di accesso](./media/storsimple-8000-manage-acrs/deleteacr3.png)
 
-5. Ricevono una notifica al termine dell'eliminazione di hello. Elenco tabulare Hello è l'eliminazione di hello tooreflect aggiornato.
+5. Quando un record di controllo di accesso viene eliminato l'utente riceve una notifica. L'elenco tabulare viene aggiornato per riflettere l'eliminazione.
 
-    ![Passare tooaccess record di controllo](./media/storsimple-8000-manage-acrs/deleteacr5.png)
+    ![Passare ai record di controllo di accesso](./media/storsimple-8000-manage-acrs/deleteacr5.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Ulteriori informazioni sulla [gestione di volumi StorSimple](storsimple-8000-manage-volumes-u2.md).
-* Altre informazioni, vedere [utilizzando hello tooadminister servizio StorSimple Manager dispositivo StorSimple](storsimple-8000-manager-service-administration.md).
+* Ulteriori informazioni sull’ [utilizzo del servizio StorSimple Manager per amministrare il dispositivo StorSimple](storsimple-8000-manager-service-administration.md).
 

@@ -1,5 +1,5 @@
 ---
-title: compilazione da riga di aaaCommand per Azure | Documenti Microsoft
+title: Compilazione da riga di comando per Azure | Documentazione Microsoft
 description: Compilazione da riga di comando per Azure
 services: visual-studio-online
 documentationcenter: na
@@ -14,27 +14,27 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/05/2017
 ms.author: kraigb
-ms.openlocfilehash: 295b61ba162dd4373ee3f56cc1462decb3e16762
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5fe910e2757dd5ec783538e23e7f52e2f5725b39
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="building-azure-projects-from-hello-command-line"></a>Compilazione di progetti di Azure dalla riga di comando hello
-Utilizza hello Microsoft Build Engine (MSBuild), è possibile compilare prodotti in ambienti lab di compilazione in cui non è installato Visual Studio. MSBuild usa per i file di progetto il formato XML, che è estendibile e completamente supportato da Microsoft. Utilizzando il formato di file MSBuild hello, è possibile descrivere quali elementi devono essere compilati per uno o più piattaforme e configurazioni.
+# <a name="building-azure-projects-from-the-command-line"></a>Compilazione di progetti Azure dalla riga di comando
+Tramite Microsoft Build Engine (MSBuild) è possibile compilare prodotti in ambienti lab di compilazione in cui Visual Studio non è installato. MSBuild usa per i file di progetto il formato XML, che è estendibile e completamente supportato da Microsoft. Usando il formato file MSBuild è possibile indicare quali elementi devono essere compilati per una o più piattaforme o configurazioni.
 
-È anche possibile eseguire MSBuild dalla riga di comando hello e questo approccio è descritto in questo argomento. Impostando le proprietà nella riga di comando hello, è possibile compilare configurazioni specifiche di un progetto. È inoltre possibile definire in modo analogo, MSBuild compila le destinazioni hello. Per altre informazioni sui parametri della riga di comando e su MSBuild, vedere [Riferimenti alla riga di comando di MSBuild](https://msdn.microsoft.com/library/ms164311.aspx).
+È anche possibile eseguire MSBuild alla riga dei comandi, come illustrato in questo argomento. Impostando le proprietà nella riga dei comandi, è possibile compilare configurazioni specifiche di un progetto. Analogamente, è possibile definire le destinazioni compilate dal comando di MSBuild. Per altre informazioni sui parametri della riga di comando e su MSBuild, vedere [Riferimenti alla riga di comando di MSBuild](https://msdn.microsoft.com/library/ms164311.aspx).
 
 ## <a name="msbuild-parameters"></a>Parametri MSBuild
-toocreate modo più semplice di Hello un pacchetto è toorun MSBuild con hello `/t:Publish` opzione. Per impostazione predefinita, questo comando crea una directory nella cartella radice toohello di relazione per il progetto di hello, ad esempio `<ProjectDirectory>\bin\Configuration\app.publish\`. Quando si compila un progetto Azure, vengono generati due file: hello file del pacchetto e il relativo file di configurazione hello:
+Il modo più semplice per creare un pacchetto consiste nell'eseguire MSBuild con l'opzione `/t:Publish` . Per impostazione predefinita, questo comando crea una directory in relazione alla cartella radice del progetto, ad esempio `<ProjectDirectory>\bin\Configuration\app.publish\`. Quando si compila un progetto Azure, vengono generati due file, il file del pacchetto e il file di configurazione di accompagnamento:
 
 * File del pacchetto (`project.cspkg`)
 * File di configurazione(`ServiceConfiguration.TargetProfile.cscfg`)
 
-Per impostazione predefinita, ogni progetto Azure include un file di configurazione del servizio per le compilazioni locali (debug) e un altro per le compilazioni cloud (gestione temporanea o produzione), ma è possibile aggiungere o rimuovere i file di configurazione del servizio in base alle proprie esigenze. Quando si compila un pacchetto all'interno di Visual Studio, verrà chiesto tooinclude quali file di configurazione del servizio insieme ai pacchetti hello. Quando si compila un pacchetto utilizzando MSBuild, i file di configurazione del servizio locale hello è incluso per impostazione predefinita. file tooinclude una configurazione del servizio diversi, hello set `TargetProfile` proprietà di hello comando MSBuild (`MSBuild /t:Publish /p:TargetProfile=ProfileName`).
+Per impostazione predefinita, ogni progetto Azure include un file di configurazione del servizio per le compilazioni locali (debug) e un altro per le compilazioni cloud (gestione temporanea o produzione), ma è possibile aggiungere o rimuovere i file di configurazione del servizio in base alle proprie esigenze. Quando si compila un pacchetto all'interno di Visual Studio, viene chiesto quale file di configurazione del servizio includere insieme al pacchetto. Quando si compila un pacchetto usando MSBuild, il file di configurazione del servizio locale viene incluso per impostazione predefinita. Per includere un file di configurazione del servizio diverso, impostare la proprietà `TargetProfile` del comando MSBuild (`MSBuild /t:Publish /p:TargetProfile=ProfileName`).
 
-Se si desidera toouse una directory alternativa per hello memorizzati file di pacchetto e la configurazione, set hello percorso utilizzando hello `/p:PublishDir=Directory\` opzione, tra cui hello separatore barra rovesciata finale.
+Se si vuole usare una directory alternativa per i file di configurazione e del pacchetto archiviati, impostare il percorso usando l'opzione `/p:PublishDir=Directory\`, inclusa la barra rovesciata finale.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Una volta creato il pacchetto di hello, è possibile distribuire tooAzure. Per un'esercitazione che illustra come tooautomate che elaborano, vedere [il recapito continuo per servizi Cloud in Azure](./cloud-services/cloud-services-dotnet-continuous-delivery.md).
+Dopo la compilazione, sarà possibile distribuire il pacchetto in Azure. Per un'esercitazione su come automatizzare questo processo, vedere [Recapito continuo per Servizi cloud in Azure](./cloud-services/cloud-services-dotnet-continuous-delivery.md).
 

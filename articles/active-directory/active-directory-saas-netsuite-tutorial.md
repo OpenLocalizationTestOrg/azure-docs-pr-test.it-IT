@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con NetSuite | Microsoft Docs'
-description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e Netsuite.
+description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e Netsuite.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -11,111 +11,111 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/19/2017
+ms.date: 07/31/2017
 ms.author: jeedes
-ms.openlocfilehash: 7cf205d5bda5333872fb589e57f4779a8670b595
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f2184f426c0e60ea2b6ce029b80d3d63821794d1
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-netsuite"></a>Esercitazione: Integrazione di Azure Active Directory con NetSuite
 
-In questa esercitazione, è illustrato come toointegrate Netsuite con Azure Active Directory (Azure AD).
+Questa esercitazione descrive come integrare Netsuite con Azure Active Directory (Azure AD).
 
-Integrazione Netsuite con Azure AD fornisce hello seguenti vantaggi:
+L'integrazione di Netsuite con Azure AD offre i vantaggi seguenti:
 
-- È possibile controllare in Azure AD che ha accesso tooNetsuite
-- È possibile abilitare l'utenti tooautomatically get connesso tooNetsuite (Single Sign-On) con i propri account Azure AD
-- È possibile gestire gli account in un'unica posizione centrale - hello portale di Azure
+- È possibile controllare in Azure AD chi può accedere a Netsuite
+- È possibile abilitare gli utenti per l'accesso automatico a Netsuite (Single Sign-On) con gli account Azure AD
+- È possibile gestire gli account in un'unica posizione centrale: il portale di Azure.
 
-Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-integrazione di Azure AD con Netsuite tooconfigure, è necessario hello seguenti elementi:
+Per configurare l'integrazione di Azure AD con Netsuite, sono necessari gli elementi seguenti:
 
 - Sottoscrizione di Azure AD.
-- Sottoscrizione di Netsuite abilitata per l'accesso Single Sign-On
+- Sottoscrizione di Netsuite abilitata per il Single Sign-On
 
 > [!NOTE]
-> hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.
+> Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.
 
-passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:
+A questo scopo, è consigliabile seguire le indicazioni seguenti:
 
 - Non usare l'ambiente di produzione a meno che non sia necessario.
 - Se non si dispone di un ambiente di prova di Azure AD, è possibile ottenere una versione di valutazione di un mese [qui](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Descrizione dello scenario
-In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. scenario di Hello descritto in questa esercitazione è composto da due componenti principali:
+In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:
 
-1. Aggiunta di Netsuite dalla raccolta hello
+1. Aggiunta di Netsuite dalla raccolta
 2. Configurazione e test dell'accesso Single Sign-On di Azure AD
 
-## <a name="adding-netsuite-from-hello-gallery"></a>Aggiunta di Netsuite dalla raccolta hello
-integrazione hello tooconfigure di Netsuite in Azure AD, è necessario tooadd Netsuite dall'elenco di tooyour hello raccolta di App SaaS gestite.
+## <a name="adding-netsuite-from-the-gallery"></a>Aggiunta di Netsuite dalla raccolta
+Per configurare l'integrazione di Netsuite in Azure AD, è necessario aggiungere Netsuite dalla raccolta all'elenco di app SaaS gestite.
 
-**tooadd Netsuite dalla raccolta di hello, eseguire hello alla procedura seguente:**
+**Per aggiungere Netsuite dalla raccolta, seguire questa procedura:**
 
-1. In hello  **[portale di Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona. 
+1. Nel **[portale di Azure](https://portal.azure.com)** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro. 
 
     ![Active Directory][1]
 
-2. Passare troppo**applicazioni aziendali**. Quindi andare troppo**tutte le applicazioni**.
+2. Passare ad **Applicazioni aziendali**. Andare quindi a **Tutte le applicazioni**.
 
     ![Applicazioni][2]
     
-3. Fare clic su **nuova applicazione** pulsante nella parte superiore di hello della finestra di dialogo hello.
+3. Fare clic sul pulsante **Nuova applicazione** nella parte superiore della finestra di dialogo.
 
     ![Applicazioni][3]
 
-4. Nella casella di ricerca hello, digitare **Netsuite**.
+4. Nella casella di ricerca digitare **Netsuite**.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-netsuite-tutorial/tutorial_netsuite_search.png)
 
-5. Nel riquadro dei risultati hello, selezionare **Netsuite**, quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.
+5. Nel pannello dei risultati selezionare **Netsuite** e quindi fare clic sul pulsante **Aggiungi** per aggiungere l'applicazione.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-netsuite-tutorial/tutorial_netsuite_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configurazione e test dell'accesso Single Sign-On di Azure AD
 In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con Netsuite in base a un utente test di nome "Britta Simon".
 
-Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello in Netsuite è tooa utente in Azure AD. In altre parole, una relazione di collegamento tra un utente di Azure Active Directory e l'utente correlato di hello in Netsuite richiede toobe stabilita.
+Per il funzionamento dell'accesso Single Sign-On, Azure AD deve individuare l'utente di Netsuite corrispondente a un utente di Azure AD. In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in Netsuite.
 
-Questa relazione di collegamento viene stabilita tramite l'assegnazione valore hello di hello **nome utente** in Azure AD come valore hello hello **Username** in Netsuite.
+La relazione di collegamento viene stabilita assegnando il valore di **nome utente** in Azure AD come valore di **Username** (Nome utente) in Netsuite.
 
-tooconfigure e prova AD Azure single sign-on con Netsuite, è necessario hello toocomplete seguenti blocchi predefiniti:
+Per configurare e testare l'accesso Single Sign-On di Azure AD con Netsuite, è necessario completare i blocchi predefiniti seguenti:
 
-1. **[Configurazione di Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.
-2. **[Creazione di un utente prova AD Azure](#creating-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.
-3. **[Creazione di un utente test Netsuite](#creating-a-netsuite-test-user)**  -toohave un equivalente di Britta Simon in Netsuite che è la rappresentazione toohello collegato Azure AD dell'utente.
-4. **[Assegnazione utente di prova hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.
-5. **[Test di Single Sign-On](#testing-single-sign-on)**  -tooverify hello se funzionamento della configurazione.
+1. **[Configurazione dell'accesso Single Sign-On di Azure AD](#configuring-azure-ad-single-sign-on)** : per abilitare gli utenti all'utilizzo di questa funzionalità.
+2. **[Creazione di un utente test di Azure AD](#creating-an-azure-ad-test-user)** : per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.
+3. **[Creazione di un utente test di Netsuite](#creating-a-netsuite-test-user)**: per avere una controparte di Britta Simon in Netsuite collegata alla relativa rappresentazione in Azure AD dell'utente.
+4. **[Assegnazione dell'utente test di Azure AD](#assigning-the-azure-ad-test-user)** : per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** : per verificare se la configurazione funziona.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configurazione dell'accesso Single Sign-On di Azure AD
 
-In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure e configurare l'accesso single sign-on nell'applicazione Netsuite.
+In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di Azure e viene configurato l'accesso Single Sign-On nell'applicazione Netsuite.
 
-**Azure AD tooconfigure single sign-on con Netsuite, eseguire hello alla procedura seguente:**
+**Per configurare l'accesso Single Sign-On di Azure AD con Netsuite, seguire questa procedura:**
 
-1. Nel portale di Azure su hello hello **Netsuite** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.
+1. Nella pagina di integrazione dell'applicazione **Netsuite** del portale di Azure fare clic su **Single Sign-On**.
 
     ![Configura accesso Single Sign-On][4]
 
-2. In hello **Single sign-on** finestra di dialogo Seleziona **modalità** come **basato su SAML Sign-on** tooenable single sign-on.
+2. Nella finestra di dialogo **Single Sign-On** selezionare **Accesso basato su SAML** per **Modalità** per abilitare l'accesso Single Sign-On.
  
     ![Configura accesso Single Sign-On](./media/active-directory-saas-netsuite-tutorial/tutorial_netsuite_samlbase.png)
 
-3. In hello **Netsuite dominio e gli URL** seguire hello alla procedura seguente:
+3. Nella sezione **URL e dominio Netsuite** seguire questa procedura:
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-netsuite-tutorial/tutorial_netsuite_url.png)
 
-    In hello **URL di risposta** casella di testo, digitare un URL con modello di hello: `https://<tenant-name>.netsuite.com/saml2/acs` `https://<tenant-name>.na1.netsuite.com/saml2/acs` `https://<tenant-name>.na2.netsuite.com/saml2/acs` `https://<tenant-name>.sandbox.netsuite.com/saml2/acs` `https://<tenant-name>.na1.sandbox.netsuite.com/saml2/acs``https://<tenant-name>.na2.sandbox.netsuite.com/saml2/acs`
+    Nella casella di testo **URL di risposta** digitare un URL usando il modello seguente: `https://<tenant-name>.netsuite.com/saml2/acs` `https://<tenant-name>.na1.netsuite.com/saml2/acs` `https://<tenant-name>.na2.netsuite.com/saml2/acs` `https://<tenant-name>.sandbox.netsuite.com/saml2/acs` `https://<tenant-name>.na1.sandbox.netsuite.com/saml2/acs` `https://<tenant-name>.na2.sandbox.netsuite.com/saml2/acs`
 
     > [!NOTE] 
-    > Poiché il valore non è reale, Il valore di hello aggiornamento con hello URL di risposta effettivo. Contatto [team di supporto Netsuite](http://www.netsuite.com/portal/services/support.shtml) tooget questo valore.
+    > Poiché questi non sono i valori reali, è necessario aggiornarli con l'URL di risposta effettivo. Per ottenere i valori, contattare il [team di supporto di Netsuite](http://www.netsuite.com/portal/services/support.shtml).
  
-4. In hello **certificato di firma SAML** fare clic su **Metadata XML** e quindi salvare il file XML hello nel computer in uso.
+4. Nella sezione **Certificato di firma SAML** fare clic su **XML metadati** e quindi salvare il file XML nel computer.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-netsuite-tutorial/tutorial_netsuite_certificate.png) 
 
@@ -123,33 +123,33 @@ In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure 
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-netsuite-tutorial/tutorial_general_400.png)
 
-6. In hello **Netsuite configurazione** fare clic su **configurare Netsuite** tooopen **Configura sign-on** finestra. Hello copia **SAML Single Sign-On Service URL** da hello **sezione di riferimento rapido.**
+6. Nella sezione **Configurazione di Netsuite** fare clic su **Configura Netsuite** per visualizzare la finestra **Configura accesso**. Copiare l'**URL servizio Single Sign-On SAML** dalla **sezione Riferimento rapido.**
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-netsuite-tutorial/tutorial_netsuite_configure.png) 
 
 7. Aprire una nuova scheda nel browser e accedere al sito della società Netsuite come amministratore.
 
-8. Nella barra degli strumenti di hello nella parte superiore di hello di hello pagina, fare clic su **installazione**, quindi fare clic su **Setup Manager**.
+8. Sulla barra degli strumenti nella parte superiore della pagina fare clic su **Setup** (Configurazione) e quindi su **Setup Manager** (Configura gestore).
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-Netsuite-tutorial/ns-setup.png)
 
-9. Da hello **le attività di configurazione** elenco, selezionare **integrazione**.
+9. Dall'elenco **Setup Tasks** (Configura attività) selezionare **Integration** (Integrazione).
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-Netsuite-tutorial/ns-integration.png)
 
-10. In hello **Manage Authentication** fare clic su **SAML Single Sign-on**.
+10. Nella sezione **Manage Authentication** (Gestione autenticazione) fare clic su **SAML Single Sign-on** (Single Sign-on di SAML).
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-Netsuite-tutorial/ns-saml.png)
 
-11. In hello **SAML Setup** eseguire hello alla procedura seguente:
+11. Nella pagina **SAML Setup** eseguire i passaggi seguenti:
    
-    a. Hello copia **SAML Single Sign-On Service URL** valore **riferimento rapido** sezione **Configura sign-on** e incollarlo in hello **Provider di identità Pagina di accesso** campo Netsuite.
+    a. Copiare il valore **SAML Single Sign-On Service URL** (URL servizio Single Sign-On SAML) dalla sezione di **Quick Reference** (Riferimento rapido) di **Configure sign-on** (Configura accesso) e incollarlo nel campo **Identity Provider Login Page** (Pagina di accesso provider di identità) in Netsuite.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-netsuite-tutorial/ns-saml-setup.png)
   
     b. In NetSuite selezionare **Primary Authentication Method** (Metodo di autenticazione primario).
 
-    c. Per il campo hello etichettata **SAMLV2 Identity Provider Metadata**selezionare **caricare File di metadati IDP**. Quindi fare clic su **Sfoglia** file di metadati hello tooupload scaricato dal portale di Azure.
+    c. Per il campo con etichetta **SAMLV2 Identity Provider Metadata** (Metadati provider identità SAMLV2) selezionare **Upload IDP Metadata File** (Carica file di metadati IDP). Fare quindi clic su **Browse** (Sfoglia) per caricare il file di metadati scaricato dal portale di Azure.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-netsuite-tutorial/ns-sso-setup.png)
 
@@ -159,37 +159,37 @@ In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure 
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-Netsuite-tutorial/ns-attributes.png)
 
-13. Per hello **nome dell'attributo** digitare `account`. Per hello **valore dell'attributo** , digitare l'ID di account Netsuite. Questo valore è costante e modifica con l'account. Istruzioni su come toofind l'ID account sono incluse di seguito:
+13. Nel campo **Nome attributo** immettere `account`. Nel campo **Valore attributo** immettere l'ID dell'account NetSuite. Questo valore è costante e cambia con l'account. Per istruzioni su come individuare l'ID dell'account, vedere di seguito:
 
       ![Configura accesso Single Sign-On](./media/active-directory-saas-Netsuite-tutorial/ns-add-attribute.png)
 
-    a. In Netsuite, fare clic su **installazione** dal menu di navigazione superiore hello.
+    a. In Netsuite fare clic su **Setup** (Configurazione) nel menu di spostamento superiore.
 
-    b. Fare clic in hello **le attività di configurazione** sezione del menu di navigazione sinistro hello, seleziona hello **integrazione** sezione e fare clic su **preferenze di servizi Web**.
+    b. Fare quindi clic sulla sezione **Setup Tasks** (Configura attività) del menu di spostamento sinistro, selezionare la sezione **Integration** (Integrazione), quindi fare clic su **Web Services Preferences** (Preferenze servizi Web).
 
-    c. Copiare l'ID Account Netsuite e incollarlo in hello **valore dell'attributo** campo in Azure AD.
+    c. Copiare l'ID dell'account NetSuite e incollarlo nel campo **Valore attributo** in Azure AD.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-Netsuite-tutorial/ns-account-id.png)
 
-14. Prima che gli utenti possono eseguire single sign-on in Netsuite, si devono prima essere assegnate autorizzazioni appropriate di hello in Netsuite. Seguire le istruzioni di hello sotto tooassign queste autorizzazioni.
+14. Per consentire l'accesso Single Sign-On a NetSuite, è prima di tutto necessario che agli utenti vengano assegnate le autorizzazioni appropriate in NetSuite. Per assegnare le autorizzazioni, seguire le istruzioni seguenti.
 
-    a. Scegliere dal menu di spostamento superiore di hello **installazione**, quindi fare clic su **Setup Manager**.
+    a. Scegliere **Setup** (Configurazione) dal menu di navigazione principale, quindi fare clic su **Setup Manager** (Configura gestore).
       
       ![Configura accesso Single Sign-On](./media/active-directory-saas-Netsuite-tutorial/ns-setup.png)
 
-    b. Scegliere dal menu di navigazione a sinistra di hello **Users/Roles**, quindi fare clic su **gestione ruoli**.
+    b. Scegliere **Users/Roles** (Utenti/Ruoli) dal menu di navigazione a sinistra, quindi fare clic su **Manage Roles** (Gestisci ruoli).
       
       ![Configura accesso Single Sign-On](./media/active-directory-saas-Netsuite-tutorial/ns-manage-roles.png)
 
     c. Fare clic su **New Role**.
 
-    d. Digitare un **nome** per il nuovo ruolo e seleziona hello **Single Sign-On solo** casella di controllo.
+    d. Digitare un nome per il nuovo ruolo in **Name** e selezionare la casella di controllo **Single Sign-On Only** (Solo Single Sign-On).
       
       ![Configura accesso Single Sign-On](./media/active-directory-saas-Netsuite-tutorial/ns-new-role.png)
 
     e. Fare clic su **Salva**.
 
-    f. Scegliere dal menu hello in primo piano hello **autorizzazioni**. Fare quindi clic su **Setup**.
+    f. Scegliere **Permissions**dal menu disponibile nella parte superiore. Fare quindi clic su **Setup**.
       
        ![Configura accesso Single Sign-On](./media/active-directory-saas-Netsuite-tutorial/ns-sso.png)
 
@@ -197,11 +197,11 @@ In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure 
 
     h. Fare clic su **Salva**.
 
-    i. Scegliere dal menu di spostamento superiore di hello **installazione**, quindi fare clic su **Setup Manager**.
+    i. Scegliere **Setup** (Configurazione) dal menu di navigazione principale, quindi fare clic su **Setup Manager** (Configura gestore).
       
        ![Configura accesso Single Sign-On](./media/active-directory-saas-Netsuite-tutorial/ns-setup.png)
 
-    j. Scegliere dal menu di navigazione a sinistra di hello **Users/Roles**, quindi fare clic su **Gestisci utenti**.
+    j. Scegliere **Users/Roles** (Utenti/Ruoli) dal menu di navigazione a sinistra, quindi fare clic su **Manage Users** (Gestisci utenti).
       
        ![Configura accesso Single Sign-On](./media/active-directory-saas-Netsuite-tutorial/ns-manage-users.png)
 
@@ -209,70 +209,70 @@ In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure 
       
        ![Configura accesso Single Sign-On](./media/active-directory-saas-Netsuite-tutorial/ns-edit-user.png)
 
-    l. Nella finestra di dialogo ruoli hello, selezionare il ruolo hello che è stato creato e fare clic su **Aggiungi**.
+    l. Nella finestra di dialogo Roles selezionare il ruolo creato e quindi fare clic su **Add**.
       
        ![Configura accesso Single Sign-On](./media/active-directory-saas-Netsuite-tutorial/ns-add-role.png)
 
     m. Fare clic su **Salva**.
     
 > [!TIP]
-> È ora possibile leggere una versione di queste istruzioni all'interno di hello concisa [portale di Azure](https://portal.azure.com), mentre si stanno impostando app hello!  Dopo l'aggiunta di questa app da hello **Active Directory > applicazioni aziendali** fare semplicemente clic su hello **Single Sign-On** scheda e l'accesso hello incorporato documentazione tramite hello  **Configurazione** sezione nella parte inferiore di hello. È possibile leggere altre informazioni sulla funzionalità di documentazione embedded hello qui: [AD Azure incorporato documentazione]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Un riepilogo delle istruzioni è disponibile all'interno del [portale di Azure](https://portal.azure.com) durante la configurazione dell'app.  Dopo aver aggiunto l'app dalla sezione **Active Directory > Applicazioni aziendali** è sufficiente fare clic sulla scheda **Single Sign-On** e accedere alla documentazione incorporata tramite la sezione **Configurazione** nella parte inferiore. Altre informazioni sulla funzione di documentazione incorporata sono disponibili in [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985) (Documentazione incorporata di Azure AD).
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Creazione di un utente test di Azure AD
-obiettivo di Hello di questa sezione è un utente di test nel portale di Azure chiamato Britta Simon hello toocreate.
+Questa sezione descrive come creare un utente test denominato Britta Simon nel portale di Azure.
 
 ![Creare un utente di Azure AD][100]
 
-**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**
+**Per creare un utente test in Azure AD, eseguire la procedura seguente:**
 
-1. In hello **portale di Azure**via hello riquadro di spostamento a sinistra, fare clic su **Azure Active Directory** icona.
+1. Nel **portale di Azure** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-netsuite-tutorial/create_aaduser_01.png) 
 
-2.  elenco di hello toodisplay di utenti, andare troppo**utenti e gruppi** e fare clic su **tutti gli utenti**.
+2.  Passare a **Utenti e gruppi** e fare clic su **Tutti gli utenti** per visualizzare l'elenco di utenti.
     
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-netsuite-tutorial/create_aaduser_02.png) 
 
-3. Nella parte superiore di hello della finestra di dialogo hello, fare clic su **Aggiungi** tooopen hello **utente** finestra di dialogo.
+3. Nella parte superiore della finestra di dialogo fare clic su **Aggiungi** per aprire la finestra di dialogo **Utente**.
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-netsuite-tutorial/create_aaduser_03.png) 
 
-4. In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:
+4. Nella pagina della finestra di dialogo **Utente** seguire questa procedura:
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-netsuite-tutorial/create_aaduser_04.png) 
 
-    a. In hello **nome** casella tipo **BrittaSimon**.
+    a. Nella casella di testo **Nome** digitare **BrittaSimon**.
 
-    b. In hello **nome utente** casella di testo, hello tipo **indirizzo di posta elettronica** di BrittaSimon.
+    b. Nella casella di testo **Nome utente** digitare l'**indirizzo di posta elettronica** di BrittaSimon.
 
-    c. Selezionare **Show Password** e annotare il valore di hello di hello **Password**.
+    c. Selezionare **Mostra password** e prendere nota del valore della **Password**.
 
     d. Fare clic su **Crea**. 
 
 ### <a name="creating-a-netsuite-test-user"></a>Creazione di un utente test di Netsuite
 
 In questa sezione si crea un utente di nome Britta Simon in Netsuite. Netsuite supporta il provisioning JIT, abilitato per impostazione predefinita.
-Non è necessario alcun intervento dell'utente in questa sezione. Se un utente non esiste già in Netsuite, quando si tenta di tooaccess Netsuite uno nuovo.
+Non è necessario alcun intervento dell'utente in questa sezione. Se un utente non esiste in Netsuite, ne viene creato uno nuovo quando si tenta di accedere a Netsuite.
 
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Assegnazione utente test hello Azure AD
+### <a name="assigning-the-azure-ad-test-user"></a>Assegnazione dell'utente test di Azure AD
 
-In questa sezione per abilitare Britta Simon toouse single sign-on Azure concessione dell'accesso tooNetsuite.
+In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sign-On di Azure concedendole l'accesso a Netsuite.
 
 ![Assegna utente][200] 
 
-**tooassign Britta Simon tooNetsuite, eseguire hello alla procedura seguente:**
+**Per assegnare Britta Simon a Netsuite, seguire questa procedura:**
 
-1. Nel portale di Azure hello, aprire la visualizzazione di applicazioni hello, quindi selezionare Visualizza directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.
+1. Nel portale di Azure aprire la visualizzazione delle applicazioni e quindi la visualizzazione delle directory e passare ad **Applicazioni aziendali**, quindi fare clic su **Tutte le applicazioni**.
 
     ![Assegna utente][201] 
 
-2. Nell'elenco di applicazioni hello, selezionare **Netsuite**.
+2. Nell'elenco di applicazioni selezionare **Netsuite**.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-netsuite-tutorial/tutorial_netsuite_app.png) 
 
-3. Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.
+3. Scegliere **Utenti e gruppi** dal menu a sinistra.
 
     ![Assegna utente][202] 
 
@@ -280,7 +280,7 @@ In questa sezione per abilitare Britta Simon toouse single sign-on Azure concess
 
     ![Assegna utente][203]
 
-5. In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.
+5. Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco Utenti.
 
 6. Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.
 
@@ -288,13 +288,13 @@ In questa sezione per abilitare Britta Simon toouse single sign-on Azure concess
     
 ### <a name="testing-single-sign-on"></a>Test dell'accesso Single Sign-On
 
-In questa sezione si test configurazione di Azure AD single sign-on utilizzando hello Pannello di accesso.
+In questa sezione viene testata la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.
 
-tootest le impostazioni single sign-on, aprire il pannello di accesso a hello [https://myapps.microsoft.com](https://myapps.microsoft.com/), accedere all'account di prova hello e fare clic su **Netsuite**.
+Per testare le impostazioni dell'accesso Single Sign-On, aprire il pannello di accesso all'indirizzo [https://myapps.microsoft.com](https://myapps.microsoft.com/), quindi accedere all'account di test e fare clic su **Netsuite**.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md)
 * [Configura provisioning utenti](active-directory-saas-netsuite-provisioning-tutorial.md)
 

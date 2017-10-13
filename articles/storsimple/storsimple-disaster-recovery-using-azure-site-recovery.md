@@ -1,6 +1,6 @@
 ---
-title: condivisione file StorSimple aaaAutomate ripristino di emergenza con Azure Site Recovery | Documenti Microsoft
-description: Descrive i passaggi di hello e procedure consigliate per la creazione di una soluzione di ripristino di emergenza per le condivisioni file ospitati in archiviazione di Microsoft Azure StorSimple.
+title: Automatizzare il ripristino di emergenza per le condivisioni di file StorSimple con Azure Site Recovery | Microsoft Docs
+description: Descrive i passaggi e le procedure consigliate per la creazione di una soluzione di ripristino di emergenza per le condivisioni file ospitate nell'archiviazione Microsoft Azure StorSimple.
 services: storsimple
 documentationcenter: NA
 author: vidarmsft
@@ -14,133 +14,133 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/09/2017
 ms.author: vidarmsft
-ms.openlocfilehash: fa3e8d4e77ca0f6a7b5f9bbb956a4de12547642e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b4d575587eec1bcf43c33c7faeb8360ec67b5214
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="automated-disaster-recovery-solution-using-azure-site-recovery-for-file-shares-hosted-on-storsimple"></a>Soluzione di ripristino di emergenza automatizzato usando Azure Site Recovery per le condivisioni file ospitate su StorSimple
 ## <a name="overview"></a>Panoramica
-Microsoft Azure StorSimple è una soluzione di archiviazione cloud ibrida che indirizzi hello complessità dei dati non strutturati generalmente associati a condivisioni file. StorSimple utilizza l'archiviazione cloud come soluzione locale di un'estensione di hello e livelli automaticamente i dati tra l'archiviazione locale e l'archiviazione cloud. Integrati, protezione dei dati locali e gli snapshot nel cloud, evitando hello un'infrastruttura di archiviazione ha.
+Microsoft Azure StorSimple è una soluzione di archiviazione cloud ibrida che risolve le complessità dei dati non strutturati comunemente associate alle condivisioni file. StorSimple usa l'archiviazione cloud come un'estensione della soluzione locale e organizza automaticamente i dati in livelli tra archiviazione locale e archiviazione cloud. La protezione integrata dei dati, con snapshot locali e cloud, elimina la necessità di un'infrastruttura di archiviazione complessa.
 
-[Azure Site Recovery](../site-recovery/site-recovery-overview.md) è un servizio basato su Azure che fornisce funzionalità di ripristino di emergenza per il coordinamento di replica, failover e ripristino delle macchine virtuali. Azure Site Recovery supporta un numero di replicare tooconsistently tecnologie di replica, proteggere e facilmente il failover le macchine virtuali e le applicazioni cloud tooprivate/pubblico o ospitato.
+[Azure Site Recovery](../site-recovery/site-recovery-overview.md) è un servizio basato su Azure che fornisce funzionalità di ripristino di emergenza per il coordinamento di replica, failover e ripristino delle macchine virtuali. Azure Site Recovery supporta una serie di tecnologie di replica per la replica, la protezione e il failover semplice di macchine virtuali e applicazioni nei cloud pubblici, privati oppure ospitati.
 
-Tramite Azure Site Recovery, la replica della macchina virtuale e funzionalità di snapshot cloud StorSimple, è possibile proteggere l'ambiente di server completo del file hello. In caso di hello di un'interruzione, è possibile utilizzare un solo clic toobring le condivisioni di file online in Azure in pochi minuti.
+Usando Azure Site Recovery, la replica delle macchine virtuali e le funzionalità di snapshot cloud di StorSimple, è possibile proteggere l'ambiente di server di file completo. In caso di interruzione, con un semplice clic è possibile portare le condivisioni di file online in Azure in pochi minuti.
 
-Questo documento illustra in dettaglio come creare una soluzione di ripristino di emergenza per le condivisioni file ospitate nell'archiviazione di StorSimple ed eseguire failover pianificati, non pianificati e di test usando un piano di ripristino con un solo clic. In pratica, viene illustrato come è possibile modificare il piano di ripristino hello il tooenable insieme di credenziali di Azure Site Recovery StorSimple failover durante gli scenari di emergenza. Inoltre, descrive le configurazioni supportate e i prerequisiti. Questo documento presuppone che si abbia familiarità con concetti di base di hello di architetture di Azure Site Recovery e StorSimple.
+Questo documento illustra in dettaglio come creare una soluzione di ripristino di emergenza per le condivisioni file ospitate nell'archiviazione di StorSimple ed eseguire failover pianificati, non pianificati e di test usando un piano di ripristino con un solo clic. In pratica, mostra come modificare il piano di ripristino dell'insieme di credenziali di Azure Site Recovery per attivare i failover StorSimple durante gli scenari di emergenza. Inoltre, descrive le configurazioni supportate e i prerequisiti. Questo documento presuppone la conoscenza delle nozioni di base delle architetture di Azure Site Recovery e StorSimple.
 
 ## <a name="supported-azure-site-recovery-deployment-options"></a>Opzioni di distribuzione di Azure Site Recovery
-I clienti possono distribuire file server come server fisici o macchine virtuali (VM) in esecuzione in Hyper-V o VMware e quindi creare le condivisioni file da volumi ottenuti dall'archiviazione StorSimple. Azure Site Recovery può proteggere entrambi tooeither distribuzioni fisici e virtuali a un sito secondario o tooAzure. Questo documento vengono illustrati i dettagli di una soluzione di ripristino di emergenza con Azure come sito di ripristino hello per un macchina virtuale ospitata in Hyper-V di file server e condivisioni di file in archiviazione di StorSimple. Altri scenari in cui hello file server di che macchina virtuale si trova in una VM di VMware o da un computer fisico possono essere implementati in modo analogo.
+I clienti possono distribuire file server come server fisici o macchine virtuali (VM) in esecuzione in Hyper-V o VMware e quindi creare le condivisioni file da volumi ottenuti dall'archiviazione StorSimple. Azure Site Recovery può proteggere le distribuzioni fisiche e virtuali in un sito secondario o in Azure. Questo documento descrive in dettaglio una soluzione di ripristino di emergenza che usa Azure come sito di ripristino per una VM di file server ospitata in Hyper-V e con condivisioni file nell'archiviazione di StorSimple. Altri scenari in cui la VM del file server si trova in una VM VMware o in un computer fisico possono essere implementati in modo analogo.
 
 ## <a name="prerequisites"></a>Prerequisiti
-Implementazione di una soluzione di ripristino di emergenza con un clic che utilizza Azure Site Recovery per le condivisioni file ospitate in StorSimple archiviazione ha hello seguenti prerequisiti:
+I prerequisiti di implementazione di una soluzione di ripristino di emergenza in un solo clic che usa Azure Site Recovery per le condivisioni file ospitate nell'archiviazione StorSimple sono i seguenti:
 
 * VM del file server Windows Server 2012 R2 locale ospitata in Hyper-V, VMware o in un computer fisico
 * Dispositivo di archiviazione StorSimple locale registrato con Azure StorSimple Manager
-* StorSimple Appliance di Cloud create in hello Azure StorSimple manager (questo può rimanere in stato di arresto)
-* Condivisioni file ospitate in volumi hello configurati nel dispositivo di archiviazione StorSimple hello
+* Appliance cloud StorSimple creata in Azure StorSimple Manager (può rimanere in stato di arresto)
+* Condivisioni file ospitate nei volumi configurati sul dispositivo di archiviazione StorSimple
 * [insieme di credenziali dei servizi di Azure Site Recovery](../site-recovery/site-recovery-vmm-to-vmm.md) creato in una sottoscrizione di Microsoft Azure
 
-Inoltre, se Azure è il sito di ripristino, eseguire hello [dello strumento di valutazione della macchina virtuale Azure](http://azure.microsoft.com/downloads/vm-readiness-assessment/) su tooensure macchine virtuali che siano compatibili con macchine virtuali di Azure e Azure Site Recovery services.
+Inoltre, se Azure è il sito di ripristino, eseguire lo strumento [Azure Virtual Machine Readiness Assessment](http://azure.microsoft.com/downloads/vm-readiness-assessment/) nelle VM per assicurarsi che siano compatibili con le VM di Azure e i Servizi di Azure Site Recovery.
 
-problemi di latenza tooavoid (cosa che può comportare costi più elevati), assicurarsi che si crea il dispositivo StorSimple per Cloud, account di automazione, e degli account di archiviazione nella stessa regione di hello.
+Per evitare problemi di latenza (che potrebbero causare un aumento dei costi), assicurarsi di creare l'appliance cloud StorSimple, l'account di automazione e gli account di archiviazione nella stessa area.
 
 ## <a name="enable-dr-for-storsimple-file-shares"></a>Abilitare il ripristino di emergenza per le condivisioni file di StorSimple
-Ogni componente di hello locale ambiente deve toobe protetti tooenable completare la replica e il ripristino. Questa sezione illustra come:
+Ogni componente dell'ambiente locale deve essere protetto per abilitare la replica e il ripristino completi. Questa sezione illustra come:
 
 * Configurare la replica di Active Directory e DNS (facoltativo)
-* Utilizzare la protezione di Azure Site Recovery tooenable hello del file server di VM
+* Usare Azure Site Recovery per abilitare la protezione della VM del file server
 * Abilitare la protezione dei volumi StorSimple
-* Configurare la rete hello
+* Configurare la rete
 
 ### <a name="set-up-active-directory-and-dns-replication-optional"></a>Configurare la replica di Active Directory e DNS (facoltativo)
-Se si desidera hello tooprotect computer che eseguono Active Directory e DNS in modo che siano disponibili nel sito di ripristino di emergenza hello, è necessario tooexplicitly proteggerli (in modo che i server di file hello sono accessibili dopo il failover con l'autenticazione). Sono disponibili due opzioni consigliate in base hello complessità dell'ambiente locale del cliente hello.
+Se si vuole proteggere i computer che eseguono Active Directory e DNS in modo che siano disponibili nel sito di ripristino di emergenza, è necessario proteggerli in modo esplicito (in modo che i file server siano accessibili dopo il failover con autenticazione). Sono consigliate due opzioni a seconda della complessità dell'ambiente locale del cliente.
 
 #### <a name="option-1"></a>Opzione 1
-Se il cliente hello dispone di un numero ridotto di applicazioni, un singolo controller di dominio per intero hello sito locale e sarà possibile failover hello dell'intero sito, quindi è consigliabile utilizzare macchina controller di dominio di Azure Site Recovery replica tooreplicate hello sito secondario tooa (questa opzione è disponibile per site-to-site e site in Azure).
+Se il cliente ha un numero limitato di applicazioni, un singolo controller di dominio per l'intero sito locale ed eseguirà il failover dell'intero sito, è consigliabile usare la replica di Azure Site Recovery per replicare il computer del controller di dominio nel sito secondario (applicabile sia per l'operazione da sito a sito, che da sito ad Azure).
 
 #### <a name="option-2"></a>Opzione 2
-Se hello cliente ha un numero elevato di applicazioni, è in esecuzione una foresta di Active Directory e sarà possibile failover alcune applicazioni alla volta, quindi è consigliabile configurare un controller di dominio nel sito di ripristino di emergenza hello (è possibile che un sito secondario o in Azure).
+Se il cliente ha un numero elevato di applicazioni, esegue una foresta Active Directory ed eseguirà il failover di poche applicazioni alla volta, è consigliabile configurare un controller di dominio aggiuntivo nel sito di ripristino di emergenza (indipendentemente dal fatto che si esegua il failover in un sito secondario o in Azure).
 
-Consultare troppo[soluzione di ripristino di emergenza automatizzata per Active Directory e DNS usando Azure Site Recovery](../site-recovery/site-recovery-active-directory.md) per le istruzioni quando si rende disponibile un controller di dominio nel sito di ripristino di emergenza hello. Resto hello di questo documento, si suppone che un controller di dominio è disponibile nel sito di ripristino di emergenza hello.
+Consultare [Proteggere Active Directory e DNS con Azure Site Recovery](../site-recovery/site-recovery-active-directory.md) per informazioni su come procedere quando si rende disponibile un controller di dominio nel sito di ripristino di emergenza. Nella parte restante di questo documento, si presuppone che sia disponibile un controller di dominio nel sito di ripristino di emergenza.
 
-### <a name="use-azure-site-recovery-tooenable-protection-of-hello-file-server-vm"></a>Utilizzare la protezione di Azure Site Recovery tooenable hello del file server di VM
-Questo passaggio è necessario preparare l'ambiente hello locale file server, creare e preparare un insieme di credenziali di Azure Site Recovery e abilitare la protezione dei file di hello macchina virtuale.
+### <a name="use-azure-site-recovery-to-enable-protection-of-the-file-server-vm"></a>Usare Azure Site Recovery per abilitare la protezione della VM del file server
+Questo passaggio richiede la preparazione dell'ambiente di file server locale, la creazione e la preparazione di un insieme di credenziali di Azure Site Recovery e l'abilitazione della protezione di file della VM.
 
-#### <a name="tooprepare-hello-on-premises-file-server-environment"></a>ambiente tooprepare hello locale file server
-1. Set hello **controllo dell'Account utente** troppo**non notificare mai**. Ciò è necessario in modo che è possibile utilizzare destinazioni iSCSI di automazione di Azure script tooconnect hello dopo carico da Azure Site Recovery.
+#### <a name="to-prepare-the-on-premises-file-server-environment"></a>Per preparare l'ambiente di file server locale
+1. Impostare **Controllo dell'account utente** su **Never Notify** (Non notificare mai). Questa operazione è necessaria per poter usare gli script di automazione di Azure per connettere le destinazioni iSCSI dopo il failover eseguito da Azure Site Recovery.
 
-   1. Premere tasto Windows hello + Q e cercare **UAC**.
+   1. Premere il tasto Windows + Q e cercare **UAC**.
    2. Selezionare **Modifica impostazioni di Controllo dell'account utente**.
-   3. Hello trascinare barra inferiore toohello verso **non notificare mai**.
+   3. Trascinare la barra in basso verso **Non notificare mai**.
    4. Fare clic su **OK**, quindi selezionare **Sì** quando richiesto.
 
       ![](./media/storsimple-disaster-recovery-using-azure-site-recovery/image1.png)
-2. Installare hello agente VM in ciascuno dei server file hello macchine virtuali. Ciò è necessario in modo che sia possibile eseguire gli script di automazione di Azure su hello failover le macchine virtuali.
+2. Installare l'agente VM su ciascuna delle VM del file server. Questa operazione è necessaria per poter eseguire gli script di automazione di Azure sulle VM sottoposte a failover.
 
-   1. [Scaricare l'agente di hello](http://aka.ms/vmagentwin) troppo`C:\\Users\\<username>\\Downloads`.
-   2. Aprire Windows PowerShell in modalità amministratore (Esegui come amministratore) e quindi immettere hello comando toonavigate toohello download percorso seguente:
+   1. [Scaricare l'agente](http://aka.ms/vmagentwin) in `C:\\Users\\<username>\\Downloads`.
+   2. Aprire Windows PowerShell in modalità amministratore (Esegui come amministratore) e quindi immettere il comando seguente per passare al percorso di download:
 
       `cd C:\\Users\\<username>\\Downloads\\WindowsAzureVmAgent.2.6.1198.718.rd\_art\_stable.150415-1739.fre.msi`
 
       > [!NOTE]
-      > a seconda della versione di hello può modificare il nome di file Hello.
+      > Il nome file può cambiare a seconda della versione.
       >
       >
 3. Fare clic su **Avanti**.
-4. Accettare hello **termini del contratto** e quindi fare clic su **Avanti**.
-5. Fare clic su **Finish**.
-6. Creare condivisioni file usando volumi ottenuti dall'archiviazione StorSimple. Per ulteriori informazioni, vedere [utilizzare volumi toomanage servizio StorSimple Manager di hello](storsimple-manage-volumes.md).
+4. Accettare le **condizioni del contratto** e quindi fare clic su **Avanti**.
+5. Fare clic su **Fine**.
+6. Creare condivisioni file usando volumi ottenuti dall'archiviazione StorSimple. Per maggiori informazioni, vedere l'articolo [Usare il servizio StorSimple Manager per gestire i volumi](storsimple-manage-volumes.md).
 
-   1. Le macchine virtuali in locale, premere tasto Windows hello + Q e cercare **iSCSI**.
+   1. Nelle macchine virtuali locali premere il tasto Windows + Q e cercare **iSCSI**.
    2. Selezionare **Iniziatore iSCSI**.
-   3. Seleziona hello **configurazione** scheda e copia nome iniziatore hello.
-   4. Accedi toohello [portale di Azure](https://portal.azure.com/).
-   5. Seleziona hello **StorSimple** scheda e quindi selezionare hello servizio StorSimple Manager che contiene il dispositivo fisico di hello.
-   6. Creare i contenitori di volumi e quindi creare i volumi (Questi volumi sono per condivisioni file hello hello in file server in macchine virtuali). Copia nome iniziatore hello e assegnare un nome appropriato per hello record di controllo di accesso quando si creano volumi hello.
-   7. Seleziona hello **configura** scheda e annotare l'indirizzo IP di hello del dispositivo hello.
-   8. Nelle macchine virtuali in locale, passare toohello **iniziatore iSCSI** nuovamente e immettere l'indirizzo IP di hello in hello sezione connessione rapida. Fare clic su **connessione rapida** (dispositivo hello dovrebbe ora essere connesso).
-   9. Hello aprirlo portale di Azure e seleziona hello **volumi e dispositivi** scheda. Fare clic su **Configura automaticamente**. volume Hello appena creato dovrebbe essere visualizzato.
-   10. Nel portale di hello selezionare hello **dispositivi** e quindi selezionare **crea un nuovo dispositivo virtuale.** (il dispositivo virtuale verrà usato se si verifica un failover). Questo nuovo dispositivo virtuale può essere mantenuto in un stato non in linea di tooavoid costi aggiuntivi. tootake hello dispositivo virtuale non in linea, andare toohello **macchine virtuali** sezione portale hello e arrestarlo.
-   11. Tornare indietro toohello macchine virtuali in locale e aprire Gestione disco (premere tasto Windows hello + X e selezionare **Gestione disco**).
-   12. Si noterà che alcuni dischi aggiuntivi (in base a numero hello di volumi creati). Fare clic su hello prima di selezionare **Inizializza disco**e selezionare **OK**. Pulsante destro del mouse hello **non allocata** selezionare **nuovo Volume semplice**, assegnarvi una lettera di unità e completare la procedura guidata hello.
-   13. Ripetere il passaggio l per tutti i dischi di hello. È ora possibile visualizzare tutti i dischi di hello in **questo PC** in Esplora risorse di Windows hello.
-   14. In questi volumi, utilizzare hello servizi File e archiviazione ruolo toocreate condivisioni file.
+   3. Selezionare la scheda **Configurazione** e copiare il nome dell'iniziatore.
+   4. Accedere al [Portale di Azure](https://portal.azure.com/).
+   5. Selezionare la scheda **StorSimple** e quindi selezionare il servizio StorSimple Manager che contiene il dispositivo fisico.
+   6. Creare i contenitori di volumi e quindi creare i volumi (questi volumi sono destinati alle condivisione file nella macchine virtuali del file server). Copiare il nome dell'iniziatore e assegnare un nome appropriato per i record di controllo di accesso quando si creano i volumi.
+   7. Selezionare la scheda **Configura** e prendere nota dell'indirizzo IP del dispositivo.
+   8. Nelle macchine virtuali locali tornare a **Iniziatore iSCSI** e immettere l'indirizzo IP nella sezione connessione rapida. Fare clic su **Connessione rapida** (il dispositivo ora deve essere connesso).
+   9. Aprire il portale di Azure e selezionare la scheda **Volumi e dispositivi**. Fare clic su **Configura automaticamente**. Viene visualizzato il volume appena creato.
+   10. Nel portale selezionare la scheda **Dispositivi** e quindi selezionare **Create a New Virtual Device** (Crea un nuovo dispositivo virtuale) (il dispositivo virtuale verrà usato se si verifica un failover). Il nuovo dispositivo virtuale può essere mantenuto in uno stato offline per evitare costi aggiuntivi. Per portare offline il dispositivo virtuale, passare alla sezione **Macchine virtuali** nel portale e arrestarlo.
+   11. Tornare alle macchine virtuali locali e aprire Gestione disco (premere il tasto Windows + X, quindi selezionare **Gestione disco**).
+   12. Si noteranno alcuni dischi aggiuntivi (a seconda del numero di volumi creati). Fare clic con il pulsante destro del mouse sul primo disco e scegliere **Inizializza disco**, quindi fare clic su **OK**. Fare doppio clic sulla sezione **Non allocato**, selezionare **Nuovo volume semplice**, assegnare una lettera di unità al volume e completare la procedura guidata.
+   13. Ripetere il primo passaggio per tutti i dischi. È ora possibile visualizzare tutti i dischi in **Computer** in Esplora risorse di Windows.
+   14. Usare il ruolo Servizi file e archiviazione per creare condivisioni file in tali volumi.
 
-#### <a name="toocreate-and-prepare-an-azure-site-recovery-vault"></a>toocreate e preparare un insieme di credenziali di Azure Site Recovery
-Fare riferimento toohello [documentazione di Azure Site Recovery](../site-recovery/site-recovery-hyper-v-site-to-azure.md) tooget iniziali di Azure Site Recovery prima di proteggere una macchina virtuale del server file hello.
+#### <a name="to-create-and-prepare-an-azure-site-recovery-vault"></a>Per creare un insieme di credenziali di Azure Site Recovery
+Vedere la [documentazione di Azure Site Recovery](../site-recovery/site-recovery-hyper-v-site-to-azure.md) per iniziare a usare Azure Site Recovery prima di proteggere la VM del file server.
 
-#### <a name="tooenable-protection"></a>protezione tooenable
-1. Disconnettere hello iSCSI target da hello locale macchine virtuali che si desidera tooprotect tramite Azure Site Recovery:
+#### <a name="to-enable-protection"></a>Per abilitare la protezione
+1. Disconnettere le destinazioni iSCSI dalle macchine virtuali locali che si vuole proteggere con Azure Site Recovery:
 
    1. Premere il tasto Windows + Q e cercare **iSCSI**.
    2. Selezionare **Configura iniziatore iSCSI**.
-   3. Disconnettere i dispositivi StorSimple hello connessa in precedenza. In alternativa, è possibile disattivare server file hello per alcuni minuti durante l'abilitazione della protezione.
+   3. Disconnettere il dispositivo StorSimple connesso in precedenza. In alternativa, è possibile disattivare il file server per alcuni minuti quando si abilita la protezione.
 
    > [!NOTE]
-   > In questo modo hello toobe condivisioni di file temporaneamente non disponibile.
+   > In questo modo, le condivisioni file saranno temporaneamente non disponibili.
    >
    >
-2. [Abilitare la protezione della macchina virtuale](../site-recovery/site-recovery-hyper-v-site-to-azure.md) del file server hello macchina virtuale dal portale di Azure Site Recovery hello.
-3. Quando inizia la sincronizzazione iniziale di hello, è possibile riconnettersi destinazione hello nuovamente. Passare l'iniziatore iSCSI toohello, selezionare il dispositivo di StorSimple hello e fare clic su **Connetti**.
-4. Quando è stata completata la sincronizzazione di hello e stato hello di hello VM è **Protected**selezionare hello macchina virtuale, selezionare hello **configura** scheda e aggiornare di conseguenza rete hello di hello VM (questa è la rete hello tale hello failover nelle macchine virtuali sarà parte). Rete hello non viene visualizzato, significa che la sincronizzazione hello continua.
+2. [Abilitare la protezione delle macchine virtuali](../site-recovery/site-recovery-hyper-v-site-to-azure.md) della VM del file server dal Portale di Azure Site Recovery.
+3. Quando viene avviata la sincronizzazione iniziale, è possibile riconnettere nuovamente la destinazione. Passare all'iniziatore iSCSI, selezionare un dispositivo StorSimple e fare clic su **Connetti**.
+4. Quando la sincronizzazione è completa e lo stato della VM è **Protetta**, selezionare la VM, selezionare la scheda **Configura** e aggiornare di conseguenza la rete della VM (si tratta della rete di cui faranno parte le VM sottoposte a failover). Se la scheda non viene visualizzata, la sincronizzazione è ancora in corso.
 
 ### <a name="enable-protection-of-storsimple-volumes"></a>Abilitare la protezione dei volumi StorSimple
-Se non è stato selezionato hello **abilitare un backup predefinito per questo volume** opzione per i volumi StorSimple hello, andare troppo**criteri di Backup** in hello servizio StorSimple Manager, quindi creare un backup adeguato criteri per tutti i volumi di hello. È consigliabile impostare la frequenza di hello dell'obiettivo del punto di backup toohello ripristino (RPO) che si desidera toosee per un'applicazione hello.
+Se non è stata selezionata l'opzione **Abilita un criterio di backup predefinito per questo volume** per i volumi StorSimple, andare su **Criteri di backup** nel servizio StorSimple Manager e creare un criterio di backup appropriato per tutti i volumi. È consigliabile impostare la frequenza dei backup per l'obiettivo del punto di ripristino (RPO) che si vuole visualizzare per l'applicazione.
 
-### <a name="configure-hello-network"></a>Configurare la rete hello
-Per la macchina virtuale del server file hello, configurare le impostazioni di rete in Azure Site Recovery in modo che le reti VM hello siano collegati toohello corretto ripristino di emergenza rete dopo il failover.
+### <a name="configure-the-network"></a>Configurare la rete
+Per la VM del file server configurare le impostazioni di rete in Azure Site Recovery in modo che le reti di VM siano collegate alla rete di ripristino di emergenza corretta dopo il failover.
 
-È possibile selezionare hello VM hello **gli elementi replicati** scheda Impostazioni di rete hello tooconfigure, come illustrato nella seguente figura hello.
+È possibile selezionare la VM nella scheda **Elementi replicati** per configurare le impostazioni di rete, come mostrato nell'illustrazione seguente.
 
 ![](./media/storsimple-disaster-recovery-using-azure-site-recovery/image2.png)
 
 ## <a name="create-a-recovery-plan"></a>Creare un piano di ripristino
-È possibile creare un piano di ripristino nel processo di ripristino automatico di sistema tooautomate hello failover delle condivisioni file hello. Se si verifica un'interruzione, è possibile visualizzare le condivisioni file hello in pochi minuti con un semplice clic. tooenable l'automazione, è necessario un account di automazione di Azure.
+È possibile creare un piano di ripristino in ASR per automatizzare il processo di failover delle condivisioni file. Se si verifica un'interruzione, è possibile visualizzare le condivisioni file in pochi minuti con un semplice clic. Per abilitare l'automazione, è necessario un account di Automazione di Azure.
 
-#### <a name="toocreate-an-automation-account"></a>toocreate un account di automazione
-1. Passare toohello portale di Azure &gt; **automazione** sezione.
+#### <a name="to-create-an-automation-account"></a>Per creare un account di Automazione
+1. Passare al portale di Azure &gt; sezione **Automazione**.
 2. Fare clic sul pulsante **+ Aggiungi** e viene aperto il pannello sotto.
 
    ![](./media/storsimple-disaster-recovery-using-azure-site-recovery/image11.png)
@@ -148,11 +148,11 @@ Per la macchina virtuale del server file hello, configurare le impostazioni di r
    * Nome: immettere un nuovo account di automazione
    * Sottoscrizione: scegliere la sottoscrizione
    * Gruppo di risorse: creare un nuovo gruppo di risorse o sceglierne uno esistente
-   * Posizione - Scegli percorso, mantenerla in hello stessa area geografica/area geografica in cui hello StorSimple Appliance di Cloud e account di archiviazione sono stati creati.
+   * Posizione: scegliere la posizione, usare la stessa area geografica/area in cui sono stati creati gli account dell'appliance cloud StorSimple e di archiviazione.
    * Creare un account RunAs di Azure: selezionare l'opzione **Sì**.
 
-3. Account di automazione toohello, quindi scegliere **runbook** &gt; **Sfoglia raccolta** tooimport tutti hello necessari runbook nell'account di automazione hello.
-4. Aggiungere hello seguente runbook individuando **il ripristino di emergenza** tag nella raccolta hello:
+3. Passare all'account di automazione, fare clic su **Runbook** &gt; **Sfoglia raccolta** per importare tutti i runbook richiesti nell'account di automazione.
+4. Aggiungere i runbook seguenti individuando il tag **Ripristino di emergenza** nella raccolta:
 
    * Eliminare i volumi StorSimple dopo il failover di test
    * Eseguire il failover dei contenitori dei volumi StorSimple
@@ -162,31 +162,31 @@ Per la macchina virtuale del server file hello, configurare le impostazioni di r
 
      ![](./media/storsimple-disaster-recovery-using-azure-site-recovery/image3.png)
 
-5. Pubblicare tutti gli script hello selezionando hello runbook nell'account di automazione hello e fare clic su **modifica** &gt; **pubblica** e quindi **Sì** toohello verifica Messaggio. Dopo questo passaggio, hello **runbook** scheda verrà visualizzata come indicato di seguito:
+5. Pubblicare tutti gli script selezionando il runbook nell'account di automazione e fare clic su **Modifica** &gt; **Pubblica** e quindi **Sì** al messaggio di verifica. Dopo questo passaggio, la scheda **Runbook** verrà visualizzata come segue:
 
     ![](./media/storsimple-disaster-recovery-using-azure-site-recovery/image4.png)
 
-6. Nell'account di automazione hello, selezionare hello **asset** scheda &gt; fare clic su **variabili** &gt; **aggiungere una variabile** e aggiungere hello seguenti variabili. È possibile scegliere tooencrypt queste risorse. Queste variabili sono specifiche del piano di ripristino. Se il ripristino prevede (che verrà creata nel passaggio successivo hello) è denominato piano di verifica, quindi le variabili devono essere StorSimRegKey di piano di verifica, piano di verifica AzureSubscriptionName e così via.
+6. Nell'account di automazione selezionare la scheda **Asset** &gt; fare clic su **Variabili** &gt; **Aggiungi variabile** e aggiungere le variabili seguenti. È possibile scegliere di crittografare questi asset. Queste variabili sono specifiche del piano di ripristino. Se il nome del piano di ripristino (che verrà creato nel passaggio successivo) è TestPlan, le variabili devono essere TestPlan-StorSimRegKey, TestPlan-AzureSubscriptionName e così via.
 
-   * *RecoveryPlanName***- StorSimRegKey**: chiave di registrazione hello per hello servizio StorSimple Manager.
-   * *RecoveryPlanName***- AzureSubscriptionName**: nome hello di hello sottoscrizione di Azure.
-   * *RecoveryPlanName***- ResourceName**: nome hello di hello StorSimple di risorsa con il dispositivo di StorSimple hello.
-   * *RecoveryPlanName***- DeviceName**: dispositivo hello che è stato eseguito il failover toobe.
-   * *RecoveryPlanName***- VolumeContainers**: stringa dei contenitori di volumi delimitato da virgole è presente nel dispositivo hello toobe non riuscito; ad esempio, è necessario volcon1, volcon2, volcon3.
-   * *RecoveryPlanName***- TargetDeviceName**: hello StorSimple Appliance di Cloud in cui hello contenitori sono toobe il failover.
-   * *RecoveryPlanName***- TargetDeviceDnsName**: nome del servizio hello del dispositivo di destinazione hello (disponibile in hello **macchina virtuale** sezione: nome del servizio hello è hello stesso come hello Nome DNS).
-   * *RecoveryPlanName***- StorageAccountName**: nome di account di archiviazione hello in quale script hello (quale toorun su hello failover della macchina virtuale) verrà archiviato. Può trattarsi di qualsiasi account di archiviazione che è temporaneamente alcuni script di hello toostore spazio.
-   * *RecoveryPlanName***- StorageAccountKey**: chiave di accesso hello per hello di sopra di account di archiviazione.
-   * *RecoveryPlanName***- ScriptContainer**: hello nome del contenitore di hello in cui hello script verranno archiviati nel cloud hello. Se il contenitore di hello non esiste, verrà creato.
-   * *RecoveryPlanName***- VMGUIDS**: al momento di proteggere una macchina virtuale, Azure Site Recovery assegna ogni macchina virtuale un ID univoco che fornisce informazioni dettagliate di hello di hello failover macchina virtuale. hello tooobtain VMGUID, seleziona hello **servizi di ripristino** scheda e fare clic su **elemento protetto** &gt; **gruppi protezione dati** &gt; **Macchine** &gt; **proprietà**. Se si dispone di più macchine virtuali, quindi aggiungere hello GUID come una stringa delimitata da virgole.
-   * *RecoveryPlanName***- AutomationAccountName** : hello nome dell'account di automazione hello in cui è stato aggiunto hello runbook e gli asset hello.
+   * *RecoveryPlanName***-StorSimRegKey**: la chiave di registrazione per il servizio StorSimple Manager.
+   * *RecoveryPlanName***-AzureSubscriptionName**: il nome della sottoscrizione Azure.
+   * *RecoveryPlanName***-ResourceName**: il nome della risorsa StorSimple con il dispositivo StorSimple.
+   * *RecoveryPlanName***-DeviceName**: il dispositivo che deve essere sottoposto a failover.
+   * *RecoveryPlanName***-VolumeContainers**: una stringa con valori delimitati da virgole dei contenitori di volumi presenti sul dispositivo che devono essere sottoposti a failover, ad esempio, volcon1, volcon2, volcon3.
+   * *RecoveryPlanName***-TargetDeviceName**: l'appliance cloud di StorSimple in cui eseguire il failover dei contenitori.
+   * *RecoveryPlanName***-TargetDeviceDnsName**: il nome del servizio del dispositivo di destinazione (disponibile nella sezione **Macchina virtuale**. Il nome del servizio è uguale al nome DNS).
+   * *RecoveryPlanName***-StorageAccountName**: il nome dell'account di archiviazione in cui verrà archiviato lo script (che deve essere eseguito nella VM sottoposta a failover). Può trattarsi di qualsiasi account di archiviazione in cui sia disponibile spazio per l'archiviazione temporanea dello script.
+   * *RecoveryPlanName***-StorageAccountKey**: la chiave di accesso per l'account di archiviazione indicato in precedenza.
+   * *RecoveryPlanName***-ScriptContainer**: il nome del contenitore in cui lo script verrà archiviato nel cloud. Se il contenitore non esiste, verrà creato.
+   * *RecoveryPlanName***-VMGUIDS**: al momento di proteggere una VM, Azure Site Recovery assegna a ogni VM virtuale un ID univoco che fornisce i dettagli della VM sottoposta a failover. Per ottenere VMGUID, selezionare la scheda **Servizi di ripristino** e quindi fare clic su **Elemento protetto** &gt; **Gruppi di protezione** &gt; **Macchine** &gt; **Proprietà**. Se sono presenti più VM, aggiungere i GUID come stringa con valori delimitati da virgole.
+   * *RecoveryPlanName***-AutomationAccountName**: il nome dell'account di automazione in cui sono stati aggiunti i runbook e gli asset.
 
-  Ad esempio, se hello Nome hello del piano di ripristino è fileServerpredayRP, è possibile che il **credenziali** & **variabili** schede compariranno come indicato di seguito dopo aver aggiunto tutte le risorse hello.
+  Ad esempio, se il nome del piano di ripristino è fileServerpredayRP, le schede **Credenziali**  &  **Variabili** dovrebbero essere visualizzate come segue dopo aver aggiunto tutti gli asset.
 
    ![](./media/storsimple-disaster-recovery-using-azure-site-recovery/image5.png)
 
-7. Passare toohello **servizi di ripristino** sezione e credenziali di Azure Site Recovery selezionare hello creato in precedenza.
-8. Seleziona hello **piani di ripristino (ripristino del sito)** opzione **Gestisci** gruppo e creare un nuovo piano di ripristino come segue:
+7. Passare alla sezione **Servizi di ripristino** e selezionare l'insieme di credenziali di Azure Site Recovery creato in precedenza.
+8. Selezionare l'opzione **Piani di ripristino (Site Recovery)** dal gruppo **Gestisci** e creare un nuovo piano di ripristino come segue:
 
    a.  Fare clic sul pulsante **+ Piano di ripristino**. Verrà visualizzato il pannello seguente.
 
@@ -194,122 +194,122 @@ Per la macchina virtuale del server file hello, configurare le impostazioni di r
 
    b.  Immettere un nome del piano di ripristino e scegliere i valori di Origine, Destinazione e Modello di distribuzione.
 
-   c.  Consente di selezionare le macchine virtuali hello hello gruppo di protezione che si desidera tooinclude nel piano di ripristino hello e fare clic su **OK** pulsante.
+   c.  Selezionare le VM dal gruppo protezione dati che si vuole includere nel piano di ripristino e fare clic su **OK**.
 
-   d.  Selezionare il piano di ripristino creato in precedenza, fare clic su **Personalizza** pulsante visualizzazione di personalizzazione piano di ripristino di tooopen hello.
+   d.  Selezionare il piano di ripristino creato in precedenza, fare clic sul pulsante **Personalizza** per aprire la visualizzazione di personalizzazione del piano di ripristino.
 
    e.  Fare clic con il pulsante destro su **Spegnimento di tutti i gruppi** e fare clic su **Aggiungi pre-azione**.
 
-   f.  Consente di aprire Pannello di azione di inserimento, immettere un nome, selezionare **lato primario** opzione dove toorun opzione, selezionare account di automazione (in cui è stato aggiunto hello runbook) e quindi selezionare hello  **StorSimple di failover-contenitori di volumi** runbook.
+   f.  Nel pannello di inserimento azione immettere un nome, selezionare l'opzione **Lato primario** in Posizione di esecuzione, selezionare l'account di automazione (in cui sono stati aggiunti i runbook) e quindi selezionare il runbook **Container Failover-StorSimple-Volume**.
 
-   g.  Fare clic con il pulsante destro su **gruppo 1: avviare** e fare clic su **Aggiungi elementi protetti** opzione e quindi selezionare hello le macchine virtuali protette nel piano di ripristino hello e fare clic su toobe **Ok** pulsante. Facoltativo se le VM sono già selezionate.
+   g.  Fare clic con il pulsante destro del mouse su **Gruppo 1: avvio**, fare clic sull'opzione **Aggiungi elementi protetti**, selezionare le macchine virtuali che devono essere protette nel piano di ripristino e quindi fare clic su **OK**. Facoltativo se le VM sono già selezionate.
 
-   h.  Fare clic con il pulsante destro su **gruppo 1: avviare** e fare clic su **azione post-** opzione quindi aggiungere tutti hello seguenti script:
+   h.  Fare clic con il pulsante destro del mouse su **Gruppo 1: avvio**, fare clic sull'opzione **Registra azione** e quindi aggiungere tutti gli script seguenti:
 
    * Runbook Start-StorSimple-Virtual-Appliance
    * Runbook Fail over-StorSimple-volume-containers
    * Runbook Mount-volumes-after-failover
    * Runbook Uninstall-custom-script-extension
 
-   i.  Aggiungere un'azione manuale dopo hello sopra 4 script hello stesso **gruppo 1: post-passaggi** sezione. Questa azione è punto hello in corrispondenza del quale è possibile verificare che tutto funzioni correttamente. Questa azione deve toobe aggiunti solo come parte del failover di Test (hello pertanto solo seleziona **Failover di Test** casella di controllo).
+   i.  Aggiungere un'azione manuale dopo i quattro script precedenti nella stessa sezione **Gruppo 1: passaggi successivi** . Questa azione corrisponde al punto in cui è possibile verificare il corretto funzionamento. Questa azione deve essere aggiunta solo come parte del failover di test (selezionare quindi solo la casella di controllo **Failover di test**).
 
-   j.  Dopo l'azione manuale hello, aggiungere hello **pulizia** script utilizzando hello stessa procedura utilizzata per hello altri runbook. **Salvare** piano di ripristino hello.
+   j.  Dopo l'azione manuale, aggiungere lo script di **pulizia** con la stessa procedura usata per gli altri runbook. **Salvare** il piano di ripristino.
 
     > [!NOTE]
-    > Quando si esegue un failover di test, è necessario verificare tutti gli elementi al passaggio dell'azione manuale hello volumi StorSimple hello duplicati nel dispositivo di destinazione hello vengono eliminati come parte della pulizia hello al termine dell'azione manuale hello.
+    > Quando si esegue un failover di test, è necessario verificare tutti gli aspetti del passaggio relativo all'azione manuale perché i volumi StorSimple clonati sul dispositivo di destinazione verranno eliminati come parte della pulizia dopo il completamento dell'azione manuale.
     >
 
     ![](./media/storsimple-disaster-recovery-using-azure-site-recovery/image7.png)
 
 ## <a name="perform-a-test-failover"></a>Eseguire un failover di test
-Fare riferimento toohello [soluzione di ripristino di emergenza di Active Directory](../site-recovery/site-recovery-active-directory.md) guida complementare per considerazioni specifiche tooActive Directory durante il failover di test hello. il programma di installazione di Hello locale non verrà modificata affatto quando si verifica il failover di test hello. Hello volumi StorSimple di cui sono stati allegati toohello locale VM sono toohello clonato StorSimple Appliance di Cloud in Azure. Una macchina virtuale per scopi di test viene visualizzata in Azure e volumi clonati hello sono collegato toohello macchina virtuale.
+Consultare la guida complementare relativa alla [soluzione di ripristino di emergenza di Active Directory](../site-recovery/site-recovery-active-directory.md) per considerazioni specifiche relative a Active Directory durante il failover di test. L'installazione locale non viene disturbata in alcun modo quando si verifica il failover di test. I volumi StorSimple che erano collegati alla VM locale vengono clonati nell'appliance cloud StorSimple in Azure. A scopo di test, in Azure viene visualizzata una VM alla quale vengono collegati i volumi clonati.
 
-#### <a name="tooperform-hello-test-failover"></a>failover di test hello tooperform
-1. Nel portale di Azure hello, selezionare l'insieme di credenziali di site recovery.
-2. Scegliere il piano di ripristino hello creato per la macchina virtuale del server file hello.
+#### <a name="to-perform-the-test-failover"></a>Per eseguire il failover di test
+1. Nel portale di Azure selezionare il proprio insieme di credenziali di Site Recovery.
+2. Fare clic sul piano di ripristino creato per la VM del file server.
 3. Fare clic su **Failover di test**.
-4. Selezionare hello toowhich di rete virtuale di Azure che saranno connesse le macchine virtuali di Azure dopo il failover si verifica.
+4. Selezionare la rete virtuale di Azure a cui dovranno connettersi le VM di Azure dopo il failover.
 
    ![](./media/storsimple-disaster-recovery-using-azure-site-recovery/image8.png)
-5. Fare clic su **OK** toobegin hello failover. È possibile monitorare i progressi facendo clic su hello VM tooopen le relative proprietà o in hello **il processo di failover di Test** nel nome dell'insieme di credenziali &gt; **processi** &gt; **iprocessidiripristinodelsito**.
-6. Al termine del processo di failover di hello, inoltre deve essere in grado di replica hello toosee macchina di Azure vengono visualizzati nel portale di Azure hello &gt; **macchine virtuali**. È possibile eseguire le operazioni di convalida.
-7. Al termine delle convalide hello, fare clic su **convalide completo**. Questo hello pulizia verrà hello volumi StorSimple e arresto del sistema StorSimple Appliance di Cloud.
-8. Al termine, fare clic su **il failover di test di pulizia** nel piano di ripristino hello. Failover di test nel record di note e salvare eventuali commenti associati hello. Questa operazione eliminerà hello macchina virtuale in cui sono stati creati durante il failover di test.
+5. Fare clic su **OK** per iniziare il failover. Per tenere traccia dello stato del processo, fare clic sulla VM per visualizzarne le proprietà oppure fare clic sul processo **Failover di test** nel nome dell'insieme di credenziali &gt; **Processi** &gt; **Processi di Site Recovery**.
+6. Al termine del failover dovrebbe essere possibile visualizzare nel portale di Azure &gt; **Macchine virtuali** anche la macchina virtuale di Azure di replica. È possibile eseguire le operazioni di convalida.
+7. Al termine delle convalide, fare clic su **Convalide complete**. Verrà eseguita la pulizia dei volumi di StorSimple e verrà arrestata l'appliance cloud StorSimple.
+8. Al termine, fare clic su **Cleanup test failover** (Pulizia failover di test) nel piano di ripristino. Usare le Note per registrare e salvare eventuali osservazioni associate al failover di test. Verranno eliminate le macchine virtuali create durante il failover di test.
 
 ## <a name="perform-a-planned-failover"></a>Eseguire un failover pianificato
-   Durante un failover pianificato, hello locale del file server che macchina virtuale viene arrestato normalmente e un cloud di backup di volumi hello nel dispositivo StorSimple dello snapshot. i volumi StorSimple Hello vengono eseguiti il failover toohello dispositivo virtuale, una macchina virtuale viene portata in Azure, di replica e i volumi di hello sono collegato toohello macchina virtuale.
+   Durante un failover pianificato la VM del file server locale viene arrestata correttamente e viene eseguita una snapshot di un backup su cloud dei volumi nel dispositivo StorSimple. I volumi StorSimple vengono sottoposti a failover nel dispositivo virtuale, una VM di replica viene visualizzata in Azure e i volumi vengono collegati alla VM.
 
-#### <a name="tooperform-a-planned-failover"></a>tooperform un failover pianificato
-1. Nel portale di Azure hello, selezionare **servizi di ripristino** insieme di credenziali &gt; **i piani di ripristino (ripristino del sito)** &gt; **recoveryplan_name** creato per macchina virtuale del server file Hello.
-2. Nel Pannello di piano di ripristino hello, fare clic su **più** &gt; **failover pianificato**.  
+#### <a name="to-perform-a-planned-failover"></a>Per eseguire un failover pianificato
+1. Nel portale di Azure selezionare l'insieme di credenziali **Servizi di ripristino** &gt; **Piani di ripristino (Site Recovery)** &gt; **pianodiripristino_nome** creato per la VM del file server.
+2. Nel pannello del piano di ripristino fare clic su **Altro** &gt;  **Failover pianificato**.
 
    ![](./media/storsimple-disaster-recovery-using-azure-site-recovery/image9.png)
-3. In hello **conferma Failover pianificato** pannello, scegliere origine hello e i percorsi di destinazione e di rete di destinazione selezionare quindi il processo di failover hello hello controllo icona ✓ toostart.
-4. Dopo la replica le macchine virtuali create sono in uno stato di attesa di commit. Fare clic su **Commit** toocommit hello failover.
-5. Una volta completata la replica, le macchine virtuali hello avviate nella posizione secondaria hello.
+3. Nel pannello **Conferma failover pianificato** scegliere le posizioni di origine e destinazione, selezionare la rete di destinazione e fare clic sull'icona del segno di spunta ✓ per avviare il processo di failover.
+4. Dopo la replica le macchine virtuali create sono in uno stato di attesa di commit. Fare clic su **Commit** per eseguire il commit del failover.
+5. Dopo il completamento della replica, le macchine virtuali vengono avviate nella località secondaria.
 
 ## <a name="perform-a-failover"></a>Eseguire un failover
-Durante un failover non pianificato, i volumi StorSimple hello vengono eseguiti il failover toohello dispositivo virtuale, una replica di verranno inseriti VM in Azure, e volumi hello sono collegato toohello macchina virtuale.
+Durante un failover non pianificato, i volumi StorSimple vengono sottoposti a failover nel dispositivo virtuale, una VM viene visualizzata in Azure e i volumi vengono collegati alla VM.
 
-#### <a name="tooperform-a-failover"></a>tooperform un failover
-1. Nel portale di Azure hello, selezionare **servizi di ripristino** insieme di credenziali &gt; **i piani di ripristino (ripristino del sito)** &gt; **recoveryplan_name** creato per macchina virtuale del server file Hello.
-2. Nel Pannello di piano di ripristino hello, fare clic su **più** &gt; **Failover**.  
-3. In hello **conferma Failover** pannello, scegliere l'origine hello e percorsi di destinazione.
-4. Selezionare **arrestare le macchine virtuali e sincronizzare i dati più recenti di hello** toospecify che il ripristino del sito deve provare tooshut verso il basso macchina virtuale protetta hello e sincronizzare i dati di hello in modo che hello versione più recente dei dati hello eseguire il failover.
-5. Dopo il failover hello, hello le macchine virtuali sono in uno stato in sospeso di commit. Fare clic su **Commit** toocommit hello failover.
+#### <a name="to-perform-a-failover"></a>Per eseguire un failover
+1. Nel portale di Azure selezionare l'insieme di credenziali **Servizi di ripristino** &gt; **Piani di ripristino (Site Recovery)** &gt; **pianodiripristino_nome** creato per la VM del file server.
+2. Nel pannello del piano di ripristino fare clic su **Altro** &gt;  **Failover**.
+3. Nel pannello **Conferma failover** selezionare i percorsi di origine e di destinazione.
+4. Selezionare **Arresta le macchine virtuali e sincronizza i dati più recenti** per specificare che Site Recovery deve tentare di arrestare la macchina virtuale protetta e sincronizzare i dati in modo che venga eseguito il failover dei dati più recenti.
+5. Dopo il failover le macchine virtuali sono uno stato di attesa di commit. Fare clic su **Commit** per eseguire il commit del failover.
 
 
 ## <a name="perform-a-failback"></a>Eseguire il failback
-Durante un failback, i contenitori di volumi StorSimple stati eseguiti il failover dispositivo fisico toohello indietro dopo un backup.
+Durante il failback, i contenitori di volumi StorSimple vengono sottoposti a failover nel dispositivo fisico dopo un backup.
 
-#### <a name="tooperform-a-failback"></a>tooperform un failback
-1. Nel portale di Azure hello, selezionare **servizi di ripristino** insieme di credenziali &gt; **i piani di ripristino (ripristino del sito)** &gt; **recoveryplan_name** creato per macchina virtuale del server file Hello.
-2. Nel Pannello di piano di ripristino hello, fare clic su **più** &gt; **Failover pianificato**.  
-3. Scegliere i percorsi di origine e destinazione di hello, la sincronizzazione dei dati appropriati selezionare hello e opzioni di creazione di VM.
-4. Fare clic su **OK** pulsante toostart processo di failback hello.
+#### <a name="to-perform-a-failback"></a>Per eseguire un failback
+1. Nel portale di Azure selezionare l'insieme di credenziali **Servizi di ripristino** &gt; **Piani di ripristino (Site Recovery)** &gt; **pianodiripristino_nome** creato per la VM del file server.
+2. Nel pannello del piano di ripristino fare clic su **Altro** &gt;  **Failover pianificato**.
+3. Scegliere le posizioni di origine e destinazione e selezionare le opzioni di sincronizzazione dati e creazione di macchine virtuali appropriate.
+4. Fare clic su **OK** per avviare il processo di failback.
 
    ![](./media/storsimple-disaster-recovery-using-azure-site-recovery/image10.png)
 
 ## <a name="best-practices"></a>Procedure consigliate
 ### <a name="capacity-planning-and-readiness-assessment"></a>Pianificazione della capacità e valutazione della conformità
 #### <a name="hyper-v-site"></a>Sito di Hyper-V
-Hello utilizzare [dello strumento di pianificazione delle capacità utente](http://www.microsoft.com/download/details.aspx?id=39057) toodesign hello server, archiviazione e infrastruttura di rete per l'ambiente di replica Hyper-V.
+Usare lo [strumento Capacity Planner](http://www.microsoft.com/download/details.aspx?id=39057) per progettare l'infrastruttura di server, archiviazione e rete per l'ambiente di replica Hyper-V.
 
 #### <a name="azure"></a>Azure
-È possibile eseguire hello [dello strumento di valutazione della macchina virtuale Azure](http://azure.microsoft.com/downloads/vm-readiness-assessment/) su tooensure macchine virtuali che siano compatibili con le macchine virtuali di Azure e servizi di Azure Site Recovery. Hello Readiness Assessment Tool controlla le configurazioni di macchina virtuale e visualizza un avviso quando le configurazioni sono compatibili con Azure. Ad esempio, genera un avviso se un'unità C: è maggiore di 127 GB.
+È possibile eseguire lo strumento [Azure Virtual Machine Readiness Assessment](http://azure.microsoft.com/downloads/vm-readiness-assessment/) nelle VM per assicurarsi che siano compatibili con le VM di Azure e i Servizi di Azure Site Recovery. Lo strumento Readiness Assessment controlla le configurazioni delle macchine virtuali e visualizza un avviso quando le configurazioni non sono compatibili con Azure. Ad esempio, genera un avviso se un'unità C: è maggiore di 127 GB.
 
 La pianificazione della capacità prevede almeno due processi importanti:
 
-* Mapping locale dimensioni delle macchine Virtuali di macchine virtuali Hyper-V tooAzure (ad esempio A6, A7, A8 e A9).
-* Determinazione hello necessaria una larghezza di banda Internet.
+* Mapping delle VM Hyper-V locali alle dimensioni delle VM di Azure (ad esempio A6, A7, A8 e A9).
+* Determinazione della larghezza di banda Internet necessaria.
 
 ## <a name="limitations"></a>Limitazioni
-* Attualmente, failover può essere eseguito solo in 1 dispositivo StorSimple (tooa singola StorSimple Appliance di Cloud). scenario di Hello di un file server che si estende su più dispositivi StorSimple non è ancora supportato.
-* Se si verifica un errore durante l'abilitazione della protezione per una macchina virtuale, assicurarsi che non è stato scollegato destinazioni iSCSI hello.
-* Tutti i contenitori di volumi hello raggruppati insieme a causa dei criteri di backup che si estende su ai contenitori dei volumi verranno eseguiti il failover insieme.
-* Tutti i volumi di hello in contenitori di volumi hello scelto verranno eseguiti il failover.
-* Volumi che costituiscono toomore rispetto a 64 TB non è possibile eseguire il failover Poiché la capacità massima di hello di un singolo dispositivo Cloud StorSimple è 64 TB.
-* Se si verifica un errore di failover pianificato o non pianificato hello e hello macchine virtuali vengono create in Azure, quindi eseguire la pulizia hello macchine virtuali. ma eseguire un failback. Se si eliminano le macchine virtuali hello quindi hello locale macchine virtuali non possono essere accesi nuovamente.
-* Dopo un failover, se non si è in grado di toosee hello volumi, passare a macchine virtuali toohello, aprire Gestione disco, Ripeti analisi dischi hello e resi disponibili online.
-* In alcuni casi, le lettere di unità hello nel sito di ripristino di emergenza hello potrebbero essere diverse da lettere hello in locale. In questo caso, è necessario problema hello corretto toomanually termine failover hello.
-* Multi-factor authentication deve essere disabilitato per hello Azure credenziali immesso nell'account di automazione hello un asset. Se il processo di autenticazione non è disabilitato, gli script non potrà essere toorun automaticamente e il piano di ripristino hello avrà esito negativo.
-* Timeout del processo di failover: hello StorSimple script scadrà se hello failover dei contenitori di volumi impiega più tempo del limite massimo di Azure Site Recovery hello per script (attualmente 120 minuti).
-* Timeout del processo di backup: hello StorSimple script timeout se il backup dei volumi di hello richiede più tempo del limite massimo di Azure Site Recovery hello per script (attualmente 120 minuti).
+* Attualmente, solo un dispositivo StorSimple può essere sottoposto a failover (per un singolo appliance cloud StorSimple). Lo scenario di un file server che si estende a più dispositivi StorSimple non è ancora supportato.
+* Se si verifica un errore durante l'abilitazione della protezione per una VM, assicurarsi di aver disconnesso le destinazioni iSCSI.
+* Tutti i contenitori di volumi che sono stati raggruppati per effetto dei criteri di backup estesi ai vari contenitori di volumi verranno sottoposti a failover insieme.
+* Tutti i volumi dei contenitori di volumi scelti verranno sottoposti a failover.
+* I volumi superiori a 64 TB non possono essere sottoposti a failover perché la capacità massima di una singola appliance cloud StorSimple è di 64 TB.
+* Se il failover pianificato o non pianificato non riesce e le VM vengono create in Azure, non eliminare le VM, ma eseguire un failback. Se si eliminano le VM, le VM locali non possono essere riattivate.
+* Dopo un failover, se non si riesce a visualizzare i volumi, passare alle VM, aprire Gestione disco, eseguire nuovamente la scansione dei dischi e portarli online.
+* In alcuni casi, le lettere delle unità nel sito di ripristino di emergenza potrebbero essere diverse da quelle delle VM locali. In questo caso, sarà necessario correggere manualmente il problema al termine del failover.
+* Multi-Factor Authentication deve essere disabilitata per le credenziali di Azure immesse nell'account di automazione come asset. Se il processo di autenticazione non viene disabilitato, gli script non potranno essere eseguiti automaticamente e il piano di ripristino non riuscirà.
+* Timeout del processo di failover: si verifica il timeout dello script StorSimple se il failover dei contenitori di volumi impiega più tempo rispetto al limite di Azure Site Recovery per ogni script (attualmente è di 120 minuti).
+* Timeout del processo di backup: si verifica il timeout dello script StorSimple se il backup dei volumi impiega più tempo rispetto al limite di Azure Site Recovery per ogni script (attualmente è di 120 minuti).
 
   > [!IMPORTANT]
-  > Eseguire backup hello manualmente dal portale di Azure hello e quindi eseguire di nuovo piano di ripristino hello.
+  > Eseguire il backup manualmente dal portale di Azure e quindi eseguire nuovamente il piano di ripristino.
 
-* Timeout del processo di clonazione: hello StorSimple script timeout se hello la clonazione dei volumi richiede più tempo rispetto al limite massimo di Azure Site Recovery hello per script (attualmente 120 minuti).
-* Errore di sincronizzazione di tempo: hello StorSimple script errori che informa che il backup di hello erano esito negativo anche se il backup di hello ha esito positivo nel portale di hello. Una possibile causa per questa potrebbe essere il che ora del dispositivo StorSimple che hello potrebbe essere sincronizzato con hello ora corrente nel fuso orario hello.
-
-  > [!IMPORTANT]
-  > Sincronizzazione hello ora dello strumento con hello ora corrente nel fuso orario hello.
-
-* Errore di failover di dispositivo: hello StorSimple script potrebbe non riuscire se si verifica un failover del dispositivo durante il piano di ripristino hello è in esecuzione.
+* Timeout del processo di clonazione: si verifica il timeout dello script StorSimple se la clonazione dei volumi impiega più tempo rispetto al limite di Azure Site Recovery per ogni script (attualmente è di 120 minuti).
+* Errore di sincronizzazione dell'ora: si verifica un errore dello script StorSimple che informa dell'esito negativo dei backup anche in caso di esito positivo del backup nel portale. Una possibile causa dell'errore potrebbe essere la mancata sincronizzazione dell'ora dell'appliance StorSimple con l'ora corrente del fuso orario.
 
   > [!IMPORTANT]
-  > Eseguire di nuovo piano di ripristino hello dopo il failover dell'apparecchiatura hello è stato completato.
+  > Sincronizzare l'ora dell'appliance con l'ora corrente nel fuso orario.
+
+* Errore di failover dell'appliance: lo script di StorSimple potrebbe non riuscire se si verifica un failover dell'appliance durante l'esecuzione del piano di ripristino.
+
+  > [!IMPORTANT]
+  > Rieseguire il piano di ripristino al termine del failover dell'appliance.
 
 
 ## <a name="summary"></a>Riepilogo
-Usando Azure Site Recovery è possibile creare un piano di ripristino di emergenza automatizzato completo per una VM del server file con condivisioni file ospitate nell'archiviazione StorSimple. È possibile avviare il failover hello entro pochi secondi da qualsiasi posizione in hello evento di interruzione e ottenere un'applicazione hello attivo e in esecuzione in pochi minuti.
+Usando Azure Site Recovery è possibile creare un piano di ripristino di emergenza automatizzato completo per una VM del server file con condivisioni file ospitate nell'archiviazione StorSimple. È possibile avviare il failover in pochi secondi da qualsiasi luogo in caso di un'interruzione e fare in modo che l'applicazione sia operativa in pochi minuti.

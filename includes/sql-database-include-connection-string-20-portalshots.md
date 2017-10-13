@@ -8,22 +8,22 @@ Latest Freshness check:  2015-09-02 , GeneMi.
 -->
 
 
-### <a name="obtain-hello-connection-string-from-hello-azure-portal"></a>Ottenere la stringa di connessione hello da hello portale di Azure
-Hello utilizzare [portale di Azure](https://portal.azure.com/) tooobtain di stringa di connessione hello necessari per il toointeract programma client con il Database SQL di Azure: 
+### <a name="obtain-the-connection-string-from-the-azure-portal"></a>Ottenere la stringa di connessione dal portale di Azure
+Usare il [portale di Azure](https://portal.azure.com/) per ottenere la stringa di connessione necessaria al programma client per interagire con il database SQL di Azure: 
 
 1. Fare clic su **ESPLORA** > **Database SQL**.
-2. Immettere il nome di hello del database nella casella di testo filtro hello quasi hello angolo superiore sinistro di hello **database SQL** blade.
-3. Fare clic sulla riga hello per il database.
-4. Una volta pannello hello visualizzato per il database, per agevolarne è possibile fare clic su hello standard ridurre al minimo pannelli di hello toocollapse controlli utilizzati per la ricerca e filtro di database. 
+2. Immettere il nome del database nella casella di testo filtro vicino alla parte superiore sinistra del pannello **Database SQL** .
+3. Fare clic sulla riga per il database.
+4. Quando viene visualizzato il pannello del database, è possibile scegliere i controlli di riduzione a icona standard per comprimere i pannelli usati per la ricerca e il filtro del database per una visualizzazione più chiara. 
    
-    ![Filtrare tooisolate del database][10-FilterDatabase]
-5. Nel Pannello di hello per il database, fare clic su **Mostra le stringhe di connessione di database**.
-6. Se si intende una raccolta di connessioni ADO.NET hello toouse, copiare la stringa di hello etichettata **ADO**. 
+    ![Filtro per isolare il database][10-FilterDatabase]
+5. Nel pannello del database, fare clic su **Mostra stringhe di connessione di database**.
+6. Se si prevede di utilizzare la libreria di connessione ADO.NET, copiare la stringa di etichetta **ADO**. 
    
-    ![Copiare una stringa di connessione ADO hello per il database][20-CopyAdoConnectionString]
-7. In un formato o un altro, incollare il codice del programma client informazioni della stringa di connessione hello.
+    ![Copiare la stringa di connessione ADO per il database][20-CopyAdoConnectionString]
+7. In un formato o un altro, incollare le informazioni sulla stringa di connessione nel codice del programma client.
 
-Per altre informazioni, vedere:<br/>[Stringhe di connessione e file di configurazione](http://msdn.microsoft.com/library/ms254494.aspx).
+Per altre informazioni, vedere il blog sul <br/>[Stringhe di connessione e file di configurazione](http://msdn.microsoft.com/library/ms254494.aspx).
 
 <!-- Image references. -->
 

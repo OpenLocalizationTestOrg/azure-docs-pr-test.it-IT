@@ -1,5 +1,5 @@
 ---
-title: aaaOverview di Live Streaming con servizi multimediali di Azure | Documenti Microsoft
+title: Panoramica dello streaming live con Servizi multimediali di Azure | Documentazione Microsoft
 description: Questo argomento offre una panoramica dello streaming live con Servizi multimediali di Azure.
 services: media-services
 documentationcenter: 
@@ -14,122 +14,122 @@ ms.devlang: ne
 ms.topic: article
 ms.date: 06/29/2017
 ms.author: juliako
-ms.openlocfilehash: edc49069db6b491902bdcbb808b1974858cc92f1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6f500f25129470a679c75cae6cd1abc9d71b72a7
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="overview-of-live-streaming-using-azure-media-services"></a>Panoramica dello streaming live con Servizi multimediali di Azure
 ## <a name="overview"></a>Panoramica
-Per il recapito in tempo reale flussi di eventi con servizi multimediali di Azure hello seguenti componenti è generalmente necessari:
+Quando si distribuiscono eventi Live Streaming con Servizi multimediali di Azure, sono generalmente necessari i componenti seguenti:
 
-* Fotocamera che viene utilizzato toobroadcast un evento.
-* Un codificatore video live che converte i segnali dalla toostreams fotocamera hello inviati tooa in tempo reale di servizio di streaming.
+* Una fotocamera da usare per trasmettere un evento.
+* Un codificatore video attivo in grado di convertire i segnali provenienti dalla fotocamera in flussi inviati a un servizio di streaming live.
 
-    Facoltativamente, più codificatori live con sincronizzazione dell'ora. Per alcuni eventi live critici per disponibilità elevata e la qualità di esperienza, è consigliabile codificatori ridondanti di tooemploy attivo-attivo con failover trasparente ora sincronizzazione tooachieve senza perdita di dati.
-* Un servizio di streaming live che consente di hello toodo seguenti:
+    Facoltativamente, più codificatori live con sincronizzazione dell'ora. In caso di eventi live critici per i quali sono richiesti livelli molto elevati di disponibilità e qualità dell'esperienza, è consigliabile usare codificatori ridondanti di tipo attivo-attivo con sincronizzazione dell'ora per ottenere un failover efficiente senza perdita di dati.
+* Un servizio di streaming live che consenta di effettuare le seguenti operazioni:
 
   * inserire contenuti live usando vari protocolli di streaming live (ad esempio RTMP o Smooth Streaming),
   * (facoltativamente) codificare il flusso per il flusso a bitrate adattivo,
   * visualizzare in anteprima il flusso live,
-  * flusso di record e l'archivio contenuto hello caricamento in ordine toobe successive (video on Demand)
-  * distribuire il contenuto di hello tramite protocolli di streaming comuni (ad esempio, MPEG DASH, Smooth, HLS) direttamente ai clienti di tooyour o tooa rete di contenuti (CDN) per ulteriore distribuzione.
+  * registrare e archiviare il contenuto inserito perché possa essere riprodotto in streaming in un secondo momento (video on demand),
+  * usare protocolli di streaming comuni (ad esempio, MPEG DASH, Smooth, HLS) per trasmettere i contenuti direttamente ai clienti o a una rete CDN (Content Delivery Network, rete per la distribuzione di contenuti) per una successiva ridistribuzione.
 
-**Servizi multimediali di Microsoft Azure** (AMS) fornisce hello tooingest possibilità, codificare, visualizzare in anteprima, archiviare e distribuire il contenuto di streaming in tempo reale.
+**Servizi multimediali di Microsoft Azure** (AMS) offre la possibilità di inserire, visualizzare in anteprima, archiviare e fornire il contenuto in streaming live.
 
-Per il recapito del contenuto toocustomers l'obiettivo è toodeliver un toovarious video di qualità elevata per i dispositivi in condizioni di rete diverso. tooachieve, utilizzare live codificatori tooencode flusso video di flusso tooa più velocità in bit (velocità in bit adattiva).  tootake cure streaming su diversi dispositivi, usare servizi multimediali [creazione dinamica dei pacchetti](media-services-dynamic-packaging-overview.md) toodynamically nuovamente il protocollo toodifferent flusso del pacchetto. Servizi multimediali supporta il recapito di hello velocità in bit adattive tecnologie seguente: HTTP Live Streaming (HLS), Smooth Streaming, MPEG DASH.
+Quando si distribuiscono contenuti ai clienti, l'obiettivo è riuscire a trasmettere video di alta qualità a vari tipi di dispositivi in diverse condizioni di rete. Per raggiungere questo obiettivo, usare codificatori live per codificare il flusso in un flusso video a bitrate multiplo (bitrate adattivo).  Per garantire la trasmissione a diversi tipi di dispositivi, usare la funzione di [creazione dinamica dei pacchetti](media-services-dynamic-packaging-overview.md) di Servizi multimediali per riorganizzare dinamicamente il flusso in nuovi pacchetti creati con protocolli diversi. Servizi multimediali supporta le tecnologie di streaming a bitrate adattivo seguenti: HTTP Live Streaming (HLS), Smooth Streaming e MPEG DASH.
 
-In servizi multimediali di Azure, **canali**, **programmi**, e **StreamingEndpoints** handle hello tutti live streaming compresi inserimento, formattazione, DVR, funzionalità sicurezza, scalabilità e ridondanza.
+In Servizi multimediali di Azure, la gestione di tutte le funzionalità di live streaming è affidata a entità **Channel**, **Program** e **StreamingEndpoint**, compresi inserimento, formattazione, DVR, sicurezza, scalabilità e ridondanza.
 
-Un **canale** rappresenta una pipeline per l'elaborazione di contenuto in streaming live. Un canale può ricevere attivo di input flussi in hello seguenti modi:
+Un **canale** rappresenta una pipeline per l'elaborazione di contenuto in streaming live. Un canale può ricevere i flussi di input live nei modi seguenti:
 
-* Un codificatore live locale invia più velocità in bit **RTMP** o **Smooth Streaming** (MP4 frammentato) canale toohello configurato per **pass-through** recapito. Hello **pass-through** recapito è quando attraversano flussi hello caricamento **canale**s senza ulteriore elaborazione. È possibile utilizzare i seguenti codificatori live Smooth Streaming con più velocità in bit di output di hello: MediaExcel, Ateme, le comunicazioni immaginare, Envivio, Cisco ed elementare. Hello codificatori live seguenti generano output in RTMP: Adobe Flash multimediali Live codificatore (FMLE), Telestream Wirecast, Haivision, Teradek e transcodificatori Tricaster.  Un codificatore live può inoltre inviare una velocità in bit singola tooa il canale del flusso che non è abilitato per la codifica live, ma che non è consigliata. Quando richiesto, servizi multimediali offre toocustomers flusso hello.
+* Un codificatore live locale invia un flusso **RTMP** o **Smooth Streaming** (MP4 frammentato) a bitrate multipli al canale configurato per il recapito **pass-through**. Il recapito **pass-through** avviene quando i flussi inseriti passano attraverso i **canali** senza altre elaborazioni. È possibile usare i codificatori live seguenti che generano output in formato Smooth Streaming a bitrate multipli: MediaExcel, Ateme, Imagine Communications, Envivio, Cisco ed Elemental. I codificatori live seguenti generano output in formato RTMP: Adobe Flash Media Live Encoder (FMLE), Telestream Wirecast, Haivision, Teradek e transcodificatori Tricaster.  Un codificatore live può anche inviare un flusso a bitrate singolo a un canale non abilitato per la codifica live, ma questa operazione non è consigliata. Quando richiesto, Servizi multimediali invia il flusso ai clienti.
 
   > [!NOTE]
-  > Utilizzo di un metodo pass-through è hello più conveniente toodo live streaming quando si eseguono più eventi per un lungo periodo di tempo e hanno già investito in codificatori locali. Vedere i dettagli sui [prezzi](https://azure.microsoft.com/pricing/details/media-services/) .
+  > L'uso di un metodo pass-through è il modo più economico per realizzare lo streaming live quando si eseguono più eventi per un lungo periodo di tempo e si è già investito in codificatori locali. Vedere i dettagli sui [prezzi](https://azure.microsoft.com/pricing/details/media-services/) .
   > 
   > 
-* Un codificatore live locale invia un flusso a velocità in bit singola canale toohello tooperform abilitato live codifica con servizi multimediali in uno dei seguenti formati hello: RTMP o Smooth Streaming (MP4 frammentato). RTP (MPEG-TS) è supportata anche se si dispone di un connessione dedicata toohello data center di Azure. sono noti toowork dei canali di questo tipo di output di Hello seguenti codificatori live con RTMP: Telestream Wirecast, FMLE. Hello canale esegue quindi la codifica live di hello in arrivo velocità in bit singola flusso tooa più velocità in bit (adattivo) flusso video. Quando richiesto, servizi multimediali offre toocustomers flusso hello.
+* Un codificatore live locale invia un flusso a bitrate singolo al canale abilitato per l'esecuzione della codifica live con Servizi multimediali in uno dei seguenti formati: RTMP o Smooth Streaming (MP4 frammentato). È supportato anche il formato RTP (MPEG-TS) ma, in questo caso, è necessario avere una connessione dedicata al data center di Azure. Con questo tipo di canali possono interagire i seguenti codificatori live con output RTMP: Telestream Wirecast, FMLE. Il canale esegue quindi la codifica live del flusso in ingresso a velocità in bit singola in un flusso video a più velocità in bit (adattivo). Quando richiesto, Servizi multimediali invia il flusso ai clienti.
 
-A partire dalla versione di hello 2.10 di servizi multimediali, quando si crea un canale, è possibile specificare in che modo si desidera per il flusso di input del canale tooreceive hello e se si vuole che per hello canale tooperform live codifica del flusso di lavoro. Sono disponibili due opzioni:
+A partire dalla versione 2.10 di Servizi multimediali, quando si crea un canale è possibile specificare in che modo il canale riceverà il flusso di input e se eseguirà o meno la codifica live del flusso. Sono disponibili due opzioni:
 
-* **Nessuna** (pass-through): specificare questo valore, se si prevede di toouse un codificatore live locale che genera più velocità in bit flusso (flusso di pass-through). In questo caso, il flusso in ingresso di hello passati toohello output senza codifica. Questo è il comportamento di hello di una versione precedente di too2.10 canale.  
-* **Standard** -scegliere questo valore, se si prevede di tooencode di servizi multimediali toouse il flusso di velocità in bit toomulti flusso live a velocità in bit singola. Questo metodo è il più vantaggioso per aumentare rapidamente le unità in caso di eventi non frequenti. Tenere presente che vi sia un impatto sulla fatturazione per la codifica live è opportuno tenere presente che se si lascia un canale di codifica live in stato "Running" hello comporterà ulteriori addebiti nella fatturazione.  È consigliabile arrestare immediatamente i canali in esecuzione dopo l'evento di streaming in tempo reale viene completato tooavoid costi extra orarie.
+* **Nessuno** (pass-through): specificare questo valore se si prevede di usare un codificatore live locale che genera un flusso a bitrate multiplo (un flusso pass-through). In questo caso, il flusso in ingresso viene passato all'output senza codifica. Questo è il comportamento di un canale prima della versione 2.10.  
+* **Standard** - scegliere questo valore se si prevede di usare Servizi multimediali per codificare il flusso live a velocità in bit singola in un flusso a più velocità in bit. Questo metodo è il più vantaggioso per aumentare rapidamente le unità in caso di eventi non frequenti. Tenere presente che la codifica live è soggetta a un costo e che se si lascia un canale di codifica live impostato sullo stato "In esecuzione", vengono aggiunti nuovi costi alla fatturazione.  Per evitare costi orari aggiuntivi, quindi, è consigliabile arrestare immediatamente i canali in esecuzione al termine dell'evento in streaming live.
 
 ## <a name="comparison-of-channel-types"></a>Confronto tra tipi di canale
-Nella tabella seguente viene fornita una Guida toocomparing hello due tipi di canale supportati in servizi multimediali
+Nella tabella seguente vengono confrontati i due tipi di canale supportati in Servizi Multimediali
 
 | Funzionalità | Canale pass-through | Canale standard |
 | --- | --- | --- |
-| Velocità in bit singola input viene codificato in più velocità in bit nel cloud hello |No |Sì |
+| Input a bitrate singolo codificato in bitrate multipli nel cloud |No |Sì |
 | Risoluzione massima, numero di livelli |1080p, 8 livelli, oltre 60 fps |720p, 6 livelli, 30 fps |
 | Protocolli di input |RTMP, Smooth Streaming |RTMP, Smooth Streaming e RTP |
-| Prezzo |Vedere hello [pagina dei prezzi](https://azure.microsoft.com/pricing/details/media-services/) e fare clic sulla scheda "Video Live" |Vedere hello [pagina dei prezzi](https://azure.microsoft.com/pricing/details/media-services/) |
+| Prezzo |Vedere la [pagina dei prezzi](https://azure.microsoft.com/pricing/details/media-services/) e fare clic sulla scheda "Video live" |Vedere la [pagina dei prezzi](https://azure.microsoft.com/pricing/details/media-services/) |
 | Tempo di esecuzione massimo |24 x 7 |8 ore |
 | Supporto per l'inserimento di slate |No |Sì |
 | Supporto per annunci pubblicitari |No |Sì |
 | Pass-through di sottotitoli CEA 608/708 |Sì |Sì |
-| Possibilità toorecover da blocchi breve nel contributo feed |Sì |No (senza dati di input, il canale avvierà lo slate dopo 6 secondi) |
+| Possibilità di recuperare brevi fasi di stallo in feed di contributo |Sì |No (senza dati di input, il canale avvierà lo slate dopo 6 secondi) |
 | Supporto per GOP di input non uniformi |Sì |No: l'input deve essere fisso (GOP di 2 secondi) |
-| Supporto per input con frequenza dei fotogrammi variabile |Sì |No: l'input deve essere una frequenza di fotogrammi fissa.<br/>Sono tollerate lievi variazioni, ad esempio durante scene ad alta velocità. Ma codificatore non è possibile eliminare too10 fotogrammi al secondo. |
+| Supporto per input con frequenza dei fotogrammi variabile |Sì |No: l'input deve essere una frequenza di fotogrammi fissa.<br/>Sono tollerate lievi variazioni, ad esempio durante scene ad alta velocità. Il codificatore, tuttavia, non può scendere a 10 fotogrammi al secondo. |
 | Arresto automatico dei canali in caso di perdita del feed di input |No |Dopo 12 ore, nessun programma è in esecuzione |
 
 ## <a name="working-with-channels-that-receive-multi-bitrate-live-stream-from-on-premises-encoders-pass-through"></a>Utilizzo di canali che ricevono il flusso live a bitrate multiplo da codificatori locali con il metodo pass-through
-Hello diagramma seguente mostra hello parti principali della piattaforma hello AMS coinvolti nel hello **pass-through** flusso di lavoro.
+Il diagramma seguente illustra le parti principali della piattaforma AMS coinvolte nel flusso di lavoro **pass-through** .
 
 ![Flusso di lavoro live](./media/media-services-live-streaming-workflow/media-services-live-streaming-current.png)
 
 Per altre informazioni, vedere l'articolo relativo all' [uso di canali che ricevono il flusso live a velocità in bit multipla da codificatori locali](media-services-live-streaming-with-onprem-encoders.md).
 
-## <a name="working-with-channels-that-are-enabled-tooperform-live-encoding-with-azure-media-services"></a>Utilizzo di canali che sono abilitati tooperform in tempo reale di codifica con servizi multimediali di Azure
-Hello diagramma seguente viene illustrato hello principale parti della piattaforma AMS hello coinvolti in Streaming Live del flusso di lavoro in cui un canale è abilitato tooperform in tempo reale di codifica con servizi multimediali.
+## <a name="working-with-channels-that-are-enabled-to-perform-live-encoding-with-azure-media-services"></a>Uso di canali abilitati per l'esecuzione della codifica live con Servizi multimediali di Azure
+Il seguente diagramma mostra i componenti principali della piattaforma AMS interessati dal flusso di lavoro di streaming live dove un canale è abilitato a eseguire la codifica live con Servizi multimediali.
 
 ![Flusso di lavoro live](./media/media-services-live-streaming-workflow/media-services-live-streaming-new.png)
 
-Per ulteriori informazioni, vedere [utilizzo di canali che sono Enabled tooPerform Live codifica con servizi multimediali di Azure](media-services-manage-live-encoder-enabled-channels.md).
+Per altre informazioni, vedere [Uso di canali abilitati per l'esecuzione della codifica live con Servizi multimediali di Azure](media-services-manage-live-encoder-enabled-channels.md).
 
 ## <a name="description-of-a-channel-and-its-related-components"></a>Descrizione di un canale e dei relativi componenti
 ### <a name="channel"></a>canale
-In Servizi multimediali le entità [Channel](https://docs.microsoft.com/rest/api/media/operations/channel)sono responsabili dell'elaborazione dei contenuti in streaming live. Un canale, fornisce un endpoint di input (URL di inserimento) che è quindi fornire transcodificatore live tooa. canale Hello riceve flussi di input live dal transcodificatore live hello e rende disponibili per lo streaming tramite uno o più entità Streamingendpoint. I canali forniscono inoltre un endpoint di anteprima (URL di anteprima) di utilizzare toopreview e convalidare il flusso prima di elaborarlo ulteriormente e di recapito.
+In Servizi multimediali le entità [Channel](https://docs.microsoft.com/rest/api/media/operations/channel)sono responsabili dell'elaborazione dei contenuti in streaming live. Un'entità Channel, o canale, fornisce un endpoint di input (URL di inserimento) che può essere a sua volta fornito al transcodificatore live. Un'entità Channel riceve flussi di input live dal trascodificatore live e li rende disponibili per lo streaming mediante uno o più StreamingEndpoints. I canali forniscono anche un endpoint di anteprima(URL di anteprima) che consente di visualizzare in anteprima e convalidare il flusso prima dell'ulteriore elaborazione e del recapito.
 
-È possibile ottenere hello inserimento URL e l'URL di anteprima di hello quando si crea il canale hello. tooget questi URL, il canale di hello non avere toobe nello stato avviato hello. Quando si è pronti toostart push dei dati da un transcodificatore live nel canale hello, canale hello deve essere avviati. Una volta transcodificatore live hello inizia l'inserimento di dati, è possibile visualizzare in anteprima il flusso.
+È possibile ottenere l'URL di inserimento e l'URL di anteprima quando si crea il canale. Per ottenere questi URL, non è necessario che il canale sia nello stato avviato. Quando si è pronti per avviare l'inserimento di dati da un transcodificatore live nel canale, il canale deve essere avviato. Una volta che il transcodificatore live inizia a inserire i dati, è possibile visualizzare in anteprima il flusso.
 
-Ogni account di Servizi multimediali può contenere più entità Channel, Program e StreamingEndpoint. A seconda delle esigenze di larghezza di banda e sicurezza hello, servizi StreamingEndpoint possono essere dedicato tooone o altri canali. Qualsiasi StreamingEndpoint può effettuare il pull da qualsiasi canale.
+Ogni account di Servizi multimediali può contenere più entità Channel, Program e StreamingEndpoint. In base alle esigenze di sicurezza e alla larghezza di banda, i servizi di StreamingEndpoint possono essere dedicati a uno o più canali. Qualsiasi StreamingEndpoint può effettuare il pull da qualsiasi canale.
 
 ### <a name="program"></a>Programma
-Oggetto [programma](https://docs.microsoft.com/rest/api/media/operations/program) consente toocontrol hello pubblicazione e l'archiviazione di segmenti in un flusso in tempo reale. I programmi sono gestiti dai canali. Hello relazione canale e il programma è molto simile tootraditional media, in cui un canale è un flusso costante di contenuto e l'evento con ambito toosome timeout su tale canale è un programma.
-È possibile specificare hello numero di ore che si vuole tooretain hello registrato contenuto per il programma hello, impostazione hello **ArchiveWindowLength** proprietà. Questo valore può essere impostato da un minimo di 25 ore massimo tooa 5 minuti.
+Un [programma](https://docs.microsoft.com/rest/api/media/operations/program) consente di controllare la pubblicazione e l'archiviazione di segmenti in un flusso live. I programmi sono gestiti dai canali. La relazione tra queste due entità è molto simile a quella che intercorre tra di essi nei media tradizionali, in cui un canale è costituito da un flusso costante di contenuti, mentre un programma ha come ambito una serie di eventi programmati sul canale.
+È possibile specificare il numero di ore per cui si vuole mantenere il contenuto registrato per il programma impostando la proprietà **ArchiveWindowLength** . Il valore impostato può essere compreso tra 5 minuti e 25 ore.
 
-ArchiveWindowLength determina anche l'intervallo di tempo i client possono cercare indietro nel tempo dalla posizione live corrente hello massimo hello. I programmi eseguibili sul periodo di tempo specificato hello, ma il contenuto che non è sincronizzato con la lunghezza della finestra hello viene scartato in modo continuo. Questo valore di questa proprietà determina anche per quanto tempo hello client possono raggiungere i manifesti.
+La proprietà ArchiveWindowLength determina anche il limite di tempo per cui i client possono eseguire ricerche a ritroso nel tempo dalla posizione live corrente. I programmi possono essere eseguiti per la quantità di tempo specificata, ma il contenuto che va oltre la durata prevista viene scartato in modo continuo. Il valore della proprietà determina anche il tempo per cui i manifesti client possono crescere.
 
-Ogni programma è associato a un asset. il programma di hello toopublish è necessario creare un localizzatore per hello associati asset. Con questo localizzatore sarà si toobuild un URL di streaming che è possibile fornire tooyour client.
+Ogni programma è associato a un asset. Per pubblicare il programma, è necessario creare un localizzatore per l'asset associato. Con questo localizzatore sarà possibile creare un URL di streaming da fornire ai client.
 
-Un canale supporta fino toothree programmi in esecuzione contemporaneamente in modo è possibile creare più archivi di hello stesso flusso in ingresso. In questo modo toopublish e archiviare parti diverse di un evento in base alle esigenze. Ad esempio, il requisito di business è tooarchive 6 ore di un programma, ma toobroadcast solo ultimi 10 minuti. tooaccomplish, è necessario toocreate due programmi in esecuzione simultanea. Un programma è impostato tooarchive 6 ore dell'evento hello ma hello non viene pubblicato. Hello altro programma è tooarchive insieme per 10 minuti e questo programma viene pubblicato.
+Un canale supporta fino a tre programmi in esecuzione simultanea, in modo da poter creare più archivi dello stesso flusso in ingresso. Questo consente di pubblicare e archiviare parti diverse di un evento a seconda delle necessità. Si consideri ad esempio uno scenario in cui un'azienda richiede l'archiviazione di 6 ore di un programma e la trasmissione solo degli ultimi 10 minuti. A tale scopo, è necessario creare due programmi in esecuzione contemporaneamente. Un programma è impostato per l'archiviazione di 6 ore dell'evento, ma non viene pubblicato. L'altro programma è impostato per l'archiviazione di 10 minuti e viene pubblicato.
 
 ## <a name="billing-implications"></a>Implicazioni relative alla fatturazione
-Un canale inizia non appena lo stato del passa troppo "Running" tramite hello API di fatturazione.  
+Un canale avvia la fatturazione non appena il suo stato viene impostato su "In esecuzione" tramite l'API.  
 
-Hello nella tabella seguente illustra gli stati dei canali mapping stati toobilling hello API e portale di Azure. Si noti che sono leggermente diversi tra hello API e portale interfaccia hello stati Non appena un canale è nello stato "Running" hello tramite API hello o in stato di "Streaming" nel portale di Azure hello o hello "Pronto", la fatturazione sarà attiva.
+La tabella seguente illustra il mapping degli stati del canale agli stati di fatturazione nell'API e nel portale di Azure. È possibile che gli stati visualizzati nell'API risultino leggermente diversi da quelli dell'interfaccia del portale. Non appena un canale viene impostato sullo stato "In esecuzione" tramite l'API o sullo stato "Pronto" o "Streaming" nel portale di Azure, viene attivata la fatturazione.
 
-Canale di hello toostop dalla fatturazione è ulteriormente, hai tooStop hello canale tramite API hello o nel portale di Azure hello.
-È responsabile per l'arresto dei canali al termine con canale hello. Canale di hello toostop errore comporterà la fatturazione continua.
+Per sospendere l'attività di fatturazione del canale, è necessario interrompere il canale tramite l'API o nel portale di Azure.
+L'utente ad è responsabile dell'interruzione dei canali al termine dell'utilizzo del canale. La mancata interruzione del canale comporta infatti il proseguimento della fatturazione.
 
 > [!NOTE]
-> Quando si utilizzano canali Standard, AMS automaticamente arresto qualsiasi canale è ancora nello stato "In esecuzione" 12 ore dopo feed input hello viene persa e non sono presenti programmi in esecuzione. Tuttavia, verrà comunque addebitato il costo per hello ora hello che canale si trovava nello stato "Running".
+> Quando si usano i canali Standard, Servizi multimediali di Azure arresterà automaticamente eventuali canali con stato ancora "In esecuzione" 12 ore dopo la perdita del feed di input in assenza di programmi in esecuzione. Verrà tuttavia addebitato comunque il tempo in cui il canale è rimasto in stato "In esecuzione".
 >
 >
 
-### <a id="states"></a>Gli stati dei canali e modalità di mapping toohello modalità di fatturazione
-stato corrente di Hello di un canale. I valori possibili sono:
+### <a id="states"></a>Stati del canale e relativi metodi di mapping alla modalità di fatturazione
+Si tratta dello stato attuale del canale. I valori possibili sono:
 
-* **Arrestato**. Si tratta dello stato iniziale di hello di hello canale dopo la sua creazione, (a meno che l'avvio automatico è stato selezionato nel portale di hello.) In questo stato non viene eseguita alcuna attività di fatturazione. In questo stato, le proprietà del canale hello possono essere aggiornate, ma non è consentito lo streaming.
-* **Avvio in corso**. Canale Hello viene avviato. In questo stato non viene eseguita alcuna attività di fatturazione. In questo stato non è consentito alcun aggiornamento o streaming. Se si verifica un errore, hello canale restituisce toohello stato arrestato.
-* **In esecuzione**. Hello canale è in grado di elaborare flussi live. La fatturazione è ora attiva. È necessario arrestare hello canale tooprevent ulteriormente di fatturazione.
-* **Arresto in corso**. Canale Hello è stata interrotta. In questo stato di transizione non viene eseguita alcuna attività di fatturazione. In questo stato non è consentito alcun aggiornamento o streaming.
-* **Eliminazione in corso**. Canale Hello viene eliminata. In questo stato di transizione non viene eseguita alcuna attività di fatturazione. In questo stato non è consentito alcun aggiornamento o streaming.
+* **Arrestato**. Lo stato iniziale del canale dopo la creazione (se nel portale non è stata selezionata l'opzione di avvio automatico.) In questo stato non viene eseguita alcuna attività di fatturazione. In questo stato le proprietà del canale possono essere aggiornate ma lo streaming non è consentito.
+* **Avvio in corso**. È in corso l'avvio del canale. In questo stato non viene eseguita alcuna attività di fatturazione. In questo stato non è consentito alcun aggiornamento o streaming. Se si verifica un errore, il canale torna allo stato Interrotto.
+* **In esecuzione**. Il canale è in grado di elaborare flussi live. La fatturazione è ora attiva. È necessario interrompere il canale per sospendere la fatturazione.
+* **Arresto in corso**. È in corso l'interruzione del canale. In questo stato di transizione non viene eseguita alcuna attività di fatturazione. In questo stato non è consentito alcun aggiornamento o streaming.
+* **Eliminazione in corso**. È in corso l'eliminazione del canale. In questo stato di transizione non viene eseguita alcuna attività di fatturazione. In questo stato non è consentito alcun aggiornamento o streaming.
 
-Hello nella tabella seguente viene illustrato come canale stati modalità di fatturazione toohello mappa.
+La tabella seguente illustra il mapping degli stati del canale alla modalità di fatturazione.
 
 | Stato del canale | Indicatori dell'interfaccia utente del portale | Fatturazione? |
 | --- | --- | --- |
@@ -147,7 +147,7 @@ Hello nella tabella seguente viene illustrato come canale stati modalità di fat
 ## <a name="related-topics"></a>Argomenti correlati
 [Specifica per l'inserimento live di un flusso MP4 frammentato con Servizi multimediali di Azure](media-services-fmp4-live-ingest-overview.md)
 
-[Utilizzo di canali che sono Enabled tooPerform Live codifica con servizi multimediali di Azure](media-services-manage-live-encoder-enabled-channels.md)
+[Uso di canali abilitati per l'esecuzione della codifica live con Servizi multimediali di Azure](media-services-manage-live-encoder-enabled-channels.md)
 
 [Uso di canali che ricevono il flusso live a più velocità in bit da codificatori locali](media-services-live-streaming-with-onprem-encoders.md)
 

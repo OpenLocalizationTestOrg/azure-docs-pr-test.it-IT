@@ -1,6 +1,6 @@
 ---
-title: applicazione in locale/cloud ibrida di inoltro WCF (.NET) aaaAzure | Documenti Microsoft
-description: Informazioni su come applicazione ibrida toocreate un .NET in locale/cloud tramite Azure un inoltro WCF.
+title: Applicazione ibrida cloud/locale di inoltro WFC di Azure (.NET) | Microsoft Docs
+description: Informazioni su come creare un'applicazione ibrida cloud/locale (.NET) usando il servizio d'inoltro WCF di Azure.
 services: service-bus-relay
 documentationcenter: .net
 author: sethmanheim
@@ -14,78 +14,78 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 06/14/2017
 ms.author: sethm
-ms.openlocfilehash: aab8b1dbdc85c4edf7b0ccef0921b69524b2d306
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d15c30dad9fb4bbe9082d6a3c72cd20ed42bbc3e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="net-on-premisescloud-hybrid-application-using-azure-wcf-relay"></a>Applicazione ibrida cloud/locale (.NET) usando il servizio d'inoltro WCF di Azure
 ## <a name="introduction"></a>Introduzione
 
-Questo articolo illustra come toobuild ibrido cloud applicazione con Microsoft Azure e Visual Studio. esercitazione Hello presuppone che si ha alcuna esperienza precedente con Azure. In meno di 30 minuti, si disporrà di un'applicazione che utilizza più risorse di Azure backup e in esecuzione nel cloud hello.
+Questo articolo illustra come compilare un'applicazione cloud ibrida con Microsoft Azure e Visual Studio. Nell'esercitazione si presuppone che l'utente non abbia mai usato Azure. In meno di 30 minuti si otterrà un'applicazione in esecuzione nel cloud e che usa più risorse di Azure.
 
 Si acquisiranno le nozioni seguenti:
 
-* Come toocreate o adattare un servizio web esistente per l'utilizzo da una soluzione web.
-* Come dati toouse hello Azure WCF Relay service tooshare tra un'applicazione Azure e un servizio web ospitato in un' posizione.
+* Creare o adattare un servizio Web esistente utilizzabile in una soluzione Web.
+* Usare il servizio d'inoltro WCF di Azure per condividere dati tra un'applicazione Azure e un servizio Web ospitato altrove.
 
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
 ## <a name="how-azure-relay-helps-with-hybrid-solutions"></a>Vantaggi del servizio d'inoltro di Azure con soluzioni ibride
 
-Soluzioni di business sono in genere costituite da una combinazione di codice personalizzato scritto tootackle nuovo e requisiti aziendali e le funzionalità esistenti fornito da soluzioni e i sistemi che sono già presenti.
+Le soluzioni aziendali sono in genere costituite da una combinazione di codice personalizzato appositamente scritto in risposta a specifici requisiti aziendali e da funzionalità esistenti fornite da soluzioni e sistemi già implementati.
 
-Architetti di soluzioni cloud hello toouse per una gestione più semplice di requisiti di scalabilità e ridurre i costi operativi sono in avvio. In questo modo, individuano che le risorse di servizio che preferiscono tooleverage come blocchi predefiniti per le relative soluzioni sono all'interno di firewall aziendale hello e all'esterno di facile raggiungono per l'accesso dalla soluzione di cloud hello. Molti servizi interni non vengono compilati o ospitati in modo che essi possono essere facilmente esposti perimetrale alla rete aziendale hello.
+Da qualche tempo gli architetti di soluzioni hanno iniziato a usare il cloud per semplificare la gestione dei requisiti di scalabilità e ridurre i costi operativi. Nell'adottare un tale approccio hanno quindi scoperto che le risorse di servizi esistenti che desiderano sfruttare come blocchi predefiniti delle soluzioni si trovano all'interno del firewall aziendale e quindi non sono facilmente raggiungibili dalla soluzione cloud. Molti servizi interni non sono creati né vengono ospitati in modo tale da consentirne una agevole esposizione al perimetro della rete aziendale.
 
-[Inoltro Azure](https://azure.microsoft.com/services/service-bus/) è progettato per hello caso d'uso di servizi web di Windows Communication Foundation (WCF) esistente e rendere tali servizi in modo sicuro accessibile toosolutions che risiedono all'esterno di perimetrale aziendale hello senza infrastruttura della rete aziendale toohello modifiche intrusiva. Tali servizi di inoltro sono ospitate all'interno all'ambiente esistente, ma viene delegato in attesa di servizio in arrivo sessioni e richieste toohello inoltro ospitato su cloud. Il servizio d'inoltro di Azure protegge anche quei servizi dall'accesso non autorizzato tramite l'autenticazione con [firma di accesso condiviso](../service-bus-messaging/service-bus-sas.md).
+Il [servizio d'inoltro di Azure](https://azure.microsoft.com/services/service-bus/) è progettato per i casi d'uso in cui i servizi Web WCF (Windows Communication Foundation) vengono resi accessibili in modo protetto a soluzioni che risiedono all'esterno del perimetro aziendale senza richiedere modifiche di notevole impatto all'infrastruttura di rete aziendale. Tali servizi d'inoltro sono comunque ospitati all'interno dell'ambiente esistente, ma delegano l'ascolto delle sessioni e delle richieste in ingresso al servizio d'inoltro ospitato nel cloud. Il servizio d'inoltro di Azure protegge anche quei servizi dall'accesso non autorizzato tramite l'autenticazione con [firma di accesso condiviso](../service-bus-messaging/service-bus-sas.md).
 
 ## <a name="solution-scenario"></a>Scenario della soluzione
-In questa esercitazione si creerà un sito Web ASP.NET che consente di toosee un elenco di prodotti nella pagina di inventario del prodotto hello.
+In questa esercitazione si creerà un sito Web ASP.NET che consente di visualizzare un elenco di prodotti nella pagina relativa all'inventario dei prodotti.
 
 ![][0]
 
-esercitazione Hello presuppone che si dispone di informazioni sui prodotti in un sistema locale esistente e che utilizza Azure inoltro tooreach in tale sistema. Tale operazione viene simulata da un servizio Web eseguito in una semplice applicazione console ed è supportata da un insieme di prodotti in memoria. Si verrà toorun in grado di questa applicazione console nel proprio computer e la distribuzione di ruolo web hello in Azure. In questo modo, si noterà come ruolo web hello in esecuzione in Data Center di Azure hello verrà effettivamente chiamato nel computer, anche se il computer verrà quasi certamente sono protetti da almeno un firewall e un livello di translation (NAT) indirizzo di rete.
+In questa esercitazione si presuppone che le informazioni sui prodotti siano già disponibili in un sistema locale esistente e che per accedere a tale sistema venga usato il servizio d'inoltro di Azure. Tale operazione viene simulata da un servizio Web eseguito in una semplice applicazione console ed è supportata da un insieme di prodotti in memoria. Sarà quindi possibile eseguire questa applicazione console nel computer in uso e distribuire il ruolo Web in Azure. In tal modo sarà possibile osservare che il ruolo Web in esecuzione nel data center di Azure verrà effettivamente chiamato nel computer in uso, anche se quest'ultimo sarà quasi certamente protetto da almeno un firewall e un livello NAT (Network Address Translation).
 
-## <a name="set-up-hello-development-environment"></a>Configurare un ambiente di sviluppo hello
+## <a name="set-up-the-development-environment"></a>Configurare l'ambiente di sviluppo
 
-Prima di iniziare lo sviluppo di applicazioni Azure, scaricare gli strumenti di hello e configurare l'ambiente di sviluppo:
+Prima di iniziare a sviluppare applicazioni Azure, è necessario scaricare gli strumenti e configurare l'ambiente di sviluppo:
 
-1. Installare hello Azure SDK per .NET da hello SDK [pagina di download](https://azure.microsoft.com/downloads/).
-2. In hello **.NET** colonna, fare clic sulla versione di hello di [Visual Studio](http://www.visualstudio.com) in uso. Hello i passaggi in questa esercitazione usare Visual Studio 2015, ma funzionano anche con Visual Studio 2017.
-3. Quando viene chiesto di toorun o salvare installer hello, fare clic su **eseguire**.
-4. In hello **installazione guidata piattaforma Web**, fare clic su **installare** e continuare l'installazione di hello.
-5. Al termine dell'installazione di hello, sarà necessario tutto il necessario toostart toodevelop hello app. Hello SDK include strumenti che consentono di sviluppare facilmente applicazioni Azure in Visual Studio.
+1. Installare Azure SDK per .NET dalla [pagina di download](https://azure.microsoft.com/downloads/) di SDK.
+2. Nella colonna **.NET** fare clic sulla versione di [Visual Studio](http://www.visualstudio.com) in uso. I passaggi di questa esercitazione usano Visual Studio 2015, ma funzionano anche con Visual Studio 2017.
+3. Quando viene richiesto se eseguire o salvare il file di installazione, fare clic su **Esegui**.
+4. Nell'**Installazione guidata piattaforma Web** fare clic su **Installa** e procedere con l'installazione.
+5. Al termine dell'installazione, saranno disponibili tutti gli strumenti necessari per avviare lo sviluppo dell’app. Nell'SDK sono disponibili gli strumenti che consentono di sviluppare con facilità applicazioni per Azure in Visual Studio.
 
 ## <a name="create-a-namespace"></a>Creare uno spazio dei nomi
 
-utilizzando toobegin hello le funzionalità di inoltro in Azure, è innanzitutto necessario creare uno spazio dei nomi del servizio. Uno spazio dei nomi funge da contenitore di ambito in cui indirizzare le risorse di Azure nell'applicazione. Seguire hello [le istruzioni qui](relay-create-namespace-portal.md) toocreate uno spazio dei nomi di inoltro.
+Per usare le funzionalità del servizio d'inoltro di Azure, è prima necessario creare uno spazio dei nomi del servizio. Uno spazio dei nomi funge da contenitore di ambito in cui indirizzare le risorse di Azure nell'applicazione. Seguire [queste istruzioni](relay-create-namespace-portal.md) per creare uno spazio dei nomi di inoltro.
 
 ## <a name="create-an-on-premises-server"></a>Creare un server locale
 
-In primo luogo, si creerà un sistema di catalogo prodotti locale fittizio. Sarà piuttosto semplice. si noterà come rappresenta un sistema di catalogo locale effettivo del prodotto con una superficie completa del servizio che si sta tentando di toointegrate.
+In primo luogo, si creerà un sistema di catalogo prodotti locale fittizio. Si tratta di un sistema locale abbastanza semplice che intende rappresentare un catalogo prodotti effettivo che include una superficie completa di servizi da integrare.
 
-Questo progetto è un'applicazione console Visual Studio e utilizza hello [pacchetto NuGet di Azure Service Bus](https://www.nuget.org/packages/WindowsAzure.ServiceBus/) tooinclude hello le librerie del Bus di servizio e le impostazioni di configurazione.
+Il progetto è un'applicazione console di Visual Studio e usa il [pacchetto NuGet del bus di servizio di Azure](https://www.nuget.org/packages/WindowsAzure.ServiceBus/) per includere le librerie e le impostazioni di configurazione del bus di servizio.
 
-### <a name="create-hello-project"></a>Creare il progetto hello
+### <a name="create-the-project"></a>Creare il progetto
 
-1. Usando privilegi di amministratore, avviare Microsoft Visual. In tal caso, fare doppio clic sull'icona di programma Visual Studio hello toodo e quindi fare clic su **Esegui come amministratore**.
-2. In Visual Studio, su hello **File** menu, fare clic su **New**, quindi fare clic su **progetto**.
-3. Da **Modelli installati** in **Visual C#** fare clic su **App console (.NET Framework)**. In hello **nome** casella, il nome del tipo hello **ProductsServer**:
+1. Usando privilegi di amministratore, avviare Microsoft Visual. A tale scopo, fare clic con il tasto destro del mouse sull'icona del programma Visual Studio e quindi fare clic su **Esegui come amministratore**.
+2. In Visual Studio scegliere **Nuovo** dal menu **File**, quindi fare clic su **Progetto**.
+3. Da **Modelli installati** in **Visual C#** fare clic su **App console (.NET Framework)**. Nella casella **Nome** digitare il nome **ProductsServer**:
 
    ![][11]
-4. Fare clic su **OK** toocreate hello **ProductsServer** progetto.
-5. Se Gestione di pacchetti hello NuGet per Visual Studio è già stato installato, ignorare toohello successivo. In caso contrario, visitare il sito [NuGet][NuGet] e fare clic su [Install NuGet](http://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) (Installa NuGet). Seguire hello richieste tooinstall hello di gestione pacchetti NuGet, quindi riavviare Visual Studio.
-6. In Esplora soluzioni fare doppio clic su hello **ProductsServer** del progetto, quindi fare clic su **Gestisci pacchetti NuGet**.
-7. Fare clic su hello **Sfoglia** tab, quindi cercare `Microsoft Azure Service Bus`. Seleziona hello **Windowsazure** pacchetto.
-8. Fare clic su **installare**e accettare le condizioni di hello d'uso.
+4. Fare clic su **OK** per creare il progetto **ProductsServer**.
+5. Se Gestione pacchetti NuGet per Visual Studio è già stato installato, continuare con il passaggio successivo. In caso contrario, visitare il sito [NuGet][NuGet] e fare clic su [Install NuGet](http://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) (Installa NuGet). Seguire le istruzioni visualizzate per installare Gestione pacchetti NuGet, quindi riavviare Visual Studio.
+6. In Esplora soluzioni fare clic con il pulsante destro del mouse sul progetto **ProductsServer** e quindi scegliere **Gestisci pacchetti NuGet**.
+7. Fare clic sulla scheda **Sfoglia** e quindi cercare `Microsoft Azure Service Bus`. Selezionare il pacchetto **WindowsAzure.ServiceBus**.
+8. Fare clic su **Installa**e accettare le condizioni per l'utilizzo.
 
    ![][13]
 
-   Si noti che hello necessari assembly client fa riferimento a questo punto.
-8. Aggiungere una nuova classe per il contratto dei prodotti. In Esplora soluzioni fare doppio clic su hello **ProductsServer** sul progetto e scegliere **Aggiungi**, quindi fare clic su **classe**.
-9. In hello **nome** casella, il nome del tipo hello **ProductsContract.cs**. Fare quindi clic su **Aggiungi**.
-10. In **ProductsContract.cs**, sostituire definizione dello spazio dei nomi di hello con hello seguente di codice, che definisce il contratto di hello del servizio di hello.
+   I riferimenti agli assembly client necessari sono ora disponibili.
+8. Aggiungere una nuova classe per il contratto dei prodotti. In Esplora soluzioni fare clic con il pulsante destro del mouse sul progetto **ProductsServer**, scegliere **Aggiungi** e quindi fare clic su **Classe**.
+9. Nella casella **Nome** digitare il nome **ProductsContract.cs**. Fare quindi clic su **Aggiungi**.
+10. In **ProductsContract.cs** sostituire la definizione dello spazio dei nomi con il codice seguente, che consente di definire il contratto per il servizio.
 
     ```csharp
     namespace ProductsServer
@@ -94,9 +94,9 @@ Questo progetto è un'applicazione console Visual Studio e utilizza hello [pacch
         using System.Runtime.Serialization;
         using System.ServiceModel;
 
-        // Define hello data contract for hello service
+        // Define the data contract for the service
         [DataContract]
-        // Declare hello serializable properties.
+        // Declare the serializable properties.
         public class ProductData
         {
             [DataMember]
@@ -107,7 +107,7 @@ Questo progetto è un'applicazione console Visual Studio e utilizza hello [pacch
             public string Quantity { get; set; }
         }
 
-        // Define hello service contract.
+        // Define the service contract.
         [ServiceContract]
         interface IProducts
         {
@@ -121,7 +121,7 @@ Questo progetto è un'applicazione console Visual Studio e utilizza hello [pacch
         }
     }
     ```
-11. In Program.cs, sostituire hello seguente di codice che aggiunge il servizio di profilo hello e l'host di hello per tale definizione dello spazio dei nomi hello.
+11. In Program.cs sostituire la definizione dello spazio dei nomi con il codice seguente, che consente di aggiungere il servizio profili e l'host relativo.
 
     ```csharp
     namespace ProductsServer
@@ -131,7 +131,7 @@ Questo progetto è un'applicazione console Visual Studio e utilizza hello [pacch
         using System.Collections.Generic;
         using System.ServiceModel;
 
-        // Implement hello IProducts interface.
+        // Implement the IProducts interface.
         class ProductsService : IProducts
         {
 
@@ -149,8 +149,8 @@ Questo progetto è un'applicazione console Visual Studio e utilizza hello [pacch
                                          Quantity = "2500"},
                     };
 
-            // Display a message in hello service console application
-            // when hello list of products is retrieved.
+            // Display a message in the service console application
+            // when the list of products is retrieved.
             public IList<ProductData> GetProducts()
             {
                 Console.WriteLine("GetProducts called.");
@@ -161,13 +161,13 @@ Questo progetto è un'applicazione console Visual Studio e utilizza hello [pacch
 
         class Program
         {
-            // Define hello Main() function in hello service application.
+            // Define the Main() function in the service application.
             static void Main(string[] args)
             {
                 var sh = new ServiceHost(typeof(ProductsService));
                 sh.Open();
 
-                Console.WriteLine("Press ENTER tooclose");
+                Console.WriteLine("Press ENTER to close");
                 Console.ReadLine();
 
                 sh.Close();
@@ -175,7 +175,7 @@ Questo progetto è un'applicazione console Visual Studio e utilizza hello [pacch
         }
     }
     ```
-12. In Esplora soluzioni fare doppio clic su hello **app** tooopen del file nell'editor di Visual Studio hello. Nella parte inferiore di hello di hello `<system.ServiceModel>` elemento (ma si trovano all'interno `<system.ServiceModel>`), aggiungere hello seguente codice XML. Tooreplace assicurarsi di essere *yourServiceNamespace* con nome hello dello spazio dei nomi, e *yourKey* con la chiave di firma di accesso condiviso hello recuperati in precedenza dal portale hello:
+12. In Esplora soluzioni fare doppio clic sul file **App.config** per aprirlo nell'editor di Visual Studio. Nella parte inferiore dell'elemento `<system.ServiceModel>`, ma sempre in `<system.ServiceModel>`, aggiungere il seguente codice XML. Assicurarsi di sostituire *yourServiceNamespace* con il nome del proprio spazio dei nomi e *yourKey* con la chiave di firma di accesso condiviso recuperata in precedenza dal portale:
 
     ```xml
     <system.serviceModel>
@@ -198,7 +198,7 @@ Questo progetto è un'applicazione console Visual Studio e utilizza hello [pacch
       </behaviors>
     </system.serviceModel>
     ```
-13. Ancora in App. config, hello `<appSettings>` elemento, valore di stringa di connessione hello sostituire la stringa di connessione hello ottenuto dal portale hello in precedenza.
+13. Nell'elemento `<appSettings>`, sempre nel file App.config, sostituire il valore della stringa di connessione con la stringa di connessione ottenuta prima dal portale.
 
     ```xml
     <appSettings>
@@ -207,40 +207,40 @@ Questo progetto è un'applicazione console Visual Studio e utilizza hello [pacch
            value="Endpoint=sb://yourNamespace.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=yourKey"/>
     </appSettings>
     ```
-14. Premere **Ctrl + MAIUSC + B** o da hello **compilare** menu, fare clic su **Compila soluzione** toobuild hello applicazione e verificare la correttezza hello del lavoro finora.
+14. Premere **CTRL+MAIUSC+B** oppure scegliere **Compila soluzione** dal menu **Compila** per compilare l'applicazione e verificare la correttezza del lavoro svolto finora.
 
 ## <a name="create-an-aspnet-application"></a>Creare un'applicazione ASP.NET
 
 In questa sezione si creerà una semplice applicazione ASP.NET per visualizzare i dati recuperati dal servizio dei prodotti.
 
-### <a name="create-hello-project"></a>Creare il progetto hello
+### <a name="create-the-project"></a>Creare il progetto
 
 1. Assicurarsi che Visual Studio sia in esecuzione con privilegi di amministratore.
-2. In Visual Studio, su hello **File** menu, fare clic su **New**, quindi fare clic su **progetto**.
-3. Da **Modelli installati** in **Visual C#** fare clic su **Applicazione Web ASP.NET (.NET Framework)**. Progetto hello nome **ProductsPortal**. Fare quindi clic su **OK**.
+2. In Visual Studio scegliere **Nuovo** dal menu **File**, quindi fare clic su **Progetto**.
+3. Da **Modelli installati** in **Visual C#** fare clic su **Applicazione Web ASP.NET (.NET Framework)**. Assegnare al progetto il nome **ProductsPortal**. Fare quindi clic su **OK**.
 
    ![][15]
 
-4. Da hello **modelli ASP.NET** elenco hello **nuova applicazione Web ASP.NET** finestra di dialogo, fare clic su **MVC**.
+4. Nell'elenco dei **modelli ASP.NET** nella finestra di dialogo **Nuova applicazione Web ASP.NET** fare clic su **MVC**.
 
    ![][16]
 
-6. Fare clic su hello **Modifica autenticazione** pulsante. In hello **Modifica autenticazione** finestra di dialogo, verificare che **Nessuna autenticazione** sia selezionata e quindi fare clic su **OK**. Per questa esercitazione si distribuisce un'app che non richiede l'accesso utente.
+6. Fare clic sul pulsante **Modifica autenticazione**. Nella finestra di dialogo **Modifica autenticazione** assicurarsi che sia selezionato **Nessuna autenticazione** e quindi fare clic su **OK**. Per questa esercitazione si distribuisce un'app che non richiede l'accesso utente.
 
     ![][18]
 
-7. In hello **nuova applicazione Web ASP.NET** finestra di dialogo, fare clic su **OK** toocreate hello MVC app.
-8. A questo punto è necessario configurare le risorse di Azure per una nuova app Web. Seguire i passaggi hello hello [pubblicare tooAzure sezione di questo articolo](../app-service-web/app-service-web-get-started-dotnet.md). Restituire toothis esercitazione, quindi procedere toohello successivo.
-10. In Esplora soluzioni fare clic con il pulsante destro del mouse su **Modelli**, scegliere **Aggiungi** e infine fare clic su **Classe**. In hello **nome** casella, il nome del tipo hello **Product.cs**. Fare quindi clic su **Aggiungi**.
+7. Nella finestra di dialogo **Nuova applicazione Web ASP.NET** fare clic su **OK** per creare l'app MVC.
+8. A questo punto è necessario configurare le risorse di Azure per una nuova app Web. Seguire i passaggi nella sezione [Pubblicazione in Azure di questo articolo](../app-service/app-service-web-get-started-dotnet.md). Tornare quindi a questa esercitazione e procedere al passaggio successivo.
+10. In Esplora soluzioni fare clic con il pulsante destro del mouse su **Modelli**, scegliere **Aggiungi** e infine fare clic su **Classe**. Nella casella **Nome** digitare il nome **Product.cs**. Fare quindi clic su **Aggiungi**.
 
     ![][17]
 
-### <a name="modify-hello-web-application"></a>Modificare un'applicazione web hello
+### <a name="modify-the-web-application"></a>Modificare l'applicazione web
 
-1. Nel file di Product.cs hello in Visual Studio, sostituire la definizione dello spazio dei nomi esistente hello con hello seguente codice.
+1. Nel file Product.cs in Visual Studio sostituire la definizione dello spazio dei nomi esistente con il codice seguente.
 
    ```csharp
-    // Declare properties for hello products inventory.
+    // Declare properties for the products inventory.
     namespace ProductsWeb.Models
     {
        public class Product
@@ -251,8 +251,8 @@ In questa sezione si creerà una semplice applicazione ASP.NET per visualizzare 
        }
     }
     ```
-2. In Esplora soluzioni espandere hello **controller** cartella, quindi fare doppio clic su hello **HomeController.cs** file tooopen in Visual Studio.
-3. In **HomeController.cs**, sostituire la definizione dello spazio dei nomi esistente hello con hello seguente codice.
+2. In Esplora soluzioni espandere la cartella **Controller** e quindi fare doppio clic sul file **HomeController.cs** per aprirlo in Visual Studio.
+3. In **HomeController.cs** sostituire la definizione dello spazio dei nomi esistente con il codice seguente.
 
     ```csharp
     namespace ProductsWeb.Controllers
@@ -263,7 +263,7 @@ In questa sezione si creerà una semplice applicazione ASP.NET per visualizzare 
 
         public class HomeController : Controller
         {
-            // Return a view of hello products inventory.
+            // Return a view of the products inventory.
             public ActionResult Index(string Identifier, string ProductName)
             {
                 var products = new List<Product>
@@ -273,13 +273,13 @@ In questa sezione si creerà una semplice applicazione ASP.NET per visualizzare 
          }
     }
     ```
-4. In Esplora soluzioni, espandere cartella Views\Shared hello, quindi fare doppio clic su **layout. cshtml** tooopen nell'editor di Visual Studio hello.
-5. Modificare tutte le occorrenze di **applicazione ASP.NET** troppo**prodotti di LITWARE**.
-6. Rimuovere hello **Home**, **su**, e **contatto** collegamenti. Nell'esempio seguente di hello, eliminare il codice di hello evidenziato.
+4. In Esplora soluzioni espandere la cartella Views\Shared e quindi fare doppio clic su **_Layout.cshtml** per aprirlo nell'editor di Visual Studio.
+5. Modificare tutte le occorrenze di **My ASP.NET Application** in **LITWARE's Products**.
+6. Rimuovere i collegamenti **Home**, **About** e **Contact**. Nell'esempio seguente, eliminare il codice evidenziato.
 
     ![][41]
 
-7. In Esplora soluzioni, espandere cartella Views\Home hello, quindi fare doppio clic su **cshtml** tooopen nell'editor di Visual Studio hello. Sostituire hello l'intero contenuto del file hello con hello seguente codice.
+7. In Esplora soluzioni espandere la cartella Views\Home e quindi fare doppio clic su **Index.cshtml** per aprirlo nell'editor di Visual Studio. Sostituire l'intero contenuto del file con il codice seguente.
 
    ```html
    @model IEnumerable<ProductsWeb.Models.Product>
@@ -314,31 +314,31 @@ In questa sezione si creerà una semplice applicazione ASP.NET per visualizzare 
 
    </table>
    ```
-8. accuratezza hello tooverify del lavoro svolto finora, è possibile premere **Ctrl + MAIUSC + B** progetto hello toobuild.
+8. Per verificare la correttezza del lavoro svolto finora, premere **CTRL+MAIUSC+B** per compilare il progetto.
 
-### <a name="run-hello-app-locally"></a>Eseguire app hello in locale
+### <a name="run-the-app-locally"></a>Eseguire l'app in locale
 
-Eseguire tooverify applicazione hello del corretto funzionamento.
+Eseguire l'applicazione per verificarne il funzionamento.
 
-1. Verificare che **ProductsPortal** progetto attivo hello. Nome del progetto hello in Esplora soluzioni e scegliere **imposta come progetto di avvio**.
+1. Assicurarsi che il progetto attivo sia **ProductsPortal**. Fare clic con il pulsante destro del mouse sul nome del progetto in Esplora soluzioni, quindi scegliere **Imposta come progetto di avvio**.
 2. In Visual Studio premere **F5**.
 3. L'applicazione dovrebbe risultare in esecuzione in un browser.
 
    ![][21]
 
-## <a name="put-hello-pieces-together"></a>Unire parti hello
+## <a name="put-the-pieces-together"></a>Combinare i diversi componenti
 
-passaggio successivo Hello è toohook backup hello ai prodotti server locali con hello applicazione ASP.NET.
+Nel passaggio successivo si collegherà il server dei prodotti locale all'applicazione ASP.NET.
 
-1. Se non è già aperto, in Visual Studio aprire nuovamente hello **ProductsPortal** progetto creato in hello [creare un'applicazione ASP.NET](#create-an-aspnet-application) sezione.
-2. Passaggio toohello simile nella sezione "Creare un Server locale" hello, aggiungere riferimenti al progetto toohello pacchetto NuGet hello. In Esplora soluzioni fare doppio clic su hello **ProductsPortal** del progetto, quindi fare clic su **Gestisci pacchetti NuGet**.
-3. Ricerca di "Bus di servizio" e seleziona hello **Windowsazure** elemento. Quindi completare l'installazione di hello e chiudere questa finestra di dialogo.
-4. In Esplora soluzioni fare doppio clic su hello **ProductsPortal** del progetto, quindi fare clic su **Aggiungi**, quindi **elemento esistente**.
-5. Passare toohello **ProductsContract.cs** file hello **ProductsServer** progetto console. Fare clic su toohighlight ProductsContract.cs. Fare clic su hello freccia giù accanto troppo**Aggiungi**, quindi fare clic su **Aggiungi come collegamento**.
+1. Se non è già aperto, in Visual Studio riaprire il progetto **ProductsPortal** creato nella sezione [Creare un'applicazione ASP.NET](#create-an-aspnet-application).
+2. Analogamente a quanto descritto nella sezione "Creare un server locale", aggiungere il pacchetto NuGet ai riferimenti del progetto. In Esplora soluzioni fare clic con il pulsante destro del mouse sul progetto **ProductsPortal** e quindi scegliere **Gestisci pacchetti NuGet**.
+3. Cercare "Bus di servizio" e selezionare la voce **WindowsAzure.ServiceBus** . Completare quindi l'installazione e chiudere la finestra di dialogo.
+4. In Esplora soluzioni fare clic con il pulsante destro del mouse sul progetto **ProductsPortal**, quindi scegliere **Aggiungi** e infine **Elemento esistente**.
+5. Individuare il file **ProductsContract.cs** nel progetto console **ProductsServer**. Fare clic per evidenziare ProductsContract.cs. Fare clic sulla freccia rivolta verso il basso accanto ad **Aggiungi**, quindi fare clic su **Aggiungi come collegamento**.
 
    ![][24]
 
-6. Aprire quindi hello **HomeController.cs** file nell'editor di Visual Studio hello e sostituire definizione dello spazio dei nomi hello con hello seguente codice. Tooreplace assicurarsi di essere *yourServiceNamespace* con nome hello dello spazio dei nomi del servizio, e *yourKey* con la chiave di firma di accesso condiviso. In questo modo hello client toocall hello servizio locale, restituendo hello risultato della chiamata di hello.
+6. Aprire il file **HomeController.cs** nell'editor di Visual Studio e sostituire la definizione dello spazio dei nomi con il codice seguente. Assicurarsi di sostituire *yourServiceNamespace* con il nome dello spazio dei nomi servizio e *yourKey* con la chiave di firma di accesso condiviso. In tal modo il client potrà chiamare il servizio locale e restituire il risultato della chiamata.
 
    ```csharp
    namespace ProductsWeb.Controllers
@@ -352,7 +352,7 @@ passaggio successivo Hello è toohook backup hello ai prodotti server locali con
 
        public class HomeController : Controller
        {
-           // Declare hello channel factory.
+           // Declare the channel factory.
            static ChannelFactory<IProductsChannel> channelFactory;
 
            static HomeController()
@@ -369,7 +369,7 @@ passaggio successivo Hello è toohook backup hello ai prodotti server locali con
            {
                using (IProductsChannel channel = channelFactory.CreateChannel())
                {
-                   // Return a view of hello products inventory.
+                   // Return a view of the products inventory.
                    return this.View(from prod in channel.GetProducts()
                                     select
                                         new Product { Id = prod.Id, Name = prod.Name,
@@ -379,83 +379,83 @@ passaggio successivo Hello è toohook backup hello ai prodotti server locali con
        }
    }
    ```
-7. In Esplora soluzioni fare doppio clic su hello **ProductsPortal** soluzione (assicurarsi che tooright clic hello, non il progetto hello). Scegliere **Aggiungi**, quindi fare clic su **Progetto esistente**.
-8. Passare toohello **ProductsServer** del progetto, quindi fare doppio clic su hello **ProductsServer.csproj** tooadd file di soluzione è.
-9. **ProductsServer** devono essere eseguite nei dati di hello toodisplay ordine nella **ProductsPortal**. In Esplora soluzioni fare doppio clic su hello **ProductsPortal** soluzione e fare clic su **proprietà**. Hello **pagine delle proprietà** viene visualizzata la finestra di dialogo.
-10. Sul lato sinistro di hello, fare clic su **progetto di avvio**. Sul lato destro di hello, fare clic su **più progetti di avvio**. Verificare che **ProductsServer** e **ProductsPortal** viene visualizzato, nell'ordine specificato, con **avviare** impostata come azione hello per entrambi.
+7. In Esplora soluzioni fare clic con il pulsante destro del mouse sulla soluzione **ProductsPortal**. Verificare di fare clic con il pulsante destro del mouse sulla soluzione, non sul progetto. Scegliere **Aggiungi**, quindi fare clic su **Progetto esistente**.
+8. Individuare il progetto **ProductsServer**, quindi fare doppio clic sulla soluzione **ProductsServer.csproj** per aggiungerla.
+9. **ProductsServer** deve essere in esecuzione per visualizzare i dati in **ProductsPortal**. In Esplora soluzioni fare clic con il pulsante destro del mouse sulla soluzione **ProductsPortal** e scegliere **Proprietà**. Viene visualizzata la finestra di dialogo **Pagine delle proprietà**.
+10. Sul lato sinistro fare clic su **Progetto di avvio**. Sul lato destro fare clic su **Progetti di avvio multipli**. Assicurarsi che **ProductsServer** e **ProductsPortal** siano visualizzati in questo ordine e che l'azione **Avvia** sia impostata per entrambi.
 
       ![][25]
 
-11. Ancora in hello **proprietà** la finestra di dialogo, fare clic su **dipendenze progetto** sul lato sinistro hello.
-12. In hello **progetti** elenco, fare clic su **ProductsServer**. Verificare che **ProductsPortal** non sia selezionato.
-13. In hello **progetti** elenco, fare clic su **ProductsPortal**. Assicurarsi che **ProductsServer** sia selezionato.
+11. Sempre nella finestra di dialogo **Proprietà** fare clic su **Dipendenze progetto** sul lato sinistro.
+12. Nell'elenco **Progetti** fare clic su **ProductsServer**. Verificare che **ProductsPortal** non sia selezionato.
+13. Nell'elenco **Progetti** fare clic su **ProductsPortal**. Assicurarsi che **ProductsServer** sia selezionato.
 
     ![][26]
 
-14. Fare clic su **OK** in hello **pagine delle proprietà** la finestra di dialogo.
+14. Fare clic su **OK** nella finestra di dialogo **Pagine delle proprietà**.
 
-## <a name="run-hello-project-locally"></a>Eseguire il progetto hello in locale
+## <a name="run-the-project-locally"></a>Eseguire il progetto in locale
 
-l'applicazione hello tootest localmente, in Visual Studio premere **F5**. server locale Hello (**ProductsServer**) deve iniziare prima, quindi hello **ProductsPortal** deve avviare l'applicazione in una finestra del browser. Questa volta, si noterà che l'inventario del prodotto hello Elenca i dati recuperati da hello prodotto del servizio nel sistema locale.
+Per testare l'applicazione in locale, in Visual Studio premere **F5**. Il server locale, **ProductsServer**, verrà avviato per primo, quindi verrà avviata l'applicazione **ProductsPortal** in una finestra del browser. Questa volta si noterà che nell'inventario dei prodotti sono elencati i dati recuperati dal sistema locale del servizio dei prodotti.
 
 ![][10]
 
-Premere **aggiornamento** su hello **ProductsPortal** pagina. Ogni volta che si aggiorna la pagina hello, si noterà hello server app viene visualizzato un messaggio quando `GetProducts()` da **ProductsServer** viene chiamato.
+Fare clic su **Aggiorna** nella pagina **ProductsPortal**. Ogni volta che si aggiorna la pagina, nell'app server viene visualizzato un messaggio quando si chiama `GetProducts()` da **ProductsServer**.
 
-Chiudere entrambe le applicazioni prima del passaggio successivo toohello di procedere.
+Chiudere entrambe le applicazioni prima di procedere al passaggio successivo.
 
-## <a name="deploy-hello-productsportal-project-tooan-azure-web-app"></a>Distribuire l'applicazione web di Azure di hello ProductsPortal progetto tooan
+## <a name="deploy-the-productsportal-project-to-an-azure-web-app"></a>Distribuire il progetto ProductsPortal in un'app Web di Azure
 
-passaggio successivo Hello è toorepublish hello Azure Web app **ProductsPortal** front-end. Hello seguenti:
+Nel passaggio successivo si ripubblicherà il front-end **ProductsPortal** dell'app Web di Azure. Eseguire le operazioni seguenti:
 
-1. In Esplora soluzioni fare doppio clic su hello **ProductsPortal** del progetto e fare clic su **pubblica**. Quindi, fare clic su **pubblica** su hello **pubblica** pagina.
+1. In Esplora soluzioni fare clic con il pulsante destro del mouse sul progetto **ProductsPortal** e quindi fare clic su **Pubblica**. Fare quindi clic su **Pubblica** nella pagina di **pubblicazione**.
 
   > [!NOTE]
-  > Si potrebbe visualizzare un messaggio di errore nella finestra del browser hello quando hello **ProductsPortal** progetto web viene avviato automaticamente dopo la distribuzione di hello. È previsto e si verifica perché hello **ProductsServer** applicazione non è ancora in esecuzione.
+  > È possibile che nella finestra del browser venga visualizzato un messaggio di errore quando il progetto Web **ProductsPortal** viene avviato automaticamente dopo la distribuzione. Si tratta di un comportamento previsto che si verifica perché l'applicazione **ProductsServer** non è ancora in esecuzione.
 >
 >
 
-2. Copia URL hello di hello distribuite app web, è necessario hello URL nel passaggio successivo hello. È anche possibile ottenere l'URL dalla finestra attività di servizio App di Azure hello in Visual Studio:
+2. Copiare l'URL dell'app Web distribuita, perché sarà necessario nel passaggio successivo. È anche possibile ottenere l'URL dalla finestra Attività del servizio app di Azure in Visual Studio:
 
   ![][9]
 
-3. Chiudere hello toostop finestra del browser di hello in esecuzione dell'applicazione.
+3. Chiudere la finestra del browser per arrestare l'applicazione in esecuzione.
 
 ### <a name="set-productsportal-as-web-app"></a>Impostare ProductsPortal come app Web
 
-Prima di un'applicazione hello in esecuzione nel cloud hello, è necessario assicurarsi che **ProductsPortal** viene avviato dall'interno di Visual Studio come un'app web.
+Prima di eseguire l'applicazione nel cloud è necessario assicurarsi che **ProductsPortal** venga avviato dall'interno di Visual Studio come app Web.
 
-1. In Visual Studio, fare doppio clic su hello **ProductsPortal** del progetto e quindi fare clic su **proprietà**.
-2. Nella colonna sinistra hello, fare clic su **Web**.
-3. In hello **azione di avvio** fare clic su hello **Avvia URL** pulsante e immettere nella casella di testo hello hello URL per l'app web distribuiti in precedenza; ad esempio, `http://productsportal1234567890.azurewebsites.net/`.
+1. In Visual Studio fare clic con il pulsante destro del mouse sul progetto **ProductsPortal** e quindi scegliere **Proprietà**.
+2. Nella colonna sinistra fare clic su **Web**.
+3. Nella sezione **Azione di avvio** fare clic sul pulsante **URL di avvio** e nella casella di testo immettere l'URL dell'app Web distribuita in precedenza, ad esempio, `http://productsportal1234567890.azurewebsites.net/`.
 
     ![][27]
 
-4. Da hello **File** menu in Visual Studio, fare clic su **Salva tutto**.
-5. Dal menu Compila di hello in Visual Studio, fare clic su **Ricompila soluzione**.
+4. Scegliere **Salva tutto** dal menu **File** in Visual Studio.
+5. In Visual Studio scegliere **Ricompila soluzione** dal menu Compila.
 
-## <a name="run-hello-application"></a>Eseguire un'applicazione hello
+## <a name="run-the-application"></a>Eseguire l'applicazione
 
-1. Premere F5 toobuild ed eseguire un'applicazione hello. server locale Hello (hello **ProductsServer** applicazione console) deve iniziare prima, quindi hello **ProductsPortal** deve avviare l'applicazione in una finestra del browser, come illustrato nella seguente schermata hello ripresa. Si noti nuovamente che l'inventario del prodotto hello Elenca i dati recuperati da hello prodotto del servizio nel sistema locale e li visualizza nell'app web hello. Controllare toomake URL hello assicurarsi che **ProductsPortal** è in esecuzione nel cloud di hello, come un'app web di Azure.
+1. Premere F5 per compilare ed eseguire l'applicazione. Il server locale, ovvero l'applicazione console **ProductsServer**, verrà avviato per primo, quindi verrà avviata l'applicazione **ProductsPortal** in una finestra del browser, come illustrato nella schermata seguente. Si noterà di nuovo che nell'inventario dei prodotti sono elencati i dati recuperati dal sistema locale del servizio dei prodotti, che vengono visualizzati nell'app Web. Verificare l'URL per assicurarsi che **ProductsPortal** sia in esecuzione nel cloud come app Web di Azure.
 
    ![][1]
 
    > [!IMPORTANT]
-   > Hello **ProductsServer** applicazione console deve essere in esecuzione e in grado di tooserve hello dati toohello **ProductsPortal** dell'applicazione. Se il browser hello viene visualizzato un errore, attendere alcuni secondi altre per **ProductsServer** tooload e hello di visualizzazione seguenti del messaggio. Premere quindi **aggiornamento** nel browser hello.
+   > L'applicazione console **ProductsServer** deve essere in esecuzione e in grado di passare dati all'applicazione **ProductsPortal**. Se nel browser viene visualizzato un errore, attendere alcuni secondi che **ProductsServer** venga caricato e visualizzi il messaggio seguente. Fare quindi clic su **Aggiorna** nel browser.
    >
    >
 
    ![][37]
-2. Nel browser hello, premere **aggiornamento** su hello **ProductsPortal** pagina. Ogni volta che si aggiorna la pagina hello, si noterà hello server app viene visualizzato un messaggio quando `GetProducts()` da **ProductsServer** viene chiamato.
+2. Nel browser fare clic su **Aggiorna** nella pagina **ProductsPortal**. Ogni volta che si aggiorna la pagina, nell'app server viene visualizzato un messaggio quando si chiama `GetProducts()` da **ProductsServer**.
 
     ![][38]
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-toolearn ulteriori informazioni sull'inoltro di Azure, vedere hello seguenti risorse:  
+Per altre informazioni sul servizio d'inoltro di Azure, vedere le risorse seguenti:  
 
 * [Che cos'è il servizio di inoltro di Azure?](relay-what-is-it.md)  
-* [La modalità di inoltro toouse](service-bus-dotnet-how-to-use-relay.md)  
+* [Come usare l'inoltro](service-bus-dotnet-how-to-use-relay.md)  
 
 [0]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/hybrid.png
 [1]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/App2.png

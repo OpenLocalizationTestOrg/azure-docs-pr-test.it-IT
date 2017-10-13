@@ -1,6 +1,6 @@
 ---
-title: un server di Azure Analysis Services con estensione odc file tooconnect tooan aaaCreate | Documenti Microsoft
-description: Informazioni su come toocreate un tooand tooconnect di file Office Data Connection ottenere dati da un server Analysis Services in Azure.
+title: Creare un file con estensione odc per la connessione a un server di Azure Analysis Services | Documentazione Microsoft
+description: Informazioni su come creare un file Office Data Connection per connettersi e ottenere dati da un server di Azure Analysis Services.
 services: analysis-services
 documentationcenter: 
 author: minewiskan
@@ -15,30 +15,30 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 08/23/2017
 ms.author: owend
-ms.openlocfilehash: 9c8c8df23b17f19905d7ec51af4eb63eb995045e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 530f3b5c9e90cb45ffb6e12d0d08a35f8d687471
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-an-office-data-connection-file"></a>Creare un file Office Data Connection
 
-Informazioni in questo articolo viene descritto come creare un server di Office Data Connection file tooconnect tooan Azure Analysis Services da Excel 2016, il numero di versione 16.0.7369.2117 o versioni precedenti, o Excel 2013. È richiesta anche la versione aggiornata del [provider MSOLAP.7](analysis-services-data-providers.md).
+Questo articolo descrive come creare un file Office Data Connection per connettersi a un server Azure Analysis Services da Excel 2016, numero di versione 16.0.7369.2117 o precedente, o da Excel 2013. È richiesta anche la versione aggiornata del [provider MSOLAP.7](analysis-services-data-providers.md).
 
 
-1. Copiare i file di connessione di esempio hello seguente e incollare in un editor di testo. 
+1. Copiare il file di connessione di esempio seguente e incollarlo in un editor di testo. 
 
-2. In `odc:ConnectionString`, modificare hello le proprietà seguenti:
+2. In `odc:ConnectionString` modificare le proprietà seguenti:
 
-    *   In `Data Source=asazure://<region>.asazure.windows.net/<servername>;` modificare `<region>` toohello area del server Analysis Services e `<servername>` toohello nome del server.
+    *   In `Data Source=asazure://<region>.asazure.windows.net/<servername>;` modificare `<region>` nell'area del server Analysis Services e `<servername>` nel nome del server.
 
-    *   In `Initial Catalog=<database>;` modificare `<database>` toohello nome del database.
+    *   In `Initial Catalog=<database>;` modificare `<database>` nel nome del database.
 
-3. In `<odc:CommandText>Model</odc:CommandText>` modificare `Model` toohello nome del modello o prospettiva. 
+3. In `<odc:CommandText>Model</odc:CommandText>` modificare `Model` nel nome del modello o della prospettiva. 
 
-4. Salvare il file hello con un `.odc` toohello estensione C:\Users\\*username*\Documents\My della cartella Origini dati.
+4. Salvare il file con estensione `.odc` nella cartella C:\Utenti\\*nome utente*\Documenti\My Data Sources.
 
-5. Fare clic sul file hello e quindi fare clic su **Apri in Excel**. O in Excel, in hello **dati** della barra multifunzione, fare clic su **connessioni esistenti**, selezionare il file e quindi fare clic su **aprire**.
+5. Fare clic con il pulsante destro sul file e quindi su **Apri in Excel**. In alternativa, da Excel, nella barra multifunzione **Dati** fare clic su **Connessioni esistenti**, selezionare il file e quindi fare clic su **Apri**.
 
 
 

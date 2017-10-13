@@ -1,5 +1,5 @@
 ---
-title: procedure ottimali di protezione IoT aaaAzure | Documenti Microsoft
+title: Procedure consigliate per la sicurezza di Azure IoT | Documentazione Microsoft
 description: Procedure consigliate per la sicurezza dell'infrastruttura IoT. Include indicazioni per sviluppatori, distributori e operatori di soluzioni.
 services: iot-hub
 documentationcenter: 
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/03/2017
 ms.author: yurid
-ms.openlocfilehash: 5c71affbf861882e655b824ae7d3bd23f3421d3d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d922cd972528882a921c8b5a4c5af251fd3e61a4
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 [!INCLUDE [iot-security-best-practices](../../includes/iot-security-best-practices.md)]
 
 ## <a name="see-also"></a>Vedere anche
-toolearn più sulla protezione soluzione IoT, vedere:
+Per altre informazioni sulla protezione della soluzione IoT, vedere:
 
 * [Architettura della sicurezza IoT][lnk-security-architecture]
 * [Proteggere la distribuzione di IoT][lnk-security-deployment]
 
-toofurther esplorare le funzionalità di hello di IoT Hub, vedere:
+Per altre informazioni sulle funzionalità dell'hub IoT, vedere:
 
 * [Simulazione di un dispositivo con Azure IoT Edge][lnk-iotedge]
 

@@ -1,6 +1,6 @@
 ---
-title: aaaConnecting la sicurezza prodotti toohello sicurezza Operations Management Suite (OMS) e la soluzione di controllo | Documenti Microsoft
-description: Questo documento consente si tooconnect i prodotti di sicurezza tooOperations protezione del gruppo di gestione e di soluzione di controllo utilizzando il formato di eventi comuni.
+title: Connessione dei prodotti per la sicurezza alla soluzione Sicurezza e controllo per Operations Management Suite (OMS) | Documentazione Microsoft
+description: Questo documento consente di connettere i prodotti per la sicurezza alla soluzione Sicurezza e controllo per Operations Management Suite usando Common Event Format.
 services: operations-management-suite
 documentationcenter: na
 author: YuriDio
@@ -15,23 +15,23 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/18/2017
 ms.author: yurid
-ms.openlocfilehash: 0f4b372d0379987c4e249628a3c8d52733be65c2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 710a1fe0ce2b7a1841187cf75f4ffb090cc161e5
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="connecting-your-security-products-toohello-operations-management-suite-oms-security-and-audit-solution"></a>La connessione la sicurezza prodotti toohello sicurezza Operations Management Suite (OMS) e la soluzione di controllo 
-Questo documento consente di connettersi ai prodotti di sicurezza in hello sicurezza OMS e la soluzione di controllo. è supportata le seguenti origini Hello:
+# <a name="connecting-your-security-products-to-the-operations-management-suite-oms-security-and-audit-solution"></a>Connessione dei prodotti per la sicurezza alla soluzione Sicurezza e controllo per Operations Management Suite (OMS) 
+Questo documento consente di connettere i prodotti per la sicurezza alla soluzione Sicurezza e controllo per OMS. Sono supportate le origini seguenti:
 
 - Eventi Common Event Format (CEF)
 - Eventi ASA Cisco
 
 
 ## <a name="what-is-cef"></a>Informazioni su CEF
-Il formato di evento comuni (CEF) è un formato standard di settore sopra i messaggi Syslog, utilizzati da molti sicurezza fornitori tooallow evento interoperabilità tra piattaforme diverse. Soluzione di controllo e sicurezza OMS supporta inserimenti di dati utilizzo CEF, che consentono di tooconnect i prodotti di sicurezza con la sicurezza di OMS. 
+Common Event Format (CEF) è un formato standard di settore su messaggi Syslog, usato da molti fornitori di soluzioni per la sicurezza per consentire l'interoperabilità degli eventi tra piattaforme diverse. La soluzione Sicurezza e controllo per OMS supporta l'inserimento dei dati tramite CEF, che consente di connettere i prodotti per la sicurezza a OMS. 
 
-Connettendo il tooOMS di origine dati, verranno tootake in grado di sfruttare hello funzionalità che fanno parte della piattaforma seguenti:
+Tramite la connessione dell'origine dati a OMS, è possibile sfruttare le funzionalità seguenti che fanno parte della piattaforma:
 
 - Ricerca e controllo
 - Controllo
@@ -41,20 +41,20 @@ Connettendo il tooOMS di origine dati, verranno tootake in grado di sfruttare he
 
 ## <a name="collection-of-security-solution-logs"></a>Raccolta di log di soluzioni per la sicurezza
 
-La soluzione per la sicurezza per OMS supporta la raccolta di log tramite CEF sui log Syslog e [ASA Cisco](https://blogs.technet.microsoft.com/msoms/2016/08/25/add-your-cisco-asa-logs-to-oms-security/). In questo esempio, l'origine hello (computer che genera log hello) è un computer Linux in esecuzione il daemon syslog-ng e destinazione hello è sicurezza OMS. il computer Linux tooprepare hello che occorre hello tooperform seguente attività:
+La soluzione per la sicurezza per OMS supporta la raccolta di log tramite CEF sui log Syslog e [ASA Cisco](https://blogs.technet.microsoft.com/msoms/2016/08/25/add-your-cisco-asa-logs-to-oms-security/). In questo esempio, l'origine (ossia il computer che genera i log) è un computer Linux che esegue il daemon syslog-ng e la destinazione è la soluzione per la sicurezza per OMS. Per preparare il computer Linux, è necessario eseguire le attività seguenti:
 
-- Scaricare hello agente OMS per Linux e versione 1.2.0-25 o versione successiva.
-- Consultare la sezione hello **Guida all'installazione rapida** da [questo articolo](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md#steps-to-install-the-oms-agent-for-linux) tooinstall e area di lavoro tooyour hello onboard agente.
+- Scaricare l'agente OMS per Linux, versione 1.2.0-25 o versione successiva.
+- Per installare e caricare l'agente nell'area di lavoro, consultare la sezione **Quick Install Guide** (Guida all'installazione rapida) di [questo articolo](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md#steps-to-install-the-oms-agent-for-linux).
 
-In genere, l'agente di hello è installato in un computer diverso da hello uno per i log di hello vengono generati. Computer agente di inoltro hello registri toohello richiederà in genere hello alla procedura seguente:
+In genere, l'agente è installato in un computer diverso da quello in cui vengono generati i log. Per inoltrare i log al computer agente, vengono in genere richiesti i passaggi seguenti:
 
-- Configurare la registrazione del prodotto/macchina tooforward hello gli eventi necessari toohello daemon syslog (rsyslog o syslog-ng) hello sul computer agente hello.
-- Abilitare il daemon syslog hello nei hello agente macchina tooreceive messaggi provenienti da un sistema remoto.
+- Configurare il prodotto/computer di registrazione per inoltrare gli eventi necessari al daemon syslog (rsyslog o syslog-ng) nel computer agente.
+- Abilitare il daemon syslog nel computer agente per ricevere messaggi da un sistema remoto.
 
-Nel computer agente hello, gli eventi di hello devono toobe inviato dalla porta UDP di toolocal daemon syslog hello 25226. agente Hello è in attesa di eventi in ingresso su questa porta. di seguito Hello è una configurazione di esempio per l'invio di tutti gli eventi dall'agente di toohello hello sistema locale (è possibile modificare hello configurazione toofit le impostazioni locali):
+Nel computer agente gli eventi devono essere inviati dal daemon syslog alla porta UDP 25226 locale. L'agente è in attesa di eventi in ingresso su questa porta. Di seguito è riportata una configurazione di esempio per l'invio di tutti gli eventi dal sistema locale all'agente (è possibile modificare la configurazione per adattarla alle proprie impostazioni locali):
 
-1. Finestra terminal aprire hello e passare toohello directory */etc/syslog-ng /* 
-2. Creare un nuovo file *sicurezza-config-omsagent. conf* e aggiungere hello seguente contenuto: OMS_facility = local4
+1. Aprire la finestra del terminale e passare alla directory */etc/syslog-ng/* 
+2. Creare un nuovo file *security-config-omsagent.conf* e aggiungere il contenuto seguente: OMS_facility = local4
     
     filter f_local4_oms { facility(local4); };
 
@@ -62,8 +62,8 @@ Nel computer agente hello, gli eventi di hello devono toobe inviato dalla porta 
 
     log { source(src); filter(f_local4_oms); destination(security_oms); };
     
-3. Scaricare il file hello *security_events.conf* e posizionare */etc/opt/microsoft/omsagent/conf/omsagent.d/* nel computer dell'agente OMS hello.
-4. Digitare il comando hello seguito daemon syslog di hello toorestart: *per syslog-ng eseguire:*
+3. Scaricare il file *security_events.conf* e posizionarlo in */etc/opt/microsoft/omsagent/conf/omsagent.d/* nel computer agente OMS.
+4. Digitare il comando seguente per riavviare il daemon syslog: *per syslog-ng eseguire:*
     
     ```
     sudo service rsyslog restart
@@ -74,7 +74,7 @@ Nel computer agente hello, gli eventi di hello devono toobe inviato dalla porta 
     ```
     /etc/init.d/syslog-ng restart
     ```
-5. Digitare il comando hello sotto toorestart hello agente OMS:
+5. Digitare il comando seguente per riavviare l'agente OMS:
 
     *Per eseguire syslog-ng:*
     
@@ -87,7 +87,7 @@ Nel computer agente hello, gli eventi di hello devono toobe inviato dalla porta 
     ```
     systemctl restart omsagent
     ```
-6. Digitare comando hello seguente ed esaminare tooconfirm risultato hello che non siano presenti errori nel log dell'agente OMS hello:
+6. Digitare il comando seguente ed esaminare il risultato per verificare che non siano presenti errori nel log dell'agente OMS:
 
     ``` 
     tail /var/opt/microsoft/omsagent/log/omsagent.log
@@ -97,19 +97,19 @@ Nel computer agente hello, gli eventi di hello devono toobe inviato dalla porta 
 
 [!include[log-analytics-log-search-nextgeneration](../../includes/log-analytics-log-search-nextgeneration.md)]
 
-Al termine del hello configurazione, eventi di protezione hello inizierà toobe caricamento dalla sicurezza di OMS. toovisualize tali eventi, aprire hello ricerca Log, digitare il comando di hello *tipo = CommonSecurityLog* in hello campo ricerca e premere INVIO. Hello esempio seguente viene illustrato il risultato di hello di questo comando, si noti che la sicurezza OMS in questo caso i registri di protezione da più fornitori già caricamento:
+Al termine della configurazione, gli eventi di sicurezza inizieranno a essere acquisiti dalla soluzione per la sicurezza per OMS. Per visualizzare tali eventi, aprire Ricerca log, digitare il comando *Type=CommonSecurityLog* nel campo di ricerca e premere INVIO. Nell'esempio seguente viene illustrato il risultato di questo comando. Si noti che la soluzione per la sicurezza per OMS in questo caso ha già acquisito i log per la sicurezza da più fornitori:
    
 ![Valutazione baseline di Sicurezza e controllo di OMS](./media/oms-security-connect-products/oms-security-connect-products-fig1.png)
 
-È possibile limitare la ricerca per un unico fornitore, ad esempio, Cisco online registra toovisualize, tipo: *tipo = CommonSecurityLog DeviceVendor = Cisco*. Hello "CommonSecurityLog" è predefinite campi per qualsiasi intestazione CEF inclusi extensios base hello, mentre un'altra estensione, se si tratta di "Custom Extension" o, non verrà inserito nel campo "AdditionalExtensions". È possibile utilizzare i campi tooget dedicato di funzionalità di hello campi personalizzati da esso. 
+È possibile perfezionare la ricerca per un unico fornitore. Ad esempio, per visualizzare i log online di Cisco, digitare: *Type=CommonSecurityLog DeviceVendor=Cisco*. "CommonSecurityLog" ha campi predefiniti per qualsiasi intestazione CEF che include le estensioni di base, mentre un'altra estensione "Estensione personalizzata" o meno, verrà inserita nel campo "AdditionalExtensions". È possibile usare la funzionalità Campi personalizzati per recuperare i campi dedicati. 
 
 ### <a name="accessing-computers-missing-baseline-assessment"></a>Accesso ai computer senza valutazione baseline
-OMS supporta profilo di base membro di dominio hello in Windows Server 2008 R2 fino tooWindows Server 2012 R2. La baseline di Windows Server 2016 non è ancora definitiva e verrà aggiunta non appena pubblicata. Tutti gli altri sistemi operativi analizzati tramite OMS Security and Audit valutazione della linea di base vengono visualizzate in hello **computer privi di valutazione della linea di base** sezione.
+OMS supporta il profilo baseline dei membri di dominio in Windows Server 2008 R2 fino a Windows Server 2012 R2. La baseline di Windows Server 2016 non è ancora definitiva e verrà aggiunta non appena pubblicata. Tutti i sistemi operativi analizzati tramite la valutazione baseline della soluzione Sicurezza e controllo per OMS vengono visualizzati nella sezione **Computer senza valutazione baseline**.
 
 ## <a name="see-also"></a>Vedere anche
-In questo documento, si è appreso come tooconnect il tooOMS soluzione CEF. toolearn più sulla sicurezza di OMS, vedere hello seguenti articoli:
+In questo documento è stato descritto come connettere la soluzione CEF a OMS. Per altre informazioni sulle funzionalità di OMS per la sicurezza, vedere gli articoli seguenti:
 
 * [Panoramica di Operations Management Suite (OMS)](operations-management-suite-overview.md)
-* [Monitoraggio e risposta tooSecurity avvisi nella soluzione di controllo e protezione di Operations Management Suite](oms-security-responding-alerts.md)
+* [Monitoraggio e gestione degli avvisi di sicurezza nella soluzione Operations Management Suite per la sicurezza e il controllo](oms-security-responding-alerts.md)
 * [Monitoraggio delle risorse nella soluzione Operations Management Suite per la sicurezza e il controllo](oms-security-monitoring-resources.md)
 

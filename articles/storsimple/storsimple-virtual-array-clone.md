@@ -1,6 +1,6 @@
 ---
-title: un backup di StorSimple Virtual Array aaaClone | Documenti Microsoft
-description: Informazioni su come tooclone una copia di backup e ripristinare un file dall'Array virtuale StorSimple.
+title: Clonazione di un backup dell'array virtuale StorSimple | Documentazione Microsoft
+description: Informazioni su come clonare un backup e ripristinare un file dall'array virtuale StorSimple.
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,127 +14,127 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 11/21/2016
 ms.author: alkohli
-ms.openlocfilehash: 21bfcae48ee07762179cf00ce842b6094abe18ee
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 768c9a1c906999f4690c9c8f7d075743ab1678ff
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="clone-from-a-backup-of-your-storsimple-virtual-array"></a>Clonare da un backup dell'array virtuale StorSimple
 
 ## <a name="overview"></a>Panoramica
 
-Questo articolo descrive come tooclone un set di backup dei volumi di condivisioni in Microsoft Azure StorSimple Virtual matrice dettagliate. backup clonato Hello è toorecover utilizzato un file eliminato o perso. articolo Hello include anche i passaggi dettagliati tooperform che un ripristino a livello di elemento nella matrice virtuale StorSimple configurato come un file server.
+Questo articolo illustra passo per passo come clonare un set di backup di condivisioni o volumi sull'array virtuale Microsoft Azure StorSimple. Il backup clonato viene usato per ripristinare un file perso o eliminato. L'articolo include anche la procedura dettagliata per il ripristino a livello di elemento sull'array virtuale StorSimple configurato come file server.
 
 ## <a name="clone-shares-from-a-backup-set"></a>Clonare condivisioni da un set di backup
 
-**Prima di provare tooclone condivisioni, assicurarsi di disporre di sufficiente spazio su hello dispositivo toocomplete questa operazione.** tooclone da un backup, in hello [portale di Azure](https://portal.azure.com/), eseguire hello alla procedura seguente.
+**Prima di tentare di clonare le condivisioni, assicurarsi di avere spazio sufficiente sul dispositivo per completare questa operazione.** Per clonare da un backup, nel [portale di Azure](https://portal.azure.com/), eseguire la procedura seguente.
 
-#### <a name="tooclone-a-share"></a>tooclone una condivisione
+#### <a name="to-clone-a-share"></a>Per clonare una condivisione
 
-1. Sfoglia troppo**dispositivi** blade. Selezionare e fare clic sul dispositivo, quindi fare clic su **Condivisioni**. Selezionare condivisione hello che si desidera tooclone, hello condivisione tooinvoke hello menu di scelta rapida. Selezionare **Clona**.
+1. Passare al pannello **Dispositivi**. Selezionare e fare clic sul dispositivo, quindi fare clic su **Condivisioni**. Selezionare la condivisione che si desidera clonare, fare clic con il pulsante destro del mouse sulla condivisione per richiamare il menu di scelta rapida. Selezionare **Clona**.
    
    ![Clonare un backup](./media/storsimple-virtual-array-clone/cloneshare1.png)
-2. In hello **Clone** pannello, fare clic su **Backup > selezionare** e quindi hello seguenti: 
+2. Nel pannello **Clona** fare clic su **Backup > Seleziona** e quindi eseguire le operazioni seguenti: 
    
-   a.    Filtrare un backup su questo dispositivo in base all'intervallo di tempo hello. È possibile scegliere tra **Ultimi 7 giorni**, **Ultimi 30 giorni** e **Ultimo anno**.
+   a.    Filtrare un backup su questo dispositivo in base all'intervallo di tempo. È possibile scegliere tra **Ultimi 7 giorni**, **Ultimi 30 giorni** e **Ultimo anno**.
    
-   b.    Nell'elenco di hello di backup filtrati visualizzato, selezionare un tooclone dal backup.
+   b.    Nell'elenco di backup filtrati visualizzato selezionare un backup da cui eseguire la clonazione.
    
    c.    Fare clic su **OK**.
    
    ![Clonare un backup](./media/storsimple-virtual-array-clone/cloneshare3.png)
-3. In hello **Clone** pannello, fare clic su **le impostazioni di destinazione** e quindi hello seguenti:
+3. Nel pannello **Clona** fare clic su **Impostazioni di destinazione** e quindi eseguire le operazioni seguenti:
    
-   a.    Fornire un nome per la condivisione. nome della condivisione Hello deve contenere 3 e 127 caratteri.
+   a.    Fornire un nome per la condivisione. Il nome della condivisione deve contenere da 3 a 127 caratteri.
    
-   b.    Facoltativamente, fornire una descrizione per la condivisione di hello clonato.
+   b.    Fornire una descrizione per la condivisione clonata (facoltativo).
    
-   c.    È possibile modificare il tipo di hello della condivisione hello che si esegue il ripristino. Una condivisione a livelli viene clonata come condivisione a livelli e una condivisione aggiunta in locale come una condivisione aggiunta in locale.
+   c.    Non è possibile modificare il tipo della condivisione di cui si sta eseguendo il ripristino. Una condivisione a livelli viene clonata come condivisione a livelli e una condivisione aggiunta in locale come una condivisione aggiunta in locale.
    
-   d.    capacità di Hello è impostata come dimensione toohello uguale della condivisione di hello da che la clonazione.
+   d.    La capacità viene impostata alla stessa dimensione della condivisione che si sta clonando.
    
-   e.    Assegnare gli amministratori di hello per questa condivisione. Dopo aver completato il clone hello sarà toomodify in grado di proprietà della condivisione hello tramite Esplora File.
+   e.    Assegnare gli amministratori per la condivisione. Sarà possibile modificare le proprietà della condivisione tramite Esplora file dopo il completamento della clonazione.
    
    f.    Fare clic su **OK**.
    
    ![Clonare un backup](./media/storsimple-virtual-array-clone/cloneshare6.png)
 
-4. Fare clic su **Clone** toostart un processo di clonazione. Dopo aver completato il processo di hello, viene avviata l'operazione di clonazione hello e si riceve una notifica. lo stato di avanzamento di toomonitor hello del clone, andare toohello **processi** pannello e fare clic su hello tooview processo i dettagli dei processi.
-5. Dopo il clone hello viene creato correttamente, passare toohello Indietro **condivisioni** pannello nel dispositivo.
-6. È ora possibile visualizzare nuova condivisione di clonato hello in elenco hello delle condivisioni nel dispositivo. Una condivisione a livelli viene clonata come condivisione a livelli e una condivisione aggiunta in locale come una condivisione aggiunta in locale.
+4. Fare clic su **Clona** per avviare un processo di clonazione. Al termine del processo, viene avviata l'operazione di clonazione e si riceve una notifica. Per monitorare lo stato di avanzamento della clonazione, passare al pannello **Processi** e fare clic sul processo per visualizzarne i dettagli.
+5. Dopo aver creato correttamente il clone, tornare al pannello **Condivisioni** sul dispositivo.
+6. È ora possibile visualizzare la nuova condivisione clonata nell'elenco delle condivisioni nel dispositivo. Una condivisione a livelli viene clonata come condivisione a livelli e una condivisione aggiunta in locale come una condivisione aggiunta in locale.
    
    ![Clonare un backup](./media/storsimple-virtual-array-clone/cloneshare10.png)
 
 ## <a name="clone-volumes-from-a-backup-set"></a>Clonare volumi da un set di backup
 
-tooclone da un backup, nel portale di Azure hello è tooperform passaggi simili toohello quelli quando si clona una condivisione. operazione di clonazione Hello cloni hello tooa backup nuovo volume hello stesso dispositivo virtuale. non è possibile clonare tooa altro dispositivo.
+Per clonare da un backup, nel portale di Azure, è necessario seguire una procedura simile a quella della clonazione di una condivisione. L'operazione di clonazione consente di clonare il backup in un nuovo volume nello stesso dispositivo virtuale. Non è possibile clonare in un dispositivo diverso.
 
-#### <a name="tooclone-a-volume"></a>tooclone un volume
+#### <a name="to-clone-a-volume"></a>Per clonare un volume
 
-1. Sfoglia troppo**dispositivi** blade. Selezionare e fare clic sul dispositivo e quindi fare clic su **Volumi**. Selezionare il volume hello che si desidera tooclone, hello volume tooinvoke hello menu di scelta rapida. Selezionare **Clona**.
+1. Passare al pannello **Dispositivi**. Selezionare e fare clic sul dispositivo e quindi fare clic su **Volumi**. Selezionare il volume che si desidera clonare, fare clic con il pulsante destro del mouse sul volume per richiamare il menu di scelta rapida. Selezionare **Clona**.
    
    ![Clonare un volume](./media/storsimple-virtual-array-clone/clonevolume1.png)
-2. In hello **Clone** pannello, fare clic su **Backup** e quindi hello seguenti: 
+2. Nel pannello **Clona** fare clic su **Backup** e quindi eseguire le operazioni seguenti: 
    
-   a.    Filtrare un backup su questo dispositivo in base all'intervallo di tempo hello. È possibile scegliere tra **Ultimi 7 giorni**, **Ultimi 30 giorni** e **Ultimo anno**. 
+   a.    Filtrare un backup su questo dispositivo in base all'intervallo di tempo. È possibile scegliere tra **Ultimi 7 giorni**, **Ultimi 30 giorni** e **Ultimo anno**. 
    
-   b.    Nell'elenco di hello di backup filtrati visualizzato, selezionare un tooclone dal backup.
+   b.    Nell'elenco di backup filtrati visualizzato selezionare un backup da cui eseguire la clonazione.
    
    c.    Fare clic su **OK**.
    
    ![Clonare un backup](./media/storsimple-virtual-array-clone/clonevolume3.png)
-3. In hello **Clone** pannello, fare clic su **le impostazioni del volume di destinazione** e quindi hello seguenti:
+3. Nel pannello **Clona** fare clic su **Impostazioni di destinazione del volume** e quindi eseguire le operazioni seguenti:
    
-   a. nome del dispositivo Hello viene popolato automaticamente.
+   a. Il nome del dispositivo viene inserito automaticamente.
    
-   b. Specificare un nome di volume per hello **volume clonato**. nome del volume Hello deve contenere 3 too127 caratteri.
+   b. Specificare un nome di volume per il **volume clonato**. Il nome del volume deve contenere da 3 a 127 caratteri.
    
-   c. tipo di volume Hello viene impostata automaticamente volume originale toohello. Un volume a livelli viene clonato come volume a livelli e un volume aggiunto in locale come un volume aggiunto in locale.
+   c. Il tipo di volume viene automaticamente impostato sul volume originale. Un volume a livelli viene clonato come volume a livelli e un volume aggiunto in locale come un volume aggiunto in locale.
    
-   d. Per hello **connesso host**, fare clic su **selezionare**.
+   d. Per gli **Host connessi** fare clic su **Seleziona**.
    
    ![Clonare un backup](./media/storsimple-virtual-array-clone/clonevolume4.png)
-4. In hello **connesso host** pannello selezionare da un record esistente o aggiungere un nuovo record. tooadd un nuovo record, è necessario un nome ACR tooprovide e host hello IQN. Fare clic su **Seleziona**.
+4. Nel pannello **Host connessi** scegliere un record di controllo di accesso esistente o aggiungerne uno nuovo. Per aggiungere un nuovo record di controllo di accesso, sarà necessario fornire il relativo nome e il nome IQN dell'host. Fare clic su **Seleziona**.
    
    ![Clonare un backup](./media/storsimple-virtual-array-clone/clonevolume5.png)
-5. Fare clic su **Clone** toolaunch un processo di clonazione.
+5. Fare clic su **Clona** per avviare un processo di clonazione.
    
    ![Clonare un backup](./media/storsimple-virtual-array-clone/clonevolume6.png)  
-6. Dopo aver creato il processo di clonazione hello, la clonazione verrà avviato. Una volta creato il clone hello, viene visualizzato nel Pannello di hello volumi nel dispositivo. Si noti che un volume a livelli viene clonato come volume a livelli e un volume aggiunto in locale come un volume aggiunto in locale.
+6. La clonazione viene avviata dopo aver creato il relativo processo. Dopo aver creato la clonazione, questa viene visualizzata nel pannello Volumi nel dispositivo. Si noti che un volume a livelli viene clonato come volume a livelli e un volume aggiunto in locale come un volume aggiunto in locale.
    
    ![Clonare un backup](./media/storsimple-virtual-array-clone/clonevolume8.png)
-7. Una volta volume hello visualizzata online nell'elenco di hello di volumi, volume hello è disponibile per l'utilizzo. Nell'host di iniziatore iSCSI hello, aggiornare l'elenco di hello di destinazioni nella finestra delle proprietà iniziatore iSCSI. Una nuova destinazione che contiene il nome di volume clonato hello dovrebbe essere visualizzato come "inattiva" nella colonna Stato hello.
-8. Selezionare la destinazione hello e fare clic su **Connetti**. Dopo aver connesso toohello destinazione iniziatore hello, lo stato di hello debba modificare troppo**connesso**.
-9. In hello **Gestione disco** finestra hello volumi montati vengono visualizzati come mostrato nella seguente figura hello. Mouse sul volume hello individuato (fare clic su nome hello del disco), quindi fare clic su **Online**.
+7. Quando viene visualizzato nell'elenco dei volumi online, il volume è disponibile per l'uso. Aggiornare l'elenco delle destinazioni nella finestra Proprietà iniziatore iSCSI nell'host dell'iniziatore iSCSI. Una nuova destinazione contenente il nome del volume clonato verrà visualizzata come "inattiva" nella colonna dello stato.
+8. Selezionare la destinazione e fare clic su **Connetti**. Dopo avere connesso il dispositivo, lo stato deve essere modificato in **Connesso**.
+9. Nella finestra **Gestione disco** i volumi montati sono visualizzati come indicato nella figura seguente. Fare clic con il pulsante destro del mouse sul volume individuato (fare clic sul nome del disco) e fare clic su **Online**.
 
 > [!IMPORTANT]
-> Quando durante il tentativo tooclone un volume o una condivisione da un set di backup, se il processo di clonazione hello non riesce, un volume di destinazione o una condivisione può comunque creato nel portale di hello. È importante eliminare questo volume di destinazione oppure condividere hello portale toominimize i futuri problemi causati da questo elemento.
+> Quando si tenta di clonare un volume o una condivisione da un set di backup, anche se il processo di clonazione non viene completato correttamente, è comunque possibile creare un volume o una condivisione di destinazione nel portale. È importante eliminare questo volume o questa condivisione di destinazione nel portale per ridurre al minimo eventuali problemi futuri causati da questo elemento.
 > 
 > 
 
 ## <a name="item-level-recovery-ilr"></a>Ripristino a livello di elemento (ILR)
 
-Questa versione introduce hello a livello di elemento ripristino in un Array virtuale StorSimple configurato come un file server. funzionalità di Hello consente toodo ripristino granulare di file e cartelle da un backup nel cloud di hello tutte le condivisioni nel dispositivo StorSimple hello. Gli utenti possono recuperare i file eliminati dai backup recenti con un modello self-service.
+Questa versione introduce il ripristino a livello di elemento (ILR) su un array virtuale StorSimple configurato come file server. La funzionalità consente di eseguire il ripristino granulare di file e cartelle da un backup cloud di tutte le condivisioni nel dispositivo StorSimple. Gli utenti possono recuperare i file eliminati dai backup recenti con un modello self-service.
 
-Ogni condivisione presenta una *.backups* cartella che contiene i backup più recente di hello. È possibile passare toohello backup desiderata, copiare i file rilevanti e le cartelle dal backup hello e ripristinarli. Questa funzionalità Elimina tooadministrators chiamate per il ripristino dei file dai backup.
+Ogni condivisione dispone di una cartella *.backups* contenente i backup più recenti. L'utente può passare al backup desiderato, copiare i file e le cartelle rilevanti dal backup, quindi ripristinarli. In questo modo si eliminano le chiamate agli amministratori per il ripristino di file dai backup.
 
-1. Quando si esegue hello ILR, è possibile visualizzare i backup hello tramite Esplora File. Fare clic su condivisione hello specifico da toolook al backup hello. Verrà visualizzato un *.backups* cartella creata nella condivisione di hello che archivia tutti i backup di hello. Espandere hello *.backups* backup hello tooview di cartelle. cartella Hello Mostra la visualizzazione esplosa hello dell'intera gerarchia backup di hello. Questa vista viene creata su richiesta e in genere accetta solo un paio di toocreate secondi.
+1. Quando si esegue un ILR, è possibile visualizzare i backup con Esplora file. Fare clic sulla condivisione specifica per la quale si desidera visualizzare il backup. Viene visualizzata una cartella *.backups* creata sotto la condivisione che archivia tutti i backup. Espandere la cartella *.backups* per visualizzare i backup. La cartella mostra così in dettaglio l'intera gerarchia di backup. Questa visualizzazione viene creata su richiesta e generalmente bastano pochi secondi per completarne la creazione.
    
-   i backup ultime cinque Hello vengono visualizzati in questo modo e possono essere tooperform utilizzato un livello di elemento di ripristino. Hello cinque backup recenti includono entrambi hello pianificata e hello backup manuali.
+   Le ultime cinque copie di backup vengono visualizzate in questo modo e possono essere usate per eseguire un ripristino a livello di elemento. Le cinque copie di backup più recenti includono sia i backup pianificati predefiniti sia i backup manuali.
    
    * **Backup pianificati** denominati &lt;Device name&gt;DailySchedule-YYYYMMDD-HHMMSS-UTC.
    * **Backup manuali** denominati Ad-hoc-YYYYMMDD-HHMMSS-UTC.
      
      ![](./media/storsimple-virtual-array-clone/image14.png)
 
-2. Identificare i backup di hello contenente hello la versione più recente del file hello eliminato. Anche se il nome di cartella hello contiene un timestamp UTC in ognuna delle hello casi precedenti, ora di hello Creazione cartella quali hello è hello dispositivo effettivo ora in cui hello backup avviato. Utilizzare hello cartella timestamp toolocate e identificare i backup hello.
+2. Identificare il backup contenente la versione più recente del file eliminato. Anche se il nome della cartella contiene un timestamp UTC in ognuno dei casi precedenti, l'ora in cui è stata creata la cartella è l'ora effettiva del dispositivo all'avvio del backup. Usare il timestamp della cartella per individuare e identificare i backup.
 
-3. Individuare la cartella hello o file hello che si desidera toorestore nel backup hello identificato nel passaggio precedente hello. Nota che è possibile visualizzare solo i file di hello o le cartelle che si dispone di autorizzazioni. Se non è possibile accedere a determinati file o cartelle, contattare un amministratore della condivisione. messaggio per l'amministratore può utilizzare le autorizzazioni di condivisione hello tooedit Esplora File e fornire accesso toohello specifici file o cartella. È consigliabile che hello condivisione amministratore è un gruppo di utenti anziché un singolo utente.
+3. Individuare la cartella o il file che si desidera ripristinare nel backup identificato nel passaggio precedente. Notare che è possibile visualizzare solo i file o le cartelle per cui si dispone delle autorizzazioni necessarie. Se non è possibile accedere a determinati file o cartelle, contattare un amministratore della condivisione. L'amministratore può usare Esplora file per modificare le autorizzazioni di condivisione e garantire l'accesso a file o cartelli specifici. Preferibilmente, l'amministratore della condivisione deve corrispondere a un gruppo utenti anziché a un utente singolo.
 
-4. Copiare il file hello o hello cartella toohello appropriate per la condivisione nel file server StorSimple.
+4. Copiare il file o la cartella nella condivisione appropriata nel file server StorSimple.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per ulteriori informazioni su troppo[amministrare l'Array virtuale StorSimple tramite interfaccia utente web locale hello](storsimple-ova-web-ui-admin.md).
+Informazioni su come [Usare l'interfaccia utente Web per amministrare StorSimple Virtual Array](storsimple-ova-web-ui-admin.md).
 

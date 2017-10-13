@@ -1,6 +1,6 @@
 ---
-title: aaaCreate un server Jenkins in Azure
-description: Installare Jenkins su una macchina virtuale Linux di Azure dal modello di soluzione Jenkins hello e compilare un'applicazione di esempio Java.
+title: Creare un server Jenkins in Azure
+description: Installare Jenkins in una macchina virtuale Linux di Azure dal modello di soluzione Jenkins e compilare un'applicazione Java di esempio.
 author: mlearned
 manager: douge
 ms.service: multiple
@@ -10,102 +10,102 @@ ms.topic: hero-article
 ms.date: 08/21/2017
 ms.author: mlearned
 ms.custom: Jenkins
-ms.openlocfilehash: 82ab2ac52594acba131414b449b608978591d4b8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7bb74f297d52fb25171817175cce64187b397c38
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="create-a-jenkins-server-on-an-azure-linux-vm-from-hello-azure-portal"></a>Creare un server Jenkins in una macchina virtuale Linux di Azure dal portale di Azure hello
+# <a name="create-a-jenkins-server-on-an-azure-linux-vm-from-the-azure-portal"></a>Creare un server Jenkins in una VM Linux di Azure dal portale di Azure
 
-Questa Guida introduttiva viene illustrato come tooinstall [Jenkins](https://jenkins.io) in una macchina virtuale Linux Ubuntu con gli strumenti di hello e toowork plug-in configurato con Azure. Al termine, si avrà un server Jenkins in esecuzione in Azure che compila un'app Java di esempio da [GitHub](https://github.com).
+Questa guida introduttiva illustra come installare [Jenkins](https://jenkins.io) in una VM Ubuntu Linux con gli strumenti e i plug-in configurati per usare Azure. Al termine, si avrà un server Jenkins in esecuzione in Azure che compila un'app Java di esempio da [GitHub](https://github.com).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
 * Una sottoscrizione di Azure.
-* Accesso tooSSH nella riga di comando del computer (ad esempio hello Bash shell o [PuTTY](http://www.putty.org/))
+* Accesso a SSH nella riga di comando del computer (ad esempio, la shell Bash o [PuTTY](http://www.putty.org/))
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="create-hello-jenkins-vm-from-hello-solution-template"></a>Creare VM Jenkins hello dal modello di soluzione hello
+## <a name="create-the-jenkins-vm-from-the-solution-template"></a>Creare la VM Jenkins dal modello di soluzione
 
-Aprire hello [un'immagine del marketplace per Jenkins](https://azuremarketplace.microsoft.com/marketplace/apps/azure-oss.jenkins?tab=Overview) nel browser web e selezionare **ottenere IT ora** dalla parte sinistra della pagina hello hello. Hello revisione dei prezzi di dettagli e selezionare **continua**, quindi selezionare **crea** tooconfigure hello Jenkins server hello portale di Azure. 
+Aprire l'[immagine del Marketplace per Jenkins](https://azuremarketplace.microsoft.com/marketplace/apps/azure-oss.jenkins?tab=Overview) nel Web browser e selezionare **SCARICA ADESSO** sul lato sinistro della pagina. Esaminare i dettagli relativi ai prezzi e selezionare **Continua** e quindi **Crea** per configurare il server Jenkins nel portale di Azure. 
    
 ![Finestra di dialogo del portale di Azure](./media/install-jenkins-solution-template/ap-create.png)
 
-In hello **configurare impostazioni di base** scheda, compilare hello seguenti campi:
+Nella scheda **Configura impostazioni di base** compilare i campi seguenti:
 
 ![Configurare le impostazioni di base](./media/install-jenkins-solution-template/ap-basic.png)
 
 * Usare **Jenkins** come **Nome**.
-* Immettere un valore in **Nome utente**. nome utente Hello deve soddisfare [requisiti specifici](/azure/virtual-machines/linux/faq#what-are-the-username-requirements-when-creating-a-vm).
-* Selezionare **Password** come hello **tipo di autenticazione** e immettere una password. Hello password deve contenere un carattere maiuscolo, un numero e un carattere speciale.
-* Utilizzare **myJenkinsResourceGroup** per hello **gruppo di risorse**.
-* Scegliere hello **Stati Uniti orientali** [area Azure](https://azure.microsoft.com/regions/) da hello **percorso** elenco a discesa.
+* Immettere un valore in **Nome utente**. Il nome utente deve soddisfare [specifici requisiti](/azure/virtual-machines/linux/faq#what-are-the-username-requirements-when-creating-a-vm).
+* Selezionare **Password** come **Tipo di autenticazione** e immettere una password. La password deve contenere un carattere maiuscolo, un numero e un carattere speciale.
+* Usare **myJenkinsResourceGroup** come **Gruppo di risorse**.
+* Scegliere l'[area di Azure](https://azure.microsoft.com/regions/) **Stati Uniti orientali** nell'elenco a discesa **Località**.
 
-Selezionare **OK** tooproceed toohello **configurare le opzioni aggiuntive** scheda. Immettere un server di dominio univoci nome tooidentify hello Jenkins e selezionare **OK**.
+Selezionare **OK** per passare alla scheda **Configure additional options** (Configura opzioni aggiuntive). Immettere un nome di dominio univoco per identificare il server Jenkins e selezionare **OK**.
 
 ![Configurare le opzioni aggiuntive](./media/install-jenkins-solution-template/ap-addtional.png)  
 
- Dopo la convalida viene eseguita, selezionare **OK** nuovamente da hello **riepilogo** scheda. Infine, selezionare **acquisto** toocreate hello Jenkins VM. Quando il server è pronto, si riceve una notifica in hello portale di Azure:   
+ Al termine della convalida, selezionare di nuovo **OK** nella scheda **Riepilogo**. Selezionare infine **Acquista** per creare la VM Jenkins. Quando il server è pronto, viene visualizzata una notifica nel portale di Azure:   
 
 ![Notifica che informa che Jenkins è pronto](./media/install-jenkins-solution-template/jenkins-deploy-notification-ready.png)
 
-## <a name="connect-toojenkins"></a>Connettersi tooJenkins
+## <a name="connect-to-jenkins"></a>Connettersi a Jenkins
 
-Passare una macchina virtuale tooyour (ad esempio, http://jenkins2517454.eastus.cloudapp.azure.com/) nel web browser. console di Jenkins Hello è accessibile tramite il protocollo HTTP non protette in modo vengono fornite istruzioni sulla console hello pagina tooaccess hello Jenkins in modo sicuro dal computer tramite un tunnel SSH.
+Passare alla macchina virtuale (ad esempio, http://jenkins2517454.eastus.cloudapp.azure.com/) nel Web browser. Dato che la console Jenkins non è accessibile tramite HTTP non protetto, nella pagina verranno visualizzate istruzioni per accedere alla console Jenkins in modo sicuro dal computer usando un tunnel SSH.
 
 ![Sbloccare Jenkins](./media/install-jenkins-solution-template/jenkins-ssh-instructions.png)
 
-Impostare i tunnel hello utilizzando hello `ssh` comando nella pagina di hello dalla riga di comando hello, sostituendo `username` con nome hello di utente amministratore di macchina virtuale hello scelto in precedenza durante la configurazione di macchina virtuale hello dal modello di soluzione hello.
+Configurare il tunnel usando il comando `ssh` sulla pagina dalla riga di comando, sostituendo `username` con il nome dell'utente amministratore della macchina virtuale scelto in precedenza durante la configurazione della macchina virtuale dal modello di soluzione.
 
 ```bash
 ssh -L 127.0.0.1:8080:localhost:8080 jenkinsadmin@jenkins2517454.eastus.cloudapp.azure.com
 ```
 
-Dopo aver avviato il tunnel hello, passare toohttp://localhost:8080 / sul computer locale. 
+Dopo aver avviato il tunnel, passare a http://localhost:8080/ nel computer locale. 
 
-Ottenere la password iniziale hello eseguendo hello comando nella riga di comando hello connesso tramite SSH toohello Jenkins VM seguente.
+Ottenere la password iniziale eseguendo questo comando nella riga di comando mentre si è connessi tramite SSH alla VM Jenkins:
 
 ```bash
 `sudo cat /var/lib/jenkins/secrets/initialAdminPassword`.
 ```
 
-Sbloccare dashboard Jenkins hello per hello come primo accesso tramite la password iniziale.
+Sbloccare il dashboard di Jenkins per la prima volta con questa password iniziale.
 
 ![Sbloccare Jenkins](./media/install-jenkins-solution-template/jenkins-unlock.png)
 
-Selezionare **installare suggeriti i plug-in** hello pagina successiva e quindi creare un dashboard di Jenkins Jenkins amministrazione utente utilizzato tooaccess hello.
+Selezionare **Install suggested plugins** (Installa plug-in consigliati) nella pagina successiva e quindi creare un utente amministratore di Jenkins che verrà usato per accedere al dashboard di Jenkins.
 
 ![Jenkins è pronto per l'uso.](./media/install-jenkins-solution-template/jenkins-welcome.png)
 
-server Jenkins Hello è ora pronto toobuild codice.
+Il server Jenkins è ora pronto per la compilazione di codice.
 
 ## <a name="create-your-first-job"></a>Creare il primo processo
 
-Selezionare **creare nuovi processi** dalla console di Jenkins hello, quindi denominarlo **mySampleApp** e selezionare **progetto Freestyle**, quindi selezionare **OK**.
+Selezionare **Create new jobs** (Crea nuovi processi) nella console Jenkins, assegnare il nome **mySampleApp** e selezionare **Freestyle project** (Progetto Freestyle) e quindi **OK**.
 
 ![Creare un nuovo processo](./media/install-jenkins-solution-template/jenkins-new-job.png) 
 
-Seleziona hello **gestione del codice sorgente** scheda, abilitare **Git**e immettere l'URL nel seguente hello **URL del Repository** campo:`https://github.com/spring-guides/gs-spring-boot.git`
+Selezionare la scheda **Source Code Management** (Gestione del codice sorgente), abilitare **Git** e immettere l'URL seguente nel campo **Repository URL** (URL del repository): `https://github.com/spring-guides/gs-spring-boot.git`
 
-![Definire i repository Git hello](./media/install-jenkins-solution-template/jenkins-job-git-configuration.png) 
+![Definire il repository Git](./media/install-jenkins-solution-template/jenkins-job-git-configuration.png) 
 
-Seleziona hello **compilare** tab, quindi selezionare **istruzione di compilazione Aggiungi**, **script richiamare Gradle**. Selezionare **Use Gradle Wrapper** (Usa wrapper di Gradle) e quindi immettere `complete` in **Wrapper location** (Percorso wrapper) e `build` in **Tasks** (Attività).
+Selezionare la scheda **Build** (Compilazione) e quindi **Add build step** (Aggiungi passaggio di compilazione) e **Invoke Gradle script** (Richiama script Gradle). Selezionare **Use Gradle Wrapper** (Usa wrapper di Gradle) e quindi immettere `complete` in **Wrapper location** (Percorso wrapper) e `build` in **Tasks** (Attività).
 
-![Utilizzare toobuild wrapper di Gradle hello](./media/install-jenkins-solution-template/jenkins-job-gradle-config.png) 
+![Usare il wrapper di Gradle per la compilazione](./media/install-jenkins-solution-template/jenkins-job-gradle-config.png) 
 
-Selezionare **Advanced** (Avanzate) e quindi immettere `complete` in hello **radice compilazione script** campo. Selezionare **Salva**.
+Selezionare **Advanced** (Avanzate) e quindi immettere `complete` nel campo **Root Build script** (Script di compilazione radice). Selezionare **Salva**.
 
-![Impostare le impostazioni avanzate in fase di compilazione hello Gradle wrapper](./media/install-jenkins-solution-template/jenkins-job-gradle-advances.png) 
+![Configurare le impostazioni avanzate nel passaggio di compilazione del wrapper di Gradle](./media/install-jenkins-solution-template/jenkins-job-gradle-advances.png) 
 
-## <a name="build-hello-code"></a>Compilare il codice hello
+## <a name="build-the-code"></a>Compilare il codice
 
-Selezionare **compilare ora** toocompile hello codice e i pacchetti hello app di esempio. Al termine della compilazione, selezionare hello **dell'area di lavoro** collegamento per un progetto di hello.
+Selezionare **Build Now** (Compila) per compilare il codice e creare il pacchetto dell'app di esempio. Al termine della compilazione, selezionare il collegamento **Workspace** (Area di lavoro) per il progetto.
 
-![Sfoglia file JAR da compilazione hello toohello dell'area di lavoro tooget hello](./media/install-jenkins-solution-template/jenkins-access-workspace.png) 
+![Passare all'area di lavoro per ottenere il file JAR della compilazione](./media/install-jenkins-solution-template/jenkins-access-workspace.png) 
 
-Passare troppo`complete/build/libs` e verificare hello `gs-spring-boot-0.1.0.jar` esiste tooverify la riuscita della compilazione. Il server è diventato di Jenkins pronto toobuild progetti in Azure.
+Passare a `complete/build/libs` e verificare che sia presente il file `gs-spring-boot-0.1.0.jar` per assicurarsi che la compilazione sia stata completata correttamente. Il server Jenkins è ora pronto per la compilazione dei progetti dell'utente in Azure.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

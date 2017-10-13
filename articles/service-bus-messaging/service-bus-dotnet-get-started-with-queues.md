@@ -1,5 +1,5 @@
 ---
-title: aaaGet avviato con le code di Service Bus di Azure | Documenti Microsoft
+title: Introduzione alle code del bus di servizio di Azure | Microsoft Docs
 description: Scrivere un'applicazione console C# che usa le code di messaggistica del bus di servizio.
 services: service-bus-messaging
 documentationcenter: .net
@@ -14,59 +14,59 @@ ms.tgt_pltfrm: dotnet
 ms.workload: na
 ms.date: 06/26/2017
 ms.author: sethm
-ms.openlocfilehash: eaa362ab0eabd2427977398c1deab5dc00105ae9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 99a377db6341d90d263b98e14227db61dd9beabd
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="get-started-with-service-bus-queues"></a>Introduzione alle code del bus di servizio
 [!INCLUDE [service-bus-selector-queues](../../includes/service-bus-selector-queues.md)]
 
 ## <a name="what-will-be-accomplished"></a>Contenuto dell'esercitazione
-Questa esercitazione sono trattati hello alla procedura seguente:
+Questa esercitazione illustra i passaggi seguenti:
 
-1. Creare uno spazio dei nomi Service Bus, utilizzando hello portale di Azure.
-2. Creare una coda di Service Bus, utilizzando hello portale di Azure.
-3. Scrivere un messaggio a un toosend di applicazione console.
-4. Scrivere un hello tooreceive di applicazione console messaggi inviati nel passaggio precedente hello.
+1. Creare uno spazio dei nomi del bus di servizio usando il portale di Azure.
+2. Creare una coda del bus di servizio usando il portale di Azure.
+3. Scrivere un'applicazione console per inviare un messaggio.
+4. Scrivere un'applicazione console per ricevere i messaggi inviati nel passaggio precedente.
 
 ## <a name="prerequisites"></a>Prerequisiti
-1. [Visual Studio 2015 o versione successiva](http://www.visualstudio.com). esempi di Hello in questa esercitazione usano Visual Studio 2017.
+1. [Visual Studio 2015 o versione successiva](http://www.visualstudio.com). Negli esempi di questa esercitazione viene usato Visual Studio 2017.
 2. Una sottoscrizione di Azure.
 
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
-## <a name="1-create-a-namespace-using-hello-azure-portal"></a>1. Creare uno spazio dei nomi utilizzando hello portale di Azure
-Se è già stato creato uno spazio dei nomi di messaggistica del Bus di servizio, passare toohello [creare una coda utilizzando il portale di Azure hello](#2-create-a-queue-using-the-azure-portal) sezione.
+## <a name="1-create-a-namespace-using-the-azure-portal"></a>1. Creare uno spazio dei nomi tramite il portale di Azure
+Se è già stato creato uno spazio dei nomi di messaggistica del bus di servizio, passare alla sezione [Creare una coda usando il portale di Azure](#2-create-a-queue-using-the-azure-portal).
 
 [!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
-## <a name="2-create-a-queue-using-hello-azure-portal"></a>2. Creare una coda utilizzando hello portale di Azure
-Se è stato già creato una coda del Bus di servizio, passare toohello [coda di invio messaggi toohello](#3-send-messages-to-the-queue) sezione.
+## <a name="2-create-a-queue-using-the-azure-portal"></a>2. Creare una coda usando il portale di Azure
+Se è già stata creata una coda del bus di servizio, passare alla sezione [Inviare messaggi alla coda](#3-send-messages-to-the-queue).
 
 [!INCLUDE [service-bus-create-queue-portal](../../includes/service-bus-create-queue-portal.md)]
 
-## <a name="3-send-messages-toohello-queue"></a>3. Messaggi toohello coda di invio
-coda di toohello toosend messaggi, è scrivere un'applicazione console c# con Visual Studio.
+## <a name="3-send-messages-to-the-queue"></a>3. Inviare messaggi alla coda
+Per inviare messaggi alla coda, si scrive un'applicazione console C# in Visual Studio.
 
 ### <a name="create-a-console-application"></a>Creare un'applicazione console
 
 Avviare Visual Studio e creare un nuovo progetto **App console (.NET Framework)**.
 
-### <a name="add-hello-service-bus-nuget-package"></a>Aggiungere il pacchetto NuGet di Service Bus hello
-1. Fare clic sul progetto hello appena creato e selezionare **Gestisci pacchetti NuGet**.
-2. Fare clic su hello **Sfoglia** scheda, cercare **Microsoft Azure Service Bus**, quindi selezionare hello **Windowsazure** elemento. Fare clic su **installare** toocomplete hello installazione, quindi chiudere questa finestra di dialogo.
+### <a name="add-the-service-bus-nuget-package"></a>Aggiungere il pacchetto NuGet del bus di servizio
+1. Fare clic con il pulsante destro del mouse sul progetto appena creato e scegliere **Gestisci pacchetti NuGet**.
+2. Fare clic sulla scheda **Esplora**, cercare **Bus di servizio di Microsoft Azure** e quindi selezionare l'elemento **WindowsAzure.ServiceBus**. Fare clic su **Installa** per completare l'installazione, quindi chiudere questa finestra di dialogo.
    
     ![Selezionare un pacchetto NuGet][nuget-pkg]
 
-### <a name="write-some-code-toosend-a-message-toohello-queue"></a>Scrittura di una coda di messaggi toohello alcuni toosend di codice
-1. Aggiungere il seguente hello `using` top toohello istruzione del file Program.cs hello.
+### <a name="write-some-code-to-send-a-message-to-the-queue"></a>Scrivere il codice per inviare un messaggio alla coda
+1. Aggiungere l'istruzione `using` seguente all'inizio del file Program.cs.
    
     ```csharp
     using Microsoft.ServiceBus.Messaging;
     ```
-2. Aggiungere i seguenti toohello codice hello `Main` metodo. Set hello `connectionString` connessione toohello variabile stringa ottenuto durante la creazione dello spazio dei nomi hello e impostare `queueName` toohello della coda utilizzata durante la creazione della coda di hello.
+2. Aggiungere il codice seguente al metodo `Main` . Impostare la variabile `connectionString` sulla stessa stringa di connessione ottenuta al momento della creazione dello spazio dei nomi e impostare `queueName` sul nome della coda usato durante la creazione della coda.
    
     ```csharp
     var connectionString = "<your connection string>";
@@ -79,7 +79,7 @@ Avviare Visual Studio e creare un nuovo progetto **App console (.NET Framework)*
 
     client.Send(message);
 
-    Console.WriteLine("Message successfully sent! Press ENTER tooexit program");
+    Console.WriteLine("Message successfully sent! Press ENTER to exit program");
     Console.ReadLine();
     ```
    
@@ -109,25 +109,25 @@ Avviare Visual Studio e creare un nuovo progetto **App console (.NET Framework)*
 
                 client.Send(message);
 
-                Console.WriteLine("Message successfully sent! Press ENTER tooexit program");
+                Console.WriteLine("Message successfully sent! Press ENTER to exit program");
                 Console.ReadLine();
             }
         }
     }
     ```
-3. Esegui programma hello e verifica hello portale di Azure: fare clic sul nome della coda nello spazio dei nomi hello hello **Panoramica** blade. coda Hello **Essentials** pannello viene visualizzato. Si noti che hello **il numero di messaggi attivi** valore dovrebbe essere 1. Ogni volta che si esegue l'applicazione mittente hello senza recuperare i messaggi hello, questo valore incrementato di 1. Si noti che dimensioni correnti di hello della coda di hello viene incrementato a ogni applicazione hello ora aggiunge inoltre una coda di messaggi toohello.
+3. Eseguire il programma e controllare il portale di Azure: fare clic sul nome della coda nel pannello **Panoramica** dello spazio dei nomi. Viene visualizzato il pannello **Informazioni di base** della coda. Si noti che ora il valore di **Numero di messaggi attivi** è 1. Ogni volta che si avvia l'applicazione mittente senza recuperare i messaggi, questo valore aumenta di 1. Tenere anche presente che la dimensione corrente della coda aumenta ogni volta che l'app aggiunge un messaggio alla coda.
    
       ![Dimensioni dei messaggi][queue-message]
 
-## <a name="4-receive-messages-from-hello-queue"></a>4. Ricevere messaggi dalla coda hello
+## <a name="4-receive-messages-from-the-queue"></a>4. Ricezione di messaggi dalla coda
 
-1. messaggi hello tooreceive appena inviato, creare una nuova applicazione console e aggiungere un pacchetto NuGet di Service Bus toohello riferimento, applicazione mittente precedente toohello simile.
-2. Aggiungere il seguente hello `using` top toohello istruzione del file Program.cs hello.
+1. Per ricevere i messaggi inviati, creare una nuova applicazione console e aggiungere un riferimento al pacchetto NuGet del bus di servizio, come per l'applicazione mittente precedente.
+2. Aggiungere l'istruzione `using` seguente all'inizio del file Program.cs.
    
     ```csharp
     using Microsoft.ServiceBus.Messaging;
     ```
-3. Aggiungere i seguenti toohello codice hello `Main` metodo. Set hello `connectionString` toohello variabile stringa di connessione è stato ottenuto durante la creazione dello spazio dei nomi hello e impostare `queueName` toohello della coda utilizzata durante la creazione della coda di hello.
+3. Aggiungere il codice seguente al metodo `Main` . Impostare la variabile `connectionString` sulla stessa stringa di connessione ottenuta al momento della creazione dello spazio dei nomi e impostare `queueName` sul nome della coda usato durante la creazione della coda.
    
     ```csharp
     var connectionString = "<your connection string>";
@@ -141,7 +141,7 @@ Avviare Visual Studio e creare un nuovo progetto **App console (.NET Framework)*
       Console.WriteLine(String.Format("Message id: {0}", message.MessageId));
     });
    
-    Console.WriteLine("Press ENTER tooexit program");
+    Console.WriteLine("Press ENTER to exit program");
     Console.ReadLine();
     ```
    
@@ -168,13 +168,13 @@ Avviare Visual Studio e creare un nuovo progetto **App console (.NET Framework)*
             Console.WriteLine(String.Format("Message id: {0}", message.MessageId));
           });
 
-          Console.WriteLine("Press ENTER tooexit program");   
+          Console.WriteLine("Press ENTER to exit program");   
           Console.ReadLine();
         }
       }
     }
     ```
-4. Eseguire il programma hello e controllare di nuovo portale hello. Si noti che hello **il numero di messaggi attivi** e **corrente** ora sono valori 0.
+4. Eseguire il programma e verificare di nuovo il portale. Si noti che ora i valori di **Numero di messaggi attivi** e di **Corrente** sono pari a 0.
    
     ![Lunghezza coda][queue-message-receive]
 
@@ -182,7 +182,7 @@ Congratulazioni. È stata creata una coda ed è stato inviato e ricevuto un mess
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Estrarre il nostro [repository GitHub con campioni](https://github.com/Azure/azure-service-bus/tree/master/samples) che illustrano alcune delle più avanzate funzionalità di messaggistica del Bus di servizio hello.
+Vedere il [repository GitHub con esempi](https://github.com/Azure/azure-service-bus/tree/master/samples) che illustrano alcune delle funzionalità più avanzate della messaggistica del bus di servizio.
 
 <!--Image references-->
 

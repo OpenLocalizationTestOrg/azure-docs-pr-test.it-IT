@@ -1,7 +1,7 @@
-Le connessioni Point-to-Site richiedono hello certificato chiave pubblica. cer file (non hello chiave privata) caricato toobe tooAzure. Hello passaggi seguenti consentono di esportare il file con estensione cer hello per il certificato radice autofirmato:
+Le connessioni da punto a sito richiedono il caricamento in Azure del file con estensione cer della chiave pubblica del certificato, non della chiave privata. La procedura seguente consente di esportare il file con estensione .cer per il certificato radice autofirmato:
 
-1. Aprire un file con estensione cer del certificato, hello tooobtain **gestire i certificati utente**. Individuare certificato radice autofirmato hello, in genere in 'Certificati - corrente\Personale\Certificati' e fare doppio clic su. Fare clic su **Tutte le attività** e quindi su **Esporta**. Verrà visualizzata hello **esportazione guidata certificati**.
-2. Nella procedura guidata hello, fare clic su **Avanti**. Selezionare **No, non esportare la chiave privata di hello**, quindi fare clic su **Avanti**.
-3. In hello **formato File di esportazione** selezionare **codificato Base 64 x. 509 (. CER).** , quindi fare clic su **Avanti**. 
-4. In hello **File tooExport**, **Sfoglia** toohello percorso toowhich si desidera tooexport hello certificato. Per **nome File**, file di certificato nome hello. Quindi fare clic su **Next**.
-5. Fare clic su **fine** certificato hello tooexport. Vedrai **hello esportazione completata**. Fare clic su **OK** guidata hello tooclose.
+1. Per ottenere un file con estensione cer dal certificato, aprire **Gestire i certificati utente**. Individuare il certificato radice autofirmato, in genere in "Certificati - Utente corrente\Personale\Certificati" e fare clic con il pulsante destro del mouse. Fare clic su **Tutte le attività** e quindi su **Esporta**. Si avvia la procedura di **Esportazione guidata certificati**.
+2. Nella procedura guidata fare clic su **Avanti**. Selezionare **No, non esportare la chiave privata** e quindi fare clic su **Avanti**.
+3. Nella pagina **Formato file di esportazione** selezionare **Codificato Base 64 X.509 (.CER)** e quindi fare clic su **Avanti**. 
+4. In **File da esportare** fare clic su **Sfoglia** e passare alla posizione in cui si vuole esportare il certificato. Per **Nome file**, assegnare un nome al file del certificato. Quindi fare clic su **Next**.
+5. Fare clic su **Fine** per esportare il certificato. Verrà visualizzato il messaggio **Esportazione completata**. Fare clic su **OK** per chiudere la procedura guidata.

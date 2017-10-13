@@ -1,5 +1,5 @@
 ---
-title: i codec e formati di codificatore Standard aaaMedia
+title: Formati e codec Media Encoder Standard
 description: Questo argomento fornisce una panoramica dei formati e dei codec di Media Encoder Standard.
 services: media-services
 documentationcenter: 
@@ -14,14 +14,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako;anilmur
-ms.openlocfilehash: 51a67f372dff579383ffcfa988e8f4d38ad44a72
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 1115408443e11c8b0d26b83217c5f63e4b6ba819
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="media-encoder-standard-formats-and-codecs"></a>Formati e codec Media Encoder Standard
-Questo documento contiene un elenco di importazione più comuni di hello e formati di file di esportazione che è possibile usare Media Encoder standard.
+Questo documento contiene un elenco dei formati di file di importazione ed esportazione più comuni che è possibile usare con Media Encoder Standard.
 
 ## <a name="input-containerfile-formats"></a>Contenitore di input/formati di file
 | Formato di file (estensioni di file) | Supportato |
@@ -39,30 +39,30 @@ Questo documento contiene un elenco di importazione più comuni di hello e forma
 | QuickTime (.mov) |Sì |
 
 > [!NOTE]
-> Sopra è riportato un elenco delle estensioni di file hello più di frequente. Media Encoder Standard supporta molte altre estensioni, ad esempio m2ts, mpeg2video, qt. Se si tenta di tooencode un file e viene visualizzato un messaggio di errore sul formato hello non è supportato, fornire un feedback [qui](https://feedback.azure.com/forums/169396-media-services/category/144411-encoding-and-processing/).
+> L'elenco precedente include le estensioni di file più comuni. Media Encoder Standard supporta molte altre estensioni, ad esempio m2ts, mpeg2video, qt. Se si prova a codificare un file e viene visualizzato un messaggio di errore che indica che il formato non è supportato, inviare commenti e suggerimenti [qui](https://feedback.azure.com/forums/169396-media-services/category/144411-encoding-and-processing/).
 > 
 > 
 
 ### <a name="audio-formats-in-input-containers"></a>Formati audio nei contenitori di input
-Media Encoder Standard supporta hello trasportano formati audio in contenitori di input seguenti:
+Il Codificatore multimedia standard supporta i seguenti formati audio nei contenitori di input:
 
 * file MXF, GXF e QuickTime che dispongono di tracce audio con esempi di stereo interleaved o 5.1
 
 oppure
 
-* MXF, GXF e QuickTime file in cui viene eseguita audio hello come tracce PCM separate, ma il mapping di canale hello (toostereo o 5.1) può essere dedotto dai metadati del file hello
+* File MXF, GXF e QuickTime in cui l'audio viene trasportato in tracce PCM separate, ma il mapping del canale (in stereo o 5.1) può essere dedotto dai metadati del file
 
-Si noti che il supporto per il mapping esplicito/fornito dall'utente canale verrà fornito in hello prossimo futuro.
+Si noti che il supporto per il mapping del canale esplicito/fornito dall'utente verrà fornito in futuro.
 
 ## <a name="input-video-codecs"></a>Codec video di input
 | Codec video di input | Supportato |
 | --- | --- | --- | --- |
-| AVC 8 bit/10 bit, di too4:2:2, tra cui AVCIntra |4:2:0 e 4:2:2 a 8 bit |
+| AVC 8 bit/10 bit, fino a 4:2:2, incluso AVCIntra |4:2:0 e 4:2:2 a 8 bit |
 | Avid DNxHD (in MXF) |Sì |
 | DVCPro/DVCProHD (in MXF) |Sì |
 | Video digitale (DV) (in file AVI) |Sì |
 | JPEG 2000 |Sì |
-| MPEG-2 (backup too422 profilo e di livello elevato, ad esempio varianti XDCAM, XDCAM HD, XDCAM IMX, CableLabs® e D10) |Profilo di too422 |
+| MPEG-2 (fino a 4:2:2 Profile e High Level; incluse varianti quali XDCAM, XDCAM HD, XDCAM IMX, CableLabs® e D10) |Fino a 422 Profile |
 | MPEG-1 |Sì |
 | FORMATO VC-1/WMV9 |Sì |
 | Canopus HQ/HQX |No |
@@ -79,7 +79,7 @@ Si noti che il supporto per il mapping esplicito/fornito dall'utente canale verr
 ## <a name="input-audio-codecs"></a>Codec audio di input
 | Codec audio di input | Supportato |
 | --- | --- | --- | --- |
-| AAC (AAC-LC, HE-AAC e AAC-HEv2; backup too5.1) |Sì |
+| AAC (AAC-LC, AAC-HE e AAC-HEv2; fino a 5.1) |Sì |
 | MPEG Layer 2 |Sì |
 | MP3 (MPEG-1 Audio Layer 3) |Sì |
 | Windows Media Audio |Sì |
@@ -94,7 +94,7 @@ Si noti che il supporto per il mapping esplicito/fornito dall'utente canale verr
 | Dolby® Digital Plus (E-AC3) |No |
 
 ## <a name="output-formats-and-codecs"></a>Formati e codec di output
-Hello nella tabella seguente sono elencati hello codec e formati di file che sono supportati per l'esportazione.
+La tabella seguente include l'elenco dei codec e dei formati di file supportati per l'esportazione.
 
 | Formato file | Codec video | Codec audio |
 | --- | --- | --- |
@@ -110,5 +110,5 @@ Hello nella tabella seguente sono elencati hello codec e formati di file che son
 ## <a name="see-also"></a>Vedere anche
 [Codifica di contenuti su richiesta con Servizi multimediali di Azure](media-services-encode-asset.md)
 
-[Come tooencode con Media Encoder Standard](media-services-dotnet-encode-with-media-encoder-standard.md)
+[Come codificare con Media Encoder Standard](media-services-dotnet-encode-with-media-encoder-standard.md)
 

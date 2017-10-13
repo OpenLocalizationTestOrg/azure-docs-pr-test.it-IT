@@ -1,6 +1,6 @@
 ---
-title: aaaReset password VM Linux e SSH chiave hello CLI | Documenti Microsoft
-description: Come correggere configurazione SSH hello hello toouse estensione VMAccess da hello Azure interfaccia della riga di comando (CLI) tooreset una password di Linux VM o una chiave SSH e verificare la coerenza del disco
+title: Reimpostare la password e la chiave SSH di VM Linux dall'interfaccia della riga di comando | Microsoft Docs
+description: Come usare l'estensione VMAccess dall'interfaccia della riga di comando di Azure per reimpostare la password o la chiave SSH di una VM Linux, correggere la configurazione SSH e verificare la coerenza dei dischi
 services: virtual-machines-linux
 documentationcenter: 
 author: cynthn
@@ -15,43 +15,43 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/16/2016
 ms.author: cynthn
-ms.openlocfilehash: 1650ad64fb982627ae9f90b1a8209bb56bac7004
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 74765877e7836d6878284b350a25d8355dc83d7d
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-tooreset-a-linux-vm-password-or-ssh-key-fix-hello-ssh-configuration-and-check-disk-consistency-using-hello-vmaccess-extension"></a>Come tooreset una password di Linux VM o una chiave SSH, correggere configurazione SSH hello e verificare la coerenza del disco tramite l'estensione VMAccess hello
-Se non è possibile connettersi macchina virtuale di Linux tooa in Azure a causa di una password dimenticata, una chiave non corretta di Secure Shell (SSH) o un problema con la configurazione SSH hello, utilizzare l'estensione VMAccessForLinux hello con hello Azure CLI tooreset hello password o chiave SSH, correggere Hello configurazione SSH, quindi verificare la coerenza del disco. 
+# <a name="how-to-reset-a-linux-vm-password-or-ssh-key-fix-the-ssh-configuration-and-check-disk-consistency-using-the-vmaccess-extension"></a>Come reimpostare la password o la chiave SSH di una VM Linux, correggere la configurazione SSH e verificare la coerenza dei dischi che utilizzano l'estensione VMAccess
+Se non è possibile connettersi a una macchina virtuale Linux su Azure perché si è dimenticata la password o una chiave SSH (Secure Shell) non è valida o per un problema di configurazione di SSH, usare l'estensione VMAccessForLinux con l'interfaccia della riga di comando di Azure per reimpostare la password o la chiave SSH, correggere la configurazione SSH e verificare la coerenza del disco. 
 
 > [!IMPORTANT] 
-> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md). In questo articolo viene illustrato l'utilizzo del modello di distribuzione classica hello. Si consiglia di utilizzano il modello di gestione risorse hello più nuove distribuzioni. Informazioni su come troppo[eseguire questi passaggi tramite il modello di gestione risorse di hello](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess).
+> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md). Questo articolo illustra l'uso del modello di distribuzione classica. Microsoft consiglia di usare il modello di Gestione risorse per le distribuzioni più recenti. Informazioni su come [eseguire questa procedura con il modello di Resource Manager](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess).
 
-Con hello CLI di Azure, utilizzare hello **set di estensioni di macchina virtuale di azure** comando dai comandi di tooaccess interfaccia della riga di comando (Bash, Terminal, prompt dei comandi). Per informazioni dettagliate sull'uso dell'estensione, eseguire **azure help vm extension set** .
+Con l'interfaccia della riga di comando di Azure, per accedere ai comandi si usa il comando **azure vm extension set** dell'interfaccia della riga di comando (Bash, terminale, prompt dei comandi). Per informazioni dettagliate sull'uso dell'estensione, eseguire **azure help vm extension set** .
 
-Con hello CLI di Azure, è possibile eseguire hello quanto segue:
+Con l’interfaccia della riga di comando di Azure è possibile eseguire le attività seguenti:
 
-* [Reimpostare la password di hello](#pwresetcli)
-* [Reimpostare la chiave SSH hello](#sshkeyresetcli)
-* [Reimpostare la chiave SSH password e hello hello](#resetbothcli)
+* [Reimpostare la password](#pwresetcli)
+* [Reimpostare la chiave SSH](#sshkeyresetcli)
+* [Reimpostare la password e la chiave SSH](#resetbothcli)
 * [Creare un nuovo account utente sudo](#createnewsudocli)
-* [Reimposta configurazione SSH hello](#sshconfigresetcli)
+* [Reimpostare la configurazione SSH](#sshconfigresetcli)
 * [Eliminare un utente](#deletecli)
-* [Visualizzare lo stato di hello di hello estensione VMAccess](#statuscli)
+* [Visualizzare lo stato dell'estensione VMAccess](#statuscli)
 * [Verificare la coerenza dei dischi aggiunti](#checkdisk)
 * [Ripristinare i dischi aggiunti nella VM Linux](#repairdisk)
 
 ## <a name="prerequisites"></a>Prerequisiti
-È necessario seguente hello toodo:
+Sarà necessario eseguire le operazioni seguenti:
 
-* Sarà necessario troppo[installare hello Azure CLI](../../../cli-install-nodejs.md) e [connettere sottoscrizione tooyour](../../../xplat-cli-connect.md) toouse Azure le risorse associate all'account.
-* Impostare la modalità corretta per il modello di distribuzione classica hello hello digitando hello segue al prompt dei comandi di hello:
+* Sarà necessario [installare l'interfaccia della riga di comando di Azure](../../../cli-install-nodejs.md) e [connettersi alla proprio sottoscrizione](../../../xplat-cli-connect.md) per usare le risorse di Azure associate al proprio account.
+* Impostare la modalità corretta per il modello di distribuzione classico digitando quanto segue al prompt dei comandi:
     ``` 
         azure config mode asm
     ```
-* Disporre di una nuova password o un set di chiavi SSH, se si desidera tooreset dei due. Questi non sono necessari se si desidera tooreset hello SSH configurazione.
+* Procurarsi una nuova password o un set di chiavi SSH, se si desidera reimpostare l'una o l'altro. Queste non saranno necessarie se si vuole reimpostare la configurazione di SSH.
 
-## <a name="pwresetcli"></a>Reimpostare la password di hello
+## <a name="pwresetcli"></a>Reimpostare la password
 1. Creare un file denominato PrivateConf.json nel computer locale con queste righe. Sostituire **myUserName** e  **myP@ssW0rd**  con il proprio nome utente e password e impostare la data di scadenza.
 
     ```   
@@ -62,14 +62,14 @@ Con hello CLI di Azure, è possibile eseguire hello quanto segue:
         }
     ```
         
-2. Eseguire questo comando, sostituendo il nome della macchina virtuale per hello **myVM**.
+2. Eseguire questo comando, sostituendo il nome della macchina virtuale in **myVM**.
 
     ```   
         azure vm extension set myVM VMAccessForLinux Microsoft.OSTCExtensions 1.* –-private-config-path PrivateConf.json
     ```
 
-## <a name="sshkeyresetcli"></a>Reimpostare la chiave SSH hello
-1. Creare un file denominato PrivateConf.json con questo contenuto. Sostituire hello **myUserName** e **mySSHKey** valori con le proprie informazioni.
+## <a name="sshkeyresetcli"></a>Reimpostare la chiave SSH
+1. Creare un file denominato PrivateConf.json con questo contenuto. Sostituire i valori **myUserName** e **mySSHKey** con le proprie informazioni.
 
     ```   
         {
@@ -77,12 +77,12 @@ Con hello CLI di Azure, è possibile eseguire hello quanto segue:
         "ssh_key":"mySSHKey"
         }
     ```
-2. Eseguire questo comando, sostituendo il nome della macchina virtuale per hello **myVM**.
+2. Eseguire questo comando, sostituendo il nome della macchina virtuale in **myVM**.
    
         azure vm extension set myVM VMAccessForLinux Microsoft.OSTCExtensions 1.* --private-config-path PrivateConf.json
 
-## <a name="resetbothcli"></a>Reimpostare la chiave SSH hello e la password di hello
-1. Creare un file denominato PrivateConf.json con questo contenuto. Sostituire hello **myUserName**, **mySSHKey** e  **myP@ssW0rd**  valori con le proprie informazioni.
+## <a name="resetbothcli"></a>Reimpostare sia la password sia la chiave SSH
+1. Creare un file denominato PrivateConf.json con questo contenuto. Sostituire i valori **myUserName**, **mySSHKey** e **myP@ssW0rd** con le proprie informazioni.
 
     ``` 
         {
@@ -92,7 +92,7 @@ Con hello CLI di Azure, è possibile eseguire hello quanto segue:
         }
     ```
 
-2. Eseguire questo comando, sostituendo il nome della macchina virtuale per hello **myVM**.
+2. Eseguire questo comando, sostituendo il nome della macchina virtuale in **myVM**.
 
     ```   
         azure vm extension set MyVM VMAccessForLinux Microsoft.OSTCExtensions 1.* --private-config-path PrivateConf.json
@@ -100,19 +100,19 @@ Con hello CLI di Azure, è possibile eseguire hello quanto segue:
 
 ## <a name="createnewsudocli"></a>Creare un nuovo account utente sudo
 
-Se si dimentica il nome utente, è possibile utilizzare uno nuovo con autorità sudo hello toocreate VMAccess. In questo caso, hello esistente nome utente e password non verranno modificate.
+Se si dimentica il nome utente, è possibile usare VMAccess per crearne uno nuovo con privilegi sudo. In questo caso, il nome utente e la password esistenti non verranno modificati.
 
-un nuovo utente sudo con accesso con password, utilizzare script hello toocreate [hello di reimpostazione password](#pwresetcli) e specificare nuovi nome utente di hello.
+Per creare un nuovo utente sudo con accesso tramite password, usare lo script in [Reimpostare la password](#pwresetcli) e specificare il nuovo nome utente.
 
-un nuovo utente sudo con accesso alla chiave SSH, utilizza script di hello in toocreate [la chiave SSH hello reimpostazione](#sshkeyresetcli) e specificare nuovi nome utente di hello.
+Per creare un nuovo utente sudo con accesso tramite chiave SSH, usare lo script in [Reimpostare la chiave SSH](#sshkeyresetcli) e specificare il nuovo nome utente.
 
-È inoltre possibile utilizzare [reimpostare password hello e chiave SSH hello](#resetbothcli) toocreate un nuovo utente con accesso alla chiave SSH e la password.
+È inoltre possibile usare [Reimpostare la password e la chiave SSH](#resetbothcli) per creare un nuovo utente con accesso tramite password e chiave SSH.
 
-## <a name="sshconfigresetcli"></a>Reimposta configurazione SSH hello
-Se in uno stato indesiderato configurazione SSH hello, si potrebbe perdere anche l'accesso toohello macchina virtuale. È possibile utilizzare hello VMAccess estensione tooreset hello configurazione tooits stato predefinito. toodo in tal caso, è sufficiente chiave di "reset_ssh" hello tooset troppo "True". estensione Hello verrà riavviare i server SSH hello, aprire la porta SSH hello nella VM e reimpostare i valori hello SSH configurazione toodefault. account utente di Hello (nome, la password o le chiavi SSH) non verranno modificate.
+## <a name="sshconfigresetcli"></a>Reimpostare la configurazione SSH
+Se la configurazione SSH è in uno stato indesiderato, si potrebbe perdere anche l'accesso alla macchina virtuale. È possibile usare l'estensione VMAccess per reimpostare la configurazione allo stato predefinito. A tale scopo, è sufficiente impostare la chiave "reset_ssh" su "True". L'estensione riavvia il server SSH, apre la porta SSH nella VM e ripristina la configurazione SSH predefinita. L'account utente (nome, password o chiavi SSH) non verrà modificato.
 
 > [!NOTE]
-> file di configurazione di SSH Hello reimpostato si trova in /etc/ssh/sshd_config.
+> Il file di configurazione SSH che viene reimpostato si trova in /etc/ssh/sshd_config.
 > 
 > 
 
@@ -124,16 +124,16 @@ Se in uno stato indesiderato configurazione SSH hello, si potrebbe perdere anche
         }
     ```
 
-2. Eseguire questo comando, sostituendo il nome della macchina virtuale per hello **myVM**. 
+2. Eseguire questo comando, sostituendo il nome della macchina virtuale in **myVM**. 
 
     ```   
         azure vm extension set myVM VMAccessForLinux Microsoft.OSTCExtensions 1.* --private-config-path PrivateConf.json
     ```
 
 ## <a name="deletecli"></a>Eliminare un utente
-Se si desidera toodelete un account utente senza registrazione direttamente toohello VM, è possibile utilizzare questo script.
+Se si desidera eliminare un account utente senza accedere alla macchina virtuale direttamente, è possibile usare questo script.
 
-1. Creare un file denominato PrivateConf.json con questo contenuto, sostituendo hello utente nome tooremove per **removeUserName**. 
+1. Creare un file denominato PrivateConf.json con questo contenuto, sostituendo il nome utente da rimuovere in **removeUserName**. 
 
     ```   
         {
@@ -141,23 +141,23 @@ Se si desidera toodelete un account utente senza registrazione direttamente tooh
         }
     ```
 
-2. Eseguire questo comando, sostituendo il nome della macchina virtuale per hello **myVM**. 
+2. Eseguire questo comando, sostituendo il nome della macchina virtuale in **myVM**. 
 
     ```   
         azure vm extension set myVM VMAccessForLinux Microsoft.OSTCExtensions 1.* --private-config-path PrivateConf.json
     ```
 
-## <a name="statuscli"></a>Visualizzare lo stato di hello di hello estensione VMAccess
-stato hello toodisplay di hello estensione VMAccess, eseguire questo comando.
+## <a name="statuscli"></a>Visualizzare lo stato dell'estensione VMAccess
+Per visualizzare lo stato dell'estensione VMAccess, eseguire questo comando.
 
 ```
         azure vm extension get
 ```
 
 ## <a name='checkdisk'></a>Verificare la coerenza dei dischi aggiunti
-sfck toorun su tutti i dischi nella macchina virtuale di Linux, è necessario seguente hello toodo:
+Per eseguire fsck su tutti i dischi nella macchina virtuale Linux, è necessario eseguire le operazioni seguenti:
 
-1. Creare un file denominato PublicConf.json con questo contenuto. Controllo disco accetta un valore booleano per se toocheck dischi associato macchina virtuale tooyour o meno. 
+1. Creare un file denominato PublicConf.json con questo contenuto. Il controllo del disco accetta un valore booleano che indica se controllare o meno i dischi collegati alla macchina virtuale. 
 
     ```   
         {   
@@ -165,14 +165,14 @@ sfck toorun su tutti i dischi nella macchina virtuale di Linux, è necessario se
         }
     ```
 
-2. Eseguire tooexecute questo comando, sostituendo il nome della macchina virtuale per hello **myVM**.
+2. Eseguire questo comando, sostituendo il nome della macchina virtuale in **myVM**.
 
     ```   
         azure vm extension set myVM VMAccessForLinux Microsoft.OSTCExtensions 1.* --public-config-path PublicConf.json 
     ```
 
 ## <a name='repairdisk'></a>Riparare i dischi
-i dischi toorepair che non vengono montato o presentano errori di configurazione di montaggio, utilizzare configurazione di montaggio hello tooreset estensione VMAccess hello sulla macchina virtuale di Linux. Nome hello sostituendo del disco per **myDisk**.
+Per ripristinare i dischi che presentano problemi di montaggio o errori di configurazione di montaggio, usare l'estensione VMAccess per reimpostare la configurazione di montaggio nella macchina virtuale Linux. Sostituire il nome del disco in **myDisk**.
 
 1. Creare un file denominato PublicConf.json con questo contenuto. 
 
@@ -183,14 +183,14 @@ i dischi toorepair che non vengono montato o presentano errori di configurazione
         }
     ```
 
-2. Eseguire tooexecute questo comando, sostituendo il nome della macchina virtuale per hello **myVM**.
+2. Eseguire questo comando, sostituendo il nome della macchina virtuale in **myVM**.
 
     ```   
         azure vm extension set myVM VMAccessForLinux Microsoft.OSTCExtensions 1.* --public-config-path PublicConf.json
     ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Se si desidera toouse cmdlet di Azure PowerShell o la password di Azure Resource Manager modelli tooreset hello o chiave SSH, correggere la configurazione SSH, hello e verificare la coerenza del disco, vedere hello [documentazione estensione VMAccess su GitHub](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess). 
-* È inoltre possibile utilizzare hello [portale di Azure](https://portal.azure.com) tooreset hello password o una chiave SSH di una VM Linux distribuito nel modello di distribuzione classica hello. Non è possibile utilizzare hello portale toothis per una VM Linux distribuito nel modello di distribuzione di gestione risorse di hello.
+* Se per reimpostare la password o la chiave SSH, correggere la configurazione SSH e verificare la coerenza dei dischi si vogliono usare cmdlet Azure PowerShell o modelli di Azure Resource Manager, vedere la [documentazione dell'estensione VMAccess in GitHub](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess). 
+* Per reimpostare la password o la chiave SSH di una VM Linux distribuita con il modello di distribuzione classica è anche possibile usare il [portale di Azure](https://portal.azure.com) . Non è attualmente possibile usare il portale per eseguire queste operazioni per una VM Linux distribuita con il modello di distribuzione Resource Manager.
 * Per altre informazioni sull'uso di estensioni VM per macchine virtuali di Azure vedere [Informazioni sulle estensioni e sulle funzionalità delle macchine virtuali](../extensions-features.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 

@@ -1,52 +1,52 @@
-## <a name="os-config"></a>Aggiungi sistema operativo IP indirizzi tooa VM
+## <a name="os-config"></a>Add IP addresses to a VM operating system (Aggiungere indirizzi IP a un sistema operativo VM)
 
-Connettersi e account di accesso tooa macchina virtuale creata con più indirizzi IP privati. È necessario aggiungere manualmente tutti hello indirizzi IP privati (primaria inclusa hello) aggiunto toohello macchina virtuale. Completare hello alla procedura seguente per il sistema operativo VM:
+Connettersi e accedere alla VM creata con più indirizzi IP privati. È necessario aggiungere manualmente tutti gli indirizzi IP privati aggiunti alla VM, incluso l'indirizzo primario. Completare i passaggi seguenti per il sistema operativo VM:
 
 ### <a name="windows"></a>Windows
 
-1. Da un prompt dei comandi digitare *ipconfig /all*.  È possibile visualizzare solo hello *primario* indirizzo IP privato (tramite DHCP).
-2. Tipo *ncpa.cpl* in hello tooopen prompt dei comandi di hello **connessioni di rete** finestra.
-3. Aprire le proprietà di hello di adapter appropriato hello: **connessione Area locale**.
+1. Da un prompt dei comandi digitare *ipconfig /all*.  Viene visualizzato solo l'indirizzo IP privato *Primary* , tramite DHCP.
+2. Digitare *ncpa.cpl* nel prompt dei comandi per aprire la finestra **Connessioni di rete**.
+3. Visualizzare le proprietà per la scheda appropriata: **Connessione alla rete locale (LAN)**.
 4. Fare doppio clic su Protocollo Intenret versione 4 (IPv4).
-5. Selezionare **hello utilizzare seguente indirizzo IP** e immettere hello seguenti valori:
+5. Selezionare **Utilizza il seguente indirizzo IP** e immettere i valori seguenti:
 
-    * **Indirizzo IP**: immettere hello *primario* indirizzo IP privato
-    * **Subnet mask**: configurare questo valore in base alla subnet. Ad esempio, se hello subnet è un /24 subnet hello quindi di subnet mask è 255.255.255.0.
-    * **Gateway predefinito**: hello primo indirizzo IP nella subnet hello. Se la subnet è 10.0.0.0/24, indirizzo IP del gateway hello è 10.0.0.1.
-    * Fare clic su **hello utilizzare seguenti indirizzi server DNS** e immettere hello seguenti valori:
-        * **Server DNS preferito**: immettere 168.63.129.16 se non si usa il proprio server DNS.  Se si utilizza il proprio server DNS, immettere l'indirizzo IP hello del server.
-    * Fare clic su hello **avanzate** pulsante e aggiungere altri indirizzi IP. Aggiungere tutti i hello secondari indirizzi IP elencati nel passaggio 8 toohello NIC con hello stessa subnet specificato per l'indirizzo IP primario hello.
+    * **Indirizzo IP**: immettere l'indirizzo IP privato *Primary* .
+    * **Subnet mask**: configurare questo valore in base alla subnet. Se, ad esempio, la subnet è di tipo /24, la subnet mask è 255.255.255.0.
+    * **Gateway predefinito**: primo indirizzo IP nella subnet. Se la subnet è 10.0.0.0/24, l'indirizzo IP del gateway è 10.0.0.1.
+    * Fare clic su **Utilizza i seguenti indirizzi server DNS** e immettere i valori seguenti:
+        * **Server DNS preferito**: immettere 168.63.129.16 se non si usa il proprio server DNS.  Se si usa il proprio server DNS, immettere il relativo indirizzo IP.
+    * Fare clic sul pulsante **Avanzate** e aggiungere altri indirizzi IP. Aggiungere ogni indirizzo IP privato secondario elencato nel passaggio 8 all'interfaccia di rete con la stessa subnet specificata per l'indirizzo IP primario.
         >[!WARNING] 
-        >Se non si segue i passaggi di hello precedenti correttamente, si potrebbero perdere la connettività tooyour macchina virtuale. Verificare le informazioni di hello immesse per il passaggio 5 sono accurate prima di procedere.
+        >Se non si segue correttamente la procedura precedente, è possibile che si perda la connettività alla macchina virtuale. Prima di continuare, assicurarsi che le informazioni immesse per il passaggio 5 siano corrette.
 
-    * Fare clic su **OK** tooclose le impostazioni TCP/IP hello e quindi **OK** nuovamente tooclose hello le impostazioni della scheda. Viene ristabilita la connessione RDP.
+    * Fare clic su **OK** per chiudere le impostazioni TCP/IP e quindi di nuovo su **OK** per chiudere le impostazioni della scheda. Viene ristabilita la connessione RDP.
 
 6. Da un prompt dei comandi digitare *ipconfig /all*. Tutti gli indirizzi IP aggiunti vengono visualizzati e DHCP viene disattivato.
 
 
 ### <a name="validation-windows"></a>Convalida (Windows)
 
-tooensure si è in grado di tooconnect toohello internet dalla configurazione IP secondaria tramite hello che IP pubblico associato, dopo aver aggiunto correttamente mediante i passaggi sopra, utilizzare hello comando seguente:
+Per assicurarsi che sia possibile connettersi a Internet dalla configurazione dell'indirizzo IP secondaria tramite l'indirizzo IP ad essa associato, usare il comando seguente dopo averlo aggiunto correttamente seguendo la procedura precedente:
 
 ```bash
 ping -S 10.0.0.5 hotmail.com
 ```
 >[!NOTE]
->Per le configurazioni IP secondarie, è possibile solo effettuare il ping toohello Internet se configurazione hello dispone di un indirizzo IP pubblico è associato. Per le configurazioni IP primarie, un indirizzo IP pubblico non è necessario tooping toohello Internet.
+>Per le configurazioni IP secondarie, è possibile effettuare il ping a Internet solo se alla configurazione è associato un indirizzo IP pubblico. Per le configurazioni IP primarie, non è necessario un indirizzo IP pubblico per il ping a Internet.
 
 ### <a name="linux-ubuntu"></a>Linux (Ubuntu)
 
 1. Aprire una finestra del terminale.
-2. Verificare che l'utente root hello. Se non si dispone, immettere hello comando seguente:
+2. Assicurarsi di essere l'utente ROOT. In caso contrario, immettere il comando seguente:
 
     ```bash
     sudo -i
     ```
 
-3. Aggiornare il file di configurazione hello hello dell'interfaccia di rete (presupponendo che 'eth0').
+3. Aggiornare il file di configurazione dell'interfaccia di rete, presupponendo 'eth0'.
 
-    * Mantenere hello voce esistente per dhcp. indirizzo IP primario Hello rimane configurato che aveva in precedenza.
-    * Aggiungere una configurazione per un indirizzo IP statico aggiuntivo con hello seguenti comandi:
+    * Mantenere la voce esistente per dhcp. L'indirizzo IP primario conserva la configurazione precedente.
+    * Aggiungere una configurazione per un indirizzo IP statico aggiuntivo con i comandi seguenti:
 
         ```bash
         cd /etc/network/interfaces.d/
@@ -54,14 +54,14 @@ ping -S 10.0.0.5 hotmail.com
         ```
 
     Dovrebbe essere visualizzato un file con estensione cfg.
-4. File hello aperto. È necessario visualizzare hello seguenti righe al fine di hello del file hello:
+4. Open the file. Dovrebbero essere visualizzate le righe seguenti alla fine del file:
 
     ```bash
     auto eth0
     iface eth0 inet dhcp
     ```
 
-5. Aggiungere hello seguenti righe dopo le righe hello presenti in questo file:
+5. Aggiungere le righe seguenti dopo le righe esistenti nel file:
 
     ```bash
     iface eth0 inet static
@@ -69,66 +69,66 @@ ping -S 10.0.0.5 hotmail.com
     netmask <your subnet mask>
     ```
 
-6. Salvare il file hello utilizzando hello comando seguente:
+6. Salvare il file usando il comando seguente:
 
     ```bash
     :wq
     ```
 
-7. Reimpostare l'interfaccia di rete hello con hello comando seguente:
+7. Reimpostare l'interfaccia di rete con il comando seguente:
 
     ```bash
     sudo ifdown eth0 && sudo ifup eth0
     ```
 
     > [!IMPORTANT]
-    > Eseguire ifdown e ifup nella stessa riga se si utilizza una connessione remota hello.
+    > Eseguire ifdown e ifup nella stessa riga se si usa una connessione remota.
     >
 
-8. Verificare l'indirizzo IP hello viene aggiunta l'interfaccia di rete toohello con hello comando seguente:
+8. Verificare che l'indirizzo IP venga aggiunto all'interfaccia di rete con il comando seguente:
 
     ```bash
     ip addr list eth0
     ```
 
-    Dovrebbe essere hello IP indirizzo aggiunto come parte dell'elenco di hello.
+    L'indirizzo IP aggiunto dovrebbe essere incluso nell'elenco.
 
 ### <a name="linux-redhat-centos-and-others"></a>Linux (Redhat, CentOS e altro)
 
 1. Aprire una finestra del terminale.
-2. Verificare che l'utente root hello. Se non si dispone, immettere hello comando seguente:
+2. Assicurarsi di essere l'utente ROOT. In caso contrario, immettere il comando seguente:
 
     ```bash
     sudo -i
     ```
 
-3. Immettere la password e seguire le istruzioni visualizzate. Una volta utente root hello, passare cartella degli script di rete toohello con hello comando seguente:
+3. Immettere la password e seguire le istruzioni visualizzate. Quando si è l'utente ROOT, passare alla cartella degli script di rete con il comando seguente:
 
     ```bash
     cd /etc/sysconfig/network-scripts
     ```
 
-4. Hello elenco correlate file ifcfg utilizzando hello comando seguente:
+4. Elencare i file ifcfg correlati usando il comando seguente:
 
     ```bash
     ls ifcfg-*
     ```
 
-    Dovrebbe essere *ifcfg eth0* come uno dei file hello.
+    Uno dei file visualizzati dovrebbe essere *ifcfg-eth0* .
 
-5. tooadd un indirizzo IP, creare un file di configurazione relativo, come illustrato di seguito. Si noti che è necessario creare un file per ogni configurazione IP.
+5. Per aggiungere un indirizzo IP, creare un file di configurazione come illustrato di seguito. Si noti che è necessario creare un file per ogni configurazione IP.
 
     ```bash
     touch ifcfg-eth0:0
     ```
 
-6. Aprire hello *ifcfg-eth0:0* file con hello comando seguente:
+6. Aprire il file *ifcfg-eth0:0* con il comando seguente:
 
     ```bash
     vi ifcfg-eth0:0
     ```
 
-7. Aggiungere il file di contenuto toohello *eth0:0* in questo caso, con hello comando seguente. Informazioni tooupdate che dipende dall'indirizzo IP.
+7. Aggiungere contenuto al file, in questo caso *eth0:0*, con il comando seguente. Assicurarsi di aggiornare le informazioni in base all'indirizzo IP.
 
     ```bash
     DEVICE=eth0:0
@@ -138,32 +138,32 @@ ping -S 10.0.0.5 hotmail.com
     NETMASK=255.255.255.0
     ```
 
-8. Salvare il file hello con hello comando seguente:
+8. Salvare il file usando il comando seguente:
 
     ```bash
     :wq
     ```
 
-9. Riavviare i servizi di rete hello e assicurarsi che le modifiche di hello hanno esito positivo eseguendo hello seguenti comandi:
+9. Riavviare i servizi di rete e assicurarsi che le modifiche siano riuscite eseguendo i comandi seguenti:
 
     ```bash
     /etc/init.d/network restart
     ifconfig
     ```
 
-    Si dovrebbe essere aggiunto, l'indirizzo IP hello *eth0:0*, nell'elenco di hello restituito.
+    L'indirizzo IP aggiunto, *eth0:0*, dovrebbe essere incluso nell'elenco restituito.
 
 ### <a name="validation-linux"></a>Convalida (Linux)
 
-si è in grado di tooconnect toohello tooensure internet dalla configurazione IP secondaria tramite indirizzo IP pubblico hello verrà associata, utilizzare hello comando seguente:
+Per assicurarsi che sia possibile connettersi a Internet dalla configurazione dell'indirizzo IP secondaria tramite l'indirizzo IP ad essa associato, usare il comando seguente:
 
 ```bash
 ping -I 10.0.0.5 hotmail.com
 ```
 >[!NOTE]
->Per le configurazioni IP secondarie, è possibile solo effettuare il ping toohello Internet se configurazione hello dispone di un indirizzo IP pubblico è associato. Per le configurazioni IP primarie, un indirizzo IP pubblico non è necessario tooping toohello Internet.
+>Per le configurazioni IP secondarie, è possibile effettuare il ping a Internet solo se alla configurazione è associato un indirizzo IP pubblico. Per le configurazioni IP primarie, non è necessario un indirizzo IP pubblico per il ping a Internet.
 
-Per le macchine virtuali Linux, durante il tentativo di toovalidate connettività in uscita da una scheda di rete secondaria, potrebbe essere necessario route appropriate tooadd. Esistono molti modi toodo questo. Per informazioni sulla distribuzione Linux, vedere la documentazione appropriata. esempio Hello si tratta di un metodo tooaccomplish:
+Per le macchine virtuali Linux, quando si prova a convalidare la connettività in uscita da una scheda di interfaccia di rete secondaria, potrebbe essere necessario aggiungere le route appropriate. Per eseguire questa operazione è possibile procedere in molti modi. Per informazioni sulla distribuzione Linux, vedere la documentazione appropriata. Ecco un metodo per ottenere questo risultato:
 
 ```bash
 echo 150 custom >> /etc/iproute2/rt_tables 
@@ -172,7 +172,7 @@ ip rule add from 10.0.0.5 lookup custom
 ip route add default via 10.0.0.1 dev eth2 table custom
 
 ```
-- Essere tooreplace che:
-    - **10.0.0.5** con hello privata indirizzo con un indirizzo IP pubblico indirizzo IP associato tooit
-    - **10.0.0.1** gateway predefinito tooyour
-    - **eth2** toohello nome la scheda di rete secondaria
+- Assicurarsi di sostituire:
+    - **10.0.0.5** con l'indirizzo IP privato a cui è associato un indirizzo IP pubblico
+    - **10.0.0.1** con il gateway predefinito
+    - **eth2** con il nome della scheda di interfaccia di rete secondaria

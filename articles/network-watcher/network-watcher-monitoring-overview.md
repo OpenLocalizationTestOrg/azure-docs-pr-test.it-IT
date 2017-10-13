@@ -1,9 +1,9 @@
 ---
-title: aaaIntroduction tooAzure Watcher di rete | Documenti Microsoft
-description: Questa pagina viene fornita una panoramica di hello servizio Watcher di rete per il monitoraggio e la visualizzazione rete connesso alle risorse in Azure
+title: Introduzione ad Azure Network Watcher | Microsoft Docs
+description: Questa pagina fornisce una panoramica del servizio Network Watcher per il monitoraggio e la visualizzazione delle risorse connesse alla rete in Azure
 services: network-watcher
 documentationcenter: na
-author: georgewallace
+author: jimdial
 manager: timlt
 editor: 
 ms.assetid: 14bc2266-99e3-42a2-8d19-bd7257fec35e
@@ -13,44 +13,44 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/11/2017
-ms.author: gwallace
-ms.openlocfilehash: 283b3fa6add05d9bad6d5dbdae1524344d1bfc7a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.author: jdial
+ms.openlocfilehash: eecb20d4a53478471c238018d8fbd5a5f9cb79d8
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-network-monitoring-overview"></a>Panoramica del monitoraggio della rete in Azure
 
-Per creare una rete end-to-end in Azure è possibile orchestrare e comporre varie risorse di rete individuali, quali rete virtuale, ExpressRoute, gateway applicazione, servizi di bilanciamento del carico e altro ancora. Il monitoraggio è disponibile in ogni hello risorse di rete. Facciamo riferimento toothis monitoraggio come monitoraggio a livello di risorse.
+Per creare una rete end-to-end in Azure è possibile orchestrare e comporre varie risorse di rete individuali, quali rete virtuale, ExpressRoute, gateway applicazione, servizi di bilanciamento del carico e altro ancora. Il monitoraggio è disponibile in ognuna delle risorse di rete. Questo tipo di monitoraggio è detto a livello di risorsa.
 
-rete di Hello end tooend può avere configurazioni complesse e le interazioni tra le risorse, creazione di scenari complessi che richiedono basata sullo scenario di monitoraggio tramite Watcher di rete.
+La rete end-to-end può avere interazioni tra le risorse e configurazioni complesse. Network Watcher consente il monitoraggio a livello di scenario per questi scenari complessi.
 
 Questo articolo illustra il monitoraggio a livello di risorsa e di scenario. Il monitoraggio della rete in Azure comprende due categorie generali:
 
-* [**Controllo di rete** ](#network-watcher) -basata sullo Scenario di monitoraggio viene fornito con funzionalità di hello Watcher di rete. Il servizio include l'acquisizione pacchetti, l'hop successivo, la verifica del flusso IP, la visualizzazione dei gruppi di sicurezza e i registri dei flussi dei gruppi di sicurezza di rete. Monitoraggio a livello di scenario è inclusa una visualizzazione di tooend finale delle risorse di rete in Monitoraggio risorse di rete di contrasto tooindividual.
-* [**Monitoraggio delle risorse**](#network-resource-level-monitoring): il monitoraggio a livello di risorsa include funzionalità di log di diagnostica, metriche, risoluzione dei problemi e integrità delle risorse. Tutte queste funzionalità vengono compilate a livello di risorse di rete hello.
+* [**Network Watcher**](#network-watcher): tra le funzionalità del servizio Network Watcher è incluso il monitoraggio basato su scenari. Il servizio include l'acquisizione pacchetti, l'hop successivo, la verifica del flusso IP, la visualizzazione dei gruppi di sicurezza e i registri dei flussi dei gruppi di sicurezza di rete. A differenza del monitoraggio a livello di singole risorse di rete, il monitoraggio a livello di scenario consente una visualizzazione completa delle risorse di rete.
+* [**Monitoraggio delle risorse**](#network-resource-level-monitoring): il monitoraggio a livello di risorsa include funzionalità di log di diagnostica, metriche, risoluzione dei problemi e integrità delle risorse. Tutte queste funzionalità vengono compilate a livello di risorsa di rete.
 
 ## <a name="network-watcher"></a>Network Watcher
 
-Watcher di rete è un servizio internazionale che consente di toomonitor e diagnosticare le condizioni di livello rete scenario, a e da Azure. Diagnostica di rete e gli strumenti di visualizzazione disponibili con Watcher di rete consentono di comprendere, diagnosticare e ottenere rete tooyour insights in Azure.
+Network Watcher è un servizio a livello di area che permette di monitorare e diagnosticare le condizioni al livello di scenario di rete da, verso e all'interno di Azure. Gli strumenti di visualizzazione e diagnostica di rete disponibili in Network Watcher permettono di comprendere, diagnosticare e ottenere informazioni dettagliate sulla rete in Azure.
 
-Watcher di rete presenta attualmente hello seguenti funzionalità:
+Di seguito sono elencate le funzionalità attualmente disponibili in Network Watcher.
 
-* **[Topologia](network-watcher-topology-overview.md)**  -fornisce un hello con visualizzazione a livello di rete diversi interconnessioni e le associazioni tra le risorse di rete in un gruppo di risorse.
-* **[Acquisizione pacchetti variabile](network-watcher-packet-capture-overview.md)**: acquisisce i dati dei pacchetti all'interno e all'esterno di una macchina virtuale. Filtri di opzioni e ottimizzare i controlli, ad esempio si trova ora in grado di tooset avanzati e versatilità di fornire i limiti delle dimensioni. Hello pacchetto possono essere archiviati in un archivio blob o su disco locale di hello in formato CAP.
-* **[Verifica flusso IP](network-watcher-ip-flow-verify-overview.md)**: controlla se un pacchetto viene accettato o rifiutato in base ai parametri di pacchetto costituiti da informazioni a 5 tuple sul flusso, ovvero l'indirizzo IP di destinazione, l'indirizzo IP di origine, la porta di destinazione, la porta di origine e il protocollo. Se i pacchetti hello viene negato da un gruppo di sicurezza, hello regola e gruppo di pacchetti hello negato.
-* **[Hop successivo](network-watcher-next-hop-overview.md)**  -determina hello hop successivo per i pacchetti hello infrastruttura di rete di Azure, consentendo di route definite dall'utente non è configurato correttamente qualsiasi toodiagnose indirizzato.
-* **[Visualizzazione del gruppo di sicurezza](network-watcher-security-group-view-overview.md)**  -Ottiene le regole di sicurezza efficace e applicato hello che vengono applicate in una macchina virtuale.
-* **[Registrazione NSG flusso](network-watcher-nsg-flow-logging-overview.md)**  -flusso di log per i gruppi di sicurezza di rete consentono di toocapture registri tootraffic correlati che vengono concesse o negate le regole di sicurezza hello gruppo hello. flusso di Hello è definito dalle informazioni tupla con 5: indirizzo IP di origine, IP di destinazione, porta di origine, destinazione porta e protocollo.
-* **[Gateway di rete virtuale e la risoluzione dei problemi di connessione](network-watcher-troubleshoot-manage-rest.md)**  -fornisce hello possibilità tootroubleshoot gateway di rete virtuale e le connessioni.
-* **[Limiti della sottoscrizione di rete](#network-subscription-limits)**  -consente l'utilizzo delle risorse di rete tooview rispetto ai limiti.
-* **[Configurazione del Log di diagnostica](#diagnostic-logs)**  : fornisce un unico riquadro tooenable o disabilitare i log di diagnostica per le risorse di rete in un gruppo di risorse.
-* **[Connettività (anteprima)](network-watcher-connectivity-overview.md)**  -verifica il possibilità di hello di stabilire una connessione TCP diretta da una macchina virtuale di tooa dato endpoint.
+* **[Topologia](network-watcher-topology-overview.md)**: offre una visualizzazione a livello di rete che mostra le varie interconnessioni e le associazioni tra le risorse di rete in un gruppo di risorse.
+* **[Acquisizione pacchetti variabile](network-watcher-packet-capture-overview.md)**: acquisisce i dati dei pacchetti all'interno e all'esterno di una macchina virtuale. La versatilità è data dalle opzioni di filtro avanzato e dai controlli ottimizzati, come la possibilità di impostare l'ora e il limite di dimensioni. È possibile memorizzare i dati dei pacchetti in un archivio BLOB o nel disco locale in formato CAP.
+* **[Verifica flusso IP](network-watcher-ip-flow-verify-overview.md)**: controlla se un pacchetto viene accettato o rifiutato in base ai parametri di pacchetto costituiti da informazioni a 5 tuple sul flusso, ovvero l'indirizzo IP di destinazione, l'indirizzo IP di origine, la porta di destinazione, la porta di origine e il protocollo. Se il pacchetto viene rifiutato da un gruppo di sicurezza, vengono restituiti la regola e il gruppo che hanno rifiutato il pacchetto.
+* **[Hop successivo](network-watcher-next-hop-overview.md)**: determina l'hop successivo per i pacchetti indirizzati nell'infrastruttura di rete di Azure, permettendo così di diagnosticare eventuali route definite dall'utente non configurate in modo corretto.
+* **[Visualizzazione dei gruppi di sicurezza](network-watcher-security-group-view-overview.md)**: ottiene le regole di sicurezza valide e applicate in una macchina virtuale.
+* **[Registrazione dei flussi dei gruppi di sicurezza di rete](network-watcher-nsg-flow-logging-overview.md)**: la registrazione dei flussi dei gruppi di sicurezza di rete permette di acquisire i log relativi al traffico consentito o negato dalle regole di sicurezza nel gruppo. Il flusso è definito da informazioni a 5 tuple, ovvero l'indirizzo IP di destinazione, l'indirizzo IP di origine, la porta di destinazione, la porta di origine e il protocollo.
+* **[Risoluzione dei problemi di connessione e gateway di rete virtuale](network-watcher-troubleshoot-manage-rest.md)**: permette di risolvere i problemi relativi al gateway di rete virtuale e alle connessioni.
+* **[Limite sottoscrizioni di rete](#network-subscription-limits)**: permette di visualizzare l'utilizzo delle risorse di rete rispetto ai limiti.
+* **[Configurazione del log di diagnostica](#diagnostic-logs)**: permette di abilitare o disabilitare i log di diagnostica per le risorse di rete in un gruppo di risorse da un unico riquadro.
+* **[Connettività (Anteprima)](network-watcher-connectivity-overview.md)**: verifica se è possibile stabilire una connessione TCP diretta da una macchina virtuale a uno specifico endpoint.
 
 ### <a name="role-based-access-control-rbac-in-network-watcher"></a>Controllo degli accessi in base al ruolo in Network Watcher
 
-Watcher di rete utilizza hello [modello di controllo di accesso gestire (RBAC)](../active-directory/role-based-access-control-what-is.md). Hello queste autorizzazioni è necessarie hello Watcher di rete. È importante toomake che tale ruolo hello utilizzato per avviare le API di controllo di rete o l'utilizzo Watcher di rete dal portale hello disponga dell'accesso hello necessario.
+Network Watcher fa uso del [modello di controllo degli accessi in base al ruolo](../active-directory/role-based-access-control-what-is.md). Di seguito sono indicate le autorizzazioni necessarie per Network Watcher. È importante assicurarsi che il ruolo usato per avviare le API di Network Watcher o per usare Network Watcher dal portale abbia l'accesso necessario.
 
 |Risorsa| Autorizzazione|
 |---|---| 
@@ -74,29 +74,29 @@ Watcher di rete utilizza hello [modello di controllo di accesso gestire (RBAC)](
 
 ### <a name="network-subscription-limits"></a>Limite sottoscrizioni di rete
 
-Limiti della sottoscrizione rete forniscono i dettagli di utilizzo di hello di ogni risorsa di rete hello in una sottoscrizione in un'area con il numero massimo di hello delle risorse disponibili.
+Limite sottoscrizioni di rete fornisce informazioni dettagliate sull'utilizzo delle singole risorse di rete di una sottoscrizione in un'area rispetto al numero massimo di risorse disponibili.
 
 ![Limite sottoscrizioni di rete][nsl]
 
 ## <a name="network-resource-level-monitoring"></a>Monitoraggio a livello di risorsa di rete
 
-Hello seguenti caratteristiche sono disponibile per il monitoraggio a livello di risorse:
+Per il monitoraggio a livello di risorsa sono disponibili le funzionalità seguenti:
 
 ### <a name="audit-log"></a>Log di controllo
 
-Vengono registrate le operazioni eseguite come parte della configurazione di hello delle reti. Questi registri possono essere visualizzati nel portale di Azure hello o recuperati utilizzando strumenti quali Power BI o gli strumenti di terze parti. I log di controllo sono disponibili tramite il portale di hello, PowerShell, CLI e API Rest. Per altre informazioni sui log di controllo, vedere l'articolo relativo alle [operazioni di controllo con Resource Manager](../resource-group-audit.md).
+Le operazioni eseguite come parte della configurazione delle reti vengono registrate. È possibile visualizzare i relativi log nel portale di Azure o recuperarli usando strumenti Microsoft, come Power BI, o strumenti di terze parti. I log di controllo sono disponibili tramite il portale, PowerShell, l'interfaccia della riga di comando e l'API REST. Per altre informazioni sui log di controllo, vedere l'articolo relativo alle [operazioni di controllo con Resource Manager](../resource-group-audit.md).
 
 I log di controllo sono disponibili per le operazioni eseguite su tutte le risorse di rete.
 
 ### <a name="metrics"></a>Metrica
 
-Le metriche sono costituite da contatori e misurazioni delle prestazioni raccolti in un determinato periodo di tempo. Attualmente le metriche sono disponibili per il gateway applicazione. Metrica può essere utilizzato tootrigger avvisi in base alla soglia. Vedere [diagnostica del Gateway applicazione](../application-gateway/application-gateway-diagnostics.md) tooview come metrica può essere utilizzato toocreate avvisi.
+Le metriche sono costituite da contatori e misurazioni delle prestazioni raccolti in un determinato periodo di tempo. Attualmente le metriche sono disponibili per il gateway applicazione. Le metriche possono essere usate per attivare avvisi in base a una soglia. Per informazioni su come usare le metriche per creare avvisi, vedere l'articolo relativo alla [diagnostica del gateway applicazione](../application-gateway/application-gateway-diagnostics.md).
 
 ![Visualizzazione metriche][metrics]
 
 ### <a name="diagnostic-logs"></a>Log di diagnostica
 
-Eventi periodici e spontanei vengono creati dalle risorse di rete e registrati negli account di archiviazione, inviate tooan Hub eventi o Analitica di Log. Questi log forniscono informazioni dettagliate sui integrità hello di una risorsa. e possono essere visualizzati con strumenti quali Power BI e Log Analytics. come i log di diagnostica tooview, visitare toolearn [Analitica Log](../log-analytics/log-analytics-azure-networking-analytics.md).
+Le risorse di rete creano eventi periodici e spontanei, che vengono registrati negli account di archiviazione e inviati a un hub eventi oppure a Log Analytics. Questi log contengono informazioni dettagliate sull'integrità delle singole risorse e possono essere visualizzati con strumenti quali Power BI e Log Analytics. Per informazioni su come visualizzare i log di diagnostica, vedere l'articolo relativo a [Log Analytics](../log-analytics/log-analytics-azure-networking-analytics.md).
 
 Sono disponibili log di diagnostica per il [servizio di bilanciamento del carico](../load-balancer/load-balancer-monitor-log.md), i [gruppi di sicurezza di rete](../virtual-network/virtual-network-nsg-manage-log.md), le route e il [gateway applicazione](../application-gateway/application-gateway-diagnostics.md).
 
@@ -106,25 +106,25 @@ Network Watcher offre una visualizzazione dei log di diagnostica contenente tutt
 
 ### <a name="troubleshooting"></a>Risoluzione dei problemi
 
-risoluzione dei problemi di un'esperienza nel portale di hello pannello Hello viene fornito sulle risorse di rete oggi toodiagnose problemi comuni associati a una singola risorsa. Questa esperienza è disponibile per hello seguenti risorse di rete - ExpressRoute, Gateway VPN, Gateway applicazione, i log di sicurezza di rete, route, DNS, bilanciamento del carico e gestione traffico. toolearn più sulla risorsa livello risoluzione dei problemi, visitare [diagnosticare e risolvere problemi di risoluzione dei problemi di Azure](https://azure.microsoft.com/blog/azure-troubleshoot-diagonse-resolve-issues/)
+Il pannello di risoluzione dei problemi è un'esperienza del portale ora disponibile per le risorse di rete che permette di diagnosticare i problemi comuni associati a una singola risorsa. L'esperienza è disponibile per le risorse di rete seguenti: ExpressRoute, gateway VPN, gateway applicazione, log di sicurezza di rete, route, servizio DNS, servizio di bilanciamento del carico e Gestione traffico. Per altre informazioni sulla risoluzione dei problemi a livello di risorsa, vedere [Diagnose and resolve issues with Azure Troubleshooting](https://azure.microsoft.com/blog/azure-troubleshoot-diagonse-resolve-issues/) (Diagnosticare e risolvere problemi con la risoluzione dei problemi di Azure).
 
 ![Informazioni sulla risoluzione dei problemi][TS]
 
 ### <a name="resource-health"></a>Integrità delle risorse
 
-integrità Hello di una risorsa di rete viene fornito con cadenza periodica. Le risorse includono il gateway VPN e il tunnel VPN. Integrità delle risorse è accessibile in hello portale di Azure. toolearn più sull'integrità delle risorse, visitare [Panoramica integrità delle risorse](../resource-health/resource-health-overview.md)
+Il controllo dell'integrità delle risorse di rete è disponibile su base periodica. Le risorse includono il gateway VPN e il tunnel VPN. Il controllo dell'integrità delle risorse è accessibile nel portale di Azure. Per altre informazioni sull'integrità delle risorse, vedere [Panoramica su Integrità risorse di Azure](../resource-health/resource-health-overview.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
 
 Ora che si conosce Network Watcher è possibile imparare a:
 
-Eseguire un'acquisizione pacchetto sulla macchina virtuale, visitare il sito [acquisizione pacchetto variabile in hello portale di Azure](network-watcher-packet-capture-manage-portal.md)
+Eseguire un'acquisizione pacchetti nella macchina virtuale. Vedere in proposito l'articolo relativo all'[acquisizione pacchetti variabile nel portale di Azure](network-watcher-packet-capture-manage-portal.md).
 
 Eseguire il monitoraggio attivo e la diagnostica usando l'[acquisizione pacchetti attivata da avvisi](network-watcher-alert-triggered-packet-capture.md).
 
 Rilevare vulnerabilità della sicurezza con l'[analisi dell'acquisizione pacchetti tramite Wireshark](network-watcher-deep-packet-inspection.md), usando strumenti open source.
 
-Informazioni su alcune delle hello altre chiavi [funzionalità di rete](../networking/networking-overview.md) di Azure.
+Informazioni su alcune altre [funzionalità di rete](../networking/networking-overview.md) chiave di Azure.
 
 <!--Image references-->
 [TS]: ./media/network-watcher-monitoring-overview/troubleshooting.png

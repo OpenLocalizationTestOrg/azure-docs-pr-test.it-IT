@@ -1,6 +1,6 @@
 ---
-title: aaaTroubleshoot HBase tramite Azure HDInsight | Documenti Microsoft
-description: Ottenere risposte toocommon domande sull'utilizzo di HBase e Azure HDInsight.
+title: Risolvere i problemi di HBase con Azure HDInsight | Microsoft Docs
+description: Risposte alle domande comuni sull'uso di HBase e Azure HDInsight.
 services: hdinsight
 documentationcenter: 
 author: nitinver
@@ -13,70 +13,70 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 7/7/2017
 ms.author: nitinver
-ms.openlocfilehash: 5210184f8ea95628952a95df8c98f5b98e37c53e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 15412c3853a2b8436c5e96034c9a92a2a1094662
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="troubleshoot-hbase-by-using-azure-hdinsight"></a>Risolvere i problemi di HBase con Azure HDInsight
 
-Informazioni sui problemi principali hello e le relative soluzioni quando si lavora con payload Apache HBase in Apache Ambari.
+Questo articolo illustra i problemi principali che possono verificarsi quando si usano payload di Apache HBase in Apache Ambari e le relative risoluzioni.
 
 ## <a name="how-do-i-run-hbck-command-reports-with-multiple-unassigned-regions"></a>Come si eseguono i report dei comandi hbck con più aree non assegnate?
 
-Un messaggio di errore comuni che potrebbero essere visualizzati quando si esegue hello `hbase hbck` comando è "più aree mancata assegnazione o fori nella catena di hello delle regioni."
+Un messaggio di errore comune che può essere visualizzato quando si esegue il comando `hbase hbck` riguarda la presenza di più aree non assegnate o difetti nella catena delle aree.
 
-In hello UI HBase Master, è possibile visualizzare il numero di hello delle aree che sono non bilanciati tra tutti i server di area. Quindi, è possibile eseguire `hbase hbck` comando fori toosee nella catena di area hello.
+Nell'interfaccia utente di HBase Master è possibile visualizzare il numero delle aree non bilanciate tra tutti i server di area. Si può quindi eseguire il comando `hbase hbck` per visualizzare i difetti nella catena di aree.
 
-Fori potrebbero essere causati da aree offline hello, pertanto le assegnazioni di hello correzione prima. 
+Dato che i difetti possono essere causati dalle aree offline, per prima cosa correggere le assegnazioni. 
 
-toobring hello stato normale tooa indietro di aree non assegnati, completare hello alla procedura seguente:
+Per ripristinare uno stato normale delle aree non assegnate, seguire questa procedura:
 
-1. Accedi toohello cluster HBase di HDInsight utilizzando SSH.
-2. tooconnect con shell ZooKeeper hello, eseguire hello `hbase zkcli` comando.
-3. Eseguire hello `rmr /hbase/regions-in-transition` comando o hello `rmr /hbase-unsecure/regions-in-transition` comando.
-4. tooexit da hello `hbase zkcli` della shell, utilizzare hello `exit` comando.
-5. Aprire hello dell'interfaccia utente Ambari Apache e quindi riavviare il servizio di Master HBase Active hello.
-6. Eseguire hello `hbase hbck` comando nuovamente (senza opzioni). Verificare l'output di hello di questo comando di tooensure che tutte le aree vengono assegnate.
+1. Accedere al cluster HBase di HDInsight con SSH.
+2. Per connettersi con la shell ZooKeeper, eseguire il comando `hbase zkcli`.
+3. Eseguire il comando `rmr /hbase/regions-in-transition` o `rmr /hbase-unsecure/regions-in-transition`.
+4. Per uscire dalla shell `hbase zkcli`, usare il comando `exit`.
+5. Aprire l'interfaccia utente di Apache Ambari e quindi riavviare il servizio HBase Master attivo.
+6. Eseguire di nuovo il comando `hbase hbck`, senza opzioni. Controllare l'output del comando per verificare che tutte le aree siano assegnate.
 
 
 ## <a name="how-do-i-fix-timeout-issues-with-hbck-commands-for-region-assignments"></a>Come risolvere i problemi di timeout con i comandi hbck per le assegnazioni di aree
 
 ### <a name="issue"></a>Problema
 
-Una possibile causa problemi di timeout quando si utilizza hello `hbck` comando potrebbe essere più aree siano hello "in transizione" dello stato per un lungo periodo. È possibile visualizzare le aree geografiche come offline nei hello UI HBase Master. Poiché un numero elevato di aree sta tentando di tootransition, HBase Master potrebbe timeout e toobring non è possibile online tali aree.
+Un possibile causa dei problemi di timeout quando si usa il comando `hbck` potrebbe essere che diverse aree restano a lungo in stato di transizione. Queste aree vengono visualizzate come offline nell'interfaccia utente di HBase Master. A causa del numero elevato di aree che tentano la transizione, può verificarsi il timeout di HBase Master, che non riuscirà a riportare online tali aree.
 
 ### <a name="resolution-steps"></a>Procedura per la risoluzione
 
-1. Accedi toohello cluster HBase di HDInsight utilizzando SSH.
-2. tooconnect con shell ZooKeeper hello, eseguire hello `hbase zkcli` comando.
-3. Eseguire hello `rmr /hbase/regions-in-transition` o hello `rmr /hbase-unsecure/regions-in-transition` comando.
-4. hello tooexit `hbase zkcli` della shell, utilizzare hello `exit` comando.
-5. In hello Ambari UI, riavviare il servizio di Master HBase Active hello.
-6. Eseguire hello `hbase hbck -fixAssignments` nuovo il comando.
+1. Accedere al cluster HBase di HDInsight con SSH.
+2. Per connettersi con la shell ZooKeeper, eseguire il comando `hbase zkcli`.
+3. Eseguire il comando `rmr /hbase/regions-in-transition` o `rmr /hbase-unsecure/regions-in-transition`.
+4. Per uscire dalla shell `hbase zkcli`, usare il comando `exit`.
+5. Nell'interfaccia utente di Apache Ambari riavviare il servizio HBase Master attivo.
+6. Eseguire di nuovo il comando `hbase hbck -fixAssignments`.
 
 ## <a name="how-do-i-force-disable-hdfs-safe-mode-in-a-cluster"></a>Come forzare la disabilitazione della modalità sicura di HDFS in un cluster
 
 ### <a name="issue"></a>Problema
 
-Hello locale Hadoop Distributed File System (HDFS) è bloccato in modalità provvisoria nel cluster HDInsight hello.
+Il sistema HDFS (Hadoop Distributed File System) locale è bloccato in modalità sicura nel cluster HDInsight.
 
 ### <a name="detailed-description"></a>Descrizione dettagliata
 
-Questo errore potrebbe essere causato da un errore quando si esegue hello HDFS comando seguente:
+Questo errore potrebbe essere causato da un errore durante l'esecuzione del comando HDFS seguente:
 
 ```apache
 hdfs dfs -D "fs.default.name=hdfs://mycluster/" -mkdir /temp
 ```
 
-Errore di Hello che si potrebbero verificare quando si tenta di comando hello toorun è simile al seguente:
+Quando si prova a eseguire il comando, potrebbe essere visualizzato un errore come il seguente:
 
 ```apache
 hdiuser@hn0-spark2:~$ hdfs dfs -D "fs.default.name=hdfs://mycluster/" -mkdir /temp
 17/04/05 16:20:52 WARN retry.RetryInvocationHandler: Exception while invoking ClientNamenodeProtocolTranslatorPB.mkdirs over hn0-spark2.2oyzcdm4sfjuzjmj5dnmvscjpg.dx.internal.cloudapp.net/10.0.0.22:8020. Not retrying because try once and fail.
 org.apache.hadoop.ipc.RemoteException(org.apache.hadoop.hdfs.server.namenode.SafeModeException): Cannot create directory /temp. Name node is in safe mode.
-It was turned on manually. Use "hdfs dfsadmin -safemode leave" tooturn safe mode off.
+It was turned on manually. Use "hdfs dfsadmin -safemode leave" to turn safe mode off.
         at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.checkNameNodeSafeMode(FSNamesystem.java:1359)
         at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.mkdirs(FSNamesystem.java:4010)
         at org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.mkdirs(NameNodeRpcServer.java:1102)
@@ -126,11 +126,11 @@ mkdir: Cannot create directory /temp. Name node is in safe mode.
 
 ### <a name="probable-cause"></a>Possibile causa
 
-Hello cluster HDInsight è stata ridimensionata tooa molto alcuni nodi. il numero di Hello di nodi di sotto o chiusura fattore di replica toohello HDFS.
+Il cluster HDInsight è stato ridotto a pochissimi nodi. Il numero di nodi è inferiore o vicino al fattore di replica di HDFS.
 
 ### <a name="resolution-steps"></a>Procedura per la risoluzione 
 
-1. Ottenere lo stato di hello di hello che HDFS su hello HDInsight cluster eseguendo hello seguenti comandi:
+1. Ottenere lo stato di HDFS nel cluster HDInsight eseguendo questi comandi:
 
    ```apache
    hdfs dfsadmin -D "fs.default.name=hdfs://mycluster/" -report
@@ -171,14 +171,14 @@ Hello cluster HDInsight è stata ridimensionata tooa molto alcuni nodi. il numer
    ...
 
    ```
-2. È anche possibile controllare l'integrità di hello che HDFS su hello HDInsight cluster utilizzando i seguenti comandi hello hello:
+2. È anche possibile verificare l'integrità di HDFS nel cluster HDInsight usando i comandi seguenti:
 
    ```apache
    hdiuser@hn0-spark2:~$ hdfs fsck -D "fs.default.name=hdfs://mycluster/" /
    ```
 
    ```apache
-   Connecting toonamenode via http://hn0-spark2.2oyzcdm4sfjuzjmj5dnmvscjpg.dx.internal.cloudapp.net:30070/fsck?ugi=hdiuser&path=%2F
+   Connecting to namenode via http://hn0-spark2.2oyzcdm4sfjuzjmj5dnmvscjpg.dx.internal.cloudapp.net:30070/fsck?ugi=hdiuser&path=%2F
    FSCK started by hdiuser (auth:SIMPLE) from /10.0.0.22 for path / at Wed Apr 05 16:40:28 UTC 2017
    ....................................................................................................
 
@@ -201,10 +201,10 @@ Hello cluster HDInsight è stata ridimensionata tooa molto alcuni nodi. il numer
    Number of racks:               1
    FSCK ended at Wed Apr 05 16:40:28 UTC 2017 in 187 milliseconds
 
-   hello filesystem under path '/' is HEALTHY
+   The filesystem under path '/' is HEALTHY
    ```
 
-3. Se si determina che non esistono blocchi di mancanti, danneggiati o under-replicati o che possono essere ignorati i blocchi, eseguire hello successivo nodo del nome di comando tootake hello dalla modalità provvisoria:
+3. Se si determina che non esistono blocchi mancanti, danneggiati o replicati in modo insufficiente o che questi blocchi possono essere ignorati, eseguire questo comando per sbloccare il nodo dei nomi dalla modalità sicura:
 
    ```apache
    hdfs dfsadmin -D "fs.default.name=hdfs://mycluster/" -safemode leave
@@ -215,30 +215,30 @@ Hello cluster HDInsight è stata ridimensionata tooa molto alcuni nodi. il numer
 
 ### <a name="resolution-steps"></a>Procedura per la risoluzione
 
-tooconnect con Phoenix, è necessario fornire l'indirizzo IP hello di un nodo ZooKeeper attivo. Verificare che ZooKeeper sqlline.py toowhich servizio sta tentando di hello tooconnect sia in esecuzione.
-1. Accedi toohello cluster HDInsight tramite SSH.
-2. Immettere hello comando seguente:
+Per connettersi con Phoenix, è necessario specificare l'indirizzo IP di un nodo ZooKeeper attivo. Verificare che il servizio ZooKeeper a cui sqlline.py prova a connettersi sia operativo.
+1. Accedere al cluster HDInsight con SSH.
+2. Immettere il comando seguente:
                 
    ```apache
            "/usr/hdp/current/phoenix-client/bin/sqlline.py <IP of machine where Active Zookeeper is running"
    ```
 
    > [!Note] 
-   > È possibile ottenere l'indirizzo IP di hello del nodo ZooKeeper attivo hello da hello Ambari UI. Andare troppo**HBase** > **collegamenti rapidi** > **ZK\* (attivo)** > **Zookeeper Info**. 
+   > È possibile ottenere l'indirizzo IP del nodo ZooKeeper attivo nell'interfaccia utente di Ambari. Passare a **HBase** > **Quick Links** > **ZK\* (Active)** > **Zookeeper Info** (HBase > Collegamenti rapidi > ZK - attivo > Info su Zookeeper). 
 
-3. Se hello sqlline.py si connette tooPhoenix e non un limite di timeout, comando che segue hello esecuzione toovalidate hello disponibilità e l'integrità di Phoenix:
+3. Se sqlline.py si connette a Phoenix senza timeout, eseguire questo comando per convalidare la disponibilità e l'integrità di Phoenix:
 
    ```apache
            !tables
            !quit
    ```      
-4. Se il comando funziona, non sussistono problemi. l'indirizzo IP Hello fornito dall'utente hello potrebbe essere errato. Tuttavia, se il comando di hello viene sospeso per un periodo di tempo prolungato e quindi viene visualizzato il seguente errore hello, continuare toostep 5.
+4. Se il comando funziona, non sussistono problemi. L'indirizzo IP specificato dall'utente potrebbe essere errato. Se invece il comando resta in sospeso per un periodo di tempo prolungato e quindi visualizza l'errore seguente, procedere al passaggio 5.
 
    ```apache
-           Error while connecting toosqlline.py (Hbase - phoenix) Setting property: [isolation, TRANSACTION_READ_COMMITTED] issuing: !connect jdbc:phoenix:10.2.0.7 none none org.apache.phoenix.jdbc.PhoenixDriver Connecting toojdbc:phoenix:10.2.0.7 SLF4J: Class path contains multiple SLF4J bindings. 
+           Error while connecting to sqlline.py (Hbase - phoenix) Setting property: [isolation, TRANSACTION_READ_COMMITTED] issuing: !connect jdbc:phoenix:10.2.0.7 none none org.apache.phoenix.jdbc.PhoenixDriver Connecting to jdbc:phoenix:10.2.0.7 SLF4J: Class path contains multiple SLF4J bindings. 
    ```
 
-5. Eseguire hello seguendo i comandi dalla condizione di hello nodo head (hn0) toodiagnose hello di hello Phoenix sistema. Tabella del catalogo:
+5. Eseguire questi comandi dal nodo head (hn0) per diagnosticare la condizione della tabella SYSTEM.CATALOG di Phoenix:
 
    ```apache
             hbase shell
@@ -246,23 +246,23 @@ tooconnect con Phoenix, è necessario fornire l'indirizzo IP hello di un nodo Zo
            count 'SYSTEM.CATALOG'
    ```
 
-   comando Hello deve restituire un seguente toohello simile di errore: 
+   Il comando dovrebbe restituire un errore simile al seguente: 
 
    ```apache
            ERROR: org.apache.hadoop.hbase.NotServingRegionException: Region SYSTEM.CATALOG,,1485464083256.c0568c94033870c517ed36c45da98129. is not online on 10.2.0.5,16020,1489466172189) 
    ```
-6. Hello Ambari UI, completare hello seguente servizio HMaster hello toorestart di passaggi in tutti i nodi ZooKeeper:
+6. Nell'interfaccia utente di Ambari eseguire questi passaggi per riavviare il servizio HMaster in tutti i nodi ZooKeeper:
 
-    1. In hello **riepilogo** sezione di HBase, andare troppo**HBase** > **Master HBase Active**. 
-    2. In hello **componenti** sezione, riavviare il servizio di HBase Master hello.
+    1. Nella sezione **Summary** (Riepilogo) di HBase passare a **HBase** > **Active HBase Master** (HBase Master attivo). 
+    2. Nella sezione **Components** (Componenti) riavviare il servizio HBase Master.
     3. Ripetere questi passaggi per tutti i rimanenti servizi **Standby HBase Master** (HBase Master in standby). 
 
-Può richiedere minuti toofive hello Master HBase servizio toostabilize e completare il processo di ripristino hello. Dopo alcuni minuti, ripetere hello sqlline.py comandi tooconfirm tale sistema hello. Tabella del catalogo è attivo e che è possibile eseguire query. 
+Possono trascorrere fino a cinque minuti prima che il servizio HBase Master si stabilizzi e completi il processo di ripristino. Dopo alcuni minuti, ripetere i comandi sqlline.py per verificare che la tabella SYSTEM.CATALOG sia operativa e che sia possibile eseguirvi query. 
 
-Quando hello del sistema. Tabella del catalogo è toonormal indietro, tooPhoenix problema di connettività hello devono essere risolti automaticamente.
+Quando la tabella SYSTEM.CATALOG torna allo stato normale, il problema di connettività a Phoenix dovrebbe essere automaticamente risolto.
 
 
-## <a name="what-causes-a-master-server-toofail-toostart"></a>Qual è la causa di un server master toofail toostart
+## <a name="what-causes-a-master-server-to-fail-to-start"></a>Qual è la causa di un errore di avvio di un server master?
 
 ### <a name="error"></a>Errore 
 
@@ -270,19 +270,19 @@ Si verifica un errore di ridenominazione atomica.
 
 ### <a name="detailed-description"></a>Descrizione dettagliata
 
-Durante il processo di avvio di hello, HMaster completa molte operazioni di inizializzazione. Sono inclusi lo spostamento dei dati da zero hello (tmp) una cartella toohello dati. HMaster prende in considerazione anche hello log write-ahead (WALs) cartella toosee se sono presenti server qualsiasi area che non risponde, e così via. 
+Durante il processo di avvio, HMaster completa numerosi passaggi di inizializzazione, tra cui lo spostamento dei dati dalla cartella dei file temporanei (con estensione tmp) alla cartella dati. HMaster verifica anche nella cartella dei log write-ahead se sono presenti server di area che non rispondono e così via. 
 
 Durante l'avvio, HMaster esegue un comando `list` di base su tali cartelle. Se in qualunque momento rileva un file imprevisto in una delle cartelle, HMaster genera un'eccezione e non viene avviato.  
 
 ### <a name="probable-cause"></a>Possibile causa
 
-Nei registri di server area hello, provare la sequenza temporale hello tooidentify hello creazione dei file e verificare se si è verificato che un arresto anomalo del processo per file di hello hello ora è stato creato. (Contattare tooassist supporto HBase in questo modo.) In questo modo saranno disponibili meccanismi più affidabili per evitare di incorrere in questo bug e garantire l'arresto normale dei processi.
+Nei log dei server di area provare a identificare la sequenza temporale della creazione dei file e quindi controllare se si sia verificato l'arresto anomalo di un processo all'incirca nel momento in cui è stato creato il file. Per ottenere assistenza a tale scopo, contattare il supporto HBase. In questo modo saranno disponibili meccanismi più affidabili per evitare di incorrere in questo bug e garantire l'arresto normale dei processi.
 
 ### <a name="resolution-steps"></a>Procedura per la risoluzione
 
-Verifica dello stack di chiamate hello e provare la cartella potrebbe essere la causa problema hello toodetermine (ad esempio, potrebbe essere cartella WALs hello o una cartella con estensione tmp hello). Quindi, in Cloud Explorer oppure utilizzando i comandi HDFS effettuato un tentativo toolocate hello problema file. che è in genere un file \*-renamePending.json. (hello \*-renamePending.json file è un file journal che usa l'operazione di ridenominazione atomica hello tooimplement nel driver WASB hello. Scadenza toobugs in questa implementazione, questi file possono essere rimasti dopo l'arresto del processo e così via.) Forzare l'eliminazione del file in Cloud Explorer o con comandi HDFS. 
+Controllare lo stack di chiamate e provare a determinare quale cartella potrebbe causare il problema, ad esempio la cartella dei log write-ahead o quella dei file temporanei. In Cloud Explorer o con comandi HDFS provare quindi a individuare il file problematico, che è in genere un file \*-renamePending.json. \*-renamePending.json è un file journal usato per implementare l'operazione di ridenominazione atomica nel driver WASB. A causa di alcuni bug in questa implementazione, questi file possono essere ancora presenti in seguito ad arresti anomali dei processi e così via. Forzare l'eliminazione del file in Cloud Explorer o con comandi HDFS. 
 
-In questo percorso potrebbe essere talvolta presente anche un file con un nome simile a *$$$.$$$*. Si dispone di toouse HDFS `ls` questo file di comando toosee; non è possibile visualizzare file hello in Cloud Explorer. toodelete questo file, utilizzare hello HDFS comando `hdfs dfs -rm /\<path>\/\$\$\$.\$\$\$`.  
+In questo percorso potrebbe essere talvolta presente anche un file con un nome simile a *$$$.$$$*. Per visualizzare questo file è necessario usare il comando HDFS `ls`. Non viene visualizzato in Cloud Explorer. Per eliminare il file, usare il comando HDFS `hdfs dfs -rm /\<path>\/\$\$\$.\$\$\$`.  
 
 Dopo l'esecuzione di questi comandi, HMaster dovrebbe essere avviato immediatamente. 
 
@@ -292,11 +292,11 @@ In *hbase: meta* non è elencato alcun indirizzo del server per l'area xxx.
 
 ### <a name="detailed-description"></a>Descrizione dettagliata
 
-Si potrebbe essere visualizzato un messaggio sul cluster Linux che indica che hello *hbase: meta* tabella non è online. L'esecuzione di `hbck` potrebbe segnalare che non è stato possibile trovare la tabella hbase: meta con replicaId 0 in alcuna area. problema di Hello potrebbe essere che HMaster non è stato possibile inizializzare dopo il riavvio di HBase. In registri HMaster hello, è possibile visualizzare il messaggio hello: "Nessun indirizzo di server elencati in hbase: metadati per l'area hbase: backup \<nome dell'area\>".  
+In un cluster Linux potrebbe essere visualizzato un messaggio che indica che la tabella *hbase: meta* non è online. L'esecuzione di `hbck` potrebbe segnalare che non è stato possibile trovare la tabella hbase: meta con replicaId 0 in alcuna area. Il problema potrebbe essere che non è stato possibile inizializzare HMaster dopo il riavvio di HBase. Nei log di HMaster viene visualizzato un messaggio che segnala che in hbase: meta non è elencato alcun indirizzo del server per l'area "hbase: backup \<region name\>".  
 
 ### <a name="resolution-steps"></a>Procedura per la risoluzione
 
-1. Nella shell di HBase hello, immettere hello seguenti comandi (modifica i valori effettivi come applicabile):  
+1. Nella shell di HBase digitare i comandi seguenti, modificando i valori effettivi a seconda dei casi:  
 
    ```apache
    > scan 'hbase:meta'  
@@ -306,11 +306,11 @@ Si potrebbe essere visualizzato un messaggio sul cluster Linux che indica che he
    > delete 'hbase:meta','hbase:backup <region name>','<column name>'  
    ```
 
-2. Eliminare hello *hbase: spazio dei nomi* voce. Questa voce potrebbe non essere lo stesso errore che viene segnalato quando hello hello *hbase: spazio dei nomi* tabella viene analizzata.
+2. Eliminare la voce *hbase: namespace*. Questa voce potrebbe corrispondere all'errore segnalato durante l'analisi della tabella *hbase: namespace*.
 
-3. toobring di HBase in uno stato in esecuzione, in hello Ambari UI, riavviare il servizio di HMaster Active hello.  
+3. Per ripristinare lo stato di esecuzione di HBase, nell'interfaccia utente di Ambari riavviare il servizio HMaster attivo.  
 
-4. Nella shell di HBase, toobring di tutte le tabelle non in linea, hello eseguire hello comando seguente:
+4. Nella shell di HBase eseguire questo comando per rendere disponibili tutte le tabelle offline:
 
    ```apache 
    hbase hbck -ignorePreCheckPermission -fixAssignments 
@@ -318,46 +318,46 @@ Si potrebbe essere visualizzato un messaggio sul cluster Linux che indica che he
 
 ### <a name="additional-reading"></a>Informazioni aggiuntive
 
-[Nella tabella non è possibile tooprocess hello HBase](http://stackoverflow.com/questions/4794092/unable-to-access-hbase-table)
+[Impossibile elaborare la tabella HBase](http://stackoverflow.com/questions/4794092/unable-to-access-hbase-table)
 
 
 ### <a name="error"></a>Errore
 
-HMaster timeout con un too"java.io.IOException simile a un'eccezione irreversibile: 300000ms Timedout in attesa per spazio dei nomi tabella toobe assegnato."
+Si verifica il timeout di HMaster con un'eccezione irreversibile di tipo java.io.IOException, che indica un timeout di 300.000 millisecondi in attesa dell'assegnazione della tabella namespace.
 
 ### <a name="detailed-description"></a>Descrizione dettagliata
 
-Questo problema potrebbe verificarsi se al riavvio dei servizi HMaster sono presenti diverse tabelle e aree che non sono state scaricate. Il riavvio potrebbe avere esito negativo e verrà visualizzato hello che precede il messaggio di errore.  
+Questo problema potrebbe verificarsi se al riavvio dei servizi HMaster sono presenti diverse tabelle e aree che non sono state scaricate. Il riavvio potrebbe avere esito negativo e verrà visualizzato il messaggio di errore descritto sopra.  
 
 ### <a name="probable-cause"></a>Possibile causa
 
-Si tratta di un problema noto con hello HMaster servizio. Le attività di avvio generali del cluster possono richiedere molto tempo. Arresta HMaster perché nella tabella hello dello spazio dei nomi non è ancora assegnata. Questo si verifica solo in scenari in cui è presente una grande quantità di dati non scaricati e un timeout di cinque minuti non è sufficiente.
+Si tratta di un problema noto relativo al servizio HMaster. Le attività di avvio generali del cluster possono richiedere molto tempo. HMaster si arresta perché la tabella namespace non è ancora stata assegnata. Questo si verifica solo in scenari in cui è presente una grande quantità di dati non scaricati e un timeout di cinque minuti non è sufficiente.
   
 ### <a name="resolution-steps"></a>Procedura per la risoluzione
 
-1. In hello Ambari UI, andare troppo**HBase** > **configurazioni**. Nel file hbase-Site.XML personalizzata hello aggiungere hello seguente impostazione: 
+1. Nell'interfaccia utente di Ambari passare a **HBase** > **Configs** (Configurazioni). Nel file hbase-site.xml personalizzato aggiungere l'impostazione seguente: 
 
    ```apache
    Key: hbase.master.namespace.init.timeout Value: 2400000  
    ```
 
-2. Riavviare i servizi necessario hello (HMaster e possibilmente altri servizi di HBase).  
+2. Riavviare i servizi necessari (HMaster e possibilmente altri servizi HBase).  
 
 
 ## <a name="what-causes-a-restart-failure-on-a-region-server"></a>Qual è la causa di un errore di riavvio in un server di area?
 
 ### <a name="issue"></a>Problema
 
-È possibile prevenire un errore di avvio in un server di area seguendo le procedure consigliate. Si consiglia sospendere attività carichi di lavoro per pianificare i server di toorestart HBase area. Se un'applicazione continua tooconnect con i server area quando l'istruzione shutdown è in corso, l'operazione di riavvio hello area server sarà più lento da alcuni minuti. Inoltre, è toofirst una buona idea scaricamento di che tutte le tabelle di hello. Per informazioni di riferimento sul tooflush tabelle, vedere [HDInsight HBase: come cluster HBase di hello tooimprove riavviare ora rimuovendo tabelle](https://blogs.msdn.microsoft.com/azuredatalake/2016/09/19/hdinsight-hbase-how-to-improve-hbase-cluster-restart-time-by-flushing-tables/).
+È possibile prevenire un errore di avvio in un server di area seguendo le procedure consigliate. Quando si pianifica il riavvio di server di area di HBase, è consigliabile sospendere le attività con carichi di lavoro elevati. Se l'applicazione continua a connettersi ai server di area mentre è in corso l'arresto, l'operazione di riavvio dei server di area verrà rallentata di diversi minuti. È anche opportuno scaricare prima tutte le tabelle. Per informazioni su come scaricare le tabelle, vedere [HDInsight HBase: How to improve the HBase cluster restart time by flushing tables](https://blogs.msdn.microsoft.com/azuredatalake/2016/09/19/hdinsight-hbase-how-to-improve-hbase-cluster-restart-time-by-flushing-tables/) (HBase in HDInsight: come migliorare i tempi di riavvio del cluster HBase scaricando le tabelle).
 
-Se si avvia l'operazione di riavvio hello nei server di HBase area da hello Ambari UI, vengono immediatamente visualizzati che server area hello è arrestato, ma non riavviare immediatamente. 
+Se l'operazione di riavvio sui server di area di HBase viene avviata dall'interfaccia utente di Ambari, viene visualizzato immediatamente che i server di area sono stati arrestati, ma non vengono riavviati subito. 
 
-Ecco che cosa avviene in background hello: 
+Di seguito è riportato che cosa avviene in background: 
 
-1. l'agente Ambari Hello invia un arresto richiesta toohello regione del server.
-2. Hello Ambari agente attende 30 secondi per hello area server tooshut verso il basso normalmente. 
-3. Se l'applicazione continua a tooconnect con server area hello, hello server non verrà arrestato immediatamente. timeout di 30 secondi Hello scade prima che si verifica l'arresto. 
-4. Dopo 30 secondi, agente Ambari hello invia un force-kill (`kill -9`) server area toohello di comando. È possibile vedere questo nel log dell'agente di ambari hello (nella directory log//var hello del nodo rispettivo lavoro hello):
+1. L'agente Ambari invia una richiesta di arresto al server di area.
+2. L'agente Ambari attende per 30 secondi l'arresto normale del server di area. 
+3. Se l'applicazione continua a connettersi al server di area, il server non viene arrestato immediatamente. Il timeout di 30 secondi scade prima dell'arresto. 
+4. Dopo 30 secondi, l'agente Ambari invia un comando di terminazione forzata (`kill -9`) al server di area. Questa operazione è riportata nel log ambari-agent, disponibile nella directory /var/log/ del rispettivo nodo di lavoro:
 
    ```apache
            2017-03-21 13:22:09,171 - Execute['/usr/hdp/current/hbase-regionserver/bin/hbase-daemon.sh --config /usr/hdp/current/hbase-regionserver/conf stop regionserver'] {'only_if': 'ambari-sudo.sh  -H -E t
@@ -371,7 +371,7 @@ Ecco che cosa avviene in background hello:
            2017-03-21 13:22:40,285 - File['/var/run/hbase/hbase-hbase-regionserver.pid'] {'action': ['delete']}
            2017-03-21 13:22:40,285 - Deleting File['/var/run/hbase/hbase-hbase-regionserver.pid']
    ```
-A causa dell'arresto improvviso hello, porta hello associata al processo hello potrebbe non essere rilasciata, anche se hello area server processo viene arrestato. Questa situazione può causare tooan AddressBindException all'avvio di hello area server, come illustrato nell'hello seguenti registri. È possibile verificare questa nell'area hello-server.log nella directory /var/log/hbase hello nei nodi di lavoro hello in cui il server di area hello ha esito negativo toostart. 
+A causa dell'arresto improvviso, la porta associata al processo potrebbe non essere rilasciata nonostante il processo del server di area venga arrestato. Questa situazione può generare un'eccezione AddressBindException durante l'avvio del server di area, come illustrato nei log di seguito. È possibile verificare questa condizione nel file region-server.log nella directory /var/log/hbase dei nodi di lavoro in cui l'avvio del server di area ha esito negativo. 
 
    ```apache
 
@@ -392,7 +392,7 @@ A causa dell'arresto improvviso hello, porta hello associata al processo hello p
    at org.apache.hadoop.hbase.regionserver.HRegionServer.constructRegionServer(HRegionServer.java:2634)
    ... 5 more
         
-   Caused by: java.net.BindException: Problem binding too/10.2.0.4:16020 : Address already in use
+   Caused by: java.net.BindException: Problem binding to /10.2.0.4:16020 : Address already in use
    at org.apache.hadoop.hbase.ipc.RpcServer.bind(RpcServer.java:2497)
    at org.apache.hadoop.hbase.ipc.RpcServer$Listener.<init>(RpcServer.java:580)
    at org.apache.hadoop.hbase.ipc.RpcServer.<init>(RpcServer.java:1982)
@@ -413,8 +413,8 @@ A causa dell'arresto improvviso hello, porta hello associata al processo hello p
 
 ### <a name="resolution-steps"></a>Procedura per la risoluzione
 
-1. Provare tooreduce hello carico sui server di area hello HBase prima di iniziare il riavvio. 
-2. In alternativa (se non consente il passaggio 1), comandi area di riavvio toomanually provare i server in nodi di lavoro hello utilizzando hello seguenti:
+1. Provare a ridurre il carico sui server di area di HBase prima di procedere a un riavvio. 
+2. In alternativa, se il passaggio 1 non è stato utile, provare a riavviare manualmente i server di area nei nodi di lavoro con i comandi seguenti:
 
    ```apache
    sudo su - hbase -c "/usr/hdp/current/hbase-regionserver/bin/hbase-daemon.sh stop regionserver"

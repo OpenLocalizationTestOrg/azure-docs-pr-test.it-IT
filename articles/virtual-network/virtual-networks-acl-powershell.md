@@ -1,6 +1,6 @@
 ---
-title: elenchi di controllo di accesso all'endpoint Azure aaaManage | PowerShell | Classico | Documenti Microsoft
-description: Informazioni su come toomanage ACL con PowerShell
+title: Gestire elenchi di controllo di accesso di endpoint di Azure | PowerShell | Modello di distribuzione classica | Documentazione Microsoft
+description: Informazioni su come gestire gli elenchi di controllo di accesso con PowerShell
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -14,45 +14,45 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
-ms.openlocfilehash: a7ca241ea108a266085bfb689b742d781e58da1c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c3476908447380ccd7e8b9c0f1c2a55ae763cc1e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="manage-endpoint-access-control-lists-using-powershell-in-hello-classic-deployment-model"></a>Gestire elenchi di controllo di accesso endpoint tramite PowerShell nel modello di distribuzione classica hello
-È possibile creare e gestire elenchi controllo accesso rete (ACL) per gli endpoint tramite Azure PowerShell o nel portale di gestione di hello. Questo argomento illustra le procedure per le attività comuni che è possibile eseguire per tali elenchi usando PowerShell. Per l'elenco hello di Azure PowerShell cmdlet vedere [cmdlet di gestione di Azure](http://go.microsoft.com/fwlink/?LinkId=317721). Per altre informazioni sugli elenchi di controllo di accesso, vedere l'articolo relativo alla [definizione di un elenco di controllo di accesso di rete](virtual-networks-acl.md). Se si desidera toomanage gli ACL usando hello portale di gestione, vedere [come configurare gli endpoint di tooSet tooa macchina virtuale](../virtual-machines/windows/classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
+# <a name="manage-endpoint-access-control-lists-using-powershell-in-the-classic-deployment-model"></a>Gestire elenchi di controllo di accesso di endpoint con PowerShell nel modello di distribuzione classica
+È possibile creare e gestire gli elenchi di controllo di accesso di rete per gli endpoint tramite Azure PowerShell o nel portale di gestione. Questo argomento illustra le procedure per le attività comuni che è possibile eseguire per tali elenchi usando PowerShell. Per l'elenco dei cmdlet di Azure PowerShell, vedere l'articolo relativo ai [cmdlet di gestione di Azure](http://go.microsoft.com/fwlink/?LinkId=317721). Per altre informazioni sugli elenchi di controllo di accesso, vedere l'articolo relativo alla [definizione di un elenco di controllo di accesso di rete](virtual-networks-acl.md). Se si intende gestire gli elenchi di controllo di accesso tramite il portale di gestione, vedere [Come configurare gli endpoint in una macchina virtuale](../virtual-machines/windows/classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
 
 ## <a name="manage-network-acls-by-using-azure-powershell"></a>Gestire gli elenchi di controllo di accesso di rete tramite Azure PowerShell
-È possibile utilizzare toocreate cmdlet PowerShell di Azure, rimuovere e configurare (set) elenchi controllo accesso rete (ACL). Sono stati inclusi alcuni esempi di alcuni dei modi hello che è possibile configurare un ACL tramite PowerShell.
+È possibile usare i cmdlet di Azure PowerShell per creare, rimuovere e configurare (impostare) gli elenchi di controllo di accesso di rete. Di seguito sono riportati alcuni esempi di come configurare un elenco di controllo di accesso tramite PowerShell.
 
-un elenco completo dei cmdlet di PowerShell ACL hello tooretrieve, è possibile utilizzare uno dei seguenti hello:
+Per recuperare un elenco completo dei cmdlet PowerShell per gli elenchi di controllo di accesso, è possibile usare uno dei comandi seguenti:
 
     Get-Help *AzureACL*
     Get-Command -Noun AzureACLConfig
 
 ### <a name="create-a-network-acl-with-rules-that-permit-access-from-a-remote-subnet"></a>Creare un elenco di controllo di accesso di rete con regole che consentano l'accesso da una subnet remota
-esempio Hello riportato di seguito viene illustrato un toocreate modo un nuovo ACL contenente regole. Viene quindi applicato l'ACL tooa endpoint della macchina virtuale. regole ACL Hello nel seguente esempio hello consentirà l'accesso da una subnet remota. toocreate un nuovo ACL di rete con regole Consenti per una subnet remota, aprire Azure PowerShell ISE. Copiare e incollare hello script seguente, configurando script hello con i valori desiderati e quindi eseguire script hello.
+L'esempio seguente illustra come creare un nuovo elenco di controllo di accesso contenente regole. Tale elenco viene quindi applicato all'endpoint di una macchina virtuale. Le regole dell'elenco di controllo di accesso nell'esempio seguente consentiranno l'accesso da una subnet remota. Per creare un nuovo elenco di controllo di accesso di rete con regole di autorizzazione per una subnet remota, aprire un'istanza di Azure PowerShell ISE. Copiare e incollare lo script seguente, configurandolo con valori personalizzati, e quindi eseguirlo.
 
-1. Creare hello nuovo oggetto ACL di rete.
+1. Creare il nuovo oggetto elenco di controllo di accesso (ACL) di rete.
    
         $acl1 = New-AzureAclConfig
-2. Impostare una regola che consenta l'accesso da una subnet remota. Nell'esempio hello seguente, si imposta regola *100* (che ha la priorità sulla regola 200 e versioni successiva) della subnet remota hello tooallow *10.0.0.0/8* accedere toohello endpoint della macchina virtuale. Sostituire i valori hello con requisiti di configurazione. nome Hello "SharePoint ACL config" deve essere sostituito con un nome di hello che si desidera toocall questa regola.
+2. Impostare una regola che consenta l'accesso da una subnet remota. Nell'esempio seguente si imposta la regola *100* (che ha la priorità sulla regola 200 e superiori) per consentire alla subnet remota *10.0.0.0/8* di accedere all'endpoint della macchina virtuale. Sostituire i valori con quelli necessari per la propria configurazione. Il nome "SharePoint ACL config" deve essere sostituito dal nome descrittivo che si intende assegnare alla regola.
    
         Set-AzureAclConfig –AddRule –ACL $acl1 –Order 100 `
             –Action permit –RemoteSubnet "10.0.0.0/8" `
             –Description "SharePoint ACL config"
-3. Per altre regole, ripetere il cmdlet hello, sostituendo i valori hello con requisiti di configurazione. Essere certi toochange hello regola numero tooreflect hello ordine in cui si desidera hello regole toobe applicato. Hello regola più basso ha la precedenza sul numero più alto hello.
+3. Per aggiungere altre regole, ripetere il cmdlet sostituendo i valori con quelli necessari per la propria configurazione. Ricordarsi di modificare il numero di regola per Order in base all'ordine in cui devono essere applicate le regole. La regola con il numero più basso ha la precedenza sulla regola con il numero più alto.
    
         Set-AzureAclConfig –AddRule –ACL $acl1 –Order 200 `
             –Action permit –RemoteSubnet "157.0.0.0/8" `
             –Description "web frontend ACL config"
-4. Successivamente, è possibile creare un nuovo endpoint (Add) o impostare hello ACL per un endpoint esistente (Set). In questo esempio, si aggiungerà che un nuovo endpoint della macchina virtuale denominata "web" e aggiornamento endpoint della macchina virtuale hello con hello impostazioni ACL.
+4. È quindi possibile creare un nuovo endpoint (Add) o impostare l'elenco di controllo di accesso per un endpoint esistente (Set). In questo esempio si aggiungerà un nuovo endpoint di macchina virtuale denominato "web" e si aggiornerà l'endpoint con le impostazioni dell'elenco di controllo di accesso.
    
         Get-AzureVM –ServiceName $serviceName –Name $vmName `
         | Add-AzureEndpoint –Name "web" –Protocol tcp –Localport 80 - PublicPort 80 –ACL $acl1 `
         | Update-AzureVM
-5. Successivamente, combinare i cmdlet di hello ed eseguire script hello. In questo esempio hello cmdlet combinati sarebbe simile al seguente:
+5. Si combineranno quindi i cmdlet e si eseguirà lo script. Per questo esempio i cmdlet combinati saranno simili ai seguenti:
    
         $acl1 = New-AzureAclConfig
         Set-AzureAclConfig –AddRule –ACL $acl1 –Order 100 `
@@ -66,21 +66,21 @@ esempio Hello riportato di seguito viene illustrato un toocreate modo un nuovo A
         |Update-AzureVM
 
 ### <a name="remove-a-network-acl-rule-that-permits-access-from-a-remote-subnet"></a>Rimuovere una regola dell'elenco di controllo di accesso che consente l'accesso da una subnet remota
-esempio Hello riportato di seguito viene illustrato un tooremove modo una regola ACL di rete.  le regole di tooremove una regola ACL di rete con l'autorizzazione per una subnet remota, aprire Azure PowerShell ISE. Copiare e incollare hello script seguente, configurando script hello con i valori desiderati e quindi eseguire script hello.
+L'esempio seguente illustra come rimuovere una regola dell'elenco di controllo di accesso di rete.  Per rimuovere una regola dell'elenco di controllo di accesso di rete con regole di autorizzazione per una subnet remota, aprire un'istanza di Azure PowerShell ISE. Copiare e incollare lo script seguente, configurandolo con valori personalizzati, e quindi eseguirlo.
 
-1. Primo passaggio è l'oggetto ACL di rete di hello tooget per l'endpoint della macchina virtuale hello. Verrà rimossa regola ACL hello. In questo caso, la si rimuoverà in base all'ID regola. Questo verrà rimosso solo hello l'ID regola 0 dall'ACL hello. Non rimuove oggetto ACL hello dall'endpoint della macchina virtuale hello.
+1. È innanzitutto necessario ottenere l'oggetto elenco di controllo di accesso (ACL) di rete per l'endpoint della macchina virtuale. Quindi si rimuoverà la regola dell'elenco di controllo di accesso. In questo caso, la si rimuoverà in base all'ID regola. In questo modo, dall'elenco di controllo di accesso verrà rimosso solo l'ID regola 0. L'oggetto ACL non verrà eliminato dall'endpoint della macchina virtuale.
    
         Get-AzureVM –ServiceName $serviceName –Name $vmName `
         | Get-AzureAclConfig –EndpointName "web" `
         | Set-AzureAclConfig –RemoveRule –ID 0 –ACL $acl1
-2. Successivamente, è necessario applicare l'endpoint della macchina virtuale toohello oggetto ACL di rete hello e aggiornare la macchina virtuale hello.
+2. È quindi necessario applicare l'oggetto ACL di rete all'endpoint della macchina virtuale e aggiornare quest'ultima.
    
         Get-AzureVM –ServiceName $serviceName –Name $vmName `
         | Set-AzureEndpoint –ACL $acl1 –Name "web" `
         | Update-AzureVM
 
 ### <a name="remove-a-network-acl-from-a-virtual-machine-endpoint"></a>Rimuovere un elenco di controllo di accesso di rete dall'endpoint di una macchina virtuale
-In alcuni scenari, è possibile tooremove un oggetto ACL di rete da un endpoint della macchina virtuale. toodo che, aprire Azure PowerShell ISE. Copiare e incollare hello script seguente, configurando script hello con i valori desiderati e quindi eseguire script hello.
+In alcuni scenari potrebbe essere necessario rimuovere un oggetto ACL di rete dall'endpoint di una macchina virtuale. A tale scopo, aprire un'istanza di Azure PowerShell ISE. Copiare e incollare lo script seguente, configurandolo con valori personalizzati, e quindi eseguirlo.
 
         Get-AzureVM –ServiceName $serviceName –Name $vmName `
         | Remove-AzureAclConfig –EndpointName "web" `

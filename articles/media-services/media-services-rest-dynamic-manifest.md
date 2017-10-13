@@ -1,6 +1,6 @@
 ---
-title: i filtri di aaaCreating con l'API REST di servizi multimediali di Azure | Documenti Microsoft
-description: "In questo argomento viene descritto come toocreate filtra il client può utilizzarli toostream sezioni specifiche di un flusso. Servizi multimediali crea manifesti dinamica tooachieve questo flusso selettiva."
+title: Creazione di filtri con l'API REST di Servizi multimediali di Azure | Microsoft Docs
+description: "Questo argomento descrive come creare filtri che il client può usare per trasmettere in streaming sezioni specifiche di un flusso. Servizi multimediali crea manifesti dinamici per consentire questo streaming selettivo."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,11 +14,11 @@ ms.devlang: ne
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: juliako;cenkdin
-ms.openlocfilehash: d0b5af3b193b35f22ac70887963c2f0a06b60bde
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 76d2721138668d9f0a908af3fa42840309b068ef
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="creating-filters-with-azure-media-services-rest-api"></a>Creazione di filtri con l'API REST di Servizi multimediali di Azure
 > [!div class="op_single_selector"]
@@ -27,14 +27,14 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-A partire dalla versione 2.11, servizi multimediali consente toodefine filtri per le risorse. Questi filtri sono regole lato server che consentono ai clienti toochoose toodo elementi quali: la riproduzione solo una sezione di un video (anziché la riproduzione di hello video interi), oppure specificare solo un subset di rendering audio e video che (è possono gestire i dispositivi del cliente invece di tutte le copie trasformate hello associati asset hello). Questo filtro delle risorse di archiviazione tramite **manifesto dinamica**che vengono creati al momento di toostream di richiesta del cliente, un video in base a filtri specificati.
+A partire dalla versione 2.11, Servizi multimediali consente di definire filtri per i propri asset. I filtri sono costituiti da regole lato server che consentono ai clienti di eseguire operazioni particolari, come riprodurre solo una sezione di un video (anziché il video intero) oppure specificare solo un sottoinsieme di rendering audio e video, in modo che possa essere gestito dal dispositivo del cliente (anziché tutti i rendering associati all'asset). Il filtro degli asset viene archiviato attraverso **manifesti dinamici**creati su richiesta del cliente per trasmettere un video in streaming in base ai filtri specificati.
 
-Per informazioni più dettagliate toofilters correlati e il manifesto dinamica, vedere [dinamico manifesti Panoramica](media-services-dynamic-manifest-overview.md).
+Per altre informazioni sui filtri e sul manifesto dinamico, vedere [Filtri e manifesti dinamici](media-services-dynamic-manifest-overview.md).
 
-Questo argomento viene illustrato come toouse toocreate di API REST, aggiornare ed eliminare filtri. 
+Questo argomento illustra come usare le API REST per creare, aggiornare ed eliminare filtri. 
 
-## <a name="types-used-toocreate-filters"></a>I tipi utilizzati filtri toocreate
-Hello vengono utilizzati i seguenti tipi quando si creano filtri:  
+## <a name="types-used-to-create-filters"></a>Tipi usati per la creazione dei filtri
+Durante la creazione dei filtri vengono usati i tipi seguenti:  
 
 * [Filter](https://docs.microsoft.com/rest/api/media/operations/filter)
 * [AssetFilter](https://docs.microsoft.com/rest/api/media/operations/assetfilter)
@@ -45,16 +45,16 @@ Hello vengono utilizzati i seguenti tipi quando si creano filtri:
 
 >Quando si accede alle entità in Servizi multimediali, è necessario impostare valori e campi di intestazione specifici nelle richieste HTTP. Per altre informazioni, vedere [Panoramica dell'API REST di Servizi multimediali](media-services-rest-how-to-use.md).
 
-## <a name="connect-toomedia-services"></a>Connessione dei servizi tooMedia
+## <a name="connect-to-media-services"></a>Connettersi a Servizi multimediali
 
-Per informazioni su come tooconnect toohello AMS API, vedere [hello accesso API di servizi multimediali di Azure con autenticazione di Azure AD](media-services-use-aad-auth-to-access-ams-api.md). 
+Per informazioni su come connettersi all'API AMS, vedere [Accedere all'API di Servizi multimediali di Azure con l'autenticazione di Azure AD](media-services-use-aad-auth-to-access-ams-api.md). 
 
 >[!NOTE]
->Dopo avere stabilito la connessione toohttps://media.windows.net, si riceverà un reindirizzamento 301 specificando un altro URI di servizi multimediali. È necessario effettuare le chiamate successive toohello nuovo URI.
+>Dopo avere stabilito la connessione a https://media.windows.net, si riceverà un reindirizzamento 301 che indica un altro URI di Servizi multimediali. Le chiamate successive dovranno essere effettuate al nuovo URI.
 
 ## <a name="create-filters"></a>Creare filtri
 ### <a name="create-global-filters"></a>Creare filtri globali
-toocreate filtro globale, utilizzare hello richieste HTTP seguenti:  
+Per creare un filtro globale, usare le richieste HTTP seguenti:  
 
 #### <a name="http-request"></a>Richiesta HTTP
 Intestazioni richiesta
@@ -107,7 +107,7 @@ Corpo della richiesta
     HTTP/1.1 201 Created 
 
 ### <a name="create-local-assetfilters"></a>Creare AssetFilters locali
-toocreate un AssetFilter locale, utilizzare hello richieste HTTP seguenti:  
+Per creare un AssetFilter locale, usare le richieste HTTP seguenti:  
 
 #### <a name="http-request"></a>Richiesta HTTP
 Intestazioni richiesta
@@ -159,8 +159,8 @@ Corpo della richiesta
     . . . 
 
 ## <a name="list-filters"></a>Elencare i filtri
-### <a name="get-all-global-filters-in-hello-ams-account"></a>Ottenere tutti globali **filtro**s nell'account di sistema AMS hello
-filtri toolist, utilizzare hello richieste HTTP seguenti: 
+### <a name="get-all-global-filters-in-the-ams-account"></a>Ottenere tutti i **Filter**globali nell'account di Servizi multimediali di Azure
+Per elencare i filtri, usare le richieste HTTP seguenti: 
 
 #### <a name="http-request"></a>Richiesta HTTP
     GET https://media.windows.net/API/Filters HTTP/1.1 
@@ -197,12 +197,12 @@ filtri toolist, utilizzare hello richieste HTTP seguenti:
 
 
 ## <a name="update-filters"></a>Aggiornare i filtri
-Utilizzo di PATCH, PUT o tipo MERGE tooupdate un filtro con nuovi valori della proprietà.  Per altre informazioni su queste operazioni, vedere [PATCH, PUT, MERGE](http://msdn.microsoft.com/library/dd541276.aspx).
+Usare PATCH, PUT o MERGE per aggiornare un filtro con i nuovi valori di proprietà.  Per altre informazioni su queste operazioni, vedere [PATCH, PUT, MERGE](http://msdn.microsoft.com/library/dd541276.aspx).
 
-Se si aggiorna un filtro, può richiedere too2 minuti per le regole di hello toorefresh endpoint di streaming. Se contenuto hello è disponibile quando si utilizza il filtro e memorizzati nella cache in proxy e della rete CDN memorizza nella cache, l'aggiornamento di questo filtro può causare errori di Windows Media player. È consigliabile cache di hello tooclear dopo l'aggiornamento del filtro hello. Se questa operazione non è consentita, prendere in considerazione la possibilità di usare un filtro diverso.  
+Se si aggiorna un filtro, l'endpoint di streaming può impiegare fino a due minuti per aggiornare le regole. Se il contenuto è stato trasmesso usando dei filtri (e memorizzato nelle cache dei proxy e delle reti CDN), l'aggiornamento del filtro può determinare un errore del lettore. È consigliabile quindi cancellare la cache dopo aver aggiornato il filtro. Se questa operazione non è consentita, prendere in considerazione la possibilità di usare un filtro diverso.  
 
 ### <a name="update-global-filters"></a>Aggiornare filtri globali
-tooupdate filtro globale, utilizzare hello richieste HTTP seguenti: 
+Per aggiornare un filtro globale, usare le richieste HTTP seguenti: 
 
 #### <a name="http-request"></a>Richiesta HTTP
 Intestazioni della richiesta: 
@@ -242,7 +242,7 @@ Corpo della richiesta:
     } 
 
 ### <a name="update-local-assetfilters"></a>Aggiornare AssetFilters locali
-tooupdate un filtro locale, utilizzare hello richieste HTTP seguenti: 
+Per aggiornare un filtro locale, usare le richieste HTTP seguenti: 
 
 #### <a name="http-request"></a>Richiesta HTTP
 Intestazioni della richiesta: 
@@ -283,7 +283,7 @@ Corpo della richiesta:
 
 ## <a name="delete-filters"></a>Eliminare filtri
 ### <a name="delete-global-filters"></a>Eliminare filtri globali
-toodelete filtro globale, utilizzare hello richieste HTTP seguenti:
+Per eliminare un filtro globale, usare le richieste HTTP seguenti:
 
 #### <a name="http-request"></a>Richiesta HTTP
     DELETE https://media.windows.net/api/Filters('GlobalFilter') HTTP/1.1 
@@ -297,7 +297,7 @@ toodelete filtro globale, utilizzare hello richieste HTTP seguenti:
 
 
 ### <a name="delete-local-assetfilters"></a>Eliminare AssetFilter locali
-toodelete un AssetFilter locale, utilizzare hello richieste HTTP seguenti:
+Per eliminare un AssetFilter locale, usare le richieste HTTP seguenti:
 
 #### <a name="http-request"></a>Richiesta HTTP
     DELETE https://media.windows.net/API/AssetFilters('nb%3Acid%3AUUID%3A536e555d-1500-80c3-92dc-f1e4fdc6c592__%23%23%23__LocalFilter') HTTP/1.1 
@@ -310,9 +310,9 @@ toodelete un AssetFilter locale, utilizzare hello richieste HTTP seguenti:
     Host: media.windows.net 
 
 ## <a name="build-streaming-urls-that-use-filters"></a>Creare URL di streaming basati su filtri
-Per informazioni su come toopublish e offrire le risorse, vedere [tooCustomers recapito contenuto Panoramica](media-services-deliver-content-overview.md).
+Per informazioni su come pubblicare e distribuire asset, vedere [Informazioni generali sulla distribuzione di contenuti ai clienti](media-services-deliver-content-overview.md).
 
-Hello esempi seguenti mostrano come tooadd filtri tooyour gli URL di streaming.
+Gli esempi seguenti illustrano come aggiungere filtri agli URL di streaming.
 
 **MPEG DASH** 
 

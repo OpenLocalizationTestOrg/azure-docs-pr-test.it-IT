@@ -1,5 +1,5 @@
 ---
-title: aaaSite tabella limiti di ripristino
+title: Il ripristino del sito limita la tabella
 description: Descrive i limiti di sistema per il ripristino del sito.
 services: site recovery
 documentationcenter: NA
@@ -13,13 +13,13 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 07/06/2015
 ms.author: lauraa
-ms.openlocfilehash: 0a9f9e4e5f8a8d7d21abd9ba1d31704b351445fd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e0694aa8c5226b794be59358e73751cc493a7e95
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-Hello seguendo i limiti si applica tooAzure Site Recovery:
+Le seguenti limitazioni si applicano a Azure Site Recovery:
 
 | IDENTIFICATORE LIMITE | LIMITE PREDEFINITO |
 | --- | --- | --- | --- |

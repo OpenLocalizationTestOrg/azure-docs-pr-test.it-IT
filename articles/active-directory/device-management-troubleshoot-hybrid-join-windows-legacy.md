@@ -1,5 +1,5 @@
 ---
-title: ibrida aaaTroubleshooting Azure Active Directory aggiunti dispositivi di livello inferiore | Documenti Microsoft
+title: "Risoluzione dei problemi relativi a dispositivi di livello inferiore aggiunti all'identità ibrida di Azure Active Directory | Microsoft Docs"
 description: "Risoluzione dei problemi relativi a dispositivi di livello inferiore aggiunti all'identità ibrida di Azure Active Directory."
 services: active-directory
 documentationcenter: 
@@ -14,15 +14,15 @@ ms.topic: article
 ms.date: 08/17/2017
 ms.author: markvi
 ms.reviewer: jairoc
-ms.openlocfilehash: edd56b89579fac6b427732902284ad9c568b87b4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 715fca79e488ae3759926181c244a42026f4a554
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="troubleshooting-hybrid-azure-active-directory-joined-down-level-devices"></a>Risoluzione dei problemi relativi a dispositivi di livello inferiore aggiunti all'identità ibrida di Azure Active Directory 
 
-In questo argomento è applicabile toohello solo i dispositivi seguenti: 
+Questo argomento è applicabile solo ai seguenti dispositivi: 
 
 - Windows 7 
 - Windows 8.1 
@@ -33,7 +33,7 @@ In questo argomento è applicabile toohello solo i dispositivi seguenti:
 
 Per Windows 10 o Windows Server 2016, vedere [Risoluzione dei problemi relativi a dispositivi Windows 10 e Windows Server 2016 aggiunti all'identità ibrida di Azure Active Directory](device-management-troubleshoot-hybrid-join-windows-current.md).
 
-In questo argomento si presuppone che sia [Configurazione ibrida di Azure Active Directory i dispositivi appartenenti](device-management-hybrid-azuread-joined-devices-setup.md) hello toosupport seguenti scenari:
+Questo argomento presuppone che siano stati [configurati dispositivi aggiunti all'identità ibrida di Azure Active Directory](device-management-hybrid-azuread-joined-devices-setup.md) per supportare gli scenari seguenti:
 
 - Accesso condizionale basato su dispositivo
 
@@ -45,35 +45,35 @@ In questo argomento si presuppone che sia [Configurazione ibrida di Azure Active
 
 
 
-In questo argomento fornisce informazioni aggiuntive su come tooresolve potenziali problemi di risoluzione dei problemi.  
+Questo argomento fornisce indicazioni sulla risoluzione di potenziali problemi.  
 
 **Informazioni utili:** 
 
-- numero massimo di Hello di dispositivi per utente è incentrato sui dispositivi. Ad esempio, se *jdoe* e *jharnett* tooa accesso dispositivo, una registrazione separati (DeviceID) viene creata per ognuno di essi in hello **utente** scheda informazioni.  
+- Il numero massimo di dispositivi per utente è incentrato sui dispositivi. Ad esempio: se *jdoe* e *jharnett* accedono a questo dispositivo, viene creata una registrazione separata (DeviceID) per ciascuno di questi utenti nella scheda di informazioni **UTENTE**.  
 
-- Hello registrazione iniziale / unione dei dispositivi è tooperform configurato un tentativo di accesso o blocco / sblocco. Potrebbero esserci 5 minuti di ritardo causati da un'attività dell'utilità di pianificazione. 
+- La registrazione/aggiunta iniziale dei dispositivi è configurata in modo da eseguire un tentativo di accesso o blocco/sblocco. Potrebbero esserci 5 minuti di ritardo causati da un'attività dell'utilità di pianificazione. 
 
-- La reinstallazione del sistema operativo hello o un manuale di annullare la registrazione e registrare nuovamente possibile creare una nuova registrazione in Azure AD e hello di risultati in più voci nella scheda informazioni utente di hello nel portale di Azure. 
+- Una reinstallazione del sistema operativo o l'annullamento e la ripetizione manuale della registrazione potrebbe creare una nuova registrazione in Azure AD e causare la presenza di più voci nella scheda Info UTENTE nel portale di Azure. 
 
 
-## <a name="step-1-retrieve-hello-registration-status"></a>Passaggio 1: Recuperare lo stato della registrazione hello 
+## <a name="step-1-retrieve-the-registration-status"></a>Passaggio 1: Recuperare lo stato della registrazione 
 
-**stato della registrazione tooverify hello:**  
+**Per verificare lo stato della registrazione**  
 
-1. Hello Apri prompt dei comandi come amministratore 
+1. Aprire il prompt dei comandi come amministratore 
 
 2. Digitare `"%programFiles%\Microsoft Workplace Join\autoworkplace.exe /i"`.
 
-Questo comando Visualizza una finestra di dialogo che fornisce le informazioni più dettagliate sullo stato di join di hello.
+Questo comando consente di visualizzare una finestra di dialogo che fornisce altri dettagli relativi allo stato delle aggiunte.
 
 ![Aggiunta all'area di lavoro per Windows](./media/active-directory-device-registration-troubleshoot-windows-legacy/01.png)
 
 
-## <a name="step-2-evaluate-hello-hybrid-azure-ad-join-status"></a>Passaggio 2: Valutare lo stato di join hello ibrida Azure AD 
+## <a name="step-2-evaluate-the-hybrid-azure-ad-join-status"></a>Passaggio 2: Valutare lo stato delle aggiunte all'identità ibrida di Azure AD 
 
-Se l'aggiunta ad Azure AD ibrido hello non ha esito positivo, la finestra di dialogo hello fornisce dettagli sul problema hello che si è verificato.
+Se l'aggiunta all'identità ibrida di Azure AD non è stata completata correttamente, la finestra di dialogo fornisce dettagli sul problema che si è verificato.
 
-**Hello i problemi più comuni sono:**
+**I problemi più comuni sono:**
 
 - Una configurazione errata di AD FS o Azure AD
 
@@ -87,26 +87,26 @@ Se l'aggiunta ad Azure AD ibrido hello non ha esito positivo, la finestra di dia
 
     ![Aggiunta all'area di lavoro per Windows](./media/active-directory-device-registration-troubleshoot-windows-legacy/04.png)
 
-- servizio Hello non risponde 
+- Il servizio non risponde 
 
     ![Aggiunta all'area di lavoro per Windows](./media/active-directory-device-registration-troubleshoot-windows-legacy/05.png)
 
-È inoltre possibile trovare informazioni sullo stato hello nel registro eventi di hello in **all'area di lavoro di Log\Microsoft servizi e applicazioni**.
+È inoltre possibile trovare le informazioni sullo stato nel registro eventi in **Registri applicazioni e servizi\Microsoft-Workplace Join**.
   
-**le cause più comuni di un join di Azure AD ibrido Hello sono:** 
+**Le cause più comuni di un'aggiunta all'identità ibrida di Azure AD non riuscita sono:** 
 
-- Il computer non si trova nella rete interna dell'organizzazione hello o una connessione VPN senza connessione tooan locale controller di dominio Active Directory.
+- Il computer non è presente nella rete interna dell'organizzazione o c'è una VPN senza connessione su un controller di dominio locale AD.
 
-- Si è connessi in computer tooyour con un account computer locale. 
+- Si è connessi al computer con un account computer locale. 
 
 - Problemi di configurazione del servizio: 
 
-  - Hello server federativo è stato configurato toosupport **WIAORMULTIAUTHN**. 
+  - Il server federativo è stato configurato per supportare **WIAORMULTIAUTHN**. 
 
-  - È presente alcun oggetto di punto di connessione del servizio che fa riferimento il nome di dominio verificato tooyour in Azure Active Directory nella foresta Active Directory hello cui appartiene il computer di hello.
+  - Non è presente alcun oggetto Punto di connessione del servizio che punti al nome di dominio verificato in Azure AD nella foresta AD a cui appartiene il computer.
 
-  - Un utente ha raggiunto il limite di hello dei dispositivi. 
+  - Un utente ha raggiunto il limite di dispositivi. 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per domande, vedere hello [domande frequenti sulla gestione dei dispositivi](device-management-faq.md)  
+Per altre informazioni, vedere le [domande frequenti sulla gestione dei dispositivi](device-management-faq.md)  

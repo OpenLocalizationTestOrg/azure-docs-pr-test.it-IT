@@ -1,6 +1,6 @@
 ---
-title: App aaaPublish con Proxy dell'applicazione Azure AD | Documenti Microsoft
-description: Pubblicare cloud toohello di applicazioni on-premise con Proxy dell'applicazione Azure Active Directory nel portale di Azure hello.
+title: Pubblicare app con il proxy di applicazione di Azure AD | Documentazione Microsoft
+description: Pubblicare applicazioni locali nel cloud con il proxy dell'applicazione di Azure AD nel portale di Azure.
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -15,33 +15,33 @@ ms.date: 07/23/2017
 ms.author: kgremban
 ms.reviewer: harshja
 ms.custom: it-pro
-ms.openlocfilehash: ed5458467fb7d4376f65a222f1ba5f23cfdfc57c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e00a939f2b20ab8e0a2ddf0ff91e59db440213ac
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="publish-applications-using-azure-ad-application-proxy"></a>Pubblicare applicazioni mediante il proxy di applicazione AD Azure
 
 > [!div class="op_single_selector"]
 > * [Portale di Azure](application-proxy-publish-azure-portal.md)
-> * [portale di Azure classico](active-directory-application-proxy-publish.md)
+> * [Portale di Azure classico](active-directory-application-proxy-publish.md)
 
-Proxy dell'applicazione Azure Active Directory (AD) consente di supportare gli utenti remoti mediante la pubblicazione toobe applicazioni locale accessibili tramite hello internet. È possibile pubblicare queste applicazioni tramite hello tooprovide portale Azure l'accesso remoto sicuro dall'esterno della rete.
+Il proxy dell'applicazione di Azure Active Directory (AD) consente di supportare lavoratori remoti pubblicando applicazioni locali in modo che siano accessibili tramite Internet. Tramite il portale di Azure è possibile pubblicare queste applicazioni per fornire un accesso remoto sicuro dall'esterno della rete.
 
-In questo articolo illustra hello passaggi toopublish un'app locale con Proxy dell'applicazione. Dopo aver completato questo articolo, gli utenti verranno essere in grado di tooaccess l'app in modalità remota. E sarà pronto tooconfigure caratteristiche aggiuntive per un'applicazione hello come single sign-on, informazioni personalizzate e requisiti di sicurezza.
+Questo articolo illustra tutti i passaggi per pubblicare un'app locale con il proxy dell'applicazione. Dopo aver completato questo articolo, gli utenti potranno accedere all'app in modalità remota. E sarà possibile configurare funzionalità extra per l'applicazione con accesso Single Sign-On, informazioni personalizzate e requisiti di sicurezza.
 
-Se si tooApplication nuovo Proxy, ulteriori informazioni su questa funzionalità con articolo hello [come tooprovide proteggere l'accesso remoto applicazioni locali tooon](active-directory-application-proxy-get-started.md).
+Se non si ha familiarità con le funzionalità offerte dal proxy dell'applicazione, per altre informazioni vedere [Come fornire l'accesso remoto sicuro alle applicazioni locali](active-directory-application-proxy-get-started.md).
 
 
 ## <a name="publish-an-on-premises-app-for-remote-access"></a>Pubblicare un'applicazione locale per l'accesso remoto
 
-Seguire questi toopublish passaggi le applicazioni con Proxy dell'applicazione. Se ancora stato già scaricato e configurato un connettore per l'organizzazione, andare troppo[iniziare con Proxy dell'applicazione e installare il connettore hello](active-directory-application-proxy-enable.md) primo e quindi pubblicare l'app.
+Seguire questa procedura per pubblicare le app con il proxy dell'applicazione. Se non è ancora stato scaricato e configurato un connettore per l'organizzazione, passare ad [Attività iniziali del proxy di applicazione e installazione del connettore](active-directory-application-proxy-enable.md) in primo luogo e quindi pubblicare l'app.
 
 > [!TIP]
-> Se si sta testando il Proxy dell'applicazione per hello prima volta, scegliere un'applicazione che è configurata per l'autenticazione basata su password. Proxy dell'applicazione supporta altri tipi di autenticazione, ma le app basate su password sono hello tooget più semplice backup ed eseguire rapidamente. 
+> Se è la prima volta che si prova il proxy dell'applicazione, scegliere un'applicazione già configurata per l'autenticazione basata su password. Il proxy dell'applicazione supporta altri tipi di autenticazione, ma le app basate su password sono le più facili da configurare ed eseguire con rapidità. 
 
-1. Accedere come amministratore in hello [portale di Azure](https://portal.azure.com/).
+1. Accedere come amministratore al [portale di Azure](https://portal.azure.com/).
 2. Selezionare **Azure Active Directory** > **Applicazioni aziendali** > **Nuova applicazione**.
 
   ![Aggiungere un'applicazione aziendale](./media/application-proxy-publish-azure-portal/add-app.png)
@@ -50,27 +50,27 @@ Seguire questi toopublish passaggi le applicazioni con Proxy dell'applicazione. 
 
   ![Aggiungere una propria applicazione](./media/application-proxy-publish-azure-portal/add-your-own.png)
 
-4. Fornire le seguenti informazioni sull'applicazione hello:
+4. Specificare le informazioni relative all'applicazione elencate di seguito.
 
-   - **Nome**: nome hello dell'applicazione hello che verrà visualizzato nel Pannello di accesso hello e nel portale di Azure hello. 
+   - **Nome**: il nome dell'applicazione che verrà visualizzato nel pannello di accesso e nel portale di Azure. 
 
-   - **URL interno**: hello URL utilizzato da un'applicazione hello tooaccess all'interno della rete privata. È possibile fornire un percorso specifico in hello toopublish di server back-end, mentre il resto di hello del server hello è pubblicato. In questo modo, è possibile pubblicare i siti diversi hello nello stesso server applicazioni diversi e assegnare a ognuno di essi proprie regole di accesso e nome.
+   - **URL interno**: URL usato per accedere all'applicazione dall'interno della rete privata. È possibile indicare un percorso specifico nel server back-end per la pubblicazione, mentre il resto del server non è pubblicato. In questo modo, si possono pubblicare siti diversi nello stesso server come app differenti, assegnando a ognuno un nome e regole di accesso specifici.
 
      > [!TIP]
-     > Se si pubblica un percorso, assicurarsi che includa tutte le immagini necessarie hello, script e fogli di stile per l'applicazione. Ad esempio, se l'app in https://yourapp/app e Usa le immagini che si trova in https://yourapp/media, è necessario pubblicare https://yourapp/ come percorso di hello. Pagina di destinazione hello toobe che agli utenti di vedere non dispone di questo URL interno. Per altre informazioni, vedere [Impostare una home page personalizzata per le app pubblicate tramite il proxy applicazione di Azure AD](application-proxy-office365-app-launcher.md).
+     > Se si pubblica un percorso, verificare che includa tutte le immagini, gli script e i fogli di stile necessari per l'applicazione. Se l'app si trova in https://yourapp/app e usa immagini che si trovano in https://yourapp/media, si dovrà pubblicare come percorso https://yourapp/. Questo URL interno non deve necessariamente corrispondere alla pagina di destinazione visualizzata dagli utenti. Per altre informazioni, vedere [Impostare una home page personalizzata per le app pubblicate tramite il proxy applicazione di Azure AD](application-proxy-office365-app-launcher.md).
 
-   - **URL esterno**: hello indirizzo agli utenti verranno inviata tooin ordine tooaccess app hello dall'esterno della rete. Se non si desidera dominio Proxy di applicazione predefinito di hello toouse, conoscenza [domini personalizzati in Azure AD applicazione Proxy](active-directory-application-proxy-custom-domains.md).
-   - **Pre-autenticazione**: come Proxy di applicazione verifica gli utenti prima di concedere loro accesso tooyour applicazione. 
+   - **URL esterno**: l'indirizzo immesso dagli utenti per accedere all'app dall'esterno della rete. Se non si desidera usare il dominio del Proxy di applicazione predefinito, trovare informazioni sui [domini personalizzati nel Proxy dell'applicazione di Azure AD](active-directory-application-proxy-custom-domains.md).
+   - **Metodo di autenticazione preliminare**: come il proxy dell'applicazione verifica gli utenti prima di concedere loro l'accesso all'applicazione. 
 
-     - Azure Active Directory: Proxy applicazione reindirizza toosign gli utenti con Azure AD, che autentica le autorizzazioni per directory hello e applicazione. È consigliabile lasciare questa opzione come impostazione predefinita di hello, in modo che è possibile usufruire delle funzionalità di sicurezza di Azure AD come accesso condizionale e multi-Factor Authentication.
-     - Pass-through: Gli utenti non hanno tooauthenticate rispetto a un'applicazione hello tooaccess Azure Active Directory. È comunque possibile impostare i requisiti di autenticazione nel back-end hello.
-   - **Gruppo di connettori**: un'applicazione tooyour connettori processo hello accesso remoto e i gruppi di connettori consentono di organizzare i connettori e le App per area, rete o scopo. Se non si dispone di tutti i gruppi connettore ancora creati, l'app viene assegnato troppo**predefinito**.
+     - Azure Active Directory: il proxy di applicazione reindirizza gli utenti in modo che eseguano l'accesso con Azure AD, che ne autentica le autorizzazioni per la directory e l'applicazione. È consigliabile lasciare questa opzione come impostazione predefinita, in modo da poter usufruire delle funzionalità di sicurezza di Azure AD come l'accesso condizionale e l'autenticazione a più fattori.
+     - Passthrough: gli utenti non devono eseguire l'autenticazione ad Azure Active Directory per accedere all'applicazione. È comunque possibile configurare i requisiti di autenticazione sul back-end.
+   - **Gruppo di connettori**: i connettori elaborano l'accesso remoto all'applicazione, mentre i gruppi di connettori aiutano a organizzare connettori e app in base all'area geografica, alla rete o allo scopo. Se ancora non si dispone di tutti i gruppi connettore creati, l'app viene assegnata a **Impostazione predefinita**.
 
    ![Configurare l'applicazione](./media/application-proxy-publish-azure-portal/configure-app.png)
 5. Se necessario, configurare le impostazioni aggiuntive. Per la maggior parte delle applicazioni, è consigliabile mantenere queste impostazioni nei rispettivi stati predefiniti. 
-   - **Timeout applicazione back-end**: impostare questo valore troppo**lungo** solo se l'applicazione è lento tooauthenticate e connettersi. 
-   - **Convertire gli URL nelle intestazioni**: mantenere il valore come **Sì** , a meno che l'applicazione necessaria l'intestazione dell'host nella richiesta di autenticazione hello originale hello.
-   - **Convertire gli URL nel corpo di applicazione**: mantenere il valore come **n** a meno che non si dispone di applicazioni di on-premise tooother collegamenti HTML hardcoded e non usare i domini personalizzati. Per altre informazioni, vedere [Reindirizzare i collegamenti hardcoded per le app pubblicate con il proxy di app di Azure AD](application-proxy-link-translation.md).
+   - **Timeout applicazione back-end**: impostare questo valore su **Lungo** solo se l'applicazione è lenta nell'autenticazione e nella connessione. 
+   - **Convertire l'URL nelle intestazioni**: mantenere questo valore su **Sì**, a meno che l'applicazione non richieda l'intestazione host originale nella richiesta di autenticazione.
+   - **Convertire gli URL nel corpo dell'applicazione**: mantenere questo valore su **No**, a meno che non si sia in possesso di collegamenti HTML hardcoded ad altre applicazioni locali e non si usino domini personalizzati. Per altre informazioni, vedere [Reindirizzare i collegamenti hardcoded per le app pubblicate con il proxy di app di Azure AD](application-proxy-link-translation.md).
    
    ![Configurare l'applicazione](./media/application-proxy-publish-azure-portal/additional-settings.png)
 
@@ -79,27 +79,27 @@ Seguire questi toopublish passaggi le applicazioni con Proxy dell'applicazione. 
 
 ## <a name="add-a-test-user"></a>Aggiungere un utente di test 
 
-tootest che l'app è stato pubblicato correttamente, aggiungere un account utente di prova. Verificare che l'account disponga già di autorizzazioni tooaccess hello dell'applicazione all'interno di hello alla rete aziendale.
+Per verificare che l'app sia stata pubblicata correttamente, aggiungere un account utente di prova. Verificare che questo account disponga già delle autorizzazioni per accedere all'app dall'interno della rete aziendale.
 
-1. Nel pannello avvio rapido hello selezionare **assegnare un utente per il testing**.
+1. Nel pannello di avvio rapido selezionare **Assign a user for testing** (Assegna utente per il test).
 
   ![Assegna utente per il test](./media/application-proxy-publish-azure-portal/assign-user.png)
 
-2. Gli utenti di hello e blade gruppi, selezionare **Aggiungi**.
+2. Nel pannello Utenti e gruppi selezionare **Aggiungi**.
 
   ![Aggiungere un utente o gruppo](./media/application-proxy-publish-azure-portal/add-user.png)
 
-3. Nel Pannello di assegnazione di hello Aggiungi, selezionare **utenti e gruppi** scegliere account hello da tooadd. 
+3. Nel pannello Aggiungi assegnazione selezionare **Utenti e gruppi**, quindi scegliere l'account da aggiungere. 
 4. Selezionare **Assegna**.
 
 ## <a name="test-your-published-app"></a>Testare l'app pubblicata
 
-Nel browser passare toohello URL esterno configurato hello durante la fase di pubblicazione. Dovrebbe essere schermata start hello ed essere in grado di toosign con account di prova hello impostati.
+Nel browser passare all'URL esterno configurato durante la fase di pubblicazione. Dovrebbe essere visualizzata la schermata iniziale in cui accedere con l'account test configurato.
 
 ![Testare l'app pubblicata](./media/application-proxy-publish-azure-portal/test-app.png)
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-- [Scaricare i connettori](active-directory-application-proxy-enable.md) e [creare gruppi di connettori](active-directory-application-proxy-connectors-azure-portal.md) toopublish applicazioni su reti separate e percorsi.
+- [Scaricare connettori](active-directory-application-proxy-enable.md) e [creare gruppi di connettori](active-directory-application-proxy-connectors-azure-portal.md) per pubblicare applicazioni in reti e posizioni separate.
 
 - [Configurare l'accesso Single Sign-On](application-proxy-sso-azure-portal.md) per l'app appena pubblicata

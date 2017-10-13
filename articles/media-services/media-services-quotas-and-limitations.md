@@ -1,5 +1,5 @@
 ---
-title: aaaMedia le quote e limitazioni dei servizi | Documenti Microsoft
+title: Quote e limitazioni di Servizi multimediali | Microsoft Docs
 description: Questo argomento descrive le quote e le limitazioni associate a Servizi multimediali di Microsoft Azure.
 services: media-services
 documentationcenter: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/09/2017
 ms.author: juliako
-ms.openlocfilehash: 7cbbc36ee226e592e80925854fd54af1d672c15d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 16bebdda823869f5e98c16c3859543632fb07240
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="quotas-and-limitations"></a>Quote e limitazioni
 Questo argomento descrive le quote e le limitazioni associate a Servizi multimediali di Microsoft Azure.

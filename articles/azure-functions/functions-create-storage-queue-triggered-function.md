@@ -1,10 +1,10 @@
 ---
-title: una funzione in Azure attivato da messaggi in coda aaaCreate | Documenti Microsoft
-description: Utilizzare le funzioni di Azure toocreate una funzione senza che viene richiamata da un messaggio inviato tooan coda di archiviazione di Azure.
+title: Creare una funzione in Azure attivata da messaggi di coda | Microsoft Docs
+description: Usare Funzioni di Azure per creare una funzione senza server che viene richiamata da un messaggio inviato a una coda di archiviazione di Azure.
 services: azure-functions
 documentationcenter: na
 author: ggailey777
-manager: erikre
+manager: cfowler
 editor: 
 tags: 
 ms.assetid: 361da2a4-15d1-4903-bdc4-cc4b27fc3ff4
@@ -16,21 +16,21 @@ ms.workload: na
 ms.date: 05/31/2017
 ms.author: glenga
 ms.custom: mvc
-ms.openlocfilehash: e9501ed336b502eaeee3fa62ec4ae085c76de0ac
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3fd5a5b9d2e2eec485fd9ecc5380ad6adb9851d0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-a-function-triggered-by-azure-queue-storage"></a>Creare una funzione attivata dall'archiviazione code di Azure
 
-Informazioni su come toocreate una funzione di attivazione eseguita quando i messaggi vengono inviati tooan coda di archiviazione di Azure.
+Informazioni su come creare una funzione attivata nel momento in cui vengono inviati messaggi a una coda di archiviazione di Azure.
 
-![Visualizza messaggio hello log.](./media/functions-create-storage-queue-triggered-function/function-app-in-portal-editor.png)
+![Visualizzare il messaggio nei log.](./media/functions-create-storage-queue-triggered-function/function-app-in-portal-editor.png)
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-- Scaricare e installare hello [Microsoft Azure Storage Explorer](http://storageexplorer.com/).
+- Scaricare e installare [Microsoft Azure Storage Explorer](http://storageexplorer.com/).
 
 - Una sottoscrizione di Azure. Se non se ne ha una, creare un [account gratuito](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) prima di iniziare.
 
@@ -42,65 +42,65 @@ Informazioni su come toocreate una funzione di attivazione eseguita quando i mes
 
 ![App per le funzioni creata correttamente.](./media/functions-create-first-azure-function/function-app-create-success.png)
 
-Creare quindi una funzione in hello nuova funzione app.
+Si creerà ora una funzione nella nuova app per le funzioni.
 
 <a name="create-function"></a>
 
 ## <a name="create-a-queue-triggered-function"></a>Creare una funzione attivata da una coda
 
-1. Espandere l'applicazione di funzione e fare clic su hello  **+**  accanto troppo**funzioni**. Se si tratta di hello prima funzione di app di funzione, selezionare **funzione personalizzata**. Consente di visualizzare il set completo di hello dei modelli di funzione.
+1. Espandere l'app per le funzioni e fare clic sul pulsante **+** accanto a **Funzioni**. Se questa è la prima funzione nell'app per le funzioni, selezionare **Funzione personalizzata**. Verrà visualizzato il set completo di modelli di funzione.
 
-    ![Pagina di avvio rapido di funzioni in hello portale di Azure](./media/functions-create-storage-queue-triggered-function/add-first-function.png)
+    ![Pagina della guida introduttiva di Funzioni nel portale di Azure](./media/functions-create-storage-queue-triggered-function/add-first-function.png)
 
-2. Seleziona hello **QueueTrigger** modello per la lingua desiderata e utilizza le impostazioni di hello come specificato nella tabella hello.
+2. Selezionare il modello **QueueTrigger** per la lingua desiderata e usare le impostazioni specificate nella tabella.
 
-    ![Creare una funzione hello archiviazione coda attivata.](./media/functions-create-storage-queue-triggered-function/functions-create-queue-storage-trigger-portal.png)
+    ![Creare una funzione attivata da una coda di archiviazione.](./media/functions-create-storage-queue-triggered-function/functions-create-queue-storage-trigger-portal.png)
     
     | Impostazione | Valore consigliato | Descrizione |
     |---|---|---|
-    | **Nome coda**   | myqueue-items    | Nome di hello coda tooconnect tooin account di archiviazione. |
-    | **Connessione dell'account di archiviazione** | AzureWebJobStorage | È possibile utilizzare una connessione ad account di archiviazione hello già in uso dalla tua app di funzione o crearne uno nuovo.  |
     | **Dare un nome alla funzione** | Univoco nell'app per le funzioni | Nome della funzione attivata dalla coda. |
+    | **Nome coda**   | myqueue-items    | Nome della coda a cui connettersi nell'account di archiviazione. |
+    | **Connessione dell'account di archiviazione** | AzureWebJobStorage | È possibile usare la connessione dell'account di archiviazione già usata dall'app per le funzioni oppure crearne una nuova.  |    
 
-3. Fare clic su **crea** toocreate la funzione.
+3. Fare clic su **Crea** per creare la funzione.
 
-Successivamente, connettersi tooyour account di archiviazione Azure e creare hello **myqueue elementi** coda di archiviazione.
+Connettersi quindi all'account di archiviazione di Azure e creare la coda di archiviazione **myqueue-items**.
 
-## <a name="create-hello-queue"></a>Creare la coda hello
+## <a name="create-the-queue"></a>Creare la coda
 
-1. Nella funzione fare clic su **Integrazione**, espandere **Documentazione** e copiare sia **Nome account** sia **Chiave account**. Utilizzare questi account di archiviazione di credenziali tooconnect toohello. Se si è già connessi all'account di archiviazione, ignorare toostep 4.
+1. Nella funzione fare clic su **Integrazione**, espandere **Documentazione** e copiare sia **Nome account** sia **Chiave account**. Usare queste credenziali per connettersi all'account di archiviazione in Azure Storage Explorer. Se si è già connessi all'account di archiviazione, andare al passaggio 4.
 
-    ![Ottenere l'account di archiviazione hello le credenziali di connessione.](./media/functions-create-storage-queue-triggered-function/functions-storage-account-connection.png)v
+    ![Ottenere le credenziali per la connessione all'account di archiviazione.](./media/functions-create-storage-queue-triggered-function/functions-storage-account-connection.png)
 
-1. Eseguire hello [Microsoft Azure Storage Explorer](http://storageexplorer.com/) strumento, fare clic su hello icona a sinistra di hello della connessione, scegliere **utilizzare un nome account di archiviazione e una chiave**, fare clic su **Avanti**.
+1. Eseguire lo strumento [Microsoft Azure Storage Explorer](http://storageexplorer.com/), fare clic sull'icona di connessione a sinistra, scegliere **Use a storage account name and key** (Usare il nome e la chiave di un account di archiviazione) e fare clic su **Avanti**.
 
-    ![Eseguire lo strumento di esplorazione dell'archiviazione Account hello.](./media/functions-create-storage-queue-triggered-function/functions-storage-manager-connect-1.png)
+    ![Eseguire lo strumento di esplorazione dell'account di archiviazione.](./media/functions-create-storage-queue-triggered-function/functions-storage-manager-connect-1.png)
 
-1. Immettere hello **nome Account** e **chiave dell'Account** nel passaggio 1, fare clic su **Avanti** e quindi **Connetti**.
+1. Immettere i valori **Nome account** e **Chiave account** definiti nel passaggio 1, fare clic su **Avanti** e quindi su **Connetti**.
 
-    ![Immettere le credenziali di archiviazione hello e connettersi.](./media/functions-create-storage-queue-triggered-function/functions-storage-manager-connect-2.png)
+    ![Immettere le credenziali di archiviazione ed eseguire la connessione.](./media/functions-create-storage-queue-triggered-function/functions-storage-manager-connect-2.png)
 
-1. Espandere l'account di archiviazione collegato hello destro del mouse su **code**, fare clic su **Create queue**, tipo `myqueue-items`, e quindi premere INVIO.
+1. Espandere l'account di archiviazione associato, fare doppio clic su **Code**, fare clic su **Crea coda**, digitare `myqueue-items` e quindi premere INVIO.
 
     ![Creare una coda di archiviazione.](./media/functions-create-storage-queue-triggered-function/functions-storage-manager-create-queue.png)
 
-Dopo aver creato una coda di archiviazione, è possibile testare la funzione hello mediante l'aggiunta di una coda di messaggi toohello.
+È possibile ora testare la funzione aggiungendo un messaggio alla coda.
 
-## <a name="test-hello-function"></a>Funzione hello test
+## <a name="test-the-function"></a>Testare la funzione
 
-1. Nel portale di Azure hello, funzione tooyour Sfoglia espandere hello **registri** nella parte inferiore di hello della pagina hello e assicurarsi che il log di streaming non è in pausa.
+1. Tornare al portale di Azure, selezionare la funzione, espandere i **log** nella parte inferiore della pagina e assicurarsi che lo streaming dei log non sia stato interrotto.
 
 1. In Esplora archivi espandere l'account di archiviazione, **Code** e **myqueue-items** e quindi fare clic su **Aggiungi messaggio**.
 
-    ![Aggiungere una coda di messaggi toohello.](./media/functions-create-storage-queue-triggered-function/functions-storage-manager-add-message.png)
+    ![Aggiungere un messaggio alla coda.](./media/functions-create-storage-queue-triggered-function/functions-storage-manager-add-message.png)
 
 1. Digitare il proprio messaggio di benvenuto nel campo **Testo del messaggio** e fare clic su **OK**.
 
-1. Attendere alcuni secondi, quindi tornare tooyour i log delle funzioni e verificare che il nuovo messaggio hello letto dalla coda hello.
+1. Attendere alcuni secondi, tornare ai log di funzione e verificare che il nuovo messaggio sia stato letto dalla coda.
 
-    ![Visualizza messaggio hello log.](./media/functions-create-storage-queue-triggered-function/functions-queue-storage-trigger-view-logs.png)
+    ![Visualizzare il messaggio nei log.](./media/functions-create-storage-queue-triggered-function/functions-queue-storage-trigger-view-logs.png)
 
-1. In Esplora archivi, fare clic su **aggiornamento** e verificare il messaggio hello è stato elaborato e non è più in coda hello.
+1. Tornare a Esplora archivi, fare clic su **Aggiorna** e verificare che il messaggio sia stato elaborato e non sia più in coda.
 
 ## <a name="clean-up-resources"></a>Pulire le risorse
 
@@ -108,7 +108,7 @@ Dopo aver creato una coda di archiviazione, è possibile testare la funzione hel
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-È stata creata una funzione che viene eseguito quando un messaggio viene aggiunto tooa coda di archiviazione.
+È stata creata una funzione che viene eseguita nel momento in cui un messaggio viene aggiunto a una coda di archiviazione.
 
 [!INCLUDE [Next steps note](../../includes/functions-quickstart-next-steps.md)]
 

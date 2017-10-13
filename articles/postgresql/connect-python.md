@@ -1,27 +1,27 @@
 ---
-title: La connessione tooAzure Database PostgreSQL da Python | Documenti Microsoft
-description: "Questa Guida rapida fornisce un esempio di codice Python, che è possibile utilizzare tooconnect e cercare i dati dal Database di Azure PostgreSQL."
+title: Connettersi a Database di Azure per PostgreSQL da Python | Microsoft Docs
+description: "Questa guida introduttiva fornisce un esempio di codice Python che può essere usato per connettersi ai dati ed eseguire query da Database di Azure per PostgreSQL."
 services: postgresql
 author: SaloniSonpal
 ms.author: salonis
 manager: jhubbard
 editor: jasonwhowell
 ms.service: postgresql
-ms.custom: mvc
+ms.custom: mvc, devcenter
 ms.devlang: python
 ms.topic: quickstart
 ms.date: 08/15/2017
-ms.openlocfilehash: 7d6d9f5424fb39ad8837999d4788b4363c818887
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 342e7dfd35ce890cda4a1d98613592353a63d7e2
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="azure-database-for-postgresql-use-python-tooconnect-and-query-data"></a>Il Database di Azure per PostgreSQL: dati di utilizzo Python tooconnect e query
-Questa Guida introduttiva illustra come toouse [Python](https://python.org) tooconnect tooan Database di Azure per PostgreSQL. Viene inoltre illustrato come toouse tooquery di istruzioni SQL, inserire, aggiornare ed eliminare dati nel database di hello da macOS Ubuntu Linux e le piattaforme Windows. passaggi di Hello in questo articolo si presuppone che ha familiarità con lo sviluppo usando Python e tooworking nuovo con il Database di Azure per PostgreSQL.
+# <a name="azure-database-for-postgresql-use-python-to-connect-and-query-data"></a>Database di Azure per PostgreSQL: usare Python per connettersi ai dati ed eseguire query
+Questa guida introduttiva illustra come usare [Python](https://python.org) per connettersi a un database di Azure per PostgreSQL. Descrive anche come usare istruzioni SQL per eseguire query e inserire, aggiornare ed eliminare dati nel database dalle piattaforme macOS, Ubuntu Linux e Windows. Le procedure descritte in questo articolo presuppongono che si abbia familiarità con lo sviluppo con Python, ma non con Database di Azure per PostgreSQL.
 
 ## <a name="prerequisites"></a>Prerequisiti
-Questa Guida rapida utilizza risorse di hello create in una di queste guide come punto di partenza:
+Questa guida introduttiva usa le risorse create in una delle guide seguenti come punto di partenza:
 - [Creare un database: portale](quickstart-create-server-database-portal.md)
 - [Creare un database: interfaccia della riga di comando](quickstart-create-server-database-azure-cli.md)
 
@@ -29,52 +29,52 @@ Altri elementi necessari:
 - [Python](https://www.python.org/downloads/) installato
 - Pacchetto [pip](https://pip.pypa.io/en/stable/installing/) installato. È già installato se si usano i file binari Python 2 (>=2.7.9) o Python 3 (>=3.4) scaricati da [python.org](https://python.org).
 
-## <a name="install-hello-python-connection-libraries-for-postgresql"></a>Installare le librerie di connessione di hello Python per PostgreSQL
-Installare hello [psycopg2](http://initd.org/psycopg/docs/install.html) pacchetto, in modo da database hello tooconnect e query. è psycopg2 [disponibile in PyPI](https://pypi.python.org/pypi/psycopg2/) sotto forma di hello di [rotellina](http://pythonwheels.com/) pacchetti per le piattaforme più comuni di hello (Linux e OS x, Windows). Utilizzare pip versione tooget hello binario del modulo hello incluse tutte le dipendenze di hello.
+## <a name="install-the-python-connection-libraries-for-postgresql"></a>Installare le raccolte di connessioni Python per PostgreSQL
+Installare il pacchetto [psycopg2](http://initd.org/psycopg/docs/install.html), che consente di connettersi ed eseguire query sul database. psycopg2 è [disponibile in PyPI](https://pypi.python.org/pypi/psycopg2/) sotto forma di pacchetti [wheel](http://pythonwheels.com/) per le piattaforme più comuni (Linux, OSX e Windows). Usare pip install per ottenere la versione binaria del modulo con tutte le dipendenze.
 
 1. Nel computer in uso avviare un'interfaccia della riga di comando:
-    - In Linux, avviare shell Bash hello.
-    - Sul macOS, avviare hello Terminal.
-    - In Windows, avviare hello prompt dei comandi dal Menu Start hello.
-2. Verificare che si utilizza hello la versione più recente di pip eseguendo un comando, ad esempio:
+    - In Linux avviare la shell Bash.
+    - In macOS avviare il terminale.
+    - In Windows avviare il prompt dei comandi dal menu Start.
+2. Assicurarsi di usare la versione più aggiornata di pip eseguendo un comando come questo:
     ```cmd
     pip install -U pip
     ```
 
-3. Eseguire hello pacchetto psycopg2 hello tooinstall di comando seguente:
+3. Eseguire questo comando per installare il pacchetto psycopg2:
     ```cmd
     pip install psycopg2
     ```
 
 ## <a name="get-connection-information"></a>Ottenere informazioni di connessione
-Ottenere hello connessione le informazioni necessarie tooconnect toohello Database di Azure per PostgreSQL. È necessario hello le credenziali di nome e l'account di accesso completo del server.
+Ottenere le informazioni di connessione necessarie per connettersi al database di Azure per PostgreSQL. Sono necessari il nome del server completo e le credenziali di accesso.
 
-1. Accedi toohello [portale di Azure](https://portal.azure.com/).
-2. Dal menu a sinistra di hello nel portale di Azure, fare clic su **tutte le risorse** e cercare **mypgserver 20170401** (server hello appena creato).
-3. Fare clic sul nome di server hello **mypgserver 20170401**.
-4. Server di selezionare hello **Panoramica** pagina e prendere nota di hello **nome Server** e **nome account di accesso di amministratore Server**.
+1. Accedere al [Portale di Azure](https://portal.azure.com/).
+2. Scegliere **Tutte le risorse** dal menu a sinistra nel portale di Azure e cercare **mypgserver-20170401**, ossia il server appena creato.
+3. Fare clic sul nome del server **mypgserver-20170401**.
+4. Selezionare la pagina **Panoramica** del server e prendere nota dei valori riportati in **Nome server** e **Nome di accesso dell'amministratore server**.
  ![Database di Azure per PostgreSQL - Accesso dell'amministratore del server](./media/connect-python/1-connection-string.png)
-5. Se si dimenticano le informazioni di accesso del server, passare toohello **Panoramica** pagina nome account di accesso amministratore di tooview hello Server e, se necessario, reimpostare la password di hello.
+5. Se si dimenticano le informazioni di accesso per il server, passare alla pagina **Panoramica** per visualizzare il nome di accesso dell'amministratore del server e, se necessario, reimpostare la password.
 
-## <a name="how-toorun-python-code"></a>Come toorun codice Python
-Questo argomento contiene in totale quattro esempi di codice, ognuno dei quali esegue una funzione specifica. Hello istruzioni seguenti indicano come toocreate un file di testo, inserire un blocco di codice e quindi salvare il file hello in modo che è possibile eseguire in un secondo momento. Impossibile verificare toocreate quattro file distinti, uno per ogni blocco di codice.
+## <a name="how-to-run-python-code"></a>Come eseguire codice Python
+Questo argomento contiene in totale quattro esempi di codice, ognuno dei quali esegue una funzione specifica. Le istruzioni seguenti indicano come creare un file di testo, inserire un blocco di codice e quindi salvare il file per poterlo eseguire in un secondo momento. Assicurarsi di creare quattro file separati, uno per ogni blocco di codice.
 
 - Usando l'editor di testo preferito, creare un nuovo file.
-- Copiare e incollare uno degli esempi di codice hello in sezioni che seguono in file di testo hello hello. Sostituire hello **host**, **dbname**, **utente**, e **password** parametri con valori di hello specificato al momento della creazione hello Server e database.
-- Salvare il file di hello con estensione. py hello (ad esempio postgres.py) nella cartella del progetto. Se si esegue hello del sistema operativo Windows, è possibile che tooselect codifica UTF-8 quando si salva il file hello. 
-- Avviare shell di prompt dei comandi o Bash hello e quindi modificare ad esempio cartella di progetto tooyour directory hello, `cd postgres`.
--  codice hello toorun, hello tipo comando Python seguito dal nome di file hello, ad esempio `Python postgres.py`.
+- Copiare e incollare uno degli esempi di codice delle sezioni seguenti nel file di testo. Sostituire i parametri **host**, **dbname**, **user** e **password** con i valori specificati al momento della creazione del server e del database.
+- Salvare il file con l'estensione py (ad esempio, postgres.py) nella cartella del progetto. Se si esegue il sistema operativo Windows, quando si salva il file assicurarsi di selezionare la codifica UTF-8. 
+- Avviare il prompt dei comandi o la shell Bash e quindi passare alla cartella del progetto, ad esempio: `cd postgres`.
+-  Per eseguire il codice, digitare il comando Python seguito dal nome del file, ad esempio `Python postgres.py`.
 
 > [!NOTE]
-> A partire da Python versione 3, potrebbe essere visualizzato l'errore di hello `SyntaxError: Missing parentheses in call too'print'` durante l'esecuzione di hello blocchi di codice seguente. In tal caso, sostituire ogni comando toohello chiamata `print "string"` con una chiamata di funzione utilizzano le parentesi, ad esempio `print("string")`.
+> A partire da Python versione 3, quando si eseguono i blocchi di codice seguenti potrebbe essere visualizzato l'errore `SyntaxError: Missing parentheses in call to 'print'`. In tal caso, sostituire ogni chiamata al comando `print "string"` con una chiamata di funzione con parentesi, ad esempio `print("string")`.
 
 ## <a name="connect-create-table-and-insert-data"></a>Connettersi, creare tabelle e inserire dati
-Seguente hello utilizzare codice tooconnect e caricare i dati di hello usando [psycopg2.connect](http://initd.org/psycopg/docs/connection.html) funzione **inserire** istruzione SQL. Hello [cursor.execute](http://initd.org/psycopg/docs/cursor.html#execute) funzione è tooexecute utilizzati nella query SQL hello database PostgreSQL. Sostituire l'host hello, dbname, utente e password parametri con valori di hello specificato al momento della creazione hello server e database.
+Usare il codice seguente per connettersi e caricare i dati usando la funzione [psycopg2.connect](http://initd.org/psycopg/docs/connection.html) con un'istruzione SQL **INSERT**. La funzione [cursor.execute](http://initd.org/psycopg/docs/cursor.html#execute) viene usata per eseguire la query SQL sul database PostgreSQL. Sostituire i parametri host, dbname, user e password con i valori specificati al momento della creazione del server e del database.
 
 ```Python
 import psycopg2
 
-# Update connection string information obtained from hello portal
+# Update connection string information obtained from the portal
 host = "mypgserver-20170401.postgres.database.azure.com"
 user = "mylogin@mypgserver-20170401"
 dbname = "mypgsqldb"
@@ -108,17 +108,17 @@ cursor.close()
 conn.close()
 ```
 
-Dopo aver hello codice viene eseguito correttamente, output di hello viene visualizzato come segue:
+Al termine dell'esecuzione del codice, viene visualizzato l'output seguente:
 
 ![Output della riga di comando](media/connect-python/2-example-python-output.png)
 
 ## <a name="read-data"></a>Leggere i dati
-Esempio di codice seguente hello di utilizzare dati hello tooread inseriti utilizzando [cursor.execute](http://initd.org/psycopg/docs/cursor.html#execute) funzione **selezionare** istruzione SQL. Questa funzione accetta una query e restituisce un set di risultati che possono eseguire un'iterazione utilizzando hello [cursor.fetchall()](http://initd.org/psycopg/docs/cursor.html#cursor.fetchall). Sostituire l'host hello, dbname, utente e password parametri con valori di hello specificato al momento della creazione hello server e database.
+Usare il codice seguente per leggere i dati inseriti usando la funzione [cursor.execute](http://initd.org/psycopg/docs/cursor.html#execute) con un'istruzione SQL **SELECT**. Questa funzione accetta una query e restituisce un set di risultati su cui è possibile eseguire l'iterazione tramite [cursor.fetchall()](http://initd.org/psycopg/docs/cursor.html#cursor.fetchall). Sostituire i parametri host, dbname, user e password con i valori specificati al momento della creazione del server e del database.
 
 ```Python
 import psycopg2
 
-# Update connection string information obtained from hello portal
+# Update connection string information obtained from the portal
 host = "mypgserver-20170401.postgres.database.azure.com"
 user = "mylogin@mypgserver-20170401"
 dbname = "mypgsqldb"
@@ -147,12 +147,12 @@ conn.close()
 ```
 
 ## <a name="update-data"></a>Aggiornare i dati
-Esempio di codice utilizzare hello seguente riga di inventario hello tooupdate precedentemente inserito utilizzando [cursor.execute](http://initd.org/psycopg/docs/cursor.html#execute) funzione **aggiornamento** istruzione SQL. Sostituire l'host hello, dbname, utente e password parametri con valori di hello specificato al momento della creazione hello server e database.
+Usare il codice seguente per aggiornare la riga d'inventario inserita in precedenza tramite la funzione [cursor.execute](http://initd.org/psycopg/docs/cursor.html#execute) con l'istruzione SQL **UPDATE**. Sostituire i parametri host, dbname, user e password con i valori specificati al momento della creazione del server e del database.
 
 ```Python
 import psycopg2
 
-# Update connection string information obtained from hello portal
+# Update connection string information obtained from the portal
 host = "mypgserver-20170401.postgres.database.azure.com"
 user = "mylogin@mypgserver-20170401"
 dbname = "mypgsqldb"
@@ -166,7 +166,7 @@ print "Connection established"
 
 cursor = conn.cursor()
 
-# Update a data row in hello table
+# Update a data row in the table
 cursor.execute("UPDATE inventory SET quantity = %s WHERE name = %s;", (200, "banana"))
 print "Updated 1 row of data"
 
@@ -177,12 +177,12 @@ conn.close()
 ```
 
 ## <a name="delete-data"></a>Eliminare i dati
-Esempio di codice seguente di hello utilizzare toodelete un articolo di magazzino è inserito in precedenza utilizzando [cursor.execute](http://initd.org/psycopg/docs/cursor.html#execute) funzione **eliminare** istruzione SQL. Sostituire l'host hello, dbname, utente e password parametri con valori di hello specificato al momento della creazione hello server e database.
+Usare il codice seguente per eliminare un articolo di magazzino inserito in precedenza tramite la funzione [cursor.execute](http://initd.org/psycopg/docs/cursor.html#execute) con l'istruzione SQL **DELETE**. Sostituire i parametri host, dbname, user e password con i valori specificati al momento della creazione del server e del database.
 
 ```Python
 import psycopg2
 
-# Update connection string information obtained from hello portal
+# Update connection string information obtained from the portal
 host = "mypgserver-20170401.postgres.database.azure.com"
 user = "mylogin@mypgserver-20170401"
 dbname = "mypgsqldb"

@@ -1,9 +1,9 @@
 ---
-title: "connettività aaaCheck con Watcher di rete di Azure - portale di Azure | Documenti Microsoft"
-description: "Questa pagina viene illustrato come toouse connettività verificare con il Watcher di rete utilizzando hello portale di Azure"
+title: "Verificare la connettività con Azure Network Watcher - Portale di Azure | Microsoft Docs"
+description: "Questa pagina descrive come verificare la connettività con Network Watcher usando il portale di Azure"
 services: network-watcher
 documentationcenter: na
-author: georgewallace
+author: jimdial
 manager: timlt
 editor: 
 ms.service: network-watcher
@@ -12,14 +12,14 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/03/2017
-ms.author: gwallace
-ms.openlocfilehash: ef6ecccd688f06f70003a5b59771c15bcbe8f3e2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.author: jdial
+ms.openlocfilehash: 1f19da71731039e1a39c4440f925b1369886a993
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="check-connectivity-with-azure-network-watcher-using-hello-azure-portal"></a>Verificare la connettività con Watcher di rete di Azure utilizzando hello portale di Azure
+# <a name="check-connectivity-with-azure-network-watcher-using-the-azure-portal"></a>Verificare la connettività con Azure Network Watcher usando il portale di Azure
 
 > [!div class="op_single_selector"]
 > - [Portale](network-watcher-connectivity-portal.md)
@@ -27,38 +27,38 @@ ms.lasthandoff: 10/06/2017
 > - [Interfaccia della riga di comando 2.0](network-watcher-connectivity-cli.md)
 > - [API REST di Azure](network-watcher-connectivity-rest.md)
 
-Informazioni su come è possibile stabilire toouse connettività tooverify se una connessione TCP diretta da una macchina virtuale di tooa dato endpoint.
+Informazioni su come usare la connettività per verificare se è possibile stabilire una connessione TCP diretta da una macchina virtuale a uno specifico endpoint.
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
-Questo articolo si presuppone di che aver hello seguenti risorse:
+Questo articolo presuppone che l'utente disponga delle risorse seguenti:
 
-* Un'istanza del controllo di rete nell'area di hello desiderato toocheck connettività.
+* Un'istanza di Network Watcher nell'area di cui si vuole controllare la connettività.
 
-* Connettività toocheck di macchine virtuali con.
+* Macchine virtuali con cui controllare la connettività.
 
 > [!IMPORTANT]
-> Il controllo della connettività richiede un'estensione macchina virtuale `AzureNetworkWatcherExtension`. Per l'installazione dell'estensione hello in una macchina virtuale di Windows, visitare [estensione della macchina virtuale Azure rete Watcher agente per Windows](../virtual-machines/windows/extensions-nwa.md) e per la visita di VM Linux [estensione della macchina virtuale Azure rete Watcher agente per Linux](../virtual-machines/linux/extensions-nwa.md).
+> Il controllo della connettività richiede un'estensione macchina virtuale `AzureNetworkWatcherExtension`. Per installare l'estensione in una VM Windows, vedere [Estensione macchina virtuale agente Azure Network Watcher per Windows](../virtual-machines/windows/extensions-nwa.md) e per una VM Linux VM vedere [Estensione macchina virtuale Azure Network Watcher Agent per Linux](../virtual-machines/linux/extensions-nwa.md).
 
-## <a name="check-connectivity-tooa-virtual-machine"></a>Verificare la connettività tooa virtual machine
+## <a name="check-connectivity-to-a-virtual-machine"></a>Controllare la connettività a una macchina virtuale
 
-Questo esempio viene verificata la connettività tooa macchina virtuale di destinazione sulla porta 80.
+Questo esempio controlla la connettività a una macchina virtuale di destinazione sulla porta 80.
 
-Passare tooyour Watcher di rete e fare clic su **verifica della connettività (anteprima)**. Selezionare la connettività di hello macchina virtuale toocheck da. In hello **destinazione** sezione scegliere **selezionare una macchina virtuale** e scegliere porta tootest e la macchina virtuale corretta hello.
+Passare a Network Watcher e fare clic su **Verifica della connettività (anteprima)**. Selezionare la macchina virtuale di cui si vuole verificare la connettività. Nella sezione **Destinazione** fare clic su **Selezionare una macchina virtuale** e scegliere la macchina virtuale e la porta da testare.
 
-Quando si fa clic su **controllare**, vengono controllati connettività hello tra le macchine virtuali hello sulla porta hello specificato. Nell'esempio hello hello destinazione macchina virtuale non è raggiungibile, vengono visualizzati un elenco di hop.
+Quando si fa clic su **Verifica**, viene verificata la connettività tra le macchine virtuali sulla porta specificata. Nell'esempio, la macchina virtuale di destinazione non è raggiungibile e viene visualizzato un elenco di hop.
 
 ![Verificare i risultati di connettività per una macchina virtuale][1]
 
 ## <a name="check-remote-endpoint-connectivity"></a>Verificare la connettività dell'endpoint remoto
 
-connettività hello toocheck e l'endpoint remoto tooa di latenza, scegliere hello **specificare manualmente** pulsante di opzione nella hello **destinazione** sezione input hello url e la porta hello e fare clic su **controllare** .  Questa procedura può essere usata per endpoint remoti come siti Web ed endpoint di archiviazione.
+Per verificare la connettività e la latenza in un endpoint remoto, scegliere il pulsante di opzione **Specificare manualmente** nella sezione **Destinazione**, immettere l'URL e la porta e fare clic su **Verifica**.  Questa procedura può essere usata per endpoint remoti come siti Web ed endpoint di archiviazione.
 
 ![Verificare i risultati di connettività per un sito Web][2]
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Informazioni su come acquisizioni di pacchetti tooautomate con gli avvisi di macchina virtuale visualizzando [creare un'acquisizione pacchetto attivati avvisi](network-watcher-alert-triggered-packet-capture.md)
+Per altre informazioni su come automatizzare le acquisizioni di pacchetti tramite gli avvisi della macchina virtuale, leggere l'articolo su come [creare un'acquisizione di pacchetti attivata da un avviso](network-watcher-alert-triggered-packet-capture.md).
 
 Per stabilire se un traffico specificato è consentito all'interno o all'esterno di una macchina virtuale, vedere [Check IP flow verify](network-watcher-check-ip-flow-verify-portal.md) (Controllare la verifica del flusso IP).
 

@@ -1,6 +1,6 @@
 ---
-title: Operazioni su Provider di gestione risorse aaaAzure | Documenti Microsoft
-description: Dettagli hello operazioni disponibili nel provider di risorse di Microsoft Azure Resource Manager hello
+title: Operazioni di provider con Azure Resource Manager | Documentazione Microsoft
+description: Fornisce informazioni dettagliate sulle operazioni disponibili nei provider di risorse di Microsoft Azure Resource Manager
 services: active-directory
 documentationcenter: 
 author: jboeshart
@@ -12,33 +12,33 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 04/28/2017
 ms.author: jaboes
-ms.openlocfilehash: 2d2f912ecbade335667d68fdc42ce03a2930a0eb
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 95c6a1e9cfadeb19a0ec5a53fffb15ef220bfec0
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-resource-manager-resource-provider-operations"></a>Operazioni di provider di risorse con Azure Resource Manager
 
-Questo documento elenca le operazioni di hello disponibili per ogni provider di risorse di gestione risorse di Microsoft Azure. Possono essere usati in ruoli personalizzati tooprovide granulare controllo di accesso basato sui ruoli (RBAC) autorizzazioni tooresources in Azure. L’elenco qui fornito non è da ritenersi completo e le operazioni potrebbero essere aggiunte o rimosse man mano che il provider viene aggiornato. Stringhe di operazione seguono il formato di hello delle `Microsoft.<ProviderName>/<ChildResourceType>/<action>`. Per un elenco completo e corrente utilizzare `Get-AzureRmProviderOperation` (in PowerShell) o `azure provider operations show` (in Azure CLI) operazioni toolist di provider di risorse di Azure.
+Questo documento elenca le operazioni disponibili per ciascun provider di risorse Microsoft Azure Resource Manager. Tali operazioni possono essere utilizzate nei ruoli personalizzati per fornire autorizzazioni RBAC (controllo degli accessi in base al ruolo) granulari alle risorse di Azure. L’elenco qui fornito non è da ritenersi completo e le operazioni potrebbero essere aggiunte o rimosse man mano che il provider viene aggiornato. Le stringhe di operazione seguono il formato di `Microsoft.<ProviderName>/<ChildResourceType>/<action>`. Per un elenco completo e aggiornato delle operazioni dei provider di risorse di Azure utilizzare `Get-AzureRmProviderOperation` (in PowerShell) o `azure provider operations show` (in Azure CLI).
 
 ## <a name="microsoftadhybridhealthservice"></a>Microsoft.ADHybridHealthService
 
 | Operazione | Descrizione |
 |---|---|
 |/configuration/action|Aggiorna la configurazione tenant.|
-|/services/action|Aggiorna un'istanza del servizio nel tenant di hello.|
+|/services/action|Aggiorna un'istanza del servizio nel tenant.|
 |/configuration/write|Crea una configurazione tenant.|
-|/configuration/read|Legge hello configurazione del Tenant.|
-|/services/write|Crea un'istanza del servizio nel tenant di hello.|
-|/services/read|Legge le istanze del servizio nel tenant di hello hello.|
-|/services/delete|Elimina un'istanza del servizio nel tenant di hello.|
-|/services/servicemembers/action|Crea un'istanza del membro del servizio nel servizio di hello.|
-|/services/servicemembers/read|Legge l'istanza del membro hello servizio nel servizio hello.|
-|/services/servicemembers/delete|Elimina un'istanza del membro del servizio nel servizio hello.|
-|/services/servicemembers/alerts/read|Legge gli avvisi di hello per un membro del servizio.|
-|/services/alerts/read|Legge gli avvisi di hello per un servizio.|
-|/services/alerts/read|Legge gli avvisi di hello per un servizio.|
+|/configuration/read|Legge la configurazione tenant.|
+|/services/write|Aggiorna un'istanza del servizio nel tenant.|
+|/services/read|Legge le istanze del servizio nel tenant.|
+|/services/delete|Elimina un'istanza del servizio nel tenant.|
+|/services/servicemembers/action|Crea un'istanza del membro del servizio nel servizio.|
+|/services/servicemembers/read|Legge l'istanza del membro del servizio nel servizio.|
+|/services/servicemembers/delete|Elimina un'istanza del membro del servizio nel servizio.|
+|/services/servicemembers/alerts/read|Legge gli avvisi per un membro del servizio.|
+|/services/alerts/read|Legge gli avvisi per un servizio.|
+|/services/alerts/read|Legge gli avvisi per un servizio.|
 
 ## <a name="microsoftadvisor"></a>Microsoft.Advisor
 
@@ -46,7 +46,7 @@ Questo documento elenca le operazioni di hello disponibili per ogni provider di 
 |---|---|
 |/generateRecommendations/action|Genera suggerimenti.|
 |/suppressions/action|Crea/aggiorna eliminazioni.|
-|/register/action|Registra sottoscrizione hello per hello Microsoft Advisor|
+|/register/action|Registra la sottoscrizione per Microsoft Advisor.|
 |/generateRecommendations/read|Ottiene lo stato dei suggerimenti generati.|
 |/recommendations/read|Legge i suggerimenti.|
 |/suppressions/read|Ottiene le eliminazioni.|
@@ -56,11 +56,11 @@ Questo documento elenca le operazioni di hello disponibili per ogni provider di 
 
 | Operazione | Descrizione |
 |---|---|
-|/servers/read|Recupera le informazioni di hello di hello specificato Analysis Server.|
-|/servers/write|Crea o aggiorna hello specificato Analysis Server.|
-|/servers/delete|Eliminazioni hello Analysis Server.|
-|/servers/suspend/action|Sospende hello Analysis Server.|
-|/servers/resume/action|Riprende hello Analysis Server.|
+|/servers/read|Recupera le informazioni dell’Analysis Server specificato.|
+|/servers/write|Crea o aggiorna l’Analysis Server specificato.|
+|/servers/delete|Elimina l’Analysis Server.|
+|/servers/suspend/action|Sospende l’Analysis Server.|
+|/servers/resume/action|Riprende l’Analysis Server.|
 |/servers/checkNameAvailability<br>/action|Verifica che il nome dell’Analysis Server specificato sia valido e non in uso.|
 
 ## <a name="microsoftapimanagement"></a>Microsoft.ApiManagement
@@ -75,30 +75,30 @@ Questo documento elenca le operazioni di hello disponibili per ogni provider di 
 |/service/delete|Elimina l’istanza del servizio Gestione API.|
 |/service/updatehostname/action|Configura, aggiorna o rimuove i nomi di dominio personalizzati per un servizio Gestione API.|
 |/service/uploadcertificate/action|Carica il certificato SSL per un servizio Gestione API.|
-|/service/backup/action|Servizio gestione API toohello specificato contenitore del backup in un utente fornito l'account di archiviazione|
-|/service/restore/action|Ripristinare il servizio Gestione API dal contenitore specificato di hello nell'account di archiviazione dall'utente|
+|/service/backup/action|Esegue il backup del servizio Gestione API nel contenitore specificato in un account di archiviazione fornito dall’utente.|
+|/service/restore/action|Ripristinare il servizio Gestione API dal contenitore specificato in un account di archiviazione fornito dall'utente|
 |/service/managedeployments/action|Modifica SKU/unità, aggiunge/rimuove distribuzioni regionali del servizio Gestione API.|
-|/service/getssotoken/action|Ottiene il token SSO che può essere utilizzati toologin portale API Gestione servizio Legacy come amministratore|
-|/service/applynetworkconfigurationupdates/action|Gli aggiornamenti hello Microsoft.ApiManagement risorse in esecuzione in una rete virtuale toopick aggiornate le impostazioni di rete.|
+|/service/getssotoken/action|Ottiene il token SSO che può essere utilizzato per l'accesso al portale legacy del servizio Gestione API come amministratore.|
+|/service/applynetworkconfigurationupdates/action|Aggiorna le risorse Microsoft.ApiManagement in esecuzione nella rete virtuale per selezionare le impostazioni di rete aggiornate.|
 |/service/operationresults/read|Ottiene lo stato corrente dell'operazione in esecuzione prolungata|
-|/service/networkStatus/read|Ottiene lo stato di accesso di rete hello di risorse.|
+|/service/networkStatus/read|Ottiene lo stato di accesso di rete delle risorse.|
 |/service/loggers/read|Ottiene l'elenco di logger o i dettagli del logger|
 |/service/loggers/write|Aggiunge un nuovo logger o aggiorna i dettagli di un logger esistente|
 |/service/loggers/delete|Rimuove un logger esistente|
 |/service/users/read|Ottiene un elenco di utenti registrati o i dettagli dell’account di un utente|
 |/service/users/write|Registra un nuovo utente o aggiorna i dettagli dell’account di un utente esistente|
 |/service/users/delete|Rimuove l’account utente|
-|/service/users/generateSsoUrl/action|Genera un URL SSO. Hello URL può essere utilizzato tooaccess portale di amministrazione|
+|/service/users/generateSsoUrl/action|Genera un URL SSO. L'URL può essere utilizzato per accedere al portale di amministrazione|
 |/service/users/subscriptions/read|Ottiene l'elenco di sottoscrizioni utente|
 |/service/users/keys/read|Ottiene l'elenco di chiavi utente|
 |/service/users/groups/read|Ottiene l'elenco di gruppi utente|
 |/service/tenant/operationResults/read|Ottiene l'elenco dei risultati dell'operazione o il risultato di un'operazione specifica|
-|/service/tenant/policy/read|Ottenere la configurazione di criteri per il tenant hello|
-|/service/tenant/policy/write|Configurazione dei criteri di gruppo per tenant hello|
-|/service/tenant/policy/delete|Rimuovere la configurazione dei criteri per il tenant hello|
-|/service/tenant/configuration/save/action|Crea commit con configurazione snapshot toohello specificato ramo hello repository|
-|/service/tenant/configuration/deploy/action|Esegue un'attività di distribuzione delle modifiche tooapply dalla configurazione di toohello ramo git specificato hello nel database.|
-|/service/tenant/configuration/validate/action|Convalida le modifiche dal ramo git specificato hello|
+|/service/tenant/policy/read|Ottiene la configurazione dei criteri per il tenant|
+|/service/tenant/policy/write|Imposta la configurazione dei criteri per il tenant|
+|/service/tenant/policy/delete|Rimuove la configurazione dei criteri per il tenant|
+|/service/tenant/configuration/save/action|Crea commit con la snapshot di configurazione sul ramo specificato in archivio|
+|/service/tenant/configuration/deploy/action|Esegue un'attività di distribuzione per applicare le modifiche dal ramo git specificato alla configurazione sul database.|
+|/service/tenant/configuration/validate/action|Convalida le modifiche dal ramo git specificato|
 |/service/tenant/configuration/operationResults/read|Ottiene l'elenco dei risultati dell'operazione o il risultato di un'operazione specifica|
 |/service/tenant/configuration/syncState/read|Ottiene lo stato dell’ultima sincronizzazione git|
 |/service/tenant/access/read|Ottiene i dettagli sulle informazioni di accesso del tenant|
@@ -109,8 +109,8 @@ Questo documento elenca le operazioni di hello disponibili per ogni provider di 
 |/service/identityProviders/write|Crea un nuovo provider di identità o aggiorna i dettagli di un provider di identità esistente|
 |/service/identityProviders/delete|Rimuove un provider di identità esistente|
 |/service/subscriptions/read|Ottiene un elenco di sottoscrizioni al prodotto o i dettagli di sottoscrizione a un prodotto|
-|/service/subscriptions/write|Sottoscrivere un prodotto esistente tooan utente esistente o aggiornare i dettagli della sottoscrizione esistente. Questa operazione può essere utilizzato toorenew sottoscrizione|
-|/service/subscriptions/delete|Elimina una sottoscrizione. Questa operazione può essere utilizzato toodelete sottoscrizione|
+|/service/subscriptions/write|Effettua la sottoscrizione di un utente esistente a un prodotto esistente oppure aggiorna i dettagli di sottoscrizione esistenti. Questa operazione può essere utilizzata per rinnovare la sottoscrizione|
+|/service/subscriptions/delete|Elimina una sottoscrizione. Questa operazione può essere utilizzata per eliminare la sottoscrizione|
 |/service/subscriptions/regeneratePrimaryKey/action|Rigenera la chiave primaria di sottoscrizione|
 |/service/subscriptions/regenerateSecondaryKey/action|Rigenera la chiave secondaria di sottoscrizione|
 |/service/backends/read|Ottiene l’elenco di back-end o i dettagli del back-end|
@@ -132,8 +132,8 @@ Questo documento elenca le operazioni di hello disponibili per ogni provider di 
 |/service/products/write|Crea nuovo prodotto o aggiorna i dettagli del prodotto esistente.|
 |/service/products/delete|Rimuove il prodotto esistente.|
 |/service/products/subscriptions/read|Ottiene l'elenco delle sottoscrizioni di prodotto.|
-|/service/products/apis/read|Ottenere un elenco delle API aggiunte tooexisting prodotto|
-|/service/products/apis/write|Aggiungi elemento prodotto tooexisting API esistente|
+|/service/products/apis/read|Ottiene l'elenco delle API aggiunte al prodotto esistente.|
+|/service/products/apis/write|Aggiunge le API esistenti al prodotto esistente.|
 |/service/products/apis/delete|Rimuove le API esistenti dal prodotto esistente.|
 |/service/products/policy/read|Ottiene la configurazione dei criteri del prodotto esistente.|
 |/service/products/policy/write|Imposta la configurazione dei criteri del prodotto esistente.|
@@ -154,7 +154,7 @@ Questo documento elenca le operazioni di hello disponibili per ogni provider di 
 |/service/groups/write|Crea un nuovo gruppo o aggiorna i dettagli di un gruppo esistente.|
 |/service/groups/delete|Rimuove il gruppo esistente.|
 |/service/groups/users/read|Ottiene l'elenco degli utenti del gruppo.|
-|/service/groups/users/write|Aggiungere il gruppo tooexisting utenti esistente|
+|/service/groups/users/write|Aggiunge l’utente esistente al gruppo esistente.|
 |/service/groups/users/delete|Rimuove l’utente esistente dal gruppo esistente.|
 |/service/authorizationServers/read|Ottiene l'elenco dei server di autorizzazione o i dettagli del server di autorizzazione.|
 |/service/authorizationServers/write|Crea un nuovo server di autorizzazione o aggiorna i dettagli di un server di autorizzazione esistente.|
@@ -172,21 +172,21 @@ Questo documento elenca le operazioni di hello disponibili per ogni provider di 
 
 | Operazione | Descrizione |
 |---|---|
-|/appidentities/Read|Restituisce hello risorse (sito web) registrata con hello Gateway.|
+|/appidentities/Read|Restituisce la risorsa (sito Web) registrata con il gateway.|
 |/appidentities/Write|Crea una nuova identità app.|
 |/appidentities/Delete|Elimina un'identità app esistente.|
-|/deploymenttemplates/listMetadata/Action|Elenca i metadati dell'interfaccia utente associata a hello pacchetto App per le API.|
-|/deploymenttemplates/generate/Action|Restituisce un tooprovision modello di distribuzione delle istanze di App per le API.|
-|/gateways/Read|Istanza del Gateway hello restituisce.|
+|/deploymenttemplates/listMetadata/Action|Elenca i metadati dell'interfaccia utente associati al pacchetto app per le API.|
+|/deploymenttemplates/generate/Action|Restituisce un modello di distribuzione per eseguire il provisioning delle istanze di app per le API.|
+|/gateways/Read|Restituisce l'istanza del gateway.|
 |/gateways/Write|Crea un nuovo gateway o ne aggiorna uno esistente.|
 |/gateways/Delete|Elimina un'istanza di gateway esistente.|
 |/gateways/listLoginUris/Action|Popola l'archivio token e restituisce gli URI di accesso OAuth.|
 |/gateways/listKeys/Action|Restituisce la chiave privata del gateway.|
-|/gateways/tokens/Write|Crea un nuovo Zumo Token con il nome specificato hello.|
-|/gateways/registrations/Read|Restituisce hello risorse (sito web) registrata con hello Gateway.|
-|/gateways/registrations/Write|Registra una risorsa (sito web) con hello Gateway.|
-|/gateways/registrations/Delete|Annulla la registrazione di una risorsa (sito web) da hello Gateway.|
-|/apiapps/Read|Restituisce hello istanza App per le API.|
+|/gateways/tokens/Write|Crea un nuovo token zumo con il nome specificato.|
+|/gateways/registrations/Read|Restituisce la risorsa (sito Web) registrata con il gateway.|
+|/gateways/registrations/Write|Registra una risorsa (sito Web) con il gateway.|
+|/gateways/registrations/Delete|Annulla la registrazione di una risorsa (sito Web) dal gateway.|
+|/apiapps/Read|Restituisce l'istanza app per le API.|
 |/apiapps/Write|Crea una nuova app per le API o ne aggiorna una esistente.|
 |/apiapps/Delete|Elimina l'istanza di un'app per le API esistente.|
 |/apiapps/listStatus/Action|Restituisce lo stato dell'app per le API.|
@@ -197,27 +197,27 @@ Questo documento elenca le operazioni di hello disponibili per ogni provider di 
 
 | Operazione | Descrizione |
 |---|---|
-|/elevateAccess/action|Concede l'accesso di amministratore di accesso utente nell'ambito del tenant hello chiamante di hello|
-|/classicAdministrators/read|Legge gli amministratori di hello per sottoscrizione hello.|
-|/classicAdministrators/write|Aggiunge o modifica sottoscrizione tooa amministratore.|
-|/classicAdministrators/delete|Rimuove hello amministratore dalla sottoscrizione hello.|
-|/locks/read|Ottiene i blocchi in hello specificato ambito.|
-|/locks/write|Aggiunge i blocchi per hello specificato ambito.|
-|/locks/delete|Blocchi di eliminazione a hello specificato ambito.|
+|/elevateAccess/action|Concede al chiamante l'accesso di tipo Amministratore Accesso utenti a livello dell'ambito del tenant|
+|/classicAdministrators/read|Esegue la lettura degli amministratori per la sottoscrizione.|
+|/classicAdministrators/write|Aggiunge o modifica l'amministratore in una sottoscrizione.|
+|/classicAdministrators/delete|Rimuove l'amministratore dalla sottoscrizione.|
+|/locks/read|Ottiene i blocchi per l'ambito specificato.|
+|/locks/write|Aggiunge i blocchi per l'ambito specificato.|
+|/locks/delete|Elimina i blocchi per l'ambito specificato.|
 |/policyAssignments/read|Ottiene informazioni su un'assegnazione di criteri.|
-|/policyAssignments/write|Creare un criterio di assegnazione di hello specificato ambito.|
-|/policyAssignments/delete|Elimina un'assegnazione di criterio hello specificato ambito.|
-|/permissions/read|Elenca tutte le autorizzazioni di hello hello chiamante abbia un ambito specifico.|
+|/policyAssignments/write|Crea un'assegnazione di criteri per l'ambito specificato.|
+|/policyAssignments/delete|Elimina un'assegnazione di criteri per l'ambito specificato.|
+|/permissions/read|Elenca tutte le autorizzazioni del chiamante per un ambito specifico.|
 |/roleDefinitions/read|Ottiene informazioni su una definizione di ruolo.|
 |/roleDefinitions/write|Crea o aggiorna una definizione del ruolo personalizzata con le autorizzazioni specificate e gli ambiti assegnabili.|
-|/roleDefinitions/delete|Eliminare hello specificato definizione di ruolo personalizzata.|
+|/roleDefinitions/delete|Elimina la definizione del ruolo personalizzata specificata.|
 |/providerOperations/read|Ottiene operazioni per tutti i provider di risorse che possono essere usati nelle definizioni del ruolo.|
 |/policyDefinitions/read|Ottiene informazioni su una definizione di criteri.|
 |/policyDefinitions/write|Crea una definizione di criteri personalizzata.|
 |/policyDefinitions/delete|Elimina una definizione criteri.|
 |/roleAssignments/read|Ottiene informazioni su un'assegnazione di ruolo.|
-|/roleAssignments/write|Creare un ruolo specificato di assegnazione di hello ambito.|
-|/roleAssignments/delete|Elimina un'assegnazione di ruolo hello specificato ambito.|
+|/roleAssignments/write|Crea un'assegnazione di ruolo per l'ambito specificato.|
+|/roleAssignments/delete|È possibile eliminare un'assegnazione di ruolo nell'ambito specificato.|
 
 ## <a name="microsoftautomation"></a>Microsoft.Automation
 
@@ -252,8 +252,8 @@ Questo documento elenca le operazioni di hello disponibili per ogni provider di 
 |/automationAccounts/jobs/stop/action|Arresta un processo di automazione di Azure|
 |/automationAccounts/jobs/suspend/action|Sospende un processo di automazione di Azure|
 |/automationAccounts/jobs/resume/action|Riprende un processo di automazione di Azure|
-|/automationAccounts/jobs/runbookContent/action|Ottiene il contenuto di hello del runbook di automazione di Azure hello in fase di hello hello dell'esecuzione del processo|
-|/automationAccounts/jobs/output/action|Ottiene l'output di hello di un processo|
+|/automationAccounts/jobs/runbookContent/action|Ottiene il contenuto del runbook di automazione di Azure durante l'esecuzione del processo|
+|/automationAccounts/jobs/output/action|Ottiene l'output di un processo|
 |/automationAccounts/jobs/read|Ottiene un processo di automazione di Azure|
 |/automationAccounts/jobs/write|Crea un processo di automazione di Azure|
 |/automationAccounts/jobs/stop/action|Arresta un processo di automazione di Azure|
@@ -266,15 +266,15 @@ Questo documento elenca le operazioni di hello disponibili per ogni provider di 
 |/automationAccounts/variables/read|Esegue la lettura di un asset della variabile di automazione di Azure|
 |/automationAccounts/variables/write|Crea o aggiorna un asset della variabile di automazione di Azure|
 |/automationAccounts/variables/delete|Elimina un asset della variabile di automazione di Azure|
-|/automationAccounts/runbooks/readContent/action|Ottiene il contenuto di hello di un runbook di automazione di Azure|
+|/automationAccounts/runbooks/readContent/action|Ottiene il contenuto di un runbook di automazione di Azure|
 |/automationAccounts/runbooks/read|Ottiene un runbook di automazione di Azure|
 |/automationAccounts/runbooks/write|Crea o aggiorna un runbook di automazione di Azure|
 |/automationAccounts/runbooks/delete|Elimina un runbook di automazione di Azure|
-|/automationAccounts/runbooks/draft/readContent/action|Ottiene il contenuto di hello di una bozza di runbook di automazione di Azure|
-|/automationAccounts/runbooks/draft/writeContent/action|Crea contenuto hello di una bozza di runbook di automazione di Azure|
+|/automationAccounts/runbooks/draft/readContent/action|Ottiene il contenuto di una bozza del runbook di automazione di Azure|
+|/automationAccounts/runbooks/draft/writeContent/action|Crea il contenuto di una bozza del runbook di automazione di Azure|
 |/automationAccounts/runbooks/draft/read|Ottiene una bozza del runbook di automazione di Azure|
 |/automationAccounts/runbooks/draft/publish/action|Pubblica una bozza del runbook di automazione di Azure|
-|/automationAccounts/runbooks/draft/undoEdit/action|Annullare le modifiche bozza del runbook di automazione di Azure tooan|
+|/automationAccounts/runbooks/draft/undoEdit/action|Annulla le modifiche di una bozza del runbook di automazione di Azure|
 |/automationAccounts/runbooks/draft/testJob/read|Ottiene un processo di test per la bozza del runbook di automazione di Azure|
 |/automationAccounts/runbooks/draft/testJob/write|Crea un processo di test per la bozza del runbook di automazione di Azure|
 |/automationAccounts/runbooks/draft/testJob/stop/action|Interrompe un processo di test per la bozza del runbook di automazione di Azure|
@@ -293,21 +293,21 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 
 | Operazione | Descrizione |
 |---|---|
-|/register/action|Registra sottoscrizione hello per Provider di risorse Batch hello e consente la creazione di hello dell'account Batch|
+|/register/action|Registra la sottoscrizione per il provider di risorse Batch e consente la creazione di account Batch|
 |/batchAccounts/write|Crea un nuovo account Batch o aggiorna un account Batch esistente|
-|/batchAccounts/read|Elenca gli account di Batch o ottiene hello proprietà di un account Batch|
+|/batchAccounts/read|Elenca account Batch oppure ottiene le proprietà di un account Batch|
 |/batchAccounts/delete|Elimina un account Batch|
 |/batchAccounts/listkeys/action|Elenca le chiavi di accesso per un account Batch|
 |/batchAccounts/regeneratekeys/action|Rigenera le chiavi di accesso per un account Batch|
-|/batchAccounts/syncAutoStorageKeys/action|Consente di sincronizzare le chiavi di accesso per account di archiviazione automatica hello configurato per un account Batch|
-|/batchAccounts/applications/read|Elenca le applicazioni o ottiene la proprietà hello di un'applicazione|
+|/batchAccounts/syncAutoStorageKeys/action|Consente di sincronizzare le chiavi di accesso per l'account di archiviazione automatica configurato per un account Batch|
+|/batchAccounts/applications/read|Elenca le applicazioni o ottiene le proprietà di un'applicazione|
 |/batchAccounts/applications/write|Crea una nuova applicazione o ne aggiorna una esistente|
 |/batchAccounts/applications/delete|Elimina un'applicazione|
-|/batchAccounts/applications/versions/read|Ottiene la proprietà hello di un pacchetto di applicazione|
+|/batchAccounts/applications/versions/read|Ottiene le proprietà di un pacchetto dell'applicazione|
 |/batchAccounts/applications/versions/write|Crea un nuovo pacchetto dell'applicazione o ne aggiorna uno esistente|
 |/batchAccounts/applications/versions/activate/action|Attiva un pacchetto dell'applicazione|
 |/batchAccounts/applications/versions/delete|Elimina un pacchetto dell'applicazione|
-|/locations/quotas/read|Ottiene le quote di Batch di hello specificato sottoscrizione all'area di Azure specificato hello|
+|/locations/quotas/read|Ottiene quote Batch della sottoscrizione specificata nell'area di Azure specificata|
 
 ## <a name="microsoftbilling"></a>Microsoft.Billing
 
@@ -322,39 +322,39 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/mapApis/Read|Operazione di lettura|
 |/mapApis/Write|Operazione di scrittura|
 |/mapApis/Delete|Operazione di eliminazione|
-|/mapApis/regenerateKey/action|Rigenera chiave hello|
-|/mapApis/listSecrets/action|Elenco hello segreti|
-|/mapApis/listSingleSignOnToken/action|Hello lettura Single Sign in autorizzazione Token per risorse|
-|/Operations/read|Descrizione dell'operazione di hello.|
+|/mapApis/regenerateKey/action|Rigenera la chiave|
+|/mapApis/listSecrets/action|Elenca i segreti|
+|/mapApis/listSingleSignOnToken/action|Esegue la lettura del token di autorizzazione Single Sign-On per la risorsa|
+|/Operations/read|Descrizione dell'operazione.|
 
 ## <a name="microsoftcache"></a>Microsoft.Cache
 
 | Operazione | Descrizione |
 |---|---|
 |/checknameavailability/action|Verifica se un nome è disponibile per essere assegnato a nuova cache Redis|
-|/register/action|Registra i provider di risorse 'Valori' hello con una sottoscrizione|
-|/unregister/action|Annulla la registrazione del provider di risorse 'Valori' hello con una sottoscrizione|
-|/redis/write|Modificare le impostazioni e la configurazione nel portale di gestione di hello hello della Cache Redis|
-|/redis/read|Visualizzare le impostazioni e configurazione di hello della Cache Redis nel portale di gestione di hello|
-|/redis/delete|Delete hello intera Cache Redis|
-|/redis/listKeys/action|Valore di hello visualizzazione di chiavi di accesso della Cache Redis nel portale di gestione di hello|
-|/redis/regenerateKey/action|Modificare il valore di hello di chiavi di accesso della Cache Redis nel portale di gestione di hello|
+|/register/action|Registra il provider di risorse 'Microsoft.Cache' con una sottoscrizione|
+|/unregister/action|Annulla la registrazione del provider di risorse 'Microsoft.Cache' con una sottoscrizione|
+|/redis/write|Modifica la configurazione e le impostazioni della Cache Redis nel portale di gestione|
+|/redis/read|Visualizza la configurazione e le impostazioni della Cache Redis nel portale di gestione|
+|/redis/delete|Elimina l'intera Cache Redis|
+|/redis/listKeys/action|Visualizza il valore delle chiavi di accesso della Cache Redis nel portale di gestione|
+|/redis/regenerateKey/action|Modifica il valore delle chiavi di accesso della Cache Redis nel portale di gestione|
 |/redis/import/action|Importa i dati di un formato specificato da più BLOB in Redis|
-|/redis/export/action|Esportare Redis dati tooprefixed archiviazione BLOB nel formato specificato|
+|/redis/export/action|Esporta i dati Redis nei BLOB di archiviazione predefiniti nel formato specificato|
 |/redis/forceReboot/action|Forza il riavvio di un'istanza della cache, con possibile perdita di dati.|
 |/redis/stop/action|Arresta un'istanza della cache.|
 |/redis/start/action|Avvia un'istanza della cache.|
-|/redis/metricDefinitions/read|Ottiene la metrica di hello disponibili per una Cache Redis|
-|/redis/firewallRules/read|Ottenere le regole firewall di hello IP di una Cache Redis|
-|/redis/firewallRules/write|Modificare le regole firewall di hello IP di una Cache Redis|
+|/redis/metricDefinitions/read|Ottiene la metrica disponibile per una cache Redis|
+|/redis/firewallRules/read|Ottiene le regole del firewall per gli indirizzi IP di una cache Redis|
+|/redis/firewallRules/write|Modifica le regole del firewall per gli indirizzi IP di una cache Redis|
 |/redis/firewallRules/delete|Elimina le regole del firewall per gli indirizzi IP di una cache Redis|
-|/redis/listUpgradeNotifications/read|Elenco hello notifiche di aggiornamento più recente per tenant della cache di hello.|
+|/redis/listUpgradeNotifications/read|Elenca le notifiche di aggiornamento più recenti per il tenant della cache.|
 |/redis/linkedservers/read|Ottiene i server collegati associati a una cache Redis.|
-|/redis/linkedservers/write|Aggiungere il Server collegato tooa Cache Redis|
+|/redis/linkedservers/write|Aggiunge un server collegato a una cache Redis|
 |/redis/linkedservers/delete|Elimina un server collegato da una cache Redis|
-|/redis/patchSchedules/read|Ottiene hello patch pianificazione di una Cache Redis|
-|/redis/patchSchedules/write|Modificare l'applicazione di patch pianificazione di una Cache Redis hello|
-|/redis/patchSchedules/delete|Eliminare hello patch pianificazione di una Cache Redis|
+|/redis/patchSchedules/read|Ottiene la pianificazione dell'applicazione di patch di una cache Redis|
+|/redis/patchSchedules/write|Modifica la pianificazione dell'applicazione di patch di una cache Redis|
+|/redis/patchSchedules/delete|Elimina la pianificazione dell'applicazione di patch di una cache Redis|
 
 ## <a name="microsoftcertificateregistration"></a>Microsoft.CertificateRegistration
 
@@ -362,192 +362,192 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |---|---|
 |/provisionGlobalAppServicePrincipalInUserTenant/Action|Esegue il provisioning dell'entità servizio per l'entità app del servizio|
 |/validateCertificateRegistrationInformation/Action|Convalida l'oggetto acquisto di certificato senza inviarlo|
-|/register/action|Registrazione provider di risorse hello Certificates Microsoft per la sottoscrizione di hello|
+|/register/action|Registra il provider di risorse certificati Microsoft per la sottoscrizione|
 |/certificateOrders/Write|Aggiunge un nuovo ordine di certificato o ne aggiorna uno esistente|
 |/certificateOrders/Delete|Elimina un certificato del servizio app esistente|
-|/certificateOrders/Read|Ottenere l'elenco di hello di CertificateOrders|
+|/certificateOrders/Read|Ottiene l'elenco degli ordini di certificato|
 |/certificateOrders/reissue/Action|Riemette un ordine di certificato esistente|
 |/certificateOrders/renew/Action|Rinnova un ordine di certificato esistente|
-|/certificateOrders/retrieveCertificateActions/Action|Recuperare l'elenco di hello di azioni di certificato|
+|/certificateOrders/retrieveCertificateActions/Action|Recupera l'elenco di azioni di certificato|
 |/certificateOrders/retrieveEmailHistory/Action|Recupera la cronologia della posta elettronica di certificato|
 |/certificateOrders/resendEmail/Action|Invia di nuovo la posta elettronica di certificato|
 |/certificateOrders/verifyDomainOwnership/Action|Verificare la proprietà del dominio|
-|/certificateOrders/resendRequestEmails/Action|Inviare di nuovo indirizzo di posta elettronica tooanother messaggi di posta elettronica di richiesta|
+|/certificateOrders/resendRequestEmails/Action|Invia di nuovo messaggi di richiesta a un altro indirizzo di posta elettronica|
 |/certificateOrders/resendRequestEmails/Action|Recupera il sealing di sito per un certificato del servizio app emesso|
 |/certificateOrders/certificates/Write|Aggiunge un nuovo certificato o ne aggiorna uno esistente|
 |/certificateOrders/certificates/Delete|Elimina un certificato esistente|
-|/certificateOrders/certificates/Read|Ottenere l'elenco di hello dei certificati|
+|/certificateOrders/certificates/Read|Ottiene l'elenco dei certificati|
 
 ## <a name="microsoftclassiccompute"></a>Microsoft.ClassicCompute
 
 | Operazione | Descrizione |
 |---|---|
-|/register/action|Registrare tooClassic calcolo|
-|/checkDomainNameAvailability/action|Controlla la disponibilità di hello di un nome di dominio specificato.|
-|/moveSubscriptionResources/action|Spostare la sottoscrizione diversa tutte le risorse classiche tooa.|
-|/validateSubscriptionMoveAvailability/action|Convalidare la disponibilità della sottoscrizione hello per operazione di spostamento classico.|
-|/operatingSystemFamilies/read|Elenca hello di famiglie di sistemi operativi guest disponibili in Microsoft Azure e sono elencate le versioni del sistema operativo hello disponibili per ogni f
-|/capabilities/read|Vengono illustrate le funzionalità di hello|
-|/operatingSystems/read|Elenca le versioni di hello del sistema operativo guest di hello che sono attualmente disponibili in Microsoft Azure.|
-|/resourceTypes/skus/read|Ottiene l'elenco di Sku hello per tipi di risorse supportati.|
-|/domainNames/read|Restituisce i nomi di dominio hello per le risorse.|
-|/domainNames/write|Aggiungere o modificare i nomi di dominio hello per le risorse.|
-|/domainNames/delete|Rimuovere i nomi di dominio hello per le risorse.|
-|/domainNames/swap/action|Scambia slot di produzione toohello slot di staging hello.|
-|/domainNames/serviceCertificates/read|Restituisce hello certificati di servizio usati.|
-|/domainNames/serviceCertificates/write|Aggiungere o modificare i certificati di servizio hello usati.|
-|/domainNames/serviceCertificates/delete|Eliminare i certificati di servizio hello usati.|
-|/domainNames/serviceCertificates/operationStatuses/read|Legge dello stato dell'operazione per i certificati di servizio nomi di dominio di hello hello.|
-|/domainNames/capabilities/read|Mostra le funzionalità di nome di dominio hello|
-|/domainNames/extensions/read|Restituisce hello le estensioni dei nomi di dominio.|
-|/domainNames/extensions/write|Aggiungere le estensioni dei nomi di dominio hello.|
-|/domainNames/extensions/delete|Rimuovere le estensioni dei nomi di dominio hello.|
-|/domainNames/extensions/operationStatuses/read|Legge dello stato dell'operazione hello per estensioni dei nomi di dominio hello.|
-|/domainNames/active/write|Imposta il nome di dominio active hello.|
-|/domainNames/slots/read|Mostra gli slot di distribuzione hello.|
-|/domainNames/slots/write|Crea o aggiorna una distribuzione di hello.|
+|/register/action|Consente di eseguire la registrazione per Calcolo classico|
+|/checkDomainNameAvailability/action|Controlla la disponibilità di un nome di dominio specifico.|
+|/moveSubscriptionResources/action|Sposta tutte le risorse classiche in un'altra sottoscrizione.|
+|/validateSubscriptionMoveAvailability/action|Convalida la disponibilità della sottoscrizione per l'operazione di spostamento classica.|
+|/operatingSystemFamilies/read|Elenca le famiglie di sistemi operativi guest disponibili in Microsoft Azure ed elenca anche le versioni dei sistemi operativi disponibili per ogni f
+|/capabilities/read|Mostra le funzionalità|
+|/operatingSystems/read|Elenca le versioni dei sistemi operativi guest attualmente disponibili in Microsoft Azure.|
+|/resourceTypes/skus/read|Ottiene l'elenco degli SKU per i tipi di risorse supportati.|
+|/domainNames/read|Restituisce i nomi di dominio per le risorse.|
+|/domainNames/write|Aggiunge o modifica i nomi di dominio per le risorse.|
+|/domainNames/delete|Rimuove i nomi di dominio per le risorse.|
+|/domainNames/swap/action|Passa dallo slot di staging allo slot di produzione.|
+|/domainNames/serviceCertificates/read|Restituisce i certificati di servizio usati.|
+|/domainNames/serviceCertificates/write|Aggiunge o modifica i certificati di servizio usati.|
+|/domainNames/serviceCertificates/delete|Elimina i certificati di servizio usati.|
+|/domainNames/serviceCertificates/operationStatuses/read|Esegue la lettura dello stato dell'operazione per i certificati di servizio dei nomi di dominio.|
+|/domainNames/capabilities/read|Mostra le funzionalità del nome di dominio|
+|/domainNames/extensions/read|Restituisce le estensioni del nome di dominio.|
+|/domainNames/extensions/write|Aggiunge le estensioni del nome di dominio.|
+|/domainNames/extensions/delete|Rimuove le estensioni del nome di dominio.|
+|/domainNames/extensions/operationStatuses/read|Esegue la lettura dello stato dell'operazione per le estensioni dei nomi di dominio.|
+|/domainNames/active/write|Imposta il nome del dominio attivo.|
+|/domainNames/slots/read|Mostra gli slot di distribuzione.|
+|/domainNames/slots/write|Crea o aggiorna la distribuzione.|
 |/domainNames/slots/delete|Elimina uno slot di distribuzione specifico.|
 |/domainNames/slots/start/action|Avvia uno slot di distribuzione.|
-|/domainNames/slots/stop/action|Sospende lo slot di distribuzione hello.|
-|/domainNames/slots/operationStatuses/read|Legge dello stato dell'operazione hello per slot dei nomi di dominio hello.|
-|/domainNames/slots/roles/read|Ottenere il ruolo di hello di slot di distribuzione hello.|
-|/domainNames/slots/roles/extensionReferences/read|Restituisce hello riferimento all'estensione per ruolo dello slot di distribuzione hello.|
-|/domainNames/slots/roles/extensionReferences/write|Aggiungere o modificare il riferimento dell'estensione di hello per ruolo dello slot di distribuzione hello.|
-|/domainNames/slots/roles/extensionReferences/delete|Rimuovere il riferimento estensione hello per ruolo dello slot di distribuzione hello.|
-|/domainNames/slots/roles/extensionReferences/operationStatuses/read|Legge dello stato dell'operazione per i riferimenti all'estensione ruoli slot di hello dominio nomi hello.|
-|/domainNames/slots/roles/roleInstances/read|Ottenere l'istanza del ruolo hello.|
+|/domainNames/slots/stop/action|Sospende lo slot di distribuzione.|
+|/domainNames/slots/operationStatuses/read|Esegue la lettura dello stato dell'operazione per gli slot dei nomi di dominio.|
+|/domainNames/slots/roles/read|Ottiene il ruolo per lo slot di distribuzione.|
+|/domainNames/slots/roles/extensionReferences/read|Restituisce il riferimento all'estensione del ruolo dello slot di distribuzione.|
+|/domainNames/slots/roles/extensionReferences/write|Aggiunge o modifica il riferimento all'estensione del ruolo dello slot di distribuzione.|
+|/domainNames/slots/roles/extensionReferences/delete|Rimuove il riferimento all'estensione del ruolo dello slot di distribuzione.|
+|/domainNames/slots/roles/extensionReferences/operationStatuses/read|Legge lo stato operazione dei riferimenti all'estensione per i ruoli slot dei nomi di dominio.|
+|/domainNames/slots/roles/roleInstances/read|Ottiene l'istanza del ruolo.|
 |/domainNames/slots/roles/roleInstances/restart/action|Riavvia le istanze del ruolo.|
-|/domainNames/slots/roles/roleInstances/reimage/action|Istanza del ruolo reimages hello.|
-|/domainNames/slots/roles/roleInstances/operationStatuses/read|Legge dello stato dell'operazione hello per le istanze del ruolo ruoli slot nomi dominio hello.|
-|/domainNames/slots/state/start/write|Le modifiche hello toostopped stato dello slot di distribuzione.|
-|/domainNames/slots/state/stop/write|Le modifiche hello toostarted stato dello slot di distribuzione.|
-|/domainNames/slots/upgradeDomain/write|Vengono illustrati il dominio di aggiornamento hello.|
-|/domainNames/internalLoadBalancers/read|Ottiene i servizi di bilanciamento del carico interno hello.|
+|/domainNames/slots/roles/roleInstances/reimage/action|Ricrea l'immagine dell'istanza del ruolo.|
+|/domainNames/slots/roles/roleInstances/operationStatuses/read|Legge lo stato dell'operazione per le istanze ruolo dei ruoli slot dei nomi di dominio.|
+|/domainNames/slots/state/start/write|Imposta lo stato dello slot di distribuzione su arrestato.|
+|/domainNames/slots/state/stop/write|Imposta lo stato dello slot di distribuzione su avviato.|
+|/domainNames/slots/upgradeDomain/write|Esegue l'aggiornamento del dominio.|
+|/domainNames/internalLoadBalancers/read|Ottiene i servizi di bilanciamento del carico interno.|
 |/domainNames/internalLoadBalancers/write|Crea un nuovo bilanciamento del carico interno.|
 |/domainNames/internalLoadBalancers/delete|Rimuove un nuovo bilanciamento del carico interno.|
-|/domainNames/internalLoadBalancers/operationStatuses/read|Legge dello stato dell'operazione hello per servizi di bilanciamento del carico interno dei nomi di dominio hello.|
-|/domainNames/loadBalancedEndpointSets/read|Mostra set di endpoint con carico bilanciato hello|
-|/domainNames/loadBalancedEndpointSets/operationStatuses/read|Legge dello stato dell'operazione hello per set di endpoint con carico bilanciato dei nomi di dominio hello.|
-|/domainNames/availabilitySets/read|Mostra la disponibilità di hello impostare per la risorsa hello.|
-|/quotas/read|Ottenere la quota di hello per sottoscrizione hello.|
+|/domainNames/internalLoadBalancers/operationStatuses/read|Legge lo stato dell'operazione per i servizi di bilanciamento del carico dei nomi di dominio.|
+|/domainNames/loadBalancedEndpointSets/read|Visualizza gli endpoint con bilanciamento del carico|
+|/domainNames/loadBalancedEndpointSets/operationStatuses/read|Legge lo stato dell'operazione per gli endpoint con bilanciamento del carico per i nomi di dominio.|
+|/domainNames/availabilitySets/read|Visualizza il set di disponibilità per la risorsa.|
+|/quotas/read|Ottiene la quota per la sottoscrizione.|
 |/virtualMachines/read|Recupera l'elenco delle macchine virtuali.|
 |/virtualMachines/write|Aggiunge o modifica le macchine virtuali.|
 |/virtualMachines/delete|Rimuove le macchine virtuali.|
-|/virtualMachines/start/action|Avviare la macchina virtuale hello.|
-|/virtualMachines/redeploy/action|Ridistribuisce macchina virtuale hello.|
+|/virtualMachines/start/action|Avviare la macchina virtuale.|
+|/virtualMachines/redeploy/action|Ridistribuisce la macchina virtuale.|
 |/virtualMachines/restart/action|Riavvia le macchine virtuali.|
-|/virtualMachines/stop/action|Arresta hello macchina virtuale.|
-|/virtualMachines/shutdown/action|Spegnere la macchina virtuale hello.|
-|/virtualMachines/attachDisk/action|Collega una macchina virtuale tooa di dati su disco.|
+|/virtualMachines/stop/action|Arresta la macchina virtuale.|
+|/virtualMachines/shutdown/action|Chiude la macchina virtuale.|
+|/virtualMachines/attachDisk/action|Collega un disco dati a una macchina virtuale.|
 |/virtualMachines/detachDisk/action|Scollega un disco dati da una macchina virtuale.|
-|/virtualMachines/downloadRemoteDesktopConnectionFile/action|Scarica il file RDP hello per la macchina virtuale.|
-|/virtualMachines/networkInterfaces/<br>associatedNetworkSecurityGroups/read|Ottiene hello gruppo di sicurezza di rete associato hello interfaccia di rete.|
-|/virtualMachines/networkInterfaces/<br>associatedNetworkSecurityGroups/write|Aggiunge un gruppo di sicurezza di rete associato hello interfaccia di rete.|
-|/virtualMachines/networkInterfaces/<br>associatedNetworkSecurityGroups/delete|Elimina gruppo di sicurezza di rete hello associato hello interfaccia di rete.|
-|/virtualMachines/networkInterfaces/<br>associatedNetworkSecurityGroups/operationStatuses/read|Legge dello stato dell'operazione hello per le macchine virtuali hello associate a gruppi di sicurezza di rete.|
-|/virtualMachines/providers/Microsoft.Insights/metricDefinitions/read|Ottiene le definizioni di metriche di hello.|
-|/virtualMachines/providers/Microsoft.Insights/diagnosticSettings/read|Ottenere le impostazioni di diagnostica hello.|
+|/virtualMachines/downloadRemoteDesktopConnectionFile/action|Scarica il file RDP per la macchina virtuale.|
+|/virtualMachines/networkInterfaces/<br>associatedNetworkSecurityGroups/read|Ottiene il gruppo di sicurezza di rete associato all'interfaccia di rete.|
+|/virtualMachines/networkInterfaces/<br>associatedNetworkSecurityGroups/write|Aggiunge un gruppo di sicurezza di rete associato all'interfaccia di rete.|
+|/virtualMachines/networkInterfaces/<br>associatedNetworkSecurityGroups/delete|Elimina il gruppo di sicurezza di rete associato all'interfaccia di rete.|
+|/virtualMachines/networkInterfaces/<br>associatedNetworkSecurityGroups/operationStatuses/read|Legge lo stato operazione dei gruppi di sicurezza di rete associati alle macchine virtuali.|
+|/virtualMachines/providers/Microsoft.Insights/metricDefinitions/read|Ottiene le definizioni di metrica.|
+|/virtualMachines/providers/Microsoft.Insights/diagnosticSettings/read|Ottiene le impostazioni di diagnostica.|
 |/virtualMachines/providers/Microsoft.Insights/diagnosticSettings/write|Aggiunge o modifica le impostazioni di diagnostica.|
-|/virtualMachines/metrics/read|Ottiene la metrica di hello.|
-|/virtualMachines/operationStatuses/read|Legge dello stato dell'operazione hello per le macchine virtuali hello.|
-|/virtualMachines/extensions/read|Ottiene l'estensione della macchina virtuale hello.|
-|/virtualMachines/extensions/write|Inserisce l'estensione della macchina virtuale hello.|
-|/virtualMachines/extensions/operationStatuses/read|Legge dello stato dell'operazione hello per le estensioni di macchine virtuali hello.|
-|/virtualMachines/asyncOperations/read|Ottiene le operazioni asincrone possibili hello|
+|/virtualMachines/metrics/read|Ottiene la metrica.|
+|/virtualMachines/operationStatuses/read|Legge lo stato operazione delle macchine virtuali.|
+|/virtualMachines/extensions/read|Ottiene l'estensione macchina virtuale.|
+|/virtualMachines/extensions/write|Visualizza l'estensione macchina virtuale.|
+|/virtualMachines/extensions/operationStatuses/read|Legge lo stato operazione delle estensioni macchina virtuale.|
+|/virtualMachines/asyncOperations/read|Ottiene le operazioni asincrone possibili|
 |/virtualMachines/disks/read|Recupera l'elenco dei dischi dati|
-|/virtualMachines/associatedNetworkSecurityGroups/read|Ottiene hello gruppo di sicurezza di rete associata a una macchina virtuale hello.|
-|/virtualMachines/associatedNetworkSecurityGroups/write|Aggiunge un gruppo di sicurezza di rete associato a una macchina virtuale hello.|
-|/virtualMachines/associatedNetworkSecurityGroups/delete|Elimina gruppo di sicurezza di rete hello associata a una macchina virtuale hello.|
-|/virtualMachines/associatedNetworkSecurityGroups/operationStatuses/read|Legge dello stato dell'operazione hello per le macchine virtuali hello associate a gruppi di sicurezza di rete.|
+|/virtualMachines/associatedNetworkSecurityGroups/read|Ottiene il gruppo di sicurezza di rete associato alla macchina virtuale.|
+|/virtualMachines/associatedNetworkSecurityGroups/write|Aggiunge un gruppo di sicurezza di rete associato alla macchina virtuale.|
+|/virtualMachines/associatedNetworkSecurityGroups/delete|Elimina il gruppo di sicurezza di rete associato alla macchina virtuale.|
+|/virtualMachines/associatedNetworkSecurityGroups/operationStatuses/read|Legge lo stato operazione dei gruppi di sicurezza di rete associati alle macchine virtuali.|
 
 ## <a name="microsoftclassicnetwork"></a>Microsoft.ClassicNetwork
 
 | Operazione | Descrizione |
 |---|---|
-|/register/action|Registrare tooClassic rete|
-|/gatewaySupportedDevices/read|Recupera l'elenco di hello dei dispositivi supportati.|
-|/reservedIps/read|Ottiene hello IP riservati|
+|/register/action|Esegue la registrazione per Rete classica|
+|/gatewaySupportedDevices/read|Recupera l'elenco dei dispositivi supportati.|
+|/reservedIps/read|Ottiene gli IP riservati|
 |/reservedIps/write|Aggiunge un nuovo IP riservato|
 |/reservedIps/delete|Elimina un IP riservato.|
 |/reservedIps/link/action|Collega un IP riservato|
 |/reservedIps/join/action|Unisce un IP riservato|
-|/reservedIps/operationStatuses/read|Legge dello stato dell'operazione per gli indirizzi IP riservato hello hello.|
-|/virtualNetworks/read|Ottenere la rete virtuale hello.|
+|/reservedIps/operationStatuses/read|Legge lo stato dell'operazione per gli IP riservati.|
+|/virtualNetworks/read|Ottiene la rete virtuale.|
 |/virtualNetworks/write|Aggiunge una nuova rete virtuale.|
-|/virtualNetworks/delete|Consente di eliminare la rete virtuale hello.|
+|/virtualNetworks/delete|Elimina la rete virtuale.|
 |/virtualNetworks/peer/action|Associa una rete virtuale a un'altra rete virtuale.|
-|/virtualNetworks/join/action|Crea un join tra la rete virtuale hello.|
-|/virtualNetworks/checkIPAddressAvailability/action|Controlla la disponibilità di hello di un determinato indirizzo IP in una rete virtuale.|
-|/virtualNetworks/capabilities/read|Vengono illustrate le funzionalità di hello|
-|/virtualNetworks/subnets/<br>associatedNetworkSecurityGroups/read|Ottiene hello gruppo di sicurezza di rete associato alla subnet hello.|
-|/virtualNetworks/subnets/<br>associatedNetworkSecurityGroups/write|Aggiunge un gruppo di sicurezza di rete associato alla subnet hello.|
-|/virtualNetworks/subnets/<br>associatedNetworkSecurityGroups/delete|Elimina gruppo di sicurezza di rete hello associato hello subnet.|
-|/virtualNetworks/subnets/<br>associatedNetworkSecurityGroups/operationStatuses/read|Legge dello stato dell'operazione hello per gruppo di sicurezza di rete associato subnet di rete virtuale hello.|
-|/virtualNetworks/operationStatuses/read|Legge dello stato dell'operazione hello per le reti virtuali hello.|
-|/virtualNetworks/gateways/read|Ottiene il gateway di rete virtuale hello.|
+|/virtualNetworks/join/action|Unisce la rete virtuale.|
+|/virtualNetworks/checkIPAddressAvailability/action|Verifica la disponibilità di un determinato indirizzo IP in una rete virtuale.|
+|/virtualNetworks/capabilities/read|Visualizza le funzionalità|
+|/virtualNetworks/subnets/<br>associatedNetworkSecurityGroups/read|Ottiene il gruppo di sicurezza di rete associato alla subnet.|
+|/virtualNetworks/subnets/<br>associatedNetworkSecurityGroups/write|Aggiunge un gruppo di sicurezza di rete associato alla subnet.|
+|/virtualNetworks/subnets/<br>associatedNetworkSecurityGroups/delete|Elimina il gruppo di sicurezza di rete associato alla subnet.|
+|/virtualNetworks/subnets/<br>associatedNetworkSecurityGroups/operationStatuses/read|Legge lo stato operazione del gruppo di sicurezza di rete associato alla subnet della rete virtuale.|
+|/virtualNetworks/operationStatuses/read|Legge lo stato operazione delle reti virtuali.|
+|/virtualNetworks/gateways/read|Ottiene i gateway di rete virtuale.|
 |/virtualNetworks/gateways/write|Aggiunge un gateway di rete virtuale.|
-|/virtualNetworks/gateways/delete|Elimina il gateway di rete virtuale hello.|
-|/virtualNetworks/gateways/startDiagnostics/action|Avvia la diagnostica per il gateway di rete virtuale hello.|
-|/virtualNetworks/gateways/stopDiagnostics/action|Arresta hello diagnostica per il gateway di rete virtuale hello.|
-|/virtualNetworks/gateways/downloadDiagnostics/action|Download di diagnostica del gateway hello.|
-|/virtualNetworks/gateways/listCircuitServiceKey/action|Recupera una chiave del servizio hello circuito.|
-|/virtualNetworks/gateways/downloadDeviceConfigurationScript/action|Scarica script di configurazione del dispositivo hello.|
-|/virtualNetworks/gateways/listPackage/action|Elenca i pacchetti di gateway di rete virtuale hello.|
-|/virtualNetworks/gateways/operationStatuses/read|Legge dello stato dell'operazione per i gateway delle reti virtuali hello hello.|
-|/virtualNetworks/gateways/packages/read|Ottiene il pacchetto di gateway di hello rete virtuale.|
-|/virtualNetworks/gateways/connections/read|Recupera l'elenco di hello delle connessioni.|
-|/virtualNetworks/gateways/connections/connect/action|Si connette una connessione gateway da sito toosite.|
-|/virtualNetworks/gateways/connections/disconnect/action|Disconnette una connessione gateway da sito toosite.|
-|/virtualNetworks/gateways/connections/test/action|Verifica di una connessione gateway da sito toosite.|
-|/virtualNetworks/gateways/clientRevokedCertificates/read|Hello lettura revoca i certificati client.|
+|/virtualNetworks/gateways/delete|Elimina il gateway di rete virtuale.|
+|/virtualNetworks/gateways/startDiagnostics/action|Avvia la diagnostica per il gateway di rete virtuale.|
+|/virtualNetworks/gateways/stopDiagnostics/action|Arresta la diagnostica del gateway di rete virtuale.|
+|/virtualNetworks/gateways/downloadDiagnostics/action|Scarica la diagnostica del gateway.|
+|/virtualNetworks/gateways/listCircuitServiceKey/action|Recupera la chiave del servizio del circuito.|
+|/virtualNetworks/gateways/downloadDeviceConfigurationScript/action|Scarica lo script di configurazione del dispositivo.|
+|/virtualNetworks/gateways/listPackage/action|Elenca i pacchetti del gateway di rete virtuale.|
+|/virtualNetworks/gateways/operationStatuses/read|Legge lo stato operazione dei gateway di rete virtuale.|
+|/virtualNetworks/gateways/packages/read|Ottiene il pacchetto del gateway di rete virtuale.|
+|/virtualNetworks/gateways/connections/read|Recupera l'elenco di connessioni.|
+|/virtualNetworks/gateways/connections/connect/action|Connette una connessione gateway da sito a sito.|
+|/virtualNetworks/gateways/connections/disconnect/action|Disconnette una connessione gateway da sito a sito.|
+|/virtualNetworks/gateways/connections/test/action|Esegue il test di una connessione gateway da sito a sito.|
+|/virtualNetworks/gateways/clientRevokedCertificates/read|Esegue la lettura dei certificati client revocati.|
 |/virtualNetworks/gateways/clientRevokedCertificates/write|Revoca un certificato client.|
 |/virtualNetworks/gateways/clientRevokedCertificates/delete|Annulla la revoca di un certificato client.|
-|/virtualNetworks/gateways/clientRootCertificates/read|Trovare hello certificati radice client.|
+|/virtualNetworks/gateways/clientRootCertificates/read|Trova i certificati radice client.|
 |/virtualNetworks/gateways/clientRootCertificates/write|Carica un nuovo certificato radice client.|
-|/virtualNetworks/gateways/clientRootCertificates/delete|Elimina certificato client gateway di rete virtuale hello.|
+|/virtualNetworks/gateways/clientRootCertificates/delete|Elimina il certificato client del gateway di rete virtuale.|
 |/virtualNetworks/gateways/clientRootCertificates/download/action|Scarica il certificato in base all'identificazione personale.|
-|/virtualNetworks/gateways/clientRootCertificates/listPackage/action|Pacchetto certificato gateway di rete virtuale hello di elenchi.|
-|/networkSecurityGroups/read|Ottiene il gruppo di sicurezza rete hello.|
+|/virtualNetworks/gateways/clientRootCertificates/listPackage/action|Elenca il pacchetto del certificato del gateway di rete virtuale.|
+|/networkSecurityGroups/read|Ottiene il gruppo di sicurezza di rete.|
 |/networkSecurityGroups/write|Aggiunge un nuovo gruppo di sicurezza di rete.|
-|/networkSecurityGroups/delete|Elimina gruppo di sicurezza di rete hello.|
-|/networkSecurityGroups/operationStatuses/read|Legge dello stato dell'operazione hello per gruppo di sicurezza di rete hello.|
-|/networkSecurityGroups/securityRules/read|Ottiene la regola di sicurezza hello.|
+|/networkSecurityGroups/delete|Elimina il gruppo di sicurezza di rete.|
+|/networkSecurityGroups/operationStatuses/read|Legge lo stato operazione del gruppo di sicurezza di rete.|
+|/networkSecurityGroups/securityRules/read|Ottiene la regola di sicurezza.|
 |/networkSecurityGroups/securityRules/write|Aggiunge o aggiorna una regola di sicurezza.|
-|/networkSecurityGroups/securityRules/delete|Elimina regola di sicurezza hello.|
-|/networkSecurityGroups/securityRules/operationStatuses/read|Legge dello stato dell'operazione hello per regole di sicurezza di gruppo di sicurezza di rete di hello.|
-|/quotas/read|Ottenere la quota di hello per sottoscrizione hello.|
+|/networkSecurityGroups/securityRules/delete|Elimina la regola di sicurezza.|
+|/networkSecurityGroups/securityRules/operationStatuses/read|Legge lo stato dell'operazione per le regole di sicurezza del gruppo di sicurezza di rete.|
+|/quotas/read|Ottiene la quota per la sottoscrizione.|
 
 ## <a name="microsoftclassicstorage"></a>Microsoft.ClassicStorage
 
 | Operazione | Descrizione |
 |---|---|
-|/register/action|Registrare tooClassic archiviazione|
-|/checkStorageAccountAvailability/action|Verifica disponibilità hello di un account di archiviazione.|
-|/capabilities/read|Vengono illustrate le funzionalità di hello|
-|/publicImages/read|Ottiene l'immagine di macchina virtuale pubblico hello.|
-|/images/read|Immagine di hello restituisce.|
-|/storageAccounts/read|Restituisce l'account di archiviazione hello con hello dato account.|
+|/register/action|Consente di eseguire la registrazione per Archiviazione (versione classica)|
+|/checkStorageAccountAvailability/action|Verifica la disponibilità di un account di archiviazione.|
+|/capabilities/read|Visualizza le funzionalità|
+|/publicImages/read|Ottiene l'immagine di macchina virtuale pubblica.|
+|/images/read|Restituisce l'immagine.|
+|/storageAccounts/read|Restituisce l'account di archiviazione con l'account specificato.|
 |/storageAccounts/write|Aggiunge un nuovo account di archiviazione.|
-|/storageAccounts/delete|Eliminare l'account di archiviazione hello.|
-|/storageAccounts/listKeys/action|Elenca le chiavi di accesso hello per gli account di archiviazione hello.|
-|/storageAccounts/regenerateKey/action|Rigenera chiavi di accesso per account di archiviazione hello esistenti hello.|
-|/storageAccounts/operationStatuses/read|Legge dello stato dell'operazione per la risorsa hello hello.|
-|/storageAccounts/images/read|Restituisce hello immagine dell'account di archiviazione.|
+|/storageAccounts/delete|Elimina l'account di archiviazione.|
+|/storageAccounts/listKeys/action|Elenca le chiavi di accesso per gli account di archiviazione.|
+|/storageAccounts/regenerateKey/action|Rigenera le chiavi di accesso esistenti per l'account di archiviazione.|
+|/storageAccounts/operationStatuses/read|Legge lo stato dell'operazione per la risorsa.|
+|/storageAccounts/images/read|Restituisce l'immagine dell'account di archiviazione.|
 |/storageAccounts/images/delete|Elimina una data immagine dell'account di archiviazione.|
-|/storageAccounts/disks/read|Restituisce hello disco account di archiviazione.|
+|/storageAccounts/disks/read|Restituisce il disco dell'account di archiviazione.|
 |/storageAccounts/disks/write|Aggiunge un disco dell'account di archiviazione.|
 |/storageAccounts/disks/delete|Elimina un disco specifico dell'account di archiviazione.|
-|/storageAccounts/disks/operationStatuses/read|Legge dello stato dell'operazione per la risorsa hello hello.|
-|/storageAccounts/osImages/read|Restituisce hello immagine del sistema operativo dell'account di archiviazione.|
+|/storageAccounts/disks/operationStatuses/read|Legge lo stato dell'operazione per la risorsa.|
+|/storageAccounts/osImages/read|Restituisce l'immagine del sistema operativo dell'account di archiviazione.|
 |/storageAccounts/osImages/delete|Elimina un'immagine specifica del sistema operativo dell'account di archiviazione.|
-|/storageAccounts/services/read|Ottenere servizi disponibili hello.|
-|/storageAccounts/services/metricDefinitions/read|Ottiene le definizioni di metriche di hello.|
-|/storageAccounts/services/metrics/read|Ottiene la metrica di hello.|
-|/storageAccounts/services/diagnosticSettings/read|Ottenere le impostazioni di diagnostica hello.|
+|/storageAccounts/services/read|Ottiene i servizi disponibili.|
+|/storageAccounts/services/metricDefinitions/read|Ottiene le definizioni di metrica.|
+|/storageAccounts/services/metrics/read|Ottiene la metrica.|
+|/storageAccounts/services/diagnosticSettings/read|Ottiene le impostazioni di diagnostica.|
 |/storageAccounts/services/diagnosticSettings/write|Consente di aggiungere o modificare le impostazioni di diagnostica.|
-|/disks/read|Restituisce hello disco account di archiviazione.|
-|/osImages/read|Immagine del sistema operativo restituisce hello.|
-|/quotas/read|Ottenere la quota di hello per sottoscrizione hello.|
+|/disks/read|Restituisce il disco dell'account di archiviazione.|
+|/osImages/read|Restituisce l'immagine del sistema operativo.|
+|/quotas/read|Ottiene la quota per la sottoscrizione.|
 
 ## <a name="microsoftcognitiveservices"></a>Microsoft.CognitiveServices
 
@@ -559,103 +559,103 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/accounts/listKeys/action|Elenco delle chiavi|
 |/accounts/regenerateKey/action|Rigenerazione della chiave|
 |/accounts/skus/read|Legge gli SKU disponibili per una risorsa esistente.|
-|/accounts/usages/read|Ottenere l'utilizzo della quota di hello per una risorsa esistente.|
-|/Operations/read|Descrizione dell'operazione di hello.|
+|/accounts/usages/read|Ottiene l'uso della quota per una risorsa esistente.|
+|/Operations/read|Descrizione dell'operazione.|
 
 ## <a name="microsoftcommerce"></a>Microsoft.Commerce
 
 | Operazione | Descrizione |
 |---|---|
-|/RateCard/read|Restituisce offrono dati, metadati o misuratore risorse e tariffe per hello sottoscrizione specificata.|
-|/UsageAggregates/read|Recupera il consumo di Microsoft Azure da una sottoscrizione. il risultato di Hello contiene funzioni di aggregazione dati di utilizzo, sottoscrizione e della risorsa informazioni correlate, in un intervallo di tempo specifico.|
+|/RateCard/read|Restituisce dati dell'offerta, metadati delle risorse o del contatore e tariffe per una determinata sottoscrizione.|
+|/UsageAggregates/read|Recupera il consumo di Microsoft Azure da una sottoscrizione. Il risultato contiene dati di utilizzo delle aggregazioni, informazioni correlate a sottoscrizioni e risorse in un intervallo di tempo specifico.|
 
 ## <a name="microsoftcompute"></a>Microsoft.Compute
 
 | Operazione | Descrizione |
 |---|---|
 |/register/action|Registra la sottoscrizione con il provider di risorse Microsoft.Compute|
-|/restorePointCollections/read|Ottenere le proprietà di hello di un insieme di punti di ripristino|
+|/restorePointCollections/read|Ottiene le proprietà di un insieme di punti di ripristino|
 |/restorePointCollections/write|Crea un nuovo insieme di punti di ripristino o aggiorna un insieme esistente|
-|/restorePointCollections/delete|Eliminazioni hello insieme di punti di ripristino e i punti di ripristino di contenuto|
-|/restorePointCollections/restorePoints/read|Ottenere le proprietà di hello di un punto di ripristino|
+|/restorePointCollections/delete|Elimina la raccolta di punti di ripristino e i punti di ripristino contenuti|
+|/restorePointCollections/restorePoints/read|Ottiene le proprietà di un punto di ripristino|
 |/restorePointCollections/restorePoints/write|Crea un nuovo punto di ripristino|
-|/restorePointCollections/restorePoints/delete|Elimina il punto di ripristino hello|
-|/restorePointCollections/restorePoints/retrieveSasUris/action|Ottenere le proprietà di hello di un punto di ripristino con blob URI SAS|
-|/virtualMachineScaleSets/read|Ottenere le proprietà di hello di un set di scalabilità della macchina virtuale|
+|/restorePointCollections/restorePoints/delete|Elimina il punto di ripristino|
+|/restorePointCollections/restorePoints/retrieveSasUris/action|Ottiene le proprietà di un punto di ripristino insieme agli URI SAS del BLOB|
+|/virtualMachineScaleSets/read|Ottiene le proprietà di un set di scalabilità di macchine virtuali|
 |/virtualMachineScaleSets/write|Crea un nuovo set di scalabilità di macchine virtuali o ne aggiorna uno esistente|
-|/virtualMachineScaleSets/delete|Elimina set di scalabilità della macchina virtuale hello|
-|/virtualMachineScaleSets/start/action|Avvia hello le istanze di set di scalabilità della macchina virtuale hello|
-|/virtualMachineScaleSets/powerOff/action|Arresta le istanze di hello di set di scalabilità della macchina virtuale hello|
-|/virtualMachineScaleSets/restart/action|Riavvia istanze di hello del set di scalabilità della macchina virtuale hello|
-|/virtualMachineScaleSets/deallocate/action|Arresta e rilascia le risorse di calcolo di hello per le istanze di hello di set di scalabilità della macchina virtuale hello |
-|/virtualMachineScaleSets/manualUpgrade/action|Aggiorna manualmente il modello di toolatest le istanze del set di scalabilità della macchina virtuale hello|
+|/virtualMachineScaleSets/delete|Elimina il set di scalabilità di macchine virtuali|
+|/virtualMachineScaleSets/start/action|Avvia le istanze del set di scalabilità di macchine virtuali|
+|/virtualMachineScaleSets/powerOff/action|Disabilita le istanze del set di scalabilità di macchine virtuali|
+|/virtualMachineScaleSets/restart/action|Riavvia le istanze del set di scalabilità di macchine virtuali|
+|/virtualMachineScaleSets/deallocate/action|Disabilita e rilascia le risorse di calcolo per le istanze del set di scalabilità di macchine virtuali |
+|/virtualMachineScaleSets/manualUpgrade/action|Aggiorna manualmente le istanze all’ultimo modello del set di scalabilità di macchine virtuali|
 |/virtualMachineScaleSets/scale/action|Scala verticalmente/orizzontalmente il numero di istanze di un set di scalabilità di macchine virtuali|
-|/virtualMachineScaleSets/instanceView/read|Ottiene una visualizzazione dell'istanza del set di scalabilità della macchina virtuale hello hello|
-|/virtualMachineScaleSets/skus/read|Gli elenchi di hello SKU valide per un set di scalabilità macchina virtuale esistente|
-|/virtualMachineScaleSets/virtualMachines/read|Recupera le proprietà di hello di una macchina virtuale in un Set di scalabilità della macchina virtuale|
+|/virtualMachineScaleSets/instanceView/read|Ottiene la vista delle istanze del set di scalabilità di macchine virtuali|
+|/virtualMachineScaleSets/skus/read|Elenca le SKU valide per un set di scalabilità di macchine virtuali esistente|
+|/virtualMachineScaleSets/virtualMachines/read|Recupera le proprietà di una macchina virtuale in un set di scalabilità VM|
 |/virtualMachineScaleSets/virtualMachines/delete|Elimina una specifica macchina virtuale in un set di scalabilità VM.|
 |/virtualMachineScaleSets/virtualMachines/start/action|Avvia un'istanza di macchina virtuale in un set di scalabilità VM.|
 |/virtualMachineScaleSets/virtualMachines/powerOff/action|Disabilita un'istanza di macchina virtuale in un set di scalabilità VM.|
 |/virtualMachineScaleSets/virtualMachines/restart/action|Riavvia un'istanza di macchina virtuale in un set di scalabilità VM.|
-|/virtualMachineScaleSets/virtualMachines/deallocate/action|Arresta e rilascia le risorse di calcolo di hello per una macchina virtuale in un Set di scalabilità della macchina virtuale.|
-|/virtualMachineScaleSets/virtualMachines/instanceView/read|Recupera visualizzazione hello dell'istanza di una macchina virtuale in un Set di scalabilità della macchina virtuale.|
-|/images/read|Ottenere le proprietà di hello di hello immagine|
+|/virtualMachineScaleSets/virtualMachines/deallocate/action|Disabilita e rilascia le risorse di calcolo per una macchina virtuale in un set di scalabilità VM.|
+|/virtualMachineScaleSets/virtualMachines/instanceView/read|Recupera la vista istanza di una macchina virtuale in un set di scalabilità di una VM.|
+|/images/read|Ottiene le proprietà dell’immagine|
 |/images/write|Crea una nuova immagine o ne aggiorna una esistente|
-|/images/delete|Elimina immagine hello|
+|/images/delete|Elimina l'immagine|
 |/operations/read|Elenca le operazioni disponibili sul provider di risorse Microsoft.Compute|
-|/disks/read|Ottenere le proprietà di hello di un disco|
+|/disks/read|Ottiene le proprietà di un disco|
 |/disks/write|Crea un nuovo disco o ne aggiorna uno esistente|
-|/disks/delete|Eliminazioni hello disco|
-|/disks/beginGetAccess/action|Ottenere hello URI SAS di hello disco per l'accesso di blob|
-|/disks/endGetAccess/action|Revocare hello URI SAS di hello disco|
-|/snapshots/read|Ottenere le proprietà di hello di uno Snapshot|
+|/disks/delete|Elimina il disco|
+|/disks/beginGetAccess/action|Ottiene gli URI SAS del disco per l’accesso al BLOB|
+|/disks/endGetAccess/action|Revoca l’URI SAS del disco|
+|/snapshots/read|Ottiene le proprietà di una snapshot|
 |/snapshots/write|Crea una nuova snapshot o ne aggiorna una esistente|
 |/snapshots/delete|Elimina una snapshot|
-|/availabilitySets/read|Ottenere le proprietà di hello un set di disponibilità|
+|/availabilitySets/read|Ottiene le proprietà di un set di disponibilità|
 |/availabilitySets/write|Crea un nuovo set di disponibilità o ne aggiorna uno esistente|
-|/availabilitySets/delete|Elimina il set di disponibilità hello|
-|/availabilitySets/vmSizes/read|Elenca le dimensioni disponibili per la creazione o l'aggiornamento di una macchina virtuale nel set di disponibilità hello|
-|/virtualMachines/read|Ottenere le proprietà di hello di una macchina virtuale|
+|/availabilitySets/delete|Elimina il set di disponibilità|
+|/availabilitySets/vmSizes/read|Elenca le dimensioni disponibili per creare o aggiornare una macchina virtuale nel set di disponibilità|
+|/virtualMachines/read|Ottiene le proprietà di una macchina virtuale|
 |/virtualMachines/write|Crea una nuova macchina virtuale o ne aggiorna una esistente|
-|/virtualMachines/delete|Elimina macchina virtuale hello|
-|/virtualMachines/start/action|Avvia la macchina virtuale hello|
-|/virtualMachines/powerOff/action|Arresta macchina virtuale hello. Si noti che la macchina virtuale hello continuerà toobe fatturato.|
+|/virtualMachines/delete|Elimina la macchina virtuale|
+|/virtualMachines/start/action|Avvia la macchina virtuale|
+|/virtualMachines/powerOff/action|Disabilita la macchina virtuale. Notare che la macchina virtuale continuerà a essere fatturata.|
 |/virtualMachines/redeploy/action|Ridistribuisce la macchina virtuale|
-|/virtualMachines/restart/action|Riavvia una macchina virtuale hello|
-|/virtualMachines/deallocate/action|Arresta macchina virtuale hello e hello rilascia le risorse di calcolo|
-|/virtualMachines/generalize/action|Imposta tooGeneralized stato macchina virtuale di hello e prepara una macchina virtuale hello per l'acquisizione|
-|/virtualMachines/capture/action|Acquisisce una macchina virtuale hello copiando i dischi rigidi virtuali e genera un modello che può essere utilizzato toocreate le macchine virtuali simili|
-|/virtualMachines/convertToManagedDisks/action|Converte i dischi di blob in base hello di dischi di toomanaged hello macchina virtuale|
-|/virtualMachines/vmSizes/read|Elenca le dimensioni disponibili macchina virtuale hello può essere aggiornato a|
-|/virtualMachines/instanceView/read|Ottiene hello lo stato di runtime dettagliato della macchina virtuale hello e le relative risorse|
-|/virtualMachines/extensions/read|Ottenere le proprietà di hello di un'estensione della macchina virtuale|
+|/virtualMachines/restart/action|Riavvia la macchina virtuale|
+|/virtualMachines/deallocate/action|Disabilita la macchina virtuale e rilascia le risorse di calcolo|
+|/virtualMachines/generalize/action|Imposta lo stato della macchina virtuale a Generalizzato e prepara la macchina virtuale per l'acquisizione|
+|/virtualMachines/capture/action|Acquisisce la macchina virtuale copiando i dischi rigidi virtuali e genera un modello utilizzabile per creare macchine virtuali simili|
+|/virtualMachines/convertToManagedDisks/action|Converte i dischi basati su BLOB della macchina virtuale in dischi gestiti|
+|/virtualMachines/vmSizes/read|Elenca le dimensioni disponibili a cui è possibile aggiornare la macchina virtuale|
+|/virtualMachines/instanceView/read|Ottiene lo stato di runtime dettagliato della macchina virtuale e delle relative risorse|
+|/virtualMachines/extensions/read|Ottiene le proprietà di un'estensione macchina virtuale|
 |/virtualMachines/extensions/write|Crea una nuova estensione macchina virtuale o ne aggiorna una esistente|
-|/virtualMachines/extensions/delete|Elimina l'estensione della macchina virtuale hello|
+|/virtualMachines/extensions/delete|Elimina l'estensione macchina virtuale|
 |/locations/vmSizes/read|Elenca le dimensioni delle macchine virtuali disponibili in una posizione|
-|/locations/usages/read|Ottiene i limiti dei servizi e quantità di utilizzo correnti per le risorse di calcolo della sottoscrizione hello in una posizione|
-|/locations/operations/read|Ottiene lo stato di hello di un'operazione asincrona|
+|/locations/usages/read|Ottiene i limiti del servizio e le quantità di utilizzo corrente delle risorse di calcolo della sottoscrizione in una posizione|
+|/locations/operations/read|Ottiene lo stato di un'operazione asincrona|
 
 ## <a name="microsoftcontainerregistry"></a>Microsoft.ContainerRegistry
 
 | Operazione | Descrizione |
 |---|---|
-|/register/action|Registra sottoscrizione hello per provider di risorse di hello contenitore del Registro di sistema e consente la creazione di hello di registri di contenitore.|
+|/register/action|Registra la sottoscrizione per il provider di risorse registro contenitori e consente la creazione di registri contenitori.|
 |/checknameavailability/read|Controlla che il nome del registro sia valido e che non sia in uso.|
-|/registries/read|Restituisce l'elenco di registri di contenitore di hello o ottiene hello le proprietà del Registro di sistema di hello contenitore specificato.|
-|/registries/write|Crea un registro di sistema contenitore hello parametri specificati o aggiornare le proprietà di hello o tag per registro di sistema di hello contenitore specificato.|
+|/registries/read|Restituisce l'elenco dei registri contenitori o ottiene le proprietà del registro contenitori specificato.|
+|/registries/write|Crea un registro contenitori con i parametri specificati o aggiorna le proprietà o i tag per il registro contenitori specificato.|
 |/registries/delete|Elimina un registro contenitori esistente.|
-|/registries/listCredentials/action|Elenca le credenziali di accesso hello del Registro di sistema di hello contenitore specificato.|
-|/registries/regenerateCredential/action|Rigenera le credenziali di accesso hello del Registro di sistema di hello contenitore specificato.|
+|/registries/listCredentials/action|Elenca le credenziali di accesso per il registro contenitori specificato.|
+|/registries/regenerateCredential/action|Rigenera le credenziali di accesso per il registro contenitori specificato.|
 
 ## <a name="microsoftcontainerservice"></a>Microsoft.ContainerService
 
 | Operazione | Descrizione |
 |---|---|
-|/containerServices/subscriptions/read|Get hello servizi contenitore specificati in base a una sottoscrizione|
-|/containerServices/resourceGroups/read|Get hello servizi contenitore specificati in base a gruppo di risorse|
-|/containerServices/resourceGroups/ContainerServiceName/read|Ottiene hello specificato servizio contenitore|
-|/containerServices/resourceGroups/ContainerServiceName/write|Inserisce o hello aggiornamenti specificato servizio contenitore|
-|/containerServices/resourceGroups/ContainerServiceName/delete|Eliminazioni hello specificato servizio contenitore|
+|/containerServices/subscriptions/read|Ottiene i servizi contenitore specificati in base alla sottoscrizione|
+|/containerServices/resourceGroups/read|Ottiene i servizi contenitore specificati in base al gruppo di risorse|
+|/containerServices/resourceGroups/ContainerServiceName/read|Ottiene il servizio contenitore specificato|
+|/containerServices/resourceGroups/ContainerServiceName/write|Inserisce o aggiorna il servizio contenitore specificato|
+|/containerServices/resourceGroups/ContainerServiceName/delete|Elimina il servizio contenitore specificato|
 
 ## <a name="microsoftcontentmoderator"></a>Microsoft.ContentModerator
 
@@ -678,10 +678,10 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/hubs/read|Esegue la lettura di qualsiasi hub di Azure Customer Insights|
 |/hubs/write|Crea o aggiorna qualsiasi hub di Azure Customer Insights|
 |/hubs/delete|Elimina qualsiasi hub di Azure Customer Insights|
-|/hubs/providers/Microsoft.Insights/metricDefinitions/read|Ottiene la metrica di hello disponibili per la risorsa|
-|/hubs/providers/Microsoft.Insights/diagnosticSettings/read|Ottiene l'impostazione di diagnostica hello per risorse hello|
-|/hubs/providers/Microsoft.Insights/diagnosticSettings/write|Crea o aggiorna l'impostazione di diagnostica di hello per risorsa hello|
-|/hubs/providers/Microsoft.Insights/logDefinitions/read|Ottiene i log disponibili hello per risorsa|
+|/hubs/providers/Microsoft.Insights/metricDefinitions/read|Ottiene la metrica disponibile per la risorsa|
+|/hubs/providers/Microsoft.Insights/diagnosticSettings/read|Ottiene l'impostazione di diagnostica per la risorsa|
+|/hubs/providers/Microsoft.Insights/diagnosticSettings/write|Crea o aggiorna l'impostazione di diagnostica per la risorsa|
+|/hubs/providers/Microsoft.Insights/logDefinitions/read|Ottiene i log disponibili per la risorsa|
 |/hubs/authorizationPolicies/read|Esegue la lettura di qualsiasi criterio di firma di accesso condiviso di Azure Customer Insights|
 |/hubs/authorizationPolicies/write|Crea o aggiorna qualsiasi criterio di firma di accesso condiviso di Azure Customer Insights|
 |/hubs/authorizationPolicies/delete|Elimina qualsiasi criterio di firma di accesso condiviso di Azure Customer Insights|
@@ -713,8 +713,8 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |---|---|
 |/checkNameAvailability/action|Controlla la disponibilità del nome di catalogo per il tenant.|
 |/catalogs/read|Ottiene le proprietà del catalogo o dei cataloghi nella sottoscrizione o nel gruppo di risorse.|
-|/catalogs/write|Crea tag hello catalogo o gli aggiornamenti e le proprietà per il catalogo di hello.|
-|/catalogs/delete|Elimina catalogo hello.|
+|/catalogs/write|Crea il catalogo o ne aggiorna i tag e le proprietà.|
+|/catalogs/delete|Elimina il catalogo.|
 
 ## <a name="microsoftdatafactory"></a>Microsoft.DataFactory
 
@@ -740,20 +740,20 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 
 | Operazione | Descrizione |
 |---|---|
-|/accounts/read|Ottenere informazioni sull'account DataLakeAnalytics hello.|
-|/accounts/write|Crea o Aggiorna account DataLakeAnalytics hello.|
-|/accounts/delete|Eliminare l'account DataLakeAnalytics hello.|
+|/accounts/read|Ottiene informazioni sull'account DataLakeAnalytics.|
+|/accounts/write|Crea o aggiorna l'account DataLakeAnalytics.|
+|/accounts/delete|Elimina l'account DataLakeAnalytics.|
 |/accounts/firewallRules/read|Ottiene informazioni su una regola del firewall.|
 |/accounts/firewallRules/write|Crea o aggiorna una regola del firewall.|
 |/accounts/firewallRules/delete|Elimina una regola del firewall.|
-|/accounts/storageAccounts/read|Ottenere l'account di archiviazione collegato per hello DataLakeAnalytics account.|
-|/accounts/storageAccounts/write|Collegare un toohello di account di archiviazione DataLakeAnalytics account.|
-|/accounts/storageAccounts/delete|Scollegare un account di archiviazione da hello DataLakeAnalytics account.|
-|/accounts/storageAccounts/Containers/read|Ottenere i contenitori in hello account di archiviazione|
-|/accounts/storageAccounts/Containers/listSasTokens/action|Elenco di token SAS hello contenitore di archiviazione|
-|/accounts/dataLakeStoreAccounts/read|Ottenere l'account DataLakeStore collegato per hello DataLakeAnalytics account.|
-|/accounts/dataLakeStoreAccounts/write|Collegare un toohello account DataLakeStore DataLakeAnalytics account.|
-|/accounts/dataLakeStoreAccounts/delete|Scollegare un conto DataLakeStore da hello DataLakeAnalytics account.|
+|/accounts/storageAccounts/read|Ottiene l'account di archiviazione collegato per l'account DataLakeAnalytics.|
+|/accounts/storageAccounts/write|Collega un account di archiviazione all'account DataLakeAnalytics.|
+|/accounts/storageAccounts/delete|Scollega un account di archiviazione dall'account DataLakeAnalytics.|
+|/accounts/storageAccounts/Containers/read|Ottiene i contenitori nell'account di archiviazione|
+|/accounts/storageAccounts/Containers/listSasTokens/action|Elenca token di firma di accesso condiviso per il contenitore di archiviazione|
+|/accounts/dataLakeStoreAccounts/read|Ottiene l'account DataLakeStore collegato per l'account DataLakeAnalytics.|
+|/accounts/dataLakeStoreAccounts/write|Collega un account DataLakeStore all'account DataLakeAnalytics.|
+|/accounts/dataLakeStoreAccounts/delete|Scollega un account DataLakeStore dall'account DataLakeAnalytics.|
 
 ## <a name="microsoftdatalakestore"></a>Microsoft.DataLakeStore
 
@@ -773,18 +773,18 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 
 | Operazione | Descrizione |
 |---|---|
-|/register/action|Registrare la sottoscrizione di hello per hello hub IOT resource provider Abilita hello la creazione e di risorse hub IOT|
+|/register/action|Registra la sottoscrizione per il provider di risorse del servizio IotHub e consente la creazione di risorse IotHub|
 |/checkNameAvailability/Action|Controlla se il nome IotHub è disponibile|
 |/usages/Read|Ottiene dettagli sull'utilizzo della sottoscrizione per questo provider.|
 |/operations/Read|Ottiene tutte le operazioni ResourceProvider|
-|/iotHubs/Read|Ottiene le risorse di hello hub IOT|
+|/iotHubs/Read|Ottiene la risorsa o le risorse IotHub|
 |/iotHubs/Write|Crea o aggiorna una risorsa IotHub|
 |/iotHubs/Delete|Elimina una risorsa IotHub|
 |/iotHubs/listkeys/Action|Ottiene tutte le chiavi IotHub|
 |/iotHubs/exportDevices/Action|Esporta dispositivi|
 |/iotHubs/importDevices/Action|Importa dispositivi|
-|/IotHubs/metricDefinitions/read|Ottiene le metriche disponibili hello per hello servizio hub IOT|
-|/iotHubs/iotHubKeys/listkeys/Action|Ottenere IotHub Key il nome specificato hello|
+|/IotHubs/metricDefinitions/read|Ottiene la metrica disponibile per il servizio IotHub|
+|/iotHubs/iotHubKeys/listkeys/Action|Ottiene la chiave IotHub per il nome specificato|
 |/iotHubs/iotHubStats/Read|Ottiene le statistiche IotHub|
 |/iotHubs/quotaMetrics/Read|Ottiene la metrica di quota|
 |/iotHubs/eventHubEndpoints/consumerGroups/Write|Crea un gruppo di consumer EventHub|
@@ -792,25 +792,25 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/iotHubs/eventHubEndpoints/consumerGroups/Delete|Elimina un gruppo di consumer EventHub|
 |/iotHubs/routing/routes/$testall/Action|Effettua il test di un messaggio con tutte le route esistenti|
 |/iotHubs/routing/routes/$testnew/Action|Effettua il test di un messaggio con la route di test fornita|
-|/IotHubs/diagnosticSettings/read|Ottiene l'impostazione di diagnostica hello per risorse hello|
-|/IotHubs/diagnosticSettings/write|Crea o aggiorna l'impostazione di diagnostica di hello per risorsa hello|
+|/IotHubs/diagnosticSettings/read|Ottiene l'impostazione di diagnostica per la risorsa|
+|/IotHubs/diagnosticSettings/write|Crea o aggiorna l'impostazione di diagnostica per la risorsa|
 |/iotHubs/skus/Read|Ottiene gli SKU IotHub validi|
 |/iotHubs/jobs/Read|Ottiene i dettagli del processo o dei processi inviati per un servizio IotHub specifico|
-|/iotHubs/routingEndpointsHealth/Read|Ottiene l'integrità di hello di tutti gli endpoint di routing per un hub IOT|
+|/iotHubs/routingEndpointsHealth/Read|Ottiene lo stato di tutti gli endpoint di routing per un servizio IotHub|
 
 ## <a name="microsoftdevtestlab"></a>Microsoft.DevTestLab
 
 | Operazione | Descrizione |
 |---|---|
-|/Subscription/register/action|Registra sottoscrizione hello|
+|/Subscription/register/action|Registra la sottoscrizione|
 |/labs/delete|Elimina lab.|
 |/labs/read|Esegue la lettura di lab.|
 |/labs/write|Aggiunge o modifica lab.|
 |/labs/ListVhds/action|Elenca le immagini di un disco disponibili per la creazione di immagini personalizzate.|
-|/labs/GenerateUploadUri/action|Generare un URI per il caricamento personalizzato disco immagini tooa Lab.|
+|/labs/GenerateUploadUri/action|Genera un URI per il caricamento di immagini disco personalizzate in un lab.|
 |/labs/CreateEnvironment/action|Crea macchine virtuali in un lab.|
-|/labs/ClaimAnyVm/action|Richiedere una macchina virtuale claimable casuale nell'ambiente lab hello.|
-|/labs/ExportResourceUsage/action|Esportazioni hello dell'utilizzo delle risorse lab in un account di archiviazione|
+|/labs/ClaimAnyVm/action|Attesta una macchina virtuale attestabile casualmente nel lab.|
+|/labs/ExportResourceUsage/action|Esporta l'utilizzo delle risorse del lab in un account di archiviazione|
 |/labs/users/delete|Elimina profili utente.|
 |/labs/users/read|Esegue la lettura di profili utente.|
 |/labs/users/write|Aggiunge o modifica profili utente.|
@@ -823,8 +823,8 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/labs/users/disks/delete|Elimina dischi.|
 |/labs/users/disks/read|Esegue la lettura di dischi.|
 |/labs/users/disks/write|Aggiunge o modifica dischi.|
-|/labs/users/disks/Attach/action|Collegare e creare lease hello della macchina virtuale di hello disco toohello.|
-|/labs/users/disks/Detach/action|Scollegare e lease hello interruzione del disco hello collegato macchina virtuale toohello.|
+|/labs/users/disks/Attach/action|Collegare e creare il lease del disco alla macchina virtuale.|
+|/labs/users/disks/Detach/action|Rimuove il disco collegato alla macchina virtuale e interrompe il lease.|
 |/labs/customImages/delete|Elimina immagini personalizzate.|
 |/labs/customImages/read|Esegue la lettura di immagini personalizzate.|
 |/labs/customImages/write|Aggiunge o modifica immagini personalizzate.|
@@ -835,7 +835,7 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/labs/artifactSources/read|Esegue la lettura di origini elemento.|
 |/labs/artifactSources/write|Aggiunge o modifica origini elemento.|
 |/labs/artifactSources/artifacts/read|Esegue la lettura di elementi.|
-|/labs/artifactSources/artifacts/GenerateArmTemplate/action|Genera un modello ARM per hello dato elemento, carica l'account di archiviazione tooa hello necessario file e convalida artefatto hello generato.|
+|/labs/artifactSources/artifacts/GenerateArmTemplate/action|Genera un modello ARM per l'elemento specificato, carica i file necessari in un account di archiviazione e convalida l'elemento generato.|
 |/labs/artifactSources/armTemplates/read|Esegue la lettura di modelli di Azure Resource Manager.|
 |/labs/costs/read|Esegue la lettura di costi.|
 |/labs/costs/write|Aggiunge o modifica costi.|
@@ -860,9 +860,9 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/labs/virtualMachines/write|Aggiunge o modifica macchine virtuali.|
 |/labs/virtualMachines/Start/action|Avvia una macchina virtuale.|
 |/labs/virtualMachines/Stop/action|Arrestare una macchina virtuale|
-|/labs/virtualMachines/ApplyArtifacts/action|Applicare macchina toovirtual elementi.|
-|/labs/virtualMachines/AddDataDisk/action|Collegare una macchina di toovirtual disco dati nuovi o esistenti.|
-|/labs/virtualMachines/DetachDataDisk/action|Scollegare il disco specificato di hello dalla macchina virtuale hello.|
+|/labs/virtualMachines/ApplyArtifacts/action|Applica elementi a una macchina virtuale.|
+|/labs/virtualMachines/AddDataDisk/action|Collega un disco dati nuovo o esistente alla macchina virtuale.|
+|/labs/virtualMachines/DetachDataDisk/action|Rimuove il disco specificato dalla macchina virtuale.|
 |/labs/virtualMachines/Claim/action|Consente di assumere la proprietà di una macchina virtuale esistente|
 |/labs/virtualMachines/ListApplicableSchedules/action|Elenca tutte le pianificazioni applicabili|
 |/labs/virtualMachines/schedules/delete|Elimina le pianificazioni.|
@@ -872,7 +872,7 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/labs/notificationChannels/delete|Elimina canali di notifica.|
 |/labs/notificationChannels/read|Esegue la lettura di canali di notifica.|
 |/labs/notificationChannels/write|Aggiunge o modifica canali di notifica.|
-|/labs/notificationChannels/Notify/action|Canale di notifica tooprovided di trasmissione.|
+|/labs/notificationChannels/Notify/action|Invia la notifica al canale specificato.|
 |/schedules/delete|Elimina le pianificazioni.|
 |/schedules/read|Esegue la lettura delle pianificazioni.|
 |/schedules/write|Aggiunge o modifica pianificazioni.|
@@ -889,20 +889,20 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/databaseAccounts/write|Aggiorna un account di database.|
 |/databaseAccounts/listKeys/action|Elenca le chiavi di un account di database|
 |/databaseAccounts/regenerateKey/action|Ruota le chiavi di un account di database|
-|/databaseAccounts/listConnectionStrings/action|Ottenere le stringhe di connessione hello per un account di database|
+|/databaseAccounts/listConnectionStrings/action|Ottiene le stringhe di connessione per un account di database|
 |/databaseAccounts/changeResourceGroup/action|Modifica il gruppo di risorse di un account di database|
-|/databaseAccounts/failoverPriorityChange/action|Modifica le priorità di failover di aree di un account di database. Operazione di failover manuale tooperform utilizzato|
-|/databaseAccounts/delete|Elimina l'account di database hello.|
-|/databaseAccounts/metricDefinitions/read|Legge l'account del database hello le definizioni di metrica.|
-|/databaseAccounts/metrics/read|Legge le metriche di account database hello.|
-|/databaseAccounts/usages/read|Legge gli utilizzi di account database hello.|
-|/databaseAccounts/databases/collections/metricDefinitions/read|Legge le definizioni delle metriche di raccolta hello.|
-|/databaseAccounts/databases/collections/metrics/read|Legge le metriche di hello insieme.|
-|/databaseAccounts/databases/collections/usages/read|Legge gli utilizzi di hello insieme.|
-|/databaseAccounts/databases/metricDefinitions/read|Legge le definizioni delle metriche di hello database|
-|/databaseAccounts/databases/metrics/read|Legge le metriche database hello.|
-|/databaseAccounts/databases/usages/read|Legge gli utilizzi database hello.|
-|/databaseAccounts/readonlykeys/read|Legge l'account del database hello le chiavi di sola lettura.|
+|/databaseAccounts/failoverPriorityChange/action|Modifica le priorità di failover di aree di un account di database. Usata per eseguire l'operazione di failover manuale|
+|/databaseAccounts/delete|Elimina gli account di database.|
+|/databaseAccounts/metricDefinitions/read|Esegue la lettura delle definizioni delle metriche degli account di database.|
+|/databaseAccounts/metrics/read|Esegue la lettura della metrica degli account di database.|
+|/databaseAccounts/usages/read|Esegue la lettura degli utilizzi degli account di database.|
+|/databaseAccounts/databases/collections/metricDefinitions/read|Esegue la lettura delle definizioni delle metriche delle raccolte.|
+|/databaseAccounts/databases/collections/metrics/read|Esegue la lettura della metrica delle raccolte.|
+|/databaseAccounts/databases/collections/usages/read|Esegue la lettura degli utilizzi delle raccolte.|
+|/databaseAccounts/databases/metricDefinitions/read|Esegue la lettura delle definizioni delle metriche dei database|
+|/databaseAccounts/databases/metrics/read|Esegue la lettura della metrica dei database.|
+|/databaseAccounts/databases/usages/read|Esegue la lettura degli utilizzi dei database.|
+|/databaseAccounts/readonlykeys/read|Legge le chiavi di sola lettura degli account di database.|
 
 ## <a name="microsoftdomainregistration"></a>Microsoft.DomainRegistration
 
@@ -911,9 +911,9 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/generateSsoRequest/Action|Genera una richiesta per l'accesso al centro di controllo del dominio.|
 |/validateDomainRegistrationInformation/Action|Convalida l'oggetto acquisto di dominio senza inviarlo|
 |/checkDomainAvailability/Action|Controlla se un dominio è disponibile per l'acquisto|
-|/listDomainRecommendations/Action|Recuperare le indicazioni di dominio elenco hello in base alle parole chiave|
-|/register/action|Registrazione provider di risorse hello Domains Microsoft per la sottoscrizione di hello|
-|/domains/Read|Ottenere l'elenco di hello dei domini|
+|/listDomainRecommendations/Action|Recupera l'elenco di consigli sui domini in base alle parole chiave|
+|/register/action|Registra il provider di risorse domini Microsoft per la sottoscrizione|
+|/domains/Read|Ottiene l'elenco dei domini|
 |/domains/Write|Aggiunge un nuovo dominio o ne aggiorna uno esistente|
 |/domains/Delete|Elimina un dominio esistente.|
 |/domains/operationresults/Read|Ottiene un'operazione di dominio|
@@ -922,40 +922,40 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 
 | Operazione | Descrizione |
 |---|---|
-|/lcsprojects/read|Visualizzare i progetti di servizi di Microsoft Dynamics del ciclo di vita appartenenti tooa utente|
-|/lcsprojects/write|Creare e aggiornare i progetti di servizi di Microsoft Dynamics del ciclo di vita toohello utente appartengano. È possibile aggiornare solo le proprietà di nome e una descrizione di hello. Impossibile aggiornare sottoscrizione Hello e il percorso associato hello progetto dopo la creazione|
-|/lcsprojects/delete|Eliminare i progetti di servizi di Microsoft Dynamics del ciclo di vita appartenenti toohello utente|
-|/lcsprojects/clouddeployments/read|Visualizzare le distribuzioni di Microsoft Dynamics AX 2012 R3 Evaluation in un progetto di servizi di Microsoft Dynamics del ciclo di vita appartenenti tooa utente|
-|/lcsprojects/clouddeployments/write|Creare la distribuzione di Microsoft Dynamics AX 2012 R3 Evaluation in un progetto di servizi di Microsoft Dynamics del ciclo di vita appartenenti tooa utente. Le distribuzioni possono essere gestite dal portale di gestione di Azure|
-|/lcsprojects/connectors/read|Lettura di connettori che appartengono a progetto di servizi del ciclo di vita di Microsoft Dynamics tooa|
-|/lcsprojects/connectors/write|Creare e aggiornare i connettori appartenenti al progetto di servizi del ciclo di vita di Microsoft Dynamics tooa|
+|/lcsprojects/read|Visualizza i progetti dei servizi del ciclo di vita Microsoft Dynamics che appartengono a un utente|
+|/lcsprojects/write|Crea e aggiorna i progetti dei servizi del ciclo di vita Microsoft Dynamics che appartengono all'utente. Solo le proprietà nome e descrizione possono essere aggiornate. La sottoscrizione e il percorso associati al progetto non possono essere aggiornati dopo la creazione|
+|/lcsprojects/delete|Elimina i progetti dei servizi del ciclo di vita Microsoft Dynamics che appartengono all'utente|
+|/lcsprojects/clouddeployments/read|Visualizza le distribuzioni di valutazione di Microsoft Dynamics AX 2012 R3 in un progetto dei servizi del ciclo di vita di Microsoft Dynamics che appartiene a un utente|
+|/lcsprojects/clouddeployments/write|Crea una distribuzione di valutazione di Microsoft Dynamics AX 2012 R3 in un progetto dei servizi del ciclo di vita di Microsoft Dynamics che appartiene a un utente. Le distribuzioni possono essere gestite dal portale di gestione di Azure|
+|/lcsprojects/connectors/read|Legge i connettori che appartengono al progetto dei servizi del ciclo di vita Microsoft Dynamics|
+|/lcsprojects/connectors/write|Crea e aggiorna i connettori che appartengono al progetto dei servizi del ciclo di vita Microsoft Dynamics|
 
 ## <a name="microsofteventhub"></a>Microsoft.EventHub
 
 | Operazione | Descrizione |
 |---|---|
 |/checkNameAvailability/action|Verifica la disponibilità dello spazio dei nomi nella sottoscrizione specificata.|
-|/register/action|Registra sottoscrizione hello per provider di risorse hub eventi hello e consente la creazione di hello di risorse hub eventi.|
-|/namespaces/write|Crea una risorsa spazio dei nomi e ne aggiorna le proprietà. Tag e lo stato di hello Namespace sono proprietà hello che può essere aggiornata.|
-|/namespaces/read|Ottenere l'elenco di hello della descrizione della risorsa Namespace|
+|/register/action|Registra la sottoscrizione per il provider di risorse hub eventi e abilita la creazione di risorse hub eventi|
+|/namespaces/write|Crea una risorsa spazio dei nomi e ne aggiorna le proprietà. Le proprietà che si possono aggiornare sono quelle relative ai tag e allo stato dello spazio dei nomi.|
+|/namespaces/read|Ottiene l'elenco delle descrizioni delle risorse spazio dei nomi|
 |/namespaces/Delete|Elimina una risorsa spazio dei nomi|
 |/namespaces/metricDefinitions/read|Ottiene l'elenco di descrizioni delle risorse metrica dello spazio dei nomi|
-|/namespaces/authorizationRules/read|Ottenere l'elenco di hello della descrizione delle regole di autorizzazione di spazi dei nomi.|
-|/namespaces/authorizationRules/write|Crea regole di autorizzazione a livello dello spazio dei nomi e ne aggiorna le proprietà. Diritti di accesso di regole di autorizzazione Hello, hello primario e secondario chiavi possono essere aggiornate.|
-|/namespaces/authorizationRules/delete|Elimina regola di autorizzazione dello spazio dei nomi. Impossibile eliminare Hello regola di autorizzazione Namespace predefinita. |
-|/namespaces/authorizationRules/listkeys/action|Ottenere una stringa di connessione di hello toohello Namespace|
-|/namespaces/authorizationRules/regenerateKeys/action|Rigenerare hello primario o secondario chiave toohello risorse|
+|/namespaces/authorizationRules/read|Ottiene l'elenco di descrizioni delle regole di autorizzazione degli spazi dei nomi.|
+|/namespaces/authorizationRules/write|Crea regole di autorizzazione a livello dello spazio dei nomi e ne aggiorna le proprietà. È possibile aggiornare la chiave primaria, la chiave secondaria e i diritti di accesso delle regole di autorizzazione.|
+|/namespaces/authorizationRules/delete|Elimina regola di autorizzazione dello spazio dei nomi. Non è possibile eliminare la regola di autorizzazione dello spazio dei nomi predefinita. |
+|/namespaces/authorizationRules/listkeys/action|Ottiene la stringa di connessione per lo spazio dei nomi|
+|/namespaces/authorizationRules/regenerateKeys/action|Rigenera la chiave primaria o secondaria per la risorsa|
 |/namespaces/eventhubs/write|Crea o aggiorna le proprietà dell'hub eventi.|
 |/namespaces/eventhubs/read|Ottiene l'elenco delle descrizioni delle risorse dell'hub eventi|
-|/namespaces/eventhubs/Delete|Operazione toodelete risorse hub eventi|
+|/namespaces/eventhubs/Delete|Operazione per l'eliminazione di risorse hub eventi|
 |/namespaces/eventHubs/consumergroups/write|Crea o aggiorna le proprietà del gruppo consumer.|
 |/namespaces/eventHubs/consumergroups/read|Ottiene l'elenco delle descrizioni delle risorse gruppo consumer|
-|/namespaces/eventHubs/consumergroups/Delete|Operazione toodelete risorsa gruppo di consumer per|
-|/namespaces/eventhubs/authorizationRules/read| Ottenere l'elenco di hello EventHub delle regole di autorizzazione|
-|/namespaces/eventhubs/authorizationRules/write|Crea regole di autorizzazione dell'hub eventi e ne aggiorna le proprietà. Diritti di accesso di regole di autorizzazione Hello, hello primario e secondario chiavi possono essere aggiornate.|
-|/namespaces/eventhubs/authorizationRules/delete|Operazione toodelete EventHub le regole di autorizzazione|
-|/namespaces/eventhubs/authorizationRules/listkeys/action|Ottenere hello tooEventHub di stringa di connessione|
-|/namespaces/eventhubs/authorizationRules/regenerateKeys/action|Rigenerare hello primario o secondario chiave toohello risorse|
+|/namespaces/eventHubs/consumergroups/Delete|Operazione per l'eliminazione di risorse gruppo consumer|
+|/namespaces/eventhubs/authorizationRules/read| Ottiene l'elenco delle regole di autorizzazione dell'hub eventi|
+|/namespaces/eventhubs/authorizationRules/write|Crea regole di autorizzazione dell'hub eventi e ne aggiorna le proprietà. È possibile aggiornare la chiave primaria, la chiave secondaria e i diritti di accesso delle regole di autorizzazione.|
+|/namespaces/eventhubs/authorizationRules/delete|Operazione per l'eliminazione di regole di autorizzazione dell'hub eventi|
+|/namespaces/eventhubs/authorizationRules/listkeys/action|Ottiene la stringa di connessione per l'hub eventi|
+|/namespaces/eventhubs/authorizationRules/regenerateKeys/action|Rigenera la chiave primaria o secondaria per la risorsa|
 |/namespaces/diagnosticSettings/read|Ottiene l'elenco di descrizioni delle risorse impostazioni di diagnostica dello spazio dei nomi|
 |/namespaces/diagnosticSettings/write|Ottiene l'elenco di descrizioni delle risorse impostazioni di diagnostica dello spazio dei nomi|
 |/namespaces/logDefinitions/read|Ottiene l'elenco di descrizioni delle risorse log dello spazio dei nomi|
@@ -964,9 +964,9 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 
 | Operazione | Descrizione |
 |---|---|
-|/providers/features/read|Ottiene la funzionalità hello di una sottoscrizione in un provider di risorse specificato.|
-|/providers/features/register/action|Funzionalità di hello registri per una sottoscrizione in un provider di risorse specificato.|
-|/features/read|Ottiene le funzionalità di hello di una sottoscrizione.|
+|/providers/features/read|Ottiene la funzionalità di una sottoscrizione in un provider di risorse specificato.|
+|/providers/features/register/action|Registra la funzionalità per una sottoscrizione in un provider di risorse specificato.|
+|/features/read|Ottiene le funzionalità di una sottoscrizione.|
 
 ## <a name="microsofthdinsight"></a>Microsoft.HDInsight
 
@@ -986,19 +986,19 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 
 | Operazione | Descrizione |
 |---|---|
-|/register/action|Registra sottoscrizione hello per provider di risorse di importazione/esportazione hello e consente la creazione di hello dei processi di importazione/esportazione.|
-|/jobs/write|Crea un processo con hello parametri specificati o aggiornare le proprietà di hello o tag per il processo specificato hello.|
-|/jobs/read|Ottiene le proprietà di hello per processo specificato hello o restituisce hello elenco di processi.|
-|/jobs/listBitLockerKeys/action|Ottiene le chiavi BitLocker hello per processo specificato hello.|
+|/register/action|Registra la sottoscrizione per il provider di risorse importazione/esportazione e consente la creazione di processi di importazione/esportazione.|
+|/jobs/write|Crea un processo con i parametri specificati o aggiorna le proprietà o i tag per il processo specificato.|
+|/jobs/read|Ottiene le proprietà per il processo specificato o restituisce l'elenco dei processi.|
+|/jobs/listBitLockerKeys/action|Ottiene le chiavi BitLocker per il processo specificato.|
 |/jobs/delete|Elimina il processo esistente.|
-|/locations/read|Ottiene la proprietà hello hello percorso o restituisce hello elenco specificato di posizioni.|
+|/locations/read|Ottiene le proprietà per il percorso specificato o restituisce l'elenco dei percorsi.|
 
 ## <a name="microsoftinsights"></a>Microsoft.Insights
 
 | Operazione | Descrizione |
 |---|---|
-|/Register/Action|Registrare il provider di informazioni di microsoft hello|
-|/AlertRules/Write|Creazione della configurazione tooan regola di avviso|
+|/Register/Action|Registra il provider Microsoft Insights|
+|/AlertRules/Write|Scrittura in una configurazione di regola di avviso|
 |/AlertRules/Delete|Eliminazione di una configurazione di regola di avviso|
 |/AlertRules/Read|Lettura di una configurazione di regola di avviso|
 |/AlertRules/Activated/Action|Regola di avviso attivata|
@@ -1009,21 +1009,21 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/eventtypes/values/Read|Consente di leggere i valori dei tipi di evento di gestione|
 |/eventtypes/digestevents/Read|Consente di leggere il digest dei tipi di evento di gestione|
 |/Metrics/Read|Esegue la lettura delle metriche|
-|/LogProfiles/Write|Scrittura della configurazione profilo tooa log|
+|/LogProfiles/Write|Scrittura in una configurazione di profilo di log|
 |/LogProfiles/Delete|Elimina configurazione dei profili di log|
 |/LogProfiles/Read|Lettura profili di log|
-|/AutoscaleSettings/Write|Scrittura di configurazione delle impostazioni di scalabilità automatica tooan|
+|/AutoscaleSettings/Write|Scrittura in una configurazione di impostazione di scalabilità automatica|
 |/AutoscaleSettings/Delete|Eliminazione di una configurazione di impostazione di scalabilità automatica|
 |/AutoscaleSettings/Read|Lettura di una configurazione di impostazione di scalabilità automatica|
 |/AutoscaleSettings/Scaleup/Action|Scalabilità automatica: operazione di aumento|
 |/AutoscaleSettings/Scaledown/Action|Scalabilità automatica: operazione di riduzione|
 |/AutoscaleSettings/providers/Microsoft.Insights/MetricDefinitions/Read|Consente di leggere le definizioni della metrica|
-|/ActivityLogAlerts/Activated/Action|Trigger hello attività registro avvisi|
-|/DiagnosticSettings/Write|Configurazione delle impostazioni di scrittura toodiagnostic|
+|/ActivityLogAlerts/Activated/Action|L'avviso del log attività è stato attivato|
+|/DiagnosticSettings/Write|È in corso la scrittura in una configurazione di impostazioni di diagnostica|
 |/DiagnosticSettings/Delete|È in corso l'eliminazione di una configurazione di impostazioni di diagnostica|
 |/DiagnosticSettings/Read|È in corso la lettura di una configurazione di impostazioni di diagnostica|
 |/LogDefinitions/Read|Consente di leggere le definizioni del log|
-|/ExtendedDiagnosticSettings/Write|Configurazione di impostazioni di diagnostica tooextended scrittura|
+|/ExtendedDiagnosticSettings/Write|È in corso la scrittura in una configurazione di impostazioni di diagnostica estese|
 |/ExtendedDiagnosticSettings/Delete|È in corso l'eliminazione di una configurazione di impostazioni di diagnostica estese|
 |/ExtendedDiagnosticSettings/Read|È in corso la lettura di una configurazione di impostazioni di diagnostica estese|
 
@@ -1033,56 +1033,56 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |---|---|
 |/register/action|Registra una sottoscrizione|
 |/checkNameAvailability/read|Controlla che il nome dell'insieme di credenziali delle chiavi sia valido e che non sia in uso|
-|/vaults/read|Hello di visualizzare le proprietà di un insieme di credenziali chiave|
-|/vaults/write|Creare un nuovo hello di insieme di credenziali o aggiornamento chiave le proprietà di un insieme di credenziali chiave esistente|
+|/vaults/read|Visualizza le proprietà di un insieme di credenziali delle chiavi|
+|/vaults/write|Crea un nuovo insieme di credenziali delle chiavi o aggiorna le proprietà di un insieme di credenziali delle chiavi esistente|
 |/vaults/delete|Elimina un insieme di credenziali delle chiavi|
-|/vaults/deploy/action|Abilita toosecrets in un insieme di credenziali chiave di accesso durante la distribuzione di risorse di Azure|
-|/vaults/secrets/read|Hello di visualizzare le proprietà di un segreto, ma non il relativo valore.|
-|/vaults/secrets/write|Creare un nuovo valore di hello segreto o aggiornamento di un segreto esistente|
-|/vaults/accessPolicies/write|Aggiornare un criterio di accesso esistente mediante l'unione o la sostituzione oppure aggiungere un nuovo archivio tooa criteri di accesso.|
-|/deletedVaults/read|Visualizzare le proprietà di hello di soft eliminare gli insiemi di credenziali chiave|
-|/locations/operationResults/read|Controllo hello risultato di un'operazione a esecuzione prolungata|
-|/locations/deletedVaults/read|Visualizzare le proprietà di hello di temporanea eliminato insieme di credenziali chiave|
+|/vaults/deploy/action|Consente l'accesso ai segreti in un insieme di credenziali delle chiavi durante la distribuzione di risorse di Azure|
+|/vaults/secrets/read|Visualizza le proprietà di un segreto ma non il relativo valore|
+|/vaults/secrets/write|Crea un nuovo segreto o aggiorna il valore di un segreto esistente|
+|/vaults/accessPolicies/write|Aggiorna un criterio di accesso esistente unendo o sostituendo oppure aggiungendo un nuovo criterio di accesso a un insieme di credenziali.|
+|/deletedVaults/read|Visualizza le proprietà di Key Vault eliminati temporaneamente|
+|/locations/operationResults/read|Controlla il risultato di un'operazione a esecuzione prolungata|
+|/locations/deletedVaults/read|Visualizza le proprietà di un Key Vault eliminato temporaneamente|
 |/locations/deletedVaults/purge/action|Ripulisce un Key Vault eliminato temporaneamente|
 
 ## <a name="microsoftlogic"></a>Microsoft.Logic
 
 | Operazione | Descrizione |
 |---|---|
-|/workflows/read|Legge flussi di lavoro hello.|
-|/workflows/write|Crea o Aggiorna del flusso di lavoro di hello.|
-|/workflows/delete|Elimina flusso di lavoro hello.|
-|/workflows/run/action|Avvia un'esecuzione del flusso di lavoro hello.|
-|/workflows/disable/action|Disabilita il flusso di lavoro hello.|
-|/workflows/enable/action|Consente di flusso di lavoro hello.|
-|/workflows/validate/action|Convalida del flusso di lavoro di hello.|
-|/workflows/move/action|Sposta del flusso di lavoro dal relativo esistente id sottoscrizione, gruppo di risorse e/o id di sottoscrizione diverso tooa nome, gruppo di risorse e/o nome.|
-|/workflows/listSwagger/action|Ottiene swagger definizioni di flusso di lavoro hello.|
-|/workflows/regenerateAccessKey/action|Rigenera chiave segreti di hello accesso.|
-|/workflows/listCallbackUrl/action|Ottiene l'URL callback hello per flusso di lavoro.|
-|/workflows/versions/read|Legge una versione di hello del flusso di lavoro.|
-|/workflows/versions/triggers/listCallbackUrl/action|Ottiene l'URL callback hello per trigger.|
-|/workflows/runs/read|Legge flussi di lavoro hello eseguire.|
-|/workflows/runs/cancel/action|Annulla esecuzione hello del flusso di lavoro.|
-|/workflows/runs/actions/read|Legge flussi di lavoro hello eseguire l'azione.|
-|/workflows/runs/operations/read|Legge flussi di lavoro hello eseguire dello stato dell'operazione.|
-|/workflows/triggers/read|Legge il trigger di hello.|
-|/workflows/triggers/run/action|Esegue i trigger di hello.|
-|/workflows/triggers/listCallbackUrl/action|Ottiene l'URL callback hello per trigger.|
-|/workflows/triggers/histories/read|Legge le cronologie trigger hello.|
-|/workflows/triggers/histories/resubmit/action|Invia nuovamente il trigger del flusso di lavoro hello.|
-|/workflows/accessKeys/read|Legge la chiave di accesso hello.|
-|/workflows/accessKeys/write|Crea o aggiorna la chiave di accesso hello.|
-|/workflows/accessKeys/delete|Elimina la chiave di accesso hello.|
-|/workflows/accessKeys/list/action|Elenca i segreti chiave di accesso hello.|
-|/workflows/accessKeys/regenerate/action|Rigenera chiave segreti di hello accesso.|
-|/locations/workflows/validate/action|Convalida del flusso di lavoro di hello.|
+|/workflows/read|Esegue la lettura del flusso di lavoro.|
+|/workflows/write|Crea un flusso di lavoro o ne aggiorna uno esistente.|
+|/workflows/delete|Elimina il flusso di lavoro.|
+|/workflows/run/action|Avvia l'esecuzione di un flusso di lavoro.|
+|/workflows/disable/action|Disabilita il flusso di lavoro.|
+|/workflows/enable/action|Abilita il flusso di lavoro.|
+|/workflows/validate/action|Convalida il flusso di lavoro.|
+|/workflows/move/action|Sposta il flusso di lavoro dall'ID sottoscrizione, dal gruppo di risorse e/o dal nome esistente a un ID sottoscrizione, a un gruppo di risorse e/o a un nome diverso.|
+|/workflows/listSwagger/action|Ottiene le definizioni di Swagger del flusso di lavoro.|
+|/workflows/regenerateAccessKey/action|Rigenera i segreti della chiave di accesso.|
+|/workflows/listCallbackUrl/action|Ottiene l'URL di callback per il flusso di lavoro.|
+|/workflows/versions/read|Esegue la lettura della versione del flusso di lavoro.|
+|/workflows/versions/triggers/listCallbackUrl/action|Ottiene l'URL di callback per il trigger.|
+|/workflows/runs/read|Esegue la lettura dell'esecuzione del flusso di lavoro.|
+|/workflows/runs/cancel/action|Annulla l'esecuzione di un flusso di lavoro.|
+|/workflows/runs/actions/read|Esegue la lettura dell'azione di esecuzione del flusso di lavoro.|
+|/workflows/runs/operations/read|Esegue la lettura dello stato dell'operazione di esecuzione del flusso di lavoro.|
+|/workflows/triggers/read|Esegue la lettura del trigger.|
+|/workflows/triggers/run/action|Esegue il trigger.|
+|/workflows/triggers/listCallbackUrl/action|Ottiene l'URL di callback per il trigger.|
+|/workflows/triggers/histories/read|Esegue la lettura delle cronologie del trigger.|
+|/workflows/triggers/histories/resubmit/action|Invia di nuovo il trigger del flusso di lavoro.|
+|/workflows/accessKeys/read|Esegue la lettura della chiave di accesso.|
+|/workflows/accessKeys/write|Crea una chiave di accesso o ne aggiorna una esistente.|
+|/workflows/accessKeys/delete|Elimina la chiave di accesso.|
+|/workflows/accessKeys/list/action|Elenca i segreti della chiave di accesso.|
+|/workflows/accessKeys/regenerate/action|Rigenera i segreti della chiave di accesso.|
+|/locations/workflows/validate/action|Convalida il flusso di lavoro.|
 
 ## <a name="microsoftmachinelearning"></a>Microsoft.MachineLearning
 
 | Operazione | Descrizione |
 |---|---|
-|/register/action|Registra sottoscrizione hello per provider di risorse del servizio web di apprendimento automatico hello e consente la creazione di hello dei servizi web.|
+|/register/action|Registra la sottoscrizione per il provider di risorse del servizio Web di Machine Learning e consente la creazione di servizi Web.|
 |/webServices/action|Creare proprietà del servizio Web regionali per le aree supportate|
 |/commitmentPlans/read|Esegue la lettura di qualsiasi piano di impegno di Machine Learning|
 |/commitmentPlans/write|Crea o aggiorna un qualsiasi piano di impegno di Machine Learning|
@@ -1122,46 +1122,46 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 
 | Operazione | Descrizione |
 |---|---|
-|/register/action|Registra sottoscrizione hello|
-|/unregister/action|Annulla la registrazione di sottoscrizione hello|
-|/checkTrafficManagerNameAvailability/action|Controlla la disponibilità di hello del nome DNS di Traffic Manager relativo.|
-|/dnszones/read|Ottenere una zona DNS hello, in formato JSON. proprietà Hello della zona includono tag, etag, numero e set. Si noti che questo comando non recupera il set di record hello contenuti all'interno di zona hello.|
-|/dnszones/write|Crea o aggiorna una zona DNS in un gruppo di risorse.  Tag di hello tooupdate utilizzato in una risorsa di zona DNS. Si noti che questo comando non può essere utilizzato toocreate o aggiornamento set di record nella zona hello.|
-|/dnszones/delete|Eliminare la zona DNS hello, in formato JSON. proprietà Hello della zona includono tag, etag, numero e set.|
-|/dnszones/MX/read|Ottiene il set di record hello di tipo 'MX', nel formato JSON. set di record Hello contiene un elenco di record, nonché hello TTL, tag ed etag.|
-|/dnszones/MX/write|Crea o aggiorna un set di record di tipo "MX" all'interno di una zona DNS. record Hello specificati correnti verranno sostituiti hello hello set di record.|
-|/dnszones/MX/delete|Rimuove i set di record di un determinato nome hello e di tipo 'MX' da una zona DNS.|
+|/register/action|Registra la sottoscrizione.|
+|/unregister/action|Annulla la registrazione della sottoscrizione.|
+|/checkTrafficManagerNameAvailability/action|Controlla la disponibilità di un nome DNS relativo di gestione traffico.|
+|/dnszones/read|Ottiene la zona DNS in formato Json. Le proprietà di zona includono tag, etag, numberOfRecordSets e maxNumberOfRecordSets. Si tenga presente che questo comando non recupera il set di record contenuti all'interno della zona.|
+|/dnszones/write|Crea o aggiorna una zona DNS in un gruppo di risorse.  Consente di aggiornare i tag in una risorsa di zona DNS. Si tenga presente che questo comando non può essere utilizzato per creare o aggiornare i set di record all'interno della zona.|
+|/dnszones/delete|Elimina la zona DNS in formato Json. Le proprietà di zona includono tag, etag, numberOfRecordSets e maxNumberOfRecordSets.|
+|/dnszones/MX/read|Ottiene il set di record di tipo "MX" in formato JSON. Il set di record contiene un elenco di record, nonché la durata (TTL), tag ed etag.|
+|/dnszones/MX/write|Crea o aggiorna un set di record di tipo "MX" all'interno di una zona DNS. I record specificati andranno a sostituire quelli attualmente esistenti nel set di record.|
+|/dnszones/MX/delete|Rimuove il set di record di un determinato nome e tipo "MX" da una zona DNS.|
 |/dnszones/NS/read|Ottiene i set di record DNS di tipo NS.|
 |/dnszones/NS/write|Crea o aggiorna i set di record DNS di tipo NS.|
-|/dnszones/NS/delete|Elimina set di record DNS hello di tipo NS|
-|/dnszones/AAAA/read|Ottiene il set di record hello di tipo 'AAAA', nel formato JSON. set di record Hello contiene un elenco di record, nonché hello TTL, tag ed etag.|
-|/dnszones/AAAA/write|Crea o aggiorna un set di record di tipo "AAAA" all'interno di una zona DNS. record Hello specificati correnti verranno sostituiti hello hello set di record.|
-|/dnszones/AAAA/delete|Rimuove i set di record di un determinato nome hello e di tipo 'AAAA' da una zona DNS.|
-|/dnszones/CNAME/read|Ottiene il set di record hello di tipo 'CNAME', nel formato JSON. set di record Hello contiene hello TTL, tag ed etag.|
-|/dnszones/CNAME/write|Crea o aggiorna un set di record di tipo "CNAME" all'interno di una zona DNS. record Hello specificati correnti verranno sostituiti hello hello set di record.|
-|/dnszones/CNAME/delete|Rimuovere i set di record hello di un nome e tipo 'CNAME' da una zona DNS.|
+|/dnszones/NS/delete|Elimina i set di record DNS di tipo NS.|
+|/dnszones/AAAA/read|Ottiene il set di record di tipo "AAAA" in formato JSON. Il set di record contiene un elenco di record, nonché la durata (TTL), tag ed etag.|
+|/dnszones/AAAA/write|Crea o aggiorna un set di record di tipo "AAAA" all'interno di una zona DNS. I record specificati andranno a sostituire quelli attualmente esistenti nel set di record.|
+|/dnszones/AAAA/delete|Rimuove il set di record di un determinato nome e tipo "AAAA" da una zona DNS.|
+|/dnszones/CNAME/read|Ottiene il set di record di tipo "CNAME" in formato JSON. Il set di record contiene durata (TTL), tag ed etag.|
+|/dnszones/CNAME/write|Crea o aggiorna un set di record di tipo "CNAME" all'interno di una zona DNS. I record specificati andranno a sostituire quelli attualmente esistenti nel set di record.|
+|/dnszones/CNAME/delete|Rimuove il set di record di un determinato nome e tipo "CNAME" da una zona DNS.|
 |/dnszones/SOA/read|Ottiene i set di record DNS di tipo SOA.|
 |/dnszones/SOA/write|Crea o aggiorna i set di record DNS di tipo SOA.|
-|/dnszones/SRV/read|Ottiene il set di record hello di tipo 'SRV', nel formato JSON. set di record Hello contiene un elenco di record, nonché hello TTL, tag ed etag.|
+|/dnszones/SRV/read|Ottiene il set di record di tipo "SRV" in formato JSON. Il set di record contiene un elenco di record, nonché la durata (TTL), tag ed etag.|
 |/dnszones/SRV/write|Crea o aggiorna il set di record di tipo SRV.|
-|/dnszones/SRV/delete|Rimuove i set di record di un determinato nome hello e di tipo 'SRV' da una zona DNS.|
-|/dnszones/PTR/read|Ottiene il set di record hello di tipo 'PTR', nel formato JSON. set di record Hello contiene un elenco di record, nonché hello TTL, tag ed etag.|
-|/dnszones/PTR/write|Crea o aggiorna un set di record di tipo "PTR" all'interno di una zona DNS. record Hello specificati correnti verranno sostituiti hello hello set di record.|
-|/dnszones/PTR/delete|Rimuove i set di record di un determinato nome hello e di tipo 'PTR' da una zona DNS.|
-|/dnszones/A/read|Ottiene il set di record hello di tipo 'A', nel formato JSON. set di record Hello contiene un elenco di record, nonché hello TTL, tag ed etag.|
-|/dnszones/A/write|Crea o aggiorna un set di record di tipo "A" all'interno di una zona DNS. record Hello specificati correnti verranno sostituiti hello hello set di record.|
-|/dnszones/A/delete|Rimuove i set di record di un determinato nome hello e di tipo 'A' da una zona DNS.|
-|/dnszones/TXT/read|Ottiene il set di record hello di tipo 'TXT', nel formato JSON. set di record Hello contiene un elenco di record, nonché hello TTL, tag ed etag.|
-|/dnszones/TXT/write|Crea o aggiorna un set di record di tipo ‘TXT’ all'interno di una zona DNS. record Hello specificati correnti verranno sostituiti hello hello set di record.|
-|/dnszones/TXT/delete|Rimuove i set di record di un determinato nome hello e di tipo 'TXT' da una zona DNS.|
+|/dnszones/SRV/delete|Rimuove il set di record di un determinato nome e tipo "SRV" da una zona DNS.|
+|/dnszones/PTR/read|Ottiene il set di record di tipo "PTR" in formato JSON. Il set di record contiene un elenco di record, nonché la durata (TTL), tag ed etag.|
+|/dnszones/PTR/write|Crea o aggiorna un set di record di tipo "PTR" all'interno di una zona DNS. I record specificati andranno a sostituire quelli attualmente esistenti nel set di record.|
+|/dnszones/PTR/delete|Rimuove il set di record di un determinato nome e tipo "PTR" da una zona DNS.|
+|/dnszones/A/read|Ottiene il set di record di tipo "A" in formato JSON. Il set di record contiene un elenco di record, nonché la durata (TTL), tag ed etag.|
+|/dnszones/A/write|Crea o aggiorna un set di record di tipo "A" all'interno di una zona DNS. I record specificati andranno a sostituire quelli attualmente esistenti nel set di record.|
+|/dnszones/A/delete|Rimuove il set di record di un determinato nome e tipo "A" da una zona DNS.|
+|/dnszones/TXT/read|Ottiene il set di record di tipo ‘TXT’, in formato JSON. Il set di record contiene un elenco di record, oltre a TTL, tag ed etag.|
+|/dnszones/TXT/write|Crea o aggiorna un set di record di tipo ‘TXT’ all'interno di una zona DNS. I record specificati andranno a sostituire quelli attualmente esistenti nel set di record.|
+|/dnszones/TXT/delete|Rimuove il set di record di un determinato nome e tipo ‘TXT’ da una zona DNS.|
 |/dnszones/recordsets/read|Ottiene i set di record DNS tra i tipi|
 |/networkInterfaces/read|Ottiene una definizione dell’interfaccia di rete. |
 |/networkInterfaces/write|Crea un'interfaccia di rete o ne aggiorna una esistente. |
-|/networkInterfaces/join/action|Unisce un'interfaccia di rete di macchina virtuale tooa|
+|/networkInterfaces/join/action|Aggiunge una macchina virtuale a un'interfaccia di rete|
 |/networkInterfaces/delete|Elimina un'interfaccia di rete|
-|/networkInterfaces/effectiveRouteTable/action|Ottenere la tabella di Route configurato nell'interfaccia di rete di hello Vm|
-|/networkInterfaces/effectiveNetworkSecurityGroups/action|Ottenere hello nella rete dell'interfaccia di configurati gruppi di sicurezza di rete Vm|
-|/networkInterfaces/loadBalancers/read|Ottiene tutti i bilanciamenti del carico di hello che hello interfaccia di rete fa parte di|
+|/networkInterfaces/effectiveRouteTable/action|Ottiene la tabella di instradamento configurata sull’interfaccia di rete della macchina virtuale|
+|/networkInterfaces/effectiveNetworkSecurityGroups/action|Ottiene i gruppi di sicurezza di rete configurati sull’interfaccia di rete della macchina virtuale|
+|/networkInterfaces/loadBalancers/read|Ottiene tutti i servizi di bilanciamento del carico ai quali appartiene l’interfaccia di rete|
 |/networkInterfaces/ipconfigurations/read|Ottiene la definizione della configurazione IP dell’interfaccia di rete. |
 |/publicIPAddresses/read|Ottiene una definizione dell’indirizzo IP pubblico.|
 |/publicIPAddresses/write|Crea un indirizzo IP pubblico o ne aggiorna uno esistente. |
@@ -1174,26 +1174,26 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/routeFilters/rules/read|Ottiene una definizione della regola del filtro di instradamento|
 |/routeFilters/rules/write|Crea una regola del filtro di instradamento o ne aggiorna una esistente|
 |/routeFilters/rules/delete|Elimina una definizione della regola del filtro di instradamento|
-|/networkWatchers/read|Ottenere una definizione di controllo rete hello|
+|/networkWatchers/read|Ottiene la definizione del Network Watcher|
 |/networkWatchers/write|Crea un Network Watcher o ne aggiorna uno esistente|
 |/networkWatchers/delete|Elimina un Network Watcher|
 |/networkWatchers/configureFlowLog/action|Configura la registrazione del flusso per una risorsa di destinazione.|
-|/networkWatchers/ipFlowVerify/action|Restituisce se i pacchetti hello sono consentito o negato tooor da una determinata destinazione.|
-|/networkWatchers/nextHop/action|Per una destinazione specificata e l'indirizzo IP di destinazione, restituire il tipo dell'hop successivo di hello e successivamente sperare che l'indirizzo IP.|
-|/networkWatchers/queryFlowLogStatus/action|Ottiene lo stato di hello del flusso di registrazione su una risorsa.|
-|/networkWatchers/queryTroubleshootResult/action|Ottiene hello risultato hello in precedenza eseguito o attualmente in esecuzione operazione di risoluzione dei problemi di risoluzione dei problemi.|
-|/networkWatchers/securityGroupView/action|Consente di visualizzare hello configurato e regole di gruppo di sicurezza di rete effettiva applicate in una macchina virtuale.|
+|/networkWatchers/ipFlowVerify/action|Indica se il pacchetto è autorizzato o meno su o da una specifica destinazione.|
+|/networkWatchers/nextHop/action|Per un indirizzo IP destinazione specificato, restituisce il tipo di hop successivo e l’indirizzo IP dell’hop successivo.|
+|/networkWatchers/queryFlowLogStatus/action|Ottiene lo stato della registrazione del flusso su una risorsa.|
+|/networkWatchers/queryTroubleshootResult/action|Ottiene il risultato della risoluzione dei problemi dall’esecuzione precedente o dall’operazione di risoluzione dei problemi attualmente in corso.|
+|/networkWatchers/securityGroupView/action|Visualizza le regole del gruppo di sicurezza di rete configurate e in vigore applicate a una macchina virtuale.|
 |/networkWatchers/topology/action|Ottiene una vista a livello di rete delle risorse e le relative relazioni in un gruppo di risorse.|
 |/networkWatchers/troubleshoot/action|Avvia la risoluzione dei problemi su una risorsa di rete in Azure.|
 |/networkWatchers/packetCaptures/queryStatus/action|Ottiene informazioni sulle proprietà e sullo stato di una risorsa di acquisizione dei pacchetti.|
-|/networkWatchers/packetCaptures/stop/action|Arrestare hello che esegue la sessione di acquisizione di pacchetti.|
-|/networkWatchers/packetCaptures/read|Prelevare la definizione di acquisizione di pacchetti hello|
+|/networkWatchers/packetCaptures/stop/action|Arresta la sessione di acquisizione dei pacchetti in corso.|
+|/networkWatchers/packetCaptures/read|Ottiene la definizione di acquisizione dei pacchetti|
 |/networkWatchers/packetCaptures/write|Crea un'acquisizione di pacchetti|
 |/networkWatchers/packetCaptures/delete|Elimina un'acquisizione di pacchetti|
 |/loadBalancers/read|Ottiene una definizione del servizio di bilanciamento del carico|
 |/loadBalancers/write|Crea un servizio di bilanciamento del carico o ne aggiorna uno esistente|
 |/loadBalancers/delete|Elimina un servizio di bilanciamento del carico|
-|/loadBalancers/networkInterfaces/read|Ottiene i riferimenti interfacce di rete tooall hello in un bilanciamento del carico|
+|/loadBalancers/networkInterfaces/read|Ottiene i riferimenti a tutte le interfacce di rete sotto a un servizio di bilanciamento del carico|
 |/loadBalancers/loadBalancingRules/read|Ottiene una definizione di regola di bilanciamento del carico per il servizio di bilanciamento del carico|
 |/loadBalancers/backendAddressPools/read|Ottiene una definizione del pool di indirizzi di back-end del servizio di bilanciamento del carico|
 |/loadBalancers/backendAddressPools/join/action|Aggiunge un pool di indirizzi di back-end del servizio di bilanciamento del carico|
@@ -1205,12 +1205,12 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/loadBalancers/inboundNatRules/join/action|Aggiunge una regola NAT in entrata del servizio di bilanciamento del carico|
 |/loadBalancers/outboundNatRules/read|Ottiene una definizione della regola NAT in uscita del servizio di bilanciamento del carico|
 |/loadBalancers/probes/read|Ottiene un probe del servizio di bilanciamento del carico|
-|/loadBalancers/virtualMachines/read|Ottiene i riferimenti tooall hello le macchine virtuali in un bilanciamento del carico|
+|/loadBalancers/virtualMachines/read|Ottiene i riferimenti a tutte le macchine virtuali sotto a un servizio di bilanciamento del carico|
 |/loadBalancers/frontendIPConfigurations/read|Ottiene una definizione della configurazione IP del front-end del servizio di bilanciamento del carico|
-|/trafficManagerGeographicHierarchies/read|Ottiene hello Traffic Manager geografico gerarchia che contiene aree che possono essere utilizzate con metodo di routing del traffico geografica hello|
+|/trafficManagerGeographicHierarchies/read|Ottiene la gerarchia geografica di Gestione traffico contenente le aree che possono essere utilizzate con il metodo di routing del traffico geografico|
 |/bgpServiceCommunities/read|Ottiene le community del servizio BGP|
 |/applicationGatewayAvailableWafRuleSets/read|Ottiene i set di regole WAF disponibili sul gateway applicazione|
-|/virtualNetworks/read|Ottenere una definizione di rete virtuale hello|
+|/virtualNetworks/read|Ottiene la definizione della rete virtuale|
 |/virtualNetworks/write|Crea una rete virtuale o ne aggiorna una esistente|
 |/virtualNetworks/delete|Elimina una rete virtuale|
 |/virtualNetworks/peer/action|Associa una rete virtuale a un'altra rete virtuale|
@@ -1221,18 +1221,18 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/virtualNetworks/subnets/write|Crea una subnet della rete virtuale o ne aggiorna una esistente|
 |/virtualNetworks/subnets/delete|Elimina una subnet della rete virtuale|
 |/virtualNetworks/subnets/join/action|Aggiunge una rete virtuale|
-|/virtualNetworks/subnets/joinViaServiceTunnel/action|Crea un join tra risorse, ad esempio account di archiviazione o SQL database tooa servizio Tunneling abilitato subnet.|
-|/virtualNetworks/subnets/virtualMachines/read|Ottiene i riferimenti tooall hello le macchine virtuali in una subnet di rete virtuale|
-|/virtualNetworks/checkIpAddressAvailability/read|Controllare se l'indirizzo Ip è disponibile in rete virtuale specificata hello|
-|/virtualNetworks/virtualMachines/read|Ottiene i riferimenti tooall hello le macchine virtuali in una rete virtuale|
+|/virtualNetworks/subnets/joinViaServiceTunnel/action|Aggiunge una risorsa come account di archiviazione o database SQL a una subnet abilitata al tunneling del servizio.|
+|/virtualNetworks/subnets/virtualMachines/read|Ottiene i riferimenti a tutte le macchine virtuali nella subnet della rete virtuale|
+|/virtualNetworks/checkIpAddressAvailability/read|Verifica se l’indirizzo IP è disponibile presso la rete virtuale specificata|
+|/virtualNetworks/virtualMachines/read|Ottiene i riferimenti a tutte le macchine virtuali in una rete virtuale|
 |/expressRouteServiceProviders/read|Ottiene i provider del servizio Express Route|
 |/dnsoperationresults/read|Ottiene i risultati di un'operazione DNS|
 |/localnetworkgateways/read|Ottiene il LocalNetworkGateway|
 |/localnetworkgateways/write|Crea un LocalNetworkGateway o ne aggiorna uno esistente|
 |/localnetworkgateways/delete|Elimina il LocalNetworkGateway|
-|/trafficManagerProfiles/read|Ottenere la configurazione del profilo di Traffic Manager hello. Ciò include le impostazioni DNS, impostazioni di routing del traffico, le impostazioni di monitoraggio di endpoint ed elenco hello degli endpoint indirizzato da questo profilo di Traffic Manager.|
-|/trafficManagerProfiles/write|Creare un profilo di gestione traffico oppure modificare la configurazione di un profilo di gestione traffico esistente hello. Questo include l’abilitazione o la disabilitazione di un profilo e la modifica delle impostazioni di DNS, di instradamento del traffico o di monitoraggio dell’endpoint. Gli endpoint di cui il profilo di gestione traffico hello possono essere aggiunti, rimossi, abilitati o disabilitati.|
-|/trafficManagerProfiles/delete|Eliminare il profilo di gestione traffico hello. Tutte le impostazioni associate hello profilo di gestione traffico andranno perse e profilo di hello non può più essere utilizzato tooroute traffico.|
+|/trafficManagerProfiles/read|Ottiene la configurazione del profilo di Gestione traffico. Include le impostazioni DNS, di routing del traffico, di monitoraggio dell'endpoint e un elenco degli endpoint instradati da questo profilo di Gestione traffico.|
+|/trafficManagerProfiles/write|Crea un profilo di Gestione traffico o modifica la configurazione di un profilo di Gestione traffico esistente. Questo include l’abilitazione o la disabilitazione di un profilo e la modifica delle impostazioni di DNS, di instradamento del traffico o di monitoraggio dell’endpoint. Gli endpoint instradati dal profilo di Gestione traffico possono essere aggiunti, rimossi, abilitati o disabilitati.|
+|/trafficManagerProfiles/delete|Elimina il profilo di Gestione traffico. Tutte le impostazioni associate al profilo di Gestione traffico andranno perse e il profilo non può più essere utilizzato per instradare il traffico.|
 |/dnsoperationstatuses/read|Ottiene lo stato di un’operazione DNS |
 |/operations/read|Ottiene le operazioni disponibili|
 |/expressRouteCircuits/read|Ottiene un ExpressRouteCircuit|
@@ -1277,67 +1277,67 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/routeTables/routes/write|Crea una route o ne aggiorna una esistente|
 |/routeTables/routes/delete|Elimina una definizione di route|
 |/locations/operationResults/read|Ottiene il risultato di un'operazione POST o DELETE asincrona|
-|/locations/checkDnsNameAvailability/read|Controlla se l'etichetta dns è disponibile all'indirizzo hello percorso specificato|
-|/locations/usages/read|Ottiene la metrica di utilizzo risorse hello|
+|/locations/checkDnsNameAvailability/read|Controlla se l'etichetta DNS è disponibile nel percorso specificato|
+|/locations/usages/read|Ottiene la metrica di utilizzo delle risorse|
 |/locations/operations/read|Ottiene una risorsa per l'operazione che rappresenta lo stato di un'operazione asincrona|
 
 ## <a name="microsoftnotificationhubs"></a>Microsoft.NotificationHubs
 
 | Operazione | Descrizione |
 |---|---|
-|/register/action|Registra sottoscrizione hello per provider di risorse hub di notifica hello e consente la creazione di hello di spazi dei nomi e hub di notifica|
-|/CheckNamespaceAvailability/action|Controlla se un determinato nome di risorsa Namespace è disponibile all'interno di hello servizio hub di notifica.|
-|/Namespaces/write|Crea una risorsa spazio dei nomi e ne aggiorna le proprietà. Tag e lo stato di hello Namespace sono proprietà hello che può essere aggiornata.|
-|/Namespaces/read|Ottenere l'elenco di hello della descrizione della risorsa Namespace|
+|/register/action|Registra la sottoscrizione per il provider di risorse hub di notifica e abilita la creazione di spazi dei nomi e hub di notifica|
+|/CheckNamespaceAvailability/action|Verifica se il nome di risorsa di uno spazio dei nomi specificato è disponibile o meno all'interno del servizio Hub di notifica.|
+|/Namespaces/write|Crea una risorsa spazio dei nomi e ne aggiorna le proprietà. Le proprietà che si possono aggiornare sono quelle relative ai tag e allo stato dello spazio dei nomi.|
+|/Namespaces/read|Ottiene l'elenco delle descrizioni delle risorse spazio dei nomi|
 |/Namespaces/Delete|Elimina la risorsa spazio dei nomi|
-|/Namespaces/authorizationRules/action|Ottenere l'elenco di hello della descrizione delle regole di autorizzazione di spazi dei nomi.|
+|/Namespaces/authorizationRules/action|Ottiene l'elenco di descrizioni delle regole di autorizzazione degli spazi dei nomi.|
 |/Namespaces/CheckNotificationHubAvailability/action|Controlla se un determinato nome di hub di notifica è disponibile all'interno di uno spazio dei nomi.|
-|/Namespaces/authorizationRules/write|Crea regole di autorizzazione a livello dello spazio dei nomi e ne aggiorna le proprietà. Diritti di accesso di regole di autorizzazione Hello, hello primario e secondario chiavi possono essere aggiornate.|
-|/Namespaces/authorizationRules/read|Ottenere l'elenco di hello della descrizione delle regole di autorizzazione di spazi dei nomi.|
-|/Namespaces/authorizationRules/delete|Elimina regola di autorizzazione dello spazio dei nomi. Impossibile eliminare Hello regola di autorizzazione Namespace predefinita. |
-|/Namespaces/authorizationRules/listkeys/action|Ottenere una stringa di connessione di hello toohello Namespace|
-|/Namespaces/authorizationRules/regenerateKeys/action|Namespace autorizzazione regola Rigenera primaria/chiave secondaria, specificare hello chiave è toobe rigenerata|
+|/Namespaces/authorizationRules/write|Crea regole di autorizzazione a livello dello spazio dei nomi e ne aggiorna le proprietà. È possibile aggiornare la chiave primaria, la chiave secondaria e i diritti di accesso delle regole di autorizzazione.|
+|/Namespaces/authorizationRules/read|Ottiene l'elenco di descrizioni delle regole di autorizzazione degli spazi dei nomi.|
+|/Namespaces/authorizationRules/delete|Elimina regola di autorizzazione dello spazio dei nomi. Non è possibile eliminare la regola di autorizzazione dello spazio dei nomi predefinita. |
+|/Namespaces/authorizationRules/listkeys/action|Ottiene la stringa di connessione per lo spazio dei nomi|
+|/Namespaces/authorizationRules/regenerateKeys/action|Regola di autorizzazione dello spazio dei nomi - Rigenera chiave primaria/secondaria. Specificare la chiave da rigenerare|
 |/Namespaces/NotificationHubs/write|Crea un hub di notifica e ne aggiorna le proprietà. Le proprietà includono principalmente credenziali PNS, regole di autorizzazione e TTL|
 |/Namespaces/NotificationHubs/read|Ottiene l’elenco di descrizioni dell’hub di notifica|
 |/Namespaces/NotificationHubs/Delete|Elimina la risorsa nell’hub di notifica|
-|/Namespaces/NotificationHubs/authorizationRules/action|Ottenere l'elenco di hello delle regole di autorizzazione Hub di notifica|
+|/Namespaces/NotificationHubs/authorizationRules/action|Ottiene l'elenco di regole di autorizzazione dell’hub di notifica|
 |/Namespaces/NotificationHubs/pnsCredentials/action|Ottiene tutte le credenziali PNS dell’hub di notifica. Queste includono le credenziali WNS, MPNS, APNS, GCM e Baidu|
 |/Namespaces/NotificationHubs/debugSend/action|Invia una notifica push di prova.|
 |/Namespaces/NotificationHubs/metricDefinitions/read|Ottiene l'elenco di descrizioni delle risorse di metrica dello spazio dei nomi|
-|/Namespaces/NotificationHubs/<br>authorizationRules/write|Crea regole di autorizzazione dell'inoltro dell’hub di notifica e ne aggiorna le proprietà. Diritti di accesso di regole di autorizzazione Hello, hello primario e secondario chiavi possono essere aggiornate.|
-|/Namespaces/NotificationHubs/<br>authorizationRules/read|Ottenere l'elenco di hello delle regole di autorizzazione Hub di notifica|
+|/Namespaces/NotificationHubs/<br>authorizationRules/write|Crea regole di autorizzazione dell'inoltro dell’hub di notifica e ne aggiorna le proprietà. È possibile aggiornare la chiave primaria, la chiave secondaria e i diritti di accesso delle regole di autorizzazione.|
+|/Namespaces/NotificationHubs/<br>authorizationRules/read|Ottiene l'elenco di regole di autorizzazione dell’hub di notifica|
 |/Namespaces/NotificationHubs/<br>authorizationRules/delete|Elimina le regole di autorizzazione dell’hub di notifica|
-|/Namespaces/NotificationHubs/<br>authorizationRules/listkeys/action|Ottenere hello toohello di stringa di connessione Hub di notifica|
-|/Namespaces/NotificationHubs/<br>authorizationRules/regenerateKeys/action|Notifica Hub autorizzazione regola Rigenera primaria/chiave secondaria, specificare hello chiave è toobe rigenerata|
+|/Namespaces/NotificationHubs/<br>authorizationRules/listkeys/action|Ottiene la stringa di connessione all'hub di notifica|
+|/Namespaces/NotificationHubs/<br>authorizationRules/regenerateKeys/action|La regola di autorizzazione dell’hub di notifica rigenera la chiave primaria/secondaria. Specificare la chiave da rigenerare|
 
 ## <a name="microsoftoperationalinsights"></a>Microsoft.OperationalInsights
 
 | Operazione | Descrizione |
 |---|---|
-|/register/action|Registrare un provider di risorse tooa di sottoscrizione.|
-|/linkTargets/read|Elenca gli account esistenti non associati a una sottoscrizione di Azure. toolink questa area di lavoro tooa sottoscrizione di Azure, utilizzare un id cliente restituito da questa operazione nella proprietà id cliente di hello di hello operazione Crea area di lavoro.|
-|/workspaces/write|Crea una nuova area di lavoro o i collegamenti tooan esistente fornendo l'id cliente hello dall'area di lavoro esistente hello.|
+|/register/action|Registra una sottoscrizione a un provider di risorse.|
+|/linkTargets/read|Elenca gli account esistenti non associati a una sottoscrizione di Azure. Per collegare questa sottoscrizione di Azure a un’area di lavoro, utilizzare un ID cliente restituito da questa operazione nella proprietà ID cliente dell’operazione Crea area di lavoro.|
+|/workspaces/write|Crea una nuova area di lavoro o collega a un'area di lavoro esistente fornendo l'ID cliente dall’area di lavoro esistente.|
 |/workspaces/read|Ottiene un'area di lavoro esistente|
-|/workspaces/delete|Elimina un'area di lavoro. Se è stato collegato l'area di lavoro hello tooan area di lavoro esistente al momento della creazione quindi hello dell'area di lavoro è stato collegato toois non è stato eliminato.|
-|/workspaces/generateregistrationcertificate/action|Genera l'errore di registrazione certificati per l'area di lavoro hello. Questo certificato è l'area di lavoro toohello tooconnect usato Microsoft System Center Operation Manager.|
-|/workspaces/sharedKeys/action|Recupera le chiavi di hello condiviso per l'area di lavoro hello. Queste chiavi sono utilizzati tooconnect informazioni operative di Microsoft agenti toohello area.|
+|/workspaces/delete|Elimina un'area di lavoro. Se l'area di lavoro era collegata a un’area di lavoro esistente al momento della creazione, l’area di lavoro alla quale era collegata non viene eliminata.|
+|/workspaces/generateregistrationcertificate/action|Genera il certificato di registrazione per l’area di lavoro. Il certificato viene utilizzato per la connessione di Microsoft System Center Operations Manager all'area di lavoro.|
+|/workspaces/sharedKeys/action|Recupera le chiavi condivise per l'area di lavoro. Queste chiavi servono per collegare gli agenti di Microsoft Operational Insights all’area di lavoro.|
 |/workspaces/search/action|Esegue una query di ricerca|
 |/workspaces/datasources/read|Ottiene le origini dati in un'area di lavoro.|
 |/workspaces/datasources/write|Crea/Aggiorna le origini dati in un'area di lavoro.|
 |/workspaces/datasources/delete|Elimina le origini dati in un'area di lavoro.|
-|/workspaces/managementGroups/read|Ottiene i nomi di hello e metadati per l'area di lavoro di System Center Operations Manager Gestione gruppi toothis connesso.|
-|/workspaces/schema/read|Ottiene dello schema di ricerca hello per area di lavoro hello.  Schema di ricerca include campi hello esposto e i relativi tipi.|
-|/workspaces/usages/read|Ottiene i dati di utilizzo per un'area di lavoro tra cui hello quantità dei dati letti dall'area di lavoro hello.|
-|/workspaces/intelligencepacks/read|Elenca tutti intelligence Pack che sono visibili per una determinata area di lavoro e vengono elencati anche se pack hello è abilitato o disabilitato per l'area di lavoro.|
+|/workspaces/managementGroups/read|Ottiene nomi e metadati per i gruppi di gestione di System Center Operations Manager connessi a questa area di lavoro.|
+|/workspaces/schema/read|Ottiene lo schema di ricerca per l'area di lavoro.  Lo schema di ricerca include i campi esposti e i relativi tipi.|
+|/workspaces/usages/read|Ottiene i dati di utilizzo di un'area di lavoro tra cui la quantità di dati letti dall'area di lavoro.|
+|/workspaces/intelligencepacks/read|Elenca tutti gli Intelligence Pack visibili per una specifica area di lavoro, oltre a elencare se il pacchetto è abilitato o disabilitato per quell’area di lavoro.|
 |/workspaces/intelligencepacks/enable/action|Abilita un Intelligence Pack per una specifica area di lavoro.|
 |/workspaces/intelligencepacks/disable/action|Disabilita un Intelligence Pack per una specifica area di lavoro.|
-|/workspaces/sharedKeys/read|Recupera le chiavi di hello condiviso per l'area di lavoro hello. Queste chiavi sono utilizzati tooconnect informazioni operative di Microsoft agenti toohello area.|
+|/workspaces/sharedKeys/read|Recupera le chiavi condivise per l'area di lavoro. Queste chiavi servono per collegare gli agenti di Microsoft Operational Insights all’area di lavoro.|
 |/workspaces/savedSearches/read|Ottiene una query di ricerca salvata|
 |/workspaces/savedSearches/write|Crea una query di ricerca salvata|
 |/workspaces/savedSearches/delete|Elimina una query di ricerca salvata|
-|/workspaces/storageinsightconfigs/write|Crea una nuova configurazione di archiviazione. Queste configurazioni sono dati toopull utilizzato da un percorso di un account di archiviazione esistente.|
+|/workspaces/storageinsightconfigs/write|Crea una nuova configurazione di archiviazione. Tali configurazioni servono per estrarre i dati da una posizione in un account di archiviazione esistente.|
 |/workspaces/storageinsightconfigs/read|Ottiene una configurazione di archiviazione.|
-|/workspaces/storageinsightconfigs/delete|Elimina una configurazione di archiviazione. Informazioni operative di Microsoft di leggere i dati dall'account di archiviazione hello verrà interrotta.|
+|/workspaces/storageinsightconfigs/delete|Elimina una configurazione di archiviazione. Questa operazione interrompe la lettura dei dati dall’account di archiviazione da parte di Microsoft Operational Insights.|
 |/workspaces/configurationScopes/read|Ottiene l'ambito di configurazione|
 |/workspaces/configurationScopes/write|Imposta l'ambito di configurazione|
 |/workspaces/configurationScopes/delete|Elimina l'ambito di configurazione|
@@ -1346,7 +1346,7 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 
 | Operazione | Descrizione |
 |---|---|
-|/register/action|Registrare un provider di risorse tooa di sottoscrizione.|
+|/register/action|Registra una sottoscrizione a un provider di risorse.|
 |/solutions/write|Crea una nuova soluzione OMS|
 |/solutions/read|Ottiene soluzione OMS esistente|
 |/solutions/delete|Elimina soluzione OMS esistente|
@@ -1357,20 +1357,20 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |---|---|
 |/Vaults/backupJobsExport/action|Esporta processi|
 |/Vaults/write|L'operazione Crea insieme di credenziali crea una risorsa di Azure di tipo 'vault'|
-|/Vaults/read|Hello operazione Ottieni insieme di credenziali Ottiene un oggetto che rappresenta le risorse di Azure di tipo 'vault' hello|
-|/Vaults/delete|Hello Elimina insieme di credenziali operazione eliminazioni hello specificato risorsa di Azure di tipo 'vault'|
-|/Vaults/refreshContainers/read|Aggiorna l'elenco di contenitori hello|
-|/Vaults/backupJobsExport/operationResults/read|Hello restituisce risultati dell'operazione del processo esportare.|
+|/Vaults/read|L'operazione Ottieni insieme di credenziali ottiene un oggetto che rappresenta la risorsa di Azure di tipo 'vault'|
+|/Vaults/delete|L'operazione Elimina insieme di credenziali elimina la risorsa di Azure specificata di tipo 'vault'|
+|/Vaults/refreshContainers/read|Aggiorna l'elenco di contenitori|
+|/Vaults/backupJobsExport/operationResults/read|Restituisce il risultato dell'operazione di esportazione del processo.|
 |/Vaults/backupOperationResults/read|Restituisce il risultato dell'operazione di backup di un insieme di credenziali di Servizi di ripristino.|
-|/Vaults/monitoringAlerts/read|Ottiene gli avvisi di hello per l'insieme di credenziali di hello Recovery services.|
-|/Vaults/monitoringAlerts/{uniqueAlertId}/read|Ottiene i dettagli di hello di avviso hello.|
+|/Vaults/monitoringAlerts/read|Ottiene gli avvisi per l'insieme di credenziali dei servizi di ripristino.|
+|/Vaults/monitoringAlerts/{uniqueAlertId}/read|Ottiene i dettagli dell'avviso.|
 |/Vaults/backupSecurityPIN/read|Restituisce le informazioni sul PIN di sicurezza dell'insieme di credenziali di Servizi di ripristino.|
 |/vaults/replicationEvents/read|Legge tutti gli eventi|
 |/Vaults/backupProtectableItems/read|Restituisce l'elenco di tutti gli elementi da proteggere.|
 |/vaults/replicationFabrics/read|Legge tutte le infrastrutture|
 |/vaults/replicationFabrics/write|Crea o aggiorna tutte le infrastrutture|
 |/vaults/replicationFabrics/remove/action|Rimuove l'infrastruttura|
-|/vaults/replicationFabrics/checkConsistency/action|Controlli di coerenza di hello dell'infrastruttura|
+|/vaults/replicationFabrics/checkConsistency/action|Verifica la coerenza dell'infrastruttura|
 |/vaults/replicationFabrics/delete|Elimina tutte le infrastrutture|
 |/vaults/replicationFabrics/renewcertificate/action||
 |/vaults/replicationFabrics/deployProcessServerImage/action|Distribuisce immagine del server di elaborazione|
@@ -1426,27 +1426,27 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/vaults/replicationRecoveryPlans/testFailoverCleanup/action|Piano di ripristino della pulizia del failover di test|
 |/vaults/replicationRecoveryPlans/failoverCommit/action|Piano di ripristino del commit del failover|
 |/vaults/replicationRecoveryPlans/reProtect/action|Piano di ripristino di riprotezione|
-|/Vaults/extendedInformation/read|Hello operazione Ottieni informazioni estese Ottiene informazioni estese di un oggetto che rappresenta le risorse di Azure di tipo hello? insieme di credenziali?|
-|/Vaults/extendedInformation/write|Hello operazione Ottieni informazioni estese Ottiene informazioni estese di un oggetto che rappresenta le risorse di Azure di tipo hello? insieme di credenziali?|
-|/Vaults/extendedInformation/delete|Hello operazione Ottieni informazioni estese Ottiene informazioni estese di un oggetto che rappresenta le risorse di Azure di tipo hello? insieme di credenziali?|
+|/Vaults/extendedInformation/read|L'operazione Ottieni informazioni estese ottiene le informazioni estese di un oggetto che rappresenta la risorsa di Azure di tipo ?vault?|
+|/Vaults/extendedInformation/write|L'operazione Ottieni informazioni estese ottiene le informazioni estese di un oggetto che rappresenta la risorsa di Azure di tipo ?vault?|
+|/Vaults/extendedInformation/delete|L'operazione Ottieni informazioni estese ottiene le informazioni estese di un oggetto che rappresenta la risorsa di Azure di tipo ?vault?|
 |/Vaults/backupManagementMetaData/read|Restituisce i metadati di gestione di backup di un insieme di credenziali di Servizi di ripristino.|
-|/Vaults/backupProtectionContainers/read|Restituisce tutti i contenitori appartenenti toohello sottoscrizione|
-|/Vaults/backupFabrics/operationResults/read|Restituisce lo stato dell'operazione hello|
+|/Vaults/backupProtectionContainers/read|Restituisce tutti i contenitori che appartengono alla sottoscrizione|
+|/Vaults/backupFabrics/operationResults/read|Restituisce lo stato dell'operazione|
 |/Vaults/backupFabrics/protectionContainers/read|Restituisce tutti i contenitori registrati|
 |/Vaults/backupFabrics/protectionContainers/<br>operationResults/read|Ottiene il risultato dell'operazione eseguita sul contenitore di protezione.|
-|/Vaults/backupFabrics/protectionContainers/<br>protectedItems/read|Restituisce i dettagli dell'elemento protetto hello di oggetto|
+|/Vaults/backupFabrics/protectionContainers/<br>protectedItems/read|Restituisce i dettagli dell'oggetto dell'elemento protetto|
 |/Vaults/backupFabrics/protectionContainers/<br>protectedItems/write|Crea un elemento protetto di backup|
 |/Vaults/backupFabrics/protectionContainers/<br>protectedItems/delete|Elimina l'elemento protetto|
 |/Vaults/backupFabrics/protectionContainers/<br>protectedItems/backup/action|Esegue il backup dell'elemento protetto.|
 |/Vaults/backupFabrics/protectionContainers/<br>protectedItems/operationResults/read|Ottiene il risultato dell'operazione eseguita sugli elementi protetti.|
-|/Vaults/backupFabrics/protectionContainers/<br>protectedItems/operationStatus/read|Restituisce lo stato di hello di operazione eseguita su elementi protetti.|
+|/Vaults/backupFabrics/protectionContainers/<br>protectedItems/operationStatus/read|Restituisce lo stato dell'operazione eseguita sugli elementi protetti.|
 |/Vaults/backupFabrics/protectionContainers/<br>protectedItems/recoveryPoints/read|Ottiene i punti di ripristino degli elementi protetti.|
 |/Vaults/backupFabrics/protectionContainers/<br>protectedItems/recoveryPoints/<br>restore/action|Ripristina i punti di ripristino degli elementi protetti.|
 |/Vaults/backupFabrics/protectionContainers/<br>protectedItems/recoveryPoints/<br>provisionInstantItemRecovery/action|Effettua il provisioning del ripristino elementi immediato per l'elemento protetto|
 |/Vaults/backupFabrics/protectionContainers/<br>protectedItems/recoveryPoints/<br>revokeInstantItemRecovery/action|Revoca il ripristino elementi immediato per l'elemento protetto|
 |/Vaults/usages/read|Restituisce i dettagli di utilizzo di un insieme di credenziali di Servizi di ripristino.|
 |/vaults/usages/read|Legge tutti gli utilizzi dell'insieme di credenziali|
-|/Vaults/certificates/write|operazione di certificato risorsa Aggiorna Hello Aggiorna certificato della credenziale dell'insieme di credenziali/risorsa hello.|
+|/Vaults/certificates/write|L'operazione Aggiorna certificato risorsa aggiorna il certificato delle credenziali per la risorsa e/o l'insieme di credenziali.|
 |/Vaults/tokenInfo/read|Restituisce le informazioni sul token dell'insieme di credenziali di Servizi di ripristino.|
 |/vaults/replicationAlertSettings/read|Legge tutte le impostazioni degli avvisi|
 |/vaults/replicationAlertSettings/write|Crea o aggiorna le impostazioni degli avvisi|
@@ -1454,13 +1454,13 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/Vaults/storageConfig/read|Restituisce la configurazione di archiviazione dell'insieme di credenziali di Servizi di ripristino.|
 |/Vaults/storageConfig/write|Aggiorna la configurazione di archiviazione dell'insieme di credenziali di Servizi di ripristino.|
 |/Vaults/backupUsageSummaries/read|Restituisce i riepiloghi per gli elementi protetti e i server protetti di un'istanza di Servizi di ripristino.|
-|/Vaults/backupProtectedItems/read|Restituisce hello elenco di tutti gli elementi protetti.|
+|/Vaults/backupProtectedItems/read|Restituisce l'elenco di tutti gli elementi protetti.|
 |/Vaults/backupconfig/vaultconfig/read|Restituisce la configurazione dell'insieme di credenziali di Servizi di ripristino.|
 |/Vaults/backupconfig/vaultconfig/write|Aggiorna la configurazione dell'insieme di credenziali di Servizi di ripristino.|
-|/Vaults/registeredIdentities/write|Hello operazione registra contenitore di servizi può essere utilizzato tooregister un contenitore con il servizio di ripristino.|
-|/Vaults/registeredIdentities/read|Hello Ottieni contenitori può essere utilizzata l'operazione get contenitori hello registrati per una risorsa.|
-|/Vaults/registeredIdentities/delete|Hello operazione Annulla registrazione contenitore può essere utilizzato toounregister un contenitore.|
-|/Vaults/registeredIdentities/operationResults/read|invio di Hello operazione ottieni risultati dell'operazione può essere usata per ottenere hello dello stato dell'operazione e generano in modo asincrono per hello operazione|
+|/Vaults/registeredIdentities/write|L'operazione Registra contenitore di servizi può essere usata per registrare un contenitore con il servizio di ripristino.|
+|/Vaults/registeredIdentities/read|L'operazione Ottieni contenitori può essere usata per ottenere i contenitori registrati per una risorsa.|
+|/Vaults/registeredIdentities/delete|L'operazione Annulla registrazione contenitore di servizi può essere usata per annullare la registrazione di un contenitore.|
+|/Vaults/registeredIdentities/operationResults/read|L'operazione Ottieni risultati dell'operazione può essere usata per ottenere lo stato e il risultato dell'operazione inviata in modo asincrono|
 |/vaults/replicationJobs/read|Legge tutti i processi|
 |/vaults/replicationJobs/cancel/action|Annulla processo|
 |/vaults/replicationJobs/restart/action|Riavvia processo|
@@ -1470,11 +1470,11 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/Vaults/backupPolicies/delete|Elimina i criteri di protezione|
 |/Vaults/backupPolicies/operationResults/read|Ottiene i risultati dell'operazione sui criteri.|
 |/Vaults/backupPolicies/operationStatus/read|Ottiene lo stato dell'operazione sui criteri.|
-|/Vaults/vaultTokens/read|Hello operazione Token dell'insieme di credenziali può essere utilizzato tooget Token dell'insieme di credenziali per le operazioni di back-end di livello di insieme di credenziali.|
-|/Vaults/monitoringConfigurations/notificationConfiguration/read|Ottiene la configurazione notifica hello Recovery services insieme di credenziali.|
+|/Vaults/vaultTokens/read|L'operazione Token dell'insieme di credenziali può essere usata per ottenere il token dell'insieme di credenziali per le operazioni di back-end a livello di insieme di credenziali.|
+|/Vaults/monitoringConfigurations/notificationConfiguration/read|Ottiene la configurazione delle notifiche dell'insieme di credenziali dei servizi di ripristino.|
 |/Vaults/backupJobs/read|Restituisce tutti gli oggetti processo|
-|/Vaults/backupJobs/cancel/action|Hello Annulla processo|
-|/Vaults/backupJobs/operationResults/read|Hello restituisce risultati dell'operazione del processo.|
+|/Vaults/backupJobs/cancel/action|Annulla il processo|
+|/Vaults/backupJobs/operationResults/read|Restituisce il risultato dell'operazione di processo.|
 |/locations/allocateStamp/action|AllocateStamp è un'operazione interna usata dal servizio|
 |/locations/allocatedStamp/read|GetAllocatedStamp è un'operazione interna usata dal servizio|
 
@@ -1483,41 +1483,41 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 | Operazione | Descrizione |
 |---|---|
 |/checkNamespaceAvailability/action|Verifica la disponibilità dello spazio dei nomi nella sottoscrizione specificata.|
-|/register/action|Registra sottoscrizione hello per provider di risorse di inoltro hello e consente la creazione di hello delle risorse di inoltro|
-|/namespaces/write|Crea una risorsa spazio dei nomi e ne aggiorna le proprietà. Tag e lo stato di hello Namespace sono proprietà hello che può essere aggiornata.|
-|/namespaces/read|Ottenere l'elenco di hello della descrizione della risorsa Namespace|
+|/register/action|Registra la sottoscrizione per il provider di risorse inoltro e abilita la creazione di risorse inoltro|
+|/namespaces/write|Crea una risorsa spazio dei nomi e ne aggiorna le proprietà. Le proprietà che si possono aggiornare sono quelle relative ai tag e allo stato dello spazio dei nomi.|
+|/namespaces/read|Ottiene l'elenco delle descrizioni delle risorse spazio dei nomi|
 |/namespaces/Delete|Elimina la risorsa spazio dei nomi|
-|/namespaces/authorizationRules/write|Crea regole di autorizzazione a livello dello spazio dei nomi e ne aggiorna le proprietà. Diritti di accesso di regole di autorizzazione Hello, hello primario e secondario chiavi possono essere aggiornate.|
-|/namespaces/authorizationRules/delete|Elimina regola di autorizzazione dello spazio dei nomi. Impossibile eliminare Hello regola di autorizzazione Namespace predefinita. |
-|/namespaces/authorizationRules/listkeys/action|Ottenere una stringa di connessione di hello toohello Namespace|
+|/namespaces/authorizationRules/write|Crea regole di autorizzazione a livello dello spazio dei nomi e ne aggiorna le proprietà. È possibile aggiornare la chiave primaria, la chiave secondaria e i diritti di accesso delle regole di autorizzazione.|
+|/namespaces/authorizationRules/delete|Elimina regola di autorizzazione dello spazio dei nomi. Non è possibile eliminare la regola di autorizzazione dello spazio dei nomi predefinita. |
+|/namespaces/authorizationRules/listkeys/action|Ottiene la stringa di connessione per lo spazio dei nomi|
 |/namespaces/HybridConnections/write|Crea o aggiorna proprietà della connessione ibrida.|
 |/namespaces/HybridConnections/read|Ottiene l'elenco delle descrizioni delle risorse della connessione ibrida|
-|/namespaces/HybridConnections/Delete|Operazione toodelete HybridConnection risorse|
-|/namespaces/HybridConnections/authorizationRules/write|Crea regole di autorizzazione della connessione ibrida e ne aggiorna le proprietà. Diritti di accesso di regole di autorizzazione Hello, hello primario e secondario chiavi possono essere aggiornate.|
-|/namespaces/HybridConnections/authorizationRules/delete|Operazione toodelete HybridConnection le regole di autorizzazione|
-|/namespaces/HybridConnections/authorizationRules/listkeys/action|Ottenere hello tooHybridConnection di stringa di connessione|
+|/namespaces/HybridConnections/Delete|Operazione per l'eliminazione di risorse di connessione ibrida|
+|/namespaces/HybridConnections/authorizationRules/write|Crea regole di autorizzazione della connessione ibrida e ne aggiorna le proprietà. È possibile aggiornare la chiave primaria, la chiave secondaria e i diritti di accesso delle regole di autorizzazione.|
+|/namespaces/HybridConnections/authorizationRules/delete|Operazione per l'eliminazione delle regole di autorizzazione della connessione ibrida|
+|/namespaces/HybridConnections/authorizationRules/listkeys/action|Ottiene la stringa di connessione per la connessione ibrida|
 |/namespaces/WcfRelays/write|Crea o aggiorna proprietà inoltro WCF.|
 |/namespaces/WcfRelays/read|Ottiene l'elenco delle descrizioni delle risorse dell'inoltro WCF|
-|/namespaces/WcfRelays/Delete|Operazione toodelete WcfRelay risorse|
-|/namespaces/WcfRelays/authorizationRules/write|Crea regole di autorizzazione dell'inoltro WCF e ne aggiorna le proprietà. Diritti di accesso di regole di autorizzazione Hello, hello primario e secondario chiavi possono essere aggiornate.|
-|/namespaces/WcfRelays/authorizationRules/delete|Operazione toodelete WcfRelay le regole di autorizzazione|
-|/namespaces/WcfRelays/authorizationRules/listkeys/action|Ottenere hello tooWcfRelay di stringa di connessione|
+|/namespaces/WcfRelays/Delete|Operazione per l'eliminazione delle risorse dell'inoltro WCF|
+|/namespaces/WcfRelays/authorizationRules/write|Crea regole di autorizzazione dell'inoltro WCF e ne aggiorna le proprietà. È possibile aggiornare la chiave primaria, la chiave secondaria e i diritti di accesso delle regole di autorizzazione.|
+|/namespaces/WcfRelays/authorizationRules/delete|Operazione per l'eliminazione di regole di autorizzazione dell'inoltro WCF|
+|/namespaces/WcfRelays/authorizationRules/listkeys/action|Ottiene la stringa di connessione per l'inoltro WCF|
 
 ## <a name="microsoftresourcehealth"></a>Microsoft.ResourceHealth
 
 | Operazione | Descrizione |
 |---|---|
-|/AvailabilityStatuses/read|Ottiene gli stati di disponibilità hello per tutte le risorse in hello specificato ambito|
-|/AvailabilityStatuses/current/read|Ottiene lo stato di disponibilità hello per hello risorsa specificata.|
+|/AvailabilityStatuses/read|Ottiene gli stati di disponibilità per tutte le risorse nell'ambito specificato|
+|/AvailabilityStatuses/current/read|Ottiene lo stato di disponibilità per la risorsa specificata|
 
 ## <a name="microsoftresources"></a>Microsoft.Resources
 
 | Operazione | Descrizione |
 |---|---|
-|/checkResourceName/action|Controllare il nome di risorsa hello la validità.|
-|/providers/read|Ottenere l'elenco di hello di provider.|
-|/subscriptions/read|Ottiene l'elenco di sottoscrizioni hello.|
-|/subscriptions/operationresults/read|Ottenere i risultati delle operazioni di sottoscrizione hello.|
+|/checkResourceName/action|Verifica la validità del nome della risorsa.|
+|/providers/read|Ottiene l'elenco dei provider.|
+|/subscriptions/read|Ottiene l'elenco delle sottoscrizioni.|
+|/subscriptions/operationresults/read|Ottiene i risultati dell'operazione di sottoscrizione.|
 |/subscriptions/providers/read|Ottiene o elenca i provider di risorse.|
 |/subscriptions/tagNames/read|Ottiene o elenca le categorie della sottoscrizione.|
 |/subscriptions/tagNames/write|Aggiunge una categoria della sottoscrizione.|
@@ -1529,19 +1529,19 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/subscriptions/resourceGroups/read|Ottiene o elenca i gruppi di risorse.|
 |/subscriptions/resourceGroups/write|Crea o aggiorna un gruppo di risorse.|
 |/subscriptions/resourceGroups/delete|Elimina un gruppo di risorse e tutte le risorse in esso contenute.|
-|/subscriptions/resourceGroups/moveResources/action|Sposta le risorse da una risorsa gruppo tooanother.|
-|/subscriptions/resourceGroups/validateMoveResources/action|Convalida lo spostamento di risorse da una risorsa gruppo tooanother.|
-|/subscriptions/resourcegroups/resources/read|Ottiene le risorse di hello per il gruppo di risorse hello.|
+|/subscriptions/resourceGroups/moveResources/action|Sposta le risorse da un gruppo di risorse a un altro.|
+|/subscriptions/resourceGroups/validateMoveResources/action|Convalida lo spostamento di risorse da un gruppo di risorse a un altro.|
+|/subscriptions/resourcegroups/resources/read|Ottiene le risorse del gruppo di risorse.|
 |/subscriptions/resourcegroups/deployments/read|Ottiene o elenca le distribuzioni.|
 |/subscriptions/resourcegroups/deployments/write|Crea o aggiorna una distribuzione.|
 |/subscriptions/resourcegroups/deployments/operationstatuses/read|Ottiene o elenca gli stati dell'operazione di distribuzione.|
 |/subscriptions/resourcegroups/deployments/operations/read|Ottiene o elenca le operazioni di distribuzione.|
-|/subscriptions/locations/read|Ottiene l'elenco di hello delle località supportate.|
+|/subscriptions/locations/read|Ottiene l'elenco delle posizioni supportate.|
 |/links/read|Ottiene o elenca i collegamenti a una risorsa.|
 |/links/write|Crea o aggiorna un collegamento a una risorsa.|
 |/links/delete|Elimina un collegamento a una risorsa.|
-|/tenants/read|Ottiene l'elenco di hello di tenant.|
-|/resources/read|Ottenere l'elenco di hello delle risorse in base a filtri.|
+|/tenants/read|Ottiene l'elenco dei tenant.|
+|/resources/read|Ottiene l'elenco delle risorse in base a filtri.|
 |/deployments/read|Ottiene o elenca le distribuzioni.|
 |/deployments/write|Crea o aggiorna una distribuzione.|
 |/deployments/delete|Elimina una distribuzione.|
@@ -1569,40 +1569,40 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 
 | Operazione | Descrizione |
 |---|---|
-|/register/action|Registra sottoscrizione hello per provider di risorse ricerca hello e consente la creazione di hello di servizi di ricerca.|
-|/checkNameAvailability/action|Controlla la disponibilità del nome del servizio hello.|
-|/searchServices/write|Crea o aggiorna il servizio di ricerca di hello.|
-|/searchServices/read|Legge il servizio di ricerca di hello.|
-|/searchServices/delete|Elimina il servizio di ricerca di hello.|
-|/searchServices/start/action|Avvia il servizio di ricerca hello.|
-|/searchServices/stop/action|Arresta il servizio di ricerca hello.|
-|/searchServices/listAdminKeys/action|Legge le chiavi amministratore hello.|
-|/searchServices/regenerateAdminKey/action|Rigenera chiave di amministrazione di hello.|
-|/searchServices/createQueryKey/action|Crea una chiave di query hello.|
-|/searchServices/queryKey/read|Legge le chiavi di query hello.|
-|/searchServices/queryKey/delete|Elimina la chiave di query hello.|
+|/register/action|Registra la sottoscrizione per il provider di risorse di ricerca e consente la creazione di servizi di ricerca.|
+|/checkNameAvailability/action|Controlla la disponibilità del nome del servizio.|
+|/searchServices/write|Crea o aggiorna il servizio di ricerca.|
+|/searchServices/read|Legge il servizio di ricerca.|
+|/searchServices/delete|Elimina il servizio di ricerca.|
+|/searchServices/start/action|Avvia il servizio di ricerca.|
+|/searchServices/stop/action|Arresta il servizio di ricerca.|
+|/searchServices/listAdminKeys/action|Legge le chiavi di amministrazione.|
+|/searchServices/regenerateAdminKey/action|Rigenera la chiave di amministrazione.|
+|/searchServices/createQueryKey/action|Crea la chiave di query.|
+|/searchServices/queryKey/read|Legge le chiavi di query.|
+|/searchServices/queryKey/delete|Elimina la chiave di query.|
 
 ## <a name="microsoftsecurity"></a>Microsoft.Security
 
 | Operazione | Descrizione |
 |---|---|
-|/jitNetworkAccessPolicies/read|Ottiene i criteri di accesso di rete-in-time hello|
+|/jitNetworkAccessPolicies/read|Ottiene i criteri di accesso alla rete JIT|
 |/jitNetworkAccessPolicies/write|Crea un nuovo criterio di accesso alla rete JIT o ne aggiorna uno esistente|
 |/jitNetworkAccessPolicies/initiate/action|Avvia un criterio di accesso alla rete JIT|
-|/securitySolutionsReferenceData/read|Ottiene i dati di riferimento di soluzioni per la sicurezza hello|
-|/securityStatuses/read|Ottiene gli stati di integrità di protezione hello per le risorse di Azure|
-|/webApplicationFirewalls/read|Ottiene i firewall applicazione web di hello|
+|/securitySolutionsReferenceData/read|Ottiene i dati di riferimento delle soluzioni di sicurezza|
+|/securityStatuses/read|Ottiene gli stati di integrità della sicurezza per le soluzioni Azure|
+|/webApplicationFirewalls/read|Ottiene i firewall dell'applicazione Web|
 |/webApplicationFirewalls/write|Crea un nuovo firewall dell'applicazione Web o ne aggiorna uno esistente|
 |/webApplicationFirewalls/delete|Elimina un firewall dell'applicazione Web|
-|/securitySolutions/read|Ottiene le soluzioni di sicurezza hello|
+|/securitySolutions/read|Ottiene le soluzioni di sicurezza|
 |/securitySolutions/write|Crea una nuova soluzione di sicurezza o ne aggiorna una esistente|
 |/securitySolutions/delete|Elimina una soluzione di sicurezza|
 |/tasks/read|Ottiene tutti i consigli per la sicurezza disponibili|
 |/tasks/dismiss/action|Ignora un consiglio per la sicurezza|
 |/tasks/activate/action|Attiva un consiglio per la sicurezza|
-|/policies/read|Ottiene i criteri di sicurezza hello|
-|/policies/write|Gli aggiornamenti hello criteri di sicurezza|
-|/applicationWhitelistings/read|Ottiene whitelistings applicazione hello|
+|/policies/read|Ottiene i criteri di sicurezza|
+|/policies/write|Aggiorna i criteri di sicurezza|
+|/applicationWhitelistings/read|Ottiene gli elenchi elementi consentiti delle applicazioni|
 |/applicationWhitelistings/write|Crea un nuovo elenco elementi consentiti per l'applicazione o ne aggiorna uno esistente|
 
 ## <a name="microsoftservermanagement"></a>Microsoft.ServerManagement
@@ -1613,8 +1613,8 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/gateways/write|Crea o aggiorna un gateway|
 |/gateways/delete|Elimina un gateway|
 |/gateways/read|Ottiene un gateway|
-|/gateways/regenerateprofile/action|Rigenera profilo gateway hello|
-|/gateways/upgradetolatest/action|Versione più recente di aggiornamenti hello gateway toohello|
+|/gateways/regenerateprofile/action|Rigenera il profilo del gateway|
+|/gateways/upgradetolatest/action|Aggiorna il gateway alla versione più recente|
 |/nodes/write|Crea o aggiorna un nodo|
 |/nodes/delete|Elimina un nodo|
 |/nodes/read|Ottiene un nodo|
@@ -1627,41 +1627,41 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 | Operazione | Descrizione |
 |---|---|
 |/checkNameAvailability/action|Verifica la disponibilità dello spazio dei nomi nella sottoscrizione specificata.|
-|/register/action|Registra sottoscrizione hello per provider di risorse bus di servizio hello e consente la creazione di hello di risorse bus di servizio|
-|/namespaces/write|Crea una risorsa spazio dei nomi e ne aggiorna le proprietà. Tag e lo stato di hello Namespace sono proprietà hello che può essere aggiornata.|
-|/namespaces/read|Ottenere l'elenco di hello della descrizione della risorsa Namespace|
+|/register/action|Registra la sottoscrizione per il provider di risorse bus di servizio e consente la creazione di risorse bus di servizio|
+|/namespaces/write|Crea una risorsa spazio dei nomi e ne aggiorna le proprietà. Le proprietà che si possono aggiornare sono quelle relative ai tag e allo stato dello spazio dei nomi.|
+|/namespaces/read|Ottiene l'elenco delle descrizioni delle risorse spazio dei nomi|
 |/namespaces/Delete|Elimina una risorsa spazio dei nomi|
 |/namespaces/metricDefinitions/read|Ottiene l'elenco di descrizioni delle risorse metrica dello spazio dei nomi|
-|/namespaces/authorizationRules/write|Crea regole di autorizzazione a livello dello spazio dei nomi e ne aggiorna le proprietà. Diritti di accesso di regole di autorizzazione Hello, hello primario e secondario chiavi possono essere aggiornate.|
-|/namespaces/authorizationRules/read|Ottenere l'elenco di hello della descrizione delle regole di autorizzazione di spazi dei nomi.|
-|/namespaces/authorizationRules/delete|Elimina regola di autorizzazione dello spazio dei nomi. Impossibile eliminare Hello regola di autorizzazione Namespace predefinita. |
-|/namespaces/authorizationRules/listkeys/action|Ottenere una stringa di connessione di hello toohello Namespace|
-|/namespaces/authorizationRules/regenerateKeys/action|Rigenerare hello primario o secondario chiave toohello risorse|
+|/namespaces/authorizationRules/write|Crea regole di autorizzazione a livello dello spazio dei nomi e ne aggiorna le proprietà. È possibile aggiornare la chiave primaria, la chiave secondaria e i diritti di accesso delle regole di autorizzazione.|
+|/namespaces/authorizationRules/read|Ottiene l'elenco di descrizioni delle regole di autorizzazione degli spazi dei nomi.|
+|/namespaces/authorizationRules/delete|Elimina regola di autorizzazione dello spazio dei nomi. Non è possibile eliminare la regola di autorizzazione dello spazio dei nomi predefinita. |
+|/namespaces/authorizationRules/listkeys/action|Ottiene la stringa di connessione per lo spazio dei nomi|
+|/namespaces/authorizationRules/regenerateKeys/action|Rigenera la chiave primaria o secondaria per la risorsa|
 |/namespaces/diagnosticSettings/read|Ottiene l'elenco di descrizioni delle risorse impostazioni di diagnostica dello spazio dei nomi|
 |/namespaces/diagnosticSettings/write|Ottiene l'elenco di descrizioni delle risorse impostazioni di diagnostica dello spazio dei nomi|
 |/namespaces/queues/write|Crea o aggiorna proprietà di coda.|
 |/namespaces/queues/read|Ottiene l'elenco delle descrizioni delle risorse coda|
-|/namespaces/queues/Delete|Operazione toodelete risorsa coda|
-|/namespaces/queues/authorizationRules/write|Crea regole di autorizzazione delle code e ne aggiorna le proprietà. Diritti di accesso di regole di autorizzazione Hello, hello primario e secondario chiavi possono essere aggiornate.|
-|/namespaces/queues/authorizationRules/read| Ottenere l'elenco di hello coda delle regole di autorizzazione|
-|/namespaces/queues/authorizationRules/delete|Operazione toodelete le regole di autorizzazione della coda|
-|/namespaces/queues/authorizationRules/listkeys/action|Ottenere hello tooQueue di stringa di connessione|
-|/namespaces/queues/authorizationRules/regenerateKeys/action|Rigenerare hello primario o secondario chiave toohello risorse|
+|/namespaces/queues/Delete|Operazione per l'eliminazione delle risorse coda|
+|/namespaces/queues/authorizationRules/write|Crea regole di autorizzazione delle code e ne aggiorna le proprietà. È possibile aggiornare la chiave primaria, la chiave secondaria e i diritti di accesso delle regole di autorizzazione.|
+|/namespaces/queues/authorizationRules/read| Ottiene l'elenco delle regole di autorizzazione delle code|
+|/namespaces/queues/authorizationRules/delete|Operazione per l'eliminazione di regole di autorizzazione delle code|
+|/namespaces/queues/authorizationRules/listkeys/action|Ottiene la stringa di connessione alla coda|
+|/namespaces/queues/authorizationRules/regenerateKeys/action|Rigenera la chiave primaria o secondaria per la risorsa|
 |/namespaces/logDefinitions/read|Ottiene l'elenco di descrizioni delle risorse log dello spazio dei nomi|
 |/namespaces/topics/write|Crea o aggiorna le proprietà degli argomenti.|
 |/namespaces/topics/read|Ottiene l'elenco delle descrizioni delle risorse argomento|
-|/namespaces/topics/Delete|Operazione toodelete argomento risorsa|
-|/namespaces/topics/authorizationRules/write|Crea regole di autorizzazione dell’argomento e ne aggiorna le proprietà. Diritti di accesso di regole di autorizzazione Hello, hello primario e secondario chiavi possono essere aggiornate.|
-|/namespaces/topics/authorizationRules/read| Ottenere l'elenco di hello argomento delle regole di autorizzazione|
-|/namespaces/topics/authorizationRules/delete|Operazione toodelete le regole di autorizzazione di argomento|
-|/namespaces/topics/authorizationRules/listkeys/action|Ottenere hello tooTopic di stringa di connessione|
-|/namespaces/topics/authorizationRules/regenerateKeys/action|Rigenerare hello primario o secondario chiave toohello risorse|
+|/namespaces/topics/Delete|Operazione per l'eliminazione di risorse argomento|
+|/namespaces/topics/authorizationRules/write|Crea regole di autorizzazione dell’argomento e ne aggiorna le proprietà. È possibile aggiornare la chiave primaria, la chiave secondaria e i diritti di accesso delle regole di autorizzazione.|
+|/namespaces/topics/authorizationRules/read| Ottiene l'elenco delle regole di autorizzazione dell’argomento|
+|/namespaces/topics/authorizationRules/delete|Operazione per l'eliminazione di regole di autorizzazione dell’argomento|
+|/namespaces/topics/authorizationRules/listkeys/action|Ottiene la stringa di connessione all’argomento|
+|/namespaces/topics/authorizationRules/regenerateKeys/action|Rigenera la chiave primaria o secondaria per la risorsa|
 |/namespaces/topics/subscriptions/write|Crea o aggiorna le proprietà TopicSubscription.|
 |/namespaces/topics/subscriptions/read|Ottiene l'elenco delle descrizioni delle risorse TopicSubscription|
-|/namespaces/topics/subscriptions/Delete|Operazione toodelete TopicSubscription risorse|
+|/namespaces/topics/subscriptions/Delete|Operazione per l’eliminazione di una risorsa TopicSubscription|
 |/namespaces/topics/subscriptions/rules/write|Crea o aggiorna le proprietà di una regola.|
 |/namespaces/topics/subscriptions/rules/read|Ottiene l'elenco delle descrizioni delle risorse di una regola|
-|/namespaces/topics/subscriptions/rules/Delete|Operazione toodelete risorsa regola|
+|/namespaces/topics/subscriptions/rules/Delete|Operazione per l'eliminazione delle risorse di una regola|
 
 ## <a name="microsoftsql"></a>Microsoft.Sql
 
@@ -1670,24 +1670,24 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/servers/read|Restituisce un elenco di server in un gruppo di risorse per una sottoscrizione|
 |/servers/write|Crea un nuovo server o modifica le proprietà di un server esistente in un gruppo di risorse per una sottoscrizione|
 |/servers/delete|Elimina un server e tutti i database e i pool elastici contenuti|
-|/servers/import/action|Creare un nuovo database nel server di hello e distribuire lo schema e dati da un pacchetto con estensione DacPac|
-|/servers/upgrade/action|Abilitare nuove funzionalità disponibili nella versione più recente di hello del server e specificare una mappa di conversione di database edition|
+|/servers/import/action|Crea un nuovo database sul server e distribuisce schema e dati da un pacchetto DacPac|
+|/servers/upgrade/action|Abilita la nuova funzionalità disponibile sull’ultima versione del server e specifica la mappa di conversione della versione di database|
 |/servers/VulnerabilityAssessmentScans/action|Esegue la scansione del server per la valutazione della vulnerabilità|
-|/servers/operationResults/read|Viene utilizzata l'operazione tootrack lo stato di avanzamento dell'aggiornamento del server da toohigher versione inferiore|
+|/servers/operationResults/read|L’operazione viene utilizzata per tenere traccia dei progressi di aggiornamento del server dalla prima versione all’ultima|
 |/servers/operationResults/delete|Interrompe l’aggiornamento di versione del server in corso|
-|/servers/securityAlertPolicies/read|Recuperare i dettagli di criteri di rilevamento delle minacce di hello server configurato in un determinato server|
-|/servers/securityAlertPolicies/write|Modifica di rilevamento minacce hello server per un determinato server|
-|/servers/securityAlertPolicies/operationResults/read|Recuperare i risultati di server hello operazione di impostazione dei criteri di rilevamento minacce|
+|/servers/securityAlertPolicies/read|Recupera i dettagli dei criteri di rilevamento minacce del server configurati in uno specifico server|
+|/servers/securityAlertPolicies/write|Modifica il rilevamento minacce del server per uno specifico server|
+|/servers/securityAlertPolicies/operationResults/read|Recupera i risultati dell’operazione di impostazione criteri per rilevamento minacce del server|
 |/servers/administrators/read|Recupera i dettagli dell’amministratore del server|
 |/servers/administrators/write|Crea o aggiorna l’amministratore del server|
-|/servers/administrators/delete|Eliminare l'amministratore del server da server hello|
-|/servers/recoverableDatabases/read|Questa operazione viene utilizzata per il ripristino di emergenza del database attivo toorestore database noti toolast buon punto di backup. Restituisce informazioni sul backup precedente hello ma in realtà non ripristina i database di hello.|
+|/servers/administrators/delete|Elimina l’amministratore del server dal server|
+|/servers/recoverableDatabases/read|Questa operazione viene utilizzata per il ripristino di emergenza di database attivi, per ripristinare il database a un punto di backup noto come valido. Restituisce informazioni sull'ultimo backup valido, ma in realtà non ripristina il database.|
 |/servers/serviceObjectives/read|Recupera l'elenco degli obiettivi del livello di servizio (anche noti come livelli di prestazioni) disponibili in un determinato server|
 |/servers/firewallRules/read|Recupera i dettagli della regola del firewall del server|
-|/servers/firewallRules/write|Crea o Aggiorna regola firewall del server che controlla l'intervallo di indirizzi IP consentito tooconnect toohello server|
-|/servers/firewallRules/delete|Eliminare una regola del firewall dal server hello|
+|/servers/firewallRules/write|Crea o aggiorna la regola del firewall che controlla l’intervallo di indirizzi IP autorizzati a connettersi al server|
+|/servers/firewallRules/delete|Elimina la regola del firewall dal server|
 |/servers/administratorOperationResults/read|Recupera i risultati dell’operazione dell’amministratore del server|
-|/servers/recommendedElasticPools/read|Recuperare l'indicazione di database elastico pool tooreduce costo o migliorare le prestazioni in base all'utilizzo delle risorse historica|
+|/servers/recommendedElasticPools/read|Recupera il consiglio per i pool di database elastici per ridurre i costi o migliorare le prestazioni in base all’utilizzo storico delle risorse|
 |/servers/recommendedElasticPools/metrics/read|Recupera le metriche per i pool di database elastici consigliati per un determinato server|
 |/servers/recommendedElasticPools/databases/read|Recupera i database da aggiungere nei pool di database elastici consigliati per un determinato server|
 |/servers/elasticPools/read|Recupera i dettagli per il pool di database elastico per un determinato server|
@@ -1695,239 +1695,239 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/servers/elasticPools/delete|Elimina un pool di database elastico esistente|
 |/servers/elasticPools/operationResults/read|Recupera i dettagli su un’operazione di un pool di database elastico specifico|
 |/servers/elasticPools/providers/Microsoft.Insights/<br>metricDefinitions/read|Restituisce i tipi di metriche disponibili per i pool di database elastici|
-|/servers/elasticPools/providers/Microsoft.Insights/<br>diagnosticSettings/read|Ottiene l'impostazione di diagnostica hello per risorse hello|
-|/servers/elasticPools/providers/Microsoft.Insights/<br>diagnosticSettings/write|Crea o aggiorna l'impostazione di diagnostica di hello per risorsa hello|
+|/servers/elasticPools/providers/Microsoft.Insights/<br>diagnosticSettings/read|Ottiene l'impostazione di diagnostica per la risorsa|
+|/servers/elasticPools/providers/Microsoft.Insights/<br>diagnosticSettings/write|Crea o aggiorna l'impostazione di diagnostica per la risorsa|
 |/servers/elasticPools/metrics/read|Restituisce la metrica di utilizzo delle risorse di un pool di database elastico|
 |/servers/elasticPools/elasticPoolDatabaseActivity/read|Recupera attività e dettagli su uno specifico database che fa parte del pool di database elastico|
-|/servers/elasticPools/advisors/read|Restituisce l'elenco di Advisor è disponibile per il pool elastico hello|
+|/servers/elasticPools/advisors/read|Restituisce l'elenco degli advisor disponibili per il pool elastico|
 |/servers/elasticPools/advisors/write|Aggiorna lo stato di esecuzione automatica di un advisor a livello di pool elastico.|
-|/servers/elasticPools/advisors/recommendedActions/read|Restituisce l'elenco di azioni consigliate di preparazione specificato per il pool elastico hello|
-|/servers/elasticPools/advisors/recommendedActions/write|Applicare l'azione nel pool elastico hello consigliata hello|
+|/servers/elasticPools/advisors/recommendedActions/read|Restituisce l'elenco di azioni consigliate per l’advisor specificato per il pool elastico|
+|/servers/elasticPools/advisors/recommendedActions/write|Applica l'azione consigliata al pool elastico|
 |/servers/elasticPools/elasticPoolActivity/read|Recupera attività e dettagli su un pool di database elastico|
 |/servers/elasticPools/databases/read|Recupera elenco e dettagli dei database che fanno parte di un pool di database elastico su un server specifico|
-|/servers/auditingPolicies/read|Recuperare i dettagli della tabella di server predefinito hello criteri configurati in un determinato server di controllo|
-|/servers/auditingPolicies/write|Tabella di server hello predefinito per un determinato server di controllo delle modifiche|
+|/servers/auditingPolicies/read|Recupera i dettagli dei criteri di controllo della tabella del server predefinito configurati in uno specifico database|
+|/servers/auditingPolicies/write|Modifica il controllo della tabella del server predefinito per uno specifico server|
 |/servers/disasterRecoveryConfiguration/operationResults/read|Ottiene i risultati dell’operazione di configurazione di ripristino di emergenza|
-|/servers/advisors/read|Restituisce l'elenco di Advisor è disponibile per il server hello|
+|/servers/advisors/read|Restituisce l'elenco degli advisor disponibili per il server|
 |/servers/advisors/write|Aggiorna lo stato di esecuzione automatica di un advisor a livello di server.|
-|/servers/advisors/recommendedActions/read|Restituisce l'elenco di azioni consigliate di preparazione specificato per il server hello|
-|/servers/advisors/recommendedActions/write|Applicare l'azione sul server hello consigliata hello|
-|/servers/usages/read|Quota DTU del server restituito e consuption DTU corrente da tutti i database all'interno di server hello|
+|/servers/advisors/recommendedActions/read|Restituisce l'elenco di azioni consigliate per l’advisor specificato per il server|
+|/servers/advisors/recommendedActions/write|Applica l'azione consigliata al server|
+|/servers/usages/read|Restituisce la quota DTU del server e il consumo di DTU corrente del server da parte di tutti i database nel server|
 |/servers/elasticPoolEstimates/read|Restituisce l’elenco di stime del pool elastico già create per questo server|
 |/servers/elasticPoolEstimates/write|Crea una nuova stima del pool elastico per l'elenco dei database fornito|
-|/servers/auditingSettings/read|Recuperare i dettagli del blob server hello criteri configurati in un determinato server di controllo|
-|/servers/auditingSettings/write|Controllo delle modifiche hello server blob per un determinato server|
-|/servers/auditingSettings/operationResults/read|Recuperare i risultati del blob server hello operazione di impostazione di criteri di controllo|
-|/servers/backupLongTermRetentionVaults/read|Questa operazione è tooget usato un insieme di credenziali di conservazione dei backup a lungo termine. Restituisce informazioni sul server registrato toothis di hello insieme di credenziali.|
+|/servers/auditingSettings/read|Recupera i dettagli dei criteri di controllo del BLOB del server configurati in uno specifico server|
+|/servers/auditingSettings/write|Modifica il controllo del BLOB del server per uno specifico server|
+|/servers/auditingSettings/operationResults/read|Recupera il risultato dell’operazione di impostazione criteri di controllo BLOB del server|
+|/servers/backupLongTermRetentionVaults/read|Questa operazione serve per acquisire un insieme di credenziali di conservazione a lungo termine del backup. Restituisce informazioni sull’insieme di credenziali registrato su questo server.|
 |/servers/backupLongTermRetentionVaults/write|Registra un insieme di credenziali di conservazione a lungo termine del backup|
 |/servers/restorableDroppedDatabases/read|Recupera un elenco di database eliminati su uno specifico server che rientrano ancora nei criteri di conservazione. Questa operazione restituisce un elenco di database e metadati associati, come ad esempio la data di eliminazione.|
 |/servers/databases/read|Restituisce un elenco di server in un gruppo di risorse per una sottoscrizione|
 |/servers/databases/write|Crea un nuovo server o modifica le proprietà di un server esistente in un gruppo di risorse per una sottoscrizione|
 |/servers/databases/delete|Elimina un server e tutti i database e i pool elastici contenuti|
-|/servers/databases/export/action|Creare un nuovo database nel server di hello e distribuire lo schema e dati da un pacchetto con estensione DacPac|
+|/servers/databases/export/action|Crea un nuovo database sul server e distribuisce schema e dati da un pacchetto DacPac|
 |/servers/databases/VulnerabilityAssessmentScans/action|Esegue la scansione del database per la valutazione della vulnerabilità.|
 |/servers/databases/pause/action|Sospende un database versione DataWarehouse|
 |/servers/databases/resume/action|Riprende un database versione DataWarehouse|
-|/servers/databases/operationResults/read|Viene utilizzata l'operazione tootrack lo stato di avanzamento dell'operazione di database a esecuzione prolungata, ad esempio scala.|
+|/servers/databases/operationResults/read|L’operazione viene utilizzata per tenere traccia dei progressi di un’operazione di database prolungata, come ad esempio la scalabilità.|
 |/servers/databases/replicationLinks/read|Restituisce i dettagli sui collegamenti di replica stabiliti per uno specifico database|
-|/servers/databases/replicationLinks/delete|È possibile terminare la relazione di replica hello in modo forzato e con potenziale perdita di dati|
-|/servers/databases/replicationLinks/unlink/action|Terminare la relazione di replica hello in modo forzato o dopo la sincronizzazione con partner hello|
-|/servers/databases/replicationLinks/failover/action|Failover dopo la sincronizzazione di tutte le modifiche da hello primario, creazione di questo database primario di remoto hello primari, rendendo della relazione di replica hello in un database secondario|
-|/servers/databases/replicationLinks/forceFailoverAllowDataLoss/action|Failover immediatamente con potenziale perdita di dati, rendendo il database in remoto hello primari, rendendo della relazione di replica hello primario in un database secondario|
-|/servers/databases/replicationLinks/updateReplicationMode/action|Aggiornare la modalità di replica per collegamento toosynchronous o in modalità asincrona|
+|/servers/databases/replicationLinks/delete|Termina forzatamente la relazione di replica e con potenziale perdita di dati|
+|/servers/databases/replicationLinks/unlink/action|Termina forzatamente la relazione di replica o dopo la sincronizzazione con il partner|
+|/servers/databases/replicationLinks/failover/action|Failover dopo la sincronizzazione di tutte modifiche dal database primario, rendendo questo database primario nella relazione di replica e rendendo il database primario remoto il database secondario|
+|/servers/databases/replicationLinks/forceFailoverAllowDataLoss/action|Esegue immediatamente il failover con potenziale perdita di dati, rendendo questo database primario nella relazione di replica e rendendo il database primario remoto il database secondario|
+|/servers/databases/replicationLinks/updateReplicationMode/action|Aggiorna la modalità di replica per il collegamento in modalità sincrona o asincrona|
 |/servers/databases/replicationLinks/operationResults/read|Ottiene lo stato di operazioni prolungate sui collegamenti di replica del database|
-|/servers/databases/dataMaskingPolicies/read|Recuperare i dettagli del criterio configurato su un determinato database di maschera dati hello|
+|/servers/databases/dataMaskingPolicies/read|Recupera i dettagli dei criteri di mascheramento dati configurati in uno specifico database|
 |/servers/databases/dataMaskingPolicies/write|Modifica i criteri di mascheramento dati per uno specifico database|
-|/servers/databases/dataMaskingPolicies/rules/read|Recuperare i dettagli della regola dei criteri configurata su un determinato database di maschera dati hello|
+|/servers/databases/dataMaskingPolicies/rules/read|Recupera i dettagli della regola per i criteri di mascheramento dati configurati in uno specifico database|
 |/servers/databases/dataMaskingPolicies/rules/write|Modifica la regola per i criteri di mascheramento dati per uno specifico database|
-|/servers/databases/securityAlertPolicies/read|Recuperare i dettagli dei criteri di rilevamento minacce hello configurato su un determinato database|
-|/servers/databases/securityAlertPolicies/write|Modificare i criteri di rilevamento minacce hello per un determinato database|
+|/servers/databases/securityAlertPolicies/read|Recupera i dettagli dei criteri di rilevamento minacce configurati in uno specifico database|
+|/servers/databases/securityAlertPolicies/write|Modifica i criteri di rilevamento minacce per uno specifico database|
 |/servers/databases/providers/Microsoft.Insights/<br>metricDefinitions/read|Restituisce i tipi di metriche disponibili per i database|
-|/servers/databases/providers/Microsoft.Insights/<br>diagnosticSettings/read|Ottiene l'impostazione di diagnostica hello per risorse hello|
-|/servers/databases/providers/Microsoft.Insights/<br>diagnosticSettings/write|Crea o aggiorna l'impostazione di diagnostica di hello per risorsa hello|
-|/servers/databases/providers/Microsoft.Insights/<br>logDefinitions/read|Ottiene i log disponibili hello per i database|
+|/servers/databases/providers/Microsoft.Insights/<br>diagnosticSettings/read|Ottiene l'impostazione di diagnostica per la risorsa|
+|/servers/databases/providers/Microsoft.Insights/<br>diagnosticSettings/write|Crea o aggiorna l'impostazione di diagnostica per la risorsa|
+|/servers/databases/providers/Microsoft.Insights/<br>logDefinitions/read|Ottiene i registri disponibili per i database|
 |/servers/databases/topQueries/read|Restituisce le statistiche aggregate a runtime per la query selezionata nel periodo di tempo selezionato|
-|/servers/databases/topQueries/queryText/read|Restituisce il testo di hello Transact-SQL per l'ID query selezionata|
+|/servers/databases/topQueries/queryText/read|Restituisce il testo Transact-SQL per l'ID query selezionato|
 |/servers/databases/topQueries/statistics/read|Restituisce le statistiche aggregate a runtime per la query selezionata nel periodo di tempo selezionato|
-|/servers/databases/connectionPolicies/read|Recuperare i dettagli dei criteri di connessione hello configurato su un determinato database|
+|/servers/databases/connectionPolicies/read|Recupera i dettagli dei criteri di connessione configurati su uno specifico database|
 |/servers/databases/connectionPolicies/write|Modifica i criteri di connessione per uno specifico database|
 |/servers/databases/metrics/read|Restituisce le metriche di utilizzo delle risorse del database|
-|/servers/databases/auditRecords/read|Recuperare i record di controllo di hello database blob|
+|/servers/databases/auditRecords/read|Recupera i record di controllo BLOB del database|
 |/servers/databases/transparentDataEncryption/read|Recupera lo stato e i dettagli della funzionalità di sicurezza di Transparent Data Encryption per uno specifico database|
 |/servers/databases/transparentDataEncryption/write|Abilita o disabilita la Transparent Data Encryption per uno specifico database|
 |/servers/databases/transparentDataEncryption/operationResults/read|Recupera lo stato e i dettagli della funzionalità di sicurezza di Transparent Data Encryption per uno specifico database|
-|/servers/databases/auditingPolicies/read|Recuperare i dettagli del criterio di tabella hello configurato su un determinato database|
-|/servers/databases/auditingPolicies/write|Modificare i criteri di controllo tabella hello per un determinato database|
-|/servers/databases/dataWarehouseQueries/read|Restituisce informazioni query distribuzione hello data warehouse per l'ID query selezionata|
-|/servers/databases/dataWarehouseQueries/<br>dataWarehouseQuerySteps/read|Distributed di hello restituisce informazioni sui passaggi di query per l'ID di passaggio selezionato di query di data warehouse|
-|/servers/databases/serviceTierAdvisors/read|Restituire suggerimento sulla scalabilità del database verso l'alto o verso il basso in base alle prestazioni tooimprove statistiche di esecuzione query o ridurre i costi|
-|/servers/databases/advisors/read|Restituisce l'elenco di Advisor è disponibile per il database hello|
+|/servers/databases/auditingPolicies/read|Recupera i dettagli dei criteri di controllo della tabella configurati in uno specifico database|
+|/servers/databases/auditingPolicies/write|Modifica i criteri di controllo della tabella per uno specifico database|
+|/servers/databases/dataWarehouseQueries/read|Restituisce le informazioni sulla query di distribuzione del data warehouse per l’ID query selezionato|
+|/servers/databases/dataWarehouseQueries/<br>dataWarehouseQuerySteps/read|Restituisce le informazioni sul passaggio della query distribuita della query del data warehouse per l’ID passaggio selezionato|
+|/servers/databases/serviceTierAdvisors/read|Restituisce un suggerimento sulla scalabilità verticale o orizzontale del database in base alle statistiche di esecuzione query per migliorare le prestazioni o ridurre i costi|
+|/servers/databases/advisors/read|Restituisce l'elenco degli advisor disponibili per il database|
 |/servers/databases/advisors/write|Aggiorna lo stato di esecuzione automatica di un advisor a livello di database.|
-|/servers/databases/advisors/recommendedActions/read|Restituisce l'elenco di azioni consigliate di preparazione specificato per il database hello|
-|/servers/databases/advisors/recommendedActions/write|Applicare l'azione sul database hello consigliata hello|
+|/servers/databases/advisors/recommendedActions/read|Restituisce l'elenco di azioni consigliate per l’advisor specificato per il database|
+|/servers/databases/advisors/recommendedActions/write|Applica l'azione consigliata al database|
 |/servers/databases/usages/read|Restituisce la dimensione massima raggiungibile dal database e la dimensione attualmente occupata dai dati|
-|/servers/databases/queryStore/read|Restituisce i valori correnti delle impostazioni di archivio Query per database hello|
-|/servers/databases/queryStore/write|Aggiorna l'impostazione di archivio Query per il database hello|
-|/servers/databases/auditingSettings/read|Recuperare i dettagli del criterio di controllo blob hello configurato su un determinato database|
-|/servers/databases/auditingSettings/write|Modificare i criteri di controllo hello blob per un determinato database|
+|/servers/databases/queryStore/read|Restituisce i valori correnti delle impostazioni di Archivio query per il database|
+|/servers/databases/queryStore/write|Aggiorna le impostazioni di Archivio query per il database|
+|/servers/databases/auditingSettings/read|Recupera i dettagli dei criteri di controllo del BLOB configurati in uno specifico database|
+|/servers/databases/auditingSettings/write|Modifica i criteri di controllo del BLOB per uno specifico database|
 |/servers/databases/schemas/tables/recommendedIndexes/read|Recupera l’elenco di raccomandazioni sull’indice su un database|
 |/servers/databases/schemas/tables/recommendedIndexes/write|Applica la raccomandazione sull’indice|
 |/servers/databases/schemas/tables/columns/read|Recupera l'elenco delle colonne di una tabella|
-|/servers/databases/missingindexes/read|Restituire suggerimenti toocreate gli indici di database, modificare o eliminare ordine tooimprove prestazioni di query|
+|/servers/databases/missingindexes/read|Restituisce le raccomandazioni sugli indici di database da creare, modificare o eliminare per migliorare le prestazioni delle query|
 |/servers/databases/missingindexes/write|Usa la raccomandazione sull’indice di database in uno specifico database|
 |/servers/databases/importExportOperationResults/read|Restituisce i dettagli sulle operazioni di importazione o esportazione del database dal DacPac situato sull’account di archiviazione|
-|/servers/importExportOperationResults/read|Restituire l'elenco di hello con i dettagli per le operazioni di importazione di database da account di archiviazione in un determinato server|
+|/servers/importExportOperationResults/read|Restituisce l'elenco con i dettagli per le operazioni di importazione del database dall’account di archiviazione su uno specifico server|
 
 ## <a name="microsoftstorage"></a>Microsoft.Storage
 
 | Operazione | Descrizione |
 |---|---|
-|/register/action|Registra sottoscrizione hello per provider di risorse di archiviazione hello e consente la creazione di hello di account di archiviazione.|
+|/register/action|Registra la sottoscrizione per il provider di risorse di archiviazione e consente la creazione di account di archiviazione.|
 |/checknameavailability/read|Controlla che il nome dell’account sia valido e non in uso.|
-|/storageAccounts/write|Crea un account di archiviazione con hello specificato parametri o aggiornamento hello proprietà o i tag oppure aggiunge personalizzato dominio per hello specificato l'account di archiviazione.|
+|/storageAccounts/write|Crea un account di archiviazione con i parametri specificati o aggiorna le proprietà o i tag o aggiunge un dominio personalizzato per l’account di archiviazione specificato.|
 |/storageAccounts/delete|Elimina un account di archiviazione esistente.|
-|/storageAccounts/listkeys/action|Restituisce le chiavi di accesso hello per hello specificato l'account di archiviazione.|
-|/storageAccounts/regeneratekey/action|Rigenerare le chiavi di accesso hello per hello specificato l'account di archiviazione.|
-|/storageAccounts/read|Restituisce l'elenco di account di archiviazione di hello o ottiene le proprietà di hello per hello specificavano l'account di archiviazione.|
-|/storageAccounts/listAccountSas/action|Restituisce il token di firma di accesso condiviso di hello per hello specificato l'account di archiviazione.|
+|/storageAccounts/listkeys/action|Restituisce le chiavi di accesso per l'account di archiviazione specificato.|
+|/storageAccounts/regeneratekey/action|Rigenera le chiavi di accesso per l'account di archiviazione specificato.|
+|/storageAccounts/read|Restituisce l'elenco di account di archiviazione o ottiene le proprietà per l’account di archiviazione specificato.|
+|/storageAccounts/listAccountSas/action|Restituisce il token SAS dell’account per l’account di archiviazione specificato.|
 |/storageAccounts/listServiceSas/action|Token SAS del servizio di archiviazione|
 |/storageAccounts/services/diagnosticSettings/write|Crea/Aggiorna le impostazioni di diagnostica dell’account di archiviazione.|
-|/skus/read|Elenca gli SKU supportati da Microsoft.Storage hello.|
-|/usages/read|Restituisce hello limite e conteggio di utilizzo corrente di hello per le risorse di hello sottoscrizione specificata|
-|/operations/read|Stato di hello viene eseguito il polling di un'operazione asincrona.|
+|/skus/read|Elenca gli SKU supportati da Microsoft.Storage.|
+|/usages/read|Restituisce il limite e il conteggio corrente degli utilizzi per le risorse nella sottoscrizione specificata|
+|/operations/read|Interroga sullo stato di un’operazione asincrona.|
 |/locations/deleteVirtualNetworkOrSubnets/action|Avvisa Microsoft.Storage che la rete virtuale o la subnet è in fase di eliminazione|
 
 ## <a name="microsoftstorsimple"></a>Microsoft.StorSimple
 
 | Operazione | Descrizione |
 |---|---|
-|/managers/clearAlerts/action|Deselezionare tutti gli avvisi di hello associati al gestore di dispositivi hello.|
-|/managers/getActivationKey/action|Ottieni chiave di attivazione per la gestione di dispositivi hello.|
-|/managers/regenerateActivationKey/action|Rigenerare la chiave di attivazione per la gestione di dispositivi hello.|
-|/managers/regenarateRegistationCertificate/action|Rigenerare il certificato di registrazione per i responsabili di dispositivo hello.|
-|/managers/getEncryptionKey/action|Ottenere la chiave di crittografia per la gestione di dispositivi hello.|
-|/managers/read|Elenca o ottiene hello Device Manager|
-|/managers/delete|Elimina Manager dispositivi hello|
-|/managers/write|Crea o aggiorna hello Device Manager|
+|/managers/clearAlerts/action|Cancella tutti gli avvisi associati a Gestione dispositivi.|
+|/managers/getActivationKey/action|Ottiene la chiave di attivazione per Gestione dispositivi.|
+|/managers/regenerateActivationKey/action|Rigenera la chiave di attivazione per Gestione dispositivi.|
+|/managers/regenarateRegistationCertificate/action|Rigenera il certificato di registrazione per Gestione dispositivi.|
+|/managers/getEncryptionKey/action|Ottiene la chiave di crittografia per Gestione dispositivi.|
+|/managers/read|Elenca o ottiene gli strumenti di gestione dei dispositivi|
+|/managers/delete|Elimina gli strumenti di gestione dei dispositivi|
+|/managers/write|Crea o aggiorna gli strumenti di gestione dei dispositivi|
 |/managers/configureDevice/action|Configura un dispositivo|
-|/managers/listActivationKey/action|Ottiene la chiave di attivazione hello di hello dispositivo StorSimple Manager.|
+|/managers/listActivationKey/action|Ottiene la chiave di attivazione di Gestione dispositivi StorSimple.|
 |/managers/listPublicEncryptionKey/action|Elenca le chiavi di crittografia pubbliche di uno strumento Gestione dispositivi StorSimple.|
 |/managers/listPrivateEncryptionKey/action|Ottiene la chiave di crittografia privata per uno strumento Gestione dispositivi StorSimple.|
 |/managers/provisionCloudAppliance/action|Crea una nuova appliance cloud.|
 |/Managers/write|L'operazione Crea insieme di credenziali crea una risorsa di Azure di tipo 'vault'|
-|/Managers/read|Hello operazione Ottieni insieme di credenziali Ottiene un oggetto che rappresenta le risorse di Azure di tipo 'vault' hello|
-|/Managers/delete|Hello Elimina insieme di credenziali operazione eliminazioni hello specificato risorsa di Azure di tipo 'vault'|
-|/managers/storageAccountCredentials/write|Creare o aggiornare le credenziali dell'Account di archiviazione hello|
-|/managers/storageAccountCredentials/read|Elenca o ottiene le credenziali dell'Account di archiviazione hello|
-|/managers/storageAccountCredentials/delete|Elimina le credenziali dell'Account di archiviazione hello|
+|/Managers/read|L'operazione Ottieni insieme di credenziali ottiene un oggetto che rappresenta la risorsa di Azure di tipo 'vault'|
+|/Managers/delete|L'operazione Elimina insieme di credenziali elimina la risorsa di Azure specificata di tipo 'vault'|
+|/managers/storageAccountCredentials/write|Crea o aggiorna le credenziali dell'account di archiviazione|
+|/managers/storageAccountCredentials/read|Elenca o ottiene le credenziali dell'account di archiviazione|
+|/managers/storageAccountCredentials/delete|Elimina le credenziali dell'account di archiviazione|
 |/managers/storageAccountCredentials/listAccessKey/action|Elenca le chiavi di accesso delle credenziali dell'account di archiviazione|
-|/managers/accessControlRecords/read|Elenca o ottiene hello record di controllo di accesso|
-|/managers/accessControlRecords/write|Creare o aggiornare i record di controllo di accesso hello|
-|/managers/accessControlRecords/delete|Elimina record di controllo di accesso hello|
-|/managers/metrics/read|Elenca o ottiene hello metriche|
-|/managers/bandwidthSettings/read|L'elenco delle impostazioni della larghezza di banda hello (solo serie 8000)|
+|/managers/accessControlRecords/read|Elenca o ottiene i record di controllo di accesso|
+|/managers/accessControlRecords/write|Crea o aggiorna i record di controllo di accesso|
+|/managers/accessControlRecords/delete|Elimina i record di controllo di accesso|
+|/managers/metrics/read|Elenca o ottiene la metrica|
+|/managers/bandwidthSettings/read|Elenca le impostazioni di larghezza di banda (solo serie 8000)|
 |/managers/bandwidthSettings/write|Crea una nuova impostazione o aggiorna le impostazioni di larghezza di banda esistenti (solo serie 8000)|
 |/managers/bandwidthSettings/delete|Elimina impostazioni di larghezza di banda esistenti (solo serie 8000)|
-|/Managers/extendedInformation/read|Hello operazione Ottieni informazioni estese Ottiene informazioni estese di un oggetto che rappresenta le risorse di Azure di tipo hello? insieme di credenziali?|
-|/Managers/extendedInformation/write|Hello operazione Ottieni informazioni estese Ottiene informazioni estese di un oggetto che rappresenta le risorse di Azure di tipo hello? insieme di credenziali?|
-|/Managers/extendedInformation/delete|Hello operazione Ottieni informazioni estese Ottiene informazioni estese di un oggetto che rappresenta le risorse di Azure di tipo hello? insieme di credenziali?|
-|/managers/alerts/read|Elenca o ottiene hello avvisi|
-|/managers/storageDomains/read|Elenca o ottiene hello archiviazione domini|
-|/managers/storageDomains/write|Creare o aggiornare i domini di archiviazione hello|
-|/managers/storageDomains/delete|Elimina hello archiviazione domini|
+|/Managers/extendedInformation/read|L'operazione Ottieni informazioni estese ottiene le informazioni estese di un oggetto che rappresenta la risorsa di Azure di tipo ?vault?|
+|/Managers/extendedInformation/write|L'operazione Ottieni informazioni estese ottiene le informazioni estese di un oggetto che rappresenta la risorsa di Azure di tipo ?vault?|
+|/Managers/extendedInformation/delete|L'operazione Ottieni informazioni estese ottiene le informazioni estese di un oggetto che rappresenta la risorsa di Azure di tipo ?vault?|
+|/managers/alerts/read|Elenca o ottiene gli avvisi|
+|/managers/storageDomains/read|Elenca o ottiene i domini di archiviazione|
+|/managers/storageDomains/write|Crea o aggiorna i domini di archiviazione|
+|/managers/storageDomains/delete|Elimina i domini di archiviazione|
 |/managers/devices/scanForUpdates/action|Verifica la disponibilità di aggiornamenti per un dispositivo.|
 |/managers/devices/download/action|Scarica aggiornamenti per un dispositivo.|
 |/managers/devices/install/action|Installa aggiornamenti in un dispositivo.|
-|/managers/devices/read|Elenca o ottiene hello dispositivi|
-|/managers/devices/write|Creare o aggiornare i dispositivi hello|
-|/managers/devices/delete|Elimina i dispositivi hello|
+|/managers/devices/read|Elenca o ottiene i dispositivi|
+|/managers/devices/write|Crea o aggiorna i dispositivi|
+|/managers/devices/delete|Elimina i dispositivi|
 |/managers/devices/deactivate/action|Disattiva un dispositivo.|
 |/managers/devices/publishSupportPackage/action|Pubblica il pacchetto per il supporto di un dispositivo per la risoluzione dei problemi da parte del supporto tecnico Microsoft.|
-|/managers/devices/failover/action|Failover del dispositivo hello.|
-|/managers/devices/sendTestAlertEmail/action|Invia messaggio di avviso di test tooconfigured destinatari di posta elettronica.|
-|/managers/devices/installUpdates/action|Installa gli aggiornamenti nei dispositivi hello|
-|/managers/devices/listFailoverSets/action|Elenco hello failover imposta per un dispositivo esistente.|
-|/managers/devices/listFailoverTargets/action|Elenco di destinazioni di failover di dispositivi hello|
-|/managers/devices/publicEncryptionKey/action|Chiave di crittografia pubblica elenco di gestione di dispositivi hello|
-|/managers/devices/hardwareComponentGroups/<br>read|Hello elenco gruppi di componenti Hardware|
+|/managers/devices/failover/action|Failover del dispositivo.|
+|/managers/devices/sendTestAlertEmail/action|Invia messaggi di posta elettronica di avviso di test ai destinatari di posta elettronica configurati.|
+|/managers/devices/installUpdates/action|Installa aggiornamenti nei dispositivi|
+|/managers/devices/listFailoverSets/action|Elenca i set di failover per un dispositivo esistente.|
+|/managers/devices/listFailoverTargets/action|Elenca le destinazioni di failover dei dispositivi|
+|/managers/devices/publicEncryptionKey/action|Elenca le chiavi di crittografia pubbliche di Gestione dispositivi|
+|/managers/devices/hardwareComponentGroups/<br>read|Elenca i gruppi di componenti hardware|
 |/managers/devices/hardwareComponentGroups/<br>changeControllerPowerState/action|Modifica lo stato di alimentazione del controller dei gruppi di componenti hardware|
-|/managers/devices/metrics/read|Elenca o ottiene hello metriche|
-|/managers/devices/chapSettings/write|Creare o aggiornare le impostazioni Chap hello|
-|/managers/devices/chapSettings/read|Elenca o ottiene le impostazioni Chap hello|
-|/managers/devices/chapSettings/delete|Elimina le impostazioni Chap hello|
-|/managers/devices/backupScheduleGroups/read|Elenchi o gruppi di pianificazione di Backup hello Ottiene|
-|/managers/devices/backupScheduleGroups/write|Crea o aggiorna i gruppi di pianificazione di Backup hello|
-|/managers/devices/backupScheduleGroups/delete|Elimina gruppi di pianificazione di Backup hello|
-|/managers/devices/updateSummary/read|Elenca o ottiene hello riepilogo aggiornamento|
+|/managers/devices/metrics/read|Elenca o ottiene la metrica|
+|/managers/devices/chapSettings/write|Crea o aggiorna le impostazioni CHAP|
+|/managers/devices/chapSettings/read|Elenca o ottiene le impostazioni CHAP|
+|/managers/devices/chapSettings/delete|Elimina le impostazioni CHAP|
+|/managers/devices/backupScheduleGroups/read|Elenca o ottiene i gruppi di pianificazione del backup|
+|/managers/devices/backupScheduleGroups/write|Crea o aggiorna i gruppi di pianificazione del backup|
+|/managers/devices/backupScheduleGroups/delete|Elimina i gruppi di pianificazione del backup|
+|/managers/devices/updateSummary/read|Elenca o ottiene il riepilogo aggiornamenti|
 |/managers/devices/migrationSourceConfigurations/<br>import/action|Importa le configurazioni di origine per la migrazione|
-|/managers/devices/migrationSourceConfigurations/<br>startMigrationEstimate/action|Avviare un processo tooestimate hello durante hello processo di migrazione.|
+|/managers/devices/migrationSourceConfigurations/<br>startMigrationEstimate/action|Avvia un processo per stimare la durata del processo di migrazione.|
 |/managers/devices/migrationSourceConfigurations/<br>startMigration/action|Avvia la migrazione usando le configurazioni di origine|
 |/managers/devices/migrationSourceConfigurations/<br>confirmMigration/action|Conferma una migrazione completata correttamente e ne esegue il commit.|
-|/managers/devices/migrationSourceConfigurations/<br>fetchMigrationEstimate/action|Recuperare lo stato di hello per processo di stima della migrazione hello.|
-|/managers/devices/migrationSourceConfigurations/<br>fetchMigrationStatus/action|Recuperare lo stato di hello per la migrazione di hello.|
-|/managers/devices/migrationSourceConfigurations/<br>fetchConfirmMigrationStatus/action|Recupero hello conferma lo stato della migrazione.|
-|/managers/devices/alertSettings/read|Elenca o ottiene le impostazioni degli avvisi di hello|
-|/managers/devices/alertSettings/write|Creare o aggiornare le impostazioni degli avvisi di hello|
-|/managers/devices/networkSettings/read|Elenca o ottiene le impostazioni di rete hello|
+|/managers/devices/migrationSourceConfigurations/<br>fetchMigrationEstimate/action|Recupera lo stato del processo di stima della migrazione.|
+|/managers/devices/migrationSourceConfigurations/<br>fetchMigrationStatus/action|Recupera lo stato della migrazione.|
+|/managers/devices/migrationSourceConfigurations/<br>fetchConfirmMigrationStatus/action|Recupera lo stato di conferma della migrazione.|
+|/managers/devices/alertSettings/read|Elenca o ottiene le impostazioni degli avvisi|
+|/managers/devices/alertSettings/write|Crea o aggiorna le impostazioni degli avvisi|
+|/managers/devices/networkSettings/read|Elenca o ottiene le impostazioni di rete|
 |/managers/devices/networkSettings/write|Crea nuove impostazioni di rete o aggiorna quelle esistenti|
-|/managers/devices/jobs/read|Elenca o ottiene i processi di hello|
+|/managers/devices/jobs/read|Elenca o ottiene i processi|
 |/managers/devices/jobs/cancel/action|Annulla un processo in esecuzione|
-|/managers/devices/metricsDefinitions/read|Elenca o ottiene le definizioni di metriche di hello|
+|/managers/devices/metricsDefinitions/read|Elenca o ottiene le definizioni di metrica|
 |/managers/devices/volumeContainers/write|Crea nuovi contenitori del volume o aggiorna quelli esistenti (solo serie 8000)|
-|/managers/devices/volumeContainers/read|Elenco di contenitori di volumi hello (solo serie 8000)|
+|/managers/devices/volumeContainers/read|Elenca i contenitori del volume (solo serie 8000)|
 |/managers/devices/volumeContainers/delete|Elenca un contenitore del volume esistente (solo serie 8000)|
 |/managers/devices/volumeContainers/listEncryptionKeys/action|Elenca le chiavi di crittografia dei contenitori del volume|
 |/managers/devices/volumeContainers/rolloverEncryptionKey/action|Sostituisce le chiavi di crittografia dei contenitori del volume|
-|/managers/devices/volumeContainers/metrics/read|Elenco hello metriche|
-|/managers/devices/volumeContainers/volumes/read|Elenco volumi hello|
+|/managers/devices/volumeContainers/metrics/read|Elenca le metriche|
+|/managers/devices/volumeContainers/volumes/read|Elenca i volumi|
 |/managers/devices/volumeContainers/volumes/write|Crea nuovi volumi o aggiorna quelli esistenti|
 |/managers/devices/volumeContainers/volumes/delete|Elimina i volumi esistenti|
-|/managers/devices/volumeContainers/volumes/metrics/read|Elenco hello metriche|
-|/managers/devices/volumeContainers/volumes/metricsDefinitions/read|Elenco di definizioni di metriche hello|
-|/managers/devices/volumeContainers/metricsDefinitions/read|Elenco di definizioni di metriche hello|
-|/managers/devices/iscsiservers/read|Elenca o ottiene iSCSI hello server|
-|/managers/devices/iscsiservers/write|Crea o aggiorna iSCSI hello server|
-|/managers/devices/iscsiservers/delete|Elimina iSCSI hello server|
+|/managers/devices/volumeContainers/volumes/metrics/read|Elenca le metriche|
+|/managers/devices/volumeContainers/volumes/metricsDefinitions/read|Elenca le definizioni di metrica|
+|/managers/devices/volumeContainers/metricsDefinitions/read|Elenca le definizioni di metrica|
+|/managers/devices/iscsiservers/read|Elenca o ottiene i server iSCSI|
+|/managers/devices/iscsiservers/write|Crea o aggiorna i server iSCSI|
+|/managers/devices/iscsiservers/delete|Elimina i server iSCSI|
 |/managers/devices/iscsiservers/backup/action|Esegue il backup di un server iSCSI.|
-|/managers/devices/iscsiservers/metrics/read|Elenca o ottiene hello metriche|
-|/managers/devices/iscsiservers/disks/read|Elenca o ottiene hello dischi|
-|/managers/devices/iscsiservers/disks/write|Creare o aggiornare i dischi hello|
-|/managers/devices/iscsiservers/disks/delete|Elimina dischi hello|
-|/managers/devices/iscsiservers/disks/metrics/read|Elenca o ottiene hello metriche|
-|/managers/devices/iscsiservers/disks/metricsDefinitions/read|Elenca o ottiene le definizioni di metriche di hello|
-|/managers/devices/iscsiservers/metricsDefinitions/read|Elenca o ottiene le definizioni di metriche di hello|
-|/managers/devices/backups/read|Elenca o ottiene hello del Set di Backup|
-|/managers/devices/backups/delete|Eliminazioni hello del Set di Backup|
-|/managers/devices/backups/restore/action|Ripristinare tutti i volumi di hello da un set di backup.|
+|/managers/devices/iscsiservers/metrics/read|Elenca o ottiene le metriche|
+|/managers/devices/iscsiservers/disks/read|Elenca o ottiene i dischi|
+|/managers/devices/iscsiservers/disks/write|Crea o aggiorna i dischi|
+|/managers/devices/iscsiservers/disks/delete|Elimina i dischi|
+|/managers/devices/iscsiservers/disks/metrics/read|Elenca o ottiene le metriche|
+|/managers/devices/iscsiservers/disks/metricsDefinitions/read|Elenca o ottiene le definizioni di metrica|
+|/managers/devices/iscsiservers/metricsDefinitions/read|Elenca o ottiene le definizioni di metrica|
+|/managers/devices/backups/read|Elenca o ottiene i set di backup|
+|/managers/devices/backups/delete|Elimina il set di backup|
+|/managers/devices/backups/restore/action|Ripristina tutti i volumi da un set di backup.|
 |/managers/devices/backups/elements/clone/action|Clona una condivisione o volume usando un elemento di backup.|
 |/managers/devices/backupPolicies/write|Crea nuovi criteri di backup o aggiorna quelli esistenti (solo serie 8000)|
-|/managers/devices/backupPolicies/read|Hello elenco Criteri di Backup (solo serie 8000)|
+|/managers/devices/backupPolicies/read|Elenca i criteri di backup (solo serie 8000)|
 |/managers/devices/backupPolicies/delete|Elimina criteri di backup esistenti (solo serie 8000)|
-|/managers/devices/backupPolicies/backup/action|Eseguire il backup di tutti i volumi di hello protetti dai criteri hello un toocreate backup manuale un su richiesta.|
+|/managers/devices/backupPolicies/backup/action|A partire da un backup manuale crea un backup su richiesta di tutti i volumi protetti dai criteri.|
 |/managers/devices/backupPolicies/schedules/write|Crea pianificazioni o aggiorna pianificazioni esistenti|
-|/managers/devices/backupPolicies/schedules/read|Elenco hello pianificazioni|
+|/managers/devices/backupPolicies/schedules/read|Elenca le pianificazioni|
 |/managers/devices/backupPolicies/schedules/delete|Elimina le pianificazioni esistenti|
-|/managers/devices/securitySettings/update/action|Aggiornare le impostazioni di sicurezza hello.|
-|/managers/devices/securitySettings/read|Elenco di impostazioni di sicurezza hello|
-|/managers/devices/securitySettings/<br>syncRemoteManagementCertificate/action|Sincronizzare il certificato di gestione remota hello per un dispositivo.|
+|/managers/devices/securitySettings/update/action|Aggiorna le impostazioni di protezione.|
+|/managers/devices/securitySettings/read|Elenca le impostazioni di protezione|
+|/managers/devices/securitySettings/<br>syncRemoteManagementCertificate/action|Sincronizza il certificato di gestione remota per un dispositivo.|
 |/managers/devices/securitySettings/write|Crea nuove impostazioni di protezione o aggiorna quelle esistenti|
-|/managers/devices/fileservers/read|Elenca o ottiene hello File server|
-|/managers/devices/fileservers/write|Crea o aggiorna hello File server|
-|/managers/devices/fileservers/delete|Elimina hello File server|
+|/managers/devices/fileservers/read|Elenca o ottiene i file server|
+|/managers/devices/fileservers/write|Crea o aggiorna i file server|
+|/managers/devices/fileservers/delete|Elimina i file server|
 |/managers/devices/fileservers/backup/action|Esegue il backup di un file server.|
-|/managers/devices/fileservers/metrics/read|Elenca o ottiene hello metriche|
-|/managers/devices/fileservers/shares/write|Creare o aggiornare le condivisioni hello|
-|/managers/devices/fileservers/shares/read|Elenca o ottiene hello condivisioni|
-|/managers/devices/fileservers/shares/delete|Elimina hello condivisioni|
-|/managers/devices/fileservers/shares/metrics/read|Elenca o ottiene hello metriche|
-|/managers/devices/fileservers/shares/metricsDefinitions/read|Elenca o ottiene le definizioni di metriche di hello|
-|/managers/devices/fileservers/metricsDefinitions/read|Elenca o ottiene le definizioni di metriche di hello|
-|/managers/devices/timeSettings/read|Elenca o ottiene le impostazioni dell'ora hello|
+|/managers/devices/fileservers/metrics/read|Elenca o ottiene la metrica|
+|/managers/devices/fileservers/shares/write|Crea o aggiorna le condivisioni|
+|/managers/devices/fileservers/shares/read|Elenca o ottiene le condivisioni|
+|/managers/devices/fileservers/shares/delete|Elimina le condivisioni|
+|/managers/devices/fileservers/shares/metrics/read|Elenca o ottiene la metrica|
+|/managers/devices/fileservers/shares/metricsDefinitions/read|Elenca o ottiene le definizioni di metrica|
+|/managers/devices/fileservers/metricsDefinitions/read|Elenca o ottiene le definizioni di metrica|
+|/managers/devices/timeSettings/read|Elenca o ottiene le impostazioni ora|
 |/managers/devices/timeSettings/write|Crea nuove impostazioni ora o aggiorna quelle esistenti|
-|/Managers/certificates/write|operazione di certificato risorsa Aggiorna Hello Aggiorna certificato della credenziale dell'insieme di credenziali/risorsa hello.|
-|/managers/cloudApplianceConfigurations/read|Elenco di configurazioni supportate di Cloud accessorio hello|
-|/managers/metricsDefinitions/read|Elenca o ottiene le definizioni di metriche di hello|
-|/managers/encryptionSettings/read|Elenca o ottiene le impostazioni di crittografia hello|
+|/Managers/certificates/write|L'operazione Aggiorna certificato risorsa aggiorna il certificato delle credenziali della risorsa o dell'insieme di credenziali.|
+|/managers/cloudApplianceConfigurations/read|Elenca le configurazioni supportate dall'appliance cloud|
+|/managers/metricsDefinitions/read|Elenca o ottiene le definizioni di metrica|
+|/managers/encryptionSettings/read|Elenca o ottiene le impostazioni di crittografia|
 
 ## <a name="microsoftstreamanalytics"></a>Microsoft.StreamAnalytics
 
@@ -1938,10 +1938,10 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/streamingjobs/Read|Legge un processo di Analisi di flusso|
 |/streamingjobs/Write|Scrive un processo di Analisi di flusso|
 |/streamingjobs/Delete|Elimina un processo di Analisi di flusso|
-|/streamingjobs/providers/Microsoft.Insights/metricDefinitions/read|Ottiene le metriche disponibili hello per streamingjobs|
+|/streamingjobs/providers/Microsoft.Insights/metricDefinitions/read|Ottiene la metrica disponibile per i processi di streaming|
 |/streamingjobs/providers/Microsoft.Insights/diagnosticSettings/read|Legge un'impostazione di diagnostica.|
 |/streamingjobs/providers/Microsoft.Insights/diagnosticSettings/write|Scrive un'impostazione di diagnostica.|
-|/streamingjobs/providers/Microsoft.Insights/logDefinitions/read|Ottiene i log disponibili hello per streamingjobs|
+|/streamingjobs/providers/Microsoft.Insights/logDefinitions/read|Ottiene i registri disponibili per i processi di streaming|
 |/streamingjobs/transformations/Read|Crea una trasformazione processo di Analisi di flusso|
 |/streamingjobs/transformations/Write|Scrive una trasformazione processo di Analisi di flusso|
 |/streamingjobs/transformations/Delete|Elimina una trasformazione processo di Analisi di flusso|
@@ -1956,25 +1956,25 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 
 | Operazione | Descrizione |
 |---|---|
-|/register/action|Registra i Provider di risorse tooSupport|
-|/supportTickets/read|Ottiene i dettagli di Ticket di supporto (incluso lo stato, gravità, i dettagli di contatto e le comunicazioni) o ottiene l'elenco di hello di ticket di supporto per le sottoscrizioni.|
+|/register/action|Esegue la registrazione al provider di risorse di supporto|
+|/supportTickets/read|Ottiene i dettagli del ticket di supporto (inclusi stato, gravità, dettagli di contatto e comunicazioni) oppure ottiene l'elenco dei ticket di supporto dalle diverse sottoscrizioni.|
 |/supportTickets/write|Crea o aggiorna un ticket di supporto. È possibile creare un ticket di supporto per problemi associati ai settori Tecnico, Fatturazione, Quote o Gestione della sottoscrizione. È possibile aggiornare la gravità, i dettagli di contatto e le comunicazioni dei ticket di supporto esistenti.|
 
 ## <a name="microsoftweb"></a>Microsoft.Web
 
 | Operazione | Descrizione |
 |---|---|
-|/unregister/action|Annullare la registrazione del provider di risorse di Microsoft per la sottoscrizione di hello.|
+|/unregister/action|Annulla la registrazione del provider di risorse Microsoft.Web per la sottoscrizione.|
 |/validate/action|Convalida il provider di risorse Microsoft.Web per la sottoscrizione.|
-|/register/action|Registrare il provider di risorse Microsoft per la sottoscrizione di hello.|
-|/hostingEnvironments/Read|Ottenere le proprietà di hello dell'ambiente del servizio App|
+|/register/action|Registra il provider di risorse Microsoft.Web per la sottoscrizione.|
+|/hostingEnvironments/Read|Ottiene le proprietà di un ambiente del servizio app|
 |/hostingEnvironments/Write|Crea un nuovo ambiente del servizio app o ne aggiorna uno esistente|
 |/hostingEnvironments/Delete|Elimina un ambiente del servizio app|
 |/hostingEnvironments/reboot/Action|Riavvia tutti i computer in un ambiente del servizio app|
 |/hostingenvironments/resume/action|Ripristina l'esecuzione degli ambienti di hosting.|
 |/hostingenvironments/suspend/action|Sospende l'esecuzione degli ambienti di hosting.|
 |/hostingenvironments/metricdefinitions/read|Ottiene le definizioni metrica degli ambienti di hosting.|
-|/hostingEnvironments/workerPools/Read|Ottenere le proprietà di hello di un Pool di lavoro in un ambiente del servizio App|
+|/hostingEnvironments/workerPools/Read|Ottiene le proprietà di un pool di lavoro in un ambiente del servizio app|
 |/hostingEnvironments/workerPools/Write|Crea un nuovo pool di lavoro in un ambiente del servizio app o ne aggiorna uno esistente|
 |/hostingenvironments/workerpools/metricdefinitions/read|Ottiene le definizioni metrica dei pool di lavoro degli ambienti di hosting.|
 |/hostingenvironments/workerpools/metrics/read|Ottiene la metrica dei pool di lavoro degli ambienti di hosting.|
@@ -1985,7 +1985,7 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/hostingenvironments/usages/read|Ottiene gli utilizzi degli ambienti di hosting.|
 |/hostingenvironments/capacities/read|Ottiene le capacità degli ambienti di hosting.|
 |/hostingenvironments/operations/read|Ottiene le operazioni degli ambienti di hosting.|
-|/hostingEnvironments/multiRolePools/Read|Ottenere le proprietà di hello di un Pool di server front-end in un ambiente del servizio App|
+|/hostingEnvironments/multiRolePools/Read|Ottiene le proprietà di un pool front-end in un ambiente del servizio app|
 |/hostingEnvironments/multiRolePools/Write|Crea un nuovo pool front-end o ne aggiorna uno esistente in un ambiente del servizio app|
 |/hostingenvironments/multirolepools/metricdefinitions/read|Ottiene le definizioni metrica dei pool multiruolo degli ambienti di hosting.|
 |/hostingenvironments/multirolepools/metrics/read|Ottiene la metrica dei pool multiruolo degli ambienti di hosting.|
@@ -1995,8 +1995,8 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/publishingusers/read|Ottiene gli utenti di pubblicazione.|
 |/publishingusers/write|Aggiorna gli utenti di pubblicazione.|
 |/checknameavailability/read|Verifica se il nome della risorsa è disponibile.|
-|/geoRegions/Read|Ottenere l'elenco di hello delle aree geografiche.|
-|/sites/Read|Ottenere le proprietà di hello di un'App Web|
+|/geoRegions/Read|Ottiene l'elenco delle aree geografiche.|
+|/sites/Read|Ottiene le proprietà di un'app Web|
 |/sites/Write|Crea una nuova app Web o ne aggiorna una esistente|
 |/sites/Delete|Eliminare un'app Web esistente|
 |/sites/backup/Action|Crea il backup di una nuova app Web|
@@ -2007,7 +2007,7 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/sites/stop/Action|Arresta un'app Web|
 |/sites/slotsswap/Action|Scambia gli slot di distribuzione di un'app Web|
 |/sites/slotsdiffs/Action|Ottiene le differenze di configurazione tra l'app Web e gli slot|
-|/sites/applySlotConfig/Action|Applicare la configurazione dello slot di app web da un'app web corrente di destinazione slot toohello|
+|/sites/applySlotConfig/Action|Applica la configurazione slot dell'app Web dallo slot di destinazione all'app Web corrente|
 |/sites/resetSlotConfig/Action|Ripristina la configurazione dell'app Web|
 |/sites/functions/action|Funzioni delle app Web.|
 |/sites/listsyncfunctiontriggerstatus/action|Elenca le app Web di stato dei trigger delle funzioni.|
@@ -2054,9 +2054,9 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/sites/slots/stop/Action|Arresta uno slot di app Web|
 |/sites/slots/slotsswap/Action|Scambia gli slot di distribuzione di un'app Web|
 |/sites/slots/slotsdiffs/Action|Ottiene le differenze di configurazione tra l'app Web e gli slot|
-|/sites/slots/applySlotConfig/Action|Applicare la configurazione dello slot di app web da uno slot di destinazione slot toohello corrente.|
+|/sites/slots/applySlotConfig/Action|Applica la configurazione slot dell'app Web dallo slot di destinazione allo slot corrente.|
 |/sites/slots/resetSlotConfig/Action|Ripristina la configurazione dello slot di app Web|
-|/sites/slots/Read|Ottenere le proprietà di hello di uno slot di distribuzione di App Web|
+|/sites/slots/Read|Ottiene le proprietà di uno slot di distribuzione di app Web|
 |/sites/slots/newpassword/action|Consente di creare una nuova password per slot di app Web.|
 |/sites/slots/sync/action|Sincronizza gli slot di app Web.|
 |/sites/slots/operationresults/read|Ottiene i risultati delle operazioni degli slot di app Web.|
@@ -2098,7 +2098,7 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/sites/slots/sourcecontrols/Delete|Elimina le impostazioni di configurazione del controllo codice sorgente degli slot per le app Web|
 |/sites/slots/restore/read|Ottiene il ripristino degli slot per le app Web.|
 |/sites/slots/analyzecustomhostname/read|Ottiene l'analisi nome host personalizzato degli slot per le app Web.|
-|/sites/slots/backups/Read|Ottenere le proprietà di hello del backup degli slot dell'app web|
+|/sites/slots/backups/Read|Ottiene le proprietà del backup di uno slot delle app Web|
 |/sites/slots/backups/list/action|Elenca i backup degli slot per le app Web.|
 |/sites/slots/backups/restore/action|Ripristina i backup degli slot per le app Web.|
 |/sites/slots/deployments/delete|Elimina le distribuzioni degli slot per le app Web.|
@@ -2109,7 +2109,7 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/sites/hybridconnection/read|Ottiene la connessione ibrida delle app Web.|
 |/sites/hybridconnection/write|Aggiorna la connessione ibrida delle app Web.|
 |/sites/recommendationhistory/read|Ottiene la cronologia consigli delle app Web.|
-|/sites/recommendations/Read|Ottenere l'elenco di hello di indicazioni per l'app web.|
+|/sites/recommendations/Read|Ottiene l'elenco dei consigli per l'app Web.|
 |/sites/recommendations/disable/action|Disattiva i consigli delle app Web.|
 |/sites/config/Read|Ottiene le impostazioni di configurazione delle app Web|
 |/sites/config/list/Action|Elenca le impostazioni dell'app Web sensibili alla sicurezza, ad esempio le credenziali di pubblicazione, le impostazioni dell'app e le stringhe di connessione|
@@ -2124,7 +2124,7 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/sites/sourcecontrols/Delete|Elimina le impostazioni di configurazione del controllo codice sorgente dell'app Web|
 |/sites/restore/read|Ottiene il ripristino delle app Web.|
 |/sites/analyzecustomhostname/read|Analizza il nome host personalizzato.|
-|/sites/backups/Read|Ottenere le proprietà di hello del backup dell'app web|
+|/sites/backups/Read|Ottiene le proprietà del backup di un'app Web|
 |/sites/backups/list/action|Elenca i backup delle app Web.|
 |/sites/backups/restore/action|Ripristina i backup delle app Web.|
 |/sites/snapshots/read|Ottiene snapshot delle app Web.|
@@ -2145,10 +2145,10 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/sites/diagnostics/frebanalysis/read|Ottiene l'analisi FREB della diagnostica delle app Web.|
 |/availablestacks/read|Ottiene gli stack disponibili.|
 |/isusernameavailable/read|Verifica se il nome utente è disponibile.|
-|/Microsoft.Web/apiManagementAccounts/<br>apis/Read|Ottenere l'elenco di hello delle API.|
+|/Microsoft.Web/apiManagementAccounts/<br>apis/Read|Ottiene l'elenco delle API.|
 |/Microsoft.Web/apiManagementAccounts/<br>apis/Write|Aggiunge una nuova API o ne aggiorna una esistente.|
 |/Microsoft.Web/apiManagementAccounts/<br>apis/Delete|Elimina un'API esistente.|
-|/Microsoft.Web/apiManagementAccounts/<br>apis/connections/Read|Ottenere l'elenco di hello delle connessioni.|
+|/Microsoft.Web/apiManagementAccounts/<br>apis/connections/Read|Ottiene l'elenco delle connessioni.|
 |/Microsoft.Web/apiManagementAccounts/<br>apis/connections/Write|Salva una nuova connessione o ne aggiorna una esistente.|
 |/Microsoft.Web/apiManagementAccounts/<br>apis/connections/Delete|Elimina una connessione esistente.|
 |/Microsoft.Web/apiManagementAccounts/<br>apis/connections/connectionAcls/Read|Legge gli ACL della connessione|
@@ -2158,7 +2158,7 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/Microsoft.Web/apiManagementAccounts/<br>apis/apiAcls/Read|Legge gli ACL della connessione|
 |/Microsoft.Web/apiManagementAccounts/<br>apis/apiAcls/Write|Crea o aggiorna gli ACL dell'API|
 |/Microsoft.Web/apiManagementAccounts/<br>apis/apiAcls/Delete|Elimina gli ACL dell'API|
-|/serverfarms/Read|Ottenere le proprietà di hello in un piano di servizio App|
+|/serverfarms/Read|Ottiene le proprietà per un piano di servizio app|
 |/serverfarms/Write|Crea un nuovo piano di servizio app o ne aggiorna uno esistente|
 |/serverfarms/Delete|Eliminare un piano di servizio app esistente|
 |/serverfarms/restartSites/Action|Riavvia tutte le app Web in un piano di servizio app|
@@ -2182,24 +2182,24 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/serverfarms/usages/read|Ottiene gli utilizzi dei piani di servizio app.|
 |/serverfarms/hybridconnectionnamespaces/relays/sites/read|Ottiene le app Web degli inoltri spazio dei nomi connessione ibrida dei piani di servizio app.|
 |/ishostnameavailable/read|Verifica se il nome host è disponibile.|
-|/connectionGateways/Read|Ottenere l'elenco di hello di gateway di connessione.|
+|/connectionGateways/Read|Ottiene l'elenco dei gateway di connessione.|
 |/connectionGateways/Write|Crea o aggiorna un gateway di connessione.|
 |/connectionGateways/Delete|Elimina un gateway di connessione.|
 |/connectionGateways/Join/Action|Unisce un gateway di connessione.|
 |/classicmobileservices/read|Ottiene servizi mobili classici.|
 |/skus/read|Ottiene SKU.|
-|/certificates/Read|Ottenere l'elenco di hello dei certificati.|
+|/certificates/Read|Ottiene l'elenco dei certificati.|
 |/certificates/Write|Aggiunge un nuovo certificato o ne aggiorna uno esistente.|
 |/certificates/Delete|Elimina un certificato esistente.|
 |/operations/read|Ottiene operazioni.|
-|/recommendations/Read|Ottenere l'elenco di hello di indicazioni per le sottoscrizioni.|
+|/recommendations/Read|Ottiene l'elenco di consigli per le sottoscrizioni.|
 |/ishostingenvironmentnameavailable/read|Definisce se il nome dell'ambiente di hosting è disponibile.|
-|/apiManagementAccounts/Read|Ottenere l'elenco di hello di ApiManagementAccounts.|
+|/apiManagementAccounts/Read|Ottiene l'elenco di account di Gestione API.|
 |/apiManagementAccounts/Write|Aggiunge un nuovo account di Gestione API o ne aggiorna uno esistente|
 |/apiManagementAccounts/Delete|Elimina un account di Gestione API esistente|
-|/apiManagementAccounts/connectionAcls/Read|Ottenere l'elenco di hello degli elenchi ACL di connessione.|
+|/apiManagementAccounts/connectionAcls/Read|Ottiene l'elenco degli ACL della connessione.|
 |/apiManagementAccounts/apiAcls/Read|Legge gli ACL della connessione|
-|/connections/Read|Ottenere l'elenco di hello delle connessioni.|
+|/connections/Read|Ottiene l'elenco delle connessioni.|
 |/connections/Write|Crea o aggiorna una connessione.|
 |/connections/Delete|Elimina una connessione.|
 |/connections/Join/Action|Unisce una connessione.|
@@ -2214,12 +2214,12 @@ Questo provider non è un provider ARM completo e non fornisce operazioni ARM.
 |/locations/managedapis/read|Ottiene le API gestite dei percorsi.|
 |/locations/apioperations/read|Ottiene le operazioni delle API dei percorsi.|
 |/locations/connectiongatewayinstallations/read|Ottiene le installazioni dei gateway di connessione dei percorsi.|
-|/listSitesAssignedToHostName/Read|Ottenere i nomi di siti assegnati toohostname.|
+|/listSitesAssignedToHostName/Read|Ottiene i nomi dei siti assegnati al nome host.|
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- Informazioni su come troppo[creare un ruolo personalizzato](role-based-access-control-custom-roles.md).
+- Informazioni su come [creare un ruolo personalizzato](role-based-access-control-custom-roles.md).
 
-- Hello revisione [compilato nei ruoli RBAC](role-based-access-built-in-roles.md).
+- [Ruoli RBAC incorporati](role-based-access-built-in-roles.md).
 
-- Informazioni su come accedere a assegnazioni toomanage [utente](role-based-access-control-manage-assignments.md) o [dalla risorsa](role-based-access-control-configure.md) 
+- Informazioni sulla gestione delle assegnazioni di accesso [per utente](role-based-access-control-manage-assignments.md) o [per risorsa](role-based-access-control-configure.md) 

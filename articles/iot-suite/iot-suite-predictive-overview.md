@@ -1,6 +1,6 @@
 ---
-title: manutenzione aaaPredictive preconfigurato soluzione | Documenti Microsoft
-description: Una descrizione di manutenzione predittiva di hello Azure IoT Suite preconfigurato soluzione.
+title: Soluzione preconfigurata di manutenzione predittiva | Documentazione Microsoft
+description: Una descrizione della soluzione preconfigurata di manutenzione predittiva di Azure IoT Suite.
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,125 +15,125 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: dobett
-ms.openlocfilehash: 2d09801467d33db6b7d6333fa071aea2bf573f20
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 8bad198488c4940a83eb32ec02122a91d47ca86c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="predictive-maintenance-preconfigured-solution-overview"></a>Panoramica della soluzione preconfigurata di manutenzione predittiva
 
-Hello *manutenzione predittiva* [preconfigurato soluzione] [ lnk_preconfigured_solutions] è uno dei hello [Microsoft Azure IoT Suite] [ lnk_iot_suite] preconfigurato soluzioni. Questa soluzione integra una raccolta di dati di telemetria in tempo reale dei dispositivi con un modello predittivo creato utilizzando [Azure Machine Learning][lnk-machine-learning].
+La soluzione preconfigurata di *manutenzione predittiva* è una delle [soluzioni preconfigurate][lnk_preconfigured_solutions] di [Microsoft Azure IoT Suite][lnk_iot_suite]. Questa soluzione integra una raccolta di dati di telemetria in tempo reale dei dispositivi con un modello predittivo creato utilizzando [Azure Machine Learning][lnk-machine-learning].
 
-Con Azure IoT Suite, è possibile rapidamente e facilmente connettersi asset monitoraggio tooand e analizzare dati di telemetria in tempo reale nei dashboard e visualizzazioni. Nella soluzione di manutenzione predittiva hello, visualizzazioni e dashboard hello offrono nuova informazione che può unità efficienza e migliorare i profitti.
+Con Azure IoT Suite, è possibile connettersi agli asset e monitorarli, nonché analizzare i dati di telemetria in tempo reale nei dashboard e nelle visualizzazioni in modo semplice e rapido. Nella soluzione di manutenzione predittiva i dashboard e le visualizzazioni forniscono nuove informazioni con cui è possibile promuovere l'efficienza e aumentare i flussi di profitti.
 
-## <a name="hello-scenario"></a>Hello Scenario
+## <a name="the-scenario"></a>Scenario
 
-Fabrikam è una compagnia aerea locale che si concentra sulle esperienze eccezionali dei clienti a prezzi competitivi. Una causa di ritardi dei voli sono i problemi di manutenzione e la manutenzione dei motori degli aeromobili è particolarmente complessa. Fabrikam deve evitare malfunzionamenti del motore durante la fase di trasferimento tutti i costi, in modo che controlla regolarmente i motori e pianificazioni in base tooa piano di manutenzione. Tuttavia, aereo motori non sempre accenti hello stesso. Sui motori viene eseguita manutenzione superflua. Ancora più importante, si verificano problemi che possono forzare a terra un aereo fino a quando non viene eseguita la manutenzione. Se un aereo si trova nella posizione in cui hello destra tecnici o pezzi di ricambio non sono disponibili, questi problemi possono risultare particolarmente onerosa.
+Fabrikam è una compagnia aerea locale che si concentra sulle esperienze eccezionali dei clienti a prezzi competitivi. Una causa di ritardi dei voli sono i problemi di manutenzione e la manutenzione dei motori degli aeromobili è particolarmente complessa. Fabrikam deve evitare a tutti i costi i guasti dei motori durante il volo, quindi controlla regolarmente i motori e pianifica la manutenzione in base a un programma. Tuttavia, i motori non sempre si usurano allo stesso modo. Sui motori viene eseguita manutenzione superflua. Ancora più importante, si verificano problemi che possono forzare a terra un aereo fino a quando non viene eseguita la manutenzione. Se un aereo si trova in un luogo in cui tecnici esperti o parti di ricambio non sono disponibili, questi problemi possono essere particolarmente costosi.
 
-motori di Hello di aereo Fabrikam vengono instrumentati con sensori che consentono di monitorare le condizioni del motore durante la fase di trasferimento. Fabrikam Usa hello manutenzione predittiva soluzione toocollect hello sensore dati raccolti durante il volo hello. Dopo aver anni accumulo di motore operativo e dati di errore, gli esperti di dati di Fabrikam hanno modellata un hello toopredict modo vita utile rimanente (RUL) di un motore aereo. modello di Hello utilizza una correlazione tra dati provenienti da quattro dei sensori motore hello e usura motore che provoca l'errore tooeventual. Mentre è ancora sicurezza tooensure di un controllo periodico tooperform Fabrikam, ora possibile usare hello modelli toocompute hello RUL per ogni motore dopo ogni volo. modello di Hello utilizza dati di telemetria hello raccolti dai motori di hello durante il volo hello. Fabrikam può prevedere i futuri punti di malfunzionamento e pianificare la manutenzione e la riparazione in anticipo.
+I motori degli aeromobili Fabrikam sono instrumentati con sensori che controllano le condizioni del motore durante il volo. Fabrikam usa la soluzione di manutenzione predittiva per raccogliere i dati dei sensori raccolti durante il volo. Dopo aver accumulato anni di dati operativi e sui guasti dei motori, i ricercatori di dati di Fabrikam hanno modellato un modo per prevedere la vita utile rimanente (RUL) di un motore di aeromobile. Il modello usa una correlazione tra i dati provenienti da quattro dei sensori del motore e l'usura del motore che conduce a un eventuale guasto. Mentre Fabrikam continua a eseguire controlli periodici per garantire la sicurezza, ora può usare i modelli per calcolare il valore RUL per ogni motore dopo ogni volo. Il modello usa i dati di telemetria raccolti dai motori durante il volo. Fabrikam può prevedere i futuri punti di malfunzionamento e pianificare la manutenzione e la riparazione in anticipo.
 
 > [!NOTE]
-> modello di soluzione Hello utilizza dati usura motore effettivo.
+> Il modello di soluzione usa dati di usura del motore effettivi.
 
-Per stimare il punto di hello quando è necessaria una manutenzione, Fabrikam possibile ottimizzare i costi di tooreduce operazioni.
+Prevedendo il momento in cui sarà necessaria la manutenzione, Fabrikam può ottimizzare le proprie operazioni per ridurre i costi.
 
 I coordinatori della manutenzione usano utilità di pianificazione per:
 
-- Piano di manutenzione toocoincide con un aereo arresto in una determinata posizione.
-- Verificare un tempo sufficiente sia disponibile per hello aereo toobe fuori servizio senza provocare interruzioni di pianificazione.
-- tooschedule tooensure di tecnici che aereo viene gestiti in modo efficiente senza tempo di attesa.
+- Pianificare l'esecuzione della manutenzione quando un velivolo si ferma in una determinata località.
+- Assicurarsi che il velivolo rimanga fuori servizio per un periodo di tempo senza causare interruzioni della pianificazione.
+- Per pianificare i tecnici di conseguenza e garantire così che i velivoli siano gestiti in modo efficiente senza tempi di attesa.
 
 I responsabili del controllo di inventario ricevono i piani di manutenzione, pertanto possono ottimizzare il processo di ordinazione e l'inventario delle parti di ricambio.
 
-Queste attività ora terra aereo toominimize di Fabrikam e ridurre i costi operativi assicurando sicurezza hello di passeggeri e personale.
+Queste attività consentono a Fabrikam di ridurre al minimo i tempo di fermo a terra dei velivoli e di ridurre i costi operativi, garantendo la sicurezza dei passeggeri e dell'equipaggio.
 
-toounderstand come [Azure IoT Suite] [ lnk_iot_suite] fornisce ai clienti funzionalità hello necessario potenziale hello toorealize della manutenzione predittiva, esaminare questo [infografica] [lnk_infographic].
+Per comprendere come [Azure IoT Suite][lnk_iot_suite] fornisce ai clienti le funzionalità necessarie a realizzare il potenziale della manutenzione predittiva, vedere questa [infografica][lnk_infographic].
 
-## <a name="how-hello-predictive-maintenance-solution-is-built"></a>La modalità di compilazione di soluzioni di manutenzione predittiva hello
+## <a name="how-the-predictive-maintenance-solution-is-built"></a>Creazione della soluzione di manutenzione predittiva
 
-soluzione Hello utilizza un modello di Azure Machine Learning esistente come un modello tooshow queste funzionalità di utilizzo dal dispositivo telemetria raccolto tramite servizi IoT Suite. Microsoft ha creato un [modello di regressione] [ lnk_regression_model] di un motore aereo in base ai dati disponibili pubblicamente<sup>\[1\]</sup>e dettagliate informazioni aggiuntive su come toouse hello modello.
+Per visualizzare queste funzionalità partendo dai dati di telemetria del dispositivo raccolti attraverso i servizi di IoT Suite, la soluzione usa un modello esistente di Azure Machine Learning disponibile. Microsoft ha creato un [modello di regressione][lnk_regression_model] basato su dati pubblici<sup>\[[1]\]</sup> e le istruzioni dettagliate su come usare il modello.
 
-Hello soluzione manutenzione predittiva IoT di Azure Usa il modello di regressione hello creato da questo modello. modello Hello è distribuito nella sottoscrizione di Azure ed esposta attraverso un'API generata automaticamente. soluzione Hello include un subset di dati che rappresenta 4 (pari a 100 totale) di testing hello motori e flussi di dati del sensore hello 4 (pari a 21 totale). Questi dati sono sufficiente tooprovide risultati corretti dal modello con training hello.
+La soluzione di manutenzione predittiva di Azure IoT usa il modello di regressione creato da questo modello. Il modello viene distribuito nella sottoscrizione di Azure ed esposto tramite un'API generata automaticamente. La soluzione include un subset di dati di test che rappresenta 4 (su un totale di 100) motori e 4 (su un totale di 21) flussi di dati dei sensori. Questi dati sono sufficienti per fornire un risultato esatto dal modello con training.
 
 *\[1\] A. Saxena and K. Goebel (2008). "Turbofan Engine Degradation Simulation Data Set", NASA Ames Prognostics Data Repository (http://ti.arc.nasa.gov/tech/dash/pcoe/prognostic-data-repository/), NASA Ames Research Center, Moffett Field, CA*
 
 ## <a name="get-started-with-predictive-maintenance"></a>Introduzione alla manutenzione predittiva
 
-Questa esercitazione viene illustrato come tooprovision hello soluzione manutenzione predittiva. Illustra anche funzionalità di base della soluzione di manutenzione predittiva hello hello. È possibile accedere a molte di queste funzionalità tramite il dashboard di soluzione hello che distribuisce insieme soluzione hello preconfigurato.
+Questa esercitazione illustra come effettuare il provisioning della soluzione di manutenzione predittiva. Ne descrive anche le funzionalità di base. È possibile accedere a molte di queste funzionalità tramite il dashboard distribuito con la soluzione preconfigurata.
 
-toocomplete questa esercitazione, è necessaria una sottoscrizione di Azure attiva.
+Per completare l'esercitazione, è necessaria una sottoscrizione di Azure attiva.
 
 > [!NOTE]
 > Se non si dispone di un account, è possibile creare un account di valutazione gratuita in pochi minuti. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure][lnk_free_trial].
 
-1. Accesso troppo[azureiotsuite.com] [ lnk-azureiotsuite] di Azure utilizzando le credenziali dell'account e fare clic su  **+**  toocreate una soluzione.
-1. Fare clic su **selezionare** hello **manutenzione predittiva** riquadro.
+1. Accedere a [azureiotsuite.com][lnk-azureiotsuite] con le credenziali dell'account Azure e fare clic su **+** per creare una soluzione.
+1. **Selezionare** il riquadro **Manutenzione predittiva**.
 1. Immettere un valore in **Nome soluzione** per la soluzione preconfigurata di manutenzione predittiva.
-1. Seleziona hello **area** e **sottoscrizione** si desidera toouse tooprovision hello soluzione.
-1. Fare clic su **crea soluzione** hello toobegin processo di provisioning. Questo processo è in genere richiede diversi minuti toorun.
+1. Selezionare l'**area** e la **sottoscrizione** che si desidera usare per il provisioning della soluzione.
+1. Fare clic su **Crea soluzione** per iniziare il processo di provisioning. In genere il processo richiede alcuni minuti.
 
-### <a name="wait-for-hello-provisioning-process-toocomplete"></a>Attendere hello toocomplete processo di provisioning
+### <a name="wait-for-the-provisioning-process-to-complete"></a>Attendere il completamento del processo di provisioning.
 
-1. Fare clic sul riquadro hello per la soluzione con **Provisioning** stato.
-1. Hello preavviso **Provisioning stati** come servizi di Azure vengono distribuiti nella sottoscrizione di Azure.
-1. Una volta al termine del provisioning, hello modifiche allo stato troppo**pronto**.
-1. Fare clic su dettagli di hello riquadro toosee hello della soluzione nel riquadro di destra hello. In questo riquadro è possibile avviare hello soluzione dashboard e accesso hello Machine Learning dell'area di lavoro.
+1. Fare clic sul riquadro della soluzione con stato **Provisioning**.
+1. Notare gli stati **Provisioning** man mano che i servizi di Azure vengono distribuiti nella sottoscrizione di Azure.
+1. Al termine del provisioning, lo stato cambierà in **Pronto**.
+1. Fare clic sul riquadro per visualizzare i dettagli della soluzione nel riquadro di destra. Da questo riquadro è possibile avviare il dashboard della soluzione e accedere all'area di lavoro di Machine Learning.
 
 > [!NOTE]
-> Se si verificano problemi di distribuzione di soluzioni hello preconfigurato, esaminare [le autorizzazioni nel sito azureiotsuite.com hello] [ lnk-permissions] hello e [domande frequenti su] [ lnk-faq]. Se persistono problemi hello, creare un ticket di servizio in hello [portale][lnk-portal].
+> In caso di problemi di distribuzione della soluzione preconfigurata, vedere [Autorizzazioni per il sito azureiotsuite.com][lnk-permissions] e le [domande frequenti][lnk-faq]. Se i problemi persistono, creare un ticket di servizio nel [portale][lnk-portal].
 
-Sono presenti dettagli che ci si aspetta toosee che non sono elencati per la soluzione? è possibile inviare suggerimenti sulle funzionalità usando i [suggerimenti degli utenti](https://feedback.azure.com/forums/321918-azure-iot).
+Se ci sono dettagli importanti non elencati per la soluzione, è possibile inviare suggerimenti sulle funzionalità usando i [suggerimenti degli utenti](https://feedback.azure.com/forums/321918-azure-iot).
 
-## <a name="view-hello-solution"></a>Visualizza soluzione hello
+## <a name="view-the-solution"></a>Visualizzare la soluzione
 
-In questa sezione descrive la soluzione hello dell'interfaccia utente.
+Questa sezione descrive l'interfaccia utente della soluzione.
 
 ### <a name="predictive-maintenance-dashboard"></a>Dashboard di manutenzione predittiva
 
-Questa pagina in un'applicazione hello web utilizza PowerBI JavaScript controlli (vedere hello [repository PowerBI-visuals][lnk-powerbi]) toovisualize:
+Questa pagina dell'applicazione Web usa i controlli JavaScript di Power BI (vedere il [repository di oggetti visivi di Power BI][lnk-powerbi]) per visualizzare:
 
-* dati di output di Hello dai processi di flusso Analitica hello nell'archiviazione blob.
-* Hello RUL e ciclo di conteggio per il motore di aereo.
+* I dati di output dei processi di Analisi di flusso nell'archivio BLOB.
+* La vita utile rimanente Il conteggio dei cicli per motore di aereo.
 
-### <a name="observing-hello-behavior-of-hello-cloud-solution"></a>Osservare il comportamento di hello della soluzione cloud hello
+### <a name="observing-the-behavior-of-the-cloud-solution"></a>Osservare il comportamento della soluzione cloud
 
-In hello portale di Azure, passare il gruppo di risorse toohello con il nome di soluzione hello scelto tooview le risorse di provisioning.
+Nel portale di Azure passare al gruppo di risorse con il nome della soluzione scelto per visualizzare le risorse di cui è stato effettuato il provisioning.
 
 ![][img-resource-group]
 
-Quando si esegue il provisioning di soluzione hello preconfigurato, viene visualizzato un messaggio di posta elettronica con un'area di lavoro di collegamento toohello Machine Learning. È inoltre possibile passare l'area di lavoro Machine Learning toohello da hello [azureiotsuite.com] [ lnk-azureiotsuite] pagina per la soluzione di provisioning. Un riquadro è disponibile in questa pagina quando la soluzione hello è in hello **pronto** stato.
+Quando si esegue il provisioning della soluzione preconfigurata, viene visualizzato un messaggio di posta elettronica con un collegamento all'area di lavoro di Machine Learning. È anche possibile passare all'area di lavoro di Machine Learning dalla pagina [azureiotsuite.com][lnk-azureiotsuite] per la soluzione di cui è stato effettuato il provisioning. Quando lo stato della soluzione è **Ready** (Pronto), in questa pagina è disponibile un riquadro.
 
 ![][img-machine-learning]
 
-Nel portale di soluzione hello, è possibile visualizzare che tale esempio hello viene eseguito il provisioning con due aereo di quattro dispositivi simulati toorepresent con due motori per aereo, ognuno con quattro sensori. Quando si esce prima di tutto il portale di soluzione toohello, simulazione hello è stato arrestato.
+Nel portale della soluzione si noterà che l'esempio include quattro dispositivi simulati per rappresentare due aerei con due motori per aereo, ciascuno con quattro sensori. Quando si accede per la prima volta al portale della soluzione, la simulazione viene arrestata.
 
 ![][img-simulation-stopped]
 
-Fare clic su **avviare simulazione** simulazione hello toobegin. Hello cronologia sensore, RUL, cicli e RUL cronologia popolare dashboard hello.
+Fare clic su **Avvia simulazione** per iniziare la simulazione. Il dashboard viene popolato con cronologia del sensore, vita utile rimanente, cicli e cronologia della vita utile rimanente.
 
 ![][img-simulation-running]
 
-Quando RUL è inferiore a 160 (una valore soglia arbitraria scelta per scopi dimostrativi), il portale di soluzione hello viene visualizzato un avviso simbolo successivo toohello RUL visualizzare. portale di soluzione Hello evidenzia inoltre motore aereo hello in giallo. Si noti come valori RUL hello presentano una tendenza verso il basso generale globale, ma tendono toobounce su e giù. Questo comportamento è dovuta diverse lunghezze di ciclo hello e accuratezza del modello hello.
+Quando la vita utile rimanente è inferiore a 160, una soglia arbitraria scelta a scopo dimostrativo, il portale della soluzione mostra un simbolo di avviso accanto alla visualizzazione della vita utile rimanente. Il portale della soluzione evidenzia anche in giallo il motore dell'aereo. Si noti come i valori della vita utile rimanente abbiano complessivamente una tendenza generale al ribasso, ma tendano a oscillare in alto o in basso. Questo comportamento dovuto alle diverse lunghezze dei cicli e all'accuratezza del modello.
 
 ![][img-simulation-warning]
 
-simulazione completa Hello richiede circa 35 minuti toocomplete 148 cicli. Hello 160 RUL viene raggiunta la soglia per hello prima volta in circa 5 minuti e motori di raggiunto la soglia di hello circa 8 minuti.
+La simulazione completa richiede circa 35 minuti per completare 148 cicli. La soglia di 160 per la vita utile rimanente viene raggiunta per la prima volta dopo circa 5 minuti ed entrambi i motori la raggiungono a circa 8 minuti.
 
-simulazione di Hello attraversa hello set di dati completo per i cicli di 148 e si posiziona su valori di ciclo e RUL finali.
+La simulazione viene eseguita sul set di dati completo per 148 cicli e si stabilizza sui valori finali dei cicli e della vita utile rimanente.
 
-È possibile arrestare la simulazione di hello in qualsiasi punto, ma facendo clic su **avviare simulazione** riproduzioni hello simulazione dall'inizio di hello del set di dati hello.
+È possibile arrestare la simulazione in qualsiasi punto, ma facendo clic su **Start Simulation** viene riprodotta la simulazione dall'inizio del set di dati.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-informazioni su come IoT di Azure consente scenari di manutenzione predittiva, leggere toolearn [acquisire valore hello Internet of Things][lnk_capture_value].
+Per ulteriori informazioni su come Azure IoT consente scenari di manutenzione predittiva, leggere [Capture value from the Internet of Things][lnk_capture_value] (Acquisire valore da Internet delle cose).
 
-Richiedere un [procedura dettagliata] [ lnk-predictive-walkthrough] della soluzione di manutenzione predittiva hello.
+Esaminare una [procedura dettagliata][lnk-predictive-walkthrough] della soluzione di manutenzione predittiva.
 
-È anche possibile esplorare alcune hello altre caratteristiche e funzionalità di soluzioni di IoT Suite preconfigurato hello:
+È anche possibile esplorare alcune altre funzionalità delle soluzioni preconfigurate di IoT Suite:
 
 * [Domande frequenti su IoT Suite][lnk-faq]
-* [Sicurezza di IoT da hello messa a terra][lnk-security-groundup]
+* [Sicurezza IoT sin dall'inizio][lnk-security-groundup]
 
 [img-resource-group]: media/iot-suite-predictive-overview/resource-group.png
 [img-simulation-stopped]: media/iot-suite-predictive-overview/simulation-stopped.png

@@ -1,9 +1,9 @@
 ---
-title: elemento gestita dell'interfaccia utente dell'applicazione VirtualNetworkCombo aaaAzure | Documenti Microsoft
-description: Descrive l'elemento dell'interfaccia utente Microsoft.Network.VirtualNetworkCombo hello per le applicazioni gestite di Azure
+title: Elemento VirtualNetworkCombo dell'interfaccia utente di Applicazione gestita di Azure | Microsoft Docs
+description: Illustra l'elemento Microsoft.Network.VirtualNetworkCombo dell'interfaccia utente per le applicazioni gestite di Azure
 services: azure-resource-manager
 documentationcenter: na
-author: tabrezm
+author: tfitzmac
 manager: timlt
 editor: tysonn
 ms.service: azure-resource-manager
@@ -12,12 +12,12 @@ ms.topic: reference
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/12/2017
-ms.author: tabrezm;tomfitz
-ms.openlocfilehash: 1b0fa5360d93306f7a814723f77e42540bdaaa9f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.author: tomfitz
+ms.openlocfilehash: 35f4400a9c9f8e1dd03ac24ab3e023b91d774673
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="microsoftnetworkvirtualnetworkcombo-ui-element"></a>Elemento Microsoft.Network.VirtualNetworkCombo dell'interfaccia utente
 Gruppo di controlli per la selezione di una rete virtuale nuova o esistente. Usare questo elemento quando si [crea un'applicazione Azure gestita](managed-application-publishing.md).
@@ -25,8 +25,8 @@ Gruppo di controlli per la selezione di una rete virtuale nuova o esistente. Usa
 ## <a name="ui-sample"></a>Esempio di interfaccia utente
 ![Microsoft.Network.VirtualNetworkCombo](./media/managed-application-elements/microsoft.network.virtualnetworkcombo.png)
 
-- In wireframe superiore hello, utente hello ha selezionato una nuova rete virtuale, in modo da Personalizza il prefisso di nome e l'indirizzo della subnet, ogni utente hello. In questo caso la configurazione delle subnet è facoltativa.
-- In hello inferiore wireframe, utente hello è selezionato di una rete virtuale esistente, pertanto è necessario eseguire il mapping utente hello ogni modello di distribuzione hello subnet richiede tooan esistente subnet. In questo caso la configurazione delle subnet è obbligatoria.
+- Nel wireframe in alto l'utente ha selezionato una nuova rete virtuale, quindi può personalizzare il nome e il prefisso dell'indirizzo di ogni subnet. In questo caso la configurazione delle subnet è facoltativa.
+- Nel wireframe in basso l'utente ha selezionato una rete virtuale esistente, quindi deve eseguire il mapping di ogni subnet necessaria per il modello di distribuzione a una subnet esistente. In questo caso la configurazione delle subnet è obbligatoria.
 
 ## <a name="schema"></a>Schema
 ```json
@@ -82,15 +82,15 @@ Gruppo di controlli per la selezione di una rete virtuale nuova o esistente. Usa
 ```
 
 ## <a name="remarks"></a>Osservazioni
-- Se specificato, hello prima non sovrapposti prefisso dell'indirizzo dimensioni `defaultValue.addressPrefixSize` viene determinato automaticamente in base alle reti virtuali esistenti nella sottoscrizione hello dell'utente.
-- il valore predefinito per Hello `defaultValue.name` e `defaultValue.addressPrefixSize` è **null**.
-- Specificare `constraints.minAddressPrefixSize`. Qualsiasi rete virtuale esistente con uno spazio di indirizzi più piccolo di quelli hello valore specificato non sono disponibili per la selezione.
+- Se specificato, il primo prefisso di indirizzo non sovrapposto di dimensioni pari a `defaultValue.addressPrefixSize` viene determinato automaticamente in base alle reti virtuali esistenti nella sottoscrizione dell'utente.
+- Il valore predefinito per `defaultValue.name` e `defaultValue.addressPrefixSize` è **null**.
+- Specificare `constraints.minAddressPrefixSize`. Le reti virtuali esistenti con uno spazio indirizzi inferiore al valore specificato non sono disponibili per la selezione.
 - Specificare `subnets` e specificare `constraints.minAddressPrefixSize` per ogni subnet.
-- Quando si crea una nuova rete virtuale, viene calcolato automaticamente in base prefisso dell'indirizzo della subnet ogni sul prefisso dell'indirizzo della rete virtuale hello e la rispettiva `addressPrefixSize`.
+- Quando si crea una nuova rete virtuale, il prefisso dell'indirizzo di ogni subnet viene calcolato automaticamente in base al prefisso dell'indirizzo della rete virtuale e al rispettivo `addressPrefixSize`.
 - Quando si usa una rete virtuale esistente, le subnet di dimensioni inferiori al rispettivo `constraints.minAddressPrefixSize` non sono disponibili per la selezione. Inoltre, se specificato, le subnet che non contengono almeno `minAddressCount` indirizzi disponibili non sono disponibili per la selezione.
-valore predefinito di Hello è **0**. tooensure che hello indirizzi disponibili sono contigui, specificare **true** per `requireContiguousAddresses`. valore predefinito di Hello è **true**.
+Il valore predefinito è **0**. Per assicurarsi che gli indirizzi disponibili siano contigui, specificare **true** per `requireContiguousAddresses`. Il valore predefinito è **true**.
 - La creazione di subnet in una rete virtuale esistente non è supportata.
-- Se `options.hideExisting` è **true**, utente hello non è possibile scegliere una rete virtuale esistente. valore predefinito di Hello è **false**.
+- Se `options.hideExisting` è **true**, l'utente non può scegliere una rete virtuale esistente. Il valore predefinito è **false**.
 
 ## <a name="sample-output"></a>Output di esempio
 ```json
@@ -115,6 +115,6 @@ valore predefinito di Hello è **0**. tooensure che hello indirizzi disponibili 
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per le applicazioni toomanaged un'introduzione, vedere [Panoramica applicazione gestita di Azure](managed-application-overview.md).
-* Le definizioni di interfaccia utente toocreating un'introduzione, vedere [introduzione CreateUiDefinition](managed-application-createuidefinition-overview.md).
+* Per un'introduzione alle applicazioni gestite, vedere [Panoramica di Applicazione gestita di Azure](managed-application-overview.md).
+* Per un'introduzione alla creazione delle definizioni dell'interfaccia utente, vedere [Introduzione a CreateUiDefinition](managed-application-createuidefinition-overview.md).
 * Per una descrizione delle proprietà comuni negli elementi dell'interfaccia utente, vedere [Elementi di CreateUiDefinition](managed-application-createuidefinition-elements.md).

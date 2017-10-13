@@ -1,9 +1,9 @@
 ---
-title: bilanciamento del carico con una connessione Internet aaaCreate - portale di Azure classico | Documenti Microsoft
-description: Informazioni su come toocreate un Internet rivolto al bilanciamento del carico in modello di distribuzione classica utilizzando hello portale di Azure classico
+title: Creare un servizio di bilanciamento del carico con connessione Internet - Portale di Azure classico | Documentazione Microsoft
+description: Informazioni su come creare un servizio di bilanciamento del carico Internet nel modello di distribuzione classica mediante il portale di Azure classico
 services: load-balancer
 documentationcenter: na
-author: kumudd
+author: KumudD
 manager: timlt
 editor: 
 tags: azure-service-management
@@ -15,16 +15,16 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: 27b0d5af6e7b493fa94a9dfbfa260483ae95a2fb
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e07b6808f2401ac7b2b21e5f8816bac5a15b50b9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="get-started-creating-an-internet-facing-load-balancer-classic-in-hello-azure-classic-portal"></a>Introduzione alla creazione di un bilanciamento del carico (classico) nel portale di Azure classico hello per Internet
+# <a name="get-started-creating-an-internet-facing-load-balancer-classic-in-the-azure-classic-portal"></a>Introduzione alla creazione del servizio di bilanciamento del carico Internet (classico) nel portale di Azure classico
 
 > [!div class="op_single_selector"]
-> * [portale di Azure classico](../load-balancer/load-balancer-get-started-internet-classic-portal.md)
+> * [Portale di Azure classico](../load-balancer/load-balancer-get-started-internet-classic-portal.md)
 > * [PowerShell](../load-balancer/load-balancer-get-started-internet-classic-ps.md)
 > * [Interfaccia della riga di comando di Azure](../load-balancer/load-balancer-get-started-internet-classic-cli.md)
 > * [Servizi cloud di Azure](../load-balancer/load-balancer-get-started-internet-classic-cloud.md)
@@ -32,33 +32,33 @@ ms.lasthandoff: 10/06/2017
 [!INCLUDE [load-balancer-get-started-internet-intro-include.md](../../includes/load-balancer-get-started-internet-intro-include.md)]
 
 > [!IMPORTANT]
-> Prima di lavorare con le risorse di Azure, è importante toounderstand che Azure ha due modelli di distribuzione: Gestione risorse di Azure e classica. È importante comprendere i [modelli e strumenti di distribuzione](../azure-classic-rm.md) prima di lavorare con le risorse di Azure. È possibile visualizzare la documentazione di hello per diversi strumenti facendo clic sulle schede hello nella parte superiore di hello di questo articolo. Questo articolo descrive il modello di distribuzione classica hello. È anche possibile [informazioni su come una connessione Internet toocreate bilanciamento del carico con Azure Resource Manager](load-balancer-get-started-internet-arm-ps.md).
+> Prima di iniziare a usare le risorse di Azure, è importante comprendere che Azure al momento offre due modelli di distribuzione, la distribuzione classica e Azure Resource Manager. È importante comprendere i [modelli e strumenti di distribuzione](../azure-classic-rm.md) prima di lavorare con le risorse di Azure. È possibile visualizzare la documentazione relativa a diversi strumenti facendo clic sulle schede nella parte superiore di questo articolo. In questo articolo viene illustrato il modello di distribuzione classica. Vedere [Informazioni su come creare un servizio di bilanciamento del carico Internet in Gestione risorse di Azure](load-balancer-get-started-internet-arm-ps.md).
 
 [!INCLUDE [load-balancer-get-started-internet-scenario-include.md](../../includes/load-balancer-get-started-internet-scenario-include.md)]
 
 ## <a name="set-up-an-internet-facing-load-balancer-for-virtual-machines"></a>Configurazione del servizio di bilanciamento del carico Internet per le macchine virtuali
 
-In ordine tooload bilanciare il traffico di rete da hello Internet tra macchine virtuali hello di un servizio cloud, è necessario creare un set con carico bilanciato. Questa procedura si presuppone che sia stato già creato le macchine virtuali hello e che siano tutti all'interno di hello stesso servizio cloud.
+Per bilanciare il carico del traffico di rete Internet tra le macchine virtuali di un servizio cloud, è necessario creare un set con carico bilanciato. Questa procedura presuppone che le macchine virtuali siano già state create e che si trovino tutte nello stesso servizio cloud.
 
-**tooconfigure un set con carico bilanciato per le macchine virtuali**
+**Per configurare un set con carico bilanciato per le macchine virtuali**
 
-1. Nel portale di Azure classico hello, fare clic su **macchine virtuali**, quindi fare clic su nome hello di una macchina virtuale nel set di bilanciamento del carico hello.
+1. Nel portale di Azure classico fare clic su **Macchine virtuali**e quindi sul nome di una macchina virtuale nel set con carico bilanciato.
 2. Far clic su **Endpoint** e selezionare **Aggiungi**.
-3. In hello **aggiungere una macchina virtuale di endpoint tooa** pagina, fare clic sulla freccia a destra di hello.
-4. In hello **specificare hello i dettagli dell'endpoint hello** pagina:
+3. Nella pagina **Aggiungi un endpoint a una macchina virtuale** fare clic sulla freccia destra.
+4. Nella pagina **Specificare i dettagli dell'endpoint** :
 
-   * In **nome**, digitare un nome per l'endpoint di hello o selezionare il nome di hello hello elenco degli endpoint predefiniti per i protocolli comuni.
-   * In **protocollo**, selezionare il protocollo di hello richiesto dal tipo di hello dell'endpoint, TCP o UDP, in base alle esigenze.
-   * In **porta pubblica e privata**, digitare i numeri di porta hello che si desidera hello toouse macchina virtuale, in base alle esigenze. È possibile utilizzare la porta privata hello e regole del firewall al traffico tooredirect hello macchina virtuale in modo appropriato per l'applicazione. porta privata Hello può essere hello come porta pubblica hello. Per un endpoint per il traffico web (HTTP), ad esempio, è Impossibile assegnare la porta 80 tooboth hello porta pubblica e privata.
+   * In **Nome**digitare un nome per l'endpoint o selezionarne uno dall'elenco di endpoint predefiniti per i protocolli comuni.
+   * In **Protocol**selezionare il protocollo richiesto dal tipo di endpoint, ossia TCP o UDP.
+   * In **Porta pubblica e Porta privata**digitare il numero di porta da utilizzare per la macchina virtuale. È possibile usare le regole relative a porte private e firewall sulla macchina virtuale per reindirizzare il traffico in modo appropriato per l'applicazione. La porta privata può essere uguale alla porta pubblica. Per un endpoint per il traffico Web (HTTP), è ad esempio possibile assegnare la porta 80 sia come porta pubblica che privata.
 
-5. Selezionare **creare un set con carico bilanciato**e quindi fare clic sulla freccia a destra di hello.
-6. In hello **configurare il set di bilanciamento del carico hello** pagina, digitare un nome per il set di bilanciamento del carico hello e quindi assegnare valori hello per il comportamento di probe di bilanciamento del carico di Azure hello. Hello bilanciamento del carico utilizza probe toodetermine se hello di macchine virtuali nel set di bilanciamento del carico hello sono disponibili tooreceive il traffico in entrata.
-7. Fare clic su endpoint con bilanciamento del carico toocreate hello di hello segno di spunta. Si noterà **Sì** in hello **nome set con carico bilanciato** colonna di hello **endpoint** pagina per la macchina virtuale hello.
-8. Nel portale di hello, fare clic su **macchine virtuali**, fare clic sul nome di una macchina virtuale aggiuntiva nel set di bilanciamento del carico hello hello, fare clic su **endpoint**, quindi fare clic su **Aggiungi**.
-9. In hello **aggiungere una macchina virtuale di endpoint tooa** pagina, fare clic su **aggiungere set di bilanciamento del carico esistente di endpoint tooan**, selezionare il nome del set di bilanciamento del carico hello hello e quindi fare clic sulla freccia a destra di hello.
-10. In hello **specificare hello i dettagli dell'endpoint hello** pagina, digitare un nome per l'endpoint di hello e quindi fare clic su hello segno di spunta.
+5. Selezionare **Create a load-balanced set**e quindi fare clic sulla freccia destra.
+6. Nella pagina **Configura il set con carico bilanciato** immettere un nome per il set con carico bilanciato e quindi assegnare i valori per il comportamento del probe del servizio di bilanciamento del carico di Azure. Il servizio di bilanciamento del carico usa i probe per determinare se le macchine virtuali del set con carico bilanciato sono disponibili a ricevere traffico in ingresso.
+7. Fare clic sul segno di spunta per creare l'endpoint con carico bilanciato. Sarà visualizzato **Sì** nella colonna **Nome del set con carico bilanciato** della pagina **Endpoint** relativa alla macchina virtuale.
+8. Nel portale fare clic su **Macchine virtuali**, selezionare il nome di una macchina virtuale aggiuntiva nel set con carico bilanciato, fare clic su **Endpoint** e infine su **Aggiungi**.
+9. Nella pagina **Aggiungi un endpoint a una macchina virtuale** fare clic su **Aggiungi un endpoint a un set con carico bilanciato esistente**, selezionare il nome del set con carico bilanciato e fare clic sulla freccia destra.
+10. Nella pagina **Specificare i dettagli dell'endpoint** digitare un nome per l'endpoint e quindi fare clic sul segno di spunta.
 
-Per hello altre macchine virtuali nel set di bilanciamento del carico hello, ripetere i passaggi da 8 a 10.
+Per le macchine virtuali aggiuntive nel set con carico bilanciato, ripetere i passaggi da 8 a 10.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

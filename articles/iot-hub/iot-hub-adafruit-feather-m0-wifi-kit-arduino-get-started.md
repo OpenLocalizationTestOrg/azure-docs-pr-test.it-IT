@@ -1,6 +1,6 @@
 ---
-title: 'M0 toocloud: la connessione Wi-Fi M0 sfumatura tooAzure IoT Hub | Documenti Microsoft'
-description: Informazioni su come tooset backup e la connessione Wi-Fi M0 di sfumatura Adafruit tooAzure la piattaforma cloud di Azure IoT Hub toosend dati toohello in questa esercitazione.
+title: 'Da M0 al cloud: connettere Feather M0 Wi-Fi all''hub IoT di Azure | Microsoft Docs'
+description: Informazioni su come configurare e connettere Adafruit Feather M0 WiFi all'hub IoT di Azure in modo che invii dati alla piattaforma cloud di Azure in questa esercitazione.
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -15,49 +15,49 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 8/16/2017
 ms.author: xshi
-ms.openlocfilehash: 6aabeb961a50ba5d3934f77eb1ccda4af1bf64c8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9b278735ce3af9e6e61a85c5e95ea218622361c8
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="connect-adafruit-feather-m0-wifi-tooazure-iot-hub-in-hello-cloud"></a>La connessione Wi-Fi M0 di sfumatura Adafruit tooAzure IoT Hub nel cloud hello
+# <a name="connect-adafruit-feather-m0-wifi-to-azure-iot-hub-in-the-cloud"></a>Connettere Adafruit Feather M0 Wi-Fi ad Azure IoT Hub nel cloud
 [!INCLUDE [iot-hub-get-started-device-selector](../../includes/iot-hub-get-started-device-selector.md)]
 
 ![Connessione tra BME280, Feather M0 Wi-Fi e l'hub IoT](media/iot-hub-adafruit-feather-m0-wifi-get-started/1_connection-m0-feather-m0-iot-hub.png)
 
-In questa esercitazione, è necessario innanzitutto hello nozioni fondamentali sulle operazioni con la scheda Arduino di apprendimento. Si apprenderà quindi la modalità di connessione cloud toohello dispositivi utilizzando tooseamlessly [IoT Hub Azure](iot-hub-what-is-iot-hub.md).
+Questa esercitazione illustra le nozioni di base per l'uso della scheda Arduino. Viene poi illustrato come connettere i dispositivi al cloud usando l'[hub IoT di Azure](iot-hub-what-is-iot-hub.md).
 
 ## <a name="what-you-do"></a>Operazioni da fare
 
-La connessione Wi-Fi M0 di sfumatura Adafruit tooan IoT hub creato. Quindi eseguire un'applicazione di esempio in Wi-Fi M0 toocollect hello temperatura e umidità dati da un BME280. Infine, si invia l'hub IoT hello sensore dati tooyour.
+Connettere Adafruit Feather M0 Wi-Fi a un hub IoT che è stato creato. Dopodiché, eseguire un'applicazione di esempio in M0 Wi-Fi per raccogliere i dati di temperatura e umidità da BME280. Infine inviare i dati del sensore all'hub IoT.
 
 
 ## <a name="what-you-learn"></a>Contenuto dell'esercitazione
 
-* Come toocreate un hub IoT e registrare un dispositivo per Wi-Fi M0 sfumatura
-* Come tooconnect Wi-Fi M0 sfumatura con sensore hello e il computer
-* Come dati del sensore toocollect mediante l'esecuzione di un'applicazione di esempio su Wi-Fi M0 sfumatura
-* Come toosend hello hub IoT tooyour di sensore dati
+* Come creare un hub IoT e registrare un dispositivo per Feather M0 Wi-Fi
+* Come connettere Feather M0 Wi-Fi al sensore e al computer
+* Come raccogliere i dati del sensore eseguendo un'applicazione di esempio in Feather M0 Wi-Fi
+* Come inviare i dati del sensore all'hub IoT
 
 ## <a name="what-you-need"></a>Elementi necessari
 
-![Parti necessarie per l'esercitazione hello](media/iot-hub-adafruit-feather-m0-wifi-get-started/2_parts-needed-for-the-tutorial.png)
+![Componenti necessari per l'esercitazione](media/iot-hub-adafruit-feather-m0-wifi-get-started/2_parts-needed-for-the-tutorial.png)
 
-toocomplete questa operazione, è necessario hello dallo Starter Kit di sfumatura M0 Wi-Fi le seguenti parti:
+Per completare questa operazione è necessario disporre dei componenti seguenti di Feather M0 Wi-Fi Starter Kit:
 
-* Hello Wi-Fi M0 sfumatura Lavagna
-* Un cavo USB A di tooType Micro USB
+* Scheda Feather M0 Wi-Fi
+* Cavo USB Micro/tipo A
 
-È inoltre necessario hello seguenti operazioni per l'ambiente di sviluppo:
+Per l'ambiente di sviluppo sono necessari anche gli elementi seguenti:
 
 * Una sottoscrizione di Azure attiva. Se non si ha un account di Azure, [creare un account di Azure gratuito](https://azure.microsoft.com/free/) in pochi minuti.
 * Un Mac o un PC che esegue Windows o Ubuntu.
-* Una rete wireless per Wi-Fi M0 sfumatura tooconnect per.
-* Uno strumento di configurazione hello Internet connessione toodownload.
-* [IDE Arduino](https://www.arduino.cc/en/main/software) 1.6.8 o versione successiva. Le versioni precedenti non funzionano con libreria di Azure IoT Hub hello.
+* Una rete wireless a cui Feather M0 Wi-Fi deve connettersi.
+* Una connessione Internet per scaricare lo strumento di configurazione.
+* [IDE Arduino](https://www.arduino.cc/en/main/software) 1.6.8 o versione successiva. Le versioni precedenti non funzionano con la libreria hub IoT di Azure.
 
-Se non si dispone di un sensore, hello seguenti elementi è facoltativo. È anche possibile hello utilizzando i dati del sensore simulato:
+Se non si ha un sensore, gli elementi seguenti sono facoltativi. È possibile anche usare dati di sensori simulati:
 
 * Un sensore di temperatura e umidità BME280
 * Basetta sperimentale
@@ -65,17 +65,17 @@ Se non si dispone di un sensore, hello seguenti elementi è facoltativo. È anch
 
 [!INCLUDE [iot-hub-get-started-create-hub-and-device](../../includes/iot-hub-get-started-create-hub-and-device.md)]
 
-## <a name="connect-feather-m0-wifi-with-hello-sensor-and-your-computer"></a>La connessione Wi-Fi M0 sfumatura con sensore hello e il computer
-In questa sezione è connettersi Lavagna tooyour sensori di hello. Quindi si collega il computer tooyour dispositivo per l'ulteriore utilizzo.
+## <a name="connect-feather-m0-wifi-with-the-sensor-and-your-computer"></a>Connettere Feather M0 Wi-Fi al sensore e al computer
+In questa sezione si connettono i sensori alla scheda. Quindi si collega il dispositivo al computer per poterlo usare.
 
-### <a name="connect-a-dht22-temperature-and-humidity-sensor-toofeather-m0-wifi"></a>Connettersi a un DHT22 temperatura e umidità sensore tooFeather Wi-Fi M0
+### <a name="connect-a-dht22-temperature-and-humidity-sensor-to-feather-m0-wifi"></a>Connettere un sensore di temperatura e umidità DHT22 a Feather M0 Wi-Fi
 
-Utilizzare hello breadboard e ponticelli cavi toomake hello connessione. Se non si dispone di un sensore, ignorare questa sezione in quanto è possibile usare i dati di sensori simulati.
+Usare la basetta sperimentale e i cavi ponticello per stabilire la connessione. Se non si dispone di un sensore, ignorare questa sezione in quanto è possibile usare i dati di sensori simulati.
 
 ![Riferimento per le connessioni](media/iot-hub-adafruit-feather-m0-wifi-get-started/3_connections_on_breadboard.png)
 
 
-Per i codici PIN sensore, utilizzare hello seguente collegamento:
+Per i pin dei sensori usare i collegamenti seguenti:
 
 
 | Inizio (sensore)           | Fine (scheda)            | Colore del cavo   |
@@ -95,88 +95,88 @@ Ora Feather M0 Wi-Fi è connesso con un sensore funzionante.
 
 ![Connettere DHT22 a Feather HUZZAH](media/iot-hub-adafruit-feather-m0-wifi-get-started/4_connect-bme280-feather-m0-wifi.png)
 
-### <a name="connect-feather-m0-wifi-tooyour-computer"></a>La connessione Wi-Fi M0 sfumatura tooyour computer
+### <a name="connect-feather-m0-wifi-to-your-computer"></a>Connettere Feather M0 Wi-Fi al computer
 
-Utilizzare hello USB Micro tooType A USB cable tooconnect Wi-Fi M0 sfumatura tooyour computer, come illustrato:
+Usare il cavo USB Micro/tipo A per connettere Feather M0 Wi-Fi al computer, come illustrato di seguito:
 
-![Connettere computer tooyour Huzzah sfumatura](media/iot-hub-adafruit-feather-m0-wifi-get-started/5_connect-feather-m0-wifi-computer.png)
+![Connettere Feather HUZZAH al computer](media/iot-hub-adafruit-feather-m0-wifi-get-started/5_connect-feather-m0-wifi-computer.png)
 
 ### <a name="add-serial-port-permissions-ubuntu-only"></a>Aggiungere le autorizzazioni per la porta seriale (solo Ubuntu)
 
-Se si utilizza Ubuntu, verificare di che aver toooperate autorizzazioni hello in hello USB porta della sfumatura M0 Wi-Fi. le autorizzazioni della porta seriale tooadd, seguire questi passaggi:
+Se si usa Ubuntu, assicurarsi di avere le autorizzazioni per operare sulla porta USB di Feather M0 Wi-Fi. Per aggiungere autorizzazioni sulla porta seriale, seguire questi passaggi:
 
 
-1. Un terminale, eseguire hello seguenti comandi:
+1. Eseguire i comandi seguenti in un terminale:
 
    ```bash
    ls -l /dev/ttyUSB*
    ls -l /dev/ttyACM*
    ```
 
-   Viene visualizzato uno dei hello seguente output:
+   Si ottiene uno degli output seguenti:
 
    * crw-rw---- 1 root uucp xxxxxxxx
    * crw-rw---- 1 root dialout xxxxxxxx
 
-   Nell'output di hello, si noti che `uucp` o `dialout` è nome del proprietario del gruppo hello di hello porta USB.
+   Nell'output osservare che `uucp` o `dialout` è il nome del proprietario del gruppo della porta USB.
 
-2. tooadd hello toohello gruppo di utenti, eseguire hello comando seguente:
+2. Per aggiungere l'utente al gruppo, eseguire il comando seguente:
 
    ```bash
    sudo usermod -a -G <group-owner-name> <username>
    ```
 
-   Ottenuto nel passaggio precedente hello, nome del proprietario del gruppo hello `<group-owner-name>`. `<username>` il nome utente di Ubuntu.
+   Nel passaggio precedente, `<group-owner-name>` è il nome del proprietario gruppo ottenuto, `<username>` il nome utente di Ubuntu.
 
-3. Per tooappear modifica hello, disconnettersi da Ubuntu e quindi accedere di nuovo.
+3. Per visualizzare la modifica, disconnettere Ubuntu e accedere di nuovo.
 
-## <a name="collect-sensor-data-and-send-it-tooyour-iot-hub"></a>Raccogliere dati del sensore e inviarle tooyour IoT hub
+## <a name="collect-sensor-data-and-send-it-to-your-iot-hub"></a>Raccogliere i dati del sensore e inviarli all'hub IoT
 
-In questa sezione si distribuisce e si esegue un'applicazione di esempio in Feather M0 Wi-Fi. applicazione di esempio Hello rende hello blink LED sul Wi-Fi M0 sfumatura. Invia quindi temperatura hello e umidità raccolti da hello BME280 sensore tooyour hub IoT.
+In questa sezione si distribuisce e si esegue un'applicazione di esempio in Feather M0 Wi-Fi. L'applicazione di esempio fa lampeggiare il LED sulla scheda Feather M0 Wi-Fi e invia all'hub IoT i dati di temperatura e umidità raccolti dal sensore BME280.
 
-### <a name="get-hello-sample-application-from-github-and-prepare-hello-arduino-ide"></a>Ottenere l'applicazione di esempio hello da GitHub e preparare hello Arduino IDE
+### <a name="get-the-sample-application-from-github-and-prepare-the-arduino-ide"></a>Ottenere l'applicazione di esempio da Github e preparare l'IDE Arduino
 
-applicazione di esempio Hello è ospitata in GitHub. Clonare il repository di esempio hello che contiene l'applicazione di esempio hello da GitHub. repository di esempio hello tooclone, seguire questi passaggi:
+L'applicazione di esempio è ospitata in GitHub. Clonare il repository di esempio che contiene l'applicazione di esempio da GitHub. Per clonare il repository di esempio, seguire questi passaggi:
 
 1. Aprire un prompt dei comandi o una finestra del terminale.
 
-2. Passare tooa cartella in cui si desidera toobe applicazione di esempio hello archiviati.
-3. Eseguire hello comando seguente:
+2. Passare alla cartella in cui archiviare l'applicazione di esempio.
+3. Eseguire il comando seguente:
 
    ```bash
    git clone https://github.com/Azure-Samples/iot-hub-Feather-M0-WiFi-client-app.git
    ```
 
-### <a name="install-hello-package-for-feather-m0-wifi-in-hello-arduino-ide"></a>Installare il pacchetto di hello per Wi-Fi M0 sfumatura in hello Arduino IDE
+### <a name="install-the-package-for-feather-m0-wifi-in-the-arduino-ide"></a>Installare il pacchetto per Feather M0 Wi-Fi nell'IDE Arduino
 
-1. Aprire hello cartella dove si trova l'applicazione di esempio hello.
+1. Aprire la cartella in cui è archiviata l'applicazione di esempio.
 
-2. Aprire il file di app.ino hello nella cartella dell'applicazione hello in hello Arduino IDE.
+2. Aprire il file app.ino nella cartella dell'app nell'IDE Arduino.
 
-   ![Aprire l'applicazione di esempio hello in Arduino IDE](media/iot-hub-adafruit-feather-m0-wifi-get-started/6_arduino-ide-open-sample-app.png)
+   ![Aprire l'applicazione di esempio nell'IDE Arduino](media/iot-hub-adafruit-feather-m0-wifi-get-started/6_arduino-ide-open-sample-app.png)
 
 
-1. Fare clic su **File** > **preferenze** (Windows/Linux) o **Arduino** > **preferenze** (Mac) e copiare e Incolla collegamento hello sotto in hello **URL di gestione aggiuntivi lavagne** opzione hello preferenze Arduino IDE.
+1. Fare clic su **File** > **Preferenze** (Windows/Linux) o su **Arduino** > **Preferenze** (Mac) e copiare e incollare il collegamento seguente nell'opzione **Additional Boards Manager URLs** (URL di gestione schede aggiuntive) nelle preferenze dell'IDE Arduino.
    
    ```
-   https://adafruit.github.io/arduino-board-index/package_adafruit_index.json, https://adafruit.github.io/arduino-board-index/package_adafruit_index.json
+   https://adafruit.github.io/arduino-board-index/package_adafruit_index.json
    ```
 
-1. Fare clic su **strumenti** > **Lavagna** > **Manager lavagne**e quindi installare hello `Arduino SAMD Boards` versione `1.6.2` o versione successiva. 
+1. Fare clic su **Strumenti** > **Scheda** > **Boards Manager** (Gestione schede) e quindi installare `Arduino SAMD Boards` version `1.6.2` o versione successiva. 
 
-1. Quindi nella stessa finestra hello, installare `Adafruit SAMD Boards` definizioni del file tooadd hello Lavagna del pacchetto.
+1. Nella stessa finestra installare quindi il pacchetto `Adafruit SAMD Boards` per aggiungere le definizioni del file di scheda.
 
-   ![installazione del pacchetto esp8266 Hello](media/iot-hub-adafruit-feather-m0-wifi-get-started/7_arduino-ide-package-url.png)
+   ![Il pacchetto esp8266 è installato](media/iot-hub-adafruit-feather-m0-wifi-get-started/7_arduino-ide-package-url.png)
 
 4. Fare clic su **Strumenti** > **Schede** > **Adafruit M0 Wi-Fi**.
 
-5. Installare i driver (solo per Windows). Quando si collega Wi-Fi M0 sfumatura, potrebbe essere necessario tooinstall un driver. Fare clic su [hello collegamento per il download nella pagina Web hello](https://github.com/adafruit/Adafruit_Windows_Drivers/releases/download/1.1/adafruit_drivers.exe) programma di installazione driver toodownload hello. Seguire i driver hello tooinstall passaggi hello desiderato.
+5. Installare i driver (solo per Windows). Quando si collega Feather M0 WiFi, è possibile che sia necessario installare un driver. Fare clic sul [collegamento di download nella pagina Web](https://github.com/adafruit/Adafruit_Windows_Drivers/releases/download/1.1/adafruit_drivers.exe) per scaricare il programma di installazione del driver. Seguire la procedura per installare i driver desiderati.
 
 ### <a name="install-necessary-libraries"></a>Installare le librerie necessarie
 
-1. In hello Arduino IDE, fare clic su **Sketch** > **libreria includono** > **Gestisci raccolte**.
+1. Nell'IDE di Arduino fare clic su **Schizzo** > **Include Library** (Includi libreria)  > **Gestisci librerie**.
 
-2. Ricerca di hello seguente i nomi delle librerie uno alla volta. Per ogni libreria trovata fare clic su **Install** (Installa):
+2. Cercare i seguenti nomi di libreria uno alla volta. Per ogni libreria trovata fare clic su **Install** (Installa):
 
    * `RTCZero`
    * `NTPClient`
@@ -187,55 +187,55 @@ applicazione di esempio Hello è ospitata in GitHub. Clonare il repository di es
    * `Adafruit BME280 Library`
    * `Adafruit Unified Sensor`
 
-3. Installare manualmente `Adafruit_WINC1500`. Andare troppo[il sito Web](https://github.com/adafruit/Adafruit_WINC1500) e fare clic su **Clone o download** > **ZIP di Download**. L'IDE Arduino, andare troppo**Sketch** > **libreria includono** > **aggiungere ZIP libreria** e aggiungere i file zip hello.
+3. Installare manualmente `Adafruit_WINC1500`. Accedere a [questo sito Web](https://github.com/adafruit/Adafruit_WINC1500) e fare clic su **Clone or download** (Clona o scarica)  >  **Download ZIP** (Scarica ZIP). Nell'IDE Arduino passare a **Sketch** (Schizzo)  >  **Include Library** (Includi libreria)  >  **Add .zip Library** (Aggiungi libreria ZIP) e quindi aggiungere il file ZIP.
 
-### <a name="use-hello-sample-application-if-you-dont-have-a-real-bme280-sensor"></a>Utilizzare l'applicazione di esempio hello se non si dispone di un sensore BME280 reale
+### <a name="use-the-sample-application-if-you-dont-have-a-real-bme280-sensor"></a>Usare l'applicazione di esempio se non si ha un sensore BME280 reale
 
-Se non si dispone di un sensore BME280 reale, l'applicazione di esempio hello possibile simulare la temperatura e umidità dati. tooset dei dati di toouse simulate dell'applicazione di esempio hello, seguire questi passaggi:
+Se non si ha un sensore BME280 reale, l'applicazione di esempio consente di simulare i dati di temperatura e umidità. Per abilitare l'applicazione di esempio all'uso di dati simulati, seguire questa procedura:
 
-1. Aprire hello `config.h` file hello `app` cartella.
+1. Aprire il file `config.h` nella cartella `app`.
 
-2. Individuare hello successiva riga di codice e modificare il valore di hello da `false` troppo`true`:
+2. Individuare la seguente riga di codice e modificare il valore da `false` a `true`:
 
    ```c
    define SIMULATED_DATA true
    ```
-   ![Configurare i dati simulati toouse dell'applicazione di esempio hello](media/iot-hub-adafruit-feather-m0-wifi-get-started/8_arduino-ide-configure-app-use-simulated-data.png)
+   ![Configurare l'applicazione di esempio per l'uso di dati simulati](media/iot-hub-adafruit-feather-m0-wifi-get-started/8_arduino-ide-configure-app-use-simulated-data.png)
 
-3. Salvare file con estensione hello `Control-s`.
+3. Salvare il file con `Control-s`.
 
-### <a name="deploy-hello-sample-application-toofeather-m0-wifi"></a>Distribuire tooFeather applicazione di esempio hello Wi-Fi M0
+### <a name="deploy-the-sample-application-to-feather-m0-wifi"></a>Distribuire l'applicazione di esempio in Feather M0 Wi-Fi
 
-1. In hello Arduino IDE, fare clic su **strumento** > **porta**, quindi fare clic su porta seriale hello per Wi-Fi M0 sfumatura.
+1. Nell'IDE di Arduino fare clic su **Strumento** > **Porta** e quindi fare clic sulla porta seriale per Feather M0 Wi-Fi.
 
-2. Fare clic su **Sketch** > **caricare** toobuild e distribuire tooFeather applicazione di esempio hello Wi-Fi M0.
+2. Fare clic su **Schizzo** > **Carica** per compilare e distribuire l'applicazione di esempio in Feather M0 Wi-Fi.
 
 ### <a name="enter-your-credentials"></a>Immettere le credenziali
 
-Dopo aver completato il caricamento di hello, seguire questi passaggi tooenter le credenziali:
+Una volta completato l'upload, seguire questa procedura per immettere le credenziali:
 
-1. In hello Arduino IDE, fare clic su **strumenti** > **monitoraggio seriale**.
+1. Nell'IDE di Arduino fare clic su **Strumenti** > **Serial Monitor** (Monitoraggio seriale).
 
-2. Nell'angolo inferiore destro hello della finestra di monitoraggio seriale hello selezionare **alcuna terminazione di riga** nell'elenco a discesa hello hello sinistra.
-3. Selezionare **115200 baud** nell'elenco a discesa hello hello destra.
-4. Nella casella di input hello nella parte superiore di hello, immettere le seguenti informazioni se si è hello frequenti tooprovide e fare clic su **inviare**:
+2. Nell'angolo inferiore destro della finestra del monitoraggio seriale selezionare **No line ending** (Senza terminazione di riga) nell'elenco a discesa a sinistra.
+3. Selezionare **115200 baud** nell'elenco a discesa a destra.
+4. Nella casella di input in alto immettere le informazioni seguenti, se viene chiesto di specificarle, e fare clic su **Send** (Invia):
 
    * Wi-Fi SSID
    * Password Wi-Fi
    * Stringa di connessione del dispositivo
 
 > [!Note]
-> informazioni sulle credenziali Hello viene archiviati in hello EEPROM di sfumatura M0 Wi-Fi. Se si fa clic su pulsante Reimposta hello in hello Lavagna Wi-Fi M0 sfumatura, applicazione di esempio hello chiede se si desiderano informazioni hello tooerase. Immettere `Y` informazioni hello tooerase. Verrà chiesto informazioni hello tooprovide una seconda volta.
+> Le informazioni sulle credenziali sono archiviate in EEPROM di Feather M0 Wi-Fi. Se si fa clic sul pulsante di reset della scheda Feather M0 Wi-Fi, l'applicazione di esempio chiede se si desidera cancellare le informazioni. Immettere `Y` per cancellare le informazioni. Viene chiesto di specificare nuovamente le informazioni.
 
-### <a name="verify-that-hello-sample-application-is-running-successfully"></a>Verificare che l'applicazione di esempio hello venga eseguita correttamente
+### <a name="verify-that-the-sample-application-is-running-successfully"></a>Verificare che l'applicazione di esempio venga eseguita correttamente
 
-Se viene visualizzato seguito hello output della finestra di monitoraggio seriale hello e hello lampeggiante LED su Wi-Fi M0 sfumatura, applicazione di esempio hello venga eseguita correttamente:
+Se nella finestra di monitoraggio seriale viene visualizzato l'output seguente e il LED di Feather M0 Wi-Fi lampeggia, l'applicazione di esempio è stata eseguita correttamente:
 
 ![Output finale nell'IDE Arduino](media/iot-hub-adafruit-feather-m0-wifi-get-started/9_arduino-ide-final-output.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Connessione Wi-Fi M0 sfumatura tooyour IoT hub e inviati hello acquisita l'hub IoT tooyour sensore dati completata. 
+La scheda Feather M0 Wi-Fi è stata connessa all'hub IoT correttamente e i dati acquisiti dal sensore sono stati inviati all'hub IoT. 
 
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]
 

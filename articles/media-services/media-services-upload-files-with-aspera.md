@@ -1,6 +1,6 @@
 ---
-title: file aaaUpload in un account di servizi multimediali di Azure tramite Aspera | Documenti Microsoft
-description: "In questa esercitazione illustra i passaggi hello di caricamento di file in un account di archiviazione che è associato a un account di servizi multimediali tramite hello * * il servizio Aspera Server su richiesta * * in Azure."
+title: Caricare file in un account Servizi multimediali di Azure usando Aspera | Documentazione Microsoft
+description: "Questa esercitazione viene illustrata la procedura di caricamento di file in un account di archiviazione è associato a un account di servizi multimediali con il * * il servizio Aspera Server su richiesta * * in Azure."
 services: media-services
 documentationcenter: 
 author: johndeu
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 04/17/2017
 ms.author: juliako
-ms.openlocfilehash: 7213f016cc1b7f262b14db7b39b478a03970d1c3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e3090da9b2c5b8f99545a1f7f9601bfd8d5221f1
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="upload-files-into-a-media-services-account-using-hello-aspera-server-on-demand-service-on-azure"></a>Caricare file in un account di servizi multimediali con il servizio di Aspera Server On Demand hello in Azure
+# <a name="upload-files-into-a-media-services-account-using-the-aspera-server-on-demand-service-on-azure"></a>Caricare file in un account Servizi multimediali usando il servizio Aspera Server On Demand in Azure
 
 ## <a name="overview"></a>Panoramica
 
-**Aspera** è un software di trasferimento di file ad alta velocità. **Aspera Server On Demand** per Azure consente il caricamento ad alta velocità e il download di file di grandi dimensioni direttamente nell'archivio di oggetti BLOB di Azure. Per informazioni su **Aspera On Demand**, vedere hello [Aspera Cloud](http://cloud.asperasoft.com/) sito. 
+**Aspera** è un software di trasferimento di file ad alta velocità. **Aspera Server On Demand** per Azure consente il caricamento ad alta velocità e il download di file di grandi dimensioni direttamente nell'archivio di oggetti BLOB di Azure. Per informazioni su **Aspera On Demand**, vedere il sito [Aspera Cloud](http://cloud.asperasoft.com/). 
   
-**Aspera Server On Demand** per Azure è disponibile per l'acquisto di hello [Azure marketplace](https://azure.microsoft.com/en-us/marketplace/). Ordinare toocomplete un acquisto **Aspera Server On Demand** per Azure, accedere in Azure Marketplace con Windows Live ID.
+**Aspera Server On Demand** per Azure è acquistabile in [Azure Marketplace](https://azure.microsoft.com/en-us/marketplace/). Per completare un acquisto di **Aspera Server On Demand** per Azure, accedere ad Azure Marketplace con il Windows Live ID.
 
-In questa esercitazione illustra i passaggi hello di caricamento di file in un account di archiviazione che è associato a un account di servizi multimediali tramite hello **Aspera Server On Demand** servizio in Azure. 
+Questa esercitazione illustra la procedura per caricare file in un account di archiviazione associato a un account Servizi multimediali usando il servizio **Aspera Server On Demand** in Azure. 
 
-È possibile trovare un esempio che illustra il funzionamento di Azure toouse con servizi multimediali e di Aspera [qui](https://github.com/Azure-Samples/media-services-dotnet-functions-integration/tree/master/103-aspera-ingest).
+Per un esempio che illustra come usare le funzioni di Azure con Aspera e Servizi multimediali, vedere [qui](https://github.com/Azure-Samples/media-services-dotnet-functions-integration/tree/master/103-aspera-ingest).
 
 >[!NOTE]
->Vi è limite toohello dimensioni massime supportate per l'elaborazione con servizi multimediali di Azure processori di contenuti multimediali (MP). Vedere [questo](media-services-quotas-and-limitations.md) per informazioni sulla limitazione delle dimensioni del file hello.
+>È previsto un limite per le dimensioni massime dei file supportate per l'elaborazione con i processori di contenuti multimediali di Servizi multimediali di Azure. Vedere [questo](media-services-quotas-and-limitations.md) argomento per informazioni dettagliate sulla limitazione per le dimensioni dei file.
 >
 
 ## <a name="prerequisites"></a>Prerequisiti 
 
-toocomplete questa esercitazione, è necessario:
+Per completare questa esercitazione, sono necessari:
 
 * Un Windows Live ID.
 * Un [account Azure](https://azure.microsoft.com). Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/). 
@@ -46,81 +46,81 @@ toocomplete questa esercitazione, è necessario:
 
 ## <a name="purchase-aspera-on-demand-for-azure"></a>Acquistare Aspera On Demand per Azure
 
-Dopo aver eseguito l'accesso in Azure Marketplace, seguire questi passaggi di base di toocomplete l'acquisto di Aspera On Demand per Azure.
+Dopo l'accesso ad Azure Marketplace, seguire questi semplici passaggi per completare l'acquisto di Aspera On Demand per Azure.
 
 1. Cercare Aspera e selezionare "Server On Demand".
 
    ![Aspera](./media/media-services-upload-files-with-aspera/media-services-upload-files-with-aspera001.png)
 
-2. Esaminare i piani di abbonamento hello e fare clic su 'Iscrizione'
+2. Esaminare i piani di sottoscrizione e fare clic su "Iscriviti".
 
    ![Aspera](./media/media-services-upload-files-with-aspera/media-services-upload-files-with-aspera002.png)
 
-3. Compilare le specifiche di hello del Server per la sottoscrizione richiesta.
+3. Immettere le specifiche per la sottoscrizione di Server on Demand.
 
    ![Aspera](./media/media-services-upload-files-with-aspera/media-services-upload-files-with-aspera003.png)
 
-4. Fare clic su hello **tariffario** e selezionare il volume mensile desiderato nel Pannello di hello sub. In hello **pianificare dettagli** Pannello di seleziona **OK**. Quindi, nel hello **scegliere il livello di prezzo** pannello, fare clic su **selezionare**.
+4. Fare clic su **Piano tariffario** e selezionare il volume mensile desiderato nel pannello secondario. Nel pannello **Plan details** (Dettagli piano) fare clic su **OK**. Nel pannello **Scegliere il piano tariffario** fare quindi clic su **Seleziona**.
 
    ![Aspera](./media/media-services-upload-files-with-aspera/media-services-upload-files-with-aspera004.png)
 
-5. Fare clic su **legali** tooview e accettare i termini legali specifici hello nel Pannello di hello sub. Dopo avere esaminato le note legali hello, fare clic su **acquisto**.
+5. Fare clic su **Note legali** per visualizzare e accettare le note legali nel pannello secondario. Dopo avere esaminato le note legali, fare clic su **Acquisto**.
 
    ![Aspera](./media/media-services-upload-files-with-aspera/media-services-upload-files-with-aspera005.png)
 
-6. Completare l'acquisto di hello facendo **crea**.
+6. Completare l'acquisto facendo clic su **Crea**.
 
    ![Aspera](./media/media-services-upload-files-with-aspera/media-services-upload-files-with-aspera006.png)
 
-7. dashboard di Azure Hello annuncerà che esegue il provisioning del servizio hello.  Una volta completata con il provisioning, è possibile trovare una nuova sottoscrizione hello eseguendo una ricerca delle risorse per il nome del servizio hello hello. Dopo avere trovato servizio hello, fare doppio clic su di esso toolaunch hello portale.
+7. Il dashboard di Azure informerà che è in corso il provisioning del servizio.  Al termine del provisioning, è possibile trovare la nuova sottoscrizione cercando nelle risorse il nome del servizio. Dopo averlo trovato, fare doppio clic sul servizio per avviare il portale di gestione del servizio.
 
    ![Aspera](./media/media-services-upload-files-with-aspera/media-services-upload-files-with-aspera007.png)
 
-8. Avviare il portale di gestione di hello Aspera. Dopo aver individuato il nuovo servizio Aspera, è possibile delineare portale di gestione di accessi toohello, facendo clic sul servizio hello.  Verrà aperto un nuovo pannello. Da all'interno di tale pannello nuova, è necessario tooclick su hello **nome risorsa** del nuovo servizio.  Nella seguente schermata di hello, il nome di risorsa hello è 'AsperaTransferDemo'. Quando si fa clic sul nome di risorsa hello, viene avviato un altro pannello. Nel nuovo pannello aperto sarà visualizzato un collegamento "Manage" (Gestisci). Fare clic su hello portale di gestione di Aspera hello toolaunch di collegamento 'Gestisci'.
+8. Avviare il portale di gestione di Aspera. Dopo avere trovato il nuovo servizio Aspera, è possibile accedere al portale di gestione facendo clic sul servizio.  Verrà aperto un nuovo pannello. In questo nuovo pannello è necessario fare clic sul **nome della risorsa** del nuovo servizio.  Nello screenshot seguente il nome della risorsa è "AsperaTransferDemo". Dopo avere fatto clic sul nome della risorsa, viene aperto un altro pannello. Nel nuovo pannello aperto sarà visualizzato un collegamento "Manage" (Gestisci). Fare clic sul collegamento "Manage" (Gestisci) per avviare il portale di gestione di Aspera.
 
    ![Aspera](./media/media-services-upload-files-with-aspera/media-services-upload-files-with-aspera008.png)
 
-9. Facendo clic su hello gestire collegamento, si otterrà una pagina di registrazione toohello, che è necessario tooaccess hello del servizio.
+9. Facendo clic sul collegamento Manage (Gestisci), si aprirà la pagina di registrazione, necessaria per accedere al servizio.
 
    ![Aspera](./media/media-services-upload-files-with-aspera/media-services-upload-files-with-aspera009.png)
 
-10. A questo punto, è necessario disporre di accesso toohello Aspera servizio portale di gestione, in cui è possibile creare chiavi di accesso, scaricare le licenze e i client di Aspera, visualizzare l'utilizzo e informazioni sulle API hello.
+10. A questo punto, si avrà accesso al portale di gestione del servizio Aspera, dove è possibile creare chiavi di accesso, scaricare client e licenze di Aspera, visualizzare l'utilizzo e trovare informazioni sulle API.
 
-    Hello figura seguente viene illustrata la creazione di accesso hello. 
+    Lo screenshot seguente illustra la creazione dell'accesso. 
 
    ![Aspera](./media/media-services-upload-files-with-aspera/media-services-upload-files-with-aspera010.png)
 
-    Hello seguente schermata Mostra utilizzo hello reporting interfacce nel portale di hello. 
+    Lo screenshot seguente illustra le interfacce di creazione di report sull'utilizzo nel portale. 
 
    ![Aspera](./media/media-services-upload-files-with-aspera/media-services-upload-files-with-aspera011.png)
 
 ## <a name="upload-files-with-aspera"></a>Caricare file con Aspera
 
-1. Scaricare e installare il software client di Aspera hello:
+1. Scaricare e installare il software client Aspera:
     
     * [Plug-in del browser](http://downloads.asperasoft.com/connect2/)
     * [Rich client](http://downloads.asperasoft.com/en/downloads/2)
 
-2. Eseguire il primo trasferimento. In ordine toouse hello Aspera client tootransfer con servizio trasferimento Aspera hello, è necessario seguente hello toocomplete: 
+2. Eseguire il primo trasferimento. Per usare il client Aspera per il trasferimento con il servizio di trasferimento Aspera, è necessario completare le operazioni seguenti: 
 
-    1. Creare una chiave di accesso, tramite il portale di Aspera hello.  
-    2. Download, l'installazione e client delle licenze hello Aspera (software sono disponibili nel portale di Aspera hello).  
+    1. Creare una chiave di accesso usando il portale di Aspera.  
+    2. Scaricare, installare e concedere in licenza il client Aspera. Il software è disponibile nel portale di Aspera.  
 
     >[!NOTE]
-    >Leggere una Guida di client Aspera hello per le informazioni di configurazione.
+    >Leggere la guida al client Aspera per informazioni sulla configurazione.
     
-    3. Recuperare alcune informazioni dell'account di archiviazione che è associato con l'Account di supporto di Azure tramite hello [portale di Azure](https://portal.azure.com/). In particolare, nome e chiave e al nome contenitore blob di archiviazione hello in toowhich desiderato tooplace il contenuto. 
+    3. Recuperare alcune informazioni dell'account di archiviazione associato all'account multimediale di Azure usando il [portale di Azure](https://portal.azure.com/), in particolare il nome e la chiave e il nome del contenitore BLOB di archiviazione in cui si vuole inserire il contenuto. 
 
-        * informazioni di archiviazione hello tooget dal portale hello: trovare account di archiviazione, fare clic sulle chiavi di accesso hello e copia hello nome e hello la chiave dell'account.
-        * nome del contenitore hello tooget: trovare l'account di archiviazione, seleziona **BLOB**, selezionare il nome di hello del contenitore di hello si desidera tooupload hello contenuto in. 
+        * Per ottenere le informazioni di archiviazione dal portale: trovare l'account di archiviazione, fare clic sulle chiavi di accesso e copiare il nome e la chiave dell'account.
+        * Per ottenere il nome del contenitore: trovare l'account di archiviazione, selezionare **Blobs** (BLOB) e selezionare il nome del contenitore in cui si vuole caricare il contenuto. 
 
-    Di seguito è la schermata di hello del client di Aspera hello **Connection Manager** in cui è necessario specificare il tipo di archiviazione 'Azure' hello e le credenziali, nonché il contenitore di blob hello.
+    Il seguente è lo screenshot del client Aspera **Connection Manager** (Gestione connessioni) in cui è necessario specificare il tipo di archiviazione "Azure" e le credenziali, oltre al contenitore BLOB.
 
     ![Aspera](./media/media-services-upload-files-with-aspera/media-services-upload-files-with-aspera012.png)
 
 ## <a name="resources"></a>Risorse
 
-Hello seguenti risorse è citata in questo articolo. 
+Le risorse seguenti sono state citate in questo articolo. 
 
 * [Collegare il plug-in del browser](http://downloads.asperasoft.com/connect2/)
 * [Guida alla connessione](http://downloads.asperasoft.com/en/documentation/8)

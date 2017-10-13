@@ -1,6 +1,6 @@
 ---
-title: aaaService mappa soluzione corsi demo | Documenti Microsoft
-description: "Mappa del servizio è una soluzione di Operations Management Suite (OMS) che rileva automaticamente i componenti dell'applicazione in Windows e mappe e i sistemi Linux hello la comunicazione tra servizi.  Si tratta di una demo valore speciale paced autonoma che viene illustrato l'utilizzo di mapping servizio tooidentify e diagnostica un problema simulato in un'applicazione web."
+title: Demo per la formazione autonoma sulla soluzione Service Map | Microsoft Docs
+description: "Service Map è una soluzione di Operations Management Suite (OMS) che rileva automaticamente i componenti delle applicazioni nei sistemi Windows e Linux e mappa la comunicazione tra i servizi.  Questa demo per la formazione autonoma illustra l'uso di Service Map per identificare e diagnosticare un problema simulato in un'applicazione Web."
 services: operations-management-suite
 documentationcenter: 
 author: bwren
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/12/2017
 ms.author: bwren
-ms.openlocfilehash: 13f26241cd55a9b35c07d6ca52760a968abffc64
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: c3548d24c74f8ad865b22d6af3490d0b5cc77a84
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="operations-management-suite-oms-self-paced-demo---service-map"></a>Demo per la formazione autonoma sulla soluzione Service Map in Operations Management Suite (OMS)
-Si tratta di una demo valore speciale paced self che illustra l'utilizzo di hello [soluzione mappa del servizio](operations-management-suite-service-map.md) in tooidentify Operations Management Suite (OMS) e diagnosticare un problema simulato in un'applicazione web.  Mappa del servizio consente di individuare automaticamente i componenti dell'applicazione nei sistemi Windows e Linux e mappe hello la comunicazione tra servizi.  Consente di consolidare i dati raccolti da altri tooassist di servizi OMS l'analisi delle prestazioni e l'identificazione dei problemi.  Si utilizzeranno inoltre [Accedi ricerche Log Analitica](../log-analytics/log-analytics-log-searches.md) toodrill verso il basso sui dati raccolti in problema principale hello tooidentify di ordine.
+Questa demo per la formazione autonoma illustra l'uso della [soluzione Service Map](operations-management-suite-service-map.md) in Operations Management Suite (OMS) per identificare e diagnosticare un problema simulato in un'applicazione Web.  L'elenco dei servizi individua automaticamente i componenti delle applicazioni nei sistemi Windows e Linux ed esegue la mappatura della comunicazione fra i servizi.  Consente di consolidare i dati raccolti da altri servizi OMS per agevolare l'analisi delle prestazioni e l'identificazione dei problemi.  Verranno anche usate le [ricerche nei log in Log Analytics](../log-analytics/log-analytics-log-searches.md) per eseguire il drill-down sui dati raccolti e identificare il problema radice.
 
 
 ## <a name="scenario-description"></a>Descrizione dello scenario
-Appena ricevuto una notifica che un'applicazione hello portale per i clienti ACME problemi di prestazioni.  Hello solo le informazioni che occorre sono che questi problemi ha iniziato a circa 4:00 am PST oggi.  Si è sicuri di interamente di tutti i componenti di hello tale portale hello dipende diverso da un set di server web.  
+È stata appena ricevuta una notifica relativa a problemi di prestazioni dell'applicazione del portale clienti ACME.  Le uniche informazioni disponibili sono che i problemi sono iniziati all'incirca alle 4.00 PST di oggi.  A parte un set di server Web, non si è completamente sicuri di tutti i componenti da cui dipende il portale.  
 
 ## <a name="components-and-features-used"></a>Componenti e le funzionalità usati
 - [Soluzione Service Map](operations-management-suite-service-map.md)
@@ -34,82 +34,82 @@ Appena ricevuto una notifica che un'applicazione hello portale per i clienti ACM
 
 ## <a name="walk-through"></a>Procedura dettagliata
 
-### <a name="1-connect-toohello-oms-experience-center"></a>1. Connessione toohello OMS esperienza Center
-Questa procedura dettagliata Usa hello [Operations Management Suite esperienza Center](https://experience.mms.microsoft.com/) che fornisce un ambiente completo di OMS con dati di esempio. Per iniziare, seguendo il collegamento, fornire le informazioni e quindi selezionare hello **Insight & Analitica** scenario.
+### <a name="1-connect-to-the-oms-experience-center"></a>1. Connettersi a OMS Experience Center
+Questa procedura dettagliata fa uso di [Operations Management Suite Experience Center](https://experience.mms.microsoft.com/), che offre un ambiente completo di OMS con dati di esempio. Per iniziare, seguire questo collegamento, specificare le informazioni e quindi selezionare lo scenario **Insight & Analytics**.
 
 
 ### <a name="2-start-service-map"></a>2. Avviare Service Map
-Avviare Esplora mappa del servizio hello facendo clic su hello **mappa del servizio** riquadro.
+Per avviare la soluzione, fare clic sul riquadro **Service Map**.
 
 ![Riquadro Service Map](media/operations-management-suite-walkthrough-servicemap/tile.png)
 
-console di Hello mappa del servizio viene visualizzato.  In hello riquadro sinistro è un elenco di computer nell'ambiente di cui è installato l'agente di mapping servizio hello.  Basta selezionare i computer hello che si desidera tooview da questo elenco.
+Verrà visualizzata la console di Service Map.  Il riquadro a sinistra contiene un elenco di computer nell'ambiente in cui è installato l'agente per Service Map.  Il computer da visualizzare verrà selezionato da questo elenco.
 
 ![Elenco di computer](media/operations-management-suite-walkthrough-servicemap/computer-list.png)
 
 
 ### <a name="3-view-computer"></a>3. Visualizzare un computer
-Sappiamo che i server web hello sono dette AcmeWFE001 e AcmeWFE002, pertanto questa opzione sembri toostart una scelta ragionevole.  Fare clic su **AcmeWFE001**.  Consente di visualizzare la mappa hello per AcmeWFE001 e tutte le relative dipendenze.  È possibile visualizzare i processi in esecuzione sul computer selezionato hello e che comunicano con i servizi esterni.
+I server Web sono denominati AcmeWFE001 e AcmeWFE002.  Fare clic su **AcmeWFE001**.  Verrà visualizzata la mappa per AcmeWFE001 e tutte le relative dipendenze.  La mappa mostra i processi in esecuzione nel computer selezionato e i servizi esterni con cui comunicano.
 
 ![Server Web](media/operations-management-suite-walkthrough-servicemap/web-server.png)
 
-Siamo massimizzare le prestazioni di hello del nostro web applicazione fare quindi clic su hello **AcmeAppPool (Pool di applicazioni IIS)** processo.  Consente di visualizzare i dettagli di hello per questo processo e vengono evidenziate le relative dipendenze.  
+Per visualizzare le prestazioni dell'applicazione Web problematica, fare clic sul processo **AcmeAppPool (IIS App Pool)**.  Verranno visualizzati i dettagli di questo processo ed evidenziate le relative dipendenze.  
 
 ![Pool di app](media/operations-management-suite-walkthrough-servicemap/app-pool.png)
 
 
 ### <a name="4-change-time-window"></a>4. Cambiare l'intervallo di tempo
 
-Preferire tale problema hello iniziato alle 4:00 AM andiamo esaminerà Qual era il problema in quel momento. Fare clic su **intervallo di tempo** e modificare hello ora too4: 00 AM PST (mantenere hello data corrente e regolare per il fuso orario locale) di durata pari a 20 minuti.
+Il problema è iniziato alle 4.00, occorre quindi verificare quale fosse la situazione in quel momento. Fare clic su **Intervallo di tempo** e impostare l'ora sulle 4.00 PST con una durata di 20 minuti, mantenendo la data corrente e facendo le dovute modifiche in base al fuso orario locale.
 
 ![Selezione ora](./media/operations-management-suite-walkthrough-servicemap/time-picker.png)
 
 
 ### <a name="5-view-alert"></a>5. Visualizzare un avviso
 
-Vediamo ora tale hello **acmetomcat** dipendenza è un avviso, in modo che il problema.  Fare clic sull'icona di avviso hello in **acmetomcat** dettagli hello tooshow per avviso hello.  L'utilizzo della CPU è indicato come critico ed è possibile espandere l'avviso per visualizzare altri dettagli.  Si tratta probabilmente della causa del rallentamento delle prestazioni. 
+A questo punto si può vedere che la dipendenza **acmetomcat** mostra un avviso. Potrebbe trattarsi del problema che si sta cercando.  Fare clic sull'icona dell'avviso in **acmetomcat** per visualizzare i relativi dettagli.  L'utilizzo della CPU è indicato come critico ed è possibile espandere l'avviso per visualizzare altri dettagli.  Si tratta probabilmente della causa del rallentamento delle prestazioni. 
 
 ![Avviso](./media/operations-management-suite-walkthrough-servicemap/alert.png)
 
 
 ### <a name="6-view-performance"></a>6. Visualizzare le prestazioni
 
-Esaminare **acmetomcat** più da vicino.  Fare clic nella hello superiore destra della **acmetomcat** e selezionare **carico Server mappa** tooshow hello dettagli e le dipendenze per questa macchina. È possibile quindi analizzare un po' più in tali tooverify i contatori delle prestazioni nostri sospetto.  Seleziona hello **prestazioni** hello toodisplay scheda [i contatori delle prestazioni raccolti da Log Analitica](../log-analytics/log-analytics-data-sources-performance-counters.md) in intervallo di tempo hello.  Possiamo vedere che ci troviamo picchi periodici nell'hello processore e memoria.
+Esaminare **acmetomcat** più da vicino.  Fare clic nell'angolo superiore destro di **acmetomcat** e selezionare **Carica mappa del server** per visualizzare i dettagli e le dipendenze per questo computer. È possibile esaminare più a fondo i contatori delle prestazioni per verificare la situazione.  Selezionare la scheda **Prestazioni** per visualizzare i [contatori delle prestazioni raccolti da Log Analytics](../log-analytics/log-analytics-data-sources-performance-counters.md) nell'intervallo di tempo.  Si possono notare picchi periodici nelle prestazioni del processore e della memoria.
 
 ![Prestazioni](./media/operations-management-suite-walkthrough-servicemap/performance.png)
 
 
 ### <a name="7-view-change-tracking"></a>7. Visualizzare il rilevamento modifiche
-Provare ora a scoprire la possibile causa di questo utilizzo elevato.  Fare clic su hello **riepilogo** scheda.  Fornisce informazioni che OMS sono raccolti da computer hello, ad esempio non è stato possibile connessioni, gli avvisi critici e le modifiche del software.  Le sezioni con interessanti informazioni recenti devono già essere espanso, ed è possibile espandere tooinspect informazioni nelle sezioni che contengono.
+Provare ora a scoprire la possibile causa di questo utilizzo elevato.  Fare clic sulla scheda **Riepilogo**,  che contiene le informazioni che OMS ha raccolto dal computer, come le connessioni non riuscite, gli avvisi critici e le modifiche al software.  Le sezioni con informazioni recenti interessanti dovrebbero già essere espanse. È possibile espandere altre sezioni per esaminare le informazioni in esse contenute.
 
 
-Espandere **Rilevamento modifiche**, se non è già aperto.  Mostra le informazioni raccolte da hello [soluzione Change Tracking](../log-analytics/log-analytics-change-tracking.md).  Sembra che in questo intervallo di tempo sia stata apportata una modifica al software.  Fare clic su **Software** tooget dettagli.  Un processo di backup è stato aggiunto macchina toohello subito dopo 4:00 AM, in modo causa hello toobe per hello eccessivo di risorse viene utilizzato questo valore viene visualizzato.
+Espandere **Rilevamento modifiche**, se non è già aperto.  Qui vengono mostrate le informazioni raccolte dalla [soluzione Rilevamento modifiche](../log-analytics/log-analytics-change-tracking.md).  Sembra che in questo intervallo di tempo sia stata apportata una modifica al software.  Fare clic su **Software** per visualizzare i dettagli.  Un processo di backup è stato aggiunto al computer poco dopo le 4.00. Sembra quindi che sia questa la causa del consumo eccessivo di risorse.
 
 ![Rilevamento modifiche](./media/operations-management-suite-walkthrough-servicemap/change-tracking.png)
 
 
 
 ### <a name="8-view-details-in-log-search"></a>8. Visualizzare i dettagli nella ricerca dei log
-È possibile verificare ulteriormente questo esaminando hello dettagliate informazioni sulle prestazioni raccolte nell'archivio di Log Analitica hello.  Fare clic su hello **avvisi** scheda nuovo e quindi su una delle hello **elevato della CPU** gli avvisi.  Fare clic su **Mostra in Ricerca log**.  Verrà visualizzata una finestra di ricerca nei Log hello in cui è possibile eseguire [log ricerche](../log-analytics/log-analytics-log-searches.md) su tutti i dati archiviati nel repository di hello.  Mappa del servizio è già presente un queriy per noi avviso hello tooretrieve si è interessati.  
+Per fare un'ulteriore verifica, è possibile esaminare le informazioni dettagliate sulle prestazioni raccolte nel repository di Log Analytics.  Fare nuovamente clic sulla scheda **Avvisi** e quindi su uno degli avvisi di **utilizzo elevato della CPU**.  Fare clic su **Mostra in Ricerca log**.  Verrà visualizzata la finestra Ricerca log, in cui è possibile eseguire [ricerche nei log](../log-analytics/log-analytics-log-searches.md) su tutti i dati archiviati nel repository.  Service Map ha già compilato una query per recuperare l'avviso che si sta cercando.  
 
 ![Ricerca log](./media/operations-management-suite-walkthrough-servicemap/log-search.png)
 
 
 ### <a name="9-open-saved-search"></a>9. Aprire una ricerca salvata
-Vediamo se è possibile ottenere alcuni ulteriori dettagli su raccolta prestazioni hello che ha generato questo avviso e verificare se il nostro sospetto che problemi di hello sono causati da tale processo di backup.  Modificare anche l'intervallo di tempo hello**6 ore**.  Fare clic su **Preferiti** e scorrere verso il basso toohello salvato Cerca **mappa del servizio**.  Si tratta delle query create in modo specifico per l'analisi.  Fare clic su **Top 5 Processes by CPU for acmetomcat** (Primi 5 processi per CPU per acmetomcat).
+Provare ora a ottenere maggiori dettagli sulla raccolta di prestazioni che ha generato l'avviso, per verificare il sospetto che i problemi siano causati da tale processo di backup.  Modificare l'intervallo di tempo in **6 ore**.  Quindi fare clic su **Preferiti** e scorrere fino alle ricerche salvate per **Service Map**.  Si tratta delle query create in modo specifico per l'analisi.  Fare clic su **Top 5 Processes by CPU for acmetomcat** (Primi 5 processi per CPU per acmetomcat).
 
 ![Ricerca salvata](./media/operations-management-suite-walkthrough-servicemap/saved-search.png)
 
 
-Questa query restituisce un elenco di hello processi primi 5 utilizzo del processore in **acmetomcat**.  È possibile esaminare hello query tooget un linguaggio di query toohello introduzione utilizzato per ricerche nei log.  Se si era interessati a processi hello in altri computer, è possibile modificare hello query tooretrieve tali informazioni.
+Questa query restituisce un elenco dei primi cinque processi per utilizzo del processore in **acmetomcat**.  È possibile esaminare la query per iniziare a conoscere il linguaggio di query usato per le ricerche nei log.  Se si è interessati ai processi in altri computer, è possibile modificare la query per recuperare tali informazioni.
 
-In questo caso, si noterà che hello processo di backup in modo coerente utilizza circa 60% della CPU del server di app hello.  È evidente che questo processo è la causa del problema di prestazioni.  La soluzione sarebbe ovviamente tooremove questo nuovo software server di applicazione hello di backup.  È possibile sfruttare effettivamente stato configurazione DSC (Desired) gestiti da criteri di toodefine di automazione di Azure per garantire che questo processo non viene mai eseguita su tali sistemi critici.
+In questo caso si può notare che il processo di backup utilizza in modo costante circa il 60% della CPU del server applicazioni.  È evidente che questo processo è la causa del problema di prestazioni.  Per risolvere il problema, naturalmente, il nuovo software di backup verrà rimosso dal server applicazioni.  È possibile usare Configurazione dello stato desiderato (DSC), gestito da Automazione di Azure, per definire criteri che garantiscano che tale processo non venga mai eseguito in questi sistemi critici.
 
 
 ## <a name="summary-points"></a>Riepilogo
 - [Service Map](operations-management-suite-service-map.md) permette di visualizzare l'intera applicazione, anche se non se ne conoscono tutti i server e le dipendenze.
-- Mappa del servizio espone i dati raccolti da altri toohelp soluzioni OMS identificare i problemi con l'applicazione e l'infrastruttura sottostante.
-- [Log delle ricerche](../log-analytics/log-analytics-log-searches.md) consentono di organizzare toodrill verso il basso in dati specifici raccolti nel repository di hello Analitica di Log.    
+- Service Map presenta i dati raccolti da altre soluzioni OMS per identificare i problemi dell'applicazione e dell'infrastruttura sottostante.
+- [Ricerche log](../log-analytics/log-analytics-log-searches.md) consente di eseguire il drill down su dati specifici raccolti nel repository di Log Analytics.    
 
 ## <a name="next-steps"></a>Passaggi successivi
 - Altre informazioni su [Service Map](operations-management-suite-service-map.md).

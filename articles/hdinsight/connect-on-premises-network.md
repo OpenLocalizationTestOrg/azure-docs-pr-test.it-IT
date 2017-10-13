@@ -1,6 +1,6 @@
 ---
-title: rete di on-premise di aaaConnect HDInsight tooyour - HDInsight di Azure | Documenti Microsoft
-description: Informazioni su come toocreate un HDInsight cluster in una rete virtuale di Azure e quindi connetterla rete locale tooyour. Informazioni su come tooconfigure la risoluzione dei nomi tra HDInsight e la rete locale tramite un server DNS personalizzato.
+title: Connettere HDInsight alla rete locale - Azure HDInsight | Microsoft Docs
+description: Informazioni su come creare un cluster HDInsight in una rete virtuale di Azure e quindi connetterlo alla rete locale. Informazioni su come configurare la risoluzione dei nomi tra HDInsight e la rete locale usando un server DNS personalizzato.
 documentationcenter: 
 author: Blackmist
 manager: jhubbard
@@ -11,34 +11,31 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 08/21/2017
+ms.date: 09/21/2017
 ms.author: larryfr
-ms.openlocfilehash: 8a3adf0e3df7726d8e6566d723700506baaf89a8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 27a5d0e69ec9c47feab2b23d7c79fe2547edfc08
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="connect-hdinsight-tooyour-on-premise-network"></a>La connessione di rete locale tooyour di HDInsight
+# <a name="connect-hdinsight-to-your-on-premise-network"></a>Connettere HDInsight alla rete locale
 
-Informazioni su come tooconnect HDInsight tooyour locale rete tramite reti virtuali di Azure e un gateway VPN. Questo documento fornisce le informazioni di pianificazione su:
+Informazioni su come connettere HDInsight alla rete locale usando Reti virtuali di Azure e un gateway VPN. Questo documento fornisce le informazioni di pianificazione su:
 
-* Utilizzo di HDInsight in una rete virtuale di Azure che si connette tooyour locale rete.
+* Uso di HDInsight in una rete virtuale di Azure che si connette alla rete locale.
 
-* Configurazione di risoluzione dei nomi DNS tra la rete virtuale hello e la rete locale.
+* Configurazione della risoluzione dei nomi DNS tra la rete virtuale e la rete locale.
 
-* Configurazione di rete sicurezza gruppi toorestrict internet access tooHDInsight.
+* Configurazione dei gruppi di sicurezza di rete per limitare l'accesso Internet per HDInsight.
 
-* Porte fornite da HDInsight nella rete virtuale hello.
+* Porte fornite da HDInsight nella rete virtuale.
 
-## <a name="create-hello-virtual-network-configuration"></a>Creare una configurazione di rete virtuale hello
+## <a name="create-the-virtual-network-configuration"></a>Creare la configurazione della rete virtuale
 
-> [!IMPORTANT]
-> Se si cercano informazioni aggiuntive dettagliate sulla connessione HDInsight tooyour locale rete tramite una rete virtuale di Azure, vedere hello [rete locale di connettersi a HDInsight tooyour](connect-on-premises-network.md) documento.
-
-Seguente hello utilizzare documenti toolearn come una rete virtuale di Azure che è connesso tooyour toocreate locale rete:
+Vedere i documenti seguenti per informazioni su come creare una rete virtuale di Azure connessa alla rete locale:
     
-* [Utilizzo di hello portale di Azure](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md)
+* [Uso del portale di Azure](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md)
 
 * [Uso di Azure PowerShell](../vpn-gateway/vpn-gateway-create-site-to-site-rm-powershell.md)
 
@@ -46,100 +43,103 @@ Seguente hello utilizzare documenti toolearn come una rete virtuale di Azure che
 
 ## <a name="configure-name-resolution"></a>Configurare la risoluzione dei nomi
 
-tooallow HDInsight e risorse in toocommunicate rete hello unita in join in base al nome, è necessario eseguire hello seguenti azioni:
+Per consentire a HDInsight e alle risorse nella rete aggiunta di comunicare in base al nome, è necessario eseguire queste operazioni:
 
-* Creare un server DNS personalizzato in hello rete virtuale di Azure.
+* Creare un server DNS personalizzato in Rete virtuale di Azure.
 
-* Configurare hello rete virtuale toouse hello server DNS personalizzato anziché predefinito hello Resolver ricorsivo di Azure.
+* Configurare la rete virtuale per usare il server DNS personalizzato invece del resolver ricorsivo predefinito di Azure.
 
-* Configurare l'inoltro tra un server DNS personalizzato hello e il server DNS locale.
+* Configurare l'inoltro tra il server DNS personalizzato e il server DNS locale.
 
-Questa configurazione consente hello seguente comportamento:
+Questa configurazione consente il comportamento seguente:
 
-* Le richieste per i nomi di dominio completo che hanno il suffisso DNS hello __per la rete virtuale hello__ vengono inoltrati toohello un server DNS personalizzato. un server DNS personalizzato Hello inoltra quindi questi toohello richieste Resolver ricorsivo di Azure, che restituisce l'indirizzo IP hello.
+* Le richieste per i nomi di dominio completi con il suffisso DNS __per la rete virtuale__ vengono inoltrate al server DNS personalizzato. Il server DNS personalizzato inoltra quindi le richieste al resolver ricorsivo di Azure, che restituisce l'indirizzo IP.
 
-* Tutte le altre richieste vengono inoltrate a server DNS di toohello locale. Anche le richieste di risorse internet pubblici, ad esempio microsoft.com vengono inoltrate server DNS locale di toohello per la risoluzione dei nomi.
+* Tutte le altre richieste vengono inoltrate al server DNS locale. Anche le richieste di risorse Internet pubbliche, ad esempio microsoft.com, vengono inoltrate al server DNS locale per la risoluzione dei nomi.
 
-Nel seguente diagramma di hello, linee verdi sono richieste per le risorse che terminano con il suffisso DNS hello della rete virtuale hello. Linee blu sono richieste per le risorse nella rete locale hello o nell'hello rete internet pubblica.
+Nel diagramma seguente le linee verdi sono richieste di risorse che terminano nel suffisso DNS della rete virtuale. Le linee blu sono richieste di risorse nella rete locale o nella rete Internet pubblica.
 
-![Diagramma della modalità di risoluzione delle richieste DNS nella configurazione di hello utilizzato in questo documento](./media/connect-on-premises-network/on-premises-to-cloud-dns.png)
+![Diagramma della modalità di risoluzione delle richieste DNS nella configurazione usata in questo documento](./media/connect-on-premises-network/on-premises-to-cloud-dns.png)
 
 ### <a name="create-a-custom-dns-server"></a>Creare un server DNS personalizzato
 
 > [!IMPORTANT]
-> È necessario creare e configurare i server DNS hello prima di installare HDInsight in rete virtuale hello.
+> È necessario creare e configurare il server DNS prima di installare HDInsight nella rete virtuale.
 
-una VM Linux che utilizza hello toocreate [associare](https://www.isc.org/downloads/bind/) software DNS, utilizzare hello alla procedura seguente:
+Per creare una VM Linux che usa il software DNS [Bind](https://www.isc.org/downloads/bind/), eseguire questa procedura:
 
 > [!NOTE]
-> i passaggi seguenti Hello usano hello [portale di Azure](https://portal.azure.com) toocreate una macchina virtuale di Azure. Per altri modi toocreate una macchina virtuale, vedere hello [creare VM - CLI di Azure](../virtual-machines/linux/quick-create-cli.md) e [creare VM - Azure PowerShell](../virtual-machines/linux/quick-create-portal.md) documenti.
+> Nella procedura seguente viene usato il [portale di Azure](https://portal.azure.com) per creare una macchina virtuale di Azure. Per altri modi in cui creare una macchina virtuale, vedere i seguenti documenti:
+>
+> * [Creare una VM: interfaccia della riga di comando di Azure](../virtual-machines/linux/quick-create-cli.md)
+> * [Creare una VM - Azure PowerShell](../virtual-machines/linux/quick-create-portal.md)
 
-1. Da hello [portale di Azure](https://portal.azure.com)selezionare  __+__ , __calcolo__, e __Ubuntu Server 16.04 LTS__.
+1. Dal [portale di Azure](https://portal.azure.com) selezionare __+__, __Calcolo__ e __Ubuntu Server 16.04 LTS__.
 
     ![Creare una macchina virtuale Ubuntu](./media/connect-on-premises-network/create-ubuntu-vm.png)
 
-2. Da hello __nozioni di base__ immettere hello le seguenti informazioni:
+2. Nella sezione __Informazioni di base__ immettere le informazioni seguenti:
 
     * __Nome__: nome descrittivo che identifica questa macchina virtuale. Ad esempio __DNSProxy__.
-    * __Nome utente__: nome hello di hello account SSH.
-    * __La chiave pubblica SSH__ o __Password__: hello metodo di autenticazione per hello account SSH. Si consiglia di usare le chiavi pubbliche, che sono più sicure. Per ulteriori informazioni, vedere hello [creare e usare le chiavi SSH per le macchine virtuali Linux](../virtual-machines/linux/mac-create-ssh-keys.md) documento.
-    * __Gruppo di risorse__: selezionare __utilizzare esistente__, quindi selezionare gruppo di risorse hello che contiene hello di rete virtuale creata in precedenza.
-    * __Percorso__: selezionare hello stesso percorso di rete virtuale hello.
+    * __Nome utente__: nome dell'account SSH.
+    * __Chiave pubblica SSH__ o __Password__: metodo di autenticazione per l'account SSH. Si consiglia di usare le chiavi pubbliche, che sono più sicure. Per altre informazioni, vedere il documento [Creare e usare chiavi SSH per VM Linux](../virtual-machines/linux/mac-create-ssh-keys.md).
+    * __Gruppo di risorse__: selezionare __Usa esistente__ e quindi selezionare il gruppo di risorse contenente la rete virtuale creata in precedenza.
+    * __Località__: selezionare la stessa località della rete virtuale.
 
     ![Configurazione di base della macchina virtuale](./media/connect-on-premises-network/vm-basics.png)
 
-    Lasciare le altre voci in hello valori predefiniti e quindi selezionare __OK__.
+    Lasciare i valori predefiniti per le altre voci e quindi selezionare __OK__.
 
-3. Da hello __scegliere una dimensione__ sezione, dimensioni della macchina virtuale selezionare hello. Per questa esercitazione, selezionare più piccolo hello e opzione di costo più basso. toocontinue, utilizzare hello __selezionare__ pulsante.
+3. Nella sezione __Scegli una dimensione__ selezionare la dimensione della macchina virtuale. Per questa esercitazione selezionare l'opzione più piccola e a più basso costo. Per continuare, usare il pulsante __Seleziona__.
 
-4. Da hello __impostazioni__ immettere hello le seguenti informazioni:
+4. Nella sezione __Impostazioni__ immettere le informazioni seguenti:
 
-    * __Rete virtuale__: selezionare hello rete virtuale creata in precedenza.
+    * __Rete virtuale__: selezionare la rete virtuale creata in precedenza.
 
-    * __Subnet__: selezionare hello predefinito subnet per la rete virtuale hello. Eseguire __non__ selezionare hello subnet usata dal gateway VPN hello.
+    * __Subnet__: selezionare la subnet predefinita per la rete virtuale. __Non__ selezionare la subnet usata dal gateway VPN.
 
     * __Account di archiviazione di diagnostica__: selezionare un account di archiviazione esistente o crearne uno nuovo.
 
     ![Impostazioni della rete virtuale](./media/connect-on-premises-network/virtual-network-settings.png)
 
-    Mantenere hello altre voci hello valore predefinito, quindi selezionare __OK__ toocontinue.
+    Lasciare i valori predefiniti per le altre voci e quindi selezionare __OK__ per continuare.
 
-5. Da hello __acquisto__ sezione, seleziona hello __acquisto__ macchina virtuale di hello toocreate pulsante.
+5. Nella sezione __Acquisto__ fare clic sul pulsante __Acquista__ per creare la macchina virtuale.
 
-6. Dopo aver creato, macchina virtuale hello relativo __Panoramica__ sezione viene visualizzata. Selezionare nell'elenco a sinistra di hello hello __proprietà__. Salvare hello __indirizzo IP pubblico__ e __indirizzo IP privato__ valori. Da utilizzare nella sezione successiva hello.
+6. Dopo che la macchina virtuale è stata creata, viene visualizzata la relativa sezione __Panoramica__. Nell'elenco a sinistra selezionare __Proprietà__. Salvare i valori di __Indirizzo IP pubblico__ e __Indirizzo IP privato__. Verranno usati nella sezione successiva.
 
     ![Indirizzi IP pubblico e privato](./media/connect-on-premises-network/vm-ip-addresses.png)
 
 ### <a name="install-and-configure-bind-dns-software"></a>Installare e configurare Bind (software DNS)
 
-1. Usare SSH tooconnect toohello __indirizzo IP pubblico__ della macchina virtuale hello. Hello di esempio seguente si connette a macchina virtuale tooa in 40.68.254.142:
+1. Usare SSH per connettersi all'__indirizzo IP pubblico__ della macchina virtuale. L'esempio seguente consente la connessione a una macchina virtuale all'indirizzo 40.68.254.142:
 
     ```bash
     ssh sshuser@40.68.254.142
     ```
 
-    Sostituire `sshuser` con account utente SSH hello specificata durante la creazione di cluster hello.
+    Sostituire `sshuser` con l'account utente SSH specificato durante la creazione del cluster.
 
     > [!NOTE]
-    > Sono disponibili un'ampia gamma di hello tooobtain modi `ssh` utilità. Su Linux, Unix e macOS, viene fornito come parte del sistema operativo hello. Se si utilizza Windows, è possibile utilizzare una delle seguenti opzioni hello:
+    > È possibile ottenere l'utilità `ssh` in diversi modi. In Linux, Unix e macOS viene fornita come parte del sistema operativo. Se si usa Windows, prendere in considerazione una delle opzioni seguenti:
     >
     > * [Azure Cloud Shell](../cloud-shell/quickstart.md)
     > * [Bash in Ubuntu su Windows 10](https://msdn.microsoft.com/commandline/wsl/about)
     > * [Git (https://git-scm.com/)](https://git-scm.com/)
     > * [OpenSSH (https://github.com/PowerShell/Win32-OpenSSH/wiki/Install-Win32-OpenSSH)](https://github.com/PowerShell/Win32-OpenSSH/wiki/Install-Win32-OpenSSH)
 
-2. tooinstall Bind, utilizzare hello comandi dalla sessione SSH hello seguenti:
+2. Per installare Bind, usare i comandi seguenti dalla sessione SSH:
 
     ```bash
     sudo apt-get update -y
     sudo apt-get install bind9 -y
     ```
 
-3. tooconfigure binding tooforward nome risoluzione richieste tooyour locale server DNS, utilizzare hello segue testo come contenuto di hello di hello `/etc/bind/named.conf.options` file:
+3. Per configurare Bind per l'inoltro delle richieste di risoluzione dei nomi al server DNS locale, usare il testo seguente come contenuto del file `/etc/bind/named.conf.options`:
 
         acl goodclients {
-            10.0.0.0/16; # Replace with hello IP address range of hello virtual network
-            10.1.0.0/16; # Replace with hello IP address range of hello on-premises network
+            10.0.0.0/16; # Replace with the IP address range of the virtual network
+            10.1.0.0/16; # Replace with the IP address range of the on-premises network
             localhost;
             localnets;
         };
@@ -152,66 +152,66 @@ una VM Linux che utilizza hello toocreate [associare](https://www.isc.org/downlo
                 allow-query { goodclients; };
 
                 forwarders {
-                192.168.0.1; # Replace with hello IP address of hello on-premises DNS server
+                192.168.0.1; # Replace with the IP address of the on-premises DNS server
                 };
 
                 dnssec-validation auto;
 
-                auth-nxdomain no;    # conform tooRFC1035
+                auth-nxdomain no;    # conform to RFC1035
                 listen-on { any; };
         };
 
     > [!IMPORTANT]
-    > Sostituire i valori hello in hello `goodclients` sezione con intervallo di indirizzi IP hello di rete virtuale hello e rete locale. In questa sezione definisce gli indirizzi di hello che questo server DNS accetta richieste da.
+    > Sostituire i valori nella sezione `goodclients` con l'intervallo di indirizzi IP della rete virtuale e della rete locale. Questa sezione definisce gli indirizzi da cui il server DNS accetta le richieste.
     >
-    > Sostituire hello `192.168.0.1` voce hello `forwarders` sezione con l'indirizzo IP hello del server DNS locale. Questo tooyour di richieste DNS route voce DNS server locale per la risoluzione.
+    > Sostituire la voce `192.168.0.1` nella sezione `forwarders` con l'indirizzo IP del server DNS locale. Questa voce indirizza le richieste DNS al server DNS locale per la risoluzione.
 
-    tooedit questo file, utilizzare hello comando seguente:
+    Per modificare questo file, usare il comando seguente:
 
     ```bash
     sudo nano /etc/bind/named.conf.options
     ```
 
-    file hello toosave, usare __Ctrl + X__, __Y__e quindi __invio__.
+    Per salvare il file, usare __CTRL+X__, __Y__ e quindi __INVIO__.
 
-4. Dalla sessione SSH hello, utilizzare hello comando seguente:
+4. Dalla sessione SSH usare il comando seguente:
 
     ```bash
     hostname -f
     ```
 
-    Questo comando restituisce un toohello simile valore testo seguente:
+    Il comando restituisce un valore simile al testo seguente:
 
         dnsproxy.icb0d0thtw0ebifqt0g1jycdxd.ex.internal.cloudapp.net
 
-    Hello `icb0d0thtw0ebifqt0g1jycdxd.ex.internal.cloudapp.net` testo è hello __suffisso DNS__ per la rete virtuale. Salvare questo valore, che verrà usato in un secondo momento.
+    Il testo `icb0d0thtw0ebifqt0g1jycdxd.ex.internal.cloudapp.net` è il __suffisso DNS__ per la rete virtuale. Salvare questo valore, che verrà usato in un secondo momento.
 
-5. i nomi DNS di tooconfigure binding tooresolve delle risorse in rete virtuale hello, utilizzare hello segue testo come contenuto di hello di hello `/etc/bind/named.conf.local` file:
+5. Per configurare Bind per la risoluzione dei nomi DNS per le risorse nella rete virtuale, usare il testo seguente come contenuto del file `/etc/bind/named.conf.local`:
 
-        // Replace hello following with hello DNS suffix for your virtual network
+        // Replace the following with the DNS suffix for your virtual network
         zone "icb0d0thtw0ebifqt0g1jycdxd.ex.internal.cloudapp.net" {
             type forward;
-            forwarders {168.63.129.16;}; # hello Azure recursive resolver
+            forwarders {168.63.129.16;}; # The Azure recursive resolver
         };
 
     > [!IMPORTANT]
-    > È necessario sostituire hello `icb0d0thtw0ebifqt0g1jycdxd.ex.internal.cloudapp.net` con il suffisso DNS hello recuperati in precedenza.
+    > È necessario sostituire `icb0d0thtw0ebifqt0g1jycdxd.ex.internal.cloudapp.net` con il suffisso DNS recuperato in precedenza.
 
-    tooedit questo file, utilizzare hello comando seguente:
+    Per modificare questo file, usare il comando seguente:
 
     ```bash
     sudo nano /etc/bind/named.conf.local
     ```
 
-    file hello toosave, usare __Ctrl + X__, __Y__e quindi __invio__.
+    Per salvare il file, usare __CTRL+X__, __Y__ e quindi __INVIO__.
 
-6. toostart Bind, utilizzare hello comando seguente:
+6. Per avviare Bind, usare il comando seguente:
 
     ```bash
     sudo service bind9 restart
     ```
 
-7. tooverify che associano può risolvere i nomi di hello delle risorse nella rete locale, hello di utilizzare i comandi seguenti:
+7. Per verificare che Bind riesca a risolvere i nomi delle risorse nella rete locale, usare i comandi seguenti:
 
     ```bash
     sudo apt install dnsutils
@@ -219,11 +219,11 @@ una VM Linux che utilizza hello toocreate [associare](https://www.isc.org/downlo
     ```
 
     > [!IMPORTANT]
-    > Sostituire `dns.mynetwork.net` con il nome di dominio completo hello (FQDN) di una risorsa nella rete locale.
+    > Sostituire `dns.mynetwork.net` con il nome di dominio completo (FQDN) di una risorsa nella rete locale.
     >
-    > Sostituire `10.0.0.4` con hello __indirizzo IP interno__ del server DNS nella rete virtuale hello personalizzato.
+    > Sostituire `10.0.0.4` con l'__indirizzo IP interno__ del server DNS personalizzato nella rete virtuale.
 
-    viene visualizzata la risposta di Hello toohello simile, il testo seguente:
+    La risposta visualizzata sarà simile al testo seguente:
 
         Server:         10.0.0.4
         Address:        10.0.0.4#53
@@ -232,79 +232,81 @@ una VM Linux che utilizza hello toocreate [associare](https://www.isc.org/downlo
         Name:   dns.mynetwork.net
         Address: 192.168.0.4
 
-### <a name="configure-hello-virtual-network-toouse-hello-custom-dns-server"></a>Configurare hello toouse hello personalizzato DNS server di rete virtuale
+### <a name="configure-the-virtual-network-to-use-the-custom-dns-server"></a>Configurare la rete virtuale per usare il server DNS personalizzato
 
-tooconfigure hello rete virtuale toouse hello server DNS personalizzato anziché hello resolver ricorsivo Azure, utilizzare hello alla procedura seguente:
+Per configurare la rete virtuale per usare il server DNS personalizzato invece del resolver ricorsivo di Azure, seguire questa procedura:
 
-1. In hello [portale di Azure](https://portal.azure.com), selezionare la rete virtuale hello e quindi selezionare __server DNS__.
+1. Nel [portale di Azure](https://portal.azure.com) selezionare la rete virtuale e quindi selezionare __Server DNS__.
 
-2. Selezionare __personalizzato__, quindi immettere hello __indirizzo IP interno__ del server DNS personalizzato hello. Infine, selezionare __Salva__.
+2. Selezionare __Personalizzato__ e immettere l'__indirizzo IP interno__ del server DNS personalizzato. Infine, selezionare __Salva__.
 
-    ![Impostare hello del server DNS personalizzato per la rete hello](./media/connect-on-premises-network/configure-custom-dns.png)
+    ![Impostare il server DNS personalizzato per la rete](./media/connect-on-premises-network/configure-custom-dns.png)
 
-### <a name="configure-hello-on-premises-dns-server"></a>Configurare i server DNS locale di hello
+### <a name="configure-the-on-premises-dns-server"></a>Configurare il server DNS locale
 
-Nella sezione precedente hello è configurato hello DNS server tooforward richieste toohello locale server DNS personalizzato. Successivamente, è necessario configurare hello locale DNS server tooforward richieste toohello server DNS personalizzato.
+Nella sezione precedente è stato configurato il server DNS personalizzato per inoltrare le richieste al server DNS locale. È quindi necessario configurare il server DNS locale per inoltrare le richieste al server DNS personalizzato.
 
-Per i passaggi specifici su come tooconfigure il server DNS, consultare la documentazione hello per il software del server DNS. Cercare la procedura di hello tooconfigure un __server d'inoltro condizionale__.
+Per i passaggi specifici su come configurare il server DNS, vedere la documentazione per il prodotto server DNS. Cercare i passaggi su come configurare un __server d'inoltro condizionale__.
 
-L'inoltro condizionale consente di inoltrare solo le richieste per un suffisso DNS specifico. In questo caso, è necessario configurare un server d'inoltro per il suffisso DNS hello della rete virtuale hello. Le richieste per questo suffisso devono essere inoltrate toohello di indirizzo IP del server DNS personalizzato hello. 
+L'inoltro condizionale consente di inoltrare solo le richieste per un suffisso DNS specifico. In questo caso, è necessario configurare un server d'inoltro per il suffisso DNS della rete virtuale. Le richieste per questo suffisso devono essere inoltrate all'indirizzo IP del server DNS personalizzato. 
 
-testo Hello è riportato un esempio di una configurazione di server d'inoltro condizionale per hello **associare** software DNS:
+Il testo seguente è un esempio di una configurazione di server d'inoltro condizionale per il software DNS **Bind**:
 
     zone "icb0d0thtw0ebifqt0g1jycdxd.ex.internal.cloudapp.net" {
         type forward;
-        forwarders {10.0.0.4;}; # hello custom DNS server's internal IP address
+        forwarders {10.0.0.4;}; # The custom DNS server's internal IP address
     };
 
-Per informazioni sull'utilizzo di DNS in **Windows Server 2016**, vedere hello [Aggiungi DnsServerConditionalForwarderZone](https://technet.microsoft.com/itpro/powershell/windows/dnsserver/add-dnsserverconditionalforwarderzone) documentazione...
+Per informazioni sull'uso di DNS in **Windows Server 2016**, vedere [Add-DnsServerConditionalForwarderZone](https://technet.microsoft.com/itpro/powershell/windows/dnsserver/add-dnsserverconditionalforwarderzone).
 
-Dopo aver configurato i server DNS di hello locale, è possibile utilizzare `nslookup` da tooverify di rete locale hello che è possibile risolvere i nomi nella rete virtuale hello. esempio di seguente Hello 
+Dopo aver configurato il server DNS locale, è possibile usare `nslookup` dalla rete locale per verificare che sia possibile risolvere i nomi nella rete virtuale. Vedere l'esempio seguente: 
 
 ```bash
 nslookup dnsproxy.icb0d0thtw0ebifqt0g1jycdxd.ex.internal.cloudapp.net 196.168.0.4
 ```
 
-In questo esempio utilizza hello server DNS locale in 196.168.0.4 tooresolve nome di hello del server DNS personalizzato hello. Sostituire l'indirizzo IP hello con hello per il server DNS locale di hello. Sostituire hello `dnsproxy` indirizzo con il nome di dominio completo hello del server DNS personalizzato hello.
+Questo esempio usa il server DNS locale in 196.168.0.4 per risolvere il nome del server DNS personalizzato. Sostituire l'indirizzo IP con uno del server DNS locale. Sostituire l'indirizzo `dnsproxy` con il nome di dominio completo del server DNS personalizzato.
 
 ## <a name="optional-control-network-traffic"></a>Facoltativo: Controllare il traffico di rete
 
-È possibile utilizzare gruppi di sicurezza di rete (gruppo) o il traffico di rete toocontrol route definite dall'utente (UDR). NSGs consentono di toofilter in ingresso e in uscita, il traffico e consentire o negare il traffico di hello. UDRs consentono toocontrol come flussi di traffico tra le risorse nella rete virtuale hello hello internet e hello rete locale.
+È possibile usare gruppi di sicurezza di rete (NSG) o route definite dall'utente (UDR) per controllare il traffico di rete. Gli NSG permettono di filtrare il traffico in ingresso e in uscita e di consentire o negare il traffico. Le route definite dall'utente permettono di controllare il flusso di traffico tra le risorse nella rete virtuale, in Internet e nella rete locale.
 
 > [!WARNING]
-> HDInsight richiede l'accesso in ingresso da indirizzi IP specifici nel cloud di Azure hello e accesso in uscita senza restrizioni. Quando si utilizza il traffico di toocontrol NSGs o UDRs, è necessario eseguire hello alla procedura seguente:
+> HDInsight richiede l'accesso in ingresso da indirizzi IP specifici nel cloud Azure e l'accesso in uscita senza restrizioni. Quando si usano NSG o route definite dall'utente per controllare il traffico, è necessario eseguire questa procedura:
 >
-> 1. Trovare hello gli indirizzi IP per il percorso di hello che contiene la rete virtuale. Per un elenco di indirizzi IP necessari in base alla località, vedere [Indirizzi IP richiesti](./hdinsight-extend-hadoop-virtual-network.md#hdinsight-ip).
+> 1. Trovare gli indirizzi IP per la località contenente la rete virtuale. Per un elenco di indirizzi IP necessari in base alla località, vedere [Indirizzi IP richiesti](./hdinsight-extend-hadoop-virtual-network.md#hdinsight-ip).
 >
-> 2. Consentire il traffico in ingresso da indirizzi IP hello.
+> 2. Consentire il traffico in ingresso dagli indirizzi IP.
 >
->    * __GRUPPO__: Consenti __in ingresso__ il traffico sulla porta __443__ da hello __Internet__.
->    * __UDR__: hello Set __Hop successivo__ tipo too__Internet__ route hello.
+>    * __NSG__: consentire il traffico __in ingresso__ sulla porta __443__ da __Internet__.
+>    * __Route definita dall'utente__: impostare il tipo di __Hop successivo__ della route su __Internet__.
 
-Per un esempio di utilizzo di Azure PowerShell o hello Azure CLI toocreate NSGs, vedere hello [estendere HDInsight con reti virtuali di Azure](./hdinsight-extend-hadoop-virtual-network.md#hdinsight-nsg) documento.
+Per un esempio di utilizzo di Azure PowerShell o dell'interfaccia della riga di comando di Azure per creare gruppi NSG, vedere il documento [Estendere le funzionalità di HDInsight usando Rete virtuale di Azure](./hdinsight-extend-hadoop-virtual-network.md#hdinsight-nsg).
 
-## <a name="create-hello-hdinsight-cluster"></a>Creare cluster HDInsight hello
+## <a name="create-the-hdinsight-cluster"></a>Creare il cluster HDInsight
 
 > [!WARNING]
-> È necessario configurare un server DNS personalizzato hello prima di installare la rete virtuale hello HDInsight.
+> È necessario configurare il server DNS personalizzato prima di installare HDInsight nella rete virtuale.
 
-Hello di utilizzare i passaggi in hello [creare un cluster HDInsight tramite il portale di Azure hello](./hdinsight-hadoop-create-linux-clusters-portal.md) toocreate documento un cluster HDInsight.
+Seguire i passaggi riportati in [Creare un cluster HDInsight tramite il portale di Azure](./hdinsight-hadoop-create-linux-clusters-portal.md) per creare un cluster HDInsight.
 
 > [!WARNING]
-> * Durante la creazione del cluster, è necessario scegliere il percorso hello contenente la rete virtuale.
+> * Durante la creazione del cluster, è necessario scegliere la posizione per la rete virtuale.
 >
-> * In hello __impostazioni avanzate__ parte della configurazione, è necessario selezionare la rete virtuale hello e subnet creato in precedenza.
+> * Nella sezione __Impostazioni avanzate__ della configurazione, è necessario selezionare la rete virtuale e la subnet create in precedenza.
 
-## <a name="connecting-toohdinsight"></a>Connessione tooHDInsight
+## <a name="connecting-to-hdinsight"></a>Connessione a HDInsight
 
-La maggior parte delle documentazione su HDInsight si presuppone la presenza di cluster di accesso toohello su hello internet. Ad esempio, che è possibile connettersi cluster toohello https://CLUSTERNAME.azurehdinsight.net. Questo indirizzo Usa gateway hello pubblico, non è disponibile se è stato utilizzato NSGs o UDRs toorestrict accesso da hello internet.
+La maggior parte delle documentazione in HDInsight presuppone che sia disponibile l'accesso al cluster tramite internet. Verificare ad esempio che sia possibile connettersi al cluster all'indirizzo https://CLUSTERNAME.azurehdinsight.net. Questo indirizzo usa il gateway pubblico, che non è disponibile se sono stati usati gruppi di sicurezza di rete o route definite dall'utente per limitare l'accesso da Internet.
 
-toodirectly connessione tooHDInsight attraverso la rete virtuale hello, usare hello alla procedura seguente:
+Parte della documentazione fa riferimento a `headnodehost` anche per la connessione al cluster da una sessione SSH. Questo indirizzo è disponibile solo dai nodi all'interno di un cluster e non è utilizzabile nei client connessi tramite la rete virtuale.
 
-1. i nomi di dominio completo interno hello toodiscover hello HDInsight dei nodi del cluster, utilizzare uno dei seguenti metodi hello:
+Per connettersi direttamente a HDInsight attraverso la rete virtuale, seguire questa procedura:
+
+1. Per individuare i nomi di dominio completi interni dei nodi del cluster HDInsight, usare uno dei metodi seguenti:
 
     ```powershell
-    $resourceGroupName = "hello resource group that contains hello virtual network used with HDInsight"
+    $resourceGroupName = "The resource group that contains the virtual network used with HDInsight"
 
     $clusterNICs = Get-AzureRmNetworkInterface -ResourceGroupName $resourceGroupName | where-object {$_.Name -like "*node*"}
 
@@ -323,18 +325,18 @@ toodirectly connessione tooHDInsight attraverso la rete virtuale hello, usare he
     az network nic list --resource-group <resourcegroupname> --output table --query "[?contains(name,'node')].{NICname:name,InternalIP:ipConfigurations[0].privateIpAddress,InternalFQDN:dnsSettings.internalFqdn}"
     ```
 
-2. porta hello toodetermine che un servizio è disponibile, vedere hello [porte utilizzate da servizi di Hadoop in HDInsight](./hdinsight-hadoop-port-settings-for-services.md) documento.
+2. Per determinare la porta su cui un servizio è disponibile, vedere il documento [Porte usate dai servizi Hadoop su HDInsight](./hdinsight-hadoop-port-settings-for-services.md).
 
     > [!IMPORTANT]
-    > Alcuni servizi ospitate nei nodi head hello attivi solo in un nodo alla volta. Se si tenta di accedere al servizio in un nodo head e si verifica un errore, passare toohello altro nodo head.
+    > Alcuni servizi ospitati nei nodi head sono attivi solo in un nodo per volta. Se si prova ad accedere a un servizio in un nodo head e si verifica un errore, passare all'altro nodo head.
     >
-    > Ambari, ad esempio, è attivo solo in un nodo head per volta. Se si tenta l'accesso a un nodo head Ambari e viene restituito un errore 404, tramite cui viene eseguito hello altro nodo head.
+    > Ambari, ad esempio, è attivo solo in un nodo head per volta. Se si prova ad accedere ad Ambari in un nodo head e viene restituito un errore 404, significa che è in esecuzione nell'altro nodo head.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* Per altre informazioni sull'uso di HDInsight in una rete virtuale, vedere [Estendere le funzionalità di HDInsight usando Rete virtuale di Azure](./hdinsight-extend-hadoop-virtual-network.md).
+* Per altre informazioni sull'uso HDInsight in una rete virtuale, vedere [Estendere le funzionalità di HDInsight usando Rete virtuale di Azure](./hdinsight-extend-hadoop-virtual-network.md).
 
-* Per ulteriori informazioni su reti virtuali di Azure, vedere hello [Cenni preliminari sulla rete virtuale di Azure](../virtual-network/virtual-networks-overview.md).
+* Per altre informazioni sulle reti virtuali di Azure, vedere [Rete virtuale di Azure](../virtual-network/virtual-networks-overview.md).
 
 * Per altre informazioni sui gruppi di sicurezza di rete, vedere [Gruppi di sicurezza di rete](../virtual-network/virtual-networks-nsg.md).
 

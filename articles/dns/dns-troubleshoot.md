@@ -1,6 +1,6 @@
 ---
-title: Guida alla risoluzione dei problemi di DNS aaaAzure | Documenti Microsoft
-description: "La modalità di problemi comuni di tootroubleshoot con DNS di Azure"
+title: Guida alla risoluzione dei problemi di DNS di Azure | Documentazione Microsoft
+description: Informazioni su come risolvere i problemi comuni di DNS di Azure
 services: dns
 documentationcenter: na
 author: jtuliani
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/20/2017
 ms.author: jonatul
-ms.openlocfilehash: 944aa1811c980063f739268cd2c79b647b2754a4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 1d9bb681a864bdc3e5a2f9c9a531d9566b16ada4
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-dns-troubleshooting-guide"></a>Guida alla risoluzione dei problemi di DNS di Azure
 
@@ -29,12 +29,12 @@ Se questi passaggi non consentono di risolvere il problema, è anche possibile e
 
 ## <a name="i-cant-create-a-dns-zone"></a>Non è possibile creare una zona DNS
 
-problemi comuni tooresolve, provare a uno o più hello alla procedura seguente:
+Per risolvere i problemi comuni, provare le procedure seguenti:
 
-1.  Hello revisione che DNS di Azure di controllo Registra motivo dell'errore toodetermine hello.
-2.  Ogni nome di zona DNS deve essere univoco all'interno del relativo gruppo di risorse, Ovvero, due zone DNS con hello stesso nome non può condividere un gruppo di risorse. Provare a usare un nome di zona o un gruppo di risorse diverso.
-3.  Potrebbe essere visualizzato un errore "È stato raggiunto o superato hello il numero massimo di zone nella sottoscrizione {id sottoscrizione}." Utilizzare un'altra sottoscrizione di Azure, eliminare alcune aree oppure contattare il supporto tecnico di Azure tooraise il limite della sottoscrizione.
-4.  Potrebbe essere visualizzato un errore "zona hello '{nome zona}' non è disponibile." Questo errore indica che il DNS di Azure è stato Impossibile tooallocate server dei nomi per la zona DNS. Provare a usare un nome di zona diverso. In alternativa, se si è proprietario del nome di dominio di hello, contattare il supporto tecnico di Azure, che può allocare server dei nomi per l'utente.
+1.  Esaminare i log di controllo di DNS di Azure per determinare le cause dell'errore.
+2.  Ogni nome di zona DNS deve essere univoco all'interno del relativo gruppo di risorse, ovvero due zone DNS con lo stesso nome non possono condividere uno stesso gruppo di risorse. Provare a usare un nome di zona o un gruppo di risorse diverso.
+3.  Potrebbe essere visualizzato l'errore "È stato raggiunto o superato il numero massimo di zone nella sottoscrizione {ID sottoscrizione}." Usare una sottoscrizione di Azure diversa, eliminare alcune zone o contattare il supporto tecnico di Azure per aumentare il limite della sottoscrizione.
+4.  Se viene visualizzato l'errore "La zona '{nome zona}' non è disponibile.", significa che il servizio DNS di Azure non è riuscito ad allocare i server dei nomi per questa zona DNS. Provare a usare un nome di zona diverso. In alternativa, se si è il proprietario del nome di dominio, contattare il supporto tecnico di Azure, che può allocare i server dei nomi per conto degli utenti.
 
 
 ### <a name="recommended-documents"></a>**Documenti consigliati**
@@ -45,13 +45,13 @@ problemi comuni tooresolve, provare a uno o più hello alla procedura seguente:
 
 ## <a name="i-cant-create-a-dns-record"></a>Non è possibile creare un record DNS
 
-problemi comuni tooresolve, provare a uno o più hello alla procedura seguente:
+Per risolvere i problemi comuni, provare le procedure seguenti:
 
-1.  Hello revisione che DNS di Azure di controllo Registra motivo dell'errore toodetermine hello.
-2.  Set di record hello esiste già?  DNS di Azure gestisce i record di utilizzo di record *imposta*, che sono raccolta hello dei record di hello stesso nome e hello stesso tipo. Se un record con hello stesso nome e tipo già esistente, quindi tooadd un altro record di questo tipo è consigliabile modificare hello record esistente.
-3.  Si sta cercando toocreate un record al vertice di zona DNS hello (Buongiorno 'root' della zona hello)? In caso affermativo, hello convenzione DNS toouse hello ' @' carattere come nome del record di hello. Si noti inoltre che standard DNS hello non consentono i record CNAME al vertice zona hello.
-4.  Si è verificato un conflitto CNAME?  standard DNS Hello non consentono un record CNAME con hello stesso nome di un record di qualsiasi altro tipo. Se si dispone di un CNAME esistente, la creazione di un record con hello stesso nome di un tipo diverso ha esito negativo.  Analogamente, la creazione di un record CNAME, ha esito negativo se hello nome corrisponde a un record esistente di un tipo diverso. Rimuovere il conflitto hello rimuovendo hello altri record o scegliere un nome di un record diverso.
-5.  È stato raggiunto limite hello numero hello di set di record consentiti in una zona DNS di? Imposta il numero corrente di Hello del record e hello numero massimo di set di record viene visualizzato nel portale di Azure in hello 'proprietà' per la zona hello hello. Se si hanno raggiunto questo limite, quindi eliminare alcuni set di record o contatta tooraise supporto tecnico di Azure il limite del set di record per la zona, quindi riprovare. 
+1.  Esaminare i log di controllo di DNS di Azure per determinare le cause dell'errore.
+2.  Il set di record esiste già?  Il servizio DNS di Azure gestisce i record usando *set* di record, ovvero una raccolta di record dello stesso nome e dello stesso tipo. Se esiste già un record con lo stesso nome e dello stesso tipo, per aggiungere un altro record identico è consigliabile modificare il set di record esistente.
+3.  Si sta tentando di creare un record al vertice della zona DNS (la "radice" della zona)? In questo caso, la convenzione DNS è quella di usare il carattere "@" come nome del record. Tenere presente inoltre che gli standard DNS non consentono record CNAME al vertice della zona.
+4.  Si è verificato un conflitto CNAME?  Gli standard DNS non consentono un record CNAME con lo stesso nome di un record di un altro tipo. Se si ha già un record CNAME, la creazione di un record con lo stesso nome e di tipo diverso avrà esito negativo.  Analogamente, la creazione di un record CNAME avrà esito negativo se il nome corrisponde a un record esistente di tipo diverso. Per eliminare il conflitto, rimuovere l'altro record o scegliere un nome di record diverso.
+5.  È stato raggiunto il limite relativo al numero di set di record consentiti in una zona DNS? Il numero corrente di set di record e il numero massimo di set di record vengono visualizzati nel portale di Azure, nella sezione delle proprietà relative alla zona. Se è stato raggiunto il limite, eliminare alcuni set di record oppure contattare il supporto tecnico di Azure per innalzare il numero massimo di set di record per la zona e riprovare. 
 
 
 ### <a name="recommended-documents"></a>**Documenti consigliati**
@@ -64,37 +64,37 @@ problemi comuni tooresolve, provare a uno o più hello alla procedura seguente:
 
 ## <a name="i-cant-resolve-my-dns-record"></a>Non riesco a risolvere un record DNS
 
-La risoluzione dei nomi DNS è un processo articolato in più passaggi che può non riuscire per vari motivi. Hello passaggi seguenti consentono di analizzare perché la risoluzione DNS non riesce per un record DNS in una zona ospitata nel sistema DNS di Azure.
+La risoluzione dei nomi DNS è un processo articolato in più passaggi che può non riuscire per vari motivi. La procedura seguente consente di capire il motivo per cui non è possibile eseguire la risoluzione DNS per un record DNS in una zona ospitata nel servizio DNS di Azure.
 
-1.  Verificare che i record DNS hello siano stati configurati correttamente nel sistema DNS di Azure. Esaminare i record DNS hello in hello portale di Azure, verifica che nome zona hello e nome del record di tipo di record siano corretti.
-2.  Verificare che i record DNS hello risolvere correttamente nel server dei nomi DNS di Azure hello.
-    - Se si apportano le query DNS dal computer locale, è possibile ottenere risultati memorizzati nella cache che non riflettono lo stato corrente di hello hello server dei nomi.  Inoltre, alle reti aziendali utilizzano server proxy DNS, che impedire le query DNS indirizzate toospecific server dei nomi.  tooavoid questi problemi, utilizzare un servizio risoluzione dei nomi basato sul web, ad esempio [digwebinterface](http://digwebinterface.com).
-    - Essere toospecify che server dei nomi corretto hello per la zona DNS, come illustrato nel portale di Azure hello.
-    - Verificare che il nome DNS hello sia corretto (si dispone di nome completo di hello toospecify, inclusi nome della zona hello) e tipo di record hello sia corretto
-3.  Verificare il nome di dominio DNS hello è stata correttamente [delega server dei nomi DNS di Azure toohello](dns-domain-delegation.md). Esistono [molti siti Web di terze parti da cui è possibile eseguire la convalida della delega DNS](https://www.bing.com/search?q=dns+check+tool). Questo test è un *zona* test di delega, deve essere immesso solo nome della zona DNS hello e non hello record nome completo.
-4.  Dopo aver completato hello precedente, il record DNS debba ora risolto correttamente. tooverify, è possibile usare nuovamente [digwebinterface](http://digwebinterface.com), questa volta utilizzando le impostazioni di hello predefinite nome server.
+1.  Verificare che i record DNS siano stati configurati correttamente nel servizio DNS di Azure. Esaminare i record DNS nel portale di Azure, controllando che il nome della zona, il nome del record e il tipo di record siano corretti.
+2.  Verificare che i record DNS vengano risolti correttamente nei server dei nomi DNS di Azure.
+    - Se si eseguono query DNS dal proprio computer locale, è possibile che vengano visualizzati risultati memorizzati nella cache che non riflettono lo stato corrente dei server dei nomi.  Nelle reti aziendali, inoltre, sono spesso presenti server proxy DNS che impediscono alle query DNS di essere reindirizzate a specifici server dei nomi.  Per evitare questi problemi, è possibile usare un servizio di risoluzione dei nomi basato sul Web come [digwebinterface](http://digwebinterface.com).
+    - Assicurarsi di specificare i server dei nomi corretti per la propria zona DNS, così come sono riportati nel portale di Azure.
+    - Verificare che siano corretti sia il nome DNS (è necessario specificare il nome completo, incluso il nome della zona) sia il tipo di record.
+3.  Assicurarsi che il nome di dominio DNS sia stato correttamente [delegato ai server dei nomi DNS di Azure](dns-domain-delegation.md). Esistono [molti siti Web di terze parti da cui è possibile eseguire la convalida della delega DNS](https://www.bing.com/search?q=dns+check+tool). Trattandosi di un test della delega per la *zona*, è sufficiente specificare il nome della zona DNS, non il nome completo del record.
+4.  Dopo aver completato la procedura appena descritta dovrebbe essere possibile risolvere correttamente il record DNS. Per verificarlo, è possibile usare nuovamente il servizio [digwebinterface](http://digwebinterface.com), questa volta specificando le impostazioni predefinite dei server dei nomi.
 
 
 ### <a name="recommended-documents"></a>**Documenti consigliati**
 
-[Delegato tooAzure un dominio DNS](dns-domain-delegation.md)
+[Delegare un dominio al servizio DNS di Azure](dns-domain-delegation.md)
 
 
 
-## <a name="how-do-i-specify-hello-service-and-protocol-for-an-srv-record"></a>Come specificare hello 'service' e 'protocollo' per un record SRV?
+## <a name="how-do-i-specify-the-service-and-protocol-for-an-srv-record"></a>Come posso specificare il "servizio" e il "protocollo" per un record SRV?
 
-DNS di Azure gestisce i record DNS come set di record: hello raccolta di record con hello stesso nome e hello stesso tipo. Per un set di record SRV, servizio"hello" e "protocollo" necessario toobe specificato come parte del nome di set di record di hello. Hello SRV ('priority', 'peso', 'porta' e 'target') sono specificati altri parametri separatamente per ciascun record nel set di record di hello.
+Il servizio DNS di Azure gestisce i record come set di record, ovvero come una raccolta di record dello stesso nome e dello stesso tipo. Per un set di record SRV, il "servizio" e il "protocollo" devono essere specificati come parte del nome del set di record. Gli altri parametri SRV ("priorità", "peso", "porta" e "destinazione") vengono specificati separatamente per ogni record del set di record.
 
 Nomi di record SRV di esempio ("sip" indica il nome del servizio, "tcp" il protocollo):
 
-- \_SIP. \_tcp (Crea un set al vertice zona hello di record)
+- \_sip.\_tcp (crea un set di record all'apice della zona)
 - \_sip.\_tcp.sipservice (crea un set di record denominato "sipservice")
 
 ### <a name="recommended-documents"></a>**Documenti consigliati**
 
 [Zone e record DNS](dns-zones-records.md)
 <br>
-[Creare set di record DNS e i record utilizzando hello portale di Azure](dns-getstarted-create-recordset-portal.md)
+[Creare set di record e record DNS mediante il portale di Azure](dns-getstarted-create-recordset-portal.md)
 <br>
 [SRV record type (Wikipedia)](https://en.wikipedia.org/wiki/SRV_record) (Tipo di record SRV (Wikipedia))
 
@@ -102,6 +102,6 @@ Nomi di record SRV di esempio ("sip" indica il nome del servizio, "tcp" il proto
 ## <a name="next-steps"></a>Passaggi successivi
 
 * Informazioni sulle [zone e sui record di DNS di Azure](dns-zones-records.md)
-* toostart tramite DNS di Azure, informazioni su come troppo[creare una zona DNS](dns-getstarted-create-dnszone-portal.md) e [creare record DNS](dns-getstarted-create-recordset-portal.md).
-* toomigrate una zona DNS esistente, informazioni su come troppo[importare ed esportare un file di zona DNS](dns-import-export.md).
+* Per iniziare a usare DNS di Azure, è necessario sapere come [creare una zona DNS](dns-getstarted-create-dnszone-portal.md) e come [creare record DNS](dns-getstarted-create-recordset-portal.md).
+* Per eseguire la migrazione di una zona DNS esistente, è necessario saper [importare ed esportare un file di zona DNS](dns-import-export.md).
 

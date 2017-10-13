@@ -1,9 +1,9 @@
 ---
-title: elemento gestita dell'interfaccia utente dell'applicazione PasswordBox aaaAzure | Documenti Microsoft
-description: Descrive l'elemento dell'interfaccia utente Microsoft.Common.PasswordBox hello per le applicazioni gestite di Azure
+title: Elemento PasswordBox dell'interfaccia utente di Applicazione gestita di Azure | Microsoft Docs
+description: Illustra l'elemento Microsoft.Common.PasswordBox dell'interfaccia utente per le applicazioni gestite di Azure
 services: azure-resource-manager
 documentationcenter: na
-author: tabrezm
+author: tfitzmac
 manager: timlt
 editor: tysonn
 ms.service: azure-resource-manager
@@ -12,15 +12,15 @@ ms.topic: reference
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/12/2017
-ms.author: tabrezm;tomfitz
-ms.openlocfilehash: bcb1f54c0bee464075ed732ead9aa3f88697f49e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.author: tomfitz
+ms.openlocfilehash: 7b2277f9e1446b42d85180e2a8baa2bcc0df147f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="microsoftcommonpasswordbox-ui-element"></a>Elemento Microsoft.Common.PasswordBox dell'interfaccia utente
-Un controllo che può essere utilizzati tooprovide e confermare una password. Usare questo elemento quando si [crea un'applicazione Azure gestita](managed-application-publishing.md).
+Controllo che può essere usato per fornire e confermare una password. Usare questo elemento quando si [crea un'applicazione Azure gestita](managed-application-publishing.md).
 
 ## <a name="ui-sample"></a>Esempio di interfaccia utente
 ![Microsoft.Common.PasswordBox](./media/managed-application-elements/microsoft.common.passwordbox.png)
@@ -48,9 +48,9 @@ Un controllo che può essere utilizzati tooprovide e confermare una password. Us
 ```
 
 ## <a name="remarks"></a>Osservazioni
-- Questo elemento non supporta hello `defaultValue` proprietà.
+- Questo elemento non supporta la proprietà `defaultValue`.
 - Per i dettagli sull'implementazione di `constraints`, vedere [Microsoft.Common.TextBox](managed-application-microsoft-common-textbox.md).
-- Se `options.hideConfirmation` è troppo**true**, hello seconda casella di testo per la conferma della password dell'utente hello è nascosto. valore predefinito di Hello è **false**.
+- Se la proprietà `options.hideConfirmation` è impostata su **true**, la seconda casella di testo per la conferma della password dell'utente è nascosta. Il valore predefinito è **false**.
 
 ## <a name="sample-output"></a>Output di esempio
 ```json
@@ -58,6 +58,6 @@ Un controllo che può essere utilizzati tooprovide e confermare una password. Us
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per le applicazioni toomanaged un'introduzione, vedere [Panoramica applicazione gestita di Azure](managed-application-overview.md).
-* Le definizioni di interfaccia utente toocreating un'introduzione, vedere [introduzione CreateUiDefinition](managed-application-createuidefinition-overview.md).
+* Per un'introduzione alle applicazioni gestite, vedere [Panoramica di Applicazione gestita di Azure](managed-application-overview.md).
+* Per un'introduzione alla creazione delle definizioni dell'interfaccia utente, vedere [Introduzione a CreateUiDefinition](managed-application-createuidefinition-overview.md).
 * Per una descrizione delle proprietà comuni negli elementi dell'interfaccia utente, vedere [Elementi di CreateUiDefinition](managed-application-createuidefinition-elements.md).

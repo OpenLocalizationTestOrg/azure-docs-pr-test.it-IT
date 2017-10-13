@@ -1,6 +1,6 @@
 ---
-title: flusso aaaLive con codificatori locali tramite il portale di Azure hello | Documenti Microsoft
-description: In questa esercitazione vengono illustrati i passaggi hello di creazione di un canale configurato per un'operazione di recapito pass-through.
+title: Eseguire lo streaming live con codificatori locali usando il portale di Azure | Microsoft Docs
+description: Questa esercitazione illustra come creare un canale configurato per la distribuzione pass-through.
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/09/2017
 ms.author: juliako
-ms.openlocfilehash: 1fb341e022f66f33903e13e07d3e84c0216cad77
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6939e3b31c3c1b514df4c559c2d9408fce122a4e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-tooperform-live-streaming-with-on-premises-encoders-using-hello-azure-portal"></a>Come tooperform live streaming con locale codificatori utilizzando hello portale di Azure
+# <a name="how-to-perform-live-streaming-with-on-premises-encoders-using-the-azure-portal"></a>Come eseguire lo streaming live con codificatori locali tramite il portale di Azure
 > [!div class="op_single_selector"]
 > * [Portale](media-services-portal-live-passthrough-get-started.md)
 > * [.NET](media-services-dotnet-live-encode-with-onpremises-encoders.md)
@@ -28,123 +28,123 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-In questa esercitazione illustra i passaggi hello di hello toocreate portale Azure utilizzando un **canale** che è configurato per un'operazione di recapito pass-through. 
+Questa esercitazione illustra come usare il portale di Azure per creare un **canale** configurato per la distribuzione pass-through. 
 
 ## <a name="prerequisites"></a>Prerequisiti
-di seguito Hello sono esercitazione hello toocomplete necessarie:
+Per completare l'esercitazione è necessario quanto segue:
 
 * Un account Azure. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/). 
-* Account di Servizi multimediali. toocreate un account di servizi multimediali, vedere [come un Account di servizi multimediali tooCreate](media-services-portal-create-account.md).
+* Account di Servizi multimediali. Per creare un account Servizi multimediali, vedere [Creare un account Servizi multimediali di Azure con il portale di Azure](media-services-portal-create-account.md).
 * Una webcam. Ad esempio, [codificatore Telestream Wirecast](http://www.telestream.net/wirecast/overview.htm).
 
-Si consiglia di hello tooreview seguenti articoli:
+È consigliabile vedere gli articoli seguenti:
 
 * [Codificatori live e supporto RTMP di Servizi multimediali di Azure](https://azure.microsoft.com/blog/2014/09/18/azure-media-services-rtmp-support-and-live-encoders/)
 * [Panoramica di Live Streaming con Servizi multimediali di Azure](media-services-manage-channels-overview.md)
 * [Streaming live con codificatori locali che creano flussi a bitrate multipli](media-services-live-streaming-with-onprem-encoders.md)
 
 ## <a id="scenario"></a>Scenario comune di streaming live
-Hello passaggi seguenti descrivono le attività coinvolte nella creazione comuni in tempo reale lo streaming di applicazioni che utilizzano canali vengono configurati per il recapito pass-through. Questa esercitazione viene illustrato come toocreate e gestire un canale di tipo pass-through e gli eventi in tempo reale.
+I passaggi seguenti descrivono le attività previste per la creazione di applicazioni di streaming live comuni che usano canali configurati per la distribuzione pass-through. Questa esercitazione illustra come creare e gestire un canale pass-through e gli eventi live.
 
 >[!NOTE]
->Assicurarsi che sia hello endpoint da cui si desidera toostream contenuto di streaming in hello **esecuzione** stato. 
+>Verificare che l'endpoint di streaming da cui si vuole trasmettere il contenuto sia nello stato **In esecuzione**. 
     
-1. Connettere un computer tooa videocamera. Avviare e configurare un codificatore live locale che genera un flusso in formato RTMP o MP4 frammentato a più bitrate. Per altre informazioni, vedere l'argomento relativo a [codificatori live e supporto RTMP di Servizi multimediali di Azure](http://go.microsoft.com/fwlink/?LinkId=532824).
+1. Connettere una videocamera a un computer. Avviare e configurare un codificatore live locale che genera un flusso in formato RTMP o MP4 frammentato a più bitrate. Per altre informazioni, vedere l'argomento relativo a [codificatori live e supporto RTMP di Servizi multimediali di Azure](http://go.microsoft.com/fwlink/?LinkId=532824).
    
     Questa operazione può essere eseguita anche dopo la creazione del canale.
 2. Creare e avviare un canale pass-through.
-3. URL di inserimento recuperare hello del canale. 
+3. Recuperare l'URL di inserimento del canale. 
    
-    URL di inserimento Hello viene utilizzato dal codificatore live di hello toosend hello flusso toohello canale.
-4. Recuperare l'URL di anteprima del canale hello. 
+    L'URL di inserimento viene usato dal codificatore live per inviare il flusso al canale.
+4. Recuperare l'URL di anteprima del canale. 
    
-    Utilizzare questo tooverify URL che il canale riceve correttamente flusso live hello.
+    Usare questo URL per verificare che il canale riceva correttamente il flusso live.
 5. Creare un programma o un evento live. 
    
-    Quando tramite hello portale di Azure, creazione di un evento in tempo reale crea inoltre un asset. 
+    Quando si crea un evento live usando il portale di Azure, viene creato automaticamente anche un asset. 
 
-6. Avviare hello evento/quando sei pronto toostart streaming e l'archiviazione.
-7. Facoltativamente, codificatore live hello può essere segnalato toostart un annuncio. annuncio Hello viene inserito nel flusso di output di hello.
-8. Arrestare hello evento/programma ogni volta che si desidera toostop streaming e l'archiviazione di eventi di hello.
-9. Eliminare evento hello/programma (e facoltativamente elimina hello asset).     
+6. Avviare il programma o l'evento quando si è pronti ad avviare lo streaming e l'archiviazione.
+7. Facoltativamente, il codificatore live può ricevere il segnale per l'avvio di un annuncio. L'annuncio viene inserito nel flusso di output.
+8. Arrestare il programma o l'evento ogni volta che si vuole arrestare lo streaming e l'archiviazione dell'evento.
+9. Eliminare il programma o l'evento e, facoltativamente, l'asset.     
 
 > [!IMPORTANT]
-> Consultare [Live streaming con codificatori locali che creano flussi più velocità in bit](media-services-live-streaming-with-onprem-encoders.md) toolearn sui concetti e considerazioni correlate toolive streaming con codificatori locali e i canali di tipo pass-through.
+> Per informazioni su considerazioni e concetti relativi allo streaming live con codificatori locali e canali pass-through, vedere [Streaming live con codificatori locali che creano flussi a bitrate multipli](media-services-live-streaming-with-onprem-encoders.md).
 > 
 > 
 
-## <a name="tooview-notifications-and-errors"></a>errori e le notifiche tooview
-Se si desidera tooview notifiche e gli errori generati da hello portale di Azure, fare clic sull'icona di notifica hello.
+## <a name="to-view-notifications-and-errors"></a>Per visualizzare notifiche ed errori
+Se occorre visualizzare le notifiche e gli errori generati dal portale di Azure, fare clic sull'icona di notifica.
 
 ![Notifiche](./media/media-services-portal-passthrough-get-started/media-services-notifications.png)
 
 ## <a name="create-and-start-pass-through-channels-and-events"></a>Creare e avviare eventi e canali pass-through
-Un canale è associato a eventi e i programmi che consentono la pubblicazione di hello toocontrol e l'archiviazione di segmenti in un flusso in tempo reale. Gli eventi sono gestiti dai canali. 
+Un canale è associato a programmi o eventi che consentono di controllare la pubblicazione e l'archiviazione di segmenti in un flusso live. Gli eventi sono gestiti dai canali. 
 
-È possibile specificare hello numero di ore che si vuole tooretain hello registrato contenuto per il programma hello, impostazione hello **finestra archivio** lunghezza. Questo valore può essere impostato da un minimo di 25 ore massimo tooa 5 minuti. Lunghezza dell'intervallo di archiviazione determina anche l'intervallo di tempo i client possono cercare indietro nel tempo dalla posizione live corrente hello massimo hello. Gli eventi è possono eseguire sul periodo di tempo specificato hello, ma il contenuto che non è sincronizzato con la lunghezza della finestra hello viene scartato in modo continuo. Questo valore di questa proprietà determina anche per quanto tempo hello client possono raggiungere i manifesti.
+È possibile specificare il numero di ore per cui si vuole mantenere il contenuto registrato per il programma impostando il valore **Intervallo di archiviazione** . Il valore impostato può essere compreso tra 5 minuti e 25 ore. La lunghezza della finestra di archiviazione determina anche il limite di tempo per cui i client possono eseguire ricerche a ritroso nel tempo dalla posizione live corrente. Gli eventi possono essere eseguiti per l'intervallo di tempo specificato, ma il contenuto che supera la durata prevista viene scartato in modo continuo. Il valore della proprietà determina anche il tempo per cui i manifesti client possono crescere.
 
-Ogni evento è associato a un asset. evento hello toopublish, è necessario creare un localizzatore OnDemand per asset hello associata. Con questo localizzatore consente si toobuild un URL di streaming che è possibile fornire tooyour client.
+Ogni evento è associato a un asset. Per pubblicare l'evento, è necessario creare un localizzatore OnDemand per l'asset associato. Con questo localizzatore sarà possibile creare un URL di streaming da fornire ai client.
 
-Un canale supporta fino toothree in esecuzione simultanea di eventi in modo è possibile creare più archivi di hello stesso flusso in ingresso. In questo modo toopublish e archiviare parti diverse di un evento in base alle esigenze. Ad esempio, il requisito di business è tooarchive 6 ore di un programma, ma toobroadcast solo ultimi 10 minuti. tooaccomplish, è necessario toocreate due programmi in esecuzione simultanea. Un programma è impostato tooarchive 6 ore dell'evento hello ma hello non viene pubblicato. Hello altro programma è tooarchive insieme per 10 minuti e questo programma viene pubblicato.
+Un canale supporta fino a tre eventi in esecuzione simultanea, quindi consente di creare più archivi dello stesso flusso in ingresso. Questo consente di pubblicare e archiviare parti diverse di un evento a seconda delle necessità. Si consideri ad esempio uno scenario in cui un'azienda richiede l'archiviazione di 6 ore di un programma e la trasmissione solo degli ultimi 10 minuti. A tale scopo, è necessario creare due programmi in esecuzione contemporaneamente. Un programma è impostato per l'archiviazione di 6 ore dell'evento, ma non viene pubblicato. L'altro programma è impostato per l'archiviazione di 10 minuti e viene pubblicato.
 
 Non riutilizzare eventi live esistenti, ma creare e avviare un nuovo evento per ogni evento.
 
-Avviare eventi hello quando sei pronto toostart streaming e l'archiviazione. Arrestare il programma hello ogni volta che si desidera toostop streaming e l'archiviazione di eventi di hello. 
+Avviare l'evento quando si è pronti ad avviare lo streaming e l'archiviazione. Arrestare il programma ogni volta che si vuole interrompere lo streaming e l'archiviazione dell'evento. 
 
-contenuto toodelete archiviato, interrompere ed eliminare evento hello e quindi eliminare asset associato hello. Non è possibile eliminare un asset se è utilizzato da un evento. evento Hello deve prima essere eliminato. 
+Per eliminare il contenuto archiviato, arrestare ed eliminare l'evento e quindi eliminare l'asset associato. Un asset non può essere eliminato se è usato da un evento. Per farlo, eliminare prima l'evento. 
 
-Anche dopo aver arrestato ed eliminato evento hello, hello gli utenti sarebbero in grado di toostream il contenuto archiviato come video on demand, per fino a quando non si elimina asset hello.
+Anche dopo l'arresto e l'eliminazione dell'evento, gli utenti saranno in grado di riprodurre in streaming il contenuto archiviato sotto forma di video on demand, finché non si elimina l'asset.
 
-Se si desidera hello tooretain archiviato il contenuto, ma non è disponibile per lo streaming, eliminare hello localizzatore di streaming.
+Se si desidera mantenere il contenuto archiviato ma non averlo disponibile per lo streaming, eliminare il localizzatore di streaming.
 
-### <a name="toouse-hello-portal-toocreate-a-channel"></a>toouse hello portale toocreate un canale
-Questa sezione viene illustrato come hello toouse **creazione rapida** opzione toocreate un canale di tipo pass-through.
+### <a name="to-use-the-portal-to-create-a-channel"></a>Per usare il portale per creare un canale
+Questa sezione illustra come usare l'opzione **Creazione rapida** per creare un canale pass-through.
 
 Per informazioni più dettagliate sui canali pass-through, vedere [Streaming live con codificatori locali che creano flussi a bitrate multipli](media-services-live-streaming-with-onprem-encoders.md).
 
-1. In hello [portale di Azure](https://portal.azure.com/), selezionare l'account di servizi multimediali di Azure.
-2. In hello **impostazioni** finestra, fare clic su **Live streaming**. 
+1. Nel [portale di Azure ](https://portal.azure.com/) selezionare l'account Servizi multimediali di Azure.
+2. Nella finestra **Impostazioni** fare clic su **Streaming live**. 
    
-    ![introduttiva](./media/media-services-portal-passthrough-get-started/media-services-getting-started.png)
+    ![Introduzione](./media/media-services-portal-passthrough-get-started/media-services-getting-started.png)
    
-    Hello **Live streaming** verrà visualizzata la finestra.
-3. Fare clic su **creazione rapida** toocreate un canale di tipo pass-through con hello RTMP protocollo di inserimento.
+    Verrà visualizzata la finestra **Streaming live** .
+3. Fare clic su **Creazione rapida** per creare un canale pass-through con il protocollo di inserimento RTMP.
    
-    Hello **creare un nuovo canale** verrà visualizzata la finestra.
-4. Assegnare un nome di nuovo canale hello e fare clic su **crea**. 
+    Verrà visualizzata la finestra **CREATE A NEW CHANNEL** (CREA UN NUOVO CANALE).
+4. Assegnare un nome al nuovo canale e fare clic su **Crea**. 
    
-    Ciò consente di creare un canale pass-through con hello protocollo di inserimento RTMP.
+    Verrà creato un canale pass-through con il protocollo di inserimento RTMP.
 
 ## <a name="create-events"></a>Creare eventi
-1. Selezionare un canale toowhich desiderato tooadd un evento.
+1. Selezionare un canale a cui si vuole aggiungere un evento.
 2. Premere il pulsante **Evento live** .
 
 ![Evento](./media/media-services-portal-passthrough-get-started/media-services-create-events.png)
 
 ## <a name="get-ingest-urls"></a>Ottenere gli URL di inserimento
-Una volta creato il canale di hello, è possibile ottenere l'URL che verrà fornito codificatore live toohello di inserimento. codificatore Hello utilizza questi tooinput URL di un flusso in tempo reale.
+Dopo avere creato il canale, è possibile ottenere gli URL di inserimento da fornire al codificatore live. Questi URL vengono usati dal codificatore per inserire un flusso live.
 
 ![Data di creazione](./media/media-services-portal-passthrough-get-started/media-services-channel-created.png)
 
-## <a name="watch-hello-event"></a>Evento hello espressioni di controllo
-evento hello toowatch, fare clic su **espressioni di controllo** in hello Azure portal o copia a hello URL di streaming e usare un lettore di propria scelta. 
+## <a name="watch-the-event"></a>Guardare l'evento
+Per guardare l'evento, fare clic su **Watch** (Guarda) nel portale di Azure o copiare l'URL di streaming e usare un lettore a propria scelta. 
 
 ![Data di creazione](./media/media-services-portal-passthrough-get-started/media-services-default-event.png)
 
-Evento Live ottengono automaticamente contenuto richiesta tooon convertito all'arresto.
+Quando viene arrestato, l'evento live viene convertito automaticamente in contenuto su richiesta.
 
 ## <a name="clean-up"></a>Eseguire la pulizia
 Per informazioni più dettagliate sui canali pass-through, vedere [Streaming live con codificatori locali che creano flussi a bitrate multipli](media-services-live-streaming-with-onprem-encoders.md).
 
-* Un canale può essere arrestato solo quando tutti gli eventi i programmi sul canale hello è stati arrestati.  Una volta hello canale viene interrotto, non è soggetta eventuali addebiti. Quando è necessario toostart nuovamente, disporrà di hello stesso URL di inserimento in modo non sarà necessario tooreconfigure codificatore.
-* Un canale può essere eliminato solo quando sono stati eliminati tutti gli eventi in tempo reale sul canale hello.
+* È possibile arrestare un canale solo quando tutti gli eventi o i programmi nel canale sono stati arrestati.  Dopo l'arresto, il canale non è soggetto ad alcun addebito. Quando occorrerà riavviarlo, avrà lo stesso URL di inserimento, per cui non sarà necessario riconfigurare il codificatore.
+* È possibile eliminare un canale solo quando tutti gli eventi live nel canale sono stati eliminati.
 
 ## <a name="view-archived-content"></a>Visualizzare il contenuto archiviato
-Anche dopo aver arrestato ed eliminato evento hello, hello gli utenti sarebbero in grado di toostream il contenuto archiviato come video on demand, per fino a quando non si elimina asset hello. Non è possibile eliminare un asset se è utilizzato da un evento. evento Hello deve prima essere eliminato. 
+Anche dopo l'arresto e l'eliminazione dell'evento, gli utenti saranno in grado di riprodurre in streaming il contenuto archiviato sotto forma di video on demand, finché non si elimina l'asset. Un asset non può essere eliminato se è usato da un evento. Per farlo, eliminare prima l'evento. 
 
-Selezionare le risorse, toomanage **impostazione** e fare clic su **asset**.
+Per gestire gli asset, selezionare**Impostazione** e fare clic su **Asset**.
 
-![Asset](./media/media-services-portal-passthrough-get-started/media-services-assets.png)
+![asset](./media/media-services-portal-passthrough-get-started/media-services-assets.png)
 
 ## <a name="next-step"></a>Passaggio successivo
 Analizzare i percorsi di apprendimento di Servizi multimediali.

@@ -1,5 +1,5 @@
 ---
-title: aaaStream Analitica Data Lake archivio Output | Documenti Microsoft
+title: Output di Data Lake Store per Analisi di flusso | Documentazione Microsoft
 description: Configurazione dell'autenticazione e dell'autorizzazione di un Archivio Data Lake di Azure in un processo di analisi di flusso
 keywords: 
 services: stream-analytics
@@ -15,26 +15,26 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 03/28/2017
 ms.author: samacha
-ms.openlocfilehash: 183cf51edb2e49ac3e42257e67a8077b95777258
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3d867df3ef875d5cc41de418c3d1d269ff751fda
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="stream-analytics-data-lake-store-output"></a>Output di Archivio Data Lake per Analisi di flusso
-I processi di Analisi di flusso supportano numerosi metodi di output, tra cui [Archivio Data Lake di Azure](https://azure.microsoft.com/services/data-lake-store/). Azure Data Lake Store è un repository su vasta scala a livello aziendale per carichi di lavoro di analisi di Big Data. Archivio Data Lake consente toostore dati di qualsiasi dimensione, tipo e l'inserimento di velocità per analitica operative ed esplorative.
+I processi di Analisi di flusso supportano numerosi metodi di output, tra cui [Archivio Data Lake di Azure](https://azure.microsoft.com/services/data-lake-store/). Azure Data Lake Store è un repository su vasta scala a livello aziendale per carichi di lavoro di analisi di Big Data. Archivio Data Lake consente di archiviare dati di qualsiasi dimensione, tipo e velocità di inserimento per le analisi esplorative e operative.
 
 ## <a name="authorize-a-data-lake-store-account"></a>Autorizzare un account Archivio Data Lake
-1. Quando archivio Data Lake è selezionato come output nel portale di Azure hello, sarà necessario utilizzare tooauthorize delle toorequest esistente archivio Data Lake accedere archivio Data Lake di toohello tramite hello portale classico.
+1. Quando si seleziona Data Lake Store come output nel portale di Azure, verrà richiesto di autorizzare l'uso del Data Lake Store esistente o di richiedere l'accesso a Data Lake Store tramite il portale di Azure classico.
    
    ![](media/stream-analytics-data-lake-output/stream-analytics-data-lake-output-authorization.png)  
    
-2. Se si dispone già di accesso tooData Lake archivio, fare clic su "autorizza" e per un breve periodo di una pagina viene visualizzata che indica "Reindirizzamento tooauthorization". pagina Hello verrà chiusa automaticamente e verrà visualizzato con una pagina hello che permetterebbe tooconfigure hello archivio Data Lake output.
+2. Se si ha già accesso a Data Lake Store, fare clic su "Autorizza ora". Per un breve tempo viene visualizzata una pagina con il messaggio "Reindirizzamento all'autorizzazione in corso". La pagina si chiude automaticamente e verrà visualizzata la pagina che consente di configurare l'output di Archivio Data Lake.
 
-Se non sei iscritto per archivio Data Lake, è possibile seguire hello "Iscrizione" tooinitiate hello richiesta di collegamento o seguire hello [istruzioni avviata](../data-lake-store/data-lake-store-get-started-portal.md).
+Se non si è iscritti a Data Lake Store, è possibile selezionare il collegamento "Iscriversi adesso" per avviare la richiesta, oppure seguire le [istruzioni introduttive](../data-lake-store/data-lake-store-get-started-portal.md).
 
-## <a name="configure-hello-data-lake-store-output-properties"></a>Configurare le proprietà di output di hello archivio Data Lake
-Dopo aver creato account archivio Data Lake hello autenticato, è possibile configurare le proprietà di hello per l'archivio Data Lake di output. tabella Hello riportata di seguito è riportato hello elenco di nomi di proprietà e i relativi tooconfigure descrizione che l'archivio Data Lake di output.
+## <a name="configure-the-data-lake-store-output-properties"></a>Configurare le proprietà dell'output di Archivio Data Lake
+Dopo aver autenticato l'account, è possibile configurare le proprietà per l'output di Archivio Data Lake. La tabella seguente elenca i nomi di proprietà e le relative descrizioni per configurare l'output di Archivio Data Lake.
 
 <table>
 <tbody>
@@ -44,23 +44,23 @@ Dopo aver creato account archivio Data Lake hello autenticato, è possibile conf
 </tr>
 <tr>
 <td>Alias di output</td>
-<td>Si tratta di un nome descrittivo utilizzato nella query toodirect hello query output toothis archivio Data Lake.</td>
+<td>È un nome descrittivo usato nelle query per indirizzare l'output delle query ad Archivio Data Lake in uso.</td>
 </tr>
 <tr>
 <td>Account di Archivio Data Lake</td>
-<td>nome Hello hello dell'account di archiviazione in cui si invia l'output. Verrà visualizzato un elenco di account archivio Data Lake hello utente connesso deve accedere.</td>
+<td>Nome dell'account di archiviazione a cui si sta inviando l'output. Verrà visualizzato un elenco di account Data Lake Store a cui l'utente connesso può accedere.</td>
 </tr>
 <tr>
 <td>Schema prefisso percorso [<I>facoltativo</I>]</td>
-<td>Hello toowrite percorso file del file all'interno di hello specificati Account archivio Data Lake. <BR>{date}, {time}<BR>Esempio 1: folder1/logs/{date}/{time}<BR>Esempio 2: folder1/logs/{date}</td>
+<td>Percorso del file usato per scrivere i file nell'account di Archivio Data Lake specificato. <BR>{date}, {time}<BR>Esempio 1: folder1/logs/{date}/{time}<BR>Esempio 2: folder1/logs/{date}</td>
 </tr>
 <tr>
 <td>Formato data [<I>facoltativo</I>]</td>
-<td>Se il token di data hello viene utilizzato nel percorso di prefisso hello, è possibile selezionare il formato di data hello in cui sono organizzati i file. Esempio: AAAA/MM/GG</td>
+<td>Se nel percorso di prefisso viene usato il token di data, è possibile selezionare il formato della data in cui sono organizzati i file. Esempio: AAAA/MM/GG</td>
 </tr>
 <tr>
 <td>Formato ora [<I>facoltativo</I>]</td>
-<td>Se il token di tempo hello viene utilizzato nel percorso di prefisso hello, specificare il formato di ora hello in cui i file sono organizzati. Il valore di hello solo supportato attualmente è HH.</td>
+<td>Se nel percorso di prefisso viene usato il token dell'ora, specificare il formato dell'ora in cui sono organizzati i file. Al momento, l'unico valore supportato è HH.</td>
 </tr>
 <tr>
 <td>Formato di serializzazione eventi</td>
@@ -68,7 +68,7 @@ Dopo aver creato account archivio Data Lake hello autenticato, è possibile conf
 </tr>
 <tr>
 <td>Codifica</td>
-<td>Se il formato è CSV o JSON, è necessario specificare un formato di codifica. UTF-8 è hello formato di codifica è supportata solo in questo momento.</td>
+<td>Se il formato è CSV o JSON, è necessario specificare un formato di codifica. Al momento UTF-8 è l'unico formato di codifica supportato.</td>
 </tr>
 <tr>
 <td>Delimitatore</td>
@@ -76,15 +76,15 @@ Dopo aver creato account archivio Data Lake hello autenticato, è possibile conf
 </tr>
 <tr>
 <td>Format</td>
-<td>Applicabile solo per la serializzazione JSON. Separato da righe specifica che verrà formattato output di hello con ogni oggetto JSON sia separato da una nuova riga. Matrice specifica che verrà formattato come una matrice di oggetti JSON output di hello.</td>
+<td>Applicabile solo per la serializzazione JSON. Separato da righe specifica che l'output verrà formattato separando ciascun oggetto JSON con una nuova riga. Array specifica che l'output verrà formattato come array di oggetti JSON.</td>
 </tr>
 </tbody>
 </table>
 
 ## <a name="renew-data-lake-store-authorization"></a>Rinnovare l'autorizzazione per Archivio Data Lake
-Attualmente, è presente una limitazione in cui il token di autenticazione hello deve toobe aggiornate manualmente ogni 90 giorni per tutti i processi con l'output di archivio Data Lake. È inoltre necessario toore-autenticazione account archivio Data Lake se è stata modificata la password poiché il processo di creazione o dell'ultima autenticazione. Un sintomo del problema è un errore nel log delle operazioni hello segnalerà necessità per l'autorizzazione e nessun output del processo.
+Attualmente esiste una limitazione secondo cui il token di autenticazione deve essere aggiornato manualmente ogni 90 giorni per tutti i processi con output di Archivio Data Lake. È necessario anche autenticare nuovamente l'account di Archivio Data Lake se la password è stata modificata dopo la creazione del processo o dopo l'ultima autenticazione. Un sintomo di questo problema è la mancanza di output del processo e un errore nei log delle operazioni che indicano la necessità di una nuova autorizzazione.
 
-tooresolve questo problema, arrestare il processo in esecuzione e passare l'archivio tooyour Data Lake di output. Fare clic sul collegamento "Rinnovo authorization" hello e per un breve periodo di una pagina viene visualizzata che indica "Reindirizzamento tooauthorization".... pagina Hello verrà chiusa automaticamente e se ha esito positivo, verrà indicato "Autorizzazione è stata rinnovata". Quindi necessario tooclick "Salva" nella parte inferiore di hello della pagina hello e può continuare, riavviare il processo dalla perdita di dati di ora ultimo arresto tooavoid hello.
+Per risolvere questo problema, arrestare il processo in esecuzione e passare all'output di Archivio Data Lake. Fare clic sul collegamento "Rinnova autorizzazione" e per un istante viene visualizzata una pagina che indica "Reindirizzamento all'autorizzazione..." La pagina verrà chiusa automaticamente e, in caso di esito positivo, verrà indicato "Autorizzazione rinnovata". È quindi necessario fare clic su "Salva" nella parte inferiore della pagina e, per continuare, riavviare il processo dall'ora dell'ultimo arresto per evitare la perdita di dati.
 
 ![](media/stream-analytics-data-lake-output/stream-analytics-data-lake-output-renew-authorization.png)
 

@@ -1,14 +1,14 @@
 
-1. Selezionare la macchina virtuale nel portale di hello. Hello *nome DNS* è attualmente vuoto. Selezionare **Indirizzo IP pubblico**:
+1. Selezionare la macchina virtuale nel portale. *Nome DNS* è attualmente vuoto. Selezionare **Indirizzo IP pubblico**:
    
-   ![Fare clic sulla risorsa indirizzo IP pubblico nel portale di hello](./media/virtual-machines-common-portal-create-fqdn/locatePublicIP.PNG)
+   ![Fare clic sulla risorsa IP pubblico nel portale](./media/virtual-machines-common-portal-create-fqdn/locatePublicIP.PNG)
 
-2. Immettere il nome DNS hello desiderato e quindi selezionare **salvare**.
+2. Immettere il nome DNS e fare clic su **Salva**.
    
    ![Immettere l'etichetta del nome DNS per la risorsa IP pubblica](./media/virtual-machines-common-portal-create-fqdn/dnsNameLabel.PNG)
  
 
-3. pannello della panoramica VM toohello tooreturn, chiude hello *indirizzo IP pubblico* blade. Verificare che hello *nome DNS* è ora visualizzata.
+3. Per tornare al pannello di panoramica della VM, chiudere il pannello *Indirizzo IP pubblico*. Verificare che il *nome DNS* ora sia visualizzato.
    
    ![Verificare che sia impostata la nuova etichetta DNS](./media/virtual-machines-common-portal-create-fqdn/fqdnCreated.PNG)
 

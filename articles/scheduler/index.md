@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure dell'utilità di pianificazione documentazione, esercitazioni, riferimenti alle API | Documenti Microsoft"
-description: "Informazioni su come toouse dell'utilità di pianificazione tooschedule e richiamare i processi, come la manutenzione di routine e le azioni applicazione ricorrente. Esercitazioni, informazioni di riferimento sulle API e altro ancora."
+title: "Documentazione di Utilità di pianificazione di Azure - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft"
+description: "Informazioni su come usare Utilità di pianificazione per pianificare e richiamare i processi, ad esempio azioni ricorrenti delle applicazioni e manutenzione di routine. Esercitazioni, informazioni di riferimento sulle API e altro ancora."
 services: scheduler
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: c9e67fc813939c31bb3cd38215293c98babe3838
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4883e5689a639259ec1c0bcd31e1016f85af5d66
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="scheduler-documentation"></a>Documentazione di Utilità di pianificazione
 
-Informazioni su come toouse dell'utilità di pianificazione tooschedule e richiamare automaticamente i processi ricorrenti nel cloud hello. Esercitazioni, riferimenti ad API e altra documentazione illustrano come tooschedule e monitorare i processi, come la manutenzione di routine e le azioni applicazione ricorrente.
+Informazioni su come usare Utilità di pianificazione per pianificare e richiamare automaticamente i processi ricorrenti nel cloud. Esercitazioni, informazioni di riferimento sulle API e altri documenti mostrano come pianificare e monitorare i processi, ad esempio azioni ricorrenti delle applicazioni e manutenzione di routine.
 
 <ul class="panelContent cardsFTitle">
     <li>

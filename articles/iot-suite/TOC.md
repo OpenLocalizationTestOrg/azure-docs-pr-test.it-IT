@@ -1,11 +1,11 @@
 # Panoramica
 ## [Azure e IoT](iot-suite-what-is-azure-iot.md)
 ## [Che cos'è IoT Suite?](iot-suite-overview.md)
-## [Quali sono le soluzioni preconfigurata hello?](iot-suite-what-are-preconfigured-solutions.md)
+## [Che cosa sono le soluzioni preconfigurate?](iot-suite-what-are-preconfigured-solutions.md)
 
 
 # Attività iniziali
-## [Introduzione a soluzioni hello preconfigurato](iot-suite-getstarted-preconfigured-solutions.md)
+## [Introduzione alle soluzioni preconfigurate](iot-suite-getstarted-preconfigured-solutions.md)
 ## [Autorizzazioni in azureiotsuite.com](iot-suite-permissions.md)
 ## [Panoramica della soluzione di manutenzione predittiva](iot-suite-predictive-overview.md)
 ## [Panoramica della soluzione di connected factory](iot-suite-connected-factory-overview.md)
@@ -29,12 +29,12 @@
 ## Connettere un dispositivo simulato
 ### [C su Windows](iot-suite-connecting-devices.md)
 ### [C su Linux](iot-suite-connecting-devices-linux.md)
-### [Node.js](iot-suite-connecting-devices-node.md)
-## [Connettersi a una soluzione di monitoraggio remota di App per la logica toohello](iot-suite-logic-apps-tutorial.md)
+### [Node.JS](iot-suite-connecting-devices-node.md)
+## [Connettere un'app per la logica alla soluzione di monitoraggio remoto](iot-suite-logic-apps-tutorial.md)
 ## [Personalizzare una soluzione preconfigurata](iot-suite-guidance-on-customizing-preconfigured-solutions.md)
-## [Utilizzare i dati di telemetria dinamico con hello soluzione di monitoraggio remoto](iot-suite-dynamic-telemetry.md)
-## [Creare una regola personalizzata nella soluzione di monitoraggio remoto hello](iot-suite-custom-rule.md)
-## [Informazioni sul dispositivo nella soluzione di monitoraggio remoto hello](iot-suite-remote-monitoring-device-info.md)
+## [Usare la telemetria dinamica con la soluzione di monitoraggio remoto](iot-suite-dynamic-telemetry.md)
+## [Creare una regola personalizata nella soluzione di monitoraggio remoto](iot-suite-custom-rule.md)
+## [Informazioni sui dispositivi nella soluzione di monitoraggio remoto](iot-suite-remote-monitoring-device-info.md)
 ## [Distribuire un gateway per connected factory](iot-suite-connected-factory-gateway-deployment.md)
 ## [Personalizzare la factory connessa](iot-suite-connected-factory-customize.md)
 
@@ -42,7 +42,7 @@
 ## [Architettura di sicurezza](iot-security-architecture.md)
 ## [Procedure di sicurezza consigliate](iot-security-best-practices.md)
 ## [Proteggere la distribuzione di IoT](iot-suite-security-deployment.md)
-## [Protezione da hello messa a terra](securing-iot-ground-up.md)
+## [Sicurezza sin dall'inizio](securing-iot-ground-up.md)
 
 # Risorse correlate
 ## [Analisi di flusso](/azure/stream-analytics/)

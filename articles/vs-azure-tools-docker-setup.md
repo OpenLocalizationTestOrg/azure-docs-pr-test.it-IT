@@ -1,6 +1,6 @@
 ---
-title: un Host Docker con VirtualBox aaaConfigure | Documenti Microsoft
-description: Istruzioni dettagliate tooconfigure Docker predefinito dell'istanza tramite Docker macchina e VirtualBox
+title: Configurare un Host Docker con VirtualBox | Documentazione Microsoft
+description: Istruzioni passo a passo per configurare un'istanza di Docker predefinita usando Docker Machine e VirtualBox
 services: azure-container-service
 documentationcenter: na
 author: mlearned
@@ -14,42 +14,42 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 06/08/2016
 ms.author: mlearned
-ms.openlocfilehash: 1df2da4482444a803d05e413e019edcc57269062
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e9465afb560a73d74f853c19094b3ee75b8c470c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="configure-a-docker-host-with-virtualbox"></a>Configurare un Host Docker con VirtualBox
 ## <a name="overview"></a>Panoramica
-Questo articolo consente di configurare un'istanza di Docker predefinita usando Docker Machine e VirtualBox. Se si usa hello [Docker per Windows beta](http://beta.docker.com/), questa configurazione non è necessaria.
+Questo articolo consente di configurare un'istanza di Docker predefinita usando Docker Machine e VirtualBox. Se si utilizza il [Docker per Windows beta](http://beta.docker.com/), questa configurazione non è necessaria.
 
 ## <a name="prerequisites"></a>Prerequisiti
-Hello seguenti strumenti necessario toobe installato.
+È necessario installare gli strumenti seguenti.
 
 * [Docker Toolbox](https://www.docker.com/products/overview#/docker_toolbox)
 
-## <a name="configuring-hello-docker-client-with-windows-powershell"></a>Configurazione del client di Docker hello con Windows PowerShell
-un client di Docker, tooconfigure semplicemente aprire Windows PowerShell ed eseguire hello alla procedura seguente:
+## <a name="configuring-the-docker-client-with-windows-powershell"></a>Configurare il client Docker con Windows PowerShell
+Per configurare un client Docker, è sufficiente aprire Windows PowerShell ed eseguire la procedura seguente:
 
 1. Creare un'istanza di host docker predefinita.
    
     ```PowerShell
     docker-machine create --driver virtualbox default
     ```
-2. Verificare l'istanza predefinita di hello è configurato e in esecuzione. Verrà visualizzata un'istanza denominata `default' in esecuzione.
+2. Verificare che l'istanza predefinita sia configurata e in esecuzione. Verrà visualizzata un'istanza denominata `default' in esecuzione.
    
     ```PowerShell
     docker-machine ls 
     ```
    
     ![docker-machine ls output][0]
-3. Impostare il valore predefinito come host corrente hello e configurare la shell.
+3. Impostare l'host corrente come predefinito e configurare la shell.
    
     ```PowerShell
     docker-machine env default | Invoke-Expression
     ```
-4. Visualizzare i contenitori di Docker active hello. elenco di Hello deve essere vuoto.
+4. Visualizzare i contenitori del Docker attivi. L'elenco deve essere vuoto.
    
     ```PowerShell
     docker ps
@@ -58,8 +58,8 @@ un client di Docker, tooconfigure semplicemente aprire Windows PowerShell ed ese
     ![docker ps output][1]
 
 > [!NOTE]
-> Ogni volta che si riavvia il computer di sviluppo, è necessario toorestart all'host docker locale.
-> toodo hello, questo problema comando al prompt di comando seguente: `docker-machine start default`.
+> Ogni volta che si riavvia il computer di sviluppo, sarà necessario riavviare l'host Docker locale.
+> A questo scopo, al prompt dei comandi eseguire questo comando: `docker-machine start default`.
 > 
 > 
 

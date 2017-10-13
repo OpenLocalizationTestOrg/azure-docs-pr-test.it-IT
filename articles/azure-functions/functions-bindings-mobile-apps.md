@@ -1,10 +1,10 @@
 ---
-title: associazioni di App per dispositivi mobili funzioni aaaAzure | Documenti Microsoft
-description: Comprendere come le associazioni di App mobili di Azure toouse nelle funzioni di Azure.
+title: Associazioni di app per dispositivi mobili in Funzioni di Azure | Documentazione Microsoft
+description: Informazioni su come usare le associazioni di app per dispositivi mobili in Funzioni di Azure
 services: functions
 documentationcenter: na
 author: ggailey777
-manager: erikre
+manager: cfowler
 editor: 
 tags: 
 keywords: Funzioni di Azure, Funzioni, elaborazione eventi, calcolo dinamico, architettura senza server
@@ -16,48 +16,48 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 10/31/2016
 ms.author: glenga
-ms.openlocfilehash: d3679a5d5c66705b32e422ec17e3a1e6d6ac063c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d2c0e4e233761584bad2df05a8e702e4fc77e84f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-functions-mobile-apps-bindings"></a>Associazioni di app per dispositivi mobili in Funzioni di Azure
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-Questo articolo viene illustrato come tooconfigure e codice [App mobili di Azure](../app-service-mobile/app-service-mobile-value-prop.md) associazioni nelle funzioni di Azure. Funzioni di Azure supporta le associazioni di input e output per App per dispositivi mobili.
+Questo articolo illustra come configurare e scrivere il codice delle [associazioni di App per dispositivi mobili di Azure](../app-service-mobile/app-service-mobile-value-prop.md) in Funzioni di Azure. Funzioni di Azure supporta le associazioni di input e output per App per dispositivi mobili.
 
-Hello App per dispositivi mobili di input e output associazioni consentono di [leggere e scrivere nelle tabelle toodata](../app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#TableOperations) in app per dispositivi mobili.
+Le associazioni di input e output per App per dispositivi mobili consentono di [leggere e scrivere tabelle di dati](../app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#TableOperations) nella propria app per dispositivi mobili.
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
 <a name="input"></a>
 
 ## <a name="mobile-apps-input-binding"></a>Associazione di input di App per dispositivi mobili
-associazione di input di App per dispositivi mobili Hello carica un record da un endpoint di tabella per dispositivi mobili e lo passa la funzione. In c# e F # funzioni, qualsiasi record di toohello le modifiche apportate vengono inviati automaticamente toohello indietro tabella quando si esce dalla funzione hello correttamente.
+L'associazione di input di App per dispositivi mobili carica un record da un endpoint tabella per dispositivi mobili e lo passa alla propria funzione. Nelle funzioni C# e F# eventuali modifiche apportate al record vengono automaticamente inviate alla tabella se la funzione termina correttamente.
 
-App per dispositivi mobili Hello input tooa funzione Usa hello seguente oggetto JSON nella hello `bindings` matrice function.json:
+L'input di App per dispositivi mobili in una funzione usa l'oggetto JSON seguente nella matrice `bindings` di function.json:
 
 ```json
 {
     "name": "<Name of input parameter in function signature>",
     "type": "mobileTable",
     "tableName": "<Name of your mobile app's data table>",
-    "id" : "<Id of hello record tooretrieve - see below>",
+    "id" : "<Id of the record to retrieve - see below>",
     "connection": "<Name of app setting that has your mobile app's URL - see below>",
     "apiKey": "<Name of app setting that has your mobile app's API key - see below>",
     "direction": "in"
 }
 ```
 
-Si noti hello segue:
+Tenere presente quanto segue:
 
-* `id`può essere statico o può essere basato su trigger hello che richiama la funzione hello. Ad esempio, se si utilizza un [trigger coda]() per la funzione, quindi `"id": "{queueTrigger}"` utilizza hello il valore di stringa di messaggio della coda hello come hello tooretrieve ID record.
-* `connection`deve contenere il nome di hello di un'impostazione di app nell'app (funzione), che a sua volta contiene hello URL dell'app per dispositivi mobili. funzione Hello utilizza questa operazioni REST di URL tooconstruct hello necessario su app mobile. Si [creare un'impostazione dell'app nell'app funzione]() che contiene l'URL dell'app mobile (che è simile `http://<appname>.azurewebsites.net`), quindi specificare il nome di hello di impostazione dell'app hello in hello `connection` proprietà l'associazione di input. 
-* È necessario toospecify `apiKey` se si [implementare una chiave API nel back-end dell'app mobile Node.js](https://github.com/Azure/azure-mobile-apps-node/tree/master/samples/api-key), o [implementare una chiave API nel back-end dell'app mobile .NET](https://github.com/Azure/azure-mobile-apps-net-server/wiki/Implementing-Application-Key). toodo, si [creare un'impostazione dell'app nell'app funzione]() che contiene la chiave API hello, quindi aggiungere hello `apiKey` proprietà l'associazione di input con il nome di hello dell'impostazione di app hello. 
+* `id` può essere statico oppure può essere basato sul trigger che richiama la funzione. Se ad esempio si usa un [trigger della coda]() per la propria funzione, `"id": "{queueTrigger}"` userà il valore di stringa del messaggio della coda come ID del record da recuperare.
+* `connection` deve contenere il nome di un'impostazione dell'app per le funzioni, in cui è contenuto l'URL dell'app per dispositivi mobili. La funzione usa questo URL per creare le operazioni REST da eseguire sull'app per dispositivi mobili. A questo scopo, è necessario [creare un'impostazione nell'app per le funzioni]() che contenga l'URL dell'app per dispositivi mobili (simile a `http://<appname>.azurewebsites.net`) e quindi specificare il nome dell'impostazione dell'app nella proprietà `connection` dell'associazione di input. 
+* È necessario specificare `apiKey` se si [implementa una chiave API nel back-end dell'app per dispositivi mobili Node.js](https://github.com/Azure/azure-mobile-apps-node/tree/master/samples/api-key) o se si [implementa una chiave API nel back-end dell'app per dispositivi mobili .NET](https://github.com/Azure/azure-mobile-apps-net-server/wiki/Implementing-Application-Key). A questo scopo, è necessario [creare un'impostazione nell'app per le funzioni]() che contenga la chiave API e quindi aggiungere la proprietà `apiKey` nell'associazione di input con il nome dell'impostazione dell'app. 
   
   > [!IMPORTANT]
-  > Questa chiave API non deve essere condivisa con i client dell'app per dispositivi mobili. Deve solo essere distribuiti i client di lato tooservice in modo sicuro, come le funzioni di Azure. 
+  > Questa chiave API non deve essere condivisa con i client dell'app per dispositivi mobili. Può essere distribuita in modo sicuro solo ai client sul lato servizio, come Funzioni di Azure. 
   > 
   > [!NOTE]
   > Funzioni di Azure archivia le informazioni di connessione e le chiavi API come impostazioni dell'app in modo che non vengano controllate nel repository di controllo del codice sorgente. In questo modo viene garantita la protezione delle informazioni riservate.
@@ -67,16 +67,16 @@ Si noti hello segue:
 <a name="inputusage"></a>
 
 ## <a name="input-usage"></a>Uso dell'input
-In questa sezione viene illustrato come toouse App Mobile di input di associazione nel codice di funzione. 
+In questa sezione viene illustrato come usare l'associazione di input di App per dispositivi mobili nel codice di funzione. 
 
-Quando il record di hello con hello specificato ID di tabella e il record è disponibile, viene passato a hello denominato [JObject](http://www.newtonsoft.com/json/help/html/t_newtonsoft_json_linq_jobject.htm) parametro (o, in Node.js, viene passato a hello `context.bindings.<name>` oggetto). Quando i record di hello non viene trovato, il parametro hello è `null`. 
+Se il record corrispondente alla tabella e all'ID di record specificati viene trovato, il record viene passato al parametro denominato [JObject](http://www.newtonsoft.com/json/help/html/t_newtonsoft_json_linq_jobject.htm) (in Node.js viene passato all'oggetto `context.bindings.<name>`). Se il record non viene trovato, il parametro è `null`. 
 
-Nelle funzioni di c# e F #, tutte le modifiche apportate ai record di input toohello (parametro di input) viene inviato automaticamente toohello back-tabella di App per dispositivi mobili quando si esce dalla funzione hello correttamente. Nelle funzioni di Node.js, utilizzare `context.bindings.<name>` tooaccess hello record di input. In Node.js, inoltre, non è possibile modificare i record.
+Nelle funzioni C# e F# eventuali modifiche apportate al record di input (parametro di input) vengono automaticamente inviate alla tabella di App per dispositivi mobili quando la funzione termina correttamente. Nelle funzioni Node.js si accede al record di input usando `context.bindings.<name>`. In Node.js, inoltre, non è possibile modificare i record.
 
 <a name="inputsample"></a>
 
 ## <a name="input-sample"></a>Esempio di input
-Si supponga di avere seguito function.json hello, che consente di recuperare un record della tabella con id messaggio di attivazione coda hello hello App per dispositivi mobili:
+Si supponga di avere il seguente function.json, che recupera un record della tabella di App per dispositivi mobili tramite l'ID del messaggio di attivazione della coda:
 
 ```json
 {
@@ -102,7 +102,7 @@ Si supponga di avere seguito function.json hello, che consente di recuperare un 
 }
 ```
 
-Vedere l'esempio specifico del linguaggio hello che utilizza i record di input hello dall'associazione hello. esempi di c# e F # Hello inoltre modifichino record di hello `text` proprietà.
+Vedere l'esempio specifico del linguaggio che usa il record di input dall'associazione. Gli esempi in C# e F# modificano anche la proprietà `text` del record.
 
 * [C#](#inputcsharp)
 * [Node.js](#inputnodejs)
@@ -150,9 +150,9 @@ module.exports = function (context, myQueueItem) {
 <a name="output"></a>
 
 ## <a name="mobile-apps-output-binding"></a>Associazione di output di App per dispositivi mobili
-Utilizzare hello App per dispositivi mobili output associazione toowrite un nuovo endpoint di tabella tooa record App per dispositivi mobili.  
+L'associazione di output di App per dispositivi mobili consente di scrivere un nuovo record in un endpoint tabella di App per dispositivi mobili.  
 
-App per dispositivi mobili di output per una funzione utilizza hello seguente oggetto JSON nella hello Hello `bindings` matrice function.json:
+L'output di App per dispositivi mobili per una funzione usa l'oggetto JSON seguente nella matrice `bindings` di function.json:
 
 ```json
 {
@@ -165,13 +165,13 @@ App per dispositivi mobili di output per una funzione utilizza hello seguente og
 }
 ```
 
-Si noti hello segue:
+Tenere presente quanto segue:
 
-* `connection`deve contenere il nome di hello di un'impostazione di app nell'app (funzione), che a sua volta contiene hello URL dell'app per dispositivi mobili. funzione Hello utilizza questa operazioni REST di URL tooconstruct hello necessario su app mobile. Si [creare un'impostazione dell'app nell'app funzione]() che contiene l'URL dell'app mobile (che è simile `http://<appname>.azurewebsites.net`), quindi specificare il nome di hello di impostazione dell'app hello in hello `connection` proprietà l'associazione di input. 
-* È necessario toospecify `apiKey` se si [implementare una chiave API nel back-end dell'app mobile Node.js](https://github.com/Azure/azure-mobile-apps-node/tree/master/samples/api-key), o [implementare una chiave API nel back-end dell'app mobile .NET](https://github.com/Azure/azure-mobile-apps-net-server/wiki/Implementing-Application-Key). toodo, si [creare un'impostazione dell'app nell'app funzione]() che contiene la chiave API hello, quindi aggiungere hello `apiKey` proprietà l'associazione di input con il nome di hello dell'impostazione di app hello. 
+* `connection` deve contenere il nome di un'impostazione dell'app per le funzioni, in cui è contenuto l'URL dell'app per dispositivi mobili. La funzione usa questo URL per creare le operazioni REST da eseguire sull'app per dispositivi mobili. A questo scopo, è necessario [creare un'impostazione nell'app per le funzioni]() che contenga l'URL dell'app per dispositivi mobili (simile a `http://<appname>.azurewebsites.net`) e quindi specificare il nome dell'impostazione dell'app nella proprietà `connection` dell'associazione di input. 
+* È necessario specificare `apiKey` se si [implementa una chiave API nel back-end dell'app per dispositivi mobili Node.js](https://github.com/Azure/azure-mobile-apps-node/tree/master/samples/api-key) o se si [implementa una chiave API nel back-end dell'app per dispositivi mobili .NET](https://github.com/Azure/azure-mobile-apps-net-server/wiki/Implementing-Application-Key). A questo scopo, è necessario [creare un'impostazione nell'app per le funzioni]() che contenga la chiave API e quindi aggiungere la proprietà `apiKey` nell'associazione di input con il nome dell'impostazione dell'app. 
   
   > [!IMPORTANT]
-  > Questa chiave API non deve essere condivisa con i client dell'app per dispositivi mobili. Deve solo essere distribuiti i client di lato tooservice in modo sicuro, come le funzioni di Azure. 
+  > Questa chiave API non deve essere condivisa con i client dell'app per dispositivi mobili. Può essere distribuita in modo sicuro solo ai client sul lato servizio, come Funzioni di Azure. 
   > 
   > [!NOTE]
   > Funzioni di Azure archivia le informazioni di connessione e le chiavi API come impostazioni dell'app in modo che non vengano controllate nel repository di controllo del codice sorgente. In questo modo viene garantita la protezione delle informazioni riservate.
@@ -181,14 +181,14 @@ Si noti hello segue:
 <a name="outputusage"></a>
 
 ## <a name="output-usage"></a>Uso dell'output
-In questa sezione viene illustrato come toouse App Mobile di output di associazione nel codice di funzione. 
+In questa sezione viene illustrato come usare l'associazione di output di App per dispositivi mobili nel codice di funzione. 
 
-In c# le funzioni, usare un parametro di output con nome di tipo `out object` hello tooaccess record di output. Nelle funzioni di Node.js, utilizzare `context.bindings.<name>` hello tooaccess record di output.
+Nelle funzioni C# è necessario usare un parametro di output denominato di tipo `out object` per accedere al record di output. Nelle funzioni Node.js si accede al record di output usando `context.bindings.<name>`.
 
 <a name="outputsample"></a>
 
 ## <a name="output-sample"></a>Esempio di output
-Si supponga di avere seguito function.json hello, che definisce un trigger di coda e un output di App per dispositivi mobili:
+Si supponga di avere il seguente function.json, che definisce un trigger della coda e un output di App per dispositivi mobili:
 
 ```json
 {
@@ -213,7 +213,7 @@ Si supponga di avere seguito function.json hello, che definisce un trigger di co
 }
 ```
 
-Vedere l'esempio specifico del linguaggio hello che crea un record nell'endpoint di tabella hello App per dispositivi mobili con contenuto hello di messaggio della coda hello.
+Vedere l'esempio specifico del linguaggio che crea un record nell'endpoint tabella di App per dispositivi mobili con il contenuto del messaggio della coda.
 
 * [C#](#outcsharp)
 * [Node.js](#outnodejs)

@@ -1,6 +1,6 @@
 ---
-title: le applicazioni aaaHow vengono visualizzate nel Pannello di accesso hello | Documenti Microsoft
-description: "Risoluzione dei problemi perché un'applicazione viene visualizzato nel Pannello di accesso hello"
+title: Come vengono visualizzate le applicazioni nel pannello di accesso | Microsoft Docs
+description: Risolvere i problemi relativi alla visualizzazione di un'applicazione nel panello di accesso
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -14,129 +14,129 @@ ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
 ms.reviewr: japere
-ms.openlocfilehash: 14ee732c4ed5260cba878e949cf9d90877aee67e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f8ccf2cf66b49940bc7f2b9f4764020efc04838e
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="how-applications-appear-on-hello-access-panel"></a>Modalità di visualizzazione di applicazioni nel Pannello di accesso hello
+# <a name="how-applications-appear-on-the-access-panel"></a>Come vengono visualizzate le applicazioni nel pannello di accesso
 
-Hello Pannello di accesso è un portale basato sul web che consente a un utente con un lavoro o account Azure Active Directory (Azure AD) tooview avvio basato su cloud le applicazioni e dell'istituto di istruzione che hello amministratore di Azure AD ha concesso l'accesso a. Queste applicazioni sono configurate per conto di utente hello nel portale di Azure AD hello. può eseguire il provisioning salve hello applicazione toohello utente direttamente o tooa gruppo che un utente fa parte di risultante in un'applicazione hello visualizzati nel Pannello di accesso dell'utente hello.
+Il pannello di accesso è un portale basato sul Web e consente a un utente che ha un account aziendale o dell'istituto di istruzione in Azure Active Directory (Azure AD) di visualizzare e avviare applicazioni basate su cloud a cui l'amministratore di Azure AD ha concesso l'accesso. Queste applicazioni sono configurate per conto dell'utente nel portale di Azure AD. L'amministratore può effettuare il provisioning dell'applicazione direttamente per un utente o un gruppo di cui fa parte l'utente. Come risultato di questa operazione, l'applicazione viene visualizzata nel pannello di accesso dell'utente.
 
-## <a name="general-issues-toocheck-first"></a>Generale problemi toocheck prima
+## <a name="general-issues-to-check-first"></a>Problemi generali da verificare prima
 
--   Se un'applicazione è stata rimossa solo da un utente o gruppo hello utente è membro di, riprovare toosign avanti e indietro nel Pannello di accesso dell'utente hello dopo pochi minuti toosee se un'applicazione hello viene rimosso.
+-   Se un'applicazione è stata appena rimossa da un utente o da un gruppo di cui l'utente è membro, provare ad accedere e a disconnettersi di nuovo dal pannello di accesso dell'utente dopo alcuni minuti per vedere se l'applicazione è stata rimossa.
 
--   Se una licenza è stata rimossa solo da un utente o gruppo utente hello è che un membro di questo potrebbe richiedere molto tempo, a seconda delle dimensioni di hello e la complessità del gruppo di hello per toobe le modifiche apportate. Consentire del tempo aggiuntivo prima della firma in hello Pannello di accesso.
+-   Se è stata appena rimossa una licenza da un utente o da un gruppo di cui l'utente è membro, l'aggiornamento della visualizzazione potrebbe richiedere molto tempo a seconda delle dimensioni e della complessità del gruppo. Attendere un tempo più lungo prima di accedere al pannello di accesso.
 
-## <a name="problems-related-tooassigning-applications-toousers"></a>Problemi correlati tooassigning applicazioni toousers
+## <a name="problems-related-to-assigning-applications-to-users"></a>Problemi relativi all'assegnazione di applicazioni agli utenti
 
-Un utente può essere visualizzata un'applicazione nel proprio pannello di accesso perché che è stata precedentemente assegnate tooit. Di seguito sono toocheck alcuni modi:
+Un utente potrebbe vedere un'applicazione nel proprio pannello di accesso perché è stato assegnato precedentemente all'applicazione. Di seguito sono elencate alcuni modi per verificare questa situazione:
 
--   [Verificare se un utente è assegnato toohello applicazione](#check-if-a-user-is-assigned-to-the-application)
+-   [Controllare se un utente è assegnato all'applicazione](#check-if-a-user-is-assigned-to-the-application)
 
--   [Controllare se un utente è in una licenza correlati toohello applicazione](#check-if-a-user-is-under-a-license-related-to-the-application)
+-   [Controllare se un utente è incluso nella licenza relativa all'applicazione](#check-if-a-user-is-under-a-license-related-to-the-application)
 
 
-### <a name="check-if-a-user-is-assigned-toohello-application"></a>Verificare se un utente è assegnato toohello applicazione
+### <a name="check-if-a-user-is-assigned-to-the-application"></a>Controllare se un utente è assegnato all'applicazione
 
-toocheck se un utente è assegnato toohello applicazione, attenersi alla procedura hello riportata di seguito:
+Per controllare se un utente è assegnato all'applicazione, seguire questa procedura:
 
-1.  Aprire hello [ **portale Azure** ](https://portal.azure.com/) e accedere come un **amministratore globale.**
+1.  Aprire il [**portale di Azure**](https://portal.azure.com/) e accedere come **Amministratore globale**.
 
-2.  Aprire hello **estensione di Azure Active Directory** facendo **più servizi** nella parte inferiore di hello del menu di navigazione a sinistra principale hello.
+2.  Aprire l'**estensione Azure Active Directory** facendo clic su **Altri servizi** nella parte inferiore del menu di navigazione principale a sinistra.
 
-3.  Digitare **"Azure Active Directory**" nella casella di ricerca di filtro hello e seleziona hello **Azure Active Directory** elemento.
+3.  Digitare "**Azure Active Directory**" nella casella di ricerca filtro e selezionare l'elemento **Azure Active Directory**.
 
-4.  Fare clic su **applicazioni aziendali** dal menu di navigazione a sinistra di hello Azure Active Directory.
+4.  Fare clic su **Applicazioni aziendali** nel menu di navigazione a sinistra di Azure Active Directory.
 
-5.  Fare clic su **tutte le applicazioni** tooview un elenco di tutte le applicazioni.
+5.  Fare clic su **Tutte le applicazioni** per visualizzare un elenco di tutte le applicazioni.
 
-6.  **Ricerca** per nome hello dell'applicazione hello in questione.
+6.  **Cercare** il nome dell'applicazione in questione.
 
 7.  Fare clic su **Utenti e gruppi**.
 
-8.  Controllare toosee se l'utente è assegnato toohello applicazione.
+8.  Controllare se un utente è assegnato all'applicazione.
 
-  * Se si desidera tooremove hello utente da un'applicazione hello, **fare clic sulla riga hello** dell'utente hello e selezionare **eliminare**.
+  * Se si vuole rimuovere l'utente dall'applicazione, **fare clic sulla riga** dell'utente e selezionare **Elimina**.
 
-### <a name="check-if-a-user-is-under-a-license-related-toohello-application"></a>Controllare se un utente è in una licenza correlati toohello applicazione
+### <a name="check-if-a-user-is-under-a-license-related-to-the-application"></a>Controllare se un utente è incluso nella licenza relativa all'applicazione
 
-toocheck un utente assegnate le licenze, seguire hello passaggi riportati di seguito:
+Per controllare le licenze assegnate a un utente, seguire questa procedura:
 
-1.  Aprire hello [ **portale Azure** ](https://portal.azure.com/) e accedere come un **amministratore globale.**
+1.  Aprire il [**portale di Azure**](https://portal.azure.com/) e accedere come **Amministratore globale**.
 
-2.  Aprire hello **estensione di Azure Active Directory** facendo **più servizi** nella parte inferiore di hello del menu di navigazione a sinistra principale hello.
+2.  Aprire l'**estensione Azure Active Directory** facendo clic su **Altri servizi** nella parte inferiore del menu di navigazione principale a sinistra.
 
-3.  Digitare **"Azure Active Directory**" nella casella di ricerca di filtro hello e seleziona hello **Azure Active Directory** elemento.
+3.  Digitare "**Azure Active Directory**" nella casella di ricerca filtro e selezionare l'elemento **Azure Active Directory**.
 
-4.  Fare clic su **utenti e gruppi** nel menu di navigazione hello.
+4.  Fare clic su **Utenti e gruppi** nel menu di navigazione.
 
 5.  Fare clic su **Tutti gli utenti**.
 
-6.  **Ricerca** per utente hello si è interessati e **fare clic sulla riga hello** tooselect.
+6.  **Cercare** l'utente desiderato e **fare clic sulla riga corrispondente** per selezionarlo.
 
-7.  Fare clic su **licenze** toosee utente hello licenze è attualmente assegnato.
+7.  Fare clic su **Licenze** per verificare quali licenze sono assegnate all'utente.
 
-   * Se utente hello viene assegnata una licenza di Office tooan tooappear applicazioni di Office di terze parti prima in questo modo su hello nel Pannello di accesso dell'utente.
+   * Se l'utente è assegnato a una licenza Office, ciò abilita le applicazioni Office di prima entità ad essere visualizzate nel pannello di accesso dell'utente.
 
-## <a name="problems-related-tooassigning-applications-toogroups"></a>Problemi correlati tooassigning applicazioni toogroups
+## <a name="problems-related-to-assigning-applications-to-groups"></a>Problemi relativi all'assegnazione di applicazioni a gruppi
 
-Un utente potrebbe contenere un'applicazione nel proprio pannello di accesso perché fanno parte di un gruppo che dispone di un'applicazione hello. Di seguito sono toocheck alcuni modi:
+Un utente può visualizzare un'applicazione nel pannello di accesso perché è membro di un gruppo assegnato all'applicazione. Alcune procedure per verificare questa situazione sono elencate di seguito:
 
--   [Controllare le appartenenze ai gruppi di un utente ](#check-a-users-group-memberships)
+-   [Controllare le appartenenze a gruppi dell'utente ](#check-a-users-group-memberships)
 
--   [Controllare se un utente è un membro di un gruppo dispone di licenza tooa](#check-if-a-user-is-a-member-of-a-group-assigned-to-a-license)
+-   [Controllare se un utente è membro di un gruppo assegnato a una licenza](#check-if-a-user-is-a-member-of-a-group-assigned-to-a-license)
 
 ### <a name="check-a-users-group-memberships"></a>Controllare le appartenenze a gruppi dell'utente
 
-toocheck appartenenza a un gruppo, seguire hello passaggi riportati di seguito:
+Per controllare l'appartenenza a un gruppo, seguire questa procedura:
 
-1.  Aprire hello [ **portale Azure** ](https://portal.azure.com/) e accedere come un **amministratore globale.**
+1.  Aprire il [**portale di Azure**](https://portal.azure.com/) e accedere come **Amministratore globale**.
 
-2.  Aprire hello **estensione di Azure Active Directory** facendo **più servizi** nella parte inferiore di hello del menu di navigazione a sinistra principale hello.
+2.  Aprire l'**estensione Azure Active Directory** facendo clic su **Altri servizi** nella parte inferiore del menu di navigazione principale a sinistra.
 
-3.  Digitare **"Azure Active Directory**" nella casella di ricerca di filtro hello e seleziona hello **Azure Active Directory** elemento.
+3.  Digitare "**Azure Active Directory**" nella casella di ricerca filtro e selezionare l'elemento **Azure Active Directory**.
 
-4.  Fare clic su **utenti e gruppi** nel menu di navigazione hello.
-
-5.  Fare clic su **Tutti gli utenti**.
-
-6.  **Ricerca** per utente hello si è interessati e **fare clic sulla riga hello** tooselect.
-
-7.  Fare clic su **gruppi.**
-
-8.  Controllare toosee se l'utente fa parte di un'applicazione toohello gruppo assegnato.
-
-   * Se si desidera tooremove hello utente dal gruppo di hello, **fare clic sulla riga hello** del gruppo di hello e seleziona Elimina.
-
-### <a name="check-if-a-user-is-a-member-of-a-group-assigned-tooa-license"></a>Controllare se un utente è un membro di un gruppo dispone di licenza tooa
-
-1.  Aprire hello [ **portale Azure** ](https://portal.azure.com/) e accedere come un **amministratore globale.**
-
-2.  Aprire hello **estensione di Azure Active Directory** facendo **più servizi** nella parte inferiore di hello del menu di navigazione a sinistra principale hello.
-
-3.  Digitare **"Azure Active Directory**" nella casella di ricerca di filtro hello e seleziona hello **Azure Active Directory** elemento.
-
-4.  Fare clic su **utenti e gruppi** nel menu di navigazione hello.
+4.  Fare clic su **Utenti e gruppi** nel menu di navigazione.
 
 5.  Fare clic su **Tutti gli utenti**.
 
-6.  **Ricerca** per utente hello si è interessati e **fare clic sulla riga hello** tooselect.
+6.  **Ricercare** l'utente per cui si vuole verificare la licenza e **fare clic sulla relativa riga** per selezionarlo.
 
 7.  Fare clic su **gruppi.**
 
-8.  Fare clic sulla riga hello di un gruppo specifico.
+8.  Controllare se un utente è membro di un gruppo assegnato all'applicazione.
 
-9.  Fare clic su **licenze** toosee quale gruppo di licenze hello è assegnato tooit.
+   * Se si vuole rimuovere l'utente dal gruppo, **fare clic sulla riga** del gruppo e selezionare Elimina.
 
-  * Se gruppo hello viene assegnata una licenza di Office tooan in che questo potrebbe rendere determinati tooappear applicazioni di Office di terze parti prima hello nel Pannello di accesso dell'utente.
+### <a name="check-if-a-user-is-a-member-of-a-group-assigned-to-a-license"></a>Controllare se un utente è membro di un gruppo assegnato a una licenza
+
+1.  Aprire il [**Portale di Azure**](https://portal.azure.com/) e accedere come **amministratore globale**.
+
+2.  Aprire l'**estensione Azure Active Directory** facendo clic su **Altri servizi** nella parte inferiore del menu di navigazione principale a sinistra.
+
+3.  Digitare "**Azure Active Directory**" nella casella di ricerca filtro e selezionare l'elemento **Azure Active Directory**.
+
+4.  Fare clic su **Utenti e gruppi** nel menu di navigazione.
+
+5.  Fare clic su **Tutti gli utenti**.
+
+6.  **Ricercare** l'utente per cui si vuole verificare la licenza e **fare clic sulla relativa riga** per selezionarlo.
+
+7.  Fare clic su **gruppi.**
+
+8.  Fare clic sulla riga di un gruppo specifico.
+
+9.  Fare clic su **Licenze** per vedere le licenze assegnate al gruppo.
+
+  * Se il gruppo è assegnato a una licenza Office, ciò potrebbe abilitare alcune applicazioni Office di prima entità ad essere visualizzate nel pannello di accesso dell'utente.
 
 
-## <a name="if-these-troubleshooting-steps-do-not-hello-resolve-hello-issue"></a>Se questi passaggi di risoluzione dei problemi non hello di risolvere il problema di hello
+## <a name="if-these-troubleshooting-steps-do-not-the-resolve-the-issue"></a>Se questi passaggi di risoluzione dei problemi non risolvono il problema
 
-Aprire un ticket di supporto con hello se disponibili le seguenti informazioni:
+aprire un ticket di supporto con le informazioni seguenti, se disponibili:
 
 -   ID errore di correlazione
 

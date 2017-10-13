@@ -1,5 +1,5 @@
 ---
-title: aaaAzure Analitica Batch | Documenti Microsoft
+title: Analisi di Azure Batch | Microsoft Docs
 description: Riferimento per le analisi di Azure Batch.
 services: batch
 author: tamram
@@ -12,20 +12,20 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
 ms.date: 04/20/2017
 ms.author: tamram
-ms.openlocfilehash: 462fbad1ac522b485ae18c1e8891b9d2cabd45e0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7d634e1bb595a84b8af339e5bc5a483a7849e7f7
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="batch-analytics"></a>Batch Analytics
-Negli argomenti di Hello Analitica Batch contengono informazioni di riferimento per gli eventi di hello e gli avvisi disponibili per le risorse del servizio Batch.
+Gli argomenti di Batch Analytics includono informazioni di riferimento per gli eventi e gli avvisi disponibili per le risorse del servizio Batch.
 
 Per altre informazioni sull'abilitazione e sull'uso di log di diagnostica di Batch, vedere [Registrazione diagnostica di Azure Batch](https://azure.microsoft.com/documentation/articles/batch-diagnostics/).
 
 ## <a name="diagnostic-logs"></a>Log di diagnostica
 
-servizio Azure Batch Hello genera hello dopo gli eventi di log di diagnostica nel corso della durata hello di alcune risorse di Batch.
+Il servizio Azure Batch produce i seguenti eventi di registro di diagnostica nel corso della durata di determinate risorse Batch.
 
 **Eventi del log del servizio**
 * [Creazione di pool](batch-pool-create-event.md)

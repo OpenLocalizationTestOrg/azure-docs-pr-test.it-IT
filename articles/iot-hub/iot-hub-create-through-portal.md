@@ -1,6 +1,6 @@
 ---
-title: aaaUse hello toocreate portale Azure un IoT Hub | Documenti Microsoft
-description: Come toocreate, gestire ed eliminare hub IoT di Azure tramite hello portale di Azure. Include informazioni su piani tariffari, ridimensionamento, sicurezza e configurazione della messaggistica.
+title: Usare il portale di Azure per creare un hub IoT | Microsoft Docs
+description: Come creare, gestire ed eliminare hub IoT di Azure con il portale di Azure. Include informazioni su piani tariffari, ridimensionamento, sicurezza e configurazione della messaggistica.
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -14,52 +14,52 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/26/2017
 ms.author: dobett
-ms.openlocfilehash: 383968c90ee7ef3bff85a6c90efbf5f0e8fbb208
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: bca7eea5f44bbed3b784b56edaac235161b43e5e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="create-an-iot-hub-using-hello-azure-portal"></a>Creazione di un hub IoT utilizzando hello portale di Azure
+# <a name="create-an-iot-hub-using-the-azure-portal"></a>Creare un hub IoT usando il portale di Azure
 
 [!INCLUDE [iot-hub-resource-manager-selector](../../includes/iot-hub-resource-manager-selector.md)]
 
 L'articolo illustra:
 
-* Come toofind hello servizio IoT Hub in hello portale di Azure.
-* Come toocreate e gestire hub IoT.
+* Come trovare il servizio hub IoT nel portale di Azure.
+* Come creare e gestire hub IoT.
 
-## <a name="where-toofind-hello-iot-hub-service"></a>Dove toofind hello servizio IoT Hub
+## <a name="where-to-find-the-iot-hub-service"></a>Dove trovare il servizio hub IoT
 
-È possibile trovare hello servizio IoT Hub in hello posizioni nel portale di hello seguenti:
+È possibile trovare il servizio hub IoT nelle posizioni seguenti nel portale:
 
 * Scegliere **+ Nuovo** e quindi scegliere **Internet delle cose**.
-* In hello Marketplace, scegliere **Internet of Things**.
+* Nel marketplace scegliere **Internet delle cose**.
 
 ## <a name="create-an-iot-hub"></a>Creare un hub IoT
 
-È possibile creare un hub IoT utilizzando hello dei seguenti metodi:
+È possibile creare un hub IoT usando i metodi seguenti:
 
-* Hello **+ nuovo** opzione apre il pannello hello mostrato nella seguente cattura di schermata hello. Hello passaggi per la creazione di hub IoT hello tramite questo metodo e marketplace hello sono identici.
-* In hello Marketplace, scegliere **crea** pannello hello tooopen illustrato nella seguente cattura di schermata hello.
+* L'opzione **+ Nuovo** apre il pannello illustrato nello screenshot seguente. I passaggi per la creazione di un hub IoT tramite questo metodo e tramite il Marketplace sono identici.
+* Nel marketplace scegliere **Crea** per aprire il pannello visualizzato nello screenshot seguente.
 
-Hello nelle sezioni seguenti vengono descritti hello diversi passaggi toocreate un hub IoT:
+Le sezioni seguenti descrivono i diversi passaggi per creare un hub IoT:
 
-### <a name="choose-hello-name-of-hello-iot-hub"></a>Scegliere nome hello dell'hub IoT hello
+### <a name="choose-the-name-of-the-iot-hub"></a>Scegliere il nome dell'hub IoT
 
-un hub IoT toocreate, è necessario assegnare un nome hub IoT hello. Questo nome deve essere univoco in tutti gli hub IoT.
+Per creare un hub IoT, è necessario assegnare un nome all'hub IoT. Questo nome deve essere univoco in tutti gli hub IoT.
 
 [!INCLUDE [iot-hub-pii-note-naming-hub](../../includes/iot-hub-pii-note-naming-hub.md)]
 
-### <a name="choose-hello-pricing-tier"></a>Scegliere hello a livello di prezzo
+### <a name="choose-the-pricing-tier"></a>Scegliere il piano tariffario
 
-È possibile scegliere fra quattro piani: **Gratuito**, **Standard 1**, **Standard 2** e **Standard S3**. livello gratuito Hello consente solo 500 toobe dispositivi connessi hub IoT toohello e too8, 000 messaggi al giorno.
+È possibile scegliere fra quattro piani: **Gratuito**, **Standard 1**, **Standard 2** e **Standard S3**. Il piano gratuito consente la connessione di solo 500 dispositivi all'hub IoT e di un massimo di 8.000 messaggi al giorno.
 
-**S1 standard**: edizione hello S1 utilizzare per le soluzioni IoT con un numero elevato di dispositivi che ogni genera piccole quantità di dati. Ogni unità dell'edizione hello S1 consente backup too400, 000 messaggi al giorno per tutti i dispositivi connessi.
+**Standard S1**: usare l'edizione S1 per le soluzioni IoT con un numero elevato di dispositivi, ognuno dei quali genera quantità limitate di dati. Ogni unità dell'edizione S1 consente fino a 400.000 messaggi al giorno tra tutti i dispositivi.
 
-**S2 standard**: edizione hello S2 utilizzare per le soluzioni di IoT in cui i dispositivi generare grandi quantità di dati. Ogni unità dell'edizione S2 hello consente backup too6 milioni di messaggi al giorno tra tutti i dispositivi connessi.
+**Standard S2**: usare l'edizione S2 per le soluzioni IoT in cui i dispositivi generano grandi quantità di dati. Ogni unità dell'edizione S2 consente fino a 6 milioni di messaggi al giorno tra tutti i dispositivi connessi.
 
-**S3 standard**: edizione hello S3 utilizzare per le soluzioni di IoT che generano grandi quantità di dati. Ogni unità dell'edizione S3 hello consente backup too300 milioni di messaggi al giorno tra tutti i dispositivi connessi.
+**Standard S3**: usare l'edizione S3 per soluzioni IoT che generano grandi quantità di dati. Ogni unità dell'edizione S3 consente fino a 300 milioni di messaggi al giorno tra tutti i dispositivi connessi.
 
 ![][4]
 
@@ -68,77 +68,77 @@ un hub IoT toocreate, è necessario assegnare un nome hub IoT hello. Questo nome
 
 ### <a name="iot-hub-units"></a>Unità hub IoT
 
-numero di Hello di messaggi consentiti per ogni unità al giorno dipende dal livello di prezzo dell'hub. Ad esempio, se si desidera in ingresso di IoT hub toosupport di 700.000 messaggi hello, selezionare due unità di livello S1.
+Il numero di messaggi consentiti per unità al giorno dipende dal piano tariffario dell'hub. Ad esempio, se si desidera che l'hub IoT supporti 700.000 messaggi in entrata, selezionare due unità del piano S1.
 
-### <a name="device-toocloud-partitions-and-resource-group"></a>Le partizioni toocloud dispositivo e gruppo di risorse
+### <a name="device-to-cloud-partitions-and-resource-group"></a>Partizioni da dispositivo a cloud e gruppo di risorse
 
-È possibile modificare il numero di hello di partizioni per un hub IoT. numero di partizioni di Hello predefinito è 4, è possibile scegliere un numero diverso dall'elenco a discesa hello.
+È possibile modificare il numero di partizioni per un hub IoT. Il numero predefinito di partizioni è 4 ed è possibile scegliere un altro numero nell'elenco a discesa.
 
-Non è necessario tooexplicitly creare un gruppo di risorse vuoto. Quando si crea una risorsa, è possibile scegliere entrambi toocreate un nuovo o utilizzare un gruppo di risorse esistente.
+Non è necessario creare in modo esplicito un gruppo di risorse vuoto. Quando si crea una risorsa, è possibile scegliere di creare un nuovo gruppo di risorse o usarne uno esistente.
 
 ![][5]
 
 ### <a name="choose-subscription"></a>Scegliere la sottoscrizione
 
-IoT Hub Azure automaticamente hello elenchi di account utente di hello le sottoscrizioni di Azure è collegato. È possibile scegliere l'hub IoT per hello sottoscrizione di Azure tooassociate hello.
+L'hub IoT di Azure mostra automaticamente l'elenco di sottoscrizioni di Azure alle quali è collegato l'account utente. È possibile scegliere la sottoscrizione di Azure a cui associare l'hub IoT.
 
-### <a name="choose-hello-location"></a>Scegliere percorso hello
+### <a name="choose-the-location"></a>Scegliere la località
 
-opzione del percorso Hello fornisce un elenco delle aree di hello in cui sono disponibili IoT Hub.
+L'opzione relativa alla posizione offre un elenco delle aree in cui è disponibile l'hub IoT.
 
-### <a name="create-hello-iot-hub"></a>Creazione di hub IoT hello
+### <a name="create-the-iot-hub"></a>Creare l'hub IoT
 
-Dopo aver completato tutti i passaggi precedenti, è possibile creare l'hub IoT hello. Fare clic su **crea** toostart hello toocreate processo back-end e distribuire l'hub IoT hello con le opzioni di hello scelto.
+Dopo aver completato tutti i passaggi precedenti, è possibile creare l'hub IoT. Fare clic su **Crea** per avviare il processo di back-end per creare e distribuire l'hub IoT con le opzioni scelte.
 
-Come il tempo per hello distribuzione back-end toorun nei server di percorso appropriato hello può richiedere alcuni minuti toocreate hello l'hub IoT.
+Possono essere necessari alcuni minuti per creare l'hub IoT, perché l'esecuzione della distribuzione del back-end nei server delle località appropriate richiede tempo.
 
-## <a name="change-hello-settings-of-hello-iot-hub"></a>Modificare le impostazioni di hello dell'hub IoT hello
+## <a name="change-the-settings-of-the-iot-hub"></a>Modificare le impostazioni dell'hub IoT
 
-È possibile modificare le impostazioni di hello di un hub IoT esistente dopo averlo creato da hello pannello IoT Hub.
+È possibile modificare le impostazioni di un hub IoT esistente dopo averlo creato dal pannello Hub IoT.
 
 ![][8]
 
-**Criteri di accesso condiviso**: I criteri definiscono autorizzazioni hello per i dispositivi e servizi tooIoT tooconnect Hub. È possibile accedere a questi criteri facendo clic su **Criteri di accesso condiviso** in **Generale**. In questo pannello è possibile modificare i criteri esistenti o aggiungerne di nuovi.
+**Criteri di accesso condiviso**: questi criteri definiscono le autorizzazioni per la connessione di dispositivi e servizi all'hub IoT. È possibile accedere a questi criteri facendo clic su **Criteri di accesso condiviso** in **Generale**. In questo pannello è possibile modificare i criteri esistenti o aggiungerne di nuovi.
 
 ### <a name="create-a-policy"></a>Creare un criterio
 
-* Fare clic su **Aggiungi** tooopen un pannello. È possibile immettere il nuovo nome di criterio hello e autorizzazioni hello che si desidera tooassociate con questo criterio, come illustrato nell'esempio hello figura:
+* Fare clic su **Aggiungi** per aprire un pannello. Qui è possibile immettere il nome dei nuovi criteri e le autorizzazioni da associare a questi criteri, come illustrato nella figura seguente:
 
-    Sono disponibili numerose autorizzazioni che possono essere associate a questi criteri condivisi. Hello **Registro di sistema leggere** e **scrittura del Registro di sistema** criteri concedono in lettura e registro identità toohello diritti di accesso in scrittura. Opzione hello scrittura automaticamente sceglie l'opzione di lettura hello.
+    Sono disponibili numerose autorizzazioni che possono essere associate a questi criteri condivisi. I criteri **Lettura registro** e **Scrittura registro** consentono di concedere diritti di accesso in lettura e scrittura per il registro delle identità. La scelta dell'opzione di scrittura include automaticamente l'opzione di lettura.
 
-    Hello **servizio connettersi** vengono concesse autorizzazioni tooaccess gli endpoint del servizio, ad esempio **ricevere da dispositivo a cloud**. Hello **dispositivo connettersi** criteri concedono le autorizzazioni per l'invio e ricezione di messaggi utilizzando gli endpoint IoT Hub sul lato dispositivo hello.
+    I criteri **Connessione servizio** concedono le autorizzazioni per accedere agli endpoint del servizio, ad esempio per la **ricezione di messaggi da dispositivo a cloud**. I criteri **Connessione dispositivo** concedono le autorizzazioni per l'invio e la ricezione di messaggi tramite gli endpoint sul lato dispositivo dell'hub IoT.
 
-* Fare clic su **crea** tooadd questo nuovo elenco di criteri toohello esistente.
+* Fare clic su **Crea** per aggiungere i criteri appena creati all'elenco esistente.
 
 ![][10]
 
 ## <a name="endpoints"></a>Endpoint
 
-Fare clic su **endpoint** toodisplay un elenco di endpoint per l'hub IoT hello che si desidera modificare. Esistono due tipi di endpoint: gli endpoint che sono integrati in hub IoT hello e gli endpoint aggiunti hub IoT toohello dopo la sua creazione.
+Fare clic su **Endpoint** per visualizzare un elenco di endpoint per l'hub IoT che si sta modificando. Esistono due principali tipi di endpoint: endpoint predefinti nell'hub IoT ed endpoint aggiunti all'hub IoT in seguito alla sua creazione.
 
 ![][11]
 
 ### <a name="built-in-endpoints"></a>Endpoint predefiniti
 
-Esistono due endpoint predefiniti: **Cloud feedback toodevice** e **eventi**.
+Esistono due tipi di endpoint predefiniti: **Cloud to device feedback** (Commenti da cloud a dispositivi) ed **Eventi**.
 
-* **Cloud feedback toodevice** impostazioni: questa impostazione non ha due impostazioni secondarie: **Cloud tooDevice TTL** (time-to-live) e **periodo di conservazione** (in ore) per i messaggi hello. Quando il primo crea un hub IoT, entrambe queste impostazioni hanno il valore predefinito hello di un'ora. tooadjust queste impostazioni, utilizzare dispositivi di scorrimento hello o digitare i valori hello.
-* Impostazioni **Eventi**: questa impostazione presenta diverse impostazioni secondarie, alcune delle quali sono di sola lettura. Hello seguente elenco vengono descritte queste impostazioni:
+* Impostazioni **Cloud to device feedback** (Commenti da cloud a dispositiv): questa impostazione include due impostazioni secondarie **Cloud to Device TTL** (Durata (TTL) da cloud a dispositivo) e **Tempo di conservazione** (in ore) per i messaggi. Quando si crea per la prima volta un hub IoT, entrambe queste impostazioni hanno il valore predefinito di un'ora. Per modificare queste impostazioni usare i dispositivi di scorrimento o digitare i valori.
+* Impostazioni **Eventi**: questa impostazione presenta diverse impostazioni secondarie, alcune delle quali sono di sola lettura. L'elenco seguente descrive le singole impostazioni:
 
-  * **Partizioni**: un valore predefinito viene impostato quando viene creato l'hub IoT hello. È possibile modificare il numero di hello di partizioni tramite questa impostazione.
+  * **Partizioni**: viene impostato un valore predefinito quando viene creato l'hub IoT. Grazie a questa impostazione è possibile modificare il numero di partizioni.
 
-  * **Nome compatibile con Hub eventi e l'endpoint**: quando viene creato l'hub IoT hello, un Hub eventi è stato creato internamente che è necessario accessibili toounder determinate circostanze. Non è possibile personalizzare i valori di nome e l'endpoint di hello compatibile con Hub eventi, ma è possibile copiarli facendo **copia**.
+  * **Event Hub-compatible name and endpoint** (Nomi ed endpoint compatibili con Hub eventi): quando viene creato l'hub IoT, viene creato internamente un Hub eventi a cui potrebbe essere necessario accedere in determinate circostanze. Non è possibile personalizzare i valori del nome e dell'endpoint compatibile con l'hub eventi, ma è possibile copiarli facendo clic su **Copia**.
 
-  * **Periodo di conservazione**: giorno tooone l'impostazione predefinita, ma è possibile modificarlo tramite l'elenco a discesa hello. Questo valore è espresso in giorni per l'impostazione di dispositivo a cloud hello.
+  * **Tempo di conservazione**: per impostazione predefinita è impostato su un giorno ma è possibile modificarlo tramite l'elenco a discesa. Questo valore è espresso in giorni per l'impostazione da dispositivo a cloud.
 
-  * **Gruppi di consumer**: gruppi di Consumer consentono a più messaggi di tooread Reader in modo indipendente dall'hub IoT hello. Ogni hub IoT viene creato con un gruppo di consumer predefinito. Tuttavia, è possibile aggiungere o eliminare l'hub IoT tooyour gruppi di consumer con questa impostazione.
+  * **Gruppi di consumer**: i gruppi di consumer consentono a più lettori di leggere i messaggi in modo indipendente dall'hub IoT. Ogni hub IoT viene creato con un gruppo di consumer predefinito. Tuttavia, con questa impostazione è possibile aggiungere o eliminare gruppi di consumer negli hub IoT.
 
   > [!NOTE]
-  > gruppo di consumer predefinito Hello non può essere modificato o eliminato.
+  > Il gruppo di consumer predefinito non può essere modificato o eliminato.
 
 ### <a name="custom-endpoints"></a>Endpoint personalizzati
 
-È possibile aggiungere endpoint personalizzati su hub IoT utilizzando portale hello. Da hello **endpoint** pannello, fare clic su **Aggiungi** in hello tooopen superiore hello **aggiungere endpoint** blade. Immettere informazioni hello necessarie, quindi fare clic su **OK**. L'endpoint personalizzato è ora elencata in hello principale **endpoint** blade.
+È possibile aggiungere endpoint personalizzati all'hub IoT tramite il portale. Nel pannello **Endpoint**, fare clic su **Aggiungi** nella parte superiore del pannello per aprire il pannello **Aggiungi endpoint**. Immettere le informazioni necessarie, quindi fare clic su **OK**. L'endpoint personalizzato viene ora elencato nel pannello principale **Endpoint**.
 
 ![][13]
 
@@ -146,42 +146,42 @@ Altre informazioni sugli endpoint personalizzati sono disponibili in [Reference 
 
 ## <a name="routes"></a>Route
 
-Fare clic su **route** toomanage come IoT Hub recapita i messaggi da dispositivo a cloud.
+Fare clic su **Route** per gestire la modalità di invio dei messaggi da dispositivo a cloud dell'hub IoT.
 
 ![][14]
 
-È possibile aggiungere l'hub IoT tooyour route facendo **Aggiungi** nella parte superiore di hello di hello **route*** immissione delle informazioni necessarie hello e facendo clic su pannello **OK**. La route è quindi elencata in hello principale **route** blade. È possibile modificare una route selezionandola nell'elenco di hello di route. tooenable una route, selezionarlo nell'elenco di hello di route e impostare hello **abilitato** attivare o disattivare troppo**Off**. modifica di hello toosave, fare clic su **OK** nella parte inferiore di hello del pannello hello.
+È possibile aggiungere i route all'hub IoT facendo clic su **Aggiungi** nella parte superiore del pannello **Route*** inserendo le informazioni necessarie e facendo clic su **OK**. Il route viene quindi elencato nel pannello principale **Route**. È possibile modificare un route selezionandolo nell'elenco di route. Per abilitare un route, selezionarlo nell'elenco di route e impostare l'interruttore **Enabled** su **Off**. Per salvare le modifiche, fare clic su **OK** nella parte inferiore del pannello.
 
 ![][15]
 
 ## <a name="pricing-and-scale"></a>Prezzi e scalabilità
 
-Hello prezzi di un hub IoT esistente può essere modificato tramite hello **prezzi** le impostazioni, con hello le eccezioni seguenti:
+I prezzi di un hub IoT esistente possono essere modificati tramite le impostazioni disponibili in **Prezzi** con le eccezioni seguenti:
 
-* Nell'implementazione corrente di hello, un hub IoT con uno SKU disponibile non è possibile modificare tooone livelli di hello, SKU a pagamento, o viceversa.
-* Può esistere solo un hub IoT di livello gratuito nella sottoscrizione di Azure hello.
+* Nell'implementazione corrente un hub IoT con uno SKU gratuito non può cambiare i piani con quelli di uno degli SKU a pagamento o viceversa.
+* Nella sottoscrizione Azure può essere presente un solo livello gratuito per l'hub IoT.
 
 ![][12]
 
-È possibile spostare da un livello superiore di toolower solo quando il numero di hello di messaggi inviati del giorno corrente superano la quota di hello per livello più basso hello. Ad esempio, se il numero di hello di messaggi al giorno supera 400.000, hello livello per hello IoT hub può essere modificato. Tuttavia, se si modifica il livello di S1 toohello hub IoT hello è limitata per tale giorno.
+È possibile passare da un livello più elevato a uno inferiore solo quando il numero di messaggi inviati per un dato giorno supera la quota per il livello inferiore. Ad esempio, se il numero di messaggi al giorno supera 400.000, il livello per l'hub IoT può essere cambiato. Tuttavia, se si modifica il piano S1, l'hub IoT è limitato per il giorno in questione.
 
-## <a name="delete-hello-iot-hub"></a>Eliminare l'hub IoT hello
+## <a name="delete-the-iot-hub"></a>Eliminare l'hub IoT
 
-È possibile esplorare l'hub IoT toohello desiderato toodelete facendo **Sfoglia**, e scegliendo hello toodelete hub appropriato. toodelete hello hub IoT, fare clic su hello **eliminare** pulsante sotto il nome dell'hub IoT hello.
+È possibile passare all'hub IoT che si vuole eliminare facendo clic su **Sfoglia** e quindi scegliendo l'hub appropriato da eliminare. Fare clic sul pulsante **Elimina** sotto il nome dell'hub IoT per eliminarlo.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Seguire questi toolearn collegamenti ulteriori informazioni sulla gestione di Azure IoT Hub:
+Per ulteriori informazioni sulla gestione dell'hub IoT di Azure, consultare questi collegamenti:
 
 * [Gestire in blocco i dispositivi IoT][lnk-bulk]
 * [Metriche di Hub IoT][lnk-metrics]
 * [Monitoraggio delle operazioni][lnk-monitor]
 
-toofurther esplorare le funzionalità di hello di IoT Hub, vedere:
+Per altre informazioni sulle funzionalità dell'hub IoT, vedere:
 
 * [Guida per gli sviluppatori dell'hub IoT][lnk-devguide]
 * [Simulazione di un dispositivo con IoT Edge][lnk-iotedge]
-* [Soluzione IoT da hello la messa a terra sicura][lnk-securing]
+* [Proteggere la soluzione IoT sin dall'inizio][lnk-securing]
 
 [4]: ./media/iot-hub-create-through-portal/create-iothub.png
 [5]: ./media/iot-hub-create-through-portal/location1.png

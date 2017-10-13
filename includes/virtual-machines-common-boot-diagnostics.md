@@ -1,16 +1,16 @@
 In Azure ora è disponibile il supporto per due funzionalità di debug: il supporto per l'output della console e per gli screenshot per il modello di distribuzione Resource Manager di Macchine virtuali di Azure. 
 
-Quando si attiva la propria immagine tooAzure o anche l'avvio delle immagini della piattaforma hello, possono esistere molti motivi per cui una macchina virtuale ottiene in uno stato non avviabile. Questi consentono di funzionalità si tooeasily diagnosticare e ripristinare le macchine virtuali da errori di avvio.
+Quando si usa l'immagine personale in Azure o anche quando si avvia una delle immagini della piattaforma, una macchina virtuale può passare a uno stato non avviabile per diversi motivi. Queste funzionalità consentono di diagnosticare facilmente gli errori di avvio e di ripristinare le macchine virtuali.
 
-Per macchine virtuali Linux, è possibile visualizzare facilmente output di hello del log dal portale hello console:
+Per le macchine virtuali Linux, è possibile visualizzare facilmente l'output del log della console dal portale:
 
 ![Portale di Azure](./media/virtual-machines-common-boot-diagnostics/screenshot1.png)
  
-Tuttavia, per Windows e macchine virtuali Linux, Azure consente inoltre di toosee una schermata di hello VM dall'hypervisor hello:
+Per le macchine virtuali sia Windows che Linux, Azure consente anche di visualizzare uno screenshot della VM dall'hypervisor:
 
 ![Errore](./media/virtual-machines-common-boot-diagnostics/screenshot2.png)
 
-Entrambe le funzionalità sono supportate per Macchine virtuali di Azure in tutte le aree. Si noti, schermate e l'output può richiedere fino a too10 minuti tooappear nell'account di archiviazione.
+Entrambe le funzionalità sono supportate per Macchine virtuali di Azure in tutte le aree. Si noti che la visualizzazione degli screenshot e dell'output nell'account di archiviazione può richiedere fino a 10 minuti.
 
 ## <a name="common-boot-errors"></a>Errori di avvio comuni
 
@@ -29,15 +29,15 @@ Entrambe le funzionalità sono supportate per Macchine virtuali di Azure in tutt
 - [Errore di avvio o INACCESSIBLE_BOOT_DEVICE](https://support.microsoft.com/help/4010143)
 
 ## <a name="enable-diagnostics-on-a-new-virtual-machine"></a>Abilitare la diagnostica in una nuova macchina virtuale
-1. Quando si crea una nuova macchina virtuale dal portale di anteprima di hello, selezionare hello **Azure Resource Manager** dall'elenco a discesa modello di distribuzione hello:
+1. Quando si crea una nuova macchina virtuale dal portale di anteprima, selezionare **Azure Resource Manager** dall'elenco a discesa del modello di distribuzione:
  
     ![Gestione risorse](./media/virtual-machines-common-boot-diagnostics/screenshot3.jpg)
 
-2. Configurare monitoraggio opzione tooselect hello account di archiviazione in cui si desidera tooplace hello questi file di diagnostica.
+2. Configurare l'opzione Monitoraggio per selezionare l'account di archiviazione in cui si vogliono inserire questi file di diagnostica.
  
     ![Creare una macchina virtuale](./media/virtual-machines-common-boot-diagnostics/screenshot4.jpg)
 
-3. Se si distribuisce un modello di gestione risorse di Azure, passare la risorsa di macchina virtuale tooyour e aggiungere una sezione del profilo di diagnostica hello. Ricordare di intestazione della versione API toouse hello "2015-06-15".
+3. Se si esegue la distribuzione da un modello di Azure Resource Manager, passare alla risorsa macchina virtuale e aggiungere la sezione del profilo di diagnostica. Si ricordi di usare l'intestazione di versione API "2015-06-15".
 
     ```json
     {
@@ -46,7 +46,7 @@ Entrambe le funzionalità sono supportate per Macchine virtuali di Azure in tutt
           … 
     ```
 
-4. profilo di diagnostica Hello consente tooselect hello account di archiviazione in cui tooput questi registri.
+4. Il profilo di diagnostica consente di selezionare l'account di archiviazione in cui si vogliono inserire questi log.
 
     ```json
             "diagnosticsProfile": {
@@ -59,11 +59,11 @@ Entrambe le funzionalità sono supportate per Macchine virtuali di Azure in tutt
         }
     ```
 
-toodeploy un macchina virtuale di esempio con la diagnostica di avvio abilitata, qui il repository di estrazione.
+Per distribuire una macchina virtuale di esempio con la diagnostica di avvio abilitata, vedere il repository qui.
 
 ## <a name="update-an-existing-virtual-machine"></a>Aggiornare una macchina virtuale esistente ##
 
-diagnostica di avvio tooenable tramite hello portale, è possibile aggiornare una macchina virtuale esistente tramite hello portale. La diagnostica di avvio hello seleziona l'opzione e salvare. Riavviare l'effetto di tootake hello macchina virtuale.
+Per abilitare la diagnostica dal portale, è anche possibile aggiornare una macchina virtuale esistente dal portale. Selezionare l'opzione Diagnostica di avvio e fare clic su Salva. Riavviare la VM per rendere effettivo l'aggiornamento.
 
 ![Aggiornare una VM esistente](./media/virtual-machines-common-boot-diagnostics/screenshot5.png)
 

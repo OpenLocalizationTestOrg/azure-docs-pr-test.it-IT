@@ -1,6 +1,6 @@
 ---
-title: dimensioni delle macchine Virtuali di Windows di aaaAzure - HPC | Documenti Microsoft
-description: Elenca le diverse dimensioni hello disponibile per Windows elaborazione a elevate prestazioni macchine virtuali in Azure.
+title: Dimensioni delle macchine virtuali Windows di Azure - HPC | Documentazione Microsoft
+description: Elenca le diverse dimensioni disponibili per le macchine virtuali High Performance Computing Windows in Azure.
 services: virtual-machines-windows
 documentationcenter: 
 author: jonbeck7
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 07/28/2017
 ms.author: jonbeck
-ms.openlocfilehash: 092bc32cfe048f439ad833911bef4ed17eda7977
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a0596d134e9c26877848f93d72f35bfd2c957570
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="high-performance-compute-vm-sizes"></a>Dimensioni delle VM High Performance Computing (HPC)
 
@@ -30,11 +30,11 @@ ms.lasthandoff: 10/06/2017
 [!INCLUDE [virtual-machines-common-a8-a9-a10-a11-specs](../../../includes/virtual-machines-common-a8-a9-a10-a11-specs.md)]
 
 ## <a name="rdma-capable-instances"></a>Istanze con supporto per RDMA
-Un subset delle istanze con utilizzo intensivo di calcolo di hello (H16r, H16mr, A8 e A9) funzionalità di un'interfaccia di rete per la connettività diretto a memoria remota (RDMA) di accesso. Questa interfaccia viene inoltre dimensioni di macchina virtuale disponibile tooother interfaccia toohello rete di Azure standard. 
+Un subset delle istanze a elevato uso di calcolo (H16r, H16mr, A8 e A9) è dotato di un'interfaccia di rete per la connettività ad accesso diretto a memoria remota (RDMA). Questa interfaccia è un'aggiunta all'interfaccia di rete di Azure standard disponibile per gli altri formati di VM. 
   
-Questa interfaccia consente toocommunicate istanze che supportano RDMA hello in una rete InfiniBand, operando a tariffe FDR per le macchine virtuali H16r e H16mr e di tariffe QDR per le macchine virtuali A8 e A9. È possibile migliorare le funzionalità RDMA hello scalabilità e prestazioni delle applicazioni di interfaccia MPI (Message Passing).
+Questa interfaccia consente alle istanze con supporto per RDMA di comunicare attraverso una rete InfiniBand che funziona a velocità FDR per macchine virtuali H16r e H16mr e a velocità QDR per macchine virtuali A8 e A9. Queste funzionalità RDMA possono migliorare la scalabilità e le prestazioni delle applicazioni di interfaccia MPI (Message Passing).
 
-Di seguito sono i requisiti per le macchine virtuali Windows con supporto per RDMA tooaccess hello rete RDMA di Azure: 
+Per accedere alla rete RDMA di Azure, i requisiti per le macchine virtuali Windows con supporto per RDMA sono i seguenti: 
 
 * **Sistema operativo**
   
@@ -44,29 +44,29 @@ Di seguito sono i requisiti per le macchine virtuali Windows con supporto per RD
   > Windows Server 2016 non supporta attualmente la connettività RDMA in Azure.
   >
 
-* **Impostare la disponibilità o un servizio cloud** : le macchine virtuali che supportano RDMA hello Distribuisci in hello stesso set (quando si utilizza il modello di distribuzione del hello Azure Resource Manager) di disponibilità o hello nello stesso servizio cloud (quando si utilizza il modello di distribuzione classica hello). Se si utilizza Azure Batch, le macchine virtuali che supportano RDMA hello deve essere in hello stesso pool.
+* **Set di disponibilità o servizio cloud**: distribuire le VM con supporto per RDMA nello stesso set di disponibilità, se si usa il modello di distribuzione Azure Resource Manager, o nello stesso servizio cloud, se si usa il modello di distribuzione classica. Se si usa Azure Batch, le VM con supporto di RDMA devono trovarsi nello stesso pool.
 
 * **MPI** : Microsoft MPI (MS-MPI) 2012 R2 o versione successiva, Intel MPI Library 5.x
 
-  Implementazioni MPI supportate utilizzano hello toocommunicate di interfaccia Microsoft Network Direct tra istanze. 
+  Le implementazioni MPI supportate usano l'interfaccia Microsoft Network Direct per la comunicazione tra le istanze. 
 
-* **Spazio degli indirizzi di rete RDMA** -rete RDMA hello in Azure riserva hello indirizzo spazio 172.16.0.0/16. toorun di applicazioni MPI in istanze distribuite in una rete virtuale di Azure, assicurarsi che spazio degli indirizzi di rete virtuale hello non si sovrapponga rete RDMA hello.
+* **Spazio degli indirizzi della rete RDMA** : la rete RDMA in Azure riserva lo spazio degli indirizzi 172.16.0.0/16. Per eseguire applicazioni MPI in istanze distribuite in una rete virtuale di Azure, assicurarsi che lo spazio degli indirizzi di rete virtuale non si sovrapponga alla rete RDMA.
 
-* **Estensione HpcVmDrivers VM** -nelle macchine virtuali che supportano RDMA, è necessario aggiungere hello HpcVmDrivers estensione tooinstall rete driver di dispositivo Windows per la connettività RDMA. (In alcune distribuzioni di istanze A8 e A9, hello estensione HpcVmDrivers viene aggiunto automaticamente.) tooadd hello VM estensione tooa VM, è possibile utilizzare [Azure PowerShell](/powershell/azure/overview) cmdlet. 
+* **Estensione macchina virtuale HpcVmDrivers**: nelle VM con supporto per RDMA, è necessario aggiungere l'estensione HpcVmDrivers per installare i driver dei dispositivi di rete Windows per la connettività RDMA. In alcune distribuzioni di istanze A8 e A9 l'estensione HpcVmDrivers viene aggiunta automaticamente. Per aggiungere l'estensione macchina virtuale a una macchina virtuale, è possibile usare i cmdlet di [Azure PowerShell](/powershell/azure/overview). 
 
   
-  Hello comando Installa hello estensione HpcVMDrivers di versione 1.1 più recente in una macchina virtuale che supportano RDMA esistente denominata seguente *myVM* distribuito nel gruppo di risorse hello denominato *myResourceGroup* in hello  *Stati Uniti occidentali* area:
+  Il comando seguente installa l'ultima versione 1.1 dell'estensione HpcVMDrivers in una macchina virtuale esistente con supporto per RDMA, denominata *myVM* distribuita nel gruppo di risorse denominato *myResourceGroup* nell'area *Stati Uniti occidentali*:
 
   ```PowerShell
   Set-AzureRmVMExtension -ResourceGroupName "myResourceGroup" -Location "westus" -VMName "myVM" -ExtensionName "HpcVmDrivers" -Publisher "Microsoft.HpcCompute" -Type "HpcVmDrivers" -TypeHandlerVersion "1.1"
   ```
   
-  Per altre informazioni, vedere [Estensioni e funzionalità della macchina virtuale](extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). È anche possibile operare con le estensioni per le macchine virtuali distribuite in hello [modello di distribuzione classica](classic/manage-extensions.md).
+  Per altre informazioni, vedere [Estensioni e funzionalità della macchina virtuale](extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). È anche possibile usare estensioni delle macchine virtuali nel [modello di distribuzione classico](classic/manage-extensions.md).
 
 
 ## <a name="using-hpc-pack"></a>Utilizzo di HPC Pack
 
-[Microsoft HPC Pack](https://technet.microsoft.com/library/jj899572.aspx), gratuita HPC cluster e processi soluzione di gestione Microsoft, è una delle opzioni per si toocreate un cluster di calcolo in applicazioni MPI basati su Windows Azure toorun e altri carichi di lavoro HPC. HPC Pack 2012 R2 e versioni successive includono un ambiente di runtime per MS-MPI che utilizza hello rete RDMA di Azure quando distribuito in macchine virtuali che supportano RDMA.
+[Microsoft HPC Pack](https://technet.microsoft.com/library/jj899572.aspx), la soluzione di gestione di processi e cloud HPC gratuita di Microsoft, è un'opzione per creare un cluster di elaborazione in Azure per l'esecuzione di applicazioni MPI basate su Windows e altri carichi di lavoro HPC. HPC Pack 2012 R2 e versioni successive include un ambiente di runtime per MS-MPI che può usare la rete RDMA di Azure quando viene distribuito in macchine virtuali con supporto per RDMA.
 
 
 
@@ -80,9 +80,9 @@ Di seguito sono i requisiti per le macchine virtuali Windows con supporto per RD
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- Per elenchi di controllo toouse hello complesse le istanze con HPC Pack in Windows Server, vedere [configurazione di un cluster di Windows RDMA con applicazioni MPI di HPC Pack toorun](classic/hpcpack-rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
+- Per gli elenchi di controllo per usare le istanze a elevato utilizzo di calcolo con HPC Pack in Windows Server, vedere [Configurare un cluster di Windows RDMA con HPC Pack per eseguire applicazioni MPI](classic/hpcpack-rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
 
-- le istanze con utilizzo intensivo di calcolo di toouse durante l'esecuzione di applicazioni MPI con Azure Batch, vedere [multi-istanza usare attività toorun applicazioni di interfaccia MPI (Message Passing) in Azure Batch](../../batch/batch-mpi.md).
+- Per usare istanze a elevato uso di calcolo quando si eseguono applicazioni MPI con Azure Batch, vedere [Usare le attività a istanze multiple per eseguire applicazioni MPI (Message Passing Interface) in Azure Batch](../../batch/batch-mpi.md).
 
 - Altre informazioni su come le [unità di calcolo di Azure](acu.md) consentono di confrontare le prestazioni di calcolo negli SKU di Azure.
 

@@ -1,6 +1,6 @@
 ---
-title: aaaTasks consentiti in stati diversi o gli Stati nei servizi BizTalk | Documenti Microsoft
-description: 'Hello azioni o operazioni consentite in stato MABS diverso: arresta, avvia, riavviare, sospendere, riprendere, eliminare, ridimensionare, aggiornare la configurazione e il supporto di'
+title: Operazioni consentite in stati diversi in Servizi BizTalk | Microsoft Docs
+description: 'Informazioni sulle azioni/operazioni consentite nei diversi stati di MABS: arresto, avvio, riavvio, sospensione, ripresa, eliminazione, ridimensionamento, aggiornamento della configurazione e backup.'
 services: biztalk-services
 documentationcenter: 
 author: MandiOhlinger
@@ -14,25 +14,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/08/2016
 ms.author: mandia
-ms.openlocfilehash: 643307ba6fa9b05c82b867912feab249c42b65dd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 918154852cf4ee1b80792eaddb588f5b0237da7c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="what-you-can-and-cant-do-using-hello-biztalk-service-state"></a>Informazioni che è possibile eseguire utilizzando hello lo stato di BizTalk Service
+# <a name="what-you-can-and-cant-do-using-the-biztalk-service-state"></a>Cosa fare o non fare quando si usa lo stato del servizio BizTalk
 
 > [!INCLUDE [BizTalk Services is being retired, and replaced with Azure Logic Apps](../../includes/biztalk-services-retirement.md)]
 
-A seconda dello stato corrente di hello di hello servizio BizTalk, sono presenti operazioni che è possibile o non è possibile eseguire hello servizio BizTalk.
+Le operazioni che è possibile eseguire nel servizio BizTalk variano a seconda dello stato corrente del servizio.
 
-Ad esempio, viene eseguito il provisioning di un nuovo servizio BizTalk nel portale di Azure classico hello. Quando viene completato correttamente, hello servizio BizTalk è in `active` stato. Stato attivo hello, puoi arrestare, sospendere ed eliminare il servizio BizTalk hello. Se si arresta il servizio di BizTalk hello, si verifica un errore di arresto, quindi hello servizio BizTalk passa tooa `StopFailed` stato. In hello `StopFailed` stato, è possibile riavviare il servizio di BizTalk hello. Se si tenta un'operazione che non è consentita, ad esempio ripresa, si verifica hello errore seguente:
+Se ad esempio si esegue il provisioning di un nuovo servizio BizTalk nel portale di Azure classico. al termine lo stato del servizio BizTalk risulta `active`. Con lo stato attivo è possibile arrestare, sospendere ed eliminare il servizio BizTalk. Se si tenta di arrestare il servizio BizTalk e l'operazione non riesce, allora lo stato del servizio BizTalk diventa `StopFailed`. Con lo stato `StopFailed` è possibile riavviare il servizio BizTalk. Se si tenta di eseguire un'operazione non consentita, ad esempio riprendere l'attività del servizio, verrà generato l'errore seguente:
 
 `Operation not allowed`
 
-## <a name="view-hello-possible-states"></a>Possibili stati di visualizzazione hello
+## <a name="view-the-possible-states"></a>Visualizzare gli stati possibili
 
-nelle tabelle seguenti Hello sono operazioni hello elenco o le azioni che possono essere eseguite quando hello BizTalk Service è in uno stato specifico. Un ✔ significa hello operazione è consentita mentre è in tale stato. Una voce vuota significa hello operazione non può essere eseguita in tale stato.
+Le tabelle seguenti elencano le operazioni o le azioni che possono essere eseguite quando il servizio BizTalk è in uno stato specifico. Il segno ✔ indica che l'operazione è consentita in quel determinato stato. Uno spazio vuoto indica che l'operazione non può essere eseguita in quel determinato stato.
 
 | Stato del servizio | Inizia | Arresto | Riavvio | Sospensione | Riprendi | Eliminazione | Scalabilità | Aggiornamento <br/> Configurazione | Backup |
 | --- | --- | --- | --- | --- | --- | --- |--- | --- | --- |
@@ -52,11 +52,11 @@ nelle tabelle seguenti Hello sono operazioni hello elenco o le azioni che posson
 
 
 ## <a name="see-also"></a>Vedere anche
-* [Creare un BizTalk Service utilizzando hello portale di Azure classico](http://go.microsoft.com/fwlink/p/?LinkID=302280)<br/>
-* [Operazioni possibili in schede del dashboard, monitor e scale hello nei servizi BizTalk](http://go.microsoft.com/fwlink/p/?LinkID=302281)<br/>
-* [Il risultato con le edizioni Developer, Basic, Standard e Premium hello nei servizi BizTalk](http://go.microsoft.com/fwlink/p/?LinkID=302279)<br/>
-* [Come tooback di backup e ripristino di un BizTalk Service](http://go.microsoft.com/fwlink/p/?LinkID=329873)<br/>
+* [Creare un servizio BizTalk mediante il portale di Azure classico](http://go.microsoft.com/fwlink/p/?LinkID=302280)<br/>
+* [Operazioni eseguibili nelle schede Dashboard, Monitoraggio e Scalabilità nei servizi BizTalk](http://go.microsoft.com/fwlink/p/?LinkID=302281)<br/>
+* [Funzionalità e contenuti delle edizioni Developer, Basic, Standard e Premium nei servizi BizTalk](http://go.microsoft.com/fwlink/p/?LinkID=302279)<br/>
+* [Come eseguire il backup e il ripristino di un servizio BizTalk](http://go.microsoft.com/fwlink/p/?LinkID=329873)<br/>
 * [Le limitazioni spiegate nei servizi BizTalk](http://go.microsoft.com/fwlink/p/?LinkID=302282)<br/>
-* [Recuperare hello Bus di servizio e il controllo di accesso dell'autorità di certificazione dell'autorità di certificazione e di nome valori della chiave per il BizTalk Service](http://go.microsoft.com/fwlink/p/?LinkID=303941)<br/>
-* [Come è possibile utilizzare hello Azure BizTalk Services SDK](http://go.microsoft.com/fwlink/p/?LinkID=302335)
+* [Recuperare il bus di servizio e il nome e la chiave dell'autorità emittente del Controllo di accesso per il servizio BizTalk](http://go.microsoft.com/fwlink/p/?LinkID=303941)<br/>
+* [Come iniziare a usare l'SDK di Servizi BizTalk di Azure](http://go.microsoft.com/fwlink/p/?LinkID=302335)
 

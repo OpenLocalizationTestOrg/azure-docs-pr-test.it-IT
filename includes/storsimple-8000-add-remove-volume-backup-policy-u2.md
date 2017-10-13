@@ -1,23 +1,23 @@
 <!--author=alkohli last changed: 01/02/17-->
 
 
-#### <a name="tooadd-or-remove-a-volume"></a>tooadd o rimuovere un volume
+#### <a name="to-add-or-remove-a-volume"></a>Per aggiungere o rimuovere un volume
 
-1. Dispositivo StorSimple tooyour, fare clic su **criteri di Backup**.
+1. Andare al dispositivo StorSimple e fare clic su **Criteri di backup**.
 
-2. Nell'elenco tabulare di hello dei criteri di hello, selezionare e fare clic su criteri hello che si desidera toomodify. Menu di scelta rapida tooinvoke hello e quindi scegliere **Aggiungi/Rimuovi volume**.
+2. Nell'elenco tabulare dei criteri selezionare e fare clic sui criteri da modificare. Fare clic con il pulsante destro del mouse per richiamare il menu di scelta rapida e quindi selezionare **Aggiungi/Rimuovi volume**.
 
     ![Gestisci pianificazioni](./media/storsimple-8000-add-remove-volume-backup-policy-u2/addvolbupol1.png)
 
-3. In hello **Aggiungi/Rimuovi volume** pannello selezionare o deselezionare tooadd selezionare le caselle di hello o rimuovere il volume di hello. Più volumi sono selezionato/deselezionato selezionando o deselezionando le caselle di controllo corrispondente hello.
+3. Nel pannello **Aggiungi/Rimuovi volume** selezionare o deselezionare le caselle di controllo per aggiungere o rimuovere il volume. In caso di più volumi, selezionare o deselezionare le caselle di controllo corrispondenti.
 
     ![Gestisci pianificazioni](./media/storsimple-8000-add-remove-volume-backup-policy-u2/addvolbupol3.png)
 
-    Se si assegnano i volumi da contenitori di volumi diversi criteri di backup tooa, occorrerà tooremember toofail su tali contenitori dei volumi insieme. Verrà visualizzato un effetto toothat di avviso.
+    Se si assegnano volumi a un criterio di backup da contenitori di volumi diversi, il failover di tali contenitori di volumi deve essere effettuato insieme. Verrà visualizzato un avviso in tal senso.
 
     ![Gestisci pianificazioni](./media/storsimple-8000-add-remove-volume-backup-policy-u2/addvolbupol2.png)
 
-4. Ricevono una notifica quando vengono modificati i criteri di backup hello. elenco di criteri di backup di Hello viene anche aggiornato.
+4. Dopo la modifica dei criteri di backup si riceve una notifica. Viene aggiornato anche l'elenco dei criteri di backup.
 
     ![Gestisci pianificazioni](./media/storsimple-8000-add-remove-volume-backup-policy-u2/addvolbupol6.png)
 

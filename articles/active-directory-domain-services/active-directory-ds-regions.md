@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/06/2017
 ms.author: maheshu
-ms.openlocfilehash: 61617ca49685f294c2aaa58e2334c3ec0dfbb42f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: aabe845e806eb99176f89695751023bb57353d41
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-ad-domain-services---supported-regions"></a>Servizi di dominio Azure AD - Aree supportate
-toolearn in servizi di dominio Active Directory di Azure è disponibili, vedere [servizi di Azure dall'area](https://azure.microsoft.com/regions/#services/).
+Per informazioni su dove è disponibile Servizi di dominio Azure Active Directory, vedere [Servizi in base all'area](https://azure.microsoft.com/regions/#services/).

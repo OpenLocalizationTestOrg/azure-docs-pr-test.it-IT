@@ -1,8 +1,8 @@
 ---
-title: aaaAzure documentazione di multi-factor Authentication - esercitazioni, riferimenti alle API | Documenti Microsoft
-description: Informazioni su come toodeploy multi-factor authentication con un intervallo di metodi di verifica che forniscono un semplice processo. Esercitazioni, un SDK e altro ancora.
+title: Documentazione di Azure Multi-Factor Authentication - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
+description: "Informazioni su come distribuire un'autenticazione a più fattori con una serie di metodi di verifica che fornisce una procedura di accesso semplice. Esercitazioni, un SDK e altro ancora."
 services: multi-factor-authentication
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 0ede2ad48a3d4e756aeb0b1f6bc0e07e4e7b1fcc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 25c21170df0ae5ef3dc57943448963059550fa1b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="multi-factor-authentication-documentation"></a>Documentazione di Multi-Factor Authentication
 
-Informazioni su come toodeploy e la gestione di Azure multi-Factor Authentication, un sistema di verifica di identità in due passaggi. Esercitazioni, un SDK e altra documentazione illustrano come autenticazione avanzata con una gamma di metodi di verifica toodeliver fornendo un semplice processo.
+Informazioni su come distribuire e gestire Azure multi-Factor Authentication, un sistema di verifica dell'identità in due passaggi. Esercitazioni, un SDK e altri documenti in cui viene illustrato come fornire un robusto sistema di autenticazione, con tutta una serie di metodi di verifica e, al contempo, una semplice procedura di accesso.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -88,7 +88,7 @@ Informazioni su come toodeploy e la gestione di Azure multi-Factor Authenticatio
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Introduzione ad Azure multi-factor Authentication nel cloud hello</h3>
+                        <h3>Introduzione ad Azure Multi-Factor Authentication nel cloud</h3>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 ---
-title: aaaPolicies in Gestione API di Azure | Documenti Microsoft
-description: Informazioni su come toocreate, modificare e configurare i criteri in Gestione API.
+title: Criteri in Gestione API di Azure | Microsoft Docs
+description: Informazioni su come creare, modificare e configurare criteri in Gestione API.
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,58 +14,58 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: 9ab0f884a655004cb10c05085034df1795f512e6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7c1f235343074ec11c635097f2b094a10f3fe781
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="policies-in-azure-api-management"></a>Criteri in Gestione API di Azure
-In Gestione API di Azure, i criteri sono una potente funzionalità del sistema hello che consentono ai server di pubblicazione hello comportamento hello toochange di hello API tramite la configurazione. I criteri sono una raccolta di istruzioni che vengono eseguite in sequenza su richiesta hello o la risposta di un'API. Le istruzioni più comuni includono la conversione di formato da XML tooJSON e limitare toorestrict hello quantità di chiamate in ingresso da uno sviluppatore di frequenza delle chiamate. Viene fornita hello disponibili molti altri criteri.
+In Gestione API di Azure i criteri sono una potente funzionalità del sistema che consentono all'entità di pubblicazione di modificare il comportamento dell'API tramite la configurazione. I criteri sono una raccolta di istruzioni che vengono eseguite in modo sequenziale in caso di richiesta o risposta di un'API. Le istruzioni più comuni includono la conversione di formato da XML a JSON e la limitazione della frequenza delle chiamate per limitare la quantità di chiamate in ingresso da uno sviluppatore. Sono disponibili molti altri criteri predefiniti.
 
-Vedere hello [Policy Reference] [ Policy Reference] per un elenco completo delle istruzioni dei criteri e le relative impostazioni.
+Per un elenco completo di istruzioni dei criteri e delle relative impostazioni, vedere [Informazioni di riferimento per i criteri][Policy Reference].
 
-I criteri vengono applicati all'interno di gateway hello che si trova tra i consumer di API hello e API hello gestito. riceve tutte le richieste Hello gateway, in genere inoltrandoli inalterato toohello API sottostante. Tuttavia, possibile applicare un criterio di modifiche tooboth hello in ingresso richiesta e risposta in uscita.
+I criteri vengono applicati nel gateway che si trova tra il consumer di API e l'API gestita. Il gateway riceve tutte le richieste e in genere le inoltra invariate all'API sottostante. Tuttavia i criteri possono applicare modifiche sia alla richiesta in ingresso che alla risposta in uscita.
 
-Espressioni di criteri possono essere utilizzate come valori di attributo o valori di testo in uno dei criteri di gestione API hello, salvo diversamente specificano criteri hello. Alcuni criteri, ad esempio hello [flusso di controllo] [ Control flow] e [Imposta variabile] [ Set variable] criteri sono basati su espressioni di criteri. Per altre informazioni, vedere [Criteri avanzati][Advanced policies] e [Espressioni di criteri][Policy expressions].
+Le espressioni di criteri possono essere usate come valori di attributo o valori di testo in uno qualsiasi dei criteri di Gestione API, salvo diversamente specificato dai criteri. Alcuni criteri, come [Flusso di controllo][Control flow] e [Imposta variabile][Set variable], sono basati su espressioni di criteri. Per altre informazioni, vedere [Criteri avanzati][Advanced policies] e [Espressioni di criteri][Policy expressions].
 
-## <a name="scopes"></a>Come tooconfigure criteri
-È possibile configurare i criteri a livello globale o nell'ambito di hello di un [prodotto][Product], [API] [ API] o [operazione] [Operation]. tooconfigure un criterio, passare a editor Criteri di toohello nel portale di pubblicazione hello.
+## <a name="scopes"> </a>Come configurare criteri
+I criteri possono essere configurati a livello globale o nell'ambito di un [Prodotto][Product], [API][API] o [Operazione][Operation]. Per configurare i criteri, passare all'editor dei criteri nel portale di pubblicazione.
 
 ![Menu Criteri][policies-menu]
 
-editor Criteri di Hello è costituito da tre sezioni principali: hello criteri (superiore), hello criteri definizione dell'ambito in cui i criteri vengono modificati (a sinistra) e le istruzioni di hello elenco (a destra):
+L'editor dei criteri comprende tre sezioni principali: l'ambito criteri (in alto), la definizione criteri in cui i criteri vengono modificati (a sinistra) e l'elenco di istruzioni (a destra).
 
 ![Editor criteri][policies-editor]
 
-toobegin un criterio, che è innanzitutto necessario selezionare l'ambito di hello in cui hello è consigliabile applicare criteri di configurazione. Nella schermata di hello seguito hello **Starter** prodotto selezionato. Si noti che nome hello quadrato simbolo successivo toohello criteri indica che un criterio è già stato applicato a questo livello.
+Per iniziare a configurare i criteri, prima è necessario selezionare l'ambito in cui applicare i criteri. Nella schermata seguente è selezionato il prodotto **Starter** . Il quadratino accanto al nome del criterio indica che un criterio è già applicato a questo livello.
 
 ![Scope][policies-scope]
 
-Poiché è già stato applicato un criterio, configurazione hello è mostrati nella visualizzazione di definizione di hello.
+Poiché è già stato applicato un criterio, la configurazione viene mostrata nella visualizzazione definizione.
 
 ![Configurare][policies-configure]
 
-Hello criterio viene visualizzato in sola lettura prima. In ordine tooedit definizione hello, fare clic su hello **configura i criteri di** azione.
+Il criterio viene dapprima visualizzato come di sola lettura. Per modificare la definizione, fare clic sull'azione di **configurazione dei criteri** .
 
 ![Modificare][policies-edit]
 
-definizione dei criteri Hello è un semplice documento XML che descrive una sequenza di istruzioni in ingresso e in uscita. Hello XML può essere modificata direttamente nella finestra di definizione hello. Un elenco di istruzioni viene fornito toohello destra e ambito di istruzioni toohello applicabile corrente sono abilitati, evidenziati; come illustrato da hello **limite di velocità di chiamare** istruzione hello schermata precedente.
+La definizione criteri è un semplice documento XML che descrive una sequenza di istruzioni in ingresso e in uscita. Il codice XML può essere modificato direttamente nella finestra della definizione. Un elenco di istruzioni è disponibile a destra e le istruzioni applicabili all'ambito corrente sono abilitate ed evidenziate, come ad esempio l'istruzione **Limita frequenza chiamate** nella schermata precedente.
 
-Fare clic su un'istruzione abilitata aggiungerà hello XML appropriato nella posizione di hello del cursore hello nella visualizzazione definizione hello. 
+Facendo clic su un'istruzione abilitata, il codice XML appropriato verrà aggiunto in corrispondenza del cursore nella visualizzazione definizione. 
 
 > [!NOTE]
-> Se i criteri di hello che si desidera tooadd non sono abilitato, verificare di essere nell'ambito corretto di hello per tale criterio. Ogni istruzione di criterio è progettata per essere usata in determinati ambiti e sezioni dei criteri. sezioni del criterio tooreview hello e gli ambiti per i criteri, controllare hello **utilizzo** sezione relativo hello [Policy Reference][Policy Reference].
+> Se il criterio che si desidera aggiungere non è abilitato, verificare di essere nell'ambito corretto per il criterio. Ogni istruzione di criterio è progettata per essere usata in determinati ambiti e sezioni dei criteri. Per esaminare le sezioni dei criteri e gli ambiti di un criterio, controllare la sezione relativa all'**Utilizzo** del criterio in [Informazioni di riferimento per i criteri][Policy Reference].
 > 
 > 
 
-Un elenco completo delle istruzioni dei criteri e le relative impostazioni sono disponibili in hello [Policy Reference][Policy Reference].
+Un elenco completo di istruzioni dei criteri e le relative impostazioni sono disponibili in [Informazioni di riferimento per i criteri][Policy Reference].
 
-Ad esempio, tooadd un toorestrict istruzione nuova in ingresso richiede indirizzi IP toospecified, posizionare il cursore hello solo all'interno del contenuto di hello di hello `inbound` hello di elemento e fare clic su XML **chiamante limitare gli indirizzi IP** istruzione.
+Ad esempio, per aggiungere una nuova istruzione per limitare le richieste in arrivo agli indirizzi IP specificati, posizionare il cursore nel contenuto dell'elemento XML `inbound` e fare clic sull'istruzione **Limita IP chiamanti** .
 
 ![Criteri di restrizione][policies-restrict]
 
-Verrà aggiunta una toohello frammento XML `inbound` elemento che fornisce indicazioni su come tooconfigure hello istruzione.
+Verrà aggiunto un frammento XML all'elemento `inbound` che fornisce informazioni aggiuntive sulla configurazione dell'istruzione.
 
 ```xml
 <ip-filter action="allow | forbid">
@@ -74,7 +74,7 @@ Verrà aggiunta una toohello frammento XML `inbound` elemento che fornisce indic
 </ip-filter>
 ```
 
-toolimit le richieste in ingresso e accettare solo quelli da un indirizzo IP di 1.2.3.4 modificare hello XML come segue:
+Per limitare le richieste in ingresso e accettare solo quelle da un indirizzo IP 1.2.3.4, modificare il codice XML nel modo seguente:
 
 ```xml
 <ip-filter action="allow">
@@ -84,43 +84,43 @@ toolimit le richieste in ingresso e accettare solo quelli da un indirizzo IP di 
 
 ![Salva][policies-save]
 
-Una volta completata la configurazione di istruzioni hello per criteri di hello, fare clic su **salvare** e modifiche hello saranno gateway di gestione API toohello propagate immediatamente.
+Dopo aver configurato le istruzioni per il criterio, fare clic su **Salva** per propagare immediatamente le modifiche al gateway di Gestione API.
 
 ## <a name="sections"> </a>Informazioni sulla configurazione dei criteri
-Un criterio è una serie di istruzioni eseguite in un determinato ordine in relazione a una richiesta e una risposta. configurazione di Hello è suddivisa in modo appropriato `inbound`, `backend`, `outbound`, e `on-error` sezioni come illustrato nella seguente configurazione hello.
+Un criterio è una serie di istruzioni eseguite in un determinato ordine in relazione a una richiesta e una risposta. La configurazione è correttamente suddivisa nelle sezioni `inbound`, `backend`, `outbound`, e `on-error` come mostrato nella seguente configurazione.
 
 ```xml
 <policies>
   <inbound>
-    <!-- statements toobe applied toohello request go here -->
+    <!-- statements to be applied to the request go here -->
   </inbound>
   <backend>
-    <!-- statements toobe applied before hello request is forwarded too
-         hello backend service go here -->
+    <!-- statements to be applied before the request is forwarded to 
+         the backend service go here -->
   </backend>
   <outbound>
-    <!-- statements toobe applied toohello response go here -->
+    <!-- statements to be applied to the response go here -->
   </outbound>
   <on-error>
-    <!-- statements toobe applied if there is an error condition go here -->
+    <!-- statements to be applied if there is an error condition go here -->
   </on-error>
 </policies> 
 ```
 
-Se si verifica un errore durante l'elaborazione di hello di una richiesta, tutti i rimanenti passaggi hello `inbound`, `backend`, o `outbound` sezioni vengono ignorate e l'esecuzione passa istruzioni toohello hello `on-error` sezione. Inserendo istruzioni dei criteri in hello `on-error` sezione è possibile esaminare l'errore hello utilizzando hello `context.LastError` proprietà, esaminare e personalizzare risposta di errore di hello utilizzando hello `set-body` , criteri e configurare che cosa accade se si verifica un errore. Sono disponibili codici di errore per i passaggi predefiniti e gli errori che possono verificarsi durante l'elaborazione di hello delle istruzioni dei criteri. Per altre informazioni, vedere [Gestione degli errori nei criteri di Gestione API](https://msdn.microsoft.com/library/azure/mt629506.aspx).
+Se si verifica un errore durante l'elaborazione di una richiesta, tutti i rimanenti passaggi nelle sezioni `inbound`, `backend`, o `outbound` vengono ignorate e l'esecuzione prosegue con le istruzioni nella sezione`on-error`. Inserendo istruzioni di criteri nella sezione `on-error` è possibile rivedere l'errore utilizzando la proprietà `context.LastError`, esaminare e personalizzare la risposta di errore tramite il criterio `set-body` e configurare che cosa accade se si verifica un errore. Sono disponibili codici di errore per i passaggi incorporati e per gli errori che possono verificarsi durante l'elaborazione delle istruzioni dei criteri. Per altre informazioni, vedere [Gestione degli errori nei criteri di Gestione API](https://msdn.microsoft.com/library/azure/mt629506.aspx).
 
-Poiché è possibile specificare i criteri a livelli diversi (globale, prodotto, api e operation) configurazione hello offre un modo per si ordine hello toospecify in cui vengono eseguite le istruzioni di definizione dei criteri hello con i criteri di riguardo toohello padre. 
+Poiché i criteri possono essere specificati a livelli diversi (globale, di prodotto, di API e di operazione), la configurazione fornisce un modo per specificare l'ordine in cui le istruzioni della definizione del criterio vengono eseguite rispetto al criterio padre. 
 
-Ambiti del criterio vengono valutati nell'ordine hello.
+Gli ambiti dei criteri vengono valutati nell'ordine seguente.
 
 1. Ambito globale
 2. Ambito del prodotto
 3. Ambito dell’API
 4. Ambito dell'operazione
 
-salve le istruzioni all'interno di essi vengono valutate in base a posizione toohello di hello `base` elemento, se presente. Criteri globali dispone di alcun criterio padre e l'utilizzo di hello `<base>` elemento in esso non ha alcun effetto.
+Le istruzioni all'interno di essi vengono valutate in base alla posizione dell’elemento `base` , se presente. Con i criteri globali non sono disponibili criteri padre e l'uso dell'elemento `<base>` in tali criteri non produce alcun effetto.
 
-Ad esempio, se si dispone di un criterio a livello globale di hello e configurato un criterio per un'API, quindi ogni volta che viene utilizzato tale API specifica entrambi i criteri diventeranno. Consente di gestione API per l'ordinamento deterministica delle istruzioni dei criteri combinati tramite l'elemento di base hello. 
+Ad esempio, se ci sono un criterio a livello globale e un criterio configurato per un'API, quando questa particolare API viene usata, vengono applicati entrambi i criteri. Gestione API consente l'ordinamento deterministico delle istruzioni combinate per i criteri attraverso l'elemento di base. 
 
 ```xml
 <policies>
@@ -132,9 +132,9 @@ Ad esempio, se si dispone di un criterio a livello globale di hello e configurat
 </policies>
 ```
 
-Nella definizione di criteri esempio hello sopra, hello `cross-domain` istruzione verrebbe eseguito prima che tutti i criteri superiore che a sua volta, potrebbe essere seguito da hello `find-and-replace` criteri. 
+Nella definizione del criterio dell'esempio precedente, l'istruzione `cross-domain` verrà eseguita prima di un criterio di livello superiore che verrà a sua volta seguito dal criterio `find-and-replace`. 
 
-Fare clic su criteri hello toosee nell'ambito corrente di hello in editor Criteri di hello **ricalcolare il criterio effettivo per l'ambito selezionato**.
+Per visualizzare i criteri nell'ambito corrente nell'editor dei criteri, fare clic su **Ricalcolare il criterio effettivo per l'ambito selezionato**.
 
 ## <a name="next-steps"></a>Passaggi successivi
 Vedere il video seguente sulle espressioni di criteri.

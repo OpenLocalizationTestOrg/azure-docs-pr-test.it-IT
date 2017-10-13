@@ -1,6 +1,6 @@
 ---
-title: aaaJava-funzione definita dall'utente (UDF) con Hive in HDInsight - Azure | Documenti Microsoft
-description: Informazioni su come toocreate basato su Java definito dall'utente (funzione) (funzione definita dall'utente) che funziona con Hive. Funzione definita dall'utente in questo esempio converte una tabella di toolowercase stringhe di testo.
+title: Funzione definita dall'utente (UDF) Java con Hive in HDInsight - Azure | Documentazione Microsoft
+description: Informazioni su come creare una funzione definita dall'utente (UDF) basata su Java che funzioni con Hive. In questo esempio, UDF converte una tabella di stringhe di testo in caratteri minuscoli.
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -13,26 +13,26 @@ ms.devlang: java
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 06/26/2017
+ms.date: 09/26/2017
 ms.author: larryfr
-ms.openlocfilehash: 392b4cfb73299d2f6c1e8e825a4201b48d501388
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 896874f66457ddf29379fa6585953a117587c032
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="use-a-java-udf-with-hive-in-hdinsight"></a>Utilizzare una UDF Java con Hive in HDInsight
 
-Informazioni su come toocreate basato su Java definito dall'utente (funzione) (funzione definita dall'utente) che funziona con Hive. Hello Java funzione definita dall'utente in questo esempio converte una tabella di stringhe tooall minuscole dei caratteri del testo.
+Informazioni su come creare una funzione definita dall'utente (UDF) basata su Java che funzioni con Hive. La UDF Java di questo esempio converte una tabella di stringhe di testo in caratteri minuscoli.
 
 ## <a name="requirements"></a>Requisiti
 
 * Un cluster HDInsight 
 
     > [!IMPORTANT]
-    > Linux è hello solo sistema operativo utilizzato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+    > Linux è l'unico sistema operativo usato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
-    La maggior parte dei passaggi di questo documento vale per entrambi i cluster basati su Windows e Linux. Tuttavia, hello passaggi utilizzati tooupload hello compilata cluster toohello funzione definita dall'utente ed eseguire sono cluster basato su tooLinux specifici. Tooinformation che può essere utilizzato con i cluster basati su Windows vengono forniti collegamenti.
+    La maggior parte dei passaggi di questo documento vale per entrambi i cluster basati su Windows e Linux. I passaggi necessari per caricare la funzione definita dall'utente compilata nel cluster ed eseguirla sono tuttavia specifici per i cluster basati su Linux. Vengono forniti i collegamenti alle informazioni utili per i cluster basati su Windows.
 
 * [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/) 8 o versione successiva (o equivalente, ad esempio OpenJDK)
 
@@ -41,24 +41,24 @@ Informazioni su come toocreate basato su Java definito dall'utente (funzione) (f
 * Un editor di testo o ambiente IDE Java
 
     > [!IMPORTANT]
-    > Se si crea hello file Python in un client Windows, è necessario utilizzare un editor che utilizza LF come una terminazione di riga. Se non si è certi se l'editor utilizza LF o CRLF, vedere hello [Troubleshooting](#troubleshooting) sezione per i passaggi per la rimozione di hello carattere CR.
+    > Se si creano i file Python in un client Windows, è necessario usare un editor che usa LF come terminazione di riga. Se non si è certi se l'editor usa LF o CRLF, vedere la sezione [Risoluzione dei problemi](#troubleshooting) , che include passaggi per la rimozione del carattere CR.
 
 ## <a name="create-an-example-java-udf"></a>Creare una UDF Java di esempio 
 
-1. Dalla riga di comando, utilizzare hello toocreate un nuovo progetto di Maven seguenti:
+1. Da una riga di comando seguire questa procedura per creare un nuovo progetto Maven.
 
     ```bash
     mvn archetype:generate -DgroupId=com.microsoft.examples -DartifactId=ExampleUDF -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
     ```
 
    > [!NOTE]
-   > Se si usa PowerShell, è necessario racchiuderlo tra virgolette i parametri di hello. ad esempio `mvn archetype:generate "-DgroupId=com.microsoft.examples" "-DartifactId=ExampleUDF" "-DarchetypeArtifactId=maven-archetype-quickstart" "-DinteractiveMode=false"`.
+   > Se si utilizza PowerShell, è necessario racchiudere i parametri tra virgolette. Ad esempio: `mvn archetype:generate "-DgroupId=com.microsoft.examples" "-DartifactId=ExampleUDF" "-DarchetypeArtifactId=maven-archetype-quickstart" "-DinteractiveMode=false"`.
 
-    Questo comando crea una directory denominata **exampleudf**, che contiene progetti Maven hello.
+    Questo comando crea una directory denominata **exampleudf**, che contiene un progetto Maven.
 
-2. Dopo aver creato il progetto di hello, eliminare hello **exampleudf/src/test** directory in cui è stato creato come parte del progetto hello.
+2. Dopo aver creato il progetto, eliminare la directory **exampleudf/src/test** creata nell'ambito del progetto.
 
-3. Aprire hello **exampleudf/pom.xml**e sostituire hello `<dependencies>` voce con hello XML seguente:
+3. Aprire **exampleudf/pom.xml** e sostituire la voce `<dependencies>` esistente con il seguente XML:
 
     ```xml
     <dependencies>
@@ -77,9 +77,9 @@ Informazioni su come toocreate basato su Java definito dall'utente (funzione) (f
     </dependencies>
     ```
 
-    Queste voci specifichino la versione di hello di Hadoop e Hive incluso in HDInsight 3.5. È possibile trovare informazioni sulle versioni di hello di Hadoop e Hive fornito con HDInsight da hello [il controllo delle versioni di HDInsight componente](hdinsight-component-versioning.md) documento.
+    Queste voci specificano le versioni di Hadoop e Hive incluse con HDInsight 3.5. È possibile trovare informazioni sulle versioni di Hadoop e Hive fornite con HDInsight dal documento relativo al [controllo delle versioni dei componenti di HDInsight](hdinsight-component-versioning.md) .
 
-    Aggiungere un `<build>` sezione prima hello `</project>` riga alla fine di hello del file hello. In questa sezione deve contenere hello XML seguente:
+    Aggiungere una sezione `<build>` prima della riga `</project>` alla fine del file. Questa sezione deve contenere il seguente XML:
 
     ```xml
     <build>
@@ -133,13 +133,13 @@ Informazioni su come toocreate basato su Java definito dall'utente (funzione) (f
     </build>
     ```
 
-    Queste voci definiscono come toobuild hello progetto. In particolare, versione di hello Java che hello progetto usa e in che modo toobuild un uberjar per cluster toohello di distribuzione.
+    Queste voci definiscono la modalità di realizzazione del progetto. In particolare, la versione di Java usata dal progetto e il modo in cui creare un file uberjar per la distribuzione nel cluster.
 
-    Dopo che sono state apportate modifiche hello, salvare file hello.
+    Salvare il file dopo avere apportato le modifiche.
 
-4. Rinominare **exampleudf/src/main/java/com/microsoft/examples/App.java** troppo**ExampleUDF.java**e quindi aprire il file hello nell'editor.
+4. Rinominare **exampleudf/src/main/java/com/microsoft/examples/App.java** in **ExampleUDF.java** e aprire il file nell'editor.
 
-5. Sostituire il contenuto di hello di hello **ExampleUDF.java** file con il seguente hello, quindi salvare il file hello.
+5. Sostituire i contenuti del file **ExampleUDF.java** con quanto segue, quindi salvare il file.
 
     ```java
     package com.microsoft.examples;
@@ -148,45 +148,45 @@ Informazioni su come toocreate basato su Java definito dall'utente (funzione) (f
     import org.apache.hadoop.hive.ql.exec.UDF;
     import org.apache.hadoop.io.*;
 
-    // Description of hello UDF
+    // Description of the UDF
     @Description(
         name="ExampleUDF",
-        value="returns a lower case version of hello input string.",
+        value="returns a lower case version of the input string.",
         extended="select ExampleUDF(deviceplatform) from hivesampletable limit 10;"
     )
     public class ExampleUDF extends UDF {
         // Accept a string input
         public String evaluate(String input) {
-            // If hello value is null, return a null
+            // If the value is null, return a null
             if(input == null)
                 return null;
-            // Lowercase hello input string and return it
+            // Lowercase the input string and return it
             return input.toLowerCase();
         }
     }
     ```
 
-    Questo codice implementa una funzione definita dall'utente che accetta un valore di stringa e restituisce una versione a caratteri minuscola della stringa hello.
+    Questo codice implementa una funzione definita dall'utente che accetta un valore stringa e restituisce una versione in lettere minuscole della stringa.
 
-## <a name="build-and-install-hello-udf"></a>Compilare e installare hello funzione definita dall'utente
+## <a name="build-and-install-the-udf"></a>Compilare e installare la UDF
 
-1. Utilizzare hello successivo comando toocompile e pacchetto hello funzione definita dall'utente:
+1. Eseguire il comando seguente per compilare la UDF e inserirla nel pacchetto:
 
     ```bash
     mvn compile package
     ```
 
-    Questo comando Compila e pacchetti hello funzione definita dall'utente in hello `exampleudf/target/ExampleUDF-1.0-SNAPSHOT.jar` file.
+    Questo comando compila e impacchetta la UDF nel file `exampleudf/target/ExampleUDF-1.0-SNAPSHOT.jar`.
 
-2. Hello utilizzare `scp` del cluster di HDInsight toohello comando toocopy hello file.
+2. Usare il comando `scp` per copiare il file nel cluster HDInsight.
 
     ```bash
     scp ./target/ExampleUDF-1.0-SNAPSHOT.jar myuser@mycluster-ssh.azurehdinsight
     ```
 
-    Sostituire `myuser` con hello account utente SSH per il cluster. Sostituire `mycluster` con il nome del cluster hello. Se si utilizza un hello toosecure password SSH account, si è password hello tooenter richiesta. Se si utilizza un certificato, potrebbe essere necessario hello toouse `-i` parametro toospecify hello file di chiave privata.
+    Sostituire `myuser` con l'account utente SSH del cluster. Sostituire `mycluster` con il nome del cluster. Se l'account SSH è protetto da una password, viene richiesto di immetterla. Se è stata usato un certificato, può essere necessario usare il parametro `-i` per specificare il file della chiave privata.
 
-3. Connettere il cluster toohello tramite SSH.
+3. Connettersi al cluster tramite SSH.
 
     ```bash
     ssh myuser@mycluster-ssh.azurehdinsight.net
@@ -194,23 +194,23 @@ Informazioni su come toocreate basato su Java definito dall'utente (funzione) (f
 
     Per altre informazioni, vedere [Usare SSH con HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-4. Dalla sessione SSH hello, copiare archiviazione tooHDInsight file jar di hello.
+4. Dalla sessione SSH, copiare il file jar nell’archiviazione HDInsight.
 
     ```bash
     hdfs dfs -put ExampleUDF-1.0-SNAPSHOT.jar /example/jars
     ```
 
-## <a name="use-hello-udf-from-hive"></a>Utilizzare hello funzione definita dall'utente dall'Hive
+## <a name="use-the-udf-from-hive"></a>Utilizzare la UDF da Hive
 
-1. Utilizzare i seguenti client di Beeline toostart hello dalla sessione SSH hello hello.
+1. Per avviare il client Beeline, dalla sessione SSH usare il comando seguente.
 
     ```bash
-    beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http' -n admin
+    beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http'
     ```
 
-    Questo comando si presuppone che sia stato utilizzato predefinito hello **admin** per account di accesso hello per il cluster.
+    Questo comando presuppone che sia stato utilizzato il valore predefinito di **admin** per l'account di accesso del cluster.
 
-2. Dopo aver concluso hello `jdbc:hive2://localhost:10001/>` richiesto, immettere hello seguente tooadd hello funzione definita dall'utente tooHive e che venga esposto come una funzione.
+2. Una volta arrivati al prompt `jdbc:hive2://localhost:10001/>` , immettere il comando seguente per aggiungere la UDF a Hive ed esporla come una funzione.
 
     ```hiveql
     ADD JAR wasb:///example/jars/ExampleUDF-1.0-SNAPSHOT.jar;
@@ -218,15 +218,15 @@ Informazioni su come toocreate basato su Java definito dall'utente (funzione) (f
     ```
 
     > [!NOTE]
-    > Questo esempio si presuppone che l'archiviazione di Azure è archivio predefinito per il cluster hello. Se il cluster utilizza invece l'archivio Data Lake, modificare hello `wasb:///` valore troppo`adl:///`.
+    > Questo esempio assume che Archiviazione di Azure sia la risorsa di archiviazione predefinita per il cluster. Se il cluster usa invece Data Lake Store, modificare il valore `wasb:///` in `adl:///`.
 
-3. Utilizzare hello UDF tooconvert valori recuperati da una stringa di case toolower tabella.
+3. Utilizzare la UDF per convertire i valori recuperati da una tabella in stringhe con lettere minuscole.
 
     ```hiveql
     SELECT tolower(deviceplatform) FROM hivesampletable LIMIT 10;
     ```
 
-    La query Seleziona hello piattaforma del dispositivo (Android, Windows, iOS, e così via) dalla tabella hello, convertire hello stringa toolower maiuscole e quindi visualizzarli. output di Hello viene visualizzato toohello simile, il testo seguente:
+    Questa query seleziona la piattaforma del dispositivo (Android, Windows, iOS e così via) dalla tabella, converte la stringa in lettere minuscole e la visualizza. L'output appare simile al seguente testo:
 
         +----------+--+
         |   _c0    |
@@ -245,6 +245,6 @@ Informazioni su come toocreate basato su Java definito dall'utente (funzione) (f
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per altri modi toowork con Hive, vedere [utilizzare Hive con HDInsight](hdinsight-use-hive.md).
+Per apprendere altri modi di utilizzare Hive, vedere [Utilizzare Hive con HDInsight](hdinsight-use-hive.md).
 
-Per ulteriori informazioni sulle funzioni Hive User-Defined, vedere [Hive operatori e funzioni definite dall'utente](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF) sezione wiki di Hive hello in apache.org.
+Per ulteriori informazioni sulle UDF di Hive, vedere la sezione [Operatori e funzioni definite dall’utente di Hive](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF) del wiki di Hive all’indirizzo apache.org.

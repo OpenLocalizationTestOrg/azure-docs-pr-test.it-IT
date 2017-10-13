@@ -1,8 +1,8 @@
 ---
-title: aaaAzure documentazione per archivio Data Lake - esercitazioni, riferimenti alle API | Documenti Microsoft
-description: "Informazioni su come tooset, gestire e accedere a un repository di dati Hadoop compatibile con lake per analitica sui dati di qualsiasi velocità di inserimento, tipo e dimensioni."
+title: Documentazione di Azure Data Lake Store - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
+description: "Informazioni su come configurare, gestire e accedere a un repository Data Lake con iperscalabilità e compatibile con Hadoop per le analisi sui dati di qualsiasi dimensione, tipo e velocità di inserimento."
 services: data-lake-store
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 8a4730472b7811f022991bffc6dde7bb1be6458e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3c0327ebb4cb8d6ee66d019326ade4f4bcb258ae
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="data-lake-store-documentation"></a>Documentazione su Data Lake Store
 
-Informazioni su come rendere più toouse archivio Data Lake toocreate una scala di hyper-, repository di Hadoop compatibile per analitica sui dati di qualsiasi dimensione, tipo e l'inserimento. Esercitazioni, riferimenti ad API e altra documentazione mostrano come tooset, gestire e accedere a un repository di data lake per analitica operative ed esplorative.
+Informazioni su come usare Data Lake Store per creare un repository con iperscalabilità e compatibile con Hadoop per le analisi sui dati di qualsiasi dimensione, tipo e velocità di inserimento. Esercitazioni, informazioni di riferimento sulle API e altri documenti mostrano come configurare, gestire e accedere a un repository Data Lake per analisi operative ed esplorative.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -70,7 +70,7 @@ Informazioni su come rendere più toouse archivio Data Lake toocreate una scala 
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Introduzione a archivio Azure Data Lake tramite hello portale di Azure</h3>
+                        <h3>Introduzione ad Azure Data Lake Store con il portale di Azure</h3>
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@ Informazioni su come rendere più toouse archivio Data Lake toocreate una scala 
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Introduzione a archivio Azure Data Lake tramite hello CLI di Azure</h3>
+                        <h3>Introduzione ad Azure Data Lake Store con l'interfaccia della riga di comando di Azure</h3>
                     </div>
                 </div>
             </div>

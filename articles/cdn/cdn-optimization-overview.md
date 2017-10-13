@@ -1,6 +1,6 @@
 ---
-title: distribuzione di contenuti di Azure per lo scenario aaaOptimize
-description: Come toooptimize recapito del contenuto per scenari specifici
+title: Ottimizzare la distribuzione del contenuto di Azure per lo scenario in uso
+description: Come ottimizzare la distribuzione di contenuto per scenari specifici
 services: cdn
 documentationcenter: 
 author: smcevoy
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/16/2017
 ms.author: v-semcev
-ms.openlocfilehash: 922a92fdbf7e6e21f2b5ae9a2fb4ac32735fc15a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 98941c49b057380b3ef9164515bcc2a63ccb56ce
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="optimize-azure-content-delivery-for-your-scenario"></a>Ottimizzare la distribuzione del contenuto di Azure per lo scenario in uso
 
-Quando si consegna tooa contenuto pubblico globale, si tratta di importanti tooensure hello con ottimizzazione per la consegna del contenuto. Hello Azure Content Delivery Network possibile ottimizzare l'esperienza di recapito hello in base al tipo di hello del contenuto di cui che si dispone. Il contenuto può essere un sito Web, uno streaming live, un video o un file di grandi dimensioni per il download. Quando si crea un endpoint di distribuzione di contenuti (CDN) di rete, si specifica un scenario in hello **ottimizzato per** opzione. La scelta determina quali ottimizzazione è applicato toohello contenuto recapitato dall'endpoint rete CDN hello.
+Quando si distribuisce il contenuto a un pubblico globale ampio, è fondamentale garantirne la distribuzione ottimizzata. La rete per la distribuzione di contenuti di Azure può ottimizzare l'esperienza di distribuzione in base al tipo di contenuto disponibile. Il contenuto può essere un sito Web, uno streaming live, un video o un file di grandi dimensioni per il download. Quando si crea un endpoint della rete per la distribuzione di contenuti, specificare uno scenario nell'opzione **Optimized for** (Ottimizzato per). La scelta determina quale ottimizzazione verrà applicata al contenuto distribuito dall'endpoint della rete per la distribuzione di contenuti.
 
-Opzioni di ottimizzazione sono progettate toouse comportamenti di procedure consigliate tooimprove contenuti prestazioni e offload origine migliori. Le scelte di scenario influire sulle prestazioni modificando le configurazioni per la memorizzazione nella cache parziale, la suddivisione in blocchi di oggetti e criteri di ripetizione di hello origine errore. 
+Le opzioni di ottimizzazione sono progettate per usare i comportamenti basati sulle procedure consigliate per migliorare le prestazioni a livello di distribuzione di contenuti e l'offload dell'origine. Le scelte dello scenario influiranno sulle prestazioni modificando le configurazioni per la memorizzazione nella cache parziale, la suddivisione in blocchi di oggetti e i criteri di ripetizione in caso di errore dell'origine. 
 
-Questo articolo offre una panoramica delle varie funzionalità di ottimizzazione e dello scenario in cui usarle. Per ulteriori informazioni sulle funzionalità e limitazioni, vedere articoli hello in ogni tipo di ottimizzazione singoli.
+Questo articolo offre una panoramica delle varie funzionalità di ottimizzazione e dello scenario in cui usarle. Per altre informazioni sulle funzionalità e le limitazioni, vedere la documentazione specifica per ogni singolo tipo di ottimizzazione.
 
 > [!NOTE]
-> Il **ottimizzato per** opzioni possono variare in base ai provider di hello selezionato. Provider CDN disponibili miglioramento applicano in modi diversi, a seconda dello scenario di hello. 
+> Le opzioni **Optimized for** (Ottimizzato per) possono variare in base al provider selezionato. I provider di rete CDN applicano il miglioramento in modi diversi, a seconda dello scenario. 
 
 ## <a name="provider-options"></a>Opzioni del provider
 
-Hello rete CDN di Azure da Akamai supporta:
+La rete per la distribuzione di contenuti di Azure dallo standard Akamai supporta:
 
 * Distribuzione Web generale 
 
@@ -45,75 +45,75 @@ Hello rete CDN di Azure da Akamai supporta:
 
 * Accelerazione sito dinamico 
 
-Hello Azure Content Delivery Network da Verizon supporta solo il recapito di web generali. Può essere usata per scaricare video on demand e file di grandi dimensioni. Tooselect non è un tipo di ottimizzazione.
+La rete per la distribuzione di contenuti di Azure da Verizon supporta solo la distribuzione Web generale. Può essere usata per scaricare video on demand e file di grandi dimensioni. Non è necessario selezionare un tipo di ottimizzazione.
 
-Si consiglia di testare le variazioni delle prestazioni tra provider ottimale hello tooselect di provider diversi per il recapito.
+Per selezionare il provider ottimale per la propria distribuzione, è consigliabile testare le prestazioni offerte dai diversi provider.
 
 ## <a name="select-and-configure-optimization-types"></a>Selezionare e configurare i tipi di ottimizzazione
 
-toocreate un nuovo endpoint, selezionare un tipo di ottimizzazione che corrisponde maggiormente scenario hello e tipo di contenuto che si desidera hello toodeliver endpoint. **Recapito web generali** è l'opzione predefinita di hello. È possibile aggiornare l'opzione di ottimizzazione hello per qualsiasi endpoint Akamai esistente in qualsiasi momento. Questa modifica non interrompa il recapito da hello CDN. 
+Per creare un nuovo endpoint, selezionare un tipo di ottimizzazione che meglio corrisponde allo scenario e al tipo di contenuto che si desidera distribuire tramite l'endpoint. La selezione predefinita è **Distribuzione Web generale**. È possibile aggiornare l'opzione di ottimizzazione per qualsiasi endpoint Akamai esistente in qualsiasi momento. Questa modifica non interrompe la distribuzione dalla rete per la distribuzione di contenuti. 
 
 1. Selezionare un endpoint all'interno di un profilo Akamai Standard.
 
     ![Selezione dell'endpoint ](./media/cdn-optimization-overview/01_Akamai.png)
 
-2. In **IMPOSTAZIONI** selezionare **Ottimizzazione**. Selezionare un tipo hello **ottimizzato per** elenco a discesa.
+2. In **IMPOSTAZIONI** selezionare **Ottimizzazione**. Quindi selezionare un tipo dall'elenco a discesa **Optimized for** (Ottimizzato per).
 
     ![Selezione dell'ottimizzazione e del tipo](./media/cdn-optimization-overview/02_Select.png)
 
 ## <a name="optimization-for-specific-scenarios"></a>Ottimizzazione per scenari specifici
 
-È possibile ottimizzare l'endpoint rete CDN hello per uno dei seguenti scenari hello. 
+È possibile ottimizzare l'endpoint della rete per la distribuzione di contenuti per uno degli scenari seguenti. 
 
 ### <a name="general-web-delivery"></a>Distribuzione Web generale
 
-Recapito web generale è opzione di ottimizzazione hello più comuni. È mirata per l'ottimizzazione di contenuto Web generale, ad esempio pagine Web e applicazioni Web. Può essere usata anche per i download di file e video.
+La distribuzione Web generale è l'opzione di ottimizzazione più comune. È mirata per l'ottimizzazione di contenuto Web generale, ad esempio pagine Web e applicazioni Web. Può essere usata anche per i download di file e video.
 
-Un sito Web tipico contiene contenuto statico e dinamico. Contenuto statico include immagini, le librerie JavaScript e fogli di stile che possono essere memorizzati nella cache e recapitati toodifferent utenti. Contenuto dinamico personalizzato per un singolo utente, ad esempio notizie che sono specifici del profilo utente tooa. Contenuto dinamico non è memorizzato nella cache perché è univoco tooeach utente, ad esempio shopping cart contenuto. La distribuzione Web generale consente di ottimizzare l'intero sito Web. 
+Un sito Web tipico contiene contenuto statico e dinamico. Il contenuto statico include immagini, librerie JavaScript e fogli di stile, che possono essere memorizzati nella cache e distribuiti a utenti diversi. Il contenuto dinamico è personalizzato per un singolo utente, ad esempio notizie personalizzate in base al profilo di un utente. Il contenuto dinamico non viene memorizzato nella cache perché è univoco per ogni utente, ad esempio il contenuto di un carrello della spesa. La distribuzione Web generale consente di ottimizzare l'intero sito Web. 
 
 > [!NOTE]
-> Se si utilizza Azure Content Delivery Network da Akamai hello, è consigliabile toouse questa ottimizzazione se le dimensioni medie dei file sono inferiori a 10 MB. Se le dimensioni medie dei file sono maggiori di 10 MB, selezionare **download di file di grandi dimensioni** da hello **ottimizzato per** elenco a discesa.
+> Se si usa una rete per la distribuzione di contenuti di Azure di Akamai, è possibile scegliere questa ottimizzazione quando le dimensioni medie dei file sono inferiori a 10 MB. Se le dimensioni medie dei file sono maggiori di 10 MB, selezionare **Download di file di grandi dimensioni** dall'elenco a discesa **Optimized for** (Ottimizzato per).
 
 ### <a name="general-media-streaming"></a>Streaming multimediale generale
 
-Se è necessario endpoint hello toouse per lo streaming live e lo streaming video on Demand, è consigliabile supporto generale di ottimizzazione del flusso.
+Lo streaming multimediale generale è consigliabile se è necessario usare l'endpoint sia per lo streaming live sia per lo streaming di video on demand.
 
-Flussi multimediali è ora sensibile, poiché i pacchetti che arrivano in ritardo sul client hello possono causare un'esperienza di visualizzazione ridotte, ad esempio il buffer frequenti di contenuti video. Ottimizzazione dei flussi multimediali riducono la latenza di hello di recapito contenuti multimediali e offre un'esperienza di smooth streaming per gli utenti. 
+Lo streaming multimediale è sensibile all'ora perché i pacchetti che vengono ricevuti in ritardo sul client possono compromettere l'esperienza di visualizzazione, ad esempio con frequenti memorizzazioni nel buffer del contenuto video. L'ottimizzazione dello streaming multimediale riduce la latenza di distribuzione del contenuto multimediale e offre un'esperienza di flusso uniforme agli utenti. 
 
-Si tratta di uno scenario comune per i clienti di servizi multimediali di Azure. Quando si usano i servizi multimediali di Azure, si otterrà un endpoint di streaming che può essere usato per lo streaming live e on demand. Con questo scenario, i clienti non devono tooswitch tooanother endpoint quando vengono modificate da streaming in tempo reale tooon richiesta. L'ottimizzazione dello streaming multimediale generale supporta questo tipo di scenario.
+Si tratta di uno scenario comune per i clienti di servizi multimediali di Azure. Quando si usano i servizi multimediali di Azure, si otterrà un endpoint di streaming che può essere usato per lo streaming live e on demand. In questo scenario i clienti non devono passare a un altro endpoint quando passa dallo streaming live a quello on demand. L'ottimizzazione dello streaming multimediale generale supporta questo tipo di scenario.
 
-Hello Azure Content Delivery Network da Verizon utilizza hello web generali recapito ottimizzazione tipo toodeliver contenuti multimediali.
+La rete per la distribuzione di contenuti di Azure offerta da Verizon usa l'ottimizzazione di tipo distribuzione Web generale per distribuire il contenuto multimediale.
 
-vedere toolearn ulteriori informazioni sull'ottimizzazione, i flussi multimediali [ottimizzazione dei flussi multimediali](cdn-media-streaming-optimization.md).
+Per altre informazioni sull'ottimizzazione dello streaming multimediale, vedere [Ottimizzazione dello streaming multimediale](cdn-media-streaming-optimization.md).
 
 ### <a name="video-on-demand-media-streaming"></a>Streaming multimediale di video on demand
 
-L'ottimizzazione dello streaming multimediale di video on demand migliora il contenuto dello streaming di video on demand. Se si utilizza un endpoint di streaming video on Demand, è possibile toouse questa opzione.
+L'ottimizzazione dello streaming multimediale di video on demand migliora il contenuto dello streaming di video on demand. Se si usa un endpoint per lo streaming di video on demand, è possibile usare questa opzione.
 
-Hello Azure Content Delivery Network da Verizon utilizza hello web generali recapito ottimizzazione tipo toodeliver contenuti multimediali.
+La rete per la distribuzione di contenuti di Azure offerta da Verizon usa l'ottimizzazione di tipo distribuzione Web generale per distribuire il contenuto multimediale.
 
-vedere toolearn ulteriori informazioni sull'ottimizzazione, i flussi multimediali [ottimizzazione dei flussi multimediali](cdn-media-streaming-optimization.md).
+Per altre informazioni sull'ottimizzazione dello streaming multimediale, vedere [Ottimizzazione dello streaming multimediale](cdn-media-streaming-optimization.md).
 
 > [!NOTE]
-> Endpoint hello viene principalmente utilizzata contenuto video on Demand, è possibile utilizzare questo tipo di ottimizzazione. Hello principale differenza tra questa ottimizzazione e l'ottimizzazione del flusso di supporto generali hello è timeout del tentativo di connessione hello. timeout di Hello è molto più breve toowork con scenari di streaming live.
+> Se l'endpoint viene usato principalmente per il contenuto di video on demand, usare questo tipo di ottimizzazione. La differenza principale tra questa ottimizzazione e quella multimediale generale è il timeout per i tentativi di connessione. Il timeout è molto più breve per gli scenari di streaming live.
 
 ### <a name="large-file-download"></a>Download di file di grandi dimensioni
 
-Se si utilizza Azure Content Delivery Network da Akamai hello, è necessario utilizzare il file toodeliver di download file di grandi dimensioni è maggiore di 1,8 GB. Hello Azure Content Delivery Network da Verizon non dispone di una limitazione nei file di dimensioni nell'ottimizzazione di recapito web generali del download.
+Se si usa la rete per la distribuzione di contenuti di Azure dallo standard Akamai, è necessario usare il download di file di grandi dimensioni per distribuire file più grandi di 1,8 GB. La rete per la distribuzione di contenuti di Azure di Verizon non prevede un limite alla dimensione del download di file nell'ottimizzazione della distribuzione Web generale.
 
-Se si utilizza Azure Content Delivery Network da Akamai hello, download di file di grandi dimensioni sono ottimizzati per il contenuto di dimensioni maggiore di 10 MB. Se le dimensioni medie dei file sono inferiori a 10 MB, si consiglia di recapito web generali toouse. Se le dimensioni di file medio sono sempre maggiori di 10 MB, potrebbe essere più efficiente toocreate un endpoint separato per i file di grandi dimensioni. Ad esempio, gli aggiornamenti firmware o software sono in genere file di grandi dimensioni.
+Se si usa la rete per la distribuzione di contenuti di Azure dallo standard Akamai, il download di file di grandi dimensioni è ottimizzato per contenuti più grandi di 10 GB. Se la dimensione media dei file è inferiore a 10 MB, è possibile usare la distribuzione Web generale. Se la dimensioni media dei file è costantemente superiore a 10 MB potrebbe essere più efficiente creare un endpoint separato per i file di grandi dimensioni. Ad esempio, gli aggiornamenti firmware o software sono in genere file di grandi dimensioni.
 
-Hello Azure Content Delivery Network da Verizon utilizza hello web generali recapito ottimizzazione tipo toodeliver contenuti multimediali.
+La rete per la distribuzione di contenuti di Azure offerta da Verizon usa l'ottimizzazione di tipo distribuzione Web generale per distribuire il contenuto multimediale.
 
-toolearn ulteriori informazioni sull'ottimizzazione del file di grandi dimensioni, vedere [ottimizzazione di file di grandi dimensioni](cdn-large-file-optimization.md).
+Per altre informazioni sull'ottimizzazione di file di grandi dimensioni vedere [Ottimizzazione di file di grandi dimensioni](cdn-large-file-optimization.md).
 
 ### <a name="dynamic-site-acceleration"></a>Accelerazione sito dinamico
 
- L'accelerazione del sito dinamico è disponibile dai profili di rete per la distribuzione di contenuti di Akamai e Verizon. Questa ottimizzazione è necessario un toouse addizionale. Per ulteriori informazioni, vedere hello pagina dei prezzi.
+ L'accelerazione del sito dinamico è disponibile dai profili di rete per la distribuzione di contenuti di Akamai e Verizon. Questa ottimizzazione comporta una tariffa aggiuntiva. Per altre informazioni vedere la pagina dei prezzi.
 
-Accelerazione di sito dinamico include diverse tecniche che traggono vantaggio latenza hello e le prestazioni di contenuto dinamico. Le tecniche includono l'ottimizzazione di route e rete, l'ottimizzazione TCP e molto altro. 
+L'accelerazione di sito dinamico include diverse tecniche che sfruttano la latenza e le prestazioni di contenuto dinamico. Le tecniche includono l'ottimizzazione di route e rete, l'ottimizzazione TCP e molto altro. 
 
-È possibile utilizzare questo tooaccelerate ottimizzazione un'app web che include numerose risposte non memorizzabile nella cache. I risultati di ricerca, le transazioni di checkout o i dati in tempo reale sono degli esempi. È possibile continuare toouse CDN memorizzazione nella cache le funzionalità di base per i dati statici. 
+Per accelerare un'app Web che include numerose risposte non memorizzabili nella cache, è possibile usare questa ottimizzazione. I risultati di ricerca, le transazioni di checkout o i dati in tempo reale sono degli esempi. È possibile continuare a usare le funzionalità di base di memorizzazione nella cache della rete per la distribuzione di contenuti per i dati statici. 
 
 
 

@@ -1,6 +1,6 @@
 ---
-title: aaaCreate Hadoop cluster con gli account di archiviazione di protezione del trasferimento in Azure HDInsight | Documenti Microsoft
-description: Informazioni su come i cluster di HDInsight toocreate con protezione del trasferimento di abilitare gli account di archiviazione di Azure.
+title: Creare un cluster Hadoop con account di archiviazione con trasferimento sicuro in Azure HDInsight | Microsoft Docs
+description: Informazioni su come creare cluster HDInsight con account di archiviazione di Azure con trasferimento sicuro abilitato.
 keywords: introduzione a Hadoop,Hadoop basato su Linux,guida introduttiva a Hadoop,trasferimento sicuro,account di archiviazione di Azure
 services: hdinsight
 documentationcenter: 
@@ -16,43 +16,43 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/21/2017
 ms.author: jgao
-ms.openlocfilehash: 0acb8814ad0d5d5b5652d930b2e3da90f9d7978d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 370b2f081930fe88527436a1a127309aed6681f0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-hadoop-cluster-with-secure-transfer-storage-accounts-in-azure-hdinsight"></a>Creare un cluster Hadoop con account di archiviazione con trasferimento sicuro in Azure HDInsight
 
-Hello [necessario trasferimento sicuro](../storage/common/storage-require-secure-transfer.md) funzionalità migliora la sicurezza hello dell'account di archiviazione di Azure tramite l'applicazione di tutti i conti tooyour richieste tramite una connessione protetta. Questo schema wasbs funzionalità e hello sono supportati solo dalla versione del cluster HDInsight 3.6 o versioni successive. 
+La funzionalità [Trasferimento sicuro obbligatorio](../storage/common/storage-require-secure-transfer.md) aumenta la sicurezza dell'account di archiviazione di Azure perché consente l'invio di tutte le richieste all'account solo tramite connessioni sicure. Questa funzionalità e lo schema wasbs sono supportati solo dal cluster HDInsight versione 3.6 o successiva. 
 
 ## <a name="prerequisites"></a>Prerequisiti
 Prima di iniziare questa esercitazione, è necessario avere:
 
-* **Sottoscrizione di Azure**: toocreate un mese di un account di prova, è esplorare troppo[azure.microsoft.com/free](https://azure.microsoft.com/free).
-* **Account di archiviazione di Azure con trasferimento sicuro abilitato**. Per istruzioni hello, vedere [creare un account di archiviazione](../storage/common/storage-create-storage-account.md#create-a-storage-account) e [richiedono il trasferimento protetto](../storage/common/storage-require-secure-transfer.md).
-* **Un contenitore Blob nell'account di archiviazione hello**. 
+* **Sottoscrizione di Azure**: per creare un account di valutazione gratuito di un mese, passare ad [azure.microsoft.com/free](https://azure.microsoft.com/free).
+* **Account di archiviazione di Azure con trasferimento sicuro abilitato**. Per istruzioni, vedere [Creare un account di archiviazione](../storage/common/storage-create-storage-account.md#create-a-storage-account) e [Richiedere il trasferimento sicuro](../storage/common/storage-require-secure-transfer.md).
+* **Contenitore BLOB nell'account di archiviazione**. 
 ## <a name="create-cluster"></a>Creare cluster
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
 
-In questa sezione viene creato un cluster Hadoop in HDInsight usando un [modello di Azure Resource Manager](../azure-resource-manager/resource-group-template-deploy.md). modello Hello nella [Gibhub](https://azure.microsoft.com/resources/templates/101-hdinsight-linux-with-existing-default-storage-account/). Per questa esercitazione non è necessario conoscere il modello di Resource Manager. Per altri metodi di creazione del cluster e informazioni sulle proprietà hello utilizzate in questa esercitazione, vedere [cluster HDInsight creare](hdinsight-hadoop-provision-linux-clusters.md).
+In questa sezione viene creato un cluster Hadoop in HDInsight usando un [modello di Azure Resource Manager](../azure-resource-manager/resource-group-template-deploy.md). Il modello è disponibile in [Gibhub](https://azure.microsoft.com/resources/templates/101-hdinsight-linux-with-existing-default-storage-account/). Per questa esercitazione non è necessario conoscere il modello di Resource Manager. Per altri metodi di creazione di cluster e per informazioni sulle proprietà usate in questa esercitazione, vedere [Creare cluster HDInsight](hdinsight-hadoop-provision-linux-clusters.md).
 
-1. Fare clic su hello seguente immagine toosign in tooAzure e il modello di gestione risorse hello Apri nel portale di Azure hello. 
+1. Fare clic sull'immagine seguente per accedere ad Azure e aprire il modello di Resource Manager nel portale di Azure. 
    
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-linux-with-existing-default-storage-account%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-hadoop-linux-tutorial-get-started/deploy-to-azure.png" alt="Deploy tooAzure"></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-linux-with-existing-default-storage-account%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-hadoop-linux-tutorial-get-started/deploy-to-azure.png" alt="Deploy to Azure"></a>
 
-2. Segue hello istruzioni toocreate hello cluster con hello seguenti specifiche: 
+2. Seguire le istruzioni per creare il cluster con le specifiche seguenti: 
 
-    - Specificare HDInsight versione 3.6.  versione predefinita di Hello è 3.5. È necessaria la versione 3.6 o successiva.
+    - Specificare HDInsight versione 3.6.  La versione predefinita è 3.5. È necessaria la versione 3.6 o successiva.
     - Specificare un account di archiviazione con trasferimento sicuro abilitato.
-    - Utilizzare un nome breve per l'account di archiviazione hello.
-    - Account di archiviazione hello sia il contenitore di blob hello deve essere create in precedenza. 
+    - Usare un nome breve per l'account di archiviazione.
+    - È necessario creare prima l'account di archiviazione e il contenitore BLOB. 
 
-    Per istruzioni hello, vedere [Crea cluster](./hdinsight-hadoop-linux-tutorial-get-started.md#create-cluster). 
+    Per le istruzioni, vedere [Creare cluster](./hdinsight-hadoop-linux-tutorial-get-started.md#create-cluster). 
 
-Se si utilizzano script azione tooprovide dei file di configurazione, è necessario utilizzare wasbs in hello seguenti impostazioni:
+Se si usa l'azione di script per fornire i file di configurazione, è necessario usare wasbs nelle impostazioni seguenti:
 
 - fs.defaultFS (core-site)
 - spark.eventLog.dir 
@@ -60,36 +60,36 @@ Se si utilizzano script azione tooprovide dei file di configurazione, è necessa
 
 ## <a name="add-additional-storage-accounts"></a>Aggiungere altri account di archiviazione
 
-Sono disponibili diverse opzioni tooadd account di archiviazione aggiuntive trasferimento sicuro abilitato:
+Sono disponibili diverse opzioni per aggiungere altri account di archiviazione con trasferimento sicuro abilitato:
 
-- Modificare il modello di Azure Resource Manager hello nell'ultima sezione hello.
-- Creare un cluster utilizzando hello [portale di Azure](https://portal.azure.com) e specificare l'account di archiviazione collegato.
-- Utilizzare script azione tooadd aggiuntive il trasferimento protetto è abilitato il cluster HDInsight esistente di storage account tooan.  Per ulteriori informazioni, vedere [aggiungere ulteriore spazio di archiviazione account tooHDInsight](hdinsight-hadoop-add-storage.md).
+- Modificare il modello di Azure Resource Manager nell'ultima sezione.
+- Creare un cluster usando il [portale di Azure](https://portal.azure.com) e specificare l'account di archiviazione collegato.
+- Usare l'azione script per aggiungere altri account di archiviazione con trasferimento sicuro abilitato a un cluster HDInsight esistente.  Per altre informazioni, vedere [Aggiungere altri account di archiviazione a HDInsight](hdinsight-hadoop-add-storage.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questa esercitazione, si è appreso come toocreate un cluster HDInsight e abilitare protezione trasferire account di archiviazione toohello.
+In questa esercitazione si è appreso come creare un cluster HDInsight e abilitare il trasferimento sicuro per gli account di archiviazione.
 
-toolearn più sull'analisi dei dati con HDInsight, vedere hello seguenti articoli:
+Per altre informazioni sull'analisi dei dati con HDInsight, vedere gli articoli seguenti:
 
-* toolearn ulteriori informazioni sull'utilizzo di Hive con HDInsight, incluso come una query Hive tooperform da Visual Studio, vedere [utilizzare Hive con HDInsight][hdinsight-use-hive].
-* toolearn su Pig, un linguaggio tootransform dati, vedere [usare Pig con HDInsight][hdinsight-use-pig].
-* toolearn su MapReduce, un toowrite programmi che elaborano i dati in Hadoop, vedere [utilizzare MapReduce con HDInsight][hdinsight-use-mapreduce].
-* toolearn sull'uso di strumenti di HDInsight hello per i dati di Visual Studio tooanalyze in HDInsight, vedere [iniziare a usare gli strumenti di Visual Studio Hadoop per HDInsight](hdinsight-hadoop-visual-studio-tools-get-started.md).
+* Per altre informazioni sull'uso di Hive con HDInsight, incluse le procedure per eseguire query Hive da Visual Studio, vedere [Usare Hive con HDInsight][hdinsight-use-hive].
+* Per informazioni su Pig, un linguaggio usato per la trasformazione dei dati, vedere [Usare Pig con HDInsight][hdinsight-use-pig].
+* Per altre informazioni su MapReduce, un framework software che consente di scrivere programmi per l'elaborazione dei dati in Hadoop, vedere [Usare MapReduce con HDInsight][hdinsight-use-mapreduce].
+* Per altre informazioni sull'uso di HDInsight Tools per Visual Studio per analizzare i dati in HDInsight, vedere [Introduzione all'uso di Hadoop Tools per Visual Studio per HDInsight](hdinsight-hadoop-visual-studio-tools-get-started.md).
 
-altre informazioni sulle modalità di archiviazione dati HDInsight toolearn o dati tooget in HDInsight, vedere hello seguenti articoli:
+Per altre informazioni sulle modalità di archiviazione dei dati in HDInsight o sull'importazione dei dati in HDInsight, vedere gli articoli seguenti:
 
 * Per informazioni sul modo in cui HDInsight usa Archiviazione di Azure, vedere [Usare Archiviazione di Azure con HDInsight](hdinsight-hadoop-use-blob-storage.md).
-* Per informazioni su come tooupload tooHDInsight di dati, vedere [caricare dati tooHDInsight][hdinsight-upload-data].
+* Per informazioni sulle modalità di caricamento di dati in HDInsight, vedere [Caricare dati in HDInsight][hdinsight-upload-data].
 
-toolearn più sulla creazione o la gestione di un cluster HDInsight, vedere hello seguenti articoli:
+Per altre informazioni sulla creazione o la gestione di un cluster HDInsight, vedere gli articoli seguenti:
 
-* toolearn sulla gestione dei cluster HDInsight basati su Linux, vedere [cluster di gestire HDInsight con Ambari](hdinsight-hadoop-manage-ambari.md).
-* toolearn più sulle opzioni di hello è possibile selezionare durante la creazione di un cluster HDInsight, vedere [la creazione di HDInsight su Linux usando le opzioni personalizzate](hdinsight-hadoop-provision-linux-clusters.md).
-* Se si ha familiarità con Linux e Hadoop, ma si desidera specifiche tooknow sul Hadoop in HDInsight hello, vedere [utilizzo di HDInsight su Linux](hdinsight-hadoop-linux-information.md). In questo articolo sono disponibili informazioni quali:
+* Per altre informazioni sulla gestione di cluster HDInsight basati su Linux, vedere [Gestire i cluster HDInsight tramite Ambari](hdinsight-hadoop-manage-ambari.md).
+* Per altre informazioni sulle opzioni che è possibile selezionare durante la creazione di un cluster HDInsight, vedere [Creare cluster Hadoop basati su Linux in HDInsight](hdinsight-hadoop-provision-linux-clusters.md).
+* Se si ha familiarità con Linux e Hadoop ma si vogliono informazioni specifiche su Hadoop in HDInsight, vedere [Uso di HDInsight in Linux](hdinsight-hadoop-linux-information.md). In questo articolo sono disponibili informazioni quali:
   
-  * URL per i servizi ospitati nel cluster di hello, ad esempio Ambari e WebHCat
-  * percorso di Hello del file Hadoop ed esempi sulla hello file system locale
-  * utilizzo di Hello di Azure Storage (WASB) anziché HDFS come archivio dati predefinito di hello
+  * URL per i servizi ospitati nel cluster, ad esempio Ambari e WebHCat
+  * Il percorso del file Hadoop e gli esempi nel file system locale
+  * L'utilizzo di archiviazione di Azure (WASB) anziché di HDFS come archivio predefinito di dati
 
 [1]: ../HDInsight/hdinsight-hadoop-visual-studio-tools-get-started.md
 

@@ -1,6 +1,6 @@
 ---
-title: soluzioni aaaAzure per Internet delle cose (IoT Suite) | Documenti Microsoft
-description: Panoramica di IoT in Azure, tra cui un'architettura della soluzione di esempio e l'interrelazione tooAzure IoT Suite e soluzioni hello preconfigurato.
+title: Soluzioni di Azure per Internet delle cose (IoT Suite) | Documentazione Microsoft
+description: Una panoramica di IoT in Azure, inclusa un'architettura della soluzione di esempio e la sua relazione con Azure IoT Suite e le soluzioni preconfigurate.
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,32 +15,32 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: dobett
-ms.openlocfilehash: e527ca3f7541c84fbd6abc99ee38792468f88644
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 320190488bb4c7b8192421f9dd50a5264f558584
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 [!INCLUDE [iot-azure-and-iot](../../includes/iot-azure-and-iot.md)]
 
 ## <a name="azure-iot-suite"></a>Azure IoT Suite
-Hello Microsoft Azure IoT Suite è una soluzione aziendale che consente di tooget tramite un set di extensible soluzioni preconfigurate in tempi brevi. per gestire scenari IoT comuni, come il [monitoraggio remoto][lnk-preconfigured-solutions], la [manutenzione predittiva][lnk-predictive-maintenance] e [connected factory][lnk-connected-factory]. Queste soluzioni sono implementazioni di hello IoT architettura della soluzione descritta in questo articolo.
+Microsoft Azure IoT Suite è una soluzione di livello aziendale che consente di iniziare rapidamente a usare un set di soluzioni preconfigurate estendibili per gestire scenari IoT comuni, come il [monitoraggio remoto][lnk-preconfigured-solutions], la [manutenzione predittiva][lnk-predictive-maintenance] e [connected factory][lnk-connected-factory]. Tali soluzioni sono implementazioni dell'architettura di una soluzione IoT illustrata in questo articolo.
 
-Hello soluzioni preconfigurate vengono completate, utilizzo, soluzioni end-to-end che includono:
+Si tratta di soluzioni preconfigurate complete e funzionanti di tipo end-to-end che includono:
 
-- Simulati tooget dispositivi che è stato avviato.
+- Dispositivi simulati per iniziare.
 - Servizi di Azure preconfigurati come [Hub IoT di Azure][Azure IoT Hub], [Hub eventi di Azure][Azure Event Hubs], [Analisi di flusso di Azure][Azure Stream Analytics], [Azure Machine Learning][Azure Machine Learning] e [Archiviazione di Azure][Azure storage].
 - Console di gestione specifiche per la soluzione.
 
-le soluzioni di Hello preconfigurato contengono codice si basa sulla collaudata, ambiente di produzione che permette di personalizzare ed estendere tooimplement i propri scenari IoT specifici.
+Le soluzioni preconfigurate contengono codice consolidato, pronto per la produzione, che è possibile personalizzare ed estendere per implementare scenari IoT specifici.
 
-Può anche essere interessante hello [IoT Hub Azure] [ Azure IoT Hub] servizio che utilizzano molte delle soluzioni di hello preconfigurato. [IoT Hub Azure] [ Azure IoT Hub] fornisce hello protetta e affidabile la comunicazione bidirezionale tra i dispositivi e cloud hello usati nell'architettura della soluzione hello preconfigurato.
+Vedere anche il servizio [Hub IoT di Azure][Azure IoT Hub], usato da molte soluzioni preconfigurate. [Hub IoT di Azure][Azure IoT Hub] garantisce comunicazioni bidirezionali sicure e affidabili tra i dispositivi e il cloud usati nell'architettura delle soluzioni preconfigurate.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Esplorare queste toocontinue risorse apprendendo IoT Suite e hello soluzioni preconfigurate:
+Esplorare queste risorse per altre informazioni su IoT Suite e sulle soluzioni preconfigurate:
 
 * [Informazioni su Azure IoT Suite][lnk-whatissuite]
-* [Quali sono le soluzioni di Azure IoT Suite preconfigurato hello?][lnk-whatarepreconfigured]
+* [Informazioni sulle soluzioni preconfigurate di Azure IoT Suite][lnk-whatarepreconfigured]
 
 [lnk-whatissuite]: iot-suite-overview.md
 [lnk-whatarepreconfigured]: iot-suite-what-are-preconfigured-solutions.md

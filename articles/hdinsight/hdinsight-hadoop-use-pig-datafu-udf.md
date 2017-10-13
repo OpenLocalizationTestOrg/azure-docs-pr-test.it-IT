@@ -1,5 +1,5 @@
 ---
-title: aaaUse DataFu con Pig in HDInsight - Azure | Documenti Microsoft
+title: Utilizzare DataFu con pig in HDInsight - Azure | Microsoft Docs
 description: "DataFu è una raccolta di librerie da usare con Hadoop. Informazioni su come utilizzare DataFu con Pig sul cluster HDInsight."
 services: hdinsight
 documentationcenter: 
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/31/2017
 ms.author: larryfr
-ms.openlocfilehash: 357ad8f9694cc590115289877e752bdd242bdadc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4de55f5f6c5605e9c6c8dd7ccac902b811d1b062
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="use-datafu-with-pig-on-hdinsight"></a>Utilizzare DataFu con pig in HDInsight
 
-Informazioni su come toouse DataFu con HDInsight. DataFu è una raccolta di librerie open source per l'uso con Pig in Hadoop.
+Informazioni su come usare DataFu con HDInsight. DataFu è una raccolta di librerie open source per l'uso con Pig in Hadoop.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
@@ -32,7 +32,7 @@ Informazioni su come toouse DataFu con HDInsight. DataFu è una raccolta di libr
 * Un cluster Azure HDInsight (basato su Linux o su Windows)
 
   > [!IMPORTANT]
-  > Linux è hello solo sistema operativo utilizzato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+  > Linux è l'unico sistema operativo usato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 * Nozioni di base di [utilizzo di Pig in HDInsight](hdinsight-use-pig.md)
 
@@ -43,43 +43,43 @@ Informazioni su come toouse DataFu con HDInsight. DataFu è una raccolta di libr
 >
 > Se si usa un cluster basato su Windows o un cluster basato su Linux versione 3.3 o successiva, ignorare questa sezione.
 
-DataFu possono essere scaricati e installati dall'archivio di Maven hello. Utilizzare hello cluster di HDInsight tooyour DataFu tooadd i passaggi seguenti:
+DataFu può essere scaricato e installato dall’archivio Maven. Utilizzare la procedura seguente per aggiungere DataFu al cluster di HDInsight:
 
-1. Connettere il cluster di HDInsight basati su Linux tooyour tramite SSH. Per altre informazioni, vedere [Usare SSH con HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).
+1. Usare SSH per connettersi al cluster HDInsight basato su Linux. Per altre informazioni, vedere [Usare SSH con HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-2. Utilizzare i seguenti file jar comando toodownload hello DataFu utilità hello wget, hello oppure copiare e incollare collegamento hello nel download di hello toobegin browser.
+2. Utilizzare il comando seguente per scaricare il file jar di DataFu tramite l'utilità wget, o copiare e incollare il collegamento nel browser per avviare il download.
 
     ```
     wget http://central.maven.org/maven2/com/linkedin/datafu/datafu/1.2.0/datafu-1.2.0.jar
     ```
 
-3. Successivamente, caricare hello file toodefault spazio di archiviazione per il cluster HDInsight. Inserire i file di hello predefinita archiviazione rende disponibili tooall nodi cluster hello.
+3. Successivamente, caricare il file all’archiviazione predefinita per il cluster HDInsight. Inserendo il file nell'archiviazione predefinita lo si rende disponibile a tutti i nodi del cluster.
 
     ```
     hdfs dfs -put datafu-1.2.0.jar /example/jars
     ```
 
     > [!NOTE]
-    > comando precedente Hello archivia jar hello in `/example/jars` poiché la directory esiste già nell'archiviazione cluster hello. È possibile utilizzare qualsiasi percorso desiderato nell'archiviazione cluster HDInsight.
+    > Con il comando precedente il file jar viene archiviato in `/example/jars`, poiché questa directory esiste già nell'archiviazione cluster. È possibile utilizzare qualsiasi percorso desiderato nell'archiviazione cluster HDInsight.
 
 ## <a name="use-datafu-with-pig"></a>Utilizzare DataFu con Pig
 
-passaggi di Hello in questa sezione si presuppongono che si abbia familiarità con Pig in HDInsight. Per ulteriori informazioni sull'utilizzo di Pig con HDInsight, vedere [Usare Pig con HDInsight](hdinsight-use-pig.md).
+La procedura descritta in questa sezione presuppone che si abbia familiarità con l'uso di Pig in HDInsight. Per ulteriori informazioni sull'utilizzo di Pig con HDInsight, vedere [Usare Pig con HDInsight](hdinsight-use-pig.md).
 
 > [!IMPORTANT]
-> Se è stato installato manualmente utilizzando hello procedura nella sezione precedente hello DataFu, è necessario registrarlo prima di utilizzarlo.
+> Se DataFu è stato installato manualmente seguendo la procedura descritta nella sezione precedente, è necessario registrarlo prima di poterlo usare.
 >
 > * Se il cluster usa l'archiviazione di Azure, usare un percorso `wasb://`. Ad esempio, `register wasb:///example/jars/datafu-1.2.0.jar`.
 >
 > * Se il cluster usa Azure Data Lake Store, usare un percorso `adl://`. Ad esempio, `register adl://home/example/jars/datafu-1.2.0.jar`.
 
-Per le funzioni DataFu viene spesso definito un alias. esempio Hello definisce un alias di `SHA`:
+Per le funzioni DataFu viene spesso definito un alias. L'esempio seguente definisce un alias di `SHA`:
 
 ```piglatin
 DEFINE SHA datafu.pig.hash.SHA();
 ```
 
-È quindi possibile utilizzare questo alias in un toogenerate script Pig latino un hash per i dati di input hello. Ad esempio, hello codice seguente sostituisce percorso hello nei dati di input hello con un valore hash:
+È quindi possibile usare l'alias in uno script Pig Latin per generare un hash per i dati di input. Il codice seguente, ad esempio, sostituisce la posizione nei dati di input con un valore hash:
 
 ```piglatin
 raw = LOAD '/HdiSamples/HdiSamples/SensorSampleData/building/building.csv' USING
@@ -93,7 +93,7 @@ mask = FOREACH raw GENERATE int1, id1, int2, id2, SHA(location);
 DUMP mask;
 ```
 
-Genera hello seguente output:
+Viene generato l'output seguente:
 
     (1,M1,25,AC1000,aa5ab35a9174c2062b7f7697b33fafe5ce404cf5fecf6bfbbf0dc96ba0d90046)
     (2,M2,27,FN39TG,7a1ca4ef7515f7276bae7230545829c27810c9d9e98ab2c06066bee6270d5153)
@@ -118,7 +118,7 @@ Genera hello seguente output:
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per ulteriori informazioni su DataFu o Pig, vedere hello seguenti documenti:
+Per altre informazioni su DataFu o Pig, vedere i seguenti documenti:
 
 * [Guida ad Apache Pig DataFu](http://datafu.incubator.apache.org/docs/datafu/guide.html).
 * [Usare Pig con HDInsight](hdinsight-use-pig.md)

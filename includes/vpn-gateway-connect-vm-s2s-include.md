@@ -1,10 +1,10 @@
-È possibile connettersi tooa macchina virtuale che viene distribuito tooyour rete virtuale tramite la creazione di una macchina virtuale di tooyour connessione Desktop remoto. Hello migliore tooinitially modo verificare che sia possibile connettersi tooyour macchina virtuale è tooconnect dal relativo IP privati risolvere, anziché il nome di computer. In questo modo, si sta testando toosee se è possibile connettersi, non indica se la risoluzione dei nomi sia configurato correttamente.
+È possibile connettersi a una VM distribuita nella rete virtuale creando una connessione Desktop remoto alla VM. Il modo migliore per verificare inizialmente che è possibile connettersi alla VM consiste nel connettersi usando il rispettivo indirizzo IP privato, invece del nome del computer. Ciò consente di verificare se è possibile connettersi, non se la risoluzione dei nomi è configurata correttamente.
 
-1. Individuare l'indirizzo IP privato hello. È possibile trovare l'indirizzo IP privato hello di una macchina virtuale in più modi. Di seguito, vengono illustrati i passaggi di hello per hello portale di Azure e per PowerShell.
+1. Individuare l'indirizzo IP privato. È possibile trovare l'indirizzo IP privato di una macchina virtuale in più modi. Di seguito sono illustrate le procedure da seguire se si usa il portale di Azure o PowerShell.
 
-  - Portale di Azure - individuare la macchina virtuale nel portale di Azure hello. Visualizzare le proprietà hello hello macchina virtuale. indirizzo IP privato Hello è elencato.
+  - Portale di Azure: individuare la macchina virtuale nel portale di Azure. Visualizzare le proprietà per la VM. Viene elencato l'indirizzo IP.
 
-  - PowerShell - tooview di esempio hello di utilizzare un elenco di macchine virtuali e gli indirizzi IP privati da gruppi di risorse. Non è necessario toomodify in questo esempio viene prima di utilizzarlo.
+  - PowerShell: usare l'esempio per visualizzare un elenco di macchine virtuali e di indirizzi IP privati dai gruppi di risorse. Non è necessario modificare questo esempio prima di usarlo.
 
     ```powershell
     $VMs = Get-AzureRmVM
@@ -19,15 +19,15 @@
     }
     ```
 
-2. Verificare di essere connessi tooyour rete virtuale mediante una connessione VPN hello.
-3. Aprire **connessione Desktop remoto** digitando nella casella di ricerca hello sulla barra delle applicazioni hello "RDP" o "Connessione Desktop remoto", quindi selezionare connessione Desktop remoto. È anche possibile aprire connessione Desktop remoto, uso del comando 'mstsc' hello in PowerShell. 
-4. In connessione Desktop remoto, immettere l'indirizzo IP privato hello di hello macchina virtuale. È possibile fare clic su "Mostra opzioni" tooadjust ulteriori impostazioni, quindi connettersi.
+2. Verificare di essere connessi alla rete virtuale usando la connessione VPN.
+3. Aprire la **connessione Desktop remoto** digitando "RDP" o "Connessione Desktop remoto" nella casella di ricerca sulla barra delle applicazioni, quindi selezionare Connessione Desktop remoto. È anche possibile aprire una connessione Desktop remoto usando il comando "mstsc" in PowerShell. 
+4. In Connessione Desktop remoto immettere l'indirizzo IP privato della VM. È possibile fare clic su "Mostra opzioni" per modificare altre impostazioni e quindi connettersi.
 
-### <a name="tootroubleshoot-an-rdp-connection-tooa-vm"></a>tootroubleshoot un tooa connessione RDP VM
+### <a name="to-troubleshoot-an-rdp-connection-to-a-vm"></a>Per risolvere i problemi di una connessione RDP a una VM
 
-Se si riscontrano problemi nella connessione macchina virtuale tooa tramite la connessione VPN, verificare i seguenti di hello:
+Se si verificano problemi di connessione a una macchina virtuale tramite la connessione VPN, controllare gli elementi seguenti:
 
 - Verificare che la connessione VPN sia attiva.
-- Verificare che ci si connette l'indirizzo IP privato toohello per hello macchina virtuale.
-- Se è possibile connettersi toohello VM con IP privato hello indirizzo, ma non hello Nome computer, verificare che DNS sia stato configurato correttamente. Per altre informazioni sul funzionamento della risoluzione dei nomi per le macchine virtuali, vedere [Risoluzione dei nomi per le macchine virtuali](../articles/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md).
-- Per ulteriori informazioni sulle connessioni RDP, vedere [tooa connessioni Desktop remoto di risolvere i problemi VM](../articles/virtual-machines/windows/troubleshoot-rdp-connection.md).
+- Verificare che venga effettuata la connessione all'indirizzo IP privato per la VM.
+- Se è possibile connettersi alla VM usando l'indirizzo IP privato, ma non il nome del computer, verificare di avere configurato correttamente il valore per DNS. Per altre informazioni sul funzionamento della risoluzione dei nomi per le macchine virtuali, vedere [Risoluzione dei nomi per le macchine virtuali](../articles/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md).
+- Per altre informazioni sulle connessioni RDP, vedere [Risolvere i problemi delle connessioni Desktop remoto a una macchina virtuale](../articles/virtual-machines/windows/troubleshoot-rdp-connection.md).

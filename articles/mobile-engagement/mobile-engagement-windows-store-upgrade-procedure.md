@@ -1,5 +1,5 @@
 ---
-title: le procedure di aggiornamento SDK di Universal App aaaWindows
+title: Procedure di aggiornamento di Windows Universal Apps SDK
 description: Procedure di aggiornamento di Windows Universal Apps SDK per Azure Mobile Engagement
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,47 +14,47 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 95aba5d55cd65d4190aad35737f872414b5ed443
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: fe85a99a92fb39082cafe7422b356de1f20f14bd
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="windows-universal-apps-sdk-upgrade-procedures"></a>Procedure di aggiornamento di Windows Universal Apps SDK
-Se è già stata integrata una versione precedente di Engagement all'interno dell'applicazione, è necessario hello tooconsider seguenti punti quando si aggiorna hello SDK.
+Se nell'applicazione è già stata integrata una versione precedente dell'SDK, è necessario considerare i seguenti punti quando si aggiorna l'SDK.
 
-È possibile toofollow varie procedure se sono saltate diverse versioni di hello SDK. Ad esempio se si esegue la migrazione da 0.10.1 too0.11.0 è toofirst seguire hello "da 0.9.0 too0.10.1" routine quindi hello "da 0.10.1 too0.11.0" stored procedure.
+Se non sono state applicate alcune versioni dell'SDK, potrebbe essere necessario eseguire più procedure. Se ad esempio si esegue la migrazione dalla versione 0.10.1 alla 0.11.0, sarà prima di tutto necessario eseguire la procedura per la migrazione "dalla 0.9.0 alla 0.10.1" e quindi la procedura per la migrazione "dalla 0.10.1 alla 0.11.0".
 
-## <a name="from-330-too340"></a>Da 3.3.0 too3.4.0
+## <a name="from-330-to-340"></a>Dalla versione 3.3.0 alla 3.4.0
 ### <a name="test-logs"></a>Log di test
-Registri della console prodotti da hello SDK ora possono essere attivato/disattivato/filtrato. toocustomize, questa proprietà hello aggiornamento `EngagementAgent.Instance.TestLogEnabled` tooone del valore di hello disponibile hello `EngagementTestLogLevel` enumerazione, ad esempio:
+I log della console generati da SDK possono essere abilitati/disattivati/filtrati. Per eseguire una personalizzazione, aggiornare la proprietà `EngagementAgent.Instance.TestLogEnabled` scegliendo uno dei valori disponibili nell'enumerazione `EngagementTestLogLevel`, ad esempio:
 
             EngagementAgent.Instance.TestLogLevel = EngagementTestLogLevel.Verbose;
             EngagementAgent.Instance.Init();
 
 ### <a name="resources"></a>Risorse
-sovrapposizione di copertura Hello è stata migliorata. È parte di risorse del pacchetto NuGet SDK hello.
+La sovrimpressione Reach è stata migliorata. Fa parte delle risorse del pacchetto NuGet di SDK.
 
-Durante l'aggiornamento toohello nuova versione di hello SDK è possibile scegliere che se si desidera tookeep i file esistenti da hello sovrapposizione cartella delle risorse o non:
+Durante l'aggiornamento alla nuova versione di SDK, è possibile scegliere se mantenere i file esistenti contenuti nella cartella della sovrimpressione delle risorse o meno:
 
-* Se sovrapposizione precedente hello è alle proprie esigenze o se si sta integrando hello `WebView` elementi manualmente, quindi è possibile decidere tookeep i file esistenti, continuerà a funzionare. 
-* Se si desidera tooupdate toohello nuovo sovrapposizione, sostituire semplicemente hello intero `overlay` cartella dalle risorse con hello uno nuovo dal pacchetto SDK hello (app UWP: dopo l'aggiornamento di hello, è possibile ottenere la nuova cartella sovrapposizione di hello da % USERPROFILE %\\. nuget\ packages\MicrosoftAzure.MobileEngagement\3.4.0\content\win81\Resources).
+* Se la sovrimpressione precedente è in funzione o si stanno integrando manualmente gli elementi `WebView`, è possibile decidere di mantenere i file esistenti per poter proseguire. 
+* Se invece si vuole passare alla sovrimpressione nuova, è sufficiente sostituire l'intera cartella `overlay` delle risorse con quella nuova disponibile nel pacchetto SDK. Dopo aver completato l'aggiornamento, nelle app UWP è possibile ottenere la cartella della nuova sovrimpressione da %USERPROFILE%\\.nuget\packages\MicrosoftAzure.MobileEngagement\3.4.0\content\win81\Resources).
 
 > [!WARNING]
-> Utilizzando sovrapposizione nuovo hello sovrascriverà le personalizzazioni apportate in una versione precedente di hello.
+> Se si usa la sovrimpressione nuova, le personalizzazioni eseguite con la versione precedente saranno sovrascritte.
 > 
 > 
 
-## <a name="from-320-too330"></a>Da 3.2.0 too3.3.0
+## <a name="from-320-to-330"></a>Dalla versione 3.2.0 alla 3.3.0
 ### <a name="resources"></a>Risorse
-Questo passaggio riguarda solo le risorse personalizzate. Se sono state personalizzate le risorse di hello fornite da hello SDK (html, immagini, sovrapposizione), è necessario toobackup li prima l'aggiornamento e riapplicare la personalizzazione in aggiornato risorse.
+Questo passaggio riguarda solo le risorse personalizzate. Se sono state personalizzate le risorse fornite dall'SDK (html, immagini, sovrimpressioni) è necessario eseguirne il backup prima dell'aggiornamento e riapplicare la personalizzazione alle risorse aggiornate.
 
-## <a name="from-310-too320"></a>Da 3.1.0 too3.2.0
+## <a name="from-310-to-320"></a>Dalla versione 3.1.0 alla 3.2.0
 ### <a name="resources"></a>Risorse
-Questo passaggio riguarda solo le risorse personalizzate. Se sono state personalizzate le risorse di hello fornite da hello SDK (html, immagini, sovrapposizione), è necessario toobackup li prima l'aggiornamento e riapplicare la personalizzazione in aggiornato risorse.
+Questo passaggio riguarda solo le risorse personalizzate. Se sono state personalizzate le risorse fornite dall'SDK (html, immagini, sovrimpressioni) è necessario eseguirne il backup prima dell'aggiornamento e riapplicare la personalizzazione alle risorse aggiornate.
 
 ### <a name="webview-integration"></a>l'integrazione di visualizzazione Web
-In questa versione, sono stati introdotti alcuni miglioramenti toomatch diversi form factor. Assicurarsi che l'integrazione di webview hello corrisponda esempio hello:
+In questa versione sono stati introdotti alcuni miglioramenti per la corrispondenza dei fattori di forma del dispositivo diversi. Assicurarsi che l'integrazione delle webview corrisponda a quanto segue:
 
 Nella pagina XAML ():
 
@@ -73,7 +73,7 @@ E nel file con estensione cs associato:
     namespace My.Namespace.Example
     {
             /// <summary>
-            /// An empty page that can be used on its own or navigated toowithin a Frame.
+            /// An empty page that can be used on its own or navigated to within a Frame.
             /// </summary>
             public sealed partial class ExampleEngagementReachPage : EngagementPage
             {
@@ -81,25 +81,25 @@ E nel file con estensione cs associato:
               {
                 this.InitializeComponent();
 
-                /* Set your webview elements toohello correct size. */
+                /* Set your webview elements to the correct size. */
                 SetWebView(width, height);
               }
 
-              #region tooimplement
+              #region to implement
               /* Attach events when page is navigated. */
               protected override void OnNavigatedTo(NavigationEventArgs e)
               {
-                /* Update hello webview when hello app window is resized. */
+                /* Update the webview when the app window is resized. */
                 Window.Current.SizeChanged += DisplayProperties_OrientationChanged;
 
-                /* Update hello webview when hello app/status bar is resized. */
+                /* Update the webview when the app/status bar is resized. */
     #if WINDOWS_PHONE_APP || WINDOWS_UWP
                 ApplicationView.GetForCurrentView().VisibleBoundsChanged += DisplayProperties_VisibleBoundsChanged; 
     #endif
                 base.OnNavigatedTo(e);
               }
 
-              /* When page is left ensure toodetach SizeChanged handler. */
+              /* When page is left ensure to detach SizeChanged handler. */
               protected override void OnNavigatedFrom(NavigationEventArgs e)
               {
                 Window.Current.SizeChanged -= DisplayProperties_OrientationChanged;
@@ -109,7 +109,7 @@ E nel file con estensione cs associato:
                 base.OnNavigatedFrom(e);
               }
 
-              /* "width" and "height" are hello current size of your application display. */
+              /* "width" and "height" are the current size of your application display. */
     #if WINDOWS_PHONE_APP || WINDOWS_UWP
               double width = ApplicationView.GetForCurrentView().VisibleBounds.Width;
               double height = ApplicationView.GetForCurrentView().VisibleBounds.Height;
@@ -119,10 +119,10 @@ E nel file con estensione cs associato:
     #endif
 
               /// <summary>
-              /// Set your webview elements toohello correct size.
+              /// Set your webview elements to the correct size.
               /// </summary>
-              /// <param name="width">hello width of your current display.</param>
-              /// <param name="height">hello height of your current display.</param>
+              /// <param name="width">The width of your current display.</param>
+              /// <param name="height">The height of your current display.</param>
               private void SetWebView(double width, double height)
               {
                 #pragma warning disable 4014
@@ -136,7 +136,7 @@ E nel file con estensione cs associato:
               }
 
               /// <summary>
-              /// Handler that takes hello Windows.Current.SizeChanged and indicates that webviews have toobe resized.
+              /// Handler that takes the Windows.Current.SizeChanged and indicates that webviews have to be resized.
               /// </summary>
               /// <param name="sender">Original event trigger.</param>
               /// <param name="e">Window Size Changed Event arguments.</param>
@@ -145,22 +145,22 @@ E nel file con estensione cs associato:
                 double width = e.Size.Width;
                 double height = e.Size.Height;
 
-                /* Set your webview elements toohello correct size. */
+                /* Set your webview elements to the correct size. */
                 SetWebView(width, height);
               }
 
     #if WINDOWS_PHONE_APP || WINDOWS_UWP              
               /// <summary>
-              /// Handler that takes hello ApplicationView.VisibleBoundsChanged and indicates that webviews have toobe resized
+              /// Handler that takes the ApplicationView.VisibleBoundsChanged and indicates that webviews have to be resized
               /// </summary>
-              /// <param name="sender">hello related application view.</param>
+              /// <param name="sender">The related application view.</param>
               /// <param name="e">Related event arguments.</param>
               private void DisplayProperties_VisibleBoundsChanged(ApplicationView sender, Object e)
               {
                 double width = sender.VisibleBounds.Width;
                 double height = sender.VisibleBounds.Height;
 
-                /* Set your webview elements toohello correct size. */
+                /* Set your webview elements to the correct size. */
                 SetWebView(width, height);
               }
     #endif
@@ -168,37 +168,37 @@ E nel file con estensione cs associato:
             }
     }
 
-## <a name="from-200-too300"></a>Da 2.0.0 too3.0.0
+## <a name="from-200-to-300"></a>Dalla versione 2.0.0 alla 3.0.0
 ### <a name="resources"></a>Risorse
-Questo passaggio riguarda solo le risorse personalizzate. Se sono state personalizzate le risorse di hello fornite da hello SDK (html, immagini, sovrapposizione), è necessario toobackup li prima l'aggiornamento e riapplicare la personalizzazione in aggiornato risorse.
+Questo passaggio riguarda solo le risorse personalizzate. Se sono state personalizzate le risorse fornite dall'SDK (html, immagini, sovrimpressioni) è necessario eseguirne il backup prima dell'aggiornamento e riapplicare la personalizzazione alle risorse aggiornate.
 
-## <a name="from-111-too200"></a>Da 1.1.1 too2.0.0
-Hello seguenti viene descritto come toomigrate un'integrazione SDK da hello Capptain servizio offerto da Capptain SAS in un'app con Azure Mobile Engagement. 
+## <a name="from-111-to-200"></a>Dalla versione 1.1.1 alla 2.0.0
+La sezione seguente illustra come eseguire la migrazione di un'integrazione dell'SDK dal servizio Capptain offerto da Capptain SAS a un'app basata su Azure Mobile Engagement. 
 
 > [!IMPORTANT]
-> Capptain e Mobile Engagement non sono hello stessi servizi e procedura di hello indicata di seguito solo evidenziata come toomigrate hello app client. Migrazione hello SDK nell'applicazione hello verrà non la migrazione dei dati dai server di hello Capptain server toohello Mobile Engagement
+> Capptain e Mobile Engagement sono servizi diversi e la procedura seguente illustra solo come eseguire la migrazione dell'app client. La migrazione dell'SDK nell'app NON comporta la migrazione dei dati dai server di Capptain ai server di Mobile Engagement
 > 
 > 
 
-Se si esegue la migrazione da una versione precedente, consultare prima hello Capptain sito web toomigrate too1.1.1 quindi applicare hello procedura
+Se si esegue la migrazione da una versione precedente, consultare il sito web Capptain per eseguire prima la migrazione a 1.1.1, quindi applicare la procedura seguente
 
 ### <a name="nuget-package"></a>Pacchetto NuGet
 Sostituire **Capptain.WindowsPhone** con il pacchetto NuGet **MicrosoftAzure.MobileEngagement**.
 
 ### <a name="applying-mobile-engagement"></a>Applicazione di Mobile Engagement
-Hello SDK viene utilizzato il termine hello `Engagement`. È necessario tooupdate toomatch il progetto questa modifica.
+L'SDK usa il termine `Engagement`. È necessario aggiornare il progetto per tenere conto di questa modifica.
 
-È necessario toouninstall il pacchetto nuget Capptain corrente. Si consideri che verranno rimosse tutte le modifiche nella cartella Risorse di Capptain. Se si desidera tookeep tali file, creare una copia di essi.
+È necessario disinstallare il pacchetto nuget corrente di Capptain. Si consideri che verranno rimosse tutte le modifiche nella cartella Risorse di Capptain. Se si desidera mantenere tali file, eseguirne una copia.
 
-Successivamente, installare il pacchetto di hello nuovo impegno di Microsoft Azure nuget nel progetto. È possibile trovarlo direttamente su [sito Web di NuGet] o nell'indice qui. Sostituisce questa azione, tutti i file di risorse utilizzate da Engagement e hello nuova DLL Engagement tooyour aggiunge i riferimenti al progetto.
+Successivamente, installare il nuovo pacchetto NuGet di Microsoft Azure Engagement nel progetto. È possibile trovarlo direttamente su [sito Web di NuGet] o nell'indice qui. Questa operazione sostituisce tutti i file di risorse utilizzati da Engagement e aggiunge la nuova DLL di Engagement ai riferimenti del progetto.
 
-Hai tooclean riferimenti del progetto eliminando i riferimenti DLL Capptain. Se non si apporta questa, versione di hello di Capptain è in conflitto e si verificheranno gli errori.
+È necessario eliminare i riferimenti del progetto rimuovendo i riferimenti DLL di Capptain. Se non si effettua questa operazione, la versione di Capptain creerà un conflitto e si verificheranno errori.
 
-Se è stato personalizzato Capptain risorse, copiare il contenuto del file precedente e incollarli in nuovi file di Engagement hello. Si noti che i file xaml sia cs toobe aggiornato.
+Se sono state personalizzate risorse Capptain, copiare il contenuto dei file precedenti e incollarlo in nuovi file di progetto. Si noti che è necessario aggiornare sia i file xaml che i file cs.
 
-Dopo avere completato questi passaggi è sufficiente tooreplace precedente Capptain i riferimenti basati sui nuovi riferimenti di Engagement hello.
+Al termine di queste operazioni, è necessario sostituire i riferimenti di Capptain precedenti con i nuovi riferimenti di Engagement.
 
-1. Tutti gli spazi dei nomi di Capptain avere toobe aggiornato.
+1. Tutti gli spazi dei nomi Capptain devono essere aggiornati.
    
     Prima della migrazione:
    
@@ -251,7 +251,7 @@ Dopo avere completato questi passaggi è sufficiente tooreplace precedente Cappt
 4. Modifiche alle pagine di sovrimpressione
    
    > [!IMPORTANT]
-   > Anche la sovrimpressione cambia. Il nuovo spazio dei nomi è `Microsoft.Azure.Engagement.Overlay`. Ha toobe utilizzato nei file xaml e cs. Inoltre `CapptainGrid` toobe denominato `EngagementGrid`, `capptain_notification_content` e `capptain_announcement_content` sono denominati `engagement_notification_content` e `engagement_announcement_content`.
+   > Anche la sovrimpressione cambia. Il nuovo spazio dei nomi è `Microsoft.Azure.Engagement.Overlay`. Deve essere usato sia nei file xaml sia nei file cs. Inoltre, `CapptainGrid` deve essere denominato `EngagementGrid` e `capptain_notification_content` e `capptain_announcement_content` sono denominati `engagement_notification_content` e `engagement_announcement_content`.
    > 
    > 
    
@@ -268,24 +268,24 @@ Dopo avere completato questi passaggi è sufficiente tooreplace precedente Cappt
           engagement="using:Microsoft.Azure.Engagement.Overlay"
           ...
         </engagement:EngagementPageOverlay>
-5. Per hello altre risorse quali immagini Capptain e file HTML, si noti che sono anche stati rinominati toouse "Engagement".
+5. Per altre risorse come le immagini di Capptain e i file HTML, tenere presente che sono state rinominate per l'utilizzo di "Engagement".
 
 ### <a name="project-declaration"></a>Dichiarazione di progetto
 In Package.appxmanifest `File Type Associations` è stato aggiornato da:
 
-* capptain\_raggiungere\_tooengagement contenuto\_raggiungere\_contenuto
-* capptain\_log\_file tooengagement\_log\_file
+* capptain\_reach\_content in engagement\_reach\_content
+* capptain\_log\_file in engagement\_log\_file
 
 ### <a name="application-id--sdk-key"></a>ID applicazione / chiave SDK
-Engagement utilizza una stringa di connessione. Non si dispone toospecify un ID applicazione e una chiave SDK con Engagement Mobile, è sufficiente toospecify una stringa di connessione. È possibile configurarla nel file EngagementConfiguration.
+Engagement utilizza una stringa di connessione. Non è necessario specificare un ID applicazione e una chiave SDK con Mobile Engagement, è sufficiente specificare una stringa di connessione. È possibile configurarla nel file EngagementConfiguration.
 
-configurazione di Engagement Hello può essere impostate nel `Resources\EngagementConfiguration.xml` file del progetto.
+La configurazione di Engagement può essere impostata nel file `Resources\EngagementConfiguration.xml` del progetto.
 
-Modificare questo toospecify file:
+Modificare questo file per specificare:
 
 * La stringa di connessione dell'applicazione tra i tag `<connectionString>` and `<\connectionString>`.
 
-Se si desidera che in fase di esecuzione, invece, si può chiamare seguente hello toospecify metodo prima dell'inizializzazione dell'agente di Engagement hello:
+Se si desidera specificarla in fase di esecuzione, è possibile chiamare il metodo seguente prima dell'inizializzazione dell'agente di Engagement:
 
     /* Engagement configuration. */
     EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
@@ -294,10 +294,10 @@ Se si desidera che in fase di esecuzione, invece, si può chiamare seguente hell
     /* Initialize Engagement agent with above configuration. */
     EngagementAgent.Instance.Init(args, engagementConfiguration);
 
-stringa di connessione Hello per l'applicazione viene visualizzato nel portale di Azure classico hello.
+La stringa di connessione per l'applicazione viene visualizzata nel portale di Azure classico.
 
 ### <a name="items-name-change"></a>Modifica del nome di elementi
-Tutti gli elementi denominati *capptain* sono stati rinominati in *engagement*. Analogamente, per *Capptain* troppo*Engagement*.
+Tutti gli elementi denominati *capptain* sono stati rinominati in *engagement*. Lo stesso vale per *Capptain*, che è stato ridenominato in *Engagement*.
 
 Esempi di elementi di Capptain di uso comune:
 

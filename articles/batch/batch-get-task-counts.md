@@ -1,6 +1,6 @@
 ---
-title: "lo stato di avanzamento di un processo contando le attività dallo stato - Azure Batch aaaMonitor | Documenti Microsoft"
-description: "Monitorare lo stato di hello di un processo chiamando operazione Ottieni conteggio attività hello toocount attività per un processo. È possibile ottenere un conteggio delle attività attive, in esecuzione e completate e delle attività riuscite o non riuscite."
+title: "Monitorare lo stato di un processo conteggiando le attività in base allo stato - Azure Batch | Microsoft Docs"
+description: "Monitorare lo stato di un processo chiamando l'operazione di recupero del conteggio delle attività per conteggiare le attività per ogni processo. È possibile ottenere un conteggio delle attività attive, in esecuzione e completate e delle attività riuscite o non riuscite."
 services: batch
 author: tamram
 manager: timlt
@@ -8,37 +8,37 @@ ms.service: batch
 ms.topic: article
 ms.date: 08/02/2017
 ms.author: tamram
-ms.openlocfilehash: 03957d8a3d678bf44587f3bc7f988a76885c2af0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: ceff59d7063b60a1344a47489d3d73e0e8ee07df
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="count-tasks-by-state-toomonitor-a-jobs-progress-preview"></a>Conteggio attività toomonitor stato avanzamento di un processo (anteprima)
+# <a name="count-tasks-by-state-to-monitor-a-jobs-progress-preview"></a>Conteggiare le attività in base allo stato per monitorare lo stato di un processo (anteprima)
 
-Azure Batch offre un modo efficiente toomonitor hello lo stato di avanzamento di un processo durante l'esecuzione delle relative attività. È possibile chiamare hello [Ottieni conteggio attività] [ rest_get_task_counts] toofind operazione quante attività sono in uno stato attivo, in esecuzione o completato e quanti hanno esito positivo o negativo. Contando il numero di hello di attività in ogni stato, è più facilmente possibile visualizzare utente tooa di stato di avanzamento del processo di hello o rilevare ritardi imprevisti o errori che possono influire sul processo hello.
+Azure Batch offre un pratico metodo per monitorare lo stato di un processo mentre questo esegue le proprie attività. È possibile chiamare l'operazione di [recupero dei conteggi delle attività][rest_get_task_counts] per determinare quante attività hanno stato attivo, in esecuzione o completato e quante sono riuscite o non riuscite. Conteggiando il numero di attività in ogni stato, è possibile visualizzare più facilmente lo stato del processo a un utente o rilevare ritardi o errori imprevisti che possono avere impatto sul processo.
 
 > [!IMPORTANT]
-> Ciao operazione Ottieni conteggio attività è attualmente in anteprima e non è ancora disponibile in Azure per enti pubblici, Cina di Azure e Azure in Germania. 
+> L'operazione di recupero dei conteggi delle attività è attualmente in versione di anteprima e non è ancora disponibile in Azure per enti pubblici, Azure Cina e Azure Germania. 
 >
 >
 
 ## <a name="how-tasks-are-counted"></a>Come vengono conteggiate le attività
 
-operazione Ottieni conteggio attività Hello conta le attività dallo stato, come indicato di seguito:
+L'operazione di recupero dei conteggi delle attività conta le attività in base allo stato, nel modo seguente:
 
-- Un'attività viene considerata **active** quando è in coda e in grado di toorun, ma non è attualmente assegnato tooa del nodo di calcolo. Un'attività viene conteggiata come **attiva** anche se dipende da un'attività padre non ancora completata. Per ulteriori informazioni sulle dipendenze delle attività, vedere [creare relazioni tra attività attività toorun che dipendono da altre attività](batch-task-dependencies.md). 
-- Un'attività viene considerata **esecuzione** quando è stato assegnato il nodo di calcolo tooa, ma non è ancora stata completata. Un'attività viene considerata **esecuzione** quando lo stato è `preparing` o `running`, come indicato dal hello [ottenere informazioni su un'attività] [ rest_get_task] operazione.
-- Un'attività viene considerata **completato** quando non è più idoneo toorun. Un'attività conteggiata come **completata** è stata in genere completata correttamente o non è riuscita e ha anche superato il limite di nuovi tentativi. 
+- Un'attività viene conteggiata come **attiva** quando è accodata e può essere eseguita, ma non è attualmente assegnata a un nodo di calcolo. Un'attività viene conteggiata come **attiva** anche se dipende da un'attività padre non ancora completata. Per altre informazioni sulle dipendenze delle attività, vedere [Creare relazioni tra attività per eseguire attività che dipendono da altre attività](batch-task-dependencies.md). 
+- Un'attività viene conteggiata come **in esecuzione** quando è stata assegnata a un nodo di calcolo, ma non è ancora completata. Un'attività viene conteggiata come **in esecuzione** quando il suo stato è `preparing` o `running`, come indicato dall'operazione di [recupero delle informazioni su un'attività][rest_get_task].
+- Un'attività viene conteggiata come **completata** quando non è più idonea per l'esecuzione. Un'attività conteggiata come **completata** è stata in genere completata correttamente o non è riuscita e ha anche superato il limite di nuovi tentativi. 
 
-Hello operazione Ottieni conteggio attività indica inoltre il numero di attività hanno esito positivo o negativo. Batch determina se un'attività è riuscita o meno controllando hello **risultato** proprietà di hello [executionInfo] [https://docs.microsoft.com/rest/api/batchservice/get-information-about-a-task#executionInfo] proprietà:
+L'operazione di recupero dei conteggi delle attività indica anche quante attività sono riuscite o non sono riuscite. Batch determina se un'attività è riuscita o meno controllando la proprietà **result** della proprietà [executionInfo][https://docs.microsoft.com/rest/api/batchservice/get-information-about-a-task#executionInfo]:
 
-    - Un'attività viene considerata **ha avuto esito positivo** se hello risultato dell'esecuzione dell'attività è `success`.
-    - Un'attività viene considerata **Impossibile** se hello risultato dell'esecuzione dell'attività è `failure`.
+    - Un'attività viene conteggiata come **riuscita** se il risultato dell'esecuzione dell'attività è `success`.
+    - Un'attività viene conteggiata come **non riuscita** se il risultato dell'esecuzione dell'attività è `failure`.
 
 Per altre informazioni sugli stati delle attività, vedere [Get information about a task][rest_get_task] (Ottenere informazioni su un'attività).
 
-Hello .NET esempio seguente viene illustrato come attività tooretrieve conta dallo stato: 
+L'esempio di codice .NET seguente mostra come recuperare i conteggi delle attività in base allo stato: 
 
 ```csharp
 var taskCounts = await batchClient.JobOperations.GetTaskCountsAsync("job-1");
@@ -52,28 +52,28 @@ Console.WriteLine("ValidationStatus: {0}", taskCounts.ValidationStatus);
 ```
 
 > [!NOTE]
-> È possibile utilizzare un modello simile per REST e altri linguaggi supportati tooget attività i conteggi per un processo. 
+> Per ottenere i conteggi delle attività per un processo, è possibile usare un criterio simile per REST e per altri linguaggi supportati. 
 > 
 > 
 
 ## <a name="consistency-checking-for-task-counts"></a>Verifica della coerenza per i conteggi delle attività
 
-servizio Batch Hello aggrega i conteggi di attività per la raccolta dati da più parti di un sistema distribuito asincrono. tooensure attività conteggi sono corretti, Batch fornisce la convalida aggiuntiva per il conteggio di stato mediante l'esecuzione di verifiche di coerenza su più componenti di sistema hello. Batch esegue queste verifiche di coerenza, purché vi sono meno di 200.000 attività nel processo di hello. In hello improbabile che il controllo di coerenza hello rileva errori, Batch corregge risultato hello dell'operazione Ottieni conteggio attività hello in base ai risultati di hello di verifica di coerenza hello. Hello verifica di coerenza è un'ulteriore misura tooensure che i clienti che si basano su hello operazione Ottieni conteggio attività ottenere informazioni corrette di hello che necessarie per la soluzione.
+Il servizio Batch aggrega i conteggi delle attività raccogliendo dati da più parti di un sistema distribuito asincrono. Per garantire che i conteggi delle attività siano corretti, Batch offre un'ulteriore convalida per i conteggi in base allo stato tramite verifiche di coerenza su più componenti del sistema. Batch esegue queste verifiche di coerenza se il processo include meno di 200.000 attività. Nell'improbabile caso che la verifica di coerenza trovi errori, Batch corregge il risultato dell'operazione di recupero dei conteggi delle attività in base ai risultati della verifica di coerenza. La verifica di coerenza è una misura aggiuntiva per garantire che i clienti che usano l'operazione di recupero dei conteggi delle attività ricevano le informazioni corrette necessarie per la propria soluzione.
 
-Hello **validationStatus** proprietà in risposta hello indica se i Batch ha eseguito il controllo di coerenza hello. Se il Batch non è stato toocheck in grado di conteggi di stato con gli stati di hello effettivo mantenuti nel sistema hello, hello **validationStatus** impostata troppo`unvalidated`. Per motivi di prestazioni Batch non eseguirà hello verifica di coerenza se hello processo include più di 200.000 attività, pertanto hello **validationStatus** proprietà può essere impostata troppo`unvalidated` in questo caso. Tuttavia, hello attività conteggio non è necessariamente in questo caso, è altamente improbabile anche una perdita di dati molto limitato. 
+La proprietà **validationStatus** nella risposta indica se Batch ha eseguito la verifica di coerenza. Se Batch non è stato in grado di verificare i conteggi in base allo stato rispetto agli stati effettivi contenuti nel sistema, la proprietà **validationStatus** è impostata su `unvalidated`. Poiché per motivi di prestazioni Batch non esegue la verifica di coerenza se il processo include più di 200.000 attività, la proprietà **validationStatus** potrebbe essere impostata su `unvalidated` in questo caso. Tuttavia, il conteggio delle attività non è necessariamente errato in questo caso, perché anche una perdita di dati molto limitata è altamente improbabile. 
 
-Quando un'attività di modifica stato, pipeline di aggregazione hello elabora modifica hello entro pochi secondi. operazione Ottieni conteggio attività Hello riflette i conteggi delle attività hello aggiornato entro tale periodo. Tuttavia, se pipeline aggregazione hello mancati riscontri una modifica in uno stato di attività, quindi che modifica non è registrato fino al successivo passaggio di convalida hello. Durante questo periodo, i conteggi delle attività potrebbero essere leggermente imprecisi a causa di eventi non toohello, ma essi vengono corretti nel passaggio di convalida hello successivo.
+Quando un'attività cambia stato, la pipeline di aggregazione elabora la modifica in pochi secondi. L'operazione di recupero dei conteggi delle attività riflette i conteggi delle attività aggiornati in questo periodo di tempo. Tuttavia, se la pipeline di aggregazione non rileva una modifica nello stato di un'attività, la modifica non viene registrata fino al successivo passaggio di convalida. Durante questo periodo di tempo i conteggi delle attività possono essere leggermente imprecisi a causa dell'evento ignorato, ma verranno corretti nel successivo passaggio di convalida.
 
 ## <a name="best-practices-for-counting-a-jobs-tasks"></a>Procedure consigliate per il conteggio della attività di un processo
 
-La chiamata di operazione Ottieni conteggio attività hello è tooreturn modo più efficiente di hello un conteggio delle attività di un processo per stato di base. Se si utilizza una versione del servizio Batch 2017-06-01.5.1, si consiglia di scrittura o aggiornamento del codice toouse Ottieni conteggio attività.
+La chiamata dell'operazione di recupero dei conteggi delle attività è il modo più efficiente per restituire un conteggio di base delle attività di un processo in base allo stato. Se si usa il servizio Batch versione 2017-06-01.5.1, è consigliabile scrivere o aggiornare il codice in modo da usare l'operazione di recupero dei conteggi delle attività.
 
-in precedenza 2017-06-01.5.1 Hello operazione Ottieni conteggio attività non è disponibile nelle versioni del servizio Batch. Se si utilizza una versione precedente del servizio di hello, quindi utilizzare un'attività di toocount query di elenco in un processo. Per ulteriori informazioni, vedere [creare query in modo efficiente le risorse di Batch toolist](batch-efficient-list-queries.md).
+Questa operazione non è disponibile nelle versioni del servizio Batch precedenti alla 2017-06-01.5.1. Se si usa una versione meno recente del servizio, usare una query di tipo elenco per conteggiare le attività in un processo. Per altre informazioni, vedere [Creare query per elencare le risorse di Batch in modo efficiente](batch-efficient-list-queries.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* Vedere hello [Cenni preliminari sulle funzionalità di Batch](batch-api-basics.md) toolearn ulteriori informazioni sulle funzionalità e concetti relativi al servizio Batch. articolo Hello illustra risorse Batch primarie hello come pool, nodi di calcolo, i processi e attività e fornisce una panoramica delle funzionalità del servizio hello.
-* Nozioni di base hello dello sviluppo di un'applicazione abilitata per Batch utilizzando hello [libreria client .NET per Batch](batch-dotnet-get-started.md) o [Python](batch-python-tutorial.md). Questi articoli introduttivi consentono di eseguire un'applicazione funzionante che utilizza hello Batch servizio tooexecute un carico di lavoro su più nodi di calcolo.
+* Per altre informazioni sui concetti e sulle funzionalità del servizio Batch, vedere [Panoramica delle funzionalità di Batch](batch-api-basics.md). L'articolo descrive le risorse principali di Batch, tra cui pool, nodi di calcolo, processi e attività, e include una panoramica delle funzionalità del servizio.
+* Apprendere le nozioni di base dello sviluppo di un'applicazione abilitata per Batch con la [libreria client Batch .NET](batch-dotnet-get-started.md) o con [Python](batch-python-tutorial.md). Gli articoli introduttivi mostrano un'applicazione funzionante che usa il servizio Batch per eseguire un carico di lavoro in più nodi di calcolo.
 
 
 [rest_get_task_counts]: https://docs.microsoft.com/rest/api/batchservice/get-the-task-counts-for-a-job

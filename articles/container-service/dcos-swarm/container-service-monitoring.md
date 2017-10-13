@@ -1,6 +1,6 @@
 ---
-title: cluster di controller di dominio o sistema operativo Azure aaaMonitor - Datadog | Documenti Microsoft
-description: Monitorare un cluster del servizio contenitore di Azure con Datadog. Utilizzare hello controller di dominio o del sistema operativo dell'interfaccia utente toodeploy hello Datadog agenti tooyour cluster web.
+title: Monitorare cluster DC/OS di Azure - Datadog | Documentazione Microsoft
+description: Monitorare un cluster del servizio contenitore di Azure con Datadog. Usare l'interfaccia utente Web del controller di dominio/sistema operativo per distribuire gli agenti Datadog al cluster.
 services: container-service
 documentationcenter: 
 author: sauryadas
@@ -16,37 +16,37 @@ ms.workload: infrastructure
 ms.date: 07/28/2016
 ms.author: saudas
 ms.custom: mvc
-ms.openlocfilehash: 10268c04b5c2ef393429e706ed4a467fff80f718
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9dd451f994940d7cc3a59bd7fd08a8f067345e34
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="monitor-an-azure-container-service-dcos-cluster-with-datadog"></a>Monitorare un cluster DC/OS del servizio contenitore di Azure con Datadog
-In questo articolo si distribuirà Datadog agenti tooall hello agente i nodi del cluster del servizio di contenitore di Azure. Per questa configurazione, sarà necessario un account con Datadog. 
+In questo articolo verranno distribuiti agenti di Datadog in tutti i nodi agente nel cluster del servizio contenitore di Azure. Per questa configurazione, sarà necessario un account con Datadog. 
 
 ## <a name="prerequisites"></a>Prerequisiti
-[Distribuire](container-service-deployment.md) e [connettere](../container-service-connect.md) un cluster configurato dal servizio contenitore di Azure. Esplorare hello [dell'interfaccia utente maratona](container-service-mesos-marathon-ui.md). Andare troppo[http://datadoghq.com](http://datadoghq.com) tooset Datadog conto. 
+[Distribuire](container-service-deployment.md) e [connettere](../container-service-connect.md) un cluster configurato dal servizio contenitore di Azure. Esplorare l' [interfaccia utente](container-service-mesos-marathon-ui.md)di Marathon. Andare a [http://datadoghq.com](http://datadoghq.com) per configurare un account Datadog. 
 
 ## <a name="datadog"></a>Datadog
-Datadog è un servizio che raccoglie dati di monitoraggio dai contenitori all'interno del cluster del servizio contenitore di Azure. Datadog è dotato di un dashboard di integrazione Docker in cui è possibile visualizzare metriche specifiche all'interno dei propri contenitori. Le metriche raccolte dai contenitori sono organizzate per CPU, memoria, rete e I/O. Datadog suddivide le metriche in contenitori e immagini. Un esempio di quali hello dell'interfaccia utente sembra che per la CPU è di sotto l'utilizzo.
+Datadog è un servizio che raccoglie dati di monitoraggio dai contenitori all'interno del cluster del servizio contenitore di Azure. Datadog è dotato di un dashboard di integrazione Docker in cui è possibile visualizzare metriche specifiche all'interno dei propri contenitori. Le metriche raccolte dai contenitori sono organizzate per CPU, memoria, rete e I/O. Datadog suddivide le metriche in contenitori e immagini. Un esempio dell'aspetto dell'interfaccia utente per l'utilizzo della CPU è riportato di seguito.
 
 ![Interfaccia utente Datadog](./media/container-service-monitoring/datadog4.png)
 
 ## <a name="configure-a-datadog-deployment-with-marathon"></a>Configurare una distribuzione Datadog con Marathon
-Questa procedura viene illustrato come tooconfigure e la distribuzione Datadog applicazioni tooyour cluster con maratona. 
+Questi passaggi illustrano come configurare e distribuire le applicazioni Datadog nel cluster con Marathon. 
 
-Accedere all'interfaccia utente del controller di dominio/sistema operativo da [http://localhost:80/](http://localhost:80/). Una volta nell'interfaccia utente di controller di dominio/OS passare hello toohello "Universo" che si trova in hello in basso a sinistra e quindi cercare "Datadog" e fare clic su "Installa".
+Accedere all'interfaccia utente del controller di dominio/sistema operativo da [http://localhost:80/](http://localhost:80/). Dall'interfaccia utente del controller di dominio/sistema operativo passare a "Universe" ("Universo") in basso a sinistra e quindi cercare "Datadog" e fare clic su "Install".
 
-![Pacchetto Datadog all'interno di hello l'universo dei controller di dominio o del sistema operativo](./media/container-service-monitoring/datadog1.png)
+![Pacchetto Datadog in Universe (Universo) per il controller di dominio/sistema operativo](./media/container-service-monitoring/datadog1.png)
 
-Ora toocomplete hello configurazione sarà necessario un account Datadog o un account di prova. Dopo aver eseguito il nel sito Web Datadog toohello cercare toohello sinistra e passare tooIntegrations -> quindi [API](https://app.datadoghq.com/account/settings#api). 
+Per completare la configurazione, sarà necessario un account cloud Datadog o un account di valutazione gratuita. Dopo aver eseguito l'accesso al sito Web di Datadog, a sinistra passare a Integrations (Integrazioni) -> [APIs](https://app.datadoghq.com/account/settings#api) (API). 
 
 ![Chiave API di Datadog](./media/container-service-monitoring/datadog2.png)
 
-Quindi immettere la chiave API in configurazione Datadog hello all'interno di hello l'universo dei controller di dominio o del sistema operativo. 
+Immettere quindi la chiave API nella configurazione di Datadog in Universe (Universo) per il controller di dominio/sistema operativo. 
 
-![Configurazione Datadog in hello l'universo dei controller di dominio o del sistema operativo](./media/container-service-monitoring/datadog3.png) 
+![Configurazione di Datadog in Universe (Universo) per il controller di dominio/sistema operativo](./media/container-service-monitoring/datadog3.png) 
 
-In hello sopra configurazione istanze sono impostate too10000000 pertanto ogni volta che viene aggiunto un nuovo nodo cluster toohello Datadog distribuirà automaticamente un nodo toothat agente. Si tratta di una soluzione temporanea. Dopo aver installato il pacchetto di hello si deve passare sito Web Datadog toohello indietro e si trova "[dashboard](https://app.datadoghq.com/dash/list)." Da qui si vedrà Custom and Integration Dashboards. Hello [dashboard Docker](https://app.datadoghq.com/screen/integration/docker) disporrà di tutte le metriche di contenitore hello è necessario per il monitoraggio del cluster. 
+Nella configurazione precedente le istanze sono impostate su 10000000 in modo che quando viene aggiunto un nuovo nodo al cluster Datadog distribuirà automaticamente un agente in tale nodo. Si tratta di una soluzione temporanea. Dopo aver installato il pacchetto si dovrebbe tornare al sito Web Datadog e cercare "[Dashboards](https://app.datadoghq.com/dash/list)" (Dashboard). Da qui si vedrà Custom and Integration Dashboards. Il [Docker dashboard](https://app.datadoghq.com/screen/integration/docker) (Dashboard Docker) conterrà tutte le metriche del contenitore necessarie per il monitoraggio del cluster. 
 

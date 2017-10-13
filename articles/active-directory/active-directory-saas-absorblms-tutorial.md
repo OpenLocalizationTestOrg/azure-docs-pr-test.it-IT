@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con Absorb LMS | Documentazione Microsoft'
-description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e assorbire LMS.
+description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e Absorb LMS.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -12,269 +12,265 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/26/2017
+ms.date: 08/15/2017
 ms.author: jeedes
-ms.openlocfilehash: a140a78a3a9474a6372a3ad4fb8251bd2452c990
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 549e353bb41f1f31bc0441294d0a8066779402e6
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-absorb-lms"></a>Esercitazione: Integrazione di Azure Active Directory con Absorb LMS
 
-In questa esercitazione, è illustrato come toointegrate Absorb LMS con Azure Active Directory (Azure AD).
+Questa esercitazione descrive come integrare Absorb LMS con Azure Active Directory (Azure AD).
 
-Integrazione di assorbire LMS con Azure AD fornisce hello seguenti vantaggi:
+L'integrazione di Absorb LMS con Azure AD offre i vantaggi seguenti:
 
-- È possibile controllare in Azure AD che ha accesso tooAbsorb LMS
-- È possibile abilitare l'utenti tooautomatically get connesso tooAbsorb LMS (Single Sign-On) con i propri account Azure AD
-- È possibile gestire gli account in un'unica posizione centrale - hello portale di Azure
+- In Azure AD è possibile controllare chi può accedere ad Absorb LMS.
+- È possibile abilitare gli utenti per l'accesso automatico ad Absorb LMS, tramite l'accesso Single Sign-On, con i propri account di Azure AD.
+- È possibile gestire gli account da una posizione centrale, il portale di Azure.
 
-Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere. [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Per altre informazioni sull'integrazione di app SaaS, Software as a Service, con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-integrazione di Azure AD con assorbire LMS tooconfigure, è necessario hello seguenti elementi:
+Per configurare l'integrazione di Azure AD con Absorb LMS, sono necessari gli elementi seguenti:
 
 - Sottoscrizione di Azure AD.
-- Sottoscrizione di Absorb LMS abilitata per l'accesso Single Sign-On.
+- Sottoscrizione di Absorb LMS abilitata per l'accesso Single Sign-On
 
 > [!NOTE]
-> hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.
+> È consigliabile non usare un ambiente di produzione per questa esercitazione.
 
-passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:
+A questo scopo, seguire queste indicazioni:
 
 - Non usare l'ambiente di produzione a meno che non sia necessario.
 - Se non è disponibile un ambiente di valutazione di Azure AD, è possibile [ottenere una versione di valutazione di un mese](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Descrizione dello scenario
-In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. scenario di Hello descritto in questa esercitazione è composto da due componenti principali:
+In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:
 
-1. Aggiunta di assorbire LMS dalla raccolta hello
-2. Configurazione e test dell'accesso Single Sign-On di Azure AD
+* Aggiunta di Absorb LMS dalla raccolta
+* Configurazione e test dell'accesso Single Sign-On di Azure AD
 
-## <a name="adding-absorb-lms-from-hello-gallery"></a>Aggiunta di assorbire LMS dalla raccolta hello
-integrazione hello tooconfigure di assorbire LMS in tooAzure Active Directory, è necessario tooadd Absorb LMS dall'elenco di tooyour hello raccolta di App SaaS gestite.
+## <a name="add-absorb-lms-from-the-gallery"></a>Aggiungere Absorb LMS dalla raccolta
+Per configurare l'integrazione di Absorb LMS in Azure AD, aggiungere Absorb LMS dalla raccolta al proprio elenco di app SaaS gestite.
 
-**tooadd Absorb LMS dalla raccolta di hello, eseguire hello alla procedura seguente:**
+Per aggiungere Absorb LMS dalla raccolta, seguire questa procedura:
 
-1. In hello  **[portale di Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona. 
+1. Nel [portale di Azure](https://portal.azure.com) fare clic sull'icona **Azure Active Directory** nel riquadro sinistro. 
 
-    ![pulsante di Hello Azure Active Directory][1]
+    ![Pulsante Azure Active Directory][1]
 
-2. Passare troppo**applicazioni aziendali**. Quindi andare troppo**tutte le applicazioni**.
+2. Passare ad **Applicazioni aziendali** > **Tutte le applicazioni**.
 
-    ![Pannello di applicazioni Enterprise Hello][2]
+    ![Riquadro Applicazioni aziendali][2]
     
-3. tooadd nuova applicazione, fare clic su **nuova applicazione** pulsante nella parte superiore di hello della finestra di dialogo.
+3. Per aggiungere un'applicazione selezionare il pulsante **Nuova applicazione**.
 
-    ![Nuovo pulsante dell'applicazione Hello][3]
+    ![Pulsante Nuova applicazione][3]
 
-4. Nella casella di ricerca hello, digitare **assorbire LMS**selezionare **assorbire LMS** dal pannello risultati quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.
+4. Nella casella di ricerca digitare **Absorb LMS**, selezionare **Absorb LMS** nel pannello dei risultati e quindi selezionare il pulsante **Aggiungi**.
 
-    ![Assorbire LMS nell'elenco risultati hello](./media/active-directory-saas-absorblms-tutorial/tutorial_absorblms_addfromgallery.png)
+    ![Absorb LMS nell'elenco risultati](./media/active-directory-saas-absorblms-tutorial/tutorial_absorblms_addfromgallery.png)
 
 ## <a name="configure-and-test-azure-ad-single-sign-on"></a>Configurare e testare l'accesso Single Sign-On di Azure AD
 
-In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con Absorb LMS usando un utente test di nome "Britta Simon".
+In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con Absorb LMS in base un utente test di nome Britta Simon.
 
-Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello in assorbire LMS è tooa utente in Azure AD. In altre parole, una relazione di collegamento tra un utente di Azure AD e l'utente correlato hello assorbire LMS deve toobe stabilita.
+Per il funzionamento dell'accesso Single Sign-On, Azure AD deve conoscere qual è l'utente controparte di Absorb LMS in Azure AD. In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente corrispondente in Absorb LMS.
 
-Questa relazione di collegamento viene stabilita tramite l'assegnazione valore hello di hello **nome utente** in Azure AD come valore hello hello **Username** in assorbire LMS.
+La relazione di collegamento viene stabilita assegnando il valore di *nome utente* in Azure AD come valore di *Username* (Nome utente) in Absorb LMS.
 
-tooconfigure e prova AD Azure single sign-on con assorbire LMS, è necessario hello toocomplete seguenti blocchi predefiniti:
-
-1. **[Configurare Azure Active Directory Single Sign-On](#configure-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.
-2. **[Creare un utente prova AD Azure](#create-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.
-3. **[Creare un utente test assorbire LMS](#create-an-absorb-lms-test-user)**  -toohave un equivalente di Britta Simon in LMS assorbire che è la rappresentazione toohello collegato Azure AD dell'utente.
-4. **[Assegnare l'utente test hello Azure AD](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.
-5. **[Testare single sign-on](#test-single-sign-on)**  -tooverify hello se funzionamento della configurazione.
+Per configurare e testare l'accesso Single Sign-On di Azure AD con Absorb LMS, completare i blocchi nelle cinque sezioni successive.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Configurare l'accesso Single Sign-On di Azure AD
 
-In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure e configurare l'accesso single sign-on nell'applicazione assorbire LMS.
+In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di Azure e viene configurato l'accesso Single Sign-On nell'applicazione Absorb LMS.
 
-**Azure AD tooconfigure single sign-on con assorbire LMS, eseguire hello alla procedura seguente:**
+Per configurare l'accesso Single Sign-On di Azure AD con Absorb LMS, seguire questa procedura:
 
-1. Nel portale di Azure su hello hello **assorbire LMS** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.
+1. Nella pagina di integrazione dell'applicazione **Absorb LMS** del portale di Azure selezionare **Single Sign-On**.
 
     ![Collegamento per la configurazione dell'accesso Single Sign-On][4]
 
-2. In hello **Single sign-on** finestra di dialogo Seleziona **modalità** come **basato su SAML Sign-on** tooenable single sign-on.
+2. Nella finestra di dialogo **Single Sign-On** selezionare **Accesso basato su SAML** nella casella **Modalità** per abilitare l'accesso Single Sign-On.
  
     ![Finestra di dialogo Single Sign-On](./media/active-directory-saas-absorblms-tutorial/tutorial_absorblms_samlbase.png)
 
-3. In hello **assorbire LMS dominio e gli URL** seguire hello alla procedura seguente:
+3. Nella sezione **Absorb LMS Domain and URLs** (URL e dominio di Absorb LMS) seguire questa procedura:
 
     ![Informazioni su URL e dominio per l'accesso Single Sign-On di Absorb LMS](./media/active-directory-saas-absorblms-tutorial/tutorial_absorblms_url.png)
 
-    a. In hello **identificatore** casella di testo, digitare un URL utilizzando hello seguente modello:`https://<subdomain>.myabsorb.com/Account/SAML`
+    a. Nella casella **Identificatore** digitare un URL che usi la sintassi seguente: `https://<subdomain>.myabsorb.com/Account/SAML`.
 
-    b. In hello **URL di risposta** casella di testo, digitare un URL utilizzando hello seguente modello:`https://<subdomain>.myabsorb.com/Account/SAML`
+    b. Nella casella **URL di risposta** digitare un URL che usi la sintassi seguente: `https://<subdomain>.myabsorb.com/Account/SAML`.
      
     > [!NOTE] 
-    > Questi valori non sono hello reale. Aggiornare questi valori con URL di risposta e identificatore effettivo hello. Contatto [team di supporto Client di LMS assorbire](https://www.absorblms.com/support) tooget questi valori. 
+    > Questi URL non sono i valori reali. Aggiornarli con l'identificatore e l'URL di risposta effettivi. Per ottenere questi valori, contattare il [team di supporto clienti di Absorb LMS](https://www.absorblms.com/support). 
 
-4. In hello **certificato di firma SAML** fare clic su **Metadata XML** e quindi salvare il file di metadati hello nel computer in uso.
+4. Nella sezione **Certificato di firma SAML** selezionare **XML metadati** nella colonna **Download** e quindi salvare il file dei metadati nel computer.
 
-    ![collegamento al download del certificato Hello](./media/active-directory-saas-absorblms-tutorial/tutorial_absorblms_certificate.png) 
+    ![Collegamento al download del certificato di firma](./media/active-directory-saas-absorblms-tutorial/tutorial_absorblms_certificate.png) 
 
-6. Fare clic sul pulsante **Salva** .
+5. Selezionare **Salva**.
 
     ![Pulsante Salva di Configura accesso Single Sign-On](./media/active-directory-saas-absorblms-tutorial/tutorial_general_400.png)
     
-7. In hello **assorbire configurazione LMS** fare clic su **configurare LMS assorbire** tooopen **Configura sign-on** finestra. Hello copia **Sign-Out URL e SAML Single Sign-On Service URL** da hello **sezione di riferimento rapido.**
+6. Nella sezione **Absorb LMS Configuration** (Configurazione di Absorb LMS) selezionare **Configure Absorb LMS** (Configura Absorb LMS) per aprire la finestra **Configura accesso** e copiare il valore di **Sign-Out URL** (URL di disconnessione) nella **sezione Riferimento rapido.**
 
-    ![Configurazione di Absorb LMS](./media/active-directory-saas-absorblms-tutorial/tutorial_absorblms_configure.png) 
+    ![Riquadro della configurazione di Absorb LMS](./media/active-directory-saas-absorblms-tutorial/tutorial_absorblms_configure.png) 
 
-8. In una finestra del web browser, accedere come amministratore nel sito della società di assorbire LMS tooyour.
+7. In una nuova finestra del Web browser accedere al sito aziendale di Absorb LMS come amministratore.
 
-9. Fare clic su hello **icona Account** sull'interfaccia di amministrazione di hello. 
+8. Selezionare il pulsante **Account** in alto a destra. 
 
-    ![Configura accesso Single Sign-On](./media/active-directory-saas-absorblms-tutorial/1.png)
+    ![Pulsante Account](./media/active-directory-saas-absorblms-tutorial/1.png)
 
-10. Fare clic su **Impostazioni portale**.
+9. Nel riquadro Account selezionare **Portal Settings** (Impostazioni del portale).
 
-    ![Configura accesso Single Sign-On](./media/active-directory-saas-absorblms-tutorial/2.png)
+    ![Collegamento Impostazioni del portale](./media/active-directory-saas-absorblms-tutorial/2.png)
     
-11. Fare clic su hello **utenti** scheda.
+10. Selezionare la scheda **Utenti** ,
 
-    ![Configura accesso Single Sign-On](./media/active-directory-saas-absorblms-tutorial/3.png)
+    ![La scheda Utenti](./media/active-directory-saas-absorblms-tutorial/3.png)
 
-12. Eseguire hello seguendo i passaggi tooaccess hello Single Sign-On i campi della configurazione:
+11. Nella pagina di configurazione Single Sign-On eseguire la procedura seguente:
 
-    ![Configura accesso Single Sign-On](./media/active-directory-saas-absorblms-tutorial/4.png)
+    ![Pagina di configurazione Single Sign-on](./media/active-directory-saas-absorblms-tutorial/4.png)
 
-    a. Seleziona hello appropriato **modalità**.
+    a. Nella casella **Mode** (Modalità) selezionare **Identity Provider Initiated** (Avviato dal provider di identità).
 
-    b. Aprire hello certificato scaricato dal portale di Azure nel blocco note, hello rimuovere hello **---BEGIN CERTIFICATE---** e **---END CERTIFICATE---** tag e quindi incollare hello rimanente contenuto in Hello **chiave** casella di testo.
+    b. Nel blocco note, aprire il certificato scaricato dal portale di Azure. Rimuovere i tag **-----BEGIN CERTIFICATE-----** ed **-----END CERTIFICATE-----**. Quindi, nella casella **Key** (Chiave) incollare il contenuto rimanente.
     
-    c. In hello **Id proprietà**, selezionare hello attributo appropriato che è stato configurato come hello identificatore utente in hello Azure Active Directory (ad esempio, se viene selezionato userprinciplename hello in Azure AD, nome utente potrebbe essere selezionato qui).
+    c. Nella casella **Id Property** (ID proprietà) selezionare l'attributo configurato come identificatore dell'utente in Azure AD. Ad esempio, se in Azure AD è stato selezionato *userPrincipalName*, selezionare **Username**.
 
-    d. In hello **URL di accesso**, incollare hello **"SAML Single Sign-On Service URL"** valore copiato da hello **Configura sign-on** finestra di hello portale di Azure.
+    d. Nella casella **Login URL** (URL di accesso) incollare l'**URL di accesso utente** dalla pagina **Proprietà** dell'applicazione del portale di Azure.
 
-    e. In hello **Logout URL**, incollare hello **"Sign-Out URL"** valore copiato da hello **Configura sign-on** finestra di hello portale di Azure.
+    e. In **Logout URL** (URL disconnessione) incollare il valore dell'**URL di disconnessione** copiato dalla finestra **Configura accesso** del portale di Azure.
 
-13. Abilitare **Only Allow SSO Login** (Consenti solo accesso SSO).
+12. Spostare **Only Allow SSO Login** (Consenti solo accesso SSO) su **On** (Attivo).
 
-    ![Configura accesso Single Sign-On](./media/active-directory-saas-absorblms-tutorial/5.png)
+    ![Abilitare Only Allow SSO Login](./media/active-directory-saas-absorblms-tutorial/5.png)
 
-14. Fare clic su **Salva**.
+13. Selezionare **Salva**.
 
 > [!TIP]
-> È ora possibile leggere una versione di queste istruzioni all'interno di hello concisa [portale di Azure](https://portal.azure.com), mentre si stanno impostando app hello!  Dopo l'aggiunta di questa app da hello **Active Directory > applicazioni aziendali** fare semplicemente clic su hello **Single Sign-On** scheda e l'accesso hello incorporato documentazione tramite hello  **Configurazione** sezione nella parte inferiore di hello. È possibile leggere altre informazioni sulla funzionalità di documentazione embedded hello qui: [AD Azure incorporato documentazione]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Un riepilogo delle istruzioni è disponibile nel [portale di Azure](https://portal.azure.com) durante la configurazione dell'app. Dopo aver aggiunto l'app dalla sezione **Active Directory** > **Applicazioni aziendali** selezionare la scheda **Single Sign-On** e accedere alla documentazione incorporata tramite la sezione **Configurazione** nella parte inferiore. Per altre informazioni, vedere la [documentazione incorporata su Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985).
 
 ### <a name="create-an-azure-ad-test-user"></a>Creare un utente test di Azure AD
 
-obiettivo di Hello di questa sezione è un utente di test nel portale di Azure chiamato Britta Simon hello toocreate.
+In questa sezione viene creato un utente di test di nome Britta Simon nel portale di Azure.
 
 ![Creare un utente test di Azure AD][100]
 
-**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**
+Per creare un utente di test in Azure AD, seguire questa procedura:
 
-1. In hello **portale di Azure**via hello riquadro di spostamento a sinistra, fare clic su **Azure Active Directory** icona.
+1. Nel portale di Azure fare clic su **Azure Active Directory** nel riquadro sinistro.
 
-    ![pulsante di Hello Azure Active Directory](./media/active-directory-saas-absorblms-tutorial/create_aaduser_01.png) 
+    ![Pulsante Azure Active Directory](./media/active-directory-saas-absorblms-tutorial/create_aaduser_01.png) 
 
-2. elenco di hello toodisplay di utenti, andare troppo**utenti e gruppi** e fare clic su **tutti gli utenti**.
+2. Per visualizzare l'elenco di utenti, selezionare **Utenti e gruppi** > **Tutti gli utenti**.
     
-    ![Hello "Utenti e gruppi" e i collegamenti di "Tutti gli utenti"](./media/active-directory-saas-absorblms-tutorial/create_aaduser_02.png) 
+    ![Collegamenti "Utenti e gruppi" e "Tutti gli utenti"](./media/active-directory-saas-absorblms-tutorial/create_aaduser_02.png) 
 
-3. Nella parte superiore di hello della finestra di dialogo hello fare clic su **Aggiungi** tooopen hello **utente** finestra di dialogo.
+3. Nella parte superiore della finestra di dialogo selezionare **Aggiungi**.
  
-    ![pulsante Aggiungi Hello](./media/active-directory-saas-absorblms-tutorial/create_aaduser_03.png) 
+    ![Pulsante Aggiungi](./media/active-directory-saas-absorblms-tutorial/create_aaduser_03.png) 
 
-4. In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:
+4. Nella finestra di dialogo **Utente** seguire questa procedura:
  
-    ![finestra di dialogo utente Hello](./media/active-directory-saas-absorblms-tutorial/create_aaduser_04.png) 
+    ![Finestra di dialogo Utente](./media/active-directory-saas-absorblms-tutorial/create_aaduser_04.png) 
 
-    a. In hello **nome** casella tipo **BrittaSimon**.
+    a. Nella casella **Nome** digitare **BrittaSimon**.
 
-    b. In hello **nome utente** casella di testo, hello tipo **indirizzo di posta elettronica** di BrittaSimon.
+    b. Nella casella di testo **Nome utente** digitare l'indirizzo di posta elettronica di Britta Simon.
 
-    c. Selezionare **Show Password** e annotare il valore di hello di hello **Password**.
+    c. Selezionare la casella di controllo **Mostra password** e quindi prendere nota del valore nella casella **Password**.
 
-    d. Fare clic su **Crea**.
+    d. Selezionare **Crea**.
 
 ### <a name="create-an-absorb-lms-test-user"></a>Creare un utente di test di Absorb LMS
 
-toolog agli utenti di Azure AD tooenable in tooAbsorb LMS, è necessario eseguirne il provisioning in tooAbsorb LMS.  
-In Absorb LMS il provisioning è un'attività manuale.
+Affinché gli utenti di Azure AD possano accedere ad Absorb LMS devono essere configurati in Absorb LMS.  
 
-**tooprovision un account utente, eseguire hello alla procedura seguente:**
+In Absorb LMS la configurazione è un'attività manuale.
 
-1. Accedi tooyour sito della società assorbire LMS come amministratore.
+Per configurare un account utente, effettuare le operazioni seguenti:
 
-2. Fare clic sulla scheda **Utenti** scheda.
+1. Accedere al sito aziendale di Absorb LMS come amministratore.
 
-    ![Invita persone](./media/active-directory-saas-absorblms-tutorial/absorblms_users.png)
+2. Nel riquadro a sinistra selezionare **Users** (Utenti).
 
-3. Fare clic su **utenti** in hello **utenti** scheda.
+    ![Collegamento utenti di Absorb LMS](./media/active-directory-saas-absorblms-tutorial/absorblms_users.png)
 
-    ![Invita persone](./media/active-directory-saas-absorblms-tutorial/absorblms_userssub.png)
+3. Nel riquadro **Users** (Utenti) selezionare **Users** (Utenti).
 
-4.  Dal menu a discesa **Aggiungi nuovo** selezionare **Utente**.
+    ![Collegamento Utenti](./media/active-directory-saas-absorblms-tutorial/absorblms_userssub.png)
 
-    ![Invita persone](./media/active-directory-saas-absorblms-tutorial/absorblms_createuser.png)
+4. Nell'elenco a discesa **Add New** (Aggiungi nuovo) selezionare **User** (Utente).
 
-5. In hello **Aggiungi utente** eseguire hello alla procedura seguente:
+    ![Elenco a discesa Aggiungi nuovo](./media/active-directory-saas-absorblms-tutorial/absorblms_createuser.png)
 
-    ![Invita persone](./media/active-directory-saas-absorblms-tutorial/user.png)
+5. Nella pagina **Add User** (Aggiungi utente) eseguire la procedura seguente:
 
-    a. In hello **nome** casella di testo, nome del primo tipo hello come Laura.
+    ![Pagina Aggiungi utente](./media/active-directory-saas-absorblms-tutorial/user.png)
 
-    b. In hello **cognome** casella di testo, digitare hello cognome come Simon.
+    a. Nella casella di testo **First Name** (Nome) digitare il nome, ad esempio **Britta**.
+
+    b. Nella casella di testo **Last Name** (Cognome) digitare il cognome, ad esempio **Simon**.
     
-    c. In hello **Username** casella di testo, digitare il nome utente hello come Britta Simon.
+    c. Nella casella di testo **Username** (Nome utente) digitare il nome completo, ad esempio **Britta Simon**.
 
-    d. In hello **Password** casella di testo, digitare la password di Britta Simon hello.
+    d. Nella casella **Password** digitare la password di Britta Simon.
 
-    e. In hello **Conferma Password** casella di testo, hello tipo stessa password.
+    e. Nella casella **Confirm Password** (Conferma la password) ridigitare la password.
     
-    f. Rendere la password **attiva**.   
+    f. Impostare il pulsante **Is Active** (È attivo) su **Active** (Attivo).  
 
-6. Fare clic su **Salva**.
+6. Selezionare **Salva**.
  
-### <a name="assign-hello-azure-ad-test-user"></a>Assegnare l'utente test hello Azure AD
+### <a name="assign-the-azure-ad-test-user"></a>Assegnare l'utente test di Azure AD
 
-In questa sezione per abilitare Britta Simon toouse single sign-on Azure concessione dell'accesso tooAbsorb LMS.
+In questa sezione l'utente Britta Simon viene abilitata per l'uso dell'accesso Single Sign-On di Azure concedendole l'accesso ad Absorb LMS.
 
-![Assegnazione del ruolo utente hello][200]
+![Assegnare il ruolo utente][200]
 
-**tooassign Britta Simon tooAbsorb LMS, eseguire hello alla procedura seguente:**
+Per assegnare Britta Simon ad Absorb LMS, seguire questa procedura:
 
-1. Nel portale di Azure hello, aprire la visualizzazione di applicazioni hello, quindi selezionare Visualizza directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.
+1. Nel portale di Azure aprire la visualizzazione dell'applicazione, passare alla visualizzazione della directory, selezionare **Applicazioni aziendali** > **Tutte le applicazioni**.
 
-    ![Assegna utente][201] 
+    ![Collegamento "Tutte le applicazioni"][201] 
 
-2. Nell'elenco di applicazioni hello, selezionare **assorbire LMS**.
+2. Nell'elenco **Applicazioni** selezionare **Absorb LMS**.
 
-    ![Hello assorbire LMS collegamento nell'elenco delle applicazioni hello](./media/active-directory-saas-absorblms-tutorial/tutorial_absorblms_app.png) 
+    ![Collegamento di Absorb LMS nell'elenco delle applicazioni](./media/active-directory-saas-absorblms-tutorial/tutorial_absorblms_app.png) 
 
-3. Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.
+3. Nel riquadro sinistro fare clic su **Utenti e gruppi**.
 
-    ![collegamento di "Utenti e gruppi" Hello][202] 
+    ![Collegamento "Utenti e gruppi"][202] 
 
-4. Fare clic sul pulsante **Aggiungi**. Selezionare quindi **Utenti e gruppi** nella finestra di dialogo **Aggiungi assegnazione**.
+4. Fare clic su **Aggiungi** e quindi nel riquadro **Aggiungi assegnazione** selezionare **Utenti e gruppi**.
 
-    ![riquadro assegnazione aggiungere Hello][203]
+    ![Riquadro Aggiungi assegnazione][203]
 
-5. In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.
+5. Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco **Utenti**.
 
-6. Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.
+6. Nella finestra di dialogo **Utenti e gruppi** fare clic sul pulsante **Seleziona**.
 
-7. Fare clic sul pulsante **Assegna** nella finestra di dialogo **Aggiungi assegnazione**.
+7. Nella finestra di dialogo **Aggiungi assegnazione** selezionare il pulsante **Assegna**.
     
 ### <a name="test-single-sign-on"></a>Testare l'accesso Single Sign-On
 
-In questa sezione si test configurazione di Azure AD single sign-on utilizzando hello Pannello di accesso.
+In questa sezione viene testata la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.
 
-Fare clic su hello assorbire LMS riquadro in hello Pannello di accesso, si otterranno applicazione assorbire LMS tooyour automaticamente firmato-on. Per altre informazioni sul pannello di accesso, vedere [Introduzione al Pannello di accesso](https://msdn.microsoft.com/library/dn308586).
+Quando si fa clic sul riquadro **Absorb LMS** nel pannello di accesso, si accede automaticamente all'applicazione Absorb LMS. Per altre informazioni sul pannello di accesso, vedere [Introduzione al Pannello di accesso](https://msdn.microsoft.com/library/dn308586).
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md)
+
 
 
 <!--Image references-->

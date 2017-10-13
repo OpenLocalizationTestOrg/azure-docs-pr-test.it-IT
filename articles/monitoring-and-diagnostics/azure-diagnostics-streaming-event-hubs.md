@@ -1,6 +1,6 @@
 ---
-title: dati di diagnostica di Azure nel percorso di frequente hello tramite hub di eventi aaaStreaming | Documenti Microsoft
-description: Configurazione della diagnostica Azure con gli hub di eventi di fine tooend, incluse indicazioni per gli scenari comuni.
+title: Trasmettere i dati di Diagnostica di Azure nel percorso critico con Hub eventi | Microsoft Docs
+description: Configurazione di Diagnostica di Azure con Hub eventi end-to-end, tra cui indicazioni per scenari comuni.
 services: event-hubs
 documentationcenter: na
 author: rboucher
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/13/2017
 ms.author: robb
-ms.openlocfilehash: a2528ddd0688d1c23a8631e769ca016dd79e4159
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 1c05bd6dc4c4d394aa043b9995de9c184e4f14c6
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="streaming-azure-diagnostics-data-in-hello-hot-path-by-using-event-hubs"></a>Flusso di dati di diagnostica di Azure nel percorso critico hello tramite gli hub di eventi
-Diagnostica di Azure fornisce metodi flessibili toocollect metriche e i log da cloud services le macchine virtuali (VM) e trasferire risultati tooAzure archiviazione. A partire da hello marzo 2016 (2.9 SDK) di tempo, è possibile inviare diagnostica toocustom origini dati e trasferire i dati di percorso ricorrente in secondi tramite [hub eventi di Azure](https://azure.microsoft.com/services/event-hubs/).
+# <a name="streaming-azure-diagnostics-data-in-the-hot-path-by-using-event-hubs"></a>Trasmettere i dati di Diagnostica di Azure nel percorso critico tramite Hub eventi
+Diagnostica di Azure fornisce metodi flessibili per raccogliere le metriche e i log delle macchine virtuali (VM) di servizi cloud e trasferire i risultati in Archiviazione di Azure. A partire da marzo 2016 (SDK 2.9), è possibile eseguire inviare la diagnostica a origini dati completamente personalizzate e trasferire i dati del percorso critico in pochi secondi tramite [Hub eventi di Azure](https://azure.microsoft.com/services/event-hubs/).
 
 Tipi di dati supportati:
 
@@ -31,25 +31,25 @@ Tipi di dati supportati:
 * Log applicazioni
 * Log dell'infrastruttura Diagnostica di Azure
 
-Questo articolo illustra come tooconfigure diagnostica di Azure con gli hub di eventi da terminare tooend. Vengono inoltre fornite istruzioni relative hello scenari comuni seguenti:
+Questo articolo illustra le modalità di configurazione di Diagnostica di Azure con Hub eventi dall'inizio alla fine. Vengono inoltre fornite delle linee guida per gli scenari comuni seguenti:
 
-* Modalità di registrazione toocustomize hello e le metriche che vengano inviate tooEvent hub
-* Come le configurazioni di toochange in ogni ambiente
-* Hub di eventi tooview come flusso di dati
-* Come tootroubleshoot hello connessione  
+* Come personalizzare le metriche e i log inviati a Hub eventi
+* Come modificare le configurazioni in ciascun ambiente
+* Come visualizzare i dati di flusso di Hub eventi
+* Come risolvere i problemi di connessione  
 
 ## <a name="prerequisites"></a>Prerequisiti
-Dati dell'evento hub receieving da diagnostica di Azure sono supportati in servizi Cloud, macchine virtuali, il set di scalabilità di macchine virtuali e Service Fabric a partire da Azure SDK 2.9 hello e hello corrispondente di strumenti di Azure per Visual Studio.
+La ricezione di dati di Diagnostica di Azure in Hub eventi è supportata in Servizi cloud, macchine virtuali, set di scalabilità di macchine virtuali e Service Fabric a partire da Azure SDK 2.9 e dalla versione corrispondente di Strumenti di Azure per Visual Studio.
 
 * Estensione di Diagnostica Azure 1.6 ([SDK di Azure per .NET 2.9 o versione successiva](https://azure.microsoft.com/downloads/) ha questa destinazione per impostazione predefinita)
 * [Visual Studio 2013 o versione successiva](https://www.visualstudio.com/downloads/download-visual-studio-vs.aspx)
-* Le configurazioni esistenti di diagnostica di Azure in un'applicazione utilizzando un *wadcfgx* file e uno dei seguenti metodi hello:
+* Configurazioni esistenti di Diagnostica di Azure in un'applicazione usando un file *.wadcfgx* e uno dei metodi seguenti:
   * Visual Studio: [Configurazione della diagnostica per i servizi cloud e le macchine virtuali di Azure](../vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines.md)
   * Windows PowerShell: [Abilitare la diagnostica nei servizi Cloud di Azure tramite PowerShell](../cloud-services/cloud-services-diagnostics-powershell.md)
-* Spazio dei nomi degli hub di eventi il provisioning per ogni articolo hello [Introduzione agli hub di eventi](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)
+* Provisioning dello spazio dei nomi dell'Hub eventi eseguito in base all'articolo [Introduzione all'Hub eventi](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)
 
-## <a name="connect-azure-diagnostics-tooevent-hubs-sink"></a>La connessione di diagnostica Azure tooEvent hub sink
-Per impostazione predefinita, diagnostica Azure invia sempre i log e le metriche tooan account di archiviazione di Azure. Un'applicazione può inoltre inviare dati tooEvent hub aggiungendo un nuovo **sink** sezione hello **PublicConfig** / **WadCfg** elemento di hello *wadcfgx* file. In Visual Studio, hello *wadcfgx* file viene archiviato nel seguente percorso hello: **progetto servizio Cloud** > **ruoli** > **( RoleName)** > **wadcfgx** file.
+## <a name="connect-azure-diagnostics-to-event-hubs-sink"></a>Collegare Diagnostica di Azure al sink dell'Hub eventi
+Per impostazione predefinita, Diagnostica di Azure invia sempre log e metriche a un account di archiviazione di Azure. Un'applicazione può anche inviare dati agli Hub eventi aggiungendo una nuova sezione **Sinks** nell'elemento **PublicConfig** / **WadCfg** del file *.wadcfgx*. In Visual Studio il file *.wadcfgx* viene archiviato nel percorso di destinazione seguente: **Progetto servizio cloud** > **Ruoli** > **(NomeRuolo)** > **file diagnostics.wadcfgx**.
 
 ```xml
 <SinksConfig>
@@ -72,18 +72,18 @@ Per impostazione predefinita, diagnostica Azure invia sempre i log e le metriche
 }
 ```
 
-In questo esempio, hub eventi hello è impostato l'URL toohello completamente qualificato dello spazio dei nomi dell'hub eventi hello: spazio dei nomi di hub eventi + "/" + nome hub eventi.  
+In questo esempio l'URL dell'Hub eventi è impostato sullo spazio dei nomi completo dell'Hub eventi: spazio dei nomi di Hub eventi + "/" + nome Hub eventi.  
 
-hub di eventi Hello URL viene visualizzato in hello [portale di Azure](http://go.microsoft.com/fwlink/?LinkID=213885) nel dashboard di hello hub eventi.  
+L'URL dell'Hub eventi viene visualizzato nel [Portale di Azure](http://go.microsoft.com/fwlink/?LinkID=213885) sul dashboard di Hub eventi.  
 
-Hello **Sink** nome può essere impostato tooany di stringa valida, purché hello stesso valore viene utilizzato in modo coerente in tutto il file di configurazione di hello.
+Il nome del **Sink** può essere impostato su qualsiasi stringa valida, purché lo stesso valore venga usato in modo coerente in tutto il file di configurazione.
 
 > [!NOTE]
-> In questa sezione potrebbero esserci altri sink configurati, come ad esempio *applicationInsights* . Diagnostica di Azure consente di specificare uno o più sink toobe definite se ogni sink viene dichiarato in hello **PrivateConfig** sezione.  
+> In questa sezione potrebbero esserci altri sink configurati, come ad esempio *applicationInsights* . Diagnostica di Azure consente di definire uno o più sink, ammesso che ciascun sink venga dichiarato anche nella sezione **PrivateConfig** .  
 >
 >
 
-Hello hub eventi sink deve inoltre essere dichiarati e definiti in hello **PrivateConfig** sezione di hello *wadcfgx* file di configurazione.
+Il sink dell'Hub eventi deve essere dichiarato e definito anche nella sezione **PrivateConfig** del file di configurazione *.wadcfgx* .
 
 ```XML
 <PrivateConfig xmlns="http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration">
@@ -104,19 +104,19 @@ Hello hub eventi sink deve inoltre essere dichiarati e definiti in hello **Priva
 }
 ```
 
-Hello `SharedAccessKeyName` valore deve corrispondere a una chiave di firma di accesso condiviso (SAS) e i criteri che sono stato definito in hello **hub eventi** dello spazio dei nomi. Esplorare il dashboard di hub eventi toohello in hello [portale di Azure](https://manage.windowsazure.com), fare clic su hello **configura** scheda e impostare un criterio denominato (ad esempio, "SendRule") che ha *inviare* autorizzazioni. Hello **StorageAccount** viene dichiarato **PrivateConfig**. Non è necessario toochange valori qui se sono coinvolti. In questo esempio, si lascia valori hello vuoto, ovvero un segno che un asset downstream verrà impostati valori hello. Ad esempio, hello *ServiceConfiguration* file di configurazione Ambiente Imposta nomi appropriati ambiente hello e le chiavi.  
+Il valore `SharedAccessKeyName` deve corrispondere a una chiave di firma di accesso condiviso e ai criteri definiti nello spazio dei nomi di **Hub eventi** . Passare al dashboard Hub eventi nel [portale di Azure](https://manage.windowsazure.com), selezionare la scheda **Configura** e impostare un criterio denominato (ad esempio, "SendRule") che dispone delle autorizzazioni *di invio* . Anche il valore **StorageAccount** viene dichiarato in **PrivateConfig**. Non è necessario modificare i valori se funzionano. In questo esempio, i valori vengono lasciati vuoti, poiché verranno impostati da un asset downstream. Ad esempio, il file di configurazione dell'ambiente *ServiceConfiguration.Cloud.cscfg* consente l'impostazione delle chiavi e dei nomi appropriati per l'ambiente.  
 
 > [!WARNING]
-> chiave di firma di accesso condiviso hub eventi Hello viene archiviata in testo normale nel hello *wadcfgx* file. Spesso, questa chiave viene archiviata nel controllo del codice toosource o è disponibile come una risorsa nel server di compilazione, pertanto deve essere protetto come appropriato. È consigliabile usare una chiave SAS con *solo invio* autorizzazioni in modo che un utente malintenzionato può scrivere toohello hub eventi, ma non ascolto tooit o gestirlo.
+> La chiave di firma di accesso condiviso di Hub eventi è archiviata in testo normale nel file *.wadcfgx* . Spesso questa chiave viene archiviata nel controllo del codice sorgente o risulta disponibile in un asset del server di compilazione, pertanto è necessario proteggerla in maniera appropriata. Si consiglia di usare una chiave SAS con autorizzazioni *Send only* in modo che qualsiasi utente malintenzionato possa al massimo scrivere nell'Hub eventi, ma non ascoltarlo o gestirlo.
 >
 >
 
-## <a name="configure-azure-diagnostics-toosend-logs-and-metrics-tooevent-hubs"></a>Configurare diagnostica Azure toosend metriche e log tooEvent hub
-Come descritto in precedenza, tutti i dati di diagnostica personalizzata e le impostazione predefinita, vale a dire, metriche e i log, viene inviato automaticamente tooAzure archiviazione intervalli hello configurato. Con gli hub di eventi e qualsiasi sink aggiuntive, è possibile specificare qualsiasi nodo radice o foglia in toobe gerarchia hello inviati toohello hub di eventi. Questi includono gli eventi ETW, i contatori delle prestazioni, i registri eventi di Windows e i registri dell'applicazione.   
+## <a name="configure-azure-diagnostics-to-send-logs-and-metrics-to-event-hubs"></a>Configurare la Diagnostica di Azure per inviare log e metriche a Hub eventi
+Come illustrato in precedenza, tutti i dati di diagnostica predefiniti e personalizzati (ovvero metriche e log) vengono inviati automaticamente ad Archiviazione di Azure agli intervalli configurati. Con Hub eventi (e qualsiasi sink aggiuntivo), è possibile specificare qualsiasi nodo radice o foglia nella gerarchia da inviare a Hub eventi. Questi includono gli eventi ETW, i contatori delle prestazioni, i registri eventi di Windows e i registri dell'applicazione.   
 
-È importante tooconsider quanti punti dati devono effettivamente essere trasferiti tooEvent hub. Di solito gli sviluppatori trasferiscono i dati del percorso critico a bassa latenza che devono essere utilizzati e interpretati rapidamente. I sistemi che monitorano gli avvisi o le regole di scalabilità automatica sono degli esempi. Uno sviluppatore può anche configurare un archivio di analisi o di ricerca alternativo; ad esempio, Analisi di flusso di Azure, ElasticSearch, un sistema di monitoraggio personalizzato o un sistema di monitoraggio preferito di terze parti.
+È importante valutare il numero di punti dati effettivi da trasferire all'Hub eventi. Di solito gli sviluppatori trasferiscono i dati del percorso critico a bassa latenza che devono essere utilizzati e interpretati rapidamente. I sistemi che monitorano gli avvisi o le regole di scalabilità automatica sono degli esempi. Uno sviluppatore può anche configurare un archivio di analisi o di ricerca alternativo; ad esempio, Analisi di flusso di Azure, ElasticSearch, un sistema di monitoraggio personalizzato o un sistema di monitoraggio preferito di terze parti.
 
-Hello seguito sono riportate alcune configurazioni di esempio.
+Di seguito alcuni esempi di configurazioni.
 
 ```xml
 <PerformanceCounters scheduledTransferPeriod="PT1M" sinks="HotPath">
@@ -146,7 +146,7 @@ Hello seguito sono riportate alcune configurazioni di esempio.
 }
 ```
 
-In hello sopra riportato, sink hello è applicato toohello padre **PerformanceCounters** nodo nella gerarchia di hello, ovvero tutti elementi figlio **PerformanceCounters** verrà inviato tooEvent hub.  
+Nell'esempio precedente poiché il sink viene applicato al nodo padre **PerformanceCounters** nella gerarchia, tutti i nodi figlio **PerformanceCounters** verranno inviati agli hub eventi.  
 
 ```xml
 <PerformanceCounters scheduledTransferPeriod="PT1M">
@@ -188,9 +188,9 @@ In hello sopra riportato, sink hello è applicato toohello padre **PerformanceCo
 }
 ```
 
-Nell'esempio precedente hello sink hello è applicato tooonly tre contatori: **richieste in coda**, **richieste rifiutate**, e **% tempo processore**.  
+Nell'esempio precedente il sink è applicato solo a tre contatori: **richieste in coda**, **richieste rifiutate** e **% tempo processore**.  
 
-Hello esempio seguente viene illustrato come uno sviluppatore può limitare quantità hello di dati inviato toobe hello metriche più importanti utilizzati per l'integrità del servizio.  
+Nell'esempio seguente viene illustrato come uno sviluppatore può limitare la quantità di dati inviati come metriche importanti che vengono usate per l'integrità del servizio.  
 
 ```XML
 <Logs scheduledTransferPeriod="PT1M" sinks="HotPath" scheduledTransferLogLevelFilter="Error" />
@@ -203,32 +203,32 @@ Hello esempio seguente viene illustrato come uno sviluppatore può limitare quan
 }
 ```
 
-In questo esempio, il sink hello è toologs applicato ed è tooerror filtrato solo livello traccia.
+In questo esempio, il sink viene applicato ai registri e filtrato solo per l'analisi a livello di errore.
 
 ## <a name="deploy-and-update-a-cloud-services-application-and-diagnostics-config"></a>Distribuire e aggiornare un'applicazione dei servizi cloud e della configurazione della diagnostica
-Visual Studio fornisce più semplice percorso toodeploy hello un'applicazione hello e configurazione di hub eventi sink. file di hello tooview e modifica, aprirlo hello *wadcfgx* file in Visual Studio, modificarlo e salvarlo. percorso Hello è **progetto servizio Cloud** > **ruoli** > **(RoleName)** > **wadcfgx**.  
+Visual Studio offre il modo più semplice per distribuire l'applicazione e la configurazione sink dell'Hub eventi. Per visualizzare e modificare il file, aprire il file *.wadcfgx* in Visual Studio, modificarlo e salvarlo. Il percorso è **Progetto servizio cloud** > **Ruoli** > **(NomeRuolo)** > **diagnostics.wadcfgx**.  
 
-A questo punto, tutti distribuzione e aggiornamento delle azioni in Visual Studio, Visual Studio Team System e tutti i comandi o script che si basano su MSBuild e utilizzano hello **/t: pubblicare** destinazione include hello *wadcfgx*  nel processo di creazione di pacchetti hello. Inoltre, le distribuzioni e aggiornamenti è possibile distribuire tooAzure file hello usando hello appropriato agente l'estensione diagnostica Azure in macchine virtuali.
+A questo punto, tutte le operazioni di distribuzione e di aggiornamento delle distribuzioni in Visual Studio, Visual Studio Team System e tutti i comandi o script che si basano su MSBuild e usano la destinazione **/t:publish** includeranno il file *.wadcfgx* nel processo di creazione dei pacchetti. Le distribuzioni e gli aggiornamenti distribuiscono anche il file in Azure tramite l'appropriata estensione agente di Diagnostica di Azure nelle macchine virtuali.
 
-Dopo aver distribuito l'applicazione hello e configurazione di diagnostica di Azure, verrà visualizzata immediatamente l'attività nel dashboard di hello dell'hub eventi hello. Ciò indica che si è pronti toomove sui dati di percorso a caldo hello tooviewing hello listener client o l'analisi dello strumento di propria scelta.  
+Al termine della distribuzione dell'applicazione e della configurazione di Diagnostica di Azure, l'attività verrà visualizzata immediatamente nel dashboard dell'Hub eventi. Ciò indica che si è pronti per passare alla visualizzazione dei dati del percorso critico nel client listener o nello strumento di analisi scelto.  
 
-Nella seguente illustrazione di hello, il dashboard di hub eventi hello Mostra integro l'invio di diagnostica dati toohello evento hub avvio un po' dopo 11 PM. Ovvero quando è stata distribuita un'applicazione hello con una versione aggiornata *wadcfgx* file e hello sink è stato configurato correttamente.
+Nella figura seguente, il dashboard Hub eventi mostra l'invio integro dei dati di diagnostica all'Hub eventi a partire da un certo momento dopo le 23.00, ossia quando l'applicazione è stata distribuita con una versione aggiornata del file *.wadcfgx* e il sink è stato configurato correttamente.
 
 ![][0]  
 
 > [!NOTE]
-> Quando si apporta file di configurazione degli aggiornamenti toohello diagnostica Azure (con estensione wadcfgx), è consigliabile push hello aggiornamenti toohello intera applicazione, nonché configurazione hello tramite la pubblicazione in Visual Studio, o uno script di Windows PowerShell.  
+> Quando si eseguono gli aggiornamenti del file di configurazione di Diagnostica di Azure (.wadcfgx), si consiglia di eseguire il push degli aggiornamenti per l'intera applicazione e la configurazione tramite la pubblicazione di Visual Studio o tramite script di Windows PowerShell.  
 >
 >
 
 ## <a name="view-hot-path-data"></a>Visualizzare i dati del percorso critico
-Come descritto in precedenza, sono disponibili molti casi di utilizzo per l'ascolto tooand l'elaborazione dei dati di hub eventi.
+Come illustrato in precedenza, esistono molti casi d'uso per l'ascolto e l'elaborazione dei dati dell'Hub eventi.
 
-Un approccio semplice è un hub eventi del test di piccole dimensioni console applicazione toolisten toohello toocreate e flusso di output di stampa hello. È possibile inserire hello seguente di codice, è illustrato più dettagliatamente nella [Introduzione agli hub di eventi](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)), in un'applicazione console.  
+Un approccio semplice consiste nel creare una piccola applicazione console di verifica per l'ascolto dell'Hub eventi e per la stampa del flusso di output. È possibile inserire il seguente codice (descritto dettagliatamente nell'articolo [Introduzione all'Hub eventi](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)) in un'applicazione console.  
 
-Si noti che un'applicazione console hello deve includere hello [pacchetto NuGet Host processore di eventi](https://www.nuget.org/packages/Microsoft.Azure.ServiceBus.EventProcessorHost/).  
+L'applicazione console deve includere il [pacchetto Event Processor Host NuGet](https://www.nuget.org/packages/Microsoft.Azure.ServiceBus.EventProcessorHost/).  
 
-Tenere presente i valori hello tooreplace tra parentesi quadre in hello **Main** funzione con valori per le risorse.   
+Sostituire i valori in parentesi tonde nella funzione **Main** con i valori per le proprie risorse.   
 
 ```csharp
 //Console application code for EventHub test client
@@ -303,7 +303,7 @@ namespace EventHubListener
             options.ExceptionReceived += (sender, e) => { Console.WriteLine(e.Exception); };
             eventProcessorHost.RegisterEventProcessorAsync<SimpleEventProcessor>(options).Wait();
 
-            Console.WriteLine("Receiving. Press enter key toostop worker.");
+            Console.WriteLine("Receiving. Press enter key to stop worker.");
             Console.ReadLine();
             eventProcessorHost.UnregisterEventProcessorAsync().Wait();
         }
@@ -312,15 +312,15 @@ namespace EventHubListener
 ```
 
 ## <a name="troubleshoot-event-hubs-sinks"></a>Risoluzione dei problemi relativi ai sink dell'Hub eventi
-* hub di eventi Hello non mostra l'attività dell'evento in ingresso o in uscita come previsto.
+* L'Hub eventi non visualizza le attività dell'evento in ingresso o in uscita come previsto.
 
-    Verificare che l'Hub eventi esegua correttamente il provisioning. Tutte le informazioni di connessione in hello **PrivateConfig** sezione *wadcfgx* devono corrispondere ai valori hello della risorsa come illustrato nel portale di hello. Assicurarsi di disporre di un criterio definito ("SendRule" nell'esempio hello) nel portale di hello e che *inviare* viene concessa l'autorizzazione.  
-* Dopo un aggiornamento, hub eventi hello non mostra più EventActivity in ingresso o in uscita.
+    Verificare che l'Hub eventi esegua correttamente il provisioning. Tutte le informazioni di connessione nella sezione **PrivateConfig** del file *.wadcfgx* devono corrispondere ai valori della risorsa, come illustrato nel portale. Assicurarsi di avere definito un criterio SAS ("SendRule" nell'esempio) nel portale e che sia stata concessa l'autorizzazione di *invio* .  
+* Dopo un aggiornamento, l'Hub eventi non visualizza più le attività dell'evento in ingresso o in uscita.
 
-    Innanzitutto, assicurarsi che tale hub eventi hello e le informazioni di configurazione siano corretta, come illustrato in precedenza. In alcuni casi hello **PrivateConfig** viene reimpostato in un aggiornamento della distribuzione. Hello consiglia di correggere tutte le modifiche troppo toomake*wadcfgx* in hello progetto e quindi inviare un aggiornamento completo dell'applicazione. In caso contrario, assicurarsi che gli aggiornamenti di diagnostica hello inserisce completa **PrivateConfig** che include una chiave SAS hello.  
-* Si è tentato di suggerimenti hello e hub eventi hello ancora non funziona.
+    In primo luogo, assicurarsi che le informazioni di configurazione e dell'Hub eventi siano esatte, come spiegato in precedenza. Capita che a volte **PrivateConfig** venga reimpostato in un aggiornamento della distribuzione. La soluzione consigliata consiste nell'apportare tutte le modifiche nel file *.wadcfgx* del progetto e quindi eseguire il push di un aggiornamento completo dell'applicazione. Se non è possibile, verificare che l'aggiornamento della diagnostica esegua il push della sezione **PrivateConfig** completa, che include la chiave SAS.  
+* Ho provato a seguire i suggerimenti, ma l'Hub eventi continua a non funzionare.
 
-    Provare a cercare nella tabella di archiviazione di Azure hello che contiene gli errori e log di diagnostica di Azure stesso: **WADDiagnosticInfrastructureLogsTable**. Un'opzione è toouse uno strumento, ad esempio [Azure Storage Explorer](http://www.storageexplorer.com) account di archiviazione toothis tooconnect, visualizzare in questa tabella e aggiungere una query per i TimeStamp in hello ultime 24 ore. È possibile utilizzare lo strumento di hello tooexport un file CSV e aprirlo in un'applicazione, ad esempio Microsoft Excel. Excel rende facile toosearch per le stringhe di carta telefonica, ad esempio **EventHubs**, toosee indica l'errore viene segnalato.  
+    Eseguire una ricerca nella tabella di Archiviazione di Azure contenente i registri e gli errori della Diagnostica di Azure: **WADDiagnosticInfrastructureLogsTable**. Una possibilità consiste nell'usare uno strumento come [Esplora archivi Azure](http://www.storageexplorer.com) per connettersi a questo account di archiviazione, visualizzare la tabella e aggiungere una query per il TimeStamp delle ultime 24 ore. È possibile utilizzare lo strumento per esportare un file .csv e aprirlo in un'applicazione come Microsoft Excel. Excel semplifica la ricerca di stringhe di presentazione come **EventHubs**per visualizzare l'errore segnalato.  
 
 ## <a name="next-steps"></a>Passaggi successivi
 • [Altre informazioni su Hub eventi](https://azure.microsoft.com/services/event-hubs/)
@@ -379,7 +379,7 @@ namespace EventHubListener
 </DiagnosticsConfiguration>
 ```
 
-Hello complementare *ServiceConfiguration* per questo esempio è simile a hello seguenti.
+Il file *ServiceConfiguration.Cloud.cscfg* complementare per questo esempio si presenta come segue.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -505,7 +505,7 @@ Le impostazioni basate su Json equivalenti per le macchine virtuali sono le segu
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-Sono disponibili ulteriori informazioni sugli hub di eventi visitando hello seguenti collegamenti:
+Per ulteriori informazioni su Hub eventi visitare i collegamenti seguenti:
 
 * [Panoramica di Hub eventi](../event-hubs/event-hubs-what-is-event-hubs.md)
 * [Creare un hub eventi](../event-hubs/event-hubs-create.md)

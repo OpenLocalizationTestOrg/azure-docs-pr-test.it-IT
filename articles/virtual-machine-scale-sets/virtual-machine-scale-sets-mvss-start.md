@@ -1,6 +1,6 @@
 ---
-title: "impostare i modelli di aaaLearn sulla scalabilità di macchine virtuali | Documenti Microsoft"
-description: "Informazioni su una scala minima praticabile toocreate Imposta modello per il set di scalabilità di macchine virtuali"
+title: "Informazioni sui modelli di set di scalabilità di macchine virtuali | Microsoft Docs"
+description: "Informazioni su come creare un modello di set di scalabilità a validità minima per set di scalabilità di macchine virtuali di Azure"
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: gatneil
@@ -15,27 +15,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/01/2017
 ms.author: negat
-ms.openlocfilehash: b7a1cf6c03b22585e16db9c071d45795c8ae75df
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 65f02c4675eb752dcc82e9a1d1c7f6c2c193fc32
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="learn-about-virtual-machine-scale-set-templates"></a>Informazioni sui modelli di set di scalabilità di macchine virtuali
-[Modelli di Azure Resource Manager](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#template-deployment) sono un ottimo modo toodeploy gruppi di risorse correlate. Questa serie di esercitazioni viene illustrato come modello di set di toocreate una scala minima valida e come toomodify toosuit questo modello vari scenari. Tutti gli esempi provengono da questo [archivio GitHub](https://github.com/gatneil/mvss). 
+I [modelli di Azure Resource Manager](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#template-deployment) sono un ottimo modo di distribuire gruppi di risorse correlate. Questa serie di esercitazioni illustra come creare un modello di set di scalabilità a validità minima e come modificarlo per adattarsi a vari scenari. Tutti gli esempi provengono da questo [archivio GitHub](https://github.com/gatneil/mvss). 
 
-Questo modello è previsto toobe semplice. Per esempi più completi della scala impostare i modelli, vedere hello [repository GitHub modelli Guida introduttiva di Azure](https://github.com/Azure/azure-quickstart-templates) e cercare le cartelle che contengono la stringa hello `vmss`.
+Questo modello è progettato per essere semplice. Per esempi più completi di modelli di set di scalabilità, vedere [Azure Quickstart Templates GitHub repository](https://github.com/Azure/azure-quickstart-templates) (Archivio GitHub Modelli di avvio rapido di Azure) e cercare le cartelle contenenti la stringa `vmss`.
 
-Se si ha già familiarità con la creazione di modelli, è possibile ignorare toohello toosee di sezione "Passaggi successivi" come toomodify questo modello.
+Se si ha già familiarità con i modelli, è possibile passare direttamente alla sezione "Passaggi successivi" per informazioni su come modificare questo modello.
 
-## <a name="review-hello-template"></a>Modello di hello revisione
+## <a name="review-the-template"></a>Rivedere il modello
 
-Utilizzare GitHub tooreview modello, di impostare la scala minima valida [azuredeploy.json](https://raw.githubusercontent.com/gatneil/mvss/minimum-viable-scale-set/azuredeploy.json).
+Usare GitHub per rivedere il modello di set di scalabilità a validità minima che è possibile usare, ovvero [azuredeploy.json](https://raw.githubusercontent.com/gatneil/mvss/minimum-viable-scale-set/azuredeploy.json).
 
-In questa esercitazione verranno esaminati hello diff (`git diff master minimum-viable-scale-set`) toocreate hello minimo possibili set di scalabilità di modello di elemento per elemento.
+In questa esercitazione verranno esaminati in dettaglio i diff (`git diff master minimum-viable-scale-set`) per creare il modello di set di scalabilità più semplice che è possibile usare.
 
 ## <a name="define-schema-and-contentversion"></a>Definire $schema e contentVersion
-In primo luogo, definiamo `$schema` e `contentVersion` nel modello di hello. Hello `$schema` elemento definisce una versione di hello hello della lingua del modello e viene utilizzato per l'evidenziazione della sintassi di Visual Studio e le funzionalità di convalida simile. Hello `contentVersion` elemento non viene usato da Azure. In alternativa, consente di tenere traccia di versione del modello di hello.
+Si definiscono prima gli elementi `$schema` e `contentVersion` del modello. L'elemento `$schema` definisce la versione del linguaggio del modello e viene usato per l'evidenziazione della sintassi di Visual Studio e per funzionalità di convalida simili. L'elemento `contentVersion` non viene usato da Azure. Però consente di tenere traccia della versione del modello.
 
 ```json
 {
@@ -43,7 +43,7 @@ In primo luogo, definiamo `$schema` e `contentVersion` nel modello di hello. Hel
   "contentVersion": "1.0.0.0",
 ```
 ## <a name="define-parameters"></a>Definire i parametri
-Successivamente, si definiscono due parametri, `adminUsername` e `adminPassword`. I parametri sono i valori specificati in fase di hello della distribuzione. Hello `adminUsername` parametro è semplicemente un `string` tipo, ma poiché `adminPassword` è un segreto, abbiamo assegnarle tipo `securestring`. In un secondo momento, questi parametri vengono passati in configurazione di set di scalabilità hello.
+Successivamente, si definiscono due parametri, `adminUsername` e `adminPassword`. I parametri sono valori specificati al momento della distribuzione. Il parametro `adminUsername` è semplicemente un tipo `string`, ma dato che `adminPassword` è un segreto, gli viene assegnato il tipo `securestring`. Successivamente questi parametri vengono passati nella configurazione del set di scalabilità.
 
 ```json
   "parameters": {
@@ -56,20 +56,20 @@ Successivamente, si definiscono due parametri, `adminUsername` e `adminPassword`
   },
 ```
 ## <a name="define-variables"></a>Definire le variabili
-Modelli di gestione risorse consentono inoltre di definire variabili toobe utilizzato in un secondo momento nel modello di hello. Questo esempio non utilizza tutte le variabili, in modo sono stati lasciati oggetto JSON hello vuoto.
+I modelli di Resource Manager consentono anche di definire variabili da usare successivamente nel modello. In questo esempio non vengono usate variabili, quindi l'oggetto JSON è vuoto.
 
 ```json
   "variables": {},
 ```
 
 ## <a name="define-resources"></a>Definire le risorse
-Di seguito è la sezione relativa alle risorse hello del modello di hello. In questo caso, definire i dati effettivamente da toodeploy. A differenza di `parameters` e `variables` (che sono oggetti JSON), `resources` è un elenco JSON di oggetti JSON.
+La sezione successiva del modello riguarda le risorse. In questa sezione si definiscono gli elementi da distribuire. A differenza di `parameters` e `variables` (che sono oggetti JSON), `resources` è un elenco JSON di oggetti JSON.
 
 ```json
    "resources": [
 ```
 
-Tutte le risorse richiedono le proprietà `type`, `name`, `apiVersion` e `location`. La prima risorsa di questo esempio è di tipo `Microsft.Network/virtualNetwork`, nome `myVnet` e apiVersion `2016-03-30`. (toofind hello versione API più recente per un tipo di risorsa, vedere hello [documentazione dell'API REST di Azure](https://docs.microsoft.com/rest/api/).)
+Tutte le risorse richiedono le proprietà `type`, `name`, `apiVersion` e `location`. La prima risorsa di questo esempio è di tipo `Microsft.Network/virtualNetwork`, nome `myVnet` e apiVersion `2016-03-30`. Per determinare la versione più recente dell'API di un tipo di risorsa, vedere [Azure REST API documentation](https://docs.microsoft.com/rest/api/) (Documentazione dell'API REST di Azure).
 
 ```json
      {
@@ -79,14 +79,14 @@ Tutte le risorse richiedono le proprietà `type`, `name`, `apiVersion` e `locati
 ```
 
 ## <a name="specify-location"></a>Specificare il percorso
-percorso di hello toospecify per la rete virtuale hello, utilizzare un [funzione di modello di gestione risorse](../azure-resource-manager/resource-group-template-functions.md). Questa funzione deve essere racchiusa tra virgolette e parentesi quadre, nel modo seguente: `"[<template-function>]"`. In questo caso, utilizziamo hello `resourceGroup` (funzione). Accetta alcun argomento e restituisce un oggetto JSON con metadati relativi al gruppo di risorse hello che viene distribuita per questa distribuzione. gruppo di risorse Hello viene impostata dall'utente hello in fase di hello della distribuzione. È quindi indice nell'oggetto JSON con `.location` percorso hello tooget da un oggetto JSON hello.
+Per specificare il percorso della rete virtuale, viene usata una [funzione di modello di Resource Manager](../azure-resource-manager/resource-group-template-functions.md). Questa funzione deve essere racchiusa tra virgolette e parentesi quadre, nel modo seguente: `"[<template-function>]"`. In questo caso, si usa la funzione `resourceGroup`. La funzione non accetta argomenti e restituisce un oggetto JSON con metadati sul gruppo di risorse a cui viene eseguita la distribuzione. Il gruppo di risorse viene impostato dall'utente al momento della distribuzione. L'oggetto JSON viene quindi indicizzato con `.location` per ottenere il percorso dall'oggetto JSON.
 
 ```json
        "location": "[resourceGroup().location]",
 ```
 
 ## <a name="specify-virtual-network-properties"></a>Specificare le proprietà di rete virtuale
-Ogni risorsa di gestione risorse ha il proprio `properties` sezione per la risorsa toohello specifico di configurazioni. In questo caso, si specifica rete virtuale hello deve avere una subnet con intervallo di indirizzi IP privati hello `10.0.0.0/16`. Un set di scalabilità è sempre contenuto in una subnet. Non può estendersi a più subnet.
+Ogni risorsa di Resource Manager dispone di una propria sezione `properties` per le configurazioni a essa specifiche. In questo caso, si specifica che la rete virtuale deve avere una subnet che usa l'intervallo `10.0.0.0/16` di indirizzi IP privati. Un set di scalabilità è sempre contenuto in una subnet. Non può estendersi a più subnet.
 
 ```json
        "properties": {
@@ -108,9 +108,9 @@ Ogni risorsa di gestione risorse ha il proprio `properties` sezione per la risor
 ```
 
 ## <a name="add-dependson-list"></a>Aggiungere un elenco dependsOn
-È inoltre richiesto di toohello `type`, `name`, `apiVersion`, e `location` le proprietà, ogni risorsa possono avere un parametro facoltativo `dependsOn` elenco di stringhe. Questo elenco specifica le altre risorse di questa distribuzione che devono essere completate prima di distribuire la risorsa.
+In aggiunta alle proprietà `type`, `name`, `apiVersion` e `location` necessarie, ogni risorsa può avere un elenco `dependsOn` di stringhe facoltativo. Questo elenco specifica le altre risorse di questa distribuzione che devono essere completate prima di distribuire la risorsa.
 
-In questo caso, è presente un solo elemento nell'elenco di hello, rete virtuale di hello dall'esempio precedente hello. Si specifica questa dipendenza perché hello set di scalabilità è necessario hello rete tooexist prima di creare tutte le macchine virtuali. In questo modo, il set di scalabilità di hello può concedere a questi indirizzi IP privati di macchine virtuali dall'intervallo di indirizzi IP hello in precedenza specificato nelle proprietà di rete hello. formato Hello di ogni stringa nell'elenco di dependsOn hello è `<type>/<name>`. Utilizzare hello stesso `type` e `name` utilizzata in precedenza nella definizione di risorsa di rete virtuale hello.
+In questo caso c'è solo un elemento nell'elenco, ovvero la rete virtuale dell'esempio precedente. Si specifica la dipendenza poiché il set di scalabilità deve disporre di una rete esistente prima di creare macchine virtuali. In questo modo, il set di scalabilità può indicare gli indirizzi IP privati delle macchine virtuali dall'intervallo degli indirizzi IP specificato precedentemente nelle proprietà della rete. Il formato di ogni stringa nell'elenco dependsOn è `<type>/<name>`. Usare gli stessi `type` e `name` inclusi precedentemente nella definizione delle risorse della rete virtuale.
 
 ```json
      {
@@ -123,9 +123,9 @@ In questo caso, è presente un solo elemento nell'elenco di hello, rete virtuale
        ],
 ```
 ## <a name="specify-scale-set-properties"></a>Specificare le proprietà del set di scalabilità
-Set di scalabilità hanno molte proprietà per la personalizzazione hello macchine virtuali nel set di scalabilità hello. Per un elenco completo di queste proprietà, vedere hello [set di scalabilità della documentazione dell'API REST](https://docs.microsoft.com/en-us/rest/api/virtualmachinescalesets/create-or-update-a-set). Per questa esercitazione, verranno impostate solo alcune proprietà usate di frequente.
+I set di scalabilità hanno molte proprietà per personalizzare le macchine virtuali nel set di scalabilità. Per un elenco completo di queste proprietà, vedere [Scale set REST API documentation](https://docs.microsoft.com/en-us/rest/api/virtualmachinescalesets/create-or-update-a-set) (Documentazione dell'API REST del set di scalabilità). Per questa esercitazione, verranno impostate solo alcune proprietà usate di frequente.
 ### <a name="supply-vm-size-and-capacity"></a>Specificare capacità e dimensioni della macchina virtuale
-scala Hello imposta tooknow esigenze le dimensioni della macchina virtuale toocreate ("nome sku") e quanti tali toocreate macchine virtuali ("capacità sku"). toosee le dimensioni delle macchine Virtuali sono disponibili, vedere hello [documentazione dimensioni delle macchine Virtuali](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-sizes).
+Il set di scalabilità deve conoscere le dimensioni della macchina virtuale da creare ("nome SKU") e quante macchine virtuali di questo tipo deve creare ("capacità SKU"). Per visualizzare le dimensioni disponibili di macchine virtuali, vedere [VM Sizes documentation](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-sizes) (Documentazione delle dimensioni di macchine virtuali).
 
 ```json
        "sku": {
@@ -135,7 +135,7 @@ scala Hello imposta tooknow esigenze le dimensioni della macchina virtuale toocr
 ```
 
 ### <a name="choose-type-of-updates"></a>Scegliere un tipo di aggiornamenti
-set di scalabilità Hello deve inoltre tooknow modalità di aggiornamento nel set di scalabilità hello toohandle. Attualmente sono disponibili due opzioni, `Manual` e `Automatic`. Per ulteriori informazioni sulle differenze tra due hello la hello, vedere la documentazione di hello in [come tooupgrade un set di scalabilità](./virtual-machine-scale-sets-upgrade-scale-set.md).
+Il set di scalabilità deve inoltre sapere come gestire gli aggiornamenti: Attualmente sono disponibili due opzioni, `Manual` e `Automatic`. Per ulteriori informazioni sulle differenze tra le due opzioni, vedere la documentazione su [come aggiornare un set di scalabilità](./virtual-machine-scale-sets-upgrade-scale-set.md).
 
 ```json
        "properties": {
@@ -145,7 +145,7 @@ set di scalabilità Hello deve inoltre tooknow modalità di aggiornamento nel se
 ```
 
 ### <a name="choose-vm-operating-system"></a>Scegliere il sistema operativo delle macchine virtuali
-Hello set di scalabilità esigenze tooknow tooput il sistema operativo nelle macchine virtuali hello. In questo caso, creare macchine virtuali di hello con un'immagine di 16.04 LTS Ubuntu completamente con patch.
+Il set di scalabilità deve conoscere quale sistema operativo installare nelle macchine virtuali. In questo esempio le macchine virtuali vengono create con un'immagine di Ubuntu 16.04-LTS con patch complete.
 
 ```json
          "virtualMachineProfile": {
@@ -160,9 +160,9 @@ Hello set di scalabilità esigenze tooknow tooput il sistema operativo nelle mac
 ```
 
 ### <a name="specify-computernameprefix"></a>Specificare computerNamePrefix
-set di scalabilità Hello consente di distribuire più macchine virtuali. Anziché specificare il nome di ogni macchina virtuale, si specifica `computerNamePrefix`. Hello set di scalabilità aggiunge un prefisso toohello di indice per ogni macchina virtuale, in modo da dispongono di nomi di macchina virtuale modulo hello `<computerNamePrefix>_<auto-generated-index>`.
+Il set di scalabilità distribuisce più macchine virtuali. Anziché specificare il nome di ogni macchina virtuale, si specifica `computerNamePrefix`. Il set di scalabilità aggiunge un indice al prefisso di ogni macchina virtuale. Pertanto, i nomi delle macchine virtuali hanno il formato `<computerNamePrefix>_<auto-generated-index>`.
 
-In hello seguente frammento di codice, utilizziamo parametri hello dalla prima tooset hello amministratore username e password per tutte le macchine virtuali nel set di scalabilità hello. Facciamo con hello `parameters` funzione di modello. Questa funzione accetta una stringa che specifica quali tooand toorefer parametro restituisce il valore di hello per tale parametro.
+In questo frammento di codice vengono anche usati i parametri precedenti per configurare il nome utente e la password dell'amministratore di tutte le macchine virtuali nel set di scalabilità. Questa operazione viene eseguita con la funzione di modello `parameters`. Questa funzione accetta una stringa che specifica il parametro a cui fare riferimento a e restituisce il valore del parametro.
 
 ```json
            "osProfile": {
@@ -173,11 +173,11 @@ In hello seguente frammento di codice, utilizziamo parametri hello dalla prima t
 ```
 
 ### <a name="specify-vm-network-configuration"></a>Specificare la configurazione di rete delle macchine virtuali
-Infine, è necessario toospecify configurazione di rete hello per le macchine virtuali hello in set di scalabilità hello. In questo caso, è necessario solo toospecify hello ID di subnet hello creato in precedenza. In questo modo hello set di scalabilità tooput interfacce di rete hello in questa subnet.
+Infine, è necessario specificare la configurazione di rete per le macchine virtuali nel set di scalabilità. In questo caso, è sufficiente specificare l'ID della subnet creata in precedenza. Questa specifica indica al set di scalabilità di inserire le interfacce di rete in questa subnet.
 
-È possibile ottenere hello ID di rete virtuale di hello contenente subnet hello utilizzando hello `resourceId` funzione di modello. Questa funzione accetta il tipo di hello e il nome di una risorsa e restituisce hello identificatore completo della risorsa. Questo ID è hello:`/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/<resourceProviderNamespace>/<resourceType>/<resourceName>`
+È possibile ottenere l'ID della rete virtuale che contiene la subnet usando la funzione di modello `resourceId`. Questa funzione accetta il tipo e il nome di una risorsa e restituisce il relativo identificatore completo della risorsa. L'ID ha il formato seguente: `/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/<resourceProviderNamespace>/<resourceType>/<resourceName>`
 
-Tuttavia, identificatore hello della rete virtuale hello non è sufficiente. È necessario specificare una subnet specifica hello che hello set di scalabilità di in che macchine virtuali devono trovarsi. toodo, concatenare `/subnets/mySubnet` toohello ID di rete virtuale hello. il risultato di Hello è hello completo di ID di subnet hello. Eseguire questa concatenazione con hello `concat` funzione che accetta una serie di stringhe e restituisce la concatenazione.
+Tuttavia, l'identificatore della rete virtuale non è sufficiente. È necessario indicare la subnet specifica in cui devono trovarsi le macchine virtuali del set di scalabilità. A tale scopo, concatenare `/subnets/mySubnet` all'ID della rete virtuale. Il risultato è l'ID completo della subnet. Eseguire la concatenazione con la funzione `concat`, che accetta una serie di stringhe e restituisce la relativa concatenazione.
 
 ```json
            "networkProfile": {

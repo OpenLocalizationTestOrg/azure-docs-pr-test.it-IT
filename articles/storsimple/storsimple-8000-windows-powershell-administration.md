@@ -1,6 +1,6 @@
 ---
-title: aaaPowerShell per la gestione dei dispositivi StorSimple | Documenti Microsoft
-description: Informazioni su come toouse Windows PowerShell per StorSimple toomanage dispositivo StorSimple.
+title: PowerShell per la gestione dei dispositivi StorSimple | Documentazione Microsoft
+description: Informazioni su come utilizzare Windows PowerShell per StorSimple per gestire il dispositivo StorSimple.
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,48 +14,48 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 04/03/2017
 ms.author: alkohli@microsoft.com
-ms.openlocfilehash: e9e4bd025933cdef68b861d93749a107d1689536
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 89e1054117f19e787da5330932021351fb016209
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-windows-powershell-for-storsimple-tooadminister-your-device"></a>Usare Windows PowerShell per StorSimple tooadminister il dispositivo
+# <a name="use-windows-powershell-for-storsimple-to-administer-your-device"></a>Utilizzo di Windows PowerShell per StorSimple per amministrare il dispositivo
 
 ## <a name="overview"></a>Panoramica
 
-Windows PowerShell per StorSimple offre un'interfaccia della riga di comando che è possibile utilizzare toomanage dispositivo StorSimple di Microsoft Azure. Come suggerisce il nome di hello, è un'interfaccia della riga di comando basata su Windows PowerShell che viene compilata in uno spazio di esecuzione vincolato. Dal punto di vista hello dell'utente hello nella riga di comando hello, spazio di esecuzione vincolato appare come una versione di Windows PowerShell con restrizioni. Pur mantenendo alcune delle funzionalità di base hello di Windows PowerShell, questa interfaccia ha altri cmdlet dedicati che sono pensati per la gestione del dispositivo StorSimple di Microsoft Azure.
+Windows PowerShell per StorSimple fornisce un'interfaccia della riga di comando che può essere utilizzata per gestire il dispositivo Microsoft Azure StorSimple. Come suggerisce il nome, è un'interfaccia della riga di comando basata su Windows PowerShell realizzata in uno spazio di esecuzione vincolato. Dal punto di vista dell'utente nella riga di comando, uno spazio di esecuzione vincolato viene considerato come una versione limitata di Windows PowerShell. Pur mantenendo alcune funzionalità di base di Windows PowerShell, questa interfaccia dispone di ulteriori cmdlet dedicati che sono pensati per la gestione del dispositivo Microsoft Azure StorSimple.
 
-In questo articolo descrive hello Windows PowerShell per StorSimple caratteristiche e come è possibile connettere l'interfaccia toothis e contiene le procedure dettagliate toostep collegamenti o flussi di lavoro che è possibile eseguire mediante questa interfaccia. flussi di lavoro Hello includono come tooregister il dispositivo, configurare l'interfaccia di rete hello sul dispositivo, installare gli aggiornamenti che richiedono hello toobe di dispositivo in modalità manutenzione, modificare lo stato del dispositivo, hello e risolvere eventuali problemi che potrebbero verificarsi.
+In questo articolo vengono descritte le funzionalità di Windows PowerShell per StorSimple, tra cui come è possibile connettersi a questa interfaccia e sono contenuti i collegamenti alle procedure dettagliate o flussi di lavoro che possono essere eseguiti utilizzando questa interfaccia. I flussi di lavoro includono come registrare il dispositivo, configurare l'interfaccia di rete sul dispositivo, installare gli aggiornamenti che richiedono che il dispositivo sia in modalità di manutenzione, modificare lo stato del dispositivo e risolvere eventuali problemi che possono verificarsi.
 
 Dopo aver letto l'articolo, l'utente sarà in grado di:
 
-* Connettere il dispositivo di StorSimple tooyour tramite Windows PowerShell per StorSimple.
+* Connettersi al dispositivo StorSimple utilizzando Windows PowerShell per StorSimple
 * Amministrazione del dispositivo StorSimple utilizzando Windows PowerShell per StorSimple
 * Ottenere la guida in Windows PowerShell per StorSimple
 
 > [!NOTE]
-> * Windows PowerShell per StorSimple cmdlet consentono di toomanage dispositivo StorSimple da una console seriale oppure in modalità remota tramite comunicazione remota di Windows PowerShell. Per ulteriori informazioni su ognuna di hello singoli cmdlet che possono essere usati in questa interfaccia, andare troppo[riferimento ai cmdlet di Windows PowerShell per StorSimple](https://technet.microsoft.com/library/dn688168.aspx).
-> * i cmdlet di PowerShell Azure StorSimple Hello sono un diverso insieme di cmdlet che consentono di tooautomate StorSimple a livello di servizio e le attività di migrazione dalla riga di comando hello. Per ulteriori informazioni su hello cmdlet di Azure PowerShell per StorSimple, visitare toohello [riferimento ai cmdlet di Azure StorSimple](https://docs.microsoft.com/powershell/servicemanagement/azure.storsimple/v3.1.0/azure.storsimple).
+> * I cmdlet di Windows PowerShell per StorSimple consentono di gestire il dispositivo StorSimple da una console seriale o in remoto tramite la comunicazione remota di Windows PowerShell. Per ulteriori informazioni su ciascuno dei singoli cmdlet che può essere utilizzato in questa interfaccia andare alla [documentazione di riferimento dei cmdlet di Windows PowerShell per StorSimple](https://technet.microsoft.com/library/dn688168.aspx).
+> * I cmdlet StorSimple di Azure PowerShell sono una raccolta di diversi cmdlet che consentono di automatizzare le attività StorSimple a livello di servizio e di migrazione dalla riga di comando. Per ulteriori informazioni sui cmdlet di Azure PowerShell per StorSimple, andare alla [documentazione di riferimento dei cmdlet di Azure StorSimple](https://docs.microsoft.com/powershell/servicemanagement/azure.storsimple/v3.1.0/azure.storsimple).
 
 
-È possibile accedere hello Windows PowerShell per StorSimple utilizzando uno dei seguenti metodi hello:
+È possibile accedere a Windows PowerShell per StorSimple utilizzando uno dei metodi seguenti:
 
-* [Connettersi tooStorSimple console seriale del dispositivo](#connect-to-windows-powershell-for-storsimple-via-the-device-serial-console)
-* [La connessione remota tooStorSimple tramite Windows PowerShell](#connect-remotely-to-storsimple-using-windows-powershell-for-storsimple)
+* [Connessione alla console seriale del dispositivo StorSimple](#connect-to-windows-powershell-for-storsimple-via-the-device-serial-console)
+* [Connessione in remoto a StorSimple tramite Windows PowerShell](#connect-remotely-to-storsimple-using-windows-powershell-for-storsimple)
 
-## <a name="connect-toowindows-powershell-for-storsimple-via-hello-device-serial-console"></a>Connessione tooWindows PowerShell per StorSimple tramite console seriale del dispositivo hello
+## <a name="connect-to-windows-powershell-for-storsimple-via-the-device-serial-console"></a>Connessione a Windows PowerShell per StorSimple tramite la console seriale del dispositivo
 
-È possibile [scaricare PuTTY](http://www.putty.org/) o simile tooWindows di tooconnect software di emulazione di terminale PowerShell per StorSimple. È necessario tooconfigure PuTTY in modo specifico tooaccess hello dispositivo Microsoft Azure StorSimple. Hello argomenti seguenti sono contenute istruzioni dettagliate su come tooconfigure PuTTy e connettere il dispositivo toohello. Vengono anche illustrate nella console seriale hello diverse opzioni di menu.
+È possibile [scaricare PuTTY](http://www.putty.org/) o software di emulazione di terminale simili per connettersi a Windows PowerShell per StorSimple. È necessario configurare PuTTY in modo specifico per accedere al dispositivo Microsoft Azure StorSimple. Nei seguenti argomenti vengono descritti i passaggi dettagliati su come configurare PuTTy e connettersi al dispositivo. Vengono anche illustrate varie opzioni di menu sulla console seriale.
 
 ### <a name="putty-settings"></a>Impostazioni puTTY
 
-Assicurarsi di utilizzare hello seguendo l'interfaccia di Windows PowerShell di impostazioni di PuTTY tooconnect toohello dalla console seriale hello.
+Assicurarsi di utilizzare le seguenti impostazioni PuTTY per connettersi all'interfaccia di Windows PowerShell dalla console seriale.
 
-#### <a name="tooconfigure-putty"></a>tooconfigure PuTTY
+#### <a name="to-configure-putty"></a>Per configurare PuTTY:
 
-1. In hello PuTTY **riconfigurazione** della finestra di dialogo hello **categoria** riquadro, selezionare **tastiera**.
-2. Assicurarsi che tale hello le opzioni seguenti siano selezionati (queste sono le impostazioni predefinite di hello quando si avvia una nuova sessione).
+1. Nella finestra di dialogo **Configurazione PuTTY** selezionare **Tastiera** nel riquadro **Categoria**.
+2. Assicurarsi che siano selezionate le opzioni seguenti (queste sono le impostazioni predefinite quando si avvia una nuova sessione).
    
    | Elemento tastiera | Selezionare |
    | --- | --- |
@@ -68,87 +68,87 @@ Assicurarsi di utilizzare hello seguendo l'interfaccia di Windows PowerShell di 
    
     ![Impostazioni PuTTY supportate](./media/storsimple-windows-powershell-administration/IC740877.png)
 3. Fare clic su **Apply**.
-4. In hello **categoria** riquadro, selezionare **traduzione**.
-5. In hello **set di caratteri remota** casella di riepilogo, seleziona **UTF-8**.
-6. Sotto **Gestione dei caratteri lineette** selezionare **Usa punti di codice lineette Unicode**. Hello seguente schermata Mostra selezioni PuTTY corrette hello.
+4. Nel riquadro **Categoria** selezionare **Traduzione**.
+5. Nella casella di riepilogo **Set di caratteri remoti** selezionare **UTF-8**.
+6. Sotto **Gestione dei caratteri lineette** selezionare **Usa punti di codice lineette Unicode**. Le schermate seguenti illustrano le selezioni di PuTTY corrette.
    
     ![Impostazioni PuTTY UTF](./media/storsimple-windows-powershell-administration/IC740878.png)
 7. Fare clic su **Apply**.
 
-È ora possibile utilizzare console seriale del dispositivo toohello tooconnect PuTTY attenendosi alla procedura seguente hello.
+È ora possibile usare PuTTY per la connessione alla console seriale del dispositivo attendendosi ai passaggi seguenti.
 
 [!INCLUDE [storsimple-use-putty](../../includes/storsimple-use-putty.md)]
 
-### <a name="about-hello-serial-console"></a>Informazioni sulla console seriale hello
+### <a name="about-the-serial-console"></a>Uscire dalla console seriale.
 
-Quando si accede di interfaccia di Windows PowerShell hello del dispositivo StorSimple tramite la console seriale hello, viene visualizzato un messaggio banner seguito da opzioni di menu.
+Quando si accede all'interfaccia Windows PowerShell del dispositivo StorSimple tramite la console seriale, viene visualizzato un messaggio di intestazione, seguito dalle opzioni di menu.
 
-messaggio banner contiene informazioni di dispositivo StorSimple base, ad esempio modello hello, nome, versione del software installata e stato del controller hello che si accede. Hello seguente immagine mostra un esempio di un messaggio banner.
+Il messaggio di intestazione contiene informazioni di base sul dispositivo StorSimple come modello, nome, versione software installata e stato del controller a cui si accede. Nella figura seguente viene illustrato un esempio di messaggio di intestazione.
 
 ![Messaggio di intestazione seriale](./media/storsimple-windows-powershell-administration/IC741098.png)
 
 > [!IMPORTANT]
-> È possibile utilizzare hello intestazione messaggio tooidentify se hello controller si è connessi toois _Active_ o _passivo_.
+> È possibile utilizzare il messaggio di intestazione per identificare se il controller a cui si è connessi è _Attivo_ o _Passivo_.
 
-Hello seguente immagine Mostra hello varie opzioni di spazio di esecuzione che sono disponibili nel menu della console seriale hello.
+Nell'immagine seguente vengono illustrate le varie opzioni di spazio di esecuzione disponibili nel menu della console seriale.
 
 ![Registrare il dispositivo 2](./media/storsimple-windows-powershell-administration/IC740906.png)
 
-È possibile scegliere tra hello seguenti impostazioni:
+È possibile scegliere tra le seguenti impostazioni:
 
-1. **Accedi con accesso completo** questa opzione consente di tooconnect (con credenziali appropriate hello) toohello **SSAdminConsole** spazio di esecuzione sul controller locale hello. (hello locale è hello controller che si accede attualmente tramite la console seriale di hello del dispositivo StorSimple.) Questa opzione può essere usata anche tooallow tooaccess supporto illimitato tootroubleshoot spazio di esecuzione (una sessione di supporto) eventuali problemi di periferica possibili. Dopo aver utilizzato l'opzione 1 toolog in, è possibile consentire tecnico del supporto Microsoft hello runspace tooaccess senza restrizioni eseguendo un cmdlet specifico. Per informazioni dettagliate, vedere troppo[avviare una sessione di supporto](storsimple-8000-contact-microsoft-support.md#start-a-support-session-in-windows-powershell-for-storsimple).
+1. **Connessione con accesso completo** Questa opzione consente di connettersi con le credenziali appropriate allo spazio di esecuzione **SSAdminConsole** sul controller locale. (Il controller locale è il controller a cui si accede attualmente tramite la console seriale del dispositivo StorSimple.) Questa opzione può essere utilizzata anche per consentire al supporto Microsoft di accedere allo spazio di esecuzione senza limitazioni (una sessione di supporto) per risolvere eventuali problemi relativi al dispositivo. Dopo aver utilizzato l'opzione 1 per l'accesso, è possibile consentire al tecnico del supporto Microsoft di accedere allo stazio di esecuzione senza limitazioni eseguendo un cmdlet specifico. Per informazioni dettagliate, consultare [Avvio di una sessione di supporto](storsimple-8000-contact-microsoft-support.md#start-a-support-session-in-windows-powershell-for-storsimple).
    
-2. **Accedi al controller toopeer con accesso completo** questa opzione è hello uguale all'opzione 1, ad eccezione del fatto che sia possibile connettersi (con credenziali appropriate hello) toohello **SSAdminConsole** spazio di esecuzione sul controller peer hello. Poiché il dispositivo di StorSimple hello è un dispositivo a disponibilità elevata con due controller in una configurazione attiva-passiva, peer si riferisce toohello altri controller di dispositivo hello che si accede tramite la console seriale hello).
-   Toooption simile 1, questa opzione può essere anche usato tooallow supporto Microsoft tooaccess illimitato runspace in un controller peer.
+2. **Connessione al controller peer con accesso completo**: questa opzione equivale all'opzione 1, ma è possibile connettersi con le credenziali appropriate allo spazio di esecuzione di **SSAdminConsole** sul controller peer. Poiché il dispositivo StorSimple è un dispositivo a elevata disponibilità con due controller in una configurazione attiva-passiva, peer fa riferimento all'altro controller del dispositivo a cui si accede tramite la console seriale).
+   Simile all'opzione 1, questa opzione può inoltre essere utilizzata per consentire al supporto Microsoft di accedere allo spazio di esecuzione senza restrizioni su un controller peer.
 
-3. **Connetti con accesso limitato** questa opzione è utilizzata tooaccess interfaccia Windows PowerShell in modalità limited. Non vengono richieste le credenziali di accesso. Questa opzione consente di connettersi tooa più limitato rispetto allo spazio di esecuzione toooptions 1 e 2.  Alcune delle attività hello che sono disponibili tramite l'opzione 1 che **Impossibile* essere eseguite in questo spazio di esecuzione sono:
+3. **Connetti con accesso limitato** Questa opzione viene utilizzata per accedere all'interfaccia Windows PowerShell in modalità limitata. Non vengono richieste le credenziali di accesso. Questa opzione consente la connessione a uno spazio di esecuzione più limitato rispetto alle opzioni 1 e 2.  Alcune delle attività disponibili tramite l'opzione 1 che **non possono* essere eseguite in questo spazio di esecuzione sono:
    
-   * Ripristinare le impostazioni di fabbrica toohello
-   * Modificare la password hello
+   * Ripristino alle impostazioni di fabbrica
+   * Modifica della password
    * Abilitazione o disabilitazione dell'accesso del supporto
    * Applicazione degli aggiornamenti
    * Installazione degli aggiornamenti rapidi
 
     > [!NOTE]
-    > Questo è l'opzione hello preferito se si dimentica la password di amministratore dispositivo hello e non può connettersi tramite l'opzione 1 o 2.
+    > Questa è l'opzione consigliata se si dimentica la password di amministratore del dispositivo e non è possibile connettersi tramite l'opzione 1 o 2.
 
-4. **Modifica lingua** questa opzione consente di lingua di visualizzazione toochange hello nell'interfaccia di Windows PowerShell hello. lingue Hello supportate sono inglese, giapponese, russo, francese, Sud-coreano, spagnolo, italiano, tedesco, cinese e portoghese (Brasile).
+4. **Modifica lingua** Questa opzione consente di modificare la lingua di visualizzazione nell'interfaccia Windows PowerShell. Le lingue supportate sono inglese, giapponese, russo, francese, sudcoreano, spagnolo, italiano, tedesco, cinese e portoghese (Brasile).
 
-## <a name="connect-remotely-toostorsimple-using-windows-powershell-for-storsimple"></a>Connettersi in remoto mediante Windows PowerShell per StorSimple tooStorSimple
+## <a name="connect-remotely-to-storsimple-using-windows-powershell-for-storsimple"></a>Connessione remota a StorSimple tramite Windows PowerShell per StorSimple
 
-È possibile utilizzare il dispositivo StorSimple tooyour di Windows PowerShell remoting tooconnect. Quando ci si connette in questo modo, non verrà visualizzato un menu. (Menu viene visualizzato solo se si utilizza la console seriale hello in tooconnect dispositivo hello. Connessione remota consente di passare direttamente toohello equivalente di "opzione 1: accesso completo" sulla console seriale hello.) Con la comunicazione remota di Windows PowerShell, è connettersi tooa spazio di esecuzione specifico. È inoltre possibile specificare la lingua di visualizzazione hello.
+È possibile utilizzare la comunicazione remota di Windows PowerShell per la connessione al dispositivo StorSimple. Quando ci si connette in questo modo, non verrà visualizzato un menu. Viene visualizzato un menu solo se si usa la console seriale del dispositivo per la connessione. La connessione remota consente di passare direttamente all'equivalente dell'opzione 1 (accesso completo) nella console seriale. Con la comunicazione remota di Windows PowerShell, ci si connette a uno specifico spazio di esecuzione. È inoltre possibile specificare la lingua di visualizzazione.
 
-Hello lingua di visualizzazione è indipendente dalla lingua hello impostate tramite hello **Cambia lingua** opzione nel menu della console seriale hello. PowerShell remoto rileverà automaticamente dalle impostazioni locali hello del dispositivo hello che ci si connette da se non è specificato.
+La lingua di visualizzazione è indipendente dalla lingua impostata tramite l'opzione **Modifica lingua** nel menu della console seriale. La sessione remota di PowerShell recupererà automaticamente le impostazioni locali del dispositivo da cui ci si connette se non è specificati.
 
 > [!NOTE]
-> Se si lavora con gli host virtuali di Microsoft Azure e dispositivi Cloud StorSimple, è possibile utilizzare Windows PowerShell remoting e hello host virtuale tooconnect toohello appliance di cloud. Se è stato un percorso di condivisione in host hello in quali informazioni toosave dalla sessione di Windows PowerShell hello, è necessario essere consapevoli che hello _Everyone_ entità include solo gli utenti autenticati. Pertanto, se è stata impostata una hello condivisione tooallow accesso _Everyone_ e ci si connette senza specificare le credenziali, verrà utilizzata l'entità anonimi non autenticati hello e verrà visualizzato un errore. toofix questo problema, in hello condividere host è necessario abilitare l'account Guest hello e quindi consentire la condivisione toohello hello Guest account accesso completo oppure è necessario specificare credenziali valide con hello cmdlet di Windows PowerShell.
+> Se si lavora con gli host virtuali di Microsoft Azure e le appliance cloud StorSimple, è possibile usare la comunicazione remota di Windows PowerShell e l'host virtuale per connettersi all'appliance cloud. Se è stata configurata una posizione di condivisione nell'host in cui salvare le informazioni dalla sessione di Windows PowerShell, tenere presente che l'entità di sicurezza _Tutti_ include solo gli utenti autenticati. Per questo motivo, se è stata configurata la condivisione per consentire l'accesso da parte di _Tutti_ e ci si connette senza specificare le credenziali, viene usata l'entità di sicurezza Anonimo e viene visualizzato un errore. Per risolvere questo problema, nell'host di condivisione è necessario abilitare l'account Guest e fornire all'account Guest l'accesso completo alla condivisione oppure è necessario specificare credenziali valide e il cmdlet di Windows PowerShell.
 
 
-È possibile utilizzare HTTP o HTTPS tooconnect tramite comunicazione remota di Windows PowerShell. Utilizzare le istruzioni di hello in hello seguenti esercitazioni:
+È possibile utilizzare HTTP o HTTPS per connettersi tramite la comunicazione remota di Windows PowerShell. Utilizzare le istruzioni nelle esercitazioni seguenti:
 
 * [Connessione tramite HTTP](storsimple-remote-connect.md#connect-through-http)
 * [Connessione tramite HTTPS](storsimple-remote-connect.md#connect-through-https)
 
 ## <a name="connection-security-considerations"></a>Considerazioni sulla sicurezza di connessione
 
-Quando si decide come tooconnect tooWindows PowerShell per StorSimple, considerare l'esempio hello:
+Quando si decide come connettersi a Windows PowerShell per StorSimple, considerare quanto segue:
 
-* La connessione diretta toohello console seriale del dispositivo è protetto, ma connessione toohello console seriale tramite commutatori di rete non è. Prestare attenzione hello rischi di sicurezza durante la connessione seriale toodevice tramite commutatori di rete.
-* Connessione tramite una sessione HTTP può offrire maggiore sicurezza rispetto alla connessione tramite la console seriale hello in rete. Anche se non si tratta metodo più sicuro hello, è accettabile su reti attendibili.
-* Connessione tramite una sessione HTTPS è hello più sicura e hello opzione consigliata.
+* La connessione diretta alla console seriale del dispositivo è protetta ma la connessione alla console seriale sugli switch di rete non lo è. Prestare attenzione al rischio di sicurezza quando ci si connette alla console seriale del dispositivo sugli switch di rete.
+* La connessione tramite una sessione HTTP potrebbe offrire maggiore sicurezza rispetto alla connessione tramite la console seriale sulla rete. Sebbene non sia il metodo più sicuro, è accettabile su reti attendibili.
+* La connessione tramite una sessione HTTPS è l'opzione consigliata e la più sicura.
 
 ## <a name="administer-your-storsimple-device-using-windows-powershell-for-storsimple"></a>Amministrazione del dispositivo StorSimple tramite Windows PowerShell per StorSimple
 
-Hello nella tabella seguente mostra un riepilogo di tutte le attività di gestione comuni hello e flussi di lavoro complessi che possono essere eseguite nell'interfaccia di Windows PowerShell hello del dispositivo StorSimple. Per ulteriori informazioni su ogni flusso di lavoro, fare clic sulla voce appropriata di hello nella tabella hello.
+La tabella seguente illustra un riepilogo di tutte le attività di gestione comuni e dei flussi di lavoro complessi che possono essere eseguiti nell'interfaccia Windows PowerShell del dispositivo StorSimple. Per altre informazioni su ogni flusso di lavoro, fare clic sulla voce appropriata nella tabella.
 
 #### <a name="windows-powershell-for-storsimple-workflows"></a>Flussi di lavoro di Windows PowerShell per StorSimple
 
-| Se si desidera toodo... | Usare questa procedura. |
+| Se si desidera eseguire questa operazione... | Usare questa procedura. |
 | --- | --- |
-| Registrazione del dispositivo |[Configurare e registrare il dispositivo hello tramite Windows PowerShell per StorSimple](storsimple-8000-deployment-walkthrough-u2.md#step-3-configure-and-register-the-device-through-windows-powershell-for-storsimple) |
+| Registrazione del dispositivo |[Configurare e registrare il dispositivo tramite Windows PowerShell per StorSimple](storsimple-8000-deployment-walkthrough-u2.md#step-3-configure-and-register-the-device-through-windows-powershell-for-storsimple) |
 | Configurare il proxy web </br>Visualizzare le impostazioni del proxy web |[Configurare il proxy web per il dispositivo StorSimple](storsimple-8000-configure-web-proxy.md) |
 | Modifica delle impostazioni dell'interfaccia di rete DATA 0 sul dispositivo |[Modificare le impostazioni dell'interfaccia di rete DATA 0 per il dispositivo StorSimple](storsimple-8000-modify-data-0.md) |
-| Arrestare un controller  </br> Riavviare o arrestare un controller </br> Arrestare un dispositivo</br>Ripristinare le impostazioni predefinite di hello dispositivo toofactory |[Gestire i controller dei dispositivi](storsimple-8000-manage-device-controller.md) |
+| Arrestare un controller  </br> Riavviare o arrestare un controller </br> Arrestare un dispositivo</br>Ripristinare le impostazioni predefinite di fabbrica del dispositivo |[Gestire i controller dei dispositivi](storsimple-8000-manage-device-controller.md) |
 | Installazione degli aggiornamenti in modalità di manutenzione e rapidi |[Aggiornare il dispositivo](storsimple-update-device.md) |
 | Inserire la modalità di manutenzione  </br>Uscire dalla modalità di manutenzione |[Modalità del dispositivo StorSimple](storsimple-8000-device-modes.md) |
 | Creare un pacchetto di supporto</br>Decrittografare e modificare un pacchetto di supporto |[Creare e gestire un pacchetto di supporto](storsimple-8000-create-manage-support-package.md) |
@@ -156,33 +156,33 @@ Hello nella tabella seguente mostra un riepilogo di tutte le attività di gestio
 
 ## <a name="get-help-in-windows-powershell-for-storsimple"></a>Ottenimento della guida in Windows PowerShell per StorSimple
 
-In Windows PowerShell per StorSimple è disponibile la guida per i cmdlet. Una versione online aggiornata di tale Guida è disponibile anche che è possibile utilizzare tooupdate hello della Guida nel sistema.
+In Windows PowerShell per StorSimple è disponibile la guida per i cmdlet. È inoltre disponibile una versione aggiornata in linea di questa guida, che è possibile utilizzare per aggiornare la guida del sistema.
 
-Ottenere informazioni della Guida in questa interfaccia è toothat simili in Windows PowerShell e la maggior parte dei cmdlet correlati della Guida hello funzionerà. È possibile trovare della Guida di Windows PowerShell online nella libreria TechNet hello: [Scripting con Windows PowerShell](http://go.microsoft.com/fwlink/?LinkID=108518).
+La guida in questa interfaccia si ottiene in modo simile a quella in Windows PowerShell e la maggior parte dei cmdlet correlati alla guida funzionerà. È possibile trovare la guida in linea per Windows PowerShell in linea nella libreria TechNet: [Utilizzo degli script con Windows PowerShell](http://go.microsoft.com/fwlink/?LinkID=108518).
 
-di seguito Hello è una breve descrizione dei tipi di hello della Guida per l'interfaccia di Windows PowerShell, incluso come tooupdate hello della Guida.
+Di seguito viene riportata una breve descrizione dei tipi di guida per l'interfaccia di Windows PowerShell, tra cui come aggiornare la guida.
 
-### <a name="tooget-help-for-a-cmdlet"></a>Guida di tooget per un cmdlet
+### <a name="to-get-help-for-a-cmdlet"></a>Per ottenere la guida per un cmdlet
 
-* tooget della Guida per qualsiasi cmdlet o una funzione, utilizzare hello comando seguente:`Get-Help <cmdlet-name>`
-* tooget Guida online per qualsiasi cmdlet, usare i cmdlet precedente hello con hello `-Online` parametro:`Get-Help <cmdlet-name> -Online`
-* Per informazioni complete, è possibile utilizzare hello `–Full` parametro e per esempi, utilizzare hello `–Examples` parametro.
+* Per ottenere la guida per un cmdlet o una funzione, utilizzare il comando seguente: `Get-Help <cmdlet-name>`
+* Per ottenere la guida in linea per tutti i cmdlet, utilizzare il cmdlet precedente con il parametro `-Online`: `Get-Help <cmdlet-name> -Online`
+* Per la Guida completa, è possibile usare il parametro `–Full` e, per gli esempi, il parametro `–Examples`.
 
-### <a name="tooupdate-help"></a>tooupdate della Guida
+### <a name="to-update-help"></a>Per aggiornare la guida:
 
-È possibile aggiornare facilmente la Guida di interfaccia di Windows PowerShell hello hello. Eseguire hello seguendo i passaggi tooupdate hello della Guida nel sistema.
+È possibile aggiornare facilmente la guida dell'interfaccia di Windows PowerShell. Attenersi ai passaggi seguenti per aggiornare la guida del sistema.
 
-#### <a name="tooupdate-cmdlet-help"></a>Guida dei cmdlet tooupdate
-1. Avviare Windows PowerShell con hello **Esegui come amministratore** opzione.
-2. Al prompt dei comandi di hello, digitare:`Update-Help`
-3. Hello aggiornati della Guida verranno installati i file.
-4. Una volta installati i file della Guida di hello, digitare: `Get-Help Get-Command`. Verrà visualizzato un elenco dei cmdlet per cui è disponibile la guida.
+#### <a name="to-update-cmdlet-help"></a>Per aggiornare la guida dei cmdlet:
+1. Avviare Windows PowerShell con l'opzione **Esegui come amministratore** .
+2. Al prompt dei comandi digitare: `Update-Help`
+3. Verranno installati i file della guida aggiornati.
+4. Una volta installati i file della guida, digitare: `Get-Help Get-Command`. Verrà visualizzato un elenco dei cmdlet per cui è disponibile la guida.
 
 > [!NOTE]
-> un elenco di tutti i cmdlet disponibili hello in uno spazio di esecuzione tooget accedere toohello voce di menu corrispondente ed eseguire hello `Get-Command` cmdlet.
+> Per ottenere un elenco di tutti i cmdlet disponibili in uno spazio di esecuzione, accedere all'opzione di menu corrispondente ed eseguire il cmdlet `Get-Command`.
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Se si verificano problemi con il dispositivo StorSimple durante l'esecuzione di uno di hello sopra i flussi di lavoro, fare riferimento troppo[strumenti per la risoluzione dei problemi delle distribuzioni di StorSimple](storsimple-troubleshoot-deployment.md#tools-for-troubleshooting-storsimple-deployments).
+Se si riscontrano problemi relativi al dispositivo StorSimple durante l'esecuzione di uno dei flussi di lavoro riportati in precedenza, fare riferimento a [Strumenti per la risoluzione dei problemi di distribuzioni di StorSimple](storsimple-troubleshoot-deployment.md#tools-for-troubleshooting-storsimple-deployments).
 

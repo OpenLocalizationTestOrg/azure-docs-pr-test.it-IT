@@ -3,8 +3,8 @@
 | --- | --- | --- | --- |
 | CHIAMATE API |500 KB |1,5 M / unità |15 M / unità |
 | Dispositivi attivi |500 |Senza limiti |Senza limiti |
-| Scalabilità |N/D |Unità too6 |Un numero illimitato di unità |
-| Notifiche push |Livello gratuito hub di notifica incluso, backup too1 milione di push |Livello Basic hub di notifica incluso, backup too10 milione di push |Livello Standard hub di notifica incluso, backup too10 milione di push |
+| Scalabilità |N/D |Fino a 6 unità |Un numero illimitato di unità |
+| Notifiche push |Effettua l’hub di notifica livello gratuito incluso, fino a 1 M |Effettua l’hub di notifica livello base incluso, fino a 10 M |Effettua l’hub di notifica hub di livello Standard incluso, fino a 10 M |
 | Messaggistica in tempo reale /<br/>WebSocket |Limitato |350 / Servizio mobile  |Senza limiti |
 | Sincronizzazioni offline |Limitato |Incluso |Incluso |
 | Scheduled jobs |Limitato |Incluso |Incluso |

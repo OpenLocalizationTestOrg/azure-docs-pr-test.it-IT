@@ -1,10 +1,10 @@
 <!-- A-series - compute-intensive instances, H-series -->
 
-Hello dimensioni A8 A11 e H serie sono noti anche come *istanze con utilizzo intensivo di calcolo*. progettato e ottimizzato per un utilizzo intensivo di calcolo hardware Hello che esegue queste dimensioni e applicazioni a elevato utilizzo di rete, calcolo ad alte prestazioni (HPC) tra cluster di applicazioni, modellazione e simulazioni. Hello A8 A11 serie utilizza Intel Xeon E5-2670 2,6 GHz e hello H serie utilizza 2667 con Intel Xeon E5 v3 @ 3,2 GHz. 
+Le dimensioni delle serie A8-A11 e H sono note anche come *istanze a elevato uso di calcolo*. L'hardware che esegue queste dimensioni è progettato e ottimizzato per applicazioni a elevato utilizzo di calcolo e di rete, come applicazioni cluster HPC, modellazione e simulazioni. La serie A8-A11 usa Intel Xeon E5-2670 a 2,6 GHZ, mentre la serie H usa Intel Xeon E5-2667 v3 a 3,2 GHz. 
 
-Macchine virtuali di Azure H serie sono hello successiva generazione elaborazione a elevate prestazioni esigenze di elaborazione di fascia alta, come la modellazione molecolare e fluidodinamica computazionale intese a macchine virtuali. Questi CPU 8 e 16 virtuale le macchine virtuali sono basati sulla tecnologia di processore Intel-2667 Haswalle E5 V3 hello che presenta DDR4 memoria e archiviazione temporanea basate su SSD. 
+Le macchine virtuali serie H di Azure sono le VM high performance computing di prossima generazione che puntano a risolvere esigenze di calcolo di fascia alta, come modellazione molecolare e fluidodinamica computazionale. Queste VM a 8 e 16 vCPU sono basate sulla tecnologia del processore Intel Haswell E5-2667 V3 con memoria DDR4 e spazio di archiviazione temporaneo basato su unità SSD. 
 
-Offre inoltre la potenza della CPU sostanziale di toohello, hello H serie diverse opzioni per la rete RDMA di bassa latenza utilizzando FDR InfiniBand e diverse configurazioni toosupport memoria con utilizzo intensivo calcolo i requisiti di memoria.
+Oltre alla sostanziale potenza della CPU, la serie H offre diverse opzioni per rete RDMA a bassa latenza con FDR InfiniBand e diverse configurazioni di memoria a supporto di requisiti di calcolo a elevato uso di memoria.
 
 
 

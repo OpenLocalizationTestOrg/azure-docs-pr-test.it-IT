@@ -1,6 +1,6 @@
 ---
-title: "aaaWhat è Azure SQL Data Warehouse? | Microsoft Docs"
-description: "Database distribuito di livello aziendale, in grado di elaborare volumi di dati relazionali e non relazionali anche nell'ordine di petabyte. È primo data warehouse cloud del settore hello con aumento, compatta e sospensione in secondi."
+title: "Che cos'è SQL Data Warehouse di Azure? | Documentazione Microsoft"
+description: "Database distribuito di livello aziendale, in grado di elaborare volumi di dati relazionali e non relazionali anche nell'ordine di petabyte. Si tratta del primo data warehouse basato sul cloud del settore con possibilità di aumento, riduzione e sospensione in pochi secondi."
 services: sql-data-warehouse
 documentationcenter: NA
 author: jrowlandjones
@@ -15,28 +15,28 @@ ms.workload: data-services
 ms.custom: overview
 ms.date: 2/28/2017
 ms.author: jrj;barbkess
-ms.openlocfilehash: 5fefe40879230f123c2e4a90b9c20a35779cf711
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 575c49f83c8845edcea984459f3907490c62d269
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="what-is-azure-sql-data-warehouse"></a>Che cos'è SQL Data Warehouse di Azure?
 Azure SQL Data Warehouse è un database relazionale MPP (Massively Parallel Processing) basato sul cloud, con possibilità di aumentare il numero di istanze, in grado di elaborare volumi massivi di dati. 
 
 SQL Data Warehouse:
 
-* Combina i database relazionale di SQL Server hello con funzionalità di scalabilità orizzontale di cloud di Azure. 
+* Combina il database relazionale di SQL Server con le funzionalità di aumento del numero di istanze del cloud di Azure. 
 * Separa l'archiviazione dal calcolo.
 * Consente l'aumento, la riduzione, la sospensione o la ripresa del calcolo. 
-* Integra tra hello piattaforma Azure.
+* È integrabile nella piattaforma Azure.
 * Usa Transact-SQL (T-SQL) e gli strumenti di SQL Server.
 * È conforme a vari requisiti di sicurezza legali e aziendali, ad esempio SOC e ISO.
 
-Questo articolo descrive le funzionalità principali di hello di SQL Data Warehouse.
+Questo articolo illustra le funzionalità principali di SQL Data Warehouse.
 
 ## <a name="massively-parallel-processing-architecture"></a>Architettura di elaborazione parallela massiva (MPP)
-SQL Data Warehouse è un sistema di database distribuito a elaborazione parallela massiva. Dietro le quinte hello SQL Data Warehouse distribuisce i dati in molti archiviazione di condivisione e unità di elaborazione. Hello dati vengono archiviati in un livello di archiviazione con ridondanza locale Premium su cui collegata in modo dinamico i nodi di calcolo eseguono query. Accetta SQL Data Warehouse che toorunning un approccio "suddividere la parte che" Carica e query complesse. Le richieste vengono ricevute da un nodo di controllo, ottimizzato per la distribuzione e quindi passato tooCompute nodi toodo il proprio lavoro in parallelo.
+SQL Data Warehouse è un sistema di database distribuito a elaborazione parallela massiva. In background SQL Data Warehouse distribuisce i dati in risorse di archiviazione in modalità di condivisione "shared-nothing" e in unità di elaborazione diversi. I dati vengono archiviati in un livello di archiviazione con ridondanza locale Premium, sopra il quale i nodi di calcolo collegati in modo dinamico eseguono le query. SQL Data Warehouse adotta un approccio di tipo "dividi e conquista" per l'esecuzione di carichi e query complesse. Le richieste vengono ricevute dal nodo di controllo, ottimizzate per la distribuzione e quindi passate ai nodi di calcolo per svolgere le attività in parallelo.
 
 Grazie alla separazione tra archiviazione e calcolo, SQL Data Warehouse consente di:
 
@@ -45,57 +45,57 @@ Grazie alla separazione tra archiviazione e calcolo, SQL Data Warehouse consente
 * Sospendere la capacità di calcolo mantenendo intatti i dati e pagando solo per l'archiviazione.
 * Riprendere le capacità di calcolo durante l'orario operativo.
 
-Hello diagramma seguente mostra architettura hello in modo più dettagliato.
+Il diagramma seguente illustra l'architettura in modo più dettagliato.
 
 ![Architettura di SQL Data Warehouse][1]
 
-**Nodo di controllo:** nodo di controllo del codice hello gestisce e consente di ottimizzare le query. È front-end hello che interagisce con tutte le applicazioni e le connessioni. In SQL Data Warehouse, il nodo di controllo del codice hello è supportato dal Database SQL e connessione tooit esegue la ricerca e rappresenti hello stesso. In area hello, il nodo di controllo del codice hello coordina tutti i calcoli richiesti e lo spostamento dei dati di hello toorun query parallele sui dati distribuiti. Quando si invia un tooSQL query T-SQL Data Warehouse, il nodo di controllo del codice hello li trasforma in query distinte eseguite su ogni nodo di calcolo in parallelo.
+**Nodo di controllo:** il nodo di controllo gestisce e ottimizza le query. È il front-end che interagisce con tutte le applicazioni e le connessioni. In SQL Data Warehouse il nodo di controllo si basa sul database SQL e quando si stabilisce la connessione ha lo stesso aspetto. In background, il nodo di controllo coordina lo spostamento e il calcolo di tutti i dati e i calcoli richiesti per l'esecuzione di query parallele sui dati distribuiti. Quando si invia una query T-SQL a SQL Data Warehouse, il nodo di controllo la trasforma in query distinte che saranno eseguite su ogni nodo di calcolo in parallelo.
 
-**Nodi di calcolo:** fungono da nodi di calcolo hello power hello dietro SQL Data Warehouse. Sono database SQL che archiviano i dati ed elaborano le query. Quando si aggiungono dati, SQL Data Warehouse consente di distribuire i nodi di calcolo tooyour hello righe. nodi di calcolo Hello sono lavoratori hello che eseguono query parallele hello sui dati. Dopo l'elaborazione, passano nodo di controllo del codice hello risultati toohello indietro. query di hello toofinish, il nodo di controllo del codice hello aggrega i risultati di hello e restituisce hello risultato finale.
+**Nodi di calcolo:** offrono le potenzialità necessarie per SQL Data Warehouse. Sono database SQL che archiviano i dati ed elaborano le query. Quando si aggiungono dati, SQL Data Warehouse distribuisce le righe ai nodi di calcolo. I nodi di calcolo sono i ruoli di lavoro che eseguono le query parallele sui dati. Dopo l'elaborazione, restituiscono i risultati al nodo del controllo. Per completare la query, il nodo controllo aggrega i risultati e restituisce il risultato finale.
 
-**Archiviazione** : i dati vengono memorizzati nell'archivio BLOB di Azure. Quando i nodi di calcolo di interagire con i dati, è scrivere e leggere tooand direttamente dall'archiviazione blob. Poiché l'archiviazione di Azure si espande in modo trasparente e notevolmente, è possibile eseguire SQL Data Warehouse hello stesso. Poiché elaborazione e archiviazione sono indipendenti, SQL Data Warehouse può ridimensionare automaticamente le risorse di archiviazione separatamente dal ridimensionamento delle risorse di calcolo e viceversa. Archiviazione Blob di Azure è completamente a tolleranza di errore e semplifica hello backup e ripristino.
+**Archiviazione** : i dati vengono memorizzati nell'archivio BLOB di Azure. Quando i nodi di calcolo interagiscono con i dati, scrivono e leggono direttamente da e nell'archiviazione BLOB. Dato che l'archiviazione di Azure si espande in modo trasparente ed esteso, SQL Data Warehouse può fare altrettanto. Poiché elaborazione e archiviazione sono indipendenti, SQL Data Warehouse può ridimensionare automaticamente le risorse di archiviazione separatamente dal ridimensionamento delle risorse di calcolo e viceversa. Anche l'archivio BLOB di Azure è completamente a tolleranza di errore e semplifica il processo di backup e ripristino.
 
-**Data Movement Service:** servizio lo spostamento dei dati (DMS) consente di spostare dati tra i nodi di hello. DMS offre hello calcolo nodi accesso toodata necessarie di join e aggregazioni. DMS non è un servizio di Azure. È un servizio Windows che viene eseguito insieme ai Database SQL in tutti i nodi di hello. DMS è un processo in background con il quale non è possibile interagire direttamente. Tuttavia, è possibile visualizzare piani di query toosee quando si verificano operazioni DMS, poiché lo spostamento dei dati è necessario toorun ogni query in parallelo.
+**Data Movement Service:** (DMS) sposta i dati tra i nodi. DMS fornisce ai nodi di calcolo l'accesso ai dati necessario per eseguire join e aggregazioni. DMS non è un servizio di Azure. È un servizio di Windows che viene eseguito insieme al database SQL in tutti i nodi. DMS è un processo in background con il quale non è possibile interagire direttamente. È comunque possibile esaminare i piani di query per scoprire quando vengono eseguite le operazioni DMS, perché è necessario lo spostamento dei dati per eseguire ogni query in parallelo.
 
 ## <a name="optimized-for-data-warehouse-workloads"></a>Ottimizzato per carichi di lavoro di data warehouse
-approccio MPP Hello è supportato da diverse ottimizzazioni del data warehouse prestazioni specifici, tra cui:
+L'approccio MPP è supportato da varie ottimizzazioni delle prestazioni specifiche per il data warehousing, tra le quali:
 
-* Un'utilità di ottimizzazione delle query distribuita e un set di statistiche complesse su tutti i dati. Utilizza le informazioni sulla distribuzione e la dimensione dei dati, il servizio di hello è toooptimize in grado di query a valutare i costi di hello delle operazioni di query distribuita specifica.
-* Le tecniche e algoritmi avanzati integrati in dati hello spostamento processo tooefficiently spostare i dati tra le risorse di elaborazione come query hello tooperform necessarie. Queste operazioni di spostamento dei dati sono incorporate e tutte le ottimizzazioni toohello Data Movement Service è stata eseguita automaticamente.
-* Indici **columnstore** cluster per impostazione predefinita. Con l'archiviazione basata su colonne, SQL Data Warehouse Ottiene medio 5 i guadagni di compressione x rispetto all'archiviazione tradizionale orientata alle righe e di too10x o ulteriori miglioramenti delle prestazioni di query. Le query di Analitica che richiedono tooscan un numero elevato di righe funziona meglio con gli indici columnstore.
+* Un'utilità di ottimizzazione delle query distribuita e un set di statistiche complesse su tutti i dati. Usando le informazioni sulla distribuzione e sulle dimensioni dei dati, il servizio è in grado di ottimizzare le query in base a una valutazione del costo di operazioni di query distribuite specifiche.
+* Tecniche e algoritmi avanzati integrati nel processo di spostamento dei dati per spostare in modo efficiente i dati tra le diverse risorse di calcolo, secondo le esigenze, per eseguire la query. Queste operazioni di spostamento dei dati sono predefinite e tutte le ottimizzazioni di Data Movement Service vengono eseguite automaticamente.
+* Indici **columnstore** cluster per impostazione predefinita. Usando una risorsa di archiviazione basata su colonne, SQL Data Warehouse raggiunge una compressione cinque volte superiore all'archiviazione tradizionale basata su righe e prestazioni delle query fino a dieci volte o maggiori. Le query di analisi che devono eseguire l'analisi di un numero elevato di righe offrono prestazioni migliori con indici columnstore.
 
 
 ## <a name="predictable-and-scalable-performance-with-data-warehouse-units"></a>Prestazioni prevedibili e scalabili con Unità Data Warehouse (DWU)
-SQL Data Warehouse è realizzato con tecnologie simili a quelle usate per Database SQL e questo significa che gli utenti possono aspettarsi prestazioni coerenti e prevedibili per le query analitiche. Gli utenti dovrebbero toosee scala di prestazioni in modo lineare in cui aggiungere o sottrarre nodi di calcolo. Allocazione di risorse tooyour SQL Data Warehouse viene misurato in unità di Data Warehouse (Dwu). Dwu sono una misura delle risorse sottostanti, ad esempio CPU, memoria, IOPS, vengono allocati tooyour SQL Data Warehouse. Aumentare il numero di hello Dwu aumenta le risorse e le prestazioni. In particolare, si usano le DWU per poter eseguire queste operazioni:
+SQL Data Warehouse è realizzato con tecnologie simili a quelle usate per Database SQL e questo significa che gli utenti possono aspettarsi prestazioni coerenti e prevedibili per le query analitiche. Gli utenti possono aspettarsi un incremento o una riduzione lineare delle prestazioni con l'aggiunta o la rimozione di nodi di calcolo. L'allocazione di risorse per SQL Data Warehouse viene misurata in Unità Data Warehouse (DWU). Le DWU sono una misura delle risorse sottostanti, ad esempio CPU, memoria, operazioni di I/O al secondo, allocate a SQL Data Warehouse. Se si aumenta il numero di DWU, si aumentano anche le risorse e le prestazioni. In particolare, si usano le DWU per poter eseguire queste operazioni:
 
-* Si è in grado di tooscale il data warehouse senza doversi preoccupare hello hardware o software.
-* È possibile prevedere miglioramento delle prestazioni per un livello DWU prima di modificare il calcolo di hello del data warehouse.
-* Hello sottostante hardware e software dell'istanza può modificare o spostare senza influire sulle prestazioni del carico di lavoro.
-* Microsoft può migliorare hello sottostante l'architettura del servizio hello senza influire sulle prestazioni di hello del carico di lavoro.
-* Microsoft può migliorare rapidamente le prestazioni in SQL Data Warehouse, in modo che sia scalabile e in modo uniforme effetti hello sistema.
+* Ridimensionare il data warehouse senza doversi preoccupare dei componenti hardware o software sottostanti.
+* È possibile stimare i miglioramenti delle prestazioni per un livello di DWU prima di modificare le capacità di calcolo del data warehouse.
+* Modificare o spostare i componenti hardware e software sottostanti dell'istanza senza compromettere le prestazioni del carico di lavoro.
+* Per Microsoft, migliorare l'architettura sottostante del servizio senza influire sulle prestazioni del carico di lavoro.
+* Per Microsoft, migliorare rapidamente le prestazioni in SQL Data Warehouse, in modo scalabile e con un impatto uniforme sul sistema.
 
-Le Unità Data Warehouse offrono una misura di tre metriche strettamente correlate alle prestazioni del carico di lavoro di data warehousing. esempio Hello chiave scala metrica di carico di lavoro in modo lineare con hello Dwu.
+Le Unità Data Warehouse offrono una misura di tre metriche strettamente correlate alle prestazioni del carico di lavoro di data warehousing. Il ridimensionamento delle metriche chiave del carico di lavoro seguenti è lineare in relazione alle unità DWU.
 
 **Analisi/aggregazione:** una query di data warehousing standard che esamina un numero elevato di righe e quindi esegue un'aggregazione complessa. Questa è un'operazione con uso intensivo di I/O e CPU.
 
-**Caricamento:** hello dati tooingest possibilità in servizio hello. Si ottengono prestazioni ottimali per i carichi con PolyBase da BLOB del servizio di archiviazione di Azure o Azure Data Lake. Questa metrica è progettato toostress rete e gli aspetti della CPU del servizio di hello.
+**Carico:** capacità di inserire dati nel servizio. Si ottengono prestazioni ottimali per i carichi con PolyBase da BLOB del servizio di archiviazione di Azure o Azure Data Lake. Questa metrica è progettata per evidenziare gli aspetti relativi a rete e CPU del servizio.
 
-**Creare una tabella come Select (un'istruzione CTAS):** un'istruzione CTAS misura hello possibilità toocopy una tabella. Tale attività implica la lettura dei dati dall'archivio, distribuirlo in nodi di hello del dispositivo hello e la scrittura toostorage nuovamente. È un'operazione con uso intensivo di CPU, I/O e rete.
+**Create Table As Select (CTAS):** misura la possibilità di creare una copia di una tabella. Ciò comporta la lettura dei dati dalla risorsa di archiviazione, la relativa distribuzione tra tutti i nodi dell'appliance e la riscrittura nella risorsa di archiviazione. È un'operazione con uso intensivo di CPU, I/O e rete.
 
 ## <a name="built-on-sql-server"></a>Basato su SQL Server
-SQL Data Warehouse è basato sul motore di database relazionale di SQL Server hello e include molte funzionalità hello desiderato da un enterprise data warehouse. Se si conosce già T-SQL, è facile tootransfer il tooSQL Knowledge Base Data Warehouse. Se sono avanzate o solo informazioni introduttive, esempi di hello in documentazione hello consente di iniziare. In generale, si pensi a modo hello che gli elementi di linguaggio hello di SQL Data Warehouse è stata creata come indicato di seguito:
+SQL Data Warehouse si basa sul motore di database relazionale di SQL Server e include molte delle funzionalità che ci si aspetta da un data warehouse aziendale. Se già si conosce T-SQL, sarà facile trasferire le proprie conoscenze in SQL Data Warehouse. Per gli utenti avanzati e per chi non ha molta familiarità, gli esempi disponibili nella documentazione saranno utili per iniziare. In generale, è possibile considerare il modo in cui sono costruiti gli elementi del linguaggio di SQL Data Warehouse come segue:
 
 * SQL Data Warehouse usa la sintassi T-SQL per molte operazioni. Supporta anche un'ampia gamma di costrutti SQL tradizionali, ad esempio stored procedure, funzioni definite dall'utente, partizionamento delle tabelle, indici e regole di confronto.
 * SQL Data Warehouse include anche varie funzionalità recenti di SQL Server, tra cui gli indici **columnstore** cluster, l'integrazione di PolyBase e il controllo dei dati, inclusa la valutazione delle minacce.
-* Alcuni elementi del linguaggio T-SQL che sono meno comune per i carichi di lavoro di data warehouse o più recente tooSQL Server, potrebbero non essere attualmente disponibili. Per ulteriori informazioni, vedere hello [documentazione per la migrazione][Migration documentation].
+* Alcuni elementi del linguaggio T-SQL meno comuni per i carichi di lavoro di data warehousing o più recenti in SQL Server potrebbero non essere disponibili al momento. Per altre informazioni, vedere la [documentazione sulla migrazione][Migration documentation].
 
-Con hello Transact-SQL e compatibilità di funzionalità tra SQL Server, SQL Data Warehouse, Database SQL e Analitica Platform System, è possibile sviluppare una soluzione adatta alle proprie esigenze di dati. È possibile decidere dove tookeep i dati, basati sulle prestazioni, sicurezza e i requisiti di scala e quindi trasferire i dati in base alle esigenze tra sistemi diversi.
+Grazie a Transact-SQL e alle funzionalità in comune tra SQL Server, SQL Data Warehouse, il database SQL e Analytics Platform System, è possibile sviluppare una soluzione adatta alle esigenze dei dati di cui si dispone. È possibile decidere dove mantenere i dati in base ai requisiti di prestazioni, sicurezza e scalabilità e quindi trasferirli secondo le necessità tra i diversi sistemi.
 
 ## <a name="data-protection"></a>Protezione dati
-SQL Data Warehouse archivia tutti i dati nella risorsa di archiviazione con ridondanza locale Premium di Azure. Più copie di sincrone dei dati di hello vengono mantenute nella protezione hello dati locale center tooguarantee trasparente dei dati in caso di errori localizzata. SQL Data Warehouse esegue anche il backup automatico dei database attivi (non in pausa) a intervalli regolari usando gli snapshot di Archiviazione di Azure. toolearn ulteriori informazioni su backup e ripristino di funzionamento, vedere hello [Panoramica di Backup e ripristino][Backup and restore overview].
+SQL Data Warehouse archivia tutti i dati nella risorsa di archiviazione con ridondanza locale Premium di Azure. Nel data center locale vengono mantenute più copie sincrone dei dati per garantire una protezione trasparente degli stessi da problemi localizzati. SQL Data Warehouse esegue anche il backup automatico dei database attivi (non in pausa) a intervalli regolari usando gli snapshot di Archiviazione di Azure. Per altre informazioni sul funzionamento del backup e ripristino, vedere la [panoramica su backup e ripristino][Backup and restore overview].
 
 ## <a name="integrated-with-microsoft-tools"></a>Integrato con strumenti di Microsoft
-SQL Data Warehouse si integra anche molti strumenti hello gli utenti potrebbero avere familiari con SQL Server. Questi strumenti comprendono:
+SQL Data Warehouse si integra anche con molti degli strumenti di SQL Server con cui gli utenti possono avere familiarità, Questi strumenti comprendono:
 
 **Strumenti tradizionali di SQL Server:** SQL Data Warehouse è completamente integrato con SQL Server Analysis Services, Integration Services e Reporting Services.
 
@@ -104,17 +104,17 @@ SQL Data Warehouse si integra anche molti strumenti hello gli utenti potrebbero 
 **Strumenti di terze parti:** molti provider di strumenti di terze parti hanno certificato l'integrazione dei propri strumenti con SQL Data Warehouse. Per l'elenco completo, vedere [Partner di soluzioni per SQL Data Warehouse][SQL Data Warehouse solution partners].
 
 ## <a name="hybrid-data-sources-scenarios"></a>Scenari di origini dati ibride
-Polybase consente tooleverage i dati da origini diverse tramite comandi comuni di T-SQL. Polybase consente tooquery dati non relazionali contenuti in archiviazione Blob di Azure come se fosse una normale tabella. Utilizzare i dati di Polybase tooquery non relazionali o dati non relazionali tooimport in SQL Data Warehouse.
+Polybase consente di sfruttare i dati provenienti da origini diverse eseguendo i comandi T-SQL familiari. Polybase consente di eseguire query su dati non relazionali presenti nell'archivio BLOB di Azure come se si trattasse di una normale tabella. Usare Polybase per eseguire query su dati non relazionali o per importare dati non relazionali in SQL Data Warehouse.
 
-* PolyBase utilizza i dati non relazionali tooaccess di tabelle esterne. le definizioni di tabella Hello vengono archiviate in SQL Data Warehouse, è possibile accedervi tramite SQL e strumenti quali si accede a dati relazionali normale.
-* Polybase è agnostico nella relativa integrazione, Espone hello stesse caratteristiche e funzionalità tooall hello le origini che supporta. dati Hello letti da Polybase possono essere in vari formati, tra cui file delimitato da virgole o ORC.
-* PolyBase può essere l'archiviazione di blob tooaccess utilizzato viene utilizzato anche come spazio di archiviazione per un cluster HDInsight. Questo consente di accedere toohello stessi dati non relazionali e strumenti.
+* PolyBase usa tabelle esterne per accedere ai dati non relazionali. Le definizioni di tabella vengono archiviate in SQL Data Warehouse e sono accessibili a SQL e agli strumenti come lo sono i normali dati relazionali.
+* Polybase è agnostico nella relativa integrazione, quindi espone le stesse caratteristiche e funzionalità a tutte le origini supportate. I dati letti da Polybase possono essere in vari formati, inclusi file delimitati o file ORC.
+* È possibile usare PolyBase per accedere all'archivio BLOB che viene usato anche come risorsa di archiviazione per un cluster HDInsight. Ciò consente di accedere agli stessi dati con strumenti relazionali e non relazionali.
 
 ## <a name="sla"></a>Contratto di servizio
-SQL Data Warehouse offre un contratto di servizio a livello di prodotto come parte del Contratto di servizio di Microsoft Online Services. Per altre informazioni, vedere [Contratto di servizio per SQL Data Warehouse][SLA for SQL Data Warehouse]. Per informazioni di contratto di servizio su tutti gli altri prodotti è possibile visitare hello [i contratti di servizio] Azure pagina o scaricarli in hello [multilicenza] [ Volume Licensing] pagina. 
+SQL Data Warehouse offre un contratto di servizio a livello di prodotto come parte del Contratto di servizio di Microsoft Online Services. Per altre informazioni, vedere [Contratto di servizio per SQL Data Warehouse][SLA for SQL Data Warehouse]. Per informazioni sul contratto di servizio di tutti gli altri prodotti, visitare la pagina di Azure [Contratti di servizio] o eseguirne il download nella pagina [Contratti multilicenza][Volume Licensing]. 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Dopo avere esaminato su SQL Data Warehouse, consultare come tooquickly [creare un Data Warehouse SQL] [ create a SQL Data Warehouse] e [caricare dati di esempio][load sample data]. Se si tooAzure nuova, è possibile hello [glossario di Azure] [ Azure glossary] utile quando si verificano nuovi termini. Oppure vedere alcune delle altre risorse disponibili per SQL Data Warehouse.  
+Dopo aver appreso alcune informazioni su SQL Data Warehouse, vedere come [creare un SQL Data Warehouse][create a SQL Data Warehouse] rapidamente e [caricare i dati di esempio][load sample data]. Se non si ha familiarità con Azure, il [glossario di Azure][Azure glossary] può essere utile quando si incontrano termini nuovi. Oppure vedere alcune delle altre risorse disponibili per SQL Data Warehouse.  
 
 * [Casi di successo dei clienti]
 * [Blog]
@@ -152,4 +152,4 @@ Dopo avere esaminato su SQL Data Warehouse, consultare come tooquickly [creare u
 [Video]: https://azure.microsoft.com/documentation/videos/index/?services=sql-data-warehouse
 [SLA for SQL Data Warehouse]: https://azure.microsoft.com/en-us/support/legal/sla/sql-data-warehouse/v1_0/
 [Volume Licensing]: http://www.microsoftvolumelicensing.com/DocumentSearch.aspx?Mode=3&DocumentTypeId=37
-[i contratti di servizio]: https://azure.microsoft.com/en-us/support/legal/sla/
+[Contratti di servizio]: https://azure.microsoft.com/en-us/support/legal/sla/

@@ -1,6 +1,6 @@
 ---
-title: aaaSet le impostazioni di replica per Azure Site Recovery | Documenti Microsoft
-description: "Descrive la modalità di cloud di tooAzure toodeploy Site Recovery tooorchestrate replica, il failover e ripristino di macchine virtuali Hyper-V in VMM."
+title: Configurare le impostazioni di replica per Azure Site Recovery| Documentazione Microsoft
+description: Descrive come distribuire Site Recovery per orchestrare la replica, il failover e il ripristino di macchine virtuali Hyper-V nei cloud VMM in Azure.
 services: site-recovery
 documentationcenter: 
 author: sujayt
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 06/05/2017
 ms.author: sutalasi
-ms.openlocfilehash: 618e92e42411732a2a1bb75c5e5ea8a433cd7d58
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 73a1f19177f23441f5f7165cf2bc92ba85e62aa5
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="manage-replication-policy-for-vmware-tooazure"></a>Gestire i criteri di replica per VMware tooAzure
+# <a name="manage-replication-policy-for-vmware-to-azure"></a>Gestire i criteri di replica per VMware in Azure
 
 
 ## <a name="create-a-replication-policy"></a>Creare un criterio di replica
@@ -31,58 +31,58 @@ ms.lasthandoff: 10/06/2017
 
     ![Creare criteri di replica](./media/site-recovery-setup-replication-settings-vmware/createpolicy.png)
 
-4. Immettere il nome di criterio hello.
+4. Immettere il nome del criterio.
 
-5. In **soglia RPO**, specificare il limite RPO hello. Quando la replica continua supera questo limite, verranno generati avvisi.
-6. In **conservazione del punto di ripristino**, specificare (in ore) hello durata del periodo di memorizzazione hello per ogni punto di ripristino. Macchine virtuali protette possono essere ripristinati tooany punto all'interno di un periodo di memorizzazione.
+5. In **Soglia RPO**specificare il limite per RPO. Quando la replica continua supera questo limite, verranno generati avvisi.
+6. In **Conservazione del punto di ripristino** specificare la durata in ore dell'intervallo di conservazione per ogni punto di ripristino. I computer protetti possono essere ripristinati in qualsiasi punto all'interno di un intervallo di conservazione.
 
     > [!NOTE]
-    > Ore too24 periodo di conservazione è supportato per l'archiviazione replicata toopremium macchine. Ore too72 periodo di conservazione è supportato per l'archiviazione replicata toostandard macchine.
+    > Per le macchine replicate nell'archiviazione Premium è supportato un intervallo di conservazione fino a 24 ore. Per le macchine replicate nell'archiviazione standard è supportato un intervallo di conservazione fino a 72 ore.
 
     > [!NOTE]
     > Viene creato automaticamente un criterio di replica per il failback.
 
 7. In **Frequenza snapshot coerenti con l'app**specificare la frequenza, in minuti, per la creazione di punti di ripristino contenenti snapshot coerenti con l'applicazione.
 
-8. Fare clic su **OK**. criteri di Hello devono essere creato in 30 secondi too60.
+8. Fare clic su **OK**. La creazione del criterio dovrebbe richiedere dai 30 secondi ai 60 secondi.
 
 ![Generazione dei criteri di replica](./media/site-recovery-setup-replication-settings-vmware/Creating-Policy.png)
 
 ## <a name="associate-a-configuration-server-with-a-replication-policy"></a>Associare un server di configurazione ai criteri di replica
-1. Scegliere toowhich criteri di replica hello si desidera tooassociate hello configurazione server.
+1. Scegliere il criterio di replica a cui si desidera associare il server di configurazione.
 2. Fare clic su **Associa**.
 ![Associare i server di configurazione](./media/site-recovery-setup-replication-settings-vmware/Associate-CS-1.PNG)
 
-3. Selezionare il server di configurazione di hello hello elenco dei server.
-4. Fare clic su **OK**. il server di configurazione di Hello deve essere associato una tootwo minuti.
+3. Selezionare il server di configurazione nell'elenco dei server.
+4. Fare clic su **OK**. L'associazione del server di configurazione dovrebbe richiedere da 1 a 2 minuti.
 
 ![Associazione del server di configurazione](./media/site-recovery-setup-replication-settings-vmware/Associate-CS-2.png)
 
 ## <a name="edit-a-replication-policy"></a>Modificare un criterio di replica
-1. Scegliere il criterio di replica hello per cui si desidera tooedit le impostazioni di replica.
+1. Scegliere il criterio per cui si desidera modificare le impostazioni di replica.
 ![Modificare i criteri di replica](./media/site-recovery-setup-replication-settings-vmware/Select-Policy.png)
 
 2. Fare clic su **Edit Settings**.
 ![Modificare le impostazioni dei criteri di replica](./media/site-recovery-setup-replication-settings-vmware/Edit-Policy.png)
 
-3. Modificare le impostazioni di hello in base alle esigenze.
-4. Fare clic su **Salva**. criteri di Hello deve essere salvato in due toofive minuti, a seconda di quanti macchine virtuali utilizza tale criterio di replica.
+3. Modificare le impostazioni in base alle esigenze.
+4. Fare clic su **Save**. Il salvataggio del criterio dovrebbe richiedere approssimativamente 5 minuti, a seconda del numero di macchine virtuali che usano il criterio di replica.
 
 ![Salvare i criteri di replica](./media/site-recovery-setup-replication-settings-vmware/Save-Policy.png)
 
 ## <a name="dissociate-a-configuration-server-from-a-replication-policy"></a>Annullare l'associazione del server di configurazione dai criteri di replica
-1. Scegliere toowhich criteri di replica hello si desidera tooassociate hello configurazione server.
+1. Scegliere il criterio di replica a cui si desidera associare il server di configurazione.
 2. Fare clic su **Annulla associazione**.
-3. Selezionare il server di configurazione di hello hello elenco dei server.
-4. Fare clic su **OK**. il server di configurazione di Hello deve dissociato in uno tootwo minuti.
+3. Selezionare il server di configurazione nell'elenco dei server.
+4. Fare clic su **OK**. L'annullamento dell'associazione del server di configurazione dovrebbe richiedere 2 minuti.
 
     > [!NOTE]
-    > Se è presente almeno un elemento replicato mediante criteri di hello è non è possibile annullare l'associazione di un server di configurazione. Assicurarsi che non sono presenti elementi replicati mediante criteri di hello prima annullare l'associazione del server di configurazione hello.
+    > Non è possibile annullare l'associazione di un server di configurazione se i criteri vengono usati da almeno un elemento replicato. Prima di annullare l'associazione del server di configurazione, verificare che nessun elemento replicato usi i criteri.
 
 ## <a name="delete-a-replication-policy"></a>Eliminare un criterio di replica
 
-1. Scegliere il criterio di replica hello che si desidera toodelete.
-2. Fare clic su **Elimina**. criteri di Hello devono essere eliminati in 30 secondi too60.
+1. Scegliere il criterio di replica che si desidera eliminare.
+2. Fare clic su **Elimina**. L'eliminazione del criterio dovrebbe richiedere dai 30 secondi ai 60 secondi.
 
     > [!NOTE]
-    > Se dispone di almeno una configurazione server associato tooit, è possibile eliminare un criterio di replica. Verificare che non sono presenti elementi replicati mediante criteri di hello e di eliminare che tutti hello associati server di configurazione prima di eliminare i criteri di hello.
+    > Non è possibile eliminare criteri di replica a cui è associato almeno 1 server di configurazione. Prima di eliminare i criteri, verificare che nessun elemento replicato li usi ed eliminare tutti server di configurazione associati.

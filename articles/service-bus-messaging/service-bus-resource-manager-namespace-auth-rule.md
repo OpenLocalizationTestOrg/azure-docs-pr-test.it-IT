@@ -1,5 +1,5 @@
 ---
-title: regola di autorizzazione aaaCreate Bus di servizio utilizzando il modello di gestione risorse di Azure | Documenti Microsoft
+title: Creare una regola di autorizzazione del bus di servizio usando un modello di Azure Resource Manager | Documentazione Microsoft
 description: Creare una regola di autorizzazione del bus di servizio per spazio dei nomi e coda usando un modello di Azure Resource Manager
 services: service-bus-messaging
 documentationcenter: .net
@@ -14,49 +14,49 @@ ms.tgt_pltfrm: dotnet
 ms.workload: na
 ms.date: 08/07/2017
 ms.author: sethm;shvija
-ms.openlocfilehash: 48df97849281d3b47e9d722d4e821c874644be59
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: fbd2372829a1aefa2c080c0a8a72b9ff4375b16f
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="create-a-service-bus-authorization-rule-for-namespace-and-queue-using-an-azure-resource-manager-template"></a>Creare una regola di autorizzazione del bus di servizio per spazio dei nomi e coda usando un modello di Azure Resource Manager.
 
-Questo articolo viene illustrato come toouse un modello di gestione risorse di Azure che crea un [regola di autorizzazione](service-bus-authentication-and-authorization.md#shared-access-signature-authentication) per un spazio dei nomi Service Bus e una coda. Si apprenderà come toodefine quali risorse vengono distribuite come toodefine parametri e che vengono specificati quando è eseguita la distribuzione di hello. È possibile utilizzare questo modello per la propria distribuzioni o personalizzarlo toomeet esigenze.
+Questo articolo illustra come usare un modello di Azure Resource Manager per creare una [regola di autorizzazione](service-bus-authentication-and-authorization.md#shared-access-signature-authentication) per uno spazio dei nomi e una coda del bus di servizio. Verrà illustrato come definire le risorse da distribuire e i parametri specificati quando viene eseguita la distribuzione. È possibile usare questo modello per le proprie distribuzioni o personalizzarlo in base alle esigenze.
 
 Per altre informazioni sulla creazione di modelli, vedere [Creazione di modelli di Azure Resource Manager][Authoring Azure Resource Manager templates].
 
-Per il modello di hello completo, vedere hello [modello di regola di autorizzazione di Service Bus] [ Service Bus auth rule template] su GitHub.
+Per il modello completo, vedere il [modello della regola di autorizzazione del bus di servizio][Service Bus auth rule template] su GitHub.
 
 > [!NOTE]
-> Hello seguenti modelli di gestione risorse di Azure sono disponibile per il download e distribuzione.
+> Questi modelli di Azure Resource Manager sono disponibili per il download e la distribuzione.
 > 
 > * [Creare uno spazio dei nomi del bus di servizio](service-bus-resource-manager-namespace.md)
 > * [Creare uno spazio dei nomi del bus di servizio con coda](service-bus-resource-manager-namespace-queue.md)
 > * [Creare uno spazio dei nomi del bus di servizio con argomento e sottoscrizione](service-bus-resource-manager-namespace-topic.md)
 > * [Creare uno spazio dei nomi del bus di servizio con argomento, sottoscrizione e regola](service-bus-resource-manager-namespace-topic-with-rule.md)
 > 
-> toocheck per i modelli più recenti di hello, visitare hello [modelli di avvio rapido di Azure] [ Azure Quickstart Templates] raccolta e cercare "Bus di servizio".
+> Per verificare gli ultimi modelli, visitare la raccolta [Modelli di avvio rapido di Azure][Azure Quickstart Templates] e cercare "service bus".
 > 
 > 
 
 ## <a name="what-will-you-deploy"></a>Distribuzione
 Questo modello consente di distribuire una regola di autorizzazione del bus di servizio per uno spazio dei nomi e un'identità di messaggistica (in questo caso, una coda).
 
-Questo modello usa la [firma di accesso condiviso (SAS, Shared Access Signature)](service-bus-sas.md) per l'autenticazione. Firma di accesso condiviso consente applicazioni tooauthenticate tooService Bus usando una chiave di accesso configurata nello spazio dei nomi hello o in hello messaggistica entità (coda o argomento) con cui sono associati diritti specifici. È quindi possibile utilizzare questa chiave toogenerate un token di firma di accesso condiviso che i client possono utilizzare tooauthenticate tooService Bus.
+Questo modello usa la [firma di accesso condiviso (SAS, Shared Access Signature)](service-bus-sas.md) per l'autenticazione. La firma di accesso condiviso consente alle applicazione di eseguire l'autenticazione al bus di servizio usando una chiave di accesso configurata nello spazio dei nomi o nell'entità di messaggistica, ad esempio coda o argomento, a cui sono associati diritti specifici. È quindi possibile usare questa chiave per generare un token di firma di accesso condiviso di cui possono avvalersi i client per eseguire l'autenticazione al bus di servizio.
 
-toorun hello automaticamente la distribuzione, fare clic su hello seguente pulsante:
+Per eseguire automaticamente la distribuzione, fare clic sul pulsante seguente:
 
-[![Distribuire tooAzure](./media/service-bus-resource-manager-namespace-auth-rule/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F301-servicebus-create-authrule-namespace-and-queue%2Fazuredeploy.json)
+[![Distribuzione in Azure](./media/service-bus-resource-manager-namespace-auth-rule/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F301-servicebus-create-authrule-namespace-and-queue%2Fazuredeploy.json)
 
-## <a name="parameters"></a>parameters
+## <a name="parameters"></a>Parametri
 
-Con Gestione risorse di Azure, si definiscono i parametri per i valori si desidera toospecify quando viene distribuito il modello di hello. modello Hello include una sezione denominata `Parameters` che contiene tutti i valori di parametro hello. È necessario definire un parametro per i valori che variano in base progetto hello che si distribuisce o Hello che si distribuisce ambiente di hello. Non definire parametri per i valori che saranno sempre hello stesso. Ogni valore del parametro viene utilizzato in hello modello toodefine hello le risorse distribuite.
+Gestione risorse di Azure permette di definire i parametri per i valori da specificare durante la distribuzione del modello. Il modello include una sezione denominata `Parameters` che contiene tutti i valori dei parametri. È necessario definire un parametro per i valori che variano in base al progetto distribuito o all'ambiente in cui viene distribuito il progetto. Non definire i parametri per i valori che rimangono invariati. Ogni valore di parametro nel modello viene usato per definire le risorse distribuite.
 
-modello di Hello definisce hello seguenti parametri.
+Il modello definisce i parametri seguenti.
 
 ### <a name="servicebusnamespacename"></a>serviceBusNamespaceName
-nome Hello del toocreate di spazio dei nomi Service Bus hello.
+Nome dello spazio dei nomi del bus di servizio da creare.
 
 ```json
 "serviceBusNamespaceName": {
@@ -65,7 +65,7 @@ nome Hello del toocreate di spazio dei nomi Service Bus hello.
 ```
 
 ### <a name="namespaceauthorizationrulename"></a>namespaceAuthorizationRuleName
-nome di Hello della regola di autorizzazione hello per hello dello spazio dei nomi.
+Nome della regola di autorizzazione per lo spazio dei nomi.
 
 ```json
 "namespaceAuthorizationRuleName ": {
@@ -74,7 +74,7 @@ nome di Hello della regola di autorizzazione hello per hello dello spazio dei no
 ```
 
 ### <a name="servicebusqueuename"></a>serviceBusQueueName
-nome Hello della coda di hello nello spazio dei nomi Service Bus hello.
+Nome della coda nello spazio dei nomi del bus di servizio.
 
 ```json
 "serviceBusQueueName": {
@@ -83,7 +83,7 @@ nome Hello della coda di hello nello spazio dei nomi Service Bus hello.
 ```
 
 ### <a name="servicebusapiversion"></a>serviceBusApiVersion
-versione di API di Service Bus Hello del modello di hello.
+Versione API del bus di servizio del modello.
 
 ```json
 "serviceBusApiVersion": {
@@ -91,7 +91,7 @@ versione di API di Service Bus Hello del modello di hello.
 }
 ```
 
-## <a name="resources-toodeploy"></a>Risorse toodeploy
+## <a name="resources-to-deploy"></a>Risorse da distribuire
 Crea uno spazio dei nomi del bus di servizio standard di tipo **Messaggistica**e una regola di autorizzazione del bus di servizio per spazio dei nomi ed entità.
 
 ```json
@@ -145,7 +145,7 @@ Crea uno spazio dei nomi del bus di servizio standard di tipo **Messaggistica**e
     ]
 ```
 
-## <a name="commands-toorun-deployment"></a>Comandi toorun distribuzione
+## <a name="commands-to-run-deployment"></a>Comandi per eseguire la distribuzione
 [!INCLUDE [app-service-deploy-commands](../../includes/app-service-deploy-commands.md)]
 
 ### <a name="powershell"></a>PowerShell
@@ -161,14 +161,14 @@ azure group deployment create \<my-resource-group\> \<my-deployment-name\> --tem
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-Dopo aver creato e distribuito risorse usando Gestione risorse di Azure, consultare come toomanage queste risorse visualizzando questi articoli:
+Dopo aver creato e distribuito le risorse con Azure Resource Manager, è possibile imparare a gestire queste risorse. Leggere gli articoli seguenti:
 
 * [Gestire Bus di servizio con PowerShell](service-bus-powershell-how-to-provision.md)
-* [Gestire le risorse di Service Bus con hello Service Bus Explorer](https://github.com/paolosalvatori/ServiceBusExplorer/releases)
+* [Gestire le risorse del bus di servizio con Service Bus Explorer](https://github.com/paolosalvatori/ServiceBusExplorer/releases)
 * [Autenticazione e autorizzazione del bus di servizio](service-bus-authentication-and-authorization.md)
 
 [Authoring Azure Resource Manager templates]: ../azure-resource-manager/resource-group-authoring-templates.md
 [Azure Quickstart Templates]: https://azure.microsoft.com/documentation/templates/?term=service+bus
 [Using Azure PowerShell with Azure Resource Manager]: ../azure-resource-manager/powershell-azure-resource-manager.md
-[Using hello Azure CLI for Mac, Linux, and Windows with Azure Resource Management]: ../azure-resource-manager/xplat-cli-azure-resource-manager.md
+[Using the Azure CLI for Mac, Linux, and Windows with Azure Resource Management]: ../azure-resource-manager/xplat-cli-azure-resource-manager.md
 [Service Bus auth rule template]: https://github.com/Azure/azure-quickstart-templates/blob/master/301-servicebus-create-authrule-namespace-and-queue/

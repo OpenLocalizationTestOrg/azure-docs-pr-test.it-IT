@@ -1,5 +1,5 @@
 ---
-title: aaaAzure AD v2 ASP.NET Web Server Getting Started - Test | Documenti Microsoft
+title: 'Introduzione al server Web ASP.NET per Azure AD v2: test | Microsoft Docs'
 description: Implementazione di accessi Microsoft in una soluzione ASP.NET con un'applicazione tradizionale basata su Web browser tramite lo standard OpenID Connect
 services: active-directory
 documentationcenter: dev-center-name
@@ -15,54 +15,54 @@ ms.workload: identity
 ms.date: 05/09/2017
 ms.author: andret
 ms.custom: aaddev
-ms.openlocfilehash: 99c7525b9146605142180962fc2a61b3c953c064
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 00cb963e85111274c36c3a84489894811ad2dabd
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 ## <a name="test-your-code"></a>Testare il codice
 
-Premere `F5` toorun il progetto in Visual Studio. Hello browser verrà aperto e indirizzare è troppo*http://localhost: {porta}* dove verrà visualizzato hello *accedere con Microsoft* pulsante. Fare clic, toosign in.
+Premere `F5` per eseguire il progetto in Visual Studio. Verrà aperto il browser e l'utente verrà indirizzato a *http://localhost:{porta}*, in cui verrà visualizzato il pulsante *Accedi con Microsoft*. Fare clic per eseguire l'accesso.
 
-Quando si è pronti tootest, utilizzare una o dell'istituto di istruzione (Azure Active Directory), account aziendale o personale (live.com, outlook.com) toosign in. 
+Quando si è pronti per il test, usare un account aziendale o dell'istituto di istruzione (Azure Active Directory) oppure un account personale (live.com, outlook.com) per accedere. 
 
 ![Finestra del browser con accesso con Microsoft](media/active-directory-serversidewebapp-aspnetwebappowin-test/aspnetbrowsersignin.png)
 
 ![Finestra del browser con accesso con Microsoft](media/active-directory-serversidewebapp-aspnetwebappowin-test/aspnetbrowsersignin2.png)
 
 #### <a name="expected-results"></a>Risultati previsti
-Dopo l'accesso, utente hello è reindirizzato toohello home page del sito web che è l'URL HTTPS specificato nelle informazioni di registrazione dell'applicazione nel portale di registrazione dell'applicazione Microsoft hello hello. In questa pagina vengono ora *Hello {User}* e un collegamento toosign-out e le attestazioni dell'utente di hello toosee collegamento – che è un controller di Authorize toohello collegamento creato in precedenza.
+Dopo l'accesso, l'utente viene reindirizzato alla home page del sito Web, ossia all'URL HTTPS specificato nelle informazioni di registrazione dell'applicazione nel portale di registrazione delle applicazioni Microsoft. Nella pagina vengono ora visualizzati *Hello {utente}*, un collegamento per la disconnessione e uno per visualizzare le attestazioni dell'utente, ossia un collegamento al controller Authorize creato in precedenza.
 
 ### <a name="see-users-claims"></a>Visualizzare le attestazioni dell'utente
-Selezionare le attestazioni dell'utente di hello collegamento ipertestuale toosee hello. Ciò porta controller toohello e visualizzazione solo toousers disponibili che vengono autenticate.
+Selezionare il collegamento ipertestuale per visualizzare le attestazioni dell'utente. Si accederà così al controller e alla visualizzazione disponibile solo per gli utenti autenticati.
 
 #### <a name="expected-results"></a>Risultati previsti
- Verrà visualizzata una tabella contenente le proprietà di base hello dell'utente connesso hello:
+ Verrà visualizzata una tabella contenente le proprietà di base dell'utente connesso:
 
 | Proprietà | Valore | Descrizione|
 |---|---|---|
-| Nome | {Nome e cognome utente} | utente Hello e del cognome
-|Username | <span>user@domain.com</span>| nome utente Hello utilizzato tooidentify hello registrato
-| Oggetto| {Soggetto}|Una stringa di toouniquely identificare accesso utente hello Web hello|
-| ID tenant| {GUID}| Oggetto *guid* toouniquely rappresentano l'organizzazione di Azure Active Directory dell'utente di hello.|
+| Nome | {Nome e cognome utente} | Nome e cognome dell'utente
+|Nome utente | <span>user@domain.com</span>| Nome utente usato per identificare l'utente connesso
+| Subject| {Soggetto}|Stringa che identifica in modo univoco l'account di accesso dell'utente sul Web|
+| ID tenant| {GUID}| *GUID* che rappresenta in modo univoco l'organizzazione di Azure Active Directory dell'utente.|
 
 Verrà visualizzata anche una tabella contenente tutte le attestazioni utente incluse nella richiesta di autenticazione. Per un elenco e una spiegazione di tutte le attestazioni in un token ID, vedere questo [articolo](https://docs.microsoft.com/azure/active-directory/develop/active-directory-token-and-claims "Elenco delle attestazioni nei token ID").
 
 
 ### <a name="test-accessing-a-method-that-has-an-authorize-attribute-optional"></a>Testare l'accesso a un metodo con attributo *[Authorize]* (facoltativo)
-In questo passaggio, si verrà controller di test durante l'accesso ai hello autenticato come utente anonimo:<br/>
-Selezionare utente hello toosign-out di collegamento hello e processo di disconnessione hello completo.<br/>
-A questo punto, nel browser, digitare http://localhost: {porta} / autenticato tooaccess il controller che è protetta con hello `[Authorize]` attributo
+In questo passaggio si testerà l'accesso al controller Authenticated come utente anonimo:<br/>
+Selezionare il collegamento per la disconnessione dell'utente e completare il processo di disconnessione.<br/>
+Nel browser digitare http://localhost:{porta}/authenticated per accedere al controller protetto con l'attributo `[Authorize]`.
 
 #### <a name="expected-results"></a>Risultati previsti
-Si dovrebbe ricevere la visualizzazione di hello toosee tooauthenticate di richiesta di hello.
+Verrà visualizzata la richiesta di eseguire l'autenticazione per accedere alla visualizzazione.
 
 ## <a name="additional-information"></a>Informazioni aggiuntive
 
 <!--start-collapse-->
 ### <a name="protect-your-entire-web-site"></a>Proteggere l'intero sito Web
-tooprotect l'intero sito web, aggiungere hello `AuthorizeAttribute` troppo`GlobalFilters` in `Global.asax` `Application_Start` metodo:
+Per proteggere l'intero sito Web, aggiungere `AuthorizeAttribute` a `GlobalFilters` nel metodo `Application_Start` di `Global.asax`:
 
 ```csharp
 GlobalFilters.Filters.Add(new AuthorizeAttribute());
@@ -73,13 +73,13 @@ GlobalFilters.Filters.Add(new AuthorizeAttribute());
 <br/>
 
 > [!NOTE]
-> **Come gli utenti toorestrict da sola organizzazione toosign nell'applicazione tooyour**
+> **Come limitare l'accesso all'applicazione agli utenti di una sola organizzazione**
 
-> Per impostazione predefinita, gli account personali (tra cui outlook.com, live.com e altri), nonché account aziendale e dell'istituto di istruzione da qualsiasi società o organizzazione che è integrato con Azure Active Directory può Accedi tooyour applicazione. 
+> Per impostazione predefinita, all'applicazione possono accedere account personali (ad esempio outlook.com, live.com e altri) e account aziendali o di istituti di istruzione di qualsiasi organizzazione o azienda che abbia eseguito l'integrazione con Azure Active Directory. 
 
-> Se si desidera che l'applicazione tooaccept accessi da sola organizzazione di Azure Active Directory, sostituire hello `Tenant` parametro *Web. config* da `Common` toohello nome del tenant dell'organizzazione hello-esempio *contoso.onmicrosoft.com*. Successivamente, modificare hello `ValidateIssuer` argomento in del *classe di avvio di OWIN* troppo`true`.
+> Se si vuole che l'applicazione accetti accessi da una sola organizzazione di Azure Active Directory, sostituire il parametro `Tenant` in *web.config* passando da `Common` al nome del tenant dell'organizzazione, ad esempio *contoso.onmicrosoft.com*. Al termine, modificare l'argomento `ValidateIssuer` nella *classe di avvio OWIN* impostandolo su `true`.
 
-> gli utenti tooallow da solo un elenco di aziende specifiche, impostare `ValidateIssuer` tootrue e utilizzare hello `ValidIssuers` toospecify parametro un elenco delle organizzazioni.
+> Per consentire l'accesso solo agli utenti di un elenco di organizzazioni specifiche, impostare `ValidateIssuer` su true e usare il parametro `ValidIssuers` per specificare un elenco di organizzazioni.
 
-> Un'altra opzione è un metodo personalizzato tooimplement autorità emittenti di hello toovalidate utilizzando il parametro IssuerValidator. Per altre informazioni su `TokenValidationParameters`, vedere [questo](https://msdn.microsoft.com/library/system.identitymodel.tokens.tokenvalidationparameters.aspx "Articolo di MSDN su TokenValidationParameters") articolo di MSDN.
+> Un'altra opzione consiste nell'implementare un metodo personalizzato per convalidare le autorità di certificazione usando il parametro IssuerValidator. Per altre informazioni su `TokenValidationParameters`, vedere [questo](https://msdn.microsoft.com/library/system.identitymodel.tokens.tokenvalidationparameters.aspx "Articolo di MSDN su TokenValidationParameters") articolo di MSDN.
 

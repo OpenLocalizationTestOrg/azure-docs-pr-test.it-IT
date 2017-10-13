@@ -1,6 +1,6 @@
 ---
-title: "un'unità disco in un dispositivo StorSimple aaaReplace | Documenti Microsoft"
-description: "Viene illustrato come unità di tooreplace un disco in un'enclosure EBOD o di una enclosure principale StorSimple."
+title: "Sostituire un'unità disco nel dispositivo StorSimple | Microsoft Docs"
+description: "Viene illustrato come sostituire un'unità disco in uno chassis principale StorSimple o in uno chassis EBOD."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,33 +14,33 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 08/17/2016
 ms.author: alkohli
-ms.openlocfilehash: d2c78a6d951b0f00ac42e74a34cf1bc83952a3c8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0659ab9d304dbfcce72e8c3c79edad68e70b9630
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="replace-a-disk-drive-on-your-storsimple-device"></a>Sostituzione di un'unità disco nel dispositivo StorSimple
 ## <a name="overview"></a>Panoramica
-In questa esercitazione viene illustrato come rimuovere e sostituire un'unità disco rigido che non funziona correttamente o guasta in un dispositivo Microsoft Azure StorSimple. tooreplace un'unità disco, è necessario:
+In questa esercitazione viene illustrato come rimuovere e sostituire un'unità disco rigido che non funziona correttamente o guasta in un dispositivo Microsoft Azure StorSimple. Per sostituire un'unità disco, è necessario:
 
-* Disattivare antimanomissione hello
-* Rimuovere l'unità disco hello
-* Installare il disco sostitutivo hello
+* Disattivare il blocco antimanomissione
+* Rimuovere l'unità disco
+* Installare l'unità disco sostitutiva
 
 > [!IMPORTANT]
-> Prima di rimozione e sostituzione di un'unità disco, esaminare le informazioni di sicurezza hello in [sostituzione dei componenti hardware StorSimple](storsimple-hardware-component-replacement.md).
+> Prima di rimuovere e sostituire un'unità disco, esaminare le informazioni di sicurezza descritte in [Sostituzione dei componenti hardware di StorSimple](storsimple-hardware-component-replacement.md).
 > 
 > 
 
-## <a name="disengage-hello-antitamper-lock"></a>Disattivare antimanomissione hello
-Questa procedura illustra come possono essere occupati o non innestate quando si sostituiscono le unità disco hello chiusure antimanomissione di hello nel dispositivo StorSimple. chiusure antimanomissione Hello sono montati in hello unità vettore handle e vi si accede tramite una piccola apertura nel fermo hello dell'handle hello. Le unità vengono fornite con blocchi hello imposta la posizione toohello bloccato.
+## <a name="disengage-the-antitamper-lock"></a>Disattivare il blocco antimanomissione
+In questa procedura viene illustrato come i blocchi antimanomissione sul dispositivo StorSimple possono essere attivati o disattivati quando si sostituiscono le unità disco. I blocchi antimanomissione vengono montati nei punti di manipolazione del supporto dell'unità e sono accessibili attraverso una piccola apertura nella sezione chiavistello del punto di manipolazione. Le unità vengono fornite con i blocchi impostati sulla posizione bloccata.
 
-#### <a name="toounlock-hello-antitamper-lock"></a>chiusura antimanomissione hello toounlock
-1. Inserire delicatamente chiave hello (un cacciavite T10 "chiusura" fornito da Microsoft) nell'apertura hello hello maniglia e nel relativo attacco. 
+#### <a name="to-unlock-the-antitamper-lock"></a>Per sbloccare il blocco antimanomissione:
+1. Inserire la chiave di blocco (un cacciavite "a prova di manomissione" T10 fornito da Microsoft) con attenzione nell'apertura del punto di manipolazione e nel relativo socket. 
    
    > [!NOTE]
-   > Se è attivata antimanomissione hello, indicatore rosso hello è visibile nell'apertura hello.
+   > Se il blocco antimanomissione è attivato, l'indicatore rosso è visibile nell'apertura.
    > 
    > 
    
@@ -52,63 +52,63 @@ Questa procedura illustra come possono essere occupati o non innestate quando si
    |:--- |:--- |
    | 1 |Apertura indicatore |
    | 2 |Blocco antimanomissione |
-2. Chiave di hello Ruota in senso antiorario finché l'indicatore rosso hello non è visibile nell'apertura di hello sopra hello chiave.
-3. Rimuovere la chiave hello.
+2. Ruotare la chiave in senso antiorario fino a quando l'indicatore rosso non è visibile nell'apertura sopra la chiave.
+3. Rimuovere la chiave.
    
     ![Unità disco sbloccata](./media/storsimple-disk-drive-replacement/IC741057.png)
    
     **Figura 2** Unità disco sbloccata
-4. è ora possibile rimuovere l'unità disco Hello.
+4. È ora possibile rimuovere l'unità disco.
 
-Seguire i passaggi di hello in blocco hello tooengage inversa.
+Seguire i passaggi in ordine inverso per attivare il blocco.
 
-## <a name="remove-hello-disk-drive"></a>Rimuovere l'unità disco hello
+## <a name="remove-the-disk-drive"></a>Rimuovere l'unità disco
 Il dispositivo StorSimple supporta la configurazione degli spazi di archiviazione di tipo RAID 10. Ciò implica che può funzionare normalmente con un'unità a stato solido (SSD), un'unità disco rigido (HDD) o un disco guasto. 
 
 > [!IMPORTANT]
-> * Se il sistema dispone di più di un disco danneggiato, non rimuovere più di una unità SSD o HDD dal sistema hello in qualsiasi punto nel tempo. Ciò potrebbe causare una perdita dei dati.
+> * Se più di un disco nel sistema è guasto, non rimuovere più di un'unità SSD o HDD dal sistema in qualsiasi momento. Ciò potrebbe causare una perdita dei dati.
 > * Assicurarsi di inserire un'unità SSD sostitutiva in uno slot che in precedenza conteneva un'unità SSD. Analogamente, inserire un'unità HDD sostitutiva in uno slot che in precedenza conteneva un'unità HDD.
-> * Nel portale di Azure classico hello, gli slot sono numerati da 0 a 11. Pertanto, se il portale di hello mostra che un disco nello slot 2 non riuscita, sul dispositivo hello, cercare hello disco nel terzo slot hello hello in alto a sinistra.
+> * Nel portale di Azure classico, gli slot sono numerati da 0 a 11. Pertanto, se nel portale viene mostrato che un disco nello slot 2 è guasto, sul dispositivo, cercare il disco guasto nel terzo slot dalla parte superiore sinistra.
 > 
 > 
 
-Unità possono essere rimosse e sostituite mentre sistema hello è operativo.
+Le unità possono essere rimosse e sostituite durante il funzionamento del sistema.
 
-#### <a name="tooremove-a-drive"></a>tooremove un'unità
-1. tooidentify hello disco danneggiato, in hello portale di Azure classico, andare troppo**dispositivi** > **manutenzione** > **stato Hardware**. Poiché può avere esito negativo di un disco nell'enclosure principale hello e/o in un'enclosure EBOD (se si utilizza un modello 8600), esaminare lo stato di hello di dischi hello in **componenti condivisi** e in **componenti condivisi enclosure EBOD**. Un disco guasto verrà visualizzato con uno stato rosso in entrambi gli chassis.
-2. Individuare l'unità di hello nella parte anteriore hello di enclosure principale hello o enclosure EBOD hello. 
-3. Se il disco di hello è sbloccato, continuare toohello successivo. Se il disco di hello è bloccato, sbloccarlo seguendo la procedura hello in [disattivare antimanomissione hello](#disengage-the-antitamper-lock).
-4. Premere hello nero latch nel modulo di gestione delle spedizioni di hello unità e tirare maniglia di hello verso l'esterno dalla parte anteriore hello dello chassis hello. 
+#### <a name="to-remove-a-drive"></a>Per rimuovere un'unità:
+1. Per identificare il disco guasto, nel Portale di Azure classico andare su **Dispositivi** > **Manutenzione** > **Stato hardware**. Poiché un disco può presentare un guasto allo chassis principale e/o a uno chassis EBOD (se si usa un modello 8600), controllare lo stato dei dischi sotto **Componenti condivisi** e **EBOD enclosure Shared Components** (Componenti condivisi dello chassis EBOD). Un disco guasto verrà visualizzato con uno stato rosso in entrambi gli chassis.
+2. Individuare le unità nella parte anteriori dello chassis principale o dello chassis EBOD. 
+3. Se il disco è sbloccato, procedere al passaggio successivo. Se il disco è bloccato, sbloccarlo seguendo la procedura descritta in [Disattivazione del blocco antimanomissione](#disengage-the-antitamper-lock).
+4. Premere il chiavistello nero sul modulo del supporto dell'unità e rimuovere il punto di manipolazione del supporto dell'unità dalla parte anteriore dello chassis. 
    
     ![Rilascio del punto di manipolazione dell'unità disco](./media/storsimple-disk-drive-replacement/IC741051.png)
    
-    **Figura 3** rilascio dell'handle dell'unità hello
-5. Quando maniglia di hello sia estesa completamente, far scorrere estraibile hello esterno dello chassis hello. 
+    **Figura 3** Rilascio del punto di manipolazione dell'unità
+5. Quando il punto di manipolazione del supporto dell'unità è completamente esteso, far scorrere il supporto dell'unità fuori dallo chassis. 
    
     ![Scorrimento del disco fuori dall'unità disco](./media/storsimple-disk-drive-replacement/IC741052.png)
    
-    **Figura 4** scorrimento all'unità disco hello fuori vettore hello
+    **Figura 4** Scorrimento dell'unità disco fuori dal supporto
 
-## <a name="install-hello-replacement-disk-drive"></a>Installare il disco sostitutivo hello
-Dopo aver rimosso un'unità non è riuscito nel dispositivo StorSimple, seguire questa tooreplace procedura con una nuova unità.
+## <a name="install-the-replacement-disk-drive"></a>Installare l'unità disco sostitutiva
+Dopo aver rimosso un'unità guasta nel dispositivo StorSimple, seguire questa procedura per sostituirla con una nuova unità.
 
-#### <a name="tooinsert-a-drive"></a>tooinsert un'unità
-1. Assicurarsi maniglia di hello sia estesa completamente, come mostrato nella seguente immagine hello.
+#### <a name="to-insert-a-drive"></a>Per inserire un'unità:
+1. Assicurarsi che il punto di manipolazione del supporto dell'unità sia completamente esteso, come illustrato nella figura seguente.
    
     ![Unità disco con punto di manipolazione esteso](./media/storsimple-disk-drive-replacement/IC741044.png)
    
     **Figura 5** Unità con punto di manipolazione esteso
-2. Diapositiva estraibile hello modo hello tutti nello chassis hello. 
+2. Far scorrere il supporto dell'unità completamente nello chassis. 
    
     ![Scorrimento del disco nel supporto dell'unità disco](./media/storsimple-disk-drive-replacement/IC741045.png)
    
-    **Figura 6** estendibile supporto estraibile hello nello chassis hello
-3. Con hello vettore hello inserito, chiudere unità maniglia durante la continuazione toopush hello estraibile nello chassis di hello, fino a quando non hello maniglia scatta in posizione di blocco.
-4. Tasto BLOC hello utilizzare fornita da maniglia a Microsoft (chiusura cacciavite Torx) toosecure hello in posizione ruotando vite hello un quarto di giro in senso orario.
-5. Verificare che la sostituzione hello ha avuto esito positivo e hello unità sia operativa, accesso hello portale di Azure classico e la navigazione troppo**manutenzione** > **stato Hardware**. In **componenti condivisi** o **componenti condivisi enclosure EBOD**, lo stato di unità hello deve essere verde, che indica che è integro.
+    **Figura 6** Scorrimento del supporto dell'unità nello chassis
+3. Con il supporto dell'unità inserito, chiudere il punto di manipolazione del supporto dell'unità continuando a spingere il supporto dell'unità nello chassis, fino a quando il punto di manipolazione del supporto dell'unità non si chiude a scatto in una posizione bloccata.
+4. Utilizzare la chiave di blocco fornita da Microsoft (cacciavite Torx a prova di manomissione) per fissare in posizione il punto di manipolazione del supporto girando la vite di blocco di un quarto in senso orario.
+5. Verificare che la sostituzione abbia avuto esito positivo e che l'unità sia funzionante accedendo al Portale di Azure classico e andando su **Manutenzione** > **Stato hardware**. In **Componenti condivisi** o **EBOD enclosure Shared Components** (Componenti condivisi dello chassis EBOD), lo stato dell'unità deve essere verde, ovvero integro.
    
    > [!NOTE]
-   > Può richiedere diverse ore hello disco stato tooturn verde dopo la sostituzione di hello.
+   > Potrebbero essere necessarie diverse ore affinché lo stato del disco diventi verde dopo la sostituzione.
    > 
    > 
 

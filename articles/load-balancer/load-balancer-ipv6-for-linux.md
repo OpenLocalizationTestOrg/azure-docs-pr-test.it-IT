@@ -1,9 +1,9 @@
 ---
-title: aaaConfiguring DHCPv6 per le macchine virtuali Linux | Documenti Microsoft
-description: Come tooconfigure DHCPv6 per le macchine virtuali Linux.
+title: Configurazione di DHCPv6 per VM Linux | Microsoft Docs
+description: Come configurare DHCPv6 per VM Linux.
 services: load-balancer
 documentationcenter: na
-author: kumudd
+author: KumudD
 manager: timlt
 editor: 
 keywords: ipv6, azure load balancer, dual stack, ip pubblico, ipv6 nativo, mobili, iot
@@ -13,36 +13,38 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 09/14/2016
+ms.date: 09/25/2017
 ms.author: kumud
-ms.openlocfilehash: abd5a98c3496b189946f59bab1d9c20dcd0aa2c0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 84558cb6e3a5524969f590eb0272a64ad8839ab5
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="configuring-dhcpv6-for-linux-vms"></a>Configurazione di DHCPv6 per VM Linux
 
-Alcune delle immagini di macchine virtuali Linux hello in hello Azure Marketplace non è necessario DHCPv6 configurata per impostazione predefinita. IPv6, DHCPv6 toosupport deve essere configurato all'interno di distribuzione del sistema operativo Linux hello che si sta utilizzando. Le diverse distribuzioni Linux hanno modalità diverse per configurare DHCPv6 perché usano pacchetti differenti.
+[!INCLUDE [load-balancer-basic-sku-include.md](../../includes/load-balancer-basic-sku-include.md)]
+
+Per alcune delle immagini di macchina virtuale Linux in Azure Marketplace, DHCPv6 non è configurato per impostazione predefinita. Per supportare IPv6, è necessario configurare DHCPv6 all'interno della distribuzione del sistema operativo Linux usato. Le diverse distribuzioni Linux hanno modalità diverse per configurare DHCPv6 perché usano pacchetti differenti.
 
 > [!NOTE]
-> È state preconfigurate con DHCPv6 recenti immagini SUSE Linux e CoreOS hello Azure Marketplace. Non sono necessarie altre modifiche quando si usano tali immagini.
+> Le immagini recenti di SUSE Linux e CoreOS in Azure Marketplace sono state preconfigurate con DHCPv6. Non sono necessarie altre modifiche quando si usano tali immagini.
 
-Questo documento descrive come tooenable DHCPv6 in modo che la macchina virtuale Linux ottenga un indirizzo IPv6.
+Questo documento descrive come abilitare DHCPv6 in modo che la macchina virtuale Linux ottenga un indirizzo IPv6.
 
 > [!WARNING]
-> Modifica in modo non corretto dei file di configurazione di rete può causare si toolose rete accesso tooyour macchina virtuale. È consigliabile testare le modifiche alla configurazione nei sistemi non di produzione. istruzioni di Hello in questo articolo sono state testate su versioni più recenti di hello delle immagini Linux hello hello Azure Marketplace. Consultare la documentazione di hello per la versione specifica di Linux per istruzioni più dettagliate.
+> La modifica errata dei file di configurazione della rete può causare la perdita dell'accesso alla macchina virtuale. È consigliabile testare le modifiche alla configurazione nei sistemi non di produzione. Le istruzioni riportate in questo articolo sono state testate sulle versioni più recenti delle immagini Linux in Azure Marketplace. Consultare la documentazione per la versione specifica di Linux per istruzioni più dettagliate.
 
 ## <a name="ubuntu"></a>Ubuntu
 
-1. Modificare il file hello `/etc/dhcp/dhclient6.conf` e aggiungere hello seguente riga:
+1. Modificare il file `/etc/dhcp/dhclient6.conf` e aggiungere la riga seguente:
 
         timeout 10;
 
-2. Modificare la configurazione di rete hello per hello eth0 interfaccia con hello seguente configurazione:
+2. Modificare la configurazione della rete per l'interfaccia eth0 con la configurazione seguente:
 
-   * In **Ubuntu 12.04 e 14.04**, modificare il file hello`/etc/network/interfaces.d/eth0.cfg`
-   * In **Ubuntu 16.04**, modificare il file hello`/etc/network/interfaces.d/50-cloud-init.cfg`
+   * In **Ubuntu 12.04 e 14.04** modificare il file `/etc/network/interfaces.d/eth0.cfg`
+   * In **Ubuntu 16.04**modificare il file `/etc/network/interfaces.d/50-cloud-init.cfg`
 
          iface eth0 inet6 auto
              up sleep 5
@@ -56,11 +58,11 @@ Questo documento descrive come tooenable DHCPv6 in modo che la macchina virtuale
 
 ## <a name="debian"></a>Debian
 
-1. Modificare il file hello `/etc/dhcp/dhclient6.conf` e aggiungere hello seguente riga:
+1. Modificare il file `/etc/dhcp/dhclient6.conf` e aggiungere la riga seguente:
 
         timeout 10;
 
-2. Modificare il file hello `/etc/network/interfaces` e aggiungere hello seguente configurazione:
+2. Modificare il file `/etc/network/interfaces` e aggiungere la configurazione seguente:
 
         iface eth0 inet6 auto
             up sleep 5
@@ -74,11 +76,11 @@ Questo documento descrive come tooenable DHCPv6 in modo che la macchina virtuale
 
 ## <a name="rhel--centos--oracle-linux"></a>RHEL / CentOS / Oracle Linux
 
-1. Modificare il file hello `/etc/sysconfig/network` e aggiungere hello seguente parametro:
+1. Modificare il file `/etc/sysconfig/network` e aggiungere il parametro seguente:
 
         NETWORKING_IPV6=yes
 
-2. Modificare il file hello `/etc/sysconfig/network-scripts/ifcfg-eth0` e aggiungere hello seguenti due parametri:
+2. Modificare il file `/etc/sysconfig/network-scripts/ifcfg-eth0` e aggiungere i due parametri seguenti:
 
         IPV6INIT=yes
         DHCPV6C=yes
@@ -91,19 +93,19 @@ Questo documento descrive come tooenable DHCPv6 in modo che la macchina virtuale
 
 ## <a name="sles-11--opensuse-13"></a>SLES 11 e openSUSE 13
 
-Le immagini recenti di SLES e openSUSE in Azure sono state preconfigurate con DHCPv6. Non sono necessarie altre modifiche quando si usano tali immagini. Se si dispone di una macchina virtuale in base a un'immagine SUSE personalizzata o precedente, utilizzare hello alla procedura seguente:
+Le immagini recenti di SLES e openSUSE in Azure sono state preconfigurate con DHCPv6. Non sono necessarie altre modifiche quando si usano tali immagini. Con una macchina virtuale basata su un'immagine di SUSE personalizzata o precedente, eseguire questa procedura:
 
-1. Installare hello `dhcp-client` del pacchetto, se necessario:
+1. Installare il pacchetto `dhcp-client` , se necessario:
 
     ```bash
     sudo zypper install dhcp-client
     ```
 
-2. Modificare il file hello `/etc/sysconfig/network/ifcfg-eth0` e aggiungere hello seguente parametro:
+2. Modificare il file `/etc/sysconfig/network/ifcfg-eth0` e aggiungere il parametro seguente:
 
         DHCLIENT6_MODE='managed'
 
-3. Rinnovare l'indirizzo IPv6 hello:
+3. Rinnovare l'indirizzo IPv6:
 
     ```bash
     sudo ifdown eth0 && sudo ifup eth0
@@ -111,21 +113,21 @@ Le immagini recenti di SLES e openSUSE in Azure sono state preconfigurate con DH
 
 ## <a name="sles-12-and-opensuse-leap"></a>SLES 12 e openSUSE Leap
 
-Le immagini recenti di SLES e openSUSE in Azure sono state preconfigurate con DHCPv6. Non sono necessarie altre modifiche quando si usano tali immagini. Se si dispone di una macchina virtuale in base a un'immagine SUSE personalizzata o precedente, utilizzare hello alla procedura seguente:
+Le immagini recenti di SLES e openSUSE in Azure sono state preconfigurate con DHCPv6. Non sono necessarie altre modifiche quando si usano tali immagini. Con una macchina virtuale basata su un'immagine di SUSE personalizzata o precedente, eseguire questa procedura:
 
-1. Modificare il file hello `/etc/sysconfig/network/ifcfg-eth0` e sostituire il parametro
+1. Modificare il file `/etc/sysconfig/network/ifcfg-eth0` e sostituire questo parametro
 
         #BOOTPROTO='dhcp4'
 
-    con hello il valore seguente:
+    con il valore seguente:
 
         BOOTPROTO='dhcp'
 
-2. Aggiungere hello segue parametro troppo`/etc/sysconfig/network/ifcfg-eth0`:
+2. Aggiungere il parametro seguente a `/etc/sysconfig/network/ifcfg-eth0`:
 
         DHCLIENT6_MODE='managed'
 
-3. Rinnovare l'indirizzo IPv6 hello:
+3. Rinnovare l'indirizzo IPv6:
 
     ```bash
     sudo ifdown eth0 && sudo ifup eth0
@@ -133,9 +135,9 @@ Le immagini recenti di SLES e openSUSE in Azure sono state preconfigurate con DH
 
 ## <a name="coreos"></a>CoreOS
 
-Le immagini recenti di CoreOS in Azure sono state preconfigurate con DHCPv6. Non sono necessarie altre modifiche quando si usano tali immagini. Se si dispone di una macchina virtuale in base a un'immagine di CoreOS personalizzata o precedente, utilizzare hello alla procedura seguente:
+Le immagini recenti di CoreOS in Azure sono state preconfigurate con DHCPv6. Non sono necessarie altre modifiche quando si usano tali immagini. Con una macchina virtuale basata su un'immagine di CoreOS personalizzata o precedente, eseguire questa procedura:
 
-1. Modificare il file hello`/etc/systemd/network/10_dhcp.network`
+1. Modificare il file `/etc/systemd/network/10_dhcp.network`
 
         [Match]
         eth0
@@ -143,7 +145,7 @@ Le immagini recenti di CoreOS in Azure sono state preconfigurate con DHCPv6. Non
         [Network]
         DHCP=ipv6
 
-2. Rinnovare l'indirizzo IPv6 hello:
+2. Rinnovare l'indirizzo IPv6:
 
     ```bash
     sudo systemctl restart systemd-networkd

@@ -1,6 +1,6 @@
 ---
-title: aaaSupported browser e dispositivi per il portale di Azure | Documenti Microsoft
-description: "Viene descritto il browser di hello e i dispositivi in cui hello Azure portal funzionerà."
+title: Browser e dispositivi supportati per il portale di Azure | Microsoft Docs
+description: Descrive i browser e i dispositivi con cui funziona il Portale di Azure.
 services: 
 documentationcenter: 
 author: flanakin
@@ -16,20 +16,20 @@ ms.topic: article
 ms.date: 06/28/2017
 ms.author: micflan
 ms.custom: accessibility
-ms.openlocfilehash: 1adac737e062803e67d4b820738bb0fcd21c81b0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f8718e240eaefb47b18b6098be083e335ccbc89d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="supported-browsers-and-devices-for-hello-azure-portal"></a>Browser e dispositivi per hello portale di Azure supportati
-È possibile eseguire hello [portale di Azure](https://portal.azure.com) su tutti i desktop moderna, tablet, dispositivi e browser.
+# <a name="supported-browsers-and-devices-for-the-azure-portal"></a>Browser e dispositivi supportati per il portale di Azure
+È possibile eseguire il [portale di Azure](https://portal.azure.com) in tutti i moderni browser e dispositivi tablet e desktop.
 
 ### <a name="supported-devices"></a>Dispositivi supportati
-Hello portale di Azure esegue ideale in moderni PC, Mac e i Tablet. Se è necessario toomanage le risorse di Azure da un dispositivo mobile, provare a hello app di Azure è disponibile in anteprima su iPhone e Android. Per ulteriori informazioni, vedere hello post di blog [anteprima pubblica di introduzione alla hello Azure app](https://azure.microsoft.com/blog/azure-app-preview/).
+Il portale di Azure viene eseguito correttamente nei moderni PC, Mac e tablet. Se è necessario gestire le risorse di Azure da un dispositivo mobile, provare l'app di Azure che è disponibile in anteprima su iPhone e Android. Per altre informazioni, vedere il post di blog [Introducing the Azure app public preview](https://azure.microsoft.com/blog/azure-app-preview/) (Introduzione all'anteprima pubblica dell'app di Azure).
 
 ### <a name="supported-browsers"></a>Browser supportati
-È consigliabile utilizzare hello aggiornate browser compatibile con il sistema operativo. è supportato i seguenti browser Hello:
+È consigliabile usare il browser più aggiornato che sia compatibile con il sistema operativo. Sono supportati i browser seguenti:
 
 * Microsoft Edge (versione più recente)
 * Internet Explorer 11

@@ -1,6 +1,6 @@
 ---
-title: aaaSet di un insieme di credenziali per VMware replica tooAzure usando Azure Site Recovery | Documenti Microsoft
-description: "Vengono riepilogati i passaggi di hello tooset di un insieme di credenziali è necessario per VMware replica tooAzure usando Azure Site Recovery"
+title: Configurare un insieme di credenziali per la replica VMware in Azure usando Azure Site Recovery | Microsoft Docs
+description: Vengono riepilogati i passaggi necessari per configurare un insieme di credenziali per la replica VMware in Azure usando Azure Site Recovery
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,19 +14,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: raynew
-ms.openlocfilehash: 8a7755a6c9a3f55f241c615e425285bc4b782493
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: dca95ad46b8de587140c3573ba6ed5702a122032
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="step-7-set-up-a-vault-for-vmware-replication-tooazure"></a>Passaggio 7: Configurare un insieme di credenziali per tooAzure replica VMware
+# <a name="step-7-set-up-a-vault-for-vmware-replication-to-azure"></a>Passaggio 7: Configurare un insieme di credenziali per la replica VMware in Azure
 
 
-In questo articolo viene descritto come configurare un insieme di credenziali, tooset e specificare le tooreplicate dal percorso locale, utilizzando hello tooAzure [Azure Site Recovery](site-recovery-overview.md) di hello portale di Azure.
+Questo articolo descrive come configurare un insieme di credenziali e specificare ciò di cui si vuole eseguire la replica dall'ambiente locale ad Azure usando il servizio [Azure Site Recovery](site-recovery-overview.md) nel portale di Azure.
 
 
-Inviare commenti e domande nella parte inferiore di hello di questo articolo, o di hello [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Inserire commenti e domande nella parte inferiore di questo articolo oppure nel [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 
 
@@ -37,14 +37,14 @@ Inviare commenti e domande nella parte inferiore di hello di questo articolo, o 
 
 ## <a name="select-a-protection-goal"></a>Scegliere un obiettivo di protezione
 
-Selezionare gli elementi da tooreplicate, e in cui si desidera tooreplicate per.
+Selezionare gli elementi da replicare e la posizione in cui eseguire la replica.
 
 1. Fare clic su **Insiemi di credenziali dei servizi di ripristino** e quindi sull'insieme di credenziali.
-2. In hello risorsa Menu, fare clic su **Site Recovery** > **preparare l'infrastruttura** > **obiettivi della protezione dati**.
-3. In **obiettivi della protezione dati**selezionare **tooAzure** > **Sì, con VMware vSphere Hypervisor**.
+2. Nel menu Risorsa fare clic su **Site Recovery** > **Preparare l'infrastruttura** > **Obiettivo di protezione**.
+3. In **Obiettivo di protezione** selezionare **In Azure** > **Sì, con VMware vSphere Hypervisor**.
 
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Andare troppo[passaggio 8: Imposta origine e destinazione](vmware-walkthrough-source-target.md)
+Andare a [Passaggio 8: Configurare l'origine e la destinazione](vmware-walkthrough-source-target.md)

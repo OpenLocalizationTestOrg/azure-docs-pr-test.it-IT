@@ -1,6 +1,6 @@
 ---
-title: "proprietà di un doppio dispositivo IoT Hub Azure aaaUse (nodo) | Documenti Microsoft"
-description: "Come dispositivo di Azure IoT Hub toouse gemelli di tooconfigure dispositivi. È consigliabile utilizzare hello Azure IoT SDK per Node.js tooimplement un'app dispositivo simulato e un'applicazione di servizio che consente di modificare la configurazione di un dispositivo utilizzando una coppia di dispositivo."
+title: "Usare le proprietà di un dispositivo gemello dell'hub IoT di Azure (Node) | Documentazione Microsoft"
+description: "Come usare le proprietà di un dispositivo gemello dell'hub IoT di Azure per configurare dispositivi. Usare Azure IoT SDK per Node.js per implementare un'app per dispositivo simulato e un'app di servizio che modifica la configurazione di un dispositivo usando un dispositivo gemello."
 services: iot-hub
 documentationcenter: .net
 author: fsautomata
@@ -12,53 +12,53 @@ ms.devlang: node
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/13/2016
+ms.date: 09/07/2017
 ms.author: elioda
-ms.openlocfilehash: 7ebfe2dfa0876bf04fdbaceae55db76456523e8a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6ff6f1c331d5a77e7ac0a47af6806f5d90fb0fdc
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="use-desired-properties-tooconfigure-devices-node"></a>Lo si desidera utilizzare proprietà tooconfigure dispositivi (nodo)
+# <a name="use-desired-properties-to-configure-devices-node"></a>Usare le proprietà desiderate per configurare i dispositivi (Node)
 [!INCLUDE [iot-hub-selector-twin-how-to-configure](../../includes/iot-hub-selector-twin-how-to-configure.md)]
 
-Alla fine di hello di questa esercitazione, si avranno due applicazioni di console Node.js:
+Al termine di questa esercitazione si avranno due app console Node.js:
 
-* **SimulateDeviceConfiguration.js**, un'app dispositivo simulato che è in attesa di un aggiornamento della configurazione desiderata e hello Visualizza lo stato di un processo di aggiornamento configurazione simulato.
-* **SetDesiredConfigurationAndQuery.js**, configurazione in un dispositivo di un'applicazione back-end di Node. js, che imposta hello desiderato e le query hello il processo di aggiornamento di configurazione.
+* **SimulateDeviceConfiguration.js**, un'app per dispositivo simulata che attende un aggiornamento della configurazione desiderata e segnala lo stato di un processo di aggiornamento della configurazione simulata.
+* **SetDesiredConfigurationAndQuery.js**, un'app back-end di Node.js, che imposta la configurazione desiderata in un dispositivo ed esegue query sul processo di aggiornamento della configurazione.
 
 > [!NOTE]
-> articolo Hello [Azure IoT SDK] [ lnk-hub-sdks] fornisce informazioni su Azure IoT SDK hello che è possibile utilizzare toobuild applicazioni back-end sia sul dispositivo.
+> L'articolo [Azure IoT SDK][lnk-hub-sdks] contiene informazioni sui componenti Azure IoT SDK che consentono di compilare le app back-end e per dispositivi.
 > 
 > 
 
-toocomplete questa esercitazione è necessario hello segue:
+Per completare l'esercitazione, sono necessari gli elementi seguenti:
 
-* Node.js 0.10.x o versione successiva.
+* Node.js 4.0.x o versione successiva.
 * Un account Azure attivo. Se non si ha un account, è possibile creare un [account gratuito][lnk-free-trial] in pochi minuti.
 
-Se si sono seguite hello [introduzione gemelli dispositivo] [ lnk-twin-tutorial] esercitazione, si dispone già di un hub IoT e un'identità del dispositivo chiamato **myDeviceId**; ed è possibile ignorare toohello [ Creare app dispositivo simulato hello] [ lnk-how-to-configure-createapp] sezione.
+Se si è seguita l'esercitazione [Introduzione ai dispositivi gemelli][lnk-twin-tutorial] sono già disponibili un hub IoT e un'identità del dispositivo denominata **myDeviceId**. È quindi possibile saltare la sezione [Creare l'app per dispositivo simulato][lnk-how-to-configure-createapp].
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
 [!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity.md)]
 
-## <a name="create-hello-simulated-device-app"></a>Creare app dispositivo simulato hello
-In questa sezione si crea un'applicazione console Node.js che si connette hub tooyour come **myDeviceId**, in attesa di un aggiornamento della configurazione desiderata e quindi segnala gli aggiornamenti nel processo di aggiornamento configurazione hello simulato.
+## <a name="create-the-simulated-device-app"></a>Creare l'app per dispositivo simulata
+In questa sezione si crea un'app console Node.js che si connette all'hub come **myDeviceId**, attende un aggiornamento della configurazione desiderata e quindi segnala gli aggiornamenti nel processo di aggiornamento della configurazione simulata.
 
-1. Creare una nuova cartella vuota denominata **simulatedeviceconfiguration**. In hello **simulatedeviceconfiguration** cartella, creare un nuovo file package. JSON utilizzando hello seguente comando al prompt dei comandi. Accettare tutte le impostazioni predefinite hello:
+1. Creare una nuova cartella vuota denominata **simulatedeviceconfiguration**. Nella cartella **simulatedeviceconfiguration** creare un nuovo file package.json immettendo il comando seguente al prompt dei comandi. Accettare tutte le impostazioni predefinite:
    
     ```
     npm init
     ```
-2. Al prompt dei comandi in hello **simulatedeviceconfiguration** cartella, eseguire hello successivo comando tooinstall hello **dispositivi iot di azure**, e **azure-iot-dispositivo-mqtt**pacchetto:
+2. Eseguire questo comando al prompt dei comandi nella cartella **simulatedeviceconfiguration** per installare i pacchetti **azure-iot-device** e **azure-iot-device-mqtt**:
    
     ```
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
-3. Utilizzando un editor di testo, creare un nuovo **SimulateDeviceConfiguration.js** file hello **simulatedeviceconfiguration** cartella.
-4. Aggiungere hello seguente codice toohello **SimulateDeviceConfiguration.js** file e sostituire hello **{stringa di connessione dispositivo}** segnaposto con stringa di connessione dispositivo hello copiato quando si creato hello **myDeviceId** identità del dispositivo:
+3. Usando un editor di testo, creare un nuovo file **SimulateDeviceConfiguration.js** nella cartella **simulatedeviceconfiguration**.
+4. Aggiungere il codice seguente al file **SimulateDeviceConfiguration.js** e sostituire il segnaposto **{device connection string}** con la stringa di connessione copiata quando si è creata l'identità del dispositivo **myDeviceId**:
    
         'use strict';
         var Client = require('azure-iot-device').Client;
@@ -92,15 +92,15 @@ In questa sezione si crea un'applicazione console Node.js che si connette hub to
             }
         });
    
-    Hello **Client** oggetto espone tutte hello metodi obbligatorio toointeract con gemelli di dispositivo dal dispositivo hello. Hello codice precedente, dopo l'inizializzazione hello **Client** oggetto recupera hello gemelli di dispositivo per **myDeviceId**e associa un gestore per l'aggiornamento di hello nella proprietà desiderate. gestore Hello verifica che sia presente una richiesta di modifica della configurazione effettiva confrontando configIds hello, quindi richiama un metodo che avvia una modifica della configurazione hello.
+    L'oggetto **Client** espone tutti i metodi necessari per interagire con i dispositivi gemelli dal dispositivo. Il codice precedente, dopo avere inizializzato l'oggetto **Client**, recupera il dispositivo gemello per **myDeviceId** e collega un gestore per l'aggiornamento nelle proprietà desiderate. Il gestore verifica che esista una richiesta di modifica della configurazione effettiva confrontando gli elementi configId, quindi richiama un metodo che avvia la modifica della configurazione.
    
-    Si noti che per i migliori risultati hello di semplicità, codice precedente hello Usa valore predefinito è hardcoded per la configurazione iniziale di hello. Una vera app probabilmente caricherebbe tale configurazione da una risorsa di archiviazione locale.
+    Si noti che per semplicità il codice precedente usa un valore predefinito hardcoded per la configurazione iniziale. Una vera app probabilmente caricherebbe tale configurazione da una risorsa di archiviazione locale.
    
    > [!IMPORTANT]
-   > Gli eventi di modifica delle proprietà desiderati vengono sempre inviati una volta alla connessione del dispositivo, assicurarsi che vi sia una modifica effettiva in hello toocheck le proprietà desiderate prima di eseguire qualsiasi azione.
+   > Gli eventi di modifica delle proprietà desiderate vengono generati sempre una volta al momento della connessione del dispositivo. Controllare che esista una modifica effettiva nelle proprietà desiderate prima di eseguire eventuali azioni.
    > 
    > 
-5. Aggiungere i seguenti metodi prima hello hello `client.open()` chiamata:
+5. Aggiungere i metodi seguenti prima della chiamata a `client.open()`:
    
         var initConfigChange = function(twin) {
             var currentTelemetryConfig = twin.properties.reported.telemetryConfig;
@@ -141,35 +141,35 @@ In questa sezione si crea un'applicazione console Node.js che si connette hub to
             });
         };
    
-    Hello **initConfigChange** metodo aggiorna segnalati proprietà sull'oggetto di un doppio hello dispositivo locale con hello richiesta di aggiornamento della configurazione e set hello stato troppo**in sospeso**, quindi gli aggiornamenti hello dispositivo doppio servizio hello. Dopo aver aggiornato correttamente un doppio dispositivo hello, simula un processo a esecuzione prolungata che termina l'esecuzione di hello **completeConfigChange**. Questo metodo aggiornamenti hello dispositivo locale disponibilità di una copia del segnalato le proprietà di impostazione dello stato di hello troppo**successo** e rimozione di hello **pendingConfig** oggetto. Viene quindi aggiornato doppi dispositivo hello sul servizio hello.
+    Il metodo **initConfigChange** aggiorna le proprietà segnalate nell'oggetto dispositivo gemello locale con la richiesta di aggiornamento della configurazione e imposta lo stato su **Pending** (Sospeso), quindi aggiorna il dispositivo gemello nel servizio. Dopo l'aggiornamento del dispositivo gemello, simula un processo a esecuzione prolungata che termina con l'esecuzione di **completeConfigChange**. Questo metodo aggiorna le proprietà segnalate del dispositivo gemello locale impostando lo stato su **Success** e rimuovendo l'oggetto **pendingConfig**, quindi aggiorna il dispositivo gemello nel servizio.
    
-    Si noti che, della larghezza di banda toosave segnalati proprietà vengono aggiornate specificando solo hello proprietà toobe modificato (denominato **patch** in hello sopra codice), anziché sostituire hello intero documento.
+    Si noti che, per risparmiare larghezza di banda, le proprietà segnalate vengono aggiornate specificando solo le proprietà da modificare (denominate **patch** nel codice precedente), invece di sostituire l'intero documento.
    
    > [!NOTE]
-   > Questa esercitazione non simula alcun comportamento per gli aggiornamenti della configurazione simultanei. Alcuni processi di aggiornamento configurazione potrebbero essere in grado di tooaccommodate modifiche della configurazione di destinazione durante l'esecuzione di aggiornamento hello, altri utenti potrebbe essere tooqueue e su altri possibile rifiutarli con una condizione di errore. Verificare che tooconsider hello comportamento desiderato per il processo di configurazione specifica e aggiungere la logica appropriata hello prima dell'avvio di modifica della configurazione hello.
+   > Questa esercitazione non simula alcun comportamento per gli aggiornamenti della configurazione simultanei. Alcuni processi di aggiornamento della configurazione potrebbero consentire modifiche della configurazione di destinazione mentre l'aggiornamento è in esecuzione, altre potrebbero doverle accodare e altri ancora rifiutarle con una condizione di errore. È importante tenere in considerazione il comportamento desiderato per il processo di configurazione specifico e aggiungere la logica appropriata prima di iniziare la modifica della configurazione.
    > 
    > 
-6. Eseguire app per dispositivi hello:
+6. Eseguire l'app per dispositivo:
    
         node SimulateDeviceConfiguration.js
    
-    Verrà visualizzato il messaggio hello `retrieved device twin`. Mantenere hello app in esecuzione.
+    Dovrebbe essere visualizzato il messaggio `retrieved device twin`. Mantenere l'app in esecuzione.
 
-## <a name="create-hello-service-app"></a>Creare l'applicazione di servizio hello
-In questa sezione si creerà un'applicazione console in Node.js tale hello aggiornamenti *le proprietà desiderate* su hello gemelli di dispositivo associati **myDeviceId** con un nuovo oggetto di configurazione di telemetria. Quindi esegue una query gemelli dispositivo hello archiviate nell'hub IoT hello e Mostra differenza hello tra hello desiderato e le configurazioni di dispositivo hello segnalato.
+## <a name="create-the-service-app"></a>Creare l'app di servizio
+In questa sezione si creerà un'app console Node.js che aggiorna le *proprietà desiderate* nel dispositivo gemello associato a **myDeviceId** con un nuovo oggetto di configurazione di telemetria. Viene quindi effettuata una query dei dispositivi gemelli archiviati nell'hub IoT e viene visualizzata la differenza tra la configurazione desiderata e quella segnalata del dispositivo.
 
-1. Creare una nuova cartella vuota denominata **setdesiredandqueryapp**. In hello **setdesiredandqueryapp** cartella, creare un nuovo file package. JSON utilizzando hello seguente comando al prompt dei comandi. Accettare tutte le impostazioni predefinite hello:
+1. Creare una nuova cartella vuota denominata **setdesiredandqueryapp**. Nella cartella **setdesiredandqueryapp** creare un nuovo file package.json immettendo il comando seguente al prompt dei comandi. Accettare tutte le impostazioni predefinite:
    
     ```
     npm init
     ```
-2. Al prompt dei comandi in hello **setdesiredandqueryapp** cartella, eseguire hello successivo comando tooinstall hello **hub IOT di azure** pacchetto:
+2. Eseguire questo comando al prompt dei comandi nella cartella **setdesiredandqueryapp** per installare il pacchetto **azure-iothub**:
    
     ```
     npm install azure-iothub node-uuid --save
     ```
-3. Utilizzando un editor di testo, creare un nuovo **SetDesiredAndQuery.js** file hello **addtagsandqueryapp** cartella.
-4. Aggiungere i seguenti toohello codice hello **SetDesiredAndQuery.js** file e sostituire hello **{stringa di connessione hub iot}** segnaposto con hello stringa di connessione IoT Hub è stato copiato al momento della creazione dell'hub :
+3. Con un editor di testo creare un nuovo file **SetDesiredAndQuery.js** nella cartella **setdesiredandqueryapp**.
+4. Aggiungere il codice seguente al file **SetDesiredAndQuery.js** e sostituire il segnaposto **{iot hub connection string}** con la stringa di connessione dell'hub IoT copiata quando è stato creato l'hub:
    
         'use strict';
         var iothub = require('azure-iothub');
@@ -204,20 +204,20 @@ In questa sezione si creerà un'applicazione console in Node.js tale hello aggio
             }
         });
 
-    Hello **Registro di sistema** oggetto espone tutte hello metodi obbligatorio toointeract con gemelli di dispositivo dal servizio hello. Hello codice precedente, dopo l'inizializzazione hello **Registro di sistema** oggetto recupera hello gemelli di dispositivo per **myDeviceId**e aggiorna le proprietà desiderate con un nuovo oggetto di configurazione di telemetria. Successivamente, chiama hello **queryTwins** funzione evento 10 secondi.
+    L'oggetto **Registry** espone tutti i metodi necessari per interagire con i dispositivi gemelli dal servizio. Il codice precedente, dopo avere inizializzato l'oggetto **Registry**, recupera il dispositivo gemello per **myDeviceId** e ne aggiorna le proprietà desiderate con un nuovo oggetto di configurazione della telemetria. quindi chiama l'evento della funzione **queryTwins** ogni 10 secondi.
 
     > [!IMPORTANT]
-    > Questa applicazione effettua una query dell'hub IoT ogni 10 secondi a scopo illustrativo. Utilizzare una query toogenerate rivolta all'utente report tra più dispositivi e non toodetect modifiche. Se la soluzione richiede notifiche in tempo reale degli eventi del dispositivo, usare le [notifiche relative al dispositivo gemello][lnk-twin-notifications].
+    > Questa applicazione effettua una query dell'hub IoT ogni 10 secondi a scopo illustrativo. Usare le query per generare i report destinati all'utente in più dispositivi e non per rilevare le modifiche. Se la soluzione richiede notifiche in tempo reale degli eventi del dispositivo, usare le [notifiche relative al dispositivo gemello][lnk-twin-notifications].
     > 
     >.
 
-1. Aggiungere hello seguente di codice subito prima di hello `registry.getDeviceTwin()` hello tooimplement chiamata **queryTwins** funzione:
+1. Aggiungere il codice seguente subito prima della chiamata a `registry.getDeviceTwin()` per implementare la funzione **queryTwins**:
    
         var queryTwins = function() {
             var query = registry.createQuery("SELECT * FROM devices WHERE deviceId = 'myDeviceId'", 100);
             query.nextAsTwin(function(err, results) {
                 if (err) {
-                    console.error('Failed toofetch hello results: ' + err.message);
+                    console.error('Failed to fetch the results: ' + err.message);
                 } else {
                     console.log();
                     results.forEach(function(twin) {
@@ -233,26 +233,26 @@ In questa sezione si creerà un'applicazione console in Node.js tale hello aggio
             });
         };
    
-    query di codice precedenti Hello hello gemelli dispositivo memorizzato nell'hub IoT hello e stampa hello desiderato e segnalate le configurazioni di telemetria. Fare riferimento toohello [il linguaggio di query di IoT Hub] [ lnk-query] toolearn come rich toogenerate report tra tutti i dispositivi.
-2. Con **SimulateDeviceConfiguration.js** in esecuzione, eseguire un'applicazione hello con:
+    Il codice precedente effettua una query dei dispositivi gemelli archiviati nell'hub IoT e visualizza la configurazione della telemetria desiderata e quella segnalata. Vedere il [linguaggio di query dell'hub IoT][lnk-query] per informazioni su come generare report avanzati in tutti i dispositivi.
+2. Con **SimulateDeviceConfiguration.js** in esecuzione, eseguire l'applicazione con:
    
         node SetDesiredAndQuery.js 5m
    
-    Dovrebbe essere hello segnalati configurazione modificare da **esito positivo** troppo**in sospeso** troppo**successo** nuovamente Active nuovo hello frequenza di invio dei cinque minuti anziché 24 ore.
+    Si potrà osservare la configurazione segnalata passare da **Success** a **Pending** e di nuovo a **Success** con la nuova frequenza di invio attiva di cinque minuti e non più di 24 ore.
    
    > [!IMPORTANT]
-   > Si verifica un ritardo di backup tooa minuto tra funzionamento del report dispositivo hello e risultato della query hello. Si tratta di tooenable hello query infrastruttura toowork su larga scala molto elevata. viste di un doppio di un singolo dispositivo consistenza tooretrieve utilizzano hello **getDeviceTwin** metodo hello **Registro di sistema** classe.
+   > Tra l'operazione relativa al report del dispositivo e il risultato della query si verifica un ritardo fino a un minuto, che consente all'infrastruttura della query di funzionare su una scala molto ampia. Per recuperare visualizzazioni coerenti di un solo dispositivo gemello, usare il metodo **getDeviceTwin** nella classe **Registry**.
    > 
    > 
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questa esercitazione, impostare una configurazione desiderata come *le proprietà desiderate* da un'app di back-end e ha scritto un toodetect app dispositivo simulato che modificano e simulare un processo di aggiornamento di più passaggi reporting stato  *proprietà segnalati* toohello gemelli di dispositivo.
+In questa esercitazione è stata impostata una configurazione desiderata come *proprietà desiderate* da un'app back-end ed è stata scritta un'app per dispositivo simulato per rilevare tale modifica e simulare un processo di aggiornamento in più fasi che segnala lo stato come *proprietà segnalate* al dispositivo gemello.
 
-Hello utilizzare seguenti come risorse toolearn per:
+Per altre informazioni, vedere le risorse seguenti:
 
-* inviare i dati di telemetria dai dispositivi con hello [iniziare con l'IoT Hub] [ lnk-iothub-getstarted] esercitazione
-* pianificare o eseguire operazioni su grandi set di dispositivi Vedere hello [pianificazione e i processi di broadcast] [ lnk-schedule-jobs] esercitazione.
-* controllare i dispositivi in modo interattivo (ad esempio l'attivazione di una ventola da un'app controllata dall'utente), con hello [utilizzare metodi diretti] [ lnk-methods-tutorial] esercitazione.
+* Per inviare dati di telemetria dai dispositivi, vedere l'esercitazione [Introduzione all'hub IoT][lnk-iothub-getstarted].
+* Per pianificare o eseguire operazioni su grandi set di dispositivi, vedere l'esercitazione [Pianificare e trasmettere processi][lnk-schedule-jobs].
+* Per controllare i dispositivi in modo interattivo, ad esempio per attivare un ventilatore da un'app controllata dall'utente, vedere l'esercitazione [Use direct methods][lnk-methods-tutorial] (Usare metodi diretti).
 
 <!-- links -->
 [lnk-hub-sdks]: iot-hub-devguide-sdks.md

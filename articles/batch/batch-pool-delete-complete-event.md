@@ -1,5 +1,5 @@
 ---
-title: aaa "pool di Azure Batch eliminare evento completo | Documenti di Microsoft"
+title: Evento di completamento eliminazione pool di Azure Batch | Microsoft Docs
 description: "Riferimento per l’evento di completamento eliminazione del pool di batch."
 services: batch
 author: tamram
@@ -12,17 +12,17 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
 ms.date: 04/20/2017
 ms.author: tamram
-ms.openlocfilehash: 494c371e48ebfb1bf3d2973a7401829a939ba141
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 890f2ba7fda37060c56177868d6214d517d91831
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="pool-delete-complete-event"></a>Evento di completamento eliminazione pool
 
  Questo evento viene generato quando un'operazione di eliminazione pool è stata completata.
 
- Hello esempio seguente viene illustrato hello corpo di un evento di completamento Elimina pool.
+ L'esempio seguente illustra il corpo di un evento di completamento eliminazione pool.
 
 ```
 {
@@ -34,9 +34,9 @@ ms.lasthandoff: 10/06/2017
 
 |Elemento|Tipo|Note|
 |-------------|----------|-----------|
-|id|String|id di Hello del pool di hello.|
-|startTime|DateTime|Hello eliminare pool hello avvio.|
-|endTime|DateTime|Hello tempo eliminare pool hello completata.|
+|id|String|ID del pool.|
+|startTime|DateTime|Data e ora in cui è stata avviata l'eliminazione del pool.|
+|endTime|DateTime|Data e ora in cui è stata completata l'eliminazione del pool.|
 
 ## <a name="remarks"></a>Osservazioni
 Per altre informazioni sugli stati e sui codici di errore per l'operazione di ridimensionamento pool, vedere [Delete a pool from an account](https://docs.microsoft.com/rest/api/batchservice/delete-a-pool-from-an-account) (Eliminare un pool da un account).

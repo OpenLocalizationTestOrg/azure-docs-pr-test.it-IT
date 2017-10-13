@@ -1,6 +1,6 @@
 ---
-title: "set di scalabilità di macchine virtuali di Azure scala aaaVertically | Documenti Microsoft"
-description: Come toovertically ridimensionare una macchina virtuale negli avvisi toomonitoring risposta con automazione di Azure
+title: "Ridimensionare verticalmente set di scalabilità di macchine virtuali di Azure | Microsoft Docs"
+description: "Come eseguire la scalabilità verticale di una macchina virtuale in risposta agli avvisi di monitoraggio tramite Automazione di Azure"
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: gbowerman
@@ -15,33 +15,33 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/03/2016
 ms.author: guybo
-ms.openlocfilehash: 1cc35a805b6a5742252a89c21588ca451ff547a3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9159a5a9041864fe06785829121233379c46bb03
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="vertical-autoscale-with-virtual-machine-scale-sets"></a>Ridimensionamento automatico verticale con set di scalabilità di macchine virtuali
-In questo articolo vengono descritte le modalità di scalabilità di Azure toovertically [set di scalabilità di macchine virtuali](https://azure.microsoft.com/services/virtual-machine-scale-sets/) con o senza la riconfigurazione. Per la scalabilità verticale delle macchine virtuali che non sono presenti nel set di scalabilità, vedere troppo[scalare verticalmente macchina virtuale di Azure con automazione di Azure](../virtual-machines/windows/vertical-scaling-automation.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+In questo articolo viene descritto come ridimensionare in verticale i [set di macchine virtuali](https://azure.microsoft.com/services/virtual-machine-scale-sets/) di Azure con o senza un nuovo provisioning. Per il ridimensionamento verticale delle VM non incluse nei set di scalabilità, vedere l'articolo [Ridimensionamento verticale di macchine virtuali di Azure tramite Automazione di Azure](../virtual-machines/windows/vertical-scaling-automation.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
-La scalabilità verticale, anche noto come *scalabilità verticale* e *scalare verso il basso*indica aumentando o riducendo le dimensioni di macchina virtuale (VM) del carico di lavoro di risposta tooa. Confronto con [scalabilità orizzontale](virtual-machine-scale-sets-autoscale-overview.md), definita anche tooas *scalabilità* e *ridimensionare in*, in cui è stato modificato il numero di hello di macchine virtuali a seconda del carico di lavoro di hello.
+Per ridimensionamento verticale, detto anche *aumento delle prestazioni* e *riduzione delle prestazioni*, si intende l'aumento o la riduzione delle dimensioni delle macchine virtuali (VM) in risposta a un carico di lavoro. Confrontare questo concetto con il [ridimensionamento orizzontale](virtual-machine-scale-sets-autoscale-overview.md), detto anche *aumento delle istanze* e *riduzione delle istanze*, in cui il numero di VM viene modificato in base al carico di lavoro.
 
-Per nuovo provisioning si intende la rimozione di una VM esistente e la relativa sostituzione con una nuova. Quando si aumentare o diminuire le dimensioni di hello di macchine virtuali in un Set di scalabilità della macchina virtuale, in alcuni casi si desidera tooresize le macchine virtuali esistenti e mantenere i dati, mentre in altri casi è necessario toodeploy nuove macchine virtuali della nuova dimensione hello. Questo documento illustra entrambi i casi.
+Per nuovo provisioning si intende la rimozione di una VM esistente e la relativa sostituzione con una nuova. Quando si aumentano o riducono le dimensioni delle macchine virtuali in un set di scalabilità di macchine virtuali, in alcuni casi può rendersi necessario ridimensionare le VM esistenti e mantenere i dati, mentre in altri casi è necessario distribuire nuove VM con le nuove dimensioni. Questo documento illustra entrambi i casi.
 
 Il ridimensionamento verticale, ovvero l'aumento o la riduzione delle prestazioni, può risultare utile quando:
 
-* Un servizio basato su macchine virtuali è sottoutilizzato, ad esempio nel fine settimana. Riduzione delle dimensioni di VM hello, è possibile ridurre i costi mensili.
-* Aumento toocope dimensioni di macchina virtuale con richiesta di dimensioni maggiore senza creare altre macchine virtuali.
+* Un servizio basato su macchine virtuali è sottoutilizzato, ad esempio nel fine settimana. La riduzione delle dimensioni delle VM può ridurre i costi mensili.
+* L'aumento delle dimensioni delle VM consente di soddisfare una maggiore richiesta senza creare altre macchine virtuali.
 
-È possibile impostare verticale scalabilità toobe attivato basati sugli avvisi di base metrica dal Set di scalabilità della macchina virtuale. Quando viene attivato hello avviso viene generato un webhook che attiva un runbook che è possibile ridimensionare la scala è impostato su o giù. Il ridimensionamento verticale può essere configurato seguendo questa procedura:
+È possibile configurare l'attivazione del ridimensionamento verticale secondo le metriche basate sugli avvisi del set di scalabilità di macchine virtuali. Quando viene attivato l'avviso, genera un webhook che attiva un runbook in grado di aumentare o ridurre le prestazioni del set di scalabilità. Il ridimensionamento verticale può essere configurato seguendo questa procedura:
 
 1. Creare un account di Automazione di Azure con funzionalità RunAs.
 2. Importare i runbook di scalabilità verticale di Automazione di Azure per i set di scalabilità di macchine virtuali nella sottoscrizione.
-3. Aggiungere un runbook tooyour webhook.
-4. Aggiungere un avviso tooyour Set di scalabilità macchina virtuale utilizza la notifica di un webhook.
+3. Aggiungere un webhook al runbook.
+4. Aggiungere un avviso per il set di scalabilità di macchine virtuali con una notifica di un webhook.
 
 > [!NOTE]
-> Il ridimensionamento verticale può avvenire solo entro determinati intervalli di dimensioni delle VM. Confronto delle specifiche di hello di ogni dimensione prima di decidere tooscale da uno tooanother (numero più alto non indicare sempre più grande dimensione della macchina virtuale). È possibile scegliere tooscale tra hello coppie di dimensioni seguenti:
+> Il ridimensionamento verticale può avvenire solo entro determinati intervalli di dimensioni delle VM. Confrontare le specifiche di ogni dimensione prima di decidere il tipo di ridimensionamento (un numero più alto non sempre indica dimensioni della VM più grandi). È possibile scegliere di applicare il ridimensionamento tra le seguenti coppie di dimensioni:
 > 
 > | coppie di ridimensionamento di dimensioni delle macchine virtuali |  |
 > | --- | --- |
@@ -55,35 +55,35 @@ Il ridimensionamento verticale, ovvero l'aumento o la riduzione delle prestazion
 > 
 
 ## <a name="create-an-azure-automation-account-with-run-as-capability"></a>Creare un account di Automazione di Azure con funzionalità RunAs
-Hello occorre innanzitutto toodo è creare un account di automazione di Azure che ospiterà hello runbook utilizzato tooscale hello Set di scalabilità della macchina virtuale istanze. Recentemente [automazione di Azure](https://azure.microsoft.com/services/automation/) introdotte funzionalità "Esegui come account" hello che rende impostazione hello dell'entità servizio per l'esecuzione automatica hello runbook per conto dell'utente molto semplice. È possibile leggere altre informazioni nell'articolo hello riportato di seguito:
+La prima operazione da eseguire è creare l'account di Automazione di Azure che ospiterà i runbook usati per ridimensionare le istanze del set di scalabilità di macchine virtuali. [Automazione di Azure](https://azure.microsoft.com/services/automation/) ha introdotto di recente la funzionalità "Account RunAs", che semplifica molto la configurazione dell'entità servizio per l'esecuzione automatica di runbook per conto dell'utente. Altre informazioni sono disponibili nell'articolo seguente.
 
 * [Autenticare runbook con account RunAs di Azure](../automation/automation-sec-configure-azure-runas-account.md)
 
 ## <a name="import-azure-automation-vertical-scale-runbooks-into-your-subscription"></a>Importare i runbook di ridimensionamento verticale di Automazione di Azure nella sottoscrizione
-i runbook Hello necessario scala toovertically che il set di scalabilità di macchine Virtuali sono già pubblicati nella raccolta di Runbook di automazione di Azure hello. nella sottoscrizione seguono hello tooimport passaggi riportati in questo articolo.
+I runbook necessari per il ridimensionamento verticale del set di scalabilità di macchine virtuali sono già stati pubblicati nella raccolta dei runbook di Automazione di Azure. Per importarli nella sottoscrizione seguire la procedura descritta in questo articolo:
 
 * [Raccolte di runbook e moduli per l'automazione di Azure](../automation/automation-runbook-gallery.md)
 
-Scegliere l'opzione Sfoglia raccolta hello dal menu di runbook hello:
+Scegliere l'opzione Esplora raccolta dal menu Runbook:
 
-![Toobe runbook importati][runbooks]
+![Runbook da importare][runbooks]
 
-i runbook Hello necessario toobe importati vengono visualizzati. Selezionare il runbook hello in base che si voglia con o senza la riconfigurazione della scalabilità verticale:
+I runbook da importare sono visualizzati nell'immagine seguente: Selezionare il runbook in base al tipo di ridimensionamento con o senza un nuovo provisioning che si vuole usare:
 
 ![Raccolta di runbook][gallery]
 
-## <a name="add-a-webhook-tooyour-runbook"></a>Aggiungere un runbook tooyour webhook
-Dopo aver importato i runbook hello è necessario un runbook toohello webhook tooadd in modo che può essere attivata da un avviso generato da un Set di scalabilità della macchina virtuale. in questo articolo sono descritti i dettagli di Hello per la creazione di un webhook per il Runbook:
+## <a name="add-a-webhook-to-your-runbook"></a>Aggiungere un webhook al runbook
+Dopo avere importato i runbook, è necessario aggiungere un webhook al runbook in modo che possa essere attivato da un set di scalabilità di macchine virtuali. Informazioni dettagliate sulla creazione di un webhook per il runbook sono disponibili in questo articolo:
 
 * [Webhook di Automazione di Azure](../automation/automation-webhooks.md)
 
 > [!NOTE]
-> Assicurarsi di copiare hello webhook URI prima della chiusura di finestra di dialogo webhook hello perché sarà necessaria nella sezione successiva hello.
+> Assicurarsi di copiare l'URI del webhook prima di chiudere la finestra di dialogo del webhook, perché sarà necessario nella sezione successiva.
 > 
 > 
 
-## <a name="add-an-alert-tooyour-vm-scale-set"></a>Aggiungere un avviso tooyour Set di scalabilità della macchina virtuale
-Di seguito è riportato un PowerShell script che mostra come tooadd un avviso tooa Set di scalabilità della macchina virtuale. Fare riferimento toohello dopo il nome di hello articolo tooget di avviso di hello toofire metrica hello: [comuni metriche di monitoraggio di Azure per la scalabilità automatica](../monitoring-and-diagnostics/insights-autoscale-common-metrics.md).
+## <a name="add-an-alert-to-your-vm-scale-set"></a>Aggiungere un avviso al set di scalabilità di macchine virtuali
+Di seguito è riportato uno script di PowerShell che mostra come aggiungere un avviso a un set di scalabilità di macchine virtuali. Vedere l'articolo seguente per ottenere il nome della metrica in base alla quale attivare l'avviso: [Azure Monitor autoscaling common metrics](../monitoring-and-diagnostics/insights-autoscale-common-metrics.md) (Metriche comuni per il ridimensionamento automatico di Monitoraggio di Azure).
 
 ```
 $actionEmail = New-AzureRmAlertRuleEmail -CustomEmail user@contoso.com
@@ -112,11 +112,11 @@ Add-AzureRmMetricAlertRule  -Name  $alertName `
 ```
 
 > [!NOTE]
-> È consigliabile tooconfigure un intervallo di tempo ragionevole per avviso hello in ordine tooavoid attivando la scalabilità verticale e qualsiasi associata un'interruzione del servizio, troppo spesso. Considerare un intervallo minimo di 20-30 minuti. È consigliabile se è necessario tooavoid interruzione la scalabilità orizzontale.
+> È consigliabile configurare un intervallo di tempo ragionevole per l'avviso per evitare di attivare troppo spesso il ridimensionamento verticale e l'eventuale interruzione del servizio associato. Considerare un intervallo minimo di 20-30 minuti. Prendere in considerazione il ridimensionamento orizzontale se è necessario evitare qualsiasi interruzione.
 > 
 > 
 
-Per ulteriori informazioni su come toocreate avvisi fare riferimento toohello seguenti articoli:
+Per altre informazioni su come creare gli avvisi, vedere gli articoli seguenti:
 
 * [Azure Monitor PowerShell quick start samples](../monitoring-and-diagnostics/insights-powershell-samples.md) (Esempi di avvio rapido di PowerShell per Monitoraggio di Azure)
 * [Azure Monitor Cross-platform CLI quick start samples](../monitoring-and-diagnostics/insights-cli-samples.md) (Esempi di avvio rapido dell'interfaccia della riga di comando multipiattaforma per Monitoraggio di Azure)

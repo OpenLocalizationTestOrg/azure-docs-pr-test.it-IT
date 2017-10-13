@@ -1,6 +1,6 @@
 ---
-title: aaaEnabling fine tooend SSL nel Gateway di applicazione di Azure | Documenti Microsoft
-description: Questa pagina viene fornita una panoramica di hello Gateway applicazione end tooend supporto SSL.
+title: Abilitazione di SSL end-to-end nel gateway applicazione di Azure | Microsoft Docs
+description: Questa pagina offre un'introduzione al supporto di SSL end-to-end del gateway applicazione.
 documentationcenter: na
 services: application-gateway
 author: amsriva
@@ -15,33 +15,33 @@ ms.custom: H1Hack27Feb2017
 ms.workload: infrastructure-services
 ms.date: 07/19/2017
 ms.author: amsriva
-ms.openlocfilehash: c5cb398a1e7d9a08662a3120baad98edb5575917
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 689ee54dc1db2ea371b08270718278fd98c65bb5
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="overview-of-end-tooend-ssl-with-application-gateway"></a>Panoramica di fine tooend SSL con Gateway applicazione
+# <a name="overview-of-end-to-end-ssl-with-application-gateway"></a>Panoramica di SSL end-to-end con il gateway applicazione
 
-Gateway applicazione supporta la terminazione SSL gateway hello, dopo che il traffico passa in genere non crittografati toohello i server back-end. Questa funzionalità consente di web server toobe unburdened da sovraccarico di crittografia e decrittografia costoso. Per alcuni clienti server back-end toohello di comunicazione non crittografata non è tuttavia un'opzione accettabile. Questa comunicazione non crittografata potrebbe essere dovuto toosecurity requisiti, i requisiti di conformità, o un'applicazione hello può accettare solo una connessione sicura. Per tali applicazioni, i gateway applicazione supporta fine tooend SSL crittografia.
+Il gateway applicazione supporta la terminazione SSL nel gateway, dopo la quale il traffico scorre generalmente non crittografato verso i server back-end. Questa funzionalità consente ai server Web di non gestire il costoso carico di crittografia e decrittografia. Tuttavia, per alcuni clienti le comunicazioni non crittografate verso i server back-end non rappresentano un'opzione accettabile. Le comunicazioni non crittografate potrebbero essere causate da requisiti di sicurezza o conformità oppure da un'applicazione che può accettare solo una connessione protetta. Per tali applicazioni, il gateway applicazione supporta ora la crittografia SSL end-to-end.
 
 ## <a name="overview"></a>Panoramica
 
-Fine tooend SSL consente toosecurely trasmettere back-end toohello dati sensibili crittografati mentre vengono comunque usufruire dei vantaggi di hello della funzionalità di bilanciamento del carico di livello 7 il gateway applicazione. Alcune di queste funzionalità sono l'affinità di sessione basato su cookie, il routing basato su URL, il supporto per il routing basato su siti o possibilità tooinject - inoltrati - X * intestazioni.
+La crittografia SSL end-to-end consente di trasmettere in modo sicuro dati sensibili crittografati al back-end, usufruendo comunque dei vantaggi delle funzionalità di bilanciamento del carico di livello 7 offerte dal gateway applicazione. Alcune di queste funzionalità sono l'affinità di sessione basata su cookie, il routing basato su URL, il supporto per il routing basato su siti o la possibilità di inserire intestazioni X-Forwarded-*.
 
-Quando è configurato con la modalità di comunicazione end tooend SSL, gateway applicazione termina le sessioni SSL hello gateway hello e decrittografa il traffico utente. Viene quindi applicata hello configurata regole tooselect un back-end appropriata pool istanza tooroute del traffico. Gateway applicazione quindi avvia un nuovo server di back-end toohello connessione SSL e crittografare nuovamente i dati tramite certificato di chiave pubblica del server back-end hello prima della trasmissione hello back-end toohello di richiesta. Fine tooend che SSL è abilitato impostando l'impostazione del protocollo in tooHTTPS BackendHTTPSetting, che viene quindi applicato pool back-end tooa. Ogni server di back-end nel pool back-end di hello con SSL abilitato tooend di fine deve essere configurato con una comunicazione protetta tooallow di certificato.
+Se configurato con la modalità di comunicazione SSL end-to-end, il gateway applicazione termina le sessioni SSL nel gateway ed esegue la decrittografia del traffico utente. Applica quindi le regole configurate per selezionare un'istanza del pool di back-end adeguata su cui instradare il traffico. Il gateway applicazione avvia a questo punto una nuova connessione SSL al server back-end e crittografa nuovamente i dati usando il certificato di chiave pubblica del server back-end prima di trasmettere la richiesta al back-end. Per abilitare SSL end-to-end si imposta la configurazione del protocollo in BackendHTTPSetting su HTTPS. Questa impostazione viene quindi applicata a un pool back-end. Per una comunicazione protetta, ogni server back-end nel pool di back-end con SSL end-to-end abilitato deve essere configurato con un certificato.
 
-![scenario di end tooend ssl][1]
+![Scenario di SSL end-to-end][1]
 
-In questo esempio, le richieste tramite TLS 1.2 sono server toobackend indirizzato Pool1 utilizzando tooend fine SSL.
+In questo esempio, le richieste che usano TLS1.2 vengono instradate ai server back-end in Pool1 con SSL end-to-end.
 
-## <a name="end-tooend-ssl-and-whitelisting-of-certificates"></a>Terminare tooend SSL e whitelist dei certificati
+## <a name="end-to-end-ssl-and-whitelisting-of-certificates"></a>SSL end-to-end e aggiunta dei certificati all'elenco dei consentiti
 
-Gateway applicazione comunica solo con le istanze di back-end noto che hanno consentito il proprio certificato al gateway applicazione hello. whitelist tooenable dei certificati, è necessario caricare la chiave pubblica hello di gateway applicazione back-end server certificati toohello (non certificato radice hello). Solo le connessioni tooknown e consentito back-end sono quindi consentiti. Hello rimanenti back-end genera un errore di gateway. I certificati autofirmati vengono usati a scopo di test e non sono consigliati per i carichi di lavoro. Tali certificati hanno consentito di toobe con il gateway applicazione hello come descritto in hello passaggi precedenti, prima di poter essere usati.
+Il gateway applicazione comunica solo con istanze back-end note, il cui certificato è incluso nell'elenco dei consentiti del gateway applicazione. Per abilitare l'aggiunta dei certificati all'elenco dei consentiti, è necessario caricare nel gateway applicazione la chiave pubblica dei certificati dei server back-end (non il certificato radice). Sono quindi consentite solo le connessioni a back-end noti e inclusi nell'elenco. Gli altri back-end generano un errore del gateway. I certificati autofirmati vengono usati a scopo di test e non sono consigliati per i carichi di lavoro. Prima dell'uso, anche questi certificati devono essere aggiunti all'elenco dei consentiti nel gateway applicazione, come descritto nei passaggi precedenti.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Dopo avere imparare a fine tooend SSL, andare troppo[abilitare fine tooend SSL nel gateway applicazione](application-gateway-end-to-end-ssl-powershell.md) toocreate gateway un'applicazione che utilizza end tooend SSL.
+Dopo avere appreso i concetti di SSL end-to-end, passare all'articolo che spiega come [abilitare SSL end-to-end nel gateway applicazione](application-gateway-end-to-end-ssl-powershell.md) per creare un gateway applicazione usando SSL end-to-end.
 
 <!--Image references-->
 

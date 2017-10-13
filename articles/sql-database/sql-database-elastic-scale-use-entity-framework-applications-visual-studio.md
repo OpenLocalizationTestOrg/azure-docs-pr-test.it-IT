@@ -1,5 +1,5 @@
 ---
-title: libreria client di database elastico aaaUsing con Entity Framework | Documenti Microsoft
+title: Uso della libreria client dei database elastici con Entity Framework | Documentazione Microsoft
 description: Usare la libreria client del database elastico e Entity Framework per la codifica di database
 services: sql-database
 documentationcenter: 
@@ -15,73 +15,73 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/06/2017
 ms.author: torsteng
-ms.openlocfilehash: 917f6d28d9855c0b42afe2c008613a9bbb3ec6b6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2f0bff394c1e11a270cb324be5a1a45e9e531d7f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="elastic-database-client-library-with-entity-framework"></a>Libreria client dei database elastici con Entity Framework
-Questo documento illustra le modifiche di hello in un'applicazione Entity Framework che sono necessari toointegrate con hello [strumenti di Database elastico](sql-database-elastic-scale-introduction.md). Hello è attiva la composizione [gestione mappa partizioni](sql-database-elastic-scale-shard-map-management.md) e [routing dipendente dai dati](sql-database-elastic-scale-data-dependent-routing.md) con Entity Framework hello **Code First** approccio. Hello [codice innanzitutto - Nuovo Database](http://msdn.microsoft.com/data/jj193542.aspx) esercitazione per Entity Framework viene utilizzato come esempio in esecuzione in questo documento. codice di esempio Hello che accompagna questo documento fa parte degli strumenti di database elastico set di campioni in hello esempi di codice di Visual Studio.
+Questo documento illustra le modifiche necessarie in un'applicazione Entity Framework per l'integrazione con le funzionalità degli [strumenti del database elastico](sql-database-elastic-scale-introduction.md). Vengono descritti in particolare la [gestione delle mappe partizioni](sql-database-elastic-scale-shard-map-management.md) e il [routing dipendente dai dati](sql-database-elastic-scale-data-dependent-routing.md) con l'approccio **Code First** di Entity Framework. L'esercitazione [Code First per un nuovo database](http://msdn.microsoft.com/data/jj193542.aspx) per Entity Framework servirà da esempio nell'intero documento. Il codice di esempio che accompagna questo documento fa parte del set di esempi sugli strumenti dei database elastici negli esempi di codice di Visual Studio.
 
-## <a name="downloading-and-running-hello-sample-code"></a>Scaricare ed eseguire l'esempio di codice hello
-codice di hello toodownload per questo articolo:
+## <a name="downloading-and-running-the-sample-code"></a>Download ed esecuzione del codice di esempio
+Per scaricare il codice per questo articolo:
 
 * È richiesto Visual Studio 2012 o versione successiva. 
-* Scaricare hello [elastico strumenti DB per SQL Azure - esempio di integrazione di Entity Framework](https://code.msdn.microsoft.com/windowsapps/Elastic-Scale-with-Azure-bae904ba) da MSDN. Decomprimere percorso tooa di esempio hello di propria scelta.
+* Scaricare l'esempio [Elastic DB Tools for Azure SQL - Entity Framework Integration](https://code.msdn.microsoft.com/windowsapps/Elastic-Scale-with-Azure-bae904ba) (Strumenti del database elastico per SQL di Azure - Integrazione con Entity Framework) da MSDN. Decomprimere l'esempio in un percorso a piacere.
 * Avviare Visual Studio. 
 * In Visual Studio selezionare File -> Apri progetto/soluzione. 
-* In hello **Apri progetto** finestra di dialogo, passare toohello esempio scaricato e selezionare **EntityFrameworkCodeFirst.sln** tooopen: esempio hello. 
+* Nella finestra di dialogo **Apri progetto** passare all'esempio scaricato e selezionare **EntityFrameworkCodeFirst.sln** per aprirlo. 
 
-esempio hello toorun, è necessario toocreate tre database vuoto nel Database SQL di Azure:
+Per eseguire l'esempio è necessario creare tre database vuoti nel database SQL di Azure:
 
 * Database di gestione delle mappe partizioni
 * Database partizione 1
 * Database partizione 2
 
-Dopo aver creato questi database, compilare segnaposto hello in **Program.cs** con il nome del server di database SQL di Azure, i nomi dei database hello e i database di toohello tooconnect le credenziali. Compilare la soluzione hello in Visual Studio. Visual Studio verranno scaricati i pacchetti NuGet hello necessario per la libreria client di database elastico hello, Entity Framework e la gestione come parte del processo di compilazione hello di errori temporanei. Verificare che per la soluzione sia abilitato il ripristino dei pacchetti NuGet. È possibile abilitare questa impostazione facendo clic sul file della soluzione in Esplora soluzioni di Visual Studio hello hello. 
+Dopo aver creato questi database, riempire i segnaposto nel file **Program.cs** con il nome del server di database SQL di Azure, i nomi dei database e le credenziali per la connessione ai database. Compilare la soluzione in Visual Studio. Visual Studio scaricherà i pacchetti NuGet necessari per la libreria client dei database elastici, Entity Framework e la gestione degli errori temporanei come parte del processo di compilazione. Verificare che per la soluzione sia abilitato il ripristino dei pacchetti NuGet. Per abilitare questa impostazione, fare clic con il pulsante destro del mouse sul file di soluzione in Esplora soluzioni di Visual Studio. 
 
 ## <a name="entity-framework-workflows"></a>Flussi di lavoro di Entity Framework
-Gli sviluppatori di Entity Framework si basano su uno dei seguenti quattro applicazioni toobuild flussi di lavoro e la persistenza tooensure per gli oggetti dell'applicazione hello: 
+Gli sviluppatori Entity Framework si basano su uno dei quattro seguenti flussi di lavoro per compilare le applicazioni e garantire la persistenza degli oggetti applicazione: 
 
-* **Code First (Database nuovo)**: hello developer EF Crea modello hello nel codice dell'applicazione hello ed EF genera quindi il database di hello da esso. 
-* **Code First (Database esistente)**: hello developer consente a Entity Framework di generare codice dell'applicazione hello per modello hello da un database esistente.
-* **Prima del modello**: developer hello Crea modello hello nella finestra di progettazione EF hello e quindi EF database hello dal modello hello.
-* **Database First**: developer hello utilizza EF tooling modello hello tooinfer da un database esistente. 
+* **Code First (nuovo database)**: lo sviluppatore Entity Framework crea il modello nel codice dell'applicazione ed Entity Framework genera il database a partire dal codice. 
+* **Code First (database esistente)**: lo sviluppatore consente a Entity Framework di generare il codice dell'applicazione per il modello da un database esistente.
+* **Model First**: lo sviluppatore crea il modello in Entity Framework Designer e quindi Entity Framework crea il database a partire dal modello.
+* **Database First**: lo sviluppatore usa gli strumenti di Entity Framework per dedurre il modello da un database esistente. 
 
-Tutti questi approcci si basano su hello DbContext classe tootransparently gestire connessioni al database e lo schema del database per un'applicazione. Come si parlerà in dettaglio più avanti nel documento hello, costruttori diversi nella classe di base di hello DbContext consentano per diversi livelli di controllo sulla creazione di connessione, la creazione di avvio automatico e dello schema del database. Difficoltà sorgono principalmente da tabelle dei fatti hello che Gestione connessione di database hello fornita da Entity Framework si interseca con funzionalità di gestione connessione hello hello dati dipendenti interfacce di routing fornite dalla libreria client di database elastico hello. 
+Tutti questi approcci si basano sulla classe DbContext per gestire in modo trasparente le connessioni di database e lo schema del database per un'applicazione. Come illustrato in dettaglio più avanti nel documento, costruttori diversi della classe base DbContext offrono livelli di controllo diversi sulla creazione delle connessioni, il bootstrap del database e la creazione dello schema. Le difficoltà sorgono principalmente dal fatto che la gestione delle connessioni di database fornita da Entity Framework si sovrappone alle funzionalità di gestione connessioni delle interfacce di routing dipendente dai dati fornite dalla libreria client dei database elastici. 
 
 ## <a name="elastic-database-tools-assumptions"></a>Presupposti degli strumenti dei database elastici
 Per le definizioni dei termini, vedere il [glossario degli strumenti del database elastico](sql-database-elastic-scale-glossary.md).
 
-La libreria client dei database elastici consente di definire partizioni dei dati applicativi denominate shardlet. Gli Shardlet vengono identificati da una chiave di partizionamento orizzontale e sono mappate toospecific database. Un'applicazione può avere tutti i database in base alle esigenze e distribuire hello shardlet tooprovide sufficiente capacità o prestazioni ha requisiti di business corrente. mapping di Hello dei database toohello valori di chiave di partizionamento orizzontale vengono archiviati per una mappa partizioni fornita dal client di database elastico hello API. Questa funzionalità è denominata **Gestione mappe partizioni**. mappa partizioni Hello funge anche da Service broker hello di connessioni di database per le richieste che contengono una chiave di partizionamento orizzontale. Facciamo riferimento toothis funzionalità come **routing dipendente dai dati**. 
+La libreria client dei database elastici consente di definire partizioni dei dati applicativi denominate shardlet. Gli shardlet sono identificati da una chiave di partizionamento orizzontale e sono mappati a database specifici. Un'applicazione può disporre di tutti i database necessari e distribuire gli shardlet per fornire capacità o prestazioni sufficienti in base ai requisiti aziendali correnti. Il mapping dei valori delle chiavi di partizionamento orizzontale ai database è archiviato in una mappa partizioni fornita dalle API client dei database elastici. Questa funzionalità è denominata **Gestione mappe partizioni**. La mappa partizioni funge anche da gestore delle connessioni di database per le richieste che contengono una chiave di partizionamento orizzontale. Questa funzionalità viene definita **routing dipendente dai dati**. 
 
-gestore mappe partizioni di Hello protegge gli utenti da visualizzazioni incoerenti nei dati di shardlet che possono verificarsi quando vengono eseguite operazioni di gestione di shardlet simultanee (ad esempio rilocazione dati da una partizione tooanother). toodo hello in tal caso, le mappe partizioni gestite da hello client libreria broker hello connessioni al database per un'applicazione. In questo modo, kill tooautomatically funzionalità di hello partizioni mappa una connessione al database quando le operazioni di gestione di partizioni potrebbe influire sulla hello shardlet che hello connessione è stata creata per. Questo approccio è necessario toointegrate con alcune delle funzionalità di Entity Framework, ad esempio la creazione di nuove connessioni da un uno toocheck esistente per l'esistenza del database. In generale, l'osservazione è stata che costruttori DbContext standard hello solo funzionano in maniera affidabile chiuse le connessioni ai database che possono essere clonate in modo sicuro per il lavoro di Entity Framework. il principio di progettazione Hello di database elastico è invece tooonly broker aperto connessioni. Si pensa di chiusura della connessione negoziata dalla libreria client hello passandolo tramite toohello EF DbContext potrebbe risolvere il problema. Chiusura della connessione hello e basarsi su apertura toore EF, tuttavia, uno foregoes controlli di convalida e la coerenza di hello eseguiti dalla libreria hello. funzionalità di migrazioni Hello in Entity Framework, tuttavia, utilizza queste hello toomanage connessioni dello schema di database in modo trasparente toohello applicazione sottostante. In teoria, si desideri tooretain e combinare tutte le funzionalità dalla libreria client di database elastico hello sia EF in hello stessa applicazione. Hello nella sezione seguente vengono illustrate queste proprietà e i requisiti in modo più dettagliato. 
+Il gestore delle mappe partizioni protegge gli utenti da visualizzazioni incoerenti nei dati degli shardlet potenzialmente provocate dall'esecuzione simultanea di operazioni di gestione degli shardlet, ad esempio la rilocazione di dati da una partizione all'altra. A tale scopo, le mappe di partizionamento gestite dalla libreria client gestiscono le connessioni al database per un'applicazione. In questo modo la funzionalità mappa partizioni può terminare automaticamente una connessione di database quando le operazioni di gestione delle partizioni potrebbero influire sullo shardlet per cui è stata creata la connessione. Questo approccio richiede l'integrazione con alcune funzionalità di Entity Framework, ad esempio la creazione di nuove connessioni a partire da una connessione esistente per verificare l'esistenza del database. In generale, è stato osservato che i costruttori DbContext standard funzionano in modo affidabile solo per le connessioni di database chiuse che possono essere clonate in sicurezza per le operazioni di Entity Framework. Il principio di progettazione dei database elastici prevede invece solo la gestione delle connessioni aperte. Si potrebbe pensare che chiudere una connessione gestita dalla libreria client prima di passarla al costruttore DbContext di Entity Framework consenta di risolvere il problema. Tuttavia, chiudendo la connessione e affidandone la riapertura a Entity Framework, si rinuncia alla convalida e ai controlli di coerenza eseguiti dalla libreria. La funzionalità per le migrazioni di Entity Framework, tuttavia, usa queste connessioni per gestire lo schema del database sottostante in modo trasparente per l'applicazione. La soluzione ideale sarebbe mantenere e combinare tutte le funzionalità della libreria client dei database elastici ed Entity Framework nella stessa applicazione. La seguente sezione illustra queste proprietà e i requisiti in maggiore dettaglio. 
 
 ## <a name="requirements"></a>Requisiti
-Quando si utilizzano con libreria client di database elastico hello e le API di Entity Framework, è necessario hello tooretain le proprietà seguenti: 
+Quando si usano sia le API della libreria client dei database elastici che di Entity Framework, si vogliono conservare le seguenti proprietà: 
 
-* **Scalabilità orizzontale**: tooadd o Rimuovi database dal livello dati hello applicazione partizionati hello necessarie per le esigenze di capacità hello di un'applicazione hello. Ciò significa controllo sulla creazione di hello hello e l'eliminazione del database e l'utilizzo di hello elastico partizioni mappa gestione API toomanage del database e i mapping di shardlet. 
-* **Coerenza**: partizionamento orizzontale si avvale di un'applicazione hello e utilizza hello funzionalità routing dipendente di dati della libreria client hello. danneggiamento tooavoid o risultati della query non corretto, le connessioni sono negoziate mediante gestore mappe partizioni di hello. In questo modo vengono mantenute anche la convalida e la coerenza.
-* **Code First**: praticità hello tooretain del primo paradigma del EF codice. In Code First, le classi in un'applicazione hello vengono eseguito il mapping in modo trasparente toohello strutture di database sottostanti. il codice dell'applicazione Hello interagisce con DbSets che mascherare la maggior parte dei relativi aspetti hello sottostante l'elaborazione del database.
-* **Schema**: Entity Framework gestisce la creazione iniziale dello schema del database e la successiva evoluzione dello schema mediante migrazioni. Con il mantenimento di queste funzionalità, è semplice come dati si evolve hello adattamento dell'app. 
+* **Scalabilità orizzontale**: per aggiungere o rimuovere database dal livello dati dell'applicazione partizionata a seconda delle necessità, per soddisfare le esigenze di capacità dell'applicazione. Ciò significa controllo sulla creazione e sull'eliminazione dei database e uso delle API del gestore delle mappe partizioni del database elastico per gestire i database e i mapping degli shardlet. 
+* **Coerenza**: l'applicazione usa il partizionamento orizzontale e si serve delle funzionalità di routing dipendente dai dati della libreria client. Per evitare il danneggiamento dei dati o la restituzione di risultati di query errati, le connessioni vengono gestite tramite il gestore delle mappe partizioni. In questo modo vengono mantenute anche la convalida e la coerenza.
+* **Code First**: per mantenere la praticità del paradigma Code First di Entity Framework. In Code First, le classi nell'applicazione vengono mappate in modo trasparente alle strutture di database sottostanti. Il codice dell'applicazione interagisce con DbSet che mascherano la maggior parte degli aspetti coinvolti nell'elaborazione di database sottostante.
+* **Schema**: Entity Framework gestisce la creazione iniziale dello schema del database e la successiva evoluzione dello schema mediante migrazioni. Conservando queste funzionalità, adattare l'applicazione in base all'evoluzione dei dati è molto semplice. 
 
-indica a Hello materiale sussidiario seguente come toosatisfy questi requisiti per le applicazioni prima di codice utilizzando gli strumenti di database elastico. 
+Le seguenti informazioni aggiuntive illustrano come soddisfare questi requisiti per le applicazioni Code First usando gli strumenti dei database elastici. 
 
 ## <a name="data-dependent-routing-using-ef-dbcontext"></a>Routing dipendente dai dati con DbContext di Entity Framework
-Le connessioni di database con Entity Framework vengono in genere gestite tramite sottoclassi di **DbContext**. Creare le sottoclassi derivandole da **DbContext**. In questo campo definire il **DbSets** che implementano le raccolte di database di backup di hello di oggetti CLR per l'applicazione. Nel contesto di hello di routing dipendente dai dati, è possibile identificare diverse proprietà utile che non contengono necessariamente per altri scenari di applicazioni Entity Framework prima di codice: 
+Le connessioni di database con Entity Framework vengono in genere gestite tramite sottoclassi di **DbContext**. Creare le sottoclassi derivandole da **DbContext**. Questa è la posizione in cui si definiscono i **DbSet** che implementano le raccolte supportate da database di oggetti CLR per l'applicazione. Nel contesto del routing dipendente dai dati è possibile identificare diverse proprietà utili che non sono necessariamente rilevanti per altri scenari di applicazioni Code First di Entity Framework: 
 
-* database Hello esiste già e registrata nella mappa partizioni di database elastico hello. 
-* schema di Hello dell'applicazione hello è già stato distribuito toohello database (come illustrato di seguito). 
-* Database toohello connessioni di routing dipendente dai dati sono negoziata da mappa partizioni hello. 
+* Il database esiste già ed è stato registrato nella mappa partizioni del database elastico. 
+* Lo schema dell'applicazione è già stato distribuito al database (come illustrato di seguito). 
+* Le connessioni di routing dipendente dai dati al database vengono gestite dalla mappa partizioni. 
 
-toointegrate **DbContexts** con il routing dipendente dai dati per la scalabilità orizzontale:
+Per integrare i **DbContext** con il routing dipendente dai dati per la scalabilità orizzontale:
 
-1. Creare connessioni fisica del database tramite le interfacce client di database elastico hello di gestore mappe partizioni di hello, 
-2. Eseguire il wrapping connessione hello con hello **DbContext** sottoclasse
-3. Passare la connessione hello verso il basso in hello **DbContext** tutta l'elaborazione sul lato EF hello hello accade anche tooensure di classi di base. 
+1. Creare connessioni di database fisiche mediante le interfacce client del database elastico del gestore delle mappe partizioni 
+2. Eseguire il wrapping della connessione con la sottoclasse **DbContext**
+3. Passare la connessione alle classi base **DbContext** per assicurare che venga eseguita anche tutta l'elaborazione sul lato Entity Framework. 
 
-Hello esempio di codice seguente viene illustrato questo approccio. (Questo codice è anche in hello che accompagna il progetto di Visual Studio)
+Il seguente esempio di codice illustra questo approccio. Il codice è disponibile anche nel progetto di Visual Studio associato.
 
     public class ElasticScaleContext<T> : DbContext
     {
@@ -89,10 +89,10 @@ Hello esempio di codice seguente viene illustrato questo approccio. (Questo codi
     …
 
         // C'tor for data dependent routing. This call will open a validated connection 
-        // routed toohello proper shard by hello shard map manager. 
-        // Note that hello base class c'tor call will fail for an open connection
-        // if migrations need toobe done and SQL credentials are used. This is hello reason for hello 
-        // separation of c'tors into hello data-dependent routing case (this c'tor) and hello internal c'tor for new shards.
+        // routed to the proper shard by the shard map manager. 
+        // Note that the base class c'tor call will fail for an open connection
+        // if migrations need to be done and SQL credentials are used. This is the reason for the 
+        // separation of c'tors into the data-dependent routing case (this c'tor) and the internal c'tor for new shards.
         public ElasticScaleContext(ShardMap shardMap, T shardingKey, string connectionStr)
             : base(CreateDDRConnection(shardMap, shardingKey, connectionStr), 
             true /* contextOwnsConnection */)
@@ -108,26 +108,26 @@ Hello esempio di codice seguente viene illustrato questo approccio. (Questo codi
             // No initialization
             Database.SetInitializer<ElasticScaleContext<T>>(null);
 
-            // Ask shard map toobroker a validated connection for hello given key
+            // Ask shard map to broker a validated connection for the given key
             SqlConnection conn = shardMap.OpenConnectionForKey<T>
                                 (shardingKey, connectionStr, ConnectionOptions.Validate);
             return conn;
         }    
 
 ## <a name="main-points"></a>Punti principali
-* Un nuovo costruttore sostituisce il costruttore predefinito hello in sottoclasse DbContext hello 
-* Hello nuovo costruttore accetta gli argomenti hello necessari per il routing dipendente dai dati tramite una libreria client di database elastico:
+* Un nuovo costruttore sostituisce il costruttore predefinito nella sottoclasse DbContext 
+* Il nuovo costruttore accetta gli argomenti necessari per il routing dipendente dai dati mediante la libreria client dei database elastici:
   
-  * Hello partizioni mappa tooaccess hello interfacce di routing dipendente dai dati,
-  * Hello shardlet hello tooidentify chiave di partizionamento orizzontale,
-  * una stringa di connessione con le credenziali di hello per partizioni di toohello routing connessione di hello dipendente dai dati. 
-* costruttore della classe base toohello Hello chiamata prende una deviazione in un metodo statico che esegue tutte le fasi hello necessarie per il routing dipendente dai dati. 
+  * la mappa partizioni per l'accesso alle interfacce di routing dipendente dai dati
+  * la chiave di partizionamento orizzontale per l'identificazione dello shardlet
+  * una stringa di connessione con le credenziali per la connessione di routing dipendente dai dati alla partizione. 
+* La chiamata al costruttore di classe base accetta una deviazione in un metodo statico che esegue tutti i passaggi necessari per il routing dipendente dai dati. 
   
-  * Usa chiamata OpenConnectionForKey hello delle interfacce di client di database elastico hello in hello partizioni mappa tooestablish una connessione aperta.
-  * mappa partizioni Hello Crea partizioni di toohello connessione aperta hello che contiene shardlet hello per hello data chiave di partizionamento orizzontale.
-  * Questa connessione aperta viene passata il costruttore della classe base toohello indietro di tooindicate DbContext che questa connessione è toobe utilizzato da Entity Framework anziché consentire a Entity Framework crea automaticamente una nuova connessione. Connessione di hello in questo modo è stata contrassegnata dal client di database elastico hello API in modo che sia possibile garantire la coerenza con le operazioni di gestione di partizioni della mappa.
+  * Usa la chiamata OpenConnectionForKey delle interfacce client dei database elastici sulla mappa partizioni per stabilire una connessione aperta.
+  * La mappa partizioni crea la connessione aperta alla partizione che contiene lo shardlet per la chiave di partizionamento orizzontale specificata.
+  * Tale connessione aperta viene nuovamente passata al costruttore di classe base di DbContext per indicare che Entity Framework deve usare quella anziché crearne automaticamente una nuova. In questo modo, la connessione è stata contrassegnata dall’API client dei database elastici al fine di garantire coerenza durante le operazioni di gestione della mappa partizioni.
 
-Utilizzare il nuovo costruttore di hello per la sottoclasse DbContext anziché il costruttore predefinito hello nel codice. Di seguito è fornito un esempio: 
+Nel proprio codice usare il nuovo costruttore per la sottoclasse DbContext anziché il costruttore predefinito. Di seguito è fornito un esempio: 
 
     // Create and save a new blog.
 
@@ -150,12 +150,12 @@ Utilizzare il nuovo costruttore di hello per la sottoclasse DbContext anziché i
      … 
     }
 
-nuovo costruttore Hello verrà visualizzata la partizione di toohello connessione hello contenente dati hello per shardlet hello identificato dal valore hello **tenantid1**. Hello codice hello **utilizzando** blocco rimane invariato tooaccess hello **DbSet** per i blog mediante EF in partizioni hello per **tenantid1**. In questo modo la semantica per una partizione toohello con ambito di codice hello in hello utilizzando blocco in modo che tutte le operazioni di database sono ora in cui **tenantid1** viene mantenuta. Ad esempio, una query LINQ sul blog di hello **DbSet** potrebbe restituire solo i blog archiviati nella partizione corrente hello, ma non hello quelli archiviati in altre partizioni.  
+Il nuovo costruttore apre la connessione alla partizione che contiene i dati per lo shardlet identificato dal valore di **tenantid1**. Il codice nel blocco **using** resta invariato per accedere al **DbSet** per i blog usando Entity Framework sulla partizione per **tenantid1**. Questo modifica la semantica per il codice nel blocco using in modo tale che tutte le operazioni di database abbiano come ambito la partizione in cui è conservato **tenantid1** . Ad esempio, una query LINQ sul **DbSet** dei blog restituirebbe solo i blog archiviati nella partizione corrente, ma non quelli archiviati in altre partizioni.  
 
 #### <a name="transient-faults-handling"></a>Gestione degli errori temporanei
-Hello Microsoft Patterns & Practices team hello pubblicato [hello Transient Fault Handling Application Block](https://msdn.microsoft.com/library/dn440719.aspx). libreria di Hello viene utilizzata con una libreria client di scalabilità elastica in combinazione con Entity Framework. Tuttavia, assicurarsi che qualsiasi eccezione temporanea restituisce tooa luogo in cui è possibile assicurare che il nuovo costruttore hello utilizzato dopo un errore temporaneo in modo che qualsiasi nuovo tentativo di connessione utilizzando i costruttori di hello che sono stati modificati. In caso contrario, un toohello connessione corretto partizione non è garantito e non sono garanzie connessione hello viene mantenuta come mappa partizioni toohello si verificano modifiche. 
+Il team Microsoft Patterns & Practices ha pubblicato un articolo sul [blocco applicazione per la gestione degli errori temporanei](https://msdn.microsoft.com/library/dn440719.aspx). La libreria viene usata con la libreria client della scalabilità elastica in combinazione con Entity Framework. È però necessario assicurarsi che qualsiasi eccezione temporanea venga restituita in una posizione in cui ci si può accertare che dopo un errore temporaneo venga usato il nuovo costruttore, in modo che qualsiasi nuovo tentativo di connessione venga effettuato usando i costruttori modificati. In caso contrario, la connessione alla partizione corretta non è garantita, né esistono garanzie che la connessione venga mantenuta in caso di modifica della mappa partizioni. 
 
-Hello nell'esempio di codice seguente illustra l'utilizzo un criterio di ripetizione SQL possibile intorno hello nuovo **DbContext** costruttori sottoclasse: 
+L'esempio di codice seguente illustra il possibile uso di un criterio di ripetizione SQL sui nuovi costruttori della sottoclasse **DbContext** : 
 
     SqlDatabaseUtils.SqlRetryPolicy.ExecuteAction(() => 
     { 
@@ -171,38 +171,38 @@ Hello nell'esempio di codice seguente illustra l'utilizzo un criterio di ripetiz
             } 
         }); 
 
-**SqlDatabaseUtils.SqlRetryPolicy** in hello codice precedente viene definito come un **SqlDatabaseTransientErrorDetectionStrategy** con un numero di tentativi di 10 e 5 secondi di attesa tra i tentativi. Questo approccio è simile toohello indicazioni per Entity Framework e le transazioni avviate dall'utente (vedere [limitazioni con nuovo tentativo di strategie di esecuzione (a partire EF6)](http://msdn.microsoft.com/data/dn307226). Entrambe le situazioni richiedono tale applicazione hello controlla hello ambito toowhich hello eccezione temporanea restituisce: tooeither riaprire transazione hello o (come illustrato) ricreare contesto hello dal costruttore di hello corretto che utilizza hello database elastico libreria client.
+**SqlDatabaseUtils.SqlRetryPolicy** nel codice precedente viene definito come **SqlDatabaseTransientErrorDetectionStrategy** con un numero di tentativi pari a 10 e un tempo di attesa tra i tentativi pari a 5 secondi. Questo approccio corrisponde alle informazioni aggiuntive per le transazioni di Entity Framework e avviate dall'utente; vedere l'argomento relativo alle limitazioni per le strategie di esecuzione con ripetizione dei tentativi (vedere [Entity Framework 6 e versioni successive)](http://msdn.microsoft.com/data/dn307226). Entrambe le situazioni richiedono che il programma applicativo controlli l'ambito in cui viene restituita l'eccezione temporanea: per riaprire la transazione o (come mostrato) ricreare il contesto dal costruttore corretto che usa la libreria client dei database elastici.
 
-Hello toocontrol necessità in eccezioni temporanee Iniziamo in ambito impedisce anche utilizzare hello incorporati hello **SqlAzureExecutionStrategy** fornito con Entity Framework. **SqlAzureExecutionStrategy** verrebbe riaprire una connessione, ma non utilizzare **OpenConnectionForKey** e pertanto Ignora tutte le convalide hello che viene eseguita come parte di hello **OpenConnectionForKey** chiamare. Nell'esempio di codice hello utilizza invece incorporato hello **DefaultExecutionStrategy** anche fornito con Entity Framework. Anziché troppo**SqlAzureExecutionStrategy**, funziona correttamente in combinazione con criteri di ripetizione hello dalla gestione degli errori temporanei. criteri di esecuzione Hello sono impostato in hello **ElasticScaleDbConfiguration** classe. Si noti che si è deciso di non toouse **DefaultSqlExecutionStrategy** poiché si consiglia di toouse **SqlAzureExecutionStrategy** se si verificano eccezioni temporanee - ciò provocherebbe toowrong comportamento come illustrato. Per ulteriori informazioni sui criteri di tentativi diverso hello ed Entity Framework, vedere [resilienza delle connessioni in EF](http://msdn.microsoft.com/data/dn456835.aspx).     
+La necessità di controllare la posizione a cui si viene riportati dalle eccezioni temporanee all'interno dell'ambito preclude anche l'uso dell'oggetto **SqlAzureExecutionStrategy** in dotazione con Entity Framework. **SqlAzureExecutionStrategy** riaprirebbe una connessione, ma non userebbe **OpenConnectionForKey**, di conseguenza verrebbe ignorata qualsiasi forma di convalida eseguita come parte della chiamata **OpenConnectionForKey**. L'esempio di codice usa invece l'oggetto **DefaultExecutionStrategy** , anch'esso incluso in Entity Framework. A differenza di **SqlAzureExecutionStrategy**, funziona correttamente con i criteri di ripetizione derivanti dalla gestione degli errori temporanei. I criteri di esecuzione vengono impostati nella classe **ElasticScaleDbConfiguration** . Si noti che si è deciso di non usare **DefaultSqlExecutionStrategy** perché suggerisce l'uso di **SqlAzureExecutionStrategy** in caso di eccezioni temporanee, situazione che causerebbe un comportamento errato, come spiegato in precedenza. Per altre informazioni sui diversi criteri di ripetizione ed Entity Framework, vedere l'articolo relativo alla [resilienza delle connessioni in Entity Framework](http://msdn.microsoft.com/data/dn456835.aspx).     
 
 #### <a name="constructor-rewrites"></a>Riscritture dei costruttori
-esempi di codice precedenti Hello illustrano predefinito hello costruttore riscrive richiesto per l'applicazione in ordine toouse dipendente dai dati di routing con hello Entity Framework. Hello nella tabella seguente consente di generalizzare costruttori di tooother questo approccio. 
+Gli esempi di codice precedenti illustrano le riscritture del costruttore predefinito necessarie perché l'applicazione possa usare il routing dipendente dai dati con Entity Framework. La seguente tabella generalizza questo approccio per altri costruttori. 
 
 | Costruttore corrente | Costruttore riscritto per i dati | Costruttore base | Note |
 | --- | --- | --- | --- |
-| MyContext() |ElasticScaleContext(ShardMap, TKey) |DbContext(DbConnection, bool) |connessione Hello deve toobe una funzione della mappa partizioni hello e la chiave di routing dipendente dai dati hello. Necessaria la creazione di connessione automatica tooby passata da Entity Framework e usare connessione hello toobroker di hello partizioni della mappa. |
-| MyContext(string) |ElasticScaleContext(ShardMap, TKey) |DbContext(DbConnection, bool) |connessione Hello è una funzione della mappa partizioni hello e la chiave di routing dipendente dai dati hello. Una stringa di connessione o nome del database non funzionerà man mano che la convalida di elementi da ignorare dalla mappa partizioni hello. |
-| MyContext(DbCompiledModel) |ElasticScaleContext(ShardMap, TKey, DbCompiledModel) |DbContext(DbConnection, DbCompiledModel, bool) |connessione Hello verrà vengono create per hello specificato chiave di partizionamento orizzontale e di mappa partizioni con il modello di hello forniti. modello compilato Hello verrà passata in toohello c'tor di base. |
-| MyContext(DbConnection, bool) |ElasticScaleContext(ShardMap, TKey, bool) |DbContext(DbConnection, bool) |connessione Hello deve toobe dedotto dalla mappa partizioni hello e la chiave di hello. Ma non può essere fornita come input (a meno che tale input era già in uso mappa partizioni hello e la chiave di hello). Hello Boolean verrà passato. |
-| MyContext(string, DbCompiledModel) |ElasticScaleContext(ShardMap, TKey, DbCompiledModel) |DbContext(DbConnection, DbCompiledModel, bool) |connessione Hello deve toobe dedotto dalla mappa partizioni hello e la chiave di hello. Ma non può essere fornita come input (a meno che tale input utilizzava mappa partizioni hello e la chiave di hello). modello compilato Hello verrà passato. |
-| MyContext(ObjectContext, bool) |ElasticScaleContext(ShardMap, TKey, ObjectContext, bool) |DbContext(ObjectContext, bool) |nuovo costruttore Hello deve tooensure che qualsiasi connessione in hello che ObjectContext passato come input è nuovamente indirizzato tooa gestiti da scalabilità elastica. Una descrizione dettagliata dei ObjectContexts esula dall'ambito di hello di questo documento. |
-| MyContext(DbConnection, DbCompiledModel,bool) |ElasticScaleContext(ShardMap, TKey, DbCompiledModel, bool) |DbContext(DbConnection, DbCompiledModel, bool); |connessione Hello deve toobe dedotto dalla mappa partizioni hello e la chiave di hello. connessione Hello non può essere fornito come input (a meno che tale input era già in uso mappa partizioni hello e la chiave di hello). Modello e un valore booleano vengono passati nel costruttore della classe base toohello. |
+| MyContext() |ElasticScaleContext(ShardMap, TKey) |DbContext(DbConnection, bool) |La connessione deve essere una funzione della mappa partizioni e della chiave di routing dipendente dai dati. È necessario ignorare la creazione automatica della connessione da parte di Entity Framework e gestire la connessione mediante la mappa partizioni. |
+| MyContext(string) |ElasticScaleContext(ShardMap, TKey) |DbContext(DbConnection, bool) |La connessione è una funzione della mappa partizioni e della chiave di routing dipendente dai dati. Non è possibile usare una stringa di connessione o un nome di database fisso, in quanto ignoreranno la convalida da parte della mappa partizioni. |
+| MyContext(DbCompiledModel) |ElasticScaleContext(ShardMap, TKey, DbCompiledModel) |DbContext(DbConnection, DbCompiledModel, bool) |Verrà creata la connessione per la mappa partizioni e per la chiave di partizionamento specificate con il modello fornito. Il modello compilato verrà passato al costruttore base. |
+| MyContext(DbConnection, bool) |ElasticScaleContext(ShardMap, TKey, bool) |DbContext(DbConnection, bool) |La connessione deve essere dedotta dalla mappa partizioni e dalla chiave. Non può essere fornita come input (a meno che l'input non usi già la mappa partizioni e la chiave). Il valore booleano verrà passato. |
+| MyContext(string, DbCompiledModel) |ElasticScaleContext(ShardMap, TKey, DbCompiledModel) |DbContext(DbConnection, DbCompiledModel, bool) |La connessione deve essere dedotta dalla mappa partizioni e dalla chiave. Non può essere fornita come input (a meno che l'input non usi la mappa partizioni e la chiave). Il modello compilato verrà passato. |
+| MyContext(ObjectContext, bool) |ElasticScaleContext(ShardMap, TKey, ObjectContext, bool) |DbContext(ObjectContext, bool) |Il nuovo costruttore deve garantire che qualsiasi connessione in ObjectContext passato come input venga reinstradata a una connessione gestita da Scalabilità elastica. La descrizione dettagliata di ObjectContext esula dall'ambito di questo documento. |
+| MyContext(DbConnection, DbCompiledModel,bool) |ElasticScaleContext(ShardMap, TKey, DbCompiledModel, bool) |DbContext(DbConnection, DbCompiledModel, bool); |La connessione deve essere dedotta dalla mappa partizioni e dalla chiave. Non può essere fornita come input (a meno che l'input non usi già la mappa partizioni e la chiave). Il modello e il valore booleano verranno passati al costruttore di classe base. |
 
 ## <a name="shard-schema-deployment-through-ef-migrations"></a>Distribuzione dello schema partizione tramite migrazioni di Entity Framework
-Gestione automatica dello schema è un'utile fornita da Entity Framework hello. Nel contesto di hello delle applicazioni che utilizzano gli strumenti di database elastici, si desidera tooretain questa funzionalità tooautomatically provisioning hello schema toonewly creato le partizioni quando i database vengono aggiunti toohello partizionati applicazione. Hello viene usata principalmente tooincrease capacità a livello di dati hello per le applicazioni partizionate mediante EF. Utilizzare la funzionalità di Entity Framework per la gestione dello schema di riduce l'attività di amministrazione di database hello con un'applicazione partizionata basata su Entity Framework. 
+La gestione automatica dello schema è una funzionalità disponibile in Entity Framework. Nel contesto di applicazioni che utilizzano gli strumenti dei database elastici è desiderabile mantenere questa funzionalità per il provisioning automatico dello schema alle nuove partizioni quando si aggiungono database all'applicazione partizionata. Il caso di utilizzo principale è l'aumento della capacità al livello dati per le applicazioni partizionate mediante Entity Framework. L'uso delle le funzionalità di Entity Framework per la gestione dello schema riduce le attività di amministrazione di database necessarie per un'applicazione partizionata basata su Entity Framework. 
 
-La distribuzione dello schema tramite migrazioni di Entity Framework funziona al meglio con le **connessioni non aperte**. Si tratta invece di scenario di toohello per routing dipendente dai dati che si basa su una connessione aperta hello fornita dall'API client di database elastico hello. Un'altra differenza è il requisito di coerenza hello: durante la verifica coerenza tooensure auspicabile per tutti i dati dipendenti dal routing connessioni tooprotect contro la manipolazione del mappa partizioni simultanee, non è un problema con nuovo database tooa distribuzione dello schema iniziale che non è ancora stato registrato nella mappa partizioni hello e non è ancora stato allocato toohold shardlet. È pertanto possibile basarsi su connessioni di database normale per questa scenari, come il routing dipendente dai toodata anziché.  
+La distribuzione dello schema tramite migrazioni di Entity Framework funziona al meglio con le **connessioni non aperte**. Si tratta di uno scenario diverso rispetto al routing dipendente dai dati, che usa la connessione aperta fornita dall’API client dei database elastici. Un’altra differenza è il requisito di coerenza: sebbene sia opportuno garantire la coerenza per tutte le connessioni di routing dipendente dai dati per la protezione dalle modifiche simultanee alla mappa partizioni, questo non rappresenta un problema nel caso della distribuzione iniziale dello schema in un nuovo database non ancora registrato nella mappa partizioni e non ancora allocato per contenere shardlet. Per questi scenari è pertanto possibile usare le normali connessioni di database anziché il routing dipendente dai dati.  
 
-In tal modo in cui la distribuzione dello schema tramite le migrazioni di Entity Framework è strettamente con la registrazione di hello del nuovo database hello come una partizione nella mappa partizioni dell'applicazione hello tooan approccio. Questo comportamento si basa su hello seguenti prerequisiti: 
+Questo conduce a un approccio in cui la distribuzione dello schema tramite migrazioni di Entity Framework è strettamente legata alla registrazione del nuovo database come partizione nella mappa partizioni dell'applicazione. L'approccio è basato sui seguenti prerequisiti: 
 
-* database Hello è già stato creato. 
-* database Hello è vuoto, contiene nessuno schema utente e nessun dato utente.
-* database Hello non sono ancora accessibili attraverso le API client di database elastico hello per il routing dipendente dai dati. 
+* Il database è già stato creato. 
+* Il database è vuoto, non contiene schemi utente o dati utente.
+* Il database non è ancora accessibile alle API client dei database elastici per il routing dipendente dai dati. 
 
-Con questi prerequisiti soddisfatti, è possibile creare una normale non aperto **SqlConnection** tookick off le migrazioni di Entity Framework per la distribuzione dello schema. Questo approccio viene illustrato nell'esempio di codice seguente Hello. 
+Se questi prerequisiti sono soddisfatti, è possibile creare una normale connessione **SqlConnection** non aperta per avviare le migrazioni di Entity Framework per la distribuzione dello schema. Il seguente esempio di codice illustra questo approccio. 
 
-        // Enter a new shard - i.e. an empty database - toohello shard map, allocate a first tenant tooit  
-        // and kick off EF intialization of hello database toodeploy schema 
+        // Enter a new shard - i.e. an empty database - to the shard map, allocate a first tenant to it  
+        // and kick off EF intialization of the database to deploy schema 
 
         public void RegisterNewShard(string server, string database, string connStr, int key) 
         { 
@@ -213,25 +213,25 @@ Con questi prerequisiti soddisfatti, è possibile creare una normale non aperto 
             connStrBldr.DataSource = server; 
             connStrBldr.InitialCatalog = database; 
 
-            // Go into a DbContext tootrigger migrations and schema deployment for hello new shard. 
+            // Go into a DbContext to trigger migrations and schema deployment for the new shard. 
             // This requires an un-opened connection. 
             using (var db = new ElasticScaleContext<int>(connStrBldr.ConnectionString)) 
             { 
-                // Run a query tooengage EF migrations 
+                // Run a query to engage EF migrations 
                 (from b in db.Blogs 
                     select b).Count(); 
             } 
 
-            // Register hello mapping of hello tenant toohello shard in hello shard map. 
-            // After this step, data-dependent routing on hello shard map can be used 
+            // Register the mapping of the tenant to the shard in the shard map. 
+            // After this step, data-dependent routing on the shard map can be used 
 
             this.ShardMap.CreatePointMapping(key, shard); 
         } 
 
 
-Questo esempio viene illustrato il metodo hello **RegisterNewShard** che registri hello partizioni nella mappa partizioni hello, distribuisce lo schema di hello tramite migrazioni EF e archivia un mapping di una partizione toohello chiave di partizionamento orizzontale. Si basa su un costruttore di hello **DbContext** sottoclasse (**ElasticScaleContext** nell'esempio hello) che accetta come input una stringa di connessione SQL. codice Hello di questo costruttore è semplice, come hello esempio illustrato di seguito: 
+Questo esempio illustra il metodo **RegisterNewShard** , che registra la partizione nella mappa partizioni, distribuisce lo schema tramite migrazioni di Entity Framework e archivia il mapping di una chiave di partizionamento orizzontale nella partizione. Si basa su un costruttore della sottoclasse **DbContext** (**ElasticScaleContext** nell'esempio) che accetta come input una stringa di connessione SQL. Il codice di questo costruttore è semplice, come illustrato nel seguente esempio: 
 
-        // C'tor toodeploy schema and migrations tooa new shard 
+        // C'tor to deploy schema and migrations to a new shard 
         protected internal ElasticScaleContext(string connectionString) 
             : base(SetInitializerForConnection(connectionString)) 
         { 
@@ -240,24 +240,24 @@ Questo esempio viene illustrato il metodo hello **RegisterNewShard** che registr
         // Only static methods are allowed in calls into base class c'tors 
         private static string SetInitializerForConnection(string connnectionString) 
         { 
-            // We want existence checks so that hello schema can get deployed 
+            // We want existence checks so that the schema can get deployed 
             Database.SetInitializer<ElasticScaleContext<T>>( 
         new CreateDatabaseIfNotExists<ElasticScaleContext<T>>()); 
 
             return connnectionString; 
         } 
 
-Versione di hello del costruttore hello ereditati dalla classe base hello uno potrebbe avere usato. Ma hello codice esigenze tooensure che hello inizializzatore predefinito per Entity Framework viene usato durante la connessione. Di conseguenza hello deviazione breve in un metodo statico hello prima di chiamare il costruttore della classe base hello con la stringa di connessione hello. Si noti che la registrazione di hello di partizioni deve essere eseguito in un tooensure dominio o un processo app diverse impostazioni di inizializzatore hello per Entity Framework non sono in conflitto. 
+Si sarebbe potuta usare la versione del costruttore ereditata dalla classe base, ma il codice deve garantire che per la connessione venga usato l'inizializzatore predefinito di Entity Framework. Da qui la breve deviazione nel metodo statico prima della chiamata al costruttore di classe base con la stringa di connessione. Notare che la registrazione delle partizioni deve essere eseguita in un dominio applicativo o in un processo diverso, per garantire l'assenza di conflitti con le impostazioni dell'inizializzatore per Entity Framework. 
 
 ## <a name="limitations"></a>Limitazioni
-approcci Hello descritti nel presente documento comportano un paio di limitazioni: 
+Gli approcci descritti in questo documento implicano due limitazioni: 
 
-* Le applicazioni Entity Framework che utilizzano **LocalDb** prima di tutto necessario database di SQL Server toomigrate tooa normale prima di utilizzare una libreria client di database elastico. Con **LocalDb**non è possibile scalare orizzontalmente un'applicazione mediante il partizionamento orizzontale con la scalabilità elastica. Per lo sviluppo è comunque possibile usare **LocalDb**. 
-* Qualsiasi applicazione toohello modifiche che implicano modifiche dello schema di database è necessario toogo tramite le migrazioni di EF su tutte le partizioni. codice di esempio Hello per questo documento viene illustrato come toodo questo. Considerare l'utilizzo di Update-Database con un tooiterate parametro ConnectionString su tutte le partizioni; estrazione hello T-SQL script o del hello in sospeso la migrazione tramite Update-Database con hello - opzione di Script e applicare le partizioni tooyour script hello T-SQL.  
-* Data una richiesta, si presuppone che tutti i processi del database è contenuto all'interno di una singola partizione come identificato dalla chiave di partizionamento orizzontale hello fornita dalla richiesta hello. Questo presupposto, tuttavia, non è sempre valido, Ad esempio, quando non è possibile toomake una chiave di partizionamento orizzontale disponibile. tooaddress, hello libreria client fornisce hello **MultiShardQuery** classe che implementa un'astrazione di connessione per l'esecuzione di query su più partizioni. Apprendimento hello toouse **MultiShardQuery** in combinazione con Entity Framework è oltre l'ambito di hello di questo documento
+* Prima di usare la libreria client del database elastico, è necessario eseguire la migrazione delle applicazioni Entity Framework che usano **LocalDb** a un normale database di SQL Server. Con **LocalDb**non è possibile scalare orizzontalmente un'applicazione mediante il partizionamento orizzontale con la scalabilità elastica. Per lo sviluppo è comunque possibile usare **LocalDb**. 
+* Le modifiche all'applicazione che implicano modifiche dello schema del database devono passare attraverso le migrazioni di Entity Framework su tutte le partizioni. Il codice di esempio per questo documento non illustra come eseguire questa operazione. Provare a usare Update-Database con un parametro ConnectionString per eseguire l'iterazione su tutte le partizioni oppure estrarre lo script T-SQL per la migrazione in sospeso usando Update-Database con l'opzione –Script e applicare lo script T-SQL alle partizioni.  
+* Data una richiesta, si presuppone che tutta la relativa elaborazione di database sia contenuta in una singola partizione identificata dalla chiave di partizionamento orizzontale fornita dalla richiesta. Questo presupposto, tuttavia, non è sempre valido, ad esempio quando non è possibile rendere disponibile una chiave di partizionamento orizzontale. A questo scopo, la libreria client fornisce la classe **MultiShardQuery** che implementa un'astrazione delle connessioni per l'esecuzione di query su più partizioni. L'uso di **MultiShardQuery** in combinazione con Entity Framework esula dall'ambito di questo documento
 
-## <a name="conclusion"></a>Conclusioni
-Passaggi hello descritte nel presente documento, le applicazioni di EF possono utilizzare funzionalità della libreria di hello database elastico client per i dati dipendenti routing effettuando il refactoring di costruttori di hello **DbContext** sottoclassi utilizzate in hello EF applicazione. Toothose punti in cui è necessaria la modifica di hello limiti **DbContext** classi esistono già. Inoltre, le applicazioni Entity Framework è possono continuare toobenefit dalla distribuzione automatica dello schema combinando i passaggi di hello che richiamano hello necessarie EF migrazioni con la registrazione di hello di nuove partizioni e i mapping nella mappa partizioni hello. 
+## <a name="conclusion"></a>Conclusione
+Seguendo le procedure descritte in questo documento, le applicazioni Entity Framework possono usufruire della funzionalità di routing dipendente dai dati della libreria client dei database elastici mediante il refactoring dei costruttori delle sottoclassi **DbContext** usate nelle applicazioni stesse. Questo limita il numero di modifiche necessarie nelle posizioni in cui sono già presenti classi **DbContext**. Inoltre, le applicazioni Entity Framework possono continuare a usufruire della distribuzione automatica dello schema combinando le operazioni che richiamano le migrazioni Entity Framework con la registrazione di nuove partizioni e mapping nella mappa partizioni. 
 
 [!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
 

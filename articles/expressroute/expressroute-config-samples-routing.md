@@ -1,5 +1,5 @@
 ---
-title: esempi di configurazione router cliente aaaExpressRoute | Documenti Microsoft
+title: Esempi di configurazione di router ExpressRoute | Microsoft Docs
 description: In questa pagina vengono forniti esempi di configurazione di router per router Cisco e Juniper.
 documentationcenter: na
 services: expressroute
@@ -14,36 +14,36 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/10/2016
 ms.author: cherylmc
-ms.openlocfilehash: 5c91f24e6082e01c3e8df91b4fcfda46a6c29fa8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 032e584dc5abf59e9e3e8d80673b402f1fbf721b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="router-configuration-samples-tooset-up-and-manage-routing"></a>Configurazione del router esempi tooset backup e la gestione del routing
-Questa pagina fornisce gli esempi di configurazione dell'interfaccia e del routing per i router Cisco IOS-XE e Juniper MX. Questi sono esempi di toobe previsto a scopo informativo e non deve essere utilizzati come è. Per lavorare con il fornitore toocome con configurazioni appropriate per la rete. 
+# <a name="router-configuration-samples-to-set-up-and-manage-routing"></a>Esempi di configurazione del router per l'impostazione e la gestione del routing
+Questa pagina fornisce gli esempi di configurazione dell'interfaccia e del routing per i router Cisco IOS-XE e Juniper MX. Devono essere intesi come esempi a solo scopo informativo e non devono essere usati per altri scopi. È possibile rivolgersi al fornitore per ottenere le configurazioni appropriate per la rete in uso. 
 
 > [!IMPORTANT]
-> Negli esempi inclusi in questa pagina sono previsti toobe esclusivamente per informazioni aggiuntive. È necessario collaborare con il team di vendita / tecnico del fornitore e la rete toocome team backup con configurazioni appropriate toomeet le proprie esigenze. Microsoft non supporta i problemi correlati tooconfigurations elencati in questa pagina. È necessario contattare il fornitore del dispositivo per assistenza.
+> Gli esempi inclusi in questa pagina devono essere intesi solo come linee guida. È necessario collaborare con il team di vendita/tecnico del fornitore e il team di rete per ottenere le configurazioni appropriate in base alle specifiche esigenze. Microsoft non offre supporto per i problemi relativi alle configurazioni elencate in questa pagina. È necessario contattare il fornitore del dispositivo per assistenza.
 > 
 > 
 
 ## <a name="mtu-and-tcp-mss-settings-on-router-interfaces"></a>Impostazioni di MTU e TCP MSS sulle interfacce del router
-* Hello MTU per l'interfaccia di ExpressRoute hello è 1500, hello tipico valore MTU predefinito per un'interfaccia Ethernet su un router. A meno che nel router sia una MTU diversi per impostazione predefinita, non è presente alcun toospecify necessario un valore sull'interfaccia router hello.
-* A differenza di un Gateway VPN di Azure, hello MSS TCP per un circuito ExpressRoute non è necessario toobe specificato.
+* Il valore MTU dell'interfaccia ExpressRoute è 1500, ovvero il valore predefinito di MTU tipico per un'interfaccia Ethernet su un router. A meno che il router non abbia un valore MTU diverso per impostazione predefinita, non è necessario specificare un valore sull'interfaccia del router.
+* A differenza di un Gateway VPN di Azure, non è necessario specificare il valore MSS TCP per un circuito ExpressRoute.
 
-Esempi di configurazione router che seguono si applicano tooall peering. Per altri dettagli sul routing, vedere [Peering di ExpressRoute](expressroute-circuit-peerings.md) e [Requisiti per il routing di ExpressRoute](expressroute-routing.md).
+Gli esempi di configurazione del router riportati di seguito si applicano a tutti i peering. Per altri dettagli sul routing, vedere [Peering di ExpressRoute](expressroute-circuit-peerings.md) e [Requisiti per il routing di ExpressRoute](expressroute-routing.md).
 
 
 ## <a name="cisco-ios-xe-based-routers"></a>Router basati su Cisco IOS-XE
-esempi di Hello in questa sezione si applicano a qualsiasi router famiglia del sistema operativo IOS XE hello in esecuzione.
+Gli esempi in questa sezione si applicano a qualsiasi router che esegue la famiglia di sistemi operativi IOS-XE.
 
 ### <a name="1-configuring-interfaces-and-sub-interfaces"></a>1. Configurazione di interfacce e sotto-interfacce
-Sarà necessaria un'interfaccia sub per peering ogni router è connettersi tooMicrosoft. Una sotto-interfaccia può essere identificata mediante un ID VLAN o una coppia in stack di ID VLAN e indirizzo IP.
+Sarà necessaria una sotto-interfaccia per peering in ogni router connesso a Microsoft. Una sotto-interfaccia può essere identificata mediante un ID VLAN o una coppia in stack di ID VLAN e indirizzo IP.
 
 **Definizione dell'interfaccia Dot1Q**
 
-In questo esempio fornisce definizione di interfaccia secondario hello per un'interfaccia secondario con un ID VLAN. ID VLAN Hello è univoco per ogni peering. l'ottetto ultimo Hello dell'indirizzo IPv4 sarà sempre un numero dispari.
+Questo esempio fornisce la definizione della sotto-interfaccia per una sotto-interfaccia secondario con un ID VLAN. L'ID VLAN è univoco per ogni peering. L'ultimo ottetto dell'indirizzo IPv4 sarà sempre un numero dispari.
 
     interface GigabitEthernet<Interface_Number>.<Number>
      encapsulation dot1Q <VLAN_ID>
@@ -51,14 +51,14 @@ In questo esempio fornisce definizione di interfaccia secondario hello per un'in
 
 **Definizione dell'interfaccia QinQ**
 
-In questo esempio fornisce definizione di interfaccia secondario hello per un'interfaccia con un due ID VLAN secondario. Hello outer ID VLAN (s-tag), se utilizzato rimane hello stesso in tutti i peering di hello. è univoco per ogni peering interna Hello ID di VLAN (c-tag). l'ottetto ultimo Hello dell'indirizzo IPv4 sarà sempre un numero dispari.
+Questo esempio fornisce la definizione della sotto-interfaccia per una sotto-interfaccia con due ID VLAN. L'ID VLAN esterno (s-tag), se usato, rimane invariato in tutti i peering. L'ID VLAN interno (c-tag) è univoco per ogni peering. L'ultimo ottetto dell'indirizzo IPv4 sarà sempre un numero dispari.
 
     interface GigabitEthernet<Interface_Number>.<Number>
      encapsulation dot1Q <s-tag> seconddot1Q <c-tag>
      ip address <IPv4_Address><Subnet_Mask>
 
 ### <a name="2-setting-up-ebgp-sessions"></a>2. Impostazione delle sessioni eBGP
-È necessario impostare una sessione BGP con Microsoft per ogni peering. esempio Hello seguente permette di toosetup una sessione BGP con Microsoft. Se l'indirizzo IPv4 utilizzato per l'interfaccia sub hello era a.b.c. d, l'indirizzo IP hello del router adiacente BGP hello (Microsoft) sarà a.b.c.d+1. ottetti di ultima Hello dell'indirizzo IPv4 del router adiacente di hello BGP sarà sempre un numero pari.
+È necessario impostare una sessione BGP con Microsoft per ogni peering. L'esempio seguente consente di configurare una sessione BGP con Microsoft. Se l'indirizzo IPv4 usato per la sotto-interfaccia è a.b.c.d, l'indirizzo IP del router adiacente BGP (Microsoft) sarà a.b.c.d+1. L'ultimo ottetto dell'indirizzo IPv4 del router adiacente BGP sarà sempre un numero pari.
 
     router bgp <Customer_ASN>
      bgp log-neighbor-changes
@@ -69,8 +69,8 @@ In questo esempio fornisce definizione di interfaccia secondario hello per un'in
      exit-address-family
     !
 
-### <a name="3-setting-up-prefixes-toobe-advertised-over-hello-bgp-session"></a>3. Impostazione toobe prefissi annunciati sessione BGP hello
-È possibile configurare il tooMicrosoft di prefissi selezionare tooadvertise router. È possibile effettuare questa operazione utilizzando hello esempio riportato di seguito.
+### <a name="3-setting-up-prefixes-to-be-advertised-over-the-bgp-session"></a>3. Impostazione dei prefissi da pubblicare tramite la sessione BGP
+È possibile configurare il router per pubblicare i prefissi di selezione a Microsoft. Per eseguire questa operazione, usare l'esempio riportato di seguito.
 
     router bgp <Customer_ASN>
      bgp log-neighbor-changes
@@ -83,7 +83,7 @@ In questo esempio fornisce definizione di interfaccia secondario hello per un'in
     !
 
 ### <a name="4-route-maps"></a>4. Mappe di routing
-È possibile usare mappe di route e prefisso sono elencati i prefissi toofilter propagati nella rete. È possibile utilizzare l'esempio hello sotto attività hello tooaccomplish. Assicurarsi di avere impostato gli elenchi di prefissi appropriati.
+È possibile usare le mappe di routing e gli elenchi di prefissi per filtrare i prefissi propagati nella rete. È possibile usare l'esempio riportato di seguito per completare l'attività. Assicurarsi di avere impostato gli elenchi di prefissi appropriati.
 
     router bgp <Customer_ASN>
      bgp log-neighbor-changes
@@ -101,13 +101,13 @@ In questo esempio fornisce definizione di interfaccia secondario hello per un'in
 
 
 ## <a name="juniper-mx-series-routers"></a>Router serie Juniper MX
-esempi di Hello in questa sezione si applicano per tutti i router della serie MX Juniper.
+Gli esempi in questa sezione si applicano a tutti i router serie Juniper MX.
 
 ### <a name="1-configuring-interfaces-and-sub-interfaces"></a>1. Configurazione di interfacce e sotto-interfacce
 
 **Definizione dell'interfaccia Dot1Q**
 
-In questo esempio fornisce definizione di interfaccia secondario hello per un'interfaccia secondario con un ID VLAN. ID VLAN Hello è univoco per ogni peering. l'ottetto ultimo Hello dell'indirizzo IPv4 sarà sempre un numero dispari.
+Questo esempio fornisce la definizione della sotto-interfaccia per una sotto-interfaccia secondario con un ID VLAN. L'ID VLAN è univoco per ogni peering. L'ultimo ottetto dell'indirizzo IPv4 sarà sempre un numero dispari.
 
     interfaces {
         vlan-tagging;
@@ -124,7 +124,7 @@ In questo esempio fornisce definizione di interfaccia secondario hello per un'in
 
 **Definizione dell'interfaccia QinQ**
 
-In questo esempio fornisce definizione di interfaccia secondario hello per un'interfaccia con un due ID VLAN secondario. Hello outer ID VLAN (s-tag), se utilizzato rimane hello stesso in tutti i peering di hello. è univoco per ogni peering interna Hello ID di VLAN (c-tag). l'ottetto ultimo Hello dell'indirizzo IPv4 sarà sempre un numero dispari.
+Questo esempio fornisce la definizione della sotto-interfaccia per una sotto-interfaccia con due ID VLAN. L'ID VLAN esterno (s-tag), se usato, rimane invariato in tutti i peering. L'ID VLAN interno (c-tag) è univoco per ogni peering. L'ultimo ottetto dell'indirizzo IPv4 sarà sempre un numero dispari.
 
     interfaces {
         <Interface_Number> {
@@ -139,7 +139,7 @@ In questo esempio fornisce definizione di interfaccia secondario hello per un'in
     }                           
 
 ### <a name="2-setting-up-ebgp-sessions"></a>2. Impostazione delle sessioni eBGP
-È necessario impostare una sessione BGP con Microsoft per ogni peering. esempio Hello seguente permette di toosetup una sessione BGP con Microsoft. Se l'indirizzo IPv4 utilizzato per l'interfaccia sub hello era a.b.c. d, l'indirizzo IP hello del router adiacente BGP hello (Microsoft) sarà a.b.c.d+1. ottetti di ultima Hello dell'indirizzo IPv4 del router adiacente di hello BGP sarà sempre un numero pari.
+È necessario impostare una sessione BGP con Microsoft per ogni peering. L'esempio seguente consente di configurare una sessione BGP con Microsoft. Se l'indirizzo IPv4 usato per la sotto-interfaccia è a.b.c.d, l'indirizzo IP del router adiacente BGP (Microsoft) sarà a.b.c.d+1. L'ultimo ottetto dell'indirizzo IPv4 del router adiacente BGP sarà sempre un numero pari.
 
     routing-options {
         autonomous-system <Customer_ASN>;
@@ -154,8 +154,8 @@ In questo esempio fornisce definizione di interfaccia secondario hello per un'in
         }                                   
     }
 
-### <a name="3-setting-up-prefixes-toobe-advertised-over-hello-bgp-session"></a>3. Impostazione toobe prefissi annunciati sessione BGP hello
-È possibile configurare il tooMicrosoft di prefissi selezionare tooadvertise router. È possibile effettuare questa operazione utilizzando hello esempio riportato di seguito.
+### <a name="3-setting-up-prefixes-to-be-advertised-over-the-bgp-session"></a>3. Impostazione dei prefissi da pubblicare tramite la sessione BGP
+È possibile configurare il router per pubblicare i prefissi di selezione a Microsoft. Per eseguire questa operazione, usare l'esempio riportato di seguito.
 
     policy-options {
         policy-statement <Policy_Name> {
@@ -180,7 +180,7 @@ In questo esempio fornisce definizione di interfaccia secondario hello per un'in
 
 
 ### <a name="4-route-maps"></a>4. Mappe di routing
-È possibile usare mappe di route e prefisso sono elencati i prefissi toofilter propagati nella rete. È possibile utilizzare l'esempio hello sotto attività hello tooaccomplish. Assicurarsi di avere impostato gli elenchi di prefissi appropriati.
+È possibile usare le mappe di routing e gli elenchi di prefissi per filtrare i prefissi propagati nella rete. È possibile usare l'esempio riportato di seguito per completare l'attività. Assicurarsi di avere impostato gli elenchi di prefissi appropriati.
 
     policy-options {
         prefix-list MS_Prefixes {
@@ -210,5 +210,5 @@ In questo esempio fornisce definizione di interfaccia secondario hello per un'in
     }
 
 ## <a name="next-steps"></a>Passaggi successivi
-Vedere hello [domande frequenti su ExpressRoute](expressroute-faqs.md) per altri dettagli.
+Per altre informazioni, vedere le [Domande frequenti su ExpressRoute](expressroute-faqs.md) .
 

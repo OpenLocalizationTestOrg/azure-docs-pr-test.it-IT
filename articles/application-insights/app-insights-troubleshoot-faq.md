@@ -1,5 +1,5 @@
 ---
-title: domande frequenti di Application Insights aaaAzure | Documenti Microsoft
+title: Domande frequenti su Azure Application Insights | Microsoft Docs
 description: Domande frequenti su Application Insights.
 services: application-insights
 documentationcenter: .net
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/12/2017
 ms.author: bwren
-ms.openlocfilehash: e27ee9b7d040a04828a9892865a6681b83f94326
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 0b6f9e8192a4c6808beb61acb0f93ef5ec73e956
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="application-insights-frequently-asked-questions"></a>Application Insights: domande frequenti
 
@@ -50,50 +50,50 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="is-it-free"></a>È gratuito?
 
-Sì, per l'uso sperimentale. In hello prezzi piano basic, l'applicazione può inviare una determinata indennità dei dati ogni mese gratuitamente. Hello disponibile sia sufficiente toocover sviluppo e pubblicazione di un'app per un numero ridotto di utenti. È possibile impostare un limite tooprevent più di una quantità di dati specificata dall'elaborazione.
+Sì, per l'uso sperimentale. Nel piano tariffario Basic l'applicazione può inviare una determinata quantità di dati gratuitamente ogni mese. La capacità massima disponibile è sufficiente per lo sviluppo e la pubblicazione di un'app per un numero ridotto di utenti. È possibile impostare un limite per evitare l'elaborazione di una quantità di dati maggiore a quella specificata.
 
-Volumi più elevati di dati di telemetria vengono addebitati mediante hello Gb. Vengono forniti alcuni suggerimenti sul troppo[limitare gli addebiti](app-insights-pricing.md).
+I volumi più grandi di telemetria vengono addebitati per GB. Vedere alcuni suggerimenti su come [limitare gli addebiti](app-insights-pricing.md).
 
-piano dell'organizzazione Hello comporta un addebito per ogni giorno in cui ogni nodo del server web invia dati di telemetria. È adatta se si desidera toouse esportazione continua su larga scala.
+Il piano Enterprise comporta un costo per ogni giorno in cui i singoli nodi del server Web inviano dati di telemetria. È appropriato se si vuole usare un'esportazione continua su larga scala.
 
-[Hello lettura prezzi piano](https://azure.microsoft.com/pricing/details/application-insights/).
+[Leggere il piano tariffario](https://azure.microsoft.com/pricing/details/application-insights/).
 
 ## <a name="how-much-is-it-costing"></a>Quanto costa?
 
-* Aprire hello **funzionalità + prezzi** pagina in una risorsa di Application Insights. È incluso un grafico dell'utilizzo recente. Se si vuole, è possibile impostare un limite di volume di dati.
-* Aprire hello [pannello fatturazione di Azure](https://portal.azure.com/#blade/Microsoft_Azure_Billing/BillingBlade/Overview) toosee gli effetti di tutte le risorse.
+* Aprire la pagina **Funzionalità + prezzi** in una risorsa di Application Insights. È incluso un grafico dell'utilizzo recente. Se si vuole, è possibile impostare un limite di volume di dati.
+* Aprire il [pannello Fatturazione di Azure](https://portal.azure.com/#blade/Microsoft_Azure_Billing/BillingBlade/Overview) per visualizzare i costi di tutte le risorse.
 
 ## <a name="q14"></a>Quali modifiche apporta Application Insights al progetto?
-Dettagli Hello dipendono dal tipo di hello del progetto. Per un'applicazione Web:
+Dipende dal tipo di progetto. Per un'applicazione Web:
 
-* Aggiunge i file di progetto tooyour:
+* Aggiunge tre file al progetto:
 
   * ApplicationInsights.config.
   * ai.js
 * Installa i pacchetti NuGet seguenti:
 
-  * *Application Insights API* : hello API di base
-  * *Application Insights API per le applicazioni Web* -utilizzato telemetria toosend dal server hello
-  * *Application Insights API per applicazioni JavaScript* -utilizzato telemetria toosend da client hello
+  * *Application Insights API* , ovvero l'API principale
+  * *Application Insights API for Web Applications* , che consente di inviare i dati di telemetria dal server
+  * *Application Insights API for JavaScript Applications* , che consente di inviare i dati di telemetria dal client
 
-    i pacchetti Hello includono questi assembly:
+    I pacchetti includono gli assembly seguenti:
   * Microsoft.ApplicationInsights
   * Microsoft.ApplicationInsights.Platform
 * Inserire elementi in:
 
   * Web.config
   * packages.config
-* (Nuovo progetti only - se si [Aggiungi progetto esistente di Application Insights tooan][start], è stato toodo manualmente.) Inserisce i frammenti di codice tooinitialize di codice hello client e server con ID risorsa di Application Insights hello. Ad esempio, in un'applicazione MVC, codice viene inserito in una pagina master hello Views/Shared/_Layout.cshtml
+* (Solo per i muovi progetti. Se si [aggiunge Application Insights a un progetto esistente][start], l'operazione deve essere eseguita manualmente.) Inserisce frammenti nel codice client e server per inizializzarli con l'ID risorsa di Application Insights. Ad esempio, in un'app MVC il codice viene inserito nella pagina master Views/Shared/_Layout.cshtml
 
 ## <a name="how-do-i-upgrade-from-older-sdk-versions"></a>In che modo è possibile effettuare l'aggiornamento da versioni dell'SDK meno recenti?
-Vedere hello [note sulla versione](app-insights-release-notes.md) per hello SDK appropriati tooyour tipo di applicazione.
+Vedere le [note sulla versione](app-insights-release-notes.md) dell'SDK appropriato per il tipo di applicazione.
 
 ## <a name="update"></a>In che modo è possibile modificare la risorsa di Azure che riceve i dati del progetto?
-In Esplora soluzioni fare clic con il pulsante destro del mouse su `ApplicationInsights.config` e scegliere **Aggiorna Application Insights**. È possibile inviare hello tooan esistente o nuova risorsa di dati in Azure. Modifica aggiornamento Hello hello chiave di strumentazione di Applicationinsights, che determina a quale server hello SDK invia i dati. A meno che non si deseleziona "Aggiorna tutto", verrà modificato anche chiave hello in cui viene visualizzato nelle pagine web.
+In Esplora soluzioni fare clic con il pulsante destro del mouse su `ApplicationInsights.config` e scegliere **Aggiorna Application Insights**. È possibile inviare i dati a una risorsa nuova o esistente in Azure. L'aggiornamento guidato modifica la chiave di strumentazione in ApplicationInsights.config, che determina la destinazione dei dati inviati dall'SDK del server. A meno che non venga deselezionata l'opzione "Aggiorna tutto", modificherà anche la chiave in cui appare nelle pagine Web.
 
 ## <a name="what-is-status-monitor"></a>Che cos'è Status Monitor?
 
-Un'applicazione desktop che consente il toohelp di server web IIS configurare Application Insights nelle App web. Non raccoglie dati di telemetria: è possibile interromperlo se non si sta configurando un'app. 
+Un'app desktop che è possibile usare nel server Web IIS per configurare Application Insights nelle app Web. Non raccoglie dati di telemetria: è possibile interromperlo se non si sta configurando un'app. 
 
 [Altre informazioni](app-insights-monitor-performance-live-website-now.md#questions).
 
@@ -102,11 +102,11 @@ Un'applicazione desktop che consente il toohelp di server web IIS configurare Ap
 Da app Web del server:
 
 * Richieste HTTP
-* [Dipendenze](app-insights-asp-net-dependencies.md). Le chiamate a: database SQL. HTTP chiama servizi tooexternal; Azure Cosmos DB, tabella, nell'archiviazione blob e coda. 
+* [Dipendenze](app-insights-asp-net-dependencies.md). Chiamate a: database SQL, chiamate HTTP a servizi esterni, Azure Cosmos DB, tabelle, archiviazione BLOB e code. 
 * [Eccezioni](app-insights-asp-net-exceptions.md) e analisi dello stack.
-* [I contatori delle prestazioni](app-insights-performance-counters.md) : se si utilizza [Status Monitor](app-insights-monitor-performance-live-website-now.md), Azure monitoring(app-insights-azure-web-apps.md) o hello [writer collectd Application Insights](app-insights-java-collectd.md).
+* [Contatori delle prestazioni](app-insights-performance-counters.md): se si usa [Status Monitor](app-insights-monitor-performance-live-website-now.md), il monitoraggio di Azure (app-insights-azure-web-apps.md) o il [writer collectd di Application Insights](app-insights-java-collectd.md).
 * [Metrica ed eventi personalizzati](app-insights-api-custom-events-metrics.md) codificati.
-* [I log di traccia](app-insights-asp-net-trace-logs.md) se si configura l'agente di raccolta dati appropriata hello.
+* [Log di traccia](app-insights-asp-net-trace-logs.md) se si configura l'agente di raccolta appropriato.
 
 Da [pagine Web dei client](app-insights-javascript.md):
 
@@ -120,79 +120,79 @@ Da altre origini, se sono configurate:
 
 * [Diagnostica di Azure](app-insights-azure-diagnostics.md)
 * [Contenitori Docker](app-insights-docker.md)
-* [Importazione di tabelle tooAnalytics](app-insights-analytics-import.md)
+* [Tabelle di importazione per Analytics](app-insights-analytics-import.md)
 * [OMS (Log Analytics)](https://azure.microsoft.com/blog/omssolutionforappinsightspublicpreview/)
 * [Logstash](app-insights-analytics-import.md)
 
 ## <a name="can-i-filter-out-or-modify-some-telemetry"></a>È possibile filtrare o modificare alcuni dati di telemetria?
 
-In server hello Sì, è possibile scrivere:
+Sì, nel server è possibile scrivere:
 
-* Dati di telemetria processore toofilter o aggiungere elementi di dati di telemetria tooselected proprietà prima che vengano inviati dall'app.
-* Dati di telemetria inizializzatore tooadd proprietà tooall degli elementi di dati di telemetria.
+* Un processore di telemetria per filtrare o aggiungere proprietà agli elementi di telemetria selezionati prima che vengano inviati dall'app.
+* Un inizializzatore di telemetria per aggiungere proprietà a tutti gli elementi della telemetria.
 
 Vedere altre informazioni per [ASP.NET](app-insights-api-filtering-sampling.md) o [Java](app-insights-java-filter-telemetry.md).
 
 ## <a name="how-are-city-country-and-other-geo-location-data-calculated"></a>Come vengono calcolati i dati su città, paesi e altre aree geografiche?
 
-Saremo indirizzo hello IP (IPv4 o IPv6) del client web hello utilizzando [GeoLite2](http://dev.maxmind.com/geoip/geoip2/geolite2/).
+Viene cercato l'indirizzo IP (IPv4 o IPv6) del client Web tramite [GeoLite2](http://dev.maxmind.com/geoip/geoip2/geolite2/).
 
-* Dati di telemetria browser: indirizzo IP del mittente hello raccolte.
-* Dati di telemetria server: il modulo di Application Insights hello raccoglie l'indirizzo IP del client hello. L'indirizzo non viene raccolto se è impostato `X-Forwarded-For`.
+* Telemetria del browser: vengono raccolti gli indirizzi IP del mittente.
+* Telemetria del server: il modulo di Application Insights raccoglie l'indirizzo IP del client. L'indirizzo non viene raccolto se è impostato `X-Forwarded-For`.
 
-È possibile configurare hello `ClientIpHeaderTelemetryInitializer` indirizzo IP di hello tootake da un'intestazione diversa. In alcuni sistemi, ad esempio, lo spostamento da un proxy, il carico troppo di bilanciamento del carico o della rete CDN`X-Originating-IP`. [Altre informazioni](http://apmtips.com/blog/2016/07/05/client-ip-address/)
+È possibile configurare `ClientIpHeaderTelemetryInitializer` per ottenere l'indirizzo IP da un'intestazione diversa. Ad esempio, in alcuni sistemi viene spostato da un proxy, da un bilanciamento del carico o da una rete CDN a `X-Originating-IP`. [Altre informazioni](http://apmtips.com/blog/2016/07/05/client-ip-address/).
 
-È possibile [usare Power BI](app-insights-export-power-bi.md) toodisplay dati di telemetria richiesta su una mappa.
+È possibile [usare Power BI](app-insights-export-power-bi.md) per visualizzare i dati di telemetria della richiesta in una mappa.
 
 
-## <a name="data"></a>Quanto tempo i dati verranno mantenuti nel portale di hello? Tale conservazione è sicura?
+## <a name="data"></a>Per quanto tempo vengono conservati i dati nel portale? Tale conservazione è sicura?
 Vedere l'argomento relativo a [conservazione dei dati e privacy][data].
 
-## <a name="might-personally-identifiable-information-pii-be-sent-in-hello-telemetry"></a>Informazioni personali (PII) è possibile inviare nei dati di telemetria hello?
+## <a name="might-personally-identifiable-information-pii-be-sent-in-the-telemetry"></a>È possibile che vengano inviate informazioni personali (PII) nella telemetria?
 
-Ciò si verifica se il codice invia tali dati. E può verificarsi anche se le variabili dell'analisi dello stack includono informazioni personali. Il team di sviluppo deve eseguire tooensure valutazioni dei rischi che informazioni personali viene gestita correttamente. Vedere [altre informazioni sulla conservazione e privacy dei dati](app-insights-data-retention-privacy.md).
+Ciò si verifica se il codice invia tali dati. E può verificarsi anche se le variabili dell'analisi dello stack includono informazioni personali. Il team di sviluppo deve eseguire valutazioni dei rischi per garantire che le informazioni personali vengono gestite in maniera appropriata. Vedere [altre informazioni sulla conservazione e privacy dei dati](app-insights-data-retention-privacy.md).
 
-ottetti di ultima Hello dell'indirizzo web del client hello sono sempre impostato too0 dopo l'inserimento dal portale hello.
+Le ultime otto cifre dell'indirizzo Web del client vengono sempre impostate su 0 dopo l'inserimento dal portale.
 
 ## <a name="my-ikey-is-visible-in-my-web-page-source"></a>L'iKey dell'utente è visibile nell'origine della pagina Web. 
 
 * Questo è una pratica comune nelle soluzioni di monitoraggio.
-* Non può essere utilizzato toosteal i dati.
-* Può essere utilizzato tooskew gli avvisi dati o del trigger.
+* Questo valore non può essere usato per appropriarsi dei dati personali.
+* Potrebbe essere usato per alterare gli avvisi su dati o trigger.
 * Nessun cliente ha segnalato tali problemi.
 
 È possibile:
 
-* Usare due valori iKey separati, ovvero due risorse separate di Application Insights, per i dati del client e del server. Or
-* Scrivere un proxy che viene eseguito nel server e che i client web hello a invii i dati tramite tale proxy.
+* Usare due valori iKey separati, ovvero due risorse separate di Application Insights, per i dati del client e del server. oppure
+* Scrivere un proxy che viene eseguito nel server in modo che il client Web invii i dati tramite tale proxy.
 
 ## <a name="post"></a>Come visualizzare dati POST in Ricerca diagnostica?
-È non registra i dati POST automaticamente, ma è possibile utilizzare una chiamata a TrackTrace: inserire dati hello nel parametro messaggio hello. Questo è un limite di dimensioni più tempo rispetto a limiti di hello per le proprietà della stringa, anche se non è possibile filtrare su di esso.
+I dati POST non vengono registrati automaticamente, ma è possibile usare una chiamata TrackTrace; inserire i dati nel parametro del messaggio, che ha limiti di dimensione più ampi rispetto alle proprietà della stringa, nonostante non sia possibile applicare filtri.
 
 ## <a name="should-i-use-single-or-multiple-application-insights-resources"></a>È preferibile usare una o più risorse di Application Insights?
 
-Utilizzare una singola risorsa per tutti i componenti di hello o i ruoli in un sistema di business. Usare risorse separate per sviluppo, test e versioni di rilascio e per applicazioni indipendenti.
-
-* [Vedere hello discussione qui](app-insights-separate-resources.md)
-* [Esempio: servizio cloud con ruoli di lavoro e Web](app-insights-cloudservices.md)
-
-## <a name="how-do-i-dynamically-change-hello-instrumentation-key"></a>Come si modifica in modo dinamico i chiave di strumentazione hello?
+Usare una singola risorsa per tutti i componenti o i ruoli in un singolo sistema aziendale. Usare risorse separate per sviluppo, test e versioni di rilascio e per applicazioni indipendenti.
 
 * [Vedere questo articolo](app-insights-separate-resources.md)
 * [Esempio: servizio cloud con ruoli di lavoro e Web](app-insights-cloudservices.md)
 
-## <a name="what-are-hello-user-and-session-counts"></a>Quali sono hello utente e sessione conta?
+## <a name="how-do-i-dynamically-change-the-instrumentation-key"></a>Come è possibile modificare dinamicamente la chiave di strumentazione?
 
-* Hello JavaScript SDK viene impostato un cookie di utente nel client web hello tooidentify degli utenti e delle attività toogroup cookie della sessione.
-* Se non è presente alcun script sul lato client, è possibile [impostare cookie server hello](http://apmtips.com/blog/2016/07/09/tracking-users-in-api-apps/).
+* [Vedere questo articolo](app-insights-separate-resources.md)
+* [Esempio: servizio cloud con ruoli di lavoro e Web](app-insights-cloudservices.md)
+
+## <a name="what-are-the-user-and-session-counts"></a>Che cosa sono i conteggi utente e sessione?
+
+* JavaScript SDK imposta un cookie utente nel client Web, per identificare gli utenti abituali, e un cookie di sessione per raggruppare le attività.
+* Se non c'è uno script lato client, è possibile [impostare cookie per il server](http://apmtips.com/blog/2016/07/09/tracking-users-in-api-apps/).
 * Se un utente reale usa il sito in browser diversi o esegue una navigazione privata o in incognito oppure usa computer diversi, viene inclusi più di una volta nei conteggi.
-* tooidentify un utente connesso in macchine e i browser, aggiungere una chiamata troppo[setAuthenticatedUserContect()](app-insights-api-custom-events-metrics.md#authenticated-users).
+* Per identificare un utente connesso a più computer e browser, aggiungere una chiamata a [setAuthenticatedUserContect()](app-insights-api-custom-events-metrics.md#authenticated-users).
 
 ## <a name="q17"></a> In Application Insights sono state abilitate tutte le funzionalità?
-| Elementi che dovrebbero essere visualizzati | Come tooget, | Perché si vuole ottenerli |
+| Elementi che dovrebbero essere visualizzati | Come ottenerli | Perché si vuole ottenerli |
 | --- | --- | --- |
 | Grafici di disponibilità |[Test Web](app-insights-monitor-web-app-availability.md) |Stabilire se l'app Web è attiva |
-| Prestazioni dell'app server: tempi di risposta, ... |[Aggiungere Application Insights tooyour progetto](app-insights-asp-net.md) o [installare AI Status Monitor nel server](app-insights-monitor-performance-live-website-now.md) (o scrivere codice personalizzato troppo[tenere traccia delle dipendenze](app-insights-api-custom-events-metrics.md#trackdependency)) |Rilevare i problemi di prestazioni |
+| Prestazioni dell'app server: tempi di risposta, ... |[Aggiungere Application Insights al progetto](app-insights-asp-net.md) o [installare Status Monitor di Application Insights nel server](app-insights-monitor-performance-live-website-now.md) (o scrivere il codice per [tenere traccia delle dipendenze](app-insights-api-custom-events-metrics.md#trackdependency)) |Rilevare i problemi di prestazioni |
 | Telemetria di dipendenza |[Installare Status Monitor di Application Insights nel server](app-insights-monitor-performance-live-website-now.md) |Diagnosticare i problemi relativi a database o altri componenti esterni |
 | Ricavare analisi dello stack dalle eccezioni |[Inserire chiamate TrackException nel codice](app-insights-asp-net-exceptions.md) (ma alcune sono segnalate automaticamente) |Rilevare e diagnosticare le eccezioni |
 | Eseguire la ricerca di tracce dei log |[Aggiungere un adattatore di registrazione](app-insights-asp-net-trace-logs.md) |Diagnosticare le eccezioni, problemi di prestazioni |
@@ -200,11 +200,11 @@ Utilizzare una singola risorsa per tutti i componenti di hello o i ruoli in un s
 | Metriche personalizzate client |[Rilevamento delle chiamate nelle pagine Web](app-insights-api-custom-events-metrics.md) |Migliorare l'esperienza utente |
 | Metriche personalizzate server |[Rilevamento delle chiamate nel server](app-insights-api-custom-events-metrics.md) |Business intelligence |
 
-## <a name="why-are-hello-counts-in-search-and-metrics-charts-unequal"></a>Perché sono hello conta nei grafici di ricerca e metriche diverso?
+## <a name="why-are-the-counts-in-search-and-metrics-charts-unequal"></a>Perché i conteggi nei grafici di ricerca e di metrica non sono uguali?
 
-[Campionamento](app-insights-sampling.md) riduce il numero di hello di elementi di dati di telemetria (richieste, gli eventi personalizzati e così via) che vengono effettivamente inviato dal portale toohello app. Nella ricerca, si visualizza il numero di hello di elementi effettivamente ricevuto. Nei grafici di metriche che consentono di visualizzare un conteggio di eventi, si visualizza il numero di hello di originali eventi che si è verificato. 
+Il [campionamento](app-insights-sampling.md) riduce il numero di elementi di telemetria (richieste, eventi personalizzati e così via) inviati effettivamente dall'app al portale. Nel grafico di ricerca, viene visualizzato il numero di elementi effettivamente ricevuti. Nei grafici di metrica che visualizzano un conteggio degli eventi, è possibile vedere il numero di eventi originali che si sono verificati. 
 
-Ogni elemento trasmesso include una proprietà `itemCount` che visualizza quanti eventi originali rappresenta tale elemento. tooobserve campionamento nell'operazione, è possibile eseguire questa query in Analitica:
+Ogni elemento trasmesso include una proprietà `itemCount` che visualizza quanti eventi originali rappresenta tale elemento. Per osservare un campionamento in esecuzione, è possibile eseguire questa query in Analytics:
 
 ```
     requests | summarize original_events = sum(itemCount), transmitted_events = count()
@@ -218,31 +218,31 @@ Ogni elemento trasmesso include una proprietà `itemCount` che visualizza quanti
 È possibile [scrivere script di PowerShell](app-insights-powershell.md) tramite Monitoraggio risorse di Azure per:
 
 * Creare e aggiornare risorse di Application Insights.
-* Impostare hello prezzi piano.
-* Ottenere la chiave di strumentazione hello.
+* Impostare il piano tariffario.
+* Ottenere la chiave di strumentazione.
 * Aggiungere un avviso di metrica.
 * Aggiungere un test di disponibilità.
 
 Non è possibile impostare un report di esplorazione delle metriche o impostare un'esportazione continua.
 
-### <a name="querying-hello-telemetry"></a>Esecuzione di query su dati di telemetria hello
+### <a name="querying-the-telemetry"></a>Esecuzione di query sui dati di telemetria
 
-Hello utilizzare [API REST](https://dev.applicationinsights.io/) toorun [Analitica](app-insights-analytics.md) query.
+Usare l'[API REST](https://dev.applicationinsights.io/) per eseguire le query di [Analytics](app-insights-analytics.md).
 
 ## <a name="how-can-i-set-an-alert-on-an-event"></a>Come è possibile impostare un avviso per un evento?
 
-Gli avvisi di Azure si applicano solo alle metriche. Creare una metrica personalizzata che supera una soglia di valori ogni volta che si verifica l'evento. Impostare quindi un avviso per la metrica hello. Si noti che: si riceverà una notifica ogni volta che metrica hello supera la soglia hello in entrambe le direzioni; non si otterrà una notifica fino al primo passaggio, indipendentemente dal valore iniziale di hello sia alta o bassa; hello è sempre una latenza di pochi minuti.
+Gli avvisi di Azure si applicano solo alle metriche. Creare una metrica personalizzata che supera una soglia di valori ogni volta che si verifica l'evento. Impostare quindi un avviso per la metrica. Si noti che verrà inviata una notifica ogni volta che la metrica supera la soglia in entrambe le direzioni. Non si riceverà una notifica fino al primo superamento, indipendentemente dal valore iniziale. C'è sempre una latenza di pochi minuti.
 
 ## <a name="are-there-data-transfer-charges-between-an-azure-web-app-and-application-insights"></a>Ci sono costi per il trasferimento dati tra un'app Web di Azure e Application Insights?
 
 * Se l'app Web di Azure è ospitata in un data center in cui è presente un endpoint di raccolta di Application Insights, non è previsto alcun addebito. 
 * Se non c'è nessun endpoint nel data center host, la telemetria dell'app sarà soggetta agli [addebiti in uscita di Azure](https://azure.microsoft.com/pricing/details/bandwidth/).
 
-Ciò non dipende da dove è ospitata la risorsa di Application Insights. Solo dipende dalla distribuzione hello di questo endpoint.
+Ciò non dipende da dove è ospitata la risorsa di Application Insights. Dipende solo dalla distribuzione degli endpoint.
 
-## <a name="can-i-send-telemetry-toohello-application-insights-portal"></a>È possibile inviare portale Application Insights toohello di telemetria?
+## <a name="can-i-send-telemetry-to-the-application-insights-portal"></a>È possibile inviare dati di telemetria al portale di Application Insights?
 
-È consigliabile usare il SDK e di usare hello API SDK (app-insights-api-custom-events-metrics.md). Sono disponibili scenari di hello SDK per vari [piattaforme](app-insights-platforms.md). Gli SDK gestiscono bufferring, compressione, limitazione, tentativi e così via. Tuttavia, hello [dello schema di inserimento](https://github.com/Microsoft/ApplicationInsights-dotnet/tree/develop/Schema/PublicSchema) e [protocollo dell'endpoint](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/EndpointSpecs/ENDPOINT-PROTOCOL.md) sono pubblici.
+È consigliabile usare gli SDK di Microsoft e usare l'API SDK (app-insights-api-custom-events-metrics.md). Sono disponibili varianti dell'SDK per diverse [piattaforme](app-insights-platforms.md). Gli SDK gestiscono bufferring, compressione, limitazione, tentativi e così via. Tuttavia, lo [schema di inserimento](https://github.com/Microsoft/ApplicationInsights-dotnet/tree/develop/Schema/PublicSchema) e il [protocollo di endpoint](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/EndpointSpecs/ENDPOINT-PROTOCOL.md) sono pubblici.
 
 ## <a name="can-i-monitor-an-intranet-web-server"></a>È possibile monitorare un server Web Intranet?
 
@@ -250,11 +250,11 @@ Di seguito vengono illustrati due metodi:
 
 ### <a name="firewall-door"></a>Porta firewall
 
-Consenti il web server toosend telemetria tooour endpoint https://dc.services.visualstudio.com:443 e https://rt.services.visualstudio.com:443. 
+Consentire al server Web di inviare dati di telemetria agli endpoint https://dc.services.visualstudio.com:443 e https://rt.services.visualstudio.com:443. 
 
 ### <a name="proxy"></a>Proxy
 
-Instradare il traffico dal gateway della rete intranet, per impostare questa proprietà in Applicationinsights tooa server:
+Instradare il traffico dal server a un gateway nella rete Intranet, impostando quanto segue in ApplicationInsights.config:
 
 ```XML
 <TelemetryChannel>
@@ -262,14 +262,14 @@ Instradare il traffico dal gateway della rete intranet, per impostare questa pro
 </TelemetryChannel>
 ```
 
-Il gateway deve indirizzare toohttps://dc.services.visualstudio.com:443/v2/traccia il traffico di hello
+Il gateway deve indirizzare il traffico a https://dc.services.visualstudio.com:443/v2/track
 
 ## <a name="can-i-run-availability-web-tests-on-an-intranet-server"></a>È possibile eseguire test Web di disponibilità in un server Intranet?
 
-Il nostro [test web](app-insights-monitor-web-app-availability.md) eseguiti nei punti di presenza che vengono distribuiti in tutto il mondo hello. Sono disponibili due soluzioni:
+I [test Web](app-insights-monitor-web-app-availability.md) vengono eseguiti in punti di presenza distribuiti in tutto il globo. Sono disponibili due soluzioni:
 
-* Porta del firewall: Consenti richieste server tooyour da [hello lungo ed elenco modificabile di web gli agenti di test](app-insights-ip-addresses.md).
-* Scrivere il proprio codice toosend richieste periodiche tooyour server all'interno della rete intranet. A tale scopo è anche possibile eseguire test Web di Visual Studio. tester Hello Impossibile inviare i risultati di hello Insights tooApplication utilizzando hello TrackAvailability() API.
+* Porta di firewall: consentire al server di ricevere richieste dall'[elenco esteso e modificabile degli agenti di test Web](app-insights-ip-addresses.md).
+* Scrivere un codice personalizzato per inviare richieste periodiche al server dall'interno della rete Intranet. A tale scopo è anche possibile eseguire test Web di Visual Studio. Il tester può inviare i risultati ad Application Insights tramite l'API TrackAvailability().
 
 ## <a name="more-answers"></a>Altre risposte
 * [Forum di Application Insights](https://social.msdn.microsoft.com/Forums/vstudio/en-US/home?forum=ApplicationInsights)

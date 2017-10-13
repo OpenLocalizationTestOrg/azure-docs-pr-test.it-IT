@@ -1,5 +1,5 @@
 ---
-title: aaaRestore un Azure SQL Data Warehouse (API REST) | Documenti Microsoft
+title: Ripristinare un'istanza di Azure SQL Data Warehouse (API REST) | Microsoft Docs
 description: "Attività dell'API REST per il ripristino di un'istanza di Azure SQL Data Warehouse."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: backup-restore
 ms.date: 10/31/2016
 ms.author: lakshmir;barbkess
-ms.openlocfilehash: cf6678d71aafff71b1ea715f447e41e25f20d1b5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8656607611e7518e42b51b91774f55abec15c228
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="restore-an-azure-sql-data-warehouse-rest-api"></a>Ripristinare un'istanza di Azure SQL Data Warehouse (API REST)
 > [!div class="op_single_selector"]
@@ -30,38 +30,38 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-In questo articolo si apprenderà come toorestore un Azure SQL Data Warehouse utilizzando hello API REST.
+Questo articolo illustra come ripristinare un'istanza di Azure SQL Data Warehouse usando l'API REST.
 
 ## <a name="before-you-begin"></a>Prima di iniziare
-**Verificare la capacità in DTU.** Ogni SQL Data Warehouse è ospitato in un server SQL (ad esempio mioserver.database.windows.net), che ha una quota DTU predefinita.  Prima di poter ripristinare un SQL Data Warehouse, verificare che hello che di SQL server è sufficientemente rimanente quota DTU per database hello da ripristinare. toolearn come toocalculate DTU necessarie o toorequest più DTU, vedere [richiedere una modifica della quota DTU][Request a DTU quota change].
+**Verificare la capacità in DTU.** Ogni SQL Data Warehouse è ospitato in un server SQL (ad esempio mioserver.database.windows.net), che ha una quota DTU predefinita.  Per poter ripristinare un SQL Data Warehouse, verificare che la quota DTU rimanente nell'istanza del server SQL sia sufficiente per il database da ripristinare. Per informazioni su come calcolare la DTU necessaria o per richiedere altre DTU, vedere come [richiedere una modifica della quota DTU][Request a DTU quota change].
 
 ## <a name="restore-an-active-or-paused-database"></a>Ripristinare un database attivo o sospeso
-toorestore un database:
+Per ripristinare un database:
 
-1. Ottenere l'elenco di hello dei punti di ripristino di database tramite l'operazione Get punti di ripristino di Database hello.
-2. Iniziare il ripristino utilizzando hello [richiesta di ripristino di database crea] [ Create database restore request] operazione.
-3. Tenere traccia dello stato di hello del ripristino utilizzando hello [dello stato dell'operazione di Database] [ Database operation status] operazione.
+1. Ottenere l'elenco dei punti di ripristino del database utilizzando l'operazione Get Database Restore Points.
+2. Iniziare il ripristino usando l'operazione [Create database restore request][Create database restore request].
+3. Monitorare lo stato del ripristino tramite l'operazione [Database Operation Status][Database operation status].
 
 > [!NOTE]
-> Al termine del ripristino di hello, è possibile configurare il database ripristinato seguendo [configura il database dopo il ripristino][Configure your database after recovery].
+> Al termine del ripristino sarà possibile configurare il database ripristinato seguendo le istruzioni disponibili in [Configurare il database dopo il ripristino][Configure your database after recovery].
 > 
 > 
 
 ## <a name="restore-a-deleted-database"></a>Ripristino di un database eliminato
-un database eliminato toorestore:
+Per ripristinare un database eliminato:
 
-1. Elencare tutti i database eliminati ripristinabili utilizzando hello [elenco ripristinabile eliminati database] [ List restorable dropped databases] operazione.
-2. Ottenere i dettagli di hello per database hello eliminato da toorestore utilizzando hello [Get restorable eliminati database] [ Get restorable dropped database] operazione.
-3. Iniziare il ripristino utilizzando hello [richiesta di ripristino di database crea] [ Create database restore request] operazione.
-4. Tenere traccia dello stato di hello del ripristino utilizzando hello [dello stato dell'operazione di Database] [ Database operation status] operazione.
+1. Elencare tutti i database eliminati ripristinabili tramite l'operazione [List Restorable Dropped Databases][List restorable dropped databases].
+2. Ottenere i dettagli del database eliminato da ripristinare tramite l'operazione [Get Restorable Dropped Database][Get restorable dropped database].
+3. Iniziare il ripristino usando l'operazione [Create database restore request][Create database restore request].
+4. Monitorare lo stato del ripristino tramite l'operazione [Database Operation Status][Database operation status].
 
 > [!NOTE]
-> vedere il database al termine del ripristino di hello, tooconfigure [configura il database dopo il ripristino][Configure your database after recovery].
+> Per configurare il database al termine del ripristino, vedere [Configurare il database dopo il ripristino][Configure your database after recovery].
 > 
 > 
 
 ## <a name="next-steps"></a>Passaggi successivi
-toolearn sulle funzionalità di continuità aziendale hello delle edizioni di Database SQL di Azure, leggere hello [Panoramica di continuità aziendale di Database SQL di Azure][Azure SQL Database business continuity overview].
+Per altre informazioni sulle funzionalità di continuità aziendale delle edizioni del database SQL di Azure, vedere [Panoramica sulla continuità aziendale del database SQL di Azure][Azure SQL Database business continuity overview].
 
 <!--Image references-->
 
@@ -69,7 +69,7 @@ toolearn sulle funzionalità di continuità aziendale hello delle edizioni di Da
 [Azure SQL Database business continuity overview]: ../sql-database/sql-database-business-continuity.md
 [Request a DTU quota change]: ./sql-data-warehouse-get-started-create-support-ticket.md#request-quota-change
 [Configure your database after recovery]: ../sql-database/sql-database-disaster-recovery.md#configure-your-database-after-recovery
-[How tooinstall and configure Azure PowerShell]: /powershell/azureps-cmdlets-docs
+[How to install and configure Azure PowerShell]: /powershell/azureps-cmdlets-docs
 [Overview]: ./sql-data-warehouse-restore-database-overview.md
 [Portal]: ./sql-data-warehouse-restore-database-portal.md
 [PowerShell]: ./sql-data-warehouse-restore-database-powershell.md

@@ -1,8 +1,8 @@
-### <a name="gwipnoconnection"></a>gateway di rete locale hello toomodify 'GatewayIpAddress' - Nessuna connessione gateway
+### <a name="gwipnoconnection"></a> Per modificare il gateway di rete locale 'GatewayIpAddress' senza connessione gateway
 
-Se il dispositivo VPN hello che si desidera tooconnect toohas modificato l'indirizzo IP pubblico, è necessario toomodify hello rete locale gateway tooreflect modificare. Utilizzare toomodify esempio hello un gateway di rete locale che non dispone di un gateway di connessione.
+Se l'indirizzo IP pubblico del dispositivo VPN a cui ci si vuole connettere è stato modificato, è necessario modificare il gateway di rete locale per riflettere tale modifica. Usare l'esempio per modificare un gateway di rete locale privo di connessione gateway.
 
-Quando si modifica questo valore, è inoltre possibile modificare i prefissi di indirizzo hello in hello contemporaneamente. Essere certi toouse hello esistente nome del gateway di rete locale nelle impostazioni di ordine toooverwrite hello corrente. Se si utilizza un nome diverso, si crea un nuovo gateway di rete locale, anziché sovrascrivere hello uno esistente.
+Quando si modifica questo valore, è anche possibile modificare contemporaneamente i prefissi degli indirizzi. Assicurarsi di usare il nome del gateway di rete locale esistente per sovrascrivere le impostazioni correnti. Se si usa un nome diverso, creare un nuovo gateway di rete locale, invece di sovrascrivere il valore esistente.
 
 ```powershell
 New-AzureRmLocalNetworkGateway -Name MyLocalNetworkGWName `
@@ -10,34 +10,34 @@ New-AzureRmLocalNetworkGateway -Name MyLocalNetworkGWName `
 -GatewayIpAddress "5.4.3.2" -ResourceGroupName MyRGName
 ```
 
-### <a name="gwipwithconnection"></a>gateway di rete locale hello toomodify 'GatewayIpAddress' - connessione gateway esistente
+### <a name="gwipwithconnection"></a> Per modificare il gateway di rete locale 'GatewayIpAddress' con una connessione gateway esistente
 
-Se il dispositivo VPN hello che si desidera tooconnect toohas modificato l'indirizzo IP pubblico, è necessario toomodify hello rete locale gateway tooreflect modificare. Se esiste già una connessione del gateway, è necessario innanzitutto connessione hello tooremove. Dopo la rimozione di connessione hello, è possibile modificare l'indirizzo IP del gateway hello e ricreare una nuova connessione. È inoltre possibile modificare i prefissi di indirizzo hello in hello contemporaneamente. Questo comporterà periodi di inattività per la connessione VPN. Quando si modifica l'indirizzo IP del gateway hello, non è necessario gateway VPN di hello toodelete. È necessario solo connessione hello tooremove.
+Se l'indirizzo IP pubblico del dispositivo VPN a cui ci si vuole connettere è stato modificato, è necessario modificare il gateway di rete locale per riflettere tale modifica. Se esiste già una connessione gateway è prima necessario rimuoverla. Dopo aver rimosso la connessione sarà possibile modificare l'indirizzo IP del gateway e ricreare una nuova connessione. È anche possibile modificare contemporaneamente i prefissi di indirizzo. Questo comporterà periodi di inattività per la connessione VPN. Quando si modifica l'indirizzo IP del gateway, non è necessario eliminare il gateway VPN. Occorre rimuovere solo la connessione.
  
 
-1. Rimuovere la connessione di hello. È possibile trovare nome hello della connessione utilizzando i cmdlet 'Get-AzureRmVirtualNetworkGatewayConnection' hello.
+1. Rimuovere la connessione. Il nome della connessione può essere trovato usando il cmdlet 'Get-AzureRmVirtualNetworkGatewayConnection'.
 
   ```powershell
   Remove-AzureRmVirtualNetworkGatewayConnection -Name MyGWConnectionName `
   -ResourceGroupName MyRGName
   ```
-2. Modificare il valore di 'GatewayIpAddress' hello. È inoltre possibile modificare i prefissi di indirizzo hello in hello contemporaneamente. Essere certi toouse hello esistente nome di rete locale gateway toooverwrite hello impostazioni correnti. In caso contrario, si crea un nuovo gateway di rete locale, anziché sovrascrivere hello uno esistente.
+2. Modificare il valore 'GatewayIpAddress'. È anche possibile modificare contemporaneamente i prefissi di indirizzo. Assicurarsi di usare il nome del gateway di rete locale esistente per sovrascrivere le impostazioni correnti. In caso contrario si creerà un nuovo gateway di rete locale, invece di sovrascrivere quello esistente.
 
   ```powershell
   New-AzureRmLocalNetworkGateway -Name MyLocalNetworkGWName `
   -Location "West US" -AddressPrefix @('10.0.0.0/24','20.0.0.0/24','30.0.0.0/24') `
   -GatewayIpAddress "104.40.81.124" -ResourceGroupName MyRGName
   ```
-3. Creare la connessione hello. In questo esempio viene configurato un tipo di connessione IPsec. Quando si ricrea la connessione, utilizzare i tipo di connessione hello specificato per la configurazione. Per i tipi di connessione aggiuntive, vedere hello [cmdlet PowerShell](https://msdn.microsoft.com/library/mt603611.aspx) pagina.  nome del gateway di rete virtuale hello tooobtain, è possibile eseguire i cmdlet 'Get-AzureRmVirtualNetworkGateway' hello.
+3. Creare la connessione. In questo esempio viene configurato un tipo di connessione IPsec. Quando si ricrea la connessione, usare il tipo di connessione specificato per la configurazione in uso. Per altri tipi di connessione, vedere la pagina dei [cmdlet di PowerShell](https://msdn.microsoft.com/library/mt603611.aspx) .  Per ottenere il nome VirtualNetworkGateway è possibile eseguire il cmdlet 'Get-AzureRmVirtualNetworkGateway'.
    
-    Impostare le variabili di hello.
+    Impostare le variabili.
 
   ```powershell
   $local = Get-AzureRMLocalNetworkGateway -Name MyLocalNetworkGWName -ResourceGroupName MyRGName `
   $vnetgw = Get-AzureRmVirtualNetworkGateway -Name RMGateway -ResourceGroupName MyRGName
   ```
    
-    Creare la connessione hello.
+    Creare la connessione.
 
   ```powershell 
   New-AzureRmVirtualNetworkGatewayConnection -Name MyGWConnectionName -ResourceGroupName MyRGName `

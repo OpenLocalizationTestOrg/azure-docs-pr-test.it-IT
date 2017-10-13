@@ -1,6 +1,6 @@
 ---
-title: la crittografia lato aaaClient con Java per l'archiviazione di Microsoft Azure | Documenti Microsoft
-description: Hello Azure Storage Client Library for Java supporta crittografia lato client e l'integrazione con l'insieme di credenziali chiave di Azure per garantire la massima sicurezza per le applicazioni di servizio di archiviazione Azure.
+title: Crittografia lato client con Java per Archiviazione di Microsoft Azure | Microsoft Docs
+description: La libreria client di archiviazione di Azure per Java offre supporto per la crittografia lato client e l'integrazione con l'insieme di credenziali delle chiavi di Azure per la massima sicurezza delle applicazioni di archiviazioni Azure.
 services: storage
 documentationcenter: java
 author: lakasa
@@ -14,171 +14,171 @@ ms.devlang: java
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: lakasa
-ms.openlocfilehash: cb40c737b9065005f0f31f654e7e43fd27b923f5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9f9ed8043d3671beacb9fabeb9e96604a8f065ab
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="client-side-encryption-and-azure-key-vault-with-java-for-microsoft-azure-storage"></a>Crittografia lato client e Insieme di credenziali chiave Azure con Java per Archiviazione di Microsoft Azure
 [!INCLUDE [storage-selector-client-side-encryption-include](../../../includes/storage-selector-client-side-encryption-include.md)]
 
 ## <a name="overview"></a>Panoramica
-Hello [libreria Client di archiviazione di Azure per Java](http://mvnrepository.com/artifact/com.microsoft.azure/azure-storage) supporta la crittografia dei dati all'interno delle applicazioni client prima di caricare tooAzure Storage e la decrittografia dei dati durante il download toohello client. libreria Hello supporta anche l'integrazione con [insieme credenziali chiavi Azure](https://azure.microsoft.com/services/key-vault/) per la gestione di chiave account di archiviazione.
+La [libreria client di archiviazione di Azure per Java](http://mvnrepository.com/artifact/com.microsoft.azure/azure-storage) supporta la crittografia dei dati all'interno delle applicazioni client prima del caricamento nell'Archiviazione di Azure, nonché la decrittografia dei dati durante il download al client. La libreria inoltre supporta l'integrazione con l' [insieme di credenziali chiave](https://azure.microsoft.com/services/key-vault/) di Azure per la gestione delle chiavi dell'account di archiviazione.
 
-## <a name="encryption-and-decryption-via-hello-envelope-technique"></a>Crittografia e decrittografia tramite una tecnica di busta hello
-i processi di Hello di crittografia e decrittografia seguono tecnica busta hello.  
+## <a name="encryption-and-decryption-via-the-envelope-technique"></a>Crittografia e decrittografia tramite la tecnica basata su envelope
+Le procedure di crittografia e decrittografia seguono la tecnica basata su envelope.  
 
-### <a name="encryption-via-hello-envelope-technique"></a>Crittografia tramite una tecnica di busta hello
-La crittografia tramite una tecnica di busta hello funziona nel seguente modo hello:  
+### <a name="encryption-via-the-envelope-technique"></a>Crittografia tramite la tecnica basata su envelope
+La crittografia tramite la tecnica basata su envelope funziona nel modo seguente:  
 
-1. libreria client di archiviazione di Azure Hello genera una chiave di crittografia del contenuto (CEK), che è una chiave simmetrica con un utilizzo.  
+1. La libreria di Azure Storage Client genera una chiave di crittografia del contenuto (CEK) che funziona come chiave simmetrica monouso.  
 2. I dati utente vengono crittografati con questa chiave CEK.   
-3. Hello CEK viene eseguito il wrapping (crittografata) con chiave di crittografia della chiave hello (CHIAVI). Hello KEK è identificato da un identificatore di chiave e può essere una coppia di chiavi asimmetriche o di una chiave simmetrica e possono essere gestito in locale o memorizzato in insiemi di credenziali chiave di Azure.  
-   libreria client di archiviazione Hello stessa non ha mai tooKEK di accesso. libreria Hello richiama l'algoritmo di wrapping delle chiavi hello fornito dall'insieme di credenziali chiave. Gli utenti possono scegliere toouse provider personalizzati per ritorno a capo/wrapping di una chiave se necessario.  
-4. Hello dati crittografati viene quindi caricato toohello servizio di archiviazione di Azure. Hello chiave incapsulata con alcuni metadati di crittografia aggiuntiva archiviati come metadati (in un blob) o interpolati con dati crittografato hello (messaggi in coda e le entità di tabella).
+3. Viene quindi eseguito il wrapping della chiave CEK mediante la chiave di crittografia della chiave (KEK). La chiave KEK è identificata con un identificatore di chiave e può essere costituita da una coppia di chiavi asimmetriche o da una chiave simmetrica. Può essere gestita localmente o archiviata in insiemi di credenziali chiave di Azure.  
+   La libreria del client Archiviazione non ha mai accesso alla chiave KEK. Richiama solo l'algoritmo di wrapping della chiave fornito dall'insieme di credenziali chiave. Gli utenti possono scegliere di usare provider personalizzati per il wrapping o la rimozione del wrapping delle chiavi, se lo desiderano.  
+4. I dati crittografati vengono quindi caricati nel servizio Archiviazione di Azure. La chiave con wrapping assieme ad alcuni metadati di crittografia aggiuntivi viene archiviata come metadati (su un BLOB) o interpolata con i dati crittografati (entità della tabella e messaggi in coda).
 
-### <a name="decryption-via-hello-envelope-technique"></a>Decrittografia tramite una tecnica di busta hello
-La decrittografia tramite una tecnica di busta hello funziona nel seguente modo hello:  
+### <a name="decryption-via-the-envelope-technique"></a>Decrittografia tramite la tecnica basata su envelope
+La decrittografia tramite la tecnica basata su envelope funziona nel modo seguente:  
 
-1. libreria client Hello si presuppone che l'utente hello gestisce chiave di crittografia della chiave hello (KEK) in locale o in insiemi di credenziali chiave di Azure. utente Hello tooknow hello specifica chiave utilizzati per la crittografia non è necessario. In alternativa, è possibile impostare e utilizzato un resolver di chiave che si risolve tookeys identificatori di chiave diversi.  
-2. libreria client Hello Scarica i dati di crittografato hello insieme a qualsiasi materiale di crittografia che viene archiviato nel servizio hello.  
-3. chiave di crittografia del contenuto sottoposto a wrapping Hello (CEK) è annullato il wrapping (decrittografati) mediante hello chiave di crittografia della chiave (KEK). Qui, libreria client hello non dispone di accesso tooKEK. Richiama semplicemente hello personalizzata o l'algoritmo di wrapping del provider dell'insieme di credenziali chiave.  
-4. Hello contenuto chiave di crittografia (CEK) viene quindi utilizzato i dati utente crittografato hello toodecrypt.
+1. La libreria client presuppone che l'utente gestisce la chiave di crittografia della chiave (KEK) in locale o negli insiemi di credenziali Azure. L'utente non deve necessariamente conoscere la chiave specifica utilizzata per la crittografia. Al contrario, è possibile impostare e utilizzare un resolver di chiavi che risolve diversi identificatori di chiave per le chiavi.  
+2. La libreria client scarica i dati crittografati insieme al materiale di crittografia archiviato nel servizio.  
+3. La chiave di crittografia dei contenuti (CEK) con wrapping viene quindi sottoposta a rimozione del wrapping (decrittografata) utilizzando la chiave di crittografia della chiave (KEK). Anche in questo caso, la libreria client non ha accesso alla KEK. Richiama semplicemente l'algoritmo di rimozione del wrapping personalizzato o del provider Key Vault.  
+4. La chiave di crittografia del contenuto (CEK) viene quindi utilizzata per decrittografare i dati utente crittografati.
 
 ## <a name="encryption-mechanism"></a>Meccanismo di crittografia
-libreria client di archiviazione Hello Usa [AES](http://en.wikipedia.org/wiki/Advanced_Encryption_Standard) dei dati utente tooencrypt ordine. In particolare, si avvale della modalità [Cipher Block Chaining (CBC)](http://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Cipher-block_chaining_.28CBC.29) con AES. Ogni servizio funziona in modo diverso, pertanto qui verrà illustrato ciascuno di essi.
+La libreria client di archiviazione usa [AES](http://en.wikipedia.org/wiki/Advanced_Encryption_Standard) per la crittografia dei dati utente. In particolare, si avvale della modalità [Cipher Block Chaining (CBC)](http://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Cipher-block_chaining_.28CBC.29) con AES. Ogni servizio funziona in modo diverso, pertanto qui verrà illustrato ciascuno di essi.
 
 ### <a name="blobs"></a>Blobs
-libreria client Hello supporta attualmente la crittografia dell'intero BLOB solo. In particolare, la crittografia è supportata quando gli utenti utilizzano hello **caricare*** metodi o hello **openOutputStream** metodo. Per i download, sono supportati sia i download completi che di intervallo.  
+La libreria client attualmente supporta la crittografia solo di interi BLOB. In particolare, la crittografia è supportata quando gli utenti usano i metodi **upload*** o il metodo **openOutputStream**. Per i download, sono supportati sia i download completi che di intervallo.  
 
-Durante la crittografia, la libreria client di hello genererà un vettore di inizializzazione casuale (IV) di 16 byte, con una chiave di crittografia casuale del contenuto (CEK) di 32 byte ed eseguono la crittografia envelope dei dati blob hello utilizzando le informazioni. Hello inclusi CEK e alcuni metadati di crittografia supplementari vengono quindi archiviati come metadati insieme ai blob di crittografato hello sul servizio hello del blob.
+Durante la crittografia, la libreria client genererà un vettore di inizializzazione (IV) casuale di 16 byte con una chiave di crittografia del contenuto (CEK) casuale di 32 byte ed eseguirà la crittografia envelope dei dati BLOB utilizzando queste informazioni. La CEK con wrapping e alcuni metadati di crittografia aggiuntivi vengono quindi archiviati come metadati BLOB insieme al BLOB crittografato nel servizio.
 
 > [!WARNING]
-> Se si modifica o il caricamento dei metadati personalizzata per il blob hello, è necessario che questi metadati viene mantenuto tooensure. Se si caricano nuovi metadati senza metadati, hello CEK sottoposta a wrapping, IV e altri metadati andranno persi e il contenuto di blob hello mai possano essere recuperato.
+> Se si modificano o si caricano i propri metadati per il BLOB, è necessario assicurarsi che tali metadati siano conservati. Se si caricano nuovi metadati senza questi metadati, la CEK con wrapping, il vettore di inizializzazione e altri metadati andranno persi e il contenuto del BLOB non potrà mai più essere recuperato.
 > 
 > 
 
-Download di blob crittografato comporta il recupero del contenuto di hello dell'intero blob hello utilizzando hello  **scaricare*/openInputStream** metodi pratici. Hello CEK sottoposta a wrapping viene estratta e utilizzato insieme hello IV (archiviati come metadati del blob in questo caso) tooreturn hello decrittografata dati toohello utenti.
+Il download di un BLOB crittografato comporta il recupero del contenuto dell'intero BLOB usando i metodi di servizio **download*/openInputStream**. La CEK con wrapping viene sottoposta a rimozione del wrapping e utilizzata con il vettore di inizializzazione (archiviato come metadati BLOB in questo caso) per restituire i dati decrittografati agli utenti.
 
-Download di un intervallo arbitrario (**downloadRange*** metodi) nelle hello blob crittografato comporta la modifica intervallo hello fornite dagli utenti in ordine tooget una piccola quantità di dati aggiuntivi che possono essere utilizzati toosuccessfully decrittografare hello intervallo richiesto.  
+Il download di un intervallo arbitrario (metodi**downloadRange***) nel BLOB crittografato implica la regolazione dell'intervallo fornito dagli utenti per ottenere una piccola quantità di dati aggiuntivi utilizzabili per decrittografare correttamente l'intervallo richiesto.  
 
 Tutti i tipi di BLOB (BLOB in blocchi, BLOB di pagine e BLOB di accodamento) possono essere crittografati/decrittografati con questo schema.
 
-### <a name="queues"></a>Code
-Poiché i messaggi in coda possono essere di qualsiasi formato, la libreria client di hello definisce un formato personalizzato che include hello vettore di inizializzazione (IV) e la chiave di crittografia del contenuto crittografato hello (CEK) nel testo del messaggio hello.  
+### <a name="queues"></a>Queues
+Poiché i messaggi in coda possono essere in qualsiasi formato, la libreria client definisce un formato personalizzato che include il vettore di inizializzazione (IV) e la chiave di crittografia del contenuto crittografato (CEK) nel testo del messaggio.  
 
-Durante la crittografia libreria client hello genera un vettore di Inizializzazione casuale di 16 byte con una CEK casuale di 32 byte ed esegue la crittografia envelope hello coda del testo del messaggio utilizzando le informazioni. Hello inclusi CEK e alcuni metadati di crittografia supplementari vengono quindi aggiunti messaggio della coda crittografati toohello. Questo messaggio modificato (mostrato sotto) verrà archiviato nel servizio hello.
+Durante la crittografia, la libreria client genera un vettore di inizializzazione casuale di 16 byte con una CEK casuale di 32 byte ed esegue la crittografia envelope del testo del messaggio in coda utilizzando queste informazioni. Al messaggio in coda crittografato vengono quindi aggiunti la CEK con wrapping e alcuni metadati di crittografia aggiuntivi. Questo messaggio modificato (illustrato di seguito) viene archiviato nel servizio.
 
 ```
 <MessageText>{"EncryptedMessageContents":"6kOu8Rq1C3+M1QO4alKLmWthWXSmHV3mEfxBAgP9QGTU++MKn2uPq3t2UjF1DO6w","EncryptionData":{…}}</MessageText>
 ```
 
-Durante la decrittografia, la chiave incapsulata hello è estratto dal messaggio in coda hello ed estratta. IV Hello è inoltre estratto dal messaggio in coda hello e utilizzato insieme ai dati di messaggio della coda di hello estratta toodecrypt chiave hello. Si noti che i metadati crittografia hello sono piccolo (in byte) 500, in modo mentre tiene conto per il limite di 64KB hello per un messaggio nella coda, impatto hello debba essere gestito.
+Durante la decrittografia, la chiave con wrapping viene estratta dal messaggio in coda e sottoposta a rimozione del wrapping. Anche il vettore di inizializzazione viene estratto dal messaggio in coda e utilizzato con la chiave senza wrapping per decrittografare i dati del messaggio in coda. Si noti che i metadati di crittografia sono di piccole dimensioni (inferiori a 500 byte), quindi mentre vengono tenuti in considerazione per il limite di 64 KB di un messaggio in coda, l'impatto dovrebbe essere gestibile.
 
 ### <a name="tables"></a>Tabelle
-Hello client libreria supporta la crittografia delle proprietà di entità per l'inserimento e sostituire operazioni.
+La libreria client supporta la crittografia di proprietà di entità per le operazioni di inserimento e sostituzione.
 
 > [!NOTE]
-> L’unione non è attualmente supportata. Poiché un subset delle proprietà è stato crittografato in precedenza usando una chiave diversa, semplicemente l'unione di nuove proprietà hello e l'aggiornamento dei metadati hello comporterà la perdita di dati. L'unione di uno, è necessario rendere servizio aggiuntivo chiama entità preesistente di hello tooread dal servizio hello o utilizzando una nuova chiave per ogni proprietà, che non sono adatti per motivi di prestazioni.
+> L’unione non è attualmente supportata. Poiché un subset di proprietà potrebbe essere stato crittografato in precedenza utilizzando una chiave diversa, la semplice unione delle nuove proprietà e l’aggiornamento dei metadati comportano la perdita di dati. L'unione richiede chiamate a servizi aggiuntivi per la lettura dell’entità preesistente dal servizio o l’utilizzo di una nuova chiave per ogni proprietà, entrambe operazioni non idonee per motivi di prestazioni.
 > 
 > 
 
 La crittografia dei dati della tabella funziona nel modo seguente:  
 
-1. Gli utenti specificano toobe proprietà hello crittografati.  
-2. libreria client Hello genera un vettore di inizializzazione casuale (IV) di 16 byte con una chiave di crittografia casuale del contenuto (CEK) di 32 byte per ogni entità ed esegue la crittografia envelope toobe singole proprietà hello crittografati mediante la derivazione di un vettore di Inizializzazione per proprietà. proprietà crittografato Hello viene archiviato come dati binari.  
-3. Hello inclusi CEK e alcuni metadati di crittografia supplementari vengono quindi archiviati come due proprietà riservate aggiuntive. proprietà riservata prima Hello (_ClientEncryptionMetadata1) è una proprietà stringa che contiene informazioni hello IV, versione e la chiave sottoposta a wrapping. proprietà riservata secondo Hello (_ClientEncryptionMetadata2) è una proprietà binaria che contiene le informazioni sulle proprietà hello crittografati hello. informazioni di Hello in questa seconda proprietà (_ClientEncryptionMetadata2) sono crittografata.  
-4. Scadenza toothese riservato proprietà aggiuntive richieste per la crittografia, gli utenti possono hanno proprietà personalizzate solo 250 anziché 252. dimensioni totali di Hello dell'entità hello devono essere minore di 1MB.  
+1. Gli utenti specificano le proprietà che devono essere crittografate.  
+2. La libreria client genera un vettore di inizializzazione (IV) casuale di 16 byte con una chiave di crittografia del contenuto (CEK) casuale di 32 byte per ogni entità ed esegue la crittografia envelope sulle singole proprietà che devono essere crittografate mediante la derivazione di un nuovo vettore di inizializzazione per ciascuna proprietà. La proprietà di crittografia viene memorizzata come dati binari.  
+3. La CEK con wrapping e alcuni metadati di crittografia aggiuntivi vengono quindi archiviati come due proprietà riservate aggiuntive. La prima proprietà riservata (_ClientEncryptionMetadata1) è una proprietà stringa che contiene le informazioni su vettore di inizializzazione, versione e chiave con wrapping. La seconda proprietà riservata (_ClientEncryptionMetadata2) è una proprietà binaria che contiene le informazioni sulle proprietà che vengono crittografate. Le informazioni contenute in questa seconda proprietà (_ClientEncryptionMetadata2) sono crittografate.  
+4. A causa di queste proprietà riservate aggiuntive richieste per la crittografia, gli utenti ora possono avere solo 250 proprietà personalizzate anziché 252. Le dimensioni totali dell'entità devono essere minori di 1 MB.  
    
-   Si noti che solo le proprietà di stringa possono essere crittografate. Se altri tipi di proprietà toobe crittografati, devono essere toostrings convertito. crittografato Hello sono archiviate nel servizio hello come proprietà binarie e vengono convertiti toostrings indietro dopo la decrittografia.
+   Si noti che solo le proprietà di stringa possono essere crittografate. Se devono essere crittografati altri tipi di proprietà, essi devono essere convertiti in stringhe. Le stringhe crittografate vengono archiviate nel servizio come proprietà binarie e vengono convertite nuovamente in stringhe dopo la decrittografia.
    
-   Per le tabelle, inoltre i criteri di crittografia toohello, gli utenti devono specificare toobe proprietà hello crittografati. Questa operazione può essere eseguita specificando un attributo [Encrypt] \(per le entità POCO che derivano da TableEntity) o un resolver di crittografia nelle opzioni di richiesta. Un resolver di crittografia è un delegato che accetta una chiave di partizione, una chiave di riga e un nome di proprietà e restituisce un valore booleano che indica se tale proprietà deve essere crittografata. Durante la crittografia, la libreria client di hello utilizzerà questo toodecide informazioni se una proprietà deve essere crittografata durante la scrittura di transito toohello. delegato di Hello fornisce anche la possibilità di hello di logica per la modalità di crittografia delle proprietà. (Ad esempio, se X, quindi crittografa la proprietà A; in caso contrario crittografa le proprietà A e B). Si noti che è necessario non tooprovide queste informazioni durante la lettura o di una query sulle entità.
+   Per le tabelle, oltre al criterio di crittografia, gli utenti devono specificare le proprietà da crittografare. Questa operazione può essere eseguita specificando un attributo [Encrypt] \(per le entità POCO che derivano da TableEntity) o un resolver di crittografia nelle opzioni di richiesta. Un resolver di crittografia è un delegato che accetta una chiave di partizione, una chiave di riga e un nome di proprietà e restituisce un valore booleano che indica se tale proprietà deve essere crittografata. Durante la crittografia, la libreria client utilizzerà queste informazioni per decidere se una proprietà deve essere crittografata durante la scrittura in rete. Il delegato fornisce inoltre la possibilità di logica per la modalità di crittografia delle proprietà. (Ad esempio, se X, quindi crittografa la proprietà A; in caso contrario crittografa le proprietà A e B). Si noti che non è necessario fornire queste informazioni durante la lettura o la query su entità.
 
 ### <a name="batch-operations"></a>Operazioni batch
-Nelle operazioni batch, hello KEK stesso verrà usata in tutte le righe di hello in quell'operazione batch perché la libreria client di hello consente solo di un oggetto di opzioni (e pertanto un criterio/KEK) per ogni operazione batch. Tuttavia, la libreria client di hello internamente genererà un nuovo vettore di Inizializzazione casuale e una CEK casuale per ogni riga nel batch hello. Utenti possono inoltre scegliere tooencrypt proprietà diverse per ogni operazione nel batch hello mediante la definizione di questo comportamento nel sistema di risoluzione crittografia hello.
+Nelle operazioni batch, la stessa KEK verrà utilizzata per tutte le righe nell’operazione batch, perché la libreria client consente un solo oggetto options (e pertanto un criterio/KEK) per ogni operazione batch. Tuttavia, la libreria client genera internamente un nuovo vettore di inizializzazione casuale e una CEK casuale per ogni riga nel batch. Gli utenti possono scegliere anche di crittografare proprietà diverse per ogni operazione nel batch mediante la definizione di questo comportamento nel resolver di crittografia.
 
 ### <a name="queries"></a>Query
-operazioni di query tooperform, è necessario specificare un resolver di chiave che è in grado di tooresolve tutti hello chiavi nel set di risultati hello. Se un'entità inclusa nel risultato della query hello non può essere risolto tooa provider, la libreria client di hello genererà un errore. Per le query che esegue le proiezioni lato server, libreria client hello aggiungerà proprietà di metadati di crittografia speciali di hello (_ClientEncryptionMetadata1 e _ClientEncryptionMetadata2) dalle colonne toohello selezionato predefinito.
+Per eseguire operazioni di query, è necessario specificare un resolver di chiave in grado di risolvere tutte le chiavi nel set di risultati. Se un'entità inclusa nel risultato della query non può essere risolta in un provider, la libreria client genererà un errore. Per ogni query che esegue le proiezioni del lato server, la libreria client aggiungerà le proprietà dei metadati di crittografia speciali (_ClientEncryptionMetadata1 e ClientEncryptionMetadata2) per impostazione predefinita alle colonne selezionate.
 
 ## <a name="azure-key-vault"></a>Insieme di credenziali chiave Azure
 L'insieme di credenziali chiave di Azure consente di proteggere le chiavi e i segreti di crittografia usati da servizi e applicazioni cloud. Con l'insieme di credenziali chiave di Azure gli utenti possono crittografare chiavi e segreti (ad esempio, chiavi di autenticazione, chiavi dell'account di archiviazione, chiavi di crittografia dati, file PFX e password) usando chiavi protette da moduli di protezione hardware (HSM). Per altre informazioni, vedere [Informazioni sull’insieme di credenziali chiave di Azure](../../key-vault/key-vault-whatis.md)
 
-libreria client di archiviazione Hello utilizza una libreria di base di insieme di credenziali chiave di hello in ordine tooprovide un framework comune in Azure per la gestione delle chiavi. Gli utenti inoltre ottenere ulteriore vantaggio di hello dell'utilizzo della libreria di estensioni di hello insieme di credenziali chiave. libreria di estensioni Hello fornisce funzionalità utili semplice e trasparente Symmetric/RSA locale e i principali fornitori di servizi cloud e con l'aggregazione e la memorizzazione nella cache.
+La libreria client di archiviazione utilizza la libreria principale insieme di credenziali chiave per fornire un framework comune in Azure per la gestione delle chiavi. Gli utenti ottengono anche l'ulteriore vantaggio dell'utilizzo della libreria di estensioni dell’insieme di credenziali chiave. La libreria di estensioni fornisce funzionalità utili per provider di chiavi locali e cloud Symmetric/RSA semplici, nonché l'aggregazione e la memorizzazione nella cache.
 
 ### <a name="interface-and-dependencies"></a>Interfaccia e dipendenze
 Esistono tre pacchetti insieme di credenziali chiave:  
 
-* Azure-keyvault-core contiene hello IKey e IKeyResolver. È un pacchetto di piccole dimensioni senza dipendenze. libreria client di archiviazione Hello for Java definisce come una dipendenza.
-* Azure keyvault contiene client REST dell'insieme di credenziali chiave hello.  
-* azure-keyvault-extensions contiene codice di estensione che include le implementazioni di algoritmi di crittografia oltre a una RSAKey e una SymmetricKey. Si varia a seconda degli spazi dei nomi di base e KeyVault hello e fornisce funzionalità toodefine un resolver di aggregazione (quando gli utenti desiderano toouse più provider di chiavi) e un sistema di risoluzione chiave memorizzazione nella cache. Sebbene libreria client di archiviazione hello dipende direttamente questo pacchetto, se gli utenti desiderano toouse insieme credenziali chiavi Azure toostore le chiavi o hello tooconsume estensioni di toouse hello insieme di credenziali chiave locale e cloud di provider di crittografia, sarà necessario questo pacchetto.  
+* azure-keyvault-core contiene le interfacce IKey e IKeyResolver. È un pacchetto di piccole dimensioni senza dipendenze. La libreria client di archiviazione per Java lo definisce come dipendenza.
+* azure-keyvault contiene il client REST di insieme di credenziali delle chiavi.  
+* azure-keyvault-extensions contiene codice di estensione che include le implementazioni di algoritmi di crittografia oltre a una RSAKey e una SymmetricKey. Dipende dagli spazi dei nomi Core e KeyVault e fornisce funzionalità per definire un resolver aggregato (quando gli utenti desiderano utilizzare più provider di chiavi) e un resolver di chiavi di caching. Anche se la libreria client di archiviazione non dipende direttamente da questo pacchetto, se gli utenti desiderano utilizzare l’insieme di credenziali chiave di Azure per archiviare le chiavi o utilizzare le estensioni dell'insieme di credenziali chiave per utilizzare i provider di crittografia in locale e cloud, questo pacchetto è necessario.  
   
-  L’insieme di credenziali chiave è progettato per chiavi master di valore elevato e la soglia di limitazione per ogni insieme di credenziali chiave è progettata considerando questo fattore. Quando si esegue la crittografia lato client con l'insieme di credenziali chiave, modello preferito hello è toouse master le chiavi simmetriche archiviate come segreti nell'insieme di credenziali chiave e memorizzata nella cache in locale. Gli utenti devono eseguire la seguente hello:  
+  L’insieme di credenziali chiave è progettato per chiavi master di valore elevato e la soglia di limitazione per ogni insieme di credenziali chiave è progettata considerando questo fattore. Quando si esegue la crittografia lato client con l'insieme di credenziali chiave, il modello preferito consiste nell'utilizzare chiavi master simmetriche archiviate come segreti nell'insieme di credenziali chiave e memorizzate localmente nella cache. Gli utenti devono eseguire le operazioni seguenti:  
 
-1. Creare una chiave privata non in linea e caricarlo tooKey insieme di credenziali.  
-2. Utilizzare l'identificatore di base di un segreto hello come tooresolve un parametro hello versione corrente del segreto hello per la crittografia e memorizzare nella cache localmente queste informazioni. Utilizzare CachingKeyResolver per la memorizzazione nella cache; gli utenti sono previsti non tooimplement la relativa logica specifica la memorizzazione nella cache.  
-3. Durante la creazione di criteri di crittografia hello, utilizzare il resolver di memorizzazione nella cache di hello come input.
-   Ulteriori informazioni sull'utilizzo della chiave dell'insieme di credenziali sono reperibile negli esempi di codice hello crittografia. <fix URL>  
+1. Creare un segreto non in linea e caricarlo nell’insieme di credenziali chiave.  
+2. Utilizzare l’identificatore di base del segreto come parametro per risolvere la versione corrente del segreto per la crittografia e memorizzare nella cache queste informazioni in locale. Utilizzare CachingKeyResolver per la memorizzazione nella cache; non è previsto che gli utenti implementino la propria logica di memorizzazione nella cache.  
+3. Utilizzare il resolver di memorizzazione nella cache come input durante la creazione del criterio di crittografia.
+   Altre informazioni sull'uso dell'insieme di credenziali delle chiavi sono disponibili negli esempi di codice di crittografia. <fix URL>  
 
 ## <a name="best-practices"></a>Procedure consigliate
-Supporto della crittografia è disponibile solo nella libreria client di archiviazione hello for Java.
+Il supporto della crittografia è disponibile solo nella libreria client di archiviazione per Java.
 
 > [!IMPORTANT]
 > Quando si utilizza la crittografia lato client, tenere presente i seguenti aspetti importanti:
 > 
-> * Quando la scrittura o lettura dal tooan crittografati blob, usare i comandi di caricamento di tutto il blob e i comandi di download di intervallo/intero blob. Evitare di scrivere tooan blob crittografato tramite operazioni di protocollo, ad esempio inserire blocco, inserire elenco Blocca, scrivere pagine, pagine deselezionare o Append Block in caso contrario è possibile danneggiare blob crittografato hello e renderlo illeggibile.
-> * Per le tabelle esiste un vincolo simile. Essere toonot attenzione aggiornamento crittografato proprietà senza aggiornare i metadati di crittografia hello.  
-> * Se si impostano i metadati sul blob crittografato hello, si potrebbero sovrascrivere hello relative a crittografia metadati richiesti per la decrittografia, poiché l'impostazione dei metadati non additivo. Ciò vale anche per gli snapshot; evitare di specificare i metadati durante la creazione di uno snapshot di un BLOB crittografato. Se è necessario impostare i metadati, hello toocall assicurarsi di essere **downloadAttributes** tooget primo metodo hello i metadati di crittografia corrente ed evitare di scritture simultanee durante l'impostazione di metadati.  
-> * Abilitare hello **requireEncryption** flag nelle opzioni di richiesta hello predefinito per gli utenti che dovrebbero funzionare solo con i dati crittografati. Per ulteriori informazioni, vedere di seguito.  
+> * Durante la lettura o la scrittura di un BLOB crittografato, utilizzare i comandi di caricamento completo dei BLOB e i comandi di download completo o basato sull'intervallo dei BLOB. Evitare di scrivere in un BLOB crittografato usando le operazioni di protocollo, ad esempio Put Block, Put Block List, Write Pages, Clear Pages o Append Block. In caso contrario, si potrebbe danneggiare il BLOB crittografato e renderlo illeggibile.
+> * Per le tabelle esiste un vincolo simile. Prestare attenzione a non aggiornare le proprietà crittografate senza aggiornare i metadati di crittografia.  
+> * Se si impostano i metadati nel BLOB crittografato, si potrebbero sovrascrivere i metadati correlati alla crittografia richiesti per la decrittografia, poiché i metadati di impostazione non sono additivi. Ciò vale anche per gli snapshot; evitare di specificare i metadati durante la creazione di uno snapshot di un BLOB crittografato. Per impostare i metadati, assicurarsi di chiamare prima di tutto il metodo **downloadAttributes** per ottenere i metadati di crittografia correnti ed evitare le scritture simultanee durante l'impostazione dei metadati.  
+> * Abilitare il flag **requireEncryption** nelle opzioni di richiesta predefinite per gli utenti che dovrebbero lavorare solo con i dati crittografati. Per ulteriori informazioni, vedere di seguito.  
 > 
 > 
 
 ## <a name="client-api--interface"></a>API client/interfaccia
-Durante la creazione di un oggetto EncryptionPolicy, gli utenti possono specificare solo una chiave (implementazione IKey), solo un resolver (implementazione IKeyResolver) o entrambi. IKey è hello chiave tipo di base che è identificato mediante un identificatore di chiave e che fornisce la logica di hello per ritorno a capo/annullamento del wrapping. IKeyResolver è tooresolve usato una chiave durante il processo di decrittografia hello. Definisce un metodo ResolveKey che restituisce un IKey dato un identificatore di chiave. In questo modo gli utenti hello possibilità toochoose tra più chiavi che vengono gestiti in più posizioni.
+Durante la creazione di un oggetto EncryptionPolicy, gli utenti possono specificare solo una chiave (implementazione IKey), solo un resolver (implementazione IKeyResolver) o entrambi. IKey è il tipo di chiave di base che viene identificato utilizzando un identificatore di chiave e che fornisce la logica per wrapping/rimozione del wrapping. IKeyResolver viene utilizzato per risolvere una chiave durante la procedura di decrittografia. Definisce un metodo ResolveKey che restituisce un IKey dato un identificatore di chiave. Ciò fornisce agli utenti la possibilità di scegliere tra più chiavi che vengono gestite in più posizioni.
 
-* Per la crittografia, hello usata sempre e assenza hello di una chiave si verificherà un errore.  
+* Per la crittografia, la chiave viene sempre utilizzata e l'assenza di una chiave genera un errore.  
 * Per la decrittografia:  
   
-  * resolver chiave Hello viene richiamato se chiave hello tooget specificato. Se il resolver hello viene specificato, ma non dispone di un mapping per l'identificatore di chiave hello, viene generato un errore.  
-  * Se il sistema di risoluzione non è specificato, ma viene specificata una chiave, chiave hello viene utilizzato se il relativo identificatore corrisponde identificatore di chiave hello necessario. Se l'identificatore hello non corrisponde, viene generato un errore.  
+  * Se specificato per ottenere la chiave, viene richiamato il resolver di chiave. Se il resolver è specificato, ma non dispone di un mapping per l'identificatore di chiave, viene generato un errore.  
+  * Se il resolver non è specificato, ma viene specificata una chiave, la chiave viene utilizzata se l’identificatore corrisponde all’identificatore della chiave richiesta. Se l'identificatore non corrisponde, viene generato un errore.  
     
-    Hello [esempi crittografia](https://github.com/Azure/azure-storage-net/tree/master/Samples/GettingStarted/EncryptionSamples) <fix URL>viene illustrato uno scenario end-to-end più dettagliato per BLOB, code e tabelle, insieme con l'integrazione dell'insieme di credenziali chiave.
+    Gli [esempi di crittografia](https://github.com/Azure/azure-storage-net/tree/master/Samples/GettingStarted/EncryptionSamples) <fix URL>rappresentano uno scenario end-to-end più dettagliato per BLOB, code e tabelle, assieme all'integrazione dell'insieme di credenziali delle chiavi.
 
 ### <a name="requireencryption-mode"></a>Modalità RequireEncryption
-Gli utenti possono facoltativamente abilitare una modalità operativa quando tutte le operazioni di caricamento e download devono essere crittografate. In questa modalità, avrà esito negativo tentativi tooupload dati senza una crittografia criteri o scaricare dati che non vengono crittografati nel servizio hello client hello. Hello **requireEncryption** flag dell'oggetto di opzioni di richiesta hello controlla questo comportamento. Se l'applicazione consente di crittografare tutti gli oggetti archiviati in archiviazione di Azure, è possibile impostare hello **requireEncryption** proprietà opzioni di richiesta di hello predefinite per oggetto hello client del servizio.   
+Gli utenti possono facoltativamente abilitare una modalità operativa quando tutte le operazioni di caricamento e download devono essere crittografate. In questa modalità, i tentativi di caricare dati senza un criterio di crittografia o di scaricare dati non crittografati nel servizio avranno esito negativo nel client. Il flag **requireEncryption** dell'oggetto opzioni di richiesta controlla questo comportamento. Se l'applicazione esegue la crittografia di tutti gli oggetti archiviati in Archiviazione di Azure, è possibile impostare la proprietà **requireEncryption** sulle opzioni di richiesta predefinite per l'oggetto client del servizio.   
 
-Ad esempio, utilizzare **CloudBlobClient.getDefaultRequestOptions().setRequireEncryption(true)** toorequire crittografia per tutte le operazioni blob eseguite tramite l'oggetto client.
+Ad esempio, usare **CloudBlobClient.getDefaultRequestOptions().setRequireEncryption(true)** per richiedere la crittografia di tutte le operazioni di BLOB eseguite tramite l'oggetto client.
 
 ### <a name="blob-service-encryption"></a>Crittografia del servizio BLOB
-Creare un **BlobEncryptionPolicy** e impostarlo in Opzioni di richiesta hello (per l'API o a un livello di client tramite **DefaultRequestOptions**). Tutti gli altri verranno gestiti dalla libreria client hello internamente.
+Creare un oggetto **BlobEncryptionPolicy** e impostarlo nelle opzioni di richiesta (per API o a livello di client tramite **DefaultRequestOptions**). Tutto il resto verrà gestito dalla libreria client internamente.
 
 ```java
-// Create hello IKey used for encryption.
+// Create the IKey used for encryption.
 RsaKey key = new RsaKey("private:key1" /* key identifier */);
 
-// Create hello encryption policy toobe used for upload and download.
+// Create the encryption policy to be used for upload and download.
 BlobEncryptionPolicy policy = new BlobEncryptionPolicy(key, null);
 
-// Set hello encryption policy on hello request options.
+// Set the encryption policy on the request options.
 BlobRequestOptions options = new BlobRequestOptions();
 options.setEncryptionPolicy(policy);
 
-// Upload hello encrypted contents toohello blob.
+// Upload the encrypted contents to the blob.
 blob.upload(stream, size, null, options, null);
 
-// Download and decrypt hello encrypted contents from hello blob.
+// Download and decrypt the encrypted contents from the blob.
 ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 blob.download(outputStream, null, options, null);
 ```
 
 ### <a name="queue-service-encryption"></a>Crittografia del servizio di accodamento
-Creare un **QueueEncryptionPolicy** e impostarlo in Opzioni di richiesta hello (per l'API o a un livello di client tramite **DefaultRequestOptions**). Tutti gli altri verranno gestiti dalla libreria client hello internamente.
+Creare un oggetto **QueueEncryptionPolicy** e impostarlo nelle opzioni di richiesta (per API o a livello di client tramite **DefaultRequestOptions**). Tutto il resto verrà gestito dalla libreria client internamente.
 
 ```java
-// Create hello IKey used for encryption.
+// Create the IKey used for encryption.
 RsaKey key = new RsaKey("private:key1" /* key identifier */);
 
-// Create hello encryption policy toobe used for upload and download.
+// Create the encryption policy to be used for upload and download.
 QueueEncryptionPolicy policy = new QueueEncryptionPolicy(key, null);
 
 // Add message
@@ -192,15 +192,15 @@ CloudQueueMessage retrMessage = queue.retrieveMessage(30, options, null);
 ```
 
 ### <a name="table-service-encryption"></a>Crittografia del servizio tabelle
-Inoltre toocreating un criterio di crittografia e l'impostazione in Opzioni di richiesta, è necessario specificare un **EncryptionResolver** in **TableRequestOptions**, o impostare l'attributo su hello hello [Encrypt] getter e setter dell'entità.
+Oltre a creare un criterio di crittografia e a impostarlo nelle opzioni di richiesta, è necessario specificare **EncryptionResolver** in **TableRequestOptions** o impostare l'attributo [Encrypt] nelle proprietà Get e Set dell'entità.
 
-### <a name="using-hello-resolver"></a>Mediante resolver hello
+### <a name="using-the-resolver"></a>Utilizzo del resolver
 
 ```java
-// Create hello IKey used for encryption.
+// Create the IKey used for encryption.
 RsaKey key = new RsaKey("private:key1" /* key identifier */);
 
-// Create hello encryption policy toobe used for upload and download.
+// Create the encryption policy to be used for upload and download.
 TableEncryptionPolicy policy = new TableEncryptionPolicy(key, null);
 
 TableRequestOptions options = new TableRequestOptions()
@@ -219,7 +219,7 @@ options.setEncryptionResolver(new EncryptionResolver() {
 currentTable.execute(TableOperation.insert(ent), options, null);
 
 // Retrieve Entity
-// No need toospecify an encryption resolver for retrieve
+// No need to specify an encryption resolver for retrieve
 TableRequestOptions retrieveOptions = new TableRequestOptions()
 retrieveOptions.setEncryptionPolicy(policy);
 
@@ -228,7 +228,7 @@ TableResult result = currentTable.execute(operation, retrieveOptions, null);
 ```
 
 ### <a name="using-attributes"></a>Utilizzo di attributi
-Come accennato in precedenza, se l'entità hello implementa TableEntity, quindi hello getter di proprietà e setter può essere decorata con l'attributo [Encrypt] hello anziché specificare hello **EncryptionResolver**.
+Come indicato in precedenza, se l'entità implementa TableEntity, il getter e il setter delle proprietà possono essere decorati con l'attributo [Encrypt] invece di specificare **EncryptionResolver**.
 
 ```java
 private string encryptedProperty1;
@@ -245,12 +245,12 @@ public void setEncryptedProperty1(final String encryptedProperty1) {
 ```
 
 ## <a name="encryption-and-performance"></a>Crittografia e prestazioni
-Si noti che la crittografia dei dati di archiviazione restituisce un overhead delle prestazioni aggiuntivo. Hello contenuto chiave e vettore di Inizializzazione deve essere generato, contenuto hello deve essere crittografato e metadati aggiuntivi devono essere formattato e caricati. Questo overhead variano a seconda della quantità di hello dei dati da crittografare. È consigliabile che i clienti testano sempre le proprie applicazioni per le prestazioni durante lo sviluppo.
+Si noti che la crittografia dei dati di archiviazione restituisce un overhead delle prestazioni aggiuntivo. La chiave simmetrica e il vettore devono essere generati, il contenuto stesso deve essere crittografato e metadati aggiuntivi devono essere formattati e caricati. Questo overhead varia a seconda della quantità di dati da crittografare. È consigliabile che i clienti testano sempre le proprie applicazioni per le prestazioni durante lo sviluppo.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Scaricare hello [Azure Storage Client Library per il pacchetto di Maven Java](http://mvnrepository.com/artifact/com.microsoft.azure/azure-storage)  
-* Scaricare hello [Azure Storage Client Library per il codice sorgente Java da GitHub](https://github.com/Azure/azure-storage-java)   
-* Scaricare hello libreria Maven insieme di credenziali chiave di Azure per i pacchetti di Maven Java:
+* Scaricare la [libreria client di archiviazione di Azure per il pacchetto Java Maven](http://mvnrepository.com/artifact/com.microsoft.azure/azure-storage)  
+* Scaricare la [libreria client di Archiviazione di Azure per il codice Java Source da GitHub](https://github.com/Azure/azure-storage-java)   
+* Scaricare la libreria Maven dell'insieme di credenziali delle chiavi di Azure per i pacchetti Java Maven seguenti:
   * [core](http://mvnrepository.com/artifact/com.microsoft.azure/azure-keyvault-core) 
-  * [client](http://mvnrepository.com/artifact/com.microsoft.azure/azure-keyvault)
-* Visitare hello [documentazione dell'insieme di credenziali chiave di Azure](../../key-vault/key-vault-whatis.md)
+  * [client](http://mvnrepository.com/artifact/com.microsoft.azure/azure-keyvault) 
+* Vedere la [documentazione sull'insieme di credenziali delle chiavi di Azure](../../key-vault/key-vault-whatis.md)

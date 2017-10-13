@@ -1,6 +1,6 @@
 ---
-title: i nodi del cluster HPC Pack aaaAutoscale | Documenti Microsoft
-description: Automaticamente aumentare e ridurre il numero di hello dei nodi di calcolo cluster HPC Pack in Azure
+title: "Scalabilità automatica dei nodi di calcolo del cluster HPC Pack | Microsoft Docs"
+description: Aumentare e ridurre automaticamente il numero di nodi di calcolo del cluster HPC Pack in Azure
 services: virtual-machines-windows
 documentationcenter: 
 author: dlepow
@@ -14,38 +14,38 @@ ms.tgt_pltfrm: vm-multiple
 ms.workload: big-compute
 ms.date: 12/08/2016
 ms.author: danlep
-ms.openlocfilehash: 0bdf55625d337a2bbfe05677682d645a584798d1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0dc0d15c64d8951c3c457df73588c37418a3c8a4
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="automatically-grow-and-shrink-hello-hpc-pack-cluster-resources-in-azure-according-toohello-cluster-workload"></a>Aumentare e ridurre le risorse di cluster HPC Pack hello in Azure in base a carico di lavoro cluster toohello automaticamente
-Se si distribuiscono nodi di "Potenziamento" di Azure nel cluster HPC Pack o si crea un cluster HPC Pack nelle macchine virtuali di Azure, è possibile aumentare o ridurre le risorse cluster hello, ad esempio nodi o core in base al carico di lavoro hello in cluster hello automaticamente. Scalabilità delle risorse cluster hello in questo modo consente toouse le risorse di Azure in modo più efficiente e controllare i costi.
+# <a name="automatically-grow-and-shrink-the-hpc-pack-cluster-resources-in-azure-according-to-the-cluster-workload"></a>Aumentare e ridurre automaticamente le risorse del cluster HPC Pack in Azure in base al carico di lavoro del cluster
+Se si distribuiscono nodi "burst" di Azure nel cluster HPC Pack o si crea un cluster HPC Pack nelle macchine virtuali di Azure, può essere necessario avere a disposizione un modo per aumentare o ridurre automaticamente le risorse del cluster di Azure, ad esempio i nodi o core, in base al carico di lavoro del cluster. Ridimensionando le risorse del cluster in questo modo, è possibile usare le risorse di Azure in modo più efficiente e controllare i costi.
 
-Questo articolo illustra due modalità di HPC Pack fornisce le risorse di calcolo tooautoscale:
+Questo articolo illustra due modalità offerte da HPC Pack per la scalabilità automatica delle risorse di calcolo:
 
-* proprietà del cluster HPC Pack Hello **AutoGrowShrink**
+* Proprietà del cluster HPC Pack **AutoGrowShrink**
 
-* Hello **AzureAutoGrowShrink.ps1** script di HPC PowerShell
+* Script di HPC PowerShell **AzureAutoGrowShrink.ps1**
 
 [!INCLUDE [learn-about-deployment-models](../../../../includes/learn-about-deployment-models-both-include.md)]
 
 Attualmente è possibile solo aumentare e ridurre automaticamente i nodi di calcolo HPC Pack che eseguono un sistema operativo Windows Server.
 
 
-## <a name="set-hello-autogrowshrink-cluster-property"></a>Impostare la proprietà di hello AutoGrowShrink cluster
+## <a name="set-the-autogrowshrink-cluster-property"></a>Impostare la proprietà del cluster AutoGrowShrink
 ### <a name="prerequisites"></a>Prerequisiti
 
-* **HPC Pack 2012 R2 Update 2 o versioni successive cluster** -nodo head del cluster hello può essere distribuito in locale o in una macchina virtuale di Azure. Vedere [configurazione di un cluster ibrido con HPC Pack](../../../cloud-services/cloud-services-setup-hybrid-hpcpack-cluster.md) tooget avviato con un nodo head locale e i nodi di "Potenziamento" di Azure. Vedere hello [script di distribuzione IaaS di HPC Pack](hpcpack-cluster-powershell-script.md) tooquickly distribuire un cluster HPC Pack nelle macchine virtuali di Azure.
+* **Cluster HPC Pack 2012 R2 Update 2 o versione successiva** : il nodo head del cluster può essere distribuito in locale o in una macchina virtuale di Azure. Vedere [Configurare un cluster ibrido con HPC Pack](../../../cloud-services/cloud-services-setup-hybrid-hpcpack-cluster.md) per iniziare con un nodo head locale e i nodi "burst" di Azure. Vedere lo [script di distribuzione IaaS di HPC Pack](hpcpack-cluster-powershell-script.md) per distribuire velocemente un cluster HPC Pack in macchine virtuali di Azure.
 
 * **Per un cluster con un nodo head in Azure (modello di distribuzione di Resource Manager)**: a partire da HPC Pack 2016, l'autenticazione del certificato in un'applicazione Azure Active Directory viene usata per aumentare o ridurre automaticamente le macchine virtuali del cluster distribuite tramite Azure Resource Manager. Configurare un certificato come segue:
 
-  1. Dopo la distribuzione di cluster, la connessione dal nodo head tooone di Desktop remoto.
+  1. Dopo la distribuzione del cluster, connettersi a un solo nodo head da desktop remoto.
 
-  2. Caricamento del nodo head di hello certificato (in formato PFX con la chiave privata) tooeach e installare tooCert:\LocalMachine\My e Cert: \LocalMachine\Root.
+  2. Caricare il certificato (formato PFX con chiave privata) su ogni nodo head e installarlo in Cert:\LocalMachine\My and Cert:\LocalMachine\Root.
 
-  3. Avviare PowerShell di Azure come amministratore ed eseguire hello seguenti comandi in un nodo head:
+  3. Avviare Azure PowerShell come amministratore ed eseguire i comandi seguenti in un nodo head:
 
     ```powershell
         cd $env:CCP_HOME\bin
@@ -53,19 +53,19 @@ Attualmente è possibile solo aumentare e ridurre automaticamente i nodi di calc
         Login-AzureRmAccount
     ```
         
-    Se l'account è in più di un tenant di Azure Active Directory o di sottoscrizione di Azure, è possibile eseguire l'esempio hello tooselect hello corretto tenant e una sottoscrizione di comando:
+    Se l'account si trova in più di un tenant di Azure Active Directory o in più sottoscrizioni di Azure, è possibile eseguire il comando seguente per selezionare il tenant e la sottoscrizione corretti:
   
     ```powershell
         Login-AzureRMAccount -TenantId <TenantId> -SubscriptionId <subscriptionId>
     ```     
        
-    Eseguire hello successivo comando tooview hello selezionato tenant e sottoscrizione:
+    Eseguire questo comando per visualizzare il tenant e la sottoscrizione attualmente selezionati:
     
     ```powershell
         Get-AzureRMContext
     ```
 
-  4. Eseguire lo script seguente hello
+  4. Eseguire lo script seguente
 
     ```powershell
         .\ConfigARMAutoGrowShrinkCert.ps1 -DisplayName “YourHpcPackAppName” -HomePage "https://YourHpcPackAppHomePage" -IdentifierUri "https://YourHpcPackAppUri" -CertificateThumbprint "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" -TenantId xxxxxxxx-xxxxx-xxxxx-xxxxx-xxxxxxxxxxxx
@@ -73,63 +73,63 @@ Attualmente è possibile solo aumentare e ridurre automaticamente i nodi di calc
 
     dove
 
-    **DisplayName**: nome visualizzato dell'applicazione Azure Active. Se un'applicazione hello non esiste, viene creato in Azure Active Directory.
+    **DisplayName**: nome visualizzato dell'applicazione Azure Active. Se l'applicazione non esiste, viene creata in Azure Active Directory.
 
-    **Home page** -hello home page di un'applicazione hello. È possibile configurare un URL fittizi, come hello sopra riportato.
+    **Home page**: home page dell'applicazione. È possibile configurare un URL fittizio, come nell'esempio precedente.
 
-    **IdentifierUri** -identificatore dell'applicazione hello. È possibile configurare un URL fittizi, come hello sopra riportato.
+    **IdentifierUri**: identificatore dell'applicazione. È possibile configurare un URL fittizio, come nell'esempio precedente.
 
-    **CertificateThumbprint** -identificazione personale del certificato hello installato nel nodo head di hello nel passaggio 1.
+    **CertificateThumbprint**: identificazione personale del certificato installato nel nodo head nel passaggio 1.
 
-    **TenantId**: ID tenant di Azure Active Directory. È possibile ottenere l'ID Tenant hello dal portale di Azure Active Directory hello **proprietà** pagina.
+    **TenantId**: ID tenant di Azure Active Directory. È possibile ottenere l'ID tenant dalla pagina **Proprietà** del portale di Azure Active Directory.
 
     Per altre informazioni su **ConfigARMAutoGrowShrinkCert.ps1**, eseguire `Get-Help .\ConfigARMAutoGrowShrinkCert.ps1 -Detailed`.
 
 
-* **Per un cluster con un nodo head in Azure (modello di distribuzione classica)** : se si utilizza del cluster di hello toocreate script distribuzione IaaS di HPC Pack hello in hello classico modello di distribuzione, abilitare hello **AutoGrowShrink** cluster proprietà impostando l'opzione AutoGrowShrink hello nel file di configurazione del cluster hello. Per informazioni dettagliate, vedere la documentazione di hello che accompagna hello [download dello script](https://www.microsoft.com/download/details.aspx?id=44949).
+* **Per un cluster con un nodo head in Azure (modello di distribuzione classica)** se usa lo script di distribuzione IaaS di HPC Pack per creare il cluster nel modello di distribuzione classica, abilitare la proprietà del cluster **AutoGrowShrink** impostando l'opzione AutoGrowShrink nel file di configurazione del cluster. Per informazioni dettagliate, vedere la documentazione che accompagna il [download dello script](https://www.microsoft.com/download/details.aspx?id=44949).
 
-    In alternativa, abilitare hello **AutoGrowShrink** proprietà cluster dopo la distribuzione di cluster hello utilizzando HPC PowerShell i comandi descritti nella seguente sezione hello. tooprepare per questo, primo hello completo seguendo i passaggi:
+    In alternativa, abilitare la proprietà del cluster **AutoGrowShrink** dopo aver distribuito il cluster con i comandi di HPC PowerShell descritti nella sezione seguente. Per prepararsi, completare prima i passaggi seguenti:
 
-  1. Configurare un certificato di gestione di Azure nel nodo head hello e in hello sottoscrizione di Azure. Per una distribuzione di test, è possibile usare hello predefinito Microsoft HPC Azure certificato autofirmato che consente di installare HPC Pack nel nodo head hello e quindi caricare tale tooyour certificato sottoscrizione di Azure. Per le opzioni e procedure, vedere hello [linee guida della libreria TechNet](https://technet.microsoft.com/library/gg481759.aspx).
+  1. Configurare un certificato di gestione di Azure nel nodo head e nella sottoscrizione di Azure. Per una distribuzione di prova, è possibile usare il certificato autofirmato Microsoft HPC Azure predefinito che consente di installare HPC Pack nel nodo head e quindi caricare il certificato nella sottoscrizione di Azure. Per le opzioni e i passaggi, vedere le [informazioni aggiuntive nella libreria TechNet](https://technet.microsoft.com/library/gg481759.aspx).
 
-  2. Eseguire **regedit** nel nodo head hello passare tooHKLM\SOFTWARE\Micorsoft\HPC\IaasInfo e aggiungere un valore stringa. Impostare il nome di valore hello troppo "Identificazione personale" e l'identificazione personale toohello di dati di valore del certificato hello nel passaggio 1.
+  2. Eseguire **regedit** nel nodo head, passare a HKLM\SOFTWARE\Micorsoft\HPC\IaasInfo e aggiungere un valore stringa. Impostare il nome valore su "Identificazione personale" e dati valore sull'identificazione personale del certificato nel passaggio 1.
 
-### <a name="hpc-powershell-commands-tooset-hello-autogrowshrink-property"></a>Proprietà di HPC PowerShell commands tooset hello AutoGrowShrink
-Di seguito sono tooset i comandi di PowerShell HPC esempio **AutoGrowShrink** tootune e il comportamento di altri parametri. Vedere [AutoGrowShrink parametri](#AutoGrowShrink-parameters) più avanti in questo articolo per l'elenco completo di hello delle impostazioni.
+### <a name="hpc-powershell-commands-to-set-the-autogrowshrink-property"></a>Comandi di HPC PowerShell per impostare la proprietà AutoGrowShrink
+Di seguito sono riportati i comandi di HPC PowerShell di esempio per impostare **AutoGrowShrink** e ottimizzare il comportamento con parametri aggiuntivi. Vedere [Parametri di AutoGrowShrink](#AutoGrowShrink-parameters) più avanti in questo articolo per l'elenco completo delle impostazioni.
 
-toorun questi comandi, avviare PowerShell HPC nel nodo head del cluster hello come amministratore.
+Per eseguire questi comandi, avviare HPC PowerShell nel nodo head del cluster come amministratore.
 
-**hello tooenable AutoGrowShrink proprietà**
+**Per abilitare la proprietà AutoGrowShrink**
 
 ```powershell
 Set-HpcClusterProperty –EnableGrowShrink 1
 ```
 
-**hello toodisable AutoGrowShrink proprietà**
+**Per disabilitare la proprietà AutoGrowShrink**
 
 ```powershell
 Set-HpcClusterProperty –EnableGrowShrink 0
 ```
 
-**hello toochange aumentare l'intervallo in minuti**
+**Per modificare l'intervallo di aumento in minuti**
 
 ```powershell
 Set-HpcClusterProperty –GrowInterval <interval>
 ```
 
-**hello toochange ridurre l'intervallo in minuti**
+**Per modificare l'intervallo di riduzione in minuti**
 
 ```powershell
 Set-HpcClusterProperty –ShrinkInterval <interval>
 ```
 
-**configurazione corrente di hello tooview di AutoGrowShrink**
+**Per visualizzare la configurazione corrente di AutoGrowShrink**
 
 ```powershell
 Get-HpcClusterProperty –AutoGrowShrink
 ```
 
-**gruppi di nodi tooexclude da AutoGrowShrink**
+**Per escludere i gruppi di nodi da AutoGrowShrink**
 
 ```powershell
 Set-HpcClusterProperty –ExcludeNodeGroups <group1,group2,group3>
@@ -140,53 +140,53 @@ Set-HpcClusterProperty –ExcludeNodeGroups <group1,group2,group3>
 >
 
 ### <a name="autogrowshrink-parameters"></a>Parametri di AutoGrowShrink 
-di seguito Hello sono AutoGrowShrink parametri che è possibile modificare tramite hello **Set HpcClusterProperty** comando.
+Di seguito sono riportati i parametri di AutoGrowShrink che è possibile modificare tramite il comando **Set HpcClusterProperty** .
 
-* **EnableGrowShrink** : passare tooenable o disabilitare hello **AutoGrowShrink** proprietà.
-* **ParamSweepTasksPerCore** -numero di sweep parametrico attività toogrow uno dei core. valore predefinito di Hello è toogrow un core per ogni attività.
-
-  > [!NOTE]
-  > Modifiche di HPC Pack QFE KB3134307 **ParamSweepTasksPerCore** troppo**TasksPerResourceUnit**. È basato sul tipo di risorsa di processo hello e può essere nodo, socket o core.
-  >
-  >
-* **GrowThreshold** -soglia di attività in coda tootrigger aumento automatico delle dimensioni. valore predefinito di Hello è 1, che significa che se sono presenti 1 o più attività in hello in coda, aumenta automaticamente i nodi.
-* **GrowInterval** -intervallo in minuti tootrigger aumento automatico delle dimensioni. intervallo di Hello predefinito è 5 minuti.
-* **ShrinkInterval** -intervallo in minuti tootrigger la compattazione automatica. intervallo di Hello predefinito è 5 minuti. |
-* **ShrinkIdleTimes** -numero di controlli continua tooshrink tooindicate hello nodi è inattivo. valore predefinito di Hello è pari a 3 volte. Ad esempio, se hello **ShrinkInterval** è 5 minuti, HPC Pack controlla se il nodo hello è inattivo ogni 5 minuti. Se i nodi di hello sono in stato di inattività hello dopo 3 continua controlla (15 minuti), HPC Pack compatta tale nodo.
-* **ExtraNodesGrowRatio** -percentuale aggiuntiva di toogrow nodi per i processi di interfaccia MPI (Message Passing). valore predefinito di Hello è 1, il che significa che HPC Pack aumenta nodi % 1 per i processi MPI.
-* **GrowByMin** -Switch tooindicate se il criterio di aumento automatico delle dimensioni hello si basa su risorse di hello minime necessarie per il processo di hello. valore predefinito di Hello è false, il che significa che HPC Pack aumenta i nodi per i processi in base alle risorse di hello massimo richiesto per i processi di hello.
-* **SoaJobGrowThreshold** -soglia di arrivo SOA richieste tootrigger hello automatico aumento delle dimensioni di processo. valore predefinito di Hello è 50000.
+* **EnableGrowShrink**: opzione per abilitare o disabilitare la proprietà **AutoGrowShrink**.
+* **ParamSweepTasksPerCore** : numero di attività di sweep parametrico per l'aumento di un core. Il valore predefinito è l'aumento di un core per ogni attività.
 
   > [!NOTE]
-  > Questo parametro è supportato a partire da HPC Pack 2012 R2 Update 3.
+  > HPC Pack QFE KB3134307 modifica **ParamSweepTasksPerCore** in **TasksPerResourceUnit**. Si basa sul tipo di risorsa del processo e può essere un nodo, un socket o un core.
   >
   >
-* **SoaRequestsPerCore** -numero di SOA in ingresso richieste toogrow uno dei core. valore predefinito di Hello è 20000.
+* **GrowThreshold** : soglia di attività in coda per attivare l'aumento automatico. Il valore predefinito è 1 e significa che se sono presenti una o più attività in coda, i nodi vengono aumentati automaticamente.
+* **GrowInterval** : intervallo in minuti per attivare l'aumento automatico. L'intervallo predefinito è 5 minuti.
+* **ShrinkInterval** : intervallo in minuti per attivare la riduzione automatica. L'intervallo predefinito è 5 minuti.|
+* **ShrinkIdleTimes** : numero di controlli continui da ridurre per indicare i nodi sono inattivi. Il valore predefinito è 3 volte. Ad esempio, se **ShrinkInterval** è di 5 minuti, HPC Pack controlla se il nodo è inattivo ogni 5 minuti. Se i nodi sono in uno stato di inattività dopo 3 controlli continui (15 minuti), HPC Pack riduce quel nodo.
+* **ExtraNodesGrowRatio** -percentuale aggiuntiva di nodi da aumentare per i processi MPI (Message Passing Interface). Il valore predefinito è 1 e significa che HPC Pack aumenta l'1% dei nodi per i processi MPI.
+* **GrowByMin** : opzione che indica se i criteri di aumento automatico sono basati sulle risorse minime necessarie per il processo. Il valore predefinito è false e significa che HPC Pack aumenta i nodi per i processi in base alle risorse massime richieste per i processi.
+* **SoaJobGrowThreshold** : soglia di richieste SOA in ingresso per attivare il processo di aumento automatico. Il valore predefinito è 50000.
 
   > [!NOTE]
   > Questo parametro è supportato a partire da HPC Pack 2012 R2 Update 3.
   >
-* **ExcludeNodeGroups** : i nodi in hello specificati gruppi di nodi non automaticamente aumentare e ridurre.
+  >
+* **SoaRequestsPerCore** : numero di richieste SOA in ingresso per l'aumento di un core. The default value is 20000.
+
+  > [!NOTE]
+  > Questo parametro è supportato a partire da HPC Pack 2012 R2 Update 3.
+  >
+* **ExcludeNodeGroups**: i nodi nei gruppi di nodi specificati non vengono aumentati e ridotti in automatico.
   
   > [!NOTE]
   > Questo parametro è supportato a partire da HPC Pack 2016.
   >
 
 ### <a name="mpi-example"></a>Esempio MPI
-Per impostazione predefinita HPC Pack aumenta di 1% nodi aggiuntivi per i processi MPI (**ExtraNodesGrowRatio** è impostato too1). motivo di Hello è MPI potrebbe richiedere più nodi che il processo di hello può essere eseguito solo quando tutti i nodi sono pronti. Quando Azure avvia nodi, in alcuni casi un nodo potrebbe essere necessario più tempo toostart rispetto ad altri, causando toobe altri nodi inattivo durante l'attesa di tale nodo tooget pronto. Aumentando i nodi supplementari, HPC Pack riduce il tempo di attesa delle risorse, riducendo potenzialmente i costi. percentuale di hello tooincrease di nodi aggiuntivi per i processi MPI (ad esempio, % too10), eseguire un comando simile a
+Per impostazione predefinita HPC Pack aumenta di 1% i nodi aggiuntivi per i processi MPI. **ExtraNodesGrowRatio** è impostato su 1. Il motivo è che MPI può richiedere più nodi e il processo può essere eseguito solo quando tutti i nodi sono pronti. Quando Azure avvia i nodi, in alcuni casi l'avvio di un nodo può richiedere più tempo rispetto ad altri, causando l'inattività degli altri nodi in attesa che quel nodo sia pronto. Aumentando i nodi supplementari, HPC Pack riduce il tempo di attesa delle risorse, riducendo potenzialmente i costi. Per aumentare la percentuale di nodi aggiuntivi per i processi MPI, ad esempio del 10%, eseguire un comando simile a
 
     Set-HpcClusterProperty -ExtraNodesGrowRatio 10
 
 ### <a name="soa-example"></a>Esempio SOA
-Per impostazione predefinita, **SoaJobGrowThreshold** è impostato too50000 e **SoaRequestsPerCore** è impostato too200000. Se si invia un processo SOA con 70000 richieste, ci sarà una sola attività in coda e le richieste in ingresso saranno 70000. In questo caso HPC Pack aumenta 1 core per hello in coda attività e per le richieste in ingresso, aumento delle dimensioni (70000 50000) / core 20000 = 1, in totale aumenta 2 core per questo processo SOA.
+Per impostazione predefinita, **SoaJobGrowThreshold** è impostata su 50000 e **SoaRequestsPerCore** è impostato su 200000. Se si invia un processo SOA con 70000 richieste, ci sarà una sola attività in coda e le richieste in ingresso saranno 70000. In questo caso HPC Pack aumenta 1 core per l'attività in coda e per le richieste in ingresso aumenta (70000 - 50000)/20000 = 1 core, in modo da aumentare in totale 2 core per questo processo SOA.
 
-## <a name="run-hello-azureautogrowshrinkps1-script"></a>Eseguire script AzureAutoGrowShrink.ps1 hello
+## <a name="run-the-azureautogrowshrinkps1-script"></a>Eseguire lo script AzureAutoGrowShrink.ps1
 ### <a name="prerequisites"></a>Prerequisiti
 
-* **HPC Pack 2012 R2 Update 1 o versioni successive cluster** : hello **AzureAutoGrowShrink.ps1** script viene installato nella cartella di hello % CCP_HOME % bin. nodo head del cluster Hello può essere distribuito in locale o in una macchina virtuale di Azure. Vedere [configurazione di un cluster ibrido con HPC Pack](../../../cloud-services/cloud-services-setup-hybrid-hpcpack-cluster.md) tooget avviato con un nodo head locale e i nodi di "Potenziamento" di Azure. Vedere hello [script di distribuzione IaaS di HPC Pack](hpcpack-cluster-powershell-script.md) tooquickly distribuire un cluster HPC Pack nelle macchine virtuali di Azure oppure usare un [modello di avvio rapido di Azure](https://azure.microsoft.com/documentation/templates/create-hpc-cluster/).
-* **Azure PowerShell 1.4.0** -script hello attualmente dipende da questa versione specifica di Azure PowerShell.
-* **Per un cluster con Azure burst nodi** -Esegui script hello in un computer client in cui è installato HPC Pack o nel nodo head hello. Se in esecuzione in un computer client, assicurarsi di impostare hello variabile $env: nodo head di CCP_SCHEDULER toopoint toohello. i nodi di Azure "potenziamento" Hello devono essere aggiunte toohello cluster, ma possono risultare non distribuiti hello.
-* **Per un cluster distribuito in macchine virtuali di Azure (modello di distribuzione di gestione delle risorse)** -per un cluster di macchine virtuali di Azure distribuite nel modello di distribuzione di gestione risorse di hello, script hello supporta due metodi per l'autenticazione di Azure: Accedi tooyour account Azure script hello toorun ogni ora (eseguendo `Login-AzureRmAccount`, o configurare un tooauthenticate dell'entità servizio con un certificato. HPC Pack fornisce script hello **ConfigARMAutoGrowShrinkCert.ps** toocreate un'entità servizio con certificato. script Hello crea un'applicazione Azure Active Directory (Azure AD) e un'entità servizio e assegna l'entità di servizio toohello ruolo Collaboratore hello. script di hello toorun, avviare Azure PowerShell come amministratore ed eseguire hello seguenti comandi:
+* **Cluster HPC Pack 2012 R2 Update 1 o versione successiva**: lo script **AzureAutoGrowShrink.ps1** è installato nella cartella %CCP_HOME%bin. Il nodo head del cluster può essere distribuito in locale o in una macchina virtuale di Azure. Vedere [Configurare un cluster ibrido con HPC Pack](../../../cloud-services/cloud-services-setup-hybrid-hpcpack-cluster.md) per iniziare con un nodo head locale e i nodi "burst" di Azure. Vedere lo [script di distribuzione IaaS di HPC Pack](hpcpack-cluster-powershell-script.md) per distribuire velocemente un cluster HPC Pack in macchine virtuali di Azure o usare un [modello di avvio rapido di Azur](https://azure.microsoft.com/documentation/templates/create-hpc-cluster/).
+* **Azure PowerShell 1.4.0**: lo script attualmente dipende da questa versione specifica di Azure PowerShell.
+* **Per un cluster con nodi burst di Azure** - Eseguire lo script in un computer client in cui è installato HPC Pack o nel nodo head. In caso di esecuzione in un computer client, assicurarsi di impostare la variabile $env:CCP_SCHEDULER in modo che punti al nodo head. I nodi "burst" di Azure devono essere aggiunti al cluster, ma possono essere nello stato Non distribuito.
+* **Per un cluster distribuito in macchine virtuali di Azure (modello di distribuzione di Resource Manager)**: per un cluster di macchine virtuali di Azure distribuite nel modello di distribuzione di Resource Manager, lo script supporta due metodi per l'autenticazione di Azure: accedere al proprio account Azure per eseguire lo script ogni volta, eseguendo `Login-AzureRmAccount`, oppure configurare un'entità servizio per l'autenticazione con un certificato. HPC Pack fornisce lo script **ConfigARMAutoGrowShrinkCert.ps** per creare un'entità servizio con certificato. Lo script crea un'applicazione Azure Active Directory (Azure AD) e un'entità servizio e assegna il ruolo di collaboratore all'entità servizio. Per eseguire lo script, avviare Azure PowerShell come amministratore ed eseguire i comandi seguenti:
 
     ```powershell
     cd $env:CCP_HOME\bin
@@ -198,7 +198,7 @@ Per impostazione predefinita, **SoaJobGrowThreshold** è impostato too50000 e **
 
     Per altre informazioni su **ConfigARMAutoGrowShrinkCert.ps1**, eseguire `Get-Help .\ConfigARMAutoGrowShrinkCert.ps1 -Detailed`.
 
-* **Per un cluster distribuito in macchine virtuali di Azure (modello di distribuzione classica)** -Esegui script hello nel nodo head hello macchina virtuale, perché dipende da hello **Start-hpciaasnode.ps1** e **Stop-hpciaasnode.ps1**script che vi sono installati. Per questi script è inoltre necessario un certificato di gestione di Azure o un file delle impostazioni di pubblicazione (vedere [Gestire i nodi di calcolo in un cluster HPC Pack in Azure](hpcpack-cluster-node-manage.md)). Verificare che hello tutte le macchine virtuali è necessario del nodo sono già state aggiunte toohello cluster di calcolo. Possono essere nello stato Stopped hello.
+* **Per un cluster distribuito in macchine virtuali di Azure (modello di distribuzione classica)**: eseguire lo script nella macchina virtuale del nodo head, perché dipende dagli script **Start-HpcIaaSNode.ps1** e **Stop-HpcIaaSNode.ps1** installati in tale posizione. Per questi script è inoltre necessario un certificato di gestione di Azure o un file delle impostazioni di pubblicazione (vedere [Gestire i nodi di calcolo in un cluster HPC Pack in Azure](hpcpack-cluster-node-manage.md)). Assicurarsi che tutte le macchine virtuali del nodo di calcolo necessarie siano già aggiunte al cluster. Potrebbero essere in stato arrestato.
 
 
 
@@ -217,28 +217,28 @@ AzureAutoGrowShrink.ps1 [-NodeTemplates <String[]>] [-JobTemplates <String[]>] [
 
 AzureAutoGrowShrink.ps1 -UseLastConfigurations [-ArgFile <String>] [-LogFilePrefix <String>] [<CommonParameters>]
 ```
-### <a name="parameters"></a>parameters
-* **NodeTemplates** -i nomi di hello nodo modelli toodefine hello ambito per toogrow nodi hello e compatta. Se non specificato (valore predefinito di hello è @()), tutti i nodi hello **AzureNodes** gruppo di nodi sono nell'ambito quando **NodeType** ha un valore di AzureNodes e tutti i nodi in hello **ComputeNodes** gruppo di nodi sono nell'ambito quando **NodeType** ha un valore di ComputeNodes.
-* **Le entità Jobtemplate** -processo di nomi di hello modelli toodefine hello ambito toogrow nodi hello.
-* **Tipo di nodo** - tipo di nodo toogrow hello e compattazione. I valori supportati sono:
+### <a name="parameters"></a>Parametri
+* **NodeTemplates** - Nomi dei modelli di nodo per definire l'ambito per i nodi da ingrandire o ridurre. Se non specificato (il valore predefinito è @()), tutti i nodi nel gruppo di nodi **AzureNodes** rientrano nell'ambito quando il valore di **NodeType** è AzureNodes e tutti i nodi nel gruppo di nodi **ComputeNodes** rientrano nell'ambito quando il valore di **NodeType** è ComputeNodes.
+* **JobTemplates** : nomi dei modelli di processo per definire l'ambito per i nodi da ingrandire.
+* **NodeType** - Il tipo di nodo da ingrandire o ridurre. I valori supportati sono:
 
   * **AzureNodes** - Per i nodi di Azure PaaS (burst) in un cluster locale o IaaS di Azure.
   * **ComputeNodes** - Solo per le macchine virtuali dei nodi di calcolo in un cluster IaaS di Azure.
 
-* **NumOfQueuedJobsPerNodeToGrow** -numero di processi in coda necessari toogrow un nodo.
-* **NumOfQueuedJobsToGrowThreshold** -processo di aumento delle dimensioni hello soglia numero hello toostart processi in coda.
-* **NumOfActiveQueuedTasksPerNodeToGrow** -numero di hello di attività attive in coda necessari toogrow un nodo. Se si specifica un valore maggiore di 0 per **NumOfQueuedJobsPerNodeToGrow** , questo parametro viene ignorato.
-* **NumOfActiveQueuedTasksToGrowThreshold** -processo di aumento delle dimensioni hello soglia numero hello toostart attività attive in coda.
-* **NumOfInitialNodesToGrow** : hello iniziale numero minimo di nodi toogrow se tutti i nodi di hello nell'ambito sono **non distribuiti** o **arrestato (deallocato)**.
-* **GrowCheckIntervalMins** -intervallo hello in minuti tra i controlli toogrow.
-* **ShrinkCheckIntervalMins** -intervallo hello in minuti tra i controlli tooshrink.
-* **ShrinkCheckIdleTimes** -hello numero di controlli di riduzione continui (separati da **ShrinkCheckIntervalMins**) tooindicate hello nodi sono inattivi.
-* **UseLastConfigurations** -hello configurazioni precedenti salvate nel file hello degli argomenti.
-* **ArgFile**: nome di hello argomento file utilizzato toosave hello e hello configurazioni toorun hello script di aggiornamento.
-* **LogFilePrefix** -hello prefisso del nome del file di log hello. È possibile specificare un percorso. Per impostazione predefinita il log di hello è scritto toohello directory di lavoro corrente.
+* **NumOfQueuedJobsPerNodeToGrow** - Numero di processi in coda richiesti per ingrandire un nodo.
+* **NumOfQueuedJobsToGrowThreshold** - Numero di processi in coda di soglia per avviare il processo di ingrandimento.
+* **NumOfActiveQueuedTasksPerNodeToGrow** - Numero di attività in coda attive richieste per ingrandire un nodo. Se si specifica un valore maggiore di 0 per **NumOfQueuedJobsPerNodeToGrow** , questo parametro viene ignorato.
+* **NumOfActiveQueuedTasksToGrowThreshold** - Numero di attività in coda attive di soglia per avviare il processo di ingrandimento.
+* **NumOfInitialNodesToGrow** - Numero minimo iniziale dei nodi, da ingrandire se lo stato di tutti i nodi nell'ambito è **Non distribuito** o **Arrestato (deallocato)**.
+* **GrowCheckIntervalMins** - Intervallo in minuti tra i controlli dell'ingrandimento.
+* **ShrinkCheckIntervalMins** - Intervallo in minuti tra i controlli della riduzione.
+* **ShrinkCheckIdleTimes**: numero di controlli continui della riduzione, separati da **ShrinkCheckIntervalMins**, per indicare che i nodi sono inattivi.
+* **UseLastConfigurations** : configurazioni precedenti salvate nel file di argomenti.
+* **ArgFile**- Nome del file di argomenti usato per salvare e aggiornare le configurazioni per eseguire lo script.
+* **LogFilePrefix** : prefisso del nome del file di log. È possibile specificare un percorso. Per impostazione predefinita il log viene scritto nella directory di lavoro corrente.
 
 ### <a name="example-1"></a>Esempio 1
-Hello seguente esempio mostra come configurare hello Azure burst nodi distribuiti con toogrow il modello AzureNode predefinito e la riduzione automatica. Se tutti i nodi sono inizialmente in hello **non distribuiti** stato, vengono avviati almeno 3 nodi. Se il numero di hello di processi in coda è superiore a 8, script hello avvia nodi fino a quando il numero supera il rapporto hello di processi in coda per **NumOfQueuedJobsPerNodeToGrow**. Se un nodo risulta inattivo in periodi di inattività consecutivi 3 toobe, viene arrestato.
+Nell'esempio seguente, i nodi burst di Azure distribuiti con il modello Default AzureNode Template vengono configurati per l'ingrandimento e la riduzione automatici. Se tutti i nodi sono inizialmente nello stato **Non distribuito** vengono avviati almeno 3 nodi. Se il numero di processi in coda è maggiore di 8, lo script avvia i nodi fino a quando il numero non supera il rapporto tra processi in coda e **NumOfQueuedJobsPerNodeToGrow**. Se viene trovato un nodo inattivo in 3 tempi di inattività consecutivi, il nodo viene arrestato.
 
 ```powershell
 .\AzureAutoGrowShrink.ps1 -NodeTemplates @('Default AzureNode
@@ -248,8 +248,8 @@ Hello seguente esempio mostra come configurare hello Azure burst nodi distribuit
 ```
 
 ### <a name="example-2"></a>Esempio 2
-Hello seguente esempio mostra come configurare hello Azure distribuite con hello modello ComputeNode predefinito toogrow macchine virtuali del nodo di calcolo e la riduzione automatica.
-processi di Hello configurati dal modello di processo predefinito di hello definiscono l'ambito di hello del carico di lavoro nel cluster hello. Se tutti i nodi di hello inizialmente vengono arrestati, vengono avviati almeno 5 nodi. Se il numero di hello di attività attive in coda è superiore a 15, script hello avvia nodi fino a quando il numero supera il rapporto di hello di attività attive in coda troppo**NumOfActiveQueuedTasksPerNodeToGrow**. Se un nodo risulta inattivo in 10 periodi di inattività consecutivi toobe, viene arrestato.
+Nell'esempio seguente, le macchine virtuali dei nodi di calcolo di Azure distribuite con il modello Default ComputeNode Template vengono configurate per l'ingrandimento e la riduzione automatici.
+I processi configurati dal modello di processo predefinito definiscono l'ambito del carico di lavoro nel cluster. Se tutti i nodi sono inizialmente arrestati, vengono avviati almeno 5 nodi. Se il numero delle attività in coda attive è maggiore di 15, lo script avvia i nodi fino a quando il numero non supera il rapporto tra le attività in coda attive e **NumOfActiveQueuedTasksPerNodeToGrow**. Se viene trovato un nodo inattivo in 10 tempi di inattività consecutivi, il nodo viene arrestato.
 
 ```powershell
 .\AzureAutoGrowShrink.ps1 -NodeTemplates 'Default ComputeNode Template' -JobTemplates 'Default' -NodeType ComputeNodes -NumOfActiveQueuedTasksPerNodeToGrow 10 -NumOfActiveQueuedTasksToGrowThreshold 15 -NumOfInitialNodesToGrow 5 -GrowCheckIntervalMins 1 -ShrinkCheckIntervalMins 1 -ShrinkCheckIdleTimes 10 -ArgFile 'IaaSVMComputeNodes_Arg.xml' -LogFilePrefix 'IaaSVMComputeNodes_log'

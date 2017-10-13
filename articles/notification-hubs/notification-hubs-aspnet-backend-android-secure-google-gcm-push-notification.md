@@ -1,6 +1,6 @@
 ---
-title: aaaSending proteggere le notifiche Push con hub di notifica di Azure
-description: Informazioni su come toosend sicura push app Android di notifiche tooan da Azure. Gli esempi di codice sono scritti in Java e C#.
+title: Invio di notifiche push sicure con Hub di notifica di Azure
+description: Informazioni su come inviare notifiche push sicure a un'app per Android da Azure. Gli esempi di codice sono scritti in Java e C#.
 documentationcenter: android
 keywords: notifica push, notifiche push, push dei messaggi, notifiche push di android
 author: ysxu
@@ -15,11 +15,11 @@ ms.devlang: java
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: yuaxu
-ms.openlocfilehash: d07943c4691ed07acb987086228ef565e6281d57
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 29f8c516e611c13fb73c7edc15e7c52708c75bb0
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="sending-secure-push-notifications-with-azure-notification-hubs"></a>Invio di notifiche push sicure con Hub di notifica di Azure
 > [!div class="op_single_selector"]
@@ -29,28 +29,28 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-## <a name="overview"></a>Panoramica
+## <a name="overview"></a>Overview
 > [!IMPORTANT]
-> toocomplete questa esercitazione, è necessario disporre di un account di Azure attivo. Se non si dispone di un account, è possibile creare un account di valutazione gratuita in pochi minuti. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A643EE910&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fpartner-xamarin-notification-hubs-ios-get-started).
+> Per completare l'esercitazione, è necessario disporre di un account Azure attivo. Se non si dispone di un account, è possibile creare un account di valutazione gratuita in pochi minuti. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A643EE910&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fpartner-xamarin-notification-hubs-ios-get-started).
 > 
 > 
 
-Supporto di notifica push di Microsoft Azure consente tooaccess un'infrastruttura di messaggio push da usare, multipiattaforma e con scalabilità orizzontale, che semplifica notevolmente l'implementazione di hello delle notifiche push per applicazioni aziendali e per piattaforme per dispositivi mobili.
+Il supporto per le notifiche push in Microsoft Azure consente di accedere a un'infrastruttura di messaggistica push di facile utilizzo, multipiattaforma con scalabilità orizzontale, che semplifica considerevolmente l'implementazione delle notifiche push sia per le applicazioni consumer sia per quelle aziendali per piattaforme mobili.
 
-A causa di vincoli di sicurezza o tooregulatory, un'applicazione potrebbe talvolta tooinclude qualcosa nel notifica hello che non può essere trasmesso tramite l'infrastruttura di notifica push standard hello. In questa esercitazione viene descritto come tooachieve hello stessa esperienza inviando informazioni riservate tramite una connessione autenticata protetta tra i dispositivi Android di hello client e di back-end app hello.
+A causa di vincoli normativi o di sicurezza, un'applicazione potrebbe talvolta includere nella notifica informazioni che non è possibile trasmettere attraverso l'infrastruttura di notifiche push standard. Questa esercitazione descrive come conseguire la stessa esperienza inviando informazioni sensibili attraverso una connessione autenticata e sicura tra il dispositivo client Android e il back-end dell'app.
 
-In generale, il flusso di hello è il seguente:
+A livello generale, il flusso è il seguente:
 
-1. Hello app back-end:
+1. Il back-end dell'app:
    * Archivia il payload sicuro nel database back-end.
-   * Invia ID hello di questo dispositivo Android toohello notifica (viene inviata alcuna informazione protetta).
-2. Hello app sul dispositivo hello, quando si riceve notifica hello:
-   * dispositivo Android Hello contatta hello back-end richiedente hello sicura payload.
-   * app Hello possono mostrare payload hello come una notifica sul dispositivo hello.
+   * Invia l'ID di questa notifica al dispositivo Android (non vengono inviate informazioni sicure).
+2. L'app sul dispositivo, quando riceve la notifica:
+   * Il dispositivo Android contatta il back-end richiedendo il payload sicuro.
+   * L'app può indicare il payload come una notifica sul dispositivo.
 
-È importante in hello precedente del flusso e in questa esercitazione, si presuppone che il dispositivo hello toonote memorizza un token di autenticazione nel servizio di archiviazione locale, dopo hello utente effettua l'accesso. In questo modo si garantisce un'esperienza completamente trasparente, come dispositivo hello può recuperare i payload della notifica hello protetto con questo token. Se l'applicazione non archivia i token di autenticazione nel dispositivo hello o se i token possono scadere, hello dispositivo app, al momento della ricezione di notifiche push hello deve visualizzare una notifica generica richiesta hello utente toolaunch hello app. app Hello quindi esegue l'autenticazione utente hello e Mostra il payload di notifica di hello.
+È importante notare che nel flusso precedente e in questa esercitazione si presuppone che il dispositivo archivi un token di autenticazione nella memoria locale, dopo l’accesso dell'utente. Ciò garantisce un'esperienza completamente lineare, in quanto il dispositivo può recuperare il payload sicuro della notifica tramite questo token. Se invece l'applicazione non archivia i token di autenticazione nel dispositivo o se questi hanno una scadenza, l'app per dispositivo, alla ricezione della notifica push, dovrà visualizzare una notifica generica in cui si richiede all'utente di avviare l'app. L'app autentica quindi l'utente e mostra il payload di notifica.
 
-Questa esercitazione viene illustrato come le notifiche push toosend sicura. È basato su hello [notifica utenti](notification-hubs-aspnet-backend-gcm-android-push-to-user-google-notification.md) esercitazione, pertanto è necessario completare i passaggi di hello in tale esercitazione prima di tutto se hai già fatto.
+Questa esercitazione descrive come inviare notifiche push sicure. Poiché i passaggi descritti in questa esercitazione si basano su quella relativa all' [invio di notifiche agli utenti](notification-hubs-aspnet-backend-gcm-android-push-to-user-google-notification.md) , sarà prima necessario completare i passaggi di quest'ultima.
 
 > [!NOTE]
 > In questa esercitazione si presuppone che l'utente abbia creato e configurato l'hub di notifica come descritto in [Introduzione ad Hub di notifica (Android)](notification-hubs-android-push-notification-google-gcm-get-started.md).
@@ -59,17 +59,17 @@ Questa esercitazione viene illustrato come le notifiche push toosend sicura. È 
 
 [!INCLUDE [notification-hubs-aspnet-backend-securepush](../../includes/notification-hubs-aspnet-backend-securepush.md)]
 
-## <a name="modify-hello-android-project"></a>Modificare progetto Android hello
-Ora che è stato modificato il hello solo toosend back-end di app *id* di una notifica push, aver toochange toohandle l'app Android di notifica e chiamare nuovamente il hello tooretrieve back-end protetta toobe messaggio visualizzato.
-tooachieve questo obiettivo è verificare che l'app Android SA toomake come tooauthenticate stesso con il back-end quando riceve le notifiche push hello.
+## <a name="modify-the-android-project"></a>Modificare il progetto Android
+Ora che è stato modificato il back-end dell'app in modo da inviare solo l' *ID* di una notifica push, è necessario modificare l'app per Android in modo da gestire tale notifica e richiamare il back-end per recuperare il messaggio sicuro da visualizzare.
+Per conseguire questo obiettivo, è necessario assicurarsi che l'app per Android sia in grado di eseguire l'autenticazione con il back-end quando riceve le notifiche push.
 
-Si modificherà ora hello *accesso* flusso in ordine toosave hello autenticazione intestazione valore hello condivise le preferenze dell'app. Meccanismi analoghi possono essere utilizzati toostore qualsiasi token di autenticazione (ad esempio, i token OAuth) che hello app avrà toouse senza richiedere le credenziali dell'utente.
+Ora si modificherà il flusso di *accesso* per salvare il valore dell'intestazione di autenticazione nelle preferenze condivise dell'app. Un meccanismo analogo può essere usato per archiviare eventuali token di autenticazione (ad esempio token OAuth) che l'app dovrà usare senza richiedere le credenziali dell'utente.
 
-1. Nel progetto di app Android aggiungere hello seguenti costanti nella parte superiore di hello di hello **MainActivity** classe:
+1. Nel progetto di app per Android, aggiungere le costanti seguenti all'inizio della classe **MainActivity** :
    
         public static final String NOTIFY_USERS_PROPERTIES = "NotifyUsersProperties";
         public static final String AUTHORIZATION_HEADER_PROPERTY = "AuthorizationHeader";
-2. Ancora in hello **MainActivity** (classe), aggiornamento hello `getAuthorizationHeader()` hello toocontain metodo seguente codice:
+2. Sempre nella classe **MainActivity** aggiornare il metodo `getAuthorizationHeader()` per includere il codice seguente:
    
         private String getAuthorizationHeader() throws UnsupportedEncodingException {
             EditText username = (EditText) findViewById(R.id.usernameText);
@@ -82,20 +82,20 @@ Si modificherà ora hello *accesso* flusso in ordine toosave hello autenticazion
    
             return basicAuthHeader;
         }
-3. Aggiungere il seguente hello `import` le istruzioni nella parte superiore di hello di hello **MainActivity** file:
+3. Aggiungere le seguenti istruzioni `import` all'inizio del file **MainActivity** :
    
         import android.content.SharedPreferences;
 
-Verrà ora modificata gestore hello che viene chiamato quando viene ricevuta la notifica hello.
+A questo punto, modificare il gestore chiamato quando si riceve la notifica.
 
-1. In hello **MyHandler** classe modificare hello `OnReceive()` toocontain metodo:
+1. Nella classe **MyHandler** modificare il metodo `OnReceive()` in modo che contenga:
    
         public void onReceive(Context context, Bundle bundle) {
             ctx = context;
             String secureMessageId = bundle.getString("secureId");
             retrieveNotification(secureMessageId);
         }
-2. Aggiungere quindi hello `retrieveNotification()` metodo, sostituendo il segnaposto hello `{back-end endpoint}` con endpoint di back-end hello ottenuto durante la distribuzione il back-end:
+2. Aggiungere quindi il metodo `retrieveNotification()`, sostituendo il segnaposto `{back-end endpoint}` con l'endpoint del back-end ottenuto durante la distribuzione del back-end:
    
         private void retrieveNotification(final String secureMessageId) {
             SharedPreferences sp = ctx.getSharedPreferences(MainActivity.NOTIFY_USERS_PROPERTIES, Context.MODE_PRIVATE);
@@ -116,7 +116,7 @@ Verrà ora modificata gestore hello che viene chiamato quando viene ricevuta la 
                         JSONObject secureNotification = new JSONObject(secureNotificationJSON);
                         sendNotification(secureNotification.getString("Payload"));
                     } catch (Exception e) {
-                        Log.e("MainActivity", "Failed tooretrieve secure notification - " + e.getMessage());
+                        Log.e("MainActivity", "Failed to retrieve secure notification - " + e.getMessage());
                         return e;
                     }
                     return null;
@@ -124,15 +124,15 @@ Verrà ora modificata gestore hello che viene chiamato quando viene ricevuta la 
             }.execute(null, null, null);
         }
 
-Questo metodo chiama la notifica hello tooretrieve back-end app contenuta utilizzando le credenziali di hello archiviate in hello condiviso preferenze e viene visualizzato sotto forma di una notifica normale. notifica Hello ricerca utente app toohello esattamente come qualsiasi altra notifica push.
+Questo metodo chiama il back-end dell'app per recuperare il contenuto della notifica usando le credenziali memorizzate nelle preferenze condivise e lo visualizza come una normale notifica. L'utente dell'app vedrà la notifica esattamente come qualsiasi altra notifica push.
 
-Si noti che è preferibile toohandle casi di hello di proprietà di intestazione di autenticazione mancante o il rifiuto da hello back-end. gestione di specifica Hello di questi casi dipendono principalmente l'esperienza utente di destinazione. È una notifica con un messaggio generico per notifica effettivo di hello utente tooauthenticate tooretrieve hello toodisplay.
+Notare che è preferibile gestire i casi in cui manca la proprietà dell'intestazione di autenticazione o di rifiuto da parte del back-end. La gestione specifica di questi casi dipende in larga misura dall'esperienza dell'utente di destinazione. Una delle opzioni consiste nel visualizzare una notifica con un prompt generico affinché l'utente possa autenticarsi per recuperare la notifica effettiva.
 
-## <a name="run-hello-application"></a>Eseguire l'applicazione hello
-toorun applicazione hello, hello seguenti:
+## <a name="run-the-application"></a>Esecuzione dell'applicazione
+Per eseguire l'applicazione, eseguire le operazioni seguenti:
 
-1. Assicurarsi che il progetto **AppBackend** sia distribuito in Azure. Se si usa Visual Studio, eseguire hello **AppBackend** applicazione API Web. Verrà visualizzata una pagina Web ASP.NET.
-2. In Eclipse, eseguire l'applicazione hello in un emulatore fisico hello o di dispositivi Android.
-3. Nell'app Android hello dell'interfaccia utente, immettere un nome utente e password. Può trattarsi di qualsiasi stringa, ma devono essere hello stesso valore.
-4. Nell'app Android hello dell'interfaccia utente, fare clic su **Accedi**. Fare clic su **Send push**.
+1. Assicurarsi che il progetto **AppBackend** sia distribuito in Azure. Se si usa Visual Studio, eseguire l'applicazione API Web **AppBackend** . Verrà visualizzata una pagina Web ASP.NET.
+2. In Eclipse eseguire l'app su un dispositivo Android fisico o sull'emulatore.
+3. Nell'interfaccia utente dell'app per Android immettere un nome utente e una password. Può trattarsi di qualsiasi stringa, ma devono avere lo stesso valore.
+4. Nell'interfaccia utente dell'app per Android fare clic su **Log in**. Fare clic su **Send push**.
 

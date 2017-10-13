@@ -1,6 +1,6 @@
 ---
-title: aaaUsing partner toodeliver Widevine licenze di servizi multimediali tooAzure | Documenti Microsoft
-description: In questo articolo viene descritto come usare Azure Media Services (AMS) toodeliver un flusso che viene crittografato in modo dinamico dal sistema AMS con PlayReady e Widevine DRMs. la licenza PlayReady Hello proviene dal server licenze PlayReady di servizi multimediali e viene recapitata licenze Widevine dal server licenze castLabs.
+title: Uso di partner per distribuire licenze Widevine a Servizi multimediali di Azure | Microsoft Docs
+description: Questo articolo illustra come usare Servizi multimediali di Azure per distribuire un flusso crittografato in modo dinamico da Servizi multimediali di Azure mediante DRM di PlayReady e Widevine. La licenza per PlayReady viene distribuita dal server licenze PlayReady di Servizi multimediali, mentre la licenza per Widevine viene distribuita dal server licenze castLabs.
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: 3c18a8a22ced239931dea5385020194bd6d83f28
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6867e4f910970121df3858516c6bab3114c3c6f9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="using-partners-toodeliver-widevine-licenses-tooazure-media-services"></a>Con i partner toodeliver Widevine licenze tooAzure servizi multimediali
-## <a name="overview"></a>Panoramica
-Servizi multimediali di Microsoft Azure consente toodeliver CHE MPEG-DASH protetto con DRM Widevine, che vengono crittografati in base hello specifica CENC (Common Encryption).
+# <a name="using-partners-to-deliver-widevine-licenses-to-azure-media-services"></a>Uso di partner per distribuire licenze Widevine a Servizi multimediali di Azure
+## <a name="overview"></a>Overview
+Servizi multimediali di Microsoft Azure consente di distribuire contenuto protetto MPEG-DASH con DRM Widevine, che viene crittografato per la specifica CENC (Common Encryption).
 
-A partire da Media Services .NET SDK versione 3.5.2 hello, servizi multimediali consente di tooconfigure Widevine modello di licenza e ottenere licenze Widevine. È inoltre possibile utilizzare hello seguente toohelp partner AMS di consegnare licenze Widevine: [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/), [EZDRM](http://ezdrm.com/), [castLabs](http://castlabs.com/company/partners/azure/).
+A partire da Servizi Multimediali .NET SDK versione 3.5.2, Servizi multimediali consente di configurare il modello di licenza Widevine e ottenere licenze Widevine. È anche possibile usare i partner AMS seguenti per facilitare la distribuzione di licenze Widevine: [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/), [EZDRM](http://ezdrm.com/) e [castLabs](http://castlabs.com/company/partners/azure/).
 
 ## <a name="castlabs"></a>castLabs
-È possibile utilizzare [castLabs](http://castlabs.com/company/partners/azure/) licenze Widevine toodeliver. Per ulteriori informazioni, vedere [utilizzando castLabs toodeliver DRM licenze di servizi multimediali tooAzure](media-services-castlabs-integration.md)
+È possibile utilizzare [castLabs](http://castlabs.com/company/partners/azure/) per distribuire licenze Widevine. Per altre informazioni, vedere [Uso di castLabs per distribuire licenze DRM a Servizi multimediali di Azure](media-services-castlabs-integration.md)
 
 ## <a name="axinom"></a>Axinom
-È possibile utilizzare [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/) licenze Widevine toodeliver. Per ulteriori informazioni, vedere [toodeliver Axinom con DRM licenze di servizi multimediali tooAzure](media-services-axinom-integration.md)
+È possibile utilizzare [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/) per distribuire licenze Widevine. Per altre informazioni, vedere [Uso di Axinom per distribuire licenze DRM a Servizi multimediali di Azure](media-services-axinom-integration.md)
 
 ## <a name="media-services-learning-paths"></a>Percorsi di apprendimento di Servizi multimediali
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

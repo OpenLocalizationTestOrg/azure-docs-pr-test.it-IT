@@ -1,6 +1,6 @@
 ---
-title: aaaDownload fatturazione fattura e giornaliera utilizzo dati di Azure | Documenti Microsoft
-description: Viene descritto come toodownload o della vista di fatturazione di Azure fattura e dati di utilizzo giornalieri.
+title: Scaricare la fattura e i dati di uso giornalieri di Azure | Microsoft Docs
+description: L'articolo descrive come scaricare o visualizzare la fatturazione e dati di uso giornalieri di Azure.
 keywords: fatturazione, scaricare la fatture, fattura di Azure, uso di Azure
 services: 
 documentationcenter: 
@@ -13,92 +13,95 @@ ms.service: billing
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: troubleshooting
 ms.date: 04/25/2017
 ms.author: genli
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 2826df10f39914fcaeb9985271dadde550c68dfd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 01057dd7832cab6121a22e3bb7d0dc4cd7e9b35d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="download-or-view-your-azure-billing-invoice-and-daily-usage-data"></a>Scaricare o visualizzare la fattura e i dati di uso giornalieri di Azure
-È possibile scaricare la fattura da hello [portale di Azure](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade) o inviarlo tramite posta elettronica. toodownload l'utilizzo giornaliero, andare toohello [centro Account Azure](https://account.windowsazure.com). Solo determinati ruoli dispongono di autorizzazione tooget informazioni fattura e l'utilizzo, ad esempio hello amministratore dell'Account di fatturazione. toolearn più su come ottenere accesso toobilling informazioni, vedere [tooAzure accesso Gestisci fatturazione utilizzando ruoli](billing-manage-access.md).
+La fattura può essere scaricata dal [Portale di Azure](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade) o inviata via email. Per scaricare l'uso giornaliero, accedere al [Centro account di Azure](https://account.azure.com/Subscriptions). Solo determinati ruoli dispongono dell'autorizzazione per ottenere informazioni sull'uso e sulla fatturazione, ad esempio l'amministratore account. Per altre informazioni sull'accesso alle informazioni di fatturazione, vedere [Manage access to Azure billing using roles](billing-manage-access.md) (Gestire l'accesso alla fatturazione di Azure usando i ruoli).
+
+>[!NOTE]
+>Questo articolo non si applica ai clienti con contratto Enterprise Agreement (EA). Se si è un cliente con contratto Enterprise Agreement (EA), le fatture vengono inviate direttamente agli amministratori delle registrazioni.
 
 ## <a name="get-your-invoice-in-email-pdf"></a>Ottenere la fattura tramite posta elettronica (formato PDF)
-È possibile acconsentire esplicitamente all'invio e configurare altri destinatari tooreceive fattura di Azure tramite posta elettronica. Questa funzionalità potrebbe non essere disponibile per alcune sottoscrizioni, ad esempio offerte di supporto, contratti Enterprise o Azure in Open.
+Per ricevere una fattura di Azure tramite posta elettronica, è possibile fornire il consenso esplicito e configurare altri destinatari. Questa funzionalità potrebbe non essere disponibile per alcune sottoscrizioni, ad esempio offerte di supporto, contratti Enterprise o Azure in Open.
 
-1. Selezionare la sottoscrizione da hello [pannello sottoscrizioni](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade). Dare il consenso esplicito per ogni sottoscrizione posseduta. Fare clic su **Invoices** (Fatture) quindi su **Email my invoice** (Invia fattura tramite posta elettronica). 
+1. Selezionare la sottoscrizione nella [pagina delle sottoscrizioni](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade). Dare il consenso esplicito per ogni sottoscrizione posseduta. Fare clic su **Invoices** (Fatture) quindi su **Email my invoice** (Invia fattura tramite posta elettronica). 
 
-    ![Schermata che mostra hello registrarsi flusso](./media/billing-download-azure-invoice-daily-usage-date/InvoicesDeepLink.PNG)
+    ![Schermata che mostra il flusso per il consenso esplicito](./media/billing-download-azure-invoice-daily-usage-date/InvoicesDeepLink.PNG)
     
-2. Fare clic su **acconsentire esplicitamente all'invio** e accettare le condizioni di hello.
+2. Fare clic su **Acconsenti esplicitamente** e accettare i termini.
 
-    ![Schermata che mostra hello registrarsi flusso](./media/billing-download-azure-invoice-daily-usage-date/InvoiceArticleStep2.PNG)
+    ![Schermata che mostra il flusso per il consenso esplicito](./media/billing-download-azure-invoice-daily-usage-date/InvoiceArticleStep2.PNG)
  
-3. Una volta che si accetta il contratto di hello, è possibile configurare altri destinatari.
+3. Dopo l'accettazione del contratto, sarà possibile configurare altri destinatari.
 
-    ![Schermata che mostra hello registrarsi flusso](./media/billing-download-azure-invoice-daily-usage-date/InvoiceArticleStep3.PNG)
+    ![Schermata che mostra il flusso per il consenso esplicito](./media/billing-download-azure-invoice-daily-usage-date/InvoiceArticleStep3.PNG)
     
-Se non si ottiene un messaggio di posta elettronica dopo aver completato i passaggi di hello, assicurarsi che l'indirizzo di posta elettronica sia corretto in hello [le preferenze di comunicazione nel proprio profilo](https://account.windowsazure.com/profile).
+Se non si riceve un'email dopo aver eseguito i passaggi seguenti, assicurarsi che l'indirizzo email sia corretto nelle [preferenze di comunicazione del proprio profilo](https://account.windowsazure.com/profile).
 
 ## <a name="download-invoice-from-azure-portal-pdf"></a>Scaricare la fattura dal portale di Azure (PDF)
 
-1. Selezionare la sottoscrizione da hello [pannello sottoscrizioni](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade) nel portale di Azure come [un utente con accesso tooinvoices](billing-manage-access.md).
+1. Selezionare la sottoscrizione nella [pagina delle sottoscrizioni](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade) del portale di Azure come [utente con accesso alle fatture](billing-manage-access.md).
 
 2. Selezionare **Fatture**. 
 
-    ![Schermata che mostra l'opzione di fatturazione e utilizzo di hello](./media/billing-download-azure-invoice-daily-usage-date/billingandusage.png) 
+    ![Schermata che mostra l'opzione Fatturazione e utilizzo](./media/billing-download-azure-invoice-daily-usage-date/billingandusage.png) 
 
-3. Fare clic su **Scarica fattura** tooview una copia della fattura PDF. Se l'indicazione è **non disponibile**, vedere [perché non è presente una fattura per hello ultimo periodo di fatturazione?](#noinvoice)
+3. Fare clic su **Scarica fattura** per visualizzare una copia della fattura in formato PDF. Se l'indicazione è **Non disponibile**, vedere [Perché non viene visualizzata una fattura per l'ultimo periodo di fatturazione?](#noinvoice)
 
-    ![Schermata che mostra i periodi di fatturazione, opzione di download hello e costi totali per ogni periodo di fatturazione](./media/billing-download-azure-invoice-daily-usage-date/billing4.png)
+    ![Schermata che mostra i periodi di fatturazione, l'opzione per il download e gli addebiti totali per ogni periodo di fatturazione](./media/billing-download-azure-invoice-daily-usage-date/billing4.png)
 
-4. È anche possibile visualizzare l'utilizzo giornaliero facendo clic sul periodo di fatturazione hello. 
+4. Per visualizzare l'uso giornaliero, fare clic sul periodo di fatturazione. 
 
 Per altre informazioni sulla fattura, vedere [Comprendere la fattura per Microsoft Azure](billing-understand-your-bill.md). Per informazioni sulla gestione dei costi, vedere [Evitare costi aggiuntivi con la gestione dei costi e la fatturazione di Azure](billing-getting-started.md).
 
-## <a name="download-usage-from-hello-account-center-csv"></a>Scaricare l'utilizzo da hello centro Account (. csv)
+## <a name="download-usage-from-the-account-center-csv"></a>Scaricare i dati di utilizzo dal Centro account (CSV)
 
-1. Sign in hello [centro Account Azure](https://account.windowsazure.com/subscriptions) come hello amministratore dell'Account.
+1. Accedere al [Centro account di Azure](https://account.windowsazure.com/subscriptions) come amministratore account.
 
-2. Selezionare la sottoscrizione di hello per cui si desiderano informazioni di fatturazione e utilizzo di hello.
+2. Selezionare la sottoscrizione per cui si desiderano le informazioni delle fatture e degli utilizzi.
 
 3. Selezionare **Cronologia di fatturazione**. 
 
     ![Schermata che mostra l'opzione Cronologia di fatturazione](./media/billing-download-azure-invoice-daily-usage-date/Billinghisotry.png)
 
-4. È possibile visualizzare le istruzioni per hello ultimi sei periodi di fatturazione e hello fatturati periodo corrente. 
+4. Vengono elencati i rendiconti per gli ultimi sei periodi di fatturazione e il periodo corrente non ancora fatturato. 
 
-    ![Schermata che mostra i periodi di fatturazione, opzioni toodownload fattura e dell'utilizzo giornaliero e costi totali per ogni periodo di fatturazione](./media/billing-download-azure-invoice-daily-usage-date/billingSum.png)
+    ![Schermata che mostra i periodi di fatturazione, le opzioni per il download della fattura e dei dati di utilizzo giornalieri e gli addebiti totali per ogni periodo di fatturazione](./media/billing-download-azure-invoice-daily-usage-date/billingSum.png)
 
-5. Selezionare **Visualizza estratto conto corrente** toosee è stata generata una stima degli addebiti in hello tempo hello stimato. Queste informazioni vengono aggiornate solo una volta al giorno e potrebbero non includere tutti gli utilizzi effettuati. È possibile che la fattura mensile non corrisponda a questa stima.
+5. Selezionare **Visualizza estratto conto corrente** per visualizzare una stima degli addebiti fino al momento in cui è stata generata la stima. Queste informazioni vengono aggiornate solo una volta al giorno e potrebbero non includere tutti gli utilizzi effettuati. È possibile che la fattura mensile non corrisponda a questa stima.
 
-    ![Schermata che mostra l'opzione dell'istruzione corrente visualizzazione hello](./media/billing-download-azure-invoice-daily-usage-date/billingSum2.png)
+    ![Schermata che mostra l'opzione Visualizza estratto conto corrente](./media/billing-download-azure-invoice-daily-usage-date/billingSum2.png)
 
-    ![Schermata che mostra stima hello del costo corrente](./media/billing-download-azure-invoice-daily-usage-date/billingSum3.png)
+    ![Schermata che mostra la stima degli addebiti correnti](./media/billing-download-azure-invoice-daily-usage-date/billingSum3.png)
 
-6. Selezionare **Scarica utilizzo** toodownload hello dati di utilizzo giornalieri come file CSV. Se sono disponibili due versioni, scaricare la versione 2.
+6. Selezionare **Scarica utilizzo** per scaricare i dati di utilizzo giornalieri come file CSV. Se vengono visualizzate due versioni disponibili, scaricare la versione 2.
 
-    ![Schermata che mostra l'opzione Scarica utilizzo hello](./media/billing-download-azure-invoice-daily-usage-date/DLusage.png)
+    ![Schermata che mostra l'opzione Scarica utilizzo](./media/billing-download-azure-invoice-daily-usage-date/DLusage.png)
 
-Solo hello amministratore dell'Account può accedere hello centro Account di Azure. Altri amministratori fatturazione, ad esempio un proprietario, è possono ottenere informazioni sull'utilizzo utilizzando hello [API fatturazione](billing-usage-rate-card-overview.md).
+Solo l'amministratore account può accedere al Centro account di Azure. Gli altri amministratori della fatturazione, ad esempio il proprietario, possono ottenere le informazioni sull'uso tramite le [API di fatturazione](billing-usage-rate-card-overview.md).
 
 Per altre informazioni sui dati di utilizzo giornalieri, vedere [Comprendere la fattura per Microsoft Azure](billing-understand-your-bill.md). Per informazioni sulla gestione dei costi, vedere [Evitare costi aggiuntivi con la gestione dei costi e la fatturazione di Azure](billing-getting-started.md).
 
-## <a name="noinvoice"></a>Perché non è presente una fattura per hello ultimo periodo di fatturazione?
+## <a name="noinvoice"></a> Perché non viene visualizzata una fattura per l'ultimo periodo di fatturazione?
 
 Potrebbero esserci diversi motivi per cui non è visualizzata alcuna fattura:
 
 - Si dispone di un credito mensile per la sottoscrizione che non è stato superato oppure si sta usando una versione di prova gratuita. La fattura viene generata solo quando si possiede del denaro.
 
-- È minore di 30 giorni dalla data di hello che sottoscritto tooAzure.
+- Sono passati meno di trenta giorni dalla data della sottoscrizione di Azure.
 
-- fattura Hello non è ancora generata. Attendere la fine hello del periodo di fatturazione hello.
+- La fattura non è stata ancora generata. Attendere la fine del periodo di fatturazione.
 
-- Se non si è amministratore dell'Account hello, fatture precedente potrebbero non essere tooyou sono disponibili.
+- Se non si è l'amministratore account, le fatture precedenti potrebbero non essere disponibili.
 
 ## <a name="need-help-contact-support"></a>Richiesta di assistenza Contattare il supporto tecnico.
-Se è ancora più domande, [contattare il supporto tecnico](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) tooget risolta il problema.
+Per altre domande, è possibile [contattare il supporto tecnico](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) per ottenere una rapida risoluzione del problema.
 

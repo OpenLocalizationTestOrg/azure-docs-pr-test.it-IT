@@ -1,6 +1,6 @@
 ---
-title: aaaView e utilizzare il modello di gestione risorse di Azure di una macchina virtuale | Documenti Microsoft
-description: Informazioni su come toouse hello modello di gestione risorse di Azure da una macchina virtuale di toocreate altre macchine virtuali
+title: Visualizzare e usare un modello di Azure Resource Manager di una macchina virtuale |Microsoft Docs
+description: Informazioni su come usare un modello di Azure Resource Manager di una macchina virtuale per creare altre macchine virtuali
 services: devtest-lab,virtual-machines,visual-studio-online
 documentationcenter: na
 author: tomarcher
@@ -14,57 +14,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: tarcher
-ms.openlocfilehash: b79f7eb4171793681a0b654e6e72a83191c76bde
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 0807ab367b91be5acd261f2b58ca2112b2c9e380
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="use-a-virtual-machines-azure-resource-manager-template"></a>Usare un modello di Azure Resource Manager di una macchina virtuale
 
-Quando si crea una macchina virtuale (VM) in DevTest Labs tramite hello [portale di Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040), è possibile visualizzare il modello di Azure Resource Manager hello prima di salvare hello macchina virtuale. Hello modello può quindi essere utilizzato come un toocreate base più macchine virtuali di laboratorio con hello stesse impostazioni.
+Quando si crea una macchina virtuale (VM) in DevTest Labs tramite il [portale di Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040), è possibile visualizzare il modello di Azure Resource Manager prima di salvare la macchina virtuale. Il modello può essere usato come base per creare altre lab VM con le stesse impostazioni.
 
-In questo articolo viene descritto come tooview hello modello di gestione risorse durante la creazione di una macchina virtuale e come toodeploy è successiva creazione tooautomate di hello stessa macchina virtuale.
+Questo articolo descrive come visualizzare il modello di Resource Manager durante la creazione di una macchina virtuale e come eseguire la distribuzione in un secondo momento per automatizzare la creazione della macchina virtuale stessa.
 
 ## <a name="multi-vm-vs-single-vm-resource-manager-templates"></a>Modello di Resource Manager di più macchine virtuali rispetto al modello di Resource Manager di una singola macchina virtuale
-Sono disponibili due modi per le macchine virtuali toocreate in un modello di gestione risorse di DevTest Labs: effettuare il provisioning di risorse Microsoft.DevTestLab/labs/virtualmachines hello o eseguire il provisioning di risorse Microsoft.Commpute/virtualmachines hello. Ognuno viene usato in diversi scenari e richiede autorizzazioni diverse.
+Esistono due modi per creare macchine virtuali in DevTest Labs usando un modello di Resource Manager: eseguire il provisioning della risorsa Microsoft.DevTestLab/labs/virtualmachines o eseguire il provisioning della risorsa Microsoft.Commpute/virtualmachines. Ognuno viene usato in diversi scenari e richiede autorizzazioni diverse.
 
-- Possono eseguire il provisioning di macchine virtuali lab singoli modelli di gestione risorse che utilizzano un tipo di risorsa Microsoft.DevTestLab/labs/virtualmachines (come dichiarato nella proprietà "resource" hello nel modello hello). Ogni macchina virtuale viene quindi visualizzato come un singolo elemento nell'elenco di macchine virtuali di DevTest Labs hello:
+- I modelli di Resource Manager che usano un tipo di risorsa Microsoft.DevTestLab/labs/virtualmachines (come dichiarato nella proprietà “risorsa” nel modello) possono eseguire il provisioning di lab VM individuali. Ogni macchina virtuale viene quindi visualizzata come un singolo elemento nell'elenco delle macchine virtuali di DevTest Labs:
 
-   ![Elenco delle macchine virtuali come singoli elementi nell'elenco di macchine virtuali di DevTest Labs hello](./media/devtest-lab-use-arm-template/devtestlab-lab-vm-single-item.png)
+   ![Elenco delle macchine come singoli elementi nell'elenco delle macchine virtuali di DevTest Labs](./media/devtest-lab-use-arm-template/devtestlab-lab-vm-single-item.png)
 
-   Può eseguire il provisioning di questo tipo di modello di gestione risorse tramite il comando di Azure PowerShell hello **New AzureRmResourceGroupDeployment** o tramite comando CLI di Azure hello **distribuzione gruppo az creare** . Richiede le autorizzazioni di amministratore, in modo che gli utenti assegnati a un ruolo utente DevTest Labs non è possibile eseguire la distribuzione di hello. 
+   È possibile eseguire il provisioning di questo tipo di modello di Resource Manager mediante il comando Azure PowerShell **New-AzureRmResourceGroupDeployment** o mediante il comando dell'interfaccia della riga di comando di Azure **az group deployment create**. Richiede le autorizzazioni di amministratore, in modo che gli utenti assegnati a un ruolo utente DevTest Labs non possano eseguire la distribuzione. 
 
-- Modelli di gestione risorse che utilizzano un tipo di risorsa Microsoft.Compute/virtualmachines è possono eseguire il provisioning di più macchine virtuali come un unico ambiente nell'elenco di macchine virtuali di DevTest Labs hello:
+- Modelli di Resource Manager che usano un tipo di risorsa Microsoft.Compute/virtualmachines possono eseguire il provisioning di più macchine virtuali come un unico ambiente nell'elenco di macchine virtuali di DevTest Labs:
 
-   ![Elenco delle macchine virtuali come singoli elementi nell'elenco di macchine virtuali di DevTest Labs hello](./media/devtest-lab-use-arm-template/devtestlab-lab-vm-single-environment.png)
+   ![Elenco delle macchine come singoli elementi nell'elenco delle macchine virtuali di DevTest Labs](./media/devtest-lab-use-arm-template/devtestlab-lab-vm-single-environment.png)
 
-   Macchine virtuali in hello stesso ambiente può essere gestito insieme e condivisione hello stesso ciclo di vita. Gli utenti assegnati a un ruolo utente DevTest Labs è possono creare gli ambienti che utilizzano tali modelli come messaggio per l'amministratore ha configurato lab hello in questo modo.
+   Le macchine virtuali nello stesso ambiente possono essere gestite insieme e condividere lo stesso ciclo di vita. Gli utenti a cui è assegnato un ruolo utente DevTest Labs possono creare gli ambienti usando tali modelli, purché l'amministratore abbia configurato il lab in questo modo.
 
-Hello parte restante di questo articolo sono descritti i modelli di gestione risorse che utilizzano Mirosoft.DevTestLab/labs/virtualmachines. Questi vengono utilizzati dal lab admins tooautomate lab la creazione di VM (ad esempio, claimable VM) o la generazione di immagine finale (ad esempio, i factory immagine).
+Il resto di questo articolo illustra i modelli di Resource Manager che usano Microsoft.DevTestLab/labs/virtualmachines. Questi vengono usati dagli amministratori dei lab per automatizzare la creazione di VM (ad esempio, macchine virtuali richiedibili) o la generazione dell'immagine predefinita (ad esempio, una factory di immagini).
 
-[Procedure consigliate per la creazione di modelli di Azure Resource Manager](https://docs.microsoft.com/azure/azure-resource-manager/resource-manager-template-best-practices) offre molti toohelp linee guida e suggerimenti si creano modelli di gestione risorse di Azure che sono toouse semplice e affidabile.
+[Procedure consigliate per la creazione di modelli di Azure Resource Manager](https://docs.microsoft.com/azure/azure-resource-manager/resource-manager-template-best-practices) offre molti suggerimenti e linee guida per creare modelli di Azure Resource Manager affidabili e semplici da usare.
 
 ## <a name="view-and-save-a-virtual-machines-resource-manager-template"></a>Visualizzare e usare un modello di Resource Manager di Azure di una macchina virtuale
-1. Seguire i passaggi hello in [creare la prima macchina virtuale in un ambiente lab](devtest-lab-create-first-vm.md) toobegin la creazione di una macchina virtuale.
-1. Immettere le informazioni di hello necessario per la macchina virtuale e aggiungere eventuali elementi desiderato per questa macchina virtuale.
-1. Nella parte inferiore di hello della finestra di hello Configura le impostazioni, scegliere **modello ARM vista**.
+1. Seguire i passaggi in [Creare la prima macchina virtuale in un lab](devtest-lab-create-first-vm.md) per iniziare a creare una macchina virtuale.
+1. Immettere le informazioni necessarie per la macchina virtuale e aggiungere eventuali elementi desiderati per la macchina virtuale.
+1. Nella parte inferiore della finestra Configurazione impostazioni, scegliere **View ARM template** (Visualizza modello ARM).
 
    ![Pulsante View ARM template](./media/devtest-lab-use-arm-template/devtestlab-lab-view-rm-template.png)
-1. Copiare e salvare hello Gestione risorse modello toouse toocreate successive un'altra macchina virtuale.
+1. Copiare e salvare il modello di Resource Manager da usare in un secondo momento per creare un'altra macchina virtuale.
 
-   ![Toosave modello di gestione risorse per un utilizzo successivo](./media/devtest-lab-use-arm-template/devtestlab-lab-copy-rm-template.png)
+   ![Modello di Resource Manager da salvare per un uso successivo](./media/devtest-lab-use-arm-template/devtestlab-lab-copy-rm-template.png)
 
-Dopo aver salvato il modello di gestione risorse di hello, è necessario aggiornare sezione parametri hello del modello di hello prima che sia possibile utilizzarlo. È possibile creare un parameter.json che consente di personalizzare solo i parametri di hello, di fuori di modello di gestione risorse hello effettivo. 
+Dopo aver salvato il modello di Resource Manager, è necessario aggiornare la sezione parametri del modello prima che sia possibile usarlo. È possibile creare un parameter.json che consente di personalizzare solo i parametri, all'esterno del modello di Resource Manager effettivo. 
 
 ![Personalizzare i parametri usando un file JSON](./media/devtest-lab-use-arm-template/devtestlab-lab-custom-params.png)
 
-## <a name="deploy-a-resource-manager-template-toocreate-a-vm"></a>Distribuire un toocreate di modello una macchina virtuale di gestione risorse
-Dopo aver salvato un modello di gestione delle risorse e personalizzarlo per le proprie esigenze, è possibile utilizzare la creazione di VM tooautomate. [Distribuire le risorse e modelli di gestione risorse di Azure PowerShell](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-template-deploy) viene descritto come toouse Azure PowerShell con Gestione risorse modelli toodeploy tooAzure le risorse. [Distribuire le risorse con i modelli di gestione risorse e CLI di Azure](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-template-deploy-cli) viene descritto come toouse CLI di Azure con Gestione risorse modelli toodeploy tooAzure le risorse.
+## <a name="deploy-a-resource-manager-template-to-create-a-vm"></a>Distribuire un modello di Resource Manager per creare una VM
+Dopo aver salvato un modello di Resource Manager e averlo personalizzato per le proprie esigenze, è possibile usarlo per automatizzare la creazione delle macchine virtuali. [Distribuire le risorse con i modelli di Azure Resource Manager e Azure PowerShell](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-template-deploy) descrive come usare Azure PowerShell con i modelli di Resource Manager per distribuire le risorse in Azure. [Distribuire le risorse con i modelli di Azure Resource Manager e l'interfaccia della riga di comando di Azure](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-template-deploy-cli) descrive come usare l'interfaccia della riga di comando di Azure con i modelli di Resource Manager per distribuire le risorse in Azure.
 
 > [!NOTE]
-> Solo un utente con autorizzazioni di proprietario lab può creare macchine virtuali da un modello di Resource Manager usando Azure PowerShell. Se si desidera la creazione di VM tooautomate utilizzando un modello di gestione delle risorse e si dispone solo delle autorizzazioni utente, è possibile utilizzare hello [ **creare vm lab az** comando hello CLI](https://docs.microsoft.com/cli/azure/lab/vm#create).
+> Solo un utente con autorizzazioni di proprietario lab può creare macchine virtuali da un modello di Resource Manager usando Azure PowerShell. Se si desidera automatizzare la creazione di VM usando un modello di Resource Manager e si dispone solo delle autorizzazioni utente, è possibile usare il comando [**az lab vm create** nell'interfaccia della riga di comando](https://docs.microsoft.com/cli/azure/lab/vm#az_lab_vm_create).
 
 ### <a name="next-steps"></a>Passaggi successivi
-* Informazioni su come troppo[creare ambienti multi-VM con modelli di gestione risorse](devtest-lab-create-environment-from-arm.md).
-* Esplorare altri modelli di gestione risorse di avvio rapido per l'automazione di DevTest Labs da hello [pubblica repository GitHub di DevTest Labs](https://github.com/Azure/azure-quickstart-templates).
+* Informazioni su come [Creare un ambiente con più VM con i modelli di Azure Resource Manager](devtest-lab-create-environment-from-arm.md).
+* Scopri più modelli rapidi di Resource Manager per l'automazione DevTest Labs dal [repo pubblico DevTest Labs GitHub](https://github.com/Azure/azure-quickstart-templates).

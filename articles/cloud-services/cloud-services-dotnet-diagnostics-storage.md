@@ -1,5 +1,5 @@
 ---
-title: aaaStore e visualizza i dati di diagnostica in archiviazione di Azure | Documenti Microsoft
+title: Archiviare e visualizzare dati di diagnostica in Archiviazione di Azure | Documentazione Microsoft
 description: Trasferire i dati di diagnostica di Azure in un account di archiviazione di Azure e visualizzarli
 services: cloud-services
 documentationcenter: .net
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/01/2016
 ms.author: robb
-ms.openlocfilehash: dd47a2ef6d6488c80c102c72b2ebf6ca6d2e473f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 374cc179e13c00e439415e3df16e0c6d5ccba5e3
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="store-and-view-diagnostic-data-in-azure-storage"></a>Archiviare e visualizzare i dati di diagnostica nell'account di archiviazione Azure
-Dati di diagnostica non vengono archiviati in modo permanente solo se vengono trasferiti toohello emulatore di archiviazione di Microsoft Azure o archiviazione tooAzure. Una volta trasferiti nella risorsa di archiviazione, sono disponibili diversi strumenti per visualizzarli.
+I dati di diagnostica non vengono archiviati definitivamente a meno che non vengano trasferiti nell'Emulatore di archiviazione di Microsoft Azure o nell'account di archiviazione di Azure. Una volta trasferiti nella risorsa di archiviazione, sono disponibili diversi strumenti per visualizzarli.
 
 ## <a name="specify-a-storage-account"></a>Specificare un account di archiviazione
-Specificare hello account di archiviazione che si desidera toouse nel file ServiceConfiguration. cscfg hello. informazioni sull'account Hello è definiti come una stringa di connessione in un'impostazione di configurazione. Hello riportato di seguito stringa di connessione predefinita hello creato per un nuovo progetto di servizio Cloud in Visual Studio:
+Specificare l'account di archiviazione da usare nel file ServiceConfiguration.cscfg. Le informazioni account vengono definite come stringa di connessione in un'impostazione di configurazione. L'esempio seguente mostra la stringa di connessione predefinita creata per un nuovo progetto di servizio cloud in Visual Studio:
 
 ```
     <ConfigurationSettings>
@@ -32,9 +32,9 @@ Specificare hello account di archiviazione che si desidera toouse nel file Servi
     </ConfigurationSettings>
 ```
 
-È possibile modificare queste informazioni di account di tooprovide stringa di connessione per un account di archiviazione di Azure.
+È possibile modificare questa stringa di connessione per poter specificare le informazioni per un account di archiviazione di Azure.
 
-In base al tipo di dati di diagnostica che si desidera raccogliere hello diagnostica Azure Usa servizio Blob hello o del servizio tabelle hello. Hello nella tabella seguente mostra le origini dati hello che vengono rese persistenti e il relativo formato.
+A seconda del tipo di dati di diagnostica da raccogliere, Diagnostica di Azure usa il servizio BLOB o il servizio tabelle. La tabella seguente mostra le origini dati persistenti e il relativo formato.
 
 | Origine dati | Formato di archiviazione |
 | --- | --- |
@@ -48,40 +48,40 @@ In base al tipo di dati di diagnostica che si desidera raccogliere hello diagnos
 | Log degli errori personalizzati |BLOB |
 
 ## <a name="transfer-diagnostic-data"></a>Trasferire i dati di diagnostica
-Per SDK 2.5 e versioni successive, dati di diagnostica di hello richiesta tootransfer possono verificarsi tramite file di configurazione hello. È possibile trasferire dati di diagnostica a intervalli pianificati, come specificato nella configurazione di hello.
+Per SDK 2.5 e versioni successive, la richiesta di trasferimento dei dati di diagnostica può verificarsi nel file di configurazione. È possibile trasferire i dati di diagnostica a intervalli pianificati, come specificato nella configurazione.
 
-Per SDK 2.4 e precedente è possibile richiedere dati di diagnostica hello tootransfer tramite file di configurazione hello anche a livello di codice. approccio a livello di codice Hello consente trasferimenti su richiesta toodo.
+Per SDK 2.4 e versioni precedenti, è possibile richiedere di trasferire i dati di diagnostica nel file di configurazione oltre che a livello di programmazione. L'approccio programmatico consente anche di eseguire trasferimenti su richiesta.
 
 > [!IMPORTANT]
-> Quando si trasferiscono dati di diagnostica tooan account di archiviazione di Azure, si devono sostenere i costi per le risorse di archiviazione hello che utilizza i dati di diagnostica.
+> Quando si trasferiscono i dati di diagnostica in un account di archiviazione di Azure, si devono sostenere i costi per le risorse di archiviazione usate dai dati di diagnostica.
 > 
 > 
 
 ## <a name="store-diagnostic-data"></a>Archiviare i dati di diagnostica
-Dati di log vengono archiviati nell'archiviazione Blob o tabella con hello seguenti nomi:
+I dati dei log vengono archiviati nell'archivio BLOB o tabelle con i nomi seguenti:
 
 **Tabelle**
 
-* **WadLogsTable** - log scritto in codice utilizzando il listener di traccia hello.
+* **WadLogsTable** : log scritti nel codice con il listener di traccia.
 * **WADDiagnosticInfrastructureLogsTable** : monitor di diagnostica e modifiche di configurazione.
-* **WADDirectoriesTable** : directory esegue il monitoraggio di tale monitor di diagnostica hello.  Sono inclusi i log di IIS, i log delle richieste non riuscite di IIS e le directory personalizzate.  percorso Hello hello blob del file di log viene specificato nel campo Container hello e nome hello del blob hello nel campo RelativePath hello.  campo AbsolutePath Hello indica hello percorso e il nome del file hello esistente nella macchina virtuale di Azure hello.
+* **WADDirectoriesTable** : directory monitorate dal monitor di diagnostica.  Sono inclusi i log di IIS, i log delle richieste non riuscite di IIS e le directory personalizzate.  La posizione del file di log dei BLOB è specificata nel campo Container e il nome del BLOB si trova nel campo RelativePath.  Il campo AbsolutePath indica la posizione e il nome del file esistente nella macchina virtuale di Azure.
 * **WADPerformanceCountersTable** : contatori delle prestazioni.
 * **WADWindowsEventLogsTable** : registri eventi di Windows.
 
 **BLOB**
 
-* **wad-control-container** – (solo per SDK 2.4 e precedenti) contiene file di configurazione XML hello che controlla hello diagnostica Windows Azure.
+* **wad-control-container** : (solo per SDK 2.4 e versioni precedenti) contiene i file di configurazione XML che controllano Diagnostica di Azure.
 * **wad-iis-failedreqlogfiles** : contiene informazioni provenienti dai log delle richieste non riuscite di IIS.
 * **wad-iis-logfiles** : contiene informazioni sui log di IIS.
-* **"custom"** : contenitore personalizzato basato sulle directory monitorate da Monitoraggio diagnostica hello di configurazione.  nome Hello di questo contenitore blob verrà specificato in WADDirectoriesTable.
+* **"custom"** : contenitore personalizzato basato sulle directory di configurazione monitorate dal monitor di diagnostica.  Il nome di questo contenitore BLOB verrà specificato in WADDirectoriesTable.
 
-## <a name="tools-tooview-diagnostic-data"></a>Dati di diagnostica tooview degli strumenti
-Sono inoltre numerosi strumenti dati hello tooview disponibile dopo essere stato trasferito toostorage. ad esempio:
+## <a name="tools-to-view-diagnostic-data"></a>Strumenti per visualizzare i dati di diagnostica
+Sono disponibili diversi strumenti per visualizzare i dati una volta trasferiti nell'account di archiviazione. Ad esempio:
 
-* Esplora server in Visual Studio - se è stato installato hello Azure Tools per Microsoft Visual Studio, è possibile utilizzare il nodo di archiviazione di Azure hello in Esplora Server tooview-blob e tabelle dati di sola lettura dagli account di archiviazione di Azure. È possibile visualizzare i dati dall'account dell'emulatore di archiviazione locale e anche dagli account di archiviazione creati per Azure. Per altre informazioni, vedere [Esplorazione e gestione delle risorse di archiviazione con Esplora server](../vs-azure-tools-storage-resources-server-explorer-browse-manage.md).
-* [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md) è un'applicazione autonoma che consente di utilizzare tooeasily dati di archiviazione di Azure in Windows, OSX e Linux.
-* [Azure Management Studio](http://www.cerebrata.com/products/azure-management-studio/introduction) include Azure Diagnostics Manager che consente di tooview, scaricare e gestire dati di diagnostica hello raccolti dalle applicazioni hello in esecuzione in Azure.
+* Esplora server in Visual Studio: se sono stati installati gli Strumenti di Azure per Microsoft Visual Studio, è possibile usare il nodo Archiviazione di Azure in Esplora server per visualizzare i dati di tabelle e BLOB di sola lettura dagli account di archiviazione di Azure. È possibile visualizzare i dati dall'account dell'emulatore di archiviazione locale e anche dagli account di archiviazione creati per Azure. Per altre informazioni, vedere [Esplorazione e gestione delle risorse di archiviazione con Esplora server](../vs-azure-tools-storage-resources-server-explorer-browse-manage.md).
+* [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md) è un'app autonoma che consente di usare facilmente dati di Archiviazione di Azure in Windows, OSX e Linux.
+* [Azure Management Studio](http://www.cerebrata.com/products/azure-management-studio/introduction) include Azure Diagnostics Manager che consente di visualizzare, scaricare e gestire i dati di diagnostica raccolti dalle applicazioni in esecuzione in Azure.
 
 ## <a name="next-steps"></a>Passaggi successivi
-[Tracciare il flusso di hello in un'applicazione di servizi Cloud con diagnostica di Azure](cloud-services-dotnet-diagnostics-trace-flow.md)
+[Tracciare il flusso in un'applicazione di Servizi cloud con Diagnostica di Azure](cloud-services-dotnet-diagnostics-trace-flow.md)
 

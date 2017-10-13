@@ -1,5 +1,5 @@
 ---
-title: "bilanciamento del carico su più configurazioni IP in Azure aaaLoad | Documenti Microsoft"
+title: "Bilanciamento del carico in più configurazioni IP in Azure | Microsoft Docs"
 description: Bilanciamento del carico tra configurazioni IP primarie e secondarie.
 services: load-balancer
 documentationcenter: na
@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/16/2017
+ms.date: 09/25/2017
 ms.author: annahar
-ms.openlocfilehash: fe1cdb317350942ff759229491c2025e98dd24a1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 2235d007434dabde1639ab19bc6813c818ed5ed7
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="load-balancing-on-multiple-ip-configurations-using-powershell"></a>Bilanciamento del carico in più configurazioni IP tramite PowerShell
 
@@ -27,16 +27,18 @@ ms.lasthandoff: 10/06/2017
 > * [CLI](load-balancer-multiple-ip-cli.md)
 > * [PowerShell](load-balancer-multiple-ip-powershell.md)
 
-In questo articolo viene descritto come indirizzi di bilanciamento del carico di Azure con più IP toouse su un'interfaccia di rete secondaria (NIC). Per questo scenario sono disponibili due VM con Windows, ognuna con una scheda di interfaccia di rete primaria e secondaria. Ognuno di hello secondario schede di rete dispone di due configurazioni IP. Ogni macchina virtuale ospita entrambi i siti Web: contoso.com e fabrikam.com. Ogni sito Web è associato tooone delle configurazioni IP hello sulla hello di rete secondaria. Utilizziamo bilanciamento del carico di Azure tooexpose due front-end indirizzi IP, una per ogni sito Web, toodistribute traffico toohello rispettiva configurazione IP per il sito Web di hello. Questo scenario utilizza hello stesso numero di porta tra i server front-end, così come entrambi indirizzi IP del pool back-end.
+[!INCLUDE [load-balancer-basic-sku-include.md](../../includes/load-balancer-basic-sku-include.md)]
+
+Questo articolo descrive come usare Azure Load Balancer con più indirizzi IP su una scheda di interfaccia di rete secondaria. Per questo scenario sono disponibili due VM con Windows, ognuna con una scheda di interfaccia di rete primaria e secondaria. Ogni scheda di interfaccia di rete secondaria dispone di due configurazioni di indirizzo IP. Ogni macchina virtuale ospita entrambi i siti Web: contoso.com e fabrikam.com. Ogni sito Web è associato a una delle configurazioni IP della scheda di interfaccia di rete secondaria. Azure Load Balancer viene usato per esporre due indirizzi IP front-end, uno per ogni sito Web, per distribuire il traffico alla rispettiva configurazione IP per il sito Web. Questo scenario usa lo stesso numero di porta per entrambi i front-end, nonché per entrambi gli indirizzi IP del pool back-end.
 
 ![Immagine dello scenario LB](./media/load-balancer-multiple-ip/lb-multi-ip.PNG)
 
-## <a name="steps-tooload-balance-on-multiple-ip-configurations"></a>Saldo tooload passaggi su più configurazioni IP
+## <a name="steps-to-load-balance-on-multiple-ip-configurations"></a>Procedura per il bilanciamento del carico in più configurazioni IP
 
-Attenersi alla procedura hello seguente scenario hello tooachieve descritta in questo articolo:
+Per ottenere lo scenario descritto in questo articolo, seguire questa procedura:
 
-1. Installare Azure PowerShell. Vedere [come tooinstall e configurare Azure PowerShell](/powershell/azure/overview) per informazioni sull'installazione hello la versione più recente di Azure PowerShell, selezionando la sottoscrizione e la firma nell'account tooyour.
-2. Creare un gruppo di risorse utilizzando hello seguenti impostazioni:
+1. Installare Azure PowerShell. Per informazioni su come installare la versione più recente di Azure PowerShell, selezionare la sottoscrizione e accedere all'account, vedere [Come installare e configurare Azure PowerShell](/powershell/azure/overview).
+2. Creare un gruppo di risorse usando le impostazioni seguenti:
 
     ```powershell
     $location = "westcentralus".
@@ -45,13 +47,13 @@ Attenersi alla procedura hello seguente scenario hello tooachieve descritta in q
 
     Per altre informazioni, vedere il passaggio 2 dell'articolo relativo alla [creazione di un gruppo di risorse](../virtual-machines/virtual-machines-windows-ps-create.md?toc=%2fazure%2fload-balancer%2ftoc.json).
 
-3. [Creare un Set di disponibilità](../virtual-machines/windows/tutorial-availability-sets.md?toc=%2fazure%2fload-balancer%2ftoc.json) toocontain le macchine virtuali. Per questo scenario, utilizzare hello comando seguente:
+3. [Creare un set di disponibilità](../virtual-machines/windows/tutorial-availability-sets.md?toc=%2fazure%2fload-balancer%2ftoc.json) che dovrà contenere le macchine virtuali. Per questo scenario, usare il comando seguente:
 
     ```powershell
     New-AzureRmAvailabilitySet -ResourceGroupName "contosofabrikam" -Name "myAvailset" -Location "West Central US"
     ```
 
-4. Seguire i passaggi da istruzioni 3 a 5 [creare una macchina virtuale Windows](../virtual-machines/virtual-machines-windows-ps-create.md?toc=%2fazure%2fload-balancer%2ftoc.json) articolo Creazione hello tooprepare di una macchina virtuale con una singola scheda di rete. Eseguire passaggio 6.1 e utilizzare i seguenti hello anziché passaggio 6.2:
+4. Seguire le istruzioni contenute nei passaggi da 3 a 5 dell'articolo [Creare una VM Windows](../virtual-machines/virtual-machines-windows-ps-create.md?toc=%2fazure%2fload-balancer%2ftoc.json) per preparare la creazione di una macchina virtuale con una scheda di interfaccia di rete singola. Eseguire il passaggio 6.1 e sostituire il comando del passaggio 6.2 con quanto segue:
 
     ```powershell
     $availset = Get-AzureRmAvailabilitySet -ResourceGroupName "contosofabrikam" -Name "myAvailset"
@@ -60,7 +62,7 @@ Attenersi alla procedura hello seguente scenario hello tooachieve descritta in q
 
     Completare quindi i passaggi da 6.3 a 6.8 dell'articolo [Creare una VM Windows](../virtual-machines/virtual-machines-windows-ps-create.md?toc=%2fazure%2fload-balancer%2ftoc.json).
 
-5. Aggiungere un secondo tooeach di configurazione IP di hello macchine virtuali. Seguire le istruzioni hello [assegnare più indirizzi IP macchine toovirtual](../virtual-network/virtual-network-multiple-ip-addresses-powershell.md#add) articolo. Utilizzare hello le impostazioni di configurazione seguente:
+5. Aggiungere una seconda configurazione IP a ognuna delle macchine virtuali. Seguire le istruzioni contenute nell'articolo [Assegnare più indirizzi IP alle macchine virtuali](../virtual-network/virtual-network-multiple-ip-addresses-powershell.md#add). Usare le impostazioni di configurazione seguenti:
 
     ```powershell
     $NicName = "VM1-NIC2"
@@ -70,11 +72,11 @@ Attenersi alla procedura hello seguente scenario hello tooachieve descritta in q
     $Subnet1 = Get-AzureRmVirtualNetworkSubnetConfig -Name "mySubnet" -VirtualNetwork $myVnet
     ```
 
-    Non è necessario tooassociate hello secondaria le configurazioni IP con indirizzi IP pubblici a scopo di hello di questa esercitazione. Modificare hello comando tooremove hello pubblica IP associazione parte.
+    Ai fini di questa esercitazione, non è necessario associare le configurazioni IP secondarie agli indirizzi IP pubblici. Modificare il comando per rimuovere la parte relativa all'associazione dell'indirizzo IP pubblico.
 
-6. Completare nuovamente i passaggi da 4 a 6 di questo articolo per VM2. In tal caso, essere tooreplace che hello VM nome tooVM2. Si noti che non è necessaria una rete virtuale toocreate per hello seconda macchina virtuale. È possibile scegliere se creare o meno una nuova subnet in base al caso d'uso.
+6. Completare nuovamente i passaggi da 4 a 6 di questo articolo per VM2. In questo caso assicurarsi di sostituire il nome della macchina virtuale con VM2. Si noti che non è necessario creare una rete virtuale per la seconda macchina virtuale. È possibile scegliere se creare o meno una nuova subnet in base al caso d'uso.
 
-7. Creare due indirizzi IP pubblici e memorizzarli in variabili appropriate hello, come illustrato:
+7. Creare due indirizzi IP pubblici e archiviarli in variabili appropriate, come illustrato di seguito:
 
     ```powershell
     $publicIP1 = New-AzureRmPublicIpAddress -Name PublicIp1 -ResourceGroupName contosofabrikam -Location 'West Central US' -AllocationMethod Dynamic -DomainNameLabel contoso
@@ -109,7 +111,7 @@ Attenersi alla procedura hello seguente scenario hello tooachieve descritta in q
     $mylb = New-AzureRmLoadBalancer -ResourceGroupName contosofabrikam -Name mylb -Location 'West Central US' -FrontendIpConfiguration $frontendIP1 -LoadBalancingRule $lbrule -BackendAddressPool $beAddressPool -Probe $healthProbe
     ```
 
-11. Aggiungere hello secondo back-end indirizzo front-end e pool IP configurazione appena creato tooyour bilanciamento del carico:
+11. Aggiungere il secondo pool di indirizzi back-end e la configurazione IP front-end per il servizio di bilanciamento del carico appena creato:
 
     ```powershell
     $mylb = Get-AzureRmLoadBalancer -Name "mylb" -ResourceGroupName $myResourceGroup | Add-AzureRmLoadBalancerBackendAddressPoolConfig -Name fabrikampool | Set-AzureRmLoadBalancer
@@ -119,7 +121,7 @@ Attenersi alla procedura hello seguente scenario hello tooachieve descritta in q
     Add-AzureRmLoadBalancerRuleConfig -Name HTTP -LoadBalancer $mylb -FrontendIpConfiguration $frontendIP2 -BackendAddressPool $beaddresspool2 -Probe $healthProbe -Protocol Tcp -FrontendPort 80 -BackendPort 80 | Set-AzureRmLoadBalancer
     ```
 
-12. comandi Hello seguenti ottenere hello NIC e quindi aggiungere che entrambe le configurazioni IP ogni secondario NIC toohello back-end del pool di indirizzi di hello bilanciamento del carico:
+12. I comandi seguenti permettono di ottenere le schede di interfaccia di rete e aggiungono entrambe le configurazioni IP di ogni scheda di interfaccia di rete secondaria al pool di indirizzi back-end del servizio di bilanciamento del carico:
 
     ```powershell
     $nic1 = Get-AzureRmNetworkInterface -Name "VM1-NIC2" -ResourceGroupName "MyResourcegroup";
@@ -136,8 +138,8 @@ Attenersi alla procedura hello seguente scenario hello tooachieve descritta in q
     $nic2 | Set-AzureRmNetworkInterface
     ```
 
-13. Infine, è necessario configurare resource record toopoint toohello front-end rispettivi indirizzo IP del DNS hello bilanciamento del carico. È possibile ospitare i domini nel servizio DNS di Azure. Per altre informazioni sull'uso del servizio DNS di Azure con Azure Load Balancer, vedere [Uso del servizio DNS di Azure con altri servizi di Azure](../dns/dns-for-azure-services.md).
+13. Infine, è necessario configurare i record risorsa DNS in modo che puntino all'indirizzo IP front-end corrispondente di Azure Load Balancer. È possibile ospitare i domini nel servizio DNS di Azure. Per altre informazioni sull'uso del servizio DNS di Azure con Azure Load Balancer, vedere [Uso del servizio DNS di Azure con altri servizi di Azure](../dns/dns-for-azure-services.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
-- Altre informazioni su come il bilanciamento del carico toocombine servizi in Azure in [utilizzando servizi di bilanciamento del carico in Azure](../traffic-manager/traffic-manager-load-balancing-azure.md).
-- Informazioni su come è possibile utilizzare diversi tipi di registri in Azure toomanage e risolvere i problemi di bilanciamento del carico in [Log analitica per il bilanciamento del carico di Azure](../load-balancer/load-balancer-monitor-log.md).
+- Altre informazioni su come combinare i servizi di bilanciamento del carico di Azure sono disponibili in [Uso dei servizi di bilanciamento del carico in Azure](../traffic-manager/traffic-manager-load-balancing-azure.md).
+- Informazioni su come è possibile usare diversi tipi di log in Azure per gestire e risolvere i problemi di bilanciamento del carico sono disponibili in [Analisi dei log per Azure Load Balancer](../load-balancer/load-balancer-monitor-log.md).

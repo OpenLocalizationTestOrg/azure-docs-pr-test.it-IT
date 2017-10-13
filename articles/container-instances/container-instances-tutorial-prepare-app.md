@@ -1,6 +1,6 @@
 ---
-title: esercitazione per istanze di contenitori - aaaAzure preparazione dell'app | Documenti di Azure
-description: Preparare un'applicazione per la distribuzione tooAzure istanze di contenitori
+title: Esercitazione su Istanze di contenitore di Azure - Preparare l'app | Azure Docs
+description: Preparare un'app per la distribuzione in Istanze di contenitore di Azure
 services: container-instances
 documentationcenter: 
 author: seanmck
@@ -17,44 +17,46 @@ ms.workload: na
 ms.date: 08/01/2017
 ms.author: seanmck
 ms.custom: mvc
-ms.openlocfilehash: 406ba796e5fefb1527f2e894cc3f7bbd8f7a5fd1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: ca4cd00b3e9e58fd1137b896e7aac96549bf6d05
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="create-container-for-deployment-tooazure-container-instances"></a>Creare il contenitore per la distribuzione tooAzure istanze di contenitori
+# <a name="create-container-for-deployment-to-azure-container-instances"></a>Creare un contenitore per la distribuzione in Istanze di contenitore di Azure
 
 Istanze di contenitore di Azure consente la distribuzione di contenitori Docker nell'infrastruttura di Azure senza effettuare il provisioning di macchine virtuali o adottare servizi di livello superiore. In questa esercitazione si compilerà una semplice applicazione Web in Node.js e si creerà un pacchetto in un contenitore che può essere eseguito usando Istanze di contenitore di Azure. Verranno illustrati gli argomenti seguenti:
 
 > [!div class="checklist"]
 > * Clonazione dell'origine applicazione da GitHub  
 > * Creazione di immagini del contenitore dall'origine applicazione
-> * Test delle immagini di hello in un ambiente locale in Docker
+> * Test delle immagini in un ambiente Docker locale
 
-Nelle esercitazioni successive, è caricare il tooan immagine del Registro di sistema di Azure contenitore e quindi distribuirli tooAzure istanze di contenitori.
+Nelle esercitazioni successive si caricherà l'immagine in un Registro contenitori di Azure e quindi la si distribuirà in Istanze di contenitore di Azure.
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
 Questa esercitazione presuppone una conoscenza di base dei concetti principali di Docker, come contenitori, immagini dei contenitore e comandi essenziali. Se necessario, vedere [Introduzione a Docker]( https://docs.docker.com/get-started/) per una panoramica sui concetti fondamentali relativi al contenitore. 
 
-toocomplete questa esercitazione, è necessario un ambiente di sviluppo di Docker. Docker offre pacchetti che consentono di configurare facilmente Docker in qualsiasi sistema [Mac](https://docs.docker.com/docker-for-mac/), [Windows](https://docs.docker.com/docker-for-windows/) o [Linux](https://docs.docker.com/engine/installation/#supported-platforms).
+Per completare questa esercitazione è necessario un ambiente di sviluppo Docker. Docker offre pacchetti che consentono di configurare facilmente Docker in qualsiasi sistema [Mac](https://docs.docker.com/docker-for-mac/), [Windows](https://docs.docker.com/docker-for-windows/) o [Linux](https://docs.docker.com/engine/installation/#supported-platforms).
+
+Azure Cloud Shell non include i componenti di Docker necessari per completare ogni passaggio di questa esercitazione. È pertanto consigliabile usare un ambiente di sviluppo completo di Docker.
 
 ## <a name="get-application-code"></a>Ottenere il codice dell'applicazione
 
-esempio Hello in questa esercitazione include una semplice applicazione web incorporata [Node.js](http://nodejs.org). applicazione Hello serve di una pagina HTML statica e simile al seguente:
+L'esempio in questa esercitazione include una semplice applicazione Web compilata in [Node.js](http://nodejs.org). L'app gestisce una pagina HTML statica ed è simile alla seguente:
 
 ![App dell'esercitazione visualizzata in un browser][aci-tutorial-app]
 
-Usare git toodownload hello-esempio:
+Usare Git per scaricare l'esempio:
 
 ```bash
 git clone https://github.com/Azure-Samples/aci-helloworld.git
 ```
 
-## <a name="build-hello-container-image"></a>Crea immagine del contenitore hello
+## <a name="build-the-container-image"></a>Compilare l'immagine del contenitore
 
-Hello Dockerfile fornito nel repository di esempio hello viene illustrata la modalità di compilazione contenitore hello. Viene avviato da un [ufficiale immagine Node.js] [ dockerhub-nodeimage] in base a [Linux Alpine](https://alpinelinux.org/), una distribuzione di piccole dimensioni che è adatto toouse con i contenitori. Viene quindi copia i file dell'applicazione hello in un contenitore di hello, installa le dipendenze tramite Gestione pacchetti di nodi hello e infine viene avviata un'applicazione hello.
+Il documento Dockerfile fornito nel repository di esempio illustra come viene compilato il contenitore. Viene avviato da un'[immagine Node.js ufficiale][dockerhub-nodeimage] basata su [Alpine Linux](https://alpinelinux.org/), una distribuzione di piccole dimensioni particolarmente adatta per l'uso con i contenitori. Copia quindi i file dell'applicazione nel contenitore, installa le dipendenze usando Gestione pacchetti del nodo e infine avvia l'applicazione.
 
 ```
 FROM node:8.2.0-alpine
@@ -65,13 +67,13 @@ RUN npm install
 CMD node /usr/src/app/index.js
 ```
 
-Hello utilizzare `docker build` comando toocreate hello immagine contenitore come tag *aci-esercitazione-app*:
+Usare il comando `docker build` per creare l'immagine del contenitore, assegnandole il tag *aci-tutorial-app*:
 
 ```bash
 docker build ./aci-helloworld -t aci-tutorial-app
 ```
 
-Hello utilizzare `docker images` immagine hello compilato toosee:
+Usare `docker images` per visualizzare l'immagine compilata:
 
 ```bash
 docker images
@@ -84,31 +86,31 @@ REPOSITORY                   TAG                 IMAGE ID            CREATED    
 aci-tutorial-app             latest              5c745774dfa9        39 seconds ago       68.1 MB
 ```
 
-## <a name="run-hello-container-locally"></a>Eseguire il contenitore di hello in locale
+## <a name="run-the-container-locally"></a>Eseguire il contenitore in locale
 
-Prima di tentare la distribuzione di hello contenitore tooAzure istanze di contenitori, eseguirla localmente tooconfirm del corretto funzionamento. Hello `-d` switch consente contenitore hello eseguito in background hello, mentre `-p` consente toomap una porta arbitraria del tooport calcolo 80 nel contenitore hello.
+Prima di provare a distribuire il contenitore in Istanze di contenitore di Azure, eseguirlo in locale per verificarne il funzionamento. L'opzione `-d` consente di eseguire il contenitore in background, mentre `-p` consente di eseguire il mapping di una porta arbitraria del computer alla porta 80 del contenitore.
 
 ```bash
 docker run -d -p 8080:80 aci-tutorial-app
 ```
 
-Aprire hello browser toohttp://localhost:8080 tooconfirm che hello contenitore è in esecuzione.
+Aprire il browser all'indirizzo http://localhost:8080 per verificare che il contenitore sia un esecuzione.
 
-![App di hello in esecuzione in locale nel browser hello][aci-tutorial-app-local]
+![Esecuzione locale dell'app nel browser][aci-tutorial-app-local]
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-In questa esercitazione, è stato creato un'immagine contenitore che può essere distribuito tooAzure istanze di contenitori. sono stata completata Hello alla procedura seguente:
+In questa esercitazione è stata creata un'immagine del contenitore che può essere distribuita in Istanze di contenitore di Azure. Sono stati completati i passaggi seguenti:
 
 > [!div class="checklist"]
-> * La clonazione di origine dell'applicazione hello da GitHub  
+> * Clonazione dell'origine applicazione da GitHub  
 > * Creazione di immagini del contenitore dall'origine applicazione
-> * Contenitore di hello di test in locale
+> * Test del contenitore in locale
 
-Spostare toohello Avanti toolearn esercitazione sull'archiviazione di immagini contenitore in un registro di sistema di contenitore di Azure.
+Passare alla prossima esercitazione per apprendere informazioni sull'archiviazione delle immagini del contenitore in un Registro contenitori di Azure.
 
 > [!div class="nextstepaction"]
-> [Push tooAzure immagini contenitore del Registro di sistema](./container-instances-tutorial-prepare-acr.md)
+> [Eseguire il push delle immagini nel Registro contenitori di Azure](./container-instances-tutorial-prepare-acr.md)
 
 <!-- LINKS -->
 [dockerhub-nodeimage]: https://hub.docker.com/r/library/node/tags/8.2.0-alpine/

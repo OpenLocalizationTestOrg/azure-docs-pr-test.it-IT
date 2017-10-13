@@ -1,6 +1,6 @@
 ---
-title: aaaIntroduction tooReliable raccolte in servizi di Azure Service Fabric con stati | Documenti Microsoft
-description: Servizi di Service Fabric con stati forniscono affidabile raccolte che consentono di applicazioni cloud altamente disponibile, scalabili e a bassa latenza toowrite.
+title: Introduzione a Reliable Collections nei servizi con stato di Azure Service Fabric | Microsoft Docs
+description: "I servizi con stato di Service Fabric forniscono raccolte Reliable Collections che consentono di sviluppare applicazioni cloud a disponibilità elevata, scalabili e a bassa latenza."
 services: service-fabric
 documentationcenter: .net
 author: mcoskun
@@ -14,44 +14,44 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 5/1/2017
 ms.author: mcoskun
-ms.openlocfilehash: 9f67c48f13e8b91b84977e127e2545cbb9d9a158
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d0247ba0242af05ca6dcd8049ff9116683538fa5
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="introduction-tooreliable-collections-in-azure-service-fabric-stateful-services"></a>Introduzione tooReliable raccolte in servizi di Azure Service Fabric con stati
-Affidabile raccolte consentono di applicazioni cloud altamente disponibile, scalabili e a bassa latenza toowrite come se si sono scrivendo applicazioni per singolo computer. classi di hello Hello **Microsoft.ServiceFabric.Data.Collections** dello spazio dei nomi forniscono un set di raccolte che automaticamente lo stato a disponibilità elevata. Gli sviluppatori devono tooprogram solo toohello API insieme affidabile e gestire raccolte affidabile hello replicati e lo stato locale.
+# <a name="introduction-to-reliable-collections-in-azure-service-fabric-stateful-services"></a>Introduzione alle Reliable Collections nei servizi con stato di Service Fabric
+Reliable Collections consente di sviluppare applicazioni cloud a disponibilità elevata, scalabili e a bassa latenza nello stesso modo in cui si sviluppano applicazioni per singoli computer. Le classi nello spazio dei nomi **Microsoft.ServiceFabric.Data.Collections** forniscono un set di raccolte che assicurano automaticamente la disponibilità elevata dello stato. Gli sviluppatori devono solo programmare le API Reliable Collections e consentire a queste raccolte di gestire lo stato replicato e locale.
 
-Hello chiave differenza tra le raccolte affidabile e altre tecnologie di disponibilità elevata (ad esempio Redis, il servizio tabelle di Azure e servizio di Accodamento di Azure) consiste nel fatto che lo stato di hello viene mantenuto localmente nell'istanza di servizio hello mentre vengono applicate anche a disponibilità elevata. Ciò significa che:
+La differenza principale tra le raccolte Reliable Collections e altre tecnologie a disponibilità elevata, ad esempio Redis e i servizi tabelle e code di Azure, consiste nel fatto che lo stato viene mantenuto in locale nell'istanza del servizio e ne viene assicurata al tempo stesso la disponibilità elevata. Ciò significa che:
 
 * Tutte le operazioni di lettura sono locali, assicurando quindi bassa latenza e velocità effettiva elevata.
-* Tutte le scritture comportano un numero minimo di hello come di rete IOs, determinando di bassa latenza e velocità effettiva elevata scrive.
+* Tutte le operazioni di scrittura eseguono il numero minimo di operazioni di IO di rete, assicurando quindi bassa latenza e velocità effettiva elevata.
 
 ![Immagine dell'evoluzione delle raccolte.](media/service-fabric-reliable-services-reliable-collections/ReliableCollectionsEvolution.png)
 
-Raccolte affidabile possono essere considerate come hello naturale evoluzione hello **System. Collections** classi: un nuovo set di raccolte che sono progettati per le applicazioni cloud e multi-computer hello senza aumentare la complessità per developer Hello. Come tali, le raccolte Reliable Collections sono:
+Le raccolte Reliable Collections possono essere considerate l'evoluzione naturale delle classi **System.Collections** , ovvero un nuovo set di raccolte progettate per le applicazioni per il cloud e più computer che non aumentano le complessità per gli sviluppatori. Come tali, le raccolte Reliable Collections sono:
 
 * Replicate: le modifiche apportate allo stato vengono replicate per assicurare disponibilità elevata.
-* Persistente: I dati sono toodisk persistente per la durabilità da interruzioni di grandi dimensioni (ad esempio, un Data Center di alimentazione).
-* Asincrono: API sono tooensure asincrona che i thread non vengono bloccati quando incorrere in IO.
-* Transazionale: API utilizzano astrazione hello di transazioni in modo da gestire con facilità più affidabile raccolte all'interno di un servizio.
+* Persistenti: i dati vengono resi persistenti sul disco per assicurarne la durabilità in caso di guasti su larga scala, ad esempio l'interruzione dell'alimentazione in un data center.
+* Asincrone: le API sono asincrone per assicurare che i thread non vengano bloccati durante le operazioni di IO.
+* Transazionali: le API utilizzano l'astrazione delle transazioni per consentire all'utente di gestire facilmente più raccolte Reliable Collections all'interno di un servizio.
 
-Raccolte affidabile garantisce una coerenza assoluta fuori toomake casella hello ragionamento sullo stato dell'applicazione più semplice.
-Coerenza assoluta avviene garantendo transazione commit fine solo dopo che l'intera transazione hello è connesso un quorum maggioranza delle repliche, inclusa hello primario.
-coerenza debole tooachieve, applicazioni possono riguardare toohello back-client/richiedente prima che venga restituito con commit asincrono hello.
+Le raccolte Reliable Collections offrono garanzie predefinite di coerenza assoluta, per facilitare la definizione della logica relativa allo stato delle applicazioni.
+La coerenza assoluta è ottenuta assicurando che i commit delle transazioni siano completati solo dopo che l'intera transazione è stata registrata su un quorum di repliche di maggioranza, inclusa quella primaria.
+Per ottenere una coerenza più debole, le applicazioni possono rinviare un acknowledgement al client/richiedente prima della restituzione del commit asincrono.
 
-API raccolte affidabile Hello sono un'evoluzione di raccolte concorrenti API (trovato nell'hello **System.Collections.Concurrent** dello spazio dei nomi):
+Le API Reliable Collections sono un'evoluzione delle API delle raccolte disponibili nello spazio dei nomi **System.Collections.Concurrent** :
 
-* Asincrona: Restituisce un'attività poiché, diversamente dalle raccolte simultanee, le operazioni di hello vengono replicate e resi persistenti.
-* Parametri out non: Usa `ConditionalValue<T>` tooreturn bool e un valore anziché i parametri out. `ConditionalValue<T>`è ad esempio `Nullable<T>` , ma non richiede T toobe uno struct.
-* Transazioni: Usa un toogroup azioni dell'utente hello transazione oggetto tooenable in più raccolte affidabile in una transazione.
+* Asincrone: restituiscono un'attività dal momento che, a differenza delle raccolte Concurrent Collections, le operazioni vengono replicate e rese persistenti.
+* Senza parametri out: usano `ConditionalValue<T>` per restituire una variabile booleana e un valore anziché parametri out. `ConditionalValue<T>` è come `Nullable<T>` ma non richiede una T per essere una struttura.
+* Transazioni: usano un oggetto transazione per consentire all'utente di raggruppare azioni su più raccolte Reliable Collections in una transazione.
 
 Attualmente **Microsoft.ServiceFabric.Data.Collections** include tre raccolte:
 
-* [ReliableDictionary](https://msdn.microsoft.com/library/azure/dn971511.aspx): rappresenta una raccolta replicata, transazionale e asincrona di coppie chiave/valore. Simile troppo**ConcurrentDictionary**, entrambi hello chiave e valore hello può essere di qualsiasi tipo.
-* [ReliableQueue](https://msdn.microsoft.com/library/azure/dn971527.aspx): rappresenta una coda FIFO (First-In First-Out) replicata, transazionale e asincrona. Simile troppo**ConcurrentQueue**, hello valore può essere di qualsiasi tipo.
-* [ReliableConcurrentQueue](service-fabric-reliable-services-reliable-concurrent-queue.md): rappresenta una coda di ordinamento ottimale replicata, transazionale e asincrona per la velocità effettiva elevata. Toohello simile **ConcurrentQueue**, hello valore può essere di qualsiasi tipo.
+* [ReliableDictionary](https://msdn.microsoft.com/library/azure/dn971511.aspx): rappresenta una raccolta replicata, transazionale e asincrona di coppie chiave/valore. Simile a **ConcurrentDictionary**, sia la chiave che il valore possono essere di qualsiasi tipo.
+* [ReliableQueue](https://msdn.microsoft.com/library/azure/dn971527.aspx): rappresenta una coda FIFO (First-In First-Out) replicata, transazionale e asincrona. Simile a **ConcurrentQueue**, il valore può essere di qualsiasi tipo.
+* [ReliableConcurrentQueue](service-fabric-reliable-services-reliable-concurrent-queue.md): rappresenta una coda di ordinamento ottimale replicata, transazionale e asincrona per la velocità effettiva elevata. Simile a **ConcurrentQueue**, il valore può essere di qualsiasi tipo.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * [Linee guida e consigli per Reliable Collections](service-fabric-reliable-services-reliable-collections-guidelines.md)

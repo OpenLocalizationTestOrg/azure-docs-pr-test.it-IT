@@ -1,6 +1,6 @@
 ---
-title: aaaMigrate il Data Warehouse di tooSQL soluzione | Documenti Microsoft
-description: Materiale sussidiario di migrazione per portare la piattaforma di soluzione tooAzure SQL Data Warehouse.
+title: Eseguire la migrazione della soluzione in SQL Data Warehouse | Microsoft Docs
+description: Indicazioni sulla migrazione per spostare la soluzione nella piattaforma Azure SQL Data Warehouse.
 services: sql-data-warehouse
 documentationcenter: NA
 author: sqlmojo
@@ -15,23 +15,23 @@ ms.workload: data-services
 ms.custom: migrate
 ms.date: 06/27/2017
 ms.author: joeyong;barbkess
-ms.openlocfilehash: 27b51f15247603f054070f360ede7f24541c0288
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 771b9456e66b8a1e41f72340b695b19e2adaf793
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="migrate-your-solution-tooazure-sql-data-warehouse"></a>Eseguire la migrazione del tooAzure soluzione SQL Data Warehouse
-Che cosa comporta la migrazione di un tooAzure di soluzioni di database SQL Data Warehouse esistente, vedere. 
+# <a name="migrate-your-solution-to-azure-sql-data-warehouse"></a>Eseguire la migrazione della soluzione in Azure SQL Data Warehouse
+Scoprire cosa comporta la migrazione di una soluzione di database esistente ad Azure SQL Data Warehouse. 
 
 ## <a name="profile-your-workload"></a>Profilatura del carico di lavoro
-Prima della migrazione, si desidera toobe determinati che SQL Data Warehouse è una soluzione più adeguata hello per il carico di lavoro. SQL Data Warehouse è un analitica tooperform sistema distribuito progettato su dati di grandi dimensioni.  Migrazione tooSQL Data Warehouse richiede alcune modifiche di progettazione che non sono troppo difficile toounderstand ma potrebbero richiedere alcuni tooimplement ora. Se l'azienda richiede un data warehouse di classe enterprise, i vantaggi di hello si ritiene opportuno sforzo hello. Tuttavia, se non è necessario power hello di SQL Data Warehouse, è più conveniente toouse SQL Server o Database SQL di Azure.
+Prima di eseguire la migrazione, è opportuno assicurarsi che SQL Data Warehouse sia la soluzione ideale per il carico di lavoro specifico. SQL Data Warehouse è un sistema distribuito progettato per eseguire analisi su dati di grandi dimensioni.  La migrazione a SQL Data Warehouse richiede alcune modifiche di progettazione non troppo difficili da comprendere, ma la cui implementazione potrebbe richiedere del tempo. Se l'azienda richiede un data warehouse di classe enterprise, i vantaggi valgono la pena. Tuttavia, se non è necessaria la potenza di SQL Data Warehouse, è più conveniente usare SQL Server o il database SQL di Azure.
 
 Prendere in considerazione l'uso di SQL Data Warehouse nei casi seguenti:
 - Si devono gestire uno o più terabyte di dati
-- Piano toorun analitica su grandi quantità di dati
-- È necessario hello archiviazione e calcolo tooscale possibilità 
-- Desidera toosave costi sospendendo quando non sono necessarie risorse di calcolo.
+- Si prevede di eseguire operazioni di analisi su grandi quantità di dati
+- È necessario avere la possibilità di ridimensionare le capacità di calcolo e archiviazione 
+- Si vuole risparmiare sui costi tramite la sospensione delle risorse di calcolo quando non sono necessarie.
 
 Non usare SQL Data Warehouse per carichi di lavoro operativi (OLTP) con queste esigenze:
 - Operazioni di lettura e scrittura molto frequenti
@@ -41,33 +41,33 @@ Non usare SQL Data Warehouse per carichi di lavoro operativi (OLTP) con queste e
 - Formati non compatibili (JSON, XML)
 
 
-## <a name="plan-hello-migration"></a>Migrazione del piano di hello
+## <a name="plan-the-migration"></a>Pianificare la migrazione
 
-Dopo aver scelto toomigrate un tooSQL soluzione esistente, Data Warehouse, è importante tooplan la migrazione di hello prima di iniziare. 
+Dopo aver deciso di eseguire la migrazione di una soluzione esistente a SQL Data Warehouse, è importante pianificare la migrazione prima di iniziare. 
 
-Uno degli obiettivi di pianificazione è tooensure dei dati, gli schemi di tabella, e il codice sono compatibili con SQL Data Warehouse. Esistono alcuni toowork differenze compatibilità intorno tra il sistema corrente e SQL Data Warehouse. Inoltre, la migrazione di grandi quantità di dati tooAzure richiede tempo. Una pianificazione attenta consente di accelerare recupero tooAzure i dati. 
+Uno degli obiettivi di pianificazione è assicurarsi che i dati, gli schemi di tabella e il codice siano compatibili con SQL Data Warehouse. Esistono alcune differenze di compatibilità da risolvere tra il sistema corrente e SQL Data Warehouse. Inoltre, la migrazione di grandi quantità di dati in Azure richiede del tempo. Una pianificazione attenta consente di velocizzare il trasferimento dei dati in Azure. 
 
-Un altro obiettivo della pianificazione è la progettazione di toomake tooensure regolazioni che la soluzione sfrutta hello prestazioni elevate delle query che SQL Data Warehouse è progettata tooprovide. Progettazione data warehouse per la scala introduce i modelli di progettazione e gli approcci tradizionali pertanto non sono sempre hello meglio. Anche se è possibile apportare alcune modifiche di progettazione dopo la migrazione, apportare modifiche prima nel processo di hello consentirà di risparmiare tempo in un secondo momento.
+Un altro obiettivo della pianificazione è apportare alcune modifiche di progettazione per garantire che la soluzione possa sfruttare le prestazioni elevate per le query per cui è progettato SQL Data Warehouse. La progettazione di data warehouse ai fini della scalabilità introduce modelli di progettazione diversi, pertanto gli approcci tradizionali non si rivelano sempre ottimali. Anche se è possibile apportare alcune modifiche di progettazione dopo la migrazione, introdurre le modifiche il prima possibile nel processo consentirà di risparmiare tempo in un secondo momento.
 
-tooperform correttamente una migrazione, è necessario toomigrate gli schemi di tabella, il codice e i dati. Per linee guida su questi aspetti della migrazione, vedere:
+Per eseguire correttamente una migrazione, è necessario eseguire la migrazione di schemi di tabella, codice e dati. Per linee guida su questi aspetti della migrazione, vedere:
 
 -  [Eseguire la migrazione degli schemi](sql-data-warehouse-migrate-schema.md)
 -  [Eseguire la migrazione del codice](sql-data-warehouse-migrate-code.md)
 -  [Eseguire la migrazione dei dati](sql-data-warehouse-migrate-data.md). 
 
 <!--
-## Perform hello migration
+## Perform the migration
 
 
-## Deploy hello solution
+## Deploy the solution
 
 
-## Validate hello migration
+## Validate the migration
 
 -->
 
 ## <a name="next-steps"></a>Passaggi successivi
-Hello CAT (Customer Advisory Team) dispone anche di alcuni un'ottima guida di SQL Data Warehouse, pubblicano tramite blog.  Dare un'occhiata loro articolo [tooAzure di migrazione dei dati SQL Data Warehouse in pratica] [ Migrating data tooAzure SQL Data Warehouse in practice] per altro materiale sussidiario sulla migrazione.
+Anche il team CAT (Customer Advisory Team) offre indicazioni molto utili per SQL Data Warehouse, pubblicate tramite blog.  Per altre istruzioni sulla migrazione, vedere l'articolo [Migrating data to Azure SQL Data Warehouse in practice][Migrating data to Azure SQL Data Warehouse in practice] (Migrazione dei dati in Azure SQL Data Warehouse in pratica).
 
 <!--Image references-->
 
@@ -76,4 +76,4 @@ Hello CAT (Customer Advisory Team) dispone anche di alcuni un'ottima guida di SQ
 <!--MSDN references-->
 
 <!--Other Web references-->
-[Migrating data tooAzure SQL Data Warehouse in practice]: https://blogs.msdn.microsoft.com/sqlcat/2016/08/18/migrating-data-to-azure-sql-data-warehouse-in-practice/
+[Migrating data to Azure SQL Data Warehouse in practice]: https://blogs.msdn.microsoft.com/sqlcat/2016/08/18/migrating-data-to-azure-sql-data-warehouse-in-practice/

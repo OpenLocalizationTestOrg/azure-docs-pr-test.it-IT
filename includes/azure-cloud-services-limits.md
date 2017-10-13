@@ -5,5 +5,5 @@
 | [Endpoint di input](http://msdn.microsoft.com/library/gg557552.aspx#InputEndpoint) per distribuzione |25 |25 |
 | [Endpoint interni](http://msdn.microsoft.com/library/gg557552.aspx#InternalEndpoint) per distribuzione |25 |25 |
 
-<sup>1</sup>Per ogni servizio cloud con ruoli di lavoro/Web possono esistere due distribuzioni, una per la produzione e l'altra per la gestione temporanea. Si noti inoltre che questo limite si riferisce toohello numero di ruoli distinti (configurazione) e non il hello numero di istanze per ruolo (scala).
+<sup>1</sup>Per ogni servizio cloud con ruoli di lavoro/Web possono esistere due distribuzioni, una per la produzione e l'altra per la gestione temporanea. Si noti, inoltre, che questo limite si riferisce al numero di ruoli distinti (configurazione) e non al numero di istanze per ruolo (scalabilità).
 

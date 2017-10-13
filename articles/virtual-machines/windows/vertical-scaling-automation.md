@@ -1,6 +1,6 @@
 ---
-title: "toovertically di automazione di Azure aaaUse scalabilità di macchine virtuali di Windows | Documenti Microsoft"
-description: Scalare verticalmente una macchina virtuale Windows negli avvisi toomonitoring risposta con automazione di Azure
+title: "Usare Automazione di Azure per applicare la scalabilità verticale alle macchine virtuali di Windows | Microsoft Docs"
+description: "Applicare la scalabilità verticale a una macchina virtuale Windows in risposta agli avvisi di monitoraggio con Automazione di Azure"
 services: virtual-machines-windows
 documentationcenter: 
 author: singhkays
@@ -16,28 +16,28 @@ ms.topic: article
 ms.date: 03/29/2016
 ms.author: kasing
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 24d07f3e2e217668f18676e6d6873be4f9770349
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ea5169c1a95f00e78ae3f5f177812466eb7a0deb
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="vertically-scale-windows-vms-with-azure-automation"></a>Applicare la scalabilità verticale a macchine virtuali di Windows con Automazione di Azure
 
-La scalabilità verticale è il processo di hello di aumento o diminuzione risorse hello di un computer nel carico di lavoro di risposta toohello. In Azure può essere eseguita mediante la modifica delle dimensioni hello di hello macchina virtuale. Ciò consente in hello seguenti scenari
+La scalabilità verticale è il processo di aumento o riduzione delle risorse di una macchina in risposta al carico di lavoro. In Azure tale operazione può essere eseguita modificando le dimensioni della macchina virtuale. Può essere utile negli scenari seguenti:
 
-* Se non viene utilizzato spesso hello macchina virtuale, è possibile ridimensionarla verso il basso tooreduce dimensioni più piccole tooa i costi mensili
-* Se hello macchina virtuale viene visualizzato un carico di picco, può essere ridimensionato tooa tooincrease di dimensioni maggiori capacità
+* Se la macchina virtuale non viene usata di frequente, è possibile diminuirne le dimensioni per ridurre i costi mensili
+* Se nella macchina virtuale si osserva un picco di carico, è possibile aumentarne le dimensioni per una maggiore capacità
 
-struttura Hello per hello passaggi tooaccomplish si tratta di seguito
+Per eseguire questa operazione, seguire questa procedura:
 
-1. Programma di installazione tooaccess di automazione di Azure le macchine virtuali
-2. Importazione dei runbook di hello scalabilità verticale di automazione di Azure alla sottoscrizione di
-3. Aggiungere un runbook tooyour webhook
-4. Aggiungere un avviso tooyour macchina virtuale
+1. Configurare Automazione di Azure per l'accesso alle macchine virtuali
+2. Importare i runbook di scalabilità verticale di Automazione di Azure nella sottoscrizione
+3. Aggiungere un webhook al runbook
+4. Aggiungere un avviso alla macchina virtuale
 
 > [!NOTE]
-> A causa delle dimensioni di hello hello prima macchina virtuale, le dimensioni di hello possono essere ridimensionato, potrebbe risultare limitato a causa della disponibilità toohello di hello altre dimensioni cluster hello macchina virtuale corrente viene distribuito. In hello pubblicato il runbook di automazione usato in questo articolo si occuperà del case e applicare la scalabilità solo all'interno di hello di sotto di coppie di dimensioni di macchina virtuale. Ciò significa che una macchina virtuale Standard_D1v2 verranno non improvvisamente ridimensionati tooStandard_G5 o scalabilità verso il basso tooBasic_A0.
+> A causa delle dimensioni della prima macchina virtuale, le dimensioni a cui la macchina può essere ridimensionata possono essere limitate a seconda della disponibilità di altre dimensioni nel cluster in cui viene distribuita la macchina virtuale corrente. Nei runbook di automazione pubblicati usati in questo articolo viene considerato questo caso e la scalabilità viene applicata solo all'interno delle coppie di dimensioni delle macchine virtuali seguenti. Pertanto, una macchina virtuale Standard_D1v2 non verrà improvvisamente ridimensionata verso l'alto a una Standard_G5 o verso il basso a una Basic_A0.
 > 
 > | coppie di ridimensionamento di dimensioni delle macchine virtuali |  |
 > | --- | --- |
@@ -57,38 +57,38 @@ struttura Hello per hello passaggi tooaccomplish si tratta di seguito
 > 
 > 
 
-## <a name="setup-azure-automation-tooaccess-your-virtual-machines"></a>Programma di installazione tooaccess di automazione di Azure le macchine virtuali
-Hello occorre innanzitutto toodo è creare un account di automazione di Azure che ospiterà hello runbook utilizzato tooscale una macchina virtuale. Servizio automazione hello introdotto di recente funzionalità "Esegui come account" hello che rende impostazione hello dell'entità servizio per l'esecuzione automatica hello runbook per conto dell'utente hello molto semplice. È possibile leggere altre informazioni nell'articolo hello riportato di seguito:
+## <a name="setup-azure-automation-to-access-your-virtual-machines"></a>Configurare Automazione di Azure per l'accesso alle macchine virtuali
+La prima operazione da eseguire è creare l'account di Automazione di Azure che ospiterà i runbook usati per ridimensionare una macchina virtuale. Il servizio Automazione ha introdotto di recente la funzionalità "Account RunAs", che semplifica molto l'impostazione dell'entità servizio per l'esecuzione automatica di runbook per conto dell'utente. Altre informazioni sono disponibili nell'articolo seguente.
 
 * [Autenticare runbook con account RunAs di Azure](../../automation/automation-sec-configure-azure-runas-account.md)
 
-## <a name="import-hello-azure-automation-vertical-scale-runbooks-into-your-subscription"></a>Importazione dei runbook di hello scalabilità verticale di automazione di Azure alla sottoscrizione di
-runbook Hello che sono necessari per la scalabilità verticale della macchina virtuale sono già pubblicati in hello raccolta di Runbook di automazione di Azure. Sarà necessario tooimport nella sottoscrizione. È possibile apprendere come tooimport runbook leggendo hello articolo seguente.
+## <a name="import-the-azure-automation-vertical-scale-runbooks-into-your-subscription"></a>Importare i runbook di scalabilità verticale di Automazione di Azure nella sottoscrizione
+I runbook necessari per la scalabilità verticale della macchina virtuale sono già stati pubblicati nella raccolta dei runbook di Automazione di Azure. Sarà necessario importarli nella sottoscrizione. Per informazioni sull'importazione dei runbook, vedere l'articolo seguente:
 
 * [Raccolte di runbook e moduli per l'automazione di Azure](../../automation/automation-runbook-gallery.md)
 
-i runbook Hello necessario toobe importati sono illustrati nella figura hello seguente
+I runbook da importare sono visualizzati nell'immagine seguente:
 
 ![Importazione runbook](./media/vertical-scaling-automation/scale-runbooks.png)
 
-## <a name="add-a-webhook-tooyour-runbook"></a>Aggiungere un runbook tooyour webhook
-Dopo aver importato i runbook hello è necessario un runbook toohello webhook tooadd in modo che può essere attivata da un avviso da una macchina virtuale. dettagli di Hello per la creazione di un webhook per i Runbook possono essere letti qui
+## <a name="add-a-webhook-to-your-runbook"></a>Aggiungere un webhook al runbook
+Dopo aver importato i runbook, è necessario aggiungere un webhook al runbook in modo che possa essere attivato da un avviso da una macchina virtuale. Informazioni dettagliate sulla creazione di un webhook per il runbook sono disponibili nell'articolo seguente:
 
 * [Webhook di Automazione di Azure](../../automation/automation-webhooks.md)
 
-Assicurarsi di copiare hello webhook prima della chiusura di finestra di dialogo webhook hello perché sarà necessaria nella sezione successiva hello.
+Assicurarsi di copiare il webhook prima di chiudere la finestra di dialogo del webhook, in quanto sarà necessario nella sezione successiva.
 
-## <a name="add-an-alert-tooyour-virtual-machine"></a>Aggiungere un avviso tooyour macchina virtuale
+## <a name="add-an-alert-to-your-virtual-machine"></a>Aggiungere un avviso alla macchina virtuale
 1. Selezionare le impostazioni della macchina virtuale
 2. Selezionare "Regole di avviso"
 3. Selezionare "Aggiungi avviso"
-4. Selezionare un avviso di hello toofire metrica in
-5. Selezionare una condizione, che una volta soddisfatti verrà causare toofire avviso hello
-6. Selezionare una soglia per la condizione hello nel passaggio 5. toobe soddisfatte
-7. Selezionare un periodo di su quale hello monitoraggio del servizio verrà verificato per la condizione di hello e soglia in passaggi 5 e 6
-8. Incollare in webhook hello copiato dalla sezione precedente hello.
+4. Selezionare una metrica per attivare l'avviso
+5. Selezionare una condizione che, se soddisfatta, farà generare l'avviso
+6. Selezionare una soglia affinché la condizione nel passaggio 5 sia soddisfatta.
+7. Selezionare un periodo in cui il servizio di monitoraggio verificherà la condizione e la soglia dei passaggi 5 e 6
+8. Incollare il webhook copiato dalla sezione precedente
 
-![Aggiungere avvisi tooVirtual 1 computer](./media/vertical-scaling-automation/add-alert-webhook-1.png)
+![Aggiunta di un avviso alla macchina virtuale 1](./media/vertical-scaling-automation/add-alert-webhook-1.png)
 
-![Aggiungere avvisi tooVirtual Machine 2](./media/vertical-scaling-automation/add-alert-webhook-2.png)
+![Aggiunta di un avviso alla macchina virtuale 2](./media/vertical-scaling-automation/add-alert-webhook-2.png)
 

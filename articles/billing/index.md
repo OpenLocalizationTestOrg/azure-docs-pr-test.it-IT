@@ -1,8 +1,8 @@
 ---
-title: aaaAzure fatturazione documentazione, esercitazioni, riferimenti alle API | Documenti Microsoft
-description: "Informazioni su come toounderstand di fatturazione di Azure, nonché gestire e monitorare l'utilizzo e i costi. Esercitazioni, FAQ, informazioni di riferimento sulle API e altri documenti."
+title: Documentazione della fatturazione di Azure - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
+description: Informazioni sulla fatturazione di Azure e su come gestire e monitorare usi e costi. Esercitazioni, FAQ, informazioni di riferimento sulle API e altri documenti.
 services: billing
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 663ea1a4526ed897e963d3daa9ed41a7bdbabef0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 70aac3b0544e652ca92219fba9e6bfb405c2eadc
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-billing-documentation"></a>Documentazione della fatturazione di Azure
 
-Informazioni su come toounderstand alla fatturazione e monitorare l'utilizzo e i costi di Azure. Esercitazioni, domande frequenti, riferimenti alle API, e altra documentazione illustrano come toomanage l'account.
+Informazioni sulla fatturazione di Azure e su come monitorare usi e costi. Esercitazioni, FAQ, informazioni di riferimento sulle API e altri documenti in cui viene illustrato come gestire l'account.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -125,7 +125,7 @@ Informazioni su come toounderstand alla fatturazione e monitorare l'utilizzo e i
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>Informazioni su hello toouse API</h3>
+                        <h3>Informazioni su come usare le API</h3>
                         <p><a href="/azure/billing-usage-rate-card-overview">Panoramica API</a></p>
                         <p><a href="/azure/billing-usage-rate-card-partner-solution-cloudcruiser">Soluzione di un partner: Cloud Cruiser</a></p>
                         <p><a href="/azure/billing-usage-rate-card-partner-solution-cloudyn">Soluzione di un partner: Cloudyn</a></p>

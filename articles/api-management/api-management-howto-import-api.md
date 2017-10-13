@@ -1,6 +1,6 @@
 ---
-title: aaaImport un'API in Gestione API di Azure | Documenti Microsoft
-description: Informazioni su come tooimport un'API e le relative operazioni in Gestione API di Azure.
+title: Importare un'API in Gestione API di Azure | Documentazione Microsoft
+description: Informazioni su come importare un'API e le relative operazioni in Gestione API di Azure.
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,47 +14,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
-ms.openlocfilehash: 20fbbb53243aecc24d72833ec0904ae8fab97863
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: c851b88fc1067e65044266d07775717c028e75d9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-tooimport-hello-definition-of-an-api-with-operations-in-azure-api-management"></a>Come tooimport hello definizione di un'API con le operazioni di gestione API di Azure
-In Gestione API, è possibile creare nuove API e operazioni hello aggiunte manualmente o hello API può essere importati insieme a operazioni di hello in un unico passaggio.
+# <a name="how-to-import-the-definition-of-an-api-with-operations-in-azure-api-management"></a>Come importare la definizione di un'API con le operazioni in Gestione API di Azure
+In Gestione API è possibile creare nuove API e aggiungere manualmente le operazioni oppure è possibile importare l'API insieme alle operazioni in un unico passaggio.
 
-Le API e le relative operazioni possono essere importate utilizzando i seguenti formati hello.
+Le API e le relative operazioni possono essere importate usando i seguenti formati.
 
 * WADL
 * Swagger
 
-In questa guida viene illustrato come creare una nuova API e importarne le operazioni in un unico passaggio. Per informazioni sulla creazione manuale di un'API e l'aggiunta di operazioni, vedere [come toocreate API] [ How toocreate APIs] e [come tooadd operazioni tooan API] [ How tooadd operations tooan API].
+In questa guida viene illustrato come creare una nuova API e importarne le operazioni in un unico passaggio. Per informazioni su come creare un'API e aggiungere le operazioni, vedere [Come creare le API][How to create APIs] e [Come aggiungere operazioni a un'API][How to add operations to an API].
 
 ## <a name="import-api"></a>Importare un'API
-API create e configurate nel portale di pubblicazione hello. Fare clic su portale, server di pubblicazione di hello tooaccess **portale di pubblicazione** in hello portale di Azure per il servizio Gestione API. Se non è ancora stato creato un'istanza del servizio Gestione API, vedere [creare un'istanza del servizio Gestione API] [ Create an API Management service instance] in hello [Introduzione a gestione API di Azure] [ Get started with Azure API Management] esercitazione.
+Le API vengono create e configurate nel portale di pubblicazione. Per accedere al portale di pubblicazione, fare clic su **Portale di pubblicazione** nel portale di Azure per il servizio Gestione API. Se non è stata creata un'istanza del servizio Gestione API, vedere [Creare un'istanza di Gestione API][Create an API Management service instance] nell'esercitazione [Introduzione a Gestione API di Azure][Get started with Azure API Management].
 
 ![Portale di pubblicazione][api-management-management-console]
 
-Fare clic su **API** da hello **gestione API** menu hello a sinistra e quindi fare clic su **importare API**.
+Fare clic su **APi** dal menu **Gestione API** sulla sinistra, quindi scegliere **Importa API**.
 
 ![Importa API][api-management-import-apis]
 
-Hello **importazione API** finestra contiene tre schede corrispondenti specifica hello API tooprovide di toohello tre modi.
+La finestra **Importa API** contiene tre schede che corrispondono alle tre modalità con cui è possibile fornire la specifica API.
 
-* **Dagli Appunti** consente specifica hello API toopaste nella casella di testo hello.
-* **Dal file** consente toobrowse tooand hello selezionare contenente la specifica di hello API.
-* **Dall'URL** consente toosupply hello toohello la specifica URL per hello API.
+* **Da Appunti** consente di incollare la specifica API nella casella di testo indicata.
+* **Da file** consente di sfogliare e selezionare il file che contiene la specifica API.
+* **Da URL** consente di fornire l'URL alla specifica per l'API.
 
 ![Formato di importazione API][api-management-import-api-clipboard]
 
-Dopo aver fornito specifica hello API, usare i pulsanti hello sul formato di hello tooindicate destra hello specifica. Hello seguenti formati è supportato.
+Dopo aver fornito la specifica API, usare i pulsanti di opzione a destra per indicare il formato della specifica. Sono supportati i seguenti formati.
 
 * WADL
 * Swagger
 
-Quindi, immettere un **Suffisso dell'URL dell'API Web**. Si tratta di URL di base toohello accodato per il servizio Gestione API. URL di base Hello è comune per tutte le API ospitate in ogni istanza di un servizio di gestione API. Gestione API consente di distinguere le API per il suffisso e pertanto suffisso hello deve essere univoco per ogni API in un'istanza specifica del servizio Gestione API.
+Quindi, immettere un **Suffisso dell'URL dell'API Web**. Il suffisso viene aggiunto all'URL di base del servizio Gestione API. L'URL di base è comune a tutte le API ospitate in un'istanza di un servizio Gestione API. Gestione API distingue le API in base al suffisso, quindi è necessario che questo sia univoco per ciascuna API in ciascuna istanza del servizio Gestione API.
 
-Una volta tutti i valori, fare clic su **salvare** toocreate hello API e hello associati operazioni. 
+Dopo aver immesso tutti i valori, fare clic su **Salva** per creare l'API e le operazioni associate. 
 
 > [!NOTE]
 > Per un'esercitazione relativa all'importazione di un'API di calcolatrice di base in formato Swagger, vedere [Gestire la prima API in Gestione API di Azure](api-management-get-started.md).
@@ -62,19 +62,19 @@ Una volta tutti i valori, fare clic su **salvare** toocreate hello API e hello a
 > 
 
 ## <a name="export-api"></a> Esportare un'API
-In aggiunta tooimporting nuove API, è possibile esportare le definizioni di hello delle API dal portale di pubblicazione hello. toodo in tal caso, fare clic su **esportare API** da hello **scheda riepilogo** del **API**.
+Oltre a importare nuove API, è possibile esportare le definizioni delle API dal portale di pubblicazione. Per farlo, fare clic su **Esporta API** dalla scheda **Riepilogo** dell'**API**.
 
 ![Esporta API][api-management-export-api]
 
-Le API possono essere esportate con WADL o Swagger. Selezionare il formato desiderato di hello, fare clic su **salvare**e scegliere il percorso di hello toosave file hello.
+Le API possono essere esportate con WADL o Swagger. Selezionare il formato desiderato, fare clic su **Salva**e scegliere il percorso in cui salvare il file.
 
 ![Formato di esportazione API][api-management-export-api-format]
 
 ## <a name="next-steps"></a>Passaggi successivi
-Dopo aver creata un'API e operazioni hello importate, è possibile esaminare e configurare eventuali impostazioni aggiuntive, aggiungere hello API tooa prodotto e pubblicarlo in modo che sia disponibile per gli sviluppatori. Per ulteriori informazioni, vedere hello seguenti guide.
+Dopo aver creato un'API ed importato le operazioni, è possibile rivedere e configurare tutte le impostazioni aggiuntive, aggiungere l'API a un prodotto e pubblicarla in modo che sia disponibile per gli sviluppatori. Per altre informazioni, vedere le seguenti guide.
 
-* [Come impostazioni tooconfigure API][How tooconfigure API settings]
-* [Come toocreate e pubblicazione di un prodotto][How toocreate and publish a product]
+* [Come configurare le impostazioni API][How to configure API settings]
+* [Come creare e pubblicare un prodotto][How to create and publish a product]
 
 [api-management-management-console]: ./media/api-management-howto-import-api/api-management-management-console.png
 [api-management-import-apis]: ./media/api-management-howto-import-api/api-management-api-import-apis.png
@@ -90,7 +90,7 @@ Dopo aver creata un'API e operazioni hello importate, è possibile esaminare e c
 [Get started with Azure API Management]: api-management-get-started.md
 [Create an API Management service instance]: api-management-get-started.md#create-service-instance
 
-[How tooadd operations tooan API]: api-management-howto-add-operations.md
-[How toocreate and publish a product]: api-management-howto-add-products.md
-[How toocreate APIs]: api-management-howto-create-apis.md
-[How tooconfigure API settings]: api-management-howto-create-apis.md#configure-api-settings
+[How to add operations to an API]: api-management-howto-add-operations.md
+[How to create and publish a product]: api-management-howto-add-products.md
+[How to create APIs]: api-management-howto-create-apis.md
+[How to configure API settings]: api-management-howto-create-apis.md#configure-api-settings

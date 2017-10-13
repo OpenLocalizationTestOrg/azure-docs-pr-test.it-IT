@@ -1,4 +1,4 @@
-Hello nella seguente tabella elenca hello requisiti per gateway basato su criteri e RouteBased VPN. Questa tabella si applica hello tooboth Gestione risorse e i modelli di distribuzione classica. Gateway VPN PolicyBased sono hello stesso gateway statico per il modello classico hello e gateway basato su Route sono hello stesso gateway dinamico.
+La tabella seguente elenca i requisiti per i gateway VPN PolicyBased e RouteBased. La tabella è valida per entrambi i modelli di distribuzione classica e di Gestione risorse. Per il modello classico, i gateway VPN PolicyBased corrispondono ai gateway statici, mentre i gateway RouteBased corrispondono ai gateway dinamici.
 
 |  | **Gateway VPN Basic PolicyBased** | **Gateway VPN Basic RouteBased** | **Gateway VPN Standard RouteBased** | **Gateway VPN High Performance RouteBased** |
 | --- | --- | --- | --- | --- |

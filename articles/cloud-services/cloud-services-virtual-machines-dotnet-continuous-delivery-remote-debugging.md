@@ -1,6 +1,6 @@
 ---
-title: debug remoto con il recapito continuo aaaEnable | Documenti Microsoft
-description: Informazioni su come tooenable il debug remoto quando si utilizza il recapito continuo toodeploy tooAzure
+title: Abilitare il debug remoto con il recapito continuo | Documentazione Microsoft
+description: Informazioni su come abilitare il debug remoto quando si usa la distribuzione continua per la pubblicazione in Azure.
 services: cloud-services
 documentationcenter: .net
 author: kraigb
@@ -14,44 +14,44 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 11/18/2016
 ms.author: kraigb
-ms.openlocfilehash: d9d9d1cfe5304c9526586a9164f172746a448e4e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7a8a853a93e3e9915f687a20c871444e6a0de50d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="enable-remote-debugging-when-using-continuous-delivery-toopublish-tooazure"></a>Abilitare il debug remoto quando si utilizza il recapito continuo toopublish tooAzure
-È possibile abilitare il debug remoto in Azure, per i servizi cloud o macchine virtuali, quando si utilizza [il recapito continuo](cloud-services-dotnet-continuous-delivery.md) tooAzure toopublish attenendosi alla procedura seguente.
+# <a name="enable-remote-debugging-when-using-continuous-delivery-to-publish-to-azure"></a>Abilitare il debug remoto con la distribuzione continua per la pubblicazione in Azure
+Per abilitare il debug remoto in Azure, per i servizi cloud o le macchine virtuali, quando si usa la [distribuzione continua](cloud-services-dotnet-continuous-delivery.md) per la pubblicazione in Azure, eseguire la procedura seguente.
 
 ## <a name="enabling-remote-debugging-for-cloud-services"></a>Abilitazione del debug remoto per i servizi cloud
-1. Agente di compilazione hello, configurare hello iniziale ambiente per Azure come descritto [della riga di comando di compilazione per Azure](http://msdn.microsoft.com/library/hh535755.aspx).
-2. Poiché il runtime di eseguire il debug remoto hello (msvsmon.exe) è obbligatorio per il pacchetto di hello, installare hello **Remote Tools per Visual Studio**.
+1. Nell'agente di compilazione configurare l'ambiente iniziale per Azure come descritto in [Compilazione da riga di comando per Azure](http://msdn.microsoft.com/library/hh535755.aspx).
+2. Poiché il pacchetto richiede l'installazione del runtime di debug remoto (msvsmon.exe), installare **Remote Tools per Visual Studio**.
 
     * [Remote Tools per Visual Studio 2017](https://go.microsoft.com/fwlink/?LinkId=746570)
     * [Remote Tools per Visual Studio 2015](https://go.microsoft.com/fwlink/?LinkId=615470)
     * [Remote Tools per Visual Studio 2013 Update 5](https://www.microsoft.com/download/details.aspx?id=48156)
     
-    In alternativa, è possibile copiare i file binari di debug remoto di hello da un sistema che è installato Visual Studio.
+    In alternativa, copiare i binari di debug remoto da un sistema in cui è installato Visual Studio.
 
-3. Creare un certificato come descritto in [Panoramica dei certificati per servizi cloud di Azure](cloud-services-certs-create.md). Mantenere PFX hello e identificazione personale del certificato RDP e caricare il servizio cloud destinazione di hello certificato toohello.
-4. Utilizzare hello seguenti opzioni nel toobuild riga di comando di MSBuild hello e pacchetto con il debug remoto abilitato. (Sostituire i percorsi effettivi tooyour progetto file di sistema e per gli elementi racchiusi tra parentesi quadre angolo hello).
+3. Creare un certificato come descritto in [Panoramica dei certificati per servizi cloud di Azure](cloud-services-certs-create.md). Mantenere il file con estensione pfx e l'identificazione personale del certificato RDP e caricare il certificato nel servizio cloud di destinazione.
+4. Nella riga di comando MSBuild usare le opzioni seguenti per eseguire la compilazione e creare un pacchetto con il debug remoto abilitato. Sostituire i percorsi effettivi ai file di progetto e di sistema per gli elementi racchiusi tra parentesi angolari.
    
-        msbuild /TARGET:PUBLISH /PROPERTY:Configuration=Debug;EnableRemoteDebugger=true;VSX64RemoteDebuggerPath="<remote tools path>";RemoteDebuggerConnectorCertificateThumbprint="<thumbprint of hello certificate added toohello cloud service>";RemoteDebuggerConnectorVersion="2.7" "<path tooyour VS solution file>"
+        msbuild /TARGET:PUBLISH /PROPERTY:Configuration=Debug;EnableRemoteDebugger=true;VSX64RemoteDebuggerPath="<remote tools path>";RemoteDebuggerConnectorCertificateThumbprint="<thumbprint of the certificate added to the cloud service>";RemoteDebuggerConnectorVersion="2.7" "<path to your VS solution file>"
    
-    `VSX64RemoteDebuggerPath`è cartella toohello hello contenente msvsmon.exe in hello Remote Tools per Visual Studio.
-    `RemoteDebuggerConnectorVersion`è hello Azure SDK versione nel servizio cloud. Deve inoltre corrispondere a versione hello installata con Visual Studio.
-5. Pubblicazione servizio cloud di destinazione toohello tramite file di pacchetto e un file con estensione cscfg di hello generato nel passaggio precedente hello.
-6. Importare hello certificato (file con estensione pfx) toohello macchina che dispone di Visual Studio con Azure SDK per .NET sia installato. Verificare che tooimport toohello `CurrentUser\My` archivio certificati, in caso contrario collegamento toohello debugger in Visual Studio avrà esito negativo.
+    `VSX64RemoteDebuggerPath` è il percorso della cartella contenente msvsmon.exe in Remote Tools per Visual Studio.
+    `RemoteDebuggerConnectorVersion` è la versione di Azure SDK nel servizio cloud. Deve corrispondere anche alla versione installata con Visual Studio.
+5. Eseguire la pubblicazione nel servizio cloud di destinazione usando il pacchetto e il file di configurazione (CSCFG) generato nel passaggio precedente.
+6. Importare il certificato (file PFX) nel computer in cui è installato Visual Studio con Azure SDK per .NET. Assicurarsi di eseguire l'importazione nell'archivio certificati `CurrentUser\My` , in caso contrario il collegamento al debugger di Visual Studio avrà esito negativo.
 
 ## <a name="enabling-remote-debugging-for-virtual-machines"></a>Abilitazione del debug remoto per le macchine virtuali
 1. Creare una macchina virtuale di Azure. Per informazioni, vedere l'articolo su come [creare una macchina virtuale che esegue Windows Server](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) oppure l'articolo su come [Creare e gestire macchine virtuali di Azure in Visual Studio](../virtual-machines/windows/classic/manage-visual-studio.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
-2. In hello [pagina del portale Azure classico](http://go.microsoft.com/fwlink/p/?LinkID=269851), dashboard toosee hello della macchina virtuale della macchina virtuale hello visualizzare **identificazione personale del certificato RDP**. Questo valore viene utilizzato per hello `ServerThumbprint` valore nella configurazione dell'estensione hello.
-3. Creare un certificato client, come indicato nella [panoramica dei certificati per servizi Cloud di Azure](cloud-services-certs-create.md) (mantenere PFX hello e identificazione personale del certificato RDP).
-4. Installare Azure Powershell (versione 0.7.4 o successiva) come descritto [come tooinstall e configurare Azure PowerShell](/powershell/azure/overview).
-5. Eseguire hello seguente estensione RemoteDebug hello tooenable di script. Sostituire i percorsi di hello e dati personali con valori personalizzati, ad esempio il nome della sottoscrizione, nome del servizio e l'identificazione digitale.
+2. Nella [pagina del portale di Azure classico](http://go.microsoft.com/fwlink/p/?LinkID=269851)visualizzare il dashboard della macchina virtuale per individuare **L’IDENTIFICAZIONE PERSONALE CERTIFICATO RDP**della macchina virtuale. Questo valore viene utilizzato per il valore `ServerThumbprint` nella configurazione dell'estensione.
+3. Creare un certificato client come descritto in [Panoramica sui certificati per i servizi cloud di Azure](cloud-services-certs-create.md) (conservare il file .pfx e l'identificazione personale del certificato RDP).
+4. Installare Azure Powershell (versione 0.7.4 o versione successiva) come descritto in [Come installare e configurare Azure PowerShell](/powershell/azure/overview).
+5. Eseguire lo script seguente per abilitare l'estensione RemoteDebug. Sostituire i percorsi e i dati personali con i dati personali dell'utente, ad esempio nome della sottoscrizione, nome del servizio e identificazione personale.
    
    > [!NOTE]
-   > Questo script è configurato per Visual Studio 2015. Se si utilizza Visual Studio 2013 o Visual Studio 2017, modificare hello `$referenceName` e `$extensionName` assegnazioni seguenti troppo`RemoteDebugVS2013` o `RemoteDebugVS2017`.
+   > Questo script è configurato per Visual Studio 2015. Se si usa Visual Studio 2013 o Visual Studio 2017, modificare le assegnazioni `$referenceName` e `$extensionName` seguenti in `RemoteDebugVS2013` o `RemoteDebugVS2017`.
 
     ```powershell   
     Add-AzureAccount
@@ -93,5 +93,5 @@ ms.lasthandoff: 10/06/2017
     $vm | Update-AzureVM
     ```
 
-6. Importa hello certificato (PFX) toohello macchina che dispone di Visual Studio con Azure SDK per .NET sia installato.
+6. Importare il certificato (file PFX) nel computer in cui è installato Visual Studio con Azure SDK per .NET.
 

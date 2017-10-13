@@ -1,35 +1,35 @@
-## <a name="view-device-telemetry-in-hello-dashboard"></a>Telemetria di dispositivo di visualizzazione nel dashboard di hello
-dashboard di Hello in hello Abilita soluzione si tooview hello telemetria tooIoT Hub di inviare i dispositivi di monitoraggio remoto.
+## <a name="view-device-telemetry-in-the-dashboard"></a>Visualizzare la telemetria del dispositivo nel dashboard
+Il dashboard nella soluzione di monitoraggio remoto consente di visualizzare la telemetria che i dispositivi inviano all'hub IoT.
 
-1. Nel browser, toohello restituito remoto soluzione dashboard di monitoraggio, fare clic su **dispositivi** in hello pannello sinistro toonavigate toohello **elenco dispositivi**.
-2. In hello **elenco dispositivi**, si dovrebbe essere stato hello del dispositivo **esecuzione**. In caso contrario, fare clic su **abilitare dispositivo** in hello **dettagli dispositivo** pannello.
+1. Nel browser tornare al dashboard della soluzione di monitoraggio remoto e fare clic su **Dispositivi** nel pannello di sinistra per passare a **Elenco dispositivi**.
+2. In **Devices list** (Elenco dispositivi) si noterà che lo stato del dispositivo è ora **In esecuzione**. Se non lo è, nel pannello **Dettagli dispositivo** fare clic su **Attiva dispositivo**.
    
     ![Visualizzare lo stato dei dispositivi][18]
-3. Fare clic su **Dashboard** tooreturn toohello dashboard, selezionare il dispositivo in hello **dispositivo tooView** tooview elenco a discesa la telemetria. la telemetria Hello dall'applicazione di esempio hello è 50 unità per la temperatura, 55 unità esterne temperatura e 50 unità per umidità.
+3. Fare clic su **Dashboard** per tornare al dashboard e selezionare il dispositivo nell'elenco a discesa **Dispositivo da visualizzare** per visualizzarne i dati di telemetria. La telemetria dall'applicazione di esempio è di 50 unità per la temperatura interna, 55 unità per la temperatura esterna e 50 unità per l’umidità.
    
     ![Visualizzare la telemetria dei dispositivi][img-telemetry]
 
 ## <a name="invoke-a-method-on-your-device"></a>Richiamare un metodo sul dispositivo
-dashboard Hello nella soluzione di monitoraggio remoto hello consente metodi tooinvoke nei dispositivi tramite IoT Hub. Nella soluzione di monitoraggio remoto hello, ad esempio, è possibile richiamare un metodo toosimulate il riavvio di un dispositivo.
+Il dashboard nella soluzione di monitoraggio remoto consente di richiamare metodi sui dispositivi tramite l'hub IoT. Nella soluzione di monitoraggio remota, ad esempio, è possibile richiamare un metodo per simulare il riavvio di un dispositivo.
 
-1. In hello remoto soluzione dashboard di monitoraggio, fare clic su **dispositivi** in hello pannello sinistro toonavigate toohello **elenco dispositivi**.
-2. Fare clic su **ID dispositivo** per il dispositivo in hello **elenco dispositivi**.
-3. In hello **dettagli dispositivo** pannello, fare clic su **metodi**.
+1. Nel dashboard della soluzione di monitoraggio remoto fare clic su **Dispositivi** nel pannello di sinistra per passare a **Elenco dispositivi**.
+2. In **Elenco dispositivi** fare clic sull'**ID** del proprio dispositivo.
+3. Nel pannello **Dettagli dispositivo** fare clic su **Metodi**.
    
     ![Metodi per il dispositivo][13]
-4. In hello **metodo** elenco a discesa, selezionare **InitiateFirmwareUpdate**, quindi nel **FWPACKAGEURI** immettere un URL fittizio. Fare clic su **Richiama metodo** metodo hello toocall sul dispositivo hello.
+4. Nel menu a discesa **Metodi**, selezionare **InitiateFirmwareUpdate**, quindi in **FWPACKAGEURI** immettere un URL fittizio. Fare clic su **Richiama metodo** per chiamare il metodo sul dispositivo.
    
     ![Richiamare un metodo per il dispositivo][14]
    
 
-5. Viene visualizzato un messaggio nella console di hello in esecuzione il codice del dispositivo quando il dispositivo hello gestisce metodo hello. risultati di Hello del metodo hello vengono aggiunti toohello cronologia nel portale di soluzione hello:
+5. Viene visualizzato un messaggio nella console che esegue il codice del dispositivo quando il dispositivo gestisce il metodo. I risultati del metodo vengono aggiunti alla cronologia nel portale delle soluzioni:
 
     ![Visualizzare la cronologia del metodo][img-method-history]
 
 ## <a name="next-steps"></a>Passaggi successivi
-articolo Hello [personalizzazione preconfigurato soluzioni] [ lnk-customize] vengono descritte alcune differenze, è possibile estendere questo esempio. Le estensioni possibili comprendono l'utilizzo di sensori reali e implementazione di comandi aggiuntivi.
+L'articolo [Personalizzazione delle soluzioni preconfigurate][lnk-customize] descrive alcuni modi per estendere questo esempio. Le estensioni possibili comprendono l'utilizzo di sensori reali e implementazione di comandi aggiuntivi.
 
-È possibile approfondire hello [le autorizzazioni nel sito azureiotsuite.com hello][lnk-permissions].
+Per altre informazioni sulle [autorizzazioni visitare il sito azureiotsuite.com][lnk-permissions].
 
 [13]: ./media/iot-suite-visualize-connecting/suite4.png
 [14]: ./media/iot-suite-visualize-connecting/suite7-1.png

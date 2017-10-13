@@ -1,6 +1,6 @@
 ---
-title: "una macchina virtuale (versione classica) con più schede di rete con PowerShell aaaCreate | Documenti Microsoft"
-description: "Informazioni su come toocreate e configurare macchine virtuali con più schede di rete con PowerShell."
+title: "Creare una VM (classica) con più schede di interfaccia di rete con PowerShell | Documentazione Microsoft"
+description: "Informazioni su come creare e configurare VM con più schede di interfaccia di rete usando PowerShell."
 services: virtual-network, virtual-machines
 documentationcenter: na
 author: jimdial
@@ -15,40 +15,40 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/02/2016
 ms.author: jdial
-ms.openlocfilehash: 8ef35bd4cfd7e6a527080f1cfc541275ca86f5e7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 68ccc1cac22e593b099729fe68c6bee63df44d9b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="create-a-vm-classic-with-multiple-nics"></a>Creare una VM (classica) con più schede di interfaccia di rete
-È possibile creare macchine virtuali (VM) in Azure e collegare più tooeach (NIC) di interfacce di rete delle macchine virtuali. L'uso di più schede di interfaccia di rete è un requisito per molti dispositivi virtuali di rete, ad esempio le soluzioni di ottimizzazione WAN e la distribuzione di applicazioni. Più schede di interfaccia di rete forniscono anche l'isolamento del traffico tra le schede.
+È possibile creare macchine virtuali (VM) in Azure e collegare più interfacce di rete (NIC) a ciascuna delle macchine virtuali. L'uso di più schede di interfaccia di rete è un requisito per molti dispositivi virtuali di rete, ad esempio le soluzioni di ottimizzazione WAN e la distribuzione di applicazioni. Più schede di interfaccia di rete forniscono anche l'isolamento del traffico tra le schede.
 
 ![Più NIC per la macchina virtuale](./media/virtual-networks-multiple-nics/IC757773.png)
 
-Hello illustrata nella figura una macchina virtuale con tre schede di rete, ciascuno connesso tooa diverse subnet.
+La figura illustra una VM con tre schede di interfaccia di rete, ciascuna connessa a una subnet diversa.
 
 > [!IMPORTANT]
-> Azure offre due modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../resource-manager-deployment-model.md). In questo articolo viene illustrato l'utilizzo del modello di distribuzione classica hello. Microsoft consiglia di usare Resource Manager per la maggior parte delle distribuzioni più recenti.
+> Azure offre due modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../resource-manager-deployment-model.md). Questo articolo illustra l'uso del modello di distribuzione classica. Microsoft consiglia di usare Resource Manager per la maggior parte delle distribuzioni più recenti.
 
-* VIP con connessione Internet (distribuzioni classiche) è supportato solo nella scheda di rete. "predefinita" hello È presente un solo indirizzo VIP toohello IP della scheda di rete predefinito. hello
+* L’indirizzo VIP con connessione Internet (distribuzioni classiche) è supportato solo sulla NIC "predefinita". Esiste un solo indirizzo VIP per l'indirizzo IP della NIC predefinita.
 * Attualmente, gli indirizzi IP pubblici a livello di istanza (LPIP) (distribuzioni classiche) non sono supportati per le macchine virtuali a più NIC.
-* ordine delle schede NIC hello da Hello all'interno di hello macchina virtuale sarà casuale e potrebbe anche cambiare tra gli aggiornamenti dell'infrastruttura di Azure. Tuttavia, hello gli indirizzi IP e hello corrispondente ethernet MAC rimarranno indirizzi hello stesso. Si supponga ad esempio **scheda Eth1** è l'indirizzo IP 10.1.0.100 e l'indirizzo MAC 00-0D-3A-B0-39-0D; dopo l'aggiornamento dell'infrastruttura di Azure e il riavvio, potrebbe essere diventato troppo**Eth2**, ma hello IP e MAC associazione verrà rimangono hello stesso. Quando un riavvio è avviato dall'utente, hello ordine NIC rimarrà hello stesso.
-* Hello indirizzo per ogni scheda di rete in ogni macchina virtuale deve trovarsi in una subnet, più schede di rete in una singola macchina virtuale è ogni possibile assegnare gli indirizzi specificati nella stessa subnet di hello.
-* Hello dimensioni della macchina virtuale determina il numero di hello di schede di rete che è possibile creare per una macchina virtuale. Hello riferimento [Windows Server](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) e [Linux](../virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) VM di dimensioni toodetermine articoli quante NIC supporta ogni dimensione della macchina virtuale. 
+* L'ordine delle NIC all'interno della macchina virtuale sarà casuale e potrebbe cambiare con gli aggiornamenti dell'infrastruttura di Azure. Tuttavia, gli indirizzi IP e gli indirizzi MAC ethernet corrispondenti resteranno invariati. Si supponga, ad esempio, che **Eth1** abbia l'indirizzo IP 10.1.0.100 e l'indirizzo MAC 00-0D-3A-B0-39-0D; dopo un aggiornamento dell'infrastruttura di Azure e il riavvio, potrebbe essere modificato in **Eth2**, ma l'abbinamento di indirizzo IP e MAC resterà invariato. Quando un riavvio è eseguito dal cliente, l'ordine delle NIC rimane invariato.
+* L'indirizzo di ciascuna NIC su ciascuna macchina virtuale deve trovarsi in una subnet, a più NIC in una singola macchina virtuale possono essere assegnati indirizzi che si trovano nella stessa subnet.
+* Le dimensioni della macchina virtuale determinano il numero di NIC che è possibile creare per una macchina virtuale. Fare riferimento agli articoli sulle dimensioni delle VM in [Windows Server](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) e [Linux](../virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) per determinare il numero di schede di interfacce di rete supportate da ciascuna dimensione di VM. 
 
 ## <a name="network-security-groups-nsgs"></a>Gruppi di sicurezza di rete (NGS)
-In una distribuzione di Gestione risorse, qualsiasi NIC in una macchina virtuale può essere associata a un Gruppo di sicurezza di rete, incluse eventuali NIC in una macchina virtuale che presenta la funzionalità Multi-NIC abilitata. Se una scheda di rete viene assegnato un indirizzo all'interno di una subnet in cui è associato a un gruppo subnet hello, hello regole nel gruppo della subnet hello anche applicano toothat scheda di rete. Nella subnet di addizione tooassociating con NSGs, è anche possibile associare una scheda di rete con un gruppo.
+In una distribuzione di Gestione risorse, qualsiasi NIC in una macchina virtuale può essere associata a un Gruppo di sicurezza di rete, incluse eventuali NIC in una macchina virtuale che presenta la funzionalità Multi-NIC abilitata. Se a una NIC viene assegnato un indirizzo all'interno di una subnet dove la subnet è associata a un Gruppo di sicurezza di rete, le regole del Gruppo di sicurezza di rete della subnet si applicano anche a tale NIC. Oltre alle subnet, è possibile associare ai Gruppi di sicurezza di rete anche una NIC.
 
-Se una subnet è associata a un gruppo e una scheda di rete all'interno di subnet è singolarmente associata a un gruppo, le regole NSG hello associata vengono applicate **flusso ordine** in base toohello direzione del traffico hello passato interna o esterna Hello scheda di rete:
+Se una subnet è associata a un Gruppo di sicurezza di rete e una NIC all'interno di tale subnet è associata singolarmente a un Gruppo di sicurezza di rete, le regole del Gruppo di sicurezza di rete associato vengono applicate in **ordine flusso** , in base alla direzione del traffico in entrata e in uscita dalla NIC:
 
-* **Il traffico in ingresso** la cui destinazione è hello NIC in questione passano innanzitutto attraverso subnet hello, attivare le regole di NSG della subnet hello, prima di passare in hello NIC, quindi attivare le regole di NSG hello NIC.
-* **Il traffico in uscita** la cui origine è hello NIC in questione flussi prima fuori dalla scheda di rete, attivare le regole di NSG hello NIC, prima di attraversamento subnet hello, quindi attivare le regole di NSG della subnet hello hello.
+* **Il traffico in entrata** , la cui destinazione è la NIC in questione, passa innanzitutto attraverso la subnet, attivando le regole del Gruppo di sicurezza di rete della subnet, prima di passare nella NIC, attivando quindi le regole del Gruppo di sicurezza di rete della NIC.
+* **Il traffico in uscita** , la cui origine è la NIC in questione, fuoriesce innanzitutto dalla subnet, attivando le regole del Gruppo di sicurezza di rete della NIC, prima di passare attraverso la sunet, attivando quindi le regole del Gruppo di sicurezza di rete della subnet.
 
-Altre informazioni, vedere [gruppi di sicurezza di rete](virtual-networks-nsg.md) e come vengono applicate in base alle associazioni toosubnets, le macchine virtuali e schede di rete...
+Ulteriori informazioni su [Gruppi di sicurezza di rete](virtual-networks-nsg.md) e su come vengono applicati in base alle associazioni con le subnet, con le macchine virtuali e con le schede di rete.
 
-## <a name="how-tooconfigure-a-multi-nic-vm-in-a-classic-deployment"></a>Come tooConfigure un più NIC VM in una distribuzione classica
-Hello istruzioni seguenti consentono di creare una VM NIC contenente 3 schede di rete multi: una scheda di rete predefinita e due schede aggiuntive. passaggi di configurazione Hello verranno creata una macchina virtuale che verrà configurata in base toohello servizio configurazione frammento del file seguente:
+## <a name="how-to-configure-a-multi-nic-vm-in-a-classic-deployment"></a>Come configurare una macchina virtuale Multi-NIC in una distribuzione classica
+Le istruzioni seguenti consentono di creare una macchina virtuale Multi-NIC contenente 3 NIC: una NIC predefinita e due NIC aggiuntive. La procedura di configurazione consente di creare una macchina virtuale che verrà configurata in base al frammento del file di configurazione del servizio riportato di seguito:
 
     <VirtualNetworkSite name="MultiNIC-VNet" Location="North Europe">
     <AddressSpace>
@@ -68,19 +68,19 @@ Hello istruzioni seguenti consentono di creare una VM NIC contenente 3 schede di
             <AddressPrefix>10.1.200.0/28</AddressPrefix>
           </Subnet>
         </Subnets>
-    … Skip over hello remainder section …
+    … Skip over the remainder section …
     </VirtualNetworkSite>
 
 
-È necessario hello seguenti prerequisiti prima di tentare di comandi di PowerShell hello toorun nell'esempio hello.
+Per tentare di eseguire i comandi PowerShell riportati nell’esempio sono necessari i seguenti prerequisiti.
 
 * Una sottoscrizione di Azure.
 * Una rete virtuale configurata. Per altre informazioni sulle reti virtuali, vedere [Panoramica di Rete virtuale](virtual-networks-overview.md) .
-* versione più recente di Hello di Azure PowerShell scaricato e installato. Vedere [come tooinstall e configurare Azure PowerShell](/powershell/azure/overview).
+* La versione più recente di Azure PowerShell scaricata e installata. Vedere [Come installare e configurare Azure PowerShell](/powershell/azure/overview).
 
-toocreate una macchina virtuale con più schede di rete, hello completa immettendo ogni comando in una singola sessione di PowerShell come segue:
+Per creare una VM con più schede di interfaccia di rete, completare i passaggi seguenti immettendo ogni comando in una singola sessione di PowerShell:
 
-1. Selezionare un'immagine di macchina virtuale dalla raccolta immagini della macchina virtuale di Azure. Le immagini cambiano frequentemente e sono disponibili per area geografica. Hello immagine specificata nel seguente esempio hello può modificare o potrebbe non essere disponibile nell'area, pertanto è necessario assicurarsi immagine hello toospecify necessaria.
+1. Selezionare un'immagine di macchina virtuale dalla raccolta immagini della macchina virtuale di Azure. Le immagini cambiano frequentemente e sono disponibili per area geografica. L'immagine specificata nell'esempio riportato di seguito può cambiare o potrebbe non trovarsi nell’area desiderata, assicurarsi pertanto di specificare l'immagine necessaria.
 
     ```powershell
     $image = Get-AzureVMImage `
@@ -94,14 +94,14 @@ toocreate una macchina virtuale con più schede di rete, hello completa immetten
     -Image $image.ImageName –AvailabilitySetName "MyAVSet"
     ```
 
-3. Creare account di accesso amministratore predefinito hello.
+3. Creare l’account di accesso dell’amministratore predefinito.
 
     ```powershell
     Add-AzureProvisioningConfig –VM $vm -Windows -AdminUserName "<YourAdminUID>" `
     -Password "<YourAdminPassword>"
     ```
 
-4. Aggiungere una configurazione della macchina virtuale toohello schede aggiuntive.
+4. Aggiungere le schede NIC aggiuntive alla configurazione della macchina virtuale.
 
     ```powershell
     Add-AzureNetworkInterfaceConfig -Name "Ethernet1" `
@@ -110,35 +110,35 @@ toocreate una macchina virtuale con più schede di rete, hello completa immetten
     -SubnetName "Backend" -StaticVNetIPAddress "10.1.2.222" -VM $vm
     ```
 
-5. Specificare l'indirizzo IP e subnet di hello per hello scheda NIC del valore predefinito.
+5. Specificare la subnet e l’indirizzo IP per la NIC predefinita.
 
     ```powershell
     Set-AzureSubnet -SubnetNames "Frontend" -VM $vm
     Set-AzureStaticVNetIP -IPAddress "10.1.0.100" -VM $vm
     ```
 
-6. Creare hello VM nella rete virtuale.
+6. Creare la macchina virtuale nella rete virtuale.
 
     ```powershell
     New-AzureVM -ServiceName "MultiNIC-CS" –VNetName "MultiNIC-VNet" –VMs $vm
     ```
 
     > [!NOTE]
-    > rete virtuale che è possibile specificare Hello deve già esistere (come indicato nei prerequisiti hello). esempio Hello seguente specifica una rete virtuale denominata **multi-VNet**.
+    > La rete virtuale specificata deve essere già esistente (come indicato nei prerequisiti). Nell'esempio seguente viene specificata una rete virtuale denominata **MultiNIC-VNet**.
     >
 
 ## <a name="limitations"></a>Limitazioni
-Hello limitazioni seguenti sono applicabile quando si utilizzano più schede di rete:
+Quando si usano più schede di interfaccia di rete, sono applicabili le seguenti limitazioni:
 
 * È necessario creare VM con più schede di interfaccia di rete nelle reti virtuali di Azure. Non è possibile configurare VM che non si trovano in reti virtuali con più schede di interfaccia di rete.
-* Tutte le macchine virtuali in un disponibilità impostare toouse necessità più schede di rete o una singola scheda di rete. Non è possibile combinare VM con più schede di interfaccia di rete e VM con una singola scheda di interfaccia di rete all'interno di un set di disponibilità. Le stesse regole sono valide per le VM in un servizio cloud. Per più macchine virtuali, NIC non sono necessari toohave hello stesso numero di schede di rete, purché ognuna di esse presenta almeno due.
+* Tutte le VM in un set di disponibilità devono usare più schede di interfaccia di rete o una singola scheda. Non è possibile combinare VM con più schede di interfaccia di rete e VM con una singola scheda di interfaccia di rete all'interno di un set di disponibilità. Le stesse regole sono valide per le VM in un servizio cloud. Per le VM con più schede di interfaccia di rete, non è obbligatorio che il numero di schede siano lo stesso, a condizione che ognuna disponga almeno di due schede.
 * Non è possibile configurare una VM con una singola scheda di interfaccia di rete con più schede di interfaccia di rete (e viceversa) dopo la distribuzione, senza eliminarla e crearla di nuovo.
 
-## <a name="secondary-nics-access-tooother-subnets"></a>Schede di rete secondarie accedere tooother subnet
-Per impostazione predefinita secondaria NIC non verranno configurate con un gateway predefinito, a causa di flusso del traffico toowhich hello in hello NIC secondaria sarà limitato toobe all'interno di hello stessa subnet. Se gli utenti di hello desiderano tooenable secondario NIC tootalk esterno le proprie subnet, sarà necessario tooadd una voce in hello tabella tooconfigure hello gateway di routing come descritto di seguito.
+## <a name="secondary-nics-access-to-other-subnets"></a>Accesso NIC secondarie ad altre subnet
+Per impostazione predefinita, le NIC secondarie non verranno configurate con un gateway predefinito, pertanto il flusso del traffico sulle NIC secondarie sarà limitato esclusivamente all’interno della stessa subnet. Se si desidera abilitare le NIC secondarie per la comunicazione all'esterno della propria subnet, si dovrà aggiungere una voce nella tabella di routing per configurare il gateway come descritto di seguito.
 
 > [!NOTE]
-> Le VM create prima di luglio 2015 potrebbero avere un gateway predefinito configurato per tutte le NIC. gateway predefinito Hello per le schede NIC secondario non verrà rimosso fino a quando non vengono riavviate queste macchine virtuali. In sistemi operativi che utilizzano un modello di host vulnerabile routing hello, ad esempio Linux, è possibile interrompere la connettività a Internet se il traffico in ingresso e uscita hello Usa diverse schede di rete.
+> Le VM create prima di luglio 2015 potrebbero avere un gateway predefinito configurato per tutte le NIC. Il gateway predefinito per le NIC secondarie non verrà rimosso fino al riavvio delle VM. Nei sistemi operativi che utilizzano il modello di routing dell'host vulnerabile, ad esempio Linux, la connettività Internet può interrompersi se il traffico in entrata e in uscita utilizza NIC diverse.
 > 
 
 ### <a name="configure-windows-vms"></a>Configurare le macchine virtuali Windows
@@ -147,7 +147,7 @@ Supponiamo di utilizzare una macchina virtuale di Windows con due NIC come indic
 * Indirizzo IP primario della NIC: 192.168.1.4
 * Indirizzo IP secondario della NIC: 192.168.2.5
 
-tabella di routing IPv4 Hello per questa macchina virtuale sarebbe simile al seguente:
+La tabella di route IPv4 per questa macchina virtuale sarà analoga alla seguente:
 
     IPv4 Route Table
     ===========================================================================
@@ -172,7 +172,7 @@ tabella di routing IPv4 Hello per questa macchina virtuale sarebbe simile al seg
       255.255.255.255  255.255.255.255         On-link       192.168.2.5    261
     ===========================================================================
 
-Route predefinita (0.0.0.0) hello è solo toohello disponibili primario scheda di rete. Non sarà tooaccess in grado di risorse esterno hello subnet per hello secondario NIC, come illustrato di seguito:
+Si noti che la route predefinita (0.0.0.0) è disponibile solo per la NIC primaria. Non sarà possibile accedere alle risorse all'esterno della subnet per la NIC secondaria, come indicato di seguito:
 
     C:\Users\Administrator>ping 192.168.1.7 -S 192.165.2.5
 
@@ -182,9 +182,9 @@ Route predefinita (0.0.0.0) hello è solo toohello disponibili primario scheda d
     PING: transmit failed. General failure.
     PING: transmit failed. General failure.
 
-tooadd predefinito instradare sulla hello secondario NIC, seguire hello passaggi riportati di seguito:
+Per aggiungere una route predefinita nella NIC secondaria, attenersi alla procedura seguente:
 
-1. Da un prompt dei comandi, eseguire il comando di hello sotto tooidentify hello numero di indice hello NIC secondario:
+1. Dal prompt dei comandi, eseguire il seguente comando per identificare il numero di indice per la NIC secondaria:
    
         C:\Users\Administrator>route print
         ===========================================================================
@@ -195,11 +195,11 @@ tooadd predefinito instradare sulla hello secondario NIC, seguire hello passaggi
          14...00 00 00 00 00 00 00 e0 Teredo Tunneling Pseudo-Interface
          20...00 00 00 00 00 00 00 e0 Microsoft ISATAP Adapter #2
         ===========================================================================
-2. Si noti hello seconda voce tabella hello, con un indice pari a 27 (in questo esempio).
-3. Dal prompt dei comandi di hello, eseguire hello **aggiungere route** comando come illustrato di seguito. In questo esempio si specifica 192.168.2.1 come gateway predefinito hello per hello NIC secondario:
+2. Si noti la seconda voce nella tabella, con un indice pari a 27 (in questo esempio).
+3. Dal prompt dei comandi, eseguire il comando **aggiungere route** come illustrato di seguito. In questo esempio si specifica 192.168.2.1 come gateway predefinito per la NIC secondaria:
    
         route ADD -p 0.0.0.0 MASK 0.0.0.0 192.168.2.1 METRIC 5000 IF 27
-4. connettività tootest, tornare indietro toohello il prompt dei comandi e provare tooping una subnet diversa da hello NIC secondario come int illustrato eh esempio riportato di seguito:
+4. Per verificare la connettività, tornare al prompt dei comandi e provare a effettuare il ping a una subnet diversa dalla NIC secondaria come illustrato nell’esempio riportato di seguito:
    
         C:\Users\Administrator>ping 192.168.1.7 -S 192.165.2.5
    
@@ -207,7 +207,7 @@ tooadd predefinito instradare sulla hello secondario NIC, seguire hello passaggi
         Reply from 192.168.1.7: bytes=32 time<1ms TTL=128
         Reply from 192.168.1.7: bytes=32 time=2ms TTL=128
         Reply from 192.168.1.7: bytes=32 time<1ms TTL=128
-5. È inoltre possibile verificare che il hello toocheck tabella di route appena aggiunti route, come illustrato di seguito:
+5. È inoltre possibile controllare la tabella di route per controllare la route appena aggiunta, come illustrato di seguito:
    
         C:\Users\Administrator>route print
    
@@ -222,7 +222,7 @@ tooadd predefinito instradare sulla hello secondario NIC, seguire hello passaggi
                 127.0.0.0        255.0.0.0         On-link         127.0.0.1    306
 
 ### <a name="configure-linux-vms"></a>Configurare le macchine virtuali Linux
-Per le macchine virtuali Linux, poiché il comportamento predefinito di hello utilizza host vulnerabile routing, è consigliabile che hello secondaria NIC sono flussi tootraffic limitato solo all'interno di hello stessa subnet. Tuttavia, se alcuni scenari richiedono la connettività all'esterno di hello subnet, gli utenti devono attivare tooensure di routing basata su criteri che hello in ingresso e Usa il traffico in uscita hello stessa scheda di rete.
+Per le macchine virtuali Linux, poiché è stato utilizzato il comportamento predefinito dell'host routing vulnerabile, è consigliabile che le schede NIC secondarie siano limitate ai flussi di traffico all'interno della stessa subnet. Tuttavia se alcune situazioni richiedono la connettività all'esterno della subnet, gli utenti devono attivare la “policy based routing” per fare in modo che il traffico in entrata e in uscita utilizzi la stessa scheda NIC.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Distribuire [Macchine virtuali MultiNIC in uno scenario di applicazione a 2 livelli in una distribuzione di Gestione risorse](virtual-network-deploy-multinic-arm-template.md).

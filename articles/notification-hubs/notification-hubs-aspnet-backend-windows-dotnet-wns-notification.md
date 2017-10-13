@@ -1,6 +1,6 @@
 ---
-title: aaaAzure notifica hub di notifica utenti con back-end .NET
-description: Informazioni su come toosend sicuro le notifiche push in Azure. Esempi di codice scritti in c# utilizzando hello API .NET.
+title: Uso di Hub di notifica di Azure per inviare notifiche agli utenti con back-end.NET
+description: Informazioni su come inviare notifiche push sicure in Azure. Gli esempi di codice sono scritti in C# mediante l'API .NET.
 documentationcenter: windows
 author: ysxu
 manager: erikre
@@ -14,32 +14,32 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 10/03/2016
 ms.author: yuaxu
-ms.openlocfilehash: a366181faa81e78adf4de61435ef2790c3aa29d1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: c0b963ef661612b1a176dd8e5f01d56e61eb5acb
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-notification-hubs-notify-users-with-net-backend"></a>Uso di Hub di notifica di Azure per inviare notifiche agli utenti con back-end.NET
 [!INCLUDE [notification-hubs-selector-aspnet-backend-notify-users](../../includes/notification-hubs-selector-aspnet-backend-notify-users.md)]
 
 ## <a name="overview"></a>Panoramica
-Supporto di notifica push in Azure consente tooaccess un semplice utilizzo, multipiattaforma e infrastruttura push di scalabilità orizzontale, che semplifica notevolmente l'implementazione di hello delle notifiche push per le applicazioni aziendali e per dispositivi mobili piattaforme. Questa esercitazione viene illustrato come toouse gli hub di notifica di Azure toosend push utente app specifica tooa di notifiche in un dispositivo specifico. Un back-end ASP.NET WebAPI è usato tooauthenticate client. Utilizzando hello autenticato l'utente del client e tag verrà aggiunto automaticamente dalla registrazione di toonotification hello back-end. Questo tag sarà toosend utilizzati dalle notifiche di toogenerate hello back-end per un utente specifico. Per ulteriori informazioni sulla registrazione per le notifiche tramite un back-end dell'app, vedere l'argomento Guida hello [registrazione dal back-end app](http://msdn.microsoft.com/library/dn743807.aspx). In questa esercitazione si basa sull'hub di notifica hello e progetto creato in hello [iniziare con gli hub di notifica] esercitazione.
+Il supporto per le notifiche push in Azure consente di accedere a un'infrastruttura push facile da usare, multipiattaforma e con scalabilità orizzontale, che semplifica considerevolmente l'implementazione delle notifiche push sia per le applicazioni consumer sia per quelle aziendali per piattaforme mobili. In questa esercitazione viene illustrato come usare Hub di notifica di Azure per inviare notifiche push a un utente specifico dell'app su un dispositivo specifico. Un back-end WebAPI ASP.NET viene usato per autenticare i client. Usando l’utente client autenticato, un tag viene aggiunto automaticamente dal back-end per la registrazione delle notifiche. Questo tag viene usato per l’invio tramite il back-end per generare notifiche per un utente specifico. Per altre informazioni sulla registrazione per le notifiche tramite il back-end di un'app, vedere l'argomento della guida [Registrazione dal back-end dell'app](http://msdn.microsoft.com/library/dn743807.aspx). Questa esercitazione si basa sull'hub di notifica e sul progetto creato nell'esercitazione [Introduzione ad Hub di notifica] .
 
-In questa esercitazione è anche hello prerequisiti toohello [Secure Push] esercitazione. Dopo aver completato i passaggi di hello in questa esercitazione, è possibile procedere toohello [Secure Push] esercitazione che illustra come hello toomodify codice in questa esercitazione toosend una notifica push in modo sicuro.
+È inoltre propedeutica all'esercitazione [Push sicuro] . Dopo avere eseguito i passaggi indicati in questa esercitazione, è possibile passare all'esercitazione [Push sicuro] , che illustra come modificare il codice in questa esercitazione per inviare una notifica push in modo sicuro.
 
 ## <a name="before-you-begin"></a>Prima di iniziare
-I commenti e suggerimenti inviati seriamente verranno presi in considerazione. Se hai difficoltà il completamento di questo argomento o indicazioni per migliorare il contenuto, Gradiremmo commenti e suggerimenti nella parte inferiore di hello della pagina hello.
+I commenti e suggerimenti inviati seriamente verranno presi in considerazione. Se si riscontrano difficoltà nel completare questo argomento o si hanno suggerimenti per migliorarne il contenuto, è possibile lasciare un commento nella parte inferiore della pagina.
 
-codice Hello completata per questa esercitazione è disponibile su GitHub [qui](https://github.com/Azure/azure-notificationhubs-samples/tree/master/dotnet/NotifyUsers). 
+Il codice completo per questa esercitazione è disponibile su GitHub [qui](https://github.com/Azure/azure-notificationhubs-samples/tree/master/dotnet/NotifyUsers). 
 
 ## <a name="prerequisites"></a>Prerequisiti
 Prima di iniziare questa esercitazione, è necessario aver già completato queste esercitazioni su Servizi mobili:
 
-* [iniziare con gli hub di notifica]<br/>Creare l'hub di notifica e riserva nome applicazione hello e registrare le notifiche di tooreceive in questa esercitazione. In questa esercitazione si presuppone che siano già stati completati questi passaggi. In caso contrario, attenersi alla procedura hello in [Introduzione agli hub di notifica (Windows Store)](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md), in particolare, hello sezioni [registrare l'app per Windows Store hello](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md#register-your-app-for-the-windows-store) e [Configura Hub di notifica](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md#configure-your-notification-hub). In particolare, assicurarsi di avere immesso hello **SID pacchetto** e **segreto Client** valori nel portale hello hello **configura** scheda per l'hub di notifica. Questa procedura di configurazione è descritta nella sezione hello [configurare l'Hub di notifica](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md#configure-your-notification-hub). Si tratta di un passaggio importante: se credenziali hello nel portale di hello non corrispondono a quelle specificate per nome app hello scelto, notifica push di hello non riuscirà.
+* [Introduzione ad Hub di notifica]<br/>Creare il proprio hub di notifica, riservare il nome dell'app e registrarsi per ricevere le notifiche in questa esercitazione. In questa esercitazione si presuppone che siano già stati completati questi passaggi. In caso contrario, attenersi alla procedura riportata in [Introduzione ad Hub di notifica (Windows Store)](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md), con particolare riferimento alle sezioni [Registrare l'app di Windows Store](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md#register-your-app-for-the-windows-store) e [Configurare l'hub di notifica](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md#configure-your-notification-hub). In particolare, assicurarsi di avere immesso i valori **SID pacchetto** e **Chiave privata client** nel portale, nella scheda **Configura** per l'hub di notifica. Questa procedura di configurazione è descritta nella sezione [Configurazione dell'hub di notifica](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md#configure-your-notification-hub). Questo passaggio è importante: se le credenziali sul portale non corrispondono a quelle specificate per il nome di app scelto, la notifica push non riuscirà.
 
 > [!NOTE]
-> Se si utilizza App per dispositivi mobili in Azure App Service come il servizio back-end, vedere hello [versione di App per dispositivi mobili](../app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push.md) di questa esercitazione.
+> Se si usano app per dispositivi mobili nel servizio app di Azure, vedere la [versione per App per dispositivi mobili](../app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push.md) di questa esercitazione.
 > 
 > 
 
@@ -47,18 +47,18 @@ Prima di iniziare questa esercitazione, è necessario aver già completato quest
 
 [!INCLUDE [notification-hubs-aspnet-backend-notifyusers](../../includes/notification-hubs-aspnet-backend-notifyusers.md)]
 
-## <a name="update-hello-code-for-hello-client-project"></a>Aggiornare il codice hello per il progetto client hello
-In questa sezione aggiornare il codice hello nei progetti di hello siano stati completati per hello [iniziare con gli hub di notifica] esercitazione. Hello deve essere già associato archivio hello e configurato per l'hub di notifica. In questa sezione, si verrà aggiungere codice toocall hello nuovo WebAPI back-end e utilizzarlo per la registrazione e l'invio di notifiche.
+## <a name="update-the-code-for-the-client-project"></a>Aggiornare il codice per il progetto client
+In questa sezione viene aggiornato il codice nel progetto completato per l’esercitazione [Introduzione ad Hub di notifica] . Il codice dovrebbe essere già associato allo store e configurato per l'hub di notifica. In questa sezione si aggiungerà il codice per chiamare il nuovo back-end WebAPI e si userà tale codice per la registrazione e l'invio di notifiche.
 
-1. In Visual Studio, aprire Esplora hello hello creato per hello [iniziare con gli hub di notifica] esercitazione.
-2. In Esplora soluzioni fare doppio clic su hello **(Windows 8.1)** del progetto e quindi fare clic su **Gestisci pacchetti NuGet**.
-3. Sul lato sinistro di hello, fare clic su **Online**.
-4. In hello **ricerca** digitare **Http Client**.
-5. Nell'elenco risultati hello, fare clic su **Microsoft HTTP Client Libraries**, quindi fare clic su **installare**. Completare l'installazione di hello.
-6. In hello NuGet **ricerca** digitare **Json.net**. Installare hello **Json.NET** pacchetto e quindi chiudere hello Gestione pacchetti NuGet finestra.
-7. Ripetere i passaggi di hello sopra per hello **(Windows Phone 8.1)** hello tooinstall progetto **JSON.NET** pacchetto NuGet per il progetto Windows Phone hello.
-8. In Esplora soluzioni, in hello **(Windows 8.1)** progetto, fare doppio clic su **MainPage. XAML** tooopen nell'editor di Visual Studio hello.
-9. In hello **MainPage. XAML** codice XML, sostituire hello `<Grid>` sezione con hello seguente codice. Questo codice aggiunge una casella di testo Nome utente e password che hello utente eseguirà l'autenticazione con. Aggiunge anche nelle caselle di testo per il messaggio di notifica hello e tag username hello che devono ricevere notifica hello:
+1. In Visual Studio, aprire la soluzione creata per l’esercitazione [Introduzione ad Hub di notifica] .
+2. In Esplora soluzioni fare clic con il pulsante destro del mouse sul progetto **(Windows 8.1)**, quindi scegliere **Gestisci pacchetti NuGet**.
+3. Sul lato sinistro fare clic su **Online**.
+4. Nella **casella di ricerca** digitare **Client Http**.
+5. Nell'elenco dei risultati fare clic su **Librerie client HTTP Microsoft** e quindi su **Installa**. Completare l'installazione.
+6. Di nuovo nella **casella di ricerca** di NuGet digitare **Json.net**. Installare il pacchetto **Json.NET** , quindi chiudere la finestra di Gestione pacchetti NuGet.
+7. Ripetere i passaggi precedenti per il progetto **(Windows Phone 8.1)** al fine di installare il pacchetto NuGet **JSON.NET** per il progetto Windows Phone.
+8. In Esplora soluzioni, nel progetto **(Windows 8.1)**, fare doppio clic su **MainPage.xaml** per aprirlo nell'editor di Visual Studio.
+9. Nel codice XML **MainPage.xaml** sostituire la sezione `<Grid>` con il codice seguente. Questo codice consente di aggiungere una casella di testo con nome utente e password con cui l'utente eseguirà l'autenticazione. Consente inoltre di aggiungere caselle di testo per il messaggio di notifica e il tag del nome utente che deve ricevere la notifica:
    
         <Grid>
             <Grid.RowDefinitions>
@@ -100,7 +100,7 @@ In questa sezione aggiornare il codice hello nei progetti di hello siano stati c
                     <ToggleButton Name="toggleGCM" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" Content="GCM" />
                     <ToggleButton Name="toggleAPNS" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Left" Content="APNS" />
    
-                    <TextBlock Grid.Row="6" Grid.ColumnSpan="3" Text="Username Tag tooSend To" FontSize="24" Margin="20,0,20,0"/>
+                    <TextBlock Grid.Row="6" Grid.ColumnSpan="3" Text="Username Tag To Send To" FontSize="24" Margin="20,0,20,0"/>
                     <TextBox Name="ToUserTagTextBox" Grid.Row="7" Grid.ColumnSpan="3" Margin="20,0,20,0" TextWrapping="Wrap" />
                     <TextBlock Grid.Row="8" Grid.ColumnSpan="3" Text="Enter Notification Message" FontSize="24" Margin="20,0,20,0"/>
                     <TextBox Name="NotificationMessageTextBox" Grid.Row="9" Grid.ColumnSpan="3" Margin="20,0,20,0" TextWrapping="Wrap" />
@@ -108,10 +108,10 @@ In questa sezione aggiornare il codice hello nei progetti di hello siano stati c
                 </Grid>
             </StackPanel>
         </Grid>
-10. In Esplora soluzioni, in hello **(Windows Phone 8.1)** progetto, aprire **MainPage. XAML** e sostituire hello Windows Phone 8.1 `<Grid>` sezione con quel codice precedente. interfaccia Hello dovrebbe essere simile toowhats illustrato di seguito.
+10. In Esplora soluzioni, nel progetto **(Windows Phone 8.1)**, aprire **MainPage.xaml** e sostituire la sezione `<Grid>` di Windows Phone 8.1 con lo stesso codice riportato in precedenza. L’interfaccia dovrebbe essere simile a quanto illustrato nella figura seguente.
     
     ![][13]
-11. In Esplora soluzioni, aprire hello **MainPage.xaml.cs** file per hello **(Windows 8.1)** e **(Windows Phone 8.1)** progetti. Aggiungere il seguente hello `using` istruzioni nella parte superiore di hello di entrambi i file:
+11. In Esplora soluzioni aprire il file **MainPage.xaml.cs** per i progetti **(Windows 8.1)** e **(Windows Phone 8.1)**. Aggiungere le istruzioni `using` seguenti all'inizio del file:
     
         using System.Net.Http;
         using Windows.Storage;
@@ -119,14 +119,14 @@ In questa sezione aggiornare il codice hello nei progetti di hello siano stati c
         using Windows.Networking.PushNotifications;
         using Windows.UI.Popups;
         using System.Threading.Tasks;
-12. In **MainPage.xaml.cs** per hello **(Windows 8.1)** e **(Windows Phone 8.1)** progetti, aggiungere hello seguente membro toohello `MainPage` classe. Tooreplace assicurarsi di essere `<Enter Your Backend Endpoint>` con hello l'endpoint di back-end effettivo ottenuto in precedenza. ad esempio `http://mybackend.azurewebsites.net`.
+12. In **MainPage.xaml.cs**, per i progetti **(Windows 8.1)** e **(Windows Phone 8.1)**, aggiungere il seguente membro alla classe `MainPage`. Assicurarsi di sostituire `<Enter Your Backend Endpoint>` con l'endpoint back-end effettivo ottenuto in precedenza: ad esempio `http://mybackend.azurewebsites.net`.
     
         private static string BACKEND_ENDPOINT = "<Enter Your Backend Endpoint>";
-13. Aggiungere codice hello seguente classe MainPage toohello **MainPage.xaml.cs** per hello **(Windows 8.1)** e **(Windows Phone 8.1)** progetti.
+13. Aggiungere il codice seguente alla classe MainPage in **MainPage.xaml.cs** per i progetti **(Windows 8.1)** e **(Windows Phone 8.1)**.
     
-    Hello `PushClick` hello è fare clic su gestore per hello **inviare Push** pulsante. Chiama hello back-end tootrigger tooall una notifica dispositivi con un tag di nome utente corrispondente hello `to_tag` parametro. messaggio di notifica Hello viene inviato come contenuto JSON nel corpo della richiesta hello.
+    Il metodo `PushClick` è il gestore di clic per il pulsante **Send Push** . Chiama il back-end per attivare una notifica a tutti i dispositivi con un tag di nome utente corrispondente al parametro `to_tag` . Il messaggio di notifica viene inviato come contenuto JSON nel corpo della richiesta.
     
-    Hello `LoginAndRegisterClick` hello è fare clic su gestore per hello **Accedi e registrare** pulsante. Hello basic archivia i token di autenticazione nel servizio di archiviazione locale (si noti che questo rappresenta un token viene utilizzato uno schema di autenticazione), quindi Usa `RegisterClient` tooregister per le notifiche tramite hello di back-end.
+    Il metodo `LoginAndRegisterClick` è il gestore di clic per il pulsante **Log in and register** . Tale metodo memorizza il token di autenticazione di base nell'archivio locale (si noti che rappresenta qualsiasi token usato dallo schema di autenticazione), quindi usa `RegisterClient` per la registrazione per le notifiche tramite il back-end.
 
         private async void PushClick(object sender, RoutedEventArgs e)
         {
@@ -162,7 +162,7 @@ In questa sezione aggiornare il codice hello nei progetti di hello siano stati c
                 }
                 catch (Exception ex)
                 {
-                    MessageDialog alert = new MessageDialog(ex.Message, "Failed toosend " + pns + " message");
+                    MessageDialog alert = new MessageDialog(ex.Message, "Failed to send " + pns + " message");
                     alert.ShowAsync();
                 }
             }
@@ -174,12 +174,12 @@ In questa sezione aggiornare il codice hello nei progetti di hello siano stati c
 
             var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
 
-            // hello "username:<user name>" tag gets automatically added by hello message handler in hello backend.
-            // hello tag passed here can be whatever other tags you may want toouse.
+            // The "username:<user name>" tag gets automatically added by the message handler in the backend.
+            // The tag passed here can be whatever other tags you may want to use.
             try
             {
-                // hello device handle used will be different depending on hello device and PNS. 
-                // Windows devices use hello channel uri as hello PNS handle.
+                // The device handle used will be different depending on the device and PNS. 
+                // Windows devices use the channel uri as the PNS handle.
                 await new RegisterClient(BACKEND_ENDPOINT).RegisterAsync(channel.Uri, new string[] { "myTag" });
 
                 var dialog = new MessageDialog("Registered as: " + UsernameTextBox.Text);
@@ -189,7 +189,7 @@ In questa sezione aggiornare il codice hello nei progetti di hello siano stati c
             }
             catch (Exception ex)
             {
-                MessageDialog alert = new MessageDialog(ex.Message, "Failed tooregister with RegisterClient");
+                MessageDialog alert = new MessageDialog(ex.Message, "Failed to register with RegisterClient");
                 alert.ShowAsync();
             }
         }
@@ -205,17 +205,17 @@ In questa sezione aggiornare il codice hello nei progetti di hello siano stati c
 
 
 
-1. In Esplora soluzioni in hello **Shared** progetto, aprire hello **App.xaml.cs** file. Trovare chiamata hello troppo`InitNotificationsAsync()` in hello `OnLaunched()` gestore dell'evento. Impostare come commento o eliminare anche chiamata hello`InitNotificationsAsync()`. gestore del pulsante Hello aggiunte in precedenza verrà inizializzato registrazioni di notifica.
+1. In Esplora soluzioni, nel progetto **Condiviso**, aprire il file **App.xaml.cs**. Individuare la chiamata a `InitNotificationsAsync()` in the `OnLaunched()` . Impostare come commento o eliminare la chiamata a `InitNotificationsAsync()`. Il gestore del pulsante aggiunto in precedenza inizializzerà le registrazioni delle notifiche.
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
             //InitNotificationsAsync();
 
 
-1. In Esplora soluzioni fare doppio clic su hello **Shared** del progetto, quindi fare clic su **Aggiungi**, quindi fare clic su **classe**. Nome classe hello **RegisterClient.cs**, quindi fare clic su **OK** classe hello toogenerate.
+1. In Esplora soluzioni fare clic con il pulsante destro del mouse sul progetto **Condiviso**, quindi scegliere **Aggiungi** e infine **Classe**. Assegnare alla classe il nome **RegisterClient.cs**, quindi fare clic su **OK** per generare la classe.
    
-   Questa classe eseguirà il wrapping hello REST chiamate necessarie toocontact hello app back-end, in ordine tooregister per le notifiche push. Archivia anche localmente hello *RegistrationId* creato da hello Hub di notifica, come descritto in dettaglio nella [registrazione dal back-end app](http://msdn.microsoft.com/library/dn743807.aspx). Si noti che usa un token di autorizzazione memorizzato nell'archiviazione locale quando si fa clic hello **Accedi e registrare** pulsante.
-2. Aggiungere il seguente hello `using` istruzioni all'inizio di hello del file di RegisterClient.cs hello:
+   Questa classe conclude le chiamate REST necessarie per contattare il back-end dell'app allo scopo di effettuare la registrazione per le notifiche push. Archivia inoltre in locale i *registrationId* creati dall'hub di notifica, come illustrato in [Registrazione dal back-end dell'app](http://msdn.microsoft.com/library/dn743807.aspx). Si noti che usa un token di autorizzazione memorizzato nell'archivio locale quando si fa clic sul pulsante **Esegui accesso e registrazione** .
+2. Aggiungere le seguenti istruzioni `using` all'inizio del file RegisterClient.cs:
    
        using Windows.Storage;
        using System.Net;
@@ -224,7 +224,7 @@ In questa sezione aggiornare il codice hello nei progetti di hello siano stati c
        using Newtonsoft.Json;
        using System.Threading.Tasks;
        using System.Linq;
-3. Aggiungere hello seguente codice all'interno di hello `RegisterClient` definizione di classe.
+3. Aggiungere il codice seguente all'interno della definizione di classe `RegisterClient` .
    
        private string POST_URL;
    
@@ -311,23 +311,23 @@ In questa sezione aggiornare il codice hello nei progetti di hello siano stati c
        }
 4. Salvare tutte le modifiche.
 
-## <a name="testing-hello-application"></a>Test dell'applicazione hello
-1. Avvia un'applicazione hello in Windows 8.1 e Windows Phone 8.1. Per Windows Phone 8.1 è possibile eseguire l'istanza di hello nell'emulatore Windows hello o un dispositivo reale.
-2. Nell'istanza di Windows 8.1 hello di hello app, immettere un **Username** e **Password** come illustrato nella schermata di hello riportata di seguito. Deve essere diversi dal nome dell'utente hello e la password che immessi in Windows Phone.
-3. Fare clic su **Log in and register** e verificare nella relativa finestra di dialogo di avere effettuato l'accesso. In questo modo anche hello **inviare Push** pulsante.
+## <a name="testing-the-application"></a>Test dell'applicazione
+1. Avviare l'applicazione in Windows 8.1 e Windows Phone 8.1. Per Windows Phone 8.1 è possibile eseguire l'istanza nell'emulatore o in un dispositivo reale.
+2. Nell'istanza di Windows 8.1 dell'app immettere un **Nome utente** e una **Password** come illustrato nella schermata riportata di seguito. È consigliabile immettere un nome utente e una password diversi dal nome utente e dalla password immessi in Windows Phone.
+3. Fare clic su **Log in and register** e verificare nella relativa finestra di dialogo di avere effettuato l'accesso. In questo modo anche il pulsante **Send Push** verrà abilitato.
    
     ![][14]
-4. Nell'istanza di hello Windows Phone 8.1, immettere una stringa del nome utente in entrambi hello **Username** e **Password** campi quindi fare clic su **accesso e registrazione**.
-5. Quindi in hello **destinatario Username Tag** immettere nome utente hello registrato in Windows 8.1. Immettere un messaggio di notifica e fare clic su **Send Push**.
+4. Nell'istanza di Windows Phone 8.1 immettere la stringa di un nome utente nei campi **Nome utente** e **Password** quini fare clic su **Log in and register**.
+5. Quindi nel campo relativo al **tag del nome utente del destinatario** immettere il nome utente registrato in Windows 8.1. Immettere un messaggio di notifica e fare clic su **Send Push**.
    
     ![][16]
-6. Solo i dispositivi di hello che sono registrati con il tag di nome utente corrispondente hello ricevono il messaggio di notifica hello.
+6. Solo i dispositivi registrati con il tag del nome utente del destinatario riceveranno il messaggio di notifica.
    
     ![][15]
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Se si desidera che gli utenti dai gruppi di interesse toosegment, vedere [toosend gli hub di notifica di utilizzare le ultime notizie].
-* altre informazioni su come toolearn toouse gli hub di notifica, vedere [materiale sussidiario per gli hub di notifica].
+* Se si desidera segmentare gli utenti per gruppi di interesse, vedere [Utilizzo di Hub di notifica per inviare le ultime notizie].
+* Per ulteriori informazioni sull'uso di Hub di notifica, vedere la pagina delle [linee guida su Hub di notifica].
 
 [9]: ./media/notification-hubs-aspnet-backend-windows-dotnet-notify-users/notification-hubs-secure-push9.png
 [10]: ./media/notification-hubs-aspnet-backend-windows-dotnet-notify-users/notification-hubs-secure-push10.png
@@ -341,7 +341,7 @@ In questa sezione aggiornare il codice hello nei progetti di hello siano stati c
 
 
 <!-- URLs. -->
-[iniziare con gli hub di notifica]: notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md
-[Secure Push]: notification-hubs-aspnet-backend-windows-dotnet-wns-secure-push-notification.md
-[toosend gli hub di notifica di utilizzare le ultime notizie]: notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md
-[materiale sussidiario per gli hub di notifica]: http://msdn.microsoft.com/library/jj927170.aspx
+[Introduzione ad Hub di notifica]: notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md
+[Push sicuro]: notification-hubs-aspnet-backend-windows-dotnet-wns-secure-push-notification.md
+[Utilizzo di Hub di notifica per inviare le ultime notizie]: notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md
+[linee guida su Hub di notifica]: http://msdn.microsoft.com/library/jj927170.aspx

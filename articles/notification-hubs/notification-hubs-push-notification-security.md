@@ -1,5 +1,5 @@
 ---
-title: aaaSecurity per gli hub di notifica
+title: Sicurezza per gli hub di notifica
 description: In questo argomento viene illustrata la sicurezza degli hub di notifica di Azure.
 services: notification-hubs
 documentationcenter: .net
@@ -14,35 +14,35 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: yuaxu
-ms.openlocfilehash: f59ad4594c2c0a2e2b22ab0b6d6bad53825a4dc2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7c3283799806135060bb8ca57ea398c93d1106bb
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="security"></a>Sicurezza
 ## <a name="overview"></a>Panoramica
-In questo argomento viene descritto il modello di sicurezza hello dell'hub di notifica di Azure. Poiché gli hub di notifica sono un'entità del Bus di servizio, implementano hello stesso modello di sicurezza di Service Bus. Per ulteriori informazioni, vedere hello [l'autenticazione del Bus di servizio](https://msdn.microsoft.com/library/azure/dn155925.aspx) argomenti.
+In questo argomento viene descritto il modello di protezione degli hub di notifica di Azure. Poiché gli hub di notifica sono un'entità del bus di servizio, implementano lo stesso modello di sicurezza del bus di servizio. Per altre informazioni, vedere gli argomenti sull’ [Autenticazione per il bus di servizio](https://msdn.microsoft.com/library/azure/dn155925.aspx) .
 
 ## <a name="shared-access-signature-security-sas"></a>Sicurezza della firma di accesso condiviso (SAS)
-Gli hub di notifica implementano uno schema di sicurezza a livello di entità denominato firma di accesso condiviso (SAS, Shared Access Signature). Questo schema consente messaggistica entità toodeclare le regole di autorizzazione di too12 nella descrizione che concedono diritti sull'entità.
+Gli hub di notifica implementano uno schema di sicurezza a livello di entità denominato firma di accesso condiviso (SAS, Shared Access Signature). Questo schema consente alle entità di messaggistica di dichiarare nella descrizione fino a 12 regole di autorizzazione che concedono diritti sull'entità.
 
-Ogni regola contiene un nome, un valore di chiave (segreto condiviso) e un insieme di diritti, come illustrato nella sezione hello "Attestazioni di sicurezza". Quando si crea un Hub di notifica, vengono create automaticamente due regole: uno con diritti di ascolto (che hello client app utilizza) e uno con tutti i diritti (che hello app back-end USA).
+Ogni regola contiene un nome, un valore di chiave (segreto condiviso) e un set di diritti, come illustrato nella sezione "Attestazioni di sicurezza". Quando si crea un hub di notifica, vengono create automaticamente due regole: uno con diritti di ascolto (utilizzata dall'applicazione client) e una con tutti i diritti (utilizzata dal back-end dell’app).
 
-Quando si gestiscono le registrazioni dalle App client, se le informazioni di hello inviate tramite notifiche non sono riservati (ad esempio aggiornamenti meteorologici), un tooaccess modo comune di un Hub di notifica è toogive valore della chiave hello di hello regola solo l'accesso Listen toohello app client e valore della chiave hello toogive di back-end app toohello hello regola accesso completo.
+Quando si esegue la gestione delle registrazioni dalle app client, se le informazioni inviate tramite notifiche non sono riservate (ad esempio aggiornamenti meteorologici), un modo comune per accedere a un hub di notifica è assegnare il valore della chiave della regola di accesso solo in ascolto all'app client e il valore della chiave della regola di accesso completo al back-end dell'app.
 
-Non è consigliabile incorporare valore chiave hello in applicazioni client di Windows Store. Un modo tooavoid incorporamento valore chiave hello è toohave hello client app recuperarlo dal back-end app hello all'avvio.
+Non è consigliabile integrare il valore della chiave nelle applicazioni client di Windows Store. Un modo per evitare di integrare il valore della chiave è consentire all'app client di recuperarlo dal back-end dell'app all'avvio.
 
-È importante toounderstand che hello chiave con accesso Listen consente a un client app tooregister per qualsiasi tag. Se l'app deve limitare le registrazioni toospecific tag toospecific i client (ad esempio, quando i tag rappresentano gli ID utente), il back-end dell'app deve eseguire registrazioni hello. Per ulteriori informazioni, vedere Gestione della registrazione. Si noti che in questo modo, hello client app non avrà accesso diretto tooNotification hub.
+È importante comprendere che la chiave con accesso in ascolto consente a un’app client la registrazione per qualsiasi tag. Se l'app deve limitare le registrazioni a tag specifici su client specifici (ad esempio, quando i tag rappresentano gli ID utente), il back-end dell’app deve eseguire le registrazioni. Per ulteriori informazioni, vedere Gestione della registrazione. Si noti che in questo modo, l'app client non avrà accesso diretto agli hub di notifica.
 
 ## <a name="security-claims"></a>Attestazioni di sicurezza
-Le entità tooother simili, le operazioni di Hub di notifica sono consentite per tre attestazioni di sicurezza: ascolto, invio e gestire.
+Analogamente ad altre entità, le operazioni degli hub di notifica sono consentite per tre attestazioni di sicurezza: ascolto, invio e gestione.
 
 | Attestazione | Descrizione | Operazioni consentite |
 | --- | --- | --- |
 | Attesa |Creare o aggiornare, leggere ed eliminare singole registrazioni |Creare o aggiornare una registrazione<br><br>Leggere una registrazione<br><br>Leggere tutte le registrazioni per un handle<br><br>Eliminare una registrazione |
-| Invio |Hub di notifica toohello i messaggi di trasmissione |Send message |
+| Invio |Inviare messaggi all'hub di notifica |Send message |
 | Manage |CRUD negli hub di notifica (incluso l'aggiornamento delle credenziali PNS e le chiavi di sicurezza) e lettura delle registrazioni basata sui tag |Hub di notifica di creazione, aggiornamento, lettura ed eliminazione<br><br>Leggere le registrazioni per tag |
 
-Gli hub di notifica accettano attestazioni concesse dai token di controllo di accesso di Microsoft Azure e dal token di firma generati con chiavi condivise configurate direttamente sull'Hub di notifica hello.
+Gli hub di notifica accettano attestazioni concesse dai token del Controllo di accesso di Microsoft Azure e dai token di firma generati con chiavi condivise configurate direttamente nell’hub di notifica.
 

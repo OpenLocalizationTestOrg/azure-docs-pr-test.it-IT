@@ -1,6 +1,6 @@
 ---
-title: aaaConnect tooDynamics 365 (online) da Azure logica App | Documenti Microsoft
-description: "Creare la logica di flussi di lavoro app per la gestione di entità (online) di Dynamics 365 tramite API fornita da connettore hello Dynamics 365 hello"
+title: Connettersi a Dynamics 365 (online) dalle app per la logica di Azure | Microsoft Docs
+description: "Creare flussi di lavoro di app per la logica che gestiscono le entità di Dynamics 365 (online) tramite l'API inclusa nel connettore di Dynamics 365"
 services: logic-apps
 cloud: Azure Stack
 author: Mattp123
@@ -15,20 +15,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/10/2017
 ms.author: matp; LADocs
-ms.openlocfilehash: 183d7a6b8e5d2c0eecc70da0da3806e06c382df4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d35647921ff540167a3a591fb489d3bab031a5c1
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="connect-toodynamics-365-from-logic-app-workflows"></a>Connettersi tooDynamics 365 da flussi di lavoro logica app
+# <a name="connect-to-dynamics-365-from-logic-app-workflows"></a>Connettersi a Dynamics 365 da flussi di lavoro di app per la logica
 
-Con la logica App, è possibile connettersi tooDynamics 365 (online) e creare flussi di business utile creano record, aggiornare gli elementi o restituiscono un elenco di record. Con il connettore di Dynamics 365 hello, è possibile:
+Con il servizio App per la logica è possibile connettersi a Dynamics 365 (online) e creare flussi aziendali utili che restituiscono record, aggiornano elementi o restituiscono un elenco di record. Con il connettore Dynamics 365, è possibile:
 
-* Compilare il flusso di business in base ai dati hello che si ottiene da Dynamics 365 (online).
-* Usare le azioni che ottengono una risposta e l'output di hello rendono disponibili per le altre azioni. Ad esempio, quando viene aggiornato un elemento in Dynamics 365 (online), è possibile inviare un messaggio di posta elettronica con Office 365.
+* Creare un flusso aziendale in base ai dati ottenuti da Dynamics 365 (online).
+* Usare azioni che ottengono una risposta e quindi rendono disponibile l'output per altre azioni. Ad esempio, quando viene aggiornato un elemento in Dynamics 365 (online), è possibile inviare un messaggio di posta elettronica con Office 365.
 
-Questo argomento viene illustrato come toocreate un'app di logica che crea un'attività in Dynamics 365 ogni volta che un nuovo cliente potenziale viene creato in Dynamics 365.
+Questo argomento illustra come creare un'app per la logica che crea un'attività in Dynamics 365 ogni volta che viene creato un nuovo lead in Dynamics 365.
 
 ## <a name="prerequisites"></a>Prerequisiti
 * Un account Azure.
@@ -36,9 +36,9 @@ Questo argomento viene illustrato come toocreate un'app di logica che crea un'at
 
 ## <a name="create-a-task-when-a-new-lead-is-created-in-dynamics-365"></a>Creare un'attività quando viene creato un nuovo lead in Dynamics 365
 
-1.  [Accedi tooAzure](https://portal.azure.com).
+1.  [Accedere ad Azure](https://portal.azure.com).
 
-2.  Nella casella di ricerca di Azure hello, digitare `Logic apps`, e premere INVIO.
+2.  Nella casella di ricerca di Azure digitare `Logic apps` e premere INVIO.
 
       ![Trovare App per la logica](./media/connectors-create-api-crmonline/find-logic-apps.png)
 
@@ -46,56 +46,56 @@ Questo argomento viene illustrato come toocreate un'app di logica che crea un'at
 
       ![Aggiungere un'app per la logica](./media/connectors-create-api-crmonline/add-logic-app.png)
 
-4.  app per la logica hello toocreate, hello completo **nome**, **sottoscrizione**, **gruppo di risorse**, e **percorso** campi e quindi fare clic su  **Creare**.
+4.  Per creare l'app per la logica, completare i campi **Nome**, **Sottoscrizione**, **Gruppo di risorse** e **Percorso** e quindi fare clic su **Crea**.
 
-5.  Selezionare hello nuova logica app. Quando si riceve hello **distribuzione ha avuto esito positivo** notifica, fare clic su **aggiornamento**.
+5.  Selezionare la nuova app per la logica. Quando viene visualizzata la notifica **La distribuzione è riuscita** fare clic su **Aggiorna**.
 
-6.  In **Strumenti di sviluppo** fare clic su **Progettazione app per la logica**. Nell'elenco di modelli di hello, fare clic su **App vuota per la logica**.
+6.  In **Strumenti di sviluppo** fare clic su **Progettazione app per la logica**. Nell'elenco dei modelli fare clic su **App per la logica vuota**.
 
-7.  Nella casella di ricerca hello, digitare `Dynamics 365`. Da hello Dynamics 365 attiva l'elenco, selezionare **Dynamics 365: quando viene creato un record**.
+7.  Nella casella di ricerca digitare `Dynamics 365`. Nell'elenco dei trigger di Dynamics 365 selezionare **Dynamics 365 - Quando un record viene creato**.
 
-8.  Nel caso di richiesta toosign in tooDynamics 365, farlo ora.
+8.  Se viene richiesto di accedere a Dynamics 365, eseguire l'operazione.
 
-9.  Nei dettagli trigger hello, immettere hello le seguenti informazioni:
+9.  Nei dettagli del trigger immettere le informazioni seguenti:
 
-  * **Nome organizzazione**. Selezionare l'istanza di Dynamics 365 di hello che si desidera hello logica app toolisten per.
+  * **Nome organizzazione**. Selezionare l'istanza di Dynamics 365 di cui l'app per la logica dovrà essere in ascolto.
 
-  * **Nome entità**. Selezionare entità hello che si desidera toolisten per. Questo evento viene utilizzato come un'app di logica di trigger toostart hello. 
+  * **Nome entità**. Selezionare l'entità che si vuole ascoltare. Questo evento funge da trigger per avviare l'app per la logica. 
   In questa procedura guidata si seleziona **Lead**.
 
-  * **La frequenza desiderata toocheck per gli elementi?** Impostare la frequenza di questi valori hello logica app verifica la presenza di trigger toohello correlati gli aggiornamenti. impostazione predefinita Hello è toocheck per gli aggiornamenti ogni tre minuti.
+  * **Specificare la frequenza in base a cui verificare gli elementi**. Questi valori impostano la frequenza con cui l'app per la logica verificherà la presenza di aggiornamenti correlati al trigger. L'impostazione predefinita prevede la verifica della presenza di aggiornamenti ogni tre minuti.
 
     * **Frequenza**. Selezionare secondi, minuti, ore o giorni.
 
-    * **Intervallo**. Immettere il numero di hello di secondi, minuti, ore o giorni che si desidera toopass prima hello della successiva archiviazione.
+    * **Intervallo**. Immettere il numero di secondi, minuti, ore o giorni che deve trascorrere prima della verifica successiva.
 
       ![Dettagli del trigger dell'app per la logica](./media/connectors-create-api-crmonline/trigger-details.png)
 
 10. Fare clic su **Nuovo passaggio** e quindi su **Aggiungi un'azione**.
 
-11. Nella casella di ricerca hello, digitare `Dynamics 365`. Selezionare nell'elenco di azioni hello **Dynamics 365: creare un nuovo record**.
+11. Nella casella di ricerca digitare `Dynamics 365`. Nell'elenco di azioni selezionare **Dynamics 365 - Crea un nuovo record**.
 
-12. Immettere hello le seguenti informazioni:
+12. Immettere le seguenti informazioni:
 
-    * **Nome organizzazione**. Selezionare l'istanza di Dynamics 365 hello in cui si desidera registrazione hello toocreate di hello del flusso. 
-    Si noti che questa istanza non dispone di toobe hello stesso in cui hello evento dall'istanza.
+    * **Nome organizzazione**. Selezionare l'istanza di Dynamics 365 in cui si vuole che il flusso crei il record. 
+    Si noti che questa istanza non deve essere necessariamente la stessa da cui viene attivato l'evento.
 
-    * **Nome entità**. Selezionare entità hello che si desidera toocreate un record quando viene attivato l'evento hello. 
+    * **Nome entità**. Selezionare l'entità in cui si vuole che venga creato un record quando viene attivato l'evento. 
     In questa procedura guidata si seleziona **Attività**.
 
-13. Fare clic nella hello **soggetto** visualizzata. Hello dinamica contenuto elenco visualizzato, è possibile selezionare uno di questi campi:
+13. Fare clic nella casella **Oggetto** visualizzata. Nell'elenco del contenuto dinamico visualizzato è possibile selezionare uno di questi campi:
 
-    * **Cognome**. Selezione di questo campo inserisce hello cognome hello lead campo Subject hello per le attività di hello, quando viene creato il record di attività hello.
-    * **Argomento**. Selezionando questa inserimenti hello argomento campo lead hello nel campo soggetto hello per attività di hello, quando i record di attività hello viene creato. 
-    Fare clic su **argomento** tooadd che toohello **soggetto** casella.
+    * **Cognome**. La selezione di questo campo inserisce il cognome del lead nel campo Oggetto dell'attività, quando viene creato il record dell'attività.
+    * **Argomento**. La selezione di questo campo inserisce il campo dell'argomento per il lead nel campo Oggetto dell'attività, quando viene creato il record dell'attività. 
+    Fare clic su **Argomento** per aggiungere questo campo alla casella **Oggetto**.
 
       ![Dettagli per la creazione di un nuovo record nell'app per la logica](./media/connectors-create-api-crmonline/create-record-details.png)
 
-14. Sulla barra degli strumenti Progettazione applicazione logica hello, fare clic su **salvare**.
+14. Fare clic su **Salva** nella barra degli strumenti di Progettazione app per la logica.
 
     ![Salva nella barra degli strumenti di Progettazione app per la logica](./media/connectors-create-api-crmonline/designer-toolbar-save.png)
 
-15. hello toostart logica App, fare clic su **eseguire**.
+15. Per avviare l'app per la logica, fare clic su **Esegui**.
 
     ![Salva nella barra degli strumenti di Progettazione app per la logica](./media/connectors-create-api-crmonline/designer-toolbar-run.png)
 
@@ -103,64 +103,64 @@ Questo argomento viene illustrato come toocreate un'app di logica che crea un'at
 
 ## <a name="set-advanced-options-for-a-logic-app-step"></a>Impostare le opzioni avanzate per un passaggio dell'app per la logica
 
-toospecify come toofilter dati in un passaggio di app di logica, fare clic su **Visualizza le opzioni avanzate** in questo passaggio, quindi aggiungere un filtro o un ordine dalla query.
+Per specificare come filtrare i dati in un passaggio dell'app per la logica, fare clic su **Visualizza opzioni avanzate** in tale passaggio, quindi aggiungere un filtro o eseguire un ordinamento tramite una query.
 
-Ad esempio, è possibile utilizzare un filtro query tooget solo gli account attivi e ordinare per nome account hello. tooperform questa attività, immettere una query di filtro OData hello `statuscode eq 1`e selezionare **nome Account** dall'elenco di contenuto dinamico hello. Per altre informazioni, vedere [MSDN: $filter](https://msdn.microsoft.com/library/gg309461.aspx#Anchor_1) e [$orderby](https://msdn.microsoft.com/library/gg309461.aspx#Anchor_2).
+Ad esempio, è possibile usare una query di filtro per recuperare solo gli account attivi ed eseguire l'ordinamento in base al nome dell'account. A tale scopo, immettere la query di filtro OData `statuscode eq 1` e selezionare **Nome account** nel riquadro di contenuto dinamico. Per altre informazioni, vedere [MSDN: $filter](https://msdn.microsoft.com/library/gg309461.aspx#Anchor_1) e [$orderby](https://msdn.microsoft.com/library/gg309461.aspx#Anchor_2).
 
 ![Opzioni avanzate delle app per la logica](./media/connectors-create-api-crmonline/advanced-options.png)
 
 ### <a name="best-practices-when-using-advanced-options"></a>Procedure consigliate per l'uso delle opzioni avanzate
 
-Quando si aggiunge un campo del valore tooa, è necessario rispettare il tipo di campo hello digitare un valore o selezionare un valore dall'elenco di contenuto dinamico hello.
+Quando si aggiunge un valore a un campo, il tipo di campo deve corrispondere, indipendentemente dal fatto che il valore venga digitato o selezionato nell'elenco del contenuto dinamico.
 
-Tipo di campo  |Come toouse  |Dove toofind  |Nome  |Tipo di dati  
+Tipo di campo  |Utilizzo  |Posizione  |Nome  |Tipo di dati  
 ---------|---------|---------|---------|---------
-Campi di testo|I campi di testo richiedono una singola riga di testo oppure contenuto dinamico costituito da un campo di tipo testo. Esempi includono i campi categoria e sottocategoria hello.|Impostazioni > personalizzazioni > Personalizza hello sistema > entità > attività > campi |category |Riga di testo singola        
-Campi di tipo Integer | Alcuni campi richiedono Integer oppure contenuto dinamico costituito da un campo di tipo Integer. Ad esempio, Percentuale completamento e Durata. |Impostazioni > personalizzazioni > Personalizza hello sistema > entità > attività > campi |percentcomplete |Numero intero         
-Campi di data | Alcuni campi richiedono una data immessa nel formato mm/gg/aaaa oppure contenuto dinamico costituito da un campo di tipo data. Ad esempio, Data creazione, Data di inizio, Inizio effettivo, Ultimo periodo sospensione, Fine effettiva e Scadenza. | Impostazioni > personalizzazioni > Personalizza hello sistema > entità > attività > campi |createdon |Data e ora
-Campi che richiedono sia ID record che tipo di ricerca |Alcuni campi che fanno riferimento a un altro record di entità richiedono l'ID record hello e il tipo di ricerca di hello. |Impostazioni > personalizzazioni > Personalizza hello sistema > entità > Account > campi  | accountid  | Chiave primaria
+Campi di testo|I campi di testo richiedono una singola riga di testo oppure contenuto dinamico costituito da un campo di tipo testo. Ad esempio, i campi Categoria e Sottocategoria.|Impostazioni > Personalizzazioni > Personalizza il sistema > Entità > Attività > Campi |category |Riga di testo singola        
+Campi di tipo Integer | Alcuni campi richiedono Integer oppure contenuto dinamico costituito da un campo di tipo Integer. Ad esempio, Percentuale completamento e Durata. |Impostazioni > Personalizzazioni > Personalizza il sistema > Entità > Attività > Campi |percentcomplete |Numero intero         
+Campi di data | Alcuni campi richiedono una data immessa nel formato mm/gg/aaaa oppure contenuto dinamico costituito da un campo di tipo data. Ad esempio, Data creazione, Data di inizio, Inizio effettivo, Ultimo periodo sospensione, Fine effettiva e Scadenza. | Impostazioni > Personalizzazioni > Personalizza il sistema > Entità > Attività > Campi |createdon |Data e ora
+Campi che richiedono sia ID record che tipo di ricerca |Alcuni campi che fanno riferimento a un altro record di entità richiedono sia l'ID record che il tipo di ricerca. |Impostazioni > Personalizzazioni > Personalizza il sistema > Entità > Account > Campi  | accountid  | Chiave primaria
 
 ### <a name="more-examples-of-fields-that-require-both-a-record-id-and-lookup-type"></a>Alcuni esempi di campi che richiedono sia ID record che tipo di ricerca
-Nella tabella precedente hello l'espansione, ecco alcuni esempi di campi che non funzionano con i valori selezionati dall'elenco di contenuto dinamico hello. Al contrario, questi campi richiedono entrambi una ricerca e l'ID tipo di record immesso nei campi hello in PowerApps.  
-* Proprietario e Tipo di proprietario. campo proprietario Hello deve essere un ID di record utente o del team valido deve essere il tipo di proprietario Hello **systemusers** o **Team**.
-* Cliente e Tipo di cliente. campo Customer Hello deve essere un account valido o record ID contatto. deve essere il tipo di proprietario Hello **account** o **contatti**.
-* Tema e Tipo relativo. Hello relativi campi deve essere un ID record valido, ad esempio un account o record ID contatto. Hello per quanto riguarda tipo deve essere il tipo di ricerca hello per record hello, ad esempio **account** o **contatti**.
+A integrazione della tabella precedente, di seguito sono riportati alcuni esempi di campi a cui non sono applicabili valori selezionati dall'elenco di contenuto dinamico. È invece necessario immettere sia un ID record che un tipo di ricerca nei campi in PowerApps.  
+* Proprietario e Tipo di proprietario. Il campo Proprietario deve contenere un ID record utente o team valido. Tipo di proprietario deve contenere **systemusers** o **teams**.
+* Cliente e Tipo di cliente. Il campo Cliente deve contenere un ID record account o contatto valido. Tipo di proprietario deve contenere **accounts** o **contacts**.
+* Tema e Tipo relativo. Il campo Tema deve contenere un ID record valido, ad esempio un ID record account o contatto. Tipo relativo deve contenere il tipo di ricerca per il record, ad esempio **accounts** o **contacts**.
 
-Hello seguente esempio di azione di creazione di attività aggiunge un account corrispondente di ID di record toohello aggiungerlo toohello riguardanti campo dell'attività hello.
+L'esempio seguente di azione di creazione di un'attività aggiunge un record account corrispondente all'ID record aggiungendolo al campo Tema dell'attività.
 
 ![ID record e tipo account nel flusso](./media/connectors-create-api-crmonline/recordid-type-account.png)
 
-In questo esempio viene inoltre assegnato hello attività tooa utente specifico in base a ID del record. dell'utente hello
+Questo esempio assegna anche l'attività a un utente specifico in base all'ID record dell'utente.
 
 ![ID record e tipo account nel flusso](./media/connectors-create-api-crmonline/recordid-type-user.png)
 
-toofind un record dell'ID, vedere hello seguente sezione: *trovare l'ID record hello*
+Per trovare l'ID di un record, vedere la sezione *Trovare l'ID record*
 
-## <a name="find-hello-record-id"></a>Trovare l'ID record hello
+## <a name="find-the-record-id"></a>Trovare l'ID record
 
 1. Aprire un record, ad esempio un record account.
 
-2. Sulla barra degli strumenti Azioni hello, fare clic su **Pop Out** ![record popout](./media/connectors-create-api-crmonline/popout-record.png).
-In alternativa, sulla barra degli strumenti Azioni hello, toocopy hello l'URL completo nel programma di posta elettronica predefinito, fare clic su **posta elettronica un collegamento**.
+2. Sulla barra degli strumenti Azioni fare clic su **Apri nuova finestra** ![Apertura di una nuova finestra nel record](./media/connectors-create-api-crmonline/popout-record.png).
+In alternativa, sulla barra degli strumenti delle azioni fare clic su **Invia link tramite messaggio e-mail** per copiare l'URL completo nel programma di posta elettronica predefinito.
 
-   ID record Hello viene visualizzato tra hello % 7b e 7 di % d la codifica dei caratteri dell'URL hello.
+   L'ID record viene visualizzato tra i caratteri di codifica %7b e %7d dell'URL.
 
    ![ID record e tipo account nel flusso](./media/connectors-create-api-crmonline/recordid.png)
 
 ## <a name="troubleshooting"></a>Risoluzione dei problemi
-un passaggio non riuscito in un'app di logica, lo stato hello di visualizzare i dettagli dell'evento hello tootroubleshoot.
+Per risolvere i problemi relativi a un passaggio non riuscito in un'app per la logica, visualizzare i dettagli dello stato dell'evento.
 
 1. In **App per la logica**, selezionare l'app per la logica e quindi fare clic su **Panoramica**. 
 
-   Hello area di riepilogo viene visualizzato e fornisce lo stato di esecuzione hello per hello logica app. 
+   Verrà visualizzata l'area Riepilogo, in cui è riportato lo stato di esecuzione dell'app per la logica. 
 
    ![Stato di esecuzione dell'app per la logica](./media/connectors-create-api-crmonline/tshoot1.png)
 
-2. tooview ulteriori informazioni su qualsiasi esecuzioni non riuscite, fare clic su hello Impossibile evento. tooexpand un passaggio non riuscito, fare clic su tale passaggio.
+2. Per altre informazioni su esecuzioni non riuscite, fare clic sull'evento con esito negativo. Per espandere un passaggio non riuscito, fare clic su tale passaggio.
 
    ![Espandere un passaggio non riuscito](./media/connectors-create-api-crmonline/tshoot2.png)
 
-   Dettagli Hello vengono visualizzati e consentono di risolvere problemi che causano hello dell'errore hello.
+   Vengono visualizzati i dettagli del passaggio, che consentono di risolvere la causa dell'errore.
 
    ![Dettagli del passaggio non riuscito](./media/connectors-create-api-crmonline/tshoot3.png)
 
@@ -168,7 +168,7 @@ Per altre informazioni sulla risoluzione dei problemi delle app per la logica, v
 
 ## <a name="connector-specific-details"></a>Dettagli specifici del connettore
 
-Visualizzare tutti i trigger e azioni definite in swagger hello e anche eventuali limiti di hello [dettagli connettore](/connectors/crm/). 
+Per visualizzare eventuali azioni e trigger definiti in Swagger ed eventuali limiti, vedere i [dettagli del connettore](/connectors/crm/). 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Esplorare hello altri connettori disponibile in App per la logica nel nostro [elenco API](apis-list.md).
+Esplorare gli altri connettori disponibili nelle app per la logica nell' [elenco delle API](apis-list.md).

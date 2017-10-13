@@ -1,6 +1,6 @@
 ---
-title: "report attività aaaSign aggiuntivo nel portale di Azure Active Directory hello | Documenti Microsoft"
-description: "Report attività di toosign introduzione nel portale di Azure Active Directory hello"
+title: "Report delle attività di accesso nel portale di Azure Active Directory | Microsoft Docs"
+description: "Introduzione ai report delle attività di accesso nel portale di Azure Active Directory"
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,47 +15,47 @@ ms.workload: identity
 ms.date: 07/19/2017
 ms.author: markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: 49590d625a08d7dc189a629b89bab2261c2b4780
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: b9e61950654ba427b09dd608d354589a0804aaa5
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="sign-in-activity-reports-in-hello-azure-active-directory-portal"></a>Report attività di accesso nel portale di Azure Active Directory hello
+# <a name="sign-in-activity-reports-in-the-azure-active-directory-portal"></a>Report delle attività di accesso nel portale di Azure Active Directory
 
-Con Azure Active Directory (Azure AD) reporting in hello [portale di Azure](https://portal.azure.com), è possibile ottenere informazioni hello necessarie toodetermine, svolgimento dell'ambiente.
+I report di Azure Active Directory (Azure AD) nel [portale di Azure](https://portal.azure.com) offrono tutte le informazioni necessarie per determinare lo stato dell'ambiente.
 
-architettura di report in Azure Active Directory Hello è costituita da hello seguenti componenti:
+L'architettura di reporting in Azure Active Directory include i componenti seguenti:
 
 - **Attività** 
-    - **Le attività di accesso** – informazioni sull'utilizzo di hello di applicazioni gestite e le attività di accesso dell'utente
+    - **Attività di accesso** : informazioni sull'utilizzo delle applicazioni gestite e sulle attività di accesso utente
     - **Log di controllo**: informazioni relative alle attività di sistema sulla gestione di utenti e gruppi, sulle applicazioni gestite e sulle attività di directory.
 - **Sicurezza** 
-    - **Accessi rischiosi** -un rischiosa l'accesso è un indicatore per un tentativo di accesso che siano stato eseguito da un utente che non è proprietario di legittimo hello di un account utente. Per informazioni dettagliate, vedere Accessi a rischio.
+    - **Accessi a rischio**. Un accesso rischioso è indicativo di un tentativo di accesso che potrebbe essere stato eseguito da qualcuno che non è il legittimo proprietario di un account utente. Per informazioni dettagliate, vedere Accessi a rischio.
     - **Utenti contrassegnati per il rischio**. Un utente rischioso è indicativo di un account utente che potrebbe essere stato compromesso. Per informazioni dettagliate, vedere Utenti contrassegnati per il rischio.
 
-In questo argomento fornisce una panoramica delle attività di accesso hello.
+In questo argomento viene offerta una panoramica delle attività di accesso.
 
 ## <a name="pre-requisite"></a>Prerequisito.
 
-### <a name="who-can-access-hello-data"></a>Chi può accedere a dati hello?
-* Utenti nel ruolo di amministratore responsabile della sicurezza o di sicurezza Reader hello
+### <a name="who-can-access-the-data"></a>Chi può accedere ai dati?
+* Gli utenti con ruolo di amministratore della sicurezza o con autorizzazioni di lettura per la sicurezza
 * Gli amministratori globali
 * Qualsiasi utente (non amministratore) può visualizzare i propri accessi 
 
-### <a name="what-azure-ad-license-do-you-need-tooaccess-sign-in-activity"></a>Licenza Azure AD è necessario tooaccess attività di accesso?
-* Il tenant deve avere una licenza di Azure AD Premium è report le attività di accesso di hello toosee
+### <a name="what-azure-ad-license-do-you-need-to-access-sign-in-activity"></a>Quale licenza di Azure AD è necessaria per visualizzare le attività di accesso?
+* Per visualizzare il report completo delle attività di accesso, è necessario che al tenant sia associata una licenza di Azure AD Premium
 
 
 ## <a name="signs-in-activities"></a>Attività di accesso
 
-Con informazioni hello fornite dai report di accesso utente hello, trovare risposte tooquestions, ad esempio:
+Le informazioni contenute nel report relativo all'accesso utente consentono di rispondere a domande come le seguenti:
 
-* Che cos'è hello sign-in schema di un utente?
+* Qual è il modello di accesso di un utente?
 * Quanti utenti hanno effettuato l'accesso nell'arco di una settimana?
-* Qual è stato hello di tali accessi?
+* Qual è lo stato di questi accessi?
 
-La prima voce tooall punto Accedi attività dati **accessi** nella sezione attività hello **Azure Active**.
+Il primo punto di ingresso a tutte le attività di accesso è **Accessi** nella sezione **Attività** di Azure Active
 
 
 ![Attività di accesso](./media/active-directory-reporting-activity-sign-ins/61.png "Attività di accesso")
@@ -63,29 +63,29 @@ La prima voce tooall punto Accedi attività dati **accessi** nella sezione attiv
 
 Un log di controllo è una visualizzazione elenco predefinita che include:
 
-- utente correlato Hello
-- utente hello dell'applicazione Hello è firmato in
-- Stato accesso Hello
-- ora di accesso Hello
+- Utente correlato.
+- Applicazione a cui l'utente ha eseguito l'accesso.
+- Stato dell'accesso.
+- Orario di accesso.
 
 ![Attività di accesso](./media/active-directory-reporting-activity-sign-ins/41.png "Attività di accesso")
 
-È possibile personalizzare una visualizzazione elenco hello facendo **colonne** nella barra degli strumenti hello.
+Per personalizzare la visualizzazione elenco, fare clic su **Colonne** nella barra degli strumenti.
 
 ![Attività di accesso](./media/active-directory-reporting-activity-sign-ins/19.png "Attività di accesso")
 
-Questo consente toodisplay altri campi o rimuovere campi già visualizzati.
+In questo modo è possibile visualizzare campi aggiuntivi o rimuovere campi già visualizzati.
 
 ![Attività di accesso](./media/active-directory-reporting-activity-sign-ins/42.png "Attività di accesso")
 
-Facendo clic su un elemento in visualizzazione elenco hello, ottenere tutte le informazioni disponibili su di esso.
+Facendo clic su un elemento nella visualizzazione elenco, è possibile ottenere tutti i dettagli disponibili sull'elemento.
 
 ![Attività di accesso](./media/active-directory-reporting-activity-sign-ins/43.png "Attività di accesso")
 
 
 ## <a name="filtering-sign-in-activities"></a>Filtro delle attività di accesso
 
-toonarrow verso il basso hello segnalati livello tooa dati che funziona per l'utente, è possibile filtrare i dati di accessi hello utilizzando hello seguenti campi:
+Per limitare i dati segnalati in base alle esigenze, è possibile filtrare i dati di accesso usando i campi seguenti:
 
 - Intervallo di tempo
 - Utente
@@ -96,7 +96,7 @@ toonarrow verso il basso hello segnalati livello tooa dati che funziona per l'ut
 ![Attività di accesso](./media/active-directory-reporting-activity-sign-ins/44.png "Attività di accesso")
 
 
-Hello **intervallo di tempo** toodefine tooyou di filtro consente un intervallo di tempo per hello ha restituito dati.  
+Il filtro **Intervallo di tempo** permette di definire un intervallo di tempo per i dati restituiti.  
 I valori possibili sono:
 
 - 1 mese
@@ -106,13 +106,13 @@ I valori possibili sono:
 
 Quando si seleziona un intervallo di tempo personalizzato, è possibile configurare un'ora di inizio e un'ora di fine.
 
-Hello **utente** filtro consente di nome hello toospecify o hello user principal name (UPN) dell'utente hello è rilevante.
+Il filtro **Utente** permette di specificare il nome o il nome dell'entità utente (UPN) per l'utente richiesto.
 
-Hello **applicazione** filtro consente nome hello toospecify dell'applicazione hello è rilevante.
+Il filtro **Applicazione** permette di specificare il nome dell'applicazione richiesta.
 
-Hello **client** filtro consente toospecify informazioni sul dispositivo hello è rilevante.
+Il filtro **Client** permette di specificare informazioni sul dispositivo richiesto.
 
-Hello **stato accesso** filtro consente tooselect di hello filtro seguente:
+Il filtro **Stato accesso** permette di selezionare uno dei filtri seguenti:
 
 - Tutti
 - Success
@@ -121,7 +121,7 @@ Hello **stato accesso** filtro consente tooselect di hello filtro seguente:
 
 ## <a name="sign-in-activities-shortcuts"></a>Collegamenti alle attività di accesso
 
-Inoltre tooAzure Active Directory, hello portale di Azure fornisce due voce aggiuntiva punti toosign-in attività dati:
+Oltre ad Azure Active Directory, il portale di Azure offre due ulteriori punti di ingresso ai dati sulle attività di accesso:
 
 - Utenti e gruppi
 - Applicazioni aziendali
@@ -129,35 +129,35 @@ Inoltre tooAzure Active Directory, hello portale di Azure fornisce due voce aggi
 
 ### <a name="users-and-groups-sign-ins-activities"></a>Attività di accesso di utenti e gruppi
 
-Con informazioni hello fornite dai report di accesso utente hello, trovare risposte tooquestions, ad esempio:
+Le informazioni contenute nel report relativo all'accesso utente consentono di rispondere a domande come le seguenti:
 
-- Che cos'è hello sign-in schema di un utente?
+- Qual è il modello di accesso di un utente?
 - Quanti utenti hanno effettuato l'accesso nell'arco di una settimana?
-- Qual è stato hello di tali accessi?
+- Qual è lo stato di questi accessi?
 
 
 
-I dati di toothis punto di ingresso sono hello utente Accedi grafico in hello **Panoramica** sezione nel **utenti e gruppi**.
+Il punto di ingresso a questi dati è il grafico relativo agli accessi utente della sezione **Panoramica** in **Utenti e gruppi**.
 
 ![Attività di accesso](./media/active-directory-reporting-activity-sign-ins/45.png "Attività di accesso")
 
-Hello utente Accedi grafico Mostra aggregazioni settimanale di accesso aggiuntivi per tutti gli utenti in un determinato periodo di tempo. valore predefinito di Hello per hello periodo di tempo è 30 giorni.
+Il grafico degli accessi utente visualizza le aggregazioni settimanali degli accessi per tutti gli utenti in un determinato periodo di tempo. Il periodo di tempo predefinito è di 30 giorni.
 
 ![Attività di accesso](./media/active-directory-reporting-activity-sign-ins/46.png "Attività di accesso")
 
-Quando si fa clic in un giorno nel grafico hello di accesso, si ottiene un elenco dettagliato delle attività di accesso hello per il giorno corrente.
+Quando si fa clic su un giorno nel grafico degli accessi, si ottiene un elenco dettagliato delle attività di accesso per tale giorno.
 
 ![Attività di accesso](./media/active-directory-reporting-activity-sign-ins/41.png "Attività di accesso")
 
-Ogni riga hello Accedi attività elenco offre che Hello informazioni dettagliate su hello selezionato Accedi, ad esempio:
+Ogni riga nell'elenco di attività di accesso offre informazioni dettagliate sull'accesso selezionato, ad esempio:
 
 * Chi ha effettuato l'accesso?
-* Qual era hello correlati UPN?
-* Individuare l'applicazione è stata hello destinazione Accedi hello?
-* Che cos'è l'indirizzo IP hello del Accedi hello?
-* Qual era stato hello di Accedi hello?
+* Qual era il nome UPN correlato?
+* Qual era l'applicazione di destinazione dell'accesso?
+* Qual è l'indirizzo IP dell'accesso?
+* Qual era lo stato dell'accesso?
 
-Hello **accessi** opzione offre una panoramica completa di tutti gli accessi utente.
+L'opzione **Accessi** offre una panoramica completa di tutti gli accessi utente.
 
 ![Attività di accesso](./media/active-directory-reporting-activity-sign-ins/51.png "Attività di accesso")
 
@@ -168,29 +168,29 @@ Hello **accessi** opzione offre una panoramica completa di tutti gli accessi ute
 Con una visualizzazione dei dati di accesso basata sulle applicazioni, è possibile rispondere a domande come:
 
 * Chi sta usando le applicazioni?
-* Quali sono prime 3 applicazioni hello nell'organizzazione?
+* Quali sono le prime 3 applicazioni nell'organizzazione?
 * Di recente è stata implementata un'applicazione. Come sta andando?
 
-I dati di toothis punto di ingresso sono hello superiore 3 applicazioni dell'organizzazione all'interno di report di 30 giorni ultimo di hello in hello **Panoramica** sezione nel **applicazioni aziendali**.
+Il punto di ingresso a questi dati sono le prime 3 applicazioni nell'organizzazione nel report sugli ultimi 30 giorni della sezione **Panoramica** in **Applicazioni aziendali**.
 
 ![Attività di accesso](./media/active-directory-reporting-activity-sign-ins/64.png "Attività di accesso")
 
-Hello app utilizzo grafico settimanale aggregazioni di accessi per le applicazioni primi 3 in un determinato periodo di tempo. valore predefinito di Hello per hello periodo di tempo è 30 giorni.
+Il grafico sull'utilizzo delle app visualizza le aggregazioni settimanali degli accessi per le prime 3 applicazioni in un determinato periodo di tempo. Il periodo di tempo predefinito è di 30 giorni.
 
 ![Attività di accesso](./media/active-directory-reporting-activity-sign-ins/47.png "Attività di accesso")
 
-Se si desidera, è possibile impostare lo stato attivo hello in un'applicazione specifica.
+Se si preferisce, è possibile mettere in evidenza un'applicazione specifica.
 
 
 ![Report](./media/active-directory-reporting-activity-sign-ins/single_spp_usage_graph.png "Report")
 
-Quando si fa clic in un giorno nel grafico di utilizzo di app hello, ottenere un elenco dettagliato delle attività di accesso hello.
+Quando si fa clic su un giorno nel grafico dell'utilizzo dell'app, si ottiene un elenco dettagliato delle attività di accesso.
 
 
 ![Attività di accesso](./media/active-directory-reporting-activity-sign-ins/48.png "Attività di accesso")
 
 
-Hello **accessi** opzione offre una panoramica completa di tutte le applicazioni tooyour eventi di accesso.
+L'opzione **Accessi** offre una panoramica completa di tutti gli eventi di accesso nell'applicazione.
 
 ![Attività di accesso](./media/active-directory-reporting-activity-sign-ins/49.png "Attività di accesso")
 
@@ -198,5 +198,5 @@ Hello **accessi** opzione offre una panoramica completa di tutte le applicazioni
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Se si desidera tooknow ulteriori informazioni sui codici di errore attività di accesso, vedere hello [Accedi attività report codici di errore nel portale di Azure Active Directory hello](active-directory-reporting-activity-sign-ins-errors.md).
+Per altre informazioni sui codici di errore dell'attività di accesso, vedere [Codici di errore del report delle attività di accesso nel portale di Azure Active Directory](active-directory-reporting-activity-sign-ins-errors.md).
 

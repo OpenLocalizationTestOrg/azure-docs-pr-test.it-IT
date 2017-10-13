@@ -1,6 +1,6 @@
 ---
-title: integrazione di mappa con System Center Operations Manager aaaService | Documenti Microsoft
-description: "Mappa del servizio è una soluzione di Operations Management Suite che individua automaticamente i componenti dell'applicazione in Windows e mappe e i sistemi Linux hello la comunicazione tra servizi. In questo articolo viene illustrato l'utilizzo di mapping servizio tooautomatically creare diagrammi di applicazione distribuita in Operations Manager."
+title: Integrazione di Elenco dei servizi con System Center Operations Manager | Microsoft Docs
+description: "Elenco dei servizi è una soluzione di Operations Management Suite che individua automaticamente i componenti delle applicazioni nei sistemi Windows e Linux e mappa la comunicazione fra i servizi. Questo articolo illustra l'uso di Elenco dei servizi per creare automaticamente diagrammi applicazioni distribuite in Operations Manager."
 services: operations-management-suite
 documentationcenter: 
 author: daveirwin1
@@ -14,121 +14,121 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/21/2017
 ms.author: bwren;dairwin
-ms.openlocfilehash: cff9cce2559448ec3a5fd14087b867f314716560
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: fb58a01828e13f9605e4788ee7e064162a7a31d9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="service-map-integration-with-system-center-operations-manager"></a>Integrazione di Elenco dei servizi con System Center Operations Manager
   > [!NOTE]
   > Questa funzionalità è disponibile in anteprima pubblica.
   > 
   
-Mappa del servizio Operations Management Suite consente di individuare i componenti dell'applicazione nei sistemi Windows e Linux e automaticamente la comunicazione tra servizi hello viene eseguito il mapping. Mappa del servizio consente tooview intralcio hello server immaginano, come sistemi interconnessi che offrono servizi critici. Mappa del servizio Mostra le connessioni tra server, i processi e le porte attraverso qualsiasi architettura connesso TCP, senza alcuna configurazione oltre all'installazione di hello di un agente. Per ulteriori informazioni, vedere hello [documentazione mappa del servizio](operations-management-suite-service-map.md).
+Elenco dei servizi di Operations Management Suite individua automaticamente i componenti delle applicazioni nei sistemi Windows e Linux ed esegue il mapping della comunicazione fra i servizi. Elenco dei servizi consente di visualizzare i server nel modo in cui si pensa a essi, ovvero come sistemi interconnessi che forniscono servizi critici. Elenco dei servizi mostra le connessioni fra i server, i processi e le porte di tutte le architetture connesse via TCP senza bisogno di alcuna configurazione a parte l'installazione di un agente. Per altre informazioni, vedere la [documentazione su Elenco dei servizi](operations-management-suite-service-map.md).
 
-L'integrazione tra System Center Operations Manager e di mappa del servizio, è possibile creare automaticamente i diagrammi di applicazione distribuita in Operations Manager che si basano sulle mappe di dipendenze dinamiche hello nella mappa del servizio.
+Con questa integrazione tra Elenco dei servizi e System Center Operations Manager è possibile creare automaticamente diagrammi applicazioni distribuite in Operations Manager basati sulle mappe delle dipendenze dinamiche in Elenco dei servizi.
 
 ## <a name="prerequisites"></a>Prerequisiti
 * Gruppo di gestione di Operations Manager che gestisce un set di server.
-* Un'area di lavoro Operations Management Suite con hello soluzione mappa del servizio abilitata.
-* Un set di server (almeno) che sono gestiti da Operations Manager e tooService l'invio di dati della mappa. Sono supportati server Windows e Linux.
-* Un'entità servizio con accesso toohello sottoscrizione di Azure associato dell'area di lavoro di hello Operations Management Suite. Per ulteriori informazioni, visitare troppo[creare un'entità servizio](#creating-a-service-principal).
+* Area di lavoro di Operations Manager con la soluzione Elenco dei servizi abilitata.
+* Set di server (almeno uno) che vengono gestiti da Operations Manager e inviano dati a Elenco dei servizi. Sono supportati server Windows e Linux.
+* Un'entità servizio con accesso alla sottoscrizione di Azure associata all'area di lavoro di Operations Management Suite. Per altre informazioni, vedere [Creare un'entità servizio](#creating-a-service-principal).
 
-## <a name="install-hello-service-map-management-pack"></a>Installare il management pack di hello mappa del servizio
-Abilitare l'integrazione di hello tra Operations Manager e di mapping servizio importando il bundle hello Microsoft.SystemCenter.ServiceMap management pack (Microsoft.SystemCenter.ServiceMap.mpb). bundle Hello contiene hello seguenti management pack:
+## <a name="install-the-service-map-management-pack"></a>Installare il management pack di Elenco dei servizi
+L'integrazione tra Operations Manager ed Elenco dei servizi viene abilitata importando il bundle di management pack Microsoft.SystemCenter.ServiceMap (Microsoft.SystemCenter.ServiceMap.mpb). È possibile scaricare il bundle del Management Pack da [Area download Microsoft](https://www.microsoft.com/download/details.aspx?id=55763). Il bundle contiene i management pack seguenti:
 * Microsoft Service Map Application Views
 * Microsoft System Center Service Map Internal
 * Microsoft System Center Service Map Overrides
 * Microsoft System Center Service Map
 
-## <a name="configure-hello-service-map-integration"></a>Configurare l'integrazione di hello mappa del servizio
-Dopo l'installazione di management pack di hello mappa del servizio, un nuovo nodo **mappa del servizio**, viene visualizzato in **Operations Management Suite** in hello **amministrazione** riquadro. 
+## <a name="configure-the-service-map-integration"></a>Configurare l'integrazione di Elenco dei servizi
+Dopo avere installato il management pack di Elenco dei servizi, nel riquadro **Amministrazione** di **Operations Management Suite** sarà presente il nuovo nodo **Elenco dei servizi**. 
 
-integrazione di mappa del servizio, tooconfigure hello seguenti:
+Per configurare l'integrazione di Elenco dei servizi, eseguire le operazioni seguenti:
 
-1. tooopen hello configurazione guidata, in hello **Cenni preliminari sulla mappa servizio** riquadro, fare clic su **aggiunta area di lavoro**.  
+1. Per aprire la configurazione guidata, fare clic su **Add workspace** (Aggiungi area di lavoro) nel riquadro **Service Map Overview** (Panoramica di Elenco dei servizi) .  
 
     ![Riquadro Service Map Overview (Panoramica di Elenco dei servizi)](media/oms-service-map/scom-configuration.png)
 
-2. In hello **configurazione della connessione** , immettere il nome di tenant hello o ID, ID dell'applicazione (noto anche come nome utente hello o clientID) e la password dell'entità servizio hello e quindi fare clic su **Avanti**. Per ulteriori informazioni, visitare troppo[creare un'entità servizio](#creating-a-service-principal).
+2. Nella finestra **Configurazione di connessione** immettere l'ID o il nome del tenant, l'ID applicazione (noto anche come nome utente o ClientID) e la password dell'entità servizio, quindi fare clic su **Avanti**. Per altre informazioni, vedere [Creare un'entità servizio](#creating-a-service-principal).
 
-    ![finestra di configurazione della connessione Hello](media/oms-service-map/scom-config-spn.png)
+    ![Finestra di configurazione della connessione](media/oms-service-map/scom-config-spn.png)
 
-3. In hello **selezione sottoscrizione** , selezionare hello sottoscrizione di Azure, il gruppo di risorse di Azure (Buongiorno uno che contiene l'area di lavoro Operations Management Suite hello) e dell'area di lavoro di Operations Management Suite e quindi fare clic su **Avanti**.
+3. Nella finestra **Subscription Selection** (Selezione della sottoscrizione), selezionare la sottoscrizione di Azure, il gruppo di risorse di Azure contenente l'area di lavoro di Operations Management Suite e infine l'area di lavoro stessa, quindi fare clic su **Avanti**.
 
-    ![area di lavoro di Operations Manager configurazione Hello](media/oms-service-map/scom-config-workspace.png)
+    ![Area di lavoro di configurazione di Operations Manager](media/oms-service-map/scom-config-workspace.png)
 
-4. In hello **selezione gruppo di computer** finestra, si sceglie di quali gruppi di computer mappa servizio desiderato toosync tooOperations Manager. Fare clic su **Aggiungi/Rimuovi gruppi di computer**, scegliere i gruppi dall'elenco di hello di **gruppi di computer disponibili**, fare clic su **Aggiungi**.  Dopo aver selezionato i gruppi, fare clic su **Ok** toofinish.
+4. Nella finestra **Machine Group Selection** (Selezione gruppi di computer) è possibile scegliere i gruppi di computer di Mapping dei servizi da sincronizzare con Operations Manager. Fare clic su **Add/Remove Machine Groups** (Aggiungi/Rimuovi gruppi di computer), scegliere i gruppi nell'elenco **Available Machine Groups** (Gruppi di computer disponibili) e fare clic su **Aggiungi**.  Dopo avere completato la selezione dei gruppi, fare clic su **OK** per terminare.
     
-    ![Hello gruppi di computer configurazione di Operations Manager](media/oms-service-map/scom-config-machine-groups.png)
+    ![Gruppi di computer di configurazione di Operations Manager](media/oms-service-map/scom-config-machine-groups.png)
     
-5. In hello **selezione Server** finestra configuri hello gruppo di server mappa servizio con server hello che si desidera toosync tra Operations Manager e mappa del servizio. Fare clic su **Aggiungi/Rimuovi server**.   
+5. Nella finestra **Selezione server** è possibile configurare il gruppo di server di Elenco dei servizi con i server che si desidera sincronizzare tra Operations Manager ed Elenco dei servizi. Fare clic su **Aggiungi/Rimuovi server**.   
     
-    Per hello integrazione toobuild un diagramma applicazioni distribuite per un server, devono essere server hello:
+    Perché l'integrazione crei un diagramma applicazioni distribuite per un server, quest'ultimo deve essere:
 
     * Gestito da Operations Manager
     * Gestito da Mapping dei servizi
-    * Elencato nel gruppo di server mappa servizio hello
+    * Elencato nel gruppo di server di Mapping dei servizi
 
-    ![Hello il gruppo di configurazione di Operations Manager](media/oms-service-map/scom-config-group.png)
+    ![Gruppo di configurazione di Operations Manager](media/oms-service-map/scom-config-group.png)
 
-6. Facoltativo: Selezionare hello toocommunicate pool risorse di Server di gestione con Operations Management Suite e quindi fare clic su **Aggiungi area di lavoro**.
+6. Facoltativo: selezionare il pool di risorse server di gestione per comunicare con Operations Management Suite, quindi fare clic su **Aggiungi area di lavoro**.
 
-    ![Hello Pool di risorse configurazione di Operations Manager](media/oms-service-map/scom-config-pool.png)
+    ![Pool di risorse di configurazione di Operations Manager](media/oms-service-map/scom-config-pool.png)
 
-    Potrebbe richiedere un minuto tooconfigure e registrare l'area di lavoro di hello Operations Management Suite. Una volta configurato, Operations Manager Avvia sincronizzazione mappa del servizio prima di hello da Operations Management Suite.
+    Per configurare e registrare l'area di lavoro di Operations Management Suite potrebbero essere necessari alcuni minuti. Dopo averlo configurato, Operations Manager avvia la prima sincronizzazione di Elenco dei servizi da Operations Management Suite.
 
-    ![Hello Pool di risorse configurazione di Operations Manager](media/oms-service-map/scom-config-success.png)
+    ![Pool di risorse di configurazione di Operations Manager](media/oms-service-map/scom-config-success.png)
 
 
 ## <a name="monitor-service-map"></a>Monitorare le metriche del servizio
-Dopo la connessione dell'area di lavoro di hello Operations Management Suite, una nuova cartella, mappa del servizio, viene visualizzata in hello **monitoraggio** riquadro della console di Operations Manager hello.
+Dopo aver connesso l'area di lavoro di Operations Management Suite, nel riquadro **Monitoraggio** della console di Operations Manager comparirà una nuova cartella denominata Elenco dei servizi.
 
-![riquadro monitoraggio di Operations Manager Hello](media/oms-service-map/scom-monitoring.png)
+![Riquadro Monitoraggio di Operations Manager](media/oms-service-map/scom-monitoring.png)
 
-cartella di mapping servizio Hello con quattro nodi:
-* **Gli avvisi attivi**: Elenca tutti gli avvisi attivi hello sulla comunicazione hello tra Operations Manager e mappa del servizio.  Si noti che questi avvisi non viene sincronizzata tooOperations Manager gli avvisi di Operations Management Suite. 
+La cartella Mapping dei servizi ha quattro nodi:
+* **Avvisi attivi**: elenca tutti gli avvisi attivi per le comunicazioni tra Operations Manager e Mapping dei servizi.  Si noti che tali avvisi non corrispondono agli avvisi di Operations Management Suite sincronizzati con Operations Manager. 
 
-* **Server**: Elenca i server monitorato hello che sono configurati toosync dalla mappa del servizio.
+* **Server**: contiene l'elenco dei server monitorati configurati per la sincronizzazione da Elenco dei servizi.
 
-    ![riquadro server di monitoraggio di Operations Manager Hello](media/oms-service-map/scom-monitoring-servers.png)
+    ![Riquadro Monitoraggio server di Operations Manager](media/oms-service-map/scom-monitoring-servers.png)
 
-* **Machine Group Dependency Views** (Visualizzazioni dipendenze gruppi di computer): elenca tutti i gruppi di computer sincronizzati da Mapping dei servizi. È possibile scegliere qualsiasi tooview gruppo diagramma relativa applicazione distribuita.
+* **Machine Group Dependency Views** (Visualizzazioni dipendenze gruppi di computer): elenca tutti i gruppi di computer sincronizzati da Mapping dei servizi. È possibile fare clic su un gruppo per visualizzarne il diagramma applicazioni distribuite.
 
-    ![diagramma di applicazione distribuita di Operations Manager Hello](media/oms-service-map/scom-group-dad.png)
+    ![Diagramma applicazioni distribuite di Operations Manager](media/oms-service-map/scom-group-dad.png)
 
-* **Server Dependency Views** (Visualizzazioni dipendenze server): elenca tutti i server sincronizzati da Elenco dei servizi. È possibile scegliere qualsiasi tooview server diagramma relativa applicazione distribuita.
+* **Server Dependency Views** (Visualizzazioni dipendenze server): elenca tutti i server sincronizzati da Elenco dei servizi. È possibile fare clic su un server per visualizzarne il diagramma applicazioni distribuite.
 
-    ![diagramma di applicazione distribuita di Operations Manager Hello](media/oms-service-map/scom-dad.png)
+    ![Diagramma applicazioni distribuite di Operations Manager](media/oms-service-map/scom-dad.png)
 
-## <a name="edit-or-delete-hello-workspace"></a>Modificare o eliminare l'area di lavoro hello
-È possibile modificare o eliminare workspace hello configurato mediante hello **Cenni preliminari sulla mappa servizio** riquadro (**amministrazione** riquadro > **Operations Management Suite**  >  **Mappa del servizio**). Attualmente è possibile configurare una sola area di lavoro di Operations Management Suite.
+## <a name="edit-or-delete-the-workspace"></a>Modificare o eliminare l'area di lavoro
+È possibile modificare o eliminare l'area di lavoro configurata tramite il riquadro **Service Map Overview** (Panoramica di Elenco dei servizi): riquadro **Amministrazione** --> **Operations Management Suite** > **Elenco dei servizi**. Attualmente è possibile configurare una sola area di lavoro di Operations Management Suite.
 
-![riquadro area di modifica di Operations Manager Hello](media/oms-service-map/scom-edit-workspace.png)
+![Riquadro Modifica area di lavoro di Operations Manager](media/oms-service-map/scom-edit-workspace.png)
 
 ## <a name="configure-rules-and-overrides"></a>Configurare regole e override
-Una regola, _Microsoft.SystemCenter.ServiceMapImport.Rule_, viene creato le informazioni di recupero tooperiodically dalla mappa del servizio. gli intervalli di tempo di sincronizzazione toochange, è possibile configurare gli override della regola hello (**Authoring** riquadro > **regole** > **Microsoft.SystemCenter.ServiceMapImport.Rule**).
+Viene creata una regola _Microsoft.SystemCenter.ServiceMapImport.Rule_ per recuperare periodicamente le informazioni da Elenco dei servizi. Per modificare gli intervalli di sincronizzazione è possibile configurare gli override della regola (riquadro **Tecnologie** > **Regole** > **Microsoft.SystemCenter.ServiceMapImport.Rule**).
 
-![finestra proprietà di Operations Manager esegue l'override di Hello](media/oms-service-map/scom-overrides.png)
+![Finestra delle proprietà di override di Operations Manager](media/oms-service-map/scom-overrides.png)
 
 * **Enabled**: abilita/disabilita gli aggiornamenti automatici. 
-* **IntervalMinutes**: hello tempo tra gli aggiornamenti di ripristino. intervallo predefinito di Hello è un'ora. Se si desidera toosync server mappe più di frequente, è possibile modificare il valore di hello.
-* **Valori di TimeoutSeconds**: reimpostare lunghezza hello del tempo prima del timeout della richiesta hello. 
-* **TimeWindowMinutes**: reimpostazione hello di intervallo di tempo per eseguire query sui dati. Il valore predefinito è una finestra temporale di 60 minuti. valore di Hello massimo consentito dalla mappa del servizio è 60 minuti.
+* **IntervalMinutes**: reimposta l'intervallo tra gli aggiornamenti. L'intervallo predefinito è un'ora. Se si desidera sincronizzare le mappe dei server più di frequente, è possibile modificare il valore.
+* **TimeoutSeconds**: reimposta l'intervallo di tempo prima che la richiesta raggiunga il timeout. 
+* **TimeWindowMinutes**: reimposta l'intervallo di tempo per eseguire query sui dati. Il valore predefinito è una finestra temporale di 60 minuti. Il valore massimo consentito da Elenco dei servizi è 60 minuti.
 
 ## <a name="known-issues-and-limitations"></a>Problemi noti e limitazioni
 
-progettazione corrente Hello presenta la seguente hello problemi e limitazioni:
-* È possibile connettersi solo tooa singola area di lavoro di Operations Management Suite.
-* Sebbene sia possibile aggiungere server toohello, gruppo di server mappa servizio manualmente tramite hello **Authoring** riquadro hello mappe per tali server non vengono sincronizzate immediatamente.  Essi verranno sincronizzate dalla mappa del servizio durante il successivo ciclo di sincronizzazione hello.
-* Se si apportano modifiche toohello Distributed diagrammi applicazioni creati dal management pack di hello, tali modifiche verranno sovrascritte probabilmente nella sincronizzazione successiva di hello con mappa del servizio.
+La progettazione attuale presenta i problemi e le limitazioni seguenti:
+* È possibile connettersi a una sola area di lavoro di Operations Management Suite.
+* Anche se è possibile aggiungere manualmente server al gruppo di server di Mapping dei servizi tramite il riquadro **Creazione e modifica**, le mappe di tali server non vengono sincronizzate immediatamente.  Verranno sincronizzate da Mapping dei servizi durante il ciclo di sincronizzazione successivo.
+* Se si apportano modifiche ai diagrammi applicazioni distribuite creati dal Management Pack, tali modifiche verranno probabilmente sovrascritte durante la sincronizzazione successiva con Mapping dei servizi.
 
 ## <a name="create-a-service-principal"></a>Creare un’entità servizio
 Per la documentazione ufficiale di Azure sulla creazione di un'entità servizio, vedere:
 * [Create a service principal by using PowerShell](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-authenticate-service-principal) (Creare un'entità servizio usando PowerShell)
 * [Create a service principal by using Azure CLI](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-authenticate-service-principal-cli) (Creare un'entità servizio usando Azure CLI)
-* [Creare un'entità servizio utilizzando hello portale di Azure](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-create-service-principal-portal)
+* [Create a service principal by using the Azure portal](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-create-service-principal-portal) (Creare un'entità servizio usando il portale di Azure)
 
 ### <a name="feedback"></a>Commenti e suggerimenti
 Per inviare commenti su Mapping dei servizi e sulla relativa documentazione, Vedere la [pagina per i suggerimenti degli utenti](https://feedback.azure.com/forums/267889-log-analytics/category/184492-service-map), in cui è possibile suggerire funzionalità o votare i suggerimenti esistenti.

@@ -1,6 +1,6 @@
 ---
-title: aaaHow toodebug basato su SAML single sign-on tooapplications in Azure Active Directory | Documenti Microsoft
-description: 'Informazioni su come toodebug basato su SAML single sign-on tooapplications in Azure Active Directory '
+title: Come eseguire il debug di single sign-on basato su SAML per applicazioni in Azure Active Directory | Microsoft Docs
+description: 'Informazioni su come eseguire il debug di single sign-on basato su SAML per applicazioni in Azure Active Directory  '
 services: active-directory
 author: asmalser-msft
 documentationcenter: na
@@ -15,27 +15,27 @@ ms.date: 07/20/2017
 ms.author: asmalser
 ms.custom: aaddev
 ms.reviewer: dastrock
-ms.openlocfilehash: 846c7b3497c8842947c5b406f4362b9e06785b14
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 31447d597296bac57481dc2acb4a95ee3a104161
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="how-toodebug-saml-based-single-sign-on-tooapplications-in-azure-active-directory"></a>Come toodebug basato su SAML single sign-on tooapplications in Azure Active Directory
-Durante il debug di un'integrazione dell'applicazione basato su SAML, è spesso utile toouse uno strumento come [Fiddler](http://www.telerik.com/fiddler) toosee hello richiesta, risposta SAML hello e token SAML effettivo hello che viene eseguita l'applicazione toohello SAML. Esaminando i token SAML hello, è possibile verificare che tutti di hello richiesti gli attributi, nome utente nell'oggetto SAML hello hello e hello issuer URI provengano tramite come previsto.
+# <a name="how-to-debug-saml-based-single-sign-on-to-applications-in-azure-active-directory"></a>Come eseguire il debug di single sign-on basato su SAML per applicazioni in Azure Active Directory
+Durante il debug di un'integrazione di applicazioni basate su SAML, è spesso utile utilizzare uno strumento come [Fiddler](http://www.telerik.com/fiddler) per visualizzare la richiesta SAML, la risposta SAML e il token SAML reale emesso per l'applicazione. Esaminando il token SAML, è possibile garantire che tutti gli attributi richiesti, il nome utente nell’oggetto SAML e l'URI dell'autorità emittente vengano ricevuti come previsto.
 
 ![][1]
 
-Hello risposta da Azure Active Directory che contiene i token SAML hello è in genere che si verifica dopo un reindirizzamento HTTP 302 da https://login.windows.net hello e sia configurato inviato toohello **URL di risposta** di un'applicazione hello. 
+La risposta di Azure AD che contiene il token SAML è in genere quella che si verifica dopo un reindirizzamento HTTP 302 da https://login.windows.net e viene inviata all'**URL di risposta** configurato per l'applicazione. 
 
-È possibile visualizzare i token SAML hello selezionando la riga e quindi selezionando hello **controlli > WebForms** scheda nel riquadro di destra hello. Da qui, fare doppio clic su hello **SAMLResponse** valore e selezionare **inviare tooTextWizard**. Selezionare quindi **da Base64** da hello **trasformare** toodecode menu hello token e visualizzarne il contenuto.
+È possibile visualizzare il token SAML selezionando la riga e quindi la scheda **Ispettori > WebForms** nel riquadro a destra. A questo punto fare clic con il pulsante destro sul valore **SAMLResponse** e selezionare **Invia a TextWizard**. Quindi selezionare **Da Base64** nel menu **Trasforma** per decodificare il token e visualizzarne il contenuto.
 
-**Nota**: richiesta di contenuto hello toosee questo HTTP, Fiddler venga chiesto di decrittografia tooconfigure del traffico HTTPS, che dovrà essere toodo.
+**Nota**: per visualizzare il contenuto di questa richiesta HTTP, Fiddler potrebbe richiedere di configurare la decrittografia del traffico HTTPS; è necessario eseguire questa operazione.
 
 ## <a name="related-articles"></a>Articoli correlati
 * [Indice di articoli per la gestione di applicazioni in Azure Active Directory](../active-directory-apps-index.md)
-* [Configurazione di single sign-on tooapplications non presenti nella raccolta di hello Azure Active Directory dell'applicazione](../active-directory-saas-custom-apps.md)
-* [Come emettere attestazioni tooCustomize in hello Token SAML per le app Pre-Integrated](active-directory-saml-claims-customization.md)
+* [Configurazione del servizio Single Sign-On in applicazioni non presenti nella raccolta di applicazioni di Azure Active Directory](../active-directory-saas-custom-apps.md)
+* [Come personalizzare lle attestazioni rilasciate nel token SAML per le app preintegrate](active-directory-saml-claims-customization.md)
 
 <!--Image references-->
 [1]: ../media/active-directory-saml-debugging/fiddler.png

@@ -1,6 +1,6 @@
 ---
 pageTitle: Synonyms in Azure Search (preview) | Microsoft Docs
-description: "Documentazione preliminare per funzionalità di sinonimi (anteprima) hello, esposte in hello API REST di ricerca di Azure."
+description: "Documentazione preliminare per la funzionalità relativa ai sinonimi (anteprima) esposta nell'API REST di Ricerca di Azure."
 services: search
 documentationCenter: 
 authors: mhko
@@ -13,43 +13,43 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 07/07/2016
 ms.author: nateko
-ms.openlocfilehash: 2695139d2b298fa2e7c1814715fdf96729f594ce
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 739a0ad77c68ea74ec25bc80c7539ac8b3f18201
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="synonyms-in-azure-search-preview"></a>Sinonimi in Ricerca di Azure (anteprima)
 
-Sinonimi nei motori di ricerca associano equivalente termini che si espandono in modo implicito ambito hello di una query, senza utente hello con tooactually fornire termine hello. Ad esempio, il termine specificato hello "dog" e le associazioni di sinonimi di "canino" e "Cucciolo", tutti i documenti contenenti "dog", "canino" o "Cucciolo" saranno compreso ambito hello di query di hello.
+La funzionalità relativa ai sinonimi nei motori di ricerca associa termini equivalenti, che espandono in modo implicito l'ambito di una query, senza che l'utente debba fornire effettivamente il termine. Ad esempio, dato il termine "cane" e le associazioni sinonimiche "canino" e "cucciolo", tutti i documenti contenenti "cane", "canino" o "cucciolo" saranno inclusi nella query.
 
-In Ricerca di Azure l'espansione sinonimica viene eseguita in fase di query. È possibile aggiungere sinonimo mappe tooa servizio senza operazioni tooexisting interruzioni. È possibile aggiungere un **synonymMaps** definizione di campo di proprietà tooa senza indice hello toorebuild. Per altre informazioni, vedere [Aggiornare un indice](https://docs.microsoft.com/rest/api/searchservice/update-index) .
+In Ricerca di Azure l'espansione sinonimica viene eseguita in fase di query. È possibile aggiungere mappe sinonimiche a un servizio senza compromettere le operazioni esistenti. La proprietà **synonymMaps** può essere aggiunta alla definizione di un campo senza dover ricompilare l'indice. Per altre informazioni, vedere [Aggiornare un indice](https://docs.microsoft.com/rest/api/searchservice/update-index) .
 
 ## <a name="feature-availability"></a>Disponibilità delle funzionalità
 
-sinonimi Hello funzionalità è attualmente in anteprima e solo supportati in hello api-versione di anteprima più recente (api-version = 2016-09-01-Preview). Non è attualmente disponibile alcun supporto nel portale di Azure. Poiché viene specificata una versione di hello API richiesta hello, è possibile toocombine disponibile a livello generale (GA) e le API in anteprima in hello stessa app. Le API disponibili in anteprima non rientrano nel Contratto di servizio e le funzionalità disponibili in anteprima possono subire modifiche, quindi non è consigliabile usarle nelle applicazioni di produzione.
+La funzionalità relativa ai sinonimi è attualmente disponibile in anteprima ed è supportata solo nelle versioni API di anteprima più recenti (api-version=2016-09-01-Preview). Non è attualmente disponibile alcun supporto nel portale di Azure. Poiché la versione dell'API è specificata nella richiesta, è possibile combinare API disponibili a livello generale (GA) e di anteprima nella stessa applicazione. Le API disponibili in anteprima non rientrano nel Contratto di servizio e le funzionalità disponibili in anteprima possono subire modifiche, quindi non è consigliabile usarle nelle applicazioni di produzione.
 
-## <a name="how-toouse-synonyms-in-azure-search"></a>La modalità di ricerca di sinonimi toouse in Azure
+## <a name="how-to-use-synonyms-in-azure-search"></a>Come usare i sinonimi in Ricerca di Azure
 
-In ricerca di Azure, supporto di sinonimi è basato sulle mappe sinonimo di definire e caricare il servizio tooyour. Queste mappe costituiscono una risorsa indipendente (ad esempio indici o origini dati) e possono essere utilizzate da qualsiasi campo ricercabile in qualsiasi indice nel servizio di ricerca.
+In Ricerca di Azure il supporto dei sinonimi si basa sulle mappe sinonimiche definite e caricate nel servizio. Queste mappe costituiscono una risorsa indipendente (ad esempio indici o origini dati) e possono essere utilizzate da qualsiasi campo ricercabile in qualsiasi indice nel servizio di ricerca.
 
-Le mappe sinonimiche e gli indici vengono mantenuti in modo indipendente. Dopo aver definito una mappa di sinonimo e caricarlo tooyour servizio, è possibile abilitare funzionalità di sinonimo hello su un campo tramite l'aggiunta di una nuova proprietà denominata **synonymMaps** nella definizione di campo hello. Creazione, aggiornamento ed eliminazione di che una mappa di sinonimo è sempre un'operazione dell'intero documento, vale a dire che è possibile creare, aggiornare o eliminare le parti della mappa sinonimo hello in modo incrementale. Se si aggiorna anche una singola voce è necessario ripetere il caricamento.
+Le mappe sinonimiche e gli indici vengono mantenuti in modo indipendente. Dopo aver definito una mappa sinonimica e averla caricata nel servizio, è possibile abilitare la funzionalità relativa ai sinonimi per un campo tramite l'aggiunta della nuova proprietà **synonymMaps** nella definizione del campo. La creazione, l'aggiornamento e l'eliminazione di una mappa sinonimica è sempre un'operazione che riguarda l'intero documento, perciò non è possibile creare, aggiornare o eliminare parti della mappa sinonimica in modo incrementale. Se si aggiorna anche una singola voce è necessario ripetere il caricamento.
 
 L'aggiunta di sinonimi in un'applicazione di ricerca è una procedura in due passaggi:
 
-1.  Aggiungere un servizio di ricerca sinonimo mappa tooyour tramite hello API riportato di seguito.  
+1.  Aggiungere una mappa sinonimica al servizio di ricerca tramite le API indicate di seguito.  
 
-2.  Nella definizione dell'indice hello, configurare una mappa di sinonimo hello toouse campo ricercabile.
+2.  Configurare un campo ricercabile per l'uso della mappa sinonimica nella definizione dell'indice.
 
 ### <a name="synonymmaps-resource-apis"></a>API di risorsa SynonymMaps
 
 #### <a name="add-or-update-a-synonym-map-under-your-service-using-post-or-put"></a>Aggiungere o aggiornare una mappa sinonimica nel servizio tramite POST o PUT.
 
-Vengono caricate sinonimo mappe servizio toohello tramite POST o PUT. Ogni regola deve essere delimitato da hello carattere di nuova riga ('\n'). È possibile definire too5, 000 regole per ogni sinonimo mappa in un servizio gratuito e 10.000 regole in tutti gli altri SKU. Ogni regola può essere composto too20 espansioni.
+Le mappe sinonimiche vengono caricate nel servizio tramite POST o PUT. Ogni regola deve essere delimitata dal carattere nuova riga ('\n'). È possibile definire fino a 5.000 regole per ogni mappa sinonimica in un servizio gratuito e 10.000 regole in tutti gli altri SKU. Ogni regola può avere fino a 20 espansioni.
 
-In questa versione di anteprima mappe sinonimo devono essere nel formato Solr Apache hello viene spiegato di seguito. Se si dispone di un dizionario di sinonimo esistente in un formato diverso e si desidera toouse direttamente, Saremmo lieti di sapere su [UserVoice](https://feedback.azure.com/forums/263029-azure-search).
+In questa anteprima le mappe sinonimiche devono essere nel formato Apache Solr descritto di seguito. Se si ha un dizionario di sinonimi in un formato diverso e si desidera usarlo direttamente, segnalarlo mediante [UserVoice](https://feedback.azure.com/forums/263029-azure-search).
 
-È possibile creare una nuova mappa sinonimo utilizzando POST HTTP, come in hello di esempio seguente:
+È possibile creare una nuova mappa sinonimica usando HTTP POST, come nell'esempio seguente:
 
     POST https://[servicename].search.windows.net/synonymmaps?api-version=2016-09-01-Preview
     api-key: [admin key]
@@ -62,7 +62,7 @@ In questa versione di anteprima mappe sinonimo devono essere nel formato Solr Ap
           Washington, Wash., WA => WA\n"
     }
 
-In alternativa, è possibile usare PUT e specificare nome della mappa sinonimo hello in hello URI. Se hello sinonimo mappa non esiste, verrà creato.
+In alternativa è possibile usare PUT e specificare il nome della mappa sinonimica nell'URI. Se la mappa sinonimica non esiste, verrà creata.
 
     PUT https://[servicename].search.windows.net/synonymmaps/mysynonymmap?api-version=2016-09-01-Preview
     api-key: [admin key]
@@ -76,14 +76,14 @@ In alternativa, è possibile usare PUT e specificare nome della mappa sinonimo h
 
 ##### <a name="apache-solr-synonym-format"></a>Formato dei sinonimi Apache Solr
 
-formato Solr Hello supporta i mapping di sinonimo equivalente ed esplicite. Specifica del filtro toohello Apri origine sinonimo di Solr Apache, descritte in questo documento di rispettare le regole di mapping: [SynonymFilter](https://cwiki.apache.org/confluence/display/solr/Filter+Descriptions#FilterDescriptions-SynonymFilter). Di seguito è riportata una regola di esempio per sinonimi equivalenti.
+Il formato Solr supporta il mapping sinonimico equivalente ed esplicito. Le regole del mapping aderiscono alla specifica di filtro dei sinonimi open source di Apache Solr descritta in questo documento: [SynonymFilter](https://cwiki.apache.org/confluence/display/solr/Filter+Descriptions#FilterDescriptions-SynonymFilter). Di seguito è riportata una regola di esempio per sinonimi equivalenti.
 ```
               USA, United States, United States of America
 ```
 
-Con la regola di hello è precedente, una query di ricerca 'USA' espanderà troppo "USA" o "United States" o "Stati Uniti d'America".
+Con la regola precedente, la query di ricerca "USA" si espanderà in "USA" OR "Stati Uniti" OR "Stati Uniti d'America".
 
-Il mapping esplicito è indicato da una freccia "=>". Quando specificato, una sequenza di termine di una query di ricerca che corrisponde a hello lato sinistro di "= >" verrà sostituito con alternative hello sul lato destro hello. Dato regola hello, "Washington", "Washington" query di ricerca o "WA" verrà tutti riscritto troppo "WA". Mapping esplicito applica in direzione hello specificata e non riscrivere la query di hello "WA" troppo "Washington" in questo caso.
+Il mapping esplicito è indicato da una freccia "=>". Quando è specificato, una sequenza di termini di una query di ricerca che corrisponde al lato sinistro di "= >" verrà sostituita con le alternative sul lato destro. Data la regola seguente, le query di ricerca "Washington", "Wash." o "WA" saranno riscritte tutte come "WA". Il mapping esplicito si applica solo nella direzione specificata e, in questo caso, non riscrivere la query "WA" come "Washington".
 ```
               Washington, Wash., WA => WA
 ```
@@ -103,9 +103,9 @@ Il mapping esplicito è indicato da una freccia "=>". Quando specificato, una se
     DELETE https://[servicename].search.windows.net/synonymmaps/mysynonymmap?api-version=2016-09-01-Preview
     api-key: [admin key]
 
-### <a name="configure-a-searchable-field-toouse-hello-synonym-map-in-hello-index-definition"></a>Nella definizione dell'indice hello, configurare una mappa di sinonimo hello toouse campo ricercabile.
+### <a name="configure-a-searchable-field-to-use-the-synonym-map-in-the-index-definition"></a>Configurare un campo ricercabile per l'uso della mappa sinonimica nella definizione dell'indice.
 
-Una nuova proprietà di campo **synonymMaps** può essere utilizzato toospecify toouse di mappa un sinonimo per un campo ricercabile. Le mappe di sinonimo sono risorse a livello di servizio e a cui fa riferimento da qualsiasi campo di un indice nel servizio hello.
+La nuova proprietà di campo **synonymMaps** consente di specificare una mappa sinonimica da usare per un campo ricercabile. Le mappe sinonimiche sono risorse a livello di servizio e possono essere referenziate da qualsiasi campo di un indice del servizio.
 
     POST https://[servicename].search.windows.net/indexes?api-version=2016-09-01-Preview
     api-key: [admin key]
@@ -139,29 +139,29 @@ Una nuova proprietà di campo **synonymMaps** può essere utilizzato toospecify 
        ]
     }
 
-**synonymMaps** può essere specificato per i campi ricercabili hello tipo di 'Edm. String' o 'Collection'.
+È possibile specificare **synonymMaps** per i campi ricercabili di tipo "Edm. String" o "Collection".
 
 > [!NOTE]
-> In questa versione di anteprima è possibile avere solo una mappa sinonimica per campo. Se si desidera toouse più mappe sinonimo, Saremmo lieti di sapere su [UserVoice](https://feedback.azure.com/forums/263029-azure-search).
+> In questa versione di anteprima è possibile avere solo una mappa sinonimica per campo. Se si vuole usare più mappe sinonimiche, segnalarlo tramite [UserVoice](https://feedback.azure.com/forums/263029-azure-search).
 
 ## <a name="impact-of-synonyms-on-other-search-features"></a>Impatto dei sinonimi sulle altre funzionalità di ricerca
 
-funzionalità di sinonimi Hello riscrive query originale di hello con sinonimi con hello operatore OR. Per questo motivo, hit evidenziazione e i profili di punteggio considerano termine originale hello e sinonimi come equivalenti.
+La funzionalità relativa ai sinonimi riscrive la query originale con sinonimi usando l'operatore OR. Per questo motivo, l'evidenziazione dei risultati e i profili di punteggio trattano il termine originale e i sinonimi come equivalenti.
 
-Funzionalità di sinonimo applica toosearch query e non si applica toofilters o i facet. Analogamente, i suggerimenti sono basati solo sul termine originale hello; sinonimo corrispondenze non vengono visualizzati in risposta hello.
+La funzionalità relativa ai sinonimi si applica alle query di ricerca e non ai filtri o ai facet. Analogamente, i suggerimenti sono basati solo sul termine originale; le corrispondenze sinonimiche non compaiono nella risposta.
 
-Non sono applicabili toowildcard i termini di ricerca; espansioni sinonimo prefisso, fuzzy e i termini di regex non sono espansi.
+Le espansioni dei sinonimi non si applicano ai termini di ricerca con caratteri jolly; i termini con prefisso, fuzzy e regex non vengono espansi.
 
 ## <a name="tips-for-building-a-synonym-map"></a>Suggerimenti per la creazione di una mappa sinonimica
 
-- Una mappa sinonimica concisa e ben progettata è più efficiente rispetto a un elenco completo delle possibili corrispondenze. Dizionari eccessivamente grandi dimensioni o complessi richiedere più tempo tooparse e influiscono sulla latenza delle query hello se query hello espande toomany sinonimi. Invece di stima in cui potrebbero essere utilizzati i termini, è possibile ottenere termini hello tramite un [report di analisi del traffico di ricerca](search-traffic-analytics.md).
+- Una mappa sinonimica concisa e ben progettata è più efficiente rispetto a un elenco completo delle possibili corrispondenze. I dizionari eccessivamente grandi o complessi richiedono più tempo di analisi e influenzano la latenza della query se la query si espande in molti sinonimi. Invece di indovinare quali termini potrebbero essere usati, è possibile ottenere i termini effettivi tramite un [report di analisi del traffico di ricerca](search-traffic-analytics.md).
 
-- Come esercizio preliminary sia una convalida, abilitare e quindi verrà trarre vantaggio da una corrispondenza di sinonimo, questo tooprecisely report determinare quali condizioni di utilizzo e quindi continuare toouse come convalida che la mappa di sinonimo produce un risultato migliore. Nel report hello predefinito, hello riquadri "query di ricerca più comuni" e "query di ricerca Zero risultati" fornirà hello le informazioni necessarie.
+- Come esercizio sia preliminare che di convalida, abilitare e usare questo report per determinare con precisione quali termini trarranno vantaggio da una corrispondenza sinonimica e quindi continuare a usarlo per verificare che la mappa sinonimica sta generando risultati migliori. Nel report predefinito il riquadro delle query di ricerca più comuni e il riquadro delle query di ricerca senza risultati forniranno le informazioni necessarie.
 
 - È possibile creare più mappe sinonimiche per l'applicazione di ricerca (ad esempio in base alla lingua se l'applicazione supporta clienti multilingue). Attualmente un campo può usarne una sola. È possibile aggiornare la proprietà synonymMaps di un campo in qualsiasi momento.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- Se si dispone di un indice esistente in un ambiente di sviluppo (non di produzione), provare a utilizzare toosee un dizionario di piccole dimensioni come aggiunta hello di sinonimi cambia hello un'esperienza di ricerca, compreso l'impatto sui profili di punteggio, hit evidenziazione e suggerimenti.
+- Se si ha un indice esistente in un ambiente di sviluppo (non di produzione), provare con un piccolo dizionario per vedere come l'aggiunta di sinonimi cambia l'esperienza di ricerca, compreso l'impatto sui profili di punteggio, l'evidenziazione dei risultati e i suggerimenti.
 
-- [Abilita ricerca traffico analitica](search-traffic-analytics.md) e utilizzare hello predefinite di report di Power BI toolearn le parole usate hello la maggior parte e quali quelli restituito zero documenti. Grazie a queste informazioni, rivedere i sinonimi tooinclude dizionario hello per le query produttivo che devono essere risoluzione toodocuments nell'indice.
+- [Abilitare l'analisi del traffico di ricerca](search-traffic-analytics.md) e usare i report predefiniti di Power BI per ottenere informazioni su quali termini sono più utilizzati e quali non restituiscono documenti. In base a queste informazioni, modificare il dizionario per includere i sinonimi per le query improduttive che devono risolversi in documenti nell'indice.

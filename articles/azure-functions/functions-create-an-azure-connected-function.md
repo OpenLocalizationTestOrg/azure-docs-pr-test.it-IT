@@ -1,6 +1,6 @@
 ---
-title: una funzione che si connette a servizi tooAzure aaaCreate | Documenti Microsoft
-description: Utilizzare le funzioni di Azure toocreate un'applicazione senza che si connette tooother Azure servizi.
+title: Creare una funzione che connette ai servizi di Azure | Documentazione Microsoft
+description: Usare Funzioni di Azure per creare un'applicazione senza server che connette ad altri servizi di Azure.
 services: functions
 documentationcenter: dev-center-name
 author: yochay
@@ -17,49 +17,49 @@ ms.workload: na
 ms.date: 03/01/2017
 ms.author: glenga
 ms.custom: mvc
-ms.openlocfilehash: 9d1f7d3b236f8d2c1a404c76aee410f6d458fb7a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 65964a322f0adab4f648fb350bedb77b46bf9054
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="use-azure-functions-toocreate-a-function-that-connects-tooother-azure-services"></a>Utilizzare le funzioni di Azure toocreate una funzione che si connette tooother Azure servizi
+# <a name="use-azure-functions-to-create-a-function-that-connects-to-other-azure-services"></a>Usare Funzioni di Azure per creare una funzione che connette ad altri servizi di Azure
 
-In questo argomento viene illustrata la modalità toocreate una funzione in funzioni di Azure che toomessages su un hello di coda e copie di archiviazione di Azure è in ascolto dei messaggi toorows in una tabella di archiviazione di Azure. Una funzione di timer di attivazione è tooload utilizzati messaggi nella coda di hello. Una seconda funzione legge dalla coda hello e scrive nella tabella toohello messaggi. Coda hello sia la tabella hello vengono creati automaticamente dalle funzioni di Azure in base alle definizioni di associazione hello. 
+Questo argomento illustra come creare una funzione in Funzioni di Azure che ascolta i messaggi in una coda di Azure e li copia nelle righe di una tabella di Archiviazione di Azure. Per caricare i messaggi nella coda viene usata una funzione attivata da un timer. Una seconda funzione legge i messaggi dalla coda e li scrive nella tabella. Sia la coda che la tabella vengono create da funzioni di Azure sulla base delle definizioni di associazione. 
 
-toomake cose più interessante, una funzione scritta in JavaScript e altri hello è scritto in c# script. Questo dimostra che un'app per le funzioni può avere funzioni scritte in linguaggi diversi. 
+Per rendere le cose più interessanti, una funzione è scritta in JavaScript e l'altra in C#. Questo dimostra che un'app per le funzioni può avere funzioni scritte in linguaggi diversi. 
 
 È possibile vedere la dimostrazione di questo scenario in un [video di Channel 9](https://channel9.msdn.com/Series/Windows-Azure-Web-Sites-Tutorials/Create-an-Azure-Function-which-binds-to-an-Azure-service/player).
 
-## <a name="create-a-function-that-writes-toohello-queue"></a>Creare una funzione che scrive toohello coda
+## <a name="create-a-function-that-writes-to-the-queue"></a>Creare una funzione che scrive nella coda
 
-Prima di potersi connettere tooa coda di archiviazione, è necessario toocreate una funzione che carica la coda di messaggi hello. Questa funzione JavaScript utilizza un trigger timer che scrive una coda di messaggi toohello ogni 10 secondi. Se si dispone già di un account Azure, consultare hello [provare Azure funzioni](https://functions.azure.com/try) esperienza, o [creare l'account di Azure gratuita](https://azure.microsoft.com/free/).
+Prima di connettersi a una coda di archiviazione, è necessario creare una funzione che carica la coda di messaggi. La funzione JavaScript usa un trigger basato su timer che scrive un messaggio nella coda ogni 10 secondi. Se non si dispone già di un account Azure, vedere [Prova Funzioni di Azure](https://functions.azure.com/try) oppure [creare un account Azure gratuito](https://azure.microsoft.com/free/).
 
-1. Andare toohello portale di Azure e individuare l'app di funzione.
+1. Passare al portale di Azure e trovare l'app per le funzioni.
 
 2. Fare clic su **Nuova funzione** > **TimerTrigger-JavaScript**. 
 
-3. Nome funzione hello **FunctionsBindingsDemo1**, immettere un valore dell'espressione cron `0/10 * * * * *` per **pianificazione**, quindi fare clic su **crea**.
+3. Assegnare alla funzione il nome **FunctionsBindingsDemo1**, immettere un valore di espressione cron `0/10 * * * * *` per **Pianificazione** e quindi fare clic su **Crea**.
    
     ![Aggiungere una funzione attivata da un timer](./media/functions-create-an-azure-connected-function/new-trigger-timer-function.png)
 
     A questo punto è stata creata una funzione attivata da un timer che viene eseguita ogni 10 secondi.
 
-5. In hello **sviluppare** scheda, fare clic su **log** e visualizzare le attività di hello nel log di hello. Si noti che viene scritta una voce di log ogni 10 secondi.
+5. Nella scheda **Sviluppo** fare clic su **Log** e visualizzare l'attività nel log. Si noti che viene scritta una voce di log ogni 10 secondi.
    
-    ![Funzionamento di visualizzazione hello log tooverify hello (funzione)](./media/functions-create-an-azure-connected-function/functionsbindingsdemo1-view-log.png)
+    ![Visualizzare il log per verificare il funzionamento della funzione](./media/functions-create-an-azure-connected-function/functionsbindingsdemo1-view-log.png)
 
 ## <a name="add-a-message-queue-output-binding"></a>Aggiungere un'associazione di output della coda dei messaggi
 
-1. In hello **integrazione** scegliere **nuovo Output** > **coda di archiviazione di Azure** > **selezionare**.
+1. Nella scheda **Integrazione** scegliere **Nuovo output** > **Archiviazione code di Azure** > **Seleziona**.
 
     ![Aggiungere una funzione attivata da un timer](./media/functions-create-an-azure-connected-function/functionsbindingsdemo1-integrate-tab.png)
 
-2. Immettere `myQueueItem` per **nome del parametro messaggio** e `functions-bindings` per **nome coda**, selezionare un oggetto esistente **connessione ad account di archiviazione** oppure fare clic su **nuova** toocreate uno spazio di archiviazione account di connessione e quindi fare clic su **salvare**.  
+2. Immettere `myQueueItem` per **Nome del parametro del messaggio** e `functions-bindings` per **Nome coda**, selezionare una **Connessione dell'account di archiviazione** esistente o fare clic su **nuova** per creare una connessione dell'account di archiviazione, quindi fare clic su **Salva**.  
 
-    ![Creare una coda di archiviazione toohello associazione hello output](./media/functions-create-an-azure-connected-function/functionsbindingsdemo1-integrate-tab2.png)
+    ![Creare l'associazione di output alla coda dei messaggi](./media/functions-create-an-azure-connected-function/functionsbindingsdemo1-integrate-tab2.png)
 
-1. In hello **sviluppare** scheda, aggiungere hello toohello codice che segue:
+1. Tornare alla scheda **Sviluppo** e aggiungere alla funzione il codice seguente:
    
     ```javascript
    
@@ -72,7 +72,7 @@ Prima di potersi connettere tooa coda di archiviazione, è necessario toocreate 
     }
    
     ```
-2. Individuare hello *se* istruzione circa 9 della funzione hello di riga e di codice seguente hello di inserimento dopo tale istruzione.
+2. Individuare l'istruzione *if* più o meno in corrispondenza della riga 9 della funzione e inserire dopo di essa il codice seguente.
    
     ```javascript
    
@@ -82,55 +82,55 @@ Prima di potersi connettere tooa coda di archiviazione, è necessario toocreate 
    
     ```  
    
-    Questo codice crea un **myQueueItem** e imposta il relativo **ora** timeStamp corrente di proprietà toohello. Aggiunge quindi hello nuova coda elemento toohello del contesto **myQueueItem** associazione.
+    Questo codice crea un oggetto **myQueueItem** e ne imposta la proprietà **time** sul valore corrente di timeStamp. Aggiunge quindi il nuovo elemento della coda all'associazione **myQueueItem** del contesto.
 
 3. Fare clic su **Salva ed esegui**.
 
 ## <a name="view-storage-updates-by-using-storage-explorer"></a>Visualizzare gli aggiornamenti di archiviazione usando Storage Explorer
-È possibile verificare che la funzione sta visualizzando i messaggi nella coda di hello che è stato creato.  È possibile connettersi tooyour coda di archiviazione tramite Cloud Explorer in Visual Studio. Tuttavia, portale hello rende facile tooconnect tooyour account di archiviazione tramite Esplora archivi di Microsoft Azure.
+È possibile verificare il funzionamento della funzione visualizzando i messaggi nella coda creata.  È possibile connettersi alla coda di archiviazione usando Visual Studio Cloud Explorer. Usando il portale e Microsoft Azure Storage Explorer, tuttavia, la connessione all'account di archiviazione risulta più semplice.
 
-1. In hello **integrazione** , fare clic sulla coda di associazione di output > **documentazione**Scopri hello stringa di connessione per l'account di archiviazione e copiare il valore di hello. Utilizzare questo account di archiviazione tooyour tooconnect valore.
+1. Nella scheda **Integrazione** selezionare l'associazione di output della coda > **Documentazione**, visualizzare la stringa di connessione per l'account di archiviazione e quindi copiare il valore. Usare questo valore per la connessione all'account di archiviazione.
 
     ![Scaricare Azure Storage Explorer](./media/functions-create-an-azure-connected-function/functionsbindingsdemo1-integrate-tab3.png)
 
 
 2. Se non è già stato fatto, scaricare e installare [Microsoft Azure Storage Explorer](http://storageexplorer.com). 
  
-3. In Esplora archivi, fare clic su hello tooAzure archiviazione icona della connessione, incollare la stringa di connessione hello nel campo hello e completare la procedura guidata hello.
+3. In Storage Explorer fare clic sull'icona Connetti ad Archiviazione di Azure, incollare la stringa di connessione nel campo e completare la procedura guidata.
 
     ![Storage Explorer aggiunge una connessione](./media/functions-create-an-azure-connected-function/functionsbindingsdemo1-storage-explorer.png)
 
-4. In **locale e associata**, espandere **gli account di archiviazione** > l'account di archiviazione > **code** > **funzioni-bindings**e verificare che i messaggi vengono scritti toohello coda.
+4. In **Local and attached** (Locale e collegato) espandere **Account di archiviazione** > account di archiviazione > **Code** > **functions-bindings** e verificare che i messaggi vengano scritti nella coda.
 
-    ![Visualizzazione di messaggi nella coda di hello](./media/functions-create-an-azure-connected-function/functionsbindings-azure-storage-explorer.png)
+    ![Visualizzazione dei messaggi nella coda](./media/functions-create-an-azure-connected-function/functionsbindings-azure-storage-explorer.png)
 
-    Se la coda hello non esiste o è vuota, è probabilmente un problema con l'associazione di funzione o il codice.
+    Se la coda non esiste o è vuota, è probabile che si tratti di un problema relativo al codice o all'associazione della funzione.
 
-## <a name="create-a-function-that-reads-from-hello-queue"></a>Creare una funzione che legge dalla coda hello
+## <a name="create-a-function-that-reads-from-the-queue"></a>Creare una funzione che legge dalla coda
 
-Ora che hai aggiunti toohello coda di messaggi, è possibile creare un'altra funzione che legge dalla coda hello hello scrive i messaggi e in modo permanente tooan tabella di archiviazione di Azure.
+Dopo aver aggiunto i messaggi alla coda, è possibile creare un'altra funzione che legge dalla coda e scrive i messaggi in modo permanente in una tabella di Archiviazione di Azure.
 
 1. Fare clic su **Nuova funzione** > **QueueTrigger-CSharp**. 
  
-2. Nome funzione hello `FunctionsBindingsDemo2`, immettere **funzioni associazioni** in hello **nome coda** campo, selezionare un account di archiviazione esistente o crearne uno e quindi fare clic su **crea**.
+2. Assegnare alla funzione il nome `FunctionsBindingsDemo2`, immettere **functions-bindings** nel campo **Nome coda**, selezionare un account di archiviazione esistente o crearne uno e quindi fare clic su **Crea**.
 
     ![Aggiungere una funzione timer della coda di output](./media/functions-create-an-azure-connected-function/function-demo2-new-function.png) 
 
-3. (Facoltativo) È possibile verificare che hello nuovo funzionamento visualizzando nuova coda hello in soluzioni di archiviazione come prima. È anche possibile usare Visual Studio Cloud Explorer.  
+3. (Facoltativo) È possibile verificare il funzionamento della nuova funzione visualizzando la nuova coda in Storage Explorer, come descritto in precedenza. È anche possibile usare Visual Studio Cloud Explorer.  
 
-4. (Facoltativo) Aggiornare hello **funzioni associazioni** coda e notare che sono stati rimossi elementi dalla coda hello. Hello rimozione si verifica perché la funzione hello associato toohello **funzioni associazioni** coda come una funzione di trigger e hello input legge coda hello. 
+4. (Facoltativo) Aggiornare la coda **functions-bindings**: notare che sono state rimossi alcuni elementi. La rimozione si verifica perché la funzione è associata alla coda **functions-bindings** come trigger di input e legge tale coda. 
  
 ## <a name="add-a-table-output-binding"></a>Aggiungere un'associazione di output della tabella
 
 1. In FunctionsBindingsDemo2 fare clic su **Integrazione** > **Nuovo output** > **Archiviazione tabelle di Azure** > **Seleziona**.
 
-    ![Aggiungere una tabella di archiviazione di Azure tooan associazione](./media/functions-create-an-azure-connected-function/functionsbindingsdemo2-integrate-tab.png) 
+    ![Aggiungere un'associazione a una tabella di Archiviazione di Azure](./media/functions-create-an-azure-connected-function/functionsbindingsdemo2-integrate-tab.png) 
 
 2. Immettere `functionbindings` per **Nome tabella** e `myTable` per **Nome del parametro della tabella**, scegliere una **Connessione dell'account di archiviazione** o crearne una nuova e quindi fare clic su **Salva**.
 
-    ![Configurare l'associazione di tabella di archiviazione hello](./media/functions-create-an-azure-connected-function/functionsbindingsdemo2-integrate-tab2.png)
+    ![Configurare l'associazione della tabella di archiviazione](./media/functions-create-an-azure-connected-function/functionsbindingsdemo2-integrate-tab2.png)
    
-3. In hello **sviluppare** scheda, sostituire il codice di funzione esistente hello con hello seguente:
+3. Nella scheda **Sviluppo** sostituire il codice della funzione esistente con il seguente:
    
     ```cs
     
@@ -147,7 +147,7 @@ Ora che hai aggiunti toohello coda di messaggi, è possibile creare un'altra fun
             OriginalTime = myQueueItem.Time    
         };
         
-        // Add hello item toohello table binding collection.
+        // Add the item to the table binding collection.
         myTable.Add(myItem);
     
         log.Verbose($"C# Queue trigger function processed: {myItem.RowKey} | {myItem.Msg} | {myItem.Time}");
@@ -168,27 +168,27 @@ Ora che hai aggiunti toohello coda di messaggi, è possibile creare un'altra fun
         public string Time { get; set;}
     }
     ```
-    Hello **TableItem** classe rappresenta una riga nella tabella di archiviazione hello e si aggiunta hello elemento toohello `myTable` insieme di **TableItem** oggetti. È necessario impostare hello **PartitionKey** e **RowKey** tooinsert in grado di proprietà toobe nella tabella hello.
+    La classe **TableItem** rappresenta una riga della tabella di archiviazione. Aggiungere l'elemento alla raccolta `myTable` di oggetti **TableItem**. Per inserire voci nella tabella, è necessario impostare le proprietà **PartitionKey** e **RowKey**.
 
-4. Fare clic su **Salva**.  Infine, è possibile verificare il funzionamento di funzione hello visualizzando la tabella hello in soluzioni di archiviazione o di Visual Studio Cloud Explorer.
+4. Fare clic su **Salva**  Al termine, è possibile verificare il funzionamento della funzione visualizzando la tabella in Storage Explorer o Visual Studio Cloud Explorer.
 
-5. (Facoltativo) Nell'account di archiviazione in Esplora archivi, espandere **tabelle** > **functionsbindings** e verificare che le righe vengono aggiunte toohello tabella. È possibile eseguire stesso hello in Cloud Explorer in Visual Studio.
+5. (Facoltativo) Nell'account di archiviazione di Storage Explorer espandere **Tabelle** > **functionsbindings** e verificare che alla tabella vengano aggiunte delle righe. È possibile eseguire la stessa operazione in Visual Studio Cloud Explorer.
 
-    ![Visualizzazione di righe nella tabella hello](./media/functions-create-an-azure-connected-function/functionsbindings-azure-storage-explorer2.png)
+    ![Visualizzazione delle righe della tabella](./media/functions-create-an-azure-connected-function/functionsbindings-azure-storage-explorer2.png)
 
-    Se la tabella hello non esiste o è vuota, è probabilmente un problema con l'associazione di funzione o il codice. 
+    Se la tabella non esiste o è vuota, è probabile che si tratti di un problema relativo al codice o all'associazione della funzione. 
  
 [!INCLUDE [More binding information](../../includes/functions-bindings-next-steps.md)]
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per ulteriori informazioni sulle funzioni di Azure, vedere hello seguenti argomenti:
+Per altre informazioni su Funzioni di Azure, vedere gli argomenti seguenti:
 
 * [Guida di riferimento per gli sviluppatori di Funzioni di Azure](functions-reference.md)  
   Informazioni di riferimento per programmatori in merito alla codifica delle funzioni e alla definizione di trigger e associazioni.
 * [Test di Funzioni di Azure](functions-test-a-function.md)  
   Descrive diversi strumenti e tecniche per il test delle funzioni.
-* [Come tooscale funzioni di Azure](functions-scale.md)  
-  Vengono descritti i piani di servizio disponibili con le funzioni di Azure, piano di hosting consumo hello e come toochoose hello giusta. 
+* [Come aumentare le prestazioni di Funzioni di Azure](functions-scale.md)  
+  Presenta i piani di servizio disponibili con Funzioni di Azure, tra cui il piano di hosting A consumo, e spiega come scegliere quello più appropriato. 
 
 [!INCLUDE [Getting help note](../../includes/functions-get-help.md)]
 

@@ -1,6 +1,6 @@
 ---
-title: aaaBack di Windows server o workstation tooAzure (modello classico) | Documenti Microsoft
-description: Eseguire il backup di Windows Server o client tooa insieme di credenziali backup in Azure. Scorrere nozioni di base per la protezione dei file e cartelle tooa insieme di credenziali di Backup tramite hello Azure Backup agent.
+title: Eseguire il backup del server o della workstation di Windows in Azure (modello classico) | Microsoft Docs
+description: Eseguire il backup dei server o dei client di Windows nell'insieme di credenziali di backup in Azure. Scorrere le nozioni di base per la protezione dei file e delle cartelle in un insieme di credenziali di backup tramite l'agente di Backup di Azure.
 services: backup
 documentationcenter: 
 author: markgalioto
@@ -15,150 +15,150 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/11/2017
 ms.author: markgal;trinadhk;
-ms.openlocfilehash: c8f2a9bed1e5885f5c272c65b9282ededc05850a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a8daa6a4655b72936b6299c0fa5b80459ffa5da3
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="back-up-a-windows-server-or-workstation-tooazure-using-hello-classic-portal"></a>Eseguire il backup di un tooAzure di Windows server o workstation tramite il portale classico di hello
+# <a name="back-up-a-windows-server-or-workstation-to-azure-using-the-classic-portal"></a>Eseguire il backup del server o della workstation di Windows Server tramite il portale classico
 > [!div class="op_single_selector"]
 > * [Portale classico](backup-configure-vault-classic.md)
 > * [Portale di Azure](backup-configure-vault.md)
 >
 >
 
-In questo articolo vengono descritte le procedure di hello, che è necessario toofollow tooprepare ambiente ed eseguire il backup un tooAzure di Windows server (o una workstation). Contiene anche considerazioni sulla distribuzione della soluzione di backup. Se si è interessati durante il Backup di Azure per hello prima volta, in questo articolo rapidamente illustra hello processo.
+L'articolo illustra le procedure necessarie per preparare l'ambiente ed eseguire il backup di un server (o di una workstation) di Windows in Azure. Contiene anche considerazioni sulla distribuzione della soluzione di backup. Se si vuole provare Azure Backup per la prima volta, questo articolo illustra rapidamente come fare.
 
-Azure offre due diversi modelli di distribuzione per creare e usare le risorse: Resource Manager e distribuzione classica. In questo articolo viene illustrato l'utilizzo del modello di distribuzione classica hello. Si consiglia di utilizzano il modello di gestione risorse hello più nuove distribuzioni.
+Azure offre due diversi modelli di distribuzione per creare e usare le risorse: Resource Manager e distribuzione classica. Questo articolo illustra l'uso del modello di distribuzione classica. Microsoft consiglia di usare il modello di Gestione risorse per le distribuzioni più recenti.
 
 ## <a name="before-you-start"></a>Prima di iniziare
-tooback backup di un server o client tooAzure, è necessario un account di Azure. Se non si ha un account, è possibile crearne uno [gratuito](https://azure.microsoft.com/free/) in pochi minuti.
+Per eseguire il backup di un server o un client in Azure, è necessario un account Azure. Se non si ha un account, è possibile crearne uno [gratuito](https://azure.microsoft.com/free/) in pochi minuti.
 
 ## <a name="create-a-backup-vault"></a>Creare un insieme di credenziali per il backup
-tooback backup di file e cartelle da un server o client, è necessario un insieme di credenziali di backup in cui si desidera toostore hello dati area geografica di hello toocreate.
+Per eseguire il backup di file e cartelle da un server o un client è necessario creare un insieme di credenziali di backup nell'area geografica in cui si intende archiviare i dati.
 
 > [!IMPORTANT]
-> A partire da marzo 2017, è possibile utilizzare non è più insiemi di credenziali Backup hello toocreate portale classico.
+> A partire da marzo 2017, non è più possibile usare il portale classico per creare insiemi di credenziali di backup.
 >
-> È ora possibile aggiornare i servizi archivi di Backup gli insiemi di credenziali tooRecovery. Per informazioni dettagliate, vedere l'articolo hello [aggiornare un tooa insieme di credenziali di Backup dell'insieme di credenziali di servizi di ripristino](backup-azure-upgrade-backup-to-recovery-services.md). Microsoft incoraggia gli utenti tooupgrade insiemi di credenziali di servizi tooRecovery insiemi di credenziali di Backup.<br/> **15 ottobre 2017**, non potrà più insiemi di credenziali Backup a toocreate toouse in grado di PowerShell. <br/> **A partire dal 1° novembre 2017**:
->- Gli insiemi di credenziali di Backup rimanenti verrà automaticamente aggiornato tooRecovery servizi insiemi di credenziali.
->- Si sarà in grado di tooaccess ai dati di backup nel portale classico hello. Utilizzare invece hello Azure tooaccess portale i dati di backup in insiemi di servizi di ripristino.
+> È ora possibile aggiornare gli insiemi di credenziali di Backup ad insiemi di credenziali dei servizi di ripristino. Per altre informazioni, vedere l'articolo [Aggiornare un insieme di credenziali di Backup a un insieme di credenziali di Servizi di ripristino](backup-azure-upgrade-backup-to-recovery-services.md). Microsoft consiglia di aggiornare gli insiemi di credenziali di Backup a insiemi di credenziali dei servizi di ripristino.<br/> Dopo il **15 ottobre 2017** non sarà più possibile usare PowerShell per creare insiemi di credenziali di backup. <br/> **A partire dal 1° novembre 2017**:
+>- Eventuali insiemi di credenziali di Backup rimanenti verranno automaticamente aggiornati a insiemi di credenziali di servizi di ripristino
+>- e non sarà più possibile accedere ai dati di backup nel portale classico. Sarà possibile invece usare il portale di Azure per accedere ai dati di backup negli insiemi di credenziali di servizi di ripristino.
 >
 
 
-## <a name="download-hello-vault-credential-file"></a>Scaricare file delle credenziali dell'insieme di credenziali hello
-è necessario toobe autenticato con un insieme di credenziali di backup prima di è possibile eseguire il backup dei dati tooAzure Hello nel computer locale. l'autenticazione di Hello viene ottenuta tramite *archivio credenziali*. file delle credenziali dell'insieme di credenziali Hello viene scaricato tramite un canale protetto dal portale classico hello. chiave privata del certificato Hello non viene mantenuto nel portale di hello o servizio hello.
+## <a name="download-the-vault-credential-file"></a>Scaricare il file delle credenziali di insieme
+Per eseguire il backup dei dati in Azure è necessario autenticare il computer locale con un insieme di credenziali di backup. L'autenticazione viene eseguita tramite le *credenziali dell'insieme di credenziali*. Il file delle credenziali di insieme delle credenziali viene scaricato dal portale classico tramite un canale sicuro. La chiave privata del certificato non viene conservata nel portale o nel servizio.
 
-### <a name="toodownload-hello-vault-credential-file-tooa-local-machine"></a>toodownload hello archivio credenziali file tooa locale
-1. Nel riquadro di spostamento a sinistra di hello, fare clic su **servizi di ripristino**, quindi selezionare hello insieme di credenziali backup creato.
+### <a name="to-download-the-vault-credential-file-to-a-local-machine"></a>Per scaricare le credenziali dell'insieme di credenziali in un computer locale
+1. Fare clic su **Servizi di ripristino**nel riquadro di spostamento sinistro e selezionare l'insieme di credenziali per il backup creato.
 
     ![Completamento infrarossi](./media/backup-configure-vault-classic/rs-left-nav.png)
-2. Nella pagina introduttiva hello, fare clic su **Scarica credenziali**.
+2. Nella pagina Avvio rapido fare clic su **Scarica credenziali di insieme**.
 
-   portale classico Hello genera un insieme di credenziali utilizzando una combinazione di nome insieme di credenziali hello e hello data corrente. file delle credenziali dell'insieme di credenziali Hello viene utilizzato solo durante il flusso di lavoro di hello registrazione e scade dopo 48 ore.
+   Il portale genera una credenziale dell'insieme di credenziali usando una combinazione del nome dell'insieme e della data corrente. Il file delle credenziali dell'insieme di credenziali viene usato solo durante il flusso di lavoro di registrazione e scade dopo 48 ore.
 
-   file delle credenziali dell'insieme di credenziali Hello può essere scaricato dal portale hello.
-3. Fare clic su **salvare** toodownload hello archivio credenziali file toohello cartella download dell'account locale hello. È inoltre possibile selezionare **Salva con nome** da hello **salvare** menu toospecify un percorso per i file delle credenziali dell'insieme di credenziali hello.
+   Il file delle credenziali dell'insieme di credenziali può essere scaricato dal portale.
+3. Fare clic su **Salva** per scaricare il file delle credenziali dell'insieme di credenziali nella cartella Downloads dell'account locale. È anche possibile scegliere **Salva con nome** dal menu **Salva** per specificare un percorso per il file dell'insieme di credenziali.
 
    > [!NOTE]
-   > Assicurarsi che i file delle credenziali dell'insieme di credenziali hello viene salvato in una posizione accessibile dal computer. Se è stata archiviata in un blocco di messaggio server o condivisione file, assicurarsi di disporre tooaccess autorizzazioni hello è.
+   > Assicurarsi che il file delle credenziali dell'insieme di credenziali sia salvato in un percorso accessibile dal computer. Se viene archiviato in una condivisione di file o in un Server Message Block, controllare di avere le autorizzazioni per accedervi.
    >
    >
 
-## <a name="download-install-and-register-hello-backup-agent"></a>Scaricare, installare e registrare l'agente di Backup hello
-Dopo aver creato l'insieme di credenziali backup hello e file delle credenziali dell'insieme di credenziali hello download, è necessario installare un agente in ogni computer Windows.
+## <a name="download-install-and-register-the-backup-agent"></a>Scaricare, installare e registrare l'agente di Backup
+Dopo aver creato l'insieme di credenziali per il backup e aver scaricato il file dell'insieme di credenziali, è necessario installare un agente in ogni computer Windows.
 
-### <a name="toodownload-install-and-register-hello-agent"></a>toodownload, installare e registrare agente hello
-1. Fare clic su **servizi di ripristino**, quindi selezionare hello insieme di credenziali backup che si desidera tooregister con un server.
-2. Nella pagina introduttiva hello, fare clic su agente hello **agente per Windows Server o client di System Center Data Protection Manager o Windows**. Fare quindi clic su **Salva**.
+### <a name="to-download-install-and-register-the-agent"></a>Per scaricare, installare e registrare l'agente
+1. Fare clic su **Servizi di ripristino**e selezionare l'insieme di credenziali per il backup da registrare con un server.
+2. Nella pagina Avvio rapido fare clic su **Agente per Windows Server, System Center Data Protection Manager o client Windows**. Fare quindi clic su **Salva**.
 
     ![Salva agente](./media/backup-configure-vault-classic/agent.png)
-3. Dopo aver scaricato il file di MARSagentinstaller.exe hello, fare clic su **eseguire** (o fare doppio clic su **MARSAgentInstaller.exe** dal percorso hello salvato).
-4. Scegliere la cartella di installazione hello e la cartella della cache che sono necessari per l'agente di hello e quindi fare clic su **Avanti**. percorso della cache di Hello specificato deve disporre di spazio uguale tooat almeno il 5% dei dati di backup hello.
-5. È possibile continuare tooconnect toohello Internet tramite le impostazioni di proxy predefinito hello.             Se si usa un toohello tooconnect di server proxy Internet, nella pagina di configurazione del Proxy hello, selezionare hello **Usa impostazioni proxy personalizzate** casella di controllo e quindi immettere i dettagli del server proxy hello. Se si utilizza un proxy autenticato, immettere i dettagli di nome e una password utente hello e quindi fare clic su **Avanti**.
-6. Fare clic su **installare** toobegin installazione dell'agente hello. l'agente di Backup Hello installa .NET Framework 4.5 e Windows PowerShell (se non è già installato) installazione hello toocomplete.
-7. Dopo aver installato l'agente di hello, fare clic su **procedere tooRegistration** toocontinue con flusso di lavoro hello.
-8. Nella pagina di identificazione dell'insieme di credenziali hello, Sfoglia tooand hello selezionare archivio credenziali scaricato in precedenza.
+3. Dopo aver scaricato il file MARSagentinstaller.exe, fare clic su **Esegui** oppure fare doppio clic sul file **MARSAgentInstaller.exe** nel percorso in cui è stato salvato.
+4. Scegliere la cartella di installazione e la cartella della cache necessarie per l'agente e fare clic su **Avanti**. Il percorso della cache specificato deve avere uno spazio disponibile pari almeno al 5% dei dati di backup.
+5. È possibile continuare a connettersi a Internet tramite le impostazioni predefinite del proxy.             Se si usa un server proxy per connettersi a Internet, nella pagina Configurazione proxy selezionare la casella di controllo **Utilizzare le impostazioni personalizzate del proxy** e specificare i dettagli del server proxy. Se si usa un proxy autenticato, digitare il nome utente e la password e fare clic su **Avanti**.
+6. Fare clic su **Installa** per avviare l'installazione dell'agente. Per completare l'installazione, l'agente Backup installerà .NET Framework 4.5 e Windows PowerShell, se non è già installato.
+7. Dopo aver installato l'agente fare clic su **Continua con la registrazione** per continuare con il flusso di lavoro.
+8. Nella pagina Identificazione insieme di credenziali trovare e selezionare il file dell'insieme di credenziali scaricato in precedenza.
 
-    file delle credenziali dell'insieme di credenziali Hello è valido solo 48 ore dopo che è stato scaricato dal portale hello. Se si verifica un errore in questa pagina (ad esempio, "insieme di credenziali file specificato è scaduto"), accedi toohello portal e scaricare di nuovo il file delle credenziali dell'insieme di credenziali hello.
+    Il file dell'insieme di credenziali è valido soltanto per 48 ore dopo essere stato scaricato dal portale. Se si verifica un errore in questa pagina, ad esempio "Il file delle credenziali dell'insieme di credenziali specificato è scaduto", accedere al portale e scaricare nuovamente il file delle credenziali dell'insieme.
 
-    Verificare che il file di credenziali dell'insieme di credenziali hello è disponibile in una posizione a cui è possibile accedere da un'applicazione hello il programma di installazione. Se si verificano errori di accesso, copiare hello archivio credenziali file tooa percorso temporaneo hello stesso computer e ripetere l'operazione di hello.
+    Verificare che il file delle credenziali dell'insieme sia disponibile in un percorso accessibile dall'applicazione di installazione. Se si verificano errori relativi all'accesso, copiare il file delle credenziali di insieme in un percorso temporaneo nello stesso computer e ripetere l'operazione.
 
-    Se si verifica un errore relativo alle credenziali dell'insieme di credenziali, ad esempio "non valido dell'insieme di credenziali le credenziali fornite", il file hello è danneggiato o non avere hello credenziali più recenti associate al servizio di ripristino hello. Ripetere l'operazione di hello dopo il download di un nuovo file delle credenziali dell'insieme di credenziali dal portale hello. Questo errore può verificarsi anche se un utente fa clic hello **Download insieme di credenziali** opzione più volte in rapida successione. In questo caso, solo hello ultimo insieme di credenziali file delle credenziali è valido.
-9. Nella pagina impostazione crittografia hello, è possibile generare una passphrase o fornire una passphrase (con un minimo di 16 caratteri). Tenere presente che toosave hello passphrase in un luogo sicuro.
-10. Fare clic su **Finish**. Hello registrazione guidata Server Registra server hello con Backup.
+    Se si verifica un errore di credenziali dell'insieme, ad esempio "È stato fornito un insieme di credenziali non valido", il file è danneggiato o non ha le credenziali più recenti associate al servizio di ripristino. Ripetere l'operazione dopo avere scaricato un nuovo file di archivio delle credenziali dal portale. Questo errore si può verificare anche quando l'utente fa clic ripetutamente sull'opzione **Scarica credenziale dell'insieme di credenziali** in rapida successione. In questo caso è valido solo l'ultimo file delle credenziali dell'insieme di credenziali.
+9. Nella pagina Impostazione crittografia è possibile generare o specificare una passphrase composta da almeno 16 caratteri. Ricordarsi di salvare la passphrase in un luogo sicuro.
+10. Fare clic su **Finish**. La Registrazione guidata server registra il server con Backup.
 
     > [!WARNING]
-    > Se si perde o dimentica passphrase hello, Microsoft non consente di ripristinare i dati di backup hello. Si è proprietari hello passphrase di crittografia e Microsoft non abbiano visibilità sul passphrase hello in uso. Salvare il file di hello in un luogo sicuro perché sarà necessaria durante un'operazione di ripristino.
+    > Se la passphrase viene persa o dimenticata, Microsoft non potrà offrire assistenza per il recupero dei dati di backup. L'utente è proprietario della passphrase di crittografia e Microsoft non ha visibilità sulla passphrase in uso. Salvare il file in un luogo sicuro, in quanto sarà necessario durante un'operazione di ripristino.
     >
     >
 
-11. Dopo aver impostata la chiave di crittografia hello, lasciare hello **avviare Microsoft Azure Recovery Services Agent** casella selezionata e quindi fare clic su **Chiudi**.
+11. Dopo avere impostato la chiave di crittografia, lasciare selezionata la casella di controllo **Avvia agente dei servizi di ripristino di Microsoft Azure** e fare clic su **Chiudi**.
 
-## <a name="complete-hello-initial-backup"></a>Backup iniziale hello completo
-backup iniziale Hello include due attività principali:
+## <a name="complete-the-initial-backup"></a>Completare il backup iniziale
+Il backup iniziale comprende due attività fondamentali:
 
-* Creazione pianificazione backup hello
-* Il backup dei file e cartelle per hello prima volta
+* Creazione della pianificazione dei backup
+* Primo backup di file e cartelle
 
-Al termine di backup iniziale hello, criteri di backup hello crea punti di backup che è possibile utilizzare se sono necessari dati hello toorecover. criteri di backup Hello avviene in base a una pianificazione hello definita.
+Al termine del backup iniziale, il criterio di backup crea i punti di backup da usare per ripristinare i dati. I criteri di backup procedono in base alla pianificazione definita.
 
-### <a name="tooschedule-hello-backup"></a>backup di hello tooschedule
-1. Aprire l'agente di Backup di Microsoft Azure hello. (Verrà aperto automaticamente se sono stati lasciati hello **avviare Microsoft Azure Recovery Services Agent** casella di controllo selezionata quando si è chiuso hello registrazione guidata Server.) È possibile trovarlo se si cerca **Backup di Microsoft Azure**nel computer.
+### <a name="to-schedule-the-backup"></a>Per pianificare il backup
+1. Aprire l'agente Backup di Microsoft Azure. L'agente verrà aperto automaticamente se si lascia selezionata la casella di controllo **Avvia agente dei servizi di ripristino di Microsoft Azure** quando si chiude la Registrazione guidata server. È possibile trovarlo se si cerca **Backup di Microsoft Azure**nel computer.
 
-    ![Avviare l'agente Azure Backup hello](./media/backup-configure-vault-classic/snap-in-search.png)
-2. Nell'agente di Backup hello, fare clic su **pianifica Backup**.
+    ![Avviare Azure Backup Agent](./media/backup-configure-vault-classic/snap-in-search.png)
+2. Nell'agente di Backup fare clic su **Pianifica backup**.
 
     ![Pianificare un backup di Windows Server](./media/backup-configure-vault-classic/schedule-backup-close.png)
-3. Pagina di pianificazione guidata Backup hello introduzione su hello, fare clic su **Avanti**.
-4. Nella pagina di tooBackup selezionare elementi hello, fare clic su **Aggiungi elementi**.
-5. Selezionare le cartelle che si desidera tooback e quindi fare clic su file hello **OK**.
+3. Nella pagina Guida introduttiva della Pianificazione guidata backup fare clic su **Avanti**.
+4. Nella pagina Seleziona elementi per backup fare clic su **Aggiungi elementi**.
+5. Selezionare i file e le cartelle di cui si vuole eseguire il backup e fare clic su **OK**.
 6. Fare clic su **Avanti**.
-7. In hello **specificare pianificazione Backup** specificare hello **pianificazione del backup** e fare clic su **Avanti**.
+7. Nella pagina **Specificare la pianificazione del backup** specificare la **pianificazione del backup** e fare clic su **Avanti**.
 
     È possibile pianificare backup giornalieri, da eseguire non più di tre volte al giorno, o settimanali.
 
     ![Elementi per il backup di Windows Server](./media/backup-configure-vault-classic/specify-backup-schedule-close.png)
 
    > [!NOTE]
-   > Per ulteriori informazioni su come toospecify hello pianificazione del backup, vedere l'articolo hello [tooreplace utilizzare Azure Backup infrastruttura nastro](backup-azure-backup-cloud-as-tape.md).
+   > Per altre informazioni su come specificare la pianificazione del backup vedere l'articolo [Usare Backup di Azure per sostituire l'infrastruttura basata su nastro](backup-azure-backup-cloud-as-tape.md).
    >
    >
 
-8. In hello **selezionare criteri di conservazione** pagina, seleziona hello **criteri di conservazione** hello copia di backup.
+8. Nella pagina **Seleziona criteri di conservazione** selezionare i **criteri di conservazione** per la copia di backup.
 
-    criteri di conservazione Hello specificano durata hello per cui verrà archiviato il backup di hello. Anziché specificare solo un criterio"semplice" per tutti i punti di backup, è possibile specificare i criteri di conservazione diversi in base a quando viene eseguito il backup di hello. È possibile modificare toomeet criteri di conservazione giornaliero, settimanale, mensile e annuale hello le proprie esigenze.
-9. Nella pagina tipo di Backup iniziale scegliere hello, scegliere il tipo di backup iniziale di hello. Lasciare l'opzione hello **automaticamente tramite rete hello** selezionata e quindi fare clic su **Avanti**.
+    I criteri di conservazione specificano il periodo di tempo per cui il backup verrà archiviato. Anziché specificare solo un "criterio semplice" per tutti i punti di backup, è possibile specificare criteri di conservazione diversi in base al momento in cui viene eseguito il backup. È possibile modificare i criteri di conservazione giornalieri, settimanali, mensili e annuali in base alle proprie esigenze.
+9. Nella pagina Scegliere il tipo di backup iniziale selezionare il tipo di backup iniziale. Lasciare selezionata l'opzione **Automaticamente tramite la rete** e fare clic su **Avanti**.
 
-    È possibile eseguire il backup automaticamente tramite rete hello oppure è possibile eseguire il backup non in linea. resto Hello di questo articolo descrive il processo di hello per il backup automaticamente. Se si preferisce toodo un backup offline, vedere l'articolo di hello [Offline backup flusso di lavoro in Backup di Azure](backup-azure-backup-import-export.md) per ulteriori informazioni.
-10. Nella pagina di conferma hello, esaminare le informazioni di hello e quindi fare clic su **fine**.
-11. Al termine la procedura guidata hello creazione pianificazione backup hello, fare clic su **Chiudi**.
+    È possibile eseguire il backup automaticamente in rete oppure offline. Il resto di questo articolo descrive il processo di backup automatico. Se si preferisce eseguire un backup offline, vedere l'articolo [Flusso di lavoro di backup offline in Backup di Azure](backup-azure-backup-import-export.md) per altre informazioni.
+10. Nella pagina Conferma esaminare le informazioni e fare clic su **Fine**.
+11. Dopo aver creato la pianificazione del backup tramite la procedura guidata, fare clic su **Chiudi**.
 
 ### <a name="enable-network-throttling-optional"></a>Abilitare la limitazione della larghezza di banda (facoltativo)
-l'agente di Backup Hello fornisce la limitazione delle richieste di rete. La limitazione controlla l'uso della larghezza di banda della rete durante il trasferimento dati. Questo controllo può essere utile se è necessario tooback dei dati durante le ore lavorative, ma non si desidera hello toointerfere di processo di backup con il traffico Internet. La limitazione si applica tooback backup e ripristino.
+L'agente di Backup consente di limitare la larghezza di banda. La limitazione controlla l'uso della larghezza di banda della rete durante il trasferimento dati. Questo controllo può essere utile se è necessario eseguire il backup dei dati durante l'orario di lavoro, ma senza che il processo di backup interferisca con il resto del traffico Internet. La limitazione si applica alle attività di backup e ripristino.
 
-**la limitazione delle richieste di rete tooenable**
+**Per abilitare la limitazione larghezza di banda**
 
-1. Nell'agente di Backup hello, fare clic su **Modifica proprietà**.
+1. Nell'agente di Backup fare clic su **Modifica proprietà**.
 
     ![Modifica proprietà](./media/backup-configure-vault-classic/change-properties.png)
-2. In hello **limitazione** scheda, seleziona hello **abilitare la limitazione per le operazioni di backup all'utilizzo della larghezza di banda di internet** casella di controllo.
+2. Nella scheda **Limitazione larghezza di banda rete** selezionare la casella di controllo **Abilita la limitazione all'utilizzo della larghezza di banda Internet per le operazioni di backup**.
 
     ![Limitazione della larghezza di banda della rete](./media/backup-configure-vault-classic/throttling-dialog.png)
-3. Dopo avere abilitato la limitazione delle richieste, specificare hello consentito della larghezza di banda per trasferire i dati di backup durante **ore lavorative** e **ore Non lavorative**.
+3. Dopo aver abilitato la limitazione, specificare la larghezza di banda consentita per trasferire i dati di backup durante le **ore lavorative** e le **ore non lavorative**.
 
-    i valori di larghezza di banda Hello iniziano 512 kilobit al secondo (Kbps) e possono aumentare fino a too1, 023 megabyte al secondo (MBps). È anche possibile designare inizio hello e di fine per **ore lavorative**, e i giorni della settimana hello sono considerate giorni. Gli orari al di fuori delle ore lavorative definite vengono considerati ore non lavorative.
+    I valori della larghezza di banda partono da 512 kilobit al secondo (Kbps) e possono arrivare fino a 1.023 megabyte al secondo (Mbps). È anche possibile definire l'inizio e la fine delle **ore lavorative**e i giorni della settimana da considerare come giorni lavorativi. Gli orari al di fuori delle ore lavorative definite vengono considerati ore non lavorative.
 4. Fare clic su **OK**.
 
-### <a name="tooback-up-now"></a>tooback backup adesso
-1. Nell'agente di Backup hello, fare clic su **Effettua backup** hello toocomplete iniziale tramite rete hello il seeding.
+### <a name="to-back-up-now"></a>Per esegui immediatamente il backup
+1. Nell'agente di Backup fare clic su **Esegui backup** per completare il seeding iniziale sulla rete.
 
     ![Eseguire ora il backup di Windows Server](./media/backup-configure-vault-classic/backup-now.png)
-2. Nella pagina di conferma hello, rivedere le impostazioni di hello che hello backup guidato immediato utilizzerà tooback macchina hello. Fare clic su **Backup**.
-3. Fare clic su **Chiudi** guidata hello tooclose. Se si esegue questa operazione prima al termine del processo di backup hello, toorun guidata hello continua in background hello.
+2. Nella pagina Conferma riesaminare le impostazioni che l'Esecuzione guidata backup userà per il backup del computer. Fare clic su **Backup**.
+3. Fare clic su **Chiudi** per chiudere la procedura guidata. Se quest'operazione viene svolta prima che venga completato il processo di backup, l'esecuzione guidata proseguirà in background.
 
-Al termine dell'operazione backup iniziale hello, hello **processo completato** stato viene visualizzato nella console Backup hello.
+Al termine del backup iniziale, nella console Backup comparirà lo stato **Processo completato** .
 
 ![Completamento infrarossi](./media/backup-configure-vault-classic/ircomplete.png)
 
@@ -168,5 +168,5 @@ Al termine dell'operazione backup iniziale hello, hello **processo completato** 
 Per altre informazioni sul backup di macchine virtuali o altri carichi di lavoro, vedere:
 
 * [Eseguire il backup di macchine virtuali IaaS](backup-azure-vms-prepare.md)
-* [Eseguire il backup dei carichi di lavoro tooAzure con il Server di Backup di Microsoft Azure](backup-azure-microsoft-azure-backup.md)
-* [Eseguire il backup dei carichi di lavoro tooAzure con Data Protection Manager](backup-azure-dpm-introduction.md)
+* [Eseguire il backup dei carichi di lavoro con il server di Backup di Microsoft Azure](backup-azure-microsoft-azure-backup.md)
+* [Eseguire il backup dei carichi di lavoro in Azure con Data Protection Manager](backup-azure-dpm-introduction.md)

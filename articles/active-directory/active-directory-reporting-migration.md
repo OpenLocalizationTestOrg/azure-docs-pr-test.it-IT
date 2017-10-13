@@ -1,6 +1,6 @@
 ---
-title: "report relativi all'attività aaaFind nel portale di Azure hello | Documenti Microsoft"
-description: "Informazioni su come i report di attività di Azure Active Directory toofind in hello portale di Azure."
+title: "Trovare i report attività nel portale di Azure | Microsoft Docs"
+description: "Informazioni su come trovare i report attività di Azure Active Directory nel portale di Azure."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,19 +15,19 @@ ms.workload: identity
 ms.date: 07/19/2017
 ms.author: dhanyahk;markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: f8d7a968403e10ccc5319f27fedad38b1553ded0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f1875582476c3817b9eb0082b6548cc15043cb98
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="find-activity-reports-in-hello-azure-portal"></a>Individuare i report di attività nel portale di Azure hello
+# <a name="find-activity-reports-in-the-azure-portal"></a>Trovare i report attività nel portale di Azure
 
-Se si sposta da hello Azure toohello portale classico portale di Azure, viene visualizzato un nuovo aspetto log attività di Azure Active Directory (Azure AD). In un recente [post di blog](https://blogs.technet.microsoft.com/enterprisemobility/2016/11/08/azuread-weve-just-turned-on-detailed-auditing-and-sign-in-logs-in-the-new-azure-portal/), viene descritto come è possibile visualizzare il log attività nel contesto di hello della risorsa hello si sta lavorando in hello portale di Azure. In questo articolo viene descritto come toofind segnala che è stato utilizzato nel portale di Azure classico nel portale di Azure hello hello.
+Se è in corso la migrazione dal portale di Azure classico al portale di Azure, l'aspetto dei log attività di Azure Active Directory (Azure AD) cambierà. In un recente [post del blog](https://blogs.technet.microsoft.com/enterprisemobility/2016/11/08/azuread-weve-just-turned-on-detailed-auditing-and-sign-in-logs-in-the-new-azure-portal/) viene illustrato come visualizzare i log attività nel contesto della risorsa su cui si sta lavorando nel portale di Azure. Questo articolo descrive come trovare nel portale di Azure i report usati nel portale di Azure classico.
 
 ## <a name="whats-new"></a>Novità
 
-I report nel portale di Azure classico hello sono suddivisi in categorie:
+I report nel portale di Azure classico sono suddivisi in categorie:
 
 1.  Report sulla sicurezza
 2.  Report sull’attività
@@ -35,13 +35,13 @@ I report nel portale di Azure classico hello sono suddivisi in categorie:
 
 ### <a name="activity-and-integrated-app-reports"></a>Report attività e app integrate
 
-Basata sul contesto dei report nel portale di Azure hello, i report esistenti vengono uniti in una singola visualizzazione. Una singola API sottostante visualizza hello dati toohello.
+Per i report basati sul contesto nel portale di Azure, i report esistenti vengono uniti in una singola visualizzazione. Una singola API sottostante fornisce i dati alla visualizzazione.
 
-Questa vista in hello toosee **Azure Active Directory** pannello, in **attività**selezionare **log di controllo**.
+Per accedere a questa visualizzazione, nel pannello **Azure Active Directory**, in **ATTIVITÀ** selezionare **Log di controllo**.
 
 ![Log di controllo](./media/active-directory-reporting-migration/482.png "Log di controllo")
 
-Hello i report seguenti è consolidato in questa vista:
+In questa visualizzazione sono consolidati i report seguenti:
 
 -   Report di controllo
 -   Attività di reimpostazione password
@@ -53,25 +53,25 @@ Hello i report seguenti è consolidato in questa vista:
 -   Errori di provisioning dell'account
 
 
-report di utilizzo dell'applicazione Hello è stata migliorata ed è incluso in hello **accessi** visualizzazione. Questa vista in hello toosee **Azure Active Directory** pannello, in **attività**selezionare **accessi**.
+Il report Utilizzo delle applicazioni è stato migliorato e incluso nella visualizzazione **Accessi**. Per accedere a questa visualizzazione, nel pannello **Azure Active Directory**, in **ATTIVITÀ** selezionare **Accessi**.
 
 ![Visualizzazione Accessi](./media/active-directory-reporting-migration/483.png "Visualizzazione Accessi")
 
-Hello **accessi** visualizzazione include tutti gli accessi utente. È possibile utilizzare queste informazioni sull'utilizzo di informazioni tooget applicazione. È inoltre possibile visualizzare informazioni sull'utilizzo dell'applicazione in hello **applicazioni aziendali** panoramica, in hello **GESTISCI** sezione.
+La visualizzazione **Accessi** include tutti gli accessi dell'utente. È possibile usare queste informazioni per ottenere informazioni sull'utilizzo dell'applicazione. È anche possibile visualizzare le informazioni sull'utilizzo dell'applicazione nella panoramica **Applicazioni aziendali**, nella sezione **GESTISCI**.
 
 ![Applicazioni aziendali](./media/active-directory-reporting-migration/484.png "Applicazioni aziendali")
 
 ## <a name="access-a-specific-report"></a>Accedere a un report specifico
 
-Sebbene hello portale di Azure offre una visualizzazione singola, è anche possibile esaminare i report specifici.
+Sebbene il portale di Azure offra una visualizzazione singola, è possibile anche esaminare report specifici.
 
 ### <a name="audit-logs"></a>Log di controllo
 
-In commenti e suggerimenti toocustomer risposta, in hello portale di Azure, è possibile utilizzare avanzate dati hello tooaccess filtro desiderati. È un filtro, è possibile utilizzare un *categoria attività*, che sono elencati hello diversi tipi di attività registra in Azure AD. toonarrow risultati toowhat che si sta cercando, è possibile selezionare una categoria.
+In risposta ai commenti dei clienti, nel portale di Azure è possibile usare filtri avanzati per accedere ai dati. Uno dei filtri che è possibile usare riguarda la *categoria di attività*, che elenca i diversi tipi di log attività disponibili in Azure AD. Per restringere i risultati della ricerca, è possibile selezionare una categoria.
 
-Ad esempio, se si è interessati solo la reimpostazione della password di tooself servizio correlato di attività, è possibile scegliere hello **la gestione delle Password Self-Service** categoria. categorie di Hello che vedrai si basano sulla risorsa hello in che ci si trova.  
+Ad esempio, se si è interessati solo alle attività relative alla reimpostazione password self-service, è possibile scegliere la categoria **Self-service Password Management** (Gestione delle password self-service). Le categorie visualizzate sono basate sulla risorsa in cui si sta lavorando.  
 
-![Le opzioni di categoria nella pagina di log di controllo filtro hello](./media/active-directory-reporting-migration/06.png "opzioni categoria hello filtro registri di controllo pagina")
+![Opzioni Categoria nella pagina Filtra log di controllo](./media/active-directory-reporting-migration/06.png "Opzioni Categoria nella pagina Filtra log di controllo")
 
 Le categorie delle attività includono:
 
@@ -82,7 +82,7 @@ Le categorie delle attività includono:
 
 ### <a name="application-usage"></a>Utilizzo applicazioni
 
-tooview i dettagli sull'utilizzo dell'applicazione per tutte le app o per una singola applicazione, in **attività**selezionare **accessi**. risultati hello toonarrow, sarà possibile filtrare per nome utente o nome dell'applicazione.
+Per visualizzare informazioni dettagliate sull'utilizzo dell'applicazione per tutte le applicazioni o per una singola applicazione, in **ATTIVITÀ** selezionare **Accessi**. Per restringere i risultati, è possibile filtrare in base a nome utente o nome applicazione.
 
 ![Pagina Filtra eventi di accesso](./media/active-directory-reporting-migration/07.png "Pagina Filtra eventi di accesso")
 
@@ -90,32 +90,32 @@ tooview i dettagli sull'utilizzo dell'applicazione per tutte le app o per una si
 
 #### <a name="azure-ad-anomalous-activity-reports"></a>Report di Anomalie dell'attività di Azure AD
 
-Sicurezza di Azure AD attività anomale report dal portale di Azure classico hello sono stati consolidati tooprovide con a una vista centrale. Questa visualizzazione mostra tutti gli eventi di rischio correlati alla sicurezza che Azure AD è in grado di rilevare e segnalare.
+I report di sicurezza sulle attività anomale di Azure AD del portale di Azure classico sono stati consolidati per fornire una singola visualizzazione centralizzata. Questa visualizzazione mostra tutti gli eventi di rischio correlati alla sicurezza che Azure AD è in grado di rilevare e segnalare.
 
-Hello nella tabella seguente elenca i report di sicurezza di attività anomale hello Azure AD e corrispondenti tipi di eventi di rischio in hello portale di Azure.
+La tabella seguente elenca i report di sicurezza sulle attività anomale di Azure AD e le corrispondenti tipologie degli eventi di rischio nel portale di Azure.
 
 | Report di Anomalie dell'attività di Azure AD |  Tipo di evento di rischio di Identity Protection|
 | :--- | :--- |
 | Utenti con credenziali perse | Credenziali perse |
-| Attività di accesso irregolare | Comunicazione Impossibile tooatypical percorsi |
+| Attività di accesso irregolare | Trasferimento impossibile a posizioni atipiche |
 | Accessi da dispositivi potenzialmente infetti | Accessi da dispositivi infetti|
 | Accessi da origini sconosciute | Accessi da indirizzi IP anonimi |
 | Accessi da indirizzi IP con attività sospette | Accessi da indirizzi IP con attività sospette |
 | - | Accessi da posizioni non note |
 
-sicurezza di Azure AD attività anomale seguenti Hello report non sono inclusi come eventi di rischio in hello portale di Azure:
+I report di sicurezza sulle attività anomale di Azure AD seguenti non sono inclusi come eventi di rischio nel portale di Azure:
 
 * Accessi dopo più errori
 * Accessi da più aree geografiche
 
-Questi report sono ancora disponibili nel portale di Azure classico hello, ma sarà deprecate in un momento nel futuro hello.
+Questi report sono ancora disponibili nel portale di Azure classico, ma in futuro saranno deprecati.
 
 Per altre informazioni, vedere [Eventi di rischio di Azure Active Directory](active-directory-identity-protection-risk-events.md).  
 
 
 #### <a name="detected-risk-events"></a>Eventi di rischio rilevati
 
-Nel portale di Azure hello, è possibile accedere a report sugli eventi di rischio rilevati in hello **Azure Active Directory** pannello, in **sicurezza**. Eventi di rischio rilevati vengono rilevati in hello seguenti report:   
+Nel portale di Azure è possibile accedere ai report sugli eventi di rischio rilevati nella sezione **SICUREZZA** del pannello **Azure Active Directory**. Gli eventi di rischio rilevati vengono registrati nei report seguenti:   
 
 - Utenti a rischio
 - Accessi a rischio
@@ -124,19 +124,19 @@ Nel portale di Azure hello, è possibile accedere a report sugli eventi di risch
 
 Per altre informazioni sui report di sicurezza, vedere:
 
-- [Utenti dei report di rischio per la sicurezza nel portale di Azure Active Directory hello](active-directory-reporting-security-user-at-risk.md)
-- [Report accessi rischiosa nel portale di Azure Active Directory hello](active-directory-reporting-security-risky-sign-ins.md)
+- [Report di sicurezza per gli utenti a rischio nel portale di Azure Active Directory](active-directory-reporting-security-user-at-risk.md)
+- [Report degli accessi a rischio nel portale di Azure Active Directory](active-directory-reporting-security-risky-sign-ins.md)
 
 
-## <a name="activity-reports-in-hello-azure-classic-portal-vs-hello-azure-portal"></a>Report attività hello portale di Azure classico e hello portale di Azure
+## <a name="activity-reports-in-the-azure-classic-portal-vs-the-azure-portal"></a>Report sulle attività nel portale di Azure classico rispetto al portale di Azure
 
-tabella Hello in questa sezione sono elencati i report esistenti nel portale di Azure classico hello. Viene inoltre descritto come ottenere hello stesse informazioni nel portale di Azure hello.
+La tabella in questa sezione elenca i report esistenti nel portale di Azure classico. La tabella descrive anche come ottenere le stesse informazioni nel portale di Azure.
 
-tooview tutti i dati, in hello del controllo **Azure Active Directory** pannello, in **attività**, andare troppo**log di controllo**.
+Per visualizzare tutti i dati di controllo, nel pannello **Azure Active Directory**, in **ATTIVITÀ** andare a **Log di controllo**.
 
 ![Log di controllo](./media/active-directory-reporting-migration/61.png "Log di controllo")
 
-| portale di Azure classico                 | toofind in hello portale di Azure                                                         |
+| portale di Azure classico                 | Nel portale di Azure:                                                         |
 | ---                                  | ---                                                                        |
 | Log di controllo                           | Per **Categoria attività** selezionare **Core directory** (Directory principale).                       |
 | Attività di reimpostazione password              | Per **Categoria attività** selezionare **Self Service Password Management** (Gestione delle password self-service). |
@@ -147,11 +147,11 @@ tooview tutti i dati, in hello del controllo **Azure Active Directory** pannello
 | Errori di provisioning dell'account          | Per **Categoria attività** selezionare **Account User Provisioning** (Provisioning dell'utente account).        |
 | Modifiche del nome del gruppo di Office 365         | Per **Categoria attività** selezionare **Self Service Password Management** (Gestione delle password self-service). Per **Activity Resource Type** (Tipo di risorsa attività) selezionare **Gruppo**. Per **Origine attività** selezionare **O365 groups** (Gruppi di O365).|
 
-hello tooview **utilizzo dell'applicazione** hello report **Azure Active Directory** pannello, in **GESTISCI**selezionare **applicazioni aziendali**, quindi selezionare **accessi**.
+Per visualizzare il report **Utilizzo applicazioni**, nel pannello **Azure Active Directory**, in **GESTISCI** selezionare **Applicazioni aziendali** e scegliere **Accessi**.
 
 
 ![Report degli accessi alle applicazioni aziendali](./media/active-directory-reporting-migration/199.png "Report degli accessi alle applicazioni aziendali")
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per una panoramica di gestione di report, vedere hello [Azure Active Directory reporting](active-directory-reporting-azure-portal.md).
+Per una panoramica della creazione di report, vedere [Creazione di report in Azure Active Directory](active-directory-reporting-azure-portal.md).

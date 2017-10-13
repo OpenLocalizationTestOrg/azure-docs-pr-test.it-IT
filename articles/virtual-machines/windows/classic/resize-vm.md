@@ -1,6 +1,6 @@
 ---
-title: una macchina virtuale di Windows nel modello di distribuzione classica hello - Azure aaaResize | Documenti Microsoft
-description: Ridimensionare una macchina virtuale di Windows creata nel modello di distribuzione classica hello, tramite Azure Powershell.
+title: Ridimensionare una macchina virtuale Windows nel modello di distribuzione classico - Azure | Documentazione Microsoft
+description: Ridimensionare una macchina virtuale Windows creata nel modello di distribuzione classico usando Azure PowerShell.
 services: virtual-machines-windows
 documentationcenter: 
 author: Drewm3
@@ -15,57 +15,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/19/2016
 ms.author: drewm
-ms.openlocfilehash: 39fab14431e2351c9515b0611e850eccfec7a798
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4277bc8394c7ba140291e9dc776162e87deab96b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="resize-a-windows-vm-created-in-hello-classic-deployment-model"></a>Ridimensiona una macchina virtuale Windows creata nel modello di distribuzione classica hello
-Questo articolo illustra come tooresize macchine Virtuali di Windows creati nel modello di distribuzione classica hello con Azure Powershell.
+# <a name="resize-a-windows-vm-created-in-the-classic-deployment-model"></a>Ridimensionare una VM Windows creata nel modello di distribuzione classico
+Questo articolo illustra come ridimensionare una VM Windows creata nel modello di distribuzione classico usando Azure PowerShell.
 
-Quando si considerano hello possibilità tooresize una macchina virtuale, esistono due concetti che controllano l'intervallo di hello della macchina virtuale di dimensioni disponibili tooresize hello. primo concetto Hello è area hello in cui è distribuita la macchina virtuale. elenco di Hello di dimensioni disponibili nell'area è nella scheda Servizi hello della pagina web di hello aree di Azure. concetto secondo Hello è hello all'hardware fisico che ospita la macchina virtuale. Hello fisici che ospitano macchine virtuali viene raggruppati in cluster di hardware fisico comuni. metodo Hello della modifica di una dimensione di macchina virtuale è diverso a seconda se hello desiderato nuova dimensione di macchina virtuale è supportato dal cluster hardware hello attualmente ospitando hello macchina virtuale.
+Riguardo alla possibilità di ridimensionare una VM, è necessario tenere in considerazione i due fattori che controllano l'intervallo di dimensioni disponibili. Il primo fattore è la regione in cui è distribuita la VM. L'elenco delle dimensioni di VM disponibili nella regione si trova nella scheda Servizi della pagina Web Regioni di Azure. Il secondo fattore è l'hardware fisico che ospita attualmente la VM. I server fisici che ospitano le VM sono raggruppati in cluster di hardware fisico comune. Il metodo di modifica delle dimensioni di una VM varia a seconda che le nuove dimensioni siano supportate dal cluster hardware che ospita attualmente la VM stessa.
 
 > [!IMPORTANT] 
-> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md). In questo articolo viene illustrato l'utilizzo del modello di distribuzione classica hello. Si consiglia di utilizzano il modello di gestione risorse hello più nuove distribuzioni. È anche possibile [ridimensiona una macchina virtuale creata nel modello di distribuzione di gestione risorse di hello](../resize-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md). Questo articolo illustra l'uso del modello di distribuzione classica. Microsoft consiglia di usare il modello di Gestione risorse per le distribuzioni più recenti. È anche possibile [ridimensionare una VM creata nel modello di distribuzione Resource Manager](../resize-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
 ## <a name="add-your-account"></a>Aggiungere il proprio account
-È necessario configurare Azure PowerShell toowork con risorse di Azure classiche. Seguire i passaggi di hello sotto le risorse classiche tooconfigure Azure PowerShell toomanage.
+È necessario configurare Azure PowerShell per garantirne il funzionamento con le risorse classiche di Azure. Per configurare Azure PowerShell per la gestione delle risorse classiche, seguire questa procedura.
 
-1. Al prompt di PowerShell hello digitare `Add-AzureAccount` e fare clic su **invio**. 
-2. Digitare l'indirizzo di posta elettronica hello associati alla sottoscrizione Azure e fare clic su **continua**. 
-3. Digitare la password dell'account hello. 
+1. Al prompt di PowerShell digitare `Add-AzureAccount` e premere **INVIO**. 
+2. Digitare l'indirizzo di posta elettronica associato alla sottoscrizione di Azure e fare clic su **Continua**. 
+3. Digitare la password per l'account. 
 4. Fare clic su **Accedi**. 
 
-## <a name="resize-in-hello-same-hardware-cluster"></a>Ridimensionare in hello stesso cluster hardware
-tooresize dimensione tooa macchina virtuale disponibile in cluster hardware hello hosting hello macchina virtuale, eseguire hello alla procedura seguente.
+## <a name="resize-in-the-same-hardware-cluster"></a>Ridimensionare nello stesso cluster hardware
+Per ridimensionare una VM a una dimensione disponibile nel cluster hardware che ospita la VM stessa, seguire questa procedura.
 
-1. Eseguire il comando PowerShell toolist hello dimensioni delle macchine Virtuali disponibili in hello hardware cluster ospita hello cloud servizio che contiene hello VM seguente hello.
+1. Eseguire il comando PowerShell seguente per elencare le dimensioni di VM disponibili nel cluster hardware che ospita il servizio cloud contenente la VM in questione.
    
     ```powershell
     Get-AzureService | where {$_.ServiceName -eq "<cloudServiceName>"}
     ```
-2. Eseguire hello seguenti comandi tooresize hello macchina virtuale.
+2. Per ridimensionare la VM, eseguire i comandi seguenti.
    
     ```powershell
     Get-AzureVM -ServiceName <cloudServiceName> -Name <vmName> | Set-AzureVMSize -InstanceSize <newVMSize> | Update-AzureVM
     ```
 
 ## <a name="resize-on-a-new-hardware-cluster"></a>Ridimensionare in un nuovo cluster hardware
-dimensione tooa macchina virtuale non è disponibile in hello hardware cluster ospita tooresize hello VM, hello servizio cloud e tutte le macchine virtuali nel servizio cloud hello devono essere ricreate. Ogni servizio cloud è ospitato in un cluster singolo hardware pertanto tutte le macchine virtuali nel servizio cloud hello devono essere una dimensione è supportata in un cluster hardware. Hello seguente verrà descritta la modalità tooresize una macchina virtuale eliminando e ricreando quindi hello cloud service.
+Per ridimensionare una VM a una dimensione non disponibile nel cluster hardware che ospita la VM stessa, è necessario ricreare il servizio cloud e tutte le VM presenti in tale servizio. Ogni servizio cloud è ospitato in un singolo cluster hardware, motivo per cui tutte le VM presenti nel servizio cloud devono avere dimensioni supportate in un cluster hardware. La procedura seguente descrive come ridimensionare una VM eliminando e quindi ricreando il servizio cloud.
 
-1. Eseguire hello seguente PowerShell comando toolist hello dimensioni delle macchine Virtuali disponibili nell'area di hello. 
+1. Eseguire il comando PowerShell seguente per elencare le dimensioni di VM disponibili nella regione. 
    
     ```powershell
     Get-AzureLocation | where {$_.Name -eq "<locationName>"}
     ```
-2. Prendere nota di tutte le impostazioni di configurazione per ogni macchina virtuale nel servizio cloud hello contenente hello VM toobe ridimensionato. 
-3. Eliminare tutte le macchine virtuali nel servizio cloud hello selezionando i dischi di hello hello opzione tooretain per ogni macchina virtuale.
-4. Ricreare hello VM toobe ridimensionato con dimensioni VM hello desiderato.
-5. Ricreare tutte le altre macchine virtuali che erano presenti nel servizio cloud hello utilizzando una dimensione di macchina virtuale disponibile in cluster hardware hello ora ospita il servizio di cloud hello.
+2. Prendere nota di tutte le impostazioni di configurazione per ciascuna VM presente nel servizio cloud che contiene la VM da ridimensionare. 
+3. Eliminare tutte le VM nel servizio cloud selezionando l'opzione per conservare i dischi per ciascuna di esse.
+4. Ricreare la VM da ridimensionare usando la dimensione desiderata.
+5. Ricreare tutte le altre VM che si trovavano nel servizio cloud usando una dimensione di VM disponibile nel cluster hardware che ora ospita il servizio cloud.
 
 Uno script di esempio per l'eliminazione e la nuova creazione di un servizio cloud mediante una nuova dimensione di VM è disponibile [qui](https://github.com/Azure/azure-vm-scripts). 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Ridimensiona una macchina virtuale creata nel modello di distribuzione di gestione risorse di hello](../resize-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+* [Ridimensionare una VM creata nel modello di distribuzione Resource Manager](../resize-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 

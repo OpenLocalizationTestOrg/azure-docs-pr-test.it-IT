@@ -1,6 +1,6 @@
 ---
-title: il comportamento di aaaOverride HTTP mediante motore regole di hello rete CDN di Azure | Documenti Microsoft
-description: motore regole di Hello consente toocustomize come richieste HTTP vengono gestite dalla rete CDN di Azure, ad esempio il blocco di recapito hello di determinati tipi di contenuto, definire un criterio di memorizzazione nella cache e modificare le intestazioni HTTP.
+title: Eseguire l'override del comportamento HTTP con il motore regole della rete CDN di Azure | Documentazione Microsoft
+description: "Il motore regole consente di personalizzare la modalità con cui vengono gestite le richieste HTTP nella rete CDN di Azure, ad esempio la distribuzione di determinati tipi di contenuto, la definizione di criteri di memorizzazione nella cache e la modifica delle intestazioni HTTP."
 services: cdn
 documentationcenter: 
 author: zhangmanling
@@ -14,66 +14,66 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: dd7194be9dbda43180c64568d3e1f52c5c513a7e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: abfe283476206b181018d187675b47112dc5ad2f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="override-http-behavior-using-hello-azure-cdn-rules-engine"></a>Override del comportamento HTTP utilizzando motore regole di hello rete CDN di Azure
+# <a name="override-http-behavior-using-the-azure-cdn-rules-engine"></a>Eseguire l'override del comportamento HTTP con il motore regole della rete CDN di Azure
 [!INCLUDE [cdn-premium-feature](../../includes/cdn-premium-feature.md)]
 
 ## <a name="overview"></a>Panoramica
-il motore regole di Hello consente toocustomize come vengono gestite le richieste HTTP, ad esempio il blocco di recapito hello di determinati tipi di contenuto, definizione di criteri di memorizzazione nella cache e la modifica delle intestazioni HTTP.  In questa esercitazione verrà illustrato la creazione di una regola che verrà modificato il comportamento delle risorse di rete CDN di memorizzazione nella cache di hello.  È inoltre contenuto video disponibili in hello "[vedere anche](#see-also)" sezione.
+Il motore regole consente di personalizzare la modalità con cui vengono gestite le richieste HTTP, come ad esempio il blocco della distribuzione di determinati tipi di contenuto, la definizione di un criterio di memorizzazione nella cache e la modifica della intestazioni HTTP.  Questa esercitazione illustra la creazione di una regola che modifica il comportamento di memorizzazione nella cache degli asset della rete CDN.  Nella sezione "[Vedere anche](#see-also)" sono disponibili anche contenuti video.
 
    > [!TIP] 
-   > Per un riferimento toohello in modo dettagliato, vedere [riferimento motore regole](cdn-rules-engine-reference.md).
+   > Per informazioni dettagliate sulla sintassi, vedere le [informazioni di riferimento sul motore regole](cdn-rules-engine-reference.md).
    > 
 
 
 ## <a name="tutorial"></a>Esercitazione
-1. Dal Pannello di profilo CDN hello, fare clic su hello **Gestisci** pulsante.
+1. Dal pannello del profilo della rete CDN fare clic sul pulsante **Gestisci** .
    
     ![Pulsante Gestisci pannello del profilo di rete CDN](./media/cdn-rules-engine/cdn-manage-btn.png)
    
-    viene visualizzato il portale di gestione della rete CDN Hello.
-2. Fare clic su hello **HTTP grandi** scheda, seguita da **motore regole di business**.
+    Si aprirà il portale di gestione della rete CDN.
+2. Fare clic sulla scheda **HTTP Large** (HTTP esteso) e quindi su **Motore regole**.
    
     Vengono visualizzate le opzioni per una nuova regola.
    
     ![Opzioni delle regole della nuova rete CDN](./media/cdn-rules-engine/cdn-new-rule.png)
    
    > [!IMPORTANT]
-   > ordine di Hello in cui sono elencate più regole influisce sulla modalità di gestione. Una regola successive può eseguire l'override di azioni hello specificate da una regola precedente.
+   > L'ordine in cui sono elencate più regole influisce sulla modalità di gestione. Una regola successiva potrebbe seguire l’override delle azioni specificate da una regola precedente.
    > 
    > 
-3. Immettere un nome in hello **nome / descrizione** casella di testo.
-4. Identificare il tipo di hello di hello regola verrà applicata alle richieste.  Per impostazione predefinita, hello **sempre** condizione di corrispondenza è selezionata.  Si utilizzerà **Sempre** per questa esercitazione, quindi lasciarla selezionata.
+3. Inserire un nome per la casella di testo **Nome / Descrizione** .
+4. Identificare il tipo di richieste che a cui verrà applicata la regola.  Per impostazione predefinita, viene selezionata la condizione corrispondente **Sempre** .  Si utilizzerà **Sempre** per questa esercitazione, quindi lasciarla selezionata.
    
    ![Condizione di corrispondenza della rete CDN](./media/cdn-rules-engine/cdn-request-type.png)
    
    > [!TIP]
-   > Esistono molti tipi di corrispondenza condizioni disponibili nell'elenco a discesa hello.  Facendo clic su toohello icona informativa blu hello sinistra della condizione di corrispondenza hello illustrerà condizione hello attualmente selezionato in modo dettagliato.
+   > Vi sono molti tipi di condizioni di corrispondenza disponibili nell'elenco a discesa.  Facendo clic sull'icona blu delle informazioni a sinistra della condizione di corrispondenza viene illustrata la condizione selezionata in modo dettagliato.
    > 
-   >  Per hello l'elenco completo delle espressioni condizionali in modo dettagliato, vedere [espressioni condizionali di motore regole](cdn-rules-engine-reference-match-conditions.md).
+   >  Per l'elenco completo e dettagliato delle espressioni condizionali, vedere l'articolo relativo alle [espressioni condizionali del motore regole](cdn-rules-engine-reference-match-conditions.md).
    >  
-   > Per hello l'elenco completo delle condizioni di corrispondenza in modo dettagliato, vedere [le condizioni corrispondono del motore regole](cdn-rules-engine-reference-match-conditions.md).
+   > Per l'elenco completo e dettagliato delle condizioni di corrispondenza, vedere l'articolo relativo alle [condizioni di corrispondenza del motore regole](cdn-rules-engine-reference-match-conditions.md).
    > 
    > 
-5. Fare clic su hello  **+**  accanto troppo**funzionalità** tooadd una nuova funzionalità.  Nell'elenco a discesa hello hello sinistra, selezionare **Force interno Max-Age**.  Nella casella di testo hello che viene visualizzata, immettere **300**.  Lasciare hello rimanenti valori predefiniti.
+5. Fare clic sul pulsante **+** accanto a **Funzionalità** per aggiungere una nuova funzionalità.  Nell'elenco a discesa a sinistra, selezionare **Forza interna Max-Age**.  Nella casella di testo che viene visualizzata, inserire **300**.  Lasciare i valori predefiniti restanti.
    
    ![Funzionalità della rete CDN](./media/cdn-rules-engine/cdn-new-feature.png)
    
    > [!NOTE]
-   > Come con le condizioni di corrispondenza, fare clic su toohello icona informativa blu hello a sinistra della hello nuove funzionalità saranno visualizzati i dettagli su questa funzionalità.  Nel caso di hello di **Force interno Max-Age**, è stato eseguito l'override dell'asset hello **Cache-Control** e **Expires** toocontrol intestazioni quando il nodo del bordo della rete CDN di hello aggiornerà hello Asset dall'origine hello.  Esempio di 300 secondi significa nodo del bordo di hello CDN verrà memorizzati nella cache di asset hello per 5 minuti prima di aggiornare asset hello dall'origine.
+   > Come con le condizioni di corrispondenza, fare clic sull'icona blu delle informazioni a sinistra della nuova funzionalità per visualizzare i dettagli su questa funzionalità.  Nel caso di **Force Internal Max-Age** (Forza validità massima interna), viene eseguito l'override delle intestazioni **Cache-Control** ed **Expires** dell'asset per controllare quando il nodo perimetrale della rete CDN aggiornerà l'asset dall'origine.  L’esempio di 300 secondi indica che il nodo edge della rete CDN memorizza l’asset nella cache per 5 minuti prima di aggiornare la risorsa dall'origine.
    > 
-   > Per hello l'elenco completo di funzionalità in modo dettagliato, vedere [dettagli delle funzionalità del motore regole](cdn-rules-engine-reference-features.md).
+   > Per l'elenco completo e dettagliato delle funzionalità, vedere l'articolo contenente [informazioni dettagliate sulle funzionalità del motore regole](cdn-rules-engine-reference-features.md).
    > 
    > 
-6. Fare clic su hello **Aggiungi** nuova regola di pulsante toosave hello.  nuova regola Hello ora è in attesa di approvazione. Quando è stata approvata, hello stato cambia da **XML in sospeso** troppo**XML Active**.
+6. Fare clic sul pulsante **Aggiungi** per salvare la nuova regola.  La nuova regola ora è in attesa di approvazione. Dopo l'approvazione, lo stato viene modificato da **Pending XML** (XML in sospeso) a **Active XML** (XML attivo).
    
    > [!IMPORTANT]
-   > Le modifiche delle regole potrebbero richiedere too90 minuti toopropagate tramite hello CDN.
+   > La propagazione delle modifiche delle regole in tutta la rete CDN può durare fino a 90 minuti.
    > 
    > 
 
@@ -83,5 +83,5 @@ il motore regole di Hello consente toocustomize come vengono gestite le richiest
 * [Condizioni di corrispondenza del motore regole](cdn-rules-engine-reference-match-conditions.md)
 * [Espressioni condizionali del motore regole](cdn-rules-engine-reference-conditional-expressions.md)
 * [Funzionalità del motore regole](cdn-rules-engine-reference-features.md)
-* [Override del comportamento HTTP predefinito utilizzando il motore regole di hello](cdn-rules-engine.md)
+* [Override del comportamento HTTP predefinito mediante il motore di regole](cdn-rules-engine.md)
 * [Vedere il video relativo alle nuove potenti funzionalità Premium della rete CDN di Azure](https://azure.microsoft.com/documentation/videos/azure-cdns-powerful-new-premium-features/)

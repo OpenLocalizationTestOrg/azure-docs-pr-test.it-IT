@@ -1,6 +1,6 @@
 ---
-title: aaaLocation Reporting per Azure Mobile Engagement SDK Android
-description: Viene descritto come percorso tooconfigure reporting per Azure Mobile Engagement SDK Android
+title: Segnalazione della posizione per Android SDK per Azure Mobile Engagement
+description: Descrive come configurare la segnalazione della posizione per Android SDK per Azure Mobile Engagement
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,11 +14,11 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 08/12/2016
 ms.author: piyushjo;ricksal
-ms.openlocfilehash: c2cb097df2a77bee2d56ffe9509dc116548db408
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 777d5719cce505b55dfb61c91dcac7e713b077a9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="location-reporting-for-azure-mobile-engagement-android-sdk"></a>Segnalazione della posizione per Android SDK per Azure Mobile Engagement
 > [!div class="op_single_selector"]
@@ -26,52 +26,52 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Questo argomento viene descritto come percorso toodo reporting per l'applicazione di Android.
+Questo argomento descrive come segnalare la posizione per l'applicazione Android.
 
 ## <a name="prerequisites"></a>Prerequisiti
 [!INCLUDE [Prereqs](../../includes/mobile-engagement-android-prereqs.md)]
 
 ## <a name="location-reporting"></a>Segnalazione della posizione
-Se si desidera toobe percorsi segnalato, è necessario tooadd poche righe di configurazione (tra hello `<application>` e `</application>` tag).
+Per fare in modo che le posizioni vengano segnalate, è necessario aggiungere alcune righe di configurazione tra i tag `<application>` e `</application>`.
 
 ### <a name="lazy-area-location-reporting"></a>Segnalazione differita della posizione
-Segnalazione differita della posizione consente reporting hello paese, area e località associate ai dispositivi. Questo tipo di segnalazione della posizione usa solo le posizioni di rete, sulla base dell'ID di cella o della connessione Wi-Fi. area Hello del dispositivo viene segnalato al massimo una volta per ogni sessione. Hello GPS non viene mai utilizzato e, pertanto questo tipo di percorso report ha impatto significativo a batteria hello.
+La segnalazione differita della posizione consente di segnalare il paese, l'area geografica e la località associati ai dispositivi. Questo tipo di segnalazione della posizione usa solo le posizioni di rete, sulla base dell'ID di cella o della connessione Wi-Fi. L'area del dispositivo viene segnalata al massimo una volta per sessione. Il GPS non viene mai usato, per cui l'impatto di questo tipo di segnalazione della posizione sulla batteria è ridotto.
 
-Le aree segnalate sono utilizzati toocompute statistiche geografica sugli utenti, sessioni, eventi e gli errori. Possono essere usate anche come criteri nelle campagne Reach.
+Le aree segnalate vengono usate per calcolare statistiche geografiche relative a utenti, sessioni, eventi ed errori. Possono essere usate anche come criteri nelle campagne Reach.
 
-Si attiva il percorso di area lazy reporting con la configurazione di hello indicato in precedenza in questa procedura:
+Si abilita la segnalazione differita della posizione usando la configurazione descritta in precedenza in questa procedura:
 
     EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
     engagementConfiguration.setConnectionString("Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}");
     engagementConfiguration.setLazyAreaLocationReport(true);
     EngagementAgent.getInstance(this).init(engagementConfiguration);
 
-È inoltre necessario toospecify un'autorizzazione di percorso. Questo codice usa l'autorizzazione ``COARSE`` :
+È inoltre necessario specificare un'autorizzazione di posizione. Questo codice usa l'autorizzazione ``COARSE`` :
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
 Se l'app lo richiede, è possibile usare invece di ``ACCESS_FINE_LOCATION`` .
 
 ### <a name="real-time-location-reporting"></a>Segnalazione della posizione in tempo reale
-La segnalazione della posizione in tempo reale consente reporting hello latitudine e la longitudine associate ai dispositivi. Questo tipo di segnalazione della posizione usa solo le posizioni di rete, sulla base dell'ID di cella o della connessione Wi-Fi. reporting Hello è attivo solo durante l'esecuzione di un'applicazione hello in primo piano (ad esempio, durante una sessione).
+La segnalazione della posizione in tempo reale consente di segnalare la latitudine e la longitudine associate ai dispositivi. Questo tipo di segnalazione della posizione usa solo le posizioni di rete, sulla base dell'ID di cella o della connessione Wi-Fi. La segnalazione è attiva solo quando l'applicazione viene eseguita in primo piano, ad esempio durante una sessione.
 
-I percorsi in tempo reale sono *non* utilizzato toocompute statistiche. Il loro scopo solo è utilizzare hello tooallow di geo-fencing in tempo reale \<Reach-pubblico-geofencing\> criterio di campagne di copertura.
+Le posizioni in tempo reale *NON* sono usate per calcolare dati statistici. Il loro unico scopo è consentire l'uso del criterio di definizione del recinto virtuale in tempo reale \<Reach-Audience-geofencing\> nelle campagne Reach.
 
-creazione di report, la posizione in tempo reale tooenable aggiungere una riga di codice toowhere impostare stringa di connessione Engagement hello in attività di avvio hello. ottenere un risultato Hello hello seguente:
+Per abilitare la segnalazione della posizione in tempo reale, aggiungere una riga di codice dove si è impostata la stringa di connessione di Engagement nell'attività dell'utilità di avvio. Il risultato è simile al seguente:
 
     EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
     engagementConfiguration.setConnectionString("Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}");
     engagementConfiguration.setRealtimeLocationReport(true);
     EngagementAgent.getInstance(this).init(engagementConfiguration);
 
-        You also need toospecify a location permission. This code uses ``COARSE`` permission:
+        You also need to specify a location permission. This code uses ``COARSE`` permission:
 
             <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
         If your app requires it, you can use ``ACCESS_FINE_LOCATION`` instead.
 
 #### <a name="gps-based-reporting"></a>Segnalazione basata su GPS
-Per impostazione predefinita, la segnalazione della posizione in tempo reale usa solo posizioni di rete. tooenable hello GPS basato su percorsi, che sono molto più precisa, utilizzare oggetti di configurazione hello:
+Per impostazione predefinita, la segnalazione della posizione in tempo reale usa solo posizioni di rete. Per abilitare l'uso di posizioni basate su GPS, che sono molto più precise, usare l'oggetto di configurazione:
 
     EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
     engagementConfiguration.setConnectionString("Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}");
@@ -79,12 +79,12 @@ Per impostazione predefinita, la segnalazione della posizione in tempo reale usa
     engagementConfiguration.setFineRealtimeLocationReport(true);
     EngagementAgent.getInstance(this).init(engagementConfiguration);
 
-È inoltre necessario hello tooadd seguente autorizzazione se mancante:
+È necessario aggiungere anche le autorizzazioni seguenti, se mancanti:
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
 #### <a name="background-reporting"></a>Segnalazione in background
-Per impostazione predefinita, la segnalazione della posizione in tempo reale è attiva solo durante l'esecuzione di un'applicazione hello in primo piano (ad esempio, durante una sessione). hello tooenable reporting anche in background, utilizzare l'oggetto di configurazione:
+Per impostazione predefinita, la segnalazione della posizione in tempo reale è attiva solo quando l'applicazione viene eseguita in primo piano, ad esempio durante una sessione. Per abilitare la segnalazione anche in background, usare questo oggetto di configurazione:
 
     EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
     engagementConfiguration.setConnectionString("Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}");
@@ -93,11 +93,11 @@ Per impostazione predefinita, la segnalazione della posizione in tempo reale è 
     EngagementAgent.getInstance(this).init(engagementConfiguration);
 
 > [!NOTE]
-> Quando un'applicazione hello viene eseguito in background, vengono segnalati solo i percorsi di rete, anche se è abilitata hello GPS.
+> Quando l'applicazione viene eseguita in background, vengono segnalate solo le posizioni basate sulla rete, anche se è abilitato il GPS.
 > 
 > 
 
-Se l'utente hello riavvio del dispositivo, report di posizione background hello viene arrestato. toomake riavviato automaticamente in fase di avvio, aggiungere questo codice.
+Se l'utente riavvia il dispositivo, viene interrotta la segnalazione della posizione in background. Per fare in modo che venga riavviata automaticamente al riavvio, aggiungere questo codice.
 
     <receiver android:name="com.microsoft.azure.engagement.EngagementLocationBootReceiver"
            android:exported="false">
@@ -106,25 +106,25 @@ Se l'utente hello riavvio del dispositivo, report di posizione background hello 
         </intent-filter>
     </receiver>
 
-È inoltre necessario hello tooadd seguente autorizzazione se mancante:
+È necessario aggiungere anche le autorizzazioni seguenti, se mancanti:
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
 ## <a name="android-m-permissions"></a>Autorizzazioni Android M
 A partire da Android M, alcune autorizzazioni vengono gestite in fase di esecuzione e richiedono l'approvazione dell'utente.
 
-Se la destinazione è il livello di API Android 23, le autorizzazioni di runtime hello sono disattivate per impostazione predefinita per le nuove installazioni di app. In caso contrario vengono attivate per impostazione predefinita.
+Se la destinazione è il livello 23 dell'API Android, le autorizzazioni di runtime verranno disattivate per impostazione predefinita per le installazioni di nuove app. In caso contrario vengono attivate per impostazione predefinita.
 
-È possibile abilitare o disabilitare le autorizzazioni dal menu di impostazioni dispositivo hello. La disattivazione di autorizzazioni dal menu di sistema hello termina i processi in background hello dell'applicazione hello, che è un comportamento del sistema e non influisce sulla possibilità tooreceive push in background.
+È possibile abilitare o disabilitare le autorizzazioni dal menu delle impostazioni del dispositivo. La disattivazione delle autorizzazioni dal menu di sistema elimina i processi in background dell'applicazione. Si tratta di un comportamento del sistema e non influisce sulla possibilità di ricevere push in background.
 
-Nel contesto di hello della posizione di Mobile Engagement reporting, le autorizzazioni di hello che richiedono l'approvazione in fase di esecuzione sono:
+Nel contesto della segnalazione della posizione in Mobile Engagement, le autorizzazioni che richiedono l'approvazione in fase di esecuzione sono:
 
 * `ACCESS_COARSE_LOCATION`
 * `ACCESS_FINE_LOCATION`
 
-Richiedere autorizzazioni all'utente di hello utilizzando una finestra di dialogo di sistema standard. Indicare se l'utente hello Approva, ``EngagementAgent`` tootake che cambiano in considerazione in tempo reale. In caso contrario modifica hello è elaborato successivo ora hello utente avvia hello un'applicazione hello.
+Richiedere le autorizzazioni all'utente con una finestra di dialogo di sistema standard. Se l'utente approva, specificare ``EngagementAgent`` per applicare la modifica in tempo reale. In caso contrario la modifica verrà elaborata al successivo avvio dell'applicazione da parte dell'utente.
 
-Ecco un toouse di esempio di codice in un'attività, delle autorizzazioni per l'applicazione toorequest e portare avanti hello se positivo troppo``EngagementAgent``:
+Ecco un esempio di codice da utilizzare in un'attività dell'applicazione per richiedere autorizzazioni e inoltrare il risultato, se positivo, a ``EngagementAgent``:
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -142,9 +142,9 @@ Ecco un toouse di esempio di codice in un'attività, delle autorizzazioni per l'
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
       {
         /*
-         * Request location permission, but this doesn't explain why it is needed toohello user.
-         * hello standard Android documentation explains with more details how toodisplay a rationale activity tooexplain hello user why hello permission is needed in your application.
-         * Putting COARSE vs FINE has no impact here, they are part of hello same group for runtime permission management.
+         * Request location permission, but this doesn't explain why it is needed to the user.
+         * The standard Android documentation explains with more details how to display a rationale activity to explain the user why the permission is needed in your application.
+         * Putting COARSE vs FINE has no impact here, they are part of the same group for runtime permission management.
          */
         if (checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
           requestPermissions(new String[] { android.Manifest.permission.ACCESS_FINE_LOCATION }, 0);
@@ -155,7 +155,7 @@ Ecco un toouse di esempio di codice in un'attività, delle autorizzazioni per l'
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
     {
-      /* Only a positive location permission update requires engagement agent refresh, hence hello request code matching from above function */
+      /* Only a positive location permission update requires engagement agent refresh, hence the request code matching from above function */
       if (requestCode == 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
         getEngagementAgent().refreshPermissions();
     }

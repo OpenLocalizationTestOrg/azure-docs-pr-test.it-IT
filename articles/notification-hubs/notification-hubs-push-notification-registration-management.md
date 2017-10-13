@@ -1,6 +1,6 @@
 ---
-title: aaaRegistration gestione
-description: In questo argomento viene illustrato come dispositivi tooregister con gli hub di notifica in ordine tooreceive notifiche push.
+title: Gestione delle registrazioni
+description: In questo argomento viene illustrato come registrare i dispositivi con gli hub di notifica al fine di ricevere notifiche push.
 services: notification-hubs
 documentationcenter: .net
 author: ysxu
@@ -14,34 +14,34 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: yuaxu
-ms.openlocfilehash: 76471a45c7a0da1614ceed82b73cdb3319979ff7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a1a349150ef4c7837932706f0c4fcc8d022ec7ab
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="registration-management"></a>Gestione delle registrazioni
 ## <a name="overview"></a>Panoramica
-In questo argomento viene illustrato come dispositivi tooregister con gli hub di notifica in ordine tooreceive notifiche push. argomento Hello descrive le registrazioni a un livello elevato, quindi introduce hello due modelli principali per la registrazione di dispositivi: la registrazione dal dispositivo hello direttamente toohello hub di notifica e la registrazione tramite un back-end dell'applicazione. 
+In questo argomento viene illustrato come registrare i dispositivi con gli hub di notifica al fine di ricevere notifiche push. Vengono descritte le registrazioni a livello generale, quindi sono presentati i due modelli principali per la registrazione dei dispositivi: la registrazione dal dispositivo direttamente nell'hub di notifica e la registrazione tramite un back-end dell'applicazione. 
 
 ## <a name="what-is-device-registration"></a>Che cos'è la registrazione di un dispositivo
 La registrazione del dispositivo con un hub di notifica viene eseguita tramite una **registrazione** o un'**installazione**.
 
 #### <a name="registrations"></a>Registrazioni
-Una registrazione associa hello servizio notifica piattaforma (PNS) handle per un dispositivo con tag e possibilmente un modello. handle PNS Hello potrebbe essere un ChannelURI, token del dispositivo o l'id registrazione GCM. I tag vengono utilizzati tooroute notifiche toohello set corretto di handle di dispositivo. Per altre informazioni, vedere [Routing ed espressioni tag](notification-hubs-tags-segment-push-message.md). I modelli sono tooimplement utilizzati per ogni registrazione trasformazione. Per altre informazioni, vedere [Modelli](notification-hubs-templates-cross-platform-push-messages.md).
+La registrazione associa l'handle del servizio di notifica della piattaforma (PNS) per un dispositivo con tag ed eventualmente un modello. L'handle PNS può essere un valore di ChannelURI, un token di dispositivo o un ID di registrazione GCM. I tag vengono usati per instradare le notifiche al set corretto di handle di dispositivo. Per altre informazioni, vedere [Routing ed espressioni tag](notification-hubs-tags-segment-push-message.md). I modelli vengono usati per implementare una trasformazione a livello di singola registrazione. Per altre informazioni, vedere [Modelli](notification-hubs-templates-cross-platform-push-messages.md).
 
 #### <a name="installations"></a>Installazioni
-Un'installazione è una registrazione avanzata che include un contenitore di proprietà correlate al push. È hello tooregistering approccio migliore e più recenti dei dispositivi. Tuttavia, non è supportato dall’SDK .NET lato client ([SDK dell’hub di notifica per le operazioni di back-end](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/)), per adesso.  Ciò significa che se si sta registrando dal dispositivo client hello stesso, sarebbe necessario hello toouse [API REST degli hub di notifica](https://msdn.microsoft.com/library/mt621153.aspx) approccio toosupport installazioni. Se si utilizza un servizio back-end, dovrebbe essere in grado di toouse [SDK di Hub di notifica per le operazioni di back-end](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/).
+Un'installazione è una registrazione avanzata che include un contenitore di proprietà correlate al push. È comunque l'approccio migliore e più recente alla registrazione dei dispositivi. Tuttavia, non è supportato dall’SDK .NET lato client ([SDK dell’hub di notifica per le operazioni di back-end](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/)), per adesso.  Questo significa che in caso di registrazione dal dispositivo client stesso, è necessario utilizzare l’approccio [API REST hub di notifica](https://msdn.microsoft.com/library/mt621153.aspx) per supportare le installazioni. Se si utilizza un servizio di back-end, è possibile utilizzare l’ [SDK dell’hub di notifica per le operazioni di back-end](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/).
 
-di seguito Hello sono alcune installazioni toousing vantaggi chiave:
+Ecco alcuni vantaggi chiave dell'uso delle installazioni:
 
 * La creazione o l'aggiornamento di un'installazione è completamente idempotente. È quindi possibile riprovare a eseguire l'operazione senza preoccuparsi di registrazioni duplicate.
-* il modello di installazione di Hello rende facile toodo singoli push - destinazione dispositivo specifico. Un tag di sistema **"$InstallationId:[installationId]"** viene aggiunto automaticamente con ogni registrazione basata su un'installazione. Pertanto, è possibile chiamare tootarget di tag toothis una trasmissione un dispositivo specifico senza toodo qualsiasi codifica aggiuntiva.
-* Utilizzo di installazioni consente inoltre si toodo parziale gli aggiornamenti di registrazione. Hello aggiornamento parziale di un'installazione viene richiesta con un metodo PATCH utilizzando hello [standard JSON Patch](https://tools.ietf.org/html/rfc6902). Ciò è particolarmente utile quando si desidera che il tag tooupdate registrazione hello. Non hai toopull registrazione intera hello verso il basso e quindi di inviare nuovamente tutti i tag precedente hello.
+* Il modello di installazione semplifica l'esecuzione di singoli push destinati a un dispositivo specifico. Un tag di sistema **"$InstallationId:[installationId]"** viene aggiunto automaticamente con ogni registrazione basata su un'installazione. È quindi possibile chiamare un'operazione di invio a questo tag per fare riferimento a un dispositivo specifico senza dover scrivere codice aggiuntivo.
+* L'uso delle installazioni consente inoltre di eseguire aggiornamenti parziali delle registrazioni. L'aggiornamento parziale di un'installazione è richiesto con un metodo PATCH che usa lo [standard JSON-Patch](https://tools.ietf.org/html/rfc6902). Questo è particolarmente utile quando si desidera aggiornare i tag nella registrazione. Non è necessario disattivare l'intera registrazione e quindi inviare di nuovo tutti i tag precedenti.
 
-Un'installazione può contenere hello hello le proprietà seguenti. Per un elenco completo delle proprietà di installazione hello, vedere [creare o sovrascrivere un'installazione con l'API REST](https://msdn.microsoft.com/library/azure/mt621153.aspx) o [le proprietà di installazione](https://msdn.microsoft.com/library/azure/microsoft.azure.notificationhubs.installation_properties.aspx) per hello.
+Un'installazione può contenere le proprietà seguenti. Per un elenco completo delle proprietà di installazione, vedere [Creare o sovrascrivere un'installazione con API REST](https://msdn.microsoft.com/library/azure/mt621153.aspx) o [Proprietà Installation](https://msdn.microsoft.com/library/azure/microsoft.azure.notificationhubs.installation_properties.aspx).
 
-    // Example installation format tooshow some supported properties
+    // Example installation format to show some supported properties
     {
         installationId: "",
         expirationTime: "",
@@ -77,37 +77,37 @@ Un'installazione può contenere hello hello le proprietà seguenti. Per un elenc
 
 
 
-È importante toonote che le registrazioni e le installazioni per impostazione predefinita non scadono.
+È importante notare che le registrazioni e le installazioni non scadono più per impostazione predefinita.
 
-Le registrazioni e le installazioni devono contenere un handle PNS valido per ogni dispositivo/canale. Poiché in un'app client sul dispositivo hello è possibile ottenere solo gli handle PNS, un modello è tooregister direttamente sul dispositivo con app client hello. Hello altri logica di business e considerazioni sulla sicurezza, disponibilità correlati tootags potrebbero richiedere la registrazione del dispositivo toomanage in hello app back-end. 
+Le registrazioni e le installazioni devono contenere un handle PNS valido per ogni dispositivo/canale. Poiché gli handle PNS possono essere ottenuti solo in un'app client sul dispositivo, un modello consiste nell'eseguire la registrazione direttamente sul dispositivo con l'app client. D'altra parte, le considerazioni sulla sicurezza e la logica di business relativa ai tag potrebbero richiedere di gestire la registrazione del dispositivo nel back-end dell'app. 
 
 #### <a name="templates"></a>Modelli
-Se si desidera toouse [modelli](notification-hubs-templates-cross-platform-push-messages.md), installazione dispositivo hello contenere anche tutti i modelli associati al dispositivo in un formato JSON di formato (vedere l'esempio precedente). Hello i nomi dei modelli indirizzare modelli diversi per hello stesso dispositivo.
+Se si desidera usare [modelli](notification-hubs-templates-cross-platform-push-messages.md), l'installazione del dispositivo contiene anche tutti i modelli associati al dispositivo in un formato JSON (vedere l'esempio precedente). I nomi dei modelli consentono di usare diversi modelli per lo stesso dispositivo.
 
-Si noti che ogni nome di modello esegue il mapping tooa corpo del modello e un insieme facoltativo di tag. Inoltre, ogni piattaforma può avere ulteriori proprietà del modello. Per Windows Store (con WNS) e Windows Phone 8 (tramite MPNS), un altro set di intestazioni può far parte del modello di hello. Nel caso di hello di APN, è possibile impostare un'espressione di modello costante o tooa un tooeither di proprietà di scadenza. Per un elenco completo delle proprietà di installazione hello, vedere [creare o sovrascrivere un'installazione con REST](https://msdn.microsoft.com/library/azure/mt621153.aspx) argomento.
+Si noti che il nome di ogni modello è associato al corpo di un modello e a un set di tag facoltativo. Inoltre, ogni piattaforma può avere ulteriori proprietà del modello. Per Windows Store (che usa WNS) e Windows Phone 8 (che usa MPNS), un set di intestazioni aggiuntivo può far parte del modello. Nel caso degli APN, è possibile impostare una proprietà di scadenza su una costante o un'espressione del modello. Per un elenco completo delle proprietà di installazione, vedere l'argomento [Creare o sovrascrivere un'installazione con REST](https://msdn.microsoft.com/library/azure/mt621153.aspx) .
 
 #### <a name="secondary-tiles-for-windows-store-apps"></a>Riquadri secondari per le app di Windows Store
-Per le applicazioni client di Windows Store, l'invio di notifiche toosecondary riquadri è hello stesso come inviarli toohello primario. Questo è supportato anche nelle installazioni. Si noti che i riquadri secondari un URI di canale diversi, quali hello SDK nella tua app client gestisce in modo trasparente.
+Per le applicazioni client di Windows Store, inviare notifiche ai riquadri secondari equivale a inviarle a quello primario. Questo è supportato anche nelle installazioni. Si noti che i riquadri secondari hanno un diverso ChannelUri, che viene gestito in modo trasparente dall'SDK nell'app client.
 
-Hello SecondaryTiles dizionario Usa hello stesso ID di riquadro che è usato toocreate hello SecondaryTiles oggetto nell'app di Windows Store.
-Come con hello canale primario, Channeluri dei riquadri secondari è possibile modificare in qualsiasi momento. Nelle installazioni di hello ordine tookeep nell'hub di notifica hello aggiornato, il dispositivo hello necessario aggiornarli con hello Channeluri correnti dei riquadri secondari hello.
+Il dizionario SecondaryTiles usa lo stesso TileId che viene usato per creare l'oggetto SecondaryTiles nell'app di Windows Store.
+Come nel caso del valore ChannelUri primario, i valori ChannelUri dei riquadri secondari possono cambiare in qualsiasi momento. Per mantenere aggiornate le installazioni nell'hub di notifica, il dispositivo deve aggiornarle con i valori ChannelUri correnti dei riquadri secondari.
 
-## <a name="registration-management-from-hello-device"></a>Gestione delle registrazioni dal dispositivo hello
-Per la gestione di registrazione del dispositivo da applicazioni client, hello di back-end è responsabile per l'invio di notifiche. Le applicazioni client mantenere i propri handle PNS backup toodate e registra i tag. Hello seguente immagine illustra questo modello.
+## <a name="registration-management-from-the-device"></a>Gestione delle registrazioni dal dispositivo
+Quando si gestisce la registrazione del dispositivo dalle app client, il back-end è responsabile solo dell'invio delle notifiche. Le app client mantengono aggiornati gli handle PNS e registrano i tag. Questo modello è illustrato nell'immagine seguente.
 
 ![](./media/notification-hubs-registration-management/notification-hubs-registering-on-device.png)
 
-dispositivo Hello prima recupera hello handle PNS da hello PNS, quindi Registra con hub di notifica hello direttamente. Dopo la registrazione di hello ha esito positivo, back-end app hello può inviare una notifica che la registrazione di destinazione. Per ulteriori informazioni su come toosend notifiche, vedere [Routing ed espressioni Tag](notification-hubs-tags-segment-push-message.md).
-Si noti che in questo caso, si utilizzerà restare in ascolto solo tooaccess diritti da dispositivo hello gli hub di notifica. Per altre informazioni, vedere [Sicurezza](notification-hubs-push-notification-security.md).
+Il dispositivo recupera l'handle PNS dal PNS, quindi esegue la registrazione direttamente con l'hub di notifica. Una volta che la registrazione ha esito positivo, il back-end dell'app può inviare una notifica relativa alla registrazione. Per altre informazioni su come inviare le notifiche, vedere [Routing ed espressioni tag](notification-hubs-tags-segment-push-message.md).
+Si noti che in questo caso si useranno solo i diritti Listen per accedere agli hub di notifica dal dispositivo. Per altre informazioni, vedere [Sicurezza](notification-hubs-push-notification-security.md).
 
-La registrazione dal dispositivo hello è il metodo più semplice di hello, ma presenta alcuni svantaggi.
-primo svantaggio Hello è che un'app client può aggiornare solo i tag quando app hello è attiva. Ad esempio, se un utente dispone di due dispositivi che registrano i team toosport correlati di tag, al primo dispositivo hello della registrazione per un tag aggiuntivo (ad esempio, Seahawks), hello secondo dispositivo non riceverà notifiche hello su hello Seahawks fino a quando l'applicazione hello in hello secondo dispositivo viene eseguita una seconda volta. Più in generale, quando i tag sono interessati più dispositivi, la gestione dei tag dal back-end hello è un'opzione utile.
-Hello secondo svantaggio di gestione di registrazione da app client hello al fatto che, poiché possono essere attaccate App, proteggere registrazione hello toospecific tag richiede prestare particolare attenzione, come illustrato nella sezione hello "sicurezza a livello di Tag."
+La registrazione dal dispositivo è il metodo più semplice, ma presenta alcuni svantaggi.
+Il primo svantaggio è che un'app client può aggiornare solo i propri tag quando l'app è attiva. Ad esempio, se un utente dispone di due dispositivi che registrano tag relativi a squadre sportive, quando il primo dispositivo esegue la registrazione per un ulteriore tag (ad esempio, i Seahawk), il secondo dispositivo non riceverà le notifiche relative ai Seahawk finché l'app nel secondo dispositivo non viene eseguita una seconda volta. Più in generale, quando i tag interessano più dispositivi, la gestione dei tag dal back-end rappresenta una soluzione migliore.
+Il secondo svantaggio della gestione delle registrazioni dall'app client è che, poiché le applicazioni possono essere oggetto di un attacco, proteggere la registrazione tramite tag specifici richiede particolare attenzione, come illustrato nella sezione "Sicurezza a livello di tag".
 
-#### <a name="example-code-tooregister-with-a-notification-hub-from-a-device-using-an-installation"></a>Tooregister codice di esempio con un hub di notifica da un dispositivo utilizzando un'installazione
-In questo momento, è supportata solo tramite hello [API REST degli hub di notifica](https://msdn.microsoft.com/library/mt621153.aspx).
+#### <a name="example-code-to-register-with-a-notification-hub-from-a-device-using-an-installation"></a>Codice di esempio per la registrazione con un hub di notifica da un dispositivo tramite un'installazione
+Al momento, questa operazione è supportata solo tramite l' [API REST degli hub di notifica](https://msdn.microsoft.com/library/mt621153.aspx).
 
-È inoltre possibile utilizzare il metodo di PATCH hello utilizzando hello [standard JSON Patch](https://tools.ietf.org/html/rfc6902) di aggiornamento di installazione di hello.
+È inoltre possibile usare il metodo PATCH tramite lo [standard JSON-Patch](https://tools.ietf.org/html/rfc6902) per l'aggiornamento dell'installazione.
 
     class DeviceInstallation
     {
@@ -128,7 +128,7 @@ In questo momento, è supportata solo tramite hello [API REST degli hub di notif
         string hubResource = "installations/" + deviceInstallation.installationId + "?";
         string apiVersion = "api-version=2015-04";
 
-        // Determine hello targetUri that we will sign
+        // Determine the targetUri that we will sign
         string uri = connectionSaSUtil.Endpoint + hubName + "/" + hubResource + apiVersion;
 
         //=== Generate SaS Security Token for Authorization header ===
@@ -186,17 +186,17 @@ In questo momento, è supportata solo tramite hello [API REST degli hub di notif
 
 
 
-#### <a name="example-code-tooregister-with-a-notification-hub-from-a-device-using-a-registration"></a>Tooregister codice di esempio con un hub di notifica da un dispositivo utilizzando una registrazione
-Questi metodi, creare o aggiornare una registrazione per il dispositivo hello in cui vengono chiamati. Ciò significa che, in ordine tooupdate hello handle o hello tag, è necessario sovrascrivere registrazione intera hello. Tenere presente che le registrazioni sono temporanee, pertanto è necessario disporre di un archivio affidabile con i tag correnti hello che necessita di un dispositivo specifico.
+#### <a name="example-code-to-register-with-a-notification-hub-from-a-device-using-a-registration"></a>Codice di esempio per la registrazione con un hub di notifica da un dispositivo tramite una registrazione
+Questi metodi creano o aggiornano una registrazione per il dispositivo in cui vengono chiamati. Ciò significa che, per aggiornare l'handle o i tag, è necessario sovrascrivere l'intera registrazione. Tenere presente che le registrazioni sono temporanee, quindi è necessario disporre sempre di un archivio affidabile con i tag correnti necessari per il dispositivo specifico.
 
-    // Initialize hello Notification Hub
+    // Initialize the Notification Hub
     NotificationHubClient hub = NotificationHubClient.CreateClientFromConnectionString(listenConnString, hubName);
 
-    // hello Device id from hello PNS
+    // The Device id from the PNS
     var pushChannel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
 
-    // If you are registering from hello client itself, then store this registration id in device
-    // storage. Then when hello app starts, you can check if a registration id already exists or not before
+    // If you are registering from the client itself, then store this registration id in device
+    // storage. Then when the app starts, you can check if a registration id already exists or not before
     // creating.
     var settings = ApplicationData.Current.LocalSettings.Values;
 
@@ -240,21 +240,21 @@ Questi metodi, creare o aggiornare una registrazione per il dispositivo hello in
 
 
 ## <a name="registration-management-from-a-backend"></a>Gestione delle registrazioni da un back-end
-La gestione delle registrazioni dal back-end hello richiede che venga scritto codice aggiuntivo. app Hello dal dispositivo hello è necessario fornire hello back-end toohello di handle PNS aggiornati a ogni avvio applicazione hello (insieme ai tag e i modelli) e back-end hello è necessario aggiornare questo handle sull'hub di notifica hello. Hello seguente immagine illustra la progettazione.
+La gestione delle registrazioni dal back-end richiede la scrittura di codice aggiuntivo. L'app dal dispositivo deve fornire l'handle PNS aggiornato al back-end a ogni avvio dell'app (insieme ai tag e ai modelli) e il back-end deve aggiornare tale handle nell'hub di notifica. Questa progettazione è illustrata nell'immagine seguente.
 
 ![](./media/notification-hubs-registration-management/notification-hubs-registering-on-backend.png)
 
-i vantaggi di Hello della gestione delle registrazioni dal back-end hello includono hello possibilità toomodify tag tooregistrations anche quando l'applicazione corrispondente hello sul dispositivo hello è inattivo e tooauthenticate hello client app prima di aggiungere una registrazione tooits tag.
+I vantaggi della gestione delle registrazioni dal back-end includono la possibilità di modificare i tag delle registrazioni anche quando l'app corrispondente nel dispositivo è inattiva e di autenticare l'app client prima di aggiungere un tag alla relativa registrazione.
 
-#### <a name="example-code-tooregister-with-a-notification-hub-from-a-backend-using-an-installation"></a>Tooregister codice di esempio con un hub di notifica da un back-end di un'installazione
-dispositivo client Hello ottiene comunque il pns e le proprietà di installazione rilevanti come prima e chiama un'API personalizzata nel back-end hello che consente di eseguire la registrazione di hello e autorizzare i tag back-end hello e così via può sfruttare hello [SDK di Hub di notifica per le operazioni di back-end](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/).
+#### <a name="example-code-to-register-with-a-notification-hub-from-a-backend-using-an-installation"></a>Codice di esempio per la registrazione con un hub di notifica da un back-end tramite un'installazione
+Il dispositivo client ottiene ancora il relativo handle PNS e le proprietà di installazione rilevanti come prima e chiama un'API personalizzata nel back-end che può eseguire la registrazione, autorizzare i tag e così via. Il back-end può sfruttare l'[SDK degli hub di notifica per le operazioni di back-end](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/).
 
-È inoltre possibile utilizzare il metodo di PATCH hello utilizzando hello [standard JSON Patch](https://tools.ietf.org/html/rfc6902) di aggiornamento di installazione di hello.
+È inoltre possibile usare il metodo PATCH tramite lo [standard JSON-Patch](https://tools.ietf.org/html/rfc6902) per l'aggiornamento dell'installazione.
 
-    // Initialize hello Notification Hub
+    // Initialize the Notification Hub
     NotificationHubClient hub = NotificationHubClient.CreateClientFromConnectionString(listenConnString, hubName);
 
-    // Custom API on hello backend
+    // Custom API on the backend
     public async Task<HttpResponseMessage> Put(DeviceInstallation deviceUpdate)
     {
 
@@ -282,7 +282,7 @@ dispositivo client Hello ottiene comunque il pns e le proprietà di installazion
         }
 
 
-        // In hello backend we can control if a user is allowed tooadd tags
+        // In the backend we can control if a user is allowed to add tags
         //installation.Tags = new List<string>(deviceUpdate.Tags);
         //installation.Tags.Add("username:" + username);
 
@@ -292,12 +292,12 @@ dispositivo client Hello ottiene comunque il pns e le proprietà di installazion
     }
 
 
-#### <a name="example-code-tooregister-with-a-notification-hub-from-a-device-using-a-registration-id"></a>Tooregister codice di esempio con un hub di notifica da un dispositivo utilizzando un id di registrazione
-Dal back-end dell'app è possibile eseguire operazioni CRUD di base sulle registrazioni. ad esempio:
+#### <a name="example-code-to-register-with-a-notification-hub-from-a-device-using-a-registration-id"></a>Codice di esempio per la registrazione con un hub di notifica da un dispositivo tramite un ID di registrazione
+Dal back-end dell'app è possibile eseguire operazioni CRUD di base sulle registrazioni. Ad esempio:
 
     var hub = NotificationHubClient.CreateClientFromConnectionString("{connectionString}", "hubName");
 
-    // create a registration description object of hello correct type, e.g.
+    // create a registration description object of the correct type, e.g.
     var reg = new WindowsRegistrationDescription(channelUri, tags);
 
     // Create
@@ -316,5 +316,5 @@ Dal back-end dell'app è possibile eseguire operazioni CRUD di base sulle regist
     await hub.DeleteRegistrationAsync(r);
 
 
-back-end Hello deve gestire la concorrenza tra gli aggiornamenti di registrazione. Il bus di servizio offre il controllo della concorrenza ottimistica per la gestione delle registrazioni. A livello di hello HTTP, questo viene implementato utilizzando hello ETag sulle operazioni di gestione di registrazione. Questa funzionalità viene usata in modo trasparente dagli SDK Microsoft, che generano un'eccezione se un aggiornamento viene rifiutato a causa della concorrenza. back-end app Hello è responsabile per la gestione delle eccezioni e nuovo tentativo di aggiornamento hello se necessario.
+Il back-end deve gestire la concorrenza tra gli aggiornamenti delle registrazioni. Il bus di servizio offre il controllo della concorrenza ottimistica per la gestione delle registrazioni. A livello HTTP, questo viene implementato attraverso l'uso di ETag sulle operazioni di gestione delle registrazioni. Questa funzionalità viene usata in modo trasparente dagli SDK Microsoft, che generano un'eccezione se un aggiornamento viene rifiutato a causa della concorrenza. Il backend dell'app è responsabile della gestione di queste eccezioni e dei nuovi tentativi di aggiornamento, se necessario.
 

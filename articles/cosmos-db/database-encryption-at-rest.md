@@ -14,57 +14,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/23/2017
 ms.author: voellm
-ms.openlocfilehash: d52d55fe45fdd18394166ec7ccd6e46e8f8f434b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d8967d4504a8ccabb444c7f3d5635e2d00f287c5
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-cosmos-db-database-encryption-at-rest"></a>Crittografia di dati inattivi del database in Azure Cosmos DB
 
-Crittografia è una frase che in genere fa riferimento toohello crittografia dei dati sui dispositivi di archiviazione non volatili, ad esempio unità (SSD Solid) a stato solido e unità disco rigido (HDD). Cosmos DB archivia i propri database primari su SSD. Gli allegati multimediali e i backup vengono memorizzati nell'archiviazione BLOB di Azure, di cui in genere si esegue il backup su HDD. Con versione di hello di crittografia per Cosmos DB, vengono crittografati tutti i database, gli allegati di supporti e i backup. I dati ora vengono crittografati in transito (sulla rete hello) e a inattivi (volatile), fornire la crittografia end-to-end.
+Il termine "crittografia di dati inattivi" denota in genere la crittografia dei dati su dispositivi di archiviazione non volatili, come ad esempio unità a stato solido (SSD) e dischi rigidi (HDD). Cosmos DB archivia i propri database primari su SSD. Gli allegati multimediali e i backup vengono memorizzati nell'archiviazione BLOB di Azure, di cui in genere si esegue il backup su HDD. Con il rilascio della crittografia di dati inattivi per Cosmos DB, tutti i database, gli allegati multimediali e i backup vengono ora crittografati. Vengono crittografati sia i dati in transito (attraverso la rete), sia quelli inattivi (memoria non volatile), fornendo una crittografia end-to-end.
 
-Come un servizio PaaS, Cosmos DB è toouse molto semplice. Poiché tutti i dati utente archiviati nel database Cosmos vengono crittografati a riposo e nel trasporto, non è tootake alcuna azione. Un altro modo tooput ciò è che la crittografia a rest è "on" per impostazione predefinita. Non esistono alcun tooturn controlli, o disattivare. È fornire questa funzionalità, continuando invece toomeet nostri [i contratti di servizio a disponibilità e prestazioni](https://azure.microsoft.com/support/legal/sla/cosmos-db).
+In qualità di servizio PaaS, Cosmos DB è molto facile da usare. Poiché tutti i dati utente archiviati in Cosmos DB sono crittografati sia quando sono inattivi che in transito, non è necessario intraprendere alcuna azione. In altre parole, per impostazione predefinita, la crittografia dei dati inattivi è attiva. Non è possibile attivarla o disattivarla. Tale funzionalità è offerta nel soddisfare [i contratti di servizio relativi a disponibilità e prestazioni](https://azure.microsoft.com/support/legal/sla/cosmos-db).
 
 ## <a name="implement-encryption-at-rest"></a>Implementare la crittografia di dati inattivi
 
-La crittografia dei dati inattivi viene implementata attraverso una serie di tecnologie di protezione, inclusi i sistemi di archiviazione protetta delle chiavi, le reti crittografate e le API di crittografia. I sistemi che decrittografano ed elaborano i dati includono toocommunicate i sistemi di gestione delle chiavi. Hello è illustrata la modalità di separazione di archiviazione di gestione di dati e hello crittografata delle chiavi. 
+La crittografia dei dati inattivi viene implementata attraverso una serie di tecnologie di protezione, inclusi i sistemi di archiviazione protetta delle chiavi, le reti crittografate e le API di crittografia. I sistemi che decrittografano ed elaborano i dati devono comunicare con i sistemi di gestione delle chiavi. Il diagramma mostra come viene separata l'archiviazione dei dati crittografati e la gestione delle chiavi. 
 
 ![Diagramma di progettazione](./media/database-encryption-at-rest/design-diagram.png)
 
-flusso di base di una richiesta utente Hello è come segue:
-- account del database utente Hello è ora pronta e chiavi di archiviazione vengono recuperate tramite un Provider di risorse del servizio di gestione di toohello richiesta.
-- Un utente crea una connessione tooCosmos DB, tramite il trasporto HTTPS/protetto. (dettagli di hello astratta SDK hello).
-- utente Hello invia un toobe documento JSON archiviati su hello connessione sicura creata in precedenza.
-- documento JSON Hello è indicizzata, a meno che l'utente hello ha disattivato l'indicizzazione.
-- Hello documento JSON sia i dati dell'indice vengono scritti toosecure archiviazione.
-- Periodicamente, i dati vengono lettura dall'archiviazione sicura hello e backup toohello archivio Blob di Azure crittografato.
+Il flusso di base di una richiesta dell'utente è il seguente:
+- L'account del database utente viene preparato e le chiavi di archiviazione vengono recuperate tramite una richiesta al provider di risorse del servizio di gestione.
+- Un utente crea una connessione ad Azure Cosmos DB tramite il trasporto HTTPS/protetto; gli SDK consentono di estrapolare i dettagli.
+- L'utente invia un documento JSON da archiviare tramite la connessione protetta creata in precedenza.
+- Il documento JSON è indicizzato, a meno che l'utente non abbia disabilitato l'indicizzazione.
+- Sia il documento JSON sia i dati dell'indice vengono scritti in un archivio protetto.
+- Periodicamente i dati vengono letti dalla risorsa di archiviazione protetta e viene eseguito il backup nell'archivio BLOB crittografato di Azure.
 
 ## <a name="frequently-asked-questions"></a>Domande frequenti
 
 ### <a name="q-how-much-more-does-azure-storage-cost-if-storage-service-encryption-is-enabled"></a>D: A quanto ammonta il costo aggiuntivo dell'Archiviazione di Azure se si abilita la crittografia del servizio di archiviazione?
 R: Non sono previsti costi aggiuntivi.
 
-### <a name="q-who-manages-hello-encryption-keys"></a>D: chi gestisce le chiavi di crittografia hello?
-R: le chiavi di hello vengono gestite da Microsoft.
+### <a name="q-who-manages-the-encryption-keys"></a>D: Chi gestisce le chiavi di crittografia?
+R: Le chiavi vengono gestite da Microsoft.
 
 ### <a name="q-how-often-are-encryption-keys-rotated"></a>D: Con quale frequenza vengono ruotate le chiavi di crittografia?
-R: Microsoft ha un set di linee guida interne per la rotazione della chiave di crittografia che segue Cosmos DB. linee guida specifiche Hello non vengono pubblicate. Microsoft pubblica hello [Security Development Lifecycle (SDL)](https://www.microsoft.com/sdl/default.aspx), che viene considerata come un subset di indicazioni interno e dispone di procedure consigliate utili per gli sviluppatori.
+R: Microsoft ha un set di linee guida interne per la rotazione della chiave di crittografia che segue Cosmos DB. Le linee guida specifiche non vengono pubblicate. Microsoft pubblica il [Security Development Lifecycle (SDL)](https://www.microsoft.com/sdl/default.aspx), che viene considerato un subset di linee guida interne e include procedure consigliate utili per gli sviluppatori.
 
 ### <a name="q-can-i-use-my-own-encryption-keys"></a>D: È possibile usare le proprie chiavi di crittografia?
-R: cosmos DB è un servizio PaaS e abbiamo lavorato tookeep rigido hello servizio facile toouse. Spesso questa domanda viene usata come domanda di proxy per soddisfare un requisito conformità come PCI-DSS. Come parte della creazione di questa funzionalità, abbiamo collaborato con tooensure i revisori di conformità che i clienti che utilizzano DB Cosmos soddisfano i requisiti senza hello necessità toomanage stesse chiavi.
-Di conseguenza, è attualmente non sono disponibili agli utenti hello opzione tooburden autonomamente con la gestione delle chiavi.
+R: Cosmos DB è un servizio PaaS e l'intento è quello di garantire la semplicità d'uso. Spesso questa domanda viene usata come domanda di proxy per soddisfare un requisito conformità come PCI-DSS. Nell'ambito della compilazione di questa funzionalità, la collaborazione con i revisori della conformità consente ai clienti che usano Cosmos DB di soddisfare i propri requisiti senza dover gestire personalmente le chiavi.
+Di conseguenza attualmente non viene offerta agli utenti la possibilità di farsi carico dell'onere di gestione delle chiavi.
 
 ### <a name="q-what-regions-have-encryption-turned-on"></a>D: In quali aree è attiva la crittografia?
 R: La crittografia è attiva in tutte le aree di Azure Cosmos DB per tutti i dati utente.
 
-### <a name="q-does-encryption-affect-hello-performance-latency-and-throughput-slas"></a>D: crittografia influiscono sulla latenza di prestazioni hello e velocità effettiva i contratti di servizio?
-R: non è Nessun impatto o modifiche toohello delle prestazioni i contratti di servizio dopo che la crittografia inattivi è abilitata per tutti gli account nuovi ed esistenti. Altre informazioni su hello [contratto di servizio per Cosmos DB](https://azure.microsoft.com/support/legal/sla/cosmos-db) pagina garanzie di toosee hello più recente.
+### <a name="q-does-encryption-affect-the-performance-latency-and-throughput-slas"></a>D: La crittografia influisce sui contratti di servizio per latenza delle prestazioni e velocità effettiva?
+R: Non si registrano impatti o modifiche in relazione ai contratti di servizio per le prestazioni ora che la crittografia dei dati inattivi è abilitata per tutti gli account nuovi ed esistenti. Per altre informazioni sulle garanzie più recenti, vedere il [Contratto di servizio per Azure Cosmos DB](https://azure.microsoft.com/support/legal/sla/cosmos-db).
 
-### <a name="q-does-hello-local-emulator-support-encryption-at-rest"></a>D: emulatore locale hello supporta crittografia?
-R: emulatore di hello è uno strumento di sviluppo/test autonomo e non utilizza i servizi di gestione delle chiavi hello che hello usato dal servizio Cosmos DB gestito. Il Consiglio è tooenable BitLocker sulle unità in cui si archiviano dati di test sensibili emulatore. Hello [emulatore supporta la modifica delle directory dati predefinita di hello](local-emulator.md) oppure utilizzare un percorso noto.
+### <a name="q-does-the-local-emulator-support-encryption-at-rest"></a>D: L'emulatore locale supporta la crittografia dei dati inattivi?
+R: L'emulatore è uno strumento di sviluppo e test autonomo e non usa i servizi di gestione delle chiavi usati dal servizio gestito di Cosmos DB. È consigliabile abilitare BitLocker sulle unità in cui si archiviano i dati di test sensibili dell'emulatore. L'[emulatore supporta la modifica nella directory di dati predefinita](local-emulator.md) e usa un percorso noto.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per una panoramica della sicurezza Cosmos DB e i miglioramenti più recenti di hello, vedere [la protezione del database di Azure Cosmos DB](database-security.md).
-Per ulteriori informazioni su certificazioni Microsoft, vedere hello [Azure Trust Center](https://azure.microsoft.com/en-us/support/trust-center/).
+Per una panoramica della sicurezza di Cosmos DB e dei miglioramenti più recenti, vedere [Sicurezza database di Azure Cosmos DB](database-security.md).
+Per altre informazioni sulle certificazioni Microsoft, vedere il [Centro protezione di Azure](https://azure.microsoft.com/en-us/support/trust-center/).

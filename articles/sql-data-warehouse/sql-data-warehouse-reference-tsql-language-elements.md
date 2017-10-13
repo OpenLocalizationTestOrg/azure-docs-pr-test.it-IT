@@ -1,6 +1,6 @@
 ---
-title: elementi del linguaggio Transact-SQL di Data Warehouse aaaSQL | Documenti Microsoft
-description: Elenco di collegamenti tooreference contenuti per elementi del linguaggio Transact-SQL hello utilizzato per SQL Data Warehouse.
+title: Elementi del linguaggio Transact-SQL per SQL Data Warehouse | Documentazione Microsoft
+description: Elenco di collegamenti a contenuto di riferimento per gli elementi del linguaggio Transact-SQL usati per SQL Data Warehouse.
 services: sql-data-warehouse
 documentationcenter: NA
 author: kevinvngo
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: reference
 ms.date: 10/31/2016
 ms.author: kevin;barbkess
-ms.openlocfilehash: db7500b2a1f69a9e3dccddafd27a9cd0d95f9baf
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7a20cd8f3c2f304d12a49755dbe6e04f9b1d36df
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="language-elements"></a>Elementi del linguaggio
 ## <a name="core-elements"></a>Elementi principali
@@ -57,13 +57,13 @@ ms.lasthandoff: 10/06/2017
 * [/ (Divisione)](https://msdn.microsoft.com/library/ms175009.aspx)
 * [Modulo](https://msdn.microsoft.com/library/ms190279.aspx)
 
-## <a name="wildcard-characters-toomatch"></a>Toomatch caratteri jolly
+## <a name="wildcard-characters-to-match"></a>Caratteri jolly con cui trovare una corrispondenza
 * [= (Uguale a)](https://msdn.microsoft.com/library/ms175118.aspx)
 * [> (Maggiore di)](https://msdn.microsoft.com/library/ms178590.aspx)
 * [< (Minore di)](https://msdn.microsoft.com/library/ms179873.aspx)
-* [&gt;= (Maggiore o uguale a)](https://msdn.microsoft.com/library/ms181567.aspx)
-* [&lt;= (Minore o uguale a)](https://msdn.microsoft.com/library/ms174978.aspx)
-* [&lt;&gt; (Diverso da)](https://msdn.microsoft.com/library/ms176020.aspx)
+* [>= (Maggiore o uguale a)](https://msdn.microsoft.com/library/ms181567.aspx)
+* [<= (Minore o uguale a)](https://msdn.microsoft.com/library/ms174978.aspx)
+* [<> (Diverso da)](https://msdn.microsoft.com/library/ms176020.aspx)
 * [!= (Diverso da)](https://msdn.microsoft.com/library/ms190296.aspx)
 * [AND](https://msdn.microsoft.com/library/ms188372.aspx)
 * [BETWEEN](https://msdn.microsoft.com/library/ms187922.aspx)
@@ -81,7 +81,7 @@ ms.lasthandoff: 10/06/2017
 * [~ (NOT bit per bit)](https://msdn.microsoft.com/library/ms173468.aspx)
 * [^= (OR EQUALS esclusivo bit per bit)](https://msdn.microsoft.com/library/cc627413.aspx)
 * [|= (OR EQUALS bit per bit)](https://msdn.microsoft.com/library/cc627409.aspx)
-* [&amp;= (AND EQUALS bit per bit)](https://msdn.microsoft.com/library/cc627427.aspx)
+* [&= (AND EQUALS bit per bit)](https://msdn.microsoft.com/library/cc627427.aspx)
 
 ## <a name="functions"></a>Funzioni
 * [@@DATEFIRST](https://msdn.microsoft.com/library/ms187766.aspx)

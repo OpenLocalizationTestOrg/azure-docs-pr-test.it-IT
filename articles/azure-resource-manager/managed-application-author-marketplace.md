@@ -1,6 +1,6 @@
 ---
-title: aaaAzure gestite le applicazioni in hello Marketplace | Documenti Microsoft
-description: Viene descritto Azure gestite le applicazioni che sono disponibili tramite hello Marketplace.
+title: Applicazioni gestite di Azure nel Marketplace| Microsoft Docs
+description: Descrive le applicazioni gestite di Azure disponibili tramite il Marketplace.
 services: azure-resource-manager
 author: ravbhatnagar
 manager: rjmax
@@ -10,69 +10,69 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 07/09/2017
 ms.author: gauravbh; tomfitz
-ms.openlocfilehash: b3cdf3f1fccdd47db699e4892ae8bce35118bfd8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 58ac7665abf7e75a43bb0b92bdf6f41005c3efe8
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="azure-managed-applications-in-hello-marketplace"></a>Le applicazioni in hello Marketplace gestito di Azure
+# <a name="azure-managed-applications-in-the-marketplace"></a>Applicazioni gestite di Azure nel marketplace
 
- File msp, ISV e integratori di sistema (SIs) possono usare Azure gestito toooffer applicazioni ai clienti di Azure Marketplace tooall soluzioni. Tali soluzioni ridurre la manutenzione di hello e overhead di manutenzione per i clienti. I server di pubblicazione è possibile vendere infrastruttura e il software tramite hello Marketplace. È possibile collegare supporto operativo toomanaged applicazioni e servizi. Per altre informazioni, vedere [Panoramica delle applicazioni gestite di Azure](managed-application-overview.md).
+ Provider di servizi gestiti, fornitori di software indipendente e integratori di sistemi possono usare le applicazioni gestite per offrire le proprie soluzioni a tutti i clienti di Azure Marketplace. Tali soluzioni riducono l'overhead derivante da manutenzione e gestione per i clienti. Gli editori possono vendere l'infrastruttura e il software tramite il Marketplace. Possono collegare servizi e supporto operativo alle applicazioni gestite. Per altre informazioni, vedere [Panoramica delle applicazioni gestite di Azure](managed-application-overview.md).
 
-In questo articolo viene illustrato un MSP, ISV o SI può pubblicare un toohello applicazione Marketplace e renderlo toocustomers ampiamente disponibili.
+Questo articolo illustra come un provider di servizi gestiti, un fornitore di software indipendente o un integratore di sistemi possa pubblicare un'applicazione nel Marketplace e renderla disponibile per i clienti su larga scala.
 
 ## <a name="prerequisites-for-publishing-a-managed-application"></a>Prerequisiti per la pubblicazione di un'applicazione gestita
 
-Prerequisiti toolisting in hello Marketplace:
+Prerequisiti per l'inserimento nel Marketplace:
 
 * Tecnici
 
-    *  Per informazioni sulla struttura di base hello e la sintassi dei modelli di gestione risorse di Azure, vedere [modelli di Azure Resource Manager](resource-group-authoring-templates.md).
-    *  soluzioni di tooview modello completo, vedere [modelli di avvio rapido di Azure](https://azure.microsoft.com/en-us/documentation/templates/) o hello [repository di modelli di avvio rapido](https://github.com/azure/azure-quickstart-templates).
-    *  Per informazioni su come toocreate hello interfaccia per i clienti di distribuire l'applicazione tramite hello Marketplace, vedere [creare un file di definizione dell'interfaccia](managed-application-createuidefinition-overview.md).
+    *  Per informazioni sulla struttura e la sintassi di base dei modelli di Azure Resource Manager, vedere [Modelli di Azure Resource Manager](resource-group-authoring-templates.md).
+    *  Per visualizzare soluzioni di modelli complete, vedere [Modelli di avvio rapido di Azure](https://azure.microsoft.com/en-us/documentation/templates/) o il [repository di modelli di avvio rapido](https://github.com/azure/azure-quickstart-templates).
+    *  Per informazioni sulla creazione dell'interfaccia per i clienti che distribuiscono l'applicazione tramite il Marketplace, vedere [Creare un file di definizione dell'interfaccia utente](managed-application-createuidefinition-overview.md).
 
 * Non tecnici (requisiti aziendali)
 
-    *   L'azienda o figlie devono trovarsi in un paese in cui vendite sono supportate da hello Marketplace.
-    *   Il prodotto deve essere concesso in licenza in modo che sia compatibile con i modelli di fatturazione supportati da hello Marketplace.
-    *   Si è responsabile di garantire il supporto tecnico disponibile toocustomers in modo commercialmente ragionevole. supporto Hello può essere disponibile, a pagamento, o tramite una community di supporto.
+    *   La società (o la sua affiliata) deve avere sede in un paese in cui le vendite sono supportate dal Marketplace.
+    *   Il prodotto deve essere concesso in licenza in modo da essere compatibile con i modelli di fatturazione supportati dal Marketplace.
+    *   Il partner è responsabile di rendere il supporto tecnico disponibile per i clienti in una modalità ragionevole dal punto di vista commerciale. Il supporto può essere gratuito, a pagamento o tramite il supporto della community.
     *   Il partner ha la responsabilità di concedere in licenza il software e le dipendenze da software di terze parti.
-    *   È necessario fornire contenuto che soddisfa i criteri per l'offerta di toobe elencato nel Marketplace hello in hello portale di Azure.
-    *   È necessario accettare i termini toohello dell'accordo di server di pubblicazione e i criteri di partecipazione hello Azure Marketplace.
-    *   È necessario accettare toocomply con contratto di Microsoft Azure Certified programma hello condizioni per l'utilizzo e informativa sulla Privacy di Microsoft.
+    *   È necessario offrire contenuti che soddisfino i criteri perché l'offerta sia inserita nel Marketplace e nel portale di Azure.
+    *   È necessario accettare le condizioni delle Politiche di partecipazione a Microsoft Azure Marketplace e del Contratto per gli editori.
+    *   È necessario accettare le Condizioni per l'utilizzo del sito Web di Microsoft Azure, l'Informativa sulla privacy di Microsoft e il Contratto del Programma Microsoft Azure Certified.
 
 ## <a name="create-a-new-azure-application-offer"></a>Creare una nuova offerta di applicazione Azure
 
-Una volta soddisfatti i prerequisiti di hello, si è pronti toocreate l'offerta di applicazione gestita. Di seguito è disponibile una breve panoramica di un'offerta e di uno SKU.
+Una volta soddisfatti i prerequisiti, si è pronti per creare l'offerta di applicazione gestita. Di seguito è disponibile una breve panoramica di un'offerta e di uno SKU.
 
 ### <a name="offer"></a>Offerta
 
-offerta Hello per un'applicazione gestita corrisponde classe tooa del prodotto offerta da un server di pubblicazione. Se si dispone di un nuovo tipo di soluzione dell'applicazione che si desidera toomake disponibile in hello Marketplace, è possibile configurarlo come una nuova offerta. Un'offerta è una raccolta di SKU. Ogni offerta viene visualizzata come proprio entità in hello Marketplace.
+L'offerta per un'applicazione gestita corrisponde a una classe di offerta di prodotti di un editore. Per rendere disponibile nel Marketplace un nuovo tipo di soluzione/applicazione, è possibile configurare una nuova offerta. Un'offerta è una raccolta di SKU. Ogni offerta viene visualizzata come entità in sé nel marketplace.
 
 ### <a name="sku"></a>SKU
 
-Uno SKU è hello unità più piccola acquistabili di un'offerta. È possibile utilizzare uno SKU all'interno di hello toodifferentiate di classe (offerta) stesso prodotto tra:
+Uno SKU è la più piccola unità acquistabile di un'offerta. All'interno della stessa classe di prodotti (offerta), gli SKU consentono di distinguere tra:
 
 * le diverse funzionalità supportate
-* Se offerta hello sia gestita o meno.
+* il fatto che l'offerta sia gestita o non gestita
 * i modelli di fatturazione supportati
 
-Uno SKU appare sotto hello padre offerta in Marketplace hello. Viene visualizzato come il proprio entità acquistabili in hello portale di Azure.
+Uno SKU viene visualizzato sotto l'offerta padre nel Marketplace e come entità acquistabile di per sé nel portale di Azure.
 
 ### <a name="set-up-an-offer"></a>Configurare un'offerta
 
-1. Accedi toohello [portale per i Partner di Cloud](https://cloudpartner.azure.com/).
+1. Accedere al [Portale per Cloud Partner](https://cloudpartner.azure.com/).
 
-2. Nel riquadro di spostamento hello hello sinistra, selezionare **+ nuova offerta** > **applicazioni Azure**.
+2. Nella barra di spostamento a sinistra selezionare **+ New Offer**  (+ Nuova offerta)  > **Azure Applications** (Applicazioni Azure).
 
     ![Nuova offerta](./media/managed-application-author-marketplace/newOffer.png)
 
-3. Compilare moduli hello che vengono visualizzati nel hello lasciato in hello **Editor** visualizzazione. I campi obbligatori sono contrassegnati con un asterisco rosso (*).
+3. Compilare i moduli a sinistra nella vista **Editor**. I campi obbligatori sono contrassegnati con un asterisco rosso (*).
 
     ![Impostazioni dell'offerta](./media/managed-application-author-marketplace/newOffer_OfferSettings.png)
 
-    Quattro moduli principali sono utilizzati toocreate un'applicazione gestita:
+    Per creare un'applicazione gestita, vengono usati quattro moduli principali:
 
     a. Impostazioni dell'offerta
 
@@ -82,74 +82,74 @@ Uno SKU appare sotto hello padre offerta in Marketplace hello. Viene visualizzat
 
     d. Supporto
 
-Questi moduli sono descritti in dettaglio nelle sezioni che seguono hello.
+Questi moduli vengono descritti più dettagliatamente nelle sezioni seguenti.
 
 ## <a name="offer-settings-form"></a>Modulo delle impostazioni dell'offerta
-Utilizzare le impostazioni di offerta hello toospecify questo form di base.
+Usare questo modulo di base per specificare le impostazioni dell'offerta.
 
-1. Compilare hello **offrono impostazioni** form. Hello diversi campi sono:
+1. Compilare il modulo delle **impostazioni dell'offerta**. I diversi campi sono:
 
-    a. **ID di offerta**: questo identificatore univoco identifica hello offerta all'interno di un profilo di pubblicazione. Questo ID è visibile negli URL dei prodotti, nei modelli di Resource Manager e nei report di fatturazione. Può essere composto solo da caratteri alfanumerici minuscoli o trattini (-). Hello ID non può terminare con un trattino. È limitato tooa massimo 50 caratteri. Questo campo è bloccato dopo la pubblicazione dell'offerta.
+    a. **Offer ID** (ID offerta): questo campo è un identificatore univoco dell'offerta in un profilo di pubblicazione. Questo ID è visibile negli URL dei prodotti, nei modelli di Resource Manager e nei report di fatturazione. Può essere composto solo da caratteri alfanumerici minuscoli o trattini (-). L'ID non può terminare con un trattino e può contenere massimo 50 caratteri. Questo campo è bloccato dopo la pubblicazione dell'offerta.
 
-    b. **ID dell'editore**: usare questo profilo di pubblicazione riepilogo toochoose hello desiderato toopublish questa offerta in. Questo campo è bloccato dopo la pubblicazione dell'offerta.
+    b. **Publisher ID** (ID editore): usare questo elenco a discesa per scegliere il profilo di pubblicazione in cui si vuole pubblicare l'offerta. Questo campo è bloccato dopo la pubblicazione dell'offerta.
 
-    c. **Nome**: viene visualizzato questo nome per l'offerta in Marketplace hello e nel portale di hello. Può contenere massimo 50 caratteri. Includere un nome di marchio riconoscibile per il prodotto. Non includere il nome della società, a meno che non corrisponda al nome con cui viene commercializzato. Se si sta marketing questa offerta nel proprio sito Web, verificare che il nome hello sia esattamente come viene visualizzato nel sito Web.
+    c. **Name** (Nome): nome visualizzato dell'offerta nel Marketplace e nel portale. Può contenere massimo 50 caratteri. Includere un nome di marchio riconoscibile per il prodotto. Non includere il nome della società, a meno che non corrisponda al nome con cui viene commercializzato. Se si sta proponendo questa offerta sul proprio sito Web, assicurarsi che il nome corrisponda esattamente a quello con cui viene visualizzato nel sito Web.
 
-2. Selezionare **salvare** toosave dello stato di avanzamento. 
+2. Selezionare **Save** (Salva) per salvare le voci immesse. 
 
 ## <a name="skus-form"></a>Modulo degli SKU
-passaggio successivo Hello è tooadd SKU per l'offerta.
+Il passaggio successivo è quello di aggiungere gli SKU dell'offerta.
 
 1. Selezionare **SKU** > **New SKU** (Nuovo SKU). 
 
     ![Selezionare il nuovo SKU](./media/managed-application-author-marketplace/newOffer_skus.png)
 
-2. Immettere un **ID SKU**. Un ID SKU è un identificatore univoco per hello SKU all'interno di un'offerta. Questo ID è visibile negli URL dei prodotti, nei modelli di Resource Manager e nei report di fatturazione. Può essere composto solo da caratteri alfanumerici minuscoli o trattini (-). Hello ID non può terminare con un trattino, ed è limitato tooa massimo 50 caratteri. Questo campo è bloccato dopo la pubblicazione dell'offerta. All'interno di un'offerta possono essere presenti più SKU. È necessario uno SKU per ogni immagine Prevedi toopublish.
+2. Immettere un **ID SKU**. L'ID SKU è l'identificatore univoco dello SKU in un'offerta. Questo ID è visibile negli URL dei prodotti, nei modelli di Resource Manager e nei report di fatturazione. Può essere composto solo da caratteri alfanumerici minuscoli o trattini (-). L'ID non può terminare con un trattino e può contenere massimo 50 caratteri. Questo campo è bloccato dopo la pubblicazione dell'offerta. All'interno di un'offerta possono essere presenti più SKU. È necessario uno SKU per ogni immagine che si prevede di pubblicare.
 
-3. Compilare hello **dettagli di SKU** sezione hello seguente formato:
+3. Compilare la sezione dei **dettagli dello SKU** nel formato seguente:
 
     ![Fornire il nuovo SKU](./media/managed-application-author-marketplace/newOffer_newsku.png)
 
-    Compilare hello seguenti campi:
+    Compilare i seguenti campi:
     
-    a. **Title** (Titolo): immettere un titolo per lo SKU, Questa opzione è disponibile nella raccolta di hello per questo elemento.
+    a. **Title** (Titolo): immettere un titolo per lo SKU, che viene visualizzato nella raccolta di questo elemento.
 
-    b. **Summary (Riepilogo)**: immettere un breve riepilogo per questo SKU, Questo testo viene visualizzato sotto il titolo di hello.
+    b. **Summary (Riepilogo)**: immettere un breve riepilogo per questo SKU, che viene visualizzato sotto il titolo.
 
-    c. **Descrizione**: immettere una descrizione dettagliata hello SKU.
+    c. **Description (Descrizione)**: immettere una descrizione dettagliata sullo SKU.
 
-    d. **Tipo SKU**: hello i valori consentiti sono **applicazione gestita** e **modelli di soluzioni**. In questo caso, selezionare **Managed Application** (Applicazione gestita).
+    d. **SKU Type** (Tipo di SKU): i valori consentiti sono **Managed Application** (Applicazione gestita) e **Solution Templates** (Modelli di soluzioni). In questo caso, selezionare **Managed Application** (Applicazione gestita).
 
-4. Compilare hello **i dettagli del pacchetto** sezione hello seguente formato:
+4. Compilare la sezione dei **dettagli del pacchetto** nel formato seguente:
 
     ![Pacchetto](./media/managed-application-author-marketplace/newOffer_newsku_package.png)
 
-    Compilare hello seguenti campi:
+    Compilare i seguenti campi:
 
-    a. **Versione corrente**: immettere una versione per il pacchetto di hello caricati. Deve essere nel formato hello `{number}.{number}.{number}{number}`.
+    a. **Current Version** (Versione corrente): immettere la versione per il pacchetto caricato. Deve essere nel formato `{number}.{number}.{number}{number}`.
 
-    b. **Selezionare un file di pacchetto**: questo pacchetto contiene i seguenti file vengono compressi in un file ZIP hello:
-    * **applianceMainTemplate.json**: file di modello di distribuzione hello utilizzati toodeploy hello soluzione/applicazione. Per informazioni su come file di modello di distribuzione toocreate, vedere [creare il primo modello di gestione risorse di Azure](resource-manager-create-first-template.md).
-    * **appliancecreateUIDefinition.json**: questo file viene utilizzato tramite l'interfaccia hello toogenerate portale Azure hello utente che ha utilizzato tooprovision questa soluzione/applicazione. Per altre informazioni, vedere [Introduzione a CreateUiDefinition](managed-application-createuidefinition-overview.md).
-    * **mainTemplate.json**: il file modello contiene solo risorse di Microsoft.Solution/appliances hello. file mainTemplate Hello include hello le proprietà seguenti:
+    b. **Select a package file** (Seleziona un file pacchetto): questo pacchetto contiene i file seguenti compressi in un file ZIP:
+    * **applianceMainTemplate.json**: file modello di distribuzione usato per distribuire la soluzione/applicazione. Per altre informazioni su come creare i file modello di distribuzione, vedere [Creare il primo modello di Azure Resource Manager](resource-manager-create-first-template.md).
+    * **appliancecreateUIDefinition.json**: questo file viene usato dal portale di Azure per generare l'interfaccia utente usata per il provisioning di questa soluzione/applicazione. Per altre informazioni, vedere [Introduzione a CreateUiDefinition](managed-application-createuidefinition-overview.md).
+    * **mainTemplate.json**: file modello contenente solo le risorse Microsoft.Solution/appliances. Il file mainTemplate include le proprietà seguenti:
 
-        *  **tipo**: utilizzare **Marketplace** per le applicazioni gestite in hello Marketplace.
-        *  **ManagedResourceGroupId**: il gruppo di risorse nella sottoscrizione del cliente hello è distribuite in tutte le risorse di hello definite in applianceMainTemplate.json.
-        *  **PublisherPackageId**: la stringa che identifica in modo univoco il pacchetto di hello. Fornire il valore di hello in formato hello `{publisherId}.{OfferId}.{SKUID}.{PackageVersion}`.
+        *  **kind**: usare **Marketplace** per le applicazioni gestite nel Marketplace.
+        *  **ManagedResourceGroupId**: gruppo di risorse nella sottoscrizione del cliente in cui vengono distribuite tutte le risorse definite nel file applianceMainTemplate.json.
+        *  **PublisherPackageId**: stringa che identifica il pacchetto in modo univoco. Specificare il valore nel formato `{publisherId}.{OfferId}.{SKUID}.{PackageVersion}`.
 
-Ottenere hello **ID offerta** e **ID editore** dal portale di pubblicazione, come illustrato nella seguente immagine hello hello:
+Ottenere l'**ID offerta** e l'**ID editore** dal portale di pubblicazione, come illustrato nella figura seguente:
 
 ![Offer ID (ID offerta)](./media/managed-application-author-marketplace/UniqueString_pubid_offerid.png)
         
-Ottenere hello **ID SKU**, come illustrato nella seguente immagine hello:
+Ottenere l'**ID SKU** come illustrato nella figura seguente:
 
 ![ID SKU](./media/managed-application-author-marketplace/UniqueString_skuid.png)
         
-Ottenere il pacchetto di hello **versione**, come illustrato nella seguente immagine hello:
+Ottenere la **versione** del pacchetto come illustrato nella figura seguente:
 
 ![Versione del pacchetto](./media/managed-application-author-marketplace/UniqueString_packageversion.png)
     
-  In base a hello precedenti esempi, hello valore **PublisherPackageId** è `azureappliance-test.ravmanagedapptest.ravpreviewmanagedsku.1.0.0`.
+  In base agli esempi precedenti, il valore di **PublisherPackageId** è `azureappliance-test.ravmanagedapptest.ravpreviewmanagedsku.1.0.0`.
 
   mainTemplate.json di esempio:
 
@@ -161,7 +161,7 @@ Ottenere il pacchetto di hello **versione**, come illustrato nella seguente imma
       "storageAccountNamePrefix": {
         "type": "string",
         "metadata": {
-          "description": "Specify hello name of hello storage account"
+          "description": "Specify the name of the storage account"
         }
       },
       "storageAccountType": {
@@ -196,84 +196,84 @@ Ottenere il pacchetto di hello **versione**, come illustrato nella seguente imma
   }
   ```
 
-Il pacchetto deve contenere tutti i modelli annidati o gli script toosuccessfully necessario effettuare il provisioning di questa applicazione. Hello mainTemplate.json applianceMainTemplate.json e applianceCreateUIDefinition.json file devono essere presenti nella cartella radice hello.
+Questo pacchetto deve contenere gli altri modelli annidati o gli script necessari per completare il provisioning di questa applicazione. I file mainTemplate.json, applianceMainTemplate.json e applianceCreateUIDefinition.json devono essere presenti nella cartella radice.
 
-* **Autorizzazioni**: questa proprietà definisce l'accesso e hello livello di accesso che ottiene risorse toohello nelle sottoscrizioni dei clienti. server di pubblicazione Hello utilizzarlo applicazione hello toomanage per conto cliente hello.
-* **PrincipalId**: questa proprietà è l'identificatore di hello Azure Active Directory (Azure AD) di un'applicazione che ha concesso autorizzazioni determinate risorse di hello nella sottoscrizione del cliente hello, un gruppo di utenti o un utente. Definizione di ruolo Hello descritte le autorizzazioni di hello. 
-* **Definizione di ruolo**: questa proprietà è un elenco di tutti i ruoli controllo di accesso basato sui ruoli (RBAC) di incorporati hello fornite da Azure AD. È possibile selezionare hello ruolo più appropriato alle risorse di hello toomanage toouse per conto cliente hello.
+* **Authorizations** (Autorizzazioni): questa proprietà definisce chi ottiene l'accesso e il livello di accesso alle risorse nelle sottoscrizioni dei clienti. L'editore può gestire l'applicazione per conto del cliente.
+* **PrincipalId**: questa proprietà è l'identificatore Azure Active Directory (Azure AD) di un utente, un gruppo di utenti o un'applicazione a cui vengono concesse determinate autorizzazioni per le risorse nella sottoscrizione del cliente. La definizione del ruolo descrive le autorizzazioni. 
+* **Role Definition** (Definizione ruolo): questa proprietà è un elenco di tutti i ruoli di controllo degli accessi in base al ruolo forniti da Azure AD. È possibile selezionare il ruolo più appropriato da usare per gestire le risorse per conto del cliente.
 
-È possibile aggiungere più autorizzazioni. È consigliabile creare un gruppo di utenti di AD e specificare il relativo ID in **PrincipalId**. In questo modo, è possibile aggiungere più utenti toohello gruppo senza necessità di prova prova tooupdate SKU.
+È possibile aggiungere più autorizzazioni. È consigliabile creare un gruppo di utenti di AD e specificare il relativo ID in **PrincipalId**. In questo modo è possibile aggiungere più utenti al gruppo di utenti senza che sia necessario aggiornare lo SKU.
 
-Per ulteriori informazioni sui ruoli, vedere [introduzione RBAC nel portale di Azure hello](../active-directory/role-based-access-control-what-is.md).
+Per altre informazioni sul controllo degli accessi in base al ruolo, vedere [Introduzione al controllo degli accessi in base al ruolo nel portale di Azure](../active-directory/role-based-access-control-what-is.md).
 
 ## <a name="marketplace-form"></a>Modulo Marketplace
 
-chiede di Hello modulo Marketplace per i campi visualizzati nell'hello [Azure Marketplace](https://azuremarketplace.microsoft.com) e hello [portale di Azure](https://portal.azure.com/).
+Il form Marketplace include i campi che vengono visualizzati in [Azure Marketplace](https://azuremarketplace.microsoft.com) e nel [portale di Azure](https://portal.azure.com/).
 
 ### <a name="preview-subscription-ids"></a>Preview Subscription IDs (ID sottoscrizione di anteprima)
 
-Immettere un elenco di ID che può accedere l'offerta di hello dopo la pubblicazione di sottoscrizione di Azure. È possibile utilizzare questi offerta di sottoscrizioni elencate vuoti tootest hello visualizzato in anteprima prima di renderlo in tempo reale. È possibile compilare un elenco vuoto di too100 sottoscrizioni nel portale di partner hello.
+Immettere un elenco di ID di sottoscrizione di Azure che possono accedere all'offerta dopo la pubblicazione. È possibile usare queste sottoscrizioni consentite per testare l'offerta in anteprima prima di pubblicarla. È possibile compilare un elenco con un massimo di 100 sottoscrizioni consentite nel portale per i partner.
 
 ### <a name="suggested-categories"></a>Suggested Categories (Categorie suggerite)
 
-Selezionare le categorie di toofive dall'elenco di hello che l'offerta può essere più associato. Queste categorie sono utilizzati toomap le categorie di prodotti toohello offerta sono disponibili in hello [Azure Marketplace](https://azuremarketplace.microsoft.com) hello e [portale di Azure](https://portal.azure.com/).
+Nell'elenco selezionare fino a cinque categorie a cui l'offerta può essere associata in modo ottimale. Queste categorie vengono usate per il mapping dell'offerta alle categorie di prodotti disponibili in [Azure Marketplace](https://azuremarketplace.microsoft.com) e nel [portale di Azure](https://portal.azure.com/).
 
 #### <a name="azure-marketplace"></a>Azure Marketplace
 
-riepilogo Hello dell'applicazione gestita Visualizza hello seguenti campi:
+Nel riepilogo dell'applicazione gestita vengono visualizzati i campi seguenti:
 
 ![Riepilogo del Marketplace](./media/managed-application-author-marketplace/publishvm10.png)
 
-Hello **Panoramica** scheda applicazione gestita Visualizza hello seguenti campi:
+Nella scheda **Anteprima** per l'applicazione gestita vengono visualizzati i campi seguenti:
 
 ![Panoramica del Marketplace](./media/managed-application-author-marketplace/publishvm11.png)
 
-Hello **piani + prezzi** scheda applicazione gestita Visualizza hello seguenti campi:
+Nella scheda **Piani + prezzi** per l'applicazione gestita vengono visualizzati i campi seguenti:
 
 ![Piani del Marketplace](./media/managed-application-author-marketplace/publishvm15.png)
 
 #### <a name="azure-portal"></a>Portale di Azure
 
-riepilogo Hello dell'applicazione gestita Visualizza hello seguenti campi:
+Nel riepilogo dell'applicazione gestita vengono visualizzati i campi seguenti:
 
 ![Riepilogo del portale](./media/managed-application-author-marketplace/publishvm12.png)
 
-Panoramica di Hello per l'applicazione gestita Visualizza hello seguenti campi:
+Nell'anteprima per l'applicazione gestita vengono visualizzati i campi seguenti:
 
 ![Panoramica del portale](./media/managed-application-author-marketplace/publishvm13.png)
 
 #### <a name="logo-guidelines"></a>Linee guida per il logo
 
-Seguire queste linee guida per qualsiasi logo che viene caricato nel portale di Partner di Cloud hello:
+Seguire queste linee guida per qualsiasi logo caricato nel portale per Cloud Partner:
 
-*   Hello progettazione di Azure dispone di una tavolozza dei colori semplice. Limita il numero di hello database primario e secondario colori sul logo.
-*   colori del tema Hello del portale hello sono bianchi e neri. Non utilizzare i colori come colore di sfondo hello per il logo. Usare un colore che rende visibile nel portale di hello del logo. Si consiglia di usare colori primari semplici. *Se si utilizza uno sfondo trasparente, assicurarsi che i logo hello e testo non sono bianchi, nero o blu.*
-*   Non usare uno sfondo sfumato sul logo hello.
-*   Non inserire testo in logo hello, nemmeno società o nome dell'organizzazione. Hello aspetto del logo deve essere flat ed evitare le sfumature.
-*   Assicurarsi che non siano stati estesi logo hello.
+*   La progettazione di Azure ha una tavolozza dei colori semplice. Limitare il numero di colori primari e secondari nel logo.
+*   I colori del tema del portale sono il bianco e il nero. Non usare questi colori per lo sfondo del logo. Usare un colore che faccia risaltare il logo nel portale. Si consiglia di usare colori primari semplici. *Se si usa uno sfondo trasparente, verificare che i logo e il testo non siano bianchi, neri o blu.*
+*   Non usare uno sfondo sfumato sul logo.
+*   Non inserire testo, nemmeno il nome del marchio o della società, sul logo. L'aspetto del logo deve essere semplice e senza sfumature.
+*   Verificare che il logo non venga adattato.
 
 #### <a name="hero-logo"></a>Logo alto
 
-logo hero Hello è facoltativo. server di pubblicazione Hello possibile scegliere di non tooupload un logo hero. Icona hero hello viene caricato, non può essere eliminata. In quel momento, partner hello deve seguire le linee guida Marketplace hello per le icone hero.
+Il logo alto è facoltativo. L'editore può scegliere di non caricare un logo alto. Una volta caricata, l'icona del logo alto non può essere eliminata. A quel punto il partner deve seguire le istruzioni del Marketplace per le icone del logo alto.
 
-Seguire queste linee guida per l'icona del logo hero hello:
+Seguire queste linee guida per l'icona del logo alto:
 
-*   nome visualizzato di publisher Hello, hello piano titolo e offerta hello riepilogo lunghe vengono visualizzati in bianco. Pertanto, non utilizzare un colore chiaro per lo sfondo di hello dell'icona hero hello. Lo sfondo nero, bianco o trasparente non è ammesso per le icone del logo alto.
-*   Dopo l'offerta di hello è elencato, server di pubblicazione hello il nome visualizzato, titolo piano hello, offerta hello riepilogo lunghe e hello **crea** pulsante sono incorporati a livello di codice all'interno di logo hero hello. Di conseguenza, non immettere il testo durante la progettazione logo hero hello. Lasciare spazio vuoto in hello destra perché include testo hello a livello di codice che lo spazio. spazio vuoto di Hello per testo hello deve essere 415 x 100 pixel in hello destra. Viene applicato un offset di 370 pixel da sinistra hello.
+*   Il nome visualizzato dell'editore, il titolo del piano e il riepilogo lungo dell'offerta sono visualizzati con il colore bianco. Non usare quindi un colore chiaro come sfondo dell'icona del logo alto. Lo sfondo nero, bianco o trasparente non è ammesso per le icone del logo alto.
+*   Quando l'offerta viene elencata, il nome visualizzato dell'editore, il titolo del piano, il riepilogo lungo dell'offerta e il pulsante **Crea** vengono incorporati a livello di codice all'interno del logo alto. Non inserire quindi testo mentre si progetta il logo alto. Lasciare uno spazio vuoto sulla destra dove il testo viene automaticamente incluso a livello di codice. Lo spazio vuoto per il testo deve essere 415x100 pixel a destra e viene spostato con un offset di 370 pixel da sinistra.
 
     ![Esempio di logo alto](./media/managed-application-author-marketplace/publishvm14.png)
 
 ## <a name="support-form"></a>Modulo di supporto
 
-Compilare hello **supporta** form con il supporto contatti dalla società. ad esempio le informazioni di contatto del supporto tecnico e dell'assistenza clienti.
+Compilare il modulo **Supporto** con i contatti del supporto forniti dalla società, ad esempio le informazioni di contatto del supporto tecnico e dell'assistenza clienti.
 
 ## <a name="publish-an-offer"></a>Pubblicare un'offerta
 
-Dopo aver specificato tutte le sezioni di hello, selezionare **pubblica** processo hello toostart che rende il toocustomers disponibili offerta.
+Dopo avere completato tutte le sezioni, selezionare **Publish** (Pubblica) per avviare il processo per rendere disponibile l'offerta per i clienti.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* Per le applicazioni toomanaged un'introduzione, vedere [panoramica delle applicazioni gestite](managed-application-overview.md).
-* Per informazioni sull'utilizzo di un'applicazione gestita da hello Marketplace, vedere [utilizzare Azure gestite le applicazioni in hello Marketplace](managed-application-consume-marketplace.md).
+* Per un'introduzione alle applicazioni gestite, vedere [Panoramica delle applicazioni gestite di Azure](managed-application-overview.md).
+* Per informazioni sull'uso di un'applicazione gestita dal Marketplace, vedere [Consume Azure managed applications in the Marketplace](managed-application-consume-marketplace.md) (Uso delle applicazioni gestite di Azure nel Marketplace).
 * Per informazioni sulla pubblicazione di un'applicazione gestita del catalogo di servizi, vedere [Creare e pubblicare un'applicazione gestita del catalogo di servizi](managed-application-publishing.md).
 * Per informazioni sull'uso delle applicazioni gestite del catalogo di servizi, vedere [Utilizzare un'applicazione gestita di Azure](managed-application-consumption.md).

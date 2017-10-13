@@ -1,6 +1,6 @@
 ---
-title: aaaProvision App Web con Cache Redis
-description: Usare l'app web di Azure Resource Manager modello toodeploy con Cache Redis.
+title: "Eseguire il provisioning dell’app Web con Cache Redis"
+description: Utilizzare il modello di Gestione risorse di Azure per distribuire l'app Web con Cache Redis.
 services: app-service
 documentationcenter: 
 author: steved0x
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/06/2017
 ms.author: sdanie
-ms.openlocfilehash: b95b5e230dc40c1157940c2017cba836975b6930
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 810c1cedd4fe0bd6ecdf9bd32dfb241f5f345300
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="create-a-web-app-plus-redis-cache-using-a-template"></a>Creare un’app Web più Cache Redis utilizzando un modello
-In questo argomento si apprenderà come toocreate un modello di gestione risorse di Azure che consente di distribuire un'App Web di Azure con cache Redis. Si apprenderà come toodefine quali risorse vengono distribuite come toodefine parametri e che vengono specificati quando è eseguita la distribuzione di hello. È possibile utilizzare questo modello per la propria distribuzioni o personalizzarlo toomeet esigenze.
+In questo argomento viene illustrato come creare un modello di Gestione risorse di Azure che consente di distribuire un'app Web di Azure con Cache Redis. Verrà illustrato come definire le risorse da distribuire e i parametri specificati quando viene eseguita la distribuzione. È possibile usare questo modello per le proprie distribuzioni o personalizzarlo in base alle esigenze.
 
 Per altre informazioni sulla creazione dei modelli, vedere [Creazione di modelli di Gestione risorse di Azure](../azure-resource-manager/resource-group-authoring-templates.md).
 
-Per il modello di hello completo, vedere [App Web con il modello di Cache Redis](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-with-redis-cache/azuredeploy.json).
+Per il modello completo, vedere l’articolo relativo all’ [app Web con modello Cache Redis](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-with-redis-cache/azuredeploy.json).
 
 ## <a name="what-you-will-deploy"></a>Elementi distribuiti
 In questo modello, verrà distribuito quanto segue:
@@ -33,17 +33,17 @@ In questo modello, verrà distribuito quanto segue:
 * App Web di Azure
 * Cache Redis di Azure.
 
-toorun hello automaticamente la distribuzione, fare clic su hello seguente pulsante:
+Per eseguire automaticamente la distribuzione, fare clic sul pulsante seguente:
 
-[![Distribuire tooAzure](./media/cache-web-app-arm-with-redis-cache-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-with-redis-cache%2Fazuredeploy.json)
+[![Distribuzione in Azure](./media/cache-web-app-arm-with-redis-cache-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-with-redis-cache%2Fazuredeploy.json)
 
-## <a name="parameters-toospecify"></a>I parametri toospecify
+## <a name="parameters-to-specify"></a>Parametri da specificare
 [!INCLUDE [app-service-web-deploy-web-parameters](../../includes/app-service-web-deploy-web-parameters.md)]
 
 [!INCLUDE [cache-deploy-parameters](../../includes/cache-deploy-parameters.md)]
 
 ## <a name="variables-for-names"></a>Variabili per i nomi
-Il modello utilizza i nomi delle variabili tooconstruct per le risorse di hello. Usa hello [uniqueString](../azure-resource-manager/resource-group-template-functions-string.md#uniquestring) funzione tooconstruct un valore in base all'id di gruppo di risorse.
+Questo modello si serve di variabili per costruire i nomi delle risorse. Tramite la funzione [uniqueString](../azure-resource-manager/resource-group-template-functions-string.md#uniquestring) viene creato un valore in base all'ID del gruppo di risorse.
 
     "variables": {
       "hostingPlanName": "[concat('hostingplan', uniqueString(resourceGroup().id))]",
@@ -52,13 +52,13 @@ Il modello utilizza i nomi delle variabili tooconstruct per le risorse di hello.
     },
 
 
-## <a name="resources-toodeploy"></a>Risorse toodeploy
+## <a name="resources-to-deploy"></a>Risorse da distribuire
 [!INCLUDE [app-service-web-deploy-web-host](../../includes/app-service-web-deploy-web-host.md)]
 
 ### <a name="redis-cache"></a>Cache Redis
-Crea una Cache Redis di Azure viene usato con app web hello hello. nome Hello della cache di hello è specificato in hello **cacheName** variabile.
+Crea la Cache Redis di Azure che viene utilizzata con l'app Web. Il nome della cache è specificato nella variabile **cacheName** .
 
-modello di Hello crea cache di hello in hello stesso percorso del gruppo di risorse hello.
+Il modello crea la cache nella stessa posizione in cui si trova il gruppo di risorse.
 
     {
       "name": "[variables('cacheName')]",
@@ -80,9 +80,9 @@ modello di Hello crea cache di hello in hello stesso percorso del gruppo di riso
 
 
 ### <a name="web-app"></a>App Web
-Crea app web hello con nome specificato in hello **webSiteName** variabile.
+Crea l'app Web con il nome specificato nella variabile **webSiteName** .
 
-Si noti il che App web hello è configurato con l'impostazione di proprietà che consentono toowork con hello Cache Redis di app. Queste impostazioni app vengono create dinamicamente in base ai valori forniti durante la distribuzione.
+Si noti che l'app Web è configurata con proprietà di impostazione dell’app che consentono di utilizzare Cache Redis. Queste impostazioni app vengono create dinamicamente in base ai valori forniti durante la distribuzione.
 
     {
       "apiVersion": "2015-08-01",
@@ -117,7 +117,7 @@ Si noti il che App web hello è configurato con l'impostazione di proprietà che
       ]
     }
 
-## <a name="commands-toorun-deployment"></a>Comandi toorun distribuzione
+## <a name="commands-to-run-deployment"></a>Comandi per eseguire la distribuzione
 [!INCLUDE [app-service-deploy-commands](../../includes/app-service-deploy-commands.md)]
 
 ### <a name="powershell"></a>PowerShell

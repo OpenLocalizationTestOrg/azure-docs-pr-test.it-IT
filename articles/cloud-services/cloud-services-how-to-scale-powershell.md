@@ -1,6 +1,6 @@
 ---
-title: un servizio cloud di Azure in Windows PowerShell aaaScale | Documenti Microsoft
-description: (versione classica) Informazioni su come toouse PowerShell tooscale un ruolo web o un ruolo di lavoro in o out in Azure.
+title: Aumentare o ridurre il numero di istanze per un servizio cloud Azure in Windows PowerShell | Documentazione Microsoft
+description: (classico) Informazioni su come usare PowerShell per aumentare o ridurre il numero di istanze per un ruolo Web o un ruolo di lavoro in Azure.
 services: cloud-services
 documentationcenter: 
 author: mmccrory
@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/01/2016
 ms.author: mmccrory
-ms.openlocfilehash: cfac6660e84f8ae24e4e9bdd5bf2016fb9cd7045
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a7ae8ff202d403dff19b8c9a6a09492235db27ac
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-tooscale-a-cloud-service-in-powershell"></a>Come tooscale un cloud service in PowerShell
+# <a name="how-to-scale-a-cloud-service-in-powershell"></a>Come aumentare o ridurre il numero di istanze per un servizio cloud in PowerShell
 
-È possibile utilizzare Windows PowerShell tooscale un ruolo web o un ruolo di lavoro in o out aggiungendo o rimuovendo istanze.  
+È possibile usare Windows PowerShell per aumentare o ridurre il numero di istanze per un ruolo Web o un ruolo di lavoro.  
 
-## <a name="log-in-tooazure"></a>Accedi tooAzure
+## <a name="log-in-to-azure"></a>Accedere ad Azure
 
 Prima di poter eseguire qualsiasi operazione sulla sottoscrizione tramite PowerShell, è necessario eseguire l'accesso:
 
@@ -32,50 +32,50 @@ Prima di poter eseguire qualsiasi operazione sulla sottoscrizione tramite PowerS
 Add-AzureAccount
 ```
 
-Se si dispone di più sottoscrizioni associate all'account, potrebbe essere abbonamento hello toochange a seconda di dove si trova il servizio cloud. toocheck hello sottoscrizione corrente, eseguire:
+Se sono disponibili più sottoscrizioni associate all'account, potrebbe essere necessario modificare la sottoscrizione corrente a seconda di dove si trova il servizio cloud. Per controllare la sottoscrizione corrente, eseguire:
 
 ```powershell
 Get-AzureSubscription -Current
 ```
 
-Se è necessario toochange sottoscrizione corrente di hello, eseguire:
+Se è necessario modificare la sottoscrizione corrente, eseguire:
 
 ```powershell
 Set-AzureSubscription -SubscriptionId <subscription_id>
 ```
 
-## <a name="check-hello-current-instance-count-for-your-role"></a>Verifica numero di istanze per il ruolo corrente hello
+## <a name="check-the-current-instance-count-for-your-role"></a>Controllare il numero corrente di istanze per il ruolo
 
-stato corrente di hello toocheck del ruolo, eseguire:
+Per controllare lo stato corrente del ruolo, eseguire:
 
 ```powershell
 Get-AzureRole -ServiceName '<your_service_name>' -RoleName '<your_role_name>'
 ```
 
-È necessario ottenere informazioni sul ruolo hello, incluso il relativo numero di versione e l'istanza del sistema operativo corrente. In questo caso, il ruolo di hello dispone di una singola istanza.
+Si dovrebbero così ottenere informazioni sul ruolo, inclusa la versione corrente del sistema operativo e il numero corrente di istanze. In questo caso, il ruolo ha una singola istanza.
 
-![Informazioni sul ruolo hello](./media/cloud-services-how-to-scale-powershell/get-azure-role.png)
+![Informazioni sul ruolo](./media/cloud-services-how-to-scale-powershell/get-azure-role.png)
 
-## <a name="scale-out-hello-role-by-adding-more-instances"></a>Scalabilità orizzontale aggiungendo altre istanze del ruolo hello
+## <a name="scale-out-the-role-by-adding-more-instances"></a>Aumentare il numero di istanze per il ruolo aggiungendo istanze
 
-tooscale orizzontale il ruolo, passaggio hello numero desiderato di istanze come hello **conteggio** parametro toohello **Set-AzureRole** cmdlet:
+Per aumentare il numero di istanze del ruolo, passare il numero desiderato con il parametro **Count** del cmdlet **Set-AzureRole**:
 
 ```powershell
 Set-AzureRole -ServiceName '<your_service_name>' -RoleName '<your_role_name>' -Slot <target_slot> -Count <desired_instances>
 ```
 
-blocchi di cmdlet Hello temporaneamente durante le nuove istanze hello vengono configurati e avviati. Durante questo periodo, se si apre una nuova finestra di PowerShell e chiamare **Get-AzureRole** come illustrato in precedenza, è possibile vedere conteggio delle istanze hello nuova destinazione. E, se si analizza lo stato di ruolo hello nel portale di hello, dovrebbe essere nuova istanza di hello avvio:
+Il cmdlet si blocca temporaneamente durante il provisioning e l'avvio delle nuove istanze. Se durante questo periodo si apre una nuova finestra di PowerShell e si chiama **Get-AzureRole** come indicato in precedenza, verrà visualizzato il nuovo numero di istanze di destinazione. Se si controlla lo stato del ruolo nel portale, si vedrà che per la nuova istanza è indicato che l'avvio è in corso:
 
 ![Avvio dell'istanza VM in corso nel portale](./media/cloud-services-how-to-scale-powershell/role-instance-starting.png)
 
-Una volta avviate le nuove istanze hello, hello cmdlet restituirà correttamente:
+Una volta avviate le nuove istanze, il cmdlet restituirà il controllo indicando la riuscita dell'operazione:
 
 ![Aumento delle istanze del ruolo riuscito](./media/cloud-services-how-to-scale-powershell/set-azure-role-success.png)
 
-## <a name="scale-in-hello-role-by-removing-instances"></a>Scala nel ruolo hello tramite la rimozione di istanze
+## <a name="scale-in-the-role-by-removing-instances"></a>Ridurre il numero di istanze per il ruolo rimuovendo istanze
 
-È possibile scalare in un ruolo tramite la rimozione di istanze in hello allo stesso modo. Set hello **conteggio** parametro **Set-AzureRole** toohello numero di istanze desiderato toohave dopo scala hello nell'operazione è stata completata.
+In modo analogo, è possibile ridurre il numero di istanze per un ruolo rimuovendo istanze. Impostare il parametro **Count** di **Set-AzureRole** sul numero di istanze da ottenere al termine dell'operazione.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Non è possibile tooconfigure scalabilità automatica per i servizi cloud da PowerShell. toodo che, vedere [le modalità di scalabilità di un servizio cloud tooauto](cloud-services-how-to-scale-portal.md).
+Non è possibile configurare la scalabilità automatica per i servizi cloud da PowerShell. Per eseguire questa operazione, vedere [Come configurare la scalabilità automatica di un servizio cloud](cloud-services-how-to-scale-portal.md).

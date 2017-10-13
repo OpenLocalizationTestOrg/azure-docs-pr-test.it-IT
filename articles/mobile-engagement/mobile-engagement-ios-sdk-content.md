@@ -1,5 +1,5 @@
 ---
-title: aaaAzure iOS Mobile Engagement SDK contenuto
+title: Contenuto di Azure Mobile Engagement iOS SDK
 description: Ultimi aggiornamenti e procedure relativi a iOS SDK per Azure Mobile Engagement
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,19 +14,19 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 9f735226b98431cf0a68d0cbe8f9112f4c8df019
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: bdc96cd47ece6054184d167192ebec4cd4bd081c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="sdk-content"></a>Contenuto dell'SDK
-Questo documento elenca e descrive il contenuto di hello dell'archivio SDK hello.
+Questo documento elenca e illustra il contenuto dell'archivio SDK.
 
 ## <a name="engagement-sdk"></a>Engagement SDK
 `EngagementSDK`
 
-> raccolta e una classe aggiuntiva fornita come un codice di origine tooenable o disabilitare la raccolta IDFA Hello contiene intestazioni di core Engagement SDK.
+> La parte essenziale di Engagement SDK contiene intestazioni, raccolte e una classe aggiuntiva fornite come codice sorgente per attivare/disattivare la raccolta dell'identificatore IDFA.
 > 
 > 
 
@@ -44,9 +44,9 @@ Questo documento elenca e descrive il contenuto di hello dell'archivio SDK hello
 > 
 > 
 
-`src`
+`src` 
 
-> Visualizzazione controller di Engagement e il codice sorgente del SDK raggiungere (per gli utenti avanzati che desidera tooadapt Engagement classi tootheir esigenze).
+> Controller di visualizzazione di Engagement e codice sorgente di Reach SDK (per utenti esperti che desiderano adattare le classi Engagement alle proprie esigenze).
 > 
 > 
 

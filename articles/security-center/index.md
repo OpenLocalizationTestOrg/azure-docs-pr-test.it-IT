@@ -1,8 +1,8 @@
 ---
-title: aaaAzure sicurezza Center documentazione, esercitazioni, riferimenti alle API | Documenti Microsoft
-description: Informazioni su come tooset la gestione di monitoraggio e criteri di sicurezza per le risorse di Azure. Esercitazioni, informazioni di riferimento sulle API REST e altri documenti.
+title: Documentazione del Centro sicurezza di Azure - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
+description: Informazioni su come configurare monitoraggio della sicurezza e gestione dei criteri per le risorse di Azure. Esercitazioni, informazioni di riferimento sulle API REST e altri documenti.
 services: security-center
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: b2bed6a128c7c767687871389f982d6155c6161d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 8a17bd97f758db843cecc53b02722344d6b9d6dc
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="security-center-documentation"></a>Documentazione del Centro sicurezza
 
-Informazioni su come toouse Centro sicurezza PC tooget visibilità e controllo su hello protezione delle risorse di Azure.  Esercitazioni, un riferimento all'API REST e altra documentazione illustrano come tooset la gestione di monitoraggio e criteri di sicurezza che funziona con un ampio ecosistema di soluzioni per la sicurezza.
+Informazioni su come usare il Centro sicurezza per avere visibilità e controllo sulla sicurezza delle risorse di Azure.  Esercitazioni, informazioni di riferimento sull'API REST e altri documenti mostrano come configurare monitoraggio della sicurezza e gestione dei criteri compatibili con un ampio ecosistema di soluzioni di sicurezza.
 
 <ul class="panelContent cardsFTitle">
     <li>

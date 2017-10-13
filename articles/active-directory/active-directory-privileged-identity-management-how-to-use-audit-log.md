@@ -1,6 +1,6 @@
 ---
-title: log di controllo di aaaHow toouse hello in Azure AD Privileged Identity Management | Documenti Microsoft
-description: Informazioni su come di log di controllo di hello toouse nell'estensione di hello Azure Privileged Identity Management.
+title: Come usare il log di controllo in Azure AD Privileged Identity Management | Documentazione Microsoft
+description: Informazioni su come usare il log di controllo nell'estensione Azure Privileged Identity Management.
 services: active-directory
 documentationcenter: 
 author: billmath
@@ -15,48 +15,48 @@ ms.workload: identity
 ms.date: 02/14/2017
 ms.author: billmath
 ms.custom: pim
-ms.openlocfilehash: 36987eaab9fe02c5dd7b4f4705e487299430745d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7d9a5255a64d46c1388d328a606b3f297d61262b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="using-hello-audit-log-in-pim"></a>Utilizzo di log di controllo hello in PIM
-È possibile utilizzare tutte le assegnazioni utente hello e attivazioni hello Privileged Identity Management (PIM) audit log toosee all'interno di un determinato periodo di tempo. Se si desidera cronologia di controllo completo hello toosee dell'attività nel tenant, tra cui l'amministratore, l'utente finale e attività di sincronizzazione, è possibile utilizzare hello [report di utilizzo e di accesso di Azure Active Directory.](active-directory-view-access-usage-reports.md)
+# <a name="using-the-audit-log-in-pim"></a>Uso del log di controllo in PIM
+È possibile usare il log di controllo di Privileged Identity Management (PIM) per visualizzare tutte le assegnazioni utente e le attivazioni per un periodo di tempo specificato. Se si desidera visualizzare la cronologia di controllo completa dell'attività nel tenant, inclusi amministratore, utente finale e attività di sincronizzazione, è possibile usare i [report di accesso e utilizzo di Azure Active Directory.](active-directory-view-access-usage-reports.md)
 
-## <a name="navigate-toohello-audit-log"></a>Passare il log di controllo toohello
-Da hello [portale di Azure](https://portal.azure.com) dashboard, seleziona hello **Azure AD Privileged Identity Management** app. Da qui, accedere ai log di controllo hello facendo clic **gestire i ruoli con privilegi** > **cronologia controlli** nel dashboard PIM hello.
+## <a name="navigate-to-the-audit-log"></a>Accedere al log di controllo
+Nel dashboard del [portale di Azure](https://portal.azure.com) selezionare l'app **Azure AD Privileged Identity Management** . Da qui è possibile accedere al log di controllo facendo clic su **Gestione dei ruoli con privilegi** > **Cronologia dei controlli** nel dashboard di PIM.
 
-## <a name="hello-audit-log-graph"></a>grafico di log di controllo Hello
-È possibile utilizzare attivazioni totali di hello audit log tooview hello attivazioni max al giorno e attivazioni medie al giorno in un grafico a linee.  È anche possibile filtrare i dati hello dal ruolo se è presente più di un ruolo nella cronologia di controllo hello.
+## <a name="the-audit-log-graph"></a>Grafico del log di controllo
+È possibile usare il log di controllo per visualizzare il totale delle attivazioni, il numero massimo di attivazioni per giorno e il numero medio di attivazioni per giorno in un grafico a linee.  È anche possibile filtrare i dati per ruolo se sono presenti più ruoli nella cronologia di controlli.
 
-Hello utilizzare **ora**, **azione**, e **ruolo** pulsanti toosort hello log.
+Usare i pulsanti relativi a **ora**, **azione** e **ruolo** per ordinare il log.
 
-## <a name="hello-audit-log-list"></a>elenco di log di controllo Hello
-Hello colonne nell'elenco di log di controllo hello sono:
+## <a name="the-audit-log-list"></a>Elenco del log di controllo
+Le colonne nell'elenco del log di controllo sono le seguenti:
 
-* **Richiedente** -utente hello che ha richiesto l'attivazione del ruolo hello o modifica.  Se il valore di hello è di tipo "Sistema Azure", vedere il log di controllo di Azure di hello per altre informazioni.
-* **Utente** -utente hello in fase di attivazione o tooa ruolo.
-* **Ruolo** -ruolo hello assegnato o attivato dall'utente hello.
-* **Azione** - azioni hello dal richiedente hello. Le azioni possono includere assegnazione, annullamento dell'assegnazione, attivazione o disattivazione.
-* **Tempo** : quando si è verificata hello azione.
-* **Ragionamento** -se il testo è stato immesso nel campo motivo hello durante l'attivazione, verrà visualizzato.
+* **Richiedente** : utente che ha richiesto l'attivazione o la modifica del ruolo.  Se il valore è "Azure System", vedere il log di controllo di Azure per altre informazioni.
+* **Utente** : utente che esegue l'attivazione o che è assegnato a un ruolo.
+* **Ruolo** : ruolo assegnato o attivato dall'utente.
+* **Azione** : azioni eseguite dal richiedente. Le azioni possono includere assegnazione, annullamento dell'assegnazione, attivazione o disattivazione.
+* **Ora** : quando si è verificata l'azione.
+* **Motivo** : eventuale testo immesso nel campo del motivo durante l'attivazione.
 * **Scadenza** : rilevante solo per l'attivazione dei ruoli.
 
-## <a name="filter-hello-audit-log"></a>Log di controllo di filtro hello
-È possibile filtrare le informazioni di hello che viene visualizzato nel log di controllo hello facendo hello **filtro** pulsante.  Hello **blade di parametri di aggiornamento grafico** verranno visualizzati.
+## <a name="filter-the-audit-log"></a>Filtrare il log di controllo
+È possibile filtrare le informazioni visualizzate nel log di controllo facendo clic sul pulsante **Filtro** .  Verrà visualizzato il pannello **Aggiorna parametri grafico** .
 
-Dopo aver impostato i filtri di hello, fare clic su **aggiornamento** dati hello toofilter nel registro hello.  Se non viene visualizzato immediatamente dati hello, aggiornare la pagina hello.
+Dopo aver impostato i filtri, fare clic su **Aggiorna** per filtrare i dati del log.  Se i dati non vengono visualizzati immediatamente, aggiornare la pagina.
 
-### <a name="change-hello-date-range"></a>Modificare l'intervallo di date hello
-Hello utilizzare **oggi**, **settimana precedente**, **mese scorso**, o **personalizzato** i pulsanti di intervallo di tempo toochange hello del log di controllo hello.
+### <a name="change-the-date-range"></a>Modificare l'intervallo di date
+Usare i pulsanti **Oggi**, **Settimana precedente**, **Mese precedente** o **Personalizzato** per modificare l'intervallo di tempo del log di controllo.
 
-Quando si sceglie di hello **personalizzato** pulsante, verrà assegnato un **da** campo Data e un **a** data toospecify campo un intervallo di date per il log di hello.  È possibile immettere date hello in formato MM/gg/aaaa o fare clic su hello **calendario** icona e scegliere Data hello da un calendario.
+Se si sceglie il pulsante **Personalizzato**, vengono visualizzati i campi di data **Da** e **A** per specificare un intervallo di date per il log.  È possibile immettere le date nel formato MM/GG/AAAA o fare clic sull'icona **calendario** e scegliere la data da un calendario.
 
-### <a name="change-hello-roles-included-in-hello-log"></a>Modificare i ruoli di hello inclusi nel registro hello
-Selezionare o deselezionare hello **ruolo** casella di controllo successivo tooeach ruolo tooinclude o escludere dalla hello del log.
+### <a name="change-the-roles-included-in-the-log"></a>Modificare i ruoli inclusi nel log
+Selezionare o deselezionare la casella di controllo **Ruolo** accanto a ogni ruolo per includerlo o escluderlo dal log.
 
-<!--Every topic should have next steps and links toohello next logical set of content tookeep hello customer engaged-->
+<!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
 ## <a name="next-steps"></a>Passaggi successivi
 [!INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
 

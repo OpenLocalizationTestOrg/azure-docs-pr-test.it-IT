@@ -1,6 +1,6 @@
 ---
-title: aaaDeploy e gestire i backup per le macchine virtuali distribuite di gestione risorse mediante PowerShell | Documenti Microsoft
-description: Utilizzare PowerShell toodeploy e gestire i backup in Azure per macchine virtuali distribuite di gestione risorse
+title: Distribuire e gestire i backup per le macchine virtuali distribuite con Resource Manager usando PowerShell | Microsoft Docs
+description: Utilizzare PowerShell per distribuire e gestire i backup per le macchine virtuali distribuite con Resource Manager in Azure
 services: backup
 documentationcenter: 
 author: markgalioto
@@ -12,45 +12,45 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 08/28/2017
+ms.date: 08/30/2017
 ms.author: markgal;trinadhk
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 486fb3ae1902403fe6bf303df57244b76677ab17
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 414fb9adaa1535d82b1bc385ff0864394efb837c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="use-azurermrecoveryservicesbackup-cmdlets-tooback-up-virtual-machines"></a>Utilizzare AzureRM.RecoveryServices.Backup cmdlet tooback backup di macchine virtuali
+# <a name="use-azurermrecoveryservicesbackup-cmdlets-to-back-up-virtual-machines"></a>Usare i cmdlet AzureRM.RecoveryServices.Backup per eseguire il backup di macchine virtuali
 > [!div class="op_single_selector"]
 > * [Gestione risorse](backup-azure-vms-automation.md)
 > * [Classico](backup-azure-vms-classic-automation.md)
 >
 >
 
-Questo articolo illustra come tooback i cmdlet di Azure PowerShell toouse backup e ripristinare una macchina virtuale di Azure (VM) da servizi di ripristino di un insieme di credenziali. Un insieme di credenziali di servizi di ripristino è una risorsa di gestione risorse di Azure ed è utilizzato tooprotect dati e risorse in servizi di Backup di Azure e Azure Site Recovery. È possibile utilizzare un tooprotect insieme di credenziali di servizi di ripristino distribuito Service Manager di Azure le macchine virtuali e macchine virtuali distribuite di gestione risorse di Azure.
+In questo articolo viene illustrato come usare i cmdlet di Azure PowerShell per eseguire il backup e ripristinare una macchina virtuale (VM) di Azure da un insieme di credenziali dei servizi di ripristino. Un insieme di credenziali dei servizi di ripristino è una risorsa di Resource Manager di Azure e viene utilizzato per proteggere i dati e asset nei servizi di Backup di Azure e di Azure Site Recovery. È possibile usare un insieme di credenziali di Servizi di ripristino per proteggere le macchine virtuali distribuite con Service Manager di Azure e Azure Resource Manager.
 
 > [!NOTE]
-> Azure offre due modelli di distribuzione per creare e usare le risorse: [Resource Manager e distribuzione classica](../azure-resource-manager/resource-manager-deployment-model.md). In questo articolo è per l'utilizzo con macchine virtuali create utilizzando il modello di gestione risorse hello.
+> Azure offre due modelli di distribuzione per creare e usare le risorse: [Resource Manager e distribuzione classica](../azure-resource-manager/resource-manager-deployment-model.md). Questo articolo si riferisce alle VM create tramite il modello Resource Manager.
 >
 >
 
-In questo articolo illustra utilizzando PowerShell tooprotect una macchina virtuale e ripristino di dati da un punto di ripristino.
+In questo articolo viene illustrato come usare PowerShell per proteggere una macchina virtuale e ripristinare i dati da un punto di ripristino.
 
 ## <a name="concepts"></a>Concetti
-Se non si ha familiarità con il servizio di Backup di Azure, per una panoramica del servizio di hello, hello estrarre [che cos'è Azure Backup?](backup-introduction-to-azure-backup.md) Prima di iniziare, assicurarsi che riguardano essentials hello su hello prerequisiti necessari toowork con Backup di Azure e hello limitazioni di hello VM soluzione di backup corrente.
+Se non si ha familiarità con il servizio di Backup di Azure, vedere l'argomento [Che cos'è Backup di Azure?](backup-introduction-to-azure-backup.md) per una panoramica sul servizio Prima di iniziare, assicurarsi di avere gli elementi di base per i prerequisiti necessari per usare il servizio Backup di Azure, e le limitazioni della soluzione attuale di backup della macchina virtuale.
 
-toouse PowerShell in modo efficace, si tratta di toounderstand necessario hello gerarchia di oggetti e da dove toostart.
+Per un utilizzo efficace di PowerShell, è necessario comprendere la gerarchia degli oggetti e da dove iniziare.
 
 ![Gerarchia di oggetti dei servizi di ripristino](./media/backup-azure-vms-arm-automation/recovery-services-object-hierarchy.png)
 
-hello tooview AzureRm.RecoveryServices.Backup Guida di riferimento, vedere hello [Backup di Azure - cmdlet di servizi di ripristino](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup) in hello libreria di Azure.
+Per visualizzare il riferimento al cmdlet AzureRm.RecoveryServices.Backup di PowerShell, vedere [Azure Backup - Recovery Services Cmdlets (Backup di Azure: i cmdlet dei servizi di ripristino)](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup) nella libreria di Azure.
 
 ## <a name="setup-and-registration"></a>Installazione e registrazione
-toobegin:
+Per iniziare:
 
-1. [Scaricare hello la versione più recente di PowerShell](https://docs.microsoft.com/powershell/azure/install-azurerm-ps) (hello versione minima richiesta è: 1.4.0)
-2. Trovare i cmdlet di PowerShell di Azure Backup hello disponibili digitando hello comando seguente:
+1. [Scaricare la versione più recente di PowerShell](https://docs.microsoft.com/powershell/azure/install-azurerm-ps) (la versione minima richiesta è: 1.4.0)
+2. Cercare i cmdlet PowerShell di Azure Backup disponibili digitando il comando seguente:
 
 ```
 PS C:\> Get-Command *azurermrecoveryservices*
@@ -87,7 +87,7 @@ Cmdlet          Wait-AzureRmRecoveryServicesBackupJob              1.4.0      Az
 ```
 
 
-con PowerShell, è possibile automatizzare Hello seguenti attività:
+Le attività seguenti possono essere automatizzate tramite PowerShell:
 
 * Creare un insieme di credenziali di Servizi di ripristino
 * Eseguire il backup delle VM di Azure
@@ -96,24 +96,24 @@ con PowerShell, è possibile automatizzare Hello seguenti attività:
 * Ripristinare una macchina virtuale di Azure
 
 ## <a name="create-a-recovery-services-vault"></a>Creare un insieme di credenziali di Servizi di ripristino
-Hello alla procedura seguente per facilitare la creazione di un insieme di credenziali di servizi di ripristino. Un insieme di credenziali dei servizi di ripristino è diverso da un insieme di credenziali di backup.
+Nei passaggi seguenti viene descritto come creare un insieme di credenziali dei servizi di ripristino. Un insieme di credenziali dei servizi di ripristino è diverso da un insieme di credenziali di backup.
 
-1. Se si utilizza Azure Backup per hello prima volta, è necessario utilizzare hello  **[registro AzureRmResourceProvider](http://docs.microsoft.com/powershell/module/azurerm.resources/register-azurermresourceprovider)**  provider di servizi di ripristino di Azure di cmdlet tooregister hello con la sottoscrizione.
+1. Se si sta usando Backup di Azure per la prima volta, è necessario usare il cmdlet **[Register-AzureRmResourceProvider](http://docs.microsoft.com/powershell/module/azurerm.resources/register-azurermresourceprovider)** per registrare il provider dei Servizi di ripristino di Azure con la propria sottoscrizione.
 
     ```
     PS C:\> Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.RecoveryServices"
     ```
-2. Hello insieme di credenziali di servizi di ripristino è una risorsa di gestione delle risorse, pertanto è necessario tooplace all'interno di un gruppo di risorse. È possibile utilizzare un gruppo di risorse esistente o creare un gruppo di risorse con hello  **[New AzureRmResourceGroup](https://docs.microsoft.com/powershell/module/azurerm.resources/new-azurermresourcegroup)**  cmdlet. Quando si crea un gruppo di risorse, specificare nome hello e il percorso per il gruppo di risorse hello.  
+2. L'insieme di credenziali dei Servizi di ripristino è una risorsa Resource Manager, pertanto è necessario inserirlo all'interno di un gruppo di risorse. È possibile usare un gruppo di risorse esistente o crearne uno con il cmdlet **[New-AzureRmResourceGroup](https://docs.microsoft.com/powershell/module/azurerm.resources/new-azurermresourcegroup)**. Quando si crea un nuovo gruppo di risorse, è necessario specificare il nome e il percorso per il gruppo di risorse.  
 
     ```
     PS C:\> New-AzureRmResourceGroup –Name "test-rg" –Location "West US"
     ```
-3. Hello utilizzare  **[New AzureRmRecoveryServicesVault](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices/new-azurermrecoveryservicesvault)**  hello toocreate cmdlet dell'insieme di credenziali di servizi di ripristino. Assicurarsi che toospecify hello stesso percorso per l'insieme di credenziali hello utilizzata per il gruppo di risorse hello.
+3. Usare il cmdlet **[New-AzureRmRecoveryServicesVault](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices/new-azurermrecoveryservicesvault)** per creare un nuovo insieme di credenziali dei Servizi di ripristino. Assicurarsi di specificare per l'insieme di credenziali lo stesso percorso usato per il gruppo di risorse.
 
     ```
     PS C:\> New-AzureRmRecoveryServicesVault -Name "testvault" -ResourceGroupName " test-rg" -Location "West US"
     ```
-4. Specificare il tipo di hello di toouse di ridondanza di archiviazione; è possibile utilizzare [archiviazione con ridondanza locale (LRS)](../storage/common/storage-redundancy.md#locally-redundant-storage) o [archiviazione con ridondanza geografica (GRS)](../storage/common/storage-redundancy.md#geo-redundant-storage). Hello riportato di seguito hello - BackupStorageRedundancy per testvault impostazione tooGeoRedundant.
+4. Specificare il tipo di ridondanza di archiviazione da usare, ad esempio [archiviazione con ridondanza locale (LRS)](../storage/common/storage-redundancy.md#locally-redundant-storage) o [archiviazione con ridondanza geografica (GRS)](../storage/common/storage-redundancy.md#geo-redundant-storage). Nell'esempio seguente l'opzione BackupStorageRedundancy per testvault è impostata su GeoRedundant.
 
     ```
     PS C:\> $vault1 = Get-AzureRmRecoveryServicesVault –Name "testvault"
@@ -121,14 +121,14 @@ Hello alla procedura seguente per facilitare la creazione di un insieme di crede
     ```
 
    > [!TIP]
-   > Molti cmdlet di Azure Backup richiede l'oggetto insieme di credenziali di servizi di ripristino hello come input. Per questo motivo, è utile toostore hello servizi di ripristino di Backup dell'insieme di credenziali oggetto in una variabile.
+   > Molti cmdlet di Backup di Azure richiedono l'oggetto dell'insieme di credenziali dei servizi di ripristino come input. Per questo motivo, è utile archiviare l'oggetto dell'insieme di credenziali dei servizi di ripristino di Backup in una variabile.
    >
    >
 
-## <a name="view-hello-vaults-in-a-subscription"></a>Visualizza gli insiemi di credenziali hello in una sottoscrizione
-Utilizzare  **[Get AzureRmRecoveryServicesVault](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices/get-azurermrecoveryservicesvault)**  elenco hello tooview di tutti gli insiemi di credenziali nella sottoscrizione corrente hello. È possibile utilizzare questo toocheck di comando che è stato creato un nuovo insieme di credenziali o toosee hello gli insiemi di credenziali disponibili nella sottoscrizione hello.
+## <a name="view-the-vaults-in-a-subscription"></a>Visualizzare gli insiemi di credenziali in un abbonamento
+Usare **[Get-AzureRmRecoveryServicesVault](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices/get-azurermrecoveryservicesvault)** per visualizzare l'elenco di tutti gli insiemi di credenziali della sottoscrizione corrente. È possibile usare questo comando per verificare che sia stato creato un nuovo insieme di credenziali o per vedere gli insiemi di credenziali nella sottoscrizione.
 
-Eseguire hello tooview di comando, Get-AzureRmRecoveryServicesVault, tutti gli insiemi di credenziali nella sottoscrizione hello. Hello riportato di seguito informazioni hello visualizzate per ogni insieme di credenziali.
+Eseguire il comando Get-AzureRmRecoveryServicesVault per visualizzare tutti gli insiemi di credenziali disponibili nella sottoscrizione. L'esempio seguente mostra le informazioni visualizzate per ogni insieme di credenziali.
 
 ```
 PS C:\> Get-AzureRmRecoveryServicesVault
@@ -143,19 +143,19 @@ Properties        : Microsoft.Azure.Commands.RecoveryServices.ARSVaultProperties
 
 
 ## <a name="back-up-azure-vms"></a>Eseguire il backup delle VM di Azure
-Utilizzare un tooprotect insieme di credenziali di servizi di ripristino le macchine virtuali. Prima di applicare la protezione di hello, impostare il contesto di insieme di credenziali hello (tipo hello dei dati protetti nell'insieme di credenziali hello) e verificare i criteri di protezione hello. criteri di protezione Hello sono pianificazione hello quando esegue i processi di backup hello e il periodo di conservazione di ogni snapshot di backup.
+Usare un insieme di credenziali di Servizi di ripristino per proteggere le macchine virtuali. Prima di applicare la protezione, impostare il contesto dell'insieme di credenziali (tipo di dati protetti nell'insieme di credenziali) e verificare i criteri di protezione. I criteri di protezione rappresentano la pianificazione per l'esecuzione dei processi di backup e il periodo di conservazione di ogni snapshot del backup.
 
 ### <a name="set-vault-context"></a>Impostazione del contesto dell'insieme di credenziali
-Prima di abilitare la protezione per una macchina virtuale, utilizzare  **[Set AzureRmRecoveryServicesVaultContext](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices/set-azurermrecoveryservicesvaultcontext)**  contesto di tooset hello insieme di credenziali. Dopo aver impostato il contesto di insieme di credenziali hello, si applica cmdlet successivi tooall. esempio Hello Imposta contesto di insieme di credenziali hello per insieme di credenziali hello *testvault*.
+Prima di abilitare la protezione per una macchina virtuale, usare **[Set AzureRmRecoveryServicesVaultContext](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices/set-azurermrecoveryservicesvaultcontext)** per impostare il contesto dell'insieme di credenziali. Una volta impostato il contesto dell'insieme di credenziali, si applica a tutti i cmdlet successivi. L'esempio seguente imposta il contesto per l'insieme di credenziali, *testvault*.
 
 ```
 PS C:\> Get-AzureRmRecoveryServicesVault -Name "testvault" | Set-AzureRmRecoveryServicesVaultContext
 ```
 
 ### <a name="create-a-protection-policy"></a>Creare i criteri di protezione
-Quando si crea un insieme di credenziali di Servizi di ripristino, questo è dotato di protezione predefinita e criteri di conservazione. criteri di protezione predefinito Hello avvia un processo di backup ogni giorno a un'ora specificata. criteri di conservazione predefiniti Hello mantiene il punto di ripristino giornaliero hello per 30 giorni. È possibile utilizzare predefinito hello tooquickly criteri proteggere la macchina virtuale e modificare il criterio di hello in un secondo momento con diversi dettagli.
+Quando si crea un insieme di credenziali di Servizi di ripristino, questo è dotato di protezione predefinita e criteri di conservazione. I criteri di protezione predefinita attivano un processo di backup ogni giorno all'ora specificata. I criteri di conservazione predefiniti consentono di mantenere il punto di recupero giornaliero per 30 giorni. È possibile usare i criteri predefiniti per proteggere rapidamente la macchina virtuale e modificare i criteri in un secondo momento con dettagli diversi.
 
-Utilizzare  **[Get AzureRmRecoveryServicesBackupProtectionPolicy](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupprotectionpolicy)**  criteri di protezione hello tooview nell'insieme di credenziali hello. È possibile utilizzare questo tooget cmdlet criteri specifici o criteri di hello tooview associata a un tipo di carico di lavoro. Hello di esempio seguente ottiene i criteri per il tipo di carico di lavoro, AzureVM.
+Per visualizzare l'elenco dei criteri di protezione disponibili nell'insieme di credenziali, usare **[Get-AzureRmRecoveryServicesBackupProtectionPolicy](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupprotectionpolicy)**. È possibile usare questo cmdlet per ottenere un criterio specifico o per visualizzare i criteri associati a un tipo di carico di lavoro. L'esempio seguente ottiene i criteri per il tipo di carico di lavoro AzureVM.
 
 ```
 PS C:\> Get-AzureRmRecoveryServicesBackupProtectionPolicy -WorkloadType "AzureVM"
@@ -165,11 +165,11 @@ DefaultPolicy        AzureVM            AzureVM              4/14/2016 5:00:00 P
 ```
 
 > [!NOTE]
-> fuso orario di Hello del campo BackupTime hello in PowerShell è UTC. Tuttavia, se l'ora del backup hello viene visualizzato nel portale di Azure hello, hello è fuso orario locale tooyour adattata.
+> Il fuso orario del campo BackupTime in PowerShell è UTC. Tuttavia, l'orario di backup nel portale di Azure è allineato al fuso orario locale.
 >
 >
 
-I criteri di protezione del backup sono associati almeno a un criterio di conservazione. I criteri di conservazione definiscono per quanto tempo un punto di recupero viene mantenuto prima dell'eliminazione. Utilizzare  **[Get AzureRmRecoveryServicesBackupRetentionPolicyObject](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupretentionpolicyobject)**  criteri di conservazione predefiniti tooview hello.  Analogamente è possibile utilizzare  **[Get AzureRmRecoveryServicesBackupSchedulePolicyObject](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupschedulepolicyobject)**  tooobtain hello pianificazione criterio. Hello  **[New AzureRmRecoveryServicesBackupProtectionPolicy](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/new-azurermrecoveryservicesbackupprotectionpolicy)**  cmdlet crea un oggetto PowerShell che contiene informazioni sui criteri di backup. Hello gli oggetti Criteri di conservazione e pianificazione vengono utilizzati come input toohello  **[New AzureRmRecoveryServicesBackupProtectionPolicy](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/new-azurermrecoveryservicesbackupprotectionpolicy)**  cmdlet. Hello esempio archivia il criterio di pianificazione hello e criteri di conservazione hello nelle variabili. esempio Hello utilizza tali parametri di hello toodefine di variabili durante la creazione di un criterio di protezione, *NewPolicy*.
+I criteri di protezione del backup sono associati almeno a un criterio di conservazione. I criteri di conservazione definiscono per quanto tempo un punto di recupero viene mantenuto prima dell'eliminazione. Per visualizzare il criterio di conservazione predefinito usare **[Get-AzureRmRecoveryServicesBackupRetentionPolicyObject](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupretentionpolicyobject)**.  Nello stesso modo, per ottenere il criterio di pianificazione predefinito usare **[Get-AzureRmRecoveryServicesBackupSchedulePolicyObject](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupschedulepolicyobject)**. Il cmdlet **[New-AzureRmRecoveryServicesBackupProtectionPolicy](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/new-azurermrecoveryservicesbackupprotectionpolicy)** crea un oggetto di PowerShell che contiene le informazioni relative ai criteri di backup. Gli oggetti dei criteri di conservazione e di pianificazione vengono usati come input per il cmdlet **[New-AzureRmRecoveryServicesBackupProtectionPolicy](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/new-azurermrecoveryservicesbackupprotectionpolicy)**. Nell'esempio seguente i criteri di pianificazione e i criteri di conservazione vengono archiviati nelle variabili. L'esempio usa tali variabili per definire i parametri durante la creazione di un criterio di protezione, *NewPolicy*.
 
 ```
 PS C:\> $schPol = Get-AzureRmRecoveryServicesBackupSchedulePolicyObject -WorkloadType "AzureVM"
@@ -182,16 +182,16 @@ NewPolicy           AzureVM            AzureVM              4/24/2016 1:30:00 AM
 
 
 ### <a name="enable-protection"></a>Abilitare la protezione
-Dopo aver definito i criteri di protezione backup hello, è comunque necessario abilitare i criteri di hello per un elemento. Utilizzare  **[Enable AzureRmRecoveryServicesBackupProtection](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/enable-azurermrecoveryservicesbackupprotection)**  tooenable protezione. Abilitazione della protezione, sono necessari due oggetti - elemento hello e criteri di hello. Dopo aver associato all'insieme di credenziali hello criteri hello, flusso di lavoro backup hello viene attivato in fase di hello è definito nella pianificazione dei criteri hello.
+Dopo aver definito i criteri di protezione di backup è comunque necessario abilitare i criteri per un elemento. Per abilitare la protezione usare **[Enable-AzureRmRecoveryServicesBackupProtection](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/enable-azurermrecoveryservicesbackupprotection)**. Per abilitare la protezione sono necessari due oggetti, l'elemento e i criteri. Dopo aver associato i criteri all'insieme di credenziali, il flusso di lavoro di backup verrà attivato al momento definito nella pianificazione dei criteri.
 
-Hello seguendo l'esempio Abilita protezione per elemento hello, V2VM, applicando i criteri di hello, NewPolicy. protezione di hello tooenable nelle macchine virtuali di gestione risorse non crittografati
+L'esempio seguente abilita la protezione per l'elemento V2VM usando i criteri NewPolicy. Per abilitare la protezione in macchine virtuali di Resource Manager non crittografate
 
 ```
 PS C:\> $pol=Get-AzureRmRecoveryServicesBackupProtectionPolicy -Name "NewPolicy"
 PS C:\> Enable-AzureRmRecoveryServicesBackupProtection -Policy $pol -Name "V2VM" -ResourceGroupName "RGName1"
 ```
 
-protezione hello tooenable crittografati macchine virtuali (crittografate utilizzando BEK e KEK), è necessario toogive hello Azure Backup autorizzazione tooread chiavi e segreti dall'insieme di credenziali chiave.
+Per abilitare la protezione in macchine virtuali crittografate con BEK e KEK, è necessario assegnare le autorizzazioni per il servizio di Backup di Azure per la lettura di chiavi e segreti dal Key Vault.
 
 ```
 PS C:\> Set-AzureRmKeyVaultAccessPolicy -VaultName "KeyVaultName" -ResourceGroupName "RGNameOfKeyVault" -PermissionsToKeys backup,get,list -PermissionsToSecrets get,list -ServicePrincipalName 262044b1-e2ce-469f-a196-69ab7ada62d3
@@ -199,7 +199,7 @@ PS C:\> $pol=Get-AzureRmRecoveryServicesBackupProtectionPolicy -Name "NewPolicy"
 PS C:\> Enable-AzureRmRecoveryServicesBackupProtection -Policy $pol -Name "V2VM" -ResourceGroupName "RGName1"
 ```
 
-protezione hello tooenable crittografati macchine virtuali (crittografate utilizzando solo BEK), è necessario toogive hello Azure Backup service autorizzazione tooread i segreti dall'insieme di credenziali chiave.
+Per abilitare la protezione in macchine virtuali crittografate (solo con BEK), è necessario assegnare le autorizzazioni per il servizio di Backup di Azure per la lettura di segreti dall'insieme di credenziali delle chiavi.
 
 ```
 PS C:\> Set-AzureRmKeyVaultAccessPolicy -VaultName "KeyVaultName" -ResourceGroupName "RGNameOfKeyVault" -PermissionsToSecrets backup,get,list -ServicePrincipalName 262044b1-e2ce-469f-a196-69ab7ada62d3
@@ -208,7 +208,7 @@ PS C:\> Enable-AzureRmRecoveryServicesBackupProtection -Policy $pol -Name "V2VM"
 ```
 
 > [!NOTE]
-> Se si utilizza il cloud di Azure per enti pubblici hello, quindi utilizzare hello valore ff281ffe-705c-4f53-9f37-a40e6f2c68f3 per il parametro hello **- ServicePrincipalName** in [Set-AzureRmKeyVaultAccessPolicy](https://docs.microsoft.com/powershell/module/azurerm.keyvault/set-azurermkeyvaultaccesspolicy) cmdlet .
+> Se si usa il cloud di Azure per enti pubblici, usare il valore ff281ffe-705c-4f53-9f37-a40e6f2c68f3 per il parametro **-ServicePrincipalName** nel cmdlet [Set-AzureRmKeyVaultAccessPolicy](https://docs.microsoft.com/powershell/module/azurerm.keyvault/set-azurermkeyvaultaccesspolicy).
 >
 >
 
@@ -220,9 +220,9 @@ PS C:\> Enable-AzureRmRecoveryServicesBackupProtection -Policy $pol -Name "V1VM"
 ```
 
 ### <a name="modify-a-protection-policy"></a>Modificare i criteri di protezione
-criteri di protezione hello toomodify, utilizzare [Set AzureRmRecoveryServicesBackupProtectionPolicy](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/set-azurermrecoveryservicesbackupprotectionpolicy) oggetti SchedulePolicy o RetentionPolicy di hello toomodify.
+Per modificare i criteri di protezione, usare [Set-AzureRmRecoveryServicesBackupProtectionPolicy](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/set-azurermrecoveryservicesbackupprotectionpolicy) per modificare gli oggetti SchedulePolicy o RetentionPolicy.
 
-Hello esempio seguente modifica hello ripristino punto memorizzazione too365 giorni.
+Nell'esempio seguente viene modificato il punto di recupero a 365 giorni.
 
 ```
 PS C:\> $retPol = Get-AzureRmRecoveryServicesBackupRetentionPolicyObject -WorkloadType "AzureVM"
@@ -232,7 +232,7 @@ PS C:\> Set-AzureRmRecoveryServicesBackupProtectionPolicy -Policy $pol  -Retenti
 ```
 
 ## <a name="trigger-a-backup"></a>Attivare un backup
-È possibile utilizzare  **[Backup AzureRmRecoveryServicesBackupItem](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/backup-azurermrecoveryservicesbackupitem)**  tootrigger un processo di backup. In caso di backup iniziale hello, è un backup completo. I backup successivi saranno incrementali. Toouse assicurarsi di essere  **[Set AzureRmRecoveryServicesVaultContext](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices/set-azurermrecoveryservicesvaultcontext)**  contesto insieme di credenziali di hello tooset prima attivazione hello processo di backup. Hello di esempio seguente si presuppone che il contesto dell'insieme di credenziali è stato impostato.
+È possibile usare **[Backup-AzureRmRecoveryServicesBackupItem](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/backup-azurermrecoveryservicesbackupitem)** per attivare un processo di backup. Se si tratta del backup iniziale, è un backup completo. I backup successivi saranno incrementali. Per impostare il contesto dell'insieme di credenziali prima di attivare il processo di backup, usare **[Set-AzureRmRecoveryServicesVaultContext](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices/set-azurermrecoveryservicesvaultcontext)**. L'esempio seguente presuppone che sia stato impostato il contesto dell'insieme di credenziali.
 
 ```
 PS C:\> $namedContainer = Get-AzureRmRecoveryServicesBackupContainer -ContainerType "AzureVM" -Status "Registered" -FriendlyName "V2VM"
@@ -244,12 +244,12 @@ V2VM              Backup               InProgress            4/23/2016 5:00:30 P
 ```
 
 > [!NOTE]
-> fuso orario di Hello dei campi di StartTime ed EndTime hello in PowerShell è UTC. Tuttavia, se hello ora viene visualizzata nel portale di Azure hello, hello è fuso orario locale tooyour adattata.
+> Il fuso orario dei campi StartTime ed EndTime in PowerShell è UTC. Tuttavia, l'orario visualizzato nel portale di Azure è allineato al fuso orario locale.
 >
 >
 
 ## <a name="monitoring-a-backup-job"></a>Monitoraggio di un processo di backup
-È possibile monitorare operazioni a esecuzione prolungata, ad esempio i processi di backup, senza utilizzare hello portale di Azure. stato hello tooget di un processo in corso, utilizzare hello  **[Get AzureRmRecoveryservicesBackupJob](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupjob)**  cmdlet. Questo cmdlet Ottiene i processi di backup per un insieme di credenziali specifico hello e tale insieme di credenziali è specificato nel contesto dell'insieme di credenziali di hello. Hello seguente esempio ottiene hello stato di un processo in corso sotto forma di matrice e archivia lo stato di hello nella variabile di hello $joblist.
+È possibile monitorare le operazioni a esecuzione prolungata, ad esempio i processi di backup, senza usare il portale di Azure. Per ottenere lo stato di un processo in corso, usare il cmdlet **[Get-AzureRmRecoveryservicesBackupJob](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupjob)**. Questo cmdlet ottiene i processi di backup per un insieme di credenziali specifico e tale insieme di credenziali è indicato nel relativo contesto. L'esempio seguente ottiene lo stato di un processo in corso sotto forma di matrice e archivia lo stato nella variabile $joblist.
 
 ```
 PS C:\> $joblist = Get-AzureRmRecoveryservicesBackupJob –Status "InProgress"
@@ -259,35 +259,35 @@ WorkloadName     Operation            Status               StartTime            
 V2VM             Backup               InProgress            4/23/2016 5:00:30 PM           cf4b3ef5-2fac-4c8e-a215-d2eba4124f27
 ```
 
-Anziché il polling di questi processi per il completamento, che è necessario codice aggiuntivo - utilizzare hello  **[attesa AzureRmRecoveryServicesBackupJob](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/wait-azurermrecoveryservicesbackupjob)**  cmdlet. Questo cmdlet sospende l'esecuzione di hello finché non viene completato il processo di hello o hello specificato viene raggiunto il valore di timeout.
+Invece di eseguire il polling dei processi per ottenere lo stato di completamento, operazione non necessaria che prevede codice aggiuntivo, usare il cmdlet **[Wait-AzureRmRecoveryServicesBackupJob](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/wait-azurermrecoveryservicesbackupjob)**. Questo cmdlet sospende l'esecuzione fino al completamento del processo o fino a quando non viene raggiunto il valore di timeout specificato.
 
 ```
 PS C:\> Wait-AzureRmRecoveryServicesBackupJob -Job $joblist[0] -Timeout 43200
 ```
 
 ## <a name="restore-an-azure-vm"></a>Ripristinare una macchina virtuale di Azure
-È presente una differenza fondamentale tra hello il ripristino di una macchina virtuale utilizzando hello portale di Azure e il ripristino di una macchina virtuale usando PowerShell. Con PowerShell, l'operazione di ripristino hello è stata completata una volta creati i dischi hello e informazioni di configurazione da punto di ripristino hello.
+C'è una differenza chiave tra il ripristino di una macchina virtuale tramite il portale di Azure e il ripristino di una macchina virtuale tramite PowerShell. Con PowerShell l'operazione di ripristino è completata quando sono stati creati i dischi e le informazioni sulla configurazione dal punto di ripristino
 
 > [!NOTE]
-> operazione di ripristino Hello non crea una macchina virtuale.
+> L'operazione di ripristino non crea una macchina virtuale.
 >
 >
 
-toocreate una macchina virtuale dal disco, vedere la sezione hello, [hello crea macchina virtuale da dischi stored](backup-azure-vms-automation.md#create-a-vm-from-stored-disks). di seguito sono riportati i passaggi di base di Hello toorestore una macchina virtuale di Azure:
+Per creare una macchina virtuale dal disco, vedere la sezione [Creare la macchina virtuale da dischi archiviati](backup-azure-vms-automation.md#create-a-vm-from-stored-disks). I passaggi di base per ripristinare una macchina virtuale di Azure sono:
 
-* Selezionare hello VM
+* Selezionare la macchina virtuale
 * Scegliere un punto di ripristino
-* Ripristinare i dischi hello
-* Creare VM hello da dischi stored
+* Ripristinare i dischi
+* Creare la macchina virtuale da dischi archiviati
 
-Hello figura seguente illustra la gerarchia di oggetti hello da hello RecoveryServicesVault toohello BackupRecoveryPoint verso il basso.
+Il grafico seguente mostra la gerarchia degli oggetti da RecoveryServicesVault fino a BackupRecoveryPoint.
 
 ![Gerarchia di oggetti dei servizi di ripristino con BackupContainer](./media/backup-azure-vms-arm-automation/backuprecoverypoint-only.png)
 
-toorestore dati di backup, identificare l'elemento backup hello e punto di ripristino hello che contiene i dati in un momento hello. Hello utilizzare  **[ripristino AzureRmRecoveryServicesBackupItem](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/restore-azurermrecoveryservicesbackupitem)**  cmdlet toorestore dati hello insieme di credenziali di account del cliente toohello.
+Per ripristinare i dati di backup, identificare l'elemento sottoposto a backup e il punto di ripristino che contiene i dati temporizzati. Usare il cmdlet **[Restore-AzureRmRecoveryServicesBackupItem](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/restore-azurermrecoveryservicesbackupitem)** per ripristinare i dati dall'insieme di credenziali nell'account del cliente.
 
-### <a name="select-hello-vm"></a>Selezionare hello VM
-tooget hello PowerShell oggetto che identifica hello destra eseguire il backup elemento, iniziare dal contenitore hello nell'insieme di credenziali hello e proseguite verso il basso la gerarchia di oggetti hello. contenitore di hello tooselect che rappresenta una macchina virtuale, utilizzare hello hello  **[Get AzureRmRecoveryServicesBackupContainer](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupcontainer)**  cmdlet e inoltrare tramite pipe che toohello  **[ Get-AzureRmRecoveryServicesBackupItem](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupitem)**  cmdlet.
+### <a name="select-the-vm"></a>Selezionare la macchina virtuale
+Per ottenere l'oggetto di PowerShell che identifica l'elemento di backup corretto, iniziare dal contenitore nell'insieme di credenziali e procedere verso il basso nella gerarchia degli oggetti. Per selezionare il contenitore che rappresenta la macchina virtuale, usare il cmdlet **[Get-AzureRmRecoveryServicesBackupContainer](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupcontainer)** e inviarlo tramite pipe al cmdlet **[Get-AzureRmRecoveryServicesBackupItem](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupitem)**.
 
 ```
 PS C:\> $namedContainer = Get-AzureRmRecoveryServicesBackupContainer  -ContainerType "AzureVM" –Status "Registered" -FriendlyName "V2VM"
@@ -295,9 +295,9 @@ PS C:\> $backupitem = Get-AzureRmRecoveryServicesBackupItem –Container $namedC
 ```
 
 ### <a name="choose-a-recovery-point"></a>Scegliere un punto di ripristino
-Hello utilizzare  **[Get AzureRmRecoveryServicesBackupRecoveryPoint](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackuprecoverypoint)**  toolist cmdlet punti di ripristino per backup dell'elemento hello. Scegliere quindi toorestore punto di ripristino hello. Se si è certi che toouse punto di ripristino, è una buona norma toochoose hello RecoveryPointType più recente = punto AppConsistent nell'elenco di hello.
+Usare il cmdlet **[Get-AzureRmRecoveryServicesBackupRecoveryPoint](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackuprecoverypoint)** per elencare tutti i punti di recupero dell'elemento di backup. Quindi scegliere il punto di ripristino per ripristinare. Se non si sa quale punto di ripristino usare, è consigliabile scegliere il punto più recente RecoveryPointType = AppConsistent nell'elenco.
 
-In hello lo script seguente, hello variabile, **$rp**, è una matrice di punti di ripristino per hello selezionato backup dell'elemento, da hello ultimi sette giorni. Matrice di Hello viene ordinato in ordine inverso di tempo con punto di ripristino più recente di hello in corrispondenza dell'indice 0. Utilizzare l'indicizzazione di un punto di ripristino hello toopick standard matrice di PowerShell. Nell'esempio hello $rp [0] seleziona il punto di ripristino più recente hello.
+Nello script seguente la variabile **$rp** è una matrice di punti di recupero per l'elemento di backup selezionato negli ultimi sette giorni. La matrice viene ordinata in ordine inverso di tempo con il punto di ripristino più recente in posizione 0 nell'indice. Per scegliere il punto di ripristino, usare l'indicizzazione standard della matrice di PowerShell. Nell'esempio $rp [0] seleziona il punto di ripristino più recente.
 
 ```
 PS C:\> $startDate = (Get-Date).AddDays(-7)
@@ -319,10 +319,10 @@ BackupManagementType        : AzureVM
 
 
 
-### <a name="restore-hello-disks"></a>Ripristinare i dischi hello
-Hello utilizzare  **[ripristino AzureRmRecoveryServicesBackupItem](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/restore-azurermrecoveryservicesbackupitem)**  toorestore cmdlet dati dell'elemento di backup e configurazione tooa punto di ripristino. Dopo aver identificato un punto di ripristino, utilizzarlo come valore di hello per hello **- RecoveryPoint** parametro. Nel codice di esempio precedente hello, **$rp [0]** stato toouse punto di ripristino hello. Nel seguente esempio di codice, hello **$rp [0]** è toouse punto di ripristino hello per ripristinare il disco hello.
+### <a name="restore-the-disks"></a>Ripristinare i dischi
+Per ripristinare i dati e la configurazione di un elemento di backup a un punto di recupero, usare il cmdlet **[Restore-AzureRmRecoveryServicesBackupItem](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/restore-azurermrecoveryservicesbackupitem)**. Dopo aver identificato un punto di ripristino, usarlo come valore per il parametro **-RecoveryPoint** . Nell'esempio di codice precedente **$rp [0]** è il punto di ripristino da usare. Nell'esempio di codice seguente **$rp[0]** è il punto di ripristino da usare per il ripristino del disco.
 
-i dischi hello toorestore e informazioni di configurazione:
+Per ripristinare i dischi e le informazioni di configurazione:
 
 ```
 PS C:\> $restorejob = Restore-AzureRmRecoveryServicesBackupItem -RecoveryPoint $rp[0] -StorageAccountName "DestAccount" -StorageAccountResourceGroupName "DestRG"
@@ -332,30 +332,30 @@ WorkloadName     Operation          Status               StartTime              
 V2VM              Restore           InProgress           4/23/2016 5:00:30 PM                        cf4b3ef5-2fac-4c8e-a215-d2eba4124f27
 ```
 
-Hello utilizzare  **[attesa AzureRmRecoveryServicesBackupJob](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/wait-azurermrecoveryservicesbackupjob)**  toowait cmdlet per toocomplete processo di ripristino hello.
+Usare il cmdlet **[Wait-AzureRmRecoveryServicesBackupJob](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/wait-azurermrecoveryservicesbackupjob)** per attendere il completamento del processo di ripristino.
 
 ```
 PS C:\> Wait-AzureRmRecoveryServicesBackupJob -Job $restorejob -Timeout 43200
 ```
 
-Una volta completato il processo di ripristino hello, utilizzare hello  **[Get AzureRmRecoveryServicesBackupJobDetails](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupjobdetails)**  dettagli hello tooget di cmdlet di hello operazione di ripristino. proprietà JobDetails Hello è hello toorebuild necessari di hello informazioni macchina virtuale.
+Dopo il completamento del processo di ripristino, usare il cmdlet **[Get-AzureRmRecoveryServicesBackupJobDetails](https://docs.microsoft.com/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupjobdetails)** per ottenere i dettagli dell'operazione di ripristino. La proprietà JobDetails contiene le informazioni necessarie per ricreare la macchina virtuale.
 
 ```
 PS C:\> $restorejob = Get-AzureRmRecoveryServicesBackupJob -Job $restorejob
 PS C:\> $details = Get-AzureRmRecoveryServicesBackupJobDetails -Job $restorejob
 ```
 
-Dopo aver ripristinato i dischi di hello, andare hello di toocreate successiva sezione toohello macchina virtuale.
+Dopo aver ripristinato i dischi, passare alla sezione successiva per creare la macchina virtuale.
 
 ## <a name="create-a-vm-from-restored-disks"></a>Creare una macchina virtuale da dischi ripristinati
-Dopo aver ripristinato i dischi di hello, utilizzare toocreate questi passaggi e configurare la macchina virtuale hello dal disco.
+Dopo aver ripristinato i dischi, seguire questa procedura per creare e configurare la macchina virtuale dal disco.
 
 > [!NOTE]
-> toocreate crittografati macchine virtuali da dischi ripristinati, il ruolo di Azure deve disporre dell'autorizzazione tooperform hello action **Microsoft.KeyVault/vaults/deploy/action**. Se il ruolo non dispone di questa autorizzazione, crearne uno personalizzato con questa azione. Per altre informazioni, vedere [Ruoli personalizzati nel Controllo degli accessi in base al ruolo di Azure](../active-directory/role-based-access-control-custom-roles.md).
+> Per creare macchine virtuali crittografate da dischi ripristinati, il ruolo di Azure deve disporre dell'autorizzazione per eseguire l'azione, ovvero **Microsoft.KeyVault/vaults/deploy/action**. Se il ruolo non dispone di questa autorizzazione, crearne uno personalizzato con questa azione. Per altre informazioni, vedere [Ruoli personalizzati nel Controllo degli accessi in base al ruolo di Azure](../active-directory/role-based-access-control-custom-roles.md).
 >
 >
 
-1. Hello query ripristinato proprietà del disco per i dettagli dei processi hello.
+1. Ricercare i dettagli del processo nelle proprietà del disco ripristinato.
 
   ```
   PS C:\> $properties = $details.properties
@@ -364,7 +364,7 @@ Dopo aver ripristinato i dischi di hello, utilizzare toocreate questi passaggi e
   PS C:\> $blobName = $properties["Config Blob Name"]
   ```
 
-2. Impostare il contesto di archiviazione di Azure hello e ripristinare i file di configurazione JSON hello.
+2. Impostare il contesto di archiviazione di Azure e ripristinare il file di configurazione JSON.
 
     ```
     PS C:\> Set-AzureRmCurrentStorageAccount -Name $storageaccountname -ResourceGroupName "testvault"
@@ -373,22 +373,17 @@ Dopo aver ripristinato i dischi di hello, utilizzare toocreate questi passaggi e
     PS C:\> $obj = ((Get-Content -Path $destination_path -Raw -Encoding Unicode)).TrimEnd([char]0x00) | ConvertFrom-Json
     ```
 
-3. Utilizzare configurazione di macchina virtuale di hello JSON configuration file toocreate hello.
+3. Usare il file di configurazione JSON per creare la configurazione della macchina virtuale.
 
     ```
    PS C:\> $vm = New-AzureRmVMConfig -VMSize $obj.'properties.hardwareProfile'.vmSize -VMName "testrestore"
     ```
 
-4. Collegare un disco del sistema operativo hello e i dischi dati. A seconda della configurazione di hello delle macchine virtuali, fare clic su hello collegamento pertinente tooview rispettivi cmdlet: 
-    - [Macchine virtuali non gestiti, non crittografato](#non-managed-non-encrypted-vms)
-    - [Macchine virtuali non gestiti, crittografate (solo BEK)](#non-managed-encrypted-vms-bek-only)
-    - [Macchine virtuali non gestiti, crittografate (BEK e KEK)](#non-managed-encrypted-vms-bek-and-kek)
-    - [Macchine virtuali gestite e non crittografati](#managed-non-encrypted-vms)
-    - [Macchine virtuali gestite, crittografate (BEK e KEK)](#managed-encrypted-vms-bek-and-kek)
-    
+4. Collegare il disco del sistema operativo e i dischi dei dati. In base alla configurazione delle macchine virtuali, vedere la sezione appropriata per visualizzare i rispettivi cmdlet:
+
     #### <a name="non-managed-non-encrypted-vms"></a>Macchine virtuali non gestite, non crittografate
 
-    Utilizzare seguente esempio per le macchine virtuali non gestiti, non crittografato hello.
+    Usare l'esempio seguente per macchine virtuali non gestite e non crittografate.
 
     ```
     PS C:\> Set-AzureRmVMOSDisk -VM $vm -Name "osdisk" -VhdUri $obj.'properties.StorageProfile'.osDisk.vhd.Uri -CreateOption "Attach"
@@ -401,7 +396,7 @@ Dopo aver ripristinato i dischi di hello, utilizzare toocreate questi passaggi e
 
     #### <a name="non-managed-encrypted-vms-bek-only"></a>Macchine virtuali non gestite, crittografate (solo con BEK)
 
-    Per macchine virtuali non gestiti, crittografate (crittografate utilizzando solo BEK), l'insieme di credenziali a chiave segreta toohello toorestore hello è necessario prima di collegare i dischi. Per ulteriori informazioni, vedere l'articolo hello [ripristinare una macchina virtuale crittografata da un punto di ripristino di Backup di Azure](backup-azure-restore-key-secret.md). Hello seguente esempio viene illustrata la modalità di tooattach del sistema operativo e i dischi di dati per le macchine virtuali di crittografia.
+    Per le macchine virtuali non gestite e crittografate (solo con BEK), è necessario ripristinare il segreto nell'insieme di credenziali delle chiavi prima di collegare i dischi. Per altre informazioni, vedere l'articolo [Ripristinare una macchina virtuale codificata da un punto di ripristino di Backup di Azure](backup-azure-restore-key-secret.md). L'esempio seguente illustra come collegare dischi del sistema operativo e i dati per le macchine virtuali crittografate.
 
     ```
     PS C:\> $dekUrl = "https://ContosoKeyVault.vault.azure.net:443/secrets/ContosoSecret007/xx000000xx0849999f3xx30000003163"
@@ -416,7 +411,7 @@ Dopo aver ripristinato i dischi di hello, utilizzare toocreate questi passaggi e
 
     #### <a name="non-managed-encrypted-vms-bek-and-kek"></a>Macchine virtuali non gestite, crittografate (con BEK e KEK)
 
-    Per macchine virtuali non gestiti, crittografate (crittografate utilizzando BEK e KEK), è necessario toorestore hello chiave e il segreto toohello insieme di credenziali chiave prima di collegare i dischi. Per ulteriori informazioni, vedere l'articolo hello [ripristinare una macchina virtuale crittografata da un punto di ripristino di Backup di Azure](backup-azure-restore-key-secret.md). Hello seguente esempio viene illustrata la modalità di tooattach del sistema operativo e i dischi di dati per le macchine virtuali di crittografia.
+    Per le macchine virtuali non gestite e crittografate (con BEK e KEK), è necessario ripristinare la chiave e il segreto nell'insieme di credenziali delle chiavi prima di collegare i dischi. Per altre informazioni, vedere l'articolo [Ripristinare una macchina virtuale codificata da un punto di ripristino di Backup di Azure](backup-azure-restore-key-secret.md). L'esempio seguente illustra come collegare dischi del sistema operativo e i dati per le macchine virtuali crittografate.
 
     ```
     PS C:\> $dekUrl = "https://ContosoKeyVault.vault.azure.net:443/secrets/ContosoSecret007/xx000000xx0849999f3xx30000003163"
@@ -432,7 +427,7 @@ Dopo aver ripristinato i dischi di hello, utilizzare toocreate questi passaggi e
 
     #### <a name="managed-non-encrypted-vms"></a>Macchine virtuali gestite, non crittografate
 
-    Per le macchine virtuali non crittografato a gestito, sarà necessario dischi toocreate gestiti dall'archiviazione blob e quindi collegare i dischi di hello. Per informazioni dettagliate, vedere l'articolo hello [collegare un tooa disco dati macchina virtuale di Windows con PowerShell](../virtual-machines/windows/attach-disk-ps.md). Hello codice di esempio seguente viene illustrato come tooattach hello dischi dati per le macchine virtuali gestite non crittografato.
+    Per macchine virtuali gestite e non crittografate, è necessario creare dischi gestiti dall'archiviazione BLOB e quindi collegarli. Per informazioni dettagliate, vedere l'articolo [Collegare un disco dati a una macchina virtuale Windows con PowerShell](../virtual-machines/windows/attach-disk-ps.md). Il codice di esempio seguente illustra come collegare dischi dati per macchine virtuali non crittografate.
 
     ```
     PS C:\> $storageType = "StandardLRS"
@@ -453,7 +448,7 @@ Dopo aver ripristinato i dischi di hello, utilizzare toocreate questi passaggi e
 
     #### <a name="managed-encrypted-vms-bek-and-kek"></a>Macchine virtuali gestite, crittografate (con BEK e KEK)
 
-    Per gestito crittografati le macchine virtuali (crittografate utilizzando BEK e KEK), verranno necessari dischi toocreate gestiti dall'archiviazione blob e quindi collegare i dischi di hello. Per informazioni dettagliate, vedere l'articolo hello [collegare un tooa disco dati macchina virtuale di Windows con PowerShell](../virtual-machines/windows/attach-disk-ps.md). Hello codice di esempio seguente viene illustrato come tooattach hello dischi dati per le macchine virtuali crittografate gestite.
+    Per le macchine virtuali gestite e crittografate (con BEK e KEK) , è necessario creare dischi gestiti dall'archiviazione BLOB e quindi collegarli. Per informazioni dettagliate, vedere l'articolo [Collegare un disco dati a una macchina virtuale Windows con PowerShell](../virtual-machines/windows/attach-disk-ps.md). Il codice di esempio seguente illustra come collegare dischi di dati per le macchine virtuali crittografate.
 
      ```
     PS C:\> $dekUrl = "https://ContosoKeyVault.vault.azure.net:443/secrets/ContosoSecret007/xx000000xx0849999f3xx30000003163"
@@ -475,7 +470,7 @@ Dopo aver ripristinato i dischi di hello, utilizzare toocreate questi passaggi e
      }
     ```
 
-5. Configurare le impostazioni di rete hello.
+5. Configurare le impostazioni di rete.
 
     ```
     PS C:\> $nicName="p1234"
@@ -484,11 +479,11 @@ Dopo aver ripristinato i dischi di hello, utilizzare toocreate questi passaggi e
     PS C:\> $nic = New-AzureRmNetworkInterface -Name $nicName -ResourceGroupName "test" -Location "WestUS" -SubnetId $vnet.Subnets[$subnetindex].Id -PublicIpAddressId $pip.Id
     PS C:\> $vm=Add-AzureRmVMNetworkInterface -VM $vm -Id $nic.Id
     ```
-6. Creare una macchina virtuale hello.
+6. Creare la macchina virtuale.
 
     ```    
     PS C:\> New-AzureRmVM -ResourceGroupName "test" -Location "WestUS" -VM $vm
     ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-Se si preferisce toouse tooengage di PowerShell con le risorse di Azure, vedere articolo PowerShell hello [distribuire e gestire Backup per Windows Server](backup-client-automation.md). Se si gestiscono i backup DPM, vedere l'articolo hello [distribuire e gestire Backup per DPM](backup-dpm-automation.md). Entrambi gli articoli prevedono due versioni: una per le distribuzioni con Resource Manager, l'altra per le distribuzioni classiche.  
+Se si preferisce usare PowerShell per coinvolgere le risorse di Azure, vedere l'articolo PowerShell [Distribuire e gestire il backup in Azure per server Windows/client Windows mediante PowerShell](backup-client-automation.md). Se si gestiscono i backup DPM, vedere l'articolo [Distribuire e gestire il backup per DPM](backup-dpm-automation.md). Entrambi gli articoli prevedono due versioni: una per le distribuzioni con Resource Manager, l'altra per le distribuzioni classiche.  

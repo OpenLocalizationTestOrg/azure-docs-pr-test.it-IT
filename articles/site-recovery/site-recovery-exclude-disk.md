@@ -1,6 +1,6 @@
 ---
-title: dischi aaaExclude dalla protezione dati con Azure Site Recovery | Documenti Microsoft
-description: "Viene descritto come e perché tooexclude VM dischi dalla replica per gli scenari di VMware tooAzure e tooAzure Hyper-V."
+title: Escludere dischi dalla protezione tramite Azure Site Recovery | Microsoft Docs
+description: "Descrive perché e come escludere dalla replica dischi di macchine virtuali per scenari da VMware ad Azure e da Hyper-V ad Azure."
 services: site-recovery
 documentationcenter: 
 author: nsoneji
@@ -14,129 +14,129 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 06/05/2017
 ms.author: nisoneji
-ms.openlocfilehash: f47146bc57aeab3fce90123d0894fa86dde93417
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: fccbe88e3c0c2b2f3e9958f5f2f27adc017e4d03
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="exclude-disks-from-replication"></a>Escludere dischi dalla replica
-In questo articolo viene descritto come tooexclude dischi dalla replica. Questa esclusione può ottimizzare la larghezza di banda replica hello utilizzato o ottimizzare le risorse sul lato destinazione hello che utilizzano tali dischi. funzionalità di Hello è supportato per scenari di VMware tooAzure e tooAzure Hyper-V.
+Questo articolo descrive come escludere dischi dalla replica, in modo da ottimizzare la larghezza di banda di replica usata o le risorse lato destinazione usate dai dischi. La funzionalità è supportata per due tipi di scenari: da VMware ad Azure e da Hyper-V ad Azure.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Per impostazione predefinita, vengono replicati tutti i dischi presenti in un computer. tooexclude un disco dalla replica, è necessario installare manualmente hello servizio di mobilità nel computer di hello prima di abilitare la replica se si esegue la replica da tooAzure VMware.
+Per impostazione predefinita, vengono replicati tutti i dischi presenti in un computer. Per escludere un disco dalla replica, è necessario installare manualmente il servizio Mobility nel computer prima di abilitare la replica, se si esegue la replica da VMware ad Azure.
 
 
 ## <a name="why-exclude-disks-from-replication"></a>Perché escludere dischi dalla replica
 Spesso è necessario escludere dischi dalla replica per i motivi riportati di seguito:
 
-- dati Hello sono variati sul disco hello escluso non siano importanti o non è necessario toobe replicati.
+- I dati di varianza nel disco escluso non sono importanti o non devono essere necessariamente replicati.
 
-- Si desidera le risorse di archiviazione e rete toosave replicando non questa varianza.
+- Si preferisce salvare le risorse di archiviazione e di rete non eseguendo la replica di questa varianza.
 
-## <a name="what-are-hello-typical-scenarios"></a>Quali sono gli scenari tipici di hello?
-È possibile identificare alcuni esempi specifici di varianza dei dati particolarmente adatti all'esclusione, Esempi possono essere scrive file di paging tooa (pagefile.sys) e file di tempdb toohello di Microsoft SQL Server. A seconda del carico di lavoro hello e sottosistema di archiviazione hello, file di paging hello può registrare una quantità significativa di varianza. Tuttavia, la replica di dati da hello sito primario tooAzure sarebbe molte risorse. Di conseguenza, è possibile utilizzare hello replica toooptimize passaggi di una macchina virtuale con un solo disco virtuale che dispone sia del sistema operativo hello e file di paging hello seguenti:
+## <a name="what-are-the-typical-scenarios"></a>Scenari tipici
+È possibile identificare alcuni esempi specifici di varianza dei dati particolarmente adatti all'esclusione, come le scritture in un file di paging (pagefile.sys) e le scritture nel file tempdb di Microsoft SQL Server. A seconda del carico di lavoro e del sottosistema di archiviazione, il file di paging può registrare una varianza significativa. Tuttavia, la replica di questo tipo di dati dal sito primario ad Azure richiederebbe un utilizzo intensivo delle risorse. È quindi possibile ottimizzare la replica di una macchina virtuale con un singolo disco virtuale dotato di sistema operativo e file di paging eseguendo queste operazioni:
 
-1. Divisione hello singolo disco virtuale in due dischi virtuali. Un disco virtuale con sistema operativo hello hello altri è il file di paging hello.
-2. Escludere il disco del file di paging hello dalla replica.
+1. Suddividere il singolo disco virtuale in due dischi virtuali, uno con il sistema operativo e l'altro con il file di paging.
+2. Escludere il disco del file di paging dalla replica.
 
-Analogamente, è possibile utilizzare i seguenti passaggi toooptimize un disco con entrambi tempdb di Microsoft SQL Server hello file hello e hello file di database di sistema:
+Analogamente, per ottimizzare un disco in cui sono presenti sia il file tempdb di Microsoft SQL Server sia il file del database di sistema, è possibile eseguire queste operazioni:
 
-1. Mantenere il database di sistema hello e di tempdb in dischi diversi due.
-2. Escludere il disco di tempdb hello dalla replica.
+1. Archiviare il database di sistema e il tempdb in due dischi distinti.
+2. Escludere il disco del tempdb dalla replica.
 
-## <a name="how-tooexclude-disks-from-replication"></a>Come tooexclude dischi dalla replica?
+## <a name="how-to-exclude-disks-from-replication"></a>Come escludere dischi dalla replica
 
-### <a name="vmware-tooazure"></a>VMware tooAzure
-Seguire hello [abilitare la replica](site-recovery-vmware-to-azure.md) tooprotect del flusso di lavoro una macchina virtuale dal portale di Azure Site Recovery hello. In hello quarto passaggio del flusso di lavoro hello utilizzare hello **tooREPLICATE disco** dischi tooexclude colonna dalla replica. Per impostazione predefinita, tutti i dischi sono selezionati per la replica. Deselezionare la casella di controllo hello di dischi che si desidera tooexclude dalla replica e quindi completa hello passaggi tooenable.
+### <a name="vmware-to-azure"></a>Da VMware ad Azure
+Per proteggere una macchina virtuale dal portale di Azure Site Recovery, seguire il flusso di lavoro [Abilitare la replica](site-recovery-vmware-to-azure.md). Nel passaggio 4 del flusso di lavoro usare la colonna **DISCHI DA REPLICARE** per escludere dischi dalla replica. Per impostazione predefinita, tutti i dischi sono selezionati per la replica. Deselezionare la casella di controllo relativa ai dischi da escludere dalla replica e quindi seguire la procedura per abilitare la replica.
 
-![Escludere i dischi dalla replica e abilitare la replica per il failback tooAzure VMware](./media/site-recovery-exclude-disk/v2a-enable-replication-exclude-disk1.png)
+![Escludere i dischi dalla replica e abilitare la replica per il failback da VMware ad Azure](./media/site-recovery-exclude-disk/v2a-enable-replication-exclude-disk1.png)
 
 
 >[!NOTE]
 >
-> * È possibile escludere solo i dischi che sono già installato servizio di mobilità di hello. È necessario il servizio di mobilità hello installazione toomanually, perché servizio di mobilità hello viene installato solo tramite il meccanismo di push hello dopo aver abilitata la replica.
+> * È possibile escludere solo i dischi in cui è già installato il servizio Mobility. È necessario installare manualmente il servizio Mobility perché questo servizio viene installato tramite il meccanismo di push solo dopo l'abilitazione della replica.
 > * Solo i dischi di base possono essere esclusi dalla replica. Non è possibile escludere dischi del sistema operativo o dinamici.
-> * Dopo aver abilitato la replica, non è più possibile aggiungere o rimuovere dischi da replicare. Se si desidera tooadd o esclude un disco, è necessario toodisable protezione per il computer di hello e quindi Abilita di nuovo.
-> * Se si esclude un disco è sufficiente per toooperate un'applicazione, dopo il failover tooAzure, è necessario disco hello toocreate manualmente in Azure in modo che sia possibile eseguire l'applicazione hello replicato. In alternativa, è possibile integrare automazione di Azure in un disco di ripristino piano toocreate hello durante il failover della macchina hello.
-> * Macchina virtuale Windows: per i dischi creati manualmente in Azure non viene eseguito il failback. Se, ad esempio, si esegue il failover di tre dischi e se ne creano due direttamente in Macchine virtuali di Azure, viene eseguito il failback solo dei tre dischi sottoposti a failover. È possibile includere i dischi che è stato creato manualmente il failback o riprotezione da tooAzure locale.
+> * Dopo aver abilitato la replica, non è più possibile aggiungere o rimuovere dischi da replicare. Se si vuole aggiungere o escludere un disco, è necessario disabilitare la protezione per il computer e quindi riabilitarla.
+> * Se si esclude un disco necessario per il funzionamento di un'applicazione, dopo il failover in Azure è necessario crearlo manualmente in Azure per consentire l'esecuzione dell'applicazione replicata. In alternativa, è possibile integrare Automazione di Azure in un piano di ripristino per creare il disco durante il failover del computer.
+> * Macchina virtuale Windows: per i dischi creati manualmente in Azure non viene eseguito il failback. Se, ad esempio, si esegue il failover di tre dischi e se ne creano due direttamente in Macchine virtuali di Azure, viene eseguito il failback solo dei tre dischi sottoposti a failover. Non è possibile includere i dischi creati manualmente nel failback o nella riprotezione da locale ad Azure.
 > * Macchina virtuale Linux: per i dischi creati manualmente in Azure non viene eseguito il failback. Se, ad esempio, si esegue il failover di tre dischi e se ne creano due direttamente in Macchine virtuali di Azure, viene eseguito il failback di tutti e cinque i dischi. Non è possibile escludere i dischi creati manualmente dall'operazione di failback.
 >
 
-### <a name="hyper-v-tooazure"></a>TooAzure Hyper-V
-Seguire hello [abilitare la replica](site-recovery-hyper-v-site-to-azure.md) tooprotect del flusso di lavoro una macchina virtuale dal portale di Azure Site Recovery hello. In hello quarto passaggio del flusso di lavoro hello utilizzare hello **tooREPLICATE disco** dischi tooexclude colonna dalla replica. Per impostazione predefinita, tutti i dischi sono selezionati per la replica. Deselezionare la casella di controllo hello di dischi che si desidera tooexclude dalla replica e quindi completa hello passaggi tooenable.
+### <a name="hyper-v-to-azure"></a>Da Hyper-V ad Azure
+Per proteggere una macchina virtuale dal portale di Azure Site Recovery, seguire il flusso di lavoro [Abilitare la replica](site-recovery-hyper-v-site-to-azure.md). Nel passaggio 4 del flusso di lavoro usare la colonna **DISCHI DA REPLICARE** per escludere dischi dalla replica. Per impostazione predefinita, tutti i dischi sono selezionati per la replica. Deselezionare la casella di controllo relativa ai dischi da escludere dalla replica e quindi seguire la procedura per abilitare la replica.
 
-![Escludere i dischi dalla replica e abilitare la replica per il failback tooAzure Hyper-V](./media/site-recovery-vmm-to-azure/enable-replication6-with-exclude-disk.png)
+![Escludere i dischi dalla replica e abilitare la replica per il failback da Hyper-V ad Azure](./media/site-recovery-vmm-to-azure/enable-replication6-with-exclude-disk.png)
 
 >[!NOTE]
 >
-> * È possibile escludere dalla replica solo dischi di base. Non è possibile escludere dischi del sistema operativo e non è consigliabile escludere dischi dinamici. Azure Site Recovery non è possibile identificare il disco rigido virtuale (VHD) è di base o dinamici nella macchina virtuale guest di hello.  Se tutti i dischi dei volumi dinamici dipendenti non vengono esclusi, disco dinamico protetto hello diventa un disco guasto in una macchina virtuale di failover e hello dati presenti sul disco non sono accessibili.
-> * Dopo aver abilitato la replica, non è più possibile aggiungere o rimuovere dischi da replicare. Se si desidera tooadd o esclude un disco, è necessario toodisable protezione per la macchina virtuale hello e quindi Abilita di nuovo.
-> * Se si esclude un disco è sufficiente per toooperate un'applicazione, dopo il failover tooAzure è necessario toocreate hello disco manualmente in Azure in modo che sia possibile eseguire l'applicazione hello replicato. In alternativa, è possibile integrare automazione di Azure in un disco di ripristino piano toocreate hello durante il failover della macchina hello.
-> * Per i dischi creati manualmente in Azure non viene eseguito il failback. Ad esempio, se si esito negativo su tre dischi e creare due dischi direttamente in macchine virtuali di Azure, solo tre dischi che sono stati eseguiti il failover non verranno eseguiti nuovamente da Azure tooHyper-V. È possibile includere i dischi che sono stati creati manualmente la replica inversa da tooAzure Hyper-V o il failback.
+> * È possibile escludere dalla replica solo dischi di base. Non è possibile escludere dischi del sistema operativo e non è consigliabile escludere dischi dinamici. Azure Site Recovery non è in grado di identificare se un disco rigido virtuale è un disco di base o un disco dinamico all'interno della macchina virtuale guest.  Se non vengono esclusi tutti i volumi dinamici dipendenti, in caso di failover della macchina virtuale il disco dinamico protetto risulta in stato di errore e non è possibile accedere ai dati in esso contenuti.
+> * Dopo aver abilitato la replica, non è più possibile aggiungere o rimuovere dischi da replicare. Se si vuole aggiungere o escludere un disco, è necessario disabilitare la protezione per la macchina virtuale e quindi riabilitarla.
+> * Se si esclude un disco necessario per il funzionamento di un'applicazione, dopo il failover in Azure è necessario crearlo manualmente in Azure per consentire l'esecuzione dell'applicazione replicata. In alternativa, è possibile integrare Automazione di Azure in un piano di ripristino per creare il disco durante il failover del computer.
+> * Per i dischi creati manualmente in Azure non viene eseguito il failback. Se, ad esempio, si esegue il failover di tre dischi e se ne creano due direttamente in Macchine virtuali di Azure, viene eseguito il failback da Azure a Hyper-V solo dei tre dischi sottoposti a failover. Non è possibile includere nel failback o nella replica inversa da Hyper-V ad Azure i dischi creati manualmente.
 
 
 
 ## <a name="end-to-end-scenarios-of-exclude-disks"></a>Scenari end-to-end di esclusione dei dischi
-Si consideri una funzione di due scenari toounderstand hello esclusioni disco:
+Per capire la funzionalità di esclusione dei dischi, si prendano in considerazione i due scenari seguenti:
 
 - Disco del tempdb di SQL Server
 - Disco del file di paging (pagefile.sys)
 
-### <a name="exclude-hello-sql-server-tempdb-disk"></a>Escludere il disco tempdb di SQL Server hello
+### <a name="exclude-the-sql-server-tempdb-disk"></a>Escludere il disco del tempdb di SQL Server
 Si prenda ad esempio una macchina virtuale di SQL Server con un tempdb che è possibile escludere.
 
-nome di Hello del disco virtuale hello è SalesDB.
+Il nome della macchina virtuale è SalesDB.
 
-Di seguito sono riportati i dischi nella macchina virtuale di origine hello:
+Di seguito sono elencati i dischi presenti nella macchina virtuale di origine:
 
 
-**Nome del disco** | **N. disco sistema operativo guest** | **Lettera di unità** | **Tipo di dati su disco hello**
+**Nome del disco** | **N. disco sistema operativo guest** | **Lettera di unità** | **Tipo di dati nel disco**
 --- | --- | --- | ---
 DB-Disk0-OS | DISK0 | C:\ | Disco del sistema operativo
 DB-Disk1| Disk1 | D:\ | Database di sistema SQL e Database1 dell'utente
-DB-Disco2 (disco di hello escluse dalla protezione) | Disk2 | E:\ | File temporanei
-DB-Disk3 (disco di hello escluse dalla protezione) | Disk3 | F:\ | Database tempdb SQL (percorso della cartella (F:\MSSQL\Data\) </br/>< / br/>, annotare il percorso di cartella hello prima del failover.
+DB-Disk2 (disco escluso dalla protezione) | Disk2 | E:\ | File temporanei
+DB-Disk3 (disco escluso dalla protezione) | Disk3 | F:\ | Database tempdb di SQL (percorso della cartella, F:\MSSQL\Data\) </br /> </br />Annotare il percorso della cartella prima del failover.
 DB-Disk4 | Disk4 |G:\ |Database2 dell'utente
 
-Poiché varianza dei dati su due dischi della macchina virtuale hello è temporanea, mentre si protegge una macchina virtuale di hello SalesDB, escludere Disco2 e Disk3 dalla replica. Azure Site Recovery non eseguirà la replica di questi dischi, In caso di failover, i dischi non sarà presenti nella macchina virtuale di failover hello in Azure.
+Data la natura temporanea della varianza dei dati nei due dischi della macchina virtuale, è opportuno escludere Disk2 e Disk3 dalla replica quando si protegge la macchina virtuale SalesDB. Azure Site Recovery non eseguirà la replica di questi dischi, che durante il failover non saranno quindi presenti nella macchina virtuale di failover in Azure.
 
-Di seguito sono riportati i dischi nella macchina virtuale di Azure dopo il failover hello:
+Di seguito sono elencati i dischi presenti nella macchina virtuale di Azure dopo il failover:
 
-**N. disco sistema operativo guest** | **Lettera di unità** | **Tipo di dati su disco hello**
+**N. disco sistema operativo guest** | **Lettera di unità** | **Tipo di dati nel disco**
 --- | --- | ---
 DISK0 | C:\ | Disco del sistema operativo
-Disk1 | E:\ | Archiviazione temporanea </br / >< / br / > Azure aggiunge il disco e assegna la lettera di unità disponibile prima di hello.
+Disk1 | E:\ | Archiviazione temporanea</br /> </br />Azure aggiunge questo disco e assegna la prima lettera di unità disponibile.
 Disk2 | D:\ | Database di sistema SQL e Database1 dell'utente
 Disk3 | G:\ | Database2 dell'utente
 
-Poiché Disco2 e Disk3 sono stati esclusi dalla macchina virtuale di hello SalesDB, e: è hello prima lettera di unità dall'elenco disponibile hello. Azure assegna volume di archiviazione temporanea e: toohello. Per tutti i dischi hello replicato, rimangono lettere di unità di hello hello stesso.
+Poiché Disk2 e Disk3 sono stati esclusi dalla macchina virtuale SalesDB, E: è la prima lettera di unità disponibile. Azure assegna quindi la lettera E: al volume di archiviazione temporanea. Per tutti i dischi replicati, la lettera di unità rimane invariata.
 
-Disk3, ovvero disco tempdb SQL hello (percorso della cartella tempdb F:\MSSQL\Data\), è stata esclusa dalla replica. disco Hello non è disponibile nella macchina virtuale di hello failover. Di conseguenza, hello servizio SQL è in stato di interruzione e richiede il percorso di F:\MSSQL\Data hello.
+Disk3 era il disco del tempdb di SQL (percorso della cartella del tempdb, F:\MSSQL\Data\)) ed è stato escluso dalla replica, non risultando disponibile nella macchina virtuale di failover. Di conseguenza, il servizio SQL si trova nello stato arrestato e necessita del percorso F:\MSSQL\Data.
 
-Esistono due modi toocreate questo percorso:
+Per creare questo percorso, è possibile procedere in due modi:
 
 - Aggiungere un nuovo disco e assegnare il percorso della cartella del tempdb.
-- Utilizzare un disco di archiviazione temporanea esistente per il percorso di cartella hello tempdb.
+- Usare un disco di archiviazione temporanea esistente per il percorso della cartella del tempdb.
 
 #### <a name="add-a-new-disk"></a>Aggiungere un nuovo disco:
 
-1. Annotare i percorsi di hello SQL tempdb.mdf e tempdb.ldf prima del failover.
-2. Dal portale di Azure hello, aggiungere una nuova macchina virtuale failover di toohello disco con hello uguale o più dimensioni del disco di tempdb hello origine SQL (Disk3).
-3. Accedi toohello macchina virtuale di Azure. Dalla console di gestione (diskmgmt.msc) disco hello, inizializzare e formato hello appena aggiunti del disco.
-4. Hello Assegna stessa lettera utilizzato dal disco di tempdb SQL hello (f) di unità.
-5. Creare una cartella di tempdb in hello volume f: (F:\MSSQL\Data).
-6. Avviare il servizio SQL hello dalla console di service hello.
+1. Prima del failover, annotare i percorsi di tempdb.mdf e tempdb.ldf di SQL.
+2. Dal portale di Azure aggiungere un nuovo disco alla macchina virtuale di failover con dimensioni pari o superiori a quelle del disco di origine del tempdb SQL (Disk3).
+3. Accedere alla macchina virtuale di Azure. Dalla console di gestione del disco, diskmgmt.msc, inizializzare e formattare il disco appena aggiunto.
+4. Assegnare la stessa lettera di unità usata dal disco del tempdb SQL (F:).
+5. Creare una cartella del tempdb nel volume F: (F:\MSSQL\Data).
+6. Avviare il servizio SQL dalla console del servizio.
 
-#### <a name="use-an-existing-temporary-storage-disk-for-hello-sql-tempdb-folder-path"></a>Utilizzare un disco di archiviazione temporanea esistente per il percorso di cartella hello SQL tempdb:
+#### <a name="use-an-existing-temporary-storage-disk-for-the-sql-tempdb-folder-path"></a>Usare un disco di archiviazione temporanea esistente per il percorso della cartella del tempdb SQL:
 
 1. Aprire un prompt dei comandi.
-2. Eseguire SQL Server in modalità di ripristino dal prompt dei comandi di hello.
+2. Eseguire SQL Server in modalità di ripristino dal prompt dei comandi.
 
         Net start MSSQLSERVER /f / T3608
 
-3. Eseguire hello seguente sqlcmd toochange hello tempdb toohello nuovo percorso.
+3. Eseguire il comando sqlcmd seguente per sostituire il percorso del tempdb con il nuovo percorso.
 
         sqlcmd -A -S SalesDB        **Use your SQL DBname**
         USE master;     
@@ -149,50 +149,50 @@ Esistono due modi toocreate questo percorso:
         GO
 
 
-4. Arrestare il servizio di Microsoft SQL Server hello.
+4. Arrestare il servizio Microsoft SQL Server.
 
         Net stop MSSQLSERVER
-5. Avviare il servizio di Microsoft SQL Server hello.
+5. Avviare il servizio Microsoft SQL Server.
 
         Net start MSSQLSERVER
 
-Fare riferimento toohello di Azure indicazioni per il disco di archiviazione temporanea:
+Vedere le linee guida di Azure seguenti per il disco di archiviazione temporanea:
 
-* [Utilizzo di SSD nelle macchine virtuali di Azure toostore TempDB di SQL Server e le estensioni del Pool di Buffer](https://blogs.technet.microsoft.com/dataplatforminsider/2014/09/25/using-ssds-in-azure-vms-to-store-sql-server-tempdb-and-buffer-pool-extensions/)
-* [Performance best practices for SQL Server in Azure Virtual Machines](https://docs.microsoft.com/azure/virtual-machines/windows/sql/virtual-machines-windows-sql-performance) (Procedure consigliate sulle prestazioni per SQL Server nelle macchine virtuali di Azure)
+* [Using SSDs in Azure VMs to store SQL Server TempDB and Buffer Pool Extensions](https://blogs.technet.microsoft.com/dataplatforminsider/2014/09/25/using-ssds-in-azure-vms-to-store-sql-server-tempdb-and-buffer-pool-extensions/) (Uso di SSD in VM di Azure per archiviare estensioni del pool di buffer e del tempdb di SQL Server)
+* [Procedure consigliate per le prestazioni per SQL Server in Macchine virtuali di Azure](https://docs.microsoft.com/azure/virtual-machines/windows/sql/virtual-machines-windows-sql-performance)
 
-### <a name="failback-from-azure-tooan-on-premises-host"></a>Failback (da Azure tooan nell'host locale)
-Ora è utile comprendere dischi hello che vengono replicati quando si esegue il failover dall'host di VMware o Hyper-V locale tooyour Azure. Per i dischi creati manualmente in Azure non viene eseguita la replica. Se, ad esempio, si esegue il failover di tre dischi e se ne creano due direttamente in Macchine virtuali di Azure, viene eseguito il failback solo dei tre dischi sottoposti a failover. È possibile includere i dischi che sono stati creati manualmente il failback o riprotezione da tooAzure locale. Inoltre non replicare gli host locale tooon disco di archiviazione temporanea hello.
+### <a name="failback-from-azure-to-an-on-premises-host"></a>Failback da Azure a un host locale
+Questa sezione illustra quali dischi vengono replicati quando si esegue il failover da Azure all'host Hyper-V o VMware locale. Per i dischi creati manualmente in Azure non viene eseguita la replica. Se, ad esempio, si esegue il failover di tre dischi e se ne creano due direttamente in Macchine virtuali di Azure, viene eseguito il failback solo dei tre dischi sottoposti a failover. Non è possibile includere i dischi creati manualmente nel failback o nella riprotezione da locale ad Azure. Negli host locali non viene eseguita la replica neppure del disco di archiviazione temporanea.
 
-#### <a name="failback-toooriginal-location-recovery"></a>Ripristino nel percorso toooriginal failback
+#### <a name="failback-to-original-location-recovery"></a>Ripristino di failback nella posizione originale
 
-Nell'esempio precedente hello, configurazione del disco di macchina virtuale di Azure hello è come segue:
+Di seguito è illustrata la configurazione dei dischi della macchina virtuale di Azure nell'esempio precedente:
 
-**N. disco sistema operativo guest** | **Lettera di unità** | **Tipo di dati su disco hello**
+**N. disco sistema operativo guest** | **Lettera di unità** | **Tipo di dati nel disco**
 --- | --- | ---
 DISK0 | C:\ | Disco del sistema operativo
-Disk1 | E:\ | Archiviazione temporanea </br / >< / br / > Azure aggiunge il disco e assegna la lettera di unità disponibile prima di hello.
+Disk1 | E:\ | Archiviazione temporanea</br /> </br />Azure aggiunge questo disco e assegna la prima lettera di unità disponibile.
 Disk2 | D:\ | Database di sistema SQL e Database1 dell'utente
 Disk3 | G:\ | Database2 dell'utente
 
 
-#### <a name="vmware-tooazure"></a>VMware tooAzure
-Al termine il failback toohello nel percorso originale, configurazione del disco hello failback macchina virtuale non dispone di dischi esclusi. I dischi che sono stati esclusi dal tooAzure VMware non saranno disponibili nella macchina virtuale di failback hello.
+#### <a name="vmware-to-azure"></a>Da VMware ad Azure
+Al termine del failback nella posizione originale, la configurazione dei dischi della macchina virtuale di failback non prevede l'esclusione di dischi. Nella macchina virtuale di failback non saranno quindi disponibili i dischi esclusi dalla replica da VMware ad Azure.
 
-Dopo il failover pianificato da Azure tooon sedi VMware, dischi nella macchina virtuale VMWare di hello (percorso originale) sono i seguenti:
+Dopo il failover pianificato da Azure a VMware in locale, i dischi della macchina virtuale VMWare (posizione originale) avranno la configurazione seguente:
 
-**N. disco sistema operativo guest** | **Lettera di unità** | **Tipo di dati su disco hello**
+**N. disco sistema operativo guest** | **Lettera di unità** | **Tipo di dati nel disco**
 --- | --- | ---
 DISK0 | C:\ | Disco del sistema operativo
 Disk1 | D:\ | Database di sistema SQL e Database1 dell'utente
 Disk2 | G:\ | Database2 dell'utente
 
-#### <a name="hyper-v-tooazure"></a>TooAzure Hyper-V
-Quando il failback è toohello nel percorso originale, hello failback macchina virtuale su disco configurazione rimane hello uguale a quello della configurazione originale del disco della macchina virtuale per Hyper-V. I dischi che sono stati esclusi dal tooAzure sito Hyper-V sono disponibili nella macchina virtuale di failback hello.
+#### <a name="hyper-v-to-azure"></a>Da Hyper-V ad Azure
+Quando il failback viene eseguito nella posizione originale, la configurazione dei dischi della macchina virtuale di failback rimane identica a quella della macchina virtuale originale per Hyper-V. Nella macchina virtuale di failback non saranno quindi disponibili i dischi esclusi dalla replica dal sito Hyper-V ad Azure.
 
-Dopo un failover pianificato da Azure tooon locale Hyper-V, i dischi nella macchina virtuale Hyper-V di hello (percorso originale) sono i seguenti:
+Dopo il failover pianificato da Azure a Hyper-V in locale, i dischi della macchina virtuale Hyper-V (posizione originale) avranno la configurazione seguente:
 
-**Nome del disco** | **N. disco sistema operativo guest** | **Lettera di unità** | **Tipo di dati su disco hello**
+**Nome del disco** | **N. disco sistema operativo guest** | **Lettera di unità** | **Tipo di dati nel disco**
 --- | --- | --- | ---
 DB-Disk0-OS | DISK0 |   C:\ | Disco del sistema operativo
 DB-Disk1 | Disk1 | D:\ | Database di sistema SQL e Database1 dell'utente
@@ -201,69 +201,69 @@ DB-Disk3 (disco escluso) | Disk3 | F:\ | Database tempdb SQL (percorso della car
 DB-Disk4 | Disk4 | G:\ | Database2 dell'utente
 
 
-#### <a name="exclude-hello-paging-file-pagefilesys-disk"></a>Escludere il disco (pagefile.sys) di file di paging hello
+#### <a name="exclude-the-paging-file-pagefilesys-disk"></a>Escludere il disco del file di paging (pagefile.sys)
 
 Si prenda ad esempio una macchina virtuale con un disco del file di paging che è possibile escludere.
 I casi possibili sono due:
 
-#### <a name="case-1-hello-paging-file-is-configured-on-hello-d-drive"></a>Caso 1: file di paging hello è configurato in unità d: hello
-Di seguito è riportata la configurazione disco hello:
+#### <a name="case-1-the-paging-file-is-configured-on-the-d-drive"></a>Caso 1: file di paging configurato nell'unità D:
+Di seguito è illustrata la configurazione dei dischi:
 
 
-**Nome del disco** | **N. disco sistema operativo guest** | **Lettera di unità** | **Tipo di dati su disco hello**
+**Nome del disco** | **N. disco sistema operativo guest** | **Lettera di unità** | **Tipo di dati nel disco**
 --- | --- | --- | ---
 DB-Disk0-OS | DISK0 | C:\ | Disco del sistema operativo
-DB-Disco1 (disco di hello escluse dalla protezione hello) | Disk1 | D:\ | pagefile.sys
+DB-Disk1 (disco escluso dalla protezione) | Disk1 | D:\ | pagefile.sys
 DB-Disk2 | Disk2 | E:\ | Dati utente 1
 DB-Disk3 | Disk3 | F:\ | Dati utente 2
 
-Di seguito sono hello impostazioni del file paging nella macchina virtuale di origine hello:
+Di seguito sono illustrate le impostazioni del file di paging nella macchina virtuale di origine:
 
 ![Impostazioni del file di paging nella macchina virtuale di origine](./media/site-recovery-exclude-disk/pagefile-on-d-drive-sourceVM.png)
 
 
-Dopo il failover della macchina virtuale hello da VMware tooAzure o tooAzure Hyper-V, dischi su hello macchina virtuale di Azure sono i seguenti:
+Dopo il failover della macchina virtuale da VMware ad Azure o da Hyper-V ad Azure, i dischi nella macchina virtuale di Azure hanno la configurazione seguente:
 
-**Nome del disco** | **N. disco sistema operativo guest** | **Lettera di unità** | **Tipo di dati su disco hello**
+**Nome del disco** | **N. disco sistema operativo guest** | **Lettera di unità** | **Tipo di dati nel disco**
 --- | --- | --- | ---
 DB-Disk0-OS | DISK0 | C:\ | Disco del sistema operativo
 DB-Disk1 | Disk1 | D:\ | Archiviazione temporanea</br /> </br />pagefile.sys
 DB-Disk2 | Disk2 | E:\ | Dati utente 1
 DB-Disk3 | Disk3 | F:\ | Dati utente 2
 
-Poiché è stata esclusa Disco1 (d), d: è hello prima lettera di unità dall'elenco disponibile hello. Azure assegna volume di archiviazione temporanea toohello d:. Poiché l'unità d: è disponibile in hello macchina virtuale di Azure, hello file di paging di hello macchina virtuale rimane hello stesso.
+Poiché Disk1 (D:) è stato escluso, D: è la prima lettera di unità disponibile e viene assegnata da Azure al volume di archiviazione temporanea. Poiché l'unità D: è disponibile nella macchina virtuale di Azure, le impostazioni del file di paging della macchina virtuale rimangono invariate.
 
-Di seguito sono hello impostazioni del file paging su hello macchina virtuale di Azure:
+Di seguito sono illustrate le impostazioni del file di paging nella macchina virtuale di Azure:
 
 ![Impostazioni del file di paging nella macchina virtuale di Azure](./media/site-recovery-exclude-disk/pagefile-on-Azure-vm-after-failover.png)
 
-#### <a name="case-2-hello-paging-file-is-configured-on-another-drive-other-than-d-drive"></a>Caso 2: file di paging hello è configurato in un'altra unità (ad eccezione di unità d)
+#### <a name="case-2-the-paging-file-is-configured-on-another-drive-other-than-d-drive"></a>Caso 2: file di paging configurato in un'unità diversa da D:
 
-Di seguito è la configurazione disco macchina virtuale di origine hello:
+Di seguito è illustrata la configurazione dei dischi della macchina virtuale di origine:
 
-**Nome del disco** | **N. disco sistema operativo guest** | **Lettera di unità** | **Tipo di dati su disco hello**
+**Nome del disco** | **N. disco sistema operativo guest** | **Lettera di unità** | **Tipo di dati nel disco**
 --- | --- | --- | ---
 DB-Disk0-OS | DISK0 | C:\ | Disco del sistema operativo
-DB-Disco1 (disco di hello escluse dalla protezione) | Disk1 | G:\ | pagefile.sys
+DB-Disk1 (disco escluso dalla protezione) | Disk1 | G:\ | pagefile.sys
 DB-Disk2 | Disk2 | E:\ | Dati utente 1
 DB-Disk3 | Disk3 | F:\ | Dati utente 2
 
-Di seguito sono hello impostazioni del file paging nella macchina virtuale di hello locale:
+Di seguito sono illustrate le impostazioni del file di paging nella macchina virtuale locale:
 
-![File di paging nella macchina virtuale di hello locale](./media/site-recovery-exclude-disk/pagefile-on-g-drive-sourceVM.png)
+![Impostazioni del file di paging nella macchina virtuale locale](./media/site-recovery-exclude-disk/pagefile-on-g-drive-sourceVM.png)
 
-Dopo il failover della macchina virtuale hello da tooAzure VMware/Hyper-V, dischi su hello macchina virtuale di Azure sono i seguenti:
+Dopo il failover della macchina virtuale da VMware/Hyper-V ad Azure, i dischi nella macchina virtuale di Azure hanno la configurazione seguente:
 
-**Nome del disco**| **N. disco sistema operativo guest**| **Lettera di unità** | **Tipo di dati su disco hello**
+**Nome del disco**| **N. disco sistema operativo guest**| **Lettera di unità** | **Tipo di dati nel disco**
 --- | --- | --- | ---
 DB-Disk0-OS | DISK0  |C:\ |Disco del sistema operativo
 DB-Disk1 | Disk1 | D:\ | Archiviazione temporanea</br /> </br />pagefile.sys
 DB-Disk2 | Disk2 | E:\ | Dati utente 1
 DB-Disk3 | Disk3 | F:\ | Dati utente 2
 
-Poiché l'unità d: hello prima lettera di unità dall'elenco disponibile hello, Azure assegna volume di archiviazione temporanea toohello d:. Per tutti i dischi hello replicato, rimane lettera di unità hello hello stesso. Poiché hello disco g: non è disponibile, il sistema hello utilizzerà unità c: hello hello file di paging.
+Poiché D: è la prima lettera di unità disponibile dall'elenco, Azure assegna D: al volume di archiviazione temporanea. Per tutti i dischi replicati, la lettera di unità rimane invariata. Poiché il disco G: non è disponibile, il sistema userà l'unità C: per il file di paging.
 
-Di seguito sono hello impostazioni del file paging su hello macchina virtuale di Azure:
+Di seguito sono illustrate le impostazioni del file di paging nella macchina virtuale di Azure:
 
 ![Impostazioni del file di paging nella macchina virtuale di Azure](./media/site-recovery-exclude-disk/pagefile-on-Azure-vm-after-failover-2.png)
 

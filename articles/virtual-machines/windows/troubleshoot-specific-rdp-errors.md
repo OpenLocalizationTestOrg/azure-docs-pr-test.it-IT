@@ -1,7 +1,7 @@
 ---
-title: messaggi di errore aaaSpecific RDP per le macchine virtuali di Azure | Documenti Microsoft
-description: Comprendere i messaggi di errore specifici che possono essere visualizzati durante il tentativo di utilizzo macchina virtuale di Windows tooa connessione Desktop remoto in Azure
-keywords: "Errore di desktop remoto, errore di connessione desktop remoto, non è possibile connettersi tooVM, risoluzione dei desktop remoto"
+title: Specifici messaggi di errore RDP per VM di Azure | Documentazione Microsoft
+description: Comprendere specifici messaggi di errore che possono essere visualizzati quando si tenta di usare una connessione Desktop remoto a una macchina virtuale Windows in Azure
+keywords: Errore di desktop remoto, errore di connessione al desktop remoto, impossibile connettersi alla macchina virtuale, risoluzione dei problemi di desktop remoto
 services: virtual-machines-windows
 documentationcenter: 
 author: genlin
@@ -13,100 +13,100 @@ ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
-ms.topic: support-article
+ms.topic: troubleshooting
 ms.date: 05/26/2017
 ms.author: genli
-ms.openlocfilehash: 8e1551be23e696bd60adbd76c3e1ea86d9dd11aa
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 803ca6cb9e7c5633920ab44e45cf211eca1517a6
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="troubleshooting-specific-rdp-error-messages-tooa-windows-vm-in-azure"></a>Risoluzione dei problemi specifico tooa i messaggi di errore RDP macchina virtuale Windows in Azure
-Si potrebbe ricevere un messaggio di errore specifico quando si utilizza una macchina virtuale di Windows tooa connessione Desktop remoto (VM) in Azure. Questo articolo presenta alcuni dei messaggi di errore più comuni rilevati, insieme a tooresolve passaggi di risoluzione dei problemi di hello li. Se si verificano problemi di connessione tooyour macchina virtuale tramite RDP senza non si verifica un messaggio di errore specifico, vedere hello [risoluzione dei problemi di Guida per il Desktop remoto](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+# <a name="troubleshooting-specific-rdp-error-messages-to-a-windows-vm-in-azure"></a>Risoluzione dei problemi relativi a specifici messaggi di errore RDP inviati a una VM Windows in Azure
+Quando si usa una connessione Desktop remoto a una macchina virtuale (VM) Windows in Azure, è possibile ricevere uno specifico messaggio di errore. Questo articolo illustra nei dettagli alcuni dei più comuni messaggi di errore visualizzati e spiega le procedure per la risoluzione dei problemi relativi a tali messaggi. Se si verificano problemi di connessione alla VM mediante RDP ma non viene visualizzato un messaggio di errore specifico, vedere la [guida alla risoluzione dei problemi relativi a Desktop remoto](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
-Per informazioni sui messaggi di errore specifico, vedere l'esempio hello:
+Per informazioni su messaggi di errore specifici, vedere quanto segue:
 
-* [la sessione remota di Hello è stata disconnessa perché sono non presenti una licenza tooprovide disponibili server licenze di Desktop remoto](#rdplicense).
-* [Desktop remoto non è possibile trovare hello "nome computer"](#rdpname).
-* [Si è verificato un errore di autenticazione. Hello autorità di protezione locale non può essere contattato](#rdpauth).
+* [La sessione remota è stata disconnessa perché non sono disponibili server licenze di Desktop remoto per il rilascio della licenza](#rdplicense).
+* [Desktop remoto: impossibile rilevare il "nome" del computer](#rdpname).
+* [Si è verificato un errore di autenticazione. Impossibile contattare l'autorità di sicurezza locale](#rdpauth).
 * [Errore di sicurezza di Windows: Le credenziali specificate non funzionano](#wincred).
-* [Impossibile connettersi computer remoto toohello](#rdpconnect).
+* [Il computer non è in grado di connettersi al computer remoto](#rdpconnect).
 
 <a id="rdplicense"></a>
 
-## <a name="hello-remote-session-was-disconnected-because-there-are-no-remote-desktop-license-servers-available-tooprovide-a-license"></a>la sessione remota di Hello è stata disconnessa perché non esistono alcun tooprovide disponibile una licenza di server licenze di Desktop remoto.
-Causa: hello 120 giorni periodo di prova per il ruolo di Server di Desktop remoto hello è scaduto e necessario tooinstall licenze.
+## <a name="the-remote-session-was-disconnected-because-there-are-no-remote-desktop-license-servers-available-to-provide-a-license"></a>La sessione remota è stata disconnessa perché non sono disponibili server licenze di Desktop remoto per il rilascio della licenza.
+Causa: il periodo di prova di 120 giorni delle licenza per il ruolo Server Desktop remoto è scaduto ed è necessario installare le licenze.
 
-In alternativa, salvare una copia locale del file RDP hello dal portale hello ed eseguire questo comando in un tooconnect prompt dei comandi di PowerShell. Questo passaggio disabilita la licenza solo per la connessione in oggetto:
+Per risolvere il problema, salvare una copia locale del file RDP dal portale e al prompt dei comandi di PowerShell eseguire questo comando per avviare la connessione. Questo passaggio disabilita la licenza solo per la connessione in oggetto:
 
         mstsc <File name>.RDP /admin
 
-Se non è effettivamente necessario più di due toohello di connessioni di Desktop remoto VM simultanee, è possibile utilizzare ruolo di Server Manager tooremove hello Server Desktop remoto.
+Se in realtà non sono necessarie più di due connessioni di desktop remoto contemporanee nella VM, è possibile usare Gestione server per rimuovere il ruolo server desktop remoto.
 
-Per ulteriori informazioni, vedere hello post di blog [macchina virtuale di Azure ha esito negativo con "Nessun server Desktop remoti licenza disponibile"](https://blogs.msdn.microsoft.com/mast/2014/01/21/rdp-to-azure-vm-fails-with-no-remote-desktop-license-servers-available/).
+Per altre informazioni, vedere il post di blog relativo all' [errore della VM di Azure "Non sono disponibili server licenze di Desktop remoto"](https://blogs.msdn.microsoft.com/mast/2014/01/21/rdp-to-azure-vm-fails-with-no-remote-desktop-license-servers-available/).
 
 <a id="rdpname"></a>
 
-## <a name="remote-desktop-cant-find-hello-computer-name"></a>Desktop remoto non è possibile trovare il computer di hello "name".
-Causa: il client Desktop remoto hello nel computer in uso non è possibile risolvere il nome di hello del computer di hello nelle impostazioni di hello del file RDP hello.
+## <a name="remote-desktop-cant-find-the-computer-name"></a>Desktop remoto: impossibile rilevare il "nome" del computer.
+Causa: il client Desktop remoto del computer non è in grado di risolvere il nome del computer nelle impostazioni del file RDP.
 
 Possibili soluzioni:
 
-* Se si è nella intranet dell'organizzazione, assicurarsi che il computer dispone di server proxy di accesso toohello e può inviare tooit il traffico HTTPS.
-* Se si utilizza un file RDP archiviato localmente, provare a utilizzare hello uno, viene generato dal portale hello. Questo passaggio consente di disporre di nome DNS corretto hello per macchina virtuale hello, o servizio cloud hello e porta dell'endpoint hello di hello macchina virtuale. Ecco un file RDP di esempio generato dal portale hello:
+* Se si usa una rete Intranet aziendale, assicurarsi che il computer abbia accesso al server proxy e sia in grado di inviare a quest'ultimo traffico HTTPS.
+* Se si usa un file RDP archiviato localmente, provare a usare il file generato dal portale. Questo passaggio consente di verificare di usare il nome DNS corretto per la macchina virtuale o il servizio cloud e la porta dell'endpoint della VM. Di seguito viene riportato un esempio di file RDP generato dal portale:
   
         full address:s:tailspin-azdatatier.cloudapp.net:55919
         prompt for credentials:i:1
 
-è parte dell'indirizzo Hello del file RDP:
+La parte dell'indirizzo del file RDP contiene:
 
-* Hello nome dominio completo del servizio cloud hello contenente hello VM ("tailspin-azdatatier.cloudapp.net" in questo esempio).
-* porta TCP esterna Hello dell'endpoint di hello per il traffico di Desktop remoto (55919).
+* Il nome di dominio completo del servizio cloud contenente la macchina virtuale ("tailspin-azdatatier.cloudapp.net" in questo esempio).
+* La porta TCP esterna dell'endpoint per il traffico di Desktop remoto (55919).
 
 <a id="rdpauth"></a>
 
-## <a name="an-authentication-error-has-occurred-hello-local-security-authority-cannot-be-contacted"></a>Si è verificato un errore di autenticazione. Impossibile contattare Hello autorità di sicurezza locale.
-Causa: destinazione hello VM non è possibile individuare autorità di sicurezza hello nella parte del nome utente hello delle credenziali.
+## <a name="an-authentication-error-has-occurred-the-local-security-authority-cannot-be-contacted"></a>Si è verificato un errore di autenticazione. Impossibile contattare l'autorità di sicurezza locale.
+Causa: la macchina virtuale di destinazione non è in grado di individuare l'autorità di sicurezza nella porzione di nome utente delle credenziali.
 
-Quando il nome utente è nel formato hello *SecurityAuthority*\\*UserName* (esempio: CORP\User1), hello *SecurityAuthority* parte è entrambi hello VM nome del computer (per l'autorità di sicurezza locale hello) o un nome di dominio Active Directory.
+Quando il nome utente è nel formato *AutoritàSicurezza*\\*NomeUtente* (esempio: CORP\Utente1), la parte *AutoritàSicurezza* indica o il nome del computer della VM (per l'autorità di protezione locale) o un nome di dominio di Active Directory.
 
 Possibili soluzioni:
 
-* Se hello account locale toohello macchina virtuale, verificare che il nome della macchina virtuale hello sia stato digitato correttamente.
-* Se l'account di hello si trova in un dominio Active Directory, controllare l'ortografia di hello hello del nome di dominio.
-* Se si tratta di un account di dominio Active Directory e nome di dominio hello sia stato digitato correttamente, verificare che sia disponibile un controller di dominio nel dominio. Nelle reti virtuali di Azure che contengono controller di dominio, è un problema comune che un controller di dominio non sia disponibile perché non è stato avviato. Per risolvere il problema, è possibile usare un account amministratore locale anziché un account di dominio.
+* Se l'account è locale nella macchina virtuale, verificare che il nome della macchina virtuale sia stato digitato correttamente.
+* Se l'account è in un dominio di Active Directory, controllare l'ortografia del nome di dominio.
+* Se è un account di dominio di Active Directory e il nome di dominio è stato digitato correttamente, verificare che in tale dominio sia disponibile un controller di dominio. Nelle reti virtuali di Azure che contengono controller di dominio, è un problema comune che un controller di dominio non sia disponibile perché non è stato avviato. Per risolvere il problema, è possibile usare un account amministratore locale anziché un account di dominio.
 
 <a id="wincred"></a>
 
 ## <a name="windows-security-error-your-credentials-did-not-work"></a>Errore di sicurezza di Windows: Le credenziali specificate non funzionano.
-Causa: la destinazione hello VM non è possibile convalidare il nome dell'account e la password.
+Causa: la macchina virtuale di destinazione non può convalidare il nome e la password dell'account.
 
-Un computer basato su Windows possa convalidare le credenziali di hello di un account locale o un account di dominio.
+Un computer basato su Windows può convalidare le credenziali di un account locale o di un account di dominio.
 
-* Per gli account locali, utilizzare hello *ComputerName*\\*UserName* sintassi (esempio: SQL1\Admin4798).
-* Per gli account di dominio, utilizzare hello *DomainName*\\*UserName* sintassi (esempio: CONTOSO\peterodman).
+* Per gli account locali, usare la sintassi *NomeComputer*\\*NomeUtente* (ad esempio: SQL1\Admin4798).
+* Per gli account di dominio usare la sintassi *NomeDominio*\\*NomeUtente* (ad esempio: CONTOSO\peterodman).
 
-Se averlo alzato di livello il controller di dominio tooa macchina virtuale in una nuova foresta di Active Directory, l'account administrator locale hello è effettuato l'accesso viene convertito equivalente tooan account con hello stessa password in hello nuova foresta e del dominio. account locale Hello viene quindi eliminato.
+Se la VM è stata innalzata al livello di controller di dominio in una nuova foresta Active Directory, l'account amministratore locale con il quale è stato eseguito l'accesso viene convertito in un account equivalente con la stessa password nella nuova foresta e nel nuovo dominio. L'account locale viene quindi eliminato.
 
-Ad esempio, se è effettuato l'accesso con account locale hello DC1\DCAdmin e quindi alzare di livello macchina virtuale hello come un controller di dominio in una nuova foresta per il dominio corp.contoso.com hello, hello DC1\DCAdmin Ottiene eliminare l'account locale e un nuovo account di dominio (CORP\DCAdmin ) viene creato con hello stessa password.
+Ad esempio, se è stato eseguito l'accesso con l'account locale DC1\DCAdmin e la macchina virtuale è stata innalzata al livello di controller di dominio in una nuova foresta per il dominio corp.contoso.com, l'account locale DC1\DCAdmin viene eliminato e viene creato un nuovo account di dominio (CORP\DCAdmin) con la stessa password.
 
-Verificare che il nome account hello è un nome macchina virtuale hello è possibile verificare come un account valido e hello password non è corretto.
+Assicurarsi che il nome dell'account sia un nome che possa essere verificato come account valido dalla macchina virtuale e che la password sia corretta.
 
-Se è necessario password hello toochange dell'account amministratore locale hello, vedere [come tooreset una password o hello Desktop remoto il servizio per le macchine virtuali Windows](reset-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+Se è necessario modificare la password dell'account amministratore locale, vedere [Come reimpostare una password o il servizio Desktop remoto per le macchine virtuali Windows](reset-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
 <a id="rdpconnect"></a>
 
-## <a name="this-computer-cant-connect-toohello-remote-computer"></a>Impossibile connettersi toohello computer remoto.
-Causa: account hello tooconnect utilizzato non dispone di diritti di accesso Desktop remoto.
+## <a name="this-computer-cant-connect-to-the-remote-computer"></a>Il computer non è in grado di connettersi al computer remoto.
+Causa: l'account usato per la connessione non dispone dei diritti di accesso Desktop remoto.
 
-Ogni computer Windows è un gruppo locale di utenti Desktop remoto, che contiene account hello e i gruppi che possono accedere in remoto al suo interno. I membri del gruppo administrators locale hello dispongono di accesso, anche se tali account non elencati nel gruppo locale utenti Desktop remoto di hello. Per i computer appartenenti a un dominio, il gruppo di amministratori locali hello contiene anche gli amministratori di dominio hello per dominio hello.
+Ogni computer Windows dispone di un gruppo locale Utenti desktop remoto, che contiene gli account e i gruppi che hanno il diritto di accedere in remoto. Anche i membri del gruppo Administrators locale dispongono dell'accesso, sebbene tali account non siano elencati nel gruppo locale Utenti Desktop remoto. Per le macchine appartenenti a un dominio, il gruppo Administrators locale contiene anche gli amministratori di dominio per il dominio.
 
-Assicurarsi che si sta utilizzando tooconnect con account di hello disponga dei diritti di accesso Desktop remoto. In alternativa, utilizzare un dominio o tooconnect account amministratore locale tramite Desktop remoto. tooadd hello gruppo locale utenti Desktop remoto toohello account desiderato, utilizzare lo snap-in Microsoft Management Console hello (**sistema strumenti > utenti e gruppi locali > gruppi > utenti Desktop remoto**).
+Assicurarsi che l'account che si usa per la connessione disponga dei diritti di accesso a Desktop remoto. Come soluzione alternativa, usare un account amministratore locale o di dominio per connettersi tramite Desktop remoto. Per aggiungere l'account desiderato al gruppo locale Utenti desktop remoto, usare quindi lo snap-in Microsoft Management Console (**Utilità di sistema > Utenti e gruppi locali > Gruppi > Utenti desktop remoto**).
 
 ## <a name="next-steps"></a>Passaggi successivi
-Se nessuno di questi errori si sono verificati e si verifica un problema sconosciuto con la connessione tramite RDP, vedere hello [risoluzione dei problemi di Guida per il Desktop remoto](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+Se non è stato visualizzato alcuno di questi messaggi ma si verifica un errore sconosciuto riguardo alla connessione mediante RDP, vedere la [guida alla risoluzione dei problemi relativi a Desktop remoto](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
-* Per la risoluzione dei problemi nell'accesso alle applicazioni in esecuzione in una macchina virtuale, vedere [applicazione tooan accesso di risoluzione dei problemi in esecuzione in una macchina virtuale di Azure](../linux/troubleshoot-app-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
-* Se si sono verificati problemi di utilizzo di Secure Shell (SSH) tooconnect tooa VM Linux in Azure, vedere [tooa connessioni risolvere SSH VM Linux di Azure](../linux/troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+* Per la risoluzione dei problemi di accesso alle applicazioni in esecuzione in una VM, vedere [Troubleshoot access to an application running on an Azure VM](../linux/troubleshoot-app-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) (Risolvere i problemi di accesso a un'applicazione in esecuzione in una macchina virtuale di Azure).
+* Se si verificano problemi relativi all'uso di SSH (Secure Shell) per la connessione a una VM Linux in Azure, vedere [Risoluzione dei problemi di connessione SSH a una macchina virtuale Linux di Azure](../linux/troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 

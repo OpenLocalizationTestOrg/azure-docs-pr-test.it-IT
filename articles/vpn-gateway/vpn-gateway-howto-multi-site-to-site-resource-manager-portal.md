@@ -1,6 +1,6 @@
 ---
-title: "Aggiungere più tooa di connessioni VPN gateway da sito a sito tra reti virtuali: portale di Azure: Gestione risorse | Documenti Microsoft"
-description: "Aggiungere più siti S2S connessioni tooa gateway VPN con una connessione esistente"
+title: "Aggiungere più connessioni gateway VPN da sito a sito a una rete virtuale: portale di Azure: Resource Manager | Documentazione Microsoft"
+description: "Come aggiungere più connessioni da sito a sito (S2S) a un gateway VPN con una connessione esistente"
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
@@ -15,13 +15,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/20/2017
 ms.author: cherylmc
-ms.openlocfilehash: b8c9ff454967f509dcef725f8bcec8564fad9b00
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7ec57789ee76f4ec54e4f7b68ea75c19522f3d7c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="add-a-site-to-site-connection-tooa-vnet-with-an-existing-vpn-gateway-connection"></a>Aggiungere un tooa di connessione da sito a sito rete virtuale con una connessione gateway VPN esistente
+# <a name="add-a-site-to-site-connection-to-a-vnet-with-an-existing-vpn-gateway-connection"></a>Aggiungere una connessione da sito a sito a una rete virtuale con una connessione gateway VPN esistente
 
 > [!div class="op_single_selector"]
 > * [Portale di Azure](vpn-gateway-howto-multi-site-to-site-resource-manager-portal.md)
@@ -29,68 +29,68 @@ ms.lasthandoff: 10/06/2017
 >
 > 
 
-Questo articolo viene illustrato l'utilizzo di hello tooadd portale Azure da sito a sito (S2S) connessioni tooa gateway VPN con una connessione esistente. Questo tipo di connessione è spesso tooas cui una configurazione "multi-site". È possibile aggiungere un tooa connessione S2S rete virtuale che dispone già di una connessione S2S, connessione Point-to-Site o rete connessione. Quando si aggiungono delle connessioni, esistono alcune limitazioni di cui è necessario tenere conto. Controllare hello [prima di iniziare](#before) sezione tooverify questo articolo prima di iniziare la configurazione. 
+Questo articolo illustra come usare il portale di Azure per aggiungere connessioni da sito a sito (S2S) a un gateway VPN con una connessione esistente. Questo tipo di connessione è spesso definito configurazione "multisito". È possibile aggiungere una connessione da sito a sito a una rete virtuale che dispone già di una connessione da sito a sito, una connessione da punto a sito o una connessione da rete virtuale a rete virtuale. Quando si aggiungono delle connessioni, esistono alcune limitazioni di cui è necessario tenere conto. Prima di iniziare la configurazione, verificare quanto riportato nella sezione [Prima di iniziare](#before) di questo articolo. 
 
-Questo articolo riguarda tooVNets creato con modello di distribuzione di gestione risorse di hello che dispone di un gateway VPN RouteBased. Questi passaggi non vengono applicano le configurazioni di connessione coesistenti tooExpressRoute/Site-to-Site. Per informazioni sulle connessioni coesistenti vedere [Creare connessioni coesistenti da sito a sito ed ExpressRoute](../expressroute/expressroute-howto-coexist-resource-manager.md).
+Questo articolo si applica alle reti virtuali create con il modello di distribuzione Resource Manager e che dispongono di un gateway VPN di tipo RouteBased. Questi passaggi non si applicano alle configurazioni con connessioni coesistenti ExpressRoute/da sito a sito. Per informazioni sulle connessioni coesistenti vedere [Creare connessioni coesistenti da sito a sito ed ExpressRoute](../expressroute/expressroute-howto-coexist-resource-manager.md).
 
 ### <a name="deployment-models-and-methods"></a>Metodi e modelli di distribuzione
 [!INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
 
-Questa tabella viene aggiornata man mano che per questa configurazione diventano disponibili nuovi articoli e altri strumenti. Quando un articolo è disponibile, è un collegamento direttamente tooit da questa tabella.
+Questa tabella viene aggiornata man mano che per questa configurazione diventano disponibili nuovi articoli e altri strumenti. Quando un articolo è disponibile, nella tabella sarà presente un collegamento diretto.
 
 [!INCLUDE [vpn-gateway-table-multi-site](../../includes/vpn-gateway-table-multisite-include.md)]
 
 ## <a name="before"></a>Prima di iniziare
-Verificare hello seguenti elementi:
+Verificare quanto segue:
 
 * Non si sta creando una connessione coesistente ExpressRoute/da sito a sito.
-* Si dispone di una rete virtuale che è stata creata con modello di distribuzione di gestione risorse di hello con una connessione esistente.
-* gateway di rete virtuale Hello per la rete virtuale è di tipo RouteBased. Se si dispone di un gateway VPN PolicyBased, è necessario eliminare il gateway di rete virtuale hello e creare un nuovo gateway VPN come tipo RouteBased.
-* Nessuno degli intervalli di indirizzi hello si sovrappongono per uno qualsiasi dei hello reti virtuali che esegue la connessione a questa rete virtuale.
-* Si dispone di dispositivi VPN con compatibilità e chi è in grado di tooconfigure è. Vedere [Informazioni sui dispositivi VPN](vpn-gateway-about-vpn-devices.md). Se si non ha familiarità con la configurazione del dispositivo VPN o si ha familiarità con gli intervalli di indirizzi IP hello nella configurazione di rete locale, è necessario toocoordinate con qualcuno in grado di fornire i dettagli per l'utente.
+* Si dispone di una rete virtuale creata usando il modello di distribuzione Resource Manager con una connessione esistente.
+* Il gateway di rete virtuale per la rete virtuale è di tipo RouteBased. Se si dispone di un gateway VPN basato su criteri, è necessario eliminare il gateway di rete virtuale e creare un nuovo gateway VPN di tipo RouteBased.
+* Nessuno degli intervalli di indirizzi si sovrappone a una qualsiasi delle reti virtuali a cui si connette questa rete virtuale.
+* Si dispone di un dispositivo VPN compatibile ed è presente un utente in grado di configurarlo. Vedere [Informazioni sui dispositivi VPN](vpn-gateway-about-vpn-devices.md). Se non si ha familiarità con la configurazione del dispositivo VPN o con gli intervalli di indirizzi IP disponibili nella configurazione di rete locale, è necessario coordinarsi con qualcuno che possa fornire tali dettagli.
 * Si dispone di un indirizzo IP pubblico esterno per il dispositivo VPN. L'indirizzo IP non può trovarsi dietro un NAT.
 
 ## <a name="part1"></a>Parte 1: Configurare una connessione
-1. Da un browser, passare toohello [portale di Azure](http://portal.azure.com) e, se necessario, accedere con l'account di Azure.
-2. Fare clic su **tutte le risorse** e individuare il **gateway di rete virtuale** dall'elenco di hello delle risorse e farvi clic sopra.
-3. In hello **gateway di rete virtuale** pannello, fare clic su **connessioni**.
+1. In un browser passare al [portale di Azure](http://portal.azure.com) e, se necessario, accedere con l'account Azure.
+2. Fare clic su **All resources** (Tutte le risorse), individuare il **gateway di rete virtuale** nell'elenco di risorse e selezionarlo.
+3. Nel pannello **Gateway di rete virtuale** fare clic su **Connessioni**.
    
-    ![Pannello connessioni](./media/vpn-gateway-howto-multi-site-to-site-resource-manager-portal/connectionsblade.png "Pannello connessioni")<br>
-4. In hello **connessioni** pannello, fare clic su **+ Aggiungi**.
+    ![Pannello Connessioni](./media/vpn-gateway-howto-multi-site-to-site-resource-manager-portal/connectionsblade.png "Connections blade")<br>
+4. Nel pannello **Connessioni** fare clic su **+Aggiungi**.
    
-    ![Pulsante di connessione Aggiungi](./media/vpn-gateway-howto-multi-site-to-site-resource-manager-portal/addbutton.png "Aggiungi pulsante di connessione")<br>
-5. In hello **Aggiungi connessione** pannello, compilare hello seguenti campi:
+    ![Pulsante Aggiungi connessione](./media/vpn-gateway-howto-multi-site-to-site-resource-manager-portal/addbutton.png "Add connection button")<br>
+5. Nel pannello **Aggiungi connessione** compilare i campi seguenti:
    
-   * **Nome:** hello Nome sito toohello toogive si sta creando una connessione hello.
+   * **Nome**: nome del sito a cui si sta creando la connessione.
    * **Tipo di connessione**: selezionare **Da sito a sito (IPSec)**.
      
-     ![Pannello connessione Aggiungi](./media/vpn-gateway-howto-multi-site-to-site-resource-manager-portal/addconnectionblade.png "Pannello di Aggiungi connessione")<br>
+     ![Pannello Aggiungi connessione](./media/vpn-gateway-howto-multi-site-to-site-resource-manager-portal/addconnectionblade.png "Add connection blade")<br>
 
 ## <a name="part2"></a>Parte 2: Aggiungere un gateway di rete locale
-1. Fare clic su **Gateway di rete locale** ***Scegli un gateway di rete locale***. Verrà aperta hello **scegliere gateway di rete locale** blade.
+1. Fare clic su **Gateway di rete locale** ***Scegli un gateway di rete locale***. Viene aperto il pannello **Scegli gateway di rete virtuale**.
    
-    ![Gateway di rete locale scegliere](./media/vpn-gateway-howto-multi-site-to-site-resource-manager-portal/chooselng.png "scegliere gateway di rete locale")<br>
-2. Fare clic su **Crea nuovo** tooopen hello **gateway di rete locale crea** blade.
+    ![Scegli gateway di rete virtuale](./media/vpn-gateway-howto-multi-site-to-site-resource-manager-portal/chooselng.png "Choose local network gateway")<br>
+2. Fare clic su **Crea nuovo** per aprire il pannello **Crea un gateway di rete locale**.
    
-    ![Pannello di gateway di rete locale crea](./media/vpn-gateway-howto-multi-site-to-site-resource-manager-portal/createlngblade.png "crea gateway di rete locale")<br>
-3. In hello **gateway di rete locale crea** pannello, compilare hello seguenti campi:
+    ![Pannello Crea un gateway di rete locale](./media/vpn-gateway-howto-multi-site-to-site-resource-manager-portal/createlngblade.png "Create local network gateway")<br>
+3. Nel pannello **Crea un gateway di rete locale** compilare i campi seguenti:
    
-   * **Nome:** hello Nome risorsa del gateway di rete locale toohello toogive.
-   * **Indirizzo IP:** hello indirizzo IP pubblico del dispositivo VPN hello nel sito di hello che si desidera tooconnect per.
-   * **Lo spazio degli indirizzi:** spazio degli indirizzi hello che si desidera toobe indirizzato toohello nuovo sito di rete locale.
-4. Fare clic su **OK** su hello **gateway di rete locale crea** modifiche hello toosave di blade.
+   * **Nome**: nome da assegnare alla risorsa gateway di rete locale.
+   * **Indirizzo IP**: indirizzo IP pubblico del dispositivo VPN nel sito a cui si vuole connettersi.
+   * **Spazio indirizzi**: spazio indirizzi che si vuole venga indirizzato al nuovo sito di rete locale.
+4. Fare clic su **OK** nel pannello **Crea un gateway di rete locale** per salvare le modifiche.
 
-## <a name="part3"></a>Parte 3: aggiungere una chiave condivisa hello e creare la connessione hello
-1. In hello **Aggiungi connessione** pannello, aggiungere una chiave condivisa hello che si desidera toouse toocreate la connessione. È possibile ottenere la chiave condivisa hello dal dispositivo VPN o crearla qui e quindi configurare il hello toouse di dispositivi VPN stessa chiave condivisa. Hello importante aspetto è che le chiavi di hello sono esattamente hello stesso.
+## <a name="part3"></a>Parte 3: Aggiungere la chiave condivisa e creare la connessione
+1. Nel pannello **Aggiungi connessione** aggiungere la chiave condivisa che si intende usare per creare la connessione. È possibile ottenere la chiave condivisa dal dispositivo VPN oppure crearne una in questa sede e quindi configurare il dispositivo VPN per l'uso della stessa chiave condivisa. È fondamentale che le chiavi siano assolutamente identiche.
    
-    ![Chiave condivisa](./media/vpn-gateway-howto-multi-site-to-site-resource-manager-portal/sharedkey.png "Chiave condivisa")<br>
-2. Nella parte inferiore di hello del pannello hello, fare clic su **OK** connessione hello toocreate.
+    ![Chiave condivisa](./media/vpn-gateway-howto-multi-site-to-site-resource-manager-portal/sharedkey.png "Shared key")<br>
+2. Nella parte inferiore del pannello fare clic su **OK** per creare la connessione.
 
-## <a name="part4"></a>Parte 4: verificare una connessione VPN hello
+## <a name="part4"></a>Parte 4: Verificare la connessione VPN
 
 
 [!INCLUDE [vpn-gateway-verify-connection-ps-rm](../../includes/vpn-gateway-verify-connection-ps-rm-include.md)]
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Una volta completata la connessione, è possibile aggiungere macchine virtuali tooyour le reti virtuali. Vedere le macchine virtuali hello [percorso di apprendimento](https://azure.microsoft.com/documentation/learning-paths/virtual-machines) per ulteriori informazioni.
+Dopo aver completato la connessione, è possibile aggiungere macchine virtuali alle reti virtuali. Per altre informazioni, vedere il [percorso di apprendimento](https://azure.microsoft.com/documentation/learning-paths/virtual-machines) relativo alle macchine virtuali.

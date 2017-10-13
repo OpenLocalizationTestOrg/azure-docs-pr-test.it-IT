@@ -1,5 +1,5 @@
 ---
-title: benchmark aaaCompute punteggi per macchine virtuali di Windows | Documenti Microsoft
+title: Calcolare i punteggi di benchmark per le VM Windows | Microsoft Docs
 description: Confrontare i punteggi di benchmark di SPECint calcolo per le VM di Azure che eseguono Windows Server
 services: virtual-machines-windows
 documentationcenter: 
@@ -15,14 +15,14 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 05/11/2017
 ms.author: cynthn
-ms.openlocfilehash: 3037d69790cb193161122b902e85fb838285cf81
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: dc715a9bf4e5366e1719de7c649feb06b0c4bee7
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="compute-benchmark-scores-for-windows-vms"></a>Calcolare i punteggi di benchmark per le VM Windows
-Hello seguente mostra i punteggi di benchmark SPECInt calcolo delle prestazioni per l'elemento lineup di macchina virtuale ad alte prestazioni di Azure che esegue Windows Server. I punteggi di benchmark sul calcolo sono disponibili anche per le [VM Linux](../linux/compute-benchmark-scores.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+I seguenti punteggi del benchmark SPECInt mostrano le prestazioni di calcolo per la linea di VM ad alte prestazioni di Azure con Windows Server. I punteggi di benchmark sul calcolo sono disponibili anche per le [VM Linux](../linux/compute-benchmark-scores.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
 ## <a name="a-series---compute-intensive"></a>Serie A - Elevato utilizzo di calcolo
 | Dimensione | vCPU | Nodi NUMA | CPU | Esecuzioni | Velocità di base media | Deviazione standard |
@@ -65,7 +65,7 @@ Hello seguente mostra i punteggi di benchmark SPECInt calcolo delle prestazioni 
 | Standard_H16mr |16 |2 |Intel Xeon E5-2667 v3 a 3,2 GHz |7 |569.6 |2.8 |
 
 ## <a name="about-specint"></a>Informazioni su SPECint
-I valori di Windows sono stati calcolati eseguendo [SPECint 2006](https://www.spec.org/cpu2006/results/rint2006.html) in Windows Server. È stato eseguito SPECint opzione hello tariffa di base (SPECint_rate2006), con una copia per core. SPECint è costituito da 12 test separati, ognuno eseguito tre volte, accettare il valore mediano di hello da ciascun test e la ponderazione li tooform un punteggio composito. Tali test sono stati quindi eseguiti in più macchine virtuali tooprovide hello Media dei voti illustrata.
+I valori di Windows sono stati calcolati eseguendo [SPECint 2006](https://www.spec.org/cpu2006/results/rint2006.html) in Windows Server. SPECint è stato eseguito utilizzando la velocità di base (SPECint_rate2006), con una copia per core. SPECint consiste in 12 test distinti, ognuno eseguito tre volte prendendo i valori mediani di tutti i test e ponderandoli in modo da ottenere un punteggio composito. Questi test sono stati quindi eseguiti su più VM per ottenere la media dei punteggi illustrata.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Per conoscere le capacità di archiviazione, i dettagli sul disco e per considerazioni aggiuntive sulla scelta delle dimensioni delle macchine virtuali, vedere [Dimensioni delle macchine virtuali in Azure](sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).

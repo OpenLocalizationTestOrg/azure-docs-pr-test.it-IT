@@ -1,6 +1,6 @@
 ---
-title: "la protezione dell'identità di Active Directory aaaAzure | Documenti Microsoft"
-description: "Informazioni su come Azure AD Identity Protection consenta il possibilità hello toolimit di un tooexploit malintenzionato un'identità compromessa o il dispositivo e toosecure un'identità o un dispositivo che in precedenza era noto o sospetta toobe compromesso."
+title: Azure Active Directory Identity Protection | Microsoft Docs
+description: "Informazioni su come Azure AD Identity Protection consente di limitare la possibilità di un utente malintenzionato di sfruttare un'identità o un dispositivo compromesso e di proteggere un'identità o un dispositivo che in precedenza è stato sospettato o ritenuto essere compromesso."
 services: active-directory
 keywords: "azure active directory identity protection, cloud app discovery, gestione applicazioni, sicurezza, rischio, livello di rischio, vulnerabilità, criteri di sicurezza"
 documentationcenter: 
@@ -15,28 +15,28 @@ ms.topic: article
 ms.date: 08/15/2017
 ms.author: markvi
 ms.reviewer: nigu
-ms.openlocfilehash: ecca4f3cdb65585687cf44a80024f26c7cab22ca
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0c7a8d68c0df729441e3f7faa5cd06066db1261d
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="azure-active-directory-identity-protection"></a>Azure Active Directory Identity Protection
 
-Azure Active Directory Identity Protection è una funzionalità dell'edizione di Azure AD Premium P2 hello che consente di:
+Azure Active Directory Identity Protection è una funzionalità dell'edizione Azure AD Premium P2 che consente di:
 
 - Rilevare le potenziali vulnerabilità per le identità dell'organizzazione
 
-- Configurare le risposte automatiche toodetected sospette azioni sono le identità dell'organizzazione tooyour correlati  
+- Configurare risposte automatizzate alle azioni sospette rilevate correlate alle identità dell'organizzazione  
 
-- Esaminare gli eventi imprevisti sospetti e richiedere l'azione appropriata tooresolve li   
+- Esaminare gli eventi imprevisti sospetti ed eseguire l'azione appropriata per risolverli   
 
 
 ## <a name="getting-started"></a>introduttiva
 
-Microsoft protegge le identità basate sul cloud per oltre un decennio. Protezione dell'identità di Azure Active Directory, nel proprio ambiente, è possibile utilizzare hello stessi sistemi di protezione Microsoft utilizza le identità toosecure.
+Microsoft protegge le identità basate sul cloud per oltre un decennio. Con Azure Active Directory Identity Protection, è possibile usare nell'ambiente gli stessi sistemi di protezione usati da Microsoft per proteggere le identità.
 
-Posizionare Hello gran parte richiedere violazioni della sicurezza degli utenti malintenzionati ad ambiente tooan accesso dal furto di identità dell'utente. Negli anni hello, gli utenti malintenzionati sono diventate sempre più efficaci per sfruttare violazioni della sicurezza di terze parti e l'utilizzo di attacchi di phishing sofisticate. Non appena un utente malintenzionato ottenga l'accesso degli account utente con privilegi limitati tooeven, è relativamente facile relativa toogain accedere tooimportant alle risorse aziendali tramite il movimento laterale.
+La maggior parte delle violazioni della sicurezza si verifica quando utenti malintenzionati ottengono l'accesso a un ambiente impadronendosi dell'identità di un utente. Nel corso degli anni, gli utenti malintenzionati hanno messo a punto tecniche sempre più efficaci per sfruttare le violazioni di terze parti e sferrare sofisticati attacchi di phishing. L'accesso a un account utente, anche quelli con privilegi limitati, permette agli utenti malintenzionati di accedere immediatamente a risorse aziendali importanti in modo relativamente semplice tramite il movimento laterale.
 
 Di conseguenza, è necessario:
 
@@ -44,16 +44,16 @@ Di conseguenza, è necessario:
 
 - Impedire in modo proattivo l'uso improprio delle identità compromesse
 
-Trovare le identità compromesse non è un compito facile. Azure Active Directory Usa algoritmi di apprendimento automatico adattivo e anomalie toodetect euristica e gli eventi imprevisti sospetti indicano potenzialmente compromessi identità. Con questi dati, la protezione dell'identità genera report e gli avvisi che consentono di tooevaluate hello ha rilevato dei problemi e richiedere di attenuazione appropriati o azioni correttive.
+Trovare le identità compromesse non è un compito facile. Azure Active Directory usa l'euristica e gli algoritmi adattivi di apprendimento automatico per rilevare anomalie ed eventi imprevisti sospetti che indicano identità potenzialmente compromesse. Sulla base di tali dati, Identity Protection genera report e avvisi che consentono di valutare i problemi rilevati e di adottare le azioni di correzione o mitigazione appropriate.
 
-Azure Active Directory Identity Protection è ben più di un semplice strumento di monitoraggio e reporting. tooprotect identità dell'organizzazione, è possibile configurare criteri basati sui rischi di rispondere automaticamente toodetected problemi quando viene raggiunto un livello di rischio specificato. Questi criteri, inoltre tooother condizionale accedere ai controlli forniti da Azure Active Directory ed EMS, può bloccare automaticamente oppure avviare azioni di correzione adattivo inclusi la reimpostazione della password e l'applicazione multi-factor authentication.
+Azure Active Directory Identity Protection è ben più di un semplice strumento di monitoraggio e reporting. Per proteggere le identità dell'organizzazione, è possibile configurare criteri basati sul rischio che rispondano automaticamente ai problemi rilevati quando viene raggiunto un livello di rischio specificato. Questi criteri, con altri controlli di accesso condizionale forniti da Azure Active Directory e da EMS, possono eseguire il blocco automatico o avviare azioni di correzione adattive, incluse la reimpostazione della password e l'applicazione dell'autenticazione a più fattori.
 
 
 #### <a name="identity-protection-capabilities"></a>Funzionalità di Identity Protection
 
 **Rilevamento di vulnerabilità e di account rischiosi:**  
 
-* Fornire consigli personalizzati tooimprove generali di sicurezza, evidenziando le vulnerabilità
+* Raccomandazioni personalizzate per migliorare il comportamento di sicurezza in generale evidenziando le vulnerabilità.
 * Calcolo dei livelli di rischio di accesso.
 * Calcolo dei livelli di rischio utente.
 
@@ -62,26 +62,26 @@ Azure Active Directory Identity Protection è ben più di un semplice strumento 
 
 * Invio di notifiche per gli eventi di rischio.
 * Analisi degli eventi di rischio con informazioni rilevanti e contestuali.
-* Fornisce i flussi di lavoro di base indagini tootrack
-* Fornendo un accesso semplice tooremediation azioni, ad esempio la reimpostazione della password
+* Flussi di lavoro di base per tenere traccia delle analisi.
+* Accesso semplificato ad azioni di correzione come la reimpostazione della password.
 
 **Criteri di accesso condizionale basati sul rischio:**
 
-* Criteri toomitigate rischiosi accessi da accessi di blocco o la richiesta di richieste di autenticazione a più fattori.
-* Criteri tooblock o gli account utente di rischiosa sicura
-* Criteri toorequire utenti tooregister multi-factor Authentication
+* Criteri per mitigare gli accessi rischiosi con il blocco degli accessi o le richieste di autenticazione a più fattori.
+* Criteri per bloccare o proteggere gli account utente rischiosi.
+* Criteri per richiedere la registrazione degli utenti per l'autenticazione a più fattori
 
 
 
 ## <a name="identity-protection-roles"></a>Ruoli di Identity Protection
 
-tooload saldo hello Gestione attività per l'implementazione di Identity Protection, è possibile assegnare più ruoli. Azure AD Identity Protection supporta 3 ruoli di directory:
+Per bilanciare il carico delle attività di gestione per l'implementazione di Identity Protection, è possibile assegnare più ruoli. Azure AD Identity Protection supporta 3 ruoli di directory:
 
 | Ruolo                         | Operazione consentita                          | Operazione non consentita
 | :--                          | ---                                |  ---   |
-| Amministratore globale         | Accesso completo tooIdentity, protezione, caricare Identity Protection| |
-| Amministratore della sicurezza       | Accesso completo tooIdentity protezione | Implementazione di Identity Protection, reimpostazione delle password per un utente |
-| Ruolo con autorizzazioni di lettura per la sicurezza              | Accesso in sola lettura tooIdentity protezione | Implementazione di Identity Protection, correzione degli utenti, configurazione dei criteri, reimpostazione delle password |
+| Amministratore globale         | Accesso completo a Identity Protection, implementazione di Identity Protection| |
+| Amministratore della sicurezza       | Accesso completo a Identity Protection | Implementazione di Identity Protection, reimpostazione delle password per un utente |
+| Ruolo con autorizzazioni di lettura per la sicurezza              | Accesso in sola lettura a Identity Protection | Implementazione di Identity Protection, correzione degli utenti, configurazione dei criteri, reimpostazione delle password |
 
 
 
@@ -98,113 +98,113 @@ Azure Active Directory Identity Protection analizza la configurazione e rileva l
 
 ### <a name="risk-events"></a>Eventi di rischio
 
-Azure Active Directory Usa adattivo di machine learning algoritmi euristica toodetect sospette azioni e che sono le identità dell'utente tooyour correlati. sistema di Hello crea un record per ogni azione sospetti rilevato. Questi record sono denominati anche eventi di rischio.  
+Azure Active Directory usa l'euristica e algoritmi adattivi di apprendimento automatico per rilevare azioni sospette correlate alle identità dell'utente. Il sistema crea un record per ogni azione sospetta rilevata. Questi record sono denominati anche eventi di rischio.  
 Per altre informazioni, vedere [Eventi di rischio di Azure Active Directory](active-directory-identity-protection-risk-events.md).
 
 
 ## <a name="investigation"></a>Analisi
-Il trasporto tramite la protezione dell'identità in genere inizia con dashboard Identity Protection hello.
+L'esperienza con Identity Protection inizia in genere dal relativo dashboard.
 
 ![Correzione](./media/active-directory-identityprotection/1000.png "Correzione")
 
-dashboard Hello consente di accedere a:
+Il dashboard consente di accedere a:
 
 * Report, ad esempio **Utenti contrassegnati per il rischio**, **Eventi di rischio** e **Vulnerabilità**
-* Le impostazioni come configurazione hello del **criteri di sicurezza**, **notifiche** e **registrazione con l'autenticazione a più fattori**
+* Impostazioni come la configurazione dei **criteri di sicurezza**, delle **notifiche** e della **registrazione per l'autenticazione a più fattori**
 
-In genere è il punto di partenza per l'analisi, ovvero il processo di hello di revisione hello attività, i registri e altre informazioni rilevanti tooa correlato rischio toodecide evento se sono necessarie operazioni di correzione o riduzione, e come è stato identità hello compromesso e comprendere come hello compromesso identità è stata utilizzata.
+Si tratta in genere del punto di partenza dell'analisi, ovvero del processo di analisi di attività, log e altre informazioni rilevanti relative a un evento di rischio per decidere se sono necessarie procedure di correzione o mitigazione, se e come l'identità è stata compromessa e come è stata usata l'identità compromessa.
 
-È possibile collegare il toohello le attività di analisi [notifiche](active-directory-identityprotection-notifications.md) protezione di Azure Active Directory invia per posta elettronica.
+È possibile collegare le attività di analisi alle [notifiche](active-directory-identityprotection-notifications.md) che Azure Active Directory Protection invia per posta elettronica.
 
-Hello nelle sezioni seguenti offrono altre informazioni e i passaggi di hello analisi tooan correlati.  
+Le sezioni seguenti forniscono altre informazioni e i passaggi relativi a un'analisi.  
 
 
 ## <a name="risky-sign-ins"></a>Accessi a rischio
 
-Azure Active Directory rileva i [tipi di eventi di rischio](active-directory-reporting-risk-events.md#risk-event-types) in tempo reale e offline. Ogni evento di rischio rilevati per un accesso di un utente contribuisce tooa concetto logico Accedi rischiosa. Un rischiosa Accedi sono un indicatore per un tentativo di accesso che è possibile che non siano eseguito dal legittimo proprietario di hello di un account utente.
+Azure Active Directory rileva i [tipi di eventi di rischio](active-directory-reporting-risk-events.md#risk-event-types) in tempo reale e offline. Ogni evento di rischio in tempo reale rilevato per un accesso di un utente rientra nel concetto logico degli accessi a rischio. Un accesso a rischio è indicativo di un tentativo di accesso che potrebbe non essere stato eseguito dal legittimo proprietario di un account utente.
 
 
 ### <a name="sign-in-risk-level"></a>Livello di rischio di un accesso
 
-Un livello di rischio di accesso è un'indicazione (alta, Media o bassa) di probabilità hello che un tentativo di accesso non è stato eseguito dal legittimo proprietario di hello di un account utente.
+Il livello di rischio di un accesso è un'indicazione (Alto, Medio o Basso) della probabilità che un tentativo di accesso non sia stato eseguito dal legittimo proprietario di un account utente.
 
 ### <a name="mitigating-sign-in-risk-events"></a>Mitigazione degli eventi di rischio di accesso
 
-Una riduzione dei rischi è la capacità di hello toolimit azione di un utente malintenzionato tooexploit un'identità compromessa o un dispositivo senza ripristino hello identità o un dispositivo tooa sicuri dello stato. Una mitigazione non viene risolto precedente Accedi rischio gli eventi associati identità hello o un dispositivo.
+La mitigazione è un'azione che consente di limitare la possibilità che un utente malintenzionato sfrutti un'identità o un dispositivo compromesso senza ripristinare l'identità o il dispositivo a uno stato sicuro. La mitigazione non risolve gli eventi di rischio di accesso precedenti associati all'identità o al dispositivo.
 
-accessi toomitigate, rischiosa automaticamente, è possibile configurare l'accesso rischio sicurezza policicies. Grazie a questi criteri, prendere in considerazione il livello di rischio hello dell'utente di hello o hello Accedi tooblock accessi rischiosi o richiedere hello utente tooperform multi-factor authentication. Queste azioni possono impedire a un utente malintenzionato di sfruttare un danno toocause furto di identità e possono generare un'identità di hello toosecure ora.
+Per attenuare automaticamente gli accessi a rischio, è possibile configurare criteri di rischio per gli accessi. Usando questi criteri, si tiene conto del livello di rischio dell'utente o dell'accesso per bloccare gli accessi rischiosi o richiedere all'utente di eseguire l'autenticazione a più fattori. Queste azioni possono impedire a un utente malintenzionato di sfruttare un'identità rubata per causare danni e permettono di guadagnare tempo per proteggere l'identità.
 
 ### <a name="sign-in-risk-security-policy"></a>Criteri di sicurezza per il rischio di accesso
-Un criterio di accesso rischi è un criterio di accesso condizionale che valuta hello rischio tooa specifico Accedi e applica le misure di attenuazione in base alle regole e condizioni predefinite.
+I criteri di rischio di accesso sono criteri di accesso condizionale che valutano il rischio associato a un accesso specifico e applicano le azioni di mitigazione in base a condizioni e regole predefinite.
 
 ![Criteri di rischio di accesso](./media/active-directory-identityprotection/1014.png "Criteri di rischio di accesso")
 
-Azure AD Identity Protection consente di gestire attenuazione hello di accessi rischiosi poiché consente di:
+Azure AD Identity Protection consente di gestire le azioni di mitigazione degli accessi rischiosi seguendo questa procedura:
 
-* Hello utenti e gruppi hello criterio di impostazione si applica a:
+* Impostare gli utenti e i gruppi a cui vengono applicati i criteri:
 
     ![Criteri di rischio di accesso](./media/active-directory-identityprotection/1015.png "Criteri di rischio di accesso")
-* Impostare hello Accedi rischio soglia (low, medium o high) che attiva i criteri di hello:
+* Impostare la soglia del livello di rischio di accesso, bassa, media o alta, che attiva il criterio:
 
     ![Criteri di rischio di accesso](./media/active-directory-identityprotection/1016.png "Criteri di rischio di accesso")
-* Set hello controlli toobe applicato quando i criteri di hello attiva:  
+* Impostare i controlli da applicare quando viene attivato il criterio:  
 
     ![Criteri di rischio di accesso](./media/active-directory-identityprotection/1017.png "Criteri di rischio di accesso")
-* Stato di hello commutatore dei criteri:
+* Cambiare lo stato dei criteri:
 
     ![Registrazione MFA](./media/active-directory-identityprotection/403.png "Registrazione MFA")
-* Rivedere e valutare l'impatto di hello di una modifica prima di attivarlo:
+* Esaminare e valutare l'impatto di una modifica prima di attivarla:
 
     ![Criteri di rischio di accesso](./media/active-directory-identityprotection/1018.png "Criteri di rischio di accesso")
 
-#### <a name="what-you-need-tooknow"></a>È necessario tooknow
-È possibile configurare l'autenticazione a più fattori toorequire un rischio di accesso sicurezza criteri:
+#### <a name="what-you-need-to-know"></a>Informazioni importanti
+È possibile configurare un criterio di sicurezza per il rischio di accesso per richiedere l'autenticazione a più fattori:
 
 ![Criteri di rischio di accesso](./media/active-directory-identityprotection/1017.png "Criteri di rischio di accesso")
 
-Tuttavia, per motivi di sicurezza, questa impostazione funziona soltanto per gli utenti che sono già stati registrati per l'autenticazione a più fattori. Se l'autenticazione a più fattori toorequire hello condizione è soddisfatta per gli utenti che non sono ancora registrato per l'autenticazione a più fattori, l'utente hello è bloccato.
+Tuttavia, per motivi di sicurezza, questa impostazione funziona soltanto per gli utenti che sono già stati registrati per l'autenticazione a più fattori. Se la condizione per richiedere l'autenticazione a più fattori risulta soddisfatta per un utente che non è ancora registrato per l'autenticazione a più fattori, tale utente viene bloccato.
 
-Come procedura consigliata, se si desidera toorequire multi-factor authentication per accessi rischiosi, è necessario:
+Se si vuole richiedere l'autenticazione a più fattori per gli accessi rischiosi, è consigliabile procedere nel modo indicato di seguito:
 
-1. Abilitare hello [criteri di autenticazione a più fattori registrazione](#multi-factor-authentication-registration-policy) per hello utenti interessati.
-2. Richiedi hello interessati toologin gli utenti in una sessione non rischioso di tooperform una registrazione di autenticazione a più fattori
+1. Abilitare il [criterio di registrazione per l'autenticazione a più fattori](#multi-factor-authentication-registration-policy) per gli utenti interessati.
+2. Richiedere agli utenti interessati di accedere in una sessione non rischiosa per eseguire la registrazione per l'autenticazione a più fattori
 
 L'esecuzione di questa procedura assicura che, in caso di accesso rischioso, venga richiesta l'autenticazione a più fattori.
 
 #### <a name="best-practices"></a>Procedure consigliate
-Scelta di un **elevata** soglia riduce il numero di hello di volte in cui un criterio viene attivato e riduce al minimo toousers impatto hello.  
+La scelta di una soglia **alta** riduce la frequenza di attivazione dei criteri e riduce al minimo l'impatto sugli utenti.  
 
-Tuttavia, esclude **bassa** e **Media** accessi contrassegno i rischi dai criteri di hello, che non potrebbero bloccare un utente malintenzionato di sfruttare un'identità compromessa.
+Tuttavia, esclude dai criteri gli accessi contrassegnati per il rischio con una soglia **bassa** o **media**. Questa scelta può non impedire a un utente malintenzionato di sfruttare un'identità compromessa.
 
-Quando impostazione hello criteri,
+Quando si impostano i criteri:
 
 * Escludere gli utenti non hanno o non possono avere l'autenticazione a più fattori
-* Escludere gli utenti con impostazioni locali in cui l'abilitazione di hello criterio non è pratico (ad esempio toohelpdesk alcun accesso)
-* Escludere gli utenti che sono probabilmente toogenerate numerosi falsi positivi (sviluppatori, agli analisti della sicurezza)
+* Escludere gli utenti con impostazioni locali in cui abilitare i criteri non è pratico, ad esempio per la mancanza di accesso al supporto tecnico
+* Escludere gli utenti che possono generare molti falsi positivi, ad esempio sviluppatori o analisti della sicurezza
 * Usare una soglia **alta** durante il rollout iniziale dei criteri o se è necessario ridurre al minimo gli avvisi visualizzati dagli utenti finali.
 * Usare una soglia **bassa** se l'organizzazione richiede una maggiore sicurezza. La scelta di una soglia **bassa** introduce richieste di accesso aggiuntive per l'utente, ma garantisce una maggiore sicurezza.
 
-impostazione predefinita consigliata per la maggior parte delle organizzazioni è tooconfigure una regola per Hello un **Media** soglia toostrike un equilibrio tra usabilità e sicurezza.
+L'impostazione predefinita consigliata per la maggior parte delle organizzazioni è la configurazione di una regola per una soglia **media** , che permette di bilanciare usabilità e sicurezza.
 
-i criteri di accesso rischio Hello sono:
+I criteri di rischio di accesso:
 
-* Il traffico del browser tooall applicato e accesso tramite l'autenticazione moderna.
-* Non applicato tooapplications utilizzando protocolli di sicurezza meno recenti, disabilitare endpoint WS-Trust hello IDP hello federato, ad esempio ADFS.
+* Vengono applicati a tutto il traffico tramite browser e agli accessi che usano l'autenticazione moderna.
+* Non vengono applicati alle applicazioni che usano protocolli di sicurezza meno recenti disabilitando l'endpoint WS-Trust in corrispondenza dell'IDP federato, ad esempio ADFS.
 
-Hello **eventi di rischio** pagina hello Identity Protection console Elenca tutti gli eventi:
+La pagina **Eventi di rischio** nella console di Identity Protection contiene un elenco di tutti gli eventi:
 
 * Visualizzare a quali eventi sono stati applicati i criteri
-* È possibile esaminare l'attività hello e determinare se l'azione hello era appropriato o non
+* Esaminare l'attività e determinare se l'azione è stata appropriata o meno
 
-Per una panoramica di hello correlate esperienza utente, vedere:
+Per una panoramica dell'esperienza utente correlata, vedere:
 
 * [Ripristino di un accesso rischioso](active-directory-identityprotection-flows.md#risky-sign-in-recovery)
 * [Accesso rischioso bloccato](active-directory-identityprotection-flows.md#risky-sign-in-blocked)  
 * [Esperienze di accesso con Azure AD Identity Protection](active-directory-identityprotection-flows.md)  
 
-**finestra di dialogo di configurazione correlato hello tooopen**:
+**Per aprire la relativa finestra di dialogo di configurazione**:
 
-- In hello **Azure AD Identity Protection** pannello in hello **configura** fare clic su **Sign-in Criteri di rischio**.
+- Nel pannello **Azure AD Identity Protection** fare clic su **Criteri di rischio di accesso** nella sezione **Configura**.
 
     ![Criteri di rischio utente](./media/active-directory-identityprotection/1014.png "Criteri di rischio utente")
 
@@ -212,187 +212,187 @@ Per una panoramica di hello correlate esperienza utente, vedere:
 
 ## <a name="users-flagged-for-risk"></a>Utenti contrassegnati per il rischio
 
-Tutte attive [gli eventi di rischio](active-directory-identity-protection-risk-events.md) che sono stati rilevati da Azure Active Directory per un utente contribuiscono tooa concetto logico chiamato rischio utente. Un utente contrassegnato per il rischio è indicativo di un account utente che potrebbe essere stato compromesso.
+Tutti gli [eventi di rischio](active-directory-identity-protection-risk-events.md) attivi rilevati da Azure Active Directory per un utente rientrano nel concetto logico del rischio utente. Un utente contrassegnato per il rischio è indicativo di un account utente che potrebbe essere stato compromesso.
 
 ![Utenti contrassegnati per il rischio](./media/active-directory-identityprotection/1200.png)
 
 
 ### <a name="user-risk-level"></a>Livello di rischio utente
 
-Livello di rischio un utente è un'indicazione (alta, Media o bassa) di probabilità hello che l'identità dell'utente hello sia stato compromesso. Viene calcolato in base sugli eventi di rischio utente hello associati con l'identità dell'utente.
+Il livello di rischio utente può essere Alto, Medio o Basso e indica la probabilità che l'identità dell'utente sia stata compromessa. Viene calcolato in base agli eventi di rischio utente associati all'identità di un utente.
 
-Hello stato di un evento di rischio può essere **Active** o **chiuso**. Solo gli eventi di rischio **Active** contribuiscono calcolo livello di toohello utente dei rischi.
+Lo stato di un evento di rischio può essere **attivo** o **chiuso**. Solo gli eventi di rischio **attivi** vengono conteggiati nel calcolo del livello di rischio utente.
 
-livello di rischio utente Hello viene calcolato mediante hello seguenti input:
+Il livello di rischio utente viene calcolato usando le informazioni seguenti:
 
-* Eventi di rischio attivo conseguenze utente hello
+* Eventi di rischio attivi che interessano l'utente.
 * Livello di rischio di tali eventi.
 * Eventuali azioni di correzione intraprese o meno.
 
 ![Rischi utente](./media/active-directory-identityprotection/1031.png "Rischi utente")
 
-È possibile utilizzare hello utente dei rischi livelli toocreate criteri di accesso condizionale che bloccano l'accesso degli utenti rischiosi o forzarne toosecurely cambiare la password.
+È possibile usare i livelli di rischio utente per creare criteri di accesso condizionale che bloccano l'accesso degli utenti a rischio o per fare in modo che modifichino la password in modo sicuro.
 
 ### <a name="closing-risk-events-manually"></a>Chiusura manuale degli eventi di rischio
 
-Nella maggior parte dei casi, si avrà azioni correttive, ad esempio gli eventi di rischio Chiudi tooautomatically la reimpostazione della password sicura. Tuttavia, questo potrebbe non essere sempre possibile.  
-Ciò accade, ad esempio, hello, quando:
+Nella maggior parte dei casi, per chiudere automaticamente gli eventi di rischio si procede con azioni di correzione come la reimpostazione della password di protezione. Tuttavia, questo potrebbe non essere sempre possibile.  
+Ad esempio quando:
 
 * Un utente con eventi di rischio attivi è stato eliminato
-* Un'analisi rivela che è stato eseguire un evento di rischio segnalati da utente legittimo hello
+* Un'analisi rivela che un evento di rischio segnalato è stato eseguito dall'utente legittimo
 
-Poiché gli eventi di rischio che sono **Active** collaborazione calcolo del rischio di toohello utente, è possibile toomanually abbassare il livello di rischio chiudendo gli eventi di rischio manualmente.  
-Corso hello dell'analisi, è possibile scegliere tootake uno stato di hello toochange queste azioni di un evento di rischio:
+Dal momento che gli eventi di rischio **attivi** vengono conteggiati nel calcolo del rischio utente, potrebbe essere necessario ridurre il livello di rischio chiudendo manualmente gli eventi di rischio.  
+Nel corso dell'analisi è possibile eseguire una qualsiasi di queste azioni per modificare lo stato di un evento di rischio:
 
 ![Azioni](./media/active-directory-identityprotection/34.png "Azioni")
 
-* **Risolvere** : se dopo aver esaminato un evento di rischio, è stata eseguita un'azione di correzione appropriata all'esterno di protezione dell'identità, e si ritiene che l'evento rischio hello deve essere considerato chiuso, evento hello contrassegna come risolto. Eventi risolti imposterà tooClosed lo stato dell'evento di rischio hello ed evento rischio hello non contribuirà toouser rischio.
-* **Contrassegna come falso positivo** : in alcuni casi è possibile analizzare un evento di rischio e scoprire che è stato erroneamente contrassegnato come rischioso. È possibile ridurre il numero di hello di tali occorrenze contrassegnando l'evento di rischio hello come falsi positivi. Ciò consentirà di classificazione di hello tooimprove algoritmi di eventi simili in futuro hello di apprendimento automatico hello. stato Hello di eventi di falsi positivi è troppo**chiuso** e non contribuiscono non è più toouser rischio.
-* **Ignora** : se non si è diventate qualsiasi azione di correzione, ma si desidera hello rischio evento toobe rimosso dall'elenco attivo hello, è possibile contrassegnare un evento di rischio Ignora e lo stato dell'evento hello verrà chiuso. Eventi ignorati non contribuiscono toouser rischio. Questa opzione deve essere usata solo in circostanze particolari.
-* **Riattivare** -eventi che sono stati chiusi manualmente dei rischi (scegliendo **risolvere**, **falso positivo**, o **ignora**) possono essere riattivati, impostazione hello lo stato di evento nuovo troppo**Active**. Eventi di rischio riattivati contribuiscono calcolo livello di toohello utente dei rischi. Gli eventi di rischio chiusi tramite correzione, ad esempio la reimpostazione della password di protezione, non possono essere riattivati.
+* **Risolvi** : se è stata eseguita l'azione di correzione appropriata all'esterno di Identity Protection dopo l'analisi di un evento di rischio e si ritiene che l'evento sia da considerare chiuso, contrassegnarlo come risolto. Gli eventi risolti impostano lo stato dell'evento di rischio come chiuso e l'evento di rischio non viene più conteggiato nel rischio utente.
+* **Contrassegna come falso positivo** : in alcuni casi è possibile analizzare un evento di rischio e scoprire che è stato erroneamente contrassegnato come rischioso. È possibile ridurre il numero di tali occorrenze contrassegnando l'evento di rischio come falso positivo. Questo permetterà agli algoritmi di Machine Learning di migliorare la classificazione di eventi simili in futuro. Lo stato dell'evento falso positivo viene impostato come **chiuso** e non viene più conteggiato nel rischio utente.
+* **Ignora** : se non sono state intraprese azioni di correzione, ma si vuole rimuovere l'evento di rischio dall'elenco attivo, è possibile contrassegnarlo come da ignorare e il relativo stato verrà impostato come chiuso. Gli eventi ignorati non vengono conteggiati nel rischio utente. Questa opzione deve essere usata solo in circostanze particolari.
+* **Riattiva**: gli eventi di rischio che sono stati chiusi manualmente mediante **Risolvi**, **Contrassegna come falso positivo** o **Ignora**, possono essere riattivati impostando nuovamente lo stato dell'evento su **Attivo**. Gli eventi di rischio riattivati vengono conteggiati nel calcolo del livello di rischio utente. Gli eventi di rischio chiusi tramite correzione, ad esempio la reimpostazione della password di protezione, non possono essere riattivati.
 
-**finestra di dialogo di configurazione correlato hello tooopen**:
+**Per aprire la relativa finestra di dialogo di configurazione**:
 
-1. In hello **Azure AD Identity Protection** pannello, in **indagare**, fare clic su **gli eventi di rischio**.
+1. Nel pannello **Azure AD Identity Protection** fare clic su **Eventi di rischio** in **Ricerca causa**.
 
     ![Reimpostazione manuale della password](./media/active-directory-identityprotection/1002.png "Reimpostazione manuale della password")
-2. In hello **gli eventi di rischio** elenco, fare clic su un rischio.
+2. Nell'elenco **Eventi di rischio** fare clic su un rischio.
 
     ![Reimpostazione manuale della password](./media/active-directory-identityprotection/1003.png "Reimpostazione manuale della password")
-3. Nel Pannello di rischio hello, fare doppio clic su un utente.
+3. Nel pannello dei rischi fare clic con il pulsante destro del mouse su un utente.
 
     ![Reimpostazione manuale della password](./media/active-directory-identityprotection/1004.png "Reimpostazione manuale della password")
 
 ### <a name="closing-all-risk-events-for-a-user-manually"></a>Chiusura manuale di tutti gli eventi di rischio per un utente
-Invece di chiuderla manualmente gli eventi di rischio per un utente singolarmente, la protezione dell'identità Azure Active Directory offre più tooclose un metodo tutti gli eventi per un utente con un solo clic.
+Invece di chiudere manualmente i singoli eventi di rischio per un utente, Azure Active Directory Identity Protection offre anche un metodo per chiudere tutti gli eventi per un utente con un solo clic.
 
 ![Azioni](./media/active-directory-identityprotection/2222.png "Azioni")
 
-Quando fa clic su **chiudere tutti gli eventi**, vengono chiusi tutti gli eventi e hello interessata utente non è più a rischio.
+Quando si fa clic su **Dismiss all events**(Ignora tutti gli eventi), tutti gli eventi vengono chiusi e l'utente interessato non è più a rischio.
 
 ### <a name="remediating-user-risk-events"></a>Correzione di eventi di rischio utente
 
-Un monitoraggio e aggiornamento è un'azione toosecure un'identità o un dispositivo che è stato in precedenza o sospettato toobe compromesso. Un'azione correttiva Ripristina hello identità o un dispositivo tooa sicuro lo stato e risolve i precedenti eventi di rischio associati all'identità hello o un dispositivo.
+Una correzione è un'azione che consente di proteggere un'identità o un dispositivo che in precedenza è stato sospettato o ritenuto essere compromesso. Un'azione di correzione ripristina l'identità o il dispositivo a uno stato sicuro e risolve gli eventi di rischio precedenti associati all'identità o al dispositivo.
 
-eventi di rischio tooremediate utente, è possibile:
+Per correggere gli eventi di rischio utente, è possibile:
 
-* Eseguire manualmente gli eventi di rischio una password sicura reimpostazione tooremediate utente
-* Configurare un toomitigate di criteri utente rischio per la sicurezza o correggere automaticamente gli eventi di rischio dell'utente
-* Ricreare l'immagine dispositivo hello infettato  
+* Eseguire una reimpostazione della password di protezione per correggere manualmente gli eventi di rischio utente
+* Configurare criteri di sicurezza per il rischio utente per mitigare o correggere automaticamente gli eventi di rischio utente
+* Ricreare l'immagine del dispositivo infetto  
 
 #### <a name="manual-secure-password-reset"></a>Reimpostazione manuale della password di protezione
-Per reimpostare la password sicura è un monitoraggio efficace per molti eventi di rischio e, quando eseguita, automaticamente chiude questi eventi di rischio e ricalcola a livello di rischio utente hello. È possibile utilizzare hello Identity Protection dashboard tooinitiate una reimpostazione della password per un utente rischioso.
+La reimpostazione della password di protezione un'azione di correzione efficace per molti eventi di rischio. Quando viene eseguita, permette di chiudere automaticamente gli eventi di rischio e ricalcolare il livello di rischio utente. È possibile usare il dashboard di Identity Protection per avviare una reimpostazione della password per un utente rischioso.
 
-finestra di dialogo correlate Hello fornisce due metodi diversi tooreset una password:
+La finestra di dialogo correlata fornisce due metodi diversi per reimpostare una password:
 
-**Reimpostazione della password** : selezionare questa opzione **richiedono hello utente tooreset la propria password** tooallow hello utente tooself-ripristina se hello utente ha registrato per l'autenticazione a più fattori. Durante l'hello utente successivo accesso, utente hello sarà necessario toosolve richiesta di autenticazione a più fattori completata e la password di hello toochange forzato, quindi. Questa opzione non è disponibile se l'account utente di hello non è già registrato multi-factor authentication.
+**Reimposta password**: selezionare **Richiedi all'utente di reimpostare la password** per consentirgli di eseguire il ripristino automatico se è registrato per l'autenticazione a più fattori. Durante l'accesso successivo all'utente verrà richiesto di risolvere correttamente una richiesta di autenticazione a più fattori e quindi di modificare la password. Questa opzione non è disponibile se l'account utente non è già registrato per l'autenticazione a più fattori.
 
-**Password temporanea** : selezionare questa opzione **generare una password temporanea** tooimmediately invalidare la password esistente hello e creare una nuova password temporanea per l'utente hello. Inviare hello nuova password temporanea tooan indirizzo e-mail alternativo per utente hello o un responsabile dell'utente toohello. Poiché la password di hello è temporanea, utente hello sarà password hello toochange richiesto al momento dell'accesso.
+**Password provvisoria**: selezionare **Genera una password provvisoria** per annullare immediatamente la password esistente e creare una nuova password provvisoria per l'utente. Inviare la nuova password provvisoria a un indirizzo di posta elettronica alternativo dell'utente o al responsabile dell'utente. La password è provvisoria, quindi verrà richiesto all'utente di modificarla al momento dell'accesso.
 
 ![Criteri](./media/active-directory-identityprotection/1005.png "Criteri")
 
-**finestra di dialogo di configurazione correlato hello tooopen**:
+**Per aprire la relativa finestra di dialogo di configurazione**:
 
-1. In hello **Azure AD Identity Protection** pannello, fare clic su **utenti contrassegno i rischi**.
+1. Nel pannello **Azure AD Identity Protection** fare clic su **Utenti contrassegnati per il rischio**.
 
     ![Reimpostazione manuale della password](./media/active-directory-identityprotection/1006.png "Reimpostazione manuale della password")
-2. Hello l'elenco di utenti, selezionare un utente con gli eventi di almeno un rischio.
+2. Dall'elenco di utenti selezionare un utente con almeno un evento di rischio.
 
     ![Reimpostazione manuale della password](./media/active-directory-identityprotection/1007.png "Reimpostazione manuale della password")
-3. Nel Pannello di hello utente, fare clic su **reimpostazione password**.
+3. Nel pannello dell'utente fare clic su **Reimposta password**.
 
     ![Reimpostazione manuale della password](./media/active-directory-identityprotection/1008.png "Reimpostazione manuale della password")
 
 ### <a name="user-risk-security-policy"></a>Criteri di sicurezza per il rischio utente
-Un criterio di sicurezza utente dei rischi è un criterio di accesso condizionale che valuta utente specifico di hello rischio tooa livello e applica le azioni di attenuazione e monitoraggio e aggiornamento in base alle regole e condizioni predefinite.
+I criteri di sicurezza per il rischio utente sono criteri di accesso condizionale che valutano il livello di rischio per un utente specifico e applicano azioni di correzione e mitigazione dei rischi in base a regole e condizioni predefinite.
 
 ![Criteri di rischio utente](./media/active-directory-identityprotection/1009.png "Criteri di rischio utente")
 
-Azure AD Identity Protection consente di gestire attenuazione hello e monitoraggio e aggiornamento di utenti contrassegnati i rischi grazie alla possibilità di:
+Azure AD Identity Protection consente di gestire le azioni di mitigazione e correzione per gli utenti contrassegnati per il rischio seguendo questa procedura:
 
-* Hello utenti e gruppi hello criterio di impostazione si applica a:
+* Impostare gli utenti e i gruppi a cui vengono applicati i criteri:
 
     ![Criteri di rischio utente](./media/active-directory-identityprotection/1010.png "Criteri di rischio utente")
-* Impostare hello utente dei rischi soglia (low, medium o high) che attiva i criteri di hello:
+* Impostare la soglia del livello di rischio utente, bassa, media o alta, che attiva il criterio:
 
     ![Criteri di rischio utente](./media/active-directory-identityprotection/1011.png "Criteri di rischio utente")
-* Set hello controlli toobe applicato quando i criteri di hello attiva:
+* Impostare i controlli da applicare quando viene attivato il criterio:
 
     ![Criteri di rischio utente](./media/active-directory-identityprotection/1012.png "Criteri di rischio utente")
-* Stato di hello commutatore dei criteri:
+* Cambiare lo stato dei criteri:
 
     ![Criteri di rischio utente](./media/active-directory-identityprotection/403.png "Registrazione MFA")
-* Rivedere e valutare l'impatto di hello di una modifica prima di attivarlo:
+* Esaminare e valutare l'impatto di una modifica prima di attivarla:
 
     ![Criteri di rischio utente](./media/active-directory-identityprotection/1013.png "Criteri di rischio utente")
 
-Scelta di un **elevata** soglia riduce il numero di hello di volte in cui un criterio viene attivato e riduce al minimo toousers impatto hello.
-Tuttavia, esclude **bassa** e **Media** utenti contrassegnati per rischi da criteri di hello, che potrebbero non sicuro identità o i dispositivi che sono state in precedenza o sospettati toobe compromesso.
+La scelta di una soglia **alta** riduce la frequenza di attivazione dei criteri e riduce al minimo l'impatto sugli utenti.
+Esclude tuttavia dai criteri gli utenti contrassegnati per il rischio con una soglia **bassa** o **media**. Questa scelta può non garantire la protezione delle identità o dei dispositivi in precedenza sospettati di essere compromessi o noti come compromessi.
 
-Quando impostazione hello criteri,
+Quando si impostano i criteri:
 
-* Escludere gli utenti che sono probabilmente toogenerate numerosi falsi positivi (sviluppatori, agli analisti della sicurezza)
-* Escludere gli utenti con impostazioni locali in cui l'abilitazione di hello criterio non è pratico (ad esempio toohelpdesk alcun accesso)
+* Escludere gli utenti che possono generare molti falsi positivi, ad esempio sviluppatori o analisti della sicurezza
+* Escludere gli utenti con impostazioni locali in cui abilitare i criteri non è pratico, ad esempio per la mancanza di accesso al supporto tecnico
 * Usare una soglia **alta** durante il rollout iniziale dei criteri o se è necessario ridurre al minimo gli avvisi visualizzati dagli utenti finali.
 * Usare una soglia **bassa** se l'organizzazione richiede una maggiore sicurezza. La scelta di una soglia **bassa** introduce richieste di accesso aggiuntive per l'utente, ma garantisce una maggiore sicurezza.
 
-impostazione predefinita consigliata per la maggior parte delle organizzazioni è tooconfigure una regola per Hello un **Media** soglia toostrike un equilibrio tra usabilità e sicurezza.
+L'impostazione predefinita consigliata per la maggior parte delle organizzazioni è la configurazione di una regola per una soglia **media** , che permette di bilanciare usabilità e sicurezza.
 
-Per una panoramica di hello correlate esperienza utente, vedere:
+Per una panoramica dell'esperienza utente correlata, vedere:
 
 * [Flusso di ripristino di account compromessi](active-directory-identityprotection-flows.md#compromised-account-recovery).  
 * [Flusso di account compromessi bloccati](active-directory-identityprotection-flows.md#compromised-account-blocked).  
 
-**finestra di dialogo di configurazione correlato hello tooopen**:
+**Per aprire la relativa finestra di dialogo di configurazione**:
 
-- In hello **Azure AD Identity Protection** pannello in hello **configura** fare clic su **rischio utente**.
+- Nel pannello **Azure AD Identity Protection** fare clic su **Criteri di rischio utente** nella sezione **Configura**.
 
     ![Criteri di rischio utente](./media/active-directory-identityprotection/1009.png "Criteri di rischio utente")
 
 ### <a name="mitigating-user-risk-events"></a>Mitigazione di eventi di rischio utente
-Gli amministratori possono impostare un utente dei rischi sicurezza criteri tooblock utenti al momento dell'accesso in base al livello di rischio hello.
+Gli amministratori possono impostare criteri di sicurezza per il rischio utente per bloccare gli utenti al momento dell'accesso in base al livello di rischio.
 
 Il blocco dell'accesso:
 
-* Impedisce la generazione di hello del nuovo utente di eventi di rischio per l'utente interessato hello
-* Consente agli amministratori toomanually risolvere gli eventi di rischio hello influire sull'identità dell'utente hello e ripristinarlo stato protetto tooa
+* Impedisce la generazione di nuovi eventi di rischio utente per l'utente interessato
+* Consente agli amministratori di correggere manualmente gli eventi di rischio che interessano l'identità dell'utente e di ripristinarne lo stato protetto
 
 
 
 ## <a name="multi-factor-authentication-registration-policy"></a>Criteri di registrazione per l'autenticazione a più fattori
-Azure multi-factor authentication è un metodo di verifica dell'identità dell'utente che richiede l'uso di hello di molto più di un nome utente e una password. Fornisce un secondo livello di sicurezza toouser accessi e le transazioni.  
+Azure Multi-Factor Authentication è un metodo di verifica dell'identità dell'utente che richiede l'uso di più fattori, oltre a un nome utente e una password. Fornisce un secondo livello di sicurezza agli accessi e alle transazioni degli utenti.  
 È consigliabile richiedere l'autenticazione a più fattori per l'accesso degli utenti perché:
 
 * Offre un'autenticazione avanzata con una gamma di opzioni di verifica semplici
-* Svolge un ruolo chiave nella preparazione tooprotect l'organizzazione e il ripristino da compromette account
+* Svolge un ruolo chiave nella preparazione dell'organizzazione per le operazioni di protezione e ripristino in caso di compromissione degli account
 
 ![Criteri di rischio utente](./media/active-directory-identityprotection/1019.png "Criteri di rischio utente")
 
 Per altre informazioni, vedere la pagina relativa ad [Informazioni su Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md)
 
-Azure AD Identity Protection consente di gestire hello roll-out della registrazione di autenticazione a più fattori tramite la configurazione di un criterio che consente di:
+Azure AD Identity Protection permette di gestire il rollout della registrazione per l'autenticazione a più fattori con la configurazione di criteri che consentono di:
 
-* Hello utenti e gruppi hello criterio di impostazione si applica a:
+* Impostare gli utenti e i gruppi a cui vengono applicati i criteri:
 
     ![Criteri MFA](./media/active-directory-identityprotection/1020.png "Criteri MFA")
-* Set hello controlli toobe applicato quando i criteri di hello attiva:  
+* Impostare i controlli da applicare quando viene attivato il criterio:  
 
     ![Criteri MFA](./media/active-directory-identityprotection/1021.png "Criteri MFA")
-* Stato di hello commutatore dei criteri:
+* Cambiare lo stato dei criteri:
 
     ![Criteri MFA](./media/active-directory-identityprotection/403.png "Criteri MFA")
-* Visualizzare lo stato della registrazione corrente hello:
+* Visualizzare lo stato di registrazione corrente:
 
     ![Criteri MFA](./media/active-directory-identityprotection/1022.png "Criteri MFA")
 
-Per una panoramica di hello correlate esperienza utente, vedere:
+Per una panoramica dell'esperienza utente correlata, vedere:
 
 * [Flusso di registrazione per l'autenticazione a più fattori](active-directory-identityprotection-flows.md#multi-factor-authentication-registration).  
 * [Esperienze di accesso con Azure AD Identity Protection](active-directory-identityprotection-flows.md).  
 
-**finestra di dialogo di configurazione correlato hello tooopen**:
+**Per aprire la relativa finestra di dialogo di configurazione**:
 
-- In hello **Azure AD Identity Protection** pannello in hello **configura** fare clic su **registrazione a multi-factor authentication**.
+- Nel pannello **Azure AD Identity Protection** fare clic su **Criteri di registrazione per l'autenticazione a più fattori** nella sezione **Configura**.
 
     ![Criteri MFA](./media/active-directory-identityprotection/1019.png "Criteri MFA")
 
@@ -413,6 +413,6 @@ Per una panoramica di hello correlate esperienza utente, vedere:
 
 * [Esperienze di accesso con Azure AD Identity Protection](active-directory-identityprotection-flows.md)
 
-* [Azure Active Directory la protezione dell'identità, come gli utenti toounblock](active-directory-identityprotection-unblock-howto.md)
+* [Azure Active Directory Identity Protection: come sbloccare gli utenti](active-directory-identityprotection-unblock-howto.md)
 
 * [Introduzione ad Azure Active Directory Identity Protection e a Microsoft Graph](active-directory-identityprotection-graph-getting-started.md)

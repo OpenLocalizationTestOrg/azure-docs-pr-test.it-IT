@@ -1,6 +1,6 @@
 ---
-title: un nome di dominio personalizzato in servizi Cloud aaaConfigure | Documenti Microsoft
-description: Informazioni su come tooexpose il toohello dati o applicazioni Azure internet in un dominio personalizzato, configurare le impostazioni DNS.  Questi esempi utilizzano hello portale di Azure.
+title: Configurare un nome di dominio personalizzato nei servizi cloud | Microsoft Docs
+description: Informazioni su come esporre i dati su internet o l'applicazione Azure in un dominio personalizzato configurando le impostazioni DNS.  Questi esempi utilizzano il portale di Azure.
 services: cloud-services
 documentationcenter: .net
 author: Thraka
@@ -14,142 +14,142 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: adegeo
-ms.openlocfilehash: a0f3186b6022fbc4570ef1ce4b921426842bde76
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f5d244fc747b923989407afd50927cda2b8d4a0f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="configuring-a-custom-domain-name-for-an-azure-cloud-service"></a>Configurazione di un nome di dominio personalizzato per un servizio cloud di Azure
 > [!div class="op_single_selector"]
 > * [Portale di Azure](cloud-services-custom-domain-name-portal.md)
-> * [portale di Azure classico](cloud-services-custom-domain-name.md)
+> * [Portale di Azure classico](cloud-services-custom-domain-name.md)
 > 
 > 
 
-Quando si crea un servizio Cloud, Azure assegna tooa sottodominio di **cloudapp.net**. Ad esempio, se il servizio Cloud denominato "contoso", gli utenti verranno essere in grado di tooaccess l'applicazione in un URL come http://contoso.cloudapp.net. Azure assegna anche un indirizzo IP virtuale.
+Quando si crea un servizo cloud, Azure lo assegna a un sottodominio di **cloudapp.net**. Ad esempio, se il servizio cloud è denominato "contoso", gli utenti saranno in grado di accedere all'applicazione da un URL come http://contoso.cloudapp.net. Azure assegna anche un indirizzo IP virtuale.
 
-È tuttavia possibile esporre l'applicazione in un nome di dominio personalizzato, ad esempio **contoso.com**. Questo articolo viene illustrato come tooreserve o configurare un nome di dominio personalizzato per i ruoli web del servizio Cloud.
+È tuttavia possibile esporre l'applicazione in un nome di dominio personalizzato, ad esempio **contoso.com**. In questo articolo viene illustrato come riservare o configurare un nome di dominio personalizzato per i ruoli Web del servizio cloud.
 
-Se si conoscono già i record CNAME e A, [Jump oltre hello spiegazione](#add-a-cname-record-for-your-custom-domain).
+Se si conoscono già i record CNAME e A, [saltare la spiegazione](#add-a-cname-record-for-your-custom-domain).
 
 > [!NOTE]
-> procedure Hello in questa attività si applicano i servizi Cloud tooAzure. Per Servizi app, vedere [questo articolo](../app-service-web/web-sites-custom-domain-name.md). Per gli account di archiviazione, vedere [questo articolo](../storage/blobs/storage-custom-domain-name.md).
+> Le procedure in questa attività si applicano ai servizi cloud di Azure. Per Servizi app, vedere [questo articolo](../app-service/app-service-web-tutorial-custom-domain.md). Per gli account di archiviazione, vedere [questo articolo](../storage/blobs/storage-custom-domain-name.md).
 > 
 > 
 
 <p/>
 
 > [!TIP]
-> Continuare a lavorare più velocemente, usare hello Azure nuovo [interattiva procedura dettagliata](http://support.microsoft.com/kb/2990804)!  Grazie al percorso guidato, è facilissimo associare un nome di dominio personalizzato E proteggere le comunicazioni (SSL) con i Servizi cloud di Azure o Siti Web di Azure.
+> Acquistare velocità: usare il NUOVO [percorso guidato](http://support.microsoft.com/kb/2990804) di Azure  Grazie al percorso guidato, è facilissimo associare un nome di dominio personalizzato E proteggere le comunicazioni (SSL) con i Servizi cloud di Azure o Siti Web di Azure.
 > 
 > 
 
 ## <a name="understand-cname-and-a-records"></a>Informazioni sui record CNAME e A
-CNAME (o record di alias) e un record sia consentono tooassociate un nome di dominio con un server specifico (o del servizio in questo caso,) tuttavia funzionano in modo diverso. Esistono inoltre alcune considerazioni specifiche quando si utilizza un record con i servizi Cloud di Azure che è necessario considerare prima di decidere quale toouse.
+I record CNAME (o record Alias) e i record A consentono entrambi di associare un nome di dominio a un server specifico (o in questo caso a un servizio) tuttavia le modalità di funzionamento sono diverse. Vi sono inoltre alcune considerazioni specifiche sull'utilizzo di record A con i servizi cloud di Azure, di cui è necessario tenere conto prima di decidere il tipo di record da utilizzare.
 
 ### <a name="cname-or-alias-record"></a>Record CNAME o Alias
-Esegue il mapping di un record CNAME un *specifico* dominio, ad esempio **contoso.com** o **www.contoso.com**, il nome di dominio canonico tooa. In questo caso, il nome di dominio canonico hello è hello **.cloudapp [myapp] .net** applicazione host del dominio di Azure. Una volta creato, hello CNAME crea un alias per hello **.cloudapp [myapp] .net**. Hello voce CNAME risolverà l'indirizzo IP del toohello il **.cloudapp [myapp] .net** service automaticamente, se l'indirizzo IP di hello del servizio cloud hello viene modificato, non è tootake alcuna azione.
+Un record CNAME consente di eseguire il mapping di un dominio *specifico* , ad esempio **contoso.com** or **www.contoso.com**, a un nome di dominio canonico. In questo caso, il nome di dominio canonico è il nome di dominio **[myapp].cloudapp.net** dell'applicazione ospitata in Azure. Dopo la creazione, il record CNAME crea a sua volta un alias per **[myapp].cloudapp.net**. La voce CNAME viene risolta nell'indirizzo IP del servizio **[myapp].cloudapp.net** in modo automatico, pertanto se l'indirizzo IP del servizio cloud cambia non sarà necessaria alcuna azione.
 
 > [!NOTE]
-> Alcuni Registrar consentono solo i sottodomini toomap quando si utilizza un record CNAME, ad esempio www.contoso.com e non i nomi radice, ad esempio contoso.com. Per ulteriori informazioni sui record CNAME, vedere la documentazione di hello fornita dal registrar, [hello di Wikipedia sul record CNAME](http://en.wikipedia.org/wiki/CNAME_record), o hello [i nomi di dominio IETF - implementazione e specifiche](http://tools.ietf.org/html/rfc1035) documento.
+> Alcuni registrar consentono di eseguire il mapping solo dei sottodomini se si usa un record CNAME, ad esempio www.contoso.com, e non dei nomi radice come contoso.com. Per altre informazioni sui record CNAME, vedere la documentazione fornita dal registrar, la [voce di Wikipedia sui record CNAME](http://en.wikipedia.org/wiki/CNAME_record) oppure il documento di IETF relativo a [implementazione e specifiche dei nomi di dominio](http://tools.ietf.org/html/rfc1035).
 > 
 > 
 
 ### <a name="a-record"></a>Record A
-Un *A* record esegue il mapping di un dominio, ad esempio **contoso.com** o **www.contoso.com**, *o in un dominio con caratteri jolly* , ad esempio  **\*. contoso.com**, indirizzo IP tooan. Nel caso di hello di un servizio Cloud di Azure, hello IP virtuale del servizio hello. Vantaggio principale di hello di un record in un record CNAME è che è possibile avere una voce che utilizza un carattere jolly, ad esempio \* **. contoso.com**, che si gestisce le richieste per più sottodomini, ad esempio  **Mail.contoso.com**, **login.contoso.com**, o **www.contso.com**.
+Un record *A* consente di eseguire il mapping di un dominio, ad esempio **contoso.com** o **www.contoso.com**, *o di un dominio con caratteri jolly*, ad esempio **\*.contoso.com**, a un indirizzo IP. Nel caso di un servizio cloud di Azure, si tratta dell'IP virtuale del servizio. Il principale vantaggio di un record A rispetto a un record CNAME consiste quindi nel fatto che un'unica voce con un carattere jolly, ad esempio \***.contoso.com**, gestirà le richieste per più sottodomini, ad esempio **mail.contoso.com**, **login.contoso.com** o **www.contso.com**.
 
 > [!NOTE]
-> Poiché viene eseguito il mapping di un record di indirizzo IP statico tooa, in grado di risolvere automaticamente le modifiche toohello IP indirizzo del servizio Cloud. indirizzo IP di Hello utilizzato dal servizio Cloud viene allocato hello prima volta che si distribuisce tooan slot vuoto (produzione o gestione temporanea.) Se si elimina la distribuzione di hello per slot hello, indirizzo IP di hello viene rilasciato da Azure e qualsiasi slot toohello distribuzioni future può essere assegnato un nuovo indirizzo IP.
+> Poiché il mapping di un record A viene eseguito a un indirizzo IP statico, il record non è in grado di risolvere automaticamente le modifiche all'indirizzo IP del servizio cloud. L'indirizzo IP usato dal servizio cloud viene allocato la prima volta che si effettua una distribuzione in uno slot vuoto di produzione o di gestione temporanea. Se si elimina la distribuzione per lo slot, l'indirizzo IP viene rilasciato da Azure e le distribuzioni future in quello slot potrebbero ricevere un nuovo indirizzo IP.
 > 
-> Per praticità, indirizzo IP hello di uno slot di distribuzione specificata (produzione o gestione temporanea) viene mantenuto quando si passa tra l'esecuzione di un aggiornamento sul posto di una distribuzione esistente e le distribuzioni di produzione o gestione temporanea. Per ulteriori informazioni sull'esecuzione di queste azioni, vedere [come servizi cloud toomanage](cloud-services-how-to-manage.md).
+> L'indirizzo IP di un determinato slot di distribuzione (di produzione o di gestione temporanea) viene reso permanente durante i passaggi tra distribuzioni di produzione e di gestione temporanea o durante l'esecuzione di aggiornamenti sul posto di distribuzioni esistenti. Per ulteriori informazioni sull'esecuzione di queste azioni, vedere [Come gestire i servizi cloud](cloud-services-how-to-manage.md).
 > 
 > 
 
 ## <a name="add-a-cname-record-for-your-custom-domain"></a>Aggiunta di un record CNAME per il dominio personalizzato
-toocreate un record CNAME, è necessario aggiungere una nuova voce nella tabella di hello DNS per il dominio personalizzato tramite strumenti hello forniti dal registrar. Ogni autorità di registrazione è un metodo simile, ma leggermente diverso per specificare un record CNAME, ma hello concetti sono hello stesso.
+Per creare un record CNAME è necessario aggiungere una nuova voce nella tabella DNS del dominio personalizzato utilizzando gli strumenti forniti dal registrar. Sebbene i registrar utilizzino metodi simili per specificare un record CNAME, vi sono alcune differenze nel modo in cui ognuno consente di effettuare questa operazione. Il concetto di base è tuttavia identico per tutti.
 
-1. Utilizzare uno di questi hello toofind metodi **. cloudapp.net** nome di dominio del servizio cloud tooyour assegnato.
+1. Utilizzare uno dei metodi seguenti per trovare il nome di dominio **.cloudapp.net** assegnato al servizio cloud in questione.
    
-   * Account di accesso toohello [portale di Azure], selezionare il servizio cloud, esaminare hello **Essentials** sezione e quindi individuare hello **URL del sito** voce.
+   * Accedere al [portale di Azure], selezionare il servizio cloud, esaminare la sezione **Informazioni di base** e quindi individuare la voce **URL sito**.
      
-       ![sezione di riepilogo rapido che mostra l'URL del sito hello][csurl]
+       ![Sezione quick glance in cui è visualizzato l'URL del sito][csurl]
      
        **OR**
-   * Installare e configurare [Azure Powershell](/powershell/azure/overview), e quindi utilizzare hello finestra di comando seguente:
+   * Installare e configurare [Azure Powershell](/powershell/azure/overview), quindi eseguire il comando seguente:
      
        ```powershell
        Get-AzureDeployment -ServiceName yourservicename | Select Url
        ```
      
-     Salvare il nome di dominio hello utilizzato nell'URL di hello restituito da dei metodi, perché sarà necessaria quando si crea un record CNAME.
-2. Accedere al sito Web del registrar DNS tooyour e toohello pagina per la gestione DNS passare. Cercare i collegamenti o aree del sito hello etichettata come **nome di dominio**, **DNS**, o **denomina Gestione Server**.
-3. Trovare la sezione in cui è possibile selezionare o immettere CNAME. Potrebbe essere record hello tooselect digitare un elenco a discesa oppure passare tooan pagina Impostazioni avanzate. È consigliabile cercare parole hello **CNAME**, **Alias**, o **sottodomini**.
-4. È inoltre necessario specificare hello dominio o sottodominio di alias per hello CNAME, ad esempio **www** se si desidera toocreate un alias per **www.customdomain.com**. Se si desidera toocreate un alias per il dominio radice hello, potrebbe essere elencato come hello '**@**' simbolo negli strumenti DNS del registrar.
+     Salvare il nome di dominio utilizzato nell'URL restituito da uno dei metodi, poiché sarà necessario per la creazione di un record CNAME.
+2. Accedere al sito Web del registrar DNS e passare alla pagina di gestione dei DNS. Individuare collegamenti o aree del sito denominate **Domain Name**, **DNS** o **Name Server Management**.
+3. Trovare la sezione in cui è possibile selezionare o immettere CNAME. Può essere necessario selezionare un tipo di record in un elenco a discesa oppure passare a una pagina di impostazioni avanzate. Individuare i termini **CNAME**, **Alias** o **Subdomains** (Sottodomini).
+4. È necessario fornire anche l'alias di dominio o sottodominio per CNAME, ad esempio **www**, se si vuole creare un alias per **www.customdomain.com**. Se si desidera creare un alias per il dominio radice, è possibile che sia elencato con il simbolo '**@**' negli strumenti DNS del registrar.
 5. A questo punto, occorre fornire un nome host canonico, che in questo caso corrisponde al dominio **cloudapp.net** .
 
-Ad esempio, hello seguente record CNAME inoltra tutto il traffico da **www.contoso.com** troppo**contoso.cloudapp.net**, il nome di dominio personalizzato hello dell'applicazione distribuita:
+Il record CNAME seguente, ad esempio, inoltra tutto il traffico da **www.contoso.com** a **contoso.cloudapp.net**, che è il nome di dominio personalizzato dell'applicazione distribuita:
 
 | Alias/Nome host/Sottodominio | Dominio canonico |
 | --- | --- |
 | www |contoso.cloudapp.net |
 
 > [!NOTE]
-> Un visitatore di **www.contoso.com** non vedranno mai host true hello (contoso.cloudapp.net), in modo hello processo di inoltro è l'utente finale toothe invisibile.
+> A un visitatore di **www.contoso.com** non verrà mai visualizzato il nome dell'host reale (contoso.cloudapp.net), pertanto il processo di inoltro risulta totalmente invisibile all'utente finale.
 > 
-> Hello esempio precedente si applica solo tootraffic in hello **www** sottodominio. Poiché non è possibile usare caratteri jolly con i record CNAME, è necessario crearne uno per ogni dominio/sottodominio. Se si desidera che il traffico toodirect da sottodomini, ad esempio *. contoso.com, l'indirizzo di cloudapp.net tooyour, è possibile configurare un **Reindirizzamento URL** o **URL rollforward** voce nelle impostazioni DNS o creare un record A.
+> L'esempio precedente si applica solo al sottodominio **www** . Poiché non è possibile usare caratteri jolly con i record CNAME, è necessario crearne uno per ogni dominio/sottodominio. Se si vuole indirizzare traffico da sottodomini, ad esempio *.contoso.com, all'indirizzo cloudapp.net in uso, è possibile configurare una voce di **reindirizzamento URL** o **inoltro URL** nelle impostazioni DNS oppure creare un record A.
 > 
 > 
 
 ## <a name="add-an-a-record-for-your-custom-domain"></a>Aggiungere un record A per il dominio personalizzato
-toocreate un record, è necessario trovare indirizzi IP virtuali hello del servizio cloud. Aggiungere quindi una nuova voce nella tabella di hello DNS per il dominio personalizzato tramite strumenti hello forniti dal registrar. Ogni autorità di registrazione è un metodo simile, ma leggermente diverso della specifica di un record A, ma hello concetti sono hello stesso.
+Per creare un record A, è necessario innanzitutto trovare l'indirizzo IP virtuale del servizio cloud. Si aggiunge quindi una voce nella tabella DNS del dominio personalizzato utilizzando gli strumenti forniti dal registrar. Sebbene i registrar utilizzino metodi simili per specificare un record A, vi sono alcune differenze nel modo in cui ognuno consente di effettuare questa operazione. Il concetto di base è tuttavia identico per tutti.
 
-1. Utilizzare uno dei seguenti metodi tooget hello indirizzo del servizio cloud hello.
+1. Utilizzare uno dei metodi seguenti per ottenere l'indirizzo IP del servizio cloud.
    
-   * Account di accesso toohello [portale di Azure], selezionare il servizio cloud, esaminare hello **Essentials** sezione e quindi individuare hello **gli indirizzi IP pubblici** voce.
+   * Accedere al [portale di Azure], selezionare il servizio cloud, esaminare la sezione **Informazioni di base** e quindi individuare la voce **Indirizzi IP pubblici**.
      
-       ![sezione di riepilogo rapido che illustra hello VIP][vip]
+       ![Sezione quick glance in cui è visualizzato l'indirizzo VIP][vip]
      
        **OR**
-   * Installare e configurare [Azure Powershell](/powershell/azure/overview), e quindi utilizzare hello finestra di comando seguente:
+   * Installare e configurare [Azure Powershell](/powershell/azure/overview), quindi eseguire il comando seguente:
      
        ```powershell
        get-azurevm -servicename yourservicename | get-azureendpoint -VM {$_.VM} | select Vip
        ```
      
-     Salva l'indirizzo IP di hello, perché sarà necessaria quando si crea un record A.
-2. Accedere al sito Web del registrar DNS tooyour e toohello pagina per la gestione DNS passare. Cercare i collegamenti o aree del sito hello etichettata come **nome di dominio**, **DNS**, o **denomina Gestione Server**.
-3. Trovare la sezione in cui è possibile selezionare o immettere i record A. Potrebbe essere record hello tooselect digitare un elenco a discesa oppure passare tooan pagina Impostazioni avanzate.
-4. Selezionare o immettere il dominio di hello o un sottodominio che verrà utilizzato il record A. Ad esempio, selezionare **www** se si desidera toocreate un alias per **www.customdomain.com**. Se si desidera toocreate una voce con caratteri jolly per tutti i sottodomini, immettere ' * '. In questo modo verranno inclusi tutti i sottodomini, ad esempio **mail.customdomain.com**, **login.customdomain.com** e **www.customdomain.com**.
+     Salvare l'indirizzo IP, poiché sarà necessario per la creazione di un record A.
+2. Accedere al sito Web del registrar DNS e passare alla pagina di gestione dei DNS. Individuare collegamenti o aree del sito denominate **Domain Name**, **DNS** o **Name Server Management**.
+3. Trovare la sezione in cui è possibile selezionare o immettere i record A. Può essere necessario selezionare un tipo di record in un elenco a discesa oppure passare a una pagina di impostazioni avanzate.
+4. Selezionare o immettere il dominio o sottodominio che utilizzerà il record A. Selezionare ad esempio **www** se si vuole creare un alias per **www.customdomain.com**. Se si vuole creare una voce con caratteri jolly per tutti i sottodomini, immettere '*****'. In questo modo verranno inclusi tutti i sottodomini, ad esempio **mail.customdomain.com**, **login.customdomain.com** e **www.customdomain.com**.
    
-    Se si desidera toocreate un record per il dominio radice hello, potrebbe essere elencato come hello '**@**' simbolo negli strumenti DNS del registrar.
-5. Immettere l'indirizzo IP di hello del servizio cloud nel campo fornito hello. In questo modo viene voce di dominio hello utilizzata nel record A hello con indirizzo IP hello la distribuzione del servizio cloud.
+    Se si desidera creare un record A per il dominio radice, è possibile che sia elencato con il simbolo '**@**' negli strumenti DNS del registrar.
+5. Immettere l'indirizzo IP del servizio cloud nell'apposito campo. La voce del dominio usata nel record A verrà associata all'indirizzo IP della distribuzione del servizio cloud.
 
-Ad esempio, dopo un record di hello inoltra tutto il traffico da **contoso.com** troppo**137.135.70.239**, hello indirizzo IP dell'applicazione distribuita:
+Il record A seguente, ad esempio, inoltra tutto il traffico da **contoso.com** a **137.135.70.239**, che è l'indirizzo IP dell'applicazione distribuita:
 
 | Nome host/Sottodominio | Indirizzo IP |
 | --- | --- |
 | @ |137.135.70.239 |
 
-In questo esempio viene illustrata la creazione di un record A per il dominio radice hello. Se si desidera toocreate un toocover voce jolly tutti i sottodomini, immettere ' * ' come sottodominio hello.
+In questo esempio viene illustrata la creazione di un record A per il dominio radice. Se si vuole creare una voce con caratteri jolly per tutti i sottodomini, immettere '*****' come sottodominio.
 
 > [!WARNING]
-> Gli indirizzi IP in Azure sono dinamici per impostazione predefinita. Probabilmente si desidererà toouse un [degli indirizzi IP riservati](../virtual-network/virtual-networks-reserved-public-ip.md) tooensure che l'indirizzo IP non cambia.
+> Gli indirizzi IP in Azure sono dinamici per impostazione predefinita. È possibile utilizzare un [indirizzo IP riservato](../virtual-network/virtual-networks-reserved-public-ip.md) per garantire che l'indirizzo IP non venga modificato.
 > 
 > 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Come tooManage dei servizi Cloud](cloud-services-how-to-manage.md)
-* [Come tooMap CDN contenuto tooa dominio personalizzato](../cdn/cdn-map-content-to-custom-domain.md)
+* [Come gestire i servizi cloud](cloud-services-how-to-manage.md)
+* [Come eseguire il mapping del contenuto della rete CDN a un dominio personalizzato](../cdn/cdn-map-content-to-custom-domain.md)
 * [Configurazione generale del servizio cloud](cloud-services-how-to-configure-portal.md).
-* Informazioni su come troppo[distribuire un servizio cloud](cloud-services-how-to-create-deploy-portal.md).
+* Procedura [distribuire un servizio cloud](cloud-services-how-to-create-deploy-portal.md).
 * Configurare i [certificati ssl](cloud-services-configure-ssl-certificate-portal.md).
 
 [Expose Your Application on a Custom Domain]: #access-app
 [Add a CNAME Record for Your Custom Domain]: #add-cname
 [Expose Your Data on a Custom Domain]: #access-data
 [VIP swaps]: cloud-services-how-to-manage-portal.md#how-to-swap-deployments-to-promote-a-staged-deployment-to-production
-[Create a CNAME record that associates hello subdomain with hello storage account]: #create-cname
+[Create a CNAME record that associates the subdomain with the storage account]: #create-cname
 [portale di Azure]: https://portal.azure.com
 [vip]: ./media/cloud-services-custom-domain-name-portal/csvip.png
 [csurl]: ./media/cloud-services-custom-domain-name-portal/csurl.png

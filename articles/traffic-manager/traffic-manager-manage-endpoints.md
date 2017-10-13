@@ -1,5 +1,5 @@
 ---
-title: gli endpoint aaaManage Traffic Manager di Azure | Documenti Microsoft
+title: Gestione endpoint in Gestione traffico di Azure | Documentazione Microsoft
 description: "Questo articolo aiuterà ad aggiungere, rimuovere, abilitare e disabilitare gli endpoint da Gestione traffico di Azure."
 services: traffic-manager
 documentationcenter: 
@@ -14,66 +14,66 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/08/2017
 ms.author: kumud
-ms.openlocfilehash: fc65874ae2eaeb6fca5d8c4f33403c258307bdb0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 765d12bc283d991783fb3190ce7917b573f9fc78
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="add-disable-enable-or-delete-endpoints"></a>Aggiungere, disabilitare, abilitare o eliminare gli endpoint
 
-funzionalità di App Web Hello in Azure App Service fornisce già funzionalità di routing del traffico round robin per siti Web all'interno di un Data Center, indipendentemente dalla modalità sito Web hello e di failover. Gestione traffico di Azure consente toospecify failover e il routing del traffico round robin per siti Web e i servizi cloud in Data Center diversi. Hello primo passaggio necessario tooprovide che la funzionalità è tooadd hello cloud del sito Web o del servizio endpoint tooTraffic Manager.
+La funzionalità App Web nell’Azure App Service offre già funzionalità di routing del traffico failover e round robin per i siti Web che si trovano all'interno di un data center, indipendentemente dalla modalità del sito Web. Gestione traffico di Azure consente di specificare il routing del traffico failover e round robin per i siti Web e i servizi cloud che si trovano in data center diversi. Il primo passaggio necessario a fornire tale funzionalità consiste nell'aggiungere l'endpoint del servizio cloud o del sito Web a Gestione traffico.
 
-È anche possibile disabilitare singoli endpoint che appartengono a un profilo di Gestione traffico. Disabilitazione di un endpoint lascia come parte del profilo di hello, ma il profilo di hello si comporta come se l'endpoint di hello non è incluso in essa contenuti. Questa azione è utile per rimuovere temporaneamente un endpoint che si trova in modalità di manutenzione o è in corso di ridistribuzione. Una volta endpoint hello nuovamente attivo e in esecuzione, può essere attivata.
+È anche possibile disabilitare singoli endpoint che appartengono a un profilo di Gestione traffico. Quando si disabilita un endpoint questo continua a far parte del profilo, sebbene quest'ultimo si comporti come se non fosse incluso. Questa azione è utile per rimuovere temporaneamente un endpoint che si trova in modalità di manutenzione o è in corso di ridistribuzione. Quando l'endpoint è di nuovo attivo e in esecuzione, è possibile abilitarlo.
 
 > [!NOTE]
-> Disabilitazione di un endpoint non ha nulla toodo con lo stato di distribuzione in Azure. Un endpoint integro rimane attivo e in grado di tooreceive traffico anche se è disabilitato in Traffic Manager. La disabilitazione di un endpoint in un profilo non influisce sul relativo stato in un altro profilo.
+> La disabilitazione di un endpoint non ha nulla a che vedere con il relativo stato di distribuzione in Azure. Un endpoint integro rimane attivo e in grado di ricevere traffico anche se è disabilitato in Gestione traffico. La disabilitazione di un endpoint in un profilo non influisce sul relativo stato in un altro profilo.
 
-## <a name="tooadd-a-cloud-service-or-an-app-service-endpoint-tooa-traffic-manager-profile"></a>tooadd un servizio cloud o un tooa di endpoint di servizio App profilo di gestione traffico
+## <a name="to-add-a-cloud-service-or-an-app-service-endpoint-to-a-traffic-manager-profile"></a>Per aggiungere un endpoint di servizio cloud o servizio app a un profilo di Gestione traffico
 
-1. Da un browser, accedi toohello [portale di Azure](http://portal.azure.com).
-2. Nella barra di ricerca del portale hello, cercare hello **profilo di gestione traffico** nome che si desidera toomodify e quindi scegliere il profilo di gestione traffico hello in hello risultati che hello visualizzato.
-3. In hello **profilo di gestione traffico** pannello in hello **impostazioni** fare clic su **endpoint**.
-4. In hello **endpoint** pannello in cui è visualizzato, fare clic su **Aggiungi**.
-5. In hello **aggiungere endpoint** pannello completo come segue:
+1. Da un browser accedere al [portale di Azure](http://portal.azure.com).
+2. Nella barra di ricerca del portale cercare il nome del **profilo di Gestione traffico** che si vuole modificare e quindi fare clic su tale profilo nei risultati visualizzati.
+3. Nel pannello **Profilo di Gestione traffico** fare clic su **Endpoint** nella sezione **Impostazioni**.
+4. Nel pannello **Endpoint** visualizzato fare clic su **Aggiungi**.
+5. Nel pannello **Aggiungi endpoint** procedere come segue:
     1. In **Tipo** fare clic su **Endpoint di Azure**.
-    2. Fornire un **nome** mediante il quale si desidera toorecognize questo endpoint.
-    3. Per **tipo di risorsa di destinazione**, da hello elenco a discesa, scegliere il tipo di risorsa appropriata hello.
-    4. Per **risorsa di destinazione**, da hello elenco a discesa, scegliere una risorsa di destinazione appropriata hello tooshow hello elenco risorse hello stessa sottoscrizione in hello **pannello risorse**. In hello **risorse** pannello viene visualizzato, selezione hello servizio che si desidera tooadd come primo endpoint hello.
-    5. In **Priorità** selezionare **1**. In questo modo tutto il traffico verso endpoint toothis se è integro.
+    2. Indicare un **nome** con il quale si desidera identificare l'endpoint.
+    3. Per **Tipo di risorsa di destinazione** scegliere il tipo di risorsa appropriato nell'elenco a discesa.
+    4. Per **Risorsa di destinazione** scegliere la risorsa di destinazione appropriata nell'elenco a discesa per visualizzare l'elenco delle risorse nella stessa sottoscrizione nel pannello **Risorse**. Nel pannello **Risorse** visualizzato selezionare il servizio da aggiungere come primo endpoint.
+    5. In **Priorità** selezionare **1**. In questo modo tutto il traffico viene instradato a questo endpoint se è integro.
     6. Mantenere deselezionata l'opzione **Aggiungi come disabilitato**.
     7. Fare clic su **OK**
-6.  Ripetere i passaggi 4 e 5 tooadd hello successivo endpoint di Azure. Verificare che tooadd con il relativo **priorità** valore impostato in **2**.
-7.  Una volta completata l'aggiunta di hello di entrambi gli endpoint, vengono visualizzati in hello **profilo di gestione traffico** pannello con lo stato di monitoraggio **Online**.
+6.  Ripetere i passaggi 4 e 5 per aggiungere l'endpoint di Azure successivo. Assicurarsi di aggiungerlo con il valore di **Priorità** impostato su **2**.
+7.  Una volta completata l'aggiunta di entrambi gli endpoint, essi vengono visualizzati nel pannello **Profilo di gestione traffico** insieme al relativo stato di monitoraggio **Online**.
 
 > [!NOTE]
-> Dopo l'aggiunta o rimozione di un endpoint da un profilo utilizzando hello *Failover* metodo di routing del traffico, non può essere ordinato l'elenco delle priorità failover hello sono desiderato. È possibile modificare l'ordine di hello di hello elenco priorità Failover nella pagina Configurazione hello. Per ulteriori informazioni, vedere [Configurare il routing del traffico failover](traffic-manager-configure-failover-routing-method.md).
+> Dopo aver aggiunto o rimosso un endpoint da un profilo tramite il metodo di routing del traffico *Failover*, non è più possibile ordinare l'elenco priorità failover come desiderato. È possibile modificare l'ordine dell'Elenco priorità failover nella pagina di configurazione. Per ulteriori informazioni, vedere [Configurare il routing del traffico failover](traffic-manager-configure-failover-routing-method.md).
 
-## <a name="toodisable-an-endpoint"></a>toodisable un endpoint
+## <a name="to-disable-an-endpoint"></a>Per disabilitare un endpoint
 
-1. Da un browser, accedi toohello [portale di Azure](http://portal.azure.com).
-2. Nella barra di ricerca del portale hello, cercare hello **profilo di gestione traffico** nome che si desidera toomodify e quindi scegliere il profilo di gestione traffico hello in hello che i risultati visualizzati.
-3. In hello **profilo di gestione traffico** pannello in hello **impostazioni** fare clic su **endpoint**. 
-4. Fare clic sull'endpoint che si desidera toodisable, hello e quindi su hello **Endpoint** pannello in cui è visualizzato, fare clic su **modifica**.
-5. In hello **Endpoint** pannello, modificare lo stato di endpoint hello troppo**disabilitato**, quindi fare clic su **salvare**.
-6. I client continuano endpoint toohello di traffico toosend per durata hello di Time-to-Live (TTL). È possibile modificare hello durata (TTL) nella pagina di configurazione hello di hello profilo di gestione traffico.
+1. Da un browser accedere al [portale di Azure](http://portal.azure.com).
+2. Nella barra di ricerca del portale cercare il nome del **profilo di Gestione traffico** che si vuole modificare e quindi fare clic su tale profilo nei risultati visualizzati.
+3. Nel pannello **Profilo di Gestione traffico** fare clic su **Endpoint** nella sezione **Impostazioni**. 
+4. Fare clic sull'endpoint da disabilitare e quindi su **Modifica** nel pannello **Endpoint** visualizzato.
+5. Nel pannello **Endpoint** modificare lo stato dell'endpoint impostandolo su **Disabilitato** e quindi fare clic su **Salva**.
+6. I client continuano a inviare traffico all'endpoint per la durata (TTL). È possibile modificare la durata (TTL) nella pagina di configurazione del profilo di Gestione traffico.
 
-## <a name="tooenable-an-endpoint"></a>tooenable un endpoint
+## <a name="to-enable-an-endpoint"></a>Per abilitare un endpoint
 
-1. Da un browser, accedi toohello [portale di Azure](http://portal.azure.com).
-2. Nella barra di ricerca del portale hello, cercare hello **profilo di gestione traffico** nome che si desidera toomodify e quindi scegliere il profilo di gestione traffico hello in hello che i risultati visualizzati.
-3. In hello **profilo di gestione traffico** pannello in hello **impostazioni** fare clic su **endpoint**. 
-4. Fare clic sull'endpoint che si desidera toodisable, hello e quindi su hello **Endpoint** pannello in cui è visualizzato, fare clic su **modifica**.
-5. In hello **Endpoint** pannello, modificare lo stato di endpoint hello troppo**abilitato**, quindi fare clic su **salvare**.
-6. I client continuano endpoint toohello di traffico toosend per durata hello di Time-to-Live (TTL). È possibile modificare hello durata (TTL) nella pagina di configurazione hello di hello profilo di gestione traffico.
+1. Da un browser accedere al [portale di Azure](http://portal.azure.com).
+2. Nella barra di ricerca del portale cercare il nome del **profilo di Gestione traffico** che si vuole modificare e quindi fare clic su tale profilo nei risultati visualizzati.
+3. Nel pannello **Profilo di Gestione traffico** fare clic su **Endpoint** nella sezione **Impostazioni**. 
+4. Fare clic sull'endpoint da abilitare e quindi su **Modifica** nel pannello **Endpoint** visualizzato.
+5. Nel pannello **Endpoint** modificare lo stato dell'endpoint impostandolo su **Abilitato** e quindi fare clic su **Salva**.
+6. I client continuano a inviare traffico all'endpoint per la durata (TTL). È possibile modificare la durata (TTL) nella pagina di configurazione del profilo di Gestione traffico.
 
-## <a name="toodelete-an-endpoint"></a>toodelete un endpoint
+## <a name="to-delete-an-endpoint"></a>Per eliminare un endpoint
 
-1. Da un browser, accedi toohello [portale di Azure](http://portal.azure.com).
-2. Nella barra di ricerca del portale hello, cercare hello **profilo di gestione traffico** nome che si desidera toomodify e quindi scegliere il profilo di gestione traffico hello in hello che i risultati visualizzati.
-3. In hello **profilo di gestione traffico** pannello in hello **impostazioni** fare clic su **endpoint**. 
-4. Fare clic sull'endpoint che si desidera toodisable, hello e quindi su hello **Endpoint** pannello in cui è visualizzato, fare clic su **modifica**.
-5. In hello **Endpoint** pannello, modificare lo stato di endpoint hello troppo**abilitato**, quindi fare clic su **salvare**.
+1. Da un browser accedere al [portale di Azure](http://portal.azure.com).
+2. Nella barra di ricerca del portale cercare il nome del **profilo di Gestione traffico** che si vuole modificare e quindi fare clic su tale profilo nei risultati visualizzati.
+3. Nel pannello **Profilo di Gestione traffico** fare clic su **Endpoint** nella sezione **Impostazioni**. 
+4. Fare clic sull'endpoint da abilitare e quindi su **Modifica** nel pannello **Endpoint** visualizzato.
+5. Nel pannello **Endpoint** modificare lo stato dell'endpoint impostandolo su **Abilitato** e quindi fare clic su **Salva**.
 
 
 ## <a name="next-steps"></a>Passaggi successivi

@@ -1,5 +1,5 @@
 ---
-title: aaaBack le credenziali di backup tooa distribuito classica macchine virtuali di Azure | Documenti Microsoft
+title: Eseguire il backup di macchine virtuali di Azure distribuite con il modello di distribuzione classica in un insieme di credenziali per il backup | Documentazione Microsoft
 description: Individuare, registrare ed eseguire il backup delle macchine virtuali usando queste procedure per il backup di macchine virtuali di Azure.
 services: backup
 documentationcenter: 
@@ -15,84 +15,84 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/02/2017
 ms.author: markgal;trinadhk;
-ms.openlocfilehash: 048e32d9b2bd5bdd7a125225a71a6d805bb4fbd4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e1da8bce96078a43c656f84005cefc8bbe81c9e3
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="back-up-azure-virtual-machines-classic-portal"></a>Eseguire il backup di macchine virtuali di Azure (portale classico)
 > [!div class="op_single_selector"]
-> * [Eseguire il backup dell'insieme di credenziali di macchine virtuali tooRecovery servizi](backup-azure-arm-vms.md)
-> * [Eseguire il backup dell'insieme di credenziali tooBackup macchine virtuali](backup-azure-vms.md)
+> * [Eseguire il backup di macchine virtuali in un insieme di credenziali di Servizi di ripristino](backup-azure-arm-vms.md)
+> * [Eseguire il backup di macchine virtuali in un insieme di credenziali per il backup](backup-azure-vms.md)
 >
 >
 
-In questo articolo vengono descritte le procedure hello per il backup di un insieme di credenziali Backup tooa distribuito classica macchina virtuale di Azure (VM). Esistono alcune attività, che è necessario tootake care di poter eseguire il backup di una macchina virtuale di Azure. Se non è già in questo caso, tutte le hello [prerequisiti](backup-azure-vms-prepare.md) tooprepare l'ambiente per il backup delle macchine virtuali.
+Questo articolo include le procedure per eseguire il backup di una macchina virtuale di Azure distribuita con il modello di distribuzione classica in un insieme di credenziali per il backup. Prima di poter eseguire il backup di una macchina virtuale di Azure, è necessario occuparsi di alcune attività. Se non è già stato fatto, completare i [prerequisiti](backup-azure-vms-prepare.md) per preparare l'ambiente per il backup delle macchine virtuali.
 
-Per ulteriori informazioni, vedere gli articoli di hello in [pianificazione dell'infrastruttura di backup di VM in Azure](backup-azure-vms-introduction.md) e [macchine virtuali di Azure](https://azure.microsoft.com/documentation/services/virtual-machines/).
+Per altre informazioni, vedere gli articoli [Pianificare l'infrastruttura di backup delle macchine virtuali in Azure](backup-azure-vms-introduction.md) e [Macchine virtuali di Azure](https://azure.microsoft.com/documentation/services/virtual-machines/).
 
 > [!NOTE]
-> Azure offre due modelli di distribuzione per creare e usare le risorse: [Resource Manager e distribuzione classica](../azure-resource-manager/resource-manager-deployment-model.md). Un insieme di credenziali per il backup consente di proteggere solo macchine virtuali distribuite con il modello di distribuzione classica. Non è possibile proteggere le macchine virtuali distribuite con il modello di distribuzione Resource Manager usando un insieme di credenziali per il backup. Vedere [eseguire il backup dell'insieme di credenziali di macchine virtuali tooRecovery servizi](backup-azure-arm-vms.md) per informazioni dettagliate sull'utilizzo dei servizi di ripristino di insiemi di credenziali.
+> Azure offre due modelli di distribuzione per creare e usare le risorse: [Resource Manager e distribuzione classica](../azure-resource-manager/resource-manager-deployment-model.md). Un insieme di credenziali per il backup consente di proteggere solo macchine virtuali distribuite con il modello di distribuzione classica. Non è possibile proteggere le macchine virtuali distribuite con il modello di distribuzione Resource Manager usando un insieme di credenziali per il backup. Per informazioni dettagliate sull'utilizzo di insiemi di credenziali di Servizi di ripristino, vedere [Eseguire il backup di macchine virtuali in un insieme di credenziali di Servizi di ripristino](backup-azure-arm-vms.md) .
 >
 >
 
 L'esecuzione del backup di macchine virtuali di Azure prevede tre passaggi principali:
 
-![Tooback tre passaggi di una macchina virtuale IaaS di Azure](./media/backup-azure-vms/3-steps-for-backup.png)
+![Tre passaggi per eseguire il backup di una macchina virtuale IaaS di Azure](./media/backup-azure-vms/3-steps-for-backup.png)
 
 > [!NOTE]
-> Il backup di macchine virtuali è un processo locale. È possibile eseguire il backup di macchine virtuali in una regione tooa insieme di credenziali backup in un'altra area. È quindi necessario creare un insieme di credenziali per il backup in ogni area di Azure dove sono presenti VM di cui sarà seguito il backup.
+> Il backup di macchine virtuali è un processo locale. Non è possibile eseguire il backup di macchine virtuali di un'area in un insieme di credenziali per il backup in un'altra area. È quindi necessario creare un insieme di credenziali per il backup in ogni area di Azure dove sono presenti VM di cui sarà seguito il backup.
 >
 > [!IMPORTANT]
-> A partire da marzo 2017, è possibile utilizzare non è più insiemi di credenziali Backup hello toocreate portale classico.
-> È ora possibile aggiornare i servizi archivi di Backup gli insiemi di credenziali tooRecovery. Per informazioni dettagliate, vedere l'articolo hello [aggiornare un tooa insieme di credenziali di Backup dell'insieme di credenziali di servizi di ripristino](backup-azure-upgrade-backup-to-recovery-services.md). Microsoft incoraggia gli utenti tooupgrade insiemi di credenziali di servizi tooRecovery insiemi di credenziali di Backup.<br/> Dopo 15 ottobre 2017, è possibile utilizzare gli insiemi di credenziali di PowerShell toocreate Backup. **Entro il 1° novembre 2017**:
->- Tutti gli archivi di Backup rimanenti verrà automaticamente aggiornato tooRecovery servizi insiemi di credenziali.
->- Si sarà in grado di tooaccess ai dati di backup nel portale classico hello. Utilizzare invece hello Azure tooaccess portale i dati di backup in insiemi di servizi di ripristino.
+> A partire da marzo 2017, non è più possibile usare il portale classico per creare insiemi di credenziali di backup.
+> È ora possibile aggiornare gli insiemi di credenziali di Backup ad insiemi di credenziali dei servizi di ripristino. Per altre informazioni, vedere l'articolo [Aggiornare un insieme di credenziali di Backup a un insieme di credenziali di Servizi di ripristino](backup-azure-upgrade-backup-to-recovery-services.md). Microsoft consiglia di aggiornare gli insiemi di credenziali di Backup a insiemi di credenziali dei servizi di ripristino.<br/> Dopo il 15 ottobre 2017 non sarà possibile usare PowerShell per creare insiemi di credenziali di backup. **Entro il 1° novembre 2017**:
+>- Tutti gli insiemi di credenziali di backup rimanenti verranno aggiornati automaticamente a insiemi di credenziali dei servizi di ripristino.
+>- e non sarà più possibile accedere ai dati di backup nel portale classico. Sarà possibile invece usare il portale di Azure per accedere ai dati di backup negli insiemi di credenziali di servizi di ripristino.
 >
 
 ## <a name="step-1---discover-azure-virtual-machines"></a>Passaggio 1: Individuare le macchine virtuali di Azure
-tooensure ogni nuova sottoscrizione toohello aggiunta di macchine virtuali (VM) vengono identificati prima di registrare, eseguire il processo di individuazione di hello. le query di processo di Hello Azure per elenco hello delle macchine virtuali nella sottoscrizione di hello, insieme a informazioni aggiuntive come nome del servizio cloud hello e area hello.
+Per assicurarsi che prima della registrazione vengano identificate le eventuali nuove macchine virtuali (VM) aggiunte alla sottoscrizione, eseguire il processo di individuazione. Il processo esegue una query su Azure per ottenere l'elenco delle macchine virtuali disponibili nella sottoscrizione, insieme ad altre informazioni come il nome del servizio cloud e l'area.
 
-1. Accedi toohello [portale classico](http://manage.windowsazure.com/)
-2. Nell'elenco di hello dei servizi Azure, fare clic su **servizi di ripristino** elenco hello tooopen degli insiemi di credenziali di Backup e ripristino del sito.
+1. Accedere al [portale classico](http://manage.windowsazure.com/)
+2. Nell'elenco di servizi di Azure, fare clic su **Servizi di ripristino** per aprire l'elenco degli insiemi di credenziali per il backup e Site Recovery.
     ![Elenco dell'insieme di credenziali](./media/backup-azure-vms/choose-vault-list.png)
-3. Nell'elenco di hello degli insiemi di credenziali di Backup, selezionare hello insieme di credenziali tooback una macchina virtuale.
+3. Nell'elenco degli insiemi di credenziali di Backup, selezionare l'insieme di credenziali per eseguire il backup di una macchina virtuale.
 
-    Se si tratta di un nuovo portale hello insieme di credenziali apre toohello **avvio rapido** pagina.
+    Se si tratta di un nuovo insieme di credenziali, nel portale verrà aperta la pagina **Avvio rapido** .
 
     ![Menu Elementi registrati aperto](./media/backup-azure-vms/vault-quick-start.png)
 
-    Se in precedenza è stato configurato l'insieme di credenziali hello, viene visualizzato il portale di hello menu toohello utilizzato più di recente.
-4. Dal menu di insieme di credenziali hello (in alto hello hello pagina), fare clic su **elementi registrati**.
+    Se in precedenza è stato configurato l'insieme di credenziali, il portale apre il menu usato più di recente.
+4. Nel menu dell'insieme di credenziali nella parte superiore della pagina fare clic su **Elementi registrati**.
 
     ![Menu Elementi registrati aperto](./media/backup-azure-vms/vault-menu.png)
-5. Da hello **tipo** dal menu **macchina virtuale di Azure**.
+5. Scegliere **Macchina virtuale di Azure** dal menu **Tipo**.
 
     ![Selezionare il carico di lavoro](./media/backup-azure-vms/discovery-select-workload.png)
-6. Fare clic su **DISCOVER** nella parte inferiore di hello della pagina hello.
+6. Fare clic su **INDIVIDUA** nella parte inferiore della pagina.
     ![Pulsante Individua](./media/backup-azure-vms/discover-button-only.png)
 
-    il processo di individuazione Hello potrebbe richiedere alcuni minuti hello le macchine virtuali sono in elencati in formato tabulare. Vi è una notifica nella parte inferiore di hello della schermata Ciao che informa che il processo di hello sia in esecuzione.
+    Il processo di individuazione può richiedere alcuni minuti mentre le macchine virtuali vengono elencate in formato tabulare. Nella parte inferiore della schermata è presente una notifica che indica che il processo è in esecuzione.
 
     ![Individuare le VM](./media/backup-azure-vms/discovering-vms.png)
 
-    notifica Hello cambia quando il processo di hello. Se il processo di individuazione hello non ha trovato hello le macchine virtuali, verificare che le macchine virtuali hello esistono. Se le macchine virtuali hello esistono, verificare hello macchine virtuali sono in hello stessa area dell'insieme di credenziali di backup hello. Se le macchine virtuali hello esistano e siano in hello stessa area, verificare che le macchine virtuali hello non sono già registrati tooa credenziali di backup. Se una macchina virtuale è tooa assegnate credenziali di backup non è disponibile toobe assegnato tooother insiemi di credenziali backup.
+    Al termine del processo, la notifica cambia. Se il processo di individuazione non riesce a trovare le macchine virtuali, verificare innanzitutto che le macchine virtuali esistano. Se le macchine virtuali esistono, verificare che si trovino nella stessa area dell'insieme di credenziali di backup. Se le macchine virtuali esistono e si trovano nella stessa area, verificare che non sono già registrate in un insieme di credenziali di backup. Se una macchina virtuale viene assegnata a un insieme di credenziali di backup, non è possibile assegnarla ad altri insiemi di credenziali di backup.
 
     ![Individuazione completata](./media/backup-azure-vms/discovery-complete.png)
 
-    Dopo aver individuato i nuovi elementi di hello, andare tooStep 2 e registrare le macchine virtuali.
+    Dopo aver individuato i nuovi elementi, andare al passaggio 2 e registrare le macchine virtuali.
 
 ## <a name="step-2---register-azure-virtual-machines"></a>Passaggio 2: Registrare le macchine virtuali di Azure
-Si registra un tooassociate macchina virtuale di Azure con hello servizio Azure Backup. Questa attività viene in genere eseguita una sola volta.
+Si registra una macchina virtuale di Azure per associarla al servizio Backup di Azure. Questa attività viene in genere eseguita una sola volta.
 
-1. Passare l'insieme di credenziali backup toohello in **servizi di ripristino** in hello portale di Azure e quindi fare clic su **elementi registrati**.
-2. Selezionare **macchina virtuale di Azure** dal menu a discesa hello.
+1. Passare all'insieme di credenziali per il backup disponibile in **Servizi di ripristino** nel portale di Azure, quindi fare clic su **Elementi registrati**.
+2. Selezionare **Macchina virtuale di Azure** dal menu a discesa.
 
     ![Selezionare il carico di lavoro](./media/backup-azure-vms/discovery-select-workload.png)
-3. Fare clic su **registrare** nella parte inferiore di hello della pagina hello.
+3. Fare clic su **REGISTRA** nella parte inferiore della pagina.
     ![Pulsante Registra](./media/backup-azure-vms/register-button-only.png)
-4. In hello **registrare elementi** menu di scelta rapida, hello selezionare le macchine virtuali che si desidera tooregister. Se sono presenti due o più macchine virtuali con hello stesso nome, utilizzare toodistinguish servizio cloud di hello tra di essi.
+4. Nel menu di scelta rapida **Registra elementi** selezionare le macchine virtuali da registrare. Se sono presenti due o più macchine virtuali con lo stesso nome, usare il servizio cloud per distinguerle.
 
    > [!TIP]
    > È possibile registrare più macchine virtuali contemporaneamente.
@@ -100,32 +100,32 @@ Si registra un tooassociate macchina virtuale di Azure con hello servizio Azure 
    >
 
     Viene creato un processo per ogni macchina virtuale selezionata.
-5. Fare clic su **Visualizza processo** in hello notifica toogo toohello **processi** pagina.
+5. Fare clic su **Visualizza processo** nella notifica per passare alla pagina **Processi**.
 
     ![Registrare il processo](./media/backup-azure-vms/register-create-job.png)
 
-    macchina virtuale Hello viene visualizzato anche nell'elenco di hello degli elementi registrati, insieme allo stato di hello dell'operazione di registrazione hello.
+    La macchina virtuale viene visualizzata anche nell'elenco di elementi registrati insieme allo stato dell'operazione di registrazione.
 
     ![Registering status 1](./media/backup-azure-vms/register-status01.png)
 
-    Al termine dell'operazione di hello, lo stato di hello cambia hello tooreflect *registrato* stato.
+    Al termine dell'operazione, lo stato diventerà *Registrazione completata* per riflettere la modifica.
 
     ![Registration status 2](./media/backup-azure-vms/register-status02.png)
 
 ## <a name="step-3---protect-azure-virtual-machines"></a>Passaggio 3: Proteggere le macchine virtuali di Azure
-Ora è possibile impostare un criterio di backup e memorizzazione per la macchina virtuale hello. È possibile proteggere più macchine virtuali usando una singola operazione.
+Ora è possibile configurare i criteri di backup e conservazione per la macchina virtuale. È possibile proteggere più macchine virtuali usando una singola operazione.
 
-Azure insiemi di credenziali di Backup creati dopo maggio 2015 forniti con un criterio predefinito creato nell'insieme di credenziali hello. Questi criteri predefiniti prevedono un periodo di conservazione predefinito di 30 giorni e una pianificazione per il backup una volta al giorno.
+Gli insiemi di credenziali di Backup di Azure creati dopo maggio 2015 includono criteri predefiniti. Questi criteri predefiniti prevedono un periodo di conservazione predefinito di 30 giorni e una pianificazione per il backup una volta al giorno.
 
-1. Passare l'insieme di credenziali backup toohello in **servizi di ripristino** in hello portale di Azure e quindi fare clic su **elementi registrati**.
-2. Selezionare **macchina virtuale di Azure** dal menu a discesa hello.
+1. Passare all'insieme di credenziali per il backup disponibile in **Servizi di ripristino** nel portale di Azure, quindi fare clic su **Elementi registrati**.
+2. Selezionare **Macchina virtuale di Azure** dal menu a discesa.
 
     ![Select workload in portal](./media/backup-azure-vms/select-workload.png)
-3. Fare clic su **PROTEGGI** nella parte inferiore di hello della pagina hello.
+3. Fare clic su **PROTEGGI** nella parte inferiore della pagina.
 
-    Hello **guidata proteggere elementi** viene visualizzato. procedura guidata di Hello Elenca solo le macchine virtuali che vengono registrate e non protetti. Selezionare le macchine virtuali hello che si desidera tooprotect.
+    Verrà visualizzata la procedura guidata **Proteggi elementi** . La procedura guidata elenca solo le macchine virtuali registrate e non protette. Selezionare le macchine virtuali da proteggere.
 
-    Se sono presenti due o più macchine virtuali con hello stesso nome, utilizzare hello cloud servizio toodistinguish tra le macchine virtuali hello.
+    Se sono presenti due o più macchine virtuali con lo stesso nome, usare il servizio cloud per distinguere tra le macchine virtuali.
 
    > [!TIP]
    > È possibile proteggere più macchine virtuali contemporaneamente.
@@ -134,22 +134,22 @@ Azure insiemi di credenziali di Backup creati dopo maggio 2015 forniti con un cr
 
     ![Configurare la protezione su vasta scala](./media/backup-azure-vms/protect-at-scale.png)
 
-4. Scegliere un **pianificazione del backup** tooback backup di macchine virtuali hello selezionato. È possibile scegliere da un set di criteri esistenti o definirne di nuovi.
+4. Scegliere una **pianificazione per il backup** per eseguire il backup delle macchine virtuali selezionate. È possibile scegliere da un set di criteri esistenti o definirne di nuovi.
 
-    Ai singoli criteri di backup possono essere associate più macchine virtuali. Tuttavia, hello macchina virtuale può solo essere associato a un criterio in qualsiasi punto nel tempo.
+    Ai singoli criteri di backup possono essere associate più macchine virtuali. Una macchina virtuale può tuttavia essere associata a un solo criterio in un dato momento.
 
     ![Proteggere con nuovi criteri](./media/backup-azure-vms/policy-schedule.png)
 
    > [!NOTE]
-   > Un criterio di backup include uno schema di memorizzazione per i backup pianificato hello. Se si seleziona un criterio di backup, è possibile modificare le opzioni di memorizzazione hello nel passaggio successivo hello.
+   > I criteri di backup includono uno schema di conservazione per i backup pianificati. Se si selezionano criteri di backup esistenti, non si potranno modificare le opzioni di conservazione nel passaggio successivo.
    >
    >
 
-5. Scegliere un **mantenimento** tooassociate con backup hello.
+5. Scegliere un **intervallo di conservazione** da associare ai backup.
 
     ![Proteggere con criteri di conservazione flessibili](./media/backup-azure-vms/policy-retention.png)
 
-    Criteri di conservazione specificano durata hello per archiviare un backup. È possibile specificare i criteri di conservazione diversi in base a quando viene eseguito il backup di hello. Ad esempio, un punto di backup eseguito quotidianamente, che funge da punto di ripristino operativo, può essere conservato per 90 giorni. In confronto, un punto di backup eseguito alla fine hello ogni trimestre (per motivi di controllo) potrebbe essere necessario toobe mantenuti per numero di mesi o anni.
+    I criteri di conservazione specificano il periodo di tempo per l'archiviazione di una copia di backup. È possibile specificare criteri di conservazione diversi in base alla momento in cui viene eseguito il backup. Ad esempio, un punto di backup eseguito quotidianamente, che funge da punto di ripristino operativo, può essere conservato per 90 giorni. Diversamente, è possibile che un punto di backup eseguito alla fine di ogni trimestre, a scopo di controllo, debba essere conservato per molti mesi o anni.
 
     ![Virtual machine is backed up with recovery point](./media/backup-azure-vms/long-term-retention.png)
 
@@ -157,44 +157,44 @@ Azure insiemi di credenziali di Backup creati dopo maggio 2015 forniti con un cr
 
    * **Criteri di conservazione giornaliera**: i backup eseguiti ogni giorno vengono archiviati per 30 giorni.
    * **Criteri di conservazione settimanale**: i backup eseguiti ogni domenica vengono conservati per 104 settimane.
-   * **Criteri di conservazione mensile**: i backup eseguiti su hello ultima domenica di ogni mese vengono conservati per 120 mesi.
-   * **Criteri di conservazione annuale**: i backup eseguiti su hello prima domenica di ogni mese di gennaio vengono mantenuti per 99 anni.
+   * **Criteri di conservazione mensile**: i backup eseguiti l'ultima domenica di ogni mese vengono conservati per 120 mesi.
+   * **Criteri di conservazione annuale**: i backup eseguiti la prima domenica di gennaio di ogni anno vengono conservati per 99 anni.
 
-     Un processo viene creato criteri di protezione tooconfigure hello e associare criteri di toothat hello macchine virtuali per ogni macchina virtuale selezionata.
-6. elenco di hello tooview di **configurazione della protezione** processi, nel menu hello gli insiemi di credenziali, fare clic su **processi** e selezionare **configurazione della protezione** da hello **operazione ** filtro.
+     Viene creato un processo per configurare i criteri di protezione e associare ogni macchina virtuale selezionata a questi criteri.
+6. Per visualizzare l'elenco di processi di **Configura protezione**, fare clic su **Processi** dal menu degli insiemi di credenziali e selezionare **Configura protezione** nel filtro **Operazione**.
 
     ![Configure protection job](./media/backup-azure-vms/protect-configureprotection.png)
 
 ## <a name="initial-backup"></a>Backup iniziale
-Una volta macchina virtuale hello è protetto con un criterio, viene visualizzata in hello **elementi protetti** scheda con stato hello *Protected - (in sospeso il backup iniziale)*. Per impostazione predefinita, backup pianificato prima hello è hello *backup iniziale*.
+Dopo avere applicato i criteri di protezione alla macchina virtuale, questa verrà visualizzata nella scheda **Elementi protetti** e avrà lo stato *Protetto (backup iniziale in sospeso)*. Per impostazione predefinita, il primo backup pianificato è il *backup iniziale*.
 
-backup iniziale hello di tootrigger immediatamente dopo la configurazione di protezione:
+Per attivare il backup iniziale immediatamente dopo la configurazione della protezione:
 
-1. Nella parte inferiore di hello di hello **elementi protetti** pagina, fare clic su **Esegui Backup**.
+1. Nella parte inferiore della pagina **Elementi protetti** fare clic su **Backup Now** (Esegui backup ora).
 
-    Hello servizio Backup di Azure crea un processo di backup per l'operazione di backup iniziale hello.
-2. Fare clic su hello **processi** elenco della scheda tooview hello dei processi.
+    Il servizio Backup di Azure crea un processo di backup per l'operazione di backup iniziale.
+2. Fare clic sulla scheda **Processi** per visualizzare l'elenco dei processi.
 
     ![Backup in progress](./media/backup-azure-vms/protect-inprogress.png)
 
 > [!NOTE]
-> Durante l'operazione di backup hello, hello servizio Backup di Azure esegue un'estensione di backup toohello comando in ogni macchina virtuale di tooflush tutti i processi di scrittura e uno snapshot coerente.
+> Come parte dell'operazione di backup, il servizio Backup di Azure invia un comando all'estensione per il backup in ogni macchina virtuale, per scaricare tutti processi di scrittura e acquisire uno snapshot coerente.
 >
 >
 
-Al termine di backup iniziale hello, lo stato di hello della macchina virtuale hello in hello **elementi protetti** scheda *Protected*.
+Al termine del backup iniziale, lo stato della macchina virtuale nella scheda **Elementi protetti** sarà *Protetto*.
 
 ![Virtual machine is backed up with recovery point](./media/backup-azure-vms/protect-backedupvm.png)
 
 ## <a name="viewing-backup-status-and-details"></a>Visualizzazione dello stato di backup e dei relativi dettagli
-Una volta protetto, aumenta anche il numero di macchine virtuali hello hello **Dashboard** pagina riepilogo. Hello **Dashboard** pagina mostra anche il numero di hello di processi da hello ultime 24 ore che sono stati *ha esito positivo*, hanno *Impossibile*e sono *in corso*. In hello **processi** pagina, utilizzare hello **stato**, **operazione**, o **da** e **a** toofilter menu processi di Hello.
+Dopo la protezione, il numero di macchine virtuali aumenta anche nella pagina di riepilogo **Dashboard** . Anche la pagina **Dashboard** mostra il numero di processi *completati*, *non riusciti* e *in corso* nell'arco delle ultime 24 ore. Nella pagina **Processi** usare i menu **Stato**, **Operazione** o **Da** e **A** per filtrare i processi.
 
 ![Status of backup in Dashboard page](./media/backup-azure-vms/dashboard-protectedvms.png)
 
-I valori nel dashboard di hello vengono aggiornati una volta ogni 24 ore.
+I valori nel dashboard vengono aggiornati ogni 24 ore.
 
 ## <a name="troubleshooting-errors"></a>Risoluzione dei problemi
-Se si verificano problemi durante il backup la macchina virtuale, esaminare hello [articolo sulla risoluzione dei problemi di VM](backup-azure-vms-troubleshoot.md) per assistenza.
+In caso di problemi durante il backup della macchina virtuale, vedere l'articolo [Risolvere i problemi relativi al backup delle macchine virtuali di Azure](backup-azure-vms-troubleshoot.md) per assistenza.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * [Gestire e monitorare il backup delle macchine virtuali di Azure](backup-azure-manage-vms.md)

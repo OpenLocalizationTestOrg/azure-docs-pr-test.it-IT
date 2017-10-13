@@ -1,5 +1,5 @@
-Sono disponibili due opzioni per lo spostamento dei servizi mobili tooApp servizio: migrazione o aggiornamento. Entrambe le opzioni fornirà accesso tooall di hello hosting funzionalità del servizio App:
+Sono disponibili due opzioni per il passaggio da Servizi mobili al servizio app: la migrazione o l'aggiornamento. Entrambe le opzioni consentono di accedere a tutte le funzionalità di hosting del servizio app:
 
-* *La migrazione* un servizio cambia semplicemente hello sottostante ambiente che ospita il back-end per dispositivi mobili. Richiede **alcuna modifica del codice** tooeither hello client o hello server mobile progetto per dispositivi mobili. Se si utilizza l'opzione di migrazione hello automatizzata, questo consente di mantenere il **service.azure mobile.net** URL. 
-* *L'aggiornamento* un servizio che esegue **richiedono modifiche al codice** tooboth il progetto server e client, ma consente tootake vantaggio dalle nuove caratteristiche SDK per dispositivi mobili, ad esempio tooauthentication miglioramenti e una maggiore flessibilità per il progetto server. 
+* *migrazione* di un servizio cambia semplicemente l'ambiente sottostante che ospita il back-end mobile. **Non richiede alcuna modifica del codice** per il progetto del client mobile o del server mobile. Se si usa l'opzione di migrazione automatica, viene mantenuto l'URL **service.azure mobile.net** . 
+* *aggiornamento* di un servizio **richiede modifiche del codice** per il progetto sia del server che del client, ma consente di sfruttare le nuove funzionalità di Mobile SDK, come i miglioramenti dell'autenticazione e la superiore flessibilità per il progetto server. 
 

@@ -1,6 +1,6 @@
 ---
-title: "hello aaaArchive Log attività di Azure | Documenti Microsoft"
-description: "Informazioni su come tooarchive accedere l'attività di Azure per la conservazione a lungo termine in un account di archiviazione."
+title: "Archiviare il registro attività di Azure | Microsoft Docs"
+description: "Informazioni su come archiviare il log attività di Azure per la conservazione a lungo termine in un account di archiviazione."
 author: johnkemnetz
 manager: orenr
 editor: 
@@ -14,47 +14,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/09/2016
 ms.author: johnkem
-ms.openlocfilehash: 58c6d3a3a31398287f66f76999d48f2942ab5109
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 0e3a5b84f57eac96249430fa1c2c4cc076c2926a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="archive-hello-azure-activity-log"></a>Archiviare hello Log attività di Azure
-In questo articolo, ecco come è possibile utilizzare hello portale di Azure, PowerShell Cmdlets o tooarchive CLI multipiattaforma il [ **Log attività Azure** ](monitoring-overview-activity-logs.md) in un account di archiviazione. Questa opzione è utile se si desidera tooretain il Log attività di più di 90 giorni (con controllo completo sui criteri di conservazione hello) per controllare, analisi statica, o eseguire il backup. Se è necessario solo tooretain gli eventi per 90 giorni o meno è tooset tooa dell'archivio account di archiviazione, non è necessario poiché gli eventi del registro attività vengono conservati per 90 giorni senza abilitare archiviazione nella piattaforma Azure hello.
+# <a name="archive-the-azure-activity-log"></a>Archiviare il log attività di Azure
+In questo articolo viene illustrato come è possibile usare il Portale di Azure, i cmdlet di PowerShell o l'interfaccia della riga di comando multipiattaforma per archiviare il [**registro attività di Azure**](monitoring-overview-activity-logs.md) in un account di archiviazione. Questa opzione è utile per conservare il log attività per più di 90 giorni (con il controllo completo sui criteri di conservazione) per il controllo, l'analisi statica o il backup. Se è necessario conservare gli eventi per non più di 90 giorni, non è necessario configurare l'archiviazione in un account di archiviazione, perché gli eventi del log attività vengono conservati nella piattaforma Azure per 90 giorni senza abilitare l'archiviazione.
 
 ## <a name="prerequisites"></a>Prerequisiti
-Prima di iniziare, è necessario troppo[creare un account di archiviazione](../storage/common/storage-create-storage-account.md#create-a-storage-account) toowhich è possibile archiviare i Log di attività. Si consiglia di non utilizzare un account di archiviazione esistente che dispone di altri, non di monitoraggio di dati in essa archiviati in modo che è possibile controllare meglio toomonitoring accedere ai dati. Tuttavia, se si desidera archiviare anche i log di diagnostica e account di archiviazione tooa metriche, può avere senso toouse tale account di archiviazione per l'attività di Log anche tookeep tutti i dati di monitoraggio in una posizione centrale. account di archiviazione Hello utilizzato deve essere un account di archiviazione generico, non un account di archiviazione blob. account di archiviazione Hello non presenti toobe hello stessa sottoscrizione come sottoscrizione hello la creazione di log come utente di hello che configura l'impostazione di hello dispone di sottoscrizioni di tooboth accesso RBAC appropriate.
+Prima di iniziare, è necessario [creare un account di archiviazione](../storage/common/storage-create-storage-account.md#create-a-storage-account) in cui poter archiviare il log attività. È consigliabile non usare un account di archiviazione esistente in cui sono archiviati altri dati non di monitoraggio, per poter controllare meglio l'accesso ai dati di monitoraggio. Se tuttavia in un account di archiviazione si archiviano anche log di diagnostica e metriche, può avere senso non solo usare tale account di archiviazione per il log attività, ma anche tenere tutti i dati di monitoraggio in una posizione centrale. L'account di archiviazione usato deve essere un account di archiviazione per utilizzo generico, non un account di archiviazione BLOB. L'account di archiviazione non deve trovarsi nella stessa sottoscrizione della sottoscrizione che emette log, purché l'utente che configura l'impostazione abbia un accesso RBAC appropriato a entrambe le sottoscrizioni.
 
 ## <a name="log-profile"></a>Profilo del log
-hello tooarchive Log attività utilizzando uno dei metodi di hello indicati di seguito, si imposta hello **profilo Log** per una sottoscrizione. definisce il tipo di hello di eventi che vengono archiviate o trasmessi Hello profilo Log e gli output di hello: hub account e/o eventi di archiviazione. Definisce inoltre i criteri di conservazione hello (numero di giorni tooretain) per gli eventi archiviati in un account di archiviazione. Se i criteri di conservazione hello sono impostato toozero, gli eventi vengono archiviati in modo permanente. In caso contrario, può essere impostato tooany valore compreso tra 1 e 2147483647. Criteri di conservazione vengono applicati al giorno, verranno eliminati in modo a hello fine di un giorno (UTC), i log da giorno hello che si trova ora oltre i criteri di conservazione hello. Ad esempio, se si dispone di un criterio di conservazione di un giorno, all'inizio di hello del giorno hello oggi hello registri hello ieri dovrebbero essere eliminati. [Fare clic qui per altre informazioni sui profili dei log](monitoring-overview-activity-logs.md#export-the-activity-log-with-a-log-profile). 
+Per archiviare il log attività con uno dei metodi seguenti, impostare il **profilo del log** per una sottoscrizione. Il profilo del log definisce il tipo di eventi archiviati o trasmessi e gli output (account di archiviazione e/o hub eventi). Definisce anche i criteri di conservazione (numero di giorni di conservazione) per gli eventi archiviati in un account di archiviazione. Se il criterio di conservazione viene impostato su zero, gli eventi vengono archiviati a tempo indeterminato. In caso contrario, si può impostare un valore qualsiasi compreso tra 1 e 2147483647. I criteri di conservazione vengono applicati su base giornaliera. Al termine della giornata, i log relativi a tale giornata non rientrano quindi più nei criteri di conservazione e verranno eliminati. Se, ad esempio, è presente un criterio di conservazione di un giorno, all'inizio della giornata attuale vengono eliminati i log relativi alla giornata precedente a ieri. [Fare clic qui per altre informazioni sui profili dei log](monitoring-overview-activity-logs.md#export-the-activity-log-with-a-log-profile). 
 
-## <a name="archive-hello-activity-log-using-hello-portal"></a>Archivio hello Log attività tramite il portale di hello
-1. Nel portale di hello, fare clic su hello **Log attività** collegamento di navigazione a sinistra di hello. Se non viene visualizzato un collegamento per hello registro attività, fare clic su hello **più servizi** collegare prima.
+## <a name="archive-the-activity-log-using-the-portal"></a>Archiviare il log attività con il portale
+1. Nel portale fare clic sul collegamento **Log attività** a sinistra. Se il collegamento Log attività non è visualizzato, fare prima clic sul collegamento **Altri servizi** .
    
-    ![Passare a pannello Log tooActivity](media/monitoring-archive-activity-log/act-log-portal-navigate.png)
-2. Nella parte superiore di hello del Pannello di hello, fare clic su **esportare**.
+    ![Passare al pannello Log attività](media/monitoring-archive-activity-log/act-log-portal-navigate.png)
+2. Nella parte superiore del pannello fare clic su **Esporta**.
    
-    ![Fare clic su pulsante Esporta hello](media/monitoring-archive-activity-log/act-log-portal-export-button.png)
-3. Nel pannello hello che viene visualizzato, selezionare casella hello per **esportare l'account di archiviazione tooa** e selezionare un account di archiviazione.
+    ![Fare clic sul pulsante Esporta](media/monitoring-archive-activity-log/act-log-portal-export-button.png)
+3. Nel pannello visualizzato selezionare la casella **Esporta in un account di archiviazione** e selezionare un account di archiviazione.
    
     ![Impostare un account di archiviazione](media/monitoring-archive-activity-log/act-log-portal-export-blade.png)
-4. Dispositivo di scorrimento hello o casella di testo, di definire un numero di giorni per cui gli eventi del registro attività devono essere conservati nell'account di archiviazione. Se si preferisce toohave che persistenti i dati nell'account di archiviazione hello per un periodo illimitato, impostare questo numero toozero.
-5. Fare clic su **Salva**.
+4. Usando il dispositivo di scorrimento o la casella di testo, definire un numero di giorni per cui gli eventi del log attività devono essere conservati nell'account di archiviazione. Se si preferisce che i dati rimangano nell'account di archiviazione a tempo indeterminato, impostare questo numero su zero.
+5. Fare clic su **Save**.
 
-## <a name="archive-hello-activity-log-via-powershell"></a>Archiviare hello Log attività tramite PowerShell
+## <a name="archive-the-activity-log-via-powershell"></a>Archiviare il log attività con PowerShell
 ```
 Add-AzureRmLogProfile -Name my_log_profile -StorageAccountId /subscriptions/s1/resourceGroups/myrg1/providers/Microsoft.Storage/storageAccounts/my_storage -Locations global,westus,eastus -RetentionInDays 180 -Categories Write,Delete,Action
 ```
 
 | Proprietà | Obbligatorio | Description |
 | --- | --- | --- |
-| StorageAccountId |No |ID di risorsa dell'Account di archiviazione di hello toowhich log attività deve essere salvato. |
-| Località |Sì |Elenco delimitato da virgole delle aree per cui si desidera toocollect attività registra eventi. È possibile visualizzare un elenco di tutte le aree [visitando la pagina](https://azure.microsoft.com/en-us/regions) o utilizzando [hello API REST di gestione di Azure](https://msdn.microsoft.com/library/azure/gg441293.aspx). |
-| RetentionInDays |Sì |Numero di giorni per cui gli eventi devono essere mantenuti, compreso tra 1 e 2147483647. Un valore pari a zero vengono archiviati i log di hello illimitata (sempre). |
+| StorageAccountId |No |ID risorsa dell'account di archiviazione in cui salvare i log attività. |
+| Località |Sì |Elenco delimitato da virgole di aree per cui raccogliere eventi del log attività. È possibile visualizzare un elenco di tutte le aree [visitando questa pagina](https://azure.microsoft.com/en-us/regions) o usando [l'API REST di gestione di Azure](https://msdn.microsoft.com/library/azure/gg441293.aspx). |
+| RetentionInDays |Sì |Numero di giorni per cui gli eventi devono essere mantenuti, compreso tra 1 e 2147483647. Se il valore è zero, i log vengono mantenuti per un periodo illimitato. |
 | Categorie |Sì |Elenco delimitato da virgole di categorie di eventi che devono essere raccolti. I valori possibili sono Write, Delete e Action. |
 
-## <a name="archive-hello-activity-log-via-cli"></a>Archiviare i Log di attività tramite CLI hello
+## <a name="archive-the-activity-log-via-cli"></a>Archiviare il log attività con l'interfaccia della riga di comando
 ```
 azure insights logprofile add --name my_log_profile --storageId /subscriptions/s1/resourceGroups/insights-integration/providers/Microsoft.Storage/storageAccounts/my_storage --locations global,westus,eastus,northeurope --retentionInDays 180 –categories Write,Delete,Action
 ```
@@ -62,13 +62,13 @@ azure insights logprofile add --name my_log_profile --storageId /subscriptions/s
 | Proprietà | Obbligatorio | Description |
 | --- | --- | --- |
 | name |Sì |Nome del profilo di log. |
-| storageId |No |ID di risorsa dell'Account di archiviazione di hello toowhich log attività deve essere salvato. |
-| locations |Sì |Elenco delimitato da virgole delle aree per cui si desidera toocollect attività registra eventi. È possibile visualizzare un elenco di tutte le aree [visitando la pagina](https://azure.microsoft.com/en-us/regions) o utilizzando [hello API REST di gestione di Azure](https://msdn.microsoft.com/library/azure/gg441293.aspx). |
-| RetentionInDays |Sì |Numero di giorni per cui gli eventi devono essere mantenuti, compreso tra 1 e 2147483647. Un valore pari a zero verrà archiviati i log di hello in modo indefinito (sempre). |
+| storageId |No |ID risorsa dell'account di archiviazione in cui salvare i log attività. |
+| Località |Sì |Elenco delimitato da virgole di aree per cui raccogliere eventi del log attività. È possibile visualizzare un elenco di tutte le aree [visitando questa pagina](https://azure.microsoft.com/en-us/regions) o usando [l'API REST di gestione di Azure](https://msdn.microsoft.com/library/azure/gg441293.aspx). |
+| RetentionInDays |Sì |Numero di giorni per cui gli eventi devono essere mantenuti, compreso tra 1 e 2147483647. Se il valore è zero, i log vengono archiviati per un periodo illimitato. |
 | Categorie |Sì |Elenco delimitato da virgole di categorie di eventi che devono essere raccolti. I valori possibili sono Write, Delete e Action. |
 
-## <a name="storage-schema-of-hello-activity-log"></a>Schema di archiviazione di hello Log attività
-Dopo aver impostato dell'archivio, è verrà creato un contenitore di archiviazione nell'account di archiviazione hello non appena si verifica un evento di registro attività. BLOB Hello all'interno del contenitore hello seguire hello stesso formato in hello Log attività e i log di diagnostica. struttura Hello di tali BLOB è:
+## <a name="storage-schema-of-the-activity-log"></a>Schema di archiviazione del log attività
+Una volta configurata l'archiviazione, verrà creato un contenitore di archiviazione nell'account di archiviazione non appena si verificherà un evento del log attività. I BLOB nel contenitore seguono lo stesso formato nel log attività e nei log di diagnostica. La struttura di questi BLOB è:
 
 > insights-operational-logs/name=default/resourceId=/SUBSCRIPTIONS/{ID sottoscrizione}/y={anno a quattro cifre}/m={mese a due cifre}/d={giorno a due cifre}/h={ora a due cifre in formato 24 ore}/m=00/PT1H.json
 > 
@@ -80,9 +80,9 @@ Ad esempio, un nome BLOB potrebbe essere:
 > 
 > 
 
-Ciascun blob PT1H.json contiene un blob JSON di eventi che si sono verificati entro ora hello specificata nell'URL blob hello (ad esempio h = 12). Durante l'ora presenta hello, gli eventi sono accodati toohello PT1H.json file che si verificano. valore dei minuti Hello (m = 00) è sempre 00, poiché gli eventi del registro attività sono suddivisi in singoli BLOB all'ora.
+Ogni BLOB PT1H.json contiene un BLOB JSON di eventi che si sono verificati nell'ora specificata nell'URL BLOB (ad esempio, h=12). Durante l'ora attuale, gli eventi vengono aggiunti al file PT1H.json man mano che si verificano. Il valore dei minuti (m=00) è sempre 00, perché gli eventi del log attività vengono sempre suddivisi in singoli BLOB per ogni ora.
 
-Nel file PT1H.json hello, ogni evento viene archiviato nella matrice di record"hello", il formato seguente:
+Nel file PT1H.json ogni evento viene archiviato nella matrice "records", con questo formato:
 
 ```
 {
@@ -143,28 +143,28 @@ Nel file PT1H.json hello, ogni evento viene archiviato nella matrice di record"h
 
 | Nome dell'elemento | Descrizione |
 | --- | --- |
-| time |Timestamp dell'evento hello è stato generato da hello di elaborazione del servizio Azure hello richiesta evento hello corrispondente. |
-| resourceId |ID di risorsa di hello influisce sulle risorse. |
-| operationName |Nome dell'operazione di hello. |
-| category |Categoria di azione hello, ad esempio. scrittura o lettura. |
-| resultType |Hello tipo di risultato hello, ad esempio. operazione riuscita, esito negativo, avvio |
-| resultSignature |Dipende dal tipo di risorsa hello. |
-| durationMs |Durata dell'operazione di hello in millisecondi |
-| callerIpAddress |Indirizzo IP dell'utente hello che ha eseguito l'operazione di hello, attestazione UPN o attestazione nome SPN in base alla disponibilità. |
-| correlationId |In genere un GUID in formato stringa hello. Gli eventi che condividono un valore correlationId appartengono toohello stessa azione. |
-| identity |Blob JSON che descrive le attestazioni e l'autorizzazione di hello. |
-| autorizzazione |BLOB di proprietà RBAC dell'evento hello. In genere include le proprietà di "azione", "role" e "scope" hello. |
-| level |Livello dell'evento hello. Uno dei seguenti valori hello: "Critical", "Error", "Avviso", "Informational" e "Verbose" |
-| location |Area nella quale percorso hello durante l'esecuzione (o globale). |
-| properties |Set di `<Key, Value>` coppie (ad esempio Dictionary) che descrive hello dettagli dell'evento hello. |
+| time |Timestamp del momento in cui l'evento è stato generato dal servizio di Azure che ha elaborato la richiesta corrispondente all'evento. |
+| ResourceId |ID risorsa della risorsa interessata. |
+| operationName |Nome dell'operazione. |
+| category |Categoria dell'azione, ad esempio scrittura o lettura. |
+| resultType |Il tipo di risultato, ad esempio operazione riuscita, esito negativo, avvio |
+| resultSignature |Dipende dal tipo di risorsa. |
+| durationMs |Durata dell'operazione in millisecondi |
+| callerIpAddress |Indirizzo IP dell'utente che ha eseguito l'operazione, attestazione UPN o attestazione SPN, a seconda della disponibilità. |
+| correlationId |In genere un GUID in formato stringa. Gli eventi che condividono un elemento correlationId appartengono alla stessa azione. |
+| identity |BLOB JSON che descrive l'autorizzazione e le attestazioni. |
+| autorizzazione |BLOB delle proprietà RBAC dell'evento. In genere include le proprietà "action", "role" e "scope". |
+| level |Livello dell'evento. Uno dei valori seguenti: "Critical", "Error", "Warning", "Informational" e "Verbose" |
+| location |Area in cui si trova la località (o global). |
+| properties |Set di coppie `<Key, Value>` ad esempio Dictionary, che descrivono i dettagli dell'evento. |
 
 > [!NOTE]
-> proprietà Hello e l'utilizzo di tali proprietà può variare a seconda delle risorse di hello.
+> Le proprietà e l'utilizzo di tali proprietà possono variare a seconda della risorsa.
 > 
 > 
 
 ## <a name="next-steps"></a>Passaggi successivi
 * [Introduzione all'archivio BLOB di Azure con .NET](../storage/blobs/storage-dotnet-how-to-use-blobs.md#download-blobs)
-* [Flusso hello Log attività tooEvent hub](monitoring-stream-activity-logs-event-hubs.md)
-* [Per ulteriori informazioni su hello Log attività](monitoring-overview-activity-logs.md)
+* [Stream the Activity Log to Event Hubs (Trasmettere il log attività a Hub eventi)](monitoring-stream-activity-logs-event-hubs.md)
+* [Read more about the Activity Log (Altre informazioni sul log attività)](monitoring-overview-activity-logs.md)
 

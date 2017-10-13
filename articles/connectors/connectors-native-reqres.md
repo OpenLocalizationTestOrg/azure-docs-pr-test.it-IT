@@ -1,6 +1,6 @@
 ---
-title: azioni di richiesta e risposta aaaUse | Documenti Microsoft
-description: Panoramica di trigger di richiesta e risposta hello e azione in un'applicazione Azure logica
+title: Usare le azioni di richiesta e risposta | Documentazione Microsoft
+description: Panoramica del trigger e dell'azione di richiesta e risposta in un'app per la logica di Azure
 services: 
 documentationcenter: 
 author: jeffhollan
@@ -15,84 +15,84 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/18/2016
 ms.author: jehollan
-ms.openlocfilehash: 24c378cc12d5f3f65116d5e59278236186a99662
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e45b07d709927af64cfba28dfb0d8ee9cb8893b3
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="get-started-with-hello-request-and-response-components"></a>Iniziare con i componenti di richiesta e risposta hello
-Con hello richiesta e risposta componenti in un'app di logica, è possibile rispondere in tempo reale tooevents.
+# <a name="get-started-with-the-request-and-response-components"></a>Introduzione ai componenti di richiesta e risposta
+Con i componenti di richiesta e risposta in un'app per la logica è possibile rispondere in tempo reale agli eventi.
 
 Ad esempio, è possibile:
 
-* Rispondere tooan di richiesta HTTP con i dati da un database locale tramite un'app di logica.
+* Rispondere a una richiesta HTTP con i dati di un database locale tramite un'app per la logica.
 * Attivare un'app per la logica da un evento webhook esterno.
 * Chiamare un'app per la logica con un'azione di richiesta e risposta dall'interno di un'altra app per la logica.
 
-tooget avviate tramite operazioni di richiesta e risposta hello in un'app di logica, vedere [creare un'app di logica](../logic-apps/logic-apps-create-a-logic-app.md).
+Per informazioni su come iniziare a usare le azioni di richiesta e risposta in un'app per la logica, vedere [Creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="use-hello-http-request-trigger"></a>Utilizzare trigger di richiesta HTTP hello
-Un trigger è un evento che può essere utilizzato toostart hello flusso di lavoro che è definito in un'app di logica. [Altre informazioni sui trigger](connectors-overview.md).
+## <a name="use-the-http-request-trigger"></a>Usare il trigger di richiesta HTTP
+Un trigger è un evento che può essere usato per avviare il flusso di lavoro definito in un'app per la logica. [Altre informazioni sui trigger](connectors-overview.md).
 
-Di seguito è riportata una sequenza di esempio di come tooset backup HTTP richiesta in Progettazione applicazione logica hello.
+Ecco una sequenza di esempio di come configurare una richiesta HTTP nella finestra di progettazione dell'app per la logica.
 
-1. Aggiungere trigger hello **richiesta - viene ricevuta la richiesta HTTP quando** nell'app logica. È anche possibile specificare uno schema JSON (utilizzando uno strumento come [JSONSchema.net](http://jsonschema.net)) per il corpo della richiesta hello. In questo modo i token della finestra di progettazione toogenerate hello per le proprietà nella richiesta HTTP hello.
-2. Aggiungere un'altra operazione in modo che sia possibile salvare hello logica app.
-3. Dopo aver salvato hello logica app, è possibile ottenere l'URL della richiesta HTTP hello dalla scheda richiesta hello.
-4. Un POST HTTP (è possibile utilizzare uno strumento come [Postman](https://www.getpostman.com/)) trigger URL toohello hello logica app.
+1. Aggiungere il trigger **Richiesta - Alla ricezione di una richiesta HTTP** all'app per la logica. È possibile facoltativamente fornire uno schema JSON (usando uno strumento come [JSONSchema.net](http://jsonschema.net)) per il corpo della richiesta. In questo modo la finestra di progettazione potrà generare i token per le proprietà nella richiesta HTTP.
+2. Aggiungere un'altra azione per poter salvare l'app per la logica.
+3. Dopo il salvataggio dell'app per la logica, è possibile ottenere l'URL della richiesta HTTP dalla scheda di richiesta.
+4. Un HTTP POST (è possibile usare uno strumento come [Postman](https://www.getpostman.com/)) all'URL attiva l'app per la logica.
 
 > [!NOTE]
-> Se non si definisce un'azione di risposta, un `202 ACCEPTED` risposta viene restituita immediatamente toohello chiamante. È possibile utilizzare hello risposta azione toocustomize una risposta.
+> Se non viene definita un'azione di risposta, una risposta `202 ACCEPTED` viene restituita immediatamente al chiamante. È possibile usare l'azione di risposta per personalizzare una risposta.
 > 
 > 
 
 ![Trigger di risposta](./media/connectors-native-reqres/using-trigger.png)
 
-## <a name="use-hello-http-response-action"></a>Utilizzare l'azione di risposta HTTP hello
-azione di risposta HTTP Hello è valida solo quando si usa un flusso di lavoro attivato da una richiesta HTTP. Se non si definisce un'azione di risposta, un `202 ACCEPTED` risposta viene restituita immediatamente toohello chiamante.  È possibile aggiungere un'azione di risposta in un passaggio all'interno del flusso di lavoro di hello. app per la logica Hello mantiene solo aperta richiesta in ingresso hello per un minuto per una risposta.  Dopo un minuto, se è stata inviata alcuna risposta dal flusso di lavoro hello (e un'azione di risposta è presente nella definizione di hello), un `504 GATEWAY TIMEOUT` viene restituito toohello chiamante.
+## <a name="use-the-http-response-action"></a>Usare l'azione di risposta HTTP
+L'azione di risposta HTTP è valida solo quando viene usata in un flusso di lavoro attivato da una richiesta HTTP. Se non viene definita un'azione di risposta, una risposta `202 ACCEPTED` viene restituita immediatamente al chiamante.  È possibile aggiungere un'azione di risposta in qualsiasi passaggio nel flusso di lavoro. L'app per la logica mantiene aperta la richiesta in ingresso per una risposta solo per un minuto.  Dopo un minuto, se non è stata inviata alcuna risposta dal flusso di lavoro (e nella definizione è presente un'azione di risposta), viene restituito un `504 GATEWAY TIMEOUT` al chiamante.
 
-Ecco come tooadd un'azione di risposta HTTP:
+Ecco come aggiungere un'azione di risposta HTTP:
 
-1. Seleziona hello **nuovo passaggio** pulsante.
+1. Fare clic sul pulsante **Nuovo passaggio** .
 2. Selezionare **Aggiungi un'azione**.
-3. Nella casella di ricerca azione hello, digitare **risposta** hello toolist azione di risposta.
+3. Nella casella di ricerca azione digitare **response** per elencare l'azione di risposta.
    
-    ![Selezionare l'azione di risposta hello](./media/connectors-native-reqres/using-action-1.png)
-4. Aggiungere i parametri necessari per il messaggio di risposta HTTP hello.
+    ![Selezionare l'azione di risposta](./media/connectors-native-reqres/using-action-1.png)
+4. Aggiungere i parametri richiesti per il messaggio di risposta HTTP.
    
-    ![Azione di risposta hello completo](./media/connectors-native-reqres/using-action-2.png)
-5. Fare clic su nell'angolo superiore sinistro hello di hello barra degli strumenti toosave e la logica app verrà entrambi salvare e pubblicare (attivare).
+    ![Completare l'azione di risposta](./media/connectors-native-reqres/using-action-2.png)
+5. Fare clic sull'angolo in alto a sinistra della barra degli strumenti per salvare e pubblicare (attivare) l'app per la logica.
 
 ## <a name="request-trigger"></a>Trigger di richiesta
-Ecco i dettagli di hello per trigger hello che supporta il connettore. È disponibile un solo trigger di richiesta.
+Ecco i dettagli per il trigger supportato da questo connettore. È disponibile un solo trigger di richiesta.
 
 | Trigger | Descrizione |
 | --- | --- |
 | Richiesta |Si verifica quando viene ricevuta una richiesta HTTP |
 
 ## <a name="response-action"></a>Azione di risposta
-Ecco hello dettagli per l'azione di hello che supporta questo connettore. Esiste una sola azione di risposta che può essere usata solo quando è accompagnata da un trigger di richiesta.
+Ecco i dettagli per l'azione supportata da questo connettore. Esiste una sola azione di risposta che può essere usata solo quando è accompagnata da un trigger di richiesta.
 
 | Azione | Descrizione |
 | --- | --- |
-| Response |Restituisce che una risposta toohello correlati richiesta HTTP |
+| response |Restituisce una risposta alla richiesta HTTP correlata |
 
 ### <a name="trigger-and-action-details"></a>Dettagli sui trigger e le azioni
-Hello nelle tabelle seguenti vengono descritti i campi di input hello per trigger hello e l'azione e hello dettagli output corrispondenti.
+Le tabelle seguenti descrivono i campi di input per il trigger e l'azione e i corrispondenti dettagli di output.
 
 #### <a name="request-trigger"></a>Trigger di richiesta
-di seguito Hello è un campo di input per il trigger hello da una richiesta HTTP in ingresso.
+Di seguito è riportato un campo di input per il trigger da una richiesta HTTP in ingresso.
 
 | Nome visualizzato | Nome proprietà | Descrizione |
 | --- | --- | --- |
-| Schema JSON |schema |schema JSON Hello del corpo della richiesta HTTP hello |
+| Schema JSON |schema |Lo schema JSON del corpo della richiesta HTTP |
 
 <br>
 
 **Dettagli dell'output**
 
-di seguito Hello sono i dettagli di output per la richiesta di hello.
+Di seguito sono indicati i dettagli di output per la richiesta.
 
 | Nome proprietà | Tipo di dati | Descrizione |
 | --- | --- | --- |
@@ -100,14 +100,14 @@ di seguito Hello sono i dettagli di output per la richiesta di hello.
 | Corpo |object |Oggetto della richiesta |
 
 #### <a name="response-action"></a>Azione di risposta
-di seguito Hello sono campi di input per hello azione di risposta HTTP. Un asterisco (*) indica che è un campo obbligatorio.
+Di seguito sono riportati i campi di input per l'azione di risposta HTTP. Un asterisco (*) indica che è un campo obbligatorio.
 
 | Nome visualizzato | Nome proprietà | Descrizione |
 | --- | --- | --- |
-| Codice di stato* |statusCode |codice di stato HTTP Hello |
-| Headers |headers |Un oggetto JSON di qualsiasi tooinclude di intestazioni di risposta |
-| Corpo |body |corpo della risposta Hello |
+| Codice di stato* |statusCode |Il codice di stato HTTP |
+| Headers |Headers |Un oggetto JSON delle intestazioni HTTP da includere |
+| Corpo |Corpo |Il corpo della risposta |
 
 ## <a name="next-steps"></a>Passaggi successivi
-A questo punto, provare a piattaforma hello e [creare un'app di logica](../logic-apps/logic-apps-create-a-logic-app.md). È possibile esplorare altri connettori disponibile in App per la logica di hello esaminando il nostro [elenco API](apis-list.md).
+Provare ora a usare la piattaforma e [creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md). È possibile esplorare gli altri connettori disponibili nelle app per la logica esaminando l' [elenco di API](apis-list.md).
 

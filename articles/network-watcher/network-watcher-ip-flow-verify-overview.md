@@ -1,9 +1,9 @@
 ---
-title: flusso tooIP aaaIntroduction verificare in Watcher di rete di Azure | Documenti Microsoft
-description: "Questa pagina viene fornita una panoramica di hello IP Watcher di rete di flusso di verificare la funzionalità"
+title: Introduzione alla verifica del flusso IP in Azure Network Watcher | Microsoft Docs
+description: "Questa pagina fornisce una panoramica della funzionalità di verifica del flusso IP di Network Watcher"
 services: network-watcher
 documentationcenter: na
-author: georgewallace
+author: jimdial
 manager: timlt
 editor: 
 ms.assetid: d352fb2d-4b4f-4ac4-9c2e-1cfccf0e7e03
@@ -13,26 +13,26 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
-ms.author: gwallace
-ms.openlocfilehash: b648a4816a7ffdc6ca54462944b574e2395e8298
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.author: jdial
+ms.openlocfilehash: b2ad45e76320c59d18dce7b39166679801b4170a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="introduction-tooip-flow-verify-in-azure-network-watcher"></a>Flusso tooIP introduzione verificare in Watcher di rete di Azure
+# <a name="introduction-to-ip-flow-verify-in-azure-network-watcher"></a>Introduzione alla verifica del flusso IP in Azure Network Watcher
 
-Flusso IP verificare controlla se un pacchetto è consentito o negato tooor da una macchina virtuale in base alle informazioni di 5 tuple. Tali informazioni sono costituite da direzione, protocollo, indirizzo IP locale, indirizzo IP remoto, porta locale e porta remota. Se i pacchetti hello viene negato da un gruppo di sicurezza, viene restituito il nome di hello della regola hello negato pacchetti hello. Mentre è possibile scegliere qualsiasi indirizzo IP di origine o destinazione, questa funzionalità consente agli amministratori di diagnosticare rapidamente i problemi di connettività da o toohello internet e da o toohello nell'ambiente locale.
+La verifica del flusso IP controlla se un pacchetto viene accettato o rifiutato in ingresso o in uscita da una macchina virtuale in base a informazioni a 5 tuple. Tali informazioni sono costituite da direzione, protocollo, indirizzo IP locale, indirizzo IP remoto, porta locale e porta remota. Se il pacchetto viene rifiutato da un gruppo di sicurezza, viene restituito il nome della regola che ha rifiutato il pacchetto. Anche se è possibile scegliere qualsiasi indirizzo IP di origine o di destinazione, questa funzionalità permette agli amministratori di diagnosticare rapidamente problemi di connettività in ingresso o in uscita da Internet e in ingresso o in uscita dall'ambiente locale.
 
-La verifica del flusso IP esamina l'interfaccia di rete di una macchina virtuale. Il flusso del traffico viene quindi verificata in base a tooor impostazioni hello configurato dall'interfaccia di rete. Questa funzionalità è utile per confermare se una regola in un gruppo di sicurezza di rete sta bloccando tooor di traffico in ingresso o in uscita da una macchina virtuale.
+La verifica del flusso IP esamina l'interfaccia di rete di una macchina virtuale. Il flusso di traffico in ingresso o in uscita dall'interfaccia di rete viene quindi verificato in base alle impostazioni configurate. Questa funzionalità permette di confermare se una regola di un gruppo di sicurezza di rete sta bloccando il traffico in ingresso o in uscita da una macchina virtuale.
 
-Un'istanza di toobe esigenze Watcher di rete creato in tutte le aree che si prevede di flusso IP toorun verificare. Watcher di rete è un servizio regionale e possono essere eseguiti solo sulle risorse in hello stessa area. Questa operazione non influenza hello risultati del flusso IP verificare come route hello associato hello che NIC verrà comunque restituito.
+È necessario creare un'istanza di Network Watcher in tutte le aree in cui è prevista l'esecuzione della verifica del flusso IP. Network Watcher è un servizio a livello di area e può essere eseguito solo su risorse nella stessa area. Non influisce sui risultati della verifica del flusso IP, perché verrà comunque restituita la route associata alla scheda di interfaccia di rete.
 
 ![1][1]
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Visitare il seguente articolo toolearn se un pacchetto è consentito o negato per una macchina virtuale specifica tramite il portale di hello hello. [Controllare se il traffico è consentito in una macchina virtuale con flusso verificare IP tramite il portale di hello](network-watcher-check-ip-flow-verify-portal.md)
+Per informazioni su come stabilire se un pacchetto viene accettato o rifiutato per una macchina virtuale specifica tramite il portale, vedere l'articolo seguente. [Controllare se il traffico da o verso una macchina virtuale è consentito o negato con la verifica del flusso IP tramite il portale](network-watcher-check-ip-flow-verify-portal.md)
 
 [1]: ./media/network-watcher-ip-flow-verify-overview/figure1.png
 

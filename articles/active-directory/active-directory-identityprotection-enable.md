@@ -1,6 +1,6 @@
 ---
-title: Azure Active Directory Identity Protection aaaEnabling | Documenti Microsoft
-description: "Informazioni su come tooenable la protezione dell'identità Azure Active Directory."
+title: Abilitazione di Azure Active Directory Identity Protection | Microsoft Docs
+description: Informazioni su come abilitare Azure Active Directory Identity Protection.
 services: active-directory
 keywords: "azure active directory identity protection, cloud app discovery, gestione applicazioni, sicurezza, rischio, livello di rischio, vulnerabilità, criteri di sicurezza"
 documentationcenter: 
@@ -15,31 +15,31 @@ ms.topic: article
 ms.date: 07/05/2017
 ms.author: markvi
 ms.reviewer: nigu
-ms.openlocfilehash: d26f466f5c7d6a425528a277d98c2c4b341ff8de
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e0683e837086ca08f4b4b3f49695bdd2b4063ea4
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="enabling-azure-active-directory-identity-protection"></a>Abilitazione di Azure Active Directory Identity Protection
 Azure Active Directory Identity Protection è una nuova funzionalità che offre una vista consolidata delle attività di accesso sospette e delle potenziali vulnerabilità e che contribuisce a proteggere l'azienda con notifiche, raccomandazioni sulla risoluzione dei problemi e criteri basati sui rischi. 
 
-Hello servizio rileva attività sospette per l'utente finale e le identità con privilegi (amministrazione) in base a segnali come bruta attacchi di forza, divulgazione credenziali, accessi da posizioni non familiari, infetti dispositivi, tooprotect su queste attività in tempo reale. Ancora più importante, in base a queste attività sospette, viene calcolato un livello di gravità utente dei rischi e i criteri basati sui rischi possono essere configurati e proteggere automaticamente l'identità di hello dell'organizzazione. Per altre informazioni, vedere [Azure Active Directory Identity Protection](active-directory-identityprotection.md).
+Il servizio rileva le attività sospette per l'utente finale e le identità con privilegi (amministratore), in base a segnali come attacchi di forza bruta, perdita di credenziali, accessi da località ignote e dispositivi infetti per offrire una protezione da queste attività in tempo reale. Ancora più importante, sulla base di queste attività sospette viene calcolato un livello di gravità dei rischi per l'utente ed è possibile configurare criteri basati sui rischi e proteggere automaticamente le identità dell'organizzazione. Per altre informazioni, vedere [Azure Active Directory Identity Protection](active-directory-identityprotection.md).
 
-Questo argomento viene illustrato come tooenable la protezione dell'identità Azure Active Directory.
+Questo argomento illustra come abilitare Azure Active Directory Identity Protection.
 
-## <a name="steps-tooenable-azure-active-directory-identity-protection"></a>Passaggi tooenable la protezione dell'identità Azure Active Directory
-1. [Sign-on](https://ms.portal.azure.com/) tooyour portale di Azure come amministratore globale. 
-2. Nel portale di Azure hello, fare clic su **Marketplace**.
+## <a name="steps-to-enable-azure-active-directory-identity-protection"></a>Passaggi per abilitare Azure Active Directory Identity Protection
+1. [Accedere](https://ms.portal.azure.com/) al portale di Azure come amministratore globale. 
+2. Nel portale di Azure fare clic su **Marketplace**.
    
     ![Creare](./media/active-directory-identityprotection-enable/01.png "Creare")
-3. Nell'elenco delle applicazioni hello, fare clic su **sicurezza + identità**.
+3. Nell'elenco delle applicazioni fare clic su **Sicurezza e identità**.
    
     ![Creare](./media/active-directory-identityprotection-enable/02.png "Creare")
 4. Fare clic su **Azure AD Identity Protection**.
    
     ![Creare](./media/active-directory-identityprotection-enable/03.png "Creare")
-5. In hello **Azure AD Identity Protection** pannello, fare clic su **crea**.
+5. Nel pannello **Azure AD Identity Protection** fare clic su **Crea**.
    
     ![Creare](./media/active-directory-identityprotection-enable/04.png "Creare")
 

@@ -1,6 +1,6 @@
 ---
-title: aaaIntroduction tooAzure servizio contenitore per Kubernetes | Documenti Microsoft
-description: Servizio di contenitore di Azure per Kubernetes rende semplice toodeploy e gestire applicazioni basate sul contenitore in Azure.
+title: Introduzione al servizio contenitore di Azure per Kubernetes | Microsoft Docs
+description: Il servizio contenitore di Azure per Kubernetes semplifica la distribuzione e la gestione delle applicazioni basate su contenitori in Azure.
 services: container-service
 documentationcenter: 
 author: gabrtv
@@ -17,22 +17,22 @@ ms.workload: na
 ms.date: 07/21/2017
 ms.author: gamonroy
 ms.custom: mvc
-ms.openlocfilehash: bfc85a180bdf4a405c9047eb882d3eed01640dd1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 92cdbe20e7a2974a734dfed5294c547866050290
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="introduction-tooazure-container-service-for-kubernetes"></a>Introduzione tooAzure servizio contenitore per Kubernetes
-Servizio di contenitore di Azure per Kubernetes rende semplice toocreate, configurare e gestire un cluster di macchine virtuali che sono preconfigurati toorun contenitore applicazioni. Questo consente di toouse le competenze esistenti, o disegnare su un corpo di grandi dimensioni e in continua crescito di esperienza della community, toodeploy e gestire le applicazioni basate sul contenitore in Microsoft Azure.
+# <a name="introduction-to-azure-container-service-for-kubernetes"></a>Introduzione al servizio contenitore di Azure per Kubernetes
+Il servizio contenitore di Azure per Kubernetes semplifica la creazione, la configurazione e la gestione di un cluster di macchine virtuali preconfigurate per eseguire le applicazioni nei contenitori. Ciò consente di usare le competenze già acquisite o di attingere da un consistente e crescente bagaglio di competenze a livello di community per distribuire e gestire applicazioni basate sul contenitore in Microsoft Azure.
 
-Tramite il servizio contenitore di Azure, è possibile sfruttare i vantaggi di hello funzionalità aziendale di Azure, mantenendo al tempo stesso la portabilità dell'applicazione tramite Kubernetes e hello formato immagine Docker.
+Il servizio contenitore di Azure consente di sfruttare i vantaggi delle funzionalità di livello aziendale di Azure mantenendo al tempo stesso la portabilità delle applicazioni tramite Kubernetes e il formato immagine Docker.
 
 ## <a name="using-azure-container-service-for-kubernetes"></a>Uso del servizio contenitore di Azure per Kubernetes
-L'obiettivo di Microsoft con il servizio contenitore di Azure è tooprovide un ambiente host del contenitore tramite strumenti open source e tecnologie che sono comuni tra i clienti oggi. toothis fine, è necessario esporre gli endpoint dell'API di Kubernetes standard hello. Tramite questi endpoint standard, è possibile utilizzare qualsiasi software che è in grado di comunicare tooa Kubernetes cluster. È ad esempio possibile scegliere [kubectl](https://kubernetes.io/docs/user-guide/kubectl-overview/), [helm](https://helm.sh/) o [draft](https://github.com/Azure/draft).
+L'obiettivo del servizio contenitore di Azure è fornire un ambiente host contenitore tramite tecnologie e strumenti open source, che sono attualmente diffusi fra i nostri clienti. A questo scopo vengono esposti gli endpoint API di Kubernetes standard. Usando questi endpoint standard è possibile usare qualsiasi software riesca a comunicare con un cluster Kubernetes. È ad esempio possibile scegliere [kubectl](https://kubernetes.io/docs/user-guide/kubectl-overview/), [helm](https://helm.sh/) o [draft](https://github.com/Azure/draft).
 
 ## <a name="creating-a-kubernetes-cluster-using-azure-container-service"></a>Creazione di un cluster Kubernetes con il servizio contenitore di Azure
-toobegin utilizzando servizio contenitore di Azure, distribuire un cluster il servizio contenitore di Azure con hello [CLI di Azure 2.0](container-service-kubernetes-walkthrough.md) o tramite il portale di hello (hello ricerca Marketplace per **servizio contenitore di Azure**). Nel caso di un utente avanzato che necessita di maggiore controllo sui modelli di hello Azure Resource Manager, è possibile utilizzare open source di hello [acs motore](https://github.com/Azure/acs-engine) toobuild di progetto personalizzati Kubernetes personalizzato del cluster e distribuirlo tramite hello `az` CLI.
+Per iniziare a usare il servizio contenitore di Azure, distribuire un cluster del servizio contenitore di Azure con l'[interfaccia della riga di comando di Azure 2.0](container-service-kubernetes-walkthrough.md) o tramite il portale (cercare **Servizio contenitore di Azure** nel Marketplace). Gli utenti avanzati che hanno bisogno di un maggiore controllo sui modelli di Azure Resource Manager possono usare il progetto open source [acs-engine](https://github.com/Azure/acs-engine) per compilare un cluster Kubernetes personalizzato e distribuirlo tramite l'interfaccia della riga di comando `az`.
 
 ### <a name="using-kubernetes"></a>Uso di Kubernetes
 Kubernetes automatizza la distribuzione, il ridimensionamento e la gestione delle applicazioni nei contenitori. Dispone di un set completo di funzionalità tra cui:
@@ -47,7 +47,7 @@ Kubernetes automatizza la distribuzione, il ridimensionamento e la gestione dell
 
 Diagramma dell'architettura di Kubernetes distribuito tramite il servizio contenitore di Azure:
 
-![Il servizio contenitore di Azure configurato toouse Kubernetes.](media/acs-intro/kubernetes.png)
+![Servizio contenitore di Azure configurato per l'uso di Kubernetes.](media/acs-intro/kubernetes.png)
 
 ## <a name="videos"></a>Video
 
@@ -65,4 +65,4 @@ Strumenti per lo sviluppo e la distribuzione di applicazioni in Kubernetes (Azur
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Esplorare hello [Kubernetes Quickstart](container-service-kubernetes-walkthrough.md) toobegin esplorazione oggi servizio contenitore di Azure.
+Vedere la [guida introduttiva a Kubernetes](container-service-kubernetes-walkthrough.md) per iniziare a conoscere oggi stesso il servizio contenitore di Azure.

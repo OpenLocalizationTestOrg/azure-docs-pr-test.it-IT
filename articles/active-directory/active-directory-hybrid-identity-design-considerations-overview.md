@@ -1,5 +1,5 @@
 ---
-title: "Considerazioni sulla progettazione di aaaAzure Active Directory ibrido identità - Panoramica | Documenti Microsoft"
+title: "Considerazioni di progettazione dell'identità ibrida di Azure Active Directory - Panoramica | Microsoft Docs"
 description: "Panoramica e mappa dei contenuti della guida alle considerazioni sulla progettazione di identità ibrida"
 documentationcenter: 
 services: active-directory
@@ -14,45 +14,45 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/18/2017
 ms.author: billmath
-ms.openlocfilehash: 10aacb04c90abd100eb56d7c44d590946b052f18
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e2a70f2474298618dd8ee11c583f8f445d7eba7d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-active-directory-hybrid-identity-design-considerations"></a>Considerazioni di progettazione dell'identità ibrida di Azure Active Directory 
-Proliferazione sono dispositivi basati su consumer HelloWorld aziendali e applicazioni basate su cloud di software-as-a-service (SaaS) sono tooadopt semplice. Come risultato, mantenere il controllo sull’accesso alle applicazioni degli utenti tra centri dati interni e piattaforme cloud è arduo.  
+I dispositivi basati sull’utente stanno proliferando nel mondo aziendale, e le applicazioni software come servizio (SaaS) basate sul cloud sono facili da utilizzare. Come risultato, mantenere il controllo sull’accesso alle applicazioni degli utenti tra centri dati interni e piattaforme cloud è arduo.  
 
-Soluzioni di gestione identità Microsoft span locale e le funzionalità basate su cloud, la creazione di una singola identità utente per l'autenticazione e autorizzazione tooall risorse, indipendentemente dalla posizione. Tutto questo viene chiamato Identità ibrida. Esistono diverse opzioni di progettazione e configurazione per Gestione identità ibride con le soluzioni Microsoft, e in alcuni casi potrebbe essere difficile toodetermine quale combinazione soddisfi meglio alle esigenze di hello dell'organizzazione. 
+Le soluzioni di gestione delle identità di Microsoft abbracciano funzionalità locali e basate sul cloud, creando una singola identità utente per l’autenticazione e l’autorizzazione per tutte le risorse, indipendentemente dalla loro ubicazione. Tutto questo viene chiamato Identità ibrida. Esistono diverse opzioni di progettazione e configurazione per le identità ibride che utilizzano soluzioni Microsoft e in alcuni casi può essere difficile determinare quale combinazione soddisfa al meglio le necessità dell’organizzazione. 
 
-Questa Guida di considerazioni sulla progettazione di identità ibride consentono toounderstand come una soluzione con identità ibrida che meglio si adatta a tecnologia e business hello toodesign necessario per l'organizzazione.  Questa guida illustra in dettaglio una serie di passaggi e attività che è possibile seguire toohelp si progetta una soluzione con identità ibrida che soddisfi requisiti specifici dell'organizzazione. Nei passaggi hello e nelle attività Guida hello verrà presentate le tecnologie rilevanti hello e funzionalità opzioni disponibile tooorganizations toomeet funzionale e qualità del servizio (ad esempio disponibilità, scalabilità, prestazioni, gestibilità e sicurezza) requisiti del livello. 
+Questa Guida alle considerazioni di progettazione dell’entità ibrida aiuta a capire come progettare la soluzione con identità ibrida che soddisfa al meglio le necessità commerciali e tecnologiche dell’organizzazione.  Questa guida presenta una serie di passaggi e attività che possono essere seguiti per progettare una soluzione con identità ibrida che soddisfa i requisiti specifici della propria organizzazione. Nel corso dei passaggi e delle attività, la guida presenta tecnologie rilevanti e opzioni delle funzionalità disponibili per le organizzazioni per soddisfare i requisiti di qualità funzionale e del servizio (come disponibilità, scalabilità, prestazioni, maneggevolezza e sicurezza). 
 
-In particolare, gli obiettivi di Guida Considerazioni sulla progettazione identità ibrida hello sono hello tooanswer seguenti domande: 
+In particolare, la finalità della guida alle considerazioni sulla progettazione dell’identità ibrida è quella di rispondere alle seguenti domande: 
 
-* Operazioni di domande necessarie tooask e rispondere toodrive una progettazione specifica identità ibrida per una tecnologia o il dominio problematico che meglio soddisfa i requisiti?
-* La sequenza di attività deve è possibile completare toodesign una soluzione con identità ibrida per hello tecnologia o il dominio problematico? 
-* Quali opzioni di configurazione e di tecnologia di identità ibrida sono disponibili toohelp me soddisfare i requisiti? Quali sono i compromessi tra tali opzioni hello in modo che è possibile selezionare l'opzione migliore hello per la mia azienda?
+* Quali domande e risposte sono necessarie per guidare una specifica progettazione di una identità ibrida che permetta di avere la migliore tecnologia o risoluzione dei problemi in grado di soddisfare i propri requisiti?
+* Quale sequenza di attività deve essere portata a termine per progettare una soluzione con identità ibrida che permetta di avere la migliore tecnologia o risoluzione dei problemi? 
+* Quale tecnologia con identità ibrida o opzioni di configurazione sono disponibili per soddisfare i propri requisiti? Quali sono i compromessi tra queste opzioni in modo che si possa selezionare la migliore opzione per il proprio business?
 
 ## <a name="who-is-this-guide-intended-for"></a>A chi si rivolge questa guida?
  CIO, CITO, Chief Identity Architects, Enterprise Architects e IT Architects responsabili per la progettazione di una soluzione con identità ibrida per medie o grandi organizzazioni.
 
 ## <a name="how-can-this-guide-help-you"></a>Come può essere d’aiuto questa guida?
-È possibile usare questa guida toounderstand toodesign una soluzione con identità ibrida che è in grado di toointegrate un cloud basati su sistema di gestione identità con corrente identità soluzione locale. 
+E’ possibile utilizzare la guida per capire come progettare una soluzione con identità ibrida che possa integrare un sistema di gestione delle identità basato sul cloud alla propria soluzione con identità locale. 
 
-Hello seguente grafico mostra un esempio di una soluzione con identità ibrida che consente agli amministratori IT toomanage toointegrate corrente Windows Server Active Directory soluzione locale con Microsoft Azure Active Directory tooenable utenti toouse singolo Sign-On (SSO) in applicazioni che si trovano nel cloud hello e in locale.
+Il seguente grafico mostra un esempio di soluzione con identità ibrida che permette agli amministratori IT di integrare la propria soluzione Windows Server Active Directory in locale con Microsoft Azure Active Directory per permettere agli utenti di utilizzare Single Sign-On (SSO) nelle applicazioni situate nel cloud e in locale.
 
 ![](./media/hybrid-id-design-considerations/hybridID-example.png)
 
-Hello sopra illustrazione è riportato un esempio di una soluzione con identità ibrida che si avvale di cloud services toointegrate con funzionalità locali in ordine tooprovide un processo di autenticazione degli utenti finali di esperienza single toohello e toofacilitate IT gestione tali risorse. Anche se può trattarsi di uno scenario molto comune, progettazione identità ibrida di ogni organizzazione è probabilmente toobe diversa hello esempio illustrato nella figura 1 a causa di requisiti toodifferent. 
+L’illustrazione precedente è un esempio di soluzione con identità ibrida che sta spingendo i servizi cloud a integrare funzionalità locali per fornire un’esperienza unica di autenticazione all’utente finale e facilitare l’informatica nella gestione di queste risorse. Sebbene questo possa essere uno scenario molto comune, il progetto di identità ibrida di ogni organizzazione è diverso dall’esempio illustrato nella Figura 1 poiché ogni organizzazione presenta diversi requisiti. 
 
-Questa guida fornisce una serie di passaggi e attività che è possibile seguire toodesign una soluzione con identità ibrida che soddisfi requisiti specifici dell'organizzazione. Nel corso di hello seguenti passaggi e attività, funzionalità e tecnologie pertinenti hello Visualizza Guida hello opzioni disponibile tooyou toomeet funzionali e di servizio requisiti di qualità per l'organizzazione.
+Questa guida fornisce una serie di passaggi e attività che possono essere seguiti per progettare una soluzione con identità ibrida che soddisfa i requisiti specifici della propria organizzazione. Nel corso dei passaggi e delle attività, la guida presenta tecnologie rilevanti e opzioni delle funzionalità disponibili per soddisfare i requisiti di qualità delle funzionalità e del servizio della propria organizzazione.
 
 **Presupposti**: Avere esperienza con Windows Server, Servizi di Dominio di Active Directory e Azure Active Directory. In questo documento, si presuppone che il lettore cerchi il modo in cui queste soluzioni possano soddisfare le proprie necessità commerciali nella propria soluzione o in una soluzione integrata.
 
 ## <a name="design-considerations-overview"></a>Panoramica delle considerazioni di progettazione
-Questo documento fornisce un set di passaggi e attività che è possibile seguire toodesign una soluzione con identità ibrida che meglio soddisfa le esigenze. Hello passaggi sono presentati in una sequenza ordinata. Considerazioni sulla progettazione che apprese nei passaggi successivi potrebbero richiedere toochange decisioni che prese nei passaggi precedenti, tuttavia, a causa di tooconflicting scelte di progettazione. Viene eseguito ogni tentativo di tooalert di conflitti di progettazione toopotential documento hello. 
+Questa guida presenta una serie di passaggi e attività che possono essere seguiti per progettare una soluzione con identità ibrida che soddisfi i propri requisiti. Questi passaggi sono presentati in sequenza ordinata: Tuttavia, le considerazioni sulla progettazione presenti nei passaggi successivi possono richiedere il cambiamento di decisioni prese nei passaggi precedenti a causa di scelte di progettazione conflittuali. Nel corso della documentazione è stato fatto il possibile per segnalare all’utente potenziali conflitti di progettazione. 
 
-Arriverà a progettazione hello che meglio soddisfa le esigenze solo dopo l'iterazione nei passaggi hello come numero di volte necessario tooincorporate tutte hello considerazioni illustrate nel documento hello. 
+Si otterrà il progetto che soddisfa al meglio i propri requisiti solo dopo aver eseguito l’iterazione nei passaggi tutte le volte necessarie ad incorporare tutte le considerazioni del documento. 
 
 | Fase identità ibrida | Elenco argomenti |
 | --- | --- |
@@ -61,5 +61,5 @@ Arriverà a progettazione hello che meglio soddisfa le esigenze solo dopo l'iter
 | Pianificare il ciclo di vita dell’identità ibrida |[Determinare le attività per la soluzione ibrida di gestione delle identità](active-directory-hybrid-identity-design-considerations-hybrid-id-management-tasks.md) <br> [Gestione della sincronizzazione](active-directory-hybrid-identity-design-considerations-hybrid-id-management-tasks.md)<br> [Determinare la strategia di adozione di una soluzione per la gestione di un'identità ibrida](active-directory-hybrid-identity-design-considerations-lifecycle-adoption-strategy.md) |
 
 ## <a name="download-this-guide"></a>Scaricare questa guida
-È possibile scaricare una versione in formato pdf della Guida di considerazioni sulla progettazione di identità ibrida hello da hello [raccolta Technet](https://gallery.technet.microsoft.com/Azure-Hybrid-Identity-b06c8288). 
+È possibile scaricare una versione pdf della Guida alle considerazioni sulla progettazione di identità ibride di [raccolta Technet](https://gallery.technet.microsoft.com/Azure-Hybrid-Identity-b06c8288). 
 

@@ -1,6 +1,6 @@
 ---
-title: aaaCreate viste tooanalyze dati di OMS Log Analitica | Documenti Microsoft
-description: "Visualizza finestra di progettazione nel Log Analitica consente personalizzato toocreate viste che vengono visualizzate nel portale OMS e Azure hello e contengono diverse visualizzazioni dei dati nel repository OMS hello. In questo articolo è presentata una panoramica su Progettazione viste e sulle procedure per creare e modificare viste personalizzate."
+title: Creare viste per analizzare i dati in Log Analytics di OMS | Documentazione Microsoft
+description: "Progettazione viste di Log Analytics consente di creare viste personalizzate che vengono visualizzate nel portale di OMS e di Azure e contengono visualizzazioni diverse dei dati nel repository di OMS. In questo articolo è presentata una panoramica su Progettazione viste e sulle procedure per creare e modificare viste personalizzate."
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -14,87 +14,87 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: bwren
-ms.openlocfilehash: 40b4bfef50d70e4479b6cae16abfa8ec33d1a2f1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e3c463d749dc4179df58286b9bb75584880a6bc6
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="use-view-designer-toocreate-custom-views-in-log-analytics"></a>Utilizzare le visualizzazioni personalizzate di toocreate Visualizza finestra di progettazione in Log Analitica
-Hello Visualizza finestra di progettazione in [Log Analitica](log-analytics-overview.md) consente toocreate le visualizzazioni personalizzate nella console OMS hello contenenti visualizzazioni diverse dei dati nel repository OMS hello. In questo articolo è presentata una panoramica su Progettazione viste e sulle procedure per creare e modificare viste personalizzate.
+# <a name="use-view-designer-to-create-custom-views-in-log-analytics"></a>Usare Progettazione viste per creare viste personalizzate in Log Analytics
+Progettazione viste di [Log Analytics](log-analytics-overview.md) consente di creare viste personalizzate nella console di OMS contenenti visualizzazioni diverse dei dati nel repository di OMS. In questo articolo è presentata una panoramica su Progettazione viste e sulle procedure per creare e modificare viste personalizzate.
 
 Altri articoli disponibili su Progettazione viste sono:
 
-* [Riquadro riferimento](log-analytics-view-designer-tiles.md) -riferimento delle impostazioni di hello per ognuna delle hello riquadri toouse disponibili nelle visualizzazioni personalizzate.
-* [Riferimento alla parte visualizzazione](log-analytics-view-designer-parts.md) -riferimento delle impostazioni di hello per ognuna delle hello riquadri toouse disponibili nelle visualizzazioni personalizzate.
+* [Informazioni di riferimento sul riquadro](log-analytics-view-designer-tiles.md): informazioni di riferimento sulle impostazioni relative a ciascun riquadro disponibile per l'uso nelle viste personalizzate.
+* [Informazioni di riferimento sulle parti della visualizzazione](log-analytics-view-designer-parts.md): informazioni di riferimento sulle impostazioni relative a ciascun riquadro disponibile per l'uso nelle viste personalizzate.
 
 >[!NOTE]
-> Se l'area di lavoro è stato aggiornato toohello [Analitica Log nuovo linguaggio di query](log-analytics-log-search-upgrade.md), le query in tutte le visualizzazioni devono essere scritti in hello [nuovo linguaggio di query](https://go.microsoft.com/fwlink/?linkid=856078).  Le viste che sono state create prima dell'area di lavoro di hello è stato aggiornato sarà venga convertito.
+> Se l'area di lavoro è stata aggiornata al [nuovo linguaggio di query di Log Analytics](log-analytics-log-search-upgrade.md), le query in tutte le viste devono essere scritte nel [nuovo linguaggio di query](https://go.microsoft.com/fwlink/?linkid=856078).  Le viste create prima dell'aggiornamento dell'area di lavoro verranno automaticamente convertite.
 
 ## <a name="concepts"></a>Concetti
-Viste create con progettazione vista hello contengono elementi hello hello nella tabella seguente.
+Le viste create con Progettazione viste contengono gli elementi riportati nella tabella seguente.
 
 | Parte: | Descrizione |
 |:--- |:--- |
-| Riquadro |Visualizzato nel dashboard Panoramica Analitica Log principale hello.  Include un riepilogo visual informazioni hello contenute in hello visualizzazione personalizzata.  Diversi tipi di sezioni forniscono visualizzazioni diverse di record nel repository OMS hello.  Fare clic su hello hello tooopen riquadro Vista personalizzata. |
-| Vista personalizzata |Quando hello utente fa clic sul riquadro hello.  Contiene una o più parti della visualizzazione. |
-| Parti della visualizzazione |Visualizzazione dei dati nel repository OMS hello in base a uno o più [log ricerche](log-analytics-log-searches.md).  La maggior parte delle parti includerà un'intestazione che fornisce una visualizzazione di alto livello e un elenco di risultati superiore hello.  Tipi di parte diversa forniscono visualizzazioni diverse di record nel repository OMS hello.  Fare clic sugli elementi hello parte tooperform una ricerca di log che fornisce i record dettagliati. |
+| Riquadro |Viene visualizzato nel dashboard principale di panoramica di Log Analytics.  Include un riepilogo visivo delle informazioni contenute nella vista personalizzata.  Diversi tipi di riquadri forniscono diverse visualizzazioni di record nel repository di OMS.  Fare clic sul riquadro per aprire la vista personalizzata. |
+| Vista personalizzata |Viene visualizzato quando l'utente fa clic sul riquadro.  Contiene una o più parti della visualizzazione. |
+| Parti della visualizzazione |La visualizzazione dei dati nel repository di OMS in base a una o più [ricerche nei log](log-analytics-log-searches.md).  Le parti includeranno perlopiù un'intestazione che offre una visualizzazione di alto livello e un elenco dei risultati principali.  Diversi tipi di parti forniscono diverse visualizzazioni di record nel repository di OMS.  Fare clic sugli elementi della parte per eseguire una ricerca nei log che restituisca record dettagliati. |
 
 ![Panoramica di Progettazione viste](media/log-analytics-view-designer/overview.png)
 
-## <a name="add-view-designer-tooyour-workspace"></a>Aggiungere l'area di lavoro di progettazione tooyour
-Mentre Progettazione viste è disponibile in anteprima, è necessario aggiungerla tooyour dell'area di lavoro selezionando **le funzionalità di anteprima** in hello **impostazioni** sezione del portale OMS hello.
+## <a name="add-view-designer-to-your-workspace"></a>Aggiunta di Progettazione viste all'area di lavoro
+Mentre Progettazione viste è in modalità di anteprima, è necessario aggiungerla all'area di lavoro selezionando le **funzionalità di anteprima** nella sezione **Impostazioni** del portale di OMS.
 
 ![Abilitazione dell'anteprima](media/log-analytics-view-designer/preview.png)
 
 ## <a name="creating-and-editing-views"></a>Creazione e modifica di viste
 ### <a name="create-a-new-view"></a>Creazione di una nuova vista
-Aprire una nuova vista in hello **Visualizza finestra di progettazione** facendo clic su Visualizza finestra di progettazione hello riquadro nel dashboard OMS principale hello.
+Aprire una nuova vista in **Progettazione viste** facendo clic sul riquadro Progettazione viste nel dashboard principale di OMS.
 
 ![Riquadro Progettazione viste](media/log-analytics-view-designer/view-designer-tile.png)
 
 ### <a name="edit-an-existing-view"></a>Modifica di una vista esistente
-una vista esistente in visualizzazione progettazione, hello aprire visualizzazione facendo clic su un riquadro nel dashboard OMS principale hello hello tooedit.  Quindi fare clic su hello **modifica** pulsante visualizzazione hello tooopen hello Visualizza finestra di progettazione.
+Per modificare una vista esistente in Progettazione viste, aprirla facendo clic sul riquadro nel dashboard principale di OMS.  Fare clic sul pulsante **Modifica** per aprire la vista in Progettazione viste.
 
 ![Modifica di una vista](media/log-analytics-view-designer/menu-edit.png)
 
 ### <a name="clone-an-existing-view"></a>Clonazione di una vista esistente
-Quando si clona una vista, crea una nuova vista e verrà aperto in visualizzazione Progettazione hello.  nuova vista Hello avrà hello stesso nome come hello originale con fine toohello aggiunto "Copia".  una vista, aprire tooclone hello vista esistente facendo clic su un riquadro nel dashboard OMS principale hello.  Quindi fare clic su hello **Clone** pulsante visualizzazione hello tooopen hello Visualizza finestra di progettazione.
+Quando si clona una vista, viene creata una nuova vista che viene aperta in Progettazione viste.  La nuova vista avrà lo stesso nome dell'originale, con l'aggiunta di "Copia" alla fine.  Per clonare una vista, aprire quella esistente facendo clic sul relativo riquadro nel dashboard principale di OMS.  Fare clic sul pulsante **Clona** per aprire la vista in Progettazione viste.
 
 ![Clonazione di una vista](media/log-analytics-view-designer/edit-menu-clone.png)
 
 ### <a name="delete-an-existing-view"></a>Eliminazione di una vista esistente
-toodelete una vista esistente, aprire hello visualizzazione facendo clic su un riquadro nel dashboard OMS principale hello.  Quindi fare clic su hello **modifica** pulsante visualizzazione hello tooopen hello Visualizza finestra di progettazione e fare clic su **Elimina visualizzazione**.
+Per eliminare una vista esistente, aprirla facendo clic sul relativo riquadro nel dashboard principale di OMS.  Fare clic sul pulsante **Modifica** per aprire la vista in Progettazione viste, quindi selezionare **Elimina vista**.
 
 ![Eliminazione di una vista](media/log-analytics-view-designer/edit-menu-delete.png)
 
 ### <a name="export-an-existing-view"></a>Esportazione di una vista esistente
-È possibile esportare un file JSON tooa di visualizzazione che è possibile importare in un'altra area di lavoro o utilizzare un [modello di Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md).  tooexport una vista esistente, aprire hello visualizzazione facendo clic su un riquadro nel dashboard OMS principale hello.  Quindi fare clic su hello **esportare** pulsante toocreate un file nella cartella di download del browser hello.  nome di Hello del file hello sarà hello nome della vista hello con estensione hello *omsview*.
+È possibile esportare una vista in un file JSON che può essere importato in un'altra area di lavoro o usare in un [modello di Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md).  Per esportare una vista esistente, aprirla facendo clic sul relativo riquadro nel dashboard principale di OMS.  Fare clic sul pulsante **Esporta** per creare un file nella cartella di download del browser.  Il nome del file corrisponderà al nome della vista con estensione *omsview*.
 
 ![Esportazione di una vista](media/log-analytics-view-designer/edit-menu-export.png)
 
 ### <a name="import-an-existing-view"></a>Importazione di una vista esistente
-È possibile importare un file *omsview* precedentemente esportato da un altro gruppo di gestione.  tooimport una vista esistente, creare innanzitutto una nuova vista.  Quindi fare clic su hello **importazione** pulsante e seleziona hello *omsview* file.  configurazione di Hello nel file hello verrà copiati in una vista esistente hello.
+È possibile importare un file *omsview* precedentemente esportato da un altro gruppo di gestione.  Per importare una vista esistente, creare innanzitutto una nuova vista.  Fare clic sul pulsante **Importa** e selezionare il file *omsview*.  La configurazione nel file verrà copiata nella vista esistente.
 
 ![Esportazione di una vista](media/log-analytics-view-designer/edit-menu-import.png)
 
 ## <a name="working-with-view-designer"></a>Uso di Progettazione viste
-Hello Visualizza finestra di progettazione dispone di tre riquadri.  Hello **progettazione** riquadro rappresenta la visualizzazione personalizzata hello.  Quando si aggiungono riquadri e le parti da hello **controllo** riquadro toohello **progettazione** riquadro sono aggiunti toohello visualizzazione.  Hello **proprietà** riquadro verranno visualizzati le proprietà di hello per riquadro hello o parte selezionata.
+Progettazione viste presenta tre riquadri.  Il riquadro **Progettazione** rappresenta la vista personalizzata.  Quando si aggiungono riquadri e parti da **Controllo** a **Progettazione**, vengono aggiunti anche alla vista.  Nel riquadro **Proprietà** verranno visualizzate le proprietà per il riquadro o la parte selezionati.
 
 ![Progettazione viste](media/log-analytics-view-designer/view-designer-screenshot.png)
 
 ### <a name="configure-view-tile"></a>Configurazione del riquadro di vista
-Una vista personalizzata può avere solo un singolo riquadro.  Seleziona hello **riquadro** scheda hello **controllo** riquadro tooview hello corrente riquadro o selezionarne uno alternativo.  Hello **proprietà** riquadro verranno visualizzati proprietà hello per tile corrente hello.  Configurare le proprietà del riquadro hello in base toohello informazioni dettagliate in hello [riquadro riferimento](log-analytics-view-designer-tiles.md) e fare clic su **applica** toosave modifiche.
+Una vista personalizzata può avere solo un singolo riquadro.  Selezionare la scheda **Riquadro** in **Controllo** per visualizzare il riquadro corrente o selezionarne uno alternativo.  Nel riquadro **Proprietà** verranno visualizzate le proprietà per il riquadro corrente.  Configurare le proprietà del riquadro in base alle informazioni dettagliate in [Informazioni di riferimento sul riquadro](log-analytics-view-designer-tiles.md) e fare clic su **Applica** per salvare le modifiche.
 
 ### <a name="configure-visualization-parts"></a>Configurazione delle parti della visualizzazione
-Una vista può includere qualsiasi numero di parti della visualizzazione.  Seleziona hello **vista** scheda e quindi una visualizzazione parte tooadd toohello visualizzazione.  Hello **proprietà** riquadro verranno visualizzati proprietà hello part hello selezionato.  Configurare la visualizzazione di hello proprietà in base toohello informazioni dettagliate in hello [riferimento parte visualizzazione](log-analytics-view-designer-parts.md) e fare clic su **applica** toosave modifiche.
+Una vista può includere qualsiasi numero di parti della visualizzazione.  Selezionare il riquadro **Vista**, quindi una parte della visualizzazione da aggiungere alla vista.  Nel riquadro **Proprietà** verranno visualizzate le proprietà per la parte selezionata.  Configurare le proprietà della vista in base alla informazioni dettagliate in [Informazioni di riferimento sulle parti della visualizzazione](log-analytics-view-designer-parts.md) e fare clic su **Applica** per salvare le modifiche.
 
 ### <a name="delete-a-visualization-part"></a>Eliminazione di una parte della visualizzazione
-È possibile rimuovere una parte di visualizzazione dalla visualizzazione hello facendo hello **X** pulsante hello angolo superiore destro della parte hello.
+È possibile rimuovere una parte della visualizzazione dalla vista facendo clic sul pulsante **X** nell'angolo superiore destro della parte.
 
 ### <a name="rearrange-visualization-parts"></a>Ridisposizione delle parti della visualizzazione
-Le viste hanno solo di una riga di parti della visualizzazione.  Ridisporre parti esistenti in una visualizzazione facendo clic e trascinamento tooa nuova posizione.
+Le viste hanno solo di una riga di parti della visualizzazione.  Ridisporre le parti esistenti in una vista facendo clic e trascinandole in una nuova posizione.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Aggiungere [riquadri](log-analytics-view-designer-tiles.md) tooyour di visualizzazione personalizzata.
-* Aggiungere [visualizzazione parti](log-analytics-view-designer-parts.md) tooyour di visualizzazione personalizzata.
+* Aggiungere [Riquadri](log-analytics-view-designer-tiles.md) alla vista personalizzata.
+* Aggiungere [parti della visualizzazione](log-analytics-view-designer-parts.md) alla vista personalizzata.

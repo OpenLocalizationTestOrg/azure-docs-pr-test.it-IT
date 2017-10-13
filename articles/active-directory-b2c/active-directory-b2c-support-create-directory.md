@@ -14,24 +14,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/06/2016
 ms.author: swkrish
-ms.openlocfilehash: 4bb7ec6ec67d3368a0e36c098f290f582510714a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 81af4536fc223319369aff262d42149cfbf1a1e9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="troubleshoot-creating-an-azure-active-directory-or-azure-active-directory-b2c-tenant"></a>Risoluzione dei problemi per la creazione di un tenant di Azure Active Directory o di un tenant di Azure Active Directory B2C 
 
 ## <a name="create-an-azure-ad-tenant"></a>Come creare un tenant di Azure Active Directory
-Se è possibile creare un tenant Azure Active Directory (Azure AD) nel primo tentativo di hello, riprovare. Se hello problema persiste, contattare il supporto tecnico di Azure.
+Se non è possibile creare un tenant Azure Active Directory (Azure AD) al primo tentativo, riprovare. Se il problema persiste, contattare il supporto di Azure.
 
 ## <a name="create-an-azure-ad-b2c-tenant"></a>Creare un tenant di Azure AD B2C
-Se si verificano problemi quando si [creare un Active Directory B2C di Azure (Azure AD B2C) tenant](active-directory-b2c-get-started.md), provare hello le opzioni seguenti:
+Se si verificano problemi quando si [crea un tenant di Azure Active Directory B2C (Azure AD B2C)](active-directory-b2c-get-started.md), provare le seguenti opzioni:
 
-* Se il tenant di Azure Active Directory B2C hello non viene visualizzato nell'elenco di tenant, provare di nuovo tenant hello toocreate.
-* Se il tenant di Azure Active Directory B2C hello visualizzati nell'elenco di tenant e viene visualizzato hello seguente messaggio di errore, eliminare tenant hello e crearlo di nuovo:
+* Se il tenant di Azure AD B2C non viene visualizzato nell'elenco di tenant, riprovare a creare il tenant.
+* Se il tenant di Azure Active Directory B2C viene visualizzato nell'elenco di tenant e compare il seguente messaggio di errore, eliminare il tenant e crearlo di nuovo:
 
-    "Impossibile completare la creazione di hello del tenant B2C hello 'contosob2c'. Fare clic su questo [collegamento](http://go.microsoft.com/fwlink/?LinkID=624192&clcid=0x409) per maggiori informazioni. "
-* Vi sono problemi noti quando si elimina un esistente AD B2C Azure tenant e ricrearlo con hello stesso nome di dominio. Quando si crea un nuovo tenant di Azure AD B2C, è necessario utilizzare un nome di dominio diverso.
+    "Impossibile completare la creazione del tenant B2C 'contosob2c'. Fare clic su questo [collegamento](http://go.microsoft.com/fwlink/?LinkID=624192&clcid=0x409) per maggiori informazioni. "
+* Si verificano problemi noti quando si elimina un tenant Azure AD B2C esistente e lo si crea nuovamente utilizzando lo stesso nome di dominio. Quando si crea un nuovo tenant di Azure AD B2C, è necessario utilizzare un nome di dominio diverso.
 * Se nessuna di queste soluzioni risolve il problema, contattare il supporto di Azure. Per maggiori informazioni, vedere [Presentare richieste di supporto per Azure AD B2C](active-directory-b2c-support.md).
 

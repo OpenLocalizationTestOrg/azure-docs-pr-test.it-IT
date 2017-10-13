@@ -1,5 +1,5 @@
 ---
-title: Data Lake archivio ottimizzazione linee guida sulle prestazioni aaaAzure | Documenti Microsoft
+title: Linee guida per l'ottimizzazione delle prestazioni di Azure Data Lake Store | Microsoft Docs
 description: Linee guida per l'ottimizzazione delle prestazioni di Azure Data Lake Store
 services: data-lake-store
 documentationcenter: 
@@ -14,94 +14,94 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/30/2017
 ms.author: stewu
-ms.openlocfilehash: 939faa068c0f81d18d9533956f4d336bc4d0cbe3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 900447ab931f15e4d27aedd525eba7881ba813b2
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tuning-azure-data-lake-store-for-performance"></a>Ottimizzazione delle prestazioni di Azure Data Lake Store
 
-Data Lake Store supporta la velocità effettiva elevata per l'analisi con uso intensivo dell'I/O e lo spostamento dei dati.  In archivio Azure Data Lake utilizzando tutti disponibile velocità effettiva: quantità hello di dati che possono essere letti o scritti al secondo: è importante tooget ottenere prestazioni ottimali hello.  Questo risultato viene ottenuto eseguendo il numero massimo possibile di operazioni di lettura e scrittura in parallelo.
+Data Lake Store supporta la velocità effettiva elevata per l'analisi con uso intensivo dell'I/O e lo spostamento dei dati.  In Azure Data Lake Store è importante poter usare tutta la velocità effettiva disponibile, ovvero la quantità di dati che possono essere letti o scritti al secondo, per ottenere prestazioni ottimali.  Questo risultato viene ottenuto eseguendo il numero massimo possibile di operazioni di lettura e scrittura in parallelo.
 
 ![Prestazioni di Data Lake Store](./media/data-lake-store-performance-tuning-guidance/throughput.png)
 
-Archivio Azure Data Lake adattabile tooprovide hello necessaria una velocità effettiva per scenario analitica tutti. Per impostazione predefinita, un account archivio Azure Data Lake fornisce automaticamente la velocità effettiva sufficiente esigenze hello toomeet di un'ampia categoria di casi di utilizzo. Per i casi in cui i clienti eseguire in limite predefinito di hello hello hello account ADLS può essere configurato tooprovide maggiore velocità effettiva contattando il supporto tecnico Microsoft.
+Azure Data Lake Store può essere ridimensionato in modo da fornire la velocità effettiva necessaria per qualsiasi scenario di analisi. Per impostazione predefinita, un account di Azure Data Lake Store fornisce automaticamente la velocità effettiva sufficiente per soddisfare le esigenze di un'ampia categoria di casi d'uso. Per i casi in cui i clienti raggiungono il limite predefinito, è possibile contattare il supporto tecnico Microsoft per configurare l'account ADLS in modo da ottenere maggiore velocità effettiva.
 
 ## <a name="data-ingestion"></a>Inserimento di dati
 
-Durante l'inserimento di dati da un tooADLS di sistema di origine, è importante tooconsider che hello tooADLS di connettività di rete, hardware di rete di origine e hardware di origine può essere collo di bottiglia hello.  
+Durante l'inserimento di dati da un sistema di origine ad ADLS, è importante tenere presente che l'hardware di origine, l'hardware di rete di origine e la connettività di rete ad ADLS può costituire il collo di bottiglia.  
 
 ![Prestazioni di Data Lake Store](./media/data-lake-store-performance-tuning-guidance/bottleneck.png)
 
-È importante tooensure che hello lo spostamento dei dati non è interessato da tali fattori.
+È importante verificare che questi fattori non influiscano sullo spostamento dei dati.
 
 ### <a name="source-hardware"></a>Hardware di origine
 
-Se si utilizza il computer locale o macchine virtuali in Azure, è necessario scegliere con attenzione hardware appropriato hello. Per l'Hardware del disco di origine, preferisce tooHDDs unità SSD e selezionare l'hardware del disco con dischi più veloci. Per l'Hardware di rete di origine, utilizzare le schede NIC tempi hello.  In Azure, si consiglia di macchine virtuali di Azure D14 disco in modo appropriato potente hello e hardware di rete.
+Indipendentemente dall'uso di computer locali o macchine virtuali in Azure, è necessario scegliere con attenzione l'hardware appropriato. Per l'hardware del disco di origine, preferire le unità SSD alle HDD e scegliere hardware con spindle più veloci. Per l'hardware di rete di origine, usare le schede di interfaccia di rete più veloci possibili.  In Azure è consigliabile usare macchine virtuali Azure D14 che sono dotate di hardware di rete e del disco sufficientemente potente.
 
-### <a name="network-connectivity-tooazure-data-lake-store"></a>Archivio tooAzure Data Lake di connettività di rete
+### <a name="network-connectivity-to-azure-data-lake-store"></a>Connettività di rete ad Azure Data Lake Store
 
-connettività di rete Hello tra i dati di origine e l'archivio Azure Data Lake può talvolta essere collo di bottiglia hello. Quando i dati di origine sono in locale, valutare l'opportunità di usare un collegamento dedicato con [Azure ExpressRoute](https://azure.microsoft.com/en-us/services/expressroute/) . Se i dati di origine in Azure, hello prestazioni saranno migliori quando i dati di hello sono hello stessa area Azure hello archivio Data Lake.
+La connettività di rete tra i dati di origine e Azure Data Lake Store può talvolta costituire il collo di bottiglia. Quando i dati di origine sono in locale, valutare l'opportunità di usare un collegamento dedicato con [Azure ExpressRoute](https://azure.microsoft.com/en-us/services/expressroute/) . Se i dati di origine sono in Azure, si ottengono prestazioni ottimali quando i dati si trovano nella stessa area di Azure usata da Data Lake Store.
 
 ### <a name="configure-data-ingestion-tools-for-maximum-parallelization"></a>Configurare gli strumenti di inserimento di dati per la massima parallelizzazione
 
-Una volta siano risolti hardware origine hello e colli di bottiglia connettività precedente di rete, si è pronti tooconfigure gli strumenti di inserimento. Hello nella tabella seguente sono riepilogate le impostazioni di chiave hello di più strumenti comuni di inserimento e fornisce approfondita ottimizzazione delle prestazioni degli articoli per essi.  toolearn ulteriori informazioni su quale strumento toouse per lo scenario, visitare questo [articolo](https://docs.microsoft.com/en-us/azure/data-lake-store/data-lake-store-data-scenarios).
+Dopo aver risolto i colli di bottiglia provocati dall'hardware di origine e dalla connettività di rete, si è pronti per configurare gli strumenti di inserimento. La tabella seguente presenta un riepilogo delle impostazioni delle chiavi per diversi strumenti di inserimento comuni e include collegamenti ad articoli di approfondimento sull'ottimizzazione delle prestazioni.  Per altre informazioni sullo strumento da usare per uno scenario specifico, vedere questo [articolo](https://docs.microsoft.com/en-us/azure/data-lake-store/data-lake-store-data-scenarios).
 
 | Strumento               | Impostazioni     | Altre informazioni                                                                 |
 |--------------------|------------------------------------------------------|------------------------------|
 | PowerShell       | PerFileThreadCount, ConcurrentFileCount |  [Collegamento](https://docs.microsoft.com/en-us/azure/data-lake-store/data-lake-store-get-started-powershell#performance-guidance-while-using-powershell)   |
 | AdlCopy    | Unità Azure Data Lake Analytics  |   [Collegamento](https://docs.microsoft.com/en-us/azure/data-lake-store/data-lake-store-copy-data-azure-storage-blob#performance-considerations-for-using-adlcopy)         |
 | DistCp            | -m (mapper)   | [Collegamento](https://docs.microsoft.com/en-us/azure/data-lake-store/data-lake-store-copy-data-wasb-distcp#performance-considerations-while-using-distcp)                             |
-| Data factory di Azure| parallelCopies    | [Collegamento](../data-factory/data-factory-copy-activity-performance.md)                          |
+| Data factory di Azure| parallelCopies    | [Collegamento](../data-factory/copy-activity-performance.md)                          |
 | Sqoop           | fs.azure.block.size, -m (mapper)    |   [Collegamento](https://blogs.msdn.microsoft.com/bigdatasupport/2015/02/17/sqoop-job-performance-tuning-in-hdinsight-hadoop/)        |
 
 ## <a name="structure-your-data-set"></a>Strutturare il set di dati
 
-Quando i dati vengono archiviati in archivio Data Lake, dimensioni del file hello, numero di file e la struttura di cartelle attiva un impatto sulle prestazioni.  Hello nella sezione seguente vengono descritte le procedure consigliate in queste aree.  
+Quando i dati vengono archiviati in Data Lake Store, le dimensioni dei file, il numero di file e la struttura di cartelle influiscono sulle prestazioni.  La sezione seguente descrive le procedure consigliate in queste aree.  
 
 ### <a name="file-size"></a>Dimensioni complete
 
 I motori di analisi come HDInsight e Azure Data Lake Analytics in genere gestiscono il sovraccarico a livello di singolo file.  Se quindi si archiviano i dati in molti file di piccole dimensioni, questo può influire negativamente sulle prestazioni.  
 
-Per ottenere prestazioni migliori, è in genere opportuno organizzare i dati in file di dimensioni più grandi.  Come regola generale, organizzare i set di dati in file di 256 MB o di dimensione maggiore. In alcuni casi, ad esempio immagini e dati binari, non è possibile tooprocess usarle in parallelo.  In questi casi, è consigliabile tookeep singoli file meno di 2GB.
+Per ottenere prestazioni migliori, è in genere opportuno organizzare i dati in file di dimensioni più grandi.  Come regola generale, organizzare i set di dati in file di 256 MB o di dimensione maggiore. In alcuni casi, ad esempio per le immagini e i dati binari, non è possibile eseguire l'elaborazione in parallelo  ed è quindi consigliabile mantenere la dimensione dei singoli file al di sotto di 2 GB.
 
-In alcuni casi, le pipeline di dati non dispongono di controllo sui dati non elaborati di hello che dispone di molti file di piccole dimensioni.  È consigliabile toohave processo "cooking" che genera l'errore maggiori file toouse per le applicazioni a valle.  
+Le pipeline di dati hanno talvolta un controllo limitato sui dati non elaborati costituiti da molti file di piccole dimensioni.  È pertanto consigliabile prevedere l'esecuzione di un processo che genera file di maggiori dimensioni destinati all'uso da parte delle applicazioni downstream.  
 
 ### <a name="organizing-time-series-data-in-folders"></a>Organizzazione dei dati di serie temporali in cartelle
 
-Hive e ADLA carichi di lavoro, l'eliminazione di partizione dei dati della serie temporale consente di alcune query solo un subset di dati hello che migliora le prestazioni di lettura.    
+Per i carichi di lavoro Hive e ADLA, l'eliminazione delle partizioni dei dati di serie temporali consente ad alcune query di limitare la lettura a un subset di dati, migliorando così le prestazioni.    
 
 Queste pipeline che inseriscono dati di serie temporali, posizionano spesso i file usando un sistema di denominazione molto strutturato per file e cartelle. Di seguito è riportato un esempio molto comune in cui i dati sono strutturati per data:
 
     \DataSet\YYYY\MM\DD\datafile_YYYY_MM_DD.tsv
 
-Si noti che le informazioni di data/ora hello viene visualizzato come cartelle e nel nome file hello.
+Si noti che le informazioni di data/ora vengono visualizzate sia come cartelle sia nel nome del file.
 
-Per data e ora, hello seguito è riportato un modello comune
+Per la data e l'ora, di seguito è riportato un modello comune
 
     \DataSet\YYYY\MM\DD\HH\mm\datafile_YYYY_MM_DD_HH_mm.tsv
 
-Nuovamente, scelta hello effettuata con l'organizzazione di file e cartelle hello necessario ottimizzare per hello dimensione dei file e un numero ragionevole di file in ogni cartella.
+Anche in questo caso, la scelta relativa all'organizzazione di file e cartelle deve prevedere una gestione ottimizzata dei file di maggiori dimensioni e l'inclusione di un numero ragionevole di file in ogni cartella.
 
 ## <a name="optimizing-io-intensive-jobs-on-hadoop-and-spark-workloads-on-hdinsight"></a>Ottimizzazione dei processi con uso intensivo dell'I/O nei carichi di lavoro Hadoop e Spark in HDInsight
 
-I processi rientrano in uno dei seguenti tre categorie di hello:
+I processi sono classificabili in una delle tre categorie seguenti:
 
 * **Uso intensivo della CPU.**  Questi processi hanno tempi di elaborazione lunghi e tempi di I/O minimi,  come i processi di machine learning e quelli di elaborazione del linguaggio naturale.  
 * **Uso intensivo della memoria.**  Questi processi usano grandi quantità di memoria,  come i processi di PageRank e quelli di analisi in tempo reale.  
-* **Uso intensivo dell'I/O.**  Questi processi impiegano la maggior parte del tempo a eseguire operazioni di I/O.  Un esempio comune è rappresentato da un processo di copia che esegue solo operazioni di lettura e scrittura.  Altri esempi includono i processi preparazione dei dati letti una grande quantità di dati, esegue alcune trasformazioni di dati e quindi scrive hello archivio back-toohello dati.  
+* **Uso intensivo dell'I/O.**  Questi processi impiegano la maggior parte del tempo a eseguire operazioni di I/O.  Un esempio comune è rappresentato da un processo di copia che esegue solo operazioni di lettura e scrittura.  Altri esempi includono i processi di preparazione dei dati che leggono una grande quantità di dati, eseguono alcune trasformazioni e quindi scrivono nuovamente i dati nell'archivio.  
 
-istruzioni disponibili Hello è solo applicabili tooI processi/O intensivo.
+Le linee guida seguenti sono applicabili solo ai processi con uso intensivo dell'I/O.
 
 ### <a name="general-considerations-for-an-hdinsight-cluster"></a>Considerazioni generali per un cluster HDInsight
 
-* **Versioni di HDInsight.** Per prestazioni ottimali, utilizzare l'ultima versione di hello di HDInsight.
-* **Aree.** Inserire l'archivio Data Lake di hello in hello cluster HDInsight hello stessa area.  
+* **Versioni di HDInsight.** Per prestazioni ottimali, usare la versione più recente di HDInsight.
+* **Aree.** Posizionare l'istanza di Data Lake Store nella stessa area del cluster HDInsight.  
 
-Un cluster HDInsight è composto da due nodi head e da alcuni nodi di ruolo di lavoro. Ogni nodo di lavoro fornisce un numero specifico di core e memoria, è determinata dal hello tipo di macchina virtuale.  Quando si esegue un processo, YARN è negoziatore risorse hello che alloca la memoria disponibile di hello e contenitori toocreate Core.  Ogni contenitore viene eseguito processo hello toocomplete necessarie attività di hello.  Contenitori vengono eseguiti in parallelo tooprocess attività rapidamente. È quindi possibile ottenere un miglioramento delle prestazioni eseguendo la quantità massima possibile di contenitori paralleli.
+Un cluster HDInsight è composto da due nodi head e da alcuni nodi di ruolo di lavoro. Ogni nodo di ruolo di lavoro fornisce un numero specifico di core e memoria, in base al tipo di macchina virtuale.  Quando si esegue un processo, YARN è il negoziatore di risorse che alloca la memoria e i core disponibili per creare contenitori.  Ogni contenitore esegue le attività necessarie per completare il processo.  I contenitori vengono eseguiti in parallelo per l'elaborazione rapida delle attività. È quindi possibile ottenere un miglioramento delle prestazioni eseguendo la quantità massima possibile di contenitori paralleli.
 
-Esistono tre livelli all'interno di un cluster HDInsight che possono essere ottimizzate tooincrease hello numero di contenitori e usare la velocità effettiva tutti disponibile.  
+All'interno di un cluster HDInsight sono presenti tre livelli che possono essere ottimizzati per aumentare il numero di contenitori e sfruttare tutta la velocità effettiva disponibile.  
 
 * **Livello fisico**
 * **Livello YARN**
@@ -109,33 +109,33 @@ Esistono tre livelli all'interno di un cluster HDInsight che possono essere otti
 
 ### <a name="physical-layer"></a>Livello fisico
 
-**Eseguire il cluster con più nodi e/o macchine virtuali di dimensioni maggiori.**  Un cluster di dimensioni maggiore consentirà si toorun più contenitori di YARN, come illustrato nell'immagine di hello riportata di seguito.
+**Eseguire il cluster con più nodi e/o macchine virtuali di dimensioni maggiori.**  Un cluster di dimensioni maggiori consentirà di eseguire più contenitori YARN, come illustrato nell'immagine seguente.
 
 ![Prestazioni di Data Lake Store](./media/data-lake-store-performance-tuning-guidance/VM.png)
 
-**Usare macchine virtuali con maggiore larghezza di banda di rete.**  quantità di Hello di larghezza di banda di rete può essere un collo di bottiglia, se è meno larghezza di banda di rete di velocità effettiva di archivio Data Lake.  Macchine virtuali differenti avranno dimensioni variabili della larghezza di banda di rete.  Scegliere un tipo di macchina virtuale che dispone di hello più grande possibile larghezza di banda.
+**Usare macchine virtuali con maggiore larghezza di banda di rete.**  La larghezza di banda di rete può costituire un collo di bottiglia se la larghezza di banda di rete disponibile è inferiore alla velocità effettiva di Data Lake Store.  Macchine virtuali differenti avranno dimensioni variabili della larghezza di banda di rete.  Scegliere un tipo di macchina virtuale con la massima larghezza di banda di rete possibile.
 
 ### <a name="yarn-layer"></a>Livello YARN
 
-**Usare contenitori YARN di dimensioni inferiori.**  Ridurre le dimensioni di hello di ogni toocreate contenitore YARN più contenitori con hello stessa quantità di risorse.
+**Usare contenitori YARN di dimensioni inferiori.**  Ridurre le dimensioni di ogni contenitore YARN per creare altri contenitori con la stessa quantità di risorse.
 
 ![Prestazioni di Data Lake Store](./media/data-lake-store-performance-tuning-guidance/small-containers.png)
 
-A seconda del carico di lavoro, sarà sempre necessaria una dimensione minima per i contenitori YARN. Se si sceglie un contenitore troppo piccolo, si verificheranno problemi di memoria insufficiente per i processi. In genere, la dimensione dei contenitori YARN non deve essere inferiore a 1 GB. Si tratta di contenitori YARN 3GB toosee comuni. Per alcuni carichi di lavoro, possono essere necessari contenitori YARN più grandi.  
+A seconda del carico di lavoro, sarà sempre necessaria una dimensione minima per i contenitori YARN. Se si sceglie un contenitore troppo piccolo, si verificheranno problemi di memoria insufficiente per i processi. In genere, la dimensione dei contenitori YARN non deve essere inferiore a 1 GB. I contenitori YARN hanno spesso una dimensione di 3 GB. Per alcuni carichi di lavoro, possono essere necessari contenitori YARN più grandi.  
 
-**Aumentare il numero di core per contenitore YARN.**  Aumentare il numero di hello di core allocati tooeach contenitore tooincrease hello numero di attività parallele in esecuzione in ogni contenitore.  Questa soluzione è valida per le applicazioni, come Spark, che eseguono più attività per contenitore.  Per le applicazioni, ad esempio Hive che eseguono un singolo thread in ogni contenitore, è meglio toohave più contenitori anziché più core per ogni contenitore.   
+**Aumentare il numero di core per contenitore YARN.**  Aumentare il numero di core allocati a ogni contenitore per aumentare il numero di attività parallele eseguite in ogni contenitore.  Questa soluzione è valida per le applicazioni, come Spark, che eseguono più attività per contenitore.  Per le applicazioni, come Hive, che eseguono un singolo thread in ogni contenitore, è preferibile avere più contenitori anziché più core per contenitore.   
 
 ### <a name="workload-layer"></a>Livello del carico di lavoro
 
-**Usare tutti i contenitori disponibili.**  Impostare il numero di hello di attività toobe uguale o maggiore del numero di hello di contenitori disponibili, in modo che tutte le risorse vengono utilizzate.
+**Usare tutti i contenitori disponibili.**  Impostare un numero di attività uguale o maggiore del numero di contenitori disponibili, in modo da usare tutte le risorse.
 
 ![Prestazioni di Data Lake Store](./media/data-lake-store-performance-tuning-guidance/use-containers.png)
 
-**Le attività che non vengono eseguite correttamente sono dispendiose.** Se ogni attività dispone di una grande quantità di dati tooprocess, errore di un'attività risultati in un nuovo tentativo di costoso.  Pertanto, è preferibile toocreate altre attività, ognuno dei quali elabora una piccola quantità di dati.
+**Le attività che non vengono eseguite correttamente sono dispendiose.** Se ogni attività deve elaborare una grande quantità di dati, l'esito negativo di un'attività ha come risultato l'esecuzione di un nuovo tentativo impegnativo in termini di risorse.  È quindi preferibile creare un numero maggiore di attività, ognuna delle quali elabora una piccola quantità di dati.
 
-In aggiunta toohello linee guida generali sopra, ogni applicazione dispone di parametri diversi tootune disponibili per l'applicazione specifica. tabella Hello riportata di seguito sono elencate alcune hello parametri e i collegamenti tooget avviato con l'ottimizzazione delle prestazioni per ogni applicazione.
+Oltre alle linee guida generali sopra illustrate, ogni applicazione dispone di diversi parametri che è possibile ottimizzare. La tabella seguente elenca alcuni parametri e collegamenti per ottimizzare con facilità le prestazioni di ogni applicazione.
 
-| Carico di lavoro               | Attività tooset parametro                                                         |
+| Carico di lavoro               | Parametro per impostare le attività                                                         |
 |--------------------|-------------------------------------------------------------------------------------|
 | [Spark in HDInisight](data-lake-store-performance-tuning-spark.md)       | <ul><li>Num-executors</li><li>Executor-memory</li><li>Executor-cores</li></ul> |
 | [Hive in HDInsight](data-lake-store-performance-tuning-hive.md)    | <ul><li>hive.tez.container.size</li></ul>         |

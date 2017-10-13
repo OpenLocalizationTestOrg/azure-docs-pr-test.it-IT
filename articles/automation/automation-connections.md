@@ -1,9 +1,9 @@
 ---
-title: Asset aaaConnection in automazione di Azure | Documenti Microsoft
-description: Asset di connessione in automazione di Azure contiene servizio esterno tooan tooconnect informazioni necessarie hello o le applicazioni da un runbook o di una configurazione DSC. In questo articolo vengono illustrati i dettagli di hello di connessioni e come toowork con essi in creazione grafica e testuale.
+title: Asset di tipo connessione in Automazione di Azure | Microsoft Docs
+description: Gli asset di connessione di Automazione di Azure contengono le informazioni necessarie per la connessione a un servizio esterno o a un'applicazione da un Runbook o una connessione DSC. Questo articolo illustra nel dettaglio le connessioni e spiega come usarle nella creazione testuale e grafica.
 services: automation
 documentationcenter: 
-author: mgoedtel
+author: eslesar
 manager: jwhit
 editor: tysonn
 ms.assetid: f0239017-5c66-4165-8cca-5dcb249b8091
@@ -14,96 +14,148 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/13/2017
 ms.author: magoedte; bwren
-ms.openlocfilehash: f0f6b9fb960789b34af7b60eb1069313fdcf071c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f1746f4f6706835d43edc171b03d4ececfa3560c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="connection-assets-in-azure-automation"></a>Asset di connessione in Automazione di Azure
 
-Un asset connessione di automazione contiene hello informazioni necessarie tooconnect tooan esterno servizio o applicazione da un runbook o di una configurazione DSC. Ciò può includere le informazioni necessarie per l'autenticazione, ad esempio un nome utente e una password informazioni tooconnection aggiuntive, ad esempio un URL o una porta. il valore di Hello di una connessione è mantenendo tutte le proprietà di hello di connessione particolare applicazione tooa in un asset, come toocreating anziché più variabili. utente Hello è possibile modificare i valori hello per una connessione in un'unica posizione, ed è possibile passare il nome di hello di una connessione tooa runbook o di una configurazione DSC in un singolo parametro. Hello proprietà per una connessione sono accessibili nel runbook hello o configurazione di DSC con hello **Get-AutomationConnection** attività.
+Un asset di connessione di Automazione contiene le informazioni necessarie per la connessione a un servizio esterno o a un'applicazione da un Runbook o una configurazione DSC. ad esempio le informazioni necessarie per l'autenticazione, quali nome utente e password, oltre alle informazioni di connessione quali un URL o una porta. Il valore di una connessione consiste nel mantenere tutte le proprietà per la connessione a un'applicazione specifica in un singolo asset, invece di creare più variabili. L'utente può modificare i valori per una connessione in un'unica posizione e può passare il nome di una connessione a un Runbook o a una configurazione DSC in un singolo parametro. È possibile accedere alle proprietà per una connessione nel Runbook o nella configurazione DSC con l'attività **Get-AutomationConnection** . 
 
-Quando si crea una connessione, è necessario specificare un *tipo di connessione*. tipo di connessione Hello è un modello che definisce un set di proprietà. connessione Hello definisce valori per ogni proprietà definita nel relativo tipo di connessione. Tipi di connessione vengono aggiunti tooAzure automazione nei moduli di integrazione o creati con hello [API di automazione di Azure](http://msdn.microsoft.com/library/azure/mt163818.aspx) se il modulo di integrazione hello include un tipo di connessione e viene importato nell'account di automazione. In caso contrario, sarà necessario toocreate un toospecify di file di metadati un tipo di connessione di automazione.  Per ulteriori informazioni, vedere [Moduli di integrazione](automation-integration-modules.md).  
+Quando si crea una connessione, è necessario specificare un *tipo di connessione*. Il tipo di connessione è un modello che definisce un set di proprietà. La connessione definisce i valori per ogni proprietà definita nel rispettivo tipo di connessione. I tipi di connessione vengono aggiunti ad Automazione di Azure nei moduli di integrazione oppure creati con l'[API di Automazione di Azure](http://msdn.microsoft.com/library/azure/mt163818.aspx) se il modulo di integrazione include un tipo di connessione e viene importato nell'account di Automazione. In caso contrario, sarà necessario creare un file di metadati per specificare un tipo di connessione di Automazione.  Per ulteriori informazioni, vedere [Moduli di integrazione](automation-integration-modules.md).  
 
 >[!NOTE] 
->Gli asset sicuri in Automazione di Azure includono credenziali, certificati, connessioni e variabili crittografate. Questi asset vengono crittografati e archiviati in automazione di Azure con una chiave univoca generata per ogni account di automazione hello. La chiave viene crittografata da un certificato master e archiviata in Automazione di Azure. Prima di archiviare un bene sicuro, chiave hello per account di automazione hello viene decrittografato tramite certificato master hello e quindi asset hello tooencrypt.
+>Gli asset sicuri in Automazione di Azure includono credenziali, certificati, connessioni e variabili crittografate. Questi asset vengono crittografati e archiviati in Automazione di Azure tramite una chiave univoca generata per ogni account di automazione. La chiave viene crittografata da un certificato master e archiviata in Automazione di Azure. Prima dell'archiviazione di un asset sicuro, la chiave per l'account di automazione viene decrittografata usando il certificato master e viene quindi usata per crittografare l'asset.
 
 ## <a name="windows-powershell-cmdlets"></a>Cmdlet di Windows PowerShell
 
-cmdlet Hello in hello nella tabella seguente vengono utilizzati toocreate e gestire le connessioni di automazione con Windows PowerShell. Vengono forniti come parte di hello [modulo Azure PowerShell](/powershell/azure/overview) disponibile per l'uso nei runbook di automazione e le configurazioni DSC.
+I cmdlet della tabella seguente vengono usati per creare e gestire connessioni di automazione con Windows PowerShell. Sono inclusi nel [modulo Azure PowerShell](/powershell/azure/overview) , disponibile per l'uso nei runbook di Automazione e nelle configurazioni DSC.
 
 |Cmdlet|Descrizione|
 |:---|:---|
-|[Get-AzureRmAutomationConnection](/powershell/module/azurerm.automation/get-azurermautomationconnection)|Recupera una connessione. Include una tabella hash con i valori dei campi della connessione hello hello.|
+|[Get-AzureRmAutomationConnection](/powershell/module/azurerm.automation/get-azurermautomationconnection)|Recupera una connessione. Include una tabella hash con i valori dei campi della connessione.|
 |[New-AzureRmAutomationConnection](/powershell/module/azurerm.automation/new-azurermautomationconnection)|Crea una nuova connessione.|
 |[Remove-AzureRmAutomationConnection](/powershell/module/azurerm.automation/remove-azurermautomationconnection)|Rimuove una connessione esistente.|
-|[Set-AzureRmAutomationConnectionFieldValue](/powershell/module/azurerm.automation/set-azurermautomationconnectionfieldvalue)|Imposta il valore di hello di un campo specifico per una connessione esistente.|
+|[Set-AzureRmAutomationConnectionFieldValue](/powershell/module/azurerm.automation/set-azurermautomationconnectionfieldvalue)|Imposta il valore di un campo specifico per una connessione esistente.|
 
-## <a name="activities"></a>attività
+## <a name="activities"></a>Attività
 
-le attività di Hello in hello nella tabella seguente sono connessioni tooaccess utilizzati in un runbook o di una configurazione DSC.
+Le attività incluse nella tabella seguente vengono usate per accedere alle connessioni in un Runbook o configurazione DSC.
 
-|attività|Descrizione|
+|Attività|Descrizione|
 |---|---|
-|[Get-AutomationConnection](/powershell/module/azure/get-azureautomationconnection?view=azuresmps-3.7.0)|Ottiene un toouse di connessione. Restituisce una tabella hash con proprietà hello della connessione di hello.|
+|[Get-AutomationConnection](/powershell/module/azure/get-azureautomationconnection?view=azuresmps-3.7.0)|Ottiene una connessione da usare. Restituisce una tabella hash con le proprietà della connessione.|
 
 >[!NOTE] 
->È consigliabile evitare l'utilizzo di variabili con hello – parametro Name di **Get - AutomationConnection** poiché ciò può complicare l'individuazione delle dipendenze tra i runbook o le configurazioni DSC e gli asset di connessione in fase di progettazione.
+>È consigliabile evitare di usare le variabili con il parametro –Name di **Get- AutomationConnection** , poiché ciò può complicare l'individuazione delle dipendenze tra i Runbook o configurazioni DSC e gli asset di connessione durante la fase di progettazione.
+
+ 
+## <a name="python2-functions"></a>Funzioni Python2 
+La funzione nella tabella seguente viene usata per accedere alle connessioni in un runbook Python2. 
+
+| Funzione | Descrizione | 
+|:---|:---| 
+| automationassets.get_automation_connection | Recupera una connessione. Restituisce un dizionario con le proprietà della connessione. | 
+
+> [!NOTE] 
+> È necessario importare il modulo "automationassets" nella parte superiore del runbook Python per poter accedere alle funzioni dell'asset.
 
 ## <a name="creating-a-new-connection"></a>Creazione di una nuova connessione
 
-### <a name="toocreate-a-new-connection-with-hello-azure-portal"></a>toocreate una nuova connessione con hello portale di Azure
+### <a name="to-create-a-new-connection-with-the-azure-portal"></a>Per creare una nuova connessione con il portale di Azure
 
-1. Scegliere l'account di automazione, hello **asset** parte tooopen hello **asset** blade.
-2. Fare clic su hello **connessioni** parte tooopen hello **connessioni** blade.
-3. Fare clic su **aggiungere una connessione** nella parte superiore di hello del pannello hello.
-4. In hello **tipo** elenco a discesa Tipo selezionare hello di connessione desiderato toocreate. modulo Hello presenterà le proprietà di hello per quel determinato tipo.
-5. Completare il modulo hello e fare clic su **crea** toosave hello nuova connessione.
+1. Dall'account di automazione fare clic sulla parte **Asset** per aprire il pannello **Asset**.
+2. Fare clic sulla parte **Connessioni** per aprire il pannello **Connessioni**.
+3. Fare clic su **Aggiungi connessione** nella parte superiore del pannello.
+4. Dall'elenco a discesa **Tipo** selezionare il tipo di connessione da creare. Il modulo presenta le proprietà per il tipo di connessione specifico.
+5. Completare il modulo e fare clic su **Crea** per salvare la nuova connessione.
 
-### <a name="toocreate-a-new-connection-with-hello-azure-classic-portal"></a>toocreate una nuova connessione con hello portale di Azure classico
+### <a name="to-create-a-new-connection-with-the-azure-classic-portal"></a>Per creare una nuova connessione con il portale di Azure classico
 
-1. Scegliere l'account di automazione, **asset** nella parte superiore di hello della finestra hello.
-2. Nella parte inferiore di hello della finestra hello, fare clic su **Aggiungi impostazione**.
+1. Dall'account di automazione fare clic su **Asset** nella parte superiore della finestra.
+2. Nella parte inferiore della finestra, fare clic su **Aggiungi impostazione**.
 3. Fare clic su **Aggiungi connessione**.
-4. In hello **tipo di connessione** elenco a discesa Tipo selezionare hello di connessione desiderato toocreate.  la procedura guidata Hello presenterà le proprietà di hello per quel determinato tipo.
-5. Completare la procedura guidata hello e fare clic su hello casella di controllo toosave hello nuova connessione.
+4. Dall'elenco a discesa **Tipo di connessione** selezionare il tipo di connessione da creare.  La procedura guidata presenta le proprietà per il tipo di connessione specifico.
+5. Completare la procedura guidata e selezionare la casella di controllo per salvare la nuova connessione.
 
-### <a name="toocreate-a-new-connection-with-windows-powershell"></a>toocreate una nuova connessione con Windows PowerShell
+### <a name="to-create-a-new-connection-with-windows-powershell"></a>Per creare una nuova connessione con Windows PowerShell
 
-Creare una nuova connessione con Windows PowerShell usando hello [New AzureRmAutomationConnection](/powershell/module/azurerm.automation/new-azurermautomationconnection) cmdlet. Questo cmdlet ha un parametro denominato **ConnectionFieldValues** che prevede un [tabella hash](http://technet.microsoft.com/library/hh847780.aspx) che definisce i valori per ogni proprietà hello definiti dal tipo di connessione hello.
+Creare una nuova connessione con Windows PowerShell usando il cmdlet [New-AzureRmAutomationConnection](/powershell/module/azurerm.automation/new-azurermautomationconnection). Questo cmdlet ha un parametro denominato **ConnectionFieldValues** che prevede una [tabella hash](http://technet.microsoft.com/library/hh847780.aspx) che definisce i valori per ogni proprietà definita dal tipo di connessione.
 
-Se si ha familiarità con hello automazione [account RunAs](automation-sec-configure-azure-runas-account.md) tooauthenticate runbook usando l'entità servizio hello, hello fornito come un hello hello toocreating alternativo account RunAs dal portale di hello, lo script di PowerShell Crea un nuovo asset di connessione utilizzando i seguenti comandi di esempio hello.  
+Se si ha familiarità con l'[account RunAs](automation-sec-configure-azure-runas-account.md) di Automazione per autenticare i runbook usando l'entità servizio, è possibile usare lo script di PowerShell fornito come alternativa alla creazione dell'account RunAs dal portale per creare un nuovo asset di connessione tramite i semplici comandi seguenti.  
 
     $ConnectionAssetName = "AzureRunAsConnection"
     $ConnectionFieldValues = @{"ApplicationId" = $Application.ApplicationId; "TenantId" = $TenantID.TenantId; "CertificateThumbprint" = $Cert.Thumbprint; "SubscriptionId" = $SubscriptionId}
     New-AzureRmAutomationConnection -ResourceGroupName $ResourceGroup -AutomationAccountName $AutomationAccountName -Name $ConnectionAssetName -ConnectionTypeName AzureServicePrincipal -ConnectionFieldValues $ConnectionFieldValues 
 
-Si è asset della connessione di toouse in grado di hello script toocreate hello perché quando si crea l'account di automazione, automaticamente include diversi moduli globali per impostazione predefinita con il tipo di connessione hello **AzurServicePrincipal**hello toocreate **AzureRunAsConnection** asset della connessione.  In questo modo tookeep importante ricordare, se si tenta un nuovo servizio tooa connessione asset tooconnect toocreate o un'applicazione con un metodo di autenticazione diversi, non riuscirà perché il tipo di connessione hello non è già definito nell'account di automazione.  Per ulteriori informazioni su come toocreate tipo di un tipo di connessione per la personalizzato o il modulo da hello [PowerShell Gallery](https://www.powershellgallery.com), vedere [moduli di integrazione](automation-integration-modules.md)
+È possibile utilizzare lo script per creare un asset di connessione perché, quando si crea l'account di Automazione, questo include automaticamente e per impostazione predefinita diversi moduli globali insieme al tipo di connessione **AzurServicePrincipal**, per creare l'asset di connessione **AzureRunAsConnection**.  È un fattore importante da tenere presente, poiché se si tenta di creare un nuovo asset di connessione a un servizio o a un'applicazione con un metodo di autenticazione diverso, la creazione avrà esito negativo in quanto il tipo di connessione non è già definito nell'account di Automazione.  Per ulteriori informazioni su come creare un tipo di connessione personalizzata adatta al modulo da [PowerShell Gallery](https://www.powershellgallery.com), vedere [Moduli di integrazione](automation-integration-modules.md)
   
 ## <a name="using-a-connection-in-a-runbook-or-dsc-configuration"></a>Uso di una connessione in un Runbook o in una configurazione DSC
 
-Recuperare una connessione in un runbook o di una configurazione DSC con hello **Get-AutomationConnection** cmdlet.  Non è possibile utilizzare hello [Get AzureRmAutomationConnection](https://docs.microsoft.com/powershell/resourcemanager/azurerm.automation/v1.0.12/Get-AzureRmAutomationConnection?redirectedfrom=msdn) attività.  Questa attività recupera i valori di hello di hello diversi campi nella connessione hello e li restituisce come una [tabella hash](http://go.microsoft.com/fwlink/?LinkID=324844) che può quindi essere usato con i comandi appropriati hello nel runbook hello o nella configurazione DSC.
+Il cmdlet **Get-AutomationConnection** permette di recuperare una connessione in un Runbook o in una configurazione DSC.  Non è possibile usare l'attività [Get-AzureRmAutomationConnection](https://docs.microsoft.com/powershell/resourcemanager/azurerm.automation/v1.0.12/Get-AzureRmAutomationConnection?redirectedfrom=msdn).  Questa attività recupera i valori dei diversi campi nella connessione e li restituisce come [tabella hash](http://go.microsoft.com/fwlink/?LinkID=324844) , che può essere quindi usata con i comandi appropriati nel Runbook o nella configurazione DSC.
 
 ### <a name="textual-runbook-sample"></a>Esempio di Runbook testuale
 
-Hello comandi di esempio seguenti mostrano come toouse hello account Esegui come indicato in precedenza, tooauthenticate con risorse di gestione risorse di Azure nel runbook.  Usa connessione hello asset che rappresentano hello account RunAs, che fa riferimento a entità di servizio basata sui certificati di hello, non le credenziali.  
+I comandi di esempio seguenti mostrano come usare l'account RunAs menzionato in precedenza per autenticarsi con le risorse di Azure Resource Manager nel proprio Runbook.  Usa l'asset di connessione che rappresenta l'account RunAs, il quale fa riferimento all'entità servizio basata sui certificati, non alle credenziali.  
 
     $Conn = Get-AutomationConnection -Name AzureRunAsConnection 
     Add-AzureRMAccount -ServicePrincipal -Tenant $Conn.TenantID -ApplicationId $Conn.ApplicationID -CertificateThumbprint 
 
 ### <a name="graphical-runbook-samples"></a>Esempi di runbook grafici
 
-Si aggiunge un **Get-AutomationConnection** runbook grafico tooa di attività facendo clic su connessione hello nel riquadro raccolta hello dell'editor grafico hello e selezionando **aggiungere toocanvas**.
+Per aggiungere un'attività **Get-AutomationConnection** a un Runbook grafico, fare clic con il pulsante destro del mouse sulla connessione nel riquadro della libreria dell'editor grafico e scegliere **Aggiungi a area di disegno**.
 
 ![](media/automation-connections/connection-add-canvas.png)
 
-Hello immagine seguente viene illustrato un esempio dell'utilizzo di una connessione in un runbook grafico.  Si tratta di hello stesso esempio illustrato in precedenza per l'autenticazione utilizzando l'account RunAs hello con un runbook testuale.  Questo esempio viene utilizzato hello **valore costante** set di dati per hello **ottenere connessione RunAs** attività che utilizza un oggetto di connessione per l'autenticazione.  Oggetto [collegamento alla pipeline](automation-graphical-authoring-intro.md#links-and-workflow) viene utilizzata in questo caso poiché hello ServicePrincipalCertificate set di parametri è previsto un singolo oggetto.
+La figura seguente mostra un esempio dell'uso di una connessione in un Runbook grafico.  Si tratta dello stesso esempio mostrato in precedenza per l'autenticazione usando l'account RunAs con un Runbook testuale.  In questo esempio viene usato il set di dati **Valore costante** per l'attività **Get RunAs Connection** (Ottieni connessione RunAs) che usa un oggetto di connessione per l'autenticazione.  Viene usato un [collegamento pipeline](automation-graphical-authoring-intro.md#links-and-workflow) , poiché il parametro ServicePrincipalCertificate impostato prevede un singolo oggetto.
 
 ![](media/automation-connections/automation-get-connection-object.png)
 
+### <a name="python2-runbook-sample"></a>Esempio di runbook Python2
+L'esempio seguente illustra come eseguire l'autenticazione tramite la connessione Run As in un runbook Python2.
+
+    """ Tutorial to show how to authenticate against Azure resource manager resources """
+    import azure.mgmt.resource
+    import automationassets
+
+
+    def get_automation_runas_credential(runas_connection):
+        """ Returns credentials to authenticate against Azure resoruce manager """
+        from OpenSSL import crypto
+        from msrestazure import azure_active_directory
+        import adal
+
+        # Get the Azure Automation Run As service principal certificate
+        cert = automationassets.get_automation_certificate("AzureRunAsCertificate")
+        pks12_cert = crypto.load_pkcs12(cert)
+        pem_pkey = crypto.dump_privatekey(crypto.FILETYPE_PEM, pks12_cert.get_privatekey())
+
+        # Get Run As connection information for the Azure Automation service principal
+        application_id = runas_connection["ApplicationId"]
+        thumbprint = runas_connection["CertificateThumbprint"]
+        tenant_id = runas_connection["TenantId"]
+
+        # Authenticate with service principal certificate
+        resource = "https://management.core.windows.net/"
+        authority_url = ("https://login.microsoftonline.com/" + tenant_id)
+        context = adal.AuthenticationContext(authority_url)
+        return azure_active_directory.AdalAuthentication(
+            lambda: context.acquire_token_with_client_certificate(
+                resource,
+                application_id,
+                pem_pkey,
+                thumbprint)
+        )
+
+
+    # Authenticate to Azure using the Azure Automation Run As service principal
+    runas_connection = automationassets.get_automation_connection("AzureRunAsConnection")
+    azure_credential = get_automation_runas_credential(runas_connection)
+
 ## <a name="next-steps"></a>Passaggi successivi
 
-- Revisione [collegamenti nella creazione di grafici](automation-graphical-authoring-intro.md#links-and-workflow) toounderstand funzionamento del flusso di controllo e toodirect hello della logica dei runbook.  
+- Consultare la sezione [Collegamenti nella creazione grafica](automation-graphical-authoring-intro.md#links-and-workflow) per informazioni su come dirigere e controllare il flusso di logica nei runbook.  
 
-- toolearn più relative all'utilizzo di automazione di Azure i moduli di PowerShell e le procedure consigliate per la creazione di propri toowork moduli di PowerShell come moduli di integrazione in automazione di Azure, vedere [moduli di integrazione](automation-integration-modules.md).  
+- Vedere [Moduli di integrazione](automation-integration-modules.md) per ulteriori informazioni sull'uso dei moduli di PowerShell da parte di Automazione di Azure e per conoscere le procedure consigliate per creare i propri moduli di PowerShell come moduli di integrazione in Automazione di Azure.  

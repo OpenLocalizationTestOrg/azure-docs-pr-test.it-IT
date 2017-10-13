@@ -1,5 +1,5 @@
 ---
-title: aaaAzure AD v2 ASP.NET Web Server Getting Started - Config | Documenti Microsoft
+title: Introduzione al server Web ASP.NET per Azure AD v2 - Configurazione | Microsoft Docs
 description: Implementazione di accessi Microsoft in una soluzione ASP.NET con un'applicazione tradizionale basata su Web browser tramite lo standard OpenID Connect
 services: active-directory
 documentationcenter: dev-center-name
@@ -15,29 +15,29 @@ ms.workload: identity
 ms.date: 05/09/2017
 ms.author: andret
 ms.custom: aaddev
-ms.openlocfilehash: e666be4622ad30aaa1e12e49ae56bbe1e129b2a9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0c627802ccfba230dcde2dafffee26cb1c895791
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 ## <a name="create-an-application-express"></a>Creare un'applicazione (Rapida)
-Ora è necessario tooregister l'applicazione in hello *portale di registrazione dell'applicazione Microsoft*:
-1. Registrare l'applicazione tramite hello [portale di registrazione dell'applicazione di Microsoft](https://apps.dev.microsoft.com/portal/register-app?appType=serverSideWebApp&appTech=aspNetWebAppOwin&step=configure)
+È ora necessario registrare l'applicazione nel *portale di registrazione delle applicazioni Microsoft*:
+1. Registrare l'applicazione tramite il [portale di registrazione delle applicazioni Microsoft](https://apps.dev.microsoft.com/portal/register-app?appType=serverSideWebApp&appTech=aspNetWebAppOwin&step=configure)
 2.  Immettere un nome per l'applicazione e l'indirizzo di posta elettronica
-3.  Verificare che sia selezionata l'opzione hello per l'installazione guidata
-4.  Seguire le istruzioni di hello tooadd un'applicazione tooyour l'URL di reindirizzamento
+3.  Assicurarsi che l'opzione per l'installazione guidata sia selezionata
+4.  Seguire le istruzioni per aggiungere un URL di reindirizzamento all'applicazione
 
-## <a name="add-your-application-registration-information-tooyour-solution-advanced"></a>Aggiungere la soluzione di tooyour informazioni di registrazione applicazione (avanzate)
-Ora è necessario tooregister l'applicazione in hello *portale di registrazione dell'applicazione Microsoft*:
-1. Passare toohello [portale di registrazione dell'applicazione Microsoft](https://apps.dev.microsoft.com/portal/register-app) tooregister un'applicazione
+## <a name="add-your-application-registration-information-to-your-solution-advanced"></a>Aggiungere le informazioni di registrazione dell'applicazione alla soluzione (Avanzata)
+È ora necessario registrare l'applicazione nel *portale di registrazione delle applicazioni Microsoft*:
+1. Passare al [portale di registrazione delle applicazioni Microsoft](https://apps.dev.microsoft.com/portal/register-app) per registrare un'applicazione
 2. Immettere un nome per l'applicazione e l'indirizzo di posta elettronica 
-3.  Verificare che l'opzione hello per l'installazione guidata non è selezionata
+3.  Assicurarsi che l'opzione per l'installazione guidata sia deselezionata
 4.  Fare clic su `Add Platform`, quindi selezionare `Web`
-5.  Tornare indietro tooVisual Studio e, in Esplora soluzioni selezionare il progetto di hello e osservare hello proprietà finestra (se non viene visualizzata una finestra delle proprietà, premere F4)
-6.  Modificare anche SSL abilitato`True`
-7.  Copia URL SSL hello e aggiungere questo elenco toohello URL di reindirizzamento URL nell'elenco del portale di registrazione hello di URL di reindirizzamento:<br/><br/>![Proprietà del progetto](media/active-directory-serversidewebapp-aspnetwebappowin-configure/vsprojectproperties.png)<br />
-8.  Aggiungere il seguente hello in `web.config` ubicato nella cartella radice hello nella sezione hello `configuration\appSettings`:
+5.  Tornare a Visual Studio e in Esplora soluzioni selezionare il progetto, quindi esaminare la finestra Proprietà (se la finestra Proprietà non è visualizzata, premere F4)
+6.  Impostare il valore di SSL abilitato su `True`
+7.  Copiare l'URL SSL e aggiungere tale URL all'elenco di URL di reindirizzamento nell'elenco corrispondente del portale di registrazione:<br/><br/>![Proprietà del progetto](media/active-directory-serversidewebapp-aspnetwebappowin-configure/vsprojectproperties.png)<br />
+8.  Aggiungere il codice seguente in `web.config`, disponibile nella sezione `configuration\appSettings` della cartella radice:
 
 ```xml
 <add key="ClientId" value="Enter_the_Application_Id_here" />
@@ -48,10 +48,10 @@ Ora è necessario tooregister l'applicazione in hello *portale di registrazione 
 <!-- Workaround for Docs conversion bug -->
 <ol start="9">
 <li>
-Sostituire `ClientId` con hello Id applicazione appena registrato
+Sostituire `ClientId` con l'ID applicazione appena registrato
 </li>
 <li>
-Sostituire `redirectUri` con hello URL SSL del progetto
+Sostituire `redirectUri` con l'URL SSL del progetto
 </li>
 </ol>
 <!-- End Docs -->

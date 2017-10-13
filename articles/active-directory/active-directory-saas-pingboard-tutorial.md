@@ -1,260 +1,259 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con PingBoard | Microsoft Docs'
-description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e Pingboard.
+description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e PingBoard.
 services: active-directory
 documentationCenter: na
 author: jeevansd
 manager: femila
+ms.reviewer: joflore
 ms.assetid: 28acce3e-22a0-4a37-8b66-6e518d777350
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/04/2017
+ms.date: 09/20/2017
 ms.author: jeedes
-ms.openlocfilehash: 0a916b1f9ef32d8124aa11284d2115bb4fc0bbc5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 67534da42ac27989a8b08cec4d6f9f9c31774264
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-pingboard"></a>Esercitazione: Integrazione di Azure Active Directory con PingBoard
 
-In questa esercitazione, è illustrato come toointegrate Pingboard con Azure Active Directory (Azure AD).
+Questa esercitazione descrive come integrare PingBoard con Azure Active Directory (Azure AD).
 
-Integrazione Pingboard con Azure AD fornisce hello seguenti vantaggi:
+L'integrazione di PingBoard con Azure AD offre i vantaggi seguenti:
 
-- È possibile controllare in Azure AD che ha accesso tooPingboard
-- È possibile abilitare l'utenti tooautomatically get connesso tooPingboard (Single Sign-On) con i propri account Azure AD
-- È possibile gestire gli account in un'unica posizione centrale - portale di gestione di Azure hello
+- È possibile controllare in Azure AD chi può accedere a PingBoard
+- È possibile abilitare gli utenti per l'accesso automatico a PingBoard (Single Sign-On) con i propri account di Azure AD
+- È possibile gestire gli account in un'unica posizione centrale: il portale di Azure.
 
-Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-integrazione di Azure AD con Pingboard tooconfigure, è necessario hello seguenti elementi:
+Per configurare l'integrazione di Azure AD con PingBoard, sono necessari gli elementi seguenti:
 
 - Sottoscrizione di Azure AD.
 - Sottoscrizione di PingBoard abilitata per l'accesso Single Sign-On
 
 > [!NOTE]
-> hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.
+> Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.
 
-passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:
+A questo scopo, è consigliabile seguire le indicazioni seguenti:
 
-- Non usare l'ambiente di produzione, a meno che non sia necessario.
-- Se non è disponibile un ambiente di prova di Azure AD, è possibile ottenere una versione di prova di un mese [qui](https://azure.microsoft.com/pricing/free-trial/).
+- Non usare l'ambiente di produzione a meno che non sia necessario.
+- Se non è disponibile un ambiente di valutazione di Azure AD, è possibile [ottenere una versione di valutazione di un mese](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Descrizione dello scenario
-In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. scenario di Hello descritto in questa esercitazione è composto da due componenti principali:
+In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:
 
-1. Aggiunta di Pingboard dalla raccolta hello
+1. Aggiunta di PingBoard dalla raccolta
 2. Configurazione e test dell'accesso Single Sign-On di Azure AD
 
-## <a name="adding-pingboard-from-hello-gallery"></a>Aggiunta di Pingboard dalla raccolta hello
-integrazione hello tooconfigure di Pingboard in Azure AD, è necessario tooadd Pingboard dall'elenco di tooyour hello raccolta di App SaaS gestite.
+## <a name="adding-pingboard-from-the-gallery"></a>Aggiunta di PingBoard dalla raccolta
+Per configurare l'integrazione di PingBoard in Azure AD, è necessario aggiungere PingBoard dalla raccolta al proprio elenco di app SaaS gestite.
 
-**tooadd Pingboard dalla raccolta di hello, eseguire hello alla procedura seguente:**
+**Per aggiungere PingBoard dalla raccolta, seguire questa procedura:**
 
-1. In hello  **[il portale di gestione di Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona. 
+1. Nel **[portale di Azure](https://portal.azure.com)** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro. 
 
-    ![Active Directory][1]
+    ![Pulsante Azure Active Directory][1]
 
-2. Passare troppo**applicazioni aziendali**. Quindi andare troppo**tutte le applicazioni**.
+2. Passare ad **Applicazioni aziendali**. Andare quindi a **Tutte le applicazioni**.
 
-    ![Applicazioni][2]
+    ![Applicazioni aziendali][2]
     
-3. Fare clic su **Aggiungi** pulsante nella parte superiore di hello della finestra di dialogo hello.
+3. Fare clic sul pulsante **Aggiungi** nella parte superiore della finestra di dialogo.
 
-    ![Applicazioni][3]
+    ![Pulsante Nuova applicazione][3]
 
-4. Nella casella di ricerca hello, digitare **Pingboard**.
+4. Nella casella di ricerca digitare **Pingboard**, selezionare **Pingboard** nel pannello dei risultati e quindi fare clic sul pulsante **Aggiungi** per aggiungere l'applicazione.
 
-    ![Creazione di un utente test di Azure AD](./media/active-directory-saas-pingboard-tutorial/tutorial_pingboard_search.png)
+    ![Pingboard nell'elenco dei risultati](./media/active-directory-saas-pingboard-tutorial/tutorial_pingboard_addfromgallery.png)
 
-5. Nel riquadro dei risultati hello, selezionare **Pingboard**, quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.
+## <a name="configure-and-test-azure-ad-single-sign-on"></a>Configurare e testare l'accesso Single Sign-On di Azure AD
 
-    ![Creazione di un utente test di Azure AD](./media/active-directory-saas-pingboard-tutorial/tutorial_pingboard_addfromgallery.png)
-
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configurazione e test dell'accesso Single Sign-On di Azure AD
 In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con PingBoard con un utente test di nome "Britta Simon".
 
-Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello in Pingboard è tooa utente in Azure AD. In altre parole, una relazione di collegamento tra un utente di Azure Active Directory e l'utente correlato di hello in Pingboard deve toobe stabilita.
+Per il funzionamento dell'accesso Single Sign-On, Azure AD deve conoscere l'utente controparte di PingBoard che corrisponde a un utente di Azure AD. In altre parole, si deve stabilire una relazione di collegamento tra un utente di Azure AD e l'utente correlato in PingBoard.
 
-Questa relazione di collegamento viene stabilita tramite l'assegnazione valore hello di hello **nome utente** in Azure AD come valore hello hello **Username** in Pingboard.
+La relazione di collegamento viene stabilita assegnando al valore di **nome utente** in Azure AD lo stesso valore di **Nome utente** in PingBoard.
 
-tooconfigure e prova AD Azure single sign-on con Pingboard, è necessario hello toocomplete seguenti blocchi predefiniti:
+Per configurare e testare l'accesso Single Sign-On di Azure AD con PingBoard, è necessario completare i blocchi predefiniti seguenti:
 
-1. **[Configurazione di Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.
-2. **[Creazione di un utente prova AD Azure](#creating-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.
-3. **[Creazione di un utente test Pingboard](#creating-a-pingboard-test-user)**  -toohave un equivalente di Britta Simon in Pingboard toohello collegato AD Azure rappresentazione in seguito.
-4. **[Assegnazione utente di prova hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.
-5. **[Test di Single Sign-On](#testing-single-sign-on)**  -tooverify hello se funzionamento della configurazione.
+1. **[Configurare l'accesso Single Sign-On di Azure AD](#configure-azure-ad-single-sign-on)**: per consentire agli utenti di usare questa funzionalità.
+2. **[Creare un utente di test di Azure AD](#create-an-azure-ad-test-user)**: per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.
+3. **[Creare un utente test di PingBoard](#create-a-pingboard-test-user)**, per avere una controparte di Britta Simon in PingBoard collegata alla relativa rappresentazione dell'utente in Azure AD.
+4. **[Assegnare l'utente test di Azure AD](#assign-the-azure-ad-test-user)**: per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.
+5. **[Testare l'accesso Single Sign-On](#test-single-sign-on)** per verificare se la configurazione funziona.
 
-### <a name="configuring-azure-ad-single-sign-on"></a>Configurazione dell'accesso Single Sign-On di Azure AD
+### <a name="configure-azure-ad-single-sign-on"></a>Configurare l'accesso Single Sign-On di Azure AD
 
-In questa sezione, si abilita Azure AD single sign-on nel portale di gestione di Azure hello e configurare l'accesso single sign-on nell'applicazione Pingboard.
+In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di Azure e viene configurato l'accesso Single Sign-On nell'applicazione PingBoard.
 
-**Azure AD tooconfigure single sign-on con Pingboard, eseguire hello alla procedura seguente:**
+**Per configurare l'accesso Single Sign-On di Azure AD con PingBoard, seguire questa procedura:**
 
-1. Nel portale di gestione di Azure hello in hello **Pingboard** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.
+1. Nella pagina di integrazione dell'applicazione **PingBoard** del portale di Azure fare clic su **Single Sign-On**.
 
-    ![Configura accesso Single Sign-On][4]
+    ![Collegamento per la configurazione dell'accesso Single Sign-On][4]
 
-2. In hello **Single sign-on** finestra di dialogo, come **modalità** selezionare **basato su SAML Sign-on** tooenable single sign-on.
+2.  Nella finestra di dialogo **Single Sign-On** selezionare **Accesso basato su SAML** per **Modalità** per abilitare l'accesso Single Sign-On.
  
-    ![Configura accesso Single Sign-On](./media/active-directory-saas-pingboard-tutorial/tutorial_pingboard_samlbase.png)
+    ![Finestra di dialogo Single Sign-On](./media/active-directory-saas-pingboard-tutorial/tutorial_pingboard_samlbase.png)
 
-3. In hello **Pingboard dominio e gli URL** seguire hello procedura seguente se si desidera in un'applicazione hello tooconfigure **IDP** modalità iniziata da:
+3. Nella sezione **URL e dominio PingBoard**, se si vuole configurare l'applicazione in modalità avviata da **IDP**, seguire questa procedura:
 
-    ![Configura accesso Single Sign-On](./media/active-directory-saas-pingboard-tutorial/tutorial_pingboard_url.png)
+    ![IDP di informazioni su URL e dominio per l'accesso Single Sign-On di Pingboard](./media/active-directory-saas-pingboard-tutorial/tutorial_pingboard_url.png)
 
-    a. In hello **identificatore** casella di testo, tipo di valore hello di:`http://<entity-id>.pingboard.com/sp`
+    a. Nella casella di testo **Identificatore** digitare il valore `http://app.pingboard.com/sp`
 
-    b. In hello **URL di risposta** casella di testo, digitare un URL utilizzando hello seguente modello:`https://<entity-id>.pingboard.com/auth/saml/consume`
+    b. Nella casella di testo **URL di risposta** digitare l'URL usando il modello seguente: `https://<entity-id>.pingboard.com/auth/saml/consume`
+
+4. Selezionare **Mostra impostazioni URL avanzate**, se si desidera configurare l'applicazione in modalità avviata da **SP**:
+
+    ![SP di informazioni su URL e dominio per l'accesso Single Sign-On di Pingboard](./media/active-directory-saas-pingboard-tutorial/tutorial_pingboard_sp_initiated01.png)
+
+     Nella casella di testo **URL di accesso** digitare l'URL usando il modello seguente: `https://<sub-domain>.pingboard.com/sign_in`
 
     > [!NOTE] 
-    > Si noti che queste non sono valori reali hello. È necessario tooupdate questi valori con URL di risposta e identificatore effettivo hello. In questo caso, è consigliabile si toouse hello valore univoco della stringa nell'identificatore hello. Contatto [team di supporto Pingboard Client](https://support.pingboard.com/) tooget questi valori. 
+    > Si noti che questi non sono i valori reali. è necessario aggiornarli con l'URL di risposta e l'URL di accesso effettivi. Per ottenere questi valori, contattare il [team di supporto clienti di PingBoard](https://support.pingboard.com/).
 
-4. Controllare **Mostra URL impostazioni avanzate**, se si desidera in un'applicazione hello tooconfigure **SP** modalità iniziata da:
+5. Nella sezione **Certificato di firma SAML** fare clic su **XML metadati** e quindi salvare il file XML nel computer.
 
-    ![Configura accesso Single Sign-On](./media/active-directory-saas-pingboard-tutorial/tutorial_pingboard_sp_initiated01.png)
-
-    a. In hello **Sign-on URL** casella di testo, tipo di valore hello di:`http://<sub-domain>.pingboard.com/sign_in`
-     
-5. In hello **certificato di firma SAML** fare clic su **Metadata XML** e quindi salvare il file XML hello nel computer in uso.
-
-    ![Configura accesso Single Sign-On](./media/active-directory-saas-pingboard-tutorial/tutorial_pingboard_certificate.png) 
+    ![XML dei metadati di Pingboard](./media/active-directory-saas-pingboard-tutorial/tutorial_pingboard_certificate.png) 
 
 6. Fare clic sul pulsante **Salva** .
 
-    ![Configura accesso Single Sign-On](./media/active-directory-saas-pingboard-tutorial/tutorial_general_400.png)
+    ![Pulsante Salva di Configura accesso Single Sign-On](./media/active-directory-saas-pingboard-tutorial/tutorial_general_400.png)
 
-7. tooconfigure SSO sul lato Pingboard, aprire una nuova finestra del browser e accedere tooyour Pingboard Account. In, è necessario essere un tooset admin Pingboard backup singolo segno.
+7. Per configurare il SSO sul lato PingBoard, aprire una nuova finestra del browser e accedere al proprio account di PingBoard. È necessario essere un amministratore di PingBoard per configurare il Single Sign-On.
 
-8. Scegliere dal menu in alto hello **App > integrazioni**
+8. Nel menu principale selezionare **App > Integrazioni**
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-pingboard-tutorial/Pingboard_integration.png)
 
-9.  In hello **integrazioni** pagina, trovare hello **"Di Azure Active Directory"** riquadro e farvi clic sopra.
+9.  Nella pagina **Integrazioni**, trovare e fare clic sul riquadro di **"Azure Active Directory"**.
 
-    ![Configura accesso Single Sign-On](./media/active-directory-saas-pingboard-tutorial/Pingboard_aad.png)
+    ![Integrazione Single-Sign-On di Pingboard](./media/active-directory-saas-pingboard-tutorial/Pingboard_aad.png)
 
-10. In hello modale che segue fare clic su **"Configura"**
+10. Nella finestra modale che segue fare clic su **"Configura"**
 
-    ![Configura accesso Single Sign-On](./media/active-directory-saas-pingboard-tutorial/Pingboard_configure.png)
+    ![Pulsante di configurazione di Pingboard](./media/active-directory-saas-pingboard-tutorial/Pingboard_configure.png)
 
-11. Nella seguente pagina di hello, si noterà che "integrazione di Azure SSO è abilitato.". Aprire hello scaricati file Metadata XML in un blocco note e incollare hello è contenuto in **IDP Metadata**.
+11. Nella pagina seguente si noterà che l'"integrazione SSO di Azure è abilitata". Aprire il file XML metadati scaricato in Notepad e incollare il contenuto in **IDP Metadata** (Metadati IDP).
 
-    ![Configura accesso Single Sign-On](./media/active-directory-saas-pingboard-tutorial/Pingboard_sso_configure.png)
+    ![Schermata di configurazione SSO di Pingboard](./media/active-directory-saas-pingboard-tutorial/Pingboard_sso_configure.png)
 
-12. file Hello verrà convalidato e se le informazioni sono corrette, single sign-on verrà abilitata
+12. Il file viene convalidato e verrà abilitato il Single Sign-On se tutto è corretto.
 
-### <a name="creating-an-azure-ad-test-user"></a>Creazione di un utente test di Azure AD
-obiettivo di Hello di questa sezione è un utente di test nel portale di gestione di Azure hello chiamato Britta Simon toocreate.
+### <a name="create-an-azure-ad-test-user"></a>Creare un utente test di Azure AD
 
-![Creare un utente di Azure AD][100]
+Questa sezione descrive come creare un utente test denominato Britta Simon nel portale di Azure.
 
-**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**
+![Creare un utente test di Azure AD][100]
 
-1. In hello **portale di gestione di Azure**via hello riquadro di spostamento a sinistra, fare clic su **Azure Active Directory** icona.
+**Per creare un utente test in Azure AD, eseguire la procedura seguente:**
 
-    ![Creazione di un utente test di Azure AD](./media/active-directory-saas-pingboard-tutorial/create_aaduser_01.png) 
+1. Nel **portale di Azure** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro.
 
-2. Andare troppo**utenti e gruppi** e fare clic su **tutti gli utenti** elenco hello toodisplay degli utenti.
+    ![Pulsante Azure Active Directory](./media/active-directory-saas-pingboard-tutorial/create_aaduser_01.png) 
+
+2. Passare a **Utenti e gruppi** e fare clic su **Tutti gli utenti** per visualizzare l'elenco di utenti.
     
-    ![Creazione di un utente test di Azure AD](./media/active-directory-saas-pingboard-tutorial/create_aaduser_02.png) 
+    ![Collegamenti "Utenti e gruppi" e "Tutti gli utenti"](./media/active-directory-saas-pingboard-tutorial/create_aaduser_02.png) 
 
-3. Nella parte superiore di hello della finestra di dialogo hello fare clic su **Aggiungi** tooopen hello **utente** finestra di dialogo.
+3. Nella parte superiore della finestra di dialogo fare clic su **Aggiungi** per aprire la finestra di dialogo **Utente**.
  
-    ![Creazione di un utente test di Azure AD](./media/active-directory-saas-pingboard-tutorial/create_aaduser_03.png) 
+    ![Pulsante Aggiungi](./media/active-directory-saas-pingboard-tutorial/create_aaduser_03.png) 
 
-4. In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:
+4. Nella pagina della finestra di dialogo **Utente** seguire questa procedura:
  
-    ![Creazione di un utente test di Azure AD](./media/active-directory-saas-pingboard-tutorial/create_aaduser_04.png) 
+    ![Finestra di dialogo Utente](./media/active-directory-saas-pingboard-tutorial/create_aaduser_04.png) 
 
-    a. In hello **nome** casella tipo **BrittaSimon**.
+    a. Nella casella di testo **Nome** digitare **BrittaSimon**.
 
-    b. In hello **nome utente** casella di testo, hello tipo **indirizzo di posta elettronica** di BrittaSimon.
+    b. Nella casella di testo **Nome utente** digitare l'**indirizzo di posta elettronica** di BrittaSimon.
 
-    c. Selezionare **Show Password** e annotare il valore di hello di hello **Password**.
+    c. Selezionare **Mostra password** e prendere nota del valore della **Password**.
 
     d. Fare clic su **Crea**.
  
-### <a name="creating-a-pingboard-test-user"></a>Creazione di un utente test PingBoard
+### <a name="create-a-pingboard-test-user"></a>Creare un utente test di PingBoard
 
-In ordine tooenable Azure AD utenti toolog in Pingboard, è necessario eseguirne il provisioning in Pingboard.  
-Nel caso di hello di Pingboard, il provisioning è un'attività manuale.
+Per consentire agli utenti di Azure AD di accedere a PingBoard, è necessario eseguirne il provisioning in PingBoard. Per PingBoard, il provisioning è un'attività manuale.
 
-**eseguire un account utente, tooprovision hello i passaggi seguenti:**
+**Per eseguire il provisioning di un account utente, seguire questa procedura:**
 
-1. Accedi tooyour sito della società Pingboard come amministratore.
+1. Accedere al sito aziendale di PingBoard come amministratore.
 
 2. Fare clic sul pulsante **"Add Employee"** ("Aggiungi dipendente") nella pagina **Directory**.
 
     ![Aggiungere un dipendente](./media/active-directory-saas-pingboard-tutorial/create_testuser_add.png)
 
-3. In hello **"Add Employee"** finestra di dialogo eseguire hello alla procedura seguente.
+3. Nella pagina della finestra di dialogo **"Add Employee"** ("Aggiungi dipendente") eseguire la procedura seguente:
 
     ![Invita persone](./media/active-directory-saas-pingboard-tutorial/create_testuser_name.png)
 
-    a. In hello **nome completo** casella di testo, nome completo del tipo hello di Britta Simon.
+    a. Nella casella di testo **Full Name** (Nome completo) digitare il nome completo dell'utente, ad esempio **Britta Simon**.
 
-    b. In hello **posta elettronica** casella di testo, digitare hello indirizzo di posta elettronica dell'account di Britta Simon.
+    b. Nella casella di testo **Email** digitare l'indirizzo di posta elettronica dell'utente, ad esempio **brittasimon@contoso.com**.
 
-    c. In hello **titolo professionale** casella di testo, titolo professionale hello di tipo di Britta Simon.
+    c. Nella casella di testo **Posizione** digitare la posizione di Britta Simon.
 
-    d. In hello **percorso** percorso selezionare hello di Britta Simon elenco a discesa.
+    d. Nell'elenco a discesa **Località**, selezionare la località di Britta Simon.
     
     e. Fare clic su **Aggiungi**.   
 
-4. Schermata di conferma comparirà aggiunta hello tooconfirm dell'utente.
+4. Verrà visualizzata una schermata di conferma per confermare l'aggiunta dell'utente.
     
     ![confermare](./media/active-directory-saas-pingboard-tutorial/create_testuser_confirm.png)
         
     > [!NOTE]
-    > titolare dell'account di Hello Azure Active Directory riceverà un messaggio di posta elettronica e seguire il proprio account tooconfirm un collegamento prima che diventi attivo.
+    > Il titolare dell'account Azure Active Directory riceve un messaggio di posta elettronica con un collegamento da selezionare per confermare l'account e attivarlo.
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Assegnazione utente test hello Azure AD
+### <a name="assign-the-azure-ad-test-user"></a>Assegnare l'utente test di Azure AD
 
-In questa sezione è abilitare Britta Simon toouse single sign-on Azure concedendo tooPingboard proprio accesso.
+In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sign-On di Azure concedendole l'accesso a PingBoard.
 
 ![Assegna utente][200] 
 
-**tooassign Britta Simon tooPingboard, eseguire hello alla procedura seguente:**
+**Per assegnare Britta Simon a PingBoard, seguire questa procedura:**
 
-1. Nel portale di gestione di Azure hello, aprire visualizzazione applicazioni hello, quindi selezionare la visualizzazione di directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.
+1. Nel portale di Azure aprire la visualizzazione delle applicazioni e quindi la visualizzazione delle directory e passare ad **Applicazioni aziendali**, quindi fare clic su **Tutte le applicazioni**.
 
     ![Assegna utente][201] 
 
-2. Nell'elenco di applicazioni hello, selezionare **Pingboard**.
+2. Nell'elenco di applicazioni selezionare **PingBoard**.
 
-    ![Configura accesso Single Sign-On](./media/active-directory-saas-pingboard-tutorial/tutorial_pingboard_app.png) 
+    ![Collegamento di Pingboard nell'elenco delle applicazioni](./media/active-directory-saas-pingboard-tutorial/tutorial_pingboard_app.png) 
 
-3. Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.
+3. Scegliere **Utenti e gruppi** dal menu a sinistra.
 
-    ![Assegna utente][202] 
+    ![Collegamento "Utenti e gruppi"][202] 
 
 4. Fare clic sul pulsante **Aggiungi**. Selezionare quindi **Utenti e gruppi** nella finestra di dialogo **Aggiungi assegnazione**.
 
-    ![Assegna utente][203]
+    ![Riquadro Aggiungi assegnazione][203]
 
-5. In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.
+5. Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco Utenti.
 
 6. Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.
 
 7. Fare clic sul pulsante **Assegna** nella finestra di dialogo **Aggiungi assegnazione**.
     
-### <a name="testing-single-sign-on"></a>Test dell'accesso Single Sign-On
+### <a name="test-single-sign-on"></a>Testare l'accesso Single Sign-On
 
-In questa sezione si test configurazione di Azure AD single sign-on utilizzando hello Pannello di accesso.
+In questa sezione viene testata la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.
+Per altre informazioni sul pannello di accesso, vedere [Introduzione al Pannello di accesso](active-directory-saas-access-panel-introduction.md).
 
-Quando si fa clic su riquadro Pingboard hello in hello Pannello di accesso, è necessario ottenere automaticamente firmato in tooyour Pingboard applicazione.
+Quando si fa clic sul riquadro di PingBoard nel pannello di accesso, si dovrebbe accedere automaticamente all’applicazione PingBoard.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md)
 
 

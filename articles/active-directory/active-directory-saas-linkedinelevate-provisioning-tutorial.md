@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Configurazione di LinkedIn Elevate per provisioning automatico di utenti con Azure Active Directory | Microsoft Docs'
-description: Informazioni su come tooconfigure Azure Active Directory tooautomatically il provisioning e il de-provisioning account utente di tooLinkedIn Esegui con privilegi elevati.
+description: Informazioni su come configurare Azure Active Directory per eseguire automaticamente il provisioning e il deprovisioning degli account utente in LinkedIn Elevate.
 services: active-directory
 documentationcenter: 
 author: asmalser-msft
@@ -14,109 +14,109 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/15/2017
 ms.author: asmalser-msft
-ms.openlocfilehash: 08201c078ece0054e75ec0c004840e5186e0e704
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 526666301aad1e5284c621024649d9cd52c92d18
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-configuring-linkedin-elevate-for-automatic-user-provisioning"></a>Esercitazione: Configurazione di LinkedIn Elevate per il provisioning automatico di utenti
 
 
-obiettivo di Hello di questa esercitazione è tooshow hello passaggi che è necessario tooperform LinkedIn elevare e Azure AD tooautomatically il provisioning e il de-provisioning account utente da Azure AD tooLinkedIn Esegui con privilegi elevati. 
+Questa esercitazione descrive le procedure da eseguire in LinkedIn Elevate e Azure AD per eseguire automaticamente il provisioning e il deprovisioning degli account utente da Azure AD a LinkedIn Elevate. 
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-scenario Hello descritto in questa esercitazione si presuppone che si disponga già di hello seguenti elementi:
+Per lo scenario descritto in questa esercitazione si presuppone che l'utente disponga di quanto segue:
 
 *   Tenant di Azure Active Directory
 *   Tenant di LinkedIn Elevate 
-*   Un account di amministratore in elevare il livello di LinkedIn con accesso toohello centro Account LinkedIn
+*   Account di amministratore in LinkedIn Elevate con accesso al Centro account LinkedIn.
 
 > [!NOTE]
-> Azure Active Directory si integra con LinkedIn elevazione utilizzando hello [SCIM](http://www.simplecloud.info/) protocollo.
+> Azure Active Directory si integra con LinkedIn Elevate usando il protocollo [SCIM](http://www.simplecloud.info/).
 
-## <a name="assigning-users-toolinkedin-elevate"></a>L'assegnazione di utenti tooLinkedIn Esegui con privilegi elevati
+## <a name="assigning-users-to-linkedin-elevate"></a>Assegnazione di utenti a LinkedIn Elevate
 
-Azure Active Directory Usa il concetto di "assegnazioni" toodetermine gli utenti che devono ricevere le app tooselected di accesso. Nel contesto di hello di provisioning dell'account utente automatica, verranno sincronizzati solo gli utenti di hello e i gruppi "assegnati" tooan applicazione in Azure AD. 
+Per determinare gli utenti che dovranno ricevere l'accesso alle app selezionate, Azure Active Directory usa il concetto delle "assegnazioni". Nel contesto del provisioning automatico degli account utente, verranno sincronizzati solo gli utenti e i gruppi che sono stati "assegnati" a un'applicazione in Azure AD. 
 
-Prima di configurare e abilitare hello provisioning del servizio, sarà necessario toodecide quali utenti e/o i gruppi in Azure AD rappresentano utenti hello bisogno di accesso tooLinkedIn Esegui con privilegi elevati. Una volta deciso, è possibile assegnare questi tooLinkedIn utenti elevazione seguendo le istruzioni di hello qui:
+Prima di configurare e abilitare il servizio di provisioning, è necessario stabilire quali utenti e/o gruppi in Azure AD rappresentano gli utenti che devono accedere a LinkedIn Elevate. Dopo avere deciso gli utenti, è possibile assegnarli a LinkedIn Elevate seguendo le istruzioni riportate qui:
 
-[Assegnare un'applicazione aziendale tooan utente o gruppo](active-directory-coreapps-assign-user-azure-portal.md)
+[Assegnare un utente o gruppo a un'app aziendale](active-directory-coreapps-assign-user-azure-portal.md)
 
-### <a name="important-tips-for-assigning-users-toolinkedin-elevate"></a>Suggerimenti importanti per l'assegnazione di utenti tooLinkedIn Esegui con privilegi elevati
+### <a name="important-tips-for-assigning-users-to-linkedin-elevate"></a>Suggerimenti importanti per l'assegnazione di utenti a LinkedIn Elevate
 
-*   È consigliabile che un singolo utente di Azure AD assegnare tooLinkedIn elevazione tootest hello configurazione provisioning. È possibile assegnare utenti e/o gruppi aggiuntivi in un secondo momento.
+*   È consigliabile assegnare un singolo utente di Azure AD a LinkedIn Elevate per testare la configurazione di provisioning. È possibile assegnare utenti e/o gruppi aggiuntivi in un secondo momento.
 
-*   Quando si assegna un tooLinkedIn utente Esegui con privilegi elevati, è necessario selezionare hello **utente** ruolo nella finestra di dialogo assegnazione hello. ruolo di "accesso predefinita" Hello non funziona per il provisioning.
-
-
-## <a name="configuring-user-provisioning-toolinkedin-elevate"></a>Configurazione tooLinkedIn Esegui con privilegi elevati di provisioning dell'utente
-
-In questa sezione viene illustrata la connessione API di provisioning dell'account utente SCIM dell'elevazione del tooLinkedIn Azure AD e configura il provisioning del servizio toocreate hello, aggiornare e disabilitare gli account utente assegnato in LinkedIn elevare il livello in base a utenti e gruppi assegnazione di Azure AD.
-
-**Suggerimento:** è inoltre possibile scegliere tooenabled basato su SAML Single Sign-On per elevare LinkedIn, attenendosi alle istruzioni hello fornite [portale di Azure](https://portal.azure.com). L'accesso Single Sign-On può essere configurato indipendentemente dal provisioning automatico, nonostante queste due funzionalità siano complementari.
+*   Quando si assegna un utente a LinkedIn Elevate, è necessario selezionare il ruolo **Utente** nella finestra di dialogo di assegnazione. Il ruolo "Default Access" (Accesso predefinito) non è applicabile per il provisioning.
 
 
-### <a name="tooconfigure-automatic-user-account-provisioning-toolinkedin-elevate-in-azure-ad"></a>account utente automatico tooconfigure provisioning tooLinkedIn Esegui con privilegi elevati in Azure AD:
+## <a name="configuring-user-provisioning-to-linkedin-elevate"></a>Configurazione del provisioning di utenti in LinkedIn Elevate
+
+Questa sezione descrive come connettere Azure AD all'API per il provisioning degli account utente SCIM di LinkedIn Elevate e configurare il servizio di provisioning per la creazione, l'aggiornamento e la disabilitazione degli account utente assegnati in LinkedIn Elevate in base all'assegnazione di utenti e gruppi in Azure AD.
+
+**Suggerimento:** si può anche scegliere di abilitare l'accesso Single Sign-On basato su SAML per LinkedIn Elevate, seguendo le istruzioni disponibili nel [portale di Azure](https://portal.azure.com). L'accesso Single Sign-On può essere configurato indipendentemente dal provisioning automatico, nonostante queste due funzionalità siano complementari.
 
 
-primo passaggio Hello è tooretrieve il token di accesso di LinkedIn. Un amministratore dell'organizzazione può eseguire il provisioning automatico di un token di accesso. Nel centro account, Vai troppo**impostazioni &gt; impostazioni globali** e aprire hello **SCIM installazione** pannello.
+### <a name="to-configure-automatic-user-account-provisioning-to-linkedin-elevate-in-azure-ad"></a>Per configurare il provisioning automatico degli account utente in LinkedIn Elevate con Azure AD:
+
+
+Il primo passaggio consiste nel recuperare il token di accesso di LinkedIn. Un amministratore dell'organizzazione può eseguire il provisioning automatico di un token di accesso. Nel centro account, passare a **Settings (Impostazioni) &gt; Global Settings** (Impostazioni globali) e aprire il pannello **SCIM Setup** (Installazione SCIM).
 
 > [!NOTE]
-> Se si accede centro account hello direttamente anziché tramite un collegamento, è possibile raggiungerli tramite hello alla procedura seguente.
+> Per accedere al centro account direttamente anziché tramite un collegamento seguire questa procedura.
 
-1)  Accedi tooAccount Center.
+1)  Accedere al centro account.
 
 2)  Selezionare **Admin (Amministratore) &gt; Admin Settings** (Opzioni amministratore).
 
-3)  Fare clic su **avanzate integrazioni** intestazione laterale sinistra hello. Si è centro account toohello diretto.
+3)  Fare clic su **Advanced Integrations** (Integrazioni avanzate) nella barra laterale di sinistra. Si verrà reindirizzati al centro account.
 
-4)  Fare clic su **+ Aggiungi nuova configurazione di SCIM** e seguire la procedura hello compilando ogni campo.
+4)  Fare clic su **+ Add new SCIM configuration** (+ Aggiungi nuova configurazione SCIM) e seguire la procedura compilando ogni campo.
 
 > Se l'opzione di assegnazione automatica delle licenze non è abilitata, vengono sincronizzati solo i dati degli utenti.
 
 ![Provisioning di LinkedIn Elevate](./media/active-directory-saas-linkedin-elevate-provisioning-tutorial/linkedin_elevate1.PNG)
 
-> Quando l'assegnazione autolicense è abilitato, è necessario toonote l'istanza dell'applicazione e tipo di licenza. Assegnazione delle licenze in un primo arrivato, prima di servire base fino a quando non vengono eseguite tutte le licenze hello.
+> Quando l'opzione di assegnazione automatica delle licenze è abilitata, è necessario prendere nota dell'istanza dell'applicazione e del tipo di licenza. Le licenze vengono assegnate in ordine di arrivo degli utenti fino a esaurimento di tutte le licenze.
 
 ![Provisioning di LinkedIn Elevate](./media/active-directory-saas-linkedin-elevate-provisioning-tutorial/linkedin_elevate2.PNG)
 
-5)  Fare clic su **Generate token** (Genera token). Verrà visualizzata la visualizzazione del token di accesso in hello **token di accesso** campo.
+5)  Fare clic su **Generate token** (Genera token). Il token di accesso dovrebbe essere visualizzato sotto il campo **Access token** (Token di accesso).
 
-6)  Salva negli Appunti tooyour token di accesso o nel computer prima di uscire dalla pagina hello.
+6)  Salvare il token di accesso negli Appunti o nel computer prima di uscire dalla pagina.
 
-7) Successivamente, accedi toohello [portale di Azure](https://portal.azure.com)e passare toohello **Azure Active Directory > App aziendali > tutte le applicazioni** sezione.
+7) Accedere quindi al [portale di Azure](https://portal.azure.com) e passare alla sezione **Azure Active Directory > App aziendali > Tutte le applicazioni**.
 
-8) Se è già stato configurato LinkedIn elevare per single sign-on, eseguire la ricerca per l'istanza di LinkedIn elevazione utilizzando il campo di ricerca hello. In caso contrario, selezionare **Aggiungi** e cercare **LinkedIn elevare** nella raccolta di applicazione hello. Selezionare LinkedIn elevare dai risultati della ricerca hello e aggiungerlo tooyour elenco delle applicazioni.
+8) Se LinkedIn Elevate è già stato configurato per l'accesso Single Sign-On, cercare l'istanza di LinkedIn Elevate usando il campo di ricerca. Selezionare in caso contrario **Aggiungi** e cercare **LinkedIn Elevate** nella raccolta di applicazioni. Selezionare LinkedIn Elevate nei risultati della ricerca e aggiungerlo all'elenco delle applicazioni.
 
-9)  Selezionare l'istanza di LinkedIn elevare e quindi hello **Provisioning** scheda.
+9)  Selezionare l'istanza di LinkedIn Elevate e quindi selezionare la scheda **Provisioning**.
 
-10) Set hello **modalità di Provisioning** troppo**automatica**.
+10) Impostare **Modalità di provisioning** su **Automatico**.
 
 ![Provisioning di LinkedIn Elevate](./media/active-directory-saas-linkedin-elevate-provisioning-tutorial/linkedin_elevate3.PNG)
 
-11)  Compilare hello seguenti campi in **credenziali di amministratore** :
+11)  Compilare i campi seguenti in **Credenziali amministratore**:
 
-* In hello **URL Tenant** immettere https://api.linkedin.com.
+* Nel campo **URL tenant** immettere https://api.linkedin.com.
 
-* In hello **segreto Token** campo, immettere il token di accesso hello generato nel passaggio 1 e fare clic su **Test connessione** .
+* Nel campo **Token segreto** immettere il token di accesso generato nel passaggio 1 e fare clic su **Connessione di test**.
 
-* Vedrai una notifica di esito positivo sul lato upperright hello del portale.
+* Nel lato superiore destro del portale viene visualizzata una notifica di esito positivo.
 
-12) Immettere l'indirizzo di posta elettronica hello di una persona o il gruppo che deve ricevere le notifiche degli errori di provisioning in hello **notifica tramite posta elettronica** campo e casella di controllo hello riportato di seguito.
+12) Immettere l'indirizzo di posta elettronica di una persona o un gruppo che riceverà le notifiche di errore relative al provisioning nel campo **Messaggio di posta elettronica di notifica** e selezionare la casella di controllo seguente.
 
 13) Fare clic su **Salva**. 
 
-14) In hello **mapping degli attributi** sezione, esaminare gli attributi utente e gruppo hello che verranno sincronizzati da Azure AD tooLinkedIn Esegui con privilegi elevati. Si noti che gli attributi selezionati come hello **corrispondenza** proprietà saranno utilizzati toomatch hello utente account e gruppi nel LinkedIn elevare per operazioni di aggiornamento. Selezionare hello Salva pulsante toocommit tutte le modifiche.
+14) Nella sezione **Mapping degli attributi** esaminare gli attributi degli utenti e dei gruppi da sincronizzare da Azure AD a LinkedIn Elevate. Gli attributi selezionati come proprietà **corrispondenti** verranno usati per trovare le corrispondenze con gli account utente e i gruppi in LinkedIn Elevate per le operazioni di aggiornamento. Selezionare il pulsante Salva per eseguire il commit delle modifiche.
 
 ![Provisioning di LinkedIn Elevate](./media/active-directory-saas-linkedin-elevate-provisioning-tutorial/linkedin_elevate4.PNG)
 
-15) tooenable hello servizio provisioning di Azure AD per elevare LinkedIn, hello modifica **lo stato di Provisioning** troppo**su** in hello **impostazioni** sezione
+15) Per abilitare il servizio di provisioning di Azure AD per LinkedIn Elevate, impostare **Stato del provisioning** su **Sì** nella sezione **Impostazioni**.
 
 16) Fare clic su **Salva**. 
 
-Verrà avviata la sincronizzazione iniziale di hello di tutti gli utenti e/o gruppi assegnati tooLinkedIn Esegui con privilegi elevati nella sezione utenti e gruppi di hello. Si noti che la sincronizzazione iniziale hello tooperform più lungo di sincronizzazioni successive, che si verificano ogni 20 minuti circa, purché hello servizio è in esecuzione. È possibile utilizzare hello **i dettagli della sincronizzazione** sezione toomonitor lo stato di avanzamento e seguire i collegamenti tooprovisioning attività i report, che descrivono tutte le azioni eseguite dal provisioning del servizio nella tua app LinkedIn elevare hello.
+Verrà avviata la sincronizzazione iniziale di tutti gli utenti e/o i gruppi assegnati a LinkedIn Elevate nella sezione Utenti e gruppi. Si noti che la sincronizzazione iniziale richiederà più tempo delle sincronizzazioni successive, che saranno eseguite circa ogni 20 minuti per tutto il tempo che il servizio è in esecuzione. È possibile usare la sezione **Dettagli sincronizzazione** per monitorare lo stato e seguire i collegamenti ai report delle attività di provisioning, che descrivono tutte le azioni eseguite dal servizio di provisioning sull'app LinkedIn Elevate.
 
 
 ## <a name="additional-resources"></a>Risorse aggiuntive

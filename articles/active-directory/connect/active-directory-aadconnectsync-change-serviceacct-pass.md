@@ -1,6 +1,6 @@
 ---
-title: 'Sincronizzazione di Azure AD Connect: la modifica di account del servizio di sincronizzazione connettersi hello Azure AD | Documenti Microsoft'
-description: Il documento di questo argomento descrive la chiave di crittografia hello e come tooabandon dopo password hello viene modificato.
+title: 'Servizio di sincronizzazione Azure AD Connect: modifica dell''account del servizio di sincronizzazione Azure AD Connect | Microsoft Docs'
+description: Questo argomento descrive la chiave di crittografia e come abbandonarla dopo la modifica della password.
 services: active-directory
 keywords: Account del servizio Azure AD Sync, password
 documentationcenter: 
@@ -15,96 +15,96 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: billmath
-ms.openlocfilehash: 11948ac4662f722e4f684ef6c9b9ccdc6387e60f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: bf6234d0810f870909957ee1c1e33c225a4922b9
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="changing-hello-azure-ad-connect-sync-service-account-password"></a>Modifica password account del servizio sincronizzazione hello Azure AD Connect
-Se si modifica password account del servizio sincronizzazione hello Azure AD Connect, hello servizio di sincronizzazione non sarà in grado di avviare correttamente finché non si hanno abbandonato la chiave di crittografia hello e reinizializzata password account del servizio sincronizzazione hello Azure AD Connect. 
+# <a name="changing-the-azure-ad-connect-sync-service-account-password"></a>Modifica della password dell'account del servizio di sincronizzazione Azure AD Connect
+Se si modifica la password dell'account del servizio di sincronizzazione Azure AD Connect, il servizio di sincronizzazione non verrà avviato correttamente finché non si abbandona la chiave di crittografia e non si reinizializza la password dell'account del servizio. 
 
-Azure AD Connect, come parte di hello Synchronization Services utilizza una password di hello toostore chiave di crittografia di hello di dominio Active Directory e gli account del servizio Azure AD.  Questi account vengono crittografati prima di essere archiviati nel database di hello. 
+Azure AD Connect, parte dei servizi di sincronizzazione, usa una chiave di crittografia per archiviare le password degli account di servizio Active Directory Domain Services e Azure AD.  Questi account vengono crittografati prima di essere archiviati nel database. 
 
-Hello chiave di crittografia utilizzata sia protetta con [Windows Data Protection (DPAPI)](https://msdn.microsoft.com/library/ms995355.aspx). DPAPI protegge chiave di crittografia di hello utilizzando hello **password dell'account di servizio hello Azure AD Connect sincronizzazione**. 
+La chiave di crittografia usata viene protetta con [Windows Data Protection (DPAPI)](https://msdn.microsoft.com/library/ms995355.aspx). DPAPI protegge la chiave di crittografia usando la **password dell'account del servizio di sincronizzazione Azure AD Connect**. 
 
-Se è necessario toochange password account del servizio hello è possibile utilizzare le procedure di hello in [chiave di crittografia Abandoning hello Azure AD Sync connettersi](#abandoning-the-azure-ad-connect-sync-encryption-key) tooaccomplish questo.  Queste procedure devono essere utilizzate anche se è necessario chiave di crittografia hello tooabandon per qualsiasi motivo.
+Se è necessario modificare la password dell'account del servizio, è possibile usare le procedure contenute in [Abbandono della chiave di crittografia del servizio di sincronizzazione Azure AD Connect](#abandoning-the-azure-ad-connect-sync-encryption-key).  Queste procedure devono essere usate anche se è necessario abbandonare la chiave di crittografia per qualsiasi altro motivo.
 
-##<a name="issues-that-arise-from-changing-hello-password"></a>Problemi causati da Modifica password hello
-Sono presenti due elementi che devono toobe eseguita quando si modifica la password di account di servizio hello.
+##<a name="issues-that-arise-from-changing-the-password"></a>Problemi derivati dalla modifica della password
+Quando si modifica la password dell'account del servizio, è necessario eseguire due operazioni.
 
-In primo luogo, è necessario password hello toochange in Gestione controllo servizi Windows hello.  Finché non si risolve questo problema, verranno visualizzati gli errori seguenti:
+Prima di tutto, è necessario modificare la password in Gestione controllo servizi di Windows.  Finché non si risolve questo problema, verranno visualizzati gli errori seguenti:
 
 
-- Se si tenta di hello toostart il servizio di sincronizzazione in Gestione controllo servizi di Windows, viene visualizzato l'errore hello "**Windows non è stato possibile avviare il servizio di Microsoft Azure AD Sync hello nel Computer locale**". **Errore 1069: Impossibile avviare il servizio hello a causa di errore di accesso tooa.** "
-- In Visualizzatore eventi di Windows hello registro eventi di sistema contiene un errore con **7038 ID evento** e il messaggio "**hello servizio ADSync era toolog Impossibile sul come con password hello attualmente configurata a causa di toohello seguente errore: nome utente Hello o password non è corretta.** "
+- Se si prova ad avviare il servizio di sincronizzazione in Gestione controllo servizi di Windows, viene visualizzato l'errore "**Impossibile avviare il servizio Microsoft Azure AD Sync su computer locale**". **Errore 1069: Il servizio non è stato avviato a causa di un errore in fase di accesso**".
+- Nel Visualizzatore eventi di Windows il registro eventi di sistema contiene un errore con **ID evento 7038** e il messaggio "**Il servizio ADSync non è stato in grado di accedere con la password al momento configurata, a causa del seguente errore: Password o nome utente errato**".
 
-In secondo luogo, in determinate condizioni, se hello password viene aggiornata, hello servizio di sincronizzazione non più possibile recuperare la chiave di crittografia hello tramite DPAPI. Senza la chiave di crittografia hello hello da che servizio di sincronizzazione non è possibile decrittografare hello toosynchronize obbligatorio di password a / locale AD e Azure AD.
+In secondo luogo, se in condizioni specifiche la password viene aggiornata, il servizio di sincronizzazione non può più recuperare la chiave di crittografia tramite DPAPI. Senza la chiave di crittografia, il servizio di sincronizzazione non può decrittografare le password necessarie per eseguire la sincronizzazione a/da Active Directory e Azure AD locali.
 Verranno visualizzati gli errori seguenti:
 
-- In Gestione controllo servizi di Windows, se si tenta di hello toostart servizio di sincronizzazione e non è possibile recuperare la chiave di crittografia hello non riesce con errore "* * Windows non è stato possibile avviare Microsoft Azure AD Sync hello nel Computer locale. Per ulteriori informazioni, esaminare il registro eventi di sistema hello. Se questo è un servizio non Microsoft, contattare il fornitore del servizio di hello e fare riferimento a codice di errore specifico tooservice * *-21451857952 * * *. "
-- In Visualizzatore eventi di Windows, log eventi dell'applicazione hello contiene un errore con **6028 ID evento** e messaggio di errore *"**chiave di crittografia hello del server non è accessibile.* *"*
+- Se in Gestione controllo servizi di Windows si prova ad avviare il servizio di sincronizzazione e questo non riesce a recuperare la chiave di crittografia, viene restituito l'errore "**Impossibile avviare il servizio Microsoft Azure AD Sync su computer locale. Per maggiori informazioni, consultare il registro eventi di sistema. Se non si tratta di un servizio Microsoft, contattare il fornitore del servizio e fare riferimento al codice di errore **-21451857952****".
+- Nel Visualizzatore eventi di Windows il registro eventi dell'applicazione contiene un errore con **ID evento 6028** e il messaggio di errore *"**Impossibile accedere alla chiave di crittografia del server**".*
 
-tooensure che non si ricevono questi errori, seguire le procedure di hello in [chiave di crittografia Abandoning hello Azure AD Sync connettersi](#abandoning-the-azure-ad-connect-sync-encryption-key) quando si modifica la password di hello.
+Per assicurarsi di non ricevere più questi errori, seguire le procedure contenute in [Abbandono della chiave di crittografia del servizio di sincronizzazione Azure AD Connect](#abandoning-the-azure-ad-connect-sync-encryption-key) quando si modifica la password.
  
-## <a name="abandoning-hello-azure-ad-connect-sync-encryption-key"></a>Chiave di crittografia di abbandono hello Azure AD Connect Sync
+## <a name="abandoning-the-azure-ad-connect-sync-encryption-key"></a>Abbandono della chiave di crittografia del servizio di sincronizzazione Azure AD Connect
 >[!IMPORTANT]
->Hello nelle procedure seguenti si applicano solo AD tooAzure Connetti compilazione 1.1.443.0 precedente o successiva.
+>Le procedure seguenti si applicano solo ad Azure AD Connect build 1.1.443.0 o precedenti.
 
-Utilizzare hello seguente chiave di crittografia di procedure tooabandon hello.
+Usare le procedure seguenti per abbandonare la chiave di crittografia.
 
-### <a name="what-toodo-if-you-need-tooabandon-hello-encryption-key"></a>Quali toodo se occorre una chiave di crittografia hello tooabandon
+### <a name="what-to-do-if-you-need-to-abandon-the-encryption-key"></a>Che cosa fare se è necessario abbandonare la chiave di crittografia
 
-Se è necessaria una chiave di crittografia hello tooabandon, questa scheda hello tooaccomplish le procedure seguenti.
+Se è necessario abbandonare la chiave di crittografia, usare le procedure seguenti.
 
-1. [Chiave di crittografia esistente hello abbandonare](#abandon-the-existing-encryption-key)
+1. [Abbandonare la chiave di crittografia esistente](#abandon-the-existing-encryption-key)
 
-2. [Specificare la password hello di hello account di dominio Active Directory](#provide-the-password-of-the-ad-ds-account)
+2. [Specificare la password dell'account Active Directory Domain Services](#provide-the-password-of-the-ad-ds-account)
 
-3. [Reinizializzare la password di hello di hello account di Azure AD sync](#reinitialize-the-password-of-the-azure-ad-sync-account)
+3. [Reinizializzare la password dell'account Azure AD Sync](#reinitialize-the-password-of-the-azure-ad-sync-account)
 
-4. [Avviare il servizio di sincronizzazione hello](#start-the-synchronization-service)
+4. [Avviare il servizio di sincronizzazione](#start-the-synchronization-service)
 
-#### <a name="abandon-hello-existing-encryption-key"></a>Chiave di crittografia esistente hello abbandonare
-Abbandonare chiave di crittografia esistente hello in modo che nuova chiave di crittografia può essere creati:
+#### <a name="abandon-the-existing-encryption-key"></a>Abbandonare la chiave di crittografia esistente
+Abbandonare la chiave di crittografia esistente per poterne creare una nuova:
 
-1. Accedi tooyour Server di connettersi AD Azure come amministratore.
+1. Accedere al server Azure AD Connect come amministratore.
 
 2. Avviare una nuova sessione di PowerShell.
 
-3. Passare toofolder:`$env:Program Files\Microsoft Azure AD Sync\bin\`
+3. Passare alla cartella `$env:Program Files\Microsoft Azure AD Sync\bin\`
 
-4. Eseguire il comando hello:`./miiskmu.exe /a`
+4. Eseguire il comando `./miiskmu.exe /a`
 
 ![Utilità per la chiave di crittografia del servizio di sincronizzazione Azure AD Connect](media/active-directory-aadconnectsync-encryption-key/key5.png)
 
-#### <a name="provide-hello-password-of-hello-ad-ds-account"></a>Specificare la password hello di hello account di dominio Active Directory
-Le password esistenti di hello archiviate hello database non possono essere decrittografate, è necessario tooprovide hello, servizio di sincronizzazione con la password di hello dell'account di dominio Active Directory hello. Hello servizio di sincronizzazione consente di crittografare le password hello usando hello nuova chiave di crittografia:
+#### <a name="provide-the-password-of-the-ad-ds-account"></a>Specificare la password dell'account Active Directory Domain Services
+Poiché le password esistenti archiviate nel database non possono essere più decrittografate, è necessario immettere nel servizio di sincronizzazione la password dell'account Active Directory Domain Services. Il servizio di sincronizzazione crittografa le password usando la nuova chiave di crittografia:
 
-1. Avviare hello Synchronization Service Manager (servizio di sincronizzazione iniziale →).
+1. Avviare Synchronization Service Manager (START → Servizio di sincronizzazione).
 </br>![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/startmenu.png)  
-2. Passare toohello **connettori** scheda.
-3. Seleziona hello **Active Directory Connector** corrispondente tooyour AD locale. Se si dispone di più di un connettore di Active Directory, è possibile ripetere hello seguendo i passaggi per ognuna di esse.
+2. Passare alla scheda **Connettori**.
+3. Selezionare il connettore **AD Connector** corrispondente ad Active Directory locale. Se sono presenti più connettori, ripetere i passaggi seguenti per ognuno.
 4. In **Azioni** selezionare **Proprietà**.
-5. Nella finestra di dialogo popup hello, selezionare **connettersi foresta Directory tooActive**:
-6. Immettere la password di hello dell'account di dominio Active Directory hello in hello **Password** casella di testo. Se non si conosce la password, è necessario impostare tooa noto valore prima di eseguire questo passaggio.
-7. Fare clic su **OK** toosave hello nuova password e finestra di dialogo popup hello Chiudi.
+5. Nella finestra di dialogo popup selezionare **Connetti a Foresta Active Directory**:
+6. Immettere la nuova password dell'account Active Directory Domain Services nella casella di testo **Password**. Se non si conosce questa password, è necessario impostarla su un valore noto prima di eseguire questo passaggio.
+7. Fare clic su **OK** per salvare la nuova password e chiudere la finestra di dialogo popup.
 ![Utilità per la chiave di crittografia del servizio di sincronizzazione Azure AD Connect](media/active-directory-aadconnectsync-encryption-key/key6.png)
 
-#### <a name="reinitialize-hello-password-of-hello-azure-ad-sync-account"></a>Reinizializzare la password di hello di hello account di Azure AD sync
-È possibile fornire direttamente la password di hello del servizio di Azure AD hello, toohello account servizio di sincronizzazione. In alternativa, è necessario toouse hello cmdlet **Aggiungi ADSyncAADServiceAccount** tooreinitialize hello account del servizio Azure AD. cmdlet di Hello Reimposta password dell'account hello e rende disponibile toohello servizio di sincronizzazione:
+#### <a name="reinitialize-the-password-of-the-azure-ad-sync-account"></a>Reinizializzare la password dell'account Azure AD Sync
+Non è possibile fornire direttamente la password dell'account del servizio Azure AD al servizio di sincronizzazione. È invece necessario usare il cmdlet **Add-ADSyncAADServiceAccount** per reinizializzare l'account del servizio Azure AD. Il cmdlet reimposta la password dell'account e la rende disponibile al servizio di sincronizzazione:
 
-1. Avviare una nuova sessione di PowerShell nel server di Azure AD Connect hello.
+1. Avviare una nuova sessione di PowerShell nel server Azure AD Connect.
 2. Eseguire il cmdlet `Add-ADSyncAADServiceAccount`.
-3. Nella finestra di dialogo popup hello, fornire le credenziali di amministratore globale di hello Azure AD per il tenant di Azure AD.
+3. Nella finestra di dialogo popup immettere le credenziali di amministratore globale di Azure AD per il tenant di Azure AD.
 ![Utilità per la chiave di crittografia del servizio di sincronizzazione Azure AD Connect](media/active-directory-aadconnectsync-encryption-key/key7.png)
-4. Se ha esito positivo, verrà visualizzato hello prompt dei comandi di PowerShell.
+4. Se questo passaggio riesce, verrà visualizzato il prompt dei comandi di PowerShell.
 
-#### <a name="start-hello-synchronization-service"></a>Avviare il servizio di sincronizzazione hello
-Ora che hello servizio di sincronizzazione ha chiave di crittografia toohello di accesso e tutte le password di hello è necessario, è possibile riavviare il servizio di hello in Gestione controllo servizi Windows hello:
+#### <a name="start-the-synchronization-service"></a>Avviare il servizio di sincronizzazione
+Ora che il servizio di sincronizzazione ha accesso alla chiave di crittografia e a tutte le password necessarie, è possibile riavviare il servizio in Gestione controllo servizi di Windows:
 
 
-1. Passare tooWindows Gestione controllo servizi (Services → avvio).
+1. Passare a Gestione controllo servizi di Windows (START → Servizi).
 2. Selezionare **Microsoft Azure AD Sync** e fare clic su Riavvia.
 
 ## <a name="next-steps"></a>Passaggi successivi

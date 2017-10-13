@@ -1,6 +1,6 @@
 ---
-title: aaaGet visivo con strumenti di database elastico | Documenti Microsoft
-description: "Descrizione di base della funzionalità di Database SQL di Azure, tra cui un'app di esempio semplice per eseguire strumenti di database elastico hello."
+title: Introduzione ai processi di database elastici | Microsoft Docs
+description: "Descrizione di base della funzionalità relativa agli strumenti di database elastici del database SQL di Azure, che include un'app di esempio di facile esecuzione."
 services: sql-database
 documentationcenter: 
 manager: jhubbard
@@ -15,80 +15,80 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/06/2017
 ms.author: ddove
-ms.openlocfilehash: a84e05c39dffbaef440538602f898acee6e0483a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 637463399593f4bc9ff5bfcbf67bf93b816efc7f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="get-started-with-elastic-database-tools"></a>Iniziare a utilizzare gli strumenti di database elastici
-Questo documento introduce esperienza dello sviluppatore toohello grazie alla possibilità di app di esempio hello toorun. esempio Hello crea una semplice applicazione partizionata ed Esplora le funzionalità principali di strumenti di database elastico. esempio Hello illustra le funzioni di hello [libreria client di database elastico](sql-database-elastic-database-client-library.md).
+Questo documento presenta l'esperienza di sviluppo tramite l'esecuzione dell'app di esempio. Nell'esempio viene creata una semplice applicazione partizionata si esplorano le funzionalità chiave degli strumenti di database elastici. L'esempio mostra le funzioni della [libreria client dei database elastici](sql-database-elastic-database-client-library.md).
 
-libreria di hello tooinstall, andare troppo[Microsoft.Azure.SqlDatabase.ElasticScale.Client](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/). libreria di Hello viene installata con app di esempio hello descritto nella seguente sezione hello.
+Per installare la libreria, visitare [Microsoft.Azure.SqlDatabase.ElasticScale.Client](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/). La libreria viene installata con l'app di esempio descritta nella sezione seguente.
 
 ## <a name="prerequisites"></a>Prerequisiti
 * Visual Studio 2012 o versione successiva con C#. Scaricare una versione gratuita dalla pagina [Download di Visual Studio](http://www.visualstudio.com/downloads/download-visual-studio-vs.aspx).
-* NuGet 2.7 o versione successiva. versione più recente di hello tooget, vedere [installazione di NuGet](http://docs.nuget.org/docs/start-here/installing-nuget).
+* NuGet 2.7 o versione successiva. Per ottenere la versione più recente, vedere [Installing NuGet](http://docs.nuget.org/docs/start-here/installing-nuget) (Installazione di NuGet).
 
-## <a name="download-and-run-hello-sample-app"></a>Scaricare ed eseguire app di esempio hello
-Hello **elastico strumenti DB per SQL Azure - Introduzione** applicazione di esempio vengono descritti gli aspetti più importanti di hello dell'esperienza di sviluppo hello per le applicazioni partizionate che utilizzano gli strumenti di database elastico. L'applicazione è incentrata sui principali casi d'uso per la [gestione delle mappe delle partizioni](sql-database-elastic-scale-shard-map-management.md), il [routing dipendente dai dati](sql-database-elastic-scale-data-dependent-routing.md) e l'[esecuzione di query su più partizioni](sql-database-elastic-scale-multishard-querying.md). toodownload e: esempio hello esecuzione, seguire questi passaggi: 
+## <a name="download-and-run-the-sample-app"></a>Scaricare ed eseguire l'app di esempio
+L'applicazione di esempio **Elastic DB Tools for Azure SQL - Getting Started** (Strumenti di database elastici per SQL di Azure - Introduzione) mostra gli aspetti più importanti dell'esperienza di sviluppo delle applicazioni partizionate che usano gli strumenti di database elastici. L'applicazione è incentrata sui principali casi d'uso per la [gestione delle mappe delle partizioni](sql-database-elastic-scale-shard-map-management.md), il [routing dipendente dai dati](sql-database-elastic-scale-data-dependent-routing.md) e l'[esecuzione di query su più partizioni](sql-database-elastic-scale-multishard-querying.md). Per scaricare ed eseguire l'applicazione di esempio, seguire questa procedura: 
 
-1. Scaricare hello [elastico strumenti DB per SQL Azure - esempio della Guida introduttiva](https://code.msdn.microsoft.com/windowsapps/Elastic-Scale-with-Azure-a80d8dc6) da MSDN. Decomprimere percorso tooa di esempio hello prescelto.
+1. Scaricare l'esempio [Elastic DB Tools for Azure SQL - Getting Started](https://code.msdn.microsoft.com/windowsapps/Elastic-Scale-with-Azure-a80d8dc6) (Strumenti di database elastici per SQL Azure - Guida introduttiva) da MSDN. Decomprimere l'esempio nel percorso desiderato.
 
-2. toocreate un progetto, aprire hello **ElasticScaleStarterKit.sln** soluzione da hello **c#** directory.
+2. Per creare un progetto, aprire la soluzione **ElasticScaleStarterKit.sln** dalla directory **C#**.
 
-3. Nella soluzione hello per il progetto di esempio hello aprire hello **app** file. Il nome del server di Database SQL di Azure e le informazioni di accesso (nome utente e password), quindi seguire le istruzioni di hello di tooadd file hello.
+3. Nella soluzione per l'esempio di progetto aprire il file **app.config**. Seguire quindi le istruzioni nel file per aggiungere il nome del server del database SQL di Azure e le informazioni di accesso (nome utente e password).
 
-4. Compilare ed eseguire un'applicazione hello. Quando richiesto, attivare i pacchetti NuGet di Visual Studio toorestore hello della soluzione hello. Versione più recente di hello della libreria client di database elastico hello vengono scaricati da NuGet.
+4. Compilare ed eseguire l'applicazione. Quando viene richiesto, consentire a Visual Studio di ripristinare i pacchetti NuGet della soluzione. Viene scaricata la versione più recente della libreria client dei database elastici da NuGet.
 
-5. Sperimentare hello diverse opzioni toolearn più sulle funzionalità di libreria del client hello. Si noti passaggi hello hello accetta applicazione nell'output di console hello e si ritiene che il codice hello tooexplore libero background hello.
+5. Provare a usare le varie opzioni per scoprire di più sulle funzionalità della libreria client. Annotare i passaggi eseguiti dall'applicazione nell'output della console ed esplorare liberamente il codice sottostante.
    
     ![Avanzamento][4]
 
-È stata creata ed eseguita la prima applicazione partizionata usando gli strumenti di database elastici nel database SQL. Usare il database SQL tooyour tooconnect Visual Studio o SQL Server Management Studio e un rapido controllo di partizioni hello che hello esempio creato. Si noterà nuovi database di partizione di esempio e un database di gestione di partizioni della mappa: esempio hello che ha creato.
+È stata creata ed eseguita la prima applicazione partizionata usando gli strumenti di database elastici nel database SQL. Usare Visual Studio o SQL Server Management Studio per connettersi al database SQL e osservare rapidamente le partizioni create dall'esempio. Si noteranno nuovi database con partizionamento e un database di gestione delle mappe con partizionamento creati dall'applicazione di esempio.
 
 > [!IMPORTANT]
-> È consigliabile utilizzare sempre hello la versione più recente di Management Studio in modo da restare sincronizzato con gli aggiornamenti tooAzure e il Database SQL. [Aggiornare SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx).
+> È consigliabile usare sempre la versione più aggiornata di Management Studio per restare sincronizzati con gli aggiornamenti per Azure e per il database SQL. [Aggiornare SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx).
 > 
 > 
 
-### <a name="key-pieces-of-hello-code-sample"></a>Parti principali dell'esempio di codice hello
-* **Esegue il mapping di gestione di partizioni e partizioni**: hello di codice viene illustrato come toowork con partizioni, intervalli e i mapping nel file hello **ShardManagementUtils.cs**. Per ulteriori informazioni, vedere [scalabilità orizzontale di database con gestore mappe partizioni di hello](http://go.microsoft.com/?linkid=9862595).  
+### <a name="key-pieces-of-the-code-sample"></a>Elementi chiave dell'esempio di codice
+* **Gestione di partizioni e mappe delle partizioni**: il codice mostra come usare le partizioni, gli intervalli e i mapping nel file **ShardManagementUtils.cs**. Per altre informazioni, vedere [Aumentare il numero di istanze dei database con il gestore delle mappe partizioni](http://go.microsoft.com/?linkid=9862595).  
 
-* **Routing dipendente dai dati**: Routing di partizioni di transazioni toohello destra viene visualizzato **DataDependentRoutingSample.cs**. Per altre informazioni, vedere [Routing dipendente dai dati](http://go.microsoft.com/?linkid=9862596). 
+* **Routing dipendente dai dati**: il routing delle transazioni nella partizione appropriata viene mostrato in **DataDependentRoutingSample.cs**. Per altre informazioni, vedere [Routing dipendente dai dati](http://go.microsoft.com/?linkid=9862596). 
 
-* **Esecuzione di query su più partizioni**: l'esecuzione di query tra partizioni è illustrato nel file hello **MultiShardQuerySample.cs**. Per altre informazioni, vedere [Esecuzione di query su più partizioni](http://go.microsoft.com/?linkid=9862597).
+* **Esecuzione di query su più partizioni**: l'esecuzione di query su più partizioni viene mostrata nel file **MultiShardQuerySample.cs**. Per altre informazioni, vedere [Esecuzione di query su più partizioni](http://go.microsoft.com/?linkid=9862597).
 
-* **Aggiunta di partizioni vuote**: hello iterativo aggiunta di nuove partizioni vuote viene eseguita dal codice hello nel file hello **CreateShardSample.cs**. Per ulteriori informazioni, vedere [scalabilità orizzontale di database con gestore mappe partizioni di hello](http://go.microsoft.com/?linkid=9862595).
+* **Aggiunta di partizioni vuote**: l'aggiunta iterativa di nuove partizioni vuote viene eseguita dal codice nel file **CreateShardSample.cs**. Per altre informazioni, vedere [Aumentare il numero di istanze dei database con il gestore delle mappe partizioni](http://go.microsoft.com/?linkid=9862595).
 
 ### <a name="other-elastic-scale-operations"></a>Altre operazioni di scalabilità elastica
-* **Suddividere una partizione esistente**: le partizioni toosplit funzionalità hello viene fornito da hello **strumento di merge di divisione**. Per altre informazioni, vedere [Spostamento di dati tra database cloud con scalabilità orizzontale](sql-database-elastic-scale-overview-split-and-merge.md).
+* **Divisione di una partizione esistente**: la possibilità di dividere partizioni viene fornita tramite lo **strumento di divisione-unione**. Per altre informazioni, vedere [Spostamento di dati tra database cloud con scalabilità orizzontale](sql-database-elastic-scale-overview-split-and-merge.md).
 
-* **L'unione delle partizioni esistenti**: unione di partizioni vengono eseguite anche utilizzando hello **strumento di merge di divisione**. Per altre informazioni, vedere [Spostamento di dati tra database cloud con scalabilità orizzontale](sql-database-elastic-scale-overview-split-and-merge.md).   
+* **Unione di partizioni esistenti**: le unioni di partizioni vengono eseguite anche tramite lo **strumento di divisione-unione**. Per altre informazioni, vedere [Spostamento di dati tra database cloud con scalabilità orizzontale](sql-database-elastic-scale-overview-split-and-merge.md).   
 
 ## <a name="cost"></a>Costi
-strumenti di database elastico Hello sono gratuiti. Quando si usano strumenti di database elastici, non si ricevono eventuali addebiti aggiuntivi nella parte superiore di costo hello relativa all'utilizzo di Azure. 
+Gli strumenti di database elastici sono gratuiti. L'uso di strumenti di database elastici non comporta costi aggiuntivi oltre a quelli applicati per l'utilizzo di Azure. 
 
-Ad esempio, l'applicazione di esempio hello crea nuovi database. costo Hello per questo dipende dall'edizione del Database SQL hello che prescelto e hello Azure-utilizzo dell'applicazione.
+Quindi, nel caso dei nuovi database creati dall'applicazione di esempio, il costo dipende dall'edizione del database SQL scelta e dall'utilizzo di Azure da parte dell'applicazione.
 
 Per informazioni sui prezzi, vedere [Prezzi del database SQL](https://azure.microsoft.com/pricing/details/sql-database/).
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per ulteriori informazioni sugli strumenti di database elastici, vedere hello seguenti pagine:
+Per altre informazioni sugli strumenti di database elastici, vedere le pagine seguenti:
 
 * Esempi di codice: 
   * [Elastic DB Tools for Azure SQL - Getting Started](http://code.msdn.microsoft.com/Elastic-Scale-with-Azure-a80d8dc6?SRC=VSIDE) (Strumenti di database elastici per SQL di Azure - Introduzione)
   * [Elastic DB Tools for Azure SQL - Entity Framework Integration](http://code.msdn.microsoft.com/Elastic-Scale-with-Azure-bae904ba?SRC=VSIDE) (Strumenti di database elastici per SQL di Azure - Integrazione con Entity Framework)
   * [Elasticità di partizionamento in Script Center](https://gallery.technet.microsoft.com/scriptcenter/Elastic-Scale-Shard-c9530cbe)
 * Blog: [Elastic Scale announcement](https://azure.microsoft.com/blog/2014/10/02/introducing-elastic-scale-preview-for-azure-sql-database/) (Annuncio della scalabilità elastica)
-* Microsoft Virtual Academy: [implementazione scalabilità orizzontale con partizionamento orizzontale con hello elastico Video libreria Client di Database](https://mva.microsoft.com/training-courses/elastic-database-capabilities-with-azure-sql-db-16554?l=lWyQhF1fC_6306218965) 
+* Microsoft Virtual Academy: [Implementing Scale-Out Using Sharding with the Elastic Database Client Library Video](https://mva.microsoft.com/training-courses/elastic-database-capabilities-with-azure-sql-db-16554?l=lWyQhF1fC_6306218965) (Video sull'implementazione della scalabilità orizzontale usando il partizionamento orizzontale con la libreria client di database elastici) 
 * Channel 9: [video di panoramica della scalabilità elastica](http://channel9.msdn.com/Shows/Data-Exposed/Azure-SQL-Database-Elastic-Scale)
 * Forum di discussione: [forum sul database SQL di Azure](http://social.msdn.microsoft.com/forums/azure/home?forum=ssdsgetstarted)
-* prestazioni toomeasure: [contatori delle prestazioni per gestore mappe partizioni](sql-database-elastic-database-client-library.md)
+* Per misurare le prestazioni: [Contatori delle prestazioni per Gestore mappe partizioni](sql-database-elastic-database-client-library.md)
 
 <!--Anchors-->
-[hello Elastic Scale Sample Application]: #The-Elastic-Scale-Sample-Application
-[Download and Run hello Sample App]: #Download-and-Run-the-Sample-App
+[The Elastic Scale Sample Application]: #The-Elastic-Scale-Sample-Application
+[Download and Run the Sample App]: #Download-and-Run-the-Sample-App
 [Cost]: #Cost
 [Next steps]: #next-steps
 

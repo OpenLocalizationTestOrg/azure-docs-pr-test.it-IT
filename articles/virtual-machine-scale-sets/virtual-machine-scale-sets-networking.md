@@ -1,5 +1,5 @@
 ---
-title: "aaaNetworking per il set di scalabilità di macchine virtuali di Azure | Documenti Microsoft"
+title: "Rete per i set di scalabilità di macchine virtuali di Azure | Microsoft Docs"
 description: "Configurazione delle proprietà della rete per i set di scalabilità di macchine virtuali di Azure."
 services: virtual-machine-scale-sets
 documentationcenter: 
@@ -15,20 +15,20 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/17/2017
 ms.author: guybo
-ms.openlocfilehash: ef3f0cfe648d2195c051a73987e654f0e15d13bf
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a8520c6d8962cc362fc935f6b515a299c0ce75b3
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="networking-for-azure-virtual-machine-scale-sets"></a>Rete per i set di scalabilità di macchine virtuali di Azure
 
-Quando si distribuisce una macchina virtuale di Azure di scala impostato tramite il portale di hello, alcune proprietà di rete vengono impostate come predefinite, ad esempio un servizio di bilanciamento del carico di Azure con connessioni in entrata regole NAT. In questo articolo viene descritto come toouse alcune hello più avanzate funzionalità di rete che è possibile configurare con scala imposta.
+Quando si distribuisce un set di scalabilità di macchine virtuali di Azure tramite il portale, determinate proprietà della rete sono predefinite, ad esempio un'istanza di Azure Load Balancer con regole NAT in ingresso. Questo articolo descrive come usare alcune delle funzionalità più avanzate della rete che è possibile configurare con i set di scalabilità.
 
-È possibile configurare le funzionalità hello trattate in questo articolo, utilizzando i modelli di gestione risorse di Azure. Sono inclusi anche esempi dell'interfaccia della riga di comando di Azure e di PowerShell per le funzionalità selezionate. Usare l'interfaccia della riga di comando 2.10 e PowerShell 4.2.0 o versione successiva.
+È possibile configurare tutte le funzionalità illustrate in questo articolo usando i modelli di Azure Resource Manager. Sono inclusi anche esempi dell'interfaccia della riga di comando di Azure e di PowerShell per le funzionalità selezionate. Usare l'interfaccia della riga di comando 2.10 e PowerShell 4.2.0 o versione successiva.
 
 ## <a name="accelerated-networking"></a>Rete accelerata
-Azure [Accelerated rete](../virtual-network/virtual-network-create-vm-accelerated-networking.md) migliora le prestazioni di rete abilitando la macchina virtuale tooa di single root i/o virtualization (SR-IOV). toouse accelerated con set di scalabilità di rete, impostare enableAcceleratedNetworking troppo**true** nelle impostazioni di configurazioni del set di scalabilità. ad esempio:
+La [rete accelerata](../virtual-network/virtual-network-create-vm-accelerated-networking.md) di Azure migliora le prestazioni di rete abilitando Single-Root I/O Virtualization (SR-IOV) per le macchine virtuali. Per usare la rete accelerata con i set di scalabilità, impostare enableAcceleratedNetworking su **true** nelle impostazioni networkInterfaceConfigurations del set di scalabilità, ad esempio:
 ```json
 "networkProfile": {
     "networkInterfaceConfigurations": [
@@ -47,7 +47,7 @@ Azure [Accelerated rete](../virtual-network/virtual-network-create-vm-accelerate
 ```
 
 ## <a name="create-a-scale-set-that-references-an-existing-azure-load-balancer"></a>Creare un set di scalabilità che faccia riferimento a un'istanza di Azure Load Balancer esistente
-Quando viene creato un set di scalabilità mediante hello portale di Azure, viene creato un nuovo bilanciamento del carico per la maggior parte delle opzioni di configurazione. Se si crea un set di scalabilità, che deve tooreference un bilanciamento del carico esistente, è possibile farlo tramite CLI. Hello lo script di esempio seguente crea un bilanciamento del carico e quindi crea un set di scalabilità, che fa riferimento a essa:
+Quando viene creato un set di scalabilità usando il portale di Azure, viene creato un nuovo servizio di bilanciamento del carico per la maggior parte delle opzioni di configurazione. Se si crea un set di scalabilità, che deve fare riferimento a un servizio di bilanciamento del carico esistente, è possibile farlo usando l'interfaccia della riga di comando. Lo script di esempio seguente crea un servizio di bilanciamento del carico e quindi crea un set di scalabilità che vi fa riferimento:
 ```bash
 az network lb create -g lbtest -n mylb --vnet-name myvnet --subnet mysubnet --public-ip-address-allocation Static --backend-pool-name mybackendpool
 
@@ -56,14 +56,14 @@ az vmss create -g lbtest -n myvmss --image Canonical:UbuntuServer:16.04-LTS:late
 ```
 
 ## <a name="configurable-dns-settings"></a>Impostazioni DNS configurabili
-Per impostazione predefinita, set di scalabilità di intraprendere hello le impostazioni DNS specifiche di hello tra reti VIRTUALI e subnet che in cui sono stati creati. È tuttavia possibile configurare le impostazioni DNS hello per una scala impostata direttamente.
+Per impostazione predefinita, ai set di scalabilità vengono applicate le impostazioni DNS specifiche della rete virtuale e della subnet in cui sono state create. È tuttavia possibile configurare direttamente le impostazioni DNS per un set di scalabilità.
 ~
 ### <a name="creating-a-scale-set-with-configurable-dns-servers"></a>Creazione di un set di scalabilità con server DNS configurabili
-toocreate una scala impostata con una configurazione DNS personalizzata utilizzando 2.0 CLI, aggiungere hello **-server - dns** argomento toohello **vmss creare** separati di comando, seguito da uno spazio indirizzi ip del server. ad esempio:
+Per creare un set di scalabilità con una configurazione DNS personalizzata usando l'interfaccia della riga di comando 2.0, aggiungere l'argomento **--dns-servers** al comando **vmss create**, seguito dagli indirizzi IP dei server separati da spazi, ad esempio:
 ```bash
 --dns-servers 10.0.0.6 10.0.0.5
 ```
-server DNS personalizzati tooconfigure in un modello di Azure, aggiungere configurazioni sezione del set di una scala di toohello proprietà dnsSettings. ad esempio:
+Per configurare server DNS personalizzati in un modello di Azure, aggiungere una proprietà dnsSettings alla sezione networkInterfaceConfigurations del set di scalabilità, ad esempio:
 ```json
 "dnsSettings":{
     "dnsServers":["10.0.0.6", "10.0.0.5"]
@@ -71,9 +71,9 @@ server DNS personalizzati tooconfigure in un modello di Azure, aggiungere config
 ```
 
 ### <a name="creating-a-scale-set-with-configurable-virtual-machine-domain-names"></a>Creazione di un set di scalabilità con nomi di dominio di macchine virtuali configurabili
-toocreate una scala impostata con un nome DNS personalizzato per le macchine virtuali utilizzando 2.0 CLI, aggiungere hello **nome di dominio - vm** argomento toohello **vmss creare** comando, seguito da una stringa che rappresenta il nome di dominio di hello.
+Per creare un set di scalabilità con un nome DNS personalizzato per le macchine virtuali usando l'interfaccia della riga di comando 2.0, aggiungere l'argomento **--vm-domain-name** al comando **vmss create**, seguito da una stringa che rappresenta il nome di dominio.
 
-nome di dominio tooset hello in un modello di Azure, aggiungere un **dnsSettings** proprietà set di scalabilità toohello **configurazioni** sezione. ad esempio:
+Per impostare il nome di dominio in un modello di Azure, aggiungere una proprietà **dnsSettings** alla sezione **networkInterfaceConfigurations** del set di scalabilità, ad esempio:
 
 ```json
 "networkProfile": {
@@ -105,20 +105,20 @@ nome di dominio tooset hello in un modello di Azure, aggiungere un **dnsSettings
 }
 ```
 
-output di Hello, per il nome dns di ogni macchina virtuale sarà in hello seguente formato: 
+L'output, per un singolo nome DNS di macchina virtuale, avrà il formato seguente: 
 ```
 <vm><vmindex>.<specifiedVmssDomainNameLabel>
 ```
 
 ## <a name="public-ipv4-per-virtual-machine"></a>IPv4 pubblico per macchina virtuale
-Per le macchine virtuali di un set di scalabilità di Azure in genere non sono necessari indirizzi IP pubblici specifici. Per la maggior parte degli scenari, è più economico e sicuro tooassociate un pubblica IP indirizzo tooa carico bilanciamento o tooan singola macchina virtuale (noto anche come jumpbox), che instrada le macchine virtuali set tooscale le connessioni in ingresso in base alle esigenze (ad esempio, tramite regole NAT in ingresso).
+Per le macchine virtuali di un set di scalabilità di Azure in genere non sono necessari indirizzi IP pubblici specifici. Per la maggior parte degli scenari, risulta più economico e sicuro associare un indirizzo IP pubblico a un servizio di bilanciamento del carico o a una singola macchina virtuale (jumpbox), che quindi instrada le connessioni in ingresso alle macchine virtuali del set di scalabilità in base alle esigenze (ad esempio, tramite regole NAT in ingresso).
 
-Tuttavia, alcuni scenari richiedono set di scalabilità di macchine virtuali toohave proprio indirizzo IP pubblico indirizzi. Il gioco è riportato un esempio, in cui una console deve toomake una connessione diretta tooa cloud macchina virtuale, che esegue l'elaborazione di gioco fisica. Un altro esempio è toomake connessioni esterne tooone necessario le macchine virtuali in un altro in aree geografiche in un database distribuito.
+Alcuni scenari tuttavia richiedono che le macchine virtuali del set di scalabilità abbiano i propri indirizzi IP pubblici, ad esempio i giochi, in cui una console deve stabilire una connessione diretta a una macchina virtuale cloud, che esegue l'elaborazione fisica del gioco. Un altro esempio è quello in cui le macchine virtuali devono stabilire connessioni esterne reciproche tra aree in un database distribuito.
 
 ### <a name="creating-a-scale-set-with-public-ip-per-virtual-machine"></a>Creazione di un set di scalabilità con un IP pubblico per ogni macchina virtuale
-toocreate un set di scalabilità che assegna una pubblica macchina virtuale tooeach di indirizzi IP con 2.0 CLI, aggiungere hello **-public-ip per ogni vm** parametro toohello **vmss creare** comando. 
+Per creare un set di scalabilità che assegni un indirizzo IP pubblico a ogni macchina virtuale con l'interfaccia della riga di comando 2.0, aggiungere il parametro **--public-ip-per-vm** al comando **vmss create**. 
 
-toocreate una scala impostata utilizzando un modello di Azure, assicurarsi hello API versione di hello risorsa Microsoft.Compute/virtualMachineScaleSets almeno **2017-03-30**e aggiungere un **publicIpAddressConfiguration**Set di scalabilità di toohello proprietà JSON della sezione di configurazione IP. ad esempio:
+Per creare un set di scalabilità usando un modello di Azure, verificare che la versione API della risorsa Microsoft.Compute/virtualMachineScaleSets sia almeno **2017-03-30** e aggiungere una proprietà JSON **publicIpAddressConfiguration** alla sezione ipConfigurations del set di scalabilità, ad esempio:
 
 ```json
 "publicIpAddressConfiguration": {
@@ -130,22 +130,22 @@ toocreate una scala impostata utilizzando un modello di Azure, assicurarsi hello
 ```
 Modello di esempio: [201-vmss-public-ip-linux](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-public-ip-linux)
 
-### <a name="querying-hello-public-ip-addresses-of-hello-virtual-machines-in-a-scale-set"></a>Esecuzione di query hello indirizzo IP pubblico del set di indirizzi di hello le macchine virtuali in una scala
-gli indirizzi IP pubblici di toolist hello assegnato tooscale set le macchine virtuali utilizzando 2.0 CLI, utilizzare hello **az vmss elenco-istanza-public-IP** comando.
+### <a name="querying-the-public-ip-addresses-of-the-virtual-machines-in-a-scale-set"></a>Query degli indirizzi IP pubblici delle macchine virtuali in un set di scalabilità
+Per elencare gli indirizzi IP pubblici assegnati alle macchine virtuali del set di scalabilità usando l'interfaccia della riga di comando 2.0, eseguire il comando **az vmss list-instance-public-ips**.
 
-scala toolist imposta gli indirizzi IP pubblici tramite PowerShell, utilizzare hello _Get AzureRmPublicIpAddress_ comando. ad esempio:
+Per elencare gli indirizzi IP pubblici del set di scalabilità usando PowerShell, eseguire il comando _Get-AzureRmPublicIpAddress_, ad esempio:
 ```PowerShell
 PS C:\> Get-AzureRmPublicIpAddress -ResourceGroupName myrg -VirtualMachineScaleSetName myvmss
 ```
 
-È inoltre possibile gli indirizzi IP pubblici di query hello facendo riferimento direttamente all'id della configurazione degli indirizzi IP pubblica hello risorsa hello. ad esempio:
+È anche possibile eseguire una query degli indirizzi IP pubblici facendo direttamente riferimento all'ID risorsa della configurazione degli indirizzi IP pubblici, ad esempio:
 ```PowerShell
 PS C:\> Get-AzureRmPublicIpAddress -ResourceGroupName myrg -Name myvmsspip
 ```
 
-gli indirizzi IP pubblici di tooquery hello assegnato tooscale set le macchine virtuali utilizzando hello [Esplora inventario risorse di Azure](https://resources.azure.com), o hello API REST di Azure con la versione **2017-03-30** o versione successiva.
+Per eseguire una query degli indirizzi IP pubblici assegnati alle macchine virtuali del set di scalabilità, usare [Azure Resource Explorer](https://resources.azure.com) o l'API REST di Azure con versione **2017-03-30** o successiva.
 
-indirizzi IP pubblici tooview per una scala impostata utilizzando hello Esplora inventario risorse, esaminare hello **publicipaddresses** sezione del set di scalabilità. Ad esempio: https://resources.azure.com/subscriptions/_ID_sottoscrizione_/resourceGroups/_gruppo_di_risorse_/providers/Microsoft.Compute/virtualMachineScaleSets/_set_di_scalabilità_di_macchine_virtuali_/publicipaddresses
+Per visualizzare gli indirizzi IP pubblici per un set di scalabilità usando Resource Explorer, esaminare la sezione **publicipaddresses** sotto il set di scalabilità. Ad esempio: https://resources.azure.com/subscriptions/_ID_sottoscrizione_/resourceGroups/_gruppo_di_risorse_/providers/Microsoft.Compute/virtualMachineScaleSets/_set_di_scalabilità_di_macchine_virtuali_/publicipaddresses
 
 ```
 GET https://management.azure.com/subscriptions/{your sub ID}/resourceGroups/{RG name}/providers/Microsoft.Compute/virtualMachineScaleSets/{scale set name}/publicipaddresses?api-version=2017-03-30
@@ -190,10 +190,10 @@ Output di esempio:
 ```
 
 ## <a name="multiple-ip-addresses-per-nic"></a>Più indirizzi IP per ogni scheda di interfaccia di rete
-Tutte le schede NIC associata tooa che macchina virtuale in un set di scalabilità può avere uno o più configurazioni IP associate. A ogni configurazione viene assegnato un indirizzo IP privato. Ogni configurazione può anche avere una risorsa di indirizzo IP pubblico associata. toounderstand quanti indirizzi IP possono essere assegnato tooa NIC, e quanti indirizzi IP pubblici, è possibile utilizzare in una sottoscrizione di Azure, fare riferimento troppo[i limiti di Azure](../azure-subscription-service-limits.md?toc=%2fazure%2fvirtual-network%2ftoc.json#azure-resource-manager-virtual-networking-limits).
+Ogni scheda di interfaccia di rete collegata a una macchina virtuale in un set di scalabilità può avere una o più configurazioni IP associate. A ogni configurazione viene assegnato un indirizzo IP privato. Ogni configurazione può anche avere una risorsa di indirizzo IP pubblico associata. Per sapere quanti indirizzi IP possono essere assegnati a una scheda di interfaccia di rete e quanti indirizzi IP pubblici è possibile usare in una sottoscrizione di Azure, vedere [Limiti di Azure](../azure-subscription-service-limits.md?toc=%2fazure%2fvirtual-network%2ftoc.json#azure-resource-manager-virtual-networking-limits).
 
 ## <a name="multiple-nics-per-virtual-machine"></a>Più schede di interfaccia di rete per ogni macchina virtuale
-È possibile disporre di schede NIC too8 per ogni macchina virtuale, a seconda delle dimensioni della macchina. numero massimo di schede NIC Hello per ogni computer è disponibile in hello [articolo dimensioni VM](../virtual-machines/windows/sizes.md). Hello riportato di seguito è che una scala di imposta il profilo di rete con più voci di interfaccia di rete e più indirizzi IP pubblici per ogni macchina virtuale:
+È possibile avere fino a 8 schede di interfaccia di rete per ogni macchina virtuale, a seconda delle dimensioni del computer. Il numero massimo di schede di interfaccia di rete per computer è disponibile nell'[articolo sulle dimensioni per le VM](../virtual-machines/windows/sizes.md). L'esempio seguente è un profilo di rete del set di scalabilità che mostra più voci di schede di interfaccia di rete e più IP pubblici per ogni macchina virtuale:
 ```json
 "networkProfile": {
     "networkInterfaceConfigurations": [
@@ -266,7 +266,7 @@ Tutte le schede NIC associata tooa che macchina virtuale in un set di scalabilit
 ```
 
 ## <a name="nsg-per-scale-set"></a>Gruppi di sicurezza di rete per ogni set di scalabilità
-Gruppi di sicurezza di rete possono essere applicati direttamente il set di scalabilità tooa, aggiungendo una sezione di configurazione riferimento toohello rete interfaccia della scala hello imposta proprietà della macchina virtuale.
+I gruppi di sicurezza di rete possono essere applicati direttamente a un set di scalabilità, aggiungendo un riferimento alla sezione della configurazione dell'interfaccia di rete delle proprietà delle macchine virtuali del set di scalabilità.
 
 ad esempio: 
 ```
@@ -306,4 +306,4 @@ ad esempio:
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per ulteriori informazioni sulle reti virtuali di Azure, vedere troppo[questa documentazione](../virtual-network/virtual-networks-overview.md).
+Per altre informazioni sulle reti virtuali di Azure, vedere [questa documentazione](../virtual-network/virtual-networks-overview.md).

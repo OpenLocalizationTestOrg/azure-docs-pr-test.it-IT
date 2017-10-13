@@ -1,6 +1,6 @@
 ---
-title: aaaHow tooupgrade progetti toohello versione corrente di hello gli strumenti di Azure | Documenti Microsoft
-description: Informazioni su come progetto di Azure tooupgrade nella versione corrente di Visual Studio toohello di hello gli strumenti di Azure
+title: Come aggiornare i progetti alla versione attuale degli strumenti di Azure | Documentazione Microsoft
+description: Informazioni su come aggiornare un progetto Azure in Visual Studio alla versione attuale degli strumenti di Azure
 services: visual-studio-online
 documentationcenter: na
 author: kraigb
@@ -14,36 +14,36 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 11/18/2016
 ms.author: kraigb
-ms.openlocfilehash: c89ba43af0f2fd9db46ce0c90f0da3d70dc1510b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9a35de7ca0e7161468181b21709e1bd9915d566f
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="how-tooupgrade-projects-toohello-current-version-of-hello-azure-tools-for-visual-studio"></a>Come tooupgrade progetti toohello versione corrente di hello Azure Tools per Visual Studio
+# <a name="how-to-upgrade-projects-to-the-current-version-of-the-azure-tools-for-visual-studio"></a>Come aggiornare i progetti alla versione attuale degli strumenti di Microsoft Azure per Visual Studio
 ## <a name="overview"></a>Panoramica
-Dopo aver installato una versione corrente di hello di strumenti di Azure hello (o una versione precedente che è successiva alla versione 1.6), tutti i progetti creati mediante una versione precedente alla 1.6 (novembre 2011) verranno aggiornate automaticamente non appena vengono aperti. Se per creare progetti tramite hello 1.6 (novembre 2011) versione di questi strumenti e avere la versione installata, è possibile aprire i progetti nella versione precedente di hello e decidere in un secondo momento se tooupgrade li.
+Dopo avere installato la versione corrente degli strumenti di Azure (o successiva alla versione 1.6), eventuali progetti creati mediante una versione precedente alla 1.6 (novembre 2011) verranno automaticamente aggiornati all'apertura. Se sono stati creati progetti con la versione 1.6 (novembre 2011) di questi strumenti e la versione è ancora installata, è possibile aprire i progetti nella versione precedente e decidere in seguito se aggiornarli.
 
 ## <a name="how-your-project-changes-when-you-upgrade-it"></a>Modifiche apportate al progetto durante l'aggiornamento
-Se un progetto viene automaticamente aggiornato o si specifica che si desidera, il progetto è tooupgrade toowork con le versioni correnti di alcuni assembly e alcune proprietà vengono modificate anche come descritto in questa sezione. Se il progetto richiede altre modifiche di toobe compatibile con la versione più recente di hello degli strumenti di hello, è necessario apportare queste modifiche manualmente.
+Se un progetto viene aggiornato automaticamente o si specifica di volerlo aggiornare, verrà modificato in modo da funzionare con le versioni correnti di determinati assembly e verranno anche modificate alcune proprietà, come descritto in questa sezione. Se il progetto richiede altre modifiche per la compatibilità con la versione più recente degli strumenti, è necessario apportarle manualmente.
 
-* il file Web. config Hello per i ruoli web e il file app. config hello per i ruoli di lavoro vengono aggiornati tooreference versione più recente di hello di Microsoft.WindowsAzure.Diagnostics.DiagnosticMonitoirTraceListener.dll.
-* gli assembly Microsoft.WindowsAzure.StorageClient.dll, Microsoft.WindowsAzure.Diagnostics.dll e Microsoft.WindowsAzure.ServiceRuntime.dll Hello sono aggiornati toohello nuove versioni.
-* Profili di pubblicazione sono stati archiviati nel file di progetto Azure hello (. ccproj) sono file separato tooa spostato, con estensione azurepubxml hello, in hello **pubblica** sottodirectory.
-* Alcune proprietà hello profilo di pubblicazione vengono aggiornate toosupport funzionalità nuove e modificate. **AllowUpgrade** viene sostituito da **DeploymentReplacementMethod** perché è possibile aggiornare un servizio cloud distribuito in modo simultaneo o incrementale.
-* proprietà Hello **UseIISExpressByDefault** viene aggiunta e impostare toofalse in modo che hello server web che viene utilizzato per il debug non verranno modificati automaticamente da Internet Information Services (IIS) tooIIS Express. IIS Express è server web di hello predefinito per i progetti creati con le versioni più recenti degli strumenti hello hello.
-* Se la memorizzazione nella cache di Azure è ospitato in uno o più ruoli del progetto, alcune proprietà nella configurazione del servizio hello (file con estensione cscfg) e nella definizione di servizio (file con estensione csdef) vengono modificate quando si aggiorna un progetto. Se il progetto hello Usa hello del pacchetto NuGet di Caching di Azure, il progetto di hello è toohello aggiornato la versione più recente del pacchetto di hello. È consigliabile aprire il file Web. config hello e verificare che la configurazione client hello è stata gestita correttamente durante il processo di aggiornamento hello. Se si aggiungono gli assembly client di memorizzazione nella cache di hello riferimenti tooAzure senza utilizzare il pacchetto NuGet di hello, questi assembly non verranno aggiornati; è necessario aggiornare manualmente le nuove versioni toohello di riferimenti.
+* Il file web.config per i ruoli Web e il file app.config per i ruoli di lavoro vengono aggiornati in modo da fare riferimento alla versione più recente di Microsoft.WindowsAzure.Diagnostics.DiagnosticMonitoirTraceListener.dll.
+* Gli assembly Microsoft.WindowsAzure.StorageClient.dll, Microsoft.WindowsAzure.Diagnostics.dll e Microsoft.WindowsAzure.ServiceRuntime.dll vengono aggiornati alle nuove versioni.
+* I profili di pubblicazione archiviati nel file di progetto Azure (con estensione ccproj) vengono spostati in un file separato con estensione azurePubxml nella sottodirectory **Publish** .
+* Alcune proprietà del profilo di pubblicazione vengono aggiornate per supportare funzionalità nuove e modificate. **AllowUpgrade** viene sostituito da **DeploymentReplacementMethod** perché è possibile aggiornare un servizio cloud distribuito in modo simultaneo o incrementale.
+* La proprietà **UseIISExpressByDefault** viene aggiunta e impostata su false in modo che il server Web usato per il debug non passi automaticamente da Internet Information Services (IIS) a IIS Express. IIS Express è il server Web predefinito dei progetti creati con le versioni più recenti degli strumenti.
+* Se Azure Caching è ospitato in uno o più ruoli del progetto, alcune proprietà nella configurazione del servizio (file con estensione cscfg) e nella definizione del servizio (file con estensione csdef) vengono modificate al momento dell'aggiornamento di un progetto. Se il progetto usa il pacchetto NuGet di Azure Caching, verrà aggiornato alla versione più recente del pacchetto. È necessario aprire il file web.config e verificare che la configurazione client sia stata gestita correttamente durante il processo di aggiornamento. Se si aggiungono riferimenti agli assembly del client Azure Caching senza usare il pacchetto NuGet, questi assembly non verranno aggiornati. È necessario aggiornare manualmente i riferimenti alle nuove versioni.
 
 > [!IMPORTANT]
-> Per progetti F #, è necessario aggiornare manualmente gli assembly di riferimenti tooAzure in modo che fanno riferimento a versioni più recenti di hello di tali assembly.
+> Per i progetti in F#, è necessario aggiornare manualmente i riferimenti agli assembly di Azure in modo che facciano riferimento alle versioni più recenti.
 > 
 > 
 
-### <a name="how-tooupgrade-an-azure-project-toohello-current-release"></a>La modalità di progetto la versione corrente di toohello tooupgrade di Azure
-1. Installazione hello corrente aggiornare la versione di hello strumenti di Azure nell'installazione hello di Visual Studio che si vuole toouse per hello progetto e quindi aprire hello progetto che si desidera tooupgrade. Se il progetto di hello è stato creato con una versione precedente alla 1.6 (novembre 2011), il progetto hello è la versione corrente di toohello aggiornato automaticamente. Se il progetto hello è stato creato con hello versione di novembre 2011 e tale versione è ancora installata, verrà aperto il progetto di hello in tale versione.
-2. In Esplora soluzioni, il menu di scelta rapida aprire hello hello nodo di progetto, scegliere **proprietà**, quindi scegliere hello **applicazione** scheda della finestra di dialogo hello visualizzata.
+### <a name="how-to-upgrade-an-azure-project-to-the-current-release"></a>Come aggiornare un progetto Azure alla versione corrente
+1. Installare la versione corrente degli strumenti di Azure nell'installazione di Visual Studio da usare per il progetto aggiornato, quindi aprire il progetto da aggiornare. Se il progetto è stato creato con una versione degli strumenti di Azure precedente alla 1.6 (novembre 2011), verrà automaticamente aggiornato alla versione corrente. Se il progetto è stato creato con la versione di novembre 2011 e tale versione è ancora installata, verrà aperto in quest'ultima.
+2. In Esplora soluzioni aprire il menu di scelta rapida per il nodo del progetto, scegliere **Proprietà** e quindi la scheda **Applicazione** della finestra di dialogo visualizzata.
    
-    Hello **applicazione** scheda Mostra versione degli strumenti hello associata progetto hello. Se viene visualizzato versione corrente di hello degli strumenti di Azure, il progetto di hello è già stato aggiornato. Se è stato installato una versione più recente degli strumenti hello rispetto a quale scheda hello illustrato, un **aggiornamento** pulsante viene visualizzato.
-3. Scegliere hello **aggiornamento** pulsante tooupgrade una versione corrente di toohello progetto degli strumenti hello.
-4. Compilare il progetto hello e quindi risolvere gli eventuali errori risultanti dalle modifiche API. Per informazioni su come toomodify il codice per la nuova versione hello, vedere la documentazione di hello per hello API specifica.
+    La scheda **Applicazione** indica la versione degli strumenti associata al progetto. Se viene visualizzata la versione corrente degli strumenti di Azure, il progetto è già stato aggiornato. Se è stata installata una versione più recente degli strumenti rispetto a quella indicata nella scheda, viene visualizzato il pulsante **Aggiorna** .
+3. Scegliere il pulsante **Aggiorna** per aggiornare un progetto alla versione corrente degli strumenti.
+4. Creare il progetto, quindi trovare eventuali errori risultanti dalle modifiche API. Per informazioni su come modificare il codice per la nuova versione, vedere la documentazione per l'API specifica.
 

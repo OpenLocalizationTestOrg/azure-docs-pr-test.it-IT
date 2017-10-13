@@ -1,6 +1,6 @@
 ---
-title: "velocità effettiva aaaProvision per Azure Cosmos DB | Documenti Microsoft"
-description: "Informazioni su come tooset il provisioning di velocità effettiva per containsers, raccolte, grafici e tabelle di Azure Cosmos DB."
+title: "Effettuare il provisioning della velocità effettiva per Azure Cosmos DB | Microsoft Docs"
+description: "Informazioni su come configurare la velocità effettiva di provisioning per i container, le raccolte, i grafici e le tabelle di Azure Cosmos DB."
 services: cosmos-db
 author: mimig1
 manager: jhubbard
@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/12/2017
 ms.author: mimig
-ms.openlocfilehash: c143f4aace466b7109168a50e2eb80ddeca6400e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d541bb19ba7e5ecb44c9fe91b1e232d4d9c2170e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="set-throughput-for-azure-cosmos-db-containers"></a>Impostare la velocità effettiva per i contenitori di Azure Cosmos DB
 
-È possibile impostare la velocità effettiva per i contenitori di DB Cosmos Azure nel portale di Azure hello o utilizzando hello client SDK. 
+È possibile impostare la velocità effettiva per i contenitori di Azure Cosmos DB nel portale di Azure oppure usando gli SDK client. 
 
-Hello nella tabella seguente sono elencate disponibili per i contenitori di velocità effettiva di hello:
+La tabella seguente elenca la velocità effettiva disponibile per i contenitori:
 
 <table border="0" cellspacing="0" cellpadding="0">
     <tbody>
@@ -46,43 +46,43 @@ Hello nella tabella seguente sono elencate disponibili per i contenitori di velo
     </tbody>
 </table>
 
-## <a name="tooset-hello-throughput-by-using-hello-azure-portal"></a>velocità effettiva di hello tooset utilizzando hello portale di Azure
+## <a name="to-set-the-throughput-by-using-the-azure-portal"></a>Per impostare la velocità effettiva tramite il Portale di Azure
 
-1. In una nuova finestra, aprire hello [portale di Azure](https://portal.azure.com).
-2. Nella barra sinistra hello, fare clic su **Azure Cosmos DB**, oppure fare clic su **più servizi** nella parte inferiore di hello, quindi scorrere troppo**database**, quindi fare clic su **Azure Cosmos DB**.
+1. In una nuova finestra accedere al [Portale di Azure](https://portal.azure.com).
+2. Fare clic su **Azure Cosmos DB** nella barra a sinistra oppure fare clic su **Altri servizi** nella parte inferiore, scorrere fino a **Database**, quindi fare clic su **Azure Cosmos DB**.
 3. Selezionare l'account Cosmos DB.
-4. In nuova finestra hello, fare clic su **Esplora dati (anteprima)** nel menu di navigazione hello.
-5. In nuova finestra hello, espandere il database e il contenitore e quindi fare clic su **scala & impostazioni**.
-6. Nella finestra Nuovo hello digitare hello nuovo valore di velocità effettiva in hello **velocità effettiva** casella e quindi fare clic su **salvare**.
+4. Nella nuova finestra fare clic su **Esplora dati (anteprima)** dal menu di spostamento.
+5. Nella nuova finestra espandere il database e il contenitore e quindi fare clic su **Scale & Settings** (Scalabilità e impostazioni).
+6. Nella nuova finestra digitare il nuovo valore per la velocità effettiva nella casella **Velocità effettiva** e quindi fare clic su **Salva**.
 
 <a id="set-throughput-sdk"></a>
 
-## <a name="tooset-hello-throughput-by-using-hello-documentdb-api-for-net"></a>velocità effettiva di hello tooset utilizzando hello API DocumentDB per .NET
+## <a name="to-set-the-throughput-by-using-the-documentdb-api-for-net"></a>Per configurare la velocità effettiva usando l'API DocumentDB per .NET
 
 ```C#
-//Fetch hello resource toobe updated
+//Fetch the resource to be updated
 Offer offer = client.CreateOfferQuery()
     .Where(r => r.ResourceLink == collection.SelfLink)    
     .AsEnumerable()
     .SingleOrDefault();
 
-// Set hello throughput toohello new value, for example 12,000 request units per second
+// Set the throughput to the new value, for example 12,000 request units per second
 offer = new OfferV2(offer, 12000);
 
-//Now persist these changes toohello database by replacing hello original resource
+//Now persist these changes to the database by replacing the original resource
 await client.ReplaceOfferAsync(offer);
 ```
 
 ## <a name="throughput-faq"></a>Domande frequenti sulla velocità effettiva
 
-**È possibile impostare tooless la velocità effettiva di 400 UR/sec?**
+**È possibile impostare la velocità effettiva a meno di 400 UR/sec?**
 
-400 UR/sec è la velocità effettiva minima a hello disponibile su raccolte con partizione singola DB Cosmos (2500 UR/sec è minimo per le raccolte partizionate hello). Richiesta di unità vengono impostate in intervalli di 100 UR/sec, ma la velocità effettiva non può essere impostata too100 UR/sec o qualsiasi valore minore di 400 UR/sec. Se si sta cercando di toodevelop un metodo conveniente e test Cosmos DB, è possibile utilizzare hello libero [Azure Cosmos DB emulatore](local-emulator.md), che è possibile distribuire senza alcun costo. 
+Il valore di 400 UR/sec è la velocità effettiva minima disponibile nelle raccolte di partizioni singole di Cosmos DB. 2500 UR/sec è il valore minimo per le raccolte partizionate. Le unità richieste sono impostate in intervalli di 100 UR/sec, ma la velocità effettiva non può essere impostata su 100 UR/sec o su qualsiasi valore inferiore a 400 UR/sec. Se si cerca un metodo conveniente per sviluppare e testare Cosmos DB, è possibile usare la versione gratuita dell'[emulatore di Azure Cosmos DB](local-emulator.md), distribuibile in locale senza alcun costo aggiuntivo. 
 
-**Impostazione througput utilizzando hello MongoDB API**
+**Come configurare la velocità effettiva tramite l'API MongoDB**
 
-Non sussiste alcun della velocità effettiva di MongoDB API estensione tooset. Hello si consiglia di hello toouse API DocumentDB, come illustrato nella [tooset velocità effettiva di hello utilizzando hello API DocumentDB per .NET](#set-throughput-sdk).
+Non è disponibile alcuna estensione dell'API MongoDB per la configurazione della velocità effettiva. È consigliabile usare l'API DocumentDB, come mostrato in [Per configurare la velocità effettiva usando l'API DocumentDB per .NET](#set-throughput-sdk).
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-toolearn ulteriori informazioni su provisioning e scalabilità pianeta corso con Cosmos DB, vedere [partizionamento e scalabilità con DB Cosmos](partition-data.md).
+Per altre informazioni sul provisioning e sulla diffusione su scala globale di Cosmos DB, vedere [Partizionamento e scalabilità con Cosmos DB](partition-data.md).

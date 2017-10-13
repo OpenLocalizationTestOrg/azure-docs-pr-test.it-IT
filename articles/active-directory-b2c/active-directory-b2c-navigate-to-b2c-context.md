@@ -1,6 +1,6 @@
 ---
-title: 'Azure Active B2C di Directory: Tenant cambio tooa B2C | Documenti Microsoft'
-description: Come tooswitch nel contesto hello l'Active B2C Directory tenant
+title: 'Azure Active Directory B2C: Passaggio a un tenant B2C | Microsoft Docs'
+description: Come passare a un tenant diverso nel contesto del tenant di Active Directory B2C
 services: active-directory-b2c
 documentationcenter: 
 author: parakhj
@@ -14,33 +14,33 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 4/13/2017
 ms.author: parakhj
-ms.openlocfilehash: 572f9ab283ecac68d284bb04fdfc98575bcf9393
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 40d8d57d974a949fbdc0a06eeceb2d06bfbaa09f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="switching-tooyour-azure-ad-b2c-tenant"></a>Cambio di tenant di Azure Active Directory B2C tooyour
+# <a name="switching-to-your-azure-ad-b2c-tenant"></a>Passaggio al tenant di Azure AD B2C
 
-In Azure Active Directory B2C tooconfigure di ordine, è necessario toobe nel contesto di hello del tenant di Azure Active Directory B2C.
+Per configurare Azure AD B2C, è necessario trovarsi nel contesto del tenant di Azure AD B2C.
 
 ## <a name="log-into-azure-ad-b2c-tenant"></a>Accedere al tenant di Azure AD B2C
 
-tenant di Azure Active Directory B2C toonavigate tooyour, è necessario l'accesso in hello portale di Azure come amministratore globale del tenant di Azure Active Directory B2C hello.
+Per passare al tenant di Azure AD B2C, è necessario essere connessi al portale di Azure come amministratore globale del tenant di Azure AD B2C.
 
-1. Sign in hello [portale di Azure](http://portal.azure.com).
-1. Passare ai tenant scegliendo l'indirizzo di posta elettronica o un'immagine nell'angolo superiore destro di hello.
-1. In hello `Directory` elenco visualizzato, che si desidera toomanage tenant di hello selezionare Azure Active Directory B2C.
+1. Accedere al [portale di Azure](http://portal.azure.com).
+1. Cambiare tenant facendo clic sull'indirizzo di posta elettronica o sull'immagine nell'angolo superiore destro.
+1. Nell'elenco `Directory` visualizzato selezionare il tenant di Azure AD B2C da gestire.
 
-Portale di Azure Hello verrà aggiornata.  Ora si accede in hello portale di Azure nel contesto di hello del tenant di Azure Active Directory B2C.
+Il portale di Azure verrà aggiornato.  Si è ora connessi al portale di Azure nel contesto del tenant di Azure AD B2C.
 
-## <a name="navigate-toohello-b2c-features-blade"></a>Passare a pannello funzionalità toohello B2C
+## <a name="navigate-to-the-b2c-features-blade"></a>Passare al pannello delle funzionalità B2C
 
-1. Fare clic su **Sfoglia** nella navigazione a sinistra di hello.
-1. Fare clic su **> più servizi** e quindi cercare `Azure AD B2C` nel riquadro di spostamento sinistro hello.  (toopin tooyour schermata iniziale a sinistra, fare clic su hello toohello star sinistra di Azure Active Directory B2C)
-1. Fare clic su **Azure Active Directory B2C** tooaccess hello pannello funzionalità B2C.
+1. Fare clic su **Sfoglia** nel riquadro di spostamento sinistro.
+1. Fare clic su **> Altri servizi** e quindi cercare `Azure AD B2C` nel riquadro di spostamento di sinistra.  Per aggiungerlo alla schermata iniziale di sinistra, fare clic sulla stella a sinistra di Azure AD B2C.
+1. Fare clic su **Azure AD B2C** per accedere al pannello delle funzionalità B2C.
    
-    ![Cattura di schermata del Pannello di funzionalità tooB2C Sfoglia](./media/active-directory-b2c-get-started/b2c-browse.png)
+    ![Screenshot del pannello delle funzionalità B2C](./media/active-directory-b2c-get-started/b2c-browse.png)
 
 > [!IMPORTANT]
-> È necessario un amministratore globale del Pannello di funzionalità di hello B2C tenant toobe tooaccess in grado di hello B2C toobe. Un amministratore globale o un utente di qualsiasi altro tenant non può accedere.  È possibile passare tooyour B2C tenant tramite selezione tenant hello in hello angolo superiore destro di hello portale di Azure.
+> È necessario avere diritti di amministratore globale del tenant B2C per poter accedere al pannello delle funzionalità B2C. Un amministratore globale o un utente di qualsiasi altro tenant non può accedere.  È possibile passare al tenant B2C usando l'apposito controllo nell'angolo superiore destro del portale di Azure.

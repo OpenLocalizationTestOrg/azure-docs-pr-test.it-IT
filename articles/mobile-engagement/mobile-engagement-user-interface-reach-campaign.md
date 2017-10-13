@@ -1,6 +1,6 @@
 ---
-title: aaaAzure interfaccia utente di Engagement Mobile - raggiungere campagna
-description: Laern come toocreate e gestire le campagne di notifica push tramite Azure Mobile Engagement
+title: Interfaccia utente di Azure Mobile Engagement - Campagna Reach
+description: Informazioni sulla creazione e sulla gestione di campagne di notifica push usando Azure Mobile Engagement
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 825e550ace63a34d1a90b10fa976a61eb15a6d04
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: fc88db8db11d1ed12fa95c2087c9a32b21bf4de5
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toocreate-and-manage-push-notification-campaigns"></a>Come toocreate e gestire le campagne di notifica push
-È possibile utilizzare hello Reach sezione dell'interfaccia utente di hello toocreate una nuova campagna Push con una formula complessa, fornendo tutte le informazioni di hello è necessario toosend una notifica push. Hello opzioni di una campagna Push variano leggermente a seconda dei tipi di hello quattro campagna: annunci, viene eseguito il polling, inserisce dati e riquadri (solo Windows Phone).
+# <a name="how-to-create-and-manage-push-notification-campaigns"></a>Come creare e gestire le campagne di notifica push
+È possibile usare la sezione Reach dell'interfaccia utente per creare una nuova campagna di push con una formula complessa fornendo tutte le informazioni necessarie per inviare una notifica push. Le opzioni di una campagna di push variano leggermente in base ai quattro tipi di campagna: annunci, sondaggi, push di dati e riquadri (solo per Windows Phone).
 
 ### <a name="option-applies-to"></a>L'opzione si applica a:
 * Lingue: tutti (annunci, sondaggi, push di dati e riquadri)
@@ -35,18 +35,18 @@ ms.lasthandoff: 10/06/2017
 ![Reach-Campaign1][20]
 
 ## <a name="languages"></a>Lingue
-È possibile utilizzare l'elenco a discesa lingue hello menu toosend una versione diversa del toodevices Push impostate toouse diverse lingue. Per impostazione predefinita, tutti i dispositivi riceveranno hello stesso Push indipendentemente dal linguaggio in cui sono impostati toouse. Gli utenti con dispositivi set tooa diversa lingua hello lingua predefinita della riceveranno hello Push. Molte delle opzioni di campagna push hello consentono di contenuto alternativo toospecify per ognuna delle altre lingue hello selezionate. 
+È possibile usare il menu a discesa Lingue per inviare una versione diversa del push ai dispositivi configurati per l'uso di lingue diverse. Per impostazione predefinita, tutti i dispositivi riceveranno lo stesso push indipendentemente dalla lingua usata. Gli utenti con il dispositivo impostato su una lingua diversa riceveranno la versione del push nella lingua predefinita. Molte opzioni della campagna di push consentono di specificare contenuto alternativo per ognuna delle lingue aggiuntive selezionate. 
 
 ![Reach-Campaign2][21]
 
 ### <a name="language-differences-apply-to"></a>Le differenze di lingua si applicano a:
-* Lingue: Linguaggi univoci possono essere selezionati nella lingua predefinita di addizione toohello
+* Lingue: è possibile selezionare lingue univoche oltre a quella predefinita
 * Campagna: uguale per tutte le lingue
-* Notifica: Univoco per ogni lingua inoltre toohello lingua predefinita
-* Il contenuto: Univoco per ogni lingua inoltre toohello lingua predefinita
+* Notifica: univoca per ogni lingua oltre a quella predefinita
+* Contenuto: univoco per ogni lingua oltre a quella predefinita
 * Destinatari: possono essere filtrati in base a un criterio di lingua distinto
 * Intervallo di tempo: uguale per tutte le lingue
-* Test: Può essere inviato tooeach lingua alla volta
+* Test: può essere inviato a tutte le lingue contemporaneamente
 
 ### <a name="supported-languages"></a>Lingue supportate:
 * Arabo (ar) 
@@ -89,27 +89,27 @@ ms.lasthandoff: 10/06/2017
 * Vietnamita (vi) 
 
 ## <a name="campaign"></a>Campagna
-È possibile utilizzare hello campagna sezione tooset hello nome e la categoria della campagna anche come se si prevede di sezione di destinatari hello tooignore di una campagna Push e invece di inviare questa campagna tramite l'API Reach hello (e alcuni elementi con livello basso hello API Push). Le categorie possono essere usate con notifiche. nell'applicazione toocontrol un modello di notifica personalizzata in base alle impostazioni predefinite. È possibile ottenere un elenco di "Categorie" esistente tramite l'API Reach hello.
+È possibile usare la sezione Campagna per impostare il nome e la categoria della campagna nonché, se si intende ignorare la sezione dei destinatari di una campagna di push, inviare invece la campagna tramite l'API Reach (e alcuni elementi con l'API Push di basso livello). Le categorie possono essere usate con un modello di notifica personalizzato per controllare le notifiche in-app in base alle impostazioni predefinite. È possibile ottenere un elenco di "Categorie" esistenti tramite l'API Reach.
 
 > [!WARNING]
-> Se l'opzione hello "Ignora destinatari push verrà inviato toousers tramite API hello" nella sezione "Campagna" hello di una campagna di copertura, campagna hello non invierà automaticamente, sarà necessario toosend manualmente tramite l'API Reach hello.
+> Se si usa l'opzione "Ignora destinatari, il push verrà inviato agli utenti tramite l'API" nella sezione "Campagna" di una campagna di copertura, la campagna NON sarà inviata automaticamente, ma sarà necessario inviarla manualmente tramite l'API Copertura.
 
 ![Reach-Campaign3][22]
 
 ### <a name="option-applies-to"></a>L'opzione si applica a:
 * Nome: tutti
 * Categoria: annunci e sondaggi
-* Ignora i destinatari push verrà inviato toousers tramite API hello: tutti
+* Ignora i destinatari. Il push verrà inviato agli utenti tramite l'API: tutti
 
 ## <a name="notification"></a>Notifica
-È possibile utilizzare le impostazioni di base hello notifica sezione tooset per il push, tra cui: hello titolo di hello Push, il messaggio hello, un'immagine all'interno dell'applicazione, o se è non rilevanti. Molte impostazioni di notifica sono toohello specifico della piattaforma del dispositivo. È possibile scegliere se il push verrà inviato "in-app", "all'esterno dell'app" o in entrambi i modi. (Tenere presente che gli utenti possono "opt-in" o "rifiutare esplicitamente" "fuori app" inserisce nel sistema operativo hello livello nei propri dispositivi e Azure Mobile Engagement non essere in grado di toooverride questa impostazione. Ricordare anche che gestisce l'API Reach hello "nell'app" e "out-of-app" effettua il push. Hello API Push può essere utilizzati toohandle "out dell'app" inserisce troppo). Push possono essere personalizzati con immagini o contenuto HTML, inclusi i collegamenti diretti per il collegamento all'esterno del percorso App o tooanother nell'App (SDK Android 2.1.0 o successive categorie preventivo richieste). È possibile modificare il badge di iOS o di un'icona hello e inviare il contenuto di testo o web (un popup con html, URL collegamento tooanother percorso del contenuto all'interno o all'esterno di hello app). È anche possibile fai squillare i dispositivi Android o vibrare con hello Push. (Tenere presente che sarà necessario hello corrette autorizzazioni SDK in Android tooring file manifesto o vibrare un dispositivo). Non esiste alcuno standard del settore per le dimensioni dell'immagine grande di Android perché le dimensioni dello schermo variano con ogni dispositivo. Tuttavia, le immagini da 400x100 sono adatte a quasi a tutte le dimensioni degli schermi.
+È possibile usare la sezione Notifica per definire le impostazioni di base per il push, tra cui: il titolo del push, il messaggio, un'immagine in-app oppure se può essere ignorato. Molte impostazioni di notifica sono specifiche della piattaforma del dispositivo. È possibile scegliere se il push verrà inviato "in-app", "all'esterno dell'app" o in entrambi i modi. Tenere presente che gli utenti possono accettare o rifiutare esplicitamente i push "all'esterno dell'app" a livello di sistema operativo sui propri dispositivi e Azure Mobile Engagement non potrà eseguire l'override di questa impostazione. Tenere presente, inoltre, che l'API Reach gestisce i push "in-app" e "all'esterno dell'app". L'API Push può essere usata anche per gestire push "all'esterno dell'app". I push possono essere personalizzati con immagini o contenuto HTML, inclusi collegamenti diretti per il collegamento all'esterno dell'applicazione o a un'altra posizione nell'applicazione (è necessario l'SDK Android 2.1.0 o categorie successive). È possibile modificare l'icona o il badge iOS e inviare testo o contenuto Web (una finestra popup con contenuto HTML, un collegamento URL a un'altra posizione all'interno o all'esterno dell'applicazione). È inoltre possibile impostare lo squillo o la vibrazione dei dispositivi Android con il push. Tenere presente che perché un dispositivo squilli o vibri il file manifesto Android deve contenere le autorizzazioni dell'SDK corretto. Non esiste alcuno standard del settore per le dimensioni dell'immagine grande di Android perché le dimensioni dello schermo variano con ogni dispositivo. Tuttavia, le immagini da 400x100 sono adatte a quasi a tutte le dimensioni degli schermi.
 
 ### <a name="delivery-types"></a>Tipi di recapito:
-* All'esterno dell'app solo: notifica hello verrà recapitata quando l'utente hello non utilizza un'applicazione hello.
-* Hello fuori notifica solo app richiede un certificato di Apple o Google (certificato APNS o GCM).
-* Nell'applicazione solo: notifica hello viene visualizzata solo quando un'applicazione hello è in esecuzione.
-* notifica di Hello utilizza hello Capptain recapito sistema tooreach hello utente. È possibile personalizzare completamente hello layout/visualizzazione il push.
-* In qualsiasi momento: Questa opzione assicura che si invia una notifica che o meno, è in esecuzione l'applicazione hello.
+* Solo all'esterno dell'app: la notifica sarà recapitata quando l'utente non usa l'applicazione.
+* La notifica solo all'esterno dell'app richiede un certificato di Apple o Google (certificato APNS o GCM).
+* Solo in-app: la notifica viene visualizzata solo quando l'applicazione è in esecuzione.
+* La notifica usa il sistema di recapito Capptain per raggiungere l'utente. È possibile personalizzare completamente il layout o la visualizzazione del push.
+* In qualsiasi momento: questa opzione assicura che una notifica venga inviata indipendentemente dal fatto che l'applicazione sia in esecuzione o meno.
 
 ![Reach-Campaign4][23]
 
@@ -117,23 +117,23 @@ ms.lasthandoff: 10/06/2017
 * Notifica: annunci e sondaggi
 
 ## <a name="content"></a>Content
-È possibile utilizzare contenuto hello di hello sezione contenuto toomodify di annunci, viene eseguito il polling, effettua il push dei dati e riquadri (solo Windows Phone). impostazione del contenuto delle campagne Push Hello è toohello specifico tipo di campagna. 
+È possibile usare la sezione Contenuto per modificare il contenuto di annunci, sondaggi, push di dati e riquadri (solo per Windows Phone). L'impostazione del contenuto delle campagne di push è specifico per il tipo di campagna. 
 
 ### <a name="see-also"></a>Vedere anche
 * [Documentazione dell'interfaccia utente - Reach - Push del contenuto][Link 29]
 
 ![Reach-Campaign5][24]
 
-## <a name="audience"></a>Audience
-La campagna o i limiti di una campagna in base ai criteri personalizzati, è possibile utilizzare hello destinatari sezione toodefine un elenco di elementi toolimit standard. set di opzioni tooLimit standard Hello i destinatari consentono agli utenti di nuovo o quello precedente tooeither toopush o solo gli utenti di push nativo. È inoltre possibile impostare un numero di hello toolimit di quota di utenti che ricevono push hello. È possibile modificare manualmente l'espressione hello per la modalità la campagna tooinclude filtrati uno o più utenti tootarget criterio. È possibile digitare manualmente un'espressione di destinatari. Un'espressione di questo tipo deve definire esplicitamente relazione hello tra criteri. Un criterio viene descritto da un identificatore che deve iniziare con una lettera maiuscola e non può contenere spazi. relazione Hello tra criteri hello può essere descritte con 'and', 'or', 'not' gli operatori, nonché '(',')'. Esempio: "Criterion1 or (Criterion1 and not Criterion2)".
+## <a name="audience"></a>Destinatari
+È possibile usare la sezione Destinatari per definire un elenco standard di elementi per limitare la campagna in base a criteri personalizzati. L'insieme standard di opzioni per limitare i destinatari consente di effettuare il push solo per utenti nuovi, esistenti o nativi. È inoltre possibile impostare una quota per limitare il numero di utenti che ricevono il push. È possibile modificare manualmente l'espressione per la modalità di filtro della campagna in modo da includere uno o più criteri per gli utenti di destinazione. È possibile digitare manualmente un'espressione di destinatari. Tale espressione deve definire in modo esplicito la relazione tra i criteri. Un criterio viene descritto da un identificatore che deve iniziare con una lettera maiuscola e non può contenere spazi. La relazione tra i criteri può essere descritta usando gli operatori 'and', 'or', 'not' e '(',')'. Esempio: "Criterion1 or (Criterion1 and not Criterion2)".
 
 > [!NOTE]
-> Con numerosi utenti inclusi in campagne, sul lato server hello come destinazione di analisi può richiedere molto tempo, soprattutto se si tenta di toostart più campagne in hello stesso tempo.
+> con numerosi destinatari inclusi nelle campagne, la ricerca dei destinatari sul lato server può risultare lenta, soprattutto se si tenta di avviare più campagne contemporaneamente.
 
 * Se possibile, iniziare una sola campagna alla volta.
-* In hello massimo inizio solo quattro campagne alla volta.
-* Push solo tooyour utenti attivi (casella di controllo "coinvolgere solo gli utenti che possono essere raggiunto tramite Push nativo" e "Coinvolgere solo gli utenti attivi") in modo che solo gli utenti che è ancora installata App hello e utilizzano saranno necessario toobe analizzati.
-  Dopo aver definito i destinatari, è possibile utilizzare hello simulare pulsante toofind il numero di utenti che riceveranno questo Push. Questo calcola hello numero di utenti noti potenzialmente destinato al gruppo di destinatari (si tratta di una stima basata su un campione casuale di utenti). Tenere presente che gli utenti che hanno disinstallato l'applicazione hello fanno parte del gruppo di destinatari, ma non possono essere raggiunto.
+* Al massimo, avviare quattro campagne alla volta.
+* Eseguire il push solo per gli utenti attivi (casella di controllo "Effettua push solo degli utenti raggiungibili con Push nativo" e "Effettua push solo degli utenti attivi") in modo da individuare solo gli utenti che hanno l'app installata e che la usano ancora.
+  Una volta definiti i destinatari, è possibile usare il pulsante di simulazione per scoprire quanti utenti riceveranno il push. Verrà calcolato il numero di utenti noti potenzialmente appartenenti al gruppo di destinatari (si tratta di una stima basata su un campione casuale di utenti). Tenere presente che anche gli utenti che hanno disinstallato l'applicazione fanno parte di questi destinatari, ma non possono essere raggiunti.
 
 ### <a name="see-also"></a>Vedere anche
 * [Documentazione dell'interfaccia utente - Reach - Nuovi criteri di push][Link 28]
@@ -152,10 +152,10 @@ La campagna o i limiti di una campagna in base ai criteri personalizzati, è pos
 * Effettua push solo degli utenti raggiungibili con Push nativo: annunci e sondaggi
 
 ## <a name="time-frame"></a>Intervallo di tempo
-È possibile utilizzare hello tempo sezione tooset quando hello push verrà inviato o è possibile lasciare immediatamente campagna hello toostart vuoto di hello intervallo di tempo. Tenere presente che con fuso orario hello degli utenti finali può iniziare campagna hello un giorno prima di quanto si prevede che per gli utenti finali in Asia e invia batch di piccole dimensioni di push contemporaneamente fino a quando tutti i fusi orari hello world corrispondenza hello intervallo di tempo impostato per la campagna. Con fuso orario hello degli utenti finali possono inoltre causare ritardi nelle campagne poiché dispone ora di hello toorequest da un telefono hello prima di iniziare il push di hello.
+È possibile usare la sezione Intervallo di tempo per stabilire quando verrà inviato il push oppure omettere l'intervallo di tempo per avviare immediatamente la campagna. Si tenga presente che se si utilizza il fuso orario degli utenti finali, la campagna potrebbe iniziare un giorno prima del previsto per gli utenti finali in Asia, per cui è consigliabile inviare piccoli gruppi di push alla volta finché tutti i fusi orari del mondo corrispondono all'intervallo di tempo impostato per la campagna. L'utilizzo del fuso orario degli utenti finali, inoltre, può causare ritardi nelle campagne poiché è necessario chiedere l'ora al telefono prima di iniziare il push.
 
 > [!NOTE]
-> quando le campagne non hanno data di fine, i push possono essere memorizzati nella cache locale ed essere ancora visualizzati dopo aver completato manualmente la campagna. tooavoid questo comportamento, specifica un'ora di fine per le campagne.
+> quando le campagne non hanno data di fine, i push possono essere memorizzati nella cache locale ed essere ancora visualizzati dopo aver completato manualmente la campagna. Per evitare questo comportamento, specificare un'ora di fine per le campagne.
 
 ### <a name="see-also"></a>Vedere anche
 * [Reach - Procedure - Pianificazione][Link 3] 
@@ -166,10 +166,10 @@ La campagna o i limiti di una campagna in base ai criteri personalizzati, è pos
 * Intervallo di tempo: annunci, sondaggi e riquadri
 
 ## <a name="test"></a>Test
-È possibile utilizzare il dispositivo di un test di push tooyour hello Test sezione toosend prima del salvataggio della campagna hello. Se è stato configurato tutte le lingue per la campagna personalizzate, è possibile testare push hello in ciascuna lingua. È possibile configurare un dispositivo di test da "Account personale".
+È possibile usare la sezione Test per inviare il push al dispositivo di test prima di salvare la campagna. Se sono state configurate lingue personalizzate per la campagna, è possibile testare il push in ciascuna lingua. È possibile configurare un dispositivo di test da "Account personale".
 
 > [!NOTE]
-> Inserisce alcun lato server vengono registrati i dati quando si utilizza il pulsante hello troppo "non test", i dati vengono registrati solo per le campagne push reale.
+> Non vengono registrati dati sul lato server quando si usa il pulsante per "testare" i push, vengono registrati solo i dati per le campagne di push reali.
 
 ### <a name="see-also"></a>Vedere anche
 * [Documentazione dell'interfaccia utente - Account personale][Link 14]

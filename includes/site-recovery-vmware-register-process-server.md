@@ -1,9 +1,9 @@
-* Connessione macchina virtuale di processo Server toohello mediante connessione Desktop remoto.
-* È possibile avviare hello cspsconfigtool.exe facendo clic sul collegamento hello disponibile sul desktop hello. (strumento hello verrà automaticamente avviato se questo hello prima volta che si effettua l'accesso processo hello server).
+* Connettersi alla macchina virtuale del server di elaborazione tramite Connessione Desktop remoto.
+* È possibile avviare cspsconfigtool.exe facendo clic sul collegamento disponibile sul desktop. (Lo strumento verrà automaticamente avviato se è la prima volta che si effettua l'accesso al server di elaborazione).
   - Nome completo (FQDN) o indirizzo IP del server di configurazione.
-  - Porta su cui hello configurazione server è in ascolto. il valore di Hello deve essere la porta 443
-  - Server di configurazione toohello tooconnect Passphrase connessione.
-  - Configurato per questo Server di elaborazione toobe porta trasferimento di dati. Lasciare hello valore predefinito a meno che non è stata modificata tooa numero di porta diverso nell'ambiente in uso.
+  - Porta su cui il server di configurazione è in ascolto. Il valore dovrebbe essere 443.
+  - Passphrase di connessione al server di configurazione.
+  - Porta di trasferimento dati da configurare per questo server di elaborazione. Lasciare invariato il valore predefinito, a meno che non sia stato specificato un numero di porta diverso nell'ambiente corrente.
 
     ![Registrare il server di elaborazione](./media/site-recovery-vmware-register-process-server/register-ps.png)
-* Fare clic su hello Salva pulsante toosave hello configurazione e registrare hello Server di elaborazione.
+* Fare clic su Salva per salvare la configurazione e registrare il server di elaborazione.

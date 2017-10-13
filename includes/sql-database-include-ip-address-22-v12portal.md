@@ -4,36 +4,36 @@ includes/sql-database-include-ip-address-22-v12portal.md
 
 Latest Freshness check:  2016-03-21 , daleche.
 
-As of circa 2015-09-04, hello following topics might include this include:
+As of circa 2015-09-04, the following topics might include this include:
 articles/sql-database/sql-database-configure-firewall-settings.md
 articles/sql-database/sql-database-connect-query.md
 
 
 ## Server-level firewall rules
 
-### Add a server-level firewall rule through hello new Azure portal
+### Add a server-level firewall rule through the new Azure portal
 -->
 
 
-1. Accedi toohello [portale di Azure](https://portal.azure.com/) in http://portal.azure.com/.
-2. Nel banner sinistro hello, fare clic su **Esplora tutto**. Hello **Sfoglia** pannello viene visualizzato.
-3. Scorrere e fare clic su **Server SQL**. Hello **istanze di SQL Server** pannello viene visualizzato.
+1. Accedere al [portale di Azure](https://portal.azure.com/) all'indirizzo http://portal.azure.com/.
+2. Nell'intestazione di sinistra, fare clic su **ESPLORA TUTTO**. Il pannello **Sfoglia** viene visualizzato.
+3. Scorrere e fare clic su **Server SQL**. Il pannello **istanze di SQL Server** viene visualizzato.
    
-    ![Trovare il server di Database SQL di Azure nel portale di hello][b21-FindServerInPortal]
-4. Per praticità, fare clic su hello ridurre al minimo il controllo in precedenza hello **Sfoglia** blade.
-5. Nella casella di testo filtro hello, iniziare a digitare il nome di hello del server. Viene visualizzata la riga.
-6. Fare clic sulla riga hello del server. Viene visualizzato un pannello per il server.
-7. Nel pannello del server, fare clic su **impostazioni**. Hello **impostazioni** pannello viene visualizzato.
-8. Fare clic su **Firewall**. Hello **le impostazioni del Firewall** pannello viene visualizzato.
+    ![Trovare il server di Database SQL di Azure nel portale di][b21-FindServerInPortal]
+4. Per praticità, ridurre a icona i pannelli precedenti nel pannello **Sfoglia** .
+5. Nella casella di testo di filtro, iniziare a digitare il nome del server. Viene visualizzata la riga.
+6. Fare clic sulla riga per il server. Viene visualizzato un pannello per il server.
+7. Nel pannello del server, fare clic su **impostazioni**. Il pannello **impostazioni** viene visualizzato.
+8. Fare clic su **Firewall**. Il pannello **Impostazioni del Firewall** viene visualizzato.
    
     ![Fare clic su Impostazioni > Firewall][b31-SettingsFirewallNavig]
-9. Fare clic su **aggiungere Client IP**. Digitare un nome per la nuova regola nella prima casella di testo hello.
-10. Tipo di hello basso e alto valori di intervallo hello desiderato di indirizzi IP tooenable.
+9. Fare clic su **aggiungere Client IP**. Digitare un nome per la nuova regola nella prima casella di testo.
+10. Digitare i valori di indirizzo IP minimo e massimo per l'intervallo che si desidera abilitare.
     
-    * Può essere utile toohave hello basso valore fine con **,0** e alta con hello **.255**.
+    * Può essere utile impostare il valore minimo su **.0** e il massimo su **.255**.
     
-    ![Aggiungere un tooallow intervallo di indirizzi IP][b41-AddRange]
-11. Fare clic su **Salva**.
+    ![Aggiungere un intervallo di indirizzi IP per consentire][b41-AddRange]
+11. Fare clic su **Save**.
 
 <!-- Image references. -->
 

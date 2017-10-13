@@ -1,6 +1,6 @@
 ---
-title: estensione della macchina virtuale dell'agente di controllo di rete per Windows aaaAzure | Documenti Microsoft
-description: Distribuire hello agente di controllo di rete nella macchina virtuale Windows usando un'estensione della macchina virtuale.
+title: Estensione macchina virtuale agente Network Watcher per Windows | Documentazione Microsoft
+description: Distribuire l'agente Network Watcher in una macchina virtuale Windows usando un'estensione macchina virtuale.
 services: virtual-machines-windows
 documentationcenter: 
 author: dennisg
@@ -15,33 +15,33 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 02/14/2017
 ms.author: dennisg
-ms.openlocfilehash: 21298706e462ff32c4d314f9a1ad127074ddf481
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b8d6a998bc86337b286a3434f44f762cca9b7e68
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="network-watcher-agent-virtual-machine-extension-for-windows"></a>Estensione macchina virtuale agente Network Watcher per Windows
 
 ## <a name="overview"></a>Panoramica
 
-[Azure Network Watcher](https://review.docs.microsoft.com/en-us/azure/network-watcher/) è un servizio di monitoraggio delle prestazioni di rete, diagnostica e analisi che consente di monitorare le reti di Azure. Hello estensione della macchina virtuale dell'agente di controllo di rete è un requisito per alcune delle funzionalità di hello Watcher di rete in macchine virtuali di Azure. Include l'acquisizione del traffico di rete su richiesta e altre funzionalità avanzate.
+[Azure Network Watcher](https://review.docs.microsoft.com/en-us/azure/network-watcher/) è un servizio di monitoraggio delle prestazioni di rete, diagnostica e analisi che consente di monitorare le reti di Azure. L'estensione macchina virtuale Network Watcher Agent è un requisito per alcune funzionalità di Network Watcher nelle macchine virtuali di Azure, Include l'acquisizione del traffico di rete su richiesta e altre funzionalità avanzate.
 
-Questo hello dettagli di documento supportato piattaforme e le opzioni di distribuzione per hello estensione della macchina virtuale dell'agente di controllo di rete per Windows.
+Questo documento descrive in dettaglio le piattaforme e le opzioni di distribuzione supportate per l'estensione macchina virtuale agente Network Watcher per Windows.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
 ### <a name="operating-system"></a>Sistema operativo
 
-Hello estensione rete Watcher agente per Windows possono essere eseguite in Windows Server 2008 R2, 2012 e 2012 R2 2016 rilascia. Si noti che hello Nano Server non sono supportato in questo momento.
+L'estensione agente Network Watcher per Windows può essere eseguita in Windows Server 2008 R2, 2012, 2012 R2 e 2016. Si noti che il Nano Server non è supportato in questo momento.
 
 ### <a name="internet-connectivity"></a>Connettività Internet
 
-Alcune delle funzionalità dell'agente di controllo rete hello richiede tale macchina virtuale di destinazione hello connesso toohello Internet. Senza connessioni in uscita di hello possibilità tooestablish alcune delle funzionalità dell'agente di controllo rete hello malfunzionamento o non sono più disponibili. Per ulteriori informazioni, vedere hello [documentazione Watcher di rete](../../network-watcher/network-watcher-monitoring-overview.md).
+Alcune delle funzionalità di Network Watcher Agent richiedono che la macchina virtuale di destinazione sia connessa a Internet. Se non vi è la possibilità di stabilire connessioni in uscita, alcune funzionalità di Network Watcher Agent potrebbero non funzionare correttamente o non essere disponibili. Per maggiori dettagli, vedere la [documentazione di Network Watcher](../../network-watcher/network-watcher-monitoring-overview.md).
 
 ## <a name="extension-schema"></a>Schema dell'estensione
 
-Hello JSON seguente mostra lo schema di hello per hello estensione Agent Watcher di rete. estensione di Hello non richiede né supporta le impostazioni fornite dall'utente in questo momento e si basa sulla configurazione predefinita.
+Lo schema JSON seguente illustra lo schema dell'estensione Network Watcher Agent. Al momento, l'estensione non richiede né supporta impostazioni fornite dall'utente e si basa sulla configurazione predefinita.
 
 ```json
 {
@@ -73,11 +73,11 @@ Hello JSON seguente mostra lo schema di hello per hello estensione Agent Watcher
 
 ## <a name="template-deployment"></a>Distribuzione del modello
 
-Le estensioni macchina virtuale di Azure possono essere distribuite con i modelli di Azure Resource Manager. schema JSON Hello descritta in dettaglio nella sezione precedente hello è utilizzabile in un hello toorun modello di gestione risorse di Azure estensione Agent Watcher di rete durante la distribuzione di un modello di gestione risorse di Azure.
+Le estensioni macchina virtuale di Azure possono essere distribuite con i modelli di Azure Resource Manager. Lo schema JSON indicato nella sezione precedente può essere usato in un modello di Azure Resource Manager per eseguire l'estensione agente Network Watcher durante la distribuzione di un modello di Azure Resource Manager.
 
 ## <a name="powershell-deployment"></a>Distribuzione PowerShell
 
-Hello `Set-AzureRmVMExtension` comando può essere utilizzato toodeploy hello agente di controllo di rete macchina virtuale estensione tooan macchina virtuale esistente.
+Il comando `Set-AzureRmVMExtension` consente di distribuire l'estensione macchina virtuale agente Network Watcher a una macchina virtuale esistente.
 
 ```powershell
 Set-AzureRmVMExtension -ResourceGroupName "myResourceGroup1" `
@@ -93,13 +93,13 @@ Set-AzureRmVMExtension -ResourceGroupName "myResourceGroup1" `
 
 ### <a name="troubleshooting"></a>Risoluzione dei problemi
 
-Dati sullo stato di hello delle distribuzioni di estensione possono essere recuperati dal portale di Azure hello e, utilizzando il modulo di Azure PowerShell hello. lo stato di distribuzione hello toosee delle estensioni per una macchina virtuale specificata, hello esecuzione seguente comando utilizzando hello modulo Azure PowerShell.
+I dati sullo stato delle distribuzioni dell'estensione possono essere recuperati nel portale di Azure e tramite il modulo Azure PowerShell. Per visualizzare lo stato di distribuzione delle estensioni per una determinata VM, eseguire questo comando nel modulo Azure PowerShell.
 
 ```powershell
 Get-AzureRmVMExtension -ResourceGroupName myResourceGroup1 -VMName myVM1 -Name networkWatcherAgent
 ```
 
-Esecuzione di estensione di output è toofiles registrati nell'hello seguente directory:
+L'output dell'esecuzione dell'estensione viene registrato nei file presenti nella directory seguente:
 
 ```cmd
 C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.NetworkWatcher.NetworkWatcherAgentWindows\
@@ -107,4 +107,4 @@ C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.NetworkWatcher.NetworkWatcherAgentW
 
 ### <a name="support"></a>Supporto
 
-Se è necessario ulteriore assistenza in qualsiasi punto in questo articolo, è possibile consultare la documentazione di toohello Guida utente Watcher di rete o contattare hello Azure esperti hello [forum MSDN di Azure e di Overflow dello Stack](https://azure.microsoft.com/en-us/support/forums/). In alternativa, è possibile archiviare un evento imprevisto di supporto tecnico di Azure. Passare toohello [sito del supporto tecnico di Azure](https://azure.microsoft.com/en-us/support/options/) e scegliere supporto tecnico. Per informazioni sull'utilizzo di supporto di Azure, leggere hello [supporto tecnico di Microsoft Azure domande frequenti su](https://azure.microsoft.com/en-us/support/faq/).
+Se in qualsiasi punto dell'articolo sono necessarie altre informazioni, fare riferimento alla documentazione Guida per l'utente di Network Watcher o contattare gli esperti di Azure nei [forum MSDN e Stack Overflow relativi ad Azure](https://azure.microsoft.com/en-us/support/forums/). In alternativa, è possibile archiviare un evento imprevisto di supporto tecnico di Azure. Accedere al [sito del supporto di Azure](https://azure.microsoft.com/en-us/support/options/) e selezionare l'opzione desiderata per ottenere supporto. Per informazioni sull'uso del supporto di Azure, leggere le [Domande frequenti sul supporto di Azure](https://azure.microsoft.com/en-us/support/faq/).

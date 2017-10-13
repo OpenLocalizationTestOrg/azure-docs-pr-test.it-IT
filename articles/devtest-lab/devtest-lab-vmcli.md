@@ -1,6 +1,6 @@
 ---
-title: aaaCreate e gestire macchine virtuali in DevTest Labs con CLI di Azure | Documenti Microsoft
-description: Informazioni su come toouse Azure DevTest Labs toocreate e gestire macchine virtuali con 2.0 CLI di Azure
+title: Creare e gestire macchine virtuali in DevTest Labs con l'interfaccia della riga di comando di Azure | Microsoft Docs
+description: Informazioni su come usare Azure DevTest Labs per creare e gestire le macchine virtuali con l'interfaccia della riga di comando di Azure 2.0
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: lisawong19
@@ -13,34 +13,34 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/19/2017
 ms.author: liwong
-ms.openlocfilehash: 98ea3aa7b2489bff61971573aaf584984cd811e6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a3af12ba0598d60b55b3714ae1690fe3e5b54a42
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: it-IT
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="create-and-manage-virtual-machines-with-devtest-labs-using-hello-azure-cli"></a>Creare e gestire macchine virtuali con DevTest Labs utilizzando hello CLI di Azure
+# <a name="create-and-manage-virtual-machines-with-devtest-labs-using-the-azure-cli"></a>Creare e gestire macchine virtuali con DevTest Labs tramite l'interfaccia della riga di comando di Azure
 Questa guida introduttiva illustra la creazione, l'avvio, la connessione, l'aggiornamento e la pulizia di una macchina di sviluppo nel lab. 
 
 Prima di iniziare:
 
 * Se il lab non è stato creato, le istruzioni sono disponibili [qui](devtest-lab-create-lab.md).
 
-* [Installare l'interfaccia della riga di comando 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli). toostart, esecuzione az accesso toocreate una connessione con Azure. 
+* [Installare l'interfaccia della riga di comando 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli). Per iniziare, eseguire az login per creare una connessione con Azure. 
 
-## <a name="create-and-verify-hello-virtual-machine"></a>Creare e verificare una macchina virtuale hello 
+## <a name="create-and-verify-the-virtual-machine"></a>Creare e verificare la macchina virtuale 
 Creare una macchina virtuale da un'immagine del Marketplace con autenticazione SSH.
 ```azurecli
 az lab vm create --lab-name sampleLabName --resource-group sampleLabResourceGroup --name sampleVMName --image "Ubuntu Server 16.04 LTS" --image-type gallery --size Standard_DS1_v2 --authentication-type  ssh --generate-ssh-keys --ip-configuration public 
 ```
 > [!NOTE]
-> Inserire hello **gruppo di risorse del lab** nome hello - parametro gruppo di risorse.
+> Inserire il nome del **gruppo di risorse lab** nel parametro --resource-group.
 >
 
-Se si desidera toocreate una macchina virtuale utilizzando una formula, utilizzare hello - parametro formula in [creare vm lab az](https://docs.microsoft.com/cli/azure/lab/vm#create).
+Se si vuole creare una macchina virtuale tramite una formula, usare il parametro --formula in [az lab vm create](https://docs.microsoft.com/cli/azure/lab/vm#az_lab_vm_create).
 
 
-Verificare che hello macchina virtuale è disponibile.
+Verificare che la VM sia disponibile.
 ```azurecli
 az lab vm show --lab-name sampleLabName --name sampleVMName --resource-group sampleResourceGroup --expand 'properties($expand=ComputeVm,NetworkInterface)' --query '{status: computeVm.statuses[0].displayStatus, fqdn: fqdn, ipAddress: networkInterface.publicIpAddress}'
 ```
@@ -52,22 +52,22 @@ az lab vm show --lab-name sampleLabName --name sampleVMName --resource-group sam
 }
 ```
 
-## <a name="start-and-connect-toohello-virtual-machine"></a>Avviare e connettere la macchina virtuale di toohello
+## <a name="start-and-connect-to-the-virtual-machine"></a>Avviare e connettersi alla macchina virtuale
 Avviare una VM.
 ```azurecli
 az lab vm start --lab-name sampleLabName --name sampleVMName --resource-group sampleLabResourceGroup
 ```
 > [!NOTE]
-> Inserire hello **gruppo di risorse del lab** nome hello - parametro gruppo di risorse.
+> Inserire il nome del **gruppo di risorse lab** nel parametro --resource-group.
 >
 
-Connettersi tooa VM: [SSH](../virtual-machines/linux/mac-create-ssh-keys.md) o [Desktop remoto](../virtual-machines/windows/connect-logon.md).
+Connettersi a una VM: [SSH](../virtual-machines/linux/mac-create-ssh-keys.md) o [Desktop remoto](../virtual-machines/windows/connect-logon.md).
 ```bash
 ssh userName@ipAddressOrfqdn 
 ```
 
-## <a name="update-hello-virtual-machine"></a>Aggiornare la macchina virtuale hello
-Applicare gli elementi tooa macchina virtuale.
+## <a name="update-the-virtual-machine"></a>Aggiornare la macchina virtuale
+Applicare elementi a una VM.
 ```azurecli
 az lab vm apply-artifacts --lab-name  sampleLabName --name sampleVMName  --resource-group sampleResourceGroup  --artifacts @/artifacts.json
 ```
@@ -102,7 +102,7 @@ az lab vm apply-artifacts --lab-name  sampleLabName --name sampleVMName  --resou
 ]
 ```
 
-Elencare gli elementi disponibili nell'ambiente lab hello.
+Elencare gli elementi disponibili nel lab.
 ```azurecli
 az lab vm show --lab-name sampleLabName --name sampleVMName --resource-group sampleResourceGroup --expand "properties(\$expand=artifacts)" --query 'artifacts[].{artifactId: artifactId, status: status}'
 ```
@@ -113,7 +113,7 @@ az lab vm show --lab-name sampleLabName --name sampleVMName --resource-group sam
 }
 ```
 
-## <a name="stop-and-delete-hello-virtual-machine"></a>Arrestare ed eliminare la macchina virtuale di hello    
+## <a name="stop-and-delete-the-virtual-machine"></a>Arrestare ed eliminare la macchina virtuale    
 Arrestare una VM.
 ```azurecli
 az lab vm stop --lab-name sampleLabName --name sampleVMName --resource-group sampleResourceGroup
